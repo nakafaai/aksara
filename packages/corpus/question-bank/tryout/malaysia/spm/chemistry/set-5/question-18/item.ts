@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "applying",
+    cognitiveLevel: "analysing",
     contentDomain: "form-4",
     topic: "rate-of-reaction",
   },
@@ -10,19 +10,50 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$30\\text{ s}$$, $$96\\text{ cm}^3$$" },
-        { correct: false, label: "$$60\\text{ s}$$, $$96\\text{ cm}^3$$" },
-        { correct: false, label: "$$15\\text{ s}$$, $$48\\text{ cm}^3$$" },
-        { correct: false, label: "$$30\\text{ s}$$, $$48\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "Both give $$240\\text{ cm}^3$$, and II is faster",
+        },
+        {
+          correct: true,
+          label:
+            "I gives $$240\\text{ cm}^3$$ and II gives $$216\\text{ cm}^3$$, and II is faster",
+        },
+        {
+          correct: false,
+          label:
+            "I gives $$240\\text{ cm}^3$$ and II gives $$216\\text{ cm}^3$$, and II is slower",
+        },
+        {
+          correct: false,
+          label:
+            "I gives $$240\\text{ cm}^3$$ and II gives $$264\\text{ cm}^3$$, and II is faster",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$30\\text{ s}$$, $$96\\text{ cm}^3$$" },
-        { correct: false, label: "$$60\\text{ s}$$, $$96\\text{ cm}^3$$" },
-        { correct: false, label: "$$15\\text{ s}$$, $$48\\text{ cm}^3$$" },
-        { correct: false, label: "$$30\\text{ s}$$, $$48\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label:
+            "Kedua-duanya memberi $$240\\text{ cm}^3$$, dan II lebih cepat",
+        },
+        {
+          correct: true,
+          label:
+            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$216\\text{ cm}^3$$, dan II lebih cepat",
+        },
+        {
+          correct: false,
+          label:
+            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$216\\text{ cm}^3$$, dan II lebih perlahan",
+        },
+        {
+          correct: false,
+          label:
+            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$264\\text{ cm}^3$$, dan II lebih cepat",
+        },
       ],
     },
   },

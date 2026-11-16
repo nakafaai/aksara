@@ -1,21 +1,26 @@
-# Der Temperaturanstieg gibt die Enthalpieänderung, und warme Flüssigkeit schrumpft beim Abkühlen
+# Von der Wärme, die die Suppe braucht, auf die Wärme zurückrechnen, die die Reaktion abgeben muss
 
-Das Wasser wird warm, also setzt das Lösen Wärme frei und **die Enthalpieänderung ist negativ**. Eine Flüssigkeit zieht sich beim Abkühlen zusammen, also enthält ein warm bis zur Marke gefüllter Kolben kalt weniger als <InlineMath math="250\text{ cm}^3" />. Dieselben <InlineMath math="0{,}100\text{ mol}" /> in weniger Volumen sind konzentrierter.
+Die Suppe braucht <InlineMath math="40\text{ kJ}" />, doch **nur <InlineMath math="70\%" /> der Reaktionswärme kommen dort an**, also muss die Reaktion mehr als <InlineMath math="40\text{ kJ}" /> abgeben. Ein negatives <InlineMath math="\Delta H" /> heißt, Wärme verlässt das Reaktionsgemisch und wärmt die Suppe.
 
-<Mermaid
-  title={<>Warum der warme Kolben eine stärkere Lösung gibt</>}
-  description={<>Warm gefüllt, zieht sich die Lösung beim Abkühlen zusammen, also steckt dieselbe Stoffmenge in weniger als <InlineMath math="250\text{ cm}^3" />.</>}
-  chart={"flowchart LR\n  W[\"Warm bis zur Marke gefüllt\"] --> C[\"Kühlt ab und zieht sich zusammen\"]\n  C --> V[\"Volumen unter 250 cm3\"]\n  V --> H[\"Gleiche Stoffmenge in weniger Volumen: über 0,400 mol dm-3\"]"}
+<Chart
+  title={<>Wärme in der Dose</>}
+  description={<>Die Reaktion gibt <InlineMath math="57{,}1\text{ kJ}" /> ab, <InlineMath math="40\text{ kJ}" /> erreichen die Suppe, <InlineMath math="17{,}1\text{ kJ}" /> gehen verloren.</>}
+  bars="apart"
+  categories={["Frei", "Erreicht die Suppe", "Verloren"]}
+  series={[
+    { label: "Wärme", mark: "bar", values: [57.1, 40, 17.1] },
+  ]}
+  valueLabel="Wärme (kJ)"
 />
 
 <BlockMath math="\begin{aligned}
-Q&=100\times4{,}2\times10{,}6=4452\text{ J}=4{,}452\text{ kJ}\\
-n(\text{NaOH})&=\tfrac{4{,}00}{40}=0{,}100\text{ mol}\\
-\Delta H&=-\tfrac{4{,}452}{0{,}100}=-44{,}5\text{ kJ mol}^{-1}
+Q_{\text{Suppe}}&=250\times4{,}0\times40=40{.}000\text{ J}=40\text{ kJ}\\
+Q_{\text{frei}}&=\tfrac{40}{0{,}70}=57{,}1\text{ kJ}\\
+n(\text{CaO})&=\tfrac{57{,}1}{65}=0{,}879\text{ mol}\Rightarrow m=0{,}879\times56=49{,}2\text{ g}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- Ein Temperaturanstieg heißt, Wärme wird frei, also ist das Vorzeichen negativ, nicht positiv.
-- Eine verdünntere Lösung bräuchte mehr Volumen. **Abkühlen lässt die Flüssigkeit schrumpfen**.
-- <InlineMath math="-4{,}45\text{ kJ mol}^{-1}" /> teilt durch <InlineMath math="1{,}00\text{ mol}" /> statt <InlineMath math="0{,}100\text{ mol}" />, und das Volumen im Kolben hängt sehr wohl von der Temperatur ab.
+- <InlineMath math="34{,}5\text{ g}" /> nimmt an, jedes Joule erreiche die Suppe.
+- <InlineMath math="24{,}1\text{ g}" /> multipliziert mit <InlineMath math="0{,}70" />, statt zu teilen. **Verluste heißen mehr Oxid, nicht weniger**.
+- Ein negatives <InlineMath math="\Delta H" /> ist eine exotherme Reaktion, die Wärme an die Suppe abgibt.

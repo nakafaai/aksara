@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$720\\text{ kg}$$, because cryolite lowers the melting point",
+            "$$1.2\\text{ dm}^3$$ of oxygen at the anode and $$2.4\\text{ dm}^3$$ of hydrogen at the cathode",
         },
         {
           correct: false,
           label:
-            "$$360\\text{ kg}$$, because cryolite makes solid aluminium oxide conduct",
-        },
-        {
-          correct: false,
-          label:
-            "$$480\\text{ kg}$$, because cryolite lowers the melting point",
+            "$$2.4\\text{ dm}^3$$ of chlorine at the anode and $$4.6\\text{ g}$$ of sodium at the cathode",
         },
         {
           correct: true,
           label:
-            "$$360\\text{ kg}$$, because cryolite lowers the melting point of the electrolyte",
+            "$$2.4\\text{ dm}^3$$ of chlorine at the anode, $$2.4\\text{ dm}^3$$ of hydrogen at the cathode, and $$0.20\\text{ mol}$$ of sodium hydroxide in the solution",
+        },
+        {
+          correct: false,
+          label:
+            "$$4.8\\text{ dm}^3$$ of chlorine at the anode and $$4.8\\text{ dm}^3$$ of hydrogen at the cathode",
         },
       ],
     },
@@ -37,21 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$720\\text{ kg}$$, kerana kriolit merendahkan takat lebur",
+          label:
+            "$$1.2\\text{ dm}^3$$ oksigen di anod dan $$2.4\\text{ dm}^3$$ hidrogen di katod",
         },
         {
           correct: false,
           label:
-            "$$360\\text{ kg}$$, kerana kriolit menjadikan aluminium oksida pepejal mengkonduksi",
-        },
-        {
-          correct: false,
-          label: "$$480\\text{ kg}$$, kerana kriolit merendahkan takat lebur",
+            "$$2.4\\text{ dm}^3$$ klorin di anod dan $$4.6\\text{ g}$$ natrium di katod",
         },
         {
           correct: true,
           label:
-            "$$360\\text{ kg}$$, kerana kriolit merendahkan takat lebur elektrolit",
+            "$$2.4\\text{ dm}^3$$ klorin di anod, $$2.4\\text{ dm}^3$$ hidrogen di katod, dan $$0.20\\text{ mol}$$ natrium hidroksida dalam larutan",
+        },
+        {
+          correct: false,
+          label:
+            "$$4.8\\text{ dm}^3$$ klorin di anod dan $$4.8\\text{ dm}^3$$ hidrogen di katod",
         },
       ],
     },

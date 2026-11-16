@@ -11,23 +11,20 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$+2$$ to $$+2.5$$, $$0.080\\text{ mol dm}^{-3}$$",
+        },
+        {
           correct: true,
-          label:
-            "$$65\\text{ kg}$$, and carbon could also reduce iron(III) oxide and lead(II) oxide but not aluminium oxide",
+          label: "$$+2$$ to $$+2.5$$, $$0.040\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
-          label:
-            "$$65\\text{ kg}$$, and carbon could also reduce aluminium oxide",
+          label: "$$+4$$ to $$+5$$, $$0.040\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
-          label:
-            "$$81\\text{ kg}$$, and carbon could also reduce iron(III) oxide and lead(II) oxide",
-        },
-        {
-          correct: false,
-          label: "$$48.8\\text{ kg}$$, because carbon is the limiting reagent",
+          label: "$$+2$$ to $$+2.5$$, $$0.020\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -35,24 +32,20 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$+2$$ kepada $$+2.5$$, $$0.080\\text{ mol dm}^{-3}$$",
+        },
+        {
           correct: true,
-          label:
-            "$$65\\text{ kg}$$, dan karbon juga boleh menurunkan ferum(III) oksida dan plumbum(II) oksida tetapi bukan aluminium oksida",
+          label: "$$+2$$ kepada $$+2.5$$, $$0.040\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
-          label:
-            "$$65\\text{ kg}$$, dan karbon juga boleh menurunkan aluminium oksida",
+          label: "$$+4$$ kepada $$+5$$, $$0.040\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
-          label:
-            "$$81\\text{ kg}$$, dan karbon juga boleh menurunkan ferum(III) oksida dan plumbum(II) oksida",
-        },
-        {
-          correct: false,
-          label:
-            "$$48.8\\text{ kg}$$, kerana karbon ialah bahan tindak balas pengehad",
+          label: "$$+2$$ kepada $$+2.5$$, $$0.020\\text{ mol dm}^{-3}$$",
         },
       ],
     },

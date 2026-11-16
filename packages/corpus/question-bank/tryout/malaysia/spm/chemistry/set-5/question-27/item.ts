@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$0.10\\text{ mol}$$ of trichloromethane only, and $$1.0\\text{ mol dm}^{-3}$$",
+          label: "$$3$$ alcohols, $$2$$ of them oxidised to an acid",
         },
         {
           correct: false,
-          label:
-            "$$0.050\\text{ mol}$$ of each, and $$2.0\\text{ mol dm}^{-3}$$",
+          label: "$$4$$ alcohols, all $$4$$ oxidised to an acid",
+        },
+        {
+          correct: false,
+          label: "$$4$$ alcohols, $$3$$ of them oxidised to an acid",
         },
         {
           correct: true,
-          label:
-            "$$0.050\\text{ mol}$$ of each, and $$1.0\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$0.025\\text{ mol}$$ of dichloromethane and $$0.075\\text{ mol}$$ of trichloromethane, and $$1.0\\text{ mol dm}^{-3}$$",
+          label: "$$4$$ alcohols, $$2$$ of them oxidised to an acid",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$0.10\\text{ mol}$$ triklorometana sahaja, dan $$1.0\\text{ mol dm}^{-3}$$",
+          label: "$$3$$ alkohol, $$2$$ daripadanya dioksidakan kepada asid",
         },
         {
           correct: false,
-          label:
-            "$$0.050\\text{ mol}$$ setiap satu, dan $$2.0\\text{ mol dm}^{-3}$$",
+          label: "$$4$$ alkohol, kesemua $$4$$ dioksidakan kepada asid",
+        },
+        {
+          correct: false,
+          label: "$$4$$ alkohol, $$3$$ daripadanya dioksidakan kepada asid",
         },
         {
           correct: true,
-          label:
-            "$$0.050\\text{ mol}$$ setiap satu, dan $$1.0\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$0.025\\text{ mol}$$ diklorometana dan $$0.075\\text{ mol}$$ triklorometana, dan $$1.0\\text{ mol dm}^{-3}$$",
+          label: "$$4$$ alkohol, $$2$$ daripadanya dioksidakan kepada asid",
         },
       ],
     },

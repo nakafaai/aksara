@@ -1,21 +1,26 @@
-# Kenaikan suhu memberi perubahan entalpi, dan cairan hangat menyusut saat mendingin
+# Hitung mundur dari kalor yang dibutuhkan sup ke kalor yang harus dilepas reaksi
 
-Airnya menghangat, jadi pelarutan melepas kalor dan **perubahan entalpinya negatif**. Cairan menyusut saat mendingin, jadi labu yang diisi sampai tanda saat masih hangat berisi kurang dari <InlineMath math="250\text{ cm}^3" /> setelah dingin. <InlineMath math="0{,}100\text{ mol}" /> yang sama dalam volume lebih kecil berarti lebih pekat.
+Sup butuh <InlineMath math="40\text{ kJ}" />, tetapi **hanya <InlineMath math="70\%" /> kalor reaksi yang sampai ke sana**, jadi reaksi harus melepas lebih dari <InlineMath math="40\text{ kJ}" />. <InlineMath math="\Delta H" /> negatif berarti kalor keluar dari campuran dan menghangatkan sup.
 
-<Mermaid
-  title={<>Kenapa labu hangat memberi larutan lebih pekat</>}
-  description={<>Diisi saat hangat, larutan menyusut ketika mendingin, jadi jumlah mol yang sama ada dalam kurang dari <InlineMath math="250\text{ cm}^3" />.</>}
-  chart={"flowchart LR\n  W[\"Hangat: diisi sampai tanda\"] --> C[\"Mendingin dan menyusut\"]\n  C --> V[\"Volume di bawah 250 cm3\"]\n  V --> H[\"Mol sama dalam volume lebih kecil: di atas 0,400 mol dm-3\"]"}
+<Chart
+  title={<>Kalor dalam kaleng</>}
+  description={<>Reaksi melepas <InlineMath math="57{,}1\text{ kJ}" />, <InlineMath math="40\text{ kJ}" /> sampai ke sup dan <InlineMath math="17{,}1\text{ kJ}" /> hilang.</>}
+  bars="apart"
+  categories={["Dilepas", "Sampai ke sup", "Hilang"]}
+  series={[
+    { label: "Kalor", mark: "bar", values: [57.1, 40, 17.1] },
+  ]}
+  valueLabel="Kalor (kJ)"
 />
 
 <BlockMath math="\begin{aligned}
-Q&=100\times4{,}2\times10{,}6=4452\text{ J}=4{,}452\text{ kJ}\\
-n(\text{NaOH})&=\tfrac{4{,}00}{40}=0{,}100\text{ mol}\\
-\Delta H&=-\tfrac{4{,}452}{0{,}100}=-44{,}5\text{ kJ mol}^{-1}
+Q_{\text{sup}}&=250\times4{,}0\times40=40{.}000\text{ J}=40\text{ kJ}\\
+Q_{\text{dilepas}}&=\tfrac{40}{0{,}70}=57{,}1\text{ kJ}\\
+n(\text{CaO})&=\tfrac{57{,}1}{65}=0{,}879\text{ mol}\Rightarrow m=0{,}879\times56=49{,}2\text{ g}
 \end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- Kenaikan suhu berarti kalor dilepas, jadi tandanya negatif, bukan positif.
-- Larutan yang lebih encer butuh volume yang bertambah. **Pendinginan membuat cairan menyusut**.
-- <InlineMath math="-4{,}45\text{ kJ mol}^{-1}" /> membagi dengan <InlineMath math="1{,}00\text{ mol}" /> alih-alih <InlineMath math="0{,}100\text{ mol}" />, dan volume labu memang bergantung pada suhu.
+- <InlineMath math="34{,}5\text{ g}" /> menganggap setiap joule sampai ke sup.
+- <InlineMath math="24{,}1\text{ g}" /> mengalikan dengan <InlineMath math="0{,}70" /> alih-alih membagi. **Kehilangan berarti oksida lebih banyak, bukan lebih sedikit**.
+- <InlineMath math="\Delta H" /> negatif adalah reaksi eksoterm, yang melepas kalor ke sup.

@@ -12,22 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Ethanoic acid, giving $$0.55\\text{ g}$$ of methyl ethanoate",
+          label:
+            "$$0.10\\text{ mol}$$ of trichloromethane only, and $$1.0\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.050\\text{ mol}$$ of each, and $$2.0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "Propanoic acid, giving $$0.66\\text{ g}$$ of methyl propanoate",
+            "$$0.050\\text{ mol}$$ of each, and $$1.0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Propanoic acid, giving $$0.66\\text{ g}$$ of propyl methanoate",
-        },
-        {
-          correct: false,
-          label:
-            "Propanoic acid, giving $$0.88\\text{ g}$$ of methyl propanoate",
+            "$$0.025\\text{ mol}$$ of dichloromethane and $$0.075\\text{ mol}$$ of trichloromethane, and $$1.0\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -36,22 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Asid etanoik, menghasilkan $$0.55\\text{ g}$$ metil etanoat",
+          label:
+            "$$0.10\\text{ mol}$$ triklorometana sahaja, dan $$1.0\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.050\\text{ mol}$$ setiap satu, dan $$2.0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "Asid propanoik, menghasilkan $$0.66\\text{ g}$$ metil propanoat",
+            "$$0.050\\text{ mol}$$ setiap satu, dan $$1.0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Asid propanoik, menghasilkan $$0.66\\text{ g}$$ propil metanoat",
-        },
-        {
-          correct: false,
-          label:
-            "Asid propanoik, menghasilkan $$0.88\\text{ g}$$ metil propanoat",
+            "$$0.025\\text{ mol}$$ diklorometana dan $$0.075\\text{ mol}$$ triklorometana, dan $$1.0\\text{ mol dm}^{-3}$$",
         },
       ],
     },

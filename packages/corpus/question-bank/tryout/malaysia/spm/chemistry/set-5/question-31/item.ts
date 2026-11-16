@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "analysing",
+    cognitiveLevel: "applying",
     contentDomain: "form-5",
     topic: "carbon-compounds",
   },
@@ -10,25 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2$$ alcohols, $$4.8\\text{ g}$$ in total" },
-        { correct: false, label: "$$1$$ alcohol, $$4.8\\text{ g}$$" },
-        { correct: false, label: "$$2$$ alcohols, $$6.0\\text{ g}$$ in total" },
-        { correct: false, label: "$$2$$ alcohols, $$3.4\\text{ g}$$ in total" },
+        { correct: false, label: "$$100\\text{ cm}^3$$, orange to green" },
+        { correct: true, label: "$$66.7\\text{ cm}^3$$, orange to green" },
+        { correct: false, label: "$$66.7\\text{ cm}^3$$, green to orange" },
+        { correct: false, label: "$$150\\text{ cm}^3$$, orange to green" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2$$ alkohol, $$4.8\\text{ g}$$ kesemuanya" },
-        { correct: false, label: "$$1$$ alkohol, $$4.8\\text{ g}$$" },
-        {
-          correct: false,
-          label: "$$2$$ alkohol, $$6.0\\text{ g}$$ kesemuanya",
-        },
-        {
-          correct: false,
-          label: "$$2$$ alkohol, $$3.4\\text{ g}$$ kesemuanya",
-        },
+        { correct: false, label: "$$100\\text{ cm}^3$$, jingga kepada hijau" },
+        { correct: true, label: "$$66.7\\text{ cm}^3$$, jingga kepada hijau" },
+        { correct: false, label: "$$66.7\\text{ cm}^3$$, hijau kepada jingga" },
+        { correct: false, label: "$$150\\text{ cm}^3$$, jingga kepada hijau" },
       ],
     },
   },

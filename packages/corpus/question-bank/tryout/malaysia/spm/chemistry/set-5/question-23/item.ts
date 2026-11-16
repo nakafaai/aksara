@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Hydrogen is used at the positive terminal, $$2.4\\text{ dm}^3$$, and $$1.2\\text{ dm}^3$$ of oxygen",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.4\\text{ dm}^3$$ of hydrogen and $$2.4\\text{ dm}^3$$ of oxygen are used",
+        },
+        {
           correct: true,
           label:
-            "$$23.4\\text{ g}$$, and a scratched tin coat would make the exposed steel rust faster",
+            "$$2.4\\text{ dm}^3$$ of hydrogen is used at the negative terminal, $$1.2\\text{ dm}^3$$ of oxygen is used, and $$1.8\\text{ g}$$ of water forms overall",
         },
         {
           correct: false,
           label:
-            "$$46.8\\text{ g}$$, and a scratched tin coat would make the exposed steel rust faster",
-        },
-        {
-          correct: false,
-          label:
-            "$$23.4\\text{ g}$$, and a scratched tin coat would still protect the steel as zinc does",
-        },
-        {
-          correct: false,
-          label:
-            "$$11.7\\text{ g}$$, and a scratched tin coat would make the exposed steel rust faster",
+            "$$4.8\\text{ dm}^3$$ of hydrogen and $$1.2\\text{ dm}^3$$ of oxygen are used",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Hidrogen digunakan di terminal positif, $$2.4\\text{ dm}^3$$, dan $$1.2\\text{ dm}^3$$ oksigen",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.4\\text{ dm}^3$$ hidrogen dan $$2.4\\text{ dm}^3$$ oksigen digunakan",
+        },
+        {
           correct: true,
           label:
-            "$$23.4\\text{ g}$$, dan salutan stanum yang tercalar akan menjadikan keluli yang terdedah berkarat lebih cepat",
+            "$$2.4\\text{ dm}^3$$ hidrogen digunakan di terminal negatif, $$1.2\\text{ dm}^3$$ oksigen digunakan, dan $$1.8\\text{ g}$$ air terbentuk secara keseluruhan",
         },
         {
           correct: false,
           label:
-            "$$46.8\\text{ g}$$, dan salutan stanum yang tercalar akan menjadikan keluli yang terdedah berkarat lebih cepat",
-        },
-        {
-          correct: false,
-          label:
-            "$$23.4\\text{ g}$$, dan salutan stanum yang tercalar masih melindungi keluli seperti zink",
-        },
-        {
-          correct: false,
-          label:
-            "$$11.7\\text{ g}$$, dan salutan stanum yang tercalar akan menjadikan keluli yang terdedah berkarat lebih cepat",
+            "$$4.8\\text{ dm}^3$$ hidrogen dan $$1.2\\text{ dm}^3$$ oksigen digunakan",
         },
       ],
     },

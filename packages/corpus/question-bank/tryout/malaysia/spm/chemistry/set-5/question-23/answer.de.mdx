@@ -1,21 +1,26 @@
-# Ladung gibt Elektronen, Elektronen geben Zink, und die Spannungsreihe entscheidet über den Kratzer
+# Wasserstoff gibt Elektronen ab, also ist seine Elektrode der Minuspol
 
-Die Ladung zählt die Elektronen, die das Zink dem Rumpf gab, und **jedes Zinkatom gibt zwei**. Zinn steht in der Reaktivitätsreihe unter Eisen: Wo der Überzug bricht, wird Eisen zum Metall, das Elektronen abgibt, und rostet schneller als blanker Stahl.
+Wasserstoff wird oxidiert, seine Elektrode gibt Elektronen in den Draht und **ist der Minuspol**. Jedes Wasserstoffmolekül gibt zwei Elektronen, jedes Sauerstoffmolekül nimmt vier, also verbraucht die Zelle doppelt so viel Wasserstoff wie Sauerstoff nach Volumen. Insgesamt verbrennt Wasserstoff zu Wasser.
 
-<Mermaid
-  title={<>Zink schützt, Zinn nicht</>}
-  description={<>Zink gibt dem Eisen Elektronen und hält es rostfrei. An einem Kratzer im Zinn gibt das Eisen seine Elektronen ans Zinn und rostet schneller.</>}
-  chart={"flowchart LR\n  Z[\"Zink: unedler als Eisen\"] -->|\"gibt Elektronen\"| F[\"Eisenrumpf bleibt geschützt\"]\n  T[\"Zinn: edler als Eisen\"] -.->|\"zieht am Kratzer Elektronen vom Eisen\"| R[\"Eisen rostet schneller\"]"}
+<Chart
+  title={<>Verbrauchtes Gas für <InlineMath math="0{,}20\text{ mol}" /> Elektronen</>}
+  description={<>Die Zelle verbraucht <InlineMath math="2{,}4\text{ dm}^3" /> Wasserstoff und <InlineMath math="1{,}2\text{ dm}^3" /> Sauerstoff.</>}
+  bars="apart"
+  categories={["Wasserstoff", "Sauerstoff"]}
+  series={[
+    { label: "Volumen", mark: "bar", values: [2.4, 1.2] },
+  ]}
+  valueLabel="Volumen (dm³)"
 />
 
 <BlockMath math="\begin{aligned}
-Q&=0{,}193\times100\times3600=69{.}480\text{ C}\\
-e^-&=\tfrac{69{.}480}{96{.}500}=0{,}720\text{ mol}\\
-\text{Zn}\rightarrow\text{Zn}^{2+}+2e^-&\Rightarrow m=\tfrac{0{,}720}{2}\times65=23{,}4\text{ g}
+e^-&=\tfrac{19{.}300}{96{.}500}=0{,}20\text{ mol}\\
+\text{H}_2&=\tfrac{0{,}20}{2}=0{,}10\text{ mol}=2{,}4\text{ dm}^3,\quad\text{O}_2=\tfrac{0{,}20}{4}=0{,}050\text{ mol}=1{,}2\text{ dm}^3\\
+2\text{H}_2+\text{O}_2&\rightarrow2\text{H}_2\text{O}\Rightarrow0{,}10\text{ mol}=1{,}8\text{ g}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="46{,}8\text{ g}" /> gibt jedem Zinkatom ein Elektron, obwohl Zink <InlineMath math="\text{Zn}^{2+}" /> bildet.
-- Zinn schützt nur, solange der Überzug ganz ist. **Edler als Eisen, beschleunigt es nach einem Kratzer das Rosten**.
-- <InlineMath math="11{,}7\text{ g}" /> teilt die Elektronen durch vier statt durch zwei.
+- Am Pluspol nimmt Sauerstoff Elektronen auf. **Wasserstoff gibt Elektronen ab, also ist sein Pol negativ**.
+- Gleiche Volumen übersehen, dass Sauerstoff vier Elektronen nimmt, wo Wasserstoff zwei gibt.
+- <InlineMath math="4{,}8\text{ dm}^3" /> gibt jedem Wasserstoffmolekül ein Elektron, doch die Teilgleichung zeigt zwei.

@@ -4,27 +4,30 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "analysing",
     contentDomain: "form-5",
-    topic: "carbon-compounds",
+    topic: "redox-equilibrium",
   },
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$3$$ alcohols, $$2$$ of them oxidised to an acid",
-        },
-        {
-          correct: false,
-          label: "$$4$$ alcohols, all $$4$$ oxidised to an acid",
-        },
-        {
-          correct: false,
-          label: "$$4$$ alcohols, $$3$$ of them oxidised to an acid",
-        },
-        {
           correct: true,
-          label: "$$4$$ alcohols, $$2$$ of them oxidised to an acid",
+          label:
+            "$$65\\text{ kg}$$, and carbon could also reduce iron(III) oxide and lead(II) oxide but not aluminium oxide",
+        },
+        {
+          correct: false,
+          label:
+            "$$65\\text{ kg}$$, and carbon could also reduce aluminium oxide",
+        },
+        {
+          correct: false,
+          label:
+            "$$81\\text{ kg}$$, and carbon could also reduce iron(III) oxide and lead(II) oxide",
+        },
+        {
+          correct: false,
+          label: "$$48.8\\text{ kg}$$, because carbon is the limiting reagent",
         },
       ],
     },
@@ -32,20 +35,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$3$$ alkohol, $$2$$ daripadanya dioksidakan kepada asid",
-        },
-        {
-          correct: false,
-          label: "$$4$$ alkohol, kesemua $$4$$ dioksidakan kepada asid",
-        },
-        {
-          correct: false,
-          label: "$$4$$ alkohol, $$3$$ daripadanya dioksidakan kepada asid",
-        },
-        {
           correct: true,
-          label: "$$4$$ alkohol, $$2$$ daripadanya dioksidakan kepada asid",
+          label:
+            "$$65\\text{ kg}$$, dan karbon juga boleh menurunkan ferum(III) oksida dan plumbum(II) oksida tetapi bukan aluminium oksida",
+        },
+        {
+          correct: false,
+          label:
+            "$$65\\text{ kg}$$, dan karbon juga boleh menurunkan aluminium oksida",
+        },
+        {
+          correct: false,
+          label:
+            "$$81\\text{ kg}$$, dan karbon juga boleh menurunkan ferum(III) oksida dan plumbum(II) oksida",
+        },
+        {
+          correct: false,
+          label:
+            "$$48.8\\text{ kg}$$, kerana karbon ialah bahan tindak balas pengehad",
         },
       ],
     },

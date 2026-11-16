@@ -4,30 +4,31 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "analysing",
     contentDomain: "form-4",
-    topic: "rate-of-reaction",
+    topic: "acids-bases-and-salts",
   },
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Both give $$240\\text{ cm}^3$$, and II is faster",
-        },
-        {
           correct: true,
           label:
-            "I gives $$240\\text{ cm}^3$$ and II gives $$216\\text{ cm}^3$$, and II is faster",
+            "$$-44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is more concentrated than $$0.400\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "I gives $$240\\text{ cm}^3$$ and II gives $$216\\text{ cm}^3$$, and II is slower",
+            "$$+44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is more concentrated than $$0.400\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "I gives $$240\\text{ cm}^3$$ and II gives $$264\\text{ cm}^3$$, and II is faster",
+            "$$-44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is less concentrated than $$0.400\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$-4.45\\text{ kJ mol}^{-1}$$, and the temperature has no effect on the concentration",
         },
       ],
     },
@@ -35,24 +36,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Kedua-duanya memberi $$240\\text{ cm}^3$$, dan II lebih cepat",
-        },
-        {
           correct: true,
           label:
-            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$216\\text{ cm}^3$$, dan II lebih cepat",
+            "$$-44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk lebih pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$216\\text{ cm}^3$$, dan II lebih perlahan",
+            "$$+44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk lebih pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$264\\text{ cm}^3$$, dan II lebih cepat",
+            "$$-44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk kurang pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$-4.45\\text{ kJ mol}^{-1}$$, dan suhu tidak mempengaruhi kepekatan",
         },
       ],
     },

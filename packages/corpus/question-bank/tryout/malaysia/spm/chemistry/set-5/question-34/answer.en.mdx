@@ -1,21 +1,26 @@
-# The rise in temperature gives the enthalpy change, and the warm liquid shrinks as it cools
+# Work back from the heat the soup needs to the heat the reaction must release
 
-The water warms, so dissolving releases heat and **the enthalpy change is negative**. A liquid contracts as it cools, so a flask filled to the mark while warm holds less than <InlineMath math="250\text{ cm}^3" /> once cold. The same <InlineMath math="0.100\text{ mol}" /> in a smaller volume is more concentrated.
+The soup needs <InlineMath math="40\text{ kJ}" />, but **only <InlineMath math="70\%" /> of what the reaction releases gets there**, so the reaction must release more than <InlineMath math="40\text{ kJ}" />. The negative <InlineMath math="\Delta H" /> means heat leaves the reacting mixture and warms the soup.
 
-<Mermaid
-  title={<>Why the warm flask gives a stronger solution</>}
-  description={<>Filled while warm, the solution contracts as it cools, so the same moles sit in less than <InlineMath math="250\text{ cm}^3" />.</>}
-  chart={"flowchart LR\n  W[\"Warm: filled to the mark\"] --> C[\"Cools and contracts\"]\n  C --> V[\"Volume below 250 cm3\"]\n  V --> H[\"Same moles in less volume: above 0.400 mol dm-3\"]"}
+<Chart
+  title={<>Heat in the can</>}
+  description={<>The reaction releases <InlineMath math="57.1\text{ kJ}" />, <InlineMath math="40\text{ kJ}" /> reaches the soup and <InlineMath math="17.1\text{ kJ}" /> is lost.</>}
+  bars="apart"
+  categories={["Released", "Reaches the soup", "Lost"]}
+  series={[
+    { label: "Heat", mark: "bar", values: [57.1, 40, 17.1] },
+  ]}
+  valueLabel="Heat (kJ)"
 />
 
 <BlockMath math="\begin{aligned}
-Q&=100\times4.2\times10.6=4452\text{ J}=4.452\text{ kJ}\\
-n(\text{NaOH})&=\tfrac{4.00}{40}=0.100\text{ mol}\\
-\Delta H&=-\tfrac{4.452}{0.100}=-44.5\text{ kJ mol}^{-1}
+Q_{\text{soup}}&=250\times4.0\times40=40\,000\text{ J}=40\text{ kJ}\\
+Q_{\text{released}}&=\tfrac{40}{0.70}=57.1\text{ kJ}\\
+n(\text{CaO})&=\tfrac{57.1}{65}=0.879\text{ mol}\Rightarrow m=0.879\times56=49.2\text{ g}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- A temperature rise means heat is released, so the sign is negative, not positive.
-- A less concentrated solution would need the volume to grow. **Cooling makes the liquid shrink**.
-- <InlineMath math="-4.45\text{ kJ mol}^{-1}" /> divides by <InlineMath math="1.00\text{ mol}" /> instead of <InlineMath math="0.100\text{ mol}" />, and the flask's volume does depend on temperature.
+- <InlineMath math="34.5\text{ g}" /> assumes every joule reaches the soup.
+- <InlineMath math="24.1\text{ g}" /> multiplies by <InlineMath math="0.70" /> instead of dividing. **Losses mean more oxide, not less**.
+- A negative <InlineMath math="\Delta H" /> is an exothermic reaction, which releases heat into the soup.

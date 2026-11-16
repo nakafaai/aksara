@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "analysing",
+    cognitiveLevel: "applying",
     contentDomain: "form-5",
     topic: "thermochemistry",
   },
@@ -10,51 +10,27 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "$$-44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is more concentrated than $$0.400\\text{ mol dm}^{-3}$$",
-        },
+        { correct: false, label: "$$34.5\\text{ g}$$" },
+        { correct: false, label: "$$24.1\\text{ g}$$" },
         {
           correct: false,
           label:
-            "$$+44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is more concentrated than $$0.400\\text{ mol dm}^{-3}$$",
+            "$$49.2\\text{ g}$$, though the soup would cool because $$\\Delta H$$ is negative",
         },
-        {
-          correct: false,
-          label:
-            "$$-44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is less concentrated than $$0.400\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$-4.45\\text{ kJ mol}^{-1}$$, and the temperature has no effect on the concentration",
-        },
+        { correct: true, label: "$$49.2\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "$$-44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk lebih pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
-        },
+        { correct: false, label: "$$34.5\\text{ g}$$" },
+        { correct: false, label: "$$24.1\\text{ g}$$" },
         {
           correct: false,
           label:
-            "$$+44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk lebih pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
+            "$$49.2\\text{ g}$$, walaupun sup akan menjadi sejuk kerana $$\\Delta H$$ negatif",
         },
-        {
-          correct: false,
-          label:
-            "$$-44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk kurang pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$-4.45\\text{ kJ mol}^{-1}$$, dan suhu tidak mempengaruhi kepekatan",
-        },
+        { correct: true, label: "$$49.2\\text{ g}$$" },
       ],
     },
   },

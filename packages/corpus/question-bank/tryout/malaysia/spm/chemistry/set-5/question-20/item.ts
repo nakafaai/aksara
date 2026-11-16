@@ -3,8 +3,8 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "analysing",
-    contentDomain: "form-5",
-    topic: "redox-equilibrium",
+    contentDomain: "form-4",
+    topic: "manufactured-substances-in-industry",
   },
   versions: {
     en: {
@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.2\\text{ dm}^3$$ of oxygen at the anode and $$2.4\\text{ dm}^3$$ of hydrogen at the cathode",
+            "The batch needs $$400\\text{ kg}$$ of silica, and borosilicate glass expands more than soda-lime glass when heated",
         },
         {
           correct: false,
           label:
-            "$$2.4\\text{ dm}^3$$ of chlorine at the anode and $$4.6\\text{ g}$$ of sodium at the cathode",
+            "The batch needs $$360\\text{ kg}$$ of silica, and borosilicate glass resists sudden heating",
+        },
+        {
+          correct: false,
+          label:
+            "The batch needs $$400\\text{ kg}$$ of silica, and light darkens photochromic glass by oxidising silver ions",
         },
         {
           correct: true,
           label:
-            "$$2.4\\text{ dm}^3$$ of chlorine at the anode, $$2.4\\text{ dm}^3$$ of hydrogen at the cathode, and $$0.20\\text{ mol}$$ of sodium hydroxide in the solution",
-        },
-        {
-          correct: false,
-          label:
-            "$$4.8\\text{ dm}^3$$ of chlorine at the anode and $$4.8\\text{ dm}^3$$ of hydrogen at the cathode",
+            "The batch needs $$400\\text{ kg}$$ of silica, borosilicate glass expands little when heated, and light darkens photochromic glass by reducing silver ions to silver atoms",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.2\\text{ dm}^3$$ oksigen di anod dan $$2.4\\text{ dm}^3$$ hidrogen di katod",
+            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, dan kaca borosilikat mengembang lebih banyak daripada kaca soda kapur apabila dipanaskan",
         },
         {
           correct: false,
           label:
-            "$$2.4\\text{ dm}^3$$ klorin di anod dan $$4.6\\text{ g}$$ natrium di katod",
+            "Kelompok itu memerlukan $$360\\text{ kg}$$ silika, dan kaca borosilikat tahan pemanasan mendadak",
+        },
+        {
+          correct: false,
+          label:
+            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, dan cahaya menggelapkan kaca fotokromik dengan mengoksidakan ion argentum",
         },
         {
           correct: true,
           label:
-            "$$2.4\\text{ dm}^3$$ klorin di anod, $$2.4\\text{ dm}^3$$ hidrogen di katod, dan $$0.20\\text{ mol}$$ natrium hidroksida dalam larutan",
-        },
-        {
-          correct: false,
-          label:
-            "$$4.8\\text{ dm}^3$$ klorin di anod dan $$4.8\\text{ dm}^3$$ hidrogen di katod",
+            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, kaca borosilikat sedikit mengembang apabila dipanaskan, dan cahaya menggelapkan kaca fotokromik dengan menurunkan ion argentum kepada atom argentum",
         },
       ],
     },

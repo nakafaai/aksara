@@ -2,59 +2,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "analysing",
+    cognitiveLevel: "applying",
     contentDomain: "form-4",
-    topic: "manufactured-substances-in-industry",
+    topic: "rate-of-reaction",
   },
   versions: {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "The batch needs $$400\\text{ kg}$$ of silica, and borosilicate glass expands more than soda-lime glass when heated",
-        },
-        {
-          correct: false,
-          label:
-            "The batch needs $$360\\text{ kg}$$ of silica, and borosilicate glass resists sudden heating",
-        },
-        {
-          correct: false,
-          label:
-            "The batch needs $$400\\text{ kg}$$ of silica, and light darkens photochromic glass by oxidising silver ions",
-        },
-        {
-          correct: true,
-          label:
-            "The batch needs $$400\\text{ kg}$$ of silica, borosilicate glass expands little when heated, and light darkens photochromic glass by reducing silver ions to silver atoms",
-        },
+        { correct: true, label: "$$30\\text{ s}$$, $$96\\text{ cm}^3$$" },
+        { correct: false, label: "$$60\\text{ s}$$, $$96\\text{ cm}^3$$" },
+        { correct: false, label: "$$15\\text{ s}$$, $$48\\text{ cm}^3$$" },
+        { correct: false, label: "$$30\\text{ s}$$, $$48\\text{ cm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, dan kaca borosilikat mengembang lebih banyak daripada kaca soda kapur apabila dipanaskan",
-        },
-        {
-          correct: false,
-          label:
-            "Kelompok itu memerlukan $$360\\text{ kg}$$ silika, dan kaca borosilikat tahan pemanasan mendadak",
-        },
-        {
-          correct: false,
-          label:
-            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, dan cahaya menggelapkan kaca fotokromik dengan mengoksidakan ion argentum",
-        },
-        {
-          correct: true,
-          label:
-            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, kaca borosilikat sedikit mengembang apabila dipanaskan, dan cahaya menggelapkan kaca fotokromik dengan menurunkan ion argentum kepada atom argentum",
-        },
+        { correct: true, label: "$$30\\text{ s}$$, $$96\\text{ cm}^3$$" },
+        { correct: false, label: "$$60\\text{ s}$$, $$96\\text{ cm}^3$$" },
+        { correct: false, label: "$$15\\text{ s}$$, $$48\\text{ cm}^3$$" },
+        { correct: false, label: "$$30\\text{ s}$$, $$48\\text{ cm}^3$$" },
       ],
     },
   },
