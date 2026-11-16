@@ -21,7 +21,7 @@ export const chemistryRatings: readonly SetRating[] = [
   { items: 40, level: 4.14, raters: 8 },
   { items: 40, level: 3.51, raters: 2 },
   { items: 40, level: 3.21, raters: 2 },
-  { items: 40, level: 3.15, raters: 2 },
+  { items: 40, level: 4.24, raters: 2 },
 ];
 
 /**

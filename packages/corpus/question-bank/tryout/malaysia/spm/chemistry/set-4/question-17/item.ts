@@ -13,18 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$[\\text{H}^+]$$ is 0.10 mol dm⁻³, because ethanoic acid is monoprotic",
+            "Ethanoic acid needs only $$1.0\\text{ cm}^3$$ of alkali, because only $$4.0\\%$$ of its molecules are ionised",
         },
         {
           correct: false,
           label:
-            "About 2.9% of the molecules ionise, the same number as the pH",
+            "Both acids need $$25.0\\text{ cm}^3$$ of alkali, and about $$0.40\\%$$ of the ethanoic acid molecules are ionised",
         },
-        { correct: false, label: "About 0.013% of the molecules ionise" },
+        {
+          correct: false,
+          label:
+            "Ethanoic acid needs more than $$25.0\\text{ cm}^3$$ of alkali, because its molecules keep ionising as the alkali is added",
+        },
         {
           correct: true,
           label:
-            "$$[\\text{H}^+]$$ is about $$1.3 \\\\times 10^{-3}$$ mol dm⁻³, so only about 1.3% of the molecules ionise",
+            "Both acids need $$25.0\\text{ cm}^3$$ of alkali, and about $$4.0\\%$$ of the ethanoic acid molecules are ionised, more than the $$1.3\\%$$ at $$0.10\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -34,17 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$[\\text{H}^+]$$ ialah 0.10 mol dm⁻³, kerana asid etanoik monoprotik",
+            "Asid etanoik hanya memerlukan $$1.0\\text{ cm}^3$$ alkali, kerana hanya $$4.0\\%$$ molekulnya mengion",
         },
         {
           correct: false,
-          label: "Kira-kira 2.9% molekul mengion, sama dengan nilai pH",
+          label:
+            "Kedua-dua asid memerlukan $$25.0\\text{ cm}^3$$ alkali, dan kira-kira $$0.40\\%$$ molekul asid etanoik mengion",
         },
-        { correct: false, label: "Kira-kira 0.013% molekul mengion" },
+        {
+          correct: false,
+          label:
+            "Asid etanoik memerlukan lebih daripada $$25.0\\text{ cm}^3$$ alkali, kerana molekulnya terus mengion semasa alkali ditambah",
+        },
         {
           correct: true,
           label:
-            "$$[\\text{H}^+]$$ ialah kira-kira $$1.3 \\\\times 10^{-3}$$ mol dm⁻³, jadi hanya kira-kira 1.3% molekul mengion",
+            "Kedua-dua asid memerlukan $$25.0\\text{ cm}^3$$ alkali, dan kira-kira $$4.0\\%$$ molekul asid etanoik mengion, lebih daripada $$1.3\\%$$ pada $$0.10\\text{ mol dm}^{-3}$$",
         },
       ],
     },

@@ -1,22 +1,24 @@
-# Turn the pH back into a hydrogen ion concentration
+# The titration counts all the acid, the pH counts only the ions
 
-At <InlineMath math="0.10\text{ mol dm}^{-3}" /> ethanoic acid has pH <InlineMath math="2.9" />, so <InlineMath math="[\text{H}^+] = 10^{-2.9} \approx 1.3 \times 10^{-3}\text{ mol dm}^{-3}" />. If every molecule ionised, it would be <InlineMath math="0.10\text{ mol dm}^{-3}" />.
+Each flask holds <InlineMath math="0.010 \times 0.0250 = 2.5 \times 10^{-4}" /> mol of a monoprotic acid. As the alkali removes hydrogen ions, ethanoic acid **keeps ionising until every molecule has reacted**, so both need <InlineMath math="2.5 \times 10^{-4} \div 0.010 = 0.0250\text{ dm}^3" />, which is <InlineMath math="25.0\text{ cm}^3" />.
+
+The pH tells how much is ionised before any alkali is added. At <InlineMath math="0.010\text{ mol dm}^{-3}" />, ethanoic acid has pH <InlineMath math="3.4" />: <InlineMath math="[\text{H}^+] = 10^{-3.4} = 4.0 \times 10^{-4}" />, so <InlineMath math="\tfrac{4.0 \times 10^{-4}}{0.010} \times 100\% = 4.0\%" />. At <InlineMath math="0.10\text{ mol dm}^{-3}" />, pH <InlineMath math="2.9" /> gives <InlineMath math="1.3 \times 10^{-3}" />, only <InlineMath math="1.3\%" />.
 
 <Chart
-  title={<>pH of Two Acids at Three Concentrations</>}
-  categories={["0.1", "0.01", "0.001"]}
+  title={<>Share of Ethanoic Acid Molecules Ionised</>}
+  bars="apart"
+  categories={["0.10 mol dm⁻³", "0.010 mol dm⁻³"]}
   series={[
-    { label: "Hydrochloric acid", mark: "line", values: [1.0, 2.0, 3.0] },
-    { label: "Ethanoic acid", mark: "line", values: [2.9, 3.4, 3.9] },
+    { label: "Ionised (%)", mark: "bar", values: [1.3, 4.0] },
   ]}
-  valueLabel="pH"
-  description={<>Hydrochloric acid: pH <InlineMath math="1.0" />, <InlineMath math="2.0" /> and <InlineMath math="3.0" /> at <InlineMath math="0.1" />, <InlineMath math="0.01" /> and <InlineMath math="0.001\text{ mol dm}^{-3}" />. Ethanoic acid: pH <InlineMath math="2.9" />, <InlineMath math="3.4" /> and <InlineMath math="3.9" />.</>}
+  valueLabel="Ionised (%)"
+  description={<>At <InlineMath math="0.10\text{ mol dm}^{-3}" /> about <InlineMath math="1.3\%" /> of the molecules are ionised, and at <InlineMath math="0.010\text{ mol dm}^{-3}" /> about <InlineMath math="4.0\%" />.</>}
 />
 
-The fraction that ionises is <InlineMath math="\tfrac{1.3 \times 10^{-3}}{0.10} \times 100\% \approx 1.3\%" />. Hydrochloric acid, by contrast, gives pH <InlineMath math="1.0" /> at the same concentration, because it **ionises completely**. Diluting either acid tenfold raises hydrochloric acid's pH by a full unit but ethanoic acid's by only about half a unit, as the chart shows.
+Diluting a weak acid raises the share of its molecules that ionise, even though the hydrogen ion concentration falls.
 
 # Why the other options are wrong
 
-- Monoprotic means **one hydrogen ion per molecule at most**, not that every molecule gives one up.
-- The pH is a logarithm, not a percentage.
-- <InlineMath math="0.013\%" /> slips two decimal places when turning <InlineMath math="0.013" /> into a percentage.
+- <InlineMath math="1.0\text{ cm}^3" /> neutralises only the ions present at the start, but more molecules ionise as soon as **those are removed**.
+- <InlineMath math="0.40\%" /> divides by <InlineMath math="0.10" /> instead of <InlineMath math="0.010" />.
+- Each molecule gives one hydrogen ion however it ionises, so the alkali needed matches the acid's moles, not more.

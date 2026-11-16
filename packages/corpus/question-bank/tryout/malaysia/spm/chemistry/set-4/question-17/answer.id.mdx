@@ -1,22 +1,24 @@
-# Ubah pH kembali menjadi konsentrasi ion hidrogen
+# Titrasi menghitung seluruh asam, pH hanya menghitung ionnya
 
-Pada <InlineMath math="0{,}10\text{ mol dm}^{-3}" /> asam etanoat punya pH <InlineMath math="2{,}9" />, jadi <InlineMath math="[\text{H}^+] = 10^{-2{,}9} \approx 1{,}3 \times 10^{-3}\text{ mol dm}^{-3}" />. Kalau tiap molekul terionisasi, nilainya <InlineMath math="0{,}10\text{ mol dm}^{-3}" />.
+Tiap labu berisi <InlineMath math="0{,}010 \times 0{,}0250 = 2{,}5 \times 10^{-4}" /> mol asam monoprotik. Saat basa mengambil ion hidrogen, asam etanoat **terus terionisasi sampai setiap molekul bereaksi**, jadi keduanya butuh <InlineMath math="2{,}5 \times 10^{-4} \div 0{,}010 = 0{,}0250\text{ dm}^3" />, yaitu <InlineMath math="25{,}0\text{ cm}^3" />.
+
+pH menunjukkan seberapa banyak yang terionisasi sebelum basa ditambahkan. Pada <InlineMath math="0{,}010\text{ mol dm}^{-3}" />, asam etanoat ber-pH <InlineMath math="3{,}4" />: <InlineMath math="[\text{H}^+] = 10^{-3{,}4} = 4{,}0 \times 10^{-4}" />, jadi <InlineMath math="\tfrac{4{,}0 \times 10^{-4}}{0{,}010} \times 100\% = 4{,}0\%" />. Pada <InlineMath math="0{,}10\text{ mol dm}^{-3}" />, pH <InlineMath math="2{,}9" /> memberi <InlineMath math="1{,}3 \times 10^{-3}" />, hanya <InlineMath math="1{,}3\%" />.
 
 <Chart
-  title={<>pH Dua Asam pada Tiga Konsentrasi</>}
-  categories={["0,1", "0,01", "0,001"]}
+  title={<>Bagian Molekul Asam Etanoat yang Terionisasi</>}
+  bars="apart"
+  categories={["0,10 mol dm⁻³", "0,010 mol dm⁻³"]}
   series={[
-    { label: "Asam klorida", mark: "line", values: [1.0, 2.0, 3.0] },
-    { label: "Asam etanoat", mark: "line", values: [2.9, 3.4, 3.9] },
+    { label: "Terionisasi (%)", mark: "bar", values: [1.3, 4.0] },
   ]}
-  valueLabel="pH"
-  description={<>Asam klorida: pH <InlineMath math="1{,}0" />, <InlineMath math="2{,}0" />, dan <InlineMath math="3{,}0" /> pada <InlineMath math="0{,}1" />, <InlineMath math="0{,}01" />, dan <InlineMath math="0{,}001\text{ mol dm}^{-3}" />. Asam etanoat: pH <InlineMath math="2{,}9" />, <InlineMath math="3{,}4" />, dan <InlineMath math="3{,}9" />.</>}
+  valueLabel="Terionisasi (%)"
+  description={<>Pada <InlineMath math="0{,}10\text{ mol dm}^{-3}" /> sekitar <InlineMath math="1{,}3\%" /> molekul terionisasi, dan pada <InlineMath math="0{,}010\text{ mol dm}^{-3}" /> sekitar <InlineMath math="4{,}0\%" />.</>}
 />
 
-Fraksi yang terionisasi adalah <InlineMath math="\tfrac{1{,}3 \times 10^{-3}}{0{,}10} \times 100\% \approx 1{,}3\%" />. Sebaliknya asam klorida memberi pH <InlineMath math="1{,}0" /> pada konsentrasi yang sama, karena **terionisasi sempurna**. Mengencerkan tiap asam sepuluh kali menaikkan pH asam klorida satu unit penuh tapi pH asam etanoat hanya sekitar setengah unit, seperti di diagram.
+Mengencerkan asam lemah menaikkan bagian molekul yang terionisasi, meski konsentrasi ion hidrogennya turun.
 
 # Kenapa pilihan lain salah
 
-- Monoprotik berarti **paling banyak satu ion hidrogen per molekul**, bukan tiap molekul melepas satu.
-- pH adalah logaritma, bukan persen.
-- <InlineMath math="0{,}013\%" /> salah dua tempat desimal saat mengubah <InlineMath math="0{,}013" /> menjadi persen.
+- <InlineMath math="1{,}0\text{ cm}^3" /> hanya menetralkan ion yang ada di awal, padahal molekul lain langsung terionisasi begitu **ion itu diambil**.
+- <InlineMath math="0{,}40\%" /> membagi dengan <InlineMath math="0{,}10" />, bukan <InlineMath math="0{,}010" />.
+- Tiap molekul memberi satu ion hidrogen bagaimana pun ia terionisasi, jadi basa yang dibutuhkan sama dengan mol asamnya, tidak lebih.
