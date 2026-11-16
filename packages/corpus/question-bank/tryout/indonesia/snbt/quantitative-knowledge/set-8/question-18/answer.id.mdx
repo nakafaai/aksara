@@ -25,6 +25,17 @@ n(A)&=90+90=180\\
 P(A)&=\frac{180}{6840}=\frac{1}{38}
 \end{aligned}" />
 
+Grafik berikut memperlihatkan banyak barisan naik untuk setiap beda <InlineMath math="d" />. Setiap kenaikan beda **memangkas dua pilihan suku pertama**, sehingga batangnya turun rata dari <InlineMath math="18" /> ke <InlineMath math="2" />, dan jumlahnya <InlineMath math="90" />.
+
+<Chart
+  title={<>Barisan aritmetika naik dari <InlineMath math="1" /> sampai <InlineMath math="20" /> menurut bedanya</>}
+  description={<>Untuk beda <InlineMath math="d=1" /> sampai <InlineMath math="9" />, banyak barisan naiknya <InlineMath math="20-2d" />, yaitu <InlineMath math="18, 16, 14, \ldots, 2" />. Jumlah semua batang adalah <InlineMath math="90" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Banyak barisan naik", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 20 - 2 * (i + 1)) }]}
+  valueLabel="Banyak barisan"
+/>
+
 # Pilihan yang keliru
 
 - <InlineMath math="\tfrac{1}{76}" /> muncul jika **barisan yang turun terlupakan**: <InlineMath math="\tfrac{90}{6840}" />.

@@ -24,6 +24,18 @@ Karena **suku-suku sisanya positif**, pangkat <InlineMath math="6" /> itu benar-
 
 Sebagai pemeriksaan, <InlineMath math="\sqrt[3]{3}\approx1{,}4422" /> dan <InlineMath math="\tfrac{49}{48}\sqrt2\approx1{,}4437" />. Selisihnya hanya sekitar <InlineMath math="0{,}0014" />, itulah sebabnya taksiran <InlineMath math="2" /> angka desimal tidak bisa memutuskan.
 
+Grafik berikut memperbesar bagian sempit di sekitar <InlineMath math="\tfrac98" />. Batang <InlineMath math="P^6/8" /> dan batang dua suku pertama binomial **tepat sama tinggi**, sedangkan batang <InlineMath math="Q^6/8" /> sedikit lebih tinggi karena sisa suku binomial semuanya positif.
+
+<Chart
+  title={<>Membandingkan <InlineMath math="\tfrac{P^6}{8}" /> dan <InlineMath math="\tfrac{Q^6}{8}" /></>}
+  description={<>Sumbu nilai dimulai dari <InlineMath math="1{,}1" /> supaya selisih kecil terlihat. Nilai <InlineMath math="\tfrac{P^6}{8}=\tfrac98=1{,}125" /> sama dengan <InlineMath math="1+\tfrac{6}{48}" />. Nilai <InlineMath math="\tfrac{Q^6}{8}=\left(\tfrac{49}{48}\right)^6" /> sekitar <InlineMath math="1{,}132" />, sedikit di atasnya.</>}
+  bars="apart"
+  categories={["P^6 / 8", "1 + 6/48", "Q^6 / 8"]}
+  series={[{ label: "Nilai", mark: "bar", values: [9 / 8, 1 + 6 / 48, (49 / 48) ** 6] }]}
+  valueRange={{ min: 1.1, max: 1.14 }}
+  valueLabel="Nilai"
+/>
+
 # Pilihan yang keliru
 
 - <InlineMath math="P>Q" /> muncul jika hanya <InlineMath math="\sqrt[3]{3}>\sqrt2" /> yang dibandingkan dan **faktor <InlineMath math="\tfrac{49}{48}" /> diabaikan**.

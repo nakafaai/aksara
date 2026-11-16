@@ -18,6 +18,20 @@ Dua bilangan dengan jumlah <InlineMath math="3" /> dan hasil kali <InlineMath ma
 (p,q)=(2,1)&:\quad x=4^{2}=16,\quad y=2^{1}=2
 \end{aligned}" />
 
+Diagram berikut merangkum perjalanan dari kedua huruf baru kembali ke <InlineMath math="x" /> dan <InlineMath math="y" />. **Basis yang berbeda** membuat pasangan <InlineMath math="(1,2)" /> berakhir di <InlineMath math="x=y" />, sedangkan pasangan <InlineMath math="(2,1)" /> memberi dua bilangan berbeda.
+
+<Mermaid
+  title={<>Dari <InlineMath math="p" /> dan <InlineMath math="q" /> kembali ke <InlineMath math="x" /> dan <InlineMath math="y" /></>}
+  description={<>Dari <InlineMath math="p+q=3" /> dan <InlineMath math="pq=2" /> ada dua pasangan. Pasangan <InlineMath math="p=1" />, <InlineMath math="q=2" /> memberi <InlineMath math="x=4^1=4" /> dan <InlineMath math="y=2^2=4" />, yang dibuang karena <InlineMath math="x=y" />. Pasangan <InlineMath math="p=2" />, <InlineMath math="q=1" /> memberi <InlineMath math="x=16" /> dan <InlineMath math="y=2" />, dengan jumlah <InlineMath math="18" />.</>}
+  chart={`flowchart LR
+    S["p + q = 3, pq = 2"] --> A["p = 1, q = 2"]
+    S --> B["p = 2, q = 1"]
+    A --> A1["x = 4 pangkat 1 = 4, y = 2 pangkat 2 = 4"]
+    A1 --> A2["x = y, dibuang"]
+    B --> B1["x = 4 pangkat 2 = 16, y = 2 pangkat 1 = 2"]
+    B1 --> B2["x + y = 18"]`}
+/>
+
 # Syarat yang membuang satu pasangan
 
 Pasangan <InlineMath math="x=y=4" /> memenuhi kedua persamaan: <InlineMath math="1+2=3" /> dan <InlineMath math="2\cdot1=2" />. Jadi, pasangan itu hanya gugur karena **syarat <InlineMath math="x\ne y" /> dari soal**. Yang tersisa adalah <InlineMath math="x=16" /> dan <InlineMath math="y=2" />.

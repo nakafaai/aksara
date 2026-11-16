@@ -17,6 +17,40 @@ Das Lot vom Mittelpunkt auf eine Sehne halbiert die Sehne, also gilt <InlineMath
 - Ist <InlineMath math="AB=8\text{ cm}" />, dann gilt <InlineMath math="r^2=48+16=64" />, und der Flächeninhalt ist <InlineMath math="64\pi\text{ cm}^2" />.
 - Ist <InlineMath math="AB=2\text{ cm}" />, dann gilt <InlineMath math="r^2=48+1=49" />, und der Flächeninhalt ist <InlineMath math="49\pi\text{ cm}^2" />.
 
+Der Kreis zeigt diese Kette von Winkeln. Der Winkel <InlineMath math="ACB=150^\circ" /> auf dem kleinen Bogen erzwingt <InlineMath math="\angle ADB=30^\circ" /> auf dem großen Bogen und damit den Mittelpunktswinkel <InlineMath math="AOB=60^\circ" />, also **ist das Dreieck <InlineMath math="AOB" /> gleichseitig**.
+
+<MathVisual
+  title={<>Die Sehne <InlineMath math="AB" /> mit einem Umfangswinkel von <InlineMath math="150^\circ" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="O" /> und den Radius <InlineMath math="8" />. Der Punkt <InlineMath math="C" /> liegt auf dem kleinen Bogen <InlineMath math="AB" /> mit <InlineMath math="\angle ACB=150^\circ" />, der Punkt <InlineMath math="D" /> auf dem großen Bogen mit <InlineMath math="\angle ADB=30^\circ" />. Das Dreieck <InlineMath math="AOB" /> ist gleichseitig, also <InlineMath math="AB=OA=OB=8" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+    r: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9.5, max: 9.5 }, y: { min: -9.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 8 },
+      { id: "center-triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.sqrt(3), y: -4 }, { x: 4 * Math.sqrt(3), y: 4 }] },
+      { id: "inscribed", kind: "polyline", appearance: "primary", vertices: [{ x: 4 * Math.sqrt(3), y: -4 }, { x: 8, y: 0 }, { x: 4 * Math.sqrt(3), y: 4 }] },
+      { id: "far", kind: "polyline", appearance: "construction", vertices: [{ x: 4 * Math.sqrt(3), y: -4 }, { x: -8, y: 0 }, { x: 4 * Math.sqrt(3), y: 4 }] },
+    ],
+    labels: [
+      { key: "a", objectId: "center-triangle", at: { x: 4 * Math.sqrt(3), y: -4 }, placement: "below-right" },
+      { key: "b", objectId: "center-triangle", at: { x: 4 * Math.sqrt(3), y: 4 }, placement: "above-right" },
+      { key: "c", objectId: "inscribed", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "d", objectId: "far", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "o", objectId: "center-triangle", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "r", objectId: "center-triangle", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Der Flächeninhalt steht nicht fest, Aussage (2) allein reicht also nicht.
 
 # Das Urteil über jede Antwort

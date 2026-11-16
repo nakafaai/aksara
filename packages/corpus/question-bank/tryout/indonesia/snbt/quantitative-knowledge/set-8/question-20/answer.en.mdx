@@ -31,6 +31,20 @@ The number <InlineMath math="n^2+n+1" /> is divisible by <InlineMath math="49" /
 
 Check directly: <InlineMath math="18^2+18+1=343=7\cdot49" />, <InlineMath math="30^2+30+1=931=19\cdot49" />, <InlineMath math="67^2+67+1=4557=93\cdot49" />, and <InlineMath math="79^2+79+1=6321=129\cdot49" />. That's <InlineMath math="4" /> numbers to remove.
 
+The chart below splits the <InlineMath math="29" /> numbers with remainder <InlineMath math="2" /> or <InlineMath math="4" /> into two parts. **Only the small bars get removed**: the four numbers that make <InlineMath math="n^2+n+1" /> divisible by <InlineMath math="49" /> too.
+
+<Chart
+  title={<>Numbers <InlineMath math="n\le100" /> that make <InlineMath math="n^2+n+1" /> divisible by <InlineMath math="7" /></>}
+  description={<>Of the <InlineMath math="15" /> numbers with remainder <InlineMath math="2" />, there are <InlineMath math="2" /> that also give a multiple of <InlineMath math="49" />, namely <InlineMath math="30" /> and <InlineMath math="79" />. Of the <InlineMath math="14" /> numbers with remainder <InlineMath math="4" />, there are <InlineMath math="2" /> like that, namely <InlineMath math="18" /> and <InlineMath math="67" />. That leaves <InlineMath math="13+12=25" />.</>}
+  categories={["Remainder 2 on division by 7", "Remainder 4 on division by 7"]}
+  bars="apart"
+  series={[
+    { label: "Divisible by 7, not by 49", mark: "bar", values: [15 - 2, 14 - 2] },
+    { label: "Also divisible by 49", mark: "bar", values: [2, 2] },
+  ]}
+  valueLabel="How many numbers"
+/>
+
 <BlockMath math="29-4=25" />
 
 Common mistakes are stopping at <InlineMath math="29" />, which forgets the condition about <InlineMath math="49" />, or missing <InlineMath math="n=100" /> and getting <InlineMath math="24" />.

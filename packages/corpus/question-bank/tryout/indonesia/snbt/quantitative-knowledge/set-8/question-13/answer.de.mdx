@@ -23,6 +23,43 @@ Die Dreiecke <InlineMath math="ATO" /> und <InlineMath math="AOB" /> sind ähnli
 AT&=\frac{AO^2}{AB}=\frac{144}{15}=9{,}6\text{ cm}
 \end{aligned}" />
 
+Die Raute zeigt das genutzte rechtwinklige Dreieck. Der Radius <InlineMath math="OT" /> **steht senkrecht auf der Seite <InlineMath math="AB" />**, also teilt der Punkt <InlineMath math="T" /> die Seite <InlineMath math="AB" /> in <InlineMath math="AT=9{,}6" /> nahe der langen Diagonale und <InlineMath math="BT=5{,}4" /> nahe der kurzen.
+
+<MathVisual
+  title={<>Raute <InlineMath math="ABCD" /> und ihr Inkreis</>}
+  description={<>Die Diagonale <InlineMath math="AC=24" /> liegt waagrecht, die Diagonale <InlineMath math="BD=18" /> senkrecht, sie schneiden sich im Mittelpunkt <InlineMath math="O" />. Der Inkreis um <InlineMath math="O" /> mit Radius <InlineMath math="7{,}2" /> berührt <InlineMath math="AB" /> in <InlineMath math="T" />. Die Strecke <InlineMath math="AT" /> ist <InlineMath math="9{,}6" /> lang.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+    t: <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -11, max: 11 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "rhombus", kind: "polygon", appearance: "reference", vertices: [{ x: -12, y: 0 }, { x: 0, y: 9 }, { x: 12, y: 0 }, { x: 0, y: -9 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "construction", from: { x: -12, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "diagonal-bd", kind: "segment", appearance: "construction", from: { x: 0, y: 9 }, to: { x: 0, y: -9 } },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 36 / 5 },
+      { id: "radius", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: -108 / 25, y: 144 / 25 } },
+      { id: "piece-at", kind: "segment", appearance: "answer", from: { x: -12, y: 0 }, to: { x: -108 / 25, y: 144 / 25 } },
+      { id: "point-t", kind: "point", appearance: "answer", at: { x: -108 / 25, y: 144 / 25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "rhombus", at: { x: -12, y: 0 }, placement: "left" },
+      { key: "b", objectId: "rhombus", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "c", objectId: "rhombus", at: { x: 12, y: 0 }, placement: "right" },
+      { key: "d", objectId: "rhombus", at: { x: 0, y: -9 }, placement: "below" },
+      { key: "o", objectId: "diagonal-ac", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "t", objectId: "point-t", at: { x: -108 / 25, y: 144 / 25 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Genauso ist <InlineMath math="BT=\tfrac{BO^2}{AB}=\tfrac{81}{15}=5{,}4\text{ cm}" />, und der Radius ist <InlineMath math="OT=\tfrac{AO\cdot BO}{AB}=\tfrac{108}{15}=7{,}2\text{ cm}" />. Probe: <InlineMath math="AT+BT=9{,}6+5{,}4=15" /> ist die Seitenlänge, und <InlineMath math="AT^2+OT^2=92{,}16+51{,}84=144=AO^2" />.
 
 # Die falschen Antworten

@@ -1,3 +1,33 @@
 Keempat titik sudut segi empat <InlineMath math="ABCD" /> terletak pada sebuah lingkaran dengan urutan <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" />. Diagonal <InlineMath math="AC" /> dan <InlineMath math="BD" /> saling tegak lurus dan berpotongan di titik <InlineMath math="P" />. Diketahui <InlineMath math="AC=11\text{ cm}" />, <InlineMath math="AP=3\text{ cm}" />, dan <InlineMath math="BP=4\text{ cm}" />.
 
+<MathVisual
+  title={<>Segi empat tali busur <InlineMath math="ABCD" /> dengan diagonal tegak lurus</>}
+  description={<>Titik <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, dan <InlineMath math="D" /> berurutan pada lingkaran. Diagonal <InlineMath math="AC" /> dan <InlineMath math="BD" /> tegak lurus dan berpotongan di <InlineMath math="P" />, dengan <InlineMath math="AP=3\text{ cm}" />, <InlineMath math="BP=4\text{ cm}" />, dan <InlineMath math="AC=11\text{ cm}" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 9.5 }, y: { min: -7.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 5 / 2, y: -1 }, radius: Math.sqrt(125) / 2 },
+      { id: "quad", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: 0 }, { x: 0, y: 4 }, { x: 8, y: 0 }, { x: 0, y: -6 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: -3, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "diagonal-bd", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 0, y: -6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "quad", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "b", objectId: "quad", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "c", objectId: "quad", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "d", objectId: "quad", at: { x: 0, y: -6 }, placement: "below" },
+      { key: "p", objectId: "diagonal-ac", at: { x: 0, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Panjang jari-jari lingkaran itu adalah ....

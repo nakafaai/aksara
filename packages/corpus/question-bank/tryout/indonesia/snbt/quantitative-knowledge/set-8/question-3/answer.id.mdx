@@ -34,6 +34,38 @@ x&=1\pm\tfrac{\sqrt2}{2}
 
 Karena <InlineMath math="\tfrac{\sqrt2}{2}" /> kurang dari <InlineMath math="1" />, kedua penyelesaian ada di dalam <InlineMath math="0\le x\le2" />. Sifat periodik menyalinnya ke <InlineMath math="x=5\pm\tfrac{\sqrt2}{2}" /> di <InlineMath math="4\le x\le6" />. Pada <InlineMath math="2\le x\le4" /> dan <InlineMath math="6\le x\le8" />, nilai <InlineMath math="f" /> tidak positif, jadi tidak ada penyelesaian. Hati-hati, **rumus suatu potongan hanya berlaku di potongannya sendiri**. Persamaan <InlineMath math="(x-4)(x-2)=\tfrac12" /> memang punya akar <InlineMath math="x=3\pm\tfrac{\sqrt6}{2}" />, tetapi <InlineMath math="\tfrac{\sqrt6}{2}" /> lebih dari <InlineMath math="1" />, jadi kedua akar itu jatuh di luar <InlineMath math="2\le x\le4" /> dan harus dibuang. Totalnya tepat <InlineMath math="4" /> penyelesaian, jadi pernyataan kedua benar.
 
+Grafik <InlineMath math="f" /> berikut memperlihatkan keempat penyelesaian itu. Garis <InlineMath math="y=\tfrac12" /> hanya memotong **bukit-bukit di atas sumbu-<InlineMath math="x" />**, dua kali di setiap bukit, sedangkan lembah di bawah sumbu tidak pernah mencapainya.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f" /> pada <InlineMath math="-2\le x\le8" /></>}
+  description={<>Grafik berupa bukit dan lembah bergantian setinggi <InlineMath math="1" />: bukit di <InlineMath math="0\le x\le2" /> dan <InlineMath math="4\le x\le6" />, lembah di <InlineMath math="-2\le x\le0" />, <InlineMath math="2\le x\le4" />, dan <InlineMath math="6\le x\le8" />. Garis <InlineMath math="y=\tfrac12" /> memotong grafik di <InlineMath math="1\pm\tfrac{\sqrt2}{2}" /> dan <InlineMath math="5\pm\tfrac{\sqrt2}{2}" />.</>}
+  labels={{
+    level: <InlineMath math="y=\tfrac12" />,
+    f: <InlineMath math="y=f(x)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 8.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2.5, y: 0.5 }, to: { x: 8.5, y: 0.5 } },
+      { id: "p0", kind: "function", appearance: "primary", formula: "x(2 + x)", domain: { min: -2, max: 0 } },
+      { id: "p1", kind: "function", appearance: "primary", formula: "x(2 - x)", domain: { min: 0, max: 2 } },
+      { id: "p2", kind: "function", appearance: "primary", formula: "(x - 4)(x - 2)", domain: { min: 2, max: 4 } },
+      { id: "p3", kind: "function", appearance: "primary", formula: "(x - 4)(6 - x)", domain: { min: 4, max: 6 } },
+      { id: "p4", kind: "function", appearance: "primary", formula: "(x - 8)(x - 6)", domain: { min: 6, max: 8 } },
+      { id: "s1", kind: "point", appearance: "answer", at: { x: 1 - Math.SQRT1_2, y: 0.5 } },
+      { id: "s2", kind: "point", appearance: "answer", at: { x: 1 + Math.SQRT1_2, y: 0.5 } },
+      { id: "s3", kind: "point", appearance: "answer", at: { x: 5 - Math.SQRT1_2, y: 0.5 } },
+      { id: "s4", kind: "point", appearance: "answer", at: { x: 5 + Math.SQRT1_2, y: 0.5 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 7.8, y: 0.5 }, placement: "above" },
+      { key: "f", objectId: "p2", at: { x: 3, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Pernyataan ketiga
 
 Periksa satu periode penuh. Kedua ruas berulang setiap <InlineMath math="4" />, jadi **cukup memeriksa <InlineMath math="0\le x\le4" />**.
