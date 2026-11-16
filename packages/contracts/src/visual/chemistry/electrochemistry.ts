@@ -60,9 +60,41 @@ function electrolysisLab<E>(rich: RichSlot<E>) {
   );
 }
 
+/** The metals a half-cell of a chemical cell can be made of. */
+const METALS = ["magnesium", "zinc", "iron", "copper", "silver"] as const;
+
+/**
+ * Props of `ChemicalCellLab`: two metals, each in a solution of its own ions,
+ * joined by a salt bridge, with a voltmeter in the external circuit. With
+ * `showProducts`, the voltmeter reads the cell voltage and the footer gives
+ * each half-equation with the mass that dissolves or deposits for `electrons`
+ * moles of electrons, so both are answer state.
+ */
+function chemicalCellLab<E>(rich: RichSlot<E>) {
+  return figure(
+    Schema.Struct({
+      ...cardFields(rich),
+      electrons: Schema.optionalKey(Schema.Finite),
+      labels: Schema.Struct({
+        atNegative: rich,
+        atPositive: rich,
+        electrons: rich,
+        halfCells: rich,
+        view: TextSchema,
+        voltage: rich,
+        voltmeter: TextSchema,
+      }),
+      metals: Schema.Tuple([Schema.Literals(METALS), Schema.Literals(METALS)]),
+      showProducts: Schema.optionalKey(Schema.Boolean),
+    }),
+    answerAt(["electrons"], ["showProducts"])
+  );
+}
+
 /** The electrochemistry labs. */
 export function electrochemistryVisuals<E>(rich: RichSlot<E>) {
   return {
+    ChemicalCellLab: chemicalCellLab(rich),
     ElectrolysisLab: electrolysisLab(rich),
   };
 }
