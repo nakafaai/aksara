@@ -35,6 +35,20 @@ At <InlineMath math="n=15" /> both costs are equal: <InlineMath math="250+40 \cd
 
 Check from the other side: at <InlineMath math="n=14" /> the cost without a membership is <InlineMath math="250+40 \cdot 4=410" />, still cheaper than the membership. So the switch really happens between <InlineMath math="15" /> and <InlineMath math="16" />.
 
+The chart below compares both costs for <InlineMath math="11" /> to <InlineMath math="18" /> visits. **The bar for <InlineMath math="n=15" /> just touches the membership line**, and only the bar for <InlineMath math="n=16" /> goes past it.
+
+<Chart
+  title={<>Cheapest cost without membership and cost of a new membership by number of visits</>}
+  description={<>For <InlineMath math="n=11" /> to <InlineMath math="16" />, the cheapest cost without a membership is <InlineMath math="250+40(n-10)" /> thousand rupiah, from <InlineMath math="290" /> to <InlineMath math="490" /> thousand. For <InlineMath math="n=17" /> and <InlineMath math="18" />, it's <InlineMath math="500" /> thousand. The flat line marks the cost of a new membership, <InlineMath math="450" /> thousand rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 8 }, (_, i) => `${11 + i}`)}
+  series={[
+    { label: "Cheapest without membership", mark: "bar", values: Array.from({ length: 8 }, (_, i) => Math.min(250 + 40 * (i + 1), 500)) },
+    { label: "New membership", mark: "line", values: Array.from({ length: 8 }, () => 350 + 100) },
+  ]}
+  valueLabel="Cost (thousand rupiah)"
+/>
+
 # The wrong options
 
 Each other option comes from **one skipped step**:

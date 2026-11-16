@@ -4,6 +4,17 @@ Kamu mencari banyak kunjungan terbesar yang bisa dibayar dengan <InlineMath math
 
 Tiket harian berharga <InlineMath math="40" /> per kunjungan dan kartu <InlineMath math="250 : 10 = 25" /> per kunjungan. Member yang dipakai setiap hari memberi <InlineMath math="30" /> kunjungan untuk <InlineMath math="350" />, dan karena <InlineMath math="12 \cdot 30=360" /> lebih dari <InlineMath math="350" />, harganya **kurang dari <InlineMath math="12" /> per kunjungan**. Jadi, member yang dipakai setiap hari adalah cara termurah, lalu kartu, lalu tiket harian.
 
+Grafik berikut membandingkan harga per kunjungan ketiga cara itu. **Batang member yang dipakai setiap hari jauh paling pendek**, jadi uang Rina sebaiknya dipakai untuk member lebih dulu.
+
+<Chart
+  title={<>Harga per kunjungan untuk setiap cara membayar</>}
+  description={<>Tiket harian berharga <InlineMath math="40" /> ribu rupiah per kunjungan, kartu <InlineMath math="10" /> kali <InlineMath math="25" /> ribu rupiah per kunjungan, dan member yang dipakai setiap hari selama <InlineMath math="30" /> hari sekitar <InlineMath math="11{,}7" /> ribu rupiah per kunjungan, belum termasuk biaya pendaftaran.</>}
+  categories={["Tiket harian", "Kartu 10 kali", "Member setiap hari"]}
+  bars="apart"
+  series={[{ label: "Harga per kunjungan (ribu rupiah)", mark: "bar", values: [40, 250 / 10, 350 / 30] }]}
+  valueLabel="Harga (ribu rupiah)"
+/>
+
 # Banyak periode member
 
 Rina belum pernah menjadi member, jadi periode member pertamanya **ikut membayar pendaftaran**. Coba hitung biaya <InlineMath math="2" /> dan <InlineMath math="3" /> periode:

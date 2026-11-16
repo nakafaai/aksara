@@ -39,4 +39,19 @@ Biaya <InlineMath math="10\%" /> hanya berlaku penuh sampai nilai setoran <Inlin
 
 Tambahan saldo <InlineMath math="78{.}000" /> lebih dari <InlineMath math="75{.}600" />. Pernyataan ini Salah.
 
+Grafik berikut menghitung bagian nilai setoran yang masuk saldo. **Batangnya tepat <InlineMath math="90\%" /> sampai nilai setoran <InlineMath math="\text{Rp}60{.}000" />**, lalu naik di atas garis karena biaya pengelolaan berhenti di <InlineMath math="\text{Rp}6{.}000" />.
+
+<Chart
+  title={<>Bagian nilai setoran yang masuk saldo menurut nilai setoran</>}
+  description={<>Untuk nilai setoran <InlineMath math="\text{Rp}20{.}000" />, <InlineMath math="\text{Rp}40{.}000" />, dan <InlineMath math="\text{Rp}60{.}000" />, bagian yang masuk saldo <InlineMath math="90\%" />. Untuk <InlineMath math="\text{Rp}80{.}000" />, <InlineMath math="\text{Rp}100{.}000" />, dan <InlineMath math="\text{Rp}120{.}000" />, bagiannya <InlineMath math="92{,}5\%" />, <InlineMath math="94\%" />, dan <InlineMath math="95\%" />. Sumbu nilai dimulai dari <InlineMath math="85\%" />.</>}
+  categories={["Rp20.000", "Rp40.000", "Rp60.000", "Rp80.000", "Rp100.000", "Rp120.000"]}
+  bars="apart"
+  series={[
+    { label: "Bagian yang masuk saldo (%)", mark: "bar", values: [20000, 40000, 60000, 80000, 100000, 120000].map((v) => (100 * (v - Math.min(0.1 * v, 6000))) / v) },
+    { label: "Tepat 90%", mark: "line", values: [90, 90, 90, 90, 90, 90] },
+  ]}
+  valueRange={{ min: 85, max: 96 }}
+  valueLabel="Bagian (%)"
+/>
+
 Jadi, pernyataan pertama Benar, sedangkan pernyataan kedua, ketiga, dan keempat Salah.

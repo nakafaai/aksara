@@ -25,6 +25,20 @@ Lanjutkan dari tanggal <InlineMath math="15" />, yang jatuh pada hari Selasa:
 
 Kuota utama habis **tepat ketika unduhan siang tanggal <InlineMath math="17" /> selesai**. Jadi, seluruh unduhan tanggal <InlineMath math="17" /> masih berkecepatan <InlineMath math="40\text{ Mbps}" />.
 
+Grafik berikut menumpuk kuota utama yang terpakai sampai akhir setiap tanggal. **Batang tanggal <InlineMath math="17" /> tepat menyentuh garis <InlineMath math="100\text{ GB}" />**, jadi unduhan siang pertama tanpa kuota jatuh pada tanggal berikutnya.
+
+<Chart
+  title={<>Kuota utama yang terpakai sampai akhir setiap tanggal</>}
+  description={<>Kuota terpakai naik <InlineMath math="4\text{ GB}" /> pada hari Senin sampai Jumat dan <InlineMath math="12\text{ GB}" /> pada hari Sabtu dan Minggu. Sampai akhir tanggal <InlineMath math="7" /> terpakai <InlineMath math="44\text{ GB}" />, sampai tanggal <InlineMath math="14" /> terpakai <InlineMath math="88\text{ GB}" />, dan sampai tanggal <InlineMath math="17" /> terpakai tepat <InlineMath math="100\text{ GB}" />. Unduhan jam malam tidak dihitung.</>}
+  bars="apart"
+  categories={Array.from({ length: 17 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Kuota utama terpakai", mark: "bar", values: [4, 8, 12, 16, 28, 40, 44, 48, 52, 56, 60, 72, 84, 88, 92, 96, 100] },
+    { label: "Kuota utama 100 GB", mark: "line", values: Array.from({ length: 17 }, () => 100) },
+  ]}
+  valueLabel="Kuota terpakai (GB)"
+/>
+
 # Unduhan lambat yang pertama
 
 Tanggal <InlineMath math="18" /> hari Jumat. Unduhan jam malamnya (pukul 00.00 sampai 06.00) tetap <InlineMath math="40\text{ Mbps}" />. Unduhan siangnya dimulai tanpa sisa kuota utama, jadi **inilah unduhan pertama dengan <InlineMath math="8\text{ Mbps}" />**.

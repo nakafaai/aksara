@@ -23,6 +23,20 @@ That is more than <InlineMath math="43{,}200" /> seconds, so it isn't enough. Wi
 
 A time of <InlineMath math="41{,}200" /> seconds is <InlineMath math="11" /> hours <InlineMath math="26" /> minutes <InlineMath math="40" /> seconds, still within <InlineMath math="12" /> hours. One Booster is enough.
 
+The chart below works out the download time with <InlineMath math="0" />, <InlineMath math="1" />, and <InlineMath math="2" /> Boosters. **One Booster already brings the bar below the <InlineMath math="12" />-hour line**, so there's no need for a second one.
+
+<Chart
+  title={<>Time to download a <InlineMath math="62\text{ GB}" /> file by number of Boosters</>}
+  description={<>With no Booster, the download takes <InlineMath math="57{,}200" /> seconds. With one Booster, it takes <InlineMath math="41{,}200" /> seconds. With two Boosters, it takes <InlineMath math="25{,}200" /> seconds. The flat line marks the limit of <InlineMath math="43{,}200" /> seconds, which is <InlineMath math="12" /> hours.</>}
+  categories={["No Booster", "1 Booster", "2 Boosters"]}
+  bars="apart"
+  series={[
+    { label: "Download time (seconds)", mark: "bar", values: [0, 1, 2].map((b) => (6 + 20 * b) * 200 + (62 - 6 - 20 * b) * 1000) },
+    { label: "Limit 12 hours", mark: "line", values: [43200, 43200, 43200] },
+  ]}
+  valueLabel="Download time (seconds)"
+/>
+
 # The tempting wrong options
 
 Every other option comes from **one part of the rules that was missed**.

@@ -29,6 +29,17 @@ From 00.00, **the night hours bring the speed back to <InlineMath math="40\text{
 
 So the whole download takes <InlineMath math="20 + 130 + 4 = 154" /> minutes, and the file is done at 00.04. Check the data: <InlineMath math="6 + 7.8 + 1.2 = 15\text{ GB}" />, the size of the file.
 
+The chart below splits the file by speed. **The slow part takes <InlineMath math="130" /> minutes for <InlineMath math="7.8\text{ GB}" />**, while the two fast parts need only <InlineMath math="20" /> and <InlineMath math="4" /> minutes.
+
+<Chart
+  title={<>Data downloaded in each speed part</>}
+  description={<>From 21.30 to 21.50 at <InlineMath math="40" /> Mbps, <InlineMath math="6\text{ GB}" /> come down. From 21.50 to 00.00 at <InlineMath math="8" /> Mbps, <InlineMath math="7.8\text{ GB}" /> come down. From 00.00 to 00.04 at <InlineMath math="40" /> Mbps, <InlineMath math="1.2\text{ GB}" /> come down.</>}
+  categories={["21.30 to 21.50", "21.50 to 00.00", "00.00 to 00.04"]}
+  bars="apart"
+  series={[{ label: "Data downloaded (GB)", mark: "bar", values: [6, (130 * 60) / 1000, 15 - 6 - (130 * 60) / 1000] }]}
+  valueLabel="Data (GB)"
+/>
+
 # The wrong options
 
 Each other option **misses one of the speed changes**:

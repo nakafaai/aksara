@@ -23,6 +23,20 @@ Waktu itu lebih dari <InlineMath math="43{.}200" /> detik, jadi tidak cukup. Den
 
 Waktu <InlineMath math="41{.}200" /> detik adalah <InlineMath math="11" /> jam <InlineMath math="26" /> menit <InlineMath math="40" /> detik, masih di dalam <InlineMath math="12" /> jam. Satu Booster cukup.
 
+Grafik berikut menghitung lama unduh untuk <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" /> Booster. **Satu Booster sudah cukup menurunkan batangnya ke bawah garis <InlineMath math="12" /> jam**, jadi Booster kedua tidak perlu dibeli.
+
+<Chart
+  title={<>Lama mengunduh berkas <InlineMath math="62\text{ GB}" /> menurut banyak Booster</>}
+  description={<>Tanpa Booster, unduhan butuh <InlineMath math="57{.}200" /> detik. Dengan satu Booster, unduhan butuh <InlineMath math="41{.}200" /> detik. Dengan dua Booster, unduhan butuh <InlineMath math="25{.}200" /> detik. Garis datar menandai batas <InlineMath math="43{.}200" /> detik, yaitu <InlineMath math="12" /> jam.</>}
+  categories={["Tanpa Booster", "1 Booster", "2 Booster"]}
+  bars="apart"
+  series={[
+    { label: "Lama unduh (detik)", mark: "bar", values: [0, 1, 2].map((b) => (6 + 20 * b) * 200 + (62 - 6 - 20 * b) * 1000) },
+    { label: "Batas 12 jam", mark: "line", values: [43200, 43200, 43200] },
+  ]}
+  valueLabel="Lama unduh (detik)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain muncul dari **satu bagian aturan yang terlewat**.

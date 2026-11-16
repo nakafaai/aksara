@@ -15,6 +15,20 @@ Compare these two healthy packages.
 
 Both are the most expensive packages, yet **the second one has the least protein of all**. A high price doesn't guarantee high protein, so the second statement is false.
 
+The chart below puts the two most expensive packages side by side. **Their price bars are the same height**, but the second package's protein bar is far shorter.
+
+<Chart
+  title={<>Price and protein of the two most expensive healthy packages</>}
+  description={<>The package of rice, two chicken and two vegetables costs <InlineMath math="35" /> thousand rupiah and has <InlineMath math="56\text{ g}" /> of protein. The package of rice, one chicken and six vegetables also costs <InlineMath math="35" /> thousand rupiah, but has only <InlineMath math="40\text{ g}" /> of protein.</>}
+  categories={["2 chicken, 2 vegetables", "1 chicken, 6 vegetables"]}
+  bars="apart"
+  series={[
+    { label: "Price (thousand rupiah)", mark: "bar", values: [5 + 2 * 12 + 2 * 3, 5 + 12 + 6 * 3] },
+    { label: "Protein (g)", mark: "bar", values: [4 + 2 * 24 + 2 * 2, 4 + 24 + 6 * 2] },
+  ]}
+  valueLabel="Value"
+/>
+
 # The third statement about a limit of six hundred fifty kilocalories
 
 With a limit of <InlineMath math="650\text{ kcal}" />, four portions of tempeh fit.

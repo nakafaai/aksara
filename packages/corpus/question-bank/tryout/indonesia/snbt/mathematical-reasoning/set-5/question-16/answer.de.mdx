@@ -23,6 +23,20 @@ Das sind mehr als <InlineMath math="43{.}200" /> Sekunden, es reicht also nicht.
 
 Eine Zeit von <InlineMath math="41{.}200" /> Sekunden sind <InlineMath math="11" /> Stunden <InlineMath math="26" /> Minuten <InlineMath math="40" /> Sekunden, also noch innerhalb von <InlineMath math="12" /> Stunden. Ein Booster reicht.
 
+Das Diagramm berechnet die Downloaddauer mit <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="2" /> Boostern. **Schon ein Booster bringt den Balken unter die Linie für <InlineMath math="12" /> Stunden**, also braucht es keinen zweiten.
+
+<Chart
+  title={<>Dauer für eine Datei von <InlineMath math="62\text{ GB}" /> nach Anzahl der Booster</>}
+  description={<>Ohne Booster dauert der Download <InlineMath math="57{.}200" /> Sekunden. Mit einem Booster dauert er <InlineMath math="41{.}200" /> Sekunden. Mit zwei Boostern dauert er <InlineMath math="25{.}200" /> Sekunden. Die waagerechte Linie markiert die Grenze von <InlineMath math="43{.}200" /> Sekunden, also <InlineMath math="12" /> Stunden.</>}
+  categories={["Ohne Booster", "1 Booster", "2 Booster"]}
+  bars="apart"
+  series={[
+    { label: "Downloaddauer (Sekunden)", mark: "bar", values: [0, 1, 2].map((b) => (6 + 20 * b) * 200 + (62 - 6 - 20 * b) * 1000) },
+    { label: "Grenze 12 Stunden", mark: "line", values: [43200, 43200, 43200] },
+  ]}
+  valueLabel="Downloaddauer (Sekunden)"
+/>
+
 # Die verlockenden falschen Optionen
 
 Jede andere Option entsteht aus **einem übersehenen Teil der Regeln**.

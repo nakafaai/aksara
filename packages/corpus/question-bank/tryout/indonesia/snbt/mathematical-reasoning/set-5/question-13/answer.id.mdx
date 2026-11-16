@@ -29,6 +29,17 @@ Mulai pukul 00.00, **jam malam membuat kecepatan kembali <InlineMath math="40\te
 
 Jadi, lama seluruh unduhan adalah <InlineMath math="20 + 130 + 4 = 154" /> menit, dan berkas selesai pukul 00.04. Cek jumlah datanya: <InlineMath math="6 + 7{,}8 + 1{,}2 = 15\text{ GB}" />, sesuai ukuran berkas.
 
+Grafik berikut membagi berkas itu menurut kecepatannya. **Bagian lambat memakan <InlineMath math="130" /> menit untuk <InlineMath math="7{,}8\text{ GB}" />**, sedangkan dua bagian cepat hanya butuh <InlineMath math="20" /> dan <InlineMath math="4" /> menit.
+
+<Chart
+  title={<>Data yang terunduh pada setiap bagian kecepatan</>}
+  description={<>Pukul 21.30 sampai 21.50 pada <InlineMath math="40" /> Mbps terunduh <InlineMath math="6\text{ GB}" />. Pukul 21.50 sampai 00.00 pada <InlineMath math="8" /> Mbps terunduh <InlineMath math="7{,}8\text{ GB}" />. Pukul 00.00 sampai 00.04 pada <InlineMath math="40" /> Mbps terunduh <InlineMath math="1{,}2\text{ GB}" />.</>}
+  categories={["21.30 sampai 21.50", "21.50 sampai 00.00", "00.00 sampai 00.04"]}
+  bars="apart"
+  series={[{ label: "Data terunduh (GB)", mark: "bar", values: [6, (130 * 60) / 1000, 15 - 6 - (130 * 60) / 1000] }]}
+  valueLabel="Data (GB)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain **melewatkan salah satu perubahan kecepatan**:

@@ -41,6 +41,20 @@ Die Durchschnittsgeschwindigkeit ist Gesamtstrecke durch Gesamtzeit, und **die T
 
 Prüfe es anders: Für einen Durchschnitt von <InlineMath math="4{,}4\text{ m/s}" /> müsste Andi <InlineMath math="4{,}4 \cdot 1{.}500=6{.}600\text{ m}" /> laufen, er schafft aber nur <InlineMath math="6{.}500\text{ m}" />. Die Aussage ist falsch.
 
+Das Diagramm vergleicht die Strecken beider Läufer bis Sekunde <InlineMath math="1{.}500" />. **Andis Balken liegt noch unter der Linie bei <InlineMath math="6{.}600" /> m**, der Strecke, die ein Schnitt von <InlineMath math="4{,}4" /> m/s bräuchte.
+
+<Chart
+  title={<>Zurückgelegte Strecken von Andi und Bima in <InlineMath math="25" /> Minuten</>}
+  description={<>Bis Sekunde <InlineMath math="1{.}500" /> legt Andi <InlineMath math="6{.}500" /> m zurück und Bima <InlineMath math="6{.}000" /> m. Die waagerechte Linie markiert <InlineMath math="6{.}600" /> m, die Strecke für eine Durchschnittsgeschwindigkeit von <InlineMath math="4{,}4" /> m/s.</>}
+  categories={["Andi", "Bima"]}
+  bars="apart"
+  series={[
+    { label: "Strecke bis Sekunde 1.500", mark: "bar", values: [6400 + 5 * 20, 4 * 1500] },
+    { label: "Strecke für einen Schnitt von 4,4 m/s", mark: "line", values: [4.4 * 1500, 4.4 * 1500] },
+  ]}
+  valueLabel="Strecke (m)"
+/>
+
 # Der größte Unterschied
 
 Der Unterschied <InlineMath math="g" /> ist kurz vor Andis Trinkpause am größten, denn danach sinkt er. Bei Sekunde <InlineMath math="1{.}430" />:
