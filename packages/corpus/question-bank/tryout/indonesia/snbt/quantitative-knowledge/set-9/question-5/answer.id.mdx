@@ -28,6 +28,40 @@ Kalau <InlineMath math="EF=16" />, sisi-sisi segitiga <InlineMath math="DEF" /> 
 
 Cek segitiga ini: alas <InlineMath math="30" /> dan tinggi <InlineMath math="8" /> memberi luas <InlineMath math="\frac{1}{2}\cdot30\cdot8=120" />, dan kakinya <InlineMath math="\sqrt{15^2+8^2}=\sqrt{289}=17" />. Keduanya cocok.
 
+Gambar berikut menaruh kedua segitiga sama kaki berkaki <InlineMath math="17" /> berdampingan. Segitiga <InlineMath math="DEF" /> **adalah segitiga <InlineMath math="ABC" /> dengan setengah alas dan tinggi yang bertukar peran**: alasnya <InlineMath math="30" /> dan tingginya <InlineMath math="8" />, tetapi luasnya tetap <InlineMath math="120" />.
+
+<MathVisual
+  title={<>Dua segitiga sama kaki berkaki <InlineMath math="17" /> dengan luas <InlineMath math="120" /></>}
+  description={<>Segitiga <InlineMath math="ABC" /> beralas <InlineMath math="16" /> dan bertinggi <InlineMath math="15" />. Segitiga <InlineMath math="DEF" /> beralas <InlineMath math="30" /> dan bertinggi <InlineMath math="8" />. Keduanya punya kaki <InlineMath math="17" /> dan luas <InlineMath math="120" />, tetapi bentuknya berbeda.</>}
+  labels={{
+    abc: <InlineMath math="ABC" />,
+    def: <InlineMath math="DEF" />,
+    h1: <InlineMath math="15" />,
+    h2: <InlineMath math="8" />,
+    b1: <InlineMath math="16" />,
+    b2: <InlineMath math="30" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 37 }, y: { min: -3, max: 17 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "abc", kind: "polygon", appearance: "primary", vertices: [{ x: -8, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 15 }] },
+      { id: "def", kind: "polygon", appearance: "answer", vertices: [{ x: 5, y: 0 }, { x: 35, y: 0 }, { x: 20, y: 8 }] },
+      { id: "height-abc", kind: "segment", appearance: "construction", from: { x: 0, y: 15 }, to: { x: 0, y: 0 } },
+      { id: "height-def", kind: "segment", appearance: "construction", from: { x: 20, y: 8 }, to: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "abc", objectId: "abc", at: { x: 0, y: 15 }, placement: "above" },
+      { key: "def", objectId: "def", at: { x: 20, y: 8 }, placement: "above" },
+      { key: "h1", objectId: "height-abc", at: { x: 0, y: 7.5 }, placement: "left" },
+      { key: "h2", objectId: "height-def", at: { x: 20, y: 4 }, placement: "right" },
+      { key: "b1", objectId: "abc", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "b2", objectId: "def", at: { x: 27, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Membandingkan dan pilihan yang menjebak
 
 Kedua kuantitas sama, <InlineMath math="P=Q=30" />. Hasil ini bukan kebetulan: pada segitiga <InlineMath math="DEF" />, setengah alas dan tinggi bertukar peran dengan milik segitiga <InlineMath math="ABC" />, jadi **setengah dari <InlineMath math="EF" /> sama dengan tinggi segitiga <InlineMath math="ABC" />**.

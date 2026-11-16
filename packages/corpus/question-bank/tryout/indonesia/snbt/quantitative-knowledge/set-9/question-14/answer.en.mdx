@@ -29,6 +29,43 @@ Group B's original total is <InlineMath math="80\cdot4=320" />. The member who l
 
 <BlockMath math="\bar{x}_B=\frac{320-98}{4-1}=\frac{222}{3}=74" />
 
+The number line below shows all those means. Removing the score <InlineMath math="98" />, far to the right, **pulls group B's mean from <InlineMath math="80" /> down to <InlineMath math="74" />** and the combined mean from <InlineMath math="71" /> down to <InlineMath math="68" />, while group A stays at <InlineMath math="65" />.
+
+<MathVisual
+  title={<>The means before and after one member leaves</>}
+  description={<>On the score line, group A's mean sits at <InlineMath math="65" />. The combined mean drops from <InlineMath math="71" /> to <InlineMath math="68" />. Group B's mean drops from <InlineMath math="80" /> to <InlineMath math="74" />. The member who leaves scored <InlineMath math="98" />.</>}
+  labels={{
+    a: <InlineMath math="A:65" />,
+    after: <InlineMath math="68" />,
+    all: <InlineMath math="71" />,
+    newb: <InlineMath math="B:74" />,
+    b: <InlineMath math="80" />,
+    out: <InlineMath math="98" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 102 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 62, y: 0 }, to: { x: 100, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 65, y: 0 } },
+      { id: "mean-after", kind: "point", appearance: "construction", at: { x: 68, y: 0 } },
+      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 71, y: 0 } },
+      { id: "mean-newb", kind: "point", appearance: "answer", at: { x: 74, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 80, y: 0 } },
+      { id: "out", kind: "point", appearance: "warning", at: { x: 98, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mean-a", at: { x: 65, y: 0 }, placement: "above" },
+      { key: "after", objectId: "mean-after", at: { x: 68, y: 0 }, placement: "below" },
+      { key: "all", objectId: "mean-all", at: { x: 71, y: 0 }, placement: "above" },
+      { key: "newb", objectId: "mean-newb", at: { x: 74, y: 0 }, placement: "below" },
+      { key: "b", objectId: "mean-b", at: { x: 80, y: 0 }, placement: "above" },
+      { key: "out", objectId: "out", at: { x: 98, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Checking the result
 
 **Group A doesn't change**, and its total is <InlineMath math="6\cdot65=390" />. The remaining members have a total of <InlineMath math="390+222=612" /> for <InlineMath math="9" /> people, and <InlineMath math="\frac{612}{9}=68" />, just as the question says.

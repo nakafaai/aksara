@@ -18,6 +18,39 @@ Sudut pusat sama besar dengan busur yang dihadapinya, jadi <InlineMath math="\an
 
 <BlockMath math="\angle OBC=\frac{180^\circ-80^\circ}{2}=50^\circ" />
 
+Gambar lingkaran berikut memperlihatkan susunan busurnya. Busur <InlineMath math="AB" /> dan <InlineMath math="AC" /> masing-masing <InlineMath math="140^\circ" />, jadi **busur <InlineMath math="BC" /> di bawah tinggal <InlineMath math="80^\circ" />**, dan segitiga <InlineMath math="OBC" /> sama kaki dengan sudut puncak <InlineMath math="80^\circ" />.
+
+<MathVisual
+  title={<>Garis singgung di <InlineMath math="A" /> dan segitiga <InlineMath math="OBC" /></>}
+  description={<>Garis <InlineMath math="\ell" /> menyinggung lingkaran di <InlineMath math="A" />, di titik teratas. Tali busur <InlineMath math="AB" /> dan <InlineMath math="AC" /> sama panjang dan simetris terhadap garis tegak melalui <InlineMath math="O" />. Busur <InlineMath math="BC" /> yang tidak memuat <InlineMath math="A" /> besarnya <InlineMath math="80^\circ" />, sehingga <InlineMath math="\angle BOC=80^\circ" /> dan <InlineMath math="\angle OBC=50^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    o: <InlineMath math="O" />,
+    tangent: <InlineMath math="\ell" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -6, max: 6.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "tangent", kind: "line", appearance: "construction", through: [{ x: 0, y: 5 }, { x: 1, y: 5 }] },
+      { id: "chord-ab", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
+      { id: "chord-ac", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
+      { id: "obc", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "chord-ab", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "obc", at: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-right" },
+      { key: "c", objectId: "obc", at: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-left" },
+      { key: "o", objectId: "obc", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: 6, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Memeriksa dengan jalan lain
 
 Sudut keliling <InlineMath math="BAC" /> menghadap busur <InlineMath math="BC" />, jadi besarnya <InlineMath math="40^\circ" />. Segitiga <InlineMath math="ABC" /> sama kaki dengan <InlineMath math="AB=AC" />, jadi <InlineMath math="\angle ABC=\frac{180^\circ-40^\circ}{2}=70^\circ" />. Di segitiga <InlineMath math="OAB" />, sudut pusat <InlineMath math="AOB" /> besarnya <InlineMath math="140^\circ" />, sehingga <InlineMath math="\angle OBA=\frac{180^\circ-140^\circ}{2}=20^\circ" />. Ketiga sudut segitiga <InlineMath math="ABC" /> lancip, jadi **titik <InlineMath math="O" /> ada di dalam segitiga itu** dan sinar <InlineMath math="BO" /> membagi sudut <InlineMath math="ABC" />.

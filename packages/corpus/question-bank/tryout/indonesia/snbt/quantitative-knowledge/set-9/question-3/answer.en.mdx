@@ -24,6 +24,38 @@ So <InlineMath math="S" /> is made of **the numbers between <InlineMath math="-1
 
 <BlockMath math="S=\{x\mid -1<x<0\ \text{or}\ x>1\}" />
 
+Graphing both sides shows that set. The curve <InlineMath math="y=\tfrac1x" /> sits **below the line <InlineMath math="y=x" />** in exactly two parts, between <InlineMath math="-1" /> and <InlineMath math="0" /> and to the right of <InlineMath math="1" />, marked by the thick pieces on the <InlineMath math="x" />-axis.
+
+<MathVisual
+  title={<>The curve <InlineMath math="y=\tfrac1x" /> and the line <InlineMath math="y=x" /></>}
+  description={<>The curve and the line meet at <InlineMath math="(-1,-1)" /> and <InlineMath math="(1,1)" />. The curve is below the line for <InlineMath math="-1<x<0" /> and for <InlineMath math="x>1" />, and above it for <InlineMath math="x<-1" /> and <InlineMath math="0<x<1" />. The thick pieces on the <InlineMath math="x" />-axis mark the set <InlineMath math="S" />.</>}
+  labels={{
+    hyper: <InlineMath math="y=\tfrac1x" />,
+    line: <InlineMath math="y=x" />,
+    m1: <InlineMath math="-1" />,
+    p1: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "left-part", kind: "segment", appearance: "highlight", from: { x: -1, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "right-part", kind: "segment", appearance: "highlight", from: { x: 1, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "hyper", kind: "function", appearance: "primary", formula: "1/x", domain: { min: -4, max: 4 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x", domain: { min: -4, max: 4 } },
+      { id: "m1", kind: "point", appearance: "construction", at: { x: -1, y: -1 } },
+      { id: "p1", kind: "point", appearance: "construction", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "hyper", objectId: "hyper", at: { x: 0.5, y: 2 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 3.5, y: 3.5 }, placement: "left" },
+      { key: "m1", objectId: "m1", at: { x: -1, y: -1 }, placement: "below-right" },
+      { key: "p1", objectId: "p1", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Statement one
 
 No number below <InlineMath math="-1" /> is in <InlineMath math="S" />. Take <InlineMath math="x=-2" />: the value <InlineMath math="\frac{1}{x}=-\frac{1}{2}" /> is actually **greater** than <InlineMath math="-2" />. This statement is **false**. The trap appears if you multiply by <InlineMath math="x" /> without watching the sign, which gives <InlineMath math="x^2>1" /> and wrongly lets in <InlineMath math="x<-1" />.

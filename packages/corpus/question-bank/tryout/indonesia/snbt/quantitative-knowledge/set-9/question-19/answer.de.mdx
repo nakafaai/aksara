@@ -29,4 +29,39 @@ x\le0\ \text{oder}\ x\ge1&\;\Longrightarrow\;2^x\ge x+1>x\\
 
 Die Kurve liegt immer über der Geraden <InlineMath math="y=x" />, also treffen sie sich nie. Die Aussage ist **falsch**.
 
+Der Graph zeigt die Kurve <InlineMath math="y=2^x" /> mit allen vier Arten von Geraden. Die Gerade <InlineMath math="y=2x" /> schneidet sie zweimal, die fallende Gerade genau einmal, die Gerade <InlineMath math="y=x" /> und die Gerade <InlineMath math="y=-1" /> **berühren die Kurve nie**.
+
+<MathVisual
+  title={<>Die Kurve <InlineMath math="y=2^x" /> und vier Geraden</>}
+  description={<>Die Kurve <InlineMath math="y=2^x" /> ist immer positiv, steigt immer und ist nach oben gekrümmt. Die Gerade <InlineMath math="y=2x" /> schneidet sie in <InlineMath math="(1,2)" /> und <InlineMath math="(2,4)" />. Die Gerade <InlineMath math="y=-x+3" /> schneidet sie genau einmal. Die Gerade <InlineMath math="y=x" /> bleibt unter der Kurve, und die Gerade <InlineMath math="y=-1" /> liegt unter der <InlineMath math="x" />-Achse, weit weg von der Kurve.</>}
+  labels={{
+    curve: <InlineMath math="y=2^x" />,
+    two: <InlineMath math="y=2x" />,
+    same: <InlineMath math="y=x" />,
+    fall: <InlineMath math="y=-x+3" />,
+    flat: <InlineMath math="y=-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3.5 }, y: { min: -2, max: 9 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "flat", kind: "segment", appearance: "construction", from: { x: -3, y: -1 }, to: { x: 3.5, y: -1 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2^x", domain: { min: -3, max: 3.15 } },
+      { id: "two", kind: "function", appearance: "secondary", formula: "2x", domain: { min: -1, max: 3.5 } },
+      { id: "same", kind: "function", appearance: "reference", formula: "x", domain: { min: -2, max: 3.5 } },
+      { id: "fall", kind: "function", appearance: "highlight", formula: "-x + 3", domain: { min: -3, max: 3.5 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3, y: 8 }, placement: "left" },
+      { key: "two", objectId: "two", at: { x: 3.5, y: 7 }, placement: "below" },
+      { key: "same", objectId: "same", at: { x: 3.5, y: 3.5 }, placement: "below" },
+      { key: "fall", objectId: "fall", at: { x: -2.5, y: 5.5 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: -2.5, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die erste und die dritte Aussage sind also wahr, die zweite und die vierte falsch.

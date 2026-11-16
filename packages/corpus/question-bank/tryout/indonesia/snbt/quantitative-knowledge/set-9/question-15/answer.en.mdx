@@ -26,6 +26,19 @@ n=4&\;\Longrightarrow\;P=2^4=16,\quad Q=4^2=16
 
 For <InlineMath math="n=3" /> you get <InlineMath math="Q>P" />, while for <InlineMath math="n=4" /> you get <InlineMath math="P=Q" />. Both values are allowed, so **no single relationship is always true**.
 
+The chart below compares <InlineMath math="P=2^n" /> and <InlineMath math="Q=n^2" /> for <InlineMath math="n=1" /> to <InlineMath math="6" />. At <InlineMath math="n=3" /> the line for <InlineMath math="Q" /> is on top, at <InlineMath math="n=4" /> **the two lines meet**, and only at <InlineMath math="n=5" /> does <InlineMath math="P" /> pull ahead, but that value isn't allowed.
+
+<Chart
+  title={<>The values of <InlineMath math="2^n" /> and <InlineMath math="n^2" /> for <InlineMath math="n=1" /> to <InlineMath math="6" /></>}
+  description={<>The values of <InlineMath math="2^n" /> are <InlineMath math="2, 4, 8, 16, 32, 64" />, and the values of <InlineMath math="n^2" /> are <InlineMath math="1, 4, 9, 16, 25, 36" />. For the allowed values, <InlineMath math="n=3" /> gives <InlineMath math="8<9" /> and <InlineMath math="n=4" /> gives <InlineMath math="16=16" />.</>}
+  valueLabel="Value"
+  categories={Array.from({ length: 6 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "P", mark: "line", values: Array.from({ length: 6 }, (_, i) => 2 ** (i + 1)) },
+    { label: "Q", mark: "line", values: Array.from({ length: 6 }, (_, i) => (i + 1) ** 2) },
+  ]}
+/>
+
 # The tempting wrong options
 
 - <InlineMath math="Q>P" /> **only checks <InlineMath math="n=3" />**. It's true that <InlineMath math="Q" /> never loses to <InlineMath math="P" /> here, but for <InlineMath math="n=4" /> they're equal.

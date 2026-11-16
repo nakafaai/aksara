@@ -23,6 +23,17 @@ The value of <InlineMath math="M" /> is unknown. The two situations below both s
 
 Statement (2) alone isn't sufficient.
 
+The chart below follows statement (1) step by step. The <InlineMath math="75\%" /> **is taken of the second bar**, the <InlineMath math="120" /> students who passed Mathematics, not of all <InlineMath math="200" /> students.
+
+<Chart
+  title={<>Statement (1) as two filters</>}
+  description={<>Of the <InlineMath math="200" /> students, <InlineMath math="60\%" />, or <InlineMath math="120" />, passed Mathematics. Of those <InlineMath math="120" />, <InlineMath math="75\%" />, or <InlineMath math="90" />, also passed Physics, and they're the ones who passed both exams.</>}
+  categories={["All students", "Passed Mathematics", "Passed both"]}
+  bars="apart"
+  series={[{ label: "Number of students", mark: "bar", values: [200, (60 / 100) * 200, (75 / 100) * (60 / 100) * 200] }]}
+  valueLabel="Number of students"
+/>
+
 # Both statements together
 
 The two statements don't contradict each other: the first situation in the table satisfies both. But statement (1) **is already sufficient on its own**, so statement (2) isn't needed. The trap appears if you read <InlineMath math="75\%" /> as a percent of all students. With that reading, statement (1) only tells you how many passed each exam, and you'd think the two statements must be combined.
