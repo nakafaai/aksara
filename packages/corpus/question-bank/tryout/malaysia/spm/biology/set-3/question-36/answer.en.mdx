@@ -1,0 +1,29 @@
+# Read the goats and their food together
+
+A population can grow only as long as its food keeps up. Here the goats **eat their own food supply**, so the plant cover sets how many goats the island can carry, and the goats change that number.
+
+<Chart
+  title={<>Goats and Plant Cover on the Island</>}
+  categories={["Year 0", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6", "Year 7", "Year 8", "Year 9", "Year 10", "Year 11", "Year 12"]}
+  series={[
+    { label: "Goats", mark: "line", values: [20, 30, 60, 120, 200, 260, 280, 250, 180, 150, 160, 155, 158] },
+    { label: "Plant cover (%)", mark: "line", values: [90, 88, 80, 65, 45, 30, 20, 15, 15, 18, 20, 21, 21] },
+  ]}
+  valueLabel="Value"
+  description={<>Goats rise from <InlineMath math="20" /> to a peak of <InlineMath math="280" /> in year <InlineMath math="6" />, crash to <InlineMath math="150" /> by year <InlineMath math="9" /> and then hold near <InlineMath math="155" />. Plant cover falls from <InlineMath math="90\%" /> to <InlineMath math="15\%" /> by year <InlineMath math="7" /> and recovers only to about <InlineMath math="21\%" />.</>}
+/>
+
+<BlockMath math="\text{yearly gains}: 10,\ 30,\ 60,\ 80,\ 60,\ 20,\ \text{then losses}" />
+
+- I: the goats climb to <InlineMath math="280" /> while plant cover falls from <InlineMath math="90\%" /> to <InlineMath math="20\%" />. With so little food left, the population crashes. The island then supports only about <InlineMath math="155" /> goats, far below the peak, because the grazing damaged the plants. Statement I is correct.
+- II: the largest yearly gain is <InlineMath math="200-120=80" /> goats, between years <InlineMath math="3" /> and <InlineMath math="4" />. Statement II is correct.
+- III: from year <InlineMath math="9" /> the numbers hold between <InlineMath math="150" /> and <InlineMath math="160" />, a new **carrying capacity**. Plant cover recovers only to about <InlineMath math="21\%" />, so the island feeds fewer goats than at the start. Statement III is correct.
+- IV: the island has no predators. The fall follows the loss of plant cover, so food shortage is the cause. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and III only rejects II, often after picking the largest population instead of the **largest yearly gain**.
+- II, III and IV only blames predators, **although the island has none**, and rejects the overshoot.
+- I, II and IV only accepts predators and rejects the lower carrying capacity that the steady numbers show.

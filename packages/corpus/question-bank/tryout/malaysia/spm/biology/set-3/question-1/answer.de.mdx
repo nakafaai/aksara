@@ -1,0 +1,30 @@
+# Erst die Daten bereinigen, dann fragen, was drei Punkte beweisen können
+
+Wiederholte Messungen sollten nah beieinander liegen. Bei pH <InlineMath math="7" /> liegt <InlineMath math="31\text{ cm}^3" /> weit weg von <InlineMath math="20" /> und <InlineMath math="21\text{ cm}^3" />, also ist dieser Wert der **Ausreißer** und bleibt aus dem Mittelwert heraus.
+
+<BlockMath math="\text{pH }5:\ \tfrac{12+13+11}{3}=12,\quad \text{pH }7:\ \tfrac{20+21}{2}=20{,}5,\quad \text{pH }9:\ \tfrac{9+10+8}{3}=9\ \text{cm}^3" />
+
+<Chart
+  title={<>Mittleres Sauerstoffvolumen bei jedem pH-Wert</>}
+  bars="apart"
+  categories={["pH 5", "pH 7", "pH 9"]}
+  series={[
+    { label: "Mittelwert ohne Ausreißer", mark: "bar", values: [12, 20.5, 9] },
+    { label: "Mittelwert mit Ausreißer", mark: "bar", values: [12, 24, 9] },
+  ]}
+  valueLabel="Sauerstoff in 5 Minuten (cm³)"
+  description={<>Ohne den Ausreißer liegen die Mittelwerte bei <InlineMath math="12" />, <InlineMath math="20{,}5" /> und <InlineMath math="9\text{ cm}^3" /> für pH <InlineMath math="5" />, <InlineMath math="7" /> und <InlineMath math="9" />. Wer den Wert <InlineMath math="31\text{ cm}^3" /> mitrechnet, hebt den Mittelwert bei pH <InlineMath math="7" /> fälschlich auf <InlineMath math="24\text{ cm}^3" />. Zwischen pH <InlineMath math="5" /> und pH <InlineMath math="9" /> wurde nur pH <InlineMath math="7" /> gemessen.</>}
+/>
+
+- I: <InlineMath math="\tfrac{20{,}5}{12}\approx1{,}7" />, also stimmt Aussage I. Mit dem Ausreißer käme <InlineMath math="\tfrac{24}{12}=2{,}0" /> heraus.
+- II: Bei nur drei pH-Werten ist pH <InlineMath math="7" /> bloß der **beste der getesteten Werte**. Das echte Maximum kann irgendwo zwischen pH <InlineMath math="5" /> und pH <InlineMath math="9" /> liegen, etwa bei pH <InlineMath math="6{,}5" /> oder pH <InlineMath math="8" />. Aussage II ist falsch.
+- III: Ein Mittelwert von <InlineMath math="22\text{ cm}^3" /> bei pH <InlineMath math="8" /> läge über den <InlineMath math="20{,}5\text{ cm}^3" /> bei pH <InlineMath math="7" />, während pH <InlineMath math="9" /> nur <InlineMath math="9\text{ cm}^3" /> liefert. Das Maximum läge dann über pH <InlineMath math="7" /> und unter pH <InlineMath math="9" />. Aussage III stimmt.
+- IV: Bei pH <InlineMath math="9" /> entstehen noch <InlineMath math="9\text{ cm}^3" /> Sauerstoff, die Katalase arbeitet also langsamer, ist aber nicht vollständig denaturiert. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II hält den besten getesteten pH-Wert für das Optimum, **doch drei Punkte legen kein Maximum fest**.
+- Nur I, II und III nimmt II zusammen mit III an, **obwohl III selbst zeigt, dass ein Wert über pH** <InlineMath math="7" /> besser sein kann.
+- Nur III und IV rechnet <InlineMath math="31\text{ cm}^3" /> mit, kommt so auf <InlineMath math="2{,}0" /> und hält ein langsameres Enzym für ein **totes Enzym**.

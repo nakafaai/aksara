@@ -1,0 +1,41 @@
+# Baca glukosa dan insulin tiap orang bersamaan
+
+Glukosa darah tinggi bisa berasal dari **insulin yang terlalu sedikit** atau dari sel yang **kurang merespons** insulin. Hanya kurva insulin yang bisa membedakan keduanya.
+
+<Chart
+  title={<>Glukosa Darah Setelah Minum Larutan Glukosa</>}
+  categories={["0 mnt", "30 mnt", "60 mnt", "90 mnt", "120 mnt"]}
+  series={[
+    { label: "Orang P", mark: "line", values: [4.8, 7.8, 6.5, 5.4, 4.9] },
+    { label: "Orang Q", mark: "line", values: [7.2, 12.6, 14.8, 13.9, 12.1] },
+    { label: "Orang R", mark: "line", values: [6.8, 11.5, 12.8, 11.9, 10.2] },
+    { label: "Ambang ginjal", mark: "line", values: [10, 10, 10, 10, 10] },
+  ]}
+  valueLabel="Glukosa darah (mmol/L)"
+  description={<>P memuncak di <InlineMath math="7{,}8" /> lalu kembali ke <InlineMath math="4{,}9" />. Q mencapai <InlineMath math="14{,}8" /> dan R <InlineMath math="12{,}8" /> pada menit ke-<InlineMath math="60" />, keduanya di atas ambang <InlineMath math="10" />.</>}
+/>
+
+<Chart
+  title={<>Insulin Darah Setelah Minum Larutan Glukosa</>}
+  categories={["0 mnt", "30 mnt", "60 mnt", "90 mnt", "120 mnt"]}
+  series={[
+    { label: "Orang P", mark: "line", values: [6, 45, 30, 15, 8] },
+    { label: "Orang Q", mark: "line", values: [2, 3, 3, 2, 2] },
+    { label: "Orang R", mark: "line", values: [18, 90, 120, 100, 80] },
+  ]}
+  valueLabel="Insulin darah (unit)"
+  description={<>Insulin P naik ke <InlineMath math="45" /> lalu turun. Insulin Q tetap <InlineMath math="2" /> sampai <InlineMath math="3" />. Insulin R naik ke <InlineMath math="120" /> dan tetap tinggi.</>}
+/>
+
+- I: insulin Q tetap di antara <InlineMath math="2" /> dan <InlineMath math="3" /> unit sementara insulin P melonjak ke <InlineMath math="45" />. Sel beta Q menyekresikan sangat sedikit insulin. Pernyataan I benar.
+- II: insulin R naik ke <InlineMath math="120" /> unit, jauh di atas P, tetapi glukosa R tetap tinggi. R punya banyak insulin, jadi selnya pasti kurang merespons insulin. Pernyataan II salah.
+- III: pada menit ke-<InlineMath math="60" />, Q di <InlineMath math="14{,}8" /> dan R di <InlineMath math="12{,}8\text{ mmol/L}" />, keduanya di atas <InlineMath math="10\text{ mmol/L}" />, jadi keduanya mengeluarkan glukosa lewat urine. Pernyataan III benar.
+- IV: glukagon menaikkan glukosa darah. Glukosa P turun saat insulin P tinggi, jadi penurunannya berasal dari **insulin**. Pernyataan IV salah.
+
+Jadi pernyataan I dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja menganggap setiap kurva glukosa tinggi sebagai kekurangan insulin, **padahal insulin R paling tinggi di antara ketiganya**.
+- I, III, dan IV saja mengandalkan glukagon untuk menurunkan glukosa P, **padahal glukagon menaikkannya**.
+- III dan IV saja menolak I, melewatkan bahwa **insulin Q hampir tidak berubah** setelah minum.

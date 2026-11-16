@@ -1,0 +1,29 @@
+# Periksa tiap pasien terhadap apa yang seharusnya dilakukan lingkar umpan balik
+
+Pada lingkar yang sehat, **tiroksin tinggi menekan TSH** dan tiroksin rendah membiarkannya naik. Hasil yang melanggar aturan ini menunjukkan letak masalahnya, dan ukuran kelenjar menunjukkan apakah TSH sudah merangsangnya.
+
+<Mermaid
+  title={<>Kendali Umpan Balik Tiroksin</>}
+  description={<>Kelenjar hipofisis menyekresikan TSH, yang membuat kelenjar tiroid membesar dan menyekresikan tiroksin dari iodium. Tiroksin dalam darah, dari kelenjar maupun tablet, memperlambat sekresi TSH.</>}
+  chart={"flowchart LR\n  PI[Kelenjar hipofisis] -- TSH --> TH[Kelenjar tiroid]\n  I[Iodium dalam makanan] --> TH\n  TB[Tablet tiroksin] --> BL[Tiroksin dalam darah]\n  TH -- tiroksin --> BL\n  BL -. tiroksin tinggi memperlambat TSH .-> PI"}
+/>
+
+| Pasien | Tiroksin | TSH | Cocok dengan lingkar? | Penyebab paling mungkin |
+| --- | --- | --- | --- | --- |
+| P | rendah | tinggi | ya | tiroid tidak bisa membuat tiroksin, misalnya kekurangan iodium |
+| Q | rendah | rendah | tidak | kelenjar hipofisis membuat terlalu sedikit TSH |
+| R | tinggi | rendah | ya | tiroksin tambahan dari luar, kelenjar tidak dirangsang |
+| S | tinggi | rendah | ya | kelenjar tiroid terlalu aktif dengan sendirinya |
+| T | tinggi | tinggi | tidak | hipofisis terus menyekresikan TSH walau tiroksin tinggi |
+
+- T: tiroksin tinggi, jadi TSH seharusnya tertekan, tetapi nilainya <InlineMath math="12" />. Hipofisis mengabaikan umpan balik dan terus merangsang tiroid sampai membengkak. Ini cocok dengan **tumor yang menyekresikan TSH**.
+- R: tiroksin tinggi dan TSH tertekan, tetapi kelenjarnya **kecil**. Dengan sedikit TSH, kelenjar itu tidak dirangsang dan tidak membuat tiroksin, jadi tiroksinnya pasti berasal dari tablet.
+- S punya hasil darah yang sama dengan R, tetapi kelenjarnya membengkak, jadi kelenjarnya sendiri yang terlalu aktif.
+
+Jadi pasien T paling mungkin memiliki tumor hipofisis, dan pasien R paling mungkin minum terlalu banyak tablet tiroksin.
+
+# Mengapa pilihan lain salah
+
+- P dan S membaca TSH tinggi pada P sebagai masalah hipofisis, **padahal TSH tinggi dengan tiroksin rendah adalah lingkar yang bekerja normal**, dan kelenjar S yang membengkak membuat tiroksinnya sendiri.
+- T dan S memilih kelenjar yang membengkak untuk tablet, **padahal kelenjar yang tidak dirangsang TSH tidak membengkak**.
+- P dan R mengira respons normal hipofisis P sebagai tumor.

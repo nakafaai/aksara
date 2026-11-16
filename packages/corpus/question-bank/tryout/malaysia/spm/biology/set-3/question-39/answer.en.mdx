@@ -1,0 +1,32 @@
+# Work out whether W is a carrier before looking at her child
+
+A boy gets his only X chromosome from his **mother**. W's brother has haemophilia, so their mother passed him <InlineMath math="X^h" /> and must be a carrier, <InlineMath math="X^HX^h" />. Their father is <InlineMath math="X^HY" />.
+
+<Mermaid
+  title={<>What Is Known About the Family</>}
+  description={<>W's brother has haemophilia, so his X chromosome came from their mother, who must be a carrier. W received the father's XH and either X from the mother, so she is a carrier with probability one half.</>}
+  chart={"flowchart TD\n  GF[Father of W: XHY] --> B[Brother of W: XhY, haemophilia]\n  GM[Mother of W: XHXh, carrier] --> B\n  GF --> W[W: XHXH or XHXh]\n  GM --> W\n  W --> C[First child]\n  H[Husband: XHY] --> C"}
+/>
+
+W got <InlineMath math="X^H" /> from her father and one of her mother's two X chromosomes, so:
+
+<BlockMath math="P(\text{W is } X^HX^h)=\tfrac{1}{2}" />
+
+If W is a carrier, her child with an <InlineMath math="X^HY" /> husband falls into one of four equally likely boxes:
+
+| Gametes | <InlineMath math="X^H" /> from the husband | <InlineMath math="Y" /> from the husband |
+| --- | --- | --- |
+| <InlineMath math="X^H" /> from W | <InlineMath math="X^HX^H" /> girl, normal | <InlineMath math="X^HY" /> boy, normal |
+| <InlineMath math="X^h" /> from W | <InlineMath math="X^HX^h" /> girl, carrier | <InlineMath math="X^hY" /> boy, haemophilia |
+
+Only one box in four is a boy with haemophilia, so:
+
+<BlockMath math="P(\text{boy with haemophilia})=\tfrac{1}{2}\times\tfrac{1}{4}=\tfrac{1}{8}" />
+
+So the probability that their first child is a boy with haemophilia is <InlineMath math="\tfrac{1}{8}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac{1}{4}" /> treats W as a certain carrier and skips the **one-half chance** that she is not.
+- <InlineMath math="\tfrac{1}{2}" /> is the chance that a son of a carrier is affected, **but the child's sex is not known**, and W may not be a carrier.
+- <InlineMath math="\tfrac{1}{16}" /> halves the answer once more for the child being a boy, **although the grid already counts the sex**.

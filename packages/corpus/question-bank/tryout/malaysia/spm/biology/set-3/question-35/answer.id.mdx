@@ -1,0 +1,34 @@
+# Pakai tiap antibiotik untuk menjawab satu pertanyaan
+
+Cawan ampisilin bertanya, **apakah bakteri ini punya plasmid**? Cawan tetrasiklin bertanya, **apakah gen tetrasiklin masih utuh**? Gen insulin merusak gen itu, jadi plasmid rekombinan gagal pada uji kedua.
+
+<Mermaid
+  title={<>Membedakan Bakteri Rekombinan</>}
+  description={<>Semua <InlineMath math="120" /> koloni di ampisilin memiliki plasmid. Sebanyak <InlineMath math="90" /> koloni yang juga tumbuh di tetrasiklin masih punya gen tetrasiklin yang berfungsi, jadi plasmidnya tanpa gen insulin. Sebanyak <InlineMath math="30" /> koloni yang gagal di tetrasiklin memiliki plasmid rekombinan.</>}
+  chart={"flowchart LR\n  A[120 koloni tumbuh di ampisilin: semuanya punya plasmid] --> B[90 juga tumbuh di tetrasiklin: tetR utuh, tanpa gen insulin]\n  A --> C[30 tidak tumbuh di tetrasiklin: tetR rusak oleh gen insulin]"}
+/>
+
+- Bakteri tanpa plasmid mati di ampisilin, jadi semua <InlineMath math="120" /> koloni memiliki plasmid.
+- Plasmid yang tertutup lagi tanpa gen insulin tetap punya gen tetrasiklin yang berfungsi, jadi <InlineMath math="90" /> koloninya juga tumbuh di tetrasiklin.
+- Plasmid rekombinan punya gen tetrasiklin yang rusak, jadi koloninya tumbuh di ampisilin tetapi tidak di tetrasiklin.
+
+<BlockMath math="120-90=30" />
+
+<Chart
+  title={<>Koloni di Tiap Cawan</>}
+  bars="apart"
+  categories={["Tumbuh di ampisilin", "Juga tumbuh di tetrasiklin", "Rekombinan"]}
+  series={[
+    { label: "Koloni", mark: "bar", values: [120, 90, 30] },
+  ]}
+  valueLabel="Koloni"
+  description={<><InlineMath math="120" /> koloni tumbuh di ampisilin dan <InlineMath math="90" /> di antaranya juga tumbuh di tetrasiklin, sehingga tersisa <InlineMath math="30" /> koloni rekombinan.</>}
+/>
+
+Jadi <InlineMath math="30" /> koloni membawa gen insulin, dan merekalah yang tumbuh di ampisilin tetapi tidak di tetrasiklin.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="90" /> koloni yang tumbuh di kedua cawan punya **gen tetrasiklin yang utuh**, jadi plasmidnya tanpa gen insulin.
+- <InlineMath math="120" /> koloni menghitung semua bakteri yang menerima plasmid apa pun, **rekombinan atau bukan**.
+- <InlineMath math="30" /> koloni yang tumbuh di tetrasiklin tetapi tidak di ampisilin mustahil ada di sini, **karena hanya koloni yang tumbuh di ampisilin yang disalin**.

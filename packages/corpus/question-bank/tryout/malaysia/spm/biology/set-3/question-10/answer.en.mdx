@@ -1,0 +1,34 @@
+# Compare the pressures on the two sides of each valve
+
+The **bicuspid valve** lies between the atrium and the ventricle, so it is open only while the atrium is above the ventricle. The **semilunar valve** lies between the ventricle and the aorta, so it is open only while the ventricle is above the aorta.
+
+<Chart
+  title={<>Pressures in the Left Side of the Heart</>}
+  categories={["0.0 s", "0.1 s", "0.2 s", "0.3 s", "0.4 s", "0.5 s", "0.6 s", "0.7 s"]}
+  series={[
+    { label: "Left atrium", mark: "line", values: [0.4, 1.4, 0.6, 0.5, 0.7, 0.9, 1.1, 0.6] },
+    { label: "Left ventricle", mark: "line", values: [0.2, 1.1, 8.0, 16.0, 15.0, 6.0, 0.8, 0.4] },
+    { label: "Aorta", mark: "line", values: [10.5, 10.0, 9.6, 15.0, 14.2, 12.5, 11.6, 11.0] },
+  ]}
+  valueLabel="Pressure (kPa)"
+  description={<>The ventricle rises above the atrium from <InlineMath math="0.2\text{ s}" /> and above the aorta only at <InlineMath math="0.3" /> and <InlineMath math="0.4\text{ s}" />. At <InlineMath math="0.5\text{ s}" /> it is above the atrium but below the aorta, and from <InlineMath math="0.6\text{ s}" /> it is below the atrium again.</>}
+/>
+
+| Time (s) | Atrium above ventricle? | Ventricle above aorta? | Both valves closed? |
+| --- | --- | --- | --- |
+| <InlineMath math="0.1" /> | yes, <InlineMath math="1.4>1.1" /> | no | no |
+| <InlineMath math="0.2" /> | no, <InlineMath math="0.6<8.0" /> | no, <InlineMath math="8.0<9.6" /> | yes |
+| <InlineMath math="0.3" /> | no | yes, <InlineMath math="16.0>15.0" /> | no |
+| <InlineMath math="0.4" /> | no | yes, <InlineMath math="15.0>14.2" /> | no |
+| <InlineMath math="0.5" /> | no, <InlineMath math="0.9<6.0" /> | no, <InlineMath math="6.0<12.5" /> | yes |
+| <InlineMath math="0.6" /> | yes, <InlineMath math="1.1>0.8" /> | no | no |
+
+At <InlineMath math="0.2\text{ s}" /> the ventricle is contracting but has not yet beaten the aorta, and at <InlineMath math="0.5\text{ s}" /> it is relaxing but is still above the atrium. In both moments the blood in the ventricle has **no way out**.
+
+So both valves are closed at <InlineMath math="0.2\text{ s}" /> and <InlineMath math="0.5\text{ s}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.3\text{ s}" /> and <InlineMath math="0.4\text{ s}" /> are the highest pressures, **but that is when the semilunar valve is open** and blood leaves for the aorta.
+- <InlineMath math="0.1\text{ s}" /> and <InlineMath math="0.6\text{ s}" /> are moments when the atrium is above the ventricle, **so the bicuspid valve is open**.
+- <InlineMath math="0.2\text{ s}" /> and <InlineMath math="0.6\text{ s}" /> checks only the semilunar valve at <InlineMath math="0.6\text{ s}" /> and forgets that the **bicuspid valve has opened again**.

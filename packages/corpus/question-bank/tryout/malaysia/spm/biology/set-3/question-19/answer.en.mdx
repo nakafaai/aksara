@@ -1,0 +1,29 @@
+# Balance the energy over a whole week, not over one day
+
+Fat changes only when **intake and use do not match**. The surplus stays every day, even on walking days, so the walks must first cancel it before any fat is burned.
+
+<BlockMath math="\text{first }37\text{ days}:\quad (10\,200-9600)\times37=600\times37=22\,200\text{ kJ},\qquad \frac{22\,200}{37\,000}=0.6\text{ kg}" />
+
+Now take one whole week of walking:
+
+<BlockMath math="\text{surplus}=600\times7=4200\text{ kJ},\qquad \text{walks}=1400\times4=5600\text{ kJ},\qquad \text{net}=4200-5600=-1400\text{ kJ per week}" />
+
+<BlockMath math="\text{weeks}=\frac{22\,200}{1400}\approx15.9\approx16" />
+
+<Chart
+  title={<>Energy Stored as Extra Fat After the Walks Begin</>}
+  categories={["Week 0", "Week 4", "Week 8", "Week 12", "Week 16"]}
+  series={[
+    { label: "Extra stored energy (thousand kJ)", mark: "line", values: [22.2, 16.6, 11.0, 5.4, -0.2] },
+  ]}
+  valueLabel="Extra stored energy (thousand kJ)"
+  description={<>The extra energy stored as fat falls by <InlineMath math="1.4" /> thousand kilojoules a week, from <InlineMath math="22.2" /> at week <InlineMath math="0" /> to <InlineMath math="5.4" /> at week <InlineMath math="12" /> and about <InlineMath math="0" /> just before week <InlineMath math="16" />.</>}
+/>
+
+So she gains <InlineMath math="0.6\text{ kg}" /> of fat and needs about <InlineMath math="16" /> weeks of walking to lose it.
+
+# Why the other options are wrong
+
+- About <InlineMath math="4" /> weeks divides by the <InlineMath math="5600\text{ kJ}" /> the walks use and forgets that the **daily surplus continues**.
+- About <InlineMath math="7" /> weeks counts the surplus only on the walking days, <InlineMath math="4\times(1400-600)=3200\text{ kJ}" />, and **leaves out the three days without a walk**.
+- Never losing it looks only at eating and resting, **but the walks add** <InlineMath math="5600\text{ kJ}" /> of use each week.

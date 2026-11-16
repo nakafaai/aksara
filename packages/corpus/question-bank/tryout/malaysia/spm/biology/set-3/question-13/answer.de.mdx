@@ -1,0 +1,41 @@
+# Glucose und Insulin jeder Person zusammen lesen
+
+Hoher Blutzucker kann von **zu wenig Insulin** kommen oder von Zellen, die **schwach auf Insulin reagieren**. Nur die Insulinkurve unterscheidet die beiden Fälle.
+
+<Chart
+  title={<>Blutzucker nach dem Glucosegetränk</>}
+  categories={["0 min", "30 min", "60 min", "90 min", "120 min"]}
+  series={[
+    { label: "Person P", mark: "line", values: [4.8, 7.8, 6.5, 5.4, 4.9] },
+    { label: "Person Q", mark: "line", values: [7.2, 12.6, 14.8, 13.9, 12.1] },
+    { label: "Person R", mark: "line", values: [6.8, 11.5, 12.8, 11.9, 10.2] },
+    { label: "Nierenschwelle", mark: "line", values: [10, 10, 10, 10, 10] },
+  ]}
+  valueLabel="Blutzucker (mmol/L)"
+  description={<>P erreicht höchstens <InlineMath math="7{,}8" /> und kehrt auf <InlineMath math="4{,}9" /> zurück. Q erreicht bei Minute <InlineMath math="60" /> <InlineMath math="14{,}8" /> und R <InlineMath math="12{,}8" />, beide über der Schwelle von <InlineMath math="10" />.</>}
+/>
+
+<Chart
+  title={<>Blutinsulin nach dem Glucosegetränk</>}
+  categories={["0 min", "30 min", "60 min", "90 min", "120 min"]}
+  series={[
+    { label: "Person P", mark: "line", values: [6, 45, 30, 15, 8] },
+    { label: "Person Q", mark: "line", values: [2, 3, 3, 2, 2] },
+    { label: "Person R", mark: "line", values: [18, 90, 120, 100, 80] },
+  ]}
+  valueLabel="Blutinsulin (Einheiten)"
+  description={<>Das Insulin von P steigt auf <InlineMath math="45" /> und fällt wieder. Das von Q bleibt bei <InlineMath math="2" /> bis <InlineMath math="3" />. Das von R steigt auf <InlineMath math="120" /> und bleibt hoch.</>}
+/>
+
+- I: Das Insulin von Q bleibt zwischen <InlineMath math="2" /> und <InlineMath math="3" /> Einheiten, während das von P auf <InlineMath math="45" /> springt. Die Betazellen von Q schütten kaum Insulin aus. Aussage I stimmt.
+- II: Das Insulin von R steigt auf <InlineMath math="120" /> Einheiten, weit über P, und trotzdem bleibt der Zucker von R hoch. R hat reichlich Insulin, seine Zellen reagieren also schwach darauf. Aussage II ist falsch.
+- III: Bei Minute <InlineMath math="60" /> liegt Q bei <InlineMath math="14{,}8" /> und R bei <InlineMath math="12{,}8\text{ mmol/L}" />, beide über <InlineMath math="10\text{ mmol/L}" />, also scheiden beide Glucose mit dem Urin aus. Aussage III stimmt.
+- IV: Glucagon erhöht den Blutzucker. Der Zucker von P fällt, während das Insulin von P hoch ist, der Abfall kommt also vom **Insulin**. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III hält jede hohe Zuckerkurve für Insulinmangel, **obwohl R das meiste Insulin der drei hat**.
+- Nur I, III und IV schreibt das Senken des Zuckers von P dem Glucagon zu, **doch Glucagon erhöht ihn**.
+- Nur III und IV verwirft I und übersieht, dass sich **das Insulin von Q kaum verändert**.

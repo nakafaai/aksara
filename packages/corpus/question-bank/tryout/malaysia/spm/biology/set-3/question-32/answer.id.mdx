@@ -1,0 +1,26 @@
+# Hitung alel tinggi badan, bukan genotipenya
+
+Tiap <InlineMath math="A" /> atau <InlineMath math="B" /> menambah <InlineMath math="5\text{ cm}" /> yang sama, jadi tinggi hanya bergantung pada **berapa banyak** alel ini dimiliki tumbuhan. Tumbuhan setinggi <InlineMath math="110\text{ cm}" /> punya tepat dua, yang diberikan oleh tiga genotipe berbeda.
+
+<BlockMath math="110=100+2\times5\ \Rightarrow\ \text{dua alel tinggi}:\quad AAbb,\ aaBB,\ AaBb" />
+
+<BlockMath math="\tfrac{1}{16}+\tfrac{1}{16}+\tfrac{4}{16}=\tfrac{6}{16}=\tfrac{3}{8}" />
+
+<Chart
+  title={<>Tinggi Keturunan yang Diharapkan</>}
+  bars="apart"
+  categories={["100 cm", "105 cm", "110 cm", "115 cm", "120 cm"]}
+  series={[
+    { label: "Keturunan", mark: "bar", values: [6.25, 25, 37.5, 25, 6.25] },
+  ]}
+  valueLabel="Keturunan (%)"
+  description={<>Dari keturunannya, <InlineMath math="6{,}25\%" /> setinggi <InlineMath math="100" /> cm, <InlineMath math="25\%" /> setinggi <InlineMath math="105" /> cm, <InlineMath math="37{,}5\%" /> setinggi <InlineMath math="110" /> cm, <InlineMath math="25\%" /> setinggi <InlineMath math="115" /> cm, dan <InlineMath math="6{,}25\%" /> setinggi <InlineMath math="120" /> cm.</>}
+/>
+
+Menghitung alel tinggi di seluruh <InlineMath math="16" /> kombinasi memberi <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="4" />, dan <InlineMath math="1" /> keturunan dengan <InlineMath math="0" /> sampai <InlineMath math="4" /> alel. Kelas tengah, dua alel, paling umum, itulah sebabnya gen aditif memberi sebaran tinggi yang berpusat di rata-rata. Jawabannya <InlineMath math="\tfrac{3}{8}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\tfrac{9}{16}" /> menghitung tumbuhan dengan paling sedikit satu <InlineMath math="A" /> dan satu <InlineMath math="B" />, yaitu **kelas dominan pada persilangan dihibrid biasa**, yang di sini berkisar <InlineMath math="110" /> sampai <InlineMath math="120\text{ cm}" />.
+- <InlineMath math="\tfrac{1}{4}" /> hanya menghitung <InlineMath math="AaBb" /> dan **melewatkan** <InlineMath math="AAbb" /> **dan** <InlineMath math="aaBB" />, yang sama tingginya.
+- <InlineMath math="\tfrac{1}{16}" /> menghitung satu genotipe saja seperti <InlineMath math="AAbb" /> dan **melewatkan dua lainnya** yang punya dua alel tinggi.

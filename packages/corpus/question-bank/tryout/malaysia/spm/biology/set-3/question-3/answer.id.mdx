@@ -1,0 +1,29 @@
+# Pisahkan penyerapan pasif dan penyerapan aktif
+
+Sianida menghilangkan ATP, jadi penyerapan yang tetap terjadi dengan sianida adalah penyerapan **pasif**. Selisih kedua garis adalah bagian yang membutuhkan energi.
+
+<Chart
+  title={<>Penyerapan X dengan dan tanpa Sianida</>}
+  categories={["0 mM", "10 mM", "20 mM", "30 mM", "40 mM", "50 mM"]}
+  series={[
+    { label: "Tanpa sianida", mark: "line", values: [0, 6, 10, 12, 12, 12] },
+    { label: "Dengan sianida", mark: "line", values: [0, 2, 3.5, 4, 4, 4] },
+  ]}
+  valueLabel="Penyerapan X (unit per jam)"
+  description={<>Tanpa sianida, penyerapan naik sampai <InlineMath math="12" /> unit per jam dan mendatar mulai <InlineMath math="30\text{ mM}" />. Dengan sianida, penyerapan naik sampai <InlineMath math="4" /> unit per jam dan mendatar mulai <InlineMath math="30\text{ mM}" />.</>}
+/>
+
+<BlockMath math="\text{pada }40\text{ mM}:\quad \text{aktif}=12-4=8,\qquad \text{pasif}=4,\qquad \tfrac{8}{4}=2" />
+
+- I: difusi sederhana akan terus naik seiring konsentrasi. Garis tanpa sianida mendatar karena semua **protein pembawa** sudah terpakai. Pernyataan I benar.
+- II: masih ada <InlineMath math="4" /> unit per jam yang masuk dengan sianida, dan penyerapan ini juga mendatar, jadi ikut memakai protein pembawa. Pernyataan II salah.
+- III: bagian aktif <InlineMath math="8" /> dan bagian pasif <InlineMath math="4" />, jadi bagian aktif dua kali bagian pasif. Pernyataan III benar.
+- IV: penyerapan pasif yang mendatar menandakan **difusi terfasilitasi** melalui protein pembawa searah gradien konsentrasi. Pernyataan IV benar.
+
+Jadi pernyataan I, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan III saja menolak IV, seolah-olah penyerapan pasif tidak bisa memakai pembawa, **padahal garis yang mendatar menunjukkan pembawa sudah penuh**.
+- I, II, dan III saja menerima II, menganggap semua pembawa adalah pompa ATP, **padahal penyerapan tetap berjalan dengan sianida**.
+- III dan IV saja menolak I, membaca garis datar sebagai sel yang sudah penuh X, bukan **pembawa yang jenuh**.

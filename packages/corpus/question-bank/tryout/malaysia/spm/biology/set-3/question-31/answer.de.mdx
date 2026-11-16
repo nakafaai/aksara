@@ -1,0 +1,30 @@
+# Stufen über Verhältnisse vergleichen, nicht über Differenzen
+
+DDT wird nicht abgebaut und im Fett gespeichert, also behält jeder Fresser das DDT aus allem, was er frisst. Das ist **Biomagnifikation**, und man misst sie daran, um welchen Faktor die Konzentration steigt.
+
+<BlockMath math="\frac{25}{0{,}00005}=\frac{25\cdot100\,000}{5}=500\,000" />
+
+Jetzt den Faktor jedes Schritts bestimmen:
+
+<BlockMath math="\frac{0{,}04}{0{,}00005}=800,\qquad \frac{0{,}5}{0{,}04}=12{,}5,\qquad \frac{2}{0{,}5}=4,\qquad \frac{25}{2}=12{,}5" />
+
+<Chart
+  title={<>Um welchen Faktor DDT bei jedem Schritt angereichert wird</>}
+  bars="apart"
+  categories={["Wasser → Plankton", "Plankton → Kleiner Fisch", "Kleiner Fisch → Großer Fisch", "Großer Fisch → Fischfressender Vogel"]}
+  series={[
+    { label: "Anreicherungsfaktor", mark: "bar", values: [800, 12.5, 4, 12.5] },
+  ]}
+  valueLabel="Anreicherungsfaktor"
+  description={<>Der Faktor beträgt <InlineMath math="800" /> vom Wasser zum Plankton, <InlineMath math="12{,}5" /> vom Plankton zum kleinen Fisch, <InlineMath math="4" /> vom kleinen zum großen Fisch und <InlineMath math="12{,}5" /> vom großen Fisch zum Vogel.</>}
+/>
+
+Das Plankton nimmt DDT direkt aus dem Wasser auf und reichert es <InlineMath math="800" />-fach an, weit mehr als jeder spätere Schritt. Der größte **Anstieg in ppm** liegt zwar zwischen großem Fisch und Vogel, doch das ist eine Differenz, kein Faktor.
+
+Die Konzentration im Vogel ist also <InlineMath math="500\,000" />-mal so hoch wie im Wasser, und der größte Schritt liegt zwischen Wasser und Plankton.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="500\,000" />-mal mit dem Schritt vom großen Fisch zum Vogel nimmt die **größte Differenz**, <InlineMath math="25-2=23" />, statt des größten Faktors.
+- <InlineMath math="50\,000" />-mal verliert beim Teilen durch <InlineMath math="0{,}00005" /> eine Null, **also fünf Hunderttausendstel**.
+- <InlineMath math="12{,}5" />-mal betrachtet nur den **letzten Schritt** der Kette statt den ganzen Weg vom Wasser bis zum Vogel.

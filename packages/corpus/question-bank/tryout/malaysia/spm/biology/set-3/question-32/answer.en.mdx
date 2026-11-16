@@ -1,0 +1,26 @@
+# Count the height alleles, not the genotypes
+
+Each <InlineMath math="A" /> or <InlineMath math="B" /> adds the same <InlineMath math="5\text{ cm}" />, so height depends only on **how many** of these alleles a plant has. A plant <InlineMath math="110\text{ cm}" /> tall has exactly two, which three different genotypes provide.
+
+<BlockMath math="110=100+2\times5\ \Rightarrow\ \text{two height alleles}:\quad AAbb,\ aaBB,\ AaBb" />
+
+<BlockMath math="\tfrac{1}{16}+\tfrac{1}{16}+\tfrac{4}{16}=\tfrac{6}{16}=\tfrac{3}{8}" />
+
+<Chart
+  title={<>Expected Heights of the Offspring</>}
+  bars="apart"
+  categories={["100 cm", "105 cm", "110 cm", "115 cm", "120 cm"]}
+  series={[
+    { label: "Offspring", mark: "bar", values: [6.25, 25, 37.5, 25, 6.25] },
+  ]}
+  valueLabel="Offspring (%)"
+  description={<>Of the offspring, <InlineMath math="6.25\%" /> are <InlineMath math="100" /> cm, <InlineMath math="25\%" /> are <InlineMath math="105" /> cm, <InlineMath math="37.5\%" /> are <InlineMath math="110" /> cm, <InlineMath math="25\%" /> are <InlineMath math="115" /> cm and <InlineMath math="6.25\%" /> are <InlineMath math="120" /> cm.</>}
+/>
+
+Counting height alleles across all <InlineMath math="16" /> combinations gives <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="4" /> and <InlineMath math="1" /> offspring with <InlineMath math="0" /> to <InlineMath math="4" /> alleles. The middle class, two alleles, is the most common, which is why additive genes give a spread of heights centred on the average. The answer is <InlineMath math="\tfrac{3}{8}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac{9}{16}" /> counts plants with at least one <InlineMath math="A" /> and one <InlineMath math="B" />, the **dominant classes of an ordinary dihybrid cross**, which here range from <InlineMath math="110" /> to <InlineMath math="120\text{ cm}" />.
+- <InlineMath math="\tfrac{1}{4}" /> counts only <InlineMath math="AaBb" /> and **misses** <InlineMath math="AAbb" /> **and** <InlineMath math="aaBB" />, which are just as tall.
+- <InlineMath math="\tfrac{1}{16}" /> counts a single genotype such as <InlineMath math="AAbb" /> and **misses the other two** with two height alleles.

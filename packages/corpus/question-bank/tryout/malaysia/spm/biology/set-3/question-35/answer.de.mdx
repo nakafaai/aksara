@@ -1,0 +1,34 @@
+# Mit jedem Antibiotikum eine Frage beantworten
+
+Die Ampicillinplatte fragt: **Hat dieses Bakterium überhaupt ein Plasmid**? Die Tetracyclinplatte fragt: **Ist das Tetracyclingen noch intakt**? Das Insulingen unterbricht dieses Gen, ein rekombinantes Plasmid fällt also beim zweiten Test durch.
+
+<Mermaid
+  title={<>Rekombinante Bakterien erkennen</>}
+  description={<>Alle <InlineMath math="120" /> Kolonien auf Ampicillin tragen ein Plasmid. Die <InlineMath math="90" />, die auch auf Tetracyclin wachsen, haben noch ein intaktes Tetracyclingen, tragen also das Plasmid ohne Insulingen. Die <InlineMath math="30" />, die auf Tetracyclin nicht wachsen, tragen das rekombinante Plasmid.</>}
+  chart={"flowchart LR\n  A[120 Kolonien wachsen auf Ampicillin: alle haben ein Plasmid] --> B[90 wachsen auch auf Tetracyclin: tetR intakt, kein Insulingen]\n  A --> C[30 wachsen nicht auf Tetracyclin: tetR durch das Insulingen unterbrochen]"}
+/>
+
+- Bakterien ohne Plasmid sterben auf Ampicillin, also tragen alle <InlineMath math="120" /> Kolonien ein Plasmid.
+- Ein Plasmid, das sich ohne Insulingen wieder geschlossen hat, behält ein funktionierendes Tetracyclingen, seine <InlineMath math="90" /> Kolonien wachsen also auch auf Tetracyclin.
+- Ein rekombinantes Plasmid hat ein unterbrochenes Tetracyclingen, seine Kolonien wachsen also auf Ampicillin, aber nicht auf Tetracyclin.
+
+<BlockMath math="120-90=30" />
+
+<Chart
+  title={<>Kolonien auf jeder Platte</>}
+  bars="apart"
+  categories={["Wachsen auf Ampicillin", "Wachsen auch auf Tetracyclin", "Rekombinant"]}
+  series={[
+    { label: "Kolonien", mark: "bar", values: [120, 90, 30] },
+  ]}
+  valueLabel="Kolonien"
+  description={<><InlineMath math="120" /> Kolonien wachsen auf Ampicillin, <InlineMath math="90" /> davon auch auf Tetracyclin, es bleiben <InlineMath math="30" /> rekombinante Kolonien.</>}
+/>
+
+<InlineMath math="30" /> Kolonien tragen also das Insulingen, und zwar die, die auf Ampicillin wachsen, aber nicht auf Tetracyclin.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="90" /> Kolonien, die auf beiden Platten wachsen, haben ein **intaktes Tetracyclingen** und tragen das Plasmid ohne Insulingen.
+- <InlineMath math="120" /> Kolonien zählt jedes Bakterium mit irgendeinem Plasmid, **ob rekombinant oder nicht**.
+- <InlineMath math="30" /> Kolonien, die auf Tetracyclin, aber nicht auf Ampicillin wachsen, kann es hier nicht geben, **weil nur Kolonien von der Ampicillinplatte kopiert wurden**.

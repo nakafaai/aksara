@@ -1,0 +1,27 @@
+# Count only the oxygen above the resting level after the run
+
+After the run, part of the uptake would happen anyway at rest. Only the **extra uptake above** <InlineMath math="0.3\text{ L}" /> per minute repays the debt.
+
+<Chart
+  title={<>Oxygen Uptake of the Runner, Minute by Minute</>}
+  bars="apart"
+  categories={["Min 0", "Min 1", "Min 2", "Min 3", "Min 4", "Min 5", "Min 6", "Min 7", "Min 8", "Min 9", "Min 10"]}
+  series={[
+    { label: "Oxygen uptake", mark: "bar", values: [0.3, 1.8, 2.4, 2.7, 2.7, 2.1, 1.5, 1.0, 0.7, 0.5, 0.3] },
+    { label: "Resting uptake", mark: "line", values: [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3] },
+  ]}
+  valueLabel="Oxygen uptake (L per minute)"
+  description={<>Uptake is <InlineMath math="0.3" /> at rest, rises to <InlineMath math="1.8" />, <InlineMath math="2.4" />, <InlineMath math="2.7" /> and <InlineMath math="2.7" /> during the run, then falls through <InlineMath math="2.1" />, <InlineMath math="1.5" />, <InlineMath math="1.0" />, <InlineMath math="0.7" /> and <InlineMath math="0.5" /> back to <InlineMath math="0.3\text{ L}" /> per minute.</>}
+/>
+
+<BlockMath math="\begin{aligned}\text{debt}&=(2.1-0.3)+(1.5-0.3)+(1.0-0.3)+(0.7-0.3)+(0.5-0.3)+(0.3-0.3)\\&=1.8+1.2+0.7+0.4+0.2+0=4.3\text{ L}\end{aligned}" />
+
+During the run, the muscles got less oxygen than the <InlineMath math="3.0\text{ L}" /> per minute they needed, so part of their glucose was respired anaerobically into **lactic acid**. After the run, the extra oxygen lets the liver oxidise the lactic acid to carbon dioxide and water or turn it back into glucose.
+
+So she takes in <InlineMath math="4.3\text{ L}" /> of extra oxygen, mainly to remove the lactic acid made during the run.
+
+# Why the other options are wrong
+
+- <InlineMath math="6.1\text{ L}" /> adds the whole uptake of minutes <InlineMath math="5" /> to <InlineMath math="10" /> and forgets that **resting uptake is not part of the debt**.
+- <InlineMath math="2.4\text{ L}" /> is the shortfall during the run, <InlineMath math="1.2+0.6+0.3+0.3" />, **not the extra oxygen taken in afterwards**.
+- <InlineMath math="4.3\text{ L}" /> to replace exhaled oxygen has the right volume, but the debt pays for **removing lactic acid**, not for breathing out carbon dioxide.

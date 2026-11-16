@@ -1,0 +1,29 @@
+# Jeden Patienten daran messen, was der Regelkreis tun sollte
+
+In einem gesunden Regelkreis **drückt viel Thyroxin das TSH nach unten**, und wenig Thyroxin lässt es steigen. Ein Ergebnis, das diese Regel bricht, zeigt, wo die Störung liegt, und die Größe der Drüse zeigt, ob TSH sie angetrieben hat.
+
+<Mermaid
+  title={<>Rückkopplung bei Thyroxin</>}
+  description={<>Die Hypophyse schüttet TSH aus, das die Schilddrüse wachsen und aus Iod Thyroxin bilden lässt. Thyroxin im Blut, aus der Drüse oder aus Tabletten, bremst die TSH-Ausschüttung.</>}
+  chart={"flowchart LR\n  PI[Hypophyse] -- TSH --> TH[Schilddrüse]\n  I[Iod aus der Nahrung] --> TH\n  TB[Thyroxintabletten] --> BL[Thyroxin im Blut]\n  TH -- Thyroxin --> BL\n  BL -. viel Thyroxin bremst TSH .-> PI"}
+/>
+
+| Patient | Thyroxin | TSH | Passt zum Regelkreis? | Wahrscheinlichste Ursache |
+| --- | --- | --- | --- | --- |
+| P | niedrig | hoch | ja | Schilddrüse kann kein Thyroxin bilden, etwa bei Iodmangel |
+| Q | niedrig | niedrig | nein | Hypophyse bildet zu wenig TSH |
+| R | hoch | niedrig | ja | zusätzliches Thyroxin von außen, Drüse nicht angeregt |
+| S | hoch | niedrig | ja | Schilddrüse von sich aus überaktiv |
+| T | hoch | hoch | nein | Hypophyse schüttet trotz viel Thyroxin weiter TSH aus |
+
+- T: Thyroxin ist hoch, TSH müsste also unterdrückt sein, liegt aber bei <InlineMath math="12" />. Die Hypophyse ignoriert die Rückkopplung und reizt die Schilddrüse weiter, die anschwillt. Das passt zu einem **TSH bildenden Tumor**.
+- R: Thyroxin ist hoch und TSH unterdrückt, aber die Drüse ist **klein**. Mit wenig TSH wird die Drüse weder angeregt noch bildet sie das Thyroxin, es muss also aus Tabletten stammen.
+- S hat dieselben Blutwerte wie R, aber eine geschwollene Drüse, ihre eigene Drüse ist also überaktiv.
+
+Patient T hat also am wahrscheinlichsten den Hypophysentumor, und Patient R nimmt am wahrscheinlichsten zu viele Thyroxintabletten.
+
+# Warum die anderen Antworten falsch sind
+
+- P und S hält das hohe TSH von P für eine Störung der Hypophyse, **doch hohes TSH bei wenig Thyroxin ist der normal arbeitende Regelkreis**, und die geschwollene Drüse von S bildet ihr Thyroxin selbst.
+- T und S wählt die geschwollene Drüse für die Tabletten, **doch eine Drüse, die TSH nicht anregt, schwillt nicht an**.
+- P und R hält die normale Antwort der Hypophyse von P für einen Tumor.

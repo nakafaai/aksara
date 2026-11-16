@@ -1,0 +1,25 @@
+# Tentukan alel dominan sebelum mencari genotipe apa pun
+
+Dua orang tua yang terkena memiliki anak perempuan yang tidak terkena. Jika kelainannya resesif, kedua orang tua bergenotipe <InlineMath math="aa" /> dan hanya bisa memiliki anak yang terkena. Jadi kelainan itu disebabkan oleh **alel dominan** <InlineMath math="A" />, dan anak perempuan yang tidak terkena bergenotipe <InlineMath math="aa" />.
+
+<Mermaid
+  title={<>Genotipe yang Disimpulkan dari Anak Perempuan yang Tidak Terkena</>}
+  description={<>Anak perempuan yang tidak terkena bergenotipe aa, jadi kedua orang tua yang terkena pasti Aa. Anak laki-laki P terkena, jadi ia AA atau Aa. Istrinya yang tidak terkena bergenotipe aa.</>}
+  chart={"flowchart TD\n  F[Ayah Aa] --> D[Anak perempuan aa]\n  M[Ibu Aa] --> D\n  F --> P[Anak laki-laki P: AA atau Aa]\n  M --> P\n  P --> C[Anak dari P]\n  W[Istri aa] --> C"}
+/>
+
+Anak perempuan itu menerima satu <InlineMath math="a" /> dari tiap orang tua, jadi kedua orang tua <InlineMath math="Aa" />. Anak-anak mereka <InlineMath math="AA" />, <InlineMath math="Aa" />, dan <InlineMath math="aa" /> dengan rasio <InlineMath math="1:2:1" />. Anak laki-laki P terkena, jadi kemungkinan <InlineMath math="aa" /> gugur, tersisa <InlineMath math="AA" /> atau <InlineMath math="Aa" /> dengan rasio <InlineMath math="1:2" />:
+
+<BlockMath math="P(AA)=\tfrac{1}{3},\qquad P(Aa)=\tfrac{2}{3}" />
+
+Dengan istri <InlineMath math="aa" />, ayah <InlineMath math="AA" /> selalu menurunkan <InlineMath math="A" />, dan ayah <InlineMath math="Aa" /> menurunkannya separuh kemungkinan:
+
+<BlockMath math="P(\text{anak terkena})=\tfrac{1}{3}\times1+\tfrac{2}{3}\times\tfrac{1}{2}=\tfrac{1}{3}+\tfrac{1}{3}=\tfrac{2}{3}" />
+
+Jadi peluang anak pertama mereka terkena adalah <InlineMath math="\tfrac{2}{3}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\tfrac{1}{2}" /> menganggap anak laki-laki P pasti <InlineMath math="Aa" /> dan mengabaikan **satu dari tiga kemungkinan** bahwa ia <InlineMath math="AA" />.
+- <InlineMath math="\tfrac{3}{4}" /> adalah peluang anak dari dua orang tua <InlineMath math="Aa" />, **padahal istri P** <InlineMath math="aa" />.
+- <InlineMath math="\tfrac{1}{3}" /> hanya menghitung jalur lewat <InlineMath math="Aa" /> dan **melupakan jalur** <InlineMath math="AA" />, yang selalu menghasilkan anak yang terkena.

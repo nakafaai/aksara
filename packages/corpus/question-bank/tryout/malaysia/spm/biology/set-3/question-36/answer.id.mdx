@@ -1,0 +1,29 @@
+# Baca kambing dan makanannya bersamaan
+
+Populasi hanya bisa tumbuh selama makanannya mencukupi. Di sini kambing **memakan persediaan makanannya sendiri**, jadi tutupan tumbuhan menentukan berapa kambing yang bisa ditampung pulau itu, dan kambing mengubah angka itu.
+
+<Chart
+  title={<>Kambing dan Tutupan Tumbuhan di Pulau</>}
+  categories={["Tahun 0", "Tahun 1", "Tahun 2", "Tahun 3", "Tahun 4", "Tahun 5", "Tahun 6", "Tahun 7", "Tahun 8", "Tahun 9", "Tahun 10", "Tahun 11", "Tahun 12"]}
+  series={[
+    { label: "Kambing", mark: "line", values: [20, 30, 60, 120, 200, 260, 280, 250, 180, 150, 160, 155, 158] },
+    { label: "Tutupan tumbuhan (%)", mark: "line", values: [90, 88, 80, 65, 45, 30, 20, 15, 15, 18, 20, 21, 21] },
+  ]}
+  valueLabel="Nilai"
+  description={<>Kambing naik dari <InlineMath math="20" /> ke puncak <InlineMath math="280" /> pada tahun ke-<InlineMath math="6" />, anjlok ke <InlineMath math="150" /> pada tahun ke-<InlineMath math="9" />, lalu bertahan sekitar <InlineMath math="155" />. Tutupan tumbuhan turun dari <InlineMath math="90\%" /> ke <InlineMath math="15\%" /> pada tahun ke-<InlineMath math="7" /> dan hanya pulih sampai sekitar <InlineMath math="21\%" />.</>}
+/>
+
+<BlockMath math="\text{pertambahan tahunan}: 10,\ 30,\ 60,\ 80,\ 60,\ 20,\ \text{lalu berkurang}" />
+
+- I: kambing naik sampai <InlineMath math="280" /> sementara tutupan tumbuhan turun dari <InlineMath math="90\%" /> ke <InlineMath math="20\%" />. Dengan makanan yang tinggal sedikit, populasi anjlok. Pulau itu lalu hanya menampung sekitar <InlineMath math="155" /> kambing, jauh di bawah puncak, karena penggembalaan merusak tumbuhan. Pernyataan I benar.
+- II: pertambahan tahunan terbesar adalah <InlineMath math="200-120=80" /> ekor, antara tahun ke-<InlineMath math="3" /> dan ke-<InlineMath math="4" />. Pernyataan II benar.
+- III: mulai tahun ke-<InlineMath math="9" /> jumlahnya bertahan di antara <InlineMath math="150" /> dan <InlineMath math="160" />, yaitu **daya dukung** yang baru. Tutupan tumbuhan hanya pulih sampai sekitar <InlineMath math="21\%" />, jadi pulau itu menghidupi lebih sedikit kambing daripada di awal. Pernyataan III benar.
+- IV: pulau itu tidak punya pemangsa. Penurunan mengikuti hilangnya tutupan tumbuhan, jadi penyebabnya kekurangan makanan. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan III saja menolak II, biasanya setelah memilih populasi terbesar alih-alih **pertambahan tahunan terbesar**.
+- II, III, dan IV saja menyalahkan pemangsa, **padahal pulau itu tidak punya pemangsa**, dan menolak lonjakan berlebih.
+- I, II, dan IV saja menerima pemangsa dan menolak daya dukung lebih rendah yang ditunjukkan angka yang stabil.

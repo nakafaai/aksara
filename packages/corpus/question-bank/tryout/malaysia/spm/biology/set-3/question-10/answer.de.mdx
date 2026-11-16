@@ -1,0 +1,34 @@
+# Die Drücke auf beiden Seiten jeder Klappe vergleichen
+
+Die **Mitralklappe** (bikuspid) liegt zwischen Vorhof und Kammer, sie ist also nur offen, solange der Vorhof über der Kammer liegt. Die **Aortenklappe** (Taschenklappe) liegt zwischen Kammer und Aorta, sie ist also nur offen, solange die Kammer über der Aorta liegt.
+
+<Chart
+  title={<>Drücke in der linken Herzhälfte</>}
+  categories={["0,0 s", "0,1 s", "0,2 s", "0,3 s", "0,4 s", "0,5 s", "0,6 s", "0,7 s"]}
+  series={[
+    { label: "Linker Vorhof", mark: "line", values: [0.4, 1.4, 0.6, 0.5, 0.7, 0.9, 1.1, 0.6] },
+    { label: "Linke Kammer", mark: "line", values: [0.2, 1.1, 8.0, 16.0, 15.0, 6.0, 0.8, 0.4] },
+    { label: "Aorta", mark: "line", values: [10.5, 10.0, 9.6, 15.0, 14.2, 12.5, 11.6, 11.0] },
+  ]}
+  valueLabel="Druck (kPa)"
+  description={<>Die Kammer liegt ab <InlineMath math="0{,}2\text{ s}" /> über dem Vorhof und nur bei <InlineMath math="0{,}3" /> und <InlineMath math="0{,}4\text{ s}" /> über der Aorta. Bei <InlineMath math="0{,}5\text{ s}" /> liegt sie über dem Vorhof, aber unter der Aorta, ab <InlineMath math="0{,}6\text{ s}" /> wieder unter dem Vorhof.</>}
+/>
+
+| Zeit (s) | Vorhof über Kammer? | Kammer über Aorta? | Beide Klappen zu? |
+| --- | --- | --- | --- |
+| <InlineMath math="0{,}1" /> | ja, <InlineMath math="1{,}4>1{,}1" /> | nein | nein |
+| <InlineMath math="0{,}2" /> | nein, <InlineMath math="0{,}6<8{,}0" /> | nein, <InlineMath math="8{,}0<9{,}6" /> | ja |
+| <InlineMath math="0{,}3" /> | nein | ja, <InlineMath math="16{,}0>15{,}0" /> | nein |
+| <InlineMath math="0{,}4" /> | nein | ja, <InlineMath math="15{,}0>14{,}2" /> | nein |
+| <InlineMath math="0{,}5" /> | nein, <InlineMath math="0{,}9<6{,}0" /> | nein, <InlineMath math="6{,}0<12{,}5" /> | ja |
+| <InlineMath math="0{,}6" /> | ja, <InlineMath math="1{,}1>0{,}8" /> | nein | nein |
+
+Bei <InlineMath math="0{,}2\text{ s}" /> zieht sich die Kammer zusammen, hat die Aorta aber noch nicht überholt. Bei <InlineMath math="0{,}5\text{ s}" /> erschlafft sie, liegt aber noch über dem Vorhof. In beiden Momenten hat das Blut in der Kammer **keinen Ausweg**.
+
+Beide Klappen sind also bei <InlineMath math="0{,}2\text{ s}" /> und <InlineMath math="0{,}5\text{ s}" /> geschlossen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}3\text{ s}" /> und <InlineMath math="0{,}4\text{ s}" /> sind die höchsten Drücke, **doch genau dann ist die Aortenklappe offen** und Blut strömt in die Aorta.
+- <InlineMath math="0{,}1\text{ s}" /> und <InlineMath math="0{,}6\text{ s}" /> sind Momente, in denen der Vorhof über der Kammer liegt, **also ist die Mitralklappe offen**.
+- <InlineMath math="0{,}2\text{ s}" /> und <InlineMath math="0{,}6\text{ s}" /> prüft bei <InlineMath math="0{,}6\text{ s}" /> nur die Aortenklappe und übersieht, dass **die Mitralklappe schon wieder offen ist**.

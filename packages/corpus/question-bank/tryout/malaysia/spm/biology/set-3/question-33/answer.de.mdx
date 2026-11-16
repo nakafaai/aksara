@@ -1,0 +1,25 @@
+# Erst das dominante Allel bestimmen, dann die Genotypen
+
+Zwei betroffene Eltern haben eine gesunde Tochter. Wäre das Merkmal rezessiv, wären beide Eltern <InlineMath math="aa" /> und könnten nur betroffene Kinder bekommen. Das Merkmal wird also von einem **dominanten Allel** <InlineMath math="A" /> verursacht, und die gesunde Tochter ist <InlineMath math="aa" />.
+
+<Mermaid
+  title={<>Genotypen, erschlossen aus der gesunden Tochter</>}
+  description={<>Die gesunde Tochter ist aa, also müssen beide betroffenen Eltern Aa sein. Sohn P ist betroffen, also AA oder Aa. Seine gesunde Ehefrau ist aa.</>}
+  chart={"flowchart TD\n  F[Vater Aa] --> D[Tochter aa]\n  M[Mutter Aa] --> D\n  F --> P[Sohn P: AA oder Aa]\n  M --> P\n  P --> C[Kind von P]\n  W[Ehefrau aa] --> C"}
+/>
+
+Die Tochter hat von jedem Elternteil ein <InlineMath math="a" /> bekommen, also sind beide Eltern <InlineMath math="Aa" />. Ihre Kinder sind <InlineMath math="AA" />, <InlineMath math="Aa" /> und <InlineMath math="aa" /> im Verhältnis <InlineMath math="1:2:1" />. Sohn P ist betroffen, der Fall <InlineMath math="aa" /> scheidet also aus, es bleiben <InlineMath math="AA" /> oder <InlineMath math="Aa" /> im Verhältnis <InlineMath math="1:2" />:
+
+<BlockMath math="P(AA)=\tfrac{1}{3},\qquad P(Aa)=\tfrac{2}{3}" />
+
+Mit einer Ehefrau <InlineMath math="aa" /> gibt ein Vater <InlineMath math="AA" /> immer <InlineMath math="A" /> weiter, ein Vater <InlineMath math="Aa" /> nur in der Hälfte der Fälle:
+
+<BlockMath math="P(\text{betroffenes Kind})=\tfrac{1}{3}\cdot1+\tfrac{2}{3}\cdot\tfrac{1}{2}=\tfrac{1}{3}+\tfrac{1}{3}=\tfrac{2}{3}" />
+
+Die Wahrscheinlichkeit, dass ihr erstes Kind betroffen ist, beträgt also <InlineMath math="\tfrac{2}{3}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\tfrac{1}{2}" /> nimmt an, dass Sohn P sicher <InlineMath math="Aa" /> ist, und übersieht die **Chance von eins zu drei**, dass er <InlineMath math="AA" /> ist.
+- <InlineMath math="\tfrac{3}{4}" /> gilt für ein Kind zweier <InlineMath math="Aa" />-Eltern, **doch die Ehefrau von P ist** <InlineMath math="aa" />.
+- <InlineMath math="\tfrac{1}{3}" /> zählt nur den Weg über <InlineMath math="Aa" /> und **vergisst den Weg über** <InlineMath math="AA" />, der immer ein betroffenes Kind ergibt.

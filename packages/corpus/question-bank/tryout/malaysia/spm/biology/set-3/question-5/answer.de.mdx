@@ -1,0 +1,30 @@
+# Die Steigung für die Rate, das Plateau für das Substrat
+
+Die **Steigung** jeder Linie ist die Reaktionsrate. Die Höhe, auf der eine Linie abflacht, zeigt die Substratmenge, denn hier ergibt jedes Milligramm Substrat ein Milligramm Produkt.
+
+<Chart
+  title={<>Produkt in den Röhrchen X, Y und Z</>}
+  categories={["0 min", "1 min", "2 min", "3 min", "4 min", "5 min", "6 min", "7 min", "8 min"]}
+  series={[
+    { label: "X: 1 Einheit Enzym, 12 mg Substrat", mark: "line", values: [0, 2, 4, 6, 8, 10, 12, 12, 12] },
+    { label: "Y: 2 Einheiten Enzym, 12 mg Substrat", mark: "line", values: [0, 4, 8, 12, 12, 12, 12, 12, 12] },
+    { label: "Z: 1 Einheit Enzym, 24 mg Substrat", mark: "line", values: [0, 2, 4, 6, 8, 10, 12, 14, 16] },
+  ]}
+  valueLabel="Produkt (mg)"
+  description={<>X steigt um <InlineMath math="2\text{ mg}" /> pro Minute und bleibt ab Minute <InlineMath math="6" /> bei <InlineMath math="12\text{ mg}" />. Y steigt um <InlineMath math="4\text{ mg}" /> pro Minute und bleibt ab Minute <InlineMath math="3" /> bei <InlineMath math="12\text{ mg}" />. Z steigt um <InlineMath math="2\text{ mg}" /> pro Minute und steigt bei Minute <InlineMath math="8" /> mit <InlineMath math="16\text{ mg}" /> noch weiter.</>}
+/>
+
+<BlockMath math="\text{X}: \tfrac{12}{2}=6\text{ min},\qquad \text{Y}: \tfrac{12}{4}=3\text{ min}" />
+
+- I: X und Y enthalten dieselben <InlineMath math="12\text{ mg}" /> Substrat. Doppelt so viel Enzym verdoppelt die Rate von <InlineMath math="2" /> auf <InlineMath math="4\text{ mg}" /> pro Minute, die Zeit sinkt also von <InlineMath math="6" /> auf <InlineMath math="3" /> Minuten. Aussage I stimmt.
+- II: X und Z steigen beide um <InlineMath math="2\text{ mg}" /> pro Minute. Eine Einheit Enzym arbeitet mit <InlineMath math="12\text{ mg}" /> Substrat schon an ihrer Grenze, mehr Substrat beschleunigt sie nicht. Aussage II ist falsch.
+- III: Das Plateau entspricht dem Substrat, also erreicht Z mit <InlineMath math="24\text{ mg}" /> Substrat bei Minute <InlineMath math="12" /> genau <InlineMath math="24\text{ mg}" /> Produkt. Aussage III stimmt.
+- IV: Y hört auf, weil das Substrat **verbraucht** ist, auf derselben Höhe von <InlineMath math="12\text{ mg}" /> wie X. Ein denaturiertes Enzym würde darunter stehen bleiben. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III deutet die höhere Endmenge in Z als schnelleren Start, **doch Z steigt genauso steil wie X**.
+- Nur I und IV macht die Denaturierung für das Plateau verantwortlich, **obwohl Y genau dann stoppt, wenn das Substrat aufgebraucht ist**.
+- Nur III und IV vergleicht nur die Endmengen von X und Y und übersieht, dass Y **doppelt so schnell dort ankommt**.

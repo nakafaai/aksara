@@ -1,0 +1,34 @@
+# Bandingkan tekanan di dua sisi setiap injap
+
+**Injap bikuspid** terletak antara atrium dan ventrikel, jadi ia terbuka hanya apabila tekanan atrium melebihi ventrikel. **Injap sablon** terletak antara ventrikel dan aorta, jadi ia terbuka hanya apabila tekanan ventrikel melebihi aorta.
+
+<Chart
+  title={<>Tekanan di Bahagian Kiri Jantung</>}
+  categories={["0.0 s", "0.1 s", "0.2 s", "0.3 s", "0.4 s", "0.5 s", "0.6 s", "0.7 s"]}
+  series={[
+    { label: "Atrium kiri", mark: "line", values: [0.4, 1.4, 0.6, 0.5, 0.7, 0.9, 1.1, 0.6] },
+    { label: "Ventrikel kiri", mark: "line", values: [0.2, 1.1, 8.0, 16.0, 15.0, 6.0, 0.8, 0.4] },
+    { label: "Aorta", mark: "line", values: [10.5, 10.0, 9.6, 15.0, 14.2, 12.5, 11.6, 11.0] },
+  ]}
+  valueLabel="Tekanan (kPa)"
+  description={<>Ventrikel melebihi atrium mulai <InlineMath math="0.2\text{ s}" /> dan melebihi aorta hanya pada <InlineMath math="0.3" /> dan <InlineMath math="0.4\text{ s}" />. Pada <InlineMath math="0.5\text{ s}" /> ventrikel melebihi atrium tetapi kurang daripada aorta, dan mulai <InlineMath math="0.6\text{ s}" /> ia kurang daripada atrium semula.</>}
+/>
+
+| Masa (s) | Atrium melebihi ventrikel? | Ventrikel melebihi aorta? | Kedua-dua injap tertutup? |
+| --- | --- | --- | --- |
+| <InlineMath math="0.1" /> | ya, <InlineMath math="1.4>1.1" /> | tidak | tidak |
+| <InlineMath math="0.2" /> | tidak, <InlineMath math="0.6<8.0" /> | tidak, <InlineMath math="8.0<9.6" /> | ya |
+| <InlineMath math="0.3" /> | tidak | ya, <InlineMath math="16.0>15.0" /> | tidak |
+| <InlineMath math="0.4" /> | tidak | ya, <InlineMath math="15.0>14.2" /> | tidak |
+| <InlineMath math="0.5" /> | tidak, <InlineMath math="0.9<6.0" /> | tidak, <InlineMath math="6.0<12.5" /> | ya |
+| <InlineMath math="0.6" /> | ya, <InlineMath math="1.1>0.8" /> | tidak | tidak |
+
+Pada <InlineMath math="0.2\text{ s}" /> ventrikel sedang mengecut tetapi tekanannya belum melebihi aorta, dan pada <InlineMath math="0.5\text{ s}" /> ventrikel sedang mengendur tetapi tekanannya masih melebihi atrium. Pada kedua-dua saat itu, darah dalam ventrikel **tiada jalan keluar**.
+
+Jadi kedua-dua injap tertutup pada <InlineMath math="0.2\text{ s}" /> dan <InlineMath math="0.5\text{ s}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0.3\text{ s}" /> dan <InlineMath math="0.4\text{ s}" /> ialah tekanan tertinggi, **tetapi pada masa itu injap sablon terbuka** dan darah mengalir ke aorta.
+- <InlineMath math="0.1\text{ s}" /> dan <InlineMath math="0.6\text{ s}" /> ialah saat tekanan atrium melebihi ventrikel, **jadi injap bikuspid terbuka**.
+- <InlineMath math="0.2\text{ s}" /> dan <InlineMath math="0.6\text{ s}" /> hanya menyemak injap sablon pada <InlineMath math="0.6\text{ s}" /> dan lupa bahawa **injap bikuspid sudah terbuka semula**.
