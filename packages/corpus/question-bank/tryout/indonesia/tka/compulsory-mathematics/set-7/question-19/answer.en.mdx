@@ -1,23 +1,33 @@
-The question asks for a ratio of **areas**, not a ratio of sides. Square <InlineMath math="PQRS" /> has only two vertices on the circle, so it isn't the usual square drawn inside a circle. You need the radius of the circle first, then the side of <InlineMath math="PQRS" /> from Pythagoras' theorem.
+The square <InlineMath math="PQRS" /> can stand above the line <InlineMath math="g" />, towards <InlineMath math="O" />, or hang below it, towards <InlineMath math="AB" />. **Both positions have to be worked out**, and then their areas compared.
 
-# Radius of the circle
+# The radius and where the line g is
 
-Circle <InlineMath math="L" /> touches all four sides of square <InlineMath math="ABCD" />, so **its diameter equals the side of the square**, <InlineMath math="20\text{ cm}" />. The two touching points on opposite sides sit exactly at the two ends of one diameter. The radius is <InlineMath math="r=10\text{ cm}" />, and line <InlineMath math="g" /> is one of the circle's diameters.
+A circle touching all four sides of a square with side <InlineMath math="20" /> has radius <InlineMath math="10" />. Put the axes at <InlineMath math="O(0,0)" />, so <InlineMath math="AB" /> lies on <InlineMath math="y=-10" /> and **the line <InlineMath math="g" /> on <InlineMath math="y=-4" />**, which is <InlineMath math="4\text{ cm}" /> below <InlineMath math="O" />.
 
-# Side of square PQRS
+# The square above g
 
-Call the side of <InlineMath math="PQRS" /> <InlineMath math="s" />. Points <InlineMath math="R" /> and <InlineMath math="S" /> lie on the circle, and <InlineMath math="SR" /> is parallel to <InlineMath math="g" />. The perpendicular from the centre <InlineMath math="O" /> to the chord <InlineMath math="SR" /> always cuts that chord in half. The same perpendicular also cuts <InlineMath math="PQ" /> in half, because <InlineMath math="PS" /> and <InlineMath math="QR" /> are both perpendicular to <InlineMath math="g" />. So **<InlineMath math="O" /> is exactly the midpoint of <InlineMath math="PQ" />**, and <InlineMath math="OQ=\tfrac{s}{2}" />.
+By symmetry, the side <InlineMath math="PQ" /> is centred on the vertical axis. If its side is <InlineMath math="s" />, the point <InlineMath math="R" /> is at <InlineMath math="\left(\frac s2,\ s-4\right)" /> and **has to lie on the circle**.
+
+<BlockMath math="\left(\frac s2\right)^2+(s-4)^2=100\ \Leftrightarrow\ 5s^2-32s-336=0\ \Rightarrow\ s=\frac{32+88}{10}=12" />
+
+The other root is negative, so it goes. Check: the point <InlineMath math="(6,\ 8)" /> satisfies <InlineMath math="36+64=100" />.
+
+# The square below g
+
+Now <InlineMath math="R" /> is at <InlineMath math="\left(\frac s2,\ -4-s\right)" />.
+
+<BlockMath math="\left(\frac s2\right)^2+(s+4)^2=100\ \Leftrightarrow\ 5s^2+32s-336=0\ \Rightarrow\ s=\frac{-32+88}{10}=5.6" />
+
+Draw both squares. **The square standing towards the centre is much larger**, because the circle is still wide on that side.
 
 <MathVisual
-  title={<>Right triangle <InlineMath math="OQR" /></>}
-  description={<>The figure from the question with segment <InlineMath math="OR" /> drawn in. Triangle <InlineMath math="OQR" /> has its right angle at <InlineMath math="Q" />, with <InlineMath math="OQ" /> half a side of the square, <InlineMath math="QR" /> one full side, and <InlineMath math="OR" /> the radius <InlineMath math="10" />.</>}
+  title={<>Two squares with their base on the line g</>}
+  description={<>A circle of radius <InlineMath math="10" /> inside the square <InlineMath math="ABCD" />, and the line <InlineMath math="g" /> at <InlineMath math="y=-4" />. A square of side <InlineMath math="12" /> stands on <InlineMath math="g" /> with its top corners <InlineMath math="(\pm6,\ 8)" /> on the circle. A square of side <InlineMath math="5.6" /> hangs below <InlineMath math="g" /> with its bottom corners on the circle.</>}
   labels={{
+    up: <InlineMath math="s=12" />,
+    down: <InlineMath math="s=5.6" />,
+    g: <InlineMath math="g" />,
     o: <InlineMath math="O" />,
-    p: <InlineMath math="P" />,
-    q: <InlineMath math="Q" />,
-    r: <InlineMath math="R" />,
-    s: <InlineMath math="S" />,
-    radius: <InlineMath math="10" />,
   }}
   scene={{
     space: "plane",
@@ -28,49 +38,33 @@ Call the side of <InlineMath math="PQRS" /> <InlineMath math="s" />. Points <Inl
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "outer", kind: "polygon", appearance: "primary", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
+      { id: "outer", kind: "polygon", appearance: "reference", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
       { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 10 },
-      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
-      { id: "inner", kind: "polygon", appearance: "highlight", vertices: [{ x: -2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }] },
-      { id: "radius-r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "line-g", kind: "segment", appearance: "construction", from: { x: -10, y: -4 }, to: { x: 10, y: -4 } },
+      { id: "up", kind: "polygon", appearance: "answer", vertices: [{ x: -6, y: -4 }, { x: 6, y: -4 }, { x: 6, y: 8 }, { x: -6, y: 8 }] },
+      { id: "down", kind: "polygon", appearance: "highlight", vertices: [{ x: -14 / 5, y: -4 }, { x: 14 / 5, y: -4 }, { x: 14 / 5, y: -48 / 5 }, { x: -14 / 5, y: -48 / 5 }] },
       { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "point-p", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 0 } },
-      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 0 } },
-      { id: "point-r", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
-      { id: "point-s", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
     ],
     labels: [
-      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below" },
-      { key: "p", objectId: "point-p", at: { x: -2 * Math.sqrt(5), y: 0 }, placement: "below" },
-      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(5), y: 0 }, placement: "below" },
-      { key: "r", objectId: "point-r", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-right" },
-      { key: "s", objectId: "point-s", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-left" },
-      { key: "radius", objectId: "radius-r", at: { x: Math.sqrt(5), y: 2 * Math.sqrt(5) }, placement: "above-left" },
+      { key: "up", objectId: "up", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "down", objectId: "down", at: { x: 14 / 5, y: -48 / 5 }, placement: "right" },
+      { key: "g", objectId: "line-g", at: { x: 10, y: -4 }, placement: "right" },
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "above" },
     ],
   }}
 />
 
-Triangle <InlineMath math="OQR" /> has its right angle at <InlineMath math="Q" />, with <InlineMath math="OQ=\tfrac{s}{2}" />, <InlineMath math="QR=s" />, and hypotenuse <InlineMath math="OR=10" /> because <InlineMath math="R" /> is on the circle.
-
-<BlockMath math="\begin{aligned}
-\left(\frac{s}{2}\right)^2+s^2&=10^2 \\
-\frac{5s^2}{4}&=100 \\
-s^2&=80
-\end{aligned}" />
-
 # Ratio of the areas
 
-The area of <InlineMath math="PQRS" /> is <InlineMath math="s^2=80\text{ cm}^2" />, and the area of <InlineMath math="ABCD" /> is <InlineMath math="20^2=400\text{ cm}^2" />. Divide the small area by the big one to get the ratio.
+The larger square has side <InlineMath math="12" />, so **its area is <InlineMath math="144\text{ cm}^2" />**.
 
-<BlockMath math="\frac{A_{PQRS}}{A_{ABCD}}=\frac{80}{400}=\frac{1}{5}" />
-
-The sides themselves are in the ratio <InlineMath math="\sqrt{80}:20=1:\sqrt{5}" />. **The ratio of areas is the square of the ratio of sides**, so <InlineMath math="\left(1:\sqrt{5}\right)^2=1:5" />, which matches the calculation above.
+<BlockMath math="144:400=9:25" />
 
 # Why the other options are wrong
 
-- <InlineMath math="1:8" /> comes from putting <InlineMath math="O" /> at the point <InlineMath math="P" />. Then <InlineMath math="OR" /> would be a diagonal, <InlineMath math="s\sqrt{2}=10" />, and <InlineMath math="s^2=50" />.
-- <InlineMath math="1:4" /> comes from assuming, with no reason, that the side of the square equals the radius, <InlineMath math="s=10" />.
-- <InlineMath math="1:\sqrt{5}" /> is the ratio of the sides. **The question asks for the ratio of areas**, so the side ratio still has to be squared.
-- <InlineMath math="1:2" /> belongs to a square with all four vertices on the circle, whose diagonal is <InlineMath math="20" /> and area <InlineMath math="200" />. Here <InlineMath math="P" /> and <InlineMath math="Q" /> lie on a diameter, not on the circle.
+- <InlineMath math="1:5" /> uses a line <InlineMath math="g" /> through <InlineMath math="O" />, which gives <InlineMath math="s^2=80" />. Here the line <InlineMath math="g" /> is <InlineMath math="4\text{ cm}" /> from <InlineMath math="O" />.
+- <InlineMath math="49:625" /> is the square hanging below <InlineMath math="g" />, <InlineMath math="5.6^2:400" />. **That's the smaller square**.
+- <InlineMath math="16:25" /> puts the square's base on the side <InlineMath math="AB" />, so its side is <InlineMath math="16" />.
+- <InlineMath math="3:5" /> is the ratio of sides <InlineMath math="12:20" />, not of areas.
 
-So the area of square <InlineMath math="PQRS" /> to the area of square <InlineMath math="ABCD" /> is <InlineMath math="1:5" />.
+So the ratio of the areas is <InlineMath math="9:25" />.

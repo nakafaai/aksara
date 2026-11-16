@@ -1,4 +1,4 @@
-Hier gelten zwei Bedingungen gleichzeitig: Der Kurier **muss über <InlineMath math="C" />** fahren und **darf nicht über <InlineMath math="X" />**. Am saubersten schneidest du jede Route bei <InlineMath math="C" /> durch, zählst beide Teile und multiplizierst.
+Der Kurier darf das Paket bei <InlineMath math="C" />, bei <InlineMath math="D" /> oder bei beiden abholen und darf nicht über <InlineMath math="X" /> fahren. **Die Routen über <InlineMath math="C" /> und die Routen über <InlineMath math="D" /> überschneiden sich**, also zählst du beide getrennt und verbindest sie mit dem Prinzip der Inklusion und Exklusion: Eine Route über beide darf nur einmal zählen.
 
 # Wege im Gitter zählen
 
@@ -76,20 +76,42 @@ Prüfe den ersten Teil, indem du an jede Kreuzung die Anzahl der Wege schreibst.
 
 Prüf es anders. Eine Route, die <InlineMath math="X" /> meidet, kreuzt die Gerade <InlineMath math="x=2" /> nur bei <InlineMath math="y=0" /> oder nur bei <InlineMath math="y=2" />. Unten herum geht sie nach <InlineMath math="(3,0)" /> und dann nach <InlineMath math="C" />, das sind <InlineMath math="\binom{3}{1}=3" /> Routen. Oben herum geht sie zuerst nach <InlineMath math="(1,2)" />, das sind <InlineMath math="\binom{3}{1}=3" /> Routen, und dann geradeaus nach <InlineMath math="C" />. Zusammen <InlineMath math="3+3=6" />, passt.
 
-# Von C nach B und die Gesamtzahl
+# Routen über C
 
 Von <InlineMath math="C(4,2)" /> nach <InlineMath math="B(6,4)" /> brauchst du <InlineMath math="2" /> Schritte nach Osten und <InlineMath math="2" /> nach Norden. Die Kreuzung <InlineMath math="X" /> liegt außerhalb dieses Teils, also wird nichts abgezogen. **Jeder erste Teil lässt sich mit jedem zweiten Teil verbinden**, deshalb wird multipliziert.
 
 <BlockMath math="\begin{aligned}
 C\to B&:\ \binom{4}{2}=6 \\
-\text{Anzahl der Routen}&=6\cdot6=36
+\text{Routen über }C&=6\cdot6=36
 \end{aligned}" />
+
+# Routen über D
+
+Der Punkt <InlineMath math="D(1,2)" /> liegt schon über der Zeile <InlineMath math="y=1" />, also **kann eine Route ab <InlineMath math="D" /> nie mehr zu <InlineMath math="X(2,1)" /> hinunter**. Auch der Teil <InlineMath math="A\to D" /> führt nicht über <InlineMath math="X" />, weil <InlineMath math="X" /> rechts von <InlineMath math="D" /> liegt.
+
+<BlockMath math="\begin{aligned}
+A\to D&:\ \binom{3}{1}=3 \\
+D\to B&:\ \binom{7}{2}=21 \\
+\text{Routen über }D&=3\cdot21=63
+\end{aligned}" />
+
+# Routen über beide
+
+Eine Route über <InlineMath math="D" /> und <InlineMath math="C" /> verläuft <InlineMath math="A\to D\to C\to B" />. Von <InlineMath math="D(1,2)" /> nach <InlineMath math="C(4,2)" /> gibt es **nur eine Route**, geradeaus nach Osten entlang <InlineMath math="y=2" />.
+
+<BlockMath math="3\cdot1\cdot6=18" />
+
+# Die Gesamtzahl der Routen
+
+**Die Routen über beide stecken schon in <InlineMath math="36" /> und noch einmal in <InlineMath math="63" />**, also ziehst du sie einmal ab.
+
+<BlockMath math="36+63-18=81" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="105" /> meidet <InlineMath math="X" />, vergisst aber den Halt bei <InlineMath math="C" />: <InlineMath math="\binom{10}{4}-\binom{3}{1}\binom{7}{3}=210-105=105" />.
-- <InlineMath math="90" /> hält bei <InlineMath math="C" />, vergisst aber die gesperrte Kreuzung: <InlineMath math="15\cdot6" />.
-- <InlineMath math="72" /> zieht nur die <InlineMath math="3" /> Routen <InlineMath math="A\to X" /> ab, obwohl sich jede davon noch auf <InlineMath math="3" /> Arten nach <InlineMath math="C" /> verzweigt: <InlineMath math="(15-3)\cdot6" />.
-- <InlineMath math="54" /> ist die Anzahl der Routen, die **gerade über** <InlineMath math="X" /> führen: <InlineMath math="9\cdot6" />. Das sind die, die wegfallen, nicht die gesuchten.
+- <InlineMath math="105" /> zählt alle Routen, die <InlineMath math="X" /> meiden, ohne die Abholbedingung, also auch die <InlineMath math="24" /> Routen, die weder über <InlineMath math="C" /> noch über <InlineMath math="D" /> führen.
+- <InlineMath math="99" /> addiert <InlineMath math="36+63" /> und vergisst, dass **<InlineMath math="18" /> Routen doppelt zählen**.
+- <InlineMath math="135" /> vergisst die gesperrte Kreuzung, sodass die Routen über <InlineMath math="C" /> als <InlineMath math="15\cdot6=90" /> erscheinen, dann <InlineMath math="90+63-18" />.
+- <InlineMath math="63" /> zählt nur die Routen über <InlineMath math="D" /> und verliert den Fall der Routen, die nur bei <InlineMath math="C" /> halten.
 
-Der Kurier hat also <InlineMath math="36" /> verschiedene Routen.
+Also hat der Kurier <InlineMath math="81" /> verschiedene Routen.

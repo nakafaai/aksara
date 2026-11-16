@@ -1,63 +1,61 @@
-The question asks for the diameter of the solid cylinder made by melting one pipe. The key idea is that **the volume of iron doesn't change**: the volume of the pipe wall equals the volume of the new solid cylinder. So first find the volume of iron in the pipe, then find the radius of a cylinder with that volume.
+# Volume of iron in the old pipe
 
-# Volume of iron in the pipe
+An outer diameter of <InlineMath math="10\text{ cm}" /> gives an outer radius of <InlineMath math="5\text{ cm}" />. **The wall thickness comes off the radius, not the diameter**, so the inner radius is <InlineMath math="4\text{ cm}" />.
 
-The iron sits only in the wall, the ring between the outer circle and the hollow. The outer radius is <InlineMath math="R=\frac{10}{2}=5\text{ cm}" />. **The <InlineMath math="1\text{ cm}" /> wall is on both sides of the hollow**, so the hollow has diameter <InlineMath math="10-2\cdot1=8\text{ cm}" /> and the inner radius is <InlineMath math="r=4\text{ cm}" />. The length has to be in centimetres too, <InlineMath math="5\text{ m}=500\text{ cm}" />.
+<BlockMath math="V_{\text{old}}=\pi\left(5^2-4^2\right)\cdot500=4{,}500\pi\text{ cm}^3" />
 
-<BlockMath math="\begin{aligned}
-V_{\text{iron}}&=\left(\pi R^2-\pi r^2\right)\cdot L \\
-&=\pi\,(5^2-4^2)\cdot500 \\
-&=\pi\cdot9\cdot500=4500\pi\text{ cm}^3
-\end{aligned}" />
+# Iron for the new pipe
 
-# Radius of the solid cylinder
-
-Call the radius of the solid cylinder <InlineMath math="\rho" />. Its height is <InlineMath math="20\text{ cm}" />, and its volume has to match the iron volume. The factor <InlineMath math="\pi" /> appears on both sides, so **you don't need to put in <InlineMath math="\tfrac{22}{7}" /> at all**.
+Only <InlineMath math="80\%" /> of the iron is left, so the new pipe uses <InlineMath math="0.8\cdot4{,}500\pi=3{,}600\pi\text{ cm}^3" />. The new pipe has outer radius <InlineMath math="6\text{ cm}" /> and length <InlineMath math="180\text{ cm}" />, while **its inner radius <InlineMath math="r" /> is still unknown**.
 
 <BlockMath math="\begin{aligned}
-\pi\rho^2\cdot20&=4500\pi \\
-\rho^2&=\frac{4500}{20}=225 \\
-\rho&=15\text{ cm}
+\pi\left(6^2-r^2\right)\cdot180&=3{,}600\pi \\
+36-r^2&=20 \\
+r&=4
 \end{aligned}" />
 
-Compare both cross-sections at the same scale. **The solid cylinder is <InlineMath math="25" /> times shorter than the pipe, so its cross-section must be <InlineMath math="25" /> times larger than the pipe's ring**: <InlineMath math="25\cdot9\pi=225\pi" />, a circle of radius <InlineMath math="15" />.
+# The wall thickness
+
+**The wall thickness is the outer radius minus the inner radius**, which is <InlineMath math="6-4=2\text{ cm}" />. Draw both cross-sections side by side. The ring of the new pipe is wider, because its iron is spread over a much shorter pipe.
 
 <MathVisual
-  title={<>Cross-section of the pipe and of the solid cylinder</>}
-  description={<>On the left, the pipe's cross-section is the ring between circles of radius <InlineMath math="5" /> and <InlineMath math="4" />, with area <InlineMath math="9\pi\text{ cm}^2" />. On the right, the solid cylinder's cross-section is a circle of radius <InlineMath math="15" /> with area <InlineMath math="225\pi\text{ cm}^2" />, drawn at the same scale.</>}
+  title={<>Cross-sections of the old pipe and the new pipe</>}
+  description={<>On the left, the ring of the old pipe between circles of radius <InlineMath math="5" /> and <InlineMath math="4" />, with area <InlineMath math="9\pi" />. On the right, the ring of the new pipe between circles of radius <InlineMath math="6" /> and <InlineMath math="4" />, with area <InlineMath math="20\pi" /> and a wall thickness of <InlineMath math="2" />.</>}
   labels={{
-    pipe: <InlineMath math="9\pi" />,
-    solid: <InlineMath math="225\pi" />,
-    radius: <InlineMath math="\rho=15" />,
+    old: <>old <InlineMath math="9\pi" /></>,
+    new: <>new <InlineMath math="20\pi" /></>,
+    thick: <InlineMath math="2" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -28, max: 28 },
-      y: { min: -17, max: 17 },
+      x: { min: -6, max: 21 },
+      y: { min: -8.5, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "pipe", kind: "region", appearance: "secondary", inequalities: ["(x + 20)^2 + y^2 <= 25", "(x + 20)^2 + y^2 >= 16"] },
-      { id: "solid", kind: "circle", appearance: "primary", center: { x: 10, y: 0 }, radius: 15 },
-      { id: "radius", kind: "segment", appearance: "answer", from: { x: 10, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "old-outer", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "old-inner", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "new-outer", kind: "circle", appearance: "primary", center: { x: 14, y: 0 }, radius: 6 },
+      { id: "new-inner", kind: "circle", appearance: "answer", center: { x: 14, y: 0 }, radius: 4 },
+      { id: "thick", kind: "segment", appearance: "answer", from: { x: 18, y: 0 }, to: { x: 20, y: 0 } },
     ],
     labels: [
-      { key: "pipe", objectId: "pipe", at: { x: -20, y: 5 }, placement: "above" },
-      { key: "solid", objectId: "solid", at: { x: 10, y: 15 }, placement: "above" },
-      { key: "radius", objectId: "radius", at: { x: 17.5, y: 0 }, placement: "below" },
+      { key: "old", objectId: "old-outer", at: { x: 0, y: -5 }, placement: "below" },
+      { key: "new", objectId: "new-outer", at: { x: 14, y: -6 }, placement: "below" },
+      { key: "thick", objectId: "thick", at: { x: 19, y: 0 }, placement: "above" },
     ],
   }}
 />
 
-The question wants the diameter, so <InlineMath math="d=2\rho=30\text{ cm}" />. Quick sense check: the <InlineMath math="500\text{ cm}" /> pipe becomes a cylinder <InlineMath math="25" /> times shorter, so its cross section has to be <InlineMath math="25" /> times the ring area, <InlineMath math="25\cdot9\pi=225\pi" />. That's exactly the area of a circle with radius <InlineMath math="15" />.
+Check: <InlineMath math="20\pi\cdot180=3{,}600\pi" />, the same as the iron that is left.
 
 # Why the other options are wrong
 
-- <InlineMath math="3\text{ cm}" /> comes from leaving the length as <InlineMath math="5" /> instead of <InlineMath math="500\text{ cm}" />. **Every measurement has to be in the same unit**.
-- <InlineMath math="6\text{ cm}" /> comes from matching only the cross sections, as if the height were still <InlineMath math="500\text{ cm}" />. The new cylinder is much shorter, so its cross section must be much bigger.
-- <InlineMath math="10\text{ cm}" /> comes from taking the ring area as <InlineMath math="\pi\,(R-r)^2=\pi" />. A ring's area is the difference of two circle areas, not the area of a circle whose radius is the wall thickness.
-- <InlineMath math="15\text{ cm}" /> is the radius. The last step, doubling it to get the diameter, got skipped.
+- <InlineMath math="4\text{ cm}" /> is the inner radius of the new pipe, or the difference of diameters <InlineMath math="12-8" /> without halving it.
+- <InlineMath math="\left(6-\sqrt{11}\right)\text{ cm}" /> forgets that <InlineMath math="20\%" /> of the iron is lost, so <InlineMath math="36-r^2=25" />.
+- <InlineMath math="\left(6-\sqrt6\right)\text{ cm}" /> adds <InlineMath math="20\%" /> instead of taking it away, so <InlineMath math="36-r^2=30" />.
+- <InlineMath math="1\text{ cm}" /> assumes the wall of the new pipe is as thick as the old one. **The size of the pipe changes, so the thickness has to be worked out again**.
 
-So the solid cylinder has a diameter of <InlineMath math="30\text{ cm}" />.
+So the wall of the new pipe is <InlineMath math="2\text{ cm}" /> thick.

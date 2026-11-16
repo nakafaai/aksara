@@ -5,7 +5,9 @@ import type { SetRating } from "#corpus/tryout/level";
  * set 1 to 10 in order.
  * One rater rated ten evenly spaced items
  * of the set alone on 15 Nov 2026, after the rewrites that reached every set.
- * A rewritten set replaces its entry with a rating of its new items.
+ * Set 7 was hardened on 16 Nov 2026 and rated again by two raters on all 25
+ * items of the set alone. A rewritten set replaces its entry with a rating of
+ * its new items.
  */
 export const compulsoryRatings: readonly SetRating[] = [
   { items: 10, level: 3.7, raters: 1 },
@@ -14,7 +16,7 @@ export const compulsoryRatings: readonly SetRating[] = [
   { items: 10, level: 3.8, raters: 1 },
   { items: 10, level: 3.7, raters: 1 },
   { items: 10, level: 3.85, raters: 1 },
-  { items: 10, level: 3.6, raters: 1 },
+  { items: 25, level: 3.93, raters: 2 },
   { items: 10, level: 4.05, raters: 1 },
   { items: 10, level: 3.8, raters: 1 },
   { items: 10, level: 3.85, raters: 1 },

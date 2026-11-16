@@ -1,23 +1,33 @@
-Gefragt ist ein Verhältnis von **Flächen**, nicht von Seiten. Das Quadrat <InlineMath math="PQRS" /> hat nur zwei Ecken auf dem Kreis, es ist also nicht das übliche Quadrat, das in einen Kreis eingezeichnet wird. Du brauchst zuerst den Kreisradius und dann die Seite von <InlineMath math="PQRS" /> mit dem Satz des Pythagoras.
+Das Quadrat <InlineMath math="PQRS" /> kann über der Geraden <InlineMath math="g" /> stehen, Richtung <InlineMath math="O" />, oder unter ihr hängen, Richtung <InlineMath math="AB" />. **Beide Lagen müssen berechnet werden**, danach vergleichst du die Flächen.
 
-# Radius des Kreises
+# Der Radius und die Lage der Geraden g
 
-Der Kreis <InlineMath math="L" /> berührt alle vier Seiten des Quadrats <InlineMath math="ABCD" />, also **ist sein Durchmesser so lang wie eine Quadratseite**, <InlineMath math="20\text{ cm}" />. Die zwei Berührpunkte auf gegenüberliegenden Seiten liegen genau an den beiden Enden eines Durchmessers. Der Radius ist <InlineMath math="r=10\text{ cm}" />, und die Gerade <InlineMath math="g" /> ist ein Durchmesser des Kreises.
+Ein Kreis, der alle vier Seiten eines Quadrats mit Seite <InlineMath math="20" /> berührt, hat den Radius <InlineMath math="10" />. Lege das Koordinatensystem mit <InlineMath math="O(0,0)" /> an, dann liegt <InlineMath math="AB" /> auf <InlineMath math="y=-10" /> und **die Gerade <InlineMath math="g" /> auf <InlineMath math="y=-4" />**, also <InlineMath math="4\text{ cm}" /> unter <InlineMath math="O" />.
 
-# Seite des Quadrats PQRS
+# Das Quadrat über g
 
-Nenn die Seite von <InlineMath math="PQRS" /> <InlineMath math="s" />. Die Punkte <InlineMath math="R" /> und <InlineMath math="S" /> liegen auf dem Kreis, und <InlineMath math="SR" /> ist parallel zu <InlineMath math="g" />. Das Lot vom Mittelpunkt <InlineMath math="O" /> auf die Sehne <InlineMath math="SR" /> halbiert diese Sehne immer. Dasselbe Lot halbiert auch <InlineMath math="PQ" />, weil <InlineMath math="PS" /> und <InlineMath math="QR" /> beide senkrecht auf <InlineMath math="g" /> stehen. Also **liegt <InlineMath math="O" /> genau in der Mitte von <InlineMath math="PQ" />**, und <InlineMath math="OQ=\tfrac{s}{2}" />.
+Aus Symmetriegründen liegt die Seite <InlineMath math="PQ" /> mittig zur senkrechten Achse. Hat das Quadrat die Seite <InlineMath math="s" />, liegt <InlineMath math="R" /> bei <InlineMath math="\left(\frac s2,\ s-4\right)" /> und **muss auf dem Kreis liegen**.
+
+<BlockMath math="\left(\frac s2\right)^2+(s-4)^2=100\ \Leftrightarrow\ 5s^2-32s-336=0\ \Rightarrow\ s=\frac{32+88}{10}=12" />
+
+Die andere Lösung ist negativ und fällt weg. Probe: Der Punkt <InlineMath math="(6,\ 8)" /> erfüllt <InlineMath math="36+64=100" />.
+
+# Das Quadrat unter g
+
+Jetzt liegt <InlineMath math="R" /> bei <InlineMath math="\left(\frac s2,\ -4-s\right)" />.
+
+<BlockMath math="\left(\frac s2\right)^2+(s+4)^2=100\ \Leftrightarrow\ 5s^2+32s-336=0\ \Rightarrow\ s=\frac{-32+88}{10}=5{,}6" />
+
+Zeichne beide Quadrate. **Das Quadrat, das zur Mitte hin steht, ist viel größer**, weil der Kreis auf dieser Seite noch breit ist.
 
 <MathVisual
-  title={<>Rechtwinkliges Dreieck <InlineMath math="OQR" /></>}
-  description={<>Die Abbildung aus der Aufgabe mit der eingezeichneten Strecke <InlineMath math="OR" />. Das Dreieck <InlineMath math="OQR" /> ist bei <InlineMath math="Q" /> rechtwinklig, mit <InlineMath math="OQ" /> als halber Quadratseite, <InlineMath math="QR" /> als ganzer Seite und <InlineMath math="OR" /> als Radius <InlineMath math="10" />.</>}
+  title={<>Zwei Quadrate mit der Grundseite auf der Geraden g</>}
+  description={<>Ein Kreis mit Radius <InlineMath math="10" /> im Quadrat <InlineMath math="ABCD" /> und die Gerade <InlineMath math="g" /> auf <InlineMath math="y=-4" />. Ein Quadrat mit Seite <InlineMath math="12" /> steht auf <InlineMath math="g" />, seine oberen Ecken <InlineMath math="(\pm6,\ 8)" /> liegen auf dem Kreis. Ein Quadrat mit Seite <InlineMath math="5{,}6" /> hängt unter <InlineMath math="g" />, seine unteren Ecken liegen auf dem Kreis.</>}
   labels={{
+    up: <InlineMath math="s=12" />,
+    down: <InlineMath math="s=5{,}6" />,
+    g: <InlineMath math="g" />,
     o: <InlineMath math="O" />,
-    p: <InlineMath math="P" />,
-    q: <InlineMath math="Q" />,
-    r: <InlineMath math="R" />,
-    s: <InlineMath math="S" />,
-    radius: <InlineMath math="10" />,
   }}
   scene={{
     space: "plane",
@@ -28,49 +38,33 @@ Nenn die Seite von <InlineMath math="PQRS" /> <InlineMath math="s" />. Die Punkt
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "outer", kind: "polygon", appearance: "primary", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
+      { id: "outer", kind: "polygon", appearance: "reference", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
       { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 10 },
-      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
-      { id: "inner", kind: "polygon", appearance: "highlight", vertices: [{ x: -2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }] },
-      { id: "radius-r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "line-g", kind: "segment", appearance: "construction", from: { x: -10, y: -4 }, to: { x: 10, y: -4 } },
+      { id: "up", kind: "polygon", appearance: "answer", vertices: [{ x: -6, y: -4 }, { x: 6, y: -4 }, { x: 6, y: 8 }, { x: -6, y: 8 }] },
+      { id: "down", kind: "polygon", appearance: "highlight", vertices: [{ x: -14 / 5, y: -4 }, { x: 14 / 5, y: -4 }, { x: 14 / 5, y: -48 / 5 }, { x: -14 / 5, y: -48 / 5 }] },
       { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "point-p", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 0 } },
-      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 0 } },
-      { id: "point-r", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
-      { id: "point-s", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
     ],
     labels: [
-      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below" },
-      { key: "p", objectId: "point-p", at: { x: -2 * Math.sqrt(5), y: 0 }, placement: "below" },
-      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(5), y: 0 }, placement: "below" },
-      { key: "r", objectId: "point-r", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-right" },
-      { key: "s", objectId: "point-s", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-left" },
-      { key: "radius", objectId: "radius-r", at: { x: Math.sqrt(5), y: 2 * Math.sqrt(5) }, placement: "above-left" },
+      { key: "up", objectId: "up", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "down", objectId: "down", at: { x: 14 / 5, y: -48 / 5 }, placement: "right" },
+      { key: "g", objectId: "line-g", at: { x: 10, y: -4 }, placement: "right" },
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "above" },
     ],
   }}
 />
 
-Das Dreieck <InlineMath math="OQR" /> ist bei <InlineMath math="Q" /> rechtwinklig, mit <InlineMath math="OQ=\tfrac{s}{2}" />, <InlineMath math="QR=s" /> und der Hypotenuse <InlineMath math="OR=10" />, weil <InlineMath math="R" /> auf dem Kreis liegt.
-
-<BlockMath math="\begin{aligned}
-\left(\frac{s}{2}\right)^2+s^2&=10^2 \\
-\frac{5s^2}{4}&=100 \\
-s^2&=80
-\end{aligned}" />
-
 # Verhältnis der Flächen
 
-Die Fläche von <InlineMath math="PQRS" /> ist <InlineMath math="s^2=80\text{ cm}^2" />, die Fläche von <InlineMath math="ABCD" /> ist <InlineMath math="20^2=400\text{ cm}^2" />. Teil die kleine Fläche durch die große, dann hast du das Verhältnis.
+Das größere Quadrat hat die Seite <InlineMath math="12" />, also **den Flächeninhalt <InlineMath math="144\text{ cm}^2" />**.
 
-<BlockMath math="\frac{A_{PQRS}}{A_{ABCD}}=\frac{80}{400}=\frac{1}{5}" />
-
-Die Seiten selbst stehen im Verhältnis <InlineMath math="\sqrt{80}:20=1:\sqrt{5}" />. **Das Flächenverhältnis ist das Quadrat des Seitenverhältnisses**, also <InlineMath math="\left(1:\sqrt{5}\right)^2=1:5" />, passend zur Rechnung oben.
+<BlockMath math="144:400=9:25" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="1:8" /> entsteht, wenn <InlineMath math="O" /> im Punkt <InlineMath math="P" /> angenommen wird. Dann wäre <InlineMath math="OR" /> eine Diagonale, <InlineMath math="s\sqrt{2}=10" />, und <InlineMath math="s^2=50" />.
-- <InlineMath math="1:4" /> entsteht, wenn du ohne Grund annimmst, dass die Quadratseite gleich dem Radius ist, <InlineMath math="s=10" />.
-- <InlineMath math="1:\sqrt{5}" /> ist das Verhältnis der Seiten. **Gefragt ist das Flächenverhältnis**, das Seitenverhältnis muss also noch quadriert werden.
-- <InlineMath math="1:2" /> gehört zu einem Quadrat, dessen vier Ecken alle auf dem Kreis liegen, mit Diagonale <InlineMath math="20" /> und Fläche <InlineMath math="200" />. Hier liegen <InlineMath math="P" /> und <InlineMath math="Q" /> auf einem Durchmesser, nicht auf dem Kreis.
+- <InlineMath math="1:5" /> nimmt eine Gerade <InlineMath math="g" /> durch <InlineMath math="O" />, das ergibt <InlineMath math="s^2=80" />. Hier liegt <InlineMath math="g" /> aber <InlineMath math="4\text{ cm}" /> von <InlineMath math="O" /> entfernt.
+- <InlineMath math="49:625" /> ist das unter <InlineMath math="g" /> hängende Quadrat, <InlineMath math="5{,}6^2:400" />. **Das ist das kleinere Quadrat**.
+- <InlineMath math="16:25" /> stellt das Quadrat auf die Seite <InlineMath math="AB" />, sodass seine Seite <InlineMath math="16" /> ist.
+- <InlineMath math="3:5" /> ist das Verhältnis der Seiten <InlineMath math="12:20" />, nicht der Flächen.
 
-Die Fläche des Quadrats <InlineMath math="PQRS" /> verhält sich zur Fläche von <InlineMath math="ABCD" /> also wie <InlineMath math="1:5" />.
+Also ist das Verhältnis der Flächen <InlineMath math="9:25" />.

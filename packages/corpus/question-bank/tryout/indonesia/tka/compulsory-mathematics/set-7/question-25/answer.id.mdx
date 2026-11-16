@@ -1,52 +1,45 @@
-PIN dipilih dari **PIN yang sah saja**, jadi ruang sampelnya adalah semua PIN yang memenuhi kedua aturan, bukan semua bilangan empat digit. Peluangnya adalah banyak PIN sah yang digitnya berbeda semua dibagi banyak semua PIN sah.
+PIN dipilih dari **PIN sah saja**, jadi ruang sampelnya semua PIN yang memenuhi kedua aturan. Pembilangnya perlu pembagian kasus menurut pola angka, karena aturan digit bersebelahan menentukan pola mana yang boleh.
 
 # Banyak PIN yang sah
 
-Isi digit dari kiri ke kanan dan hitung pilihan di setiap posisi. Digit pertama boleh <InlineMath math="1" /> sampai <InlineMath math="9" />. Mulai digit kedua, **angka <InlineMath math="0" /> boleh dipakai lagi**, dan satu-satunya larangan adalah sama dengan digit tepat di depannya.
+Isi digit dari kiri ke kanan. Digit pertama bisa <InlineMath math="1" /> sampai <InlineMath math="9" />. Mulai digit kedua, **angka <InlineMath math="0" /> boleh lagi**, dan larangannya hanya mengulang digit tepat sebelumnya.
 
-<BlockMath math="\begin{aligned}
-\text{digit pertama}&:\ 9 \text{ pilihan} \\
-\text{digit kedua, ketiga, keempat}&:\ 10-1=9 \text{ pilihan masing-masing} \\
-n(S)&=9\cdot9\cdot9\cdot9=6{.}561
-\end{aligned}" />
+<BlockMath math="n(S)=9\cdot9\cdot9\cdot9=6{.}561" />
 
-# Banyak PIN sah dengan digit berbeda semua
+# Pola dengan tepat tiga angka berbeda
 
-Kalau keempat digit berbeda, dua digit yang bersebelahan pasti tidak sama. Jadi **setiap PIN berdigit berbeda yang tidak diawali <InlineMath math="0" /> otomatis sah**, dan kamu cukup menghitung PIN seperti itu.
+Tiga angka berbeda dalam empat digit berarti tepat satu angka muncul dua kali. **Angka kembar itu tidak boleh bersebelahan**, jadi pasangan posisinya hanya digit ke-<InlineMath math="1" /> dan ke-<InlineMath math="3" />, ke-<InlineMath math="2" /> dan ke-<InlineMath math="4" />, atau ke-<InlineMath math="1" /> dan ke-<InlineMath math="4" />. Tulis polanya dengan huruf menurut urutan kemunculan.
 
-<BlockMath math="\begin{aligned}
-\text{digit pertama}&:\ 9 \text{ pilihan } (1 \text{ sampai } 9) \\
-\text{digit kedua}&:\ 9 \text{ pilihan } (0 \text{ boleh, kecuali digit pertama}) \\
-\text{digit ketiga}&:\ 8 \text{ pilihan} \\
-\text{digit keempat}&:\ 7 \text{ pilihan} \\
-n(A)&=9\cdot9\cdot8\cdot7=4{.}536
-\end{aligned}" />
+<BlockMath math="ABAC,\qquad ABCB,\qquad ABCA" />
 
-Bandingkan banyak pilihan di setiap posisi digit. **Kedua hitungan sama untuk dua digit pertama, lalu berpisah di digit ketiga dan keempat**, jadi peluangnya <InlineMath math="\frac{8\cdot7}{9\cdot9}=\frac{56}{81}" />.
+Pada setiap pola, <InlineMath math="A" /> adalah digit pertama, jadi ada <InlineMath math="9" /> pilihan. Huruf <InlineMath math="B" /> boleh <InlineMath math="0" /> asal tidak sama dengan <InlineMath math="A" />, jadi ada <InlineMath math="9" /> pilihan, dan <InlineMath math="C" /> punya <InlineMath math="8" /> pilihan.
+
+<BlockMath math="n(E)=3\cdot(9\cdot9\cdot8)=3\cdot648=1{.}944" />
+
+Bandingkan banyak PIN sah untuk setiap pola. **Ketiga pola dengan tepat tiga angka berbeda masing-masing memuat <InlineMath math="648" /> PIN**, sedangkan pola dua angka <InlineMath math="ABAB" /> hanya <InlineMath math="81" /> dan pola empat angka <InlineMath math="ABCD" /> memuat <InlineMath math="4{.}536" />.
 
 <Chart
-  title={<>Banyak pilihan untuk setiap digit PIN</>}
-  description={<>Untuk PIN sah, setiap posisi punya <InlineMath math="9" /> pilihan. Untuk PIN dengan digit berbeda semua, pilihannya <InlineMath math="9" />, <InlineMath math="9" />, <InlineMath math="8" />, dan <InlineMath math="7" />. Perbedaan hanya ada di digit ketiga dan keempat.</>}
+  title={<>Banyak PIN sah menurut pola angka</>}
+  description={<>Pola <InlineMath math="ABAB" /> memuat <InlineMath math="81" /> PIN, pola <InlineMath math="ABAC" />, <InlineMath math="ABCA" />, dan <InlineMath math="ABCB" /> masing-masing <InlineMath math="648" /> PIN, dan pola <InlineMath math="ABCD" /> memuat <InlineMath math="4{.}536" /> PIN. Jumlah semuanya <InlineMath math="6{.}561" />.</>}
   bars="apart"
-  categories={["Digit pertama", "Digit kedua", "Digit ketiga", "Digit keempat"]}
+  categories={["ABAB", "ABAC", "ABCA", "ABCB", "ABCD"]}
   series={[
-    { label: "PIN sah", mark: "bar", values: [9, 9, 9, 9] },
-    { label: "Digit berbeda semua", mark: "bar", values: [9, 9, 8, 7] },
+    { label: "Banyak PIN", mark: "bar", values: [81, 648, 648, 648, 4536] },
   ]}
-  valueLabel="Banyak pilihan"
+  valueLabel="PIN"
 />
 
 # Peluangnya
 
-Bagi kedua banyaknya, lalu sederhanakan dengan membagi pembilang dan penyebut dengan <InlineMath math="81" />. Contoh di soal, <InlineMath math="1213" />, menunjukkan ada PIN sah yang digitnya berulang, jadi **peluangnya memang harus kurang dari <InlineMath math="1" />**.
+<BlockMath math="P(E)=\frac{1{.}944}{6{.}561}=\frac{8}{27}" />
 
-<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{4{.}536}{6{.}561}=\frac{56}{81}" />
+Pemeriksaan: <InlineMath math="81+1{.}944+4{.}536=6{.}561" />, jadi **setiap PIN sah masuk tepat satu pola**.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="\frac{28}{45}" /> memakai ruang sampel <InlineMath math="10\cdot9\cdot9\cdot9=7{.}290" />, yaitu lupa bahwa digit pertama tidak boleh <InlineMath math="0" /> saat menghitung PIN sah.
-- <InlineMath math="\frac{63}{125}" /> memakai ruang sampel <InlineMath math="9{.}000" />, yaitu semua bilangan empat digit. **PIN dipilih dari PIN sah**, bukan dari semua bilangan empat digit.
-- <InlineMath math="\frac{112}{243}" /> memakai <InlineMath math="9\cdot8\cdot7\cdot6=3{.}024" /> sebagai pembilang, seolah-olah <InlineMath math="0" /> dilarang di semua posisi. Larangan itu hanya untuk digit pertama.
-- <InlineMath math="\frac{25}{81}" /> adalah <InlineMath math="1-\frac{56}{81}" />, yaitu peluang PIN memiliki digit yang berulang. Itu kebalikan dari yang ditanyakan.
+- <InlineMath math="\frac{16}{81}" /> hanya memakai dua pola dan **kehilangan pola <InlineMath math="ABCA" />**, ketika angka kembarnya ada di digit pertama dan terakhir.
+- <InlineMath math="\frac{25}{81}" /> adalah <InlineMath math="1-\frac{56}{81}" />, peluang ada angka yang berulang. Nilai itu juga memuat pola <InlineMath math="ABAB" /> yang hanya punya dua angka.
+- <InlineMath math="\frac{27}{125}" /> memakai ruang sampel <InlineMath math="9{.}000" />, semua bilangan empat digit, padahal PIN dipilih dari PIN sah.
+- <InlineMath math="\frac{4}{15}" /> memakai ruang sampel <InlineMath math="10\cdot9\cdot9\cdot9=7{.}290" />, yang membolehkan <InlineMath math="0" /> di digit pertama.
 
-Jadi, peluang PIN yang terpilih memiliki empat digit yang semuanya berbeda adalah <InlineMath math="\frac{56}{81}" />.
+Jadi, peluangnya adalah <InlineMath math="\frac{8}{27}" />.

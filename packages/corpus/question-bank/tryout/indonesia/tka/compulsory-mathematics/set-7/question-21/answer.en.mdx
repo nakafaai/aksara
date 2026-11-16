@@ -1,8 +1,6 @@
-The question asks for the mean salary of the design department after one person leaves. That person's salary isn't given, so you first have to find it from the April mean of all employees. One tool does all the work: **mean times number of values equals the total**. Every amount below is in millions of rupiah.
+This question gives two new means, and both have to be used in order. **The design mean reveals the salary of the person who left, then the overall mean reveals the two new employees' combined salary, and the minimum of <InlineMath math="\text{Rp}3.5" /> million caps the highest salary**. Every amount below is in millions of rupiah, and one tool does the work: mean times number of values equals the total.
 
 # Salary totals in March
-
-Turn each mean in the table into a total. The two departments have different head counts, so **the overall mean isn't the mean of the two means**. What you add up are the totals.
 
 <BlockMath math="\begin{aligned}
 \text{sewing}&=15\cdot4.8=72 \\
@@ -12,38 +10,44 @@ Turn each mean in the table into a total. The two departments have different hea
 
 # Salary of the person who left
 
-Call the salary of the design employee who left <InlineMath math="x" />. In April, **the number of employees becomes <InlineMath math="20-1+2=21" />**. You can write the April total in two ways, from the new mean and from the changes that happened.
+After one person leaves, design has <InlineMath math="4" /> people with a mean of <InlineMath math="7.35" />.
+
+<BlockMath math="36-g=4\cdot7.35=29.4\ \Rightarrow\ g=6.6" />
+
+**The person who left earned <InlineMath math="6.6" />, not <InlineMath math="7.2" />**. A department's mean describes the whole department, not one person's salary.
+
+# The new employees' salary
+
+In April there are <InlineMath math="20-1+2=21" /> employees, so the total salary is <InlineMath math="21\cdot5.2=109.2" />. Let the two new employees earn <InlineMath math="s_1" /> and <InlineMath math="s_2" />.
 
 <BlockMath math="\begin{aligned}
-21\cdot5.2&=108-x+2\cdot3.9 \\
-109.2&=115.8-x \\
-x&=6.6
+108-6.6+s_1+s_2&=109.2 \\
+s_1+s_2&=7.8
 \end{aligned}" />
 
-The diagram below shows the way from total salaries to the design average. **The April equation uses total salaries, not averages**, and then the leaving employee's salary is taken off the design total.
+Compare each group's total in the two months. **The sewing total rises by <InlineMath math="7.8" /> for two people**, while the design total falls by <InlineMath math="6.6" /> for one person.
 
-<Mermaid
-  title={<>From March totals to the April design average</>}
-  description={<>The March total is <InlineMath math="108" /> million. In April one salary <InlineMath math="x" /> leaves and two salaries of <InlineMath math="3.9" /> million join, so the total is <InlineMath math="21\cdot5.2" />. From there <InlineMath math="x=6.6" />, and the average of the four remaining design employees is <InlineMath math="(36-6.6)\div4=7.35" /> million.</>}
-  chart={`flowchart TD
-  M["March: 72 + 36 = 108"] --> A["April: 108 − x + 2 · 3.9 = 21 · 5.2"]
-  A --> X["x = 6.6"]
-  X --> D["Design in April: (36 − 6.6) ÷ 4 = 7.35"]`}
+<Chart
+  title={<>Salary totals in March and April</>}
+  description={<>In millions of rupiah, the sewing total rises from <InlineMath math="72" /> to <InlineMath math="79.8" />, the design total falls from <InlineMath math="36" /> to <InlineMath math="29.4" />, and the overall total rises from <InlineMath math="108" /> to <InlineMath math="109.2" />.</>}
+  bars="apart"
+  categories={["Sewing", "Design", "All"]}
+  series={[
+    { label: "March", mark: "bar", values: [72, 36, 108] },
+    { label: "April", mark: "bar", values: [79.8, 29.4, 109.2] },
+  ]}
+  valueLabel="Million rupiah"
 />
 
-# Design mean in April
+# The highest possible salary
 
-The design department now has <InlineMath math="5-1=4" /> people, and its total drops by the salary of the person who left.
-
-<BlockMath math="\frac{36-6.6}{4}=\frac{29.4}{4}=7.35" />
-
-Check the direction: the person who left earned <InlineMath math="6.6" />, **less than the design mean of <InlineMath math="7.2" />**. Removing a value below the mean pushes the mean up, so <InlineMath math="7.35" /> makes sense.
+The total <InlineMath math="7.8" /> can be split in many ways. To make <InlineMath math="s_1" /> as large as possible, <InlineMath math="s_2" /> has to be as small as possible, which is <InlineMath math="3.5" />. Then <InlineMath math="s_1=7.8-3.5=4.3" />. **The split <InlineMath math="4.3" /> and <InlineMath math="3.5" /> meets every condition**, so this value is really reached.
 
 # Why the other options are wrong
 
-- <InlineMath math="\text{Rp}4.75\text{ million}" /> comes from leaving the two new employees out of the count, so the April total is <InlineMath math="19\cdot5.2=98.8" />. That gives <InlineMath math="x=17" /> and a design mean of <InlineMath math="\frac{36-17}{4}=4.75" />.
-- <InlineMath math="\text{Rp}6.05\text{ million}" /> comes from keeping the number of employees at <InlineMath math="20" />. **One person leaves and two join, so the count goes up by one**. That gives <InlineMath math="x=11.8" /> and a design mean of <InlineMath math="\frac{24.2}{4}=6.05" />.
-- <InlineMath math="\text{Rp}6.6\text{ million}" /> is the salary of the person who left. The working stopped one step too early.
-- <InlineMath math="\text{Rp}9\text{ million}" /> is <InlineMath math="\frac{36}{4}" />. The head count was reduced, but the leaver's salary wasn't taken off the total.
+- <InlineMath math="\text{Rp}3.9\text{ million}" /> assumes both new employees earn the same. The question only gives a lower limit, so their salaries may differ.
+- <InlineMath math="\text{Rp}4.9\text{ million}" /> assumes the person who left earned <InlineMath math="7.2" />, the design mean, so the new employees' total reads as <InlineMath math="8.4" />. **That salary has to come from the new design mean**.
+- <InlineMath math="\text{Rp}7.8\text{ million}" /> is the two new employees' combined salary, as if the other one earned nothing.
+- <InlineMath math="\text{Rp}3.5\text{ million}" /> is the lowest salary allowed, not the highest.
 
-So the mean salary of the design department in April is <InlineMath math="\text{Rp}7.35\text{ million}" />.
+So the highest possible salary for one of the new employees is <InlineMath math="\text{Rp}4.3\text{ million}" /> per month.

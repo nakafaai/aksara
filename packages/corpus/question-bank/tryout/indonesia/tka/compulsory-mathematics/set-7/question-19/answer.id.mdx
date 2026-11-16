@@ -1,23 +1,33 @@
-Soal ini meminta perbandingan **luas**, bukan perbandingan sisi. Persegi <InlineMath math="PQRS" /> hanya punya dua titik sudut pada lingkaran, jadi ia bukan persegi yang biasa digambar di dalam lingkaran. Kamu perlu jari-jari lingkaran dulu, lalu sisi <InlineMath math="PQRS" /> dari teorema Pythagoras.
+Persegi <InlineMath math="PQRS" /> bisa berdiri di atas garis <InlineMath math="g" />, ke arah <InlineMath math="O" />, atau menggantung di bawahnya, ke arah <InlineMath math="AB" />. **Kedua posisi harus dihitung**, lalu luasnya dibandingkan.
 
-# Jari-jari lingkaran
+# Jari-jari dan letak garis g
 
-Lingkaran <InlineMath math="L" /> menyinggung keempat sisi persegi <InlineMath math="ABCD" />, jadi **diameternya sama dengan sisi persegi**, yaitu <InlineMath math="20\text{ cm}" />. Dua titik singgung pada sisi yang berhadapan terletak tepat di kedua ujung satu diameter. Jari-jarinya <InlineMath math="r=10\text{ cm}" />, dan garis <InlineMath math="g" /> adalah salah satu diameter lingkaran.
+Lingkaran yang menyinggung keempat sisi persegi bersisi <InlineMath math="20" /> berjari-jari <InlineMath math="10" />. Pasang sumbu dengan <InlineMath math="O(0,0)" />, sehingga <InlineMath math="AB" /> terletak pada <InlineMath math="y=-10" /> dan **garis <InlineMath math="g" /> pada <InlineMath math="y=-4" />**, yaitu <InlineMath math="4\text{ cm}" /> di bawah <InlineMath math="O" />.
 
-# Sisi persegi PQRS
+# Persegi di atas garis g
 
-Misalkan sisi <InlineMath math="PQRS" /> adalah <InlineMath math="s" />. Titik <InlineMath math="R" /> dan <InlineMath math="S" /> ada pada lingkaran, dan <InlineMath math="SR" /> sejajar <InlineMath math="g" />. Garis tegak lurus dari pusat <InlineMath math="O" /> ke tali busur <InlineMath math="SR" /> selalu membagi tali busur itu sama panjang. Garis tegak itu juga membagi <InlineMath math="PQ" /> sama panjang, karena <InlineMath math="PS" /> dan <InlineMath math="QR" /> sama-sama tegak lurus <InlineMath math="g" />. Jadi **<InlineMath math="O" /> tepat di tengah <InlineMath math="PQ" />**, dan <InlineMath math="OQ=\tfrac{s}{2}" />.
+Karena simetris, sisi <InlineMath math="PQ" /> berpusat di sumbu tegak. Jika panjang sisinya <InlineMath math="s" />, titik <InlineMath math="R" /> berada di <InlineMath math="\left(\frac s2,\ s-4\right)" /> dan **harus terletak pada lingkaran**.
+
+<BlockMath math="\left(\frac s2\right)^2+(s-4)^2=100\ \Leftrightarrow\ 5s^2-32s-336=0\ \Rightarrow\ s=\frac{32+88}{10}=12" />
+
+Akar yang lain negatif, jadi dibuang. Pemeriksaan: titik <InlineMath math="(6,\ 8)" /> memenuhi <InlineMath math="36+64=100" />.
+
+# Persegi di bawah garis g
+
+Sekarang <InlineMath math="R" /> berada di <InlineMath math="\left(\frac s2,\ -4-s\right)" />.
+
+<BlockMath math="\left(\frac s2\right)^2+(s+4)^2=100\ \Leftrightarrow\ 5s^2+32s-336=0\ \Rightarrow\ s=\frac{-32+88}{10}=5{,}6" />
+
+Gambar kedua persegi. **Persegi yang berdiri ke arah pusat jauh lebih besar**, karena di sisi itu lingkaran masih lebar.
 
 <MathVisual
-  title={<>Segitiga siku-siku <InlineMath math="OQR" /></>}
-  description={<>Gambar soal dengan ruas <InlineMath math="OR" /> yang ditebalkan. Segitiga <InlineMath math="OQR" /> siku-siku di <InlineMath math="Q" />, dengan <InlineMath math="OQ" /> setengah sisi persegi, <InlineMath math="QR" /> satu sisi persegi, dan <InlineMath math="OR" /> jari-jari <InlineMath math="10" />.</>}
+  title={<>Dua persegi dengan alas pada garis g</>}
+  description={<>Lingkaran berjari-jari <InlineMath math="10" /> di dalam persegi <InlineMath math="ABCD" />, dan garis <InlineMath math="g" /> pada <InlineMath math="y=-4" />. Persegi bersisi <InlineMath math="12" /> berdiri di atas <InlineMath math="g" /> dengan pojok atas <InlineMath math="(\pm6,\ 8)" /> pada lingkaran. Persegi bersisi <InlineMath math="5{,}6" /> menggantung di bawah <InlineMath math="g" /> dengan pojok bawah pada lingkaran.</>}
   labels={{
+    up: <InlineMath math="s=12" />,
+    down: <InlineMath math="s=5{,}6" />,
+    g: <InlineMath math="g" />,
     o: <InlineMath math="O" />,
-    p: <InlineMath math="P" />,
-    q: <InlineMath math="Q" />,
-    r: <InlineMath math="R" />,
-    s: <InlineMath math="S" />,
-    radius: <InlineMath math="10" />,
   }}
   scene={{
     space: "plane",
@@ -28,49 +38,33 @@ Misalkan sisi <InlineMath math="PQRS" /> adalah <InlineMath math="s" />. Titik <
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "outer", kind: "polygon", appearance: "primary", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
+      { id: "outer", kind: "polygon", appearance: "reference", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
       { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 10 },
-      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
-      { id: "inner", kind: "polygon", appearance: "highlight", vertices: [{ x: -2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }] },
-      { id: "radius-r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "line-g", kind: "segment", appearance: "construction", from: { x: -10, y: -4 }, to: { x: 10, y: -4 } },
+      { id: "up", kind: "polygon", appearance: "answer", vertices: [{ x: -6, y: -4 }, { x: 6, y: -4 }, { x: 6, y: 8 }, { x: -6, y: 8 }] },
+      { id: "down", kind: "polygon", appearance: "highlight", vertices: [{ x: -14 / 5, y: -4 }, { x: 14 / 5, y: -4 }, { x: 14 / 5, y: -48 / 5 }, { x: -14 / 5, y: -48 / 5 }] },
       { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "point-p", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 0 } },
-      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 0 } },
-      { id: "point-r", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
-      { id: "point-s", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
     ],
     labels: [
-      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below" },
-      { key: "p", objectId: "point-p", at: { x: -2 * Math.sqrt(5), y: 0 }, placement: "below" },
-      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(5), y: 0 }, placement: "below" },
-      { key: "r", objectId: "point-r", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-right" },
-      { key: "s", objectId: "point-s", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-left" },
-      { key: "radius", objectId: "radius-r", at: { x: Math.sqrt(5), y: 2 * Math.sqrt(5) }, placement: "above-left" },
+      { key: "up", objectId: "up", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "down", objectId: "down", at: { x: 14 / 5, y: -48 / 5 }, placement: "right" },
+      { key: "g", objectId: "line-g", at: { x: 10, y: -4 }, placement: "right" },
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "above" },
     ],
   }}
 />
 
-Segitiga <InlineMath math="OQR" /> siku-siku di <InlineMath math="Q" />, dengan <InlineMath math="OQ=\tfrac{s}{2}" />, <InlineMath math="QR=s" />, dan sisi miring <InlineMath math="OR=10" /> karena <InlineMath math="R" /> ada pada lingkaran.
-
-<BlockMath math="\begin{aligned}
-\left(\frac{s}{2}\right)^2+s^2&=10^2 \\
-\frac{5s^2}{4}&=100 \\
-s^2&=80
-\end{aligned}" />
-
 # Perbandingan luas
 
-Luas <InlineMath math="PQRS" /> adalah <InlineMath math="s^2=80\text{ cm}^2" />, dan luas <InlineMath math="ABCD" /> adalah <InlineMath math="20^2=400\text{ cm}^2" />. Bagi luas yang kecil dengan luas yang besar untuk mendapat perbandingannya.
+Persegi terbesar bersisi <InlineMath math="12" />, jadi **luasnya <InlineMath math="144\text{ cm}^2" />**.
 
-<BlockMath math="\frac{L_{PQRS}}{L_{ABCD}}=\frac{80}{400}=\frac{1}{5}" />
-
-Perbandingan sisinya sendiri adalah <InlineMath math="\sqrt{80}:20=1:\sqrt{5}" />. **Perbandingan luas adalah kuadrat perbandingan sisi**, jadi <InlineMath math="\left(1:\sqrt{5}\right)^2=1:5" />, cocok dengan hitungan di atas.
+<BlockMath math="144:400=9:25" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="1:8" /> muncul kalau <InlineMath math="O" /> dianggap berada di titik <InlineMath math="P" />. Maka <InlineMath math="OR" /> menjadi diagonal, <InlineMath math="s\sqrt{2}=10" />, dan <InlineMath math="s^2=50" />.
-- <InlineMath math="1:4" /> muncul kalau sisi persegi dianggap sama dengan jari-jari, <InlineMath math="s=10" />, tanpa alasan.
-- <InlineMath math="1:\sqrt{5}" /> adalah perbandingan sisi. **Soal menanyakan perbandingan luas**, jadi perbandingan sisi masih harus dikuadratkan.
-- <InlineMath math="1:2" /> adalah perbandingan untuk persegi yang keempat titik sudutnya ada pada lingkaran, dengan diagonal <InlineMath math="20" /> dan luas <InlineMath math="200" />. Di sini <InlineMath math="P" /> dan <InlineMath math="Q" /> ada pada diameter, bukan pada lingkaran.
+- <InlineMath math="1:5" /> memakai garis <InlineMath math="g" /> yang melalui <InlineMath math="O" />, sehingga <InlineMath math="s^2=80" />. Garis <InlineMath math="g" /> di soal ini berjarak <InlineMath math="4\text{ cm}" /> dari <InlineMath math="O" />.
+- <InlineMath math="49:625" /> adalah persegi yang menggantung di bawah <InlineMath math="g" />, <InlineMath math="5{,}6^2:400" />. **Itu persegi yang lebih kecil**.
+- <InlineMath math="16:25" /> meletakkan alas persegi pada sisi <InlineMath math="AB" />, sehingga sisinya <InlineMath math="16" />.
+- <InlineMath math="3:5" /> adalah perbandingan sisi <InlineMath math="12:20" />, bukan perbandingan luas.
 
-Jadi, perbandingan luas persegi <InlineMath math="PQRS" /> terhadap luas persegi <InlineMath math="ABCD" /> adalah <InlineMath math="1:5" />.
+Jadi, perbandingan luasnya adalah <InlineMath math="9:25" />.

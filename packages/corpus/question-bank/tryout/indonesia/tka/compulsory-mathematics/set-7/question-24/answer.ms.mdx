@@ -1,4 +1,4 @@
-Soalan ini ada dua syarat serentak: penghantar **mesti melalui <InlineMath math="C" />** dan **tidak boleh melalui <InlineMath math="X" />**. Cara yang kemas ialah memotong setiap laluan di <InlineMath math="C" />, mengira setiap bahagian, kemudian mendarabkannya.
+Penghantar boleh mengambil bungkusan di <InlineMath math="C" />, di <InlineMath math="D" />, atau di kedua-duanya, dan tidak boleh melalui <InlineMath math="X" />. **Laluan melalui <InlineMath math="C" /> dan laluan melalui <InlineMath math="D" /> bertindih sebahagiannya**, jadi kira setiap satu secara berasingan, kemudian gabungkan dengan prinsip inklusi dan eksklusi: laluan yang melalui kedua-duanya hanya boleh dikira sekali.
 
 # Cara mengira laluan pada grid
 
@@ -76,20 +76,42 @@ Semak bahagian pertama dengan menulis bilangan laluan pada setiap persimpangan. 
 
 Semak dengan cara lain. Laluan yang mengelakkan <InlineMath math="X" /> merentasi garis <InlineMath math="x=2" /> hanya pada <InlineMath math="y=0" /> atau hanya pada <InlineMath math="y=2" />. Melalui bawah, laluan itu pergi ke <InlineMath math="(3,0)" /> kemudian ke <InlineMath math="C" />, iaitu <InlineMath math="\binom{3}{1}=3" /> laluan. Melalui atas, laluan itu pergi ke <InlineMath math="(1,2)" /> dahulu, iaitu <InlineMath math="\binom{3}{1}=3" /> laluan, kemudian terus ke <InlineMath math="C" />. Jumlahnya <InlineMath math="3+3=6" />, sepadan.
 
-# Dari C ke B dan jumlahnya
+# Laluan melalui C
 
 Dari <InlineMath math="C(4,2)" /> ke <InlineMath math="B(6,4)" /> memerlukan <InlineMath math="2" /> langkah ke timur dan <InlineMath math="2" /> langkah ke utara. Simpang <InlineMath math="X" /> berada di luar bahagian grid ini, jadi tiada apa yang ditolak. **Setiap bahagian pertama boleh disambung dengan setiap bahagian kedua**, jadi hasilnya didarab.
 
 <BlockMath math="\begin{aligned}
 C\to B&:\ \binom{4}{2}=6 \\
-\text{bilangan laluan}&=6\cdot6=36
+\text{laluan melalui }C&=6\cdot6=36
 \end{aligned}" />
+
+# Laluan melalui D
+
+Titik <InlineMath math="D(1,2)" /> sudah berada di atas baris <InlineMath math="y=1" />, jadi **laluan dari <InlineMath math="D" /> tidak mungkin turun semula ke <InlineMath math="X(2,1)" />**. Bahagian <InlineMath math="A\to D" /> juga tidak melalui <InlineMath math="X" />, kerana <InlineMath math="X" /> berada di sebelah kanan <InlineMath math="D" />.
+
+<BlockMath math="\begin{aligned}
+A\to D&:\ \binom{3}{1}=3 \\
+D\to B&:\ \binom{7}{2}=21 \\
+\text{laluan melalui }D&=3\cdot21=63
+\end{aligned}" />
+
+# Laluan melalui kedua-duanya
+
+Laluan melalui <InlineMath math="D" /> dan <InlineMath math="C" /> berjalan <InlineMath math="A\to D\to C\to B" />. Dari <InlineMath math="D(1,2)" /> ke <InlineMath math="C(4,2)" /> **hanya ada satu laluan**, iaitu lurus ke timur di sepanjang <InlineMath math="y=2" />.
+
+<BlockMath math="3\cdot1\cdot6=18" />
+
+# Bilangan laluan keseluruhan
+
+**Laluan melalui kedua-duanya sudah dikira dalam <InlineMath math="36" /> dan sekali lagi dalam <InlineMath math="63" />**, jadi tolak sekali.
+
+<BlockMath math="36+63-18=81" />
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="105" /> mengelakkan <InlineMath math="X" /> tetapi terlupa singgah di <InlineMath math="C" />: <InlineMath math="\binom{10}{4}-\binom{3}{1}\binom{7}{3}=210-105=105" />.
-- <InlineMath math="90" /> singgah di <InlineMath math="C" /> tetapi terlupa simpang yang ditutup: <InlineMath math="15\cdot6" />.
-- <InlineMath math="72" /> hanya menolak <InlineMath math="3" /> laluan <InlineMath math="A\to X" />, sedangkan setiap laluan itu masih bercabang <InlineMath math="3" /> cara ke <InlineMath math="C" />: <InlineMath math="(15-3)\cdot6" />.
-- <InlineMath math="54" /> ialah bilangan laluan yang **memang melalui** <InlineMath math="X" />: <InlineMath math="9\cdot6" />. Itulah laluan yang perlu dibuang, bukan yang dicari.
+- <InlineMath math="105" /> mengira semua laluan yang mengelak <InlineMath math="X" /> tanpa syarat singgah, termasuk <InlineMath math="24" /> laluan yang tidak melalui <InlineMath math="C" /> mahupun <InlineMath math="D" />.
+- <InlineMath math="99" /> menjumlahkan <InlineMath math="36+63" /> dan terlupa bahawa **<InlineMath math="18" /> laluan dikira dua kali**.
+- <InlineMath math="135" /> melupakan simpang yang ditutup, jadi laluan melalui <InlineMath math="C" /> terkira <InlineMath math="15\cdot6=90" />, kemudian <InlineMath math="90+63-18" />.
+- <InlineMath math="63" /> hanya mengira laluan melalui <InlineMath math="D" /> dan kehilangan kes laluan yang singgah di <InlineMath math="C" /> sahaja.
 
-Jadi, bilangan laluan berbeza yang boleh dilalui penghantar ialah <InlineMath math="36" />.
+Jadi, penghantar mempunyai <InlineMath math="81" /> laluan yang berbeza.

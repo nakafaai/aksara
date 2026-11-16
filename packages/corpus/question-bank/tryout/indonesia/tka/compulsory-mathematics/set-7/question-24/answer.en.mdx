@@ -1,4 +1,4 @@
-This question has two conditions at once: the courier **has to pass <InlineMath math="C" />** and **must not pass <InlineMath math="X" />**. The tidy way is to cut every route at <InlineMath math="C" />, count each part, and multiply.
+The courier may pick up the parcel at <InlineMath math="C" />, at <InlineMath math="D" />, or at both, and must not pass <InlineMath math="X" />. **The routes through <InlineMath math="C" /> and the routes through <InlineMath math="D" /> overlap**, so count each set on its own and combine them by inclusion and exclusion: a route through both may be counted only once.
 
 # How to count routes on a grid
 
@@ -76,20 +76,42 @@ Check the first part by writing the number of routes at every junction. **Each n
 
 Check another way. A route that avoids <InlineMath math="X" /> crosses the line <InlineMath math="x=2" /> only at <InlineMath math="y=0" /> or only at <InlineMath math="y=2" />. Along the bottom, it goes to <InlineMath math="(3,0)" /> and then to <InlineMath math="C" />, giving <InlineMath math="\binom{3}{1}=3" /> routes. Along the top, it first goes to <InlineMath math="(1,2)" />, giving <InlineMath math="\binom{3}{1}=3" /> routes, and then straight across to <InlineMath math="C" />. That's <InlineMath math="3+3=6" />, which matches.
 
-# From C to B and the total
+# Routes through C
 
 From <InlineMath math="C(4,2)" /> to <InlineMath math="B(6,4)" /> takes <InlineMath math="2" /> steps east and <InlineMath math="2" /> steps north. The junction <InlineMath math="X" /> is outside this part of the grid, so nothing gets subtracted. **Every first part joins with every second part**, so you multiply.
 
 <BlockMath math="\begin{aligned}
 C\to B&:\ \binom{4}{2}=6 \\
-\text{number of routes}&=6\cdot6=36
+\text{routes through }C&=6\cdot6=36
 \end{aligned}" />
+
+# Routes through D
+
+The point <InlineMath math="D(1,2)" /> is already above the row <InlineMath math="y=1" />, so **a route from <InlineMath math="D" /> can never drop back to <InlineMath math="X(2,1)" />**. The part <InlineMath math="A\to D" /> doesn't pass <InlineMath math="X" /> either, because <InlineMath math="X" /> lies to the right of <InlineMath math="D" />.
+
+<BlockMath math="\begin{aligned}
+A\to D&:\ \binom{3}{1}=3 \\
+D\to B&:\ \binom{7}{2}=21 \\
+\text{routes through }D&=3\cdot21=63
+\end{aligned}" />
+
+# Routes through both
+
+A route through <InlineMath math="D" /> and <InlineMath math="C" /> runs <InlineMath math="A\to D\to C\to B" />. From <InlineMath math="D(1,2)" /> to <InlineMath math="C(4,2)" /> there is **only one route**, straight east along <InlineMath math="y=2" />.
+
+<BlockMath math="3\cdot1\cdot6=18" />
+
+# The total number of routes
+
+**The routes through both are already counted in <InlineMath math="36" /> and again in <InlineMath math="63" />**, so subtract them once.
+
+<BlockMath math="36+63-18=81" />
 
 # Why the other options are wrong
 
-- <InlineMath math="105" /> avoids <InlineMath math="X" /> but forgets the stop at <InlineMath math="C" />: <InlineMath math="\binom{10}{4}-\binom{3}{1}\binom{7}{3}=210-105=105" />.
-- <InlineMath math="90" /> stops at <InlineMath math="C" /> but forgets the closed junction: <InlineMath math="15\cdot6" />.
-- <InlineMath math="72" /> only subtracts the <InlineMath math="3" /> routes <InlineMath math="A\to X" />, but each of those still branches <InlineMath math="3" /> ways to <InlineMath math="C" />: <InlineMath math="(15-3)\cdot6" />.
-- <InlineMath math="54" /> is the number of routes that **do pass** <InlineMath math="X" />: <InlineMath math="9\cdot6" />. Those are the ones to throw away, not the ones you want.
+- <InlineMath math="105" /> counts every route that avoids <InlineMath math="X" /> without the pickup condition, including the <InlineMath math="24" /> routes that pass neither <InlineMath math="C" /> nor <InlineMath math="D" />.
+- <InlineMath math="99" /> adds <InlineMath math="36+63" /> and forgets that **<InlineMath math="18" /> routes are counted twice**.
+- <InlineMath math="135" /> forgets the closed junction, so the routes through <InlineMath math="C" /> come out as <InlineMath math="15\cdot6=90" />, then <InlineMath math="90+63-18" />.
+- <InlineMath math="63" /> only counts the routes through <InlineMath math="D" /> and loses the case of routes that stop at <InlineMath math="C" /> only.
 
-So the courier has <InlineMath math="36" /> different routes.
+So the courier has <InlineMath math="81" /> different routes.

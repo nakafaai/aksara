@@ -2,30 +2,41 @@ All three statements are about changes in a mean salary. The safest way is to **
 
 # The March situation
 
-From the table, the sewing total is <InlineMath math="15\cdot4.8=72" /> and the design total is <InlineMath math="5\cdot7.2=36" />. So the overall total and the overall mean are:
-
-<BlockMath math="\bar{x}=\frac{72+36}{20}=\frac{108}{20}=5.4" />
-
-Compare the rise in the combined average for the three changes that keep the same <InlineMath math="20" /> employees. **The first bar does not pass the line at <InlineMath math="0.5" />**, and the last two bars are equal because both add <InlineMath math="7.2" /> million to the total.
-
-<Chart
-  title={<>Rise in the average salary for each change</>}
-  description={<>A <InlineMath math="25\%" /> raise for design lifts the combined average by <InlineMath math="0.45" /> million. A <InlineMath math="10\%" /> raise for sewing and a raise of <InlineMath math="1.44" /> million per design employee both lift it by <InlineMath math="0.36" /> million. The horizontal line marks <InlineMath math="0.5" /> million.</>}
-  bars="apart"
-  categories={["Design up 25%", "Sewing up 10%", "Design up 1.44 million"]}
-  series={[
-    { label: "Rise in average", mark: "bar", values: [0.45, 0.36, 0.36] },
-    { label: "Limit 0.5 million", mark: "line", values: [0.5, 0.5, 0.5] },
-  ]}
-  valueLabel="Million rupiah"
-/>
-
-When the head count stays at <InlineMath math="20" />, **the rise in the overall mean equals the rise in the total divided by <InlineMath math="20" />**. You'll use this for the first and third statements.
+From the table, the sewing total is <InlineMath math="15\cdot4.8=72" /> and the design total is <InlineMath math="5\cdot7.2=36" />, so the overall total is <InlineMath math="108" /> for <InlineMath math="20" /> people and **the mean is <InlineMath math="5.4" />**.
 
 # Judging each statement
 
-1. **False**. The <InlineMath math="25\%" /> raise only applies to the design total, so it adds <InlineMath math="0.25\cdot36=9" />. The overall mean goes up by <InlineMath math="\frac{9}{20}=0.45" />, which isn't more than <InlineMath math="0.5" />. Each design employee does get <InlineMath math="0.25\cdot7.2=1.8" /> more, but only <InlineMath math="5" /> of the <InlineMath math="20" /> people get it. If you take the mean of the two means, the rise looks like <InlineMath math="\frac{1.8}{2}=0.9" />, but the two departments aren't the same size.
-2. **True**. The total becomes <InlineMath math="108+10\cdot7.2=180" /> for <InlineMath math="20+10=30" /> people, so the mean is <InlineMath math="\frac{180}{30}=6" />. That makes sense: both departments now have <InlineMath math="15" /> people, so the overall mean sits exactly halfway between <InlineMath math="4.8" /> and <InlineMath math="7.2" />.
-3. **True**. A <InlineMath math="10\%" /> raise for sewing adds <InlineMath math="0.1\cdot72=7.2" /> to the total. A raise of <InlineMath math="1.44" /> for each design employee adds <InlineMath math="5\cdot1.44=7.2" />. Both add the same amount to the total for the same <InlineMath math="20" /> people, so the overall mean goes up by <InlineMath math="\frac{7.2}{20}=0.36" /> either way.
+1. **False**. The design raise adds <InlineMath math="0.25\cdot36=9" />, but the sewing cut removes <InlineMath math="0.15\cdot72=10.8" />. The total falls by <InlineMath math="1.8" />, so the mean drops to <InlineMath math="5.31" />. **The percentages have to be weighted by each department's salary total**. A plain average of <InlineMath math="+25\%" /> and <InlineMath math="-15\%" />, which is <InlineMath math="+5\%" />, makes it look like a rise.
+2. **True**. With <InlineMath math="k" /> new employees, the mean is <InlineMath math="\frac{108+7.2k}{20+k}" />. The denominator is positive, so a mean of at least <InlineMath math="6" /> is the same as <InlineMath math="108+7.2k\ge120+6k" />, that is <InlineMath math="1.2k\ge12" /> or <InlineMath math="k\ge10" />. Both directions hold, so the words **exactly when** are right.
+3. **True**. The total becomes <InlineMath math="108-9=99" /> for <InlineMath math="17" /> people, so the mean is <InlineMath math="\frac{99}{17}\approx5.82" />. The rise is about <InlineMath math="0.42" />, more than <InlineMath math="0.4" />. If you keep counting <InlineMath math="20" /> people, the mean even seems to fall.
+
+Draw the overall mean as a function of the number of new employees <InlineMath math="k" /> in the second statement. **The curve rises and reaches the line <InlineMath math="6" /> exactly at <InlineMath math="k=10" />**, so the condition holds for <InlineMath math="k\ge10" /> and not for any smaller <InlineMath math="k" />.
+
+<MathVisual
+  title={<>Mean salary by the number of new design employees</>}
+  description={<>The horizontal axis is the number of new employees <InlineMath math="k" /> and the vertical axis is the overall mean salary in millions of rupiah, <InlineMath math="\frac{108+7.2k}{20+k}" />. The curve starts at <InlineMath math="5.4" /> at <InlineMath math="k=0" />, rises, and meets the horizontal line <InlineMath math="6" /> at <InlineMath math="k=10" />.</>}
+  labels={{
+    six: <InlineMath math="6" />,
+    ten: <InlineMath math="(10,\ 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: 5.2, max: 6.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mean", kind: "function", appearance: "primary", formula: "(108 + 7.2x) / (20 + x)", domain: { min: 0, max: 30 } },
+      { id: "six", kind: "function", appearance: "reference", formula: "6", domain: { min: -1, max: 31 } },
+      { id: "ten", kind: "point", appearance: "answer", at: { x: 10, y: 6 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 27, y: 6 }, placement: "below" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 So the first statement is false, and the second and third statements are true.

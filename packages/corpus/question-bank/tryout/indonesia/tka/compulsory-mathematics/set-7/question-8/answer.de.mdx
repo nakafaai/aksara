@@ -1,74 +1,68 @@
 # Die erste Reihe und der Abstand zwischen den Reihen
 
-Gefragt ist die Zahl der Plätze in der letzten Reihe, aber die Zahl der Reihen kennst du noch nicht. Die Reihenfolge ist also: erst die erste Reihe <InlineMath math="a" /> und die Differenz <InlineMath math="b" />, dann die Zahl der Reihen <InlineMath math="n" />, und erst dann die Reihe <InlineMath math="n" />. **Jeder Schritt benutzt das Ergebnis des vorigen**.
-
-Das <InlineMath math="k" />-te Glied einer arithmetischen Folge ist <InlineMath math="u_k=a+(k-1)b" />.
+Die Reihenfolge ist: zuerst die erste Reihe <InlineMath math="a" /> und die Differenz <InlineMath math="b" />, dann die Plätze, die nach dem Abbau von zwei Reihen übrig bleiben, dann die Zahl der Reihen <InlineMath math="n" /> und erst danach Reihe <InlineMath math="n" />. **Jeder Schritt braucht das Ergebnis des vorigen**.
 
 <BlockMath math="\begin{aligned}
-u_{12}-u_5&=(a+11b)-(a+4b)=7b=40-26=14 \\
-b&=2 \\
-a&=26-4\cdot2=18
+u_{12}-u_5&=7b=40-26=14\ \Rightarrow\ b=2 \\
+a&=u_5-4b=26-8=18
 \end{aligned}" />
 
-Die erste Reihe hat <InlineMath math="18" /> Plätze, und jede weitere Reihe hat <InlineMath math="2" /> Plätze mehr.
+# Die übrigen Plätze
+
+Ist die letzte Reihe die Reihe <InlineMath math="n" />, haben die Reihen <InlineMath math="1" /> bis <InlineMath math="n" /> zusammen <InlineMath math="S_n=\frac n2\left(2a+(n-1)b\right)=n(n+17)" /> Plätze. **Die beiden vorderen Reihen sind abgebaut**, also müssen ihre <InlineMath math="18+20=38" /> Plätze abgezogen werden.
+
+<BlockMath math="n(n+17)-38\ge960\ \Leftrightarrow\ n(n+17)\ge998" />
 
 # Die Zahl der Reihen
 
-Die Summe der ersten <InlineMath math="n" /> Glieder ist <InlineMath math="S_n=\frac n2\left(2a+(n-1)b\right)" />. Setze sie gleich <InlineMath math="1{.}050" />.
+Die ursprünglichen <InlineMath math="20" /> Reihen liefern nur <InlineMath math="20\cdot37-38=702" /> Plätze, also müssen wirklich Reihen dazukommen. Probiere die ganzen Zahlen nahe der Grenze.
 
 <BlockMath math="\begin{aligned}
-\frac n2\left(36+2(n-1)\right)&=1{.}050 \\
-n(n+17)&=1{.}050 \\
-n^2+17n-1{.}050&=0 \\
-(n-25)(n+42)&=0
+n=24&:\ 24\cdot41=984<998 \\
+n=25&:\ 25\cdot42=1{.}050\ge998
 \end{aligned}" />
 
-Zeichne die Sitzzahl der ersten <InlineMath math="n" /> Reihen als Funktion von <InlineMath math="n" />. **Die Kurve trifft die Linie <InlineMath math="1{.}050" /> für positives <InlineMath math="n" /> genau einmal**, bei <InlineMath math="n=25" />. Die negative Lösung der quadratischen Gleichung hat hier keine Bedeutung.
+**Reihe <InlineMath math="24" /> reicht noch nicht**, also ist die letzte Reihe die Reihe <InlineMath math="25" />. Zeichne die übrigen Plätze als Funktion der Nummer der letzten Reihe. Die Kurve überschreitet die Linie <InlineMath math="960" /> erst zwischen <InlineMath math="n=24" /> und <InlineMath math="n=25" />.
 
 <MathVisual
-  title={<>Sitzzahl nach Anzahl der Reihen</>}
-  description={<>Die waagerechte Achse ist die Anzahl der Reihen <InlineMath math="n" />, die senkrechte Achse die Gesamtzahl der Sitze. Die Kurve <InlineMath math="S_n=n(n+17)" /> steigt vom Ursprung aus immer schneller. Die waagerechte Linie bei <InlineMath math="1{.}050" /> trifft die Kurve in <InlineMath math="(25,\ 1{.}050)" />.</>}
+  title={<>Übrige Plätze nach der Nummer der letzten Reihe</>}
+  description={<>Die waagerechte Achse ist die Nummer der letzten Reihe, die senkrechte Achse die Zahl der Plätze nach dem Abbau der beiden vorderen Reihen, <InlineMath math="n(n+17)-38" />. Bei <InlineMath math="n=24" /> sind es <InlineMath math="946" />, noch unter der Linie <InlineMath math="960" />, bei <InlineMath math="n=25" /> sind es <InlineMath math="1{.}012" />, schon darüber.</>}
   labels={{
-    total: <InlineMath math="S_n=n(n+17)" />,
-    target: <InlineMath math="1{.}050" />,
-    hit: <InlineMath math="(25,\ 1{.}050)" />,
+    short: <InlineMath math="(24,\ 946)" />,
+    enough: <InlineMath math="(25,\ 1{.}012)" />,
+    target: <InlineMath math="960" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -1, max: 31 },
-      y: { min: -40, max: 1400 },
+      x: { min: 19.5, max: 26.5 },
+      y: { min: 650, max: 1100 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "total", kind: "function", appearance: "primary", formula: "x(x + 17)", domain: { min: 0, max: 30 } },
-      { id: "target", kind: "function", appearance: "reference", formula: "1050", domain: { min: 0, max: 30 } },
-      { id: "hit", kind: "point", appearance: "answer", at: { x: 25, y: 1050 } },
+      { id: "total", kind: "function", appearance: "primary", formula: "x(x + 17) - 38", domain: { min: 20, max: 26 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "960", domain: { min: 19.5, max: 26.5 } },
+      { id: "short", kind: "point", appearance: "secondary", at: { x: 24, y: 946 } },
+      { id: "enough", kind: "point", appearance: "answer", at: { x: 25, y: 1012 } },
     ],
     labels: [
-      { key: "total", objectId: "total", at: { x: 15, y: 480 }, placement: "below-right" },
-      { key: "target", objectId: "target", at: { x: 5, y: 1050 }, placement: "above" },
-      { key: "hit", objectId: "hit", at: { x: 25, y: 1050 }, placement: "below-right" },
+      { key: "target", objectId: "target", at: { x: 20.5, y: 960 }, placement: "above" },
+      { key: "short", objectId: "short", at: { x: 24, y: 946 }, placement: "below-right" },
+      { key: "enough", objectId: "enough", at: { x: 25, y: 1012 }, placement: "above-left" },
     ],
   }}
 />
 
-Die Lösungen sind <InlineMath math="n=25" /> und <InlineMath math="n=-42" />. **Eine Anzahl von Reihen kann nicht negativ sein**, also ist <InlineMath math="n=25" />.
-
 # Die letzte Reihe
-
-Die letzte Reihe ist die Reihe <InlineMath math="25" />. Benutze wieder die Formel für das <InlineMath math="k" />-te Glied mit <InlineMath math="a=18" /> und <InlineMath math="b=2" />.
 
 <BlockMath math="u_{25}=18+24\cdot2=66" />
 
-Zur Kontrolle: <InlineMath math="S_{25}=\frac{25}{2}(18+66)=25\cdot42=1{.}050" />. **Die Summe passt zur Aufgabe**.
-
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="42" /> ist die durchschnittliche Zahl der Plätze pro Reihe, <InlineMath math="1{.}050:25" />. Bei einer arithmetischen Folge ist dieser Durchschnitt die mittlere Reihe (Reihe <InlineMath math="13" />), **nicht die letzte Reihe**.
-- <InlineMath math="68" /> benutzt die falsche Formel <InlineMath math="u_n=a+nb=18+25\cdot2" />. Die erste Reihe hat noch keinen Zuwachs, der Faktor ist also <InlineMath math="n-1" />.
-- <InlineMath math="84" /> kommt aus <InlineMath math="S_n=\frac n2(a+u_n)" />, vergisst aber, <InlineMath math="a" /> abzuziehen. Richtig ist <InlineMath math="u_n=\frac{2S_n}{n}-a=84-18=66" />.
-- <InlineMath math="100" /> benutzt <InlineMath math="n=42" />, also die Lösung <InlineMath math="-42" /> ohne ihr Vorzeichen. Mit <InlineMath math="42" /> Reihen wären es weit mehr als <InlineMath math="1{.}050" /> Plätze.
+- <InlineMath math="62" /> nummeriert die übrigen Reihen neu ab <InlineMath math="1" />, sodass die letzte Reihe als Reihe <InlineMath math="23" /> gilt. **Das Muster der Plätze folgt aber weiter den ursprünglichen Nummern**.
+- <InlineMath math="64" /> vergisst, die <InlineMath math="38" /> Plätze der abgebauten Reihen abzuziehen. Die Bedingung <InlineMath math="n(n+17)\ge960" /> gilt schon bei <InlineMath math="n=24" />.
+- <InlineMath math="44" /> ist die durchschnittliche Zahl der Plätze pro übriger Reihe, <InlineMath math="\frac{22+66}{2}" />, nicht die letzte Reihe.
+- <InlineMath math="70" /> fügt noch zwei Reihen als Ersatz für die abgebauten hinzu, obwohl die Bedingung von <InlineMath math="960" /> Plätzen schon mit Reihe <InlineMath math="25" /> erfüllt ist.
 
-Die Reihe <InlineMath math="n" /> hat also <InlineMath math="66" /> Plätze.
+Also hat die letzte Reihe <InlineMath math="66" /> Plätze.

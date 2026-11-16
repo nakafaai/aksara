@@ -1,4 +1,4 @@
-Soal ini punya dua syarat sekaligus: kurir **harus lewat <InlineMath math="C" />** dan **tidak boleh lewat <InlineMath math="X" />**. Cara yang rapi adalah memotong rute di <InlineMath math="C" />, menghitung setiap bagian, lalu mengalikannya.
+Kurir boleh mengambil paket di <InlineMath math="C" />, di <InlineMath math="D" />, atau di keduanya, dan tidak boleh lewat <InlineMath math="X" />. **Rute yang lewat <InlineMath math="C" /> dan rute yang lewat <InlineMath math="D" /> sebagian sama**, jadi keduanya dihitung terpisah lalu digabung dengan prinsip inklusi-eksklusi: rute yang lewat keduanya hanya boleh dihitung sekali.
 
 # Cara menghitung rute pada petak
 
@@ -76,20 +76,42 @@ Cek hitungan bagian pertama dengan menulis banyak rute di setiap persimpangan. *
 
 Cek dengan cara lain. Rute yang menghindari <InlineMath math="X" /> melintasi garis <InlineMath math="x=2" /> hanya di <InlineMath math="y=0" /> atau hanya di <InlineMath math="y=2" />. Lewat bawah, rute itu ke <InlineMath math="(3,0)" /> lalu ke <InlineMath math="C" />, ada <InlineMath math="\binom{3}{1}=3" /> rute. Lewat atas, rute itu ke <InlineMath math="(1,2)" /> dulu, ada <InlineMath math="\binom{3}{1}=3" /> rute, lalu lurus ke <InlineMath math="C" />. Totalnya <InlineMath math="3+3=6" />, cocok.
 
-# Bagian dari C ke B dan totalnya
+# Rute yang lewat C
 
 Dari <InlineMath math="C(4,2)" /> ke <InlineMath math="B(6,4)" /> perlu <InlineMath math="2" /> langkah timur dan <InlineMath math="2" /> langkah utara. Persimpangan <InlineMath math="X" /> ada di luar petak ini, jadi tidak ada yang dikurangi. **Setiap bagian pertama bisa disambung dengan setiap bagian kedua**, jadi hasilnya dikalikan.
 
 <BlockMath math="\begin{aligned}
 C\to B&:\ \binom{4}{2}=6 \\
-\text{banyak rute}&=6\cdot6=36
+\text{rute lewat }C&=6\cdot6=36
 \end{aligned}" />
+
+# Rute yang lewat D
+
+Titik <InlineMath math="D(1,2)" /> sudah berada di atas baris <InlineMath math="y=1" />, jadi **rute dari <InlineMath math="D" /> tidak mungkin turun lagi ke <InlineMath math="X(2,1)" />**. Bagian <InlineMath math="A\to D" /> juga tidak melewati <InlineMath math="X" />, karena <InlineMath math="X" /> berada di kanan <InlineMath math="D" />.
+
+<BlockMath math="\begin{aligned}
+A\to D&:\ \binom{3}{1}=3 \\
+D\to B&:\ \binom{7}{2}=21 \\
+\text{rute lewat }D&=3\cdot21=63
+\end{aligned}" />
+
+# Rute yang lewat keduanya
+
+Rute yang lewat <InlineMath math="D" /> dan <InlineMath math="C" /> berjalan <InlineMath math="A\to D\to C\to B" />. Dari <InlineMath math="D(1,2)" /> ke <InlineMath math="C(4,2)" /> **hanya ada satu rute**, yaitu lurus ke timur di sepanjang <InlineMath math="y=2" />.
+
+<BlockMath math="3\cdot1\cdot6=18" />
+
+# Banyak rute seluruhnya
+
+**Rute yang lewat keduanya sudah terhitung di <InlineMath math="36" /> dan juga di <InlineMath math="63" />**, jadi kurangkan sekali.
+
+<BlockMath math="36+63-18=81" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="105" /> menghindari <InlineMath math="X" /> tetapi lupa singgah di <InlineMath math="C" />: <InlineMath math="\binom{10}{4}-\binom{3}{1}\binom{7}{3}=210-105=105" />.
-- <InlineMath math="90" /> singgah di <InlineMath math="C" /> tetapi lupa persimpangan yang ditutup: <InlineMath math="15\cdot6" />.
-- <InlineMath math="72" /> hanya mengurangkan <InlineMath math="3" /> rute <InlineMath math="A\to X" />, padahal setiap rute itu masih bercabang <InlineMath math="3" /> cara ke <InlineMath math="C" />: <InlineMath math="(15-3)\cdot6" />.
-- <InlineMath math="54" /> adalah banyak rute yang **justru lewat** <InlineMath math="X" />: <InlineMath math="9\cdot6" />. Itu bagian yang harus dibuang, bukan yang dicari.
+- <InlineMath math="105" /> menghitung semua rute yang menghindari <InlineMath math="X" /> tanpa syarat singgah, termasuk <InlineMath math="24" /> rute yang tidak lewat <InlineMath math="C" /> maupun <InlineMath math="D" />.
+- <InlineMath math="99" /> menjumlahkan <InlineMath math="36+63" /> dan lupa bahwa **<InlineMath math="18" /> rute terhitung dua kali**.
+- <InlineMath math="135" /> melupakan persimpangan yang ditutup, sehingga rute lewat <InlineMath math="C" /> terhitung <InlineMath math="15\cdot6=90" />, lalu <InlineMath math="90+63-18" />.
+- <InlineMath math="63" /> hanya menghitung rute lewat <InlineMath math="D" /> dan kehilangan kasus rute yang singgah di <InlineMath math="C" /> saja.
 
-Jadi, banyak rute berbeda yang dapat ditempuh kurir adalah <InlineMath math="36" />.
+Jadi, kurir punya <InlineMath math="81" /> rute berbeda.

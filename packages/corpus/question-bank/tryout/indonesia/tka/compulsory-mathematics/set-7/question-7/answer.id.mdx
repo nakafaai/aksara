@@ -1,77 +1,73 @@
-# Tagihan sebelum potongan
+# Tagihan Mei sebelum potongan
 
-Soal ini berjalan mundur: dari uang yang dibayar, kamu mencari pemakaian air. Langkah pertama adalah membuang potongan. Potongan <InlineMath math="25\%" /> dihitung dari total tagihan, jadi **yang dibayar adalah <InlineMath math="75\%" /> dari tagihan awal**.
+Soal ini punya dua tahap. Dari uang bulan Mei kamu mencari pemakaian Mei, lalu pemakaian itu dibawa ke bulan Juni. Potongan <InlineMath math="25\%" /> dihitung dari total tagihan, jadi **yang dibayar pada bulan Mei adalah <InlineMath math="75\%" /> dari tagihan awal**.
 
 <BlockMath math="\begin{aligned}
 0{,}75\cdot T&=120{.}000 \\
 T&=\frac{120{.}000}{0{,}75}=160{.}000
 \end{aligned}" />
 
-Tagihan sebelum potongan adalah <InlineMath math="\text{Rp}160{.}000" />.
+# Pemakaian bulan Mei
 
-# Menentukan blok pemakaian
-
-Tarifnya berbeda di setiap blok, jadi kamu harus tahu dulu pemakaiannya jatuh di blok mana. Hitung tagihan tepat di batas blok.
+Tarifnya berbeda di setiap blok, jadi cari dulu blok tempat tagihan <InlineMath math="160{.}000" /> berada. Hitung tagihan tepat di batas blok.
 
 <BlockMath math="\begin{aligned}
 T(10)&=40{.}000+10\cdot3{.}000=70{.}000 \\
 T(30)&=70{.}000+20\cdot5{.}000=170{.}000
 \end{aligned}" />
 
-Karena <InlineMath math="70{.}000<160{.}000<170{.}000" />, **pemakaiannya berada di blok kedua**, yaitu di atas <InlineMath math="10\text{ m}^3" /> dan tidak lebih dari <InlineMath math="30\text{ m}^3" />.
+Karena <InlineMath math="70{.}000<160{.}000<170{.}000" />, **pemakaian Mei berada di blok kedua**.
 
-# Menghitung pemakaian
+<BlockMath math="70{.}000+5{.}000\,(u-10)=160{.}000\ \Rightarrow\ u-10=18\ \Rightarrow\ u=28" />
 
-Di blok kedua, tagihan untuk pemakaian <InlineMath math="u" /> adalah <InlineMath math="70{.}000" /> ditambah <InlineMath math="5{.}000" /> untuk setiap <InlineMath math="\text{m}^3" /> di atas <InlineMath math="10" />.
+# Tagihan bulan Juni
+
+Pemakaian Juni <InlineMath math="50\%" /> lebih banyak, jadi <InlineMath math="1{,}5\cdot28=42\text{ m}^3" />. **Pemakaian ini melewati batas <InlineMath math="30\text{ m}^3" />**, sehingga <InlineMath math="12\text{ m}^3" /> terakhir dikenai tarif <InlineMath math="\text{Rp}8{.}000" />.
 
 <BlockMath math="\begin{aligned}
-70{.}000+5{.}000\,(u-10)&=160{.}000 \\
-5{.}000\,(u-10)&=90{.}000 \\
-u-10&=18 \\
-u&=28
+T(42)&=40{.}000+10\cdot3{.}000+20\cdot5{.}000+12\cdot8{.}000 \\
+&=40{.}000+30{.}000+100{.}000+96{.}000=266{.}000
 \end{aligned}" />
 
-Gambar tagihan sebelum potongan sebagai fungsi pemakaian. **Garis tagihan <InlineMath math="160" /> ribu memotong grafik di blok kedua**, sebelum titik belok <InlineMath math="(30,\ 170)" />, jadi pemakaiannya dicari dengan tarif <InlineMath math="5{.}000" /> per meter kubik.
+Pelanggan membayar setelah tanggal <InlineMath math="10" />, jadi tidak ada potongan. Gambar tagihan sebagai fungsi pemakaian. **Titik Mei ada di blok kedua, sedangkan titik Juni sudah masuk blok ketiga yang lebih curam**, jadi tagihan Juni tidak sama dengan <InlineMath math="1{,}5" /> kali tagihan Mei.
 
 <MathVisual
   title={<>Tagihan sebelum potongan menurut pemakaian air</>}
-  description={<>Sumbu mendatar adalah pemakaian dalam meter kubik, sumbu tegak adalah tagihan dalam ribu rupiah. Grafik mulai dari <InlineMath math="40" />, naik <InlineMath math="3" /> per meter kubik sampai <InlineMath math="70" /> di <InlineMath math="10\text{ m}^3" />, naik <InlineMath math="5" /> per meter kubik sampai <InlineMath math="170" /> di <InlineMath math="30\text{ m}^3" />, lalu naik <InlineMath math="8" /> per meter kubik. Garis mendatar <InlineMath math="160" /> memotong grafik di <InlineMath math="(28,\ 160)" />.</>}
+  description={<>Sumbu mendatar adalah pemakaian dalam meter kubik, sumbu tegak adalah tagihan dalam ribu rupiah. Grafik mulai dari <InlineMath math="40" />, naik <InlineMath math="3" /> per meter kubik sampai <InlineMath math="70" /> di <InlineMath math="10\text{ m}^3" />, naik <InlineMath math="5" /> per meter kubik sampai <InlineMath math="170" /> di <InlineMath math="30\text{ m}^3" />, lalu naik <InlineMath math="8" /> per meter kubik. Titik Mei <InlineMath math="(28,\ 160)" /> ada di blok kedua, dan titik Juni <InlineMath math="(42,\ 266)" /> ada di blok ketiga.</>}
   labels={{
-    bill: <InlineMath math="160" />,
-    use: <InlineMath math="(28,\ 160)" />,
+    may: <InlineMath math="(28,\ 160)" />,
+    june: <InlineMath math="(42,\ 266)" />,
     edge: <InlineMath math="(30,\ 170)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -1, max: 36 },
-      y: { min: 25, max: 220 },
+      x: { min: -1, max: 47 },
+      y: { min: 25, max: 300 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "first", kind: "function", appearance: "primary", formula: "40 + 3x", domain: { min: 0, max: 10 } },
       { id: "second", kind: "function", appearance: "primary", formula: "70 + 5(x - 10)", domain: { min: 10, max: 30 } },
-      { id: "third", kind: "function", appearance: "primary", formula: "170 + 8(x - 30)", domain: { min: 30, max: 35 } },
-      { id: "bill", kind: "function", appearance: "reference", formula: "160", domain: { min: 0, max: 35 } },
-      { id: "use", kind: "point", appearance: "answer", at: { x: 28, y: 160 } },
-      { id: "edge", kind: "point", appearance: "secondary", at: { x: 30, y: 170 } },
+      { id: "third", kind: "function", appearance: "primary", formula: "170 + 8(x - 30)", domain: { min: 30, max: 45 } },
+      { id: "may", kind: "point", appearance: "secondary", at: { x: 28, y: 160 } },
+      { id: "edge", kind: "point", appearance: "reference", at: { x: 30, y: 170 } },
+      { id: "june", kind: "point", appearance: "answer", at: { x: 42, y: 266 } },
     ],
     labels: [
-      { key: "bill", objectId: "bill", at: { x: 4, y: 160 }, placement: "above" },
-      { key: "use", objectId: "use", at: { x: 28, y: 160 }, placement: "below-right" },
-      { key: "edge", objectId: "edge", at: { x: 30, y: 170 }, placement: "above-left" },
+      { key: "may", objectId: "may", at: { x: 28, y: 160 }, placement: "left" },
+      { key: "edge", objectId: "edge", at: { x: 30, y: 170 }, placement: "below-right" },
+      { key: "june", objectId: "june", at: { x: 42, y: 266 }, placement: "left" },
     ],
   }}
 />
 
-Sebagai pemeriksaan, tagihan untuk <InlineMath math="28\text{ m}^3" /> adalah <InlineMath math="40{.}000+30{.}000+90{.}000=160{.}000" />, dan setelah potongan menjadi <InlineMath math="0{,}75\cdot160{.}000=120{.}000" />. **Hasilnya sama dengan uang yang dibayar**.
-
 # Kenapa pilihan lain salah
 
-- <InlineMath math="18\text{ m}^3" /> hanya bagian di atas <InlineMath math="10\text{ m}^3" />. Bagian <InlineMath math="10\text{ m}^3" /> pertama lupa ditambahkan kembali.
-- <InlineMath math="20\text{ m}^3" /> menganggap <InlineMath math="\text{Rp}120{.}000" /> sebagai tagihan, yaitu lupa membuang potongan.
-- <InlineMath math="24\text{ m}^3" /> memakai tarif <InlineMath math="\text{Rp}5{.}000" /> untuk seluruh pemakaian, <InlineMath math="(160{.}000-40{.}000):5{.}000" />. Padahal <InlineMath math="10\text{ m}^3" /> pertama lebih murah.
-- <InlineMath math="26\text{ m}^3" /> menambahkan <InlineMath math="25\%" /> dari uang yang dibayar, sehingga tagihannya <InlineMath math="150{.}000" />. **Potongan dihitung dari tagihan awal, bukan dari uang yang dibayar**, jadi yang benar adalah membagi dengan <InlineMath math="0{,}75" />.
+- <InlineMath math="\text{Rp}170{.}000" /> menganggap <InlineMath math="\text{Rp}120{.}000" /> sebagai tagihan Mei tanpa membuang potongan. Pemakaian Mei lalu terbaca <InlineMath math="20\text{ m}^3" /> dan pemakaian Juni <InlineMath math="30\text{ m}^3" />.
+- <InlineMath math="\text{Rp}199{.}500" /> masih memberi potongan <InlineMath math="25\%" /> pada bulan Juni, padahal pembayarannya setelah tanggal <InlineMath math="10" />.
+- <InlineMath math="\text{Rp}230{.}000" /> memakai tarif <InlineMath math="\text{Rp}5{.}000" /> untuk seluruh bagian di atas <InlineMath math="10\text{ m}^3" /> dan melewatkan blok ketiga.
+- <InlineMath math="\text{Rp}240{.}000" /> mengalikan tagihan Mei dengan <InlineMath math="1{,}5" />. **Biaya beban tidak ikut naik dan tarifnya berubah per blok**, jadi tagihan tidak sebanding dengan pemakaian.
 
-Jadi, pemakaian air pelanggan itu adalah <InlineMath math="28\text{ m}^3" />.
+Jadi, uang yang dibayar untuk tagihan bulan Juni adalah <InlineMath math="\text{Rp}266{.}000" />.

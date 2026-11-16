@@ -1,49 +1,53 @@
-Gesucht ist das Durchschnittsgehalt der Designabteilung, nachdem eine Person gegangen ist. Ihr Gehalt ist nicht angegeben, du musst es also zuerst aus dem April-Durchschnitt aller Beschäftigten bestimmen. Ein Werkzeug reicht für alles: **Durchschnitt mal Anzahl ergibt die Summe**. Alle Beträge unten sind in Millionen Rupiah.
+Diese Aufgabe nennt zwei neue Durchschnitte, und beide werden nacheinander gebraucht. **Der Durchschnitt im Design verrät das Gehalt der ausgeschiedenen Person, dann verrät der Gesamtdurchschnitt das gemeinsame Gehalt der beiden Neuen, und die Untergrenze von <InlineMath math="3{,}5" /> Mio. begrenzt das höchste Gehalt**. Alle Beträge unten sind in Millionen Rupiah, und ein Werkzeug reicht: Durchschnitt mal Anzahl ist die Summe.
 
 # Gehaltssummen im März
-
-Mach aus jedem Durchschnitt in der Tabelle eine Summe. Die beiden Abteilungen sind verschieden groß, deshalb **ist der Gesamtdurchschnitt nicht der Durchschnitt der beiden Durchschnitte**. Addiert werden die Summen.
 
 <BlockMath math="\begin{aligned}
 \text{Näherei}&=15\cdot4{,}8=72 \\
 \text{Design}&=5\cdot7{,}2=36 \\
-\text{gesamt}&=72+36=108
+\text{alle}&=72+36=108
 \end{aligned}" />
 
 # Gehalt der ausgeschiedenen Person
 
-Nenn das Gehalt der Person aus dem Design, die gegangen ist, <InlineMath math="x" />. Im April **sind es <InlineMath math="20-1+2=21" /> Beschäftigte**. Die Aprilsumme kannst du auf zwei Arten schreiben, über den neuen Durchschnitt und über die Änderungen.
+Nachdem eine Person gegangen ist, hat die Designabteilung <InlineMath math="4" /> Leute mit einem Durchschnitt von <InlineMath math="7{,}35" />.
+
+<BlockMath math="36-g=4\cdot7{,}35=29{,}4\ \Rightarrow\ g=6{,}6" />
+
+**Die ausgeschiedene Person verdiente <InlineMath math="6{,}6" />, nicht <InlineMath math="7{,}2" />**. Der Durchschnitt einer Abteilung beschreibt die ganze Abteilung, nicht das Gehalt einer Person.
+
+# Das Gehalt der Neuen
+
+Im April gibt es <InlineMath math="20-1+2=21" /> Beschäftigte, also beträgt die Gehaltssumme <InlineMath math="21\cdot5{,}2=109{,}2" />. Die beiden Neuen verdienen <InlineMath math="s_1" /> und <InlineMath math="s_2" />.
 
 <BlockMath math="\begin{aligned}
-21\cdot5{,}2&=108-x+2\cdot3{,}9 \\
-109{,}2&=115{,}8-x \\
-x&=6{,}6
+108-6{,}6+s_1+s_2&=109{,}2 \\
+s_1+s_2&=7{,}8
 \end{aligned}" />
 
-Das Diagramm unten zeigt den Weg von den Gehaltssummen zum Durchschnitt im Design. **Die Gleichung für April arbeitet mit Summen, nicht mit Durchschnitten**, danach wird das Gehalt der ausscheidenden Person von der Designsumme abgezogen.
+Vergleiche die Summe jeder Gruppe in beiden Monaten. **Die Summe der Näherei steigt um <InlineMath math="7{,}8" /> für zwei Personen**, während die Summe im Design um <InlineMath math="6{,}6" /> für eine Person fällt.
 
-<Mermaid
-  title={<>Von den Märzsummen zum Designdurchschnitt im April</>}
-  description={<>Die Summe im März beträgt <InlineMath math="108" /> Millionen. Im April geht ein Gehalt <InlineMath math="x" />, und zwei Gehälter von <InlineMath math="3{,}9" /> Millionen kommen hinzu, also ist die Summe <InlineMath math="21\cdot5{,}2" />. Daraus folgt <InlineMath math="x=6{,}6" />, und der Durchschnitt der vier verbleibenden Designer ist <InlineMath math="(36-6{,}6)\div4=7{,}35" /> Millionen.</>}
-  chart={`flowchart TD
-  M["März: 72 + 36 = 108"] --> A["April: 108 − x + 2 · 3,9 = 21 · 5,2"]
-  A --> X["x = 6,6"]
-  X --> D["Design im April: (36 − 6,6) ÷ 4 = 7,35"]`}
+<Chart
+  title={<>Gehaltssummen im März und April</>}
+  description={<>In Millionen Rupiah steigt die Summe der Näherei von <InlineMath math="72" /> auf <InlineMath math="79{,}8" />, die Summe im Design fällt von <InlineMath math="36" /> auf <InlineMath math="29{,}4" />, und die Gesamtsumme steigt von <InlineMath math="108" /> auf <InlineMath math="109{,}2" />.</>}
+  bars="apart"
+  categories={["Näherei", "Design", "Alle"]}
+  series={[
+    { label: "März", mark: "bar", values: [72, 36, 108] },
+    { label: "April", mark: "bar", values: [79.8, 29.4, 109.2] },
+  ]}
+  valueLabel="Millionen Rupiah"
 />
 
-# Durchschnitt im Design im April
+# Das höchste mögliche Gehalt
 
-Die Designabteilung hat jetzt <InlineMath math="5-1=4" /> Personen, und ihre Summe sinkt um das Gehalt der Person, die gegangen ist.
-
-<BlockMath math="\frac{36-6{,}6}{4}=\frac{29{,}4}{4}=7{,}35" />
-
-Prüf die Richtung: Die Person verdiente <InlineMath math="6{,}6" />, also **weniger als der Designdurchschnitt von <InlineMath math="7{,}2" />**. Wenn ein Wert unter dem Durchschnitt wegfällt, steigt der Durchschnitt, also passt <InlineMath math="7{,}35" />.
+Die Summe <InlineMath math="7{,}8" /> lässt sich auf viele Arten aufteilen. Damit <InlineMath math="s_1" /> möglichst groß wird, muss <InlineMath math="s_2" /> möglichst klein sein, also <InlineMath math="3{,}5" />. Dann ist <InlineMath math="s_1=7{,}8-3{,}5=4{,}3" />. **Die Aufteilung <InlineMath math="4{,}3" /> und <InlineMath math="3{,}5" /> erfüllt alle Bedingungen**, also wird dieser Wert wirklich erreicht.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="\text{Rp}4{,}75\text{ Mio.}" /> entsteht, wenn die zwei Neuen nicht mitgezählt werden, sodass die Aprilsumme <InlineMath math="19\cdot5{,}2=98{,}8" /> wäre. Dann ist <InlineMath math="x=17" /> und der Designdurchschnitt <InlineMath math="\frac{36-17}{4}=4{,}75" />.
-- <InlineMath math="\text{Rp}6{,}05\text{ Mio.}" /> entsteht, wenn die Anzahl bei <InlineMath math="20" /> bleibt. **Eine Person geht und zwei kommen, unterm Strich ist es also eine mehr**. Dann ist <InlineMath math="x=11{,}8" /> und der Designdurchschnitt <InlineMath math="\frac{24{,}2}{4}=6{,}05" />.
-- <InlineMath math="\text{Rp}6{,}6\text{ Mio.}" /> ist das Gehalt der Person, die gegangen ist. Die Rechnung hört einen Schritt zu früh auf.
-- <InlineMath math="\text{Rp}9\text{ Mio.}" /> ist <InlineMath math="\frac{36}{4}" />. Die Anzahl wurde verkleinert, aber das Gehalt der Person nicht von der Summe abgezogen.
+- <InlineMath math="\text{Rp}3{,}9\text{ Mio.}" /> nimmt an, dass beide Neuen gleich viel verdienen. Die Aufgabe nennt nur eine Untergrenze, also dürfen die Gehälter verschieden sein.
+- <InlineMath math="\text{Rp}4{,}9\text{ Mio.}" /> nimmt an, dass die ausgeschiedene Person <InlineMath math="7{,}2" /> verdiente, den Durchschnitt im Design, sodass die Summe der Neuen als <InlineMath math="8{,}4" /> erscheint. **Dieses Gehalt muss aus dem neuen Durchschnitt im Design kommen**.
+- <InlineMath math="\text{Rp}7{,}8\text{ Mio.}" /> ist das gemeinsame Gehalt der beiden Neuen, als ob die andere Person nichts verdiente.
+- <InlineMath math="\text{Rp}3{,}5\text{ Mio.}" /> ist das niedrigste erlaubte Gehalt, nicht das höchste.
 
-Das Durchschnittsgehalt der Designabteilung im April beträgt also <InlineMath math="\text{Rp}7{,}35\text{ Mio.}" />.
+Also beträgt das höchste mögliche Gehalt einer der neuen Personen <InlineMath math="\text{Rp}4{,}3\text{ Mio.}" /> im Monat.

@@ -1,55 +1,68 @@
-# Keamatan daripada setiap pentas
+# Keamatan satu beduk
 
-Soalan ini mahu tahu aras keamatan bunyi di khemah tetamu apabila dua kumpulan beduk dipukul serentak. Mengikut peraturan pertama dalam bacaan, **yang dijumlahkan ialah keamatan, bukan desibel**. Jadi, tukar desibel kepada keamatan dahulu, kira setiap pentas, kemudian barulah jumlahkan.
-
-Satu beduk besar pada jarak <InlineMath math="1\text{ m}" /> mempunyai aras <InlineMath math="100\text{ dB}" />. Rumus dalam bacaan memberikan keamatannya:
+Menurut peraturan pertama, **yang dijumlahkan ialah keamatan, bukan desibel**. Jadi tukar desibel kepada keamatan dahulu. Satu beduk besar pada jarak <InlineMath math="1\text{ m}" /> mempunyai aras <InlineMath math="100\text{ dB}" />.
 
 <BlockMath math="\begin{aligned}
-10\log\frac{I}{10^{-12}}&=100 \\
-\frac{I}{10^{-12}}&=10^{10} \\
-I_{\text{besar}}&=10^{-2}\ \text{W/m}^2 \\
-I_{\text{kecil}}&=\tfrac14\cdot10^{-2}=2.5\cdot10^{-3}\ \text{W/m}^2
+10\log\frac{I}{10^{-12}}&=100\ \Rightarrow\ I_{\text{besar}}=10^{-2}\ \text{W/m}^2 \\
+I_{\text{kecil}}&=\tfrac14\cdot10^{-2}\ \text{W/m}^2
 \end{aligned}" />
 
-Itu keamatan pada jarak <InlineMath math="1\text{ m}" />. Mengikut peraturan kedua, pada jarak <InlineMath math="r" /> keamatan itu dibahagi dengan <InlineMath math="r^2" />. Khemah berada <InlineMath math="20\text{ m}" /> dari pentas A, jadi bahagi dengan <InlineMath math="400" />. Khemah berada <InlineMath math="5\text{ m}" /> dari pentas B, jadi bahagi dengan <InlineMath math="25" />.
+# Kedudukan titik T
+
+Katakan <InlineMath math="T" /> berjarak <InlineMath math="x" /> meter dari pentas A, jadi berjarak <InlineMath math="20-x" /> meter dari pentas B. Keamatan berkadar songsang dengan kuasa dua jarak, dan syaratnya kedua-dua pentas menyumbang sama banyak.
 
 <BlockMath math="\begin{aligned}
-I_A&=8\cdot\frac{10^{-2}}{400}=2\cdot10^{-4}\ \text{W/m}^2 \\
-I_B&=4\cdot\frac{2.5\cdot10^{-3}}{25}=4\cdot10^{-4}\ \text{W/m}^2
+\frac{9\cdot10^{-2}}{x^2}&=\frac{4\cdot\tfrac14\cdot10^{-2}}{(20-x)^2} \\
+\frac{9}{x^2}&=\frac{1}{(20-x)^2}\ \Rightarrow\ x=3\,(20-x)
 \end{aligned}" />
 
-Lihat bahawa pentas B menyumbang dua kali ganda pentas A. Beduknya lebih kecil dan lebih sedikit, tetapi jauh lebih dekat dengan khemah.
+Oleh sebab <InlineMath math="T" /> terletak di antara kedua-dua pentas, kedua-dua jarak positif dan punca kuasa dua diambil positif. Hasilnya <InlineMath math="x=15" />, jadi **<InlineMath math="T" /> berjarak <InlineMath math="15\text{ m}" /> dari A dan <InlineMath math="5\text{ m}" /> dari B**, lebih dekat dengan pentas yang bunyinya lebih lemah.
 
-# Aras keamatan keseluruhan
+Lukis sumbangan setiap pentas di sepanjang tembereng <InlineMath math="AB" />, dalam unit <InlineMath math="10^{-4}\ \text{W/m}^2" />. Lengkung pentas A turun apabila menjauhi A, lengkung pentas B naik apabila menghampiri B, dan **kedua-duanya bertemu pada <InlineMath math="x=15" /> dengan nilai <InlineMath math="4" />**.
 
-Jumlahkan kedua-dua keamatan, kemudian tukar semula kepada desibel dengan <InlineMath math="\log6=\log2+\log3=0.78" />.
-
-<BlockMath math="\begin{aligned}
-I&=2\cdot10^{-4}+4\cdot10^{-4}=6\cdot10^{-4}\ \text{W/m}^2 \\
-\mathrm{TI}&=10\log\frac{6\cdot10^{-4}}{10^{-12}}=10\log\left(6\cdot10^{8}\right) \\
-&=10\,(0.78+8)=87.8\text{ dB}
-\end{aligned}" />
-
-Bandingkan sumbangan kedua-dua pentas di khemah tetamu. **Pentas B yang lebih dekat menyumbang dua kali ganda pentas A**, dan yang ditukar kepada desibel ialah jumlah bar, bukan jumlah aras masing-masing.
-
-<Chart
-  title={<>Keamatan bunyi di khemah tetamu</>}
-  description={<>Dalam unit <InlineMath math="10^{-4}\ \text{W/m}^2" />, lapan beduk besar dari jarak <InlineMath math="20\text{ m}" /> menyumbang <InlineMath math="2" />, empat beduk kecil dari jarak <InlineMath math="5\text{ m}" /> menyumbang <InlineMath math="4" />, dan jumlahnya <InlineMath math="6" />. Jumlah itulah yang ditukar menjadi <InlineMath math="87.8\text{ dB}" />.</>}
-  bars="apart"
-  categories={["Pentas A", "Pentas B", "Jumlah"]}
-  series={[
-    { label: "Keamatan", mark: "bar", values: [2, 4, 6] },
-  ]}
-  valueLabel="Gandaan 0.0001 W/m²"
+<MathVisual
+  title={<>Sumbangan keamatan kedua-dua pentas di sepanjang tembereng AB</>}
+  description={<>Paksi mendatar ialah jarak dari pentas A dalam meter, dan paksi tegak ialah keamatan dalam unit <InlineMath math="10^{-4}\ \text{W/m}^2" />. Lengkung pentas A ialah <InlineMath math="\frac{900}{x^2}" /> dan lengkung pentas B ialah <InlineMath math="\frac{100}{(20-x)^2}" />. Kedua-duanya bersilang pada <InlineMath math="(15,\ 4)" />.</>}
+  labels={{
+    a: <>pentas A</>,
+    b: <>pentas B</>,
+    meet: <InlineMath math="(15,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 20 },
+      y: { min: 0, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "function", appearance: "primary", formula: "900 / x^2", domain: { min: 7.5, max: 19.5 } },
+      { id: "b", kind: "function", appearance: "secondary", formula: "100 / (20 - x)^2", domain: { min: 1, max: 17.5 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 15, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 8, y: 900 / 64 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 17, y: 100 / 9 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 15, y: 4 }, placement: "below-left" },
+    ],
+  }}
 />
 
-Untuk semakan, pentas B seorang diri memberikan <InlineMath math="10\log(4\cdot10^8)=86\text{ dB}" />. Pentas A hanya menambah separuh keamatan B, jadi **hasilnya mesti melebihi <InlineMath math="86\text{ dB}" /> tetapi kurang daripada <InlineMath math="89\text{ dB}" />**. Nilai <InlineMath math="87.8\text{ dB}" /> memang sesuai.
+# Aras keamatan di T
+
+Setiap pentas menyumbang <InlineMath math="\frac{9\cdot10^{-2}{225}=4\cdot10^{-4}" />, jadi **jumlah keamatannya dua kali ganda**.
+
+<BlockMath math="\begin{aligned}
+I&=2\cdot4\cdot10^{-4}=8\cdot10^{-4}\ \text{W/m}^2 \\
+\mathrm{TI}&=10\log\left(8\cdot10^{8}\right)=10\,(3\cdot0.30+8)=89\text{ dB}
+\end{aligned}" />
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="83\text{ dB}" /> ialah aras pentas A sahaja, <InlineMath math="10\log(2\cdot10^8)" />. Ini berlaku jika kamu menganggap beduk besar pasti paling berpengaruh lalu terlupa pentas B.
-- <InlineMath math="84.5\text{ dB}" /> ialah purata <InlineMath math="83" /> dan <InlineMath math="86" />. **Desibel tidak boleh dipuratakan atau dijumlahkan terus**, kerana skalanya logaritma.
-- <InlineMath math="86\text{ dB}" /> ialah aras pentas B sahaja. Pentas A tetap menambah keamatan walaupun sumbangannya lebih kecil.
-- <InlineMath math="89\text{ dB}" /> menambah <InlineMath math="3\text{ dB}" /> seolah-olah kedua-dua pentas sama kuat. Tambahan <InlineMath math="3\text{ dB}" /> hanya berlaku apabila keamatan menjadi dua kali ganda, sedangkan di sini keamatan hanya menjadi <InlineMath math="1.5" /> kali.
+- <InlineMath math="86\text{ dB}" /> hanya mengira sumbangan satu pentas, <InlineMath math="4\cdot10^{-4}" />, dan terlupa menambah yang satu lagi.
+- <InlineMath math="90\text{ dB}" /> meletakkan <InlineMath math="T" /> di titik tengah <InlineMath math="AB" />. **Di titik tengah, sumbangan kedua-dua pentas tidak sama**, iaitu <InlineMath math="9\cdot10^{-4}" /> dan <InlineMath math="10^{-4}" />.
+- <InlineMath math="91\text{ dB}" /> terlupa faktor <InlineMath math="\tfrac14" /> bagi beduk kecil, jadi <InlineMath math="T" /> terletak <InlineMath math="12\text{ m}" /> dari A dan setiap pentas menyumbang <InlineMath math="6.25\cdot10^{-4}" />.
+- <InlineMath math="92\text{ dB}" /> menambah <InlineMath math="6\text{ dB}" /> bagi dua sumber yang sama kuat. Menggandakan keamatan hanya menambah <InlineMath math="10\log2=3\text{ dB}" />.
 
-Jadi, aras keamatan bunyi di khemah tetamu ialah <InlineMath math="87.8\text{ dB}" />.
+Jadi, aras keamatan bunyi di titik <InlineMath math="T" /> ialah <InlineMath math="89\text{ dB}" />.

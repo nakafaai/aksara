@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{Rp}4{,}75\\text{ juta}$$",
+          label: "$$\\text{Rp}3{,}9\\text{ juta}$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}6{,}05\\text{ juta}$$",
+          label: "$$\\text{Rp}4{,}9\\text{ juta}$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}6{,}6\\text{ juta}$$",
+          label: "$$\\text{Rp}7{,}8\\text{ juta}$$",
         },
         {
           correct: true,
-          label: "$$\\text{Rp}7{,}35\\text{ juta}$$",
+          label: "$$\\text{Rp}4{,}3\\text{ juta}$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}9\\text{ juta}$$",
+          label: "$$\\text{Rp}3{,}5\\text{ juta}$$",
         },
       ],
     },

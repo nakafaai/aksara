@@ -1,31 +1,42 @@
-Alle drei Aussagen drehen sich um Änderungen eines Durchschnittsgehalts. Am sichersten ist es, **immer mit Gehaltssummen statt mit Durchschnitten zu rechnen** und erst am Ende durch die Anzahl der Personen zu teilen. Alle Beträge unten sind in Millionen Rupiah.
+Alle drei Aussagen handeln von Änderungen eines Durchschnittsgehalts. Am sichersten ist es, **immer mit Gehaltssummen statt mit Durchschnitten zu rechnen** und erst am Ende durch die Zahl der Personen zu teilen. Alle Beträge unten sind in Millionen Rupiah.
 
 # Die Lage im März
 
-Aus der Tabelle ist die Summe der Näherei <InlineMath math="15\cdot4{,}8=72" /> und die Summe des Designs <InlineMath math="5\cdot7{,}2=36" />. Gesamtsumme und Gesamtdurchschnitt sind also:
-
-<BlockMath math="\bar{x}=\frac{72+36}{20}=\frac{108}{20}=5{,}4" />
-
-Vergleiche den Anstieg des Gesamtdurchschnitts für die drei Änderungen mit denselben <InlineMath math="20" /> Beschäftigten. **Der erste Balken erreicht die Linie bei <InlineMath math="0{,}5" /> nicht**, und die letzten beiden Balken sind gleich hoch, weil beide die Summe um <InlineMath math="7{,}2" /> Millionen erhöhen.
-
-<Chart
-  title={<>Anstieg des Durchschnittsgehalts je Änderung</>}
-  description={<>Eine Erhöhung um <InlineMath math="25\%" /> im Design hebt den Gesamtdurchschnitt um <InlineMath math="0{,}45" /> Millionen. Eine Erhöhung um <InlineMath math="10\%" /> in der Näherei und eine Erhöhung um <InlineMath math="1{,}44" /> Millionen pro Designer heben ihn beide um <InlineMath math="0{,}36" /> Millionen. Die waagerechte Linie markiert <InlineMath math="0{,}5" /> Millionen.</>}
-  bars="apart"
-  categories={["Design plus 25%", "Näherei plus 10%", "Design plus 1,44 Mio."]}
-  series={[
-    { label: "Anstieg des Durchschnitts", mark: "bar", values: [0.45, 0.36, 0.36] },
-    { label: "Grenze 0,5 Mio.", mark: "line", values: [0.5, 0.5, 0.5] },
-  ]}
-  valueLabel="Millionen Rupiah"
-/>
-
-Bleibt die Anzahl bei <InlineMath math="20" />, dann gilt: **Der Gesamtdurchschnitt steigt um den Anstieg der Summe geteilt durch <InlineMath math="20" />**. Das brauchst du bei der ersten und der dritten Aussage.
+Aus der Tabelle ist die Summe der Näherei <InlineMath math="15\cdot4{,}8=72" /> und die Summe im Design <InlineMath math="5\cdot7{,}2=36" />, also beträgt die Gesamtsumme <InlineMath math="108" /> für <InlineMath math="20" /> Personen und **der Durchschnitt <InlineMath math="5{,}4" />**.
 
 # Jede Aussage prüfen
 
-1. **Falsch**. Die Erhöhung um <InlineMath math="25\%" /> betrifft nur die Designsumme, sie bringt also <InlineMath math="0{,}25\cdot36=9" />. Der Gesamtdurchschnitt steigt um <InlineMath math="\frac{9}{20}=0{,}45" />, und das ist nicht mehr als <InlineMath math="0{,}5" />. Jede Person im Design bekommt zwar <InlineMath math="0{,}25\cdot7{,}2=1{,}8" /> mehr, aber nur <InlineMath math="5" /> von <InlineMath math="20" /> Personen bekommen das. Wer den Durchschnitt der beiden Durchschnitte nimmt, sieht scheinbar <InlineMath math="\frac{1{,}8}{2}=0{,}9" />, aber die Abteilungen sind nicht gleich groß.
-2. **Richtig**. Die Summe wird <InlineMath math="108+10\cdot7{,}2=180" /> für <InlineMath math="20+10=30" /> Personen, der Durchschnitt also <InlineMath math="\frac{180}{30}=6" />. Das passt: Beide Abteilungen haben jetzt <InlineMath math="15" /> Personen, deshalb liegt der Gesamtdurchschnitt genau in der Mitte zwischen <InlineMath math="4{,}8" /> und <InlineMath math="7{,}2" />.
-3. **Richtig**. Eine Erhöhung um <InlineMath math="10\%" /> in der Näherei erhöht die Summe um <InlineMath math="0{,}1\cdot72=7{,}2" />. Eine Erhöhung um <InlineMath math="1{,}44" /> für jede Person im Design erhöht sie um <InlineMath math="5\cdot1{,}44=7{,}2" />. Beides erhöht die Summe gleich stark bei denselben <InlineMath math="20" /> Personen, der Gesamtdurchschnitt steigt also in beiden Fällen um <InlineMath math="\frac{7{,}2}{20}=0{,}36" />.
+1. **Falsch**. Die Erhöhung im Design bringt <InlineMath math="0{,}25\cdot36=9" />, die Kürzung in der Näherei nimmt aber <InlineMath math="0{,}15\cdot72=10{,}8" /> weg. Die Summe fällt um <InlineMath math="1{,}8" />, also sinkt der Durchschnitt auf <InlineMath math="5{,}31" />. **Die Prozente müssen mit der Gehaltssumme jeder Abteilung gewichtet werden**. Der einfache Durchschnitt von <InlineMath math="+25\%" /> und <InlineMath math="-15\%" />, also <InlineMath math="+5\%" />, täuscht einen Anstieg vor.
+2. **Wahr**. Mit <InlineMath math="k" /> Neuen ist der Durchschnitt <InlineMath math="\frac{108+7{,}2k}{20+k}" />. Der Nenner ist positiv, also ist ein Durchschnitt von mindestens <InlineMath math="6" /> gleichwertig mit <InlineMath math="108+7{,}2k\ge120+6k" />, also <InlineMath math="1{,}2k\ge12" /> oder <InlineMath math="k\ge10" />. Beide Richtungen gelten, also stimmt **genau dann, wenn**.
+3. **Wahr**. Die Summe wird <InlineMath math="108-9=99" /> für <InlineMath math="17" /> Personen, also ist der Durchschnitt <InlineMath math="\frac{99}{17}\approx5{,}82" />. Der Anstieg beträgt etwa <InlineMath math="0{,}42" />, mehr als <InlineMath math="0{,}4" />. Wer weiter mit <InlineMath math="20" /> Personen rechnet, sieht sogar einen Rückgang.
 
-Die erste Aussage ist also falsch, die zweite und die dritte sind richtig.
+Zeichne den Gesamtdurchschnitt als Funktion der Zahl der Neuen <InlineMath math="k" /> aus der zweiten Aussage. **Die Kurve steigt und erreicht die Linie <InlineMath math="6" /> genau bei <InlineMath math="k=10" />**, also gilt die Bedingung für <InlineMath math="k\ge10" /> und für kein kleineres <InlineMath math="k" />.
+
+<MathVisual
+  title={<>Durchschnittsgehalt nach der Zahl der neuen Designer</>}
+  description={<>Die waagerechte Achse ist die Zahl der Neuen <InlineMath math="k" />, die senkrechte Achse das Durchschnittsgehalt aller Beschäftigten in Millionen Rupiah, <InlineMath math="\frac{108+7{,}2k}{20+k}" />. Die Kurve beginnt bei <InlineMath math="5{,}4" /> für <InlineMath math="k=0" />, steigt und trifft die waagerechte Linie <InlineMath math="6" /> bei <InlineMath math="k=10" />.</>}
+  labels={{
+    six: <InlineMath math="6" />,
+    ten: <InlineMath math="(10,\ 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: 5.2, max: 6.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mean", kind: "function", appearance: "primary", formula: "(108 + 7.2x) / (20 + x)", domain: { min: 0, max: 30 } },
+      { id: "six", kind: "function", appearance: "reference", formula: "6", domain: { min: -1, max: 31 } },
+      { id: "ten", kind: "point", appearance: "answer", at: { x: 10, y: 6 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 27, y: 6 }, placement: "below" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Also ist die erste Aussage falsch, und die zweite und dritte Aussage sind wahr.

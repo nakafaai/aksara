@@ -1,74 +1,68 @@
 # The first row and the step between rows
 
-The question asks how many seats are in the last row, but the number of rows isn't known yet. So the order is: find the first row <InlineMath math="a" /> and the common difference <InlineMath math="b" />, then the number of rows <InlineMath math="n" />, and only then row <InlineMath math="n" />. **Each step uses the result of the step before**.
-
-The <InlineMath math="k" />-th term of an arithmetic sequence is <InlineMath math="u_k=a+(k-1)b" />.
+The order is: find the first row <InlineMath math="a" /> and the common difference <InlineMath math="b" />, then the seats left after two rows are removed, then the number of rows <InlineMath math="n" />, and only then row <InlineMath math="n" />. **Each step uses the result of the step before**.
 
 <BlockMath math="\begin{aligned}
-u_{12}-u_5&=(a+11b)-(a+4b)=7b=40-26=14 \\
-b&=2 \\
-a&=26-4\cdot2=18
+u_{12}-u_5&=7b=40-26=14\ \Rightarrow\ b=2 \\
+a&=u_5-4b=26-8=18
 \end{aligned}" />
 
-The first row has <InlineMath math="18" /> seats, and each row after it has <InlineMath math="2" /> more.
+# The seats that are left
+
+If the back row is row <InlineMath math="n" />, rows <InlineMath math="1" /> to <InlineMath math="n" /> hold <InlineMath math="S_n=\frac n2\left(2a+(n-1)b\right)=n(n+17)" /> seats. **The two front rows are gone**, so their seats, <InlineMath math="18+20=38" />, have to be subtracted.
+
+<BlockMath math="n(n+17)-38\ge960\ \Leftrightarrow\ n(n+17)\ge998" />
 
 # The number of rows
 
-The sum of the first <InlineMath math="n" /> terms is <InlineMath math="S_n=\frac n2\left(2a+(n-1)b\right)" />. Set it equal to <InlineMath math="1{,}050" />.
+The original <InlineMath math="20" /> rows give only <InlineMath math="20\cdot37-38=702" /> seats, so rows really have to be added. Try the whole numbers near the limit.
 
 <BlockMath math="\begin{aligned}
-\frac n2\left(36+2(n-1)\right)&=1{,}050 \\
-n(n+17)&=1{,}050 \\
-n^2+17n-1{,}050&=0 \\
-(n-25)(n+42)&=0
+n=24&:\ 24\cdot41=984<998 \\
+n=25&:\ 25\cdot42=1{,}050\ge998
 \end{aligned}" />
 
-Draw the total seats in the first <InlineMath math="n" /> rows as a function of <InlineMath math="n" />. **The curve meets the line <InlineMath math="1{,}050" /> exactly once for positive <InlineMath math="n" />**, at <InlineMath math="n=25" />. The negative root of the quadratic has no meaning here.
+**Row <InlineMath math="24" /> isn't enough yet**, so the back row is row <InlineMath math="25" />. Draw the seats left as a function of the number of the back row. The curve only passes the line <InlineMath math="960" /> between <InlineMath math="n=24" /> and <InlineMath math="n=25" />.
 
 <MathVisual
-  title={<>Total seats by number of rows</>}
-  description={<>The horizontal axis is the number of rows <InlineMath math="n" />, and the vertical axis is the total number of seats. The curve <InlineMath math="S_n=n(n+17)" /> rises faster and faster from the origin. The horizontal line at <InlineMath math="1{,}050" /> meets the curve at <InlineMath math="(25,\ 1{,}050)" />.</>}
+  title={<>Seats left by the number of the back row</>}
+  description={<>The horizontal axis is the number of the back row and the vertical axis is the number of seats after the two front rows are removed, <InlineMath math="n(n+17)-38" />. At <InlineMath math="n=24" /> the total is <InlineMath math="946" />, still under the line <InlineMath math="960" />, and at <InlineMath math="n=25" /> it is <InlineMath math="1{,}012" />, already above it.</>}
   labels={{
-    total: <InlineMath math="S_n=n(n+17)" />,
-    target: <InlineMath math="1{.}050" />,
-    hit: <InlineMath math="(25,\ 1{.}050)" />,
+    short: <InlineMath math="(24,\ 946)" />,
+    enough: <InlineMath math="(25,\ 1{,}012)" />,
+    target: <InlineMath math="960" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -1, max: 31 },
-      y: { min: -40, max: 1400 },
+      x: { min: 19.5, max: 26.5 },
+      y: { min: 650, max: 1100 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "total", kind: "function", appearance: "primary", formula: "x(x + 17)", domain: { min: 0, max: 30 } },
-      { id: "target", kind: "function", appearance: "reference", formula: "1050", domain: { min: 0, max: 30 } },
-      { id: "hit", kind: "point", appearance: "answer", at: { x: 25, y: 1050 } },
+      { id: "total", kind: "function", appearance: "primary", formula: "x(x + 17) - 38", domain: { min: 20, max: 26 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "960", domain: { min: 19.5, max: 26.5 } },
+      { id: "short", kind: "point", appearance: "secondary", at: { x: 24, y: 946 } },
+      { id: "enough", kind: "point", appearance: "answer", at: { x: 25, y: 1012 } },
     ],
     labels: [
-      { key: "total", objectId: "total", at: { x: 15, y: 480 }, placement: "below-right" },
-      { key: "target", objectId: "target", at: { x: 5, y: 1050 }, placement: "above" },
-      { key: "hit", objectId: "hit", at: { x: 25, y: 1050 }, placement: "below-right" },
+      { key: "target", objectId: "target", at: { x: 20.5, y: 960 }, placement: "above" },
+      { key: "short", objectId: "short", at: { x: 24, y: 946 }, placement: "below-right" },
+      { key: "enough", objectId: "enough", at: { x: 25, y: 1012 }, placement: "above-left" },
     ],
   }}
 />
 
-The roots are <InlineMath math="n=25" /> and <InlineMath math="n=-42" />. **A number of rows can't be negative**, so <InlineMath math="n=25" />.
-
 # The last row
-
-The last row is row <InlineMath math="25" />. Use the <InlineMath math="k" />-th term formula again with <InlineMath math="a=18" /> and <InlineMath math="b=2" />.
 
 <BlockMath math="u_{25}=18+24\cdot2=66" />
 
-As a check, <InlineMath math="S_{25}=\frac{25}{2}(18+66)=25\cdot42=1{,}050" />. **The total matches the question**.
-
 # Why the other options are wrong
 
-- <InlineMath math="42" /> is the average number of seats per row, <InlineMath math="1{,}050\div25" />. In an arithmetic sequence that average equals the middle row (row <InlineMath math="13" />), **not the last row**.
-- <InlineMath math="68" /> uses the wrong formula <InlineMath math="u_n=a+nb=18+25\cdot2" />. The first row hasn't had any step added yet, so the multiplier is <InlineMath math="n-1" />.
-- <InlineMath math="84" /> comes from <InlineMath math="S_n=\frac n2(a+u_n)" /> but forgets to subtract <InlineMath math="a" />. The correct value is <InlineMath math="u_n=\frac{2S_n}{n}-a=84-18=66" />.
-- <InlineMath math="100" /> uses <InlineMath math="n=42" />, the root <InlineMath math="-42" /> with its sign dropped. With <InlineMath math="42" /> rows the total would be far more than <InlineMath math="1{,}050" />.
+- <InlineMath math="62" /> renumbers the remaining rows from <InlineMath math="1" />, so the back row is taken as row <InlineMath math="23" />. But **the seat pattern still follows the original row numbers**.
+- <InlineMath math="64" /> forgets to subtract the <InlineMath math="38" /> seats of the two removed rows. The condition <InlineMath math="n(n+17)\ge960" /> already holds at <InlineMath math="n=24" />.
+- <InlineMath math="44" /> is the average number of seats per remaining row, <InlineMath math="\frac{22+66}{2}" />, not the back row.
+- <InlineMath math="70" /> adds two more rows to replace the removed ones, even though the <InlineMath math="960" />-seat condition already holds at row <InlineMath math="25" />.
 
-So row <InlineMath math="n" /> has <InlineMath math="66" /> seats.
+So the back row has <InlineMath math="66" /> seats.
