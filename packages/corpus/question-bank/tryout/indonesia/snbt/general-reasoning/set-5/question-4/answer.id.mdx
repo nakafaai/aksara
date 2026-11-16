@@ -2,6 +2,16 @@ Asumsi yang _harus_ benar berbeda dari pernyataan yang sekadar membantu. Cara me
 
 Urutan pikir koordinator begini: ada rekaman, sebagian siswa tidak hadir langsung, lalu pemahaman siswa dirugikan. Langkah terakhir tidak pernah dibuktikan. Koordinator hanya punya data kehadiran, bukan data pemahaman.
 
+Diagram berikut menggambar urutan pikir itu. **Panah terakhir tidak didukung data kehadiran**, jadi simpulan itu baru berdiri jika ada siswa absen yang tidak mendapat pemahaman setara dari rekaman.
+
+<Mermaid
+  title={<>Urutan pikir koordinator dan langkah yang tidak ditunjukkan</>}
+  description={<>Ada rekaman, lalu rata-rata kehadiran per sesi turun dari <InlineMath math="150" /> ke <InlineMath math="120" /> siswa. Dari sana koordinator langsung menyimpulkan pemahaman siswa dirugikan, padahal datanya hanya tentang kehadiran.</>}
+  chart={`flowchart LR
+    R["Ada rekaman sesi"] --> H["Kehadiran langsung turun dari 150 ke 120 per sesi"]
+    H -.->|"perlu: sebagian siswa absen tidak paham setara"| P["Pemahaman siswa dirugikan"]`}
+/>
+
 Uji pernyataan tentang pemahaman dari rekaman. Kalau dibalik, bunyinya: semua siswa yang absen memperoleh pemahaman yang setara dari rekaman. Dalam keadaan itu, turunnya kehadiran dari <InlineMath math="150" /> menjadi <InlineMath math="120" /> siswa per sesi tidak merugikan siapa pun, dan simpulan koordinator runtuh. Jadi, simpulan itu memang bertumpu pada anggapan bahwa paling sedikit sebagian siswa yang absen tidak mendapat pemahaman yang setara.
 
 Uji empat pernyataan lain dengan cara yang sama.

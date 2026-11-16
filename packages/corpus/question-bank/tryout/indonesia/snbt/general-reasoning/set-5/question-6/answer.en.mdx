@@ -9,6 +9,20 @@ Work out the month's total attendances first.
 
 There are <InlineMath math="12" /> more people, but <InlineMath math="360" /> fewer attendances. That happens when students who never came before now show up for a few sessions, while many other students skip more sessions than they used to, for example because they feel they can watch the recording. The newcomers raise the head count, and the skipped sessions lower the attendance count.
 
+The chart below puts the two measures side by side. **The first bar falls while the second rises**, because they measure different things.
+
+<Chart
+  title={<>Two attendance measures in January and February</>}
+  description={<>The average number of students present per session falls from <InlineMath math="150" /> to <InlineMath math="120" />. The number of students who attended at least one session rises from <InlineMath math="180" /> to <InlineMath math="192" />.</>}
+  categories={["January", "February"]}
+  bars="apart"
+  series={[
+    { label: "Average present per session", mark: "bar", values: [150, 120] },
+    { label: "Attended at least one session", mark: "bar", values: [180, 192] },
+  ]}
+  valueLabel="Students"
+/>
+
 The other explanations fail on one of the facts.
 
 - Watching a recording several times doesn't change the attendance record at all.

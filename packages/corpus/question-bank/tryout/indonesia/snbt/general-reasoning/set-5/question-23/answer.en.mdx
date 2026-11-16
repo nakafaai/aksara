@@ -15,6 +15,20 @@ During night hours, Dimas uses up the night quota first, then may use that lefto
 
 <BlockMath math="27+2=29\text{ GB}" />
 
+The chart below splits both kinds of quota by when they're used. **All the night quota plus the leftover <InlineMath math="2" /> GB of main quota can go to night hours**.
+
+<Chart
+  title={<>How Dimas's quota is split over <InlineMath math="30" /> days</>}
+  description={<>Of the <InlineMath math="18" /> GB of main quota, <InlineMath math="16" /> GB is used outside night hours and <InlineMath math="2" /> GB during night hours. All <InlineMath math="27" /> GB of night quota is used during night hours. Night use reaches at most <InlineMath math="29" /> GB.</>}
+  categories={["Main quota", "Night quota"]}
+  bars="apart"
+  series={[
+    { label: "Used outside night hours", mark: "bar", values: [16, 0] },
+    { label: "Used during night hours", mark: "bar", values: [18 - 16, 12 + 15] },
+  ]}
+  valueLabel="GB"
+/>
+
 The other answers come from these misreadings.
 
 - <InlineMath math="27" /> GB comes from forgetting that leftover main quota can be used at night.

@@ -2,6 +2,16 @@ An assumption that _must_ be true is different from a statement that merely help
 
 The coordinator reasons like this: there are recordings, some students skip the live session, so students' understanding suffers. That last step is never shown. The coordinator only has attendance data, not data on understanding.
 
+The diagram below draws that line of thought. **The last arrow isn't backed by the attendance data**, so the conclusion only stands if some absent students didn't get an equal understanding from the recordings.
+
+<Mermaid
+  title={<>The coordinator's line of thought and the step never shown</>}
+  description={<>There are recordings, and the average attendance per session falls from <InlineMath math="150" /> to <InlineMath math="120" /> students. From there the coordinator jumps to students' understanding suffering, even though the data only cover attendance.</>}
+  chart={`flowchart LR
+    R["Session recordings exist"] --> H["Live attendance falls from 150 to 120 per session"]
+    H -.->|"needs: some absent students understand less"| P["Students' understanding suffers"]`}
+/>
+
 Test the statement about understanding from the recordings. Flipped, it says: every absent student got an equal understanding from the recording. In that case, the drop from <InlineMath math="150" /> to <InlineMath math="120" /> students per session hurts nobody, and the coordinator's conclusion collapses. So the conclusion does rest on the idea that at least some absent students didn't get an equal understanding.
 
 Test the other four statements the same way.

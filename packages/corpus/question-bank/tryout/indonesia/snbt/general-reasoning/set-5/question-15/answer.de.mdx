@@ -8,6 +8,21 @@ Fang mit der Antwort "Wenn Gendis ausgewählt wird, wird auch Danu ausgewählt" 
 4. Bening fehlt, also darf auch Haikal nicht dabei sein. Bedingung 5 heißt: Haikal darf nur dabei sein, wenn Bening dabei ist.
 5. Danu fehlt, also darf auch Arka nicht dabei sein. Das ist die Kontraposition von Bedingung 2. Die Kontraposition von "wenn <InlineMath math="p" />, dann <InlineMath math="q" />" ist "wenn nicht <InlineMath math="q" />, dann nicht <InlineMath math="p" />", und sie hat immer denselben Wahrheitswert wie die ursprüngliche Aussage.
 
+Das Diagramm zeichnet, wohin diese Annahme führt. **Jeder Pfeil streicht einen Kandidaten**, bis nur noch drei Personen übrig sind.
+
+<Mermaid
+  title={<>Was folgt, wenn Gendis dabei ist, Danu aber nicht</>}
+  description={<>Mit Gendis fällt Fauzan weg. Ohne Danu und Fauzan muss Elvira dabei sein, dann fällt Bening weg und danach auch Haikal. Ohne Danu fällt auch Arka weg. Übrig bleiben nur Cempaka, Elvira und Gendis.</>}
+  chart={`flowchart LR
+    A["Gendis dabei, Danu nicht"] -->|"Bedingung 6"| F["Fauzan fällt weg"]
+    F -->|"Bedingung 1"| E["Elvira muss dabei sein"]
+    E -->|"Bedingung 3"| B["Bening fällt weg"]
+    B -->|"Bedingung 5"| H["Haikal fällt weg"]
+    A -->|"Kontraposition von Bedingung 2"| K["Arka fällt weg"]
+    H --> T["3 übrig, das Team braucht 4"]
+    K --> T`}
+/>
+
 Zähl jetzt, wer noch infrage kommt. Arka, Bening, Danu, Fauzan und Haikal sind gestrichen. Übrig bleiben nur Cempaka, Elvira und Gendis, also drei Personen, aber das Team braucht vier. Die Annahme ist unmöglich, also **enthält jedes Team mit Gendis auch Danu**.
 
 Für die anderen vier Antworten reicht jeweils ein gültiges Team als Gegenbeispiel. Diese vier Teams erfüllen alle sechs Bedingungen. Du kannst jedes genauso prüfen wie oben.

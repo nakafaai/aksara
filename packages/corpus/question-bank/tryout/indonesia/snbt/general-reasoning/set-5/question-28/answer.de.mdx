@@ -11,6 +11,20 @@ Diese drei Aktionen lassen sich nicht mit einer einzigen Zahl vergleichen, denn 
 | <InlineMath math="6" /> | <InlineMath math="192" /> | <InlineMath math="240-35=205" /> | <InlineMath math="5\cdot40=200" /> |
 | <InlineMath math="8" /> | <InlineMath math="256" /> | <InlineMath math="320-35=285" /> | <InlineMath math="6\cdot40=240" /> |
 
+Das Diagramm zeichnet die drei Kostenspalten. **Die Linien kreuzen sich**, also wechselt der billigste Laden mit der Zahl der T-Shirts.
+
+<Chart
+  title={<>Kosten für T-Shirts in den drei Läden</>}
+  description={<>Für <InlineMath math="4" /> T-Shirts kostet es in Laden A, B und C <InlineMath math="128" />, <InlineMath math="125" /> und <InlineMath math="120" /> Tausend Rupiah. Für <InlineMath math="5" /> sind es <InlineMath math="160" />, <InlineMath math="165" /> und <InlineMath math="160" />. Für <InlineMath math="6" /> sind es <InlineMath math="192" />, <InlineMath math="205" /> und <InlineMath math="200" />. Für <InlineMath math="8" /> sind es <InlineMath math="256" />, <InlineMath math="285" /> und <InlineMath math="240" />.</>}
+  categories={["4", "5", "6", "8"]}
+  series={[
+    { label: "Laden A", mark: "line", values: [4, 5, 6, 8].map((n) => (n * 40 * 8) / 10) },
+    { label: "Laden B, ein Einkauf", mark: "line", values: [4, 5, 6, 8].map((n) => n * 40 - 35) },
+    { label: "Laden C", mark: "line", values: [4, 5, 6, 8].map((n) => (n - Math.floor(n / 4)) * 40) },
+  ]}
+  valueLabel="Tausend Rupiah"
+/>
+
 Die erste Aussage ist richtig. Für <InlineMath math="4" /> T-Shirts verlangt Laden C <InlineMath math="120" />, weniger als <InlineMath math="125" /> und <InlineMath math="128" />.
 
 Die zweite Aussage ist richtig. Der Abzug in Laden B gilt pro Einkauf. Ein Einkauf mit <InlineMath math="8" /> T-Shirts bekommt nur einen Abzug und kostet <InlineMath math="285" />. Zwei Einkäufe mit je <InlineMath math="4" /> T-Shirts bekommen zwei Abzüge.

@@ -15,6 +15,20 @@ Pada jam malam, Dimas menghabiskan kuota malam dulu, lalu boleh memakai sisa kuo
 
 <BlockMath math="27+2=29\text{ GB}" />
 
+Grafik berikut membagi kedua jenis kuota menurut waktu pemakaiannya. **Seluruh kuota malam ditambah sisa <InlineMath math="2" /> GB kuota utama bisa dipakai pada jam malam**.
+
+<Chart
+  title={<>Pembagian kuota Dimas selama <InlineMath math="30" /> hari</>}
+  description={<>Kuota utama <InlineMath math="18" /> GB dipakai <InlineMath math="16" /> GB di luar jam malam dan <InlineMath math="2" /> GB pada jam malam. Kuota malam <InlineMath math="27" /> GB seluruhnya dipakai pada jam malam. Pemakaian jam malam paling banyak <InlineMath math="29" /> GB.</>}
+  categories={["Kuota utama", "Kuota malam"]}
+  bars="apart"
+  series={[
+    { label: "Dipakai di luar jam malam", mark: "bar", values: [16, 0] },
+    { label: "Dipakai pada jam malam", mark: "bar", values: [18 - 16, 12 + 15] },
+  ]}
+  valueLabel="GB"
+/>
+
 Jawaban lain muncul dari salah baca berikut.
 
 - <InlineMath math="27" /> GB muncul kalau kamu lupa bahwa sisa kuota utama boleh dipakai pada jam malam.

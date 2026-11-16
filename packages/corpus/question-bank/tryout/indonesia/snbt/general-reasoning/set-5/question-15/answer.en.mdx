@@ -8,6 +8,21 @@ Start with the option "If Gendis is chosen, Danu is chosen too." Suppose Gendis 
 4. Bening isn't chosen, so Haikal can't be either. Rule 5 means Haikal may join only when Bening joins.
 5. Danu isn't chosen, so Arka can't be either. That's the contrapositive of rule 2. The contrapositive of "if <InlineMath math="p" />, then <InlineMath math="q" />" is "if not <InlineMath math="q" />, then not <InlineMath math="p" />", and it always has the same truth value as the original.
 
+The diagram below draws what that assumption leads to. **Each arrow crosses out one candidate**, until only three people are left.
+
+<Mermaid
+  title={<>What follows if Gendis is chosen but Danu isn't</>}
+  description={<>Choosing Gendis crosses out Fauzan. Without Danu and Fauzan, Elvira must be chosen, which crosses out Bening, and then Haikal too. Without Danu, Arka is crossed out as well. Only Cempaka, Elvira, and Gendis remain.</>}
+  chart={`flowchart LR
+    A["Gendis chosen, Danu not"] -->|"rule 6"| F["Fauzan out"]
+    F -->|"rule 1"| E["Elvira must be chosen"]
+    E -->|"rule 3"| B["Bening out"]
+    B -->|"rule 5"| H["Haikal out"]
+    A -->|"contrapositive of rule 2"| K["Arka out"]
+    H --> T["3 left, but the team needs 4"]
+    K --> T`}
+/>
+
 Now count who's still allowed in. Arka, Bening, Danu, Fauzan and Haikal are crossed out. Only Cempaka, Elvira and Gendis remain, which is three people, but the team needs four. The assumption is impossible, so **every team with Gendis must also have Danu**.
 
 For the other four options, you only need one valid team that breaks each of them. These four teams meet all six rules. You can check each one the same way as above.

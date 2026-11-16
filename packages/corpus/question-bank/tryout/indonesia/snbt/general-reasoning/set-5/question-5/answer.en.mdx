@@ -5,6 +5,21 @@ Every statement here depends on **the right denominator**. Three groups are easy
 \text{February}&=120\cdot12=1{,}440\text{ attendances}
 \end{aligned}" />
 
+The chart below puts three groups of students side by side for both months. **The number absent per session goes up, while the number who never attended actually goes down**.
+
+<Chart
+  title={<>Attendance of the <InlineMath math="200" /> enrolled students in January and February</>}
+  description={<>In January, an average of <InlineMath math="150" /> students are present and <InlineMath math="50" /> absent per session, and <InlineMath math="20" /> never attended. In February, an average of <InlineMath math="120" /> are present and <InlineMath math="80" /> absent per session, and only <InlineMath math="8" /> never attended.</>}
+  categories={["January", "February"]}
+  bars="apart"
+  series={[
+    { label: "Present per session", mark: "bar", values: [150, 120] },
+    { label: "Absent per session", mark: "bar", values: [200 - 150, 200 - 120] },
+    { label: "Never attended", mark: "bar", values: [200 - 180, 200 - 192] },
+  ]}
+  valueLabel="Students"
+/>
+
 The first statement is true. Students who never attended are the enrolled students minus those who attended at least one session. In January that's <InlineMath math="200-180=20" /> students, and in February only <InlineMath math="200-192=8" /> students.
 
 The second statement is false. It talks about students who attended at least once, so the denominator is <InlineMath math="192" />, not <InlineMath math="200" />.

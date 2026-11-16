@@ -9,6 +9,20 @@ Pernyataan pertama salah. Pelanggan yang tidak pernah memakai internet pada jam 
 
 Paket Besar yang lebih murah. Pernyataan ini tampak benar kalau kamu membagi dengan seluruh kuota, sebab <InlineMath math="45{.}000:20=2{.}250" /> memang lebih kecil daripada <InlineMath math="70{.}000:30\approx2{.}333" />.
 
+Grafik berikut menghitung harga per GB dengan kedua pembagi. **Urutan murah-mahalnya terbalik** begitu pembaginya diganti.
+
+<Chart
+  title={<>Harga per GB Paket Sedang dan Paket Besar dengan dua pembagi</>}
+  description={<>Dibagi kuota utama saja, Paket Sedang <InlineMath math="4{.}500" /> dan Paket Besar sekitar <InlineMath math="3{.}889" /> rupiah per GB. Dibagi seluruh kuota, Paket Sedang <InlineMath math="2{.}250" /> dan Paket Besar sekitar <InlineMath math="2{.}333" /> rupiah per GB.</>}
+  categories={["Paket Sedang", "Paket Besar"]}
+  bars="apart"
+  series={[
+    { label: "Dibagi kuota utama saja", mark: "bar", values: [45000 / 10, Math.round(70000 / 18)] },
+    { label: "Dibagi seluruh kuota", mark: "bar", values: [45000 / 20, Math.round(70000 / 30)] },
+  ]}
+  valueLabel="Rupiah per GB"
+/>
+
 Pernyataan kedua benar. Kali ini pembaginya seluruh kuota.
 
 <BlockMath math="\begin{aligned}

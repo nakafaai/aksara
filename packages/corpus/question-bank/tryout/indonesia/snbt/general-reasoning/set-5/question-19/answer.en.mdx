@@ -9,6 +9,18 @@ Fact 4 guarantees there's a student, call them student X, who belongs to both th
 
 One conclusion is left: some photography club members aren't theatre club members. This one isn't valid. Fact 4 only says at least one photography club member is in the theatre club. It doesn't stop **all** photography club members from being in the theatre club. For example, the photography club might have student X as its only member. All four facts still hold, yet no photography club member is outside the theatre club.
 
+The diagram below draws a situation that breaks that conclusion. **The photography club could have student X as its only member**, so every member is in the theatre club.
+
+<Mermaid
+  title={<>A situation where every photography club member is in the theatre club</>}
+  description={<>The photography club has only student X, who's also in the theatre club and joins the exhibition. Student Y is in the theatre club and on the arts night committee, so Y doesn't join the exhibition. All four facts hold, yet no photography club member is outside the theatre club.</>}
+  chart={`flowchart LR
+    X["Student X: the only photography club member"] --> T["Theatre club"]
+    X --> P["Joins the school exhibition"]
+    Y["Student Y: arts night committee"] --> T
+    Y -.->|"doesn't join"| P`}
+/>
+
 The tempting mistake here is reading _some_ as _only some, not all_. In logic, _some_ means at least one, and it may well be all.
 
 So the conclusion that isn't valid is that some photography club members aren't theatre club members.

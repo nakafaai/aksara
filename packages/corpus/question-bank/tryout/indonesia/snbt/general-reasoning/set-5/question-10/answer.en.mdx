@@ -12,6 +12,20 @@ The bottom row moves backward with a jump that alternates between <InlineMath ma
 
 Number <InlineMath math="12" /> is L, and number <InlineMath math="10" /> is J. So position <InlineMath math="6" /> holds V and L, while **position <InlineMath math="7" /> holds C and J**.
 
+The chart below draws the letter numbers in both rows. **The top-row line drops to <InlineMath math="3" /> at position <InlineMath math="7" />** because it passes Z and wraps back to the start of the alphabet.
+
+<Chart
+  title={<>Alphabet positions of the letters in positions <InlineMath math="1" /> to <InlineMath math="7" /></>}
+  description={<>The top row runs <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="7" />, <InlineMath math="11" />, <InlineMath math="16" />, <InlineMath math="22" />, then <InlineMath math="29-26=3" />, which is C. The bottom row runs <InlineMath math="25" />, <InlineMath math="22" />, <InlineMath math="20" />, <InlineMath math="17" />, <InlineMath math="15" />, <InlineMath math="12" />, then <InlineMath math="10" />, which is J.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Top row", mark: "line", values: [2, 4, 7, 11, 16, 22, 29 - 26] },
+    { label: "Bottom row", mark: "line", values: [25, 22, 20, 17, 15, 12, 10] },
+  ]}
+  valueLabel="Position in the alphabet"
+  valueRange={{ min: 0, max: 26 }}
+/>
+
 Each wrong answer has a clear source.
 
 - V and L are what sits in position <InlineMath math="6" />. That's what you get if you stop one step too early.

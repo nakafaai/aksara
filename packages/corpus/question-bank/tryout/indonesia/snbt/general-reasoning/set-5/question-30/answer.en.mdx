@@ -24,6 +24,17 @@ Now compare with the plans that use voucher Q. A voucher Q bought on day <Inline
 
 Both cost more than <InlineMath math="168" />. The other plans lose too: four vouchers P cost <InlineMath math="4\cdot48=192" />, and no vouchers at all costs <InlineMath math="34\cdot6=204" />.
 
+The chart below compares every plan. **The shortest bar is a plan without voucher Q**, even though voucher Q feels like the bigger saving.
+
+<Chart
+  title={<>Laundry cost for the month by payment plan</>}
+  description={<>One voucher P and <InlineMath math="4" /> kg at the normal rate in the first half, then two vouchers P in the second half, cost <InlineMath math="168" /> thousand rupiah. Voucher Q and one voucher P cost <InlineMath math="178" />, voucher Q and <InlineMath math="9" /> kg at the normal rate <InlineMath math="184" />, four vouchers P <InlineMath math="192" />, and no vouchers <InlineMath math="204" /> thousand rupiah.</>}
+  categories={["P, 4 kg normal, then 2 P", "Q and 1 P", "Q and 9 kg normal", "4 vouchers P", "No vouchers"]}
+  bars="apart"
+  series={[{ label: "Cost (thousand rupiah)", mark: "bar", values: [48 + 4 * 6 + 2 * 48, 130 + 48, 130 + 9 * 6, 4 * 48, 34 * 6] }]}
+  valueLabel="Thousand rupiah"
+/>
+
 There are two traps. The big voucher feels like a saving, but it costs more per kg than voucher P. And voucher P doesn't always pay off, because in the first half a second voucher would only be used for <InlineMath math="4" /> kg.
 
 So the lowest cost is <InlineMath math="\text{Rp}168{,}000" />.

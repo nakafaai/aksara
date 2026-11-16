@@ -5,6 +5,21 @@ Setiap pernyataan di sini bergantung pada **penyebut yang tepat**. Ada tiga kelo
 \text{Februari}&=120\cdot12=1{.}440\text{ kehadiran}
 \end{aligned}" />
 
+Grafik berikut menaruh tiga kelompok siswa berdampingan untuk kedua bulan. **Siswa yang absen per sesi bertambah, sedangkan yang tidak pernah hadir justru berkurang**.
+
+<Chart
+  title={<>Kehadiran <InlineMath math="200" /> siswa terdaftar pada Januari dan Februari</>}
+  description={<>Pada Januari, rata-rata <InlineMath math="150" /> siswa hadir dan <InlineMath math="50" /> absen per sesi, dan <InlineMath math="20" /> siswa tidak pernah hadir. Pada Februari, rata-rata <InlineMath math="120" /> hadir dan <InlineMath math="80" /> absen per sesi, dan hanya <InlineMath math="8" /> siswa tidak pernah hadir.</>}
+  categories={["Januari", "Februari"]}
+  bars="apart"
+  series={[
+    { label: "Hadir per sesi", mark: "bar", values: [150, 120] },
+    { label: "Absen per sesi", mark: "bar", values: [200 - 150, 200 - 120] },
+    { label: "Tidak pernah hadir", mark: "bar", values: [200 - 180, 200 - 192] },
+  ]}
+  valueLabel="Banyak siswa"
+/>
+
 Pernyataan pertama benar. Siswa yang tidak pernah hadir adalah siswa terdaftar dikurangi siswa yang hadir paling sedikit satu sesi. Pada Januari ada <InlineMath math="200-180=20" /> siswa, dan pada Februari hanya <InlineMath math="200-192=8" /> siswa.
 
 Pernyataan kedua salah. Yang dibicarakan adalah siswa yang pernah hadir, jadi penyebutnya <InlineMath math="192" />, bukan <InlineMath math="200" />.

@@ -12,6 +12,17 @@ Fill the most restricted places first, then multiply the numbers of choices.
 
 <BlockMath math="2\cdot5\cdot2\cdot4\cdot3=240" />
 
+The chart below puts the choices at each step side by side. **The product of the five bars is the number of codes**.
+
+<Chart
+  title={<>Choices at each step of building the locker code</>}
+  description={<>The last character has <InlineMath math="2" /> choices, the first character <InlineMath math="5" />, the middle letter's place <InlineMath math="2" />, the middle letter <InlineMath math="4" />, and the middle digit <InlineMath math="3" />. Their product is <InlineMath math="240" />.</>}
+  categories={["Last character", "First character", "Middle letter's place", "Middle letter", "Middle digit"]}
+  bars="apart"
+  series={[{ label: "Choices", mark: "bar", values: [2, 5, 2, 4, 3] }]}
+  valueLabel="Choices"
+/>
+
 Check it another way. Pick the two middle places as an ordered pair: letter then digit gives <InlineMath math="4\cdot3=12" /> ways, and digit then letter gives <InlineMath math="12" /> more, so <InlineMath math="24" /> ways. Then <InlineMath math="5\cdot24\cdot2=240" />.
 
 The wrong answers usually come from one missed step.

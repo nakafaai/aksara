@@ -5,6 +5,21 @@ Jede Aussage hängt hier vom **richtigen Nenner** ab. Drei Gruppen verwechselt m
 \text{Februar}&=120\cdot12=1{.}440\text{ Teilnahmen}
 \end{aligned}" />
 
+Das Diagramm stellt drei Gruppen von Lernenden für beide Monate nebeneinander. **Die Zahl der Abwesenden pro Sitzung steigt, die Zahl derer, die nie kamen, sinkt dagegen**.
+
+<Chart
+  title={<>Anwesenheit der <InlineMath math="200" /> Angemeldeten im Januar und Februar</>}
+  description={<>Im Januar sind im Schnitt <InlineMath math="150" /> Lernende pro Sitzung da und <InlineMath math="50" /> abwesend, und <InlineMath math="20" /> kamen nie. Im Februar sind im Schnitt <InlineMath math="120" /> da und <InlineMath math="80" /> abwesend, und nur <InlineMath math="8" /> kamen nie.</>}
+  categories={["Januar", "Februar"]}
+  bars="apart"
+  series={[
+    { label: "Anwesend pro Sitzung", mark: "bar", values: [150, 120] },
+    { label: "Abwesend pro Sitzung", mark: "bar", values: [200 - 150, 200 - 120] },
+    { label: "Nie gekommen", mark: "bar", values: [200 - 180, 200 - 192] },
+  ]}
+  valueLabel="Lernende"
+/>
+
 Die erste Aussage ist richtig. Nie dabei waren die Angemeldeten minus alle, die mindestens eine Sitzung besucht haben. Im Januar sind das <InlineMath math="200-180=20" /> Lernende, im Februar nur <InlineMath math="200-192=8" />.
 
 Die zweite Aussage ist falsch. Es geht um die, die mindestens einmal da waren, der Nenner ist also <InlineMath math="192" /> und nicht <InlineMath math="200" />.

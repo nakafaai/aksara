@@ -15,6 +15,20 @@ In den Nachtstunden verbraucht Dimas zuerst das Nachtvolumen und darf dann diese
 
 <BlockMath math="27+2=29\text{ GB}" />
 
+Das Diagramm teilt beide Volumenarten nach der Nutzungszeit auf. **Das ganze Nachtvolumen und die übrigen <InlineMath math="2" /> GB Hauptvolumen können in die Nachtstunden gehen**.
+
+<Chart
+  title={<>Aufteilung von Dimas' Volumen über <InlineMath math="30" /> Tage</>}
+  description={<>Vom Hauptvolumen mit <InlineMath math="18" /> GB gehen <InlineMath math="16" /> GB in die Zeit außerhalb der Nacht und <InlineMath math="2" /> GB in die Nachtstunden. Das Nachtvolumen von <InlineMath math="27" /> GB wird ganz nachts genutzt. Nachts sind höchstens <InlineMath math="29" /> GB möglich.</>}
+  categories={["Hauptvolumen", "Nachtvolumen"]}
+  bars="apart"
+  series={[
+    { label: "Außerhalb der Nachtstunden genutzt", mark: "bar", values: [16, 0] },
+    { label: "In den Nachtstunden genutzt", mark: "bar", values: [18 - 16, 12 + 15] },
+  ]}
+  valueLabel="GB"
+/>
+
 Die anderen Antworten entstehen durch diese Lesefehler.
 
 - <InlineMath math="27" /> GB entstehen, wenn du vergisst, dass der Rest des Hauptvolumens auch nachts gilt.

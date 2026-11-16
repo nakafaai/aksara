@@ -13,6 +13,20 @@ Probier jeden möglichen Wert von <InlineMath math="m" /> aus. Weil <InlineMath 
 | <InlineMath math="3" /> | <InlineMath math="16" /> | Ja, <InlineMath math="b=4" /> |
 | <InlineMath math="4" /> | <InlineMath math="7" /> | Nein |
 
+Das Diagramm zeichnet diese Tabellenspalte. **Nur bei <InlineMath math="m=3" /> ist der Restbalken null**, also ist nur dort die Zahl der Hefte ganz.
+
+<Chart
+  title={<>Geld für Hefte nach Zahl der Mappen</>}
+  description={<>Für <InlineMath math="m=1" /> bis <InlineMath math="4" /> bleiben für die Hefte <InlineMath math="34" />, <InlineMath math="25" />, <InlineMath math="16" /> und <InlineMath math="7" /> Tausend Rupiah. Die Reste bei Division durch <InlineMath math="4" /> sind <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="0" /> und <InlineMath math="3" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Geld für Hefte (Tausend Rupiah)", mark: "bar", values: [1, 2, 3, 4].map((m) => 43 - 9 * m) },
+    { label: "Rest bei Division durch 4", mark: "bar", values: [1, 2, 3, 4].map((m) => (43 - 9 * m) % 4) },
+  ]}
+  valueLabel="Tausend Rupiah oder Rest"
+/>
+
 Nur <InlineMath math="m=3" /> liefert ein ganzes <InlineMath math="b" />. Aussage (1) allein legt also schon fest, dass Laras <InlineMath math="3" /> Mappen gekauft hat.
 
 Prüf Aussage (2) allein. Sie sagt nur <InlineMath math="b=m+1" />. Laras könnte <InlineMath math="2" /> Hefte und <InlineMath math="1" /> Mappe gekauft haben oder <InlineMath math="5" /> Hefte und <InlineMath math="4" /> Mappen und so weiter. Die Zahl der Mappen steht nicht fest, Aussage (2) allein reicht also nicht.

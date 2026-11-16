@@ -7,6 +7,20 @@ Kamu mencari simpulan yang dijamin oleh angka pada tabel, bukan yang sekadar ter
 
 Tangkapan semusim satu perahu besar naik dari <InlineMath math="100\cdot100=10{.}000" /> kg menjadi <InlineMath math="80\cdot160=12{.}800" /> kg. Namun, **penghasilan bersihnya turun** dari <InlineMath math="170" /> juta menjadi <InlineMath math="152" /> juta rupiah. Harga yang lebih rendah, trip yang lebih sedikit, dan bensin yang lebih mahal menghapus untung dari tangkapan per trip yang lebih banyak.
 
+Grafik berikut memecah penghasilan satu perahu besar. **Penjualan hanya turun sedikit, tetapi biaya bensin naik**, sehingga penghasilan bersihnya turun.
+
+<Chart
+  title={<>Penjualan, biaya bensin, dan penghasilan bersih satu perahu besar</>}
+  description={<>Pada musim 2024, penjualan <InlineMath math="200" /> juta, bensin <InlineMath math="30" /> juta, dan bersih <InlineMath math="170" /> juta rupiah. Pada musim 2025, penjualan <InlineMath math="192" /> juta, bensin <InlineMath math="40" /> juta, dan bersih <InlineMath math="152" /> juta rupiah.</>}
+  categories={["Penjualan", "Biaya bensin", "Penghasilan bersih"]}
+  bars="apart"
+  series={[
+    { label: "Musim 2024", mark: "bar", values: [(100 * 100 * 20) / 1000, (100 * 300) / 1000, (100 * 100 * 20 - 100 * 300) / 1000] },
+    { label: "Musim 2025", mark: "bar", values: [(80 * 160 * 15) / 1000, (80 * 500) / 1000, (80 * 160 * 15 - 80 * 500) / 1000] },
+  ]}
+  valueLabel="Juta rupiah"
+/>
+
 Sekarang cek simpulan lain satu per satu.
 
 - Kenaikan <InlineMath math="60\%" /> hanya berlaku untuk tangkapan per trip. Penghasilan bersih justru turun, jadi pernyataan ketua kelompok keliru.

@@ -13,6 +13,20 @@ Try every possible value of <InlineMath math="m" />. Since <InlineMath math="9\c
 | <InlineMath math="3" /> | <InlineMath math="16" /> | Yes, <InlineMath math="b=4" /> |
 | <InlineMath math="4" /> | <InlineMath math="7" /> | No |
 
+The chart below draws that table column. **Only at <InlineMath math="m=3" /> is the remainder bar zero**, so only there is the number of notebooks whole.
+
+<Chart
+  title={<>Money for notebooks by number of folders</>}
+  description={<>For <InlineMath math="m=1" /> to <InlineMath math="4" />, the money left for notebooks is <InlineMath math="34" />, <InlineMath math="25" />, <InlineMath math="16" />, and <InlineMath math="7" /> thousand rupiah. The remainders after dividing by <InlineMath math="4" /> are <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="0" />, and <InlineMath math="3" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Money left for notebooks (thousand rupiah)", mark: "bar", values: [1, 2, 3, 4].map((m) => 43 - 9 * m) },
+    { label: "Remainder after dividing by 4", mark: "bar", values: [1, 2, 3, 4].map((m) => (43 - 9 * m) % 4) },
+  ]}
+  valueLabel="Thousand rupiah or remainder"
+/>
+
 Only <InlineMath math="m=3" /> gives a whole number for <InlineMath math="b" />. So statement (1) alone already pins it down: Laras bought <InlineMath math="3" /> folders.
 
 Check statement (2) on its own. It only says <InlineMath math="b=m+1" />. Laras could have bought <InlineMath math="2" /> notebooks and <InlineMath math="1" /> folder, or <InlineMath math="5" /> notebooks and <InlineMath math="4" /> folders, and so on. The number of folders isn't fixed, so statement (2) alone isn't enough.

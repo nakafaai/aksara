@@ -14,6 +14,18 @@ Now walk back from <InlineMath math="\neg t" />. The contrapositive of premise 2
 
 <BlockMath math="p \Rightarrow q \;\overset{?}{\Rightarrow}\; r \Rightarrow \neg s \Rightarrow \neg t" />
 
+The diagram below draws that chain with its empty link. **The dashed arrow from <InlineMath math="q" /> to <InlineMath math="r" /> is what the fourth premise has to fill**.
+
+<Mermaid
+  title={<>The chain from heavy rain to the students not watching live</>}
+  description={<>Heavy rain moves the final to the sports hall. If the audience is limited to <InlineMath math="300" /> people, the grade 10 students don't get tickets, so they don't watch live. What's missing is the step from the final being moved to the audience being limited.</>}
+  chart={`flowchart LR
+    P["p: heavy rain"] -->|"premise 1"| Q["q: final moved to the sports hall"]
+    Q -.->|"needs a fourth premise"| R["r: audience limited to 300"]
+    R -->|"premise 3"| S["not s: no tickets"]
+    S -->|"contrapositive of premise 2"| T["not t: don't watch live"]`}
+/>
+
 The missing link is <InlineMath math="q \Rightarrow r" />: if the final moves to the sports hall, the audience is limited to <InlineMath math="300" /> people. That exact form isn't among the options. What appears is its contrapositive, <InlineMath math="\neg r \Rightarrow \neg q" />: if the audience isn't limited to <InlineMath math="300" /> people, the final isn't moved to the sports hall. A contrapositive always has the same truth value as the original, so this option **fills exactly the gap in the chain**.
 
 To test the other options, use one sample situation. Heavy rain falls, the final moves to the sports hall, the audience isn't limited, the grade 10 students get tickets, and they watch live. All three premises hold, but the conclusion fails, because it rained and the students still watched. A wrong option doesn't rule this situation out.

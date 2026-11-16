@@ -9,6 +9,18 @@ Angabe 4 garantiert, dass es jemanden gibt, nenn die Person X, der im Fotoklub u
 
 Ein Schluss bleibt übrig: Manche aus dem Fotoklub sind nicht im Theaterklub. Dieser Schluss ist nicht gültig. Angabe 4 sagt nur, dass mindestens eine Person aus dem Fotoklub im Theaterklub ist. Sie verbietet nicht, dass **alle** aus dem Fotoklub im Theaterklub sind. Der Fotoklub könnte zum Beispiel nur aus Person X bestehen. Alle vier Angaben gelten dann weiter, aber niemand aus dem Fotoklub steht außerhalb des Theaterklubs.
 
+Das Diagramm zeichnet eine Lage, die diesen Schluss widerlegt. **Der Fotoklub könnte nur Schüler X als Mitglied haben**, dann sind alle seine Mitglieder im Theaterklub.
+
+<Mermaid
+  title={<>Eine Lage, in der jedes Mitglied des Fotoklubs im Theaterklub ist</>}
+  description={<>Der Fotoklub hat nur Schüler X, der auch im Theaterklub ist und an der Ausstellung teilnimmt. Schülerin Y ist im Theaterklub und im Komitee des Kulturabends, nimmt also nicht an der Ausstellung teil. Alle vier Angaben gelten, und trotzdem ist kein Mitglied des Fotoklubs außerhalb des Theaterklubs.</>}
+  chart={`flowchart LR
+    X["Schüler X: einziges Mitglied des Fotoklubs"] --> T["Theaterklub"]
+    X --> P["Nimmt an der Schulausstellung teil"]
+    Y["Schülerin Y: Komitee des Kulturabends"] --> T
+    Y -.->|"nimmt nicht teil"| P`}
+/>
+
 Der verlockende Fehler ist, _manche_ als _nur manche, nicht alle_ zu lesen. In der Logik heißt _manche_ mindestens eine Person, und es dürfen auch alle sein.
 
 Nicht gültig ist also der Schluss, dass manche aus dem Fotoklub nicht im Theaterklub sind.

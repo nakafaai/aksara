@@ -9,6 +9,20 @@ Die erste Aussage ist falsch. Wer in den Nachtstunden nie online ist, kann nur d
 
 Das Paket Besar ist billiger. Die Aussage wirkt richtig, wenn du durch das ganze Volumen teilst, denn <InlineMath math="45{.}000:20=2{.}250" /> ist wirklich kleiner als <InlineMath math="70{.}000:30\approx2{.}333" />.
 
+Das Diagramm rechnet den Preis pro GB mit beiden Nennern. **Welches Paket billiger ist, dreht sich um**, sobald der Nenner wechselt.
+
+<Chart
+  title={<>Preis pro GB von Paket Sedang und Paket Besar mit zwei Nennern</>}
+  description={<>Nur durch das Hauptvolumen geteilt kostet Paket Sedang <InlineMath math="4{.}500" /> und Paket Besar etwa <InlineMath math="3{.}889" /> Rupiah pro GB. Durch das ganze Volumen geteilt kostet Paket Sedang <InlineMath math="2{.}250" /> und Paket Besar etwa <InlineMath math="2{.}333" /> Rupiah pro GB.</>}
+  categories={["Paket Sedang", "Paket Besar"]}
+  bars="apart"
+  series={[
+    { label: "Nur durch Hauptvolumen", mark: "bar", values: [45000 / 10, Math.round(70000 / 18)] },
+    { label: "Durch das ganze Volumen", mark: "bar", values: [45000 / 20, Math.round(70000 / 30)] },
+  ]}
+  valueLabel="Rupiah pro GB"
+/>
+
 Die zweite Aussage ist richtig. Diesmal steht das ganze Volumen im Nenner.
 
 <BlockMath math="\begin{aligned}

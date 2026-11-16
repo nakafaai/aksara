@@ -9,6 +9,17 @@ Start by restating the four facts in plain words.
 
 Seedling X is the heart of this question. Fact 3 **guarantees that seedling X really exists**, so anything that must hold for seedling X turns into a "some" statement that is certainly true.
 
+The diagram below follows seedling X through the other facts. **All three branches from seedling X are certain**, because fact 3 guarantees that seedling really exists.
+
+<Mermaid
+  title={<>Following seedling X through the four facts</>}
+  description={<>Seedling X grows in the greenhouse and is younger than <InlineMath math="3" /> months. Because it's in the greenhouse, it gets compost. Because it's young, it isn't a fruit tree seedling, so it isn't sent to Sukamaju.</>}
+  chart={`flowchart LR
+    X["Seedling X: greenhouse, under 3 months old"] -->|"fact 4"| K["Gets compost"]
+    X -->|"fact 2"| B["Not a fruit tree seedling"]
+    B -->|"fact 1"| S["Not sent to Sukamaju"]`}
+/>
+
 Statement 1 is certainly true. Seedling X is in the greenhouse, so by fact 4 it gets compost. It's younger than <InlineMath math="3" /> months, so by fact 2 it isn't a fruit tree seedling. That means there's a composted seedling that isn't a fruit tree seedling. "Not every A is B" means exactly the same as "some A is not B", so the statement is proved. The "not every" wording sounds like a guess, but three facts back it up here.
 
 Statement 2 isn't certainly true. Fact 3 talks about some greenhouse seedlings, not all of them. Picture a <InlineMath math="5" />-month-old mango seedling that grew in the greenhouse, got compost and was sent to Sukamaju. It's a fruit tree seedling (fact 1 holds), it isn't younger than <InlineMath math="3" /> months (fact 2 holds), and it got compost (fact 4 holds). Seedling X still exists, so fact 3 holds too. This situation breaks statement 2. The slip here is reading "some" as if it said "all".

@@ -7,6 +7,20 @@ The jumps you can see are <InlineMath math="1" />, <InlineMath math="3" />, <Inl
 - Jumps <InlineMath math="1" /> and <InlineMath math="3" /> in the list are <InlineMath math="1" /> and <InlineMath math="2" />. The pattern grows by one, so jump <InlineMath math="5" /> is <InlineMath math="3" /> and jump <InlineMath math="7" /> is <InlineMath math="4" />.
 - Jump <InlineMath math="2" /> in the list is <InlineMath math="3" />. If this pattern grows by one too, jump <InlineMath math="4" /> is <InlineMath math="4" /> and jump <InlineMath math="6" /> is <InlineMath math="5" />. Jump <InlineMath math="6" /> really is <InlineMath math="5" />, so the guess fits.
 
+The chart below separates the two jump patterns. **Each pattern grows by one every time it shows up**, so jumps <InlineMath math="4" /> and <InlineMath math="7" /> are both <InlineMath math="4" />.
+
+<Chart
+  title={<>Size of the backward jump from one letter to the next</>}
+  description={<>The odd-numbered jumps are <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="4" />. The even-numbered jumps are <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="5" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Odd-numbered jumps", mark: "bar", values: [1, null, 2, null, 3, null, 4] },
+    { label: "Even-numbered jumps", mark: "bar", values: [null, 3, null, 4, null, 5, null] },
+  ]}
+  valueLabel="Jump size"
+/>
+
 Now fill in the missing letters.
 
 <BlockMath math="\begin{aligned}
