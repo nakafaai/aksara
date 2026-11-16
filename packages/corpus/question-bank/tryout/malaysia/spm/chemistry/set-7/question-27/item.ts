@@ -10,40 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$2$$ isomers, but-2-ene, $$3.70\\text{ g}$$",
-        },
-        {
-          correct: true,
-          label: "$$3$$ isomers, but-2-ene, $$3.70\\text{ g}$$",
-        },
-        {
-          correct: false,
-          label: "$$3$$ isomers, but-1-ene, $$3.70\\text{ g}$$",
-        },
-        {
-          correct: false,
-          label: "$$3$$ isomers, but-2-ene, $$3.57\\text{ g}$$",
-        },
+        { correct: false, label: "$$0\\text{ g}$$, $$9.60\\text{ dm}^3$$" },
+        { correct: true, label: "$$1.80\\text{ g}$$, $$6.00\\text{ dm}^3$$" },
+        { correct: false, label: "$$4.80\\text{ g}$$, $$0\\text{ dm}^3$$" },
+        { correct: false, label: "$$1.20\\text{ g}$$, $$7.20\\text{ dm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$2$$ isomer, but-2-ena, $$3.70\\text{ g}$$",
-        },
-        { correct: true, label: "$$3$$ isomer, but-2-ena, $$3.70\\text{ g}$$" },
-        {
-          correct: false,
-          label: "$$3$$ isomer, but-1-ena, $$3.70\\text{ g}$$",
-        },
-        {
-          correct: false,
-          label: "$$3$$ isomer, but-2-ena, $$3.57\\text{ g}$$",
-        },
+        { correct: false, label: "$$0\\text{ g}$$, $$9.60\\text{ dm}^3$$" },
+        { correct: true, label: "$$1.80\\text{ g}$$, $$6.00\\text{ dm}^3$$" },
+        { correct: false, label: "$$4.80\\text{ g}$$, $$0\\text{ dm}^3$$" },
+        { correct: false, label: "$$1.20\\text{ g}$$, $$7.20\\text{ dm}^3$$" },
       ],
     },
   },
