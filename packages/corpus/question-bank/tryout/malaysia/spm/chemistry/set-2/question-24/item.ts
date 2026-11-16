@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Cell I: chlorine. Cell II: oxygen, $$0.24\\text{ dm}^3$$" },
-        { correct: false, label: "Cell I: oxygen. Cell II: chlorine, $$0.96\\text{ dm}^3$$" },
-        { correct: false, label: "Cell I: chlorine. Cell II: chlorine, $$0.48\\text{ dm}^3$$" },
-        { correct: true, label: "Cell I: oxygen. Cell II: chlorine, $$0.48\\text{ dm}^3$$" },
+        {
+          correct: false,
+          label: "Cell I: chlorine. Cell II: oxygen, $$0.24\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "Cell I: oxygen. Cell II: chlorine, $$0.96\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "Cell I: chlorine. Cell II: chlorine, $$0.48\\text{ dm}^3$$",
+        },
+        {
+          correct: true,
+          label: "Cell I: oxygen. Cell II: chlorine, $$0.48\\text{ dm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Sel I: klorin. Sel II: oksigen, $$0.24\\text{ dm}^3$$" },
-        { correct: false, label: "Sel I: oksigen. Sel II: klorin, $$0.96\\text{ dm}^3$$" },
-        { correct: false, label: "Sel I: klorin. Sel II: klorin, $$0.48\\text{ dm}^3$$" },
-        { correct: true, label: "Sel I: oksigen. Sel II: klorin, $$0.48\\text{ dm}^3$$" },
+        {
+          correct: false,
+          label: "Sel I: klorin. Sel II: oksigen, $$0.24\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "Sel I: oksigen. Sel II: klorin, $$0.96\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "Sel I: klorin. Sel II: klorin, $$0.48\\text{ dm}^3$$",
+        },
+        {
+          correct: true,
+          label: "Sel I: oksigen. Sel II: klorin, $$0.48\\text{ dm}^3$$",
+        },
       ],
     },
   },
