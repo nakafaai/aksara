@@ -1,30 +1,28 @@
-# The relative atomic mass is a weighted average
+# Two unknown abundances need two equations
 
-The relative atomic mass is the **average mass of all the atoms**, weighted by how common each isotope is. Let <InlineMath math="x" /> be the percentage of boron-10, so boron-11 is <InlineMath math="100-x" />:
+With three isotopes and one abundance given, two abundances are unknown. **One equation comes from the percentages adding up to <InlineMath math="100" />, the other from the weighted average**.
 
-<BlockMath math="\begin{aligned}
-\frac{10x+11(100-x)}{100}&=10.8\\
-1100-x&=1080\\
-x&=20
-\end{aligned}" />
+Let <InlineMath math="x" /> be the percentage of magnesium-25 and <InlineMath math="y" /> the percentage of magnesium-26.
+
+- Percentages: <InlineMath math="x + y = 100 - 79 = 21" />.
+- Weighted average: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24.32" />, so <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
+- Subtract <InlineMath math="25(x + y) = 525" />: <InlineMath math="y = 536 - 525 = 11" />, and <InlineMath math="x = 10" />.
 
 <Chart
-  title={<>Abundance of the Two Boron Isotopes</>}
+  title={<>Abundance of the Magnesium Isotopes</>}
   bars="apart"
-  categories={["Boron-10", "Boron-11"]}
+  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
   series={[
-    { label: "Abundance (%)", mark: "bar", values: [20, 80] },
+    { label: "Abundance (%)", mark: "bar", values: [79, 10, 11] },
   ]}
   valueLabel="Abundance (%)"
-  description={<>Boron-10 makes up <InlineMath math="20" /> percent of boron atoms and boron-11 makes up <InlineMath math="80" /> percent, which gives a relative atomic mass of <InlineMath math="10.8" />.</>}
+  description={<>Magnesium-24 makes up <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" /> and magnesium-26 <InlineMath math="11\%" /> of the atoms.</>}
 />
 
-Check: <InlineMath math="0.20\times10+0.80\times11=2+8.8=10.8" />. The average lies close to <InlineMath math="11" />, so the heavier isotope must be the common one. So <InlineMath math="20\%" /> of boron atoms are boron-10.
-
 <MassSpectrometerLab
-  title={<>Boron in a Mass Spectrometer</>}
-  description={<>Each isotope bends on its own path, and the taller boron-11 peak shows it is the common one.</>}
-  samples={["boron"]}
+  title={<>Magnesium in a Mass Spectrometer</>}
+  description={<>The three isotopes bend on three paths, and the peak heights give their abundances.</>}
+  samples={["magnesium"]}
   labels={{
     average: <>Average relative atomic mass</>,
     choose: "Choose an element",
@@ -39,6 +37,6 @@ Check: <InlineMath math="0.20\times10+0.80\times11=2+8.8=10.8" />. The average l
 
 # Why the other options are wrong
 
-- <InlineMath math="80\%" /> is the share of boron-11, the answer for the **other** isotope.
-- <InlineMath math="10.8\%" /> uses the relative atomic mass itself as a percentage.
-- <InlineMath math="50\%" /> assumes equal amounts, which would give <InlineMath math="10.5" />, not <InlineMath math="10.8" />.
+- <InlineMath math="10\%" /> is the abundance of magnesium-25: **the two unknowns were swapped** at the end.
+- <InlineMath math="21\%" /> lumps both heavier isotopes together, as if magnesium-26 were the only other isotope.
+- <InlineMath math="5.5\%" /> halves the remaining <InlineMath math="11\%" />, as if it had to be shared again.

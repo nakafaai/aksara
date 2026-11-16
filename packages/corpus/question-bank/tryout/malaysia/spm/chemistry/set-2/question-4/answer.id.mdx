@@ -1,28 +1,26 @@
-# Cari rumus dari perbandingan mol M dan O
+# Lacak tiap unsur ke produknya, lalu cari oksigen dari selisihnya
 
-Rumus empiris adalah **perbandingan bilangan bulat paling sederhana dari mol atom**, jadi ubah setiap massa menjadi mol sebelum membandingkannya.
+Semua karbon berakhir di karbon dioksida dan semua hidrogen di air. Oksigen juga berasal dari udara, jadi **oksigen dalam P harus dicari dari selisih**, bukan dari produk.
+
+- Karbon: <InlineMath math="0{,}44 \times \dfrac{12}{44} = 0{,}12\text{ g}" />.
+- Hidrogen: <InlineMath math="0{,}18 \times \dfrac{2}{18} = 0{,}02\text{ g}" />.
+- Oksigen: <InlineMath math="0{,}30 - 0{,}12 - 0{,}02 = 0{,}16\text{ g}" />.
 
 <Chart
-  title={<>Massa Oksida yang Terbentuk dari Logam M</>}
-  categories={["Logam 1,12 g", "Logam 2,24 g", "Logam 3,36 g", "Logam 4,48 g"]}
+  title={<>Massa Tiap Unsur dalam Sampel</>}
+  bars="apart"
+  categories={["Karbon", "Hidrogen", "Oksigen"]}
   series={[
-    { label: "Massa oksida (g)", mark: "line", values: [1.6, 3.2, 4.8, 6.4] },
+    { label: "Massa (g)", mark: "bar", values: [0.12, 0.02, 0.16] },
   ]}
-  valueLabel="Massa oksida (g)"
-  description={<>Pembakaran <InlineMath math="1{,}12" />, <InlineMath math="2{,}24" />, <InlineMath math="3{,}36" />, dan <InlineMath math="4{,}48\text{ g}" /> logam M menghasilkan <InlineMath math="1{,}60" />, <InlineMath math="3{,}20" />, <InlineMath math="4{,}80" />, dan <InlineMath math="6{,}40\text{ g}" /> oksidanya, jadi massa oksida bertambah seiring massa logam.</>}
+  valueLabel="Massa (g)"
+  description={<>Sampel <InlineMath math="0{,}30\text{ g}" /> berisi <InlineMath math="0{,}12\text{ g}" /> karbon, <InlineMath math="0{,}02\text{ g}" /> hidrogen, dan <InlineMath math="0{,}16\text{ g}" /> oksigen.</>}
 />
 
-Ambil titik pertama: <InlineMath math="1{,}12\text{ g}" /> M menghasilkan <InlineMath math="1{,}60\text{ g}" /> oksida.
-
-- Massa oksigen yang bergabung: <InlineMath math="1{,}60 - 1{,}12 = 0{,}48\text{ g}" />.
-- Mol M: <InlineMath math="\dfrac{1{,}12}{56} = 0{,}020\text{ mol}" />.
-- Mol O: <InlineMath math="\dfrac{0{,}48}{16} = 0{,}030\text{ mol}" />.
-- Perbandingan M : O adalah <InlineMath math="0{,}020 : 0{,}030 = 2 : 3" />.
-
-Setiap titik lain memberi perbandingan yang sama, karena massa oksida selalu <InlineMath math="\dfrac{1{,}60}{1{,}12}" /> kali massa logam. Jadi, rumus empirisnya <InlineMath math="\text{M}_2\text{O}_3" />.
+Mol: C <InlineMath math="\dfrac{0{,}12}{12} = 0{,}01" />, H <InlineMath math="\dfrac{0{,}02}{1} = 0{,}02" />, O <InlineMath math="\dfrac{0{,}16}{16} = 0{,}01" />. Perbandingan <InlineMath math="1 : 2 : 1" /> memberi rumus empiris <InlineMath math="\text{CH}_2\text{O}" />, dengan <InlineMath math="M_r = 30" />. Karena <InlineMath math="\dfrac{60}{30} = 2" />, rumus molekulnya <InlineMath math="\text{C}_2\text{H}_4\text{O}_2" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="\text{MO}" /> butuh perbandingan <InlineMath math="1 : 1" />, yang hanya memberi <InlineMath math="1{,}12 + 0{,}32 = 1{,}44\text{ g}" /> oksida.
-- <InlineMath math="\text{M}_3\text{O}_4" /> berarti perbandingan <InlineMath math="3 : 4" />, mirip tapi bukan <InlineMath math="2 : 3" /> yang terukur. Hasilnya <InlineMath math="1{,}12 + 0{,}43 = 1{,}55\text{ g}" />.
-- <InlineMath math="\text{MO}_2" /> muncul dari **membandingkan massa, bukan mol**: hasilnya <InlineMath math="1{,}12 + 0{,}64 = 1{,}76\text{ g}" />.
+- <InlineMath math="\text{CH}_2\text{O}" /> adalah rumus empiris: **berhenti satu langkah terlalu cepat** dan mengabaikan massa molekul relatif.
+- <InlineMath math="\text{C}_2\text{H}_2\text{O}_2" /> mengambil satu atom hidrogen per molekul air, bukan dua, dan massanya hanya <InlineMath math="58" />.
+- <InlineMath math="\text{C}_3\text{H}_6\text{O}_3" /> mengalikan rumus empiris dengan <InlineMath math="3" />, yang memberi massa <InlineMath math="90" />, bukan <InlineMath math="60" />.

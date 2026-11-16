@@ -1,30 +1,28 @@
-# Massa atom relatif adalah rata-rata berbobot
+# Dua kelimpahan yang belum diketahui butuh dua persamaan
 
-Massa atom relatif adalah **rata-rata massa semua atom**, diberi bobot menurut kelimpahan setiap isotop. Misalkan <InlineMath math="x" /> adalah persentase boron-10, jadi boron-11 adalah <InlineMath math="100-x" />:
+Dengan tiga isotop dan satu kelimpahan diketahui, dua kelimpahan lain belum diketahui. **Satu persamaan datang dari jumlah persentase yang <InlineMath math="100" />, satu lagi dari rata-rata berbobot**.
 
-<BlockMath math="\begin{aligned}
-\frac{10x+11(100-x)}{100}&=10.8\\
-1100-x&=1080\\
-x&=20
-\end{aligned}" />
+Misalkan <InlineMath math="x" /> persentase magnesium-25 dan <InlineMath math="y" /> persentase magnesium-26.
+
+- Persentase: <InlineMath math="x + y = 100 - 79 = 21" />.
+- Rata-rata berbobot: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24{,}32" />, jadi <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
+- Kurangi dengan <InlineMath math="25(x + y) = 525" />: <InlineMath math="y = 536 - 525 = 11" />, dan <InlineMath math="x = 10" />.
 
 <Chart
-  title={<>Kelimpahan Dua Isotop Boron</>}
+  title={<>Kelimpahan Isotop Magnesium</>}
   bars="apart"
-  categories={["Boron-10", "Boron-11"]}
+  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
   series={[
-    { label: "Kelimpahan (%)", mark: "bar", values: [20, 80] },
+    { label: "Kelimpahan (%)", mark: "bar", values: [79, 10, 11] },
   ]}
   valueLabel="Kelimpahan (%)"
-  description={<>Boron-10 mencakup <InlineMath math="20" /> persen atom boron dan boron-11 mencakup <InlineMath math="80" /> persen, yang memberi massa atom relatif <InlineMath math="10{,}8" />.</>}
+  description={<>Magnesium-24 menyusun <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" />, dan magnesium-26 <InlineMath math="11\%" /> dari atomnya.</>}
 />
 
-Cek: <InlineMath math="0.20\times10+0.80\times11=2+8.8=10.8" />. Rata-ratanya dekat dengan <InlineMath math="11" />, jadi isotop yang lebih berat pasti lebih banyak. Jadi, <InlineMath math="20\%" /> atom boron adalah boron-10.
-
 <MassSpectrometerLab
-  title={<>Boron dalam Spektrometer Massa</>}
-  description={<>Tiap isotop berbelok di lintasannya sendiri, dan puncak boron-11 yang lebih tinggi menunjukkan isotop itu lebih banyak.</>}
-  samples={["boron"]}
+  title={<>Magnesium dalam Spektrometer Massa</>}
+  description={<>Tiga isotop berbelok di tiga lintasan, dan tinggi puncak memberi kelimpahannya.</>}
+  samples={["magnesium"]}
   labels={{
     average: <>Massa atom relatif rata-rata</>,
     choose: "Pilih unsur",
@@ -39,6 +37,6 @@ Cek: <InlineMath math="0.20\times10+0.80\times11=2+8.8=10.8" />. Rata-ratanya de
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="80\%" /> adalah bagian boron-11, jawaban untuk isotop **yang lain**.
-- <InlineMath math="10.8\%" /> memakai massa atom relatif itu sendiri sebagai persentase.
-- <InlineMath math="50\%" /> menganggap jumlahnya sama, yang akan memberi <InlineMath math="10.5" />, bukan <InlineMath math="10.8" />.
+- <InlineMath math="10\%" /> adalah kelimpahan magnesium-25: **dua variabel tertukar** di akhir.
+- <InlineMath math="21\%" /> menggabungkan kedua isotop yang lebih berat, seakan-akan magnesium-26 satu-satunya isotop lain.
+- <InlineMath math="5{,}5\%" /> membagi dua sisa <InlineMath math="11\%" />, seakan-akan harus dibagi lagi.

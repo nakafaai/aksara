@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "analysing",
+    cognitiveLevel: "applying",
     contentDomain: "form-4",
     topic: "matter-and-atomic-structure",
   },
@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$20\\%$$" },
-        { correct: false, label: "$$80\\%$$" },
-        { correct: false, label: "$$10.8\\%$$" },
-        { correct: false, label: "$$50\\%$$" },
+        { correct: true, label: "$$11\\%$$" },
+        { correct: false, label: "$$10\\%$$" },
+        { correct: false, label: "$$21\\%$$" },
+        { correct: false, label: "$$5.5\\%$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$20\\%$$" },
-        { correct: false, label: "$$80\\%$$" },
-        { correct: false, label: "$$10.8\\%$$" },
-        { correct: false, label: "$$50\\%$$" },
+        { correct: true, label: "$$11\\%$$" },
+        { correct: false, label: "$$10\\%$$" },
+        { correct: false, label: "$$21\\%$$" },
+        { correct: false, label: "$$5.5\\%$$" },
       ],
     },
   },

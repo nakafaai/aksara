@@ -1,28 +1,26 @@
-# Find the formula from the mole ratio of M to O
+# Trace each element to its product, then find oxygen by difference
 
-An empirical formula is **the simplest whole-number ratio of moles of atoms**, so turn each mass into moles before comparing.
+All the carbon ends up in carbon dioxide and all the hydrogen in water. Oxygen also comes from the air, so **the oxygen in P must be found by difference**, never from the products.
+
+- Carbon: <InlineMath math="0.44 \times \dfrac{12}{44} = 0.12\text{ g}" />.
+- Hydrogen: <InlineMath math="0.18 \times \dfrac{2}{18} = 0.02\text{ g}" />.
+- Oxygen: <InlineMath math="0.30 - 0.12 - 0.02 = 0.16\text{ g}" />.
 
 <Chart
-  title={<>Mass of Oxide Formed from Metal M</>}
-  categories={["Metal 1.12 g", "Metal 2.24 g", "Metal 3.36 g", "Metal 4.48 g"]}
+  title={<>Mass of Each Element in the Sample</>}
+  bars="apart"
+  categories={["Carbon", "Hydrogen", "Oxygen"]}
   series={[
-    { label: "Mass of oxide (g)", mark: "line", values: [1.6, 3.2, 4.8, 6.4] },
+    { label: "Mass (g)", mark: "bar", values: [0.12, 0.02, 0.16] },
   ]}
-  valueLabel="Mass of oxide (g)"
-  description={<>Burning <InlineMath math="1.12" />, <InlineMath math="2.24" />, <InlineMath math="3.36" /> and <InlineMath math="4.48\text{ g}" /> of metal M forms <InlineMath math="1.60" />, <InlineMath math="3.20" />, <InlineMath math="4.80" /> and <InlineMath math="6.40\text{ g}" /> of its oxide, so the mass of oxide grows in step with the mass of metal.</>}
+  valueLabel="Mass (g)"
+  description={<>The <InlineMath math="0.30\text{ g}" /> sample holds <InlineMath math="0.12\text{ g}" /> of carbon, <InlineMath math="0.02\text{ g}" /> of hydrogen and <InlineMath math="0.16\text{ g}" /> of oxygen.</>}
 />
 
-Take the first point: <InlineMath math="1.12\text{ g}" /> of M forms <InlineMath math="1.60\text{ g}" /> of oxide.
-
-- Mass of oxygen that combined: <InlineMath math="1.60 - 1.12 = 0.48\text{ g}" />.
-- Moles of M: <InlineMath math="\dfrac{1.12}{56} = 0.020\text{ mol}" />.
-- Moles of O: <InlineMath math="\dfrac{0.48}{16} = 0.030\text{ mol}" />.
-- Ratio M : O is <InlineMath math="0.020 : 0.030 = 2 : 3" />.
-
-Every other point gives the same ratio, since the oxide mass is always <InlineMath math="\dfrac{1.60}{1.12}" /> times the metal mass. So the empirical formula is <InlineMath math="\text{M}_2\text{O}_3" />.
+Moles: C <InlineMath math="\dfrac{0.12}{12} = 0.01" />, H <InlineMath math="\dfrac{0.02}{1} = 0.02" />, O <InlineMath math="\dfrac{0.16}{16} = 0.01" />. The ratio <InlineMath math="1 : 2 : 1" /> gives the empirical formula <InlineMath math="\text{CH}_2\text{O}" />, with <InlineMath math="M_r = 30" />. Since <InlineMath math="\dfrac{60}{30} = 2" />, the molecular formula is <InlineMath math="\text{C}_2\text{H}_4\text{O}_2" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="\text{MO}" /> needs a ratio of <InlineMath math="1 : 1" />, which would give only <InlineMath math="1.12 + 0.32 = 1.44\text{ g}" /> of oxide.
-- <InlineMath math="\text{M}_3\text{O}_4" /> is a ratio of <InlineMath math="3 : 4" />, close but not the measured <InlineMath math="2 : 3" />. It would give <InlineMath math="1.12 + 0.43 = 1.55\text{ g}" />.
-- <InlineMath math="\text{MO}_2" /> comes from **comparing masses instead of moles**: it would give <InlineMath math="1.12 + 0.64 = 1.76\text{ g}" />.
+- <InlineMath math="\text{CH}_2\text{O}" /> is the empirical formula: it **stops one step early** and ignores the relative molecular mass.
+- <InlineMath math="\text{C}_2\text{H}_2\text{O}_2" /> takes one hydrogen atom per water molecule instead of two, which also leaves the mass at <InlineMath math="58" />.
+- <InlineMath math="\text{C}_3\text{H}_6\text{O}_3" /> multiplies the empirical formula by <InlineMath math="3" />, which gives a mass of <InlineMath math="90" />, not <InlineMath math="60" />.
