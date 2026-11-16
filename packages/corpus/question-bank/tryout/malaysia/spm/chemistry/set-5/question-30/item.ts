@@ -10,27 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$0.92\\text{ g}$$, $$60.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$1.38\\text{ g}$$, $$20.0\\text{ cm}^3$$" },
-        { correct: true, label: "$$0.92\\text{ g}$$, $$20.0\\text{ cm}^3$$" },
-        {
-          correct: false,
-          label:
-            "$$0.92\\text{ g}$$, none, because all the sodium hydroxide reacts",
-        },
+        { correct: false, label: "Propane, $$4.75\\text{ g}$$" },
+        { correct: false, label: "Butane, $$3.60\\text{ g}$$" },
+        { correct: true, label: "Butane, $$4.50\\text{ g}$$" },
+        { correct: false, label: "Pentane, $$4.35\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$0.92\\text{ g}$$, $$60.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$1.38\\text{ g}$$, $$20.0\\text{ cm}^3$$" },
-        { correct: true, label: "$$0.92\\text{ g}$$, $$20.0\\text{ cm}^3$$" },
-        {
-          correct: false,
-          label:
-            "$$0.92\\text{ g}$$, tiada, kerana semua natrium hidroksida bertindak balas",
-        },
+        { correct: false, label: "Propana, $$4.75\\text{ g}$$" },
+        { correct: false, label: "Butana, $$3.60\\text{ g}$$" },
+        { correct: true, label: "Butana, $$4.50\\text{ g}$$" },
+        { correct: false, label: "Pentana, $$4.35\\text{ g}$$" },
       ],
     },
   },

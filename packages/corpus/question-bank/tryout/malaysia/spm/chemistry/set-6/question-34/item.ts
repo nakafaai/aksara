@@ -10,51 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "$$85.0\\text{ kJ}$$, $$11.2\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
-        },
-        {
-          correct: true,
-          label:
-            "$$63.8\\text{ kJ}$$, $$8.40\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
-        },
-        {
-          correct: false,
-          label:
-            "$$63.8\\text{ kJ}$$, $$4.20\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
-        },
-        {
-          correct: false,
-          label:
-            "$$63.8\\text{ kJ}$$, $$8.40\\text{ g}$$, the reaction absorbs heat overall, which the burning magnesium supplies",
-        },
+        { correct: false, label: "$$-61.3\\text{ kJ mol}^{-1}$$" },
+        { correct: true, label: "$$-57.1\\text{ kJ mol}^{-1}$$" },
+        { correct: false, label: "$$-52.9\\text{ kJ mol}^{-1}$$" },
+        { correct: false, label: "$$-28.6\\text{ kJ mol}^{-1}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "$$85.0\\text{ kJ}$$, $$11.2\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
-        },
-        {
-          correct: true,
-          label:
-            "$$63.8\\text{ kJ}$$, $$8.40\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
-        },
-        {
-          correct: false,
-          label:
-            "$$63.8\\text{ kJ}$$, $$4.20\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
-        },
-        {
-          correct: false,
-          label:
-            "$$63.8\\text{ kJ}$$, $$8.40\\text{ g}$$, tindak balas itu menyerap haba secara keseluruhan, yang dibekalkan oleh magnesium yang terbakar",
-        },
+        { correct: false, label: "$$-61.3\\text{ kJ mol}^{-1}$$" },
+        { correct: true, label: "$$-57.1\\text{ kJ mol}^{-1}$$" },
+        { correct: false, label: "$$-52.9\\text{ kJ mol}^{-1}$$" },
+        { correct: false, label: "$$-28.6\\text{ kJ mol}^{-1}$$" },
       ],
     },
   },

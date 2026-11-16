@@ -10,51 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "$$57.6\\text{ kg}$$ of boric acid, $$7.74\\text{ m}^3$$ of carbon dioxide",
-        },
-        {
-          correct: false,
-          label:
-            "$$115\\text{ kg}$$ of boric acid, $$15.5\\text{ m}^3$$ of carbon dioxide",
-        },
-        {
-          correct: false,
-          label:
-            "$$115\\text{ kg}$$ of boric acid, $$7.74\\text{ dm}^3$$ of carbon dioxide",
-        },
-        {
-          correct: true,
-          label:
-            "$$115\\text{ kg}$$ of boric acid, $$7.74\\text{ m}^3$$ of carbon dioxide",
-        },
+        { correct: false, label: "$$150\\text{ g}$$, $$0\\text{ g}$$" },
+        { correct: false, label: "$$256\\text{ g}$$, $$106\\text{ g}$$" },
+        { correct: false, label: "$$513\\text{ g}$$, $$185\\text{ g}$$" },
+        { correct: true, label: "$$256\\text{ g}$$, $$185\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "$$57.6\\text{ kg}$$ asid borik, $$7.74\\text{ m}^3$$ karbon dioksida",
-        },
-        {
-          correct: false,
-          label:
-            "$$115\\text{ kg}$$ asid borik, $$15.5\\text{ m}^3$$ karbon dioksida",
-        },
-        {
-          correct: false,
-          label:
-            "$$115\\text{ kg}$$ asid borik, $$7.74\\text{ dm}^3$$ karbon dioksida",
-        },
-        {
-          correct: true,
-          label:
-            "$$115\\text{ kg}$$ asid borik, $$7.74\\text{ m}^3$$ karbon dioksida",
-        },
+        { correct: false, label: "$$150\\text{ g}$$, $$0\\text{ g}$$" },
+        { correct: false, label: "$$256\\text{ g}$$, $$106\\text{ g}$$" },
+        { correct: false, label: "$$513\\text{ g}$$, $$185\\text{ g}$$" },
+        { correct: true, label: "$$256\\text{ g}$$, $$185\\text{ g}$$" },
       ],
     },
   },

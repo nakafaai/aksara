@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$2$$, $$3.74\\text{ g}$$, $$480\\text{ cm}^3$$",
+          label: "$$\\text{C}_4\\text{H}_8$$, $$1.80\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$1$$, $$2.14\\text{ g}$$, $$240\\text{ cm}^3$$",
+          label: "$$\\text{C}_4\\text{H}_{10}$$, $$1.95\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$2$$, $$2.14\\text{ g}$$, $$480\\text{ cm}^3$$",
+          label: "$$\\text{C}_2\\text{H}_4$$, $$1.80\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$2$$, $$3.74\\text{ g}$$, $$240\\text{ cm}^3$$",
+          label: "$$\\text{C}_4\\text{H}_8$$, $$1.20\\text{ dm}^3$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$2$$, $$3.74\\text{ g}$$, $$480\\text{ cm}^3$$",
+          label: "$$\\text{C}_4\\text{H}_8$$, $$1.80\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$1$$, $$2.14\\text{ g}$$, $$240\\text{ cm}^3$$",
+          label: "$$\\text{C}_4\\text{H}_{10}$$, $$1.95\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$2$$, $$2.14\\text{ g}$$, $$480\\text{ cm}^3$$",
+          label: "$$\\text{C}_2\\text{H}_4$$, $$1.80\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$2$$, $$3.74\\text{ g}$$, $$240\\text{ cm}^3$$",
+          label: "$$\\text{C}_4\\text{H}_8$$, $$1.20\\text{ dm}^3$$",
         },
       ],
     },

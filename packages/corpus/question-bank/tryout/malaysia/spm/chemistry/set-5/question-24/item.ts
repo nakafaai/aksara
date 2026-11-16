@@ -10,51 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "$$23.4\\text{ g}$$, and a scratched tin coat would make the exposed steel rust faster",
-        },
-        {
-          correct: false,
-          label:
-            "$$46.8\\text{ g}$$, and a scratched tin coat would make the exposed steel rust faster",
-        },
-        {
-          correct: false,
-          label:
-            "$$23.4\\text{ g}$$, and a scratched tin coat would still protect the steel as zinc does",
-        },
-        {
-          correct: false,
-          label:
-            "$$11.7\\text{ g}$$, and a scratched tin coat would make the exposed steel rust faster",
-        },
+        { correct: true, label: "$$0.48\\text{ g}$$, two thirds" },
+        { correct: false, label: "$$0.96\\text{ g}$$, two thirds" },
+        { correct: false, label: "$$0.48\\text{ g}$$, one third" },
+        { correct: false, label: "$$0.32\\text{ g}$$, two thirds" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "$$23.4\\text{ g}$$, dan salutan stanum yang tercalar akan menjadikan keluli yang terdedah berkarat lebih cepat",
-        },
-        {
-          correct: false,
-          label:
-            "$$46.8\\text{ g}$$, dan salutan stanum yang tercalar akan menjadikan keluli yang terdedah berkarat lebih cepat",
-        },
-        {
-          correct: false,
-          label:
-            "$$23.4\\text{ g}$$, dan salutan stanum yang tercalar masih melindungi keluli seperti zink",
-        },
-        {
-          correct: false,
-          label:
-            "$$11.7\\text{ g}$$, dan salutan stanum yang tercalar akan menjadikan keluli yang terdedah berkarat lebih cepat",
-        },
+        { correct: true, label: "$$0.48\\text{ g}$$, dua pertiga" },
+        { correct: false, label: "$$0.96\\text{ g}$$, dua pertiga" },
+        { correct: false, label: "$$0.48\\text{ g}$$, satu pertiga" },
+        { correct: false, label: "$$0.32\\text{ g}$$, dua pertiga" },
       ],
     },
   },
