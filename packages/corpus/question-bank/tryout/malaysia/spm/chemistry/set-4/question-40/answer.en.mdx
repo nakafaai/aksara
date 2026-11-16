@@ -1,21 +1,24 @@
-# Two hydroxide ions in each formula unit
+# Back titration: the acid the tablet used, then two equations
 
-<InlineMath math="M_r = 24 + 2(16 + 1) = 58" />, so the tablet holds <InlineMath math="0.50 \div 58 = 0.00862" /> mol. Each formula unit carries **two hydroxide ions**, so it neutralises two moles of acid: <InlineMath math="0.0172" /> mol of hydrochloric acid.
+Acid added: <InlineMath math="0.0500 \times 1.00 = 0.0500" /> mol. Acid left over equals the sodium hydroxide, <InlineMath math="0.0200 \times 0.500 = 0.0100" /> mol. So the tablet used <InlineMath math="0.0400" /> mol of hydrochloric acid.
 
-<Mermaid
-  title={<>How Much Acid One Tablet Neutralises</>}
-  description={<><InlineMath math="0.50\text{ g}" /> of magnesium hydroxide is <InlineMath math="0.00862\text{ mol}" />, which takes twice as many moles of hydrochloric acid, <InlineMath math="0.0172\text{ mol}" />, found in <InlineMath math="172\text{ cm}^3" /> of <InlineMath math="0.10\text{ mol dm}^{-3}" /> acid.</>}
-  chart={`
-    flowchart LR
-      N0["Mg(OH)2: 0.50 g, 0.00862 mol"] -->|"× 2"| N1["HCl: 0.0172 mol"]
-      N1 --> N2["at 0.10 mol dm⁻³: 172 cm³"]
-  `}
+<Chart
+  title={<>Where the Acid Went</>}
+  bars="apart"
+  categories={["Added", "Left over", "Used by the tablet"]}
+  series={[
+    { label: "Hydrochloric acid (mol)", mark: "bar", values: [0.05, 0.01, 0.04] },
+  ]}
+  valueLabel="Hydrochloric acid (mol)"
+  description={<>Acid added <InlineMath math="0.0500\text{ mol}" />, left over <InlineMath math="0.0100\text{ mol}" />, used by the tablet <InlineMath math="0.0400\text{ mol}" />.</>}
 />
 
-At <InlineMath math="0.10\text{ mol dm}^{-3}" />, that acid fills <InlineMath math="0.0172 \div 0.10 = 0.172\text{ dm}^3" />, or <InlineMath math="172\text{ cm}^3" />. Magnesium hydroxide is chosen because it is a weak, barely soluble base, so it neutralises the excess acid without making the stomach alkaline.
+Both bases take **two acid per formula unit**: <InlineMath math="\text{Mg(OH)}_2 + 2\text{HCl} \rightarrow \text{MgCl}_2 + 2\text{H}_2\text{O}" /> and <InlineMath math="\text{CaCO}_3 + 2\text{HCl} \rightarrow \text{CaCl}_2 + \text{H}_2\text{O} + \text{CO}_2" />. With <InlineMath math="a" /> mol of magnesium hydroxide (<InlineMath math="M_r = 58" />) and <InlineMath math="b" /> mol of calcium carbonate (<InlineMath math="M_r = 100" />): <InlineMath math="a + b = 0.0200" /> and <InlineMath math="58a + 100b = 1.58" />. Then <InlineMath math="2.00 - 42a = 1.58" />, so <InlineMath math="a = 0.0100" />, which is <InlineMath math="0.58\text{ g}" />.
+
+Stomach acid: the tablet neutralises <InlineMath math="0.0400" /> mol, and <InlineMath math="0.0400 \div 0.10 = 0.400\text{ dm}^3 = 400\text{ cm}^3" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="86\text{ cm}^3" /> treats the reaction as one to one and misses the **second hydroxide ion**.
-- <InlineMath math="345\text{ cm}^3" /> doubles the acid twice.
-- <InlineMath math="17.2\text{ cm}^3" /> slips a decimal place when changing <InlineMath math="0.172\text{ dm}^3" /> into cubic centimetres.
+- <InlineMath math="1.27\text{ g}" /> and <InlineMath math="500\text{ cm}^3" /> use all the acid added and forget the part the sodium hydroxide **found left over**.
+- <InlineMath math="200\text{ cm}^3" /> divides the <InlineMath math="0.0200" /> mol of base, not the <InlineMath math="0.0400" /> mol of acid it neutralises.
+- <InlineMath math="1.00\text{ g}" /> is the mass of the calcium carbonate, not the magnesium hydroxide.

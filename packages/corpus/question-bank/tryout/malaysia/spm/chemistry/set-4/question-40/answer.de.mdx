@@ -1,21 +1,24 @@
-# Zwei Hydroxidionen in jeder Formeleinheit
+# Rücktitration: erst die verbrauchte Säure, dann zwei Gleichungen
 
-<InlineMath math="M_r = 24 + 2(16 + 1) = 58" />, die Tablette enthält also <InlineMath math="0{,}50 \div 58 = 0{,}00862" /> mol. Jede Formeleinheit trägt **zwei Hydroxidionen** und neutralisiert also zwei Mol Säure: <InlineMath math="0{,}0172" /> mol Salzsäure.
+Zugegebene Säure: <InlineMath math="0{,}0500 \times 1{,}00 = 0{,}0500" /> mol. Die übrige Säure entspricht dem Natriumhydroxid, <InlineMath math="0{,}0200 \times 0{,}500 = 0{,}0100" /> mol. Die Tablette hat also <InlineMath math="0{,}0400" /> mol Salzsäure verbraucht.
 
-<Mermaid
-  title={<>Wie viel Säure eine Tablette neutralisiert</>}
-  description={<><InlineMath math="0{,}50" /> g Magnesiumhydroxid sind <InlineMath math="0{,}00862" /> mol, die doppelt so viel Salzsäure brauchen, <InlineMath math="0{,}0172" /> mol, enthalten in <InlineMath math="172\text{ cm}^3" /> Säure mit <InlineMath math="0{,}10\text{ mol dm}^{-3}" />.</>}
-  chart={`
-    flowchart LR
-      N0["Mg(OH)2: 0,50 g, 0,00862 mol"] -->|"× 2"| N1["HCl: 0,0172 mol"]
-      N1 --> N2["bei 0,10 mol dm⁻³: 172 cm³"]
-  `}
+<Chart
+  title={<>Wohin die Säure ging</>}
+  bars="apart"
+  categories={["Zugegeben", "Übrig", "Von der Tablette verbraucht"]}
+  series={[
+    { label: "Salzsäure (mol)", mark: "bar", values: [0.05, 0.01, 0.04] },
+  ]}
+  valueLabel="Salzsäure (mol)"
+  description={<>Zugegeben <InlineMath math="0{,}0500\text{ mol}" />, übrig <InlineMath math="0{,}0100\text{ mol}" />, von der Tablette verbraucht <InlineMath math="0{,}0400\text{ mol}" />.</>}
 />
 
-Bei <InlineMath math="0{,}10\text{ mol dm}^{-3}" /> füllt diese Säure <InlineMath math="0{,}0172 \div 0{,}10 = 0{,}172\text{ dm}^3" />, also <InlineMath math="172\text{ cm}^3" />. Magnesiumhydroxid wird gewählt, weil es eine schwache, kaum lösliche Base ist: Es neutralisiert überschüssige Säure, ohne den Magen alkalisch zu machen.
+Beide Basen brauchen **zwei Säureteilchen je Formeleinheit**: <InlineMath math="\text{Mg(OH)}_2 + 2\text{HCl} \rightarrow \text{MgCl}_2 + 2\text{H}_2\text{O}" /> und <InlineMath math="\text{CaCO}_3 + 2\text{HCl} \rightarrow \text{CaCl}_2 + \text{H}_2\text{O} + \text{CO}_2" />. Mit <InlineMath math="a" /> mol Magnesiumhydroxid (<InlineMath math="M_r = 58" />) und <InlineMath math="b" /> mol Calciumcarbonat (<InlineMath math="M_r = 100" />) gilt <InlineMath math="a + b = 0{,}0200" /> und <InlineMath math="58a + 100b = 1{,}58" />. Daraus folgt <InlineMath math="2{,}00 - 42a = 1{,}58" />, also <InlineMath math="a = 0{,}0100" />, das sind <InlineMath math="0{,}58\text{ g}" />.
+
+Magensäure: Die Tablette neutralisiert <InlineMath math="0{,}0400" /> mol, und <InlineMath math="0{,}0400 \div 0{,}10 = 0{,}400\text{ dm}^3 = 400\text{ cm}^3" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="86\text{ cm}^3" /> rechnet eins zu eins und übersieht **das zweite Hydroxidion**.
-- <InlineMath math="345\text{ cm}^3" /> verdoppelt die Säure zweimal.
-- <InlineMath math="17{,}2\text{ cm}^3" /> verrutscht beim Umrechnen von <InlineMath math="0{,}172\text{ dm}^3" /> in Kubikzentimeter um eine Stelle.
+- <InlineMath math="1{,}27\text{ g}" /> und <InlineMath math="500\text{ cm}^3" /> rechnen mit der ganzen zugegebenen Säure und vergessen den Teil, den das Natriumhydroxid als **übrig gefunden hat**.
+- <InlineMath math="200\text{ cm}^3" /> teilt die <InlineMath math="0{,}0200" /> mol Base statt der <InlineMath math="0{,}0400" /> mol Säure, die sie neutralisiert.
+- <InlineMath math="1{,}00\text{ g}" /> ist die Masse des Calciumcarbonats, nicht des Magnesiumhydroxids.
