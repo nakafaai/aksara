@@ -28,9 +28,12 @@ export type AnswerReader = (props: unknown) => readonly string[];
  * One component of the catalog: its kind, the schema of its props in one
  * document kind, and the reader of the answer state those props hold.
  */
-export interface VisualEntry<Props extends Schema.Top> {
+export interface VisualEntry<
+  Props extends Schema.Top,
+  Kind extends VisualKind = VisualKind,
+> {
   readonly answer: AnswerReader;
-  readonly kind: VisualKind;
+  readonly kind: Kind;
   readonly props: Props;
 }
 
@@ -88,13 +91,13 @@ export const noAnswer: AnswerReader = () => [];
 export function figure<Props extends Schema.Top>(
   props: Props,
   answer: AnswerReader = noAnswer
-): VisualEntry<Props> {
+): VisualEntry<Props, "figure"> {
   return { answer, kind: "figure", props };
 }
 
 /** A markup component: a formula, an emphasis, or a layout around blocks. */
 export function markup<Props extends Schema.Top>(
   props: Props
-): VisualEntry<Props> {
+): VisualEntry<Props, "markup"> {
   return { answer: noAnswer, kind: "markup", props };
 }

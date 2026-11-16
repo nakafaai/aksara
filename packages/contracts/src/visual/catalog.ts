@@ -125,11 +125,20 @@ const plainCatalog: Readonly<Record<VisualName, VisualEntry<Schema.Top>>> =
 /** Every catalog name, in code-unit order. */
 export const VISUAL_NAMES = Arr.sort(Rec.keys(plainCatalog), Order.String);
 
+/** The name of one catalog component that a document draws as a figure. */
+export type FigureName = {
+  readonly [Name in VisualName]: AssessmentVisuals[Name]["kind"] extends "figure"
+    ? Name
+    : never;
+}[VisualName];
+
+/** Whether a document draws one catalog component as a figure, as its entry's kind says. */
+function isFigure(name: VisualName): name is FigureName {
+  return plainCatalog[name].kind === "figure";
+}
+
 /** The catalog components a document draws as a figure, in code-unit order. */
-export const FIGURE_NAMES = Arr.filter(
-  VISUAL_NAMES,
-  (name) => plainCatalog[name].kind === "figure"
-);
+export const FIGURE_NAMES = Arr.filter(VISUAL_NAMES, isFigure);
 
 /** The name of one catalog component. */
 export const VisualNameSchema = Schema.Literals(VISUAL_NAMES);
