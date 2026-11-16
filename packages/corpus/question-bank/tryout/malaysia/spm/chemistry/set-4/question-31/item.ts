@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Magnesium gives 2.4 dm³ of hydrogen, because each acid molecule gives one hydrogen molecule",
+            "Magnesium gives $$1.80\\text{ dm}^3$$ of hydrogen, and sodium carbonate gives $$0.72\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "Magnesium gives 1.2 dm³ of hydrogen, and sodium carbonate gives 2.4 dm³ of carbon dioxide",
+            "Magnesium gives $$2.40\\text{ dm}^3$$ of hydrogen, and sodium carbonate gives $$1.20\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: true,
           label:
-            "Both give 1.2 dm³ of gas: hydrogen from magnesium and carbon dioxide from sodium carbonate",
+            "Magnesium gives $$1.20\\text{ dm}^3$$ of hydrogen with $$0.60\\text{ g}$$ of magnesium left, and sodium carbonate gives $$0.72\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "Both give 0.6 dm³ of gas, because ethanoic acid is a weak acid",
+            "Magnesium gives $$1.20\\text{ dm}^3$$ of hydrogen with $$0.60\\text{ g}$$ of magnesium left, and sodium carbonate gives $$1.20\\text{ dm}^3$$ of carbon dioxide",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Magnesium menghasilkan 2.4 dm³ hidrogen, kerana setiap molekul asid menghasilkan satu molekul hidrogen",
+            "Magnesium memberikan $$1.80\\text{ dm}^3$$ hidrogen, dan natrium karbonat memberikan $$0.72\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "Magnesium menghasilkan 1.2 dm³ hidrogen, dan natrium karbonat menghasilkan 2.4 dm³ karbon dioksida",
+            "Magnesium memberikan $$2.40\\text{ dm}^3$$ hidrogen, dan natrium karbonat memberikan $$1.20\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: true,
           label:
-            "Kedua-duanya menghasilkan 1.2 dm³ gas: hidrogen daripada magnesium dan karbon dioksida daripada natrium karbonat",
+            "Magnesium memberikan $$1.20\\text{ dm}^3$$ hidrogen dengan baki $$0.60\\text{ g}$$ magnesium, dan natrium karbonat memberikan $$0.72\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "Kedua-duanya menghasilkan 0.6 dm³ gas, kerana asid etanoik ialah asid lemah",
+            "Magnesium memberikan $$1.20\\text{ dm}^3$$ hidrogen dengan baki $$0.60\\text{ g}$$ magnesium, dan natrium karbonat memberikan $$1.20\\text{ dm}^3$$ karbon dioksida",
         },
       ],
     },
