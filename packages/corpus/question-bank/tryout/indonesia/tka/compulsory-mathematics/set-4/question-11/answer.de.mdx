@@ -6,6 +6,46 @@ Der Punkt <InlineMath math="G" /> liegt auf der Deckfläche, aber die ist nass. 
 
 <BlockMath math="AG=\sqrt{(15+9)^2+7^2}=\sqrt{576+49}=\sqrt{625}=25" />
 
+Klappe die Seitenflächen <InlineMath math="ABFE" /> und <InlineMath math="BCGF" /> zu einem Rechteck auf. **Der kürzeste Weg ohne den Deckel ist die Diagonale des Rechtecks <InlineMath math="24\times7" />**, von <InlineMath math="A" /> unten links nach <InlineMath math="G" /> oben rechts.
+
+<MathVisual
+  title={<>Netz zweier Seitenflächen und der Weg der Ameise</>}
+  description={<>Die Fläche <InlineMath math="ABFE" /> mit <InlineMath math="15\times7" /> und die Fläche <InlineMath math="BCGF" /> mit <InlineMath math="9\times7" /> sind nebeneinander zu einem Rechteck <InlineMath math="24\times7" /> aufgeklappt. Die gerade Strecke von <InlineMath math="A" /> nach <InlineMath math="G" /> kreuzt die Kante <InlineMath math="BF" /> und ist <InlineMath math="\sqrt{24^2+7^2}=25" /> lang.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    g: <InlineMath math="G" />,
+    front: <InlineMath math="15" />,
+    side: <InlineMath math="9" />,
+    path: <InlineMath math="25" />,
+    tall: <InlineMath math="7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 25.5 },
+      y: { min: -2, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "front", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 15, y: 0 }, { x: 15, y: 7 }, { x: 0, y: 7 }] },
+      { id: "side", kind: "polygon", appearance: "secondary", vertices: [{ x: 15, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 7 }, { x: 15, y: 7 }] },
+      { id: "tall", kind: "segment", appearance: "construction", from: { x: 24, y: 0 }, to: { x: 24, y: 7 } },
+      { id: "path", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 24, y: 7 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "g", kind: "point", appearance: "answer", at: { x: 24, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "g", objectId: "g", at: { x: 24, y: 7 }, placement: "above-right" },
+      { key: "front", objectId: "front", at: { x: 7.5, y: 0 }, placement: "below" },
+      { key: "side", objectId: "side", at: { x: 19.5, y: 0 }, placement: "below" },
+      { key: "tall", objectId: "tall", at: { x: 24, y: 3.5 }, placement: "right" },
+      { key: "path", objectId: "path", at: { x: 12, y: 3.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Der Weg über <InlineMath math="ADHE" /> und dann <InlineMath math="DCGH" /> ergibt ein gleich großes Rechteck, <InlineMath math="9+15" /> mal <InlineMath math="7" />, und ist also ebenfalls <InlineMath math="25" /> lang.
 
 # Die verbotenen Wege

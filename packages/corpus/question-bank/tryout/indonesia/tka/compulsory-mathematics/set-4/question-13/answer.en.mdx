@@ -16,6 +16,49 @@ y+2&=3(x-4) \\
 3x-y-14&=0
 \end{aligned}" />
 
+Follow the point <InlineMath math="(2,1)" /> through both transformations. **The reflection takes it to <InlineMath math="(2,-1)" />, and the dilation doubles its distance from <InlineMath math="O" /> to give <InlineMath math="(4,-2)" />**. The image line is the line through that point and <InlineMath math="(6,4)" />.
+
+<MathVisual
+  title={<>Line <InlineMath math="g" />, its reflection, and its final image</>}
+  description={<>Line <InlineMath math="g" />, with equation <InlineMath math="3x+y-7=0" />, passes through <InlineMath math="(2,1)" />. Its reflection in the <InlineMath math="x" />-axis is the line <InlineMath math="y=3x-7" /> through <InlineMath math="(2,-1)" />. The dilation by factor <InlineMath math="2" /> gives the line <InlineMath math="3x-y-14=0" /> through <InlineMath math="(4,-2)" /> and <InlineMath math="(6,4)" />.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    mirror: <>reflection <InlineMath math="y=3x-7" /></>,
+    image: <InlineMath math="3x-y-14=0" />,
+    start: <InlineMath math="(2,1)" />,
+    step: <InlineMath math="(2,-1)" />,
+    end: <InlineMath math="(4,-2)" />,
+    given: <InlineMath math="(6,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 8 },
+      y: { min: -5.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "secondary", formula: "7 - 3x", domain: { min: 0, max: 4 } },
+      { id: "mirror", kind: "function", appearance: "reference", formula: "3x - 7", domain: { min: 0.7, max: 4.5 } },
+      { id: "image", kind: "function", appearance: "answer", formula: "3x - 14", domain: { min: 3, max: 7 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "step", kind: "point", appearance: "reference", at: { x: 2, y: -1 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: -2 } },
+      { id: "given", kind: "point", appearance: "answer", at: { x: 6, y: 4 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 0.5, y: 5.5 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 6.5 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 7, y: 7 }, placement: "below-right" },
+      { key: "start", objectId: "start", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "step", objectId: "step", at: { x: 2, y: -1 }, placement: "left" },
+      { key: "end", objectId: "end", at: { x: 4, y: -2 }, placement: "right" },
+      { key: "given", objectId: "given", at: { x: 6, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="3\cdot6-4-14=0" /> and <InlineMath math="3\cdot4-(-2)-14=0" />, so both points fit.
 
 So the equation of the final image of <InlineMath math="g" /> is <InlineMath math="3x-y-14=0" />.

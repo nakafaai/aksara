@@ -13,6 +13,22 @@ Dua kotak punya syarat: angka pertama harus <InlineMath math="4" />, <InlineMath
 | <InlineMath math="4" /> atau <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="2\cdot3\cdot20=120" /> |
 | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="1\cdot4\cdot20=80" /> |
 
+Pohon kasus berikut memperlihatkan kenapa angka pertama harus dipisah. **Kalau angka pertama genap, angka itu tidak bisa dipakai lagi di belakang**, jadi pilihan angka terakhir tinggal tiga.
+
+<Mermaid
+  title={<>Kasus bilangan genap di atas <InlineMath math="4{.}000" /></>}
+  description={<>Cabang angka pertama <InlineMath math="4" /> atau <InlineMath math="6" /> menyisakan <InlineMath math="3" /> pilihan angka terakhir dan <InlineMath math="20" /> susunan dua angka tengah, sehingga ada <InlineMath math="120" /> bilangan. Cabang angka pertama <InlineMath math="5" /> menyisakan <InlineMath math="4" /> pilihan angka terakhir dan <InlineMath math="20" /> susunan angka tengah, sehingga ada <InlineMath math="80" /> bilangan. Totalnya <InlineMath math="200" /> dari <InlineMath math="720" />.</>}
+  chart={`flowchart TD
+  S["Genap dan lebih dari 4.000"] --> A["Angka pertama 4 atau 6: 2 cara"]
+  S --> B["Angka pertama 5: 1 cara"]
+  A --> A1["Angka terakhir 0, 2, atau 4/6 yang tersisa: 3 cara"]
+  B --> B1["Angka terakhir 0, 2, 4, 6: 4 cara"]
+  A1 --> A2["Dua angka tengah: 5 · 4 = 20 → 2 · 3 · 20 = 120"]
+  B1 --> B2["Dua angka tengah: 5 · 4 = 20 → 1 · 4 · 20 = 80"]
+  A2 --> T["Total: 120 + 80 = 200 dari 720"]
+  B2 --> T`}
+/>
+
 <BlockMath math="P=\frac{120+80}{720}=\frac{200}{720}=\frac{5}{18}" />
 
 Jadi, peluangnya adalah <InlineMath math="\tfrac{5}{18}" />.

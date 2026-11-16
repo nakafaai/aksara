@@ -4,6 +4,41 @@ Daripada min gabungan, **jumlah masa XI A** ialah <InlineMath math="24\cdot14.2-
 
 Untuk XI B hanya ada minnya, <InlineMath math="13.95" />. Perkataan **pasti** bermaksud pernyataan itu mesti benar untuk setiap kemungkinan data XI B yang minnya <InlineMath math="13.95" />.
 
+Letakkan keempat-empat nilai pada satu garis nombor. **Min XI B berada di sebelah kanan masa Raka tetapi di sebelah kiri median XI A**. Min boleh berada di atas masa Raka tanpa seorang pun murid yang lebih pantas daripada Raka, tetapi tidak mungkin berada di bawah median XI A jika semua data berada pada atau di atas median itu.
+
+<MathVisual
+  title={<>Masa Raka, min XI B, serta median dan min XI A</>}
+  description={<>Pada garis nombor dari kiri ke kanan: masa Raka <InlineMath math="13.8" />, min XI B <InlineMath math="13.95" />, median XI A <InlineMath math="14.25" />, dan min XI A <InlineMath math="\frac{201.3}{14}\approx14.38" />.</>}
+  labels={{
+    raka: <>Raka <InlineMath math="13.8" /></>,
+    "mean-b": <>min XI B <InlineMath math="13.95" /></>,
+    median: <>median XI A <InlineMath math="14.25" /></>,
+    "mean-a": <>min XI A <InlineMath math="14.38" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 13.6, max: 14.55 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 13.65, y: 0 }, to: { x: 14.5, y: 0 } },
+      { id: "raka", kind: "point", appearance: "secondary", at: { x: 13.8, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "answer", at: { x: 13.95, y: 0 } },
+      { id: "median", kind: "point", appearance: "primary", at: { x: 14.25, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 201.3 / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "raka", objectId: "raka", at: { x: 13.8, y: 0 }, placement: "below" },
+      { key: "mean-b", objectId: "mean-b", at: { x: 13.95, y: 0 }, placement: "above" },
+      { key: "median", objectId: "median", at: { x: 14.25, y: 0 }, placement: "below" },
+      { key: "mean-a", objectId: "mean-a", at: { x: 201.3 / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 Pernyataan pertama: min XI A ialah <InlineMath math="\frac{201.3}{14}\approx14.38" />. Nilai ini **lebih daripada <InlineMath math="14.3" />**. Pernyataan ini **Betul**.

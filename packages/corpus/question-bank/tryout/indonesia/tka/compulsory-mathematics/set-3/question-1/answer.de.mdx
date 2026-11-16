@@ -28,6 +28,20 @@ Eine dritte Bestellung kostet <InlineMath math="\text{Rp}25{.}000" /> Gebühr, b
 &=2{.}040{.}000-270{.}000+75{.}000=1{.}845{.}000
 \end{aligned}" />
 
+Vergleiche die Gesamtkosten für jede Anzahl von Bestellungen. **Der Balken sinkt von zwei auf drei Bestellungen und steigt bei vier wieder**, weil die vierte Bestellung keinen neuen Rabatt bringt.
+
+<Chart
+  title={<>Gesamtkosten für <InlineMath math="16" /> Tickets nach Anzahl der Bestellungen</>}
+  description={<>Mit zwei Bestellungen kostet es <InlineMath math="1{.}910" /> tausend Rupiah, mit drei <InlineMath math="1{.}845" /> tausend Rupiah und mit vier <InlineMath math="1{.}870" /> tausend Rupiah. Die Werteachse beginnt bei <InlineMath math="1{.}800" /> tausend Rupiah, damit die Unterschiede sichtbar sind.</>}
+  bars="apart"
+  categories={["2 Bestellungen", "3 Bestellungen", "4 Bestellungen"]}
+  series={[
+    { label: "Gesamtkosten", mark: "bar", values: [1910, 1845, 1870] },
+  ]}
+  valueLabel="Tausend Rupiah"
+  valueRange={{ min: 1800, max: 1930 }}
+/>
+
 Prüf die Grenzen: Jede Bestellung hat höchstens <InlineMath math="9" /> Tickets, und jede enthält eine vollständige Gruppe. Alle Regeln sind erfüllt.
 
 # Warum die anderen Antworten falsch sind

@@ -21,6 +21,40 @@ Setiap baris menutup <InlineMath math="35\text{ cm}" /> sepanjang kemiringan, da
 \text{genteng dua bidang}&=2\cdot18\cdot50=1{.}800
 \end{aligned}" />
 
+Bentangkan satu bidang atap menjadi persegi panjang. **Tujuh belas baris genteng baru menutup <InlineMath math="5{,}95\text{ m}" />, jadi baris ke-<InlineMath math="18" /> tetap dipasang walaupun hanya <InlineMath math="5\text{ cm}" /> yang dipakai**. Setiap baris berisi <InlineMath math="50" /> genteng.
+
+<MathVisual
+  title={<>Satu bidang atap dan baris-baris gentengnya</>}
+  description={<>Bidang atap berupa persegi panjang <InlineMath math="12\text{ m}" /> sejajar bubungan dan <InlineMath math="6\text{ m}" /> sepanjang kemiringan. Delapan belas baris genteng masing-masing <InlineMath math="35\text{ cm}" /> menutup sampai <InlineMath math="6{,}3\text{ m}" />, sedikit melewati tepi bidang. Baris terakhir, dari <InlineMath math="5{,}95\text{ m}" /> sampai <InlineMath math="6{,}3\text{ m}" />, ditandai karena hanya terpakai <InlineMath math="5\text{ cm}" />.</>}
+  labels={{
+    plane: <InlineMath math="12\text{ m}" />,
+    slope: <InlineMath math="6\text{ m}" />,
+    tiles: <><InlineMath math="18" /> baris × <InlineMath math="50" /> genteng</>,
+    last: <>baris ke-<InlineMath math="18" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 14 },
+      y: { min: -1, max: 7.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tiles", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 6.3 }, { x: 0, y: 6.3 }] },
+      { id: "plane", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 6 }, { x: 0, y: 6 }] },
+      { id: "last", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 5.95 }, { x: 12, y: 5.95 }, { x: 12, y: 6.3 }, { x: 0, y: 6.3 }] },
+      { id: "slope", kind: "segment", appearance: "construction", from: { x: -0.5, y: 0 }, to: { x: -0.5, y: 6 } },
+    ],
+    labels: [
+      { key: "plane", objectId: "plane", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "slope", objectId: "slope", at: { x: -0.5, y: 3 }, placement: "left" },
+      { key: "tiles", objectId: "tiles", at: { x: 6, y: 3 }, placement: "center" },
+      { key: "last", objectId: "last", at: { x: 12, y: 6.3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Baris ke-<InlineMath math="18" /> hanya dipakai <InlineMath math="600-17\cdot35=5\text{ cm}" />, tetapi setiap genteng di baris itu tetap dihitung satu buah.
 
 # Genteng bubungan dan jumlahnya

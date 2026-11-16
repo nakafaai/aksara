@@ -6,6 +6,46 @@ Point <InlineMath math="G" /> is on the top, but the top is wet. So the ant has 
 
 <BlockMath math="AG=\sqrt{(15+9)^2+7^2}=\sqrt{576+49}=\sqrt{625}=25" />
 
+Unfold faces <InlineMath math="ABFE" /> and <InlineMath math="BCGF" /> into one rectangle. **The shortest path that avoids the lid is the diagonal of the <InlineMath math="24\times7" /> rectangle**, from <InlineMath math="A" /> at the lower left to <InlineMath math="G" /> at the upper right.
+
+<MathVisual
+  title={<>Net of two side faces and the ant's path</>}
+  description={<>Face <InlineMath math="ABFE" />, measuring <InlineMath math="15\times7" />, and face <InlineMath math="BCGF" />, measuring <InlineMath math="9\times7" />, are unfolded side by side into a <InlineMath math="24\times7" /> rectangle. The straight segment from <InlineMath math="A" /> to <InlineMath math="G" /> crosses edge <InlineMath math="BF" /> and has length <InlineMath math="\sqrt{24^2+7^2}=25" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    g: <InlineMath math="G" />,
+    front: <InlineMath math="15" />,
+    side: <InlineMath math="9" />,
+    path: <InlineMath math="25" />,
+    tall: <InlineMath math="7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 25.5 },
+      y: { min: -2, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "front", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 15, y: 0 }, { x: 15, y: 7 }, { x: 0, y: 7 }] },
+      { id: "side", kind: "polygon", appearance: "secondary", vertices: [{ x: 15, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 7 }, { x: 15, y: 7 }] },
+      { id: "tall", kind: "segment", appearance: "construction", from: { x: 24, y: 0 }, to: { x: 24, y: 7 } },
+      { id: "path", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 24, y: 7 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "g", kind: "point", appearance: "answer", at: { x: 24, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "g", objectId: "g", at: { x: 24, y: 7 }, placement: "above-right" },
+      { key: "front", objectId: "front", at: { x: 7.5, y: 0 }, placement: "below" },
+      { key: "side", objectId: "side", at: { x: 19.5, y: 0 }, placement: "below" },
+      { key: "tall", objectId: "tall", at: { x: 24, y: 3.5 }, placement: "right" },
+      { key: "path", objectId: "path", at: { x: 12, y: 3.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 The route over <InlineMath math="ADHE" /> and then <InlineMath math="DCGH" /> gives a rectangle of the same size, <InlineMath math="9+15" /> by <InlineMath math="7" />, so it's also <InlineMath math="25" /> long.
 
 # The forbidden routes

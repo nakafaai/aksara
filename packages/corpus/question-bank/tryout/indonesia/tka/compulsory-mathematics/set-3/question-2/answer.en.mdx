@@ -40,6 +40,46 @@ The left side is a multiple of <InlineMath math="3" />, so <InlineMath math="5r"
 | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="7" /> | meets every condition |
 | <InlineMath math="6" /> | <InlineMath math="-1" /> | none | rejected, <InlineMath math="e" /> is negative |
 
+Draw both equations on the <InlineMath math="(e,\ r)" /> plane. **The shaded region holds the orders that get one discount and contain both kinds of ticket**. Only the point <InlineMath math="(4,\ 3)" /> is a whole-number point on the line <InlineMath math="3e+5r=27" /> inside that region.
+
+<MathVisual
+  title={<>Possible ticket pairs <InlineMath math="(e,\ r)" /></>}
+  description={<>The horizontal axis is the number of early bird tickets <InlineMath math="e" />, and the vertical axis is the number of regular tickets <InlineMath math="r" />. The shaded region satisfies <InlineMath math="e\ge1" />, <InlineMath math="r\ge1" />, and <InlineMath math="5\le e+r\le9" />. The line <InlineMath math="3e+5r=27" /> for the one-discount case passes through <InlineMath math="(4,\ 3)" /> inside the region and through <InlineMath math="(9,\ 0)" />, which has no regular ticket. The line <InlineMath math="3e+5r=24" /> for the no-discount case passes through <InlineMath math="(3,\ 3)" />, which holds <InlineMath math="6" /> tickets and so contradicts its case.</>}
+  labels={{
+    allowed: <>one discount</>,
+    discount: <InlineMath math="3e+5r=27" />,
+    plain: <InlineMath math="3e+5r=24" />,
+    fit: <InlineMath math="(4,\ 3)" />,
+    "no-regular": <InlineMath math="(9,\ 0)" />,
+    "too-many": <InlineMath math="(3,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "allowed", kind: "region", appearance: "highlight", inequalities: ["x >= 1", "y >= 1", "x + y >= 5", "x + y <= 9"] },
+      { id: "discount", kind: "function", appearance: "primary", formula: "(27 - 3x)/5", domain: { min: 0, max: 9 } },
+      { id: "plain", kind: "function", appearance: "reference", formula: "(24 - 3x)/5", domain: { min: 0, max: 8 } },
+      { id: "fit", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "no-regular", kind: "point", appearance: "warning", at: { x: 9, y: 0 } },
+      { id: "too-many", kind: "point", appearance: "warning", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "allowed", objectId: "allowed", at: { x: 6, y: 2.2 }, placement: "center" },
+      { key: "discount", objectId: "discount", at: { x: 1, y: 4.8 }, placement: "above-right" },
+      { key: "plain", objectId: "plain", at: { x: 0.5, y: 4.5 }, placement: "below-left" },
+      { key: "fit", objectId: "fit", at: { x: 4, y: 3 }, placement: "above-right" },
+      { key: "no-regular", objectId: "no-regular", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "too-many", objectId: "too-many", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 So Fajar's order has <InlineMath math="4" /> early-bird tickets and <InlineMath math="3" /> regular tickets, <InlineMath math="7" /> tickets in total. That's between <InlineMath math="5" /> and <InlineMath math="9" />, so it really does get one discount.
 
 Check by working out the payment again:

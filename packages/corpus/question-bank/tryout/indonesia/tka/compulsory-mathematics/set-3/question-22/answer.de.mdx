@@ -14,6 +14,47 @@ Setze <InlineMath math="13{,}8" /> an seinen Platz. **Geordnete Daten** machen j
 
 <BlockMath math="12{,}9\quad13{,}3\quad13{,}5\quad13{,}5\quad13{,}8\quad13{,}9\quad14{,}1\quad14{,}4\quad14{,}6\quad14{,}6\quad14{,}8\quad15{,}2\quad15{,}8\quad16{,}9" />
 
+Zeichne die vierzehn Zeiten als Punkte, gleiche Werte übereinander. **Die Medianlinie liegt genau zwischen dem <InlineMath math="7" />. und dem <InlineMath math="8" />. Punkt**, und zwei gleich hohe Stapel zeigen zwei Modalwerte.
+
+<MathVisual
+  title={<>Laufzeiten aller vierzehn Schüler von XI A</>}
+  description={<>Vierzehn Punkte von <InlineMath math="12{,}9" /> bis <InlineMath math="16{,}9" /> Sekunden. Stapel aus zwei Punkten stehen bei <InlineMath math="13{,}5" /> und bei <InlineMath math="14{,}6" />. Rakas Punkt liegt bei <InlineMath math="13{,}8" />. Der <InlineMath math="7" />. und der <InlineMath math="8" />. Punkt, bei <InlineMath math="14{,}1" /> und <InlineMath math="14{,}4" />, liegen beiderseits der Medianlinie bei <InlineMath math="14{,}25" />.</>}
+  labels={{
+    median: <InlineMath math="14{,}25" />,
+    raka: <>Raka</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 12.5, max: 17.3 },
+      y: { min: -0.2, max: 2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 12.9, y: 0.4 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 13.3, y: 0.4 } },
+      { id: "t-3", kind: "point", appearance: "secondary", at: { x: 13.5, y: 0.4 } },
+      { id: "t-4", kind: "point", appearance: "secondary", at: { x: 13.5, y: 0.8 } },
+      { id: "raka", kind: "point", appearance: "highlight", at: { x: 13.8, y: 0.4 } },
+      { id: "t-6", kind: "point", appearance: "primary", at: { x: 13.9, y: 0.4 } },
+      { id: "t-7", kind: "point", appearance: "answer", at: { x: 14.1, y: 0.4 } },
+      { id: "t-8", kind: "point", appearance: "answer", at: { x: 14.4, y: 0.4 } },
+      { id: "t-9", kind: "point", appearance: "secondary", at: { x: 14.6, y: 0.4 } },
+      { id: "t-10", kind: "point", appearance: "secondary", at: { x: 14.6, y: 0.8 } },
+      { id: "t-11", kind: "point", appearance: "primary", at: { x: 14.8, y: 0.4 } },
+      { id: "t-12", kind: "point", appearance: "primary", at: { x: 15.2, y: 0.4 } },
+      { id: "t-13", kind: "point", appearance: "primary", at: { x: 15.8, y: 0.4 } },
+      { id: "t-14", kind: "point", appearance: "primary", at: { x: 16.9, y: 0.4 } },
+      { id: "median", kind: "segment", appearance: "answer", from: { x: 14.25, y: 0 }, to: { x: 14.25, y: 1.4 } },
+    ],
+    labels: [
+      { key: "median", objectId: "median", at: { x: 14.25, y: 1.4 }, placement: "above" },
+      { key: "raka", objectId: "raka", at: { x: 13.8, y: 0.4 }, placement: "below" },
+    ],
+  }}
+/>
+
 Es sind <InlineMath math="14" /> Werte, also ist der Median der Mittelwert aus dem <InlineMath math="7" />. und dem <InlineMath math="8" />. Wert.
 
 # Jede Aussage prüfen

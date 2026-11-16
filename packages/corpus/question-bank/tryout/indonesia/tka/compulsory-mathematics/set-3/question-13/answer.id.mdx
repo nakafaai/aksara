@@ -17,6 +17,45 @@ Bayangan akhirnya <InlineMath math="(1,5)" />, jadi **samakan setiap koordinatny
 -a+2k&=5
 \end{aligned}" />
 
+Gambar kedua garis dan jalur titiknya. **Garis <InlineMath math="y=x+3" /> tegak lurus garis cermin <InlineMath math="y=-x" />**, jadi bayangan <InlineMath math="P" /> jatuh lagi di garis yang sama, di <InlineMath math="(0,3)" />. Panah translasi <InlineMath math="(1,2)" /> lalu membawanya ke <InlineMath math="(1,5)" />.
+
+<MathVisual
+  title={<>Pencerminan terhadap <InlineMath math="y=-x" /> lalu translasi</>}
+  description={<>Titik <InlineMath math="P(-3,0)" /> terletak pada garis <InlineMath math="y=x+3" />. Pencerminan terhadap garis <InlineMath math="y=-x" /> memindahkannya ke <InlineMath math="(0,3)" />, yang juga terletak pada <InlineMath math="y=x+3" /> karena garis itu tegak lurus garis cermin. Translasi <InlineMath math="(1,2)" /> menggeser <InlineMath math="(0,3)" /> ke bayangan akhir <InlineMath math="(1,5)" />.</>}
+  labels={{
+    line: <InlineMath math="y=x+3" />,
+    mirror: <InlineMath math="y=-x" />,
+    p: <InlineMath math="P(-3,0)" />,
+    reflected: <InlineMath math="(0,3)" />,
+    image: <InlineMath math="(1,5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 3.5 },
+      y: { min: -2.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + 3", domain: { min: -5, max: 2.5 } },
+      { id: "mirror", kind: "function", appearance: "reference", formula: "-x", domain: { min: -4, max: 2.5 } },
+      { id: "flip", kind: "segment", appearance: "construction", from: { x: -3, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "shift", kind: "vector", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 1, y: 5 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+      { id: "reflected", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "image", kind: "point", appearance: "primary", at: { x: 1, y: 5 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: -4.5, y: -1.5 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 2, y: -2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "reflected", objectId: "reflected", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 1, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Kurangkan persamaan pertama dari persamaan kedua, didapat <InlineMath math="k=1" />. Lalu <InlineMath math="-a+1=4" />, jadi <InlineMath math="a=-3" /> dan <InlineMath math="P=(-3,0)" />.
 
 Cek: <InlineMath math="(-3,0)" /> ada pada <InlineMath math="y=x+3" />. Dicerminkan terhadap <InlineMath math="y=-x" /> menjadi <InlineMath math="(0,3)" />, lalu digeser <InlineMath math="(1,2)" /> menjadi <InlineMath math="(1,5)" />.

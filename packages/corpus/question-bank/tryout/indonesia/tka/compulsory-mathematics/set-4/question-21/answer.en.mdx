@@ -41,6 +41,22 @@ Check each day in the table against <InlineMath math="34<x<46" />:
 | <InlineMath math="9" /> | <InlineMath math="32" /> | <InlineMath math="8" /> | no |
 | <InlineMath math="10" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | no |
 
+Draw each day's sales with the limits of <InlineMath math="34" /> and <InlineMath math="46" /> glasses. **Only bars whose tops lie strictly between the two lines count**. The two bars of height <InlineMath math="46" /> just touch the upper line, so they are out.
+
+<Chart
+  title={<>Daily sales and the one-standard-deviation band</>}
+  description={<>The bars show the glasses sold on days <InlineMath math="1" /> to <InlineMath math="10" />: <InlineMath math="41" />, <InlineMath math="33" />, <InlineMath math="46" />, <InlineMath math="38" />, <InlineMath math="31" />, <InlineMath math="45" />, <InlineMath math="40" />, <InlineMath math="48" />, <InlineMath math="32" />, and <InlineMath math="46" />. The horizontal lines at <InlineMath math="34" /> and <InlineMath math="46" /> are the mean minus and plus one standard deviation. Days <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, and <InlineMath math="7" /> lie between the lines.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Glasses sold", mark: "bar", values: [41, 33, 46, 38, 31, 45, 40, 48, 32, 46] },
+    { label: "Mean minus standard deviation", mark: "line", values: [34, 34, 34, 34, 34, 34, 34, 34, 34, 34] },
+    { label: "Mean plus standard deviation", mark: "line", values: [46, 46, 46, 46, 46, 46, 46, 46, 46, 46] },
+  ]}
+  valueLabel="Glasses"
+  valueRange={{ min: 25, max: 50 }}
+/>
+
 The two days with <InlineMath math="46" /> cups are exactly one standard deviation away, not less than one, so they **don't count**. Only the days with <InlineMath math="41" />, <InlineMath math="38" />, <InlineMath math="45" />, and <InlineMath math="40" /> cups qualify.
 
 # Why the other options are wrong

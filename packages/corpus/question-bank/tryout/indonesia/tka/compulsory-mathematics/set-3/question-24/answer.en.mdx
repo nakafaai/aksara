@@ -17,6 +17,18 @@ Some of those <InlineMath math="240" /> arrangements also put Citra and Dimas to
 \text{wanted arrangements}&=240-96=144
 \end{aligned}" />
 
+The diagram below shows where <InlineMath math="144" /> comes from. **From the seatings with Ana and Budi side by side, remove those where Citra and Dimas are side by side too**.
+
+<Mermaid
+  title={<>Filtering seatings at a round table</>}
+  description={<>There are <InlineMath math="720" /> seatings. Of these, <InlineMath math="240" /> put Ana and Budi side by side. Of those <InlineMath math="240" />, <InlineMath math="96" /> also put Citra and Dimas side by side and are removed, leaving <InlineMath math="144" />. The probability is <InlineMath math="\frac{144}{720}=\frac15" />.</>}
+  chart={`flowchart TD
+  A["All seatings: (7 − 1)! = 720"] --> B["Ana and Budi side by side: (6 − 1)! · 2 = 240"]
+  B --> C["Citra and Dimas also side by side: (5 − 1)! · 2 · 2 = 96"]
+  B --> D["Seatings asked for: 240 − 96 = 144"]
+  D --> P["Probability: 144/720 = 1/5"]`}
+/>
+
 # The probability
 
 **Divide by the number of all arrangements**:

@@ -13,6 +13,22 @@ Zwei Stellen haben Bedingungen: Die erste Ziffer muss <InlineMath math="4" />, <
 | <InlineMath math="4" /> oder <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="2\cdot3\cdot20=120" /> |
 | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="1\cdot4\cdot20=80" /> |
 
+Der Fallbaum unten zeigt, warum die erste Ziffer getrennt behandelt wird. **Ist die erste Ziffer gerade, kann sie am Ende nicht noch einmal vorkommen**, also bleiben für die letzte Ziffer nur drei Möglichkeiten.
+
+<Mermaid
+  title={<>Fälle gerader Zahlen über <InlineMath math="4{.}000" /></>}
+  description={<>Der Zweig mit erster Ziffer <InlineMath math="4" /> oder <InlineMath math="6" /> lässt <InlineMath math="3" /> Möglichkeiten für die letzte Ziffer und <InlineMath math="20" /> Anordnungen der zwei mittleren Ziffern, also <InlineMath math="120" /> Zahlen. Der Zweig mit erster Ziffer <InlineMath math="5" /> lässt <InlineMath math="4" /> Möglichkeiten für die letzte Ziffer und <InlineMath math="20" /> Anordnungen der mittleren Ziffern, also <InlineMath math="80" /> Zahlen. Zusammen sind das <InlineMath math="200" /> von <InlineMath math="720" />.</>}
+  chart={`flowchart TD
+  S["Gerade und über 4.000"] --> A["Erste Ziffer 4 oder 6: 2 Möglichkeiten"]
+  S --> B["Erste Ziffer 5: 1 Möglichkeit"]
+  A --> A1["Letzte Ziffer 0, 2, oder die freie 4/6: 3 Möglichkeiten"]
+  B --> B1["Letzte Ziffer 0, 2, 4, 6: 4 Möglichkeiten"]
+  A1 --> A2["Zwei mittlere Ziffern: 5 · 4 = 20 → 2 · 3 · 20 = 120"]
+  B1 --> B2["Zwei mittlere Ziffern: 5 · 4 = 20 → 1 · 4 · 20 = 80"]
+  A2 --> T["Gesamt: 120 + 80 = 200 von 720"]
+  B2 --> T`}
+/>
+
 <BlockMath math="P=\frac{120+80}{720}=\frac{200}{720}=\frac{5}{18}" />
 
 Die Wahrscheinlichkeit ist also <InlineMath math="\tfrac{5}{18}" />.

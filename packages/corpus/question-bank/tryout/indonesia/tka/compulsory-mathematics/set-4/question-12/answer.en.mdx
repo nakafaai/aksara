@@ -20,6 +20,49 @@ Third statement: an area of <InlineMath math="96" /> means <InlineMath math="pq=
 
 <BlockMath math="(p+q)^2=p^2+q^2+2pq=400+384=784" />
 
+Draw two rhombuses with side <InlineMath math="10" /> and the same centre. **The rhombus with diagonals <InlineMath math="16" /> and <InlineMath math="12" /> has area <InlineMath math="96" />**, while the square of side <InlineMath math="10" />, which is also a rhombus, has area exactly <InlineMath math="100" />. That square refutes the second statement.
+
+<MathVisual
+  title={<>Rhombus with side <InlineMath math="10" /> and square with side <InlineMath math="10" /></>}
+  description={<>Rhombus <InlineMath math="ABCD" /> has diagonals <InlineMath math="AC=16" /> and <InlineMath math="BD=12" /> crossing at right angles in the middle, so each side is <InlineMath math="\sqrt{8^2+6^2}=10" />. A square with diagonals <InlineMath math="10\sqrt2" /> is drawn with the same centre. Both have side <InlineMath math="10" />, but their areas are <InlineMath math="96" /> and <InlineMath math="100" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    side: <InlineMath math="10" />,
+    square: <>square, area <InlineMath math="100" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -9.5, max: 9.5 },
+      y: { min: -8, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: -5 * Math.sqrt(2), y: 0 }, { x: 0, y: -5 * Math.sqrt(2) }, { x: 5 * Math.sqrt(2), y: 0 }, { x: 0, y: 5 * Math.sqrt(2) }] },
+      { id: "rhombus", kind: "polygon", appearance: "primary", vertices: [{ x: -8, y: 0 }, { x: 0, y: -6 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
+      { id: "long", kind: "segment", appearance: "secondary", from: { x: -8, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "short", kind: "segment", appearance: "secondary", from: { x: 0, y: -6 }, to: { x: 0, y: 6 } },
+      { id: "side", kind: "segment", appearance: "answer", from: { x: -8, y: 0 }, to: { x: 0, y: -6 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: -8, y: 0 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 0, y: -6 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 8, y: 0 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 0, y: -6 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "side", objectId: "side", at: { x: -4, y: -3 }, placement: "below-left" },
+      { key: "square", objectId: "square", at: { x: 2.5 * Math.sqrt(2), y: 2.5 * Math.sqrt(2) }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Since <InlineMath math="p+q>0" />, you get <InlineMath math="p+q=28" />, for example diagonals of <InlineMath math="12" /> and <InlineMath math="16" />. This statement is **True**.
 
 So the answers are True, False, True.

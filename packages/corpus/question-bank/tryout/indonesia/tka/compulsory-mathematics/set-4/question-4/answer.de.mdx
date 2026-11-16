@@ -10,6 +10,20 @@ Die Regel: Die <InlineMath math="10\%" /> Rabatt gibt es nur, wenn der Normalpre
 | Budi | <InlineMath math="62{.}100" /> | normal <InlineMath math="62{.}100>60{.}000" />, hätte Rabatt bekommen müssen | normal <InlineMath math="69{.}000>60{.}000" />, passt | mit Rabatt |
 | Citra | <InlineMath math="54{.}000" /> | normal <InlineMath math="54{.}000\le60{.}000" />, passt | normal genau <InlineMath math="60{.}000" />, nicht mehr als <InlineMath math="60{.}000" /> | ohne Rabatt |
 
+Vergleiche den Normalpreis jedes Belegs mit der Rabattgrenze. **Nur Budis Balken überschreitet die Linie bei <InlineMath math="60" /> tausend**, also muss nur Budis Beleg durch <InlineMath math="0{,}9" /> geteilt werden.
+
+<Chart
+  title={<>Normalpreis jedes Belegs und die Rabattgrenze</>}
+  description={<>Der Normalpreis beträgt auf Anis Beleg <InlineMath math="48" /> tausend Rupiah, auf Budis <InlineMath math="69" /> tausend Rupiah und auf Citras <InlineMath math="54" /> tausend Rupiah. Die waagerechte Linie bei <InlineMath math="60" /> tausend Rupiah ist die Rabattgrenze. Nur Budis Beleg liegt darüber.</>}
+  bars="apart"
+  categories={["Ani", "Budi", "Citra"]}
+  series={[
+    { label: "Normalpreis", mark: "bar", values: [48, 69, 54] },
+    { label: "Rabattgrenze", mark: "line", values: [60, 60, 60] },
+  ]}
+  valueLabel="Tausend Rupiah"
+/>
+
 Citras Beleg ist der Grenzfall. Ein Normalpreis von <InlineMath math="60{.}000" /> ist **nicht mehr als** <InlineMath math="60{.}000" />, also gibt es keinen Rabatt. Citras Normalpreis ist <InlineMath math="54{.}000" />.
 
 # Die drei Gleichungen addieren

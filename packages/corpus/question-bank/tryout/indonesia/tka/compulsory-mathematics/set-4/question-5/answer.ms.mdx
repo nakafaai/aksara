@@ -35,6 +35,48 @@ Tandanya **lebih daripada**, jadi <InlineMath math="k=4" /> tidak diambil. Bersa
 | <InlineMath math="7" /> | <InlineMath math="(5,21)" /> | <InlineMath math="730{,}000" /> |
 | <InlineMath math="8" /> | <InlineMath math="(0,24)" /> | <InlineMath math="720{,}000" />, tetapi tiada kotak isi <InlineMath math="3" /> |
 
+Lukis semua rancangan yang memberikan tepat <InlineMath math="120" /> potong, bersama garis bajet. **Kawasan berwarna ialah rancangan yang kosnya kurang daripada <InlineMath math="\text{Rp}760{,}000" />**, dan sempadannya putus-putus kerana kos tepat <InlineMath math="760{,}000" /> tidak meninggalkan baki. Daripada tujuh titik pada garis kek, hanya tiga yang berada di dalam kawasan itu.
+
+<MathVisual
+  title={<>Rancangan pembelian dan had bajet</>}
+  description={<>Paksi mendatar ialah bilangan kotak isi <InlineMath math="3" />, <InlineMath math="x" />, dan paksi tegak ialah bilangan kotak isi <InlineMath math="5" />, <InlineMath math="y" />. Tujuh titik bulat pada garis <InlineMath math="3x+5y=120" /> ialah <InlineMath math="(35,\ 3)" /> hingga <InlineMath math="(5,\ 21)" />. Garis <InlineMath math="20x+30y=760" /> melalui <InlineMath math="(20,\ 12)" />, dan kawasan di bawahnya berwarna. Titik <InlineMath math="(15,\ 15)" />, <InlineMath math="(10,\ 18)" />, dan <InlineMath math="(5,\ 21)" /> berada di dalam kawasan itu.</>}
+  labels={{
+    cakes: <InlineMath math="3x+5y=120" />,
+    budget: <InlineMath math="20x+30y=760" />,
+    "k-4": <InlineMath math="(20,\ 12)" />,
+    "k-5": <InlineMath math="(15,\ 15)" />,
+    "k-7": <InlineMath math="(5,\ 21)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 41 },
+      y: { min: -1, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cheap", kind: "region", appearance: "highlight", inequalities: ["20x + 30y < 760", "x >= 0", "y >= 0"] },
+      { id: "cakes", kind: "function", appearance: "primary", formula: "(120 - 3x)/5", domain: { min: 0, max: 40 } },
+      { id: "budget", kind: "function", appearance: "reference", formula: "(760 - 20x)/30", domain: { min: 0, max: 38 } },
+      { id: "k-1", kind: "point", appearance: "secondary", at: { x: 35, y: 3 } },
+      { id: "k-2", kind: "point", appearance: "secondary", at: { x: 30, y: 6 } },
+      { id: "k-3", kind: "point", appearance: "secondary", at: { x: 25, y: 9 } },
+      { id: "k-4", kind: "point", appearance: "warning", at: { x: 20, y: 12 } },
+      { id: "k-5", kind: "point", appearance: "answer", at: { x: 15, y: 15 } },
+      { id: "k-6", kind: "point", appearance: "answer", at: { x: 10, y: 18 } },
+      { id: "k-7", kind: "point", appearance: "answer", at: { x: 5, y: 21 } },
+    ],
+    labels: [
+      { key: "cakes", objectId: "cakes", at: { x: 36, y: 2.4 }, placement: "above-right" },
+      { key: "budget", objectId: "budget", at: { x: 2, y: 24 }, placement: "above-right" },
+      { key: "k-4", objectId: "k-4", at: { x: 20, y: 12 }, placement: "above-right" },
+      { key: "k-5", objectId: "k-5", at: { x: 15, y: 15 }, placement: "below-left" },
+      { key: "k-7", objectId: "k-7", at: { x: 5, y: 21 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Ada <InlineMath math="3" /> rancangan yang memenuhi semua syarat.
 
 # Pilihan yang memerangkap

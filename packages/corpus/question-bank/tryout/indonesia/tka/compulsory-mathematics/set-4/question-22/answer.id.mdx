@@ -19,6 +19,22 @@ Hitung **selisih setiap data baru dari rata-rata baru**, yaitu dari <InlineMath 
 S&=\sqrt{\tfrac{160}{10}}=4
 \end{aligned}" />
 
+Bandingkan data lama dan data baru per hari. **Hanya empat hari yang batangnya naik <InlineMath math="5" />, dan keempatnya hari yang paling rendah**, sehingga data baru lebih rapat di sekitar rata-rata <InlineMath math="42" /> dan simpangan bakunya turun.
+
+<Chart
+  title={<>Penjualan harian sebelum dan sesudah perbaikan</>}
+  description={<>Hari ke-<InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="5" />, dan <InlineMath math="9" /> naik dari <InlineMath math="33" />, <InlineMath math="38" />, <InlineMath math="31" />, dan <InlineMath math="32" /> menjadi <InlineMath math="38" />, <InlineMath math="43" />, <InlineMath math="36" />, dan <InlineMath math="37" />. Hari lainnya tetap. Garis mendatar di <InlineMath math="42" /> adalah rata-rata data baru.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Sebelum", mark: "bar", values: [41, 33, 46, 38, 31, 45, 40, 48, 32, 46] },
+    { label: "Sesudah", mark: "bar", values: [41, 38, 46, 43, 36, 45, 40, 48, 37, 46] },
+    { label: "Rata-rata baru", mark: "line", values: [42, 42, 42, 42, 42, 42, 42, 42, 42, 42] },
+  ]}
+  valueLabel="Banyak gelas"
+  valueRange={{ min: 25, max: 50 }}
+/>
+
 # Menilai setiap pernyataan
 
 1. **Salah**. Median naik dari <InlineMath math="40{,}5" /> menjadi <InlineMath math="42" />, karena dua data tengah berubah.

@@ -21,6 +21,21 @@ Ein Kubikmeter Mischung braucht <InlineMath math="360\text{ kg}" /> Zement, das 
 \text{Gesamt}&=21+21=42\text{ Säcke}
 \end{aligned}" />
 
+Vergleiche Bedarf und Kauf in jedem Abschnitt. **Beide Bedarfe liegen knapp über <InlineMath math="20" /> Sack, also wird jeder auf <InlineMath math="21" /> Sack aufgerundet**, obwohl beide zusammen unter <InlineMath math="41" /> Sack liegen.
+
+<Chart
+  title={<>Zementbedarf und gekaufte Säcke pro Abschnitt</>}
+  description={<>Abschnitt I braucht <InlineMath math="20{,}79" /> Sack und kauft <InlineMath math="21" /> Sack. Abschnitt II braucht <InlineMath math="20{,}196" /> Sack und kauft ebenfalls <InlineMath math="21" /> Sack. Die Werteachse beginnt bei <InlineMath math="18" /> Sack, damit die Unterschiede sichtbar sind.</>}
+  bars="apart"
+  categories={["Abschnitt I", "Abschnitt II"]}
+  series={[
+    { label: "Bedarf", mark: "bar", values: [20.79, 20.196] },
+    { label: "Gekauft", mark: "bar", values: [21, 21] },
+  ]}
+  valueLabel="Zementsäcke"
+  valueRange={{ min: 18, max: 22 }}
+/>
+
 Jeder Abschnitt wird aufgerundet, weil Säcke nur ganz verkauft werden. Zwanzig Säcke reichen für Abschnitt I nicht, und der Rest aus Abschnitt I darf in Abschnitt II nicht verwendet werden. **Würdest du alles auf einmal kaufen**, bräuchtest du <InlineMath math="20{,}79+20{,}196=40{,}986" /> Säcke, also kämen <InlineMath math="41" /> aus. Der getrennte Kauf macht aber einen Sack mehr unvermeidbar.
 
 Pak Darmo muss also mindestens <InlineMath math="42" /> Säcke Zement kaufen.

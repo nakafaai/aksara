@@ -31,6 +31,44 @@ Jadi <InlineMath math="2<d<6" />, artinya <InlineMath math="d=3,4,5" />. **Setia
 | <InlineMath math="5" /> | <InlineMath math="-2" /> dan <InlineMath math="8" /> | <InlineMath math="6{,}5" /> | ya |
 | <InlineMath math="6" /> | <InlineMath math="-3" /> dan <InlineMath math="9" /> | <InlineMath math="12" /> | tidak, harus kurang dari <InlineMath math="12" /> |
 
+Gambar parabola bersama pita <InlineMath math="-4<y<12" />. **Bilangan bulat yang dicari adalah titik-titik grafik yang jatuh di dalam pita, bukan di garis tepinya**. Di setiap sisi sumbu ada tiga, dan keempat titik tepi bertanda peringatan ikut gugur.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="f" /> dan pita nilai <InlineMath math="-4<y<12" /></>}
+  description={<>Parabola <InlineMath math="f(x)=\tfrac12(x-3)^2-6" /> berpuncak di <InlineMath math="(3,\ -6)" />. Pita berwarna di antara <InlineMath math="y=-4" /> dan <InlineMath math="y=12" /> bertepi putus-putus karena kedua tandanya tegas. Grafik memotong tepi bawah di <InlineMath math="x=1" /> dan <InlineMath math="x=5" />, dan tepi atas di <InlineMath math="x=-3" /> dan <InlineMath math="x=9" />. Ruas di sumbu mendatar menandai bilangan bulat <InlineMath math="-2" />, <InlineMath math="-1" />, <InlineMath math="0" /> dan <InlineMath math="6" />, <InlineMath math="7" />, <InlineMath math="8" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=\tfrac12(x-3)^2-6" />,
+    band: <InlineMath math="-4<y<12" />,
+    "left-in": <InlineMath math="x=-2,-1,0" />,
+    "right-in": <InlineMath math="x=6,7,8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 10.5 },
+      y: { min: -7.5, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "band", kind: "region", appearance: "highlight", inequalities: ["y > -4", "y < 12"] },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x - 3)^2/2 - 6", domain: { min: -3.5, max: 9.5 } },
+      { id: "left-in", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "right-in", kind: "segment", appearance: "answer", from: { x: 6, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "low-left", kind: "point", appearance: "warning", at: { x: 1, y: -4 } },
+      { id: "low-right", kind: "point", appearance: "warning", at: { x: 5, y: -4 } },
+      { id: "high-left", kind: "point", appearance: "warning", at: { x: -3, y: 12 } },
+      { id: "high-right", kind: "point", appearance: "warning", at: { x: 9, y: 12 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3, y: -6 }, placement: "below" },
+      { key: "band", objectId: "band", at: { x: 3, y: 8 }, placement: "center" },
+      { key: "left-in", objectId: "left-in", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "right-in", objectId: "right-in", at: { x: 7, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Bilangan yang memenuhi adalah <InlineMath math="-2,-1,0,6,7,8" />, jadi ada <InlineMath math="6" /> bilangan. Perhatikan bahwa <InlineMath math="x=1" /> dari soal tepat berada di batas bawah dan ikut gugur.
 
 # Kenapa pilihan lain salah

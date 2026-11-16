@@ -4,6 +4,41 @@ Aus dem Gesamtmittelwert folgt **die Summe der XI A**: <InlineMath math="24\cdot
 
 Für die XI B gibt es nur den Mittelwert <InlineMath math="13{,}95" />. Das Wort **sicher** bedeutet, dass die Aussage für jede mögliche Datenreihe der XI B mit Mittelwert <InlineMath math="13{,}95" /> stimmen muss.
 
+Trage alle vier Werte auf einem Zahlenstrahl ein. **Der Mittelwert von XI B liegt rechts von Rakas Zeit, aber links vom Median von XI A**. Ein Mittelwert kann über Rakas Zeit liegen, ohne dass jemand schneller als Raka ist, aber er kann nicht unter dem Median von XI A liegen, wenn alle Werte mindestens so groß wie dieser Median sind.
+
+<MathVisual
+  title={<>Rakas Zeit, Mittelwert XI B sowie Median und Mittelwert XI A</>}
+  description={<>Auf dem Zahlenstrahl von links nach rechts: Rakas Zeit <InlineMath math="13{,}8" />, der Mittelwert von XI B <InlineMath math="13{,}95" />, der Median von XI A <InlineMath math="14{,}25" /> und der Mittelwert von XI A <InlineMath math="\frac{201{,}3}{14}\approx14{,}38" />.</>}
+  labels={{
+    raka: <>Raka <InlineMath math="13{,}8" /></>,
+    "mean-b": <>Mittelwert XI B <InlineMath math="13{,}95" /></>,
+    median: <>Median XI A <InlineMath math="14{,}25" /></>,
+    "mean-a": <>Mittelwert XI A <InlineMath math="14{,}38" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 13.6, max: 14.55 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 13.65, y: 0 }, to: { x: 14.5, y: 0 } },
+      { id: "raka", kind: "point", appearance: "secondary", at: { x: 13.8, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "answer", at: { x: 13.95, y: 0 } },
+      { id: "median", kind: "point", appearance: "primary", at: { x: 14.25, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 201.3 / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "raka", objectId: "raka", at: { x: 13.8, y: 0 }, placement: "below" },
+      { key: "mean-b", objectId: "mean-b", at: { x: 13.95, y: 0 }, placement: "above" },
+      { key: "median", objectId: "median", at: { x: 14.25, y: 0 }, placement: "below" },
+      { key: "mean-a", objectId: "mean-a", at: { x: 201.3 / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Jede Aussage prüfen
 
 Erste Aussage: Der Mittelwert der XI A ist <InlineMath math="\frac{201{,}3}{14}\approx14{,}38" />. Das ist **mehr als <InlineMath math="14{,}3" />**. Die Aussage ist **Richtig**.

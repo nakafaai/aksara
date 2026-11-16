@@ -13,6 +13,46 @@ The height, the slant height and the base radius form a right triangle. **The sl
 
 <BlockMath math="t=\sqrt{15^2-9^2}=\sqrt{225-81}=\sqrt{144}=12\text{ cm}" />
 
+On the left is the card that gets rolled, on the right the cross-section of the cone it makes. **The <InlineMath math="216^\circ" /> arc becomes the circumference of the base, and the card's radius becomes the slant height**, so the base has radius <InlineMath math="9" /> and the height is <InlineMath math="12" />.
+
+<MathVisual
+  title={<>The remaining card and the cone it rolls into</>}
+  description={<>The card circle of radius <InlineMath math="15" /> is split into a <InlineMath math="216^\circ" /> part that is used and a <InlineMath math="144^\circ" /> sector that is thrown away. The cone's cross-section on the right is an isosceles triangle with slant height <InlineMath math="15" />, base radius <InlineMath math="9" />, and height <InlineMath math="12" />.</>}
+  labels={{
+    kept: <InlineMath math="216^\circ" />,
+    removed: <InlineMath math="144^\circ" />,
+    slant: <InlineMath math="15" />,
+    height: <InlineMath math="12" />,
+    radius: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 45 },
+      y: { min: -16, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "kept", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 15, startDegrees: 0, sweepDegrees: 216 },
+      { id: "removed", kind: "arc", appearance: "warning", center: { x: 0, y: 0 }, radius: 15, startDegrees: 216, sweepDegrees: 144 },
+      { id: "edge-start", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 15, y: 0 } },
+      { id: "edge-end", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 15 * Math.cos(1.2 * Math.PI), y: 15 * Math.sin(1.2 * Math.PI) } },
+      { id: "cone", kind: "polygon", appearance: "secondary", vertices: [{ x: 25, y: -6 }, { x: 43, y: -6 }, { x: 34, y: 6 }] },
+      { id: "slant", kind: "segment", appearance: "secondary", from: { x: 25, y: -6 }, to: { x: 34, y: 6 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 34, y: -6 }, to: { x: 34, y: 6 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 34, y: -6 }, to: { x: 43, y: -6 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 15 * Math.cos(0.6 * Math.PI), y: 15 * Math.sin(0.6 * Math.PI) }, placement: "above" },
+      { key: "removed", objectId: "removed", at: { x: 15 * Math.cos(1.6 * Math.PI), y: 15 * Math.sin(1.6 * Math.PI) }, placement: "below" },
+      { key: "slant", objectId: "slant", at: { x: 29.5, y: 0 }, placement: "left" },
+      { key: "height", objectId: "height", at: { x: 34, y: 0 }, placement: "right" },
+      { key: "radius", objectId: "radius", at: { x: 38.5, y: -6 }, placement: "below" },
+    ],
+  }}
+/>
+
 # From the cone to the cylinder
 
 The volume of water equals the volume of the cone.

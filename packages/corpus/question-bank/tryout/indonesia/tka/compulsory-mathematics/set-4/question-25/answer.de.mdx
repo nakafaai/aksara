@@ -10,6 +10,26 @@ Andi kann auf drei Arten gewinnen, und diese schließen sich gegenseitig aus.
 | Treffer im <InlineMath math="2" />. Wurf | Andi daneben, Budi daneben, Andi trifft | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12=\tfrac14" /> |
 | Treffer im <InlineMath math="3" />. Wurf | zwei Runden daneben, dann trifft Andi | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac23\cdot\tfrac34=\tfrac18" /> |
 
+Der Baum unten verfolgt das Spiel Wurf für Wurf. **Andi bekommt einen weiteren Wurf nur, wenn Budi verfehlt**, also führt jeder Weg zu Andis Sieg über Budis Zweig <InlineMath math="\frac23" />.
+
+<Mermaid
+  title={<>Wahrscheinlichkeitsbaum der Würfe von Andi und Budi</>}
+  description={<>Andis Würfe treffen mit Wahrscheinlichkeit <InlineMath math="\frac14" />, <InlineMath math="\frac12" />, dann <InlineMath math="\frac34" />. Jeder Wurf von Budi trifft mit Wahrscheinlichkeit <InlineMath math="\frac13" /> und verfehlt mit Wahrscheinlichkeit <InlineMath math="\frac23" />. Drei Wege enden mit Andis Sieg, drei mit Budis Sieg und einer unentschieden nach sechs Fehlwürfen.</>}
+  chart={`flowchart LR
+  A1["Andi wirft 1"] -->|"1/4"| W1["Andi gewinnt"]
+  A1 -->|"3/4"| B1["Budi wirft 1"]
+  B1 -->|"1/3"| L1["Budi gewinnt"]
+  B1 -->|"2/3"| A2["Andi wirft 2"]
+  A2 -->|"1/2"| W2["Andi gewinnt"]
+  A2 -->|"1/2"| B2["Budi wirft 2"]
+  B2 -->|"1/3"| L2["Budi gewinnt"]
+  B2 -->|"2/3"| A3["Andi wirft 3"]
+  A3 -->|"3/4"| W3["Andi gewinnt"]
+  A3 -->|"1/4"| B3["Budi wirft 3"]
+  B3 -->|"1/3"| L3["Budi gewinnt"]
+  B3 -->|"2/3"| D["Unentschieden"]`}
+/>
+
 <BlockMath math="P(\text{Andi gewinnt})=\tfrac14+\tfrac14+\tfrac18=\tfrac58" />
 
 # Kontrolle mit den anderen Ausgängen

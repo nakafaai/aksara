@@ -10,6 +10,20 @@ Aturannya: potongan <InlineMath math="10\%" /> diberikan hanya kalau harga norma
 | Budi | <InlineMath math="62{.}100" /> | normal <InlineMath math="62{.}100>60{.}000" />, mestinya dapat potongan | normal <InlineMath math="69{.}000>60{.}000" />, cocok | dengan potongan |
 | Citra | <InlineMath math="54{.}000" /> | normal <InlineMath math="54{.}000\le60{.}000" />, cocok | normal tepat <InlineMath math="60{.}000" />, tidak lebih dari <InlineMath math="60{.}000" /> | tanpa potongan |
 
+Bandingkan harga normal setiap struk dengan batas potongan. **Hanya batang Budi yang melewati garis <InlineMath math="60" /> ribu**, jadi hanya struk Budi yang harus dibagi <InlineMath math="0{,}9" />.
+
+<Chart
+  title={<>Harga normal setiap struk dan batas potongan</>}
+  description={<>Harga normal struk Ani <InlineMath math="48" /> ribu rupiah, struk Budi <InlineMath math="69" /> ribu rupiah, dan struk Citra <InlineMath math="54" /> ribu rupiah. Garis mendatar di <InlineMath math="60" /> ribu rupiah adalah batas potongan. Hanya struk Budi yang lebih dari batas itu.</>}
+  bars="apart"
+  categories={["Ani", "Budi", "Citra"]}
+  series={[
+    { label: "Harga normal", mark: "bar", values: [48, 69, 54] },
+    { label: "Batas potongan", mark: "line", values: [60, 60, 60] },
+  ]}
+  valueLabel="Ribu rupiah"
+/>
+
 Struk Citra adalah kasus batas. Harga normal <InlineMath math="60{.}000" /> **tidak lebih dari** <InlineMath math="60{.}000" />, jadi tidak mendapat potongan. Harga normal Citra adalah <InlineMath math="54{.}000" />.
 
 # Menjumlahkan ketiga persamaan

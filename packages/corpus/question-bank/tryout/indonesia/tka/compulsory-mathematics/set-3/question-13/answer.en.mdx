@@ -17,6 +17,45 @@ The final image is <InlineMath math="(1,5)" />, so **set each coordinate equal**
 -a+2k&=5
 \end{aligned}" />
 
+Draw both lines and the path of the point. **The line <InlineMath math="y=x+3" /> is perpendicular to the mirror line <InlineMath math="y=-x" />**, so the image of <InlineMath math="P" /> lands on the same line again, at <InlineMath math="(0,3)" />. The translation arrow <InlineMath math="(1,2)" /> then carries it to <InlineMath math="(1,5)" />.
+
+<MathVisual
+  title={<>Reflection in <InlineMath math="y=-x" />, then translation</>}
+  description={<>Point <InlineMath math="P(-3,0)" /> lies on the line <InlineMath math="y=x+3" />. Reflection in the line <InlineMath math="y=-x" /> moves it to <InlineMath math="(0,3)" />, which also lies on <InlineMath math="y=x+3" /> because that line is perpendicular to the mirror line. The translation <InlineMath math="(1,2)" /> shifts <InlineMath math="(0,3)" /> to the final image <InlineMath math="(1,5)" />.</>}
+  labels={{
+    line: <InlineMath math="y=x+3" />,
+    mirror: <InlineMath math="y=-x" />,
+    p: <InlineMath math="P(-3,0)" />,
+    reflected: <InlineMath math="(0,3)" />,
+    image: <InlineMath math="(1,5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 3.5 },
+      y: { min: -2.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + 3", domain: { min: -5, max: 2.5 } },
+      { id: "mirror", kind: "function", appearance: "reference", formula: "-x", domain: { min: -4, max: 2.5 } },
+      { id: "flip", kind: "segment", appearance: "construction", from: { x: -3, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "shift", kind: "vector", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 1, y: 5 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+      { id: "reflected", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "image", kind: "point", appearance: "primary", at: { x: 1, y: 5 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: -4.5, y: -1.5 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 2, y: -2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "reflected", objectId: "reflected", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 1, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Subtract the first equation from the second and you get <InlineMath math="k=1" />. Then <InlineMath math="-a+1=4" />, so <InlineMath math="a=-3" /> and <InlineMath math="P=(-3,0)" />.
 
 Check: <InlineMath math="(-3,0)" /> lies on <InlineMath math="y=x+3" />. Reflecting in <InlineMath math="y=-x" /> gives <InlineMath math="(0,3)" />, and shifting by <InlineMath math="(1,2)" /> gives <InlineMath math="(1,5)" />.

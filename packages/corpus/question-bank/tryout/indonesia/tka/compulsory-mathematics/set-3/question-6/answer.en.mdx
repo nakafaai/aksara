@@ -31,6 +31,44 @@ So <InlineMath math="2<d<6" />, which means <InlineMath math="d=3,4,5" />. **Eac
 | <InlineMath math="5" /> | <InlineMath math="-2" /> and <InlineMath math="8" /> | <InlineMath math="6.5" /> | yes |
 | <InlineMath math="6" /> | <InlineMath math="-3" /> and <InlineMath math="9" /> | <InlineMath math="12" /> | no, it must be less than <InlineMath math="12" /> |
 
+Draw the parabola together with the band <InlineMath math="-4<y<12" />. **The whole numbers asked for are the points of the graph that fall inside the band, not on its edges**. There are three on each side of the axis, and the four edge points with a warning mark drop out.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="f" /> and the band <InlineMath math="-4<y<12" /></>}
+  description={<>The parabola <InlineMath math="f(x)=\tfrac12(x-3)^2-6" /> has its vertex at <InlineMath math="(3,\ -6)" />. The shaded band between <InlineMath math="y=-4" /> and <InlineMath math="y=12" /> has dashed edges because both signs are strict. The graph meets the lower edge at <InlineMath math="x=1" /> and <InlineMath math="x=5" />, and the upper edge at <InlineMath math="x=-3" /> and <InlineMath math="x=9" />. The segments on the horizontal axis mark the whole numbers <InlineMath math="-2" />, <InlineMath math="-1" />, <InlineMath math="0" /> and <InlineMath math="6" />, <InlineMath math="7" />, <InlineMath math="8" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=\tfrac12(x-3)^2-6" />,
+    band: <InlineMath math="-4<y<12" />,
+    "left-in": <InlineMath math="x=-2,-1,0" />,
+    "right-in": <InlineMath math="x=6,7,8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 10.5 },
+      y: { min: -7.5, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "band", kind: "region", appearance: "highlight", inequalities: ["y > -4", "y < 12"] },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x - 3)^2/2 - 6", domain: { min: -3.5, max: 9.5 } },
+      { id: "left-in", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "right-in", kind: "segment", appearance: "answer", from: { x: 6, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "low-left", kind: "point", appearance: "warning", at: { x: 1, y: -4 } },
+      { id: "low-right", kind: "point", appearance: "warning", at: { x: 5, y: -4 } },
+      { id: "high-left", kind: "point", appearance: "warning", at: { x: -3, y: 12 } },
+      { id: "high-right", kind: "point", appearance: "warning", at: { x: 9, y: 12 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3, y: -6 }, placement: "below" },
+      { key: "band", objectId: "band", at: { x: 3, y: 8 }, placement: "center" },
+      { key: "left-in", objectId: "left-in", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "right-in", objectId: "right-in", at: { x: 7, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 The integers that work are <InlineMath math="-2,-1,0,6,7,8" />, so there are <InlineMath math="6" /> of them. Notice that <InlineMath math="x=1" /> from the question sits exactly on the lower boundary and drops out.
 
 # Why the other options are wrong

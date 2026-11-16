@@ -24,6 +24,52 @@ Also ist <InlineMath math="k=2" /> oder <InlineMath math="k=-2" />. **Die Länge
 | <InlineMath math="2" /> | <InlineMath math="(1,-3)" /> | <InlineMath math="(9,9)" /> | I. Quadrant |
 | <InlineMath math="-2" /> | <InlineMath math="(5,5)" /> | <InlineMath math="(-3,-7)" /> | III. Quadrant |
 
+Zeichne beide möglichen Bilder der Strecke <InlineMath math="AB" />. **Beide sind <InlineMath math="10" /> Einheiten lang und beginnen in <InlineMath math="A'" />**, aber nur das in Gegenrichtung zeigende endet im III. Quadranten. Die Vorschrift für diese Strecke wird auf <InlineMath math="C" /> angewendet.
+
+<MathVisual
+  title={<>Zwei mögliche Bilder von <InlineMath math="AB" /></>}
+  description={<>Die Strecke <InlineMath math="AB" /> von <InlineMath math="(1,2)" /> nach <InlineMath math="(4,6)" /> ist <InlineMath math="5" /> lang. Mit <InlineMath math="k=2" /> verläuft ihr Bild von <InlineMath math="A'(3,1)" /> nach <InlineMath math="(9,9)" /> im I. Quadranten und fällt weg. Mit <InlineMath math="k=-2" /> verläuft ihr Bild von <InlineMath math="A'(3,1)" /> nach <InlineMath math="B'(-3,-7)" /> im III. Quadranten. Dieselbe Abbildung bringt <InlineMath math="C(2,-1)" /> nach <InlineMath math="C'(1,7)" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "a-image": <InlineMath math="A'(3,1)" />,
+    "b-plus": <InlineMath math="(9,9)" />,
+    "b-minus": <InlineMath math="B'(-3,-7)" />,
+    c: <InlineMath math="C" />,
+    "c-image": <InlineMath math="C'(1,7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 10.5 },
+      y: { min: -8.5, max: 10.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "original", kind: "segment", appearance: "primary", from: { x: 1, y: 2 }, to: { x: 4, y: 6 } },
+      { id: "plus", kind: "segment", appearance: "warning", from: { x: 3, y: 1 }, to: { x: 9, y: 9 } },
+      { id: "minus", kind: "segment", appearance: "secondary", from: { x: 3, y: 1 }, to: { x: -3, y: -7 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 4, y: 6 } },
+      { id: "a-image", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "b-plus", kind: "point", appearance: "warning", at: { x: 9, y: 9 } },
+      { id: "b-minus", kind: "point", appearance: "secondary", at: { x: -3, y: -7 } },
+      { id: "c", kind: "point", appearance: "construction", at: { x: 2, y: -1 } },
+      { id: "c-image", kind: "point", appearance: "answer", at: { x: 1, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 6 }, placement: "above-left" },
+      { key: "a-image", objectId: "a-image", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "b-plus", objectId: "b-plus", at: { x: 9, y: 9 }, placement: "below-right" },
+      { key: "b-minus", objectId: "b-minus", at: { x: -3, y: -7 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "c-image", objectId: "c-image", at: { x: 1, y: 7 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Nur bei <InlineMath math="k=-2" /> liegt <InlineMath math="B'" /> im III. Quadranten. Der Streckfaktor ist also <InlineMath math="-2" />, der Verschiebungsvektor <InlineMath math="(5,5)" />.
 
 # Das Bild von Punkt C
