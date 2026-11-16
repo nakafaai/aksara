@@ -4,6 +4,37 @@ A translation moves every point by its vector. Two translations in a row **equal
 
 <BlockMath math="T=T_1+T_2=\begin{pmatrix} 2-5 \\ -3+1 \end{pmatrix}=\begin{pmatrix} -3 \\ -2 \end{pmatrix}" />
 
+Draw the two shifts one after the other. **The arrow <InlineMath math="T_2" /> starts at the tip of <InlineMath math="T_1" />**, so the total shift is the arrow from the tail of <InlineMath math="T_1" /> to the tip of <InlineMath math="T_2" />.
+
+<MathVisual
+  title={<>Two translations combined into one</>}
+  description={<>The arrow <InlineMath math="T_1=(2,-3)" /> starts at the origin. The arrow <InlineMath math="T_2=(-5,1)" /> starts at its tip. The arrow from the origin to the tip of <InlineMath math="T_2" /> is <InlineMath math="T=(-3,-2)" />.</>}
+  labels={{
+    first: <InlineMath math="T_1" />,
+    second: <InlineMath math="T_2" />,
+    total: <InlineMath math="T=(-3,-2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 3 },
+      y: { min: -4, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: -3 } },
+      { id: "second", kind: "vector", appearance: "secondary", from: { x: 2, y: -3 }, to: { x: -3, y: -2 } },
+      { id: "total", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -3, y: -2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -0.5, y: -2.5 }, placement: "below" },
+      { key: "total", objectId: "total", at: { x: -1.5, y: -1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 The order of the two translations does not matter, because vector addition is commutative.
 
 So the single translation is <InlineMath math="\begin{pmatrix} -3 \\ -2 \end{pmatrix}" />.

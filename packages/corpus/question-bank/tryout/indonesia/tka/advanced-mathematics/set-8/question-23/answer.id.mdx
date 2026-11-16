@@ -8,6 +8,37 @@ s(2+h)-s(2)&=11h+2h^2=h(11+2h)
 
 <BlockMath math="\lim_{h\to0}\frac{h(11+2h)}{h}=\lim_{h\to0}(11+2h)=11" />
 
+Gambar jarak bola terhadap waktu. **Kecepatan sesaat di <InlineMath math="t=2" /> adalah kemiringan garis singgung di titik <InlineMath math="(2,\ 14)" />**, dan garis singgung itu bergradien <InlineMath math="11" />.
+
+<MathVisual
+  title={<>Grafik jarak <InlineMath math="s(t)" /> dan garis singgung di <InlineMath math="t=2" /></>}
+  description={<>Sumbu mendatar adalah waktu <InlineMath math="t" /> dalam detik, dan sumbu tegak adalah jarak dalam meter. Kurva <InlineMath math="s(t)=2t^2+3t" /> melewati <InlineMath math="(2,\ 14)" />. Garis singgung di titik itu adalah <InlineMath math="y=11t-8" />, bergradien <InlineMath math="11" />.</>}
+  labels={{
+    curve: <InlineMath math="s(t)=2t^2+3t" />,
+    tangent: <InlineMath math="\text{gradien }11" />,
+    two: <InlineMath math="(2,\ 14)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 3.5 },
+      y: { min: 0, max: 36 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*x^2 + 3*x", domain: { min: 0, max: 3.3 } },
+      { id: "tangent", kind: "function", appearance: "answer", formula: "11*x - 8", domain: { min: 0.9, max: 3.3 } },
+      { id: "two", kind: "point", appearance: "answer", at: { x: 2, y: 14 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: 25 }, placement: "below-right" },
+      { key: "two", objectId: "two", at: { x: 2, y: 14 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Pemeriksaan: kecepatan rata-rata pada selang <InlineMath math="[2;\,2{,}1]" /> adalah <InlineMath math="\frac{s(2{,}1)-s(2)}{0{,}1}=\frac{15{,}12-14}{0{,}1}=11{,}2" />, dan makin pendek selangnya, makin dekat ke <InlineMath math="11" />.
 
 Jadi, kecepatan sesaat bola pada <InlineMath math="t=2" /> adalah <InlineMath math="11" /> meter per detik.

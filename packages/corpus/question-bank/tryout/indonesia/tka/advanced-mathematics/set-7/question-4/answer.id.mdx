@@ -23,6 +23,47 @@ B(1,8)&=4+48=52 \\
 B(6,3)&=24+18=42
 \end{aligned}" />
 
+Gambar daerah penyelesaiannya. **Kedua kebutuhan gizi memberi batas bawah dan batas sachet memberi batas atas**, jadi daerahnya segitiga kecil dengan tiga titik pojok.
+
+<MathVisual
+  title={<>Daerah penyelesaian kalsium, protein, dan banyak sachet</>}
+  description={<>Sumbu mendatar adalah banyak sachet susu A, dan sumbu tegak adalah banyak sachet susu B. Daerah yang diarsir berada di atas garis <InlineMath math="2x+y=10" /> dan <InlineMath math="x+3y=15" />, serta di bawah garis <InlineMath math="x+y=9" />. Titik pojoknya <InlineMath math="(3,\ 4)" />, <InlineMath math="(1,\ 8)" />, dan <InlineMath math="(6,\ 3)" />, dan biaya terendah ada di <InlineMath math="(3,\ 4)" />.</>}
+  labels={{
+    calcium: <InlineMath math="2x+y=10" />,
+    protein: <InlineMath math="x+3y=15" />,
+    cap: <InlineMath math="x+y=9" />,
+    best: <InlineMath math="(3,\ 4)" />,
+    top: <InlineMath math="(1,\ 8)" />,
+    side: <InlineMath math="(6,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 10 },
+      y: { min: 0, max: 10.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 3, y: 4 }, { x: 6, y: 3 }, { x: 1, y: 8 }] },
+      { id: "calcium", kind: "segment", appearance: "primary", from: { x: 0, y: 10 }, to: { x: 5, y: 0 } },
+      { id: "protein", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 10, y: 5 / 3 } },
+      { id: "cap", kind: "segment", appearance: "reference", from: { x: 0, y: 9 }, to: { x: 9, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 1, y: 8 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "calcium", objectId: "calcium", at: { x: 4.5, y: 1 }, placement: "left" },
+      { key: "protein", objectId: "protein", at: { x: 9, y: 2 }, placement: "above" },
+      { key: "cap", objectId: "cap", at: { x: 8, y: 1 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 3, y: 4 }, placement: "below-left" },
+      { key: "top", objectId: "top", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "side", objectId: "side", at: { x: 6, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi, biaya minimumnya <InlineMath math="\text{Rp}36{.}000{,}00" />, dengan <InlineMath math="3" /> sachet susu A dan <InlineMath math="4" /> sachet susu B.
 
 - <InlineMath math="\text{Rp}42{.}000{,}00" /> adalah biaya di titik pojok <InlineMath math="(6,3)" />.

@@ -7,6 +7,42 @@ Eine Parallele zu <InlineMath math="3x+y=0" /> hat die Form <InlineMath math="3x
 |1+c|&=10
 \end{aligned}" />
 
+Zeichne den Kreisverkehr und beide Tangenten parallel zu <InlineMath math="3x+y=0" />. **Es gibt zwei Tangenten, auf jeder Seite des Kreisverkehrs eine**, und nur die linke untere schneidet die <InlineMath math="Y" />-Achse unterhalb des Ursprungs.
+
+<MathVisual
+  title={<>Zwei Tangenten mit Steigung <InlineMath math="-3" /></>}
+  description={<>Der Kreisverkehr ist der Kreis mit Mittelpunkt <InlineMath math="(1,-2)" /> und Radius <InlineMath math="\sqrt{10}" />. Die Gerade <InlineMath math="3x+y+9=0" /> berührt ihn in <InlineMath math="(-2,-3)" /> und schneidet die <InlineMath math="Y" />-Achse in <InlineMath math="(0,-9)" />. Die Gerade <InlineMath math="3x+y-11=0" /> berührt ihn in <InlineMath math="(4,-1)" /> und schneidet die <InlineMath math="Y" />-Achse oberhalb des Ursprungs.</>}
+  labels={{
+    road: <InlineMath math="3x+y+9=0" />,
+    other: <InlineMath math="3x+y-11=0" />,
+    touch: <InlineMath math="(-2,-3)" />,
+    cross: <InlineMath math="(0,-9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 7 },
+      y: { min: -10, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 1, y: -2 }, radius: Math.sqrt(10) },
+      { id: "road", kind: "function", appearance: "answer", formula: "-3*x - 9", domain: { min: -4.3, max: 0.3 } },
+      { id: "other", kind: "function", appearance: "secondary", formula: "11 - 3*x", domain: { min: 2.4, max: 7 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: -2, y: -3 } },
+      { id: "cross", kind: "point", appearance: "answer", at: { x: 0, y: -9 } },
+      { id: "other-touch", kind: "point", appearance: "secondary", at: { x: 4, y: -1 } },
+    ],
+    labels: [
+      { key: "road", objectId: "road", at: { x: -4, y: 3 }, placement: "right" },
+      { key: "other", objectId: "other", at: { x: 6.5, y: -8.5 }, placement: "left" },
+      { key: "touch", objectId: "touch", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "cross", objectId: "cross", at: { x: 0, y: -9 }, placement: "right" },
+    ],
+  }}
+/>
+
 Also <InlineMath math="c=9" /> oder <InlineMath math="c=-11" />. Es gibt zwei parallele Tangenten, <InlineMath math="3x+y+9=0" /> und <InlineMath math="3x+y-11=0" />. Die erste schneidet die <InlineMath math="y" />-Achse in <InlineMath math="(0,-9)" />, unterhalb des Ursprungs. Die zweite schneidet sie in <InlineMath math="(0,11)" />.
 
 Probe: Einsetzen von <InlineMath math="y=-3x-9" /> in die Kreisgleichung ergibt <InlineMath math="10x^2+40x+40=10(x+2)^2=0" /> mit nur einer Lösung. Die Gerade berührt den Kreis also genau in <InlineMath math="(-2,-3)" />.

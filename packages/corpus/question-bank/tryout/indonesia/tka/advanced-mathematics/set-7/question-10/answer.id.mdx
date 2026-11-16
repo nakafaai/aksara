@@ -1,5 +1,42 @@
 Semua pernyataan menguji **sifat-sifat logaritma**. Sifat yang benar: <InlineMath math="{}^{a}\log(pq)={}^{a}\log p+{}^{a}\log q" />, <InlineMath math="{}^{a}\log\frac pq={}^{a}\log p-{}^{a}\log q" />, dan <InlineMath math="{}^{a}\log p^n=n\,{}^{a}\log p" />.
 
+Gambar <InlineMath math="f(x)={}^{2}\log x" /> bersama beberapa titik kunci. **Setiap kali <InlineMath math="x" /> dikali <InlineMath math="2" />, tingginya naik <InlineMath math="1" />**, jadi tinggi di <InlineMath math="8" /> dikurangi tinggi di <InlineMath math="2" /> sama dengan tinggi di <InlineMath math="4" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)={}^{2}\log x" /></>}
+  description={<>Kurva melewati <InlineMath math="(2,\ 1)" />, <InlineMath math="(4,\ 2)" />, dan <InlineMath math="(8,\ 3)" />, sehingga <InlineMath math="3-1=2" />. Di kiri <InlineMath math="x=1" /> kurvanya di bawah sumbu <InlineMath math="x" />, misalnya di <InlineMath math="\left(\tfrac14,\ -2\right)" />.</>}
+  labels={{
+    curve: <InlineMath math="y={}^{2}\log x" />,
+    two: <InlineMath math="(2,\ 1)" />,
+    four: <InlineMath math="(4,\ 2)" />,
+    eight: <InlineMath math="(8,\ 3)" />,
+    quarter: <InlineMath math="\left(\tfrac14,\ -2\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 9 },
+      y: { min: -3, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "log_10(x)/log_10(2)", domain: { min: 0.15, max: 9 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "four", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+      { id: "eight", kind: "point", appearance: "secondary", at: { x: 8, y: 3 } },
+      { id: "quarter", kind: "point", appearance: "warning", at: { x: 0.25, y: -2 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 6, y: Math.log10(6) / Math.log10(2) }, placement: "above-left" },
+      { key: "two", objectId: "two", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "four", objectId: "four", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "eight", objectId: "eight", at: { x: 8, y: 3 }, placement: "below" },
+      { key: "quarter", objectId: "quarter", at: { x: 0.25, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Pernyataan <InlineMath math="f(8)-f(2)=f(4)" /> benar. Selisih logaritma adalah logaritma hasil bagi: <InlineMath math="{}^{2}\log\frac82={}^{2}\log4" />. Dengan angka: <InlineMath math="3-1=2" />.
 2. Pernyataan <InlineMath math="f(x+y)=f(x)+f(y)" /> salah. Jumlah logaritma adalah logaritma hasil kali, bukan logaritma jumlah. Satu contoh penyangkal cukup: <InlineMath math="f(1+1)=f(2)=1" />, sedangkan <InlineMath math="f(1)+f(1)=0+0=0" />.
 3. Pernyataan <InlineMath math="f\left(\frac14\right)=2" /> salah. Karena <InlineMath math="\frac14=2^{-2}" />, <InlineMath math="f\left(\frac14\right)=-2" />.

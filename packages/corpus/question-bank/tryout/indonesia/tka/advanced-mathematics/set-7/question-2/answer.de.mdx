@@ -4,6 +4,37 @@ Bestimme zuerst die Einzelpreise mit **der Inversen der Koeffizientenmatrix** un
 
 <BlockMath math="\begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 570-370 \\ -380+555 \end{pmatrix}=\frac15\begin{pmatrix} 200 \\ 175 \end{pmatrix}=\begin{pmatrix} 40 \\ 35 \end{pmatrix}" />
 
+Jede Zeile der Matrixgleichung ist eine Gerade in der <InlineMath math="(d,a)" />-Ebene. **Die Einzelpreise sind der Schnittpunkt der beiden Geraden**, also <InlineMath math="d=40" /> und <InlineMath math="a=35" />.
+
+<MathVisual
+  title={<>Die beiden Gruppen als zwei Geraden</>}
+  description={<>Die waagerechte Achse ist der Preis <InlineMath math="d" /> für Erwachsene, die senkrechte der Preis <InlineMath math="a" /> für Kinder, beide in Tausend Rupiah. Die Geraden <InlineMath math="3d+2a=190" /> und <InlineMath math="2d+3a=185" /> schneiden sich in <InlineMath math="(40,\ 35)" />.</>}
+  labels={{
+    first: <InlineMath math="3d+2a=190" />,
+    second: <InlineMath math="2d+3a=185" />,
+    meet: <InlineMath math="(40,\ 35)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 20, max: 60 },
+      y: { min: 15, max: 55 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "(190 - 3*x)/2", domain: { min: 25, max: 55 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "(185 - 2*x)/3", domain: { min: 20, max: 60 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 40, y: 35 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 27, y: 54.5 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 58, y: 23 }, placement: "above" },
+      { key: "meet", objectId: "meet", at: { x: 40, y: 35 }, placement: "right" },
+    ],
+  }}
+/>
+
 Ein Erwachsenenticket kostet <InlineMath math="\text{Rp}40{.}000{,}00" />, ein Kinderticket <InlineMath math="\text{Rp}35{.}000{,}00" />. Probe: <InlineMath math="3(40)+2(35)=190" /> und <InlineMath math="2(40)+3(35)=185" />.
 
 <BlockMath math="4d+5a=4(40)+5(35)=160+175=335" />

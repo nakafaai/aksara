@@ -6,6 +6,41 @@ a^2-4a-12&=0 \\
 (a-6)(a+2)&=0
 \end{aligned}" />
 
+Gambar lingkaran dan garis mendatar <InlineMath math="y=2" />. **Garis itu memotong lingkaran di dua titik**, dan hanya titik di kanan yang absisnya positif.
+
+<MathVisual
+  title={<>Titik pada lingkaran dengan ordinat <InlineMath math="2" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="(2,-1)" /> dengan jari-jari <InlineMath math="5" />. Garis <InlineMath math="y=2" /> memotongnya di <InlineMath math="(-2,2)" /> dan <InlineMath math="(6,2)" />, dan syarat <InlineMath math="a>0" /> memilih <InlineMath math="(6,2)" />.</>}
+  labels={{
+    centre: <InlineMath math="(2,-1)" />,
+    line: <InlineMath math="y=2" />,
+    right: <InlineMath math="(6,2)" />,
+    left: <InlineMath math="(-2,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -7, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 5 },
+      { id: "line", kind: "function", appearance: "construction", formula: "2", domain: { min: -4, max: 8 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
+      { id: "left", kind: "point", appearance: "warning", at: { x: -2, y: 2 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "line", objectId: "line", at: { x: 7.5, y: 2 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "left", objectId: "left", at: { x: -2, y: 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Ada dua titik dengan ordinat <InlineMath math="2" /> pada lingkaran, yaitu <InlineMath math="(6,2)" /> dan <InlineMath math="(-2,2)" />. Syarat <InlineMath math="a>0" /> memilih <InlineMath math="a=6" />.
 
 Pemeriksaan dengan pusat dan jari-jari: lingkaran itu <InlineMath math="(x-2)^2+(y+1)^2=25" />, dan <InlineMath math="(6-2)^2+(2+1)^2=16+9=25" />.

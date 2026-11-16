@@ -4,6 +4,34 @@ Einsetzen von <InlineMath math="x=1" /> ergibt <InlineMath math="\frac{2-2}{0}=\
 
 <BlockMath math="\lim_{x\to1}\frac{\sqrt[3]{x+7}-2}{x-1}=\lim_{u\to2}\frac{u-2}{(u-2)(u^2+2u+4)}=\frac{1}{4+4+4}=\frac{1}{12}" />
 
+Zeichne die Funktion nach der Substitution <InlineMath math="u=\sqrt[3]{x+7}" />. **Für <InlineMath math="x\ne1" /> stimmt der Graph mit <InlineMath math="\frac{1}{u^2+2u+4}" /> überein**, einer glatten Kurve, die bei <InlineMath math="x=1" /> die Höhe <InlineMath math="\tfrac{1}{12}" /> hat.
+
+<MathVisual
+  title={<>Der Graph in der Nähe von <InlineMath math="x=1" /></>}
+  description={<>Die Kurve für <InlineMath math="-6\le x\le8" />, ohne <InlineMath math="x=1" />. Sie fällt sanft und läuft von links und von rechts auf den Punkt <InlineMath math="\left(1,\ \tfrac{1}{12}\right)" /> zu.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{\sqrt[3]{x+7}-2}{x-1}" />,
+    target: <InlineMath math="\left(1,\ \tfrac{1}{12}\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 8 },
+      y: { min: 0.05, max: 0.15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1/((x + 7)^(2/3) + 2*(x + 7)^(1/3) + 4)", domain: { min: -6, max: 8 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 1, y: 1 / 12 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -5, y: 1 / (Math.pow(2, 2 / 3) + 2 * Math.pow(2, 1 / 3) + 4) }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 1, y: 1 / 12 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=1{,}001" /> ist <InlineMath math="\sqrt[3]{8{,}001}\approx2{,}0000833" />, der Bruch also etwa <InlineMath math="0{,}0833" />, nahe <InlineMath math="\frac{1}{12}" />.
 
 Der Grenzwert ist also <InlineMath math="\frac{1}{12}" />.

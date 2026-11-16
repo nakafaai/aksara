@@ -12,6 +12,39 @@ G(40,20)&=2{.}000+800=2{.}800 \\
 G(0,40)&=1{.}600
 \end{aligned}" />
 
+Zeichne den neuen Bereich mit der Gewinngeraden durch <InlineMath math="(60,\ 0)" />. **Die Gewinngerade ist steiler als die Kante <InlineMath math="x+y=60" />**, also berührt sie beim Hinausschieben zuletzt die Ecke auf der waagerechten Achse.
+
+<MathVisual
+  title={<>Zulässiger Bereich nach der Reparatur der Bindemaschine</>}
+  description={<>Der alte Bereich ist blass gezeichnet. Der neue Bereich liegt unter den Geraden <InlineMath math="x+2y=80" /> und <InlineMath math="x+y=60" />, mit den Ecken <InlineMath math="(0,\ 0)" />, <InlineMath math="(60,\ 0)" />, <InlineMath math="(40,\ 20)" /> und <InlineMath math="(0,\ 40)" />. Die gestrichelte Gerade <InlineMath math="50x+40y=3{.}000" /> berührt den neuen Bereich nur in <InlineMath math="(60,\ 0)" />.</>}
+  labels={{
+    best: <InlineMath math="(60,\ 0)" />,
+    corner: <InlineMath math="(40,\ 20)" />,
+    level: <InlineMath math="50x+40y=3{.}000" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 82 },
+      y: { min: 0, max: 78 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "after", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 40, y: 20 }, { x: 0, y: 40 }] },
+      { id: "before", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "level", kind: "function", appearance: "construction", formula: "75 - 1.25*x", domain: { min: 0, max: 60 } },
+      { id: "corner", kind: "point", appearance: "reference", at: { x: 40, y: 20 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 60, y: 0 } },
+    ],
+    labels: [
+      { key: "best", objectId: "best", at: { x: 60, y: 0 }, placement: "above-right" },
+      { key: "corner", objectId: "corner", at: { x: 40, y: 20 }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 10, y: 62.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Der Punkt <InlineMath math="(60,0)" /> erfüllt die Schneidegrenze, denn <InlineMath math="60\le80" />. Die Niveaulinien <InlineMath math="50x+40y=k" /> haben die Steigung <InlineMath math="-\frac54" />, steiler als die Gerade <InlineMath math="x+y=60" /> mit Steigung <InlineMath math="-1" />. Deshalb berühren sie zuletzt den Punkt auf der <InlineMath math="x" />-Achse.
 
 Der größte Gewinn beträgt jetzt also <InlineMath math="\text{Rp}3{.}000{.}000{,}00" />, mit <InlineMath math="60" /> Packungen Schreibheften allein.

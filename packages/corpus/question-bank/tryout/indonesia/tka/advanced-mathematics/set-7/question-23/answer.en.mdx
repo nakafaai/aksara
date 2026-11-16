@@ -6,6 +6,37 @@ The fixed cost is spread over more and more shirts, so its share per shirt shrin
 
 <BlockMath math="\lim_{x\to\infty}R(x)=0+15{,}000=15{,}000" />
 
+Draw the average cost against the number of shirts. **The fixed-cost share per shirt keeps shrinking, so the curve hugs the line at <InlineMath math="15" /> thousand rupiah**, the printing cost per shirt.
+
+<MathVisual
+  title={<>Average cost per shirt by number of shirts</>}
+  description={<>The horizontal axis is the number of shirts <InlineMath math="x" />, and the vertical axis is the average cost in thousands of rupiah. The curve <InlineMath math="R(x)=\tfrac{2{,}000}{x}+15" /> drops steeply at first, passes <InlineMath math="(1{,}000,\ 17)" />, then gets closer and closer to the horizontal line at <InlineMath math="15" />.</>}
+  labels={{
+    curve: <InlineMath math="R(x)" />,
+    level: <InlineMath math="15" />,
+    thousand: <InlineMath math="(1{,}000,\ 17)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 2000 },
+      y: { min: 10, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2000/x + 15", domain: { min: 80, max: 2000 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "15", domain: { min: 0, max: 2000 } },
+      { id: "thousand", kind: "point", appearance: "secondary", at: { x: 1000, y: 17 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 150, y: 2000 / 150 + 15 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 1800, y: 15 }, placement: "below" },
+      { key: "thousand", objectId: "thousand", at: { x: 1000, y: 17 }, placement: "above" },
+    ],
+  }}
+/>
+
 For example, for <InlineMath math="x=1{,}000" /> the average cost is <InlineMath math="2{,}000+15{,}000=17{,}000" /> rupiah, and for <InlineMath math="x=100{,}000" /> it becomes <InlineMath math="15{,}020" /> rupiah.
 
 So the average cost per shirt approaches <InlineMath math="\text{Rp}15{,}000.00" />.

@@ -9,3 +9,35 @@ Each statement compares **how fast the numerator and denominator grow or shrink*
 <BlockMath math="x\left(1-\cos\frac1x\right)=\frac{1-\cos t}{t}=\frac{2\sin^2\frac t2}{t}=\sin\frac t2\cdot\frac{\sin\frac t2}{\frac t2}\to0\cdot1=0" />
 
 So the true statements are the ones about <InlineMath math="\frac{x^2+1}{2x^2-x}" />, about <InlineMath math="\frac{3x+\sin x}{x}" /> and about <InlineMath math="x\left(1-\cos\frac1x\right)" />.
+
+Draw statement three as an example of squeezing. **The curve <InlineMath math="3+\frac{\sin x}{x}" /> wiggles but always stays squeezed between <InlineMath math="3-\frac1x" /> and <InlineMath math="3+\frac1x" />**, and both bounds head to <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Squeezing <InlineMath math="\frac{3x+\sin x}{x}" /> for large <InlineMath math="x" /></>}
+  description={<>The curve <InlineMath math="y=3+\frac{\sin x}{x}" /> for <InlineMath math="1\le x\le30" /> wiggles around the line <InlineMath math="y=3" />. The two dashed curves <InlineMath math="3+\frac1x" /> and <InlineMath math="3-\frac1x" /> hold it between them and close in on the line <InlineMath math="y=3" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{3x+\sin x}{x}" />,
+    upper: <InlineMath math="3+\frac1x" />,
+    lower: <InlineMath math="3-\frac1x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 30 },
+      y: { min: 2, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "upper", kind: "function", appearance: "construction", formula: "3 + 1/x", domain: { min: 1, max: 30 } },
+      { id: "lower", kind: "function", appearance: "construction", formula: "3 - 1/x", domain: { min: 1, max: 30 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "3 + sin(x)/x", domain: { min: 1, max: 30 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "3", domain: { min: 0, max: 30 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 8, y: 3 + Math.sin(8) / 8 }, placement: "above-right" },
+      { key: "upper", objectId: "upper", at: { x: 1.5, y: 3 + 1 / 1.5 }, placement: "right" },
+      { key: "lower", objectId: "lower", at: { x: 1.5, y: 3 - 1 / 1.5 }, placement: "right" },
+    ],
+  }}
+/>

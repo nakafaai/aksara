@@ -6,6 +6,41 @@ a^2-4a-12&=0 \\
 (a-6)(a+2)&=0
 \end{aligned}" />
 
+Draw the circle and the horizontal line <InlineMath math="y=2" />. **That line cuts the circle at two points**, and only the one on the right has a positive <InlineMath math="x" />-coordinate.
+
+<MathVisual
+  title={<>Points on the circle with <InlineMath math="y" />-coordinate <InlineMath math="2" /></>}
+  description={<>The circle has centre <InlineMath math="(2,-1)" /> and radius <InlineMath math="5" />. The line <InlineMath math="y=2" /> cuts it at <InlineMath math="(-2,2)" /> and <InlineMath math="(6,2)" />, and the condition <InlineMath math="a>0" /> picks <InlineMath math="(6,2)" />.</>}
+  labels={{
+    centre: <InlineMath math="(2,-1)" />,
+    line: <InlineMath math="y=2" />,
+    right: <InlineMath math="(6,2)" />,
+    left: <InlineMath math="(-2,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -7, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 5 },
+      { id: "line", kind: "function", appearance: "construction", formula: "2", domain: { min: -4, max: 8 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
+      { id: "left", kind: "point", appearance: "warning", at: { x: -2, y: 2 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "line", objectId: "line", at: { x: 7.5, y: 2 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "left", objectId: "left", at: { x: -2, y: 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 The circle has two points with <InlineMath math="y" />-coordinate <InlineMath math="2" />, namely <InlineMath math="(6,2)" /> and <InlineMath math="(-2,2)" />. The condition <InlineMath math="a>0" /> picks <InlineMath math="a=6" />.
 
 Check with centre and radius: the circle is <InlineMath math="(x-2)^2+(y+1)^2=25" />, and <InlineMath math="(6-2)^2+(2+1)^2=16+9=25" />.

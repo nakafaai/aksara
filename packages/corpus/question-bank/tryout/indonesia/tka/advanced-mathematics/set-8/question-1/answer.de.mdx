@@ -2,6 +2,17 @@ Du musst <InlineMath math="B" /> nicht bestimmen. Nutze **die Determinante eines
 
 <BlockMath math="\det C=\det A\cdot\det B\cdot\frac{1}{\det A}=\det B" />
 
+Das Diagramm verfolgt die Determinantenfaktoren von links nach rechts. **Die Faktoren <InlineMath math="\det A" /> und <InlineMath math="\tfrac{1}{\det A}" /> heben sich auf**, also bleibt nur <InlineMath math="\det B" />, und das muss <InlineMath math="\det C" /> sein.
+
+<Mermaid
+  title={<>Determinantenfaktoren in <InlineMath math="ABA^{-1}" /></>}
+  description={<>Von <InlineMath math="1" /> ausgehend ergibt die Multiplikation mit <InlineMath math="\det A=2" /> den Wert <InlineMath math="2" />, die Multiplikation mit <InlineMath math="\det B" /> den Wert <InlineMath math="2\det B" />, und die Multiplikation mit <InlineMath math="\tfrac{1}{\det A}=\tfrac12" /> führt zurück zu <InlineMath math="\det B" />. Wegen <InlineMath math="ABA^{-1}=C" /> ist das <InlineMath math="\det C=3" />.</>}
+  chart={`flowchart LR
+  S["Start: 1"] -->|"× det A = 2"| P1["2"]
+  P1 -->|"× det B"| P2["2 · det B"]
+  P2 -->|"× 1/det A = 1/2"| E["det B = det C = 3"]`}
+/>
+
 Die Faktoren <InlineMath math="\det A" /> und <InlineMath math="\frac{1}{\det A}" /> heben sich auf, egal wie groß <InlineMath math="\det A" /> ist. Berechne also nur <InlineMath math="\det C" />.
 
 <BlockMath math="\det B=\det C=2\cdot2-1\cdot1=3" />

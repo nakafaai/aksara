@@ -7,6 +7,42 @@ A line parallel to <InlineMath math="3x+y=0" /> has the form <InlineMath math="3
 |1+c|&=10
 \end{aligned}" />
 
+Draw the roundabout and both tangents parallel to <InlineMath math="3x+y=0" />. **There are two tangents, one on each side of the roundabout**, and only the lower-left one crosses the <InlineMath math="Y" />-axis below the origin.
+
+<MathVisual
+  title={<>Two tangents of gradient <InlineMath math="-3" /></>}
+  description={<>The roundabout is the circle with centre <InlineMath math="(1,-2)" /> and radius <InlineMath math="\sqrt{10}" />. The line <InlineMath math="3x+y+9=0" /> touches it at <InlineMath math="(-2,-3)" /> and crosses the <InlineMath math="Y" />-axis at <InlineMath math="(0,-9)" />. The line <InlineMath math="3x+y-11=0" /> touches it at <InlineMath math="(4,-1)" /> and crosses the <InlineMath math="Y" />-axis above the origin.</>}
+  labels={{
+    road: <InlineMath math="3x+y+9=0" />,
+    other: <InlineMath math="3x+y-11=0" />,
+    touch: <InlineMath math="(-2,-3)" />,
+    cross: <InlineMath math="(0,-9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 7 },
+      y: { min: -10, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 1, y: -2 }, radius: Math.sqrt(10) },
+      { id: "road", kind: "function", appearance: "answer", formula: "-3*x - 9", domain: { min: -4.3, max: 0.3 } },
+      { id: "other", kind: "function", appearance: "secondary", formula: "11 - 3*x", domain: { min: 2.4, max: 7 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: -2, y: -3 } },
+      { id: "cross", kind: "point", appearance: "answer", at: { x: 0, y: -9 } },
+      { id: "other-touch", kind: "point", appearance: "secondary", at: { x: 4, y: -1 } },
+    ],
+    labels: [
+      { key: "road", objectId: "road", at: { x: -4, y: 3 }, placement: "right" },
+      { key: "other", objectId: "other", at: { x: 6.5, y: -8.5 }, placement: "left" },
+      { key: "touch", objectId: "touch", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "cross", objectId: "cross", at: { x: 0, y: -9 }, placement: "right" },
+    ],
+  }}
+/>
+
 So <InlineMath math="c=9" /> or <InlineMath math="c=-11" />. There are two parallel tangents, <InlineMath math="3x+y+9=0" /> and <InlineMath math="3x+y-11=0" />. The first meets the <InlineMath math="y" />-axis at <InlineMath math="(0,-9)" />, below the origin. The second meets it at <InlineMath math="(0,11)" />.
 
 Check: substituting <InlineMath math="y=-3x-9" /> into the circle gives <InlineMath math="10x^2+40x+40=10(x+2)^2=0" />, with a single root. So the line touches the circle exactly at <InlineMath math="(-2,-3)" />.

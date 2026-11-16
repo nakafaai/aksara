@@ -2,6 +2,41 @@ Beginne mit zwei Grundtatsachen: <InlineMath math="|\vec{u}|=|\vec{v}|=3" /> und
 
 <BlockMath math="\vec{u}+\vec{v}=3\vec{i}+3\vec{j}+0\vec{k},\qquad \vec{u}-\vec{v}=\vec{i}-\vec{j}+4\vec{k}" />
 
+Zeichne <InlineMath math="\vec u" /> und <InlineMath math="\vec v" /> in der Ebene, die beide enthält. **Beide haben die Länge <InlineMath math="3" /> und stehen senkrecht aufeinander, bilden also ein Quadrat**, und <InlineMath math="\vec u\pm\vec v" /> sind seine beiden Diagonalen.
+
+<MathVisual
+  title={<>Das Quadrat aus <InlineMath math="\vec u" /> und <InlineMath math="\vec v" /></>}
+  description={<>Die Vektoren <InlineMath math="\vec u" /> und <InlineMath math="\vec v" /> haben beide die Länge <InlineMath math="3" /> und treffen sich rechtwinklig, sie bilden ein Quadrat mit Seite <InlineMath math="3" />. Die Diagonalen <InlineMath math="\vec u+\vec v" /> und <InlineMath math="\vec u-\vec v" /> sind gleich lang, nämlich <InlineMath math="3\sqrt2" />, stehen senkrecht aufeinander und bilden jeweils <InlineMath math="45^\circ" /> mit den Seiten.</>}
+  labels={{
+    u: <InlineMath math="\vec u" />,
+    v: <InlineMath math="\vec v" />,
+    sum: <InlineMath math="\vec u+\vec v" />,
+    diff: <InlineMath math="\vec u-\vec v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 3.6 },
+      y: { min: -0.6, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }] },
+      { id: "u", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "v", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "sum", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "diff", kind: "vector", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "u", objectId: "u", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 2.4, y: 2.4 }, placement: "above-left" },
+      { key: "diff", objectId: "diff", at: { x: 2.4, y: 0.6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 1. Die Aussage, dass die Diagonalen senkrecht aufeinander stehen, ist richtig: <InlineMath math="(\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v})=|\vec{u}|^2-|\vec{v}|^2=0" />. Mit Komponenten: <InlineMath math="3-3+0=0" />.
 2. Die Aussage, dass die Diagonalen gleich lang sind, ist richtig. Wegen <InlineMath math="\vec{u}\cdot\vec{v}=0" /> ist <InlineMath math="|\vec{u}\pm\vec{v}|^2=|\vec{u}|^2+|\vec{v}|^2=18" /> für beide Vorzeichen.
 3. Die Aussage <InlineMath math="|\vec{u}+\vec{v}|=3\sqrt2" /> ist richtig, denn <InlineMath math="\sqrt{18}=3\sqrt2" />.

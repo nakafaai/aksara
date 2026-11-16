@@ -4,6 +4,37 @@ Translasi menggeser setiap titik sejauh vektornya. Dua translasi berturut-turut 
 
 <BlockMath math="T=T_1+T_2=\begin{pmatrix} 2-5 \\ -3+1 \end{pmatrix}=\begin{pmatrix} -3 \\ -2 \end{pmatrix}" />
 
+Gambar kedua geseran berturut-turut. **Panah <InlineMath math="T_2" /> dimulai dari ujung <InlineMath math="T_1" />**, jadi geseran totalnya adalah panah dari pangkal <InlineMath math="T_1" /> ke ujung <InlineMath math="T_2" />.
+
+<MathVisual
+  title={<>Dua translasi digabung menjadi satu</>}
+  description={<>Panah <InlineMath math="T_1=(2,-3)" /> dimulai di titik asal. Panah <InlineMath math="T_2=(-5,1)" /> dimulai dari ujungnya. Panah dari titik asal ke ujung <InlineMath math="T_2" /> adalah <InlineMath math="T=(-3,-2)" />.</>}
+  labels={{
+    first: <InlineMath math="T_1" />,
+    second: <InlineMath math="T_2" />,
+    total: <InlineMath math="T=(-3,-2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 3 },
+      y: { min: -4, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: -3 } },
+      { id: "second", kind: "vector", appearance: "secondary", from: { x: 2, y: -3 }, to: { x: -3, y: -2 } },
+      { id: "total", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -3, y: -2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -0.5, y: -2.5 }, placement: "below" },
+      { key: "total", objectId: "total", at: { x: -1.5, y: -1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Urutan kedua translasi tidak memengaruhi hasil, karena penjumlahan vektor bersifat komutatif.
 
 Jadi, translasi tunggalnya adalah <InlineMath math="\begin{pmatrix} -3 \\ -2 \end{pmatrix}" />.

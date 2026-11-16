@@ -2,6 +2,17 @@ Transposing **turns rows into columns**: the entry in row <InlineMath math="i" /
 
 <BlockMath math="A^T=\begin{pmatrix} 2x & 3 \\ y+1 & 4 \end{pmatrix}=\begin{pmatrix} 6 & 3 \\ 5 & 4 \end{pmatrix}" />
 
+The diagram below tracks where each entry of <InlineMath math="A" /> moves under the transpose. **The diagonal entries stay put, while the other two swap places**, and only then are they matched with <InlineMath math="B" />.
+
+<Mermaid
+  title={<>How the entries move when <InlineMath math="A" /> is transposed</>}
+  description={<>The entry <InlineMath math="2x" /> stays at position <InlineMath math="(1,1)" /> and is matched with <InlineMath math="6" />. The entry <InlineMath math="y+1" /> moves from position <InlineMath math="(1,2)" /> to <InlineMath math="(2,1)" /> and is matched with <InlineMath math="5" />. The entry <InlineMath math="3" /> moves to position <InlineMath math="(1,2)" /> and matches <InlineMath math="3" />.</>}
+  chart={`flowchart LR
+  A11["A: 2x at (1,1)"] --> T11["Aᵀ at (1,1): 2x = 6"]
+  A12["A: y + 1 at (1,2)"] --> T21["Aᵀ at (2,1): y + 1 = 5"]
+  A21["A: 3 at (2,1)"] --> T12["Aᵀ at (1,2): 3 = 3"]`}
+/>
+
 The entries without variables already match: <InlineMath math="3=3" /> and <InlineMath math="4=4" />. The other two entries give the variables.
 
 <BlockMath math="2x=6\ \Rightarrow\ x=3,\qquad y+1=5\ \Rightarrow\ y=4" />

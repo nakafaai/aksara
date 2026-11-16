@@ -9,6 +9,46 @@ Panjang bagian sejajar adalah proyeksi skalar <InlineMath math="\overrightarrow{
 
 <BlockMath math="\text{jarak}^2=|\overrightarrow{OP}|^2-\left(\frac{10}{3}\right)^2=14-\frac{100}{9}=\frac{26}{9}\ \Rightarrow\ \text{jarak}=\frac{\sqrt{26}}{3}" />
 
+Gambar <InlineMath math="O" />, <InlineMath math="P" />, dan garis <InlineMath math="g" /> pada bidang yang memuat ketiganya. **Ruas <InlineMath math="OP" /> terbelah menjadi bagian sepanjang <InlineMath math="g" /> dan bagian yang tegak lurus <InlineMath math="g" />**, dan bagian tegak lurus itulah jaraknya.
+
+<MathVisual
+  title={<>Jarak titik <InlineMath math="P" /> ke garis <InlineMath math="g" /></>}
+  description={<>Garis mendatar adalah <InlineMath math="g" />, melalui <InlineMath math="O" />. Ruas <InlineMath math="OP" /> sepanjang <InlineMath math="\sqrt{14}" /> membentuk segitiga siku-siku dengan proyeksinya pada <InlineMath math="g" />, sepanjang <InlineMath math="\tfrac{10}{3}" />, dan ruas tegak <InlineMath math="QP" />, sepanjang <InlineMath math="\tfrac{\sqrt{26}}{3}" />.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    along: <InlineMath math="\tfrac{10}{3}" />,
+    gap: <InlineMath math="\tfrac{\sqrt{26}}{3}" />,
+    op: <InlineMath math="\sqrt{14}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 5 },
+      y: { min: -0.6, max: 2.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "segment", appearance: "reference", from: { x: -0.5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "along", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 10 / 3, y: 0 } },
+      { id: "op", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10 / 3, y: Math.sqrt(26) / 3 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 10 / 3, y: 0 }, to: { x: 10 / 3, y: Math.sqrt(26) / 3 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 10 / 3, y: Math.sqrt(26) / 3 } },
+      { id: "q", kind: "point", appearance: "secondary", at: { x: 10 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 4.8, y: 0 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 10 / 3, y: Math.sqrt(26) / 3 }, placement: "above" },
+      { key: "q", objectId: "q", at: { x: 10 / 3, y: 0 }, placement: "below-right" },
+      { key: "along", objectId: "along", at: { x: 5 / 3, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 10 / 3, y: Math.sqrt(26) / 6 }, placement: "right" },
+      { key: "op", objectId: "op", at: { x: 5 / 3, y: Math.sqrt(26) / 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Pemeriksaan: kaki garis tegak lurus adalah <InlineMath math="Q=\frac{10}{9}(1,2,2)" />, dan <InlineMath math="\overrightarrow{QP}=\left(\frac89,\frac79,-\frac{11}{9}\right)" /> memang tegak lurus <InlineMath math="\vec{d}" />, karena <InlineMath math="8+14-22=0" />. Panjangnya <InlineMath math="\frac{\sqrt{64+49+121}}{9}=\frac{\sqrt{234}}{9}=\frac{\sqrt{26}}{3}" />.
 
 Jadi, jarak titik <InlineMath math="P" /> ke garis <InlineMath math="g" /> adalah <InlineMath math="\frac{\sqrt{26}}{3}" />.

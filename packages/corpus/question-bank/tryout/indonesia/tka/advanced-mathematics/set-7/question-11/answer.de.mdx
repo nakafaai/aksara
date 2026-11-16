@@ -5,6 +5,41 @@ Es gibt **zwei Bedingungen für die zwei Unbekannten**: Senkrecht heißt Skalarp
 x^2+y^2&=100\ \Rightarrow\ x^2+\frac{9}{16}x^2=100\ \Rightarrow\ \frac{25}{16}x^2=100
 \end{aligned}" />
 
+Zeichne <InlineMath math="\vec a" />, die Gerade senkrecht zu <InlineMath math="\vec a" /> und den Kreis mit Radius <InlineMath math="10" />. **Der gesuchte Vektor endet im Schnittpunkt dieser Geraden mit dem Kreis**, und die Bedingung <InlineMath math="x>0" /> wählt den rechten Punkt.
+
+<MathVisual
+  title={<>Ein Vektor der Länge <InlineMath math="10" /> senkrecht zu <InlineMath math="\vec a" /></>}
+  description={<>Die Gerade <InlineMath math="3x+4y=0" /> enthält alle Vektoren senkrecht zu <InlineMath math="\vec a=(3,4)" />. Der Kreis mit Radius <InlineMath math="10" /> schneidet diese Gerade in <InlineMath math="(8,-6)" /> und <InlineMath math="(-8,6)" />. Nur <InlineMath math="(8,-6)" /> erfüllt <InlineMath math="x>0" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a=(3,4)" />,
+    c: <InlineMath math="\vec c=(8,-6)" />,
+    other: <InlineMath math="(-8,6)" />,
+    perp: <InlineMath math="3x+4y=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -11, max: 11 },
+      y: { min: -11, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "perp", kind: "function", appearance: "construction", formula: "-0.75*x", domain: { min: -10, max: 10 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "c", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 8, y: -6 } },
+      { id: "other", kind: "point", appearance: "warning", at: { x: -8, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 8, y: -6 }, placement: "below-right" },
+      { key: "other", objectId: "other", at: { x: -8, y: 6 }, placement: "above-left" },
+      { key: "perp", objectId: "perp", at: { x: -10, y: 7.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="x^2=64" />. Die Bedingung <InlineMath math="x>0" /> wählt <InlineMath math="x=8" />, also <InlineMath math="y=-6" />.
 
 Probe: <InlineMath math="3(8)+4(-6)=0" /> und <InlineMath math="\sqrt{64+36}=10" />. Ohne die Bedingung <InlineMath math="x>0" /> würde auch <InlineMath math="(-8,6)" /> passen, weil dieser Vektor genau in die Gegenrichtung zeigt.

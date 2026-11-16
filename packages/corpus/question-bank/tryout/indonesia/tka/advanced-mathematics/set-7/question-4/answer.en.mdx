@@ -23,6 +23,47 @@ C(1,8)&=4+48=52 \\
 C(6,3)&=24+18=42
 \end{aligned}" />
 
+Draw the feasible region. **The two nutrition needs give lower limits and the sachet limit gives an upper limit**, so the region is a small triangle with three corners.
+
+<MathVisual
+  title={<>Feasible region for calcium, protein, and number of sachets</>}
+  description={<>The horizontal axis is the number of sachets of milk A, and the vertical axis is the number of sachets of milk B. The shaded region lies above the lines <InlineMath math="2x+y=10" /> and <InlineMath math="x+3y=15" />, and below the line <InlineMath math="x+y=9" />. Its corners are <InlineMath math="(3,\ 4)" />, <InlineMath math="(1,\ 8)" />, and <InlineMath math="(6,\ 3)" />, and the lowest cost is at <InlineMath math="(3,\ 4)" />.</>}
+  labels={{
+    calcium: <InlineMath math="2x+y=10" />,
+    protein: <InlineMath math="x+3y=15" />,
+    cap: <InlineMath math="x+y=9" />,
+    best: <InlineMath math="(3,\ 4)" />,
+    top: <InlineMath math="(1,\ 8)" />,
+    side: <InlineMath math="(6,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 10 },
+      y: { min: 0, max: 10.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 3, y: 4 }, { x: 6, y: 3 }, { x: 1, y: 8 }] },
+      { id: "calcium", kind: "segment", appearance: "primary", from: { x: 0, y: 10 }, to: { x: 5, y: 0 } },
+      { id: "protein", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 10, y: 5 / 3 } },
+      { id: "cap", kind: "segment", appearance: "reference", from: { x: 0, y: 9 }, to: { x: 9, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 1, y: 8 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "calcium", objectId: "calcium", at: { x: 4.5, y: 1 }, placement: "left" },
+      { key: "protein", objectId: "protein", at: { x: 9, y: 2 }, placement: "above" },
+      { key: "cap", objectId: "cap", at: { x: 8, y: 1 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 3, y: 4 }, placement: "below-left" },
+      { key: "top", objectId: "top", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "side", objectId: "side", at: { x: 6, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 So the minimum cost is <InlineMath math="\text{Rp}36{,}000.00" />, with <InlineMath math="3" /> sachets of milk A and <InlineMath math="4" /> of milk B.
 
 - <InlineMath math="\text{Rp}42{,}000.00" /> is the cost at the corner <InlineMath math="(6,3)" />.

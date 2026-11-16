@@ -4,6 +4,38 @@ In der vorigen Aufgabe trafen sich Kalzium- und Proteingrenze bei <InlineMath ma
 
 <BlockMath math="\min(x+y)=7\quad\text{bei }(3,4)" />
 
+Zeichne den Bereich, der beide Nährstoffbedarfe erfüllt, zusammen mit der neuen Grenze. **Die ganze Gerade <InlineMath math="x+y=6" /> liegt unter diesem Bereich**, weil der dem Ursprung nächste Punkt des Bereichs, <InlineMath math="(3,\ 4)" />, schon <InlineMath math="7" /> Beutel braucht.
+
+<MathVisual
+  title={<>Nährstoffbedarf und die Grenze von <InlineMath math="6" /> Beuteln</>}
+  description={<>Der schraffierte Bereich erfüllt <InlineMath math="2x+y\ge10" /> und <InlineMath math="x+3y\ge15" />, mit den Ecken <InlineMath math="(0,10)" />, <InlineMath math="(3,4)" /> und <InlineMath math="(15,0)" />. Die gestrichelte Gerade <InlineMath math="x+y=7" /> berührt den Bereich nur in <InlineMath math="(3,\ 4)" />. Die Gerade <InlineMath math="x+y=6" /> liegt ganz unter dem Bereich, also erfüllt kein Punkt alle Bedingungen.</>}
+  labels={{
+    need: <>genug Nährstoffe</>,
+    cap: <InlineMath math="x+y=6" />,
+    corner: <InlineMath math="(3,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 16 },
+      y: { min: 0, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "need", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 11 }, { x: 0, y: 10 }, { x: 3, y: 4 }, { x: 15, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 11 }] },
+      { id: "cap", kind: "segment", appearance: "warning", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 0, y: 7 }, to: { x: 7, y: 0 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "need", objectId: "need", at: { x: 10, y: 7 }, placement: "center" },
+      { key: "cap", objectId: "cap", at: { x: 1, y: 5 }, placement: "below-left" },
+      { key: "corner", objectId: "corner", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jeder Plan mit genug Kalzium und Protein braucht also mindestens <InlineMath math="7" /> Beutel. Die neue Bedingung <InlineMath math="x+y\le6" /> lässt sich nicht gleichzeitig mit beiden Bedarfen erfüllen. Die Punkte an der neuen Grenze zeigen dasselbe.
 
 <BlockMath math="\begin{aligned}

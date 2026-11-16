@@ -2,6 +2,42 @@ Work from the outside in. Let <InlineMath math="y=f(x)" /> and first find the va
 
 <BlockMath math="y^2-4y+1=22\ \Leftrightarrow\ y^2-4y-21=0\ \Leftrightarrow\ (y-7)(y+3)=0" />
 
+Draw <InlineMath math="f" /> with the lines <InlineMath math="y=7" /> and <InlineMath math="y=-3" />. **The line <InlineMath math="y=7" /> cuts the parabola twice, while <InlineMath math="y=-3" /> only touches its vertex**, so there are three solutions in all.
+
+<MathVisual
+  title={<>Solutions of <InlineMath math="f(x)=7" /> and <InlineMath math="f(x)=-3" /></>}
+  description={<>The parabola <InlineMath math="y=x^2-4x+1" /> has vertex <InlineMath math="(2,-3)" />. The horizontal line <InlineMath math="y=7" /> cuts it at <InlineMath math="x=2-\sqrt{10}" /> and <InlineMath math="x=2+\sqrt{10}" />. The line <InlineMath math="y=-3" /> only touches the vertex, at <InlineMath math="x=2" />.</>}
+  labels={{
+    curve: <InlineMath math="y=f(x)" />,
+    seven: <InlineMath math="y=7" />,
+    floor: <InlineMath math="y=-3" />,
+    vertex: <InlineMath math="(2,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -4.5, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 1", domain: { min: -1.6, max: 5.6 } },
+      { id: "seven", kind: "function", appearance: "secondary", formula: "7", domain: { min: -2, max: 6 } },
+      { id: "floor", kind: "function", appearance: "secondary", formula: "-3", domain: { min: -2, max: 6 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: 2 - Math.sqrt(10), y: 7 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 2 + Math.sqrt(10), y: 7 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5, y: 6 }, placement: "right" },
+      { key: "seven", objectId: "seven", at: { x: 2, y: 7 }, placement: "above" },
+      { key: "floor", objectId: "floor", at: { x: -1.5, y: -3 }, placement: "above" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
 So <InlineMath math="f(x)=7" /> or <InlineMath math="f(x)=-3" />. How many solutions each equation has depends on **the range of <InlineMath math="f" />**. Since <InlineMath math="f(x)=(x-2)^2-3" />, the smallest value of <InlineMath math="f" /> is <InlineMath math="-3" />, reached only at <InlineMath math="x=2" />.
 
 - <InlineMath math="f(x)=-3" /> means <InlineMath math="(x-2)^2=0" />, so there is exactly one solution, <InlineMath math="x=2" />.

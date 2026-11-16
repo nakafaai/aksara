@@ -1,5 +1,37 @@
 Beide Matrizen sind **obere Dreiecksmatrizen**: Ihr Eintrag unten links ist null. Die Determinante einer solchen Matrix ist das Produkt der Diagonaleinträge, also <InlineMath math="\det A=1" /> und <InlineMath math="\det B=4" />.
 
+Die Matrix <InlineMath math="A" /> ist eine Scherung: Sie schiebt jeden Punkt um seine Höhe nach rechts. **Jede Multiplikation mit <InlineMath math="A" /> fügt eine Verschiebung um <InlineMath math="1" /> hinzu**, also verschiebt <InlineMath math="A^3" /> um drei Einheiten, und der Flächeninhalt bleibt <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Das Einheitsquadrat unter <InlineMath math="A" /> und <InlineMath math="A^3" /></>}
+  description={<>Das Einheitsquadrat ist blass gezeichnet. Sein Bild unter <InlineMath math="A" /> ist das Parallelogramm mit der Ecke oben rechts in <InlineMath math="(2,1)" />, sein Bild unter <InlineMath math="A^3" /> das Parallelogramm mit der Ecke oben rechts in <InlineMath math="(4,1)" />. Grundseite und Höhe bleiben <InlineMath math="1" />.</>}
+  labels={{
+    one: <InlineMath math="A" />,
+    three: <InlineMath math="A^3" />,
+    corner: <InlineMath math="(4,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 4.5 },
+      y: { min: -0.5, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "one", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }] },
+      { id: "three", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 4, y: 1 }, { x: 3, y: 1 }] },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1.5, y: 1 }, placement: "above" },
+      { key: "three", objectId: "three", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 4, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="\det(A+B)=8" /> ist falsch. <InlineMath math="A+B=\begin{pmatrix} 3 & 4 \\ 0 & 3 \end{pmatrix}" />, also ist die Determinante <InlineMath math="3\cdot3-4\cdot0=9" />. Die Determinante einer Summe ergibt sich nicht aus den einzelnen Determinanten.
 2. Die Aussage <InlineMath math="AB=BA" /> ist richtig. Berechne beide.
 

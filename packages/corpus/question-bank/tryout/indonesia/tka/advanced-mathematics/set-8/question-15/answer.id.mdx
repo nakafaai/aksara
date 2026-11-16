@@ -7,6 +7,42 @@ Garis yang sejajar <InlineMath math="3x+y=0" /> berbentuk <InlineMath math="3x+y
 |1+c|&=10
 \end{aligned}" />
 
+Gambar bundaran dan kedua garis singgung yang sejajar <InlineMath math="3x+y=0" />. **Ada dua garis singgung di kedua sisi bundaran**, dan hanya garis di kiri bawah yang memotong sumbu <InlineMath math="Y" /> di bawah titik asal.
+
+<MathVisual
+  title={<>Dua garis singgung bergradien <InlineMath math="-3" /></>}
+  description={<>Bundaran adalah lingkaran berpusat di <InlineMath math="(1,-2)" /> dengan jari-jari <InlineMath math="\sqrt{10}" />. Garis <InlineMath math="3x+y+9=0" /> menyentuhnya di <InlineMath math="(-2,-3)" /> dan memotong sumbu <InlineMath math="Y" /> di <InlineMath math="(0,-9)" />. Garis <InlineMath math="3x+y-11=0" /> menyentuhnya di <InlineMath math="(4,-1)" /> dan memotong sumbu <InlineMath math="Y" /> di atas titik asal.</>}
+  labels={{
+    road: <InlineMath math="3x+y+9=0" />,
+    other: <InlineMath math="3x+y-11=0" />,
+    touch: <InlineMath math="(-2,-3)" />,
+    cross: <InlineMath math="(0,-9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 7 },
+      y: { min: -10, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 1, y: -2 }, radius: Math.sqrt(10) },
+      { id: "road", kind: "function", appearance: "answer", formula: "-3*x - 9", domain: { min: -4.3, max: 0.3 } },
+      { id: "other", kind: "function", appearance: "secondary", formula: "11 - 3*x", domain: { min: 2.4, max: 7 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: -2, y: -3 } },
+      { id: "cross", kind: "point", appearance: "answer", at: { x: 0, y: -9 } },
+      { id: "other-touch", kind: "point", appearance: "secondary", at: { x: 4, y: -1 } },
+    ],
+    labels: [
+      { key: "road", objectId: "road", at: { x: -4, y: 3 }, placement: "right" },
+      { key: "other", objectId: "other", at: { x: 6.5, y: -8.5 }, placement: "left" },
+      { key: "touch", objectId: "touch", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "cross", objectId: "cross", at: { x: 0, y: -9 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="c=9" /> atau <InlineMath math="c=-11" />. Ada dua garis singgung yang sejajar, yaitu <InlineMath math="3x+y+9=0" /> dan <InlineMath math="3x+y-11=0" />. Garis pertama memotong sumbu <InlineMath math="Y" /> di <InlineMath math="(0,-9)" />, di bawah titik asal. Garis kedua memotong di <InlineMath math="(0,11)" />.
 
 Pemeriksaan: substitusi <InlineMath math="y=-3x-9" /> ke persamaan lingkaran memberi <InlineMath math="10x^2+40x+40=10(x+2)^2=0" />, dengan satu akar saja. Jadi garis itu menyentuh lingkaran tepat di <InlineMath math="(-2,-3)" />.

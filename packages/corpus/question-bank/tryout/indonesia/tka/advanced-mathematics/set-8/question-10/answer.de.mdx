@@ -6,6 +6,48 @@ xy-3x&=-2-4y \\
 x&=\frac{4y+2}{3-y}
 \end{aligned}" />
 
+Zeichne <InlineMath math="f" /> und <InlineMath math="f^{-1}" /> mit der Geraden <InlineMath math="y=x" />. **Die Senkrechte <InlineMath math="x=3" /> ist die Grenze des Graphen von <InlineMath math="f^{-1}" />**, also fällt <InlineMath math="3" />, nicht <InlineMath math="-4" />, aus dem Definitionsbereich von <InlineMath math="f^{-1}" />. Rechts dieser Geraden liegt der Graph von <InlineMath math="f^{-1}" /> unter der <InlineMath math="x" />-Achse.
+
+<MathVisual
+  title={<>Die Graphen von <InlineMath math="f" /> und seiner Umkehrfunktion</>}
+  description={<>Die Kurve <InlineMath math="y=\frac{3x-2}{x+4}" /> hat die Grenzgeraden <InlineMath math="x=-4" /> und <InlineMath math="y=3" />. Ihr Spiegelbild an <InlineMath math="y=x" />, <InlineMath math="y=\frac{4x+2}{3-x}" />, hat die Grenzgeraden <InlineMath math="x=3" /> und <InlineMath math="y=-4" />. Der Punkt <InlineMath math="(3,\ 1)" /> auf <InlineMath math="f" /> wird zu <InlineMath math="(1,\ 3)" /> auf <InlineMath math="f^{-1}" /> gespiegelt, also gilt <InlineMath math="f^{-1}(1)=3" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=x" />,
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    on: <InlineMath math="(3,\ 1)" />,
+    back: <InlineMath math="(1,\ 3)" />,
+    wall: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 10 },
+      y: { min: -10, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -10, max: 10 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 3, y: -10 }, to: { x: 3, y: 10 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "(3*x - 2)/(x + 4)", domain: { min: -2.5, max: 10 } },
+      { id: "f-left", kind: "function", appearance: "primary", formula: "(3*x - 2)/(x + 4)", domain: { min: -10, max: -6 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "(4*x + 2)/(3 - x)", domain: { min: -10, max: 1.6 } },
+      { id: "inverse-right", kind: "function", appearance: "secondary", formula: "(4*x + 2)/(3 - x)", domain: { min: 5.5, max: 10 } },
+      { id: "on", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "back", kind: "point", appearance: "answer", at: { x: 1, y: 3 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 9, y: 9 }, placement: "below-right" },
+      { key: "f", objectId: "f", at: { x: 9, y: 25 / 13 }, placement: "above" },
+      { key: "inverse", objectId: "inverse", at: { x: -8, y: -30 / 11 }, placement: "below" },
+      { key: "on", objectId: "on", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "back", objectId: "back", at: { x: 1, y: 3 }, placement: "above-left" },
+      { key: "wall", objectId: "wall", at: { x: 3, y: 10 }, placement: "right" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="f^{-1}(x)=\frac{4x+2}{3-x}" />, definiert für <InlineMath math="x\neq3" />. Den Wert <InlineMath math="3" /> nimmt <InlineMath math="f" /> tatsächlich nie an, denn <InlineMath math="\frac{3x-2}{x+4}=3" /> hieße <InlineMath math="-2=12" />.
 
 1. **Falsch.** Die Definitionsmenge von <InlineMath math="f^{-1}" /> ist die Wertemenge von <InlineMath math="f" />, also <InlineMath math="x\neq3" />. Die Bedingung <InlineMath math="x\neq-4" /> gehört zur Definitionsmenge von <InlineMath math="f" />.

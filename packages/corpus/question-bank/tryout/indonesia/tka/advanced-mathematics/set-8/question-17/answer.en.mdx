@@ -2,6 +2,42 @@ Read off the centres and radii. <InlineMath math="L_1" /> has centre <InlineMath
 
 The distance between the centres is <InlineMath math="OM=5" />, exactly <InlineMath math="r_1+r_2=3+2" />. **A centre distance equal to the sum of the radii** means the circles touch externally.
 
+Draw both circles and every line that touches both. **The circles touch at <InlineMath math="(3,0)" />, so there are three common tangents**: two outer lines and one vertical line at the point of contact.
+
+<MathVisual
+  title={<>Two circles touching externally</>}
+  description={<>The circle <InlineMath math="L_1" /> has centre <InlineMath math="(0,0)" /> and radius <InlineMath math="3" />, and <InlineMath math="L_2" /> has centre <InlineMath math="(5,0)" /> and radius <InlineMath math="2" />. They touch at <InlineMath math="(3,0)" />. The vertical line <InlineMath math="x=3" /> touches both at that point, and the two dashed lines touch both from the outside.</>}
+  labels={{
+    first: <InlineMath math="L_1" />,
+    second: <InlineMath math="L_2" />,
+    touch: <InlineMath math="(3,0)" />,
+    inner: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 9 },
+      y: { min: -4.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "second", kind: "circle", appearance: "secondary", center: { x: 5, y: 0 }, radius: 2 },
+      { id: "inner", kind: "segment", appearance: "answer", from: { x: 3, y: -4 }, to: { x: 3, y: 4 } },
+      { id: "outer-top", kind: "function", appearance: "construction", formula: "(15 - x)/sqrt(24)", domain: { min: -4, max: 9 } },
+      { id: "outer-bottom", kind: "function", appearance: "construction", formula: "(x - 15)/sqrt(24)", domain: { min: -4, max: 9 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 7, y: 0 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "inner", objectId: "inner", at: { x: 3, y: -4 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. **True.** <InlineMath math="OM=r_1+r_2" />, so the circles touch externally.
 2. **True.** The point of contact lies on segment <InlineMath math="OM" />, <InlineMath math="3" /> units from <InlineMath math="O" />, at <InlineMath math="(3,0)" />. It satisfies both equations: <InlineMath math="9+0=9" /> and <InlineMath math="9+0-30+21=0" />.
 3. **False.** Three lines touch both circles at once: two external tangents and one tangent at the point <InlineMath math="(3,0)" />, the line <InlineMath math="x=3" />.

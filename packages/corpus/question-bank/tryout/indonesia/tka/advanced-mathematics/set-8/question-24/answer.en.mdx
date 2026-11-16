@@ -7,6 +7,35 @@ Rewrite <InlineMath math="1-\cos ax" /> in terms of sine with **the double-angle
 &=2\left(\frac a2\right)^2=\frac{a^2}{2}
 \end{aligned}" />
 
+Draw the function for <InlineMath math="a=4" />. **Both branches rise to the same point, <InlineMath math="(0,\ 8)" />**, as the limit condition in the question requires.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="\frac{1-\cos ax}{x^2}" /> for <InlineMath math="a=4" /></>}
+  description={<>The curve for <InlineMath math="x" /> between <InlineMath math="-0.75" /> and <InlineMath math="0.75" /> radians, without <InlineMath math="x=0" />. It is symmetric and its peak heads to <InlineMath math="(0,\ 8)" />, which is <InlineMath math="\tfrac{a^2}{2}" /> with <InlineMath math="a=4" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{1-\cos4x}{x^2}" />,
+    target: <InlineMath math="(0,\ 8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 0.8 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1 - cos(4*x))/x^2", domain: { min: -0.75, max: -0.01 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1 - cos(4*x))/x^2", domain: { min: 0.01, max: 0.75 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 8 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 0.5, y: (1 - Math.cos(2)) / 0.25 }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 The limit equals <InlineMath math="8" />, so <InlineMath math="\frac{a^2}{2}=8" /> and <InlineMath math="a^2=16" />. Since <InlineMath math="a" /> is positive, <InlineMath math="a=4" />.
 
 Numerical check: for <InlineMath math="a=4" /> and <InlineMath math="x=0.01" />, <InlineMath math="\frac{1-\cos0.04}{0.0001}\approx7.9989" />.

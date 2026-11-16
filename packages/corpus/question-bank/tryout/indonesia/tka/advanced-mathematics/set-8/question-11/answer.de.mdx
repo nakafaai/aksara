@@ -4,6 +4,43 @@ Der Punkt <InlineMath math="P" /> liegt auf der Verlängerung von <InlineMath ma
 
 <BlockMath math="P=B+\frac12\overrightarrow{AB}=(3,4,1)+(1,1,-1)=(4,5,0)" />
 
+Zeichne die drei Punkte auf der Fluglinie der Drohne. **Damit <InlineMath math="AP=3PB" /> mit <InlineMath math="P" /> außerhalb der Strecke gilt, muss der Schritt <InlineMath math="BP" /> die Hälfte von <InlineMath math="AB" /> sein**, sodass <InlineMath math="AP" /> dreimal <InlineMath math="BP" /> ist.
+
+<MathVisual
+  title={<>Der Punkt <InlineMath math="P" /> auf der Verlängerung von <InlineMath math="AB" /></>}
+  description={<>Die Fluglinie enthält <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="P" /> in dieser Reihenfolge. Die Strecke <InlineMath math="AB" /> ist in zwei Schritte geteilt, und <InlineMath math="P" /> liegt einen weiteren Schritt hinter <InlineMath math="B" />. Also ist <InlineMath math="AP" /> drei Schritte und <InlineMath math="PB" /> ein Schritt lang.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P(4,5,0)" />,
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    bp: <InlineMath math="\tfrac12\overrightarrow{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.4, max: 3.4 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ab", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "bp", kind: "vector", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "ab", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "bp", objectId: "bp", at: { x: 2.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Die Formel für die äußere Teilung liefert denselben Punkt: <InlineMath math="P=\frac{3B-A}{3-1}=\frac{(9,12,3)-(1,2,3)}{2}=(4,5,0)" />.
 
 Probe: <InlineMath math="\overrightarrow{AP}=(3,3,-3)" /> und <InlineMath math="\overrightarrow{PB}=(-1,-1,1)" />, also ist <InlineMath math="AP" /> dreimal so lang wie <InlineMath math="PB" />.

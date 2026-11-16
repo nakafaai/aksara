@@ -1,5 +1,42 @@
 Jede Aussage prüft **die Logarithmengesetze**. Richtig sind <InlineMath math="{}^{a}\log(pq)={}^{a}\log p+{}^{a}\log q" />, <InlineMath math="{}^{a}\log\frac pq={}^{a}\log p-{}^{a}\log q" /> und <InlineMath math="{}^{a}\log p^n=n\,{}^{a}\log p" />. Dabei ist <InlineMath math="{}^{2}\log" /> der Logarithmus zur Basis <InlineMath math="2" />.
 
+Zeichne <InlineMath math="f(x)={}^{2}\log x" /> mit einigen wichtigen Punkten. **Jedes Mal, wenn <InlineMath math="x" /> mit <InlineMath math="2" /> multipliziert wird, steigt die Höhe um <InlineMath math="1" />**, also ist die Höhe bei <InlineMath math="8" /> minus die Höhe bei <InlineMath math="2" /> gleich der Höhe bei <InlineMath math="4" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)={}^{2}\log x" /></>}
+  description={<>Die Kurve geht durch <InlineMath math="(2,\ 1)" />, <InlineMath math="(4,\ 2)" /> und <InlineMath math="(8,\ 3)" />, also gilt <InlineMath math="3-1=2" />. Links von <InlineMath math="x=1" /> liegt die Kurve unter der <InlineMath math="x" />-Achse, zum Beispiel bei <InlineMath math="\left(\tfrac14,\ -2\right)" />.</>}
+  labels={{
+    curve: <InlineMath math="y={}^{2}\log x" />,
+    two: <InlineMath math="(2,\ 1)" />,
+    four: <InlineMath math="(4,\ 2)" />,
+    eight: <InlineMath math="(8,\ 3)" />,
+    quarter: <InlineMath math="\left(\tfrac14,\ -2\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 9 },
+      y: { min: -3, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "log_10(x)/log_10(2)", domain: { min: 0.15, max: 9 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "four", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+      { id: "eight", kind: "point", appearance: "secondary", at: { x: 8, y: 3 } },
+      { id: "quarter", kind: "point", appearance: "warning", at: { x: 0.25, y: -2 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 6, y: Math.log10(6) / Math.log10(2) }, placement: "above-left" },
+      { key: "two", objectId: "two", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "four", objectId: "four", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "eight", objectId: "eight", at: { x: 8, y: 3 }, placement: "below" },
+      { key: "quarter", objectId: "quarter", at: { x: 0.25, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="f(8)-f(2)=f(4)" /> ist richtig. Eine Differenz von Logarithmen ist der Logarithmus des Quotienten: <InlineMath math="{}^{2}\log\frac82={}^{2}\log4" />. In Zahlen: <InlineMath math="3-1=2" />.
 2. Die Aussage <InlineMath math="f(x+y)=f(x)+f(y)" /> ist falsch. Eine Summe von Logarithmen ist der Logarithmus eines Produkts, nicht einer Summe. Ein Gegenbeispiel genügt: <InlineMath math="f(1+1)=f(2)=1" />, aber <InlineMath math="f(1)+f(1)=0+0=0" />.
 3. Die Aussage <InlineMath math="f\left(\frac14\right)=2" /> ist falsch. Wegen <InlineMath math="\frac14=2^{-2}" /> ist <InlineMath math="f\left(\frac14\right)=-2" />.

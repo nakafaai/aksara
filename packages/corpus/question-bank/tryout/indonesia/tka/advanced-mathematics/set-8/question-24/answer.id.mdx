@@ -7,6 +7,35 @@ Ubah <InlineMath math="1-\cos ax" /> menjadi bentuk sinus dengan **identitas sud
 &=2\left(\frac a2\right)^2=\frac{a^2}{2}
 \end{aligned}" />
 
+Gambar fungsi itu untuk <InlineMath math="a=4" />. **Kedua cabangnya naik ke titik yang sama, <InlineMath math="(0,\ 8)" />**, sesuai syarat limit pada soal.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="\frac{1-\cos ax}{x^2}" /> untuk <InlineMath math="a=4" /></>}
+  description={<>Kurva untuk <InlineMath math="x" /> antara <InlineMath math="-0{,}75" /> dan <InlineMath math="0{,}75" /> radian, tanpa <InlineMath math="x=0" />. Grafiknya simetris dan puncaknya menuju <InlineMath math="(0,\ 8)" />, yaitu <InlineMath math="\tfrac{a^2}{2}" /> dengan <InlineMath math="a=4" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{1-\cos4x}{x^2}" />,
+    target: <InlineMath math="(0,\ 8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 0.8 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1 - cos(4*x))/x^2", domain: { min: -0.75, max: -0.01 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1 - cos(4*x))/x^2", domain: { min: 0.01, max: 0.75 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 8 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 0.5, y: (1 - Math.cos(2)) / 0.25 }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 Limit itu bernilai <InlineMath math="8" />, jadi <InlineMath math="\frac{a^2}{2}=8" />, sehingga <InlineMath math="a^2=16" />. Karena <InlineMath math="a" /> positif, <InlineMath math="a=4" />.
 
 Pemeriksaan numerik: untuk <InlineMath math="a=4" /> dan <InlineMath math="x=0{,}01" />, nilai <InlineMath math="\frac{1-\cos0{,}04}{0{,}0001}\approx7{,}9989" />.

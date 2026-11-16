@@ -5,6 +5,42 @@ The formula has two parts that limit the domain, so **both conditions must hold 
 x-1\ne0&\iff x\ne1
 \end{aligned}" />
 
+Draw both conditions at once. **The square root is defined only under the half circle from <InlineMath math="-2" /> to <InlineMath math="2" />**, and the line <InlineMath math="x=1" /> must be removed because the denominator is zero there.
+
+<MathVisual
+  title={<>The domain of <InlineMath math="\frac{\sqrt{4-x^2}}{x-1}" /></>}
+  description={<>The half circle <InlineMath math="y=\sqrt{4-x^2}" /> exists for <InlineMath math="-2\le x\le2" />, including both ends. The vertical line <InlineMath math="x=1" /> cuts through that interval. The highlighted part of the <InlineMath math="x" />-axis is the domain: from <InlineMath math="-2" /> to <InlineMath math="2" /> without <InlineMath math="1" />.</>}
+  labels={{
+    root: <InlineMath math="y=\sqrt{4-x^2}" />,
+    gap: <InlineMath math="x=1" />,
+    left: <InlineMath math="-2" />,
+    right: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: -0.8, max: 2.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "root", kind: "function", appearance: "secondary", formula: "sqrt(4 - x^2)", domain: { min: -2, max: 2 } },
+      { id: "gap", kind: "segment", appearance: "warning", from: { x: 1, y: -0.6 }, to: { x: 1, y: 2.4 } },
+      { id: "domain-left", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 0.95, y: 0 } },
+      { id: "domain-right", kind: "segment", appearance: "answer", from: { x: 1.05, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "root", objectId: "root", at: { x: -1, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 1, y: 2.4 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 The endpoints <InlineMath math="-2" /> and <InlineMath math="2" /> are included, because there <InlineMath math="\sqrt0=0" /> is defined and the denominator is not zero. For example <InlineMath math="f(2)=\frac{0}{1}=0" />.
 
 So the natural domain is <InlineMath math="\{x\mid -2\le x\le2,\ x\ne1\}" />.

@@ -1,5 +1,37 @@
 Kedua matriks berbentuk **segitiga atas**, yaitu entri kiri bawahnya nol. Determinan matriks seperti itu adalah hasil kali entri diagonalnya, jadi <InlineMath math="\det A=1" /> dan <InlineMath math="\det B=4" />.
 
+Matriks <InlineMath math="A" /> adalah gusuran: ia menggeser setiap titik ke kanan sejauh ketinggiannya. **Setiap perkalian dengan <InlineMath math="A" /> menambah geseran <InlineMath math="1" />**, jadi <InlineMath math="A^3" /> menggeser tiga satuan, dan luasnya tetap <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Persegi satuan di bawah <InlineMath math="A" /> dan <InlineMath math="A^3" /></>}
+  description={<>Persegi satuan digambar samar. Bayangannya oleh <InlineMath math="A" /> adalah jajargenjang dengan pojok kanan atas <InlineMath math="(2,1)" />, dan bayangannya oleh <InlineMath math="A^3" /> adalah jajargenjang dengan pojok kanan atas <InlineMath math="(4,1)" />. Alas dan tingginya tetap <InlineMath math="1" />.</>}
+  labels={{
+    one: <InlineMath math="A" />,
+    three: <InlineMath math="A^3" />,
+    corner: <InlineMath math="(4,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 4.5 },
+      y: { min: -0.5, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "one", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }] },
+      { id: "three", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 4, y: 1 }, { x: 3, y: 1 }] },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1.5, y: 1 }, placement: "above" },
+      { key: "three", objectId: "three", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 4, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Pernyataan <InlineMath math="\det(A+B)=8" /> salah. <InlineMath math="A+B=\begin{pmatrix} 3 & 4 \\ 0 & 3 \end{pmatrix}" />, jadi determinannya <InlineMath math="3\cdot3-4\cdot0=9" />. Determinan jumlah tidak dihitung dari determinan masing-masing matriks.
 2. Pernyataan <InlineMath math="AB=BA" /> benar. Hitung keduanya.
 

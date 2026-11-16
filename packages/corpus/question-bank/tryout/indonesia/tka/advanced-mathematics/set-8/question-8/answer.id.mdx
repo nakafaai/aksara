@@ -2,6 +2,42 @@ Kerjakan dari luar ke dalam. Misalkan <InlineMath math="y=f(x)" />, lalu cari du
 
 <BlockMath math="y^2-4y+1=22\ \Leftrightarrow\ y^2-4y-21=0\ \Leftrightarrow\ (y-7)(y+3)=0" />
 
+Gambar <InlineMath math="f" /> bersama garis <InlineMath math="y=7" /> dan <InlineMath math="y=-3" />. **Garis <InlineMath math="y=7" /> memotong parabola dua kali, sedangkan <InlineMath math="y=-3" /> hanya menyentuh puncaknya**, jadi totalnya tiga penyelesaian.
+
+<MathVisual
+  title={<>Penyelesaian <InlineMath math="f(x)=7" /> dan <InlineMath math="f(x)=-3" /></>}
+  description={<>Parabola <InlineMath math="y=x^2-4x+1" /> berpuncak di <InlineMath math="(2,-3)" />. Garis mendatar <InlineMath math="y=7" /> memotongnya di <InlineMath math="x=2-\sqrt{10}" /> dan <InlineMath math="x=2+\sqrt{10}" />. Garis <InlineMath math="y=-3" /> hanya menyentuh puncak, di <InlineMath math="x=2" />.</>}
+  labels={{
+    curve: <InlineMath math="y=f(x)" />,
+    seven: <InlineMath math="y=7" />,
+    floor: <InlineMath math="y=-3" />,
+    vertex: <InlineMath math="(2,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -4.5, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 1", domain: { min: -1.6, max: 5.6 } },
+      { id: "seven", kind: "function", appearance: "secondary", formula: "7", domain: { min: -2, max: 6 } },
+      { id: "floor", kind: "function", appearance: "secondary", formula: "-3", domain: { min: -2, max: 6 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: 2 - Math.sqrt(10), y: 7 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 2 + Math.sqrt(10), y: 7 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5, y: 6 }, placement: "right" },
+      { key: "seven", objectId: "seven", at: { x: 2, y: 7 }, placement: "above" },
+      { key: "floor", objectId: "floor", at: { x: -1.5, y: -3 }, placement: "above" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="f(x)=7" /> atau <InlineMath math="f(x)=-3" />. Banyak penyelesaian setiap persamaan bergantung pada **daerah hasil <InlineMath math="f" />**. Karena <InlineMath math="f(x)=(x-2)^2-3" />, nilai terkecil <InlineMath math="f" /> adalah <InlineMath math="-3" />, dicapai hanya di <InlineMath math="x=2" />.
 
 - <InlineMath math="f(x)=-3" /> berarti <InlineMath math="(x-2)^2=0" />, jadi hanya ada satu penyelesaian, <InlineMath math="x=2" />.

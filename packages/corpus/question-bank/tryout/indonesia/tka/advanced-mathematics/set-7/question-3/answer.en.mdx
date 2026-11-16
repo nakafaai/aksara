@@ -1,5 +1,37 @@
 Both matrices are **upper triangular**: their bottom-left entry is zero. The determinant of such a matrix is the product of its diagonal entries, so <InlineMath math="\det A=1" /> and <InlineMath math="\det B=4" />.
 
+The matrix <InlineMath math="A" /> is a shear: it slides each point right by its height. **Each multiplication by <InlineMath math="A" /> adds a slide of <InlineMath math="1" />**, so <InlineMath math="A^3" /> slides three units, and the area stays <InlineMath math="1" />.
+
+<MathVisual
+  title={<>The unit square under <InlineMath math="A" /> and <InlineMath math="A^3" /></>}
+  description={<>The unit square is drawn faintly. Its image under <InlineMath math="A" /> is the parallelogram with top-right corner <InlineMath math="(2,1)" />, and its image under <InlineMath math="A^3" /> is the parallelogram with top-right corner <InlineMath math="(4,1)" />. The base and height stay <InlineMath math="1" />.</>}
+  labels={{
+    one: <InlineMath math="A" />,
+    three: <InlineMath math="A^3" />,
+    corner: <InlineMath math="(4,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 4.5 },
+      y: { min: -0.5, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "one", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }] },
+      { id: "three", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 4, y: 1 }, { x: 3, y: 1 }] },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1.5, y: 1 }, placement: "above" },
+      { key: "three", objectId: "three", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 4, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. The statement <InlineMath math="\det(A+B)=8" /> is false. <InlineMath math="A+B=\begin{pmatrix} 3 & 4 \\ 0 & 3 \end{pmatrix}" />, so its determinant is <InlineMath math="3\cdot3-4\cdot0=9" />. The determinant of a sum is not computed from the separate determinants.
 2. The statement <InlineMath math="AB=BA" /> is true. Compute both.
 

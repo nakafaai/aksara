@@ -5,6 +5,41 @@ There are **two conditions for the two unknowns**: perpendicular means the dot p
 x^2+y^2&=100\ \Rightarrow\ x^2+\frac{9}{16}x^2=100\ \Rightarrow\ \frac{25}{16}x^2=100
 \end{aligned}" />
 
+Draw <InlineMath math="\vec a" />, the line perpendicular to <InlineMath math="\vec a" />, and the circle of radius <InlineMath math="10" />. **The vector you need ends where that line meets the circle**, and the condition <InlineMath math="x>0" /> picks the point on the right.
+
+<MathVisual
+  title={<>A vector of length <InlineMath math="10" /> perpendicular to <InlineMath math="\vec a" /></>}
+  description={<>The line <InlineMath math="3x+4y=0" /> holds every vector perpendicular to <InlineMath math="\vec a=(3,4)" />. The circle of radius <InlineMath math="10" /> meets that line at <InlineMath math="(8,-6)" /> and <InlineMath math="(-8,6)" />. Only <InlineMath math="(8,-6)" /> satisfies <InlineMath math="x>0" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a=(3,4)" />,
+    c: <InlineMath math="\vec c=(8,-6)" />,
+    other: <InlineMath math="(-8,6)" />,
+    perp: <InlineMath math="3x+4y=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -11, max: 11 },
+      y: { min: -11, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "perp", kind: "function", appearance: "construction", formula: "-0.75*x", domain: { min: -10, max: 10 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "c", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 8, y: -6 } },
+      { id: "other", kind: "point", appearance: "warning", at: { x: -8, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 8, y: -6 }, placement: "below-right" },
+      { key: "other", objectId: "other", at: { x: -8, y: 6 }, placement: "above-left" },
+      { key: "perp", objectId: "perp", at: { x: -10, y: 7.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 So <InlineMath math="x^2=64" />. The condition <InlineMath math="x>0" /> picks <InlineMath math="x=8" />, so <InlineMath math="y=-6" />.
 
 Check: <InlineMath math="3(8)+4(-6)=0" /> and <InlineMath math="\sqrt{64+36}=10" />. Without the condition <InlineMath math="x>0" />, the vector <InlineMath math="(-8,6)" /> would also work, since it points exactly the opposite way.

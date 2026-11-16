@@ -6,6 +6,37 @@ Biaya tetap dibagi ke semakin banyak kaus, jadi bagiannya per kaus mengecil menu
 
 <BlockMath math="\lim_{x\to\infty}R(x)=0+15{.}000=15{.}000" />
 
+Gambar biaya rata-rata terhadap banyak kaus. **Bagian biaya tetap per kaus terus mengecil, sehingga kurvanya merapat ke garis <InlineMath math="15" /> ribu rupiah**, biaya sablon per kaus.
+
+<MathVisual
+  title={<>Biaya rata-rata per kaus menurut banyak kaus</>}
+  description={<>Sumbu mendatar adalah banyak kaus <InlineMath math="x" />, dan sumbu tegak adalah biaya rata-rata dalam ribu rupiah. Kurva <InlineMath math="R(x)=\tfrac{2{.}000}{x}+15" /> turun tajam di awal, melewati <InlineMath math="(1000,\ 17)" />, lalu makin dekat ke garis mendatar <InlineMath math="15" />.</>}
+  labels={{
+    curve: <InlineMath math="R(x)" />,
+    level: <InlineMath math="15" />,
+    thousand: <InlineMath math="(1{.}000;\ 17)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 2000 },
+      y: { min: 10, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2000/x + 15", domain: { min: 80, max: 2000 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "15", domain: { min: 0, max: 2000 } },
+      { id: "thousand", kind: "point", appearance: "secondary", at: { x: 1000, y: 17 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 150, y: 2000 / 150 + 15 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 1800, y: 15 }, placement: "below" },
+      { key: "thousand", objectId: "thousand", at: { x: 1000, y: 17 }, placement: "above" },
+    ],
+  }}
+/>
+
 Contohnya, untuk <InlineMath math="x=1{.}000" /> biaya rata-ratanya <InlineMath math="2{.}000+15{.}000=17{.}000" /> rupiah, dan untuk <InlineMath math="x=100{.}000" /> menjadi <InlineMath math="15{.}020" /> rupiah.
 
 Jadi, biaya rata-rata per kaus mendekati <InlineMath math="\text{Rp}15{.}000{,}00" />.

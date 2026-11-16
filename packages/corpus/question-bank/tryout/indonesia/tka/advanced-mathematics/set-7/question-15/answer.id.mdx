@@ -6,6 +6,43 @@ Substitusikan <InlineMath math="x=3" /> ke <InlineMath math="L_1" /> untuk menda
 
 <BlockMath math="9+y^2=25\ \Rightarrow\ y=\pm4" />
 
+Gambar kedua lingkaran. **Keduanya sama besar dan pusatnya berjarak <InlineMath math="6" />, jadi tali busur persekutuannya tepat di tengah, pada garis <InlineMath math="x=3" />**.
+
+<MathVisual
+  title={<>Tali busur persekutuan <InlineMath math="L_1" /> dan <InlineMath math="L_2" /></>}
+  description={<>Lingkaran <InlineMath math="L_1" /> berpusat di <InlineMath math="(0,0)" /> dan <InlineMath math="L_2" /> berpusat di <InlineMath math="(6,0)" />, keduanya berjari-jari <InlineMath math="5" />. Keduanya berpotongan di <InlineMath math="(3,4)" /> dan <InlineMath math="(3,-4)" />, dan ruas di antaranya sepanjang <InlineMath math="8" /> terletak pada garis <InlineMath math="x=3" />.</>}
+  labels={{
+    first: <InlineMath math="L_1" />,
+    second: <InlineMath math="L_2" />,
+    chord: <InlineMath math="x=3" />,
+    top: <InlineMath math="(3,4)" />,
+    bottom: <InlineMath math="(3,-4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 12 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "second", kind: "circle", appearance: "secondary", center: { x: 6, y: 0 }, radius: 5 },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 3, y: 4 }, to: { x: 3, y: -4 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "bottom", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -5, y: 0 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 11, y: 0 }, placement: "right" },
+      { key: "chord", objectId: "chord", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "bottom", objectId: "bottom", at: { x: 3, y: -4 }, placement: "below" },
+    ],
+  }}
+/>
+
 Titik potongnya <InlineMath math="(3,4)" /> dan <InlineMath math="(3,-4)" />, jadi panjang tali busurnya <InlineMath math="4-(-4)=8" />. Pemeriksaan pada <InlineMath math="L_2" />: <InlineMath math="9+16-36+11=0" />. Perhatikan bahwa <InlineMath math="L_2" /> adalah <InlineMath math="(x-6)^2+y^2=25" />, lingkaran berjari-jari sama yang pusatnya berjarak <InlineMath math="6" />, sehingga tali busurnya tepat di tengah, <InlineMath math="x=3" />.
 
 Jadi, panjang tali busur persekutuannya <InlineMath math="8" />.

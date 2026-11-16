@@ -7,6 +7,35 @@ Schreibe <InlineMath math="1-\cos ax" /> mit **der Doppelwinkelformel <InlineMat
 &=2\left(\frac a2\right)^2=\frac{a^2}{2}
 \end{aligned}" />
 
+Zeichne die Funktion für <InlineMath math="a=4" />. **Beide Äste steigen zum selben Punkt <InlineMath math="(0,\ 8)" />**, wie es die Grenzwertbedingung der Aufgabe verlangt.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="\frac{1-\cos ax}{x^2}" /> für <InlineMath math="a=4" /></>}
+  description={<>Die Kurve für <InlineMath math="x" /> zwischen <InlineMath math="-0{,}75" /> und <InlineMath math="0{,}75" /> im Bogenmaß, ohne <InlineMath math="x=0" />. Sie ist symmetrisch, und ihr Hochpunkt läuft auf <InlineMath math="(0,\ 8)" /> zu, also <InlineMath math="\tfrac{a^2}{2}" /> mit <InlineMath math="a=4" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{1-\cos4x}{x^2}" />,
+    target: <InlineMath math="(0,\ 8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 0.8 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1 - cos(4*x))/x^2", domain: { min: -0.75, max: -0.01 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1 - cos(4*x))/x^2", domain: { min: 0.01, max: 0.75 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 8 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 0.5, y: (1 - Math.cos(2)) / 0.25 }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 Der Grenzwert ist <InlineMath math="8" />, also <InlineMath math="\frac{a^2}{2}=8" /> und <InlineMath math="a^2=16" />. Da <InlineMath math="a" /> positiv ist, folgt <InlineMath math="a=4" />.
 
 Numerische Probe: Für <InlineMath math="a=4" /> und <InlineMath math="x=0{,}01" /> ist <InlineMath math="\frac{1-\cos0{,}04}{0{,}0001}\approx7{,}9989" />.

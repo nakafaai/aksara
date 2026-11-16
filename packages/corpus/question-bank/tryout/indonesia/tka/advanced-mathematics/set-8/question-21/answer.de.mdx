@@ -2,6 +2,34 @@ Bei einer gebrochenrationalen Funktion im Unendlichen **vergleichst du die höch
 
 <BlockMath math="\lim_{x\to\infty}\frac{5x^3-2x}{x^4+3}=\lim_{x\to\infty}\frac{\frac5x-\frac{2}{x^3}}{1+\frac{3}{x^4}}=\frac{0-0}{1+0}=0" />
 
+Zeichne die Funktion für große <InlineMath math="x" />. **Der Nenner vom Grad vier wächst schneller als der Zähler vom Grad drei**, also fällt die Kurve und schmiegt sich an die <InlineMath math="x" />-Achse.
+
+<MathVisual
+  title={<>Der Graph für große <InlineMath math="x" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{5x^3-2x}{x^4+3}" /> für <InlineMath math="1\le x\le60" />. Sie steigt kurz auf etwa <InlineMath math="1{,}9" /> nahe <InlineMath math="x=2" />, fällt dann ständig und kommt der Geraden <InlineMath math="y=0" /> immer näher.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{5x^3-2x}{x^4+3}" />,
+    level: <InlineMath math="y=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: -0.2, max: 2.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(5*x^3 - 2*x)/(x^4 + 3)", domain: { min: 1, max: 60 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "0", domain: { min: 0, max: 60 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10, y: (5000 - 20) / 10003 }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 55, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Der Nenner wächst schneller als der Zähler, also wird der Bruch immer kleiner und geht gegen <InlineMath math="0" />. Bei <InlineMath math="x=100" /> ist er etwa <InlineMath math="0{,}05" />, bei <InlineMath math="x=1000" /> etwa <InlineMath math="0{,}005" />.
 
 Der Grenzwert ist also <InlineMath math="0" />.

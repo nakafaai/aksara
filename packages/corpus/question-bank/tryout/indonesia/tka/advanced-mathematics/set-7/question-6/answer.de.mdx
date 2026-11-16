@@ -14,6 +14,43 @@ Zieh aufeinanderfolgende Gleichungen voneinander ab, um <InlineMath math="c" /> 
 2a&=4\ \Rightarrow\ a=2,\quad b=-3,\quad c=1
 \end{aligned}" />
 
+Zeichne <InlineMath math="P" /> durch die drei bekannten Punkte. **Die Anstiege zwischen den Punkten sind <InlineMath math="3" />, <InlineMath math="7" /> und dann <InlineMath math="11" />**, jeweils um <InlineMath math="4" /> größer, also liegt der nächste Punkt auf der Höhe <InlineMath math="10+11=21" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="P(x)=2x^2-3x+1" /></>}
+  description={<>Die Parabel geht durch <InlineMath math="(1,\ 0)" />, <InlineMath math="(2,\ 3)" />, <InlineMath math="(3,\ 10)" /> und <InlineMath math="(4,\ 21)" />. Die Höhe steigt von Punkt zu Punkt um <InlineMath math="3" />, <InlineMath math="7" /> und <InlineMath math="11" />.</>}
+  labels={{
+    curve: <InlineMath math="P(x)=2x^2-3x+1" />,
+    one: <InlineMath math="(1,\ 0)" />,
+    two: <InlineMath math="(2,\ 3)" />,
+    three: <InlineMath math="(3,\ 10)" />,
+    four: <InlineMath math="(4,\ 21)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 4.6 },
+      y: { min: -1, max: 23 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*x^2 - 3*x + 1", domain: { min: 0.2, max: 4.3 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: 3, y: 10 } },
+      { id: "four", kind: "point", appearance: "answer", at: { x: 4, y: 21 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.5, y: 6 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "two", objectId: "two", at: { x: 2, y: 3 }, placement: "above-left" },
+      { key: "three", objectId: "three", at: { x: 3, y: 10 }, placement: "above-left" },
+      { key: "four", objectId: "four", at: { x: 4, y: 21 }, placement: "left" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="P(x)=2x^2-3x+1" /> und <InlineMath math="P(4)=32-12+1=21" />.
 
 Ein zweiter Weg kontrolliert das. Die Differenzen der Werte <InlineMath math="0,3,10" /> sind <InlineMath math="3" /> und <InlineMath math="7" />, und bei einem quadratischen Polynom ist die zweite Differenz immer konstant, hier <InlineMath math="4" />. Die nächste Differenz ist <InlineMath math="7+4=11" />, also <InlineMath math="P(4)=10+11=21" />.

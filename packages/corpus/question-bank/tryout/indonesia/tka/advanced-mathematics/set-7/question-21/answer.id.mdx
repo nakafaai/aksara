@@ -6,6 +6,36 @@ Untuk <InlineMath math="x\ne-1" /> faktor itu boleh dicoret, dan bentuk sederhan
 
 <BlockMath math="\lim_{x\to-1}\frac{x+2}{x-1}=\frac{-1+2}{-1-1}=-\frac12" />
 
+Gambar <InlineMath math="p" /> setelah disederhanakan. **Di <InlineMath math="x=-1" /> grafiknya hanya berlubang**, jadi limitnya adalah tinggi lubang itu, sedangkan di <InlineMath math="x=1" /> grafiknya terputus sungguhan.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="p(x)=\frac{x+2}{x-1}" /> dengan lubang di <InlineMath math="x=-1" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{x+2}{x-1}" /> punya dua cabang di kiri dan kanan garis tegak <InlineMath math="x=1" />. Pada cabang kiri, titik <InlineMath math="\left(-1,\ -\tfrac12\right)" /> ditandai sebagai lubang karena <InlineMath math="p(-1)" /> tidak terdefinisi.</>}
+  labels={{
+    hole: <InlineMath math="\left(-1,\ -\tfrac12\right)" />,
+    wall: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 1, y: -7 }, to: { x: 1, y: 9 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: -5, max: 0.6 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: 1.4, max: 5 } },
+      { id: "hole", kind: "point", appearance: "answer", at: { x: -1, y: -0.5 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: -1, y: -0.5 }, placement: "below-left" },
+      { key: "wall", objectId: "wall", at: { x: 1, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi, <InlineMath math="\lim_{x\to-1}p(x)=-\frac12" />.
 
 - <InlineMath math="\frac12" /> salah tanda pada penyebut, <InlineMath math="-1-1" />.

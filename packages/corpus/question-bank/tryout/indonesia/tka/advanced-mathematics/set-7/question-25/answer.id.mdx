@@ -9,3 +9,35 @@ Setiap pernyataan membandingkan **seberapa cepat pembilang dan penyebut tumbuh a
 <BlockMath math="x\left(1-\cos\frac1x\right)=\frac{1-\cos t}{t}=\frac{2\sin^2\frac t2}{t}=\sin\frac t2\cdot\frac{\sin\frac t2}{\frac t2}\to0\cdot1=0" />
 
 Jadi, pernyataan yang benar adalah pernyataan tentang <InlineMath math="\frac{x^2+1}{2x^2-x}" />, tentang <InlineMath math="\frac{3x+\sin x}{x}" />, dan tentang <InlineMath math="x\left(1-\cos\frac1x\right)" />.
+
+Gambar pernyataan ketiga sebagai contoh cara menjepit. **Kurva <InlineMath math="3+\frac{\sin x}{x}" /> bergelombang tetapi selalu terjepit di antara <InlineMath math="3-\frac1x" /> dan <InlineMath math="3+\frac1x" />**, dan kedua batas itu sama-sama menuju <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Menjepit <InlineMath math="\frac{3x+\sin x}{x}" /> untuk <InlineMath math="x" /> besar</>}
+  description={<>Kurva <InlineMath math="y=3+\frac{\sin x}{x}" /> untuk <InlineMath math="1\le x\le30" /> bergelombang di sekitar garis <InlineMath math="y=3" />. Dua kurva putus-putus <InlineMath math="3+\frac1x" /> dan <InlineMath math="3-\frac1x" /> mengapitnya dan makin rapat ke garis <InlineMath math="y=3" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{3x+\sin x}{x}" />,
+    upper: <InlineMath math="3+\frac1x" />,
+    lower: <InlineMath math="3-\frac1x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 30 },
+      y: { min: 2, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "upper", kind: "function", appearance: "construction", formula: "3 + 1/x", domain: { min: 1, max: 30 } },
+      { id: "lower", kind: "function", appearance: "construction", formula: "3 - 1/x", domain: { min: 1, max: 30 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "3 + sin(x)/x", domain: { min: 1, max: 30 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "3", domain: { min: 0, max: 30 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 8, y: 3 + Math.sin(8) / 8 }, placement: "above-right" },
+      { key: "upper", objectId: "upper", at: { x: 1.5, y: 3 + 1 / 1.5 }, placement: "right" },
+      { key: "lower", objectId: "lower", at: { x: 1.5, y: 3 - 1 / 1.5 }, placement: "right" },
+    ],
+  }}
+/>

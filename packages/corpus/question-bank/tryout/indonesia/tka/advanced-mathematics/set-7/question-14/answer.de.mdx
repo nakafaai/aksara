@@ -6,6 +6,41 @@ a^2-4a-12&=0 \\
 (a-6)(a+2)&=0
 \end{aligned}" />
 
+Zeichne den Kreis und die Waagerechte <InlineMath math="y=2" />. **Diese Gerade schneidet den Kreis in zwei Punkten**, und nur der rechte hat eine positive <InlineMath math="x" />-Koordinate.
+
+<MathVisual
+  title={<>Punkte des Kreises mit <InlineMath math="y" />-Koordinate <InlineMath math="2" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="(2,-1)" /> und den Radius <InlineMath math="5" />. Die Gerade <InlineMath math="y=2" /> schneidet ihn in <InlineMath math="(-2,2)" /> und <InlineMath math="(6,2)" />, und die Bedingung <InlineMath math="a>0" /> wählt <InlineMath math="(6,2)" />.</>}
+  labels={{
+    centre: <InlineMath math="(2,-1)" />,
+    line: <InlineMath math="y=2" />,
+    right: <InlineMath math="(6,2)" />,
+    left: <InlineMath math="(-2,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -7, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 5 },
+      { id: "line", kind: "function", appearance: "construction", formula: "2", domain: { min: -4, max: 8 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
+      { id: "left", kind: "point", appearance: "warning", at: { x: -2, y: 2 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "line", objectId: "line", at: { x: 7.5, y: 2 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "left", objectId: "left", at: { x: -2, y: 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Der Kreis hat zwei Punkte mit der <InlineMath math="y" />-Koordinate <InlineMath math="2" />, nämlich <InlineMath math="(6,2)" /> und <InlineMath math="(-2,2)" />. Die Bedingung <InlineMath math="a>0" /> wählt <InlineMath math="a=6" />.
 
 Probe mit Mittelpunkt und Radius: Der Kreis ist <InlineMath math="(x-2)^2+(y+1)^2=25" />, und <InlineMath math="(6-2)^2+(2+1)^2=16+9=25" />.

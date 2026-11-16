@@ -6,6 +6,42 @@ k^2+2k-8&<0 \\
 (k+4)(k-2)&<0
 \end{aligned}" />
 
+Gambar lingkaran dan garis tegak <InlineMath math="x=1" />, tempat semua titik <InlineMath math="P(1,k)" /> berada. **Bagian garis yang berada di dalam lingkaran terbentang dari <InlineMath math="k=-4" /> sampai <InlineMath math="k=2" />**, tanpa kedua ujungnya yang tepat pada lingkaran.
+
+<MathVisual
+  title={<>Titik <InlineMath math="P(1,k)" /> di dalam lingkaran</>}
+  description={<>Lingkaran berpusat di <InlineMath math="(2,-1)" /> dengan jari-jari <InlineMath math="\sqrt{10}" />. Garis <InlineMath math="x=1" /> memotongnya di <InlineMath math="(1,2)" /> dan <InlineMath math="(1,-4)" />. Ruas yang disorot di antara kedua titik itu adalah tempat <InlineMath math="P" /> berada di dalam lingkaran.</>}
+  labels={{
+    line: <InlineMath math="x=1" />,
+    top: <InlineMath math="(1,2)" />,
+    bottom: <InlineMath math="(1,-4)" />,
+    centre: <InlineMath math="(2,-1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 6 },
+      y: { min: -5.5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: Math.sqrt(10) },
+      { id: "line", kind: "segment", appearance: "construction", from: { x: 1, y: -5.5 }, to: { x: 1, y: 3 } },
+      { id: "inside", kind: "segment", appearance: "answer", from: { x: 1, y: -4 }, to: { x: 1, y: 2 } },
+      { id: "top", kind: "point", appearance: "warning", at: { x: 1, y: 2 } },
+      { id: "bottom", kind: "point", appearance: "warning", at: { x: 1, y: -4 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "top", objectId: "top", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "bottom", objectId: "bottom", at: { x: 1, y: -4 }, placement: "below-left" },
+      { key: "centre", objectId: "centre", at: { x: 2, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Hasil kali itu negatif ketika <InlineMath math="k" /> berada di antara kedua akarnya, jadi <InlineMath math="-4<k<2" />.
 
 Cara lain: lingkaran itu berpusat di <InlineMath math="(2,-1)" /> dengan <InlineMath math="r^2=4+1+5=10" />. Syarat di dalam adalah <InlineMath math="(1-2)^2+(k+1)^2<10" />, yaitu <InlineMath math="(k+1)^2<9" />, sehingga <InlineMath math="-3<k+1<3" />.

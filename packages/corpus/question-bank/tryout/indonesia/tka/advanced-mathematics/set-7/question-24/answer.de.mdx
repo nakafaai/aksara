@@ -9,6 +9,34 @@ Nach dem Kürzen von <InlineMath math="x+2" /> darfst du direkt einsetzen.
 
 <BlockMath math="\lim_{x\to-2}\frac{1}{x-2}=\frac{1}{-4}=-\frac14" />
 
+Zeichne die Summe der beiden Brüche nach dem Vereinfachen. **Die beiden unbeschränkt wachsenden Teile heben sich auf, übrig bleibt die Kurve <InlineMath math="\frac{1}{x-2}" />** mit einem Loch bei <InlineMath math="x=-2" />.
+
+<MathVisual
+  title={<>Die Summe der beiden Brüche in der Nähe von <InlineMath math="x=-2" /></>}
+  description={<>Für <InlineMath math="x\ne-2" /> ist die Summe der beiden Brüche gleich <InlineMath math="\frac{1}{x-2}" />. Diese Kurve ist für <InlineMath math="-5\le x\le1{,}5" /> gezeichnet, mit dem Punkt <InlineMath math="\left(-2,\ -\tfrac14\right)" /> als Loch.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{1}{x-2}" />,
+    hole: <InlineMath math="\left(-2,\ -\tfrac14\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 1.5 },
+      y: { min: -2.2, max: 0.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1/(x - 2)", domain: { min: -5, max: 1.5 } },
+      { id: "hole", kind: "point", appearance: "answer", at: { x: -2, y: -0.25 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: -1 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: -2, y: -0.25 }, placement: "below" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=-1{,}99" /> ist <InlineMath math="\frac{1}{0{,}01}+\frac{4}{-0{,}0399}\approx100-100{,}25=-0{,}25" />.
 
 Der Grenzwert ist also <InlineMath math="-\frac14" />.

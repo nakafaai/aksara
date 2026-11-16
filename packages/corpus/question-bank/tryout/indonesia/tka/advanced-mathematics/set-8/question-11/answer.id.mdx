@@ -4,6 +4,43 @@ Titik <InlineMath math="P" /> terletak pada perpanjangan <InlineMath math="AB" /
 
 <BlockMath math="P=B+\frac12\overrightarrow{AB}=(3,4,1)+(1,1,-1)=(4,5,0)" />
 
+Gambar ketiga titik pada garis lintasan drone. **Agar <InlineMath math="AP=3PB" /> dengan <InlineMath math="P" /> di luar ruas, langkah <InlineMath math="BP" /> harus setengah dari <InlineMath math="AB" />**, sehingga <InlineMath math="AP" /> tiga kali <InlineMath math="BP" />.
+
+<MathVisual
+  title={<>Titik <InlineMath math="P" /> pada perpanjangan <InlineMath math="AB" /></>}
+  description={<>Garis lintasan memuat <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="P" /> berurutan. Ruas <InlineMath math="AB" /> dibagi menjadi dua langkah, dan <InlineMath math="P" /> berada satu langkah lagi setelah <InlineMath math="B" />. Jadi <InlineMath math="AP" /> tiga langkah dan <InlineMath math="PB" /> satu langkah.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P(4,5,0)" />,
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    bp: <InlineMath math="\tfrac12\overrightarrow{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.4, max: 3.4 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ab", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "bp", kind: "vector", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "ab", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "bp", objectId: "bp", at: { x: 2.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Rumus pembagian di luar memberi hasil yang sama: <InlineMath math="P=\frac{3B-A}{3-1}=\frac{(9,12,3)-(1,2,3)}{2}=(4,5,0)" />.
 
 Pemeriksaan: <InlineMath math="\overrightarrow{AP}=(3,3,-3)" /> dan <InlineMath math="\overrightarrow{PB}=(-1,-1,1)" />, jadi panjang <InlineMath math="AP" /> tiga kali panjang <InlineMath math="PB" />.

@@ -5,6 +5,43 @@ P(x)&=36\left(x^2\right)^2-241\left(x^2\right)+100=\left(9x^2-4\right)\left(4x^2
 &=(3x-2)(3x+2)(2x-5)(2x+5)
 \end{aligned}" />
 
+Gambar <InlineMath math="P(x)" />. **Grafiknya simetris terhadap sumbu tegak dan memotong sumbu <InlineMath math="x" /> di empat titik yang berpasangan**, jadi keempat akarnya real dan jumlahnya <InlineMath math="0" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)=36x^4-241x^2+100" /></>}
+  description={<>Kurva berbentuk huruf W, simetris terhadap sumbu tegak, dan melewati <InlineMath math="(0,\ 100)" />. Kurva memotong sumbu <InlineMath math="x" /> di <InlineMath math="-\tfrac52" />, <InlineMath math="-\tfrac23" />, <InlineMath math="\tfrac23" />, dan <InlineMath math="\tfrac52" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    "root-a": <InlineMath math="-\tfrac52" />,
+    "root-b": <InlineMath math="-\tfrac23" />,
+    "root-c": <InlineMath math="\tfrac23" />,
+    "root-d": <InlineMath math="\tfrac52" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: -330, max: 350 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "36*x^4 - 241*x^2 + 100", domain: { min: -2.75, max: 2.75 } },
+      { id: "root-a", kind: "point", appearance: "answer", at: { x: -2.5, y: 0 } },
+      { id: "root-b", kind: "point", appearance: "answer", at: { x: -2 / 3, y: 0 } },
+      { id: "root-c", kind: "point", appearance: "answer", at: { x: 2 / 3, y: 0 } },
+      { id: "root-d", kind: "point", appearance: "answer", at: { x: 2.5, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 100 }, placement: "above" },
+      { key: "root-a", objectId: "root-a", at: { x: -2.5, y: 0 }, placement: "below-left" },
+      { key: "root-b", objectId: "root-b", at: { x: -2 / 3, y: 0 }, placement: "above-left" },
+      { key: "root-c", objectId: "root-c", at: { x: 2 / 3, y: 0 }, placement: "above-right" },
+      { key: "root-d", objectId: "root-d", at: { x: 2.5, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Akar-akarnya <InlineMath math="\frac23" />, <InlineMath math="-\frac23" />, <InlineMath math="\frac52" />, dan <InlineMath math="-\frac52" />.
 
 - **Benar.** Keempat akar itu real dan berbeda.

@@ -4,6 +4,39 @@ Lingkaran awal berpusat di <InlineMath math="(2,-1)" /> dengan <InlineMath math=
 
 <BlockMath math="(2,-1)\mapsto(2,\ 2\cdot1-(-1))=(2,3)" />
 
+Gambar lingkaran awal, garis cermin, dan bayangannya. **Pusat <InlineMath math="(2,-1)" /> berjarak <InlineMath math="2" /> di bawah garis <InlineMath math="y=1" />, jadi bayangannya <InlineMath math="2" /> di atas garis itu**, dan jari-jarinya tetap.
+
+<MathVisual
+  title={<>Pencerminan lingkaran terhadap <InlineMath math="y=1" /></>}
+  description={<>Lingkaran awal berpusat di <InlineMath math="(2,-1)" /> dengan jari-jari <InlineMath math="2" />. Bayangannya berpusat di <InlineMath math="(2,3)" /> dengan jari-jari yang sama. Kedua lingkaran bersinggungan tepat di garis <InlineMath math="y=1" />, di titik <InlineMath math="(2,1)" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=1" />,
+    start: <InlineMath math="(2,-1)" />,
+    end: <InlineMath math="(2,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -3.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "1", domain: { min: -1, max: 5 } },
+      { id: "start-circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 2 },
+      { id: "end-circle", kind: "circle", appearance: "answer", center: { x: 2, y: 3 }, radius: 2 },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 1 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "end", objectId: "end", at: { x: 2, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan: titik tengah <InlineMath math="(2,-1)" /> dan <InlineMath math="(2,3)" /> adalah <InlineMath math="(2,1)" />, yang terletak pada garis <InlineMath math="y=1" />. Tulis bentuk baku, lalu jabarkan.
 
 <BlockMath math="(x-2)^2+(y-3)^2=4\iff x^2+y^2-4x-6y+9=0" />

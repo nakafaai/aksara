@@ -1,5 +1,36 @@
 The matrix <InlineMath math="S" /> **swaps the two components** of a vector: <InlineMath math="S\begin{pmatrix} a \\ b \end{pmatrix}=\begin{pmatrix} b \\ a \end{pmatrix}" />. Geometrically, it is the reflection in the line <InlineMath math="y=x" />.
 
+See <InlineMath math="S" /> as reflection in <InlineMath math="y=x" />. **A shape is flipped like a mirror image, so its orientation is reversed**, which is why <InlineMath math="\det S=-1" />, and reflecting twice puts the shape back.
+
+<MathVisual
+  title={<>A triangle and its image under <InlineMath math="S" /></>}
+  description={<>The triangle with vertices <InlineMath math="(1,0)" />, <InlineMath math="(3,0)" />, and <InlineMath math="(1,1)" /> is sent by <InlineMath math="S" /> to the triangle <InlineMath math="(0,1)" />, <InlineMath math="(0,3)" />, and <InlineMath math="(1,1)" />. Every point swaps its coordinates, and the two triangles are symmetric about the line <InlineMath math="y=x" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=x" />,
+    start: <InlineMath math="(3,0)" />,
+    image: <InlineMath math="(0,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -0.5, max: 3.5 } },
+      { id: "start", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 3, y: 0 }, { x: 1, y: 1 }] },
+      { id: "image", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 1 }, { x: 0, y: 3 }, { x: 1, y: 1 }] },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 3.2, y: 3.2 }, placement: "below-right" },
+      { key: "start", objectId: "start", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 0, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. The statement <InlineMath math="S^2=I" /> is true. Swapping twice restores the original order: <InlineMath math="S^2=\begin{pmatrix} 0\cdot0+1\cdot1 & 0\cdot1+1\cdot0 \\ 1\cdot0+0\cdot1 & 1\cdot1+0\cdot0 \end{pmatrix}=I" />.
 2. The statement <InlineMath math="\det S=1" /> is false: <InlineMath math="\det S=0\cdot0-1\cdot1=-1" />. A negative determinant signals a reflection, which reverses orientation.
 3. The statement <InlineMath math="S^{-1}=S" /> is true, because <InlineMath math="S\cdot S=I" /> from the first statement.

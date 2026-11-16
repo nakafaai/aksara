@@ -9,6 +9,34 @@ Setelah faktor <InlineMath math="x+2" /> dicoret, substitusi langsung aman.
 
 <BlockMath math="\lim_{x\to-2}\frac{1}{x-2}=\frac{1}{-4}=-\frac14" />
 
+Gambar jumlah kedua pecahan setelah disederhanakan. **Kedua bagian yang membesar saling menghapus, dan yang tersisa adalah kurva <InlineMath math="\frac{1}{x-2}" />** dengan satu lubang di <InlineMath math="x=-2" />.
+
+<MathVisual
+  title={<>Jumlah kedua pecahan di sekitar <InlineMath math="x=-2" /></>}
+  description={<>Untuk <InlineMath math="x\ne-2" />, jumlah kedua pecahan sama dengan <InlineMath math="\frac{1}{x-2}" />. Kurva itu digambar untuk <InlineMath math="-5\le x\le1{,}5" />, dengan titik <InlineMath math="\left(-2,\ -\tfrac14\right)" /> ditandai sebagai lubang.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{1}{x-2}" />,
+    hole: <InlineMath math="\left(-2,\ -\tfrac14\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 1.5 },
+      y: { min: -2.2, max: 0.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1/(x - 2)", domain: { min: -5, max: 1.5 } },
+      { id: "hole", kind: "point", appearance: "answer", at: { x: -2, y: -0.25 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: -1 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: -2, y: -0.25 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=-1{,}99" />, nilai <InlineMath math="\frac{1}{0{,}01}+\frac{4}{-0{,}0399}\approx100-100{,}25=-0{,}25" />.
 
 Jadi, nilai limitnya <InlineMath math="-\frac14" />.

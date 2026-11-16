@@ -4,6 +4,39 @@ The original circle has centre <InlineMath math="(2,-1)" /> and <InlineMath math
 
 <BlockMath math="(2,-1)\mapsto(2,\ 2\cdot1-(-1))=(2,3)" />
 
+Draw the starting circle, the mirror line, and the image. **The centre <InlineMath math="(2,-1)" /> is <InlineMath math="2" /> below the line <InlineMath math="y=1" />, so its image is <InlineMath math="2" /> above that line**, and the radius stays the same.
+
+<MathVisual
+  title={<>Reflecting the circle in <InlineMath math="y=1" /></>}
+  description={<>The starting circle has centre <InlineMath math="(2,-1)" /> and radius <InlineMath math="2" />. Its image has centre <InlineMath math="(2,3)" /> and the same radius. The two circles touch exactly on the line <InlineMath math="y=1" />, at the point <InlineMath math="(2,1)" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=1" />,
+    start: <InlineMath math="(2,-1)" />,
+    end: <InlineMath math="(2,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -3.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "1", domain: { min: -1, max: 5 } },
+      { id: "start-circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 2 },
+      { id: "end-circle", kind: "circle", appearance: "answer", center: { x: 2, y: 3 }, radius: 2 },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 1 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "end", objectId: "end", at: { x: 2, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check: the midpoint of <InlineMath math="(2,-1)" /> and <InlineMath math="(2,3)" /> is <InlineMath math="(2,1)" />, which lies on <InlineMath math="y=1" />. Write the standard form and expand.
 
 <BlockMath math="(x-2)^2+(y-3)^2=4\iff x^2+y^2-4x-6y+9=0" />

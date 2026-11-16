@@ -6,6 +6,35 @@ Pisahkan menjadi limit sinus dasar dan sisa yang bisa disubstitusi langsung. Kar
 
 <BlockMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}\cdot\lim_{x\to0}\frac{1}{\sqrt{x+4}+2}=4\cdot\frac14=1" />
 
+Gambar fungsi itu di kedua sisi nol. **Kurvanya turun pelan dan melewati ketinggian <InlineMath math="1" /> tepat di <InlineMath math="x=0" />**, walaupun fungsinya sendiri tidak terdefinisi di sana.
+
+<MathVisual
+  title={<>Grafik di sekitar <InlineMath math="x=0" /></>}
+  description={<>Kurva untuk <InlineMath math="x" /> antara <InlineMath math="-3" /> dan <InlineMath math="3" />, tanpa <InlineMath math="x=0" />. Dari kiri dan dari kanan, kurvanya menuju titik <InlineMath math="(0,\ 1)" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{\sqrt{x+4}-2}{\sin\frac x4}" />,
+    target: <InlineMath math="(0,\ 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 3.2 },
+      y: { min: 0.7, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(sqrt(x + 4) - 2)/sin(x/4)", domain: { min: -3, max: -0.02 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(sqrt(x + 4) - 2)/sin(x/4)", domain: { min: 0.02, max: 3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -2, y: (Math.sqrt(2) - 2) / Math.sin(-0.5) }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilai pecahan itu sekitar <InlineMath math="0{,}9994" />.
 
 Jadi, nilai limitnya <InlineMath math="1" />.
