@@ -1,0 +1,34 @@
+# Use both measurements, because each one can fail on its own
+
+Glucose in the blood shows whether lactose was **digested and absorbed** in the small intestine. Hydrogen in the breath shows whether **bacteria in the large intestine** fermented what was left. A person with no lactase and no gut bacteria gives a low reading on both.
+
+<Chart
+  title={<>Breath Hydrogen After a Lactose Drink</>}
+  categories={["0 min", "30 min", "60 min", "90 min", "120 min", "150 min", "180 min"]}
+  series={[
+    { label: "Person P", mark: "line", values: [4, 5, 5, 6, 6, 7, 7] },
+    { label: "Person Q", mark: "line", values: [6, 7, 9, 24, 48, 62, 58] },
+    { label: "Person R", mark: "line", values: [5, 5, 6, 6, 7, 7, 7] },
+  ]}
+  valueLabel="Breath hydrogen (ppm)"
+  description={<>P and R stay between <InlineMath math="4" /> and <InlineMath math="7" /> ppm throughout. Q stays low for an hour, then climbs to <InlineMath math="62" /> ppm at <InlineMath math="150" /> minutes.</>}
+/>
+
+| Person | Hydrogen rise <InlineMath math="\geq20" />? | Glucose rise <InlineMath math="<1.1" />? | Lactose digested? |
+| --- | --- | --- | --- |
+| P | no | no | yes |
+| Q | yes | yes | no |
+| R | no | yes | no |
+
+- I: Q's glucose barely rises, so the lactose was not absorbed. It reaches the large intestine, where bacteria ferment it and the hydrogen they make passes into the blood and out in the breath. Statement I is correct.
+- II: R's glucose rises by only <InlineMath math="0.2\text{ mmol/L}" />, as little as Q's. R did not digest the lactose, so the flat hydrogen curve cannot mean normal digestion. Statement II is wrong.
+- III: undigested lactose reached R's large intestine, but the recent antibiotics killed most of the bacteria that would ferment it, so little hydrogen was made. Statement III is correct.
+- IV: human cells make lactic acid in anaerobic respiration, not hydrogen. The hydrogen comes from **bacterial fermentation**. Statement IV is wrong.
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I and II only trusts R's hydrogen alone and ignores that R's **glucose barely rises**, by only <InlineMath math="0.2\text{ mmol/L}" />.
+- II and IV only rejects the bacteria behind both I and III, **which is where all the hydrogen comes from**.
+- I, III and IV only credits Q's own cells with making hydrogen, **which human cells do not do**.

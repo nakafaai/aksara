@@ -1,0 +1,29 @@
+# Find the longest unbroken dark period, not the total dark
+
+Both plants measure the **length of uninterrupted darkness**. A flash splits the night into two pieces, and only the longer piece counts. Where the flash falls therefore matters as much as whether there is one.
+
+| Treatment | Dark pieces (hours) | Longest piece | X flowers? | Y flowers? |
+| --- | --- | --- | --- | --- |
+| P | <InlineMath math="8" /> | <InlineMath math="8" /> | no | yes |
+| Q | <InlineMath math="14" /> | <InlineMath math="14" /> | yes | no |
+| R | <InlineMath math="7+7" /> | <InlineMath math="7" /> | no | yes |
+| S | <InlineMath math="4+14" /> | <InlineMath math="14" /> | yes | no |
+
+<Chart
+  title={<>Longest Unbroken Dark Period in Each Treatment</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Longest unbroken dark", mark: "bar", values: [8, 14, 7, 14] },
+  ]}
+  valueLabel="Hours"
+  description={<>The longest unbroken dark period is <InlineMath math="8" /> hours in P, <InlineMath math="14" /> in Q, <InlineMath math="7" /> in R and <InlineMath math="14" /> in S. Only Q and S reach the <InlineMath math="11" /> hours plant X needs.</>}
+/>
+
+In S, the flash comes early, so <InlineMath math="14" /> unbroken hours of dark still follow it. X flowers in Q and S, and Y flowers in P and R.
+
+# Why the other options are wrong
+
+- X in Q only treats **every flash as a night break**, missing that S still has <InlineMath math="14" /> unbroken hours after its flash.
+- X in Q, R and S counts **total dark**, <InlineMath math="14" /> hours in R, ignoring the flash that splits it into <InlineMath math="7+7" />.
+- X in P and R swaps the two plants, giving X the **short nights that Y needs**.

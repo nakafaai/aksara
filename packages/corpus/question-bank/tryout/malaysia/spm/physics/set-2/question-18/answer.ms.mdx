@@ -1,0 +1,40 @@
+# Cari sudut genting terhadap air, bukan udara
+
+Di udara sudut genting ialah <InlineMath math="\sin^{-1}(1/1.50)=41.8^\circ" />, jadi <InlineMath math="45^\circ" /> akan memberi pantulan dalam penuh. **Di dalam air sudut genting menggunakan nisbah dua indeks**, <InlineMath math="\sin c=\dfrac{1.33}{1.50}" />, yang memberi <InlineMath math="c=62.5^\circ" />. Kini <InlineMath math="45^\circ" /> di bawahnya, jadi sinar terlepas keluar.
+
+<MathVisual
+  title={<>Sinar di permukaan panjang di dalam air</>}
+  description={<>Sinar tiba di permukaan panjang pada <InlineMath math="45^\circ" />. Di dalam air sudut genting ialah <InlineMath math="62.5^\circ" />, lebih besar daripada <InlineMath math="45^\circ" />, jadi sinar masuk ke dalam air dan membias menjauhi normal kepada <InlineMath math="53^\circ" />.</>}
+  labels={{
+    glass: <>kaca, <InlineMath math="n=1.50" /></>,
+    in: <><InlineMath math="45^\circ" /></>,
+    out: <><InlineMath math="53^\circ" /></>,
+    water: <>air, <InlineMath math="n=1.33" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: -1.2, max: 4.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 3 }] },
+      { id: "ray", kind: "vector", appearance: "primary", from: { x: 1.2, y: -1 }, to: { x: 1.2, y: 1.8 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0.45, y: 1.05 }, to: { x: 2.2, y: 2.8 } },
+      { id: "out", kind: "vector", appearance: "answer", from: { x: 1.2, y: 1.8 }, to: { x: 1.0, y: 3.2 } },
+      { id: "water", kind: "point", appearance: "reference", at: { x: 3.6, y: 3.6 } },
+    ],
+    labels: [
+      { key: "glass", objectId: "glass", at: { x: 0.7, y: 0.5 }, placement: "center" },
+      { key: "in", objectId: "ray", at: { x: 1.2, y: 1.2 }, placement: "left" },
+      { key: "out", objectId: "out", at: { x: 1.0, y: 3.2 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 3.6, y: 3.6 }, placement: "above" },
+    ],
+  }}
+/>
+
+<BlockMath math="1.50\sin45^\circ=1.33\sin r\ \Rightarrow\ \sin r=0.797,\ r=53^\circ" />
+
+# Mengapa pilihan lain salah
+
+- Pantulan dalam penuh menggunakan sudut genting terhadap udara. **Air mengurangkan perubahan indeks**, jadi sudut genting naik kepada <InlineMath math="62.5^\circ" />.
+- <InlineMath math="39^\circ" /> menukar kedudukan indeks, <InlineMath math="\sin r=\dfrac{1.33\sin45^\circ}{1.50}" />, seolah-olah sinar bergerak dari air ke kaca.
+- <InlineMath math="45^\circ" /> mengabaikan pembiasan, sedangkan indeksnya berbeza, jadi sinar membengkok.

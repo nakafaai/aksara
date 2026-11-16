@@ -1,0 +1,315 @@
+export const metadata = {
+  title: "Säuren und Laugen mit Titration und Salzen",
+  description:
+    "Berechne pH-Werte und Konzentrationen, löse Titrationsaufgaben und wähle die passende Salzherstellung, mit Beispielen, typischen Fehlern und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Säuren, Basen und Salze",
+};
+
+## Säuren und Laugen brauchen Wasser
+
+Eine **Säure** ist ein Stoff, der in Wasser **Wasserstoff-Ionen** bildet, <InlineMath math="\mathrm{H^+}" />. Eine **Lauge** ist die wässrige Lösung einer Base, die **Hydroxid-Ionen** bildet, <InlineMath math="\mathrm{OH^-}" />. Wie sauer eine Lösung ist, gibt der pH-Wert an, <InlineMath math="\mathrm{pH} = -\lg c(\mathrm{H^+})" />, auf einer Skala von <InlineMath math="0" /> bis <InlineMath math="14" />. Mit den Modellen hier verdünnst du eine Säure und siehst, wie sich der pH-Wert ändert, führst eine Titration durch und baust eine Neutralisationskurve.
+
+Das <InlineMath math="\mathrm{H^+}" />-Ion lagert sich in Wirklichkeit an ein Wassermolekül an und bildet ein **Oxonium-Ion**, <InlineMath math="\mathrm{H_3O^+}" />:
+
+<BlockMath math="\mathrm{HCl} + \mathrm{H_2O} \rightarrow \mathrm{H_3O^+} + \mathrm{Cl^-}" />
+
+Ohne Wasser entstehen diese Ionen nicht. Chlorwasserstoff, gelöst in Toluol (Methylbenzol), bleibt als Moleküle erhalten, also färbt die Lösung blaues Lackmuspapier nicht rot. Löst du Chlorwasserstoff dagegen in Wasser, zerfallen die Moleküle in Ionen und die sauren Eigenschaften zeigen sich. Bei Laugen ist es genauso: Trockenes Ammoniak färbt rotes Lackmuspapier nicht, Ammoniakwasser dagegen färbt es blau, weil erst Wasser die Bildung von <InlineMath math="\mathrm{OH^-}" />-Ionen ermöglicht.
+
+Eine **Base** ist ein Stoff, der mit einer Säure zu einem Salz und Wasser reagiert. Jede Lauge enthält eine Base, aber nicht jede Base löst sich in Wasser. Kupfer(II)-oxid ist zum Beispiel eine Base, bildet aber keine Lauge.
+
+## Säuregrad und Konzentration der Wasserstoffionen
+
+Je kleiner der pH-Wert, desto höher die Konzentration der <InlineMath math="\mathrm{H^+}" />-Ionen. Eine neutrale Lösung hat bei <InlineMath math="25\ {}^\circ\text{C}" /> den Wert <InlineMath math="\mathrm{pH} = 7" />. Saure Lösungen liegen unter <InlineMath math="7" />, alkalische darüber. Bei einer Lauge berechnest du zuerst den pOH-Wert und nutzt dann diesen Zusammenhang:
+
+<MathContainer>
+<BlockMath math="\mathrm{pOH} = -\lg c(\mathrm{OH^-})" />
+<BlockMath math="\mathrm{pH} + \mathrm{pOH} = 14" />
+</MathContainer>
+
+Die pH-Skala ist logarithmisch. Jedes Mal, wenn die <InlineMath math="\mathrm{H^+}" />-Konzentration auf **ein Zehntel** sinkt, steigt der pH-Wert nur um **eine Einheit**. Beweg den Regler für den Verdünnungsfaktor von Salzsäure mit <InlineMath math="0{,}1\ \text{mol/L}" /> und beobachte, wie die Kurve flacher wird.
+
+<MathVisual
+  title={<>pH-Wert von Salzsäure beim Verdünnen</>}
+  description={
+    <>
+      Salzsäure mit <InlineMath math="0{,}1\ \text{mol/L}" /> wird{" "}
+      <InlineMath math="d" />-fach verdünnt. Die Kurve ist{" "}
+      <InlineMath math="\mathrm{pH} = 1 + \lg d" />. Zehnfaches Verdünnen hebt
+      den pH-Wert von <InlineMath math="1" /> auf <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "d", min: 1, max: 10, value: 4, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1 + log_10(x)", domain: { min: 1, max: 10 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "tenfold", kind: "point", appearance: "answer", at: { x: 10, y: 2 } },
+      { id: "now", kind: "marker", x: "d", y: "1 + log_10(d)", appearance: "warning" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 1 }, placement: "below-right" },
+      { key: "tenfold", objectId: "tenfold", at: { x: 10, y: 2 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "concentration", formula: "0.1 / d" },
+      { key: "ph", formula: "1 + log_10(d)" },
+    ],
+  }}
+  labels={{
+    d: <>Verdünnungsfaktor <InlineMath math="d" /></>,
+    start: <InlineMath math="\mathrm{pH}\ 1" />,
+    tenfold: <InlineMath math="\mathrm{pH}\ 2" />,
+    concentration: <><InlineMath math="c(\mathrm{H^+})" /> in <InlineMath math="\text{mol/L}" /></>,
+    ph: <>pH-Wert</>,
+  }}
+/>
+
+Eine Lösung mit pH <InlineMath math="2" /> ist also nicht doppelt so sauer wie eine mit pH <InlineMath math="4" />. Der Unterschied beträgt zwei Einheiten, also die **hundertfache** <InlineMath math="\mathrm{H^+}" />-Konzentration:
+
+<BlockMath math="\frac{10^{-2}}{10^{-4}} = 100" />
+
+## Stärke und Konzentration einer Säure
+
+Die **Stärke** einer Säure oder Lauge hängt davon ab, wie vollständig sie in Wasser **in Ionen zerfällt**, nicht von ihrer Konzentration. Eine starke Säure wie Salzsäure **protolysiert vollständig**, jedes Molekül liefert also ein <InlineMath math="\mathrm{H^+}" />-Ion. Eine schwache Säure wie Essigsäure **protolysiert nur teilweise**, die meisten Moleküle bleiben unverändert. Genauso ist Natronlauge eine starke Lauge, Ammoniakwasser dagegen eine schwache.
+
+<BlockMath math="\mathrm{CH_3COOH} \rightleftharpoons \mathrm{CH_3COO^-} + \mathrm{H^+}" />
+
+Vergleich Lösungen mit **gleicher Konzentration**, <InlineMath math="0{,}1\ \text{mol/L}" />. Die Werte für Essigsäure und Ammoniak sind aus ihren Säure- und Basenkonstanten bei <InlineMath math="25\ {}^\circ\text{C}" /> berechnet.
+
+<Chart
+  title={<>pH-Werte starker und schwacher Säuren und Laugen</>}
+  bars="apart"
+  categories={["Salzsäure", "Essigsäure", "Ammoniakwasser", "Natronlauge"]}
+  series={[
+    {
+      label: "pH-Wert",
+      mark: "bar",
+      values: [1, -Math.log10(Math.sqrt(1.8e-5 * 0.1)), 14 + Math.log10(Math.sqrt(1.8e-5 * 0.1)), 13],
+    },
+  ]}
+  valueLabel="pH"
+  valueRange={{ min: 0, max: 14 }}
+  description={
+    <>
+      Alle Lösungen haben <InlineMath math="0{,}1\ \text{mol/L}" />. Salzsäure
+      pH <InlineMath math="1{,}0" />, Essigsäure pH <InlineMath math="2{,}9" />,
+      Ammoniakwasser pH <InlineMath math="11{,}1" />, Natronlauge pH{" "}
+      <InlineMath math="13{,}0" />.
+    </>
+  }
+/>
+
+Die **Konzentration** gibt dagegen an, wie viel gelöster Stoff in <InlineMath math="1\ \text{L}" /> Lösung steckt. Du kannst sie als Massenkonzentration in <InlineMath math="\text{g/L}" /> angeben oder als **Stoffmengenkonzentration** in <InlineMath math="\text{mol/L}" />:
+
+<BlockMath math="c = \frac{n}{V}" />
+
+Dabei ist <InlineMath math="n" /> die Stoffmenge des gelösten Stoffs und <InlineMath math="V" /> das Volumen der Lösung in Litern. Eine Lösung, deren Konzentration genau bekannt ist, heißt **Maßlösung**, und du stellst sie in einem Messkolben her.
+
+### Beispiel Herstellen einer Maßlösung
+
+Du löst <InlineMath math="2{,}0\ \text{g}" /> Natriumhydroxid in Wasser und füllst auf <InlineMath math="250\ \text{mL}" /> Lösung auf. Berechne die Stoffmengenkonzentration. Die molare Masse von <InlineMath math="\mathrm{NaOH}" /> ist <InlineMath math="40\ \text{g/mol}" />.
+
+**Rechne die Masse in die Stoffmenge um**, dann das Volumen in Liter:
+
+<MathContainer>
+<BlockMath math="n = \frac{2{,}0}{40} = 0{,}050\ \text{mol}" />
+<BlockMath math="V = \frac{250}{1000} = 0{,}250\ \text{L}" />
+<BlockMath math="c = \frac{0{,}050}{0{,}250} = 0{,}20\ \text{mol/L}" />
+</MathContainer>
+
+Prüf das mit der Massenkonzentration. In <InlineMath math="1\ \text{L}" /> steckt das Vierfache von <InlineMath math="2{,}0\ \text{g}" />, also <InlineMath math="8{,}0\ \text{g/L}" />, und <InlineMath math="8{,}0 : 40 = 0{,}20" />. Beide Wege liefern dasselbe Ergebnis.
+
+### Beispiel Verdünnen einer Lösung
+
+Gibst du Wasser hinzu, ändert sich die Stoffmenge des gelösten Stoffs nicht. Nur das Volumen wächst. Darauf beruht die **Verdünnungsformel**:
+
+<BlockMath math="c_1V_1 = c_2V_2" />
+
+Um <InlineMath math="500\ \text{mL}" /> Salzsäure mit <InlineMath math="0{,}10\ \text{mol/L}" /> aus Salzsäure mit <InlineMath math="1{,}0\ \text{mol/L}" /> herzustellen:
+
+<BlockMath math="V_1 = \frac{c_2V_2}{c_1} = \frac{0{,}10 \cdot 500}{1{,}0} = 50\ \text{mL}" />
+
+Miss <InlineMath math="50\ \text{mL}" /> der konzentrierten Säure ab und füll mit destilliertem Wasser auf <InlineMath math="500\ \text{mL}" /> auf. Probe: Am Anfang sind es <InlineMath math="1{,}0 \cdot 0{,}050 = 0{,}050" /> mol, am Ende <InlineMath math="0{,}10 \cdot 0{,}500 = 0{,}050" /> mol. Das passt.
+
+## Neutralisation und Titration
+
+Eine **Neutralisation** ist die Reaktion einer Säure mit einer Base, bei der ein Salz und Wasser entstehen. Bei jeder Neutralisation einer Säure durch eine Lauge reagieren eigentlich Wasserstoff-Ionen mit Hydroxid-Ionen:
+
+<BlockMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" />
+
+Eine **Titration** bestimmt das genaue Volumen, das für die vollständige Neutralisation nötig ist. Eine Lösung läuft aus der Bürette in die andere im Erlenmeyerkolben, bis der Indikator umschlägt. Dieser Moment ist der **Endpunkt**. Führ die Titration unten durch und achte auf das Phenolphthalein.
+
+<TitrationLab
+  title={<>Titration von Salzsäure mit Natronlauge</>}
+  description={
+    <>
+      Natronlauge mit <InlineMath math="0{,}10\ \text{mol/L}" /> läuft aus der
+      Bürette in <InlineMath math="10{,}0\ \text{mL}" /> Salzsäure mit{" "}
+      <InlineMath math="0{,}10\ \text{mol/L}" /> und Phenolphthalein.
+    </>
+  }
+  analyte={{ concentration: 0.1, solute: "hydrochloric-acid", volume: 10 }}
+  titrant={{ concentration: 0.1, solute: "sodium-hydroxide" }}
+  indicator="phenolphthalein"
+  showEndPoint
+  labels={{
+    added: "Zugegebenes Volumen",
+    analyte: <>Im Kolben</>,
+    endPoint: <>Endpunkt</>,
+    hue: <>Farbe im Kolben</>,
+    hues: {
+      colourless: <>farblos</>,
+      green: <>grün</>,
+      orange: <>orange</>,
+      "pale-green": <>hellgrün</>,
+      pink: <>rosa</>,
+      red: <>rot</>,
+      yellow: <>gelb</>,
+    },
+    ph: <>pH</>,
+    reaction: <>Reaktion</>,
+    titrant: <>In der Bürette</>,
+    view: "Titration von Salzsäure mit Natronlauge",
+  }}
+/>
+
+Diese Kurve zeigt den pH-Wert im selben Kolben, während die Lauge zuläuft. Sie ist aus den überschüssigen <InlineMath math="\mathrm{H^+}" />-Ionen und der Autoprotolyse des Wassers berechnet. Achte auf den steilen pH-Sprung bei <InlineMath math="10\ \text{mL}" />. Phenolphthalein schlägt innerhalb dieses Sprungs um.
+
+<MathVisual
+  title={<>Titrationskurve einer starken Säure mit einer starken Lauge</>}
+  description={
+    <>
+      <InlineMath math="10{,}0\ \text{mL}" /> Salzsäure mit{" "}
+      <InlineMath math="0{,}10\ \text{mol/L}" /> und Natronlauge mit{" "}
+      <InlineMath math="0{,}10\ \text{mol/L}" />. Waagerecht ist das Volumen der
+      Lauge in <InlineMath math="\text{mL}" /> aufgetragen, senkrecht der
+      pH-Wert.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 20, value: 5, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "-log_10(((1 - 0.1x)/(10 + x) + sqrt(((1 - 0.1x)/(10 + x))^2 + 4*10^(-14)))/2)", domain: { min: 0, max: 20 } },
+      { id: "equivalence", kind: "point", appearance: "answer", at: { x: 10, y: 7 } },
+      { id: "now", kind: "marker", x: "a", y: "-log_10(((1 - 0.1a)/(10 + a) + sqrt(((1 - 0.1a)/(10 + a))^2 + 4*10^(-14)))/2)", appearance: "warning" },
+    ],
+    labels: [
+      { key: "equivalence", objectId: "equivalence", at: { x: 10, y: 7 }, placement: "right" },
+    ],
+    readouts: [
+      { key: "ph", formula: "-log_10(((1 - 0.1a)/(10 + a) + sqrt(((1 - 0.1a)/(10 + a))^2 + 4*10^(-14)))/2)" },
+    ],
+  }}
+  labels={{
+    a: <>Volumen der Lauge <InlineMath math="a" /></>,
+    equivalence: <>Neutral, <InlineMath math="\mathrm{pH}\ 7" /></>,
+    ph: <>pH-Wert im Kolben</>,
+  }}
+/>
+
+Jetzt nutzt du eine Titration, um eine unbekannte Konzentration zu bestimmen. <InlineMath math="25{,}0\ \text{mL}" /> Natronlauge mit <InlineMath math="0{,}10\ \text{mol/L}" /> werden von <InlineMath math="12{,}50\ \text{mL}" /> Schwefelsäure neutralisiert. Berechne die Konzentration der Schwefelsäure.
+
+Schreib zuerst die ausgeglichene Gleichung auf, denn aus ihr stammt das Stoffmengenverhältnis:
+
+<BlockMath math="\mathrm{H_2SO_4} + 2\mathrm{NaOH} \rightarrow \mathrm{Na_2SO_4} + 2\mathrm{H_2O}" />
+
+Schwefelsäure ist eine **zweiprotonige Säure**, ein Mol Säure braucht also zwei Mol Lauge. Nutze <InlineMath math="\dfrac{c_aV_a}{c_bV_b} = \dfrac{a}{b}" /> mit <InlineMath math="a = 1" /> und <InlineMath math="b = 2" />:
+
+<BlockMath math="c_a = \frac{1}{2} \cdot \frac{0{,}10 \cdot 25{,}0}{12{,}50} = 0{,}10\ \text{mol/L}" />
+
+Prüf das mit den Stoffmengen. Natronlauge: <InlineMath math="0{,}10 \cdot 0{,}0250 = 0{,}0025" /> mol. Schwefelsäure: <InlineMath math="0{,}10 \cdot 0{,}01250 = 0{,}00125" /> mol, genau die Hälfte. Das Verhältnis <InlineMath math="1 : 2" /> stimmt.
+
+## Salze und ihre Herstellung
+
+Ein **Salz** ist eine Ionenverbindung, die entsteht, wenn die <InlineMath math="\mathrm{H^+}" />-Ionen einer Säure durch Metall-Ionen oder Ammonium-Ionen ersetzt werden. Beispiele sind Natriumchlorid aus Salzsäure und Kupfer(II)-sulfat aus Schwefelsäure. Wie du ein Salz herstellst, hängt davon ab, **ob es sich in Wasser löst**:
+
+| Salz | Wasserlöslich | Schwer löslich |
+| :--- | :--- | :--- |
+| Natrium-, Kalium- und Ammoniumsalze | Alle | Keine |
+| Nitrate | Alle | Keine |
+| Chloride | Die meisten | Blei(II)-chlorid und Silberchlorid |
+| Sulfate | Die meisten | Bariumsulfat, Blei(II)-sulfat und Calciumsulfat |
+| Carbonate | Natrium-, Kalium- und Ammoniumcarbonat | Alle übrigen |
+
+Natrium-, Kalium- und Ammoniumsalze stellst du durch **Titration** einer Säure mit einer Lauge her, weil beide Ausgangsstoffe gelöst sind und sich das Produkt nicht abfiltrieren lässt. Andere lösliche Salze stellst du her, indem du ein Metall, ein Metalloxid oder ein Metallcarbonat **im Überschuss** zur Säure gibst, den Überschuss abfiltrierst und das Salz aus dem Filtrat auskristallisierst.
+
+Schwer lösliche Salze stellst du durch eine **Fällungsreaktion** her. Du mischst zwei Salzlösungen, die das Kation und das Anion des gewünschten Salzes enthalten, und sofort bildet sich ein Niederschlag. Gieß Silbernitratlösung in Natriumchloridlösung und beobachte den weißen Niederschlag aus Silberchlorid:
+
+<BlockMath math="\mathrm{Ag^+(aq)} + \mathrm{Cl^-(aq)} \rightarrow \mathrm{AgCl(s)}" />
+
+<PrecipitateLab
+  title={<>Fällung von Silberchlorid</>}
+  description={
+    <>
+      Silbernitratlösung wird auf einer Waage in Natriumchloridlösung gegossen.
+      Sofort entsteht ein weißer Niederschlag aus Silberchlorid.
+    </>
+  }
+  labels={{
+    precipitate: <>Niederschlag aus <InlineMath math="\mathrm{AgCl}" /></>,
+    readingAfter: <>Anzeige der Waage nach dem Mischen</>,
+    readingBefore: <>Anzeige der Waage vor dem Mischen</>,
+    viewLabel: "Fällung von Silberchlorid auf einer Waage",
+  }}
+/>
+
+Anschließend filtrierst du den Niederschlag ab, spülst ihn mit destilliertem Wasser, um die übrigen Ionen zu entfernen, und trocknest ihn zwischen Filterpapier. Schau auch auf die Waage: Die Masse ändert sich nicht, weil nichts das Becherglas verlässt.
+
+## Typische Fehler bei Säuren und Salzen
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Eine Lösung mit pH <InlineMath math="2" /> ist doppelt so sauer wie eine mit pH <InlineMath math="4" />. | Die pH-Skala ist logarithmisch. Zwei Einheiten bedeuten die <InlineMath math="100" />-fache <InlineMath math="\mathrm{H^+}" />-Konzentration. | Rechne <InlineMath math="10^{-2} : 10^{-4}" />. |
+| Eine starke Säure ist eine konzentrierte Säure. | Die Stärke hängt vom Zerfall in Ionen ab, die Konzentration von der Menge des gelösten Stoffs. | Konzentrierte Essigsäure bleibt eine schwache Säure. |
+| Chlorwasserstoff in Toluol zeigt saure Eigenschaften. | Ohne Wasser bildet Chlorwasserstoff keine Ionen, es gibt also keine <InlineMath math="\mathrm{H^+}" />-Ionen. | Such nach Wasser im System. |
+| Silberchlorid stellt man her, indem man Silber in Salzsäure gibt. | Silber reagiert nicht mit Salzsäure, und Silberchlorid ist schwer löslich. | Schwer lösliche Salze entstehen durch Fällung. |
+| Bei der Titration von Schwefelsäure mit Natronlauge ist das Verhältnis eins zu eins. | Schwefelsäure ist zweiprotonig, das Stoffmengenverhältnis von Säure zu Lauge ist also <InlineMath math="1 : 2" />. | Gleich zuerst die Reaktionsgleichung aus. |
+
+Der zweite Fehler ist am schwersten zu erkennen, weil beide Wörter ähnlich klingen. Merk dir dieses Paar: **stark oder schwach** beschreibt den Zerfall in Ionen, **konzentriert oder verdünnt** die Menge des gelösten Stoffs.
+
+## Übungen zu Säuren und Laugen
+
+Die Aufgaben führen von einer pH-Berechnung über Titrationen bis zu einer Erklärung. **Schreib in jedem Schritt die Einheit dazu**, damit dir eine Verwechslung von <InlineMath math="\text{mL}" /> und <InlineMath math="\text{L}" /> sofort auffällt.
+
+1. Berechne den pH-Wert von Salzsäure mit <InlineMath math="0{,}01\ \text{mol/L}" />.
+
+2. Welches Volumen Natronlauge mit <InlineMath math="2{,}0\ \text{mol/L}" /> brauchst du, um <InlineMath math="500\ \text{mL}" /> Lösung mit <InlineMath math="0{,}40\ \text{mol/L}" /> herzustellen?
+
+3. <InlineMath math="20{,}0\ \text{mL}" /> Salzsäure mit <InlineMath math="0{,}50\ \text{mol/L}" /> neutralisieren <InlineMath math="25{,}0\ \text{mL}" /> Kalilauge. Berechne die Konzentration der Kalilauge.
+
+4. Salzsäure und Essigsäure, beide mit <InlineMath math="0{,}1\ \text{mol/L}" />, werden mit derselben Natronlauge titriert. Erkläre, warum Essigsäure mit einem höheren pH-Wert startet, aber dasselbe Volumen Lauge zur Neutralisation braucht.
+
+### Lösungen
+
+**Lösung 1**: Salzsäure ist eine starke, einprotonige Säure, also gilt <InlineMath math="c(\mathrm{H^+}) = 0{,}01\ \text{mol/L}" />.
+
+<BlockMath math="\mathrm{pH} = -\lg(0{,}01) = -\lg(10^{-2}) = 2" />
+
+Prüf das mit der Verdünnungsregel: Säure mit <InlineMath math="0{,}1\ \text{mol/L}" /> hat pH <InlineMath math="1" />, und diese Säure ist zehnmal verdünnter, also steigt der pH-Wert um eine Einheit auf <InlineMath math="2" />.
+
+**Lösung 2**: Die Stoffmenge Natriumhydroxid ändert sich beim Verdünnen nicht, also nutzt du <InlineMath math="c_1V_1 = c_2V_2" />:
+
+<BlockMath math="V_1 = \frac{0{,}40 \cdot 500}{2{,}0} = 100\ \text{mL}" />
+
+Miss <InlineMath math="100\ \text{mL}" /> der konzentrierten Lösung ab und füll mit destilliertem Wasser auf <InlineMath math="500\ \text{mL}" /> auf. Probe: <InlineMath math="2{,}0 \cdot 0{,}100 = 0{,}20" /> mol und <InlineMath math="0{,}40 \cdot 0{,}500 = 0{,}20" /> mol.
+
+**Lösung 3**: Die Gleichung lautet <InlineMath math="\mathrm{HCl} + \mathrm{KOH} \rightarrow \mathrm{KCl} + \mathrm{H_2O}" />, das Stoffmengenverhältnis ist <InlineMath math="1 : 1" />.
+
+<BlockMath math="c_b = \frac{c_aV_a}{V_b} = \frac{0{,}50 \cdot 20{,}0}{25{,}0} = 0{,}40\ \text{mol/L}" />
+
+Probe: Säure <InlineMath math="0{,}50 \cdot 0{,}0200 = 0{,}010" /> mol, Lauge <InlineMath math="0{,}40 \cdot 0{,}0250 = 0{,}010" /> mol. Gleich viel, die Neutralisation ist also vollständig.
+
+**Lösung 4**: Essigsäure ist eine **schwache Säure**, die nur teilweise protolysiert. Ihre anfängliche <InlineMath math="\mathrm{H^+}" />-Konzentration ist deshalb viel kleiner als bei Salzsäure, die vollständig protolysiert. Darum startet sie bei einem höheren pH-Wert, etwa <InlineMath math="2{,}9" /> statt <InlineMath math="1" />. Beide Säuren enthalten aber **dieselbe Stoffmenge Säure**, und beide sind einprotonig. Während die <InlineMath math="\mathrm{OH^-}" />-Ionen die <InlineMath math="\mathrm{H^+}" />-Ionen abfangen, protolysieren immer weitere Essigsäuremoleküle, bis alle Säuremoleküle neutralisiert sind. Deshalb braucht es dasselbe Volumen Natronlauge.

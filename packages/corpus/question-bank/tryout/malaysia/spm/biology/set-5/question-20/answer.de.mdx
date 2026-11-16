@@ -1,0 +1,30 @@
+# Jede Zeile in die richtige Richtung lesen
+
+Eine Studie vergleicht die behandelte Gruppe Zeile für Zeile mit der Placebogruppe. Die Richtung zählt: **mehr** Tage bedeuten eine **langsamere** Genesung.
+
+<Chart
+  title={<>Ergebnisse einer Antibiotikastudie bei viraler Halsentzündung</>}
+  bars="apart"
+  categories={["Nebenwirkungen (%)", "Resistente Rachenbakterien (%)"]}
+  series={[
+    { label: "Antibiotikum", mark: "bar", values: [18, 40] },
+    { label: "Placebo", mark: "bar", values: [6, 12] },
+  ]}
+  valueLabel="Patienten (%)"
+  description={<>Nebenwirkungen treten bei <InlineMath math="18\,\%" /> mit Antibiotikum und <InlineMath math="6\,\%" /> mit Placebo auf. Resistente Rachenbakterien finden sich bei <InlineMath math="40\,\%" /> gegenüber <InlineMath math="12\,\%" />.</>}
+/>
+
+<BlockMath math="\text{Genesung}: 6{,}1-6{,}0=+0{,}1\text{ Tag},\qquad \text{Nebenwirkungen}: 18\,\%-6\,\%=12\text{ von }100" />
+
+- I: Die Antibiotikagruppe brauchte <InlineMath math="6{,}1" /> Tage, die Placebogruppe <InlineMath math="6{,}0" />, das Antibiotikum verkürzte die Genesung also überhaupt nicht. Das passt, denn Antibiotika wirken auf Bakterien, und die Infektion ist viral. Aussage I ist falsch.
+- II: <InlineMath math="18" /> von <InlineMath math="100" /> mit Antibiotikum hatten Nebenwirkungen, gegenüber <InlineMath math="6" /> mit Placebo, etwa <InlineMath math="12" /> von <InlineMath math="100" /> hatten also durch das Mittel verursachte Nebenwirkungen. Aussage II stimmt.
+- III: Einige Rachenbakterien waren schon resistent. Das Antibiotikum beseitigte ihre empfindlichen Nachbarn, und die resistenten vermehrten sich, von <InlineMath math="12\,\%" /> auf <InlineMath math="40\,\%" /> der Patienten. Aussage III stimmt.
+- IV: Mutationen entstehen zufällig, ob ein Antibiotikum da ist oder nicht. Das Antibiotikum **selektiert** nur die resistenten Bakterien, die es schon gibt. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III liest <InlineMath math="6{,}1" /> gegen <InlineMath math="6{,}0" /> verkehrt herum, **als ob mehr Tage schnellere Genesung bedeuteten**.
+- Nur III und IV verwirft II und lässt das Mittel **die Mutationen verursachen, die es selektiert**.
+- Nur I und II macht den Fehler in I und **verwirft die Selektion, die den Anstieg auf <InlineMath math="40\%" /> erklärt**.

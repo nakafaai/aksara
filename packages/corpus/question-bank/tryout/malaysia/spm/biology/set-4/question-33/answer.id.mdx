@@ -1,0 +1,30 @@
+# Bandingkan rasio dan ukuran kelahiran dengan prediksi persilangan biasa
+
+Dua induk kuning yang sama-sama menghasilkan anak abu-abu pasti keduanya <InlineMath math="Yy" />. Persilangan biasa <InlineMath math="Yy\times Yy" /> memberi **rasio <InlineMath math="3:1" />**, tetapi di sini <InlineMath math="\tfrac{160}{80}=2:1" />, dan jumlah anak per kelahiran lebih kecil.
+
+<Mermaid
+  title={<>Nasib Tiap Genotipe dari Dua Induk Kuning</>}
+  description={<>Dua induk kuning heterozigot menghasilkan YY, Yy, dan yy dengan rasio <InlineMath math="1:2:1" />. Embrio YY mati sebelum lahir, jadi anak yang lahir kuning dan abu-abu dengan rasio <InlineMath math="2:1" />.</>}
+  chart={"flowchart LR\n  P[Kuning Yy × kuning Yy] --> A[1 YY: mati sebelum lahir]\n  P --> B[2 Yy: kuning]\n  P --> C[1 yy: abu-abu]"}
+/>
+
+<Chart
+  title={<>Anak yang Lahir dan Ukuran Kelahiran</>}
+  bars="apart"
+  categories={["Kuning × kuning", "Kuning × abu-abu"]}
+  series={[
+    { label: "Rata-rata jumlah anak per kelahiran", mark: "bar", values: [6, 8] },
+  ]}
+  valueLabel="Rata-rata jumlah anak per kelahiran"
+  description={<>Kelahiran dari dua induk kuning rata-rata <InlineMath math="6" /> anak, dan dari induk kuning dan abu-abu rata-rata <InlineMath math="8" /> anak.</>}
+/>
+
+Jika seperempat <InlineMath math="YY" /> mati sebelum lahir, yang bertahan adalah <InlineMath math="2" /> kuning <InlineMath math="(Yy)" /> banding <InlineMath math="1" /> abu-abu <InlineMath math="(yy)" />, cocok dengan <InlineMath math="160:80" />. Kehilangan seperempat tiap kelahiran juga cocok dengan ukurannya: <InlineMath math="\tfrac{3}{4}\times8=6" /> anak, tepat rata-rata untuk dua induk kuning. Persilangan induk kuning dengan induk abu-abu tidak pernah menghasilkan <InlineMath math="YY" />, jadi ukuran kelahirannya tetap <InlineMath math="8" />.
+
+Jadi embrio dengan dua alel kuning mati sebelum lahir, dan setiap tikus kuning yang lahir heterozigot.
+
+# Mengapa pilihan lain salah
+
+- Kuning resesif bertentangan dengan data, **karena dua induk resesif tidak mungkin menghasilkan anak abu-abu**.
+- Kematian setelah lahir tidak bisa menjelaskan hasilnya, **karena anak dihitung saat lahir** dan jumlah per kelahiran sudah lebih kecil.
+- Induk kuning homozigot hanya menghasilkan anak kuning, **yang justru menaikkan bagian anak kuning, bukan menurunkannya**.

@@ -1,0 +1,29 @@
+# Gandakan pilihan untuk tiap pasangan, lalu kalikan kedua induk
+
+Tiap pasangan bisa berjajar dengan dua cara, bebas dari yang lain, jadi <InlineMath math="n" /> pasangan memberi <InlineMath math="2^n" /> jenis gamet. Gamet mana pun dari satu induk bisa bertemu gamet mana pun dari induk lain, jadi **kedua bilangan dikalikan**.
+
+<BlockMath math="2^4=16,\qquad 16\times16=256,\qquad 2^{23}=8\,388\,608" />
+
+<Chart
+  title={<>Jenis Gamet untuk Tiap Jumlah Pasangan Kromosom</>}
+  bars="apart"
+  categories={["Satu pasang", "Dua pasang", "Tiga pasang", "Empat pasang"]}
+  series={[
+    { label: "Jenis gamet", mark: "bar", values: [2, 4, 8, 16] },
+  ]}
+  valueLabel="Jenis gamet"
+  description={<>Tiap pasangan tambahan menggandakan jenis gamet: <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="8" />, dan <InlineMath math="16" /> untuk satu sampai empat pasang.</>}
+/>
+
+- I: empat pasangan memberi <InlineMath math="2^4=16" /> jenis gamet. Pernyataan I benar.
+- II: tiap dari <InlineMath math="16" /> sel telur bisa bertemu tiap dari <InlineMath math="16" /> sperma, jadi ada <InlineMath math="16\times16=256" /> kombinasi, bukan <InlineMath math="16+16=32" />. Pernyataan II salah.
+- III: <InlineMath math="2^{23}" /> sekitar <InlineMath math="8{,}4" /> juta. Pernyataan III benar.
+- IV: pindah silang menukar potongan antar kromosom homolog, membentuk kombinasi alel baru di tiap kromosom, jadi jumlah gamet sebenarnya jauh lebih besar. Pernyataan IV benar.
+
+Jadi pernyataan I, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja menjumlahkan gamet kedua induk di II, **padahal kombinasi dikalikan**, dan menolak IV.
+- II dan IV saja menolak I dan III, **penggandaan untuk tiap pasangan**.
+- I, II, III, dan IV menerima <InlineMath math="32" />, **yang menjumlahkan padahal seharusnya mengalikan**.

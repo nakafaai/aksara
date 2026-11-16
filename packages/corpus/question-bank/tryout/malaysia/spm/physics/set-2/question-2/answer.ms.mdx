@@ -1,0 +1,28 @@
+# Tukar nisbah ketinggian kepada nisbah laju
+
+Kecerunan ialah nisbah ketinggian. Ketinggian berkadar dengan kuasa dua laju, jadi **setiap lantunan mengekalkan <InlineMath math="\sqrt{0.64}=0.8" /> daripada laju**, dan satu penerbangan naik dan turun mengambil <InlineMath math="2v/g" />, jadi setiap penerbangan ialah <InlineMath math="0.8" /> kali yang sebelumnya.
+
+<BlockMath math="\begin{aligned}
+t_0&=\sqrt{\frac{2(2.00)}{10}}=0.632\text{ s},\quad v_0=g\,t_0=6.32\text{ m s}^{-1}\\
+\text{penerbangan 1}&=\frac{2(0.8\,v_0)}{g}=1.6\,t_0=1.01\text{ s}\\
+\text{penerbangan 2}&=0.8\times1.01=0.81\text{ s}
+\end{aligned}" />
+
+<Chart
+  title={<>Masa setiap bahagian gerakan</>}
+  description={<>Carta bar: jatuhan pertama mengambil <InlineMath math="0.63\text{ s}" />, penerbangan selepas lantunan pertama <InlineMath math="1.01\text{ s}" /> dan penerbangan selepas lantunan kedua <InlineMath math="0.81\text{ s}" />, jumlahnya <InlineMath math="2.45\text{ s}" />.</>}
+  bars="apart"
+  categories={["Jatuhan pertama", "Penerbangan 1", "Penerbangan 2"]}
+  series={[
+    { label: "Masa", mark: "bar", values: [0.63, 1.01, 0.81] },
+  ]}
+  valueLabel="Masa (s)"
+/>
+
+Hentaman ketiga menamatkan penerbangan kedua: <InlineMath math="0.63+1.01+0.81=2.45\text{ s}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1.96\text{ s}" /> **mengecilkan setiap masa penerbangan dengan <InlineMath math="0.64" />, seolah-olah masa mengikut ketinggian**.
+- <InlineMath math="1.64\text{ s}" /> berhenti pada hentaman kedua.
+- <InlineMath math="1.54\text{ s}" /> mengira setiap penerbangan sehala sahaja, naik tetapi tidak turun semula.

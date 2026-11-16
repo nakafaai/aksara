@@ -1,0 +1,28 @@
+# Ubah rasio ketinggian menjadi rasio kelajuan
+
+Gradiennya adalah rasio ketinggian. Ketinggian sebanding dengan kuadrat kelajuan, jadi **tiap pantulan menyisakan <InlineMath math="\sqrt{0{,}64}=0{,}8" /> dari kelajuan**, dan satu lintasan naik dan turun memakan <InlineMath math="2v/g" />, jadi tiap lintasan <InlineMath math="0{,}8" /> kali lintasan sebelumnya.
+
+<BlockMath math="\begin{aligned}
+t_0&=\sqrt{\frac{2(2{,}00)}{10}}=0{,}632\text{ s},\quad v_0=g\,t_0=6{,}32\text{ m s}^{-1}\\
+\text{lintasan 1}&=\frac{2(0{,}8\,v_0)}{g}=1{,}6\,t_0=1{,}01\text{ s}\\
+\text{lintasan 2}&=0{,}8\times1{,}01=0{,}81\text{ s}
+\end{aligned}" />
+
+<Chart
+  title={<>Waktu tiap bagian gerak</>}
+  description={<>Diagram batang: jatuh pertama memakan <InlineMath math="0{,}63\text{ s}" />, lintasan setelah pantulan pertama <InlineMath math="1{,}01\text{ s}" />, dan lintasan setelah pantulan kedua <InlineMath math="0{,}81\text{ s}" />, totalnya <InlineMath math="2{,}45\text{ s}" />.</>}
+  bars="apart"
+  categories={["Jatuh pertama", "Lintasan 1", "Lintasan 2"]}
+  series={[
+    { label: "Waktu", mark: "bar", values: [0.63, 1.01, 0.81] },
+  ]}
+  valueLabel="Waktu (s)"
+/>
+
+Benturan ketiga mengakhiri lintasan kedua: <InlineMath math="0{,}63+1{,}01+0{,}81=2{,}45\text{ s}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}96\text{ s}" /> **memperkecil tiap waktu lintasan dengan <InlineMath math="0{,}64" />, seolah waktu mengikuti ketinggian**.
+- <InlineMath math="1{,}64\text{ s}" /> berhenti di benturan kedua.
+- <InlineMath math="1{,}54\text{ s}" /> menghitung tiap lintasan satu arah saja, naik tetapi tidak turun lagi.

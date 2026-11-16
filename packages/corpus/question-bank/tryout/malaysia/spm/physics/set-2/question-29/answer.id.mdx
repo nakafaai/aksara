@@ -1,0 +1,26 @@
+# Daya pada tegangan yang lebih rendah
+
+**Rating itu menetapkan hambatan, bukan daya**. Dengan <InlineMath math="R" /> tetap, daya sebanding dengan kuadrat tegangan.
+
+<BlockMath math="P=2000\times\left(\frac{220}{240}\right)^2=1681\text{ W},\qquad P_{\text{air}}=0{,}90\times1681=1513\text{ W}" />
+
+<Chart
+  title={<>Daya elemen pemanas</>}
+  description={<>Diagram batang: <InlineMath math="2000\text{ W}" /> pada rating <InlineMath math="240\text{ V}" />, <InlineMath math="1681\text{ W}" /> pada <InlineMath math="220\text{ V}" />, dan <InlineMath math="1513\text{ W}" /> darinya sampai ke air.</>}
+  bars="apart"
+  categories={["Rating", "Pada 220 V", "Ke dalam air"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [2000, 1681, 1513] },
+  ]}
+  valueLabel="Daya (W)"
+/>
+
+# Waktu untuk memanaskan air
+
+<BlockMath math="t=\frac{1{,}5\times4200\times75}{1513}=312\text{ s}=5{,}2\text{ menit}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="4{,}4\text{ menit}" /> **memakai rating <InlineMath math="2{,}0\text{ kW}" /> pada tegangan yang lebih rendah**.
+- <InlineMath math="4{,}8\text{ menit}" /> menskalakan daya dengan tegangan, bukan dengan kuadratnya.
+- <InlineMath math="4{,}2\text{ menit}" /> membagi daya dengan <InlineMath math="0{,}90" />, bukan mengalikannya, seolah kerugian menambah kalor.

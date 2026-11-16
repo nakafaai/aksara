@@ -1,0 +1,43 @@
+# Ikut cahaya melalui kanta, cermin dan kanta sekali lagi
+
+Pada laluan pertama kanta akan membentuk imej pada <InlineMath math="v" /> dengan <InlineMath math="\dfrac1{20}=\dfrac1{30}+\dfrac1v" />, jadi <InlineMath math="v=60\text{ cm}" />. Titik itu terletak <InlineMath math="20\text{ cm}" /> melepasi cermin, jadi cahaya tidak sampai ke situ. **Cermin melipat cahaya yang menumpu itu kembali, dan ia bertemu <InlineMath math="20\text{ cm}" /> di hadapan cermin**, iaitu <InlineMath math="20\text{ cm}" /> dari kanta.
+
+<MathVisual
+  title={<>Kedudukan imej di sepanjang paksi</>}
+  description={<>Kanta pada <InlineMath math="0" />, objek pada <InlineMath math="-30\text{ cm}" /> dan cermin pada <InlineMath math="40\text{ cm}" />. Kanta sahaja akan membentuk imej pada <InlineMath math="60\text{ cm}" />, melepasi cermin. Cermin melipatnya kembali ke <InlineMath math="20\text{ cm}" />, tepat pada titik fokus kanta.</>}
+  labels={{
+    obj: <>objek</>,
+    lens: <>kanta</>,
+    mirror: <>cermin</>,
+    first: <>imej yang sepatutnya, <InlineMath math="60\text{ cm}" /></>,
+    fold: <>imej terlipat pada <InlineMath math="F" />, <InlineMath math="20\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -35, max: 65 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -34, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "obj", kind: "vector", appearance: "primary", from: { x: -30, y: 0 }, to: { x: -30, y: 6 } },
+      { id: "lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -9 }, to: { x: 0, y: 9 } },
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 40, y: -9 }, to: { x: 40, y: 9 } },
+      { id: "first", kind: "point", appearance: "warning", at: { x: 60, y: 0 } },
+      { id: "fold", kind: "point", appearance: "answer", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "obj", objectId: "obj", at: { x: -30, y: 6 }, placement: "above" },
+      { key: "lens", objectId: "lens", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 40, y: 9 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "fold", objectId: "fold", at: { x: 20, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Titik itu ialah titik fokus kanta. Cahaya yang mencapah dari titik fokus keluar dari kanta cembung selari dengan paksi, jadi <InlineMath math="v\to\infty" /> dan tiada imej akhir terbentuk.
+
+# Mengapa pilihan lain salah
+
+- Imej nyata <InlineMath math="30\text{ cm}" /> di hadapan kanta menggunakan <InlineMath math="u=60\text{ cm}" /> semasa kembali, iaitu jarak ke imej yang sepatutnya, dan bukan <InlineMath math="20\text{ cm}" />. **Cermin memindahkan imej ke <InlineMath math="20\text{ cm}" /> dari kanta**.
+- Imej nyata <InlineMath math="20\text{ cm}" /> di belakang kanta ialah tempat cahaya pantulan bertemu, sebelum ia melalui kanta semula.
+- Imej nyata <InlineMath math="60\text{ cm}" /> di hadapan kanta hanya mencerminkan hasil laluan pertama, tanpa mengambil kira kedudukan cermin.

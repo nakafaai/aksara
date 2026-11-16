@@ -1,0 +1,25 @@
+# Raise the share of area to the power in the rule, and undo it for the reverse question
+
+With <InlineMath math="S=cA^{0.25}" />, the constant cancels when two areas are compared, so the **share of species** kept is the share of area raised to the power <InlineMath math="0.25" />. To find the area for a chosen share of species, raise that share to the power <InlineMath math="4" />.
+
+<BlockMath math="\frac{S_{\text{new}}}{S_{\text{old}}}=\left(\frac{A_{\text{new}}}{A_{\text{old}}}\right)^{0.25}=0.1^{0.25}\approx0.56" />
+
+<BlockMath math="0.8=\left(\frac{A_{\text{kept}}}{A_{\text{old}}}\right)^{0.25}\ \Rightarrow\ \frac{A_{\text{kept}}}{A_{\text{old}}}=0.8^4\approx0.41" />
+
+<Chart
+  title={<>Share of Species Kept for Each Share of Forest Kept</>}
+  categories={["10%", "25%", "41%", "60%", "100%"]}
+  series={[
+    { label: "Species kept", mark: "line", values: [56, 71, 80, 88, 100] },
+  ]}
+  valueLabel="Species kept (%)"
+  description={<>Keeping <InlineMath math="10\%" /> of the forest keeps about <InlineMath math="56\%" /> of its species, and keeping <InlineMath math="41\%" /> keeps <InlineMath math="80\%" />. Species fall far more slowly than area.</>}
+/>
+
+About <InlineMath math="56\%" /> of the species remain on <InlineMath math="10\%" /> of the area, and <InlineMath math="41\%" /> of the area would keep <InlineMath math="80\%" />. Species are lost much more slowly than habitat at first, but the loss speeds up as the last fragments go.
+
+# Why the other options are wrong
+
+- <InlineMath math="10\%" /> and <InlineMath math="80\%" /> assumes species fall **in proportion to area**, ignoring the power <InlineMath math="0.25" />.
+- <InlineMath math="56\%" /> and <InlineMath math="80\%" /> gets the first part right but keeps <InlineMath math="80\%" /> of the area for <InlineMath math="80\%" /> of the species, **instead of raising <InlineMath math="0.8" /> to the power <InlineMath math="4" />**.
+- <InlineMath math="32\%" /> and <InlineMath math="64\%" /> uses a **power of <InlineMath math="0.5" /> instead of <InlineMath math="0.25" />**, a square root and a square.

@@ -1,0 +1,32 @@
+# Count survivors first, then count alleles, not people
+
+The share of **carriers** is a share of people. The **allele frequency** counts copies: each carrier holds one <InlineMath math="\text{Hb}^S" />, each <InlineMath math="\text{Hb}^S\text{Hb}^S" /> person two, out of two alleles per person.
+
+<BlockMath math="\text{adults}: 640\times0.80=512,\quad 320\times0.95=304,\quad 40\times0.10=4,\qquad 512+304+4=820" />
+
+<BlockMath math="\text{carriers}: \frac{304}{820}\approx37\%,\qquad \text{Hb}^S: \frac{304+2\times4}{2\times820}=\frac{312}{1640}\approx19\%" />
+
+<Chart
+  title={<>Newborns and Survivors of Each Genotype</>}
+  bars="apart"
+  categories={["Two normal alleles", "Carriers", "Two sickle alleles"]}
+  series={[
+    { label: "At birth", mark: "bar", values: [640, 320, 40] },
+    { label: "Reaching adulthood", mark: "bar", values: [512, 304, 4] },
+  ]}
+  valueLabel="Number per thousand births"
+  description={<>Of <InlineMath math="640" /> <InlineMath math="\text{Hb}^A\text{Hb}^A" /> newborns, <InlineMath math="512" /> reach adulthood. Of <InlineMath math="320" /> carriers, <InlineMath math="304" /> do. Of <InlineMath math="40" /> <InlineMath math="\text{Hb}^S\text{Hb}^S" /> newborns, only <InlineMath math="4" /> do.</>}
+/>
+
+- I: <InlineMath math="304" /> of <InlineMath math="820" /> adults are carriers, about <InlineMath math="37\%" />, against <InlineMath math="320" /> of <InlineMath math="1000" /> newborns, <InlineMath math="32\%" />. Statement I is correct.
+- II: <InlineMath math="37\%" /> is the share of carrier **people**. Counting alleles gives about <InlineMath math="19\%" />, close to the <InlineMath math="20\%" /> at birth, since most <InlineMath math="\text{Hb}^S\text{Hb}^S" /> children die. Statement II is wrong.
+- III: sickle-cell anaemia comes from a **gene mutation**, a change of one base that alters one amino acid in haemoglobin. No part of a chromosome is lost. Statement III is wrong.
+- IV: without malaria, carriers survive no better than <InlineMath math="\text{Hb}^A\text{Hb}^A" /> people, while <InlineMath math="\text{Hb}^S\text{Hb}^S" /> children still die young, so <InlineMath math="\text{Hb}^S" /> is steadily removed. Statement IV is correct.
+
+So statements I and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and IV only takes the **share of carriers as the allele frequency**.
+- II and III only rejects both correct statements and accepts a **chromosome mutation**.
+- I, III and IV only calls sickle-cell anaemia a chromosome mutation, **although one base change causes it**.

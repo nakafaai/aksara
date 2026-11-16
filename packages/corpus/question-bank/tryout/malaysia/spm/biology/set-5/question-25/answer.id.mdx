@@ -1,0 +1,29 @@
+# Cari periode gelap tanpa jeda terpanjang, bukan total gelap
+
+Kedua tumbuhan mengukur **panjang kegelapan tanpa jeda**. Kilatan cahaya memecah malam menjadi dua bagian, dan hanya bagian yang lebih panjang yang dihitung. Karena itu, letak kilatan sama pentingnya dengan ada tidaknya kilatan.
+
+| Perlakuan | Bagian gelap (jam) | Bagian terpanjang | X berbunga? | Y berbunga? |
+| --- | --- | --- | --- | --- |
+| P | <InlineMath math="8" /> | <InlineMath math="8" /> | tidak | ya |
+| Q | <InlineMath math="14" /> | <InlineMath math="14" /> | ya | tidak |
+| R | <InlineMath math="7+7" /> | <InlineMath math="7" /> | tidak | ya |
+| S | <InlineMath math="4+14" /> | <InlineMath math="14" /> | ya | tidak |
+
+<Chart
+  title={<>Periode Gelap Tanpa Jeda Terpanjang pada Tiap Perlakuan</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Gelap tanpa jeda terpanjang", mark: "bar", values: [8, 14, 7, 14] },
+  ]}
+  valueLabel="Jam"
+  description={<>Periode gelap tanpa jeda terpanjang adalah <InlineMath math="8" /> jam pada P, <InlineMath math="14" /> pada Q, <InlineMath math="7" /> pada R, dan <InlineMath math="14" /> pada S. Hanya Q dan S mencapai <InlineMath math="11" /> jam yang dibutuhkan tumbuhan X.</>}
+/>
+
+Pada S, kilatan datang lebih awal, jadi <InlineMath math="14" /> jam gelap tanpa jeda masih menyusul. X berbunga pada Q dan S, dan Y berbunga pada P dan R.
+
+# Mengapa pilihan lain salah
+
+- X pada Q saja menganggap **tiap kilatan sebagai pemutus malam**, melewatkan bahwa S masih punya <InlineMath math="14" /> jam tanpa jeda setelah kilatannya.
+- X pada Q, R, dan S menghitung **total gelap**, <InlineMath math="14" /> jam pada R, dan mengabaikan kilatan yang memecahnya menjadi <InlineMath math="7+7" />.
+- X pada P dan R menukar kedua tumbuhan, memberi X **malam pendek yang dibutuhkan Y**.

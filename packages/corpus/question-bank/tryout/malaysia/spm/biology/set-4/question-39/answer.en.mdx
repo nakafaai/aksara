@@ -1,0 +1,24 @@
+# Count the cuts on a circle and the doublings in a culture
+
+A restriction enzyme cuts wherever its **recognition sequence** appears. On a circular plasmid every cut is between two pieces, so the number of fragments equals the number of cuts. After that, the bacteria copy the gene each time they divide.
+
+<Mermaid
+  title={<>Steps in Making Human Insulin in Bacteria</>}
+  description={<>The same restriction enzyme cuts the human DNA and the plasmid, leaving matching sticky ends. DNA ligase joins the gene into the plasmid, which a bacterium takes up. Each division copies the plasmid, and the bacteria make insulin from the human gene.</>}
+  chart={"flowchart LR\n  H[Human DNA] -- restriction enzyme --> G[Insulin gene with sticky ends]\n  P[Plasmid] -- same restriction enzyme --> O[Open plasmid with matching ends]\n  G --> J[DNA ligase joins them]\n  O --> J\n  J --> R[Recombinant plasmid taken up by a bacterium]\n  R --> C[Bacterium divides every 20 minutes, copying the plasmid]\n  C --> I[Bacteria read the gene and make insulin]"}
+/>
+
+<BlockMath math="\text{expected sites}=\frac{12\,288}{4096}=3,\qquad \text{divisions in }10\text{ hours}=\frac{600}{20}=30,\qquad 2^{30}=1\,073\,741\,824" />
+
+- I: one restriction enzyme cuts both DNAs at the same sequence and leaves **sticky ends** that pair. Statement I is correct.
+- II: <InlineMath math="12\,288" /> bases hold about <InlineMath math="3" /> sites. A circle cut in <InlineMath math="3" /> places falls into <InlineMath math="3" /> fragments, not <InlineMath math="4" />. Statement II is correct.
+- III: <InlineMath math="30" /> doublings turn one bacterium into <InlineMath math="2^{30}" />, just over a thousand million cells, each carrying the gene. Statement III is correct.
+- IV: the bacteria keep their own DNA and read the one added gene, because all living things share the same genetic code. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, often after multiplying <InlineMath math="30\times2" /> **instead of raising** <InlineMath math="2" /> **to the power** <InlineMath math="30" />.
+- II and III only rejects I, missing that **matching sticky ends** need the same restriction enzyme.
+- I, II and IV only claims the bacteria become human, **although only one gene was added**.

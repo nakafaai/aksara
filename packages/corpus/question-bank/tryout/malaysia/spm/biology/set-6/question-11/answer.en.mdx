@@ -1,0 +1,32 @@
+# Turn every percentage into a number of cells
+
+A percentage only shares out the white cells of **that sample**. When the total changes, compare actual numbers of cells per cubic millimetre.
+
+<BlockMath math="\text{X}: 15\,000\times0.85=12\,750\ \text{neutrophils},\quad 15\,000\times0.10=1500\ \text{lymphocytes}" />
+
+<BlockMath math="\text{Y}: 9000\times0.35=3150,\quad 9000\times0.60=5400,\qquad \text{normal}: 4200,\ 2100" />
+
+<Chart
+  title={<>Neutrophils and Lymphocytes per Cubic Millimetre</>}
+  bars="apart"
+  categories={["Normal", "Patient X", "Patient Y"]}
+  series={[
+    { label: "Neutrophils", mark: "bar", values: [4200, 12750, 3150] },
+    { label: "Lymphocytes", mark: "bar", values: [2100, 1500, 5400] },
+  ]}
+  valueLabel="Cells per cubic millimetre"
+  description={<>Patient X has about <InlineMath math="12\,750" /> neutrophils and <InlineMath math="1500" /> lymphocytes. Patient Y has <InlineMath math="3150" /> neutrophils and <InlineMath math="5400" /> lymphocytes. Normal blood has <InlineMath math="4200" /> and <InlineMath math="2100" />.</>}
+/>
+
+- I: <InlineMath math="\tfrac{12\,750}{4200}\approx3" />, so X has about three times the normal neutrophils. Statement I is correct.
+- II: Y has <InlineMath math="3150" /> neutrophils against a normal <InlineMath math="4200" />, fewer, even though its total white count is higher. Statement II is correct.
+- III: a big rise in phagocytes, as in X, is typical of bacteria. A rise in lymphocytes, as in Y, is typical of a virus, which is fought by antibodies and by killing infected cells. Statement III is correct.
+- IV: X's lymphocyte **percentage** falls to a third, from <InlineMath math="30" /> to <InlineMath math="10" />, but the number falls only from <InlineMath math="2100" /> to <InlineMath math="1500" />, about <InlineMath math="71\%" /> of normal. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and III only rejects II, **reading Y's high total as more neutrophils**.
+- II, III and IV only rejects I and accepts IV, **comparing percentages instead of counts** in both.
+- I, II, III and IV accepts IV, **although 1500 is not a third of 2100**.

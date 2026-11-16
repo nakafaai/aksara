@@ -1,0 +1,44 @@
+# Baca spring penuh, kemudian bahagi dua
+
+Kecerunan ialah <InlineMath math="4\pi^2/k" /> dan pintasan dibahagi kecerunan ialah <InlineMath math="m_s/3" />. **Memotong spring kepada dua mengubah dua perkara**: setiap separuh memanjang separuh sahaja di bawah daya yang sama, jadi pemalar springnya berganda, dan jisimnya separuh.
+
+<BlockMath math="\begin{aligned}
+\frac{m_s}{3}&=\frac{0.008}{0.16}=0.050\text{ kg}\\
+\text{separuh spring: kecerunan}&=\frac{0.16}{2}=0.08,\quad \frac{m_s}{3}\to0.025\text{ kg}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Spring penuh dan separuh spring</>}
+  description={<>Dua garis lurus <InlineMath math="T^2" /> melawan <InlineMath math="m" />: spring penuh dengan kecerunan <InlineMath math="0.16" /> dan pintasan <InlineMath math="0.008\text{ s}^2" />, dan separuh spring dengan kecerunan <InlineMath math="0.08" /> dan pintasan <InlineMath math="0.002\text{ s}^2" />. Aras <InlineMath math="T^2=0.16\text{ s}^2" /> bertemu garis separuh spring pada <InlineMath math="m=1.98\text{ kg}" />.</>}
+  labels={{
+    whole: <>spring penuh, kecerunan <InlineMath math="0.16" /></>,
+    half: <>separuh spring, kecerunan <InlineMath math="0.08" /></>,
+    level: <><InlineMath math="T^2=0.16\text{ s}^2" /></>,
+    hit: <><InlineMath math="m=1.98\text{ kg}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 2.3 }, y: { min: -0.03, max: 0.42 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "whole", kind: "segment", appearance: "secondary", from: { x: -0.05, y: 0 }, to: { x: 2.2, y: 0.36 } },
+      { id: "half", kind: "segment", appearance: "primary", from: { x: -0.025, y: 0 }, to: { x: 2.2, y: 0.178 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 0.16 }, to: { x: 2.2, y: 0.16 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 1.975, y: 0.16 } },
+    ],
+    labels: [
+      { key: "whole", objectId: "whole", at: { x: 1.4, y: 0.232 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 1.2, y: 0.098 }, placement: "below-right" },
+      { key: "level", objectId: "level", at: { x: 0.4, y: 0.16 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 1.975, y: 0.16 }, placement: "above" },
+    ],
+  }}
+/>
+
+<BlockMath math="0.40^2=0.08\,(m+0.025)\ \Rightarrow\ m=2.000-0.025=1.98\text{ kg}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1.95\text{ kg}" /> **menggandakan <InlineMath math="k" /> tetapi mengekalkan sebutan jisim spring penuh <InlineMath math="0.050\text{ kg}" />**.
+- <InlineMath math="0.98\text{ kg}" /> menyeparuhkan jisim tetapi mengekalkan pemalar spring lama.
+- <InlineMath math="0.95\text{ kg}" /> menggunakan spring penuh seolah-olah ia tidak pernah dipotong.

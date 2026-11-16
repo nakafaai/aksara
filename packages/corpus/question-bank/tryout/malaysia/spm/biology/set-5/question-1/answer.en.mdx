@@ -1,0 +1,30 @@
+# Judge a result by its size, its sample and how well its repeats agree
+
+A difference between two means is only convincing if it is **larger than the spread** you would get by chance. A tiny sample and widely scattered repeats both make chance a likely explanation.
+
+<BlockMath math="\text{Q, treated}: \frac{36+39+33}{150}=\frac{108}{150}=72\%,\qquad \text{P}: \text{one seed}=\frac{1}{5}=20\text{ points}" />
+
+<Chart
+  title={<>Germination in Each Student's Experiment</>}
+  bars="apart"
+  categories={["Student P", "Student Q", "Student R"]}
+  series={[
+    { label: "Without gibberellin (%)", mark: "bar", values: [60, 60, 60] },
+    { label: "With gibberellin (%)", mark: "bar", values: [100, 72, 72] },
+  ]}
+  valueLabel="Germination (%)"
+  description={<>P gets <InlineMath math="60\%" /> and <InlineMath math="100\%" /> from <InlineMath math="5" /> seeds. Q and R both get means of <InlineMath math="60\%" /> and <InlineMath math="72\%" /> from <InlineMath math="150" /> seeds, but Q's three dishes agree closely and R's vary widely.</>}
+/>
+
+- I: with only <InlineMath math="5" /> seeds, each seed is <InlineMath math="20" /> percentage points, so a single seed can swing P's result. P's <InlineMath math="40" />-point difference is the least reliable. Statement I is correct.
+- II: Q and R both get <InlineMath math="60\%" /> against <InlineMath math="72\%" />, but Q's dishes stay within a few seeds of each other while R's range from <InlineMath math="15" /> to <InlineMath math="48" />. Q's difference stands out from its spread, R's does not. Statement II is correct.
+- III: Q's treated dishes give <InlineMath math="108" /> out of <InlineMath math="150" /> seeds, <InlineMath math="72\%" />. Statement III is correct.
+- IV: R's scattered results are **inconclusive**. They cannot show an effect, but they cannot prove there is none either. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, often after averaging the three counts as <InlineMath math="36" /> and forgetting that each dish held <InlineMath math="50" /> seeds.
+- II and III only trusts P's large difference, **although one seed changes it by twenty points**.
+- I, II and IV only turns inconclusive results into proof, **which scattered data can never give**.

@@ -1,0 +1,30 @@
+# Watch what happens to each inhibitor's effect as substrate floods in
+
+An inhibitor that **shares the active site** with the substrate loses ground when substrate is plentiful, because substrate molecules win most of the encounters. An inhibitor that binds **elsewhere** changes the enzyme's shape, so extra substrate cannot undo it.
+
+<Chart
+  title={<>Rate of Reaction With and Without Inhibitors</>}
+  categories={["1 mM", "2 mM", "5 mM", "10 mM", "20 mM", "40 mM"]}
+  series={[
+    { label: "No inhibitor", mark: "line", values: [20, 33, 56, 71, 83, 91] },
+    { label: "Inhibitor X", mark: "line", values: [10, 18, 36, 53, 71, 83] },
+    { label: "Inhibitor Y", mark: "line", values: [10, 17, 28, 36, 42, 45] },
+  ]}
+  valueLabel="Rate (relative)"
+  description={<>Without inhibitor the rate rises to <InlineMath math="91" />. With X it rises to <InlineMath math="83" />, closing in on the uninhibited rate as substrate increases. With Y it levels off near <InlineMath math="45" />, about half the maximum.</>}
+/>
+
+<BlockMath math="\text{X at }1\text{ mM}: \frac{10}{20}=50\%\text{ of normal},\qquad \text{X at }40\text{ mM}: \frac{83}{91}\approx91\%,\ \text{a fall of about }9\%" />
+
+- I: at <InlineMath math="1\text{ mM}" />, X halves the rate, but at <InlineMath math="40\text{ mM}" /> it lowers it by only about <InlineMath math="9\%" />. Its effect fades as substrate rises, as expected for a **competitive** inhibitor. Statement I is correct.
+- II: Y levels off near <InlineMath math="45" />, about half of <InlineMath math="91" />, and even <InlineMath math="40\text{ mM}" /> substrate cannot lift it. Statement II is correct.
+- III: <InlineMath math="91-83=8" />, and <InlineMath math="\tfrac{8}{91}\approx9\%" />. Statement III is correct.
+- IV: if Y used the active site, extra substrate would crowd it out as it does with X. Y's effect stays, so Y binds somewhere else and changes the enzyme's shape. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, often after dividing <InlineMath math="8" /> by <InlineMath math="83" /> instead of by the **uninhibited rate**.
+- II and III only rejects I, missing that X's effect **shrinks from half to a tenth**.
+- I, II and IV only places Y on the active site, **although substrate cannot push it aside**.

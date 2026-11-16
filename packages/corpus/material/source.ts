@@ -6,7 +6,9 @@ import { lessonAiDsLinearMethodsMaterial } from "#corpus/material/lesson/ai-ds/l
 import { lessonBiologyBiodiversityMaterial } from "#corpus/material/lesson/biology/biodiversity/source";
 import { lessonBiologyClimateChangeMaterial } from "#corpus/material/lesson/biology/climate-change/source";
 import { lessonBiologyVirusRoleMaterial } from "#corpus/material/lesson/biology/virus-role/source";
+import { lessonChemistryAcidBaseSaltMaterial } from "#corpus/material/lesson/chemistry/acid-base-salt/source";
 import { lessonChemistryBasicChemistryLawsMaterial } from "#corpus/material/lesson/chemistry/basic-chemistry-laws/source";
+import { lessonChemistryChemicalBondMaterial } from "#corpus/material/lesson/chemistry/chemical-bond/source";
 import { lessonChemistryGreenChemistryMaterial } from "#corpus/material/lesson/chemistry/green-chemistry/source";
 import { lessonChemistryStructureMatterMaterial } from "#corpus/material/lesson/chemistry/structure-matter/source";
 import { lessonMathematicsAnalyticGeometryMaterial } from "#corpus/material/lesson/mathematics/analytic-geometry/source";
@@ -46,7 +48,9 @@ const materialSourcePrograms = [
   lessonBiologyBiodiversityMaterial,
   lessonBiologyClimateChangeMaterial,
   lessonBiologyVirusRoleMaterial,
+  lessonChemistryAcidBaseSaltMaterial,
   lessonChemistryBasicChemistryLawsMaterial,
+  lessonChemistryChemicalBondMaterial,
   lessonChemistryGreenChemistryMaterial,
   lessonChemistryStructureMatterMaterial,
   lessonMathematicsAnalyticGeometryMaterial,
