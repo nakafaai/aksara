@@ -231,34 +231,65 @@ export function contourLines(
   const found = Arr.flatMap(squares, (cell) => cellSegments(field, cell));
   return join(Arr.map(found, ([from, to], index) => ({ from, index, to })));
 }
+/** The inner part of a cell the outline cuts: its inside corners and the crossings between them. */
+function cutShape([a, b, c, d]: Square): Option.Option<SampleBranch> {
+  const outline = Arr.flatMap(
+    [
+      [a, b],
+      [b, c],
+      [c, d],
+      [d, a],
+    ] as const,
+    ([from, to]) => [
+      ...(inside(from) ? [from.point] : []),
+      ...Option.toArray(Option.map(crossing(from, to), ({ point }) => point)),
+    ]
+  );
+  return outline.length >= 3 ? Option.some(outline) : Option.none();
+}
+
+/** The rectangle a run of whole cells stacked in one column covers, from its lowest cell to its highest. */
+function stack([a, b]: Square, [, , c, d]: Square): SampleBranch {
+  return [a.point, b.point, c.point, d.point];
+}
+
 /**
- * Shades the part of the frame where a field is at least zero, one shape per
- * cell: the corners inside and the crossings between them, so a cell wholly
- * inside is its square and a cell the outline cuts keeps only its inner part.
+ * Shades the part of the frame where a field is at least zero. A cell the
+ * outline cuts keeps only its inner part, and every run of whole cells
+ * stacked in one column shades as one rectangle, so a region costs a shape
+ * per column run and cut cell rather than one per cell: a 240-cell frame
+ * would otherwise write tens of thousands of squares into the page.
  */
 export function contourFill(
   field: SampleField,
   box: SampleBox,
   cells: number = CONTOUR_CELLS
 ): readonly SampleBranch[] {
-  return Arr.filterMap(
-    Arr.getSomes(Arr.map(grid(field, box, cells), square)),
-    ([a, b, c, d]) => {
-      const outline = Arr.flatMap(
-        [
-          [a, b],
-          [b, c],
-          [c, d],
-          [d, a],
-        ] as const,
-        ([from, to]) => [
-          ...(inside(from) ? [from.point] : []),
-          ...Option.toArray(
-            Option.map(crossing(from, to), ({ point }) => point)
-          ),
-        ]
-      );
-      return outline.length >= 3 ? Result.succeed(outline) : Result.failVoid;
+  const shapes = MutableList.make<SampleBranch>();
+  let run = Option.none<readonly [Square, Square]>();
+  /** Shades the open run, if any, as its rectangle and ends it. */
+  const close = () => {
+    if (Option.isSome(run)) {
+      MutableList.append(shapes, stack(...run.value));
+      run = Option.none();
     }
-  );
+  };
+  // The grid lists cells column by column from the bottom, so a column's run is consecutive.
+  for (const cell of Arr.getSomes(Arr.map(grid(field, box, cells), square))) {
+    if (!Arr.every(cell, inside)) {
+      close();
+      for (const shape of Option.toArray(cutShape(cell))) {
+        MutableList.append(shapes, shape);
+      }
+      continue;
+    }
+    if (Option.isSome(run) && run.value[1][3].key === cell[0].key) {
+      run = Option.some([run.value[0], cell] as const);
+      continue;
+    }
+    close();
+    run = Option.some([cell, cell] as const);
+  }
+  close();
+  return MutableList.toArray(shapes);
 }
