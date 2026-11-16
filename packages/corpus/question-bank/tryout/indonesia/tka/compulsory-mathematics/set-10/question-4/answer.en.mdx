@@ -33,6 +33,50 @@ The condition <InlineMath math="y\ge1" /> is already covered by <InlineMath math
 | <InlineMath math="y=60-4z" /> | <InlineMath math="44" /> | <InlineMath math="40" /> | <InlineMath math="36" /> | <InlineMath math="32" /> | <InlineMath math="28" /> | <InlineMath math="24" /> |
 | <InlineMath math="x=3z-10" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="11" /> | <InlineMath math="14" /> | <InlineMath math="17" /> |
 
+Draw <InlineMath math="y=60-4z" /> with both limits. **The valid points are the whole-number points on that line to the right of <InlineMath math="z=\tfrac{11}{3}" /> and above the line <InlineMath math="y=2z" />**. There are six of them.
+
+<MathVisual
+  title={<>Possible numbers of <InlineMath math="\text{Rp}5{,}000" /> and <InlineMath math="\text{Rp}2{,}000" /> notes</>}
+  description={<>The horizontal axis is <InlineMath math="z" />, the number of <InlineMath math="\text{Rp}5{,}000" /> notes, and the vertical axis is <InlineMath math="y" />, the number of <InlineMath math="\text{Rp}2{,}000" /> notes. The vertical line <InlineMath math="z=\tfrac{11}{3}" /> is the limit <InlineMath math="x\ge1" />, and the line <InlineMath math="y=2z" /> is the limit <InlineMath math="y>2z" />. The six points from <InlineMath math="(4,\ 44)" /> to <InlineMath math="(9,\ 24)" /> satisfy everything, while <InlineMath math="(10,\ 20)" /> sits exactly on <InlineMath math="y=2z" /> and doesn't count.</>}
+  labels={{
+    count: <InlineMath math="y=60-4z" />,
+    double: <InlineMath math="y=2z" />,
+    floor: <InlineMath math="z=\tfrac{11}{3}" />,
+    first: <InlineMath math="(4,\ 44)" />,
+    last: <InlineMath math="(9,\ 24)" />,
+    out: <InlineMath math="(10,\ 20)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 2, max: 12 },
+      y: { min: 0, max: 56 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "count", kind: "function", appearance: "primary", formula: "60 - 4*x", domain: { min: 2, max: 12 } },
+      { id: "double", kind: "function", appearance: "warning", formula: "2*x", domain: { min: 2, max: 12 } },
+      { id: "floor", kind: "segment", appearance: "construction", from: { x: 11 / 3, y: 0 }, to: { x: 11 / 3, y: 54 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 4, y: 44 } },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 5, y: 40 } },
+      { id: "six", kind: "point", appearance: "answer", at: { x: 6, y: 36 } },
+      { id: "seven", kind: "point", appearance: "answer", at: { x: 7, y: 32 } },
+      { id: "eight", kind: "point", appearance: "answer", at: { x: 8, y: 28 } },
+      { id: "last", kind: "point", appearance: "answer", at: { x: 9, y: 24 } },
+      { id: "out", kind: "point", appearance: "warning", at: { x: 10, y: 20 } },
+    ],
+    labels: [
+      { key: "count", objectId: "count", at: { x: 11, y: 16 }, placement: "below-left" },
+      { key: "double", objectId: "double", at: { x: 11, y: 22 }, placement: "above" },
+      { key: "floor", objectId: "floor", at: { x: 11 / 3, y: 54 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 4, y: 44 }, placement: "above-right" },
+      { key: "last", objectId: "last", at: { x: 9, y: 24 }, placement: "above-right" },
+      { key: "out", objectId: "out", at: { x: 10, y: 20 }, placement: "below" },
+    ],
+  }}
+/>
+
 Check one column, say <InlineMath math="(2,44,4)" />: that's <InlineMath math="2+44+4=50" /> notes worth <InlineMath math="2+88+20=110" /> thousand. The value <InlineMath math="z=10" /> gives <InlineMath math="y=20" />, exactly <InlineMath math="2z" />, so it fails "lebih dari" (more than).
 
 So there are <InlineMath math="6" /> possible arrangements.

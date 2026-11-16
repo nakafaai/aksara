@@ -23,6 +23,43 @@ f(6)=6(2-a)+a+3=15-5a&\le0 \\
 a&\ge3
 \end{aligned}" />
 
+Draw <InlineMath math="f(x)=(2-a)x+a+3" /> for a few values of <InlineMath math="a" />. **A valid line must stay above the <InlineMath math="x" />-axis along the highlighted segment, but not above it at <InlineMath math="x=6" />**.
+
+<MathVisual
+  title={<>The line <InlineMath math="f(x)=(2-a)x+a+3" /> near the limits</>}
+  description={<>For <InlineMath math="a=3" />, the line <InlineMath math="f(x)=6-x" /> is positive on all of <InlineMath math="-1\le x\le4" /> and exactly zero at <InlineMath math="x=6" />, so this value counts. For <InlineMath math="a=3.5" />, the line is still positive on that segment and negative at <InlineMath math="x=6" />. For <InlineMath math="a=\tfrac{11}{3}" />, the line touches zero at <InlineMath math="x=4" />, so this value doesn't count.</>}
+  labels={{
+    low: <InlineMath math="a=3" />,
+    mid: <InlineMath math="a=3.5" />,
+    high: <InlineMath math="a=\tfrac{11}{3}" />,
+    range: <InlineMath math="-1\le x\le4" />,
+    six: <InlineMath math="x=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 7 },
+      y: { min: -4, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "range", kind: "segment", appearance: "highlight", from: { x: -1, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: -4 }, to: { x: 6, y: 8 } },
+      { id: "low", kind: "function", appearance: "answer", formula: "6 - x", domain: { min: -1.5, max: 6.5 } },
+      { id: "mid", kind: "function", appearance: "primary", formula: "6.5 - 1.5*x", domain: { min: -1.5, max: 6.5 } },
+      { id: "high", kind: "function", appearance: "warning", formula: "20/3 - (5/3)*x", domain: { min: -1.5, max: 6.5 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 6.5, y: -0.5 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 6.5, y: -3.25 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: -0.5, y: 7.5 }, placement: "right" },
+      { key: "range", objectId: "range", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "six", objectId: "six", at: { x: 6, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 All three together give <InlineMath math="3\le a<\frac{11}{3}" />. The condition <InlineMath math="a>-\frac{1}{2}" /> is automatically met when <InlineMath math="a\ge3" />.
 
 Check both ends. For <InlineMath math="a=3" />, <InlineMath math="f(x)=-x+6" /> runs from <InlineMath math="7" /> down to <InlineMath math="2" /> on the interval, so it's positive, and <InlineMath math="f(6)=0" /> makes <InlineMath math="0>0" /> false. So <InlineMath math="a=3" /> is in. For <InlineMath math="a=\frac{11}{3}" />, <InlineMath math="f(4)=0" />, so the inequality fails at <InlineMath math="x=4" /> and this value is out.

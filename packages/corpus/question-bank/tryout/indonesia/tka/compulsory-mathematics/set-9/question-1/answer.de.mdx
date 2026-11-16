@@ -21,6 +21,45 @@ M&=280\left(\tfrac{1}{2}\right)^{3/6}=280\left(\tfrac{1}{2}\right)^{1/2} \\
 &=280\cdot\tfrac{1}{2}\sqrt{2}=140\sqrt{2}\approx197{,}4\text{ mg}
 \end{aligned}" />
 
+Der Graph zeigt den Wirkstoff im Blut ab 6 Uhr. **Jede Tablette lässt den Graphen um <InlineMath math="160" /> nach oben springen, danach nimmt der Wirkstoff wieder ab**. Der letzte Punkt ist die Menge <InlineMath math="3" /> Stunden nach dem dritten Sprung.
+
+<MathVisual
+  title={<>Der Wirkstoff im Blut von Tablette zu Tablette</>}
+  description={<>Die waagerechte Achse ist die Zeit in Stunden seit 6 Uhr, die senkrechte Achse die Wirkstoffmenge in mg. Die Menge springt bei <InlineMath math="t=0" /> auf <InlineMath math="160" />, bei <InlineMath math="t=6" /> auf <InlineMath math="240" /> und bei <InlineMath math="t=12" /> auf <InlineMath math="280" />. Bei <InlineMath math="t=15" />, also um 21 Uhr, beträgt sie <InlineMath math="140\sqrt{2}\approx197{,}4" />.</>}
+  labels={{
+    first: <InlineMath math="160" />,
+    second: <InlineMath math="240" />,
+    third: <InlineMath math="280" />,
+    now: <InlineMath math="140\sqrt{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 16 },
+      y: { min: 0, max: 300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "dose-one", kind: "function", appearance: "primary", formula: "160 * 2^(-x/6)", domain: { min: 0, max: 6 } },
+      { id: "dose-two", kind: "function", appearance: "primary", formula: "240 * 2^(-(x - 6)/6)", domain: { min: 6, max: 12 } },
+      { id: "dose-three", kind: "function", appearance: "primary", formula: "280 * 2^(-(x - 12)/6)", domain: { min: 12, max: 15 } },
+      { id: "jump-two", kind: "segment", appearance: "construction", from: { x: 6, y: 80 }, to: { x: 6, y: 240 } },
+      { id: "jump-three", kind: "segment", appearance: "construction", from: { x: 12, y: 120 }, to: { x: 12, y: 280 } },
+      { id: "first", kind: "point", appearance: "secondary", at: { x: 0, y: 160 } },
+      { id: "second", kind: "point", appearance: "secondary", at: { x: 6, y: 240 } },
+      { id: "third", kind: "point", appearance: "secondary", at: { x: 12, y: 280 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 15, y: 140 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 0, y: 160 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 6, y: 240 }, placement: "above-right" },
+      { key: "third", objectId: "third", at: { x: 12, y: 280 }, placement: "above-right" },
+      { key: "now", objectId: "now", at: { x: 15, y: 140 * Math.sqrt(2) }, placement: "below" },
+    ],
+  }}
+/>
+
 Prüfe das, indem du den Rest jeder Tablette einzeln ausrechnest. Die Tablette von 6 Uhr ist seit <InlineMath math="15" /> Stunden im Blut, die von 12 Uhr seit <InlineMath math="9" /> Stunden und die von 18 Uhr erst seit <InlineMath math="3" /> Stunden.
 
 <BlockMath math="\begin{aligned}

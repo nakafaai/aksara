@@ -33,6 +33,50 @@ Syarat <InlineMath math="y\ge1" /> sudah tercakup oleh <InlineMath math="z\le9" 
 | <InlineMath math="y=60-4z" /> | <InlineMath math="44" /> | <InlineMath math="40" /> | <InlineMath math="36" /> | <InlineMath math="32" /> | <InlineMath math="28" /> | <InlineMath math="24" /> |
 | <InlineMath math="x=3z-10" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="11" /> | <InlineMath math="14" /> | <InlineMath math="17" /> |
 
+Gambar <InlineMath math="y=60-4z" /> bersama kedua batas. **Titik yang sah adalah titik bulat pada garis itu yang berada di kanan <InlineMath math="z=\tfrac{11}{3}" /> dan di atas garis <InlineMath math="y=2z" />**. Ada enam titik seperti itu.
+
+<MathVisual
+  title={<>Kemungkinan banyak lembar pecahan <InlineMath math="\text{Rp}5{.}000" /> dan <InlineMath math="\text{Rp}2{.}000" /></>}
+  description={<>Sumbu mendatar adalah <InlineMath math="z" />, banyak lembar <InlineMath math="\text{Rp}5{.}000" />, dan sumbu tegak adalah <InlineMath math="y" />, banyak lembar <InlineMath math="\text{Rp}2{.}000" />. Garis tegak <InlineMath math="z=\tfrac{11}{3}" /> adalah batas <InlineMath math="x\ge1" />, dan garis <InlineMath math="y=2z" /> adalah batas <InlineMath math="y>2z" />. Enam titik dari <InlineMath math="(4,\ 44)" /> sampai <InlineMath math="(9,\ 24)" /> memenuhi semuanya, sedangkan <InlineMath math="(10,\ 20)" /> tepat di garis <InlineMath math="y=2z" /> dan tidak ikut.</>}
+  labels={{
+    count: <InlineMath math="y=60-4z" />,
+    double: <InlineMath math="y=2z" />,
+    floor: <InlineMath math="z=\tfrac{11}{3}" />,
+    first: <InlineMath math="(4,\ 44)" />,
+    last: <InlineMath math="(9,\ 24)" />,
+    out: <InlineMath math="(10,\ 20)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 2, max: 12 },
+      y: { min: 0, max: 56 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "count", kind: "function", appearance: "primary", formula: "60 - 4*x", domain: { min: 2, max: 12 } },
+      { id: "double", kind: "function", appearance: "warning", formula: "2*x", domain: { min: 2, max: 12 } },
+      { id: "floor", kind: "segment", appearance: "construction", from: { x: 11 / 3, y: 0 }, to: { x: 11 / 3, y: 54 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 4, y: 44 } },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 5, y: 40 } },
+      { id: "six", kind: "point", appearance: "answer", at: { x: 6, y: 36 } },
+      { id: "seven", kind: "point", appearance: "answer", at: { x: 7, y: 32 } },
+      { id: "eight", kind: "point", appearance: "answer", at: { x: 8, y: 28 } },
+      { id: "last", kind: "point", appearance: "answer", at: { x: 9, y: 24 } },
+      { id: "out", kind: "point", appearance: "warning", at: { x: 10, y: 20 } },
+    ],
+    labels: [
+      { key: "count", objectId: "count", at: { x: 11, y: 16 }, placement: "below-left" },
+      { key: "double", objectId: "double", at: { x: 11, y: 22 }, placement: "above" },
+      { key: "floor", objectId: "floor", at: { x: 11 / 3, y: 54 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 4, y: 44 }, placement: "above-right" },
+      { key: "last", objectId: "last", at: { x: 9, y: 24 }, placement: "above-right" },
+      { key: "out", objectId: "out", at: { x: 10, y: 20 }, placement: "below" },
+    ],
+  }}
+/>
+
 Cek satu baris, misalnya <InlineMath math="(2,44,4)" />: banyaknya <InlineMath math="2+44+4=50" /> lembar dan nilainya <InlineMath math="2+88+20=110" /> ribu. Nilai <InlineMath math="z=10" /> memberi <InlineMath math="y=20" />, tepat sama dengan <InlineMath math="2z" />, jadi tidak memenuhi kata "lebih dari".
 
 Jadi, banyak kemungkinan susunannya adalah <InlineMath math="6" />.

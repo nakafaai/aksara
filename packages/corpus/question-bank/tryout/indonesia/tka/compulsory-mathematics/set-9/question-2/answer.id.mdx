@@ -28,6 +28,43 @@ Jarak antarpemeriksaan <InlineMath math="3" /> jam, yaitu setengah dari <InlineM
 | Selasa 12.00 | <InlineMath math="18" /> | <InlineMath math="35" /> |
 | Selasa 15.00 | <InlineMath math="21" /> | <InlineMath math="17{,}5\sqrt{2}\approx24{,}7" /> |
 
+Gambar hasil pemeriksaan pada kurva peluruhan. **Pemeriksaan pertama yang benar-benar di bawah garis <InlineMath math="35" /> adalah <InlineMath math="t=21" />**, karena titik <InlineMath math="t=18" /> tepat di garis.
+
+<MathVisual
+  title={<>Hasil pemeriksaan setiap <InlineMath math="3" /> jam</>}
+  description={<>Sumbu mendatar adalah waktu dalam jam sejak pukul 18.00 hari Senin, dan sumbu tegak adalah banyak zat aktif dalam mg. Kurva <InlineMath math="280\left(\tfrac12\right)^{t/6}" /> turun dari <InlineMath math="280" />. Titik pemeriksaan ada di <InlineMath math="t=3,6,\ldots,21" />. Titik <InlineMath math="(18,\ 35)" /> tepat di garis batas <InlineMath math="35" />, dan titik <InlineMath math="t=21" />, yaitu pukul 15.00 hari Selasa, berada di bawahnya.</>}
+  labels={{
+    limit: <InlineMath math="35" />,
+    equal: <InlineMath math="(18,\ 35)" />,
+    below: <InlineMath math="(21,\ 17{,}5\sqrt{2})" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 24 },
+      y: { min: 0, max: 290 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "decay", kind: "function", appearance: "primary", formula: "280 * 2^(-x/6)", domain: { min: 0, max: 23 } },
+      { id: "limit", kind: "function", appearance: "warning", formula: "35", domain: { min: 0, max: 23 } },
+      { id: "check-one", kind: "point", appearance: "secondary", at: { x: 3, y: 140 * Math.sqrt(2) } },
+      { id: "check-two", kind: "point", appearance: "secondary", at: { x: 6, y: 140 } },
+      { id: "check-three", kind: "point", appearance: "secondary", at: { x: 9, y: 70 * Math.sqrt(2) } },
+      { id: "check-four", kind: "point", appearance: "secondary", at: { x: 12, y: 70 } },
+      { id: "check-five", kind: "point", appearance: "secondary", at: { x: 15, y: 35 * Math.sqrt(2) } },
+      { id: "equal", kind: "point", appearance: "warning", at: { x: 18, y: 35 } },
+      { id: "below", kind: "point", appearance: "answer", at: { x: 21, y: 17.5 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 1, y: 35 }, placement: "above" },
+      { key: "equal", objectId: "equal", at: { x: 18, y: 35 }, placement: "above-right" },
+      { key: "below", objectId: "below", at: { x: 21, y: 17.5 * Math.sqrt(2) }, placement: "below" },
+    ],
+  }}
+/>
+
 Pada pukul 12.00, isi darah tepat <InlineMath math="35\text{ mg}" />. Angka <InlineMath math="35" /> tidak kurang dari <InlineMath math="35" />, jadi pemeriksaan ini **belum memenuhi syarat**. Pemeriksaan berikutnya, pukul 15.00, menunjukkan sekitar <InlineMath math="24{,}7\text{ mg}" />, dan ini sudah kurang dari <InlineMath math="35\text{ mg}" />.
 
 # Kenapa pilihan lain salah

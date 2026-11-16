@@ -43,6 +43,52 @@ Di antara kedua kes ada **jurang**, iaitu <InlineMath math="x=33,\ 34,\ 35" />. 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | <InlineMath math="K(x)" /> | <InlineMath math="579" /> | <InlineMath math="600" /> | <InlineMath math="636" /> | <InlineMath math="567" /> | <InlineMath math="591" /> | <InlineMath math="600" /> | <InlineMath math="600" /> | <InlineMath math="591" /> |
 
+Lukis keuntungan bagi kedua-dua kes bersama garis <InlineMath math="600" />. **Sewa alat menjatuhkan lengkung sejurus selepas <InlineMath math="x=32" />**, jadi bahagian lengkung pada atau di atas garis terpecah kepada dua julat.
+
+<MathVisual
+  title={<>Keuntungan harian mengikut bilangan beg</>}
+  description={<>Paksi mendatar ialah bilangan beg <InlineMath math="x" />, dan paksi tegak ialah keuntungan dalam ribu rupiah. Lengkung kiri <InlineMath math="-x^2+80x-900" /> berlaku hingga <InlineMath math="x=32" /> dan mencapai <InlineMath math="600" /> pada <InlineMath math="x=30" />. Lengkung kanan <InlineMath math="-x^2+80x-984" /> bermula pada <InlineMath math="(33,\ 567)" /> dan berada pada atau di atas garis <InlineMath math="600" /> bagi <InlineMath math="36\le x\le44" />. Ruas di bawah menandakan kedua-dua julat <InlineMath math="30\le x\le32" /> dan <InlineMath math="36\le x\le44" />.</>}
+  labels={{
+    plain: <InlineMath math="-x^2+80x-900" />,
+    rent: <InlineMath math="-x^2+80x-984" />,
+    target: <InlineMath math="600" />,
+    low: <InlineMath math="(30,\ 600)" />,
+    drop: <InlineMath math="(33,\ 567)" />,
+    "range-one": <InlineMath math="30\le x\le32" />,
+    "range-two": <InlineMath math="36\le x\le44" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 26, max: 48 },
+      y: { min: 490, max: 660 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plain", kind: "function", appearance: "primary", formula: "-x^2 + 80*x - 900", domain: { min: 26, max: 32 } },
+      { id: "rent", kind: "function", appearance: "secondary", formula: "-x^2 + 80*x - 984", domain: { min: 33, max: 48 } },
+      { id: "target", kind: "function", appearance: "warning", formula: "600", domain: { min: 26, max: 48 } },
+      { id: "range-one", kind: "segment", appearance: "answer", from: { x: 30, y: 500 }, to: { x: 32, y: 500 } },
+      { id: "range-two", kind: "segment", appearance: "answer", from: { x: 36, y: 500 }, to: { x: 44, y: 500 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 30, y: 600 } },
+      { id: "high", kind: "point", appearance: "secondary", at: { x: 32, y: 636 } },
+      { id: "drop", kind: "point", appearance: "warning", at: { x: 33, y: 567 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 36, y: 600 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 44, y: 600 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain", at: { x: 27, y: 27 * 80 - 729 - 900 }, placement: "above-left" },
+      { key: "rent", objectId: "rent", at: { x: 46, y: 46 * 80 - 2116 - 984 }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 47, y: 600 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 30, y: 600 }, placement: "above-left" },
+      { key: "drop", objectId: "drop", at: { x: 33, y: 567 }, placement: "below" },
+      { key: "range-one", objectId: "range-one", at: { x: 31, y: 500 }, placement: "above" },
+      { key: "range-two", objectId: "range-two", at: { x: 40, y: 500 }, placement: "above" },
+    ],
+  }}
+/>
+
 Nilai <InlineMath math="x=30" />, <InlineMath math="36" />, dan <InlineMath math="44" /> memberi keuntungan tepat <InlineMath math="600" />, dan ketiga-tiganya diambil kira kerana syaratnya sekurang-kurangnya <InlineMath math="600" />.
 
 # Mengapa pilihan lain salah

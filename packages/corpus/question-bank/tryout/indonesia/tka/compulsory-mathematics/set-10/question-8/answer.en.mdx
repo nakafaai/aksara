@@ -19,6 +19,46 @@ Check it with a common denominator: <InlineMath math="\frac{1}{2}\cdot\frac{(2k+
 &=\frac{1}{2}\left(\frac{1}{5}-\frac{1}{51}\right)=\frac{1}{2}\cdot\frac{46}{255}=\frac{23}{255}
 \end{aligned}" />
 
+See each term as half the length of one piece of the number line. **The <InlineMath math="k" />th term is half the length of the piece from <InlineMath math="\tfrac{1}{2k+1}" /> to <InlineMath math="\tfrac{1}{2k-1}" />**, and the pieces join without gaps from <InlineMath math="\tfrac{1}{51}" /> to <InlineMath math="\tfrac15" />.
+
+<MathVisual
+  title={<>Pieces that join up on the number line</>}
+  description={<>A number line from <InlineMath math="0" /> to about <InlineMath math="0.2" /> with marks at <InlineMath math="\tfrac15" />, <InlineMath math="\tfrac17" />, <InlineMath math="\tfrac19" />, <InlineMath math="\tfrac{1}{11}" />, <InlineMath math="\tfrac{1}{13}" />, <InlineMath math="\tfrac{1}{15}" />, and <InlineMath math="\tfrac{1}{51}" />. The highlighted segment from <InlineMath math="\tfrac{1}{51}" /> to <InlineMath math="\tfrac15" /> has length <InlineMath math="\tfrac{46}{255}" />, and the sum of the series is half of it.</>}
+  labels={{
+    fifth: <InlineMath math="\tfrac15" />,
+    seventh: <InlineMath math="\tfrac17" />,
+    ninth: <InlineMath math="\tfrac19" />,
+    last: <InlineMath math="\tfrac{1}{51}" />,
+    whole: <InlineMath math="\tfrac15-\tfrac{1}{51}=\tfrac{46}{255}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 0.22 },
+      y: { min: -0.04, max: 0.04 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "whole", kind: "segment", appearance: "answer", from: { x: 1 / 51, y: 0 }, to: { x: 1 / 5, y: 0 } },
+      { id: "fifth", kind: "segment", appearance: "construction", from: { x: 1 / 5, y: -0.01 }, to: { x: 1 / 5, y: 0.01 } },
+      { id: "seventh", kind: "segment", appearance: "construction", from: { x: 1 / 7, y: -0.01 }, to: { x: 1 / 7, y: 0.01 } },
+      { id: "ninth", kind: "segment", appearance: "construction", from: { x: 1 / 9, y: -0.01 }, to: { x: 1 / 9, y: 0.01 } },
+      { id: "eleventh", kind: "segment", appearance: "construction", from: { x: 1 / 11, y: -0.01 }, to: { x: 1 / 11, y: 0.01 } },
+      { id: "thirteenth", kind: "segment", appearance: "construction", from: { x: 1 / 13, y: -0.01 }, to: { x: 1 / 13, y: 0.01 } },
+      { id: "fifteenth", kind: "segment", appearance: "construction", from: { x: 1 / 15, y: -0.01 }, to: { x: 1 / 15, y: 0.01 } },
+      { id: "last", kind: "segment", appearance: "construction", from: { x: 1 / 51, y: -0.01 }, to: { x: 1 / 51, y: 0.01 } },
+    ],
+    labels: [
+      { key: "fifth", objectId: "fifth", at: { x: 1 / 5, y: 0.01 }, placement: "above" },
+      { key: "seventh", objectId: "seventh", at: { x: 1 / 7, y: 0.01 }, placement: "above" },
+      { key: "ninth", objectId: "ninth", at: { x: 1 / 9, y: 0.01 }, placement: "above" },
+      { key: "last", objectId: "last", at: { x: 1 / 51, y: 0.01 }, placement: "above" },
+      { key: "whole", objectId: "whole", at: { x: 0.11, y: -0.01 }, placement: "below" },
+    ],
+  }}
+/>
+
 Check it another way. The sum from <InlineMath math="k=1" /> to <InlineMath math="n" /> is <InlineMath math="S_n=\frac{n}{2n+1}" />. Our series is <InlineMath math="S_{25}" /> without its first two terms, so it's <InlineMath math="S_{25}-S_2=\frac{25}{51}-\frac{2}{5}=\frac{125-102}{255}=\frac{23}{255}" />.
 
 So the sum of the series is <InlineMath math="\frac{23}{255}" />.

@@ -4,6 +4,43 @@ Each statement has to be tested for every parking time, so first write a formula
 
 <BlockMath math="f(t)=\begin{cases}5{,}000, & 0<t\le1\\[2pt] \min\left(5{,}000+3{,}000\cdot\lceil t-1\rceil,\ 20{,}000\right), & 1<t\le24\end{cases}" />
 
+Draw the formula as a staircase graph. **Each step is flat, so <InlineMath math="f" /> doesn't always rise, and the steps jump from <InlineMath math="17" /> straight to <InlineMath math="20" />**, skipping the line at <InlineMath math="18" />.
+
+<MathVisual
+  title={<>The staircase graph of the parking fee</>}
+  description={<>The horizontal axis is the parking time <InlineMath math="t" /> in hours, and the vertical axis is the fee in thousands of rupiah. The steps sit at <InlineMath math="5,\ 8,\ 11,\ 14,\ 17" />, then stay flat at <InlineMath math="20" /> for <InlineMath math="t>5" />. The points <InlineMath math="t=2.5" /> and <InlineMath math="t=3" /> lie on the same step, and no step lies on the line at <InlineMath math="18" />.</>}
+  labels={{
+    same: <InlineMath math="f(2{,}5)=f(3)" />,
+    miss: <InlineMath math="18" />,
+    cap: <InlineMath math="20" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 8 },
+      y: { min: 0, max: 22 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "step-one", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 1, y: 5 } },
+      { id: "step-two", kind: "segment", appearance: "primary", from: { x: 1, y: 8 }, to: { x: 2, y: 8 } },
+      { id: "step-three", kind: "segment", appearance: "primary", from: { x: 2, y: 11 }, to: { x: 3, y: 11 } },
+      { id: "step-four", kind: "segment", appearance: "primary", from: { x: 3, y: 14 }, to: { x: 4, y: 14 } },
+      { id: "step-five", kind: "segment", appearance: "primary", from: { x: 4, y: 17 }, to: { x: 5, y: 17 } },
+      { id: "cap", kind: "segment", appearance: "primary", from: { x: 5, y: 20 }, to: { x: 8, y: 20 } },
+      { id: "miss", kind: "function", appearance: "warning", formula: "18", domain: { min: 0, max: 8 } },
+      { id: "same", kind: "point", appearance: "answer", at: { x: 2.5, y: 11 } },
+      { id: "end-three", kind: "point", appearance: "answer", at: { x: 3, y: 11 } },
+    ],
+    labels: [
+      { key: "same", objectId: "same", at: { x: 2.5, y: 11 }, placement: "above-left" },
+      { key: "miss", objectId: "miss", at: { x: 7, y: 18 }, placement: "below" },
+      { key: "cap", objectId: "cap", at: { x: 7, y: 20 }, placement: "above" },
+    ],
+  }}
+/>
+
 The cap of <InlineMath math="20{,}000" /> is reached when <InlineMath math="5{,}000+3{,}000k\ge20{,}000" />, that is <InlineMath math="k\ge5" /> extra hours. That happens for every <InlineMath math="t>5" />.
 
 # Judging each statement

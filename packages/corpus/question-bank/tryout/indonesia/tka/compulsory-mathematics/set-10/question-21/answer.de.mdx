@@ -8,6 +8,48 @@ Sortiert lauten die Daten <InlineMath math="2,\ 3,\ 4,\ 6,\ 6,\ 7,\ 11,\ 17" />:
 
 <BlockMath math="\text{Median}=\frac{6+6}{2}=6\text{ Stunden}" />
 
+Trage die acht Schüler als Punkte (Lernzeit, Note) ein. **Nur drei Punkte liegen rechts der Medianlinie bei <InlineMath math="6" /> Stunden**, und die zwei Punkte genau auf der Linie zählen nicht.
+
+<MathVisual
+  title={<>Lernzeit und Prüfungsergebnis der acht Schüler</>}
+  description={<>Die waagerechte Achse ist die Lernzeit pro Woche in Stunden, die senkrechte das Prüfungsergebnis. Die Senkrechte bei <InlineMath math="6" /> Stunden ist der Median der Lernzeit, und Asri und Indra liegen genau darauf. Rechts davon liegen Hana <InlineMath math="(7,\ 70)" />, Bima <InlineMath math="(11,\ 88)" /> und Fajar <InlineMath math="(17,\ 82)" />, und die waagerechte Linie bei <InlineMath math="80" /> ist der Mittelwert ihrer Ergebnisse.</>}
+  labels={{
+    median: <InlineMath math="\text{Median}=6" />,
+    mean: <InlineMath math="\bar x=80" />,
+    hana: <>Hana</>,
+    bima: <>Bima</>,
+    fajar: <>Fajar</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 19 },
+      y: { min: 50, max: 95 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "median", kind: "segment", appearance: "warning", from: { x: 6, y: 50 }, to: { x: 6, y: 92 } },
+      { id: "mean", kind: "segment", appearance: "answer", from: { x: 7, y: 80 }, to: { x: 17, y: 80 } },
+      { id: "asri", kind: "point", appearance: "secondary", at: { x: 6, y: 72 } },
+      { id: "bima", kind: "point", appearance: "answer", at: { x: 11, y: 88 } },
+      { id: "citra", kind: "point", appearance: "secondary", at: { x: 4, y: 66 } },
+      { id: "dani", kind: "point", appearance: "secondary", at: { x: 2, y: 56 } },
+      { id: "eka", kind: "point", appearance: "secondary", at: { x: 3, y: 58 } },
+      { id: "fajar", kind: "point", appearance: "answer", at: { x: 17, y: 82 } },
+      { id: "hana", kind: "point", appearance: "answer", at: { x: 7, y: 70 } },
+      { id: "indra", kind: "point", appearance: "secondary", at: { x: 6, y: 68 } },
+    ],
+    labels: [
+      { key: "median", objectId: "median", at: { x: 6, y: 92 }, placement: "above" },
+      { key: "mean", objectId: "mean", at: { x: 14, y: 80 }, placement: "above" },
+      { key: "hana", objectId: "hana", at: { x: 7, y: 70 }, placement: "right" },
+      { key: "bima", objectId: "bima", at: { x: 11, y: 88 }, placement: "above" },
+      { key: "fajar", objectId: "fajar", at: { x: 17, y: 82 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Wer mitzählt
 
 Die Bedingung lautet Lernzeit **mehr als** <InlineMath math="6" />, also fallen Asri und Indra mit genau <InlineMath math="6" /> Stunden heraus. Übrig bleiben nur Hana (<InlineMath math="7" /> Stunden), Bima (<InlineMath math="11" /> Stunden) und Fajar (<InlineMath math="17" /> Stunden):

@@ -13,6 +13,46 @@ Jarak daripada <InlineMath math="320" /> **sentiasa menjadi separuh**, tetapi ti
 
 <BlockMath math="A_n=320-160\left(\tfrac{1}{2}\right)^{n-1}" />
 
+Plotkan jujukan <InlineMath math="A_n" /> bersama garis <InlineMath math="320" />. **Setiap langkah menutup separuh jarak yang tinggal ke garis itu**, jadi titik-titiknya merapat ke garis tanpa pernah menyentuhnya.
+
+<MathVisual
+  title={<>Isi darah sejurus selepas tablet ke-<InlineMath math="n" /></>}
+  description={<>Paksi mendatar ialah nombor tablet <InlineMath math="n" />, dan paksi tegak ialah <InlineMath math="A_n" /> dalam mg. Titik-titiknya <InlineMath math="160,\ 240,\ 280,\ 300,\ 310,\ 315,\ 317.5" />. Jaraknya ke garis <InlineMath math="320" /> ialah <InlineMath math="160,\ 80,\ 40,\ 20,\ 10,\ 5,\ 2.5" />, sentiasa separuh daripada jarak sebelumnya.</>}
+  labels={{
+    ceiling: <InlineMath math="320" />,
+    a1: <InlineMath math="A_1=160" />,
+    a2: <InlineMath math="A_2=240" />,
+    a3: <InlineMath math="A_3=280" />,
+    a6: <InlineMath math="A_6=315" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 8 },
+      y: { min: 100, max: 340 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ceiling", kind: "function", appearance: "warning", formula: "320", domain: { min: 0.5, max: 7.5 } },
+      { id: "a1", kind: "point", appearance: "primary", at: { x: 1, y: 160 } },
+      { id: "a2", kind: "point", appearance: "primary", at: { x: 2, y: 240 } },
+      { id: "a3", kind: "point", appearance: "primary", at: { x: 3, y: 280 } },
+      { id: "a4", kind: "point", appearance: "primary", at: { x: 4, y: 300 } },
+      { id: "a5", kind: "point", appearance: "primary", at: { x: 5, y: 310 } },
+      { id: "a6", kind: "point", appearance: "primary", at: { x: 6, y: 315 } },
+      { id: "a7", kind: "point", appearance: "primary", at: { x: 7, y: 317.5 } },
+    ],
+    labels: [
+      { key: "ceiling", objectId: "ceiling", at: { x: 0.5, y: 320 }, placement: "above" },
+      { key: "a1", objectId: "a1", at: { x: 1, y: 160 }, placement: "right" },
+      { key: "a2", objectId: "a2", at: { x: 2, y: 240 }, placement: "right" },
+      { key: "a3", objectId: "a3", at: { x: 3, y: 280 }, placement: "below-right" },
+      { key: "a6", objectId: "a6", at: { x: 6, y: 315 }, placement: "below" },
+    ],
+  }}
+/>
+
 Nilainya <InlineMath math="160,\ 240,\ 280,\ 300,\ 310,\ 315,\ \ldots" />, sentiasa naik tetapi sentiasa di bawah <InlineMath math="320" />. Di antara dua tablet isinya malah turun, jadi pada bila-bila masa pun isi darah tidak pernah melebihi <InlineMath math="320\text{ mg}" />.
 
 # Pernyataan kedua

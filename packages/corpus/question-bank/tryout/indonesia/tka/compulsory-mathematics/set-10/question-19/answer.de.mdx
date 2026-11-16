@@ -35,6 +35,47 @@ Sobald der Quader draußen ist, verteilt sich das restliche Wasser über die gan
 
 <BlockMath math="\text{Wasserstand}=\frac{92{.}400}{3{.}080}=30\text{ cm}" />
 
+Zeichne die Wasserhöhe als Funktion des Wasservolumens, mit und ohne Betonblock. **Solange der Block im Becken steht, steigt das Wasser schneller und stoppt am Rand bei <InlineMath math="40\text{ cm}" />**. Wird der Block herausgehoben, fällt dasselbe Volumen auf die flachere Gerade.
+
+<MathVisual
+  title={<>Wasserhöhe nach Wasservolumen im Becken</>}
+  description={<>Die waagerechte Achse ist das Wasservolumen in Tausend <InlineMath math="\text{cm}^3" />, die senkrechte die Wasserhöhe in cm. Die steile Gerade <InlineMath math="h=\tfrac{V}{2{.}310}" /> gilt, solange der Block im Becken steht, die flache Gerade <InlineMath math="h=\tfrac{V}{3{.}080}" /> nach dem Herausheben. Das Anfangswasser, <InlineMath math="73{,}92" /> Tausend <InlineMath math="\text{cm}^3" />, steht bei <InlineMath math="32" />. Nach dem Eingießen stoppt das Wasser am Rand bei einem Volumen von <InlineMath math="92{,}4" /> Tausend <InlineMath math="\text{cm}^3" />, und dieses Volumen steht ohne Block bei <InlineMath math="30" />.</>}
+  labels={{
+    with: <>mit Block</>,
+    without: <>ohne Block</>,
+    rim: <InlineMath math="40" />,
+    start: <InlineMath math="(73{,}92;\ 32)" />,
+    full: <InlineMath math="(92{,}4;\ 40)" />,
+    after: <InlineMath math="(92{,}4;\ 30)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 105 },
+      y: { min: 0, max: 46 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "with", kind: "function", appearance: "primary", formula: "1000*x/2310", domain: { min: 0, max: 92.4 } },
+      { id: "without", kind: "function", appearance: "secondary", formula: "1000*x/3080", domain: { min: 0, max: 103.4 } },
+      { id: "rim", kind: "function", appearance: "warning", formula: "40", domain: { min: 0, max: 105 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 92.4, y: 40 }, to: { x: 92.4, y: 30 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 73.92, y: 32 } },
+      { id: "full", kind: "point", appearance: "primary", at: { x: 92.4, y: 40 } },
+      { id: "after", kind: "point", appearance: "answer", at: { x: 92.4, y: 30 } },
+    ],
+    labels: [
+      { key: "with", objectId: "with", at: { x: 46.2, y: 20 }, placement: "above-left" },
+      { key: "without", objectId: "without", at: { x: 61.6, y: 20 }, placement: "below-right" },
+      { key: "rim", objectId: "rim", at: { x: 10, y: 40 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 73.92, y: 32 }, placement: "left" },
+      { key: "full", objectId: "full", at: { x: 92.4, y: 40 }, placement: "above" },
+      { key: "after", objectId: "after", at: { x: 92.4, y: 30 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Prüf das auf einem zweiten Weg. Vor dem Herausheben stand der Quader <InlineMath math="40\text{ cm}" /> tief im Wasser, dieser Teil hat das Volumen <InlineMath math="770\cdot40=30{.}800\text{ cm}^3" />. **Der Platz, den der Quader frei macht**, lässt das Wasser um <InlineMath math="\frac{30{.}800}{3{.}080}=10\text{ cm}" /> sinken, von <InlineMath math="40" /> auf <InlineMath math="30\text{ cm}" />.
 
 Der Wasserstand im Becken beträgt jetzt also <InlineMath math="30\text{ cm}" />.
