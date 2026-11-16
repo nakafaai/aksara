@@ -12,23 +12,14 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "A metal, metallic bonds between positive ions and delocalised electrons",
+          label: "$$8.3\\text{ dm}^3$$, $$0^\\circ\\text{C}$$",
         },
-        {
-          correct: true,
-          label:
-            "Graphite, covalent bonds within layers, with delocalised electrons",
-        },
+        { correct: true, label: "$$8.3\\text{ dm}^3$$, $$4^\\circ\\text{C}$$" },
         {
           correct: false,
-          label:
-            "Diamond, covalent bonds in a network where every atom has four bonds",
+          label: "$$9.1\\text{ dm}^3$$, $$4^\\circ\\text{C}$$",
         },
-        {
-          correct: false,
-          label: "Graphite, ionic bonds between layers of carbon ions",
-        },
+        { correct: false, label: "$$0\\text{ dm}^3$$, $$4^\\circ\\text{C}$$" },
       ],
     },
     ms: {
@@ -36,23 +27,14 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "Logam, ikatan logam antara ion positif dan elektron dinyahsetempat",
+          label: "$$8.3\\text{ dm}^3$$, $$0^\\circ\\text{C}$$",
         },
-        {
-          correct: true,
-          label:
-            "Grafit, ikatan kovalen dalam lapisan, dengan elektron dinyahsetempat",
-        },
+        { correct: true, label: "$$8.3\\text{ dm}^3$$, $$4^\\circ\\text{C}$$" },
         {
           correct: false,
-          label:
-            "Intan, ikatan kovalen dalam rangkaian dengan setiap atom mempunyai empat ikatan",
+          label: "$$9.1\\text{ dm}^3$$, $$4^\\circ\\text{C}$$",
         },
-        {
-          correct: false,
-          label: "Grafit, ikatan ion antara lapisan ion karbon",
-        },
+        { correct: false, label: "$$0\\text{ dm}^3$$, $$4^\\circ\\text{C}$$" },
       ],
     },
   },

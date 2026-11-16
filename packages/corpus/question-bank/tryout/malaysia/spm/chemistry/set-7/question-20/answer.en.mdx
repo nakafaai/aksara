@@ -1,25 +1,25 @@
-# Work in one cubic centimetre: the volume shares give the masses, and the masses give the percentage
+# Average the densities by volume, with the air adding volume but no mass, then compare masses
 
-One cubic centimetre of composite holds <InlineMath math="0.40\text{ cm}^3" /> of glass, <InlineMath math="1.02\text{ g}" />, and <InlineMath math="0.60\text{ cm}^3" /> of polyester, <InlineMath math="0.72\text{ g}" />, so it weighs <InlineMath math="1.74\text{ g}" />. **The glass is the denser material, so its share of the mass is larger than its share of the volume**. Combining the stiff, strong fibres with the light, tough polyester gives a hull that is strong and low in density.
+Take <InlineMath math="1\text{ cm}^3" /> of composite: <InlineMath math="0.40\text{ cm}^3" /> of glass weighs <InlineMath math="1.02\text{ g}" /> and <InlineMath math="0.55\text{ cm}^3" /> of polyester <InlineMath math="0.66\text{ g}" />. **The <InlineMath math="0.05\text{ cm}^3" /> of air fills space but adds no mass**, so the density is <InlineMath math="1.68\text{ g cm}^{-3}" />. The glass is <InlineMath math="1.02\div1.68=60.7\%" /> of the mass, more than its share of the volume because it is the denser material.
 
 <Chart
-  title={<>Mass in one cubic centimetre of composite</>}
-  description={<>The <InlineMath math="1.74\text{ g}" /> is <InlineMath math="1.02\text{ g}" /> of glass fibre and <InlineMath math="0.72\text{ g}" /> of polyester.</>}
+  title={<>Mass in one cubic centimetre</>}
+  description={<>One cubic centimetre holds <InlineMath math="1.02\text{ g}" /> of glass, <InlineMath math="0.66\text{ g}" /> of polyester and no mass of air.</>}
   bars="apart"
-  categories={["Glass fibre", "Polyester"]}
+  categories={["Glass fibre", "Polyester", "Air"]}
   series={[
-    { label: "Mass", mark: "bar", values: [1.02, 0.72] },
+    { label: "Mass", mark: "bar", values: [1.02, 0.66, 0] },
   ]}
   valueLabel="Mass (g)"
 />
 
 <BlockMath math="\begin{aligned}
-\rho&=0.40\times2.55+0.60\times1.20=1.02+0.72=1.74\text{ g cm}^{-3}\\
-\tfrac{1.02}{1.74}\times100&=58.6\%
+\rho&=0.40\times2.55+0.55\times1.20+0.05\times0=1.68\text{ g cm}^{-3}\\
+\%_{\text{glass}}&=\tfrac{1.02}{1.68}\times100=60.7\%
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="40.0\%" /> is the glass's share of the volume, not of the mass. **The denser glass carries more of the mass**.
-- <InlineMath math="1.52\text{ g cm}^{-3}" /> treats the <InlineMath math="40\%" /> as a share of mass, and the percentage repeats that slip.
-- <InlineMath math="41.4\%" /> is the polyester's share of the mass, not the glass's.
+- <InlineMath math="1.74\text{ g cm}^{-3}" /> gives the polyester <InlineMath math="60\%" /> of the volume. **Five per cent is air**.
+- <InlineMath math="40.0\%" /> is the glass's share of the volume, but the denser glass has a larger share of the mass.
+- <InlineMath math="1.61\text{ g cm}^{-3}" /> takes the air out of the glass instead of out of the polyester.

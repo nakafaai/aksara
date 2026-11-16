@@ -1,25 +1,25 @@
-# Hitung dalam satu sentimeter kubik: bagian volume memberi massa, dan massa memberi persentase
+# Rata-ratakan massa jenis menurut volume, dengan udara menambah volume tetapi bukan massa, lalu bandingkan massanya
 
-Satu sentimeter kubik komposit berisi <InlineMath math="0{,}40\text{ cm}^3" /> kaca, <InlineMath math="1{,}02\text{ g}" />, dan <InlineMath math="0{,}60\text{ cm}^3" /> poliester, <InlineMath math="0{,}72\text{ g}" />, jadi bermassa <InlineMath math="1{,}74\text{ g}" />. **Kaca bahan yang lebih rapat, jadi bagian massanya lebih besar daripada bagian volumenya**. Menggabungkan serat yang kaku dan kuat dengan poliester yang ringan dan ulet memberi lambung kapal yang kuat dan bermassa jenis rendah.
+Ambil <InlineMath math="1\text{ cm}^3" /> komposit: <InlineMath math="0{,}40\text{ cm}^3" /> kaca bermassa <InlineMath math="1{,}02\text{ g}" /> dan <InlineMath math="0{,}55\text{ cm}^3" /> poliester <InlineMath math="0{,}66\text{ g}" />. **<InlineMath math="0{,}05\text{ cm}^3" /> udara mengisi ruang tetapi tidak menambah massa**, jadi massa jenisnya <InlineMath math="1{,}68\text{ g cm}^{-3}" />. Kaca adalah <InlineMath math="1{,}02\div1{,}68=60{,}7\%" /> dari massanya, lebih dari bagian volumenya karena kaca bahan yang lebih rapat.
 
 <Chart
-  title={<>Massa dalam satu sentimeter kubik komposit</>}
-  description={<><InlineMath math="1{,}74\text{ g}" /> itu terdiri dari <InlineMath math="1{,}02\text{ g}" /> serat kaca dan <InlineMath math="0{,}72\text{ g}" /> poliester.</>}
+  title={<>Massa dalam satu sentimeter kubik</>}
+  description={<>Satu sentimeter kubik memuat <InlineMath math="1{,}02\text{ g}" /> kaca, <InlineMath math="0{,}66\text{ g}" /> poliester, dan udara tanpa massa.</>}
   bars="apart"
-  categories={["Serat kaca", "Poliester"]}
+  categories={["Serat kaca", "Poliester", "Udara"]}
   series={[
-    { label: "Massa", mark: "bar", values: [1.02, 0.72] },
+    { label: "Massa", mark: "bar", values: [1.02, 0.66, 0] },
   ]}
   valueLabel="Massa (g)"
 />
 
 <BlockMath math="\begin{aligned}
-\rho&=0{,}40\times2{,}55+0{,}60\times1{,}20=1{,}02+0{,}72=1{,}74\text{ g cm}^{-3}\\
-\tfrac{1{,}02}{1{,}74}\times100&=58{,}6\%
+\rho&=0{,}40\times2{,}55+0{,}55\times1{,}20+0{,}05\times0=1{,}68\text{ g cm}^{-3}\\
+\%_{\text{glass}}&=\tfrac{1{,}02}{1{,}68}\times100=60{,}7\%
 \end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="40{,}0\%" /> adalah bagian volume kaca, bukan massanya. **Kaca yang lebih rapat membawa massa lebih banyak**.
-- <InlineMath math="1{,}52\text{ g cm}^{-3}" /> menganggap <InlineMath math="40\%" /> sebagai bagian massa, dan persentasenya mengulang kesalahan itu.
-- <InlineMath math="41{,}4\%" /> adalah bagian massa poliester, bukan kaca.
+- <InlineMath math="1{,}74\text{ g cm}^{-3}" /> memberi poliester <InlineMath math="60\%" /> volume. **Lima persen adalah udara**.
+- <InlineMath math="40{,}0\%" /> adalah bagian volume kaca, padahal kaca yang lebih rapat punya bagian massa lebih besar.
+- <InlineMath math="1{,}61\text{ g cm}^{-3}" /> mengambil udara dari kaca, bukan dari poliester.
