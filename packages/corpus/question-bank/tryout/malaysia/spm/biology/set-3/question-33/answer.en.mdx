@@ -1,0 +1,25 @@
+# Decide which allele is dominant before working out any genotype
+
+Two affected parents have an unaffected daughter. If the condition were recessive, both parents would be <InlineMath math="aa" /> and could only have affected children. So the condition is caused by a **dominant allele** <InlineMath math="A" />, and the unaffected daughter is <InlineMath math="aa" />.
+
+<Mermaid
+  title={<>Genotypes Worked Out from the Unaffected Daughter</>}
+  description={<>The unaffected daughter is aa, so both affected parents must be Aa. Son P is affected, so he is AA or Aa. His unaffected wife is aa.</>}
+  chart={"flowchart TD\n  F[Father Aa] --> D[Daughter aa]\n  M[Mother Aa] --> D\n  F --> P[Son P: AA or Aa]\n  M --> P\n  P --> C[Child of P]\n  W[Wife aa] --> C"}
+/>
+
+The daughter received one <InlineMath math="a" /> from each parent, so both parents are <InlineMath math="Aa" />. Their children are <InlineMath math="AA" />, <InlineMath math="Aa" /> and <InlineMath math="aa" /> in the ratio <InlineMath math="1:2:1" />. Son P is affected, so the <InlineMath math="aa" /> case is ruled out, leaving <InlineMath math="AA" /> or <InlineMath math="Aa" /> in the ratio <InlineMath math="1:2" />:
+
+<BlockMath math="P(AA)=\tfrac{1}{3},\qquad P(Aa)=\tfrac{2}{3}" />
+
+With an <InlineMath math="aa" /> wife, an <InlineMath math="AA" /> father always passes on <InlineMath math="A" />, and an <InlineMath math="Aa" /> father passes it on half the time:
+
+<BlockMath math="P(\text{affected child})=\tfrac{1}{3}\times1+\tfrac{2}{3}\times\tfrac{1}{2}=\tfrac{1}{3}+\tfrac{1}{3}=\tfrac{2}{3}" />
+
+So the probability that their first child is affected is <InlineMath math="\tfrac{2}{3}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac{1}{2}" /> assumes son P is certainly <InlineMath math="Aa" /> and ignores the **one chance in three** that he is <InlineMath math="AA" />.
+- <InlineMath math="\tfrac{3}{4}" /> is the chance for a child of two <InlineMath math="Aa" /> parents, **but P's wife is** <InlineMath math="aa" />.
+- <InlineMath math="\tfrac{1}{3}" /> counts only the path through <InlineMath math="Aa" /> and **forgets the** <InlineMath math="AA" /> path, which always gives an affected child.

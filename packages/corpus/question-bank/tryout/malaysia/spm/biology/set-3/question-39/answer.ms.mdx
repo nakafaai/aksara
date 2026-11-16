@@ -1,0 +1,32 @@
+# Tentukan sama ada W pembawa sebelum melihat anaknya
+
+Anak lelaki menerima satu-satunya kromosom X daripada **ibunya**. Abang W menghidap hemofilia, jadi ibu mereka mewariskan <InlineMath math="X^h" /> kepadanya dan mesti pembawa, <InlineMath math="X^HX^h" />. Bapa mereka ialah <InlineMath math="X^HY" />.
+
+<Mermaid
+  title={<>Perkara yang Diketahui tentang Keluarga Itu</>}
+  description={<>Abang W menghidap hemofilia, jadi kromosom X-nya datang daripada ibu mereka, yang mesti pembawa. W menerima XH daripada bapa dan salah satu X daripada ibu, jadi kebarangkalian dia pembawa ialah separuh.</>}
+  chart={"flowchart TD\n  GF[Bapa W: XHY] --> B[Abang W: XhY, hemofilia]\n  GM[Ibu W: XHXh, pembawa] --> B\n  GF --> W[W: XHXH atau XHXh]\n  GM --> W\n  W --> C[Anak pertama]\n  H[Suami: XHY] --> C"}
+/>
+
+W menerima <InlineMath math="X^H" /> daripada bapanya dan salah satu daripada dua kromosom X ibunya, jadi:
+
+<BlockMath math="P(\text{W ialah } X^HX^h)=\tfrac{1}{2}" />
+
+Jika W pembawa, anaknya dengan suami <InlineMath math="X^HY" /> jatuh dalam salah satu daripada empat petak yang sama kebarangkaliannya:
+
+| Gamet | <InlineMath math="X^H" /> daripada suami | <InlineMath math="Y" /> daripada suami |
+| --- | --- | --- |
+| <InlineMath math="X^H" /> daripada W | <InlineMath math="X^HX^H" /> perempuan, normal | <InlineMath math="X^HY" /> lelaki, normal |
+| <InlineMath math="X^h" /> daripada W | <InlineMath math="X^HX^h" /> perempuan, pembawa | <InlineMath math="X^hY" /> lelaki, hemofilia |
+
+Hanya satu petak daripada empat ialah anak lelaki yang menghidap hemofilia, jadi:
+
+<BlockMath math="P(\text{anak lelaki hemofilia})=\tfrac{1}{2}\times\tfrac{1}{4}=\tfrac{1}{8}" />
+
+Jadi kebarangkalian anak pertama mereka ialah anak lelaki yang menghidap hemofilia ialah <InlineMath math="\tfrac{1}{8}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\tfrac{1}{4}" /> menganggap W pasti pembawa dan melangkau **peluang separuh** bahawa dia bukan pembawa.
+- <InlineMath math="\tfrac{1}{2}" /> ialah peluang anak lelaki seorang pembawa terjejas, **tetapi jantina anak itu tidak diketahui**, dan W mungkin bukan pembawa.
+- <InlineMath math="\tfrac{1}{16}" /> membahagi dua sekali lagi untuk anak lelaki, **walhal grid sudah mengambil kira jantina**.

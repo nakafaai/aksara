@@ -1,0 +1,35 @@
+# Senaraikan gamet setiap induk, kemudian isi grid
+
+Oleh sebab gen-gen itu terletak pada kromosom yang berlainan, ia **bersaling secara bebas**. <InlineMath math="RrYy" /> menghasilkan empat jenis gamet dalam bilangan yang sama, <InlineMath math="RY" />, <InlineMath math="Ry" />, <InlineMath math="rY" /> dan <InlineMath math="ry" />, manakala <InlineMath math="Rryy" /> hanya menghasilkan dua, <InlineMath math="Ry" /> dan <InlineMath math="ry" />.
+
+| Gamet | <InlineMath math="Ry" /> | <InlineMath math="ry" /> |
+| --- | --- | --- |
+| <InlineMath math="RY" /> | <InlineMath math="RRYy" /> bulat kuning | <InlineMath math="RrYy" /> bulat kuning |
+| <InlineMath math="Ry" /> | <InlineMath math="RRyy" /> bulat hijau | <InlineMath math="Rryy" /> bulat hijau |
+| <InlineMath math="rY" /> | <InlineMath math="RrYy" /> bulat kuning | <InlineMath math="rrYy" /> berkedut kuning |
+| <InlineMath math="ry" /> | <InlineMath math="Rryy" /> bulat hijau | <InlineMath math="rryy" /> berkedut hijau |
+
+Grid itu mempunyai <InlineMath math="4\times2=8" /> petak yang sama kebarangkaliannya. Tiga petak ialah bulat kuning, iaitu satu <InlineMath math="RRYy" /> dan dua <InlineMath math="RrYy" />.
+
+<BlockMath math="\text{bulat kuning}=\tfrac{3}{8}\times400=150,\qquad RRYy=\tfrac{1}{8}\times400=50" />
+
+<Chart
+  title={<>Biji Benih Dijangka bagi Setiap Jenis daripada <InlineMath math="400" /></>}
+  bars="apart"
+  categories={["Bulat kuning", "Bulat hijau", "Berkedut kuning", "Berkedut hijau"]}
+  series={[
+    { label: "Biji benih", mark: "bar", values: [150, 150, 50, 50] },
+  ]}
+  valueLabel="Biji benih"
+  description={<>Jangkaan: <InlineMath math="150" /> bulat kuning, <InlineMath math="150" /> bulat hijau, <InlineMath math="50" /> berkedut kuning dan <InlineMath math="50" /> berkedut hijau, iaitu nisbah <InlineMath math="3:3:1:1" />.</>}
+/>
+
+Antara <InlineMath math="150" /> biji bulat kuning, hanya biji <InlineMath math="RRYy" /> yang **homozigot bagi bentuk**, iaitu satu petak daripada tiga.
+
+Jadi <InlineMath math="50" /> biji bulat kuning dijangka homozigot bagi bentuk biji.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="150" /> ialah semua biji bulat kuning, **termasuk biji heterozigot** <InlineMath math="RrYy" />.
+- <InlineMath math="100" /> mengira semua biji <InlineMath math="RR" />, <InlineMath math="\tfrac{1}{4}\times400" />, **tanpa memilih yang kuning sahaja**.
+- <InlineMath math="25" /> menggunakan <InlineMath math="\tfrac{1}{16}" /> daripada kacukan dua pokok <InlineMath math="RrYy" />, **sedangkan satu induk di sini ialah** <InlineMath math="Rryy" />.

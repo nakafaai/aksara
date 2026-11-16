@@ -1,0 +1,35 @@
+# List the gametes of each parent, then fill a grid
+
+Because the genes are on different chromosomes, they **assort independently**. <InlineMath math="RrYy" /> makes four kinds of gamete in equal numbers, <InlineMath math="RY" />, <InlineMath math="Ry" />, <InlineMath math="rY" /> and <InlineMath math="ry" />, while <InlineMath math="Rryy" /> makes only two, <InlineMath math="Ry" /> and <InlineMath math="ry" />.
+
+| Gametes | <InlineMath math="Ry" /> | <InlineMath math="ry" /> |
+| --- | --- | --- |
+| <InlineMath math="RY" /> | <InlineMath math="RRYy" /> round yellow | <InlineMath math="RrYy" /> round yellow |
+| <InlineMath math="Ry" /> | <InlineMath math="RRyy" /> round green | <InlineMath math="Rryy" /> round green |
+| <InlineMath math="rY" /> | <InlineMath math="RrYy" /> round yellow | <InlineMath math="rrYy" /> wrinkled yellow |
+| <InlineMath math="ry" /> | <InlineMath math="Rryy" /> round green | <InlineMath math="rryy" /> wrinkled green |
+
+The grid has <InlineMath math="4\times2=8" /> equally likely boxes. Three are round yellow: one <InlineMath math="RRYy" /> and two <InlineMath math="RrYy" />.
+
+<BlockMath math="\text{round yellow}=\tfrac{3}{8}\times400=150,\qquad RRYy=\tfrac{1}{8}\times400=50" />
+
+<Chart
+  title={<>Expected Seeds of Each Kind out of <InlineMath math="400" /></>}
+  bars="apart"
+  categories={["Round yellow", "Round green", "Wrinkled yellow", "Wrinkled green"]}
+  series={[
+    { label: "Seeds", mark: "bar", values: [150, 150, 50, 50] },
+  ]}
+  valueLabel="Seeds"
+  description={<>Expected: <InlineMath math="150" /> round yellow, <InlineMath math="150" /> round green, <InlineMath math="50" /> wrinkled yellow and <InlineMath math="50" /> wrinkled green, a ratio of <InlineMath math="3:3:1:1" />.</>}
+/>
+
+Among the <InlineMath math="150" /> round yellow seeds, only the <InlineMath math="RRYy" /> seeds are **homozygous for shape**, which is one box in three.
+
+So <InlineMath math="50" /> of the round yellow seeds are expected to be homozygous for seed shape.
+
+# Why the other options are wrong
+
+- <InlineMath math="150" /> is every round yellow seed, **including the heterozygous** <InlineMath math="RrYy" /> ones.
+- <InlineMath math="100" /> counts every <InlineMath math="RR" /> seed, <InlineMath math="\tfrac{1}{4}\times400" />, **without keeping only the yellow ones**.
+- <InlineMath math="25" /> uses <InlineMath math="\tfrac{1}{16}" /> from a cross of two <InlineMath math="RrYy" /> plants, **but one parent here is** <InlineMath math="Rryy" />.

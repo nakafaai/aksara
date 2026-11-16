@@ -1,0 +1,22 @@
+# Read each new codon in the table and ask whether the frame moves
+
+A **substitution** swaps one base, so it changes one codon at most. A **deletion** removes a base, so every later codon is read in shifted groups of three.
+
+<Mermaid
+  title={<>What Each Mutation Does to the Polypeptide</>}
+  description={<>Mutation <InlineMath math="1" /> still codes for alanine. Mutation <InlineMath math="2" /> changes one amino acid. Mutation <InlineMath math="3" /> makes a stop codon, so the chain ends early. Mutation <InlineMath math="4" /> shifts the reading frame, so every codon after it is read in the wrong groups of three.</>}
+  chart={"flowchart LR\n  M1[Mutation 1: GCU to GCC] --> E1[Still alanine: no change]\n  M2[Mutation 2: GAA to GUA] --> E2[Glutamic acid to valine: one change]\n  M3[Mutation 3: UGG to UGA] --> E3[Stop codon: shorter chain]\n  M4[Mutation 4: one base deleted] --> E4[Reading frame shifts: every later codon read wrongly]"}
+/>
+
+- I: <InlineMath math="\text{GCU}" /> and <InlineMath math="\text{GCC}" /> both code for alanine, so the polypeptide is unchanged. Statement I is correct.
+- II: <InlineMath math="\text{GUA}" /> codes for valine instead of glutamic acid. It is a substitution, so codons <InlineMath math="5" /> onward are read exactly as before and only one amino acid changes. Statement II is wrong.
+- III: <InlineMath math="\text{UGA}" /> is a stop codon, so translation ends after codon <InlineMath math="4" /> and the polypeptide is much shorter. Statement III is correct.
+- IV: deleting the first <InlineMath math="\text{A}" /> of codon <InlineMath math="3" /> turns <InlineMath math="\text{AAA GAA UGG}" /> into <InlineMath math="\text{AAG AAU GG}\ldots" />, so the reading frame shifts and every later codon changes. Even though <InlineMath math="\text{AAG}" /> is still lysine, the following codons are all different. Statement IV is wrong.
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I, II and III only treats the substitution in mutation <InlineMath math="2" /> like a frameshift, **but only one codon changes**.
+- III and IV only rejects I, **although both codons code for alanine**, and treats a deletion like a substitution.
+- I and IV only misses the **stop codon** made by mutation <InlineMath math="3" /> and accepts that a deletion changes one amino acid.

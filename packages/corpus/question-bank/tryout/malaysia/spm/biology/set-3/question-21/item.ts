@@ -3,7 +3,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "analysing",
-    contentDomain: "form-5",
+    contentDomain: "form-4",
     topic: "reproduction-and-growth-in-humans-and-animals",
   },
   versions: {

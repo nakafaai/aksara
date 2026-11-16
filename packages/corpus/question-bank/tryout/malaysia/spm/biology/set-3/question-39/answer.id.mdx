@@ -1,0 +1,32 @@
+# Tentukan apakah W pembawa sebelum melihat anaknya
+
+Anak laki-laki mendapat satu-satunya kromosom X dari **ibunya**. Saudara laki-laki W menderita hemofilia, jadi ibu mereka menurunkan <InlineMath math="X^h" /> kepadanya dan pasti pembawa, <InlineMath math="X^HX^h" />. Ayah mereka <InlineMath math="X^HY" />.
+
+<Mermaid
+  title={<>Yang Diketahui tentang Keluarga Itu</>}
+  description={<>Saudara laki-laki W menderita hemofilia, jadi kromosom X-nya berasal dari ibu mereka, yang pasti pembawa. W menerima XH dari ayah dan salah satu X dari ibu, jadi peluangnya menjadi pembawa adalah separuh.</>}
+  chart={"flowchart TD\n  GF[Ayah W: XHY] --> B[Saudara laki-laki W: XhY, hemofilia]\n  GM[Ibu W: XHXh, pembawa] --> B\n  GF --> W[W: XHXH atau XHXh]\n  GM --> W\n  W --> C[Anak pertama]\n  H[Suami: XHY] --> C"}
+/>
+
+W mendapat <InlineMath math="X^H" /> dari ayahnya dan salah satu dari dua kromosom X ibunya, jadi:
+
+<BlockMath math="P(\text{W adalah } X^HX^h)=\tfrac{1}{2}" />
+
+Jika W pembawa, anaknya dengan suami <InlineMath math="X^HY" /> jatuh di salah satu dari empat kotak yang sama peluangnya:
+
+| Gamet | <InlineMath math="X^H" /> dari suami | <InlineMath math="Y" /> dari suami |
+| --- | --- | --- |
+| <InlineMath math="X^H" /> dari W | <InlineMath math="X^HX^H" /> perempuan, normal | <InlineMath math="X^HY" /> laki-laki, normal |
+| <InlineMath math="X^h" /> dari W | <InlineMath math="X^HX^h" /> perempuan, pembawa | <InlineMath math="X^hY" /> laki-laki, hemofilia |
+
+Hanya satu kotak dari empat yang berupa anak laki-laki penderita hemofilia, jadi:
+
+<BlockMath math="P(\text{anak laki-laki hemofilia})=\tfrac{1}{2}\times\tfrac{1}{4}=\tfrac{1}{8}" />
+
+Jadi peluang anak pertama mereka adalah anak laki-laki penderita hemofilia adalah <InlineMath math="\tfrac{1}{8}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\tfrac{1}{4}" /> menganggap W pasti pembawa dan melewatkan **peluang separuh** bahwa ia bukan pembawa.
+- <InlineMath math="\tfrac{1}{2}" /> adalah peluang anak laki-laki dari seorang pembawa terkena, **tetapi jenis kelamin anak belum diketahui**, dan W belum tentu pembawa.
+- <InlineMath math="\tfrac{1}{16}" /> membagi dua sekali lagi untuk anak laki-laki, **padahal tabel sudah memperhitungkan jenis kelamin**.

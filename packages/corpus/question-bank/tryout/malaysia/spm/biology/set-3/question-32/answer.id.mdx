@@ -1,0 +1,35 @@
+# Daftar gamet tiap induk, lalu isi tabelnya
+
+Karena kedua gen ada di kromosom yang berbeda, keduanya **memisah secara bebas**. <InlineMath math="RrYy" /> membentuk empat macam gamet dalam jumlah sama, <InlineMath math="RY" />, <InlineMath math="Ry" />, <InlineMath math="rY" />, dan <InlineMath math="ry" />, sedangkan <InlineMath math="Rryy" /> hanya membentuk dua, <InlineMath math="Ry" /> dan <InlineMath math="ry" />.
+
+| Gamet | <InlineMath math="Ry" /> | <InlineMath math="ry" /> |
+| --- | --- | --- |
+| <InlineMath math="RY" /> | <InlineMath math="RRYy" /> bulat kuning | <InlineMath math="RrYy" /> bulat kuning |
+| <InlineMath math="Ry" /> | <InlineMath math="RRyy" /> bulat hijau | <InlineMath math="Rryy" /> bulat hijau |
+| <InlineMath math="rY" /> | <InlineMath math="RrYy" /> bulat kuning | <InlineMath math="rrYy" /> keriput kuning |
+| <InlineMath math="ry" /> | <InlineMath math="Rryy" /> bulat hijau | <InlineMath math="rryy" /> keriput hijau |
+
+Tabel itu punya <InlineMath math="4\times2=8" /> kotak dengan peluang sama. Tiga kotak bulat kuning, yaitu satu <InlineMath math="RRYy" /> dan dua <InlineMath math="RrYy" />.
+
+<BlockMath math="\text{bulat kuning}=\tfrac{3}{8}\times400=150,\qquad RRYy=\tfrac{1}{8}\times400=50" />
+
+<Chart
+  title={<>Perkiraan Biji Tiap Jenis dari <InlineMath math="400" /></>}
+  bars="apart"
+  categories={["Bulat kuning", "Bulat hijau", "Keriput kuning", "Keriput hijau"]}
+  series={[
+    { label: "Biji", mark: "bar", values: [150, 150, 50, 50] },
+  ]}
+  valueLabel="Biji"
+  description={<>Perkiraan: <InlineMath math="150" /> bulat kuning, <InlineMath math="150" /> bulat hijau, <InlineMath math="50" /> keriput kuning, dan <InlineMath math="50" /> keriput hijau, rasio <InlineMath math="3:3:1:1" />.</>}
+/>
+
+Dari <InlineMath math="150" /> biji bulat kuning, hanya biji <InlineMath math="RRYy" /> yang **homozigot untuk bentuk**, yaitu satu kotak dari tiga.
+
+Jadi <InlineMath math="50" /> biji bulat kuning diperkirakan homozigot untuk bentuk biji.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="150" /> adalah semua biji bulat kuning, **termasuk yang heterozigot** <InlineMath math="RrYy" />.
+- <InlineMath math="100" /> menghitung semua biji <InlineMath math="RR" />, <InlineMath math="\tfrac{1}{4}\times400" />, **tanpa menyaring yang kuning saja**.
+- <InlineMath math="25" /> memakai <InlineMath math="\tfrac{1}{16}" /> dari persilangan dua tanaman <InlineMath math="RrYy" />, **padahal salah satu induk di sini** <InlineMath math="Rryy" />.

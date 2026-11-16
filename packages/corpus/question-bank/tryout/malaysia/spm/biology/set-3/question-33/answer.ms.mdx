@@ -1,0 +1,25 @@
+# Tentukan alel dominan sebelum mencari sebarang genotip
+
+Dua induk yang terjejas mempunyai anak perempuan yang tidak terjejas. Jika keadaan itu resesif, kedua-dua induk ialah <InlineMath math="aa" /> dan hanya boleh mendapat anak yang terjejas. Jadi keadaan itu disebabkan oleh **alel dominan** <InlineMath math="A" />, dan anak perempuan yang tidak terjejas ialah <InlineMath math="aa" />.
+
+<Mermaid
+  title={<>Genotip yang Ditentukan daripada Anak Perempuan yang Tidak Terjejas</>}
+  description={<>Anak perempuan yang tidak terjejas ialah aa, jadi kedua-dua induk yang terjejas mesti Aa. Anak lelaki P terjejas, jadi dia AA atau Aa. Isterinya yang tidak terjejas ialah aa.</>}
+  chart={"flowchart TD\n  F[Bapa Aa] --> D[Anak perempuan aa]\n  M[Ibu Aa] --> D\n  F --> P[Anak lelaki P: AA atau Aa]\n  M --> P\n  P --> C[Anak P]\n  W[Isteri aa] --> C"}
+/>
+
+Anak perempuan itu menerima satu <InlineMath math="a" /> daripada setiap induk, jadi kedua-dua induk ialah <InlineMath math="Aa" />. Anak-anak mereka ialah <InlineMath math="AA" />, <InlineMath math="Aa" /> dan <InlineMath math="aa" /> dalam nisbah <InlineMath math="1:2:1" />. Anak lelaki P terjejas, jadi kemungkinan <InlineMath math="aa" /> ditolak, dan yang tinggal ialah <InlineMath math="AA" /> atau <InlineMath math="Aa" /> dalam nisbah <InlineMath math="1:2" />:
+
+<BlockMath math="P(AA)=\tfrac{1}{3},\qquad P(Aa)=\tfrac{2}{3}" />
+
+Dengan isteri <InlineMath math="aa" />, bapa <InlineMath math="AA" /> sentiasa mewariskan <InlineMath math="A" />, dan bapa <InlineMath math="Aa" /> mewariskannya separuh daripada masa:
+
+<BlockMath math="P(\text{anak terjejas})=\tfrac{1}{3}\times1+\tfrac{2}{3}\times\tfrac{1}{2}=\tfrac{1}{3}+\tfrac{1}{3}=\tfrac{2}{3}" />
+
+Jadi kebarangkalian anak pertama mereka terjejas ialah <InlineMath math="\tfrac{2}{3}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\tfrac{1}{2}" /> menganggap anak lelaki P pasti <InlineMath math="Aa" /> dan mengabaikan **satu peluang daripada tiga** bahawa dia <InlineMath math="AA" />.
+- <InlineMath math="\tfrac{3}{4}" /> ialah peluang bagi anak dua induk <InlineMath math="Aa" />, **sedangkan isteri P ialah** <InlineMath math="aa" />.
+- <InlineMath math="\tfrac{1}{3}" /> hanya mengira laluan melalui <InlineMath math="Aa" /> dan **lupa laluan** <InlineMath math="AA" />, yang sentiasa menghasilkan anak terjejas.

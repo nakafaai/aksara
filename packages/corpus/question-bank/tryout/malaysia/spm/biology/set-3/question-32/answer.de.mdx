@@ -1,0 +1,35 @@
+# Erst die Keimzellen jedes Elternteils, dann das Kreuzungsschema
+
+Weil die Gene auf verschiedenen Chromosomen liegen, werden sie **unabhängig verteilt**. <InlineMath math="RrYy" /> bildet vier Keimzellsorten in gleicher Zahl, <InlineMath math="RY" />, <InlineMath math="Ry" />, <InlineMath math="rY" /> und <InlineMath math="ry" />, <InlineMath math="Rryy" /> dagegen nur zwei, <InlineMath math="Ry" /> und <InlineMath math="ry" />.
+
+| Keimzellen | <InlineMath math="Ry" /> | <InlineMath math="ry" /> |
+| --- | --- | --- |
+| <InlineMath math="RY" /> | <InlineMath math="RRYy" /> rund gelb | <InlineMath math="RrYy" /> rund gelb |
+| <InlineMath math="Ry" /> | <InlineMath math="RRyy" /> rund grün | <InlineMath math="Rryy" /> rund grün |
+| <InlineMath math="rY" /> | <InlineMath math="RrYy" /> rund gelb | <InlineMath math="rrYy" /> runzlig gelb |
+| <InlineMath math="ry" /> | <InlineMath math="Rryy" /> rund grün | <InlineMath math="rryy" /> runzlig grün |
+
+Das Schema hat <InlineMath math="4\cdot2=8" /> gleich wahrscheinliche Felder. Drei davon sind rund gelb: einmal <InlineMath math="RRYy" /> und zweimal <InlineMath math="RrYy" />.
+
+<BlockMath math="\text{rund gelb}=\tfrac{3}{8}\cdot400=150,\qquad RRYy=\tfrac{1}{8}\cdot400=50" />
+
+<Chart
+  title={<>Erwartete Samen jeder Sorte von <InlineMath math="400" /></>}
+  bars="apart"
+  categories={["Rund gelb", "Rund grün", "Runzlig gelb", "Runzlig grün"]}
+  series={[
+    { label: "Samen", mark: "bar", values: [150, 150, 50, 50] },
+  ]}
+  valueLabel="Samen"
+  description={<>Erwartet: <InlineMath math="150" /> rund gelb, <InlineMath math="150" /> rund grün, <InlineMath math="50" /> runzlig gelb und <InlineMath math="50" /> runzlig grün, ein Verhältnis von <InlineMath math="3:3:1:1" />.</>}
+/>
+
+Von den <InlineMath math="150" /> runden gelben Samen sind nur die <InlineMath math="RRYy" />-Samen **reinerbig für die Form**, also eins von drei Feldern.
+
+Es sind also <InlineMath math="50" /> der runden gelben Samen reinerbig für die Samenform zu erwarten.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="150" /> sind alle runden gelben Samen, **die mischerbigen** <InlineMath math="RrYy" /> eingeschlossen.
+- <InlineMath math="100" /> zählt alle <InlineMath math="RR" />-Samen, <InlineMath math="\tfrac{1}{4}\cdot400" />, **ohne nur die gelben zu nehmen**.
+- <InlineMath math="25" /> nutzt <InlineMath math="\tfrac{1}{16}" /> aus einer Kreuzung zweier <InlineMath math="RrYy" />-Pflanzen, **doch ein Elternteil ist hier** <InlineMath math="Rryy" />.

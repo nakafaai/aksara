@@ -1,0 +1,22 @@
+# Jedes neue Codon in der Tabelle nachschlagen und prüfen, ob sich das Raster verschiebt
+
+Eine **Substitution** tauscht eine Base aus, ändert also höchstens ein Codon. Eine **Deletion** entfernt eine Base, also wird jedes spätere Codon in verschobenen Dreiergruppen gelesen.
+
+<Mermaid
+  title={<>Was jede Mutation mit dem Polypeptid macht</>}
+  description={<>Mutation <InlineMath math="1" /> codiert weiter Alanin. Mutation <InlineMath math="2" /> ändert eine Aminosäure. Mutation <InlineMath math="3" /> erzeugt ein Stoppcodon, die Kette endet also früher. Mutation <InlineMath math="4" /> verschiebt das Leseraster, sodass jedes spätere Codon in falschen Dreiergruppen gelesen wird.</>}
+  chart={"flowchart LR\n  M1[Mutation 1: GCU zu GCC] --> E1[Weiter Alanin: keine Änderung]\n  M2[Mutation 2: GAA zu GUA] --> E2[Glutaminsäure zu Valin: eine Änderung]\n  M3[Mutation 3: UGG zu UGA] --> E3[Stoppcodon: kürzere Kette]\n  M4[Mutation 4: eine Base fehlt] --> E4[Leseraster verschoben: jedes spätere Codon falsch gelesen]"}
+/>
+
+- I: <InlineMath math="\text{GCU}" /> und <InlineMath math="\text{GCC}" /> codieren beide Alanin, das Polypeptid bleibt also gleich. Aussage I stimmt.
+- II: <InlineMath math="\text{GUA}" /> codiert Valin statt Glutaminsäure. Es ist eine Substitution, die Codons ab Nummer <InlineMath math="5" /> werden also genauso gelesen wie vorher, und nur eine Aminosäure ändert sich. Aussage II ist falsch.
+- III: <InlineMath math="\text{UGA}" /> ist ein Stoppcodon, die Translation endet also nach Codon <InlineMath math="4" />, und das Polypeptid ist viel kürzer. Aussage III stimmt.
+- IV: Fehlt das erste <InlineMath math="\text{A}" /> von Codon <InlineMath math="3" />, wird aus <InlineMath math="\text{AAA GAA UGG}" /> die Folge <InlineMath math="\text{AAG AAU GG}\ldots" />, das Leseraster verschiebt sich, und jedes spätere Codon ändert sich. Auch wenn <InlineMath math="\text{AAG}" /> noch Lysin ist, sind alle folgenden Codons anders. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III behandelt die Substitution in Mutation <InlineMath math="2" /> wie eine Rasterverschiebung, **doch nur ein Codon ändert sich**.
+- Nur III und IV verwirft I, **obwohl beide Codons Alanin codieren**, und behandelt eine Deletion wie eine Substitution.
+- Nur I und IV übersieht das **Stoppcodon** aus Mutation <InlineMath math="3" /> und nimmt an, dass eine Deletion nur eine Aminosäure ändert.
