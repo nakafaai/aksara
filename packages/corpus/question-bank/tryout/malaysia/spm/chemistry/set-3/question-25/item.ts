@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The nail touching zinc rusts fastest, because zinc speeds up the corrosion of iron",
+            "$$0.96\\text{ dm}^3$$ of gas left, $$56\\%$$ of the iron rusted, and a gain in mass of $$0.32\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "The nail touching copper rusts fastest, because iron is more electropositive than copper and gives electrons to it",
+            "$$0.96\\text{ dm}^3$$ of gas left, about $$37\\%$$ of the iron rusted, and a gain in mass of $$0.32\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "The nail touching magnesium shows the most dark blue colour, because magnesium makes iron lose electrons",
+            "$$0.24\\text{ dm}^3$$ of gas left, about $$37\\%$$ of the iron rusted, and a gain in mass of $$0.32\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "The pink colour around a nail shows that iron(II) ions are forming there",
+            "$$0.96\\text{ dm}^3$$ of gas left, about $$37\\%$$ of the iron rusted, and a gain in mass of $$1.07\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Paku yang bersentuhan dengan zink paling cepat berkarat, kerana zink mempercepatkan kakisan besi",
+            "$$0.96\\text{ dm}^3$$ gas tinggal, $$56\\%$$ ferum berkarat, dan pertambahan jisim $$0.32\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "Paku yang bersentuhan dengan kuprum paling cepat berkarat, kerana besi lebih elektropositif daripada kuprum dan memberikan elektron kepadanya",
+            "$$0.96\\text{ dm}^3$$ gas tinggal, kira-kira $$37\\%$$ ferum berkarat, dan pertambahan jisim $$0.32\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "Paku yang bersentuhan dengan magnesium menunjukkan paling banyak warna biru tua, kerana magnesium menyebabkan besi kehilangan elektron",
+            "$$0.24\\text{ dm}^3$$ gas tinggal, kira-kira $$37\\%$$ ferum berkarat, dan pertambahan jisim $$0.32\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "Warna merah jambu di sekeliling paku menunjukkan ion ferum(II) terbentuk di situ",
+            "$$0.96\\text{ dm}^3$$ gas tinggal, kira-kira $$37\\%$$ ferum berkarat, dan pertambahan jisim $$1.07\\text{ g}$$",
         },
       ],
     },

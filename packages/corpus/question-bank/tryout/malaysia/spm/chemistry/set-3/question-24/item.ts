@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "In X, oxygen forms at the anode and the solution becomes acidic; in Y, the silver anode dissolves and the solution concentration stays the same",
+            "In X, $$60\\text{ cm}^3$$ of oxygen forms and the solution falls to pH $$1$$, and in Y, the silver anode loses $$1.08\\text{ g}$$ and the solution stays at $$0.20\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "In X, silver forms at the anode; in Y, oxygen forms at the anode",
+            "In X, $$120\\text{ cm}^3$$ of oxygen forms and the solution falls to pH $$1$$, and in Y, the silver anode loses $$1.08\\text{ g}$$ and the solution stays at $$0.20\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "In X, silver forms at the cathode and the solution becomes alkaline; in Y, the silver cathode dissolves",
+            "In X, $$60\\text{ cm}^3$$ of oxygen forms and the solution rises to pH $$13$$, and in Y, the silver anode loses $$1.08\\text{ g}$$ and the solution stays at $$0.20\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "In X, nitrogen dioxide forms at the anode; in Y, the silver anode grows thicker",
+            "In X, $$60\\text{ cm}^3$$ of oxygen forms and the solution falls to pH $$1$$, and in Y, the silver anode gains $$1.08\\text{ g}$$ and the solution falls to $$0.10\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Dalam X, oksigen terbentuk di anod dan larutan menjadi berasid; dalam Y, anod argentum melarut dan kepekatan larutan tidak berubah",
+            "Dalam X, $$60\\text{ cm}^3$$ oksigen terbentuk dan larutan turun ke pH $$1$$, dan dalam Y, anod argentum kehilangan $$1.08\\text{ g}$$ dan larutan kekal $$0.20\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Dalam X, argentum terbentuk di anod; dalam Y, oksigen terbentuk di anod",
+            "Dalam X, $$120\\text{ cm}^3$$ oksigen terbentuk dan larutan turun ke pH $$1$$, dan dalam Y, anod argentum kehilangan $$1.08\\text{ g}$$ dan larutan kekal $$0.20\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Dalam X, argentum terbentuk di katod dan larutan menjadi beralkali; dalam Y, katod argentum melarut",
+            "Dalam X, $$60\\text{ cm}^3$$ oksigen terbentuk dan larutan naik ke pH $$13$$, dan dalam Y, anod argentum kehilangan $$1.08\\text{ g}$$ dan larutan kekal $$0.20\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Dalam X, nitrogen dioksida terbentuk di anod; dalam Y, anod argentum menjadi lebih tebal",
+            "Dalam X, $$60\\text{ cm}^3$$ oksigen terbentuk dan larutan turun ke pH $$1$$, dan dalam Y, anod argentum bertambah $$1.08\\text{ g}$$ dan larutan berkurang ke $$0.10\\text{ mol dm}^{-3}$$",
         },
       ],
     },

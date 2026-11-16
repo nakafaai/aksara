@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "0.90 dm³ of ethene, which can decolourise up to 6.0 g of bromine",
+            "$$0.90\\text{ dm}^3$$ of ethene forms, the bromine water is decolourised, and $$0.78\\text{ dm}^3$$ of ethene passes through unreacted",
         },
         {
           correct: false,
           label:
-            "1.2 dm³ of ethene, which can decolourise up to 8.0 g of bromine",
+            "$$1.2\\text{ dm}^3$$ of ethene forms, the bromine water is decolourised, and $$1.08\\text{ dm}^3$$ of ethene passes through unreacted",
         },
         {
           correct: false,
           label:
-            "0.90 dm³ of ethane, which can decolourise up to 6.0 g of bromine",
+            "$$0.90\\text{ dm}^3$$ of ethene forms, and all of it is absorbed by the bromine water",
         },
         {
           correct: false,
           label:
-            "0.90 dm³ of ethene, which can decolourise up to 3.0 g of bromine",
+            "$$0.90\\text{ dm}^3$$ of ethene forms, the bromine water is decolourised, and $$0.66\\text{ dm}^3$$ of ethene passes through unreacted",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "0.90 dm³ etena, yang boleh menyahwarnakan sehingga 6.0 g bromin",
+            "$$0.90\\text{ dm}^3$$ etena terbentuk, air bromin dinyahwarnakan, dan $$0.78\\text{ dm}^3$$ etena melaluinya tanpa bertindak balas",
         },
         {
           correct: false,
           label:
-            "1.2 dm³ etena, yang boleh menyahwarnakan sehingga 8.0 g bromin",
+            "$$1.2\\text{ dm}^3$$ etena terbentuk, air bromin dinyahwarnakan, dan $$1.08\\text{ dm}^3$$ etena melaluinya tanpa bertindak balas",
         },
         {
           correct: false,
           label:
-            "0.90 dm³ etana, yang boleh menyahwarnakan sehingga 6.0 g bromin",
+            "$$0.90\\text{ dm}^3$$ etena terbentuk, dan kesemuanya diserap oleh air bromin",
         },
         {
           correct: false,
           label:
-            "0.90 dm³ etena, yang boleh menyahwarnakan sehingga 3.0 g bromin",
+            "$$0.90\\text{ dm}^3$$ etena terbentuk, air bromin dinyahwarnakan, dan $$0.66\\text{ dm}^3$$ etena melaluinya tanpa bertindak balas",
         },
       ],
     },

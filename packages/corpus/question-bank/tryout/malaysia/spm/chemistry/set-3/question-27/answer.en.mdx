@@ -1,22 +1,27 @@
-# Count atoms per molecule from the products
+# One bromine molecule per molecule of X gives the molar mass
 
-Carbon dioxide: <InlineMath math="17.6 \div 44 = 0.40" /> mol, so <InlineMath math="0.40" /> mol of carbon atoms. Water: <InlineMath math="7.2 \div 18 = 0.40" /> mol, which holds <InlineMath math="0.80" /> mol of hydrogen atoms.
+Bromine: <InlineMath math="M_r(\text{Br}_2) = 160" />, so <InlineMath math="2.0 \div 160 = 0.0125" /> mol. Each molecule of X takes **one bromine molecule**, so there were <InlineMath math="0.0125" /> mol of X, and <InlineMath math="M_r = 0.70 \div 0.0125 = 56" />.
 
-<Chart
-  title={<>Moles in the Combustion</>}
-  bars="apart"
-  categories={["Q burned", "Carbon dioxide", "Water", "Hydrogen atoms"]}
-  series={[
-    { label: "Amount (mol)", mark: "bar", values: [0.1, 0.4, 0.4, 0.8] },
-  ]}
-  valueLabel="Amount (mol)"
-  description={<><InlineMath math="0.10\text{ mol}" /> of Q gives <InlineMath math="0.40\text{ mol}" /> of carbon dioxide and <InlineMath math="0.40\text{ mol}" /> of water, which hold <InlineMath math="0.80\text{ mol}" /> of hydrogen atoms.</>}
+One double bond makes X an alkene, <InlineMath math="\text{C}_n\text{H}_{2n}" />: <InlineMath math="14n = 56" />, so <InlineMath math="n = 4" /> and X is <InlineMath math="\text{C}_4\text{H}_8" />.
+
+<Mermaid
+  title={<>From the Bromine to the Isomers</>}
+  description={<><InlineMath math="0.0125\text{ mol}" /> of bromine means <InlineMath math="0.0125\text{ mol}" /> of X, so <InlineMath math="M_r = 56" /> and X is <InlineMath math="\text{C}_4\text{H}_8" />, with three alkene structures.</>}
+  chart={`
+    flowchart LR
+      N0["2.0 g Br₂: 0.0125 mol"] --> N1["0.0125 mol X"]
+      N1 --> N2["Mr = 0.70 ÷ 0.0125 = 56"]
+      N2 --> N3["CₙH₂ₙ: 14n = 56, n = 4"]
+      N3 --> N4["But-1-ene, but-2-ene, 2-methylpropene"]
+  `}
 />
 
-Divide by the <InlineMath math="0.10" /> mol of Q: each molecule has <InlineMath math="4" /> carbon atoms and <InlineMath math="8" /> hydrogen atoms, so Q is <InlineMath math="\text{C}_4\text{H}_8" />. It fits <InlineMath math="\text{C}_n\text{H}_{2n}" />, the alkenes, so it has a **carbon-carbon double bond** that adds bromine and decolourises bromine water.
+Alkene structures of <InlineMath math="\text{C}_4\text{H}_8" />: the double bond at the end of a straight chain, **but-1-ene**, in the middle of it, **but-2-ene**, or on a branched chain, **2-methylpropene**. That makes three.
+
+**Hydrogen**: it adds across the same single double bond as bromine, **one molecule per molecule of X**: <InlineMath math="0.0125" /> mol, or <InlineMath math="0.0125 \times 24\,000 = 300\text{ cm}^3" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="\text{C}_4\text{H}_{10}" /> would give <InlineMath math="0.50" /> mol of water, not <InlineMath math="0.40" />.
-- <InlineMath math="\text{C}_8\text{H}_{16}" /> forgets to **divide by the moles of Q**: it would give <InlineMath math="0.80" /> mol of carbon dioxide.
-- <InlineMath math="\text{C}_4\text{H}_8" /> is right, but an alkene is unsaturated.
+- <InlineMath math="150\text{ cm}^3" /> with <InlineMath math="\text{C}_4\text{H}_8" /> adds one hydrogen molecule to two molecules of X, but each double bond takes one.
+- <InlineMath math="\text{C}_8\text{H}_{16}" /> comes from taking **two bromine molecules** per molecule of X, which doubles the molar mass and halves the hydrogen.
+- Two isomers leave out the branched one, 2-methylpropene.

@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bronze is softer, because its dents are smaller, and it holds about 9 copper atoms for every tin atom",
+            "$$26\\%$$ zinc, and the brass is softer than copper because the zinc atoms are larger",
         },
         {
           correct: true,
           label:
-            "Bronze is harder, and it holds about 17 copper atoms for every tin atom, so scattered tin atoms disturb the layers of copper atoms and stop them sliding easily",
+            "$$26\\%$$ zinc and about three copper atoms for each zinc atom, and the brass is harder than copper because the zinc atoms disrupt the orderly layers of copper atoms",
         },
         {
           correct: false,
           label:
-            "Bronze is harder, and it holds about 9 copper atoms for every tin atom, so the tin atoms form covalent bonds with copper",
+            "$$52\\%$$ zinc and about one copper atom for each zinc atom, and the brass is harder than copper because the zinc atoms disrupt the orderly layers of copper atoms",
         },
         {
           correct: false,
           label:
-            "Pure copper is harder, because its atoms are all the same size and pack more tightly",
+            "$$26\\%$$ zinc and about three copper atoms for each zinc atom, and the brass conducts electricity better than pure copper",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Gangsa lebih lembut, kerana lekuknya lebih kecil, dan ia mengandungi kira-kira 9 atom kuprum bagi setiap atom stanum",
+            "$$26\\%$$ zink, dan loyang lebih lembut daripada kuprum kerana atom zink lebih besar",
         },
         {
           correct: true,
           label:
-            "Gangsa lebih keras, dan ia mengandungi kira-kira 17 atom kuprum bagi setiap atom stanum, jadi atom stanum yang bertaburan mengganggu lapisan atom kuprum supaya tidak mudah menggelongsor",
+            "$$26\\%$$ zink dan kira-kira tiga atom kuprum bagi setiap atom zink, dan loyang lebih keras daripada kuprum kerana atom zink mengganggu susunan lapisan atom kuprum yang teratur",
         },
         {
           correct: false,
           label:
-            "Gangsa lebih keras, dan ia mengandungi kira-kira 9 atom kuprum bagi setiap atom stanum, jadi atom stanum membentuk ikatan kovalen dengan kuprum",
+            "$$52\\%$$ zink dan kira-kira satu atom kuprum bagi setiap atom zink, dan loyang lebih keras daripada kuprum kerana atom zink mengganggu susunan lapisan atom kuprum yang teratur",
         },
         {
           correct: false,
           label:
-            "Kuprum tulen lebih keras, kerana atomnya sama saiz dan tersusun lebih padat",
+            "$$26\\%$$ zink dan kira-kira tiga atom kuprum bagi setiap atom zink, dan loyang mengalirkan elektrik lebih baik daripada kuprum tulen",
         },
       ],
     },

@@ -1,22 +1,25 @@
-# Count units and links in the same <InlineMath math="100\text{ g}" />
+# Empirical formula, molecular formula, then the chain
 
-Isoprene units: <InlineMath math="96.8 \div 68 = 1.42" /> mol. Sulfur atoms: <InlineMath math="3.2 \div 32 = 0.10" /> mol. Each cross-link uses **two sulfur atoms**, so there are <InlineMath math="0.050" /> mol of cross-links, and <InlineMath math="1.42 \div 0.050 \approx 28" /> isoprene units for every one.
+Atom ratio: <InlineMath math="24.0 \div 12 = 2.0" /> carbon to <InlineMath math="76.0 \div 19 = 4.0" /> fluorine, which is <InlineMath math="1 : 2" />. The empirical formula <InlineMath math="\text{CF}_2" /> has mass <InlineMath math="50" />, but the monomer has <InlineMath math="100" />, so it is **two of them**: <InlineMath math="\text{C}_2\text{F}_4" />, tetrafluoroethene.
 
-<Chart
-  title={<>Composition of <InlineMath math="100\text{ g}" /> of Vulcanised Rubber</>}
-  bars="apart"
-  categories={["Poly(isoprene)", "Sulfur"]}
-  series={[
-    { label: "Mass (g)", mark: "bar", values: [96.8, 3.2] },
-  ]}
-  valueLabel="Mass (g)"
-  description={<>In <InlineMath math="100\text{ g}" /> of the rubber: <InlineMath math="96.8\text{ g}" /> of poly(isoprene) and <InlineMath math="3.2\text{ g}" /> of sulfur.</>}
+<Mermaid
+  title={<>From Percentages to the Polymer</>}
+  description={<>The atom ratio is one carbon to two fluorine, the monomer of mass <InlineMath math="100" /> is <InlineMath math="\text{C}_2\text{F}_4" />, and each chain holds <InlineMath math="500" /> of them.</>}
+  chart={`
+    flowchart LR
+      N0["C 24.0 ÷ 12 = 2.0, F 76.0 ÷ 19 = 4.0"] --> N1["Empirical CF₂, mass 50"]
+      N1 --> N2["Mr 100: C₂F₄"]
+      N2 --> N3["Chain 50 000 ÷ 100 = 500 units"]
+      N2 --> N4["Same 76.0% F: 760 g per kg"]
+  `}
 />
 
-A cross-link every <InlineMath math="28" /> units or so ties neighbouring chains together. When the rubber is stretched the chains straighten, but the links stop them sliding apart and **pull them back** when the force goes. So vulcanised rubber is more elastic, harder and stronger than natural rubber.
+Each chain: <InlineMath math="50\,000 \div 100 = 500" /> monomer units. An addition polymer has **the same composition as its monomer**, so <InlineMath math="76.0\%" /> of the polymer is fluorine: <InlineMath math="0.760 \times 1000 = 760" /> g.
+
+**Fluorine per chain**: each unit carries four fluorine atoms, so a chain of <InlineMath math="500" /> units has <InlineMath math="500 \times 4 = 2000" />. Check: <InlineMath math="2000 \times 19 = 38\,000" />, which is <InlineMath math="76\%" /> of <InlineMath math="50\,000" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="14" /> treats each sulfur atom as a whole cross-link, though every **link needs two**.
-- <InlineMath math="30" /> divides the masses, <InlineMath math="96.8 \div 3.2" />, instead of the moles.
-- Sulfur joins chains rather than breaking them, so vulcanised rubber is harder, not softer.
+- <InlineMath math="\text{CF}_2" /> is only the empirical formula, and <InlineMath math="1000" /> units divides by its mass, <InlineMath math="50" />, instead of the monomer's.
+- <InlineMath math="1000" /> fluorine atoms gives each unit two, but <InlineMath math="\text{C}_2\text{F}_4" /> carries **four**.
+- <InlineMath math="380\text{ g}" /> halves the fluorine, but polymerising joins monomers without losing atoms.

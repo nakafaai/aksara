@@ -1,22 +1,25 @@
-# One to one, twice, with the yield in between
+# Make the ethene, then let the bromine run out
 
-Hot porcelain removes water from ethanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} \rightarrow \text{C}_2\text{H}_4 + \text{H}_2\text{O}" />. Ethanol is <InlineMath math="2.3 \div 46 = 0.050" /> mol, so <InlineMath math="0.050" /> mol of ethene could form, and at **<InlineMath math="75\%" /> yield** <InlineMath math="0.0375" /> mol is collected: <InlineMath math="0.0375 \times 24 = 0.90\text{ dm}^3" />.
+Hot porcelain dehydrates ethanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} \rightarrow \text{C}_2\text{H}_4 + \text{H}_2\text{O}" />. Ethanol: <InlineMath math="2.3 \div 46 = 0.050" /> mol, and at <InlineMath math="75\%" />, <InlineMath math="0.0375" /> mol of ethene forms, <InlineMath math="0.0375 \times 24 = 0.90\text{ dm}^3" />.
 
-<Chart
-  title={<>Amounts Along the Route</>}
-  bars="apart"
-  categories={["Ethanol", "Ethene in theory", "Ethene collected", "Bromine used"]}
-  series={[
-    { label: "Amount (mol)", mark: "bar", values: [0.05, 0.05, 0.0375, 0.0375] },
-  ]}
-  valueLabel="Amount (mol)"
-  description={<>Ethanol <InlineMath math="0.050\text{ mol}" />, ethene in theory <InlineMath math="0.050\text{ mol}" />, ethene collected <InlineMath math="0.0375\text{ mol}" /> and bromine used <InlineMath math="0.0375\text{ mol}" />.</>}
+The bromine water holds only <InlineMath math="0.050 \times 0.10 = 0.0050" /> mol of bromine, and **one bromine molecule adds to one ethene molecule**.
+
+<Mermaid
+  title={<>More Ethene than Bromine</>}
+  description={<><InlineMath math="0.0375\text{ mol}" /> of ethene meets only <InlineMath math="0.0050\text{ mol}" /> of bromine, so most of the ethene passes through.</>}
+  chart={`
+    flowchart LR
+      N0["2.3 g ethanol: 0.050 mol"] --> N1["75%: 0.0375 mol C₂H₄, 0.90 dm³"]
+      N1 --> N3["Reacts: 0.0050 mol C₂H₄"]
+      N2["Br₂: 0.0050 mol"] --> N3
+      N3 --> N4["Left: 0.0325 mol, 0.78 dm³"]
+  `}
 />
 
-Ethene adds **one bromine molecule across its double bond**: <InlineMath math="\text{C}_2\text{H}_4 + \text{Br}_2 \rightarrow \text{C}_2\text{H}_4\text{Br}_2" />. So <InlineMath math="0.0375" /> mol of bromine reacts, and with <InlineMath math="M_r(\text{Br}_2) = 160" /> that is <InlineMath math="0.0375 \times 160 = 6.0" /> g.
+So all the bromine reacts and the solution is decolourised, but <InlineMath math="0.0375 - 0.0050 = 0.0325" /> mol of ethene is left over: <InlineMath math="0.0325 \times 24 = 0.78\text{ dm}^3" /> passes through.
 
 # Why the other options are wrong
 
-- <InlineMath math="1.2\text{ dm}^3" /> and <InlineMath math="8.0\text{ g}" /> ignore the <InlineMath math="75\%" /> yield.
-- Dehydration gives ethene, not ethane, and ethane does not react with bromine water.
-- <InlineMath math="3.0\text{ g}" /> uses <InlineMath math="80" />, the mass of one bromine atom, though a **bromine molecule** has two atoms.
+- <InlineMath math="1.2\text{ dm}^3" /> ignores the <InlineMath math="75\%" /> yield.
+- The bromine water **runs out** after <InlineMath math="0.0050" /> mol, so it cannot absorb all <InlineMath math="0.0375" /> mol of ethene.
+- <InlineMath math="0.66\text{ dm}^3" /> takes two ethene molecules per bromine molecule, but each bromine molecule adds across one double bond.

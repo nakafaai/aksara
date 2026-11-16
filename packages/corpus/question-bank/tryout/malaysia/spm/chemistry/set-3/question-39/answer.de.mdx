@@ -1,23 +1,26 @@
-# Drei Seifenionen aus jedem Fettmolekül
+# Vom Produkt zurückrechnen und durch die Ausbeute teilen
 
-Das Fett sind <InlineMath math="8{,}90 \div 890 = 0{,}0100" /> mol. Die Gleichung liefert **drei Natriumstearat-Einheiten je Fettmolekül**, es entstehen also <InlineMath math="0{,}0300" /> mol Seife: <InlineMath math="0{,}0300 \times 306 = 9{,}18" /> g.
+Benötigtes Aspirin: <InlineMath math="1000 \times 300\text{ mg} = 300\,000\text{ mg} = 300" /> g, also <InlineMath math="300 \div 180 = 1{,}667" /> mol.
 
-<Chart
-  title={<>Schaumhöhe nach dem Schütteln</>}
-  bars="apart"
-  categories={["Weiches Wasser", "Hartes Wasser"]}
-  series={[
-    { label: "Seife", mark: "bar", values: [6.0, 0.5] },
-    { label: "Waschmittel", mark: "bar", values: [6.0, 6.0] },
-  ]}
-  valueLabel="Schaumhöhe (cm)"
-  description={<>Seife ergibt <InlineMath math="6{,}0" /> cm Schaum in weichem und <InlineMath math="0{,}5" /> cm in hartem Wasser. Waschmittel ergibt in beiden <InlineMath math="6{,}0" /> cm.</>}
+Bei <InlineMath math="75\%" /> Ausbeute gibt jedes Mol Salicylsäure nur <InlineMath math="0{,}75" /> mol Aspirin, das Labor muss also **mit mehr anfangen**: <InlineMath math="1{,}667 \div 0{,}75 = 2{,}222" /> mol.
+
+<Mermaid
+  title={<>Von den Tabletten zurück zum Rohstoff</>}
+  description={<>Die Tabletten brauchen <InlineMath math="1{,}667\text{ mol}" /> Aspirin, und bei <InlineMath math="75\%" /> Ausbeute braucht das <InlineMath math="2{,}222\text{ mol}" /> Salicylsäure.</>}
+  chart={`
+    flowchart LR
+      N0["1000 × 300 mg = 300 g Aspirin"] --> N1["300 ÷ 180 = 1,667 mol"]
+      N1 --> N2["÷ 0,75 = 2,222 mol Salicylsäure"]
+      N2 --> N3["× 138 = 307 g"]
+  `}
 />
 
-In hartem Wasser verbindet sich der Carboxylatkopf jedes Stearations mit Calcium- und Magnesiumionen zu **unlöslicher Kalkseife**. Die Seife wird dafür verbraucht, es entsteht kaum Schaum, während der Sulfonatkopf eines Waschmittels gelöst bleibt und weiter schäumt.
+Salicylsäure: <InlineMath math="2{,}222 \times 138 = 307" /> g.
+
+**Anhydrid**: <InlineMath math="20\%" /> mehr Mol als Salicylsäure, <InlineMath math="2{,}222 \times 1{,}20 = 2{,}667" /> mol, also <InlineMath math="2{,}667 \times 102 = 272" /> g.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="3{,}06" /> g zählt nur eine Seifeneinheit je Fettmolekül, und Seife schäumt in hartem Wasser schlecht.
-- <InlineMath math="9{,}18" /> g stimmt, aber Seife schäumt in hartem Wasser **schlechter** als ein Waschmittel, wie das Diagramm zeigt.
-- <InlineMath math="27{,}5" /> g multipliziert zweimal mit drei: einmal für die Stoffmenge und noch einmal für die Masse.
+- <InlineMath math="230\text{ g}" /> multipliziert mit <InlineMath math="0{,}75" />, das ergäbe **weniger** Aspirin, als die Tabletten brauchen.
+- <InlineMath math="227\text{ g}" /> Anhydrid entsprechen der Salicylsäure Mol für Mol und lassen den Überschuss von <InlineMath math="20\%" /> weg.
+- <InlineMath math="300\text{ g}" /> ist die Masse des Aspirins, nicht der Salicylsäure.

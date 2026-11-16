@@ -1,22 +1,26 @@
-# Each extra <InlineMath math="\text{C}\text{H}_2" /> adds the same amount
+# The flame must release more heat than the water receives
 
-The steps are <InlineMath math="1367 - 726 = 641" />, <InlineMath math="2021 - 1367 = 654" /> and <InlineMath math="2676 - 2021 = 655\text{ kJ mol}^{-1}" />. Each member of the series has **one more <InlineMath math="\text{CH}_2" /> group**, which burns to one more carbon dioxide and one more water molecule, so the heat grows by about <InlineMath math="650\text{ kJ mol}^{-1}" /> each time.
+Heat the water needs: <InlineMath math="Q = 2000 \times 4.2 \times 75 = 630\,000" /> J, or <InlineMath math="630" /> kJ. The rise is <InlineMath math="100 - 25 = 75^\circ\text{C}" />.
 
-<Chart
-  title={<>Heat of Combustion of Four Alcohols</>}
-  bars="apart"
-  categories={["Methanol", "Ethanol", "Propanol", "Butanol"]}
-  series={[
-    { label: "Heat released (kJ mol⁻¹)", mark: "bar", values: [726, 1367, 2021, 2676] },
-  ]}
-  valueLabel="Heat released (kJ mol⁻¹)"
-  description={<>Heat released per mole: methanol <InlineMath math="726" />, ethanol <InlineMath math="1367" />, propanol 2021 and butanol <InlineMath math="2676\text{ kJ}" />.</>}
+Only <InlineMath math="60\%" /> of the flame's heat arrives, so the methane must release <InlineMath math="630 \div 0.60 = 1050" /> kJ. **Divide by the efficiency**, because the flame has to supply more than the water receives.
+
+<Mermaid
+  title={<>From the Water Back to the Gas</>}
+  description={<>The water needs <InlineMath math="630\text{ kJ}" />, so the flame must release <InlineMath math="1050\text{ kJ}" />, which is <InlineMath math="1.18\text{ mol}" /> of methane.</>}
+  chart={`
+    flowchart LR
+      N0["Water: 2000 × 4.2 × 75 = 630 kJ"] --> N1["630 ÷ 0.60 = 1050 kJ released"]
+      N1 --> N2["1050 ÷ 890 = 1.18 mol CH₄"]
+      N2 --> N3["1.18 × 24 = 28.3 dm³"]
+  `}
 />
 
-Pentanol: <InlineMath math="2676 + 655 \approx 3330\text{ kJ mol}^{-1}" />. In a school experiment, part of the heat warms the air, the can and the clamp instead of the water, and some alcohol burns incompletely. The water records **less heat than was released**, so the measured value is smaller.
+Methane: <InlineMath math="1050 \div 890 = 1.18" /> mol, which is <InlineMath math="1.18 \times 24 = 28.3\text{ dm}^3" />.
+
+**Carbon dioxide**: <InlineMath math="\text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O}" /> gives **one carbon dioxide per methane**: <InlineMath math="1.18 \times 44 = 51.9" /> g.
 
 # Why the other options are wrong
 
-- Pentanol has one more carbon and two more hydrogen atoms than butanol, so it releases more heat, not the same.
-- Heat lost to the can and the air is missing from the water's reading, so the value comes out **smaller**, not larger.
-- The steps stay close to <InlineMath math="650\text{ kJ mol}^{-1}" />, so the trend is a straight line, not one that grows faster.
+- <InlineMath math="10.2\text{ dm}^3" /> **multiplies** by <InlineMath math="0.60" />, which would make the flame supply less heat than the water takes in.
+- <InlineMath math="17.0\text{ dm}^3" /> assumes every joule reaches the water.
+- <InlineMath math="37.8\text{ dm}^3" /> heats the water through <InlineMath math="100^\circ\text{C}" /> instead of the <InlineMath math="75^\circ\text{C}" /> rise.

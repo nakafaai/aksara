@@ -12,22 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "3.06 g of soap, which lathers well in hard water",
+          label:
+            "$$230\\text{ g}$$ of salicylic acid and $$204\\text{ g}$$ of ethanoic anhydride",
         },
         {
           correct: true,
           label:
-            "9.18 g of soap, whose anions form an insoluble scum with calcium and magnesium ions in hard water",
+            "$$307\\text{ g}$$ of salicylic acid and $$272\\text{ g}$$ of ethanoic anhydride",
         },
         {
           correct: false,
           label:
-            "9.18 g of soap, which lathers better than a detergent in hard water",
+            "$$307\\text{ g}$$ of salicylic acid and $$227\\text{ g}$$ of ethanoic anhydride",
         },
         {
           correct: false,
           label:
-            "27.5 g of soap, whose anions form an insoluble scum with calcium and magnesium ions in hard water",
+            "$$300\\text{ g}$$ of salicylic acid and $$272\\text{ g}$$ of ethanoic anhydride",
         },
       ],
     },
@@ -36,22 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "3.06 g sabun, yang berbuih dengan baik dalam air liat",
+          label:
+            "$$230\\text{ g}$$ asid salisilik dan $$204\\text{ g}$$ anhidrida etanoik",
         },
         {
           correct: true,
           label:
-            "9.18 g sabun, yang anionnya membentuk kekat tidak larut dengan ion kalsium dan magnesium dalam air liat",
+            "$$307\\text{ g}$$ asid salisilik dan $$272\\text{ g}$$ anhidrida etanoik",
         },
         {
           correct: false,
           label:
-            "9.18 g sabun, yang berbuih lebih baik daripada detergen dalam air liat",
+            "$$307\\text{ g}$$ asid salisilik dan $$227\\text{ g}$$ anhidrida etanoik",
         },
         {
           correct: false,
           label:
-            "27.5 g sabun, yang anionnya membentuk kekat tidak larut dengan ion kalsium dan magnesium dalam air liat",
+            "$$300\\text{ g}$$ asid salisilik dan $$272\\text{ g}$$ anhidrida etanoik",
         },
       ],
     },

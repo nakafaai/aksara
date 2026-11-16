@@ -1,22 +1,24 @@
-# Find the limiting reactant before judging any rate
+# Every gram the flask loses is carbon dioxide
 
-The marble is <InlineMath math="2.0 \div 100 = 0.020" /> mol of <InlineMath math="\text{CaCO}_3" />, which needs <InlineMath math="0.040" /> mol of acid. Every experiment supplies <InlineMath math="0.050" /> mol of acid, so the **marble is limiting in all four**. Each gives <InlineMath math="0.020" /> mol of carbon dioxide, which is <InlineMath math="480\text{ cm}^3" /> at room conditions.
+With cotton wool in the neck, the only thing that leaves is **carbon dioxide**. In the first <InlineMath math="20\text{ s}" /> the flask loses <InlineMath math="0.44" /> g: <InlineMath math="0.44 \div 44 = 0.010" /> mol, which is <InlineMath math="0.010 \times 24\,000 = 240\text{ cm}^3" />. Average rate: <InlineMath math="240 \div 20 = 12\text{ cm}^3\text{ s}^{-1}" />.
 
-<Chart
-  title={<>Carbon Dioxide in Experiments I and III</>}
-  categories={["0", "30", "60", "90", "120", "150", "180", "210", "240"]}
-  series={[
-    { label: "Experiment I", mark: "line", values: [0, 250, 390, 455, 480, 480, 480, 480, 480] },
-    { label: "Experiment III", mark: "line", values: [0, 140, 250, 330, 390, 430, 458, 474, 480] },
-  ]}
-  valueLabel="Volume of carbon dioxide (cm³)"
-  description={<>Both curves end at <InlineMath math="480\text{ cm}^3" />. Experiment I reaches it by <InlineMath math="120\text{ s}" />, Experiment III only by about <InlineMath math="240\text{ s}" />.</>}
+<Mermaid
+  title={<>Mass Lost Is Carbon Dioxide</>}
+  description={<><InlineMath math="0.44\text{ g}" /> lost in the first <InlineMath math="20\text{ s}" /> is <InlineMath math="240\text{ cm}^3" /> of carbon dioxide. The total <InlineMath math="0.88\text{ g}" /> is <InlineMath math="0.020\text{ mol}" />, from the same amount of carbonate.</>}
+  chart={`
+    flowchart LR
+      N0["0.44 g CO₂ in 20 s"] --> N1["0.010 mol: 240 cm³"]
+      N1 --> N2["240 ÷ 20 = 12 cm³ s⁻¹"]
+      N3["0.88 g CO₂ in all: 0.020 mol"] --> N4["0.020 mol MgCO₃: 1.68 g"]
+  `}
 />
 
-Experiment III spreads the same acid through twice the volume, so its concentration is half. Particles collide less often, and the same <InlineMath math="480\text{ cm}^3" /> takes longer to collect.
+The loss stops at <InlineMath math="0.88" /> g, so the reaction is over: <InlineMath math="0.88 \div 44 = 0.020" /> mol of carbon dioxide. One mole of carbonate gives one mole of carbon dioxide, so <InlineMath math="0.020" /> mol of magnesium carbonate, <InlineMath math="0.020 \times 84 = 1.68" /> g, was added.
+
+**Acid**: each carbonate takes **two** nitric acid molecules, so <InlineMath math="0.020" /> mol needs <InlineMath math="0.040" /> mol of acid: <InlineMath math="0.040 \div 2.0 = 0.020\text{ dm}^3 = 20\text{ cm}^3" /> at the least. The acid was in excess, so the real volume was larger.
 
 # Why the other options are wrong
 
-- Powder only raises the rate. The amount of marble, and so the final volume, **stays the same**.
-- A higher temperature makes the reaction faster, but it cannot make more gas from the same marble.
-- Experiment III has the same moles of acid as Experiment I, and the marble is limiting anyway, so the volume does not halve.
+- <InlineMath math="0.84\text{ g}" /> works from the first <InlineMath math="20\text{ s}" /> only, but the carbonate keeps reacting until the loss **stops at** <InlineMath math="0.88" /> g.
+- <InlineMath math="0.022" /> is the rate in grams per second, <InlineMath math="0.44 \div 20" />, written with the wrong unit.
+- <InlineMath math="10\text{ cm}^3" /> takes one acid molecule per carbonate, but the equation needs two.

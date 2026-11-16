@@ -1,22 +1,26 @@
-# Products give carbon and hydrogen, the difference gives oxygen
+# Count the iron from the oxide, then the sulfur by difference
 
-All the carbon ends up in carbon dioxide: <InlineMath math="1.32 \div 44 = 0.030" /> mol, or <InlineMath math="0.36" /> g. All the hydrogen ends up in water: <InlineMath math="0.54 \div 18 = 0.030" /> mol of water, so <InlineMath math="0.060" /> mol of hydrogen atoms, or <InlineMath math="0.06" /> g. The oxygen came from the oxygen gas too, so find Z's own oxygen **by difference**: <InlineMath math="0.90 - 0.36 - 0.06 = 0.48" /> g, which is <InlineMath math="0.030" /> mol.
+<InlineMath math="M_r(\text{Fe}_2\text{O}_3) = 160" />, so <InlineMath math="3.20" /> g is <InlineMath math="0.020" /> mol. Each formula unit holds **two iron atoms**, so the mineral held <InlineMath math="0.040" /> mol of iron, <InlineMath math="0.040 \times 56 = 2.24" /> g.
 
-<Chart
-  title={<>Mass of Each Element in the Sample</>}
-  bars="apart"
-  categories={["Carbon", "Hydrogen", "Oxygen"]}
-  series={[
-    { label: "Mass (g)", mark: "bar", values: [0.36, 0.06, 0.48] },
-  ]}
-  valueLabel="Mass (g)"
-  description={<>Carbon <InlineMath math="0.36\text{ g}" />, hydrogen <InlineMath math="0.06\text{ g}" /> and oxygen <InlineMath math="0.48\text{ g}" />.</>}
+The rest of the mineral is sulfur: <InlineMath math="4.80 - 2.24 = 2.56" /> g, which is <InlineMath math="2.56 \div 32 = 0.080" /> mol.
+
+<Mermaid
+  title={<>From the Oxide Back to the Sulfide</>}
+  description={<><InlineMath math="0.020\text{ mol}" /> of iron(III) oxide holds <InlineMath math="0.040\text{ mol}" /> of iron, and the other <InlineMath math="2.56\text{ g}" /> is <InlineMath math="0.080\text{ mol}" /> of sulfur.</>}
+  chart={`
+    flowchart LR
+      N0["3.20 g Fe₂O₃: 0.020 mol"] --> N1["0.040 mol Fe: 2.24 g"]
+      N1 --> N2["S: 4.80 − 2.24 = 2.56 g"]
+      N2 --> N3["0.080 mol S"]
+      N3 --> N4["Fe : S = 1 : 2, FeS₂"]
+      N3 --> N5["0.080 mol SO₂: 1.92 dm³"]
+  `}
 />
 
-The ratio <InlineMath math="0.030 : 0.060 : 0.030 = 1 : 2 : 1" /> gives the empirical formula <InlineMath math="\text{CH}_2\text{O}" />, mass <InlineMath math="30" />. Since <InlineMath math="180 \div 30 = 6" />, the molecular formula is <InlineMath math="\text{C}_6\text{H}_{12}\text{O}_6" />.
+Iron to sulfur is <InlineMath math="0.040 : 0.080 = 1 : 2" />, so the mineral is <InlineMath math="\text{FeS}_2" />, pyrite. Each sulfur atom leaves as one <InlineMath math="\text{SO}_2" /> molecule: <InlineMath math="0.080 \times 24 = 1.92\text{ dm}^3" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="\text{CH}_2\text{O}" /> is only the **empirical formula**, with mass <InlineMath math="30" />, not <InlineMath math="180" />.
-- <InlineMath math="\text{C}_3\text{H}_6\text{O}_3" /> has mass <InlineMath math="90" />, half of <InlineMath math="180" />.
-- <InlineMath math="\text{C}_2\text{H}_4\text{O}_2" /> has mass <InlineMath math="60" />.
+- <InlineMath math="\text{FeS}" /> needs one sulfur atom per iron atom, but the masses give **twice as many** sulfur atoms as iron atoms.
+- <InlineMath math="\text{Fe}_2\text{S}_3" /> would need <InlineMath math="1.5" /> sulfur atoms per iron, not the <InlineMath math="2" /> the masses give.
+- <InlineMath math="0.96\text{ dm}^3" /> makes one sulfur dioxide molecule from every two sulfur atoms.

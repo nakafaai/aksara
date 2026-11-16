@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$41\\text{ cm}$$" },
-        { correct: false, label: "$$50\\text{ cm}$$" },
-        { correct: true, label: "$$59\\text{ cm}$$" },
-        { correct: false, label: "$$68\\text{ cm}$$" },
+        {
+          correct: false,
+          label:
+            "$$0.18\\text{ g}$$ of lithium-6, and $$9.6\\text{ dm}^3$$ of hydrogen",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.13\\text{ g}$$ of lithium-6, and $$9.1\\text{ dm}^3$$ of hydrogen",
+        },
+        {
+          correct: true,
+          label:
+            "$$1.20\\text{ g}$$ of lithium-6, and $$9.6\\text{ dm}^3$$ of hydrogen",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.20\\text{ g}$$ of lithium-6, and $$4.8\\text{ dm}^3$$ of hydrogen",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$41\\text{ cm}$$" },
-        { correct: false, label: "$$50\\text{ cm}$$" },
-        { correct: true, label: "$$59\\text{ cm}$$" },
-        { correct: false, label: "$$68\\text{ cm}$$" },
+        {
+          correct: false,
+          label:
+            "$$0.18\\text{ g}$$ litium-6, dan $$9.6\\text{ dm}^3$$ hidrogen",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.13\\text{ g}$$ litium-6, dan $$9.1\\text{ dm}^3$$ hidrogen",
+        },
+        {
+          correct: true,
+          label:
+            "$$1.20\\text{ g}$$ litium-6, dan $$9.6\\text{ dm}^3$$ hidrogen",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.20\\text{ g}$$ litium-6, dan $$4.8\\text{ dm}^3$$ hidrogen",
+        },
       ],
     },
   },

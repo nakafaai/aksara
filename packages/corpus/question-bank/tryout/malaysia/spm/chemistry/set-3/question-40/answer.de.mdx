@@ -1,22 +1,24 @@
-# In den Stoff umrechnen, den der Grenzwert zählt, dann auf ein Kilogramm hochrechnen
+# Das Konservierungsmittel als Benzoesäure zählen, dann zweimal vergleichen
 
-Jede Natriumbenzoat-Einheit trägt **eine Benzoatgruppe**, genau wie ein Benzoesäuremolekül. <InlineMath math="0{,}150 \div 144 = 0{,}00104" /> mol Natriumbenzoat zählen als <InlineMath math="0{,}00104 \times 122 = 0{,}127" /> g Benzoesäure.
+Der Grenzwert zählt **Benzoesäure**, also das Salz umrechnen: <InlineMath math="0{,}150 \times \tfrac{122}{144} = 0{,}127" /> g je Dose, also <InlineMath math="127" /> mg. Die Dose enthält <InlineMath math="0{,}330" /> kg Getränk: <InlineMath math="127 \div 0{,}330 = 385" /> mg je kg.
 
-<Mermaid
-  title={<>Vom Natriumbenzoat zum Grenzwert</>}
-  description={<><InlineMath math="0{,}150\text{ g}" /> Natriumbenzoat sind <InlineMath math="0{,}00104" /> mol, gerechnet als <InlineMath math="0{,}127\text{ g}" /> Benzoesäure. In <InlineMath math="0{,}330\text{ kg}" /> sind das etwa <InlineMath math="385\text{ mg}" /> je kg, unter <InlineMath math="1000" />.</>}
-  chart={`
-    flowchart LR
-      A["0,150 g C6H5COONa"] --> B["0,00104 mol"]
-      B --> C["0,127 g als C6H5COOH"]
-      C --> D["385 mg je kg, unter 1000"]
-  `}
+<Chart
+  title={<>Das Getränk gegen den Grenzwert</>}
+  bars="apart"
+  categories={["Dieses Getränk", "Grenzwert"]}
+  series={[
+    { label: "Benzoesäure (mg je kg)", mark: "bar", values: [385, 1000] },
+  ]}
+  valueLabel="Benzoesäure (mg je kg)"
+  description={<>Das Getränk enthält etwa <InlineMath math="385\text{ mg}" /> Benzoesäure je kg, weit unter dem Grenzwert von <InlineMath math="1000\text{ mg}" /> je kg.</>}
 />
 
-Die Dose enthält <InlineMath math="0{,}330" /> kg, der Gehalt ist also <InlineMath math="127 \div 0{,}330 \approx 385" /> mg je kg. Das liegt deutlich unter <InlineMath math="1000" /> mg je kg, das Getränk hält den Grenzwert ein. Der Konservierungsstoff bremst Hefen und Schimmel, was in einem süßen, sauren Getränk wichtig ist.
+Das liegt unter <InlineMath math="1000" /> mg je kg, das Getränk hält den Grenzwert ein. Der Erwachsene darf täglich <InlineMath math="5 \times 60 = 300" /> mg Benzoesäure aufnehmen, also erreichen ihn <InlineMath math="300 \div 127 = 2{,}4" /> Dosen.
+
+**Kind**: <InlineMath math="5 \times 20 = 100" /> mg am Tag, doch eine Dose enthält <InlineMath math="127" /> mg Benzoesäure, also liegt **schon eine Dose darüber**, obwohl das Getränk zulässig ist.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="0{,}150\text{ g}" /> zählt das Natriumbenzoat selbst, der Grenzwert wird aber **als Benzoesäure gezählt**.
-- <InlineMath math="1270\text{ mg}" /> je kg teilt durch <InlineMath math="0{,}100" /> kg statt durch die <InlineMath math="0{,}330" /> kg der Dose.
-- <InlineMath math="1500\text{ mg}" /> je kg macht beide Fehler: keine Umrechnung und die falsche Masse Getränk.
+- <InlineMath math="455" /> mg und <InlineMath math="2{,}0" /> Dosen rechnen beide mit der Masse des **Salzes**, und mit <InlineMath math="150" /> mg gegen <InlineMath math="100" /> mg läge das Kind trotzdem darüber, nicht darunter.
+- <InlineMath math="2{,}0" /> Dosen mit <InlineMath math="385" /> mg rechnet für den Grenzwert um, nimmt für die Tagesdosis aber die <InlineMath math="150" /> mg Salz.
+- <InlineMath math="127" /> mg ist die Menge in einer Dose, nicht je Kilogramm Getränk, und dieselben <InlineMath math="127" /> mg übersteigen die <InlineMath math="100" /> mg des Kindes.

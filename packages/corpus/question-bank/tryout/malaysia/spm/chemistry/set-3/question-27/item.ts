@@ -13,20 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$\\text{C}_4\\text{H}_{10}$$, which burns with less soot than ethene",
+            "$$\\text{C}_4\\text{H}_8$$, three alkene isomers, and $$150\\text{ cm}^3$$ of hydrogen",
         },
         {
           correct: false,
           label:
-            "$$\\text{C}_8\\text{H}_{16}$$, which decolourises bromine water",
+            "$$\\text{C}_8\\text{H}_{16}$$, three alkene isomers, and $$150\\text{ cm}^3$$ of hydrogen",
         },
         {
           correct: true,
-          label: "$$\\text{C}_4\\text{H}_8$$, which decolourises bromine water",
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, three alkene isomers, and $$300\\text{ cm}^3$$ of hydrogen",
         },
         {
           correct: false,
-          label: "$$\\text{C}_4\\text{H}_8$$, which is a saturated hydrocarbon",
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, two alkene isomers, and $$300\\text{ cm}^3$$ of hydrogen",
         },
       ],
     },
@@ -36,20 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$\\text{C}_4\\text{H}_{10}$$, yang terbakar dengan kurang jelaga berbanding etena",
+            "$$\\text{C}_4\\text{H}_8$$, tiga isomer alkena, dan $$150\\text{ cm}^3$$ hidrogen",
         },
         {
           correct: false,
           label:
-            "$$\\text{C}_8\\text{H}_{16}$$, yang menyahwarnakan air bromin",
+            "$$\\text{C}_8\\text{H}_{16}$$, tiga isomer alkena, dan $$150\\text{ cm}^3$$ hidrogen",
         },
         {
           correct: true,
-          label: "$$\\text{C}_4\\text{H}_8$$, yang menyahwarnakan air bromin",
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, tiga isomer alkena, dan $$300\\text{ cm}^3$$ hidrogen",
         },
         {
           correct: false,
-          label: "$$\\text{C}_4\\text{H}_8$$, yang merupakan hidrokarbon tepu",
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, dua isomer alkena, dan $$300\\text{ cm}^3$$ hidrogen",
         },
       ],
     },

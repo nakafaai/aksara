@@ -1,22 +1,24 @@
-# Convert to the substance the limit counts, then scale to a kilogram
+# Count the preservative as benzoic acid, then compare twice
 
-Each sodium benzoate unit carries **one benzoate group**, the same as one benzoic acid molecule. <InlineMath math="0.150 \div 144 = 0.00104" /> mol of sodium benzoate counts as <InlineMath math="0.00104 \times 122 = 0.127" /> g of benzoic acid.
+The limit counts **benzoic acid**, so convert the salt: <InlineMath math="0.150 \times \tfrac{122}{144} = 0.127" /> g per can, which is <InlineMath math="127" /> mg. The can holds <InlineMath math="0.330" /> kg of drink: <InlineMath math="127 \div 0.330 = 385" /> mg per kg.
 
-<Mermaid
-  title={<>From Sodium Benzoate to the Limit</>}
-  description={<><InlineMath math="0.150\text{ g}" /> of sodium benzoate is <InlineMath math="0.00104\text{ mol}" />, which counts as <InlineMath math="0.127\text{ g}" /> of benzoic acid. In <InlineMath math="0.330\text{ kg}" /> that is about <InlineMath math="385\text{ mg}" /> per kg, below <InlineMath math="1000" />.</>}
-  chart={`
-    flowchart LR
-      A["0.150 g C6H5COONa"] --> B["0.00104 mol"]
-      B --> C["0.127 g as C6H5COOH"]
-      C --> D["385 mg per kg, below 1000"]
-  `}
+<Chart
+  title={<>The Drink Against the Limit</>}
+  bars="apart"
+  categories={["This drink", "Legal limit"]}
+  series={[
+    { label: "Benzoic acid (mg per kg)", mark: "bar", values: [385, 1000] },
+  ]}
+  valueLabel="Benzoic acid (mg per kg)"
+  description={<>The drink holds about <InlineMath math="385\text{ mg}" /> of benzoic acid per kg, well below the limit of <InlineMath math="1000\text{ mg}" /> per kg.</>}
 />
 
-The can holds <InlineMath math="0.330" /> kg, so the level is <InlineMath math="127 \div 0.330 \approx 385" /> mg per kg. That is well below <InlineMath math="1000" /> mg per kg, so the drink is within the limit. The preservative slows the growth of yeasts and moulds, which matters in a sweet, acidic drink.
+That is under <InlineMath math="1000" /> mg per kg, so the drink is within the limit. The adult may take <InlineMath math="5 \times 60 = 300" /> mg of benzoic acid a day, so <InlineMath math="300 \div 127 = 2.4" /> cans reach it.
+
+**Child**: <InlineMath math="5 \times 20 = 100" /> mg a day, but one can holds <InlineMath math="127" /> mg of benzoic acid, so **one can is already over** the child's intake, even though the drink is legal.
 
 # Why the other options are wrong
 
-- <InlineMath math="0.150\text{ g}" /> counts the sodium benzoate itself, while the limit is **counted as benzoic acid**.
-- <InlineMath math="1270\text{ mg}" /> per kg divides by <InlineMath math="0.100" /> kg instead of the can's <InlineMath math="0.330" /> kg.
-- <InlineMath math="1500\text{ mg}" /> per kg makes both mistakes: it skips the conversion and uses the wrong mass of drink.
+- <InlineMath math="455" /> mg and <InlineMath math="2.0" /> cans both use the mass of the **salt**, and with <InlineMath math="150" /> mg against <InlineMath math="100" /> mg the child would still be over, not under.
+- <InlineMath math="2.0" /> cans with <InlineMath math="385" /> mg converts for the limit but uses the salt's <InlineMath math="150" /> mg for the daily intake.
+- <InlineMath math="127" /> mg is the amount in one can, not per kilogram of drink, and that same <InlineMath math="127" /> mg is more than the child's <InlineMath math="100" /> mg.

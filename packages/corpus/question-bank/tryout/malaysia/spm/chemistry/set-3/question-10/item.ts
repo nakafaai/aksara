@@ -12,35 +12,40 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "240 cm³ of hydrogen and a solution of pH 13",
+          label: "M is lithium, and the solution has pH $$12.3$$",
         },
         {
           correct: true,
-          label:
-            "120 cm³ of hydrogen and a solution of pH 13, and the same mass of potassium would react more vigorously but give less hydrogen",
+          label: "M is sodium, and the solution has pH $$12.6$$",
         },
-        { correct: false, label: "120 cm³ of hydrogen and a solution of pH 1" },
         {
           correct: false,
-          label:
-            "120 cm³ of hydrogen and a solution of pH 13, and the same mass of potassium would give more hydrogen",
+          label: "M is sodium, and the solution has pH $$1.4$$",
+        },
+        {
+          correct: false,
+          label: "M is potassium, and the solution has pH $$12.6$$",
         },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "240 cm³ hidrogen dan larutan pH 13" },
-        {
-          correct: true,
-          label:
-            "120 cm³ hidrogen dan larutan pH 13, dan jisim kalium yang sama akan bertindak balas lebih cergas tetapi menghasilkan kurang hidrogen",
-        },
-        { correct: false, label: "120 cm³ hidrogen dan larutan pH 1" },
         {
           correct: false,
-          label:
-            "120 cm³ hidrogen dan larutan pH 13, dan jisim kalium yang sama akan menghasilkan lebih banyak hidrogen",
+          label: "M ialah litium, dan larutan itu mempunyai pH $$12.3$$",
+        },
+        {
+          correct: true,
+          label: "M ialah natrium, dan larutan itu mempunyai pH $$12.6$$",
+        },
+        {
+          correct: false,
+          label: "M ialah natrium, dan larutan itu mempunyai pH $$1.4$$",
+        },
+        {
+          correct: false,
+          label: "M ialah kalium, dan larutan itu mempunyai pH $$12.6$$",
         },
       ],
     },

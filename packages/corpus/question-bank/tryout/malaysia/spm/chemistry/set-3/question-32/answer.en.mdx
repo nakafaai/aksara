@@ -1,22 +1,27 @@
-# Equal masses of alkenes hold equal masses of carbon
+# The salt fixes the acid part, and the rest is the alcohol
 
-Every alkene is <InlineMath math="\text{C}_n\text{H}_{2n}" />, so its carbon fraction is <InlineMath math="\tfrac{12n}{14n} = 85.7\%" /> for every <InlineMath math="n" />: the **flat line** on the chart. Any <InlineMath math="5.6" /> g of alkene holds <InlineMath math="0.857 \times 5.6 = 4.8" /> g of carbon, which is <InlineMath math="0.40" /> mol.
+Test the possible salts: sodium methanoate, <InlineMath math="\text{HCOONa}" />, is <InlineMath math="68" />. Sodium ethanoate, <InlineMath math="\text{CH}_3\text{COONa}" />, is <InlineMath math="15 + 44 + 23 = 82" />. Sodium propanoate is <InlineMath math="96" />. So the acid part is **ethanoate**, with two carbons.
 
-<Chart
-  title={<>Carbon by Mass in Two Homologous Series</>}
-  categories={["2", "3", "4"]}
-  series={[
-    { label: "Alkanes", mark: "line", values: [80.0, 81.8, 82.8] },
-    { label: "Alkenes", mark: "line", values: [85.7, 85.7, 85.7] },
-  ]}
-  valueLabel="Carbon by mass (%)"
-  description={<>Alkanes: <InlineMath math="80.0" />, <InlineMath math="81.8" /> and <InlineMath math="82.8\%" /> for two, three and four carbon atoms. Alkenes: <InlineMath math="85.7\%" /> for two, three and four carbon atoms.</>}
+The ester has four carbons, so the alcohol part has the other two: ethanol. The ester is **ethyl ethanoate**, <InlineMath math="\text{CH}_3\text{COOC}_2\text{H}_5" />.
+
+<Mermaid
+  title={<>Splitting the Ester</>}
+  description={<>A salt of mass <InlineMath math="82" /> is sodium ethanoate, so the acid part has two carbons and the alcohol part takes the other two.</>}
+  chart={`
+    flowchart LR
+      N0["C₄H₈O₂ ester"] --> N1["Salt Mr 82: CH₃COONa"]
+      N1 --> N2["Acid part: ethanoate"]
+      N2 --> N3["Alcohol part: C₂H₅, ethanol"]
+      N3 --> N4["0.050 mol ester → 2.3 g ethanol"]
+  `}
 />
 
-Each carbon atom ends up in one carbon dioxide molecule, so each sample gives <InlineMath math="0.40" /> mol, or <InlineMath math="0.40 \times 44 = 17.6" /> g. Check with molecules: ethene, <InlineMath math="5.6 \div 28 = 0.20" /> mol <InlineMath math="\times 2 = 0.40" />. Propene, <InlineMath math="5.6 \div 42 = 0.133" /> mol <InlineMath math="\times 3 = 0.40" />.
+Ester: <InlineMath math="M_r = 88" />, so <InlineMath math="4.4 \div 88 = 0.050" /> mol. Each ester molecule gives **one alcohol molecule**: <InlineMath math="0.050 \times 46 = 2.3" /> g of ethanol.
+
+**Alkali**: the ester has **one ester link**, so each molecule takes one sodium hydroxide: <InlineMath math="0.050" /> mol, which is <InlineMath math="0.050 \div 1.0 = 0.050\text{ dm}^3 = 50\text{ cm}^3" /> at the least.
 
 # Why the other options are wrong
 
-- Propene has more carbon atoms per molecule, but **fewer molecules** in the same mass. The two effects cancel exactly.
-- Ethene has more molecules, but fewer carbon atoms in each, so again the totals match.
-- <InlineMath math="8.8\text{ g}" /> counts <InlineMath math="0.20" /> mol of carbon, the moles of ethene molecules, without the two carbon atoms in each.
+- Methyl propanoate would give sodium propanoate, <InlineMath math="M_r = 96" />, **not** <InlineMath math="82" />.
+- Propyl methanoate would give sodium methanoate, <InlineMath math="M_r = 68" />.
+- <InlineMath math="100\text{ cm}^3" /> uses two sodium hydroxide per ester molecule, but one ester link takes one.

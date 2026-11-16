@@ -1,20 +1,24 @@
-# Heat per mole, and why the rise does not change
+# The pellets give out heat twice
 
-Heat released: <InlineMath math="50 \times 4.2 \times 10.0 = 2100" /> J, or <InlineMath math="2.10" /> kJ. The copper(II) ions are limiting: <InlineMath math="0.20 \times \tfrac{50}{1000} = 0.010" /> mol. So <InlineMath math="\Delta H = -\tfrac{2.10}{0.010} = -210\text{ kJ mol}^{-1}" />.
+Sodium hydroxide: <InlineMath math="2.0 \div 40 = 0.050" /> mol. The acid holds <InlineMath math="0.10" /> mol of hydrogen ions, which is more than enough, so **all <InlineMath math="0.050" /> mol** dissolves and is then neutralised.
 
-<Mermaid
-  title={<>Energy Level Diagram</>}
-  description={<>The products, zinc sulfate and copper, sit <InlineMath math="210\text{ kJ}" /> below the reactants for every mole of copper displaced.</>}
-  chart={`
-    flowchart TD
-      A["Zn + CuSO4"] -->|"ΔH = −210 kJ mol⁻¹, heat given out"| B["ZnSO4 + Cu"]
-  `}
+Dissolving: <InlineMath math="0.050 \times 44.5 = 2.225" /> kJ. Neutralising: <InlineMath math="0.050 \times 57.3 = 2.865" /> kJ.
+
+<Chart
+  title={<>Heat from Both Changes</>}
+  bars="apart"
+  categories={["Dissolving", "Neutralising", "Total"]}
+  series={[
+    { label: "Heat released (kJ)", mark: "bar", values: [2.225, 2.865, 5.09] },
+  ]}
+  valueLabel="Heat released (kJ)"
+  description={<>Dissolving gives <InlineMath math="2.225\text{ kJ}" /> and neutralising gives <InlineMath math="2.865\text{ kJ}" />, <InlineMath math="5.09\text{ kJ}" /> in all.</>}
 />
 
-With <InlineMath math="100\text{ cm}^3" />, twice as many moles react and twice as much heat is released, but that heat now warms **twice the mass of solution**. The two factors cancel, so the rise stays <InlineMath math="10.0^\circ\text{C}" />. Only a change in concentration would change the rise.
+Total heat: <InlineMath math="5.09" /> kJ, which is <InlineMath math="5090" /> J. Rise: <InlineMath math="\Delta T = 5090 \div (100 \times 4.2) = 12.1^\circ\text{C}" />.
 
 # Why the other options are wrong
 
-- Doubling the heat would double the rise only if the mass stayed the same, but **the mass doubles too**.
-- <InlineMath math="-105\text{ kJ mol}^{-1}" /> and a halved rise both treat the larger volume as if it diluted the solution, but the concentration is unchanged.
-- <InlineMath math="-21.0\text{ kJ mol}^{-1}" /> divides by <InlineMath math="0.10" /> mol, mistaking the concentration for the amount.
+- <InlineMath math="6.8^\circ\text{C}" /> counts only the neutralisation and **forgets** that the solid gives out heat as it dissolves.
+- <InlineMath math="5.3^\circ\text{C}" /> counts only the dissolving.
+- <InlineMath math="18.9^\circ\text{C}" /> neutralises all <InlineMath math="0.10" /> mol of acid, but only <InlineMath math="0.050" /> mol of hydroxide is there to react.

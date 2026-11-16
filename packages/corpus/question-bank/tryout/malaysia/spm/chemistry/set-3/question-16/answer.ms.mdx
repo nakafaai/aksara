@@ -1,22 +1,23 @@
-# Jumlah asid menentukan isi padu, ion hidrogen menentukan kelajuan
+# Batalkan pencairan selepas pentitratan
 
-Setiap kelalang mengandungi <InlineMath math="0.10 \times \tfrac{50}{1000} = 0.0050" /> mol **asid monoprotik**. Dengan magnesium berlebihan, <InlineMath math="\text{Mg} + 2\text{H}^+ \rightarrow \text{Mg}^{2+} + \text{H}_2" /> menghasilkan <InlineMath math="0.0025" /> mol hidrogen daripada setiap satu, iaitu <InlineMath math="0.0025 \times 24\,000 = 60\text{ cm}^3" />.
+Asid nitrik: <InlineMath math="0.0220 \times 0.200 = 0.00440" /> mol, yang bertindak balas satu dengan satu dengan ammonia. Jadi <InlineMath math="25.0\text{ cm}^3" /> larutan kelalang mengandungi <InlineMath math="0.00440" /> mol, dan kepekatan kelalang ialah <InlineMath math="0.00440 \div 0.0250 = 0.176\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Hidrogen yang Dibebaskan oleh Dua Asid</>}
-  categories={["0", "30", "60", "90", "120", "150", "180", "210", "240"]}
-  series={[
-    { label: "Asid hidroklorik", mark: "line", values: [0, 32, 50, 58, 60, 60, 60, 60, 60] },
-    { label: "Asid etanoik", mark: "line", values: [0, 12, 23, 33, 42, 49, 54, 58, 60] },
-  ]}
-  valueLabel="Isi padu hidrogen (cm³)"
-  description={<>Asid hidroklorik mencapai <InlineMath math="60\text{ cm}^3" /> menjelang <InlineMath math="120\text{ s}" />. Asid etanoik membebaskan <InlineMath math="12\text{ cm}^3" /> dalam <InlineMath math="30\text{ s}" /> pertama dan hanya mencapai <InlineMath math="60\text{ cm}^3" /> pada <InlineMath math="240\text{ s}" />.</>}
+<Mermaid
+  title={<>Daripada Kelalang Kembali ke Botol</>}
+  description={<>Pentitratan memberi <InlineMath math="0.176\text{ mol dm}^{-3}" /> dalam kelalang, dan kelalang itu ialah pembersih yang dicairkan <InlineMath math="25" /> kali.</>}
+  chart={`
+    flowchart LR
+      N0["0.00440 mol HNO₃"] --> N1["0.00440 mol NH₃ dalam 25.0 cm³"]
+      N1 --> N2["Kelalang: 0.176 mol dm⁻³"]
+      N2 --> N3["Pembersih: × 25 = 4.40 mol dm⁻³"]
+      N3 --> N4["× 17 = 74.8 g dm⁻³"]
+  `}
 />
 
-Dalam <InlineMath math="30" /> s pertama asid hidroklorik menghasilkan <InlineMath math="32\text{ cm}^3" /> dan asid etanoik <InlineMath math="12\text{ cm}^3" />, jadi <InlineMath math="32 \div 12 \approx 2.7" /> kali lebih cepat. Asid hidroklorik mengion dengan lengkap, manakala asid etanoik **mengion separa sahaja**, jadi jauh lebih sedikit ion hidrogen bertemu magnesium pada sesuatu masa.
+Larutan kelalang **bukan pembersih itu**. <InlineMath math="10.0\text{ cm}^3" /> menjadi <InlineMath math="250\text{ cm}^3" />, pencairan sebanyak <InlineMath math="250 \div 10.0 = 25" /> kali, jadi pembersih itu <InlineMath math="0.176 \times 25 = 4.40\text{ mol dm}^{-3}" />. Dengan <InlineMath math="M_r(\text{NH}_3) = 17" />, itu ialah <InlineMath math="4.40 \times 17 = 74.8\text{ g dm}^{-3}" />.
 
 # Kenapa pilihan lain salah
 
-- Asid kuat bertindak balas lebih cepat, tetapi isi padu akhir bergantung pada bilangan mol asid, yang sama.
-- Asid etanoik kekal lebih perlahan dari awal hingga akhir. Ia mencapai <InlineMath math="60\text{ cm}^3" /> hanya kerana lebih banyak molekul mengion apabila ion hidrogen digunakan, **bukan kerana ia menjadi lebih cepat**.
-- Pengionan separa melambatkan tindak balas, tetapi akhirnya setiap molekul asid etanoik mengion, jadi isi padunya tetap <InlineMath math="60\text{ cm}^3" />.
+- <InlineMath math="0.176\text{ mol dm}^{-3}" /> ialah larutan cair dalam kelalang, **bukan pembersih** dalam botol.
+- <InlineMath math="0.0440\text{ mol dm}^{-3}" /> mengambil bilangan mol dalam seluruh kelalang, <InlineMath math="0.0440" /> mol, seolah-olah ia kepekatan.
+- <InlineMath math="61.6\text{ g dm}^{-3}" /> mendarab dengan jisim nitrogen sahaja, <InlineMath math="14" />, bukan jisim molar ammonia.

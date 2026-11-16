@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Propene gives more carbon dioxide, because each molecule has more carbon atoms",
+            "Methyl propanoate, giving $$1.6\\text{ g}$$ of methanol, with at least $$50\\text{ cm}^3$$ of the alkali",
         },
         {
           correct: false,
           label:
-            "Ethene gives more carbon dioxide, because the same mass holds more molecules",
+            "Propyl methanoate, giving $$3.0\\text{ g}$$ of propan-1-ol, with at least $$50\\text{ cm}^3$$ of the alkali",
         },
         {
           correct: true,
           label:
-            "Both give 17.6 g of carbon dioxide, because every alkene has the same 85.7% of carbon by mass",
+            "Ethyl ethanoate, giving $$2.3\\text{ g}$$ of ethanol, with at least $$50\\text{ cm}^3$$ of the alkali",
         },
         {
           correct: false,
           label:
-            "Both give 8.8 g of carbon dioxide, because each sample holds 0.20 mol of carbon atoms",
+            "Ethyl ethanoate, giving $$2.3\\text{ g}$$ of ethanol, with at least $$100\\text{ cm}^3$$ of the alkali",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Propena menghasilkan lebih banyak karbon dioksida, kerana setiap molekulnya mempunyai lebih banyak atom karbon",
+            "Metil propanoat, menghasilkan $$1.6\\text{ g}$$ metanol, dengan sekurang-kurangnya $$50\\text{ cm}^3$$ alkali",
         },
         {
           correct: false,
           label:
-            "Etena menghasilkan lebih banyak karbon dioksida, kerana jisim yang sama mengandungi lebih banyak molekul",
+            "Propil metanoat, menghasilkan $$3.0\\text{ g}$$ propan-1-ol, dengan sekurang-kurangnya $$50\\text{ cm}^3$$ alkali",
         },
         {
           correct: true,
           label:
-            "Kedua-duanya menghasilkan 17.6 g karbon dioksida, kerana setiap alkena mempunyai 85.7% karbon mengikut jisim yang sama",
+            "Etil etanoat, menghasilkan $$2.3\\text{ g}$$ etanol, dengan sekurang-kurangnya $$50\\text{ cm}^3$$ alkali",
         },
         {
           correct: false,
           label:
-            "Kedua-duanya menghasilkan 8.8 g karbon dioksida, kerana setiap sampel mengandungi 0.20 mol atom karbon",
+            "Etil etanoat, menghasilkan $$2.3\\text{ g}$$ etanol, dengan sekurang-kurangnya $$100\\text{ cm}^3$$ alkali",
         },
       ],
     },

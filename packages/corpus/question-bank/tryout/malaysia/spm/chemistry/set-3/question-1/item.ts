@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "0.102 mol dm⁻³" },
-        { correct: true, label: "0.104 mol dm⁻³" },
-        { correct: false, label: "0.0965 mol dm⁻³" },
-        { correct: false, label: "0.0984 mol dm⁻³" },
+        { correct: false, label: "$$0.101\\text{ mol dm}^{-3}$$" },
+        { correct: true, label: "$$0.203\\text{ mol dm}^{-3}$$" },
+        { correct: false, label: "$$2.03\\text{ mol dm}^{-3}$$" },
+        { correct: false, label: "$$1.21\\text{ mol dm}^{-3}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "0.102 mol dm⁻³" },
-        { correct: true, label: "0.104 mol dm⁻³" },
-        { correct: false, label: "0.0965 mol dm⁻³" },
-        { correct: false, label: "0.0984 mol dm⁻³" },
+        { correct: false, label: "$$0.101\\text{ mol dm}^{-3}$$" },
+        { correct: true, label: "$$0.203\\text{ mol dm}^{-3}$$" },
+        { correct: false, label: "$$2.03\\text{ mol dm}^{-3}$$" },
+        { correct: false, label: "$$1.21\\text{ mol dm}^{-3}$$" },
       ],
     },
   },

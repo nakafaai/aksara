@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{CH}_2\\text{O}$$" },
-        { correct: false, label: "$$\\text{C}_3\\text{H}_6\\text{O}_3$$" },
-        { correct: false, label: "$$\\text{C}_2\\text{H}_4\\text{O}_2$$" },
-        { correct: true, label: "$$\\text{C}_6\\text{H}_{12}\\text{O}_6$$" },
+        {
+          correct: false,
+          label:
+            "$$\\text{FeS}$$, giving $$0.96\\text{ dm}^3$$ of sulfur dioxide",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{Fe}_2\\text{S}_3$$, giving $$1.44\\text{ dm}^3$$ of sulfur dioxide",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{FeS}_2$$, giving $$0.96\\text{ dm}^3$$ of sulfur dioxide",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{FeS}_2$$, giving $$1.92\\text{ dm}^3$$ of sulfur dioxide",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{CH}_2\\text{O}$$" },
-        { correct: false, label: "$$\\text{C}_3\\text{H}_6\\text{O}_3$$" },
-        { correct: false, label: "$$\\text{C}_2\\text{H}_4\\text{O}_2$$" },
-        { correct: true, label: "$$\\text{C}_6\\text{H}_{12}\\text{O}_6$$" },
+        {
+          correct: false,
+          label:
+            "$$\\text{FeS}$$, menghasilkan $$0.96\\text{ dm}^3$$ sulfur dioksida",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{Fe}_2\\text{S}_3$$, menghasilkan $$1.44\\text{ dm}^3$$ sulfur dioksida",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{FeS}_2$$, menghasilkan $$0.96\\text{ dm}^3$$ sulfur dioksida",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{FeS}_2$$, menghasilkan $$1.92\\text{ dm}^3$$ sulfur dioksida",
+        },
       ],
     },
   },

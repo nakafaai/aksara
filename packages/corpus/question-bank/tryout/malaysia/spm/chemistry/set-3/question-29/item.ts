@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Methyl propanoate, 8.16 g" },
-        { correct: false, label: "Ethyl propanoate, 10.2 g" },
-        { correct: false, label: "Propyl ethanoate, 8.16 g" },
-        { correct: true, label: "Ethyl propanoate, 8.16 g" },
+        { correct: false, label: "Propyl propanoate, $$6.96\\text{ g}$$" },
+        { correct: false, label: "Ethyl propanoate, $$5.57\\text{ g}$$" },
+        { correct: false, label: "Propyl propanoate, $$9.28\\text{ g}$$" },
+        { correct: true, label: "Propyl propanoate, $$5.57\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Metil propanoat, 8.16 g" },
-        { correct: false, label: "Etil propanoat, 10.2 g" },
-        { correct: false, label: "Propil etanoat, 8.16 g" },
-        { correct: true, label: "Etil propanoat, 8.16 g" },
+        { correct: false, label: "Propil propanoat, $$6.96\\text{ g}$$" },
+        { correct: false, label: "Etil propanoat, $$5.57\\text{ g}$$" },
+        { correct: false, label: "Propil propanoat, $$9.28\\text{ g}$$" },
+        { correct: true, label: "Propil propanoat, $$5.57\\text{ g}$$" },
       ],
     },
   },

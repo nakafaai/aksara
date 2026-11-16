@@ -1,22 +1,24 @@
-# Three steps, one amount carried through
+# Use the titration for the ratio, then scale up to the batch
 
-Mass: <InlineMath math="0.200 \times \tfrac{250}{1000} = 0.0500" /> mol of <InlineMath math="\text{Na}_2\text{CO}_3" />, with <InlineMath math="M_r = 2(23) + 12 + 3(16) = 106" />, is <InlineMath math="0.0500 \times 106 = 5.30" /> g.
+Acid in the titration: <InlineMath math="0.0200 \times 1.25 = 0.0250" /> mol, which neutralised <InlineMath math="0.0250" /> mol of sodium hydroxide in <InlineMath math="25.0\text{ cm}^3" />. So the alkali is <InlineMath math="0.0250 \div 0.0250 = 1.00\text{ mol dm}^{-3}" />.
 
-<Mermaid
-  title={<>Preparing, Diluting and Titrating</>}
-  description={<>The solid is weighed and made up to <InlineMath math="250\text{ cm}^3" /> at <InlineMath math="0.200\text{ mol dm}^{-3}" />, <InlineMath math="25.0\text{ cm}^3" /> of it is diluted to <InlineMath math="100\text{ cm}^3" />, and <InlineMath math="25.0\text{ cm}^3" /> of that is titrated with acid.</>}
-  chart={`
-    flowchart LR
-      A["Weigh the solid"] --> B["Make up to 250 cm³ at 0.200 mol dm⁻³"]
-      B --> C["Dilute 25.0 cm³ to 100 cm³"]
-      C --> D["Titrate 25.0 cm³ with 0.100 mol dm⁻³ HCl"]
-  `}
+The batch is **four times the titration**: <InlineMath math="100\text{ cm}^3" /> of alkali holds <InlineMath math="0.100" /> mol, and <InlineMath math="80.0\text{ cm}^3" /> of acid holds exactly <InlineMath math="0.100" /> mol too, so neither is left over.
+
+<Chart
+  title={<>Expected and Collected Salt</>}
+  bars="apart"
+  categories={["Expected", "Collected"]}
+  series={[
+    { label: "Mass of NaCl (g)", mark: "bar", values: [5.85, 5.2] },
+  ]}
+  valueLabel="Mass of NaCl (g)"
+  description={<>Expected from <InlineMath math="0.100\text{ mol}" />: <InlineMath math="5.85\text{ g}" />. Collected: <InlineMath math="5.20\text{ g}" />, a yield of <InlineMath math="88.9\%" />.</>}
 />
 
-Dilution: the same moles in **four times the volume**, so <InlineMath math="0.200 \div 4 = 0.0500\text{ mol dm}^{-3}" />. The flask for titration holds <InlineMath math="0.0500 \times \tfrac{25.0}{1000} = 0.00125" /> mol of carbonate, which needs **two moles of acid per mole**: <InlineMath math="0.00250" /> mol. At <InlineMath math="0.100\text{ mol dm}^{-3}" />, that is <InlineMath math="0.0250\text{ dm}^3" />, or <InlineMath math="25.0\text{ cm}^3" />.
+Expected sodium chloride: <InlineMath math="0.100 \times 58.5 = 5.85" /> g. Yield: <InlineMath math="5.20 \div 5.85 \times 100\% = 88.9\%" />. Some salt stays in the solution that is left after crystallising.
 
 # Why the other options are wrong
 
-- <InlineMath math="12.5\text{ cm}^3" /> treats the reaction as one to one and misses the second **mole of acid**.
-- <InlineMath math="21.2\text{ g}" /> is the mass for a whole cubic decimetre of solution, not for <InlineMath math="250\text{ cm}^3" />.
-- <InlineMath math="2.65\text{ g}" /> halves the mass, and <InlineMath math="12.5\text{ cm}^3" /> also misses the two to one ratio.
+- <InlineMath math="1.56\text{ mol dm}^{-3}" /> divides the volumes the wrong way round, as if the alkali were **more concentrated** than the acid.
+- <InlineMath math="100\%" /> takes the crystals as the full <InlineMath math="5.85" /> g, but only <InlineMath math="5.20" /> g was collected.
+- <InlineMath math="1.25\text{ mol dm}^{-3}" /> copies the acid's concentration, though equal moles came from unequal volumes.

@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "Order P, R, Q, and 6.4 g of Q forms" },
-        { correct: false, label: "Order R, P, Q, and 6.4 g of Q forms" },
-        { correct: false, label: "Order P, R, Q, and 2.4 g of Q forms" },
-        { correct: false, label: "Order P, Q, R, and 3.2 g of Q forms" },
+        {
+          correct: true,
+          label:
+            "Zinc supplies $$20$$ mol of electrons, enough to keep $$560\\text{ g}$$ of iron from forming iron(II) ions, and the same mass of magnesium supplies about $$2.7$$ times as many",
+        },
+        {
+          correct: false,
+          label:
+            "Zinc supplies $$10$$ mol of electrons, enough to keep $$560\\text{ g}$$ of iron from forming iron(II) ions, and the same mass of magnesium supplies about $$2.7$$ times as many",
+        },
+        {
+          correct: false,
+          label:
+            "Zinc supplies $$20$$ mol of electrons, enough to keep $$1120\\text{ g}$$ of iron from forming iron(II) ions, and the same mass of magnesium supplies the same number",
+        },
+        {
+          correct: false,
+          label:
+            "Zinc supplies $$20$$ mol of electrons, enough to keep $$560\\text{ g}$$ of iron from forming iron(II) ions, and the same mass of magnesium supplies fewer, because magnesium atoms are lighter",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "Susunan P, R, Q, dan 6.4 g Q terbentuk" },
-        { correct: false, label: "Susunan R, P, Q, dan 6.4 g Q terbentuk" },
-        { correct: false, label: "Susunan P, R, Q, dan 2.4 g Q terbentuk" },
-        { correct: false, label: "Susunan P, Q, R, dan 3.2 g Q terbentuk" },
+        {
+          correct: true,
+          label:
+            "Zink membekalkan $$20$$ mol elektron, cukup untuk menghalang $$560\\text{ g}$$ ferum daripada membentuk ion ferum(II), dan jisim magnesium yang sama membekalkan kira-kira $$2.7$$ kali ganda",
+        },
+        {
+          correct: false,
+          label:
+            "Zink membekalkan $$10$$ mol elektron, cukup untuk menghalang $$560\\text{ g}$$ ferum daripada membentuk ion ferum(II), dan jisim magnesium yang sama membekalkan kira-kira $$2.7$$ kali ganda",
+        },
+        {
+          correct: false,
+          label:
+            "Zink membekalkan $$20$$ mol elektron, cukup untuk menghalang $$1120\\text{ g}$$ ferum daripada membentuk ion ferum(II), dan jisim magnesium yang sama membekalkan bilangan yang sama",
+        },
+        {
+          correct: false,
+          label:
+            "Zink membekalkan $$20$$ mol elektron, cukup untuk menghalang $$560\\text{ g}$$ ferum daripada membentuk ion ferum(II), dan jisim magnesium yang sama membekalkan lebih sedikit, kerana atom magnesium lebih ringan",
+        },
       ],
     },
   },

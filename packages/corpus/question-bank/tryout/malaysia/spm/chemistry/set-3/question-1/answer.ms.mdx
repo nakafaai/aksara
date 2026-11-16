@@ -1,22 +1,25 @@
-# Ambil hanya titer yang sepadan, kemudian guna nisbah mol
+# Timbang melalui beza, kecilkan kepada alikuot, kemudian gandakan
 
-Titer kasar hanya mencari takat akhir, jadi ia tidak dimasukkan dalam min. Daripada empat larian, <InlineMath math="24.10" />, <InlineMath math="24.15" /> dan <InlineMath math="24.12" /> berbeza dalam lingkungan <InlineMath math="0.05\text{ cm}^3" />, manakala <InlineMath math="24.60" /> terlebih kira-kira <InlineMath math="0.5\text{ cm}^3" />. **Min titer sepadan** ialah <InlineMath math="\tfrac{24.10 + 24.15 + 24.12}{3} = 24.12\text{ cm}^3" />.
+Pepejal dalam kelalang ialah yang **meninggalkan botol**: <InlineMath math="18.462 - 15.812 = 2.650" /> g, iaitu <InlineMath math="2.650 \div 106 = 0.02500" /> mol. Dalam <InlineMath math="250.0\text{ cm}^3" /> kepekatannya <InlineMath math="0.1000\text{ mol dm}^{-3}" />, jadi setiap bahagian <InlineMath math="25.00\text{ cm}^3" /> mengandungi <InlineMath math="0.002500" /> mol, sepersepuluh daripada jumlah.
 
-<Chart
-  title={<>Titer daripada Lima Larian</>}
-  bars="apart"
-  categories={["Kasar", "Larian 1", "Larian 2", "Larian 3", "Larian 4"]}
-  series={[
-    { label: "Isi padu asid (cm³)", mark: "bar", values: [25.4, 24.1, 24.15, 24.6, 24.12] },
-  ]}
-  valueLabel="Isi padu asid (cm³)"
-  description={<>Kasar <InlineMath math="25.40" />, larian <InlineMath math="1" /> <InlineMath math="24.10" />, larian <InlineMath math="2" /> <InlineMath math="24.15" />, larian <InlineMath math="3" /> <InlineMath math="24.60" /> dan larian <InlineMath math="4" /> <InlineMath math="24.12\text{ cm}^3" />.</>}
+Persamaan memerlukan **dua mol asid bagi setiap mol karbonat**, jadi setiap titratan menggunakan <InlineMath math="0.005000" /> mol asid hidroklorik.
+
+<Mermaid
+  title={<>Daripada Botol Penimbang kepada Asid</>}
+  description={<>Jisim melalui beza <InlineMath math="2.650\text{ g}" />, kelalang <InlineMath math="0.1000\text{ mol dm}^{-3}" />, alikuot <InlineMath math="0.002500\text{ mol}" />, asid <InlineMath math="0.005000\text{ mol}" /> dalam <InlineMath math="24.65\text{ cm}^3" />.</>}
+  chart={`
+    flowchart LR
+      N0["18.462 − 15.812 = 2.650 g"] --> N1["0.02500 mol dalam 250 cm³"]
+      N1 --> N2["0.002500 mol dalam 25.00 cm³"]
+      N2 --> N3["0.005000 mol HCl"]
+      N3 --> N4["÷ 0.02465 dm³ = 0.203 mol dm⁻³"]
+  `}
 />
 
-Alkali mengandungi <InlineMath math="0.100 \times \tfrac{25.0}{1000} = 0.00250" /> mol, dan <InlineMath math="\text{NaOH} + \text{HCl} \rightarrow \text{NaCl} + \text{H}_2\text{O}" /> ialah satu kepada satu. Jadi <InlineMath math="c = 0.00250 \div \tfrac{24.12}{1000} = 0.104\text{ mol dm}^{-3}" />.
+Bacaan kasar dan ulangan <InlineMath math="2" /> diketepikan. Ulangan <InlineMath math="1" />, <InlineMath math="3" /> dan <InlineMath math="4" /> sepadan dalam lingkungan <InlineMath math="0.10\text{ cm}^3" />, dan puratanya <InlineMath math="(24.65 + 24.60 + 24.70) \div 3 = 24.65\text{ cm}^3" />. Jadi kepekatan asid ialah <InlineMath math="0.005000 \div 0.02465 = 0.203\text{ mol dm}^{-3}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="0.102\text{ mol dm}^{-3}" /> mengambil purata kelima-lima bacaan, **termasuk bacaan kasar dan yang terlebih**.
-- <InlineMath math="0.0965\text{ mol dm}^{-3}" /> menterbalikkan nisbah: <InlineMath math="0.100 \times 24.12 \div 25.0" />.
-- <InlineMath math="0.0984\text{ mol dm}^{-3}" /> menggunakan titer kasar sahaja.
+- <InlineMath math="0.101\text{ mol dm}^{-3}" /> menggunakan satu mol asid bagi setiap mol karbonat, tetapi ion karbonat mengambil **dua** ion hidrogen.
+- <InlineMath math="2.03\text{ mol dm}^{-3}" /> memasukkan kesemua <InlineMath math="0.02500" /> mol ke dalam satu titratan, walhal hanya sepersepuluh larutan dimasukkan ke dalam kelalang.
+- <InlineMath math="1.21\text{ mol dm}^{-3}" /> mengambil bacaan kedua, <InlineMath math="15.812" /> g, sebagai jisim pepejal dan bukan bezanya.

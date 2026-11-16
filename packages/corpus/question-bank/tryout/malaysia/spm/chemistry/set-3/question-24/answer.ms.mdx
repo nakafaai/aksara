@@ -1,30 +1,25 @@
-# Bahan anod menentukan tindak balas di anod
+# Katod menentukan elektron, anod menentukan kesannya
 
-Kedua-dua katod menerima ion yang sama, dan argentum rendah dalam siri elektrokimia, jadi **argentum terenap di kedua-dua katod**: <InlineMath math="\text{Ag}^+ + e^- \rightarrow \text{Ag}" />.
+Dalam kedua-dua sel, <InlineMath math="1.08 \div 108 = 0.010" /> mol argentum terenap, dan <InlineMath math="\text{Ag}^+ + e^- \rightarrow \text{Ag}" /> mengambil satu elektron setiap satu: <InlineMath math="0.010" /> mol elektron.
 
-<ElectrolysisLab
-  title={<>Elektrolisis Larutan Argentum Nitrat</>}
-  description={<>Sel X menggunakan elektrod karbon dan sel Y menggunakan elektrod argentum, kedua-duanya dalam larutan argentum nitrat.</>}
-  cells={[{ electrode: "carbon", electrolyte: "silver-nitrate" }, { electrode: "silver", electrolyte: "silver-nitrate" }]}
-  showProducts
-  labels={{
-    anode: "Anod",
-    atAnode: <>Di anod</>,
-    atCathode: <>Di katod</>,
-    battery: "Bateri",
-    cathode: "Katod",
-    cells: [<>Sel X: elektrod karbon</>, <>Sel Y: elektrod argentum</>],
-    electrons: <>Elektron yang mengalir</>,
-    ph: <>pH elektrolit</>,
-    trends: { falls: <>berkurang</>, rises: <>bertambah</>, steady: <>tidak berubah</> },
-    view: "Dua sel elektrolisis",
-  }}
+**Sel X**: karbon lengai, dan ion hidroksida atau air dinyahcas menggantikan ion nitrat: <InlineMath math="2\text{H}_2\text{O} \rightarrow \text{O}_2 + 4\text{H}^+ + 4e^-" />. Oksigen: <InlineMath math="0.010 \div 4 = 0.0025" /> mol, atau <InlineMath math="60\text{ cm}^3" />. Tindak balas yang sama meninggalkan <InlineMath math="0.010" /> mol ion hidrogen dalam <InlineMath math="0.100\text{ dm}^3" />: <InlineMath math="0.10\text{ mol dm}^{-3}" />, pH <InlineMath math="1" />.
+
+<Mermaid
+  title={<>Satu Katod, Dua Anod yang Berbeza</>}
+  description={<>Kedua-dua katod menerima <InlineMath math="0.010\text{ mol}" /> elektron. Anod karbon menghasilkan oksigen dan ion hidrogen, dan anod argentum melarut.</>}
+  chart={`
+    flowchart LR
+      N0["1.08 g Ag: 0.010 mol e⁻"] --> N1["Anod X: 2H₂O → O₂ + 4H⁺ + 4e⁻"]
+      N1 --> N2["0.0025 mol O₂: 60 cm³"]
+      N1 --> N3["0.010 mol H⁺ dalam 100 cm³: pH 1"]
+      N0 --> N4["Anod Y: Ag → Ag⁺ + e⁻, hilang 1.08 g"]
+  `}
 />
 
-Di anod karbon dalam X, ion hidroksida dinyahcas menggantikan ion nitrat: <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />. Ion hidrogen tertinggal, jadi larutan menjadi berasid. Dalam Y, anod argentum sendiri **melepaskan elektron dan melarut**: <InlineMath math="\text{Ag} \rightarrow \text{Ag}^+ + e^-" />. Setiap ion argentum yang keluar di katod diganti di anod, jadi kepekatan tidak berubah.
+**Sel Y**: anod argentum sendiri melarut, <InlineMath math="\text{Ag} \rightarrow \text{Ag}^+ + e^-" />, kehilangan <InlineMath math="1.08" /> g. Setiap ion argentum yang disingkirkan di katod diganti di anod, jadi larutan kekal <InlineMath math="0.20\text{ mol dm}^{-3}" />.
 
 # Kenapa pilihan lain salah
 
-- Argentum terbentuk dengan **menerima elektron**, jadi ia muncul di katod, bukan di anod. Anod Y melarut dan tidak membebaskan oksigen.
-- Larutan dalam X menjadi berasid, bukan beralkali, dan katod Y menjadi lebih tebal, bukan melarut.
-- Ion nitrat tidak dinyahcas dalam larutan akueus, dan anod Y terhakis, bukan bertambah tebal.
+- <InlineMath math="120\text{ cm}^3" /> memberi setiap molekul oksigen dua elektron, tetapi ia mengambil **empat**.
+- Nyahcas air di anod membebaskan ion hidrogen, jadi larutan menjadi berasid, **bukan beralkali**.
+- Dalam Y, anod ialah tempat argentum melarut, jadi ia menjadi lebih ringan, dan kepekatan ion argentum tidak berubah.

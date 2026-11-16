@@ -10,51 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "P is magnesium oxide, Q is copper, R is hydrogen chloride and S is silicon dioxide",
-        },
-        {
-          correct: true,
-          label:
-            "P is sodium chloride, Q is silicon dioxide, R is hydrogen chloride and S is copper",
-        },
-        {
-          correct: false,
-          label:
-            "P is sodium chloride, Q is silicon dioxide, R is glucose and S is copper",
-        },
-        {
-          correct: false,
-          label:
-            "P is copper, Q is silicon dioxide, R is hydrogen chloride and S is sodium chloride",
-        },
+        { correct: false, label: "$$\\text{Li}_3\\text{N}$$, with $$1.40\\text{ g}$$ of lithium oxide and $$1.40\\text{ g}$$ of lithium nitride" },
+        { correct: true, label: "$$\\text{Li}_3\\text{N}$$, with $$2.10\\text{ g}$$ of lithium oxide and $$0.70\\text{ g}$$ of lithium nitride" },
+        { correct: false, label: "$$\\text{Li}_3\\text{N}$$, with $$0.70\\text{ g}$$ of lithium oxide and $$2.10\\text{ g}$$ of lithium nitride" },
+        { correct: false, label: "$$\\text{LiN}_3$$, with $$2.10\\text{ g}$$ of lithium oxide and $$0.70\\text{ g}$$ of lithium nitride" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "P ialah magnesium oksida, Q ialah kuprum, R ialah hidrogen klorida dan S ialah silikon dioksida",
-        },
-        {
-          correct: true,
-          label:
-            "P ialah natrium klorida, Q ialah silikon dioksida, R ialah hidrogen klorida dan S ialah kuprum",
-        },
-        {
-          correct: false,
-          label:
-            "P ialah natrium klorida, Q ialah silikon dioksida, R ialah glukosa dan S ialah kuprum",
-        },
-        {
-          correct: false,
-          label:
-            "P ialah kuprum, Q ialah silikon dioksida, R ialah hidrogen klorida dan S ialah natrium klorida",
-        },
+        { correct: false, label: "$$\\text{Li}_3\\text{N}$$, dengan $$1.40\\text{ g}$$ litium oksida dan $$1.40\\text{ g}$$ litium nitrida" },
+        { correct: true, label: "$$\\text{Li}_3\\text{N}$$, dengan $$2.10\\text{ g}$$ litium oksida dan $$0.70\\text{ g}$$ litium nitrida" },
+        { correct: false, label: "$$\\text{Li}_3\\text{N}$$, dengan $$0.70\\text{ g}$$ litium oksida dan $$2.10\\text{ g}$$ litium nitrida" },
+        { correct: false, label: "$$\\text{LiN}_3$$, dengan $$2.10\\text{ g}$$ litium oksida dan $$0.70\\text{ g}$$ litium nitrida" },
       ],
     },
   },

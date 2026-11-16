@@ -1,22 +1,24 @@
-# Cari pereaksi pembatas sebelum menilai laju
+# Tiap gram yang hilang dari labu adalah karbon dioksida
 
-Marmer itu <InlineMath math="2{,}0 \div 100 = 0{,}020" /> mol <InlineMath math="\text{CaCO}_3" />, yang butuh <InlineMath math="0{,}040" /> mol asam. Tiap percobaan memberi <InlineMath math="0{,}050" /> mol asam, jadi **marmer menjadi pembatas di keempatnya**. Masing-masing menghasilkan <InlineMath math="0{,}020" /> mol karbon dioksida, yaitu <InlineMath math="480\text{ cm}^3" /> pada kondisi ruang.
+Dengan kapas di mulut labu, satu-satunya yang keluar adalah **karbon dioksida**. Dalam <InlineMath math="20\text{ s}" /> pertama labu kehilangan <InlineMath math="0{,}44" /> g: <InlineMath math="0{,}44 \div 44 = 0{,}010" /> mol, yaitu <InlineMath math="0{,}010 \times 24\,000 = 240\text{ cm}^3" />. Laju rata-rata: <InlineMath math="240 \div 20 = 12\text{ cm}^3\text{ s}^{-1}" />.
 
-<Chart
-  title={<>Karbon Dioksida pada Percobaan I dan III</>}
-  categories={["0", "30", "60", "90", "120", "150", "180", "210", "240"]}
-  series={[
-    { label: "Percobaan I", mark: "line", values: [0, 250, 390, 455, 480, 480, 480, 480, 480] },
-    { label: "Percobaan III", mark: "line", values: [0, 140, 250, 330, 390, 430, 458, 474, 480] },
-  ]}
-  valueLabel="Volume karbon dioksida (cm³)"
-  description={<>Kedua kurva berakhir di <InlineMath math="480\text{ cm}^3" />. Percobaan I mencapainya pada <InlineMath math="120\text{ s}" />, Percobaan III baru sekitar <InlineMath math="240\text{ s}" />.</>}
+<Mermaid
+  title={<>Massa yang Hilang Adalah Karbon Dioksida</>}
+  description={<><InlineMath math="0{,}44\text{ g}" /> yang hilang dalam <InlineMath math="20\text{ s}" /> pertama adalah <InlineMath math="240\text{ cm}^3" /> karbon dioksida. Total <InlineMath math="0{,}88\text{ g}" /> adalah <InlineMath math="0{,}020\text{ mol}" />, dari jumlah karbonat yang sama.</>}
+  chart={`
+    flowchart LR
+      N0["0,44 g CO₂ dalam 20 s"] --> N1["0,010 mol: 240 cm³"]
+      N1 --> N2["240 ÷ 20 = 12 cm³ s⁻¹"]
+      N3["0,88 g CO₂ total: 0,020 mol"] --> N4["0,020 mol MgCO₃: 1,68 g"]
+  `}
 />
 
-Percobaan III menyebar asam yang sama dalam dua kali volume, jadi konsentrasinya setengah. Partikel lebih jarang bertumbukan, dan <InlineMath math="480\text{ cm}^3" /> yang sama butuh waktu lebih lama untuk terkumpul.
+Kehilangan berhenti di <InlineMath math="0{,}88" /> g, jadi reaksinya selesai: <InlineMath math="0{,}88 \div 44 = 0{,}020" /> mol karbon dioksida. Satu mol karbonat menghasilkan satu mol karbon dioksida, jadi yang ditambahkan <InlineMath math="0{,}020" /> mol magnesium karbonat, <InlineMath math="0{,}020 \times 84 = 1{,}68" /> g.
+
+**Asam**: tiap karbonat mengikat **dua** molekul asam nitrat, jadi <InlineMath math="0{,}020" /> mol butuh <InlineMath math="0{,}040" /> mol asam: paling sedikit <InlineMath math="0{,}040 \div 2{,}0 = 0{,}020\text{ dm}^3 = 20\text{ cm}^3" />. Asamnya berlebih, jadi volume sebenarnya lebih besar.
 
 # Kenapa pilihan lain salah
 
-- Serbuk hanya menaikkan laju. Jumlah marmer, dan karena itu volume akhir, **tetap sama**.
-- Suhu yang lebih tinggi mempercepat reaksi, tapi tidak bisa menghasilkan gas lebih banyak dari marmer yang sama.
-- Percobaan III punya mol asam yang sama dengan Percobaan I, dan marmer tetap pembatas, jadi volumenya tidak menjadi setengah.
+- <InlineMath math="0{,}84\text{ g}" /> dihitung dari <InlineMath math="20\text{ s}" /> pertama saja, padahal karbonat terus bereaksi sampai kehilangan **berhenti di** <InlineMath math="0{,}88" /> g.
+- <InlineMath math="0{,}022" /> adalah laju dalam gram per detik, <InlineMath math="0{,}44 \div 20" />, yang ditulis dengan satuan yang salah.
+- <InlineMath math="10\text{ cm}^3" /> memakai satu molekul asam per karbonat, padahal persamaannya butuh dua.

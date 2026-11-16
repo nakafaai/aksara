@@ -1,22 +1,25 @@
-# Pakai hanya titer yang sesuai, lalu perbandingan mol
+# Timbang dengan selisih, perkecil ke alikuot, lalu kalikan dua
 
-Titer kasar hanya untuk mencari titik akhir, jadi tidak masuk ke rata-rata. Dari empat titrasi, <InlineMath math="24{,}10" />, <InlineMath math="24{,}15" />, dan <InlineMath math="24{,}12" /> berselisih dalam <InlineMath math="0{,}05\text{ cm}^3" />, sedangkan <InlineMath math="24{,}60" /> kelebihan sekitar <InlineMath math="0{,}5\text{ cm}^3" />. **Rata-rata titer yang sesuai** adalah <InlineMath math="\tfrac{24{,}10 + 24{,}15 + 24{,}12}{3} = 24{,}12\text{ cm}^3" />.
+Padatan di dalam labu adalah yang **keluar dari botol**: <InlineMath math="18{,}462 - 15{,}812 = 2{,}650" /> g, yaitu <InlineMath math="2{,}650 \div 106 = 0{,}02500" /> mol. Dalam <InlineMath math="250{,}0\text{ cm}^3" /> konsentrasinya <InlineMath math="0{,}1000\text{ mol dm}^{-3}" />, jadi tiap porsi <InlineMath math="25{,}00\text{ cm}^3" /> berisi <InlineMath math="0{,}002500" /> mol, sepersepuluh dari totalnya.
 
-<Chart
-  title={<>Titer dari Lima Kali Titrasi</>}
-  bars="apart"
-  categories={["Kasar", "Titrasi 1", "Titrasi 2", "Titrasi 3", "Titrasi 4"]}
-  series={[
-    { label: "Volume asam (cm³)", mark: "bar", values: [25.4, 24.1, 24.15, 24.6, 24.12] },
-  ]}
-  valueLabel="Volume asam (cm³)"
-  description={<>Kasar <InlineMath math="25{,}40" />, titrasi <InlineMath math="1" /> <InlineMath math="24{,}10" />, titrasi <InlineMath math="2" /> <InlineMath math="24{,}15" />, titrasi <InlineMath math="3" /> <InlineMath math="24{,}60" />, dan titrasi <InlineMath math="4" /> <InlineMath math="24{,}12\text{ cm}^3" />.</>}
+Persamaannya butuh **dua mol asam untuk tiap mol karbonat**, jadi tiap titrasi memakai <InlineMath math="0{,}005000" /> mol asam klorida.
+
+<Mermaid
+  title={<>Dari Botol Timbang ke Asam</>}
+  description={<>Massa selisih <InlineMath math="2{,}650\text{ g}" />, labu <InlineMath math="0{,}1000\text{ mol dm}^{-3}" />, alikuot <InlineMath math="0{,}002500\text{ mol}" />, asam <InlineMath math="0{,}005000\text{ mol}" /> dalam <InlineMath math="24{,}65\text{ cm}^3" />.</>}
+  chart={`
+    flowchart LR
+      N0["18,462 − 15,812 = 2,650 g"] --> N1["0,02500 mol dalam 250 cm³"]
+      N1 --> N2["0,002500 mol dalam 25,00 cm³"]
+      N2 --> N3["0,005000 mol HCl"]
+      N3 --> N4["÷ 0,02465 dm³ = 0,203 mol dm⁻³"]
+  `}
 />
 
-Basanya berisi <InlineMath math="0{,}100 \times \tfrac{25{,}0}{1000} = 0{,}00250" /> mol, dan <InlineMath math="\text{NaOH} + \text{HCl} \rightarrow \text{NaCl} + \text{H}_2\text{O}" /> satu banding satu. Jadi <InlineMath math="c = 0{,}00250 \div \tfrac{24{,}12}{1000} = 0{,}104\text{ mol dm}^{-3}" />.
+Titrasi kasar dan ulangan <InlineMath math="2" /> tidak dipakai. Ulangan <InlineMath math="1" />, <InlineMath math="3" />, dan <InlineMath math="4" /> sesuai dalam batas <InlineMath math="0{,}10\text{ cm}^3" />, dan rata-ratanya <InlineMath math="(24{,}65 + 24{,}60 + 24{,}70) \div 3 = 24{,}65\text{ cm}^3" />. Jadi konsentrasi asamnya <InlineMath math="0{,}005000 \div 0{,}02465 = 0{,}203\text{ mol dm}^{-3}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="0{,}102\text{ mol dm}^{-3}" /> merata-ratakan kelima pembacaan, **termasuk yang kasar dan yang kelebihan**.
-- <InlineMath math="0{,}0965\text{ mol dm}^{-3}" /> membalik perbandingannya: <InlineMath math="0{,}100 \times 24{,}12 \div 25{,}0" />.
-- <InlineMath math="0{,}0984\text{ mol dm}^{-3}" /> hanya memakai titer kasar.
+- <InlineMath math="0{,}101\text{ mol dm}^{-3}" /> memakai satu mol asam per mol karbonat, padahal ion karbonat mengikat **dua** ion hidrogen.
+- <InlineMath math="2{,}03\text{ mol dm}^{-3}" /> memasukkan seluruh <InlineMath math="0{,}02500" /> mol ke satu titrasi, padahal hanya sepersepuluh larutan yang masuk ke labu titrasi.
+- <InlineMath math="1{,}21\text{ mol dm}^{-3}" /> menganggap pembacaan kedua, <InlineMath math="15{,}812" /> g, sebagai massa padatan, bukan selisihnya.

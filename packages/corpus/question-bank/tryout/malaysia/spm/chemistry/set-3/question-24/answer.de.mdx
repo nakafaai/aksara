@@ -1,30 +1,25 @@
-# Das Anodenmaterial bestimmt die Anodenreaktion
+# Die Kathode legt die Elektronen fest, die Anode entscheidet, was geschieht
 
-Beide Kathoden erhalten dieselben Ionen, und Silber steht tief in der elektrochemischen Reihe, also **scheidet sich an beiden Kathoden Silber ab**: <InlineMath math="\text{Ag}^+ + e^- \rightarrow \text{Ag}" />.
+In beiden Zellen scheiden sich <InlineMath math="1{,}08 \div 108 = 0{,}010" /> mol Silber ab, und <InlineMath math="\text{Ag}^+ + e^- \rightarrow \text{Ag}" /> braucht je ein Elektron: <InlineMath math="0{,}010" /> mol Elektronen.
 
-<ElectrolysisLab
-  title={<>Elektrolyse von Silbernitratlösung</>}
-  description={<>Zelle X hat Kohleelektroden und Zelle Y Silberelektroden, beide in Silbernitratlösung.</>}
-  cells={[{ electrode: "carbon", electrolyte: "silver-nitrate" }, { electrode: "silver", electrolyte: "silver-nitrate" }]}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>An der Anode</>,
-    atCathode: <>An der Kathode</>,
-    battery: "Batterie",
-    cathode: "Kathode",
-    cells: [<>Zelle X: Kohleelektroden</>, <>Zelle Y: Silberelektroden</>],
-    electrons: <>Geflossene Elektronen</>,
-    ph: <>pH-Wert des Elektrolyten</>,
-    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
-    view: "Zwei Elektrolysezellen",
-  }}
+**Zelle X**: Kohle ist inert, und statt Nitrationen werden Hydroxidionen oder Wasser entladen: <InlineMath math="2\text{H}_2\text{O} \rightarrow \text{O}_2 + 4\text{H}^+ + 4e^-" />. Sauerstoff: <InlineMath math="0{,}010 \div 4 = 0{,}0025" /> mol, also <InlineMath math="60\text{ cm}^3" />. Dieselbe Reaktion hinterlässt <InlineMath math="0{,}010" /> mol Wasserstoffionen in <InlineMath math="0{,}100\text{ dm}^3" />: <InlineMath math="0{,}10\text{ mol dm}^{-3}" />, pH <InlineMath math="1" />.
+
+<Mermaid
+  title={<>Eine Kathode, zwei verschiedene Anoden</>}
+  description={<>Beide Kathoden nehmen <InlineMath math="0{,}010\text{ mol}" /> Elektronen auf. Die Kohleanode bildet Sauerstoff und Wasserstoffionen, die Silberanode löst sich auf.</>}
+  chart={`
+    flowchart LR
+      N0["1,08 g Ag: 0,010 mol e⁻"] --> N1["Anode X: 2H₂O → O₂ + 4H⁺ + 4e⁻"]
+      N1 --> N2["0,0025 mol O₂: 60 cm³"]
+      N1 --> N3["0,010 mol H⁺ in 100 cm³: pH 1"]
+      N0 --> N4["Anode Y: Ag → Ag⁺ + e⁻, verliert 1,08 g"]
+  `}
 />
 
-An der Kohleanode in X werden statt Nitrationen Hydroxidionen entladen: <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />. Wasserstoffionen bleiben zurück, die Lösung wird sauer. In Y **gibt die Silberanode selbst Elektronen ab und löst sich**: <InlineMath math="\text{Ag} \rightarrow \text{Ag}^+ + e^-" />. Jedes Silberion, das an der Kathode verschwindet, wird an der Anode ersetzt, die Konzentration bleibt also gleich.
+**Zelle Y**: Die Silberanode selbst löst sich auf, <InlineMath math="\text{Ag} \rightarrow \text{Ag}^+ + e^-" />, und verliert <InlineMath math="1{,}08" /> g. Jedes an der Kathode entfernte Silberion wird an der Anode ersetzt, also bleibt die Lösung bei <InlineMath math="0{,}20\text{ mol dm}^{-3}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- Silber entsteht durch **Elektronenaufnahme**, erscheint also an der Kathode, nie an der Anode. Die Anode in Y löst sich, statt Sauerstoff zu liefern.
-- Die Lösung in X wird sauer, nicht alkalisch, und die Kathode in Y wird dicker, statt sich zu lösen.
-- Nitrationen werden in wässriger Lösung nicht entladen, und die Anode in Y nimmt ab, statt zu wachsen.
+- <InlineMath math="120\text{ cm}^3" /> gibt jedem Sauerstoffmolekül zwei Elektronen, doch es braucht **vier**.
+- Das Entladen von Wasser an der Anode setzt Wasserstoffionen frei, die Lösung wird sauer, **nicht alkalisch**.
+- In Y löst sich das Silber an der Anode, sie wird also leichter, und die Konzentration der Silberionen ändert sich nicht.

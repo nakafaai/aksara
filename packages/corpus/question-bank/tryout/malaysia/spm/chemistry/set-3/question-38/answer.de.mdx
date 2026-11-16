@@ -1,22 +1,25 @@
-# Einheiten und Brücken in denselben <InlineMath math="100\text{ g}" /> zählen
+# Verhältnisformel, Summenformel, dann die Kette
 
-Isopreneinheiten: <InlineMath math="96{,}8 \div 68 = 1{,}42" /> mol. Schwefelatome: <InlineMath math="3{,}2 \div 32 = 0{,}10" /> mol. Jede Quervernetzung braucht **zwei Schwefelatome**, es gibt also <InlineMath math="0{,}050" /> mol Brücken und <InlineMath math="1{,}42 \div 0{,}050 \approx 28" /> Isopreneinheiten je Brücke.
+Atomverhältnis: <InlineMath math="24{,}0 \div 12 = 2{,}0" /> Kohlenstoff zu <InlineMath math="76{,}0 \div 19 = 4{,}0" /> Fluor, also <InlineMath math="1 : 2" />. Die Verhältnisformel <InlineMath math="\text{CF}_2" /> hat die Masse <InlineMath math="50" />, das Monomer aber <InlineMath math="100" />, es ist also **das Doppelte**: <InlineMath math="\text{C}_2\text{F}_4" />, Tetrafluorethen.
 
-<Chart
-  title={<>Zusammensetzung von <InlineMath math="100\text{ g}" /> vulkanisiertem Gummi</>}
-  bars="apart"
-  categories={["Polyisopren", "Schwefel"]}
-  series={[
-    { label: "Masse (g)", mark: "bar", values: [96.8, 3.2] },
-  ]}
-  valueLabel="Masse (g)"
-  description={<>In <InlineMath math="100\text{ g}" /> Gummi: <InlineMath math="96{,}8" /> g Polyisopren und <InlineMath math="3{,}2" /> g Schwefel.</>}
+<Mermaid
+  title={<>Von den Prozenten zum Polymer</>}
+  description={<>Das Atomverhältnis ist ein Kohlenstoff zu zwei Fluor, das Monomer der Masse <InlineMath math="100" /> ist <InlineMath math="\text{C}_2\text{F}_4" />, und jede Kette enthält <InlineMath math="500" /> davon.</>}
+  chart={`
+    flowchart LR
+      N0["C 24,0 ÷ 12 = 2,0, F 76,0 ÷ 19 = 4,0"] --> N1["Verhältnisformel CF₂, Masse 50"]
+      N1 --> N2["Mr 100: C₂F₄"]
+      N2 --> N3["Kette 50 000 ÷ 100 = 500 Einheiten"]
+      N2 --> N4["Gleiche 76,0% F: 760 g je kg"]
+  `}
 />
 
-Eine Brücke etwa alle <InlineMath math="28" /> Einheiten verbindet benachbarte Ketten. Beim Dehnen strecken sich die Ketten, aber die Brücken hindern sie am Auseinandergleiten und **ziehen sie zurück**, sobald die Kraft nachlässt. Vulkanisierter Gummi ist deshalb elastischer, härter und fester als Naturkautschuk.
+Jede Kette: <InlineMath math="50\,000 \div 100 = 500" /> Monomereinheiten. Ein Additionspolymer hat **dieselbe Zusammensetzung wie sein Monomer**, also sind <InlineMath math="76{,}0\%" /> des Polymers Fluor: <InlineMath math="0{,}760 \times 1000 = 760" /> g.
+
+**Fluor je Kette**: Jede Einheit trägt vier Fluoratome, eine Kette aus <InlineMath math="500" /> Einheiten also <InlineMath math="500 \times 4 = 2000" />. Probe: <InlineMath math="2000 \times 19 = 38\,000" />, das sind <InlineMath math="76\%" /> von <InlineMath math="50\,000" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="14" /> zählt jedes Schwefelatom als ganze Brücke, obwohl **jede zwei braucht**.
-- <InlineMath math="30" /> teilt die Massen, <InlineMath math="96{,}8 \div 3{,}2" />, statt der Stoffmengen.
-- Schwefel verbindet Ketten, statt sie zu brechen, vulkanisierter Gummi ist also härter, nicht weicher.
+- <InlineMath math="\text{CF}_2" /> ist nur die Verhältnisformel, und <InlineMath math="1000" /> Einheiten teilt durch ihre Masse, <InlineMath math="50" />, statt durch die des Monomers.
+- <InlineMath math="1000" /> Fluoratome gibt jeder Einheit zwei, doch <InlineMath math="\text{C}_2\text{F}_4" /> trägt **vier**.
+- <InlineMath math="380\text{ g}" /> halbiert das Fluor, doch beim Polymerisieren gehen keine Atome verloren.

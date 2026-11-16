@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "9.8 g dm⁻³" },
-        { correct: false, label: "39.2 g dm⁻³" },
-        { correct: false, label: "30.6 g dm⁻³" },
-        { correct: true, label: "19.6 g dm⁻³" },
+        {
+          correct: false,
+          label:
+            "Basicity $$1$$, $$240\\text{ cm}^3$$ of carbon dioxide, and $$2.24\\text{ g}$$ of salt",
+        },
+        {
+          correct: false,
+          label:
+            "Basicity $$2$$, $$960\\text{ cm}^3$$ of carbon dioxide, and $$2.68\\text{ g}$$ of salt",
+        },
+        {
+          correct: false,
+          label:
+            "Basicity $$2$$, $$480\\text{ cm}^3$$ of carbon dioxide, and $$1.34\\text{ g}$$ of salt",
+        },
+        {
+          correct: true,
+          label:
+            "Basicity $$2$$, $$480\\text{ cm}^3$$ of carbon dioxide, and $$2.68\\text{ g}$$ of salt",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "9.8 g dm⁻³" },
-        { correct: false, label: "39.2 g dm⁻³" },
-        { correct: false, label: "30.6 g dm⁻³" },
-        { correct: true, label: "19.6 g dm⁻³" },
+        {
+          correct: false,
+          label:
+            "Kebesan $$1$$, $$240\\text{ cm}^3$$ karbon dioksida, dan $$2.24\\text{ g}$$ garam",
+        },
+        {
+          correct: false,
+          label:
+            "Kebesan $$2$$, $$960\\text{ cm}^3$$ karbon dioksida, dan $$2.68\\text{ g}$$ garam",
+        },
+        {
+          correct: false,
+          label:
+            "Kebesan $$2$$, $$480\\text{ cm}^3$$ karbon dioksida, dan $$1.34\\text{ g}$$ garam",
+        },
+        {
+          correct: true,
+          label:
+            "Kebesan $$2$$, $$480\\text{ cm}^3$$ karbon dioksida, dan $$2.68\\text{ g}$$ garam",
+        },
       ],
     },
   },

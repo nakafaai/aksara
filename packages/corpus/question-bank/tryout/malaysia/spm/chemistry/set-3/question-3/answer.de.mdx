@@ -1,28 +1,25 @@
-# Isotope gewichten, dann paaren wie zwei Münzwürfe
+# Gleiche Masse, andere molare Masse: jede Probe einzeln zählen
 
-Die relative Atommasse ist der nach Häufigkeit gewichtete Mittelwert: <InlineMath math="0{,}758 \times 35 + 0{,}242 \times 37 = 35{,}5" />.
+Deuterium hat **ein Neutron**, gewöhnlicher Wasserstoff keines, also <InlineMath math="M_r(\text{D}_2\text{O}) = 2 + 2 + 16 = 20" /> und <InlineMath math="M_r(\text{H}_2\text{O}) = 18" />. In <InlineMath math="2{,}0" /> g stecken <InlineMath math="0{,}10" /> mol schweres Wasser, aber <InlineMath math="0{,}111" /> mol normales Wasser.
 
-Jedes <InlineMath math="\text{X}_2" />-Molekül nimmt **zwei Atome zufällig**, der Anteil jeder Paarung ist also ein Produkt der Häufigkeiten:
-
-- Masse <InlineMath math="70" />, beide Atome der Masse <InlineMath math="35" />: <InlineMath math="0{,}758^2 = 0{,}575" />.
-- Masse <InlineMath math="72" />, je eines, in beliebiger Reihenfolge: <InlineMath math="2 \times 0{,}758 \times 0{,}242 = 0{,}367" />.
-- Masse <InlineMath math="74" />, beide der Masse <InlineMath math="37" />: <InlineMath math="0{,}242^2 = 0{,}059" />.
+Je Molekül haben beide <InlineMath math="10" /> Protonen. Schweres Wasser hat <InlineMath math="1 + 1 + 8 = 10" /> Neutronen, normales Wasser nur die <InlineMath math="8" /> im Sauerstoff.
 
 <Chart
-  title={<><InlineMath math="\text{X}_2" />-Moleküle nach Masse</>}
+  title={<>Protonen und Neutronen in zwei Gramm</>}
   bars="apart"
-  categories={["Masse 70", "Masse 72", "Masse 74"]}
+  categories={["Schweres Wasser", "Normales Wasser"]}
   series={[
-    { label: "Anteil der Moleküle (%)", mark: "bar", values: [57.5, 36.7, 5.9] },
+    { label: "Protonen", mark: "bar", values: [1.0, 1.11] },
+    { label: "Neutronen", mark: "bar", values: [1.0, 0.89] },
   ]}
-  valueLabel="Anteil der Moleküle (%)"
-  description={<>Masse <InlineMath math="70" />: <InlineMath math="57{,}5" />%, Masse <InlineMath math="72" />: <InlineMath math="36{,}7" />% und Masse <InlineMath math="74" />: <InlineMath math="5{,}9" />% der Moleküle.</>}
+  valueLabel="Stoffmenge (mol)"
+  description={<>Schweres Wasser: <InlineMath math="1{,}0" /> mol Protonen und <InlineMath math="1{,}0" /> mol Neutronen. Normales Wasser: <InlineMath math="1{,}11" /> mol Protonen und <InlineMath math="0{,}89" /> mol Neutronen.</>}
 />
 
-Durch den kleinsten geteilt: <InlineMath math="0{,}575 : 0{,}367 : 0{,}059 \approx 9{,}8 : 6{,}2 : 1" />, nahe an <InlineMath math="10 : 6 : 1" />.
+Neutronen: <InlineMath math="0{,}10 \times 10 = 1{,}0" /> mol gegen <InlineMath math="0{,}111 \times 8 = 0{,}889" /> mol, ein Unterschied von <InlineMath math="0{,}111" /> mol, also <InlineMath math="0{,}111 \times 6{,}02 \times 10^{23} = 6{,}69 \times 10^{22}" />. Protonen: <InlineMath math="1{,}0" /> mol gegen <InlineMath math="1{,}11" /> mol, also **hat normales Wasser mehr Protonen**, weil es mehr Moleküle hat.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="36{,}0" /> übergeht die Häufigkeiten, und gleich hohe Peaks setzten **gleich häufige** Isotope voraus.
-- Ein Molekül kann je ein Atom beider Isotope tragen, es gibt also einen Peak bei <InlineMath math="72" />, und er ist der zweitgrößte.
-- Das Verhältnis <InlineMath math="9" /> : <InlineMath math="6" /> : <InlineMath math="1" /> stimmt, aber <InlineMath math="36{,}5" /> gewichtet das schwerere Isotop zu stark.
+- Gleiche Massen enthalten bei verschiedenen molaren Massen **nicht gleich viele Moleküle**, also können nicht alle Zahlen übereinstimmen.
+- <InlineMath math="1{,}20 \times 10^{23}" /> rechnet zwei Neutronen für jedes der <InlineMath math="0{,}10" /> mol schweres Wasser, als hätten beide Proben gleich viele Moleküle.
+- Schweres Wasser hat in <InlineMath math="2{,}0" /> g weniger Moleküle mit je denselben <InlineMath math="10" /> Protonen, also weniger Protonen, nicht mehr.

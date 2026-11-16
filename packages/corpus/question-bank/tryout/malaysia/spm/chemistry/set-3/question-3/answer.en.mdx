@@ -1,28 +1,25 @@
-# Weight the isotopes, then pair them like two coin tosses
+# Same mass, different molar mass, so count each sample separately
 
-The relative atomic mass is the abundance-weighted mean: <InlineMath math="0.758 \times 35 + 0.242 \times 37 = 35.5" />.
+Deuterium has **one neutron** and ordinary hydrogen has none, so <InlineMath math="M_r(\text{D}_2\text{O}) = 2 + 2 + 16 = 20" /> and <InlineMath math="M_r(\text{H}_2\text{O}) = 18" />. In <InlineMath math="2.0" /> g there are <InlineMath math="0.10" /> mol of heavy water but <InlineMath math="0.111" /> mol of ordinary water.
 
-Each <InlineMath math="\text{X}_2" /> molecule takes **two atoms at random**, so the share of each pairing is a product of the abundances:
-
-- Mass <InlineMath math="70" />, both atoms of mass <InlineMath math="35" />: <InlineMath math="0.758^2 = 0.575" />.
-- Mass <InlineMath math="72" />, one of each, in either order: <InlineMath math="2 \times 0.758 \times 0.242 = 0.367" />.
-- Mass <InlineMath math="74" />, both of mass <InlineMath math="37" />: <InlineMath math="0.242^2 = 0.059" />.
+Per molecule, both have <InlineMath math="10" /> protons. Heavy water has <InlineMath math="1 + 1 + 8 = 10" /> neutrons, ordinary water only the <InlineMath math="8" /> in oxygen.
 
 <Chart
-  title={<><InlineMath math="\text{X}_2" /> Molecules by Mass</>}
+  title={<>Protons and Neutrons in Two Grams</>}
   bars="apart"
-  categories={["Mass 70", "Mass 72", "Mass 74"]}
+  categories={["Heavy water", "Ordinary water"]}
   series={[
-    { label: "Share of molecules (%)", mark: "bar", values: [57.5, 36.7, 5.9] },
+    { label: "Protons", mark: "bar", values: [1.0, 1.11] },
+    { label: "Neutrons", mark: "bar", values: [1.0, 0.89] },
   ]}
-  valueLabel="Share of molecules (%)"
-  description={<>Mass <InlineMath math="70" />: <InlineMath math="57.5\%" />, mass <InlineMath math="72" />: <InlineMath math="36.7\%" /> and mass <InlineMath math="74" />: <InlineMath math="5.9\%" /> of the molecules.</>}
+  valueLabel="Amount (mol)"
+  description={<>Heavy water: <InlineMath math="1.0" /> mol of protons and <InlineMath math="1.0" /> mol of neutrons. Ordinary water: <InlineMath math="1.11" /> mol of protons and <InlineMath math="0.89" /> mol of neutrons.</>}
 />
 
-Dividing by the smallest, <InlineMath math="0.575 : 0.367 : 0.059 \approx 9.8 : 6.2 : 1" />, close to <InlineMath math="10 : 6 : 1" />.
+Neutrons: <InlineMath math="0.10 \times 10 = 1.0" /> mol against <InlineMath math="0.111 \times 8 = 0.889" /> mol, a difference of <InlineMath math="0.111" /> mol, or <InlineMath math="0.111 \times 6.02 \times 10^{23} = 6.69 \times 10^{22}" />. Protons: <InlineMath math="1.0" /> mol against <InlineMath math="1.11" /> mol, so **ordinary water has more protons**, because it has more molecules.
 
 # Why the other options are wrong
 
-- <InlineMath math="36.0" /> ignores the abundances, and equal peaks would need the two isotopes to be **equally common**.
-- A molecule can hold one atom of each isotope, so a peak at <InlineMath math="72" /> appears, and it is the second largest.
-- The <InlineMath math="9" /> : <InlineMath math="6" /> : <InlineMath math="1" /> ratio is right, but <InlineMath math="36.5" /> weights the heavier isotope too much.
+- Equal masses do not hold **equal numbers of molecules** when the molar masses differ, so the counts cannot all match.
+- <InlineMath math="1.20 \times 10^{23}" /> adds two neutrons for each of the <InlineMath math="0.10" /> mol of heavy water, as if both samples had the same number of molecules.
+- Heavy water has fewer molecules in <InlineMath math="2.0" /> g, each with the same <InlineMath math="10" /> protons, so it has fewer protons, not more.

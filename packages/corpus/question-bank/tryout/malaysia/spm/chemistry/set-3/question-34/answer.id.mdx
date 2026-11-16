@@ -1,20 +1,24 @@
-# Kalor per mol, dan mengapa kenaikannya tidak berubah
+# Peletnya melepas kalor dua kali
 
-Kalor yang dilepas: <InlineMath math="50 \times 4{,}2 \times 10{,}0 = 2100" /> J, atau <InlineMath math="2{,}10" /> kJ. Ion tembaga(II) adalah pembatas: <InlineMath math="0{,}20 \times \tfrac{50}{1000} = 0{,}010" /> mol. Jadi <InlineMath math="\Delta H = -\tfrac{2{,}10}{0{,}010} = -210\text{ kJ mol}^{-1}" />.
+Natrium hidroksida: <InlineMath math="2{,}0 \div 40 = 0{,}050" /> mol. Asamnya berisi <InlineMath math="0{,}10" /> mol ion hidrogen, lebih dari cukup, jadi **seluruh <InlineMath math="0{,}050" /> mol** larut lalu dinetralkan.
 
-<Mermaid
-  title={<>Diagram Tingkat Energi</>}
-  description={<>Hasil reaksi, seng sulfat dan tembaga, berada <InlineMath math="210\text{ kJ}" /> di bawah pereaksi untuk tiap mol tembaga yang didesak.</>}
-  chart={`
-    flowchart TD
-      A["Zn + CuSO4"] -->|"ΔH = −210 kJ mol⁻¹, kalor dilepas"| B["ZnSO4 + Cu"]
-  `}
+Pelarutan: <InlineMath math="0{,}050 \times 44{,}5 = 2{,}225" /> kJ. Penetralan: <InlineMath math="0{,}050 \times 57{,}3 = 2{,}865" /> kJ.
+
+<Chart
+  title={<>Kalor dari Kedua Perubahan</>}
+  bars="apart"
+  categories={["Pelarutan", "Penetralan", "Total"]}
+  series={[
+    { label: "Kalor dilepaskan (kJ)", mark: "bar", values: [2.225, 2.865, 5.09] },
+  ]}
+  valueLabel="Kalor dilepaskan (kJ)"
+  description={<>Pelarutan memberi <InlineMath math="2{,}225\text{ kJ}" /> dan penetralan memberi <InlineMath math="2{,}865\text{ kJ}" />, total <InlineMath math="5{,}09\text{ kJ}" />.</>}
 />
 
-Dengan <InlineMath math="100\text{ cm}^3" />, dua kali lebih banyak mol bereaksi dan kalornya dua kali lipat, tapi kalor itu kini memanaskan **dua kali massa larutan**. Kedua faktor saling meniadakan, jadi kenaikannya tetap <InlineMath math="10{,}0^\circ\text{C}" />. Hanya perubahan konsentrasi yang mengubah kenaikan suhu.
+Kalor total: <InlineMath math="5{,}09" /> kJ, yaitu <InlineMath math="5090" /> J. Kenaikan: <InlineMath math="\Delta T = 5090 \div (100 \times 4{,}2) = 12{,}1^\circ\text{C}" />.
 
 # Kenapa pilihan lain salah
 
-- Kalor dua kali lipat hanya menggandakan kenaikan jika massanya tetap, padahal **massanya juga dua kali lipat**.
-- <InlineMath math="-105\text{ kJ mol}^{-1}" /> dan kenaikan setengah sama-sama menganggap volume yang lebih besar mengencerkan larutan, padahal konsentrasinya tetap.
-- <InlineMath math="-21{,}0\text{ kJ mol}^{-1}" /> membagi dengan <InlineMath math="0{,}10" /> mol, mengira konsentrasi sebagai jumlah mol.
+- <InlineMath math="6{,}8^\circ\text{C}" /> hanya menghitung penetralan dan **lupa** bahwa padatan melepas kalor saat larut.
+- <InlineMath math="5{,}3^\circ\text{C}" /> hanya menghitung pelarutan.
+- <InlineMath math="18{,}9^\circ\text{C}" /> menetralkan seluruh <InlineMath math="0{,}10" /> mol asam, padahal hanya ada <InlineMath math="0{,}050" /> mol hidroksida yang bereaksi.

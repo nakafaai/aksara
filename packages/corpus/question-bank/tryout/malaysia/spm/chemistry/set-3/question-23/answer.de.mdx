@@ -1,22 +1,24 @@
-# Die Spannung ist der Abstand zweier Metalle in der Reihe
+# Drei Elektronen aus jedem Aluminium, vier in jeden Sauerstoff
 
-Jede Spannung zeigt, wie weit ein Metall **über Kupfer** in der elektrochemischen Reihe steht: Magnesium <InlineMath math="2{,}7" /> V, Zink <InlineMath math="1{,}1" /> V. Beide stehen über Kupfer, ihr Abstand ist also <InlineMath math="2{,}7 - 1{,}1 = 1{,}6" /> V.
+Aluminium: <InlineMath math="0{,}90 \div 27 = 0{,}0333" /> mol. Jedes Atom wird zu <InlineMath math="\text{Al}^{3+}" /> und gibt **drei Elektronen** ab: <InlineMath math="0{,}0333 \times 3 = 0{,}10" /> mol Elektronen durch das Gerät.
 
-<Chart
-  title={<>Spannung von Zellen mit Kupferelektrode</>}
-  bars="apart"
-  categories={["Magnesium", "Zink", "Eisen"]}
-  series={[
-    { label: "Spannung (V)", mark: "bar", values: [2.7, 1.1, 0.8] },
-  ]}
-  valueLabel="Spannung (V)"
-  description={<>Jedes Metall gegen Kupfer ergibt: Magnesium <InlineMath math="2{,}7" />, Zink <InlineMath math="1{,}1" /> und Eisen <InlineMath math="0{,}8" /> V. Kupfer ist in jeder Zelle der Pluspol.</>}
+<Mermaid
+  title={<>Elektronen aus dem Aluminium, hinein in den Sauerstoff</>}
+  description={<><InlineMath math="0{,}0333\text{ mol}" /> Aluminium geben <InlineMath math="0{,}10\text{ mol}" /> Elektronen, und Sauerstoff nimmt vier je Molekül auf.</>}
+  chart={`
+    flowchart LR
+      N0["0,90 g Al: 0,0333 mol"] --> N1["Al → Al³⁺ + 3e⁻: 0,10 mol e⁻"]
+      N1 --> N2["O₂ + 2H₂O + 4e⁻ → 4OH⁻"]
+      N2 --> N3["0,025 mol O₂: 0,60 dm³"]
+  `}
 />
 
-Magnesium ist das elektropositivere Metall und **gibt Elektronen ab**: <InlineMath math="\text{Mg} \rightarrow \text{Mg}^{2+} + 2e^-" />. Die Elektronen wandern durch den Draht zum Zink, wo Zinkionen sie aufnehmen: <InlineMath math="\text{Zn}^{2+} + 2e^- \rightarrow \text{Zn}" />. Magnesiumatome gehen als Ionen in Lösung, die Magnesiumelektrode verliert also Masse, während sich am Zink Zinkmetall abscheidet.
+Jedes Elektron, das das Aluminium verlässt, kommt am Sauerstoff an, und **jedes Sauerstoffmolekül nimmt vier auf**: <InlineMath math="0{,}10 \div 4 = 0{,}025" /> mol Sauerstoff, also <InlineMath math="0{,}025 \times 24 = 0{,}60\text{ dm}^3" />.
+
+**Laufzeit**: <InlineMath math="0{,}10" /> mol Elektronen bei <InlineMath math="0{,}30" /> mol je Stunde reichen <InlineMath math="0{,}10 \div 0{,}30 = \tfrac{1}{3}" /> Stunde, also <InlineMath math="20" /> Minuten.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="3{,}8" /> V addiert beide Spannungen, als stünden die Metalle **auf verschiedenen Seiten** von Kupfer, und die Elektronen fließen andersherum.
-- Zink ist hier der Pluspol: Es nimmt Elektronen auf und gewinnt Masse, verliert also keine.
-- <InlineMath math="1{,}9" /> V nimmt die <InlineMath math="0{,}8" /> V des Eisens statt der <InlineMath math="1{,}1" /> V des Zinks.
+- <InlineMath math="0{,}20\text{ dm}^3" /> und etwa <InlineMath math="7" /> Minuten zählen Aluminiumatome, nicht die **drei Elektronen**, die jedes abgibt.
+- <InlineMath math="1{,}20\text{ dm}^3" /> gibt jedem Sauerstoffmolekül zwei Elektronen statt vier.
+- <InlineMath math="2{,}40\text{ dm}^3" /> gibt jedem Sauerstoffmolekül ein Elektron.

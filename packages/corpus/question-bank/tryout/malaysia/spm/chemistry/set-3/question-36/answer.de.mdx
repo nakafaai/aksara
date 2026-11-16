@@ -1,20 +1,24 @@
-# Sinkt die Temperatur, wird Wärme aufgenommen
+# Wärmebedarf, Brennstoff und Kohlenstoffdioxid aus beiden Reaktionen
 
-Das Wasser kühlt um <InlineMath math="28{,}0 - 22{,}0 = 6{,}0^\circ\text{C}" /> ab, es gab also <InlineMath math="50 \times 4{,}2 \times 6{,}0 = 1260" /> J, also <InlineMath math="1{,}26" /> kJ, an das sich lösende Salz ab. Das Salz sind <InlineMath math="2{,}0 \div 80 = 0{,}025" /> mol.
+Calciumcarbonat: <InlineMath math="1000 \div 100 = 10" /> mol, die <InlineMath math="10 \times 178 = 1780" /> kJ brauchen. Nur die Hälfte der Brennstoffwärme kommt an, also muss der Koks <InlineMath math="1780 \div 0{,}50 = 3560" /> kJ freisetzen.
 
-<Mermaid
-  title={<>Energiediagramm des Lösens</>}
-  description={<>Die gelösten Ionen liegen je gelöstes Mol <InlineMath math="50{,}4" /> kJ über Feststoff und Wasser, es wird also Wärme aus dem Wasser aufgenommen.</>}
-  chart={`
-    flowchart BT
-      A["NH4NO3(s) + Wasser"] -->|"ΔH = +50,4 kJ mol⁻¹, Wärme aufgenommen"| B["NH4+(aq) + NO3−(aq)"]
-  `}
+Kohlenstoff: <InlineMath math="3560 \div 393{,}5 = 9{,}05" /> mol, also <InlineMath math="9{,}05 \times 12 = 109" /> g.
+
+<Chart
+  title={<>Kohlenstoffdioxid aus zwei Quellen</>}
+  bars="apart"
+  categories={["Aus CaCO₃", "Aus Koks", "Summe"]}
+  series={[
+    { label: "Volumen CO₂ (dm³)", mark: "bar", values: [240, 217, 457] },
+  ]}
+  valueLabel="Volumen CO₂ (dm³)"
+  description={<>Das Carbonat gibt <InlineMath math="240\text{ dm}^3" /> und der brennende Koks <InlineMath math="217\text{ dm}^3" />, zusammen <InlineMath math="457\text{ dm}^3" />.</>}
 />
 
-<InlineMath math="\Delta H = +\tfrac{1{,}26}{0{,}025} = +50{,}4\text{ kJ mol}^{-1}" />. Das Vorzeichen ist positiv, weil der Vorgang **endotherm** ist: Die Produkte haben mehr Energie als die Edukte, und diese Energie kam aus dem Wasser.
+Kohlenstoffdioxid kommt aus **beiden Reaktionen**: <InlineMath math="10" /> mol aus dem Carbonat und <InlineMath math="9{,}05" /> mol aus dem Koks, zusammen <InlineMath math="19{,}05" /> mol, also <InlineMath math="19{,}05 \times 24 = 457\text{ dm}^3" />.
 
 # Warum die anderen Antworten falsch sind
 
-- Ein negativer Wert beschreibt einen exothermen Vorgang, die Temperatur ist aber **gesunken**.
-- <InlineMath math="+25{,}2\text{ kJ mol}^{-1}" /> rechnet mit <InlineMath math="0{,}050" /> mol, doppelt so viel Salz wie tatsächlich gelöst.
-- <InlineMath math="+1{,}26\text{ kJ mol}^{-1}" /> ist die Wärme in Kilojoule, noch nicht durch die Stoffmenge Salz geteilt.
+- <InlineMath math="54\text{ g}" /> übersieht den Wirkungsgrad von <InlineMath math="50\%" />, dem Ofen **fehlte** dann Wärme.
+- <InlineMath math="240\text{ dm}^3" /> zählt nur das Kohlenstoffdioxid aus dem Carbonat.
+- <InlineMath math="217\text{ dm}^3" /> zählt nur das Kohlenstoffdioxid aus dem brennenden Koks.

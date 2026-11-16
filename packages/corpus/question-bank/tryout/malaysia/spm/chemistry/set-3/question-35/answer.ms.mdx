@@ -1,22 +1,26 @@
-# Setiap <InlineMath math="\text{C}\text{H}_2" /> tambahan menambah jumlah yang sama
+# Nyalaan mesti membebaskan lebih banyak haba daripada yang diterima air
 
-Langkahnya ialah <InlineMath math="1367 - 726 = 641" />, <InlineMath math="2021 - 1367 = 654" /> dan <InlineMath math="2676 - 2021 = 655\text{ kJ mol}^{-1}" />. Setiap ahli siri mempunyai **satu kumpulan <InlineMath math="\text{CH}_2" /> lagi**, yang terbakar menjadi satu lagi molekul karbon dioksida dan satu lagi molekul air, jadi haba bertambah kira-kira <InlineMath math="650\text{ kJ mol}^{-1}" /> setiap kali.
+Haba yang diperlukan oleh air: <InlineMath math="Q = 2000 \times 4.2 \times 75 = 630\,000" /> J, atau <InlineMath math="630" /> kJ. Kenaikannya <InlineMath math="100 - 25 = 75^\circ\text{C}" />.
 
-<Chart
-  title={<>Haba Pembakaran Empat Alkohol</>}
-  bars="apart"
-  categories={["Metanol", "Etanol", "Propanol", "Butanol"]}
-  series={[
-    { label: "Haba dibebaskan (kJ mol⁻¹)", mark: "bar", values: [726, 1367, 2021, 2676] },
-  ]}
-  valueLabel="Haba dibebaskan (kJ mol⁻¹)"
-  description={<>Haba dibebaskan per mol: metanol <InlineMath math="726" />, etanol <InlineMath math="1367" />, propanol 2021 dan butanol <InlineMath math="2676\text{ kJ}" />.</>}
+Hanya <InlineMath math="60\%" /> haba nyalaan sampai, jadi metana mesti membebaskan <InlineMath math="630 \div 0.60 = 1050" /> kJ. **Bahagi dengan kecekapan**, kerana nyalaan perlu membekalkan lebih daripada yang diterima air.
+
+<Mermaid
+  title={<>Daripada Air Kembali kepada Gas</>}
+  description={<>Air memerlukan <InlineMath math="630\text{ kJ}" />, jadi nyalaan mesti membebaskan <InlineMath math="1050\text{ kJ}" />, iaitu <InlineMath math="1.18\text{ mol}" /> metana.</>}
+  chart={`
+    flowchart LR
+      N0["Air: 2000 × 4.2 × 75 = 630 kJ"] --> N1["630 ÷ 0.60 = 1050 kJ dibebaskan"]
+      N1 --> N2["1050 ÷ 890 = 1.18 mol CH₄"]
+      N2 --> N3["1.18 × 24 = 28.3 dm³"]
+  `}
 />
 
-Pentanol: <InlineMath math="2676 + 655 \approx 3330\text{ kJ mol}^{-1}" />. Dalam eksperimen sekolah, sebahagian haba memanaskan udara, bekas dan pengapit, bukan air, dan sebahagian alkohol terbakar tidak lengkap. Air merekodkan **haba yang kurang daripada yang dibebaskan**, jadi nilai yang diukur lebih kecil.
+Metana: <InlineMath math="1050 \div 890 = 1.18" /> mol, iaitu <InlineMath math="1.18 \times 24 = 28.3\text{ dm}^3" />.
+
+**Karbon dioksida**: <InlineMath math="\text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O}" /> memberi **satu karbon dioksida bagi setiap metana**: <InlineMath math="1.18 \times 44 = 51.9" /> g.
 
 # Kenapa pilihan lain salah
 
-- Pentanol mempunyai satu atom karbon dan dua atom hidrogen lebih daripada butanol, jadi ia membebaskan lebih banyak haba, bukan sama.
-- Haba yang hilang kepada bekas dan udara tidak dikira dalam bacaan air, jadi nilainya **lebih kecil**, bukan lebih besar.
-- Langkahnya kekal hampir <InlineMath math="650\text{ kJ mol}^{-1}" />, jadi trendnya garis lurus, bukan semakin cepat.
+- <InlineMath math="10.2\text{ dm}^3" /> **mendarab** dengan <InlineMath math="0.60" />, yang menjadikan nyalaan membekalkan kurang haba daripada yang diserap air.
+- <InlineMath math="17.0\text{ dm}^3" /> menganggap setiap joule sampai kepada air.
+- <InlineMath math="37.8\text{ dm}^3" /> memanaskan air sebanyak <InlineMath math="100^\circ\text{C}" /> dan bukan kenaikan <InlineMath math="75^\circ\text{C}" />.

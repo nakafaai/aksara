@@ -1,20 +1,24 @@
-# A temperature fall means heat is taken in
+# Heat demand, fuel supply, and carbon dioxide from both
 
-The water cools by <InlineMath math="28.0 - 22.0 = 6.0^\circ\text{C}" />, so it gave up <InlineMath math="50 \times 4.2 \times 6.0 = 1260" /> J, or <InlineMath math="1.26" /> kJ, to the dissolving salt. The salt is <InlineMath math="2.0 \div 80 = 0.025" /> mol.
+Calcium carbonate: <InlineMath math="1000 \div 100 = 10" /> mol, which needs <InlineMath math="10 \times 178 = 1780" /> kJ. Only half the fuel's heat arrives, so the coke must release <InlineMath math="1780 \div 0.50 = 3560" /> kJ.
 
-<Mermaid
-  title={<>Energy Level Diagram for Dissolving</>}
-  description={<>The dissolved ions sit <InlineMath math="50.4\text{ kJ}" /> above the solid and water for every mole dissolved, so heat is taken in from the water.</>}
-  chart={`
-    flowchart BT
-      A["NH4NO3(s) + water"] -->|"ΔH = +50.4 kJ mol⁻¹, heat taken in"| B["NH4+(aq) + NO3−(aq)"]
-  `}
+Carbon: <InlineMath math="3560 \div 393.5 = 9.05" /> mol, or <InlineMath math="9.05 \times 12 = 109" /> g.
+
+<Chart
+  title={<>Carbon Dioxide from Two Sources</>}
+  bars="apart"
+  categories={["From CaCO₃", "From coke", "Total"]}
+  series={[
+    { label: "Volume of CO₂ (dm³)", mark: "bar", values: [240, 217, 457] },
+  ]}
+  valueLabel="Volume of CO₂ (dm³)"
+  description={<>The carbonate gives <InlineMath math="240\text{ dm}^3" /> and the burning coke gives <InlineMath math="217\text{ dm}^3" />, <InlineMath math="457\text{ dm}^3" /> in all.</>}
 />
 
-<InlineMath math="\Delta H = +\tfrac{1.26}{0.025} = +50.4\text{ kJ mol}^{-1}" />. The sign is positive because the process is **endothermic**: the products hold more energy than the reactants, and that energy came from the water.
+Carbon dioxide comes from **both reactions**: <InlineMath math="10" /> mol from the carbonate and <InlineMath math="9.05" /> mol from the coke, <InlineMath math="19.05" /> mol in all, or <InlineMath math="19.05 \times 24 = 457\text{ dm}^3" />.
 
 # Why the other options are wrong
 
-- A negative value describes an exothermic change, but the temperature **fell**.
-- <InlineMath math="+25.2\text{ kJ mol}^{-1}" /> uses <InlineMath math="0.050" /> mol, twice the amount of salt actually dissolved.
-- <InlineMath math="+1.26\text{ kJ mol}^{-1}" /> is the heat in kilojoules, not yet divided by the moles of salt.
+- <InlineMath math="54\text{ g}" /> ignores the <InlineMath math="50\%" /> efficiency, so the kiln would **run short** of heat.
+- <InlineMath math="240\text{ dm}^3" /> counts only the carbon dioxide from the carbonate.
+- <InlineMath math="217\text{ dm}^3" /> counts only the carbon dioxide from the burning coke.

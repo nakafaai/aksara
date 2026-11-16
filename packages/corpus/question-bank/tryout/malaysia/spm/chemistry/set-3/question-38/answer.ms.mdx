@@ -1,22 +1,25 @@
-# Kira unit dan rangkai dalam <InlineMath math="100\text{ g}" /> yang sama
+# Formula empirik, formula molekul, kemudian rantai
 
-Unit isoprena: <InlineMath math="96.8 \div 68 = 1.42" /> mol. Atom sulfur: <InlineMath math="3.2 \div 32 = 0.10" /> mol. Setiap rangkai silang menggunakan **dua atom sulfur**, jadi terdapat <InlineMath math="0.050" /> mol rangkai silang, dan <InlineMath math="1.42 \div 0.050 \approx 28" /> unit isoprena bagi setiap satu.
+Nisbah atom: <InlineMath math="24.0 \div 12 = 2.0" /> karbon kepada <InlineMath math="76.0 \div 19 = 4.0" /> fluorin, iaitu <InlineMath math="1 : 2" />. Formula empirik <InlineMath math="\text{CF}_2" /> berjisim <InlineMath math="50" />, tetapi monomer berjisim <InlineMath math="100" />, jadi ia **dua kali ganda**: <InlineMath math="\text{C}_2\text{F}_4" />, tetrafluoroetena.
 
-<Chart
-  title={<>Komposisi <InlineMath math="100\text{ g}" /> Getah Tervulkan</>}
-  bars="apart"
-  categories={["Poliisoprena", "Sulfur"]}
-  series={[
-    { label: "Jisim (g)", mark: "bar", values: [96.8, 3.2] },
-  ]}
-  valueLabel="Jisim (g)"
-  description={<>Dalam <InlineMath math="100\text{ g}" /> getah: <InlineMath math="96.8\text{ g}" /> poliisoprena dan <InlineMath math="3.2\text{ g}" /> sulfur.</>}
+<Mermaid
+  title={<>Daripada Peratus kepada Polimer</>}
+  description={<>Nisbah atom ialah satu karbon kepada dua fluorin, monomer berjisim <InlineMath math="100" /> ialah <InlineMath math="\text{C}_2\text{F}_4" />, dan setiap rantai mengandungi <InlineMath math="500" /> daripadanya.</>}
+  chart={`
+    flowchart LR
+      N0["C 24.0 ÷ 12 = 2.0, F 76.0 ÷ 19 = 4.0"] --> N1["Empirik CF₂, jisim 50"]
+      N1 --> N2["Mr 100: C₂F₄"]
+      N2 --> N3["Rantai 50 000 ÷ 100 = 500 unit"]
+      N2 --> N4["76.0% F yang sama: 760 g per kg"]
+  `}
 />
 
-Satu rangkai silang bagi setiap kira-kira <InlineMath math="28" /> unit mengikat rantai yang berjiran. Apabila getah diregangkan, rantai menjadi lurus, tetapi rangkai menghalangnya daripada menggelongsor berjauhan dan **menariknya kembali** apabila daya dialihkan. Jadi getah tervulkan lebih kenyal, lebih keras dan lebih kuat daripada getah asli.
+Setiap rantai: <InlineMath math="50\,000 \div 100 = 500" /> unit monomer. Polimer penambahan mempunyai **komposisi yang sama dengan monomernya**, jadi <InlineMath math="76.0\%" /> polimer ialah fluorin: <InlineMath math="0.760 \times 1000 = 760" /> g.
+
+**Fluorin setiap rantai**: setiap unit membawa empat atom fluorin, jadi rantai <InlineMath math="500" /> unit mempunyai <InlineMath math="500 \times 4 = 2000" />. Semakan: <InlineMath math="2000 \times 19 = 38\,000" />, iaitu <InlineMath math="76\%" /> daripada <InlineMath math="50\,000" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="14" /> menganggap setiap atom sulfur sebagai satu rangkai silang lengkap, walhal setiap **rangkai memerlukan dua**.
-- <InlineMath math="30" /> membahagi jisim, <InlineMath math="96.8 \div 3.2" />, bukan bilangan mol.
-- Sulfur menyambungkan rantai, bukan memutuskannya, jadi getah tervulkan lebih keras, bukan lebih lembut.
+- <InlineMath math="\text{CF}_2" /> hanya formula empirik, dan <InlineMath math="1000" /> unit membahagi dengan jisimnya, <InlineMath math="50" />, dan bukan jisim monomer.
+- <InlineMath math="1000" /> atom fluorin memberi setiap unit dua, tetapi <InlineMath math="\text{C}_2\text{F}_4" /> membawa **empat**.
+- <InlineMath math="380\text{ g}" /> mengurangkan fluorin separuh, tetapi pempolimeran menggabungkan monomer tanpa kehilangan atom.

@@ -13,21 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "3.8 V, and electrons flow through the wire from zinc to magnesium",
+            "$$0.20\\text{ dm}^3$$ of oxygen, and the aluminium runs the device for about $$7$$ minutes",
         },
         {
           correct: true,
           label:
-            "1.6 V, electrons flow through the wire from magnesium to zinc, and the magnesium electrode loses mass",
+            "$$0.60\\text{ dm}^3$$ of oxygen, and the aluminium runs the device for $$20$$ minutes",
         },
         {
           correct: false,
           label:
-            "1.6 V, electrons flow through the wire from zinc to magnesium, and the zinc electrode loses mass",
+            "$$1.20\\text{ dm}^3$$ of oxygen, and the aluminium runs the device for $$20$$ minutes",
         },
         {
           correct: false,
-          label: "1.9 V, and the magnesium electrode loses mass",
+          label:
+            "$$2.40\\text{ dm}^3$$ of oxygen, and the aluminium runs the device for $$20$$ minutes",
         },
       ],
     },
@@ -37,21 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "3.8 V, dan elektron mengalir melalui wayar dari zink ke magnesium",
+            "$$0.20\\text{ dm}^3$$ oksigen, dan aluminium itu menghidupkan peranti selama kira-kira $$7$$ minit",
         },
         {
           correct: true,
           label:
-            "1.6 V, elektron mengalir melalui wayar dari magnesium ke zink, dan elektrod magnesium kehilangan jisim",
+            "$$0.60\\text{ dm}^3$$ oksigen, dan aluminium itu menghidupkan peranti selama $$20$$ minit",
         },
         {
           correct: false,
           label:
-            "1.6 V, elektron mengalir melalui wayar dari zink ke magnesium, dan elektrod zink kehilangan jisim",
+            "$$1.20\\text{ dm}^3$$ oksigen, dan aluminium itu menghidupkan peranti selama $$20$$ minit",
         },
         {
           correct: false,
-          label: "1.9 V, dan elektrod magnesium kehilangan jisim",
+          label:
+            "$$2.40\\text{ dm}^3$$ oksigen, dan aluminium itu menghidupkan peranti selama $$20$$ minit",
         },
       ],
     },

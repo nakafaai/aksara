@@ -1,26 +1,27 @@
-# Pendekkan rantai utama satu karbon setiap kali
+# Dua molekul alkohol menghasilkan satu molekul hidrogen
 
-- **Rantai enam karbon**: heksana.
-- **Rantai lima karbon dengan satu cabang**: cabang di karbon <InlineMath math="2" /> atau karbon <InlineMath math="3" /> memberi 2-metilpentana dan 3-metilpentana.
-- **Rantai empat karbon dengan dua cabang**: keduanya di karbon <InlineMath math="2" /> memberi 2,2-dimetilbutana, satu di tiap karbon tengah memberi 2,3-dimetilbutana.
+Hidrogen: <InlineMath math="0{,}120 \div 24 = 0{,}0050" /> mol. Persamaannya membuat **satu molekul hidrogen dari dua molekul alkohol**, jadi ada <InlineMath math="0{,}010" /> mol alkohol, dan <InlineMath math="M_r = 0{,}74 \div 0{,}010 = 74" />.
 
-Rantai tiga karbon tidak bisa menampung tiga karbon sisanya tanpa membentuk rantai yang lebih panjang, jadi ada **lima isomer**.
+Untuk <InlineMath math="\text{C}_n\text{H}_{2n+1}\text{OH}" />, <InlineMath math="M_r = 12n + 2n + 1 + 17 = 14n + 18" />. Jadi <InlineMath math="14n + 18 = 74" /> dan <InlineMath math="n = 4" />: <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />.
 
-<Chart
-  title={<>Titik Didih Lima Isomer</>}
-  bars="apart"
-  categories={["heksana", "2-metilpentana", "3-metilpentana", "2,3-dimetilbutana", "2,2-dimetilbutana"]}
-  series={[
-    { label: "Titik didih (°C)", mark: "bar", values: [69, 60, 63, 58, 50] },
-  ]}
-  valueLabel="Titik didih (°C)"
-  description={<>Titik didih: heksana <InlineMath math="69" />, 2-metilpentana <InlineMath math="60" />, 3-metilpentana <InlineMath math="63" />, 2,3-dimetilbutana <InlineMath math="58" />, dan 2,2-dimetilbutana <InlineMath math="50^\circ\text{C}" />.</>}
+<Mermaid
+  title={<>Dari Hidrogen ke Isomer</>}
+  description={<><InlineMath math="0{,}0050\text{ mol}" /> hidrogen berasal dari <InlineMath math="0{,}010\text{ mol}" /> alkohol, jadi <InlineMath math="M_r = 74" /> dan alkoholnya <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, dengan empat struktur.</>}
+  chart={`
+    flowchart LR
+      N0["120 cm³ H₂: 0,0050 mol"] --> N1["0,010 mol alkohol"]
+      N1 --> N2["Mr = 0,74 ÷ 0,010 = 74"]
+      N2 --> N3["14n + 18 = 74, n = 4"]
+      N3 --> N4["Butan-1-ol, butan-2-ol, 2-metilpropan-1-ol, 2-metilpropan-2-ol"]
+  `}
 />
 
-Kelimanya punya massa yang sama. Makin bercabang molekulnya, makin ringkas bentuknya, jadi ia **bersentuhan dengan molekul tetangga pada permukaan lebih kecil** dan mendidih lebih rendah. 2,2-dimetilbutana, dengan kedua cabang di satu karbon, paling ringkas.
+Empat atom karbon bisa membentuk **rantai lurus atau rantai bercabang**, dan gugus hidroksil bisa di ujung atau di dalam masing-masing: butan-1-ol, butan-2-ol, 2-metilpropan-1-ol, dan 2-metilpropan-2-ol. Jadi ada empat.
+
+**Natrium**: persamaannya memakai **satu atom natrium per molekul alkohol**, jadi <InlineMath math="0{,}010" /> mol natrium bereaksi, <InlineMath math="0{,}010 \times 23 = 0{,}23" /> g.
 
 # Kenapa pilihan lain salah
 
-- Empat isomer melewatkan satu dari lima, biasanya 3-metilpentana atau 2,3-dimetilbutana.
-- Heksana, rantai lurus, punya permukaan kontak terbesar dan mendidih **paling tinggi**, pada <InlineMath math="69^\circ\text{C}" />.
-- Isomer keenam seperti 4-metilpentana sebenarnya 2-metilpentana yang dinomori dari ujung yang salah, dan 3-metilpentana mendidih pada <InlineMath math="63^\circ\text{C}" />, bukan paling rendah.
+- <InlineMath math="\text{C}_3\text{H}_7\text{OH}" /> punya <InlineMath math="M_r = 60" />, yang tidak cocok dengan <InlineMath math="74" /> dari data.
+- Dua isomer hanya menghitung **rantai lurus** dan melewatkan dua alkohol bercabang.
+- <InlineMath math="0{,}12\text{ g}" /> memakai satu atom natrium per molekul hidrogen, padahal dua atom natrium memberi satu molekul hidrogen.

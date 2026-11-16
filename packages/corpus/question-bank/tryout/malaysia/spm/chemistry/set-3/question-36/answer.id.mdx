@@ -1,20 +1,24 @@
-# Suhu turun berarti kalor diserap
+# Kebutuhan kalor, pasokan bahan bakar, dan karbon dioksida dari keduanya
 
-Air mendingin <InlineMath math="28{,}0 - 22{,}0 = 6{,}0^\circ\text{C}" />, jadi ia memberi <InlineMath math="50 \times 4{,}2 \times 6{,}0 = 1260" /> J, atau <InlineMath math="1{,}26" /> kJ, ke garam yang melarut. Garamnya <InlineMath math="2{,}0 \div 80 = 0{,}025" /> mol.
+Kalsium karbonat: <InlineMath math="1000 \div 100 = 10" /> mol, yang butuh <InlineMath math="10 \times 178 = 1780" /> kJ. Hanya separuh kalor bahan bakar yang sampai, jadi kokas harus melepas <InlineMath math="1780 \div 0{,}50 = 3560" /> kJ.
 
-<Mermaid
-  title={<>Diagram Tingkat Energi Pelarutan</>}
-  description={<>Ion terlarut berada <InlineMath math="50{,}4" /> kJ di atas padatan dan air untuk tiap mol yang larut, jadi kalor diserap dari air.</>}
-  chart={`
-    flowchart BT
-      A["NH4NO3(s) + air"] -->|"ΔH = +50,4 kJ mol⁻¹, kalor diserap"| B["NH4+(aq) + NO3−(aq)"]
-  `}
+Karbon: <InlineMath math="3560 \div 393{,}5 = 9{,}05" /> mol, atau <InlineMath math="9{,}05 \times 12 = 109" /> g.
+
+<Chart
+  title={<>Karbon Dioksida dari Dua Sumber</>}
+  bars="apart"
+  categories={["Dari CaCO₃", "Dari kokas", "Total"]}
+  series={[
+    { label: "Volume CO₂ (dm³)", mark: "bar", values: [240, 217, 457] },
+  ]}
+  valueLabel="Volume CO₂ (dm³)"
+  description={<>Karbonat memberi <InlineMath math="240\text{ dm}^3" /> dan kokas yang terbakar memberi <InlineMath math="217\text{ dm}^3" />, total <InlineMath math="457\text{ dm}^3" />.</>}
 />
 
-<InlineMath math="\Delta H = +\tfrac{1{,}26}{0{,}025} = +50{,}4\text{ kJ mol}^{-1}" />. Tandanya positif karena prosesnya **endoterm**: hasil reaksi menyimpan energi lebih besar dari pereaksi, dan energi itu diambil dari air.
+Karbon dioksida berasal dari **kedua reaksi**: <InlineMath math="10" /> mol dari karbonat dan <InlineMath math="9{,}05" /> mol dari kokas, total <InlineMath math="19{,}05" /> mol, atau <InlineMath math="19{,}05 \times 24 = 457\text{ dm}^3" />.
 
 # Kenapa pilihan lain salah
 
-- Nilai negatif menggambarkan perubahan eksoterm, padahal suhunya **turun**.
-- <InlineMath math="+25{,}2\text{ kJ mol}^{-1}" /> memakai <InlineMath math="0{,}050" /> mol, dua kali jumlah garam yang benar-benar larut.
-- <InlineMath math="+1{,}26\text{ kJ mol}^{-1}" /> adalah kalor dalam kilojoule yang belum dibagi dengan mol garam.
+- <InlineMath math="54\text{ g}" /> mengabaikan efisiensi <InlineMath math="50\%" />, jadi tanurnya akan **kekurangan** kalor.
+- <InlineMath math="240\text{ dm}^3" /> hanya menghitung karbon dioksida dari karbonat.
+- <InlineMath math="217\text{ dm}^3" /> hanya menghitung karbon dioksida dari kokas yang terbakar.

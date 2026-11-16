@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "0.150 g of benzoic acid, 455 mg per kg, so the drink is within the limit",
+            "Within the limit at about $$455\\text{ mg}$$ per kg, about $$2.0$$ cans for the adult, and one can keeps the child under the daily intake",
         },
         {
           correct: false,
           label:
-            "0.127 g of benzoic acid, 1270 mg per kg, so the drink is over the limit",
+            "Within the limit at about $$385\\text{ mg}$$ per kg, about $$2.0$$ cans for the adult, and one can puts the child over the daily intake",
         },
         {
           correct: false,
           label:
-            "0.150 g of benzoic acid, 1500 mg per kg, so the drink is over the limit",
+            "Within the limit at about $$127\\text{ mg}$$ per kg, about $$2.4$$ cans for the adult, and one can keeps the child under the daily intake",
         },
         {
           correct: true,
           label:
-            "0.127 g of benzoic acid, about 385 mg per kg, so the drink is within the limit",
+            "Within the limit at about $$385\\text{ mg}$$ per kg, about $$2.4$$ cans for the adult, and one can puts the child over the daily intake",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "0.150 g asid benzoik, 455 mg per kg, jadi minuman itu dalam had",
+            "Dalam had pada kira-kira $$455\\text{ mg}$$ per kg, kira-kira $$2.0$$ tin bagi orang dewasa, dan satu tin mengekalkan kanak-kanak di bawah pengambilan harian",
         },
         {
           correct: false,
           label:
-            "0.127 g asid benzoik, 1270 mg per kg, jadi minuman itu melebihi had",
+            "Dalam had pada kira-kira $$385\\text{ mg}$$ per kg, kira-kira $$2.0$$ tin bagi orang dewasa, dan satu tin menyebabkan kanak-kanak melebihi pengambilan harian",
         },
         {
           correct: false,
           label:
-            "0.150 g asid benzoik, 1500 mg per kg, jadi minuman itu melebihi had",
+            "Dalam had pada kira-kira $$127\\text{ mg}$$ per kg, kira-kira $$2.4$$ tin bagi orang dewasa, dan satu tin mengekalkan kanak-kanak di bawah pengambilan harian",
         },
         {
           correct: true,
           label:
-            "0.127 g asid benzoik, kira-kira 385 mg per kg, jadi minuman itu dalam had",
+            "Dalam had pada kira-kira $$385\\text{ mg}$$ per kg, kira-kira $$2.4$$ tin bagi orang dewasa, dan satu tin menyebabkan kanak-kanak melebihi pengambilan harian",
         },
       ],
     },
