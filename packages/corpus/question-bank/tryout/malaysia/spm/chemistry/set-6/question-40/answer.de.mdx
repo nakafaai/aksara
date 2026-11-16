@@ -1,26 +1,25 @@
-# Die Probe auf den Kolben hochrechnen und den Kolben dann auf vier Tabletten verteilen
+# Die eingestellte Konzentration nehmen, dann die Probe auf den Kolben hochrechnen und auf vier Tabletten verteilen
 
-Aspirin hat ein saures Wasserstoffatom, also **zählt jedes Mol Natronlauge ein Mol Aspirin**. Die Probe ist ein Zehntel des Kolbens, und der Kolben enthält vier Tabletten, also ist eine Tablette das <InlineMath math="\tfrac{10}{4}" />-Fache der Probe. Ethanol wird genutzt, weil sich Aspirin schlecht in Wasser löst, und Phenolphthalein passt zu einer schwachen Säure mit starker Lauge. Im Prozentsatz steht die Angabe im Nenner.
+**Die Angabe auf der Lauge ist nicht ihre wahre Konzentration**: Die Einstellung gibt <InlineMath math="0{,}0950\text{ mol dm}^{-3}" />, also enthält die Probe <InlineMath math="5{,}70\times10^{-4}\text{ mol}" /> Aspirin, ein Hydroxidion je Aspirin. Die Probe ist ein Zehntel des Kolbens, der vier Tabletten enthält, also enthält eine Tablette das <InlineMath math="\tfrac{10}{4}" />-Fache der Probe. Phenolphthalein passt zu einer schwachen Säure mit starker Lauge, und im Prozentsatz steht die Angabe im Nenner.
 
 <Chart
-  title={<>Aspirin in jeder Stufe</>}
-  description={<>Die Probe enthält <InlineMath math="108\text{ mg}" />, die vier Tabletten <InlineMath math="1080\text{ mg}" /> und eine Tablette <InlineMath math="270\text{ mg}" /> gegen die angegebenen <InlineMath math="300\text{ mg}" />.</>}
+  title={<>Aspirin je Tablette</>}
+  description={<>Angegeben sind <InlineMath math="300\text{ mg}" />, die Nennkonzentration ergäbe <InlineMath math="270\text{ mg}" />, die eingestellte Lauge gibt <InlineMath math="257\text{ mg}" />.</>}
   bars="apart"
-  categories={["In der Probe", "In vier Tabletten", "In einer Tablette", "Angegeben"]}
+  categories={["Angegeben", "Mit der Nennkonzentration", "Mit der eingestellten Lauge"]}
   series={[
-    { label: "Masse", mark: "bar", values: [108, 1080, 270, 300] },
+    { label: "Masse", mark: "bar", values: [300, 270, 257] },
   ]}
   valueLabel="Masse (mg)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{Probe})&=0{,}100\times0{,}00600=6{,}00\times10^{-4}\text{ mol}\\
-n(4\text{ Tabletten})&=10\times6{,}00\times10^{-4}=6{,}00\times10^{-3}\text{ mol}\Rightarrow m=1{,}08\text{ g}\\
-m(1\text{ Tablette})&=\tfrac{1080}{4}=270\text{ mg},\quad\tfrac{270}{300}\times100=90{,}0\%
+n&=0{,}0950\times0{,}00600\times\tfrac{250}{25{,}0}=5{,}70\times10^{-3}\text{ mol}\Rightarrow\tfrac{5{,}70\times10^{-3}\times180}{4}=0{,}257\text{ g}\\
+\tfrac{257}{300}\times100&=85{,}5\%
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="108\text{ mg}" /> ist das Aspirin in der Probe von <InlineMath math="25{,}0\text{ cm}^3" />, die weniger als eine halbe Tablette enthält.
-- <InlineMath math="1080\text{ mg}" /> ist das Aspirin aller vier Tabletten. **Für eine Tablette durch vier teilen**.
-- <InlineMath math="111\%" /> teilt die Angabe durch die gemessene Masse. **Der Anteil an der Angabe stellt die Angabe in den Nenner**.
+- <InlineMath math="270\text{ mg}" /> rechnet mit der Angabe der Lauge. **Die Einstellung zeigt, dass sie schwächer ist**, also reagierte weniger Aspirin.
+- <InlineMath math="103\text{ mg}" /> ist das Aspirin in der Probe, die weniger als eine halbe Tablette enthält.
+- <InlineMath math="1026\text{ mg}" /> ist das Aspirin aller vier Tabletten. **Für eine Tablette durch vier teilen**.
