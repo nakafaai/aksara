@@ -1,22 +1,28 @@
-# Bobot tiap isotop sesuai kelimpahannya
+# Bobot isotopnya, lalu pasangkan seperti dua lemparan koin
 
-Massa atom relatif adalah **rata-rata berbobot kelimpahan** dari massa isotop: <InlineMath math="\tfrac{75.8 \times 35 + 24.2 \times 37}{100} = \tfrac{2653 + 895.4}{100} = 35.5" />. Nilainya dekat <InlineMath math="35" /> karena isotop itu sekitar tiga kali lebih banyak.
+Massa atom relatif adalah rata-rata berbobot kelimpahan: <InlineMath math="0.758 \times 35 + 0.242 \times 37 = 35.5" />.
+
+Tiap molekul X₂ mengambil **dua atom secara acak**, jadi bagian tiap pasangan adalah hasil kali kelimpahannya:
+
+- Massa <InlineMath math="70" />, kedua atom bermassa <InlineMath math="35" />: <InlineMath math="0.758^2 = 0.575" />.
+- Massa <InlineMath math="72" />, satu dari tiap isotop, dalam urutan mana pun: <InlineMath math="2 \times 0.758 \times 0.242 = 0.367" />.
+- Massa <InlineMath math="74" />, keduanya bermassa <InlineMath math="37" />: <InlineMath math="0.242^2 = 0.059" />.
 
 <Chart
-  title={<>Isotop Unsur X</>}
+  title={<>Molekul X₂ Menurut Massa</>}
   bars="apart"
-  categories={["Massa 35", "Massa 37"]}
+  categories={["Massa 70", "Massa 72", "Massa 74"]}
   series={[
-    { label: "Kelimpahan (%)", mark: "bar", values: [75.8, 24.2] },
+    { label: "Bagian molekul (%)", mark: "bar", values: [57.5, 36.7, 5.9] },
   ]}
-  valueLabel="Kelimpahan (%)"
-  description={<>Isotop bermassa <InlineMath math="35" />: <InlineMath math="75.8" />%. Isotop bermassa <InlineMath math="37" />: <InlineMath math="24.2" />%.</>}
+  valueLabel="Bagian molekul (%)"
+  description={<>Massa <InlineMath math="70" />: <InlineMath math="57.5" />%, massa <InlineMath math="72" />: <InlineMath math="36.7" />%, dan massa <InlineMath math="74" />: <InlineMath math="5.9" />% dari molekul.</>}
 />
 
-Ion <InlineMath math="^{37}\text{X}^-" /> punya nomor massa <InlineMath math="37" /> dan nomor atom <InlineMath math="17" />, jadi neutronnya <InlineMath math="37 - 17 = 20" />. Muatan <InlineMath math="1-" /> berarti **satu elektron tambahan**: <InlineMath math="17 + 1 = 18" /> elektron.
+Dibagi yang terkecil, <InlineMath math="0.575 : 0.367 : 0.059 \approx 9.8 : 6.2 : 1" />, mendekati <InlineMath math="9 : 6 : 1" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="36.0" /> adalah rata-rata biasa <InlineMath math="35" /> dan <InlineMath math="37" /> yang mengabaikan kelimpahan. Ionnya juga punya <InlineMath math="20" /> neutron, bukan <InlineMath math="18" />.
-- Ion negatif punya elektron lebih banyak dari proton, jadi <InlineMath math="^{37}\text{X}^-" /> punya <InlineMath math="18" /> elektron, bukan <InlineMath math="17" />.
-- <InlineMath math="36.5" /> memberi bobot terlalu besar pada isotop yang lebih berat, dan <InlineMath math="17" /> elektron menggambarkan atom netral.
+- <InlineMath math="36.0" /> mengabaikan kelimpahan, dan puncak yang sama tinggi berarti kedua isotop **sama banyak**.
+- Satu molekul bisa memuat satu atom dari tiap isotop, jadi puncak di <InlineMath math="72" /> muncul, dan itu yang terbesar kedua.
+- Perbandingan <InlineMath math="9" /> : <InlineMath math="6" /> : <InlineMath math="1" /> benar, tapi <InlineMath math="36.5" /> memberi bobot terlalu besar pada isotop yang lebih berat.

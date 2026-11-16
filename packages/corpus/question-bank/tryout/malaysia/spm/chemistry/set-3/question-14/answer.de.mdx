@@ -1,23 +1,21 @@
-# Erst verdünnen, dann beide Wasserstoffionen zählen
+# Ionen zählen, neutralisieren, dann verdünnen
 
-Der Kolben enthält dieselbe Stoffmenge Säure im **zwanzigfachen Volumen**, denn <InlineMath math="500 \div 25.0 = 20" />. Die Säurekonzentration sinkt auf <InlineMath math="0.10 \div 20 = 0.0050" /> mol dm⁻³.
-
-Jedes <InlineMath math="\text{H}_2\text{SO}_4" /> liefert **zwei Wasserstoffionen**, also <InlineMath math="[\text{H}^+] = 2 \times 0.0050 = 0.010" /> mol dm⁻³ und <InlineMath math="\text{pH} = -\log 0.010 = 2.0" />.
+Die Säure liefert **zwei Wasserstoffionen** je Molekül: <InlineMath math="2 \times 0.10 \times \tfrac{50}{1000} = 0.010" /> mol <InlineMath math="\text{H}^+" />. Die Lauge liefert <InlineMath math="0.10 \times \tfrac{50}{1000} = 0.0050" /> mol <InlineMath math="\text{OH}^-" />. Sie neutralisieren eins zu eins, es bleiben <InlineMath math="0.0050" /> mol Wasserstoffionen.
 
 <Chart
-  title={<>pH beim Verdünnen der Säure</>}
-  categories={["25", "50", "100", "250", "500"]}
+  title={<>pH beim Zugeben von Natronlauge</>}
+  categories={["0", "25", "50", "75", "100"]}
   series={[
-    { label: "pH", mark: "line", values: [0.7, 1.0, 1.3, 1.7, 2.0] },
+    { label: "pH", mark: "line", values: [0.7, 1.0, 1.3, 1.7, 7.0] },
   ]}
   valueLabel="pH"
-  description={<>Der pH-Wert beträgt <InlineMath math="0.70" /> bei <InlineMath math="25\text{ cm}^3" />, <InlineMath math="1.00" /> bei <InlineMath math="50\text{ cm}^3" />, <InlineMath math="1.30" /> bei <InlineMath math="100\text{ cm}^3" />, <InlineMath math="1.70" /> bei <InlineMath math="250\text{ cm}^3" /> und <InlineMath math="2.00" /> bei <InlineMath math="500\text{ cm}^3" />.</>}
+  description={<>Der pH-Wert beträgt <InlineMath math="0.70" /> bei <InlineMath math="0\text{ cm}^3" />, <InlineMath math="1.00" /> bei <InlineMath math="25\text{ cm}^3" />, <InlineMath math="1.30" /> bei <InlineMath math="50\text{ cm}^3" />, <InlineMath math="1.70" /> bei <InlineMath math="75\text{ cm}^3" /> und <InlineMath math="7.00" /> bei <InlineMath math="100\text{ cm}^3" />.</>}
 />
 
-Der pH-Wert steigt bei jeder Verdopplung des Volumens um etwa <InlineMath math="0.3" /> und bei jeder Verzehnfachung um <InlineMath math="1" />.
+Diese Ionen verteilen sich jetzt auf <InlineMath math="100\text{ cm}^3" />: <InlineMath math="[\text{H}^+] = 0.0050 \div 0.100 = 0.050" /> mol dm⁻³, also <InlineMath math="\text{pH} = -\log 0.050 = 1.3" />. Im Diagramm ist diese Mischung der Punkt bei <InlineMath math="50\text{ cm}^3" /> Lauge.
 
 # Warum die anderen Antworten falsch sind
 
-- pH <InlineMath math="2.3" /> stammt aus <InlineMath math="-\log 0.0050" />: Es vergisst, dass jedes Säuremolekül **zwei Wasserstoffionen** abgibt.
-- pH <InlineMath math="0.7" /> ist die Säure vor dem Verdünnen, mit <InlineMath math="[\text{H}^+] = 0.20" /> mol dm⁻³.
-- pH <InlineMath math="1.0" /> rechnet mit einer zehnfachen Verdünnung, das Volumen wächst aber zwanzigfach.
+- pH <InlineMath math="7.0" /> nimmt an, dass gleiche Volumen gleicher Konzentration genau neutralisieren, aber Schwefelsäure liefert **doppelt so viele Wasserstoffionen**.
+- pH <InlineMath math="1.0" /> lässt die überschüssigen Ionen in <InlineMath math="50\text{ cm}^3" /> und vergisst, dass sich das Volumen verdoppelt hat.
+- pH <InlineMath math="0.7" /> ist die Säure, bevor Lauge dazukommt.

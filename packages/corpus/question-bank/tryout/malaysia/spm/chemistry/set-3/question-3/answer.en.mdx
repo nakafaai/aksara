@@ -1,22 +1,28 @@
-# Weight each isotope by how common it is
+# Weight the isotopes, then pair them like two coin tosses
 
-The relative atomic mass is the **abundance-weighted mean** of the isotope masses: <InlineMath math="\tfrac{75.8 \times 35 + 24.2 \times 37}{100} = \tfrac{2653 + 895.4}{100} = 35.5" />. It sits close to <InlineMath math="35" /> because that isotope is about three times as common.
+The relative atomic mass is the abundance-weighted mean: <InlineMath math="0.758 \times 35 + 0.242 \times 37 = 35.5" />.
+
+Each X₂ molecule takes **two atoms at random**, so the share of each pairing is a product of the abundances:
+
+- Mass <InlineMath math="70" />, both atoms of mass <InlineMath math="35" />: <InlineMath math="0.758^2 = 0.575" />.
+- Mass <InlineMath math="72" />, one of each, in either order: <InlineMath math="2 \times 0.758 \times 0.242 = 0.367" />.
+- Mass <InlineMath math="74" />, both of mass <InlineMath math="37" />: <InlineMath math="0.242^2 = 0.059" />.
 
 <Chart
-  title={<>Isotopes of Element X</>}
+  title={<>X₂ Molecules by Mass</>}
   bars="apart"
-  categories={["Mass 35", "Mass 37"]}
+  categories={["Mass 70", "Mass 72", "Mass 74"]}
   series={[
-    { label: "Abundance (%)", mark: "bar", values: [75.8, 24.2] },
+    { label: "Share of molecules (%)", mark: "bar", values: [57.5, 36.7, 5.9] },
   ]}
-  valueLabel="Abundance (%)"
-  description={<>Isotope of mass <InlineMath math="35" />: <InlineMath math="75.8\%" />. Isotope of mass <InlineMath math="37" />: <InlineMath math="24.2\%" />.</>}
+  valueLabel="Share of molecules (%)"
+  description={<>Mass <InlineMath math="70" />: <InlineMath math="57.5\%" />, mass <InlineMath math="72" />: <InlineMath math="36.7\%" /> and mass <InlineMath math="74" />: <InlineMath math="5.9\%" /> of the molecules.</>}
 />
 
-The ion <InlineMath math="^{37}\text{X}^-" /> has nucleon number <InlineMath math="37" /> and proton number <InlineMath math="17" />, so it has <InlineMath math="37 - 17 = 20" /> neutrons. A charge of <InlineMath math="1-" /> means **one extra electron**: <InlineMath math="17 + 1 = 18" /> electrons.
+Dividing by the smallest, <InlineMath math="0.575 : 0.367 : 0.059 \approx 9.8 : 6.2 : 1" />, close to <InlineMath math="9 : 6 : 1" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="36.0" /> is the plain average of <InlineMath math="35" /> and <InlineMath math="37" />, which ignores the abundances. The ion also has <InlineMath math="20" /> neutrons, not <InlineMath math="18" />.
-- A negative ion has more electrons than protons, so <InlineMath math="^{37}\text{X}^-" /> has <InlineMath math="18" /> electrons, not <InlineMath math="17" />.
-- <InlineMath math="36.5" /> weights the heavier isotope too much, and <InlineMath math="17" /> electrons describes the neutral atom.
+- <InlineMath math="36.0" /> ignores the abundances, and equal peaks would need the two isotopes to be **equally common**.
+- A molecule can hold one atom of each isotope, so a peak at <InlineMath math="72" /> appears, and it is the second largest.
+- The <InlineMath math="9" /> : <InlineMath math="6" /> : <InlineMath math="1" /> ratio is right, but <InlineMath math="36.5" /> weights the heavier isotope too much.

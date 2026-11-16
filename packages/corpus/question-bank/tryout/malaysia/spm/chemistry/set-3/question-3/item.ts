@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Its relative atomic mass is 36.0, and the ion $$^{37}\\text{X}^-$$ has 18 neutrons" },
-        { correct: false, label: "Its relative atomic mass is 35.5, and the ion $$^{37}\\text{X}^-$$ has 17 electrons" },
-        { correct: true, label: "Its relative atomic mass is 35.5, and the ion $$^{37}\\text{X}^-$$ has 20 neutrons and 18 electrons" },
-        { correct: false, label: "Its relative atomic mass is 36.5, and the ion $$^{37}\\text{X}^-$$ has 20 neutrons and 17 electrons" },
+        { correct: false, label: "Its relative atomic mass is 36.0, and the X₂ peaks at 70, 72 and 74 have equal heights" },
+        { correct: false, label: "Its relative atomic mass is 35.5, and only two X₂ peaks appear, at 70 and 74" },
+        { correct: true, label: "Its relative atomic mass is 35.5, and the X₂ peaks at 70, 72 and 74 have heights in the ratio of about 9 : 6 : 1" },
+        { correct: false, label: "Its relative atomic mass is 36.5, and the X₂ peaks at 70, 72 and 74 have heights in the ratio of about 9 : 6 : 1" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Jisim atom relatifnya ialah 36.0, dan ion $$^{37}\\text{X}^-$$ mempunyai 18 neutron" },
-        { correct: false, label: "Jisim atom relatifnya ialah 35.5, dan ion $$^{37}\\text{X}^-$$ mempunyai 17 elektron" },
-        { correct: true, label: "Jisim atom relatifnya ialah 35.5, dan ion $$^{37}\\text{X}^-$$ mempunyai 20 neutron dan 18 elektron" },
-        { correct: false, label: "Jisim atom relatifnya ialah 36.5, dan ion $$^{37}\\text{X}^-$$ mempunyai 20 neutron dan 17 elektron" },
+        { correct: false, label: "Jisim atom relatifnya ialah 36.0, dan puncak X₂ pada 70, 72 dan 74 sama tinggi" },
+        { correct: false, label: "Jisim atom relatifnya ialah 35.5, dan hanya dua puncak X₂ muncul, pada 70 dan 74" },
+        { correct: true, label: "Jisim atom relatifnya ialah 35.5, dan puncak X₂ pada 70, 72 dan 74 mempunyai ketinggian dalam nisbah kira-kira 9 : 6 : 1" },
+        { correct: false, label: "Jisim atom relatifnya ialah 36.5, dan puncak X₂ pada 70, 72 dan 74 mempunyai ketinggian dalam nisbah kira-kira 9 : 6 : 1" },
       ],
     },
   },

@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "pH 2.0" },
-        { correct: false, label: "pH 2.3" },
-        { correct: false, label: "pH 0.7" },
+        { correct: true, label: "pH 1.3" },
+        { correct: false, label: "pH 7.0" },
         { correct: false, label: "pH 1.0" },
+        { correct: false, label: "pH 0.7" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "pH 2.0" },
-        { correct: false, label: "pH 2.3" },
-        { correct: false, label: "pH 0.7" },
+        { correct: true, label: "pH 1.3" },
+        { correct: false, label: "pH 7.0" },
         { correct: false, label: "pH 1.0" },
+        { correct: false, label: "pH 0.7" },
       ],
     },
   },
