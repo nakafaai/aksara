@@ -167,8 +167,8 @@ paragraph does.
   formula already shown.
 - Use any figure of the Visual Catalog. Choose a lab or a three-dimensional
   scene when moving, rotating, or choosing a case makes the reasoning visible;
-  a `MathVisual`, `LineEquation`, `NumberLine`, or chart when a static or
-  parametric drawing is enough; `Mermaid` for a process or a dependency. Group
+  a `MathVisual` or a chart when a static or parametric drawing is enough,
+  and a new custom component when none fits (see [visuals](visuals.md)); `Mermaid` for a process or a dependency. Group
   a formula with the figure it draws in a `ContentStack`.
 - Start from the question's figure when the question has one, so the learner
   recognizes it, then add what the solution needs. An explanation may show

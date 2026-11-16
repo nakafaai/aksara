@@ -7,21 +7,9 @@ import {
   failsStrict,
   text,
 } from "#contracts/test/assessment/document";
-import {
-  circleFigure,
-  diagramFigure,
-  lineFigure,
-  numberLineFigure,
-  tankFigure,
-} from "#contracts/test/assessment/figure";
+import { diagramFigure, tankFigure } from "#contracts/test/assessment/figure";
 
-const FIGURES = [
-  tankFigure,
-  numberLineFigure,
-  lineFigure,
-  diagramFigure,
-  circleFigure,
-];
+const FIGURES = [tankFigure, diagramFigure];
 
 /** A lab of the catalog, placed as a figure the way a lesson places it. */
 const labFigure = {

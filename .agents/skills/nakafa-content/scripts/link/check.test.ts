@@ -208,7 +208,7 @@ it("allows internal links and URLs protected by code math or metadata syntax", (
     '<InlineMath math="\\\\text{https://example.com}" />',
     '<Panel content={<InlineMath math="\\\\text{https://example.com}" />} />',
     '<Panel content={<BlockMath math="\\\\text{https://example.com}" />} />',
-    '<LineEquation title="Case: Distant Circles" />',
+    '<FunctionChart title="Case: Distant Circles" />',
     '<Chart data={{ ratio: "H:O = 2:1" }} />',
     "<Object data={rows} />",
     '<Callout title="Use //2 for floor division" />',

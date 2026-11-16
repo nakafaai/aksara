@@ -543,9 +543,9 @@ drafts. A visual a lesson could use reached no assessment.
 - A figure node is `{ component, props, alt, caption }` for any catalog
   component whose kind is `figure`. The reason to reject free props, that a
   figure no schema describes cannot be checked, edited, or exported, holds
-  through the catalog schema. The fixed union is deleted. `NumberLine`,
-  `LineEquation`, and `UnitCircle` stay catalog components, and a number line
-  ray is a segment without a start or an end, as the renderer draws it.
+  through the catalog schema. The fixed union is deleted. Contracts 8.0.0
+  removes `NumberLine`, `LineEquation`, and `UnitCircle`, which no document
+  used: number lines, lines, and circles are `MathVisual` scenes.
 - Components of kind `markup` shape text and layout. `Highlight` is a mark,
   `ContentStack` and `ContentBlock` are nodes that group blocks, and `BlockMath`
   and `InlineMath` are the math nodes. `MathContainer`, `ContentGrid`,

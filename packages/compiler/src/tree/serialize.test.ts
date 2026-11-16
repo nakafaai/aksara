@@ -48,12 +48,12 @@ describe("serializeContentTree", () => {
 
   it.effect("omits undefined props as React does and keeps null", () =>
     Effect.gen(function* () {
-      const { NumberLine } = createTreeRuntime([
-        "NumberLine",
+      const { ScatterDiagram } = createTreeRuntime([
+        "ScatterDiagram",
       ]).useMDXComponents();
       const tree = yield* serializeFragment({
         children: [
-          new TreeCall(NumberLine, {
+          new TreeCall(ScatterDiagram, {
             children: [],
             end: 3,
             labels: { max: 3, min: undefined },
@@ -67,7 +67,7 @@ describe("serializeContentTree", () => {
         {
           $node: "element",
           children: [],
-          name: "NumberLine",
+          name: "ScatterDiagram",
           props: { end: 3, labels: { max: 3 }, nothing: null },
         },
       ]);

@@ -167,8 +167,8 @@ strings with their own [math syntax](questions.md#response-items).
 - Use inline code for programming syntax and identifiers.
 - MDX content must not import renderer components. Use only component names
   exposed by Nakafa's authenticated renderer manifest. `MathVisual` is the
-  shared mathematical visual boundary; domain-owned components such as
-  `NumberLine` remain limited to the domains that expose them.
+  one mathematics visual for points, lines, curves, number lines, circles,
+  vectors, and regions.
 - Follow the [emphasis contract](emphasis.md) for `<Highlight>` and `**`. A locale
   picks its own highlight phrase instead of translating the marked words of a
   sibling.

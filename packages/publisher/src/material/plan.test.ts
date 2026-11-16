@@ -148,7 +148,7 @@ layer(materialPlanTestLayer)("material plan", (it) => {
       const { publishedHeads } = yield* MaterialPlanTestFixtures;
       const renderer = yield* materialManifest([
         "FunctionMachine",
-        "NumberLine",
+        "ScatterDiagram",
       ]);
       const records = yield* collectMaterialPublication({
         heads: publishedHeads,

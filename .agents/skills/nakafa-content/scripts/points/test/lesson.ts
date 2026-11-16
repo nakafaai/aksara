@@ -22,7 +22,7 @@ export function lesson(...blocks: readonly string[]): string {
 }
 
 /** Draws y = x^2 with the points computed from its formula. */
-export const COMPUTED_CURVE = `<LineEquation
+export const COMPUTED_CURVE = `<FunctionChart
   title="Parabola"
   description="The curve y = x squared, sampled from its formula."
   data={[
@@ -39,7 +39,7 @@ export const COMPUTED_CURVE = `<LineEquation
 />`;
 
 /** Draws y = x^2 from nine typed points, the shape a script prints. */
-export const PASTED_CURVE = `<LineEquation
+export const PASTED_CURVE = `<FunctionChart
   title="Parabola"
   description="The curve y = x squared from nine typed points."
   data={[
@@ -89,9 +89,9 @@ export const HOUSE_OUTLINE = `<MathVisual
   labels={{}}
 />`;
 
-/** Draws one LineEquation series whose points are the given source text. */
+/** Draws one FunctionChart series whose points are the given source text. */
 export function curveWith(points: string): string {
-  return `<LineEquation
+  return `<FunctionChart
   title="Series"
   description="One series whose points come from the given source."
   data={[{ points: ${points}, smooth: false, showPoints: false }]}

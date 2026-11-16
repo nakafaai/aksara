@@ -13,16 +13,6 @@ import type {
   LessonVoiceIssue,
 } from "#nakafa-content/voice/types";
 
-/** The visual components that MathVisual replaces (D36). */
-const RETIRED_VISUALS = new Set([
-  "Inequality",
-  "LineEquation",
-  "NumberLine",
-  "Triangle",
-  "UnitCircle",
-  "VectorChart",
-]);
-
 /** The visual text props that hold rich text: math renders only in JSX. */
 const VISUAL_TEXT_PROPS = new Set([
   "description",
@@ -41,7 +31,6 @@ const VISUAL_TEXT_PROPS = new Set([
 const PENDING_FIXES = {
   "plain-math-text":
     'write it with <InlineMath math="..." /> or <BlockMath math="..." />, chemistry as \\mathrm{H_2O} with \\rightarrow',
-  "retired-visual": "draw it with MathVisual, the one math visual (D36)",
   "string-visual-text":
     'write the prop as JSX, such as description={<>Area <InlineMath math="x^2" /></>}',
 };
@@ -55,17 +44,12 @@ function isJsxElement(node: MdxNode): node is JsxMdxNode {
   return node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
 }
 
-/** Finds each retired visual and each visual text prop written as a string. */
+/** Finds each visual text prop written as a string. */
 function findVisualIssues(source: string, tree: MdxNode): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
   visitMdxNodes(tree, (node) => {
     if (!isJsxElement(node)) {
       return;
-    }
-    if (RETIRED_VISUALS.has(String(node.name))) {
-      const start = node.position?.start?.offset;
-      expectShape(start !== undefined);
-      issues.push(issueAtOffset(source, start, "retired-visual"));
     }
     for (const attribute of node.attributes) {
       if (
@@ -83,7 +67,7 @@ function findVisualIssues(source: string, tree: MdxNode): LessonVoiceIssue[] {
 
 /**
  * Finds every pending finding in one document: math or chemistry written as
- * plain text, a retired visual, and a visual text prop written as a string.
+ * plain text, and a visual text prop written as a string.
  */
 export function findPendingIssues(
   source: string,

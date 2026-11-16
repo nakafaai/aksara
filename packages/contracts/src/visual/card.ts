@@ -37,12 +37,5 @@ export function factSchema<E>(rich: RichSlot<E>) {
   return Schema.Struct({ label: TextSchema, value: rich });
 }
 
-/** Three finite numbers, such as a camera position: x, y, and z. */
-export const TripleSchema = Schema.Tuple([
-  Schema.Finite,
-  Schema.Finite,
-  Schema.Finite,
-]);
-
 /** How a kinematics lab writes a decimal number: with a comma or a dot. */
 export const DecimalSeparatorSchema = Schema.Literals(["comma", "dot"]);

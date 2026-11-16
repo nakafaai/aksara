@@ -10,7 +10,7 @@ it("rejects semicolons that learners can read", () => {
     "",
     "Syarat pertama sudah terpenuhi; lanjutkan ke syarat kedua.",
     "",
-    '<LineEquation title="Titik awal; titik akhir"',
+    '<FunctionPlot title="Titik awal; titik akhir"',
     "  description={<>Bandingkan posisi; lalu hitung jaraknya.</>} />",
   ].join("\n");
 
@@ -29,7 +29,7 @@ it("rejects semicolons that learners can read", () => {
     },
     {
       column: 32,
-      excerpt: '<LineEquation title="Titik awal; titik akhir"',
+      excerpt: '<FunctionPlot title="Titik awal; titik akhir"',
       line: 7,
       rule: "learner-facing-semicolon",
     },
@@ -59,7 +59,7 @@ it("allows semicolons required by code math entities and MDX syntax", () => {
     "Gunakan `value; next` di contoh ini.",
     "Tulis A &amp; B.",
     "",
-    "<LineEquation",
+    "<FunctionPlot",
     "  data={() => {",
     "    const value = 1;",
     "    return value;",
