@@ -10,6 +10,44 @@ Ambil dua titik sudut yang segaris sebagai alas, dengan panjang <InlineMath math
 
 <BlockMath math="L=\frac{1}{2}\cdot d\cdot 3=\frac{3d}{2}" />
 
+Gambar berikut memperlihatkan dua segitiga dengan alas yang sama di garis <InlineMath math="g" />. Titik puncaknya berbeda, tetapi **tingginya sama-sama jarak antargaris, <InlineMath math="3\text{ cm}" />**, jadi luasnya sama dan hanya ditentukan oleh <InlineMath math="d" />.
+
+<MathVisual
+  title={<>Dua segitiga beralas sama di antara garis sejajar</>}
+  description={<>Garis <InlineMath math="g" /> memuat <InlineMath math="7" /> titik dan garis <InlineMath math="h" /> memuat <InlineMath math="5" /> titik, berjarak <InlineMath math="3" /> satu sama lain. Dua segitiga memakai alas yang sama sepanjang <InlineMath math="d=2" /> di garis <InlineMath math="g" />, dengan puncak di dua titik berbeda pada garis <InlineMath math="h" />. Keduanya bertinggi <InlineMath math="3" /> dan berluas <InlineMath math="3" />.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    h: <InlineMath math="h" />,
+    base: <InlineMath math="d=2" />,
+    height: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line-g", kind: "line", appearance: "reference", through: [{ x: 0, y: 0 }, { x: 1, y: 0 }] },
+      { id: "line-h", kind: "line", appearance: "reference", through: [{ x: 0, y: 3 }, { x: 1, y: 3 }] },
+      { id: "first", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 3 }] },
+      { id: "second", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 5, y: 3 }] },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 5, y: 3 }, to: { x: 5, y: 0 } },
+      { id: "g3", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "g4", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "g5", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "g6", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "h2", kind: "point", appearance: "reference", at: { x: 2, y: 3 } },
+      { id: "h3", kind: "point", appearance: "reference", at: { x: 3, y: 3 } },
+      { id: "h4", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "g", objectId: "line-g", at: { x: 6.6, y: 0 }, placement: "above" },
+      { key: "h", objectId: "line-h", at: { x: 6.6, y: 3 }, placement: "above" },
+      { key: "base", objectId: "first", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 5, y: 1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Bilangan <InlineMath math="3" /> ganjil, jadi <InlineMath math="\tfrac{3d}{2}" /> bulat tepat ketika **panjang alas <InlineMath math="d" /> genap**.
 
 # Menghitung pasangan berjarak genap

@@ -1,3 +1,34 @@
 Segitiga <InlineMath math="ABC" /> siku-siku di <InlineMath math="C" />. Lingkaran dalam segitiga itu berjari-jari <InlineMath math="3\text{ cm}" /> dan menyinggung sisi <InlineMath math="AB" /> di titik <InlineMath math="D" /> dengan <InlineMath math="AD=6\text{ cm}" />. Titik <InlineMath math="H" /> adalah kaki garis tinggi dari <InlineMath math="C" /> ke sisi <InlineMath math="AB" />.
 
+<MathVisual
+  title={<>Segitiga <InlineMath math="ABC" /> dengan lingkaran dalam dan garis tinggi</>}
+  description={<>Segitiga siku-siku di <InlineMath math="C" />. Lingkaran dalam berjari-jari <InlineMath math="3\text{ cm}" /> menyinggung <InlineMath math="AB" /> di <InlineMath math="D" />, dengan <InlineMath math="AD=6\text{ cm}" />. Garis tinggi dari <InlineMath math="C" /> jatuh di <InlineMath math="H" /> pada <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    h: <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 3, y: 3 }, radius: 3 },
+      { id: "altitude", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 108 / 25, y: 144 / 25 } },
+      { id: "point-d", kind: "point", appearance: "secondary", at: { x: 24 / 5, y: 27 / 5 } },
+      { id: "point-h", kind: "point", appearance: "primary", at: { x: 108 / 25, y: 144 / 25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 9 }, placement: "above-left" },
+      { key: "b", objectId: "triangle", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 24 / 5, y: 27 / 5 }, placement: "above-right" },
+      { key: "h", objectId: "point-h", at: { x: 108 / 25, y: 144 / 25 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Panjang <InlineMath math="DH" /> adalah ....

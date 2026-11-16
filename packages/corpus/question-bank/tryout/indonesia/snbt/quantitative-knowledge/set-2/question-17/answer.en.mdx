@@ -26,4 +26,39 @@ x-y=-7&:\quad x(x+7)=-12\ \Rightarrow\ x^2+7x+12=0\ \Rightarrow\ x=-3\ \text{or}
 
 The second case drops out because <InlineMath math="x>0" />. The first case gives the pair <InlineMath math="(3,-4)" /> with <InlineMath math="x+y=-1" /> and the pair <InlineMath math="(4,-3)" /> with <InlineMath math="x+y=1" />. So **the condition <InlineMath math="x>0" /> removes one case but doesn't fix the sign of <InlineMath math="x+y" />**. There are still two values.
 
+The figure below shows every pair that satisfies both statements at once: the crossings of the hyperbola <InlineMath math="xy=-12" /> with the two lines <InlineMath math="x-y=\pm7" />. The condition <InlineMath math="x>0" /> removes the two points on the left, but **the two points that remain give sums <InlineMath math="-1" /> and <InlineMath math="1" />**.
+
+<MathVisual
+  title={<>Integer pairs that satisfy both statements</>}
+  description={<>The hyperbola <InlineMath math="y=-\tfrac{12}{x}" /> meets the line <InlineMath math="y=x-7" /> at <InlineMath math="(3,-4)" /> and <InlineMath math="(4,-3)" />, and meets the line <InlineMath math="y=x+7" /> at <InlineMath math="(-3,4)" /> and <InlineMath math="(-4,3)" />. The last two have <InlineMath math="x<0" />, so they drop out. The point <InlineMath math="(3,-4)" /> gives <InlineMath math="x+y=-1" />, and the point <InlineMath math="(4,-3)" /> gives <InlineMath math="x+y=1" />.</>}
+  labels={{
+    hyperbola: <InlineMath math="xy=-12" />,
+    down: <InlineMath math="x-y=7" />,
+    up: <InlineMath math="x-y=-7" />,
+    p1: <InlineMath math="(3,-4)" />,
+    p2: <InlineMath math="(4,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 12 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hyperbola", kind: "function", appearance: "primary", formula: "-12/x", domain: { min: -12, max: 12 } },
+      { id: "down", kind: "function", appearance: "secondary", formula: "x - 7", domain: { min: -5, max: 12 } },
+      { id: "up", kind: "function", appearance: "construction", formula: "x + 7", domain: { min: -12, max: 5 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4, y: -3 } },
+      { id: "q1", kind: "point", appearance: "warning", at: { x: -3, y: 4 } },
+      { id: "q2", kind: "point", appearance: "warning", at: { x: -4, y: 3 } },
+    ],
+    labels: [
+      { key: "hyperbola", objectId: "hyperbola", at: { x: 10, y: -6 / 5 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 10, y: 3 }, placement: "left" },
+      { key: "up", objectId: "up", at: { x: -10, y: -3 }, placement: "right" },
+      { key: "p1", objectId: "p1", at: { x: 3, y: -4 }, placement: "below-left" },
+      { key: "p2", objectId: "p2", at: { x: 4, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 So **statement (1) and statement (2) aren't enough** to answer the question, even together.

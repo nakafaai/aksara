@@ -31,6 +31,33 @@ a^2-a-2&=0\\
 
 Calon <InlineMath math="a=2" /> **dibuang oleh syarat <InlineMath math="a\ne2" />**, jadi <InlineMath math="a=-1" />. Cek: <InlineMath math="f(-1)=-2+1+1=0=f(2)" />.
 
+Grafik <InlineMath math="f" /> menunjukkan bahwa nilai <InlineMath math="f(2)=0" /> hanya tercapai di dua tempat, yaitu titik potong grafik dengan sumbu-<InlineMath math="x" />. Satu titik adalah <InlineMath math="x=2" /> sendiri, jadi **titik yang lain adalah <InlineMath math="a" />**.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=\tfrac2x-x+1" /></>}
+  description={<>Grafik punya dua cabang yang dipisahkan oleh <InlineMath math="x=0" />. Cabang kiri memotong sumbu-<InlineMath math="x" /> di <InlineMath math="x=-1" />, dan cabang kanan memotongnya di <InlineMath math="x=2" />. Di kedua titik itu nilai fungsinya <InlineMath math="0" />, sama dengan <InlineMath math="f(2)" />.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    kept: <InlineMath math="a=-1" />,
+    dropped: <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f", kind: "function", appearance: "primary", formula: "2/x - x + 1", domain: { min: -5, max: 5 } },
+      { id: "kept", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 4, y: -2.5 }, placement: "below-left" },
+      { key: "kept", objectId: "kept", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "dropped", objectId: "dropped", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Jebakan pada pilihan lain
 
 - <InlineMath math="-2" /> adalah hasil kali kedua akar <InlineMath math="a^2-a-2=0" />, bukan akar yang lain. Dari <InlineMath math="2\cdot a=-2" />, akar yang lain adalah <InlineMath math="-1" />.

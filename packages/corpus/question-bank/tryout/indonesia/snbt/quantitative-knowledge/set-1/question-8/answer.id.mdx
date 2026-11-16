@@ -18,6 +18,21 @@ Karena <InlineMath math="48=2^4\cdot3" />, pernyataan (2) berarti <InlineMath ma
 
 Setiap <InlineMath math="n" /> yang memenuhi (2) juga habis dibagi <InlineMath math="12" />. Contohnya, <InlineMath math="n=12" /> memberi <InlineMath math="1{.}728=48\cdot36" />, sedangkan <InlineMath math="n=6" /> tidak memenuhi (2) karena <InlineMath math="216=48\cdot4+24" />. Pernyataan (2) saja cukup.
 
+Diagram berikut menaruh kedua alur berdampingan. Kuncinya ada di kotak tengah: **pangkat genap atau kelipatan tiga tidak bisa berhenti tepat di batas**, sehingga keduanya sama-sama memaksa <InlineMath math="a\ge2" /> dan <InlineMath math="b\ge1" />.
+
+<Mermaid
+  title={<>Dua alur menuju faktor <InlineMath math="12" /></>}
+  description={<>Pernyataan (1) memberi <InlineMath math="2a\ge3" /> dan <InlineMath math="2b\ge1" />, jadi <InlineMath math="a\ge2" /> dan <InlineMath math="b\ge1" />. Pernyataan (2) memberi <InlineMath math="3a\ge4" /> dan <InlineMath math="3b\ge1" />, jadi juga <InlineMath math="a\ge2" /> dan <InlineMath math="b\ge1" />. Kedua alur berakhir di kesimpulan bahwa <InlineMath math="n" /> habis dibagi <InlineMath math="12" />.</>}
+  chart={`flowchart TD
+    S1["(1) n² habis dibagi 24 = 2³ · 3"] --> E1["2a paling kecil 3 dan 2b paling kecil 1"]
+    E1 --> R1["2a genap, jadi 2a paling kecil 4"]
+    S2["(2) n³ habis dibagi 48 = 2⁴ · 3"] --> E2["3a paling kecil 4 dan 3b paling kecil 1"]
+    E2 --> R2["a = 1 hanya memberi 3, jadi a paling kecil 2"]
+    R1 --> K["a paling kecil 2 dan b paling kecil 1"]
+    R2 --> K
+    K --> Y["n habis dibagi 12"]`}
+/>
+
 # Mengapa pilihan lain menggoda
 
 Pilihan bahwa kedua pernyataan harus digabung muncul jika (1) hanya dibaca sebagai <InlineMath math="n" /> genap dan kelipatan <InlineMath math="3" />, atau (2) hanya dibaca sebagai <InlineMath math="n" /> genap. Pembacaan itu **mengabaikan bahwa pangkat faktor prima pada kuadrat selalu genap** dan pangkat pada kubus selalu kelipatan <InlineMath math="3" />. Pilihan bahwa kedua pernyataan tidak cukup muncul jika <InlineMath math="n=6" /> dianggap memenuhi, padahal <InlineMath math="6" /> gagal pada kedua pernyataan.

@@ -14,6 +14,39 @@ P\to B&:\ 4 \text{ right},\ 3 \text{ up},\quad \binom{7}{3}=35\\
 
 A path uses the closed road when it steps from <InlineMath math="(3,2)" /> straight to <InlineMath math="(4,2)" />. Split such a path into three parts and **multiply the number of ways for each part**.
 
+The figure below marks the closed road and one path that's still allowed. That path **passes through the intersection <InlineMath math="(3,2)" /> but goes up to <InlineMath math="(3,3)" />** instead of turning right, so it doesn't use the closed road.
+
+<MathVisual
+  title={<>The road grid from <InlineMath math="A" /> to <InlineMath math="B" /> through <InlineMath math="P" /></>}
+  description={<>A <InlineMath math="6" /> by <InlineMath math="4" /> grid with <InlineMath math="A(0,0)" />, <InlineMath math="P(2,1)" />, and <InlineMath math="B(6,4)" />. The road from <InlineMath math="(3,2)" /> to <InlineMath math="(4,2)" /> is closed. One allowed path: <InlineMath math="(0,0)\to(2,0)\to(2,1)\to(3,1)\to(3,3)\to(6,3)\to(6,4)" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    p: <InlineMath math="P" />,
+    b: <InlineMath math="B" />,
+    left: <InlineMath math="(3,2)" />,
+    right: <InlineMath math="(4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 3 }, { x: 6, y: 3 }, { x: 6, y: 4 }] },
+      { id: "closed", kind: "segment", appearance: "warning", from: { x: 3, y: 2 }, to: { x: 4, y: 2 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 4 }, placement: "above-right" },
+      { key: "left", objectId: "closed", at: { x: 3, y: 2 }, placement: "left" },
+      { key: "right", objectId: "closed", at: { x: 4, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 A\to P&:\ 3\\
 P\to(3,2)&:\ 1 \text{ right},\ 1 \text{ up},\quad \binom{2}{1}=2\\

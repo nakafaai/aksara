@@ -30,6 +30,36 @@ Karena <InlineMath math="(6\sqrt5)^2=180>49=7^2" />, **pada kasus ini <InlineMat
 
 # Menarik kesimpulan
 
+Gambar kedua segitiga dengan skala yang sama memperlihatkan masalahnya. Segitiga <InlineMath math="4, 4, 7" /> pendek dan lebar, segitiga <InlineMath math="4, 7, 7" /> tinggi dan ramping, dan **luasnya berada di sisi yang berlawanan dari <InlineMath math="7" />**.
+
+<MathVisual
+  title={<>Dua segitiga sama kaki yang sama-sama mungkin</>}
+  description={<>Segitiga kiri bersisi <InlineMath math="4, 4, 7" /> dengan alas <InlineMath math="7" /> dan tinggi <InlineMath math="\tfrac{\sqrt{15}}{2}" />, luasnya <InlineMath math="\tfrac{7\sqrt{15}}{4}" />, sekitar <InlineMath math="6{,}8" />. Segitiga kanan bersisi <InlineMath math="4, 7, 7" /> dengan alas <InlineMath math="4" /> dan tinggi <InlineMath math="3\sqrt5" />, luasnya <InlineMath math="6\sqrt5" />, sekitar <InlineMath math="13{,}4" />. Garis putus adalah tinggi masing-masing segitiga.</>}
+  labels={{
+    first: <InlineMath math="\tfrac{7\sqrt{15}}{4}" />,
+    second: <InlineMath math="6\sqrt5" />,
+    base1: <InlineMath math="7" />,
+    base2: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -1.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "triangle-447", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7 / 2, y: Math.sqrt(15) / 2 }] },
+      { id: "triangle-477", kind: "polygon", appearance: "primary", vertices: [{ x: 9, y: 0 }, { x: 13, y: 0 }, { x: 11, y: 3 * Math.sqrt(5) }] },
+      { id: "height-447", kind: "segment", appearance: "construction", from: { x: 7 / 2, y: Math.sqrt(15) / 2 }, to: { x: 7 / 2, y: 0 } },
+      { id: "height-477", kind: "segment", appearance: "construction", from: { x: 11, y: 3 * Math.sqrt(5) }, to: { x: 11, y: 0 } },
+    ],
+    labels: [
+      { key: "first", objectId: "triangle-447", at: { x: 7 / 2, y: Math.sqrt(15) / 2 }, placement: "above" },
+      { key: "second", objectId: "triangle-477", at: { x: 11, y: 3 * Math.sqrt(5) }, placement: "above" },
+      { key: "base1", objectId: "triangle-447", at: { x: 7 / 4, y: 0 }, placement: "below" },
+      { key: "base2", objectId: "triangle-477", at: { x: 10, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Kedua segitiga memenuhi semua informasi soal, tetapi yang satu memberi <InlineMath math="P<Q" /> dan yang lain memberi <InlineMath math="P>Q" />. Jadi **hubungan <InlineMath math="P" /> dan <InlineMath math="Q" /> tidak bisa dipastikan**.
 
 Pilihan <InlineMath math="P>Q" /> muncul jika hanya segitiga <InlineMath math="4, 7, 7" /> yang dipakai, misalnya karena segitiga <InlineMath math="4, 4, 7" /> dikira tidak ada. Pilihan <InlineMath math="Q>P" /> muncul jika hanya segitiga <InlineMath math="4, 4, 7" /> yang dipakai. Pilihan <InlineMath math="P=Q" /> tidak terjadi pada kasus mana pun, karena <InlineMath math="\left(\frac{7\sqrt{15}}{4}\right)^2=\frac{735}{16}" /> dan <InlineMath math="180" /> keduanya tidak sama dengan <InlineMath math="49" />.

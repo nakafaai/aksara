@@ -16,6 +16,38 @@ Pembagi positif <InlineMath math="36" /> adalah <InlineMath math="1" />, <Inline
 
 Pasangan positif <InlineMath math="(m,n)" /> dengan <InlineMath math="m<n" /> memberi <InlineMath math="(x,y)" /> sama dengan <InlineMath math="(37,35)" />, <InlineMath math="(20,16)" />, <InlineMath math="(15,9)" />, dan <InlineMath math="(13,5)" />. Setiap penyelesaian itu menghasilkan empat pasangan karena tanda <InlineMath math="x" /> dan <InlineMath math="y" /> bebas, jadi ada <InlineMath math="4\times4=16" />. Pasangan <InlineMath math="m=n=6" /> memberi <InlineMath math="y=0" />, dan di sini **hanya ada dua pasangan**, <InlineMath math="(12,0)" /> dan <InlineMath math="(-12,0)" />, karena <InlineMath math="0" /> dan <InlineMath math="-0" /> sama. Totalnya <InlineMath math="16+2=18" />, cocok.
 
+Grafik hiperbola berikut menandai titik bulat di kuadran pertama dan titik <InlineMath math="(12,0)" />. Setiap titik dengan <InlineMath math="y\ne0" /> **punya tiga bayangan cermin** di kuadran lain, sedangkan <InlineMath math="(12,0)" /> hanya punya satu, yaitu <InlineMath math="(-12,0)" />.
+
+<MathVisual
+  title={<>Hiperbola <InlineMath math="x^2-y^2=144" /> dan titik bulatnya</>}
+  description={<>Hiperbola punya cabang kanan dan kiri yang simetris terhadap kedua sumbu. Titik bulat <InlineMath math="(13,5)" />, <InlineMath math="(15,9)" />, <InlineMath math="(20,16)" />, dan <InlineMath math="(37,35)" /> ada di kuadran pertama, dan masing-masing punya pasangan dengan tanda <InlineMath math="x" /> atau <InlineMath math="y" /> dibalik. Titik <InlineMath math="(12,0)" /> ada di sumbu-<InlineMath math="x" /> dan hanya punya pasangan <InlineMath math="(-12,0)" />.</>}
+  labels={{
+    curve: <InlineMath math="x^2-y^2=144" />,
+    p0: <InlineMath math="(12,0)" />,
+    p2: <InlineMath math="(20,16)" />,
+    p4: <InlineMath math="(37,35)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -40, max: 40 }, y: { min: -40, max: 40 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "curve", kind: "implicit", appearance: "primary", equation: "x^2 - y^2 = 144" },
+      { id: "p0", kind: "point", appearance: "highlight", at: { x: 12, y: 0 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 13, y: 5 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 15, y: 9 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 20, y: 16 } },
+      { id: "p4", kind: "point", appearance: "answer", at: { x: 37, y: 35 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -20, y: 16 }, placement: "above-left" },
+      { key: "p0", objectId: "p0", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "p2", objectId: "p2", at: { x: 20, y: 16 }, placement: "right" },
+      { key: "p4", objectId: "p4", at: { x: 37, y: 35 }, placement: "left" },
+    ],
+  }}
+/>
+
 # Kesalahan yang sering terjadi
 
 - Hasil <InlineMath math="16" /> melupakan penyelesaian dengan <InlineMath math="y=0" />.

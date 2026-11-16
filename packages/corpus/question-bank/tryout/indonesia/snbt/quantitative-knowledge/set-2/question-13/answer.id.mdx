@@ -10,6 +10,37 @@ Potong kerucut tepat melalui sumbunya. Penampangnya segitiga sama kaki dengan al
 
 Titik teratas bola berada pada ketinggian <InlineMath math="2r=6" />, jadi kerucut kecil di atasnya tingginya <InlineMath math="8-6=2" />. Kerucut kecil sebangun dengan kerucut besar dengan faktor skala <InlineMath math="k=\tfrac28=\tfrac14" />, dan **volume berskala pangkat tiga dari faktor skala**.
 
+Penampang melalui sumbu kerucut memperlihatkan potongannya. Bola menjadi lingkaran dalam segitiga, titik teratasnya di ketinggian <InlineMath math="6" />, dan **segitiga kecil di atas garis potong** adalah penampang kerucut kecil dengan tinggi <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Penampang kerucut, bola, dan bidang potong</>}
+  description={<>Segitiga sama kaki dengan alas <InlineMath math="12" /> dan tinggi <InlineMath math="8" />. Lingkaran dalamnya berjari-jari <InlineMath math="3" /> dengan pusat di ketinggian <InlineMath math="3" />. Garis potong mendatar menyinggung lingkaran di ketinggian <InlineMath math="6" /> dan memotong segitiga sepanjang <InlineMath math="3" />. Segitiga kecil di atasnya tingginya <InlineMath math="2" />.</>}
+  labels={{
+    r: <InlineMath math="r=3" />,
+    cut: <InlineMath math="y=6" />,
+    small: <InlineMath math="2" />,
+    base: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "reference", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 8 }] },
+      { id: "top-cone", kind: "polygon", appearance: "highlight", vertices: [{ x: -3 / 2, y: 6 }, { x: 3 / 2, y: 6 }, { x: 0, y: 8 }] },
+      { id: "ball", kind: "circle", appearance: "primary", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 3, y: 3 } },
+      { id: "cut", kind: "segment", appearance: "secondary", from: { x: -3 / 2, y: 6 }, to: { x: 3 / 2, y: 6 } },
+    ],
+    labels: [
+      { key: "r", objectId: "radius", at: { x: 3 / 2, y: 3 }, placement: "below" },
+      { key: "cut", objectId: "cut", at: { x: 3 / 2, y: 6 }, placement: "right" },
+      { key: "small", objectId: "top-cone", at: { x: 0, y: 7 }, placement: "left" },
+      { key: "base", objectId: "cone", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 V_{\text{besar}}&=\tfrac13\pi\times6^2\times8=96\pi\\
 V_{\text{kecil}}&=\left(\tfrac14\right)^3\times96\pi=\tfrac{3}{2}\pi

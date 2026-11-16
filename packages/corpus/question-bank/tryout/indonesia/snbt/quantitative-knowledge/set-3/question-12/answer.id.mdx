@@ -24,6 +24,20 @@ Rata-rata paling kecil terjadi ketika setiap data bebas dibuat sekecil mungkin.
 
 Nilai <InlineMath math="15" /> paling banyak muncul dua kali, yaitu sebagai <InlineMath math="x_{10}" /> dan <InlineMath math="x_{11}" />, karena <InlineMath math="x_9=10" />. Sekarang lihat empat data <InlineMath math="x_6" />, <InlineMath math="x_7" />, <InlineMath math="x_8" />, <InlineMath math="x_9" />. Keempatnya bilangan bulat dari <InlineMath math="8" /> sampai <InlineMath math="10" />, padahal hanya ada tiga bilangan seperti itu, jadi **pasti ada nilai yang muncul paling sedikit dua kali**. Nilai itu menyamai atau mengalahkan banyaknya <InlineMath math="15" />, sehingga <InlineMath math="15" /> tidak mungkin menjadi modus tunggal. Pernyataan kedua salah.
 
+Grafik berikut menaruh data terkecil dan data terbesar yang cocok dengan diagram kotak garis itu. Batang <InlineMath math="x_1" />, <InlineMath math="x_3" />, <InlineMath math="x_6" />, <InlineMath math="x_9" />, dan <InlineMath math="x_{11}" /> **sama tinggi pada keduanya** karena nilainya terkunci. Setiap data lain yang cocok berjumlah antara <InlineMath math="78" /> dan <InlineMath math="96" />.
+
+<Chart
+  title={<>Dua data ekstrem untuk ringkasan lima angka yang sama</>}
+  description={<>Data terkecil yang cocok adalah <InlineMath math="2, 2, 5, 5, 5, 8, 8, 8, 10, 10, 15" /> dengan jumlah <InlineMath math="78" />. Data terbesar yang cocok adalah <InlineMath math="2, 5, 5, 8, 8, 8, 10, 10, 10, 15, 15" /> dengan jumlah <InlineMath math="96" />. Nilai ke-<InlineMath math="1" />, ke-<InlineMath math="3" />, ke-<InlineMath math="6" />, ke-<InlineMath math="9" />, dan ke-<InlineMath math="11" /> sama pada keduanya.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `x${i + 1}`)}
+  series={[
+    { label: "Data terkecil yang cocok, jumlah 78", mark: "bar", values: [2, 2, 5, 5, 5, 8, 8, 8, 10, 10, 15] },
+    { label: "Data terbesar yang cocok, jumlah 96", mark: "bar", values: [2, 5, 5, 8, 8, 8, 10, 10, 10, 15, 15] },
+  ]}
+  valueLabel="Nilai data"
+/>
+
 # Pernyataan ketiga
 
 Cukup satu contoh. Ambil data <InlineMath math="2,3,5,6,7,8,9,9,10,10,15" />. Data terkecilnya <InlineMath math="2" />, <InlineMath math="x_3=5" />, <InlineMath math="x_6=8" />, <InlineMath math="x_9=10" />, dan data terbesarnya <InlineMath math="15" />, jadi ringkasannya cocok. Di sini **hanya <InlineMath math="15" /> yang lebih dari <InlineMath math="10" />**, karena <InlineMath math="x_{10}=10" />. Pernyataan ketiga benar.

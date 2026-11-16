@@ -32,6 +32,20 @@ Bringe beide auf denselben Nenner: <InlineMath math="Q=\tfrac{21}{40}=\tfrac{525
 
 Jetzt siehst du, warum die Farbbedingung zählt. Für <InlineMath math="r=3" /> ergäbe sich <InlineMath math="P=3\cdot\left(\tfrac{3}{10}\right)^2\cdot\tfrac{7}{10}=\tfrac{189}{1000}" /> und <InlineMath math="Q=\tfrac{\binom{3}{2}\binom{7}{1}}{120}=\tfrac{175}{1000}" />, also <InlineMath math="P>Q" />. Ohne die Bedingung, dass es mehr rote Kugeln gibt, ließe sich die Frage nicht entscheiden.
 
+Das Diagramm vergleicht beide Größen für beide möglichen Kästen. Bei <InlineMath math="7" /> roten Kugeln ist der Balken von <InlineMath math="Q" /> höher. Bei <InlineMath math="3" /> roten Kugeln **dreht sich die Reihenfolge um**, also entscheidet die Bedingung mit mehr roten Kugeln wirklich die Antwort.
+
+<Chart
+  title={<>Wahrscheinlichkeit für genau zwei rote bei drei Zügen</>}
+  description={<>Bei <InlineMath math="7" /> roten und <InlineMath math="3" /> weißen ist <InlineMath math="P=\tfrac{441}{1000}" /> und <InlineMath math="Q=\tfrac{525}{1000}" />. Bei <InlineMath math="3" /> roten und <InlineMath math="7" /> weißen ist <InlineMath math="P=\tfrac{189}{1000}" /> und <InlineMath math="Q=\tfrac{175}{1000}" />.</>}
+  categories={["7 rot, gilt", "3 rot, fällt weg"]}
+  bars="apart"
+  series={[
+    { label: "P, mit Zurücklegen", mark: "bar", values: [441 / 1000, 189 / 1000] },
+    { label: "Q, ohne Zurücklegen", mark: "bar", values: [21 / 40, 175 / 1000] },
+  ]}
+  valueLabel="Wahrscheinlichkeit"
+/>
+
 # Die anderen Antworten prüfen
 
 Die Antwort <InlineMath math="P>Q" /> entsteht, wenn du <InlineMath math="r=3" /> nimmst oder vermutest, dass Ziehen ohne Zurücklegen **die Wahrscheinlichkeit immer senkt**. Die Antwort <InlineMath math="P=Q" /> entsteht, weil ein einzelner Zug bei beiden Arten mit der Wahrscheinlichkeit <InlineMath math="\tfrac{7}{10}" /> rot ist und du diese Gleichheit auf das gemeinsame Ereignis aus drei Zügen überträgst. Die Antwort, die Angaben reichten nicht aus, entsteht, wenn du die Bedingung mit den roten Kugeln nicht nutzt, um <InlineMath math="r=3" /> zu streichen.

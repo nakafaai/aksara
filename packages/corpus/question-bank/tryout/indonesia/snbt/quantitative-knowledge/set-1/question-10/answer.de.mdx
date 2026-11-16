@@ -16,6 +16,47 @@ Die Kandidaten sind <InlineMath math="x=9" /> oder <InlineMath math="x=-16" />. 
 
 Eine Tangente steht immer **senkrecht auf dem Radius im Berührpunkt**, also gilt <InlineMath math="PT\perp OT" />. Die Sehne <InlineMath math="TB" /> geht durch <InlineMath math="O" />, also ist die Gerade <InlineMath math="TB" /> dieselbe wie die Gerade <InlineMath math="TO" />. Deshalb ist der Winkel <InlineMath math="PTB" /> ein rechter Winkel, und die Hypotenuse des Dreiecks <InlineMath math="PTB" /> ist <InlineMath math="PB" />.
 
+Die Abbildung zeigt dieses rechtwinklige Dreieck. Die Tangente <InlineMath math="PT" /> verläuft waagrecht und der Durchmesser <InlineMath math="TB" /> senkrecht, also **liegt der rechte Winkel bei <InlineMath math="T" />** und die Hypotenuse ist <InlineMath math="PB" />.
+
+<MathVisual
+  title={<>Tangente, Sekante und Durchmesser <InlineMath math="TB" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="O" />. Die Tangente von <InlineMath math="P" /> berührt den Kreis in <InlineMath math="T" />, mit <InlineMath math="PT=12" />. Die Gerade von <InlineMath math="P" /> schneidet den Kreis in <InlineMath math="A" /> und dann in <InlineMath math="B" />, mit <InlineMath math="PB=16" />. Die Strecke <InlineMath math="TB" /> geht durch <InlineMath math="O" /> und steht in <InlineMath math="T" /> senkrecht auf <InlineMath math="PT" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    t: <InlineMath math="T" />,
+    b: <InlineMath math="B" />,
+    a: <InlineMath math="A" />,
+    o: <InlineMath math="O" />,
+    pt: <InlineMath math="12" />,
+    pb: <InlineMath math="PB=16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 14 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 * Math.sqrt(7) },
+      { id: "diameter", kind: "segment", appearance: "highlight", from: { x: 0, y: 2 * Math.sqrt(7) }, to: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "tangent", kind: "segment", appearance: "primary", from: { x: 12, y: 2 * Math.sqrt(7) }, to: { x: 0, y: 2 * Math.sqrt(7) } },
+      { id: "secant", kind: "segment", appearance: "secondary", from: { x: 12, y: 2 * Math.sqrt(7) }, to: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 12, y: 2 * Math.sqrt(7) } },
+      { id: "point-t", kind: "point", appearance: "reference", at: { x: 0, y: 2 * Math.sqrt(7) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 21 / 4, y: -Math.sqrt(7) / 4 } },
+      { id: "point-o", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 12, y: 2 * Math.sqrt(7) }, placement: "right" },
+      { key: "t", objectId: "point-t", at: { x: 0, y: 2 * Math.sqrt(7) }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 0, y: -2 * Math.sqrt(7) }, placement: "below-left" },
+      { key: "a", objectId: "point-a", at: { x: 21 / 4, y: -Math.sqrt(7) / 4 }, placement: "below-right" },
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "pt", objectId: "tangent", at: { x: 6, y: 2 * Math.sqrt(7) }, placement: "above" },
+      { key: "pb", objectId: "secant", at: { x: 9, y: Math.sqrt(7) / 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Den Radius berechnen
 
 Wende den Satz des Pythagoras im Dreieck <InlineMath math="PTB" /> an und denk daran, dass <InlineMath math="TB" /> ein Durchmesser ist. Der Radius ist also **die Hälfte von <InlineMath math="TB" />**.

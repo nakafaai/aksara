@@ -24,6 +24,41 @@ a\ge 2&:\quad 4a-3=5 \implies a=2\ \text{(passt)}
 
 Im ersten Fall liegt der Scheitel links vom Intervall, <InlineMath math="f" /> fällt also auf dem ganzen Intervall, und das Maximum ist <InlineMath math="f(-1)" />. Im dritten Fall liegt der Scheitel rechts oder genau bei <InlineMath math="x=2" />, also ist das Maximum <InlineMath math="f(2)" />. Möglich sind nur <InlineMath math="a=-\tfrac{5}{2}" /> und <InlineMath math="a=2" />, ihre Summe ist <InlineMath math="-\tfrac{5}{2}+2=-\tfrac{1}{2}" />.
 
+Der Graph zeigt die drei Parabeln über dem Intervall <InlineMath math="-1\le x\le2" />, begrenzt durch zwei gestrichelte Linien. Für <InlineMath math="a=-\tfrac52" /> und <InlineMath math="a=2" /> liegt der höchste Punkt **innerhalb des Intervalls** genau auf der Geraden <InlineMath math="y=5" />. Für <InlineMath math="a=-2" /> liegt der Scheitel außerhalb, also erreicht der Wert im Intervall nur <InlineMath math="4" />.
+
+<MathVisual
+  title={<>Das Maximum von <InlineMath math="f(x)=-x^2+2ax+1" /> auf <InlineMath math="-1\le x\le2" /></>}
+  description={<>Die Parabel für <InlineMath math="a=-\tfrac52" /> hat ihren Scheitel bei <InlineMath math="x=-\tfrac52" />, links vom Intervall, und erreicht <InlineMath math="5" /> bei <InlineMath math="x=-1" />. Die Parabel für <InlineMath math="a=2" /> hat ihren Scheitel genau in <InlineMath math="(2,5)" />. Die Parabel für <InlineMath math="a=-2" /> hat ihren Scheitel in <InlineMath math="(-2,5)" />, außerhalb des Intervalls, und erreicht bei <InlineMath math="x=-1" /> nur <InlineMath math="4" />.</>}
+  labels={{
+    left: <InlineMath math="a=-\tfrac52" />,
+    right: <InlineMath math="a=2" />,
+    rejected: <InlineMath math="a=-2" />,
+    level: <InlineMath math="y=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -6, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "edge-left", kind: "segment", appearance: "construction", from: { x: -1, y: -6 }, to: { x: -1, y: 9 } },
+      { id: "edge-right", kind: "segment", appearance: "construction", from: { x: 2, y: -6 }, to: { x: 2, y: 9 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -5, y: 5 }, to: { x: 5, y: 5 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "-x^2 - 5x + 1", domain: { min: -5, max: 1 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "-x^2 + 4x + 1", domain: { min: -1, max: 5 } },
+      { id: "rejected", kind: "function", appearance: "warning", formula: "-x^2 - 4x + 1", domain: { min: -5, max: 1 } },
+      { id: "top-left", kind: "point", appearance: "answer", at: { x: -1, y: 5 } },
+      { id: "top-right", kind: "point", appearance: "answer", at: { x: 2, y: 5 } },
+      { id: "top-rejected", kind: "point", appearance: "warning", at: { x: -1, y: 4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -5 / 2, y: 29 / 4 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "rejected", objectId: "rejected", at: { x: -4, y: 1 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 4.5, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Jeden Parameterwert prüfen
 
 Für <InlineMath math="a=-\tfrac{5}{2}" /> gilt <InlineMath math="f(-1)=5" /> und <InlineMath math="f(2)=-13" />, der Scheitel liegt außerhalb, also ist das Maximum <InlineMath math="5" />. Für <InlineMath math="a=2" /> gilt <InlineMath math="f(2)=5" /> und <InlineMath math="f(-1)=-4" />, also ist das Maximum <InlineMath math="5" />. Für <InlineMath math="a=-2" /> liegt der Scheitel bei <InlineMath math="x=-2" />, außerhalb des Intervalls, daher ist **das Maximum auf dem Intervall nur <InlineMath math="f(-1)=4" />** und nicht <InlineMath math="5" />. Der Wert <InlineMath math="a=-2" /> fällt also wirklich weg.

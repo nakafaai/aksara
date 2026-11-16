@@ -30,6 +30,19 @@ Pernyataan (2) berlaku untuk sisa <InlineMath math="1" /> dan sisa <InlineMath m
 
 Sisa yang memenuhi keduanya hanya <InlineMath math="1" />, jadi <InlineMath math="n=4m+1" /> untuk suatu bilangan bulat <InlineMath math="m" />, dan **<InlineMath math="n" /> pasti ganjil**. Contohnya <InlineMath math="n=5" />: nilai <InlineMath math="25+15=40" /> dan <InlineMath math="25+5+2=32" /> sama-sama habis dibagi <InlineMath math="4" />, dan <InlineMath math="5" /> memang ganjil.
 
+Diagram berikut merangkum kedua tabel itu. Setiap pernyataan menyisakan dua sisa, tetapi **irisannya hanya satu sisa**, yaitu <InlineMath math="1" />.
+
+<Mermaid
+  title={<>Sisa pembagian oleh <InlineMath math="4" /> yang lolos setiap pernyataan</>}
+  description={<>Pernyataan (1) menyisakan sisa <InlineMath math="0" /> dan <InlineMath math="1" />, jadi <InlineMath math="n" /> bisa genap atau ganjil. Pernyataan (2) menyisakan sisa <InlineMath math="1" /> dan <InlineMath math="2" />, jadi juga belum pasti. Bersama-sama, hanya sisa <InlineMath math="1" /> yang lolos, sehingga <InlineMath math="n" /> pasti ganjil.</>}
+  chart={`flowchart LR
+    S1["(1): sisa 0 atau 1"] --> T["Keduanya: sisa 1"]
+    S2["(2): sisa 1 atau 2"] --> T
+    S1 -.-> X1["genap atau ganjil"]
+    S2 -.-> X2["genap atau ganjil"]
+    T --> Y["n = 4m + 1, pasti ganjil"]`}
+/>
+
 Pilihan "pernyataan (1) saja cukup" biasanya muncul karena mengira <InlineMath math="n(n+3)" /> habis dibagi <InlineMath math="4" /> hanya untuk <InlineMath math="n" /> genap, padahal <InlineMath math="n=1" /> juga memenuhi. Pilihan "kedua pernyataan tidak cukup" muncul kalau irisan kedua himpunan sisa tidak diperiksa.
 
 Jadi, kedua pernyataan bersama-sama cukup untuk memastikan <InlineMath math="n" /> ganjil, tetapi satu pernyataan saja tidak cukup.

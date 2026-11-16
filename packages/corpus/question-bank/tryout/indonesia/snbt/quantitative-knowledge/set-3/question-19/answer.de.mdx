@@ -25,6 +25,39 @@ t(t-6)&=0
 
 Es gibt zwei Werte von <InlineMath math="t" />, nämlich <InlineMath math="0" /> und <InlineMath math="6" />, aber **<InlineMath math="t=0" /> ist unmöglich**, weil <InlineMath math="2^x" /> nie null ist. Übrig bleibt nur <InlineMath math="2^x=6" />, also <InlineMath math="x={}^{2}\log 6" />. Die Gleichung hat nur eine Lösung, die dritte Aussage ist also falsch.
 
+Der Graph von <InlineMath math="f" /> als Funktion von <InlineMath math="t" /> ist nur für <InlineMath math="t>0" /> gezeichnet, weil <InlineMath math="t=2^x" /> immer positiv ist. Sein Tiefpunkt <InlineMath math="(3,-1)" /> liegt in diesem Bereich, während die Gerade <InlineMath math="f=8" /> **die Kurve nur bei <InlineMath math="t=6" /> trifft**, weil <InlineMath math="t=0" /> am Rand liegt, der nicht zählt.
+
+<MathVisual
+  title={<>Die Funktion <InlineMath math="f" /> in der Variablen <InlineMath math="t=2^x" /></>}
+  description={<>Die Parabel <InlineMath math="f=t^2-6t+8" /> für <InlineMath math="t>0" /> fällt bis zum Tiefpunkt <InlineMath math="(3,-1)" /> und steigt dann. Die Gerade <InlineMath math="f=8" /> trifft die Kurve bei <InlineMath math="t=6" />. Der Punkt <InlineMath math="t=0" /> ergibt ebenfalls <InlineMath math="f=8" />, zählt aber nicht, weil <InlineMath math="2^x" /> nie null ist.</>}
+  labels={{
+    f: <InlineMath math="f=t^2-6t+8" />,
+    min: <InlineMath math="(3,-1)" />,
+    level: <InlineMath math="f=8" />,
+    six: <InlineMath math="t=6" />,
+    zero: <InlineMath math="t=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -2, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -1, y: 8 }, to: { x: 7, y: 8 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "x^2 - 6x + 8", domain: { min: 0, max: 6.8 } },
+      { id: "min", kind: "point", appearance: "answer", at: { x: 3, y: -1 } },
+      { id: "six", kind: "point", appearance: "answer", at: { x: 6, y: 8 } },
+      { id: "zero", kind: "point", appearance: "warning", at: { x: 0, y: 8 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5, y: 3 }, placement: "right" },
+      { key: "min", objectId: "min", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "level", objectId: "level", at: { x: 3, y: 8 }, placement: "above" },
+      { key: "six", objectId: "six", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 8 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Vierte Aussage
 
 <BlockMath math="4^x+2^{x+1}-8=t^2+2t-8=(t+4)(t-2)" />

@@ -39,6 +39,38 @@ The discriminant forces <InlineMath math="m<\tfrac43" />, so <InlineMath math="m
 
 Check both ends. For <InlineMath math="m=-7" />, the equation is <InlineMath math="-7x^2+29x-22=-(x-1)(7x-22)=0" />, so one root is exactly <InlineMath math="1" /> and **this end really has to go**. For <InlineMath math="m=-8" />, the equation is <InlineMath math="-8x^2+32x-25=0" /> with roots <InlineMath math="x=2\pm\tfrac{\sqrt{14}}{4}" />. Since <InlineMath math="\sqrt{14}<4" />, both roots lie between <InlineMath math="1" /> and <InlineMath math="3" />, so <InlineMath math="m=-8" /> works.
 
+Graphing three values of <InlineMath math="m" /> shows the boundary. For <InlineMath math="m=-8" />, both crossings with the <InlineMath math="x" />-axis sit right of the line <InlineMath math="x=1" />. For <InlineMath math="m=-7" />, one crossing **sits exactly on that line**, and for <InlineMath math="m=-3" />, one crossing is already to its left.
+
+<MathVisual
+  title={<>The roots for three values of <InlineMath math="m" /></>}
+  description={<>The parabola <InlineMath math="y=-8x^2+32x-25" /> for <InlineMath math="m=-8" /> crosses the <InlineMath math="x" />-axis at two points between <InlineMath math="1" /> and <InlineMath math="3" />. The parabola <InlineMath math="y=-7x^2+29x-22" /> for <InlineMath math="m=-7" /> crosses it at <InlineMath math="1" /> and <InlineMath math="\tfrac{22}{7}" />. The parabola <InlineMath math="y=-3x^2+17x-10" /> for <InlineMath math="m=-3" /> crosses it at <InlineMath math="\tfrac23" /> and <InlineMath math="5" />. The vertical line is <InlineMath math="x=1" />.</>}
+  labels={{
+    good: <InlineMath math="m=-8" />,
+    edge: <InlineMath math="m=-7" />,
+    bad: <InlineMath math="m=-3" />,
+    one: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -6, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line-one", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "curve-bad", kind: "function", appearance: "warning", formula: "-3x^2 + 17x - 10", domain: { min: -0.5, max: 6 } },
+      { id: "curve-edge", kind: "function", appearance: "secondary", formula: "-7x^2 + 29x - 22", domain: { min: -0.5, max: 6 } },
+      { id: "curve-good", kind: "function", appearance: "answer", formula: "-8x^2 + 32x - 25", domain: { min: -0.5, max: 6 } },
+      { id: "root-edge", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "root-bad", kind: "point", appearance: "warning", at: { x: 2 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "good", objectId: "curve-good", at: { x: 2, y: 7 }, placement: "below" },
+      { key: "edge", objectId: "curve-edge", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "bad", objectId: "curve-bad", at: { x: 17 / 6, y: 289 / 12 - 10 }, placement: "above" },
+      { key: "one", objectId: "line-one", at: { x: 1, y: -5 }, placement: "left" },
+    ],
+  }}
+/>
+
 # Traps in the other options
 
 - <InlineMath math="6" /> comes from using the condition <InlineMath math="f(1)=m+7>0" />, which only holds for a parabola that opens upward. Here <InlineMath math="m" /> is negative, so **that condition flips**, and the result wrongly becomes <InlineMath math="-7<m<0" />.

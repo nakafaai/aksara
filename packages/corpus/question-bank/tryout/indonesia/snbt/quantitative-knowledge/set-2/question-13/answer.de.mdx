@@ -10,6 +10,37 @@ Schneide den Kegel genau entlang seiner Achse. Der Schnitt ist ein gleichschenkl
 
 Der höchste Punkt der Kugel liegt auf der Höhe <InlineMath math="2r=6" />, also hat der kleine Kegel darüber die Höhe <InlineMath math="8-6=2" />. Er ist zum großen Kegel ähnlich mit dem Faktor <InlineMath math="k=\tfrac28=\tfrac14" />, und **Volumen skalieren mit der dritten Potenz des Faktors**.
 
+Ein Schnitt durch die Kegelachse zeigt die Lage. Die Kugel wird zum Inkreis des Dreiecks, ihr höchster Punkt liegt auf Höhe <InlineMath math="6" />, und **das kleine Dreieck über der Schnittlinie** ist der Schnitt des kleinen Kegels mit Höhe <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Schnitt durch Kegel, Kugel und Schnittebene</>}
+  description={<>Ein gleichschenkliges Dreieck mit Basis <InlineMath math="12" /> und Höhe <InlineMath math="8" />. Sein Inkreis hat den Radius <InlineMath math="3" /> und den Mittelpunkt auf Höhe <InlineMath math="3" />. Die waagrechte Schnittlinie berührt den Kreis auf Höhe <InlineMath math="6" /> und schneidet das Dreieck auf einer Länge von <InlineMath math="3" />. Das kleine Dreieck darüber hat die Höhe <InlineMath math="2" />.</>}
+  labels={{
+    r: <InlineMath math="r=3" />,
+    cut: <InlineMath math="y=6" />,
+    small: <InlineMath math="2" />,
+    base: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "reference", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 8 }] },
+      { id: "top-cone", kind: "polygon", appearance: "highlight", vertices: [{ x: -3 / 2, y: 6 }, { x: 3 / 2, y: 6 }, { x: 0, y: 8 }] },
+      { id: "ball", kind: "circle", appearance: "primary", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 3, y: 3 } },
+      { id: "cut", kind: "segment", appearance: "secondary", from: { x: -3 / 2, y: 6 }, to: { x: 3 / 2, y: 6 } },
+    ],
+    labels: [
+      { key: "r", objectId: "radius", at: { x: 3 / 2, y: 3 }, placement: "below" },
+      { key: "cut", objectId: "cut", at: { x: 3 / 2, y: 6 }, placement: "right" },
+      { key: "small", objectId: "top-cone", at: { x: 0, y: 7 }, placement: "left" },
+      { key: "base", objectId: "cone", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 V_{\text{groß}}&=\tfrac13\pi\times6^2\times8=96\pi\\
 V_{\text{klein}}&=\left(\tfrac14\right)^3\times96\pi=\tfrac{3}{2}\pi

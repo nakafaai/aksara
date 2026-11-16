@@ -23,6 +23,20 @@ So <InlineMath math="u_n=7+4(n-1)=4n+3" />.
 
 Write <InlineMath math="4n+3=3(n+1)+n" />. The part <InlineMath math="3(n+1)" /> is always divisible by <InlineMath math="3" />, so **<InlineMath math="4n+3" /> is divisible by <InlineMath math="3" /> exactly when <InlineMath math="n" /> is**. The terms you want are the <InlineMath math="3" />rd, the <InlineMath math="6" />th, and so on up to the <InlineMath math="48" />th, because <InlineMath math="51" /> is already past <InlineMath math="50" />.
 
+A chart of the first twelve terms shows the pattern. The bars divisible by <InlineMath math="3" /> show up **once every three terms**, at positions <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="9" />, and <InlineMath math="12" />, and their values rise by <InlineMath math="12" /> each time.
+
+<Chart
+  title={<>The first twelve terms of <InlineMath math="u_n=4n+3" /></>}
+  description={<>The terms <InlineMath math="7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 51" /> are drawn as bars by position. Terms <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="9" />, and <InlineMath math="12" />, which are <InlineMath math="15" />, <InlineMath math="27" />, <InlineMath math="39" />, and <InlineMath math="51" />, are divisible by <InlineMath math="3" />. The others aren't.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Divisible by 3", mark: "bar", values: Array.from({ length: 12 }, (_, i) => ((i + 1) % 3 === 0 ? 4 * (i + 1) + 3 : null)) },
+    { label: "Not divisible by 3", mark: "bar", values: Array.from({ length: 12 }, (_, i) => ((i + 1) % 3 === 0 ? null : 4 * (i + 1) + 3)) },
+  ]}
+  valueLabel="Value of the term"
+/>
+
 <BlockMath math="\text{number of terms}=\frac{48-3}{3}+1=16" />
 
 These terms start at <InlineMath math="u_3=15" />, end at <InlineMath math="u_{48}=195" />, and form a new arithmetic sequence with difference <InlineMath math="3\cdot4=12" />.

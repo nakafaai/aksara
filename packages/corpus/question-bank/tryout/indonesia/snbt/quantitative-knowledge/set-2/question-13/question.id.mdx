@@ -1,3 +1,27 @@
 Sebuah kerucut tegak memiliki jari-jari alas <InlineMath math="6\text{ cm}" /> dan tinggi <InlineMath math="8\text{ cm}" />. Sebuah bola di dalam kerucut menyinggung alas kerucut dan menyinggung selimut kerucut di sepanjang sebuah lingkaran. Bidang yang sejajar alas dan menyinggung bola di titik teratasnya membagi kerucut menjadi kerucut kecil di bagian atas dan kerucut terpancung di bagian bawah.
 
+<MathVisual
+  title={<>Penampang kerucut dan bola di dalamnya</>}
+  description={<>Penampang melalui sumbu kerucut berupa segitiga sama kaki dengan alas <InlineMath math="12\text{ cm}" /> dan tinggi <InlineMath math="8\text{ cm}" />. Bola tampak sebagai lingkaran yang menyinggung alas dan kedua sisi miring. Garis mendatar menyinggung lingkaran di titik teratasnya dan memotong kerucut.</>}
+  labels={{
+    base: <InlineMath math="12\text{ cm}" />,
+    height: <InlineMath math="8\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "reference", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 8 }] },
+      { id: "ball", kind: "circle", appearance: "primary", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "cut", kind: "segment", appearance: "secondary", from: { x: -3 / 2, y: 6 }, to: { x: 3 / 2, y: 6 } },
+    ],
+    labels: [
+      { key: "base", objectId: "cone", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "height", objectId: "axis", at: { x: 0, y: 7 }, placement: "left" },
+    ],
+  }}
+/>
+
 Perbandingan volume bagian kerucut terpancung yang tidak ditempati bola dengan volume bola adalah ....

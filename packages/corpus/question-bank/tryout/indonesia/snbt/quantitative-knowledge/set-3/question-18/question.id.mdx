@@ -2,4 +2,30 @@ Jaringan jalan sebuah kawasan berbentuk petak-petak persegi. Setiap persimpangan
 
 Kurir itu harus melewati persimpangan <InlineMath math="P(2,1)" />. Selain itu, ruas jalan yang menghubungkan persimpangan <InlineMath math="(3,2)" /> dan <InlineMath math="(4,2)" /> sedang ditutup, tetapi kedua persimpangan itu tetap boleh dilewati.
 
+<MathVisual
+  title={<>Jaringan jalan dari <InlineMath math="A(0,0)" /> ke <InlineMath math="B(6,4)" /></>}
+  description={<>Kisi jalan dengan persimpangan berkoordinat bulat dari <InlineMath math="(0,0)" /> sampai <InlineMath math="(6,4)" />. Titik <InlineMath math="P(2,1)" /> harus dilewati. Ruas jalan dari <InlineMath math="(3,2)" /> ke <InlineMath math="(4,2)" /> ditandai sebagai ruas yang ditutup.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    p: <InlineMath math="P" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "closed", kind: "segment", appearance: "warning", from: { x: 3, y: 2 }, to: { x: 4, y: 2 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Banyak lintasan terpendek berbeda yang dapat dipilih kurir itu adalah ....

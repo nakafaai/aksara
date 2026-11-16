@@ -12,6 +12,38 @@ p^2&=9
 
 There are two candidates, <InlineMath math="p=3" /> or <InlineMath math="p=-3" />. The problem says **both roots are positive**, so their sum is positive: <InlineMath math="-p>0" />. The candidate <InlineMath math="p=3" /> is rejected because it gives a root sum of <InlineMath math="-3" />. So <InlineMath math="p=-3" />, the equation is <InlineMath math="x^2-3x+1=0" />, and <InlineMath math="\alpha+\beta=3" /> and <InlineMath math="\alpha\beta=1" />. The discriminant is <InlineMath math="9-4=5>0" />, so both roots really are real.
 
+Graphing both candidate equations shows why. The parabola for <InlineMath math="p=3" /> crosses the <InlineMath math="x" />-axis at two negative points, while the parabola for <InlineMath math="p=-3" /> crosses it at two positive points. Only **the second parabola fits the condition of two positive roots**.
+
+<MathVisual
+  title={<>The two candidate values of <InlineMath math="p" /></>}
+  description={<>The parabola <InlineMath math="y=x^2+3x+1" /> for <InlineMath math="p=3" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="\tfrac{-3-\sqrt5}{2}" /> and <InlineMath math="\tfrac{-3+\sqrt5}{2}" />, both negative. The parabola <InlineMath math="y=x^2-3x+1" /> for <InlineMath math="p=-3" /> crosses it at <InlineMath math="\tfrac{3-\sqrt5}{2}" /> and <InlineMath math="\tfrac{3+\sqrt5}{2}" />, both positive.</>}
+  labels={{
+    rejected: <InlineMath math="p=3" />,
+    kept: <InlineMath math="p=-3" />,
+    alpha: <InlineMath math="\alpha" />,
+    beta: <InlineMath math="\beta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve-rejected", kind: "function", appearance: "warning", formula: "x^2 + 3x + 1", domain: { min: -4.5, max: 1 } },
+      { id: "curve-kept", kind: "function", appearance: "answer", formula: "x^2 - 3x + 1", domain: { min: -1, max: 4.5 } },
+      { id: "root-rejected-left", kind: "point", appearance: "warning", at: { x: (-3 - Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-rejected-right", kind: "point", appearance: "warning", at: { x: (-3 + Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-alpha", kind: "point", appearance: "answer", at: { x: (3 - Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-beta", kind: "point", appearance: "answer", at: { x: (3 + Math.sqrt(5)) / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "rejected", objectId: "curve-rejected", at: { x: -3.5, y: 2.75 }, placement: "left" },
+      { key: "kept", objectId: "curve-kept", at: { x: 3.5, y: 2.75 }, placement: "right" },
+      { key: "alpha", objectId: "root-alpha", at: { x: (3 - Math.sqrt(5)) / 2, y: 0 }, placement: "below" },
+      { key: "beta", objectId: "root-beta", at: { x: (3 + Math.sqrt(5)) / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Simplifying the cubes
 
 Since <InlineMath math="\alpha" /> is a root, <InlineMath math="\alpha^2-3\alpha+1=0" />, or <InlineMath math="\alpha^2=3\alpha-1" />. That lets you **replace every <InlineMath math="\alpha^2" /> with <InlineMath math="3\alpha-1" />**. For <InlineMath math="\alpha^3" />, first multiply <InlineMath math="\alpha^2" /> by <InlineMath math="\alpha" />, then replace the <InlineMath math="\alpha^2" /> that shows up again.

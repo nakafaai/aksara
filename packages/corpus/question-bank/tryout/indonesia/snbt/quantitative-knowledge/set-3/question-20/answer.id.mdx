@@ -28,6 +28,22 @@ Cari <InlineMath math="n" /> terkecil yang memenuhi setiap prima secara terpisah
 
 Jadi prima <InlineMath math="5" /> butuh <InlineMath math="n\ge 25" />, prima <InlineMath math="3" /> butuh <InlineMath math="n\ge 27" />, dan prima <InlineMath math="2" /> butuh <InlineMath math="n\ge 20" />. Banyak faktor <InlineMath math="3" /> **melompat dari <InlineMath math="10" /> ke <InlineMath math="13" />** di <InlineMath math="n=27" />, karena <InlineMath math="27=3^3" /> menyumbang tiga faktor sekaligus. Ketiga syarat terpenuhi bersama tepat ketika <InlineMath math="n\ge 27" />.
 
+Grafik berikut menghitung faktor <InlineMath math="3" /> dan <InlineMath math="5" /> dalam <InlineMath math="n!" /> untuk <InlineMath math="n=20" /> sampai <InlineMath math="28" />. Batang faktor <InlineMath math="5" /> sudah menyentuh garisnya di <InlineMath math="n=25" />, tetapi **batang faktor <InlineMath math="3" /> baru melewati garis <InlineMath math="12" /> di <InlineMath math="n=27" />**.
+
+<Chart
+  title={<>Banyak faktor <InlineMath math="3" /> dan <InlineMath math="5" /> dalam <InlineMath math="n!" /></>}
+  description={<>Untuk <InlineMath math="n=20" /> sampai <InlineMath math="26" />, banyak faktor <InlineMath math="3" /> naik dari <InlineMath math="8" /> ke <InlineMath math="10" />, lalu melompat ke <InlineMath math="13" /> di <InlineMath math="n=27" />. Banyak faktor <InlineMath math="5" /> naik dari <InlineMath math="4" /> ke <InlineMath math="6" /> di <InlineMath math="n=25" />. Garis menandai kebutuhan <InlineMath math="12" /> faktor <InlineMath math="3" /> dan <InlineMath math="6" /> faktor <InlineMath math="5" />.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 20}`)}
+  series={[
+    { label: "Faktor 3 dalam n!", mark: "bar", values: Array.from({ length: 9 }, (_, i) => Math.floor((i + 20) / 3) + Math.floor((i + 20) / 9) + Math.floor((i + 20) / 27)) },
+    { label: "Faktor 5 dalam n!", mark: "bar", values: Array.from({ length: 9 }, (_, i) => Math.floor((i + 20) / 5) + Math.floor((i + 20) / 25)) },
+    { label: "Butuh 12 faktor 3", mark: "line", values: Array.from({ length: 9 }, () => 12) },
+    { label: "Butuh 6 faktor 5", mark: "line", values: Array.from({ length: 9 }, () => 6) },
+  ]}
+  bars="apart"
+  valueLabel="Banyak faktor"
+/>
+
 # Memeriksa hasilnya
 
 Untuk <InlineMath math="n=27" />, banyak faktor <InlineMath math="2" /> adalah <InlineMath math="13+6+3+1=23\ge 18" />, faktor <InlineMath math="3" /> ada <InlineMath math="13\ge 12" />, dan faktor <InlineMath math="5" /> ada <InlineMath math="5+1=6" />. Untuk <InlineMath math="n=26" />, faktor <InlineMath math="3" /> **hanya <InlineMath math="10" />**, jadi <InlineMath math="26!" /> belum habis dibagi.

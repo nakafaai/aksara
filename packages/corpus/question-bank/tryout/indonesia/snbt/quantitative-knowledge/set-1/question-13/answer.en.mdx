@@ -26,6 +26,20 @@ P(\text{two red}\mid\text{white moved})&=\frac{\binom22}{21}=\frac{1}{21}
 
 Each case is **multiplied by the probability that the case happens**, and then the results are added.
 
+The tree diagram below shows both branches. The probability at each end is **the product of the probabilities along its branch**, and then the two ends are added.
+
+<Mermaid
+  title={<>Probability tree for moving the ball</>}
+  description={<>A red ball moves with probability <InlineMath math="\tfrac35" />, so bag B holds <InlineMath math="3" /> red and <InlineMath math="4" /> white, and two red has probability <InlineMath math="\tfrac17" />. A white ball moves with probability <InlineMath math="\tfrac25" />, so bag B holds <InlineMath math="2" /> red and <InlineMath math="5" /> white, and two red has probability <InlineMath math="\tfrac1{21}" />. The two branches give <InlineMath math="\tfrac{9}{105}" /> and <InlineMath math="\tfrac{2}{105}" />.</>}
+  chart={`flowchart LR
+    A["Bag A: 3 red, 2 white"] -->|"red moved, 3/5"| B1["Bag B: 3 red, 4 white"]
+    A -->|"white moved, 2/5"| B2["Bag B: 2 red, 5 white"]
+    B1 -->|"two red, 3/21 = 1/7"| C1["3/5 x 1/7 = 9/105"]
+    B2 -->|"two red, 1/21"| C2["2/5 x 1/21 = 2/105"]
+    C1 --> T["Total 11/105"]
+    C2 --> T`}
+/>
+
 <BlockMath math="\begin{aligned}
 P(\text{two red})&=\frac35\cdot\frac17+\frac25\cdot\frac1{21}\\
 &=\frac{9}{105}+\frac{2}{105}=\frac{11}{105}

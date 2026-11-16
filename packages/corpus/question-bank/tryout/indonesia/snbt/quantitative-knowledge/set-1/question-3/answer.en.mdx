@@ -25,6 +25,37 @@ Square <InlineMath math="x-\frac1x" /> as well.
 
 The value of <InlineMath math="x-\frac1x" /> can be <InlineMath math="1" /> or <InlineMath math="-1" />, because <InlineMath math="x" /> may be bigger or smaller than <InlineMath math="1" />. You really can't pin down that sign. But <InlineMath math="Q" /> is a square, so **the sign disappears once it's squared**.
 
+The graph below shows where those two signs come from. The line <InlineMath math="y=3" /> cuts the curve <InlineMath math="y=x^2+\frac1{x^2}" /> at two points: one left of <InlineMath math="x=1" />, where <InlineMath math="x-\frac1x=-1" />, and one right of <InlineMath math="x=1" />, where <InlineMath math="x-\frac1x=1" />. **Both meet the condition**, so the sign really can't be chosen.
+
+<MathVisual
+  title={<>The two values of <InlineMath math="x" /> that fit the condition</>}
+  description={<>For <InlineMath math="x>0" />, the curve <InlineMath math="y=x^2+\tfrac{1}{x^2}" /> falls to its lowest point <InlineMath math="(1,2)" /> and then rises again. The line <InlineMath math="y=3" /> cuts it at <InlineMath math="x=\tfrac{\sqrt5-1}{2}" />, which is less than <InlineMath math="1" />, and at <InlineMath math="x=\tfrac{1+\sqrt5}{2}" />, which is more than <InlineMath math="1" />. The short line at <InlineMath math="x=1" /> separates the two points.</>}
+  labels={{
+    curve: <InlineMath math="y=x^2+\tfrac{1}{x^2}" />,
+    small: <InlineMath math="\tfrac{\sqrt5-1}{2}" />,
+    large: <InlineMath math="\tfrac{1+\sqrt5}{2}" />,
+    level: <InlineMath math="y=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 + 1/x^2", domain: { min: 0.37, max: 2.7 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 3, y: 3 } },
+      { id: "one", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "small", kind: "point", appearance: "answer", at: { x: (Math.sqrt(5) - 1) / 2, y: 3 } },
+      { id: "large", kind: "point", appearance: "answer", at: { x: (1 + Math.sqrt(5)) / 2, y: 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.5, y: 6.25 + 1 / 6.25 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 2.8, y: 3 }, placement: "below" },
+      { key: "small", objectId: "small", at: { x: (Math.sqrt(5) - 1) / 2, y: 3 }, placement: "above-left" },
+      { key: "large", objectId: "large", at: { x: (1 + Math.sqrt(5)) / 2, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 <BlockMath math="Q=\left(x^2-\frac1{x^2}\right)^2=\left(x+\frac1x\right)^2\left(x-\frac1x\right)^2=5\cdot1=5" />
 
 # Comparing the two quantities

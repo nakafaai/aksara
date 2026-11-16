@@ -41,6 +41,40 @@ A meeting point satisfies <InlineMath math="f(x)=f^{-1}(x)" /> with <InlineMath 
 
 The only solution is <InlineMath math="x=1" />, and <InlineMath math="f(1)=\frac22=1" />. The two graphs **meet at exactly the point <InlineMath math="(1,1)" />**, so the third statement is true.
 
+The graphs of both functions show the same result. The graph of <InlineMath math="f^{-1}" /> mirrors the graph of <InlineMath math="f" /> in the line <InlineMath math="y=x" />. The double root of <InlineMath math="4(x-1)^2=0" /> shows up as **both curves only touching the line <InlineMath math="y=x" /> at one point**, without crossing to the other side.
+
+<MathVisual
+  title={<>The graphs of <InlineMath math="f" />, <InlineMath math="f^{-1}" />, and the line <InlineMath math="y=x" /></>}
+  description={<>The graph of <InlineMath math="f(x)=\tfrac{3x-1}{x+1}" /> has asymptotes <InlineMath math="x=-1" /> and <InlineMath math="y=3" />. The graph of <InlineMath math="f^{-1}(x)=\tfrac{x+1}{3-x}" /> has asymptotes <InlineMath math="x=3" /> and <InlineMath math="y=-1" />. The two graphs mirror each other in <InlineMath math="y=x" /> and meet only at <InlineMath math="(1,1)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    mirror: <InlineMath math="y=x" />,
+    meet: <InlineMath math="(1,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 9 }, y: { min: -7, max: 9 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "asymptote-f-vertical", kind: "line", appearance: "construction", through: [{ x: -1, y: 0 }, { x: -1, y: 1 }] },
+      { id: "asymptote-f-horizontal", kind: "line", appearance: "construction", through: [{ x: 0, y: 3 }, { x: 1, y: 3 }] },
+      { id: "asymptote-inverse-vertical", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "asymptote-inverse-horizontal", kind: "line", appearance: "construction", through: [{ x: 0, y: -1 }, { x: 1, y: -1 }] },
+      { id: "mirror", kind: "line", appearance: "reference", through: [{ x: 0, y: 0 }, { x: 2, y: 2 }] },
+      { id: "f", kind: "function", appearance: "primary", formula: "(3x - 1)/(x + 1)", domain: { min: -7, max: 9 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "(x + 1)/(3 - x)", domain: { min: -7, max: 9 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: -4, y: 13 / 3 }, placement: "above-left" },
+      { key: "inverse", objectId: "inverse", at: { x: 5, y: -3 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 7, y: 7 }, placement: "above-left" },
+      { key: "meet", objectId: "meet", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Checking the results
 
 Test the composition formula at <InlineMath math="x=2" />. Working it out directly gives <InlineMath math="f(2)=\frac53" /> and <InlineMath math="f\left(\frac53\right)=\frac{4}{\frac83}=\frac32" />. The formula <InlineMath math="\frac{2x-1}{x}" /> also gives <InlineMath math="\frac32" />, so **the formula matches at an allowed point**. Test the inverse too: <InlineMath math="f^{-1}(2)=\frac{2+1}{3-2}=3" />, and indeed <InlineMath math="f(3)=\frac{8}{4}=2" />.

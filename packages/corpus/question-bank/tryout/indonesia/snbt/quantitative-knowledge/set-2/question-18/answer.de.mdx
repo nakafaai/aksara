@@ -12,6 +12,20 @@ Aus <InlineMath math="9" /> Schülern gibt es <InlineMath math="\binom94=126" />
 
 Sind Andi und Budi beide dabei, kommen die anderen zwei Mitglieder aus den übrigen <InlineMath math="7" /> Schülern: <InlineMath math="\binom72=21" /> Komitees. Davon bestehen aber <InlineMath math="\binom32=3" /> nur aus Jungen, nämlich Andi, Budi und zwei der drei anderen Jungen. Diese drei Komitees **wurden schon im ersten Schritt entfernt**, also entfernst du sie nicht ein zweites Mal. Gemischte Komitees mit Andi und Budi gibt es <InlineMath math="21-3=18" />.
 
+Das Diagramm teilt die <InlineMath math="21" /> Ausschüsse mit Andi und Budi nach den beiden übrigen Mitgliedern auf. Nur **die beiden rechten Balken** müssen noch von den <InlineMath math="120" /> abgezogen werden.
+
+<Chart
+  title={<>Ausschüsse mit Andi und Budi</>}
+  description={<>Die beiden übrigen Mitglieder können zwei Jungen sein, in <InlineMath math="3" /> Ausschüssen, ein Junge und ein Mädchen, in <InlineMath math="3\times4=12" /> Ausschüssen, oder zwei Mädchen, in <InlineMath math="6" /> Ausschüssen. Die drei reinen Jungenausschüsse sind schon im ersten Schritt weggefallen, also werden jetzt <InlineMath math="12+6=18" /> entfernt.</>}
+  categories={["Zwei weitere Jungen", "Ein Junge, ein Mädchen", "Zwei Mädchen"]}
+  bars="apart"
+  series={[
+    { label: "Schon im ersten Schritt entfernt", mark: "bar", values: [3, null, null] },
+    { label: "Jetzt entfernt", mark: "bar", values: [null, 3 * 4, 6] },
+  ]}
+  valueLabel="Anzahl der Ausschüsse"
+/>
+
 # Das Endergebnis
 
 <BlockMath math="120-18=102" />

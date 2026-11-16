@@ -27,6 +27,41 @@ Test the other edge midpoints in <InlineMath math="x-y+z=3" />.
 
 So the plane passes through six edge midpoints: those of <InlineMath math="AB" />, <InlineMath math="BC" />, <InlineMath math="CG" />, <InlineMath math="GH" />, <InlineMath math="HE" />, and <InlineMath math="EA" />. A cube has only six faces, so a cross-section has at most six sides. **The cross-section is a hexagon** with these six midpoints as its corners.
 
+The cube below shows the cross-section. The plane doesn't stop at triangle <InlineMath math="PQR" />. It keeps cutting three more edges, so **the cross-section is a hexagon** whose corners are edge midpoints.
+
+<MathVisual
+  title={<>The cross-section of plane <InlineMath math="PQR" /> and the cube</>}
+  description={<>Cube <InlineMath math="ABCD.EFGH" /> with edge <InlineMath math="6" /> is cut by the plane <InlineMath math="x-y+z=3" />. The cross-section is a hexagon with corners at the midpoints of edges <InlineMath math="AB" />, <InlineMath math="BC" />, <InlineMath math="CG" />, <InlineMath math="GH" />, <InlineMath math="HE" />, and <InlineMath math="EA" />. Points <InlineMath math="P" />, <InlineMath math="Q" />, and <InlineMath math="R" /> are three of them. Rotate the figure to see that all six sides are equal.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    r: <InlineMath math="R" />,
+    a: <InlineMath math="A" />,
+    g: <InlineMath math="G" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -1, max: 7 }, z: { min: -1, max: 7 } },
+    view: { kind: "camera", position: { x: 15, y: -9, z: 11 }, target: { x: 3, y: 3, z: 3 } },
+    objects: [
+      { id: "cube", kind: "cuboid", appearance: "reference", center: { x: 3, y: 3, z: 3 }, size: { length: 6, width: 6, height: 6 } },
+      { id: "hexagon", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0, z: 0 }, { x: 6, y: 3, z: 0 }, { x: 6, y: 6, z: 3 }, { x: 3, y: 6, z: 6 }, { x: 0, y: 3, z: 6 }, { x: 0, y: 0, z: 3 }] },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 3, y: 0, z: 0 } },
+      { id: "point-q", kind: "point", appearance: "highlight", at: { x: 6, y: 3, z: 0 } },
+      { id: "point-r", kind: "point", appearance: "highlight", at: { x: 3, y: 6, z: 6 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0, z: 0 } },
+      { id: "point-g", kind: "point", appearance: "reference", at: { x: 6, y: 6, z: 6 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 3, y: 0, z: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 6, y: 3, z: 0 }, placement: "below-right" },
+      { key: "r", objectId: "point-r", at: { x: 3, y: 6, z: 6 }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "g", objectId: "point-g", at: { x: 6, y: 6, z: 6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Computing the area of the hexagon
 
 Two neighbouring midpoints, such as <InlineMath math="P" /> and <InlineMath math="Q" />, are <InlineMath math="\sqrt{3^2+3^2+0^2}=3\sqrt2" /> apart. The same work shows all six sides are equal. The centre of the cube, <InlineMath math="(3,3,3)" />, also satisfies <InlineMath math="3-3+3=3" />, and its distance to each corner is <InlineMath math="3\sqrt2" /> as well, for example to <InlineMath math="P" /> through the difference <InlineMath math="(0,-3,-3)" />. So the hexagon **splits into six equilateral triangles** with side <InlineMath math="3\sqrt2" />. The hexagon's area <InlineMath math="L" /> is six times the area of one of them.

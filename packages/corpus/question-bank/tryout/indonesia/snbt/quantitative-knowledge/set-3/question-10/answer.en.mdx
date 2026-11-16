@@ -24,6 +24,43 @@ There are <InlineMath math="\binom{6}{3}=20" /> triangles whose vertices come fr
 
 A long diagonal passes through <InlineMath math="O" />, so a triangle that uses that diagonal as a side has <InlineMath math="O" /> right on its side. Three neighbouring vertices lie on one side of the line joining the two outer ones, and that line misses <InlineMath math="O" />, so <InlineMath math="O" /> is outside. **Only the equilateral triangles <InlineMath math="ACE" /> and <InlineMath math="BDF" />** contain <InlineMath math="O" /> inside, because the centre of each of them is exactly <InlineMath math="O" />.
 
+The hexagon below shows all three types. The long diagonal <InlineMath math="AD" /> passes through <InlineMath math="O" />, so every triangle that uses it as a side **puts <InlineMath math="O" /> right on that side**. Only triangles <InlineMath math="ACE" /> and <InlineMath math="BDF" /> enclose <InlineMath math="O" /> inside.
+
+<MathVisual
+  title={<>A regular hexagon and the triangles that contain its centre</>}
+  description={<>The regular hexagon <InlineMath math="ABCDEF" /> has centre <InlineMath math="O" />. The equilateral triangles <InlineMath math="ACE" /> and <InlineMath math="BDF" /> form a star with <InlineMath math="O" /> in the middle of both. The long diagonal <InlineMath math="AD" /> passes through <InlineMath math="O" />, so a triangle like <InlineMath math="ABD" /> has <InlineMath math="O" /> on its side.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hexagon", kind: "polygon", appearance: "reference", vertices: [{ x: 4, y: 0 }, { x: 2, y: 2 * Math.sqrt(3) }, { x: -2, y: 2 * Math.sqrt(3) }, { x: -4, y: 0 }, { x: -2, y: -2 * Math.sqrt(3) }, { x: 2, y: -2 * Math.sqrt(3) }] },
+      { id: "ace", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0 }, { x: -2, y: 2 * Math.sqrt(3) }, { x: -2, y: -2 * Math.sqrt(3) }] },
+      { id: "bdf", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: -4, y: 0 }, { x: 2, y: -2 * Math.sqrt(3) }] },
+      { id: "diagonal", kind: "segment", appearance: "warning", from: { x: 4, y: 0 }, to: { x: -4, y: 0 } },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "hexagon", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "b", objectId: "hexagon", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "c", objectId: "hexagon", at: { x: -2, y: 2 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "d", objectId: "hexagon", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "e", objectId: "hexagon", at: { x: -2, y: -2 * Math.sqrt(3) }, placement: "below-left" },
+      { key: "f", objectId: "hexagon", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below-right" },
+      { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # The probability and a check
 
 <BlockMath math="P=\frac{2}{35}" />

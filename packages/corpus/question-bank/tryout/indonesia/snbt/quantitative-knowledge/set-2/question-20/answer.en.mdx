@@ -16,6 +16,38 @@ The positive divisors of <InlineMath math="36" /> are <InlineMath math="1" />, <
 
 The positive pairs <InlineMath math="(m,n)" /> with <InlineMath math="m<n" /> give <InlineMath math="(x,y)" /> equal to <InlineMath math="(37,35)" />, <InlineMath math="(20,16)" />, <InlineMath math="(15,9)" />, and <InlineMath math="(13,5)" />. Each of these gives four pairs because the signs of <InlineMath math="x" /> and <InlineMath math="y" /> are free, so there are <InlineMath math="4\times4=16" />. The pair <InlineMath math="m=n=6" /> gives <InlineMath math="y=0" />, and here there are **only two pairs**, <InlineMath math="(12,0)" /> and <InlineMath math="(-12,0)" />, because <InlineMath math="0" /> and <InlineMath math="-0" /> are the same. The total is <InlineMath math="16+2=18" />, which matches.
 
+The hyperbola below marks the lattice points in the first quadrant and the point <InlineMath math="(12,0)" />. Every point with <InlineMath math="y\ne0" /> **has three mirror images** in the other quadrants, while <InlineMath math="(12,0)" /> has only one, <InlineMath math="(-12,0)" />.
+
+<MathVisual
+  title={<>The hyperbola <InlineMath math="x^2-y^2=144" /> and its lattice points</>}
+  description={<>The hyperbola has a right and a left branch, symmetric about both axes. The lattice points <InlineMath math="(13,5)" />, <InlineMath math="(15,9)" />, <InlineMath math="(20,16)" />, and <InlineMath math="(37,35)" /> lie in the first quadrant, and each one has partners with the sign of <InlineMath math="x" /> or <InlineMath math="y" /> flipped. The point <InlineMath math="(12,0)" /> lies on the <InlineMath math="x" />-axis and only has the partner <InlineMath math="(-12,0)" />.</>}
+  labels={{
+    curve: <InlineMath math="x^2-y^2=144" />,
+    p0: <InlineMath math="(12,0)" />,
+    p2: <InlineMath math="(20,16)" />,
+    p4: <InlineMath math="(37,35)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -40, max: 40 }, y: { min: -40, max: 40 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "curve", kind: "implicit", appearance: "primary", equation: "x^2 - y^2 = 144" },
+      { id: "p0", kind: "point", appearance: "highlight", at: { x: 12, y: 0 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 13, y: 5 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 15, y: 9 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 20, y: 16 } },
+      { id: "p4", kind: "point", appearance: "answer", at: { x: 37, y: 35 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -20, y: 16 }, placement: "above-left" },
+      { key: "p0", objectId: "p0", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "p2", objectId: "p2", at: { x: 20, y: 16 }, placement: "right" },
+      { key: "p4", objectId: "p4", at: { x: 37, y: 35 }, placement: "left" },
+    ],
+  }}
+/>
+
 # Common mistakes
 
 - The result <InlineMath math="16" /> forgets the solutions with <InlineMath math="y=0" />.

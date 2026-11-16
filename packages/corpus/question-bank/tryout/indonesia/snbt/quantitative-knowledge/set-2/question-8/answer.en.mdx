@@ -15,6 +15,21 @@ From <InlineMath math="c=b" />, the difference becomes <InlineMath math="\tfrac{
 
 From <InlineMath math="d>a" />, the term <InlineMath math="d-a" /> is positive, but <InlineMath math="c-b" /> can be negative and pull the mean down. So **a top end that reaches farther doesn't guarantee a mean above the median**. The data <InlineMath math="2,\ 10,\ 10,\ 10,\ 19" /> satisfy statement (2), since <InlineMath math="19-10=9>8=10-2" />, and their mean is <InlineMath math="\tfrac{51}{5}>10" />. The data <InlineMath math="2,\ 8,\ 10,\ 10,\ 19" /> also satisfy statement (2), but their mean is <InlineMath math="\tfrac{49}{5}<10" />. Statement (2) alone isn't enough.
 
+The chart below puts both examples for statement (2) side by side. The top and bottom ends are the same, but in the second example **<InlineMath math="x_2" /> drops from <InlineMath math="10" /> to <InlineMath math="8" />**. That drop is enough to pull the mean from <InlineMath math="\tfrac{51}{5}" /> down to <InlineMath math="\tfrac{49}{5}" />, below the median <InlineMath math="10" />.
+
+<Chart
+  title={<>Two data sets that both satisfy statement (2)</>}
+  description={<>The first data set, <InlineMath math="2, 10, 10, 10, 19" />, has mean <InlineMath math="\tfrac{51}{5}" />, above the median <InlineMath math="10" />. The second, <InlineMath math="2, 8, 10, 10, 19" />, has mean <InlineMath math="\tfrac{49}{5}" />, below the median <InlineMath math="10" />. In both, the largest value is <InlineMath math="9" /> from the median and the smallest is <InlineMath math="8" /> from it.</>}
+  bars="apart"
+  categories={["x1", "x2", "x3", "x4", "x5"]}
+  series={[
+    { label: "Data 2, 10, 10, 10, 19", mark: "bar", values: [2, 10, 10, 10, 19] },
+    { label: "Data 2, 8, 10, 10, 19", mark: "bar", values: [2, 8, 10, 10, 19] },
+    { label: "Median", mark: "line", values: [10, 10, 10, 10, 10] },
+  ]}
+  valueLabel="Value"
+/>
+
 # Both statements together
 
 Combine <InlineMath math="c=b" /> and <InlineMath math="d>a" />. The term <InlineMath math="c-b" /> **drops out because it's zero**, and the remaining term is positive.

@@ -34,6 +34,36 @@ G(-1)&=1\cdot P(-1)=1=-c+d\\
 d&=\tfrac{15+1}{2}=8,\quad c=15-8=7
 \end{aligned}" />
 
+Untuk contoh <InlineMath math="P(x)=2x+3" />, grafik berikut memperlihatkan arti sisa itu. Garis sisa <InlineMath math="y=7x+8" /> **memotong grafik <InlineMath math="G" /> tepat di <InlineMath math="x=-1" /> dan <InlineMath math="x=1" />**, akar pembagi <InlineMath math="x^2-1" />, karena di kedua titik itu bagian yang habis dibagi bernilai nol.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="G(x)=(x+2)(2x+3)" /> dan garis sisanya</>}
+  description={<>Parabola <InlineMath math="y=(x+2)(2x+3)" /> dan garis <InlineMath math="y=7x+8" /> bertemu di <InlineMath math="(-1,1)" /> dan <InlineMath math="(1,15)" />. Di luar kedua titik itu, keduanya berpisah sejauh <InlineMath math="2(x^2-1)" />.</>}
+  labels={{
+    g: <InlineMath math="y=(x+2)(2x+3)" />,
+    rest: <InlineMath math="y=7x+8" />,
+    left: <InlineMath math="(-1,1)" />,
+    right: <InlineMath math="(1,15)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 2.5 }, y: { min: -4, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "(x + 2)(2x + 3)", domain: { min: -3.5, max: 2.2 } },
+      { id: "rest", kind: "function", appearance: "secondary", formula: "7x + 8", domain: { min: -1.7, max: 2 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -1, y: 1 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 1, y: 15 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: -3, y: 3 }, placement: "left" },
+      { key: "rest", objectId: "rest", at: { x: 2, y: 22 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: -1, y: 1 }, placement: "below-right" },
+      { key: "right", objectId: "right", at: { x: 1, y: 15 }, placement: "left" },
+    ],
+  }}
+/>
+
 Sisanya <InlineMath math="7x+8" />.
 
 # Memeriksa dengan cara lain

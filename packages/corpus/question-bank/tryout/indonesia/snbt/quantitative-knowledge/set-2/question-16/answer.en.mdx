@@ -20,6 +20,40 @@ Triangle <InlineMath math="ABD" /> is isosceles because <InlineMath math="AB=AD"
 
 The angles <InlineMath math="ACB" /> and <InlineMath math="ADB" /> both stand on the chord <InlineMath math="AB" />, and the points <InlineMath math="C" /> and <InlineMath math="D" /> lie on the same arc. **Inscribed angles that stand on the same arc are equal**, so <InlineMath math="\angle ACB=54^\circ" /> wherever <InlineMath math="C" /> sits on the arc <InlineMath math="BD" />.
 
+The figure below shows both inscribed angles. Angle <InlineMath math="ACB" /> at <InlineMath math="C" /> and angle <InlineMath math="ADB" /> at <InlineMath math="D" /> **both stand on the chord <InlineMath math="AB" />** from the same arc, so they're equal.
+
+<MathVisual
+  title={<>Cyclic quadrilateral <InlineMath math="ABCD" /> with <InlineMath math="AB=AD" /></>}
+  description={<>Points <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" /> lie in order on the circle, with <InlineMath math="\angle BAD=72^\circ" /> and <InlineMath math="AB=AD" />. Angle <InlineMath math="ADB" /> at <InlineMath math="D" /> measures <InlineMath math="54^\circ" />. Angle <InlineMath math="ACB" /> at <InlineMath math="C" /> stands on the same chord <InlineMath math="AB" />, so it's <InlineMath math="54^\circ" /> too.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    atc: <InlineMath math="54^\circ" />,
+    atd: <InlineMath math="54^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "quad", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: -5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, { x: 0, y: -5 }, { x: 5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }] },
+      { id: "chord-ac", kind: "segment", appearance: "highlight", from: { x: 0, y: 5 }, to: { x: 0, y: -5 } },
+      { id: "chord-db", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, to: { x: -5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) } },
+    ],
+    labels: [
+      { key: "a", objectId: "quad", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "quad", at: { x: -5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, placement: "left" },
+      { key: "c", objectId: "quad", at: { x: 0, y: -5 }, placement: "below" },
+      { key: "d", objectId: "quad", at: { x: 5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, placement: "right" },
+      { key: "atc", objectId: "chord-ac", at: { x: 0, y: -4 }, placement: "left" },
+      { key: "atd", objectId: "chord-db", at: { x: 5 * Math.cos(Math.PI / 10) - 1, y: -5 * Math.sin(Math.PI / 10) }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Check it with the angle at <InlineMath math="C" />. For the same reason, <InlineMath math="\angle ACD=\angle ABD=54^\circ" />, and <InlineMath math="54^\circ+54^\circ=108^\circ=\angle BCD" />. It matches.
 
 # Comparing the two quantities

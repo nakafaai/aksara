@@ -22,6 +22,17 @@ So the number of arrangements meeting both conditions is
 
 <BlockMath math="120-24=96" />
 
+The diagram below sums up the count. The top path meets the A condition, and the bottom path **removes the arrangements where the two M's still touch**.
+
+<Mermaid
+  title={<>Counting the arrangements of MAMALIA with gaps</>}
+  description={<>The letters M, M, L, I can be arranged in <InlineMath math="12" /> ways and make <InlineMath math="5" /> gaps. The three A's go into <InlineMath math="3" /> of the <InlineMath math="5" /> gaps, which gives <InlineMath math="120" /> arrangements. The arrangements with an MM block number <InlineMath math="3!\cdot\binom43=24" />. That leaves <InlineMath math="96" /> arrangements.</>}
+  chart={`flowchart LR
+    A["Arrange M, M, L, I: 4!/2! = 12"] --> B["Put 3 A's in 5 gaps: 12 x 10 = 120"]
+    B --> D["120 - 24 = 96"]
+    C["Block MM, L, I: 3! = 6, A's in 4 gaps: 6 x 4 = 24"] -->|"removed"| D`}
+/>
+
 # Checking the result
 
 The word MAMALIA itself qualifies, because the order M, A, M, A, L, I, A has no two equal letters side by side. Listing all <InlineMath math="420" /> arrangements one by one also gives **exactly <InlineMath math="96" /> arrangements** that pass.

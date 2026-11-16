@@ -33,6 +33,38 @@ The columns <InlineMath math="x=0" /> and <InlineMath math="x=10" /> hold no int
 
 Lattice points that sit exactly on a slanted side are already removed by the strict signs. On the line <InlineMath math="y=2x" /> there are <InlineMath math="(1,2)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,6)" />, and <InlineMath math="(4,8)" />. On the line <InlineMath math="3x+2y=30" /> there are <InlineMath math="(6,6)" /> and <InlineMath math="(8,3)" />. **None of those six points is counted**, which matches the table.
 
+The figure below shows the inside of the triangle with dashed sides, a sign that the sides don't count. The six lattice points on the slanted sides **sit exactly on the dashed lines**, so all of them are outside the region being counted.
+
+<MathVisual
+  title={<>The region <InlineMath math="y>0" />, <InlineMath math="y<2x" />, and <InlineMath math="3x+2y<30" /></>}
+  description={<>A triangular region with vertices <InlineMath math="(0,0)" />, <InlineMath math="(10,0)" />, and <InlineMath math="\left(\tfrac{30}{7},\tfrac{60}{7}\right)" />. Its sides are dashed because the signs are strict. The points <InlineMath math="(1,2)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,6)" />, <InlineMath math="(4,8)" /> on the line <InlineMath math="y=2x" /> and the points <InlineMath math="(6,6)" />, <InlineMath math="(8,3)" /> on the line <InlineMath math="3x+2y=30" /> are marked as points on a side.</>}
+  labels={{
+    top: <InlineMath math="\left(\tfrac{30}{7},\tfrac{60}{7}\right)" />,
+    steep: <InlineMath math="y=2x" />,
+    slope: <InlineMath math="3x+2y=30" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "inside", kind: "region", appearance: "primary", inequalities: ["y > 0", "y < 2x", "3x + 2y < 30"] },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 30 / 7, y: 60 / 7 } },
+      { id: "edge-1", kind: "point", appearance: "warning", at: { x: 1, y: 2 } },
+      { id: "edge-2", kind: "point", appearance: "warning", at: { x: 2, y: 4 } },
+      { id: "edge-3", kind: "point", appearance: "warning", at: { x: 3, y: 6 } },
+      { id: "edge-4", kind: "point", appearance: "warning", at: { x: 4, y: 8 } },
+      { id: "edge-5", kind: "point", appearance: "warning", at: { x: 6, y: 6 } },
+      { id: "edge-6", kind: "point", appearance: "warning", at: { x: 8, y: 3 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 30 / 7, y: 60 / 7 }, placement: "above-right" },
+      { key: "steep", objectId: "inside", at: { x: 1.5, y: 3 }, placement: "left" },
+      { key: "slope", objectId: "inside", at: { x: 7, y: 4.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Traps in the other options
 
 - <InlineMath math="52" /> counts every point on all three sides, including the points on the <InlineMath math="x" />-axis.

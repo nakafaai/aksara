@@ -23,6 +23,20 @@ r&\in\{0,2\}
 
 The exponent <InlineMath math="q" /> has to be even and at least <InlineMath math="1" />, so the smallest it can be is <InlineMath math="2" />.
 
+The chart below compares all the exponent choices with the ones that pass both conditions. The count you want is **the product of the passing bars**: <InlineMath math="6\cdot2\cdot2" />.
+
+<Chart
+  title={<>Exponent choices for the divisor <InlineMath math="d=2^p\cdot3^q\cdot5^r" /></>}
+  description={<>The exponent <InlineMath math="p" /> has <InlineMath math="13" /> choices, and <InlineMath math="6" /> of them are even and at least <InlineMath math="2" />. The exponent <InlineMath math="q" /> has <InlineMath math="6" /> choices, and only <InlineMath math="2" /> are even and at least <InlineMath math="1" />. The exponent <InlineMath math="r" /> has <InlineMath math="3" /> choices, and <InlineMath math="2" /> of them are even.</>}
+  bars="apart"
+  categories={["Exponent p of 2", "Exponent q of 3", "Exponent r of 5"]}
+  series={[
+    { label: "All choices", mark: "bar", values: [12 + 1, 5 + 1, 2 + 1] },
+    { label: "Pass both conditions", mark: "bar", values: [12 / 2, 2, 2] },
+  ]}
+  valueLabel="Number of choices"
+/>
+
 # Counting the divisors
 
 Each choice of <InlineMath math="p" />, <InlineMath math="q" />, and <InlineMath math="r" /> gives a different divisor, so **the count is the product of the numbers of choices**.

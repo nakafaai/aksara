@@ -32,6 +32,19 @@ Q-P&=12-4\sqrt5-2\sqrt5+2=14-6\sqrt5\\
 
 So <InlineMath math="14>6\sqrt5" />, which means <InlineMath math="Q-P>0" />. Check it a second way. Since <InlineMath math="r<0" />, **the terms alternate in sign**, and <InlineMath math="u_4=4r^3" /> is negative. The rest of the series after the third term is <InlineMath math="\tfrac{u_4}{1-r}" />, which is also negative, so <InlineMath math="P=Q+\tfrac{u_4}{1-r}" /> is smaller than <InlineMath math="Q" />.
 
+A chart of the partial sums shows that second reason. Since the ratio is negative, the sum **jumps up and down in turn** while closing in on <InlineMath math="P" />. The sum of the first three terms, <InlineMath math="Q" />, is one of the upward jumps, so it sits above the line <InlineMath math="P" />.
+
+<Chart
+  title={<>The sum of the first <InlineMath math="n" /> terms and the infinite sum</>}
+  description={<>The partial sums for <InlineMath math="n=1" /> to <InlineMath math="8" /> take turns above and below <InlineMath math="P=2\sqrt5-2" />, about <InlineMath math="2.47" />, with smaller and smaller swings. For <InlineMath math="n=3" />, the sum is <InlineMath math="Q=12-4\sqrt5" />, about <InlineMath math="3.06" />, above the line <InlineMath math="P" />.</>}
+  categories={Array.from({ length: 8 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Sum of the first n terms", mark: "line", values: Array.from({ length: 8 }, (_, i) => (4 * (1 - ((1 - Math.sqrt(5)) / 2) ** (i + 1))) / (1 - (1 - Math.sqrt(5)) / 2)) },
+    { label: "Infinite sum P", mark: "line", values: Array.from({ length: 8 }, () => 2 * Math.sqrt(5) - 2) },
+  ]}
+  valueLabel="Value of the sum"
+/>
+
 # Traps in the other options
 
 - <InlineMath math="P>Q" /> comes from assuming an infinite sum is **always bigger than the sum of its first few terms**. That's only true when every term is positive.

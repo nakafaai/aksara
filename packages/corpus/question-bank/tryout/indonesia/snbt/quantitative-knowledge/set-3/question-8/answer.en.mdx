@@ -30,6 +30,19 @@ Statement (2) holds for remainder <InlineMath math="1" /> and remainder <InlineM
 
 The only remainder that satisfies both is <InlineMath math="1" />, so <InlineMath math="n=4m+1" /> for some integer <InlineMath math="m" />, and **<InlineMath math="n" /> must be odd**. For example, with <InlineMath math="n=5" /> the values <InlineMath math="25+15=40" /> and <InlineMath math="25+5+2=32" /> are both divisible by <InlineMath math="4" />, and <InlineMath math="5" /> is indeed odd.
 
+The diagram below sums up both tables. Each statement leaves two remainders, but **their overlap is a single remainder**, namely <InlineMath math="1" />.
+
+<Mermaid
+  title={<>Remainders on division by <InlineMath math="4" /> that pass each statement</>}
+  description={<>Statement (1) leaves remainders <InlineMath math="0" /> and <InlineMath math="1" />, so <InlineMath math="n" /> can be even or odd. Statement (2) leaves remainders <InlineMath math="1" /> and <InlineMath math="2" />, so it's still open. Together, only remainder <InlineMath math="1" /> passes, so <InlineMath math="n" /> must be odd.</>}
+  chart={`flowchart LR
+    S1["(1): remainder 0 or 1"] --> T["Both: remainder 1"]
+    S2["(2): remainder 1 or 2"] --> T
+    S1 -.-> X1["even or odd"]
+    S2 -.-> X2["even or odd"]
+    T --> Y["n = 4m + 1, must be odd"]`}
+/>
+
 The choice "statement (1) alone is sufficient" usually comes from thinking <InlineMath math="n(n+3)" /> is divisible by <InlineMath math="4" /> only for even <InlineMath math="n" />, but <InlineMath math="n=1" /> works too. The choice "neither statement is sufficient" comes from not checking where the two sets of remainders overlap.
 
 So the two statements together are sufficient to show that <InlineMath math="n" /> is odd, but neither statement alone is.

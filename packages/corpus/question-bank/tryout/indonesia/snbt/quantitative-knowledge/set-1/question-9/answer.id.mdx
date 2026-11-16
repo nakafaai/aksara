@@ -48,3 +48,35 @@ Jumlah penyelesaiannya adalah <InlineMath math="2+4=6" />.
 Pilihan <InlineMath math="2" /> muncul jika hanya kasus <InlineMath math="u=2" /> yang diselesaikan. Pilihan <InlineMath math="3" /> muncul jika <InlineMath math="-3" /> tidak dibuang, yaitu <InlineMath math="-3+2+4" />. Pilihan <InlineMath math="12" /> muncul jika tidak ada syarat yang diperiksa sama sekali, sehingga keempat calon dijumlahkan: <InlineMath math="-3+2+4+9" />. Pilihan <InlineMath math="15" /> muncul jika **calon palsu <InlineMath math="9" /> ikut dijumlahkan**, yaitu <InlineMath math="2+4+9" />.
 
 Jadi, jumlah semua bilangan real yang memenuhi persamaan itu adalah <InlineMath math="6" />.
+
+Grafik ruas kiri persamaan memastikan tidak ada penyelesaian lain. Di daerah <InlineMath math="0<x<6" />, garis <InlineMath math="y=\frac52" /> memotong kurva **tepat di <InlineMath math="x=2" /> dan <InlineMath math="x=4" />**, sedangkan <InlineMath math="x=1" /> dan <InlineMath math="x=5" /> menjadi dinding yang tidak boleh disentuh.
+
+<MathVisual
+  title={<>Ruas kiri persamaan sebagai fungsi <InlineMath math="x" /></>}
+  description={<>Kurva <InlineMath math="y={}^{x}\log(6-x)+{}^{6-x}\log x" /> digambar untuk <InlineMath math="0<x<6" />. Garis tegak di <InlineMath math="x=1" /> dan <InlineMath math="x=5" /> menandai nilai yang dilarang. Di antara keduanya, kurva tidak pernah turun di bawah <InlineMath math="2" /> dan memotong garis <InlineMath math="y=\tfrac52" /> di <InlineMath math="x=2" /> dan <InlineMath math="x=4" />. Di luar selang itu, nilainya negatif.</>}
+  labels={{
+    curve: <InlineMath math="y={}^{x}\log(6-x)+{}^{6-x}\log x" />,
+    level: <InlineMath math="y=\tfrac52" />,
+    two: <InlineMath math="x=2" />,
+    four: <InlineMath math="x=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "wall-one", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "wall-five", kind: "line", appearance: "construction", through: [{ x: 5, y: 0 }, { x: 5, y: 1 }] },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 5 / 2 }, to: { x: 6, y: 5 / 2 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "ln(6 - x)/ln(x) + ln(x)/ln(6 - x)", domain: { min: 0.05, max: 5.95 } },
+      { id: "two", kind: "point", appearance: "answer", at: { x: 2, y: 5 / 2 } },
+      { id: "four", kind: "point", appearance: "answer", at: { x: 4, y: 5 / 2 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3, y: 2 }, placement: "below" },
+      { key: "level", objectId: "level", at: { x: 0.4, y: 5 / 2 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: 2, y: 5 / 2 }, placement: "above-left" },
+      { key: "four", objectId: "four", at: { x: 4, y: 5 / 2 }, placement: "above-right" },
+    ],
+  }}
+/>

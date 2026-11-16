@@ -31,6 +31,20 @@ Von <InlineMath math="0" /> bis <InlineMath math="99" /> lassen nur <InlineMath 
 
 Prüfe das auf einem zweiten Weg. Die Reste der Zweierpotenzen bei Division durch <InlineMath math="100" /> wiederholen sich ab <InlineMath math="2^2" /> alle <InlineMath math="20" /> Schritte, denn <InlineMath math="2^{22}=4{.}194{.}304" /> endet wie <InlineMath math="2^2" /> auf <InlineMath math="04" />. Der Exponent <InlineMath math="20k+16" /> ist mindestens <InlineMath math="16" />, also endet <InlineMath math="N" /> wie <InlineMath math="2^{16}=65{.}536" />, nämlich auf <InlineMath math="36" />. Beide Wege stimmen überein.
 
+Ein Diagramm der letzten beiden Ziffern von <InlineMath math="2^n" /> zeigt den Zyklus. Ab <InlineMath math="n=2" /> wiederholen sich die Werte alle <InlineMath math="20" /> Schritte, denn der Balken bei <InlineMath math="n=22" /> ist gleich dem bei <InlineMath math="n=2" />. Der Exponent <InlineMath math="20k+16" /> landet immer an **derselben Stelle wie <InlineMath math="n=16" />**.
+
+<Chart
+  title={<>Die letzten beiden Ziffern von <InlineMath math="2^n" /> für <InlineMath math="n=2" /> bis <InlineMath math="22" /></>}
+  description={<>Jeder Balken ist der Rest von <InlineMath math="2^n" /> bei Division durch <InlineMath math="100" />. Für <InlineMath math="n=2" /> ist er <InlineMath math="4" />, für <InlineMath math="n=22" /> wieder <InlineMath math="4" />, also hat der Zyklus die Länge <InlineMath math="20" />. Der Balken bei <InlineMath math="n=16" /> ist <InlineMath math="36" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${i + 2}`)}
+  series={[
+    { label: "Letzte zwei Ziffern", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i + 2 === 16 ? null : (2 ** (i + 2)) % 100)) },
+    { label: "Exponent 16", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i + 2 === 16 ? (2 ** (i + 2)) % 100 : null)) },
+  ]}
+  valueLabel="Letzte zwei Ziffern"
+/>
+
 # Fallen in den anderen Antworten
 
 - <InlineMath math="16" /> entsteht, wenn du das Muster ungerader Exponenten nimmst, <InlineMath math="4^{2026}\equiv4\pmod{20}" />, und dann <InlineMath math="2^4=16" /> rechnest.

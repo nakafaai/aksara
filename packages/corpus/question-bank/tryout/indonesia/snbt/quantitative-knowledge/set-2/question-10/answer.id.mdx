@@ -23,6 +23,20 @@ Ketiga bilangan pangkat enam muncul di <InlineMath math="|A|" /> dan juga di <In
 
 Cek dengan jalur lain. Bilangan kuadrat yang bukan pangkat tiga ada <InlineMath math="97-3=94" />, dan bilangan pangkat tiga yang bukan kuadrat ada <InlineMath math="19-3=16" />. Jumlahnya <InlineMath math="94+16=110" />, sama.
 
+Grafik berikut memisahkan setiap kelompok menjadi dua bagian. Bagian yang dicari hanya **batang yang memenuhi tepat satu syarat**, sedangkan tiga bilangan pangkat enam muncul di kedua kelompok dan dibuang dari keduanya.
+
+<Chart
+  title={<>Bilangan kuadrat dan pangkat tiga dari <InlineMath math="10" /> sampai <InlineMath math="10{.}000" /></>}
+  description={<>Dari <InlineMath math="97" /> bilangan kuadrat, <InlineMath math="94" /> bukan pangkat tiga dan <InlineMath math="3" /> juga pangkat tiga. Dari <InlineMath math="19" /> bilangan pangkat tiga, <InlineMath math="16" /> bukan kuadrat dan <InlineMath math="3" /> juga kuadrat. Ketiganya adalah <InlineMath math="64" />, <InlineMath math="729" />, dan <InlineMath math="4{.}096" />.</>}
+  categories={["Bilangan kuadrat", "Bilangan pangkat tiga"]}
+  bars="apart"
+  series={[
+    { label: "Memenuhi tepat satu syarat", mark: "bar", values: [97 - 3, 19 - 3] },
+    { label: "Kuadrat sekaligus pangkat tiga", mark: "bar", values: [3, 3] },
+  ]}
+  valueLabel="Banyak bilangan"
+/>
+
 # Kesalahan yang sering terjadi
 
 - Hasil <InlineMath math="113" /> mengurangkan irisan **hanya sekali**. Itu banyak bilangan yang kuadrat atau pangkat tiga, termasuk yang keduanya.

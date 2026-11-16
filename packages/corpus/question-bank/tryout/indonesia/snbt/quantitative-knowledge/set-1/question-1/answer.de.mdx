@@ -31,6 +31,21 @@ Teile <InlineMath math="500" /> durch den Inhalt eines Blocks.
 
 Also enthalten <InlineMath math="13" /> volle Blöcke, nämlich die Zahlen <InlineMath math="1" /> bis <InlineMath math="13\times60=780" />, schon <InlineMath math="13\times38=494" /> ausgewählte Zahlen. **Die <InlineMath math="500" />. Zahl ist die <InlineMath math="6" />. ausgewählte Zahl im nächsten Block**, also im Block von <InlineMath math="781" /> bis <InlineMath math="840" />. Weil sich das Muster wiederholt, ist das die Zahl <InlineMath math="780+9=789" />.
 
+Das Diagramm zeigt, wie viele ausgewählte Zahlen sich bis zum Ende jedes Blocks angesammelt haben. Der Balken von Block <InlineMath math="13" /> liegt noch unter der Linie bei <InlineMath math="500" />, der Balken von Block <InlineMath math="14" /> schon darüber. Die <InlineMath math="500" />. Zahl liegt also **innerhalb von Block <InlineMath math="14" />**.
+
+<Chart
+  title={<>Ausgewählte Zahlen Block für Block gesammelt</>}
+  description={<>Jeder Block enthält <InlineMath math="38" /> ausgewählte Zahlen. Bis zum Ende der Blöcke <InlineMath math="11" />, <InlineMath math="12" />, <InlineMath math="13" /> und <InlineMath math="14" /> sind es <InlineMath math="418" />, <InlineMath math="456" />, <InlineMath math="494" /> und <InlineMath math="532" />. Die Ziellinie liegt bei <InlineMath math="500" />, zwischen Block <InlineMath math="13" /> und Block <InlineMath math="14" />.</>}
+  bars="apart"
+  categories={["Block 11", "Block 12", "Block 13", "Block 14"]}
+  series={[
+    { label: "Gesammelt bis Blockende", mark: "bar", values: [11 * 38, 12 * 38, 13 * 38, 14 * 38] },
+    { label: "Gesuchte Position", mark: "line", values: [500, 500, 500, 500] },
+  ]}
+  valueLabel="Ausgewählte Zahlen"
+  valueRange={{ min: 380, max: 560 }}
+/>
+
 # Das Ergebnis prüfen
 
 Prüfe die Zahlen von <InlineMath math="781" /> bis <InlineMath math="789" /> direkt. Die Zahlen <InlineMath math="784" /> und <InlineMath math="788" /> sind durch <InlineMath math="4" /> teilbar, und <InlineMath math="786" /> ist durch <InlineMath math="6" /> teilbar. Übrig bleiben <InlineMath math="781, 782, 783, 785, 787, 789" />, also **genau sechs ausgewählte Zahlen**, und die sechste davon ist <InlineMath math="789" />.

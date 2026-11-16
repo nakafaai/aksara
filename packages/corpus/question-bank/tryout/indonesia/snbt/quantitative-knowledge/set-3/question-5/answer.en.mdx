@@ -20,6 +20,30 @@ Both denominators are positive, so they're in the same order as their squares. T
 \left(\sqrt{n+1}+\sqrt{n}\right)^2=2n+1+2\sqrt{n^2+n}&<2n+1+(2n+1)=4n+2
 \end{aligned}" />
 
+Graphing both sides of that comparison shows the relation for every <InlineMath math="n" />. The line <InlineMath math="y=2x+1" /> **always stays a little above** the curve <InlineMath math="y=2\sqrt{x^2+x}" />. The gap shrinks but never closes, so the inequality never flips.
+
+<MathVisual
+  title={<>The term <InlineMath math="2\sqrt{n^2+n}" /> compared with <InlineMath math="2n+1" /></>}
+  description={<>For <InlineMath math="x" /> from <InlineMath math="0" /> to <InlineMath math="6" />, the line <InlineMath math="y=2x+1" /> stays above the curve <InlineMath math="y=2\sqrt{x^2+x}" />. At <InlineMath math="x=0" /> the gap is <InlineMath math="1" />, and at <InlineMath math="x=6" /> it's only about <InlineMath math="0.04" />, but still positive.</>}
+  labels={{
+    curve: <InlineMath math="y=2\sqrt{x^2+x}" />,
+    line: <InlineMath math="y=2x+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "2x + 1", domain: { min: 0, max: 6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2 sqrt(x^2 + x)", domain: { min: 0, max: 6 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 2, y: 5 }, placement: "above-left" },
+      { key: "curve", objectId: "curve", at: { x: 3, y: 2 * Math.sqrt(12) }, placement: "below-right" },
+    ],
+  }}
+/>
+
 So <InlineMath math="\sqrt{n+1}+\sqrt{n}<\sqrt{4n+2}" />. The denominator of <InlineMath math="P" /> is smaller, so <InlineMath math="P>Q" /> for every positive integer <InlineMath math="n" />.
 
 # Checking with an example

@@ -26,6 +26,45 @@ Falten spiegelt diesen Teil an der Faltlinie. Die Punkte <InlineMath math="P" />
 
 Also **ragt die Ecke <InlineMath math="D'" /> über die Seite <InlineMath math="CD" /> hinaus**. Der umgeklappte Teil ist das Viereck <InlineMath math="MPQD'" />, und seine Seite <InlineMath math="QM" /> liegt genau auf der Kante <InlineMath math="CD" />. Auf dem Papier liegt davon nur das Dreieck <InlineMath math="PQM" />, das Dreieck <InlineMath math="QD'M" /> hängt über die Kante.
 
+Die Abbildung zeigt das Papier nach dem Falten. Die Faltlinie <InlineMath math="PQ" /> klappt das Trapez <InlineMath math="APQD" /> hinüber. Auf dem Papier landet nur **das Dreieck <InlineMath math="PQM" />**, das kleine Dreieck <InlineMath math="QD'M" /> ragt über die Seite <InlineMath math="CD" /> hinaus.
+
+<MathVisual
+  title={<>Die Faltung, die <InlineMath math="A" /> auf <InlineMath math="M" /> legt</>}
+  description={<>Das Rechteck <InlineMath math="ABCD" /> misst <InlineMath math="16" /> mal <InlineMath math="6" />. Die Faltlinie verbindet <InlineMath math="P\left(\tfrac{25}{4},0\right)" /> auf <InlineMath math="AB" /> und <InlineMath math="Q\left(\tfrac74,6\right)" /> auf <InlineMath math="CD" />. Nach dem Falten liegt das Dreieck <InlineMath math="PQM" /> auf dem Papier, und das Dreieck <InlineMath math="QD'M" /> mit der Ecke <InlineMath math="D'" /> auf Höhe <InlineMath math="\tfrac{192}{25}" /> ragt über die Seite <InlineMath math="CD" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    dd: <InlineMath math="D'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "paper", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 6 }, { x: 0, y: 6 }] },
+      { id: "flap", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 25 / 4, y: 0 }, { x: 7 / 4, y: 6 }, { x: 0, y: 6 }] },
+      { id: "double", kind: "polygon", appearance: "answer", vertices: [{ x: 25 / 4, y: 0 }, { x: 8, y: 6 }, { x: 7 / 4, y: 6 }] },
+      { id: "overhang", kind: "polygon", appearance: "warning", vertices: [{ x: 7 / 4, y: 6 }, { x: 8, y: 6 }, { x: 56 / 25, y: 192 / 25 }] },
+      { id: "crease", kind: "segment", appearance: "secondary", from: { x: 25 / 4, y: 0 }, to: { x: 7 / 4, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "paper", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "paper", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "paper", at: { x: 16, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "paper", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "m", objectId: "double", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "p", objectId: "crease", at: { x: 25 / 4, y: 0 }, placement: "below" },
+      { key: "q", objectId: "crease", at: { x: 7 / 4, y: 6 }, placement: "above-left" },
+      { key: "dd", objectId: "overhang", at: { x: 56 / 25, y: 192 / 25 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Die Fläche der doppelten Lage
 
 Das Dreieck <InlineMath math="PQM" /> hat seine Grundseite <InlineMath math="QM" /> auf der Seite <InlineMath math="CD" />, und seine Höhe ist der Abstand von <InlineMath math="P" /> zu dieser Seite.

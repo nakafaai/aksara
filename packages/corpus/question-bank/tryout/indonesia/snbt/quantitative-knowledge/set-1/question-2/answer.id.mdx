@@ -12,6 +12,38 @@ p^2&=9
 
 Ada dua calon, <InlineMath math="p=3" /> atau <InlineMath math="p=-3" />. Soal menyebut **kedua akar positif**, jadi jumlahnya positif: <InlineMath math="-p>0" />. Calon <InlineMath math="p=3" /> ditolak karena memberi jumlah akar <InlineMath math="-3" />. Jadi <InlineMath math="p=-3" />, persamaannya <InlineMath math="x^2-3x+1=0" />, dengan <InlineMath math="\alpha+\beta=3" /> dan <InlineMath math="\alpha\beta=1" />. Diskriminannya <InlineMath math="9-4=5>0" />, jadi kedua akar memang real.
 
+Grafik kedua calon persamaan memperlihatkan alasannya. Parabola untuk <InlineMath math="p=3" /> memotong sumbu-<InlineMath math="x" /> di dua titik negatif, sedangkan parabola untuk <InlineMath math="p=-3" /> memotongnya di dua titik positif. Hanya **parabola kedua yang cocok dengan syarat dua akar positif**.
+
+<MathVisual
+  title={<>Dua calon nilai <InlineMath math="p" /></>}
+  description={<>Parabola <InlineMath math="y=x^2+3x+1" /> untuk <InlineMath math="p=3" /> memotong sumbu-<InlineMath math="x" /> di <InlineMath math="\tfrac{-3-\sqrt5}{2}" /> dan <InlineMath math="\tfrac{-3+\sqrt5}{2}" />, keduanya negatif. Parabola <InlineMath math="y=x^2-3x+1" /> untuk <InlineMath math="p=-3" /> memotongnya di <InlineMath math="\tfrac{3-\sqrt5}{2}" /> dan <InlineMath math="\tfrac{3+\sqrt5}{2}" />, keduanya positif.</>}
+  labels={{
+    rejected: <InlineMath math="p=3" />,
+    kept: <InlineMath math="p=-3" />,
+    alpha: <InlineMath math="\alpha" />,
+    beta: <InlineMath math="\beta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve-rejected", kind: "function", appearance: "warning", formula: "x^2 + 3x + 1", domain: { min: -4.5, max: 1 } },
+      { id: "curve-kept", kind: "function", appearance: "answer", formula: "x^2 - 3x + 1", domain: { min: -1, max: 4.5 } },
+      { id: "root-rejected-left", kind: "point", appearance: "warning", at: { x: (-3 - Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-rejected-right", kind: "point", appearance: "warning", at: { x: (-3 + Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-alpha", kind: "point", appearance: "answer", at: { x: (3 - Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-beta", kind: "point", appearance: "answer", at: { x: (3 + Math.sqrt(5)) / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "rejected", objectId: "curve-rejected", at: { x: -3.5, y: 2.75 }, placement: "left" },
+      { key: "kept", objectId: "curve-kept", at: { x: 3.5, y: 2.75 }, placement: "right" },
+      { key: "alpha", objectId: "root-alpha", at: { x: (3 - Math.sqrt(5)) / 2, y: 0 }, placement: "below" },
+      { key: "beta", objectId: "root-beta", at: { x: (3 + Math.sqrt(5)) / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Menyederhanakan pangkat tiga
 
 Karena <InlineMath math="\alpha" /> adalah akar, berlaku <InlineMath math="\alpha^2-3\alpha+1=0" />, atau <InlineMath math="\alpha^2=3\alpha-1" />. Persamaan ini boleh dipakai untuk **mengganti setiap <InlineMath math="\alpha^2" /> dengan <InlineMath math="3\alpha-1" />**. Untuk <InlineMath math="\alpha^3" />, kalikan dulu <InlineMath math="\alpha^2" /> dengan <InlineMath math="\alpha" />, lalu ganti lagi <InlineMath math="\alpha^2" /> yang muncul.

@@ -12,6 +12,20 @@ From <InlineMath math="9" /> students, there are <InlineMath math="\binom94=126"
 
 If Andi and Budi are both in, the other two members come from the remaining <InlineMath math="7" /> students: <InlineMath math="\binom72=21" /> committees. But <InlineMath math="\binom32=3" /> of them are all boys, namely Andi, Budi, and two of the other three boys. Those three committees were **already removed in the first step**, so don't remove them twice. The mixed committees with both Andi and Budi number <InlineMath math="21-3=18" />.
 
+The chart below splits the <InlineMath math="21" /> committees with both Andi and Budi by their other two members. Only **the two bars on the right** still need to come out of the <InlineMath math="120" />.
+
+<Chart
+  title={<>Committees that contain Andi and Budi</>}
+  description={<>The other two members can be two boys, in <InlineMath math="3" /> committees, one boy and one girl, in <InlineMath math="3\times4=12" /> committees, or two girls, in <InlineMath math="6" /> committees. The three all-boy committees were already removed in the first step, so <InlineMath math="12+6=18" /> are removed now.</>}
+  categories={["Two other boys", "One boy, one girl", "Two girls"]}
+  bars="apart"
+  series={[
+    { label: "Already removed in the first step", mark: "bar", values: [3, null, null] },
+    { label: "Removed now", mark: "bar", values: [null, 3 * 4, 6] },
+  ]}
+  valueLabel="Number of committees"
+/>
+
 # The final count
 
 <BlockMath math="120-18=102" />

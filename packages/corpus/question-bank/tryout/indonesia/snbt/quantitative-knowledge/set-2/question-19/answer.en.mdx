@@ -20,6 +20,37 @@ x+3&>(x-3)^2=x^2-6x+9\\
 
 Together with <InlineMath math="x\ge3" />, this case gives <InlineMath math="3\le x<6" />. The complete solution set is <InlineMath math="-3\le x<6" />. The end <InlineMath math="6" /> isn't included, because <InlineMath math="\sqrt9=3" /> isn't bigger than <InlineMath math="3" />.
 
+Graphing both sides sums up the two cases. The square-root curve sits above the line **from <InlineMath math="x=-3" /> up to the crossing <InlineMath math="(6,3)" />**, including the left part where the line is negative. The thick piece on the <InlineMath math="x" />-axis is the solution set.
+
+<MathVisual
+  title={<>The curve <InlineMath math="y=\sqrt{x+3}" /> and the line <InlineMath math="y=x-3" /></>}
+  description={<>The square-root curve starts at <InlineMath math="(-3,0)" /> and rises slowly. The line <InlineMath math="y=x-3" /> stays below the curve until they meet at <InlineMath math="(6,3)" />, and then the line climbs past the curve. The thick piece from <InlineMath math="-3" /> to <InlineMath math="6" /> on the <InlineMath math="x" />-axis marks <InlineMath math="-3\le x<6" />.</>}
+  labels={{
+    root: <InlineMath math="y=\sqrt{x+3}" />,
+    line: <InlineMath math="y=x-3" />,
+    meet: <InlineMath math="(6,3)" />,
+    start: <InlineMath math="-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 9 }, y: { min: -7, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: -3, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x + 3)", domain: { min: -3, max: 9 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 3", domain: { min: -4, max: 9 } },
+      { id: "meet", kind: "point", appearance: "warning", at: { x: 6, y: 3 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+    ],
+    labels: [
+      { key: "root", objectId: "root", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "line", objectId: "line", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "meet", objectId: "meet", at: { x: 6, y: 3 }, placement: "below-right" },
+      { key: "start", objectId: "start", at: { x: -3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Judging the four statements
 
 **Statement 1**. The number <InlineMath math="x=0" /> works, since <InlineMath math="\sqrt3>-3" />, but <InlineMath math="0" /> isn't more than <InlineMath math="1" />. The condition <InlineMath math="x>1" /> comes from **squaring without splitting into cases**, which loses the whole interval <InlineMath math="-3\le x\le1" />. This statement is **false**.

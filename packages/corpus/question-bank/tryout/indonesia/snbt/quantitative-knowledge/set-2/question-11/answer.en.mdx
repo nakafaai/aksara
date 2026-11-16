@@ -28,6 +28,20 @@ u_1+u_4&=\frac{u_2^3+u_3^3}{u_2u_3}=\frac{\left(u_2+u_3\right)^3-3u_2u_3\left(u_
 
 Check with an actual sequence. For <InlineMath math="u_2=4" /> and <InlineMath math="u_3=-3" />, the ratio is <InlineMath math="-\tfrac34" />, so <InlineMath math="u_1=-\tfrac{16}{3}" /> and <InlineMath math="u_4=\tfrac94" />. Their sum is <InlineMath math="-\tfrac{64}{12}+\tfrac{27}{12}=-\tfrac{37}{12}" />, and the product is <InlineMath math="\left(-\tfrac{16}{3}\right)(4)(-3)\left(\tfrac94\right)=144" />. The reverse order, <InlineMath math="u_2=-3" /> and <InlineMath math="u_3=4" />, just swaps <InlineMath math="u_1" /> and <InlineMath math="u_4" />, so the sum is the same.
 
+A chart of that example sequence shows the sign pattern. A negative ratio makes the signs **take turns**, so the outer terms <InlineMath math="u_1" /> and <InlineMath math="u_4" /> have opposite signs too, and their sum isn't the same as <InlineMath math="u_2+u_3=1" />.
+
+<Chart
+  title={<>The first four terms with ratio <InlineMath math="-\tfrac34" /></>}
+  description={<>The terms are <InlineMath math="u_1=-\tfrac{16}{3}" />, <InlineMath math="u_2=4" />, <InlineMath math="u_3=-3" />, and <InlineMath math="u_4=\tfrac94" />. The product of the outer terms equals the product of the middle terms, <InlineMath math="-12" />, but the outer terms add up to <InlineMath math="-\tfrac{37}{12}" /> while the middle terms add up to <InlineMath math="1" />.</>}
+  bars="apart"
+  categories={["u1", "u2", "u3", "u4"]}
+  series={[
+    { label: "Outer terms", mark: "bar", values: [-16 / 3, null, null, 9 / 4] },
+    { label: "Middle terms", mark: "bar", values: [null, 4, -3, null] },
+  ]}
+  valueLabel="Value of the term"
+/>
+
 # Traps in the other options
 
 - <InlineMath math="-\tfrac{35}{12}" /> uses <InlineMath math="u_2u_3=12" />, but that case gives no real terms.

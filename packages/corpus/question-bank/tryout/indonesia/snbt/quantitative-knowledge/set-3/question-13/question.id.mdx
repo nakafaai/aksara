@@ -1,3 +1,35 @@
 Selembar kertas berbentuk persegi panjang <InlineMath math="ABCD" /> dengan <InlineMath math="AB=16\text{ cm}" /> dan <InlineMath math="BC=6\text{ cm}" />. Titik <InlineMath math="M" /> adalah titik tengah sisi <InlineMath math="CD" />. Kertas itu dilipat sepanjang sebuah garis lurus sehingga titik sudut <InlineMath math="A" /> tepat menempel pada titik <InlineMath math="M" />. Setelah dilipat, bagian kertas yang terlipat menumpuk di atas bagian yang tidak terlipat, sehingga sebagian daerah kertas terdiri atas dua lapis.
 
+<MathVisual
+  title={<>Kertas persegi panjang <InlineMath math="ABCD" /> dan titik <InlineMath math="M" /></>}
+  description={<>Persegi panjang <InlineMath math="ABCD" /> dengan <InlineMath math="AB=16\text{ cm}" /> dan <InlineMath math="BC=6\text{ cm}" />. Titik <InlineMath math="M" /> adalah titik tengah <InlineMath math="CD" />. Kertas akan dilipat sehingga <InlineMath math="A" /> menempel pada <InlineMath math="M" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    m: <InlineMath math="M" />,
+    ab: <InlineMath math="16\text{ cm}" />,
+    bc: <InlineMath math="6\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "paper", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 6 }, { x: 0, y: 6 }] },
+      { id: "point-m", kind: "point", appearance: "secondary", at: { x: 8, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "paper", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "paper", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "paper", at: { x: 16, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "paper", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "m", objectId: "point-m", at: { x: 8, y: 6 }, placement: "above" },
+      { key: "ab", objectId: "paper", at: { x: 8, y: 0 }, placement: "below" },
+      { key: "bc", objectId: "paper", at: { x: 16, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Luas daerah kertas yang terdiri atas dua lapis adalah ....

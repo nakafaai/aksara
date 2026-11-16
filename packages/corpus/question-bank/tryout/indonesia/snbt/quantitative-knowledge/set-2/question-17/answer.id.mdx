@@ -26,4 +26,39 @@ x-y=-7&:\quad x(x+7)=-12\ \Rightarrow\ x^2+7x+12=0\ \Rightarrow\ x=-3\ \text{ata
 
 Kasus kedua gugur karena <InlineMath math="x>0" />. Kasus pertama memberi pasangan <InlineMath math="(3,-4)" /> dengan <InlineMath math="x+y=-1" /> dan pasangan <InlineMath math="(4,-3)" /> dengan <InlineMath math="x+y=1" />. Jadi **syarat <InlineMath math="x>0" /> membuang satu kasus, tetapi tidak menentukan tanda <InlineMath math="x+y" />**. Masih ada dua nilai.
 
+Gambar berikut memperlihatkan semua pasangan yang memenuhi kedua pernyataan sekaligus, yaitu titik potong hiperbola <InlineMath math="xy=-12" /> dengan dua garis <InlineMath math="x-y=\pm7" />. Syarat <InlineMath math="x>0" /> membuang dua titik di kiri, tetapi **dua titik yang tersisa memberi jumlah <InlineMath math="-1" /> dan <InlineMath math="1" />**.
+
+<MathVisual
+  title={<>Pasangan bulat yang memenuhi kedua pernyataan</>}
+  description={<>Hiperbola <InlineMath math="y=-\tfrac{12}{x}" /> dipotong garis <InlineMath math="y=x-7" /> di <InlineMath math="(3,-4)" /> dan <InlineMath math="(4,-3)" />, dan dipotong garis <InlineMath math="y=x+7" /> di <InlineMath math="(-3,4)" /> dan <InlineMath math="(-4,3)" />. Dua titik terakhir punya <InlineMath math="x<0" /> sehingga dibuang. Titik <InlineMath math="(3,-4)" /> memberi <InlineMath math="x+y=-1" />, dan titik <InlineMath math="(4,-3)" /> memberi <InlineMath math="x+y=1" />.</>}
+  labels={{
+    hyperbola: <InlineMath math="xy=-12" />,
+    down: <InlineMath math="x-y=7" />,
+    up: <InlineMath math="x-y=-7" />,
+    p1: <InlineMath math="(3,-4)" />,
+    p2: <InlineMath math="(4,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 12 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hyperbola", kind: "function", appearance: "primary", formula: "-12/x", domain: { min: -12, max: 12 } },
+      { id: "down", kind: "function", appearance: "secondary", formula: "x - 7", domain: { min: -5, max: 12 } },
+      { id: "up", kind: "function", appearance: "construction", formula: "x + 7", domain: { min: -12, max: 5 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4, y: -3 } },
+      { id: "q1", kind: "point", appearance: "warning", at: { x: -3, y: 4 } },
+      { id: "q2", kind: "point", appearance: "warning", at: { x: -4, y: 3 } },
+    ],
+    labels: [
+      { key: "hyperbola", objectId: "hyperbola", at: { x: 10, y: -6 / 5 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 10, y: 3 }, placement: "left" },
+      { key: "up", objectId: "up", at: { x: -10, y: -3 }, placement: "right" },
+      { key: "p1", objectId: "p1", at: { x: 3, y: -4 }, placement: "below-left" },
+      { key: "p2", objectId: "p2", at: { x: 4, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Jadi, **pernyataan (1) dan pernyataan (2) tidak cukup** untuk menjawab pertanyaan, bahkan jika digabungkan.

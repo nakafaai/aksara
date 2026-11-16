@@ -24,6 +24,20 @@ Der Mittelwert ist am kleinsten, wenn jeder freie Wert so klein wie möglich ist
 
 Der Wert <InlineMath math="15" /> kann höchstens zweimal vorkommen, als <InlineMath math="x_{10}" /> und <InlineMath math="x_{11}" />, denn <InlineMath math="x_9=10" />. Sieh dir jetzt die vier Werte <InlineMath math="x_6" />, <InlineMath math="x_7" />, <InlineMath math="x_8" />, <InlineMath math="x_9" /> an. Alle vier sind ganze Zahlen von <InlineMath math="8" /> bis <InlineMath math="10" />, es gibt aber nur drei solche Zahlen, also **kommt ein Wert sicher mindestens zweimal vor**. Dieser Wert ist mindestens so häufig wie <InlineMath math="15" />, deshalb kann <InlineMath math="15" /> nicht der einzige Modus sein. Die zweite Aussage ist falsch.
 
+Das Diagramm zeigt den kleinsten und den größten Datensatz, die zum Boxplot passen. Die Balken <InlineMath math="x_1" />, <InlineMath math="x_3" />, <InlineMath math="x_6" />, <InlineMath math="x_9" /> und <InlineMath math="x_{11}" /> **sind bei beiden gleich hoch**, weil diese Werte festliegen. Jeder andere passende Datensatz hat eine Summe zwischen <InlineMath math="78" /> und <InlineMath math="96" />.
+
+<Chart
+  title={<>Zwei extreme Datensätze zur selben Fünf-Zahlen-Zusammenfassung</>}
+  description={<>Der kleinste passende Datensatz ist <InlineMath math="2, 2, 5, 5, 5, 8, 8, 8, 10, 10, 15" /> mit Summe <InlineMath math="78" />. Der größte passende Datensatz ist <InlineMath math="2, 5, 5, 8, 8, 8, 10, 10, 10, 15, 15" /> mit Summe <InlineMath math="96" />. Die Werte an den Stellen <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="9" /> und <InlineMath math="11" /> sind bei beiden gleich.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `x${i + 1}`)}
+  series={[
+    { label: "Kleinster passender Datensatz, Summe 78", mark: "bar", values: [2, 2, 5, 5, 5, 8, 8, 8, 10, 10, 15] },
+    { label: "Größter passender Datensatz, Summe 96", mark: "bar", values: [2, 5, 5, 8, 8, 8, 10, 10, 10, 15, 15] },
+  ]}
+  valueLabel="Wert"
+/>
+
 # Dritte Aussage
 
 Ein Beispiel genügt. Nimm die Daten <InlineMath math="2,3,5,6,7,8,9,9,10,10,15" />. Der kleinste Wert ist <InlineMath math="2" />, dazu <InlineMath math="x_3=5" />, <InlineMath math="x_6=8" />, <InlineMath math="x_9=10" />, und der größte Wert ist <InlineMath math="15" />, die Zusammenfassung passt also. Hier ist **nur <InlineMath math="15" /> größer als <InlineMath math="10" />**, weil <InlineMath math="x_{10}=10" /> ist. Die dritte Aussage ist wahr.

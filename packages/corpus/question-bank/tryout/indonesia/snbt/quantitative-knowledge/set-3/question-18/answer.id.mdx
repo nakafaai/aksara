@@ -14,6 +14,39 @@ P\to B&:\ 4 \text{ kanan},\ 3 \text{ atas},\quad \binom{7}{3}=35\\
 
 Lintasan memakai ruas tertutup jika ia melangkah dari <InlineMath math="(3,2)" /> langsung ke <InlineMath math="(4,2)" />. Pecah lintasan seperti itu menjadi tiga bagian dan **kalikan banyak cara setiap bagian**.
 
+Gambar berikut menandai ruas yang ditutup dan satu lintasan yang masih boleh. Lintasan itu **melewati persimpangan <InlineMath math="(3,2)" />, tetapi naik ke <InlineMath math="(3,3)" />** alih-alih belok ke kanan, jadi tidak memakai ruas yang ditutup.
+
+<MathVisual
+  title={<>Jaringan jalan dari <InlineMath math="A" /> ke <InlineMath math="B" /> melalui <InlineMath math="P" /></>}
+  description={<>Kisi berukuran <InlineMath math="6" /> kali <InlineMath math="4" /> dengan <InlineMath math="A(0,0)" />, <InlineMath math="P(2,1)" />, dan <InlineMath math="B(6,4)" />. Ruas dari <InlineMath math="(3,2)" /> ke <InlineMath math="(4,2)" /> ditutup. Satu lintasan yang boleh: <InlineMath math="(0,0)\to(2,0)\to(2,1)\to(3,1)\to(3,3)\to(6,3)\to(6,4)" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    p: <InlineMath math="P" />,
+    b: <InlineMath math="B" />,
+    left: <InlineMath math="(3,2)" />,
+    right: <InlineMath math="(4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 3 }, { x: 6, y: 3 }, { x: 6, y: 4 }] },
+      { id: "closed", kind: "segment", appearance: "warning", from: { x: 3, y: 2 }, to: { x: 4, y: 2 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 4 }, placement: "above-right" },
+      { key: "left", objectId: "closed", at: { x: 3, y: 2 }, placement: "left" },
+      { key: "right", objectId: "closed", at: { x: 4, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 A\to P&:\ 3\\
 P\to(3,2)&:\ 1 \text{ kanan},\ 1 \text{ atas},\quad \binom{2}{1}=2\\

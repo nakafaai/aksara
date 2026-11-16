@@ -19,6 +19,18 @@ Untuk <InlineMath math="k=2" />, kamu tetap dapat <InlineMath math="y=0" />, tet
 
 Untuk <InlineMath math="k=3" />, syaratnya tinggal <InlineMath math="y+z=1" />, dan <InlineMath math="y" /> boleh apa saja. Setiap pilihan <InlineMath math="y" /> memberi satu penyelesaian, jadi **penyelesaiannya tak hingga banyak**.
 
+Diagram berikut menyusun ketiga kasus sebagai cabang. Semua jalan **berangkat dari persamaan <InlineMath math="(k-3)y=0" />**, lalu bercabang lagi pada nilai <InlineMath math="k-2" />.
+
+<Mermaid
+  title={<>Banyak penyelesaian menurut nilai <InlineMath math="k" /></>}
+  description={<>Jika <InlineMath math="k=3" />, persamaan <InlineMath math="(k-3)y=0" /> selalu benar dan sistemnya punya tak hingga banyak penyelesaian. Jika <InlineMath math="k\ne3" />, maka <InlineMath math="y=0" />. Untuk <InlineMath math="k=2" />, persamaan <InlineMath math="y=1" /> bertabrakan dengan <InlineMath math="y=0" />, jadi tidak ada penyelesaian. Untuk nilai <InlineMath math="k" /> lainnya, ada tepat satu penyelesaian dengan <InlineMath math="y=0" />.</>}
+  chart={`flowchart TD
+    A["(k - 3)y = 0 dan y + (k - 2)z = 1"] -->|"k = 3"| B["y bebas, y + z = 1: tak hingga banyak"]
+    A -->|"k bukan 3"| C["y = 0"]
+    C -->|"k = 2"| D["0 = 1: tidak ada penyelesaian"]
+    C -->|"k bukan 2"| E["z = 1/(k - 2): tepat satu, y = 0"]`}
+/>
+
 Cek dengan determinan koefisien:
 
 <BlockMath math="\begin{vmatrix}1&1&1\\2&3&k\\3&k&3\end{vmatrix}=(9-k^2)-(6-3k)+(2k-9)=-(k-2)(k-3)" />

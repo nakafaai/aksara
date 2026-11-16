@@ -24,6 +24,41 @@ a\ge 2&:\quad 4a-3=5 \implies a=2\ \text{(memenuhi)}
 
 Pada kasus pertama, puncak di kiri interval sehingga <InlineMath math="f" /> turun sepanjang interval dan maksimumnya <InlineMath math="f(-1)" />. Pada kasus ketiga, puncak di kanan atau tepat di <InlineMath math="x=2" />, sehingga maksimumnya <InlineMath math="f(2)" />. Nilai yang mungkin hanya <InlineMath math="a=-\tfrac{5}{2}" /> dan <InlineMath math="a=2" />, dan jumlahnya <InlineMath math="-\tfrac{5}{2}+2=-\tfrac{1}{2}" />.
 
+Grafik berikut menaruh ketiga parabola di atas interval <InlineMath math="-1\le x\le2" />, yang dibatasi dua garis putus. Untuk <InlineMath math="a=-\tfrac52" /> dan <InlineMath math="a=2" />, titik tertinggi **di dalam interval** tepat di garis <InlineMath math="y=5" />. Untuk <InlineMath math="a=-2" />, puncaknya di luar interval, sehingga di dalam interval nilainya paling tinggi <InlineMath math="4" />.
+
+<MathVisual
+  title={<>Nilai maksimum <InlineMath math="f(x)=-x^2+2ax+1" /> pada <InlineMath math="-1\le x\le2" /></>}
+  description={<>Parabola untuk <InlineMath math="a=-\tfrac52" /> berpuncak di <InlineMath math="x=-\tfrac52" />, kiri interval, dan mencapai <InlineMath math="5" /> di <InlineMath math="x=-1" />. Parabola untuk <InlineMath math="a=2" /> berpuncak tepat di <InlineMath math="(2,5)" />. Parabola untuk <InlineMath math="a=-2" /> berpuncak di <InlineMath math="(-2,5)" />, di luar interval, dan hanya mencapai <InlineMath math="4" /> di <InlineMath math="x=-1" />.</>}
+  labels={{
+    left: <InlineMath math="a=-\tfrac52" />,
+    right: <InlineMath math="a=2" />,
+    rejected: <InlineMath math="a=-2" />,
+    level: <InlineMath math="y=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -6, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "edge-left", kind: "segment", appearance: "construction", from: { x: -1, y: -6 }, to: { x: -1, y: 9 } },
+      { id: "edge-right", kind: "segment", appearance: "construction", from: { x: 2, y: -6 }, to: { x: 2, y: 9 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -5, y: 5 }, to: { x: 5, y: 5 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "-x^2 - 5x + 1", domain: { min: -5, max: 1 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "-x^2 + 4x + 1", domain: { min: -1, max: 5 } },
+      { id: "rejected", kind: "function", appearance: "warning", formula: "-x^2 - 4x + 1", domain: { min: -5, max: 1 } },
+      { id: "top-left", kind: "point", appearance: "answer", at: { x: -1, y: 5 } },
+      { id: "top-right", kind: "point", appearance: "answer", at: { x: 2, y: 5 } },
+      { id: "top-rejected", kind: "point", appearance: "warning", at: { x: -1, y: 4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -5 / 2, y: 29 / 4 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "rejected", objectId: "rejected", at: { x: -4, y: 1 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 4.5, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Memeriksa setiap nilai parameter
 
 Untuk <InlineMath math="a=-\tfrac{5}{2}" />: <InlineMath math="f(-1)=5" /> dan <InlineMath math="f(2)=-13" />, puncaknya di luar interval, jadi maksimumnya <InlineMath math="5" />. Untuk <InlineMath math="a=2" />: <InlineMath math="f(2)=5" /> dan <InlineMath math="f(-1)=-4" />, jadi maksimumnya <InlineMath math="5" />. Untuk <InlineMath math="a=-2" />, puncaknya di <InlineMath math="x=-2" />, di luar interval, sehingga **maksimum pada interval hanya <InlineMath math="f(-1)=4" />**, bukan <InlineMath math="5" />. Nilai <InlineMath math="a=-2" /> memang harus dibuang.

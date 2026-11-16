@@ -24,6 +24,18 @@ x&=15
 
 Nilai <InlineMath math="x=15" /> memenuhi syarat <InlineMath math="x\neq4" />.
 
+Diagram berikut merangkum kedua langkah itu. Panah atas adalah arah <InlineMath math="g\circ f" />, yaitu <InlineMath math="f" /> dulu lalu <InlineMath math="g" />. Panah bawah adalah invers, yang berjalan **mundur dengan membuka <InlineMath math="g" /> lebih dulu**.
+
+<Mermaid
+  title={<>Jalan maju dan jalan mundur pada <InlineMath math="g\circ f" /></>}
+  description={<>Maju: <InlineMath math="x=15" /> dikirim <InlineMath math="f" /> ke <InlineMath math="3" />, lalu <InlineMath math="g" /> mengirim <InlineMath math="3" /> ke <InlineMath math="8" />. Mundur: <InlineMath math="g^{-1}" /> membawa <InlineMath math="8" /> ke <InlineMath math="3" />, lalu <InlineMath math="f^{-1}" /> membawa <InlineMath math="3" /> ke <InlineMath math="15" />.</>}
+  chart={`flowchart LR
+    X["x = 15"] -->|"f"| Y["f(x) = 3"]
+    Y -->|"g"| Z["g(3) = 8"]
+    Z -.->|"langkah 1: buka g, 3y - 1 = 8"| Y
+    Y -.->|"langkah 2: buka f, (2x + 3)/(x - 4) = 3"| X`}
+/>
+
 # Memeriksa hasil
 
 Masukkan <InlineMath math="15" /> ke <InlineMath math="g\circ f" />: <InlineMath math="f(15)=\frac{33}{11}=3" />, lalu <InlineMath math="g(3)=9-1=8" />. **Hasilnya kembali ke <InlineMath math="8" />**, jadi <InlineMath math="15" /> memang masukan yang dicari.

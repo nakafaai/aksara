@@ -34,6 +34,48 @@ Die Nullstellen des Zählers, <InlineMath math="1" /> und <InlineMath math="7" /
 
 Im Intervall <InlineMath math="-4<x\le1" /> liegen <InlineMath math="-3, -2, -1, 0, 1" />, aber **<InlineMath math="-3" /> fällt weg**, weil dort der Nenner null ist. Im Intervall <InlineMath math="7\le x<9" /> liegen <InlineMath math="7" /> und <InlineMath math="8" />. Dazu kommt <InlineMath math="6" />.
 
+Der Zahlenstrahl unten fasst alle Bedingungen zusammen. Die dicken Stücke sind die beiden Lösungsintervalle, die Enden <InlineMath math="-4" /> und <InlineMath math="9" /> gehören nicht dazu, der Punkt <InlineMath math="6" /> steht für sich, und <InlineMath math="-3" /> ist **als ausgeschlossene Stelle markiert**. Die übrigen ganzen Zahlen kannst du direkt ablesen.
+
+<MathVisual
+  title={<>Die ganzen Zahlen, die die Ungleichung erfüllen</>}
+  description={<>Auf der <InlineMath math="x" />-Achse sind das Stück von <InlineMath math="-4" /> bis <InlineMath math="1" /> und das Stück von <InlineMath math="7" /> bis <InlineMath math="9" /> markiert. Die Enden <InlineMath math="-4" /> und <InlineMath math="9" /> gehören nicht dazu, <InlineMath math="1" /> und <InlineMath math="7" /> schon. Die ganzzahligen Lösungen sind <InlineMath math="-2" />, <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="6" />, <InlineMath math="7" /> und <InlineMath math="8" />. Die Stelle <InlineMath math="-3" /> fällt weg, weil der Nenner dort null ist.</>}
+  labels={{
+    a: <InlineMath math="-4" />,
+    b: <InlineMath math="-3" />,
+    c: <InlineMath math="1" />,
+    d: <InlineMath math="6" />,
+    e: <InlineMath math="7" />,
+    g: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 11 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "left-interval", kind: "segment", appearance: "highlight", from: { x: -4, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "right-interval", kind: "segment", appearance: "highlight", from: { x: 7, y: 0 }, to: { x: 9, y: 0 } },
+      { id: "open-left", kind: "point", appearance: "construction", at: { x: -4, y: 0 } },
+      { id: "open-right", kind: "point", appearance: "construction", at: { x: 9, y: 0 } },
+      { id: "excluded", kind: "point", appearance: "warning", at: { x: -3, y: 0 } },
+      { id: "n-2", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "n-1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "n0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "n1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "n6", kind: "point", appearance: "answer", at: { x: 6, y: 0 } },
+      { id: "n7", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+      { id: "n8", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "open-left", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "b", objectId: "excluded", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "c", objectId: "n1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "d", objectId: "n6", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "e", objectId: "n7", at: { x: 7, y: 0 }, placement: "below" },
+      { key: "g", objectId: "open-right", at: { x: 9, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="(-2)+(-1)+0+1+6+7+8=19" />
 
 # Das Ergebnis prüfen

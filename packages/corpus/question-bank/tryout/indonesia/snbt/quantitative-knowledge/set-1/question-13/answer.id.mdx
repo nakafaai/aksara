@@ -26,6 +26,20 @@ P(\text{dua merah}\mid\text{pindah putih})&=\frac{\binom22}{21}=\frac{1}{21}
 
 Setiap kasus **dikalikan dengan peluang kasus itu terjadi**, lalu hasilnya dijumlahkan.
 
+Diagram pohon berikut memperlihatkan kedua cabang itu. Peluang di setiap ujung adalah **hasil kali peluang di sepanjang cabangnya**, lalu kedua ujung dijumlahkan.
+
+<Mermaid
+  title={<>Pohon peluang pemindahan bola</>}
+  description={<>Bola merah pindah dengan peluang <InlineMath math="\tfrac35" />, sehingga kantong B berisi <InlineMath math="3" /> merah dan <InlineMath math="4" /> putih, dan peluang dua merah <InlineMath math="\tfrac17" />. Bola putih pindah dengan peluang <InlineMath math="\tfrac25" />, sehingga kantong B berisi <InlineMath math="2" /> merah dan <InlineMath math="5" /> putih, dan peluang dua merah <InlineMath math="\tfrac1{21}" />. Kedua cabang memberi <InlineMath math="\tfrac{9}{105}" /> dan <InlineMath math="\tfrac{2}{105}" />.</>}
+  chart={`flowchart LR
+    A["Kantong A: 3 merah, 2 putih"] -->|"merah pindah, 3/5"| B1["Kantong B: 3 merah, 4 putih"]
+    A -->|"putih pindah, 2/5"| B2["Kantong B: 2 merah, 5 putih"]
+    B1 -->|"dua merah, 3/21 = 1/7"| C1["3/5 x 1/7 = 9/105"]
+    B2 -->|"dua merah, 1/21"| C2["2/5 x 1/21 = 2/105"]
+    C1 --> T["Total 11/105"]
+    C2 --> T`}
+/>
+
 <BlockMath math="\begin{aligned}
 P(\text{dua merah})&=\frac35\cdot\frac17+\frac25\cdot\frac1{21}\\
 &=\frac{9}{105}+\frac{2}{105}=\frac{11}{105}

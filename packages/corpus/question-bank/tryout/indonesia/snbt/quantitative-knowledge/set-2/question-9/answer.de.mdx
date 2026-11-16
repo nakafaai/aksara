@@ -33,6 +33,38 @@ Die Spalten <InlineMath math="x=0" /> und <InlineMath math="x=10" /> enthalten k
 
 Gitterpunkte genau auf einer schrägen Seite sind durch die strengen Zeichen schon ausgeschlossen. Auf der Geraden <InlineMath math="y=2x" /> liegen <InlineMath math="(1,2)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,6)" /> und <InlineMath math="(4,8)" />. Auf der Geraden <InlineMath math="3x+2y=30" /> liegen <InlineMath math="(6,6)" /> und <InlineMath math="(8,3)" />. **Keiner dieser sechs Punkte wird gezählt**, genau wie in der Tabelle.
 
+Die Abbildung zeigt das Innere des Dreiecks mit gestrichelten Seiten, ein Zeichen dafür, dass die Seiten nicht zählen. Die sechs Gitterpunkte auf den schrägen Seiten **liegen genau auf den gestrichelten Linien**, also alle außerhalb des gezählten Bereichs.
+
+<MathVisual
+  title={<>Der Bereich <InlineMath math="y>0" />, <InlineMath math="y<2x" /> und <InlineMath math="3x+2y<30" /></>}
+  description={<>Ein Dreiecksbereich mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(10,0)" /> und <InlineMath math="\left(\tfrac{30}{7},\tfrac{60}{7}\right)" />. Die Seiten sind gestrichelt, weil die Zeichen streng sind. Die Punkte <InlineMath math="(1,2)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,6)" />, <InlineMath math="(4,8)" /> auf der Geraden <InlineMath math="y=2x" /> und die Punkte <InlineMath math="(6,6)" />, <InlineMath math="(8,3)" /> auf der Geraden <InlineMath math="3x+2y=30" /> sind als Punkte auf einer Seite markiert.</>}
+  labels={{
+    top: <InlineMath math="\left(\tfrac{30}{7},\tfrac{60}{7}\right)" />,
+    steep: <InlineMath math="y=2x" />,
+    slope: <InlineMath math="3x+2y=30" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "inside", kind: "region", appearance: "primary", inequalities: ["y > 0", "y < 2x", "3x + 2y < 30"] },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 30 / 7, y: 60 / 7 } },
+      { id: "edge-1", kind: "point", appearance: "warning", at: { x: 1, y: 2 } },
+      { id: "edge-2", kind: "point", appearance: "warning", at: { x: 2, y: 4 } },
+      { id: "edge-3", kind: "point", appearance: "warning", at: { x: 3, y: 6 } },
+      { id: "edge-4", kind: "point", appearance: "warning", at: { x: 4, y: 8 } },
+      { id: "edge-5", kind: "point", appearance: "warning", at: { x: 6, y: 6 } },
+      { id: "edge-6", kind: "point", appearance: "warning", at: { x: 8, y: 3 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 30 / 7, y: 60 / 7 }, placement: "above-right" },
+      { key: "steep", objectId: "inside", at: { x: 1.5, y: 3 }, placement: "left" },
+      { key: "slope", objectId: "inside", at: { x: 7, y: 4.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Fallen in den anderen Antworten
 
 - <InlineMath math="52" /> zählt alle Punkte auf allen drei Seiten mit, auch die auf der <InlineMath math="x" />-Achse.

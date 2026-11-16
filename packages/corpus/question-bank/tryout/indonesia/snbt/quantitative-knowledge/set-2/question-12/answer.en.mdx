@@ -21,6 +21,17 @@ P&=\frac{20-5}{20}=\frac{15}{20}=\frac34
 
 Any set that contains <InlineMath math="6" /> **works for sure**: <InlineMath math="\binom52=10" /> sets. Without <InlineMath math="6" />, the set needs <InlineMath math="3" /> and at least one of <InlineMath math="2" /> or <InlineMath math="4" />, which gives <InlineMath math="\{1,2,3\}" />, <InlineMath math="\{2,3,5\}" />, <InlineMath math="\{1,3,4\}" />, <InlineMath math="\{3,4,5\}" />, and <InlineMath math="\{2,3,4\}" />. The total is <InlineMath math="10+5=15" />, the same as the complement count.
 
+The chart below splits the <InlineMath math="20" /> equally likely sets into three groups. The first two bars are the sets that work, so the probability is **<InlineMath math="15" /> out of <InlineMath math="20" />**, not something over <InlineMath math="216" />.
+
+<Chart
+  title={<>The twenty sets of three different faces</>}
+  description={<>There are <InlineMath math="10" /> sets that contain <InlineMath math="6" />. There are <InlineMath math="5" /> sets without <InlineMath math="6" /> that still contain <InlineMath math="3" /> and an even number. The other <InlineMath math="5" /> sets fail because they have no even number or no multiple of <InlineMath math="3" />.</>}
+  categories={["Contains 6", "No 6, works", "Fails"]}
+  bars="apart"
+  series={[{ label: "Number of sets", mark: "bar", values: [10, 5, 5] }]}
+  valueLabel="Number of sets"
+/>
+
 # Traps in the other options
 
 - <InlineMath math="\tfrac{5}{12}" /> divides the <InlineMath math="15\times6=90" /> successful ordered throws by <InlineMath math="216" />, but **the denominator has to be <InlineMath math="120" />**.

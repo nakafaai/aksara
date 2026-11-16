@@ -24,6 +24,17 @@ Also erfüllen
 
 Anordnungen beide Bedingungen.
 
+Das Diagramm fasst die Zählung zusammen. Der obere Weg erfüllt die Bedingung für A, der untere **entfernt die Anordnungen, in denen die beiden M noch nebeneinanderstehen**.
+
+<Mermaid
+  title={<>Die Anordnungen von MAMALIA mit Lücken zählen</>}
+  description={<>Die Buchstaben M, M, L, I lassen sich auf <InlineMath math="12" /> Arten anordnen und bilden <InlineMath math="5" /> Lücken. Die drei A kommen in <InlineMath math="3" /> der <InlineMath math="5" /> Lücken, das ergibt <InlineMath math="120" /> Anordnungen. Anordnungen mit einem MM-Block gibt es <InlineMath math="3!\cdot\binom43=24" />. Übrig bleiben <InlineMath math="96" /> Anordnungen.</>}
+  chart={`flowchart LR
+    A["M, M, L, I anordnen: 4!/2! = 12"] --> B["3 A in 5 Lücken: 12 x 10 = 120"]
+    B --> D["120 - 24 = 96"]
+    C["Block MM, L, I: 3! = 6, A in 4 Lücken: 6 x 4 = 24"] -->|"entfernt"| D`}
+/>
+
 # Das Ergebnis prüfen
 
 Das Wort MAMALIA selbst erfüllt die Bedingung, denn die Folge M, A, M, A, L, I, A hat keine zwei gleichen Buchstaben nebeneinander. Wenn du alle <InlineMath math="420" /> Anordnungen einzeln durchgehst, bleiben ebenfalls **genau <InlineMath math="96" /> Anordnungen** übrig.

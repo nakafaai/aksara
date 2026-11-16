@@ -23,6 +23,20 @@ r&\in\{0,2\}
 
 Pangkat <InlineMath math="q" /> harus genap dan paling sedikit <InlineMath math="1" />, jadi paling kecil <InlineMath math="2" />.
 
+Grafik berikut membandingkan semua pilihan pangkat dengan pilihan yang lolos kedua syarat. Banyak faktor yang dicari adalah **hasil kali tinggi batang yang lolos**: <InlineMath math="6\cdot2\cdot2" />.
+
+<Chart
+  title={<>Pilihan pangkat untuk faktor <InlineMath math="d=2^p\cdot3^q\cdot5^r" /></>}
+  description={<>Pangkat <InlineMath math="p" /> punya <InlineMath math="13" /> pilihan, dan <InlineMath math="6" /> di antaranya genap dan paling kecil <InlineMath math="2" />. Pangkat <InlineMath math="q" /> punya <InlineMath math="6" /> pilihan, dan hanya <InlineMath math="2" /> yang genap dan paling kecil <InlineMath math="1" />. Pangkat <InlineMath math="r" /> punya <InlineMath math="3" /> pilihan, dan <InlineMath math="2" /> di antaranya genap.</>}
+  bars="apart"
+  categories={["Pangkat p dari 2", "Pangkat q dari 3", "Pangkat r dari 5"]}
+  series={[
+    { label: "Semua pilihan", mark: "bar", values: [12 + 1, 5 + 1, 2 + 1] },
+    { label: "Lolos kedua syarat", mark: "bar", values: [12 / 2, 2, 2] },
+  ]}
+  valueLabel="Banyak pilihan"
+/>
+
 # Menghitung banyak faktor
 
 Setiap pilihan <InlineMath math="p" />, <InlineMath math="q" />, dan <InlineMath math="r" /> memberi satu faktor yang berbeda, jadi **banyaknya adalah hasil kali banyak pilihan**.

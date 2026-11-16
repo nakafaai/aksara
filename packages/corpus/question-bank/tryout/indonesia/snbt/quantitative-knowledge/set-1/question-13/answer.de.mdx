@@ -26,6 +26,20 @@ P(\text{zwei rote}\mid\text{weiß umgelegt})&=\frac{\binom22}{21}=\frac{1}{21}
 
 Jeder Fall wird **mit der Wahrscheinlichkeit multipliziert, dass dieser Fall eintritt**, und dann werden die Ergebnisse addiert.
 
+Das Baumdiagramm zeigt beide Zweige. Die Wahrscheinlichkeit an jedem Ende ist **das Produkt der Wahrscheinlichkeiten entlang des Zweigs**, danach werden beide Enden addiert.
+
+<Mermaid
+  title={<>Wahrscheinlichkeitsbaum für die umgelegte Kugel</>}
+  description={<>Eine rote Kugel wird mit Wahrscheinlichkeit <InlineMath math="\tfrac35" /> umgelegt, dann enthält Beutel B <InlineMath math="3" /> rote und <InlineMath math="4" /> weiße, und zwei rote haben die Wahrscheinlichkeit <InlineMath math="\tfrac17" />. Eine weiße Kugel wird mit Wahrscheinlichkeit <InlineMath math="\tfrac25" /> umgelegt, dann enthält Beutel B <InlineMath math="2" /> rote und <InlineMath math="5" /> weiße, und zwei rote haben die Wahrscheinlichkeit <InlineMath math="\tfrac1{21}" />. Die beiden Zweige liefern <InlineMath math="\tfrac{9}{105}" /> und <InlineMath math="\tfrac{2}{105}" />.</>}
+  chart={`flowchart LR
+    A["Beutel A: 3 rot, 2 weiß"] -->|"rot umgelegt, 3/5"| B1["Beutel B: 3 rot, 4 weiß"]
+    A -->|"weiß umgelegt, 2/5"| B2["Beutel B: 2 rot, 5 weiß"]
+    B1 -->|"zwei rot, 3/21 = 1/7"| C1["3/5 x 1/7 = 9/105"]
+    B2 -->|"zwei rot, 1/21"| C2["2/5 x 1/21 = 2/105"]
+    C1 --> T["Summe 11/105"]
+    C2 --> T`}
+/>
+
 <BlockMath math="\begin{aligned}
 P(\text{zwei rote})&=\frac35\cdot\frac17+\frac25\cdot\frac1{21}\\
 &=\frac{9}{105}+\frac{2}{105}=\frac{11}{105}

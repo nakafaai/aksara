@@ -31,6 +31,37 @@ k\ \text{gerade}&:\quad \text{ganze Zahlen } -\tfrac{k+4}{2},\ \ldots,\ \tfrac{k
 
 Für ungerades <InlineMath math="k" /> liefert <InlineMath math="k+1=20" /> den Wert <InlineMath math="k=19" />, und <InlineMath math="19" /> ist tatsächlich ungerade. Für gerades <InlineMath math="k" /> gilt <InlineMath math="k=20" />, und <InlineMath math="20" /> ist tatsächlich gerade. Es gibt also zwei Werte von <InlineMath math="k" />, und ihre Summe ist <InlineMath math="19+20=39" />.
 
+Der Graph von <InlineMath math="S(x)" /> ist eine Schüssel mit flachem Boden auf Höhe <InlineMath math="9" />. Die Gerade <InlineMath math="y=k" /> trifft die Wände der Schüssel an den beiden Enden des Lösungsintervalls. Für <InlineMath math="k=19" /> liegen die Enden **genau auf den ganzen Zahlen** <InlineMath math="-12" /> und <InlineMath math="7" />. Für <InlineMath math="k=20" /> liegen sie bei <InlineMath math="-12{,}5" /> und <InlineMath math="7{,}5" />, also kommt keine neue ganze Zahl dazu.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="S(x)=|x-2|+|x+7|" /> und zwei Werte von <InlineMath math="k" /></>}
+  description={<>Der Graph fällt mit Steigung <InlineMath math="-2" /> bis <InlineMath math="x=-7" />, bleibt von <InlineMath math="x=-7" /> bis <InlineMath math="x=2" /> flach bei <InlineMath math="y=9" /> und steigt dann mit Steigung <InlineMath math="2" />. Die Strecke <InlineMath math="y=19" /> reicht von <InlineMath math="x=-12" /> bis <InlineMath math="x=7" />, die Strecke <InlineMath math="y=20" /> von <InlineMath math="x=-12{,}5" /> bis <InlineMath math="x=7{,}5" />. Beide enthalten die ganzen Zahlen <InlineMath math="-12" /> bis <InlineMath math="7" />.</>}
+  labels={{
+    s: <InlineMath math="y=S(x)" />,
+    k19: <InlineMath math="k=19" />,
+    k20: <InlineMath math="k=20" />,
+    flat: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 10 }, y: { min: 0, max: 24 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "-2x - 5", domain: { min: -14, max: -7 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "9", domain: { min: -7, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "2x + 5", domain: { min: 2, max: 9 } },
+      { id: "level-19", kind: "segment", appearance: "secondary", from: { x: -12, y: 19 }, to: { x: 7, y: 19 } },
+      { id: "level-20", kind: "segment", appearance: "highlight", from: { x: -12.5, y: 20 }, to: { x: 7.5, y: 20 } },
+    ],
+    labels: [
+      { key: "s", objectId: "right", at: { x: 8, y: 21 }, placement: "right" },
+      { key: "k19", objectId: "level-19", at: { x: -2.5, y: 19 }, placement: "below" },
+      { key: "k20", objectId: "level-20", at: { x: -2.5, y: 20 }, placement: "above" },
+      { key: "flat", objectId: "middle", at: { x: -2.5, y: 9 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Das Ergebnis prüfen
 
 Für <InlineMath math="k=19" /> sind die Lösungen <InlineMath math="-12\le x\le7" />, das sind <InlineMath math="7-(-12)+1=20" /> ganze Zahlen. Für <InlineMath math="k=20" /> sind die Lösungen <InlineMath math="-12{,}5\le x\le7{,}5" />, darin liegen die ganzen Zahlen <InlineMath math="-12" /> bis <InlineMath math="7" />, wieder <InlineMath math="20" />. Für <InlineMath math="k=21" /> wird das Intervall zu <InlineMath math="-13\le x\le8" /> mit <InlineMath math="22" /> ganzen Zahlen, **die Anzahl springt also von zwanzig direkt auf zweiundzwanzig**.

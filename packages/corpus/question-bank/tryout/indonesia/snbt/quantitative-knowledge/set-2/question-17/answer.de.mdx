@@ -26,4 +26,39 @@ x-y=-7&:\quad x(x+7)=-12\ \Rightarrow\ x^2+7x+12=0\ \Rightarrow\ x=-3\ \text{ode
 
 Der zweite Fall fällt wegen <InlineMath math="x>0" /> weg. Der erste Fall liefert das Paar <InlineMath math="(3,-4)" /> mit <InlineMath math="x+y=-1" /> und das Paar <InlineMath math="(4,-3)" /> mit <InlineMath math="x+y=1" />. **Die Bedingung <InlineMath math="x>0" /> streicht also einen Fall, legt aber das Vorzeichen von <InlineMath math="x+y" /> nicht fest**. Es bleiben zwei Werte.
 
+Die Abbildung zeigt alle Paare, die beide Aussagen zugleich erfüllen: die Schnittpunkte der Hyperbel <InlineMath math="xy=-12" /> mit den beiden Geraden <InlineMath math="x-y=\pm7" />. Die Bedingung <InlineMath math="x>0" /> streicht die beiden Punkte links, aber **die beiden übrigen Punkte liefern die Summen <InlineMath math="-1" /> und <InlineMath math="1" />**.
+
+<MathVisual
+  title={<>Ganzzahlige Paare, die beide Aussagen erfüllen</>}
+  description={<>Die Hyperbel <InlineMath math="y=-\tfrac{12}{x}" /> schneidet die Gerade <InlineMath math="y=x-7" /> in <InlineMath math="(3,-4)" /> und <InlineMath math="(4,-3)" /> und die Gerade <InlineMath math="y=x+7" /> in <InlineMath math="(-3,4)" /> und <InlineMath math="(-4,3)" />. Die letzten beiden haben <InlineMath math="x<0" /> und fallen weg. Der Punkt <InlineMath math="(3,-4)" /> liefert <InlineMath math="x+y=-1" />, der Punkt <InlineMath math="(4,-3)" /> liefert <InlineMath math="x+y=1" />.</>}
+  labels={{
+    hyperbola: <InlineMath math="xy=-12" />,
+    down: <InlineMath math="x-y=7" />,
+    up: <InlineMath math="x-y=-7" />,
+    p1: <InlineMath math="(3,-4)" />,
+    p2: <InlineMath math="(4,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 12 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hyperbola", kind: "function", appearance: "primary", formula: "-12/x", domain: { min: -12, max: 12 } },
+      { id: "down", kind: "function", appearance: "secondary", formula: "x - 7", domain: { min: -5, max: 12 } },
+      { id: "up", kind: "function", appearance: "construction", formula: "x + 7", domain: { min: -12, max: 5 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4, y: -3 } },
+      { id: "q1", kind: "point", appearance: "warning", at: { x: -3, y: 4 } },
+      { id: "q2", kind: "point", appearance: "warning", at: { x: -4, y: 3 } },
+    ],
+    labels: [
+      { key: "hyperbola", objectId: "hyperbola", at: { x: 10, y: -6 / 5 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 10, y: 3 }, placement: "left" },
+      { key: "up", objectId: "up", at: { x: -10, y: -3 }, placement: "right" },
+      { key: "p1", objectId: "p1", at: { x: 3, y: -4 }, placement: "below-left" },
+      { key: "p2", objectId: "p2", at: { x: 4, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 **Aussage (1) und Aussage (2) reichen also auch zusammen nicht aus**, um die Frage zu beantworten.

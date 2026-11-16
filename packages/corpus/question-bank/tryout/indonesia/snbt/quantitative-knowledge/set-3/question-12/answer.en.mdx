@@ -24,6 +24,20 @@ The mean is smallest when every free value is as small as possible.
 
 The value <InlineMath math="15" /> can appear at most twice, as <InlineMath math="x_{10}" /> and <InlineMath math="x_{11}" />, because <InlineMath math="x_9=10" />. Now look at the four values <InlineMath math="x_6" />, <InlineMath math="x_7" />, <InlineMath math="x_8" />, <InlineMath math="x_9" />. All four are integers from <InlineMath math="8" /> to <InlineMath math="10" />, but there are only three such integers, so **some value must appear at least twice**. That value ties with or beats the number of times <InlineMath math="15" /> appears, so <InlineMath math="15" /> can't be the only mode. Statement two is false.
 
+The chart below shows the smallest and the largest data sets that fit the box plot. The bars <InlineMath math="x_1" />, <InlineMath math="x_3" />, <InlineMath math="x_6" />, <InlineMath math="x_9" />, and <InlineMath math="x_{11}" /> **have the same height in both**, because those values are fixed. Every other fitting data set has a sum between <InlineMath math="78" /> and <InlineMath math="96" />.
+
+<Chart
+  title={<>Two extreme data sets for the same five-number summary</>}
+  description={<>The smallest fitting data set is <InlineMath math="2, 2, 5, 5, 5, 8, 8, 8, 10, 10, 15" />, with sum <InlineMath math="78" />. The largest fitting data set is <InlineMath math="2, 5, 5, 8, 8, 8, 10, 10, 10, 15, 15" />, with sum <InlineMath math="96" />. The values in positions <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="9" />, and <InlineMath math="11" /> are the same in both.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `x${i + 1}`)}
+  series={[
+    { label: "Smallest fitting data, sum 78", mark: "bar", values: [2, 2, 5, 5, 5, 8, 8, 8, 10, 10, 15] },
+    { label: "Largest fitting data, sum 96", mark: "bar", values: [2, 5, 5, 8, 8, 8, 10, 10, 10, 15, 15] },
+  ]}
+  valueLabel="Value"
+/>
+
 # Statement three
 
 One example is enough. Take the data <InlineMath math="2,3,5,6,7,8,9,9,10,10,15" />. Its smallest value is <InlineMath math="2" />, <InlineMath math="x_3=5" />, <InlineMath math="x_6=8" />, <InlineMath math="x_9=10" />, and its largest value is <InlineMath math="15" />, so the summary fits. Here **only <InlineMath math="15" /> is greater than <InlineMath math="10" />**, because <InlineMath math="x_{10}=10" />. Statement three is true.

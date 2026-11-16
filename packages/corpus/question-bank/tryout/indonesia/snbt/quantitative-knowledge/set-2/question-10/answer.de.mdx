@@ -23,6 +23,20 @@ Die drei sechsten Potenzen stecken in <InlineMath math="|A|" /> und noch einmal 
 
 Prüfe das auf einem anderen Weg. Es gibt <InlineMath math="97-3=94" /> Quadratzahlen, die keine Kubikzahlen sind, und <InlineMath math="19-3=16" /> Kubikzahlen, die keine Quadratzahlen sind. Zusammen sind das <InlineMath math="94+16=110" />, dasselbe Ergebnis.
 
+Das Diagramm teilt jede Gruppe in zwei Teile. Gesucht sind nur **die Balken, die genau eine Bedingung erfüllen**, während die drei sechsten Potenzen in beiden Gruppen auftauchen und aus beiden herausfallen.
+
+<Chart
+  title={<>Quadrat- und Kubikzahlen von <InlineMath math="10" /> bis <InlineMath math="10{.}000" /></>}
+  description={<>Von den <InlineMath math="97" /> Quadratzahlen sind <InlineMath math="94" /> keine Kubikzahlen und <InlineMath math="3" /> zugleich Kubikzahlen. Von den <InlineMath math="19" /> Kubikzahlen sind <InlineMath math="16" /> keine Quadratzahlen und <InlineMath math="3" /> zugleich Quadratzahlen. Diese drei sind <InlineMath math="64" />, <InlineMath math="729" /> und <InlineMath math="4{.}096" />.</>}
+  categories={["Quadratzahlen", "Kubikzahlen"]}
+  bars="apart"
+  series={[
+    { label: "Erfüllt genau eine Bedingung", mark: "bar", values: [97 - 3, 19 - 3] },
+    { label: "Quadrat und Kubikzahl zugleich", mark: "bar", values: [3, 3] },
+  ]}
+  valueLabel="Anzahl"
+/>
+
 # Häufige Fehler
 
 - Das Ergebnis <InlineMath math="113" /> zieht die Schnittmenge **nur einmal** ab. Das ist die Anzahl der Zahlen, die Quadrat- oder Kubikzahl sind, einschließlich derer, die beides sind.

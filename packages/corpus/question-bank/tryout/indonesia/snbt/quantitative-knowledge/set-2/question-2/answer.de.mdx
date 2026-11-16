@@ -39,6 +39,38 @@ Die Diskriminante erzwingt <InlineMath math="m<\tfrac43" />, also ist <InlineMat
 
 Prüfe beide Enden. Für <InlineMath math="m=-7" /> lautet die Gleichung <InlineMath math="-7x^2+29x-22=-(x-1)(7x-22)=0" />, eine Lösung ist also genau <InlineMath math="1" />, und **dieses Ende fällt zu Recht weg**. Für <InlineMath math="m=-8" /> lautet die Gleichung <InlineMath math="-8x^2+32x-25=0" /> mit den Lösungen <InlineMath math="x=2\pm\tfrac{\sqrt{14}}{4}" />. Wegen <InlineMath math="\sqrt{14}<4" /> liegen beide Lösungen zwischen <InlineMath math="1" /> und <InlineMath math="3" />, also passt <InlineMath math="m=-8" />.
 
+Die Graphen für drei Werte von <InlineMath math="m" /> zeigen die Grenze. Für <InlineMath math="m=-8" /> liegen beide Schnittpunkte mit der <InlineMath math="x" />-Achse rechts der Geraden <InlineMath math="x=1" />. Für <InlineMath math="m=-7" /> liegt ein Schnittpunkt **genau auf dieser Geraden**, und für <InlineMath math="m=-3" /> liegt einer schon links davon.
+
+<MathVisual
+  title={<>Die Nullstellen für drei Werte von <InlineMath math="m" /></>}
+  description={<>Die Parabel <InlineMath math="y=-8x^2+32x-25" /> für <InlineMath math="m=-8" /> schneidet die <InlineMath math="x" />-Achse zweimal zwischen <InlineMath math="1" /> und <InlineMath math="3" />. Die Parabel <InlineMath math="y=-7x^2+29x-22" /> für <InlineMath math="m=-7" /> schneidet sie bei <InlineMath math="1" /> und <InlineMath math="\tfrac{22}{7}" />. Die Parabel <InlineMath math="y=-3x^2+17x-10" /> für <InlineMath math="m=-3" /> schneidet sie bei <InlineMath math="\tfrac23" /> und <InlineMath math="5" />. Die senkrechte Gerade ist <InlineMath math="x=1" />.</>}
+  labels={{
+    good: <InlineMath math="m=-8" />,
+    edge: <InlineMath math="m=-7" />,
+    bad: <InlineMath math="m=-3" />,
+    one: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -6, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line-one", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "curve-bad", kind: "function", appearance: "warning", formula: "-3x^2 + 17x - 10", domain: { min: -0.5, max: 6 } },
+      { id: "curve-edge", kind: "function", appearance: "secondary", formula: "-7x^2 + 29x - 22", domain: { min: -0.5, max: 6 } },
+      { id: "curve-good", kind: "function", appearance: "answer", formula: "-8x^2 + 32x - 25", domain: { min: -0.5, max: 6 } },
+      { id: "root-edge", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "root-bad", kind: "point", appearance: "warning", at: { x: 2 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "good", objectId: "curve-good", at: { x: 2, y: 7 }, placement: "below" },
+      { key: "edge", objectId: "curve-edge", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "bad", objectId: "curve-bad", at: { x: 17 / 6, y: 289 / 12 - 10 }, placement: "above" },
+      { key: "one", objectId: "line-one", at: { x: 1, y: -5 }, placement: "left" },
+    ],
+  }}
+/>
+
 # Fallen in den anderen Antworten
 
 - <InlineMath math="6" /> entsteht, wenn du die Bedingung <InlineMath math="f(1)=m+7>0" /> benutzt, die nur für eine nach oben geöffnete Parabel gilt. Hier ist <InlineMath math="m" /> negativ, **die Bedingung kehrt sich also um**, und das Ergebnis wird fälschlich <InlineMath math="-7<m<0" />.

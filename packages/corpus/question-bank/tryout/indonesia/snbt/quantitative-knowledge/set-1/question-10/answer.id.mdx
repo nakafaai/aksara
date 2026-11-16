@@ -16,6 +16,47 @@ Calonnya <InlineMath math="x=9" /> atau <InlineMath math="x=-16" />. Panjang rua
 
 Garis singgung selalu **tegak lurus jari-jari di titik singgungnya**, jadi <InlineMath math="PT\perp OT" />. Tali busur <InlineMath math="TB" /> melalui <InlineMath math="O" />, sehingga garis <InlineMath math="TB" /> sama dengan garis <InlineMath math="TO" />. Akibatnya sudut <InlineMath math="PTB" /> siku-siku, dan sisi miring segitiga <InlineMath math="PTB" /> adalah <InlineMath math="PB" />.
 
+Gambar berikut memperlihatkan segitiga siku-siku itu. Garis singgung <InlineMath math="PT" /> mendatar dan diameter <InlineMath math="TB" /> tegak, jadi **sudut siku-sikunya ada di <InlineMath math="T" />** dan sisi miringnya adalah tali <InlineMath math="PB" />.
+
+<MathVisual
+  title={<>Garis singgung, garis potong, dan diameter <InlineMath math="TB" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="O" />. Garis singgung dari <InlineMath math="P" /> menyentuh lingkaran di <InlineMath math="T" /> dengan <InlineMath math="PT=12" />. Garis dari <InlineMath math="P" /> memotong lingkaran di <InlineMath math="A" /> lalu <InlineMath math="B" />, dengan <InlineMath math="PB=16" />. Ruas <InlineMath math="TB" /> melalui <InlineMath math="O" /> dan tegak lurus <InlineMath math="PT" /> di <InlineMath math="T" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    t: <InlineMath math="T" />,
+    b: <InlineMath math="B" />,
+    a: <InlineMath math="A" />,
+    o: <InlineMath math="O" />,
+    pt: <InlineMath math="12" />,
+    pb: <InlineMath math="PB=16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 14 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 * Math.sqrt(7) },
+      { id: "diameter", kind: "segment", appearance: "highlight", from: { x: 0, y: 2 * Math.sqrt(7) }, to: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "tangent", kind: "segment", appearance: "primary", from: { x: 12, y: 2 * Math.sqrt(7) }, to: { x: 0, y: 2 * Math.sqrt(7) } },
+      { id: "secant", kind: "segment", appearance: "secondary", from: { x: 12, y: 2 * Math.sqrt(7) }, to: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 12, y: 2 * Math.sqrt(7) } },
+      { id: "point-t", kind: "point", appearance: "reference", at: { x: 0, y: 2 * Math.sqrt(7) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 21 / 4, y: -Math.sqrt(7) / 4 } },
+      { id: "point-o", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 12, y: 2 * Math.sqrt(7) }, placement: "right" },
+      { key: "t", objectId: "point-t", at: { x: 0, y: 2 * Math.sqrt(7) }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 0, y: -2 * Math.sqrt(7) }, placement: "below-left" },
+      { key: "a", objectId: "point-a", at: { x: 21 / 4, y: -Math.sqrt(7) / 4 }, placement: "below-right" },
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "pt", objectId: "tangent", at: { x: 6, y: 2 * Math.sqrt(7) }, placement: "above" },
+      { key: "pb", objectId: "secant", at: { x: 9, y: Math.sqrt(7) / 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Menghitung jari-jari
 
 Pakai teorema Pythagoras pada segitiga <InlineMath math="PTB" />, lalu ingat bahwa <InlineMath math="TB" /> adalah diameter, jadi **jari-jarinya setengah dari <InlineMath math="TB" />**.

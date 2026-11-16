@@ -23,6 +23,32 @@ s=7,\ p=5&:\quad 7^2-4\cdot 5=29\ge 0
 
 Pasangan pertama membuat <InlineMath math="x" /> dan <InlineMath math="y" /> tidak real, jadi pasangan itu dibuang. Yang tersisa hanya <InlineMath math="s=7" /> dan <InlineMath math="p=5" />.
 
+Grafik kedua persamaan pembantu memperlihatkan perbedaannya. Parabola untuk <InlineMath math="s=5" /> dan <InlineMath math="p=7" /> **seluruhnya di atas sumbu mendatar**, jadi tidak punya akar real. Parabola untuk <InlineMath math="s=7" /> dan <InlineMath math="p=5" /> memotong sumbu di dua titik, yaitu nilai <InlineMath math="x" /> dan <InlineMath math="y" />.
+
+<MathVisual
+  title={<>Dua calon pasangan jumlah dan hasil kali</>}
+  description={<>Parabola <InlineMath math="z^2-5z+7" /> punya titik terendah <InlineMath math="\left(\tfrac52,\tfrac34\right)" />, di atas sumbu, sehingga tidak memotongnya. Parabola <InlineMath math="z^2-7z+5" /> punya titik terendah <InlineMath math="\left(\tfrac72,-\tfrac{29}{4}\right)" /> dan memotong sumbu di <InlineMath math="\tfrac{7-\sqrt{29}}{2}" /> dan <InlineMath math="\tfrac{7+\sqrt{29}}{2}" />.</>}
+  labels={{
+    rejected: <InlineMath math="z^2-5z+7" />,
+    kept: <InlineMath math="z^2-7z+5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "rejected", kind: "function", appearance: "warning", formula: "x^2 - 5x + 7", domain: { min: -0.5, max: 5.5 } },
+      { id: "kept", kind: "function", appearance: "answer", formula: "x^2 - 7x + 5", domain: { min: -0.5, max: 7.8 } },
+      { id: "root-small", kind: "point", appearance: "answer", at: { x: (7 - Math.sqrt(29)) / 2, y: 0 } },
+      { id: "root-large", kind: "point", appearance: "answer", at: { x: (7 + Math.sqrt(29)) / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "rejected", objectId: "rejected", at: { x: 5, y: 7 }, placement: "left" },
+      { key: "kept", objectId: "kept", at: { x: 3.5, y: -29 / 4 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Menghitung jumlah pangkat tiga
 
 Jabarkan <InlineMath math="(x+y)^3=x^3+3x^2y+3xy^2+y^3=x^3+y^3+3xy(x+y)" />. Dari situ, **<InlineMath math="x^3+y^3" /> sama dengan <InlineMath math="s^3-3ps" />**.

@@ -36,6 +36,43 @@ x\cdot 6b&=6b+86\cdot 6b=522b\\
 x&=87
 \end{aligned}" />
 
+Der Zahlenstrahl zeigt, was dieses Verhältnis bedeutet. Ein gemeinsamer Mittelwert liegt immer **näher an der größeren Gruppe**. Der Mittelwert <InlineMath math="60" /> ist <InlineMath math="10" /> von A und <InlineMath math="20" /> von B entfernt, also ist A doppelt so groß wie B. Der Mittelwert <InlineMath math="86" /> ist <InlineMath math="6" /> von B und <InlineMath math="1" /> von C entfernt, also ist C sechsmal so groß wie B.
+
+<MathVisual
+  title={<>Gruppenmittelwerte und gemeinsame Mittelwerte auf einer Linie</>}
+  description={<>Auf der Notenlinie liegt der Mittelwert von A bei <InlineMath math="50" />, A und B zusammen bei <InlineMath math="60" />, alle drei zusammen bei <InlineMath math="78" />, der Mittelwert von B bei <InlineMath math="80" />, B und C zusammen bei <InlineMath math="86" /> und der Mittelwert von C bei <InlineMath math="87" />. Die Abstände <InlineMath math="10" /> und <InlineMath math="20" /> ergeben <InlineMath math="a:b=2:1" />, die Abstände <InlineMath math="6" /> und <InlineMath math="1" /> ergeben <InlineMath math="c:b=6:1" />.</>}
+  labels={{
+    a: <InlineMath math="A:50" />,
+    ab: <InlineMath math="A+B:60" />,
+    all: <InlineMath math="78" />,
+    b: <InlineMath math="B:80" />,
+    bc: <InlineMath math="B+C:86" />,
+    c: <InlineMath math="C:87" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 46, max: 91 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 48, y: 0 }, to: { x: 89, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 50, y: 0 } },
+      { id: "mean-ab", kind: "point", appearance: "construction", at: { x: 60, y: 0 } },
+      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 78, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 80, y: 0 } },
+      { id: "mean-bc", kind: "point", appearance: "construction", at: { x: 86, y: 0 } },
+      { id: "mean-c", kind: "point", appearance: "answer", at: { x: 87, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mean-a", at: { x: 50, y: 0 }, placement: "above" },
+      { key: "ab", objectId: "mean-ab", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "all", objectId: "mean-all", at: { x: 78, y: 0 }, placement: "below" },
+      { key: "b", objectId: "mean-b", at: { x: 80, y: 0 }, placement: "above" },
+      { key: "bc", objectId: "mean-bc", at: { x: 86, y: 0 }, placement: "below" },
+      { key: "c", objectId: "mean-c", at: { x: 87, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Probe mit Beispielgrößen
 
 Nimm <InlineMath math="b=1" />, also <InlineMath math="a=2" /> und <InlineMath math="c=6" />. Die Punktsummen sind <InlineMath math="100" />, <InlineMath math="80" /> und <InlineMath math="6\cdot 87=522" />. Der gemeinsame Mittelwert von A und B ist <InlineMath math="\tfrac{180}{3}=60" />, der von B und C ist <InlineMath math="\tfrac{602}{7}=86" />, und der aller Gruppen ist <InlineMath math="\tfrac{702}{9}=78" />. **Alle drei gemeinsamen Mittelwerte passen**, und dasselbe Verhältnis liefert für jeden Wert von <InlineMath math="b" /> dasselbe Ergebnis.

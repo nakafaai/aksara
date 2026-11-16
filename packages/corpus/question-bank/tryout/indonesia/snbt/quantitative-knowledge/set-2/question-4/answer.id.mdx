@@ -31,6 +31,37 @@ k\ \text{genap}&:\quad \text{bilangan bulat } -\tfrac{k+4}{2},\ \ldots,\ \tfrac{
 
 Untuk <InlineMath math="k" /> ganjil, <InlineMath math="k+1=20" /> memberi <InlineMath math="k=19" />, dan <InlineMath math="19" /> memang ganjil. Untuk <InlineMath math="k" /> genap, <InlineMath math="k=20" />, dan <InlineMath math="20" /> memang genap. Jadi ada dua nilai <InlineMath math="k" />, dan jumlahnya <InlineMath math="19+20=39" />.
 
+Grafik <InlineMath math="S(x)" /> berbentuk mangkuk dengan dasar datar setinggi <InlineMath math="9" />. Garis <InlineMath math="y=k" /> memotong dinding mangkuk di kedua ujung selang penyelesaian. Untuk <InlineMath math="k=19" />, ujungnya **tepat di bilangan bulat** <InlineMath math="-12" /> dan <InlineMath math="7" />. Untuk <InlineMath math="k=20" />, ujungnya di <InlineMath math="-12{,}5" /> dan <InlineMath math="7{,}5" />, jadi tidak ada bilangan bulat baru yang masuk.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="S(x)=|x-2|+|x+7|" /> dan dua nilai <InlineMath math="k" /></>}
+  description={<>Grafik turun dengan kemiringan <InlineMath math="-2" /> sampai <InlineMath math="x=-7" />, datar di <InlineMath math="y=9" /> dari <InlineMath math="x=-7" /> sampai <InlineMath math="x=2" />, lalu naik dengan kemiringan <InlineMath math="2" />. Ruas <InlineMath math="y=19" /> membentang dari <InlineMath math="x=-12" /> sampai <InlineMath math="x=7" />, dan ruas <InlineMath math="y=20" /> dari <InlineMath math="x=-12{,}5" /> sampai <InlineMath math="x=7{,}5" />. Keduanya memuat bilangan bulat <InlineMath math="-12" /> sampai <InlineMath math="7" />.</>}
+  labels={{
+    s: <InlineMath math="y=S(x)" />,
+    k19: <InlineMath math="k=19" />,
+    k20: <InlineMath math="k=20" />,
+    flat: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 10 }, y: { min: 0, max: 24 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "-2x - 5", domain: { min: -14, max: -7 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "9", domain: { min: -7, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "2x + 5", domain: { min: 2, max: 9 } },
+      { id: "level-19", kind: "segment", appearance: "secondary", from: { x: -12, y: 19 }, to: { x: 7, y: 19 } },
+      { id: "level-20", kind: "segment", appearance: "highlight", from: { x: -12.5, y: 20 }, to: { x: 7.5, y: 20 } },
+    ],
+    labels: [
+      { key: "s", objectId: "right", at: { x: 8, y: 21 }, placement: "right" },
+      { key: "k19", objectId: "level-19", at: { x: -2.5, y: 19 }, placement: "below" },
+      { key: "k20", objectId: "level-20", at: { x: -2.5, y: 20 }, placement: "above" },
+      { key: "flat", objectId: "middle", at: { x: -2.5, y: 9 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Memeriksa hasil
 
 Untuk <InlineMath math="k=19" />, penyelesaiannya <InlineMath math="-12\le x\le7" />, berisi <InlineMath math="7-(-12)+1=20" /> bilangan bulat. Untuk <InlineMath math="k=20" />, penyelesaiannya <InlineMath math="-12{,}5\le x\le7{,}5" />, berisi bilangan bulat <InlineMath math="-12" /> sampai <InlineMath math="7" />, juga <InlineMath math="20" />. Untuk <InlineMath math="k=21" />, selangnya menjadi <InlineMath math="-13\le x\le8" /> dan berisi <InlineMath math="22" /> bilangan bulat, jadi **lompatan dari dua puluh langsung ke dua puluh dua**.

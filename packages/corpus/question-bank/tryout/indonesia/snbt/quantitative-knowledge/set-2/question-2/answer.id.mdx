@@ -39,6 +39,38 @@ Syarat diskriminan memaksa <InlineMath math="m<\tfrac43" />, jadi <InlineMath ma
 
 Cek kedua ujung. Untuk <InlineMath math="m=-7" />, persamaannya <InlineMath math="-7x^2+29x-22=-(x-1)(7x-22)=0" />, jadi salah satu akarnya tepat <InlineMath math="1" /> dan **ujung ini memang harus dibuang**. Untuk <InlineMath math="m=-8" />, persamaannya <InlineMath math="-8x^2+32x-25=0" /> dengan akar <InlineMath math="x=2\pm\tfrac{\sqrt{14}}{4}" />. Karena <InlineMath math="\sqrt{14}<4" />, kedua akar itu terletak di antara <InlineMath math="1" /> dan <InlineMath math="3" />, jadi <InlineMath math="m=-8" /> memenuhi.
 
+Grafik tiga nilai <InlineMath math="m" /> berikut memperlihatkan batasnya. Untuk <InlineMath math="m=-8" />, kedua titik potong dengan sumbu-<InlineMath math="x" /> ada di kanan garis <InlineMath math="x=1" />. Untuk <InlineMath math="m=-7" />, satu titik potong **tepat menempel di garis itu**, dan untuk <InlineMath math="m=-3" />, satu titik potong sudah ada di kirinya.
+
+<MathVisual
+  title={<>Akar persamaan untuk tiga nilai <InlineMath math="m" /></>}
+  description={<>Parabola <InlineMath math="y=-8x^2+32x-25" /> untuk <InlineMath math="m=-8" /> memotong sumbu-<InlineMath math="x" /> di dua titik antara <InlineMath math="1" /> dan <InlineMath math="3" />. Parabola <InlineMath math="y=-7x^2+29x-22" /> untuk <InlineMath math="m=-7" /> memotongnya di <InlineMath math="1" /> dan <InlineMath math="\tfrac{22}{7}" />. Parabola <InlineMath math="y=-3x^2+17x-10" /> untuk <InlineMath math="m=-3" /> memotongnya di <InlineMath math="\tfrac23" /> dan <InlineMath math="5" />. Garis tegak adalah <InlineMath math="x=1" />.</>}
+  labels={{
+    good: <InlineMath math="m=-8" />,
+    edge: <InlineMath math="m=-7" />,
+    bad: <InlineMath math="m=-3" />,
+    one: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -6, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line-one", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "curve-bad", kind: "function", appearance: "warning", formula: "-3x^2 + 17x - 10", domain: { min: -0.5, max: 6 } },
+      { id: "curve-edge", kind: "function", appearance: "secondary", formula: "-7x^2 + 29x - 22", domain: { min: -0.5, max: 6 } },
+      { id: "curve-good", kind: "function", appearance: "answer", formula: "-8x^2 + 32x - 25", domain: { min: -0.5, max: 6 } },
+      { id: "root-edge", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "root-bad", kind: "point", appearance: "warning", at: { x: 2 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "good", objectId: "curve-good", at: { x: 2, y: 7 }, placement: "below" },
+      { key: "edge", objectId: "curve-edge", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "bad", objectId: "curve-bad", at: { x: 17 / 6, y: 289 / 12 - 10 }, placement: "above" },
+      { key: "one", objectId: "line-one", at: { x: 1, y: -5 }, placement: "left" },
+    ],
+  }}
+/>
+
 # Jebakan pada pilihan lain
 
 - <InlineMath math="6" /> muncul jika kamu memakai syarat <InlineMath math="f(1)=m+7>0" />, yang hanya berlaku untuk parabola terbuka ke atas. Di sini <InlineMath math="m" /> negatif, jadi **syarat itu terbalik** dan hasilnya keliru menjadi <InlineMath math="-7<m<0" />.

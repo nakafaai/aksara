@@ -28,6 +28,22 @@ Find the smallest <InlineMath math="n" /> that works for each prime on its own.
 
 So the prime <InlineMath math="5" /> needs <InlineMath math="n\ge 25" />, the prime <InlineMath math="3" /> needs <InlineMath math="n\ge 27" />, and the prime <InlineMath math="2" /> needs <InlineMath math="n\ge 20" />. The count of factors of <InlineMath math="3" /> **jumps from <InlineMath math="10" /> to <InlineMath math="13" />** at <InlineMath math="n=27" />, because <InlineMath math="27=3^3" /> brings three factors at once. All three conditions hold together exactly when <InlineMath math="n\ge 27" />.
 
+The chart below counts the factors of <InlineMath math="3" /> and <InlineMath math="5" /> in <InlineMath math="n!" /> for <InlineMath math="n=20" /> to <InlineMath math="28" />. The bars for the factor <InlineMath math="5" /> reach their line at <InlineMath math="n=25" />, but **the bars for the factor <InlineMath math="3" /> only pass the line at <InlineMath math="12" /> when <InlineMath math="n=27" />**.
+
+<Chart
+  title={<>Factors of <InlineMath math="3" /> and <InlineMath math="5" /> in <InlineMath math="n!" /></>}
+  description={<>From <InlineMath math="n=20" /> to <InlineMath math="26" />, the number of factors of <InlineMath math="3" /> rises from <InlineMath math="8" /> to <InlineMath math="10" />, then jumps to <InlineMath math="13" /> at <InlineMath math="n=27" />. The number of factors of <InlineMath math="5" /> rises from <InlineMath math="4" /> to <InlineMath math="6" /> at <InlineMath math="n=25" />. The lines mark the need for <InlineMath math="12" /> factors of <InlineMath math="3" /> and <InlineMath math="6" /> factors of <InlineMath math="5" />.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 20}`)}
+  series={[
+    { label: "Factors of 3 in n!", mark: "bar", values: Array.from({ length: 9 }, (_, i) => Math.floor((i + 20) / 3) + Math.floor((i + 20) / 9) + Math.floor((i + 20) / 27)) },
+    { label: "Factors of 5 in n!", mark: "bar", values: Array.from({ length: 9 }, (_, i) => Math.floor((i + 20) / 5) + Math.floor((i + 20) / 25)) },
+    { label: "Need 12 factors of 3", mark: "line", values: Array.from({ length: 9 }, () => 12) },
+    { label: "Need 6 factors of 5", mark: "line", values: Array.from({ length: 9 }, () => 6) },
+  ]}
+  bars="apart"
+  valueLabel="Number of factors"
+/>
+
 # Checking the result
 
 For <InlineMath math="n=27" />, the number of factors of <InlineMath math="2" /> is <InlineMath math="13+6+3+1=23\ge 18" />, there are <InlineMath math="13\ge 12" /> factors of <InlineMath math="3" />, and <InlineMath math="5+1=6" /> factors of <InlineMath math="5" />. For <InlineMath math="n=26" />, there are **only <InlineMath math="10" /> factors of <InlineMath math="3" />**, so <InlineMath math="26!" /> isn't divisible yet.

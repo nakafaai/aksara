@@ -33,6 +33,38 @@ Kolom <InlineMath math="x=0" /> dan <InlineMath math="x=10" /> tidak berisi titi
 
 Titik bulat yang tepat berada pada sisi miring sudah dibuang oleh tanda ketat. Pada garis <InlineMath math="y=2x" /> ada <InlineMath math="(1,2)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,6)" />, dan <InlineMath math="(4,8)" />. Pada garis <InlineMath math="3x+2y=30" /> ada <InlineMath math="(6,6)" /> dan <InlineMath math="(8,3)" />. **Tidak satu pun dari enam titik itu ikut terhitung**, sesuai dengan tabel.
 
+Gambar berikut memperlihatkan daerah dalam segitiga dengan sisi putus-putus, tanda bahwa sisinya tidak ikut. Keenam titik bulat yang menempel di sisi miring **berada tepat di garis putus-putus**, jadi semuanya ada di luar daerah yang dihitung.
+
+<MathVisual
+  title={<>Daerah <InlineMath math="y>0" />, <InlineMath math="y<2x" />, dan <InlineMath math="3x+2y<30" /></>}
+  description={<>Daerah segitiga dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(10,0)" />, dan <InlineMath math="\left(\tfrac{30}{7},\tfrac{60}{7}\right)" />. Sisinya digambar putus-putus karena tandanya ketat. Titik <InlineMath math="(1,2)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,6)" />, <InlineMath math="(4,8)" /> pada garis <InlineMath math="y=2x" /> dan titik <InlineMath math="(6,6)" />, <InlineMath math="(8,3)" /> pada garis <InlineMath math="3x+2y=30" /> ditandai sebagai titik pada sisi.</>}
+  labels={{
+    top: <InlineMath math="\left(\tfrac{30}{7},\tfrac{60}{7}\right)" />,
+    steep: <InlineMath math="y=2x" />,
+    slope: <InlineMath math="3x+2y=30" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "inside", kind: "region", appearance: "primary", inequalities: ["y > 0", "y < 2x", "3x + 2y < 30"] },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 30 / 7, y: 60 / 7 } },
+      { id: "edge-1", kind: "point", appearance: "warning", at: { x: 1, y: 2 } },
+      { id: "edge-2", kind: "point", appearance: "warning", at: { x: 2, y: 4 } },
+      { id: "edge-3", kind: "point", appearance: "warning", at: { x: 3, y: 6 } },
+      { id: "edge-4", kind: "point", appearance: "warning", at: { x: 4, y: 8 } },
+      { id: "edge-5", kind: "point", appearance: "warning", at: { x: 6, y: 6 } },
+      { id: "edge-6", kind: "point", appearance: "warning", at: { x: 8, y: 3 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 30 / 7, y: 60 / 7 }, placement: "above-right" },
+      { key: "steep", objectId: "inside", at: { x: 1.5, y: 3 }, placement: "left" },
+      { key: "slope", objectId: "inside", at: { x: 7, y: 4.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Jebakan pada pilihan lain
 
 - <InlineMath math="52" /> menghitung semua titik pada ketiga sisi, termasuk titik pada sumbu-<InlineMath math="x" />.

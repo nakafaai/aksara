@@ -24,6 +24,18 @@ x&=15
 
 Der Wert <InlineMath math="x=15" /> erfüllt die Bedingung <InlineMath math="x\neq4" />.
 
+Das Diagramm fasst beide Schritte zusammen. Die durchgezogenen Pfeile folgen <InlineMath math="g\circ f" />, also erst <InlineMath math="f" />, dann <InlineMath math="g" />. Die gestrichelten Pfeile sind die Umkehrung, die **rückwärts läuft und zuerst <InlineMath math="g" /> rückgängig macht**.
+
+<Mermaid
+  title={<>Vorwärts und rückwärts durch <InlineMath math="g\circ f" /></>}
+  description={<>Vorwärts: <InlineMath math="f" /> schickt <InlineMath math="x=15" /> auf <InlineMath math="3" />, dann schickt <InlineMath math="g" /> die <InlineMath math="3" /> auf <InlineMath math="8" />. Rückwärts: <InlineMath math="g^{-1}" /> bringt <InlineMath math="8" /> zu <InlineMath math="3" />, dann bringt <InlineMath math="f^{-1}" /> die <InlineMath math="3" /> zu <InlineMath math="15" />.</>}
+  chart={`flowchart LR
+    X["x = 15"] -->|"f"| Y["f(x) = 3"]
+    Y -->|"g"| Z["g(3) = 8"]
+    Z -.->|"Schritt 1: g rückgängig, 3y - 1 = 8"| Y
+    Y -.->|"Schritt 2: f rückgängig, (2x + 3)/(x - 4) = 3"| X`}
+/>
+
 # Das Ergebnis prüfen
 
 Setze <InlineMath math="15" /> in <InlineMath math="g\circ f" /> ein: <InlineMath math="f(15)=\frac{33}{11}=3" />, dann <InlineMath math="g(3)=9-1=8" />. **Du landest wieder bei <InlineMath math="8" />**, also ist <InlineMath math="15" /> wirklich die gesuchte Eingabe.

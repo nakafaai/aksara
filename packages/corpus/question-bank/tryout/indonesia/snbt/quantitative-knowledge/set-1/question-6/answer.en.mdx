@@ -33,6 +33,16 @@ There are <InlineMath math="7" /> triples with <InlineMath math="a=b" />. In the
 \text{triples wanted}&=133-19=114
 \end{aligned}" />
 
+The diagram below sums up the three layers of counting. Each arrow throws out one kind of triple that breaks a condition, so **the number on the far right is what passes all three conditions**.
+
+<Mermaid
+  title={<>Three layers of counting the triples</>}
+  description={<>Start from <InlineMath math="406" /> positive triples with sum <InlineMath math="30" />, throw out the <InlineMath math="3\cdot91=273" /> triples with a number above <InlineMath math="15" /> to leave <InlineMath math="133" />, then throw out the <InlineMath math="19" /> triples with a repeated number to leave <InlineMath math="114" />.</>}
+  chart={`flowchart LR
+    A["All positive triples: 406"] -->|"remove 3 x 91 = 273 above 15"| B["133 triples"]
+    B -->|"remove 19 with a repeat"| C["114 triples"]`}
+/>
+
 # Checking the result
 
 Three different numbers can be ordered in <InlineMath math="3!=6" /> ways. So the number of ordered triples you want must be a multiple of <InlineMath math="6" />. The result is <InlineMath math="114=6\cdot19" />, so **there are <InlineMath math="19" /> sets of three different numbers** that work, such as <InlineMath math="\{1,14,15\}" /> and <InlineMath math="\{9,10,11\}" />.
