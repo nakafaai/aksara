@@ -19,6 +19,7 @@ import { SampleGridSchema } from "#contracts/math/formula/mesh";
 import { readFormula, readRelation } from "#contracts/math/formula/parse";
 import { regionGeometry } from "#contracts/math/formula/region";
 import { sampleCurve } from "#contracts/math/formula/sample";
+import { someCell } from "#contracts/math/formula/scan";
 import type { FormulaError } from "#contracts/math/formula/syntax";
 
 const BranchSchema = Schema.Array(SamplePointSchema);
@@ -106,6 +107,43 @@ function pathBranch(
   );
 }
 
+/** How far the two sides of an equation are apart at a point. */
+function implicitField(
+  equation: string,
+  scope: FormulaScope
+): Result.Result<SampleField, FormulaError> {
+  return Result.map(readRelation(equation), (relation) => {
+    const left = compileFormula(relation.left);
+    const right = compileFormula(relation.right);
+    return (x, y) => {
+      const point = { ...scope, x, y };
+      return left(point) - right(point);
+    };
+  });
+}
+
+/**
+ * Whether an equation draws any curve inside the box. It answers what
+ * `planeFormulaGeometry` would trace without tracing it: a cell holds a piece
+ * of the curve when its four corners are finite and lie on both sides of zero,
+ * so a schema check stays cheap; drawing the curve is the renderer's work.
+ */
+export function implicitVisible(
+  equation: string,
+  box: SampleBox,
+  scope: FormulaScope
+) {
+  return Result.map(implicitField(equation, scope), (field) =>
+    someCell(
+      field,
+      box,
+      (values) =>
+        Arr.some(values, (value) => value >= 0) &&
+        Arr.some(values, (value) => value < 0)
+    )
+  );
+}
+
 /** The plane objects a formula defines. */
 export type PlaneFormulaObject =
   (typeof PlaneCurveObjectSchemas)[number]["Type"];
@@ -177,14 +215,7 @@ export function planeFormulaGeometry(
       return { branches, kind: "curves" as const };
     }
     if (object.kind === "implicit") {
-      const relation = yield* readRelation(object.equation);
-      const left = compileFormula(relation.left);
-      const right = compileFormula(relation.right);
-      /** How far the two sides of the equation are apart at a point. */
-      const field: SampleField = (x, y) => {
-        const point = { ...scope, x, y };
-        return left(point) - right(point);
-      };
+      const field = yield* implicitField(object.equation, scope);
       return { branches: contourLines(field, box), kind: "curves" as const };
     }
     return yield* regionGeometry(object.inequalities, box, scope);

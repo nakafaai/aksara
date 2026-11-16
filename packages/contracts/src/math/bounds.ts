@@ -10,6 +10,7 @@ import type { FormulaScope } from "#contracts/math/formula/compile";
 import { isPlaneFormulaPoint } from "#contracts/math/formula/field";
 import {
   type FormulaGeometry,
+  implicitVisible,
   planeFormulaGeometry,
   planeFormulaPoint,
 } from "#contracts/math/formula/plane";
@@ -108,8 +109,11 @@ function planeObjectContained(
       frame
     );
   }
+  if (object.kind === "implicit") {
+    const visible = implicitVisible(object.equation, frame, scope);
+    return Result.isFailure(visible) || visible.success;
+  }
   if (
-    object.kind === "implicit" ||
     object.kind === "loop" ||
     object.kind === "marker" ||
     object.kind === "parametric" ||

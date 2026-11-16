@@ -17,12 +17,12 @@ import {
 } from "#contracts/math/formula/compile";
 import {
   contourFill,
-  contourFilled,
   contourLines,
   type SampleField,
 } from "#contracts/math/formula/contour";
 import { readRelation } from "#contracts/math/formula/parse";
 import type { FormulaGeometry } from "#contracts/math/formula/plane";
+import { someCell } from "#contracts/math/formula/scan";
 
 /** How far a boundary piece lies from one inequality's edge, and whether that edge is strict. */
 const ConstraintGapSchema = Schema.Struct({
@@ -151,9 +151,10 @@ export function regionFilled(
 ) {
   return Result.map(Result.all(Arr.map(inequalities, margin)), (margins) => {
     const fields = Arr.map(margins, (each) => each.field(scope));
-    return contourFilled(
+    return someCell(
       (x, y) => Math.min(...Arr.map(fields, (field) => field(x, y))),
-      box
+      box,
+      (values) => Arr.some(values, (value) => value >= 0)
     );
   });
 }

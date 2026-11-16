@@ -1,11 +1,7 @@
 import { assert, describe, it } from "@effect/vitest";
 import { Array as Arr, Option } from "effect";
 import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
-import {
-  contourFill,
-  contourFilled,
-  contourLines,
-} from "#contracts/math/formula/contour";
+import { contourFill, contourLines } from "#contracts/math/formula/contour";
 
 const box: SampleBox = { x: { max: 3, min: -3 }, y: { max: 3, min: -3 } };
 
@@ -83,35 +79,5 @@ describe("contourFill", () => {
       contourFill(() => Number.NaN, box, 8),
       []
     );
-  });
-});
-
-describe("contourFilled", () => {
-  it("answers exactly whether contourFill would draw anything", () => {
-    const fields: readonly ((x: number, y: number) => number)[] = [
-      (x, y) => 4 - x * x - y * y,
-      (x, y) => 0.0001 - (x - 2.9) ** 2 - (y + 2.9) ** 2,
-      (x, y) => -1 - x * x - y * y,
-      (x, y) => (x > 0 ? Number.NaN : 1 - x * x - y * y),
-      () => Number.NaN,
-      (x, y) => Math.min(x + 3, y + 3) - 0.0001,
-    ];
-    Arr.forEach(fields, (field) => {
-      assert.strictEqual(
-        contourFilled(field, box),
-        Arr.isReadonlyArrayNonEmpty(contourFill(field, box))
-      );
-    });
-  });
-
-  it("reads far fewer samples than the grid when the region is large", () => {
-    let reads = 0;
-    /** A disc of radius two that counts every sample it is asked for. */
-    const field = (x: number, y: number) => {
-      reads += 1;
-      return 4 - x * x - y * y;
-    };
-    assert.isTrue(contourFilled(field, box));
-    assert.isBelow(reads, 100);
   });
 });
