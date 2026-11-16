@@ -13,6 +13,7 @@ import {
   planeFormulaGeometry,
   planeFormulaPoint,
 } from "#contracts/math/formula/plane";
+import { regionFilled } from "#contracts/math/formula/region";
 import { geometryVisible } from "#contracts/math/formula/scope";
 import { spaceFormulaGeometry } from "#contracts/math/formula/space";
 import { infinitePathIntersectsBox } from "#contracts/math/intersection";
@@ -113,10 +114,13 @@ function planeObjectContained(
     object.kind === "marker" ||
     object.kind === "parametric" ||
     object.kind === "path" ||
-    object.kind === "polar" ||
-    object.kind === "region"
+    object.kind === "polar"
   ) {
     return sampledVisible(planeFormulaGeometry(object, frame, scope), frame);
+  }
+  if (object.kind === "region") {
+    const filled = regionFilled(object.inequalities, frame, scope);
+    return Result.isFailure(filled) || filled.success;
   }
   if (object.kind === "line") {
     const [start, through] = object.through;
