@@ -18,6 +18,22 @@ The word PERMATA is made of P, E, R, M, A, T, A. The first and last letters can 
 
 You have <InlineMath math="Q=120" /> and <InlineMath math="P=60" />, so **<InlineMath math="Q" /> is twice <InlineMath math="P" />**, and the correct relationship is <InlineMath math="Q>P" />.
 
+The diagram below puts both counts side by side. In <InlineMath math="P" />, the vowel order **cuts the vowel choices down to a single way**. In <InlineMath math="Q" />, both A's are used up at the ends, so the five letters in the middle are all different.
+
+<Mermaid
+  title={<>Counting <InlineMath math="P" /> and <InlineMath math="Q" /></>}
+  description={<>For <InlineMath math="P" />: choose the first consonant in <InlineMath math="3" /> ways, choose the vowel positions in <InlineMath math="\binom53=10" /> ways, fill the vowels in <InlineMath math="1" /> way, and arrange the two remaining consonants in <InlineMath math="2" /> ways, so <InlineMath math="P=60" />. For <InlineMath math="Q" />: both ends must be A, and the <InlineMath math="5" /> different letters in the middle can be arranged in <InlineMath math="5!=120" /> ways.</>}
+  chart={`flowchart LR
+    P0["SEPATU"] --> P1["first consonant: 3 ways"]
+    P1 --> P2["vowel positions: C(5,3) = 10"]
+    P2 --> P3["order A, E, U: 1 way"]
+    P3 --> P4["2 remaining consonants: 2 ways"]
+    P4 --> P5["P = 60"]
+    Q0["PERMATA"] --> Q1["matching ends: only A ... A"]
+    Q1 --> Q2["P, E, R, M, T in the middle: 5! ways"]
+    Q2 --> Q3["Q = 120"]`}
+/>
+
 # Why the other options are wrong
 
 - <InlineMath math="P=Q" /> comes from forgetting the consonant at the front of <InlineMath math="P" />, which gives <InlineMath math="P=120" />, or from still dividing <InlineMath math="Q" /> by <InlineMath math="2!" />, which gives <InlineMath math="Q=60" /> even though both A's are already used at the ends.

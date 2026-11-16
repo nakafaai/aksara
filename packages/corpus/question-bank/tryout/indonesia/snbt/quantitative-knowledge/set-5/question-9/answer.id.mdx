@@ -18,6 +18,20 @@ k=16:&\quad S_{16}=\frac{16\cdot111}{2}=888\\
 k=17:&\quad S_{17}=\frac{17\cdot118}{2}=1{.}003
 \end{aligned}" />
 
+Grafik berikut memperlihatkan jumlah <InlineMath math="k" /> suku pertama di sekitar perkiraan itu. Batang <InlineMath math="k=16" /> masih di bawah garis <InlineMath math="1{.}000" />, dan **batang <InlineMath math="k=17" /> menjadi yang pertama melewatinya**.
+
+<Chart
+  title={<>Jumlah <InlineMath math="S_k=\tfrac{k(7k-1)}{2}" /> untuk <InlineMath math="k=13" /> sampai <InlineMath math="18" /></>}
+  description={<>Jumlahnya <InlineMath math="585" />, <InlineMath math="679" />, <InlineMath math="780" />, <InlineMath math="888" />, <InlineMath math="1{.}003" />, dan <InlineMath math="1{.}125" /> untuk <InlineMath math="k=13" /> sampai <InlineMath math="18" />. Garis batas ada di <InlineMath math="1{.}000" />, di antara <InlineMath math="k=16" /> dan <InlineMath math="k=17" />.</>}
+  categories={Array.from({ length: 6 }, (_, i) => `${i + 13}`)}
+  series={[
+    { label: "Jumlah k suku pertama", mark: "bar", values: Array.from({ length: 6 }, (_, i) => ((i + 13) * (7 * (i + 13) - 1)) / 2) },
+    { label: "Batas 1.000", mark: "line", values: Array.from({ length: 6 }, () => 1000) },
+  ]}
+  bars="apart"
+  valueLabel="Jumlah"
+/>
+
 Sebanyak <InlineMath math="16" /> suku belum cukup, sedangkan <InlineMath math="17" /> suku sudah melewati <InlineMath math="1{.}000" />. Jadi **banyak suku harus dibulatkan ke atas menjadi <InlineMath math="17" />**.
 
 # Dari banyak suku ke nilai n

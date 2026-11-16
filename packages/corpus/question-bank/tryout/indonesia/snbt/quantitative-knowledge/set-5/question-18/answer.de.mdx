@@ -34,6 +34,17 @@ Jetzt hat <InlineMath math="P_6" /> allen die Hand gegeben, Ani eingeschlossen, 
 
 Ani hat <InlineMath math="P_6" />, <InlineMath math="P_5" /> und <InlineMath math="P_4" /> die Hand gegeben, wieder <InlineMath math="3" /> Personen. **Beide Fälle liefern dieselbe Antwort**, das Ergebnis steht also fest.
 
+Das Diagramm zeigt, wie viele Hände jede Person im ersten Fall geschüttelt hat. Die anderen sechs nutzen die Werte <InlineMath math="0" /> bis <InlineMath math="5" />, und **Anis Balken liegt genau in der Mitte, bei <InlineMath math="3" />**, weil die Personen mit den großen Antworten ihr die Hand gegeben haben.
+
+<Chart
+  title={<>Händedrücke pro Person, wenn die Antworten <InlineMath math="0" /> bis <InlineMath math="5" /> sind</>}
+  description={<>Die Personen <InlineMath math="P_0" /> bis <InlineMath math="P_5" /> haben <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" /> Hände geschüttelt. Ani hat <InlineMath math="3" /> Hände geschüttelt, die von <InlineMath math="P_3" />, <InlineMath math="P_4" /> und <InlineMath math="P_5" />. Zusammen sind es <InlineMath math="18" />, eine gerade Zahl.</>}
+  bars="apart"
+  categories={["P0", "P1", "P2", "P3", "P4", "P5", "Ani"]}
+  series={[{ label: "Händedrücke", mark: "bar", values: [0, 1, 2, 3, 4, 5, 3] }]}
+  valueLabel="Händedrücke"
+/>
+
 # Probe mit der Parität
 
 Jeder Handschlag wird von <InlineMath math="2" /> Personen gezählt, also **muss die Summe aller Antworten gerade sein**. Der erste Fall ergibt <InlineMath math="0+1+2+3+4+5+3=18" />, der zweite <InlineMath math="1+2+3+4+5+6+3=24" />. Beide Summen sind gerade.

@@ -25,6 +25,19 @@ x=24:&\quad P=\tfrac{69}{6}=11{,}5>10{,}5
 
 Ketiga nilai itu memenuhi <InlineMath math="x\ge12" />, jadi median ketiganya memang <InlineMath math="10{,}5" />. **Ketiga hubungan bisa terjadi**, jadi informasinya tidak cukup.
 
+Grafik berikut menaruh <InlineMath math="P" /> dan <InlineMath math="Q" /> untuk setiap <InlineMath math="x" /> dari <InlineMath math="12" /> sampai <InlineMath math="24" />. Median tetap datar di <InlineMath math="10{,}5" />, sedangkan rata-rata naik, jadi **kedua garis bersilangan di <InlineMath math="x=18" />** dan urutannya berbalik.
+
+<Chart
+  title={<>Rata-rata dan median untuk <InlineMath math="x" /> dari <InlineMath math="12" /> sampai <InlineMath math="24" /></>}
+  description={<>Rata-rata <InlineMath math="\tfrac{45+x}{6}" /> naik dari <InlineMath math="9{,}5" /> di <InlineMath math="x=12" /> sampai <InlineMath math="11{,}5" /> di <InlineMath math="x=24" />. Median tetap <InlineMath math="10{,}5" />. Kedua garis bertemu di <InlineMath math="x=18" />.</>}
+  categories={Array.from({ length: 13 }, (_, i) => `${i + 12}`)}
+  series={[
+    { label: "Rata-rata P", mark: "line", values: Array.from({ length: 13 }, (_, i) => (45 + i + 12) / 6) },
+    { label: "Median Q", mark: "line", values: Array.from({ length: 13 }, () => 10.5) },
+  ]}
+  valueLabel="Nilai"
+/>
+
 # Mengapa pilihan lain salah
 
 - <InlineMath math="Q>P" /> muncul kalau kamu menyelesaikan <InlineMath math="\tfrac{9+x}{2}=10{,}5" /> menjadi <InlineMath math="x=12" /> saja dan **lupa bahwa median tetap <InlineMath math="10{,}5" /> untuk <InlineMath math="x" /> yang lebih besar**.

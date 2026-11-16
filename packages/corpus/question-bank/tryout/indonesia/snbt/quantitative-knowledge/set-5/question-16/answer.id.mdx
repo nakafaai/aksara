@@ -30,6 +30,37 @@ x>5:&\quad(x-5)+(x+1)=6\ \Rightarrow\ x=5\ \text{(bukan bagian kasus ini)}
 
 Himpunan penyelesaiannya adalah <InlineMath math="-1\le x\le5" />, dan **kedua ujungnya ikut terhitung**.
 
+Grafik ruas kiri untuk <InlineMath math="a=5" /> memperlihatkan alasannya. Grafik itu **datar tepat di ketinggian <InlineMath math="6" />** dari <InlineMath math="x=-1" /> sampai <InlineMath math="x=5" />, jadi setiap titik di bagian datar itu, termasuk kedua ujungnya, memenuhi persamaan.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="|x-5|+|x+1|" /></>}
+  description={<>Grafik turun dengan kemiringan <InlineMath math="-2" /> sampai <InlineMath math="x=-1" />, datar di <InlineMath math="y=6" /> dari <InlineMath math="x=-1" /> sampai <InlineMath math="x=5" />, lalu naik dengan kemiringan <InlineMath math="2" />. Bagian datar itu berimpit dengan garis <InlineMath math="y=6" /> dan memuat bilangan bulat <InlineMath math="-1" /> sampai <InlineMath math="5" />.</>}
+  labels={{
+    sum: <InlineMath math="y=|x-5|+|x+1|" />,
+    left: <InlineMath math="-1" />,
+    right: <InlineMath math="5" />,
+    level: <InlineMath math="y=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left-piece", kind: "function", appearance: "primary", formula: "-2x + 4", domain: { min: -4, max: -1 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "6", domain: { min: -1, max: 5 } },
+      { id: "right-piece", kind: "function", appearance: "primary", formula: "2x - 4", domain: { min: 5, max: 8 } },
+      { id: "end-left", kind: "point", appearance: "answer", at: { x: -1, y: 6 } },
+      { id: "end-right", kind: "point", appearance: "answer", at: { x: 5, y: 6 } },
+    ],
+    labels: [
+      { key: "sum", objectId: "right-piece", at: { x: 7, y: 10 }, placement: "left" },
+      { key: "left", objectId: "end-left", at: { x: -1, y: 6 }, placement: "below-left" },
+      { key: "right", objectId: "end-right", at: { x: 5, y: 6 }, placement: "below-right" },
+      { key: "level", objectId: "flat", at: { x: 2, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Jumlah bilangan bulatnya
 
 Bilangan bulat pada selang itu, **termasuk kedua ujungnya**, adalah <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="5" />.

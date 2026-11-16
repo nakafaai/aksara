@@ -16,6 +16,17 @@ x&=8
 
 Die Häufigkeiten sind jetzt <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="7" />, <InlineMath math="8" /> und <InlineMath math="5" />. Die größte ist <InlineMath math="8" />, und sie gehört zur Klasse <InlineMath math="16" /> bis <InlineMath math="20" />. Also **ist die Modalklasse nicht die Klasse mit der Häufigkeit <InlineMath math="7" />**, die vor der Berechnung von <InlineMath math="x" /> am größten aussah.
 
+Das Histogramm nutzt <InlineMath math="x=8" />. Der höchste Balken **wandert zur Klasse <InlineMath math="16" /> bis <InlineMath math="20" />**, zwischen einem linken Nachbarn der Höhe <InlineMath math="7" /> und einem rechten der Höhe <InlineMath math="5" />, die <InlineMath math="d_1" /> und <InlineMath math="d_2" /> liefern.
+
+<Chart
+  title={<>Histogramm der Quizpunkte, sobald <InlineMath math="x" /> bekannt ist</>}
+  description={<>Die Klassen <InlineMath math="1" /> bis <InlineMath math="5" />, <InlineMath math="6" /> bis <InlineMath math="10" />, <InlineMath math="11" /> bis <InlineMath math="15" />, <InlineMath math="16" /> bis <InlineMath math="20" /> und <InlineMath math="21" /> bis <InlineMath math="25" /> haben die Häufigkeiten <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="7" />, <InlineMath math="8" /> und <InlineMath math="5" />. Die Modalklasse ist <InlineMath math="16" /> bis <InlineMath math="20" />.</>}
+  categories={["1 bis 5", "6 bis 10", "11 bis 15", "16 bis 20", "21 bis 25"]}
+  bars="touching"
+  series={[{ label: "Häufigkeit", mark: "bar", values: [3, 2, 7, (255 - 231) / 3, 5] }]}
+  valueLabel="Häufigkeit"
+/>
+
 # Den Modus berechnen
 
 Die Modusformel für klassierte Daten lautet <InlineMath math="Mo=L+\tfrac{d_1}{d_1+d_2}\cdot p" />. Dabei ist <InlineMath math="L" /> die untere Klassengrenze der Modalklasse, <InlineMath math="d_1" /> der Unterschied ihrer Häufigkeit zur Klasse davor, <InlineMath math="d_2" /> der Unterschied zur Klasse danach und <InlineMath math="p" /> die Klassenbreite. Die Punktzahlen sind ganze Zahlen, also **ist die untere Klassengrenze der Klasse <InlineMath math="16" /> bis <InlineMath math="20" /> gleich <InlineMath math="15{,}5" />** und nicht <InlineMath math="16" />.

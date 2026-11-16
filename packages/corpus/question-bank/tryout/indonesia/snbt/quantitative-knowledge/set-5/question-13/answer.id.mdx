@@ -4,6 +4,39 @@ Volume limas butuh tinggi limas, sedangkan jaring-jaring hanya memperlihatkan bi
 
 Misalkan <InlineMath math="O" /> adalah pusat persegi alas dan <InlineMath math="s" /> adalah tinggi setiap segitiga sisi tegak, yaitu jarak dari puncak segitiga ke sisi alas tempatnya menempel. Pada jaring-jaring yang terbentang, puncak segitiga terletak pada garis yang melalui <InlineMath math="O" /> dan tegak lurus sisi itu. Jadi **jarak puncak segitiga ke <InlineMath math="O" /> sama dengan setengah sisi alas ditambah <InlineMath math="s" />**, yaitu <InlineMath math="3+s" />. Keempat puncak itu berjarak sama dari <InlineMath math="O" /> dalam empat arah yang saling tegak lurus, jadi jarak itu adalah setengah diagonal persegi besar.
 
+Gambar jaring-jaring berikut memperlihatkan jarak itu. Dari pusat <InlineMath math="O" /> ke puncak segitiga atas, kamu melewati **setengah sisi alas sepanjang <InlineMath math="3" />, lalu tinggi segitiga <InlineMath math="s" />**, dan keempat puncak membentuk persegi besar putus-putus.
+
+<MathVisual
+  title={<>Jaring-jaring limas yang terbentang datar</>}
+  description={<>Persegi alas bersisi <InlineMath math="6" /> berpusat di <InlineMath math="O" />, dengan empat segitiga sama kaki menempel di sisi-sisinya. Puncak keempat segitiga menjadi titik sudut persegi besar yang diagonalnya melalui <InlineMath math="O" />. Jarak dari <InlineMath math="O" /> ke setiap puncak adalah <InlineMath math="3+s" />, yaitu setengah diagonal persegi besar.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    half: <InlineMath math="3" />,
+    s: <InlineMath math="s" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 9 }, y: { min: -9, max: 9 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 8 }, { x: 8, y: 0 }, { x: 0, y: -8 }, { x: -8, y: 0 }] },
+      { id: "base", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: -3 }, { x: 3, y: -3 }, { x: 3, y: 3 }, { x: -3, y: 3 }] },
+      { id: "top", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 3 }, { x: 3, y: 3 }, { x: 0, y: 8 }] },
+      { id: "right", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 3 }, { x: 3, y: -3 }, { x: 8, y: 0 }] },
+      { id: "bottom", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: -3 }, { x: -3, y: -3 }, { x: 0, y: -8 }] },
+      { id: "left", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: -3 }, { x: -3, y: 3 }, { x: -8, y: 0 }] },
+      { id: "to-side", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "slant", kind: "segment", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 0, y: 8 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "half", objectId: "to-side", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "s", objectId: "slant", at: { x: 0, y: 5.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Tinggi segitiga sisi tegak
 
 Luas persegi sama dengan **setengah kuadrat diagonalnya**. Dari luas <InlineMath math="128\text{ cm}^2" /> kamu bisa mendapat diagonalnya.

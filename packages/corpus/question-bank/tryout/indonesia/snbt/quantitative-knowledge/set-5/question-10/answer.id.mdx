@@ -19,6 +19,22 @@ Dari <InlineMath math="1{.}000" /> orang, sebanyak <InlineMath math="10\%" /> sa
 \text{sehat dan positif dua kali}&=20\%\times180=36
 \end{aligned}" />
 
+Diagram berikut mengikuti <InlineMath math="1{.}000" /> penduduk melewati kedua tes. Cabang orang sehat jauh lebih besar di awal, tetapi **setiap tes memangkasnya menjadi seperlima**, sedangkan cabang orang sakit hampir utuh.
+
+<Mermaid
+  title={<>Seribu penduduk melewati dua tes</>}
+  description={<>Dari <InlineMath math="1{.}000" /> penduduk, <InlineMath math="100" /> sakit dan <InlineMath math="900" /> sehat. Tes pertama positif untuk <InlineMath math="90" /> orang sakit dan <InlineMath math="180" /> orang sehat. Tes kedua positif lagi untuk <InlineMath math="81" /> orang sakit dan <InlineMath math="36" /> orang sehat, jadi <InlineMath math="117" /> orang positif dua kali.</>}
+  chart={`flowchart LR
+    P["1.000 penduduk"] --> S["100 sakit"]
+    P --> H["900 sehat"]
+    S -->|"90%"| S1["90 positif tes 1"]
+    H -->|"20%"| H1["180 positif tes 1"]
+    S1 -->|"90%"| S2["81 positif dua kali"]
+    H1 -->|"20%"| H2["36 positif dua kali"]
+    S2 --> T["117 positif dua kali, 81 di antaranya sakit"]
+    H2 --> T`}
+/>
+
 # Peluang bersyarat
 
 Orang yang dua kali positif ada <InlineMath math="81+36=117" />, dan yang sakit di antaranya <InlineMath math="81" />.

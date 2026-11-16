@@ -13,6 +13,36 @@ k&=7
 
 Die anderen beiden Nullstellen erfüllen <InlineMath math="p+q=5-2=3" /> und <InlineMath math="pq=1" />, sie sind also die Lösungen von <InlineMath math="t^2-3t+1=0" />. Die Diskriminante <InlineMath math="9-4=5" /> ist positiv, also sind <InlineMath math="p" /> und <InlineMath math="q" /> reell.
 
+Der Graph der Gleichung mit <InlineMath math="k=7" /> zeigt alle drei Nullstellen. Die Kurve schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="r=2" /> und bei zwei weiteren Nullstellen, deren **Produkt <InlineMath math="1" /> ist**, eine unter <InlineMath math="1" /> und eine über <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Die Nullstellen von <InlineMath math="x^3-5x^2+7x-2=0" /></>}
+  description={<>Die Kurve <InlineMath math="y=x^3-5x^2+7x-2=(x-2)(x^2-3x+1)" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="\tfrac{3-\sqrt5}{2}" />, <InlineMath math="2" /> und <InlineMath math="\tfrac{3+\sqrt5}{2}" />. Die erste und die dritte Nullstelle sind <InlineMath math="p" /> und <InlineMath math="q" />, mit Summe <InlineMath math="3" /> und Produkt <InlineMath math="1" />.</>}
+  labels={{
+    curve: <InlineMath math="y=x^3-5x^2+7x-2" />,
+    p: <InlineMath math="\tfrac{3-\sqrt5}{2}" />,
+    r: <InlineMath math="r=2" />,
+    q: <InlineMath math="\tfrac{3+\sqrt5}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^3 - 5x^2 + 7x - 2", domain: { min: -0.2, max: 3.3 } },
+      { id: "root-p", kind: "point", appearance: "secondary", at: { x: (3 - Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-r", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "root-q", kind: "point", appearance: "secondary", at: { x: (3 + Math.sqrt(5)) / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.2, y: 3.2 ** 3 - 5 * 3.2 ** 2 + 7 * 3.2 - 2 }, placement: "left" },
+      { key: "p", objectId: "root-p", at: { x: (3 - Math.sqrt(5)) / 2, y: 0 }, placement: "below-left" },
+      { key: "r", objectId: "root-r", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "q", objectId: "root-q", at: { x: (3 + Math.sqrt(5)) / 2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Die Summe der Kehrwertquadrate
 
 Wenn du eine Summe von Kehrwerten quadrierst, entstehen gemischte Terme. Deshalb gilt: **Die Summe der Kehrwertquadrate ist das Quadrat der Kehrwertsumme minus das Doppelte der gemischten Terme**. Beide Teile liefert der Satz von Vieta.

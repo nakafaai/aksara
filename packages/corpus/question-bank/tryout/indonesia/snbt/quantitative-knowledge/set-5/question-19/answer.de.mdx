@@ -13,6 +13,20 @@ a_n&=S_n-S_{n-1}\\
 
 Die Formel <InlineMath math="4n-7" /> liefert für <InlineMath math="n=1" /> den Wert <InlineMath math="-3" />, aber es gilt <InlineMath math="a_1=0" />. Dieser Unterschied kommt von **der Konstanten <InlineMath math="3" /> in <InlineMath math="S_n" />**. Die Folge lautet also <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" /> und so weiter.
 
+Ein Diagramm der ersten acht Glieder zeigt den Unterschied. Ab <InlineMath math="n=2" /> liegt jeder Balken genau auf der Linie <InlineMath math="4n-7" />, aber **der erste Balken hat die Höhe <InlineMath math="0" />**, über dem Formelwert <InlineMath math="-3" />.
+
+<Chart
+  title={<>Die Glieder <InlineMath math="a_n" /> und die Formel <InlineMath math="4n-7" /></>}
+  description={<>Die Glieder sind <InlineMath math="0, 1, 5, 9, 13, 17, 21, 25" />. Die Linie <InlineMath math="4n-7" /> geht ab <InlineMath math="n=2" /> durch jeden Balken, bei <InlineMath math="n=1" /> hat sie aber den Wert <InlineMath math="-3" />, während das erste Glied <InlineMath math="0" /> ist.</>}
+  categories={Array.from({ length: 8 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Tatsächliches Glied", mark: "bar", values: Array.from({ length: 8 }, (_, i) => (i === 0 ? 2 - 5 + 3 : 4 * (i + 1) - 7)) },
+    { label: "Formel 4n - 7", mark: "line", values: Array.from({ length: 8 }, (_, i) => 4 * (i + 1) - 7) },
+  ]}
+  bars="apart"
+  valueLabel="Wert des Glieds"
+/>
+
 # Die erste Aussage
 
 Die Differenz der ersten beiden Glieder ist <InlineMath math="a_2-a_1=1-0=1" />, die nächste aber <InlineMath math="a_3-a_2=5-1=4" />. **Eine nicht konstante Differenz heißt: keine arithmetische Folge**, die erste Aussage ist also falsch.

@@ -23,6 +23,20 @@ The prime factorisation is <InlineMath math="576=2^6\cdot3^2" />, so it has <Inl
 
 Check with the list: <InlineMath math="x<y" /> happens exactly when <InlineMath math="d<24" />, which means <InlineMath math="d=1,2,3,4,6,8,9,12,16,18" />, so <InlineMath math="10" /> values. For example, <InlineMath math="d=1" /> gives <InlineMath math="(25,600)" />, and <InlineMath math="\tfrac{1}{25}+\tfrac{1}{600}=\tfrac{24+1}{600}=\tfrac{1}{24}" />.
 
+The chart below puts the ten pairs side by side. For every divisor <InlineMath math="d<24" />, **the <InlineMath math="x" /> bar is always shorter than the <InlineMath math="y" /> bar**, and the two get closer until they meet at <InlineMath math="48" /> when <InlineMath math="d=24" />, which isn't counted.
+
+<Chart
+  title={<>The ten pairs <InlineMath math="(x,y)" /> with <InlineMath math="x<y" /></>}
+  description={<>For the divisors <InlineMath math="d=1, 2, 3, 4, 6, 8, 9, 12, 16, 18" /> of <InlineMath math="576" />, the value <InlineMath math="x=24+d" /> rises from <InlineMath math="25" /> to <InlineMath math="42" />, while <InlineMath math="y=24+\tfrac{576}{d}" /> falls from <InlineMath math="600" /> to <InlineMath math="56" />.</>}
+  bars="apart"
+  categories={[1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => `d = ${d}`)}
+  series={[
+    { label: "x", mark: "bar", values: [1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => 24 + d) },
+    { label: "y", mark: "bar", values: [1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => 24 + 576 / d) },
+  ]}
+  valueLabel="Value"
+/>
+
 # Common mistakes
 
 **The pair with <InlineMath math="x=y" /> has to be removed before you halve**. If you don't, you get <InlineMath math="11" />. The answer <InlineMath math="21" /> counts ordered pairs without the condition <InlineMath math="x<y" />, and the answer <InlineMath math="4" /> comes from counting the divisors of <InlineMath math="24" /> instead of the divisors of <InlineMath math="24^2" />.

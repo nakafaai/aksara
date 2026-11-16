@@ -30,6 +30,37 @@ x>5:&\quad(x-5)+(x+1)=6\ \Rightarrow\ x=5\ \text{(nicht in diesem Fall)}
 
 Die Lösungsmenge ist <InlineMath math="-1\le x\le5" />, und **beide Ränder zählen mit**.
 
+Der Graph der linken Seite für <InlineMath math="a=5" /> zeigt den Grund. Er ist **genau auf Höhe <InlineMath math="6" /> flach**, von <InlineMath math="x=-1" /> bis <InlineMath math="x=5" />, also erfüllt jeder Punkt dieses flachen Stücks, beide Enden eingeschlossen, die Gleichung.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="|x-5|+|x+1|" /></>}
+  description={<>Der Graph fällt mit Steigung <InlineMath math="-2" /> bis <InlineMath math="x=-1" />, bleibt von <InlineMath math="x=-1" /> bis <InlineMath math="x=5" /> flach bei <InlineMath math="y=6" /> und steigt dann mit Steigung <InlineMath math="2" />. Das flache Stück liegt auf der Geraden <InlineMath math="y=6" /> und enthält die ganzen Zahlen <InlineMath math="-1" /> bis <InlineMath math="5" />.</>}
+  labels={{
+    sum: <InlineMath math="y=|x-5|+|x+1|" />,
+    left: <InlineMath math="-1" />,
+    right: <InlineMath math="5" />,
+    level: <InlineMath math="y=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left-piece", kind: "function", appearance: "primary", formula: "-2x + 4", domain: { min: -4, max: -1 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "6", domain: { min: -1, max: 5 } },
+      { id: "right-piece", kind: "function", appearance: "primary", formula: "2x - 4", domain: { min: 5, max: 8 } },
+      { id: "end-left", kind: "point", appearance: "answer", at: { x: -1, y: 6 } },
+      { id: "end-right", kind: "point", appearance: "answer", at: { x: 5, y: 6 } },
+    ],
+    labels: [
+      { key: "sum", objectId: "right-piece", at: { x: 7, y: 10 }, placement: "left" },
+      { key: "left", objectId: "end-left", at: { x: -1, y: 6 }, placement: "below-left" },
+      { key: "right", objectId: "end-right", at: { x: 5, y: 6 }, placement: "below-right" },
+      { key: "level", objectId: "flat", at: { x: 2, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Die ganzen Zahlen addieren
 
 Die ganzen Zahlen in diesem Intervall, **beide Ränder eingeschlossen**, sind <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" />.

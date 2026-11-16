@@ -25,6 +25,17 @@ A seating where both pairs sit together is counted in the first group and again 
 \text{allowed seatings}&=720-384=336
 \end{aligned}" />
 
+The chart below puts all the inclusion-exclusion counts side by side. The two middle bars both contain the <InlineMath math="96" /> seatings of the fourth bar, so **the fourth bar is added back once**, and the last bar is what's left.
+
+<Chart
+  title={<>Circular seatings and their violations</>}
+  description={<>There are <InlineMath math="720" /> seatings in all. Seatings with Ani and Budi together number <InlineMath math="240" />, seatings with Citra and Dodi together also <InlineMath math="240" />, and seatings with both pairs together <InlineMath math="96" />. The allowed seatings number <InlineMath math="720-(240+240-96)=336" />.</>}
+  categories={["All", "Ani and Budi together", "Citra and Dodi together", "Both pairs", "Allowed"]}
+  bars="apart"
+  series={[{ label: "Number of seatings", mark: "bar", values: [720, 240, 240, 96, 720 - (240 + 240 - 96)] }]}
+  valueLabel="Number of seatings"
+/>
+
 # A check by another route
 
 Count in stages. There are <InlineMath math="720-240=480" /> seatings where Ani and Budi aren't neighbours. Of the <InlineMath math="240" /> seatings where Citra and Dodi are neighbours, <InlineMath math="96" /> also have Ani and Budi together, so <InlineMath math="240-96=144" /> keep Ani and Budi apart. Remove those from the <InlineMath math="480" />.

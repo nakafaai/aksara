@@ -8,6 +8,41 @@ Jari-jari setiap lingkaran sama dengan panjang sisi segitiga, jadi lingkaran yan
 
 Tembereng di luar sisi <InlineMath math="BC" /> adalah juring berpusat <InlineMath math="A" /> dikurangi segitiga <InlineMath math="ABC" />. Sudut juring itu adalah sudut segitiga sama sisi, yaitu <InlineMath math="60^\circ" />, sehingga **juringnya seperenam lingkaran**.
 
+Gambar berikut memperlihatkan daerah itu. Garis tepinya terdiri atas tiga busur, masing-masing milik lingkaran yang berpusat di titik sudut seberangnya, jadi **daerahnya adalah segitiga di tengah ditambah tiga tembereng yang sama**.
+
+<MathVisual
+  title={<>Daerah di dalam ketiga lingkaran</>}
+  description={<>Segitiga sama sisi <InlineMath math="ABC" /> bersisi <InlineMath math="6" />, dengan tiga lingkaran berjari-jari <InlineMath math="6" /> berpusat di <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />. Daerah bersama dibatasi oleh busur <InlineMath math="BC" /> dari lingkaran berpusat <InlineMath math="A" />, busur <InlineMath math="CA" /> dari lingkaran berpusat <InlineMath math="B" />, dan busur <InlineMath math="AB" /> dari lingkaran berpusat <InlineMath math="C" />. Luas segitiga <InlineMath math="9\sqrt3" />, dan luas setiap tembereng <InlineMath math="6\pi-9\sqrt3" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    tri: <InlineMath math="9\sqrt3" />,
+    seg: <InlineMath math="6\pi-9\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 12.5 }, y: { min: -6.5, max: 11.7 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "circle-a", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "circle-b", kind: "circle", appearance: "construction", center: { x: 6, y: 0 }, radius: 6 },
+      { id: "circle-c", kind: "circle", appearance: "construction", center: { x: 3, y: 3 * Math.sqrt(3) }, radius: 6 },
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 3 * Math.sqrt(3) }] },
+      { id: "arc-bc", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: 60 },
+      { id: "arc-ca", kind: "arc", appearance: "answer", center: { x: 6, y: 0 }, radius: 6, startDegrees: 120, sweepDegrees: 60 },
+      { id: "arc-ab", kind: "arc", appearance: "answer", center: { x: 3, y: 3 * Math.sqrt(3) }, radius: 6, startDegrees: 240, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "b", objectId: "triangle", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "c", objectId: "triangle", at: { x: 3, y: 3 * Math.sqrt(3) }, placement: "above" },
+      { key: "tri", objectId: "triangle", at: { x: 3, y: Math.sqrt(3) }, placement: "center" },
+      { key: "seg", objectId: "arc-ab", at: { x: 3, y: 3 * Math.sqrt(3) - 6 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 L_{\text{juring}}&=\tfrac{60}{360}\cdot\pi\cdot6^2=6\pi\\
 L_{\text{segitiga}}&=\tfrac{\sqrt3}{4}\cdot6^2=9\sqrt3\\

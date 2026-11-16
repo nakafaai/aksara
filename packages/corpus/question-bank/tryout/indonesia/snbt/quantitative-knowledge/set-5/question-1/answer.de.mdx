@@ -23,6 +23,17 @@ Deshalb **hängen die erlaubten Einerziffern von der Zehnerziffer ab**. Ist <Inl
 
 Sobald <InlineMath math="c" /> und <InlineMath math="d" /> gewählt sind, **liegen <InlineMath math="a=9-c" /> und <InlineMath math="b=9-d" /> fest**, du zählst also nur die Paare <InlineMath math="(c,d)" />. Die Bedingung <InlineMath math="a\ge1" /> liefert <InlineMath math="c\le8" />, also läuft <InlineMath math="c" /> von <InlineMath math="0" /> bis <InlineMath math="8" />. Das sind <InlineMath math="5" /> gerade Werte von <InlineMath math="c" /> (<InlineMath math="0,2,4,6,8" />) und <InlineMath math="4" /> ungerade (<InlineMath math="1,3,5,7" />).
 
+Das Diagramm zeigt, wie viele Möglichkeiten für <InlineMath math="d" /> jede Zehnerziffer <InlineMath math="c" /> zulässt. Die Balken **wechseln zwischen <InlineMath math="3" /> und <InlineMath math="2" />**, je nachdem, ob <InlineMath math="c" /> gerade oder ungerade ist, und <InlineMath math="c=9" /> fehlt, weil dann <InlineMath math="a=0" /> wäre.
+
+<Chart
+  title={<>Möglichkeiten für die Einerziffer bei jeder Zehnerziffer</>}
+  description={<>Für gerades <InlineMath math="c" />, also <InlineMath math="0, 2, 4, 6, 8" />, gibt es <InlineMath math="3" /> Möglichkeiten für <InlineMath math="d" />: <InlineMath math="0" />, <InlineMath math="4" /> oder <InlineMath math="8" />. Für ungerades <InlineMath math="c" />, also <InlineMath math="1, 3, 5, 7" />, gibt es <InlineMath math="2" /> Möglichkeiten: <InlineMath math="2" /> oder <InlineMath math="6" />. Alle Balken zusammen ergeben <InlineMath math="23" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, c) => `${c}`)}
+  series={[{ label: "Möglichkeiten für die Einerziffer d", mark: "bar", values: Array.from({ length: 9 }, (_, c) => (c % 2 === 0 ? 3 : 2)) }]}
+  valueLabel="Anzahl der Möglichkeiten"
+/>
+
 <BlockMath math="5\times3+4\times2=15+8=23" />
 
 Prüfe ein Beispiel: Mit <InlineMath math="c=8" /> und <InlineMath math="d=8" /> entsteht <InlineMath math="1{.}188" />. Die Quersumme ist <InlineMath math="1+1+8+8=18" />, und es gilt <InlineMath math="1{.}188=44\times27" />.

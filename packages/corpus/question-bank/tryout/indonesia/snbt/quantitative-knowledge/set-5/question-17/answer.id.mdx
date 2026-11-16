@@ -31,6 +31,33 @@ x-y>0\quad&\Rightarrow\quad x+y>0
 
 Jadi <InlineMath math="x>y" /> dan <InlineMath math="x>-y" />, artinya <InlineMath math="x" /> lebih besar daripada <InlineMath math="|y|" /> dan pasti positif. Namun **tanda <InlineMath math="y" /> tetap belum diketahui**. Pasangan <InlineMath math="x=3" /> dan <InlineMath math="y=1" /> memenuhi kedua pernyataan dan memberi <InlineMath math="|4|<|2|" /> yang salah, jadi jawabannya tidak. Pasangan <InlineMath math="x=3" /> dan <InlineMath math="y=-1" /> juga memenuhi keduanya dan memberi <InlineMath math="|2|<|4|" /> yang benar, jadi jawabannya ya. Gabungan keduanya pun tidak cukup.
 
+Gambar berikut menandai semua pasangan yang memenuhi kedua pernyataan, yaitu daerah <InlineMath math="x>|y|" /> di antara garis <InlineMath math="y=x" /> dan <InlineMath math="y=-x" />. Daerah itu **membentang di atas dan di bawah sumbu-<InlineMath math="x" />**, jadi <InlineMath math="y" /> bisa positif atau negatif.
+
+<MathVisual
+  title={<>Daerah yang memenuhi kedua pernyataan</>}
+  description={<>Daerah berbentuk baji yang dibuka ke kanan, dibatasi garis <InlineMath math="y=x" /> dan <InlineMath math="y=-x" />. Titik <InlineMath math="(3,1)" /> ada di bagian atas, tempat <InlineMath math="x" /> dan <InlineMath math="y" /> bertanda sama. Titik <InlineMath math="(3,-1)" /> ada di bagian bawah, tempat tandanya berlawanan.</>}
+  labels={{
+    yes: <InlineMath math="(3,-1)" />,
+    no: <InlineMath math="(3,1)" />,
+    region: <InlineMath math="x>|y|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "region", kind: "region", appearance: "highlight", inequalities: ["x > y", "x > -y", "x < 5"] },
+      { id: "yes", kind: "point", appearance: "answer", at: { x: 3, y: -1 } },
+      { id: "no", kind: "point", appearance: "warning", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "yes", objectId: "yes", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "no", objectId: "no", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "region", objectId: "region", at: { x: 4, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 Pilihan dua pernyataan bersama-sama cukup menjebak siswa yang berhenti setelah tahu <InlineMath math="x" /> positif dan lupa memeriksa tanda <InlineMath math="y" />.
 
 Jadi, pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan, baik sendiri-sendiri maupun bersama-sama.

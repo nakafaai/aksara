@@ -34,6 +34,17 @@ Now <InlineMath math="P_6" /> shook hands with everyone, Ani included, so <Inlin
 
 Ani shook hands with <InlineMath math="P_6" />, <InlineMath math="P_5" />, and <InlineMath math="P_4" />, again <InlineMath math="3" /> people. **Both cases give the same answer**, so the answer is certain.
 
+The chart below shows how many hands each person shook in the first case. The other six people use the values <InlineMath math="0" /> to <InlineMath math="5" />, and **Ani's bar lands right in the middle, at <InlineMath math="3" />**, because the people with the big answers are the ones who shook her hand.
+
+<Chart
+  title={<>Handshakes per person when the answers are <InlineMath math="0" /> to <InlineMath math="5" /></>}
+  description={<>People <InlineMath math="P_0" /> to <InlineMath math="P_5" /> shook <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="5" /> hands. Ani shook <InlineMath math="3" /> hands, with <InlineMath math="P_3" />, <InlineMath math="P_4" />, and <InlineMath math="P_5" />. The total is <InlineMath math="18" />, an even number.</>}
+  bars="apart"
+  categories={["P0", "P1", "P2", "P3", "P4", "P5", "Ani"]}
+  series={[{ label: "Handshakes", mark: "bar", values: [0, 1, 2, 3, 4, 5, 3] }]}
+  valueLabel="Handshakes"
+/>
+
 # A parity check
 
 Every handshake is counted by <InlineMath math="2" /> people, so **the sum of all the answers has to be even**. The first case gives <InlineMath math="0+1+2+3+4+5+3=18" />, and the second gives <InlineMath math="1+2+3+4+5+6+3=24" />. Both are even.

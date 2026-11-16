@@ -34,6 +34,37 @@ f(x)-14&=\frac{2x^2-14x+12}{x}\\
 
 Untuk <InlineMath math="x\ge6" />, faktor <InlineMath math="x-1" /> positif, faktor <InlineMath math="x-6" /> tidak negatif, dan <InlineMath math="x" /> positif. Jadi <InlineMath math="f(x)-14\ge0" />, dengan kesamaan tepat di <InlineMath math="x=6" />. **Nilai minimum ada di ujung daerah**, yaitu <InlineMath math="x=6" /> dan <InlineMath math="y=2" />, dan pasangan itu memenuhi <InlineMath math="6\ge3\cdot2" />.
 
+Grafik <InlineMath math="f" /> berikut memperlihatkan kedua titik itu. Titik terendah kurva, dengan nilai <InlineMath math="4\sqrt6" />, ada di kiri garis <InlineMath math="x=6" />, jadi di luar daerah yang boleh. Di daerah <InlineMath math="x\ge6" /> kurva terus naik, sehingga **nilai terkecilnya ada di ujung, <InlineMath math="(6,14)" />**.
+
+<MathVisual
+  title={<>Kurva <InlineMath math="f(x)=2x+\tfrac{12}{x}" /> dan daerah <InlineMath math="x\ge6" /></>}
+  description={<>Kurva turun sampai titik terendahnya di <InlineMath math="x=\sqrt6" />, dengan nilai <InlineMath math="4\sqrt6" />, lalu naik. Ruas tebal pada sumbu-<InlineMath math="x" /> menandai daerah yang boleh, <InlineMath math="x\ge6" />. Di daerah itu kurva selalu naik, dan nilai terkecilnya <InlineMath math="14" /> di <InlineMath math="x=6" />.</>}
+  labels={{
+    f: <InlineMath math="y=2x+\tfrac{12}{x}" />,
+    best: <InlineMath math="(6,14)" />,
+    bound: <InlineMath math="4\sqrt6" />,
+    start: <InlineMath math="x=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "allowed", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 14, y: 0 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "2x + 12/x", domain: { min: 0.45, max: 14 } },
+      { id: "start", kind: "line", appearance: "construction", through: [{ x: 6, y: 0 }, { x: 6, y: 1 }] },
+      { id: "bound", kind: "point", appearance: "warning", at: { x: Math.sqrt(6), y: 4 * Math.sqrt(6) } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 14 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 12, y: 25 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 6, y: 14 }, placement: "below-right" },
+      { key: "bound", objectId: "bound", at: { x: Math.sqrt(6), y: 4 * Math.sqrt(6) }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 6, y: 28 }, placement: "right" },
+    ],
+  }}
+/>
+
 Cek dengan nilai lain di daerah itu: <InlineMath math="x=12" /> dan <InlineMath math="y=1" /> memberi <InlineMath math="2x+y=25" />, lebih besar daripada <InlineMath math="14" />.
 
 # Mengapa pilihan lain salah

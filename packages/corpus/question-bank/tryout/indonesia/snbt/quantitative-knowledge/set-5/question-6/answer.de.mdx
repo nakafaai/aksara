@@ -25,6 +25,17 @@ Eine Sitzordnung, in der beide Paare nebeneinandersitzen, steckt in der ersten G
 \text{erlaubte Sitzordnungen}&=720-384=336
 \end{aligned}" />
 
+Das Diagramm stellt alle Zahlen der Inklusion und Exklusion nebeneinander. Die beiden mittleren Balken enthalten beide die <InlineMath math="96" /> Sitzordnungen des vierten Balkens, also **wird der vierte Balken einmal zurückaddiert**, und der letzte Balken ist der Rest.
+
+<Chart
+  title={<>Sitzordnungen am runden Tisch und ihre Verstöße</>}
+  description={<>Insgesamt gibt es <InlineMath math="720" /> Sitzordnungen. Mit Ani und Budi nebeneinander sind es <InlineMath math="240" />, mit Citra und Dodi nebeneinander ebenfalls <InlineMath math="240" />, mit beiden Paaren nebeneinander <InlineMath math="96" />. Erlaubt sind <InlineMath math="720-(240+240-96)=336" /> Sitzordnungen.</>}
+  categories={["Alle", "Ani und Budi nebeneinander", "Citra und Dodi nebeneinander", "Beide Paare", "Erlaubt"]}
+  bars="apart"
+  series={[{ label: "Anzahl der Sitzordnungen", mark: "bar", values: [720, 240, 240, 96, 720 - (240 + 240 - 96)] }]}
+  valueLabel="Anzahl der Sitzordnungen"
+/>
+
 # Probe auf einem zweiten Weg
 
 Zähl in Schritten. Es gibt <InlineMath math="720-240=480" /> Ordnungen, in denen Ani und Budi nicht nebeneinandersitzen. Von den <InlineMath math="240" /> Ordnungen mit Citra und Dodi nebeneinander haben <InlineMath math="96" /> auch Ani und Budi nebeneinander, also halten <InlineMath math="240-96=144" /> Ani und Budi getrennt. Diese ziehst du von den <InlineMath math="480" /> ab.

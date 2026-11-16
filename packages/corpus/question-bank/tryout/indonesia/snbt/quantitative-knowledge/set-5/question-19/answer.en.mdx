@@ -13,6 +13,20 @@ a_n&=S_n-S_{n-1}\\
 
 The formula <InlineMath math="4n-7" /> gives <InlineMath math="-3" /> for <InlineMath math="n=1" />, but <InlineMath math="a_1=0" />. That mismatch comes from **the constant <InlineMath math="3" /> in <InlineMath math="S_n" />**. So the sequence is <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, and so on.
 
+A chart of the first eight terms shows the mismatch. From <InlineMath math="n=2" /> on, every bar sits exactly on the line <InlineMath math="4n-7" />, but **the first bar has height <InlineMath math="0" />**, above the formula's value <InlineMath math="-3" />.
+
+<Chart
+  title={<>The terms <InlineMath math="a_n" /> and the formula <InlineMath math="4n-7" /></>}
+  description={<>The terms are <InlineMath math="0, 1, 5, 9, 13, 17, 21, 25" />. The line <InlineMath math="4n-7" /> passes through every bar from <InlineMath math="n=2" /> on, but at <InlineMath math="n=1" /> it's <InlineMath math="-3" />, while the first term is <InlineMath math="0" />.</>}
+  categories={Array.from({ length: 8 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Actual term", mark: "bar", values: Array.from({ length: 8 }, (_, i) => (i === 0 ? 2 - 5 + 3 : 4 * (i + 1) - 7)) },
+    { label: "Formula 4n - 7", mark: "line", values: Array.from({ length: 8 }, (_, i) => 4 * (i + 1) - 7) },
+  ]}
+  bars="apart"
+  valueLabel="Value of the term"
+/>
+
 # The first statement
 
 The difference of the first two terms is <InlineMath math="a_2-a_1=1-0=1" />, while the next difference is <InlineMath math="a_3-a_2=5-1=4" />. **A difference that isn't constant means it isn't an arithmetic sequence**, so the first statement is false.

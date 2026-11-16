@@ -31,6 +31,33 @@ x-y>0\quad&\Rightarrow\quad x+y>0
 
 So <InlineMath math="x>y" /> and <InlineMath math="x>-y" />, which means <InlineMath math="x" /> is bigger than <InlineMath math="|y|" /> and must be positive. But **the sign of <InlineMath math="y" /> is still unknown**. The pair <InlineMath math="x=3" /> and <InlineMath math="y=1" /> satisfies both statements and gives <InlineMath math="|4|<|2|" />, which is false, so the answer is no. The pair <InlineMath math="x=3" /> and <InlineMath math="y=-1" /> also satisfies both and gives <InlineMath math="|2|<|4|" />, which is true, so the answer is yes. Even together, they aren't sufficient.
 
+The figure below marks every pair that satisfies both statements: the region <InlineMath math="x>|y|" /> between the lines <InlineMath math="y=x" /> and <InlineMath math="y=-x" />. That region **stretches above and below the <InlineMath math="x" />-axis**, so <InlineMath math="y" /> can be positive or negative.
+
+<MathVisual
+  title={<>The region that satisfies both statements</>}
+  description={<>A wedge opening to the right, bounded by the lines <InlineMath math="y=x" /> and <InlineMath math="y=-x" />. The point <InlineMath math="(3,1)" /> is in the upper part, where <InlineMath math="x" /> and <InlineMath math="y" /> have the same sign. The point <InlineMath math="(3,-1)" /> is in the lower part, where the signs are opposite.</>}
+  labels={{
+    yes: <InlineMath math="(3,-1)" />,
+    no: <InlineMath math="(3,1)" />,
+    region: <InlineMath math="x>|y|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "region", kind: "region", appearance: "highlight", inequalities: ["x > y", "x > -y", "x < 5"] },
+      { id: "yes", kind: "point", appearance: "answer", at: { x: 3, y: -1 } },
+      { id: "no", kind: "point", appearance: "warning", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "yes", objectId: "yes", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "no", objectId: "no", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "region", objectId: "region", at: { x: 4, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 The option that says both statements together are sufficient traps anyone who stops once they know <InlineMath math="x" /> is positive and forgets to check the sign of <InlineMath math="y" />.
 
 So statements (1) and (2) aren't sufficient to answer the question, either alone or together.

@@ -18,6 +18,20 @@ k=16:&\quad S_{16}=\frac{16\cdot111}{2}=888\\
 k=17:&\quad S_{17}=\frac{17\cdot118}{2}=1{.}003
 \end{aligned}" />
 
+Das Diagramm zeigt die Summe der ersten <InlineMath math="k" /> Glieder rund um diese Schätzung. Der Balken für <InlineMath math="k=16" /> liegt noch unter der Linie bei <InlineMath math="1{.}000" />, und **der Balken für <InlineMath math="k=17" /> überschreitet sie als erster**.
+
+<Chart
+  title={<>Die Summe <InlineMath math="S_k=\tfrac{k(7k-1)}{2}" /> für <InlineMath math="k=13" /> bis <InlineMath math="18" /></>}
+  description={<>Die Summen sind <InlineMath math="585" />, <InlineMath math="679" />, <InlineMath math="780" />, <InlineMath math="888" />, <InlineMath math="1{.}003" /> und <InlineMath math="1{.}125" /> für <InlineMath math="k=13" /> bis <InlineMath math="18" />. Die Grenzlinie liegt bei <InlineMath math="1{.}000" />, zwischen <InlineMath math="k=16" /> und <InlineMath math="k=17" />.</>}
+  categories={Array.from({ length: 6 }, (_, i) => `${i + 13}`)}
+  series={[
+    { label: "Summe der ersten k Glieder", mark: "bar", values: Array.from({ length: 6 }, (_, i) => ((i + 13) * (7 * (i + 13) - 1)) / 2) },
+    { label: "Grenze 1.000", mark: "line", values: Array.from({ length: 6 }, () => 1000) },
+  ]}
+  bars="apart"
+  valueLabel="Summe"
+/>
+
 Mit <InlineMath math="16" /> Gliedern reicht es nicht, mit <InlineMath math="17" /> Gliedern liegst du über <InlineMath math="1{.}000" />. Also **muss die Gliederzahl auf <InlineMath math="17" /> aufgerundet werden**.
 
 # Von der Gliederzahl zu n

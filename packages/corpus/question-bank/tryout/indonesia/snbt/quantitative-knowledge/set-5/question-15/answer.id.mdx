@@ -18,6 +18,22 @@ Kata PERMATA terdiri atas P, E, R, M, A, T, A. Huruf pertama dan huruf terakhir 
 
 Nilai <InlineMath math="Q=120" /> dan <InlineMath math="P=60" />, jadi **<InlineMath math="Q" /> dua kali <InlineMath math="P" />**, dan hubungan yang benar adalah <InlineMath math="Q>P" />.
 
+Diagram berikut menaruh kedua hitungan berdampingan. Pada <InlineMath math="P" />, syarat urutan vokal **memotong pilihan menjadi satu cara untuk vokal**. Pada <InlineMath math="Q" />, kedua huruf A terpakai di ujung, sehingga kelima huruf di tengah semuanya berbeda.
+
+<Mermaid
+  title={<>Menghitung <InlineMath math="P" /> dan <InlineMath math="Q" /></>}
+  description={<>Untuk <InlineMath math="P" />: pilih konsonan pertama dalam <InlineMath math="3" /> cara, pilih posisi vokal dalam <InlineMath math="\binom53=10" /> cara, isi vokal dalam <InlineMath math="1" /> cara, dan susun dua konsonan sisa dalam <InlineMath math="2" /> cara, jadi <InlineMath math="P=60" />. Untuk <InlineMath math="Q" />: kedua ujung harus A, lalu <InlineMath math="5" /> huruf berbeda di tengah disusun dalam <InlineMath math="5!=120" /> cara.</>}
+  chart={`flowchart LR
+    P0["SEPATU"] --> P1["konsonan pertama: 3 cara"]
+    P1 --> P2["posisi vokal: C(5,3) = 10"]
+    P2 --> P3["urutan A, E, U: 1 cara"]
+    P3 --> P4["2 konsonan sisa: 2 cara"]
+    P4 --> P5["P = 60"]
+    Q0["PERMATA"] --> Q1["ujung sama: hanya A ... A"]
+    Q1 --> Q2["P, E, R, M, T di tengah: 5! cara"]
+    Q2 --> Q3["Q = 120"]`}
+/>
+
 # Mengapa pilihan lain salah
 
 - <InlineMath math="P=Q" /> muncul kalau syarat konsonan di depan pada <InlineMath math="P" /> terlupa sehingga <InlineMath math="P=120" />, atau kalau <InlineMath math="Q" /> masih dibagi <InlineMath math="2!" /> sehingga <InlineMath math="Q=60" />, padahal kedua huruf A sudah dipakai di ujung.
