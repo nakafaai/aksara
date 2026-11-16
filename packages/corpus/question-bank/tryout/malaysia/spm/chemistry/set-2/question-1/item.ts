@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "analysing",
+    cognitiveLevel: "applying",
     contentDomain: "form-4",
     topic: "introduction-to-chemistry",
   },
@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$24.34\\text{ cm}^3$$" },
-        { correct: false, label: "$$24.20\\text{ cm}^3$$" },
-        { correct: true, label: "$$24.25\\text{ cm}^3$$" },
-        { correct: false, label: "$$24.28\\text{ cm}^3$$" },
+        { correct: false, label: "$$0.103\\text{ mol dm}^{-3}$$" },
+        { correct: false, label: "$$0.206\\text{ mol dm}^{-3}$$" },
+        { correct: true, label: "$$0.0515\\text{ mol dm}^{-3}$$" },
+        { correct: false, label: "$$0.0258\\text{ mol dm}^{-3}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$24.34\\text{ cm}^3$$" },
-        { correct: false, label: "$$24.20\\text{ cm}^3$$" },
-        { correct: true, label: "$$24.25\\text{ cm}^3$$" },
-        { correct: false, label: "$$24.28\\text{ cm}^3$$" },
+        { correct: false, label: "$$0.103\\text{ mol dm}^{-3}$$" },
+        { correct: false, label: "$$0.206\\text{ mol dm}^{-3}$$" },
+        { correct: true, label: "$$0.0515\\text{ mol dm}^{-3}$$" },
+        { correct: false, label: "$$0.0258\\text{ mol dm}^{-3}$$" },
       ],
     },
   },
