@@ -10,6 +10,8 @@ import { bacteriaVisuals } from "#contracts/visual/biology/bacteria";
 import { cellVisuals } from "#contracts/visual/biology/cell";
 import { climateVisuals } from "#contracts/visual/biology/climate";
 import { ecologyVisuals } from "#contracts/visual/biology/ecology";
+import { physiologyVisuals } from "#contracts/visual/biology/physiology";
+import { plantVisuals } from "#contracts/visual/biology/plant";
 import type { RichSlot } from "#contracts/visual/card";
 import { atomVisuals } from "#contracts/visual/chemistry/atom";
 import { balanceVisuals } from "#contracts/visual/chemistry/balance";
@@ -82,6 +84,8 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...cellVisuals(rich),
     ...climateVisuals(rich),
     ...ecologyVisuals(rich),
+    ...physiologyVisuals(rich),
+    ...plantVisuals(rich),
     ...balanceVisuals(rich),
     ...bondingVisuals(rich),
     ...discoveryVisuals(rich),
