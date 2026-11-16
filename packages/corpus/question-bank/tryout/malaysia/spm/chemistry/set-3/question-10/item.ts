@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Astatine is a gas at room temperature, and it is more reactive than iodine" },
-        { correct: true, label: "Astatine is a dark solid, and it reacts with hot iron wool more slowly than iodine because its outer shell is farther from the nucleus" },
-        { correct: false, label: "Astatine displaces iodine from potassium iodide solution" },
-        { correct: false, label: "Astatine melts below iodine, because its molecules are larger" },
+        { correct: false, label: "240 cm³ of hydrogen and a solution of pH 13" },
+        { correct: true, label: "120 cm³ of hydrogen and a solution of pH 13, and the same mass of potassium would react more vigorously but give less hydrogen" },
+        { correct: false, label: "120 cm³ of hydrogen and a solution of pH 1" },
+        { correct: false, label: "120 cm³ of hydrogen and a solution of pH 13, and the same mass of potassium would give more hydrogen" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Astatin ialah gas pada suhu bilik, dan ia lebih reaktif daripada iodin" },
-        { correct: true, label: "Astatin ialah pepejal gelap, dan ia bertindak balas dengan wul besi panas lebih perlahan daripada iodin kerana petala luarnya lebih jauh dari nukleus" },
-        { correct: false, label: "Astatin menyesarkan iodin daripada larutan kalium iodida" },
-        { correct: false, label: "Astatin melebur di bawah iodin, kerana molekulnya lebih besar" },
+        { correct: false, label: "240 cm³ hidrogen dan larutan pH 13" },
+        { correct: true, label: "120 cm³ hidrogen dan larutan pH 13, dan jisim kalium yang sama akan bertindak balas lebih cergas tetapi menghasilkan kurang hidrogen" },
+        { correct: false, label: "120 cm³ hidrogen dan larutan pH 1" },
+        { correct: false, label: "120 cm³ hidrogen dan larutan pH 13, dan jisim kalium yang sama akan menghasilkan lebih banyak hidrogen" },
       ],
     },
   },

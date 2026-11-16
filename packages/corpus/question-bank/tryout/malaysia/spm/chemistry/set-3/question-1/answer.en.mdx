@@ -1,25 +1,22 @@
-# Precision is the spread, accuracy is the distance from the true value
+# Keep only the titres that agree, then use the mole ratio
 
-Precise readings **agree closely with each other**. Accurate readings sit **close to the true value**. Check each student for both.
+The rough titre only finds the end point, so it never enters the mean. Of the four runs, <InlineMath math="24.10" />, <InlineMath math="24.15" /> and <InlineMath math="24.12" /> agree within <InlineMath math="0.05" /> cm³, while <InlineMath math="24.60" /> overshoots by about <InlineMath math="0.5" /> cm³. The **concordant mean** is <InlineMath math="\tfrac{24.10 + 24.15 + 24.12}{3} = 24.12" /> cm³.
 
 <Chart
-  title={<>Three Titration Readings from Four Students</>}
+  title={<>Titres from Five Runs</>}
   bars="apart"
-  categories={["Trial 1", "Trial 2", "Trial 3"]}
+  categories={["Rough", "Run 1", "Run 2", "Run 3", "Run 4"]}
   series={[
-    { label: "P", mark: "bar", values: [24.1, 24.12, 24.11] },
-    { label: "Q", mark: "bar", values: [25.02, 24.98, 25.0] },
-    { label: "R", mark: "bar", values: [23.5, 26.4, 25.1] },
-    { label: "S", mark: "bar", values: [25.9, 25.91, 25.89] },
+    { label: "Volume of acid (cm³)", mark: "bar", values: [25.4, 24.1, 24.15, 24.6, 24.12] },
   ]}
   valueLabel="Volume of acid (cm³)"
-  description={<>P: <InlineMath math="24.10" />, <InlineMath math="24.12" /> and <InlineMath math="24.11" />. Q: <InlineMath math="25.02" />, <InlineMath math="24.98" /> and <InlineMath math="25.00" />. R: <InlineMath math="23.50" />, <InlineMath math="26.40" /> and <InlineMath math="25.10" />. S: <InlineMath math="25.90" />, <InlineMath math="25.91" /> and <InlineMath math="25.89\text{ cm}^3" />.</>}
+  description={<>Rough <InlineMath math="25.40" />, run <InlineMath math="1" /> <InlineMath math="24.10" />, run <InlineMath math="2" /> <InlineMath math="24.15" />, run <InlineMath math="3" /> <InlineMath math="24.60" /> and run <InlineMath math="4" /> <InlineMath math="24.12\text{ cm}^3" />.</>}
 />
 
-P's readings span only <InlineMath math="0.02" /> cm³ but sit about <InlineMath math="0.89" /> cm³ below <InlineMath math="25.00" />. S's span <InlineMath math="0.02" /> cm³ and sit about <InlineMath math="0.90" /> cm³ above it. Both are precise and not accurate. Every reading is off by the same amount in the same direction, which is the mark of a **systematic error**, such as a burette read from the wrong eye level or a wrongly calibrated pipette.
+The alkali holds <InlineMath math="0.100 \times \tfrac{25.0}{1000} = 0.00250" /> mol, and <InlineMath math="\text{NaOH} + \text{HCl} \rightarrow \text{NaCl} + \text{H}_2\text{O}" /> is one to one. So <InlineMath math="c = 0.00250 \div \tfrac{24.12}{1000} = 0.104" /> mol dm⁻³.
 
 # Why the other options are wrong
 
-- R's mean is <InlineMath math="25.00" />, but the readings spread over <InlineMath math="2.90" /> cm³. A mean that lands on the true value by luck does not make scattered readings precise.
-- A wide range is the opposite of precision.
-- Q's readings spread over only <InlineMath math="0.04" /> cm³ around the true value, so Q has a small random error, not the largest.
+- <InlineMath math="0.102\text{ mol}" /> dm⁻³ averages all five readings, **the rough one and the overshoot included**.
+- <InlineMath math="0.0965\text{ mol}" /> dm⁻³ turns the ratio upside down: <InlineMath math="0.100 \times 24.12 \div 25.0" />.
+- <InlineMath math="0.0984\text{ mol}" /> dm⁻³ uses the rough titre alone.

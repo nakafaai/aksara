@@ -1,25 +1,22 @@
-# Presisi adalah sebaran, akurasi adalah jarak ke nilai sebenarnya
+# Pakai hanya titer yang sesuai, lalu perbandingan mol
 
-Pembacaan yang presisi **saling berdekatan**. Pembacaan yang akurat **dekat dengan nilai sebenarnya**. Periksa keduanya untuk tiap murid.
+Titer kasar hanya untuk mencari titik akhir, jadi tidak masuk ke rata-rata. Dari empat titrasi, <InlineMath math="24.10" />, <InlineMath math="24.15" />, dan <InlineMath math="24.12" /> berselisih dalam <InlineMath math="0.05" /> cm³, sedangkan <InlineMath math="24.60" /> kelebihan sekitar <InlineMath math="0.5" /> cm³. **Rata-rata titer yang sesuai** adalah <InlineMath math="\tfrac{24.10 + 24.15 + 24.12}{3} = 24.12" /> cm³.
 
 <Chart
-  title={<>Tiga Pembacaan Titrasi dari Empat Murid</>}
+  title={<>Titer dari Lima Kali Titrasi</>}
   bars="apart"
-  categories={["Percobaan 1", "Percobaan 2", "Percobaan 3"]}
+  categories={["Kasar", "Titrasi 1", "Titrasi 2", "Titrasi 3", "Titrasi 4"]}
   series={[
-    { label: "P", mark: "bar", values: [24.1, 24.12, 24.11] },
-    { label: "Q", mark: "bar", values: [25.02, 24.98, 25.0] },
-    { label: "R", mark: "bar", values: [23.5, 26.4, 25.1] },
-    { label: "S", mark: "bar", values: [25.9, 25.91, 25.89] },
+    { label: "Volume asam (cm³)", mark: "bar", values: [25.4, 24.1, 24.15, 24.6, 24.12] },
   ]}
   valueLabel="Volume asam (cm³)"
-  description={<>P: <InlineMath math="24.10" />, <InlineMath math="24.12" />, dan 24.11. Q: <InlineMath math="25.02" />, <InlineMath math="24.98" />, dan 25.00. R: <InlineMath math="23.50" />, <InlineMath math="26.40" />, dan 25.10. S: <InlineMath math="25.90" />, <InlineMath math="25.91" />, dan <InlineMath math="<InlineMath math="25.89" />\text{ cm}^3" />.</>}
+  description={<>Kasar <InlineMath math="25.40" />, titrasi <InlineMath math="1" /> <InlineMath math="24.10" />, titrasi <InlineMath math="2" /> <InlineMath math="24.15" />, titrasi <InlineMath math="3" /> <InlineMath math="24.60" />, dan titrasi <InlineMath math="4" /> <InlineMath math="<InlineMath math="24.12" />\text{ cm}^3" />.</>}
 />
 
-Pembacaan P hanya tersebar <InlineMath math="0.02" /> cm³ tapi sekitar <InlineMath math="0.89" /> cm³ di bawah <InlineMath math="25.00" />. Pembacaan S tersebar <InlineMath math="0.02" /> cm³ dan sekitar <InlineMath math="0.90" /> cm³ di atasnya. Keduanya presisi tapi tidak akurat. Tiap pembacaan meleset dengan jumlah yang sama ke arah yang sama, ciri khas **galat sistematis**, misalnya buret dibaca dari tinggi mata yang salah atau pipet yang salah dikalibrasi.
+Basanya berisi <InlineMath math="0.100 \times \tfrac{25.0}{1000} = 0.00250" /> mol, dan <InlineMath math="\text{NaOH} + \text{HCl} \rightarrow \text{NaCl} + \text{H}_2\text{O}" /> satu banding satu. Jadi <InlineMath math="c = 0.00250 \div \tfrac{24.12}{1000} = 0.104" /> mol dm⁻³.
 
 # Kenapa pilihan lain salah
 
-- Rata-rata R adalah <InlineMath math="25.00" />, tapi pembacaannya tersebar <InlineMath math="2.90" /> cm³. Rata-rata yang kebetulan tepat tidak membuat pembacaan yang tersebar menjadi presisi.
-- Rentang yang lebar adalah kebalikan dari presisi.
-- Pembacaan Q hanya tersebar <InlineMath math="0.04" /> cm³ di sekitar nilai sebenarnya, jadi galat acaknya kecil, bukan terbesar.
+- <InlineMath math="0{.}102\text{ mol}" /> dm⁻³ merata-ratakan kelima pembacaan, **termasuk yang kasar dan yang kelebihan**.
+- <InlineMath math="0.0965" /> mol dm⁻³ membalik perbandingannya: <InlineMath math="0.100 \times 24.12 \div 25.0" />.
+- <InlineMath math="0.0984" /> mol dm⁻³ hanya memakai titer kasar.

@@ -1,25 +1,22 @@
-# Präzision ist die Streuung, Richtigkeit der Abstand zum wahren Wert
+# Nur übereinstimmende Werte nehmen, dann das Stoffmengenverhältnis
 
-Präzise Messwerte **liegen eng beieinander**. Richtige Messwerte **liegen nahe am wahren Wert**. Prüf beides für alle vier.
+Die Grobtitration sucht nur den Endpunkt und geht nie in den Mittelwert ein. Von den vier Läufen stimmen <InlineMath math="24.10" />, <InlineMath math="24.15" /> und <InlineMath math="24.12" /> auf <InlineMath math="0.05" /> cm³ überein, während <InlineMath math="24.60" /> um etwa <InlineMath math="0.5" /> cm³ übertitriert ist. Der **Mittelwert der übereinstimmenden Werte** ist <InlineMath math="\tfrac{24.10 + 24.15 + 24.12}{3} = 24.12" /> cm³.
 
 <Chart
-  title={<>Drei Titrationswerte von vier Lernenden</>}
+  title={<>Titrationswerte aus fünf Durchgängen</>}
   bars="apart"
-  categories={["Versuch 1", "Versuch 2", "Versuch 3"]}
+  categories={["Grob", "Lauf 1", "Lauf 2", "Lauf 3", "Lauf 4"]}
   series={[
-    { label: "P", mark: "bar", values: [24.1, 24.12, 24.11] },
-    { label: "Q", mark: "bar", values: [25.02, 24.98, 25.0] },
-    { label: "R", mark: "bar", values: [23.5, 26.4, 25.1] },
-    { label: "S", mark: "bar", values: [25.9, 25.91, 25.89] },
+    { label: "Volumen Säure (cm³)", mark: "bar", values: [25.4, 24.1, 24.15, 24.6, 24.12] },
   ]}
   valueLabel="Volumen Säure (cm³)"
-  description={<>P: <InlineMath math="24.10" />, <InlineMath math="24.12" /> und 24.11. Q: <InlineMath math="25.02" />, <InlineMath math="24.98" /> und 25.00. R: <InlineMath math="23.50" />, <InlineMath math="26.40" /> und 25.10. S: <InlineMath math="25.90" />, <InlineMath math="25.91" /> und <InlineMath math="<InlineMath math="25.89" />\text{ cm}^3" />.</>}
+  description={<>Grob <InlineMath math="25.40" />, Lauf <InlineMath math="1" /> <InlineMath math="24.10" />, Lauf <InlineMath math="2" /> <InlineMath math="24.15" />, Lauf <InlineMath math="3" /> <InlineMath math="24.60" /> und Lauf <InlineMath math="4" /> <InlineMath math="<InlineMath math="24.12" />\text{ cm}^3" />.</>}
 />
 
-Die Werte von P streuen nur um <InlineMath math="0.02" /> cm³, liegen aber etwa <InlineMath math="0.89" /> cm³ unter <InlineMath math="25.00" />. Die Werte von S streuen um <InlineMath math="0.02" /> cm³ und liegen etwa <InlineMath math="0.90" /> cm³ darüber. Beide sind präzise, aber nicht richtig. Jeder Wert weicht gleich weit in dieselbe Richtung ab, das Kennzeichen eines **systematischen Fehlers**, etwa einer Bürette, die aus falscher Augenhöhe abgelesen wird, oder einer falsch kalibrierten Pipette.
+Die Lauge enthält <InlineMath math="0.100 \times \tfrac{25.0}{1000} = 0.00250" /> mol, und <InlineMath math="\text{NaOH} + \text{HCl} \rightarrow \text{NaCl} + \text{H}_2\text{O}" /> ist eins zu eins. Also <InlineMath math="c = 0.00250 \div \tfrac{24.12}{1000} = 0.104" /> mol dm⁻³.
 
 # Warum die anderen Antworten falsch sind
 
-- Der Mittelwert von R ist <InlineMath math="25.00" />, aber die Werte streuen über <InlineMath math="2.90" /> cm³. Ein zufällig richtiger Mittelwert macht verstreute Werte nicht präzise.
-- Eine große Spannweite ist das Gegenteil von Präzision.
-- Die Werte von Q streuen nur um <InlineMath math="0.04" /> cm³ um den wahren Wert, Q hat also einen kleinen Zufallsfehler, nicht den größten.
+- <InlineMath math="0{.}102\text{ mol}" /> dm⁻³ mittelt alle fünf Werte, **die Grobtitration und den übertitrierten Lauf eingeschlossen**.
+- <InlineMath math="0.0965" /> mol dm⁻³ dreht das Verhältnis um: <InlineMath math="0.100 \times 24.12 \div 25.0" />.
+- <InlineMath math="0.0984" /> mol dm⁻³ nimmt nur die Grobtitration.
