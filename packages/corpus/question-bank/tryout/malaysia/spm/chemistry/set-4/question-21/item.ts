@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$\\\\text{KMnO}_4$$, $$\\\\text{K}_2\\\\text{MnO}_4$$, $$\\\\text{MnO}_2$$, $$\\\\text{MnCl}_2$$, so $$\\\\text{K}_2\\\\text{MnO}_4$$ is potassium manganate(VI)",
+            "In acid it becomes $$\\text{Mn}^{2+}$$, and in neutral solution $$\\text{MnO}_2$$, manganese(IV) oxide",
         },
         {
           correct: false,
           label:
-            "$$\\\\text{K}_2\\\\text{MnO}_4$$, $$\\\\text{KMnO}_4$$, $$\\\\text{MnO}_2$$, $$\\\\text{MnCl}_2$$, so $$\\\\text{K}_2\\\\text{MnO}_4$$ is potassium manganate(VII)",
+            "In acid it becomes $$\\text{MnO}_2$$, and in neutral solution $$\\text{Mn}^{2+}$$, manganese(II) ions",
         },
         {
           correct: false,
           label:
-            "$$\\\\text{KMnO}_4$$, $$\\\\text{MnO}_2$$, $$\\\\text{K}_2\\\\text{MnO}_4$$, $$\\\\text{MnCl}_2$$, so $$\\\\text{MnO}_2$$ is manganese(VI) oxide",
+            "In acid it becomes $$\\text{Mn}^{2+}$$, and in neutral solution $$\\text{MnO}_4^{2-}$$, manganate(VI) ions",
         },
         {
           correct: false,
           label:
-            "$$\\\\text{MnCl}_2$$, $$\\\\text{MnO}_2$$, $$\\\\text{K}_2\\\\text{MnO}_4$$, $$\\\\text{KMnO}_4$$, so $$\\\\text{MnCl}_2$$ is manganese(VII) chloride",
+            "In acid it becomes $$\\text{Mn}^{3+}$$, and in neutral solution $$\\text{MnO}_2$$, manganese(IV) oxide",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$\\\\text{KMnO}_4$$, $$\\\\text{K}_2\\\\text{MnO}_4$$, $$\\\\text{MnO}_2$$, $$\\\\text{MnCl}_2$$, jadi $$\\\\text{K}_2\\\\text{MnO}_4$$ ialah kalium manganat(VI)",
+            "Dalam asid ia menjadi $$\\text{Mn}^{2+}$$, dan dalam larutan neutral $$\\text{MnO}_2$$, mangan(IV) oksida",
         },
         {
           correct: false,
           label:
-            "$$\\\\text{K}_2\\\\text{MnO}_4$$, $$\\\\text{KMnO}_4$$, $$\\\\text{MnO}_2$$, $$\\\\text{MnCl}_2$$, jadi $$\\\\text{K}_2\\\\text{MnO}_4$$ ialah kalium manganat(VII)",
+            "Dalam asid ia menjadi $$\\text{MnO}_2$$, dan dalam larutan neutral $$\\text{Mn}^{2+}$$, ion mangan(II)",
         },
         {
           correct: false,
           label:
-            "$$\\\\text{KMnO}_4$$, $$\\\\text{MnO}_2$$, $$\\\\text{K}_2\\\\text{MnO}_4$$, $$\\\\text{MnCl}_2$$, jadi $$\\\\text{MnO}_2$$ ialah mangan(VI) oksida",
+            "Dalam asid ia menjadi $$\\text{Mn}^{2+}$$, dan dalam larutan neutral $$\\text{MnO}_4^{2-}$$, ion manganat(VI)",
         },
         {
           correct: false,
           label:
-            "$$\\\\text{MnCl}_2$$, $$\\\\text{MnO}_2$$, $$\\\\text{K}_2\\\\text{MnO}_4$$, $$\\\\text{KMnO}_4$$, jadi $$\\\\text{MnCl}_2$$ ialah mangan(VII) klorida",
+            "Dalam asid ia menjadi $$\\text{Mn}^{3+}$$, dan dalam larutan neutral $$\\text{MnO}_2$$, mangan(IV) oksida",
         },
       ],
     },
