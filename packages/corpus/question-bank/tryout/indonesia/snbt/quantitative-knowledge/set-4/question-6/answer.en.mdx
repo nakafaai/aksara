@@ -32,6 +32,39 @@ m^2-m-6&<0\\
 
 Together with <InlineMath math="m>0" />, the integers are <InlineMath math="1" /> and <InlineMath math="2" />. The value <InlineMath math="m=3" /> doesn't count, because <InlineMath math="f(3)=9-18+9=0" />.
 
+The graph below puts two values that pass and two boundaries that fail on the region <InlineMath math="x\ge0" />. The parabolas for <InlineMath math="m=-6" /> and <InlineMath math="m=3" /> **touch zero at exactly one point**, at <InlineMath math="x=0" /> and at <InlineMath math="x=3" />, so the strict sign throws both out.
+
+<MathVisual
+  title={<>The parabola <InlineMath math="f(x)=x^2-2mx+m+6" /> on <InlineMath math="x\ge0" /></>}
+  description={<>For <InlineMath math="m=-5" />, the graph starts at <InlineMath math="(0,1)" /> and rises right away. For <InlineMath math="m=2" />, its lowest point is <InlineMath math="(2,4)" />, above the axis. For <InlineMath math="m=-6" />, the graph starts exactly at <InlineMath math="(0,0)" />. For <InlineMath math="m=3" />, its lowest point is exactly <InlineMath math="(3,0)" />.</>}
+  labels={{
+    m5: <InlineMath math="m=-5" />,
+    m6: <InlineMath math="m=-6" />,
+    m2: <InlineMath math="m=2" />,
+    m3: <InlineMath math="m=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 0, y: 0 }, { x: 0, y: 1 }] },
+      { id: "m5", kind: "function", appearance: "primary", formula: "x^2 + 10x + 1", domain: { min: 0, max: 0.9 } },
+      { id: "m6", kind: "function", appearance: "warning", formula: "x^2 + 12x", domain: { min: 0, max: 0.85 } },
+      { id: "m2", kind: "function", appearance: "primary", formula: "x^2 - 4x + 8", domain: { min: 0, max: 5.5 } },
+      { id: "m3", kind: "function", appearance: "warning", formula: "x^2 - 6x + 9", domain: { min: 0, max: 6 } },
+      { id: "touch-left", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+      { id: "touch-right", kind: "point", appearance: "warning", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "m5", objectId: "m5", at: { x: 0.9, y: 0.81 + 9 + 1 }, placement: "right" },
+      { key: "m6", objectId: "m6", at: { x: 0.5, y: 6.25 }, placement: "right" },
+      { key: "m2", objectId: "m2", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "m3", objectId: "touch-right", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Adding up all the values
 
 **The two cases together** give <InlineMath math="m=-5, -4, \ldots, 2" />.

@@ -14,6 +14,38 @@ A horizontal line <InlineMath math="y=k" /> meets this graph this many times.
 | <InlineMath math="k=4" /> | <InlineMath math="3" /> |
 | <InlineMath math="k>4" /> | <InlineMath math="2" /> |
 
+The W-shaped graph below makes the table visible. The line <InlineMath math="y=2" /> cuts all four arms of the graph, while the line <InlineMath math="y=4" /> **only touches the small peak at <InlineMath math="(0,4)" />** and cuts the two outer arms, so it meets the graph three times.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=\left|x^2-4\right|" /> and two horizontal lines</>}
+  description={<>The graph is <InlineMath math="0" /> at <InlineMath math="x=-2" /> and <InlineMath math="x=2" />, has a small peak at <InlineMath math="(0,4)" />, and keeps rising to the left and right. The line <InlineMath math="y=2" /> cuts it at four points. The line <InlineMath math="y=4" /> meets it at <InlineMath math="x=-2\sqrt2" />, <InlineMath math="x=0" />, and <InlineMath math="x=2\sqrt2" />.</>}
+  labels={{
+    f: <InlineMath math="y=\left|x^2-4\right|" />,
+    four: <InlineMath math="y=4" />,
+    two: <InlineMath math="y=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x^2 - 4", domain: { min: -3.3, max: -2 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "4 - x^2", domain: { min: -2, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x^2 - 4", domain: { min: 2, max: 3.3 } },
+      { id: "four", kind: "segment", appearance: "secondary", from: { x: -3.5, y: 4 }, to: { x: 3.5, y: 4 } },
+      { id: "two", kind: "segment", appearance: "construction", from: { x: -3.5, y: 2 }, to: { x: 3.5, y: 2 } },
+      { id: "peak", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+      { id: "four-left", kind: "point", appearance: "answer", at: { x: -2 * Math.sqrt(2), y: 4 } },
+      { id: "four-right", kind: "point", appearance: "answer", at: { x: 2 * Math.sqrt(2), y: 4 } },
+    ],
+    labels: [
+      { key: "f", objectId: "right", at: { x: 3.3, y: 3.3 ** 2 - 4 }, placement: "left" },
+      { key: "four", objectId: "four", at: { x: -3.2, y: 4 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: -3.2, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 # The first and fourth statements
 
 For <InlineMath math="f(x)=4" />, the inside of the absolute value has two options.

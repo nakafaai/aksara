@@ -32,6 +32,17 @@ P(A)&=\frac{40}{190}=\frac{4}{19}
 
 Coba cek dengan cara lain. Banyak pasangan yang hasil kalinya habis dibagi <InlineMath math="4" /> ada <InlineMath math="95" />, dan yang habis dibagi <InlineMath math="8" /> ada <InlineMath math="55" />. Selisihnya <InlineMath math="95-55=40" />, sama dengan hitungan tadi.
 
+Grafik berikut membagi seluruh <InlineMath math="190" /> pasangan menurut banyak faktor <InlineMath math="2" /> pada hasil kalinya. Batang ketiga, tepat dua faktor, adalah **satu-satunya kelompok yang habis dibagi <InlineMath math="4" /> tetapi tidak habis dibagi <InlineMath math="8" />**.
+
+<Chart
+  title={<>Semua pasangan menurut banyak faktor <InlineMath math="2" /> pada hasil kali</>}
+  description={<>Sebanyak <InlineMath math="45" /> pasangan tidak punya faktor <InlineMath math="2" />, <InlineMath math="50" /> pasangan punya tepat satu, <InlineMath math="40" /> pasangan punya tepat dua, dan <InlineMath math="55" /> pasangan punya tiga atau lebih. Jumlahnya <InlineMath math="190" />.</>}
+  categories={["Nol faktor", "Satu faktor", "Tepat dua faktor", "Tiga atau lebih"]}
+  bars="apart"
+  series={[{ label: "Banyak pasangan", mark: "bar", values: [10 * 9 / 2, 10 * 5, 10 * 3 + (5 * 4) / 2, 190 - 45 - 50 - 40] }]}
+  valueLabel="Banyak pasangan"
+/>
+
 # Pilihan yang menjebak
 
 Setiap pilihan lain berasal dari **kelompok yang terlupa atau urutan yang tercampur**.

@@ -30,6 +30,21 @@ For each <InlineMath math="c" />, find the pairs <InlineMath math="a\le b\le c" 
 | <InlineMath math="7, 8, 9" /> | <InlineMath math="81" /> | <InlineMath math="113" /> | acute |
 | <InlineMath math="8, 8, 8" /> | <InlineMath math="64" /> | <InlineMath math="128" /> | acute |
 
+The chart below sums up the table by longest side. There are <InlineMath math="12" /> triangles in all, <InlineMath math="5" /> of them obtuse, and **the column <InlineMath math="c=11" /> still holds one acute triangle**, namely <InlineMath math="2, 11, 11" />.
+
+<Chart
+  title={<>Types of triangles with perimeter <InlineMath math="24" /> by longest side <InlineMath math="c" /></>}
+  description={<>For <InlineMath math="c=8" />, there's <InlineMath math="1" /> acute triangle. For <InlineMath math="c=9" />, there are <InlineMath math="2" /> acute triangles. For <InlineMath math="c=10" />, there are <InlineMath math="2" /> acute, <InlineMath math="1" /> right, and <InlineMath math="1" /> obtuse. For <InlineMath math="c=11" />, there's <InlineMath math="1" /> acute and <InlineMath math="4" /> obtuse.</>}
+  bars="apart"
+  categories={["c = 8", "c = 9", "c = 10", "c = 11"]}
+  series={[
+    { label: "Acute", mark: "bar", values: [1, 2, 2, 1] },
+    { label: "Right", mark: "bar", values: [0, 0, 1, 0] },
+    { label: "Obtuse", mark: "bar", values: [0, 0, 1, 4] },
+  ]}
+  valueLabel="Number of triangles"
+/>
+
 # Judging each statement
 
 The first statement is true: the list has <InlineMath math="5+4+2+1=12" /> triangles for <InlineMath math="c=11, 10, 9, 8" />. If you also counted <InlineMath math="c=12" />, you'd pick up fake triangles such as <InlineMath math="6, 6, 12" />.

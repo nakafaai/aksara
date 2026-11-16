@@ -17,6 +17,20 @@ y=4:\quad N=4,&\quad\binom{6}{2}=15\\
 \text{total}&=45+28+15=88
 \end{aligned}" />
 
+Grafik berikut membandingkan setiap kasus dengan dan tanpa syarat si sulung. Syarat itu **memangkas setiap kasus**, dan pangkasannya makin besar saat jatah si bungsu naik, karena si sulung harus menyisihkan lebih banyak permen.
+
+<Chart
+  title={<>Banyak cara menurut jatah si bungsu <InlineMath math="y" /></>}
+  description={<>Dengan syarat si sulung, kasus <InlineMath math="y=2" />, <InlineMath math="y=3" />, dan <InlineMath math="y=4" /> memberi <InlineMath math="45" />, <InlineMath math="28" />, dan <InlineMath math="15" /> cara, jumlahnya <InlineMath math="88" />. Tanpa syarat itu, ketiganya memberi <InlineMath math="55" />, <InlineMath math="45" />, dan <InlineMath math="36" /> cara, jumlahnya <InlineMath math="136" />.</>}
+  bars="apart"
+  categories={["y = 2", "y = 3", "y = 4"]}
+  series={[
+    { label: "Sulung lebih banyak dari bungsu", mark: "bar", values: [(10 * 9) / 2, (8 * 7) / 2, (6 * 5) / 2] },
+    { label: "Tanpa syarat si sulung", mark: "bar", values: [(11 * 10) / 2, (10 * 9) / 2, (9 * 8) / 2] },
+  ]}
+  valueLabel="Banyak cara"
+/>
+
 Coba cek kasus <InlineMath math="y=4" /> dengan cara lain. Si sulung minimal <InlineMath math="5" />, dua anak tengah minimal <InlineMath math="2" />, dan jumlah ketiganya <InlineMath math="13" />. Sisa <InlineMath math="4" /> permen dibagi bebas ke <InlineMath math="3" /> anak memberi <InlineMath math="15" /> cara, sama dengan hitungan di atas. Tanpa syarat si sulung, total ketiga kasus adalah <InlineMath math="55+45+36=136" />, jadi <InlineMath math="88" /> memang lebih kecil, sesuai harapan.
 
 # Pilihan yang menjebak

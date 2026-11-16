@@ -30,6 +30,21 @@ Such für jedes <InlineMath math="c" /> die Paare <InlineMath math="a\le b\le c"
 | <InlineMath math="7, 8, 9" /> | <InlineMath math="81" /> | <InlineMath math="113" /> | spitz |
 | <InlineMath math="8, 8, 8" /> | <InlineMath math="64" /> | <InlineMath math="128" /> | spitz |
 
+Das Diagramm fasst die Tabelle nach der längsten Seite zusammen. Insgesamt sind es <InlineMath math="12" /> Dreiecke, davon <InlineMath math="5" /> stumpfwinklig, und **die Spalte <InlineMath math="c=11" /> enthält noch ein spitzwinkliges Dreieck**, nämlich <InlineMath math="2, 11, 11" />.
+
+<Chart
+  title={<>Dreiecksarten mit Umfang <InlineMath math="24" /> nach längster Seite <InlineMath math="c" /></>}
+  description={<>Für <InlineMath math="c=8" /> gibt es <InlineMath math="1" /> spitzwinkliges Dreieck. Für <InlineMath math="c=9" /> gibt es <InlineMath math="2" /> spitzwinklige. Für <InlineMath math="c=10" /> gibt es <InlineMath math="2" /> spitzwinklige, <InlineMath math="1" /> rechtwinkliges und <InlineMath math="1" /> stumpfwinkliges. Für <InlineMath math="c=11" /> gibt es <InlineMath math="1" /> spitzwinkliges und <InlineMath math="4" /> stumpfwinklige.</>}
+  bars="apart"
+  categories={["c = 8", "c = 9", "c = 10", "c = 11"]}
+  series={[
+    { label: "Spitzwinklig", mark: "bar", values: [1, 2, 2, 1] },
+    { label: "Rechtwinklig", mark: "bar", values: [0, 0, 1, 0] },
+    { label: "Stumpfwinklig", mark: "bar", values: [0, 0, 1, 4] },
+  ]}
+  valueLabel="Anzahl der Dreiecke"
+/>
+
 # Jede Aussage beurteilen
 
 Die erste Aussage ist wahr: Die Liste enthält <InlineMath math="5+4+2+1=12" /> Dreiecke für <InlineMath math="c=11, 10, 9, 8" />. Würdest du <InlineMath math="c=12" /> mitzählen, kämen falsche Dreiecke wie <InlineMath math="6, 6, 12" /> dazu.

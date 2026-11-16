@@ -33,6 +33,39 @@ Pernyataan (2) saja juga tidak cukup. Garis <InlineMath math="x+y-20=0" /> bergr
 
 Gradien garis singgung tadi adalah <InlineMath math="-\frac34" />, yang **juga negatif**. Jadi garis singgung itu memenuhi kedua pernyataan, dan jawabannya tidak. Sementara itu, garis yang melalui <InlineMath math="(5,1)" /> dan <InlineMath math="(2,2)" /> bergradien <InlineMath math="\frac{2-1}{2-5}=-\frac13" />, juga negatif. Titik <InlineMath math="(2,2)" /> ada pada lingkaran, karena <InlineMath math="0^2+5^2=25" />, jadi garis ini memotong di dua titik berbeda dan jawabannya ya.
 
+Gambar berikut menaruh kedua garis itu pada lingkaran. Keduanya melalui <InlineMath math="(5,1)" /> dan sama-sama bergradien negatif, tetapi **garis singgung hanya menyentuh**, sedangkan garis yang lain memotong lagi di <InlineMath math="(2,2)" />.
+
+<MathVisual
+  title={<>Dua garis bergradien negatif melalui <InlineMath math="(5,1)" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="M(2,-3)" /> dengan jari-jari <InlineMath math="5" />. Garis singgung <InlineMath math="3x+4y-19=0" /> bergradien <InlineMath math="-\tfrac34" /> dan tegak lurus jari-jari ke <InlineMath math="(5,1)" />. Garis kedua bergradien <InlineMath math="-\tfrac13" /> dan memotong lingkaran di <InlineMath math="(5,1)" /> dan <InlineMath math="(2,2)" />.</>}
+  labels={{
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="(5,1)" />,
+    q: <InlineMath math="(2,2)" />,
+    tangent: <InlineMath math="3x+4y-19=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 10 }, y: { min: -9, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -3 }, radius: 5 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 2, y: -3 }, to: { x: 5, y: 1 } },
+      { id: "tangent", kind: "line", appearance: "warning", through: [{ x: 5, y: 1 }, { x: 9, y: -2 }] },
+      { id: "secant", kind: "line", appearance: "answer", through: [{ x: 5, y: 1 }, { x: 2, y: 2 }] },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 2, y: -3 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 5, y: 1 } },
+      { id: "point-q", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "m", objectId: "point-m", at: { x: 2, y: -3 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: 5, y: 1 }, placement: "above-right" },
+      { key: "q", objectId: "point-q", at: { x: 2, y: 2 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: 9, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Kedua garis memenuhi pernyataan (1) dan (2), tetapi jawabannya berbeda. Siswa yang langsung menganggap titik pada lingkaran berarti dua titik potong akan memilih pernyataan (1) cukup. Siswa yang tidak menghitung gradien garis singgung akan mengira gradien negatif menyingkirkan kemungkinan menyinggung.
 
 Jadi, **pernyataan (1) dan (2) tidak cukup** untuk menjawab pertanyaan, bahkan jika digabungkan.

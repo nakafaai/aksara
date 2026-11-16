@@ -42,6 +42,18 @@ For <InlineMath math="d=7" />, the pair <InlineMath math="m=5" /> and <InlineMat
 
 Both conditions hold, and this is the only pair that survives, so the difference has to be <InlineMath math="42" />.
 
+The diagram below sums up the filtering. Of the eight candidate GCDs, only two pass the discriminant test, and **the coprime condition throws out one of them**.
+
+<Mermaid
+  title={<>Filtering the candidate GCDs</>}
+  description={<>The candidate GCDs are the divisors of <InlineMath math="56" />. Only <InlineMath math="d=7" /> and <InlineMath math="d=8" /> give a perfect-square discriminant. For <InlineMath math="d=8" />, the pair <InlineMath math="6" /> and <InlineMath math="8" /> isn't coprime, so it's thrown out. For <InlineMath math="d=7" />, the pair <InlineMath math="5" /> and <InlineMath math="11" /> gives the numbers <InlineMath math="35" /> and <InlineMath math="77" />, with difference <InlineMath math="42" />.</>}
+  chart={`flowchart LR
+    A["d divides 56: 1, 2, 4, 7, 8, 14, 28, 56"] -->|"discriminant test"| B["d = 7: m = 5, n = 11"]
+    A -->|"discriminant test"| C["d = 8: m = 6, n = 8"]
+    C -->|"6 and 8 not coprime"| X["thrown out"]
+    B -->|"5 and 11 coprime"| D["35 and 77, difference 42"]`}
+/>
+
 # The tempting wrong options
 
 Each other option comes from **one skipped step** along that route.

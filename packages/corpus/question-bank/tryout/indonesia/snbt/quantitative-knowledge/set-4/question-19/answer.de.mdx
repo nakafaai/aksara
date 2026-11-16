@@ -32,6 +32,36 @@ m&=\frac{8\pm\sqrt{64-56}}{2}=4\pm\sqrt2
 
 Beide Werte sind gültig.
 
+Der Graph zeigt die Bedingung <InlineMath math="f\bigl(f(x)\bigr)=x" /> von einer anderen Seite: Der Graph von <InlineMath math="f" /> muss **symmetrisch zur Geraden <InlineMath math="y=x" />** sein, weil <InlineMath math="f" /> seine eigene Umkehrfunktion ist. Die Gerade <InlineMath math="y=x" /> und die Geraden mit Steigung <InlineMath math="-1" /> passen, die Gerade <InlineMath math="y=x-4" /> verläuft parallel zu <InlineMath math="y=x" /> und ist nicht symmetrisch dazu.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f" /> für die vier Kandidaten von <InlineMath math="m" /></>}
+  description={<>Für <InlineMath math="m=6" /> ist der Graph die Gerade <InlineMath math="y=x" /> selbst. Für <InlineMath math="m=4+\sqrt2" /> und <InlineMath math="m=4-\sqrt2" /> sind es Geraden mit Steigung <InlineMath math="-1" />, <InlineMath math="y=-x-2+\sqrt2" /> und <InlineMath math="y=-x-2-\sqrt2" />, die senkrecht auf <InlineMath math="y=x" /> stehen. Für <InlineMath math="m=2" /> ist der Graph <InlineMath math="y=x-4" />, parallel zu <InlineMath math="y=x" /> und nach unten verschoben.</>}
+  labels={{
+    six: <InlineMath math="m=6" />,
+    two: <InlineMath math="m=2" />,
+    plus: <InlineMath math="m=4+\sqrt2" />,
+    minus: <InlineMath math="m=4-\sqrt2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "six", kind: "function", appearance: "answer", formula: "x", domain: { min: -6, max: 6 } },
+      { id: "two", kind: "function", appearance: "warning", formula: "x - 4", domain: { min: -2, max: 6 } },
+      { id: "plus", kind: "function", appearance: "primary", formula: "-x - 2 + sqrt(2)", domain: { min: -5, max: 5 } },
+      { id: "minus", kind: "function", appearance: "secondary", formula: "-x - 2 - sqrt(2)", domain: { min: -5, max: 2 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 5, y: 5 }, placement: "above-left" },
+      { key: "two", objectId: "two", at: { x: 5, y: 1 }, placement: "below-right" },
+      { key: "plus", objectId: "plus", at: { x: -4, y: 2 + Math.sqrt(2) }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: -3, y: 1 - Math.sqrt(2) }, placement: "below-left" },
+    ],
+  }}
+/>
+
 # Das Produkt aller Werte
 
 **Alle gültigen Werte von <InlineMath math="m" />** sind <InlineMath math="6" />, <InlineMath math="4+\sqrt2" /> und <InlineMath math="4-\sqrt2" />.

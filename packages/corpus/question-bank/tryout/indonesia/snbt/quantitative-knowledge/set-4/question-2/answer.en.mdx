@@ -24,6 +24,39 @@ After filling, the water reaches <InlineMath math="\frac34" /> of the height. Th
 \text{water added}&=\tfrac{63}{8}-7=\tfrac{63}{8}-\tfrac{56}{8}=\tfrac78\text{ liter}
 \end{aligned}" />
 
+The cross-section below shows all three parts. The starting water fills the wide bottom, the added water is **only a thin layer where the cone has already narrowed**, and the empty space left is a small cone at the top.
+
+<MathVisual
+  title={<>Cross-section of the cone before and after filling</>}
+  description={<>A cross-section of the cone with its apex at the top. The bottom part up to half the height holds the starting <InlineMath math="7" /> liters. The layer between half and three quarters of the height is the added water, <InlineMath math="\tfrac78" /> liter. The small cone above three quarters of the height is the final empty space, <InlineMath math="\tfrac18" /> liter.</>}
+  labels={{
+    old: <InlineMath math="7\text{ L}" />,
+    added: <InlineMath math="\tfrac78\text{ L}" />,
+    empty: <InlineMath math="\tfrac18\text{ L}" />,
+    half: <InlineMath math="\tfrac12 t" />,
+    three: <InlineMath math="\tfrac34 t" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 6.5 }, y: { min: -0.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "old", kind: "polygon", appearance: "primary", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 2, y: 4 }, { x: -2, y: 4 }] },
+      { id: "added", kind: "polygon", appearance: "answer", vertices: [{ x: -2, y: 4 }, { x: 2, y: 4 }, { x: 1, y: 6 }, { x: -1, y: 6 }] },
+      { id: "empty", kind: "polygon", appearance: "construction", vertices: [{ x: -1, y: 6 }, { x: 1, y: 6 }, { x: 0, y: 8 }] },
+      { id: "level-half", kind: "segment", appearance: "reference", from: { x: 2, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "level-three", kind: "segment", appearance: "reference", from: { x: 1, y: 6 }, to: { x: 5, y: 6 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 0, y: 2 }, placement: "center" },
+      { key: "added", objectId: "added", at: { x: 0, y: 5 }, placement: "center" },
+      { key: "empty", objectId: "empty", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "half", objectId: "level-half", at: { x: 5, y: 4 }, placement: "right" },
+      { key: "three", objectId: "level-three", at: { x: 5, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check it through the empty space. At first it was <InlineMath math="8-7=1" /> liter, and at the end it's <InlineMath math="\frac18" /> liter. The empty space shrank by <InlineMath math="1-\frac18=\frac78" /> liter, which matches the water that went in. Such a small amount also makes sense, because the layer between half and <InlineMath math="\frac34" /> of the height sits where the cone is already narrow.
 
 # The tempting wrong options

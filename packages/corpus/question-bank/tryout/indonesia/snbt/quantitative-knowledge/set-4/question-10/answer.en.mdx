@@ -24,6 +24,21 @@ On the third route, <InlineMath math="x=4" /> makes the base <InlineMath math="0
 
 On the second route, the exponent <InlineMath math="4" /> really is even. This route is easy to miss, because people often check only base <InlineMath math="1" /> and exponent <InlineMath math="0" />.
 
+The diagram below sums up the three routes and their filters. Each route gives candidates, and then **its own condition** decides whether each candidate survives.
+
+<Mermaid
+  title={<>Three routes to a power equal to <InlineMath math="1" /></>}
+  description={<>The base <InlineMath math="1" /> route gives <InlineMath math="x=5" />, which survives. The base <InlineMath math="-1" /> route gives <InlineMath math="x=3" /> with the even exponent <InlineMath math="4" />, which survives. The exponent <InlineMath math="0" /> route gives <InlineMath math="x=4" /> and <InlineMath math="x=7" />. The candidate <InlineMath math="x=4" /> goes because it produces <InlineMath math="0^0" />, while <InlineMath math="x=7" /> survives.</>}
+  chart={`flowchart LR
+    A["(x - 4) to the power (x - 4)(x - 7) = 1"] --> B["base 1: x = 5"]
+    A --> C["base -1: x = 3"]
+    A --> D["exponent 0: x = 4 or x = 7"]
+    B --> B1["1 to the power -2 = 1, survives"]
+    C --> C1["exponent 4 is even, survives"]
+    D --> D1["x = 4: 0 to the power 0, thrown out"]
+    D --> D2["x = 7: 3 to the power 0 = 1, survives"]`}
+/>
+
 # Adding the solutions
 
 **The three values that survive** are <InlineMath math="x=3" />, <InlineMath math="x=5" />, and <InlineMath math="x=7" />. Their sum is <InlineMath math="3+5+7=15" />. Check <InlineMath math="x=3" /> once more straight in the equation: <InlineMath math="(3-4)^{9-33+28}=(-1)^4=1" />.

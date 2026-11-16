@@ -29,6 +29,44 @@ CB&=\sqrt{(5-2)^2+(5-1)^2}=\sqrt{9+16}=5\\
 CA+CB&=10
 \end{aligned}" />
 
+Gambar berikut memperlihatkan mengapa titik terbaik bergeser ke ujung. Titik <InlineMath math="P^*" /> ada pada perpanjangan garis, **di luar ruas <InlineMath math="CD" />**. Di sepanjang ruas, jumlah jarak terus naik saat menjauh dari <InlineMath math="P^*" />, jadi lintasan terpendek yang boleh adalah <InlineMath math="A\to C\to B" />.
+
+<MathVisual
+  title={<>Ruas <InlineMath math="CD" />, bayangan <InlineMath math="A'" />, dan lintasan terpendek</>}
+  description={<>Garis <InlineMath math="y=2x-5" /> digambar putus-putus, dan ruas <InlineMath math="CD" /> dari <InlineMath math="C(5,5)" /> sampai <InlineMath math="D(7,9)" /> digambar tebal. Bayangan <InlineMath math="A(0,5)" /> adalah <InlineMath math="A'(8,1)" />. Garis <InlineMath math="A'B" /> memotong garis di <InlineMath math="P^*(3,1)" />, di luar ruas. Lintasan yang dipakai adalah <InlineMath math="A\to C\to B" />, sepanjang <InlineMath math="5+5=10" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    aa: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    star: <InlineMath math="P^*" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line", kind: "line", appearance: "construction", through: [{ x: 5, y: 5 }, { x: 7, y: 9 }] },
+      { id: "segment", kind: "segment", appearance: "primary", from: { x: 5, y: 5 }, to: { x: 7, y: 9 } },
+      { id: "mirror-path", kind: "segment", appearance: "construction", from: { x: 2, y: 1 }, to: { x: 8, y: 1 } },
+      { id: "best", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 5 }, { x: 5, y: 5 }, { x: 2, y: 1 }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-aa", kind: "point", appearance: "construction", at: { x: 8, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+      { id: "point-star", kind: "point", appearance: "warning", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "aa", objectId: "point-aa", at: { x: 8, y: 1 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "c", objectId: "segment", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "d", objectId: "segment", at: { x: 7, y: 9 }, placement: "right" },
+      { key: "star", objectId: "point-star", at: { x: 3, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Coba bandingkan dengan titik lain di ruas. Di titik tengah <InlineMath math="(6,7)" />, jumlahnya <InlineMath math="2\sqrt{10}+2\sqrt{13}" />, yang lebih dari <InlineMath math="6+7=13" />. Di <InlineMath math="D" />, jumlahnya <InlineMath math="\sqrt{65}+\sqrt{89}" />, yang lebih dari <InlineMath math="8+9=17" />. Keduanya lebih besar dari <InlineMath math="10" />.
 
 # Pilihan yang menjebak

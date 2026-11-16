@@ -29,6 +29,44 @@ CB&=\sqrt{(5-2)^2+(5-1)^2}=\sqrt{9+16}=5\\
 CA+CB&=10
 \end{aligned}" />
 
+Die Abbildung zeigt, warum der beste Punkt an ein Ende rutscht. Der Punkt <InlineMath math="P^*" /> liegt auf der Verlängerung der Geraden, **außerhalb der Strecke <InlineMath math="CD" />**. Entlang der Strecke wächst die Summe der Abstände, je weiter du dich von <InlineMath math="P^*" /> entfernst, also ist der kürzeste erlaubte Weg <InlineMath math="A\to C\to B" />.
+
+<MathVisual
+  title={<>Strecke <InlineMath math="CD" />, Spiegelpunkt <InlineMath math="A'" /> und kürzester Weg</>}
+  description={<>Die Gerade <InlineMath math="y=2x-5" /> ist gestrichelt, die Strecke <InlineMath math="CD" /> von <InlineMath math="C(5,5)" /> bis <InlineMath math="D(7,9)" /> dick gezeichnet. Der Spiegelpunkt von <InlineMath math="A(0,5)" /> ist <InlineMath math="A'(8,1)" />. Die Gerade <InlineMath math="A'B" /> trifft die Gerade in <InlineMath math="P^*(3,1)" />, außerhalb der Strecke. Der genutzte Weg ist <InlineMath math="A\to C\to B" /> mit der Länge <InlineMath math="5+5=10" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    aa: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    star: <InlineMath math="P^*" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line", kind: "line", appearance: "construction", through: [{ x: 5, y: 5 }, { x: 7, y: 9 }] },
+      { id: "segment", kind: "segment", appearance: "primary", from: { x: 5, y: 5 }, to: { x: 7, y: 9 } },
+      { id: "mirror-path", kind: "segment", appearance: "construction", from: { x: 2, y: 1 }, to: { x: 8, y: 1 } },
+      { id: "best", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 5 }, { x: 5, y: 5 }, { x: 2, y: 1 }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-aa", kind: "point", appearance: "construction", at: { x: 8, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+      { id: "point-star", kind: "point", appearance: "warning", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "aa", objectId: "point-aa", at: { x: 8, y: 1 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "c", objectId: "segment", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "d", objectId: "segment", at: { x: 7, y: 9 }, placement: "right" },
+      { key: "star", objectId: "point-star", at: { x: 3, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Vergleich das mit anderen Punkten der Strecke. Im Mittelpunkt <InlineMath math="(6,7)" /> ist die Summe <InlineMath math="2\sqrt{10}+2\sqrt{13}" />, also mehr als <InlineMath math="6+7=13" />. In <InlineMath math="D" /> ist sie <InlineMath math="\sqrt{65}+\sqrt{89}" />, also mehr als <InlineMath math="8+9=17" />. Beide sind größer als <InlineMath math="10" />.
 
 # Die verlockenden falschen Optionen

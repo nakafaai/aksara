@@ -32,6 +32,39 @@ m^2-m-6&<0\\
 
 Zusammen mit <InlineMath math="m>0" /> bleiben die ganzen Zahlen <InlineMath math="1" /> und <InlineMath math="2" />. Der Wert <InlineMath math="m=3" /> zählt nicht, denn <InlineMath math="f(3)=9-18+9=0" />.
 
+Der Graph zeigt zwei Werte, die passen, und zwei Grenzfälle, die scheitern, auf dem Bereich <InlineMath math="x\ge0" />. Die Parabeln für <InlineMath math="m=-6" /> und <InlineMath math="m=3" /> **berühren die Null in genau einem Punkt**, bei <InlineMath math="x=0" /> und bei <InlineMath math="x=3" />, also wirft das strenge Zeichen beide hinaus.
+
+<MathVisual
+  title={<>Die Parabel <InlineMath math="f(x)=x^2-2mx+m+6" /> auf <InlineMath math="x\ge0" /></>}
+  description={<>Für <InlineMath math="m=-5" /> beginnt der Graph bei <InlineMath math="(0,1)" /> und steigt sofort. Für <InlineMath math="m=2" /> liegt der Tiefpunkt bei <InlineMath math="(2,4)" />, über der Achse. Für <InlineMath math="m=-6" /> beginnt der Graph genau bei <InlineMath math="(0,0)" />. Für <InlineMath math="m=3" /> liegt der Tiefpunkt genau bei <InlineMath math="(3,0)" />.</>}
+  labels={{
+    m5: <InlineMath math="m=-5" />,
+    m6: <InlineMath math="m=-6" />,
+    m2: <InlineMath math="m=2" />,
+    m3: <InlineMath math="m=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 0, y: 0 }, { x: 0, y: 1 }] },
+      { id: "m5", kind: "function", appearance: "primary", formula: "x^2 + 10x + 1", domain: { min: 0, max: 0.9 } },
+      { id: "m6", kind: "function", appearance: "warning", formula: "x^2 + 12x", domain: { min: 0, max: 0.85 } },
+      { id: "m2", kind: "function", appearance: "primary", formula: "x^2 - 4x + 8", domain: { min: 0, max: 5.5 } },
+      { id: "m3", kind: "function", appearance: "warning", formula: "x^2 - 6x + 9", domain: { min: 0, max: 6 } },
+      { id: "touch-left", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+      { id: "touch-right", kind: "point", appearance: "warning", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "m5", objectId: "m5", at: { x: 0.9, y: 0.81 + 9 + 1 }, placement: "right" },
+      { key: "m6", objectId: "m6", at: { x: 0.5, y: 6.25 }, placement: "right" },
+      { key: "m2", objectId: "m2", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "m3", objectId: "touch-right", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Alle Werte addieren
 
 **Beide Fälle zusammen** ergeben <InlineMath math="m=-5, -4, \ldots, 2" />.

@@ -33,6 +33,39 @@ Auch Aussage (2) allein reicht nicht. Die Gerade <InlineMath math="x+y-20=0" /> 
 
 Die Steigung der Tangente ist <InlineMath math="-\frac34" />, also **ebenfalls negativ**. Die Tangente erfüllt damit beide Aussagen, und für sie lautet die Antwort nein. Die Gerade durch <InlineMath math="(5,1)" /> und <InlineMath math="(2,2)" /> hat die Steigung <InlineMath math="\frac{2-1}{2-5}=-\frac13" />, auch negativ. Der Punkt <InlineMath math="(2,2)" /> liegt auf dem Kreis, denn <InlineMath math="0^2+5^2=25" />. Diese Gerade schneidet den Kreis also in zwei verschiedenen Punkten, und die Antwort lautet ja.
 
+Die Abbildung zeigt beide Geraden am Kreis. Beide gehen durch <InlineMath math="(5,1)" /> und haben eine negative Steigung, aber **die Tangente berührt nur**, während die andere Gerade den Kreis bei <InlineMath math="(2,2)" /> noch einmal schneidet.
+
+<MathVisual
+  title={<>Zwei Geraden mit negativer Steigung durch <InlineMath math="(5,1)" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="M(2,-3)" /> und den Radius <InlineMath math="5" />. Die Tangente <InlineMath math="3x+4y-19=0" /> hat die Steigung <InlineMath math="-\tfrac34" /> und steht senkrecht auf dem Radius zu <InlineMath math="(5,1)" />. Die zweite Gerade hat die Steigung <InlineMath math="-\tfrac13" /> und schneidet den Kreis in <InlineMath math="(5,1)" /> und <InlineMath math="(2,2)" />.</>}
+  labels={{
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="(5,1)" />,
+    q: <InlineMath math="(2,2)" />,
+    tangent: <InlineMath math="3x+4y-19=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 10 }, y: { min: -9, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -3 }, radius: 5 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 2, y: -3 }, to: { x: 5, y: 1 } },
+      { id: "tangent", kind: "line", appearance: "warning", through: [{ x: 5, y: 1 }, { x: 9, y: -2 }] },
+      { id: "secant", kind: "line", appearance: "answer", through: [{ x: 5, y: 1 }, { x: 2, y: 2 }] },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 2, y: -3 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 5, y: 1 } },
+      { id: "point-q", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "m", objectId: "point-m", at: { x: 2, y: -3 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: 5, y: 1 }, placement: "above-right" },
+      { key: "q", objectId: "point-q", at: { x: 2, y: 2 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: 9, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Beide Geraden erfüllen die Aussagen (1) und (2), liefern aber verschiedene Antworten. Wer annimmt, ein Punkt auf dem Kreis bedeute zwei Schnittpunkte, hält Aussage (1) für ausreichend. Wer die Steigung der Tangente nicht ausrechnet, glaubt, eine negative Steigung schließe das Berühren aus.
 
 Also **reichen die Aussagen (1) und (2) nicht aus**, auch nicht zusammen.

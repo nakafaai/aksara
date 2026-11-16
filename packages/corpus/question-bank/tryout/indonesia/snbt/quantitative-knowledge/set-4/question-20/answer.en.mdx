@@ -16,6 +16,17 @@ For <InlineMath math="a=c" />, you get <InlineMath math="2a+b=15" />, so <Inline
 
 <BlockMath math="\text{arrangements with }a>c=\frac{73-5}{2}=34" />
 
+The chart below splits the <InlineMath math="73" /> digit arrangements into three groups. Swapping the hundreds and units digits **pairs the left bar with the right bar**, so they're equally tall, and only the <InlineMath math="5" /> arrangements in the middle have no partner.
+
+<Chart
+  title={<>Digit arrangements with sum <InlineMath math="15" /> by comparing <InlineMath math="a" /> and <InlineMath math="c" /></>}
+  description={<>Of the <InlineMath math="73" /> arrangements, <InlineMath math="34" /> have <InlineMath math="a>c" />, <InlineMath math="5" /> have <InlineMath math="a=c" />, and <InlineMath math="34" /> have <InlineMath math="a<c" />.</>}
+  categories={["a greater than c", "a equal to c", "a less than c"]}
+  bars="apart"
+  series={[{ label: "Digit arrangements", mark: "bar", values: [(73 - 5) / 2, 5, (73 - 5) / 2] }]}
+  valueLabel="Number of arrangements"
+/>
+
 The condition <InlineMath math="a>c\ge0" /> automatically makes <InlineMath math="a\ge1" />, so all of these really are three-digit numbers.
 
 # Checking another way

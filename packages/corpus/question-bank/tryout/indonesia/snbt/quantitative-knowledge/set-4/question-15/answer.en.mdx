@@ -17,6 +17,20 @@ y=4:\quad N=4,&\quad\binom{6}{2}=15\\
 \text{total}&=45+28+15=88
 \end{aligned}" />
 
+The chart below compares each case with and without the eldest's condition. That condition **trims every case**, and it trims more as the youngest's share grows, because the eldest has to set aside more candies.
+
+<Chart
+  title={<>Number of ways by the youngest's share <InlineMath math="y" /></>}
+  description={<>With the eldest's condition, the cases <InlineMath math="y=2" />, <InlineMath math="y=3" />, and <InlineMath math="y=4" /> give <InlineMath math="45" />, <InlineMath math="28" />, and <InlineMath math="15" /> ways, for a total of <InlineMath math="88" />. Without it, they give <InlineMath math="55" />, <InlineMath math="45" />, and <InlineMath math="36" /> ways, for a total of <InlineMath math="136" />.</>}
+  bars="apart"
+  categories={["y = 2", "y = 3", "y = 4"]}
+  series={[
+    { label: "Eldest gets more than youngest", mark: "bar", values: [(10 * 9) / 2, (8 * 7) / 2, (6 * 5) / 2] },
+    { label: "Without the eldest condition", mark: "bar", values: [(11 * 10) / 2, (10 * 9) / 2, (9 * 8) / 2] },
+  ]}
+  valueLabel="Number of ways"
+/>
+
 Check the case <InlineMath math="y=4" /> another way. The eldest gets at least <InlineMath math="5" />, the two middle children at least <InlineMath math="2" />, and those three share <InlineMath math="13" />. The <InlineMath math="4" /> leftover candies shared freely among <InlineMath math="3" /> children give <InlineMath math="15" /> ways, matching the count above. Without the eldest's condition, the three cases total <InlineMath math="55+45+36=136" />, so <InlineMath math="88" /> is smaller, just as it should be.
 
 # The tempting wrong options

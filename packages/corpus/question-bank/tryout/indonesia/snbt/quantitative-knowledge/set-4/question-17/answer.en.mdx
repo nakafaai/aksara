@@ -27,6 +27,20 @@ For <InlineMath math="d=3" />, the original numbers are <InlineMath math="2" />,
 
 <BlockMath math="S_5=\frac{3\left(2^5-1\right)}{2-1}=3\cdot31=93" />
 
+The chart below compares the geometric sequences from both roots. The root <InlineMath math="d=-6" /> gives the falling sequence <InlineMath math="12, 6, 3, \ldots" />, but its original numbers include <InlineMath math="-1" />, so **only the bars for <InlineMath math="d=3" /> count**.
+
+<Chart
+  title={<>The first five terms of the geometric sequence from both roots</>}
+  description={<>For <InlineMath math="d=3" />, the sequence is <InlineMath math="3, 6, 12, 24, 48" />, with ratio <InlineMath math="2" /> and sum <InlineMath math="93" />. For <InlineMath math="d=-6" />, it's <InlineMath math="12, 6, 3, \tfrac32, \tfrac34" />, with ratio <InlineMath math="\tfrac12" />, but this root is thrown out because the original numbers are <InlineMath math="11, 5, -1" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "d = 3, ratio 2", mark: "bar", values: Array.from({ length: 5 }, (_, i) => 3 * 2 ** i) },
+    { label: "d = -6, thrown out", mark: "bar", values: Array.from({ length: 5 }, (_, i) => 12 / 2 ** i) },
+  ]}
+  valueLabel="Value of the term"
+/>
+
 Check by adding directly: <InlineMath math="3+6+12+24+48=93" />.
 
 # The tempting wrong options

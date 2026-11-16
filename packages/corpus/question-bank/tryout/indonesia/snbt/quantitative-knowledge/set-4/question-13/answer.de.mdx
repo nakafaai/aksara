@@ -31,6 +31,20 @@ Weil <InlineMath math="0{,}245=\frac14-0{,}005" /> ist, heißt die Bedingung: **
 
 Für <InlineMath math="n=8" /> reicht <InlineMath math="9\cdot10=90" /> noch nicht. Für <InlineMath math="n=9" /> ist <InlineMath math="10\cdot11=110>100" />. Das kleinste <InlineMath math="n" /> ist also <InlineMath math="9" />.
 
+Der Graph von <InlineMath math="S_n" /> zeigt, wie die Summe wächst. Sie steigt immer langsamer gegen <InlineMath math="\tfrac14" />, und **die Linie bei <InlineMath math="0{,}245" /> wird erst bei <InlineMath math="n=9" /> überschritten**.
+
+<Chart
+  title={<>Die Summe <InlineMath math="S_n=\tfrac14-\tfrac{1}{2(n+1)(n+2)}" /> für <InlineMath math="n=1" /> bis <InlineMath math="12" /></>}
+  description={<>Der Wert von <InlineMath math="S_n" /> steigt von <InlineMath math="\tfrac16" /> bei <InlineMath math="n=1" /> gegen <InlineMath math="0{,}25" />. Für <InlineMath math="n=8" /> ist <InlineMath math="S_8=\tfrac{11}{45}" />, noch unter <InlineMath math="0{,}245" />. Für <InlineMath math="n=9" /> ist <InlineMath math="S_9=\tfrac{27}{110}" />, schon darüber.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Summe S_n", mark: "line", values: Array.from({ length: 12 }, (_, i) => 1 / 4 - 1 / (2 * (i + 2) * (i + 3))) },
+    { label: "Grenze 0,245", mark: "line", values: Array.from({ length: 12 }, () => 0.245) },
+  ]}
+  valueRange={{ min: 0.15, max: 0.26 }}
+  valueLabel="Wert der Summe"
+/>
+
 Prüf das mit gewöhnlichen Brüchen. <InlineMath math="S_8=\frac14-\frac{1}{180}=\frac{11}{45}" /> und <InlineMath math="S_9=\frac14-\frac{1}{220}=\frac{27}{110}" />, während <InlineMath math="0{,}245=\frac{49}{200}" /> ist. Über Kreuz multipliziert: <InlineMath math="11\cdot200=2200<2205=49\cdot45" />, also liegt <InlineMath math="S_8" /> noch darunter. Dagegen ist <InlineMath math="27\cdot200=5400>5390=49\cdot110" />, also liegt <InlineMath math="S_9" /> darüber.
 
 # Die verlockenden falschen Optionen

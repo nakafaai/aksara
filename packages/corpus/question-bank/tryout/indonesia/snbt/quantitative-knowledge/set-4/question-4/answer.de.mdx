@@ -32,6 +32,17 @@ P(A)&=\frac{40}{190}=\frac{4}{19}
 
 Prüf das auf einem zweiten Weg. Es gibt <InlineMath math="95" /> Paare, deren Produkt durch <InlineMath math="4" /> teilbar ist, und <InlineMath math="55" />, deren Produkt durch <InlineMath math="8" /> teilbar ist. Die Differenz <InlineMath math="95-55=40" /> stimmt mit der Zählung oben überein.
 
+Das Diagramm teilt alle <InlineMath math="190" /> Paare danach auf, wie viele Faktoren <InlineMath math="2" /> ihr Produkt hat. Der dritte Balken, genau zwei Faktoren, ist **die einzige Gruppe, die durch <InlineMath math="4" />, aber nicht durch <InlineMath math="8" /> teilbar ist**.
+
+<Chart
+  title={<>Alle Paare nach der Anzahl der Faktoren <InlineMath math="2" /> im Produkt</>}
+  description={<>Es gibt <InlineMath math="45" /> Paare ohne Faktor <InlineMath math="2" />, <InlineMath math="50" /> mit genau einem, <InlineMath math="40" /> mit genau zwei und <InlineMath math="55" /> mit drei oder mehr. Zusammen sind das <InlineMath math="190" />.</>}
+  categories={["Kein Faktor", "Ein Faktor", "Genau zwei Faktoren", "Drei oder mehr"]}
+  bars="apart"
+  series={[{ label: "Anzahl der Paare", mark: "bar", values: [10 * 9 / 2, 10 * 5, 10 * 3 + (5 * 4) / 2, 190 - 45 - 50 - 40] }]}
+  valueLabel="Anzahl der Paare"
+/>
+
 # Die verlockenden falschen Optionen
 
 Jede andere Option kommt von **einer vergessenen Gruppe oder einer verwechselten Reihenfolge**.

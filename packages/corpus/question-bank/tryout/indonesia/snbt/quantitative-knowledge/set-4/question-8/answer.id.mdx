@@ -21,6 +21,37 @@ Setelah <InlineMath math="4" /> laki-laki dan <InlineMath math="3" /> perempuan 
 
 <BlockMath math="\frac{4k-4}{3k-3}=\frac{4(k-1)}{3(k-1)}=\frac43\quad\text{untuk setiap }k\ge2" />
 
+Gambar berikut menaruh kedua syarat pada garis bilangan <InlineMath math="k" />. Irisannya hanya selang pendek dari <InlineMath math="4" /> sampai sebelum <InlineMath math="5" />, dan **satu-satunya bilangan bulat di sana adalah <InlineMath math="k=4" />**.
+
+<MathVisual
+  title={<>Dua syarat dari pernyataan (1)</>}
+  description={<>Ruas atas menandai <InlineMath math="k<5" />, dengan ujung <InlineMath math="5" /> tidak termasuk. Ruas bawah menandai <InlineMath math="k\ge4" />. Irisan keduanya adalah <InlineMath math="4\le k<5" />, yang hanya memuat bilangan bulat <InlineMath math="4" />.</>}
+  labels={{
+    first: <InlineMath math="k<5" />,
+    second: <InlineMath math="k\ge4" />,
+    four: <InlineMath math="k=4" />,
+    five: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "secondary", from: { x: 0, y: 0.6 }, to: { x: 5, y: 0.6 } },
+      { id: "second", kind: "segment", appearance: "primary", from: { x: 4, y: -0.6 }, to: { x: 8, y: -0.6 } },
+      { id: "overlap", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "four", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "five", kind: "point", appearance: "construction", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 2.5, y: 0.6 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 6.5, y: -0.6 }, placement: "below" },
+      { key: "four", objectId: "four", at: { x: 4, y: 0 }, placement: "left" },
+      { key: "five", objectId: "five", at: { x: 5, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 Perbandingannya **selalu tetap <InlineMath math="4:3" />**, karena yang keluar juga berbanding <InlineMath math="4:3" />. Jadi pernyataan (2) tidak memberi informasi baru tentang <InlineMath math="k" />. Kelas dengan <InlineMath math="8" /> laki-laki dan <InlineMath math="6" /> perempuan memenuhi pernyataan (2), dan kelas dengan <InlineMath math="16" /> laki-laki dan <InlineMath math="12" /> perempuan juga memenuhi. Banyak siswa perempuannya bisa <InlineMath math="6" /> atau <InlineMath math="12" />, jadi pernyataan (2) saja tidak cukup.
 
 # Kedua pernyataan bersama
