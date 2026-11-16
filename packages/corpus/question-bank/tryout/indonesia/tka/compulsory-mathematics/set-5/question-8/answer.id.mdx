@@ -39,6 +39,40 @@ S_{20}&=10\cdot400+90\cdot20=5{.}800 \\
 S_{21}&=10\cdot441+90\cdot21=6{.}300
 \end{aligned}" />
 
+Gambar total tabungan sebagai fungsi banyak bulan. **Kurvanya menyentuh garis target tepat di bulan ke-<InlineMath math="20" />**, jadi bulan itu belum lebih dari target. Titik pertama di atas garis adalah bulan ke-<InlineMath math="21" />.
+
+<MathVisual
+  title={<>Total tabungan Rina menurut bulan</>}
+  description={<>Sumbu mendatar adalah banyak bulan <InlineMath math="n" />, sumbu tegak adalah total tabungan dalam ribu rupiah. Kurva <InlineMath math="S_n=10n^2+90n" /> naik makin cepat. Garis mendatar di <InlineMath math="5{.}800" /> adalah target. Kurva tepat di garis pada <InlineMath math="(20,\ 5{.}800)" /> dan sudah di atasnya pada <InlineMath math="(21,\ 6{.}300)" />.</>}
+  labels={{
+    total: <InlineMath math="S_n=10n^2+90n" />,
+    target: <InlineMath math="5{.}800" />,
+    tie: <InlineMath math="(20,\ 5{.}800)" />,
+    pass: <InlineMath math="(21,\ 6{.}300)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 10, max: 24 },
+      y: { min: 2500, max: 7300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "10x^2 + 90x", domain: { min: 12, max: 23 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "5800", domain: { min: 11, max: 23.5 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 20, y: 5800 } },
+      { id: "pass", kind: "point", appearance: "answer", at: { x: 21, y: 6300 } },
+    ],
+    labels: [
+      { key: "total", objectId: "total", at: { x: 14, y: 3220 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 12, y: 5800 }, placement: "above" },
+      { key: "tie", objectId: "tie", at: { x: 20, y: 5800 }, placement: "below-right" },
+      { key: "pass", objectId: "pass", at: { x: 21, y: 6300 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Setelah bulan ke-<InlineMath math="20" />, totalnya **tepat** <InlineMath math="\text{Rp}5{.}800{.}000" />, belum lebih. Baru setelah bulan ke-<InlineMath math="21" /> totalnya melewati target.
 
 Jadi, total tabungan Rina pertama kali lebih dari <InlineMath math="\text{Rp}5{.}800{.}000" /> setelah setoran bulan ke-<InlineMath math="21" />.

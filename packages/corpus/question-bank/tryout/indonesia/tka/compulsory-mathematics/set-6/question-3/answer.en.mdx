@@ -9,6 +9,44 @@ In the reading, tap P alone reaches the crack at 6:20 (written 06.20), after <In
 \text{time until full}&=\frac{1{,}200-560}{32}=20\text{ minutes}
 \end{aligned}" />
 
+Draw the tank's contents for the reading's situation together with the two changes in the first and third statements. **After the taps close, the line only falls to the height of the crack and then stays flat**. If tap P stops at minute <InlineMath math="25" />, the line still rises, just less steeply.
+
+<MathVisual
+  title={<>Tank contents in the reading's situation and two changes</>}
+  description={<>The horizontal axis is minutes since 6:00, and the vertical axis is the contents in litres. The main line rises until full at minute <InlineMath math="45" />. From there a line falls with slope <InlineMath math="-8" /> to <InlineMath math="480" /> litres at minute <InlineMath math="135" />, which is 8:15, then stays flat. A flatter line from <InlineMath math="(25,\ 560)" /> rises <InlineMath math="8" /> per minute and reaches <InlineMath math="1{,}200" /> litres at minute <InlineMath math="105" />, which is 7:45.</>}
+  labels={{
+    drain: <>taps closed</>,
+    slow: <>tap P stops</>,
+    stop: <InlineMath math="(135,\ 480)" />,
+    late: <InlineMath math="(105,\ 1{.}200)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 158 },
+      y: { min: -40, max: 1300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 25 } },
+      { id: "both", kind: "function", appearance: "primary", formula: "560 + 32(x - 25)", domain: { min: 25, max: 45 } },
+      { id: "drain", kind: "function", appearance: "secondary", formula: "1200 - 8(x - 45)", domain: { min: 45, max: 135 } },
+      { id: "rest", kind: "function", appearance: "secondary", formula: "480", domain: { min: 135, max: 155 } },
+      { id: "slow", kind: "function", appearance: "highlight", formula: "560 + 8(x - 25)", domain: { min: 25, max: 105 } },
+      { id: "stop", kind: "point", appearance: "answer", at: { x: 135, y: 480 } },
+      { id: "late", kind: "point", appearance: "answer", at: { x: 105, y: 1200 } },
+    ],
+    labels: [
+      { key: "drain", objectId: "drain", at: { x: 90, y: 840 }, placement: "above-right" },
+      { key: "slow", objectId: "slow", at: { x: 65, y: 880 }, placement: "above-left" },
+      { key: "stop", objectId: "stop", at: { x: 135, y: 480 }, placement: "below" },
+      { key: "late", objectId: "late", at: { x: 105, y: 1200 }, placement: "above" },
+    ],
+  }}
+/>
+
 So in the reading the tank is full at 6:45.
 
 # Statement one

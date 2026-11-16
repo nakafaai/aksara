@@ -25,6 +25,20 @@ Untuk setiap banyak kaleng <InlineMath math="2{,}5" /> liter, tambahkan kaleng <
 | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="6\text{ L}" /> | <InlineMath math="\text{Rp}255{.}000" /> |
 | <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="7{,}5\text{ L}" /> | <InlineMath math="\text{Rp}315{.}000" /> |
 
+Bandingkan keempat kombinasi yang cukup. **Batang terendah adalah satu kaleng besar dan tiga kaleng kecil**, walaupun kaleng besar lebih murah per liter, karena kombinasi lain membayar terlalu banyak cat sisa.
+
+<Chart
+  title={<>Biaya setiap kombinasi kaleng yang cukup</>}
+  description={<>Enam kaleng kecil berbiaya <InlineMath math="270" /> ribu rupiah, satu kaleng besar dan tiga kaleng kecil <InlineMath math="240" /> ribu rupiah, dua kaleng besar dan satu kaleng kecil <InlineMath math="255" /> ribu rupiah, dan tiga kaleng besar <InlineMath math="315" /> ribu rupiah. Sumbu nilai dimulai dari <InlineMath math="200" /> ribu rupiah.</>}
+  bars="apart"
+  categories={["0 besar, 6 kecil", "1 besar, 3 kecil", "2 besar, 1 kecil", "3 besar, 0 kecil"]}
+  series={[
+    { label: "Biaya", mark: "bar", values: [270, 240, 255, 315] },
+  ]}
+  valueLabel="Ribu rupiah"
+  valueRange={{ min: 200, max: 330 }}
+/>
+
 Dua kaleng besar saja baru berisi <InlineMath math="5" /> liter, belum cukup, jadi tetap perlu satu kaleng kecil. Biaya baris kedua:
 
 <BlockMath math="1\cdot105{.}000+3\cdot45{.}000=105{.}000+135{.}000=240{.}000" />

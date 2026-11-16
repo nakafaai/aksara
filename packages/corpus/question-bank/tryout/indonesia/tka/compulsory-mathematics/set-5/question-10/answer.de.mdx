@@ -30,6 +30,51 @@ Der Punkt <InlineMath math="H" /> liegt am anderen Ende der Diagonale, auf der a
 
 <BlockMath math="d_H=BH-d_B=6\sqrt3-2\sqrt3=4\sqrt3\text{ cm}" />
 
+Schneide den Würfel entlang der Diagonalebene <InlineMath math="BDHF" />. **Die Ebene <InlineMath math="ACF" /> schneidet diesen Schnitt entlang der Strecke <InlineMath math="FO" />, und diese Strecke steht senkrecht auf der Raumdiagonalen <InlineMath math="BH" />**. Der Schnittpunkt teilt <InlineMath math="BH" /> in <InlineMath math="2\sqrt3" /> auf der Seite von <InlineMath math="B" /> und <InlineMath math="4\sqrt3" /> auf der Seite von <InlineMath math="H" />.
+
+<MathVisual
+  title={<>Diagonalebene <InlineMath math="BDHF" /> und der Abstand von <InlineMath math="H" /> zur Ebene <InlineMath math="ACF" /></>}
+  description={<>Das Rechteck <InlineMath math="BDHF" /> misst <InlineMath math="6\sqrt2\times6" />, mit <InlineMath math="O" /> als Mitte von <InlineMath math="BD" />, dem Mittelpunkt der Grundfläche. Die Strecke <InlineMath math="FO" /> ist die Spur der Ebene <InlineMath math="ACF" /> in diesem Schnitt. Die Diagonale <InlineMath math="BH" /> der Länge <InlineMath math="6\sqrt3" /> kreuzt <InlineMath math="FO" /> rechtwinklig im Punkt, der <InlineMath math="2\sqrt3" /> von <InlineMath math="B" /> und <InlineMath math="4\sqrt3" /> von <InlineMath math="H" /> entfernt ist.</>}
+  labels={{
+    b: <InlineMath math="B" />,
+    d: <InlineMath math="D" />,
+    h: <InlineMath math="H" />,
+    f: <InlineMath math="F" />,
+    o: <InlineMath math="O" />,
+    near: <InlineMath math="2\sqrt3" />,
+    far: <InlineMath math="4\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9.5 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "section", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6 * Math.sqrt(2), y: 0 }, { x: 6 * Math.sqrt(2), y: 6 }, { x: 0, y: 6 }] },
+      { id: "trace", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 3 * Math.sqrt(2), y: 0 } },
+      { id: "near", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(2), y: 2 } },
+      { id: "far", kind: "segment", appearance: "answer", from: { x: 2 * Math.sqrt(2), y: 2 }, to: { x: 6 * Math.sqrt(2), y: 6 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: 6 * Math.sqrt(2), y: 0 } },
+      { id: "h", kind: "point", appearance: "answer", at: { x: 6 * Math.sqrt(2), y: 6 } },
+      { id: "f", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 3 * Math.sqrt(2), y: 0 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "d", objectId: "d", at: { x: 6 * Math.sqrt(2), y: 0 }, placement: "below-right" },
+      { key: "h", objectId: "h", at: { x: 6 * Math.sqrt(2), y: 6 }, placement: "above-right" },
+      { key: "f", objectId: "f", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "o", objectId: "o", at: { x: 3 * Math.sqrt(2), y: 0 }, placement: "below" },
+      { key: "near", objectId: "near", at: { x: Math.sqrt(2), y: 1 }, placement: "above-left" },
+      { key: "far", objectId: "far", at: { x: 4 * Math.sqrt(2), y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Probe mit der Pyramide <InlineMath math="H.ACF" />. Der Körper <InlineMath math="ACFH" /> ist der Würfel ohne vier Ecken wie <InlineMath math="B.ACF" />, sein Volumen ist also <InlineMath math="216-4\cdot36=72" />, und <InlineMath math="\frac{3\cdot72}{18\sqrt3}=\frac{12}{\sqrt3}=4\sqrt3" />. **Es passt**.
 
 Der Abstand von <InlineMath math="H" /> zur Ebene <InlineMath math="ACF" /> beträgt also <InlineMath math="4\sqrt3\text{ cm}" />, zwei Drittel der Raumdiagonale.

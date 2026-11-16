@@ -7,6 +7,46 @@ Kamu perlu memeriksa lima transformasi satu per satu. Pertanyaannya selalu sama:
 
 Dari situ ada empat aturan yang bisa kamu pakai. Translasi menjaga <InlineMath math="g" /> kalau vektornya searah <InlineMath math="g" />. Rotasi <InlineMath math="180^\circ" /> dan dilatasi menjaga <InlineMath math="g" /> kalau pusatnya ada di <InlineMath math="g" />. Pencerminan menjaga <InlineMath math="g" /> kalau cerminnya adalah <InlineMath math="g" /> sendiri atau tegak lurus <InlineMath math="g" />. Untuk komposisi, jangan menilai langkah terakhirnya saja. Gabungkan dulu menjadi satu transformasi.
 
+Gambar <InlineMath math="g" /> bersama benda-benda yang menentukan nasibnya. **Pusat rotasi atau dilatasi yang terletak di <InlineMath math="g" /> menjaga garis itu, sedangkan pusat di luar <InlineMath math="g" /> memindahkannya ke garis sejajar**. Cermin <InlineMath math="x+2y=12" /> memotong <InlineMath math="g" /> tegak lurus.
+
+<MathVisual
+  title={<>Garis <InlineMath math="g" /> dan pusat-pusat transformasi</>}
+  description={<>Garis <InlineMath math="g:\ y=2x-4" /> bergradien <InlineMath math="2" />. Garis cermin <InlineMath math="x+2y=12" /> bergradien <InlineMath math="-\tfrac12" /> dan tegak lurus <InlineMath math="g" />. Titik <InlineMath math="(3,2)" />, pusat gabungan dua pencerminan, dan titik <InlineMath math="(1,-2)" />, pusat dilatasi, terletak di <InlineMath math="g" />. Titik <InlineMath math="(1,2)" />, pusat gabungan rotasi dan translasi, berada di luar <InlineMath math="g" />, dan bayangan <InlineMath math="g" /> oleh transformasi itu adalah garis sejajar <InlineMath math="2x-y=-4" />.</>}
+  labels={{
+    g: <InlineMath math="g:\ 2x-y=4" />,
+    mirror: <InlineMath math="x+2y=12" />,
+    shifted: <InlineMath math="2x-y=-4" />,
+    "center-two": <InlineMath math="(3,2)" />,
+    "center-four": <InlineMath math="(1,-2)" />,
+    "center-wrong": <InlineMath math="(1,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 8.5 },
+      y: { min: -7.5, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "2x - 4", domain: { min: -1.5, max: 7 } },
+      { id: "mirror", kind: "function", appearance: "construction", formula: "6 - x/2", domain: { min: -3, max: 8 } },
+      { id: "shifted", kind: "function", appearance: "warning", formula: "2x + 4", domain: { min: -3, max: 3 } },
+      { id: "center-two", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+      { id: "center-four", kind: "point", appearance: "answer", at: { x: 1, y: -2 } },
+      { id: "center-wrong", kind: "point", appearance: "warning", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 6, y: 8 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: -2, y: 7 }, placement: "above" },
+      { key: "shifted", objectId: "shifted", at: { x: -2, y: 0 }, placement: "left" },
+      { key: "center-two", objectId: "center-two", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "center-four", objectId: "center-four", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "center-wrong", objectId: "center-wrong", at: { x: 1, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 Sekarang nilai kelima pernyataan sesuai urutannya. Setiap putusan memakai salah satu aturan di atas, lalu dicek dengan satu titik contoh. **Titik contoh hanya pengecekan**, bukan bukti, karena buktinya datang dari aturan umum.

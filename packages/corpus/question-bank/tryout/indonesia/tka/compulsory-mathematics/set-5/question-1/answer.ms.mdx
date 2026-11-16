@@ -23,6 +23,37 @@ Tempahan ini ada <InlineMath math="504" /> helai, iaitu <InlineMath math="500" /
 \text{jumlah}&=151{,}200+120{,}000=271{,}200
 \end{aligned}" />
 
+Lukis kos cetak sebagai fungsi bilangan helaian. **Graf jatuh mendadak tepat pada <InlineMath math="500" /> helaian**, kerana harga sehelai dikenakan pada semua helaian. Mengira helaian modul demi modul memberikan <InlineMath math="504" /> helaian, di sebelah kanan kejatuhan itu.
+
+<MathVisual
+  title={<>Kos cetak mengikut bilangan helaian</>}
+  description={<>Paksi mendatar ialah bilangan helaian, dan paksi tegak ialah kos cetak dalam ribu rupiah. Graf terdiri daripada tiga ruas garis melalui asalan: <InlineMath math="0.5n" /> hingga <InlineMath math="199" /> helaian, <InlineMath math="0.4n" /> dari <InlineMath math="200" /> hingga <InlineMath math="499" /> helaian, dan <InlineMath math="0.3n" /> bermula <InlineMath math="500" /> helaian. Titik <InlineMath math="(489,\ 195.6)" /> ialah hasil jika halaman dijumlahkan dahulu, dan titik <InlineMath math="(504,\ 151.2)" /> ialah kos yang betul.</>}
+  labels={{
+    pages: <><InlineMath math="489" /> helaian, salah</>,
+    sheets: <><InlineMath math="504" /> helaian</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 570 },
+      y: { min: -5, max: 215 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "low", kind: "function", appearance: "primary", formula: "0.5x", domain: { min: 0, max: 199 } },
+      { id: "mid", kind: "function", appearance: "primary", formula: "0.4x", domain: { min: 200, max: 499 } },
+      { id: "high", kind: "function", appearance: "primary", formula: "0.3x", domain: { min: 500, max: 560 } },
+      { id: "pages", kind: "point", appearance: "warning", at: { x: 489, y: 195.6 } },
+      { id: "sheets", kind: "point", appearance: "answer", at: { x: 504, y: 151.2 } },
+    ],
+    labels: [
+      { key: "pages", objectId: "pages", at: { x: 489, y: 195.6 }, placement: "above-left" },
+      { key: "sheets", objectId: "sheets", at: { x: 504, y: 151.2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Bandingkan dengan cara mengira semua muka surat sekali gus: <InlineMath math="\frac{18\cdot27+12\cdot41}{2}=\frac{978}{2}=489" /> helai. Nombor ini jatuh pada peringkat <InlineMath math="\text{Rp}400" />. Beza <InlineMath math="15" /> helai itu datang daripada bahagian belakang yang kosong pada helaian terakhir setiap modul, dan beza inilah yang menaikkan tempahan ke peringkat harga yang lebih murah.
 
 Jadi, jumlah kos tempahan itu ialah <InlineMath math="\text{Rp}271{,}200" />.

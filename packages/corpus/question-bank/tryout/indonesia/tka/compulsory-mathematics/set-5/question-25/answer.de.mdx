@@ -21,6 +21,19 @@ Die Summe ist ein Vielfaches von <InlineMath math="3" />, wenn beide Reste <Inli
 \text{ungerade Paare, Summe kein Vielfaches von }3&=45-15=30
 \end{aligned}" />
 
+Das Diagramm unten zeigt den Teil, der wegfällt. **Nur Paare aus zwei ungeraden Zahlen können an der Produktbedingung scheitern**, und von diesen <InlineMath math="45" /> Paaren kommen <InlineMath math="15" /> noch über die Summenbedingung durch.
+
+<Mermaid
+  title={<>Die <InlineMath math="190" /> Kartenpaare sortieren</>}
+  description={<>Von den <InlineMath math="190" /> Paaren haben <InlineMath math="145" /> ein gerades Produkt, und <InlineMath math="45" /> bestehen aus zwei ungeraden Zahlen. Unter den <InlineMath math="45" /> ungeraden Paaren haben <InlineMath math="15" /> eine durch <InlineMath math="3" /> teilbare Summe und <InlineMath math="30" /> nicht. Nur diese <InlineMath math="30" /> Paare scheitern an beiden Bedingungen, also ist die Wahrscheinlichkeit <InlineMath math="1-\frac{30}{190}=\frac{16}{19}" />.</>}
+  chart={`flowchart TD
+  S["Alle Paare: C(20, 2) = 190"] --> E["Gerades Produkt: 145"]
+  S --> O["Zwei ungerade Zahlen: C(10, 2) = 45"]
+  O --> O1["Ungerade, Summe durch 3 teilbar: C(3, 2) + 4 · 3 = 15"]
+  O --> O2["Scheitert an beiden: 45 − 15 = 30"]
+  O2 --> P["Wahrscheinlichkeit: 1 − 30/190 = 16/19"]`}
+/>
+
 # Die Wahrscheinlichkeit der Vereinigung
 
 <BlockMath math="P=1-\frac{30}{190}=\frac{160}{190}=\frac{16}{19}" />

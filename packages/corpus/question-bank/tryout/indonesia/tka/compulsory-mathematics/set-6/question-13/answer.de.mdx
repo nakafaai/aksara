@@ -20,6 +20,47 @@ Fünfzehn Spiegelungen sind <InlineMath math="7" /> vollständige Paare und dana
 \text{15. Spiegelung:}\quad x&=2\cdot4-9=-1
 \end{aligned}" />
 
+Zeichne den Weg des Punktes entlang der Geraden <InlineMath math="y=2" />. **Sieben Spiegelungspaare verschieben den Punkt in einem Pfeil um <InlineMath math="28" /> Einheiten nach links**, dann klappt die <InlineMath math="15" />. Spiegelung an <InlineMath math="x=4" /> den Punkt <InlineMath math="(9,2)" /> nach <InlineMath math="(-1,2)" />.
+
+<MathVisual
+  title={<>Fünfzehn Spiegelungen als Verschiebung und eine Spiegelung</>}
+  description={<>Zwei senkrechte Spiegelachsen <InlineMath math="x=4" /> und <InlineMath math="x=2" />. Der Pfeil von <InlineMath math="P(37,2)" /> nach <InlineMath math="(9,2)" /> ist das Ergebnis von sieben Spiegelungspaaren, jedes eine Verschiebung um <InlineMath math="4" /> Einheiten nach links. Der zweite Pfeil von <InlineMath math="9" /> nach <InlineMath math="-1" /> ist die letzte Spiegelung an <InlineMath math="x=4" />, also ist das Endbild <InlineMath math="(-1,2)" />.</>}
+  labels={{
+    first: <InlineMath math="x=4" />,
+    second: <InlineMath math="x=2" />,
+    pairs: <><InlineMath math="7" /> Paare: <InlineMath math="-28" /></>,
+    start: <InlineMath math="P(37,2)" />,
+    middle: <InlineMath math="(9,2)" />,
+    end: <InlineMath math="(-1,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 40 },
+      y: { min: -1.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "reference", from: { x: 4, y: -1 }, to: { x: 4, y: 5 } },
+      { id: "second", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 2, y: 5 } },
+      { id: "pairs", kind: "vector", appearance: "secondary", from: { x: 37, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "last", kind: "vector", appearance: "answer", from: { x: 9, y: 3 }, to: { x: -1, y: 3 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 37, y: 2 } },
+      { id: "middle", kind: "point", appearance: "secondary", at: { x: 9, y: 2 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: -1, y: 2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 5 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 2, y: 5 }, placement: "above-left" },
+      { key: "pairs", objectId: "pairs", at: { x: 23, y: 2 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 37, y: 2 }, placement: "above" },
+      { key: "middle", objectId: "middle", at: { x: 9, y: 2 }, placement: "below" },
+      { key: "end", objectId: "end", at: { x: -1, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die <InlineMath math="y" />-Koordinate bleibt die ganze Zeit <InlineMath math="2" />, weil alle Spiegelachsen senkrecht sind.
 
 Nach <InlineMath math="15" /> Spiegelungen ist das Bild von <InlineMath math="P" /> also <InlineMath math="(-1,2)" />.

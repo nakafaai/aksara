@@ -4,6 +4,48 @@ Die fünf Aussagen behandeln Wertebereich, Verkettung, Umkehrfunktion und Fixpun
 
 <BlockMath math="f(x)=\frac{2x+6}{x-3}=\frac{2(x-3)+12}{x-3}=2+\frac{12}{x-3}" />
 
+Zeichne <InlineMath math="f" /> in der neuen Form. **Der Graph nähert sich der Geraden <InlineMath math="y=2" />, ohne sie je zu berühren, schneidet <InlineMath math="y=x" /> in zwei Punkten und erreicht die Höhe <InlineMath math="3" /> bei <InlineMath math="x=15" />**. Diese drei Tatsachen entscheiden die erste, zweite und vierte Aussage.
+
+<MathVisual
+  title={<>Graph von <InlineMath math="f(x)=2+\frac{12}{x-3}" /></>}
+  description={<>Der Graph hat zwei Äste, getrennt durch die senkrechte Asymptote <InlineMath math="x=3" />, die sich der waagerechten Asymptote <InlineMath math="y=2" /> nähern. Die Gerade <InlineMath math="y=x" /> schneidet den rechten Ast in <InlineMath math="(6,\ 6)" /> und den linken Ast in <InlineMath math="(-1,\ -1)" />. Der Punkt <InlineMath math="(15,\ 3)" /> auf dem rechten Ast zeigt <InlineMath math="f(15)=3" />, einen Wert, der nicht noch einmal in <InlineMath math="f" /> eingesetzt werden darf.</>}
+  labels={{
+    right: <InlineMath math="y=f(x)" />,
+    mirror: <InlineMath math="y=x" />,
+    "fixed-high": <InlineMath math="(6,\ 6)" />,
+    "fixed-low": <InlineMath math="(-1,\ -1)" />,
+    trap: <InlineMath math="(15,\ 3)" />,
+    level: <InlineMath math="y=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 17 },
+      y: { min: -10, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "2 + 12/(x - 3)", domain: { min: -9.5, max: 2.4 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "2 + 12/(x - 3)", domain: { min: 3.8, max: 16.5 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 3, y: -10 }, to: { x: 3, y: 17 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "2", domain: { min: -9.5, max: 16.5 } },
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -9.5, max: 16.5 } },
+      { id: "fixed-high", kind: "point", appearance: "answer", at: { x: 6, y: 6 } },
+      { id: "fixed-low", kind: "point", appearance: "answer", at: { x: -1, y: -1 } },
+      { id: "trap", kind: "point", appearance: "warning", at: { x: 15, y: 3 } },
+    ],
+    labels: [
+      { key: "right", objectId: "right", at: { x: 5, y: 8 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 14, y: 14 }, placement: "above-left" },
+      { key: "fixed-high", objectId: "fixed-high", at: { x: 6, y: 6 }, placement: "below-right" },
+      { key: "fixed-low", objectId: "fixed-low", at: { x: -1, y: -1 }, placement: "above-left" },
+      { key: "trap", objectId: "trap", at: { x: 15, y: 3 }, placement: "above" },
+      { key: "level", objectId: "level", at: { x: -8, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Der Bruch <InlineMath math="\frac{12}{x-3}" /> ist nie null und kann jeden Wert außer null annehmen.
 
 # Erste Aussage

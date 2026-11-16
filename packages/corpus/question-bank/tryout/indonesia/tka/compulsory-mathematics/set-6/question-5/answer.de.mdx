@@ -28,6 +28,46 @@ Auch <InlineMath math="b" /> muss ein Vielfaches von <InlineMath math="500" /> s
 | <InlineMath math="4{.}000" /> | <InlineMath math="7{.}000" /> | <InlineMath math="29{.}000" /> |
 | <InlineMath math="5{.}000" /> | <InlineMath math="5{.}500" /> | <InlineMath math="26{.}500" /> |
 
+Zeichne die fünf Preispaare auf der Geraden <InlineMath math="2b+3p=26" /> in tausend Rupiah. **Alle Punkte liegen über der Geraden <InlineMath math="b=p" />, und der letzte Punkt <InlineMath math="(5,\ 5{,}5)" /> berührt sie fast**, also kann ein Stift genau <InlineMath math="5" /> tausend kosten. Der Punkt <InlineMath math="(1,\ 11{,}5)" /> liegt über der Geraden <InlineMath math="3b+2p=35" />.
+
+<MathVisual
+  title={<>Mögliche Preispaare für Stift und Heft</>}
+  description={<>Die waagerechte Achse ist der Stiftpreis <InlineMath math="p" />, die senkrechte der Heftpreis <InlineMath math="b" />, beide in tausend Rupiah. Die fünf Punkte <InlineMath math="(1,\ 11{,}5)" />, <InlineMath math="(2,\ 10)" />, <InlineMath math="(3,\ 8{,}5)" />, <InlineMath math="(4,\ 7)" /> und <InlineMath math="(5,\ 5{,}5)" /> liegen auf der Geraden <InlineMath math="2b+3p=26" /> und über der Geraden <InlineMath math="b=p" />. Die Gerade <InlineMath math="3b+2p=35" /> trennt den Punkt <InlineMath math="(1,\ 11{,}5)" /> von den übrigen vier.</>}
+  labels={{
+    budget: <InlineMath math="2b+3p=26" />,
+    equal: <InlineMath math="b=p" />,
+    level: <InlineMath math="3b+2p=35" />,
+    cheap: <InlineMath math="(1,\ 11{,}5)" />,
+    edge: <InlineMath math="(5,\ 5{,}5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6.8 },
+      y: { min: 3, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "budget", kind: "function", appearance: "primary", formula: "13 - 1.5x", domain: { min: 0, max: 6 } },
+      { id: "equal", kind: "function", appearance: "reference", formula: "x", domain: { min: 3, max: 6.5 } },
+      { id: "level", kind: "function", appearance: "warning", formula: "(35 - 2x)/3", domain: { min: 0, max: 6 } },
+      { id: "cheap", kind: "point", appearance: "warning", at: { x: 1, y: 11.5 } },
+      { id: "p2", kind: "point", appearance: "primary", at: { x: 2, y: 10 } },
+      { id: "p3", kind: "point", appearance: "primary", at: { x: 3, y: 8.5 } },
+      { id: "p4", kind: "point", appearance: "primary", at: { x: 4, y: 7 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 5, y: 5.5 } },
+    ],
+    labels: [
+      { key: "budget", objectId: "budget", at: { x: 5.8, y: 4.3 }, placement: "below-left" },
+      { key: "equal", objectId: "equal", at: { x: 6.3, y: 6.3 }, placement: "above-left" },
+      { key: "level", objectId: "level", at: { x: 0.2, y: 34.6 / 3 }, placement: "above-right" },
+      { key: "cheap", objectId: "cheap", at: { x: 1, y: 11.5 }, placement: "below-left" },
+      { key: "edge", objectId: "edge", at: { x: 5, y: 5.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Jede Zeile erfüllt <InlineMath math="2b+3p=26{.}000" />, <InlineMath math="b>p" /> und die Regel mit dem Vielfachen von <InlineMath math="500" />.
 
 # Erste Aussage

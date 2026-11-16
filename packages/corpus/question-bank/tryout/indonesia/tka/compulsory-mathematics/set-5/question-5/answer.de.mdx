@@ -33,6 +33,42 @@ Diese Zeit zählt ab 8:00 Uhr, sie treffen sich also um 8:10 Uhr. Prüfe die Pos
 | 8:00 | <InlineMath math="60\text{ km}" /> | <InlineMath math="54\text{ km}" /> |
 | 8:10 | <InlineMath math="66\text{ km}" /> | <InlineMath math="66\text{ km}" /> |
 
+Zeichne beide Positionen über der Zeit. **Andis Gerade knickt bei <InlineMath math="60\text{ km}" /> ab, bevor Budis Gerade sie einholt**, also findet der Schnittpunkt der schnellen Rechnung nie statt. Budis Gerade schneidet den flacheren Teil von Andis Gerade bei <InlineMath math="66\text{ km}" />.
+
+<MathVisual
+  title={<>Positionen von Andi und Budi über der Zeit</>}
+  description={<>Die waagerechte Achse ist die Zeit in Stunden ab 6:45 Uhr, die senkrechte Achse der Abstand von <InlineMath math="P" /> in km. Andis Gerade steigt um <InlineMath math="48" /> pro Stunde bis <InlineMath math="60\text{ km}" /> zur Stunde <InlineMath math="1{,}25" />, danach um <InlineMath math="36" /> pro Stunde. Budis Gerade beginnt zur Stunde <InlineMath math="0{,}5" /> und steigt um <InlineMath math="72" /> pro Stunde. Die Geraden treffen sich in <InlineMath math="\left(\frac{17}{12},\ 66\right)" />, also um 8:10 Uhr. Der Punkt <InlineMath math="(1{,}5,\ 72)" /> auf der dünnen Verlängerung ist das falsche Treffen, wenn Andi nicht langsamer würde.</>}
+  labels={{
+    andi: <>Andi</>,
+    budi: <>Budi</>,
+    meet: <>8:10 Uhr, <InlineMath math="66\text{ km}" /></>,
+    naive: <>schnelle Rechnung, falsch</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.1, max: 2.6 },
+      y: { min: -5, max: 128 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "andi-fast", kind: "function", appearance: "primary", formula: "48x", domain: { min: 0, max: 1.25 } },
+      { id: "andi", kind: "function", appearance: "primary", formula: "60 + 36(x - 1.25)", domain: { min: 1.25, max: 2.5 } },
+      { id: "andi-naive", kind: "function", appearance: "reference", formula: "48x", domain: { min: 1.25, max: 1.5 } },
+      { id: "budi", kind: "function", appearance: "secondary", formula: "72(x - 0.5)", domain: { min: 0.5, max: 13 / 6 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 17 / 12, y: 66 } },
+      { id: "naive", kind: "point", appearance: "warning", at: { x: 1.5, y: 72 } },
+    ],
+    labels: [
+      { key: "andi", objectId: "andi", at: { x: 2.3, y: 87.6 }, placement: "below-right" },
+      { key: "budi", objectId: "budi", at: { x: 2, y: 108 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 17 / 12, y: 66 }, placement: "below-right" },
+      { key: "naive", objectId: "naive", at: { x: 1.5, y: 72 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Budi holt Andi also um 8:10 Uhr ein.
 
 # Warum die anderen Antworten falsch sind

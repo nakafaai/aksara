@@ -28,6 +28,51 @@ At <InlineMath math="Q" />, the belt arrives horizontally and leaves tilted by <
 \text{all arcs}&=8\pi+\tfrac{8\pi}{3}+\tfrac{4\pi}{3}=12\pi
 \end{aligned}" />
 
+Start from the question's figure and add a helper triangle between <InlineMath math="Q" /> and <InlineMath math="S" />. **The side <InlineMath math="6" /> is half the hypotenuse <InlineMath math="12" />, so the belt slopes at <InlineMath math="30^\circ" />**. That angle gives a <InlineMath math="30^\circ" /> arc on top of <InlineMath math="Q" /> and a <InlineMath math="120^\circ" /> arc at <InlineMath math="S" />. The figure shows the upper half of the belt, and the lower half is symmetric.
+
+<MathVisual
+  title={<>Helper triangle and the belt's arcs</>}
+  description={<>The upper half of the belt: a <InlineMath math="180^\circ" /> arc on pulley <InlineMath math="P" />, a horizontal segment of length <InlineMath math="20" /> to pulley <InlineMath math="Q" />, a <InlineMath math="30^\circ" /> arc on top of <InlineMath math="Q" />, a sloping segment to pulley <InlineMath math="S" />, and a <InlineMath math="120^\circ" /> arc on the right side of <InlineMath math="S" />. The helper triangle between the centres of <InlineMath math="Q" /> and <InlineMath math="S" /> has hypotenuse <InlineMath math="12" />, a side of <InlineMath math="6" /> along a radius of <InlineMath math="Q" />, and a side of <InlineMath math="6\sqrt3" /> parallel to the sloping part of the belt.</>}
+  labels={{
+    "arc-p": <InlineMath math="180^\circ" />,
+    "arc-q": <InlineMath math="30^\circ" />,
+    "arc-s": <InlineMath math="120^\circ" />,
+    hyp: <InlineMath math="12" />,
+    rise: <InlineMath math="6" />,
+    run: <InlineMath math="6\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 36 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pulley-q", kind: "circle", appearance: "reference", center: { x: 20, y: 0 }, radius: 8 },
+      { id: "pulley-s", kind: "circle", appearance: "reference", center: { x: 32, y: 0 }, radius: 2 },
+      { id: "arc-p", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 8, startDegrees: 90, sweepDegrees: 180 },
+      { id: "top", kind: "segment", appearance: "primary", from: { x: 0, y: 8 }, to: { x: 20, y: 8 } },
+      { id: "arc-q", kind: "arc", appearance: "answer", center: { x: 20, y: 0 }, radius: 8, startDegrees: 60, sweepDegrees: 30 },
+      { id: "slant", kind: "segment", appearance: "primary", from: { x: 24, y: 4 * Math.sqrt(3) }, to: { x: 33, y: Math.sqrt(3) } },
+      { id: "arc-s", kind: "arc", appearance: "answer", center: { x: 32, y: 0 }, radius: 2, startDegrees: 300, sweepDegrees: 120 },
+      { id: "helper", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 23, y: 3 * Math.sqrt(3) }, { x: 32, y: 0 }] },
+      { id: "hyp", kind: "segment", appearance: "construction", from: { x: 20, y: 0 }, to: { x: 32, y: 0 } },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 20, y: 0 }, to: { x: 23, y: 3 * Math.sqrt(3) } },
+      { id: "run", kind: "segment", appearance: "construction", from: { x: 23, y: 3 * Math.sqrt(3) }, to: { x: 32, y: 0 } },
+    ],
+    labels: [
+      { key: "arc-p", objectId: "arc-p", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "arc-q", objectId: "arc-q", at: { x: 20 + 8 * Math.cos(5 * Math.PI / 12), y: 8 * Math.sin(5 * Math.PI / 12) }, placement: "above-right" },
+      { key: "arc-s", objectId: "arc-s", at: { x: 34, y: 0 }, placement: "right" },
+      { key: "hyp", objectId: "hyp", at: { x: 26, y: 0 }, placement: "below" },
+      { key: "rise", objectId: "rise", at: { x: 21.5, y: 1.5 * Math.sqrt(3) }, placement: "left" },
+      { key: "run", objectId: "run", at: { x: 27.5, y: 1.5 * Math.sqrt(3) }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Check the angles: <InlineMath math="180^\circ+60^\circ+120^\circ=360^\circ" />. The belt turns **exactly one full turn**, just as a closed belt should.
 
 # The whole belt

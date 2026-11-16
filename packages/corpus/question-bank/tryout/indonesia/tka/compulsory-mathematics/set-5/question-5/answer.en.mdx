@@ -33,6 +33,42 @@ That time counts from 08:00, so they meet at 08:10. Check the positions. Budi: <
 | 08:00 | <InlineMath math="60\text{ km}" /> | <InlineMath math="54\text{ km}" /> |
 | 08:10 | <InlineMath math="66\text{ km}" /> | <InlineMath math="66\text{ km}" /> |
 
+Draw both positions against time. **Andi's line bends at <InlineMath math="60\text{ km}" />, before Budi's line can catch it**, so the quick-method crossing never happens. Budi's line crosses the flatter part of Andi's line at <InlineMath math="66\text{ km}" />.
+
+<MathVisual
+  title={<>Positions of Andi and Budi over time</>}
+  description={<>The horizontal axis is time in hours since 06:45, and the vertical axis is the distance from <InlineMath math="P" /> in km. Andi's line rises <InlineMath math="48" /> per hour up to <InlineMath math="60\text{ km}" /> at hour <InlineMath math="1.25" />, then <InlineMath math="36" /> per hour. Budi's line starts at hour <InlineMath math="0.5" /> and rises <InlineMath math="72" /> per hour. The lines meet at <InlineMath math="\left(\frac{17}{12},\ 66\right)" />, which is 08:10. The point <InlineMath math="(1.5,\ 72)" /> on the thin extension is the wrong meeting if Andi did not slow down.</>}
+  labels={{
+    andi: <>Andi</>,
+    budi: <>Budi</>,
+    meet: <>08:10, <InlineMath math="66\text{ km}" /></>,
+    naive: <>quick method, wrong</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.1, max: 2.6 },
+      y: { min: -5, max: 128 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "andi-fast", kind: "function", appearance: "primary", formula: "48x", domain: { min: 0, max: 1.25 } },
+      { id: "andi", kind: "function", appearance: "primary", formula: "60 + 36(x - 1.25)", domain: { min: 1.25, max: 2.5 } },
+      { id: "andi-naive", kind: "function", appearance: "reference", formula: "48x", domain: { min: 1.25, max: 1.5 } },
+      { id: "budi", kind: "function", appearance: "secondary", formula: "72(x - 0.5)", domain: { min: 0.5, max: 13 / 6 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 17 / 12, y: 66 } },
+      { id: "naive", kind: "point", appearance: "warning", at: { x: 1.5, y: 72 } },
+    ],
+    labels: [
+      { key: "andi", objectId: "andi", at: { x: 2.3, y: 87.6 }, placement: "below-right" },
+      { key: "budi", objectId: "budi", at: { x: 2, y: 108 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 17 / 12, y: 66 }, placement: "below-right" },
+      { key: "naive", objectId: "naive", at: { x: 1.5, y: 72 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 So Budi catches Andi at 08:10.
 
 # Why the other options are wrong

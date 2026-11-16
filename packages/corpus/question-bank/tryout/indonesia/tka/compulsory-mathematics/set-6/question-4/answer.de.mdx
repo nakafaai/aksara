@@ -29,6 +29,38 @@ Von 6:00 bis 17:00 Uhr sind es <InlineMath math="11" /> Stunden. Pumpe B läuft 
 k&\ge6{,}5
 \end{aligned}" />
 
+Zeichne das restliche Wasser im Becken für zwei Abschaltzeiten von Pumpe A. **Sobald Pumpe A aus ist, wird die Gerade dreimal flacher, weil nur noch Pumpe B arbeitet**. Abschalten um 13:00 Uhr bringt die Gerade vor der Frist um 17:00 Uhr auf null, 12:00 Uhr ist zu spät.
+
+<MathVisual
+  title={<>Restwasser im Becken für zwei Abschaltzeiten von Pumpe A</>}
+  description={<>Die waagerechte Achse sind Stunden ab 6:00 Uhr, die senkrechte Achse der noch gefüllte Anteil des Beckens. Mit beiden Pumpen fällt die Gerade um <InlineMath math="\frac18" /> pro Stunde. Schaltet A nach <InlineMath math="7" /> Stunden ab, fällt der Rest <InlineMath math="\frac18" /> um <InlineMath math="\frac{1}{24}" /> pro Stunde und ist in Stunde <InlineMath math="10" />, also um 16:00 Uhr, weg. Schaltet A nach <InlineMath math="6" /> Stunden ab, ist der Rest <InlineMath math="\frac14" /> erst in Stunde <InlineMath math="12" />, also um 18:00 Uhr, weg. Die senkrechte Linie bei Stunde <InlineMath math="11" /> ist die Frist um 17:00 Uhr.</>}
+  labels={{
+    deadline: <>Frist 17:00 Uhr</>,
+    good: <>A aus um 13:00 Uhr</>,
+    bad: <>A aus um 12:00 Uhr</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 12.8 },
+      y: { min: -0.06, max: 1.08 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "together", kind: "function", appearance: "primary", formula: "1 - x/8", domain: { min: 0, max: 7 } },
+      { id: "good", kind: "function", appearance: "answer", formula: "1/8 - (x - 7)/24", domain: { min: 7, max: 10 } },
+      { id: "bad", kind: "function", appearance: "warning", formula: "1/4 - (x - 6)/24", domain: { min: 6, max: 12 } },
+      { id: "deadline", kind: "segment", appearance: "reference", from: { x: 11, y: 0 }, to: { x: 11, y: 1 } },
+    ],
+    labels: [
+      { key: "deadline", objectId: "deadline", at: { x: 11, y: 1 }, placement: "above" },
+      { key: "good", objectId: "good", at: { x: 8.5, y: 1 / 16 }, placement: "below-left" },
+      { key: "bad", objectId: "bad", at: { x: 9, y: 1 / 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Pumpe A kann nur genau zur vollen Stunde abgeschaltet werden, also muss <InlineMath math="k" /> ganzzahlig sein. Die kleinste ganze Zahl mit <InlineMath math="k\ge6{,}5" /> ist <InlineMath math="k=7" />, also 13:00 Uhr.
 
 # Beide Seiten der Grenze prüfen

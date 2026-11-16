@@ -25,6 +25,43 @@ Sekarang tempah tepat <InlineMath math="500" /> helai: helaian modul ditambah he
 n&\le31.25
 \end{aligned}" />
 
+Bandingkan dua cara menempah pada satu graf. **Dengan tepat <InlineMath math="500" /> helaian, kos hanya naik <InlineMath math="4" /> ribu bagi setiap modul, jadi garisnya jauh lebih landai**. Garis landai itu hanya melepasi bajet selepas <InlineMath math="31" /> modul, manakala garis tanpa tambahan sudah melepasinya selepas <InlineMath math="27" /> modul.
+
+<MathVisual
+  title={<>Jumlah kos mengikut bilangan modul</>}
+  description={<>Paksi mendatar ialah bilangan modul <InlineMath math="n" />, dan paksi tegak ialah jumlah kos dalam ribu rupiah. Garis curam <InlineMath math="10n" /> ialah kos tanpa helaian tambahan, dan garis landai <InlineMath math="150+4n" /> ialah kos menempah tepat <InlineMath math="500" /> helaian. Garis mendatar pada <InlineMath math="275" /> ialah bajet. Titik <InlineMath math="(27,\ 270)" /> dan <InlineMath math="(31,\ 274)" /> ialah bilangan modul terbesar bagi setiap cara.</>}
+  labels={{
+    plain: <>tanpa tambahan <InlineMath math="10n" /></>,
+    padded: <><InlineMath math="500" /> helaian: <InlineMath math="150+4n" /></>,
+    budget: <InlineMath math="275" />,
+    "plain-best": <InlineMath math="(27,\ 270)" />,
+    "padded-best": <InlineMath math="(31,\ 274)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 13, max: 36 },
+      y: { min: 190, max: 345 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plain", kind: "function", appearance: "secondary", formula: "10x", domain: { min: 20, max: 33 } },
+      { id: "padded", kind: "function", appearance: "primary", formula: "150 + 4x", domain: { min: 15, max: 33 } },
+      { id: "budget", kind: "function", appearance: "reference", formula: "275", domain: { min: 14, max: 35 } },
+      { id: "plain-best", kind: "point", appearance: "secondary", at: { x: 27, y: 270 } },
+      { id: "padded-best", kind: "point", appearance: "answer", at: { x: 31, y: 274 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain", at: { x: 32, y: 320 }, placement: "left" },
+      { key: "padded", objectId: "padded", at: { x: 18, y: 222 }, placement: "below-right" },
+      { key: "budget", objectId: "budget", at: { x: 15, y: 275 }, placement: "above" },
+      { key: "plain-best", objectId: "plain-best", at: { x: 27, y: 270 }, placement: "above-left" },
+      { key: "padded-best", objectId: "padded-best", at: { x: 31, y: 274 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="n=31" />. Semak: <InlineMath math="31" /> modul memerlukan <InlineMath math="465" /> helai, ditambah <InlineMath math="35" /> helai kosong menjadi <InlineMath math="500" />, dan jumlahnya <InlineMath math="150{,}000+124{,}000=274{,}000" /> rupiah. Bagi <InlineMath math="32" /> modul, cara paling murah juga <InlineMath math="500" /> helai, dengan jumlah <InlineMath math="150{,}000+128{,}000=278{,}000" /> rupiah, dan ini sudah melebihi bajet.
 
 Jadi, bilangan modul paling banyak yang boleh ditempah ialah <InlineMath math="31" />.

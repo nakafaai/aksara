@@ -25,6 +25,43 @@ Sekarang pesan tepat <InlineMath math="500" /> lembar: lembar modul ditambah lem
 n&\le31{,}25
 \end{aligned}" />
 
+Bandingkan dua cara memesan pada satu grafik. **Dengan tepat <InlineMath math="500" /> lembar, biaya hanya naik <InlineMath math="4" /> ribu per modul, jadi garisnya jauh lebih landai**. Garis landai itu baru melewati anggaran setelah <InlineMath math="31" /> modul, sedangkan garis tanpa tambahan sudah lewat setelah <InlineMath math="27" /> modul.
+
+<MathVisual
+  title={<>Biaya total menurut banyak modul</>}
+  description={<>Sumbu mendatar adalah banyak modul <InlineMath math="n" />, sumbu tegak adalah biaya total dalam ribu rupiah. Garis curam <InlineMath math="10n" /> adalah biaya tanpa lembar tambahan, dan garis landai <InlineMath math="150+4n" /> adalah biaya dengan pesanan tepat <InlineMath math="500" /> lembar. Garis mendatar di <InlineMath math="275" /> adalah anggaran. Titik <InlineMath math="(27,\ 270)" /> dan <InlineMath math="(31,\ 274)" /> adalah banyak modul terbesar untuk setiap cara.</>}
+  labels={{
+    plain: <>tanpa tambahan <InlineMath math="10n" /></>,
+    padded: <><InlineMath math="500" /> lembar: <InlineMath math="150+4n" /></>,
+    budget: <InlineMath math="275" />,
+    "plain-best": <InlineMath math="(27,\ 270)" />,
+    "padded-best": <InlineMath math="(31,\ 274)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 13, max: 36 },
+      y: { min: 190, max: 345 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plain", kind: "function", appearance: "secondary", formula: "10x", domain: { min: 20, max: 33 } },
+      { id: "padded", kind: "function", appearance: "primary", formula: "150 + 4x", domain: { min: 15, max: 33 } },
+      { id: "budget", kind: "function", appearance: "reference", formula: "275", domain: { min: 14, max: 35 } },
+      { id: "plain-best", kind: "point", appearance: "secondary", at: { x: 27, y: 270 } },
+      { id: "padded-best", kind: "point", appearance: "answer", at: { x: 31, y: 274 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain", at: { x: 32, y: 320 }, placement: "left" },
+      { key: "padded", objectId: "padded", at: { x: 18, y: 222 }, placement: "below-right" },
+      { key: "budget", objectId: "budget", at: { x: 15, y: 275 }, placement: "above" },
+      { key: "plain-best", objectId: "plain-best", at: { x: 27, y: 270 }, placement: "above-left" },
+      { key: "padded-best", objectId: "padded-best", at: { x: 31, y: 274 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="n=31" />. Cek: <InlineMath math="31" /> modul butuh <InlineMath math="465" /> lembar, ditambah <InlineMath math="35" /> lembar kosong menjadi <InlineMath math="500" />, dan totalnya <InlineMath math="150{.}000+124{.}000=274{.}000" /> rupiah. Untuk <InlineMath math="32" /> modul, cara termurahnya juga <InlineMath math="500" /> lembar, dengan total <InlineMath math="150{.}000+128{.}000=278{.}000" /> rupiah, sudah lewat anggaran.
 
 Jadi, banyak modul paling banyak yang dapat dipesan adalah <InlineMath math="31" />.

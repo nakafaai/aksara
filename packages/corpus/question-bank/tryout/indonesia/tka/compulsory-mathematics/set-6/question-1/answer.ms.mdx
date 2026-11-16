@@ -24,6 +24,37 @@ Air sampai ke retakan pada pukul 6:20 pagi, iaitu lima minit sebelum pili Q dibu
 | 6:20 hingga 6:25 pagi | pili P dan kebocoran | <InlineMath math="24-8=16" /> liter per minit | <InlineMath math="80" /> liter | <InlineMath math="560" /> liter |
 | 6:25 hingga 6:30 pagi | pili P, pili Q dan kebocoran | <InlineMath math="24+16-8=32" /> liter per minit | <InlineMath math="160" /> liter | <InlineMath math="720" /> liter |
 
+Lukis isi tangki terhadap masa. **Garisnya membengkok dua kali: menjadi landai apabila air melepasi retakan, kemudian curam semula apabila pili Q dibuka**. Pada minit ke-<InlineMath math="30" /> isinya <InlineMath math="720" /> liter.
+
+<MathVisual
+  title={<>Isi tangki sejak pukul 6:00</>}
+  description={<>Paksi mendatar ialah minit sejak pukul 6:00, dan paksi tegak ialah isi dalam liter. Garis naik <InlineMath math="24" /> seminit hingga <InlineMath math="480" /> liter pada minit ke-<InlineMath math="20" />, naik <InlineMath math="16" /> seminit hingga <InlineMath math="560" /> liter pada minit ke-<InlineMath math="25" />, kemudian naik <InlineMath math="32" /> seminit hingga penuh pada minit ke-<InlineMath math="45" />. Garis mendatar pada <InlineMath math="480" /> menandakan ketinggian retakan, dan titik <InlineMath math="(30,\ 720)" /> menandakan pukul 6:30.</>}
+  labels={{
+    hole: <>retakan, <InlineMath math="480" /> liter</>,
+    now: <InlineMath math="(30,\ 720)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 48 },
+      y: { min: -40, max: 1260 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 25 } },
+      { id: "both", kind: "function", appearance: "primary", formula: "560 + 32(x - 25)", domain: { min: 25, max: 45 } },
+      { id: "hole", kind: "function", appearance: "reference", formula: "480", domain: { min: 0, max: 47 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 30, y: 720 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 40, y: 480 }, placement: "below" },
+      { key: "now", objectId: "now", at: { x: 30, y: 720 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Bahagian tangki yang berisi ialah isi dibahagi dengan kapasiti:
 
 <BlockMath math="\frac{720}{1{,}200}=\frac{3}{5}" />

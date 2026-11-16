@@ -15,6 +15,45 @@ Jika <InlineMath math="(1,1)" /> dipilih, dua titik lagi dipilih daripada lapan 
 P&=\frac{24}{76}=\frac{6}{19}
 \end{aligned}" />
 
+Lukis sembilan titik dan setiap garis melalui <InlineMath math="(1,1)" /> yang memuatkan tiga titik kekisi. **Terdapat tepat empat garis sedemikian, dan setiap garis memberikan satu pasangan yang segaris dengan <InlineMath math="(1,1)" />**. Empat pasangan itulah yang dibuang daripada <InlineMath math="28" />.
+
+<MathVisual
+  title={<>Garis-garis yang melalui titik tengah kekisi</>}
+  description={<>Kekisi <InlineMath math="3\times3" /> dengan titik dari <InlineMath math="(0,0)" /> hingga <InlineMath math="(2,2)" />. Titik tengah <InlineMath math="(1,1)" /> dilalui empat garis yang memuatkan tiga titik kekisi: baris tengah, lajur tengah, dan kedua-dua pepenjuru. Setiap garis itu memuatkan tepat satu pasangan titik lain yang segaris dengan <InlineMath math="(1,1)" />.</>}
+  labels={{
+    center: <InlineMath math="(1,1)" />,
+    row: <>segaris</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 2.6 },
+      y: { min: -0.6, max: 2.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "row", kind: "segment", appearance: "warning", from: { x: 0, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "column", kind: "segment", appearance: "warning", from: { x: 1, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "rising", kind: "segment", appearance: "warning", from: { x: 0, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "falling", kind: "segment", appearance: "warning", from: { x: 0, y: 2 }, to: { x: 2, y: 0 } },
+      { id: "p00", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "p10", kind: "point", appearance: "primary", at: { x: 1, y: 0 } },
+      { id: "p20", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "p01", kind: "point", appearance: "primary", at: { x: 0, y: 1 } },
+      { id: "center", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+      { id: "p21", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+      { id: "p02", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "p12", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "p22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "center", objectId: "center", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "row", objectId: "row", at: { x: 0.5, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Jadi, kebarangkaliannya ialah <InlineMath math="\tfrac{6}{19}" />.
 
 - <InlineMath math="\tfrac13" /> tidak membuang kumpulan segaris langsung, iaitu <InlineMath math="\tfrac{28}{84}" />.
