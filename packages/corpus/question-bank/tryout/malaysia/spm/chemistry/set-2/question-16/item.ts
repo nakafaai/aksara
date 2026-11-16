@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "The concentration of sodium thiosulfate increases with temperature" },
-        { correct: false, label: "A higher temperature lowers the activation energy" },
-        { correct: false, label: "More sulfur is produced at a higher temperature" },
-        { correct: true, label: "The particles have more kinetic energy, so more collisions reach the activation energy" },
+        { correct: false, label: "$$20\\text{ s}$$" },
+        { correct: false, label: "$$120\\text{ s}$$" },
+        { correct: false, label: "$$10\\text{ s}$$" },
+        { correct: true, label: "$$40\\text{ s}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Kepekatan natrium tiosulfat bertambah dengan suhu" },
-        { correct: false, label: "Suhu yang lebih tinggi merendahkan tenaga pengaktifan" },
-        { correct: false, label: "Lebih banyak sulfur terhasil pada suhu yang lebih tinggi" },
-        { correct: true, label: "Zarah mempunyai lebih banyak tenaga kinetik, jadi lebih banyak perlanggaran mencapai tenaga pengaktifan" },
+        { correct: false, label: "$$20\\text{ s}$$" },
+        { correct: false, label: "$$120\\text{ s}$$" },
+        { correct: false, label: "$$10\\text{ s}$$" },
+        { correct: true, label: "$$40\\text{ s}$$" },
       ],
     },
   },
