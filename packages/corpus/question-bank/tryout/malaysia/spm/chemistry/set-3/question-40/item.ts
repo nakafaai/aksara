@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Ascorbic acid is a preservative, and monosodium glutamate is a colouring" },
-        { correct: false, label: "Tartrazine is a flavour enhancer that strengthens the taste of the noodles" },
-        { correct: false, label: "Monosodium glutamate is an antioxidant that stops fats turning rancid" },
-        { correct: true, label: "Sodium benzoate is a preservative that slows the growth of microorganisms, and ascorbic acid is an antioxidant that slows the oxidation of fats" },
+        { correct: false, label: "5.0 cm³ per dose and at most 20 cm³ a day, and paracetamol is an analgesic" },
+        { correct: false, label: "12.5 cm³ per dose and at most 50 cm³ a day, and paracetamol is an antibiotic that kills bacteria" },
+        { correct: false, label: "2.5 cm³ per dose and at most 10 cm³ a day, and paracetamol is an analgesic" },
+        { correct: true, label: "12.5 cm³ per dose and at most 50 cm³ a day, and paracetamol is an analgesic that relieves pain and fever" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Asid askorbik ialah pengawet, dan mononatrium glutamat ialah pewarna" },
-        { correct: false, label: "Tartrazina ialah penambah perisa yang menguatkan rasa mi" },
-        { correct: false, label: "Mononatrium glutamat ialah antioksidan yang menghalang lemak menjadi tengik" },
-        { correct: true, label: "Natrium benzoat ialah pengawet yang melambatkan pertumbuhan mikroorganisma, dan asid askorbik ialah antioksidan yang melambatkan pengoksidaan lemak" },
+        { correct: false, label: "5.0 cm³ setiap dos dan paling banyak 20 cm³ sehari, dan parasetamol ialah analgesik" },
+        { correct: false, label: "12.5 cm³ setiap dos dan paling banyak 50 cm³ sehari, dan parasetamol ialah antibiotik yang membunuh bakteria" },
+        { correct: false, label: "2.5 cm³ setiap dos dan paling banyak 10 cm³ sehari, dan parasetamol ialah analgesik" },
+        { correct: true, label: "12.5 cm³ setiap dos dan paling banyak 50 cm³ sehari, dan parasetamol ialah analgesik yang melegakan sakit dan demam" },
       ],
     },
   },
