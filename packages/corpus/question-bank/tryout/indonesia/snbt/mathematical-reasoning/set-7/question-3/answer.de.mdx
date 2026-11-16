@@ -30,6 +30,19 @@ Ohne Nutzung ist das Handy im Standby, unter <InlineMath math="80\%" /> steigt d
 
 Der Akku landet bei <InlineMath math="82\%" />, nicht bei <InlineMath math="86\%" />. Auf <InlineMath math="86\%" /> kommst du, wenn du die ganze Stunde mit <InlineMath math="36\%" /> pro Stunde rechnest. Die dritte Aussage ist **falsch**.
 
+Das Diagramm verfolgt den Akku während einer Stunde Laden ohne Nutzung. **Die Linie knickt genau bei <InlineMath math="80\%" />** in Minute <InlineMath math="50" /> ab und kriecht dann nur noch auf <InlineMath math="82\%" />.
+
+<Chart
+  title={<>Akku beim Laden ohne Nutzung, ab <InlineMath math="50\%" /></>}
+  description={<>Der Akku steigt alle <InlineMath math="10" /> Minuten um <InlineMath math="6\%" /> von <InlineMath math="50\%" /> bis <InlineMath math="80\%" /> in Minute <InlineMath math="50" />, dann in den letzten <InlineMath math="10" /> Minuten um <InlineMath math="2\%" /> auf <InlineMath math="82\%" />. Die waagerechte Linie markiert <InlineMath math="80\%" />.</>}
+  categories={["0", "10", "20", "30", "40", "50", "60"]}
+  series={[
+    { label: "Akku (%)", mark: "line", values: [0, 10, 20, 30, 40, 50, 60].map((m) => (m <= 50 ? 50 + (36 * m) / 60 : 80 + (12 * (m - 50)) / 60)) },
+    { label: "Grenze 80 %", mark: "line", values: [80, 80, 80, 80, 80, 80, 80] },
+  ]}
+  valueLabel="Akku (%)"
+/>
+
 # Lesen und Video vertauschen
 
 Erste Reihenfolge: <InlineMath math="3" /> Stunden Lesen verbrauchen <InlineMath math="30\%" />, der Akku steht also genau bei <InlineMath math="20\%" />. Die Stunde Video läuft dann im Sparmodus mit <InlineMath math="10\%" /> pro Stunde, und es bleiben <InlineMath math="10\%" />.

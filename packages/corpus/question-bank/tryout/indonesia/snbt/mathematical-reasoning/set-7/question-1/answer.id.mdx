@@ -39,6 +39,17 @@ Pengisian <InlineMath math="1{,}5" /> jam selalu menambah <InlineMath math="54\%
 
 Pada tiga baris terakhir, kegiatan sesudah pengisian terjadi saat baterai di atas <InlineMath math="20\%" />, jadi lajunya penuh. Nilai terbesar di tabel adalah <InlineMath math="55\%" />.
 
+Grafik berikut merangkum tabel itu. **Dua batang tertinggi sama-sama menaruh pengisian daya di akhir**, sedangkan batang terpendek mengisi daya lebih dulu sehingga gim dan membaca terjadi dengan laju penuh.
+
+<Chart
+  title={<>Baterai Nara pukul 16.30 untuk setiap urutan kegiatan</>}
+  description={<>Gim, membaca, lalu mengisi daya memberi <InlineMath math="55\%" />. Membaca, gim, lalu mengisi daya juga memberi <InlineMath math="55\%" />. Gim, mengisi daya, lalu membaca memberi <InlineMath math="50\%" />. Membaca, mengisi daya, lalu gim memberi <InlineMath math="40\%" />. Mengisi daya lebih dulu memberi <InlineMath math="36\%" />.</>}
+  categories={["Gim, baca, isi", "Baca, gim, isi", "Gim, isi, baca", "Baca, isi, gim", "Isi lebih dulu"]}
+  bars="apart"
+  series={[{ label: "Baterai pukul 16.30 (%)", mark: "bar", values: [1 + 54, 1 + 54, 6 + 54 - 10, 16 + 54 - 30, 22 + 54 - 30 - 10] }]}
+  valueLabel="Baterai (%)"
+/>
+
 # Pilihan yang keliru
 
 - <InlineMath math="36\%" /> muncul kalau kamu **mengisi daya lebih dulu**. Nilai ini juga muncul kalau mode hemat daya diabaikan: gim dan membaca dengan laju penuh menghabiskan <InlineMath math="40\%" />, lebih dari <InlineMath math="22\%" />, sehingga urutan terbaik tampak membuat ponsel mati.

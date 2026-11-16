@@ -39,6 +39,17 @@ Das Laden über <InlineMath math="1{,}5" /> Stunden bringt immer <InlineMath mat
 
 In den letzten drei Zeilen läuft alles nach dem Laden oberhalb von <InlineMath math="20\%" />, also mit voller Rate. Der größte Wert in der Tabelle ist <InlineMath math="55\%" />.
 
+Das Diagramm fasst die Tabelle zusammen. **Die zwei höchsten Balken legen das Laden beide ans Ende**, während der kürzeste Balken zuerst lädt, sodass Spielen und Lesen mit voller Rate laufen.
+
+<Chart
+  title={<>Naras Akku um 16.30 Uhr für jede Reihenfolge der Tätigkeiten</>}
+  description={<>Spielen, Lesen, dann Laden ergibt <InlineMath math="55\%" />. Lesen, Spielen, dann Laden ergibt ebenfalls <InlineMath math="55\%" />. Spielen, Laden, dann Lesen ergibt <InlineMath math="50\%" />. Lesen, Laden, dann Spielen ergibt <InlineMath math="40\%" />. Zuerst Laden ergibt <InlineMath math="36\%" />.</>}
+  categories={["Spielen, Lesen, Laden", "Lesen, Spielen, Laden", "Spielen, Laden, Lesen", "Lesen, Laden, Spielen", "Zuerst Laden"]}
+  bars="apart"
+  series={[{ label: "Akku um 16.30 Uhr (%)", mark: "bar", values: [1 + 54, 1 + 54, 6 + 54 - 10, 16 + 54 - 30, 22 + 54 - 30 - 10] }]}
+  valueLabel="Akku (%)"
+/>
+
 # Die falschen Antworten
 
 - <InlineMath math="36\%" /> entsteht, wenn du **zuerst lädst**. Du bekommst den Wert auch, wenn du den Energiesparmodus übersiehst: Spielen und Lesen mit voller Rate verbrauchen <InlineMath math="40\%" />, mehr als <InlineMath math="22\%" />, und die beste Reihenfolge scheint das Handy auszuschalten.

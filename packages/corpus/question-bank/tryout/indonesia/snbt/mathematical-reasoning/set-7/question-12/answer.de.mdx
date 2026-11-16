@@ -24,6 +24,21 @@ x &= 8
 
 Zur Probe: Es bleiben <InlineMath math="96-8=88\text{ Liter}" /> mit <InlineMath math="45\text{ g/L}" />, also <InlineMath math="88\cdot45=3{.}960" /> Gramm Salz. Dann füllen <InlineMath math="32\text{ Liter}" /> Süßwasser auf <InlineMath math="120\text{ Liter}" /> auf, und <InlineMath math="\frac{3{.}960}{120}=33\text{ g/L}" />.
 
+Das Diagramm berechnet den End-Salzgehalt für mehrere entnommene Wassermengen. Je <InlineMath math="4" /> entnommene Liter senken den End-Salzgehalt um <InlineMath math="1{,}5\text{ g/L}" />, und **der Balken für <InlineMath math="8" /> Liter berührt die Ziellinie genau**.
+
+<Chart
+  title={<>End-Salzgehalt nach entnommenem Wasser vor dem Auffüllen mit Süßwasser</>}
+  description={<>Werden <InlineMath math="0" />, <InlineMath math="4" />, <InlineMath math="8" />, <InlineMath math="12" /> und <InlineMath math="16" /> Liter entnommen, beträgt der End-Salzgehalt <InlineMath math="36" />, <InlineMath math="34{,}5" />, <InlineMath math="33" />, <InlineMath math="31{,}5" /> und <InlineMath math="30\text{ g/L}" />. Die waagerechte Linie markiert das Ziel von <InlineMath math="33\text{ g/L}" />. Die Werteachse beginnt bei <InlineMath math="28" />.</>}
+  bars="apart"
+  categories={["0", "4", "8", "12", "16"]}
+  series={[
+    { label: "End-Salzgehalt (g/L)", mark: "bar", values: [0, 4, 8, 12, 16].map((x) => (4320 - 45 * x) / 120) },
+    { label: "Ziel 33 g/L", mark: "line", values: [33, 33, 33, 33, 33] },
+  ]}
+  valueRange={{ min: 28, max: 37 }}
+  valueLabel="Salzgehalt (g/L)"
+/>
+
 # Die falschen Antworten
 
 - <InlineMath math="10\text{ Liter}" /> entstehen, wenn du **die Verdunstung übersiehst** und das Wasser aus <InlineMath math="120\text{ Liter}" /> mit <InlineMath math="36\text{ g/L}" /> entfernst.

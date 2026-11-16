@@ -30,6 +30,20 @@ While the gate is open, every change drops by <InlineMath math="30\text{ cm}" />
 
 The Awas status starts at 09.00 plus <InlineMath math="40" /> minutes, which is 09.40. As a check, at 10.00 the level is <InlineMath math="260+60=320\text{ cm}" />, and <InlineMath math="300" /> does lie between <InlineMath math="260" /> and <InlineMath math="320" />.
 
+The chart below follows the water level every <InlineMath math="20" /> minutes. **The line bends exactly at <InlineMath math="250\text{ cm}" /> at 08.40** because the floodgate opens, and only then touches the Awas line at 09.40.
+
+<Chart
+  title={<>Water level from 06.00 to 10.00</>}
+  description={<>The water level rises from <InlineMath math="140\text{ cm}" /> to <InlineMath math="180" /> at 07.00, <InlineMath math="210" /> at 08.00, <InlineMath math="250" /> at 08.40, <InlineMath math="260" /> at 09.00, <InlineMath math="300" /> at 09.40, and <InlineMath math="320\text{ cm}" /> at 10.00. Two flat lines mark <InlineMath math="250\text{ cm}" /> and <InlineMath math="300\text{ cm}" />.</>}
+  categories={["06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Water level (cm)", mark: "line", values: [140, 140 + 40 / 3, 140 + 80 / 3, 180, 190, 200, 210, 230, 250, 260, 280, 300, 320] },
+    { label: "Floodgate opens", mark: "line", values: Array.from({ length: 13 }, () => 250) },
+    { label: "Awas status", mark: "line", values: Array.from({ length: 13 }, () => 300) },
+  ]}
+  valueLabel="Water level (cm)"
+/>
+
 # The wrong options
 
 - 08.40 is when the **Siaga** status starts at <InlineMath math="250\text{ cm}" />, not Awas.

@@ -28,6 +28,19 @@ Ponsel mati pukul 22.06 ditambah <InlineMath math="1" /> jam <InlineMath math="2
 
 Sebagai pemeriksaan, jumlahkan semua durasinya: <InlineMath math="90+40+20+12+18+6+80=266" /> menit, dan pukul 19.00 ditambah <InlineMath math="266" /> menit memang pukul 23.26.
 
+Grafik berikut mengikuti baterai Dimas setiap <InlineMath math="15" /> menit. **Garisnya melintasi batas <InlineMath math="20\%" /> tiga kali**, dan setiap lintasan mengubah kemiringannya, sampai ponsel mati di antara pukul 23.15 dan 23.30.
+
+<Chart
+  title={<>Baterai Dimas dari pukul 19.00 sampai ponselnya mati</>}
+  description={<>Baterai turun dari <InlineMath math="70\%" /> ke <InlineMath math="40\%" /> pada pukul 20.30, ke <InlineMath math="15\%" /> pada pukul 21.30, naik ke <InlineMath math="23\%" /> pada pukul 22.00 selama diisi daya, lalu turun lagi sampai <InlineMath math="0\%" /> pada pukul 23.26. Garis datar menandai <InlineMath math="20\%" />, batas mode hemat daya.</>}
+  categories={["19.00", "19.15", "19.30", "19.45", "20.00", "20.15", "20.30", "20.45", "21.00", "21.15", "21.30", "21.45", "22.00", "22.15", "22.30", "22.45", "23.00", "23.15", "23.30"]}
+  series={[
+    { label: "Baterai Dimas (%)", mark: "line", values: [70, 65, 60, 55, 50, 45, 40, 32.5, 25, 18.75, 15, 20.5, 23, 17.75, 14, 10.25, 6.5, 2.75, 0] },
+    { label: "Batas mode hemat daya", mark: "line", values: Array.from({ length: 19 }, () => 20) },
+  ]}
+  valueLabel="Baterai (%)"
+/>
+
 # Pilihan yang keliru
 
 - Pukul 22.30 muncul kalau **mode hemat daya diabaikan sama sekali**: baterai pukul 22.00 dianggap <InlineMath math="15\%" /> dan habis dalam <InlineMath math="30" /> menit.

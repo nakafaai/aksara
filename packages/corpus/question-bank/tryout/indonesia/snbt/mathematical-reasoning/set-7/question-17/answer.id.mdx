@@ -20,6 +20,22 @@ Sepuluh JP yang sama panjang harus muat dalam waktu itu.
 
 **Lama JP berlaku sama untuk keempat hari**, jadi harus memenuhi kedua batas sekaligus. Batas yang lebih ketat adalah hari Senin, karena upacaranya lebih lama. Lama JP berupa bilangan bulat, jadi <InlineMath math="t\le39{,}5" /> berarti **paling lama <InlineMath math="39" /> menit**.
 
+Grafik berikut menghitung kapan sekolah selesai, dalam menit sesudah pukul 07.00, untuk beberapa lama JP. **Batang Senin sudah melewati garis pukul 15.00 pada <InlineMath math="40" /> menit**, sedangkan batang Selasa sampai Kamis masih jauh di bawahnya.
+
+<Chart
+  title={<>Waktu selesai sekolah dengan <InlineMath math="10" /> JP menurut lama satu JP</>}
+  description={<>Untuk lama JP <InlineMath math="38" /> sampai <InlineMath math="42" /> menit, hari Senin selesai <InlineMath math="465" />, <InlineMath math="475" />, <InlineMath math="485" />, <InlineMath math="495" />, dan <InlineMath math="505" /> menit sesudah pukul 07.00. Hari Selasa sampai Kamis selesai <InlineMath math="440" />, <InlineMath math="450" />, <InlineMath math="460" />, <InlineMath math="470" />, dan <InlineMath math="480" /> menit sesudah pukul 07.00. Garis datar menandai <InlineMath math="480" /> menit, yaitu pukul 15.00. Sumbu nilai dimulai dari <InlineMath math="400" />.</>}
+  bars="apart"
+  categories={["38", "39", "40", "41", "42"]}
+  series={[
+    { label: "Senin", mark: "bar", values: [38, 39, 40, 41, 42].map((t) => 40 + 10 * t + 45) },
+    { label: "Selasa sampai Kamis", mark: "bar", values: [38, 39, 40, 41, 42].map((t) => 15 + 10 * t + 45) },
+    { label: "Pukul 15.00", mark: "line", values: [480, 480, 480, 480, 480] },
+  ]}
+  valueRange={{ min: 400, max: 520 }}
+  valueLabel="Menit sesudah pukul 07.00"
+/>
+
 # Pemeriksaan
 
 Dengan JP <InlineMath math="39" /> menit, hari Senin selesai <InlineMath math="40+390+45=475" /> menit setelah pukul 07.00, yaitu pukul 14.55. Dengan JP <InlineMath math="40" /> menit, hari Senin selesai <InlineMath math="40+400+45=485" /> menit setelah pukul 07.00, yaitu pukul 15.05, **terlambat <InlineMath math="5" /> menit**. Hari Selasa sampai Kamis dengan JP <InlineMath math="39" /> menit selesai pukul 14.30, jadi aman.

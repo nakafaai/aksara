@@ -14,6 +14,19 @@ Misalkan laba yang dibagi <InlineMath math="D" /> juta. Ayu menerima gaji <Inlin
 D &= 144
 \end{aligned}" />
 
+Grafik berikut menggambar kedua jumlah itu untuk beberapa nilai laba yang dibagi. **Garis Bima lebih curam**, jadi ia mulai di bawah Ayu dan menyusulnya tepat ketika laba yang dibagi <InlineMath math="144" /> juta.
+
+<Chart
+  title={<>Uang Ayu dan bagian Bima menurut laba yang dibagi</>}
+  description={<>Uang Ayu adalah <InlineMath math="12+\tfrac{5}{24}D" /> juta rupiah dan bagian Bima <InlineMath math="\tfrac{7}{24}D" /> juta rupiah. Untuk <InlineMath math="D=96" />, keduanya <InlineMath math="32" /> dan <InlineMath math="28" />. Untuk <InlineMath math="D=144" />, keduanya sama-sama <InlineMath math="42" />. Untuk <InlineMath math="D=192" />, keduanya <InlineMath math="52" /> dan <InlineMath math="56" />.</>}
+  categories={["96", "120", "144", "168", "192"]}
+  series={[
+    { label: "Uang Ayu dengan gaji", mark: "line", values: [96, 120, 144, 168, 192].map((d) => 12 + (5 * d) / 24) },
+    { label: "Bagian Bima", mark: "line", values: [96, 120, 144, 168, 192].map((d) => (7 * d) / 24) },
+  ]}
+  valueLabel="Uang (juta rupiah)"
+/>
+
 # Kembali ke laba bersih
 
 Laba yang dibagi adalah <InlineMath math="90\%" /> dari sisa laba setelah gaji. Untuk membalik potongan <InlineMath math="10\%" />, **bagi dengan <InlineMath math="0{,}9" />, jangan kalikan dengan <InlineMath math="1{,}1" />**. Setelah itu gaji ditambahkan kembali.
