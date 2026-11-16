@@ -75,7 +75,33 @@ export const kssmForm4PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-physics-gravitation-gravitation",
+        level: "lesson",
+        materialKeys: ["lesson.physics.gravitation"],
+        order: 10,
+      }),
+    ],
     key: "form-4-physics-gravitation",
+    materialCard: {
+      de: {
+        description: "Berechne Schwerkraft, Bahnen und Fluchtgeschwindigkeit.",
+        title: "Gravitation",
+      },
+      en: {
+        description: "Calculate gravity, satellite orbits and escape velocity.",
+        title: "Gravitation",
+      },
+      id: {
+        description: "Hitung gravitasi, orbit satelit, dan kecepatan lepas.",
+        title: "Gravitasi",
+      },
+      ms: {
+        description: "Kira daya graviti, orbit satelit dan halaju lepas.",
+        title: "Kegravitian",
+      },
+    },
     order: 30,
     translations: {
       de: { routeSlug: "gravitation", title: "Gravitation" },
@@ -85,7 +111,33 @@ export const kssmForm4PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-physics-heat-heat",
+        level: "lesson",
+        materialKeys: ["lesson.physics.heat"],
+        order: 10,
+      }),
+    ],
     key: "form-4-physics-heat",
+    materialCard: {
+      de: {
+        description: "Berechne Wärme, latente Wärme und Gasgesetze.",
+        title: "Wärme",
+      },
+      en: {
+        description: "Calculate heat, latent heat and the gas laws.",
+        title: "Heat",
+      },
+      id: {
+        description: "Hitung kalor, kalor laten, dan hukum gas.",
+        title: "Kalor",
+      },
+      ms: {
+        description: "Kira haba, haba pendam dan hukum gas.",
+        title: "Haba",
+      },
+    },
     order: 40,
     translations: {
       de: { routeSlug: "waerme", title: "Wärme" },

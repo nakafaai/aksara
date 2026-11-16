@@ -1,0 +1,308 @@
+export const metadata = {
+  title: "Gravitation Notes for Form Four Physics",
+  description:
+    "Form 4 Physics Chapter 3: apply Newton's law of universal gravitation, find g, use Kepler's laws, and calculate satellite and escape speeds, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Gravitation",
+};
+
+## The Law of Universal Gravitation
+
+**Newton's law of universal gravitation** says that the gravitational force between two bodies is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centres:
+
+<BlockMath math="F = \frac{G m_1 m_2}{r^2}" />
+
+Here <InlineMath math="G = 6.67 \times 10^{-11}\text{ N m}^2\text{ kg}^{-2}" /> is the **universal gravitational constant**, <InlineMath math="m_1" /> and <InlineMath math="m_2" /> are the masses in kilograms, and <InlineMath math="r" /> is the distance between the centres in metres. The same force pulls an apple to the Earth and keeps the Moon in orbit. In these notes, you change the distance, climb from the Earth's centre out into space, and compare real satellite orbits.
+
+The law applies to **every** body with mass, including you and your book. The force between two small bodies is extremely weak because <InlineMath math="G" /> is so small. Gravity only becomes noticeable when at least one body is huge, like a planet or a star.
+
+## How Distance Changes the Gravitational Force
+
+The <InlineMath math="r^2" /> in the denominator means the force drops quickly as the distance grows. If the distance **doubles**, the force becomes **a quarter**. Move the distance slider and watch the inverse-square curve.
+
+<MathVisual
+  title={<>Gravitational Force against Distance</>}
+  description={
+    <>
+      The gravitational force in units of <InlineMath math="F_0" />, the force
+      at distance <InlineMath math="r = 1" />. The curve is{" "}
+      <InlineMath math="F = F_0 / r^2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4.2 }, y: { min: 0, max: 1.3 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "r", min: 1, max: 4, value: 2, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "force", kind: "function", appearance: "primary", formula: "1/x^2", domain: { min: 0.9, max: 4.2 } },
+      { id: "now", kind: "marker", x: "r", y: "1/r^2", appearance: "warning" },
+      { id: "drop", kind: "path", appearance: "reference", points: [{ x: "r", y: "0" }, { x: "r", y: "1/r^2" }] },
+    ],
+    readouts: [
+      { key: "ratio", formula: "1/r^2" },
+    ],
+  }}
+  labels={{
+    r: <>Distance <InlineMath math="r" /></>,
+    ratio: <><InlineMath math="F / F_0" /></>,
+  }}
+/>
+
+### Example Force between the Earth and the Moon
+
+The mass of the Earth is <InlineMath math="5.97 \times 10^{24}\text{ kg}" />, the mass of the Moon is <InlineMath math="7.35 \times 10^{22}\text{ kg}" />, and the distance between their centres is <InlineMath math="3.84 \times 10^{8}\text{ m}" />. Find **the gravitational force between the Earth and the Moon**.
+
+<BlockMath math="F = \frac{(6.67 \times 10^{-11})(5.97 \times 10^{24})(7.35 \times 10^{22})}{(3.84 \times 10^{8})^2} = 1.98 \times 10^{20}\text{ N}" />
+
+Check the order of magnitude: the numerator is about <InlineMath math="2.9 \times 10^{37}" /> and the denominator about <InlineMath math="1.5 \times 10^{17}" />, so the result is around <InlineMath math="2 \times 10^{20}" />. The force is the same size on the Earth and on the Moon, as Newton's third law says.
+
+### Example Tripling the Distance
+
+Two bodies attract each other with a force of <InlineMath math="36\text{ N}" />. The distance between their centres is made **three times as large**. The new force is:
+
+<BlockMath math="F' = \frac{36}{3^2} = 4\text{ N}" />
+
+Check with the model: at <InlineMath math="r = 3" />, the ratio <InlineMath math="F / F_0" /> is <InlineMath math="1/9" />, and <InlineMath math="36 \div 9 = 4" />.
+
+## Gravitational Acceleration at and above the Surface
+
+The gravitational force on a body of mass <InlineMath math="m" /> is its weight, <InlineMath math="mg" />. Set it equal to the law of gravitation, and <InlineMath math="m" /> cancels:
+
+<BlockMath math="g = \frac{GM}{r^2}" />
+
+So **gravitational acceleration doesn't depend on the mass of the falling body**. At the Earth's surface, <InlineMath math="r = R = 6.37 \times 10^{6}\text{ m}" /> and <InlineMath math="g = 9.81\text{ m s}^{-2}" />. This model shows how <InlineMath math="g" /> changes from the Earth's centre to far out in space, treating the Earth as a sphere of uniform density. Inside the Earth, <InlineMath math="g" /> rises linearly, and outside, <InlineMath math="g" /> falls with the inverse square.
+
+<MathVisual
+  title={<>Gravitational Acceleration from the Earth's Centre</>}
+  description={
+    <>
+      The horizontal axis is the distance from the Earth's centre in Earth
+      radii <InlineMath math="R" />. The vertical axis is <InlineMath math="g" />{" "}
+      in <InlineMath math="\text{m s}^{-2}" />. The peak of{" "}
+      <InlineMath math="9.81\text{ m s}^{-2}" /> sits at the surface.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0.2, max: 6, value: 2, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "inside", kind: "function", appearance: "secondary", formula: "9.81x", domain: { min: 0, max: 1 } },
+      { id: "outside", kind: "function", appearance: "primary", formula: "9.81/x^2", domain: { min: 1, max: 6 } },
+      { id: "surface", kind: "point", appearance: "answer", at: { x: 1, y: 9.81 } },
+      { id: "now", kind: "marker", x: "h", y: "9.81min(h, 1/h^2)", appearance: "warning" },
+    ],
+    labels: [
+      { key: "surface", objectId: "surface", at: { x: 1, y: 9.81 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "gravity", formula: "9.81min(h, 1/h^2)" },
+    ],
+  }}
+  labels={{
+    h: <>Distance from the centre in <InlineMath math="R" /></>,
+    surface: <>Earth's surface</>,
+    gravity: <><InlineMath math="g" /> in <InlineMath math="\text{m s}^{-2}" /></>,
+  }}
+/>
+
+You can test for yourself that <InlineMath math="g" /> doesn't depend on mass. In a vacuum tube, a coin and a feather fall together. In air, air resistance slows the feather down.
+
+<FeatherCoinVacuumLab
+  title={<>A Coin and a Feather in a Tube</>}
+  description={
+    <>
+      Pick air or vacuum, then release both at the same moment. Compare how
+      long each one takes to fall.
+    </>
+  }
+  labels={{
+    airs: { air: <>Air</>, vacuum: <>Vacuum</> },
+    chooseAir: "Pick what fills the tube",
+    coinTime: <>Fall time of the coin</>,
+    drop: <>Drop height</>,
+    featherTime: <>Fall time of the feather</>,
+    viewLabel: "A coin and a feather falling in a glass tube",
+  }}
+/>
+
+The International Space Station orbits about <InlineMath math="400\text{ km}" /> above the surface, at <InlineMath math="r = 6.77 \times 10^{6}\text{ m}" />:
+
+<BlockMath math="g = \frac{3.98 \times 10^{14}}{(6.77 \times 10^{6})^2} = 8.69\text{ m s}^{-2}" />
+
+The astronauts on board still feel almost <InlineMath math="90\%" /> of surface gravity. They float because they and the station are both in free fall around the Earth, not because gravity has disappeared.
+
+## Satellites and the Laws of Kepler
+
+A satellite stays in a circular orbit because gravity acts as the **centripetal force**. Set <InlineMath math="\dfrac{GMm}{r^2}" /> equal to <InlineMath math="\dfrac{mv^2}{r}" />, and the satellite's linear speed is:
+
+<BlockMath math="v = \sqrt{\frac{GM}{r}}" />
+
+A satellite further out moves more slowly and takes longer for each orbit. Pick the three real satellites in this model and compare their radius, speed, period and acceleration.
+
+<SatelliteOrbitCircularLab
+  title={<>Three Real Satellite Orbits</>}
+  description={
+    <>
+      The space station, a GPS satellite and a geostationary satellite are drawn
+      to scale. Pick an orbit and read its values.
+    </>
+  }
+  labels={{
+    acceleration: <>Centripetal acceleration</>,
+    chooseOrbit: "Pick an orbit",
+    orbits: {
+      station: <>International Space Station</>,
+      gps: <>GPS satellite</>,
+      geostationary: <>Geostationary satellite</>,
+    },
+    period: <>Orbital period</>,
+    radius: <>Orbital radius</>,
+    speed: <>Linear speed</>,
+    viewLabel: "Three satellites orbiting the Earth to scale",
+  }}
+/>
+
+**Kepler's third law** says that the square of the orbital period is directly proportional to the cube of the orbital radius, <InlineMath math="T^2 \propto r^3" />. It follows from the satellite speed: <InlineMath math="T = 2\pi r / v" />, so <InlineMath math="T^2 = \dfrac{4\pi^2}{GM} r^3" />. Real planet data obey this law. With distances in astronomical units and periods in Earth years, <InlineMath math="T = r^{3/2}" />.
+
+<ScatterDiagram
+  title={<>Orbital Periods of Five Planets</>}
+  description={
+    <>
+      Mean distance from the Sun in astronomical units against orbital period
+      in years, from Mercury (<InlineMath math="0.387" />,{" "}
+      <InlineMath math="0.241" />) to Jupiter (<InlineMath math="5.203" />,{" "}
+      <InlineMath math="11.86" />).
+    </>
+  }
+  xAxisLabel="Distance from the Sun (AU)"
+  yAxisLabel="Orbital period (years)"
+  datasets={[
+    {
+      name: "Planets",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.387, y: 0.241 },
+        { x: 0.723, y: 0.615 },
+        { x: 1, y: 1 },
+        { x: 1.524, y: 1.881 },
+        { x: 5.203, y: 11.86 },
+      ],
+    },
+  ]}
+/>
+
+Kepler's first law says that every planet orbits the Sun in an ellipse with the Sun at one focus. His second law says that the line from the Sun to a planet sweeps out equal areas in equal times, so a planet moves faster when it's close to the Sun.
+
+Now put the law to work. A **geostationary** satellite orbits once every <InlineMath math="24" /> hours, matching the Earth's rotation, so it seems fixed in the sky. Find its orbital radius.
+
+<MathContainer>
+<BlockMath math="r^3 = \frac{GMT^2}{4\pi^2} = \frac{(3.98 \times 10^{14})(86{,}400)^2}{4\pi^2}" />
+<BlockMath math="r = 4.22 \times 10^{7}\text{ m}" />
+</MathContainer>
+
+That's about <InlineMath math="36{,}000\text{ km}" /> above the surface. Check it with the orbit model: pick the geostationary satellite and read the same radius.
+
+## Escape Velocity
+
+**Escape velocity** is the minimum velocity a body at a planet's surface needs to escape the planet's gravity without any further thrust:
+
+<BlockMath math="v_{\text{esc}} = \sqrt{\frac{2GM}{r}}" />
+
+Escape velocity is <InlineMath math="\sqrt{2}" /> times the orbital speed at the same distance. At the Earth's surface, the orbital speed is <InlineMath math="7.91\text{ km s}^{-1}" /> and the escape velocity is <InlineMath math="11.2\text{ km s}^{-1}" />. Move the distance slider and compare the two curves.
+
+<MathVisual
+  title={<>Orbital Speed and Escape Velocity</>}
+  description={
+    <>
+      The horizontal axis is the distance from the Earth's centre in Earth
+      radii <InlineMath math="R" />. The vertical axis is the speed in{" "}
+      <InlineMath math="\text{km s}^{-1}" />. The upper curve is the escape
+      velocity, the lower curve the orbital speed.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 7, value: 1, step: 0.1, label: "n" },
+    ],
+    objects: [
+      { id: "orbit", kind: "function", appearance: "primary", formula: "7.906/sqrt(x)", domain: { min: 1, max: 7 } },
+      { id: "escape", kind: "function", appearance: "warning", formula: "7.906sqrt(2)/sqrt(x)", domain: { min: 1, max: 7 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "n", y: "0" }, { x: "n", y: "7.906sqrt(2)/sqrt(n)" }] },
+    ],
+    readouts: [
+      { key: "orbit-speed", formula: "7.906/sqrt(n)" },
+      { key: "escape-speed", formula: "7.906sqrt(2)/sqrt(n)" },
+    ],
+  }}
+  labels={{
+    n: <>Distance from the centre in <InlineMath math="R" /></>,
+    "orbit-speed": <>Orbital speed in <InlineMath math="\text{km s}^{-1}" /></>,
+    "escape-speed": <>Escape velocity in <InlineMath math="\text{km s}^{-1}" /></>,
+  }}
+/>
+
+A planet with a small mass has a small escape velocity. That's why the Moon has almost no atmosphere: hot gas molecules easily reach the Moon's escape velocity and drift off into space.
+
+## Common Mistakes about Gravitation
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Doubling the distance halves the force. | The force is inversely proportional to <InlineMath math="r^2" />, so it becomes a quarter. | Square the distance factor. |
+| <InlineMath math="r" /> is the height above the surface. | <InlineMath math="r" /> is measured from the Earth's centre, so <InlineMath math="r = R + h" />. | Add the Earth's radius to the height. |
+| Astronauts float because there's no gravity in orbit. | <InlineMath math="g" /> at the space station's orbit is still <InlineMath math="8.69\text{ m s}^{-2}" />. They're in free fall. | Calculate <InlineMath math="g" /> at the orbital distance. |
+| A heavier satellite needs a higher orbital speed. | The satellite's mass cancels in <InlineMath math="v = \sqrt{GM/r}" />. | Check whether <InlineMath math="m" /> appears in the final formula. |
+
+The second mistake is the most common one in calculation questions. **Always measure from the centre**, not from the surface.
+
+## Practice on Gravitation
+
+These questions start with a simple ratio and finish with a satellite. **Write <InlineMath math="r" /> in metres** before you substitute.
+
+1. The gravitational force between two bodies is <InlineMath math="F" />. The distance between their centres is halved. What is the new force?
+
+2. The mass of Mars is <InlineMath math="6.42 \times 10^{23}\text{ kg}" /> and its radius is <InlineMath math="3.39 \times 10^{6}\text{ m}" />. Calculate the gravitational acceleration at the surface of Mars.
+
+3. The mass of the Moon is <InlineMath math="7.35 \times 10^{22}\text{ kg}" /> and its radius is <InlineMath math="1.74 \times 10^{6}\text{ m}" />. Calculate the escape velocity from the Moon's surface.
+
+4. A satellite orbits the Earth at a distance of <InlineMath math="2R" /> from the Earth's centre. Calculate its linear speed and its orbital period in hours.
+
+### Solutions
+
+**Solution 1**: The force is inversely proportional to <InlineMath math="r^2" />. If <InlineMath math="r" /> becomes <InlineMath math="\tfrac{1}{2}r" />:
+
+<BlockMath math="F' = \frac{F}{(1/2)^2} = 4F" />
+
+Halving the distance makes the force **four times as large**.
+
+**Solution 2**: Use <InlineMath math="g = GM/R^2" />:
+
+<BlockMath math="g = \frac{(6.67 \times 10^{-11})(6.42 \times 10^{23})}{(3.39 \times 10^{6})^2} = 3.73\text{ m s}^{-2}" />
+
+Check: that's about <InlineMath math="38\%" /> of <InlineMath math="9.81\text{ m s}^{-2}" />, reasonable for a planet much smaller than the Earth.
+
+**Solution 3**: Use the escape velocity formula:
+
+<BlockMath math="v = \sqrt{\frac{2(6.67 \times 10^{-11})(7.35 \times 10^{22})}{1.74 \times 10^{6}}} = 2.37 \times 10^{3}\text{ m s}^{-1}" />
+
+The Moon's escape velocity is <InlineMath math="2.37\text{ km s}^{-1}" />, about a fifth of the Earth's.
+
+**Solution 4**: At <InlineMath math="r = 2R" />, the orbital speed is the surface value divided by <InlineMath math="\sqrt{2}" />:
+
+<MathContainer>
+<BlockMath math="v = \frac{7.91}{\sqrt{2}} = 5.59\text{ km s}^{-1}" />
+<BlockMath math="T = \frac{2\pi r}{v} = \frac{2\pi (1.274 \times 10^{7})}{5{,}590} = 1.43 \times 10^{4}\text{ s} = 3.98\text{ hours}" />
+</MathContainer>
+
+Check with the speed model: at <InlineMath math="n = 2" />, you read an orbital speed of <InlineMath math="5.59\text{ km s}^{-1}" />.
