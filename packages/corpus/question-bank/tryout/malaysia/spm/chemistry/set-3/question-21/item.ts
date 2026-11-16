@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "Manganese is reduced from +7 to +2, and hydrochloric acid is the reducing agent" },
-        { correct: false, label: "Manganese is oxidised from +7 to +2, and potassium manganate(VII) is the reducing agent" },
-        { correct: false, label: "Chlorine is reduced from −1 to 0, and hydrochloric acid is the oxidising agent" },
-        { correct: false, label: "Potassium is oxidised, because it moves from potassium manganate(VII) to potassium chloride" },
+        { correct: true, label: "Manganese is reduced from +7 to +2, and 1.2 dm³ of chlorine forms" },
+        { correct: false, label: "Manganese is oxidised from +7 to +2, and 1.2 dm³ of chlorine forms" },
+        { correct: false, label: "Manganese is reduced from +7 to +2, and 0.48 dm³ of chlorine forms" },
+        { correct: false, label: "Manganese is reduced from +7 to +2, and 2.4 dm³ of chlorine forms" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "Mangan diturunkan daripada +7 kepada +2, dan asid hidroklorik ialah agen penurunan" },
-        { correct: false, label: "Mangan dioksidakan daripada +7 kepada +2, dan kalium manganat(VII) ialah agen penurunan" },
-        { correct: false, label: "Klorin diturunkan daripada −1 kepada 0, dan asid hidroklorik ialah agen pengoksidaan" },
-        { correct: false, label: "Kalium dioksidakan, kerana ia berpindah daripada kalium manganat(VII) kepada kalium klorida" },
+        { correct: true, label: "Mangan diturunkan daripada +7 kepada +2, dan 1.2 dm³ klorin terbentuk" },
+        { correct: false, label: "Mangan dioksidakan daripada +7 kepada +2, dan 1.2 dm³ klorin terbentuk" },
+        { correct: false, label: "Mangan diturunkan daripada +7 kepada +2, dan 0.48 dm³ klorin terbentuk" },
+        { correct: false, label: "Mangan diturunkan daripada +7 kepada +2, dan 2.4 dm³ klorin terbentuk" },
       ],
     },
   },

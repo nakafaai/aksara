@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "5.30 g, 0.050 mol dm⁻³" },
-        { correct: false, label: "5.30 g, 0.80 mol dm⁻³" },
-        { correct: false, label: "21.2 g, 0.050 mol dm⁻³" },
-        { correct: false, label: "2.65 g, 0.025 mol dm⁻³" },
+        { correct: true, label: "5.30 g, 25.0 cm³" },
+        { correct: false, label: "5.30 g, 12.5 cm³" },
+        { correct: false, label: "21.2 g, 25.0 cm³" },
+        { correct: false, label: "2.65 g, 12.5 cm³" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "5.30 g, 0.050 mol dm⁻³" },
-        { correct: false, label: "5.30 g, 0.80 mol dm⁻³" },
-        { correct: false, label: "21.2 g, 0.050 mol dm⁻³" },
-        { correct: false, label: "2.65 g, 0.025 mol dm⁻³" },
+        { correct: true, label: "5.30 g, 25.0 cm³" },
+        { correct: false, label: "5.30 g, 12.5 cm³" },
+        { correct: false, label: "21.2 g, 25.0 cm³" },
+        { correct: false, label: "2.65 g, 12.5 cm³" },
       ],
     },
   },
