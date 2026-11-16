@@ -1,0 +1,26 @@
+# Hitung dosis menurut massa tubuh dulu, lalu ubah miligram menjadi mililiter
+
+Dosisnya bergantung pada massa anak: <InlineMath math="15\text{ mg}" /> untuk tiap <InlineMath math="18\text{ kg}" />. **Kekuatan sirop mengubah miligram menjadi mililiter**: <InlineMath math="120\text{ mg}" /> dalam tiap <InlineMath math="5{,}0\text{ mL}" />. Batas harian adalah empat dosis, bukan satu.
+
+<Chart
+  title={<>Sirop untuk anak</>}
+  description={<>Satu dosis <InlineMath math="11{,}3\text{ mL}" /> dan empat dosis, batas harian, <InlineMath math="45{,}0\text{ mL}" />.</>}
+  bars="apart"
+  categories={["Satu dosis", "Maksimum sehari"]}
+  series={[
+    { label: "Volume sirop", mark: "bar", values: [11.25, 45] },
+  ]}
+  valueLabel="Volume sirop (mL)"
+/>
+
+<BlockMath math="\begin{aligned}
+\text{dosis}&=15\times18=270\text{ mg}\\
+V&=\tfrac{270}{120}\times5{,}0=11{,}25\text{ mL}\approx11{,}3\text{ mL}\\
+\text{sehari}&=4\times11{,}25=45{,}0\text{ mL}
+\end{aligned}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="11{,}3\text{ mL}" /> sehari hanya mengizinkan satu dosis, padahal empat diizinkan.
+- <InlineMath math="2{,}25\text{ mL}" /> membagi miligram dengan miligram dan lupa bahwa tiap <InlineMath math="120\text{ mg}" /> ada dalam <InlineMath math="5{,}0\text{ mL}" />.
+- <InlineMath math="67{,}5\text{ mL}" /> memberi enam dosis sehari. **Resepnya mengizinkan paling banyak empat**.

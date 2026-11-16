@@ -1,0 +1,26 @@
+# Cutting a cube a million times along each edge multiplies its surface a million times
+
+Each edge holds a million nanocubes, so **the count goes as the cube of that, <InlineMath math="10^{18}" />**. Each nanocube is tiny, but together they expose a million times the original <InlineMath math="6\text{ cm}^2" />, about the floor area of a large house. That huge surface is why nanogold works as a catalyst.
+
+<Chart
+  title={<>Surface area before and after cutting</>}
+  description={<>The original cube has <InlineMath math="6\times10^{-4}\text{ m}^2" /> of surface, and the nanocubes together <InlineMath math="600\text{ m}^2" />.</>}
+  bars="apart"
+  categories={["One 1 cm cube", "All the nanocubes"]}
+  series={[
+    { label: "Surface area", mark: "bar", values: [0.0006, 600] },
+  ]}
+  valueLabel="Surface area (m²)"
+/>
+
+<BlockMath math="\begin{aligned}
+\tfrac{1.0\times10^{-2}\text{ m}}{1.0\times10^{-8}\text{ m}}&=10^{6}\ \text{per edge}\Rightarrow(10^{6})^3=10^{18}\ \text{cubes}\\
+A_{\text{one}}&=6\times(10^{-8})^2=6\times10^{-16}\text{ m}^2\\
+A_{\text{total}}&=10^{18}\times6\times10^{-16}=600\text{ m}^2
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="6.0\text{ m}^2" /> slips a factor of a hundred, the step between square centimetres and square metres.
+- <InlineMath math="10^{6}" /> counts nanocubes along one edge only. **A cube divides in three directions**.
+- <InlineMath math="6.0\times10^{-4}\text{ m}^2" /> is the original surface. Cutting exposes new faces, so the total grows.
