@@ -28,4 +28,15 @@ Mit zwei Tagen Wartezeit kommt die Bestellung vom Ende von Tag <InlineMath math=
 
 Die zweite Bestellung geht weiterhin am Ende von Tag <InlineMath math="8" /> raus und kommt an Tag <InlineMath math="11" /> an. Der Bestand am Ende von Tag <InlineMath math="9" /> wird <InlineMath math="55-35=20" /> Säcke, während Tag <InlineMath math="10" /> nach <InlineMath math="50" /> Säcken verlangt. **Es entgehen immer noch <InlineMath math="30" /> Säcke**, die vierte Aussage ist also falsch.
 
+Das Diagramm vergleicht die entgangenen Verkäufe insgesamt bei den gegebenen Regeln und bei jeder Änderung. **Keine Änderung lässt die entgangenen Verkäufe wachsen**, und zwei Tage Wartezeit beseitigen sie sogar ganz.
+
+<Chart
+  title={<>Entgangene Verkäufe insgesamt bei den gegebenen Regeln und jeder Änderung</>}
+  description={<>Bei den gegebenen Regeln entgehen insgesamt <InlineMath math="50" /> Säcke. Bei Bestellungen von <InlineMath math="100" /> Säcken sind es <InlineMath math="30" /> Säcke. Bei zwei Tagen Wartezeit sind es <InlineMath math="0" />. Bei einer Anfrage von <InlineMath math="35" /> Säcken an Tag <InlineMath math="9" /> sind es <InlineMath math="40" /> Säcke.</>}
+  categories={["Gegebene Regeln", "Bestellung 100 Säcke", "Zwei Tage Wartezeit", "Anfrage an Tag 9 geändert"]}
+  bars="apart"
+  series={[{ label: "Entgangene Verkäufe insgesamt", mark: "bar", values: [10 + 40, 10 + 20, 0, 10 + 30] }]}
+  valueLabel="Säcke"
+/>
+
 Die erste Aussage ist also wahr, die zweite falsch, die dritte falsch und die vierte falsch.

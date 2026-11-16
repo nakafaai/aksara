@@ -10,6 +10,20 @@ The volume weight is the product of the box dimensions divided by <InlineMath ma
 \text{combined box} &: \frac{50\cdot40\cdot40}{6{,}000}=\frac{80{,}000}{6{,}000}=13\tfrac{1}{3}\text{ kg}
 \end{aligned}" />
 
+The chart below compares both weights for each box. **Only the plate box has the larger actual weight**, so the lamp box and the combined box are billed on their volume weight.
+
+<Chart
+  title={<>Actual weight and volume weight of each box</>}
+  description={<>Lamp box: actual weight <InlineMath math="2.8\text{ kg}" />, volume weight <InlineMath math="10\text{ kg}" />. Plate box: actual weight <InlineMath math="5.2\text{ kg}" />, volume weight <InlineMath math="2\text{ kg}" />. Combined box: actual weight <InlineMath math="8.3\text{ kg}" />, volume weight <InlineMath math="13\tfrac{1}{3}\text{ kg}" />.</>}
+  categories={["Lamp box", "Plate box", "Combined box"]}
+  bars="apart"
+  series={[
+    { label: "Actual weight", mark: "bar", values: [2.8, 5.2, 8.3] },
+    { label: "Volume weight", mark: "bar", values: [(50 * 40 * 30) / 6000, (30 * 20 * 20) / 6000, (50 * 40 * 40) / 6000] },
+  ]}
+  valueLabel="Weight (kg)"
+/>
+
 # The plan with two separate parcels
 
 For the lamp, the starting weight is <InlineMath math="10\text{ kg}" /> because the volume weight is larger than <InlineMath math="2.8\text{ kg}" />. For the plates, the starting weight is <InlineMath math="5.2\text{ kg}" />. Its excess above <InlineMath math="5\text{ kg}" /> is only <InlineMath math="0.2\text{ kg}" />, so **that excess is dropped** and the billed weight is <InlineMath math="5\text{ kg}" />. Each parcel pays its own admin fee.

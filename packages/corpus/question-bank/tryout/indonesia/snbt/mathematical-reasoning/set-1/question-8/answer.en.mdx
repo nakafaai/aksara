@@ -27,6 +27,36 @@ The starting weight is the larger of the actual weight and <InlineMath math="11.
 
 Put the two cases together: the actual weight can be anything, as long as it's at most <InlineMath math="11.3\text{ kg}" />.
 
+The figure below puts both cases together. The horizontal axis is the actual weight, the vertical axis is the starting weight, and a billed weight of <InlineMath math="11\text{ kg}" /> only happens inside the band between <InlineMath math="10.3" /> and <InlineMath math="11.3" />. **The starting-weight graph stays inside the band up to an actual weight of <InlineMath math="11.3\text{ kg}" />**, then leaves through the top.
+
+<MathVisual
+  title={<>Starting weight by actual weight for the <InlineMath math="56\times40\times30\text{ cm}" /> box</>}
+  description={<>The starting weight is <InlineMath math="11.2\text{ kg}" /> as long as the actual weight is at most <InlineMath math="11.2\text{ kg}" />, and after that it equals the actual weight. Two flat lines at <InlineMath math="10.3" /> and <InlineMath math="11.3\text{ kg}" /> bound the starting weights billed at <InlineMath math="11\text{ kg}" />. The graph lies between them for every actual weight up to <InlineMath math="11.3\text{ kg}" />, including the actual weights below <InlineMath math="9\text{ kg}" /> that aren't drawn.</>}
+  labels={{
+    vol: <InlineMath math="11.2" />,
+    upper: <InlineMath math="11.3" />,
+    lower: <InlineMath math="10.3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 9, max: 13.5 }, y: { min: 9, max: 13.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "upper", kind: "segment", appearance: "reference", from: { x: 9, y: 11.3 }, to: { x: 13.5, y: 11.3 } },
+      { id: "lower", kind: "segment", appearance: "reference", from: { x: 9, y: 10.3 }, to: { x: 13.5, y: 10.3 } },
+      { id: "inside", kind: "polyline", appearance: "answer", vertices: [{ x: 9, y: 11.2 }, { x: 11.2, y: 11.2 }, { x: 11.3, y: 11.3 }] },
+      { id: "outside", kind: "segment", appearance: "warning", from: { x: 11.3, y: 11.3 }, to: { x: 13.5, y: 13.5 } },
+      { id: "corner", kind: "point", appearance: "primary", at: { x: 11.2, y: 11.2 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 11.3, y: 11.3 } },
+    ],
+    labels: [
+      { key: "vol", objectId: "corner", at: { x: 11.2, y: 11.2 }, placement: "below" },
+      { key: "upper", objectId: "upper", at: { x: 9.5, y: 11.3 }, placement: "above" },
+      { key: "lower", objectId: "lower", at: { x: 9.5, y: 10.3 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Checking the answer
 
 A parcel with an actual weight of <InlineMath math="2\text{ kg}" /> has a starting weight of <InlineMath math="11.2\text{ kg}" />, a billed weight of <InlineMath math="11\text{ kg}" />, and a cost of <InlineMath math="\text{Rp}235{,}000" />. A <InlineMath math="11.3\text{ kg}" /> parcel is also billed at <InlineMath math="11\text{ kg}" />. A <InlineMath math="11.4\text{ kg}" /> parcel is already billed at <InlineMath math="12\text{ kg}" /> and **costs more**, namely <InlineMath math="\text{Rp}255{,}000" />.

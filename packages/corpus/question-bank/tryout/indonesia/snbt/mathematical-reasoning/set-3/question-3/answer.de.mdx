@@ -24,6 +24,20 @@ Ein Teil, der als <InlineMath math="k" /> Stunden zählt, kostet <InlineMath mat
 
 Der Samstagsteil bleibt unter der Grenze, während der Sonntagsteil (<InlineMath math="98{.}000" /> ohne Grenze) und der Montagsteil (<InlineMath math="38{.}000" /> ohne Grenze) beide auf <InlineMath math="\text{Rp}30{.}000" /> gekappt werden.
 
+Das Diagramm vergleicht die Gebühr jedes Abschnitts vor und nach der Obergrenze von <InlineMath math="\text{Rp}30{.}000" />. **Nur der Samstagsabschnitt wird nicht gekürzt**, während Sonntag und Montag beide auf <InlineMath math="\text{Rp}30{.}000" /> fallen.
+
+<Chart
+  title={<>Gebühr jedes Parkabschnitts ohne und mit Obergrenze</>}
+  description={<>Der Samstagsabschnitt zählt <InlineMath math="5" /> Stunden und kostet mit oder ohne Obergrenze <InlineMath math="\text{Rp}22{.}000" />. Der Sonntagsabschnitt zählt <InlineMath math="24" /> Stunden: ohne Obergrenze <InlineMath math="\text{Rp}98{.}000" />, mit ihr <InlineMath math="\text{Rp}30{.}000" />. Der Montagsabschnitt zählt <InlineMath math="9" /> Stunden: ohne Obergrenze <InlineMath math="\text{Rp}38{.}000" />, mit ihr <InlineMath math="\text{Rp}30{.}000" />.</>}
+  categories={["Samstag", "Sonntag", "Montag"]}
+  bars="apart"
+  series={[
+    { label: "Ohne Obergrenze", mark: "bar", values: [6000 + 4000 * 4, 6000 + 4000 * 23, 6000 + 4000 * 8] },
+    { label: "Mit Obergrenze", mark: "bar", values: [Math.min(6000 + 4000 * 4, 30000), Math.min(6000 + 4000 * 23, 30000), Math.min(6000 + 4000 * 8, 30000)] },
+  ]}
+  valueLabel="Gebühr (Rupiah)"
+/>
+
 # Übernachtungsgebühren und Summe
 
 Das Auto steht <InlineMath math="2" />-mal um 00.00 Uhr im Parkhaus, also betragen die Übernachtungsgebühren <InlineMath math="2\cdot\text{Rp}10{.}000" />. Nach der Übernachtungsregel **wird die Übernachtungsgebühr nicht gekappt**, sie kommt also voll dazu.

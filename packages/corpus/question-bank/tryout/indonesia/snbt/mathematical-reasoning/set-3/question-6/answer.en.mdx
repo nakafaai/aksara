@@ -27,6 +27,20 @@ Now apply the grace-period rule, the fine rate and the fine cap to each row.
 &= 45{,}000\text{ rupiah}
 \end{aligned}" />
 
+The chart below compares days times the rate with the actual fine. **The first book's bar disappears because of the grace period**, the reference book's bar doesn't change, and the second regular book's bar gets cut by the cap.
+
+<Chart
+  title={<>Fine for each of Nia's books before and after the grace period and the cap</>}
+  description={<>The first regular book is <InlineMath math="3" /> days late: days times rate is <InlineMath math="\text{Rp}3{,}000" />, the actual fine is <InlineMath math="\text{Rp}0" />. The reference book is <InlineMath math="10" /> days late: both are <InlineMath math="\text{Rp}25{,}000" />. The second regular book is <InlineMath math="22" /> days late: days times rate is <InlineMath math="\text{Rp}22{,}000" />, the actual fine is <InlineMath math="\text{Rp}20{,}000" />.</>}
+  categories={["First regular book", "Reference book", "Second regular book"]}
+  bars="apart"
+  series={[
+    { label: "Days times rate", mark: "bar", values: [3 * 1000, 10 * 2500, 22 * 1000] },
+    { label: "Actual fine", mark: "bar", values: [0, Math.min(10 * 2500, 40000), Math.min(22 * 1000, 20000)] },
+  ]}
+  valueLabel="Fine (rupiah)"
+/>
+
 # Check the result
 
 Each book has **one rule that decides it**: the first book is decided by the grace period, the reference book by the full count, and the second regular book by the cap. Skip any of those rules and the result changes. Forgetting the cap gives <InlineMath math="47" /> thousand, fining the first book gives <InlineMath math="48" /> thousand, and counting only the days after the grace period gives <InlineMath math="36.5" /> thousand.

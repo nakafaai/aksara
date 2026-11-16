@@ -35,6 +35,20 @@ Check the total fee for leaving at 01.00.
 
 The total is exactly <InlineMath math="\text{Rp}30{,}000" />, which matches Rina's money.
 
+The chart below works out the total fee for several exit times. **The fee jumps as soon as the car passes 00.00**, stays at <InlineMath math="\text{Rp}30{,}000" /> until 01.00, and only then passes Rina's money line.
+
+<Chart
+  title={<>Rina's total parking fee by exit time</>}
+  description={<>Leaving at 22.30 costs <InlineMath math="\text{Rp}6{,}000" />, and leaving at 23.30 costs <InlineMath math="\text{Rp}10{,}000" />. Leaving at 00.30 or 01.00 costs <InlineMath math="\text{Rp}30{,}000" />, including the overnight fee. Leaving at 01.30 or 02.00 costs <InlineMath math="\text{Rp}34{,}000" />. The flat line marks Rina's money, <InlineMath math="\text{Rp}30{,}000" />.</>}
+  bars="apart"
+  categories={["22.30", "23.30", "00.30", "01.00", "01.30", "02.00"]}
+  series={[
+    { label: "Total fee", mark: "bar", values: [6000, 6000 + 4000, 14000 + 10000 + 6000, 14000 + 10000 + 6000, 14000 + 10000 + 6000 + 4000, 14000 + 10000 + 6000 + 4000] },
+    { label: "Rina's money", mark: "line", values: [30000, 30000, 30000, 30000, 30000, 30000] },
+  ]}
+  valueLabel="Fee (rupiah)"
+/>
+
 # Why the other options are wrong
 
 Each other option comes from **skipping one rule**.

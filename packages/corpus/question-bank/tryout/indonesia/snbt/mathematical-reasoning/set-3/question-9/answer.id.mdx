@@ -30,4 +30,17 @@ Kata "selalu" cukup dibantah dengan satu contoh. Bandingkan populasi awal <Inlin
 
 Kedua populasi awal memberi hasil yang sama, karena **kapasitas tabung menghapus perbedaan awalnya**. Pernyataan keempat **salah**.
 
+Grafik berikut mengikuti populasi sesudah setiap panen untuk kedua populasi awal itu. **Kedua garis bertemu di <InlineMath math="760" /> pada <InlineMath math="t=6" />** dan tidak pernah berpisah lagi.
+
+<Chart
+  title={<>Banyak bakteri sesudah setiap panen untuk dua populasi awal</>}
+  description={<>Dengan populasi awal <InlineMath math="40" /> juta sel, banyak bakteri sesudah panen pada <InlineMath math="t=3, 6, 9, 12" /> berturut-turut <InlineMath math="120, 760, 760, 760" /> juta sel. Dengan populasi awal <InlineMath math="100" /> juta sel, berturut-turut <InlineMath math="600, 760, 760, 760" /> juta sel.</>}
+  categories={["0", "3", "6", "9", "12"]}
+  series={[
+    { label: "Populasi awal 40", mark: "line", values: [40, 40 * 8 - 200, 960 - 200, 960 - 200, 960 - 200] },
+    { label: "Populasi awal 100", mark: "line", values: [100, 100 * 8 - 200, 960 - 200, 960 - 200, 960 - 200] },
+  ]}
+  valueLabel="Bakteri (juta sel)"
+/>
+
 Jadi, pernyataan pertama benar, kedua salah, ketiga benar, dan keempat salah.

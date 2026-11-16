@@ -31,6 +31,17 @@ From 08.00 to 15.00 the battery only rises, so a battery with capacity <InlineMa
 C &\ge 14
 \end{aligned}" />
 
+The chart below shows the evening purchase for every capacity from <InlineMath math="6" /> to <InlineMath math="16\text{ kWh}" />. Each extra <InlineMath math="1\text{ kWh}" /> of capacity cuts the purchase by <InlineMath math="1\text{ kWh}" />, and **the bars run out exactly at capacity <InlineMath math="14" />**. A bigger capacity saves nothing more.
+
+<Chart
+  title={<>Energy bought in the evening by battery capacity</>}
+  description={<>For capacities <InlineMath math="C" /> from <InlineMath math="6" /> to <InlineMath math="14\text{ kWh}" />, the evening purchase is <InlineMath math="14-C" />, falling from <InlineMath math="8" /> to <InlineMath math="0\text{ kWh}" />. For <InlineMath math="C=15" /> and <InlineMath math="16" />, it stays at <InlineMath math="0" />. The morning purchase of <InlineMath math="1\text{ kWh}" /> doesn't depend on capacity.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i + 6}`)}
+  series={[{ label: "Evening purchase (kWh)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => Math.max(0, 11 - (Math.min(i + 6, 16) - 3))) }]}
+  valueLabel="Energy (kWh)"
+/>
+
 # Checking two capacities
 
 With <InlineMath math="C=14" />, the battery goes <InlineMath math="1,2,4,7,10,12,14,14,13,12" />. The part above the reserve is exactly <InlineMath math="11\text{ kWh}" />, so nothing is bought in the evening. With <InlineMath math="C=13" />, the level at the end of the afternoon is only <InlineMath math="11\text{ kWh}" /> and the usable part is <InlineMath math="10\text{ kWh}" />, so **there's still a purchase of** <InlineMath math="1\text{ kWh}" /> and the saving is only <InlineMath math="\text{Rp}17{,}500" />.

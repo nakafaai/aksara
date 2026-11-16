@@ -39,6 +39,20 @@ Anak <InlineMath math="39\text{ kg}" /> diizinkan <InlineMath math="390\text{ mg
 
 Anak <InlineMath math="39\text{ kg}" /> tetap aman, sedangkan **anak** <InlineMath math="40\text{ kg}" /> **melewati batas** pada sore hari kedua.
 
+Grafik berikut menggambar jumlah obat sesudah setiap minum untuk kedua dosis itu. Kedua garis **mencapai puncak pada malam kedua**, dan hanya garis dosis <InlineMath math="400\text{ mg}" /> yang menembus batas aman.
+
+<Chart
+  title={<>Jumlah obat sesudah setiap minum selama dua hari</>}
+  description={<>Sesudah minum, jumlah obatnya berturut-turut <InlineMath math="D" />, <InlineMath math="\tfrac{3}{2}D" />, <InlineMath math="\tfrac{7}{4}D" />, <InlineMath math="\tfrac{23}{16}D" />, <InlineMath math="\tfrac{55}{32}D" />, dan <InlineMath math="\tfrac{119}{64}D" />. Untuk <InlineMath math="D=350\text{ mg}" />, puncaknya sekitar <InlineMath math="650{,}8\text{ mg}" />. Untuk <InlineMath math="D=400\text{ mg}" />, puncaknya <InlineMath math="743{,}75\text{ mg}" />. Garis datar menandai batas <InlineMath math="700\text{ mg}" />.</>}
+  categories={["Pagi 1", "Siang 1", "Malam 1", "Pagi 2", "Siang 2", "Malam 2"]}
+  series={[
+    { label: "Dosis 350 mg", mark: "line", values: [1, 3 / 2, 7 / 4, 23 / 16, 55 / 32, 119 / 64].map((k) => k * 350) },
+    { label: "Dosis 400 mg", mark: "line", values: [1, 3 / 2, 7 / 4, 23 / 16, 55 / 32, 119 / 64].map((k) => k * 400) },
+    { label: "Batas aman 700 mg", mark: "line", values: [700, 700, 700, 700, 700, 700] },
+  ]}
+  valueLabel="Jumlah obat (mg)"
+/>
+
 # Jawaban yang sering keliru
 
 - Jawaban <InlineMath math="37" /> muncul jika aturan sendok takar dilupakan, sehingga <InlineMath math="10w\le376{,}5" /> langsung memberi <InlineMath math="w\le37" />. Padahal anak <InlineMath math="38" /> dan <InlineMath math="39\text{ kg}" /> tetap hanya minum <InlineMath math="350\text{ mg}" />.

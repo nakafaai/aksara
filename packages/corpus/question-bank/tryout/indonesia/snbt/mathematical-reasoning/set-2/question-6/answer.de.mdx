@@ -36,6 +36,17 @@ Mit <InlineMath math="390{.}000" /> Rupiah kannst du keine zwei großen Dosen f�
 
 <BlockMath math="\frac{A}{6}\le 9 \quad\Rightarrow\quad A\le 54" />
 
+Das Diagramm berechnet, für welche Wandfläche jede Farbe aus diesem Kauf reicht. **Der Balken für Weiß ist der kürzeste**, also geht Weiß zuerst aus und legt die größte Fläche fest.
+
+<Chart
+  title={<>Wandfläche, für die jede Farbe bei zwei Anstrichen reicht</>}
+  description={<>Die <InlineMath math="9" /> Liter Weiß reichen für <InlineMath math="54\text{ m}^2" />. Die <InlineMath math="6" /> Liter Gelb reichen für <InlineMath math="60\text{ m}^2" />. Die <InlineMath math="4" /> Liter Blau reichen für <InlineMath math="60\text{ m}^2" />.</>}
+  categories={["Weiß 9 Liter", "Gelb 6 Liter", "Blau 4 Liter"]}
+  bars="apart"
+  series={[{ label: "Reicht für (m²)", mark: "bar", values: [6 * (5 + 4 * 1), 10 * (3 * 2), 15 * (4 * 1)] }]}
+  valueLabel="Wandfläche (m²)"
+/>
+
 # Den Einkauf prüfen
 
 Kauf eine große weiße Dose, vier kleine weiße Dosen, drei gelbe und vier blaue Dosen. Das kostet <InlineMath math="990{.}000" /> Rupiah, **also weniger als eine Million**. Für <InlineMath math="A=54" /> brauchst du <InlineMath math="9" /> Liter Weiß, <InlineMath math="5{,}4" /> Liter Gelb und <InlineMath math="3{,}6" /> Liter Blau, und die Dosen fassen <InlineMath math="9" />, <InlineMath math="6" /> und <InlineMath math="4" /> Liter. <InlineMath math="54\text{ m}^2" /> klappen also wirklich, und jede Fläche bis <InlineMath math="45\text{ m}^2" /> ist ohnehin kleiner.

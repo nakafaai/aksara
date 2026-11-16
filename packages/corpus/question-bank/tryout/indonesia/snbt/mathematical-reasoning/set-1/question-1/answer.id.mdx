@@ -19,6 +19,20 @@ Pada setiap jam, hitung dulu selisih energi panel dikurangi energi yang dipakai 
 
 Perhatikan jam pertama. Isi baterai pukul 07.00 sudah tepat <InlineMath math="1\text{ kWh}" />, yaitu sebesar cadangannya, jadi **kekurangan pada jam pertama langsung dibeli dari PLN**. Mulai pukul 10.00-11.00 baterai penuh, sehingga kelebihan sebesar <InlineMath math="10\text{ kWh}" /> pada siang hari terbuang.
 
+Grafik isi baterai berikut memperlihatkan dua hal penting. Garis isi baterai **menempel di garis kapasitas sejak pukul 11.00 sampai 15.00**, jadi kelebihan siang itu terbuang, dan pada pukul 17.00 isinya tinggal <InlineMath math="4\text{ kWh}" />, hanya <InlineMath math="3\text{ kWh}" /> di atas cadangan.
+
+<Chart
+  title={<>Isi baterai pada akhir setiap jam, pukul 08.00 sampai 17.00</>}
+  description={<>Isi baterai pada akhir jam berturut-turut <InlineMath math="1, 2, 4, 6, 6, 6, 6, 6, 5, 4" /> kWh. Garis atas menandai kapasitas <InlineMath math="6\text{ kWh}" /> dan garis bawah menandai cadangan <InlineMath math="1\text{ kWh}" />. Isi baterai mencapai kapasitas pada pukul 11.00 dan bertahan di sana sampai pukul 15.00.</>}
+  categories={["08", "09", "10", "11", "12", "13", "14", "15", "16", "17"]}
+  series={[
+    { label: "Isi baterai akhir jam", mark: "line", values: [1, 2, 4, 6, 6, 6, 6, 6, 5, 4] },
+    { label: "Kapasitas 6 kWh", mark: "line", values: [6, 6, 6, 6, 6, 6, 6, 6, 6, 6] },
+    { label: "Cadangan 1 kWh", mark: "line", values: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+  ]}
+  valueLabel="Energi (kWh)"
+/>
+
 # Kebutuhan pada malam hari
 
 Pukul 17.00 isi baterai <InlineMath math="4\text{ kWh}" />. Dari isi itu, **hanya bagian di atas cadangan yang boleh dipakai**.

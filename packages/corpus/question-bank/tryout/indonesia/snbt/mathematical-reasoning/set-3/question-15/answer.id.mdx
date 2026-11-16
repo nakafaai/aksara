@@ -31,4 +31,19 @@ Dengan <InlineMath math="16" /> anak tangga, <InlineMath math="R=18" />, dan <In
 
 Panjangnya tepat <InlineMath math="420\text{ cm}" />, jadi pernyataan keempat **benar**. Kalau kamu menghitung <InlineMath math="16" /> pijakan, kamu akan mendapat <InlineMath math="448\text{ cm}" /> dan salah menilainya.
 
+Grafik berikut menaruh nilai <InlineMath math="2R+T" /> keempat rancangan di antara batas aturan langkah. **Hanya rancangan pernyataan pertama yang jatuh di bawah pita**, sedangkan rancangan pernyataan ketiga lolos aturan langkah tetapi gagal di aturan tanjakan karena <InlineMath math="R=14{,}4" />.
+
+<Chart
+  title={<>Nilai <InlineMath math="2R+T" /> untuk rancangan pada setiap pernyataan</>}
+  description={<>Rancangan <InlineMath math="18" /> anak tangga dengan <InlineMath math="T=28" /> memberi <InlineMath math="60" />. Rancangan <InlineMath math="19" /> anak tangga dengan <InlineMath math="T=32" /> memberi sekitar <InlineMath math="62{,}3" />. Rancangan <InlineMath math="20" /> anak tangga dengan <InlineMath math="T=34" /> memberi <InlineMath math="62{,}8" />. Rancangan <InlineMath math="16" /> anak tangga dengan <InlineMath math="T=28" /> memberi <InlineMath math="64" />. Dua garis datar menandai batas <InlineMath math="62" /> dan <InlineMath math="66" />.</>}
+  categories={["Pernyataan 1", "Pernyataan 2", "Pernyataan 3", "Pernyataan 4"]}
+  bars="apart"
+  series={[
+    { label: "Nilai 2R + T", mark: "bar", values: [2 * (288 / 18) + 28, 2 * (288 / 19) + 32, 2 * (288 / 20) + 34, 2 * (288 / 16) + 28] },
+    { label: "Batas bawah 62", mark: "line", values: [62, 62, 62, 62] },
+    { label: "Batas atas 66", mark: "line", values: [66, 66, 66, 66] },
+  ]}
+  valueLabel="Panjang langkah (cm)"
+/>
+
 Jadi, pernyataan pertama benar, kedua benar, ketiga salah, dan keempat benar.

@@ -45,6 +45,20 @@ Startet die Bossmission um 12:00 Uhr oder später, bleibt die Energie bis 12:00 
 
 In beiden Fällen hat sie um 12:30 Uhr höchstens <InlineMath math="75" />, die Aussage ist also **wahr**.
 
+Das Diagramm stellt die Ergebnisse von vier Plänen nebeneinander. Der Plan mit der Bossmission um 12.10 Uhr **endet unter der Linie bei <InlineMath math="60" />**, weil Auffüllungen verloren gehen, solange die Energie voll ist, während der Plan mit dem Trank zuletzt <InlineMath math="90" /> erreicht.
+
+<Chart
+  title={<>Nadias Energie um 12.30 Uhr bei mehreren Plänen</>}
+  description={<>Eine Bossmission um 10.00 Uhr ergibt eine Energie von <InlineMath math="60" />. Eine Bossmission um 12.10 Uhr ergibt <InlineMath math="59" />. Eine Bossmission um 10.00 Uhr und dann ein Trank um 12.15 Uhr ergeben <InlineMath math="90" />. Trank und Bossmission um 10.00 Uhr ergeben <InlineMath math="75" />, den größten Wert, wenn der Trank um 10.00 Uhr getrunken wird. Die waagerechte Linie markiert eine Energie von <InlineMath math="60" />.</>}
+  categories={["Boss 10.00", "Boss 12.10", "Boss 10.00, Trank 12.15", "Trank und Boss 10.00"]}
+  bars="apart"
+  series={[
+    { label: "Energie um 12.30 Uhr", mark: "bar", values: [60, 60 + 15 - 20 + 4, 60 + 30, 38 + 30 - 20 + 12 + 15] },
+    { label: "Grenze 60", mark: "line", values: [60, 60, 60, 60] },
+  ]}
+  valueLabel="Energie"
+/>
+
 # Zusammenfassung
 
 Die erste, dritte und vierte Aussage sind wahr. Die zweite ist falsch, weil **Warten bei voller Energie Auffüllungen verschenkt**.

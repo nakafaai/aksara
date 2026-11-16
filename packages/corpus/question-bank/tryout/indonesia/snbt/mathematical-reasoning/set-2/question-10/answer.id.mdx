@@ -24,6 +24,20 @@ Pada Rencana Menurun, bunga turun setiap bulan karena sisa pokok makin kecil. Ja
 
 Pokok terbesar <InlineMath math="9{.}600{.}000" />, dan uang yang diterima <InlineMath math="9{.}600{.}000-100{.}000=9{.}500{.}000" />.
 
+Grafik berikut menggambar cicilan setiap bulan untuk pokok terbesar dari kedua rencana. **Rencana Menurun hanya mepet batas pada bulan pertama**, lalu cicilannya turun jauh, sedangkan cicilan Rencana Tetap rata sepanjang tahun.
+
+<Chart
+  title={<>Cicilan bulanan dengan pokok terbesar yang memenuhi syarat</>}
+  description={<>Dengan pokok <InlineMath math="10{.}200{.}000" /> rupiah, cicilan Rencana Tetap selalu <InlineMath math="952{.}000" /> rupiah. Dengan pokok <InlineMath math="9{.}600{.}000" /> rupiah, cicilan Rencana Menurun turun dari <InlineMath math="992{.}000" /> rupiah pada bulan pertama sampai <InlineMath math="816{.}000" /> rupiah pada bulan ke-<InlineMath math="12" />. Garis datar menandai batas <InlineMath math="1{.}000{.}000" /> rupiah.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Tetap, pokok 10,2 juta", mark: "line", values: Array.from({ length: 12 }, () => 10200000 / 12 + 0.01 * 10200000) },
+    { label: "Menurun, pokok 9,6 juta", mark: "line", values: Array.from({ length: 12 }, (_, i) => 9600000 / 12 + 0.02 * (9600000 - (9600000 / 12) * i)) },
+    { label: "Batas 1 juta", mark: "line", values: Array.from({ length: 12 }, () => 1000000) },
+  ]}
+  valueLabel="Cicilan (rupiah)"
+/>
+
 # Membandingkan kedua rencana
 
 Rencana Tetap memberi <InlineMath math="9{.}996{.}000" /> rupiah, Rencana Menurun memberi <InlineMath math="9{.}500{.}000" /> rupiah. **Rencana Tetap memberi uang lebih banyak** walaupun biaya administrasinya lebih mahal, karena cicilan bulan pertama Rencana Menurun jauh lebih berat.

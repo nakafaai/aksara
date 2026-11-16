@@ -35,6 +35,20 @@ At 08:40, after the eleventh mission, Citra drinks the potion. Then she starts <
 
 An energy of <InlineMath math="32" /> stays below <InlineMath math="60" />, so the timer never stops. This schedule starts <InlineMath math="11+6=17" /> missions, and the last one starts at 09:04, before the 09:10 limit.
 
+The chart below shows Citra's energy just before each mission on that schedule. **No bar drops below the cost line of <InlineMath math="6" />**, and the jump after 08:40 is the potion she drinks when her energy is down to <InlineMath math="2" />.
+
+<Chart
+  title={<>Citra's energy before each normal mission</>}
+  description={<>From 08:00 to 08:40, the energy before each mission is <InlineMath math="60, 54, 49, 44, 39, 34, 28, 23, 18, 13, 8" />. After the potion, from 08:44 to 09:04, it's <InlineMath math="32, 27, 22, 17, 12, 6" />. The flat line marks the <InlineMath math="6" /> energy one normal mission costs.</>}
+  bars="apart"
+  categories={["08.00", "08.04", "08.08", "08.12", "08.16", "08.20", "08.24", "08.28", "08.32", "08.36", "08.40", "08.44", "08.48", "08.52", "08.56", "09.00", "09.04"]}
+  series={[
+    { label: "Energy before the mission", mark: "bar", values: [60, 54, 49, 44, 39, 34, 28, 23, 18, 13, 8, 32, 27, 22, 17, 12, 6] },
+    { label: "Cost of one mission", mark: "line", values: Array.from({ length: 17 }, () => 6) },
+  ]}
+  valueLabel="Energy"
+/>
+
 # Drinking the potion too early
 
 Suppose Citra drinks the potion at 08:00 before playing. Her energy is <InlineMath math="90" />, and the refill stops until the energy drops below <InlineMath math="60" />. That only happens at 08:20, after the sixth mission, so the refills from 08:05 to 08:20 are lost. **When she drinks the potion changes the result**.

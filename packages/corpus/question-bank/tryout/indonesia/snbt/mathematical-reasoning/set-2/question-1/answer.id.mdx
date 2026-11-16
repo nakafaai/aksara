@@ -39,6 +39,19 @@ Energi <InlineMath math="51" /> masih di bawah <InlineMath math="60" />, jadi pa
 
 Pukul 12.00 bukan waktu penambahan, karena penambahan berikutnya baru pukul 12.03. Hadiah harian menambah <InlineMath math="15" />, jadi energi menjadi <InlineMath math="51+15=66" />. Energi sekarang lebih dari <InlineMath math="60" />, jadi **penambahan otomatis berhenti lagi**. Bima juga tidak memakai energi sesudahnya, sehingga energinya tetap <InlineMath math="66" /> sampai pukul 12.30.
 
+Grafik berikut merangkum perjalanan energi Bima. **Selama garis energi berada di atas garis <InlineMath math="60" />, penambahan otomatis berhenti**, yaitu dari pukul 10.03 sampai 10.13 dan sejak pukul 12.00.
+
+<Chart
+  title={<>Energi Bima sesudah setiap kejadian, pukul 10.00 sampai 12.30</>}
+  description={<>Energi Bima berturut-turut <InlineMath math="52" /> pada pukul 10.00, <InlineMath math="62" /> pada pukul 10.03, <InlineMath math="42" /> pada pukul 10.13, <InlineMath math="38" /> pada pukul 10.23, <InlineMath math="32" /> pada pukul 10.27, <InlineMath math="51" /> pada pukul 11.58, lalu <InlineMath math="66" /> pada pukul 12.00 dan tetap <InlineMath math="66" /> sampai pukul 12.30. Garis datar menandai energi <InlineMath math="60" />.</>}
+  categories={["10.00", "10.03", "10.13", "10.23", "10.27", "11.58", "12.00", "12.30"]}
+  series={[
+    { label: "Energi Bima", mark: "line", values: [52, 52 + 30 - 20, 62 - 20, 42 + 2 - 6, 38 - 6, 32 + 19, 51 + 15, 66] },
+    { label: "Batas 60", mark: "line", values: [60, 60, 60, 60, 60, 60, 60, 60] },
+  ]}
+  valueLabel="Energi"
+/>
+
 # Pemeriksaan dengan menjumlah semua perubahan
 
 Coba hitung ulang dengan menjumlahkan semua perubahan sekaligus. Ada <InlineMath math="2+19=21" /> penambahan otomatis, satu ramuan, satu hadiah, dua misi bos, dan dua misi biasa. **Hasil jumlahnya harus sama** dengan hasil langkah demi langkah tadi.

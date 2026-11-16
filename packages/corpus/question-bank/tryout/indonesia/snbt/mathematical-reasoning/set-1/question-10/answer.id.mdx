@@ -45,6 +45,20 @@ Takaran anak <InlineMath math="20\text{ kg}" /> adalah <InlineMath math="200\tex
 \text{sebelum minum pagi hari ketiga} &= \tfrac{1}{4}\cdot371{,}875\approx92{,}97\text{ mg}
 \end{aligned}" />
 
+Grafik berikut memperlihatkan semua jadwal minum anak itu. Perhatikan batang sebelum minum pada setiap pagi: **batangnya naik dari <InlineMath math="0" /> ke <InlineMath math="87{,}5" /> lalu ke sekitar <InlineMath math="92{,}97\text{ mg}" />**, jadi pagi hari tidak berulang dengan jumlah yang sama.
+
+<Chart
+  title={<>Jumlah obat anak <InlineMath math="20\text{ kg}" /> sebelum dan sesudah setiap minum</>}
+  description={<>Sebelum minum pada pagi pertama, siang pertama, malam pertama, pagi kedua, siang kedua, malam kedua, dan pagi ketiga, jumlahnya <InlineMath math="0" />, <InlineMath math="100" />, <InlineMath math="150" />, <InlineMath math="87{,}5" />, <InlineMath math="143{,}75" />, <InlineMath math="171{,}875" />, dan sekitar <InlineMath math="92{,}97\text{ mg}" />. Setiap minum menambah <InlineMath math="200\text{ mg}" />.</>}
+  categories={["Pagi 1", "Siang 1", "Malam 1", "Pagi 2", "Siang 2", "Malam 2", "Pagi 3"]}
+  bars="apart"
+  series={[
+    { label: "Sebelum minum", mark: "bar", values: [0, 200 / 2, 300 / 2, 350 / 4, 287.5 / 2, 343.75 / 2, 371.875 / 4] },
+    { label: "Sesudah minum", mark: "bar", values: [200, 200 / 2 + 200, 300 / 2 + 200, 350 / 4 + 200, 287.5 / 2 + 200, 343.75 / 2 + 200, null] },
+  ]}
+  valueLabel="Jumlah obat (mg)"
+/>
+
 Jumlahnya naik dari <InlineMath math="87{,}5\text{ mg}" /> menjadi sekitar <InlineMath math="92{,}97\text{ mg}" />, karena sisa obat hari sebelumnya ikut menumpuk. Pernyataan keempat salah.
 
 Jadi, pernyataan pertama salah, pernyataan kedua benar, pernyataan ketiga salah, dan pernyataan keempat salah.

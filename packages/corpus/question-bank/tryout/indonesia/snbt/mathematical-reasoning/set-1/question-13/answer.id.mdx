@@ -16,6 +16,21 @@ Banyak kursi ganjil per baris, <InlineMath math="9+n" />, juga barisan aritmetik
 \text{C, baris ke-}17\text{ sampai ke-}30 &: 26+27+\cdots+39=\tfrac{14(26+39)}{2}=455
 \end{aligned}" />
 
+Grafik berikut menggambar banyak kursi ganjil di setiap baris. Batangnya naik satu demi satu dari <InlineMath math="10" /> sampai <InlineMath math="39" />, jadi **setiap kategori adalah satu potongan barisan aritmetika** yang bisa dijumlah dengan rumus tadi.
+
+<Chart
+  title={<>Banyak kursi bernomor ganjil di setiap baris</>}
+  description={<>Baris ke-<InlineMath math="n" /> memiliki <InlineMath math="9+n" /> kursi bernomor ganjil. Kategori A memuat baris <InlineMath math="1" /> sampai <InlineMath math="6" /> dengan <InlineMath math="10" /> sampai <InlineMath math="15" /> kursi, kategori B memuat baris <InlineMath math="7" /> sampai <InlineMath math="16" /> dengan <InlineMath math="16" /> sampai <InlineMath math="25" /> kursi, dan kategori C memuat baris <InlineMath math="17" /> sampai <InlineMath math="30" /> dengan <InlineMath math="26" /> sampai <InlineMath math="39" /> kursi.</>}
+  bars="apart"
+  categories={Array.from({ length: 30 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Kategori A", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i < 6 ? 10 + i : null)) },
+    { label: "Kategori B", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 6 && i < 16 ? 10 + i : null)) },
+    { label: "Kategori C", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 16 ? 10 + i : null)) },
+  ]}
+  valueLabel="Kursi ganjil"
+/>
+
 # Pendapatan
 
 Kalikan banyak kursi setiap kategori dengan harganya, karena **setiap kategori punya harga sendiri**.

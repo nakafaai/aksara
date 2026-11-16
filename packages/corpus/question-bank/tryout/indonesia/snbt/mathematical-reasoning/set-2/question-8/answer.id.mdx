@@ -32,6 +32,20 @@ Kuning <InlineMath math="4{,}5\text{ liter}" /> butuh tiga kaleng <InlineMath ma
 
 <BlockMath math="(13-12{,}5)+(6-4{,}5)+(3-3)=0{,}5+1{,}5+0=2" />
 
+Grafik berikut membandingkan cat yang diperlukan dengan isi kaleng yang dibeli. **Selisih tinggi batangnya adalah sisa cat**: setengah liter putih, satu setengah liter kuning, dan tidak ada sisa biru.
+
+<Chart
+  title={<>Cat dasar yang diperlukan dan isi kaleng yang dibeli Bu Wati</>}
+  description={<>Bu Wati memerlukan <InlineMath math="12{,}5" /> liter putih, <InlineMath math="4{,}5" /> liter kuning, dan <InlineMath math="3" /> liter biru. Kalengnya berisi <InlineMath math="13" /> liter putih, <InlineMath math="6" /> liter kuning, dan <InlineMath math="3" /> liter biru.</>}
+  categories={["Putih", "Kuning", "Biru"]}
+  bars="apart"
+  series={[
+    { label: "Diperlukan (liter)", mark: "bar", values: [(5 / 10) * 15 + 5, (3 / 10) * 15, (2 / 10) * 15] },
+    { label: "Isi kaleng (liter)", mark: "bar", values: [2 * 5 + 3 * 1, 3 * 2, 3 * 1] },
+  ]}
+  valueLabel="Volume (liter)"
+/>
+
 # Pemeriksaan
 
 Cara lain: semua kaleng berisi <InlineMath math="13+6+3=22" /> liter, dan yang dicampur tepat <InlineMath math="20" /> liter. **Selisih keduanya adalah sisa di kaleng**, yaitu <InlineMath math="22-20=2" /> liter, sama dengan hasil tadi.

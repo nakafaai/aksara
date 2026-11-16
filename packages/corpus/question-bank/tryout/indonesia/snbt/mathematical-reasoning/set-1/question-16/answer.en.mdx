@@ -16,6 +16,20 @@ k=12 &: 144+216=360
 
 At <InlineMath math="k=12" /> category A has exactly <InlineMath math="360" /> seats. That's **not fewer than a quarter**, so <InlineMath math="k=12" /> isn't allowed. The largest value is <InlineMath math="k=11" />.
 
+The chart below draws the number of category A seats for each boundary <InlineMath math="k" />. **The bar for <InlineMath math="k=12" /> already touches the quarter-of-the-stand line**, so the last bar still below the line is <InlineMath math="k=11" />.
+
+<Chart
+  title={<>Number of category A seats by boundary <InlineMath math="k" /></>}
+  description={<>For <InlineMath math="k=6" /> to <InlineMath math="16" />, category A has <InlineMath math="k^2+18k" /> seats, from <InlineMath math="144" /> to <InlineMath math="544" />. At <InlineMath math="k=11" /> there are <InlineMath math="319" /> seats and at <InlineMath math="k=12" /> there are <InlineMath math="360" />. The flat line marks a quarter of the stand, <InlineMath math="360" /> seats.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i + 6}`)}
+  series={[
+    { label: "Category A seats", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i + 6) * (i + 6) + 18 * (i + 6)) },
+    { label: "Quarter of the stand", mark: "line", values: Array.from({ length: 11 }, () => 1440 / 4) },
+  ]}
+  valueLabel="Seats"
+/>
+
 # The largest revenue
 
 With the original split, the full revenue is <InlineMath math="144\cdot250{,}000+400\cdot150{,}000+896\cdot100{,}000=185{,}600{,}000" /> rupiah. Rows <InlineMath math="7" /> to <InlineMath math="11" /> move from B to A, so **each of their seats goes up by** <InlineMath math="\text{Rp}100{,}000" />, not by <InlineMath math="\text{Rp}250{,}000" />.

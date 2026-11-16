@@ -25,6 +25,19 @@ Während der Pause nimmt nur Schalter A neue Personen an, alle <InlineMath math=
 
 Person <InlineMath math="17" /> kommt um 08:21 Uhr an und wird erst um 08:44 Uhr bedient, sie wartet also <InlineMath math="44-21=23" /> Minuten.
 
+Das Diagramm vergleicht die Wartezeiten an diesem Tag mit einem normalen Tag. **Während der Pause steigt die Linie pro Person um eine Minute** bis zum Gipfel von <InlineMath math="23" /> Minuten bei Person <InlineMath math="17" /> und fällt wieder, sobald Schalter B zurück ist.
+
+<Chart
+  title={<>Wartezeiten der Personen <InlineMath math="11" /> bis <InlineMath math="22" /></>}
+  description={<>Am Tag mit Pause an Schalter B betragen die Wartezeiten <InlineMath math="21, 18, 19, 20, 21, 22, 23, 21, 21, 21, 19, 20" /> Minuten. An einem normalen Tag betragen sie <InlineMath math="21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12" /> Minuten.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 11}`)}
+  series={[
+    { label: "Tag mit Pause an Schalter B", mark: "line", values: [21, 18, 19, 20, 21, 22, 23, 21, 21, 21, 19, 20] },
+    { label: "Normaler Tag", mark: "line", values: [21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12] },
+  ]}
+  valueLabel="Wartezeit (Minuten)"
+/>
+
 # Nach der Pause
 
 Ab 08:44 Uhr sind beide Schalter wieder durchgehend beschäftigt. In je <InlineMath math="12" /> Minuten beginnt Schalter A <InlineMath math="3" /> Bedienungen und Schalter B <InlineMath math="2" />, es kommen aber nur <InlineMath math="4" /> Personen. Person <InlineMath math="n+5" /> beginnt also <InlineMath math="12" /> Minuten nach Person <InlineMath math="n" />, kommt aber <InlineMath math="15" /> Minuten später an, und deshalb **sinkt die Wartezeit alle fünf Nummern um drei Minuten**.

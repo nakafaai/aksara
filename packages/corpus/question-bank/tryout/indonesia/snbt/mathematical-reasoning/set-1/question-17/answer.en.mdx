@@ -12,6 +12,17 @@ The card already holds <InlineMath math="10" /> stamps before day <InlineMath ma
 
 Days <InlineMath math="11" /> to <InlineMath math="16" /> give <InlineMath math="6" /> stamps, the Wednesday on day <InlineMath math="17" /> gives <InlineMath math="2" /> stamps, and days <InlineMath math="18" /> and <InlineMath math="19" /> give <InlineMath math="2" /> stamps. The card holds <InlineMath math="10" /> stamps again, so **the cup on day <InlineMath math="20" />, a Saturday, is free**. Days <InlineMath math="21" /> to <InlineMath math="28" /> give only <InlineMath math="1+1+1+2+4=9" /> stamps, not enough for a third free cup.
 
+The chart below follows Dimas's card day by day. The bars **drop to <InlineMath math="0" /> exactly on day <InlineMath math="10" /> and day <InlineMath math="20" />**, the free-cup days, and by day <InlineMath math="28" /> the card holds only <InlineMath math="9" /> stamps.
+
+<Chart
+  title={<>Stamps on Dimas's card after each day's order</>}
+  description={<>Day <InlineMath math="1" /> is a Monday, so the Wednesdays are days <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" />, and <InlineMath math="24" />. The card reaches <InlineMath math="10" /> stamps on days <InlineMath math="9" /> and <InlineMath math="19" />, then empties on days <InlineMath math="10" /> and <InlineMath math="20" /> because those cups are free. On day <InlineMath math="28" /> the card holds <InlineMath math="9" /> stamps.</>}
+  bars="apart"
+  categories={Array.from({ length: 28 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Stamps after the order", mark: "bar", values: [1, 2, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 0, 1, 2, 3, 5, 6, 7, 8, 9] }]}
+  valueLabel="Stamps"
+/>
+
 # The total he pays
 
 Of the <InlineMath math="4" /> Wednesdays, **only <InlineMath math="3" /> are paid**. Of the other <InlineMath math="24" /> days, <InlineMath math="1" /> is free, so <InlineMath math="23" /> are paid.

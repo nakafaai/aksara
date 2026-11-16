@@ -30,6 +30,17 @@ Batas tadi baru tercapai kalau **keempat hari Rabu dibayar**, jadi cangkir grati
 
 Jadwal itu berisi <InlineMath math="4" /> cangkir hari Rabu, <InlineMath math="12" /> cangkir biasa, dan <InlineMath math="2" /> cangkir gratis.
 
+Grafik berikut mengikuti kartu Bu Ratna dengan jadwal itu. Hari tanpa batang adalah hari ia tidak memesan, dan **kartunya kosong tepat pada hari ke-<InlineMath math="18" /> dan ke-<InlineMath math="28" />**, dua hari yang bukan hari Rabu.
+
+<Chart
+  title={<>Isi kartu cap Bu Ratna sesudah setiap pesanan</>}
+  description={<>Bu Ratna memesan pada hari Rabu ke-<InlineMath math="3" /> dan ke-<InlineMath math="10" />, lalu setiap hari sejak hari ke-<InlineMath math="13" />. Kartunya berisi <InlineMath math="2" />, lalu <InlineMath math="4" /> cap, naik sampai <InlineMath math="10" /> pada hari ke-<InlineMath math="17" />, kosong pada hari ke-<InlineMath math="18" />, naik lagi sampai <InlineMath math="10" /> pada hari ke-<InlineMath math="27" />, dan kosong pada hari ke-<InlineMath math="28" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 28 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Cap sesudah pesanan", mark: "bar", values: [null, null, 2, null, null, null, null, null, null, 4, null, null, 5, 6, 7, 8, 10, 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 0] }]}
+  valueLabel="Banyak cap"
+/>
+
 # Jawaban yang keliru
 
 Jawaban <InlineMath math="16" /> muncul kalau semua uang dipakai dengan harga biasa, yaitu <InlineMath math="15" /> cangkir dan <InlineMath math="1" /> cangkir gratis. Jawaban <InlineMath math="20" /> muncul kalau semua cangkir dihitung dengan harga hari Rabu, padahal **hari Rabu hanya ada empat**. Memesan setiap hari sejak hari ke-<InlineMath math="1" /> juga merugikan, karena cangkir gratis pertama jatuh pada Rabu hari ke-<InlineMath math="10" />.

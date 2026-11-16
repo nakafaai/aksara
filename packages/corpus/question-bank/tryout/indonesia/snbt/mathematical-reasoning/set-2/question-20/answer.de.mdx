@@ -23,6 +23,20 @@ d&\le 1{,}1\text{ m}=110\text{ cm}
 
 <InlineMath math="110" /> ist schon ein Vielfaches von <InlineMath math="5" />, der größte Abstand ist also <InlineMath math="110\text{ cm}" />.
 
+Das Diagramm zählt die Setzlinge für jeden Reihenabstand von <InlineMath math="90" /> bis <InlineMath math="130\text{ cm}" />. **Der letzte Balken, der die Ziellinie noch erreicht, gehört zu <InlineMath math="110\text{ cm}" />**, danach fällt die Anzahl direkt auf <InlineMath math="280" />.
+
+<Chart
+  title={<>Anzahl der Setzlinge nach Reihenabstand</>}
+  description={<>Bei Abständen von <InlineMath math="90" /> bis <InlineMath math="105\text{ cm}" /> trägt jeder Streifen <InlineMath math="7" /> Reihen, zusammen <InlineMath math="392" /> Setzlinge. Bei <InlineMath math="110\text{ cm}" /> trägt jeder Streifen <InlineMath math="6" /> Reihen, zusammen <InlineMath math="336" />. Bei <InlineMath math="115" /> bis <InlineMath math="130\text{ cm}" /> trägt jeder Streifen <InlineMath math="5" /> Reihen, zusammen <InlineMath math="280" />. Die waagerechte Linie markiert das Ziel von <InlineMath math="336" /> Setzlingen.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${90 + 5 * i}`)}
+  series={[
+    { label: "Setzlinge", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 2 * 28 * (Math.floor(550 / (90 + 5 * i)) + 1)) },
+    { label: "Ziel 336 Setzlinge", mark: "line", values: Array.from({ length: 9 }, () => 336) },
+  ]}
+  valueLabel="Setzlinge"
+/>
+
 # Kontrolle
 
 Mit <InlineMath math="d=1{,}1" /> passen in jedes Band <InlineMath math="\lfloor 5{,}5:1{,}1\rfloor+1=6" /> Reihen, insgesamt also <InlineMath math="2\cdot 6\cdot 28=336" /> Setzlinge, genau genug. Mit dem nächsten Vielfachen, <InlineMath math="d=1{,}15" />, passen nur <InlineMath math="\lfloor 5{,}5:1{,}15\rfloor+1=4+1=5" /> Reihen hinein, insgesamt also <InlineMath math="280" /> Setzlinge. **<InlineMath math="110\text{ cm}" /> ist also der letzte Abstand, der noch reicht**.

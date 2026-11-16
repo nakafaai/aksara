@@ -11,6 +11,17 @@ f(k) &= 6{.}000+4{.}000(k-1) \\
 
 Untuk <InlineMath math="k=7" />, nilainya tepat <InlineMath math="30{.}000" />. Jadi **mulai <InlineMath math="7" /> jam, biaya satu bagian selalu <InlineMath math="\text{Rp}30{.}000" />** karena batas pada aturan tarif.
 
+Grafik berikut menggambar biaya satu bagian parkir untuk <InlineMath math="1" /> sampai <InlineMath math="10" /> jam. Batangnya naik <InlineMath math="\text{Rp}4{.}000" /> setiap jam, lalu **rata di <InlineMath math="\text{Rp}30{.}000" /> mulai jam ke-<InlineMath math="7" />**.
+
+<Chart
+  title={<>Biaya satu bagian parkir menurut banyak jam yang dihitung</>}
+  description={<>Biaya satu bagian adalah <InlineMath math="4{.}000k+2{.}000" /> rupiah untuk <InlineMath math="k" /> jam, yaitu <InlineMath math="\text{Rp}6{.}000" /> untuk <InlineMath math="1" /> jam sampai <InlineMath math="\text{Rp}26{.}000" /> untuk <InlineMath math="6" /> jam. Mulai <InlineMath math="7" /> jam, biayanya tetap <InlineMath math="\text{Rp}30{.}000" /> karena batas biaya.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Biaya satu bagian", mark: "bar", values: Array.from({ length: 10 }, (_, i) => Math.min(4000 * (i + 1) + 2000, 30000)) }]}
+  valueLabel="Biaya (rupiah)"
+/>
+
 # Pernyataan pertama
 
 Dari pukul 08.20 sampai 14.25 ada <InlineMath math="6\text{ jam }5\text{ menit}" />. Kelebihan <InlineMath math="5\text{ menit}" /> itu **sudah memulai jam ketujuh**, jadi dihitung <InlineMath math="7\text{ jam}" /> dan biayanya <InlineMath math="f(7)=\text{Rp}30{.}000" />. Pernyataan pertama **benar**. Kalau kamu membulatkan ke bawah menjadi <InlineMath math="6\text{ jam}" />, kamu akan mendapat <InlineMath math="\text{Rp}26{.}000" /> dan salah menilainya.

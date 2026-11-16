@@ -28,6 +28,21 @@ Um 00.00 Uhr steht das Auto draußen, also gibt es **keine Übernachtungsgebühr
 &= 40{.}000\text{ Rupiah}
 \end{aligned}" />
 
+Das Diagramm trennt jede Gebühr bei beiden Wegen. **Die Abendabschnitte sind gleich**, also kommt der Unterschied nur vom Morgenabschnitt und der Übernachtungsgebühr.
+
+<Chart
+  title={<>Aufschlüsselung von Dimas' Parkgebühr bei Weg I und Weg II</>}
+  description={<>Weg I: Abendabschnitt <InlineMath math="\text{Rp}14{.}000" />, Morgenabschnitt <InlineMath math="\text{Rp}30{.}000" /> und Übernachtungsgebühr <InlineMath math="\text{Rp}10{.}000" />. Weg II: Abendabschnitt <InlineMath math="\text{Rp}14{.}000" />, Morgenabschnitt <InlineMath math="\text{Rp}26{.}000" /> und keine Übernachtungsgebühr.</>}
+  categories={["Weg I", "Weg II"]}
+  bars="apart"
+  series={[
+    { label: "Abendabschnitt", mark: "bar", values: [6000 + 2 * 4000, 6000 + 2 * 4000] },
+    { label: "Morgenabschnitt", mark: "bar", values: [6000 + 6 * 4000, 6000 + 5 * 4000] },
+    { label: "Übernachtungsgebühr", mark: "bar", values: [10000, 0] },
+  ]}
+  valueLabel="Gebühr (Rupiah)"
+/>
+
 # Differenz und Probe
 
 Zieh die Summe von Weg II von der Summe von Weg I ab.

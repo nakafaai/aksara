@@ -27,6 +27,36 @@ Das Ausgangsgewicht ist das größere von tatsächlichem Gewicht und <InlineMath
 
 Beide Fälle zusammen: Das tatsächliche Gewicht kann beliebig sein, solange es höchstens <InlineMath math="11{,}3\text{ kg}" /> beträgt.
 
+Die Abbildung fasst beide Fälle zusammen. Die waagerechte Achse ist das tatsächliche Gewicht, die senkrechte das Ausgangsgewicht, und ein Abrechnungsgewicht von <InlineMath math="11\text{ kg}" /> gibt es nur im Streifen zwischen <InlineMath math="10{,}3" /> und <InlineMath math="11{,}3" />. **Der Graph des Ausgangsgewichts bleibt bis zu einem tatsächlichen Gewicht von <InlineMath math="11{,}3\text{ kg}" /> im Streifen** und verlässt ihn dann nach oben.
+
+<MathVisual
+  title={<>Ausgangsgewicht nach tatsächlichem Gewicht für den Karton <InlineMath math="56\times40\times30\text{ cm}" /></>}
+  description={<>Das Ausgangsgewicht beträgt <InlineMath math="11{,}2\text{ kg}" />, solange das tatsächliche Gewicht höchstens <InlineMath math="11{,}2\text{ kg}" /> ist, danach ist es gleich dem tatsächlichen Gewicht. Zwei waagerechte Linien bei <InlineMath math="10{,}3" /> und <InlineMath math="11{,}3\text{ kg}" /> begrenzen die Ausgangsgewichte, die mit <InlineMath math="11\text{ kg}" /> abgerechnet werden. Der Graph liegt für jedes tatsächliche Gewicht bis <InlineMath math="11{,}3\text{ kg}" /> dazwischen, auch für die nicht gezeichneten Gewichte unter <InlineMath math="9\text{ kg}" />.</>}
+  labels={{
+    vol: <InlineMath math="11{,}2" />,
+    upper: <InlineMath math="11{,}3" />,
+    lower: <InlineMath math="10{,}3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 9, max: 13.5 }, y: { min: 9, max: 13.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "upper", kind: "segment", appearance: "reference", from: { x: 9, y: 11.3 }, to: { x: 13.5, y: 11.3 } },
+      { id: "lower", kind: "segment", appearance: "reference", from: { x: 9, y: 10.3 }, to: { x: 13.5, y: 10.3 } },
+      { id: "inside", kind: "polyline", appearance: "answer", vertices: [{ x: 9, y: 11.2 }, { x: 11.2, y: 11.2 }, { x: 11.3, y: 11.3 }] },
+      { id: "outside", kind: "segment", appearance: "warning", from: { x: 11.3, y: 11.3 }, to: { x: 13.5, y: 13.5 } },
+      { id: "corner", kind: "point", appearance: "primary", at: { x: 11.2, y: 11.2 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 11.3, y: 11.3 } },
+    ],
+    labels: [
+      { key: "vol", objectId: "corner", at: { x: 11.2, y: 11.2 }, placement: "below" },
+      { key: "upper", objectId: "upper", at: { x: 9.5, y: 11.3 }, placement: "above" },
+      { key: "lower", objectId: "lower", at: { x: 9.5, y: 10.3 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Kontrolle
 
 Ein Paket mit dem tatsächlichen Gewicht <InlineMath math="2\text{ kg}" /> hat das Ausgangsgewicht <InlineMath math="11{,}2\text{ kg}" />, das berechnete Gewicht <InlineMath math="11\text{ kg}" /> und kostet <InlineMath math="\text{Rp}235{.}000" />. Ein Paket mit <InlineMath math="11{,}3\text{ kg}" /> wird ebenfalls mit <InlineMath math="11\text{ kg}" /> berechnet. Ein Paket mit <InlineMath math="11{,}4\text{ kg}" /> wird schon mit <InlineMath math="12\text{ kg}" /> berechnet und **kostet mehr**, nämlich <InlineMath math="\text{Rp}255{.}000" />.

@@ -28,6 +28,21 @@ Pada pukul 00.00 mobil sedang di luar gedung, jadi **tidak ada biaya menginap da
 &= 40{.}000\text{ rupiah}
 \end{aligned}" />
 
+Grafik berikut memisahkan setiap biaya pada kedua cara. **Bagian malamnya sama**, jadi selisihnya hanya datang dari bagian pagi dan biaya menginap.
+
+<Chart
+  title={<>Rincian biaya parkir Dimas dengan cara I dan cara II</>}
+  description={<>Cara I: bagian malam <InlineMath math="\text{Rp}14{.}000" />, bagian pagi <InlineMath math="\text{Rp}30{.}000" />, dan biaya menginap <InlineMath math="\text{Rp}10{.}000" />. Cara II: bagian malam <InlineMath math="\text{Rp}14{.}000" />, bagian pagi <InlineMath math="\text{Rp}26{.}000" />, dan tanpa biaya menginap.</>}
+  categories={["Cara I", "Cara II"]}
+  bars="apart"
+  series={[
+    { label: "Bagian malam", mark: "bar", values: [6000 + 2 * 4000, 6000 + 2 * 4000] },
+    { label: "Bagian pagi", mark: "bar", values: [6000 + 6 * 4000, 6000 + 5 * 4000] },
+    { label: "Biaya menginap", mark: "bar", values: [10000, 0] },
+  ]}
+  valueLabel="Biaya (rupiah)"
+/>
+
 # Selisih dan cek
 
 Kurangkan total cara II dari total cara I.

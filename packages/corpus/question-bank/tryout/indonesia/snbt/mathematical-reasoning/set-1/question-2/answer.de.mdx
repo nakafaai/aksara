@@ -47,4 +47,15 @@ Die zusätzliche Leistung bringt <InlineMath math="10\cdot1=10\text{ kWh}" />, m
 
 Die Familie kauft am Abend immer noch <InlineMath math="6\text{ kWh}" />, also ist die vierte Aussage falsch.
 
+Das Diagramm fasst den Abendkauf in allen vier Fällen zusammen. **Der größere Akku halbiert ihn genau**, ohne Reserve sinkt er um <InlineMath math="1\text{ kWh}" />, und das stärkere Panel lässt weiter <InlineMath math="6\text{ kWh}" /> übrig, weil die Akkukapazität gleich bleibt.
+
+<Chart
+  title={<>Am Abend bei PLN gekaufte Energie</>}
+  description={<>Am ursprünglichen Tag beträgt der Abendkauf <InlineMath math="8\text{ kWh}" />. Mit einem Akku von <InlineMath math="10\text{ kWh}" /> sind es <InlineMath math="4\text{ kWh}" />. Ohne Reserveregel sind es <InlineMath math="7\text{ kWh}" />. Mit einem Panel, das jede Stunde <InlineMath math="1\text{ kWh}" /> mehr liefert, sind es <InlineMath math="6\text{ kWh}" />.</>}
+  categories={["Ursprünglicher Tag", "Akku 10 kWh", "Ohne Reserve", "Stärkeres Panel"]}
+  bars="apart"
+  series={[{ label: "Kauf am Abend (kWh)", mark: "bar", values: [11 - (4 - 1), 11 - (8 - 1), 11 - 4, 11 - (6 - 1)] }]}
+  valueLabel="Energie (kWh)"
+/>
+
 Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte falsch.

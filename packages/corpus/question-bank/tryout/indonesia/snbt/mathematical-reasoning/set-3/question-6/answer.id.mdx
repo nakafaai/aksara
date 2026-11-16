@@ -27,6 +27,20 @@ Sekarang terapkan aturan masa tenggang, tarif denda, dan batas denda pada setiap
 &= 45{.}000\text{ rupiah}
 \end{aligned}" />
 
+Grafik berikut membandingkan hasil hari kali tarif dengan denda sebenarnya. **Batang buku pertama hilang karena masa tenggang**, batang buku referensi tidak berubah, dan batang buku biasa kedua terpotong oleh batas denda.
+
+<Chart
+  title={<>Denda setiap buku Nia sebelum dan sesudah aturan masa tenggang dan batas denda</>}
+  description={<>Buku biasa pertama terlambat <InlineMath math="3" /> hari: hari kali tarif <InlineMath math="\text{Rp}3{.}000" />, denda sebenarnya <InlineMath math="\text{Rp}0" />. Buku referensi terlambat <InlineMath math="10" /> hari: keduanya <InlineMath math="\text{Rp}25{.}000" />. Buku biasa kedua terlambat <InlineMath math="22" /> hari: hari kali tarif <InlineMath math="\text{Rp}22{.}000" />, denda sebenarnya <InlineMath math="\text{Rp}20{.}000" />.</>}
+  categories={["Buku biasa pertama", "Buku referensi", "Buku biasa kedua"]}
+  bars="apart"
+  series={[
+    { label: "Hari kali tarif", mark: "bar", values: [3 * 1000, 10 * 2500, 22 * 1000] },
+    { label: "Denda sebenarnya", mark: "bar", values: [0, Math.min(10 * 2500, 40000), Math.min(22 * 1000, 20000)] },
+  ]}
+  valueLabel="Denda (rupiah)"
+/>
+
 # Cek hasilnya
 
 Setiap buku punya **satu aturan yang menentukan**: buku pertama ditentukan oleh masa tenggang, buku referensi oleh hitungan penuh, dan buku biasa kedua oleh batas denda. Kalau salah satu aturan terlewat, hasilnya berubah. Lupa batas denda memberi <InlineMath math="47" /> ribu, mendenda buku pertama memberi <InlineMath math="48" /> ribu, dan hanya menghitung hari sesudah masa tenggang memberi <InlineMath math="36{,}5" /> ribu.

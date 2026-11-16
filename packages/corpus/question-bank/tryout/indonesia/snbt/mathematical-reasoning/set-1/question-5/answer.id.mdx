@@ -10,6 +10,20 @@ Berat volume adalah hasil kali ukuran kardus dibagi <InlineMath math="6{.}000" /
 \text{kardus gabungan} &: \frac{50\cdot40\cdot40}{6{.}000}=\frac{80{.}000}{6{.}000}=13\tfrac{1}{3}\text{ kg}
 \end{aligned}" />
 
+Grafik berikut membandingkan kedua berat untuk setiap kardus. **Hanya kardus piring yang berat aktualnya lebih besar**, jadi kardus lampu dan kardus gabungan ditagih menurut berat volumenya.
+
+<Chart
+  title={<>Berat aktual dan berat volume setiap kardus</>}
+  description={<>Kardus lampu: berat aktual <InlineMath math="2{,}8\text{ kg}" />, berat volume <InlineMath math="10\text{ kg}" />. Kardus piring: berat aktual <InlineMath math="5{,}2\text{ kg}" />, berat volume <InlineMath math="2\text{ kg}" />. Kardus gabungan: berat aktual <InlineMath math="8{,}3\text{ kg}" />, berat volume <InlineMath math="13\tfrac{1}{3}\text{ kg}" />.</>}
+  categories={["Kardus lampu", "Kardus piring", "Kardus gabungan"]}
+  bars="apart"
+  series={[
+    { label: "Berat aktual", mark: "bar", values: [2.8, 5.2, 8.3] },
+    { label: "Berat volume", mark: "bar", values: [(50 * 40 * 30) / 6000, (30 * 20 * 20) / 6000, (50 * 40 * 40) / 6000] },
+  ]}
+  valueLabel="Berat (kg)"
+/>
+
 # Rencana dua paket terpisah
 
 Untuk lampu, berat awalnya <InlineMath math="10\text{ kg}" /> karena berat volume lebih besar daripada <InlineMath math="2{,}8\text{ kg}" />. Untuk piring, berat awalnya <InlineMath math="5{,}2\text{ kg}" />. Kelebihannya di atas <InlineMath math="5\text{ kg}" /> hanya <InlineMath math="0{,}2\text{ kg}" />, jadi **kelebihan itu dihapus** dan berat tagihnya <InlineMath math="5\text{ kg}" />. Setiap paket membayar biaya administrasinya sendiri.

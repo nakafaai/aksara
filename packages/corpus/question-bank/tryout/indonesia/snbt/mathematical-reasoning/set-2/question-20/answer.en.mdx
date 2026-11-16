@@ -23,6 +23,20 @@ d&\le 1.1\text{ m}=110\text{ cm}
 
 <InlineMath math="110" /> is already a multiple of <InlineMath math="5" />, so the largest spacing is <InlineMath math="110\text{ cm}" />.
 
+The chart below counts the seedlings for every row spacing from <InlineMath math="90" /> to <InlineMath math="130\text{ cm}" />. **The last bar that still reaches the goal line is <InlineMath math="110\text{ cm}" />**, and after it the count drops straight to <InlineMath math="280" />.
+
+<Chart
+  title={<>Number of seedlings by row spacing</>}
+  description={<>For spacings of <InlineMath math="90" /> to <InlineMath math="105\text{ cm}" />, each strip holds <InlineMath math="7" /> rows for a total of <InlineMath math="392" /> seedlings. For <InlineMath math="110\text{ cm}" />, each strip holds <InlineMath math="6" /> rows for a total of <InlineMath math="336" />. For <InlineMath math="115" /> to <InlineMath math="130\text{ cm}" />, each strip holds <InlineMath math="5" /> rows for a total of <InlineMath math="280" />. The flat line marks the goal of <InlineMath math="336" /> seedlings.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${90 + 5 * i}`)}
+  series={[
+    { label: "Seedlings", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 2 * 28 * (Math.floor(550 / (90 + 5 * i)) + 1)) },
+    { label: "Goal 336 seedlings", mark: "line", values: Array.from({ length: 9 }, () => 336) },
+  ]}
+  valueLabel="Seedlings"
+/>
+
 # Checking
 
 With <InlineMath math="d=1.1" />, each band holds <InlineMath math="\lfloor 5.5\div 1.1\rfloor+1=6" /> rows, so the total is <InlineMath math="2\cdot 6\cdot 28=336" /> seedlings, just enough. With the next multiple, <InlineMath math="d=1.15" />, each band only holds <InlineMath math="\lfloor 5.5\div 1.15\rfloor+1=4+1=5" /> rows, for a total of <InlineMath math="280" /> seedlings. So **<InlineMath math="110\text{ cm}" /> is the last spacing that's still enough**.

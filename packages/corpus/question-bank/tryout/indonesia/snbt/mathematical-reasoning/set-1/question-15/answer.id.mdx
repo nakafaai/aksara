@@ -20,6 +20,20 @@ Kalikan banyak kursi dengan harga kategorinya, karena **harga tiket ditentukan o
 
 Setelah <InlineMath math="144+400=544" /> tiket terjual, pendapatan baru <InlineMath math="\text{Rp}96{.}000{.}000" />. Jadi **kategori B habis sebelum target tercapai**, dan sisa target harus dipenuhi oleh tiket kategori C.
 
+Grafik berikut memperlihatkan pendapatan terkumpul setiap kali satu kategori habis. **Garis target berada di antara batang kedua dan ketiga**, jadi pendapatan baru mencapai target saat tiket kategori C sedang dijual.
+
+<Chart
+  title={<>Pendapatan terkumpul sesudah setiap kategori habis terjual</>}
+  description={<>Sesudah kategori A habis, yaitu <InlineMath math="144" /> tiket, pendapatannya <InlineMath math="\text{Rp}36{.}000{.}000" />. Sesudah kategori B habis, yaitu <InlineMath math="544" /> tiket, pendapatannya <InlineMath math="\text{Rp}96{.}000{.}000" />. Sesudah kategori C habis, yaitu <InlineMath math="1{.}440" /> tiket, pendapatannya <InlineMath math="\text{Rp}185{.}600{.}000" />. Garis datar menandai target <InlineMath math="\text{Rp}100{.}000{.}000" />.</>}
+  categories={["A habis", "A dan B habis", "Semua habis"]}
+  bars="apart"
+  series={[
+    { label: "Pendapatan terkumpul", mark: "bar", values: [144 * 250000, 144 * 250000 + 400 * 150000, 144 * 250000 + 400 * 150000 + 896 * 100000] },
+    { label: "Target Rp100 juta", mark: "line", values: [100000000, 100000000, 100000000] },
+  ]}
+  valueLabel="Pendapatan (rupiah)"
+/>
+
 # Tiket kategori C yang diperlukan
 
 **Sisa target** adalah <InlineMath math="\text{Rp}100{.}000{.}000-\text{Rp}96{.}000{.}000=\text{Rp}4{.}000{.}000" />. Setiap tiket kategori C bernilai <InlineMath math="\text{Rp}100{.}000" />.
