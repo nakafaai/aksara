@@ -10,13 +10,13 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$600\\text{ cm}^3$$, lower at the start" },
+        { correct: true, label: "$$180\\text{ cm}^3$$, higher at the start" },
+        { correct: false, label: "$$240\\text{ cm}^3$$, higher at the start" },
+        { correct: false, label: "$$180\\text{ cm}^3$$, lower at the start" },
         {
           correct: false,
-          label: "$$1200\\text{ cm}^3$$, the same at the start",
+          label: "$$240\\text{ cm}^3$$, the same at the start",
         },
-        { correct: false, label: "$$300\\text{ cm}^3$$, lower at the start" },
-        { correct: false, label: "$$600\\text{ cm}^3$$, higher at the start" },
       ],
     },
     ms: {
@@ -24,17 +24,17 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$600\\text{ cm}^3$$, lebih rendah pada permulaan",
-        },
-        { correct: false, label: "$$1200\\text{ cm}^3$$, sama pada permulaan" },
-        {
-          correct: false,
-          label: "$$300\\text{ cm}^3$$, lebih rendah pada permulaan",
+          label: "$$180\\text{ cm}^3$$, lebih tinggi pada awal",
         },
         {
           correct: false,
-          label: "$$600\\text{ cm}^3$$, lebih tinggi pada permulaan",
+          label: "$$240\\text{ cm}^3$$, lebih tinggi pada awal",
         },
+        {
+          correct: false,
+          label: "$$180\\text{ cm}^3$$, lebih rendah pada awal",
+        },
+        { correct: false, label: "$$240\\text{ cm}^3$$, sama pada awal" },
       ],
     },
   },

@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$26.8$$ hours" },
-        { correct: false, label: "$$5.4$$ hours" },
-        { correct: true, label: "$$10.7$$ hours" },
-        { correct: false, label: "$$4.3$$ hours" },
+        { correct: false, label: "$$0.951\\text{ g}$$" },
+        { correct: false, label: "$$0.252\\text{ g}$$" },
+        { correct: true, label: "$$0.476\\text{ g}$$" },
+        { correct: false, label: "$$1.43\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$26.8$$ jam" },
-        { correct: false, label: "$$5.4$$ jam" },
-        { correct: true, label: "$$10.7$$ jam" },
-        { correct: false, label: "$$4.3$$ jam" },
+        { correct: false, label: "$$0.951\\text{ g}$$" },
+        { correct: false, label: "$$0.252\\text{ g}$$" },
+        { correct: true, label: "$$0.476\\text{ g}$$" },
+        { correct: false, label: "$$1.43\\text{ g}$$" },
       ],
     },
   },

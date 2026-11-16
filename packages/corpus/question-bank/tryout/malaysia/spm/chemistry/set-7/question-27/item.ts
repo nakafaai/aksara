@@ -24,7 +24,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$3$$ isomers, methylpropene, $$3.70\\text{ g}$$",
+          label: "$$3$$ isomers, but-2-ene, $$3.57\\text{ g}$$",
         },
       ],
     },
@@ -42,7 +42,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$3$$ isomer, metilpropena, $$3.70\\text{ g}$$",
+          label: "$$3$$ isomer, but-2-ena, $$3.57\\text{ g}$$",
         },
       ],
     },

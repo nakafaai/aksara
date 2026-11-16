@@ -10,40 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$720\\text{ cm}^3$$, from $$+5$$ to $$+2$$",
-        },
-        { correct: true, label: "$$480\\text{ cm}^3$$, from $$+5$$ to $$+2$$" },
-        {
-          correct: false,
-          label: "$$480\\text{ cm}^3$$, from $$+5$$ to $$+4$$",
-        },
-        {
-          correct: false,
-          label: "$$1920\\text{ cm}^3$$, from $$+5$$ to $$+2$$",
-        },
+        { correct: false, label: "$$1$$, $$1.92\\text{ dm}^3$$" },
+        { correct: true, label: "$$2$$, $$1.92\\text{ dm}^3$$" },
+        { correct: false, label: "$$2$$, $$1.44\\text{ dm}^3$$" },
+        { correct: false, label: "$$2$$, $$0.960\\text{ dm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$720\\text{ cm}^3$$, daripada $$+5$$ kepada $$+2$$",
-        },
-        {
-          correct: true,
-          label: "$$480\\text{ cm}^3$$, daripada $$+5$$ kepada $$+2$$",
-        },
-        {
-          correct: false,
-          label: "$$480\\text{ cm}^3$$, daripada $$+5$$ kepada $$+4$$",
-        },
-        {
-          correct: false,
-          label: "$$1920\\text{ cm}^3$$, daripada $$+5$$ kepada $$+2$$",
-        },
+        { correct: false, label: "$$1$$, $$1.92\\text{ dm}^3$$" },
+        { correct: true, label: "$$2$$, $$1.92\\text{ dm}^3$$" },
+        { correct: false, label: "$$2$$, $$1.44\\text{ dm}^3$$" },
+        { correct: false, label: "$$2$$, $$0.960\\text{ dm}^3$$" },
       ],
     },
   },

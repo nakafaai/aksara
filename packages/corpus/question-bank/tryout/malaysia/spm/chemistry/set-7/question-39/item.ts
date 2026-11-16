@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$1.86\\text{ g}$$, below the guideline" },
-        { correct: false, label: "$$0.68\\text{ g}$$, below the guideline" },
-        { correct: false, label: "$$1.18\\text{ g}$$, below the guideline" },
-        { correct: false, label: "$$8.0\\text{ g}$$, above the guideline" },
+        { correct: true, label: "$$720\\text{ cm}^3$$" },
+        { correct: false, label: "$$840\\text{ cm}^3$$" },
+        { correct: false, label: "$$1440\\text{ cm}^3$$" },
+        { correct: false, label: "$$1680\\text{ cm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$1.86\\text{ g}$$, di bawah garis panduan" },
-        { correct: false, label: "$$0.68\\text{ g}$$, di bawah garis panduan" },
-        { correct: false, label: "$$1.18\\text{ g}$$, di bawah garis panduan" },
-        { correct: false, label: "$$8.0\\text{ g}$$, melebihi garis panduan" },
+        { correct: true, label: "$$720\\text{ cm}^3$$" },
+        { correct: false, label: "$$840\\text{ cm}^3$$" },
+        { correct: false, label: "$$1440\\text{ cm}^3$$" },
+        { correct: false, label: "$$1680\\text{ cm}^3$$" },
       ],
     },
   },

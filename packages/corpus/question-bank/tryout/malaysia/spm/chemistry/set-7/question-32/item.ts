@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$0.0821$$ tonnes" },
-        { correct: false, label: "$$1.64$$ tonnes" },
-        { correct: true, label: "$$1.56$$ tonnes" },
-        { correct: false, label: "$$1.48$$ tonnes" },
+        { correct: false, label: "Propan-1-ol, propanoic acid" },
+        { correct: false, label: "Ethanol, ethanoic acid" },
+        { correct: true, label: "Butan-1-ol, butanoic acid" },
+        { correct: false, label: "Pentan-1-ol, pentanoic acid" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$0.0821$$ tan" },
-        { correct: false, label: "$$1.64$$ tan" },
-        { correct: true, label: "$$1.56$$ tan" },
-        { correct: false, label: "$$1.48$$ tan" },
+        { correct: false, label: "Propan-1-ol, asid propanoik" },
+        { correct: false, label: "Etanol, asid etanoik" },
+        { correct: true, label: "Butan-1-ol, asid butanoik" },
+        { correct: false, label: "Pentan-1-ol, asid pentanoik" },
       ],
     },
   },

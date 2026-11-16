@@ -1,25 +1,25 @@
-# Find the heat the water needs, scale it up for the heat that escapes, then turn it into moles of butane
+# The acid runs out first, but the extra alkali still has to be warmed
 
-The water needs <InlineMath math="1000\times4.2\times75=315\text{ kJ}" />, warmed through <InlineMath math="75^\circ\text{C}" />, not <InlineMath math="100^\circ\text{C}" />. **That is only <InlineMath math="40\%" /> of what the flame gives out**, so the butane must release <InlineMath math="788\text{ kJ}" />, <InlineMath math="0.274\text{ mol}" /> at <InlineMath math="2877\text{ kJ}" /> per mole.
+The acid gives <InlineMath math="0.040\text{ mol}" /> of hydrogen ions and the alkali <InlineMath math="0.060\text{ mol}" /> of hydroxide ions, so **only <InlineMath math="0.040\text{ mol}" /> of water forms**, releasing <InlineMath math="2292\text{ J}" />. That heat warms all <InlineMath math="100\text{ g}" /> of the mixture, the unreacted alkali included.
 
 <Chart
-  title={<>Heat in the stove</>}
-  description={<>The water takes <InlineMath math="315\text{ kJ}" />, while the flame must give out <InlineMath math="788\text{ kJ}" />.</>}
+  title={<>Ions and the water they form</>}
+  description={<>The <InlineMath math="0.040\text{ mol}" /> of hydrogen ions limit the water to <InlineMath math="0.040\text{ mol}" />.</>}
   bars="apart"
-  categories={["Heat into the water", "Heat from the flame"]}
+  categories={["Hydrogen ions", "Hydroxide ions", "Water formed"]}
   series={[
-    { label: "Heat", mark: "bar", values: [315, 788] },
+    { label: "Amount", mark: "bar", values: [0.040, 0.060, 0.040] },
   ]}
-  valueLabel="Heat (kJ)"
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-Q_{\text{water}}&=1000\times4.2\times75=315\text{ kJ}\Rightarrow Q_{\text{flame}}=\tfrac{315}{0.40}=788\text{ kJ}\\
-m(\text{C}_4\text{H}_{10})&=\tfrac{788}{2877}\times58=15.9\text{ g}
+Q&=0.040\times57\,300=2292\text{ J}\\
+\Delta T&=\tfrac{2292}{100\times4.2}=5.46^\circ\text{C}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="6.35\text{ g}" /> assumes all the flame's heat reaches the water. **Only <InlineMath math="40\%" /> does**.
-- <InlineMath math="2.54\text{ g}" /> multiplies by <InlineMath math="0.40" /> instead of dividing, as if the losses added heat.
-- <InlineMath math="21.2\text{ g}" /> heats the water through <InlineMath math="100^\circ\text{C}" />. **It starts at <InlineMath math="25^\circ\text{C}" />**.
+- <InlineMath math="8.19^\circ\text{C}" /> counts the water from the alkali. **The acid runs out at <InlineMath math="0.040\text{ mol}" />**.
+- <InlineMath math="13.6^\circ\text{C}" /> warms only the <InlineMath math="40.0\text{ g}" /> of acid, but the heat spreads through the whole mixture.
+- <InlineMath math="9.10^\circ\text{C}" /> warms only the <InlineMath math="60.0\text{ g}" /> of alkali and leaves out the acid.

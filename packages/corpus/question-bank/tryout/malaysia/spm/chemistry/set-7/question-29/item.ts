@@ -10,19 +10,22 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2$$ esters, none share a formula" },
-        { correct: false, label: "$$4$$ esters, none share a formula" },
-        { correct: true, label: "$$4$$ esters, $$2$$ share a formula" },
-        { correct: false, label: "$$6$$ esters, $$2$$ share a formula" },
+        { correct: false, label: "all of it, $$17.6\\text{ g}$$" },
+        { correct: false, label: "half of it, $$4.40\\text{ g}$$" },
+        { correct: true, label: "half of it, $$8.80\\text{ g}$$" },
+        { correct: false, label: "one third of it, $$5.87\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2$$ ester, tiada yang berkongsi formula" },
-        { correct: false, label: "$$4$$ ester, tiada yang berkongsi formula" },
-        { correct: true, label: "$$4$$ ester, $$2$$ berkongsi formula" },
-        { correct: false, label: "$$6$$ ester, $$2$$ berkongsi formula" },
+        { correct: false, label: "semuanya, $$17.6\\text{ g}$$" },
+        { correct: false, label: "separuh daripadanya, $$4.40\\text{ g}$$" },
+        { correct: true, label: "separuh daripadanya, $$8.80\\text{ g}$$" },
+        {
+          correct: false,
+          label: "satu pertiga daripadanya, $$5.87\\text{ g}$$",
+        },
       ],
     },
   },

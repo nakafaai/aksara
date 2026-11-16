@@ -13,22 +13,21 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$83\\text{ cm}^3$$, hydrogen bonds hold the molecules in an open lattice",
+            "A metal, metallic bonds between positive ions and delocalised electrons",
         },
         {
           correct: true,
           label:
-            "$$91\\text{ cm}^3$$, hydrogen bonds hold the molecules in an open lattice",
+            "Graphite, covalent bonds within layers, with delocalised electrons",
         },
         {
           correct: false,
           label:
-            "$$91\\text{ cm}^3$$, the covalent bonds inside each molecule lengthen",
+            "Diamond, covalent bonds in a network where every atom has four bonds",
         },
         {
           correct: false,
-          label:
-            "$$0\\text{ cm}^3$$, hydrogen bonds hold the molecules in an open lattice",
+          label: "Graphite, ionic bonds between layers of carbon ions",
         },
       ],
     },
@@ -38,22 +37,21 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$83\\text{ cm}^3$$, ikatan hidrogen memegang molekul dalam kekisi terbuka",
+            "Logam, ikatan logam antara ion positif dan elektron dinyahsetempat",
         },
         {
           correct: true,
           label:
-            "$$91\\text{ cm}^3$$, ikatan hidrogen memegang molekul dalam kekisi terbuka",
+            "Grafit, ikatan kovalen dalam lapisan, dengan elektron dinyahsetempat",
         },
         {
           correct: false,
           label:
-            "$$91\\text{ cm}^3$$, ikatan kovalen dalam setiap molekul memanjang",
+            "Intan, ikatan kovalen dalam rangkaian dengan setiap atom mempunyai empat ikatan",
         },
         {
           correct: false,
-          label:
-            "$$0\\text{ cm}^3$$, ikatan hidrogen memegang molekul dalam kekisi terbuka",
+          label: "Grafit, ikatan ion antara lapisan ion karbon",
         },
       ],
     },
