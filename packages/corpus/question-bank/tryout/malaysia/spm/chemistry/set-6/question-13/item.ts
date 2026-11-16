@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$10.2\\text{ g}$$, $$1.20\\times10^{23}$$ ions, $$3.61\\times10^{23}$$ electrons",
+          label: "$$1.20\\times10^{23}$$ ions, $$5.79\\times10^4\\text{ C}$$",
         },
         {
           correct: true,
-          label:
-            "$$10.2\\text{ g}$$, $$3.01\\times10^{23}$$ ions, $$3.61\\times10^{23}$$ electrons",
+          label: "$$3.01\\times10^{23}$$ ions, $$5.79\\times10^4\\text{ C}$$",
         },
         {
           correct: false,
-          label:
-            "$$10.2\\text{ g}$$, $$3.01\\times10^{23}$$ ions, $$7.22\\times10^{23}$$ electrons",
+          label: "$$3.01\\times10^{23}$$ ions, $$1.93\\times10^4\\text{ C}$$",
         },
         {
           correct: false,
-          label:
-            "$$20.4\\text{ g}$$, $$6.02\\times10^{23}$$ ions, $$7.22\\times10^{23}$$ electrons",
+          label: "$$3.01\\times10^{23}$$ ions, $$1.16\\times10^5\\text{ C}$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$10.2\\text{ g}$$, $$1.20\\times10^{23}$$ ion, $$3.61\\times10^{23}$$ elektron",
+          label: "$$1.20\\times10^{23}$$ ion, $$5.79\\times10^4\\text{ C}$$",
         },
         {
           correct: true,
-          label:
-            "$$10.2\\text{ g}$$, $$3.01\\times10^{23}$$ ion, $$3.61\\times10^{23}$$ elektron",
+          label: "$$3.01\\times10^{23}$$ ion, $$5.79\\times10^4\\text{ C}$$",
         },
         {
           correct: false,
-          label:
-            "$$10.2\\text{ g}$$, $$3.01\\times10^{23}$$ ion, $$7.22\\times10^{23}$$ elektron",
+          label: "$$3.01\\times10^{23}$$ ion, $$1.93\\times10^4\\text{ C}$$",
         },
         {
           correct: false,
-          label:
-            "$$20.4\\text{ g}$$, $$6.02\\times10^{23}$$ ion, $$7.22\\times10^{23}$$ elektron",
+          label: "$$3.01\\times10^{23}$$ ion, $$1.16\\times10^5\\text{ C}$$",
         },
       ],
     },

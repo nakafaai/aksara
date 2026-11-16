@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Carbon dioxide $$0.27\\text{ mol}$$, silicon dioxide $$0.40\\text{ mol}$$",
+            "Carbon dioxide $$220\\text{ kJ}$$, silicon dioxide $$186\\text{ kJ}$$",
         },
         {
           correct: false,
           label:
-            "Carbon dioxide $$0\\text{ mol}$$, silicon dioxide $$0.20\\text{ mol}$$",
+            "Carbon dioxide $$0\\text{ kJ}$$, silicon dioxide $$93.2\\text{ kJ}$$",
         },
         {
           correct: true,
           label:
-            "Carbon dioxide $$0\\text{ mol}$$, silicon dioxide $$0.40\\text{ mol}$$",
+            "Carbon dioxide $$0\\text{ kJ}$$, silicon dioxide $$186\\text{ kJ}$$",
         },
         {
           correct: false,
           label:
-            "Carbon dioxide $$0\\text{ mol}$$, silicon dioxide $$0.10\\text{ mol}$$",
+            "Carbon dioxide $$0\\text{ kJ}$$, silicon dioxide $$373\\text{ kJ}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Karbon dioksida $$0.27\\text{ mol}$$, silikon dioksida $$0.40\\text{ mol}$$",
+            "Karbon dioksida $$220\\text{ kJ}$$, silikon dioksida $$186\\text{ kJ}$$",
         },
         {
           correct: false,
           label:
-            "Karbon dioksida $$0\\text{ mol}$$, silikon dioksida $$0.20\\text{ mol}$$",
+            "Karbon dioksida $$0\\text{ kJ}$$, silikon dioksida $$93.2\\text{ kJ}$$",
         },
         {
           correct: true,
           label:
-            "Karbon dioksida $$0\\text{ mol}$$, silikon dioksida $$0.40\\text{ mol}$$",
+            "Karbon dioksida $$0\\text{ kJ}$$, silikon dioksida $$186\\text{ kJ}$$",
         },
         {
           correct: false,
           label:
-            "Karbon dioksida $$0\\text{ mol}$$, silikon dioksida $$0.10\\text{ mol}$$",
+            "Karbon dioksida $$0\\text{ kJ}$$, silikon dioksida $$373\\text{ kJ}$$",
         },
       ],
     },
