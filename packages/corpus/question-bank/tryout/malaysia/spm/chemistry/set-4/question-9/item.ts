@@ -12,21 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Bromine displaces chlorine, and 1.60 g of chlorine forms",
+          label:
+            "Bromine forms, and shaking it with potassium iodide frees 1.27 g of iodine",
         },
         {
           correct: false,
-          label: "Chlorine displaces bromine, and 0.80 g of bromine forms",
+          label:
+            "Bromine cannot displace iodine, so the organic layer stays orange-brown",
         },
         {
           correct: true,
           label:
-            "Chlorine displaces bromine, 1.60 g of bromine forms, and the organic layer turns orange-brown",
+            "1.60 g of bromine forms, and shaking it with excess potassium iodide then frees 2.54 g of iodine, turning the organic layer purple",
         },
         {
           correct: false,
           label:
-            "Chlorine displaces bromine, 1.60 g of bromine forms, and the organic layer turns purple",
+            "1.60 g of bromine forms, and shaking it with excess potassium iodide frees 2.54 g of iodine, turning the organic layer colourless",
         },
       ],
     },
@@ -35,21 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Bromin menyesarkan klorin, dan 1.60 g klorin terbentuk",
+          label:
+            "Bromin terbentuk, dan menggoncangnya dengan kalium iodida membebaskan 1.27 g iodin",
         },
         {
           correct: false,
-          label: "Klorin menyesarkan bromin, dan 0.80 g bromin terbentuk",
+          label:
+            "Bromin tidak boleh menyesarkan iodin, jadi lapisan organik kekal perang jingga",
         },
         {
           correct: true,
           label:
-            "Klorin menyesarkan bromin, 1.60 g bromin terbentuk, dan lapisan organik menjadi perang jingga",
+            "1.60 g bromin terbentuk, dan menggoncangnya dengan kalium iodida berlebihan kemudian membebaskan 2.54 g iodin, menjadikan lapisan organik ungu",
         },
         {
           correct: false,
           label:
-            "Klorin menyesarkan bromin, 1.60 g bromin terbentuk, dan lapisan organik menjadi ungu",
+            "1.60 g bromin terbentuk, dan menggoncangnya dengan kalium iodida berlebihan membebaskan 2.54 g iodin, menjadikan lapisan organik tidak berwarna",
         },
       ],
     },
