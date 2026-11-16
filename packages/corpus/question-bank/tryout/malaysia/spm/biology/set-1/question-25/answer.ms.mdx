@@ -2,6 +2,24 @@
 
 Air yang diserap oleh pucuk menarik gelembung di sepanjang tiub, jadi isi padu air yang diserap sama dengan isi padu silinder sepanjang <InlineMath math="4.5\text{ cm}" /> di dalam tiub kapilari, <InlineMath math="\pi r^2 l" />. **Samakan unit dahulu**: jejari <InlineMath math="0.50\text{ mm}=0.050\text{ cm}" />.
 
+Tekan main dan lihat gelembung merayap di sepanjang pembaris ke arah pucuk.
+
+<PotometerLab
+  title={<>Gelembung Merayap di Sepanjang Kapilari</>}
+  description={<>Dalam <InlineMath math="5" /> minit gelembung bergerak <InlineMath math="4.5\text{ cm}" />. Air yang diserap ialah silinder yang dilaluinya.</>}
+  labels={{
+    distance: <>Jarak gelembung</>,
+    rate: <>Kadar pengambilan air</>,
+    shoot: "Pilih pucuk",
+    time: "Masa",
+    view: "Potometer gelembung dengan pucuk berdaun",
+    volume: <>Isi padu air diserap</>,
+  }}
+  minutes={5}
+  radius={0.5}
+  shoots={[{ coat: "none", name: "Pucuk", rate: (Math.PI * 0.05 ** 2 * 4.5 * 60) / 5 }]}
+/>
+
 <BlockMath math="\begin{aligned}
 V&=\pi r^2 l=\pi(0.050)^2(4.5)\approx0.0353\text{ cm}^3\\
 \text{kadar}&=\frac{0.0353}{5.0}\approx7.1\times10^{-3}\text{ cm}^3\text{ min}^{-1}

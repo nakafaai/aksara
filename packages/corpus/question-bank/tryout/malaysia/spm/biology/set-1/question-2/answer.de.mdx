@@ -2,6 +2,29 @@
 
 Die wahre Größe einer Zelle hängt nicht von der Vergrößerung ab. Acht Zellen füllen einen Durchmesser von <InlineMath math="0{,}40\text{ mm}" />, eine Zelle ist also <InlineMath math="0{,}40/8=0{,}050\text{ mm}" /> lang. Wird die Vergrößerung um das Vierfache kleiner, **wird das Sehfeld viermal so breit**.
 
+Wechsel zwischen den beiden Objektiven und schau, wie das Sehfeld wächst, während jede Zelle gleich groß bleibt.
+
+<MicroscopeLab
+  title={<>Wangenzellen mit zwei Objektiven</>}
+  description={<>Bei <InlineMath math="\times400" /> füllen acht Zellen das Sehfeld. Wechsel zum <InlineMath math="\times10" />-Objektiv und zähl nochmal.</>}
+  labels={{
+    across: <>Zellen über das Sehfeld</>,
+    cell: <>Länge einer Zelle</>,
+    division: <>Ein Okularteilstrich</>,
+    field: <>Durchmesser des Sehfelds</>,
+    magnification: <>Gesamtvergrößerung</>,
+    objective: "Objektiv wählen",
+    span: <>Zelllänge in Teilstrichen</>,
+    view: "Lichtmikroskop",
+    views: { eyepiece: "Okular", stand: "Mikroskop" },
+  }}
+  cell={50}
+  eyepiece={10}
+  field={{ diameter: 0.4, magnification: 400 }}
+  objectives={[10, 40]}
+  specimen="cheek"
+/>
+
 <BlockMath math="\begin{aligned}
 \text{Zelllänge}&=\frac{0{,}40}{8}=0{,}050\text{ mm}=50\,\mu\text{m}\\
 \text{neuer Durchmesser}&=0{,}40\times\frac{400}{100}=1{,}6\text{ mm}\\
