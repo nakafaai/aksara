@@ -1,0 +1,32 @@
+# Jeden Prozentsatz in eine Zellzahl umrechnen
+
+Ein Prozentsatz teilt nur die weißen Zellen **dieser Probe** auf. Ändert sich die Gesamtzahl, werden die tatsächlichen Zellzahlen je Kubikmillimeter verglichen.
+
+<BlockMath math="\text{X}: 15\,000\cdot0{,}85=12\,750\ \text{Neutrophile},\quad 15\,000\cdot0{,}10=1500\ \text{Lymphozyten}" />
+
+<BlockMath math="\text{Y}: 9000\cdot0{,}35=3150,\quad 9000\cdot0{,}60=5400,\qquad \text{normal}: 4200,\ 2100" />
+
+<Chart
+  title={<>Neutrophile und Lymphozyten je Kubikmillimeter</>}
+  bars="apart"
+  categories={["Normal", "Patient X", "Patient Y"]}
+  series={[
+    { label: "Neutrophile", mark: "bar", values: [4200, 12750, 3150] },
+    { label: "Lymphozyten", mark: "bar", values: [2100, 1500, 5400] },
+  ]}
+  valueLabel="Zellen je Kubikmillimeter"
+  description={<>Patient X hat etwa <InlineMath math="12\,750" /> Neutrophile und <InlineMath math="1500" /> Lymphozyten, Patient Y <InlineMath math="3150" /> Neutrophile und <InlineMath math="5400" /> Lymphozyten. Normales Blut hat <InlineMath math="4200" /> und <InlineMath math="2100" />.</>}
+/>
+
+- I: <InlineMath math="\tfrac{12\,750}{4200}\approx3" />, X hat also etwa dreimal so viele Neutrophile wie normal. Aussage I stimmt.
+- II: Y hat <InlineMath math="3150" /> Neutrophile gegenüber normalen <InlineMath math="4200" />, also weniger, obwohl seine Gesamtzahl weißer Zellen höher ist. Aussage II stimmt.
+- III: Ein starker Anstieg der Fresszellen wie bei X ist typisch für Bakterien. Ein Anstieg der Lymphozyten wie bei Y ist typisch für ein Virus, das mit Antikörpern und dem Töten infizierter Zellen bekämpft wird. Aussage III stimmt.
+- IV: Der **Anteil** der Lymphozyten bei X fällt auf ein Drittel, von <InlineMath math="30" /> auf <InlineMath math="10" />, die Zahl aber nur von <InlineMath math="2100" /> auf <InlineMath math="1500" />, etwa <InlineMath math="71\,\%" /> des Normalwerts. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und III verwirft II und **liest die hohe Gesamtzahl von Y als mehr Neutrophile**.
+- Nur II, III und IV verwirft I und akzeptiert IV und **vergleicht in beiden Prozentsätze statt Zahlen**.
+- I, II, III und IV akzeptiert IV, **obwohl 1500 kein Drittel von 2100 ist**.

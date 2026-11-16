@@ -1,0 +1,29 @@
+# Double the choices for every pair, then multiply the two parents
+
+Each pair can line up two ways, independently of the others, so <InlineMath math="n" /> pairs give <InlineMath math="2^n" /> kinds of gamete. Any gamete from one parent can meet any gamete from the other, so the **two numbers multiply**.
+
+<BlockMath math="2^4=16,\qquad 16\times16=256,\qquad 2^{23}=8\,388\,608" />
+
+<Chart
+  title={<>Kinds of Gamete for Each Number of Chromosome Pairs</>}
+  bars="apart"
+  categories={["One pair", "Two pairs", "Three pairs", "Four pairs"]}
+  series={[
+    { label: "Kinds of gamete", mark: "bar", values: [2, 4, 8, 16] },
+  ]}
+  valueLabel="Kinds of gamete"
+  description={<>Each extra pair doubles the kinds of gamete: <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="8" /> and <InlineMath math="16" /> for one to four pairs.</>}
+/>
+
+- I: four pairs give <InlineMath math="2^4=16" /> kinds of gamete. Statement I is correct.
+- II: each of <InlineMath math="16" /> eggs can meet each of <InlineMath math="16" /> sperm, so there are <InlineMath math="16\times16=256" /> combinations, not <InlineMath math="16+16=32" />. Statement II is wrong.
+- III: <InlineMath math="2^{23}" /> is about <InlineMath math="8.4" /> million. Statement III is correct.
+- IV: crossing over swaps pieces between homologous chromosomes, making new combinations of alleles on each chromosome, so the true number of gametes is far larger. Statement IV is correct.
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and III only adds the two parents' gametes in II, **although combinations multiply**, and rejects IV.
+- II and IV only rejects I and III, **the doubling with each pair**.
+- I, II, III and IV accepts <InlineMath math="32" />, **which adds where it should multiply**.

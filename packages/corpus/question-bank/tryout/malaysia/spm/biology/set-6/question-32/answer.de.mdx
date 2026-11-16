@@ -1,0 +1,26 @@
+# Zuerst den Genotyp der Tochter, dann ihre Kinder bestimmen
+
+Ein Vater gibt sein einziges X-Chromosom an **jede Tochter** weiter. Jede Tochter des betroffenen Mannes trägt also <InlineMath math="X^R" />, und da ihre Mutter gesund ist, ist sie <InlineMath math="X^RX^r" />.
+
+<BlockMath math="X^RY\times X^rX^r\ \Rightarrow\ \text{jede Tochter }X^RX^r" />
+
+<BlockMath math="X^RX^r\times X^rY:\quad X^RX^r,\ X^rX^r,\ X^RY,\ X^rY\ \Rightarrow\ P(X^RY)=\tfrac{1}{4}" />
+
+<Chart
+  title={<>Wahrscheinlichkeit jeder Art erstes Kind der Tochter</>}
+  bars="apart"
+  categories={["Betroffener Sohn", "Gesunder Sohn", "Betroffene Tochter", "Gesunde Tochter"]}
+  series={[
+    { label: "Wahrscheinlichkeit", mark: "bar", values: [25, 25, 25, 25] },
+  ]}
+  valueLabel="Wahrscheinlichkeit (%)"
+  description={<>Jede der vier Kinderarten hat eine Wahrscheinlichkeit von <InlineMath math="25\,\%" />, ein betroffener Sohn also eins zu vier.</>}
+/>
+
+Die Tochter gibt <InlineMath math="X^R" /> an die Hälfte ihrer Kinder weiter, und die Hälfte ihrer Kinder sind Söhne, ein betroffener Sohn hat also eine Wahrscheinlichkeit von <InlineMath math="\tfrac{1}{2}\cdot\tfrac{1}{2}=\tfrac{1}{4}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\tfrac{1}{2}" /> ist die Wahrscheinlichkeit, dass **ein Sohn** betroffen ist, nicht dass das erste Kind ein betroffener Sohn ist.
+- <InlineMath math="0" /> nimmt an, Söhne könnten nicht betroffen sein, und verwechselt die Regel **Vater zu Tochter** mit der Mutter, die auch an Söhne ein X weitergibt.
+- <InlineMath math="\tfrac{1}{8}" /> halbiert noch einmal, als wäre die Tochter **nur mit halber Wahrscheinlichkeit betroffen**, obwohl jede Tochter des Mannes <InlineMath math="X^R" /> trägt.
