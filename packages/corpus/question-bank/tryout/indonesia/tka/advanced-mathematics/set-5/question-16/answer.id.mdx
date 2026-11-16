@@ -8,6 +8,45 @@ Pusatnya <InlineMath math="M(5,-4)" /> dan jari-jarinya <InlineMath math="\sqrt{
 
 <BlockMath math="x^2-10x=0\ \Rightarrow\ x(x-10)=0\ \Rightarrow\ x=0\ \text{atau}\ x=10" />
 
+Gambar lingkaran dan segitiga <InlineMath math="OAM" />. **Alasnya tali busur <InlineMath math="OA" /> di sumbu <InlineMath math="X" />, dan tingginya jarak pusat ke sumbu itu**.
+
+<MathVisual
+  title={<>Segitiga <InlineMath math="OAM" /> di dalam lingkaran</>}
+  description={<>Lingkaran berpusat di <InlineMath math="M(5,-4)" /> dengan jari-jari <InlineMath math="\sqrt{41}" />, memotong sumbu <InlineMath math="X" /> di <InlineMath math="O" /> dan <InlineMath math="A(10,0)" />. Segitiga <InlineMath math="OAM" /> beralas <InlineMath math="10" /> dan bertinggi <InlineMath math="4" />, ruas tegak dari <InlineMath math="M" /> ke sumbu <InlineMath math="X" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A(10,0)" />,
+    m: <InlineMath math="M(5,-4)" />,
+    height: <InlineMath math="4" />,
+    base: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -11, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 5, y: -4 }, radius: Math.sqrt(41) },
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 5, y: -4 }] },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 5, y: -4 }, to: { x: 5, y: 0 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 5, y: -4 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 10, y: 0 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 10, y: 0 }, placement: "above-right" },
+      { key: "m", objectId: "m", at: { x: 5, y: -4 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 5, y: -2 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: 2.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="A(10,0)" />, alasnya <InlineMath math="OA=10" />, dan tingginya <InlineMath math="|-4|=4" />.
 
 <BlockMath math="L=\frac12\cdot10\cdot4=20" />

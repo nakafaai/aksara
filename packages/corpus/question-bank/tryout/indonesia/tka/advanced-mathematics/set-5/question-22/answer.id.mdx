@@ -6,6 +6,35 @@ Sekarang pisahkan menjadi limit-limit dasar.
 
 <BlockMath math="\lim_{x\to0}\frac{-2\sin2x\sin x}{x^2}=-2\cdot\lim_{x\to0}\frac{\sin2x}{x}\cdot\lim_{x\to0}\frac{\sin x}{x}=-2\cdot2\cdot1=-4" />
 
+Gambar <InlineMath math="k" /> di kedua sisi nol. **Kedua cabang turun ke titik terendah yang sama, <InlineMath math="(0,\ -4)" />**, walaupun <InlineMath math="k(0)" /> tidak terdefinisi.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="k" /> di sekitar <InlineMath math="x=0" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{\cos3x-\cos x}{x^2}" /> untuk <InlineMath math="x" /> antara <InlineMath math="-0{,}55" /> dan <InlineMath math="0{,}55" /> radian, tanpa <InlineMath math="x=0" />. Grafiknya simetris dan kedua cabang menuju <InlineMath math="(0,\ -4)" />.</>}
+  labels={{
+    left: <InlineMath math="y=k(x)" />,
+    target: <InlineMath math="(0,\ -4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 0.6 },
+      y: { min: -4.5, max: -2.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(cos(3*x) - cos(x))/x^2", domain: { min: -0.55, max: -0.01 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(cos(3*x) - cos(x))/x^2", domain: { min: 0.01, max: 0.55 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: -4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -0.4, y: -3.5 }, placement: "above" },
+      { key: "target", objectId: "target", at: { x: 0, y: -4 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, <InlineMath math="\cos0{,}03-\cos0{,}01\approx-0{,}0004" />, sehingga <InlineMath math="k(0{,}01)\approx\frac{-0{,}0004}{0{,}0001}=-4" />.
 
 Jadi, nilai limit tersebut adalah <InlineMath math="-4" />.

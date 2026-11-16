@@ -8,6 +8,45 @@ Compute the side vectors, then **judge each angle by the sign of the dot product
 \text{at }C&:\ \overrightarrow{CA}\cdot\overrightarrow{CB}=(1,0,-3)\cdot(0,2,-3)=9
 \end{aligned}" />
 
+Draw the triangle in its own plane at true size. **All three angles are acute, and the height from <InlineMath math="C" /> to <InlineMath math="AB" /> is <InlineMath math="\tfrac{7}{\sqrt5}" />**, so the area is <InlineMath math="\tfrac12\cdot\sqrt5\cdot\tfrac{7}{\sqrt5}=\tfrac72" />.
+
+<MathVisual
+  title={<>Triangle <InlineMath math="ABC" /> in its plane</>}
+  description={<>The sides of the triangle are <InlineMath math="AB=\sqrt5" />, <InlineMath math="AC=\sqrt{10}" />, and <InlineMath math="BC=\sqrt{13}" />. No angle is a right angle. The foot of the height from <InlineMath math="C" /> lands between <InlineMath math="A" /> and <InlineMath math="B" />, and the height is <InlineMath math="\tfrac{7}{\sqrt5}" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    ab: <InlineMath math="\sqrt5" />,
+    ac: <InlineMath math="\sqrt{10}" />,
+    bc: <InlineMath math="\sqrt{13}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 3 },
+      y: { min: -0.6, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(5), y: 0 }, { x: 1 / Math.sqrt(5), y: 7 / Math.sqrt(5) }] },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(5), y: 0 } },
+      { id: "ac", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1 / Math.sqrt(5), y: 7 / Math.sqrt(5) } },
+      { id: "bc", kind: "segment", appearance: "primary", from: { x: Math.sqrt(5), y: 0 }, to: { x: 1 / Math.sqrt(5), y: 7 / Math.sqrt(5) } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 1 / Math.sqrt(5), y: 7 / Math.sqrt(5) }, to: { x: 1 / Math.sqrt(5), y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: Math.sqrt(5), y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 1 / Math.sqrt(5), y: 7 / Math.sqrt(5) }, placement: "above" },
+      { key: "ab", objectId: "ab", at: { x: Math.sqrt(5) / 2, y: 0 }, placement: "below" },
+      { key: "ac", objectId: "ac", at: { x: 0.5 / Math.sqrt(5), y: 3.5 / Math.sqrt(5) }, placement: "left" },
+      { key: "bc", objectId: "bc", at: { x: 3 / Math.sqrt(5), y: 3.5 / Math.sqrt(5) }, placement: "right" },
+    ],
+  }}
+/>
+
 1. The statement that triangle <InlineMath math="ABC" /> has a right angle is false, because none of the dot products is zero.
 2. The statement about the area is true. With <InlineMath math="|\overrightarrow{AB}|^2=5" /> and <InlineMath math="|\overrightarrow{AC}|^2=10" />, the triangle's area is half the area of the parallelogram on those two sides.
 

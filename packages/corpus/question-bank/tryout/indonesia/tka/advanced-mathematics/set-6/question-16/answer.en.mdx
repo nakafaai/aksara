@@ -7,6 +7,41 @@ The centre is <InlineMath math="O(0,0)" /> and <InlineMath math="r=5" />.
 d_{\min}&=|OL|-r=15-5=10
 \end{aligned}" />
 
+Draw the pond and the lamp. **The nearest point of the fence lies on the line from the centre to the lamp**, so the shortest distance is <InlineMath math="15" /> minus the radius <InlineMath math="5" />.
+
+<MathVisual
+  title={<>The shortest distance from the lamp to the pond fence</>}
+  description={<>The pond fence is the circle with centre at the origin and radius <InlineMath math="5" />. The segment from the centre to the lamp <InlineMath math="L(9,12)" /> has length <InlineMath math="15" /> and cuts the fence at <InlineMath math="(3,4)" />. The part from <InlineMath math="(3,4)" /> to <InlineMath math="L" /> has length <InlineMath math="10" />.</>}
+  labels={{
+    lamp: <InlineMath math="L(9,12)" />,
+    near: <InlineMath math="(3,4)" />,
+    gap: <InlineMath math="10" />,
+    r: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 11 },
+      y: { min: -6, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pond", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 3, y: 4 }, to: { x: 9, y: 12 } },
+      { id: "lamp", kind: "point", appearance: "primary", at: { x: 9, y: 12 } },
+      { id: "near", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "lamp", objectId: "lamp", at: { x: 9, y: 12 }, placement: "right" },
+      { key: "near", objectId: "near", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 6, y: 8 }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Since <InlineMath math="15>5" />, the lamp is outside the fence. The nearest fence point is <InlineMath math="\frac{5}{15}(9,12)=(3,4)" />, and its distance to <InlineMath math="L" /> is <InlineMath math="\sqrt{6^2+8^2}=10" />.
 
 So the shortest distance from the lamp to the pond fence is <InlineMath math="10" /> m.

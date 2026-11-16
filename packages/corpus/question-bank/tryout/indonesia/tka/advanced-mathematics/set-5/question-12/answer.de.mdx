@@ -5,6 +5,37 @@ Einen Vektor in Richtung <InlineMath math="\vec{a}" /> mit vorgegebener Länge b
 \vec{c}&=12\cdot\frac{\vec{a}}{|\vec{a}|}=\frac{12}{3}\left(2\vec{i}-\vec{j}+2\vec{k}\right)=8\vec{i}-4\vec{j}+8\vec{k}
 \end{aligned}" />
 
+Vergleiche die Längen der drei gleich gerichteten Vektoren. **Der Einheitsvektor hat die Länge <InlineMath math="1" />, <InlineMath math="\vec a" /> die Länge <InlineMath math="3" />, und <InlineMath math="\vec c" /> soll die Länge <InlineMath math="12" /> haben**, also ist <InlineMath math="\vec c" /> das <InlineMath math="4" />-Fache von <InlineMath math="\vec a" />.
+
+<MathVisual
+  title={<>Drei gleich gerichtete Vektoren verschiedener Länge</>}
+  description={<>Alle drei Pfeile zeigen in dieselbe Richtung, die Richtung von <InlineMath math="\vec a" />. Ihre Längen sind <InlineMath math="1" />, <InlineMath math="3" /> und <InlineMath math="12" />, also gilt <InlineMath math="\vec c=12\cdot\tfrac{\vec a}{3}=4\vec a" />.</>}
+  labels={{
+    unit: <InlineMath math="\frac{\vec a}{|\vec a|}:\ 1" />,
+    a: <InlineMath math="\vec a:\ 3" />,
+    c: <InlineMath math="\vec c=4\vec a:\ 12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 13 },
+      y: { min: -0.5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "vector", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 1, y: 2.4 } },
+      { id: "a", kind: "vector", appearance: "secondary", from: { x: 0, y: 1.4 }, to: { x: 3, y: 1.4 } },
+      { id: "c", kind: "vector", appearance: "answer", from: { x: 0, y: 0.4 }, to: { x: 12, y: 0.4 } },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: 1, y: 2.4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 3, y: 1.4 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 6, y: 0.4 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="|\vec{c}|=\sqrt{64+16+64}=\sqrt{144}=12" />, und <InlineMath math="\vec{c}=4\vec{a}" /> mit positivem Faktor, die Richtung stimmt also.
 
 Also ist <InlineMath math="\vec{c}=8\vec{i}-4\vec{j}+8\vec{k}" />.

@@ -4,6 +4,34 @@ Divide numerator and denominator by <InlineMath math="x" />. Since <InlineMath m
 
 <BlockMath math="\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12" />
 
+Draw <InlineMath math="q" /> for negative <InlineMath math="x" /> heading further left. **The curve stays below the <InlineMath math="x" />-axis and hugs the line <InlineMath math="y=-\tfrac12" />**, because the numerator is positive and the denominator negative.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="q" /> for negative <InlineMath math="x" /></>}
+  description={<>The curve <InlineMath math="y=\frac{\sqrt{x^2+1}}{2x-3}" /> for <InlineMath math="-40\le x\le-1" />. At <InlineMath math="x=-1" /> its value is about <InlineMath math="-0.28" />, and going left the curve falls and gets closer and closer to the horizontal line <InlineMath math="y=-\tfrac12" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{\sqrt{x^2+1}}{2x-3}" />,
+    level: <InlineMath math="y=-\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -40, max: 0 },
+      y: { min: -0.7, max: 0 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "sqrt(x^2 + 1)/(2*x - 3)", domain: { min: -40, max: -1 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "-0.5", domain: { min: -40, max: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -5, y: -0.4 }, placement: "above" },
+      { key: "level", objectId: "level", at: { x: -35, y: -0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Sign check: for negative <InlineMath math="x" />, the numerator is positive and the denominator negative, so the fraction is negative. For example <InlineMath math="q(-100)=\frac{\sqrt{10{,}001}}{-203}\approx-0.4926" />.
 
 So the limit is <InlineMath math="-\frac12" />.

@@ -5,6 +5,19 @@ Jeden Monat wird der Vektor der Kundenzahlen mit der Übergangsmatrix multiplizi
 \begin{pmatrix} p_2 \\ q_2 \end{pmatrix}&=\begin{pmatrix} 0{,}8\cdot550+0{,}3\cdot450 \\ 0{,}2\cdot550+0{,}7\cdot450 \end{pmatrix}=\begin{pmatrix} 440+135 \\ 110+315 \end{pmatrix}=\begin{pmatrix} 575 \\ 425 \end{pmatrix}
 \end{aligned}" />
 
+Zeichne die Kundenzahlen beider Anbieter für jeden Monat. **Kunden wandern von <InlineMath math="Q" /> zu <InlineMath math="P" />, aber die Summe bleibt <InlineMath math="1{.}000" />**, also liegen beide Linien immer symmetrisch zu <InlineMath math="500" />.
+
+<Chart
+  title={<>Kunden von <InlineMath math="P" /> und <InlineMath math="Q" /> über zwei Monate</>}
+  description={<>Die Kunden von <InlineMath math="P" /> steigen von <InlineMath math="500" /> auf <InlineMath math="550" /> und dann auf <InlineMath math="575" />. Die Kunden von <InlineMath math="Q" /> fallen von <InlineMath math="500" /> auf <InlineMath math="450" /> und dann auf <InlineMath math="425" />. In jedem Monat ergeben beide zusammen <InlineMath math="1{.}000" />.</>}
+  categories={["Beginn", "Monat 1", "Monat 2"]}
+  series={[
+    { label: "P", mark: "line", values: [500, 550, 575] },
+    { label: "Q", mark: "line", values: [500, 450, 425] },
+  ]}
+  valueLabel="Kunden"
+/>
+
 Probe: Die Gesamtzahl bleibt jeden Monat <InlineMath math="1{.}000" />, weil jede Spalte der Matrix die Summe <InlineMath math="1" /> hat.
 
 Nach <InlineMath math="2" /> Monaten hat <InlineMath math="P" /> also <InlineMath math="575" /> Kunden.

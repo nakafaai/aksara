@@ -13,6 +13,38 @@ So <InlineMath math="f(x)=2x-3" />. Check: <InlineMath math="f(f(x))=2(2x-3)-3=4
 
 <BlockMath math="2x-3=5\ \Rightarrow\ x=4" />
 
+Draw <InlineMath math="f" /> and <InlineMath math="f\circ f" />. **The line <InlineMath math="f\circ f" /> is twice as steep as <InlineMath math="f" />**, because the slope <InlineMath math="2" /> is applied twice. The horizontal line <InlineMath math="y=5" /> hits <InlineMath math="f" /> at <InlineMath math="x=4" />.
+
+<MathVisual
+  title={<>The lines <InlineMath math="f" /> and <InlineMath math="f\circ f" /></>}
+  description={<>The line <InlineMath math="y=2x-3" /> is <InlineMath math="f" />, and the line <InlineMath math="y=4x-9" /> is <InlineMath math="f\circ f" />. The horizontal guide line from <InlineMath math="y=5" /> hits the line <InlineMath math="f" /> at <InlineMath math="(4,\ 5)" />, so <InlineMath math="f^{-1}(5)=4" />.</>}
+  labels={{
+    f: <InlineMath math="y=2x-3" />,
+    ff: <InlineMath math="y=4x-9" />,
+    hit: <InlineMath math="(4,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6 },
+      y: { min: -4, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "f", kind: "function", appearance: "primary", formula: "2*x - 3", domain: { min: 0, max: 6 } },
+      { id: "ff", kind: "function", appearance: "secondary", formula: "4*x - 9", domain: { min: 1.5, max: 4.75 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 5 }, to: { x: 4, y: 5 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 4, y: 5 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5.5, y: 8 }, placement: "below-right" },
+      { key: "ff", objectId: "ff", at: { x: 4.5, y: 9 }, placement: "left" },
+      { key: "hit", objectId: "hit", at: { x: 4, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 So <InlineMath math="f^{-1}(5)=4" />.
 
 - <InlineMath math="7" /> is <InlineMath math="f(5)" />, not <InlineMath math="f^{-1}(5)" />.

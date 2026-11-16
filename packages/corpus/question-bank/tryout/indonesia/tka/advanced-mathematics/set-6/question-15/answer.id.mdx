@@ -2,6 +2,45 @@ Pusat lingkaran berjarak sama ke <InlineMath math="A" /> dan <InlineMath math="B
 
 Pusat juga terletak pada <InlineMath math="y=x-1" />, jadi pusatnya <InlineMath math="(3,2)" />. Jari-jarinya jarak pusat ke salah satu lampu.
 
+Gambar kedua lampu, garis sumbu <InlineMath math="AB" />, dan jalan setapak. **Pusat harus berjarak sama ke kedua lampu dan sekaligus berada di jalan**, jadi pusatnya adalah perpotongan <InlineMath math="x=3" /> dan <InlineMath math="y=x-1" />.
+
+<MathVisual
+  title={<>Pusat pagar dari garis sumbu dan jalan setapak</>}
+  description={<>Lampu <InlineMath math="A(1,4)" /> dan <InlineMath math="B(5,4)" /> terletak pada pagar. Garis sumbu ruas <InlineMath math="AB" /> adalah garis tegak <InlineMath math="x=3" />, dan jalan setapak adalah garis <InlineMath math="y=x-1" />. Keduanya berpotongan di <InlineMath math="(3,2)" />, pusat lingkaran pagar berjari-jari <InlineMath math="\sqrt8" /> yang melewati kedua lampu.</>}
+  labels={{
+    a: <InlineMath math="A(1,4)" />,
+    b: <InlineMath math="B(5,4)" />,
+    bisector: <InlineMath math="x=3" />,
+    path: <InlineMath math="y=x-1" />,
+    centre: <InlineMath math="(3,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6.5 },
+      y: { min: -1.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fence", kind: "circle", appearance: "answer", center: { x: 3, y: 2 }, radius: 2 * Math.sqrt(2) },
+      { id: "bisector", kind: "segment", appearance: "construction", from: { x: 3, y: -1.5 }, to: { x: 3, y: 5.5 } },
+      { id: "path", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -0.5, max: 6.5 } },
+      { id: "chord", kind: "segment", appearance: "reference", from: { x: 1, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 4 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 5, y: 4 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: 4 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 5, y: 4 }, placement: "above-right" },
+      { key: "bisector", objectId: "bisector", at: { x: 3, y: 5.5 }, placement: "right" },
+      { key: "path", objectId: "path", at: { x: 6, y: 5 }, placement: "below-right" },
+      { key: "centre", objectId: "centre", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 <BlockMath math="r^2=(1-3)^2+(4-2)^2=4+4=8" />
 
 <BlockMath math="\begin{aligned}

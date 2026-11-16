@@ -7,6 +7,44 @@ Die Vorschrift lautet <InlineMath math="x'=x+2y" /> und <InlineMath math="y'=y" 
 2x'-5y'+3&=0
 \end{aligned}" />
 
+Diese Matrix verschiebt jeden Punkt waagerecht um das Doppelte seiner Höhe. **Punkte auf der <InlineMath math="X" />-Achse bleiben liegen, und ein Punkt in Höhe <InlineMath math="3" /> rückt <InlineMath math="6" /> nach rechts**, also wird die Gerade flacher.
+
+<MathVisual
+  title={<>Die Gerade vor und nach der Scherung</>}
+  description={<>Die Ausgangsgerade <InlineMath math="y=2x+3" /> geht durch <InlineMath math="\left(-\tfrac32,0\right)" /> und <InlineMath math="(0,3)" />. Der Punkt <InlineMath math="\left(-\tfrac32,0\right)" /> bleibt, wo er ist, während <InlineMath math="(0,3)" /> nach <InlineMath math="(6,3)" /> rückt. Die Gerade durch beide Bilder ist <InlineMath math="2x-5y+3=0" />.</>}
+  labels={{
+    start: <InlineMath math="2x-y+3=0" />,
+    end: <InlineMath math="2x-5y+3=0" />,
+    fixed: <InlineMath math="\left(-\tfrac32,0\right)" />,
+    from: <InlineMath math="(0,3)" />,
+    to: <InlineMath math="(6,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 8 },
+      y: { min: -1.5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "2*x + 3", domain: { min: -2.2, max: 1 } },
+      { id: "end", kind: "function", appearance: "answer", formula: "(2*x + 3)/5", domain: { min: -3, max: 8 } },
+      { id: "slide", kind: "vector", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+      { id: "fixed", kind: "point", appearance: "secondary", at: { x: -1.5, y: 0 } },
+      { id: "from", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+      { id: "to", kind: "point", appearance: "answer", at: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0.8, y: 4.6 }, placement: "right" },
+      { key: "end", objectId: "end", at: { x: 7.5, y: 3.6 }, placement: "below" },
+      { key: "fixed", objectId: "fixed", at: { x: -1.5, y: 0 }, placement: "below" },
+      { key: "from", objectId: "from", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "to", objectId: "to", at: { x: 6, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe mit zwei Punkten der Ausgangsgeraden: <InlineMath math="(0,3)" /> wird auf <InlineMath math="(6,3)" /> abgebildet, und <InlineMath math="12-15+3=0" />. Der Punkt <InlineMath math="\left(-\frac32,0\right)" /> bleibt fest, weil <InlineMath math="y=0" /> ist, und <InlineMath math="-3-0+3=0" />.
 
 Die Bildgerade ist also <InlineMath math="2x-5y+3=0" />.

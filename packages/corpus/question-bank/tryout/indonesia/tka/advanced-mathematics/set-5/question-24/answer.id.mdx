@@ -6,6 +6,34 @@ Untuk <InlineMath math="x\ne1" />, faktor <InlineMath math="\sqrt x-1" /> tidak 
 
 <BlockMath math="\lim_{x\to1}\frac{(\sqrt x-1)(\sqrt x+1)(x^2+x+1)}{\sqrt x-1}=\lim_{x\to1}(\sqrt x+1)(x^2+x+1)=2\cdot3=6" />
 
+Gambar <InlineMath math="r" /> di sekitar <InlineMath math="x=1" />. **Setelah faktor <InlineMath math="\sqrt x-1" /> dicoret, grafiknya sama dengan <InlineMath math="(\sqrt x+1)(x^2+x+1)" />**, yang melewati ketinggian <InlineMath math="6" /> di <InlineMath math="x=1" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="r" /> di sekitar <InlineMath math="x=1" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{x^3-1}{\sqrt x-1}" /> untuk <InlineMath math="0\le x\le2" />, tanpa <InlineMath math="x=1" />. Kurvanya naik dari <InlineMath math="(0,\ 1)" /> dan menuju titik <InlineMath math="(1,\ 6)" /> dari kedua sisi.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{x^3-1}{\sqrt x-1}" />,
+    target: <InlineMath math="(1,\ 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 2 },
+      y: { min: 0, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(sqrt(x) + 1)*(x^2 + x + 1)", domain: { min: 0, max: 2 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 1, y: 6 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1.6, y: (Math.sqrt(1.6) + 1) * (2.56 + 1.6 + 1) }, placement: "left" },
+      { key: "target", objectId: "target", at: { x: 1, y: 6 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=1{,}01" />, <InlineMath math="r(x)=\frac{0{,}030301}{0{,}0049876}\approx6{,}075" />, dekat dengan <InlineMath math="6" />.
 
 Jadi, nilai limit tersebut adalah <InlineMath math="6" />.

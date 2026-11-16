@@ -2,6 +2,45 @@ Der Kreis hat den Mittelpunkt <InlineMath math="O(0,0)" /> und <InlineMath math=
 
 <BlockMath math="|OP|^2=1^2+7^2=50" />
 
+Zeichne den Kreis, den Punkt <InlineMath math="P" /> und beide Tangenten. **Jede Tangente steht senkrecht auf dem Radius zu ihrem Berührpunkt**, und die beiden Tangentenabschnitte von <InlineMath math="P" /> sind gleich lang, nämlich <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Zwei Tangenten von <InlineMath math="P(1,7)" /> aus</>}
+  description={<>Der Kreis hat den Mittelpunkt im Ursprung und den Radius <InlineMath math="5" />, und <InlineMath math="P(1,7)" /> liegt außerhalb. Die Tangenten von <InlineMath math="P" /> berühren den Kreis in <InlineMath math="(4,3)" /> und <InlineMath math="(-3,4)" />, jeweils <InlineMath math="5" /> von <InlineMath math="P" /> entfernt. Die Senkrechte <InlineMath math="x=1" /> schneidet den Kreis in zwei Punkten, ist also keine Tangente.</>}
+  labels={{
+    p: <InlineMath math="P(1,7)" />,
+    right: <InlineMath math="(4,3)" />,
+    left: <InlineMath math="(-3,4)" />,
+    cut: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 6.5 },
+      y: { min: -6, max: 8.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "tangent-right", kind: "segment", appearance: "primary", from: { x: 1, y: 7 }, to: { x: 4, y: 3 } },
+      { id: "tangent-left", kind: "segment", appearance: "primary", from: { x: 1, y: 7 }, to: { x: -3, y: 4 } },
+      { id: "radius-right", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "radius-left", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3, y: 4 } },
+      { id: "cut", kind: "segment", appearance: "warning", from: { x: 1, y: -6 }, to: { x: 1, y: 6 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 1, y: 7 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -3, y: 4 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 7 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: -3, y: 4 }, placement: "left" },
+      { key: "cut", objectId: "cut", at: { x: 1, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Die Aussage über die Tangentenlänge ist richtig. Der Radius zum Berührpunkt steht senkrecht auf der Tangente, also ist die Länge <InlineMath math="\sqrt{|OP|^2-r^2}=\sqrt{50-25}=5" />.
 2. Die Aussage, dass <InlineMath math="P" /> innerhalb des Kreises liegt, ist falsch, denn <InlineMath math="|OP|^2=50>25" />. Tangenten von einem Punkt aus gibt es nur, wenn der Punkt außerhalb liegt.
 3. Die Aussage, dass <InlineMath math="x=1" /> eine Tangente ist, ist falsch. Ihr Abstand zum Mittelpunkt ist <InlineMath math="1<5" />, sie schneidet den Kreis also in zwei Punkten.

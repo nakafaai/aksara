@@ -13,6 +13,43 @@ Jadi <InlineMath math="P(x)=3x^2-x+3" />, dan sisa pembagian oleh <InlineMath ma
 
 <BlockMath math="P(-1)=3+1+3=7" />
 
+Gambar <InlineMath math="P" /> bersama nilainya di bilangan bulat. **Selisih tinggi dua titik berurutan adalah <InlineMath math="6x+2" />**: dari <InlineMath math="x=0" /> ke <InlineMath math="1" /> naik <InlineMath math="2" />, dari <InlineMath math="1" /> ke <InlineMath math="2" /> naik <InlineMath math="8" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)=3x^2-x+3" /></>}
+  description={<>Kurva melewati <InlineMath math="(-1,\ 7)" />, <InlineMath math="(0,\ 3)" />, <InlineMath math="(1,\ 5)" />, dan <InlineMath math="(2,\ 13)" />. Titik <InlineMath math="(2,\ 13)" /> cocok dengan sisa pembagian oleh <InlineMath math="x-2" />, dan tinggi grafik di <InlineMath math="x=-1" /> adalah sisa pembagian oleh <InlineMath math="x+1" />.</>}
+  labels={{
+    curve: <InlineMath math="P(x)=3x^2-x+3" />,
+    minus: <InlineMath math="(-1,\ 7)" />,
+    zero: <InlineMath math="(0,\ 3)" />,
+    one: <InlineMath math="(1,\ 5)" />,
+    two: <InlineMath math="(2,\ 13)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 2.5 },
+      y: { min: 0, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "3*x^2 - x + 3", domain: { min: -1.4, max: 2.3 } },
+      { id: "minus", kind: "point", appearance: "answer", at: { x: -1, y: 7 } },
+      { id: "zero", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: 5 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 2, y: 13 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.2, y: 3 * 4.84 - 2.2 + 3 }, placement: "left" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: 7 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 3 }, placement: "below" },
+      { key: "one", objectId: "one", at: { x: 1, y: 5 }, placement: "below-right" },
+      { key: "two", objectId: "two", at: { x: 2, y: 13 }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan: <InlineMath math="P(0)=3" />, <InlineMath math="P(1)=5" />, dan <InlineMath math="P(1)-P(0)=2" />, sama dengan <InlineMath math="6\cdot0+2" />. Lalu <InlineMath math="P(2)=13" /> dan <InlineMath math="P(2)-P(1)=8=6\cdot1+2" />.
 
 Jadi, sisa pembagiannya <InlineMath math="7" />.

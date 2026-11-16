@@ -6,6 +6,40 @@ Akar-akarnya juga bisa dicari. Coba <InlineMath math="x=3" />: <InlineMath math=
 
 <BlockMath math="2x^3-5x^2-4x+3=(x-3)(2x^2+x-1)=(x-3)(2x-1)(x+1)" />
 
+Gambar suku banyak itu. **Grafiknya memotong sumbu <InlineMath math="x" /> di <InlineMath math="-1" />, <InlineMath math="\tfrac12" />, dan <InlineMath math="3" />**, jadi akar terbesarnya <InlineMath math="3" />, dan jumlah serta hasil kali akarnya bisa dicek langsung.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="2x^3-5x^2-4x+3" /> dan akar-akarnya</>}
+  description={<>Kurva memotong sumbu <InlineMath math="x" /> di <InlineMath math="(-1,\ 0)" />, <InlineMath math="\left(\tfrac12,\ 0\right)" />, dan <InlineMath math="(3,\ 0)" />, dan melewati <InlineMath math="(0,\ 3)" />.</>}
+  labels={{
+    curve: <InlineMath math="y=2x^3-5x^2-4x+3" />,
+    "root-a": <InlineMath math="-1" />,
+    "root-b": <InlineMath math="\tfrac12" />,
+    "root-c": <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.8, max: 3.8 },
+      y: { min: -14, max: 18 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x - 3)*(2*x - 1)*(x + 1)", domain: { min: -1.6, max: 3.6 } },
+      { id: "root-a", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "root-b", kind: "point", appearance: "answer", at: { x: 0.5, y: 0 } },
+      { id: "root-c", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: 0.5 * 6 * 4.5 }, placement: "left" },
+      { key: "root-a", objectId: "root-a", at: { x: -1, y: 0 }, placement: "below-right" },
+      { key: "root-b", objectId: "root-b", at: { x: 0.5, y: 0 }, placement: "above-right" },
+      { key: "root-c", objectId: "root-c", at: { x: 3, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Akar-akarnya <InlineMath math="3" />, <InlineMath math="\frac12" />, dan <InlineMath math="-1" />, dan jumlahnya memang <InlineMath math="\frac52" />.
 
 1. Pernyataan tentang jumlah akar benar.

@@ -5,6 +5,38 @@ A fixed point satisfies <InlineMath math="(x',y')=(x,y)" />. So **set each image
 x&=y
 \end{aligned}" />
 
+Draw the line of fixed points and one point that isn't fixed. **Every point on <InlineMath math="y=x" /> stays put**, while a point off that line moves, for example <InlineMath math="(1,0)" /> to <InlineMath math="(3,1)" />.
+
+<MathVisual
+  title={<>The fixed points of the transformation <InlineMath math="T" /></>}
+  description={<>The line <InlineMath math="y=x" /> is the set of fixed points of <InlineMath math="T" />, for example <InlineMath math="T(5,5)=(5,5)" />. The arrow shows the point <InlineMath math="(1,0)" />, which isn't on that line, being moved to <InlineMath math="(3,1)" />.</>}
+  labels={{
+    fixed: <InlineMath math="y=x" />,
+    five: <InlineMath math="(5,5)" />,
+    moved: <InlineMath math="(1,0)\to(3,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fixed", kind: "function", appearance: "answer", formula: "x", domain: { min: -1, max: 6 } },
+      { id: "moved", kind: "vector", appearance: "secondary", from: { x: 1, y: 0 }, to: { x: 3, y: 1 } },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 5, y: 5 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "fixed", objectId: "fixed", at: { x: 5.5, y: 5.5 }, placement: "below-right" },
+      { key: "five", objectId: "five", at: { x: 5, y: 5 }, placement: "above-left" },
+      { key: "moved", objectId: "moved", at: { x: 2, y: 0.5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Both equations give the same condition, <InlineMath math="y=x" />, so there are infinitely many fixed points: the whole line <InlineMath math="y=x" />. Check: <InlineMath math="T(5,5)=(15-10,\ 5)=(5,5)" />, while <InlineMath math="T(1,0)=(3,1)\ne(1,0)" />.
 
 So the fixed points of <InlineMath math="T" /> are all the points on the line <InlineMath math="y=x" />.

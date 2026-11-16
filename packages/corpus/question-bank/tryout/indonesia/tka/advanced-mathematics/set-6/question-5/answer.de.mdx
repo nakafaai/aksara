@@ -13,6 +13,40 @@ G(0,25)&=500 \\
 G(21{,}5;\ 0)&=645
 \end{aligned}" />
 
+Verschiebe die Stoffgerade von <InlineMath math="2x+y=40" /> nach <InlineMath math="2x+y=43" />. **Die optimale Ecke rutscht entlang der Nähgeraden mit**, von <InlineMath math="(10,\ 20)" /> nach <InlineMath math="(12,\ 19)" />.
+
+<MathVisual
+  title={<>Zulässiger Bereich mit <InlineMath math="43\text{ m}^2" /> Stoff</>}
+  description={<>Der alte Bereich ist blass gezeichnet, der neue ist etwas breiter, weil die Stoffgerade nach <InlineMath math="2x+y=43" /> gerückt ist. Die Ecke, in der die Stoffgerade die Nähgerade <InlineMath math="x+2y=50" /> trifft, wandert von <InlineMath math="(10,\ 20)" /> nach <InlineMath math="(12,\ 19)" />, mit ganzzahligen Koordinaten.</>}
+  labels={{
+    old: <InlineMath math="(10,\ 20)" />,
+    best: <InlineMath math="(12,\ 19)" />,
+    cloth: <InlineMath math="2x+y=43" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 52 },
+      y: { min: 0, max: 45 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "after", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 21.5, y: 0 }, { x: 12, y: 19 }, { x: 0, y: 25 }] },
+      { id: "before", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 0, y: 25 }] },
+      { id: "cloth", kind: "segment", appearance: "primary", from: { x: 0, y: 43 }, to: { x: 21.5, y: 0 } },
+      { id: "sewing", kind: "segment", appearance: "secondary", from: { x: 0, y: 25 }, to: { x: 50, y: 0 } },
+      { id: "old", kind: "point", appearance: "reference", at: { x: 10, y: 20 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 12, y: 19 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 10, y: 20 }, placement: "below-left" },
+      { key: "best", objectId: "best", at: { x: 12, y: 19 }, placement: "above-right" },
+      { key: "cloth", objectId: "cloth", at: { x: 3, y: 37 }, placement: "right" },
+    ],
+  }}
+/>
+
 Der Punkt <InlineMath math="(21{,}5;\ 0)" /> ist nicht einmal umsetzbar, und sein Gewinn ist ohnehin kleiner. Ganzzahlige Punkte nahe <InlineMath math="(12,19)" /> sind auch nicht besser: <InlineMath math="(13,17)" /> liefert <InlineMath math="730" /> und <InlineMath math="(11,19)" /> liefert <InlineMath math="710" />.
 
 Der größte Gewinn in der nächsten Woche ist also <InlineMath math="\text{Rp}740{.}000{,}00" />, <InlineMath math="\text{Rp}40{.}000{,}00" /> mehr als vorher.

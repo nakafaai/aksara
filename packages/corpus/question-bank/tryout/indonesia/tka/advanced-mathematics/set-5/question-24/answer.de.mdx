@@ -6,6 +6,34 @@ Für <InlineMath math="x\ne1" /> ist der Faktor <InlineMath math="\sqrt x-1" /> 
 
 <BlockMath math="\lim_{x\to1}\frac{(\sqrt x-1)(\sqrt x+1)(x^2+x+1)}{\sqrt x-1}=\lim_{x\to1}(\sqrt x+1)(x^2+x+1)=2\cdot3=6" />
 
+Zeichne <InlineMath math="r" /> in der Nähe von <InlineMath math="x=1" />. **Nach dem Kürzen des Faktors <InlineMath math="\sqrt x-1" /> stimmt der Graph mit <InlineMath math="(\sqrt x+1)(x^2+x+1)" /> überein**, der bei <InlineMath math="x=1" /> die Höhe <InlineMath math="6" /> hat.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="r" /> in der Nähe von <InlineMath math="x=1" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{x^3-1}{\sqrt x-1}" /> für <InlineMath math="0\le x\le2" />, ohne <InlineMath math="x=1" />. Sie steigt von <InlineMath math="(0,\ 1)" /> an und läuft von beiden Seiten auf den Punkt <InlineMath math="(1,\ 6)" /> zu.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{x^3-1}{\sqrt x-1}" />,
+    target: <InlineMath math="(1,\ 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 2 },
+      y: { min: 0, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(sqrt(x) + 1)*(x^2 + x + 1)", domain: { min: 0, max: 2 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 1, y: 6 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1.6, y: (Math.sqrt(1.6) + 1) * (2.56 + 1.6 + 1) }, placement: "left" },
+      { key: "target", objectId: "target", at: { x: 1, y: 6 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=1{,}01" /> ist <InlineMath math="r(x)=\frac{0{,}030301}{0{,}0049876}\approx6{,}075" />, nahe bei <InlineMath math="6" />.
 
 Der Grenzwert ist also <InlineMath math="6" />.

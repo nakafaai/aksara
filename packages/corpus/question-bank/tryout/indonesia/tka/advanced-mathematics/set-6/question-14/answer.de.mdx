@@ -9,6 +9,35 @@ Der Radius ist <InlineMath math="3" />, also <InlineMath math="r^2=9" />.
 
 <BlockMath math="5-c=9\ \Rightarrow\ c=-4" />
 
+Zeichne den Kreis mit <InlineMath math="c=-4" />. **Sein Mittelpunkt <InlineMath math="(-2,1)" /> hängt nicht von <InlineMath math="c" /> ab, nur der Radius**, und <InlineMath math="c=-4" /> ergibt genau den Radius <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Der Kreis <InlineMath math="(x+2)^2+(y-1)^2=9" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="(-2,1)" /> und den Radius <InlineMath math="3" />, also <InlineMath math="r^2=5-c" /> mit <InlineMath math="c=-4" />.</>}
+  labels={{
+    centre: <InlineMath math="(-2,1)" />,
+    r: <InlineMath math="r=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 2 },
+      y: { min: -3, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -2, y: 1 }, radius: 3 },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: -2, y: 1 }, to: { x: 1, y: 1 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: -2, y: 1 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: -2, y: 1 }, placement: "below" },
+      { key: "r", objectId: "r", at: { x: -0.5, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="x^2+y^2+4x-2y-4=0" /> wird zu <InlineMath math="(x+2)^2+(y-1)^2=9" />, einem Kreis mit Mittelpunkt <InlineMath math="(-2,1)" /> und Radius <InlineMath math="3" />.
 
 Also ist <InlineMath math="c=-4" />.

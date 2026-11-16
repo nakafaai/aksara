@@ -6,6 +6,46 @@ y&=(x-2)^2-3 \\
 x-2&=\sqrt{y+3}
 \end{aligned}" />
 
+Zeichne <InlineMath math="f" /> auf <InlineMath math="x\ge2" /> und sein Spiegelbild an <InlineMath math="y=x" />. **Der Scheitel <InlineMath math="(2,\ -3)" /> wird zu <InlineMath math="(-3,\ 2)" /> gespiegelt**, also beginnt der Graph der Umkehrfunktion erst bei <InlineMath math="x=-3" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f" /> auf <InlineMath math="x\ge2" /> und seine Umkehrfunktion</>}
+  description={<>Die Kurve <InlineMath math="f" /> ist die rechte Hälfte der Parabel <InlineMath math="y=x^2-4x+1" />, beginnend im Scheitel <InlineMath math="(2,\ -3)" />. Die Kurve <InlineMath math="f^{-1}=2+\sqrt{x+3}" /> ist ihr Spiegelbild an <InlineMath math="y=x" />, beginnt in <InlineMath math="(-3,\ 2)" /> und geht durch <InlineMath math="(6,\ 5)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    mirror: <InlineMath math="y=x" />,
+    vertex: <InlineMath math="(2,\ -3)" />,
+    start: <InlineMath math="(-3,\ 2)" />,
+    six: <InlineMath math="(6,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -4, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -4, max: 8 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 1", domain: { min: 2, max: 5.3 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "2 + sqrt(x + 3)", domain: { min: -3, max: 8 } },
+      { id: "vertex", kind: "point", appearance: "primary", at: { x: 2, y: -3 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: -3, y: 2 } },
+      { id: "six", kind: "point", appearance: "answer", at: { x: 6, y: 5 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5, y: 6 }, placement: "left" },
+      { key: "inverse", objectId: "inverse", at: { x: 7.5, y: 2 + Math.sqrt(10.5) }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 7.5, y: 7.5 }, placement: "right" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -3 }, placement: "right" },
+      { key: "start", objectId: "start", at: { x: -3, y: 2 }, placement: "above" },
+      { key: "six", objectId: "six", at: { x: 6, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Die positive Wurzel ist die richtige, weil <InlineMath math="x\ge2" /> bedeutet, dass <InlineMath math="x-2\ge0" /> ist. Also ist <InlineMath math="f^{-1}(x)=2+\sqrt{x+3}" />, mit der Bedingung <InlineMath math="x+3\ge0" />.
 
 1. Die Aussage über die Vorschrift von <InlineMath math="f^{-1}" /> ist richtig.

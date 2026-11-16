@@ -5,6 +5,44 @@ Pada jajargenjang <InlineMath math="ABCD" />, <InlineMath math="\overrightarrow{
 C&=B+D-A=(3+3-1,\ 2-1-1,\ 3+0-1)=(5,0,2)
 \end{aligned}" />
 
+Gambar <InlineMath math="ABCD" /> pada bidang yang memuatnya. **Sisi-sisinya sama panjang dan saling tegak lurus, jadi <InlineMath math="ABCD" /> persegi**, dan diagonal persegi selalu saling tegak lurus.
+
+<MathVisual
+  title={<>Jajargenjang <InlineMath math="ABCD" /> yang ternyata persegi</>}
+  description={<>Persegi <InlineMath math="ABCD" /> bersisi <InlineMath math="3" /> digambar pada bidangnya. Kedua diagonal <InlineMath math="AC" /> dan <InlineMath math="BD" /> berpotongan tegak lurus di tengah, masing-masing sepanjang <InlineMath math="3\sqrt2" />, dan luas persegi <InlineMath math="9" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    side: <InlineMath math="3" />,
+    diagonal: <InlineMath math="3\sqrt2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 3.8 },
+      y: { min: -0.8, max: 3.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }] },
+      { id: "side", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "diagonal", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "other", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "square", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "square", at: { x: 3, y: 3 }, placement: "above-right" },
+      { key: "d", objectId: "square", at: { x: 0, y: 3 }, placement: "above-left" },
+      { key: "side", objectId: "side", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "diagonal", objectId: "diagonal", at: { x: 2.2, y: 2.2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Panjang kedua sisi sama, <InlineMath math="|\overrightarrow{AB}|=|\overrightarrow{AD}|=3" />, dan <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{AD}=4-2-2=0" />. Sisi yang sama panjang dan saling tegak lurus membuat <InlineMath math="ABCD" /> sebuah persegi.
 
 1. Pernyataan bahwa <InlineMath math="ABCD" /> persegi panjang yang bukan persegi salah, karena sisi-sisinya sama panjang.

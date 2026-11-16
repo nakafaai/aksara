@@ -7,6 +7,44 @@ Aturan transformasinya <InlineMath math="x'=x+2y" /> dan <InlineMath math="y'=y"
 2x'-5y'+3&=0
 \end{aligned}" />
 
+Matriks ini menggeser setiap titik mendatar sejauh dua kali ketinggiannya. **Titik di sumbu <InlineMath math="X" /> diam, dan titik setinggi <InlineMath math="3" /> bergeser <InlineMath math="6" /> ke kanan**, sehingga garisnya menjadi lebih landai.
+
+<MathVisual
+  title={<>Garis sebelum dan sesudah gusuran</>}
+  description={<>Garis awal <InlineMath math="y=2x+3" /> melewati <InlineMath math="\left(-\tfrac32,0\right)" /> dan <InlineMath math="(0,3)" />. Titik <InlineMath math="\left(-\tfrac32,0\right)" /> tetap di tempatnya, sedangkan <InlineMath math="(0,3)" /> bergeser ke <InlineMath math="(6,3)" />. Garis yang melewati kedua bayangan itu adalah <InlineMath math="2x-5y+3=0" />.</>}
+  labels={{
+    start: <InlineMath math="2x-y+3=0" />,
+    end: <InlineMath math="2x-5y+3=0" />,
+    fixed: <InlineMath math="\left(-\tfrac32,0\right)" />,
+    from: <InlineMath math="(0,3)" />,
+    to: <InlineMath math="(6,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 8 },
+      y: { min: -1.5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "2*x + 3", domain: { min: -2.2, max: 1 } },
+      { id: "end", kind: "function", appearance: "answer", formula: "(2*x + 3)/5", domain: { min: -3, max: 8 } },
+      { id: "slide", kind: "vector", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+      { id: "fixed", kind: "point", appearance: "secondary", at: { x: -1.5, y: 0 } },
+      { id: "from", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+      { id: "to", kind: "point", appearance: "answer", at: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0.8, y: 4.6 }, placement: "right" },
+      { key: "end", objectId: "end", at: { x: 7.5, y: 3.6 }, placement: "below" },
+      { key: "fixed", objectId: "fixed", at: { x: -1.5, y: 0 }, placement: "below" },
+      { key: "from", objectId: "from", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "to", objectId: "to", at: { x: 6, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan dua titik pada garis semula: <InlineMath math="(0,3)" /> dipetakan ke <InlineMath math="(6,3)" />, dan <InlineMath math="12-15+3=0" />. Titik <InlineMath math="\left(-\frac32,0\right)" /> dipetakan ke dirinya sendiri, karena <InlineMath math="y=0" />, dan <InlineMath math="-3-0+3=0" />.
 
 Jadi, persamaan bayangannya <InlineMath math="2x-5y+3=0" />.

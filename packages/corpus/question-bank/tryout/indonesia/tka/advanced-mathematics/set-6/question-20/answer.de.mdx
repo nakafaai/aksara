@@ -5,6 +5,38 @@ Ein Fixpunkt erfüllt <InlineMath math="(x',y')=(x,y)" />. Setze also **jede Bil
 x&=y
 \end{aligned}" />
 
+Zeichne die Gerade der Fixpunkte und einen Punkt, der nicht fix ist. **Jeder Punkt auf <InlineMath math="y=x" /> bleibt, wo er ist**, während ein Punkt außerhalb der Geraden wandert, zum Beispiel <InlineMath math="(1,0)" /> nach <InlineMath math="(3,1)" />.
+
+<MathVisual
+  title={<>Die Fixpunkte der Abbildung <InlineMath math="T" /></>}
+  description={<>Die Gerade <InlineMath math="y=x" /> ist die Menge der Fixpunkte von <InlineMath math="T" />, zum Beispiel <InlineMath math="T(5,5)=(5,5)" />. Der Pfeil zeigt, wie der Punkt <InlineMath math="(1,0)" />, der nicht auf der Geraden liegt, nach <InlineMath math="(3,1)" /> wandert.</>}
+  labels={{
+    fixed: <InlineMath math="y=x" />,
+    five: <InlineMath math="(5,5)" />,
+    moved: <InlineMath math="(1,0)\to(3,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fixed", kind: "function", appearance: "answer", formula: "x", domain: { min: -1, max: 6 } },
+      { id: "moved", kind: "vector", appearance: "secondary", from: { x: 1, y: 0 }, to: { x: 3, y: 1 } },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 5, y: 5 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "fixed", objectId: "fixed", at: { x: 5.5, y: 5.5 }, placement: "below-right" },
+      { key: "five", objectId: "five", at: { x: 5, y: 5 }, placement: "above-left" },
+      { key: "moved", objectId: "moved", at: { x: 2, y: 0.5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Beide Gleichungen liefern dieselbe Bedingung, <InlineMath math="y=x" />, also gibt es unendlich viele Fixpunkte: die ganze Gerade <InlineMath math="y=x" />. Probe: <InlineMath math="T(5,5)=(15-10,\ 5)=(5,5)" />, aber <InlineMath math="T(1,0)=(3,1)\ne(1,0)" />.
 
 Die Fixpunkte von <InlineMath math="T" /> sind also alle Punkte der Geraden <InlineMath math="y=x" />.

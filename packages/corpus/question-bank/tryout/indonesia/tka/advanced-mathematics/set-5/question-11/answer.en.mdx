@@ -6,6 +6,42 @@ Multiply matching components and add.
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=3\cdot4+4\cdot1=12+4=16" />
 
+Draw the force and the displacement from the point <InlineMath math="A" />. **Work uses only the part of the force along the displacement**, which is the shadow of <InlineMath math="\vec F" /> on the line of <InlineMath math="\vec s" />, times the length of the displacement.
+
+<MathVisual
+  title={<>Force, displacement, and the part of the force along it</>}
+  description={<>The displacement <InlineMath math="\vec s" /> runs from <InlineMath math="A(1,2)" /> to <InlineMath math="B(5,3)" />, and the force <InlineMath math="\vec F=(3,4)" /> is drawn from <InlineMath math="A" />. The perpendicular from the tip of <InlineMath math="\vec F" /> lands on the line of <InlineMath math="\vec s" />, and the highlighted part has length <InlineMath math="\tfrac{16}{\sqrt{17}}" />. The work is <InlineMath math="\tfrac{16}{\sqrt{17}}\cdot\sqrt{17}=16" />.</>}
+  labels={{
+    force: <InlineMath math="\vec F=(3,4)" />,
+    move: <InlineMath math="\vec s=(4,1)" />,
+    a: <InlineMath math="A(1,2)" />,
+    b: <InlineMath math="B(5,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6.5 },
+      y: { min: 1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "move", kind: "vector", appearance: "secondary", from: { x: 1, y: 2 }, to: { x: 5, y: 3 } },
+      { id: "force", kind: "vector", appearance: "primary", from: { x: 1, y: 2 }, to: { x: 4, y: 6 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 4, y: 6 }, to: { x: 1 + 64 / 17, y: 2 + 16 / 17 } },
+      { id: "along", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 1 + 64 / 17, y: 2 + 16 / 17 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 5, y: 3 } },
+    ],
+    labels: [
+      { key: "force", objectId: "force", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "move", objectId: "move", at: { x: 5, y: 3 }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 5, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 The unit is newton times metre, the joule. The result is positive because force and displacement form an acute angle.
 
 So the force does <InlineMath math="16" /> J of work.

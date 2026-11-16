@@ -9,6 +9,46 @@ Jumlahkan kedua persamaan untuk menghilangkan <InlineMath math="y" />.
 
 <BlockMath math="6x=50\ \Rightarrow\ x=\frac{25}{3},\qquad 4y=25-3\cdot\frac{25}{3}=0\ \Rightarrow\ y=0" />
 
+Gambar kedua garis singgung. **Titik singgungnya simetris terhadap sumbu <InlineMath math="X" />, jadi kedua garis bertemu di sumbu <InlineMath math="X" />**, di luar lingkaran.
+
+<MathVisual
+  title={<>Dua garis singgung di <InlineMath math="(3,4)" /> dan <InlineMath math="(3,-4)" /></>}
+  description={<>Lingkaran berpusat di titik asal dengan jari-jari <InlineMath math="5" />. Garis <InlineMath math="g" /> menyentuhnya di <InlineMath math="(3,4)" /> dan garis <InlineMath math="h" /> di <InlineMath math="(3,-4)" />, masing-masing tegak lurus jari-jarinya. Kedua garis berpotongan di <InlineMath math="\left(\tfrac{25}{3},0\right)" />.</>}
+  labels={{
+    g: <InlineMath math="g:\ 3x+4y=25" />,
+    h: <InlineMath math="h:\ 3x-4y=25" />,
+    meet: <InlineMath math="\left(\tfrac{25}{3},0\right)" />,
+    top: <InlineMath math="(3,4)" />,
+    bottom: <InlineMath math="(3,-4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 10 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "g", kind: "function", appearance: "primary", formula: "(25 - 3*x)/4", domain: { min: -1, max: 9.5 } },
+      { id: "h", kind: "function", appearance: "secondary", formula: "(3*x - 25)/4", domain: { min: -1, max: 9.5 } },
+      { id: "radius-top", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "radius-bottom", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: -4 } },
+      { id: "top", kind: "point", appearance: "secondary", at: { x: 3, y: 4 } },
+      { id: "bottom", kind: "point", appearance: "secondary", at: { x: 3, y: -4 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 25 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: -1, y: 7 }, placement: "right" },
+      { key: "h", objectId: "h", at: { x: -1, y: -7 }, placement: "right" },
+      { key: "meet", objectId: "meet", at: { x: 25 / 3, y: 0 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "bottom", objectId: "bottom", at: { x: 3, y: -4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Hasil ini masuk akal: kedua titik singgung simetris terhadap sumbu <InlineMath math="X" />, jadi titik potong kedua garis singgung juga berada pada sumbu <InlineMath math="X" />.
 
 Jadi, garis <InlineMath math="g" /> dan <InlineMath math="h" /> berpotongan di <InlineMath math="\left(\frac{25}{3},0\right)" />.

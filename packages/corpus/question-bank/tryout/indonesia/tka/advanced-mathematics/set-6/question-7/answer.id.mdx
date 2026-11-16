@@ -7,6 +7,42 @@ P(2)&=16-24+8+10-6=4 \\
 P(3)&=81-81+18+15-6=27
 \end{aligned}" />
 
+Gambar <InlineMath math="P" /> bersama garis sisa pembagian oleh <InlineMath math="x^2-1" />. **Garis <InlineMath math="y=2x-3" /> memotong grafik tepat di <InlineMath math="x=1" /> dan <InlineMath math="x=-1" />**, dan titik di <InlineMath math="x=2" /> dan <InlineMath math="x=3" /> memberi kedua sisa lainnya.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)" /> dan garis sisanya</>}
+  description={<>Kurva <InlineMath math="y=P(x)" /> dan garis <InlineMath math="y=2x-3" /> bertemu di <InlineMath math="(1,\ -1)" /> dan <InlineMath math="(-1,\ -5)" />. Kurva juga melewati <InlineMath math="(2,\ 4)" /> dan <InlineMath math="(3,\ 27)" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    line: <InlineMath math="y=2x-3" />,
+    two: <InlineMath math="(2,\ 4)" />,
+    three: <InlineMath math="(3,\ 27)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.6, max: 3.2 },
+      y: { min: -9, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^4 - 3*x^3 + 2*x^2 + 5*x - 6", domain: { min: -1.5, max: 3.05 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "2*x - 3", domain: { min: -1.6, max: 3 } },
+      { id: "plus", kind: "point", appearance: "answer", at: { x: 1, y: -1 } },
+      { id: "minus", kind: "point", appearance: "answer", at: { x: -1, y: -5 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "three", kind: "point", appearance: "warning", at: { x: 3, y: 27 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -1.5, y: 5.0625 + 10.125 + 4.5 - 7.5 - 6 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 2.8, y: 2.6 }, placement: "below-right" },
+      { key: "two", objectId: "two", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "three", objectId: "three", at: { x: 3, y: 27 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. Pernyataan tentang sisa pembagian oleh <InlineMath math="x-2" /> benar, karena sisanya <InlineMath math="P(2)=4" />.
 2. Pernyataan bahwa <InlineMath math="x+1" /> faktor salah, karena <InlineMath math="P(-1)=-5\ne0" />.
 3. Pernyataan tentang sisa pembagian oleh <InlineMath math="x^2-1" /> benar. Sisanya berbentuk <InlineMath math="ax+b" /> dengan <InlineMath math="a+b=P(1)=-1" /> dan <InlineMath math="-a+b=P(-1)=-5" />. Jumlahkan: <InlineMath math="2b=-6" />, jadi <InlineMath math="b=-3" /> dan <InlineMath math="a=2" />.

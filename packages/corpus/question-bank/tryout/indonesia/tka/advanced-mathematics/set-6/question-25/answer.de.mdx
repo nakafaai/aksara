@@ -2,6 +2,37 @@ Um zu sehen, wie sich <InlineMath math="h" /> nahe <InlineMath math="0" /> verh�
 
 <BlockMath math="h(x)=\frac{(x+4)-4}{x\left(\sqrt{x+4}+2\right)}=\frac{1}{\sqrt{x+4}+2},\qquad x\ne0" />
 
+Zeichne <InlineMath math="h" /> nach dem Vereinfachen. **Der Graph ist eine Kurve, die langsam gegen <InlineMath math="0" /> f채llt, mit einem Loch bei <InlineMath math="x=0" />**, und sein linkes Ende liegt bei <InlineMath math="\left(-4,\ \tfrac12\right)" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="h" /> mit einem Loch bei <InlineMath math="x=0" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{1}{\sqrt{x+4}+2}" /> f체r <InlineMath math="-4\le x\le12" />. Sie beginnt bei <InlineMath math="\left(-4,\ \tfrac12\right)" />, f채llt langsam und kommt der <InlineMath math="x" />-Achse immer n채her. Der Punkt <InlineMath math="\left(0,\ \tfrac14\right)" /> ist als Loch markiert, weil <InlineMath math="h(0)" /> nicht definiert ist, obwohl der Grenzwert <InlineMath math="\tfrac14" /> ist.</>}
+  labels={{
+    curve: <InlineMath math="y=h(x)" />,
+    hole: <InlineMath math="\left(0,\ \tfrac14\right)" />,
+    start: <InlineMath math="\left(-4,\ \tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 12 },
+      y: { min: 0, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1/(sqrt(x + 4) + 2)", domain: { min: -4, max: 12 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 0, y: 0.25 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: -4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10, y: 1 / (Math.sqrt(14) + 2) }, placement: "above" },
+      { key: "hole", objectId: "hole", at: { x: 0, y: 0.25 }, placement: "above-right" },
+      { key: "start", objectId: "start", at: { x: -4, y: 0.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="\lim_{x\to0}h(x)=\frac14" /> ist richtig: <InlineMath math="\frac{1}{\sqrt4+2}=\frac14" />.
 2. Die Aussage <InlineMath math="h(0)=\frac14" /> ist falsch. <InlineMath math="h(0)" /> ist nicht definiert, weil <InlineMath math="x=0" /> nicht im Definitionsbereich liegt. Der Grenzwert existiert, der Funktionswert nicht.
 3. Die Aussage <InlineMath math="\lim_{x\to\infty}h(x)=1" /> ist falsch. Der Nenner <InlineMath math="\sqrt{x+4}+2" /> w채chst unbeschr채nkt, also <InlineMath math="h(x)\to0" />.

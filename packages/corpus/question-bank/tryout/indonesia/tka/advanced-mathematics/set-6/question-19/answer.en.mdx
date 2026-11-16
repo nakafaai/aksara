@@ -6,6 +6,40 @@ The dilation <InlineMath math="\left[O,\frac12\right]" /> sends <InlineMath math
 y'&=2x'^2-2
 \end{aligned}" />
 
+Draw the starting parabola and its image. **The half dilation pulls every point to half its distance from <InlineMath math="O" />**, so the vertex and the intercepts move in too, and the parabola looks narrower.
+
+<MathVisual
+  title={<>The parabola before and after the dilation <InlineMath math="\left[O,\tfrac12\right]" /></>}
+  description={<>The parabola <InlineMath math="y=x^2-4" /> has vertex <InlineMath math="(0,-4)" /> and crosses the <InlineMath math="X" />-axis at <InlineMath math="(2,0)" />. The arrows show those points pulled to <InlineMath math="(0,-2)" /> and <InlineMath math="(1,0)" />, which lie on the image <InlineMath math="y=2x^2-2" />.</>}
+  labels={{
+    start: <InlineMath math="y=x^2-4" />,
+    image: <InlineMath math="y=2x^2-2" />,
+    v: <InlineMath math="(0,-4)\to(0,-2)" />,
+    root: <InlineMath math="(2,0)\to(1,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 3.2 },
+      y: { min: -4.8, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "x^2 - 4", domain: { min: -3, max: 3 } },
+      { id: "image", kind: "function", appearance: "answer", formula: "2*x^2 - 2", domain: { min: -1.87, max: 1.87 } },
+      { id: "v", kind: "vector", appearance: "construction", from: { x: 0, y: -4 }, to: { x: 0, y: -2 } },
+      { id: "root", kind: "vector", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 3, y: 5 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: -1.8, y: 4.48 }, placement: "left" },
+      { key: "v", objectId: "v", at: { x: 0, y: -3 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: 1.5, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Check with points: the vertex <InlineMath math="(0,-4)" /> becomes <InlineMath math="(0,-2)" />, and the <InlineMath math="x" />-intercept <InlineMath math="(2,0)" /> becomes <InlineMath math="(1,0)" />. Both satisfy <InlineMath math="y=2x^2-2" />. The parabola gets narrower because the whole picture shrinks toward the centre.
 
 So the image is <InlineMath math="y=2x^2-2" />.

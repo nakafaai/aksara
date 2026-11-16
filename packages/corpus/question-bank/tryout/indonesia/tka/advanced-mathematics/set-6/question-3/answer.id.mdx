@@ -1,5 +1,35 @@
 Perhatikan bahwa **baris kedua <InlineMath math="M" /> adalah dua kali baris pertama**. Pengamatan itu langsung menjelaskan tiga dari empat pernyataan.
 
+Lihat apa yang dilakukan <InlineMath math="M" /> pada persegi satuan. **Kedua kolomnya, <InlineMath math="(1,2)" /> dan <InlineMath math="(2,4)" />, searah**, jadi persegi dipipihkan menjadi ruas garis berluas nol, dan transformasi seperti ini tidak bisa dibalik.
+
+<MathVisual
+  title={<>Persegi satuan di bawah <InlineMath math="M" /></>}
+  description={<>Persegi satuan dibawa <InlineMath math="M" /> ke ruas garis dari <InlineMath math="(0,0)" /> ke <InlineMath math="(3,6)" />, karena kolom <InlineMath math="(1,2)" /> dan <InlineMath math="(2,4)" /> terletak pada garis yang sama, <InlineMath math="y=2x" />. Luas bayangannya <InlineMath math="0" />, sesuai <InlineMath math="\det M=0" />.</>}
+  labels={{
+    square: <InlineMath math="\text{luas }1" />,
+    line: <InlineMath math="\text{luas }0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "line", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 6 } },
+      { id: "first", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "second", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 0.5 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 3, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. Pernyataan <InlineMath math="\det M=0" /> benar: <InlineMath math="1\cdot4-2\cdot2=0" />. Baris yang saling berkelipatan selalu membuat determinan nol.
 2. Pernyataan bahwa <InlineMath math="M" /> simetris benar. Entri di luar diagonal sama-sama <InlineMath math="2" />, jadi transpos tidak mengubah <InlineMath math="M" />.
 3. Pernyataan bahwa <InlineMath math="M" /> memiliki invers salah. Rumus invers membagi dengan <InlineMath math="\det M" />, dan pembagian dengan nol tidak terdefinisi.

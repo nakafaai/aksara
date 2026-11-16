@@ -9,6 +9,41 @@ Eine Gerade durch <InlineMath math="M" /> senkrecht zu <InlineMath math="(4,-2)"
 
 <BlockMath math="4(x-3)-2(y-3)=0\iff 4x-2y-6=0\iff 2x-y-3=0" />
 
+Zeichne <InlineMath math="P" />, sein Bild und die Spiegelachse. **Die Spiegelachse schneidet die Strecke <InlineMath math="PP'" /> genau in der Mitte und rechtwinklig**, also brauchst du nur die Gerade durch <InlineMath math="M(3,3)" /> senkrecht zu <InlineMath math="(4,-2)" />.
+
+<MathVisual
+  title={<>Die Mittelsenkrechte von <InlineMath math="PP'" /></>}
+  description={<>Die Strecke von <InlineMath math="P(1,4)" /> nach <InlineMath math="P'(5,2)" /> hat den Mittelpunkt <InlineMath math="M(3,3)" />. Die Gerade <InlineMath math="g:\ 2x-y-3=0" /> geht durch <InlineMath math="M" /> und steht senkrecht auf dieser Strecke, also haben <InlineMath math="P" /> und <InlineMath math="P'" /> denselben Abstand von <InlineMath math="g" />, auf entgegengesetzten Seiten.</>}
+  labels={{
+    p: <InlineMath math="P(1,4)" />,
+    image: <InlineMath math="P'(5,2)" />,
+    m: <InlineMath math="M(3,3)" />,
+    mirror: <InlineMath math="g:\ 2x-y-3=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7 },
+      y: { min: -1.5, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "answer", formula: "2*x - 3", domain: { min: 0.75, max: 4.5 } },
+      { id: "join", kind: "segment", appearance: "construction", from: { x: 1, y: 4 }, to: { x: 5, y: 2 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 1, y: 4 } },
+      { id: "image", kind: "point", appearance: "primary", at: { x: 5, y: 2 } },
+      { id: "m", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 5, y: 2 }, placement: "right" },
+      { key: "m", objectId: "m", at: { x: 3, y: 3 }, placement: "below-right" },
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="P" /> und <InlineMath math="P'" /> müssen von <InlineMath math="g" /> gleich weit entfernt sein. Einsetzen in die linke Seite ergibt <InlineMath math="2-4-3=-5" /> und <InlineMath math="10-2-3=5" />. Gleiche Beträge mit entgegengesetztem Vorzeichen bedeuten gleiche Abstände auf verschiedenen Seiten.
 
 Die Gerade <InlineMath math="g" /> ist also <InlineMath math="2x-y-3=0" />.

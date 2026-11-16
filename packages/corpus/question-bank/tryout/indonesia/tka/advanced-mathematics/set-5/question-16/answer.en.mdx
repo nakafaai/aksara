@@ -8,6 +8,45 @@ The centre is <InlineMath math="M(5,-4)" /> and the radius is <InlineMath math="
 
 <BlockMath math="x^2-10x=0\ \Rightarrow\ x(x-10)=0\ \Rightarrow\ x=0\ \text{or}\ x=10" />
 
+Draw the circle and triangle <InlineMath math="OAM" />. **Its base is the chord <InlineMath math="OA" /> on the <InlineMath math="X" />-axis, and its height is the distance from the centre to that axis**.
+
+<MathVisual
+  title={<>Triangle <InlineMath math="OAM" /> inside the circle</>}
+  description={<>The circle has centre <InlineMath math="M(5,-4)" /> and radius <InlineMath math="\sqrt{41}" />, and cuts the <InlineMath math="X" />-axis at <InlineMath math="O" /> and <InlineMath math="A(10,0)" />. Triangle <InlineMath math="OAM" /> has base <InlineMath math="10" /> and height <InlineMath math="4" />, the vertical segment from <InlineMath math="M" /> to the <InlineMath math="X" />-axis.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A(10,0)" />,
+    m: <InlineMath math="M(5,-4)" />,
+    height: <InlineMath math="4" />,
+    base: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -11, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 5, y: -4 }, radius: Math.sqrt(41) },
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 5, y: -4 }] },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 5, y: -4 }, to: { x: 5, y: 0 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 5, y: -4 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 10, y: 0 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 10, y: 0 }, placement: "above-right" },
+      { key: "m", objectId: "m", at: { x: 5, y: -4 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 5, y: -2 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: 2.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 So <InlineMath math="A(10,0)" />, the base is <InlineMath math="OA=10" />, and the height is <InlineMath math="|-4|=4" />.
 
 <BlockMath math="A_{\triangle}=\frac12\cdot10\cdot4=20" />

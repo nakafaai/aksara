@@ -5,6 +5,37 @@ A vector along <InlineMath math="\vec{a}" /> with a chosen length is built from 
 \vec{c}&=12\cdot\frac{\vec{a}}{|\vec{a}|}=\frac{12}{3}\left(2\vec{i}-\vec{j}+2\vec{k}\right)=8\vec{i}-4\vec{j}+8\vec{k}
 \end{aligned}" />
 
+Compare the lengths of the three vectors that point the same way. **The unit vector has length <InlineMath math="1" />, <InlineMath math="\vec a" /> has length <InlineMath math="3" />, and <InlineMath math="\vec c" /> must have length <InlineMath math="12" />**, so <InlineMath math="\vec c" /> is <InlineMath math="4" /> times <InlineMath math="\vec a" />.
+
+<MathVisual
+  title={<>Three vectors in the same direction with different lengths</>}
+  description={<>All three arrows point the same way, the direction of <InlineMath math="\vec a" />. Their lengths are <InlineMath math="1" />, <InlineMath math="3" />, and <InlineMath math="12" />, so <InlineMath math="\vec c=12\cdot\tfrac{\vec a}{3}=4\vec a" />.</>}
+  labels={{
+    unit: <InlineMath math="\frac{\vec a}{|\vec a|}:\ 1" />,
+    a: <InlineMath math="\vec a:\ 3" />,
+    c: <InlineMath math="\vec c=4\vec a:\ 12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 13 },
+      y: { min: -0.5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "vector", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 1, y: 2.4 } },
+      { id: "a", kind: "vector", appearance: "secondary", from: { x: 0, y: 1.4 }, to: { x: 3, y: 1.4 } },
+      { id: "c", kind: "vector", appearance: "answer", from: { x: 0, y: 0.4 }, to: { x: 12, y: 0.4 } },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: 1, y: 2.4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 3, y: 1.4 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 6, y: 0.4 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="|\vec{c}|=\sqrt{64+16+64}=\sqrt{144}=12" />, and <InlineMath math="\vec{c}=4\vec{a}" /> with a positive factor, so the direction is the same.
 
 So <InlineMath math="\vec{c}=8\vec{i}-4\vec{j}+8\vec{k}" />.

@@ -7,6 +7,41 @@ Der Mittelpunkt ist <InlineMath math="O(0,0)" />, und <InlineMath math="r=5" />.
 d_{\min}&=|OL|-r=15-5=10
 \end{aligned}" />
 
+Zeichne den Teich und die Lampe. **Der nächste Punkt des Zauns liegt auf der Geraden vom Mittelpunkt zur Lampe**, also ist der kürzeste Abstand <InlineMath math="15" /> minus den Radius <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Der kürzeste Abstand von der Lampe zum Teichzaun</>}
+  description={<>Der Teichzaun ist der Kreis mit Mittelpunkt im Ursprung und Radius <InlineMath math="5" />. Die Strecke vom Mittelpunkt zur Lampe <InlineMath math="L(9,12)" /> ist <InlineMath math="15" /> lang und schneidet den Zaun in <InlineMath math="(3,4)" />. Der Teil von <InlineMath math="(3,4)" /> bis <InlineMath math="L" /> ist <InlineMath math="10" /> lang.</>}
+  labels={{
+    lamp: <InlineMath math="L(9,12)" />,
+    near: <InlineMath math="(3,4)" />,
+    gap: <InlineMath math="10" />,
+    r: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 11 },
+      y: { min: -6, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pond", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 3, y: 4 }, to: { x: 9, y: 12 } },
+      { id: "lamp", kind: "point", appearance: "primary", at: { x: 9, y: 12 } },
+      { id: "near", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "lamp", objectId: "lamp", at: { x: 9, y: 12 }, placement: "right" },
+      { key: "near", objectId: "near", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 6, y: 8 }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Wegen <InlineMath math="15>5" /> steht die Lampe außerhalb des Zauns. Der nächste Zaunpunkt ist <InlineMath math="\frac{5}{15}(9,12)=(3,4)" />, und sein Abstand zu <InlineMath math="L" /> ist <InlineMath math="\sqrt{6^2+8^2}=10" />.
 
 Der kürzeste Abstand von der Lampe zum Teichzaun beträgt also <InlineMath math="10" /> m.

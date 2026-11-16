@@ -2,6 +2,35 @@ Pakai **limit dasar** <InlineMath math="\lim_{u\to0}\frac{\sin u}{u}=1" />. Agar
 
 <BlockMath math="\lim_{x\to0}\frac{\sin4x}{3x}=\lim_{x\to0}\frac{\sin4x}{4x}\cdot\frac{4x}{3x}=1\cdot\frac43=\frac43" />
 
+Gambar fungsi itu di kedua sisi nol. **Kedua cabang naik ke titik yang sama, <InlineMath math="\left(0,\ \tfrac43\right)" />**, walaupun fungsinya tidak terdefinisi di <InlineMath math="x=0" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="\frac{\sin4x}{3x}" /> di sekitar <InlineMath math="x=0" /></>}
+  description={<>Kurva untuk <InlineMath math="x" /> antara <InlineMath math="-0{,}75" /> dan <InlineMath math="0{,}75" /> radian, tanpa <InlineMath math="x=0" />. Grafiknya simetris dan puncaknya menuju <InlineMath math="\left(0,\ \tfrac43\right)" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{\sin4x}{3x}" />,
+    target: <InlineMath math="\left(0,\ \tfrac43\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 0.8 },
+      y: { min: -0.2, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "sin(4*x)/(3*x)", domain: { min: -0.75, max: -0.005 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "sin(4*x)/(3*x)", domain: { min: 0.005, max: 0.75 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 4 / 3 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 0.5, y: Math.sin(2) / 1.5 }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 4 / 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Saat <InlineMath math="x\to0" />, <InlineMath math="u=4x\to0" /> juga, jadi <InlineMath math="\frac{\sin4x}{4x}\to1" />. Faktor <InlineMath math="\frac{4x}{3x}=\frac43" /> tetap untuk setiap <InlineMath math="x\ne0" />.
 
 Jadi, nilai limit tersebut adalah <InlineMath math="\frac43" />.

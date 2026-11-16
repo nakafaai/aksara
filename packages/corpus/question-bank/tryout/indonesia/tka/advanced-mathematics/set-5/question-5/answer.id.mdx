@@ -9,6 +9,39 @@ Cari bagian garis <InlineMath math="x+y=50" /> yang memenuhi dua batas lainnya. 
 50-x\le40&\iff x\ge10
 \end{aligned}" />
 
+Dengan keuntungan yang sama per kilogram, garis selidik sejajar batas penggorengan. **Garis selidik tertinggi menempel pada seluruh sisi dari <InlineMath math="(10,\ 40)" /> sampai <InlineMath math="(30,\ 20)" />**, jadi setiap titik bulat di sisi itu optimal.
+
+<MathVisual
+  title={<>Sisi daerah yang semuanya optimal</>}
+  description={<>Daerah penyelesaiannya sama seperti sebelumnya. Garis putus-putus <InlineMath math="x+y=50" /> berimpit dengan sisi dari <InlineMath math="(10,\ 40)" /> ke <InlineMath math="(30,\ 20)" />. Titik bulat di sisi itu adalah <InlineMath math="(x,\ 50-x)" /> untuk <InlineMath math="x=10,11,\ldots,30" />, sebanyak <InlineMath math="21" /> titik.</>}
+  labels={{
+    edge: <InlineMath math="10\le x\le30" />,
+    low: <InlineMath math="(10,\ 40)" />,
+    high: <InlineMath math="(30,\ 20)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 55 },
+      y: { min: 0, max: 82 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 30, y: 20 }, { x: 10, y: 40 }, { x: 0, y: 40 }] },
+      { id: "level", kind: "function", appearance: "construction", formula: "50 - x", domain: { min: 0, max: 50 } },
+      { id: "edge", kind: "segment", appearance: "answer", from: { x: 10, y: 40 }, to: { x: 30, y: 20 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 10, y: 40 } },
+      { id: "high", kind: "point", appearance: "answer", at: { x: 30, y: 20 } },
+    ],
+    labels: [
+      { key: "edge", objectId: "edge", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 10, y: 40 }, placement: "above-right" },
+      { key: "high", objectId: "high", at: { x: 30, y: 20 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi rencana optimal adalah <InlineMath math="(x,50-x)" /> dengan <InlineMath math="10\le x\le30" />. Karena produksi dalam kilogram bulat, <InlineMath math="x" /> dapat bernilai <InlineMath math="10,11,\ldots,30" />, yaitu <InlineMath math="30-10+1=21" /> nilai.
 
 Jadi, ada <InlineMath math="21" /> rencana produksi yang memberi keuntungan maksimum.

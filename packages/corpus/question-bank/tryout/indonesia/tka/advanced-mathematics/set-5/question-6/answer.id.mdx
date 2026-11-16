@@ -13,6 +13,37 @@ P(x)&=(x-1)\big[(x+2)H(x)+4\big]+3 \\
 &=(x-1)(x+2)H(x)+4x-1
 \end{aligned}" />
 
+Sisa pembagian oleh <InlineMath math="(x-1)(x+2)" /> adalah garis yang melewati titik <InlineMath math="P" /> di <InlineMath math="x=1" /> dan <InlineMath math="x=-2" />. **Kedua titik itu adalah <InlineMath math="(1,\ 3)" /> dan <InlineMath math="(-2,\ -9)" />**, dan garis yang melewati keduanya adalah <InlineMath math="y=4x-1" />.
+
+<MathVisual
+  title={<>Garis sisa melalui dua titik grafik <InlineMath math="P" /></>}
+  description={<>Titik <InlineMath math="(1,\ 3)" /> berasal dari sisa pembagian oleh <InlineMath math="x-1" />, dan titik <InlineMath math="(-2,\ -9)" /> berasal dari <InlineMath math="P(-2)=-3\cdot4+3" />. Garis <InlineMath math="y=4x-1" /> melewati kedua titik itu.</>}
+  labels={{
+    line: <InlineMath math="y=4x-1" />,
+    one: <InlineMath math="(1,\ 3)" />,
+    two: <InlineMath math="(-2,\ -9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 2.5 },
+      y: { min: -12, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "answer", formula: "4*x - 1", domain: { min: -2.7, max: 2 } },
+      { id: "one", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "two", kind: "point", appearance: "primary", at: { x: -2, y: -9 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 1.8, y: 6.2 }, placement: "left" },
+      { key: "one", objectId: "one", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -2, y: -9 }, placement: "right" },
+    ],
+  }}
+/>
+
 Bagian <InlineMath math="4x-1" /> berderajat satu, lebih kecil dari derajat pembagi, jadi itulah sisanya.
 
 Pemeriksaan dengan teorema sisa: <InlineMath math="P(1)=4-1=3" />, sesuai sisa pembagian oleh <InlineMath math="x-1" />. Dari persamaan pertama juga <InlineMath math="P(-2)=(-3)Q(-2)+3=(-3)(4)+3=-9" />, dan <InlineMath math="4(-2)-1=-9" />.

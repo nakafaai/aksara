@@ -2,6 +2,41 @@ Two rotations about the same centre **equal one rotation through the sum of the 
 
 <BlockMath math="P'=\left(4\cos120^\circ,\ 4\sin120^\circ\right)=\left(4\cdot\left(-\frac12\right),\ 4\cdot\frac{\sqrt3}{2}\right)=\left(-2,\ 2\sqrt3\right)" />
 
+Follow the point <InlineMath math="P" /> on the circle of radius <InlineMath math="4" />. **An arc of <InlineMath math="70^\circ" /> followed by an arc of <InlineMath math="50^\circ" /> join into a single arc of <InlineMath math="120^\circ" />**.
+
+<MathVisual
+  title={<>Two rotations in a row about <InlineMath math="O" /></>}
+  description={<>The point <InlineMath math="P(4,0)" /> moves anticlockwise along the circle of radius <InlineMath math="4" />. The first arc of <InlineMath math="70^\circ" /> takes it to an intermediate point, then the second arc of <InlineMath math="50^\circ" /> takes it to <InlineMath math="\left(-2,2\sqrt3\right)" />, at an angle of <InlineMath math="120^\circ" /> from the positive <InlineMath math="X" />-axis.</>}
+  labels={{
+    p: <InlineMath math="P(4,0)" />,
+    middle: <InlineMath math="70^\circ" />,
+    end: <InlineMath math="\left(-2,2\sqrt3\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1.5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 70 },
+      { id: "second", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 4, startDegrees: 70, sweepDegrees: 50 },
+      { id: "to-middle", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4 * Math.cos(70 * Math.PI / 180), y: 4 * Math.sin(70 * Math.PI / 180) } },
+      { id: "to-end", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -2, y: 2 * Math.sqrt(3) } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "middle", kind: "point", appearance: "secondary", at: { x: 4 * Math.cos(70 * Math.PI / 180), y: 4 * Math.sin(70 * Math.PI / 180) } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: -2, y: 2 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "middle", objectId: "middle", at: { x: 4 * Math.cos(70 * Math.PI / 180), y: 4 * Math.sin(70 * Math.PI / 180) }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: -2, y: 2 * Math.sqrt(3) }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Check: the distance to <InlineMath math="O" /> stays <InlineMath math="\sqrt{4+12}=4" />, and the point lies in quadrant II, matching an angle of <InlineMath math="120^\circ" /> between <InlineMath math="90^\circ" /> and <InlineMath math="180^\circ" />.
 
 So the final image of <InlineMath math="P" /> is <InlineMath math="\left(-2,2\sqrt3\right)" />.

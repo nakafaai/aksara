@@ -6,6 +6,17 @@ x+3&=2x-4 \\
 x&=7
 \end{aligned}" />
 
+Das Diagramm zeigt den Weg von <InlineMath math="g\circ f" /> für <InlineMath math="x=7" />. **In <InlineMath math="g" /> geht <InlineMath math="f(7)=13" /> hinein, nicht <InlineMath math="7" />**, also endet <InlineMath math="g^{-1}(2)" /> bei <InlineMath math="13" />.
+
+<Mermaid
+  title={<>Der Weg von <InlineMath math="g\circ f" /> und der Rückschritt mit <InlineMath math="g^{-1}" /></>}
+  description={<>Die Zahl <InlineMath math="7" /> wird von <InlineMath math="f" /> auf <InlineMath math="13" /> abgebildet, dann bringt <InlineMath math="g" /> die <InlineMath math="13" /> auf <InlineMath math="2" />. Der gestrichelte Pfeil <InlineMath math="g^{-1}" /> macht nur den Schritt <InlineMath math="g" /> rückgängig, von <InlineMath math="2" /> zurück zu <InlineMath math="13" />.</>}
+  chart={`flowchart LR
+  X["x = 7"] -->|"f"| U["f(7) = 13"]
+  U -->|"g"| G["g(13) = 2"]
+  G -.->|"g⁻¹"| U`}
+/>
+
 Also ist <InlineMath math="g\big(f(7)\big)=2" />. Die Eingabe von <InlineMath math="g" /> ist <InlineMath math="f(7)=2\cdot7-1=13" />, also <InlineMath math="g(13)=2" />, und weil <InlineMath math="g" /> umkehrbar ist, gilt <InlineMath math="g^{-1}(2)=13" />.
 
 Probe mit der vollständigen Vorschrift: Setze <InlineMath math="u=2x-1" />, dann ist <InlineMath math="x=\frac{u+1}{2}" /> und <InlineMath math="g(u)=\frac{\frac{u+1}{2}+3}{\frac{u+1}{2}-2}=\frac{u+7}{u-3}" />. Tatsächlich ist <InlineMath math="g(13)=\frac{20}{10}=2" />.

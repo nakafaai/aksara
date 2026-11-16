@@ -9,6 +9,39 @@ Bestimme das Stück von <InlineMath math="x+y=50" />, das die beiden anderen Gre
 50-x\le40&\iff x\ge10
 \end{aligned}" />
 
+Bei gleichem Gewinn pro Kilogramm ist die Niveaulinie parallel zur Frittiergrenze. **Die höchste Niveaulinie liegt auf der ganzen Kante von <InlineMath math="(10,\ 40)" /> bis <InlineMath math="(30,\ 20)" />**, also ist jeder ganzzahlige Punkt auf dieser Kante optimal.
+
+<MathVisual
+  title={<>Eine Kante des Bereichs, die überall optimal ist</>}
+  description={<>Der zulässige Bereich ist derselbe wie zuvor. Die gestrichelte Gerade <InlineMath math="x+y=50" /> liegt auf der Kante von <InlineMath math="(10,\ 40)" /> bis <InlineMath math="(30,\ 20)" />. Die ganzzahligen Punkte auf dieser Kante sind <InlineMath math="(x,\ 50-x)" /> für <InlineMath math="x=10,11,\ldots,30" />, also <InlineMath math="21" /> Punkte.</>}
+  labels={{
+    edge: <InlineMath math="10\le x\le30" />,
+    low: <InlineMath math="(10,\ 40)" />,
+    high: <InlineMath math="(30,\ 20)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 55 },
+      y: { min: 0, max: 82 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 30, y: 20 }, { x: 10, y: 40 }, { x: 0, y: 40 }] },
+      { id: "level", kind: "function", appearance: "construction", formula: "50 - x", domain: { min: 0, max: 50 } },
+      { id: "edge", kind: "segment", appearance: "answer", from: { x: 10, y: 40 }, to: { x: 30, y: 20 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 10, y: 40 } },
+      { id: "high", kind: "point", appearance: "answer", at: { x: 30, y: 20 } },
+    ],
+    labels: [
+      { key: "edge", objectId: "edge", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 10, y: 40 }, placement: "above-right" },
+      { key: "high", objectId: "high", at: { x: 30, y: 20 }, placement: "right" },
+    ],
+  }}
+/>
+
 Optimal sind also die Pläne <InlineMath math="(x,50-x)" /> mit <InlineMath math="10\le x\le30" />. Da in ganzen Kilogramm produziert wird, kann <InlineMath math="x" /> die Werte <InlineMath math="10,11,\ldots,30" /> annehmen, das sind <InlineMath math="30-10+1=21" /> Werte.
 
 Es gibt also <InlineMath math="21" /> Produktionspläne mit dem größten Gewinn.

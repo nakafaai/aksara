@@ -6,6 +6,46 @@ y&=(x-2)^2-3 \\
 x-2&=\sqrt{y+3}
 \end{aligned}" />
 
+Gambar <InlineMath math="f" /> pada <InlineMath math="x\ge2" /> dan cerminnya terhadap <InlineMath math="y=x" />. **Puncak <InlineMath math="(2,\ -3)" /> bercermin ke <InlineMath math="(-3,\ 2)" />**, jadi grafik invers baru mulai di <InlineMath math="x=-3" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f" /> pada <InlineMath math="x\ge2" /> dan inversnya</>}
+  description={<>Kurva <InlineMath math="f" /> adalah separuh kanan parabola <InlineMath math="y=x^2-4x+1" />, mulai dari puncak <InlineMath math="(2,\ -3)" />. Kurva <InlineMath math="f^{-1}=2+\sqrt{x+3}" /> adalah cerminnya terhadap <InlineMath math="y=x" />, mulai dari <InlineMath math="(-3,\ 2)" /> dan melewati <InlineMath math="(6,\ 5)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    mirror: <InlineMath math="y=x" />,
+    vertex: <InlineMath math="(2,\ -3)" />,
+    start: <InlineMath math="(-3,\ 2)" />,
+    six: <InlineMath math="(6,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -4, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -4, max: 8 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 1", domain: { min: 2, max: 5.3 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "2 + sqrt(x + 3)", domain: { min: -3, max: 8 } },
+      { id: "vertex", kind: "point", appearance: "primary", at: { x: 2, y: -3 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: -3, y: 2 } },
+      { id: "six", kind: "point", appearance: "answer", at: { x: 6, y: 5 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5, y: 6 }, placement: "left" },
+      { key: "inverse", objectId: "inverse", at: { x: 7.5, y: 2 + Math.sqrt(10.5) }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 7.5, y: 7.5 }, placement: "right" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -3 }, placement: "right" },
+      { key: "start", objectId: "start", at: { x: -3, y: 2 }, placement: "above" },
+      { key: "six", objectId: "six", at: { x: 6, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Akar positif yang dipakai, karena <InlineMath math="x\ge2" /> membuat <InlineMath math="x-2\ge0" />. Jadi <InlineMath math="f^{-1}(x)=2+\sqrt{x+3}" />, dengan syarat <InlineMath math="x+3\ge0" />.
 
 1. Pernyataan tentang rumus <InlineMath math="f^{-1}" /> benar.

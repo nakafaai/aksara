@@ -6,6 +6,42 @@ Kalikan komponen yang bersesuaian, lalu jumlahkan.
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=3\cdot4+4\cdot1=12+4=16" />
 
+Gambar gaya dan perpindahan dari titik <InlineMath math="A" />. **Usaha hanya memakai bagian gaya yang searah perpindahan**, yaitu bayangan <InlineMath math="\vec F" /> pada garis <InlineMath math="\vec s" />, dikali panjang perpindahan.
+
+<MathVisual
+  title={<>Gaya, perpindahan, dan bagian gaya yang searah</>}
+  description={<>Perpindahan <InlineMath math="\vec s" /> berjalan dari <InlineMath math="A(1,2)" /> ke <InlineMath math="B(5,3)" />, dan gaya <InlineMath math="\vec F=(3,4)" /> digambar dari <InlineMath math="A" />. Ruas tegak dari ujung <InlineMath math="\vec F" /> jatuh pada garis <InlineMath math="\vec s" />, dan bagian yang disorot sepanjang <InlineMath math="\tfrac{16}{\sqrt{17}}" />. Usahanya <InlineMath math="\tfrac{16}{\sqrt{17}}\cdot\sqrt{17}=16" />.</>}
+  labels={{
+    force: <InlineMath math="\vec F=(3,4)" />,
+    move: <InlineMath math="\vec s=(4,1)" />,
+    a: <InlineMath math="A(1,2)" />,
+    b: <InlineMath math="B(5,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6.5 },
+      y: { min: 1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "move", kind: "vector", appearance: "secondary", from: { x: 1, y: 2 }, to: { x: 5, y: 3 } },
+      { id: "force", kind: "vector", appearance: "primary", from: { x: 1, y: 2 }, to: { x: 4, y: 6 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 4, y: 6 }, to: { x: 1 + 64 / 17, y: 2 + 16 / 17 } },
+      { id: "along", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 1 + 64 / 17, y: 2 + 16 / 17 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 5, y: 3 } },
+    ],
+    labels: [
+      { key: "force", objectId: "force", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "move", objectId: "move", at: { x: 5, y: 3 }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 5, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Satuannya newton kali meter, yaitu joule. Hasilnya positif karena gaya dan perpindahan membentuk sudut lancip.
 
 Jadi, usaha yang dilakukan gaya itu <InlineMath math="16" /> J.

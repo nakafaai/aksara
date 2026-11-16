@@ -6,6 +6,34 @@ For <InlineMath math="x\ne1" />, the factor <InlineMath math="\sqrt x-1" /> is n
 
 <BlockMath math="\lim_{x\to1}\frac{(\sqrt x-1)(\sqrt x+1)(x^2+x+1)}{\sqrt x-1}=\lim_{x\to1}(\sqrt x+1)(x^2+x+1)=2\cdot3=6" />
 
+Draw <InlineMath math="r" /> near <InlineMath math="x=1" />. **After cancelling the factor <InlineMath math="\sqrt x-1" />, its graph is the same as <InlineMath math="(\sqrt x+1)(x^2+x+1)" />**, which passes height <InlineMath math="6" /> at <InlineMath math="x=1" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="r" /> near <InlineMath math="x=1" /></>}
+  description={<>The curve <InlineMath math="y=\frac{x^3-1}{\sqrt x-1}" /> for <InlineMath math="0\le x\le2" />, without <InlineMath math="x=1" />. It rises from <InlineMath math="(0,\ 1)" /> and heads to the point <InlineMath math="(1,\ 6)" /> from both sides.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{x^3-1}{\sqrt x-1}" />,
+    target: <InlineMath math="(1,\ 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 2 },
+      y: { min: 0, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(sqrt(x) + 1)*(x^2 + x + 1)", domain: { min: 0, max: 2 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 1, y: 6 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1.6, y: (Math.sqrt(1.6) + 1) * (2.56 + 1.6 + 1) }, placement: "left" },
+      { key: "target", objectId: "target", at: { x: 1, y: 6 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Numerical check: for <InlineMath math="x=1.01" />, <InlineMath math="r(x)=\frac{0.030301}{0.0049876}\approx6.075" />, close to <InlineMath math="6" />.
 
 So the limit is <InlineMath math="6" />.

@@ -7,6 +7,42 @@ P(2)&=16-24+8+10-6=4 \\
 P(3)&=81-81+18+15-6=27
 \end{aligned}" />
 
+Zeichne <InlineMath math="P" /> mit der Restgeraden bei Division durch <InlineMath math="x^2-1" />. **Die Gerade <InlineMath math="y=2x-3" /> schneidet den Graphen genau bei <InlineMath math="x=1" /> und <InlineMath math="x=-1" />**, und die Punkte bei <InlineMath math="x=2" /> und <InlineMath math="x=3" /> liefern die beiden anderen Werte.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="P(x)" /> und seine Restgerade</>}
+  description={<>Die Kurve <InlineMath math="y=P(x)" /> und die Gerade <InlineMath math="y=2x-3" /> treffen sich in <InlineMath math="(1,\ -1)" /> und <InlineMath math="(-1,\ -5)" />. Die Kurve geht außerdem durch <InlineMath math="(2,\ 4)" /> und <InlineMath math="(3,\ 27)" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    line: <InlineMath math="y=2x-3" />,
+    two: <InlineMath math="(2,\ 4)" />,
+    three: <InlineMath math="(3,\ 27)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.6, max: 3.2 },
+      y: { min: -9, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^4 - 3*x^3 + 2*x^2 + 5*x - 6", domain: { min: -1.5, max: 3.05 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "2*x - 3", domain: { min: -1.6, max: 3 } },
+      { id: "plus", kind: "point", appearance: "answer", at: { x: 1, y: -1 } },
+      { id: "minus", kind: "point", appearance: "answer", at: { x: -1, y: -5 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "three", kind: "point", appearance: "warning", at: { x: 3, y: 27 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -1.5, y: 5.0625 + 10.125 + 4.5 - 7.5 - 6 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 2.8, y: 2.6 }, placement: "below-right" },
+      { key: "two", objectId: "two", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "three", objectId: "three", at: { x: 3, y: 27 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. Die Aussage über den Rest bei Division durch <InlineMath math="x-2" /> ist richtig, denn der Rest ist <InlineMath math="P(2)=4" />.
 2. Die Aussage, dass <InlineMath math="x+1" /> ein Faktor ist, ist falsch, denn <InlineMath math="P(-1)=-5\ne0" />.
 3. Die Aussage über den Rest bei Division durch <InlineMath math="x^2-1" /> ist richtig. Der Rest hat die Form <InlineMath math="ax+b" /> mit <InlineMath math="a+b=P(1)=-1" /> und <InlineMath math="-a+b=P(-1)=-5" />. Addieren ergibt <InlineMath math="2b=-6" />, also <InlineMath math="b=-3" /> und <InlineMath math="a=2" />.

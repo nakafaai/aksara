@@ -13,6 +13,40 @@ P(0,25)&=500 \\
 P(21.5,\ 0)&=645
 \end{aligned}" />
 
+Slide the fabric line from <InlineMath math="2x+y=40" /> to <InlineMath math="2x+y=43" />. **The optimal corner slides along the sewing line**, from <InlineMath math="(10,\ 20)" /> to <InlineMath math="(12,\ 19)" />.
+
+<MathVisual
+  title={<>Feasible region with <InlineMath math="43\text{ m}^2" /> of fabric</>}
+  description={<>The old region is drawn faintly, and the new region is a little wider because the fabric line has moved to <InlineMath math="2x+y=43" />. The corner where the fabric line meets the sewing line <InlineMath math="x+2y=50" /> moves from <InlineMath math="(10,\ 20)" /> to <InlineMath math="(12,\ 19)" />, which has whole-number coordinates.</>}
+  labels={{
+    old: <InlineMath math="(10,\ 20)" />,
+    best: <InlineMath math="(12,\ 19)" />,
+    cloth: <InlineMath math="2x+y=43" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 52 },
+      y: { min: 0, max: 45 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "after", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 21.5, y: 0 }, { x: 12, y: 19 }, { x: 0, y: 25 }] },
+      { id: "before", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 0, y: 25 }] },
+      { id: "cloth", kind: "segment", appearance: "primary", from: { x: 0, y: 43 }, to: { x: 21.5, y: 0 } },
+      { id: "sewing", kind: "segment", appearance: "secondary", from: { x: 0, y: 25 }, to: { x: 50, y: 0 } },
+      { id: "old", kind: "point", appearance: "reference", at: { x: 10, y: 20 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 12, y: 19 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 10, y: 20 }, placement: "below-left" },
+      { key: "best", objectId: "best", at: { x: 12, y: 19 }, placement: "above-right" },
+      { key: "cloth", objectId: "cloth", at: { x: 3, y: 37 }, placement: "right" },
+    ],
+  }}
+/>
+
 The point <InlineMath math="(21.5,\ 0)" /> cannot even be made, and its profit is lower anyway. Whole-number points near <InlineMath math="(12,19)" /> are no better either: <InlineMath math="(13,17)" /> gives <InlineMath math="730" /> and <InlineMath math="(11,19)" /> gives <InlineMath math="710" />.
 
 So next week's maximum profit is <InlineMath math="\text{Rp}740{,}000.00" />, <InlineMath math="\text{Rp}40{,}000.00" /> more than before.

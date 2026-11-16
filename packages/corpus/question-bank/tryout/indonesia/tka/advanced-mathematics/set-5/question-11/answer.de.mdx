@@ -6,6 +6,42 @@ Multipliziere die passenden Komponenten und addiere.
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=3\cdot4+4\cdot1=12+4=16" />
 
+Zeichne Kraft und Verschiebung vom Punkt <InlineMath math="A" /> aus. **Die Arbeit nutzt nur den Teil der Kraft in Richtung der Verschiebung**, also den Schatten von <InlineMath math="\vec F" /> auf der Geraden von <InlineMath math="\vec s" />, mal die Länge der Verschiebung.
+
+<MathVisual
+  title={<>Kraft, Verschiebung und der Kraftanteil in ihrer Richtung</>}
+  description={<>Die Verschiebung <InlineMath math="\vec s" /> verläuft von <InlineMath math="A(1,2)" /> nach <InlineMath math="B(5,3)" />, und die Kraft <InlineMath math="\vec F=(3,4)" /> ist von <InlineMath math="A" /> aus gezeichnet. Das Lot von der Spitze von <InlineMath math="\vec F" /> trifft die Gerade von <InlineMath math="\vec s" />, und der markierte Teil ist <InlineMath math="\tfrac{16}{\sqrt{17}}" /> lang. Die Arbeit ist <InlineMath math="\tfrac{16}{\sqrt{17}}\cdot\sqrt{17}=16" />.</>}
+  labels={{
+    force: <InlineMath math="\vec F=(3,4)" />,
+    move: <InlineMath math="\vec s=(4,1)" />,
+    a: <InlineMath math="A(1,2)" />,
+    b: <InlineMath math="B(5,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6.5 },
+      y: { min: 1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "move", kind: "vector", appearance: "secondary", from: { x: 1, y: 2 }, to: { x: 5, y: 3 } },
+      { id: "force", kind: "vector", appearance: "primary", from: { x: 1, y: 2 }, to: { x: 4, y: 6 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 4, y: 6 }, to: { x: 1 + 64 / 17, y: 2 + 16 / 17 } },
+      { id: "along", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 1 + 64 / 17, y: 2 + 16 / 17 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 5, y: 3 } },
+    ],
+    labels: [
+      { key: "force", objectId: "force", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "move", objectId: "move", at: { x: 5, y: 3 }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 5, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die Einheit ist Newton mal Meter, also Joule. Das Ergebnis ist positiv, weil Kraft und Verschiebung einen spitzen Winkel bilden.
 
 Die Kraft verrichtet also <InlineMath math="16" /> J Arbeit.

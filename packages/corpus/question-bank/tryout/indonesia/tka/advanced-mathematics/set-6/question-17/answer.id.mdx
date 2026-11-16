@@ -2,6 +2,45 @@ Lingkaran berpusat di <InlineMath math="O(0,0)" /> dengan <InlineMath math="r=5"
 
 <BlockMath math="|OP|^2=1^2+7^2=50" />
 
+Gambar lingkaran, titik <InlineMath math="P" />, dan kedua garis singgungnya. **Setiap garis singgung tegak lurus jari-jari ke titik singgungnya**, dan kedua ruas singgung dari <InlineMath math="P" /> sama panjang, yaitu <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Dua garis singgung dari <InlineMath math="P(1,7)" /></>}
+  description={<>Lingkaran berpusat di titik asal dengan jari-jari <InlineMath math="5" />, dan <InlineMath math="P(1,7)" /> berada di luarnya. Garis singgung dari <InlineMath math="P" /> menyentuh lingkaran di <InlineMath math="(4,3)" /> dan <InlineMath math="(-3,4)" />, masing-masing berjarak <InlineMath math="5" /> dari <InlineMath math="P" />. Garis tegak <InlineMath math="x=1" /> memotong lingkaran di dua titik, jadi bukan garis singgung.</>}
+  labels={{
+    p: <InlineMath math="P(1,7)" />,
+    right: <InlineMath math="(4,3)" />,
+    left: <InlineMath math="(-3,4)" />,
+    cut: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 6.5 },
+      y: { min: -6, max: 8.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "tangent-right", kind: "segment", appearance: "primary", from: { x: 1, y: 7 }, to: { x: 4, y: 3 } },
+      { id: "tangent-left", kind: "segment", appearance: "primary", from: { x: 1, y: 7 }, to: { x: -3, y: 4 } },
+      { id: "radius-right", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "radius-left", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3, y: 4 } },
+      { id: "cut", kind: "segment", appearance: "warning", from: { x: 1, y: -6 }, to: { x: 1, y: 6 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 1, y: 7 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -3, y: 4 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 7 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: -3, y: 4 }, placement: "left" },
+      { key: "cut", objectId: "cut", at: { x: 1, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Pernyataan tentang panjang garis singgung benar. Jari-jari ke titik singgung tegak lurus garis singgung, jadi panjangnya <InlineMath math="\sqrt{|OP|^2-r^2}=\sqrt{50-25}=5" />.
 2. Pernyataan bahwa <InlineMath math="P" /> di dalam lingkaran salah, karena <InlineMath math="|OP|^2=50>25" />. Garis singgung dari sebuah titik hanya ada jika titik itu di luar lingkaran.
 3. Pernyataan bahwa <InlineMath math="x=1" /> menyinggung salah. Jarak pusat ke garis itu <InlineMath math="1<5" />, jadi garis itu memotong lingkaran di dua titik.

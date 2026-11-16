@@ -4,6 +4,35 @@ Pakai identitas <InlineMath math="1-\cos x=2\sin^2\frac x2" /> agar muncul limit
 
 <BlockMath math="\lim_{x\to0}\frac{1-\cos x}{x^2}=\lim_{x\to0}\frac{2\sin^2\frac x2}{x^2}=2\left(\lim_{x\to0}\frac{\sin\frac x2}{x}\right)^2=2\cdot\left(\frac12\right)^2=\frac12" />
 
+Gambar bagian <InlineMath math="x\ne0" /> dari <InlineMath math="f" />. **Kedua cabang naik ke ketinggian <InlineMath math="\tfrac12" /> di <InlineMath math="x=0" />**, jadi titik yang menutup lubang itu adalah <InlineMath math="\left(0,\ \tfrac12\right)" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="\frac{1-\cos x}{x^2}" /> dan titik yang membuat <InlineMath math="f" /> kontinu</>}
+  description={<>Kurva untuk <InlineMath math="x" /> antara <InlineMath math="-3" /> dan <InlineMath math="3" /> radian, tanpa <InlineMath math="x=0" />. Kurvanya simetris dan puncaknya menuju <InlineMath math="\left(0,\ \tfrac12\right)" />. Memilih <InlineMath math="k=\tfrac12" /> mengisi titik itu.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{1-\cos x}{x^2}" />,
+    target: <InlineMath math="\left(0,\ \tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: 0, max: 0.65 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1 - cos(x))/x^2", domain: { min: -3, max: -0.05 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1 - cos(x))/x^2", domain: { min: 0.05, max: 3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 0.5 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 2, y: (1 - Math.cos(2)) / 4 }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=0{,}1" />, <InlineMath math="\frac{1-\cos0{,}1}{0{,}01}\approx0{,}4996" />.
 
 Jadi, <InlineMath math="k=\frac12" />.

@@ -9,6 +9,41 @@ A line through <InlineMath math="M" /> perpendicular to <InlineMath math="(4,-2)
 
 <BlockMath math="4(x-3)-2(y-3)=0\iff 4x-2y-6=0\iff 2x-y-3=0" />
 
+Draw <InlineMath math="P" />, its image, and the mirror line. **The mirror cuts the segment <InlineMath math="PP'" /> exactly at its midpoint and at a right angle**, so you only need the line through <InlineMath math="M(3,3)" /> perpendicular to <InlineMath math="(4,-2)" />.
+
+<MathVisual
+  title={<>The perpendicular bisector of <InlineMath math="PP'" /></>}
+  description={<>The segment from <InlineMath math="P(1,4)" /> to <InlineMath math="P'(5,2)" /> has midpoint <InlineMath math="M(3,3)" />. The line <InlineMath math="g:\ 2x-y-3=0" /> passes through <InlineMath math="M" /> and is perpendicular to that segment, so <InlineMath math="P" /> and <InlineMath math="P'" /> are the same distance from <InlineMath math="g" />, on opposite sides.</>}
+  labels={{
+    p: <InlineMath math="P(1,4)" />,
+    image: <InlineMath math="P'(5,2)" />,
+    m: <InlineMath math="M(3,3)" />,
+    mirror: <InlineMath math="g:\ 2x-y-3=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7 },
+      y: { min: -1.5, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "answer", formula: "2*x - 3", domain: { min: 0.75, max: 4.5 } },
+      { id: "join", kind: "segment", appearance: "construction", from: { x: 1, y: 4 }, to: { x: 5, y: 2 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 1, y: 4 } },
+      { id: "image", kind: "point", appearance: "primary", at: { x: 5, y: 2 } },
+      { id: "m", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 5, y: 2 }, placement: "right" },
+      { key: "m", objectId: "m", at: { x: 3, y: 3 }, placement: "below-right" },
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="P" /> and <InlineMath math="P'" /> must be equally far from <InlineMath math="g" />. Substituting into the left side gives <InlineMath math="2-4-3=-5" /> and <InlineMath math="10-2-3=5" />. Equal absolute values with opposite signs mean equal distances on opposite sides.
 
 So <InlineMath math="g" /> is <InlineMath math="2x-y-3=0" />.
