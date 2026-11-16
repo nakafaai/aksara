@@ -1,0 +1,44 @@
+# The relative atomic mass is a weighted average
+
+The relative atomic mass is the **average mass of all the atoms**, weighted by how common each isotope is. Let <InlineMath math="x" /> be the percentage of boron-10, so boron-11 is <InlineMath math="100-x" />:
+
+<BlockMath math="\begin{aligned}
+\frac{10x+11(100-x)}{100}&=10.8\\
+1100-x&=1080\\
+x&=20
+\end{aligned}" />
+
+<Chart
+  title={<>Abundance of the Two Boron Isotopes</>}
+  bars="apart"
+  categories={["Boron-10", "Boron-11"]}
+  series={[
+    { label: "Abundance (%)", mark: "bar", values: [20, 80] },
+  ]}
+  valueLabel="Abundance (%)"
+  description={<>Boron-10 makes up <InlineMath math="20" /> percent of boron atoms and boron-11 makes up <InlineMath math="80" /> percent, which gives a relative atomic mass of <InlineMath math="10.8" />.</>}
+/>
+
+Check: <InlineMath math="0.20\times10+0.80\times11=2+8.8=10.8" />. The average lies close to <InlineMath math="11" />, so the heavier isotope must be the common one. So <InlineMath math="20\%" /> of boron atoms are boron-10.
+
+<MassSpectrometerLab
+  title={<>Boron in a Mass Spectrometer</>}
+  description={<>Each isotope bends on its own path, and the taller boron-11 peak shows it is the common one.</>}
+  samples={["boron"]}
+  labels={{
+    average: <>Average relative atomic mass</>,
+    choose: "Choose an element",
+    isotopes: <>Isotopes and abundance</>,
+    north: "N",
+    radius: <>Path radius</>,
+    ratio: <>Ratio of radii</>,
+    south: "S",
+    view: "Mass spectrometer",
+  }}
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="80\%" /> is the share of boron-11, the answer for the **other** isotope.
+- <InlineMath math="10.8\%" /> uses the relative atomic mass itself as a percentage.
+- <InlineMath math="50\%" /> assumes equal amounts, which would give <InlineMath math="10.5" />, not <InlineMath math="10.8" />.

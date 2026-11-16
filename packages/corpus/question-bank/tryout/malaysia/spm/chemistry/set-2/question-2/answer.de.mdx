@@ -1,0 +1,44 @@
+# Die relative Atommasse ist ein gewichteter Mittelwert
+
+Die relative Atommasse ist die **mittlere Masse aller Atome**, gewichtet nach der Häufigkeit jedes Isotops. Sei <InlineMath math="x" /> der Anteil von Bor-10 in Prozent, Bor-11 ist dann <InlineMath math="100-x" />:
+
+<BlockMath math="\begin{aligned}
+\frac{10x+11(100-x)}{100}&=10.8\\
+1100-x&=1080\\
+x&=20
+\end{aligned}" />
+
+<Chart
+  title={<>Häufigkeit der beiden Bor-Isotope</>}
+  bars="apart"
+  categories={["Bor-10", "Bor-11"]}
+  series={[
+    { label: "Häufigkeit (%)", mark: "bar", values: [20, 80] },
+  ]}
+  valueLabel="Häufigkeit (%)"
+  description={<>Bor-10 macht <InlineMath math="20" /> Prozent der Boratome aus und Bor-11 <InlineMath math="80" /> Prozent, was eine relative Atommasse von <InlineMath math="10{,}8" /> ergibt.</>}
+/>
+
+Probe: <InlineMath math="0.20\times10+0.80\times11=2+8.8=10.8" />. Der Mittelwert liegt nahe bei <InlineMath math="11" />, also muss das schwerere Isotop das häufige sein. <InlineMath math="20\%" /> der Boratome sind also Bor-10.
+
+<MassSpectrometerLab
+  title={<>Bor im Massenspektrometer</>}
+  description={<>Jedes Isotop läuft auf seiner eigenen Bahn, und der höhere Peak von Bor-11 zeigt, dass es das häufige ist.</>}
+  samples={["boron"]}
+  labels={{
+    average: <>Mittlere relative Atommasse</>,
+    choose: "Element wählen",
+    isotopes: <>Isotope und Häufigkeit</>,
+    north: "N",
+    radius: <>Bahnradius</>,
+    ratio: <>Verhältnis der Radien</>,
+    south: "S",
+    view: "Massenspektrometer",
+  }}
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="80\%" /> ist der Anteil von Bor-11, die Antwort für das **andere** Isotop.
+- <InlineMath math="10.8\%" /> nimmt die relative Atommasse selbst als Prozentsatz.
+- <InlineMath math="50\%" /> nimmt gleiche Anteile an, was <InlineMath math="10.5" /> statt <InlineMath math="10.8" /> ergäbe.

@@ -1,0 +1,44 @@
+# Massa atom relatif adalah rata-rata berbobot
+
+Massa atom relatif adalah **rata-rata massa semua atom**, diberi bobot menurut kelimpahan setiap isotop. Misalkan <InlineMath math="x" /> adalah persentase boron-10, jadi boron-11 adalah <InlineMath math="100-x" />:
+
+<BlockMath math="\begin{aligned}
+\frac{10x+11(100-x)}{100}&=10.8\\
+1100-x&=1080\\
+x&=20
+\end{aligned}" />
+
+<Chart
+  title={<>Kelimpahan Dua Isotop Boron</>}
+  bars="apart"
+  categories={["Boron-10", "Boron-11"]}
+  series={[
+    { label: "Kelimpahan (%)", mark: "bar", values: [20, 80] },
+  ]}
+  valueLabel="Kelimpahan (%)"
+  description={<>Boron-10 mencakup <InlineMath math="20" /> persen atom boron dan boron-11 mencakup <InlineMath math="80" /> persen, yang memberi massa atom relatif <InlineMath math="10{,}8" />.</>}
+/>
+
+Cek: <InlineMath math="0.20\times10+0.80\times11=2+8.8=10.8" />. Rata-ratanya dekat dengan <InlineMath math="11" />, jadi isotop yang lebih berat pasti lebih banyak. Jadi, <InlineMath math="20\%" /> atom boron adalah boron-10.
+
+<MassSpectrometerLab
+  title={<>Boron dalam Spektrometer Massa</>}
+  description={<>Tiap isotop berbelok di lintasannya sendiri, dan puncak boron-11 yang lebih tinggi menunjukkan isotop itu lebih banyak.</>}
+  samples={["boron"]}
+  labels={{
+    average: <>Massa atom relatif rata-rata</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jari-jari lintasan</>,
+    ratio: <>Perbandingan jari-jari</>,
+    south: "S",
+    view: "Spektrometer massa",
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="80\%" /> adalah bagian boron-11, jawaban untuk isotop **yang lain**.
+- <InlineMath math="10.8\%" /> memakai massa atom relatif itu sendiri sebagai persentase.
+- <InlineMath math="50\%" /> menganggap jumlahnya sama, yang akan memberi <InlineMath math="10.5" />, bukan <InlineMath math="10.8" />.

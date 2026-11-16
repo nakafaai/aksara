@@ -1,0 +1,28 @@
+# Work out each titre, drop the rough one, average the concordant ones
+
+A titre is the **volume delivered**, final reading minus initial reading, so first turn every row into a titre.
+
+<BlockMath math="24.60-0.00=24.60,\quad 24.70-0.50=24.20,\quad 25.45-1.20=24.25,\quad 24.40-0.10=24.30\ \text{cm}^3" />
+
+<Chart
+  title={<>Titre of Each Titration</>}
+  bars="apart"
+  categories={["1 (rough)", "2", "3", "4"]}
+  series={[
+    { label: "Titre (cm³)", mark: "bar", values: [24.6, 24.2, 24.25, 24.3] },
+  ]}
+  valueLabel="Titre (cm³)"
+  description={<>The titres are <InlineMath math="24.60" />, <InlineMath math="24.20" />, <InlineMath math="24.25" /> and <InlineMath math="24.30" /> cubic centimetres. The rough titre stands apart, and the last three agree within <InlineMath math="0.10" />.</>}
+/>
+
+The rough titration only finds the end point roughly, so it is left out. Titres <InlineMath math="2" />, <InlineMath math="3" /> and <InlineMath math="4" /> differ by at most <InlineMath math="24.30-24.20=0.10\text{ cm}^3" />, so they are concordant:
+
+<BlockMath math="\text{average}=\frac{24.20+24.25+24.30}{3}=24.25\text{ cm}^3." />
+
+So the student should use <InlineMath math="24.25\text{ cm}^3" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="24.34\text{ cm}^3" /> averages all four titres, but **the rough titre is never averaged**.
+- <InlineMath math="24.20\text{ cm}^3" /> takes the smallest titre instead of the mean of the concordant ones.
+- <InlineMath math="24.28\text{ cm}^3" /> averages only titres <InlineMath math="3" /> and <InlineMath math="4" />, dropping titre <InlineMath math="2" />, which agrees with them too.

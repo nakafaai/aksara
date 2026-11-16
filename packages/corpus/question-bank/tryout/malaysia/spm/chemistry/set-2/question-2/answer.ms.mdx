@@ -1,0 +1,44 @@
+# Jisim atom relatif ialah purata berpemberat
+
+Jisim atom relatif ialah **purata jisim semua atom**, berpemberat mengikut kelimpahan setiap isotop. Biar <InlineMath math="x" /> ialah peratus boron-10, jadi boron-11 ialah <InlineMath math="100-x" />:
+
+<BlockMath math="\begin{aligned}
+\frac{10x+11(100-x)}{100}&=10.8\\
+1100-x&=1080\\
+x&=20
+\end{aligned}" />
+
+<Chart
+  title={<>Kelimpahan Dua Isotop Boron</>}
+  bars="apart"
+  categories={["Boron-10", "Boron-11"]}
+  series={[
+    { label: "Kelimpahan (%)", mark: "bar", values: [20, 80] },
+  ]}
+  valueLabel="Kelimpahan (%)"
+  description={<>Boron-10 merangkumi <InlineMath math="20" /> peratus atom boron dan boron-11 merangkumi <InlineMath math="80" /> peratus, yang memberi jisim atom relatif <InlineMath math="10.8" />.</>}
+/>
+
+Semakan: <InlineMath math="0.20\times10+0.80\times11=2+8.8=10.8" />. Purata itu dekat dengan <InlineMath math="11" />, jadi isotop yang lebih berat mesti lebih banyak. Jadi, <InlineMath math="20\%" /> atom boron ialah boron-10.
+
+<MassSpectrometerLab
+  title={<>Boron dalam Spektrometer Jisim</>}
+  description={<>Setiap isotop membelok pada lintasannya sendiri, dan puncak boron-11 yang lebih tinggi menunjukkan ia lebih banyak.</>}
+  samples={["boron"]}
+  labels={{
+    average: <>Purata jisim atom relatif</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jejari lintasan</>,
+    ratio: <>Nisbah jejari</>,
+    south: "S",
+    view: "Spektrometer jisim",
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="80\%" /> ialah bahagian boron-11, iaitu jawapan bagi isotop **yang satu lagi**.
+- <InlineMath math="10.8\%" /> menggunakan jisim atom relatif itu sendiri sebagai peratus.
+- <InlineMath math="50\%" /> menganggap jumlah yang sama, yang akan memberi <InlineMath math="10.5" />, bukan <InlineMath math="10.8" />.
