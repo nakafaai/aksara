@@ -29,4 +29,18 @@ The fourth statement is about the seedlings that died. Dead seedlings are the on
 
 Half of <InlineMath math="31{,}900" /> is <InlineMath math="15{,}950" />, and Karangsari accounts for <InlineMath math="18{,}000" />, about <InlineMath math="56\%" />. The fourth statement is true. The trap is using Karangsari's share of the seedlings planted, <InlineMath math="20{,}000 : 45{,}000 \approx 44\%" />, which is under half. The statement asks about seedlings that died, not seedlings planted.
 
+The chart below draws the seedlings that died in each village. **Karangsari's bar alone passes the line for half of all dead seedlings**, even though it planted less than half of the seedlings.
+
+<Chart
+  title={<>Mangrove seedlings that died by 2025, by village</>}
+  description={<>The dead seedlings are <InlineMath math="18{,}000" /> in Karangsari, <InlineMath math="1{,}500" /> in Muarabaru, <InlineMath math="6{,}000" /> in Pasirkuning, and <InlineMath math="6{,}400" /> in Lontar, for a total of <InlineMath math="31{,}900" />. The flat line marks half of that, <InlineMath math="15{,}950" />.</>}
+  bars="apart"
+  categories={["Karangsari", "Muarabaru", "Pasirkuning", "Lontar"]}
+  series={[
+    { label: "Dead seedlings", mark: "bar", values: [20000 - 2000, 5000 - 3500, 12000 - 6000, 8000 - 1600] },
+    { label: "Half of all dead seedlings", mark: "line", values: Array.from({ length: 4 }, () => (18000 + 1500 + 6000 + 6400) / 2) },
+  ]}
+  valueLabel="Seedlings"
+/>
+
 So the first and fourth statements are true, and the second and third are false.

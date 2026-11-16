@@ -6,6 +6,20 @@ Now look at who can be above Mira. Lusi is definitely taller than Mira, and Oki 
 
 Test Sekar with an assumption. Suppose Sekar were shorter than Mira. Niken is shorter than Sekar (fact 3), so Niken would be shorter than Mira too. Together with Oki, that's three members below Mira, but there's only room for two. The assumption is impossible, so **Sekar must be taller than Mira**.
 
+The diagram below draws every fact as a "taller than" arrow. **The dashed arrow from Sekar to Mira comes from that assumption test**, since there's only room for two members below Mira.
+
+<Mermaid
+  title={<>Height relations from the four facts</>}
+  description={<>Lusi is taller than Mira and Kevin. Mira and Kevin are taller than Oki. Sekar is taller than Niken. Since Mira is fourth tallest, Sekar must be taller than Mira.</>}
+  chart={`flowchart TD
+    L["Lusi"] --> M["Mira, fourth tallest"]
+    L --> K["Kevin"]
+    M --> O["Oki"]
+    K --> O
+    S["Sekar"] --> N["Niken"]
+    S -.->|"from the assumption test"| M`}
+/>
+
 To see the full picture, split every order into two cases by where Niken is. Orders are listed from tallest to shortest.
 
 - Niken is taller than Mira. The top three are Lusi, Sekar and Niken. Kevin drops below Mira, and since Kevin is taller than Oki, the bottom two are Kevin and then Oki. For example: Lusi, Sekar, Niken, Mira, Kevin, Oki.

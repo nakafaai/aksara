@@ -9,6 +9,19 @@ T(v) &= 60 + 2v
 
 From these, the values you need are <InlineMath math="B(20) = 70" />, <InlineMath math="B(30) = 120" />, <InlineMath math="B(35) = 155" />, <InlineMath math="B(40) = 190" />, and <InlineMath math="T(30) = 120" />.
 
+The chart below draws both bills. **The tiered line gets steeper at each tier boundary and touches the flat line exactly at <InlineMath math="30\text{ m}^3" />**, then passes it.
+
+<Chart
+  title={<>Monthly bill on both plans by water use</>}
+  description={<>The tiered plan rises by <InlineMath math="3" />, <InlineMath math="5" />, then <InlineMath math="7" /> thousand rupiah per cubic metre, while the flat plan starts at <InlineMath math="60" /> thousand and rises by <InlineMath math="2" /> thousand per cubic metre. At <InlineMath math="30\text{ m}^3" />, both are <InlineMath math="120" /> thousand. At <InlineMath math="40\text{ m}^3" />, the tiered bill is <InlineMath math="190" /> and the flat bill <InlineMath math="140" /> thousand.</>}
+  categories={["0", "5", "10", "15", "20", "25", "30", "35", "40"]}
+  series={[
+    { label: "Tiered plan", mark: "line", values: [0, 5, 10, 15, 20, 25, 30, 35, 40].map((v) => (v <= 15 ? 3 * v : v <= 30 ? 45 + 5 * (v - 15) : 120 + 7 * (v - 30))) },
+    { label: "Flat plan", mark: "line", values: [0, 5, 10, 15, 20, 25, 30, 35, 40].map((v) => 60 + 2 * v) },
+  ]}
+  valueLabel="Bill (thousand rupiah)"
+/>
+
 Statement 1: Benar (true). The tiered bill for <InlineMath math="20\text{ m}^3" /> is <InlineMath math="45 + 25 = 70" /> thousand rupiah, so the average is:
 
 <BlockMath math="70{,}000 \div 20 = 3{,}500 < 4{,}000" />

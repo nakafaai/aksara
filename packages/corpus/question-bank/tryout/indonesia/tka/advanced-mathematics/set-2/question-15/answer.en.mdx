@@ -16,6 +16,46 @@ The <InlineMath math="x" />-intercept comes from <InlineMath math="y=0" />, and 
 
 <BlockMath math="P\left(\frac{20}{3},0\right),\qquad Q(0,5),\qquad A=\frac12\cdot\frac{20}{3}\cdot5=\frac{50}{3}" />
 
+Draw the circle, the radius <InlineMath math="MT" />, and the tangent. **The tangent is perpendicular to <InlineMath math="MT" /> and cuts both axes**, so triangle <InlineMath math="OPQ" /> has its right angle at the origin.
+
+<MathVisual
+  title={<>The tangent at <InlineMath math="T(4,2)" /> and triangle <InlineMath math="OPQ" /></>}
+  description={<>The circle has centre <InlineMath math="M(1,-2)" /> and radius <InlineMath math="5" />. The tangent <InlineMath math="3x+4y=20" /> touches the circle at <InlineMath math="T(4,2)" />, perpendicular to the radius <InlineMath math="MT" />. It cuts the <InlineMath math="X" />-axis at <InlineMath math="P\left(\tfrac{20}{3},0\right)" /> and the <InlineMath math="Y" />-axis at <InlineMath math="Q(0,5)" />, and triangle <InlineMath math="OPQ" /> is shaded.</>}
+  labels={{
+    m: <InlineMath math="M(1,-2)" />,
+    t: <InlineMath math="T(4,2)" />,
+    p: <InlineMath math="P\left(\tfrac{20}{3},0\right)" />,
+    q: <InlineMath math="Q(0,5)" />,
+    tangent: <InlineMath math="3x+4y=20" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 8 },
+      y: { min: -8, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 1, y: -2 }, radius: 5 },
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20 / 3, y: 0 }, { x: 0, y: 5 }] },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 1, y: -2 }, to: { x: 4, y: 2 } },
+      { id: "tangent", kind: "function", appearance: "primary", formula: "(20 - 3*x)/4", domain: { min: -1, max: 7.5 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 1, y: -2 } },
+      { id: "t", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 20 / 3, y: 0 } },
+      { id: "q", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 1, y: -2 }, placement: "below" },
+      { key: "t", objectId: "t", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "p", objectId: "p", at: { x: 20 / 3, y: 0 }, placement: "below" },
+      { key: "q", objectId: "q", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "tangent", objectId: "tangent", at: { x: -1, y: 23 / 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 So the area of triangle <InlineMath math="OPQ" /> is <InlineMath math="\frac{50}{3}" /> square units.
 
 - <InlineMath math="\frac{25}{6}" /> uses the normal line <InlineMath math="MT" />, namely <InlineMath math="4x-3y=10" />, instead of the tangent.

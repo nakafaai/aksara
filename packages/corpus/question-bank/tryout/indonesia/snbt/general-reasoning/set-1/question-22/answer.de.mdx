@@ -24,6 +24,20 @@ Schritt drei: Berechne den neuen Durchschnitt von Biru. Die ursprüngliche Summe
 
 Prüf das Ergebnis mit dem Gesamtdurchschnitt. Durch den Wechsel kommt niemand hinzu und niemand geht, also muss der Gesamtdurchschnitt <InlineMath math="24" /> bleiben. Tatsächlich ist <InlineMath math="\dfrac{20\times12+28\times12}{24}=\dfrac{576}{24}=24" />.
 
+Das Diagramm vergleicht die Durchschnitte vor und nach dem Wechsel. **Das Team Merah steigt um <InlineMath math="6" /> Stück, das Team Biru fällt nur um <InlineMath math="1" />**, und der Gesamtdurchschnitt bleibt bei <InlineMath math="24" />.
+
+<Chart
+  title={<>Durchschnittliche Leistung vor und nach dem Wechsel von vier Schneidern</>}
+  description={<>Das Team Merah geht von <InlineMath math="14" /> auf <InlineMath math="20" /> Stück pro Person und Tag, das Team Biru von <InlineMath math="29" /> auf <InlineMath math="28" />, und der Gesamtdurchschnitt bleibt bei <InlineMath math="24" />. Nach dem Wechsel haben beide Teams <InlineMath math="12" /> Personen.</>}
+  categories={["Team Merah", "Team Biru", "Alle Schneider"]}
+  bars="apart"
+  series={[
+    { label: "Vor dem Wechsel", mark: "bar", values: [14, 29, 24] },
+    { label: "Nach dem Wechsel", mark: "bar", values: [(14 * 8 + 4 * 32) / 12, (29 * 16 - 4 * 32) / 12, (20 * 12 + 28 * 12) / 24] },
+  ]}
+  valueLabel="Stück pro Person und Tag"
+/>
+
 Die anderen Optionen entstehen aus einem übersprungenen Schritt:
 
 - <InlineMath math="29" /> Stück nimmt an, dass sich der Durchschnitt von Biru nicht ändert. Gewechselt haben aber Leute über dem Durchschnitt von Biru, also muss der Durchschnitt der Verbleibenden sinken.

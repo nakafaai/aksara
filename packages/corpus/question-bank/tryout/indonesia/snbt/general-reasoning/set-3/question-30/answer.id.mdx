@@ -27,6 +27,17 @@ Tabel berikut membandingkan beberapa pilihan banyak tiket berbayar di sekitar ba
 | <InlineMath math="40" /> | <InlineMath math="2" /> | <InlineMath math="42" /> | <InlineMath math="22{.}500" /> | <InlineMath math="900{.}000" /> |
 | <InlineMath math="41" /> | <InlineMath math="2" /> | <InlineMath math="43" /> | <InlineMath math="22{.}500" /> | <InlineMath math="922{.}500" /> |
 
+Grafik berikut menggambar kolom biaya dari tabel. **Biaya turun tajam tepat di <InlineMath math="40" /> tiket**, karena semua tiket pindah ke tingkat potongan yang lebih besar.
+
+<Chart
+  title={<>Biaya rombongan menurut banyak tiket berbayar</>}
+  description={<>Dengan <InlineMath math="37" />, <InlineMath math="38" />, dan <InlineMath math="39" /> tiket berbayar, biayanya <InlineMath math="\text{Rp}943{.}500" />, <InlineMath math="\text{Rp}969{.}000" />, dan <InlineMath math="\text{Rp}994{.}500" />. Dengan <InlineMath math="40" /> tiket, biayanya turun ke <InlineMath math="\text{Rp}900{.}000" />, lalu naik lagi ke <InlineMath math="\text{Rp}922{.}500" /> dengan <InlineMath math="41" /> tiket.</>}
+  bars="apart"
+  categories={["37", "38", "39", "40", "41"]}
+  series={[{ label: "Biaya (rupiah)", mark: "bar", values: [37, 38, 39, 40, 41].map((n) => (n >= 40 ? n * 22500 : n * 25500)) }]}
+  valueLabel="Biaya (rupiah)"
+/>
+
 Membeli lebih dari <InlineMath math="40" /> tiket berbayar hanya menambah biaya, dan membeli kurang dari <InlineMath math="37" /> tidak cukup untuk semua orang. Jadi, biaya terkecil adalah <InlineMath math="\text{Rp}900{.}000" />. Cek selisihnya dengan cara lain. Dibandingkan dengan pembelian <InlineMath math="37" /> tiket, setiap tiket dari <InlineMath math="37" /> tiket itu kini lebih murah <InlineMath math="3{.}000" />, sedangkan tiga tiket tambahan menambah biaya.
 
 <BlockMath math="\begin{aligned}

@@ -11,6 +11,36 @@ Baris kedua memakai <InlineMath math="1-\cos t=2\sin^2\frac t2" />. Pecah menjad
 
 <BlockMath math="-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}=-2\cdot\lim_{t\to0}\left(\frac{\sin\frac t2}{t}\right)^2\cdot\lim_{t\to0}\frac{t}{\sin t}=-2\cdot\left(\frac12\right)^2\cdot1=-\frac12" />
 
+Gambar <InlineMath math="h" /> di kedua sisi <InlineMath math="x=\pi" />. **Kedua cabang naik ke titik yang sama di ketinggian <InlineMath math="-\tfrac12" />**, walaupun <InlineMath math="h(\pi)" /> sendiri tidak terdefinisi.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="h" /> di sekitar <InlineMath math="x=\pi" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{1+\cos x}{(x-\pi)\sin x}" /> untuk <InlineMath math="x" /> kira-kira <InlineMath math="1" /> radian di kiri dan kanan <InlineMath math="\pi" />, tanpa <InlineMath math="x=\pi" />. Grafiknya simetris terhadap <InlineMath math="x=\pi" />, dan kedua cabang menuju garis mendatar <InlineMath math="y=-\tfrac12" />.</>}
+  labels={{
+    left: <InlineMath math="y=h(x)" />,
+    target: <InlineMath math="\left(\pi,\ -\tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 2, max: 4.3 },
+      y: { min: -0.65, max: -0.35 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1 + cos(x))/((x - pi)*sin(x))", domain: { min: 2.15, max: 3.13 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1 + cos(x))/((x - pi)*sin(x))", domain: { min: 3.155, max: 4.14 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "-0.5", domain: { min: 2, max: 4.3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: Math.PI, y: -0.5 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 2.4, y: -0.53 }, placement: "below" },
+      { key: "target", objectId: "target", at: { x: Math.PI, y: -0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=\pi+0{,}01" />, nilainya kira-kira <InlineMath math="\frac{0{,}0000500}{0{,}01\cdot(-0{,}0099998)}\approx-0{,}50" />.
 
 Jadi, nilai limit tersebut adalah <InlineMath math="-\frac12" />.

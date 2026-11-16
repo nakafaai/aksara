@@ -2,6 +2,18 @@ This question asks you to sort four statements: which ones are **guaranteed by a
 
 The method is to chain the facts that talk about the same group of stalls. For a statement that isn't guaranteed (*tidak pasti benar*), one counterexample is enough: a set of stalls that meets all four facts but makes the statement false.
 
+The diagram below chains the four facts. **The "all" arrows only run one way**, while the "none" line keeps the cold-drink sellers apart from the north aisle.
+
+<Mermaid
+  title={<>How the groups of stalls relate under the four facts</>}
+  description={<>Every stall open tonight uses a solar lamp, but not the other way around. Some solar-lamp stalls sell cold drinks. No cold-drink seller is in the north aisle, and every association stall is in the north aisle.</>}
+  chart={`flowchart LR
+    B["Open tonight"] -->|"all"| L["Solar lamp"]
+    L -.->|"some"| M["Sells cold drinks"]
+    M ---|"none in common"| U["North aisle"]
+    P["Association stalls"] -->|"all"| U`}
+/>
+
 Statement 1 isn't guaranteed. Fact 2 only promises that some solar-lamp stall sells cold drinks. That stall doesn't have to be open tonight, because fact 1 only says every open stall uses a solar lamp, not the other way around. The solar-lamp group can be much bigger than the group of stalls open tonight.
 
 Statement 2 must be true. Suppose a stall owned by the traders' association sold cold drinks. By fact 4, it would be in the north aisle. By fact 3, no cold-drink stall is in the north aisle. Those two clash, so no such stall exists.

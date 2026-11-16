@@ -6,6 +6,49 @@ Tiga pernyataan bergantung pada **hasil kali titik** <InlineMath math="\vec{u}\c
 |\vec{v}|&=\sqrt{2^2+k^2+1^2}=\sqrt{k^2+5}
 \end{aligned}" />
 
+Gambar <InlineMath math="\vec u\cdot\vec v" /> dan <InlineMath math="|\vec v|" /> sebagai fungsi <InlineMath math="k" />. **Tanda hasil kali titik menentukan jenis sudut**: nol di <InlineMath math="k=0" />, positif untuk <InlineMath math="k>0" />. Kurva panjang menyentuh garis <InlineMath math="3" /> di <InlineMath math="k=\pm2" />.
+
+<MathVisual
+  title={<>Hasil kali titik dan panjang <InlineMath math="\vec v" /> menurut <InlineMath math="k" /></>}
+  description={<>Sumbu mendatar adalah <InlineMath math="k" />. Garis <InlineMath math="2k" /> adalah <InlineMath math="\vec u\cdot\vec v" />: nol di <InlineMath math="k=0" />, bernilai <InlineMath math="8" /> di <InlineMath math="k=4" />, dan <InlineMath math="-2" /> di <InlineMath math="k=-1" />. Kurva <InlineMath math="\sqrt{k^2+5}" /> adalah <InlineMath math="|\vec v|" />, dan memotong garis mendatar <InlineMath math="|\vec u|=3" /> di <InlineMath math="k=2" /> dan <InlineMath math="k=-2" />.</>}
+  labels={{
+    dot: <InlineMath math="\vec u\cdot\vec v=2k" />,
+    length: <InlineMath math="|\vec v|=\sqrt{k^2+5}" />,
+    three: <InlineMath math="|\vec u|=3" />,
+    perp: <InlineMath math="k=0" />,
+    acute: <InlineMath math="(4,\ 8)" />,
+    equal: <InlineMath math="(2,\ 3)" />,
+    minus: <InlineMath math="(-1,\ -2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 5 },
+      y: { min: -4, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "dot", kind: "function", appearance: "primary", formula: "2*x", domain: { min: -2, max: 4.4 } },
+      { id: "length", kind: "function", appearance: "secondary", formula: "sqrt(x^2 + 5)", domain: { min: -3, max: 5 } },
+      { id: "three", kind: "function", appearance: "construction", formula: "3", domain: { min: -3, max: 5 } },
+      { id: "perp", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "acute", kind: "point", appearance: "answer", at: { x: 4, y: 8 } },
+      { id: "equal", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "minus", kind: "point", appearance: "warning", at: { x: -1, y: -2 } },
+    ],
+    labels: [
+      { key: "dot", objectId: "dot", at: { x: 3, y: 6 }, placement: "left" },
+      { key: "length", objectId: "length", at: { x: -2.5, y: Math.sqrt(11.25) }, placement: "above" },
+      { key: "three", objectId: "three", at: { x: 4.5, y: 3 }, placement: "below" },
+      { key: "perp", objectId: "perp", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "acute", objectId: "acute", at: { x: 4, y: 8 }, placement: "left" },
+      { key: "equal", objectId: "equal", at: { x: 2, y: 3 }, placement: "below-right" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
 Ingat dua hubungan berikut. Dua vektor tak nol tegak lurus tepat ketika hasil kali titiknya nol. Sudut di antaranya lancip tepat ketika hasil kali titiknya positif, karena <InlineMath math="\vec{u}\cdot\vec{v}=|\vec{u}||\vec{v}|\cos\theta" /> dan panjang vektor selalu positif.
 
 1. Pernyataan bahwa ada nilai <InlineMath math="k" /> yang membuat <InlineMath math="\vec{u}" /> sejajar <InlineMath math="\vec{v}" /> salah. Sejajar berarti <InlineMath math="\vec{v}=c\vec{u}" /> untuk suatu bilangan <InlineMath math="c" />. Komponen pertama memaksa <InlineMath math="2=c\cdot1" />, jadi <InlineMath math="c=2" />. Komponen ketiga lalu menuntut <InlineMath math="1=2\cdot(-2)=-4" />, yang mustahil, berapa pun nilai <InlineMath math="k" />.

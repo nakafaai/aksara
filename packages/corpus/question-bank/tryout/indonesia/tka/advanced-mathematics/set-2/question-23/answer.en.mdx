@@ -9,6 +9,34 @@ Divide numerator and denominator by <InlineMath math="x" />. Inside a square roo
 
 <BlockMath math="\lim_{x\to\infty}\frac{16-\frac2x}{\sqrt{4+\frac{12}{x}-\frac{1}{x^2}}+\sqrt{4-\frac4x+\frac{1}{x^2}}}=\frac{16}{2+2}=4" />
 
+Draw the difference for large <InlineMath math="x" />. **The curve rises and hugs the line <InlineMath math="y=4" />**, so the two terms that both grow without bound end up differing by an almost fixed amount.
+
+<MathVisual
+  title={<>The difference of the two terms for large <InlineMath math="x" /></>}
+  description={<>The curve <InlineMath math="y=\sqrt{4x^2+12x-1}-(2x-1)" /> for <InlineMath math="1\le x\le60" />. At <InlineMath math="x=1" /> its value is about <InlineMath math="2.9" />, and then the curve gets closer and closer to the horizontal line <InlineMath math="y=4" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\sqrt{4x^2+12x-1}-(2x-1)" />,
+    level: <InlineMath math="y=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: 2.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "sqrt(4*x^2 + 12*x - 1) - (2*x - 1)", domain: { min: 1, max: 60 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "4", domain: { min: 0, max: 60 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10, y: 3.75 }, placement: "below-right" },
+      { key: "level", objectId: "level", at: { x: 50, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
 This matches the shortcut <InlineMath math="\frac{b-q}{2\sqrt a}=\frac{12-(-4)}{2\sqrt4}=4" /> for <InlineMath math="\sqrt{ax^2+bx+c}-\sqrt{ax^2+qx+r}" />.
 
 So the limit is <InlineMath math="4" />.

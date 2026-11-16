@@ -7,6 +7,48 @@ Semua pernyataan tentang bentuk segitiga bisa dinilai dari **vektor-vektor sisin
 \overrightarrow{AB}\cdot\overrightarrow{AC}&=-2+4-2=0
 \end{aligned}" />
 
+Gambar segitiga pada bidang yang memuatnya. **Sisi <InlineMath math="AB" /> dan <InlineMath math="AC" /> sama panjang dan saling tegak lurus**, jadi segitiga itu siku-siku sama kaki, dan menambahkan <InlineMath math="\overrightarrow{AB}" /> ke <InlineMath math="C" /> melengkapinya menjadi jajargenjang.
+
+<MathVisual
+  title={<>Segitiga <InlineMath math="ABC" /> dan jajargenjang <InlineMath math="ABDC" /></>}
+  description={<>Segitiga <InlineMath math="ABC" /> digambar pada bidang yang memuat ketiga titiknya. Sisi <InlineMath math="AB" /> dan <InlineMath math="AC" /> masing-masing <InlineMath math="3" /> dan bertemu tegak lurus di <InlineMath math="A" />, sedangkan <InlineMath math="BC=3\sqrt2" />. Titik <InlineMath math="D=C+\overrightarrow{AB}" /> melengkapi jajargenjang <InlineMath math="ABDC" />, yang di sini berbentuk persegi.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ab: <InlineMath math="3" />,
+    ac: <InlineMath math="3" />,
+    bc: <InlineMath math="3\sqrt2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4 },
+      y: { min: -1, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parallelogram", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }] },
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 3 }] },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "ac", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "bc", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "corner", kind: "polyline", appearance: "answer", vertices: [{ x: 0.4, y: 0 }, { x: 0.4, y: 0.4 }, { x: 0, y: 0.4 }] },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 0, y: 3 }, placement: "above-left" },
+      { key: "d", objectId: "parallelogram", at: { x: 3, y: 3 }, placement: "above-right" },
+      { key: "ab", objectId: "ab", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "ac", objectId: "ac", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "bc", objectId: "bc", at: { x: 1.5, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 1. Pernyataan bahwa segitiga <InlineMath math="ABC" /> sama sisi salah. Dua sisinya <InlineMath math="3" />, tetapi sisi ketiga <InlineMath math="3\sqrt2" />.
 2. Pernyataan <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{BC}=9" /> salah. Hasilnya <InlineMath math="2(-3)+2\cdot0+1\cdot(-3)=-9" />. Tandanya negatif karena vektor <InlineMath math="\overrightarrow{AB}" /> dan <InlineMath math="\overrightarrow{BC}" /> disusun ujung ke pangkal, sehingga sudut di antara keduanya adalah sudut luar segitiga di <InlineMath math="B" />, yaitu <InlineMath math="135^\circ" />.
 3. Pernyataan bahwa sudut <InlineMath math="BAC" /> siku-siku benar, karena <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{AC}=0" /> dan kedua vektor tak nol.

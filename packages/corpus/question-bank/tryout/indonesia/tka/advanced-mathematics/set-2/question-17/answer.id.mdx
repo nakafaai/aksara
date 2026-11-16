@@ -2,6 +2,48 @@ Setiap pernyataan membandingkan suatu jarak dengan jari-jari, jadi mulailah dari
 
 <BlockMath math="(x+1)^2+(y-2)^2=1+4+5=10" />
 
+Gambar <InlineMath math="L" /> bersama garis, titik, dan lingkaran besar dari keempat pernyataan. **Setiap pernyataan tinggal dibaca dari posisinya terhadap lingkaran <InlineMath math="L" />**: garis menyentuhnya di satu titik, dan <InlineMath math="(2,\ 3)" /> tepat di tepinya.
+
+<MathVisual
+  title={<>Lingkaran <InlineMath math="L" /> dan keempat pernyataan</>}
+  description={<>Lingkaran <InlineMath math="L" /> berpusat di <InlineMath math="M(-1,2)" /> dengan jari-jari <InlineMath math="\sqrt{10}" />. Garis <InlineMath math="x+3y=15" /> menyentuhnya di <InlineMath math="(0,\ 5)" />, tegak lurus jari-jari dari <InlineMath math="M" />. Titik <InlineMath math="(2,\ 3)" /> terletak pada lingkaran. <InlineMath math="L" /> memotong sumbu <InlineMath math="Y" /> di <InlineMath math="(0,\ 5)" /> dan <InlineMath math="(0,\ -1)" />. Lingkaran besar <InlineMath math="x^2+y^2=25" /> memotong <InlineMath math="L" /> di dua titik.</>}
+  labels={{
+    m: <InlineMath math="M(-1,2)" />,
+    tangent: <InlineMath math="x+3y=15" />,
+    touch: <InlineMath math="(0,\ 5)" />,
+    point: <InlineMath math="(2,\ 3)" />,
+    low: <InlineMath math="(0,\ -1)" />,
+    big: <InlineMath math="x^2+y^2=25" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6.5 },
+      y: { min: -6, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -1, y: 2 }, radius: Math.sqrt(10) },
+      { id: "tangent", kind: "function", appearance: "secondary", formula: "(15 - x)/3", domain: { min: -6, max: 6.5 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: -1, y: 2 }, to: { x: 0, y: 5 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: -1, y: 2 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "point", kind: "point", appearance: "warning", at: { x: 2, y: 3 } },
+      { id: "low", kind: "point", appearance: "primary", at: { x: 0, y: -1 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: -1, y: 2 }, placement: "below-left" },
+      { key: "tangent", objectId: "tangent", at: { x: 5, y: 10 / 3 }, placement: "above" },
+      { key: "touch", objectId: "touch", at: { x: 0, y: 5 }, placement: "above-left" },
+      { key: "point", objectId: "point", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 0, y: -1 }, placement: "below-right" },
+      { key: "big", objectId: "big", at: { x: 3, y: -4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Pusatnya <InlineMath math="M(-1,2)" /> dan <InlineMath math="r=\sqrt{10}" />.
 
 1. Pernyataan tentang garis <InlineMath math="x+3y-15=0" /> benar. Garis menyinggung lingkaran tepat ketika jaraknya ke pusat sama dengan jari-jari: <InlineMath math="d=\frac{|-1+6-15|}{\sqrt{1+9}}=\frac{10}{\sqrt{10}}=\sqrt{10}=r" />.

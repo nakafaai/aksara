@@ -11,6 +11,36 @@ Die zweite Zeile nutzt <InlineMath math="1-\cos t=2\sin^2\frac t2" />. Zerlege i
 
 <BlockMath math="-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}=-2\cdot\lim_{t\to0}\left(\frac{\sin\frac t2}{t}\right)^2\cdot\lim_{t\to0}\frac{t}{\sin t}=-2\cdot\left(\frac12\right)^2\cdot1=-\frac12" />
 
+Zeichne <InlineMath math="h" /> auf beiden Seiten von <InlineMath math="x=\pi" />. **Beide Äste steigen zum selben Punkt auf der Höhe <InlineMath math="-\tfrac12" />**, obwohl <InlineMath math="h(\pi)" /> selbst nicht definiert ist.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="h" /> in der Nähe von <InlineMath math="x=\pi" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{1+\cos x}{(x-\pi)\sin x}" /> für <InlineMath math="x" /> bis etwa <InlineMath math="1" /> im Bogenmaß links und rechts von <InlineMath math="\pi" />, ohne <InlineMath math="x=\pi" />. Der Graph ist symmetrisch zu <InlineMath math="x=\pi" />, und beide Äste laufen auf die waagerechte Gerade <InlineMath math="y=-\tfrac12" /> zu.</>}
+  labels={{
+    left: <InlineMath math="y=h(x)" />,
+    target: <InlineMath math="\left(\pi,\ -\tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 2, max: 4.3 },
+      y: { min: -0.65, max: -0.35 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1 + cos(x))/((x - pi)*sin(x))", domain: { min: 2.15, max: 3.13 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1 + cos(x))/((x - pi)*sin(x))", domain: { min: 3.155, max: 4.14 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "-0.5", domain: { min: 2, max: 4.3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: Math.PI, y: -0.5 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 2.4, y: -0.53 }, placement: "below" },
+      { key: "target", objectId: "target", at: { x: Math.PI, y: -0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=\pi+0{,}01" /> ist der Wert etwa <InlineMath math="\frac{0{,}0000500}{0{,}01\cdot(-0{,}0099998)}\approx-0{,}50" />.
 
 Der Grenzwert ist also <InlineMath math="-\frac12" />.

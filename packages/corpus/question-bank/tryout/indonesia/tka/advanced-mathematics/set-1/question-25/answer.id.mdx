@@ -17,6 +17,37 @@ f(x)&=x+a+2\quad\text{untuk }x\ne2 \\
 \lim_{x\to2}f(x)&=4+a=7
 \end{aligned}" />
 
+Gambar <InlineMath math="f" /> setelah <InlineMath math="a=3" /> dan <InlineMath math="b=-10" /> diketahui. **Grafiknya garis <InlineMath math="y=x+5" /> dengan satu lubang di <InlineMath math="(2,\ 7)" />**, karena <InlineMath math="f(2)" /> tidak ada walaupun limitnya <InlineMath math="7" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f" /> dengan lubang di <InlineMath math="x=2" /></>}
+  description={<>Garis <InlineMath math="y=x+5" /> untuk <InlineMath math="-6\le x\le4" />. Titik <InlineMath math="(2,\ 7)" /> ditandai sebagai lubang, yaitu nilai yang didekati tetapi tidak dimiliki <InlineMath math="f" />. Garis memotong sumbu <InlineMath math="x" /> di <InlineMath math="(-5,\ 0)" />.</>}
+  labels={{
+    line: <InlineMath math="f(x)=x+5,\ x\ne2" />,
+    hole: <InlineMath math="(2,\ 7)" />,
+    root: <InlineMath math="(-5,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 4 },
+      y: { min: -2, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "x + 5", domain: { min: -6, max: 4 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 2, y: 7 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: -2, y: 3 }, placement: "above-left" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 7 }, placement: "below-right" },
+      { key: "root", objectId: "root", at: { x: -5, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Jadi, <InlineMath math="a=3" /> dan <InlineMath math="b=-4-2\cdot3=-10" />, sehingga <InlineMath math="f(x)=\frac{x^2+3x-10}{x-2}=x+5" /> untuk setiap <InlineMath math="x\ne2" />.
 
 # Menilai setiap pernyataan

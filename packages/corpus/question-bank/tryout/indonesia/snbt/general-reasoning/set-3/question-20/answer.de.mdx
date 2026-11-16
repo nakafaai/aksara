@@ -6,6 +6,20 @@ Schau jetzt, wer über Mira stehen kann. Lusi ist sicher größer als Mira, und 
 
 Prüf Sekar mit einer Annahme. Angenommen, Sekar wäre kleiner als Mira. Niken ist kleiner als Sekar (Angabe 3), also wäre auch Niken kleiner als Mira. Zusammen mit Oki wären das drei Mitglieder unter Mira, aber es gibt nur zwei Plätze. Die Annahme ist unmöglich, also **ist Sekar sicher größer als Mira**.
 
+Das Diagramm zeichnet jede Angabe als Pfeil "größer als". **Der gestrichelte Pfeil von Sekar zu Mira stammt aus der Annahmeprobe**, weil unter Mira nur Platz für zwei Mitglieder ist.
+
+<Mermaid
+  title={<>Größenbeziehungen aus den vier Angaben</>}
+  description={<>Lusi ist größer als Mira und Kevin. Mira und Kevin sind größer als Oki. Sekar ist größer als Niken. Weil Mira die Viertgrößte ist, muss Sekar größer sein als Mira.</>}
+  chart={`flowchart TD
+    L["Lusi"] --> M["Mira, Viertgrößte"]
+    L --> K["Kevin"]
+    M --> O["Oki"]
+    K --> O
+    S["Sekar"] --> N["Niken"]
+    S -.->|"aus der Annahmeprobe"| M`}
+/>
+
 Für das ganze Bild teilst du alle Reihenfolgen in zwei Fälle, je nachdem, wo Niken steht. Die Reihenfolgen sind von groß nach klein notiert.
 
 - Niken ist größer als Mira. Die oberen drei sind Lusi, Sekar und Niken. Kevin rutscht unter Mira, und weil Kevin größer als Oki ist, sind die unteren zwei Kevin und dann Oki. Zum Beispiel: Lusi, Sekar, Niken, Mira, Kevin, Oki.

@@ -10,6 +10,19 @@ Rewrite the five conditions in plain words.
 - Condition 4: anyone who gets a committee shirt is on the student council.
 - Condition 5: at least one student passed the preliminary round and got a committee shirt.
 
+The diagram below draws the five conditions as arrows. **A solid arrow means "all", while a dashed arrow means "some"**, and only a connected chain gives a certain conclusion.
+
+<Mermaid
+  title={<>How the groups of students relate during science week</>}
+  description={<>All students who passed the preliminary round join the training, and no trainee joins the debate. Some debaters are on the student council. All committee shirt holders are on the student council. Some students who passed the preliminary round get a committee shirt.</>}
+  chart={`flowchart LR
+    L["Passed the preliminary round"] -->|"all"| P["Intensive training"]
+    P -->|"none join"| D["Debate contest"]
+    D -.->|"some"| O["Student council"]
+    K["Committee shirt"] -->|"all"| O
+    L -.->|"some"| K`}
+/>
+
 Statement 1 is certainly true. Take the debater on the council from condition 3. By condition 2, that student doesn't join the training. By the contrapositive of condition 1, that student didn't pass the preliminary round. So some council member didn't pass the preliminary round.
 
 Statement 2 isn't certainly true. Condition 4 only says shirt holders are council members, and no condition stops a council member who debates from getting a shirt. Try this arrangement: Dinda is on the council, debates, and gets a shirt, but doesn't join the training and didn't pass the preliminary round. Add Raka, who passed the preliminary round, joins the training, gets a shirt and is on the council, so condition 5 holds. All five conditions are obeyed, yet a shirt holder debates.

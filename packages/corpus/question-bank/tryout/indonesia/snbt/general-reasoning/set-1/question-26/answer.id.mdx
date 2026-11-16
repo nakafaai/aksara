@@ -13,6 +13,20 @@ Kedua kasus menghasilkan segitiga yang sah dengan alas berbeda. Pernyataan (1) s
 
 **Kedua pernyataan bersama-sama**. Dari dua kasus pada pernyataan (1), hanya <InlineMath math="(8, 8, 4)" /> yang alasnya lebih pendek daripada kaki. Kasus <InlineMath math="(6, 6, 8)" /> gugur karena alasnya lebih panjang. Jawabannya tunggal, yaitu alas <InlineMath math="4\text{ cm}" />, jadi kedua pernyataan bersama-sama cukup.
 
+Grafik berikut menggambar alas setiap segitiga yang mungkin. **Pernyataan (1) hanya menyisakan kaki <InlineMath math="6" /> dan kaki <InlineMath math="8" />**, dan pernyataan (2) membuang kaki <InlineMath math="6" /> karena alasnya lebih panjang.
+
+<Chart
+  title={<>Panjang alas segitiga sama kaki berkeliling <InlineMath math="20\text{ cm}" /> menurut panjang kaki</>}
+  description={<>Untuk kaki <InlineMath math="6" />, <InlineMath math="7" />, <InlineMath math="8" />, dan <InlineMath math="9\text{ cm}" />, alasnya <InlineMath math="8" />, <InlineMath math="6" />, <InlineMath math="4" />, dan <InlineMath math="2\text{ cm}" />. Hanya segitiga berkaki <InlineMath math="6\text{ cm}" /> yang alasnya lebih panjang daripada kakinya.</>}
+  categories={["Kaki 6 cm", "Kaki 7 cm", "Kaki 8 cm", "Kaki 9 cm"]}
+  bars="apart"
+  series={[
+    { label: "Alas lebih panjang daripada kaki", mark: "bar", values: [20 - 2 * 6, null, null, null] },
+    { label: "Alas lebih pendek daripada kaki", mark: "bar", values: [null, 20 - 2 * 7, 20 - 2 * 8, 20 - 2 * 9] },
+  ]}
+  valueLabel="Panjang alas (cm)"
+/>
+
 Pilihan lain muncul dari kasus yang terlewat:
 
 - Pilihan "pernyataan (1) saja cukup" muncul jika sisi <InlineMath math="8\text{ cm}" /> langsung dianggap sebagai kaki. Kasus alas <InlineMath math="8\text{ cm}" /> dengan kaki <InlineMath math="6\text{ cm}" /> terlewat, padahal segitiga itu sah.

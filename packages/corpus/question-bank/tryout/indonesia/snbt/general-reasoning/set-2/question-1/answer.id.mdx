@@ -8,6 +8,20 @@ Supaya angkanya mudah dibaca, hitung kecelakaan untuk setiap <InlineMath math="1
 | Persimpangan | <InlineMath math="20 : 40 = 0{,}50" /> | <InlineMath math="60 : 100 = 0{,}60" /> | naik tepat <InlineMath math="20\%" /> |
 | Keseluruhan | <InlineMath math="50 : 40 = 1{,}25" /> | <InlineMath math="75 : 100 = 0{,}75" /> | turun <InlineMath math="40\%" /> |
 
+Grafik berikut membandingkan risiko per <InlineMath math="10{.}000" /> perjalanan pada kedua tahun. **Batang ruas jalan anjlok, sedangkan batang persimpangan justru naik**, jadi satu angka keseluruhan tidak berlaku untuk setiap bagian.
+
+<Chart
+  title={<>Kecelakaan pesepeda per <InlineMath math="10{.}000" /> perjalanan menurut tempat</>}
+  description={<>Di ruas jalan, risikonya turun dari <InlineMath math="0{,}75" /> menjadi <InlineMath math="0{,}15" />. Di persimpangan, risikonya naik dari <InlineMath math="0{,}50" /> menjadi <InlineMath math="0{,}60" />. Secara keseluruhan, risikonya turun dari <InlineMath math="1{,}25" /> menjadi <InlineMath math="0{,}75" />.</>}
+  categories={["Ruas jalan", "Persimpangan", "Keseluruhan"]}
+  bars="apart"
+  series={[
+    { label: "2024", mark: "bar", values: [30 / 40, 20 / 40, 50 / 40] },
+    { label: "2025", mark: "bar", values: [15 / 100, 60 / 100, 75 / 100] },
+  ]}
+  valueLabel="Kecelakaan per 10.000 perjalanan"
+/>
+
 Sekarang uji simpulan yang memakai perkiraan. Kalau risiko per perjalanan tahun 2024 tetap berlaku, banyak kecelakaan pada 2025 adalah risiko 2024 dikali <InlineMath math="100" /> kelompok perjalanan.
 
 <BlockMath math="\begin{aligned} \text{ruas jalan: } 0{,}75 \times 100 &= 75 \text{ perkiraan, padahal yang terjadi } 15 \\ \text{persimpangan: } 0{,}50 \times 100 &= 50 \text{ perkiraan, padahal yang terjadi } 60 \end{aligned}" />

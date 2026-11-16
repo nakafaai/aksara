@@ -8,6 +8,18 @@ Give each part a name so the shape is easy to see.
 
 The original is <InlineMath math="p \Rightarrow (q \wedge r)" />. An if-then statement is false in only one situation: the "if" part happens, but the "then" part doesn't. So **the "if" part stays exactly as it is**, including its *tidak ada*, and only the "then" part gets negated.
 
+The diagram below traces when the original statement is false. **Only one path ends at "false"**: <InlineMath math="p" /> happens, but <InlineMath math="q" /> and <InlineMath math="r" /> don't both happen.
+
+<Mermaid
+  title={<>When an if-then statement with two promises turns false</>}
+  description={<>If <InlineMath math="p" /> doesn't happen, the original stays true. If <InlineMath math="p" /> happens and both <InlineMath math="q" /> and <InlineMath math="r" /> happen, the original is true. The original is false only when <InlineMath math="p" /> happens and one of <InlineMath math="q" /> or <InlineMath math="r" /> fails.</>}
+  chart={`flowchart LR
+    A{"No volunteer absent?"} -->|"no"| T1["Original is true"]
+    A -->|"yes"| B{"Post on time and everyone fed?"}
+    B -->|"yes"| T2["Original is true"]
+    B -->|"no: one fails"| F["Original is false"]`}
+/>
+
 <BlockMath math="\neg\big(p \Rightarrow (q \wedge r)\big) \equiv p \wedge \neg(q \wedge r) \equiv p \wedge (\neg q \vee \neg r)" />
 
 The second step uses De Morgan's law: the negation of "<InlineMath math="q" /> and <InlineMath math="r" />" is "not <InlineMath math="q" /> or not <InlineMath math="r" />". Now translate each part back.

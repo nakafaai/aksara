@@ -14,6 +14,19 @@ Kalau nomornya melewati <InlineMath math="26" />, kurangi <InlineMath math="26" 
 | <InlineMath math="9" /> | <InlineMath math="11 + 9 = 20" />, T | <InlineMath math="16 + 7 = 23" />, W | TW |
 | <InlineMath math="10" /> | <InlineMath math="20 + 10 = 30" />, lalu <InlineMath math="30 - 26 = 4" />, D | <InlineMath math="23 + 7 = 30" />, lalu <InlineMath math="30 - 26 = 4" />, D | DD |
 
+Grafik berikut menggambar nomor urut kedua huruf pada setiap suku. **Setiap kali garis jatuh tajam, hitungan baru saja melewati Z** dan berlanjut lagi dari A, dan kedua garis bertemu di nomor <InlineMath math="4" /> pada suku ke-<InlineMath math="10" />.
+
+<Chart
+  title={<>Nomor urut huruf pertama dan huruf kedua pada suku ke-<InlineMath math="1" /> sampai ke-<InlineMath math="10" /></>}
+  description={<>Huruf pertama bernomor <InlineMath math="2, 4, 7, 11, 16, 22, 3, 11, 20, 4" />, dengan langkah yang bertambah satu setiap suku. Huruf kedua bernomor <InlineMath math="19, 26, 7, 14, 21, 2, 9, 16, 23, 4" />, maju <InlineMath math="7" /> setiap suku. Nomor <InlineMath math="1" /> adalah A dan nomor <InlineMath math="26" /> adalah Z.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Huruf pertama", mark: "line", values: [2, 4, 7, 11, 16, 22, 29 - 26, 11, 20, 30 - 26] },
+    { label: "Huruf kedua", mark: "line", values: [19, 26, 33 - 26, 14, 21, 28 - 26, 9, 16, 23, 30 - 26] },
+  ]}
+  valueLabel="Nomor urut huruf"
+/>
+
 Cek dengan menghitung langsung dari suku ke-<InlineMath math="5" />. Huruf pertama maju <InlineMath math="6 + 7 + 8 + 9 + 10 = 40" /> langkah, dan huruf kedua maju <InlineMath math="5 \times 7 = 35" /> langkah:
 
 <BlockMath math="\begin{aligned} \text{Huruf pertama: } & 16 + 40 = 56 = 2(26) + 4 \\ \text{Huruf kedua: } & 21 + 35 = 56 = 2(26) + 4 \end{aligned}" />

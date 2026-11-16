@@ -11,6 +11,40 @@ Sekarang substitusikan <InlineMath math="x=3" />.
 
 <BlockMath math="P(3)=2(2)(1)(-1)+5=-4+5=1" />
 
+Gambar <InlineMath math="P(x)" /> bersama garis <InlineMath math="y=5" />. **Ketiga sisa yang sama berarti grafik memotong garis <InlineMath math="y=5" /> di <InlineMath math="x=1" />, <InlineMath math="2" />, dan <InlineMath math="4" />**, dan sisa pembagian oleh <InlineMath math="x-3" /> adalah tinggi grafik di <InlineMath math="x=3" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)=2(x-1)(x-2)(x-4)+5" /></>}
+  description={<>Kurva <InlineMath math="y=P(x)" /> memotong garis mendatar <InlineMath math="y=5" /> di <InlineMath math="(1,\ 5)" />, <InlineMath math="(2,\ 5)" />, dan <InlineMath math="(4,\ 5)" />. Di antara <InlineMath math="x=2" /> dan <InlineMath math="x=4" /> kurvanya turun di bawah garis itu, dan di <InlineMath math="x=3" /> tingginya <InlineMath math="1" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    level: <InlineMath math="y=5" />,
+    three: <InlineMath math="(3,\ 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 5 },
+      y: { min: -5, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*(x - 1)*(x - 2)*(x - 4) + 5", domain: { min: 0.3, max: 4.6 } },
+      { id: "level", kind: "function", appearance: "secondary", formula: "5", domain: { min: 0, max: 5 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: 5 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 2, y: 5 } },
+      { id: "four", kind: "point", appearance: "secondary", at: { x: 4, y: 5 } },
+      { id: "three", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4.5, y: 2 * 3.5 * 2.5 * 0.5 + 5 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 0.2, y: 5 }, placement: "above" },
+      { key: "three", objectId: "three", at: { x: 3, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Sebagai pemeriksaan, <InlineMath math="P(1)" />, <InlineMath math="P(2)" />, dan <InlineMath math="P(4)" /> memang bernilai <InlineMath math="0+5=5" /> karena salah satu faktornya nol.
 
 Jadi, sisa pembagian <InlineMath math="P(x)" /> oleh <InlineMath math="x-3" /> adalah <InlineMath math="1" />.

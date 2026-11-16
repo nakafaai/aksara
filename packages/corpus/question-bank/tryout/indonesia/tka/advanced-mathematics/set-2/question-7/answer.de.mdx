@@ -9,6 +9,43 @@ P(x)&=(x-3)(2x^2+3x-2) \\
 &=(x-3)(2x-1)(x+2)
 \end{aligned}" />
 
+Zeichne <InlineMath math="P(x)=(x-3)(2x-1)(x+2)" />. **Der Graph schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-2" />, <InlineMath math="\tfrac12" /> und <InlineMath math="3" />**, und seine Höhe bei <InlineMath math="x=-1" /> ist der Rest bei Division durch <InlineMath math="x+1" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="P(x)" /> und seine Nullstellen</>}
+  description={<>Die Kurve <InlineMath math="y=P(x)" /> schneidet die <InlineMath math="x" />-Achse in <InlineMath math="(-2,\ 0)" />, <InlineMath math="\left(\tfrac12,\ 0\right)" /> und <InlineMath math="(3,\ 0)" />. Bei <InlineMath math="x=-1" /> ist ihre Höhe <InlineMath math="12" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    "root-a": <InlineMath math="-2" />,
+    "root-b": <InlineMath math="\tfrac12" />,
+    "root-c": <InlineMath math="3" />,
+    minus: <InlineMath math="(-1,\ 12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.8, max: 3.8 },
+      y: { min: -20, max: 20 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x - 3)*(2*x - 1)*(x + 2)", domain: { min: -2.5, max: 3.5 } },
+      { id: "root-a", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "root-b", kind: "point", appearance: "answer", at: { x: 0.5, y: 0 } },
+      { id: "root-c", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "minus", kind: "point", appearance: "secondary", at: { x: -1, y: 12 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: 0.5 * 6 * 5.5 }, placement: "left" },
+      { key: "root-a", objectId: "root-a", at: { x: -2, y: 0 }, placement: "below-right" },
+      { key: "root-b", objectId: "root-b", at: { x: 0.5, y: 0 }, placement: "above-right" },
+      { key: "root-c", objectId: "root-c", at: { x: 3, y: 0 }, placement: "below-left" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
 Die Nullstellen sind <InlineMath math="3" />, <InlineMath math="\frac12" /> und <InlineMath math="-2" />.
 
 1. Die Aussage, dass <InlineMath math="x-3" /> ein Faktor von <InlineMath math="P(x)" /> ist, ist richtig, weil <InlineMath math="P(3)=0" />.

@@ -10,6 +10,19 @@ Tulis ulang kelima keadaan dengan bahasa sehari-hari.
 - Keadaan 4: penerima kaus panitia pasti pengurus OSIS.
 - Keadaan 5: paling sedikit satu siswa lolos penyisihan dan menerima kaus panitia.
 
+Diagram berikut menggambar kelima keadaan itu sebagai panah. **Panah tegas berarti "semua", sedangkan panah putus-putus berarti "sebagian"**, dan hanya rantai yang tersambung yang memberi simpulan pasti.
+
+<Mermaid
+  title={<>Hubungan antarkelompok siswa pada pekan ilmiah</>}
+  description={<>Semua siswa yang lolos penyisihan mengikuti pelatihan, dan tidak ada peserta pelatihan yang ikut debat. Sebagian peserta debat adalah pengurus OSIS. Semua penerima kaus panitia adalah pengurus OSIS. Sebagian siswa yang lolos penyisihan menerima kaus panitia.</>}
+  chart={`flowchart LR
+    L["Lolos penyisihan"] -->|"semua"| P["Pelatihan intensif"]
+    P -->|"tidak ada yang"| D["Lomba debat"]
+    D -.->|"sebagian"| O["Pengurus OSIS"]
+    K["Kaus panitia"] -->|"semua"| O
+    L -.->|"sebagian"| K`}
+/>
+
 Pernyataan 1 pasti benar. Ambil peserta debat yang pengurus OSIS dari keadaan 3. Menurut keadaan 2, ia tidak ikut pelatihan intensif. Menurut kontrapositif keadaan 1, ia tidak lolos penyisihan. Jadi, memang ada pengurus OSIS yang tidak lolos penyisihan.
 
 Pernyataan 2 tidak pasti benar. Keadaan 4 hanya berkata bahwa penerima kaus adalah pengurus OSIS, dan tidak ada keadaan yang melarang pengurus OSIS yang ikut debat menerima kaus. Coba susun keadaan ini: Dinda pengurus OSIS, ikut debat, dan menerima kaus, tetapi tidak ikut pelatihan dan tidak lolos penyisihan. Tambahkan Raka yang lolos penyisihan, ikut pelatihan, menerima kaus, dan pengurus OSIS, supaya keadaan 5 terpenuhi. Kelima keadaan ditaati, padahal ada penerima kaus yang ikut debat.

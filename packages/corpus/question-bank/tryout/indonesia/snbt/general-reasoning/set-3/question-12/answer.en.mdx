@@ -14,6 +14,20 @@ Here's the whole chain at a glance.
 
 <BlockMath math="\text{pump off} \Rightarrow \text{tank full} \Rightarrow \text{gate open} \Rightarrow (\text{east} \vee \text{west})" />
 
+The diagram below draws the same chain along with the branch from rule 4. **The west branch is cut because the west plot was fertilised**, so the arrows can only end at the east plot.
+
+<Mermaid
+  title={<>The chain of conclusions about last night's watering</>}
+  description={<>The pump was off, so the tank was full. The tank was full, so the dividing gate was opened. The gate was open, so the east or west plot was watered. The west plot was fertilised, so it wasn't watered, which leaves the east plot watered.</>}
+  chart={`flowchart LR
+    A["Pump off"] -->|"rule 1"| B["Tank full"]
+    B -->|"rule 2"| C["Gate opened"]
+    C -->|"rule 3"| D["East or west watered"]
+    W["West already fertilised"] -->|"rule 4"| X["West not watered"]
+    D --> E["East plot watered"]
+    X --> E`}
+/>
+
 Since rule 4 rules out the west plot, the east plot is what's left. Check it backwards: a full tank, an open gate, a watered east plot and a dry west plot satisfy all four rules at once.
 
 Each other conclusion fails because of one wrong step.

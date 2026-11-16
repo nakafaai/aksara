@@ -2,6 +2,18 @@ Soal ini memintamu memilah empat pernyataan: mana yang **dijamin oleh keempat ke
 
 Caranya, rangkai keterangan yang membicarakan kelompok lapak yang sama. Untuk pernyataan yang tidak pasti benar, cukup tunjukkan satu contoh penyangkal, yaitu sekumpulan lapak yang memenuhi keempat keterangan tetapi membuat pernyataan itu salah.
 
+Diagram berikut merangkai keempat keterangan. **Panah "semua" hanya berjalan satu arah**, sedangkan garis "tidak ada" memisahkan penjual minuman dingin dari lorong utara.
+
+<Mermaid
+  title={<>Hubungan antarkelompok lapak dari keempat keterangan</>}
+  description={<>Semua lapak yang buka malam ini memakai lampu tenaga surya, tetapi tidak sebaliknya. Sebagian lapak berlampu surya menjual minuman dingin. Tidak ada penjual minuman dingin di lorong utara, dan semua lapak paguyuban ada di lorong utara.</>}
+  chart={`flowchart LR
+    B["Buka malam ini"] -->|"semua"| L["Lampu tenaga surya"]
+    L -.->|"sebagian"| M["Menjual minuman dingin"]
+    M ---|"tidak ada yang sama"| U["Lorong utara"]
+    P["Lapak paguyuban"] -->|"semua"| U`}
+/>
+
 Pernyataan 1 tidak pasti benar. Keterangan 2 hanya menjamin ada lapak berlampu tenaga surya yang menjual minuman dingin. Lapak itu belum tentu buka malam ini, karena keterangan 1 hanya berkata semua lapak yang buka memakai lampu tenaga surya, bukan sebaliknya. Kelompok lampu tenaga surya bisa jauh lebih besar daripada kelompok lapak yang buka.
 
 Pernyataan 2 pasti benar. Andaikan ada lapak paguyuban yang menjual minuman dingin. Menurut keterangan 4, lapak itu berada di lorong utara. Menurut keterangan 3, lapak penjual minuman dingin tidak berada di lorong utara. Dua hal ini bertentangan, jadi lapak seperti itu tidak ada.

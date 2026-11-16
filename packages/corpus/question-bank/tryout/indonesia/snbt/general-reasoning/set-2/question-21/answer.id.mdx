@@ -16,6 +16,20 @@ U_{20}+U_{21} &= 67+122 = 189
 
 Cek dengan melanjutkan kedua barisan. Barisan ganjil: <InlineMath math="2,\ 5,\ 10,\ 17,\ 26,\ 37,\ 50,\ 65,\ 82,\ 101,\ 122" />, dan sukunya yang ke-<InlineMath math="11" /> memang <InlineMath math="122" />. Barisan genap: <InlineMath math="4,\ 11,\ 18,\ 25,\ 32,\ 39,\ 46,\ 53,\ 60,\ 67" />, dan sukunya yang ke-<InlineMath math="10" /> memang <InlineMath math="67" />.
 
+Grafik berikut memisahkan kedua barisan yang dijalin itu sampai suku ke-<InlineMath math="21" />. **Batang ganjil melengkung naik makin cepat, sedangkan batang genap naik rata <InlineMath math="7" />**, sehingga suku ke-<InlineMath math="21" /> jauh lebih tinggi daripada suku ke-<InlineMath math="20" />.
+
+<Chart
+  title={<>Suku ke-<InlineMath math="1" /> sampai ke-<InlineMath math="21" /> menurut urutannya</>}
+  description={<>Suku urutan ganjil adalah <InlineMath math="k^2+1" />, dari <InlineMath math="2" /> sampai <InlineMath math="122" /> pada suku ke-<InlineMath math="21" />. Suku urutan genap adalah <InlineMath math="7k-3" />, dari <InlineMath math="4" /> sampai <InlineMath math="67" /> pada suku ke-<InlineMath math="20" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Suku urutan ganjil", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i % 2 === 0 ? ((i + 2) / 2) * ((i + 2) / 2) + 1 : null)) },
+    { label: "Suku urutan genap", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i % 2 === 1 ? 7 * ((i + 1) / 2) - 3 : null)) },
+  ]}
+  valueLabel="Nilai suku"
+/>
+
 Beberapa jalan yang menggoda tetapi salah:
 
 - Memasukkan <InlineMath math="20" /> dan <InlineMath math="21" /> langsung ke rumus memberi <InlineMath math="7(20)-3=137" /> dan <InlineMath math="21^2+1=442" />, jumlahnya <InlineMath math="579" />. Nomor suku di barisan gabungan belum diubah menjadi nomor di barisan masing-masing.

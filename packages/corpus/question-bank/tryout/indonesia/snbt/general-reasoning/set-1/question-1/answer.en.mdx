@@ -10,6 +10,20 @@ Work out the rise in each row:
 
 At low density both groups rose by <InlineMath math="4" /> points. At high density the aerated ponds rose <InlineMath math="16 - 8 = 8" /> points less than the ponds without aerators.
 
+The chart below puts both groups' rise in deaths side by side at each stocking density. **At low density the two bars are equal, while at high density the bar without aerators is twice as tall**.
+
+<Chart
+  title={<>Rise in average deaths from the earlier cycle to the latest cycle</>}
+  description={<>At low stocking density, aerated ponds and ponds without aerators both rose by <InlineMath math="4" /> percentage points. At high stocking density, aerated ponds rose by <InlineMath math="8" /> percentage points, while ponds without aerators rose by <InlineMath math="16" />.</>}
+  categories={["Low stocking density", "High stocking density"]}
+  bars="apart"
+  series={[
+    { label: "Aerated", mark: "bar", values: [14 - 10, 30 - 22] },
+    { label: "No aerator", mark: "bar", values: [14 - 10, 42 - 26] },
+  ]}
+  valueLabel="Rise in deaths (percentage points)"
+/>
+
 So why does Pak Rusdi get the same rise of <InlineMath math="7" /> points? Work out the combined averages, weighting by the number of ponds:
 
 <BlockMath math="\begin{aligned} \text{Aerated: } & \frac{5(10) + 15(22)}{20} = 19 \to \frac{5(14) + 15(30)}{20} = 26 \\ \text{No aerator: } & \frac{15(10) + 5(26)}{20} = 14 \to \frac{15(14) + 5(42)}{20} = 21 \end{aligned}" />

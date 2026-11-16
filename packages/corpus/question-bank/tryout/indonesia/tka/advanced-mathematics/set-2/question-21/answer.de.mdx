@@ -2,6 +2,34 @@ Für sehr große <InlineMath math="x" /> **bestimmt die höchste Potenz** Zähle
 
 <BlockMath math="\lim_{x\to\infty}\frac{6x^2-x+4}{3x-2x^2}=\lim_{x\to\infty}\frac{6-\frac1x+\frac{4}{x^2}}{\frac3x-2}=\frac{6-0+0}{0-2}=-3" />
 
+Zeichne die Funktion für große <InlineMath math="x" />. **Die Kurve steigt und schmiegt sich an die Gerade <InlineMath math="y=-3" />**, das Verhältnis der Koeffizienten von <InlineMath math="x^2" />.
+
+<MathVisual
+  title={<>Der Graph für große <InlineMath math="x" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{6x^2-x+4}{3x-2x^2}" /> für <InlineMath math="3\le x\le60" />. Bei <InlineMath math="x=3" /> ist ihr Wert etwa <InlineMath math="-6{,}1" />, danach kommt sie der waagerechten Geraden <InlineMath math="y=-3" /> immer näher.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{6x^2-x+4}{3x-2x^2}" />,
+    level: <InlineMath math="y=-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: -7, max: -2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(6*x^2 - x + 4)/(3*x - 2*x^2)", domain: { min: 3, max: 60 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "-3", domain: { min: 0, max: 60 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 6, y: -4 }, placement: "below-right" },
+      { key: "level", objectId: "level", at: { x: 50, y: -3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jeder Summand der Form <InlineMath math="\frac{c}{x}" /> oder <InlineMath math="\frac{c}{x^2}" /> geht gegen <InlineMath math="0" />. Zähler und Nenner haben denselben Grad, also ist der Grenzwert das Verhältnis der <InlineMath math="x^2" />-Koeffizienten, <InlineMath math="\frac{6}{-2}" />.
 
 Der Grenzwert ist also <InlineMath math="-3" />.

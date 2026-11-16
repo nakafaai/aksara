@@ -11,6 +11,41 @@ Weil <InlineMath math="h>0" /> ist, darfst du mit <InlineMath math="h" /> multip
 
 <BlockMath math="\frac{300}{h}\ge\frac23\iff h\le450,\qquad \frac{300}{h}\le2\iff h\ge150" />
 
+Drehe die Kostengerade um <InlineMath math="(6,\ 8)" />. **Die Kostengerade darf sich von der Steigung der Proteingeraden bis zur Steigung der Fettgeraden drehen**, und die flachste dieser Grenzen wird bei <InlineMath math="h=450" /> erreicht.
+
+<MathVisual
+  title={<>Kostengeraden, die <InlineMath math="(6,\ 8)" /> noch berühren</>}
+  description={<>Der zulässige Bereich ist derselbe wie zuvor. Die Kostengerade <InlineMath math="300x+hy" /> durch <InlineMath math="(6,\ 8)" /> hat die Steigung <InlineMath math="-\tfrac{300}{h}" />. Für <InlineMath math="h=150" /> liegt sie auf der Proteingeraden <InlineMath math="2x+y=20" />. Für <InlineMath math="h=450" /> liegt sie auf der Fettgeraden <InlineMath math="2x+3y=36" /> und berührt auch <InlineMath math="(18,\ 0)" />.</>}
+  labels={{
+    steep: <InlineMath math="h=150" />,
+    flat: <InlineMath math="h=450" />,
+    best: <InlineMath math="(6,\ 8)" />,
+    side: <InlineMath math="(18,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 24 },
+      y: { min: 0, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 26 }, { x: 0, y: 20 }, { x: 6, y: 8 }, { x: 18, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 26 }] },
+      { id: "steep", kind: "function", appearance: "primary", formula: "20 - 2*x", domain: { min: 0, max: 10 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "12 - (2/3)*x", domain: { min: 0, max: 18 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 8 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 18, y: 0 } },
+    ],
+    labels: [
+      { key: "steep", objectId: "steep", at: { x: 2, y: 16 }, placement: "left" },
+      { key: "flat", objectId: "flat", at: { x: 13.5, y: 3 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 18, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="(6,8)" /> für <InlineMath math="150\le h\le450" /> am günstigsten. Kontrolle am oberen Rand: Für <InlineMath math="h=450" /> kostet <InlineMath math="(6,8)" /> genau <InlineMath math="1{.}800+3{.}600=5{.}400" />, und <InlineMath math="(18,0)" /> kostet ebenfalls <InlineMath math="5{.}400" />. Beide sind dann am günstigsten. Für <InlineMath math="h=460" /> kostet <InlineMath math="(6,8)" /> schon <InlineMath math="5{.}480" />, mehr als <InlineMath math="5{.}400" />.
 
 Der höchste Preis für einen Sack Futter II ist also <InlineMath math="\text{Rp}450{.}000{,}00" />.

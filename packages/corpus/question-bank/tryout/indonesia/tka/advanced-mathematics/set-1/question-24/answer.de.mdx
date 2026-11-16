@@ -9,6 +9,36 @@ Mit <InlineMath math="\lim\limits_{x\to0}\frac{\tan ax}{\sin x}=a" /> und <Inlin
 
 <BlockMath math="\lim_{x\to0}\frac{\tan3x\cdot\sin2x}{1-\cos2x}=\frac12\cdot3\cdot2=3" />
 
+Zeichne die Funktion für kleine <InlineMath math="x" /> auf beiden Seiten der Null. **Beide Äste laufen zum selben Punkt <InlineMath math="(0,\ 3)" />**, obwohl die Funktion selbst bei <InlineMath math="x=0" /> nicht definiert ist.
+
+<MathVisual
+  title={<>Der Graph in der Nähe von <InlineMath math="x=0" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{\tan3x\cdot\sin2x}{1-\cos2x}" /> für <InlineMath math="x" /> zwischen etwa <InlineMath math="-0{,}32" /> und <InlineMath math="0{,}32" /> im Bogenmaß, ohne <InlineMath math="x=0" />. Der Graph ist symmetrisch, und beide Äste laufen bei <InlineMath math="x=0" /> auf die waagerechte Gerade <InlineMath math="y=3" /> zu.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{\tan3x\cdot\sin2x}{1-\cos2x}" />,
+    target: <InlineMath math="(0,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.35, max: 0.35 },
+      y: { min: 2, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "sin(3*x)/cos(3*x)*sin(2*x)/(1 - cos(2*x))", domain: { min: -0.32, max: -0.005 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "sin(3*x)/cos(3*x)*sin(2*x)/(1 - cos(2*x))", domain: { min: 0.005, max: 0.32 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "3", domain: { min: -0.35, max: 0.35 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -0.2, y: 4.2 }, placement: "above" },
+      { key: "target", objectId: "target", at: { x: 0, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Zur Kontrolle: Für kleine <InlineMath math="x" /> ist der Zähler etwa <InlineMath math="3x\cdot2x=6x^2" /> und der Nenner etwa <InlineMath math="2x^2" />, der Quotient also etwa <InlineMath math="3" />.
 
 Der Grenzwert ist also <InlineMath math="3" />.

@@ -8,6 +8,34 @@ Schreib die Koeffizientenmatrix auf und entwickle ihre Determinante nach der ers
 &=a-7
 \end{aligned}" />
 
+Zeichne die Determinante der Koeffizientenmatrix als Funktion von <InlineMath math="a" />. **Die Gerade <InlineMath math="a-7" /> ist nur an einer Stelle null**, und genau dort verliert das System seine eindeutige Lösung.
+
+<MathVisual
+  title={<>Determinante der Koeffizientenmatrix nach <InlineMath math="a" /></>}
+  description={<>Die waagerechte Achse ist <InlineMath math="a" />, die senkrechte die Determinante der Koeffizientenmatrix. Die Gerade <InlineMath math="y=a-7" /> schneidet die waagerechte Achse nur bei <InlineMath math="a=7" />. Für jedes andere <InlineMath math="a" /> ist die Determinante nicht null.</>}
+  labels={{
+    det: <InlineMath math="\det=a-7" />,
+    zero: <InlineMath math="a=7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -14, max: 14 },
+      y: { min: -21, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "det", kind: "function", appearance: "primary", formula: "x - 7", domain: { min: -14, max: 14 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "det", objectId: "det", at: { x: -10, y: -17 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 7, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Die Determinante ist null für <InlineMath math="a-7=0" />, also <InlineMath math="a=7" />. Für jeden anderen Wert von <InlineMath math="a" /> ist sie ungleich null, und das System hat genau eine Lösung.
 
 Das System hat also keine eindeutige Lösung für <InlineMath math="a=7" />.

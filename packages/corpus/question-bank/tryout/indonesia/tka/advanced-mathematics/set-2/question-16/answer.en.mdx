@@ -12,6 +12,45 @@ Half of the chord is a leg of that right triangle.
 t&=7\sqrt2
 \end{aligned}" />
 
+Draw the circle, the line, and the segment from the centre to the line. **The perpendicular from the centre cuts the chord in half**, so the radius, the distance <InlineMath math="d" />, and half the chord form a right triangle.
+
+<MathVisual
+  title={<>The chord of <InlineMath math="y=x+1" /> in the circle <InlineMath math="x^2+y^2=25" /></>}
+  description={<>The circle has its centre at the origin and radius <InlineMath math="5" />. The line <InlineMath math="y=x+1" /> cuts it at <InlineMath math="(-4,\ -3)" /> and <InlineMath math="(3,\ 4)" />. The perpendicular from the centre to the line has length <InlineMath math="\tfrac{1}{\sqrt2}" /> and lands at the middle of the chord, while the segment from the centre to <InlineMath math="(3,\ 4)" /> is the radius <InlineMath math="5" />.</>}
+  labels={{
+    line: <InlineMath math="y=x+1" />,
+    d: <InlineMath math="d=\tfrac{1}{\sqrt2}" />,
+    r: <InlineMath math="r=5" />,
+    left: <InlineMath math="(-4,\ -3)" />,
+    right: <InlineMath math="(3,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + 1", domain: { min: -6, max: 5 } },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: -4, y: -3 }, to: { x: 3, y: 4 } },
+      { id: "d", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -0.5, y: 0.5 } },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -4, y: -3 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 4.5, y: 5.5 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: -0.25, y: 0.25 }, placement: "left" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 2 }, placement: "below-right" },
+      { key: "left", objectId: "left", at: { x: -4, y: -3 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 As a check, substitute <InlineMath math="y=x+1" /> into the circle: <InlineMath math="2x^2+2x-24=0" />, that is <InlineMath math="x^2+x-12=0" />, so <InlineMath math="x=3" /> or <InlineMath math="x=-4" />. The intersection points are <InlineMath math="(3,4)" /> and <InlineMath math="(-4,-3)" />, and their distance is <InlineMath math="\sqrt{7^2+7^2}=7\sqrt2" />.
 
 So the chord has length <InlineMath math="7\sqrt2" />.

@@ -12,6 +12,47 @@ y&=-(x^2-6x+9)+2x-6+1 \\
 y&=-x^2+8x-14
 \end{aligned}" />
 
+Verfolge den Scheitel durch beide Schritte. **Die Spiegelung klappt die Parabel um, dann verschiebt die Translation sie als Ganzes um <InlineMath math="3" /> nach rechts und <InlineMath math="1" /> nach oben**.
+
+<MathVisual
+  title={<>Die Parabel vor und nach beiden Abbildungen</>}
+  description={<>Die Ausgangsparabel <InlineMath math="y=x^2-2x" /> hat den Scheitel <InlineMath math="(1,-1)" />. Nach der Spiegelung an der <InlineMath math="X" />-Achse wird sie zu <InlineMath math="y=-x^2+2x" /> mit Scheitel <InlineMath math="(1,1)" />. Der Verschiebungspfeil <InlineMath math="(3,1)" /> bringt diesen Scheitel nach <InlineMath math="(4,2)" />, dem Scheitel der Endparabel <InlineMath math="y=-x^2+8x-14" />.</>}
+  labels={{
+    start: <InlineMath math="y=x^2-2x" />,
+    flip: <InlineMath math="y=-x^2+2x" />,
+    end: <InlineMath math="y=-x^2+8x-14" />,
+    "v-start": <InlineMath math="(1,-1)" />,
+    "v-flip": <InlineMath math="(1,1)" />,
+    "v-end": <InlineMath math="(4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6.5 },
+      y: { min: -3, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "x^2 - 2*x", domain: { min: -0.7, max: 2.7 } },
+      { id: "flip", kind: "function", appearance: "secondary", formula: "-x^2 + 2*x", domain: { min: -0.7, max: 2.7 } },
+      { id: "end", kind: "function", appearance: "answer", formula: "-x^2 + 8*x - 14", domain: { min: 1.8, max: 6.2 } },
+      { id: "shift", kind: "vector", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 4, y: 2 } },
+      { id: "v-start", kind: "point", appearance: "reference", at: { x: 1, y: -1 } },
+      { id: "v-flip", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "v-end", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 2.5, y: 1.25 }, placement: "right" },
+      { key: "flip", objectId: "flip", at: { x: -0.5, y: -1.25 }, placement: "below" },
+      { key: "end", objectId: "end", at: { x: 6, y: -2 }, placement: "left" },
+      { key: "v-start", objectId: "v-start", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "v-flip", objectId: "v-flip", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "v-end", objectId: "v-end", at: { x: 4, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Prüfe mit dem Scheitelpunkt. Der Scheitel von <InlineMath math="y=x^2-2x" /> ist <InlineMath math="(1,-1)" />. Die Spiegelung bringt ihn nach <InlineMath math="(1,1)" />, die Verschiebung nach <InlineMath math="(4,2)" />. In der Endgleichung gilt <InlineMath math="-16+32-14=2" />, der Scheitel ist also tatsächlich <InlineMath math="(4,2)" />.
 
 Die Bildparabel hat also die Gleichung <InlineMath math="y=-x^2+8x-14" />.

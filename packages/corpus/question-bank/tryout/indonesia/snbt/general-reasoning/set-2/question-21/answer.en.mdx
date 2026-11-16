@@ -16,6 +16,20 @@ U_{20}+U_{21} &= 67+122 = 189
 
 Check by extending both sequences. Odd sequence: <InlineMath math="2,\ 5,\ 10,\ 17,\ 26,\ 37,\ 50,\ 65,\ 82,\ 101,\ 122" />, and its <InlineMath math="11" />th term really is <InlineMath math="122" />. Even sequence: <InlineMath math="4,\ 11,\ 18,\ 25,\ 32,\ 39,\ 46,\ 53,\ 60,\ 67" />, and its <InlineMath math="10" />th term really is <InlineMath math="67" />.
 
+The chart below separates the two woven sequences up to term <InlineMath math="21" />. **The odd bars curve upward faster and faster, while the even bars climb a steady <InlineMath math="7" />**, so term <InlineMath math="21" /> is far taller than term <InlineMath math="20" />.
+
+<Chart
+  title={<>Terms <InlineMath math="1" /> to <InlineMath math="21" /> by position</>}
+  description={<>The odd-position terms are <InlineMath math="k^2+1" />, from <InlineMath math="2" /> up to <InlineMath math="122" /> at term <InlineMath math="21" />. The even-position terms are <InlineMath math="7k-3" />, from <InlineMath math="4" /> up to <InlineMath math="67" /> at term <InlineMath math="20" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Odd-position terms", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i % 2 === 0 ? ((i + 2) / 2) * ((i + 2) / 2) + 1 : null)) },
+    { label: "Even-position terms", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i % 2 === 1 ? 7 * ((i + 1) / 2) - 3 : null)) },
+  ]}
+  valueLabel="Term value"
+/>
+
 Some tempting routes that go wrong:
 
 - Plugging <InlineMath math="20" /> and <InlineMath math="21" /> straight into the formulas gives <InlineMath math="7(20)-3=137" /> and <InlineMath math="21^2+1=442" />, which add up to <InlineMath math="579" />. The positions in the combined list haven't been turned into positions in each sequence.

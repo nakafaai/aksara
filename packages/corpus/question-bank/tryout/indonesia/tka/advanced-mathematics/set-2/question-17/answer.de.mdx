@@ -2,6 +2,48 @@ Jede Aussage vergleicht einen Abstand mit dem Radius, also beginne mit **Mittelp
 
 <BlockMath math="(x+1)^2+(y-2)^2=1+4+5=10" />
 
+Zeichne <InlineMath math="L" /> mit der Geraden, dem Punkt und dem großen Kreis aus den vier Aussagen. **Jede Aussage lässt sich an der Lage zu <InlineMath math="L" /> ablesen**: Die Gerade berührt ihn in einem Punkt, und <InlineMath math="(2,\ 3)" /> liegt genau auf dem Rand.
+
+<MathVisual
+  title={<>Der Kreis <InlineMath math="L" /> und die vier Aussagen</>}
+  description={<>Der Kreis <InlineMath math="L" /> hat den Mittelpunkt <InlineMath math="M(-1,2)" /> und den Radius <InlineMath math="\sqrt{10}" />. Die Gerade <InlineMath math="x+3y=15" /> berührt ihn in <InlineMath math="(0,\ 5)" />, senkrecht zum Radius von <InlineMath math="M" />. Der Punkt <InlineMath math="(2,\ 3)" /> liegt auf dem Kreis. <InlineMath math="L" /> schneidet die <InlineMath math="Y" />-Achse in <InlineMath math="(0,\ 5)" /> und <InlineMath math="(0,\ -1)" />. Der große Kreis <InlineMath math="x^2+y^2=25" /> schneidet <InlineMath math="L" /> in zwei Punkten.</>}
+  labels={{
+    m: <InlineMath math="M(-1,2)" />,
+    tangent: <InlineMath math="x+3y=15" />,
+    touch: <InlineMath math="(0,\ 5)" />,
+    point: <InlineMath math="(2,\ 3)" />,
+    low: <InlineMath math="(0,\ -1)" />,
+    big: <InlineMath math="x^2+y^2=25" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6.5 },
+      y: { min: -6, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -1, y: 2 }, radius: Math.sqrt(10) },
+      { id: "tangent", kind: "function", appearance: "secondary", formula: "(15 - x)/3", domain: { min: -6, max: 6.5 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: -1, y: 2 }, to: { x: 0, y: 5 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: -1, y: 2 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "point", kind: "point", appearance: "warning", at: { x: 2, y: 3 } },
+      { id: "low", kind: "point", appearance: "primary", at: { x: 0, y: -1 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: -1, y: 2 }, placement: "below-left" },
+      { key: "tangent", objectId: "tangent", at: { x: 5, y: 10 / 3 }, placement: "above" },
+      { key: "touch", objectId: "touch", at: { x: 0, y: 5 }, placement: "above-left" },
+      { key: "point", objectId: "point", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 0, y: -1 }, placement: "below-right" },
+      { key: "big", objectId: "big", at: { x: 3, y: -4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Der Mittelpunkt ist <InlineMath math="M(-1,2)" />, und <InlineMath math="r=\sqrt{10}" />.
 
 1. Die Aussage über die Gerade <InlineMath math="x+3y-15=0" /> ist richtig. Eine Gerade ist genau dann Tangente, wenn ihr Abstand vom Mittelpunkt gleich dem Radius ist: <InlineMath math="d=\frac{|-1+6-15|}{\sqrt{1+9}}=\frac{10}{\sqrt{10}}=\sqrt{10}=r" />.

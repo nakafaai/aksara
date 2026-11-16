@@ -29,4 +29,18 @@ Die vierte Aussage betrifft die abgestorbenen Setzlinge. Abgestorben sind die ge
 
 Die Hälfte von <InlineMath math="31{.}900" /> ist <InlineMath math="15{.}950" />, und auf Karangsari entfallen <InlineMath math="18{.}000" />, etwa <InlineMath math="56\%" />. Die vierte Aussage ist richtig. Die Falle ist, Karangsaris Anteil an den gepflanzten Setzlingen zu nehmen, <InlineMath math="20{.}000 : 45{.}000 \approx 44\%" />, was unter der Hälfte liegt. Gefragt sind aber die abgestorbenen Setzlinge, nicht die gepflanzten.
 
+Das Diagramm zeigt die abgestorbenen Setzlinge in jedem Dorf. **Der Balken von Karangsari allein überschreitet die Linie für die Hälfte aller abgestorbenen Setzlinge**, obwohl es weniger als die Hälfte der Setzlinge gepflanzt hat.
+
+<Chart
+  title={<>Bis 2025 abgestorbene Mangrovensetzlinge nach Dorf</>}
+  description={<>Abgestorben sind <InlineMath math="18{.}000" /> in Karangsari, <InlineMath math="1{.}500" /> in Muarabaru, <InlineMath math="6{.}000" /> in Pasirkuning und <InlineMath math="6{.}400" /> in Lontar, zusammen <InlineMath math="31{.}900" />. Die waagerechte Linie markiert die Hälfte davon, <InlineMath math="15{.}950" />.</>}
+  bars="apart"
+  categories={["Karangsari", "Muarabaru", "Pasirkuning", "Lontar"]}
+  series={[
+    { label: "Abgestorbene Setzlinge", mark: "bar", values: [20000 - 2000, 5000 - 3500, 12000 - 6000, 8000 - 1600] },
+    { label: "Hälfte aller abgestorbenen Setzlinge", mark: "line", values: Array.from({ length: 4 }, () => (18000 + 1500 + 6000 + 6400) / 2) },
+  ]}
+  valueLabel="Setzlinge"
+/>
+
 Die erste und die vierte Aussage sind also richtig, die zweite und die dritte falsch.

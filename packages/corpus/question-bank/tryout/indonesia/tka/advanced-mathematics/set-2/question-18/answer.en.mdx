@@ -10,6 +10,39 @@ Compute <InlineMath math="\overrightarrow{MP}" />, multiply by <InlineMath math=
 P'&=(1-6,\ 2+6)=(-5,8)
 \end{aligned}" />
 
+Draw the arrows from the centre to <InlineMath math="P" /> and to its image. **The factor <InlineMath math="-2" /> reverses the arrow and doubles its length**, so <InlineMath math="P'" /> sits on the other side of <InlineMath math="M" />, twice as far away.
+
+<MathVisual
+  title={<>Dilation of <InlineMath math="P" /> with centre <InlineMath math="M" /> and factor <InlineMath math="-2" /></>}
+  description={<>The arrow from <InlineMath math="M(1,2)" /> to <InlineMath math="P(4,-1)" /> is <InlineMath math="(3,-3)" />, pointing down and to the right. The arrow from <InlineMath math="M" /> to <InlineMath math="P'(-5,8)" /> is <InlineMath math="(-6,6)" />, pointing up and to the left and twice as long. The three points are collinear.</>}
+  labels={{
+    m: <InlineMath math="M(1,2)" />,
+    p: <InlineMath math="P(4,-1)" />,
+    image: <InlineMath math="P'(-5,8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 5 },
+      y: { min: -2, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-p", kind: "vector", appearance: "secondary", from: { x: 1, y: 2 }, to: { x: 4, y: -1 } },
+      { id: "to-image", kind: "vector", appearance: "answer", from: { x: 1, y: 2 }, to: { x: -5, y: 8 } },
+      { id: "m", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "p", kind: "point", appearance: "secondary", at: { x: 4, y: -1 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: -5, y: 8 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 4, y: -1 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: -5, y: 8 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 A negative factor puts the image on the other side of the centre. Indeed, <InlineMath math="P" /> lies to the lower right of <InlineMath math="M" />, while <InlineMath math="P'" /> lies to the upper left, twice as far away.
 
 So the image of <InlineMath math="P" /> is <InlineMath math="(-5,8)" />.

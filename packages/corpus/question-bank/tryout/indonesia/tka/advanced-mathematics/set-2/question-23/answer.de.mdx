@@ -9,6 +9,34 @@ Teile Zähler und Nenner durch <InlineMath math="x" />. Unter einer Wurzel heiß
 
 <BlockMath math="\lim_{x\to\infty}\frac{16-\frac2x}{\sqrt{4+\frac{12}{x}-\frac{1}{x^2}}+\sqrt{4-\frac4x+\frac{1}{x^2}}}=\frac{16}{2+2}=4" />
 
+Zeichne die Differenz für große <InlineMath math="x" />. **Die Kurve steigt und schmiegt sich an die Gerade <InlineMath math="y=4" />**, also unterscheiden sich die beiden unbeschränkt wachsenden Terme am Ende um fast denselben Betrag.
+
+<MathVisual
+  title={<>Die Differenz der beiden Terme für große <InlineMath math="x" /></>}
+  description={<>Die Kurve <InlineMath math="y=\sqrt{4x^2+12x-1}-(2x-1)" /> für <InlineMath math="1\le x\le60" />. Bei <InlineMath math="x=1" /> ist ihr Wert etwa <InlineMath math="2{,}9" />, danach kommt sie der waagerechten Geraden <InlineMath math="y=4" /> immer näher.</>}
+  labels={{
+    curve: <InlineMath math="y=\sqrt{4x^2+12x-1}-(2x-1)" />,
+    level: <InlineMath math="y=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: 2.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "sqrt(4*x^2 + 12*x - 1) - (2*x - 1)", domain: { min: 1, max: 60 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "4", domain: { min: 0, max: 60 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10, y: 3.75 }, placement: "below-right" },
+      { key: "level", objectId: "level", at: { x: 50, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
 Das passt zur Kurzformel <InlineMath math="\frac{b-q}{2\sqrt a}=\frac{12-(-4)}{2\sqrt4}=4" /> für <InlineMath math="\sqrt{ax^2+bx+c}-\sqrt{ax^2+qx+r}" />.
 
 Der Grenzwert ist also <InlineMath math="4" />.

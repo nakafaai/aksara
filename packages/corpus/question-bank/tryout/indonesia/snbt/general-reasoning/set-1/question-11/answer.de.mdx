@@ -10,6 +10,19 @@ Schreib die fünf Bedingungen in einfache Worte um.
 - Bedingung 4: Wer ein Helfer-T-Shirt bekommt, ist im Schülerrat.
 - Bedingung 5: Mindestens ein Schüler hat die Vorrunde bestanden und ein Helfer-T-Shirt bekommen.
 
+Das Diagramm zeichnet die fünf Bedingungen als Pfeile. **Ein durchgezogener Pfeil bedeutet „alle“, ein gestrichelter „einige“**, und nur eine zusammenhängende Kette liefert einen sicheren Schluss.
+
+<Mermaid
+  title={<>Wie die Schülergruppen in der Wissenschaftswoche zusammenhängen</>}
+  description={<>Alle, die die Vorrunde bestanden haben, nehmen am Training teil, und kein Trainingsteilnehmer debattiert. Einige Debattierende sind in der Schülervertretung. Alle Träger eines Helfer-T-Shirts sind in der Schülervertretung. Einige, die die Vorrunde bestanden haben, bekommen ein Helfer-T-Shirt.</>}
+  chart={`flowchart LR
+    L["Vorrunde bestanden"] -->|"alle"| P["Intensivtraining"]
+    P -->|"keiner nimmt teil"| D["Debattenwettbewerb"]
+    D -.->|"einige"| O["Schülervertretung"]
+    K["Helfer-T-Shirt"] -->|"alle"| O
+    L -.->|"einige"| K`}
+/>
+
 Aussage 1 ist sicher wahr. Nimm den Debattierer aus dem Schülerrat aus Bedingung 3. Nach Bedingung 2 nimmt diese Person nicht am Training teil. Nach der Kontraposition von Bedingung 1 hat sie die Vorrunde nicht bestanden. Also gibt es ein Schülerratsmitglied, das die Vorrunde nicht bestanden hat.
 
 Aussage 2 ist nicht sicher wahr. Bedingung 4 sagt nur, dass T-Shirt-Träger im Schülerrat sind, und keine Bedingung verbietet einem debattierenden Schülerratsmitglied ein T-Shirt. Probier diese Anordnung: Dinda ist im Schülerrat, debattiert und bekommt ein T-Shirt, nimmt aber nicht am Training teil und hat die Vorrunde nicht bestanden. Dazu kommt Raka: Raka hat die Vorrunde bestanden, trainiert, bekommt ein T-Shirt und ist im Schülerrat, damit Bedingung 5 erfüllt ist. Alle fünf Bedingungen gelten, und trotzdem debattiert ein T-Shirt-Träger.

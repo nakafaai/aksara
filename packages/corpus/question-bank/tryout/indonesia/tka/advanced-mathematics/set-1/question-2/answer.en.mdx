@@ -6,6 +6,18 @@ The determinant is not zero, so <InlineMath math="A^{-1}" /> exists. For a <Inli
 
 <BlockMath math="A^{-1}=\frac{1}{1}\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" />
 
+The diagram below compares the two sides on which <InlineMath math="A^{-1}" /> can be multiplied. **Only multiplying on the right puts <InlineMath math="A^{-1}" /> right next to <InlineMath math="A" />**, so <InlineMath math="AA^{-1}=I" /> disappears.
+
+<Mermaid
+  title={<>Which side <InlineMath math="A^{-1}" /> goes on</>}
+  description={<>The main path multiplies <InlineMath math="XA=B" /> by <InlineMath math="A^{-1}" /> on the right, so <InlineMath math="AA^{-1}" /> becomes <InlineMath math="I" /> and <InlineMath math="X=BA^{-1}" /> is left. The dashed path multiplies on the left, so <InlineMath math="A^{-1}" /> is separated from <InlineMath math="A" /> by <InlineMath math="X" /> and can't be removed.</>}
+  chart={`flowchart TD
+  E["X·A = B"] -->|"multiply by A⁻¹ on the right"| R["X·A·A⁻¹ = B·A⁻¹"]
+  R --> X["X = B·A⁻¹"]
+  E -.->|"multiply by A⁻¹ on the left"| W["A⁻¹·X·A = A⁻¹·B"]
+  W -.-> N["A⁻¹ and A separated by X"]`}
+/>
+
 Multiply both sides of <InlineMath math="XA=B" /> by <InlineMath math="A^{-1}" /> on the right. Since <InlineMath math="AA^{-1}=I" />, only <InlineMath math="X" /> remains on the left.
 
 <BlockMath math="\begin{aligned}
