@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$108\\text{ mg}$$, $$36.0\\%$$" },
-        { correct: false, label: "$$1080\\text{ mg}$$, $$360\\%$$" },
-        { correct: true, label: "$$270\\text{ mg}$$, $$90.0\\%$$" },
-        { correct: false, label: "$$270\\text{ mg}$$, $$111\\%$$" },
+        { correct: false, label: "$$270\\text{ mg}$$, $$90.0\\%$$" },
+        { correct: false, label: "$$103\\text{ mg}$$, $$34.2\\%$$" },
+        { correct: true, label: "$$257\\text{ mg}$$, $$85.5\\%$$" },
+        { correct: false, label: "$$1026\\text{ mg}$$, $$342\\%$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$108\\text{ mg}$$, $$36.0\\%$$" },
-        { correct: false, label: "$$1080\\text{ mg}$$, $$360\\%$$" },
-        { correct: true, label: "$$270\\text{ mg}$$, $$90.0\\%$$" },
-        { correct: false, label: "$$270\\text{ mg}$$, $$111\\%$$" },
+        { correct: false, label: "$$270\\text{ mg}$$, $$90.0\\%$$" },
+        { correct: false, label: "$$103\\text{ mg}$$, $$34.2\\%$$" },
+        { correct: true, label: "$$257\\text{ mg}$$, $$85.5\\%$$" },
+        { correct: false, label: "$$1026\\text{ mg}$$, $$342\\%$$" },
       ],
     },
   },

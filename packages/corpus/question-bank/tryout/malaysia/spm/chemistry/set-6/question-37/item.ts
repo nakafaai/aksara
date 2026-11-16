@@ -10,51 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "$$253\\text{ dm}^3$$, because its strong carbon to fluorine bonds make it unreactive and its surface non-sticky",
-        },
-        {
-          correct: false,
-          label:
-            "$$240\\text{ dm}^3$$, because its strong carbon to fluorine bonds make it unreactive and its surface non-sticky",
-        },
-        {
-          correct: false,
-          label:
-            "$$228\\text{ dm}^3$$, because its strong carbon to fluorine bonds make it unreactive and its surface non-sticky",
-        },
-        {
-          correct: false,
-          label:
-            "$$253\\text{ dm}^3$$, because it is a condensation polymer that loses hydrogen fluoride as it forms",
-        },
+        { correct: true, label: "$$253\\text{ dm}^3$$, $$1.82\\text{ kg}$$" },
+        { correct: false, label: "$$240\\text{ dm}^3$$, $$1.73\\text{ kg}$$" },
+        { correct: false, label: "$$253\\text{ dm}^3$$, $$0.911\\text{ kg}$$" },
+        { correct: false, label: "$$228\\text{ dm}^3$$, $$1.64\\text{ kg}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "$$253\\text{ dm}^3$$, kerana ikatan karbon kepada fluorin yang kuat menjadikannya tidak reaktif dan permukaannya tidak melekat",
-        },
-        {
-          correct: false,
-          label:
-            "$$240\\text{ dm}^3$$, kerana ikatan karbon kepada fluorin yang kuat menjadikannya tidak reaktif dan permukaannya tidak melekat",
-        },
-        {
-          correct: false,
-          label:
-            "$$228\\text{ dm}^3$$, kerana ikatan karbon kepada fluorin yang kuat menjadikannya tidak reaktif dan permukaannya tidak melekat",
-        },
-        {
-          correct: false,
-          label:
-            "$$253\\text{ dm}^3$$, kerana ia polimer kondensasi yang kehilangan hidrogen fluorida semasa terbentuk",
-        },
+        { correct: true, label: "$$253\\text{ dm}^3$$, $$1.82\\text{ kg}$$" },
+        { correct: false, label: "$$240\\text{ dm}^3$$, $$1.73\\text{ kg}$$" },
+        { correct: false, label: "$$253\\text{ dm}^3$$, $$0.911\\text{ kg}$$" },
+        { correct: false, label: "$$228\\text{ dm}^3$$, $$1.64\\text{ kg}$$" },
       ],
     },
   },
