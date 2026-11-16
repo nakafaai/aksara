@@ -9,6 +9,43 @@ r^2&=36+r^2-8r+16 \\
 r&=6{,}5
 \end{aligned}" />
 
+Zeichne den Querschnitt des Dachs mit dem Kreismittelpunkt unter dem Boden. **Mittelpunkt, Mitte der Bodenspanne und ein Ende des Bogens bilden ein rechtwinkliges Dreieck** mit den Seiten <InlineMath math="6" />, <InlineMath math="r-4" /> und der Hypotenuse <InlineMath math="r" />.
+
+<MathVisual
+  title={<>Der Dachbogen und das rechtwinklige Dreieck unter dem Boden</>}
+  description={<>Maße in Metern. Der Bogen spannt sich von <InlineMath math="(-6,\ 0)" /> bis <InlineMath math="(6,\ 0)" />, sein höchster Punkt liegt <InlineMath math="4" /> über dem Boden. Der Kreismittelpunkt liegt <InlineMath math="r-4=2{,}5" /> unter dem Boden. Das rechtwinklige Dreieck hat eine waagerechte Seite <InlineMath math="6" />, eine senkrechte Seite <InlineMath math="2{,}5" /> und die Hypotenuse <InlineMath math="r=6{,}5" />.</>}
+  labels={{
+    half: <InlineMath math="6" />,
+    drop: <InlineMath math="r-4" />,
+    radius: <InlineMath math="r" />,
+    rise: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7.5, max: 7.5 },
+      y: { min: -3.5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "roof", kind: "arc", appearance: "primary", center: { x: 0, y: -2.5 }, radius: 6.5, startDegrees: Math.atan(2.5 / 6) * 180 / Math.PI, sweepDegrees: 180 - 2 * Math.atan(2.5 / 6) * 180 / Math.PI },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -7, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "half", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "secondary", from: { x: 0, y: -2.5 }, to: { x: 0, y: 0 } },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 0, y: -2.5 }, to: { x: 6, y: 0 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 0, y: -2.5 } },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "drop", objectId: "drop", at: { x: 0, y: -1.25 }, placement: "left" },
+      { key: "radius", objectId: "radius", at: { x: 3, y: -1.25 }, placement: "below-right" },
+      { key: "rise", objectId: "rise", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 Probe: Der Mittelpunkt liegt <InlineMath math="6{,}5-4=2{,}5" /> m unter dem Boden, und <InlineMath math="6^2+2{,}5^2=36+6{,}25=42{,}25=6{,}5^2" />.
 
 Der Radius des Bogens beträgt also <InlineMath math="6{,}5" /> m.

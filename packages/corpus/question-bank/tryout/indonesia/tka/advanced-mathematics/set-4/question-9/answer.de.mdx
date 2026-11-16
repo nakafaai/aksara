@@ -4,6 +4,39 @@ Faktorisiere und bestimme das Vorzeichen des Produkts.
 
 <BlockMath math="x^2-5x+6=(x-2)(x-3)>0" />
 
+Zeichne das Argument des Logarithmus, <InlineMath math="x^2-5x+6" />. **Die Parabel liegt nur links von <InlineMath math="2" /> und rechts von <InlineMath math="3" /> über der <InlineMath math="x" />-Achse**, und an den beiden Nullstellen ist ihr Wert null, also fallen beide Nullstellen ebenfalls weg.
+
+<MathVisual
+  title={<>Das Vorzeichen von <InlineMath math="x^2-5x+6" /></>}
+  description={<>Die Parabel <InlineMath math="y=(x-2)(x-3)" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="2" /> und <InlineMath math="3" /> und liegt dazwischen unter der Achse. Die markierten Teile der <InlineMath math="x" />-Achse, <InlineMath math="x<2" /> und <InlineMath math="x>3" />, sind die Stellen, an denen das Argument des Logarithmus positiv ist.</>}
+  labels={{
+    curve: <InlineMath math="y=x^2-5x+6" />,
+    left: <InlineMath math="x<2" />,
+    right: <InlineMath math="x>3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 - 5*x + 6", domain: { min: 0, max: 5 } },
+      { id: "left", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "right", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "two", kind: "point", appearance: "warning", at: { x: 2, y: 0 } },
+      { id: "three", kind: "point", appearance: "warning", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4.5, y: 2.75 }, placement: "left" },
+      { key: "left", objectId: "left", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 4, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Ein Produkt aus zwei Faktoren ist positiv, wenn beide dasselbe Vorzeichen haben. Beide sind positiv für <InlineMath math="x>3" />, beide negativ für <InlineMath math="x<2" />. Zwischen <InlineMath math="2" /> und <InlineMath math="3" /> unterscheiden sich die Vorzeichen, bei <InlineMath math="x=2{,}5" /> etwa ist der Wert <InlineMath math="(0{,}5)(-0{,}5)<0" />.
 
 Der maximale Definitionsbereich von <InlineMath math="f" /> ist also <InlineMath math="\{x\mid x<2\text{ oder }x>3\}" />.

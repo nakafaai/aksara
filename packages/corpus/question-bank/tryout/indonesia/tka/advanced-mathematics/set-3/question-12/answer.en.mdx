@@ -10,6 +10,40 @@ The angle between two vectors lies between <InlineMath math="0^\circ" /> and <In
 
 <BlockMath math="\sin\theta=\sqrt{1-\left(\frac{2}{15}\right)^2}=\sqrt{\frac{225-4}{225}}=\frac{\sqrt{221}}{15}" />
 
+Draw both vectors in the plane that holds them. **The angle is nearly a right angle because <InlineMath math="\cos\theta=\tfrac{2}{15}" /> is small**, so <InlineMath math="\sin\theta" /> is close to <InlineMath math="1" />.
+
+<MathVisual
+  title={<>The angle between <InlineMath math="\vec u" /> and <InlineMath math="\vec v" /></>}
+  description={<>The vector <InlineMath math="\vec u" /> of length <InlineMath math="3" /> is drawn horizontally. The vector <InlineMath math="\vec v" /> of length <InlineMath math="5" /> makes the angle <InlineMath math="\theta" /> with it. Its projection onto the direction of <InlineMath math="\vec u" /> is only <InlineMath math="5\cos\theta=\tfrac23" />, and the height of its tip above the line of <InlineMath math="\vec u" /> is <InlineMath math="5\sin\theta=\tfrac{\sqrt{221}}{3}" />.</>}
+  labels={{
+    u: <InlineMath math="\vec u" />,
+    v: <InlineMath math="\vec v" />,
+    angle: <InlineMath math="\theta" />,
+    height: <InlineMath math="5\sin\theta=\tfrac{\sqrt{221}}{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "u", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "v", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2 / 3, y: Math.sqrt(221) / 3 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 2 / 3, y: 0 }, to: { x: 2 / 3, y: Math.sqrt(221) / 3 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: 0, sweepDegrees: Math.atan(Math.sqrt(221) / 2) * 180 / Math.PI },
+    ],
+    labels: [
+      { key: "u", objectId: "u", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: 2 / 3, y: Math.sqrt(221) / 3 }, placement: "above" },
+      { key: "angle", objectId: "angle", at: { x: 0.6, y: 0.3 }, placement: "right" },
+      { key: "height", objectId: "height", at: { x: 2 / 3, y: Math.sqrt(221) / 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 So <InlineMath math="\sin\theta=\frac{\sqrt{221}}{15}" />.
 
 - <InlineMath math="\frac{2}{15}" /> is <InlineMath math="\cos\theta" />, not yet turned into a sine.

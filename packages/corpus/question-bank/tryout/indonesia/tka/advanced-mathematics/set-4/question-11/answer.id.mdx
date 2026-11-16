@@ -9,6 +9,42 @@ t&=\frac{60\text{ m}}{4\text{ m/s}}=15\text{ s} \\
 \text{geseran}&=3\text{ m/s}\cdot15\text{ s}=45\text{ m}
 \end{aligned}" />
 
+Gambar lintasan perahu dari atas. **Lintasannya miring searah vektor <InlineMath math="(3,4)" />**, jadi sambil menempuh <InlineMath math="60\text{ m}" /> menyeberang, perahu bergeser <InlineMath math="45\text{ m}" /> ke hilir.
+
+<MathVisual
+  title={<>Lintasan perahu menyeberangi sungai</>}
+  description={<>Dua garis mendatar adalah tepi sungai yang berjarak <InlineMath math="60\text{ m}" />. Perahu berangkat dari tepi bawah dan bergerak miring searah <InlineMath math="(3,4)" /> sejauh <InlineMath math="75\text{ m}" />. Titik mendaratnya berada <InlineMath math="45\text{ m}" /> di hilir titik yang tepat berhadapan dengan titik berangkat.</>}
+  labels={{
+    path: <InlineMath math="75\text{ m}" />,
+    across: <InlineMath math="60\text{ m}" />,
+    drift: <InlineMath math="45\text{ m}" />,
+    land: <>mendarat</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 60 },
+      y: { min: -8, max: 70 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "near", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "far", kind: "segment", appearance: "reference", from: { x: -10, y: 60 }, to: { x: 60, y: 60 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 60 } },
+      { id: "drift", kind: "segment", appearance: "secondary", from: { x: 0, y: 60 }, to: { x: 45, y: 60 } },
+      { id: "path", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 45, y: 60 } },
+      { id: "land", kind: "point", appearance: "answer", at: { x: 45, y: 60 } },
+    ],
+    labels: [
+      { key: "path", objectId: "path", at: { x: 22.5, y: 30 }, placement: "below-right" },
+      { key: "across", objectId: "across", at: { x: 0, y: 30 }, placement: "left" },
+      { key: "drift", objectId: "drift", at: { x: 22.5, y: 60 }, placement: "above" },
+      { key: "land", objectId: "land", at: { x: 45, y: 60 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan lintasan: perahu menempuh <InlineMath math="|\vec{v}|\cdot t=5\cdot15=75" /> m, dan memang <InlineMath math="45^2+60^2=2{.}025+3{.}600=5{.}625=75^2" />.
 
 Jadi, perahu mendarat <InlineMath math="45" /> m dari titik yang tepat berhadapan dengan titik berangkatnya.

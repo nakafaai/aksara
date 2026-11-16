@@ -9,6 +9,35 @@ Baris itu memakai <InlineMath math="1-\cos2x=2\sin^2x" />. Sekarang pisahkan men
 &=2\cdot1\cdot1\cdot1=2
 \end{aligned}" />
 
+Gambar fungsi itu di kedua sisi nol. **Kedua cabang turun ke titik yang sama, <InlineMath math="(0,\ 2)" />**, walaupun fungsinya tidak terdefinisi di <InlineMath math="x=0" />.
+
+<MathVisual
+  title={<>Grafik di sekitar <InlineMath math="x=0" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{\sec2x-1}{x\tan x}" /> untuk <InlineMath math="x" /> antara <InlineMath math="-0{,}45" /> dan <InlineMath math="0{,}45" /> radian, tanpa <InlineMath math="x=0" />. Grafiknya simetris dan kedua cabang menuju <InlineMath math="(0,\ 2)" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{\sec2x-1}{x\tan x}" />,
+    target: <InlineMath math="(0,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 0.5 },
+      y: { min: 1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1/cos(2*x) - 1)/(x*sin(x)/cos(x))", domain: { min: -0.45, max: -0.005 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1/cos(2*x) - 1)/(x*sin(x)/cos(x))", domain: { min: 0.005, max: 0.45 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -0.3, y: 2.6 }, placement: "above" },
+      { key: "target", objectId: "target", at: { x: 0, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilai pecahan itu sekitar <InlineMath math="2{,}0003" />.
 
 Jadi, nilai limitnya <InlineMath math="2" />.

@@ -15,6 +15,42 @@ G(20,0)&=1{.}200 \\
 G(12,16)&=720+640=1{.}360
 \end{aligned}" />
 
+Zeichne die neue Grenze <InlineMath math="x\ge12" /> über den alten Bereich. **Übrig bleibt nur ein kleines Dreieck rechts der Geraden <InlineMath math="x=12" />**, und das alte Optimum <InlineMath math="(10,\ 20)" /> liegt außerhalb.
+
+<MathVisual
+  title={<>Zulässiger Bereich bei einer Bestellung von mindestens <InlineMath math="12" /> Lampen</>}
+  description={<>Der alte Bereich ist das Fünfeck aus der vorigen Aufgabe. Die Senkrechte <InlineMath math="x=12" /> schneidet ihn, und übrig bleibt das Dreieck mit den Ecken <InlineMath math="(12,\ 0)" />, <InlineMath math="(20,\ 0)" /> und <InlineMath math="(12,\ 16)" />. Der größte Gewinn im neuen Bereich liegt bei <InlineMath math="(12,\ 16)" />.</>}
+  labels={{
+    order: <InlineMath math="x=12" />,
+    old: <InlineMath math="(10,\ 20)" />,
+    best: <InlineMath math="(12,\ 16)" />,
+    side: <InlineMath math="(20,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 32 },
+      y: { min: 0, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 5, y: 25 }, { x: 0, y: 25 }] },
+      { id: "after", kind: "polygon", appearance: "highlight", vertices: [{ x: 12, y: 0 }, { x: 20, y: 0 }, { x: 12, y: 16 }] },
+      { id: "order", kind: "segment", appearance: "construction", from: { x: 12, y: 0 }, to: { x: 12, y: 40 } },
+      { id: "old", kind: "point", appearance: "warning", at: { x: 10, y: 20 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 12, y: 16 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "order", objectId: "order", at: { x: 12, y: 40 }, placement: "right" },
+      { key: "old", objectId: "old", at: { x: 10, y: 20 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 12, y: 16 }, placement: "right" },
+      { key: "side", objectId: "side", at: { x: 20, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Der größte Gewinn in der nächsten Woche ist also <InlineMath math="\text{Rp}1{.}360{.}000{,}00" />, mit <InlineMath math="12" /> Lampen und <InlineMath math="16" /> Ventilatoren. Er liegt unter <InlineMath math="\text{Rp}1{.}400{.}000{,}00" />, wie zu erwarten, denn eine zusätzliche Grenze kann die Auswahl nur verkleinern.
 
 - <InlineMath math="\text{Rp}1{.}400{.}000{,}00" /> behält den alten Plan <InlineMath math="(10,20)" />, der nur <InlineMath math="10" /> Lampen montiert.

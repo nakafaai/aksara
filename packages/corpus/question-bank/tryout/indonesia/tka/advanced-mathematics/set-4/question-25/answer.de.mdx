@@ -5,6 +5,46 @@ Diese stückweise Funktion besteht aus Vorschriften, die jede für sich stetig s
 \lim_{x\to3^-}f(x)&=2(3)-2=4, &\lim_{x\to3^+}f(x)&=8-3=5, &f(3)&=4
 \end{aligned}" />
 
+Zeichne die drei Teile von <InlineMath math="f" />. **Bei <InlineMath math="x=1" /> treffen sich die Teile ohne Lücke, aber bei <InlineMath math="x=3" /> springt der Graph von <InlineMath math="4" /> auf <InlineMath math="5" />**, also existiert der Grenzwert bei <InlineMath math="3" /> nicht.
+
+<MathVisual
+  title={<>Der Graph der abschnittsweise definierten Funktion <InlineMath math="f" /></>}
+  description={<>Für <InlineMath math="x<1" /> ist der Graph die Parabel <InlineMath math="y=x^2-1" />. Für <InlineMath math="1\le x\le3" /> ist er die Gerade <InlineMath math="y=2x-2" />, die in <InlineMath math="(3,\ 4)" /> endet. Für <InlineMath math="x>3" /> ist er die fallende Gerade <InlineMath math="y=8-x" />, die nahe <InlineMath math="(3,\ 5)" /> beginnt. Der erste und der zweite Teil treffen sich in <InlineMath math="(1,\ 0)" />.</>}
+  labels={{
+    first: <InlineMath math="x^2-1" />,
+    middle: <InlineMath math="2x-2" />,
+    last: <InlineMath math="8-x" />,
+    join: <InlineMath math="(1,\ 0)" />,
+    value: <InlineMath math="(3,\ 4)" />,
+    jump: <InlineMath math="(3,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 7 },
+      y: { min: -2, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "x^2 - 1", domain: { min: -2, max: 1 } },
+      { id: "middle", kind: "function", appearance: "secondary", formula: "2*x - 2", domain: { min: 1, max: 3 } },
+      { id: "last", kind: "function", appearance: "primary", formula: "8 - x", domain: { min: 3.03, max: 7 } },
+      { id: "join", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "value", kind: "point", appearance: "secondary", at: { x: 3, y: 4 } },
+      { id: "jump", kind: "point", appearance: "warning", at: { x: 3, y: 5 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -1.5, y: 1.25 }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "last", objectId: "last", at: { x: 6, y: 2 }, placement: "above-right" },
+      { key: "join", objectId: "join", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "value", objectId: "value", at: { x: 3, y: 4 }, placement: "below-right" },
+      { key: "jump", objectId: "jump", at: { x: 3, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="\lim_{x\to1}f(x)=0" /> ist richtig, weil links- und rechtsseitiger Grenzwert beide <InlineMath math="0" /> sind.
 2. Die Aussage <InlineMath math="\lim_{x\to3}f(x)=4" /> ist falsch. Der linksseitige Grenzwert ist <InlineMath math="4" />, der rechtsseitige <InlineMath math="5" />, also existiert der Grenzwert nicht. Der Wert <InlineMath math="f(3)=4" /> hilft nicht, denn ein Grenzwert ignoriert den Wert an der Stelle selbst.
 3. Die Aussage, dass <InlineMath math="f" /> bei <InlineMath math="x=1" /> stetig ist, ist richtig: Der Grenzwert existiert und ist gleich <InlineMath math="f(1)=0" />.

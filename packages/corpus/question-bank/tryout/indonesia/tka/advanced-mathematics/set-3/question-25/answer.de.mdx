@@ -1,5 +1,39 @@
 Jede Aussage fragt, wie sich <InlineMath math="f" /> in der Nähe einer Stelle oder für sehr große <InlineMath math="x" /> verhält. Faktorisiere zuerst, damit du siehst, **welcher Faktor jeweils gegen null geht**: <InlineMath math="f(x)=\frac{x(2x+3)}{(x-1)(x+1)}" />.
 
+Zeichne <InlineMath math="f" /> mit seinen Grenzgeraden. **Der Graph schmiegt sich für große <InlineMath math="x" /> an <InlineMath math="y=2" /> und schießt nahe den Senkrechten <InlineMath math="x=\pm1" /> davon**, wo der Nenner gegen null geht, der Zähler aber nicht.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=\frac{2x^2+3x}{x^2-1}" /></>}
+  description={<>Die Kurve hat drei Äste, getrennt durch die Senkrechten <InlineMath math="x=-1" /> und <InlineMath math="x=1" />. Rechts von <InlineMath math="x=1" /> fällt der Ast von sehr großen Werten auf die Waagerechte <InlineMath math="y=2" /> zu. Der mittlere Ast geht durch den Ursprung, und nahe <InlineMath math="x=-1" /> laufen die Werte von beiden Seiten in entgegengesetzte Richtungen.</>}
+  labels={{
+    flat: <InlineMath math="y=2" />,
+    "wall-left": <InlineMath math="x=-1" />,
+    "wall-right": <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall-left", kind: "segment", appearance: "reference", from: { x: -1, y: -7 }, to: { x: -1, y: 9 } },
+      { id: "wall-right", kind: "segment", appearance: "reference", from: { x: 1, y: -7 }, to: { x: 1, y: 9 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "2", domain: { min: -6, max: 6 } },
+      { id: "outer-left", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: -6, max: -1.15 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: -0.88, max: 0.7 } },
+      { id: "outer-right", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: 1.4, max: 6 } },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 5, y: 2 }, placement: "below" },
+      { key: "wall-left", objectId: "wall-left", at: { x: -1, y: 9 }, placement: "left" },
+      { key: "wall-right", objectId: "wall-right", at: { x: 1, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="\lim_{x\to\infty}f(x)=2" /> ist richtig. Zähler und Nenner haben beide Grad zwei, also ist der Grenzwert das Verhältnis der <InlineMath math="x^2" />-Koeffizienten, <InlineMath math="\frac21" />.
 2. Die Aussage <InlineMath math="\lim_{x\to1^+}f(x)=\infty" /> ist richtig. Der Zähler geht gegen <InlineMath math="1\cdot5=5>0" />. Für <InlineMath math="x" /> knapp über <InlineMath math="1" /> ist der Nenner <InlineMath math="x^2-1" /> positiv und geht gegen null, der Bruch wird also sehr groß und positiv.
 3. Die Aussage <InlineMath math="\lim_{x\to-1}f(x)=-\frac12" /> ist falsch. Der Zähler geht gegen <InlineMath math="2-3=-1\ne0" />, der Nenner gegen null. <InlineMath math="f" /> wächst also unbeschränkt und hat dort keinen reellen Grenzwert.

@@ -4,6 +4,34 @@ Misalkan <InlineMath math="u=\frac3x" />. Saat <InlineMath math="x\to\infty" />,
 
 <BlockMath math="\lim_{x\to\infty}x\sin\frac3x=\lim_{u\to0^+}\frac3u\sin u=3\lim_{u\to0^+}\frac{\sin u}{u}=3\cdot1=3" />
 
+Gambar <InlineMath math="x\sin\frac3x" /> untuk <InlineMath math="x" /> besar. **Faktor yang membesar dan sinus yang mengecil saling mengimbangi**, sehingga kurvanya merapat ke garis <InlineMath math="y=3" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="x\sin\frac3x" /> untuk <InlineMath math="x" /> besar</>}
+  description={<>Kurva untuk <InlineMath math="1\le x\le40" />. Di <InlineMath math="x=1" /> nilainya <InlineMath math="\sin3\approx0{,}14" />, lalu kurvanya naik dan makin dekat ke garis mendatar <InlineMath math="y=3" />.</>}
+  labels={{
+    curve: <InlineMath math="y=x\sin\frac3x" />,
+    level: <InlineMath math="y=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 40 },
+      y: { min: 0, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x*sin(3/x)", domain: { min: 1, max: 40 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "3", domain: { min: 0, max: 40 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 6, y: 2.7 }, placement: "below-right" },
+      { key: "level", objectId: "level", at: { x: 35, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=300" />, <InlineMath math="300\sin0{,}01\approx300\cdot0{,}0099998=2{,}99995" />.
 
 Jadi, nilai limit tersebut adalah <InlineMath math="3" />.

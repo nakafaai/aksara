@@ -21,6 +21,44 @@ B(10,4)&=5{.}000+5{.}600=10{.}600 \\
 B(0,14)&=19{.}600
 \end{aligned}" />
 
+Gambar daerah penyelesaiannya. **Daerahnya segitiga di antara garis daya angkut dan garis parkir**, dengan tiga titik pojok yang semuanya bilangan cacah.
+
+<MathVisual
+  title={<>Daerah penyelesaian daya angkut dan parkir</>}
+  description={<>Sumbu mendatar adalah banyak minibus, dan sumbu tegak adalah banyak bus. Daerah yang diarsir berada di atas garis <InlineMath math="2x+5y=40" /> dan di bawah garis <InlineMath math="x+y=14" />, dengan titik pojok <InlineMath math="(0,\ 8)" />, <InlineMath math="(10,\ 4)" />, dan <InlineMath math="(0,\ 14)" />. Biaya terendah ada di <InlineMath math="(10,\ 4)" />.</>}
+  labels={{
+    capacity: <InlineMath math="2x+5y=40" />,
+    parking: <InlineMath math="x+y=14" />,
+    best: <InlineMath math="(10,\ 4)" />,
+    low: <InlineMath math="(0,\ 8)" />,
+    high: <InlineMath math="(0,\ 14)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 21 },
+      y: { min: 0, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 8 }, { x: 10, y: 4 }, { x: 0, y: 14 }] },
+      { id: "capacity", kind: "segment", appearance: "primary", from: { x: 0, y: 8 }, to: { x: 20, y: 0 } },
+      { id: "parking", kind: "segment", appearance: "secondary", from: { x: 0, y: 14 }, to: { x: 14, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 10, y: 4 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 0, y: 14 } },
+    ],
+    labels: [
+      { key: "capacity", objectId: "capacity", at: { x: 16, y: 1.6 }, placement: "above-right" },
+      { key: "parking", objectId: "parking", at: { x: 12, y: 2 }, placement: "below-left" },
+      { key: "best", objectId: "best", at: { x: 10, y: 4 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 0, y: 8 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 0, y: 14 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi, biaya sewa minimumnya <InlineMath math="\text{Rp}10{.}600{.}000{,}00" />, dengan menyewa <InlineMath math="10" /> minibus dan <InlineMath math="4" /> bus. Daya angkutnya <InlineMath math="160+160=320" /> siswa dan jumlah kendaraannya tepat <InlineMath math="14" />.
 
 - <InlineMath math="\text{Rp}11{.}200{.}000{,}00" /> adalah biaya <InlineMath math="8" /> bus saja, titik pojok <InlineMath math="(0,8)" />.

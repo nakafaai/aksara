@@ -6,6 +6,38 @@ Die skalare Projektion von <InlineMath math="\vec{a}" /> auf <InlineMath math="\
 \frac{\vec{a}\cdot\vec{b}}{|\vec{b}|}&=\frac{2m}{3}=2\ \Rightarrow\ m=3
 \end{aligned}" />
 
+Zeichne <InlineMath math="\vec a" /> und <InlineMath math="\vec b" /> für <InlineMath math="m=3" /> in der Ebene, die beide enthält. **Die skalare Projektion ist die Länge des Schattens von <InlineMath math="\vec a" /> auf der Geraden von <InlineMath math="\vec b" />**, und hier ist sie <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Die skalare Projektion von <InlineMath math="\vec a" /> auf <InlineMath math="\vec b" /></>}
+  description={<>Der Vektor <InlineMath math="\vec b" /> der Länge <InlineMath math="3" /> ist waagerecht gezeichnet, <InlineMath math="\vec a" /> hat die Länge <InlineMath math="\sqrt{14}" />. Das Lot von der Spitze von <InlineMath math="\vec a" /> trifft die Gerade von <InlineMath math="\vec b" /> im Abstand <InlineMath math="2" /> vom Anfang, also <InlineMath math="\frac{\vec a\cdot\vec b}{|\vec b|}=\frac63" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    shadow: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.6, max: 3.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: Math.sqrt(10) } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 2, y: Math.sqrt(10) }, to: { x: 2, y: 0 } },
+      { id: "shadow", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: Math.sqrt(10) / 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "shadow", objectId: "shadow", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Probe: Für <InlineMath math="m=3" /> ist <InlineMath math="\vec{a}\cdot\vec{b}=6" />, und <InlineMath math="\frac63=2" />.
 
 Also ist <InlineMath math="m=3" />.

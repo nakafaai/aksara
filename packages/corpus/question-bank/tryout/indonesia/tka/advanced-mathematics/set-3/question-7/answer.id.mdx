@@ -9,6 +9,40 @@ Dari persamaan kedua, <InlineMath math="a=b" />. Substitusi ke persamaan pertama
 
 <BlockMath math="P(x)=2x^3-2x^2-2x-4=2(x-2)(x^2+x+1)" />
 
+Gambar <InlineMath math="P(x)=2(x-2)(x^2+x+1)" />. **Grafiknya memotong sumbu <InlineMath math="x" /> hanya sekali, di <InlineMath math="x=2" />**, karena faktor kuadratnya selalu positif. Titik di <InlineMath math="x=-1" /> dan <InlineMath math="x=1" /> menunjukkan kedua sisa <InlineMath math="-6" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)" /> dengan <InlineMath math="a=b=-2" /></>}
+  description={<>Kurva <InlineMath math="y=P(x)" /> naik dan hanya memotong sumbu <InlineMath math="x" /> di <InlineMath math="(2,\ 0)" />. Kurva melewati <InlineMath math="(-1,\ -6)" /> dan <InlineMath math="(1,\ -6)" />, jadi sisa pembagian oleh <InlineMath math="x+1" /> dan oleh <InlineMath math="x-1" /> sama-sama <InlineMath math="-6" />.</>}
+  labels={{
+    curve: <InlineMath math="y=2(x-2)(x^2+x+1)" />,
+    root: <InlineMath math="(2,\ 0)" />,
+    minus: <InlineMath math="(-1,\ -6)" />,
+    one: <InlineMath math="(1,\ -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.6, max: 2.8 },
+      y: { min: -12, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*(x - 2)*(x^2 + x + 1)", domain: { min: -1.4, max: 2.45 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "minus", kind: "point", appearance: "secondary", at: { x: -1, y: -6 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: -6 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.4, y: 2 * 0.4 * 9.16 }, placement: "left" },
+      { key: "root", objectId: "root", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: -6 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 1, y: -6 }, placement: "below" },
+    ],
+  }}
+/>
+
 1. Pernyataan <InlineMath math="a=2" /> salah, karena <InlineMath math="a=-2" />.
 2. Pernyataan <InlineMath math="a+b=-4" /> benar.
 3. Pernyataan tentang tepat satu akar real benar. Faktor <InlineMath math="x^2+x+1" /> berdiskriminan <InlineMath math="1-4=-3<0" />, jadi tidak punya akar real. Satu-satunya akar real adalah <InlineMath math="x=2" />.

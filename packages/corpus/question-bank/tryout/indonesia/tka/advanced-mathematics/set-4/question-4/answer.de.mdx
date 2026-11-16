@@ -21,6 +21,44 @@ K(10,4)&=5{.}000+5{.}600=10{.}600 \\
 K(0,14)&=19{.}600
 \end{aligned}" />
 
+Zeichne den zulässigen Bereich. **Er ist ein Dreieck zwischen der Kapazitätsgeraden und der Parkplatzgeraden**, mit drei Ecken, die alle ganze Zahlen sind.
+
+<MathVisual
+  title={<>Zulässiger Bereich für Kapazität und Parkplatz</>}
+  description={<>Die waagerechte Achse ist die Anzahl der Kleinbusse, die senkrechte die Anzahl der Busse. Der schraffierte Bereich liegt über der Geraden <InlineMath math="2x+5y=40" /> und unter der Geraden <InlineMath math="x+y=14" />, mit den Ecken <InlineMath math="(0,\ 8)" />, <InlineMath math="(10,\ 4)" /> und <InlineMath math="(0,\ 14)" />. Die niedrigsten Kosten liegen bei <InlineMath math="(10,\ 4)" />.</>}
+  labels={{
+    capacity: <InlineMath math="2x+5y=40" />,
+    parking: <InlineMath math="x+y=14" />,
+    best: <InlineMath math="(10,\ 4)" />,
+    low: <InlineMath math="(0,\ 8)" />,
+    high: <InlineMath math="(0,\ 14)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 21 },
+      y: { min: 0, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 8 }, { x: 10, y: 4 }, { x: 0, y: 14 }] },
+      { id: "capacity", kind: "segment", appearance: "primary", from: { x: 0, y: 8 }, to: { x: 20, y: 0 } },
+      { id: "parking", kind: "segment", appearance: "secondary", from: { x: 0, y: 14 }, to: { x: 14, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 10, y: 4 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 0, y: 14 } },
+    ],
+    labels: [
+      { key: "capacity", objectId: "capacity", at: { x: 16, y: 1.6 }, placement: "above-right" },
+      { key: "parking", objectId: "parking", at: { x: 12, y: 2 }, placement: "below-left" },
+      { key: "best", objectId: "best", at: { x: 10, y: 4 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 0, y: 8 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 0, y: 14 }, placement: "right" },
+    ],
+  }}
+/>
+
 Die minimalen Mietkosten sind also <InlineMath math="\text{Rp}10{.}600{.}000{,}00" />, mit <InlineMath math="10" /> Kleinbussen und <InlineMath math="4" /> Bussen. Sie bieten <InlineMath math="160+160=320" /> Plätze und belegen genau <InlineMath math="14" /> Parkplätze.
 
 - <InlineMath math="\text{Rp}11{.}200{.}000{,}00" /> kosten <InlineMath math="8" /> Busse allein, die Ecke <InlineMath math="(0,8)" />.

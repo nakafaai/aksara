@@ -4,6 +4,37 @@ The equation has the form <InlineMath math="AX=B" />, so <InlineMath math="X=A^{
 
 <BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}\begin{pmatrix} 4 \\ 7 \end{pmatrix}=\begin{pmatrix} 12-7 \\ -20+14 \end{pmatrix}=\begin{pmatrix} 5 \\ -6 \end{pmatrix}" />
 
+Each row of the matrix equation is a line. **The solution of the system is where the two lines cross**, and the determinant <InlineMath math="1\ne0" /> guarantees they aren't parallel.
+
+<MathVisual
+  title={<>Two equations as two lines</>}
+  description={<>The line <InlineMath math="2x+y=4" /> and the line <InlineMath math="5x+3y=7" /> cross at exactly one point, <InlineMath math="(5,\ -6)" />.</>}
+  labels={{
+    first: <InlineMath math="2x+y=4" />,
+    second: <InlineMath math="5x+3y=7" />,
+    meet: <InlineMath math="(5,\ -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -10, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "4 - 2*x", domain: { min: -1, max: 7 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "(7 - 5*x)/3", domain: { min: -2, max: 7.6 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 5, y: -6 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 4 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 5, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check in the original equation: <InlineMath math="2(5)+(-6)=4" /> and <InlineMath math="5(5)+3(-6)=7" />.
 
 So <InlineMath math="x-y=5-(-6)=11" />.

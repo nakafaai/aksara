@@ -23,6 +23,47 @@ P(5,25)&=300+1{,}000=1{,}300 \\
 P(0,25)&=1{,}000
 \end{aligned}" />
 
+Draw the feasible region. **The three limit lines cut it into a pentagon**, so you only need to compare the profit at its five corners.
+
+<MathVisual
+  title={<>Feasible region for working hours and fan blades</>}
+  description={<>The horizontal axis is the number of lamps, and the vertical axis is the number of fans. The shaded region lies below the lines <InlineMath math="2x+y=40" />, <InlineMath math="x+y=30" />, and <InlineMath math="y=25" />, with corners <InlineMath math="(0,\ 0)" />, <InlineMath math="(20,\ 0)" />, <InlineMath math="(10,\ 20)" />, <InlineMath math="(5,\ 25)" />, and <InlineMath math="(0,\ 25)" />. The largest profit is at <InlineMath math="(10,\ 20)" />.</>}
+  labels={{
+    assembly: <InlineMath math="2x+y=40" />,
+    testing: <InlineMath math="x+y=30" />,
+    blades: <InlineMath math="y=25" />,
+    best: <InlineMath math="(10,\ 20)" />,
+    corner: <InlineMath math="(5,\ 25)" />,
+    side: <InlineMath math="(20,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 32 },
+      y: { min: 0, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 5, y: 25 }, { x: 0, y: 25 }] },
+      { id: "assembly", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 20, y: 0 } },
+      { id: "testing", kind: "segment", appearance: "secondary", from: { x: 0, y: 30 }, to: { x: 30, y: 0 } },
+      { id: "blades", kind: "segment", appearance: "reference", from: { x: 0, y: 25 }, to: { x: 32, y: 25 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 10, y: 20 } },
+      { id: "corner", kind: "point", appearance: "reference", at: { x: 5, y: 25 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "assembly", objectId: "assembly", at: { x: 3, y: 34 }, placement: "right" },
+      { key: "testing", objectId: "testing", at: { x: 25, y: 5 }, placement: "above-right" },
+      { key: "blades", objectId: "blades", at: { x: 28, y: 25 }, placement: "above" },
+      { key: "best", objectId: "best", at: { x: 10, y: 20 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 5, y: 25 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 20, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 So the maximum profit is <InlineMath math="\text{Rp}1{,}400{,}000.00" />, from assembling <InlineMath math="10" /> lamps and <InlineMath math="20" /> fans.
 
 - <InlineMath math="\text{Rp}1{,}300{,}000.00" /> is the profit at the corner <InlineMath math="(5,25)" />.

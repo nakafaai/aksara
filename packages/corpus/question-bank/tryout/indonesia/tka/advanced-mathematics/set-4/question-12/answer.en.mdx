@@ -6,6 +6,38 @@ The scalar projection of <InlineMath math="\vec{a}" /> onto <InlineMath math="\v
 \frac{\vec{a}\cdot\vec{b}}{|\vec{b}|}&=\frac{2m}{3}=2\ \Rightarrow\ m=3
 \end{aligned}" />
 
+Draw <InlineMath math="\vec a" /> and <InlineMath math="\vec b" /> for <InlineMath math="m=3" /> in the plane that holds both. **The scalar projection is the length of the shadow of <InlineMath math="\vec a" /> on the line of <InlineMath math="\vec b" />**, and here that length is <InlineMath math="2" />.
+
+<MathVisual
+  title={<>The scalar projection of <InlineMath math="\vec a" /> onto <InlineMath math="\vec b" /></>}
+  description={<>The vector <InlineMath math="\vec b" /> of length <InlineMath math="3" /> is drawn horizontally, and <InlineMath math="\vec a" /> has length <InlineMath math="\sqrt{14}" />. The perpendicular from the tip of <InlineMath math="\vec a" /> lands on the line of <InlineMath math="\vec b" /> at distance <InlineMath math="2" /> from the tail, which is <InlineMath math="\frac{\vec a\cdot\vec b}{|\vec b|}=\frac63" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    shadow: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.6, max: 3.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: Math.sqrt(10) } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 2, y: Math.sqrt(10) }, to: { x: 2, y: 0 } },
+      { id: "shadow", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: Math.sqrt(10) / 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "shadow", objectId: "shadow", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Check: for <InlineMath math="m=3" />, <InlineMath math="\vec{a}\cdot\vec{b}=6" /> and <InlineMath math="\frac63=2" />.
 
 So <InlineMath math="m=3" />.

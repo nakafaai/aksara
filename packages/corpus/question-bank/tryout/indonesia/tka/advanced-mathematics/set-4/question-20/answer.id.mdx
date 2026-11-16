@@ -2,6 +2,40 @@ Ada dua cara melihat soal ini, dan keduanya memberi hasil yang sama. Langkah per
 
 <BlockMath math="\begin{pmatrix} 1 & k \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 2 \\ 2 \end{pmatrix}=\begin{pmatrix} 2+2k \\ 2 \end{pmatrix}=\begin{pmatrix} 8 \\ 2 \end{pmatrix}\ \Rightarrow\ k=3" />
 
+Gambar persegi dan bayangannya. **Gusuran menggeser setiap baris mendatar sesuai tingginya**, jadi alas dan tingginya tetap <InlineMath math="2" /> dan luasnya tetap <InlineMath math="4" />.
+
+<MathVisual
+  title={<>Persegi <InlineMath math="ABCD" /> dan bayangannya oleh gusuran <InlineMath math="k=3" /></>}
+  description={<>Persegi bersisi <InlineMath math="2" /> dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(2,0)" />, <InlineMath math="(2,2)" />, dan <InlineMath math="(0,2)" />. Bayangannya adalah jajargenjang <InlineMath math="(0,0)" />, <InlineMath math="(2,0)" />, <InlineMath math="(8,2)" />, <InlineMath math="(6,2)" />, dengan alas <InlineMath math="2" /> pada sumbu <InlineMath math="X" /> dan tinggi <InlineMath math="2" />.</>}
+  labels={{
+    square: <InlineMath math="4" />,
+    sheared: <InlineMath math="4" />,
+    c: <InlineMath math="C'(8,2)" />,
+    d: <InlineMath math="D'(6,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 9 },
+      y: { min: -0.5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }] },
+      { id: "sheared", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 8, y: 2 }, { x: 6, y: 2 }] },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 8, y: 2 } },
+      { id: "d", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "sheared", objectId: "sheared", at: { x: 4, y: 1 }, placement: "center" },
+      { key: "c", objectId: "c", at: { x: 8, y: 2 }, placement: "above" },
+      { key: "d", objectId: "d", at: { x: 6, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 **Cara determinan.** Transformasi linear mengalikan setiap luas dengan <InlineMath math="|\det M|" />. Di sini <InlineMath math="\det M=1\cdot1-k\cdot0=1" />, berapa pun nilai <InlineMath math="k" />. Jadi luas bayangan sama dengan luas persegi, <InlineMath math="2\cdot2=4" />.
 
 **Cara gambar.** Bayangan titik-titik sudutnya adalah <InlineMath math="A'(0,0)" />, <InlineMath math="B'(2,0)" />, <InlineMath math="C'(8,2)" />, dan <InlineMath math="D'(6,2)" />. Bentuknya jajargenjang dengan alas <InlineMath math="A'B'=2" /> pada sumbu <InlineMath math="X" /> dan tinggi <InlineMath math="2" />, jarak antara garis <InlineMath math="y=0" /> dan <InlineMath math="y=2" />. Luasnya <InlineMath math="2\cdot2=4" />.

@@ -15,6 +15,42 @@ P(x)&=x^3+x^2-5x-2 \\
 P(-2)&=-8+4+10-2=4
 \end{aligned}" />
 
+Gambar <InlineMath math="P(x)" /> bersama garis sisa <InlineMath math="y=-4x-1" />. **Grafik dan garis itu bertemu tepat di akar pembagi, <InlineMath math="x=1" /> dan <InlineMath math="x=-1" />**, dan sisa pembagian oleh <InlineMath math="x+2" /> adalah tinggi grafik di <InlineMath math="x=-2" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)=x^3+x^2-5x-2" /> dan garis sisanya</>}
+  description={<>Kurva <InlineMath math="y=P(x)" /> memotong garis <InlineMath math="y=-4x-1" /> di <InlineMath math="(1,\ -5)" /> dan <InlineMath math="(-1,\ 3)" />, dan memotong sumbu <InlineMath math="x" /> di <InlineMath math="(2,\ 0)" />. Di <InlineMath math="x=-2" />, tingginya <InlineMath math="4" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    line: <InlineMath math="y=-4x-1" />,
+    root: <InlineMath math="(2,\ 0)" />,
+    answer: <InlineMath math="(-2,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: -8, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^3 + x^2 - 5*x - 2", domain: { min: -3, max: 2.6 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "-4*x - 1", domain: { min: -2.2, max: 1.7 } },
+      { id: "plus", kind: "point", appearance: "secondary", at: { x: 1, y: -5 } },
+      { id: "minus", kind: "point", appearance: "secondary", at: { x: -1, y: 3 } },
+      { id: "root", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "answer", kind: "point", appearance: "answer", at: { x: -2, y: 4 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.5, y: 15.625 + 6.25 - 12.5 - 2 }, placement: "left" },
+      { key: "line", objectId: "line", at: { x: 1.5, y: -7 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "answer", objectId: "answer", at: { x: -2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Pemeriksaan: <InlineMath math="P(2)=8+4-10-2=0" />.
 
 Jadi, sisa pembagian <InlineMath math="P(x)" /> oleh <InlineMath math="x+2" /> adalah <InlineMath math="4" />.

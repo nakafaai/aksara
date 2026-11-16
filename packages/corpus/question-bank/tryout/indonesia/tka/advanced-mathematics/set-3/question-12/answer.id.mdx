@@ -10,6 +10,40 @@ Sudut antara dua vektor berada di antara <InlineMath math="0^\circ" /> dan <Inli
 
 <BlockMath math="\sin\theta=\sqrt{1-\left(\frac{2}{15}\right)^2}=\sqrt{\frac{225-4}{225}}=\frac{\sqrt{221}}{15}" />
 
+Gambar kedua vektor pada bidang yang memuat keduanya. **Sudutnya hampir siku-siku karena <InlineMath math="\cos\theta=\tfrac{2}{15}" /> kecil**, jadi <InlineMath math="\sin\theta" /> dekat dengan <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Sudut antara <InlineMath math="\vec u" /> dan <InlineMath math="\vec v" /></>}
+  description={<>Vektor <InlineMath math="\vec u" /> sepanjang <InlineMath math="3" /> digambar mendatar. Vektor <InlineMath math="\vec v" /> sepanjang <InlineMath math="5" /> membentuk sudut <InlineMath math="\theta" /> dengannya. Proyeksinya pada arah <InlineMath math="\vec u" /> hanya <InlineMath math="5\cos\theta=\tfrac23" />, dan tinggi ujungnya di atas garis <InlineMath math="\vec u" /> adalah <InlineMath math="5\sin\theta=\tfrac{\sqrt{221}}{3}" />.</>}
+  labels={{
+    u: <InlineMath math="\vec u" />,
+    v: <InlineMath math="\vec v" />,
+    angle: <InlineMath math="\theta" />,
+    height: <InlineMath math="5\sin\theta=\tfrac{\sqrt{221}}{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "u", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "v", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2 / 3, y: Math.sqrt(221) / 3 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 2 / 3, y: 0 }, to: { x: 2 / 3, y: Math.sqrt(221) / 3 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: 0, sweepDegrees: Math.atan(Math.sqrt(221) / 2) * 180 / Math.PI },
+    ],
+    labels: [
+      { key: "u", objectId: "u", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: 2 / 3, y: Math.sqrt(221) / 3 }, placement: "above" },
+      { key: "angle", objectId: "angle", at: { x: 0.6, y: 0.3 }, placement: "right" },
+      { key: "height", objectId: "height", at: { x: 2 / 3, y: Math.sqrt(221) / 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi, <InlineMath math="\sin\theta=\frac{\sqrt{221}}{15}" />.
 
 - <InlineMath math="\frac{2}{15}" /> adalah <InlineMath math="\cos\theta" />, belum diubah menjadi sinus.

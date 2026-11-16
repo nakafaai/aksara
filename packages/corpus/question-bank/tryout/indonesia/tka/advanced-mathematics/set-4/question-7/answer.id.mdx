@@ -6,6 +6,42 @@ Pembaginya berderajat dua, jadi gunakan **pembagian bersusun** dan berhenti saat
 8x^2-8x+1-8(x^2+x-1)&=-16x+9
 \end{aligned}" />
 
+Gambar <InlineMath math="P(x)" /> bersama garis sisa <InlineMath math="S(x)=-16x+9" />. **Keduanya bertemu tepat di kedua akar pembagi <InlineMath math="x^2+x-1" />**, karena di sana bagian <InlineMath math="(x^2+x-1)H(x)" /> bernilai nol.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)" /> dan garis sisanya</>}
+  description={<>Kurva <InlineMath math="y=P(x)" /> dan garis <InlineMath math="y=-16x+9" /> berpotongan di <InlineMath math="x=\frac{-1-\sqrt5}{2}" /> dan <InlineMath math="x=\frac{-1+\sqrt5}{2}" />, yaitu akar-akar <InlineMath math="x^2+x-1" />. Garis memotong sumbu tegak di <InlineMath math="(0,\ 9)" />, sedangkan kurva melewati <InlineMath math="(1,\ 0)" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    line: <InlineMath math="y=-16x+9" />,
+    one: <InlineMath math="(1,\ 0)" />,
+    zero: <InlineMath math="(0,\ 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.8, max: 1.5 },
+      y: { min: -15, max: 46 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*x^4 - x^3 + 3*x^2 - 5*x + 1", domain: { min: -1.75, max: 1.45 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "-16*x + 9", domain: { min: -1.75, max: 1.45 } },
+      { id: "meet-left", kind: "point", appearance: "answer", at: { x: (-1 - Math.sqrt(5)) / 2, y: -16 * (-1 - Math.sqrt(5)) / 2 + 9 } },
+      { id: "meet-right", kind: "point", appearance: "answer", at: { x: (-1 + Math.sqrt(5)) / 2, y: -16 * (-1 + Math.sqrt(5)) / 2 + 9 } },
+      { id: "one", kind: "point", appearance: "primary", at: { x: 1, y: 0 } },
+      { id: "zero", kind: "point", appearance: "secondary", at: { x: 0, y: 9 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -1.5, y: 2 * 5.0625 + 3.375 + 6.75 + 7.5 + 1 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 1.2, y: -10.2 }, placement: "above-right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 9 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Hasil baginya <InlineMath math="H(x)=2x^2-3x+8" /> dan sisanya <InlineMath math="S(x)=-16x+9" />. Periksa di <InlineMath math="x=0" />: <InlineMath math="P(0)=1" /> dan <InlineMath math="H(0)\cdot(-1)+S(0)=-8+9=1" />.
 
 1. Pernyataan tentang hasil bagi benar.

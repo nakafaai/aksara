@@ -9,6 +9,34 @@ Dengan <InlineMath math="a=3" />, bentuknya <InlineMath math="\frac00" />. Kalik
 &=\lim_{x\to2}\frac{2(x-2)}{(x-2)\left(\sqrt{2x+5}+3\right)}=\frac{2}{3+3}=\frac13
 \end{aligned}" />
 
+Gambar fungsi itu dengan <InlineMath math="a=3" />. **Setelah dikalikan bentuk sekawan, grafiknya sama dengan <InlineMath math="\frac{2}{\sqrt{2x+5}+3}" /> untuk <InlineMath math="x\ne2" />**, dan grafik itu melewati ketinggian <InlineMath math="\tfrac13" /> di <InlineMath math="x=2" />.
+
+<MathVisual
+  title={<>Grafik di sekitar <InlineMath math="x=2" /> untuk <InlineMath math="a=3" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{\sqrt{2x+5}-3}{x-2}" /> untuk <InlineMath math="-2\le x\le6" />, tanpa <InlineMath math="x=2" />. Kurvanya turun pelan dan menuju titik <InlineMath math="\left(2,\ \tfrac13\right)" /> dari kedua sisi.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{\sqrt{2x+5}-3}{x-2}" />,
+    target: <InlineMath math="\left(2,\ \tfrac13\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: 0.2, max: 0.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2/(sqrt(2*x + 5) + 3)", domain: { min: -2, max: 6 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 2, y: 1 / 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5, y: 2 / (Math.sqrt(15) + 3) }, placement: "above" },
+      { key: "target", objectId: "target", at: { x: 2, y: 1 / 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="b=\frac13" /> dan <InlineMath math="a+b=3+\frac13=\frac{10}{3}" />.
 
 - <InlineMath math="\frac{19}{6}" /> memakai <InlineMath math="b=\frac16" />, karena faktor <InlineMath math="2" /> dari <InlineMath math="2x-4=2(x-2)" /> hilang.

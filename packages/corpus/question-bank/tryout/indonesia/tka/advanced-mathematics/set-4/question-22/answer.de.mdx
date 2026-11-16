@@ -9,6 +9,35 @@ Diese Zeile verwendet <InlineMath math="1-\cos2x=2\sin^2x" />. Jetzt zerlegst du
 &=2\cdot1\cdot1\cdot1=2
 \end{aligned}" />
 
+Zeichne die Funktion auf beiden Seiten der Null. **Beide Äste laufen zum selben Punkt <InlineMath math="(0,\ 2)" />**, obwohl die Funktion bei <InlineMath math="x=0" /> nicht definiert ist.
+
+<MathVisual
+  title={<>Der Graph in der Nähe von <InlineMath math="x=0" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{\sec2x-1}{x\tan x}" /> für <InlineMath math="x" /> zwischen <InlineMath math="-0{,}45" /> und <InlineMath math="0{,}45" /> im Bogenmaß, ohne <InlineMath math="x=0" />. Der Graph ist symmetrisch, und beide Äste laufen auf <InlineMath math="(0,\ 2)" /> zu.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{\sec2x-1}{x\tan x}" />,
+    target: <InlineMath math="(0,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 0.5 },
+      y: { min: 1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1/cos(2*x) - 1)/(x*sin(x)/cos(x))", domain: { min: -0.45, max: -0.005 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1/cos(2*x) - 1)/(x*sin(x)/cos(x))", domain: { min: 0.005, max: 0.45 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -0.3, y: 2.6 }, placement: "above" },
+      { key: "target", objectId: "target", at: { x: 0, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Bruch etwa <InlineMath math="2{,}0003" />.
 
 Der Grenzwert ist also <InlineMath math="2" />.

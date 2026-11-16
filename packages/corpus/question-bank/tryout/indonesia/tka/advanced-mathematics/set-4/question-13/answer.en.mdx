@@ -9,6 +9,40 @@ All three vectors have the same length, <InlineMath math="\sqrt{1+1+0}=\sqrt2" /
 
 <BlockMath math="|\vec{u}-\vec{v}|=|(1,0,-1)|=\sqrt2,\qquad |\vec{v}-\vec{w}|=|(-1,1,0)|=\sqrt2,\qquad |\vec{w}-\vec{u}|=|(0,-1,1)|=\sqrt2" />
 
+Draw <InlineMath math="\vec u" /> and <InlineMath math="\vec v" /> in the plane that holds both. **Both have length <InlineMath math="\sqrt2" /> and make a <InlineMath math="60^\circ" /> angle**, so the segment joining their tips is also <InlineMath math="\sqrt2" />. The other pairs behave the same way, so <InlineMath math="UVW" /> is equilateral.
+
+<MathVisual
+  title={<>Two position vectors at <InlineMath math="60^\circ" /></>}
+  description={<>The vectors <InlineMath math="\vec u" /> and <InlineMath math="\vec v" /> both have length <InlineMath math="\sqrt2" />, with a <InlineMath math="60^\circ" /> angle between them. The segment from the tip of <InlineMath math="\vec u" /> to the tip of <InlineMath math="\vec v" /> is <InlineMath math="UV=|\vec u-\vec v|=\sqrt2" />, so triangle <InlineMath math="OUV" /> is equilateral.</>}
+  labels={{
+    u: <InlineMath math="\vec u" />,
+    v: <InlineMath math="\vec v" />,
+    side: <InlineMath math="\sqrt2" />,
+    angle: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 1.8 },
+      y: { min: -0.3, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "u", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(2), y: 0 } },
+      { id: "v", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(2) / 2, y: Math.sqrt(6) / 2 } },
+      { id: "side", kind: "segment", appearance: "answer", from: { x: Math.sqrt(2), y: 0 }, to: { x: Math.sqrt(2) / 2, y: Math.sqrt(6) / 2 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 0.3, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "u", objectId: "u", at: { x: Math.sqrt(2) / 2, y: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: Math.sqrt(2) / 4, y: Math.sqrt(6) / 4 }, placement: "left" },
+      { key: "side", objectId: "side", at: { x: 3 * Math.sqrt(2) / 4, y: Math.sqrt(6) / 4 }, placement: "right" },
+      { key: "angle", objectId: "angle", at: { x: 0.3, y: 0.15 }, placement: "right" },
+    ],
+  }}
+/>
+
 5. The statement about <InlineMath math="\vec{s}=\vec{u}+\vec{v}+\vec{w}=(2,2,2)" /> is true. Its dot product with each vector is the same, <InlineMath math="\vec{s}\cdot\vec{u}=\vec{s}\cdot\vec{v}=\vec{s}\cdot\vec{w}=4" />, and the three vectors have equal lengths, so the cosines of the angles agree: <InlineMath math="\frac{4}{2\sqrt3\cdot\sqrt2}" />.
 
 So the true statements are the <InlineMath math="60^\circ" /> angle, the equilateral triangle <InlineMath math="UVW" />, and the equal angles of <InlineMath math="\vec{u}+\vec{v}+\vec{w}" />.

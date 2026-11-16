@@ -2,6 +2,42 @@ Der Kreis <InlineMath math="L" /> hat den Mittelpunkt <InlineMath math="O(0,0)" 
 
 <BlockMath math="d=\frac{|2\cdot0-0+c|}{\sqrt{2^2+(-1)^2}}=\frac{|c|}{\sqrt5}" />
 
+Zeichne den Kreis mit einigen Geraden der Steigung <InlineMath math="2" />. **Nur zwei parallele Geraden berühren den Kreis, eine auf jeder Seite**, während <InlineMath math="y=2x+5" /> dem Mittelpunkt zu nahe ist und den Kreis schneidet.
+
+<MathVisual
+  title={<>Geraden mit Steigung <InlineMath math="2" /> und der Kreis <InlineMath math="x^2+y^2=20" /></>}
+  description={<>Der Kreis hat den Mittelpunkt im Ursprung und den Radius <InlineMath math="2\sqrt5" />. Die Gerade <InlineMath math="y=2x+10" /> berührt ihn in <InlineMath math="(-4,2)" />, die Gerade <InlineMath math="y=2x-10" /> in <InlineMath math="(4,-2)" />. Die Gerade <InlineMath math="y=2x+5" /> schneidet den Kreis in zwei Punkten.</>}
+  labels={{
+    upper: <InlineMath math="y=2x+10" />,
+    lower: <InlineMath math="y=2x-10" />,
+    cut: <InlineMath math="y=2x+5" />,
+    touch: <InlineMath math="(-4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -8, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: Math.sqrt(20) },
+      { id: "upper", kind: "function", appearance: "answer", formula: "2*x + 10", domain: { min: -8, max: -1 } },
+      { id: "lower", kind: "function", appearance: "secondary", formula: "2*x - 10", domain: { min: 1, max: 8 } },
+      { id: "cut", kind: "function", appearance: "warning", formula: "2*x + 5", domain: { min: -6.5, max: 1.5 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: -4, y: 2 } },
+      { id: "other", kind: "point", appearance: "secondary", at: { x: 4, y: -2 } },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: -1.5, y: 7 }, placement: "right" },
+      { key: "lower", objectId: "lower", at: { x: 7.5, y: 5 }, placement: "left" },
+      { key: "cut", objectId: "cut", at: { x: 1.2, y: 7.4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: -4, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 Die Gerade ist Tangente für <InlineMath math="d=r" />, also <InlineMath math="|c|=2\sqrt5\cdot\sqrt5=10" />.
 
 1. Die Aussage, dass <InlineMath math="y=2x+10" /> den Kreis <InlineMath math="L" /> berührt, ist richtig, weil <InlineMath math="|c|=10" />.

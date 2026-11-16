@@ -7,6 +7,19 @@ A^4&=A^3A=\begin{pmatrix} 16 & 8+24 \\ 0 & 16 \end{pmatrix}=\begin{pmatrix} 16 &
 A^5&=A^4A=\begin{pmatrix} 32 & 16+64 \\ 0 & 32 \end{pmatrix}=\begin{pmatrix} 32 & 80 \\ 0 & 32 \end{pmatrix}
 \end{aligned}" />
 
+Bandingkan kedua jenis entri untuk setiap pangkat. **Entri kanan atas menyusul diagonal di <InlineMath math="n=2" />, lalu meninggalkannya jauh**, karena setiap perkalian menambah sumbangan dari diagonal.
+
+<Chart
+  title={<>Entri <InlineMath math="A^n" /> menurut pangkat <InlineMath math="n" /></>}
+  description={<>Entri diagonal <InlineMath math="A^n" /> adalah <InlineMath math="2,\ 4,\ 8,\ 16,\ 32" />, yaitu <InlineMath math="2^n" />. Entri kanan atasnya <InlineMath math="1,\ 4,\ 12,\ 32,\ 80" />, yaitu <InlineMath math="n\cdot2^{n-1}" />. Entri kiri bawah selalu <InlineMath math="0" />.</>}
+  categories={["n = 1", "n = 2", "n = 3", "n = 4", "n = 5"]}
+  series={[
+    { label: "Entri diagonal", mark: "line", values: [2, 4, 8, 16, 32] },
+    { label: "Entri kanan atas", mark: "line", values: [1, 4, 12, 32, 80] },
+  ]}
+  valueLabel="Nilai entri"
+/>
+
 Entri diagonal selalu <InlineMath math="2^n" />. Entri kanan atas mengikuti <InlineMath math="n\cdot2^{n-1}" />, yaitu <InlineMath math="4" />, <InlineMath math="12" />, <InlineMath math="32" />, <InlineMath math="80" /> untuk <InlineMath math="n=2,3,4,5" />. Entri itu tumbuh lebih cepat daripada diagonal karena pada setiap perkalian ia menerima dua sumbangan, yaitu dari entri kanan atas sebelumnya dan dari entri diagonal.
 
 Jumlah semua entri <InlineMath math="A^5" /> adalah <InlineMath math="32+80+0+32=144" />.

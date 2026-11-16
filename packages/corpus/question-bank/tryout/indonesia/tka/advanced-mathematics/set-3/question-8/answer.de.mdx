@@ -8,6 +8,39 @@ Erste Bedingung: <InlineMath math="x\ne3" />. Zweite Bedingung: Unter der Wurzel
 \frac{5}{x-3}&\ge0
 \end{aligned}" />
 
+Zeichne <InlineMath math="g" /> mit der Geraden <InlineMath math="y=1" />. **Die Wurzel in <InlineMath math="f" /> braucht <InlineMath math="g(x)\ge1" />, und nur der rechte Ast liegt über dieser Geraden**. Der linke Ast liegt immer darunter.
+
+<MathVisual
+  title={<>Wo <InlineMath math="g(x)" /> mindestens <InlineMath math="1" /> ist</>}
+  description={<>Die Kurve <InlineMath math="y=\frac{x+2}{x-3}" /> hat zwei Äste links und rechts der Senkrechten <InlineMath math="x=3" />. Der rechte Ast liegt ganz über der Waagerechten <InlineMath math="y=1" />, der linke ganz darunter. Die Strecke unten markiert den Definitionsbereich <InlineMath math="x>3" />.</>}
+  labels={{
+    level: <InlineMath math="y=1" />,
+    right: <InlineMath math="y=g(x)" />,
+    domain: <InlineMath math="x>3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 10 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 3, y: -7 }, to: { x: 3, y: 9 } },
+      { id: "level", kind: "function", appearance: "warning", formula: "1", domain: { min: -6, max: 10 } },
+      { id: "left", kind: "function", appearance: "secondary", formula: "(x + 2)/(x - 3)", domain: { min: -6, max: 2.3 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 3)", domain: { min: 3.7, max: 10 } },
+      { id: "domain", kind: "segment", appearance: "answer", from: { x: 3, y: -6 }, to: { x: 10, y: -6 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 5, y: 3.5 }, placement: "above-right" },
+      { key: "domain", objectId: "domain", at: { x: 6.5, y: -6 }, placement: "above" },
+    ],
+  }}
+/>
+
 Der Zähler <InlineMath math="5" /> ist immer positiv, also ist der Bruch genau dann nicht negativ, wenn der Nenner positiv ist, <InlineMath math="x-3>0" />. Darin steckt <InlineMath math="x\ne3" /> schon.
 
 Prüfe zwei Stellen: Für <InlineMath math="x=4" /> ist <InlineMath math="g(4)=6" />, und <InlineMath math="f(6)=\sqrt5" /> ist definiert. Für <InlineMath math="x=0" /> ist <InlineMath math="g(0)=-\frac23" />, und <InlineMath math="f\left(-\frac23\right)=\sqrt{-\frac53}" /> ist nicht definiert.

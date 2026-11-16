@@ -1,5 +1,41 @@
 Ein Exponentialmodell <InlineMath math="N(t)=N_0\cdot2^{t/k}" /> hat zwei Bedeutungen, die du direkt ablesen kannst: <InlineMath math="N_0" /> ist der Anfangswert, und <InlineMath math="k" /> ist **die Zeit, in der sich der Wert verdoppelt**. Hier ist <InlineMath math="N_0=500" /> und <InlineMath math="k=3" />.
 
+Zeichne <InlineMath math="N(t)" /> mit einem Punkt alle <InlineMath math="3" /> Monate. **Alle <InlineMath math="3" /> Monate verdoppelt sich die Höhe**, von <InlineMath math="500" /> auf <InlineMath math="1{.}000" />, <InlineMath math="2{.}000" />, <InlineMath math="4{.}000" /> und schließlich <InlineMath math="8{.}000" />.
+
+<MathVisual
+  title={<>Anzahl der App-Nutzer im Zeitverlauf</>}
+  description={<>Die waagerechte Achse ist die Zeit <InlineMath math="t" /> in Monaten, die senkrechte die Anzahl der Nutzer. Die Kurve geht durch <InlineMath math="(0,\ 500)" />, <InlineMath math="(3,\ 1{.}000)" />, <InlineMath math="(6,\ 2{.}000)" />, <InlineMath math="(9,\ 4{.}000)" /> und <InlineMath math="(12,\ 8{.}000)" /> und wird nach rechts immer steiler.</>}
+  labels={{
+    curve: <InlineMath math="N(t)=500\cdot2^{t/3}" />,
+    start: <InlineMath math="(0,\ 500)" />,
+    six: <InlineMath math="(6,\ 2{.}000)" />,
+    twelve: <InlineMath math="(12,\ 8{.}000)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 13 },
+      y: { min: 0, max: 8800 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "500*2^(x/3)", domain: { min: 0, max: 12.5 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 500 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: 3, y: 1000 } },
+      { id: "six", kind: "point", appearance: "warning", at: { x: 6, y: 2000 } },
+      { id: "nine", kind: "point", appearance: "secondary", at: { x: 9, y: 4000 } },
+      { id: "twelve", kind: "point", appearance: "answer", at: { x: 12, y: 8000 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10.5, y: 500 * Math.pow(2, 3.5) }, placement: "left" },
+      { key: "start", objectId: "start", at: { x: 0, y: 500 }, placement: "above-right" },
+      { key: "six", objectId: "six", at: { x: 6, y: 2000 }, placement: "above-left" },
+      { key: "twelve", objectId: "twelve", at: { x: 12, y: 8000 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. Die Aussage über den Beobachtungsbeginn ist falsch. Bei <InlineMath math="t=0" /> ist <InlineMath math="N(0)=500\cdot2^0=500" />.
 2. Die Aussage über die Verdopplung alle <InlineMath math="3" /> Monate ist richtig, denn <InlineMath math="N(t+3)=500\cdot2^{(t+3)/3}=2\cdot500\cdot2^{t/3}=2N(t)" />.
 3. Die Aussage <InlineMath math="N(6)=1{.}500" /> ist falsch. Sechs Monate enthalten zwei Verdopplungen: <InlineMath math="N(6)=500\cdot2^2=2{.}000" />. Der Wert <InlineMath math="1{.}500" /> behandelt das Wachstum so, als käme jedes Mal ein fester Betrag dazu, dieses Modell multipliziert aber.

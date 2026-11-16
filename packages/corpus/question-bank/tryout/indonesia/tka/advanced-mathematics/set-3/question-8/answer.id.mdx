@@ -8,6 +8,39 @@ Syarat pertama: <InlineMath math="x\ne3" />. Syarat kedua: bilangan di bawah tan
 \frac{5}{x-3}&\ge0
 \end{aligned}" />
 
+Gambar <InlineMath math="g" /> bersama garis <InlineMath math="y=1" />. **Akar <InlineMath math="f" /> butuh <InlineMath math="g(x)\ge1" />, dan hanya cabang kanan yang berada di atas garis itu**. Cabang kiri selalu di bawahnya.
+
+<MathVisual
+  title={<>Di mana <InlineMath math="g(x)" /> paling sedikit <InlineMath math="1" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{x+2}{x-3}" /> punya dua cabang di kiri dan kanan garis tegak <InlineMath math="x=3" />. Cabang kanan seluruhnya di atas garis mendatar <InlineMath math="y=1" />, sedangkan cabang kiri seluruhnya di bawahnya. Ruas di bawah menandai daerah asal <InlineMath math="x>3" />.</>}
+  labels={{
+    level: <InlineMath math="y=1" />,
+    right: <InlineMath math="y=g(x)" />,
+    domain: <InlineMath math="x>3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 10 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 3, y: -7 }, to: { x: 3, y: 9 } },
+      { id: "level", kind: "function", appearance: "warning", formula: "1", domain: { min: -6, max: 10 } },
+      { id: "left", kind: "function", appearance: "secondary", formula: "(x + 2)/(x - 3)", domain: { min: -6, max: 2.3 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 3)", domain: { min: 3.7, max: 10 } },
+      { id: "domain", kind: "segment", appearance: "answer", from: { x: 3, y: -6 }, to: { x: 10, y: -6 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 5, y: 3.5 }, placement: "above-right" },
+      { key: "domain", objectId: "domain", at: { x: 6.5, y: -6 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pembilang <InlineMath math="5" /> selalu positif, jadi pecahan itu tidak negatif tepat ketika penyebutnya positif, <InlineMath math="x-3>0" />. Syarat ini sudah memuat <InlineMath math="x\ne3" />.
 
 Periksa dua titik: untuk <InlineMath math="x=4" />, <InlineMath math="g(4)=6" /> dan <InlineMath math="f(6)=\sqrt5" /> terdefinisi. Untuk <InlineMath math="x=0" />, <InlineMath math="g(0)=-\frac23" /> dan <InlineMath math="f\left(-\frac23\right)=\sqrt{-\frac53}" /> tidak terdefinisi.

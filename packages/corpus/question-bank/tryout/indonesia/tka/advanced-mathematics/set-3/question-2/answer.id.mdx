@@ -2,6 +2,21 @@ Perkalian <InlineMath math="QH" /> mengalikan setiap baris <InlineMath math="Q" 
 
 <BlockMath math="QH=\begin{pmatrix} 10\cdot15+5\cdot20+8\cdot25 \\ 6\cdot15+12\cdot20+4\cdot25 \end{pmatrix}=\begin{pmatrix} 150+100+200 \\ 90+240+100 \end{pmatrix}=\begin{pmatrix} 450 \\ 430 \end{pmatrix}" />
 
+Pecah setiap entri <InlineMath math="QH" /> menjadi sumbangan tiap barang. **Satu entri adalah jumlah pendapatan ketiga barang pada satu hari**, jadi baris kedua adalah total batang hari Minggu.
+
+<Chart
+  title={<>Pendapatan setiap barang per hari</>}
+  description={<>Pada hari Sabtu, pulpen, buku tulis, dan map menghasilkan <InlineMath math="150" />, <InlineMath math="100" />, dan <InlineMath math="200" /> ribu rupiah, berjumlah <InlineMath math="450" />. Pada hari Minggu hasilnya <InlineMath math="90" />, <InlineMath math="240" />, dan <InlineMath math="100" /> ribu rupiah, berjumlah <InlineMath math="430" />.</>}
+  bars="apart"
+  categories={["Sabtu", "Minggu"]}
+  series={[
+    { label: "Pulpen", mark: "bar", values: [150, 90] },
+    { label: "Buku tulis", mark: "bar", values: [100, 240] },
+    { label: "Map", mark: "bar", values: [200, 100] },
+  ]}
+  valueLabel="Ribu rupiah"
+/>
+
 Baris kedua <InlineMath math="Q" /> adalah penjualan hari Minggu. Hasilnya <InlineMath math="430" /> dalam ribuan rupiah, yaitu pendapatan hari Minggu. Satuan hasil kali adalah banyak barang dikali ribuan rupiah per barang, jadi hasilnya uang, bukan banyak barang.
 
 Jadi, entri baris kedua <InlineMath math="QH" /> menyatakan pendapatan hari Minggu, yaitu <InlineMath math="\text{Rp}430{.}000{,}00" />.

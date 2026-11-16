@@ -7,6 +7,21 @@ Limit penyebutnya <InlineMath math="3+(-1)=2\ne0" />, jadi sifat pembagian boleh
 &=\frac{2(3)-(-1)^2}{3+(-1)}=\frac{6-1}{2}=\frac52
 \end{aligned}" />
 
+Diagram berikut memperlihatkan bagaimana kedua limit diteruskan ke pembilang dan penyebut. **Langkah yang wajib dicek adalah penyebut yang tidak menuju nol**, baru pembagian boleh dilakukan.
+
+<Mermaid
+  title={<>Memakai sifat limit pada pembilang dan penyebut</>}
+  description={<>Limit <InlineMath math="f" /> dan <InlineMath math="g" /> masuk ke pembilang, memberi <InlineMath math="2\cdot3-(-1)^2=5" />, dan ke penyebut, memberi <InlineMath math="3+(-1)=2" />. Karena <InlineMath math="2\ne0" />, limit hasil baginya <InlineMath math="\tfrac52" />.</>}
+  chart={`flowchart TD
+  F["lim f(x) = 3"] --> N["pembilang: 2·3 - (-1)² = 5"]
+  G["lim g(x) = -1"] --> N
+  F --> D["penyebut: 3 + (-1) = 2"]
+  G --> D
+  D --> C["2 ≠ 0: boleh dibagi"]
+  N --> R["5 / 2"]
+  C --> R`}
+/>
+
 Jadi, nilai limit tersebut adalah <InlineMath math="\frac52" />.
 
 - <InlineMath math="\frac72" /> menghitung <InlineMath math="-(-1)^2" /> sebagai <InlineMath math="+1" />. Kuadrat dihitung dulu, baru diberi tanda minus.

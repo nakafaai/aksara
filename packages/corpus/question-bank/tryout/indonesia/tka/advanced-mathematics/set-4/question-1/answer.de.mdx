@@ -2,6 +2,20 @@ Multipliziere die beiden Matrizen links und vergleiche das Ergebnis **Eintrag f�
 
 <BlockMath math="\begin{pmatrix} a & 2 \\ 1 & b \end{pmatrix}\begin{pmatrix} 1 & 3 \\ 2 & -1 \end{pmatrix}=\begin{pmatrix} a+4 & 3a-2 \\ 1+2b & 3-b \end{pmatrix}" />
 
+Das Diagramm zeigt, in welcher Reihenfolge du die vier Einträge nutzt. **Einträge mit nur einer Unbekannten kommen zuerst**, und ihre Ergebnisse füllen die beiden anderen Einträge.
+
+<Mermaid
+  title={<>Die Reihenfolge beim Lösen der Einträge</>}
+  description={<>Der Eintrag oben links liefert <InlineMath math="a=1" />, der Eintrag unten rechts <InlineMath math="b=-1" />. Diese Werte liefern dann <InlineMath math="c=1" /> aus dem Eintrag oben rechts und <InlineMath math="d=-1" /> aus dem Eintrag unten links, also <InlineMath math="c-d=2" />.</>}
+  chart={`flowchart TD
+  E11["Eintrag (1,1): a + 4 = 5"] --> A["a = 1"]
+  E22["Eintrag (2,2): 3 - b = 4"] --> B["b = -1"]
+  A --> C["Eintrag (1,2): c = 3a - 2 = 1"]
+  B --> D["Eintrag (2,1): d = 1 + 2b = -1"]
+  C --> R["c - d = 2"]
+  D --> R`}
+/>
+
 Löse zuerst die Einträge mit nur einer Unbekannten.
 
 <BlockMath math="\begin{aligned}

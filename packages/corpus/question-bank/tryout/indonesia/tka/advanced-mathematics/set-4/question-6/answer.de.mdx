@@ -15,6 +15,42 @@ P(x)&=x^3+x^2-5x-2 \\
 P(-2)&=-8+4+10-2=4
 \end{aligned}" />
 
+Zeichne <InlineMath math="P(x)" /> mit der Restgeraden <InlineMath math="y=-4x-1" />. **Graph und Gerade treffen sich genau an den Nullstellen des Divisors, <InlineMath math="x=1" /> und <InlineMath math="x=-1" />**, und der Rest bei Division durch <InlineMath math="x+2" /> ist die Höhe des Graphen bei <InlineMath math="x=-2" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="P(x)=x^3+x^2-5x-2" /> und seine Restgerade</>}
+  description={<>Die Kurve <InlineMath math="y=P(x)" /> trifft die Gerade <InlineMath math="y=-4x-1" /> in <InlineMath math="(1,\ -5)" /> und <InlineMath math="(-1,\ 3)" /> und schneidet die <InlineMath math="x" />-Achse in <InlineMath math="(2,\ 0)" />. Bei <InlineMath math="x=-2" /> ist ihre Höhe <InlineMath math="4" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    line: <InlineMath math="y=-4x-1" />,
+    root: <InlineMath math="(2,\ 0)" />,
+    answer: <InlineMath math="(-2,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: -8, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^3 + x^2 - 5*x - 2", domain: { min: -3, max: 2.6 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "-4*x - 1", domain: { min: -2.2, max: 1.7 } },
+      { id: "plus", kind: "point", appearance: "secondary", at: { x: 1, y: -5 } },
+      { id: "minus", kind: "point", appearance: "secondary", at: { x: -1, y: 3 } },
+      { id: "root", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "answer", kind: "point", appearance: "answer", at: { x: -2, y: 4 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.5, y: 15.625 + 6.25 - 12.5 - 2 }, placement: "left" },
+      { key: "line", objectId: "line", at: { x: 1.5, y: -7 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "answer", objectId: "answer", at: { x: -2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="P(2)=8+4-10-2=0" />.
 
 Der Rest bei Division von <InlineMath math="P(x)" /> durch <InlineMath math="x+2" /> ist also <InlineMath math="4" />.

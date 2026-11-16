@@ -15,6 +15,42 @@ K(20,0)&=1{.}200 \\
 K(12,16)&=720+640=1{.}360
 \end{aligned}" />
 
+Gambar batas baru <InlineMath math="x\ge12" /> di atas daerah lama. **Daerah yang tersisa hanya segitiga kecil di kanan garis <InlineMath math="x=12" />**, dan titik optimum lama <InlineMath math="(10,\ 20)" /> tertinggal di luarnya.
+
+<MathVisual
+  title={<>Daerah penyelesaian dengan pesanan paling sedikit <InlineMath math="12" /> lampu</>}
+  description={<>Daerah lama adalah segi lima dari soal sebelumnya. Garis tegak <InlineMath math="x=12" /> memotongnya, dan yang tersisa adalah segitiga dengan titik pojok <InlineMath math="(12,\ 0)" />, <InlineMath math="(20,\ 0)" />, dan <InlineMath math="(12,\ 16)" />. Keuntungan terbesar di daerah baru ada di <InlineMath math="(12,\ 16)" />.</>}
+  labels={{
+    order: <InlineMath math="x=12" />,
+    old: <InlineMath math="(10,\ 20)" />,
+    best: <InlineMath math="(12,\ 16)" />,
+    side: <InlineMath math="(20,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 32 },
+      y: { min: 0, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 5, y: 25 }, { x: 0, y: 25 }] },
+      { id: "after", kind: "polygon", appearance: "highlight", vertices: [{ x: 12, y: 0 }, { x: 20, y: 0 }, { x: 12, y: 16 }] },
+      { id: "order", kind: "segment", appearance: "construction", from: { x: 12, y: 0 }, to: { x: 12, y: 40 } },
+      { id: "old", kind: "point", appearance: "warning", at: { x: 10, y: 20 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 12, y: 16 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "order", objectId: "order", at: { x: 12, y: 40 }, placement: "right" },
+      { key: "old", objectId: "old", at: { x: 10, y: 20 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 12, y: 16 }, placement: "right" },
+      { key: "side", objectId: "side", at: { x: 20, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Jadi, keuntungan maksimum minggu depan adalah <InlineMath math="\text{Rp}1{.}360{.}000{,}00" />, dengan merakit <InlineMath math="12" /> lampu dan <InlineMath math="16" /> kipas. Nilainya lebih kecil daripada <InlineMath math="\text{Rp}1{.}400{.}000{,}00" />, wajar karena batas tambahan hanya bisa memperkecil daerah pilihan.
 
 - <InlineMath math="\text{Rp}1{.}400{.}000{,}00" /> memakai rencana lama <InlineMath math="(10,20)" />, yang hanya merakit <InlineMath math="10" /> lampu.

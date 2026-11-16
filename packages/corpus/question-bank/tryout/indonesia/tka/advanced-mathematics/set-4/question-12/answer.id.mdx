@@ -6,6 +6,38 @@ Proyeksi skalar <InlineMath math="\vec{a}" /> pada <InlineMath math="\vec{b}" />
 \frac{\vec{a}\cdot\vec{b}}{|\vec{b}|}&=\frac{2m}{3}=2\ \Rightarrow\ m=3
 \end{aligned}" />
 
+Gambar <InlineMath math="\vec a" /> dan <InlineMath math="\vec b" /> untuk <InlineMath math="m=3" /> pada bidang yang memuat keduanya. **Proyeksi skalar adalah panjang bayangan <InlineMath math="\vec a" /> pada garis <InlineMath math="\vec b" />**, dan di sini panjangnya <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Proyeksi skalar <InlineMath math="\vec a" /> pada <InlineMath math="\vec b" /></>}
+  description={<>Vektor <InlineMath math="\vec b" /> sepanjang <InlineMath math="3" /> digambar mendatar, dan <InlineMath math="\vec a" /> sepanjang <InlineMath math="\sqrt{14}" />. Garis tegak dari ujung <InlineMath math="\vec a" /> jatuh pada garis <InlineMath math="\vec b" /> sejauh <InlineMath math="2" /> dari pangkal, yaitu <InlineMath math="\frac{\vec a\cdot\vec b}{|\vec b|}=\frac63" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    shadow: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.6, max: 3.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: Math.sqrt(10) } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 2, y: Math.sqrt(10) }, to: { x: 2, y: 0 } },
+      { id: "shadow", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: Math.sqrt(10) / 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "shadow", objectId: "shadow", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pemeriksaan: untuk <InlineMath math="m=3" />, <InlineMath math="\vec{a}\cdot\vec{b}=6" /> dan <InlineMath math="\frac63=2" />.
 
 Jadi, nilai <InlineMath math="m" /> adalah <InlineMath math="3" />.

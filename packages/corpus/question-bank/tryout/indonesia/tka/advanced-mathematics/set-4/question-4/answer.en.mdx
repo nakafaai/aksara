@@ -21,6 +21,44 @@ C(10,4)&=5{,}000+5{,}600=10{,}600 \\
 C(0,14)&=19{,}600
 \end{aligned}" />
 
+Draw the feasible region. **It's a triangle between the capacity line and the parking line**, with three corners that are all whole numbers.
+
+<MathVisual
+  title={<>Feasible region for capacity and parking</>}
+  description={<>The horizontal axis is the number of minibuses, and the vertical axis is the number of buses. The shaded region lies above the line <InlineMath math="2x+5y=40" /> and below the line <InlineMath math="x+y=14" />, with corners <InlineMath math="(0,\ 8)" />, <InlineMath math="(10,\ 4)" />, and <InlineMath math="(0,\ 14)" />. The lowest cost is at <InlineMath math="(10,\ 4)" />.</>}
+  labels={{
+    capacity: <InlineMath math="2x+5y=40" />,
+    parking: <InlineMath math="x+y=14" />,
+    best: <InlineMath math="(10,\ 4)" />,
+    low: <InlineMath math="(0,\ 8)" />,
+    high: <InlineMath math="(0,\ 14)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 21 },
+      y: { min: 0, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 8 }, { x: 10, y: 4 }, { x: 0, y: 14 }] },
+      { id: "capacity", kind: "segment", appearance: "primary", from: { x: 0, y: 8 }, to: { x: 20, y: 0 } },
+      { id: "parking", kind: "segment", appearance: "secondary", from: { x: 0, y: 14 }, to: { x: 14, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 10, y: 4 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 0, y: 14 } },
+    ],
+    labels: [
+      { key: "capacity", objectId: "capacity", at: { x: 16, y: 1.6 }, placement: "above-right" },
+      { key: "parking", objectId: "parking", at: { x: 12, y: 2 }, placement: "below-left" },
+      { key: "best", objectId: "best", at: { x: 10, y: 4 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 0, y: 8 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 0, y: 14 }, placement: "right" },
+    ],
+  }}
+/>
+
 So the minimum rental cost is <InlineMath math="\text{Rp}10{,}600{,}000.00" />, with <InlineMath math="10" /> minibuses and <InlineMath math="4" /> buses. They seat <InlineMath math="160+160=320" /> students and fill exactly <InlineMath math="14" /> parking places.
 
 - <InlineMath math="\text{Rp}11{,}200{,}000.00" /> is the cost of <InlineMath math="8" /> buses only, the corner <InlineMath math="(0,8)" />.

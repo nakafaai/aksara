@@ -6,6 +6,43 @@ Komponen pertama menentukan pengalinya: <InlineMath math="6=k\cdot2" />, jadi <I
 
 <BlockMath math="p-2=3\cdot3\ \Rightarrow\ p=11,\qquad q-3=3\cdot1\ \Rightarrow\ q=6" />
 
+Gambar ketiga titik pada garis yang memuatnya, dengan <InlineMath math="|\overrightarrow{AB}|" /> sebagai satuan. **Dari <InlineMath math="A" /> ke <InlineMath math="C" /> ada tiga langkah <InlineMath math="\overrightarrow{AB}" />**, satu sampai <InlineMath math="B" /> dan dua lagi sampai <InlineMath math="C" />.
+
+<MathVisual
+  title={<>Titik <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> pada satu garis</>}
+  description={<>Garis mendatar memuat ketiga titik untuk <InlineMath math="p=11" /> dan <InlineMath math="q=6" />. Satu satuan panjang adalah <InlineMath math="|\overrightarrow{AB}|=\sqrt{14}" />. Titik <InlineMath math="B" /> berada <InlineMath math="1" /> satuan dari <InlineMath math="A" />, dan <InlineMath math="C" /> berada <InlineMath math="3" /> satuan dari <InlineMath math="A" />, sehingga <InlineMath math="AB:BC=1:2" /> dan <InlineMath math="B" /> bukan titik tengah <InlineMath math="AC" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    first: <InlineMath math="\overrightarrow{AB}" />,
+    rest: <InlineMath math="\overrightarrow{BC}=2\overrightarrow{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "rest", kind: "vector", appearance: "secondary", from: { x: 1, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "first", objectId: "first", at: { x: 0.5, y: 0 }, placement: "above" },
+      { key: "rest", objectId: "rest", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 1. Pernyataan bahwa <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> segaris untuk <InlineMath math="p=11" /> dan <InlineMath math="q=6" /> benar, karena saat itu <InlineMath math="\overrightarrow{AC}=3\overrightarrow{AB}" />.
 2. Pernyataan bahwa <InlineMath math="B" /> titik tengah <InlineMath math="AC" /> salah. Komponen pertama memaksa <InlineMath math="\overrightarrow{AC}=3\overrightarrow{AB}" />, bukan <InlineMath math="2\overrightarrow{AB}" />, jadi <InlineMath math="B" /> berada sepertiga jalan dari <InlineMath math="A" />.
 3. Pernyataan <InlineMath math="AB:BC=1:2" /> benar. Dengan <InlineMath math="C(7,11,6)" />, <InlineMath math="\overrightarrow{BC}=(4,6,2)=2\overrightarrow{AB}" />.

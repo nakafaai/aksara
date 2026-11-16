@@ -9,6 +9,47 @@ Hitung vektor <InlineMath math="\overrightarrow{AG}" /> dan panjangnya.
 |\overrightarrow{AG}|&=\sqrt{4+9+0}=\sqrt{13}
 \end{aligned}" />
 
+Gambar segitiga pada bidang yang memuatnya, bersama ketiga garis beratnya. **Titik berat <InlineMath math="G" /> berada dua pertiga jalan dari <InlineMath math="A" /> ke titik tengah <InlineMath math="M" />**, jadi <InlineMath math="\overrightarrow{AG}=\tfrac23\overrightarrow{AM}" />.
+
+<MathVisual
+  title={<>Garis berat segitiga <InlineMath math="ABC" /> dan titik berat <InlineMath math="G" /></>}
+  description={<>Segitiga <InlineMath math="ABC" /> digambar pada bidangnya dengan ukuran sebenarnya: <InlineMath math="AB=\sqrt{68}" />, <InlineMath math="AC=\sqrt{29}" />, dan <InlineMath math="BC=\sqrt{77}" />. Ketiga garis berat bertemu di <InlineMath math="G" />. Ruas yang disorot dari <InlineMath math="A" /> ke <InlineMath math="G" /> panjangnya <InlineMath math="\sqrt{13}" />, dua pertiga dari garis berat <InlineMath math="AM" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    m: <InlineMath math="M" />,
+    g: <InlineMath math="G" />,
+    ag: <InlineMath math="AG=\sqrt{13}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(68), y: 0 }, { x: 10 / Math.sqrt(68), y: Math.sqrt(1872 / 68) }] },
+      { id: "median-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 2, y: Math.sqrt(1872 / 68) / 2 } },
+      { id: "median-b", kind: "segment", appearance: "construction", from: { x: Math.sqrt(68), y: 0 }, to: { x: 5 / Math.sqrt(68), y: Math.sqrt(1872 / 68) / 2 } },
+      { id: "median-c", kind: "segment", appearance: "construction", from: { x: 10 / Math.sqrt(68), y: Math.sqrt(1872 / 68) }, to: { x: Math.sqrt(68) / 2, y: 0 } },
+      { id: "ag", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 3, y: Math.sqrt(1872 / 68) / 3 } },
+      { id: "g", kind: "point", appearance: "answer", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 3, y: Math.sqrt(1872 / 68) / 3 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 2, y: Math.sqrt(1872 / 68) / 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: Math.sqrt(68), y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 10 / Math.sqrt(68), y: Math.sqrt(1872 / 68) }, placement: "above" },
+      { key: "m", objectId: "m", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 2, y: Math.sqrt(1872 / 68) / 2 }, placement: "above-right" },
+      { key: "g", objectId: "g", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 3, y: Math.sqrt(1872 / 68) / 3 }, placement: "below-right" },
+      { key: "ag", objectId: "ag", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 6, y: Math.sqrt(1872 / 68) / 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Pemeriksaan lewat garis berat: titik tengah <InlineMath math="BC" /> adalah <InlineMath math="M\left(4,\frac52,3\right)" />, dan <InlineMath math="\overrightarrow{AM}=\left(3,\frac92,0\right)" />. Memang <InlineMath math="\overrightarrow{AG}=\frac23\overrightarrow{AM}" />.
 
 Jadi, panjang <InlineMath math="AG" /> adalah <InlineMath math="\sqrt{13}" />.

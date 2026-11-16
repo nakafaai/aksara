@@ -4,6 +4,39 @@ Faktorkan, lalu tentukan tanda hasil kalinya.
 
 <BlockMath math="x^2-5x+6=(x-2)(x-3)>0" />
 
+Gambar isi logaritma, <InlineMath math="x^2-5x+6" />. **Parabola itu di atas sumbu <InlineMath math="x" /> hanya di kiri <InlineMath math="2" /> dan di kanan <InlineMath math="3" />**, dan di kedua akar nilainya nol, jadi kedua akar ikut dibuang.
+
+<MathVisual
+  title={<>Tanda <InlineMath math="x^2-5x+6" /></>}
+  description={<>Parabola <InlineMath math="y=(x-2)(x-3)" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="2" /> dan <InlineMath math="3" /> dan berada di bawah sumbu di antara keduanya. Ruas yang disorot pada sumbu <InlineMath math="x" />, yaitu <InlineMath math="x<2" /> dan <InlineMath math="x>3" />, adalah tempat isi logaritma positif.</>}
+  labels={{
+    curve: <InlineMath math="y=x^2-5x+6" />,
+    left: <InlineMath math="x<2" />,
+    right: <InlineMath math="x>3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 - 5*x + 6", domain: { min: 0, max: 5 } },
+      { id: "left", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "right", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "two", kind: "point", appearance: "warning", at: { x: 2, y: 0 } },
+      { id: "three", kind: "point", appearance: "warning", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4.5, y: 2.75 }, placement: "left" },
+      { key: "left", objectId: "left", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 4, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Hasil kali dua faktor positif jika keduanya bertanda sama. Keduanya positif saat <InlineMath math="x>3" />, dan keduanya negatif saat <InlineMath math="x<2" />. Di antara <InlineMath math="2" /> dan <InlineMath math="3" />, faktornya berlainan tanda, misalnya di <InlineMath math="x=2{,}5" /> nilainya <InlineMath math="(0{,}5)(-0{,}5)<0" />.
 
 Jadi, daerah asal alami <InlineMath math="f" /> adalah <InlineMath math="\{x\mid x<2\text{ atau }x>3\}" />.

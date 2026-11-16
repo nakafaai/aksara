@@ -8,6 +8,39 @@ First condition: <InlineMath math="x\ne3" />. Second condition: the number under
 \frac{5}{x-3}&\ge0
 \end{aligned}" />
 
+Draw <InlineMath math="g" /> with the line <InlineMath math="y=1" />. **The square root in <InlineMath math="f" /> needs <InlineMath math="g(x)\ge1" />, and only the right branch lies above that line**. The left branch is always below it.
+
+<MathVisual
+  title={<>Where <InlineMath math="g(x)" /> is at least <InlineMath math="1" /></>}
+  description={<>The curve <InlineMath math="y=\frac{x+2}{x-3}" /> has two branches left and right of the vertical line <InlineMath math="x=3" />. The right branch lies entirely above the horizontal line <InlineMath math="y=1" />, while the left branch lies entirely below it. The segment at the bottom marks the domain <InlineMath math="x>3" />.</>}
+  labels={{
+    level: <InlineMath math="y=1" />,
+    right: <InlineMath math="y=g(x)" />,
+    domain: <InlineMath math="x>3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 10 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 3, y: -7 }, to: { x: 3, y: 9 } },
+      { id: "level", kind: "function", appearance: "warning", formula: "1", domain: { min: -6, max: 10 } },
+      { id: "left", kind: "function", appearance: "secondary", formula: "(x + 2)/(x - 3)", domain: { min: -6, max: 2.3 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 3)", domain: { min: 3.7, max: 10 } },
+      { id: "domain", kind: "segment", appearance: "answer", from: { x: 3, y: -6 }, to: { x: 10, y: -6 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 5, y: 3.5 }, placement: "above-right" },
+      { key: "domain", objectId: "domain", at: { x: 6.5, y: -6 }, placement: "above" },
+    ],
+  }}
+/>
+
 The numerator <InlineMath math="5" /> is always positive, so the fraction is non-negative exactly when the denominator is positive, <InlineMath math="x-3>0" />. This already includes <InlineMath math="x\ne3" />.
 
 Check two points: for <InlineMath math="x=4" />, <InlineMath math="g(4)=6" /> and <InlineMath math="f(6)=\sqrt5" /> is defined. For <InlineMath math="x=0" />, <InlineMath math="g(0)=-\frac23" /> and <InlineMath math="f\left(-\frac23\right)=\sqrt{-\frac53}" /> is not defined.

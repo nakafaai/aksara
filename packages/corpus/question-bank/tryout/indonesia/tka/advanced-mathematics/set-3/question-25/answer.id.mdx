@@ -1,5 +1,39 @@
 Setiap pernyataan meminta perilaku <InlineMath math="f" /> di sekitar suatu titik atau untuk <InlineMath math="x" /> yang sangat besar. Faktorkan dulu agar terlihat **faktor mana yang menuju nol** di setiap titik: <InlineMath math="f(x)=\frac{x(2x+3)}{(x-1)(x+1)}" />.
 
+Gambar <InlineMath math="f" /> bersama garis-garis batasnya. **Grafiknya merapat ke <InlineMath math="y=2" /> untuk <InlineMath math="x" /> besar, dan melonjak di dekat kedua garis tegak <InlineMath math="x=\pm1" />**, tempat penyebut menuju nol tetapi pembilang tidak.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=\frac{2x^2+3x}{x^2-1}" /></>}
+  description={<>Kurva punya tiga cabang yang dipisahkan garis tegak <InlineMath math="x=-1" /> dan <InlineMath math="x=1" />. Di kanan <InlineMath math="x=1" />, cabangnya turun dari nilai yang sangat besar menuju garis mendatar <InlineMath math="y=2" />. Cabang tengah melewati titik asal, dan di dekat <InlineMath math="x=-1" /> nilai fungsi lari ke arah berlawanan dari kedua sisi.</>}
+  labels={{
+    flat: <InlineMath math="y=2" />,
+    "wall-left": <InlineMath math="x=-1" />,
+    "wall-right": <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall-left", kind: "segment", appearance: "reference", from: { x: -1, y: -7 }, to: { x: -1, y: 9 } },
+      { id: "wall-right", kind: "segment", appearance: "reference", from: { x: 1, y: -7 }, to: { x: 1, y: 9 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "2", domain: { min: -6, max: 6 } },
+      { id: "outer-left", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: -6, max: -1.15 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: -0.88, max: 0.7 } },
+      { id: "outer-right", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: 1.4, max: 6 } },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 5, y: 2 }, placement: "below" },
+      { key: "wall-left", objectId: "wall-left", at: { x: -1, y: 9 }, placement: "left" },
+      { key: "wall-right", objectId: "wall-right", at: { x: 1, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Pernyataan <InlineMath math="\lim_{x\to\infty}f(x)=2" /> benar. Pembilang dan penyebut berderajat dua, jadi limitnya perbandingan koefisien <InlineMath math="x^2" />, yaitu <InlineMath math="\frac21" />.
 2. Pernyataan <InlineMath math="\lim_{x\to1^+}f(x)=\infty" /> benar. Pembilang menuju <InlineMath math="1\cdot5=5>0" />. Untuk <InlineMath math="x" /> sedikit lebih dari <InlineMath math="1" />, penyebut <InlineMath math="x^2-1" /> positif dan menuju nol, sehingga pecahan menjadi positif yang sangat besar.
 3. Pernyataan <InlineMath math="\lim_{x\to-1}f(x)=-\frac12" /> salah. Pembilang menuju <InlineMath math="2-3=-1\ne0" />, sedangkan penyebut menuju nol, jadi nilai <InlineMath math="f" /> membesar tanpa batas dan limitnya tidak ada sebagai bilangan real.

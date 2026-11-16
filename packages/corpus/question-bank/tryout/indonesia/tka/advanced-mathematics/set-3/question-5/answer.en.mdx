@@ -15,6 +15,42 @@ P(20,0)&=1{,}200 \\
 P(12,16)&=720+640=1{,}360
 \end{aligned}" />
 
+Draw the new limit <InlineMath math="x\ge12" /> over the old region. **All that's left is a small triangle to the right of the line <InlineMath math="x=12" />**, and the old optimum <InlineMath math="(10,\ 20)" /> is left outside it.
+
+<MathVisual
+  title={<>Feasible region with an order of at least <InlineMath math="12" /> lamps</>}
+  description={<>The old region is the pentagon from the previous question. The vertical line <InlineMath math="x=12" /> cuts it, and what remains is the triangle with corners <InlineMath math="(12,\ 0)" />, <InlineMath math="(20,\ 0)" />, and <InlineMath math="(12,\ 16)" />. The largest profit in the new region is at <InlineMath math="(12,\ 16)" />.</>}
+  labels={{
+    order: <InlineMath math="x=12" />,
+    old: <InlineMath math="(10,\ 20)" />,
+    best: <InlineMath math="(12,\ 16)" />,
+    side: <InlineMath math="(20,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 32 },
+      y: { min: 0, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 5, y: 25 }, { x: 0, y: 25 }] },
+      { id: "after", kind: "polygon", appearance: "highlight", vertices: [{ x: 12, y: 0 }, { x: 20, y: 0 }, { x: 12, y: 16 }] },
+      { id: "order", kind: "segment", appearance: "construction", from: { x: 12, y: 0 }, to: { x: 12, y: 40 } },
+      { id: "old", kind: "point", appearance: "warning", at: { x: 10, y: 20 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 12, y: 16 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "order", objectId: "order", at: { x: 12, y: 40 }, placement: "right" },
+      { key: "old", objectId: "old", at: { x: 10, y: 20 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 12, y: 16 }, placement: "right" },
+      { key: "side", objectId: "side", at: { x: 20, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 So next week's maximum profit is <InlineMath math="\text{Rp}1{,}360{,}000.00" />, from <InlineMath math="12" /> lamps and <InlineMath math="16" /> fans. It is below <InlineMath math="\text{Rp}1{,}400{,}000.00" />, as expected, because an extra limit can only shrink the set of choices.
 
 - <InlineMath math="\text{Rp}1{,}400{,}000.00" /> keeps the old plan <InlineMath math="(10,20)" />, which assembles only <InlineMath math="10" /> lamps.

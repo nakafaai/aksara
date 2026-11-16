@@ -9,6 +9,47 @@ Compute <InlineMath math="\overrightarrow{AG}" /> and its length.
 |\overrightarrow{AG}|&=\sqrt{4+9+0}=\sqrt{13}
 \end{aligned}" />
 
+Draw the triangle in its own plane, with its three medians. **The centroid <InlineMath math="G" /> sits two thirds of the way from <InlineMath math="A" /> to the midpoint <InlineMath math="M" />**, so <InlineMath math="\overrightarrow{AG}=\tfrac23\overrightarrow{AM}" />.
+
+<MathVisual
+  title={<>The medians of triangle <InlineMath math="ABC" /> and the centroid <InlineMath math="G" /></>}
+  description={<>Triangle <InlineMath math="ABC" /> is drawn in its plane at true size: <InlineMath math="AB=\sqrt{68}" />, <InlineMath math="AC=\sqrt{29}" />, and <InlineMath math="BC=\sqrt{77}" />. The three medians meet at <InlineMath math="G" />. The highlighted segment from <InlineMath math="A" /> to <InlineMath math="G" /> has length <InlineMath math="\sqrt{13}" />, two thirds of the median <InlineMath math="AM" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    m: <InlineMath math="M" />,
+    g: <InlineMath math="G" />,
+    ag: <InlineMath math="AG=\sqrt{13}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(68), y: 0 }, { x: 10 / Math.sqrt(68), y: Math.sqrt(1872 / 68) }] },
+      { id: "median-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 2, y: Math.sqrt(1872 / 68) / 2 } },
+      { id: "median-b", kind: "segment", appearance: "construction", from: { x: Math.sqrt(68), y: 0 }, to: { x: 5 / Math.sqrt(68), y: Math.sqrt(1872 / 68) / 2 } },
+      { id: "median-c", kind: "segment", appearance: "construction", from: { x: 10 / Math.sqrt(68), y: Math.sqrt(1872 / 68) }, to: { x: Math.sqrt(68) / 2, y: 0 } },
+      { id: "ag", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 3, y: Math.sqrt(1872 / 68) / 3 } },
+      { id: "g", kind: "point", appearance: "answer", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 3, y: Math.sqrt(1872 / 68) / 3 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 2, y: Math.sqrt(1872 / 68) / 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: Math.sqrt(68), y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 10 / Math.sqrt(68), y: Math.sqrt(1872 / 68) }, placement: "above" },
+      { key: "m", objectId: "m", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 2, y: Math.sqrt(1872 / 68) / 2 }, placement: "above-right" },
+      { key: "g", objectId: "g", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 3, y: Math.sqrt(1872 / 68) / 3 }, placement: "below-right" },
+      { key: "ag", objectId: "ag", at: { x: (Math.sqrt(68) + 10 / Math.sqrt(68)) / 6, y: Math.sqrt(1872 / 68) / 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Check with the median: the midpoint of <InlineMath math="BC" /> is <InlineMath math="M\left(4,\frac52,3\right)" />, and <InlineMath math="\overrightarrow{AM}=\left(3,\frac92,0\right)" />. Indeed <InlineMath math="\overrightarrow{AG}=\frac23\overrightarrow{AM}" />.
 
 So <InlineMath math="AG" /> has length <InlineMath math="\sqrt{13}" />.

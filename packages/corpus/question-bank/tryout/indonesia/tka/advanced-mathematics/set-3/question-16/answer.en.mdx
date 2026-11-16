@@ -9,6 +9,43 @@ r^2&=36+r^2-8r+16 \\
 r&=6.5
 \end{aligned}" />
 
+Draw the roof's cross-section with the circle's centre below the floor. **The centre, the middle of the floor span, and one end of the arc form a right triangle** with sides <InlineMath math="6" />, <InlineMath math="r-4" />, and hypotenuse <InlineMath math="r" />.
+
+<MathVisual
+  title={<>The roof arc and the right triangle below the floor</>}
+  description={<>Lengths are in metres. The arc curves from <InlineMath math="(-6,\ 0)" /> to <InlineMath math="(6,\ 0)" /> with its highest point <InlineMath math="4" /> above the floor. The circle's centre is <InlineMath math="r-4=2.5" /> below the floor. The right triangle has a horizontal side of <InlineMath math="6" />, a vertical side of <InlineMath math="2.5" />, and hypotenuse <InlineMath math="r=6.5" />.</>}
+  labels={{
+    half: <InlineMath math="6" />,
+    drop: <InlineMath math="r-4" />,
+    radius: <InlineMath math="r" />,
+    rise: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7.5, max: 7.5 },
+      y: { min: -3.5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "roof", kind: "arc", appearance: "primary", center: { x: 0, y: -2.5 }, radius: 6.5, startDegrees: Math.atan(2.5 / 6) * 180 / Math.PI, sweepDegrees: 180 - 2 * Math.atan(2.5 / 6) * 180 / Math.PI },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -7, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "half", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "secondary", from: { x: 0, y: -2.5 }, to: { x: 0, y: 0 } },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 0, y: -2.5 }, to: { x: 6, y: 0 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 0, y: -2.5 } },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "drop", objectId: "drop", at: { x: 0, y: -1.25 }, placement: "left" },
+      { key: "radius", objectId: "radius", at: { x: 3, y: -1.25 }, placement: "below-right" },
+      { key: "rise", objectId: "rise", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 Check: the centre is <InlineMath math="6.5-4=2.5" /> m below the floor, and <InlineMath math="6^2+2.5^2=36+6.25=42.25=6.5^2" />.
 
 So the radius of the arch is <InlineMath math="6.5" /> m.

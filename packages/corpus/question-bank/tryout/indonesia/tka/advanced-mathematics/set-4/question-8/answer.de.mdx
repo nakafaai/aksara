@@ -14,6 +14,18 @@ Jetzt <InlineMath math="f^{-1}(7)" />.
 x-1&=2\ \Rightarrow\ f^{-1}(7)=3
 \end{aligned}" />
 
+Das Diagramm zeigt beide Umkehrschritte. **Jedes <InlineMath math="f^{-1}" /> geht einen Schritt <InlineMath math="f" /> zurück**, also gehst du von <InlineMath math="67" /> zweimal zurück bis <InlineMath math="3" />.
+
+<Mermaid
+  title={<>Zwei Schritte zurück mit <InlineMath math="f^{-1}" /></>}
+  description={<>Die durchgezogenen Pfeile sind <InlineMath math="f" />: <InlineMath math="3" /> geht nach <InlineMath math="7" />, dann <InlineMath math="7" /> nach <InlineMath math="67" />. Die gestrichelten Pfeile sind <InlineMath math="f^{-1}" />: von <InlineMath math="67" /> nach <InlineMath math="7" />, dann von <InlineMath math="7" /> nach <InlineMath math="3" />.</>}
+  chart={`flowchart LR
+  T["3"] -->|"f"| S["7"]
+  S -->|"f"| E["67"]
+  E -.->|"f⁻¹"| S
+  S -.->|"f⁻¹"| T`}
+/>
+
 Probe in die andere Richtung: <InlineMath math="f(3)=4+3=7" /> und <InlineMath math="f(7)=64+3=67" />.
 
 Also ist <InlineMath math="\left(f^{-1}\circ f^{-1}\right)(67)=3" />.

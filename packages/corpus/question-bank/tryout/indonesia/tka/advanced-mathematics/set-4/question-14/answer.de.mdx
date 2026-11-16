@@ -6,6 +6,41 @@ Der Mittelpunkt ist <InlineMath math="P(3,-2)" />, und <InlineMath math="r=2" />
 
 <BlockMath math="|PT|=\sqrt{(2-3)^2+(-1+2)^2}=\sqrt{1+1}=\sqrt2\approx1{,}41" />
 
+Zeichne den Kreis und den Punkt <InlineMath math="T" />. **Die Strecke vom Mittelpunkt zu <InlineMath math="T" /> ist kürzer als der Radius**, also liegt <InlineMath math="T" /> im Kreis.
+
+<MathVisual
+  title={<>Der Punkt <InlineMath math="T" /> und der Kreis um <InlineMath math="P" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="P(3,-2)" /> und den Radius <InlineMath math="2" />. Der Punkt <InlineMath math="T(2,-1)" /> ist <InlineMath math="\sqrt2\approx1{,}41" /> vom Mittelpunkt entfernt, weniger als der Radius.</>}
+  labels={{
+    p: <InlineMath math="P(3,-2)" />,
+    t: <InlineMath math="T(2,-1)" />,
+    pt: <InlineMath math="\sqrt2" />,
+    r: <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6 },
+      y: { min: -5, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 3, y: -2 }, radius: 2 },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 3, y: -2 }, to: { x: 5, y: -2 } },
+      { id: "pt", kind: "segment", appearance: "answer", from: { x: 3, y: -2 }, to: { x: 2, y: -1 } },
+      { id: "p", kind: "point", appearance: "secondary", at: { x: 3, y: -2 } },
+      { id: "t", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3, y: -2 }, placement: "below" },
+      { key: "t", objectId: "t", at: { x: 2, y: -1 }, placement: "above-left" },
+      { key: "pt", objectId: "pt", at: { x: 2.5, y: -1.5 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 4, y: -2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Wegen <InlineMath math="\sqrt2<2" /> liegt <InlineMath math="T" /> innerhalb des Kreises. Ein kurzer Weg bestätigt das: Einsetzen von <InlineMath math="T" /> in die linke Seite der Gleichung ergibt <InlineMath math="4+1-12-4+9=-2<0" />.
 
 Der Punkt <InlineMath math="T" /> liegt also innerhalb des Kreises, <InlineMath math="\sqrt2" /> vom Mittelpunkt entfernt.

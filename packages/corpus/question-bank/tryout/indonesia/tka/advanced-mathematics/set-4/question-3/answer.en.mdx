@@ -1,5 +1,37 @@
 Each statement uses **one basic matrix operation**. Work through them one at a time.
 
+Before judging the determinant statement, see what <InlineMath math="P" /> does to the unit square. **The columns of <InlineMath math="P" /> span a parallelogram of area <InlineMath math="6" />**, and turning from the first column to the second goes anticlockwise, so <InlineMath math="\det P=6" />, not <InlineMath math="-6" />.
+
+<MathVisual
+  title={<>The unit square under <InlineMath math="P" /></>}
+  description={<><InlineMath math="P" /> takes the unit square to the parallelogram spanned by the columns <InlineMath math="(1,3)" /> and <InlineMath math="(-2,0)" />, with vertices <InlineMath math="(0,0)" />, <InlineMath math="(1,3)" />, <InlineMath math="(-1,3)" />, and <InlineMath math="(-2,0)" />. Its base is <InlineMath math="2" /> and its height is <InlineMath math="3" />, so its area is <InlineMath math="6" />.</>}
+  labels={{
+    image: <InlineMath math="\text{area }6" />,
+    first: <InlineMath math="(1,3)" />,
+    second: <InlineMath math="(-2,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 2 },
+      y: { min: -1, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "image", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 3 }, { x: -1, y: 3 }, { x: -2, y: 0 }] },
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "first", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 1, y: 3 } },
+      { id: "second", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: -0.5, y: 1.5 }, placement: "center" },
+      { key: "first", objectId: "first", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 1. The statement about <InlineMath math="P+Q" /> is true. Add matching entries: <InlineMath math="\begin{pmatrix} 1+2 & -2+1 \\ 3-1 & 0+4 \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ 2 & 4 \end{pmatrix}" />.
 2. The statement <InlineMath math="\det P=-6" /> is false. The determinant is the product of the main diagonal minus the product of the other diagonal: <InlineMath math="1\cdot0-(-2)\cdot3=0+6=6" />. The value <InlineMath math="-6" /> forgets that the subtracted product is already negative.
 3. The statement <InlineMath math="Q^T=Q" /> is false. Transposing swaps the off-diagonal entries: <InlineMath math="Q^T=\begin{pmatrix} 2 & -1 \\ 1 & 4 \end{pmatrix}" />. Since <InlineMath math="1\ne-1" />, <InlineMath math="Q" /> is not symmetric.

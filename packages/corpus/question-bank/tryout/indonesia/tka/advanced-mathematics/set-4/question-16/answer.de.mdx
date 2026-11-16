@@ -6,6 +6,44 @@ Beide Radien zu den Berührpunkten stehen **senkrecht auf dem Seil**, sind also 
 \ell&=12
 \end{aligned}" />
 
+Verschiebe das Seil parallel, bis es durch den Mittelpunkt der kleinen Rolle geht. **So entsteht ein rechtwinkliges Dreieck mit Hypotenuse <InlineMath math="15" />, einer Seite <InlineMath math="R-r=9" /> und einer dritten Seite so lang wie das Seil**.
+
+<MathVisual
+  title={<>Die äußere gemeinsame Tangente und ihr Hilfsdreieck</>}
+  description={<>Die große Rolle hat den Radius <InlineMath math="11" />, die kleine den Radius <InlineMath math="2" />, die Mittelpunkte sind <InlineMath math="15" /> voneinander entfernt. Das Seil berührt beide Rollen und steht senkrecht auf beiden Radien zu den Berührpunkten. Die zum Seil parallele Strecke vom Mittelpunkt der kleinen Rolle bildet ein rechtwinkliges Dreieck mit den Seiten <InlineMath math="9" />, <InlineMath math="12" /> und <InlineMath math="15" />, also ist das Seil <InlineMath math="12" /> lang.</>}
+  labels={{
+    rope: <InlineMath math="\ell=12" />,
+    helper: <InlineMath math="12" />,
+    centres: <InlineMath math="d=15" />,
+    gap: <InlineMath math="R-r=9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 18 },
+      y: { min: -12, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 11 },
+      { id: "small", kind: "circle", appearance: "reference", center: { x: 15, y: 0 }, radius: 2 },
+      { id: "rope", kind: "segment", appearance: "answer", from: { x: 6.6, y: 8.8 }, to: { x: 16.2, y: 1.6 } },
+      { id: "big-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6.6, y: 8.8 } },
+      { id: "small-radius", kind: "segment", appearance: "construction", from: { x: 15, y: 0 }, to: { x: 16.2, y: 1.6 } },
+      { id: "centres", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 15, y: 0 } },
+      { id: "helper", kind: "segment", appearance: "primary", from: { x: 15, y: 0 }, to: { x: 5.4, y: 7.2 } },
+      { id: "gap", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5.4, y: 7.2 } },
+    ],
+    labels: [
+      { key: "rope", objectId: "rope", at: { x: 11.4, y: 5.2 }, placement: "above-right" },
+      { key: "helper", objectId: "helper", at: { x: 10.2, y: 3.6 }, placement: "below-left" },
+      { key: "centres", objectId: "centres", at: { x: 7.5, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 2.7, y: 3.6 }, placement: "left" },
+    ],
+  }}
+/>
+
 Die Rollen liegen getrennt, weil <InlineMath math="d=15>R+r=13" /> ist, also gibt es die äußere gemeinsame Tangente.
 
 Das Seilstück zwischen den beiden Berührpunkten ist also <InlineMath math="12" /> cm lang.

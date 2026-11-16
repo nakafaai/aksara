@@ -5,6 +5,40 @@ Löse zuerst den Betrag auf. Wie das geht, hängt vom **Vorzeichen des Terms im 
 &=\lim_{x\to2^-}\big(-(x+2)\big)=-4
 \end{aligned}" />
 
+Zeichne die Funktion auf beiden Seiten von <InlineMath math="x=2" />. **Der Betrag spaltet den Graphen: Von links läuft er gegen <InlineMath math="-4" />, von rechts gegen <InlineMath math="4" />**. Der linksseitige Grenzwert liest nur den linken Ast.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="\frac{x^2-4}{|x-2|}" /> in der Nähe von <InlineMath math="x=2" /></>}
+  description={<>Für <InlineMath math="x<2" /> stimmt die Funktion mit <InlineMath math="-(x+2)" /> überein, einer fallenden Geraden, die auf <InlineMath math="(2,\ -4)" /> zuläuft. Für <InlineMath math="x>2" /> stimmt sie mit <InlineMath math="x+2" /> überein, einer steigenden Geraden, die nahe <InlineMath math="(2,\ 4)" /> beginnt.</>}
+  labels={{
+    left: <InlineMath math="y=-(x+2),\ x<2" />,
+    right: <InlineMath math="y=x+2,\ x>2" />,
+    low: <InlineMath math="(2,\ -4)" />,
+    high: <InlineMath math="(2,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -6, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "-(x + 2)", domain: { min: -1, max: 1.98 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "x + 2", domain: { min: 2.02, max: 5 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 2, y: -4 } },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 0, y: -2 }, placement: "above-right" },
+      { key: "right", objectId: "right", at: { x: 4, y: 6 }, placement: "below-right" },
+      { key: "low", objectId: "low", at: { x: 2, y: -4 }, placement: "below-right" },
+      { key: "high", objectId: "high", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Das Kürzen von <InlineMath math="x-2" /> ist erlaubt, weil <InlineMath math="x\ne2" /> ist. Numerische Probe: Für <InlineMath math="x=1{,}99" /> ist der Wert <InlineMath math="\frac{3{,}9601-4}{0{,}01}=-3{,}99" />, nahe bei <InlineMath math="-4" />.
 
 Der linksseitige Grenzwert ist also <InlineMath math="-4" />.

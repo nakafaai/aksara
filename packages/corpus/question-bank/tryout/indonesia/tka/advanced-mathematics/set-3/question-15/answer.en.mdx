@@ -12,6 +12,45 @@ The centre is <InlineMath math="M(2,-1)" /> and <InlineMath math="r=3" />. Compu
 |PS|&=\sqrt{20}=2\sqrt5
 \end{aligned}" />
 
+Draw the circle, the point <InlineMath math="P" />, and its tangent. **The radius <InlineMath math="MS" /> is perpendicular to <InlineMath math="PS" />**, so triangle <InlineMath math="MSP" /> has its right angle at <InlineMath math="S" />, with hypotenuse <InlineMath math="MP=\sqrt{29}" />.
+
+<MathVisual
+  title={<>The tangent from <InlineMath math="P(7,1)" /></>}
+  description={<>The circle has centre <InlineMath math="M(2,-1)" /> and radius <InlineMath math="3" />. From <InlineMath math="P(7,1)" />, the tangent touches the circle at <InlineMath math="S" />. Triangle <InlineMath math="MSP" /> has sides <InlineMath math="MS=3" />, <InlineMath math="MP=\sqrt{29}" />, and <InlineMath math="PS=2\sqrt5" />, with the right angle at <InlineMath math="S" />.</>}
+  labels={{
+    m: <InlineMath math="M(2,-1)" />,
+    p: <InlineMath math="P(7,1)" />,
+    s: <InlineMath math="S" />,
+    r: <InlineMath math="r=3" />,
+    ps: <InlineMath math="PS=2\sqrt5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 3 },
+      { id: "mp", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 7, y: 1 } },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 2, y: -1 }, to: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+      { id: "ps", kind: "segment", appearance: "answer", from: { x: 7, y: 1 }, to: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 7, y: 1 } },
+      { id: "s", kind: "point", appearance: "answer", at: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 7, y: 1 }, placement: "right" },
+      { key: "s", objectId: "s", at: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 }, placement: "above" },
+      { key: "r", objectId: "r", at: { x: 2 + (45 / 29 - 12 * Math.sqrt(5) / 29) / 2, y: -1 + (18 / 29 + 30 * Math.sqrt(5) / 29) / 2 }, placement: "left" },
+      { key: "ps", objectId: "ps", at: { x: (9 + 45 / 29 - 12 * Math.sqrt(5) / 29) / 2, y: (18 / 29 + 30 * Math.sqrt(5) / 29) / 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 The point <InlineMath math="P" /> is outside the circle, since <InlineMath math="|MP|^2=29>9" />, so a tangent from <InlineMath math="P" /> exists.
 
 So the tangent segment <InlineMath math="PS" /> has length <InlineMath math="2\sqrt5" />.

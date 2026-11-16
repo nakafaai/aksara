@@ -7,6 +7,21 @@ The denominator's limit is <InlineMath math="3+(-1)=2\ne0" />, so the quotient l
 &=\frac{2(3)-(-1)^2}{3+(-1)}=\frac{6-1}{2}=\frac52
 \end{aligned}" />
 
+The diagram below shows how the two limits feed into the numerator and the denominator. **The step you must check is that the denominator doesn't go to zero**, and only then may you divide.
+
+<Mermaid
+  title={<>Using limit laws on the numerator and the denominator</>}
+  description={<>The limits of <InlineMath math="f" /> and <InlineMath math="g" /> go into the numerator, giving <InlineMath math="2\cdot3-(-1)^2=5" />, and into the denominator, giving <InlineMath math="3+(-1)=2" />. Because <InlineMath math="2\ne0" />, the limit of the quotient is <InlineMath math="\tfrac52" />.</>}
+  chart={`flowchart TD
+  F["lim f(x) = 3"] --> N["numerator: 2·3 - (-1)² = 5"]
+  G["lim g(x) = -1"] --> N
+  F --> D["denominator: 3 + (-1) = 2"]
+  G --> D
+  D --> C["2 ≠ 0: division allowed"]
+  N --> R["5 / 2"]
+  C --> R`}
+/>
+
 So the limit is <InlineMath math="\frac52" />.
 
 - <InlineMath math="\frac72" /> evaluates <InlineMath math="-(-1)^2" /> as <InlineMath math="+1" />. Square first, then apply the minus sign.
