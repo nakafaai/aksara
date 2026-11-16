@@ -1,27 +1,11 @@
-import { Array as Arr, Console, Effect, Predicate } from "effect";
-import { issueAtOffset } from "#nakafa-content/math/finding";
+import { Array as Arr, Console, Effect } from "effect";
 import { findPlainMathText } from "#nakafa-content/math/plain";
-import {
-  type MdxAttribute,
-  type MdxNode,
-  visitMdxNodes,
-} from "#nakafa-content/mdx/parse";
-import { expectShape } from "#nakafa-content/mdx/shape";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
 import type { CliOptions } from "#nakafa-content/voice/options";
 import type {
   LessonVoiceFileIssue,
   LessonVoiceIssue,
 } from "#nakafa-content/voice/types";
-
-/** The visual text props that hold rich text: math renders only in JSX. */
-const VISUAL_TEXT_PROPS = new Set([
-  "description",
-  "facts",
-  "labels",
-  "legend",
-  "legends",
-  "title",
-]);
 
 /**
  * What each rule asks the author to write instead. Every rule here reports its
@@ -31,52 +15,17 @@ const VISUAL_TEXT_PROPS = new Set([
 const PENDING_FIXES = {
   "plain-math-text":
     'write it with <InlineMath math="..." /> or <BlockMath math="..." />, chemistry as \\mathrm{H_2O} with \\rightarrow',
-  "string-visual-text":
-    'write the prop as JSX, such as description={<>Area <InlineMath math="x^2" /></>}',
 };
-
-type JsxMdxNode = MdxNode & {
-  attributes: MdxAttribute[];
-};
-
-/** Narrows one MDX node to a JSX element, whose attributes are always listed. */
-function isJsxElement(node: MdxNode): node is JsxMdxNode {
-  return node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
-}
-
-/** Finds each visual text prop written as a string. */
-function findVisualIssues(source: string, tree: MdxNode): LessonVoiceIssue[] {
-  const issues: LessonVoiceIssue[] = [];
-  visitMdxNodes(tree, (node) => {
-    if (!isJsxElement(node)) {
-      return;
-    }
-    for (const attribute of node.attributes) {
-      if (
-        Predicate.isString(attribute.value) &&
-        VISUAL_TEXT_PROPS.has(String(attribute.name))
-      ) {
-        const offset = attribute.position?.start?.offset;
-        expectShape(offset !== undefined);
-        issues.push(issueAtOffset(source, offset, "string-visual-text"));
-      }
-    }
-  });
-  return issues;
-}
 
 /**
  * Finds every pending finding in one document: math or chemistry written as
- * plain text, and a visual text prop written as a string.
+ * plain text.
  */
 export function findPendingIssues(
   source: string,
   tree: MdxNode
 ): LessonVoiceIssue[] {
-  return [
-    ...findPlainMathText(source, tree),
-    ...findVisualIssues(source, tree),
-  ];
+  return findPlainMathText(source, tree);
 }
 
 /** Prints each pending rule's count, fix, and occurrences in a text report. */

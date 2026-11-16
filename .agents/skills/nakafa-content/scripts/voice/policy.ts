@@ -98,6 +98,7 @@ const BLOCKING_RULES = new Set([
   "sentence-punctuation-emphasis",
   "section-body-highlight",
   "split-aligned-head",
+  "string-visual-text",
   "unexplained-output-scheduling",
   "unbalanced-emphasis",
   "unqualified-energy-density-claim",
