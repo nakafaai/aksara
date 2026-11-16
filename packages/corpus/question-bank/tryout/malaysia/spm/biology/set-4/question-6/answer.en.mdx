@@ -1,0 +1,31 @@
+# Ask what share of each tissue reaches mitosis within one day
+
+Each cell passes through mitosis **once per cycle**. With the cells spread evenly through the cycle, the share that reaches mitosis in <InlineMath math="24" /> hours is <InlineMath math="\tfrac{24}{\text{cycle length}}" />, capped at all of them.
+
+<BlockMath math="\text{bone marrow}: \tfrac{24}{18}>1\Rightarrow100\%,\qquad \text{gut lining}: \tfrac{24}{36}\approx67\%,\qquad \text{tumour}: \tfrac{24}{72}\approx33\%,\qquad \text{liver}: \tfrac{24}{8760}\approx0.3\%" />
+
+<Chart
+  title={<>Share of Each Tissue's Cells Killed in One Day</>}
+  bars="apart"
+  categories={["Bone marrow", "Hair follicle", "Gut lining", "Tumour", "Liver"]}
+  series={[
+    { label: "Cells killed in one day (%)", mark: "bar", values: [100, 100, 67, 33, 0.3] },
+  ]}
+  valueLabel="Cells killed in one day (%)"
+  description={<>In one day the drug kills <InlineMath math="100\%" /> of bone marrow and hair follicle cells, about <InlineMath math="67\%" /> of gut lining cells, about <InlineMath math="33\%" /> of tumour cells and only about <InlineMath math="0.3\%" /> of liver cells.</>}
+/>
+
+- I: every bone marrow cell reaches mitosis within <InlineMath math="24" /> hours, but only a third of the tumour cells do. Statement I is correct.
+- II: <InlineMath math="\tfrac{24}{72}=\tfrac{1}{3}" /> of the tumour cells enter mitosis and die. Statement II is correct.
+- III: a liver cell divides about once a year, so only about <InlineMath math="0.3\%" /> reach mitosis in a day. Statement III is correct.
+- IV: the drug acts on cells **entering mitosis**. Cells in phase S, part of interphase, are untouched. Statement IV is wrong.
+
+This is why such drugs cause hair loss, a weak immune system and gut problems: fast-dividing healthy tissues are hit harder than a slow-growing tumour.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and III only rejects II, **although** <InlineMath math="\tfrac{24}{72}" /> is exactly one third.
+- II and III only rejects I, assuming the tumour must be hit hardest, **but its cells divide more slowly than bone marrow**.
+- I, II and IV only blames phase S, **while the drug acts only on cells entering mitosis**.

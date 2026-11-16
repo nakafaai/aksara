@@ -1,0 +1,29 @@
+# Die längste ununterbrochene Dunkelphase suchen, nicht die gesamte Dunkelzeit
+
+Beide Pflanzen messen die **Länge der ununterbrochenen Dunkelheit**. Ein Lichtblitz teilt die Nacht in zwei Stücke, und nur das längere zählt. Wo der Blitz fällt, ist also ebenso wichtig wie ob es einen gibt.
+
+| Behandlung | Dunkelstücke (Stunden) | Längstes Stück | X blüht? | Y blüht? |
+| --- | --- | --- | --- | --- |
+| P | <InlineMath math="8" /> | <InlineMath math="8" /> | nein | ja |
+| Q | <InlineMath math="14" /> | <InlineMath math="14" /> | ja | nein |
+| R | <InlineMath math="7+7" /> | <InlineMath math="7" /> | nein | ja |
+| S | <InlineMath math="4+14" /> | <InlineMath math="14" /> | ja | nein |
+
+<Chart
+  title={<>Längste ununterbrochene Dunkelphase in jeder Behandlung</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Längste ununterbrochene Dunkelheit", mark: "bar", values: [8, 14, 7, 14] },
+  ]}
+  valueLabel="Stunden"
+  description={<>Die längste ununterbrochene Dunkelphase beträgt <InlineMath math="8" /> Stunden bei P, <InlineMath math="14" /> bei Q, <InlineMath math="7" /> bei R und <InlineMath math="14" /> bei S. Nur Q und S erreichen die <InlineMath math="11" /> Stunden, die Pflanze X braucht.</>}
+/>
+
+Bei S kommt der Blitz früh, danach folgen noch <InlineMath math="14" /> ununterbrochene Dunkelstunden. X blüht bei Q und S, Y bei P und R.
+
+# Warum die anderen Antworten falsch sind
+
+- X nur bei Q hält **jeden Blitz für eine Nachtunterbrechung** und übersieht, dass S nach dem Blitz noch <InlineMath math="14" /> ununterbrochene Stunden hat.
+- X bei Q, R und S zählt die **gesamte Dunkelzeit**, <InlineMath math="14" /> Stunden bei R, und übersieht den Blitz, der sie in <InlineMath math="7+7" /> teilt.
+- X bei P und R vertauscht die Pflanzen und gibt X **die kurzen Nächte, die Y braucht**.

@@ -1,0 +1,32 @@
+# Ubah tiap persentase menjadi jumlah sel
+
+Persentase hanya membagi sel darah putih di **sampel itu**. Saat totalnya berubah, bandingkan jumlah sel sebenarnya per milimeter kubik.
+
+<BlockMath math="\text{X}: 15\,000\times0{,}85=12\,750\ \text{neutrofil},\quad 15\,000\times0{,}10=1500\ \text{limfosit}" />
+
+<BlockMath math="\text{Y}: 9000\times0{,}35=3150,\quad 9000\times0{,}60=5400,\qquad \text{normal}: 4200,\ 2100" />
+
+<Chart
+  title={<>Neutrofil dan Limfosit per Milimeter Kubik</>}
+  bars="apart"
+  categories={["Normal", "Pasien X", "Pasien Y"]}
+  series={[
+    { label: "Neutrofil", mark: "bar", values: [4200, 12750, 3150] },
+    { label: "Limfosit", mark: "bar", values: [2100, 1500, 5400] },
+  ]}
+  valueLabel="Sel per milimeter kubik"
+  description={<>Pasien X punya sekitar <InlineMath math="12\,750" /> neutrofil dan <InlineMath math="1500" /> limfosit. Pasien Y punya <InlineMath math="3150" /> neutrofil dan <InlineMath math="5400" /> limfosit. Darah normal punya <InlineMath math="4200" /> dan <InlineMath math="2100" />.</>}
+/>
+
+- I: <InlineMath math="\tfrac{12\,750}{4200}\approx3" />, jadi X punya sekitar tiga kali neutrofil normal. Pernyataan I benar.
+- II: Y punya <InlineMath math="3150" /> neutrofil dibanding <InlineMath math="4200" /> yang normal, lebih sedikit, meski total sel darah putihnya lebih tinggi. Pernyataan II benar.
+- III: kenaikan besar fagosit, seperti X, khas untuk bakteri. Kenaikan limfosit, seperti Y, khas untuk virus, yang dilawan dengan antibodi dan dengan membunuh sel yang terinfeksi. Pernyataan III benar.
+- IV: **persentase** limfosit X turun menjadi sepertiga, dari <InlineMath math="30" /> ke <InlineMath math="10" />, tetapi jumlahnya hanya turun dari <InlineMath math="2100" /> ke <InlineMath math="1500" />, sekitar <InlineMath math="71\%" /> dari normal. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan III saja menolak II, **membaca total Y yang tinggi sebagai lebih banyak neutrofil**.
+- II, III, dan IV saja menolak I dan menerima IV, **membandingkan persentase, bukan jumlah**, pada keduanya.
+- I, II, III, dan IV menerima IV, **padahal 1500 bukan sepertiga dari 2100**.

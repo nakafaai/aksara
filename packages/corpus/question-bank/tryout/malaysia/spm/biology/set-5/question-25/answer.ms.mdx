@@ -1,0 +1,29 @@
+# Cari tempoh gelap tanpa gangguan yang terpanjang, bukan jumlah gelap
+
+Kedua-dua tumbuhan mengukur **panjang kegelapan tanpa gangguan**. Pancaran cahaya memecahkan malam kepada dua bahagian, dan hanya bahagian yang lebih panjang dikira. Oleh itu, kedudukan pancaran sama penting dengan ada atau tidaknya pancaran.
+
+| Rawatan | Bahagian gelap (jam) | Bahagian terpanjang | X berbunga? | Y berbunga? |
+| --- | --- | --- | --- | --- |
+| P | <InlineMath math="8" /> | <InlineMath math="8" /> | tidak | ya |
+| Q | <InlineMath math="14" /> | <InlineMath math="14" /> | ya | tidak |
+| R | <InlineMath math="7+7" /> | <InlineMath math="7" /> | tidak | ya |
+| S | <InlineMath math="4+14" /> | <InlineMath math="14" /> | ya | tidak |
+
+<Chart
+  title={<>Tempoh Gelap Tanpa Gangguan Terpanjang dalam Setiap Rawatan</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Gelap tanpa gangguan terpanjang", mark: "bar", values: [8, 14, 7, 14] },
+  ]}
+  valueLabel="Jam"
+  description={<>Tempoh gelap tanpa gangguan terpanjang ialah <InlineMath math="8" /> jam dalam P, <InlineMath math="14" /> dalam Q, <InlineMath math="7" /> dalam R dan <InlineMath math="14" /> dalam S. Hanya Q dan S mencapai <InlineMath math="11" /> jam yang diperlukan tumbuhan X.</>}
+/>
+
+Dalam S, pancaran berlaku awal, jadi <InlineMath math="14" /> jam gelap tanpa gangguan masih menyusul. X berbunga dalam Q dan S, dan Y berbunga dalam P dan R.
+
+# Kenapa pilihan lain salah
+
+- X dalam Q sahaja menganggap **setiap pancaran sebagai pemutus malam**, terlepas bahawa S masih mempunyai <InlineMath math="14" /> jam tanpa gangguan selepas pancarannya.
+- X dalam Q, R dan S mengira **jumlah gelap**, <InlineMath math="14" /> jam dalam R, dan mengabaikan pancaran yang memecahkannya kepada <InlineMath math="7+7" />.
+- X dalam P dan R menukar kedua-dua tumbuhan, memberi X **malam pendek yang diperlukan Y**.

@@ -1,0 +1,30 @@
+# Den Sauerstoffverbrauch aus drei Faktoren aufbauen und multiplizieren
+
+Der Sauerstoffverbrauch je Minute ist das gepumpte Blut je Minute mal dem Sauerstoff, der **jedem Liter entnommen** wird. Das gepumpte Blut je Minute ist Herzfrequenz mal Schlagvolumen, und die Herzfrequenz folgt aus dem Abstand der Schläge im EKG.
+
+<BlockMath math="\text{Ruhe}: \frac{20}{25}=0{,}8\text{ s je Schlag}\Rightarrow\frac{60}{0{,}8}=75\text{ Schläge/min},\qquad \text{Belastung}: \frac{12}{25}=0{,}48\text{ s}\Rightarrow125\text{ Schläge/min}" />
+
+<BlockMath math="\text{Ruhe}: 75\cdot0{,}070=5{,}25\text{ L/min},\ \ 5{,}25\cdot(200-150)\approx263\text{ mL/min}" />
+
+<BlockMath math="\text{Belastung}: 125\cdot0{,}100=12{,}5\text{ L/min},\ \ 12{,}5\cdot(200-80)=1500\text{ mL/min}" />
+
+<BlockMath math="\frac{1500}{263}\approx5{,}7" />
+
+<Chart
+  title={<>Wie stark jeder Faktor bei Belastung steigt</>}
+  bars="apart"
+  categories={["Herzfrequenz", "Schlagvolumen", "Sauerstoff je Liter entnommen", "Sauerstoffverbrauch je Minute"]}
+  series={[
+    { label: "Wert bei Belastung", mark: "bar", values: [1.67, 1.43, 2.4, 5.7] },
+  ]}
+  valueLabel="Vielfaches des Ruhewerts"
+  description={<>Die Herzfrequenz steigt auf das <InlineMath math="1{,}67" />-Fache, das Schlagvolumen auf das <InlineMath math="1{,}43" />-Fache und der aus jedem Liter entnommene Sauerstoff auf das <InlineMath math="2{,}4" />-Fache. Zusammen steigt der Sauerstoffverbrauch je Minute auf das <InlineMath math="5{,}7" />-Fache.</>}
+/>
+
+Jeder Faktor steigt nur mäßig, doch weil sie sich multiplizieren, steigt der Sauerstoffverbrauch etwa auf das <InlineMath math="5{,}7" />-Fache.
+
+# Warum die anderen Antworten falsch sind
+
+- Etwa das <InlineMath math="1{,}7" />-Fache zählt nur die **höhere Herzfrequenz**, <InlineMath math="\tfrac{125}{75}" />.
+- Etwa das <InlineMath math="2{,}4" />-Fache zählt nur den **Anstieg des gepumpten Blutes**, <InlineMath math="\tfrac{12{,}5}{5{,}25}" />, oder nur den zusätzlich je Liter entnommenen Sauerstoff, und übersieht den anderen Faktor.
+- Etwa das <InlineMath math="4{,}0" />-Fache multipliziert Herzfrequenz und je Liter entnommenen Sauerstoff, <InlineMath math="1{,}67\cdot2{,}4" />, und **lässt das größere Schlagvolumen weg**.

@@ -1,0 +1,24 @@
+# Schnitte auf einem Ring und Verdopplungen in einer Kultur zählen
+
+Ein Restriktionsenzym schneidet überall, wo seine **Erkennungssequenz** vorkommt. Auf einem ringförmigen Plasmid liegt jeder Schnitt zwischen zwei Stücken, die Zahl der Fragmente ist also gleich der Zahl der Schnitte. Danach kopieren die Bakterien das Gen bei jeder Teilung.
+
+<Mermaid
+  title={<>Schritte zur Herstellung von Humaninsulin in Bakterien</>}
+  description={<>Dasselbe Restriktionsenzym schneidet die menschliche DNA und das Plasmid und hinterlässt passende klebrige Enden. DNA-Ligase fügt das Gen in das Plasmid ein, das ein Bakterium aufnimmt. Jede Teilung kopiert das Plasmid, und die Bakterien bilden Insulin nach dem menschlichen Gen.</>}
+  chart={"flowchart LR\n  H[Menschliche DNA] -- Restriktionsenzym --> G[Insulingen mit klebrigen Enden]\n  P[Plasmid] -- dasselbe Restriktionsenzym --> O[Geöffnetes Plasmid mit passenden Enden]\n  G --> J[DNA-Ligase verbindet sie]\n  O --> J\n  J --> R[Rekombinantes Plasmid wird von einem Bakterium aufgenommen]\n  R --> C[Bakterium teilt sich alle 20 Minuten und kopiert das Plasmid]\n  C --> I[Bakterien lesen das Gen und bilden Insulin]"}
+/>
+
+<BlockMath math="\text{erwartete Stellen}=\frac{12\,288}{4096}=3,\qquad \text{Teilungen in }10\text{ Stunden}=\frac{600}{20}=30,\qquad 2^{30}=1\,073\,741\,824" />
+
+- I: Ein Restriktionsenzym schneidet beide DNAs an derselben Sequenz und hinterlässt passende **klebrige Enden**. Aussage I stimmt.
+- II: <InlineMath math="12\,288" /> Basen enthalten etwa <InlineMath math="3" /> Stellen. Ein Ring, der an <InlineMath math="3" /> Stellen geschnitten wird, zerfällt in <InlineMath math="3" /> Fragmente, nicht in <InlineMath math="4" />. Aussage II stimmt.
+- III: <InlineMath math="30" /> Verdopplungen machen aus einem Bakterium <InlineMath math="2^{30}" />, gut eine Milliarde Zellen, jede mit dem Gen. Aussage III stimmt.
+- IV: Die Bakterien behalten ihre eigene DNA und lesen das eine hinzugefügte Gen, weil alle Lebewesen denselben genetischen Code nutzen. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III, meist nach <InlineMath math="30\cdot2" /> **statt** <InlineMath math="2" /> **hoch** <InlineMath math="30" />.
+- Nur II und III verwirft I und übersieht, dass **passende klebrige Enden** dasselbe Restriktionsenzym brauchen.
+- Nur I, II und IV behauptet, die Bakterien würden menschlich, **obwohl nur ein Gen hinzukam**.

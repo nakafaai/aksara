@@ -1,0 +1,29 @@
+# Jedes Gen einzeln aus den Nachkommen der Testkreuzung ablesen
+
+Der Elternteil <InlineMath math="rryy" /> gibt nur rezessive Allele weiter, also **zeigt jeder Nachkomme das Allel, das er vom anderen Elternteil bekam**. Jedes Gen lässt sich daher getrennt ablesen.
+
+<Chart
+  title={<>Nachkommen der Testkreuzung</>}
+  bars="apart"
+  categories={["Rund gelb", "Rund grün", "Runzlig gelb", "Runzlig grün"]}
+  series={[
+    { label: "Samen", mark: "bar", values: [52, 48, 0, 0] },
+  ]}
+  valueLabel="Samen"
+  description={<>Die Kreuzung ergibt <InlineMath math="52" /> runde gelbe und <InlineMath math="48" /> runde grüne Samen und keine runzligen.</>}
+/>
+
+- Form: Alle <InlineMath math="100" /> Samen sind rund, keiner ist runzlig. Trüge der Elternteil <InlineMath math="r" />, wäre etwa die Hälfte runzlig, er ist also <InlineMath math="RR" />.
+- Farbe: <InlineMath math="52" /> gelbe zu <InlineMath math="48" /> grünen sind etwa <InlineMath math="1:1" />. Die Hälfte der Keimzellen trägt <InlineMath math="Y" />, die Hälfte <InlineMath math="y" />, er ist also <InlineMath math="Yy" />.
+
+Der Elternteil ist <InlineMath math="RRYy" />. Jede Keimzelle trägt <InlineMath math="R" />, die Hälfte trägt <InlineMath math="y" />:
+
+<BlockMath math="P(R\text{ und }y)=1\cdot\tfrac{1}{2}=\tfrac{1}{2}" />
+
+Der Elternteil ist also <InlineMath math="RRYy" />, und <InlineMath math="\tfrac{1}{2}" /> seiner Keimzellen tragen sowohl <InlineMath math="R" /> als auch <InlineMath math="y" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="RrYy" /> ergäbe von jeder Samensorte ein Viertel, **auch runzlige**, die nie auftreten.
+- <InlineMath math="RRYY" /> ergäbe nur gelbe Samen, **doch fast die Hälfte ist grün**.
+- <InlineMath math="RrYY" /> vertauscht die beiden Gene **und sagt runzlige und keine grünen Samen voraus**, das Gegenteil der Ergebnisse.

@@ -1,0 +1,28 @@
+# Bayangkan asam bergerak ke dalam, lalu hitung laju rata-ratanya
+
+Asam mencapai **permukaan bolus lebih dulu** dan pusatnya paling akhir. Karena itu pusatnya tetap mendekati netral untuk sementara, dan amilase di sana baru melambat saat pH turun.
+
+<Chart
+  title={<>Aktivitas Amilase di Pusat Bolus</>}
+  categories={["0 menit", "10 menit", "20 menit", "30 menit", "40 menit"]}
+  series={[
+    { label: "Aktivitas", mark: "line", values: [100, 80, 30, 5, 0] },
+  ]}
+  valueLabel="Aktivitas (% laju di mulut)"
+  description={<>Aktivitas turun dari <InlineMath math="100\%" /> ke <InlineMath math="80\%" /> pada menit ke-<InlineMath math="10" />, <InlineMath math="30\%" /> pada menit ke-<InlineMath math="20" />, <InlineMath math="5\%" /> pada menit ke-<InlineMath math="30" />, dan nol pada menit ke-<InlineMath math="40" />, seiring pH turun dari <InlineMath math="6{,}8" /> ke <InlineMath math="2{,}0" />.</>}
+/>
+
+<BlockMath math="0\text{ sampai }10\text{ menit}: \frac{100+80}{2}=90\%,\qquad 10\text{ sampai }20\text{ menit}: \frac{80+30}{2}=55\%,\qquad \text{rata-rata}\approx\frac{90+55}{2}\approx72\%" />
+
+- I: selama <InlineMath math="20" /> menit pertama amilase bekerja rata-rata sekitar <InlineMath math="72\%" /> dari lajunya di mulut, jauh di atas separuh. Pernyataan I salah.
+- II: sejak menit ke-<InlineMath math="30" /> pH <InlineMath math="3" /> atau lebih rendah, dan aktivitasnya <InlineMath math="5\%" /> lalu <InlineMath math="0" />. Asam kuat mengubah bentuk sisi aktif, jadi pati tidak lagi pas. Pernyataan II benar.
+- III: bolus yang lebih kecil punya jarak lebih pendek dari permukaan ke pusat, jadi asam mencapai pusat **lebih cepat** dan amilase berhenti lebih awal. Pernyataan III salah.
+- IV: permukaan bolus menjadi asam lebih dulu, cocok untuk pepsin, sementara pusatnya masih mendekati netral, cocok untuk amilase. Pernyataan IV benar.
+
+Jadi pernyataan II dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menerima I, mungkin dengan memakai nilai menit ke-<InlineMath math="20" /> saja, <InlineMath math="30\%" />, **alih-alih rata-rata seluruh selang**.
+- II, III, dan IV saja menerima III, **padahal asam meresap lebih cepat ke bolus yang kecil**.
+- I, III, dan IV saja menolak II dan menerima kedua pernyataan keliru tentang **laju rata-rata dan ukuran bolus**.

@@ -1,0 +1,24 @@
+# Kira setiap susunan yang membolehkan seorang daripada tiga anak terjejas
+
+Setiap anak berpeluang <InlineMath math="\tfrac{1}{4}" /> untuk terjejas dan <InlineMath math="\tfrac{3}{4}" /> untuk tidak terjejas. **Tepat seorang** yang terjejas boleh berlaku dalam tiga susunan: anak pertama, kedua atau ketiga.
+
+<BlockMath math="P(\text{satu susunan})=\tfrac{1}{4}\times\tfrac{3}{4}\times\tfrac{3}{4}=\tfrac{9}{64},\qquad 3\times\tfrac{9}{64}=\tfrac{27}{64}\approx42\%" />
+
+<Chart
+  title={<>Bilangan Anak yang Terjejas daripada Tiga</>}
+  bars="apart"
+  categories={["Tiada", "Tepat satu", "Tepat dua", "Ketiga-tiganya"]}
+  series={[
+    { label: "Kebarangkalian", mark: "bar", values: [42.2, 42.2, 14.1, 1.6] },
+  ]}
+  valueLabel="Kebarangkalian (%)"
+  description={<>Tiada yang terjejas dan tepat satu yang terjejas masing-masing berpeluang kira-kira <InlineMath math="42\%" />. Tepat dua kira-kira <InlineMath math="14\%" />, dan ketiga-tiganya kurang daripada <InlineMath math="2\%" />.</>}
+/>
+
+Empat hasil itu berjumlah <InlineMath math="1" />: <InlineMath math="\tfrac{27}{64}+\tfrac{27}{64}+\tfrac{9}{64}+\tfrac{1}{64}=1" />. Kebarangkalian tepat seorang anak terjejas ialah <InlineMath math="\tfrac{27}{64}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\tfrac{9}{64}" /> ialah peluang bagi **satu susunan tertentu**, seperti hanya anak pertama terjejas, dan terlepas dua susunan yang lain.
+- <InlineMath math="\tfrac{37}{64}" /> ialah peluang **sekurang-kurangnya seorang** anak terjejas, <InlineMath math="1-\left(\tfrac{3}{4}\right)^3" />, yang turut mengira dua atau tiga yang terjejas.
+- <InlineMath math="\tfrac{1}{4}" /> ialah peluang bagi **seorang anak**, yang tidak menunjukkan berapa ramai daripada tiga yang terjejas.

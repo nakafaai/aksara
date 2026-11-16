@@ -1,0 +1,28 @@
+# Picture the acid moving inwards, and work out the average rate
+
+Acid reaches the **surface of the bolus first** and its centre last. The centre therefore stays near neutral for a while, and amylase there slows down only as the pH falls.
+
+<Chart
+  title={<>Amylase Activity at the Centre of the Bolus</>}
+  categories={["0 min", "10 min", "20 min", "30 min", "40 min"]}
+  series={[
+    { label: "Activity", mark: "line", values: [100, 80, 30, 5, 0] },
+  ]}
+  valueLabel="Activity (% of rate in the mouth)"
+  description={<>Activity falls from <InlineMath math="100\%" /> to <InlineMath math="80\%" /> by <InlineMath math="10" /> minutes, <InlineMath math="30\%" /> by <InlineMath math="20" /> minutes, <InlineMath math="5\%" /> by <InlineMath math="30" /> minutes and none by <InlineMath math="40" /> minutes, as the pH falls from <InlineMath math="6.8" /> to <InlineMath math="2.0" />.</>}
+/>
+
+<BlockMath math="0\text{ to }10\text{ min}: \frac{100+80}{2}=90\%,\qquad 10\text{ to }20\text{ min}: \frac{80+30}{2}=55\%,\qquad \text{mean}\approx\frac{90+55}{2}\approx72\%" />
+
+- I: over the first <InlineMath math="20" /> minutes amylase averages about <InlineMath math="72\%" /> of its rate in the mouth, well above half. Statement I is wrong.
+- II: from <InlineMath math="30" /> minutes the pH is <InlineMath math="3" /> or lower, and activity is <InlineMath math="5\%" /> and then <InlineMath math="0" />. Strong acid changes the shape of the active site, so starch no longer fits. Statement II is correct.
+- III: a smaller bolus has a shorter distance from surface to centre, so acid reaches the centre **sooner** and amylase stops earlier. Statement III is wrong.
+- IV: the surface of the bolus becomes acidic first, which suits pepsin, while the centre is still close to neutral, which suits amylase. Statement IV is correct.
+
+So statements II and IV are correct.
+
+# Why the other options are wrong
+
+- I and II only accepts I, perhaps by averaging only the <InlineMath math="20" /> minute value, <InlineMath math="30\%" />, **instead of the whole interval**.
+- II, III and IV only accepts III, **although acid soaks through a small bolus faster**.
+- I, III and IV only rejects II and accepts both wrong statements about **the average rate and the bolus size**.

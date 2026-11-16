@@ -1,0 +1,26 @@
+# The cheapest bag is not the cheapest nitrogen
+
+Each formula's nitrogen share sets how much of the bag is useful. **Two nitrogen atoms in each formula unit, but very different masses**, so the light urea carries the most. Dividing each price by its nitrogen gives the cost of one kilogram of nitrogen.
+
+<Chart
+  title={<>Cost of one kilogram of nitrogen</>}
+  description={<>Urea <InlineMath math="\text{RM}\,5.14" />, ammonium nitrate <InlineMath math="\text{RM}\,5.43" />, ammonium sulfate <InlineMath math="\text{RM}\,5.66" />.</>}
+  bars="apart"
+  categories={["Urea", "Ammonium nitrate", "Ammonium sulfate"]}
+  series={[
+    { label: "Cost", mark: "bar", values: [5.14, 5.43, 5.66] },
+  ]}
+  valueLabel="Cost (RM per kg N)"
+/>
+
+<BlockMath math="\begin{aligned}
+\text{urea}&:\ \tfrac{28}{60}\times50=23.3\text{ kg N},\ \tfrac{120}{23.3}=5.14\text{ RM per kg}\\
+\text{NH}_4\text{NO}_3&:\ \tfrac{28}{80}\times50=17.5\text{ kg N},\ \tfrac{95}{17.5}=5.43\text{ RM per kg}\\
+(\text{NH}_4)_2\text{SO}_4&:\ \tfrac{28}{132}\times50=10.6\text{ kg N},\ \tfrac{60}{10.6}=5.66\text{ RM per kg}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="10.6\text{ kg}" /> picks the cheapest bag, but its nitrogen costs the most per kilogram.
+- <InlineMath math="8.75\text{ kg}" /> counts only the ammonium nitrogen. **The nitrate ion carries a nitrogen atom too**.
+- <InlineMath math="11.7\text{ kg}" /> counts one nitrogen in urea, though <InlineMath math="\text{CO(NH}_2)_2" /> has two.

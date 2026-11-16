@@ -1,0 +1,26 @@
+# Kemiringan zat padat memberi daya pemanas, dan kedua garis tren menentukan kapan peleburan mulai dan selesai
+
+Dayanya tidak diketahui, jadi cari dari bagian grafik saat hanya zat padat yang memanas: <InlineMath math="20^\circ\text{C}" /> per menit pada <InlineMath math="12{,}8\text{ g}" /> zat padat. **Bagian datar tidak mulai atau selesai di titik grid**. Garis zat padat mencapai <InlineMath math="80^\circ\text{C}" /> setengah menit setelah pembacaan pada <InlineMath math="2\text{ min}" />, dan garis cairan meninggalkan <InlineMath math="80^\circ\text{C}" /> tiga perempat menit sebelum pembacaan pada <InlineMath math="9\text{ min}" />. Saat melebur, kalor menjauhkan molekul melawan gaya tariknya, jadi energi kinetiknya dan suhunya tetap.
+
+<Chart
+  title={<>Waktu peleburan dibaca dengan tiga cara</>}
+  description={<>Menghitung titik grid datar saja memberi <InlineMath math="5{,}0\text{ min}" />, memperpanjang kedua garis tren ke <InlineMath math="80^\circ\text{C}" /> memberi <InlineMath math="5{,}75\text{ min}" />, dan menghubungkan titik terakhir di bawah ke titik pertama di atas memberi <InlineMath math="7{,}0\text{ min}" />.</>}
+  bars="apart"
+  categories={["Titik grid 3 sampai 8", "Garis tren bertemu 80 °C", "Titik bawah ke titik atas"]}
+  series={[
+    { label: "Waktu", mark: "bar", values: [5.0, 5.75, 7.0] },
+  ]}
+  valueLabel="Waktu (min)"
+/>
+
+<BlockMath math="\begin{aligned}
+P&=12{,}8\times1{,}30\times\tfrac{70-30}{2}=332{,}8\text{ J min}^{-1}\\
+t_1&=2+\tfrac{80-70}{20}=2{,}50\text{ min},\quad t_2=9-\tfrac{91{,}5-80}{106{,}8-91{,}5}=8{,}25\text{ min}\\
+\Delta H&=\tfrac{332{,}8\times(8{,}25-2{,}50)}{12{,}8\div128}=19{.}100\text{ J mol}^{-1}=19{,}1\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="16{,}6\text{ kJ mol}^{-1}" /> hanya menghitung titik grid pada <InlineMath math="80^\circ\text{C}" />, dari <InlineMath math="3" /> sampai <InlineMath math="8\text{ min}" />, dan melewatkan peleburan sebelum dan sesudahnya.
+- Suhu tetap berarti energi kinetik rata-rata tetap. **Kalor menaikkan energi potensial molekul saat molekul saling menjauh**.
+- <InlineMath math="23{,}3\text{ kJ mol}^{-1}" /> memakai seluruh selang dari <InlineMath math="2" /> sampai <InlineMath math="9\text{ min}" />, yang ikut mencakup pemanasan zat padat dan cairan.

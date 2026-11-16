@@ -1,0 +1,33 @@
+# Jeden Prozentsatz in ein Volumen umrechnen, bevor Zellen verglichen werden
+
+Ein Prozentsatz vergleicht ein Organell mit **seiner eigenen Zelle**. Um zwei verschieden große Zellen zu vergleichen, wird jeder Anteil zuerst mit dem Zellvolumen multipliziert.
+
+<BlockMath math="\text{raues ER}: P\ 0{,}25\cdot400=100,\qquad R\ 0{,}05\cdot500=25,\qquad \frac{100}{25}=4" />
+
+<BlockMath math="\text{Mitochondrien}: Q\ 0{,}35\cdot2000=700,\qquad P\ 0{,}05\cdot400=20,\qquad \frac{700}{20}=35" />
+
+<Chart
+  title={<>Volumen jedes Organells in den Zellen P, Q und R</>}
+  bars="apart"
+  categories={["Zelle P", "Zelle Q", "Zelle R"]}
+  series={[
+    { label: "Raues ER", mark: "bar", values: [100, 40, 25] },
+    { label: "Mitochondrien", mark: "bar", values: [20, 700, 30] },
+    { label: "Lysosomen", mark: "bar", values: [4, 20, 60] },
+  ]}
+  valueLabel="Volumen (Kubikmikrometer)"
+  description={<>Zelle P enthält <InlineMath math="100\text{ µm}^3" /> raues ER, Zelle Q <InlineMath math="700\text{ µm}^3" /> Mitochondrien und Zelle R <InlineMath math="60\text{ µm}^3" /> Lysosomen, am meisten von allen dreien.</>}
+/>
+
+- I: Ein Viertel von Zelle P ist raues ER, wo Ribosomen Proteine für den Export bilden, etwa Antikörper. Aussage I stimmt.
+- II: Zelle R hat <InlineMath math="12\,\%" /> Lysosomen, weit mehr als die anderen. Lysosomen enthalten die Enzyme, die aufgenommene Bakterien verdauen. Aussage II stimmt.
+- III: Zelle P hat <InlineMath math="100" />, Zelle R <InlineMath math="25\text{ µm}^3" /> raues ER, viermal so viel. Aussage III stimmt.
+- IV: <InlineMath math="35\,\%" /> gegen <InlineMath math="5\,\%" /> ergibt <InlineMath math="7" />, doch Zelle Q ist fünfmal größer. Im Volumen sind es <InlineMath math="700" /> gegen <InlineMath math="20\text{ µm}^3" />, also das <InlineMath math="35" />-Fache. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III, **obwohl <InlineMath math="100" /> gegen <InlineMath math="25" /> das Vierfache ist**.
+- Nur II, III und IV verwirft I und **vergleicht in IV Prozentsätze statt Volumina**.
+- Nur I, III und IV akzeptiert IV und verwirft II und **übersieht, dass Lysosomen eine Fresszelle kennzeichnen**.

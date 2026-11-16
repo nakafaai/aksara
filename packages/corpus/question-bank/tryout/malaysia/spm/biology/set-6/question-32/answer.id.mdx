@@ -1,0 +1,26 @@
+# Tentukan genotipe putri itu dulu, lalu anak-anaknya
+
+Ayah menurunkan satu-satunya kromosom X miliknya ke **setiap putri**. Jadi setiap putri dari pria yang terkena membawa <InlineMath math="X^R" />, dan karena ibunya tidak terkena, ia bergenotipe <InlineMath math="X^RX^r" />.
+
+<BlockMath math="X^RY\times X^rX^r\ \Rightarrow\ \text{setiap putri }X^RX^r" />
+
+<BlockMath math="X^RX^r\times X^rY:\quad X^RX^r,\ X^rX^r,\ X^RY,\ X^rY\ \Rightarrow\ P(X^RY)=\tfrac{1}{4}" />
+
+<Chart
+  title={<>Peluang Tiap Jenis Anak Pertama dari Putri Itu</>}
+  bars="apart"
+  categories={["Putra terkena", "Putra tidak terkena", "Putri terkena", "Putri tidak terkena"]}
+  series={[
+    { label: "Peluang", mark: "bar", values: [25, 25, 25, 25] },
+  ]}
+  valueLabel="Peluang (%)"
+  description={<>Tiap dari empat jenis anak berpeluang <InlineMath math="25\%" />, jadi putra yang terkena berpeluang satu dari empat.</>}
+/>
+
+Putri itu menurunkan <InlineMath math="X^R" /> ke separuh anaknya, dan separuh anaknya laki-laki, jadi putra yang terkena berpeluang <InlineMath math="\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\tfrac{1}{2}" /> adalah peluang **seorang putra** terkena, bukan peluang anak pertama adalah putra yang terkena.
+- <InlineMath math="0" /> menganggap putra tidak bisa terkena, mencampuradukkan aturan **ayah ke putri** dengan ibu, yang juga menurunkan X ke putra.
+- <InlineMath math="\tfrac{1}{8}" /> membagi dua lagi, seakan putri itu **hanya separuh kemungkinan terkena**, padahal setiap putri pria itu membawa <InlineMath math="X^R" />.

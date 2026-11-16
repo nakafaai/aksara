@@ -1,0 +1,33 @@
+# Count the ranks two animals share, from kingdom downwards
+
+Organisms that share **more ranks** of classification share a more recent common ancestor. The first part of a scientific name is the genus, so it counts as a shared rank too.
+
+| Pair | Shared ranks |
+| --- | --- |
+| Tiger and leopard | kingdom, class, order, family, genus |
+| Tiger and domestic cat | kingdom, class, order, family |
+| Dog and tiger, dog and cat | kingdom, class, order |
+
+<Chart
+  title={<>Ranks Shared With the Tiger</>}
+  bars="apart"
+  categories={["Leopard", "Domestic cat", "Dog"]}
+  series={[
+    { label: "Shared ranks", mark: "bar", values: [5, 4, 3] },
+  ]}
+  valueLabel="Ranks shared (kingdom down to genus)"
+  description={<>The leopard shares five ranks with the tiger, down to genus. The cat shares four, down to family. The dog shares three, down to order.</>}
+/>
+
+- I: the leopard and the tiger are both in the genus *Panthera*, and the cat shares only the family Felidae with each of them. It is equally related to both. Statement I is wrong.
+- II: the dog shares kingdom, class and order with both the tiger and the cat, and splits from both at the family, so it is equally related to each. Statement II is correct.
+- III: members of one species produce fertile offspring. Ligers are sterile, so lions and tigers are separate species, *Panthera leo* and *Panthera tigris*, in the same genus. Statement III is correct.
+- IV: lion and tiger chromosomes differ in their genes and structure, so in the liger's meiosis they cannot pair up as true homologues and gametes form badly. That is why ligers are sterile. Statement IV is correct.
+
+So statements II, III and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and III only accepts I, **treating the cat as closer to the leopard than to the tiger**, and rejects IV.
+- III and IV only rejects II, **although the dog splits from both cats at the same rank**.
+- I and II only accepts I and rejects III and IV, **the fertility test and the meiosis that explains it**.

@@ -1,0 +1,30 @@
+# Den Druck durch einen Kreislauf und durch zwei verfolgen
+
+Im **einfachen Kreislauf** durchläuft das Blut mit einem Schub des Herzens zwei Kapillarnetze, erst die Kiemen, dann den Körper. Im **doppelten Kreislauf** kehrt es nach der Lunge zum Herzen zurück und bekommt für den Körper einen zweiten, eigenen Schub.
+
+<Chart
+  title={<>Blutdruck auf dem Weg zu jedem Organ</>}
+  bars="apart"
+  categories={["Eintritt in Kiemen- oder Lungenkapillaren", "Eintritt in Körperarterien"]}
+  series={[
+    { label: "Fisch", mark: "bar", values: [30, 10] },
+    { label: "Säugetier", mark: "bar", values: [25, 120] },
+  ]}
+  valueLabel="Druck (mmHg)"
+  description={<>Beim Fisch tritt das Blut mit <InlineMath math="30" /> in die Kiemen und mit nur <InlineMath math="10" /> in den Körper ein. Beim Säugetier tritt es mit <InlineMath math="25" /> in die Lunge und mit <InlineMath math="120" /> in den Körper ein.</>}
+/>
+
+<BlockMath math="\text{Kiemen}: \frac{30-10}{30}=\frac{2}{3}\text{ verloren},\qquad \text{Körperarterien}: \frac{120}{10}=12" />
+
+- I: Der Druck fällt in den Kiemen von <InlineMath math="30" /> auf <InlineMath math="10\text{ mmHg}" />, ein Verlust von <InlineMath math="20" /> aus <InlineMath math="30" />, zwei Drittel. Aussage I stimmt.
+- II: Die Körperarterien des Fisches erhalten Blut mit <InlineMath math="10\text{ mmHg}" />, nach den Kiemen, nicht mit <InlineMath math="30" />. Beim Säugetier sind es <InlineMath math="120" />, das Verhältnis ist also <InlineMath math="12" />, nicht <InlineMath math="4" />. Aussage II ist falsch.
+- III: Lungenkapillaren haben sehr dünne Wände. Ein niedriger Druck von <InlineMath math="25\text{ mmHg}" /> treibt das Blut hindurch, ohne viel Flüssigkeit in die Alveolen zu pressen. Aussage III stimmt.
+- IV: Das Blut erreicht das Fischherz aus dem Körper, schon sauerstoffarm, und geht vom Herzen direkt zu den Kiemen. Das Herz enthält nie sauerstoffreiches Blut. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und IV vergleicht die <InlineMath math="120" /> des Säugetiers mit den <InlineMath math="30" /> des Fischherzens, **statt mit den <InlineMath math="10" />, die den Fischkörper erreichen**.
+- Nur III und IV verwirft I, **obwohl <InlineMath math="20" /> von <InlineMath math="30\text{ mmHg}" /> in den Kiemen verloren gehen**.
+- Nur I, II und III macht denselben Fehler in II und **verwirft das sauerstoffarme Blut im Fischherzen**.

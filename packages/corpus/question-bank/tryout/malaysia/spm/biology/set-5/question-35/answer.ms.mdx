@@ -1,0 +1,24 @@
+# Interpolasi mengikut faktor, bukan mengikut beza
+
+Antara penanda <InlineMath math="2000" /> dan <InlineMath math="1000" /> pasangan bes, gel meliputi <InlineMath math="9\text{ mm}" /> dan saiznya **berkurang separuh**. Serpihan X berada <InlineMath math="4.5\text{ mm}" /> melepasi penanda <InlineMath math="2000" />, iaitu separuh langkah itu, jadi saiznya telah dibahagi dengan **punca kuasa dua bagi <InlineMath math="2" />**, bukan dikurangkan sebanyak separuh daripada <InlineMath math="1000" />.
+
+<BlockMath math="\frac{35.5-31}{40-31}=\frac{4.5}{9}=\frac{1}{2}\text{ penyeparuhan},\qquad 2000\div2^{1/2}=\frac{2000}{1.41}\approx1400\text{ pasangan bes}" />
+
+<Chart
+  title={<>Saiz Serpihan Berbanding Jarak yang Dilalui</>}
+  categories={["10 mm", "19 mm", "31 mm", "35.5 mm", "40 mm", "49 mm"]}
+  series={[
+    { label: "Serpihan penanda", mark: "line", values: [10000, 5000, 2000, null, 1000, 500] },
+    { label: "Serpihan X", mark: "line", values: [null, null, null, 1414, null, null] },
+  ]}
+  valueLabel="Saiz (pasangan bes)"
+  description={<>Saiz penanda berkurang separuh bagi setiap <InlineMath math="9" /> mm yang dilalui selepas <InlineMath math="19" /> mm. Serpihan X, pada <InlineMath math="35.5" /> mm, berada di tengah-tengah antara penanda <InlineMath math="2000" /> dan <InlineMath math="1000" /> pasangan bes dan bersaiz kira-kira <InlineMath math="1400" /> pasangan bes.</>}
+/>
+
+Serpihan yang lebih kecil lebih mudah melalui liang gel dan bergerak lebih jauh, jadi serpihan di antara dua penanda bersaiz di antara saiz keduanya. Serpihan X bersaiz kira-kira <InlineMath math="1400" /> pasangan bes.
+
+# Kenapa pilihan lain salah
+
+- Kira-kira <InlineMath math="1500" /> pasangan bes mengambil **titik tengah antara 2000 dan <InlineMath math="1000" />**, menganggap saiz menurun sekata dengan jarak.
+- Kira-kira <InlineMath math="2800" /> pasangan bes mendarab <InlineMath math="2000" /> dengan <InlineMath math="1.41" />, seolah-olah serpihan yang bergerak **lebih jauh lebih besar**.
+- Kira-kira <InlineMath math="700" /> pasangan bes membahagi dua <InlineMath math="1400" /> sekali lagi, seolah-olah X bergerak **satu langkah penuh tambahan** sejauh <InlineMath math="9\text{ mm}" />.

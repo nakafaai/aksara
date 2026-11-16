@@ -1,0 +1,30 @@
+# Baca tiap baris ke arah yang benar
+
+Uji klinis membandingkan kelompok yang diobati dengan kelompok plasebo baris demi baris. Arahnya penting: jumlah hari yang **lebih besar** berarti pemulihan yang **lebih lambat**.
+
+<Chart
+  title={<>Hasil Uji Antibiotik untuk Radang Tenggorokan karena Virus</>}
+  bars="apart"
+  categories={["Efek samping (%)", "Bakteri tenggorokan resisten (%)"]}
+  series={[
+    { label: "Antibiotik", mark: "bar", values: [18, 40] },
+    { label: "Plasebo", mark: "bar", values: [6, 12] },
+  ]}
+  valueLabel="Pasien (%)"
+  description={<>Efek samping mencapai <InlineMath math="18\%" /> dengan antibiotik dan <InlineMath math="6\%" /> dengan plasebo. Bakteri tenggorokan yang resisten ditemukan pada <InlineMath math="40\%" /> dibanding <InlineMath math="12\%" />.</>}
+/>
+
+<BlockMath math="\text{pemulihan}: 6{,}1-6{,}0=+0{,}1\text{ hari},\qquad \text{efek samping}: 18\%-6\%=12\text{ dari tiap }100" />
+
+- I: kelompok antibiotik butuh <InlineMath math="6{,}1" /> hari dan kelompok plasebo <InlineMath math="6{,}0" />, jadi antibiotik sama sekali tidak mempercepat pemulihan. Ini wajar, karena antibiotik bekerja pada bakteri sedangkan infeksinya karena virus. Pernyataan I salah.
+- II: <InlineMath math="18" /> dari tiap <InlineMath math="100" /> pasien antibiotik mengalami efek samping dibanding <InlineMath math="6" /> pada plasebo, jadi sekitar <InlineMath math="12" /> dari tiap <InlineMath math="100" /> mengalami efek samping karena obat itu. Pernyataan II benar.
+- III: beberapa bakteri tenggorokan sudah resisten sejak awal. Antibiotik menyingkirkan bakteri peka di sekitarnya, jadi bakteri resisten berkembang biak, dari <InlineMath math="12\%" /> menjadi <InlineMath math="40\%" /> pasien. Pernyataan III benar.
+- IV: mutasi muncul secara acak, ada antibiotik atau tidak. Antibiotik hanya **menyeleksi** bakteri resisten yang sudah ada. Pernyataan IV salah.
+
+Jadi pernyataan II dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja membaca <InlineMath math="6{,}1" /> dibanding <InlineMath math="6{,}0" /> secara terbalik, **seakan lebih banyak hari berarti lebih cepat pulih**.
+- III dan IV saja menolak II dan membiarkan obat **menyebabkan mutasi yang diseleksinya**.
+- I dan II saja membuat kekeliruan di I dan **menolak seleksi yang menjelaskan kenaikan ke <InlineMath math="40\%" />**.

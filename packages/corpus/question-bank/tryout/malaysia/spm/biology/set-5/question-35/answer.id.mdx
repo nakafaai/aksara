@@ -1,0 +1,24 @@
+# Interpolasi dengan faktor, bukan dengan selisih
+
+Di antara penanda <InlineMath math="2000" /> dan <InlineMath math="1000" /> pasang basa, gel mencakup <InlineMath math="9\text{ mm}" /> dan ukurannya **menyusut separuh**. Fragmen X berada <InlineMath math="4{,}5\text{ mm}" /> melewati penanda <InlineMath math="2000" />, separuh langkah itu, jadi ukurannya sudah dibagi dengan **akar kuadrat dari <InlineMath math="2" />**, bukan dikurangi separuh dari <InlineMath math="1000" />.
+
+<BlockMath math="\frac{35{,}5-31}{40-31}=\frac{4{,}5}{9}=\frac{1}{2}\text{ penyusutan separuh},\qquad 2000\div2^{1/2}=\frac{2000}{1{,}41}\approx1400\text{ pasang basa}" />
+
+<Chart
+  title={<>Ukuran Fragmen terhadap Jarak Tempuh</>}
+  categories={["10 mm", "19 mm", "31 mm", "35,5 mm", "40 mm", "49 mm"]}
+  series={[
+    { label: "Fragmen penanda", mark: "line", values: [10000, 5000, 2000, null, 1000, 500] },
+    { label: "Fragmen X", mark: "line", values: [null, null, null, 1414, null, null] },
+  ]}
+  valueLabel="Ukuran (pasang basa)"
+  description={<>Ukuran penanda menyusut separuh untuk tiap <InlineMath math="9" /> mm setelah <InlineMath math="19" /> mm. Fragmen X, pada <InlineMath math="35{,}5" /> mm, berada di tengah antara penanda <InlineMath math="2000" /> dan <InlineMath math="1000" /> pasang basa dan berukuran sekitar <InlineMath math="1400" /> pasang basa.</>}
+/>
+
+Fragmen yang lebih kecil lebih mudah menyelinap lewat pori gel dan bergerak lebih jauh, jadi fragmen di antara dua penanda berukuran di antara keduanya. Fragmen X berukuran sekitar <InlineMath math="1400" /> pasang basa.
+
+# Mengapa pilihan lain salah
+
+- Sekitar <InlineMath math="1500" /> pasang basa mengambil **titik tengah 2000 dan <InlineMath math="1000" />**, menganggap ukuran turun merata terhadap jarak.
+- Sekitar <InlineMath math="2800" /> pasang basa mengalikan <InlineMath math="2000" /> dengan <InlineMath math="1{,}41" />, seakan fragmen yang bergerak **lebih jauh lebih besar**.
+- Sekitar <InlineMath math="700" /> pasang basa membagi dua <InlineMath math="1400" /> sekali lagi, seakan X bergerak **satu langkah penuh tambahan** sejauh <InlineMath math="9\text{ mm}" />.

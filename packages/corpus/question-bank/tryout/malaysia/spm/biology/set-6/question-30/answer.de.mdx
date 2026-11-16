@@ -1,0 +1,29 @@
+# Halbierungen des Lichts zählen und dann, wie viele bis <InlineMath math="1\%" /> nötig sind
+
+Jede Wasserschicht schluckt **denselben Anteil** des ankommenden Lichts, das Licht halbiert sich also über gleich große Tiefenschritte. <InlineMath math="1\,\%" /> zu erreichen heißt, das Licht durch <InlineMath math="100" /> zu teilen, wofür etwa <InlineMath math="6{,}64" /> Halbierungen nötig sind.
+
+<BlockMath math="6\text{ m}=3\text{ Halbierungen}: \left(\tfrac{1}{2}\right)^3=12{,}5\,\%,\qquad 6{,}64\cdot2\approx13\text{ m},\qquad 6{,}64\cdot1\approx6{,}6\text{ m}" />
+
+<Chart
+  title={<>Licht in jeder Tiefe</>}
+  categories={["0 m", "2 m", "4 m", "6 m", "8 m", "10 m", "12 m", "14 m"]}
+  series={[
+    { label: "Klares Wasser", mark: "line", values: [100, 50, 25, 12.5, 6.25, 3.1, 1.6, 0.8] },
+    { label: "Trübes Wasser", mark: "line", values: [100, 25, 6.25, 1.6, 0.4, 0.1, null, null] },
+  ]}
+  valueLabel="Licht (% der Oberfläche)"
+  description={<>In klarem Wasser halbiert sich das Licht alle <InlineMath math="2" /> m und fällt knapp unterhalb von <InlineMath math="13" /> m unter <InlineMath math="1\,\%" />. In trübem Wasser halbiert es sich jeden Meter und erreicht <InlineMath math="1\,\%" /> bei etwa <InlineMath math="6{,}6" /> m.</>}
+/>
+
+- I: <InlineMath math="6\text{ m}" /> sind drei Halbierungen zu <InlineMath math="2\text{ m}" />, es bleibt <InlineMath math="\tfrac{1}{8}" />, also <InlineMath math="12{,}5\,\%" />. Aussage I stimmt.
+- II: Das Teilen durch <InlineMath math="100" /> braucht <InlineMath math="6{,}64" /> Halbierungen, bei <InlineMath math="2\text{ m}" /> je Halbierung sind das etwa <InlineMath math="13\text{ m}" />. Aussage II stimmt.
+- III: Dauert jede Halbierung nur <InlineMath math="1\text{ m}" />, sind dieselben <InlineMath math="6{,}64" /> Halbierungen schon bei etwa <InlineMath math="6{,}6\text{ m}" /> erreicht, der halben Tiefe. Aussage III stimmt.
+- IV: Die ersten <InlineMath math="2\text{ m}" /> nehmen <InlineMath math="50" /> Prozentpunkte Licht weg, der Schritt von <InlineMath math="12" /> auf <InlineMath math="14\text{ m}" /> weniger als <InlineMath math="1" />. Das Licht fällt um denselben **Anteil**, nicht um denselben Betrag. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III, **obwohl der halbe Schritt die Tiefe halbiert**.
+- Nur II und IV verwirft I und **lässt das Licht um gleiche Beträge fallen**.
+- Nur I, III und IV akzeptiert IV und verwirft II und **übersieht die <InlineMath math="6{,}64" /> Halbierungen bis <InlineMath math="1\%" />**.

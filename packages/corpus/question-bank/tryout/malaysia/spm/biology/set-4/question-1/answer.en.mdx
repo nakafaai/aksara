@@ -1,0 +1,30 @@
+# Divide out the light each filter lets through before comparing colours
+
+The colour is the manipulated variable, but the filters also change **how much light** reaches the plant. Until that second difference is removed, the raw counts compare two things at once.
+
+<BlockMath math="\text{red}: \tfrac{30}{40}\times10=7.5,\qquad \text{blue}: \tfrac{26}{20}\times10=13,\qquad \text{green}: \tfrac{8}{30}\times10\approx2.7\ \text{bubbles per minute for each }10\%" />
+
+<Chart
+  title={<>Bubbles From Elodea Behind Each Filter</>}
+  bars="apart"
+  categories={["Red", "Blue", "Green"]}
+  series={[
+    { label: "Bubbles per minute", mark: "bar", values: [30, 26, 8] },
+    { label: "Bubbles per minute for each 10% of light passed", mark: "bar", values: [7.5, 13, 2.7] },
+  ]}
+  valueLabel="Count"
+  description={<>Raw counts are <InlineMath math="30" /> for red, <InlineMath math="26" /> for blue and <InlineMath math="8" /> for green. Divided by the light each filter passes, they become <InlineMath math="7.5" />, <InlineMath math="13" /> and about <InlineMath math="2.7" /> bubbles per minute for each <InlineMath math="10\%" /> of light, so blue is used best.</>}
+/>
+
+- I: red gives the most bubbles only because its filter passes twice as much light as the blue one. Per unit of light, red is beaten by blue. Statement I is wrong.
+- II: blue gives <InlineMath math="13" /> bubbles per minute for each <InlineMath math="10\%" /> of light, the highest value. Statement II is correct.
+- III: green gives only about <InlineMath math="2.7" />, the lowest. Chlorophyll absorbs little green light and reflects much of it, which is why leaves look green. Statement III is correct.
+- IV: light intensity changed with the filter, so it should have been a **fixed variable**, for example by moving the lamp until the meter reads the same. Statement IV is correct.
+
+So statements II, III and IV are correct.
+
+# Why the other options are wrong
+
+- I, III and IV only trusts the raw counts for red, **although the red filter passes twice the light of the blue one**.
+- II and IV only rejects III, **but green does give the fewest bubbles per unit of light**.
+- I and III only reads the raw counts and misses the **uncontrolled light intensity**.

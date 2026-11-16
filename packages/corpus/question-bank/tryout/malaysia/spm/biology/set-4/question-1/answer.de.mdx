@@ -1,0 +1,30 @@
+# Erst das durchgelassene Licht herausrechnen, dann die Farben vergleichen
+
+Die Farbe ist die unabhängige Variable, doch die Filter ändern auch, **wie viel Licht** die Pflanze erreicht. Solange dieser zweite Unterschied nicht entfernt ist, vergleichen die rohen Zählungen zwei Dinge zugleich.
+
+<BlockMath math="\text{Rot}: \tfrac{30}{40}\cdot10=7{,}5,\qquad \text{Blau}: \tfrac{26}{20}\cdot10=13,\qquad \text{Grün}: \tfrac{8}{30}\cdot10\approx2{,}7\ \text{Bläschen pro Minute je }10\,\%" />
+
+<Chart
+  title={<>Bläschen der Wasserpest hinter jedem Filter</>}
+  bars="apart"
+  categories={["Rot", "Blau", "Grün"]}
+  series={[
+    { label: "Bläschen pro Minute", mark: "bar", values: [30, 26, 8] },
+    { label: "Bläschen pro Minute je 10 % durchgelassenes Licht", mark: "bar", values: [7.5, 13, 2.7] },
+  ]}
+  valueLabel="Anzahl"
+  description={<>Die rohen Zählungen sind <InlineMath math="30" /> für Rot, <InlineMath math="26" /> für Blau und <InlineMath math="8" /> für Grün. Geteilt durch das Licht, das jeder Filter durchlässt, werden daraus <InlineMath math="7{,}5" />, <InlineMath math="13" /> und etwa <InlineMath math="2{,}7" /> Bläschen pro Minute je <InlineMath math="10\,\%" /> Licht, Blau wird also am besten genutzt.</>}
+/>
+
+- I: Rot liefert die meisten Bläschen nur, weil sein Filter doppelt so viel Licht durchlässt wie der blaue. Pro Lichteinheit liegt Rot hinter Blau. Aussage I ist falsch.
+- II: Blau liefert <InlineMath math="13" /> Bläschen pro Minute je <InlineMath math="10\,\%" /> Licht, den höchsten Wert. Aussage II stimmt.
+- III: Grün liefert nur etwa <InlineMath math="2{,}7" />, den niedrigsten Wert. Chlorophyll absorbiert wenig grünes Licht und reflektiert viel davon, deshalb sehen Blätter grün aus. Aussage III stimmt.
+- IV: Die Lichtstärke änderte sich mit dem Filter, sie hätte also eine **Kontrollvariable** sein müssen, etwa indem man die Lampe verschiebt, bis das Messgerät dasselbe anzeigt. Aussage IV stimmt.
+
+Richtig sind also die Aussagen II, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, III und IV vertraut den rohen Zählungen für Rot, **obwohl der rote Filter doppelt so viel Licht durchlässt wie der blaue**.
+- Nur II und IV verwirft III, **doch Grün liefert pro Lichteinheit tatsächlich die wenigsten Bläschen**.
+- Nur I und III liest die rohen Zählungen und übersieht die **nicht kontrollierte Lichtstärke**.

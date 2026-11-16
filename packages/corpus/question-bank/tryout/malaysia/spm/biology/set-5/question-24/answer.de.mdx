@@ -1,0 +1,32 @@
+# Den Fluss mit der vierten Potenz skalieren, nicht mit der Fläche
+
+Die Fläche wächst mit dem **Quadrat** des Durchmessers, der Fluss aber mit der **vierten Potenz**, weil Wasser an der Wand durch Reibung gebremst wird und ein weites Gefäß in seiner Mitte mehr schnell fließendes Wasser hat.
+
+<BlockMath math="\frac{80}{20}=4:\quad \text{Fläche}\cdot4^2=16,\qquad \text{Fluss}\cdot4^4=256" />
+
+<BlockMath math="\frac{40}{20}=2:\quad \text{Fluss}\cdot2^4=16" />
+
+<Chart
+  title={<>Fläche und Fluss eines Gefäßes, relativ zu einem Gefäß von zwanzig Mikrometern</>}
+  bars="apart"
+  categories={["Zwanzig Mikrometer", "Vierzig Mikrometer", "Achtzig Mikrometer"]}
+  series={[
+    { label: "Querschnittsfläche", mark: "bar", values: [1, 4, 16] },
+    { label: "Wasserfluss", mark: "bar", values: [1, 16, 256] },
+  ]}
+  valueLabel="Vielfaches des engsten Gefäßes"
+  description={<>Doppelte Weite vervierfacht die Fläche, versechzehnfacht aber den Fluss. Das weiteste Gefäß hat die <InlineMath math="16" />-fache Fläche und den <InlineMath math="256" />-fachen Fluss des engsten.</>}
+/>
+
+- I: Das <InlineMath math="80\text{ µm}" />-Gefäß hat die <InlineMath math="16" />-fache Fläche, aber den <InlineMath math="256" />-fachen Fluss, es entspricht also <InlineMath math="256" /> engen Gefäßen, nicht <InlineMath math="16" />. Aussage I ist falsch.
+- II: Ein blockiertes <InlineMath math="80\text{ µm}" />-Gefäß verliert <InlineMath math="256" /> Flusseinheiten, so viel wie <InlineMath math="256" /> blockierte <InlineMath math="20\text{ µm}" />-Gefäße. Weite Gefäße tragen das meiste Wasser, jede Luftblase darin kostet also viel. Aussage II stimmt.
+- III: Wasser im Xylem wird unter Zug nach oben gezogen. Ringe und Spiralen aus Lignin halten die Wände auseinander, wie Reifen einen Schlauch offen halten. Aussage III stimmt.
+- IV: Doppelte Weite multipliziert den Fluss mit <InlineMath math="2^4=16" />, nicht mit <InlineMath math="2" />. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III akzeptiert I und **skaliert den Fluss mit der Fläche**, was <InlineMath math="16" /> statt <InlineMath math="256" /> ergibt.
+- Nur III und IV verwirft II und verdoppelt den Fluss bei **doppelter Weite**.
+- Nur I und II akzeptiert I und verwirft III, **das Lignin, das Gefäße unter Zug offen hält**.

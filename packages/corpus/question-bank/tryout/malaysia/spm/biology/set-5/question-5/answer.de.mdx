@@ -1,0 +1,30 @@
+# Beobachten, was mit der Wirkung jedes Hemmstoffs bei viel Substrat geschieht
+
+Ein Hemmstoff, der sich **das aktive Zentrum** mit dem Substrat teilt, verliert an Boden, wenn viel Substrat da ist, denn die Substratmoleküle gewinnen die meisten Begegnungen. Ein Hemmstoff, der **anderswo** bindet, verändert die Form des Enzyms, und zusätzliches Substrat kann das nicht rückgängig machen.
+
+<Chart
+  title={<>Reaktionsrate mit und ohne Hemmstoffe</>}
+  categories={["1 mM", "2 mM", "5 mM", "10 mM", "20 mM", "40 mM"]}
+  series={[
+    { label: "Ohne Hemmstoff", mark: "line", values: [20, 33, 56, 71, 83, 91] },
+    { label: "Hemmstoff X", mark: "line", values: [10, 18, 36, 53, 71, 83] },
+    { label: "Hemmstoff Y", mark: "line", values: [10, 17, 28, 36, 42, 45] },
+  ]}
+  valueLabel="Rate (relativ)"
+  description={<>Ohne Hemmstoff steigt die Rate auf <InlineMath math="91" />. Mit X steigt sie auf <InlineMath math="83" /> und nähert sich mit mehr Substrat der ungehemmten Rate. Mit Y flacht sie bei etwa <InlineMath math="45" /> ab, rund der Hälfte des Maximums.</>}
+/>
+
+<BlockMath math="\text{X bei }1\text{ mM}: \frac{10}{20}=50\,\%\text{ des Normalwerts},\qquad \text{X bei }40\text{ mM}: \frac{83}{91}\approx91\,\%,\ \text{ein Abfall um etwa }9\,\%" />
+
+- I: Bei <InlineMath math="1\text{ mM}" /> halbiert X die Rate, bei <InlineMath math="40\text{ mM}" /> senkt es sie nur um etwa <InlineMath math="9\,\%" />. Seine Wirkung schwindet mit steigendem Substrat, wie bei einem **kompetitiven** Hemmstoff. Aussage I stimmt.
+- II: Y flacht bei etwa <InlineMath math="45" /> ab, rund der Hälfte von <InlineMath math="91" />, und selbst <InlineMath math="40\text{ mM}" /> Substrat heben die Rate nicht. Aussage II stimmt.
+- III: <InlineMath math="91-83=8" />, und <InlineMath math="\tfrac{8}{91}\approx9\,\%" />. Aussage III stimmt.
+- IV: Säße Y im aktiven Zentrum, würde zusätzliches Substrat es verdrängen wie bei X. Die Wirkung von Y bleibt, Y bindet also anderswo und verändert die Form des Enzyms. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III, meist weil <InlineMath math="8" /> durch <InlineMath math="83" /> statt durch die **ungehemmte Rate** geteilt wird.
+- Nur II und III verwirft I und übersieht, dass die Wirkung von X **von der Hälfte auf ein Zehntel schrumpft**.
+- Nur I, II und IV setzt Y ins aktive Zentrum, **obwohl Substrat es nicht verdrängen kann**.
