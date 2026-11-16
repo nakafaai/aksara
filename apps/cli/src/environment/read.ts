@@ -197,11 +197,11 @@ export const readRecoveryEnvironment = Effect.fn(
     releaseSurface === "none"
       ? { surface: "none" }
       : {
-          surface: "deployed",
-          token: yield* readConfig(
-            tokenConfig("NAKAFA_DEPLOY_TOKEN"),
-            "NAKAFA_DEPLOY_TOKEN"
+          output: yield* readConfig(
+            Config.NonEmptyString("NAKAFA_DEPLOY_OUTPUT"),
+            "NAKAFA_DEPLOY_OUTPUT"
           ),
+          surface: "deployed",
         };
   return {
     ...publication,

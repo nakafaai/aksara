@@ -233,13 +233,13 @@ describe("production environment", () => {
     })
   );
 
-  it.effect("requires the deploy token only for a deployed surface", () =>
+  it.effect("requires the deploy output only for a deployed surface", () =>
     Effect.gen(function* () {
       const { productionValues } = yield* makeEnvironmentFixture;
-      const withoutToken = MutableHashMap.fromIterable(productionValues);
-      MutableHashMap.remove(withoutToken, "NAKAFA_DEPLOY_TOKEN");
+      const withoutOutput = MutableHashMap.fromIterable(productionValues);
+      MutableHashMap.remove(withoutOutput, "NAKAFA_DEPLOY_OUTPUT");
       const none = MutableHashMap.set(
-        MutableHashMap.fromIterable(withoutToken),
+        MutableHashMap.fromIterable(withoutOutput),
         "NAKAFA_DEPLOY_SURFACE",
         "none"
       );
@@ -252,9 +252,9 @@ describe("production environment", () => {
       );
       expect(environment.releaseDispatch).toEqual({ surface: "none" });
 
-      expect(yield* rejectProduction(withoutToken)).toMatchObject({
+      expect(yield* rejectProduction(withoutOutput)).toMatchObject({
         _tag: "ProductionEnvironmentError",
-        variable: "NAKAFA_DEPLOY_TOKEN",
+        variable: "NAKAFA_DEPLOY_OUTPUT",
       });
 
       const unknown = MutableHashMap.set(

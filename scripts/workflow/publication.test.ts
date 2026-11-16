@@ -122,9 +122,14 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
     "Release and recovery must deploy Nakafa only from production",
   ],
   [
-    `NAKAFA_DEPLOY_TOKEN: ${expression("steps.nakafa-deploy.outputs.token")}`,
-    `NAKAFA_DEPLOY_TOKEN: ${expression("secrets.NAKAFA_DEPLOY_TOKEN")}`,
-    "Release and recovery must read the deploy app's installation token",
+    'export NAKAFA_DEPLOY_OUTPUT="$GITHUB_OUTPUT"\n          bun run release',
+    "bun run release",
+    "Release and recovery must ask for Nakafa's deploy through their step output",
+  ],
+  [
+    `GH_TOKEN: ${expression("steps.nakafa-deploy.outputs.token")}`,
+    `GH_TOKEN: ${expression("secrets.NAKAFA_DEPLOY_TOKEN")}`,
+    "Nakafa's deploy must use the token minted after the release",
   ],
 ];
 

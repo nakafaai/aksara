@@ -1,31 +1,36 @@
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import { PublicationActivationError } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, type Redacted, Schedule, Schema, Stream } from "effect";
-import type { HttpClient } from "effect/http";
-import { ReleaseDispatchError } from "#cli/dispatch/error";
-import { dispatchNakafaDeploy } from "#cli/dispatch/exchange";
-
-const RETRY_COUNT = 3;
-const RETRY_DELAY = "100 millis";
-const REQUEST_TIMEOUT = "30 seconds";
+import { Effect, type FileSystem, Schema, Stream } from "effect";
 
 /**
  * Selects whether one publication target deploys Nakafa. Only a production target
  * runs Nakafa's deploy workflow, because that workflow ships the production site.
- * A development or acceptance target dispatches nothing.
+ * A development or acceptance target asks for nothing.
  */
 export const ReleaseSurfaceSchema = Schema.Literals(["deployed", "none"]);
 
-/** The dispatch that one target runs: nothing, or a production dispatch with its token. */
+/**
+ * What one target does after its release activates: nothing, or record a deploy
+ * request in the step-output file the release workflow gives the command.
+ */
 export const ReleaseDispatchSchema = Schema.Union([
   Schema.Struct({ surface: Schema.Literal("none") }),
   Schema.Struct({
+    output: Schema.NonEmptyString,
     surface: Schema.Literal("deployed"),
-    token: Schema.Redacted(Schema.String),
   }),
 ]);
 export type ReleaseDispatch = typeof ReleaseDispatchSchema.Type;
+
+/**
+ * The step output that asks the release workflow for Nakafa's production deploy.
+ * The workflow mints the deploy app's token in the step after the command and
+ * dispatches with it at once: an installation token lasts one hour, and a
+ * release's staging and proof can outlast it, so a token minted before the
+ * command expired before the dispatch (release catalog-20261116g).
+ */
+const DEPLOY_REQUEST = "deploy=true\n";
 
 /** One post-commit convergence request for the activated release. */
 interface ReleaseDispatchInput<E, R> {
@@ -34,7 +39,7 @@ interface ReleaseDispatchInput<E, R> {
   readonly release: SignedContentRelease;
 }
 
-/** Drains the release transitions of a target that deploys no site, and dispatches nothing. */
+/** Drains the release transitions of a target that deploys no site, and asks for nothing. */
 export function makeAbsentReleaseDispatch() {
   return Effect.fn("AksaraCli.dispatchAbsentRelease")(function* <E, R>(
     input: ReleaseDispatchInput<E, R>
@@ -44,15 +49,14 @@ export function makeAbsentReleaseDispatch() {
 }
 
 /**
- * Creates the bounded post-commit dispatch of one activated release. A release
- * that changes no content dispatches nothing, and any other release dispatches
- * once, with the retry policy and the timeout of this operation. A dispatch that
- * still fails logs GitHub's status and reason before the activation error,
- * which names only the phase.
+ * Creates the post-commit deploy request of one activated release. A release that
+ * changes no content asks for nothing, and any other release appends one deploy
+ * request to the workflow's step-output file, which the next workflow step reads.
+ * A request that cannot be written fails the activation's cache phase.
  */
 export function makeProductionReleaseDispatch(settings: {
-  readonly client: HttpClient.HttpClient;
-  readonly token: Redacted.Redacted<string>;
+  readonly fileSystem: FileSystem.FileSystem;
+  readonly output: string;
 }) {
   return Effect.fn("AksaraCli.dispatchProductionRelease")(function* <E, R>(
     input: ReleaseDispatchInput<E, R>
@@ -61,38 +65,16 @@ export function makeProductionReleaseDispatch(settings: {
     if (changes === 0) {
       return;
     }
-    const {
-      manifest: { releaseId },
-    } = input.release;
-    yield* dispatchNakafaDeploy(settings.client, settings.token).pipe(
-      Effect.retry({
-        schedule: Schedule.exponential(RETRY_DELAY),
-        times: RETRY_COUNT,
-        while: (error) => error.retryable,
-      }),
-      Effect.timeoutOrElse({
-        duration: REQUEST_TIMEOUT,
-        orElse: () =>
-          Effect.fail(
-            new ReleaseDispatchError({
-              detail: null,
-              retryable: false,
-              status: null,
+    yield* settings.fileSystem
+      .writeFileString(settings.output, DEPLOY_REQUEST, { flag: "a" })
+      .pipe(
+        Effect.mapError(
+          () =>
+            new PublicationActivationError({
+              phase: "cache",
+              releaseId: input.release.manifest.releaseId,
             })
-          ),
-      }),
-      Effect.tapError((error) =>
-        Effect.logError("Nakafa deploy dispatch failed.").pipe(
-          Effect.annotateLogs({
-            detail: error.detail,
-            retryable: error.retryable,
-            status: error.status,
-          })
         )
-      ),
-      Effect.mapError(
-        () => new PublicationActivationError({ phase: "cache", releaseId })
-      )
-    );
+      );
   });
 }

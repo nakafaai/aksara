@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, type Redacted } from "effect";
@@ -138,7 +139,8 @@ const recoveryId = ReleaseIdSchema.make("recovery-active");
 function recoveryProgram() {
   const client = captureClient(() => Effect.die("Unexpected HTTP request."));
   return runRecoverCommand({ command: "recover", recoveryId, releaseId }).pipe(
-    Effect.provideService(HttpClient.HttpClient, client.client)
+    Effect.provideService(HttpClient.HttpClient, client.client),
+    Effect.provide(NodeServices.layer)
   );
 }
 

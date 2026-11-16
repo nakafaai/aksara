@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -49,15 +50,16 @@ vi.mock("#cli/production/renderer", async (importOriginal) => {
 const makeActivation = makeProductionActivation({
   endpoint: new URL("https://www.example.test/api/internal/content/renderer"),
   releaseDispatch: {
+    output: "/tmp/aksara-step-output",
     surface: "deployed",
-    token: Redacted.make("dispatch-token"),
   },
   token: Redacted.make("renderer-token"),
 }).pipe(
   Effect.provideService(
     HttpClient.HttpClient,
     captureClient(() => Effect.die("Unexpected dispatch request.")).client
-  )
+  ),
+  Effect.provide(NodeServices.layer)
 );
 
 /** Creates one activation for a target that deploys no site. */
@@ -69,7 +71,8 @@ const makeAbsentActivation = makeProductionActivation({
   Effect.provideService(
     HttpClient.HttpClient,
     captureClient(() => Effect.die("Unexpected dispatch request.")).client
-  )
+  ),
+  Effect.provide(NodeServices.layer)
 );
 
 /** Creates one compatible additive live renderer for the frozen bundle. */
