@@ -120,7 +120,7 @@ export const LANGUAGE_VOICE_RULES = [
     id: "indonesian-causative-modal",
     patterns: {
       id: /\bmembuat\b(?=[^,;:.!?\n]{0,100}\b(?:dapat|bisa)\b)(?![^,;:.!?\n]{0,100}\b(?:dan|tetapi|lalu|yang)\b)[^,;:.!?\n]{0,100}\b(?:dapat|bisa)\b/iu,
-      ms: /\b(?:membuat|menjadikan)\b(?=[^,;:.!?\n]{0,100}\bboleh\b)(?![^,;:.!?\n]{0,100}\b(?:dan|tetapi|lalu|yang)\b)[^,;:.!?\n]{0,100}\bboleh\b/iu,
+      ms: /\b(?:membuat|menjadikan)\b(?=[^,;:.!?\n]{0,100}\bboleh\b)(?![^,;:.!?\n]{0,100}\b(?:dan|tetapi|lalu|yang)\b)[^,;:.!?\n]{0,100}(?<!\btidak )\bboleh\b/iu,
     },
     protectInlineQuotations: true,
   },
