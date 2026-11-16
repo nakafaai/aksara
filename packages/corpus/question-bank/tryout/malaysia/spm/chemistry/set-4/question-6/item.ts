@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "x = 0.56, and the solid turns from blue to white",
+          label:
+            "$$x = 4$$, and the solid at $$130^\\circ\\text{C}$$ is anhydrous copper(II) sulfate",
         },
         {
           correct: true,
-          label: "x = 5, and the solid turns from blue to white",
+          label:
+            "$$x = 5$$, and the solid at $$130^\\circ\\text{C}$$ is $$\\text{CuSO}_4 \\cdot \\text{H}_2\\text{O}$$",
         },
         {
           correct: false,
-          label: "x = 5, and the solid turns from white to blue",
+          label:
+            "$$x = 5$$, and the solid at $$130^\\circ\\text{C}$$ is $$\\text{CuSO}_4 \\cdot 3\\text{H}_2\\text{O}$$",
         },
         {
           correct: false,
-          label: "x = 10, and the solid turns from blue to white",
+          label:
+            "$$x = 0.56$$, and the solid at $$130^\\circ\\text{C}$$ is $$\\text{CuSO}_4 \\cdot \\text{H}_2\\text{O}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "x = 0.56, dan pepejal bertukar daripada biru kepada putih",
+          label:
+            "$$x = 4$$, dan pepejal pada $$130^\\circ\\text{C}$$ ialah kuprum(II) sulfat kontang",
         },
         {
           correct: true,
-          label: "x = 5, dan pepejal bertukar daripada biru kepada putih",
+          label:
+            "$$x = 5$$, dan pepejal pada $$130^\\circ\\text{C}$$ ialah $$\\text{CuSO}_4 \\cdot \\text{H}_2\\text{O}$$",
         },
         {
           correct: false,
-          label: "x = 5, dan pepejal bertukar daripada putih kepada biru",
+          label:
+            "$$x = 5$$, dan pepejal pada $$130^\\circ\\text{C}$$ ialah $$\\text{CuSO}_4 \\cdot 3\\text{H}_2\\text{O}$$",
         },
         {
           correct: false,
-          label: "x = 10, dan pepejal bertukar daripada biru kepada putih",
+          label:
+            "$$x = 0.56$$, dan pepejal pada $$130^\\circ\\text{C}$$ ialah $$\\text{CuSO}_4 \\cdot \\text{H}_2\\text{O}$$",
         },
       ],
     },
