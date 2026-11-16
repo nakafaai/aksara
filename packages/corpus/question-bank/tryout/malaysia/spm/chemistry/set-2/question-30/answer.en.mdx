@@ -1,26 +1,31 @@
-# The alcohol names the first part, the acid the second
+# Find the limiting reactant, then apply the yield
 
-An ester is named **alkyl from the alcohol, then -oate from the acid**. Ethanol gives "ethyl" and propanoic acid gives "propanoate".
+The acid and the alcohol react one to one, so the ester can form only from the smaller number of moles. **Propanoic acid runs out first**, which caps the ester at <InlineMath math="0.075\text{ mol}" /> before the yield cuts it down further.
 
-<InlineMath math="\text{C}_2\text{H}_5\text{OH} + \text{C}_2\text{H}_5\text{COOH} \rightarrow \text{C}_2\text{H}_5\text{COOC}_2\text{H}_5 + \text{H}_2\text{O}" />
+The chart compares the moles of each reactant with the ester at a full yield and at <InlineMath math="80\%" />.
 
 <Chart
-  title={<>Mass of Ester Expected and Obtained</>}
+  title={<>Moles of reactants and ester</>}
+  description={<>Ethanol is <InlineMath math="0.100\text{ mol}" /> and propanoic acid <InlineMath math="0.075\text{ mol}" />. The ester matches the acid at a full yield, <InlineMath math="0.075\text{ mol}" />, and drops to <InlineMath math="0.060\text{ mol}" /> at <InlineMath math="80\%" />.</>}
   bars="apart"
-  categories={["Expected at 100%", "Obtained at 80%"]}
+  categories={["Ethanol", "Propanoic acid", "Ester, full yield", "Ester, 80% yield"]}
   series={[
-    { label: "Mass", mark: "bar", values: [10.2, 8.16] },
+    { label: "Amount", mark: "bar", values: [4.6 / 46, 5.55 / 74, 5.55 / 74, (5.55 / 74) * 0.8] },
   ]}
-  valueLabel="Mass (g)"
-  description={<>The complete reaction would give <InlineMath math="10.2\text{ g}" /> of ester, and <InlineMath math="80\%" /> of it is <InlineMath math="8.16\text{ g}" />.</>}
+  valueLabel="Amount (mol)"
 />
 
-- Moles of ethanol, <InlineMath math="M_r = 46" />: <InlineMath math="\dfrac{4.6}{46} = 0.10\text{ mol}" />. The acid is in excess, so ethanol limits the product.
-- Ethyl propanoate, <InlineMath math="\text{C}_5\text{H}_{10}\text{O}_2" />, has <InlineMath math="M_r = 102" />. At <InlineMath math="100\%" />: <InlineMath math="0.10 \times 102 = 10.2\text{ g}" />.
-- At <InlineMath math="80\%" />: <InlineMath math="10.2 \times 0.80 = 8.16\text{ g}" />.
+<BlockMath math="\begin{aligned}
+n(\text{C}_2\text{H}_5\text{OH})&=\frac{4.6}{46}=0.100\text{ mol}\\
+n(\text{C}_2\text{H}_5\text{COOH})&=\frac{5.55}{74}=0.075\text{ mol}\\
+\text{C}_2\text{H}_5\text{COOH}+\text{C}_2\text{H}_5\text{OH}&\rightarrow\text{C}_2\text{H}_5\text{COOC}_2\text{H}_5+\text{H}_2\text{O}\\
+m(\text{ester})&=0.075\times0.80\times102=6.12\text{ g}
+\end{aligned}" />
+
+The ester takes its first word from the alcohol, ethyl, and its ending from the acid, propanoate. So you get <InlineMath math="6.12\text{ g}" /> of ethyl propanoate.
 
 # Why the other options are wrong
 
-- Propyl ethanoate **reverses the two parts of the name**: it would come from propanol and ethanoic acid.
-- <InlineMath math="10.2\text{ g}" /> is the mass at <InlineMath math="100\%" />, before the yield is applied.
-- <InlineMath math="7.04\text{ g}" /> uses the <InlineMath math="M_r" /> of ethyl ethanoate, <InlineMath math="88" />, the ester of the wrong acid.
+- Propyl ethanoate swaps the two parts of the name. **The alcohol gives the first word and the acid gives the ending**.
+- <InlineMath math="8.16\text{ g}" /> works from the ethanol, <InlineMath math="0.100\text{ mol}" />, but only <InlineMath math="0.075\text{ mol}" /> of acid is there to react with it.
+- <InlineMath math="7.65\text{ g}" /> is the mass at a full yield and leaves out the <InlineMath math="80\%" />.

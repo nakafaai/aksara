@@ -1,18 +1,18 @@
-# Wasserstoff sättigt die Doppelbindung ab
+# Jedes Ethen nimmt ein Wasserstoff auf und wird zu einem Ethan
 
-Ethen, <InlineMath math="\text{C}_2\text{H}_4" />, wird zu Ethan, <InlineMath math="\text{C}_2\text{H}_6" />, indem es zwei Wasserstoffatome aufnimmt. Diese **Hydrierung** braucht Wasserstoff, einen Nickelkatalysator und etwa <InlineMath math="180^\circ\text{C}" />.
+Ethan reagiert nicht. Ethen lagert Wasserstoff an, also werden aus zwei Gasvolumen eines. **Jeder Kubikzentimeter Ethen verkleinert das Gesamtvolumen um einen Kubikzentimeter**, daher ist die Abnahme gleich dem Ethen.
 
-<InlineMath math="\text{C}_2\text{H}_4 + \text{H}_2 \xrightarrow{\text{Ni},\ 180^\circ\text{C}} \text{C}_2\text{H}_6" />
+<BlockMath math="\begin{aligned}
+\text{C}_2\text{H}_4+\text{H}_2&\rightarrow\text{C}_2\text{H}_6\\
+\text{Abnahme}&=(30+40)-50=20\text{ cm}^3\\
+V(\text{C}_2\text{H}_4)&=20\text{ cm}^3
+\end{aligned}" />
 
-<Mermaid
-  title={<>Was sich an die Doppelbindung von Ethen addiert</>}
-  description={<>Jedes Reagenz addiert sich an die Doppelbindung zwischen den Kohlenstoffatomen. Nur Wasserstoff mit Nickelkatalysator liefert Ethan.</>}
-  chart={"flowchart LR\n  E[Ethen, C2H4] -->|H2, Nickel, 180 °C| A[Ethan, C2H6]\n  E -->|Wasserdampf, H3PO4, 300 °C, 60 atm| B[Ethanol]\n  E -->|Bromwasser| C[1,2-Dibromethan]\n  E -->|angesäuertes KMnO4| D[Ethan-1,2-diol]"}
-/>
+Dreh die beiden Moleküle: Ethan ist Ethen mit geöffneter Doppelbindung und je einem zusätzlichen Wasserstoffatom an jedem Kohlenstoff.
 
 <MoleculeShapeLab
-  title={<>Ethen vorher und Ethan nachher</>}
-  description={<>Vergleiche das flache Ethen mit dem entstehenden Ethan: Zwei Wasserstoffatome kommen hinzu, und aus der Doppelbindung wird eine Einfachbindung.</>}
+  title={<>Aus Ethen wird Ethan</>}
+  description={<>Ethen hat eine Doppelbindung zwischen seinen zwei Kohlenstoffatomen. Nach der Anlagerung von Wasserstoff hat Ethan nur Einfachbindungen.</>}
   molecules={[
     { id: "ethene", name: "Ethen" },
     { id: "ethane", name: "Ethan" },
@@ -21,15 +21,29 @@ Ethen, <InlineMath math="\text{C}_2\text{H}_4" />, wird zu Ethan, <InlineMath ma
     atoms: <>Atome</>,
     choose: "Molekül wählen",
     fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
+    formula: <>Formel</>,
     mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
+    shape: <>Bindungswinkel</>,
+    view: "Ethen und Ethan",
   }}
 />
 
+<Chart
+  title={<>Gasvolumen vorher und nachher</>}
+  description={<>Vorher: <InlineMath math="20\text{ cm}^3" /> Ethen, <InlineMath math="10\text{ cm}^3" /> Ethan und <InlineMath math="40\text{ cm}^3" /> Wasserstoff. Nachher: kein Ethen, <InlineMath math="30\text{ cm}^3" /> Ethan und <InlineMath math="20\text{ cm}^3" /> Wasserstoff, zusammen <InlineMath math="50\text{ cm}^3" />.</>}
+  bars="apart"
+  categories={["Ethen", "Ethan", "Wasserstoff"]}
+  series={[
+    { label: "Vorher", mark: "bar", values: [20, 10, 40] },
+    { label: "Nachher", mark: "bar", values: [0, 30, 20] },
+  ]}
+  valueLabel="Volumen (cm³)"
+/>
+
+Probe: Übrig sind <InlineMath math="30\text{ cm}^3" /> Ethan und <InlineMath math="20\text{ cm}^3" /> Wasserstoff, zusammen <InlineMath math="50\text{ cm}^3" />, wie gemessen.
+
 # Warum die anderen Antworten falsch sind
 
-- Wasserdampf mit Phosphorsäure addiert Wasser und liefert **Ethanol**, nicht Ethan.
-- Bromwasser addiert Brom und liefert 1,2-Dibromethan, den Nachweis einer Doppelbindung.
-- Angesäuertes Kaliumpermanganat oxidiert Ethen zu Ethan-1,2-diol.
+- <InlineMath math="10\text{ cm}^3" /> teilt die Abnahme von <InlineMath math="20\text{ cm}^3" /> zwischen Ethen und Wasserstoff auf, doch je ein Volumen von beiden wird zu einem Volumen Ethan, also entspricht der Verlust dem Ethen allein.
+- <InlineMath math="30\text{ cm}^3" /> hält das ganze Gemisch für Ethen. Dann würden <InlineMath math="30\text{ cm}^3" /> Wasserstoff reagieren und nur <InlineMath math="40\text{ cm}^3" /> Gas übrig bleiben.
+- <InlineMath math="40\text{ cm}^3" /> nimmt an, dass der ganze Wasserstoff verbraucht wird. **Wasserstoff ist hier im Überschuss**, und <InlineMath math="20\text{ cm}^3" /> davon bleiben übrig.

@@ -1,35 +1,49 @@
-# Adding hydrogen saturates the double bond
+# Each ethene takes one hydrogen and leaves one ethane
 
-Ethene, <InlineMath math="\text{C}_2\text{H}_4" />, becomes ethane, <InlineMath math="\text{C}_2\text{H}_6" />, by gaining two hydrogen atoms. This **hydrogenation** needs hydrogen, a nickel catalyst and a temperature of about <InlineMath math="180^\circ\text{C}" />.
+Ethane does not react. Ethene adds hydrogen, so two volumes of gas become one. **Every cubic centimetre of ethene shrinks the total by one cubic centimetre**, which makes the decrease equal to the ethene.
 
-<InlineMath math="\text{C}_2\text{H}_4 + \text{H}_2 \xrightarrow{\text{Ni},\ 180^\circ\text{C}} \text{C}_2\text{H}_6" />
+<BlockMath math="\begin{aligned}
+\text{C}_2\text{H}_4+\text{H}_2&\rightarrow\text{C}_2\text{H}_6\\
+\text{decrease}&=(30+40)-50=20\text{ cm}^3\\
+V(\text{C}_2\text{H}_4)&=20\text{ cm}^3
+\end{aligned}" />
 
-<Mermaid
-  title={<>What Adds Across the Double Bond of Ethene</>}
-  description={<>Each reagent adds across the carbon to carbon double bond. Only hydrogen with a nickel catalyst gives ethane.</>}
-  chart={"flowchart LR\n  E[Ethene, C2H4] -->|H2, nickel, 180 °C| A[Ethane, C2H6]\n  E -->|steam, H3PO4, 300 °C, 60 atm| B[Ethanol]\n  E -->|bromine water| C[1,2-dibromoethane]\n  E -->|acidified KMnO4| D[Ethane-1,2-diol]"}
-/>
+Turn the two molecules: ethane is ethene with its double bond opened and one hydrogen atom added to each carbon.
 
 <MoleculeShapeLab
-  title={<>Ethene Before and Ethane After</>}
-  description={<>Compare the flat ethene with the ethane formed: two hydrogen atoms add and the double bond becomes a single bond.</>}
+  title={<>Ethene becomes ethane</>}
+  description={<>Ethene has a double bond between its two carbon atoms. After it adds hydrogen, ethane has only single bonds.</>}
   molecules={[
-    { id: "ethene", name: "Ethene" },
-    { id: "ethane", name: "Ethane" },
+    { id: "ethene", name: "ethene" },
+    { id: "ethane", name: "ethane" },
   ]}
   labels={{
     atoms: <>Atoms</>,
     choose: "Choose a molecule",
     fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
+    formula: <>Formula</>,
     mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    shape: <>Bond angle</>,
+    view: "Ethene and ethane",
   }}
 />
 
+<Chart
+  title={<>Gas volumes before and after</>}
+  description={<>Before: <InlineMath math="20\text{ cm}^3" /> ethene, <InlineMath math="10\text{ cm}^3" /> ethane and <InlineMath math="40\text{ cm}^3" /> hydrogen. After: no ethene, <InlineMath math="30\text{ cm}^3" /> ethane and <InlineMath math="20\text{ cm}^3" /> hydrogen, <InlineMath math="50\text{ cm}^3" /> in all.</>}
+  bars="apart"
+  categories={["Ethene", "Ethane", "Hydrogen"]}
+  series={[
+    { label: "Before", mark: "bar", values: [20, 10, 40] },
+    { label: "After", mark: "bar", values: [0, 30, 20] },
+  ]}
+  valueLabel="Volume (cm³)"
+/>
+
+Check it: <InlineMath math="30\text{ cm}^3" /> of ethane and <InlineMath math="20\text{ cm}^3" /> of hydrogen are left, <InlineMath math="50\text{ cm}^3" /> in all, as measured.
+
 # Why the other options are wrong
 
-- Steam with phosphoric acid adds water and gives **ethanol**, not ethane.
-- Bromine water adds bromine and gives 1,2-dibromoethane, the test for a double bond.
-- Acidified potassium manganate(VII) oxidises ethene to ethane-1,2-diol.
+- <InlineMath math="10\text{ cm}^3" /> splits the <InlineMath math="20\text{ cm}^3" /> decrease between ethene and hydrogen, but one volume of each becomes one volume of ethane, so the loss equals the ethene alone.
+- <InlineMath math="30\text{ cm}^3" /> treats the whole mixture as ethene. Then <InlineMath math="30\text{ cm}^3" /> of hydrogen would react and only <InlineMath math="40\text{ cm}^3" /> of gas would remain.
+- <InlineMath math="40\text{ cm}^3" /> assumes all the hydrogen is used up. **Hydrogen is in excess here**, and <InlineMath math="20\text{ cm}^3" /> of it is left over.

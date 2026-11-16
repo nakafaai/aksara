@@ -1,26 +1,29 @@
-# Gunakan haba yang diterima air, kemudian bahagikan dengan mol yang terbakar
+# Bandingkan haba yang diberi bahan api dengan haba yang diterima air
 
-Haba pembakaran ialah haba yang dibebaskan apabila **<InlineMath math="1" /> mol bahan api** terbakar dengan lengkap. Eksperimen hanya dapat mengukur haba yang sampai kepada air.
+Nilai buku data memberitahu berapa banyak haba yang dibebaskan oleh propan-1-ol yang terbakar. Kenaikan suhu memberitahu berapa banyak daripadanya yang benar-benar diserap oleh air. **Peratusnya ialah haba diserap per haba dibebaskan**, jadi nombor yang lebih kecil di atas.
+
+<BlockMath math="\begin{aligned}
+n(\text{C}_3\text{H}_7\text{OH})&=\frac{0.90}{60}=0.015\text{ mol}\\
+\text{haba dibebaskan}&=0.015\times2016=30.24\text{ kJ}\\
+\text{haba diserap}&=250\times4.2\times24.0=25\,200\text{ J}=25.2\text{ kJ}\\
+\text{peratus}&=\frac{25.2}{30.24}\times100\%=83.3\%
+\end{aligned}" />
 
 <Chart
-  title={<>Haba Pembakaran yang Diukur dan dalam Buku Data</>}
+  title={<>Haba dibebaskan dan haba diserap</>}
+  description={<>Pembakaran <InlineMath math="0.015\text{ mol}" /> propan-1-ol membebaskan <InlineMath math="30.24\text{ kJ}" />, dan air menyerap <InlineMath math="25.2\text{ kJ}" />. Bakinya memanaskan bekas dan udara.</>}
   bars="apart"
-  categories={["Eksperimen ini", "Buku data"]}
+  categories={["Dibebaskan oleh bahan api", "Diserap oleh air"]}
   series={[
-    { label: "Haba dibebaskan", mark: "bar", values: [1008, 1370] },
+    { label: "Haba", mark: "bar", values: [30.24, 25.2] },
   ]}
-  valueLabel="Haba pembakaran (kJ mol⁻¹)"
-  description={<>Eksperimen memberi <InlineMath math="1008\text{ kJ mol}^{-1}" />, jauh di bawah nilai buku data <InlineMath math="1370\text{ kJ mol}^{-1}" />.</>}
+  valueLabel="Haba (kJ)"
 />
 
-- Haba diterima air: <InlineMath math="200 \times 4.2 \times 12.0 = 10080\text{ J}" />.
-- Mol etanol, <InlineMath math="M_r = 46" />: <InlineMath math="\dfrac{0.46}{46} = 0.010\text{ mol}" />.
-- <InlineMath math="\Delta H = -\dfrac{10080}{0.010} = -1008000\text{ J mol}^{-1} = -1008\text{ kJ mol}^{-1}" />.
-
-Jawapannya lebih kecil daripada nilai buku data kerana haba terbebas ke udara dan bekas, dan sebahagian etanol terbakar dengan tidak lengkap.
+Jadi <InlineMath math="83.3\%" /> haba sampai kepada air, dan bakinya hilang kepada bekas dan udara sekeliling.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="-1370\text{ kJ mol}^{-1}" /> ialah nilai buku data, **bukan yang diukur oleh eksperimen ini**.
-- <InlineMath math="-504\text{ kJ mol}^{-1}" /> membahagi dengan <InlineMath math="0.020" /> mol, menggandakan mol etanol.
-- <InlineMath math="-10.1\text{ kJ mol}^{-1}" /> ialah haba dalam kJ sebelum dibahagikan dengan mol etanol.
+- <InlineMath math="63.9\%" /> menggunakan <InlineMath math="46" />, jisim molar etanol. Propan-1-ol ialah <InlineMath math="\text{C}_3\text{H}_7\text{OH}" />, jadi jisim molarnya <InlineMath math="60" />.
+- <InlineMath math="120\%" /> membahagikan haba dibebaskan dengan haba diserap. **Haba yang sampai kepada air tidak boleh melebihi semua haba, jadi peratusnya mesti di bawah <InlineMath math="100\%" />**.
+- <InlineMath math="1.25\%" /> membandingkan <InlineMath math="25.2\text{ kJ}" /> air dengan haba bagi satu mol penuh, <InlineMath math="2016\text{ kJ}" />, bukannya <InlineMath math="0.015\text{ mol}" /> yang terbakar.

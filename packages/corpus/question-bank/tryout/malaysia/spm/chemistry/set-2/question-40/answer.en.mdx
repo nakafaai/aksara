@@ -1,26 +1,28 @@
-# Atom economy compares the wanted product with everything made
+# Yield and atom economy measure two different losses
 
-Atom economy is <InlineMath math="\dfrac{\text{mass of desired product}}{\text{total mass of reactants}} \times 100\%" />. **Every atom that ends up in a by-product lowers it**.
+The yield tells you how much of the possible ethanol the batch really made, so it decides how much glucose you need. The atom economy comes from the equation alone. **Even at a perfect yield, the carbon dioxide carries off part of every glucose molecule**.
+
+<BlockMath math="\begin{aligned}
+n(\text{C}_2\text{H}_5\text{OH})&=\frac{46\,000}{46}=1000\text{ mol}\ \Rightarrow\ n(\text{C}_6\text{H}_{12}\text{O}_6)=500\text{ mol}\\
+m(\text{glucose})&=\frac{500\times180}{0.80}=112\,500\text{ g}=112.5\text{ kg}\\
+\text{atom economy}&=\frac{2(46)}{180}\times100\%=\frac{92}{180}\times100\%=51.1\%
+\end{aligned}" />
 
 <Chart
-  title={<>Atom Economy of Two Routes to Ethanol</>}
+  title={<>Where the mass of one mole of glucose goes</>}
+  description={<>One mole of glucose, <InlineMath math="180\text{ g}" />, becomes <InlineMath math="92\text{ g}" /> of ethanol and <InlineMath math="88\text{ g}" /> of carbon dioxide. Only the ethanol is the desired product.</>}
   bars="apart"
-  categories={["Hydration of ethene", "Fermentation of glucose"]}
+  categories={["Glucose", "Ethanol", "Carbon dioxide"]}
   series={[
-    { label: "Atom economy", mark: "bar", values: [100, 51.1] },
+    { label: "Mass", mark: "bar", values: [180, 92, 88] },
   ]}
-  valueLabel="Atom economy (%)"
-  description={<>Hydration of ethene turns every atom into ethanol, <InlineMath math="100\%" />. Fermentation of glucose turns <InlineMath math="51.1\%" /> of the mass into ethanol and the rest into carbon dioxide.</>}
+  valueLabel="Mass from one mole of glucose (g)"
 />
 
-- Mass of reactant: one glucose, <InlineMath math="M_r = 6(12) + 12(1) + 6(16) = 180" />.
-- Mass of desired product: two ethanol, <InlineMath math="2 \times 46 = 92" />.
-- Atom economy: <InlineMath math="\dfrac{92}{180} \times 100\% = 51.1\%" />.
-
-The other <InlineMath math="48.9\%" /> leaves as carbon dioxide. Hydration of ethene, <InlineMath math="\text{C}_2\text{H}_4 + \text{H}_2\text{O} \rightarrow \text{C}_2\text{H}_5\text{OH}" />, has no by-product, so its atom economy is <InlineMath math="100\%" />.
+So the batch uses <InlineMath math="112.5\text{ kg}" /> of glucose, and the atom economy is <InlineMath math="51.1\%" />, whatever the yield.
 
 # Why the other options are wrong
 
-- <InlineMath math="100\%" /> belongs to hydration, **not fermentation, which also makes carbon dioxide**.
-- <InlineMath math="25.6\%" /> counts only one ethanol molecule, <InlineMath math="\dfrac{46}{180}" />.
-- <InlineMath math="48.9\%" /> is the share that becomes carbon dioxide, the waste.
+- <InlineMath math="90\text{ kg}" /> is the glucose for a full yield. At <InlineMath math="80\%" /> the factory needs more, <InlineMath math="90\div0.80" />.
+- <InlineMath math="225\text{ kg}" /> uses one glucose per ethanol and misses the <InlineMath math="2" /> in front of <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />. One glucose gives two ethanol molecules.
+- <InlineMath math="100\%" /> counts the carbon dioxide as a desired product. **Only the ethanol counts**, so almost half the mass is lost by design.

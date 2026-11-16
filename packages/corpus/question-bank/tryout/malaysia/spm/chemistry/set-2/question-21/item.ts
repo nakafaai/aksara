@@ -10,19 +10,47 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Q is the most electropositive of the four metals" },
-        { correct: true, label: "In a cell made of P and R, P is the negative terminal and the voltage is about $$1.6\\text{ V}$$" },
-        { correct: false, label: "S can displace R from a solution of its salt" },
-        { correct: false, label: "Copper is more electropositive than Q" },
+        {
+          correct: false,
+          label: "P and S, $$2.24\\text{ V}$$, with P as the negative terminal",
+        },
+        {
+          correct: true,
+          label: "P and S, $$3.16\\text{ V}$$, with P as the negative terminal",
+        },
+        {
+          correct: false,
+          label: "P and S, $$3.16\\text{ V}$$, with S as the negative terminal",
+        },
+        {
+          correct: false,
+          label: "P and Q, $$2.30\\text{ V}$$, with P as the negative terminal",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Q ialah logam paling elektropositif antara keempat-empatnya" },
-        { correct: true, label: "Dalam sel yang terdiri daripada P dan R, P ialah terminal negatif dan voltannya kira-kira $$1.6\\text{ V}$$" },
-        { correct: false, label: "S boleh menyesarkan R daripada larutan garamnya" },
-        { correct: false, label: "Kuprum lebih elektropositif daripada Q" },
+        {
+          correct: false,
+          label:
+            "P dan S, $$2.24\\text{ V}$$, dengan P sebagai terminal negatif",
+        },
+        {
+          correct: true,
+          label:
+            "P dan S, $$3.16\\text{ V}$$, dengan P sebagai terminal negatif",
+        },
+        {
+          correct: false,
+          label:
+            "P dan S, $$3.16\\text{ V}$$, dengan S sebagai terminal negatif",
+        },
+        {
+          correct: false,
+          label:
+            "P dan Q, $$2.30\\text{ V}$$, dengan P sebagai terminal negatif",
+        },
       ],
     },
   },

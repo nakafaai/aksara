@@ -12,8 +12,8 @@ const item: ItemSource = {
       options: [
         { correct: true, label: "$$3$$" },
         { correct: false, label: "$$2$$" },
-        { correct: false, label: "$$4$$" },
         { correct: false, label: "$$5$$" },
+        { correct: false, label: "$$4$$" },
       ],
     },
     ms: {
@@ -21,8 +21,8 @@ const item: ItemSource = {
       options: [
         { correct: true, label: "$$3$$" },
         { correct: false, label: "$$2$$" },
-        { correct: false, label: "$$4$$" },
         { correct: false, label: "$$5$$" },
+        { correct: false, label: "$$4$$" },
       ],
     },
   },

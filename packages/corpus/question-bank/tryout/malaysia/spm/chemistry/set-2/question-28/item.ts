@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "X: ethene. Y: ethanoic acid" },
-        { correct: false, label: "X: carbon dioxide. Y: ethane" },
-        { correct: false, label: "X: ethyl ethanoate. Y: ethene" },
-        { correct: true, label: "X: ethanoic acid. Y: ethene" },
+        { correct: false, label: "1-bromopropane, $$65.0\\%$$" },
+        { correct: false, label: "1,3-dibromopropane, $$79.2\\%$$" },
+        { correct: false, label: "1,2-dibromopropane, $$39.6\\%$$" },
+        { correct: true, label: "1,2-dibromopropane, $$79.2\\%$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "X: etena. Y: asid etanoik" },
-        { correct: false, label: "X: karbon dioksida. Y: etana" },
-        { correct: false, label: "X: etil etanoat. Y: etena" },
-        { correct: true, label: "X: asid etanoik. Y: etena" },
+        { correct: false, label: "1-bromopropana, $$65.0\\%$$" },
+        { correct: false, label: "1,3-dibromopropana, $$79.2\\%$$" },
+        { correct: false, label: "1,2-dibromopropana, $$39.6\\%$$" },
+        { correct: true, label: "1,2-dibromopropana, $$79.2\\%$$" },
       ],
     },
   },

@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Steam, phosphoric acid catalyst, $$300^\\circ\\text{C}$$ and $$60\\text{ atm}$$" },
-        { correct: false, label: "Bromine water at room temperature" },
-        { correct: false, label: "Acidified potassium manganate(VII) solution" },
-        { correct: true, label: "Hydrogen gas, nickel catalyst and $$180^\\circ\\text{C}$$" },
+        { correct: false, label: "$$10\\text{ cm}^3$$" },
+        { correct: false, label: "$$30\\text{ cm}^3$$" },
+        { correct: false, label: "$$40\\text{ cm}^3$$" },
+        { correct: true, label: "$$20\\text{ cm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Stim, mangkin asid fosforik, $$300^\\circ\\text{C}$$ dan $$60\\text{ atm}$$" },
-        { correct: false, label: "Air bromin pada suhu bilik" },
-        { correct: false, label: "Larutan kalium manganat(VII) berasid" },
-        { correct: true, label: "Gas hidrogen, mangkin nikel dan $$180^\\circ\\text{C}$$" },
+        { correct: false, label: "$$10\\text{ cm}^3$$" },
+        { correct: false, label: "$$30\\text{ cm}^3$$" },
+        { correct: false, label: "$$40\\text{ cm}^3$$" },
+        { correct: true, label: "$$20\\text{ cm}^3$$" },
       ],
     },
   },

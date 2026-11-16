@@ -1,23 +1,34 @@
-# Vernetzungen wirken wie Federn zwischen den Ketten
+# Eine Brücke, zwei Schwefelatome, zwei verknüpfte Einheiten
 
-In Naturkautschuk **gleiten die langen Polymerketten aneinander vorbei**, wenn man ihn dehnt, und bleiben in der neuen Lage. Die Vulkanisation verbindet die Ketten mit Schwefel.
+Mach aus dem Schwefel zuerst Brücken und zähl dann die Einheiten, die die Brücken berühren. **Jede Brücke braucht zwei Schwefelatome, verknüpft aber zwei Einheiten**, eine an jeder Kette, also ist die Zahl der verknüpften Einheiten gleich der Zahl der Schwefelatome.
 
-<Chart
-  title={<>Länge von Gummistreifen mit und nach einer Last</>}
-  bars="apart"
-  categories={["Naturkautschuk", "Vulkanisierter Gummi"]}
-  series={[
-    { label: "Mit Last", mark: "bar", values: [18.5, 13.2] },
-    { label: "Nach Abnehmen der Last", mark: "bar", values: [12.4, 10.1] },
-  ]}
-  valueLabel="Länge (cm)"
-  description={<>Beide Streifen beginnen bei <InlineMath math="10{,}0\text{ cm}" />. Mit Last dehnt sich Naturkautschuk auf <InlineMath math="18{,}5\text{ cm}" /> und vulkanisierter Gummi auf <InlineMath math="13{,}2\text{ cm}" />. Nach dem Abnehmen bleibt Naturkautschuk bei <InlineMath math="12{,}4\text{ cm}" />, vulkanisierter Gummi geht auf <InlineMath math="10{,}1\text{ cm}" /> zurück.</>}
+<Mermaid
+  title={<>Eine Schwefelbrücke zwischen zwei Ketten</>}
+  description={<>Zwei Schwefelatome verbinden eine Einheit der oberen Kette mit einer Einheit der unteren Kette. Eine Brücke verknüpft zwei Einheiten.</>}
+  chart={"flowchart LR\n  A1[\"Isopreneinheit\"] --- A2[\"verknüpfte Einheit\"] --- A3[\"Isopreneinheit\"]\n  B1[\"Isopreneinheit\"] --- B2[\"verknüpfte Einheit\"] --- B3[\"Isopreneinheit\"]\n  A2 --- S1((S)) --- S2((S)) --- B2"}
 />
 
-Naturkautschuk ist nach dem Abnehmen der Last noch <InlineMath math="2{,}4\text{ cm}" /> länger, vulkanisierter Gummi liegt wieder innerhalb von <InlineMath math="0{,}1\text{ cm}" />. Im vulkanisierten Gummi bilden Schwefelatome Brücken zwischen benachbarten Ketten. Diese verhindern das Abgleiten und ziehen die Ketten zurück, sobald die Last weg ist, also ist der Gummi elastischer und dehnt sich weniger.
+<BlockMath math="\begin{aligned}
+n(\text{C}_5\text{H}_8)&=\frac{68}{68}=1{,}0\text{ mol},\quad n(\text{S})=\frac{3{,}2}{32}=0{,}10\text{ mol}\\
+n(\text{Vernetzungen})&=\frac{0{,}10}{2}=0{,}050\text{ mol}\\
+n(\text{vernetzte Einheiten})&=2\times0{,}050=0{,}10\text{ mol}\ \Rightarrow\ \frac{0{,}10}{1{,}0}\times100\%=10\%
+\end{aligned}" />
+
+<Chart
+  title={<>Stoffmengen im vulkanisierten Kautschuk</>}
+  description={<>Der Kautschuk enthält <InlineMath math="1{,}0\text{ mol}" /> Isopreneinheiten. Die <InlineMath math="0{,}10\text{ mol}" /> Schwefelatome bilden <InlineMath math="0{,}050\text{ mol}" /> Brücken, die <InlineMath math="0{,}10\text{ mol}" /> Einheiten verknüpfen.</>}
+  bars="apart"
+  categories={["Isopreneinheiten", "Schwefelatome", "Vernetzungen", "Verknüpfte Einheiten"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [1.0, 0.10, 0.050, 0.10] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
+/>
+
+Also tragen <InlineMath math="10\%" /> der Einheiten eine Vernetzung. Die Brücken halten die Ketten an ihrem Platz, deshalb zieht sich der gedehnte Gummi in seine Form zurück und ist härter und fester als Naturkautschuk.
 
 # Warum die anderen Antworten falsch sind
 
-- Schwefel verbraucht einige Doppelbindungen für die Brücken, aber **der Gummi bleibt biegsam, nicht starr**.
-- Die Vulkanisation verbindet Ketten. Sie zerbricht sie nicht.
-- Die Brücken verbrauchen Doppelbindungen, vulkanisierter Gummi hat also weniger, nicht mehr.
+- <InlineMath math="5\%" /> zählt eine Einheit pro Brücke und vergisst, dass jede Brücke zwei Enden hat, eines an jeder Kette.
+- <InlineMath math="20\%" /> behandelt jedes Schwefelatom als Brücke mit zwei Enden. **Eine Brücke braucht ein Paar Schwefelatome**, also gibt es nur halb so viele.
+- Die Vernetzung macht den Gummi härter, nicht weicher, und die meisten Doppelbindungen sind noch da. Der Prozentwert stimmt, aber die Wirkung ist verdreht.

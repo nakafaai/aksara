@@ -10,19 +10,22 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$125\\,000$$" },
-        { correct: false, label: "$$62\\,500$$" },
-        { correct: false, label: "$$250\\,000$$" },
-        { correct: false, label: "$$89\\,000$$" },
+        { correct: true, label: "$$999$$ water molecules, $$M_r=113\\,018$$" },
+        {
+          correct: false,
+          label: "$$1000$$ water molecules, $$M_r=113\\,000$$",
+        },
+        { correct: false, label: "$$500$$ water molecules, $$M_r=122\\,000$$" },
+        { correct: false, label: "$$999$$ water molecules, $$M_r=131\\,000$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$125\\,000$$" },
-        { correct: false, label: "$$62\\,500$$" },
-        { correct: false, label: "$$250\\,000$$" },
-        { correct: false, label: "$$89\\,000$$" },
+        { correct: true, label: "$$999$$ molekul air, $$M_r=113\\,018$$" },
+        { correct: false, label: "$$1000$$ molekul air, $$M_r=113\\,000$$" },
+        { correct: false, label: "$$500$$ molekul air, $$M_r=122\\,000$$" },
+        { correct: false, label: "$$999$$ molekul air, $$M_r=131\\,000$$" },
       ],
     },
   },

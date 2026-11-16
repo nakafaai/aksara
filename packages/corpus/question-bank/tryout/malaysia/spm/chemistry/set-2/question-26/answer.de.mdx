@@ -1,11 +1,16 @@
-# Eine Kupferanode löst sich so schnell auf, wie die Kathode wächst
+# Dieselben Elektronen, zwei verschiedene Anoden
 
-Mit Kupferelektroden ist die Anode nicht inert: **Kupferatome an der Anode geben Elektronen ab und gehen in Lösung**, während an der Kathode Kupfer(II)-Ionen entladen werden.
+In Reihe fließen durch beide Zellen dieselben <InlineMath math="0{,}10\text{ mol}" /> Elektronen. Die Kathoden verhalten sich gleich, die Anoden nicht: Eine Kupferanode geht in Lösung und ersetzt jedes Kupfer(II)-Ion, das verloren geht, während **eine Kohleanode nur Hydroxidionen entlädt**.
+
+Lass beide Zellen im Labor laufen und vergleich die beiden Lösungen.
 
 <ElectrolysisLab
-  title={<>Kupferelektroden in Kupfer(II)-sulfat</>}
-  description={<>Zwei Kupferelektroden in Kupfer(II)-sulfat-Lösung, an eine Batterie angeschlossen.</>}
-  cells={[{ electrode: "copper", electrolyte: "copper-sulfate" }]}
+  title={<>Beide Zellen nach <InlineMath math="0{,}10\text{ mol}" /> Elektronen</>}
+  description={<>In P löst sich die Kupferanode so schnell auf, wie sich Kupfer abscheidet, also bleibt die Lösung blau. In Q scheidet sich Kupfer ab, während Sauerstoff entsteht, also gehen die Kupfer(II)-Ionen aus.</>}
+  cells={[
+    { electrode: "copper", electrolyte: "copper-sulfate" },
+    { electrode: "carbon", electrolyte: "copper-sulfate" },
+  ]}
   electrons={0.1}
   showProducts
   labels={{
@@ -14,21 +19,23 @@ Mit Kupferelektroden ist die Anode nicht inert: **Kupferatome an der Anode geben
     atCathode: <>An der Kathode</>,
     battery: "Batterie",
     cathode: "Kathode",
-    cells: [<>Kupfer(II)-sulfat-Lösung, Kupferelektroden</>],
+    cells: [<>Zelle P: Kupferelektroden</>, <>Zelle Q: Kohleelektroden</>],
     electrons: <>Geflossene Elektronen</>,
     ph: <>pH-Wert des Elektrolyten</>,
     trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
-    view: "Elektrolysezelle mit Kupferelektroden in Kupfer(II)-sulfat-Lösung",
+    view: "Zwei Elektrolysezellen mit Kupfer(II)-sulfat in Reihe",
   }}
 />
 
-- Anode: <InlineMath math="\text{Cu} \rightarrow \text{Cu}^{2+} + 2e^-" />, die Anode wird dünner.
-- Kathode: <InlineMath math="\text{Cu}^{2+} + 2e^- \rightarrow \text{Cu}" />. <InlineMath math="0{,}10" /> mol Elektronen scheiden <InlineMath math="0{,}05" /> mol Cu ab: <InlineMath math="0{,}05 \times 64 = 3{,}2\text{ g}" />.
+<BlockMath math="\begin{aligned}
+n(\text{Cu})&=\frac{0{,}10}{2}=0{,}050\text{ mol}\Rightarrow m=0{,}050\times64=3{,}2\text{ g}\\
+n(\text{Cu}^{2+})\text{ in Q}&=0{,}50\times\frac{100}{1000}=0{,}050\text{ mol}
+\end{aligned}" />
 
-Jedes Kupfer(II)-Ion, das an der Kathode verschwindet, wird von der Anode ersetzt, also bleiben die Konzentration und die blaue Farbe gleich.
+Die <InlineMath math="0{,}050\text{ mol}" /> Kupfer, die sich in Q abscheiden, sind alle Kupfer(II)-Ionen der Lösung, und nichts ersetzt sie, also verschwindet das Blau. Die Anode von P verliert also <InlineMath math="3{,}2\text{ g}" />, und die Lösung in Q wird farblos, während an ihrer Anode Sauerstoff entsteht.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="6{,}4\text{ g}" /> rechnet ein Kupferatom pro Elektron. Das verblassende Blau gehört zu **Kohleelektroden, bei denen nichts die Kupfer(II)-Ionen ersetzt**.
-- Mit Kohleelektroden nimmt die Kathode zwar <InlineMath math="3{,}2\text{ g}" /> zu und die Farbe verblasst, hier füllt aber die Kupferanode die Lösung wieder auf.
-- Die Anode löst sich auf und verliert Masse. Nur die Kathode nimmt zu.
+- Das verblassende Blau in P vertauscht die Zellen: In P hält die Kupferanode die Menge der Kupfer(II)-Ionen gleich.
+- <InlineMath math="6{,}4\text{ g}" /> nimmt die <InlineMath math="0{,}10\text{ mol}" /> Elektronen als Stoffmenge Kupfer. **Jedes Kupfer(II)-Ion braucht zwei Elektronen**.
+- Q bleibt blau behandelt die Kohleanode wie die Kupferanode, obwohl in Q nichts die Kupfer(II)-Ionen ersetzt, die die Lösung verlassen.

@@ -1,26 +1,29 @@
-# Use the heat the water gained, then divide by the moles burnt
+# Compare the heat the fuel gives with the heat the water gets
 
-The heat of combustion is the heat released when **<InlineMath math="1" /> mol of fuel** burns completely. The experiment can only measure the heat that reached the water.
+The data book value tells you how much heat the burnt propan-1-ol released. The temperature rise tells you how much of it the water actually took in. **The percentage is the heat absorbed over the heat released**, so the smaller number goes on top.
+
+<BlockMath math="\begin{aligned}
+n(\text{C}_3\text{H}_7\text{OH})&=\frac{0.90}{60}=0.015\text{ mol}\\
+\text{heat released}&=0.015\times2016=30.24\text{ kJ}\\
+\text{heat absorbed}&=250\times4.2\times24.0=25\,200\text{ J}=25.2\text{ kJ}\\
+\text{percentage}&=\frac{25.2}{30.24}\times100\%=83.3\%
+\end{aligned}" />
 
 <Chart
-  title={<>Measured and Data Book Heat of Combustion</>}
+  title={<>Heat released and heat absorbed</>}
+  description={<>Burning <InlineMath math="0.015\text{ mol}" /> of propan-1-ol releases <InlineMath math="30.24\text{ kJ}" />, and the water absorbs <InlineMath math="25.2\text{ kJ}" />. The rest warms the can and the air.</>}
   bars="apart"
-  categories={["This experiment", "Data book"]}
+  categories={["Released by the fuel", "Absorbed by the water"]}
   series={[
-    { label: "Heat released", mark: "bar", values: [1008, 1370] },
+    { label: "Heat", mark: "bar", values: [30.24, 25.2] },
   ]}
-  valueLabel="Heat of combustion (kJ mol⁻¹)"
-  description={<>The experiment gives <InlineMath math="1008\text{ kJ mol}^{-1}" />, well below the data book value of <InlineMath math="1370\text{ kJ mol}^{-1}" />.</>}
+  valueLabel="Heat (kJ)"
 />
 
-- Heat gained by water: <InlineMath math="200 \times 4.2 \times 12.0 = 10080\text{ J}" />.
-- Moles of ethanol, <InlineMath math="M_r = 46" />: <InlineMath math="\dfrac{0.46}{46} = 0.010\text{ mol}" />.
-- <InlineMath math="\Delta H = -\dfrac{10080}{0.010} = -1008000\text{ J mol}^{-1} = -1008\text{ kJ mol}^{-1}" />.
-
-The answer is smaller than the data book value because heat escapes to the air and the can, and some ethanol burns incompletely.
+So <InlineMath math="83.3\%" /> of the heat reaches the water, and the rest is lost to the can and the surrounding air.
 
 # Why the other options are wrong
 
-- <InlineMath math="-1370\text{ kJ mol}^{-1}" /> is the data book value, **not what this experiment measures**.
-- <InlineMath math="-504\text{ kJ mol}^{-1}" /> divides by <InlineMath math="0.020" /> mol, doubling the moles of ethanol.
-- <InlineMath math="-10.1\text{ kJ mol}^{-1}" /> is the heat in kJ before dividing by the moles of ethanol.
+- <InlineMath math="63.9\%" /> uses <InlineMath math="46" />, the molar mass of ethanol. Propan-1-ol is <InlineMath math="\text{C}_3\text{H}_7\text{OH}" />, so its molar mass is <InlineMath math="60" />.
+- <InlineMath math="120\%" /> divides the heat released by the heat absorbed. **No more than all of the heat can reach the water, so the percentage must be under <InlineMath math="100\%" />**.
+- <InlineMath math="1.25\%" /> compares the water's <InlineMath math="25.2\text{ kJ}" /> with the heat of a whole mole, <InlineMath math="2016\text{ kJ}" />, instead of the <InlineMath math="0.015\text{ mol}" /> that burnt.

@@ -1,24 +1,50 @@
-# Voltan yang lebih besar bermaksud logam lebih jauh dalam siri
+# Letakkan setiap logam pada satu skala berbanding kuprum
 
-Semakin jauh dua logam dalam siri elektrokimia, **semakin besar voltan selnya**. Logam yang lebih elektropositif melepaskan elektron dan menjadi terminal negatif.
+Kuprum ialah terminal positif dalam tiga sel, jadi P, Q dan R berada di bawah kuprum dalam siri elektrokimia, sebanyak <InlineMath math="2.70" />, <InlineMath math="0.40" /> dan <InlineMath math="1.10\text{ V}" />. Dalam sel terakhir, S ialah terminal positif, jadi **S berada di atas kuprum**, sebanyak <InlineMath math="0.46\text{ V}" />. Voltan paling tinggi datang daripada dua logam yang paling jauh pada skala itu.
 
-<Chart
-  title={<>Voltan Setiap Logam Berpasangan dengan Kuprum</>}
-  bars="apart"
-  categories={["Logam P", "Logam Q", "Logam R", "Logam S"]}
-  series={[
-    { label: "Voltan (V)", mark: "bar", values: [2.7, 0.4, 1.1, 0.8] },
-  ]}
-  valueLabel="Voltan (V)"
-  description={<>Berpasangan dengan kuprum, logam P memberi <InlineMath math="2.7\text{ V}" />, Q <InlineMath math="0.4\text{ V}" />, R <InlineMath math="1.1\text{ V}" /> dan S <InlineMath math="0.8\text{ V}" />, dengan kuprum sebagai terminal positif setiap kali.</>}
+Pada satu skala dengan kuprum pada sifar, P ialah logam paling rendah dan S satu-satunya logam di atas kuprum.
+
+<MathVisual
+  title={<>Empat logam pada satu skala dengan kuprum pada sifar</>}
+  description={<>P berada pada <InlineMath math="-2.70\text{ V}" />, R pada <InlineMath math="-1.10\text{ V}" />, Q pada <InlineMath math="-0.40\text{ V}" />, kuprum pada sifar dan S pada <InlineMath math="+0.46\text{ V}" />. Anak panah dari P ke S merentasi <InlineMath math="3.16\text{ V}" />, jurang yang paling besar.</>}
+  labels={{
+    p: <InlineMath math="\mathrm{P}:\ -2.70\text{ V}" />,
+    r: <InlineMath math="\mathrm{R}:\ -1.10\text{ V}" />,
+    q: <InlineMath math="\mathrm{Q}:\ -0.40\text{ V}" />,
+    cu: <InlineMath math="\mathrm{Cu}:\ 0" />,
+    s: <InlineMath math="\mathrm{S}:\ +0.46\text{ V}" />,
+    gap: <InlineMath math="E_{\text{sel}}=3.16\text{ V}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "secondary", at: { x: 0, y: -2.7 } },
+      { id: "point-r", kind: "point", appearance: "construction", at: { x: 0, y: -1.1 } },
+      { id: "point-q", kind: "point", appearance: "construction", at: { x: 0, y: -0.4 } },
+      { id: "point-cu", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "primary", at: { x: 0, y: 0.46 } },
+      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.8, y: -2.7 }, to: { x: 0.8, y: 0.46 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: -2.7 }, placement: "left" },
+      { key: "r", objectId: "point-r", at: { x: 0, y: -1.1 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -0.4 }, placement: "left" },
+      { key: "cu", objectId: "point-cu", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0.46 }, placement: "left" },
+      { key: "gap", objectId: "cell-voltage", at: { x: 0.8, y: -1.12 }, placement: "right" },
+    ],
+  }}
 />
 
-Kuprum ialah terminal positif setiap kali, jadi setiap logam lebih elektropositif daripada kuprum. Mengikut voltan, susunan daripada paling elektropositif kepada paling kurang ialah P, R, S, Q, kemudian kuprum.
+<BlockMath math="E_{\text{sel}}=0.46-(-2.70)=3.16\text{ V}" />
 
-Dalam sel P dan R, P lebih tinggi dalam siri, jadi P ialah terminal negatif. Voltannya lebih kurang beza voltan kedua-duanya terhadap kuprum: <InlineMath math="2.7 - 1.1 = 1.6\text{ V}" />.
+P lebih rendah dalam siri, jadi P melepaskan elektron dan menjadi terminal negatif. Jadi P dan S menghasilkan <InlineMath math="3.16\text{ V}" />, dengan P sebagai terminal negatif.
 
 # Kenapa pilihan lain salah
 
-- Q memberi voltan paling kecil, jadi ia **paling kurang elektropositif antara keempat-empatnya**, hanya di atas kuprum.
-- S berada di bawah R dalam siri, jadi S tidak dapat menyesarkan R. Hanya logam yang lebih elektropositif dapat menyesarkan logam lain.
-- Kuprum juga terminal positif apabila berpasangan dengan Q, jadi Q lebih elektropositif daripada kuprum.
+- <InlineMath math="2.24\text{ V}" /> menolak <InlineMath math="0.46" /> daripada <InlineMath math="2.70" />, seolah-olah S juga di bawah kuprum. **Lajur terminal meletakkan S di sebelah lain kuprum**.
+- <InlineMath math="3.16\text{ V}" /> dengan S sebagai terminal negatif menterbalikkan peranan: logam yang lebih rendah dalam siri, P, yang melepaskan elektron.
+- P dan Q pada <InlineMath math="2.30\text{ V}" /> membaca sel S seolah-olah kuprum juga terminal positifnya, jadi Q kelihatan lebih jauh daripada P berbanding S.

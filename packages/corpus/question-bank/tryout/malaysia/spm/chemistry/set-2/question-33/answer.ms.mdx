@@ -1,25 +1,31 @@
-# Haba yang dibebaskan bagi setiap mol air terbentuk
+# Panjangkan garis penyejukan ke saat pencampuran
 
-Haba peneutralan ialah haba yang dibebaskan apabila **<InlineMath math="1" /> mol air** terbentuk. Cari haba daripada kenaikan suhu, kemudian bahagikan dengan bilangan mol air.
+Cawan mula kehilangan haba sebaik sahaja tindak balas memanaskannya, jadi bacaan pertama selepas pencampuran sudah terlalu rendah. **Lukis garis penyejukan ke belakang hingga minit <InlineMath math="2.0" />** untuk mendapat suhu yang dicapai jika tiada haba hilang.
+
+Garis kedua memanjangkan penyejukan ke belakang setengah minit, dengan kadar yang sama, <InlineMath math="0.4^\circ\text{C}" /> setiap setengah minit.
 
 <Chart
-  title={<>Suhu Campuran</>}
-  categories={["Minit 0", "Minit 1", "Minit 2", "Minit 2.5", "Minit 3", "Minit 4", "Minit 5"]}
+  title={<>Garis penyejukan dipanjangkan ke masa pencampuran</>}
+  description={<>Selepas pencampuran, bacaan turun <InlineMath math="0.4^\circ\text{C}" /> setiap setengah minit. Apabila dipanjangkan ke minit <InlineMath math="2.0" />, garis itu bertemu <InlineMath math="42.0^\circ\text{C}" />, iaitu <InlineMath math="14.0^\circ\text{C}" /> lebih tinggi daripada suhu awal <InlineMath math="28.0^\circ\text{C}" />.</>}
+  categories={["0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0"]}
   series={[
-    { label: "Suhu (°C)", mark: "line", values: [28.0, 28.0, 28.0, 34.8, 34.6, 34.2, 33.8] },
+    { label: "Bacaan", mark: "line", values: [28.0, 28.0, 28.0, 28.0, null, 41.6, 41.2, 40.8, 40.4, 40.0, 39.6] },
+    { label: "Garis penyejukan dipanjangkan", mark: "line", values: [null, null, null, null, 42.0, 41.6, 41.2, 40.8, 40.4, 40.0, 39.6] },
   ]}
   valueLabel="Suhu (°C)"
-  description={<>Asid kekal pada <InlineMath math="28.0^\circ\text{C}" /> selama <InlineMath math="2" /> minit. Selepas dicampur, suhu melonjak kepada <InlineMath math="34.8^\circ\text{C}" /> pada minit ke-<InlineMath math="2.5" />, kemudian menyejuk perlahan kepada <InlineMath math="33.8^\circ\text{C}" />.</>}
 />
 
-- Kenaikan suhu: <InlineMath math="34.8 - 28.0 = 6.8^\circ\text{C}" />.
-- Jisim larutan: <InlineMath math="50.0 + 50.0 = 100\text{ g}" />, kerana kedua-dua larutan menjadi panas.
-- Haba dibebaskan: <InlineMath math="100 \times 4.2 \times 6.8 = 2856\text{ J}" />.
-- Mol air: <InlineMath math="1.0 \times \dfrac{50.0}{1000} = 0.050\text{ mol}" />.
-- <InlineMath math="\Delta H = -\dfrac{2856}{0.050} = -57120\text{ J mol}^{-1} \approx -57.1\text{ kJ mol}^{-1}" />.
+<BlockMath math="\begin{aligned}
+\Delta\theta&=42.0-28.0=14.0^\circ\text{C}\\
+Q&=50\times4.2\times14.0=2940\text{ J}=2.94\text{ kJ}\\
+n(\text{H}_2\text{O})&=\frac{25}{1000}\times2.0=0.050\text{ mol}\\
+\Delta H&=-\frac{2.94}{0.050}=-58.8\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+Jadi haba peneutralan ialah <InlineMath math="-58.8\text{ kJ mol}^{-1}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="-28.6\text{ kJ mol}^{-1}" /> hanya menggunakan <InlineMath math="50\text{ g}" /> larutan, **seolah-olah hanya satu larutan menjadi panas**.
-- <InlineMath math="+57.1\text{ kJ mol}^{-1}" /> mempunyai tanda yang salah. Suhu naik, jadi haba dibebaskan dan <InlineMath math="\Delta H" /> bernilai negatif.
-- <InlineMath math="-2.86\text{ kJ mol}^{-1}" /> ialah haba dalam kJ sebelum dibahagikan dengan bilangan mol air.
+- <InlineMath math="-57.1\text{ kJ mol}^{-1}" /> menggunakan bacaan tertinggi, <InlineMath math="41.6^\circ\text{C}" />, iaitu suhu selepas cawan sudah sejuk sedikit semasa bacaan diambil.
+- <InlineMath math="+58.8\text{ kJ mol}^{-1}" /> tertinggal tanda negatif. **Peneutralan membebaskan haba, jadi perubahan habanya negatif**.
+- <InlineMath math="-117.6\text{ kJ mol}^{-1}" /> membahagi dengan <InlineMath math="0.025" />, iaitu isi padu dalam desimeter padu, dan terlupa mendarab dengan kepekatan, <InlineMath math="2.0\text{ mol dm}^{-3}" />.
