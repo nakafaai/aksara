@@ -17,6 +17,47 @@ Mengerjakan <InlineMath math="T" /> tiga kali berarti memutar <InlineMath math="
 
 <BlockMath math="P(4,2)\ \longmapsto\ (-2,4)" />
 
+Gambar kedua cermin dan jejak titik <InlineMath math="P" />. **Setiap <InlineMath math="T" /> memutar titik <InlineMath math="30^\circ" /> pada lingkaran berpusat di <InlineMath math="O" />**, dua kali sudut <InlineMath math="15^\circ" /> di antara kedua cermin. Tiga langkah menempuh seperempat putaran.
+
+<MathVisual
+  title={<>Tiga kali <InlineMath math="T" /> sebagai rotasi <InlineMath math="90^\circ" /></>}
+  description={<>Garis <InlineMath math="g:\ y=x" /> dan <InlineMath math="h:\ y=\sqrt3\,x" /> berpotongan di titik asal dengan sudut <InlineMath math="15^\circ" />. Titik <InlineMath math="P(4,2)" /> berjarak <InlineMath math="2\sqrt5" /> dari <InlineMath math="O" />. Busur berpusat <InlineMath math="O" /> membawa <InlineMath math="P" /> melalui <InlineMath math="T(P)=(2\sqrt3-1,\ 2+\sqrt3)" /> dan <InlineMath math="T^2(P)=(2-\sqrt3,\ 2\sqrt3+1)" /> sampai <InlineMath math="(-2,4)" />, seperempat putaran berlawanan arah jarum jam.</>}
+  labels={{
+    g: <InlineMath math="g:\ y=x" />,
+    h: <InlineMath math="h:\ y=\sqrt3\,x" />,
+    p: <InlineMath math="P" />,
+    once: <InlineMath math="T(P)" />,
+    twice: <InlineMath math="T^2(P)" />,
+    thrice: <InlineMath math="(-2,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 5.5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "reference", formula: "x", domain: { min: -0.5, max: 5 } },
+      { id: "h", kind: "function", appearance: "reference", formula: "sqrt(3) x", domain: { min: -0.3, max: 3.3 } },
+      { id: "turn", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 2 * Math.sqrt(5), startDegrees: Math.atan2(2, 4) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "once", kind: "point", appearance: "secondary", at: { x: 2 * Math.sqrt(3) - 1, y: 2 + Math.sqrt(3) } },
+      { id: "twice", kind: "point", appearance: "secondary", at: { x: 2 - Math.sqrt(3), y: 2 * Math.sqrt(3) + 1 } },
+      { id: "thrice", kind: "point", appearance: "answer", at: { x: -2, y: 4 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "h", objectId: "h", at: { x: 3.3, y: 3.3 * Math.sqrt(3) }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "once", objectId: "once", at: { x: 2 * Math.sqrt(3) - 1, y: 2 + Math.sqrt(3) }, placement: "right" },
+      { key: "twice", objectId: "twice", at: { x: 2 - Math.sqrt(3), y: 2 * Math.sqrt(3) + 1 }, placement: "above-right" },
+      { key: "thrice", objectId: "thrice", at: { x: -2, y: 4 }, placement: "left" },
+    ],
+  }}
+/>
+
 Sebagai cek, **jarak ke titik pusat tidak berubah**, yaitu <InlineMath math="\sqrt{16+4}=\sqrt{4+16}" />, dan hasil kali titik <InlineMath math="(4,2)\cdot(-2,4)=-8+8=0" />, jadi sudut putarnya memang siku-siku.
 
 Jadi, bayangan akhir titik <InlineMath math="P" /> adalah <InlineMath math="(-2,4)" />.

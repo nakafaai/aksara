@@ -26,6 +26,18 @@ Die Zählung in der geraden Reihe, <InlineMath math="L(10)=144" />, enthält auc
 
 Das Ergebnis stimmt überein.
 
+Das Diagramm fasst die Fallunterscheidung bei der Zahl <InlineMath math="1" /> zusammen. Jeder Zweig **schneidet den Kreis zu einer geraden Reihe auf**, also lässt sich die Zählung für gerade Reihen direkt nutzen.
+
+<Mermaid
+  title={<>Die lockeren Teilmengen des Kreises nach der Zahl <InlineMath math="1" /> aufteilen</>}
+  description={<>Wird <InlineMath math="1" /> nicht gewählt, bilden die Zahlen <InlineMath math="2" /> bis <InlineMath math="10" /> eine gerade Reihe mit <InlineMath math="L(9)=89" /> lockeren Teilmengen. Wird <InlineMath math="1" /> gewählt, sind <InlineMath math="2" /> und <InlineMath math="10" /> gesperrt, und die Zahlen <InlineMath math="3" /> bis <InlineMath math="9" /> liefern <InlineMath math="L(7)=34" />. Zusammen sind es <InlineMath math="123" />.</>}
+  chart={`flowchart LR
+    S["Kreis 1 bis 10"] -->|"1 nicht gewählt"| A["Reihe 2 bis 10: L(9) = 89"]
+    S -->|"1 gewählt, 2 und 10 gesperrt"| B["Reihe 3 bis 9: L(7) = 34"]
+    A --> T["89 + 34 = 123"]
+    B --> T`}
+/>
+
 # Die verlockenden falschen Antworten
 
 - <InlineMath math="144" /> zählt, als stünden die Zahlen in einer geraden Reihe, und **vergisst, dass <InlineMath math="10" /> und <InlineMath math="1" /> Nachbarn sind**.

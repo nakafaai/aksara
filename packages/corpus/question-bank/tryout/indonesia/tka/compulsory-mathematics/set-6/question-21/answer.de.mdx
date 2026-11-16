@@ -19,6 +19,21 @@ Vergleiche den Wert von Stadt P in jedem Monat mit <InlineMath math="200\text{ m
 | Mai | <InlineMath math="120" /> | nein | <InlineMath math="300" /> |
 | Juni | <InlineMath math="40" /> | nein | <InlineMath math="280" /> |
 
+Zeichne die Daten mit der Linie für den Mittelwert von Stadt P neu. **Nur drei Balken von Stadt P ragen über die Linie bei <InlineMath math="200" />**, Januar, Februar und März, der Balken für April berührt sie genau. Gemittelt werden die Balken von Stadt Q in diesen drei Monaten.
+
+<Chart
+  title={<>Niederschlag und Mittelwert von Stadt P</>}
+  description={<>Die Balken von Stadt P von Januar bis Juni sind <InlineMath math="330" />, <InlineMath math="270" />, <InlineMath math="240" />, <InlineMath math="200" />, <InlineMath math="120" /> und <InlineMath math="40\text{ mm}" /> hoch. Die Balken von Stadt Q sind <InlineMath math="250" />, <InlineMath math="230" />, <InlineMath math="180" />, <InlineMath math="320" />, <InlineMath math="300" /> und <InlineMath math="280\text{ mm}" /> hoch. Die waagerechte Linie bei <InlineMath math="200\text{ mm}" /> ist der Mittelwert von Stadt P.</>}
+  bars="apart"
+  categories={["Januar", "Februar", "März", "April", "Mai", "Juni"]}
+  series={[
+    { label: "Stadt P", mark: "bar", values: [330, 270, 240, 200, 120, 40] },
+    { label: "Stadt Q", mark: "bar", values: [250, 230, 180, 320, 300, 280] },
+    { label: "Mittelwert Stadt P", mark: "line", values: [200, 200, 200, 200, 200, 200] },
+  ]}
+  valueLabel="Niederschlag (mm)"
+/>
+
 Gewählt sind Januar, Februar und März.
 
 # Der Mittelwert von Stadt Q in diesen Monaten

@@ -21,6 +21,19 @@ The sum is a multiple of <InlineMath math="3" /> when both remainders are <Inlin
 \text{odd pairs, sum not a multiple of }3&=45-15=30
 \end{aligned}" />
 
+The diagram below shows the part that gets removed. **Only pairs of two odd numbers can fail the product condition**, and of those <InlineMath math="45" /> pairs, <InlineMath math="15" /> still pass through the sum condition.
+
+<Mermaid
+  title={<>Sorting the <InlineMath math="190" /> pairs of cards</>}
+  description={<>Of the <InlineMath math="190" /> pairs, <InlineMath math="145" /> have an even product and <InlineMath math="45" /> consist of two odd numbers. Among the <InlineMath math="45" /> odd pairs, <InlineMath math="15" /> have a sum that is a multiple of <InlineMath math="3" /> and <InlineMath math="30" /> do not. Only those <InlineMath math="30" /> pairs fail both conditions, so the probability is <InlineMath math="1-\frac{30}{190}=\frac{16}{19}" />.</>}
+  chart={`flowchart TD
+  S["All pairs: C(20, 2) = 190"] --> E["Even product: 145"]
+  S --> O["Two odd numbers: C(10, 2) = 45"]
+  O --> O1["Odd, sum a multiple of 3: C(3, 2) + 4 · 3 = 15"]
+  O --> O2["Fails both conditions: 45 − 15 = 30"]
+  O2 --> P["Probability: 1 − 30/190 = 16/19"]`}
+/>
+
 # The probability of the union
 
 <BlockMath math="P=1-\frac{30}{190}=\frac{160}{190}=\frac{16}{19}" />

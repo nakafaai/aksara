@@ -50,6 +50,17 @@ e_2+2e_3&=18
 
 Baris ketiga adalah selisih dua baris pertama. Jadi <InlineMath math="e_2=18-2e_3" />, yaitu bilangan genap dikurangi bilangan genap. Hasilnya selalu genap, jadi pernyataan ketiga **benar**.
 
+Grafik berikut memperlihatkan banyak siswa yang mengikuti tepat dua kegiatan untuk setiap kemungkinan banyak siswa yang mengikuti ketiganya. **Setiap batang bernilai genap**, dan batangnya berhenti di <InlineMath math="e_3=8" />, karena siswa yang mengikuti ketiga kegiatan termasuk dalam <InlineMath math="8" /> siswa Futsal dan Musik.
+
+<Chart
+  title={<>Hubungan <InlineMath math="e_2=18-2e_3" /></>}
+  description={<>Untuk <InlineMath math="e_3=0" /> sampai <InlineMath math="8" />, banyak siswa yang mengikuti tepat dua kegiatan adalah <InlineMath math="18, 16, 14, \ldots, 2" />, semuanya genap. Nilai <InlineMath math="e_3=9" /> tidak mungkin karena <InlineMath math="t\le8" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, t) => `${t}`)}
+  series={[{ label: "Tepat dua kegiatan", mark: "bar", values: Array.from({ length: 9 }, (_, t) => 18 - 2 * t) }]}
+  valueLabel="Banyak siswa"
+/>
+
 # Siswa yang mengikuti ketiga kegiatan
 
 Dari <InlineMath math="e_2+2e_3=18" /> kamu hanya mendapat <InlineMath math="e_3\le9" />, dan batas ini menggoda. Padahal setiap siswa yang ikut ketiga kegiatan pasti juga ikut Futsal dan Musik, jadi **mereka termasuk di antara delapan siswa Futsal dan Musik**.

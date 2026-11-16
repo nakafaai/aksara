@@ -19,6 +19,43 @@ Tanda cat berjarak <InlineMath math="5" /> meter dari ujung atas, jadi berjarak 
 
 <BlockMath math="\text{tinggi tanda}=\frac{20}{25}\cdot20=16\text{ m}" />
 
+Gambar kedua posisi tangga. **Tanda cat berada di <InlineMath math="\tfrac{20}{25}" /> panjang tangga dari kakinya**, jadi tingginya <InlineMath math="\tfrac{20}{25}" /> dari tinggi ujung atas tangga di posisi itu.
+
+<MathVisual
+  title={<>Tangga sebelum dan sesudah tergelincir</>}
+  description={<>Dinding tegak di kiri dan lantai mendatar di bawah, satuan meter. Sebelum tergelincir, tangga menghubungkan <InlineMath math="(7,0)" /> dengan <InlineMath math="(0,24)" />. Sesudahnya, tangga menghubungkan <InlineMath math="(15,0)" /> dengan <InlineMath math="(0,20)" />, tetap sepanjang <InlineMath math="25" />. Tanda cat pindah dari <InlineMath math="(1{,}4;\ 19{,}2)" /> ke <InlineMath math="(3,\ 16)" />, dan ruas tegak di bawahnya menunjukkan tinggi <InlineMath math="16" />.</>}
+  labels={{
+    before: <>sebelum</>,
+    after: <>sesudah</>,
+    "mark-after": <InlineMath math="(3,\ 16)" />,
+    "mark-before": <InlineMath math="(1{,}4;\ 19{,}2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 17 },
+      y: { min: -1.5, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 25 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 16.5, y: 0 } },
+      { id: "before", kind: "segment", appearance: "secondary", from: { x: 7, y: 0 }, to: { x: 0, y: 24 } },
+      { id: "after", kind: "segment", appearance: "primary", from: { x: 15, y: 0 }, to: { x: 0, y: 20 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 16 } },
+      { id: "mark-before", kind: "point", appearance: "secondary", at: { x: 1.4, y: 19.2 } },
+      { id: "mark-after", kind: "point", appearance: "answer", at: { x: 3, y: 16 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 3.5, y: 12 }, placement: "left" },
+      { key: "after", objectId: "after", at: { x: 9, y: 8 }, placement: "above-right" },
+      { key: "mark-after", objectId: "mark-after", at: { x: 3, y: 16 }, placement: "right" },
+      { key: "mark-before", objectId: "mark-before", at: { x: 1.4, y: 19.2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Jadi, tinggi tanda cat setelah tangga tergelincir adalah <InlineMath math="16\text{ m}" />.
 
 - <InlineMath math="19{,}2\text{ m}" /> adalah tinggi tanda **sebelum** tangga tergelincir, yaitu <InlineMath math="\tfrac{20}{25}\cdot24" />.

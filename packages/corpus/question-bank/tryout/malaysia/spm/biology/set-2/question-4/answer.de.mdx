@@ -1,0 +1,19 @@
+# Kondensationen zum Aufbauen, Hydrolysen zum Schneiden zählen
+
+Jede Peptidbindung entsteht durch Kondensation und setzt ein Wassermolekül frei, das Spalten einer Bindung durch Hydrolyse **verbraucht** eines. Eine Kette aus <InlineMath math="n" /> Aminosäuren hat <InlineMath math="n-1" /> Peptidbindungen.
+
+<Mermaid
+  title={<>Aus einer Kette werden zwei</>}
+  description={<>Die Kette aus <InlineMath math="86" /> Aminosäuren bildet <InlineMath math="85" /> Peptidbindungen und setzt <InlineMath math="85" /> Wassermoleküle frei. Das Herausschneiden des Mittelstücks aus <InlineMath math="35" /> Aminosäuren hydrolysiert <InlineMath math="2" /> Bindungen und verbraucht <InlineMath math="2" /> Wassermoleküle, übrig bleiben Ketten aus <InlineMath math="21" /> und <InlineMath math="30" />.</>}
+  chart={"flowchart LR\n  A[86 freie Aminosäuren] -->|85 Kondensationen: 85 Wasser frei| B[eine Kette aus 86]\n  B -->|3 Disulfidbrücken, kein Wasser| C[gefaltete Kette]\n  C -->|2 Hydrolysen: 2 Wasser verbraucht| D[Kette aus 21 + Kette aus 30]\n  C --> E[Mittelstück aus 35 entfernt]"}
+/>
+
+<BlockMath math="\text{gebildet}: 86-1=85\ \text{Bindungen},\ 85\ \text{Wasser frei},\qquad \text{geschnitten}: 2\ \text{Bindungen},\ 2\ \text{Wasser verbraucht}" />
+
+Probe: Die beiden Endketten haben <InlineMath math="20+29=49" /> Bindungen, das entfernte Stück <InlineMath math="34" />, also <InlineMath math="49+34+2=85" />. Es werden also <InlineMath math="85" /> Wassermoleküle frei und <InlineMath math="2" /> verbraucht.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="86" /> frei rechnet ein Wassermolekül pro Aminosäure statt pro Bindung.
+- <InlineMath math="49" /> zählt nur die Bindungen der Endketten und **vergisst die Bindungen des entfernten Stücks**.
+- <InlineMath math="35" /> verbraucht gibt jeder Aminosäure des Stücks ein Wassermolekül, doch geschnitten werden nur die zwei Bindungen, die es halten.

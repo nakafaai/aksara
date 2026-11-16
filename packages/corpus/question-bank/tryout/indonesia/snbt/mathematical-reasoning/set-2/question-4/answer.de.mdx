@@ -33,6 +33,20 @@ Prüf jetzt, ob der Plan wirklich aufgeht, auch mit den <InlineMath math="10" />
 
 Von 09:20 bis 10:40 Uhr wird <InlineMath math="16" />-mal aufgefüllt, die Energie steigt also von <InlineMath math="4" /> auf <InlineMath math="20" />. Von 10:45 bis 12:00 Uhr wird <InlineMath math="16" />-mal aufgefüllt, dann kommt das Geschenk, also <InlineMath math="0+16+15=31" />. Von 12:05 bis 12:45 Uhr wird <InlineMath math="9" />-mal aufgefüllt, also <InlineMath math="11+9=20" />, gerade genug für die sechste Mission. Vor 12:45 Uhr liegt die Energie nach der fünften Mission immer unter <InlineMath math="20" />, früher geht die sechste Mission also nicht.
 
+Das Diagramm zeichnet diese Tabelle. **Der Balken vor der Mission fällt nie unter <InlineMath math="20" />**, und um 12.45 Uhr ist er genau <InlineMath math="20" />, also kann die sechste Mission nicht früher beginnen.
+
+<Chart
+  title={<>Rios Energie vor und nach jeder Bossmission</>}
+  description={<>Die Bossmissionen beginnen um 09.00, 09.10, 09.20, 10.40, 12.00 und 12.45 Uhr. Die Energie vor den Missionen beträgt <InlineMath math="60, 42, 24, 20, 31, 20" />, die Energie danach <InlineMath math="40, 22, 4, 0, 11, 0" />.</>}
+  bars="apart"
+  categories={["09.00", "09.10", "09.20", "10.40", "12.00", "12.45"]}
+  series={[
+    { label: "Energie vor der Mission", mark: "bar", values: [60, 42, 24, 4 + 16, 0 + 16 + 15, 11 + 9] },
+    { label: "Energie nach der Mission", mark: "bar", values: [60 - 20, 42 - 20, 24 - 20, 20 - 20, 31 - 20, 20 - 20] },
+  ]}
+  valueLabel="Energie"
+/>
+
 # Die falschen Optionen
 
 Jede andere Option entsteht aus **einem verrutschten Zählschritt**.

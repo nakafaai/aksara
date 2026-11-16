@@ -18,6 +18,51 @@ Triknya, **satu tumpukan tinggi bisa memenuhi syarat kolom dan syarat baris seka
 | Tengah | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
 | Depan | <InlineMath math="1" /> | kosong | <InlineMath math="3" /> |
 
+Tulis tinggi setiap tumpukan pada denah tampak atas. **Tiga petak berwarna jawaban memikul syarat kolom dan baris sekaligus**, sedangkan empat petak lainnya cukup satu kubus.
+
+<MathVisual
+  title={<>Tampak atas dengan tinggi setiap tumpukan</>}
+  description={<>Denah <InlineMath math="3\times3" /> dengan baris depan di bawah dan baris belakang di atas. Petak belakang-kiri dan depan-tengah kosong. Tumpukan setinggi <InlineMath math="3" /> ada di tengah-kiri dan depan-kanan, tumpukan setinggi <InlineMath math="2" /> di belakang-tengah, dan empat petak lainnya berisi satu kubus. Jumlahnya <InlineMath math="12" />.</>}
+  labels={{
+    "back-mid": <InlineMath math="2" />,
+    "back-right": <InlineMath math="1" />,
+    "mid-left": <InlineMath math="3" />,
+    "mid-mid": <InlineMath math="1" />,
+    "mid-right": <InlineMath math="1" />,
+    "front-left": <InlineMath math="1" />,
+    "front-right": <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "back-left", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 2 }, { x: 1, y: 2 }, { x: 1, y: 3 }, { x: 0, y: 3 }] },
+      { id: "back-mid", kind: "polygon", appearance: "answer", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 1, y: 3 }] },
+      { id: "back-right", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }] },
+      { id: "mid-left", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 1, y: 2 }, { x: 0, y: 2 }] },
+      { id: "mid-mid", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 1, y: 2 }] },
+      { id: "mid-right", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }] },
+      { id: "front-left", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "front-mid", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }] },
+      { id: "front-right", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }] },
+    ],
+    labels: [
+      { key: "back-mid", objectId: "back-mid", at: { x: 1.5, y: 2.5 }, placement: "center" },
+      { key: "back-right", objectId: "back-right", at: { x: 2.5, y: 2.5 }, placement: "center" },
+      { key: "mid-left", objectId: "mid-left", at: { x: 0.5, y: 1.5 }, placement: "center" },
+      { key: "mid-mid", objectId: "mid-mid", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "mid-right", objectId: "mid-right", at: { x: 2.5, y: 1.5 }, placement: "center" },
+      { key: "front-left", objectId: "front-left", at: { x: 0.5, y: 0.5 }, placement: "center" },
+      { key: "front-right", objectId: "front-right", at: { x: 2.5, y: 0.5 }, placement: "center" },
+    ],
+  }}
+/>
+
 <BlockMath math="3+3+2+1+1+1+1=12" />
 
 Lebih hemat dari ini tidak mungkin. Ketiga tumpukan tinggi itu wajib ada, dan tidak ada petak lain yang bisa memenuhi dua syarat setinggi itu sekaligus, karena petak depan-tengah dan belakang-kiri kosong. Sisa empat petak bertanda ■ masing-masing butuh paling sedikit satu kubus.

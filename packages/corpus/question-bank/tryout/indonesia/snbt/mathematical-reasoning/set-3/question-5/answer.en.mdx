@@ -33,6 +33,20 @@ y &> \tfrac{40}{3}
 
 The value <InlineMath math="\tfrac{40}{3}" /> lies between <InlineMath math="13" /> and <InlineMath math="14" />, so the smallest whole number is <InlineMath math="y=14" />. A fine of <InlineMath math="\text{Rp}14{,}000" /> per regular book is still under the <InlineMath math="\text{Rp}20{,}000" /> cap, so that cap plays no part. Being <InlineMath math="14" /> days past <InlineMath math="23" /> March means <InlineMath math="x=8+14=22" /> days after <InlineMath math="15" /> March. March has <InlineMath math="31" /> days, so from <InlineMath math="15" /> March it's <InlineMath math="16" /> days to <InlineMath math="31" /> March and <InlineMath math="6" /> more days to <InlineMath math="6" /> April.
 
+The chart below works out the total fine for each return date from <InlineMath math="31" /> March on. From that date the bars climb exactly <InlineMath math="\text{Rp}3{,}000" /> a day, and **the first bar over the limit line is <InlineMath math="6" /> April**.
+
+<Chart
+  title={<>Tono's total fine by return date</>}
+  description={<>From <InlineMath math="31" /> March to <InlineMath math="7" /> April, the total fine is <InlineMath math="\text{Rp}104{,}000" />, <InlineMath math="\text{Rp}107{,}000" />, <InlineMath math="\text{Rp}110{,}000" />, <InlineMath math="\text{Rp}113{,}000" />, <InlineMath math="\text{Rp}116{,}000" />, <InlineMath math="\text{Rp}119{,}000" />, <InlineMath math="\text{Rp}122{,}000" />, and <InlineMath math="\text{Rp}125{,}000" />. The reference fines stay at <InlineMath math="\text{Rp}80{,}000" />. The flat line marks <InlineMath math="\text{Rp}120{,}000" />.</>}
+  categories={["31 Mar", "1 Apr", "2 Apr", "3 Apr", "4 Apr", "5 Apr", "6 Apr", "7 Apr"]}
+  bars="apart"
+  series={[
+    { label: "Total fine", mark: "bar", values: Array.from({ length: 8 }, (_, i) => 2 * Math.min(2500 * (16 + i), 40000) + 3 * Math.min(1000 * (8 + i), 20000)) },
+    { label: "Limit Rp120,000", mark: "line", values: Array.from({ length: 8 }, () => 120000) },
+  ]}
+  valueLabel="Fine (rupiah)"
+/>
+
 # Check two dates
 
 Compare <InlineMath math="5" /> April and <InlineMath math="6" /> April.

@@ -17,6 +17,47 @@ Dreimal <InlineMath math="T" /> heißt, um <InlineMath math="3\cdot30^\circ=90^\
 
 <BlockMath math="P(4,2)\ \longmapsto\ (-2,4)" />
 
+Zeichne beide Spiegelachsen und die Spur des Punktes <InlineMath math="P" />. **Jedes <InlineMath math="T" /> dreht den Punkt um <InlineMath math="30^\circ" /> auf einem Kreis um <InlineMath math="O" />**, das Doppelte des Winkels <InlineMath math="15^\circ" /> zwischen den Achsen. Drei Schritte ergeben eine Vierteldrehung.
+
+<MathVisual
+  title={<>Dreimal <InlineMath math="T" /> als Drehung um <InlineMath math="90^\circ" /></>}
+  description={<>Die Geraden <InlineMath math="g:\ y=x" /> und <InlineMath math="h:\ y=\sqrt3\,x" /> schneiden sich im Ursprung unter <InlineMath math="15^\circ" />. Der Punkt <InlineMath math="P(4,2)" /> ist <InlineMath math="2\sqrt5" /> von <InlineMath math="O" /> entfernt. Ein Bogen um <InlineMath math="O" /> führt <InlineMath math="P" /> über <InlineMath math="T(P)=(2\sqrt3-1,\ 2+\sqrt3)" /> und <InlineMath math="T^2(P)=(2-\sqrt3,\ 2\sqrt3+1)" /> nach <InlineMath math="(-2,4)" />, eine Vierteldrehung gegen den Uhrzeigersinn.</>}
+  labels={{
+    g: <InlineMath math="g:\ y=x" />,
+    h: <InlineMath math="h:\ y=\sqrt3\,x" />,
+    p: <InlineMath math="P" />,
+    once: <InlineMath math="T(P)" />,
+    twice: <InlineMath math="T^2(P)" />,
+    thrice: <InlineMath math="(-2,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 5.5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "reference", formula: "x", domain: { min: -0.5, max: 5 } },
+      { id: "h", kind: "function", appearance: "reference", formula: "sqrt(3) x", domain: { min: -0.3, max: 3.3 } },
+      { id: "turn", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 2 * Math.sqrt(5), startDegrees: Math.atan2(2, 4) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "once", kind: "point", appearance: "secondary", at: { x: 2 * Math.sqrt(3) - 1, y: 2 + Math.sqrt(3) } },
+      { id: "twice", kind: "point", appearance: "secondary", at: { x: 2 - Math.sqrt(3), y: 2 * Math.sqrt(3) + 1 } },
+      { id: "thrice", kind: "point", appearance: "answer", at: { x: -2, y: 4 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "h", objectId: "h", at: { x: 3.3, y: 3.3 * Math.sqrt(3) }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "once", objectId: "once", at: { x: 2 * Math.sqrt(3) - 1, y: 2 + Math.sqrt(3) }, placement: "right" },
+      { key: "twice", objectId: "twice", at: { x: 2 - Math.sqrt(3), y: 2 * Math.sqrt(3) + 1 }, placement: "above-right" },
+      { key: "thrice", objectId: "thrice", at: { x: -2, y: 4 }, placement: "left" },
+    ],
+  }}
+/>
+
 Zur Kontrolle: **Der Abstand zum Zentrum ändert sich nicht**, nämlich <InlineMath math="\sqrt{16+4}=\sqrt{4+16}" />, und das Skalarprodukt ist <InlineMath math="(4,2)\cdot(-2,4)=-8+8=0" />. Die Drehung ist also wirklich ein rechter Winkel.
 
 Das Bild von <InlineMath math="P" /> ist also <InlineMath math="(-2,4)" />.

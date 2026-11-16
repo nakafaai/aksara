@@ -1,3 +1,32 @@
 Belah ketupat <InlineMath math="ABCD" /> memiliki panjang sisi <InlineMath math="15\text{ cm}" />. Diagonal <InlineMath math="AC" /> lebih panjang daripada diagonal <InlineMath math="BD" />, dan <InlineMath math="AC+BD=42\text{ cm}" />. Lingkaran dalam belah ketupat itu menyinggung sisi <InlineMath math="AB" /> di titik <InlineMath math="T" />.
 
+<MathVisual
+  title={<>Belah ketupat <InlineMath math="ABCD" /> dan lingkaran dalamnya</>}
+  description={<>Belah ketupat <InlineMath math="ABCD" /> bersisi <InlineMath math="15\text{ cm}" /> dengan diagonal <InlineMath math="AC" /> lebih panjang daripada <InlineMath math="BD" />. Lingkaran dalam menyinggung sisi <InlineMath math="AB" /> di titik <InlineMath math="T" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    t: <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -11, max: 11 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "rhombus", kind: "polygon", appearance: "primary", vertices: [{ x: -12, y: 0 }, { x: 0, y: 9 }, { x: 12, y: 0 }, { x: 0, y: -9 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 36 / 5 },
+      { id: "point-t", kind: "point", appearance: "reference", at: { x: -108 / 25, y: 144 / 25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "rhombus", at: { x: -12, y: 0 }, placement: "left" },
+      { key: "b", objectId: "rhombus", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "c", objectId: "rhombus", at: { x: 12, y: 0 }, placement: "right" },
+      { key: "d", objectId: "rhombus", at: { x: 0, y: -9 }, placement: "below" },
+      { key: "t", objectId: "point-t", at: { x: -108 / 25, y: 144 / 25 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Panjang <InlineMath math="AT" /> adalah ....

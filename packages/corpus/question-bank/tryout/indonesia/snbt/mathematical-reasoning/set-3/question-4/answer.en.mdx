@@ -28,6 +28,21 @@ At 00.00 the car is outside the building, so **there's no overnight fee and no c
 &= 40{,}000\text{ rupiah}
 \end{aligned}" />
 
+The chart below separates every fee in both ways. **The evening parts are the same**, so the difference only comes from the morning part and the overnight fee.
+
+<Chart
+  title={<>Breakdown of Dimas's parking fee for way I and way II</>}
+  description={<>Way I: evening part <InlineMath math="\text{Rp}14{,}000" />, morning part <InlineMath math="\text{Rp}30{,}000" />, and overnight fee <InlineMath math="\text{Rp}10{,}000" />. Way II: evening part <InlineMath math="\text{Rp}14{,}000" />, morning part <InlineMath math="\text{Rp}26{,}000" />, and no overnight fee.</>}
+  categories={["Way I", "Way II"]}
+  bars="apart"
+  series={[
+    { label: "Evening part", mark: "bar", values: [6000 + 2 * 4000, 6000 + 2 * 4000] },
+    { label: "Morning part", mark: "bar", values: [6000 + 6 * 4000, 6000 + 5 * 4000] },
+    { label: "Overnight fee", mark: "bar", values: [10000, 0] },
+  ]}
+  valueLabel="Fee (rupiah)"
+/>
+
 # The difference and a check
 
 Subtract the total of way II from the total of way I.

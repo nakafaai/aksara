@@ -32,6 +32,18 @@ Each can holds <InlineMath math="2.5" /> litres of pure paint:
 
 <BlockMath math="\frac{16}{2.5}=6.4" />
 
+The diagram below sums up the chain of units. **The step from diluted paint to pure paint is dividing by <InlineMath math="1.25" />**, because the mix is the paint plus <InlineMath math="25\%" /> of that paint.
+
+<Mermaid
+  title={<>From wall area to number of cans</>}
+  description={<>The painted area is <InlineMath math="60\text{ m}^2" />, which becomes <InlineMath math="120\text{ m}^2" /> for two coats. Dividing by <InlineMath math="6" /> gives <InlineMath math="20" /> litres of diluted paint. Dividing by <InlineMath math="1.25" /> gives <InlineMath math="16" /> litres of pure paint. Dividing by <InlineMath math="2.5" /> gives <InlineMath math="6.4" />, which rounds up to <InlineMath math="7" /> cans.</>}
+  chart={`flowchart TD
+  A["Painted area: 66 − 6 = 60 m²"] -->|"× 2"| B["Two coats: 120 m²"]
+  B -->|"÷ 6"| C["Diluted paint: 20 L"]
+  C -->|"÷ 1.25"| D["Pure paint: 16 L"]
+  D -->|"÷ 2.5"| E["Cans: 6.4 → 7"]`}
+/>
+
 Six cans hold only <InlineMath math="15" /> litres, less than <InlineMath math="16" /> litres. So **you round up** to <InlineMath math="7" /> cans.
 
 # Why the other options are wrong

@@ -41,6 +41,20 @@ Check <InlineMath math="12" /> bags and <InlineMath math="11" /> bags:
 
 With <InlineMath math="12" /> bags exactly <InlineMath math="2{,}800" /> fish remain, so the condition **"at least" is met**. With <InlineMath math="11" /> bags only <InlineMath math="2{,}450" /> remain.
 
+The chart below follows the number of fish for both choices. **The <InlineMath math="12" />-bag line ends exactly on the goal line**, while the <InlineMath math="11" />-bag line is already below it from the sale on.
+
+<Chart
+  title={<>Fish alive with <InlineMath math="12" /> and <InlineMath math="11" /> bags of seeds</>}
+  description={<>With <InlineMath math="12" /> bags, the fish alive are <InlineMath math="5{,}400" />, <InlineMath math="5{,}100" />, <InlineMath math="4{,}800" />, and <InlineMath math="4{,}560" /> at the end of months one to four, <InlineMath math="3{,}040" /> after the sale, then <InlineMath math="2{,}880" /> and <InlineMath math="2{,}800" /> at the end of months five and six. With <InlineMath math="11" /> bags, they're <InlineMath math="4{,}950" />, <InlineMath math="4{,}675" />, <InlineMath math="4{,}400" />, <InlineMath math="4{,}180" />, <InlineMath math="2{,}660" />, <InlineMath math="2{,}520" />, and <InlineMath math="2{,}450" />.</>}
+  categories={["Month 1", "Month 2", "Month 3", "Month 4", "After the sale", "Month 5", "Month 6"]}
+  series={[
+    { label: "12 bags", mark: "line", values: [0.9 * 6000, 0.85 * 6000, 0.8 * 6000, 0.76 * 6000, 0.76 * 6000 - 1520, (0.76 * 6000 - 1520) * (72 / 76), (0.76 * 6000 - 1520) * (70 / 76)] },
+    { label: "11 bags", mark: "line", values: [0.9 * 5500, 0.85 * 5500, 0.8 * 5500, 0.76 * 5500, 0.76 * 5500 - 1520, (0.76 * 5500 - 1520) * (72 / 76), (0.76 * 5500 - 1520) * (70 / 76)] },
+    { label: "Goal 2,800 fish", mark: "line", values: [2800, 2800, 2800, 2800, 2800, 2800, 2800] },
+  ]}
+  valueLabel="Fish"
+/>
+
 Common slips: using <InlineMath math="70\%" /> of the remaining fish gives <InlineMath math="15" /> bags, treating the deaths as a fixed <InlineMath math="6\%" /> of the seeds gives <InlineMath math="13" /> bags, and forgetting the sale gives <InlineMath math="8" /> bags.
 
 So the farmer has to stock at least <InlineMath math="12" /> bags of seeds.

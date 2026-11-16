@@ -30,6 +30,41 @@ CP &= 2\sqrt{2}
 
 Der Mittelpunkt der Sehne ist <InlineMath math="(s,2)" />. Also liegt <InlineMath math="C" /> auf der Höhe <InlineMath math="2+\sqrt{2}" /> und <InlineMath math="P" /> auf der Höhe <InlineMath math="2-\sqrt{2}" />. Die Höhe von <InlineMath math="P" /> liegt zwischen <InlineMath math="0" /> und <InlineMath math="s" />, also liegt <InlineMath math="P" /> tatsächlich auf der Seite <InlineMath math="BC" />.
 
+Die Abbildung zeigt den verwendeten Kreis. Der Kreis mit Radius <InlineMath math="2" /> berührt <InlineMath math="AB" /> und <InlineMath math="AD" />, geht durch <InlineMath math="C" /> und **schneidet die Seite <InlineMath math="BC" /> ein zweites Mal in <InlineMath math="P" />**. Die Sehne <InlineMath math="CP" /> ist <InlineMath math="2\sqrt2" /> lang.
+
+<MathVisual
+  title={<>Quadrat <InlineMath math="ABCD" /> und der Kreis um <InlineMath math="O(2,2)" /></>}
+  description={<>Das Quadrat hat die Seitenlänge <InlineMath math="2+\sqrt2" />, mit <InlineMath math="A" /> im Ursprung. Der Kreis um <InlineMath math="(2,2)" /> mit Radius <InlineMath math="2" /> berührt die untere und die linke Seite und geht durch <InlineMath math="C" />. Er schneidet die Seite <InlineMath math="BC" /> in <InlineMath math="C" /> und in <InlineMath math="P" />, auf Höhe <InlineMath math="2-\sqrt2" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    p: <InlineMath math="P" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.2 }, y: { min: -0.6, max: 4.2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 2 + Math.SQRT2, y: 0 }, { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, { x: 0, y: 2 + Math.SQRT2 }] },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, to: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 2, y: 2 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "square", at: { x: 2 + Math.SQRT2, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "square", at: { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, placement: "above-right" },
+      { key: "d", objectId: "square", at: { x: 0, y: 2 + Math.SQRT2 }, placement: "above-left" },
+      { key: "p", objectId: "point-p", at: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 }, placement: "right" },
+      { key: "o", objectId: "center", at: { x: 2, y: 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 # Probe mit der Potenz eines Punktes
 
 Der Kreis berührt <InlineMath math="AB" /> im Punkt <InlineMath math="T=(2,0)" />, also ist <InlineMath math="BT=s-2=\sqrt{2}" />. Von <InlineMath math="B" /> aus gilt: **Das Quadrat der Tangentenlänge ist gleich dem Produkt der beiden Abschnitte** einer Geraden durch den Kreis, hier <InlineMath math="BP" /> und <InlineMath math="BC" />.

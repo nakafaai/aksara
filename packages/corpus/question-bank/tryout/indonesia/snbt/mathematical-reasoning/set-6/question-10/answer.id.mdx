@@ -19,6 +19,20 @@ Bus A tiba di Halte Pasar <InlineMath math="25\text{ menit}" /> setelah berangka
 
 Bus A pukul 21.54 tiba pukul 22.19, hanya <InlineMath math="3\text{ menit}" /> sebelum bus B pukul 22.22, jadi penumpangnya harus menunggu bus pukul 22.52. Hal yang sama terjadi pada bus A pukul 23.24, tetapi setelah bus B pukul 23.52 tidak ada bus B lagi.
 
+Grafik berikut menggambar waktu tunggu dari tabel itu. **Batang tertinggi adalah <InlineMath math="33" /> menit untuk bus A pukul 21.54**, dan dua batang terakhir kosong karena tidak ada bus B lagi.
+
+<Chart
+  title={<>Waktu tunggu di Halte Pasar menurut keberangkatan bus A</>}
+  description={<>Untuk bus A pukul 21.00 sampai 23.06, waktu tunggunya berturut-turut <InlineMath math="27, 9, 21, 33, 15, 27, 9, 21" /> menit. Penumpang bus A pukul 23.24 dan 23.42 tidak mendapat bus B. Garis datar menandai batas transfer gratis, <InlineMath math="15" /> menit.</>}
+  bars="apart"
+  categories={["21.00", "21.18", "21.36", "21.54", "22.12", "22.30", "22.48", "23.06", "23.24", "23.42"]}
+  series={[
+    { label: "Waktu tunggu (menit)", mark: "bar", values: [27, 9, 21, 33, 15, 27, 9, 21, null, null] },
+    { label: "Batas transfer gratis", mark: "line", values: Array.from({ length: 10 }, () => 15) },
+  ]}
+  valueLabel="Waktu tunggu (menit)"
+/>
+
 # Pernyataan tentang waktu tunggu terlama
 
 Waktu tunggu terlama pada daftar adalah <InlineMath math="33\text{ menit}" />, dialami penumpang bus A pukul 21.54. Angka <InlineMath math="27\text{ menit}" /> hanya muncul jika **jalan kaki <InlineMath math="4\text{ menit}" /> diabaikan**, karena penumpang itu lalu dianggap sempat naik bus pukul 22.22. Pernyataan ini **salah**.

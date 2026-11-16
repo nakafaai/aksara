@@ -39,6 +39,20 @@ Ein Kind mit <InlineMath math="39\text{ kg}" /> darf <InlineMath math="390\text{
 
 Das Kind mit <InlineMath math="39\text{ kg}" /> bleibt sicher, während **das Kind mit** <InlineMath math="40\text{ kg}" /> **die Grenze überschreitet**, und zwar am zweiten Abend.
 
+Das Diagramm zeigt die Menge nach jeder Einnahme für beide Dosen. Beide Linien **erreichen ihren Gipfel am zweiten Abend**, und nur die Linie für <InlineMath math="400\text{ mg}" /> durchbricht die sichere Grenze.
+
+<Chart
+  title={<>Menge des Medikaments nach jeder Einnahme über zwei Tage</>}
+  description={<>Nach jeder Einnahme beträgt die Menge <InlineMath math="D" />, <InlineMath math="\tfrac{3}{2}D" />, <InlineMath math="\tfrac{7}{4}D" />, <InlineMath math="\tfrac{23}{16}D" />, <InlineMath math="\tfrac{55}{32}D" /> und <InlineMath math="\tfrac{119}{64}D" />. Für <InlineMath math="D=350\text{ mg}" /> liegt der Gipfel bei etwa <InlineMath math="650{,}8\text{ mg}" />, für <InlineMath math="D=400\text{ mg}" /> bei <InlineMath math="743{,}75\text{ mg}" />. Die waagerechte Linie markiert die Grenze von <InlineMath math="700\text{ mg}" />.</>}
+  categories={["Morgen 1", "Mittag 1", "Abend 1", "Morgen 2", "Mittag 2", "Abend 2"]}
+  series={[
+    { label: "Dosis 350 mg", mark: "line", values: [1, 3 / 2, 7 / 4, 23 / 16, 55 / 32, 119 / 64].map((k) => k * 350) },
+    { label: "Dosis 400 mg", mark: "line", values: [1, 3 / 2, 7 / 4, 23 / 16, 55 / 32, 119 / 64].map((k) => k * 400) },
+    { label: "Sichere Grenze 700 mg", mark: "line", values: [700, 700, 700, 700, 700, 700] },
+  ]}
+  valueLabel="Menge (mg)"
+/>
+
 # Typische falsche Antworten
 
 - Die Antwort <InlineMath math="37" /> entsteht, wenn die Regel für den Messlöffel vergessen wird, sodass <InlineMath math="10w\le376{,}5" /> direkt <InlineMath math="w\le37" /> liefert. Kinder mit <InlineMath math="38" /> und <InlineMath math="39\text{ kg}" /> nehmen aber trotzdem nur <InlineMath math="350\text{ mg}" />.

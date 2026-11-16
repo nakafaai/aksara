@@ -12,6 +12,49 @@ Untuk mencari nilai data ke-<InlineMath math="k" />, cari kelas tempat data itu 
 
 <BlockMath math="\text{nilai data ke-}k=L+\frac{k-F}{f}\cdot10" />
 
+Rumus ini sama dengan membaca ogif yang titik-titiknya disambung dengan garis lurus. **Dari nilai data ke-<InlineMath math="k" /> pada paksi tegak, tarik garis mendatar hingga ke lengkung, kemudian turun ke paksi mendatar**. Keempat-empat sukatan yang diuji dibaca dengan cara ini.
+
+<MathVisual
+  title={<>Membaca kuartil, median, dan persentil daripada ogif</>}
+  description={<>Ogif menyambung titik <InlineMath math="(0,0)" />, <InlineMath math="(10,2)" />, <InlineMath math="(20,8)" />, <InlineMath math="(30,32)" />, <InlineMath math="(40,52)" />, <InlineMath math="(50,68)" />, <InlineMath math="(60,74)" />, dan <InlineMath math="(70,80)" />. Garis bantu dari data ke-<InlineMath math="20" />, ke-<InlineMath math="40" />, ke-<InlineMath math="60" />, dan ke-<InlineMath math="64" /> mengena lengkung pada <InlineMath math="t=25" />, <InlineMath math="t=34" />, <InlineMath math="t=45" />, dan <InlineMath math="t=47.5" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1=25" />,
+    median: <InlineMath math="\text{median}=34" />,
+    q3: <InlineMath math="Q_3=45" />,
+    p80: <InlineMath math="P_{80}=47.5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 72 },
+      y: { min: 0, max: 84 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ogive", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 2 }, { x: 20, y: 8 }, { x: 30, y: 32 }, { x: 40, y: 52 }, { x: 50, y: 68 }, { x: 60, y: 74 }, { x: 70, y: 80 }] },
+      { id: "q1-across", kind: "segment", appearance: "construction", from: { x: 0, y: 20 }, to: { x: 25, y: 20 } },
+      { id: "q1-down", kind: "segment", appearance: "construction", from: { x: 25, y: 20 }, to: { x: 25, y: 0 } },
+      { id: "median-across", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 34, y: 40 } },
+      { id: "median-down", kind: "segment", appearance: "construction", from: { x: 34, y: 40 }, to: { x: 34, y: 0 } },
+      { id: "q3-across", kind: "segment", appearance: "construction", from: { x: 0, y: 60 }, to: { x: 45, y: 60 } },
+      { id: "q3-down", kind: "segment", appearance: "construction", from: { x: 45, y: 60 }, to: { x: 45, y: 0 } },
+      { id: "p80-across", kind: "segment", appearance: "construction", from: { x: 0, y: 64 }, to: { x: 47.5, y: 64 } },
+      { id: "p80-down", kind: "segment", appearance: "construction", from: { x: 47.5, y: 64 }, to: { x: 47.5, y: 0 } },
+      { id: "q1", kind: "point", appearance: "answer", at: { x: 25, y: 20 } },
+      { id: "median", kind: "point", appearance: "warning", at: { x: 34, y: 40 } },
+      { id: "q3", kind: "point", appearance: "answer", at: { x: 45, y: 60 } },
+      { id: "p80", kind: "point", appearance: "warning", at: { x: 47.5, y: 64 } },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 25, y: 20 }, placement: "right" },
+      { key: "median", objectId: "median", at: { x: 34, y: 40 }, placement: "right" },
+      { key: "q3", objectId: "q3", at: { x: 45, y: 60 }, placement: "below-right" },
+      { key: "p80", objectId: "p80", at: { x: 47.5, y: 64 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 **Pernyataan 1**. Median berada pada data ke-<InlineMath math="40" />. Sebelum kelas <InlineMath math="30\le t<40" /> ada <InlineMath math="32" /> data, dan hingga hujung kelas itu ada <InlineMath math="52" />, jadi data ke-<InlineMath math="40" /> berada dalam kelas itu:

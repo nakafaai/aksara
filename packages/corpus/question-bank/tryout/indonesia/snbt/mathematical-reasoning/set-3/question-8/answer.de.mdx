@@ -9,6 +9,17 @@ Jede Aussage prüfst du einzeln. Bei einer Verspätung von <InlineMath math="d" 
 
 Vergleich eine Verspätung von <InlineMath math="3" /> Tagen mit einer von <InlineMath math="4" /> Tagen. Bei <InlineMath math="3" /> Tagen liegt das Buch noch in der Kulanzfrist, die Gebühr ist also <InlineMath math="\text{Rp}0" />. Bei <InlineMath math="4" /> Tagen **berechnet die Kulanzregel alle <InlineMath math="4" /> Tage auf einmal**, die Gebühr ist also <InlineMath math="\text{Rp}4{.}000" />. Dieser eine zusätzliche Tag erhöht die Gebühr um <InlineMath math="\text{Rp}4{.}000" />, also um mehr als <InlineMath math="\text{Rp}1{.}000" />. Die erste Aussage ist **falsch**.
 
+Das Diagramm zeigt die Gebühr für ein normales Buch bei <InlineMath math="0" /> bis <InlineMath math="10" /> Tagen Verspätung. **Bis Tag <InlineMath math="3" /> sind die Balken leer, dann springen sie direkt auf <InlineMath math="\text{Rp}4{.}000" />**, nicht auf <InlineMath math="\text{Rp}1{.}000" />.
+
+<Chart
+  title={<>Gebühr für ein normales Buch nach Tagen Verspätung</>}
+  description={<>Bei <InlineMath math="0" /> bis <InlineMath math="3" /> Tagen Verspätung beträgt die Gebühr <InlineMath math="\text{Rp}0" />. Bei <InlineMath math="4" /> bis <InlineMath math="10" /> Tagen beträgt sie <InlineMath math="\text{Rp}1{.}000" /> mal die Anzahl der Tage, von <InlineMath math="\text{Rp}4{.}000" /> bis <InlineMath math="\text{Rp}10{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i}`)}
+  series={[{ label: "Gebühr normales Buch", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i <= 3 ? 0 : Math.min(1000 * i, 20000))) }]}
+  valueLabel="Gebühr (Rupiah)"
+/>
+
 # Die zweite Aussage
 
 Für <InlineMath math="4\le d\le16" /> ist das Verhältnis immer <InlineMath math="\tfrac{2{.}500d}{1{.}000d}=2{,}5" />, also nicht <InlineMath math="2" />. Aber **die Obergrenzen verändern dieses Verhältnis**. Probier <InlineMath math="d=20" />.

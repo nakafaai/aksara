@@ -16,6 +16,20 @@ k=12 &: 144+216=360
 
 Bei <InlineMath math="k=12" /> hat Kategorie A genau <InlineMath math="360" /> Plätze. Das ist **nicht weniger als ein Viertel**, also ist <InlineMath math="k=12" /> nicht erlaubt. Der größte Wert ist <InlineMath math="k=11" />.
 
+Das Diagramm zeigt die Anzahl der Sitze in Kategorie A für jede Grenze <InlineMath math="k" />. **Der Balken für <InlineMath math="k=12" /> berührt schon die Linie für ein Viertel der Tribüne**, also ist der letzte Balken unter der Linie <InlineMath math="k=11" />.
+
+<Chart
+  title={<>Anzahl der Sitze in Kategorie A nach Grenze <InlineMath math="k" /></>}
+  description={<>Für <InlineMath math="k=6" /> bis <InlineMath math="16" /> hat Kategorie A <InlineMath math="k^2+18k" /> Sitze, von <InlineMath math="144" /> bis <InlineMath math="544" />. Bei <InlineMath math="k=11" /> sind es <InlineMath math="319" /> Sitze und bei <InlineMath math="k=12" /> sind es <InlineMath math="360" />. Die waagerechte Linie markiert ein Viertel der Tribüne, also <InlineMath math="360" /> Sitze.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i + 6}`)}
+  series={[
+    { label: "Sitze Kategorie A", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i + 6) * (i + 6) + 18 * (i + 6)) },
+    { label: "Viertel der Tribüne", mark: "line", values: Array.from({ length: 11 }, () => 1440 / 4) },
+  ]}
+  valueLabel="Sitze"
+/>
+
 # Die größten Einnahmen
 
 Mit der ursprünglichen Aufteilung betragen die Einnahmen bei vollem Verkauf <InlineMath math="144\cdot250{.}000+400\cdot150{.}000+896\cdot100{.}000=185{.}600{.}000" /> Rupiah. Die Reihen <InlineMath math="7" /> bis <InlineMath math="11" /> wechseln von B zu A, also **wird jeder ihrer Plätze um** <InlineMath math="\text{Rp}100{.}000" /> **teurer**, nicht um <InlineMath math="\text{Rp}250{.}000" />.

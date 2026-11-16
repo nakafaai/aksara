@@ -8,6 +8,20 @@ Try to build a candidate with the highest possible final score who still fails o
 
 The final score is above <InlineMath math="90" />, but <InlineMath math="P=64" /> is below <InlineMath math="65" />, so this candidate doesn't qualify. **A high final score doesn't guarantee that every component passes**, and the first statement is **false**.
 
+The chart below draws the example candidate's components. **One short bar is enough to rule them out**, even though the other three bars are full and the final score is <InlineMath math="94.6" />.
+
+<Chart
+  title={<>Components of a candidate with a final score of <InlineMath math="94.6" /> who doesn't qualify</>}
+  description={<>The candidate gets <InlineMath math="T=100" />, <InlineMath math="W=100" />, <InlineMath math="R=100" />, and <InlineMath math="P=64" />. The flat line marks the limit for every component, <InlineMath math="65" />, and only <InlineMath math="P" /> is below it.</>}
+  bars="apart"
+  categories={["T", "W", "R", "P"]}
+  series={[
+    { label: "Component score", mark: "bar", values: [100, 100, 100, 64] },
+    { label: "Component limit 65", mark: "line", values: [65, 65, 65, 65] },
+  ]}
+  valueLabel="Score"
+/>
+
 # The second statement
 
 Say all three scores equal <InlineMath math="x" />. When one rises to <InlineMath math="x+8" />, the two highest scores are <InlineMath math="x+8" /> and <InlineMath math="x" />:

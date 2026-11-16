@@ -30,6 +30,17 @@ The limit is only reached if **all four Wednesdays are paid**, so no free cup ma
 
 That schedule holds <InlineMath math="4" /> Wednesday cups, <InlineMath math="12" /> regular cups and <InlineMath math="2" /> free cups.
 
+The chart below follows Bu Ratna's card with that schedule. A day with no bar is a day she doesn't order, and **the card empties exactly on day <InlineMath math="18" /> and day <InlineMath math="28" />**, two days that aren't Wednesdays.
+
+<Chart
+  title={<>Stamps on Bu Ratna's card after each order</>}
+  description={<>Bu Ratna orders on the Wednesdays of day <InlineMath math="3" /> and day <InlineMath math="10" />, then every day from day <InlineMath math="13" />. Her card holds <InlineMath math="2" />, then <InlineMath math="4" /> stamps, climbs to <InlineMath math="10" /> on day <InlineMath math="17" />, empties on day <InlineMath math="18" />, climbs back to <InlineMath math="10" /> on day <InlineMath math="27" />, and empties on day <InlineMath math="28" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 28 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Stamps after the order", mark: "bar", values: [null, null, 2, null, null, null, null, null, null, 4, null, null, 5, 6, 7, 8, 10, 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 0] }]}
+  valueLabel="Stamps"
+/>
+
 # The tempting wrong answers
 
 The answer <InlineMath math="16" /> comes from spending all the money at the regular price, which gives <InlineMath math="15" /> cups and <InlineMath math="1" /> free cup. The answer <InlineMath math="20" /> comes from pricing every cup at the Wednesday price, although **there are only four Wednesdays**. Ordering every day from day <InlineMath math="1" /> also loses out, because the first free cup then falls on the Wednesday of day <InlineMath math="10" />.

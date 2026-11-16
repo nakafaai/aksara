@@ -36,6 +36,34 @@ Check with each runner's distance at second <InlineMath math="650" />:
 
 The difference is exactly <InlineMath math="400\text{ m}" />, so they really are at the same point.
 
+The figure below draws the distance difference <InlineMath math="g" /> against time. The line climbs gently while both run, **drops steeply while Andi drinks**, then climbs again until it touches the one-lap line at second <InlineMath math="650" />.
+
+<MathVisual
+  title={<>Distance difference between Andi and Bima up to their first meeting</>}
+  description={<>The difference climbs from <InlineMath math="0" /> to <InlineMath math="320" /> m at second <InlineMath math="320" />, falls to <InlineMath math="120" /> m at second <InlineMath math="370" /> while Andi drinks, then climbs again and reaches <InlineMath math="400" /> m at second <InlineMath math="650" />. The flat line marks a one-lap difference of <InlineMath math="400" /> m.</>}
+  labels={{
+    lap: <InlineMath math="g=400" />,
+    meet: <InlineMath math="t=650" />,
+    stop: <InlineMath math="t=320" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -40, max: 760 }, y: { min: -40, max: 480 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "lap", kind: "segment", appearance: "reference", from: { x: 0, y: 400 }, to: { x: 720, y: 400 } },
+      { id: "gap", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 320, y: 320 }, { x: 370, y: 120 }, { x: 650, y: 400 }] },
+      { id: "stop", kind: "point", appearance: "warning", at: { x: 320, y: 320 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 650, y: 400 } },
+    ],
+    labels: [
+      { key: "lap", objectId: "lap", at: { x: 120, y: 400 }, placement: "above" },
+      { key: "meet", objectId: "meet", at: { x: 650, y: 400 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 320, y: 320 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # The wrong options
 
 Each other option **handles the rest break wrongly**:

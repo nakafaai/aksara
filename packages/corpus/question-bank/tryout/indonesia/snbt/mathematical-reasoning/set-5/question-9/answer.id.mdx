@@ -30,6 +30,21 @@ w = 8 &: 0{,}8 \cdot 8 = 6{,}4 \to 6{,}0\text{ kg} \to \text{Rp}15{.}000
 
 Berat <InlineMath math="8{,}125\text{ kg}" /> sudah cukup, sedangkan <InlineMath math="8\text{ kg}" /> belum.
 
+Grafik berikut menghitung nilai setoran untuk beberapa berat kardus basah. **Batang tetap di <InlineMath math="\text{Rp}15{.}000" /> sampai <InlineMath math="8\text{ kg}" />**, lalu melompat melewati garis target tepat pada <InlineMath math="8{,}125\text{ kg}" />.
+
+<Chart
+  title={<>Nilai setoran kardus basah menurut beratnya</>}
+  description={<>Kardus basah seberat <InlineMath math="7{,}5" />, <InlineMath math="7{,}75" />, dan <InlineMath math="8\text{ kg}" /> dihitung <InlineMath math="6{,}0\text{ kg}" /> dan bernilai <InlineMath math="\text{Rp}15{.}000" />. Kardus basah seberat <InlineMath math="8{,}125" />, <InlineMath math="8{,}25" />, dan <InlineMath math="8{,}5\text{ kg}" /> dihitung <InlineMath math="6{,}5\text{ kg}" /> dan bernilai <InlineMath math="\text{Rp}16{.}250" />. Garis datar menandai target <InlineMath math="\text{Rp}16{.}000" />. Sumbu nilai dimulai dari <InlineMath math="\text{Rp}14{.}000" />.</>}
+  categories={["7,5 kg", "7,75 kg", "8 kg", "8,125 kg", "8,25 kg", "8,5 kg"]}
+  bars="apart"
+  series={[
+    { label: "Nilai setoran", mark: "bar", values: [7.5, 7.75, 8, 8.125, 8.25, 8.5].map((w) => (Math.floor(0.8 * w * 2) / 2) * 2500) },
+    { label: "Target Rp16.000", mark: "line", values: [16000, 16000, 16000, 16000, 16000, 16000] },
+  ]}
+  valueRange={{ min: 14000, max: 17000 }}
+  valueLabel="Nilai setoran (rupiah)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain **salah menangani pembulatan atau potongan air**:

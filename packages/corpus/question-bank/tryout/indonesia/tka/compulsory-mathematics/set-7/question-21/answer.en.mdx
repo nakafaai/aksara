@@ -20,6 +20,17 @@ Call the salary of the design employee who left <InlineMath math="x" />. In Apri
 x&=6.6
 \end{aligned}" />
 
+The diagram below shows the way from total salaries to the design average. **The April equation uses total salaries, not averages**, and then the leaving employee's salary is taken off the design total.
+
+<Mermaid
+  title={<>From March totals to the April design average</>}
+  description={<>The March total is <InlineMath math="108" /> million. In April one salary <InlineMath math="x" /> leaves and two salaries of <InlineMath math="3.9" /> million join, so the total is <InlineMath math="21\cdot5.2" />. From there <InlineMath math="x=6.6" />, and the average of the four remaining design employees is <InlineMath math="(36-6.6)\div4=7.35" /> million.</>}
+  chart={`flowchart TD
+  M["March: 72 + 36 = 108"] --> A["April: 108 − x + 2 · 3.9 = 21 · 5.2"]
+  A --> X["x = 6.6"]
+  X --> D["Design in April: (36 − 6.6) ÷ 4 = 7.35"]`}
+/>
+
 # Design mean in April
 
 The design department now has <InlineMath math="5-1=4" /> people, and its total drops by the salary of the person who left.

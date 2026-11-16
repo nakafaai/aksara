@@ -36,6 +36,21 @@ Die Plastikflaschen bringen weiterhin <InlineMath math="14{.}000" />, also müss
 
 Ein Guthaben von <InlineMath math="108{.}000" /> ist kleiner als <InlineMath math="110{.}000" />, <InlineMath math="113{.}400" /> dagegen reicht. Der Wert <InlineMath math="50{.}000" /> liegt auch noch unter <InlineMath math="60{.}000" />, die Gebühr von <InlineMath math="10\%" /> gilt also wirklich.
 
+Das Diagramm berechnet das Guthaben nach der Abgabe in Woche drei für drei mögliche gezählte Dosengewichte. **Der Balken für <InlineMath math="2{,}5\text{ kg}" /> bleibt knapp unter der Linie**, also muss das gezählte Dosengewicht <InlineMath math="3{,}0\text{ kg}" /> sein.
+
+<Chart
+  title={<>Rinas Guthaben nach der Abgabe in Woche drei nach gezähltem Dosengewicht</>}
+  description={<>Bei einem gezählten Dosengewicht von <InlineMath math="2{,}0" />, <InlineMath math="2{,}5" /> und <InlineMath math="3{,}0\text{ kg}" /> beträgt das Guthaben <InlineMath math="\text{Rp}102{.}600" />, <InlineMath math="\text{Rp}108{.}000" /> und <InlineMath math="\text{Rp}113{.}400" />. Die waagerechte Linie markiert das benötigte Guthaben von <InlineMath math="\text{Rp}110{.}000" />. Die Werteachse beginnt bei <InlineMath math="\text{Rp}90{.}000" />.</>}
+  categories={["Dosen 2,0 kg", "Dosen 2,5 kg", "Dosen 3,0 kg"]}
+  bars="apart"
+  series={[
+    { label: "Guthaben nach Woche drei", mark: "bar", values: [2, 2.5, 3].map((c) => 68400 + 0.9 * (14000 + 12000 * c)) },
+    { label: "Benötigtes Guthaben", mark: "line", values: [110000, 110000, 110000] },
+  ]}
+  valueRange={{ min: 90000, max: 120000 }}
+  valueLabel="Guthaben (Rupiah)"
+/>
+
 # Das zusätzliche Dosengewicht
 
 Ein gezähltes Gewicht von <InlineMath math="3{,}0\text{ kg}" /> verlangt, dass **alle Dosen auf der Waage** zusammen mindestens <InlineMath math="3{,}0\text{ kg}" /> wiegen. Rina bringt schon <InlineMath math="2{,}3\text{ kg}" />, also muss sie mindestens <InlineMath math="3{,}0-2{,}3=0{,}7\text{ kg}" /> dazulegen.

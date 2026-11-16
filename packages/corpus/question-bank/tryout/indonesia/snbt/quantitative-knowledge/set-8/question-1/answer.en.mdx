@@ -13,6 +13,20 @@ Since <InlineMath math="2^{12}" /> leaves remainder <InlineMath math="1" />, **t
 2^{2026}&=\left(2^{12}\right)^{168}\cdot2^{10}\equiv1\cdot10=10\pmod{13}
 \end{aligned}" />
 
+The chart below shows one full round of the remainder pattern. The last bar, power <InlineMath math="12" />, comes back to <InlineMath math="1" />, so the pattern repeats. **The two marked bars**, powers <InlineMath math="10" /> and <InlineMath math="11" />, are where <InlineMath math="2^{2026}" /> and <InlineMath math="2^{2027}" /> sit inside the round.
+
+<Chart
+  title={<>Remainders of <InlineMath math="2^k" /> on division by <InlineMath math="13" />, for <InlineMath math="k=1" /> to <InlineMath math="12" /></>}
+  description={<>The remainders are <InlineMath math="2, 4, 8, 3, 6, 12, 11, 9, 5, 10, 7, 1" /> in order. Power <InlineMath math="10" /> leaves <InlineMath math="10" /> and power <InlineMath math="11" /> leaves <InlineMath math="7" />. Power <InlineMath math="12" /> leaves <InlineMath math="1" />, so the pattern repeats every <InlineMath math="12" /> powers.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Remainders of other powers", mark: "bar", values: Array.from({ length: 12 }, (_, i) => (i + 1 === 10 || i + 1 === 11 ? null : 2 ** (i + 1) % 13)) },
+    { label: "Remainders used here", mark: "bar", values: Array.from({ length: 12 }, (_, i) => (i + 1 === 10 || i + 1 === 11 ? 2 ** (i + 1) % 13 : null)) },
+  ]}
+  valueLabel="Remainder"
+/>
+
 # Turning eleven into a negative number
 
 The number <InlineMath math="11" /> equals <InlineMath math="13-2" />, so <InlineMath math="11\equiv-2\pmod{13}" />. Swapping the base for a number with the same remainder doesn't change the remainder of the power. The exponent <InlineMath math="2027" /> is odd, and **an odd exponent keeps the minus sign**.

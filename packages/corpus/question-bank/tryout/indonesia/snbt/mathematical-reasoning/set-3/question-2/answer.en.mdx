@@ -11,6 +11,17 @@ f(k) &= 6{,}000+4{,}000(k-1) \\
 
 For <InlineMath math="k=7" /> it's exactly <InlineMath math="30{,}000" />. So **from <InlineMath math="7" /> hours on, one part always costs <InlineMath math="\text{Rp}30{,}000" />** because of the cap in the fee rule.
 
+The chart below draws the fee of one parking part for <InlineMath math="1" /> to <InlineMath math="10" /> hours. The bars climb <InlineMath math="\text{Rp}4{,}000" /> per hour, then **flatten at <InlineMath math="\text{Rp}30{,}000" /> from hour <InlineMath math="7" /> on**.
+
+<Chart
+  title={<>Fee of one parking part by hours counted</>}
+  description={<>One part costs <InlineMath math="4{,}000k+2{,}000" /> rupiah for <InlineMath math="k" /> hours, from <InlineMath math="\text{Rp}6{,}000" /> for <InlineMath math="1" /> hour to <InlineMath math="\text{Rp}26{,}000" /> for <InlineMath math="6" /> hours. From <InlineMath math="7" /> hours on, it stays at <InlineMath math="\text{Rp}30{,}000" /> because of the cap.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Fee of one part", mark: "bar", values: Array.from({ length: 10 }, (_, i) => Math.min(4000 * (i + 1) + 2000, 30000)) }]}
+  valueLabel="Fee (rupiah)"
+/>
+
 # The first statement
 
 From 08.20 to 14.25 is <InlineMath math="6\text{ h }5\text{ min}" />. Those extra <InlineMath math="5\text{ min}" /> **have already started the seventh hour**, so it counts as <InlineMath math="7\text{ h}" /> and costs <InlineMath math="f(7)=\text{Rp}30{,}000" />. The first statement is **true**. If you round down to <InlineMath math="6\text{ h}" />, you get <InlineMath math="\text{Rp}26{,}000" /> and judge it wrongly.

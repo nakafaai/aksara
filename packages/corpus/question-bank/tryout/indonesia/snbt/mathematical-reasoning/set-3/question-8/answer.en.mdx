@@ -9,6 +9,17 @@ Each statement gets its own check. For a delay of <InlineMath math="d" /> days, 
 
 Compare a delay of <InlineMath math="3" /> days with one of <InlineMath math="4" /> days. At <InlineMath math="3" /> days the book is still in the grace period, so the fine is <InlineMath math="\text{Rp}0" />. At <InlineMath math="4" /> days, the grace-period rule **fines all <InlineMath math="4" /> days at once**, so the fine is <InlineMath math="\text{Rp}4{,}000" />. That one extra day raises the fine by <InlineMath math="\text{Rp}4{,}000" />, more than <InlineMath math="\text{Rp}1{,}000" />. The first statement is **false**.
 
+The chart below draws one regular book's fine for delays of <InlineMath math="0" /> to <InlineMath math="10" /> days. **The bars are empty up to day <InlineMath math="3" />, then jump straight to <InlineMath math="\text{Rp}4{,}000" />**, not to <InlineMath math="\text{Rp}1{,}000" />.
+
+<Chart
+  title={<>Fine for one regular book by days late</>}
+  description={<>For delays of <InlineMath math="0" /> to <InlineMath math="3" /> days, the fine is <InlineMath math="\text{Rp}0" />. For delays of <InlineMath math="4" /> to <InlineMath math="10" /> days, the fine is <InlineMath math="\text{Rp}1{,}000" /> times the number of days, from <InlineMath math="\text{Rp}4{,}000" /> to <InlineMath math="\text{Rp}10{,}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i}`)}
+  series={[{ label: "Regular book fine", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i <= 3 ? 0 : Math.min(1000 * i, 20000))) }]}
+  valueLabel="Fine (rupiah)"
+/>
+
 # The second statement
 
 For <InlineMath math="4\le d\le16" />, the ratio is always <InlineMath math="\tfrac{2{,}500d}{1{,}000d}=2.5" />, so it isn't <InlineMath math="2" />. But **the caps change that ratio**. Try <InlineMath math="d=20" />.

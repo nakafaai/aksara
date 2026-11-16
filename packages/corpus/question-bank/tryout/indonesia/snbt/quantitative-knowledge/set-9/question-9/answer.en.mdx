@@ -37,6 +37,37 @@ For <InlineMath math="x=3" /> and <InlineMath math="x=-1" />, the exponent is <I
 
 So **<InlineMath math="x=1" /> really doesn't work**.
 
+The graph of the exponent <InlineMath math="y=x^2-2x" /> below shows both conditions at once. The exponent has to sit **inside the band <InlineMath math="0\le y\le3" />**. The points at <InlineMath math="x=-1" />, <InlineMath math="0" />, <InlineMath math="2" />, and <InlineMath math="3" /> are in the band, while <InlineMath math="x=1" /> drops to <InlineMath math="y=-1" />, below it.
+
+<MathVisual
+  title={<>The exponent <InlineMath math="x^2-2x" /> and the band <InlineMath math="0\le y\le3" /></>}
+  description={<>The parabola <InlineMath math="y=x^2-2x" /> has its lowest point at <InlineMath math="(1,-1)" />. The shaded band is <InlineMath math="0\le y\le3" />. For the integers <InlineMath math="x=-1" />, <InlineMath math="0" />, <InlineMath math="2" />, and <InlineMath math="3" />, the exponent is <InlineMath math="3" />, <InlineMath math="0" />, <InlineMath math="0" />, and <InlineMath math="3" />, all in the band. For <InlineMath math="x=1" />, the exponent is <InlineMath math="-1" />.</>}
+  labels={{
+    curve: <InlineMath math="y=x^2-2x" />,
+    top: <InlineMath math="y=3" />,
+    one: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "band", kind: "region", appearance: "highlight", inequalities: ["y >= 0", "y <= 3", "x >= -2", "x <= 4"] },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 - 2x", domain: { min: -1.5, max: 3.5 } },
+      { id: "pm1", kind: "point", appearance: "answer", at: { x: -1, y: 3 } },
+      { id: "p0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "p1", kind: "point", appearance: "warning", at: { x: 1, y: -1 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: 5.25 }, placement: "left" },
+      { key: "top", objectId: "band", at: { x: -1.7, y: 3 }, placement: "above" },
+      { key: "one", objectId: "p1", at: { x: 1, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 # The tempting wrong options
 
 - <InlineMath math="5" /> **forgets the condition <InlineMath math="x^2-2x\ge0" />**, so <InlineMath math="x=1" /> gets counted.

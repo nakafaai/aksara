@@ -23,6 +23,20 @@ For <InlineMath math="i=1,3,5,7,9" />, the number of choices for <InlineMath mat
 
 <BlockMath math="10+8+6+4+2=30" />
 
+The chart below counts the terms by the exponent <InlineMath math="i" /> of <InlineMath math="a" />. **Only the bars at odd <InlineMath math="i" /> survive**, and they add up to <InlineMath math="10+8+6+4+2=30" />.
+
+<Chart
+  title={<>Number of terms <InlineMath math="a^ib^jc^k" /> by the exponent <InlineMath math="i" /></>}
+  description={<>For each <InlineMath math="i" /> from <InlineMath math="0" /> to <InlineMath math="10" />, there are <InlineMath math="11-i" /> terms. The terms with even <InlineMath math="i" /> cancel, <InlineMath math="36" /> of them. The terms with odd <InlineMath math="i" /> survive, <InlineMath math="30" /> of them.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i}`)}
+  series={[
+    { label: "Kept (odd i)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i % 2 === 1 ? 11 - i : null)) },
+    { label: "Cancelled (even i)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i % 2 === 0 ? 11 - i : null)) },
+  ]}
+  valueLabel="Number of terms"
+/>
+
 Check from the other side: the terms with even <InlineMath math="i" /> number <InlineMath math="11+9+7+5+3+1=36" />, all of them cancel, and <InlineMath math="30+36=66" />, matching the original count.
 
 The answer <InlineMath math="66" /> comes from **forgetting that some terms cancel**. The answer <InlineMath math="36" /> comes from keeping exactly the terms that vanish, as if the two expressions were added. The answer <InlineMath math="33" /> comes from assuming exactly half the terms survive.

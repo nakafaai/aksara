@@ -25,6 +25,17 @@ n(A)&=90+90=180\\
 P(A)&=\frac{180}{6840}=\frac{1}{38}
 \end{aligned}" />
 
+Das Diagramm zeigt, wie viele steigende Folgen jede Differenz <InlineMath math="d" /> zulässt. Jede größere Differenz **kostet zwei Möglichkeiten für das erste Glied**, also fallen die Balken gleichmäßig von <InlineMath math="18" /> auf <InlineMath math="2" />, zusammen <InlineMath math="90" />.
+
+<Chart
+  title={<>Steigende arithmetische Folgen aus <InlineMath math="1" /> bis <InlineMath math="20" /> nach Differenz</>}
+  description={<>Für die Differenzen <InlineMath math="d=1" /> bis <InlineMath math="9" /> gibt es <InlineMath math="20-2d" /> steigende Folgen, also <InlineMath math="18, 16, 14, \ldots, 2" />. Alle Balken ergeben zusammen <InlineMath math="90" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Steigende Folgen", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 20 - 2 * (i + 1)) }]}
+  valueLabel="Anzahl der Folgen"
+/>
+
 # Die falschen Antworten
 
 - <InlineMath math="\tfrac{1}{76}" /> entsteht, wenn **die fallenden Folgen vergessen werden**: <InlineMath math="\tfrac{90}{6840}" />.

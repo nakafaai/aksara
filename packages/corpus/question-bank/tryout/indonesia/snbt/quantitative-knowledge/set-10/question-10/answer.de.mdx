@@ -22,6 +22,17 @@ Also liefert <InlineMath math="x\in\{1,2,3\}" /> genau <InlineMath math="3" /> M
 \text{Wahrscheinlichkeit} &= \frac{12}{40}=\frac{3}{10}
 \end{aligned}" />
 
+Das Diagramm siebt die Teiler von <InlineMath math="2160" /> schrittweise aus. Die Bedingung <InlineMath math="6\mid d" /> lässt <InlineMath math="24" /> übrig, und die Bedingung für den Partner **kürzt das noch einmal auf <InlineMath math="12" />**, weil die Exponenten von <InlineMath math="2" /> und <InlineMath math="3" /> auch nach oben begrenzt sind.
+
+<Chart
+  title={<>Die positiven Teiler von <InlineMath math="2160" /> aussieben</>}
+  description={<>Es gibt insgesamt <InlineMath math="40" /> Teiler. Durch <InlineMath math="6" /> teilbar sind <InlineMath math="24" />. Durch <InlineMath math="6" /> teilbar und mit einem ebenfalls durch <InlineMath math="6" /> teilbaren Partner sind <InlineMath math="12" />, also ist die Wahrscheinlichkeit <InlineMath math="\tfrac{12}{40}=\tfrac{3}{10}" />.</>}
+  categories={["Alle Teiler", "d durch 6 teilbar", "Beide durch 6 teilbar"]}
+  bars="apart"
+  series={[{ label: "Anzahl der Teiler", mark: "bar", values: [5 * 4 * 2, 4 * 3 * 2, 3 * 2 * 2] }]}
+  valueLabel="Anzahl der Teiler"
+/>
+
 # Probe auf einem zweiten Weg
 
 Ist <InlineMath math="d=6e" /> und <InlineMath math="\tfrac{2160}{d}=6f" />, dann gilt <InlineMath math="36ef=2160" />, also <InlineMath math="ef=60" />. Jeder Teiler <InlineMath math="e" /> von <InlineMath math="60=2^2\cdot 3\cdot 5" /> liefert genau ein passendes <InlineMath math="d" />, und **<InlineMath math="60" /> hat <InlineMath math="3\cdot 2\cdot 2=12" /> Teiler**. Du bekommst wieder <InlineMath math="12" /> von <InlineMath math="40" />.

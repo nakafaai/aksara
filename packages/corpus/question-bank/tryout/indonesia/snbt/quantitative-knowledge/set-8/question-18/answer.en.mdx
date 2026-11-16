@@ -25,6 +25,17 @@ n(A)&=90+90=180\\
 P(A)&=\frac{180}{6840}=\frac{1}{38}
 \end{aligned}" />
 
+The chart below shows how many increasing sequences each difference <InlineMath math="d" /> allows. Each step up in the difference **removes two choices for the first term**, so the bars fall evenly from <InlineMath math="18" /> to <InlineMath math="2" />, and they add up to <InlineMath math="90" />.
+
+<Chart
+  title={<>Increasing arithmetic sequences from <InlineMath math="1" /> to <InlineMath math="20" /> by difference</>}
+  description={<>For differences <InlineMath math="d=1" /> to <InlineMath math="9" />, the number of increasing sequences is <InlineMath math="20-2d" />, which is <InlineMath math="18, 16, 14, \ldots, 2" />. All the bars add up to <InlineMath math="90" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Increasing sequences", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 20 - 2 * (i + 1)) }]}
+  valueLabel="Number of sequences"
+/>
+
 # The wrong options
 
 - <InlineMath math="\tfrac{1}{76}" /> comes from **forgetting the decreasing sequences**: <InlineMath math="\tfrac{90}{6840}" />.

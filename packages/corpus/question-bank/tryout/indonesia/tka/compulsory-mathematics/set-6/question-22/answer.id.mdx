@@ -44,6 +44,52 @@ Banyak datanya genap, jadi median adalah rata-rata data ke-<InlineMath math="6" 
 \text{rata-rata}&=\frac{1{.}200+1{.}560}{12}=\frac{2{.}760}{12}=230\text{ mm}
 \end{aligned}" />
 
+Gambar kedua belas data pada satu garis bilangan. **Dua data kecil Kota P, <InlineMath math="40" /> dan <InlineMath math="120" />, jauh dari kelompok lainnya**, sehingga menarik rata-rata ke kiri median.
+
+<MathVisual
+  title={<>Dua belas data curah hujan dengan rata-rata dan median</>}
+  description={<>Baris bawah berisi data Kota P: <InlineMath math="40" />, <InlineMath math="120" />, <InlineMath math="200" />, <InlineMath math="240" />, <InlineMath math="270" />, dan <InlineMath math="330\text{ mm}" />. Baris atas berisi data Kota Q: <InlineMath math="180" />, <InlineMath math="230" />, <InlineMath math="250" />, <InlineMath math="280" />, <InlineMath math="300" />, dan <InlineMath math="320\text{ mm}" />. Garis tegak di <InlineMath math="230" /> adalah rata-rata gabungan, dan garis tegak di <InlineMath math="245" /> adalah mediannya.</>}
+  labels={{
+    "p-row": <>Kota P</>,
+    "q-row": <>Kota Q</>,
+    mean: <>rata-rata <InlineMath math="230" /></>,
+    median: <>median <InlineMath math="245" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 360 },
+      y: { min: 0, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-row", kind: "segment", appearance: "reference", from: { x: 20, y: 1 }, to: { x: 345, y: 1 } },
+      { id: "q-row", kind: "segment", appearance: "reference", from: { x: 20, y: 2 }, to: { x: 345, y: 2 } },
+      { id: "p1", kind: "point", appearance: "primary", at: { x: 40, y: 1 } },
+      { id: "p2", kind: "point", appearance: "primary", at: { x: 120, y: 1 } },
+      { id: "p3", kind: "point", appearance: "primary", at: { x: 200, y: 1 } },
+      { id: "p4", kind: "point", appearance: "primary", at: { x: 240, y: 1 } },
+      { id: "p5", kind: "point", appearance: "primary", at: { x: 270, y: 1 } },
+      { id: "p6", kind: "point", appearance: "primary", at: { x: 330, y: 1 } },
+      { id: "q1", kind: "point", appearance: "secondary", at: { x: 180, y: 2 } },
+      { id: "q2", kind: "point", appearance: "secondary", at: { x: 230, y: 2 } },
+      { id: "q3", kind: "point", appearance: "secondary", at: { x: 250, y: 2 } },
+      { id: "q4", kind: "point", appearance: "secondary", at: { x: 280, y: 2 } },
+      { id: "q5", kind: "point", appearance: "secondary", at: { x: 300, y: 2 } },
+      { id: "q6", kind: "point", appearance: "secondary", at: { x: 320, y: 2 } },
+      { id: "mean", kind: "segment", appearance: "warning", from: { x: 230, y: 0.3 }, to: { x: 230, y: 2.7 } },
+      { id: "median", kind: "segment", appearance: "answer", from: { x: 245, y: 0.3 }, to: { x: 245, y: 2.7 } },
+    ],
+    labels: [
+      { key: "p-row", objectId: "p-row", at: { x: 20, y: 1 }, placement: "above-right" },
+      { key: "q-row", objectId: "q-row", at: { x: 20, y: 2 }, placement: "above-right" },
+      { key: "mean", objectId: "mean", at: { x: 230, y: 2.7 }, placement: "above-left" },
+      { key: "median", objectId: "median", at: { x: 245, y: 2.7 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Rata-ratanya <InlineMath math="230<245" />, tertarik ke bawah oleh data kecil Kota P seperti <InlineMath math="40\text{ mm}" />. **Benar**.
 
 Jadi, pernyataan yang benar adalah pernyataan 1, 2, 4, dan 5.

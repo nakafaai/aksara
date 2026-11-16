@@ -17,6 +17,20 @@ The paid minutes of a trip are its length minus <InlineMath math="20" />, or zer
 
 Because the cap is <InlineMath math="\text{Rp}30{,}000" />, Dita only pays <InlineMath math="\text{Rp}30{,}000" /> in minute charges for her <InlineMath math="65" /> paid minutes.
 
+The chart below adds up the minute charges, before the cap applies, for the original order and the reversed order. **Both lines end at the same point, <InlineMath math="\text{Rp}32{,}500" />**, so the monthly cap cuts it to <InlineMath math="\text{Rp}30{,}000" /> in both orders.
+
+<Chart
+  title={<>Minute charges so far for two orders of Dita's trips</>}
+  description={<>In the original order, the charges so far are <InlineMath math="2{,}500, 2{,}500, 11{,}500, 23{,}500, 23{,}500, 29{,}000, 29{,}000, 32{,}500" /> rupiah. In the reversed order, they're <InlineMath math="3{,}500, 3{,}500, 9{,}000, 9{,}000, 21{,}000, 30{,}000, 30{,}000, 32{,}500" /> rupiah. The flat line marks the monthly cap of <InlineMath math="\text{Rp}30{,}000" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Original order", mark: "line", values: [2500, 2500, 11500, 23500, 23500, 29000, 29000, 32500] },
+    { label: "Reversed order", mark: "line", values: [3500, 3500, 9000, 9000, 21000, 30000, 30000, 32500] },
+    { label: "Cap Rp30,000", mark: "line", values: Array.from({ length: 8 }, () => 30000) },
+  ]}
+  valueLabel="Minute charges (rupiah)"
+/>
+
 # The statement about reversing the order
 
 The monthly minute charge is <InlineMath math="500" /> times the total paid minutes, cut down to <InlineMath math="30{,}000" /> if it's more. **The total paid minutes don't depend on the order of the trips**, because you can add numbers in any order. So the charge stays <InlineMath math="\text{Rp}30{,}000" />. The order only changes when the cap is reached. With the trips reversed, the charges build up as <InlineMath math="3{,}500" />, <InlineMath math="3{,}500" />, <InlineMath math="9{,}000" />, <InlineMath math="9{,}000" />, <InlineMath math="21{,}000" />, and then <InlineMath math="30{,}000" /> on trip <InlineMath math="6" />. The amount paid is the same. This statement is **true**.

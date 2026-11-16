@@ -25,6 +25,20 @@ The inequality is strict, so **a deposit of <InlineMath math="60" /> million isn
 
 Since <InlineMath math="7\cdot5=35>31" />, the fraction <InlineMath math="\frac{7}{31}" /> is indeed more than <InlineMath math="\frac15" />.
 
+The chart below works out Dani's part for several deposits. **The <InlineMath math="60" /> million bar touches the one-fifth line exactly**, so the first deposit that really goes past it is <InlineMath math="70" /> million.
+
+<Chart
+  title={<>Dani's part of the shared profit by deposit</>}
+  description={<>With deposits of <InlineMath math="40" />, <InlineMath math="50" />, <InlineMath math="60" />, <InlineMath math="70" />, and <InlineMath math="80" /> million rupiah, Dani's part is about <InlineMath math="14.3\%" />, <InlineMath math="17.2\%" />, exactly <InlineMath math="20\%" />, about <InlineMath math="22.6\%" />, and <InlineMath math="25\%" />. The flat line marks <InlineMath math="20\%" />, one fifth.</>}
+  bars="apart"
+  categories={["40", "50", "60", "70", "80"]}
+  series={[
+    { label: "Dani's part (%)", mark: "bar", values: [40, 50, 60, 70, 80].map((x) => (100 * 6 * x) / (1440 + 6 * x)) },
+    { label: "One fifth", mark: "line", values: [20, 20, 20, 20, 20] },
+  ]}
+  valueLabel="Dani's part (%)"
+/>
+
 # Common slips
 
 If you **don't add Dani's money to the bottom of the fraction**, the condition becomes <InlineMath math="6x>\frac{1{,}440}{5}=288" />, and <InlineMath math="50" /> million seems enough. But with <InlineMath math="50" /> million his part is only <InlineMath math="\frac{300}{1{,}740}=\frac{5}{29}" />, less than <InlineMath math="\frac15" />. If you count Dani's months as <InlineMath math="5" /> (December minus July), you get <InlineMath math="80" /> million. If you read "more than" as "at least", you get <InlineMath math="60" /> million.

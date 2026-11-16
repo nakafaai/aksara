@@ -23,6 +23,35 @@ Each row holds <InlineMath math="5" /> points, and **every pair in the same row 
 
 For a horizontal difference of <InlineMath math="3" /> and a vertical difference of <InlineMath math="4" />, the <InlineMath math="x" />-coordinates of the two points are <InlineMath math="\{0,3\}" /> or <InlineMath math="\{1,4\}" />, the <InlineMath math="y" />-coordinates must be <InlineMath math="\{0,4\}" />, and the segment joining them can go up or down. That gives <InlineMath math="2\cdot1\cdot2=4" /> pairs. A horizontal difference of <InlineMath math="4" /> and a vertical one of <InlineMath math="3" /> also gives <InlineMath math="4" /> pairs.
 
+The lattice below shows all eight pairs at distance <InlineMath math="5" />. Each segment joins two points whose coordinates differ by <InlineMath math="3" /> and <InlineMath math="4" />, so **every segment touches two opposite sides of the lattice**, because a difference of <InlineMath math="4" /> already uses its full width.
+
+<MathVisual
+  title={<>The eight pairs of points at distance <InlineMath math="5" /> on the <InlineMath math="5\times5" /> lattice</>}
+  description={<>The lattice of whole-number points runs from <InlineMath math="(0,0)" /> to <InlineMath math="(4,4)" />. Four segments have a horizontal difference of <InlineMath math="3" /> and a vertical difference of <InlineMath math="4" />, such as from <InlineMath math="(0,0)" /> to <InlineMath math="(3,4)" />. Four more have a horizontal difference of <InlineMath math="4" /> and a vertical difference of <InlineMath math="3" />, such as from <InlineMath math="(0,0)" /> to <InlineMath math="(4,3)" />. Each segment has length <InlineMath math="5" />.</>}
+  labels={{
+    five: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "grid", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "a1", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "a2", kind: "segment", appearance: "answer", from: { x: 1, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "a3", kind: "segment", appearance: "answer", from: { x: 0, y: 4 }, to: { x: 3, y: 0 } },
+      { id: "a4", kind: "segment", appearance: "answer", from: { x: 1, y: 4 }, to: { x: 4, y: 0 } },
+      { id: "b1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "b2", kind: "segment", appearance: "secondary", from: { x: 0, y: 1 }, to: { x: 4, y: 4 } },
+      { id: "b3", kind: "segment", appearance: "secondary", from: { x: 0, y: 3 }, to: { x: 4, y: 0 } },
+      { id: "b4", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "five", objectId: "a1", at: { x: 1.5, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \text{good pairs}&=50+50+4+4=108\\
 P&=\frac{108}{300}=\frac{9}{25}

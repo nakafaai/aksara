@@ -8,6 +8,20 @@ Baue eine Person mit möglichst hoher Endnote, die trotzdem eine Komponentenbedi
 
 Die Endnote liegt über <InlineMath math="90" />, aber <InlineMath math="P=64" /> liegt unter <InlineMath math="65" />, also erfüllt diese Person die Bedingungen nicht. **Eine hohe Endnote garantiert nicht, dass jede Komponente besteht**, und die erste Aussage ist **falsch**.
 
+Das Diagramm zeigt die Komponenten des Beispielbewerbers. **Ein kurzer Balken reicht, um ihn auszuschließen**, obwohl die anderen drei Balken voll sind und die Endnote <InlineMath math="94{,}6" /> beträgt.
+
+<Chart
+  title={<>Komponenten eines Bewerbers mit Endnote <InlineMath math="94{,}6" />, der die Bedingungen nicht erfüllt</>}
+  description={<>Der Bewerber erhält <InlineMath math="T=100" />, <InlineMath math="W=100" />, <InlineMath math="R=100" /> und <InlineMath math="P=64" />. Die waagerechte Linie markiert die Grenze für jede Komponente, <InlineMath math="65" />, und nur <InlineMath math="P" /> liegt darunter.</>}
+  bars="apart"
+  categories={["T", "W", "R", "P"]}
+  series={[
+    { label: "Komponentennote", mark: "bar", values: [100, 100, 100, 64] },
+    { label: "Grenze je Komponente 65", mark: "line", values: [65, 65, 65, 65] },
+  ]}
+  valueLabel="Note"
+/>
+
 # Die zweite Aussage
 
 Angenommen, alle drei Bewertungen sind gleich <InlineMath math="x" />. Steigt eine auf <InlineMath math="x+8" />, sind die zwei höchsten Bewertungen <InlineMath math="x+8" /> und <InlineMath math="x" />:

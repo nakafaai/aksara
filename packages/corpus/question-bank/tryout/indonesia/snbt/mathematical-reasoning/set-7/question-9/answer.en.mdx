@@ -19,6 +19,19 @@ To fill the tank again, <InlineMath math="24\text{ liters}" /> of artificial sea
 
 As a check, <InlineMath math="41" /> lies between <InlineMath math="35" /> and <InlineMath math="42.5" />, as it should when you mix <InlineMath math="96\text{ liters}" /> at <InlineMath math="42.5\text{ g/L}" /> with <InlineMath math="24\text{ liters}" /> at <InlineMath math="35\text{ g/L}" />. It's above <InlineMath math="36\text{ g/L}" />, so it's no longer safe for the fish.
 
+The chart below follows the salinity while the owner is away and after the refill. **The salinity is already past the safe limit from day three**, and the artificial seawater only brings it down a little, to <InlineMath math="41\text{ g/L}" />.
+
+<Chart
+  title={<>Tank salinity over six days of evaporation and after the refill</>}
+  description={<>The salt stays at <InlineMath math="4{,}080" /> grams while the water drops by <InlineMath math="4" /> liters a day, so the salinity climbs from <InlineMath math="34" /> to <InlineMath math="42.5\text{ g/L}" /> by day six. After the refill with artificial seawater, it's <InlineMath math="41\text{ g/L}" />. The flat line marks the upper safe limit of <InlineMath math="36\text{ g/L}" />.</>}
+  categories={["Day 0", "Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Refilled"]}
+  series={[
+    { label: "Salinity (g/L)", mark: "line", values: [0, 1, 2, 3, 4, 5, 6].map((d) => 4080 / (120 - 4 * d)).concat([(4080 + 24 * 35) / 120]) },
+    { label: "Upper safe limit", mark: "line", values: Array.from({ length: 8 }, () => 36) },
+  ]}
+  valueLabel="Salinity (g/L)"
+/>
+
 # The wrong options
 
 - <InlineMath math="34\text{ g/L}" /> comes from assuming a refill always restores the old salinity. That's only true **when the refill water is fresh water**.

@@ -19,6 +19,19 @@ Untuk kembali penuh, ditambahkan <InlineMath math="24\text{ liter}" /> air laut 
 
 Sebagai pemeriksaan, <InlineMath math="41" /> berada di antara <InlineMath math="35" /> dan <InlineMath math="42{,}5" />, sesuai dengan mencampur <InlineMath math="96\text{ liter}" /> air bersalinitas <InlineMath math="42{,}5\text{ g/L}" /> dengan <InlineMath math="24\text{ liter}" /> air bersalinitas <InlineMath math="35\text{ g/L}" />. Salinitas ini di atas <InlineMath math="36\text{ g/L}" />, jadi sudah tidak aman bagi ikan.
 
+Grafik berikut mengikuti salinitas selama pemilik pergi dan sesudah diisi ulang. **Salinitas sudah melewati batas aman sejak hari ketiga**, dan air laut buatan hanya menurunkannya sedikit ke <InlineMath math="41\text{ g/L}" />.
+
+<Chart
+  title={<>Salinitas akuarium selama enam hari penguapan dan sesudah diisi ulang</>}
+  description={<>Garam tetap <InlineMath math="4{.}080" /> gram sementara air berkurang <InlineMath math="4" /> liter per hari, sehingga salinitas naik dari <InlineMath math="34" /> sampai <InlineMath math="42{,}5\text{ g/L}" /> pada hari keenam. Sesudah diisi ulang dengan air laut buatan, salinitasnya <InlineMath math="41\text{ g/L}" />. Garis datar menandai batas aman atas, <InlineMath math="36\text{ g/L}" />.</>}
+  categories={["Hari 0", "Hari 1", "Hari 2", "Hari 3", "Hari 4", "Hari 5", "Hari 6", "Diisi ulang"]}
+  series={[
+    { label: "Salinitas (g/L)", mark: "line", values: [0, 1, 2, 3, 4, 5, 6].map((d) => 4080 / (120 - 4 * d)).concat([(4080 + 24 * 35) / 120]) },
+    { label: "Batas aman atas", mark: "line", values: Array.from({ length: 8 }, () => 36) },
+  ]}
+  valueLabel="Salinitas (g/L)"
+/>
+
 # Pilihan yang keliru
 
 - <InlineMath math="34\text{ g/L}" /> muncul kalau kamu mengira mengisi ulang selalu mengembalikan salinitas semula. Itu hanya benar **jika air pengisinya air tawar**.

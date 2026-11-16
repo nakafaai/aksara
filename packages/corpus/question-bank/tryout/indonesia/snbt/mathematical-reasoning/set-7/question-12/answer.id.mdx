@@ -24,6 +24,21 @@ x &= 8
 
 Sebagai pemeriksaan, tersisa <InlineMath math="96-8=88\text{ liter}" /> air bersalinitas <InlineMath math="45\text{ g/L}" />, yaitu <InlineMath math="88\cdot45=3{.}960" /> gram garam. Lalu ditambahkan <InlineMath math="32\text{ liter}" /> air tawar sampai <InlineMath math="120\text{ liter}" />, dan <InlineMath math="\frac{3{.}960}{120}=33\text{ g/L}" />.
 
+Grafik berikut menghitung salinitas akhir untuk beberapa banyak air yang dibuang. Setiap <InlineMath math="4" /> liter yang dibuang menurunkan salinitas akhir <InlineMath math="1{,}5\text{ g/L}" />, dan **batang <InlineMath math="8" /> liter tepat menyentuh garis target**.
+
+<Chart
+  title={<>Salinitas akhir menurut banyak air yang dibuang sebelum diisi air tawar</>}
+  description={<>Jika <InlineMath math="0" />, <InlineMath math="4" />, <InlineMath math="8" />, <InlineMath math="12" />, dan <InlineMath math="16" /> liter dibuang, salinitas akhirnya <InlineMath math="36" />, <InlineMath math="34{,}5" />, <InlineMath math="33" />, <InlineMath math="31{,}5" />, dan <InlineMath math="30\text{ g/L}" />. Garis datar menandai target <InlineMath math="33\text{ g/L}" />. Sumbu nilai dimulai dari <InlineMath math="28" />.</>}
+  bars="apart"
+  categories={["0", "4", "8", "12", "16"]}
+  series={[
+    { label: "Salinitas akhir (g/L)", mark: "bar", values: [0, 4, 8, 12, 16].map((x) => (4320 - 45 * x) / 120) },
+    { label: "Target 33 g/L", mark: "line", values: [33, 33, 33, 33, 33] },
+  ]}
+  valueRange={{ min: 28, max: 37 }}
+  valueLabel="Salinitas (g/L)"
+/>
+
 # Pilihan yang keliru
 
 - <InlineMath math="10\text{ liter}" /> muncul kalau **penguapan diabaikan**, sehingga air dibuang dari <InlineMath math="120\text{ liter}" /> bersalinitas <InlineMath math="36\text{ g/L}" />.

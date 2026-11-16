@@ -24,6 +24,42 @@ Now find <InlineMath math="x" /> with <InlineMath math="f(x)=4" />:
 3x-1=4\ &\Rightarrow\ x=\tfrac53,\ \text{but }\tfrac53\not\ge2\ \text{(rejected)}
 \end{aligned}" />
 
+Draw both branches of <InlineMath math="f" /> with the lines <InlineMath math="y=11" /> and <InlineMath math="y=4" />. **Each horizontal line meets only one branch**, because the left branch stays below <InlineMath math="5" /> and the right branch starts at <InlineMath math="5" />. The line <InlineMath math="y=11" /> meets the right branch at <InlineMath math="x=4" />, then the line <InlineMath math="y=4" /> meets the left branch at <InlineMath math="x=0" />.
+
+<MathVisual
+  title={<>Reading <InlineMath math="f^{-1}" /> from two branches</>}
+  description={<>The left branch <InlineMath math="y=\frac{x}{2}+4" /> for <InlineMath math="x<2" /> rises toward <InlineMath math="5" />. The right branch <InlineMath math="y=3x-1" /> for <InlineMath math="x\ge2" /> starts at <InlineMath math="(2,\ 5)" /> and rises more steeply. The horizontal line <InlineMath math="y=11" /> meets the right branch at <InlineMath math="(4,\ 11)" />, and the horizontal line <InlineMath math="y=4" /> meets the left branch at <InlineMath math="(0,\ 4)" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{x}{2}+4" />,
+    right: <InlineMath math="y=3x-1" />,
+    first: <InlineMath math="(4,\ 11)" />,
+    second: <InlineMath math="(0,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 6.5 },
+      y: { min: -1, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x/2 + 4", domain: { min: -4.5, max: 2 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "3x - 1", domain: { min: 2, max: 5 } },
+      { id: "eleven", kind: "function", appearance: "reference", formula: "11", domain: { min: -4.5, max: 6 } },
+      { id: "four", kind: "function", appearance: "reference", formula: "4", domain: { min: -4.5, max: 6 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 4, y: 11 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -4, y: 2 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 5, y: 14 }, placement: "left" },
+      { key: "first", objectId: "first", at: { x: 4, y: 11 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: 0, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 So <InlineMath math="f^{-1}(4)=0" />. Check: <InlineMath math="f(0)=\frac02+4=4" />. This time **it's the second branch that gets rejected**, the opposite of the first step.
 
 So <InlineMath math="f^{-1}\left(f^{-1}(11)\right)=0" />.

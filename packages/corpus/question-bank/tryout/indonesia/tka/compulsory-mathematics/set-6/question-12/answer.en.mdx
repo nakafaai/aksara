@@ -18,6 +18,51 @@ The trick is that **one tall stack can meet a column condition and a row conditi
 | Middle | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
 | Front | <InlineMath math="1" /> | empty | <InlineMath math="3" /> |
 
+Write the height of each stack on the top-view grid. **The three squares in the answer colour carry a column condition and a row condition at once**, while the other four squares need only one cube.
+
+<MathVisual
+  title={<>Top view with the height of each stack</>}
+  description={<>A <InlineMath math="3\times3" /> grid with the front row at the bottom and the back row at the top. The back-left and front-middle squares are empty. Stacks of <InlineMath math="3" /> stand at middle-left and front-right, a stack of <InlineMath math="2" /> at back-middle, and the other four squares hold one cube each. The total is <InlineMath math="12" />.</>}
+  labels={{
+    "back-mid": <InlineMath math="2" />,
+    "back-right": <InlineMath math="1" />,
+    "mid-left": <InlineMath math="3" />,
+    "mid-mid": <InlineMath math="1" />,
+    "mid-right": <InlineMath math="1" />,
+    "front-left": <InlineMath math="1" />,
+    "front-right": <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "back-left", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 2 }, { x: 1, y: 2 }, { x: 1, y: 3 }, { x: 0, y: 3 }] },
+      { id: "back-mid", kind: "polygon", appearance: "answer", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 1, y: 3 }] },
+      { id: "back-right", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }] },
+      { id: "mid-left", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 1, y: 2 }, { x: 0, y: 2 }] },
+      { id: "mid-mid", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 1, y: 2 }] },
+      { id: "mid-right", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }] },
+      { id: "front-left", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "front-mid", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }] },
+      { id: "front-right", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }] },
+    ],
+    labels: [
+      { key: "back-mid", objectId: "back-mid", at: { x: 1.5, y: 2.5 }, placement: "center" },
+      { key: "back-right", objectId: "back-right", at: { x: 2.5, y: 2.5 }, placement: "center" },
+      { key: "mid-left", objectId: "mid-left", at: { x: 0.5, y: 1.5 }, placement: "center" },
+      { key: "mid-mid", objectId: "mid-mid", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "mid-right", objectId: "mid-right", at: { x: 2.5, y: 1.5 }, placement: "center" },
+      { key: "front-left", objectId: "front-left", at: { x: 0.5, y: 0.5 }, placement: "center" },
+      { key: "front-right", objectId: "front-right", at: { x: 2.5, y: 0.5 }, placement: "center" },
+    ],
+  }}
+/>
+
 <BlockMath math="3+3+2+1+1+1+1=12" />
 
 You can't do it with fewer. Those three tall stacks have to be there, and no other square can cover two such conditions at once, because the front-middle and back-left squares are empty. The other four ■ squares each need at least one cube.

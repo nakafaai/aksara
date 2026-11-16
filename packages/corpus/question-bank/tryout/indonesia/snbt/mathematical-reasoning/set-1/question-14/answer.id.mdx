@@ -18,6 +18,22 @@ Dua kali banyak kursi kategori B adalah <InlineMath math="800" />, sedangkan kat
 
 Agar <InlineMath math="17+2n=50" />, harus berlaku <InlineMath math="2n=33" />, sehingga <InlineMath math="n=16{,}5" />, bukan bilangan bulat. Hal ini terjadi karena **banyak kursi setiap baris selalu ganjil**, sedangkan <InlineMath math="50" /> genap. Baris ke-<InlineMath math="16" /> punya <InlineMath math="49" /> kursi dan baris ke-<InlineMath math="17" /> punya <InlineMath math="51" /> kursi. Pernyataan kedua salah.
 
+Grafik berikut menggambar banyak kursi di setiap baris. Garis <InlineMath math="50" /> kursi **jatuh tepat di celah antara baris <InlineMath math="16" /> dan baris <InlineMath math="17" />**, sehingga tidak ada batang yang tingginya tepat <InlineMath math="50" />.
+
+<Chart
+  title={<>Banyak kursi di setiap baris tribun</>}
+  description={<>Baris ke-<InlineMath math="n" /> memiliki <InlineMath math="17+2n" /> kursi, dari <InlineMath math="19" /> kursi di baris <InlineMath math="1" /> sampai <InlineMath math="77" /> kursi di baris <InlineMath math="30" />. Baris <InlineMath math="16" /> memiliki <InlineMath math="49" /> kursi dan baris <InlineMath math="17" /> memiliki <InlineMath math="51" /> kursi. Garis datar menandai <InlineMath math="50" /> kursi.</>}
+  bars="apart"
+  categories={Array.from({ length: 30 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Kategori A", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i < 6 ? 19 + 2 * i : null)) },
+    { label: "Kategori B", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 6 && i < 16 ? 19 + 2 * i : null)) },
+    { label: "Kategori C", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 16 ? 19 + 2 * i : null)) },
+    { label: "50 kursi", mark: "line", values: Array.from({ length: 30 }, () => 50) },
+  ]}
+  valueLabel="Banyak kursi"
+/>
+
 # Pernyataan ketiga tentang dua baris berurutan
 
 Dua baris berurutan, yaitu baris ke-<InlineMath math="n" /> dan ke-<InlineMath math="n+1" />, punya jumlah kursi berikut.

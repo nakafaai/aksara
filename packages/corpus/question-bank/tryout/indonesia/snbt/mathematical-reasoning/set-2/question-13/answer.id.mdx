@@ -33,6 +33,20 @@ Urutkan semua waktu mulai yang tersedia di kedua loket dari yang paling awal. Pa
 
 Dalam setiap <InlineMath math="12" /> menit, Loket A memulai <InlineMath math="3" /> pelayanan dan Loket B memulai <InlineMath math="2" /> pelayanan, jadi polanya berulang.
 
+Grafik berikut menggambar waktu tunggu dari tabel itu, diwarnai menurut loketnya. **Batang terakhir, orang nomor <InlineMath math="20" />, jatuh di Loket A dengan tinggi <InlineMath math="14" /> menit**, dan waktu tunggu sudah mulai turun sejak orang nomor <InlineMath math="11" />.
+
+<Chart
+  title={<>Waktu tunggu orang nomor <InlineMath math="1" /> sampai <InlineMath math="20" /></>}
+  description={<>Waktu tunggu orang nomor <InlineMath math="1" /> sampai <InlineMath math="10" /> berturut-turut <InlineMath math="0, 0, 4, 6, 8, 12, 12, 16, 18, 20" /> menit, dan orang nomor <InlineMath math="11" /> sampai <InlineMath math="20" /> berturut-turut <InlineMath math="21, 18, 19, 18, 17, 18, 15, 16, 15, 14" /> menit. Loket berganti dengan pola A, B, A, B, A setiap lima orang.</>}
+  bars="apart"
+  categories={Array.from({ length: 20 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Dilayani di Loket A", mark: "bar", values: [0, null, 4, null, 8, 12, null, 16, null, 20, 21, null, 19, null, 17, 18, null, 16, null, 14] },
+    { label: "Dilayani di Loket B", mark: "bar", values: [null, 0, null, 6, null, null, 12, null, 18, null, null, 18, null, 18, null, null, 15, null, 15, null] },
+  ]}
+  valueLabel="Waktu tunggu (menit)"
+/>
+
 # Waktu tunggu orang nomor dua puluh
 
 Orang nomor <InlineMath math="19" /> mengambil Loket B pukul 08.42, sehingga Loket B baru kosong lagi pukul 08.48. Loket A kosong pukul 08.44, lebih awal, jadi **orang nomor <InlineMath math="20" /> menuju Loket A pukul 08.44**. Ia datang <InlineMath math="30" /> menit setelah 08.00, yaitu pukul 08.30, dan mulai dilayani <InlineMath math="44" /> menit setelah 08.00.

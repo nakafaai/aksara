@@ -27,6 +27,18 @@ Zum Beispiel liefert <InlineMath math="n=3" /> die Zahl <InlineMath math="8" /> 
 
 Zusammen gilt: <InlineMath math="n" /> ist ungerade und lässt bei Division durch <InlineMath math="3" /> den Rest <InlineMath math="1" /> oder <InlineMath math="2" />. In der Tabelle passen dazu die Spalten mit Rest <InlineMath math="1" /> bei <InlineMath math="2" /> und einem Rest ungleich null bei <InlineMath math="3" />, das sind die Spalten <InlineMath math="1" /> und <InlineMath math="5" />. **Es bleiben zwei Möglichkeiten**, und beide kommen wirklich vor.
 
+Das Diagramm verbindet beide Aussagen. Aussage (1) streicht den Rest <InlineMath math="0" /> bei Division durch <InlineMath math="3" />, Aussage (2) streicht die geraden Zahlen, und **zwei Reste bei Division durch <InlineMath math="6" /> bleiben übrig**.
+
+<Mermaid
+  title={<>Reste bei Division durch <InlineMath math="6" />, die beide Aussagen erfüllen</>}
+  description={<>Aussage (1) lässt den Rest <InlineMath math="1" /> oder <InlineMath math="2" /> bei Division durch <InlineMath math="3" /> zu. Aussage (2) lässt ungerade Zahlen zu. Zusammen kann der Rest bei Division durch <InlineMath math="6" /> <InlineMath math="1" /> oder <InlineMath math="5" /> sein, etwa bei <InlineMath math="n=7" /> und <InlineMath math="n=5" />.</>}
+  chart={`flowchart LR
+    S1["(1): Rest bei 3 ist 1 oder 2"] --> K["Rest bei 6: 1 oder 5"]
+    S2["(2): n ungerade"] --> K
+    K --> X1["n = 7: Rest 1"]
+    K --> X2["n = 5: Rest 5"]`}
+/>
+
 <BlockMath math="\begin{aligned}
 n=7&: \ 7^2+2=51=3\times17,\quad 7^2-1=48=8\times6,\quad \text{Rest bei } 6 \text{ ist } 1\\
 n=5&: \ 5^2+2=27=3\times9,\quad 5^2-1=24=8\times3,\quad \text{Rest bei } 6 \text{ ist } 5

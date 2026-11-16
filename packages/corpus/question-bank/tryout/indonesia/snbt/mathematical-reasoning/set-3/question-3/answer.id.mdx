@@ -24,6 +24,20 @@ Satu bagian yang dihitung <InlineMath math="k" /> jam berbiaya <InlineMath math=
 
 Bagian Sabtu belum mencapai batas, sedangkan bagian Minggu (<InlineMath math="98{.}000" /> tanpa batas) dan bagian Senin (<InlineMath math="38{.}000" /> tanpa batas) sama-sama dipotong menjadi <InlineMath math="\text{Rp}30{.}000" />.
 
+Grafik berikut membandingkan biaya setiap bagian sebelum dan sesudah batas <InlineMath math="\text{Rp}30{.}000" /> diterapkan. **Hanya bagian Sabtu yang tidak terpotong**, sedangkan bagian Minggu dan Senin sama-sama turun ke <InlineMath math="\text{Rp}30{.}000" />.
+
+<Chart
+  title={<>Biaya setiap bagian parkir tanpa dan dengan batas</>}
+  description={<>Bagian Sabtu dihitung <InlineMath math="5" /> jam dan biayanya <InlineMath math="\text{Rp}22{.}000" /> dengan atau tanpa batas. Bagian Minggu dihitung <InlineMath math="24" /> jam, tanpa batas <InlineMath math="\text{Rp}98{.}000" /> dan dengan batas <InlineMath math="\text{Rp}30{.}000" />. Bagian Senin dihitung <InlineMath math="9" /> jam, tanpa batas <InlineMath math="\text{Rp}38{.}000" /> dan dengan batas <InlineMath math="\text{Rp}30{.}000" />.</>}
+  categories={["Sabtu", "Minggu", "Senin"]}
+  bars="apart"
+  series={[
+    { label: "Tanpa batas", mark: "bar", values: [6000 + 4000 * 4, 6000 + 4000 * 23, 6000 + 4000 * 8] },
+    { label: "Dengan batas", mark: "bar", values: [Math.min(6000 + 4000 * 4, 30000), Math.min(6000 + 4000 * 23, 30000), Math.min(6000 + 4000 * 8, 30000)] },
+  ]}
+  valueLabel="Biaya (rupiah)"
+/>
+
 # Biaya menginap dan total
 
 Mobil berada di gedung pada pukul 00.00 sebanyak <InlineMath math="2" /> kali, jadi biaya menginapnya <InlineMath math="2\cdot\text{Rp}10{.}000" />. Aturan menginap bilang **biaya menginap tidak ikut dibatasi**, jadi biaya ini ditambahkan penuh.

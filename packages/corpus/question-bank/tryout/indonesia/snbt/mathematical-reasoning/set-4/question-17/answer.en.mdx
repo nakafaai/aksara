@@ -19,6 +19,17 @@ A patterned cut is <InlineMath math="h+10" /> rounded up to a multiple of <Inlin
 
 The two ranges join up, so **together they are <InlineMath math="183\le h\le310" />**. As a check, <InlineMath math="h=182" /> gives a cut of <InlineMath math="192\text{ cm}" />, and <InlineMath math="h=311" /> gives a cut of <InlineMath math="384\text{ cm}" />.
 
+The chart below tests heights on both sides of each boundary. **The bars are exactly <InlineMath math="3" /> from <InlineMath math="h=183" /> to <InlineMath math="h=310" />**, while just outside that range one roll gives <InlineMath math="5" /> or <InlineMath math="2" /> strips.
+
+<Chart
+  title={<>Strips from one patterned roll by wall height</>}
+  description={<>For <InlineMath math="h=182" />, the cut is <InlineMath math="192\text{ cm}" /> and one roll gives <InlineMath math="5" /> strips. For <InlineMath math="h=183" /> and <InlineMath math="246" />, the cut is <InlineMath math="256\text{ cm}" />. For <InlineMath math="h=247" /> and <InlineMath math="310" />, the cut is <InlineMath math="320\text{ cm}" />. Those four heights give <InlineMath math="3" /> strips. For <InlineMath math="h=311" />, the cut is <InlineMath math="384\text{ cm}" /> and one roll gives <InlineMath math="2" /> strips.</>}
+  bars="apart"
+  categories={["182", "183", "246", "247", "310", "311"]}
+  series={[{ label: "Strips per roll", mark: "bar", values: [182, 183, 246, 247, 310, 311].map((h) => Math.floor(1000 / (64 * Math.ceil((h + 10) / 64)))) }]}
+  valueLabel="Strips per roll"
+/>
+
 # The tempting wrong options
 
 Every other option forgets **one cutting rule**.

@@ -1,0 +1,23 @@
+# Count the small droplets from the volume, then add up their area
+
+Emulsification keeps the total volume of fat the same, so first find **how many** small droplets the big one makes. The diameter shrinks <InlineMath math="100" /> times, and volume goes with the cube of the diameter:
+
+<Mermaid
+  title={<>One Droplet Into a Million</>}
+  description={<>Shrinking the diameter <InlineMath math="100" /> times makes one million droplets from the same volume. Each has an area <InlineMath math="10{,}000" /> times smaller, so the total area grows <InlineMath math="100" /> times.</>}
+  chart={"flowchart LR\n  A[1 droplet, d = 1 mm] -->|same volume| B[100³ = 1 000 000 droplets, d = 0.01 mm]\n  B --> C[each area ÷ 100² = ÷ 10 000]\n  C --> D[total area × 1 000 000 ÷ 10 000 = × 100]"}
+/>
+
+<BlockMath math="\text{number of droplets}=\left(\frac{1}{0.01}\right)^3=100^3=1\,000\,000." />
+
+Each small droplet has a diameter <InlineMath math="100" /> times smaller, so its surface area is <InlineMath math="100^2=10\,000" /> times smaller than the big droplet's. The total area is then
+
+<BlockMath math="\frac{\text{total new area}}{\text{original area}}=\frac{1\,000\,000}{10\,000}=100." />
+
+So the surface area exposed to lipase rises <InlineMath math="100" /> times, which is why bile speeds up fat digestion although it digests nothing itself.
+
+# Why the other options are wrong
+
+- <InlineMath math="1\,000\,000" /> is the number of droplets, not the change in area.
+- <InlineMath math="10\,000" /> is how much smaller **one** droplet's area is, used as if it were the gain.
+- "It stays the same" holds for the volume only. Splitting a fixed volume into smaller pieces always exposes more surface.

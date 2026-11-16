@@ -15,6 +15,18 @@ That <InlineMath math="1.65\text{ m}^3" /> of dry mix **already includes the <In
 \text{area}&=1:0.1=10\text{ m}^2
 \end{aligned}" />
 
+The diagram below sums up that whole chain of steps. **Each arrow undoes one rule**, from the bags of cement to the floor area.
+
+<Mermaid
+  title={<>From <InlineMath math="11" /> bags of cement to a floor area</>}
+  description={<>Eleven bags of cement carry <InlineMath math="1.65\text{ m}^3" /> of dry mix. Without the <InlineMath math="10\%" /> reserve, the need is <InlineMath math="1.5\text{ m}^3" />, which makes <InlineMath math="1\text{ m}^3" /> of concrete. That concrete at <InlineMath math="10\text{ cm}" /> thick covers a floor of <InlineMath math="10\text{ m}^2" />.</>}
+  chart={`flowchart LR
+    A["11 bags of cement"] -->|"times 0.15 m³"| B["Dry mix 1.65 m³"]
+    B -->|"divide by 1.1"| C["Need 1.5 m³"]
+    C -->|"divide by 1.5"| D["Concrete 1 m³"]
+    D -->|"divide by 0.1 m"| E["Floor 10 m²"]`}
+/>
+
 # The tempting wrong options
 
 Every other option **skips or reverses one step**.

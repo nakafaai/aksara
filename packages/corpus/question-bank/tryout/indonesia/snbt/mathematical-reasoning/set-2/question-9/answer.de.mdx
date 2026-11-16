@@ -28,6 +28,20 @@ S_9&=10{.}000\cdot 9\cdot 16=1{.}440{.}000 \\
 S_{10}&=10{.}000\cdot 10\cdot 15=1{.}500{.}000
 \end{aligned}" />
 
+Das Diagramm stapelt die Zinsen der Rencana Menurun Monat für Monat. **Balken <InlineMath math="9" /> berührt die Linie genau**, und erst Balken <InlineMath math="10" /> geht darüber hinaus.
+
+<Chart
+  title={<>Gesamtzinsen der Rencana Menurun bis zur Rate <InlineMath math="k" /></>}
+  description={<>Die Gesamtzinsen bis zur Rate <InlineMath math="k" /> betragen <InlineMath math="10{.}000\,k\,(25-k)" /> Rupiah: <InlineMath math="240{.}000" /> bei <InlineMath math="k=1" />, <InlineMath math="1{.}360{.}000" /> bei <InlineMath math="k=8" />, <InlineMath math="1{.}440{.}000" /> bei <InlineMath math="k=9" /> und <InlineMath math="1{.}500{.}000" /> bei <InlineMath math="k=10" />. Die waagerechte Linie markiert die Jahreszinsen der Rencana Tetap, <InlineMath math="1{.}440{.}000" /> Rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Bisherige Zinsen Menurun", mark: "bar", values: Array.from({ length: 12 }, (_, i) => 10000 * (i + 1) * (25 - (i + 1))) },
+    { label: "Zinsen Tetap für ein Jahr", mark: "line", values: Array.from({ length: 12 }, () => 12 * 120000) },
+  ]}
+  valueLabel="Zinsen (Rupiah)"
+/>
+
 # Größer heißt nicht gleich
 
 Nach der neunten Rate hat Ani genau <InlineMath math="1{.}440{.}000" /> Zinsen bezahlt, also **gleich viel, aber noch nicht mehr** als bei Rencana Tetap. Nach der zehnten Rate sind es <InlineMath math="1{.}500{.}000" />, erst jetzt ist es mehr.

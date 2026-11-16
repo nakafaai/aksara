@@ -20,6 +20,20 @@ r=-\tfrac12&:\quad -24,\ 12,\ -6,\ 3,\ -\tfrac32,\ \tfrac34,\ -\tfrac38,\ \dots
 
 Probe: <InlineMath math="3+12=15" /> und <InlineMath math="12+3=15" />.
 
+Das Diagramm stellt beide Folgen nebeneinander. **Die ersten fünf Balken spiegeln sich**: dieselben Werte erscheinen in umgekehrter Reihenfolge. Danach wächst die Folge mit Quotient <InlineMath math="-2" />, die mit Quotient <InlineMath math="-\tfrac12" /> schrumpft, aber der siebte Balken bleibt bei beiden negativ.
+
+<Chart
+  title={<>Die ersten sieben Glieder für beide Quotienten</>}
+  description={<>Für den Quotienten <InlineMath math="-2" /> lauten die Glieder <InlineMath math="-\tfrac32, 3, -6, 12, -24, 48, -96" />. Für den Quotienten <InlineMath math="-\tfrac12" /> lauten sie <InlineMath math="-24, 12, -6, 3, -\tfrac32, \tfrac34, -\tfrac38" />. Beide Folgen haben <InlineMath math="u_3=-6" /> und <InlineMath math="u_2+u_4=15" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 7 }, (_, i) => `u${i + 1}`)}
+  series={[
+    { label: "Quotient -2", mark: "bar", values: Array.from({ length: 7 }, (_, i) => -6 * (-2) ** (i - 2)) },
+    { label: "Quotient -1/2", mark: "bar", values: Array.from({ length: 7 }, (_, i) => -6 * (-1 / 2) ** (i - 2)) },
+  ]}
+  valueLabel="Wert des Glieds"
+/>
+
 # Die erste Aussage
 
 Beachte, dass **die ersten <InlineMath math="5" /> Glieder beider Folgen dieselben Zahlen in umgekehrter Reihenfolge sind**. Ihre Summen müssen also gleich sein.

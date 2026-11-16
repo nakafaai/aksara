@@ -12,6 +12,20 @@ Target <InlineMath math="22" /> jam sama dengan <InlineMath math="22\cdot60=1{.}
 
 Sampai akhir hari Rabu, jumlahnya <InlineMath math="360+405+405=1{.}170" /> menit. Masih kurang <InlineMath math="1{.}320-1{.}170=150" /> menit, jadi target tercapai pada hari Kamis.
 
+Grafik berikut menumpuk waktu JP Raka sampai akhir setiap hari. **Garis <InlineMath math="22" /> jam berada di antara batang Rabu dan Kamis**, jadi targetnya tercapai di tengah hari Kamis.
+
+<Chart
+  title={<>Jumlah waktu JP Raka sampai akhir setiap hari</>}
+  description={<>Sampai akhir Senin, Selasa, Rabu, Kamis, dan Jumat, jumlah waktu JP-nya berturut-turut <InlineMath math="360" />, <InlineMath math="765" />, <InlineMath math="1{.}170" />, <InlineMath math="1{.}575" />, dan <InlineMath math="1{.}785" /> menit. Garis datar menandai <InlineMath math="1{.}320" /> menit, yaitu <InlineMath math="22" /> jam.</>}
+  categories={["Senin", "Selasa", "Rabu", "Kamis", "Jumat"]}
+  bars="apart"
+  series={[
+    { label: "Jumlah waktu JP (menit)", mark: "bar", values: [360, 360 + 405, 360 + 2 * 405, 360 + 3 * 405, 360 + 3 * 405 + 210] },
+    { label: "22 jam", mark: "line", values: [1320, 1320, 1320, 1320, 1320] },
+  ]}
+  valueLabel="Waktu JP (menit)"
+/>
+
 # Menit tepatnya pada hari Kamis
 
 Hari Kamis JP ke-<InlineMath math="1" /> mulai pukul 07.15. JP ke-<InlineMath math="1" /> sampai ke-<InlineMath math="3" /> memberi <InlineMath math="3\cdot45=135" /> menit dan selesai pukul 09.30. **Istirahat pukul 09.30 sampai 09.45 tidak menambah waktu JP**, jadi sisa <InlineMath math="150-135=15" /> menit diambil dari JP ke-<InlineMath math="4" /> yang mulai pukul 09.45.

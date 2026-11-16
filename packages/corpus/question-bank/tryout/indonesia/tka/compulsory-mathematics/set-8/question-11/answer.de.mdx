@@ -19,6 +19,43 @@ Die Marke liegt <InlineMath math="5" /> Meter unter dem oberen Ende, also <Inlin
 
 <BlockMath math="\text{Höhe der Marke}=\frac{20}{25}\cdot20=16\text{ m}" />
 
+Zeichne beide Lagen der Leiter. **Die Farbmarke sitzt bei <InlineMath math="\tfrac{20}{25}" /> der Leiterlänge vom Fuß aus**, also ist ihre Höhe <InlineMath math="\tfrac{20}{25}" /> der Höhe des oberen Leiterendes in dieser Lage.
+
+<MathVisual
+  title={<>Leiter vor und nach dem Abrutschen</>}
+  description={<>Eine senkrechte Wand links und ein waagerechter Boden unten, Einheit Meter. Vor dem Abrutschen verbindet die Leiter <InlineMath math="(7,0)" /> mit <InlineMath math="(0,24)" />. Danach verbindet sie <InlineMath math="(15,0)" /> mit <InlineMath math="(0,20)" />, weiterhin <InlineMath math="25" /> lang. Die Farbmarke wandert von <InlineMath math="(1{,}4;\ 19{,}2)" /> nach <InlineMath math="(3,\ 16)" />, und die senkrechte Strecke darunter zeigt die Höhe <InlineMath math="16" />.</>}
+  labels={{
+    before: <>vorher</>,
+    after: <>nachher</>,
+    "mark-after": <InlineMath math="(3,\ 16)" />,
+    "mark-before": <InlineMath math="(1{,}4;\ 19{,}2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 17 },
+      y: { min: -1.5, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 25 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 16.5, y: 0 } },
+      { id: "before", kind: "segment", appearance: "secondary", from: { x: 7, y: 0 }, to: { x: 0, y: 24 } },
+      { id: "after", kind: "segment", appearance: "primary", from: { x: 15, y: 0 }, to: { x: 0, y: 20 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 16 } },
+      { id: "mark-before", kind: "point", appearance: "secondary", at: { x: 1.4, y: 19.2 } },
+      { id: "mark-after", kind: "point", appearance: "answer", at: { x: 3, y: 16 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 3.5, y: 12 }, placement: "left" },
+      { key: "after", objectId: "after", at: { x: 9, y: 8 }, placement: "above-right" },
+      { key: "mark-after", objectId: "mark-after", at: { x: 3, y: 16 }, placement: "right" },
+      { key: "mark-before", objectId: "mark-before", at: { x: 1.4, y: 19.2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Nach dem Rutschen liegt die Farbmarke also <InlineMath math="16\text{ m}" /> über dem Boden.
 
 - <InlineMath math="19{,}2\text{ m}" /> ist die Höhe der Marke **vor** dem Rutschen, also <InlineMath math="\tfrac{20}{25}\cdot24" />.

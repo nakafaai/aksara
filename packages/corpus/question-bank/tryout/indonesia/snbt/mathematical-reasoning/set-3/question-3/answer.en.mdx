@@ -24,6 +24,20 @@ A part that counts as <InlineMath math="k" /> hours costs <InlineMath math="6{,}
 
 The Saturday part stays under the cap, while the Sunday part (<InlineMath math="98{,}000" /> without the cap) and the Monday part (<InlineMath math="38{,}000" /> without the cap) are both cut down to <InlineMath math="\text{Rp}30{,}000" />.
 
+The chart below compares each part's fee before and after the <InlineMath math="\text{Rp}30{,}000" /> cap applies. **Only the Saturday part isn't cut**, while the Sunday and Monday parts both drop to <InlineMath math="\text{Rp}30{,}000" />.
+
+<Chart
+  title={<>Fee of each parking part without and with the cap</>}
+  description={<>The Saturday part counts as <InlineMath math="5" /> hours and costs <InlineMath math="\text{Rp}22{,}000" /> with or without the cap. The Sunday part counts as <InlineMath math="24" /> hours: <InlineMath math="\text{Rp}98{,}000" /> without the cap and <InlineMath math="\text{Rp}30{,}000" /> with it. The Monday part counts as <InlineMath math="9" /> hours: <InlineMath math="\text{Rp}38{,}000" /> without the cap and <InlineMath math="\text{Rp}30{,}000" /> with it.</>}
+  categories={["Saturday", "Sunday", "Monday"]}
+  bars="apart"
+  series={[
+    { label: "Without the cap", mark: "bar", values: [6000 + 4000 * 4, 6000 + 4000 * 23, 6000 + 4000 * 8] },
+    { label: "With the cap", mark: "bar", values: [Math.min(6000 + 4000 * 4, 30000), Math.min(6000 + 4000 * 23, 30000), Math.min(6000 + 4000 * 8, 30000)] },
+  ]}
+  valueLabel="Fee (rupiah)"
+/>
+
 # Overnight fees and the total
 
 The car is in the building at 00.00 <InlineMath math="2" /> times, so the overnight fees are <InlineMath math="2\cdot\text{Rp}10{,}000" />. The overnight rule says **the overnight fee isn't capped**, so it's added in full.

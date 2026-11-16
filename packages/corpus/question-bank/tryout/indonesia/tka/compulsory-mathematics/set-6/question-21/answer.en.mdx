@@ -19,6 +19,21 @@ Compare City P's value in each month with <InlineMath math="200\text{ mm}" />. *
 | May | <InlineMath math="120" /> | no | <InlineMath math="300" /> |
 | June | <InlineMath math="40" /> | no | <InlineMath math="280" /> |
 
+Redraw the data with the line for City P's mean. **Only three City P bars rise above the line at <InlineMath math="200" />**, January, February, and March, while the April bar just touches it. The City Q bars for those three months are the ones to average.
+
+<Chart
+  title={<>Rainfall and City P's mean</>}
+  description={<>The City P bars from January to June are <InlineMath math="330" />, <InlineMath math="270" />, <InlineMath math="240" />, <InlineMath math="200" />, <InlineMath math="120" />, and <InlineMath math="40\text{ mm}" /> tall. The City Q bars are <InlineMath math="250" />, <InlineMath math="230" />, <InlineMath math="180" />, <InlineMath math="320" />, <InlineMath math="300" />, and <InlineMath math="280\text{ mm}" />. The horizontal line at <InlineMath math="200\text{ mm}" /> is City P's mean.</>}
+  bars="apart"
+  categories={["January", "February", "March", "April", "May", "June"]}
+  series={[
+    { label: "City P", mark: "bar", values: [330, 270, 240, 200, 120, 40] },
+    { label: "City Q", mark: "bar", values: [250, 230, 180, 320, 300, 280] },
+    { label: "City P mean", mark: "line", values: [200, 200, 200, 200, 200, 200] },
+  ]}
+  valueLabel="Rainfall (mm)"
+/>
+
 The chosen months are January, February, and March.
 
 # The mean of City Q in those months

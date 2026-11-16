@@ -20,6 +20,47 @@ Fifteen reflections means <InlineMath math="7" /> full pairs, then **one leftove
 \text{15th reflection:}\quad x&=2\cdot4-9=-1
 \end{aligned}" />
 
+Draw the point's journey along the line <InlineMath math="y=2" />. **Seven pairs of reflections shift the point <InlineMath math="28" /> units left in one arrow**, then reflection <InlineMath math="15" /> in <InlineMath math="x=4" /> flips <InlineMath math="(9,2)" /> to <InlineMath math="(-1,2)" />.
+
+<MathVisual
+  title={<>Fifteen reflections summed up as a translation and one mirror</>}
+  description={<>Two vertical mirror lines <InlineMath math="x=4" /> and <InlineMath math="x=2" />. The arrow from <InlineMath math="P(37,2)" /> to <InlineMath math="(9,2)" /> is the result of seven pairs of reflections, each a shift of <InlineMath math="4" /> units left. The second arrow, from <InlineMath math="9" /> to <InlineMath math="-1" />, is the last reflection in <InlineMath math="x=4" />, so the final image is <InlineMath math="(-1,2)" />.</>}
+  labels={{
+    first: <InlineMath math="x=4" />,
+    second: <InlineMath math="x=2" />,
+    pairs: <><InlineMath math="7" /> pairs: <InlineMath math="-28" /></>,
+    start: <InlineMath math="P(37,2)" />,
+    middle: <InlineMath math="(9,2)" />,
+    end: <InlineMath math="(-1,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 40 },
+      y: { min: -1.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "reference", from: { x: 4, y: -1 }, to: { x: 4, y: 5 } },
+      { id: "second", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 2, y: 5 } },
+      { id: "pairs", kind: "vector", appearance: "secondary", from: { x: 37, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "last", kind: "vector", appearance: "answer", from: { x: 9, y: 3 }, to: { x: -1, y: 3 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 37, y: 2 } },
+      { id: "middle", kind: "point", appearance: "secondary", at: { x: 9, y: 2 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: -1, y: 2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 5 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 2, y: 5 }, placement: "above-left" },
+      { key: "pairs", objectId: "pairs", at: { x: 23, y: 2 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 37, y: 2 }, placement: "above" },
+      { key: "middle", objectId: "middle", at: { x: 9, y: 2 }, placement: "below" },
+      { key: "end", objectId: "end", at: { x: -1, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 The <InlineMath math="y" />-coordinate stays <InlineMath math="2" /> the whole time, because every mirror line is vertical.
 
 So after <InlineMath math="15" /> reflections, the image of <InlineMath math="P" /> is <InlineMath math="(-1,2)" />.

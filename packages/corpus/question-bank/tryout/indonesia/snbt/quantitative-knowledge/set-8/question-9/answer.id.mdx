@@ -33,6 +33,42 @@ Perhatikan baris <InlineMath math="u=\pm3" />: nilai <InlineMath math="v=\pm4" /
 
 Hitung juga titik yang memenuhi <InlineMath math="u^2+v^2\le25" />. Barisnya memberi <InlineMath math="11" /> untuk <InlineMath math="u=0" />, <InlineMath math="9" /> untuk setiap <InlineMath math="u=\pm1,\pm2,\pm3" />, <InlineMath math="7" /> untuk setiap <InlineMath math="u=\pm4" />, dan <InlineMath math="1" /> untuk setiap <InlineMath math="u=\pm5" />, totalnya <InlineMath math="81" />. Titik yang **tepat berada pada lingkaran** ada <InlineMath math="12" />, yaitu <InlineMath math="(\pm5,0)" />, <InlineMath math="(0,\pm5)" />, <InlineMath math="(\pm3,\pm4)" />, dan <InlineMath math="(\pm4,\pm3)" />. Selisihnya <InlineMath math="81-12=69" />, sama dengan hitungan tadi.
 
+Gambar lingkaran berikut menandai <InlineMath math="12" /> titik bulat yang **tepat berada di lingkaran**. Titik-titik itu memenuhi <InlineMath math="\le" /> tetapi tidak memenuhi <InlineMath math="<" />, jadi semuanya dibuang dari hitungan.
+
+<MathVisual
+  title={<>Titik bulat tepat di lingkaran berpusat <InlineMath math="(1,2)" /> berjari-jari <InlineMath math="5" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="(1,2)" /> dengan jari-jari <InlineMath math="5" />. Dua belas titik bulat ada tepat di lingkaran: empat titik searah sumbu, sejauh <InlineMath math="5" /> dari pusat, dan delapan titik dengan selisih koordinat <InlineMath math="3" /> dan <InlineMath math="4" /> dari pusat. Titik-titik bulat di dalam lingkaran berjumlah <InlineMath math="69" />.</>}
+  labels={{
+    circle: <InlineMath math="(x-1)^2+(y-2)^2=25" />,
+    center: <InlineMath math="(1,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 7 }, y: { min: -4, max: 8 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 1, y: 2 }, radius: 5 },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 1, y: 2 } },
+      { id: "e1", kind: "point", appearance: "warning", at: { x: 6, y: 2 } },
+      { id: "e2", kind: "point", appearance: "warning", at: { x: -4, y: 2 } },
+      { id: "e3", kind: "point", appearance: "warning", at: { x: 1, y: 7 } },
+      { id: "e4", kind: "point", appearance: "warning", at: { x: 1, y: -3 } },
+      { id: "e5", kind: "point", appearance: "warning", at: { x: 4, y: 6 } },
+      { id: "e6", kind: "point", appearance: "warning", at: { x: -2, y: 6 } },
+      { id: "e7", kind: "point", appearance: "warning", at: { x: 4, y: -2 } },
+      { id: "e8", kind: "point", appearance: "warning", at: { x: -2, y: -2 } },
+      { id: "e9", kind: "point", appearance: "warning", at: { x: 5, y: 5 } },
+      { id: "e10", kind: "point", appearance: "warning", at: { x: -3, y: 5 } },
+      { id: "e11", kind: "point", appearance: "warning", at: { x: 5, y: -1 } },
+      { id: "e12", kind: "point", appearance: "warning", at: { x: -3, y: -1 } },
+    ],
+    labels: [
+      { key: "circle", objectId: "circle", at: { x: 1, y: 7 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 1, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Pilihan yang keliru
 
 - <InlineMath math="61" /> muncul jika **konstanta dari melengkapkan kuadrat tidak ditambahkan ke ruas kanan**, sehingga yang dihitung adalah <InlineMath math="u^2+v^2<20" />.

@@ -40,4 +40,37 @@ The distance is less than the radius, so the line cuts the circle at two points:
 
 The circle touches the <InlineMath math="y" />-axis when <InlineMath math="r=|3|=3" />, so <InlineMath math="25-c=9" /> and <InlineMath math="c=16" />. The distance from the origin to the centre is <InlineMath math="\sqrt{3^2+4^2}=5" />, **greater than the radius** <InlineMath math="3" />. Another way: substituting the origin into the left side gives <InlineMath math="c=16>0" />, which signals a point outside the circle. This statement is **false**.
 
+The figure below draws the three circles from statements two, three, and four around the same centre. The circle for <InlineMath math="c=9" /> touches the <InlineMath math="x" />-axis but **cuts the <InlineMath math="y" />-axis**, the line <InlineMath math="4x-3y=0" /> cuts the circle for <InlineMath math="c=0" /> at two points, and the circle for <InlineMath math="c=16" /> touches the <InlineMath math="y" />-axis with the origin outside it.
+
+<MathVisual
+  title={<>Circles with centre <InlineMath math="(3,-4)" /> for three values of <InlineMath math="c" /></>}
+  description={<>All three circles have centre <InlineMath math="(3,-4)" />. For <InlineMath math="c=9" />, the radius is <InlineMath math="4" />, touching the <InlineMath math="x" />-axis and cutting the <InlineMath math="y" />-axis. For <InlineMath math="c=0" />, the radius is <InlineMath math="5" /> and the circle passes through the origin, and the line <InlineMath math="4x-3y=0" /> cuts it at two points. For <InlineMath math="c=16" />, the radius is <InlineMath math="3" /> and the circle touches the <InlineMath math="y" />-axis.</>}
+  labels={{
+    c9: <InlineMath math="c=9" />,
+    c16: <InlineMath math="c=16" />,
+    c0: <InlineMath math="c=0" />,
+    line: <InlineMath math="4x-3y=0" />,
+    center: <InlineMath math="(3,-4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 10 }, y: { min: -11, max: 3 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "c0", kind: "circle", appearance: "reference", center: { x: 3, y: -4 }, radius: 5 },
+      { id: "c9", kind: "circle", appearance: "primary", center: { x: 3, y: -4 }, radius: 4 },
+      { id: "c16", kind: "circle", appearance: "secondary", center: { x: 3, y: -4 }, radius: 3 },
+      { id: "line", kind: "line", appearance: "warning", through: [{ x: 0, y: 0 }, { x: 3, y: 4 }] },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 8, y: -4 }, placement: "right" },
+      { key: "c9", objectId: "c9", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "c16", objectId: "c16", at: { x: 0, y: -4 }, placement: "left" },
+      { key: "line", objectId: "line", at: { x: -1.5, y: -2 }, placement: "left" },
+      { key: "center", objectId: "center", at: { x: 3, y: -4 }, placement: "below" },
+    ],
+  }}
+/>
+
 So statement two is true, while statements one, three, and four are false.

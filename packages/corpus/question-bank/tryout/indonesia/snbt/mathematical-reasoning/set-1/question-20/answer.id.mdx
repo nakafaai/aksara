@@ -16,6 +16,20 @@ Misalkan ia membayar <InlineMath math="w" /> cangkir pada hari Rabu dan <InlineM
 
 Setiap cangkir gratis menghapus <InlineMath math="10" /> cap, jadi cap tersisa tidak mungkin negatif. Tiga baris pertama gugur. Kartu juga tidak dapat menumpuk cap, karena **begitu berisi <InlineMath math="10" /> cap, pesanan berikutnya langsung gratis**. Sebelum pesanan gratis, kartu berisi paling banyak <InlineMath math="9+2=11" /> cap, sehingga cap tersisa tidak mungkin <InlineMath math="22" />. Baris terakhir juga gugur.
 
+Grafik berikut membandingkan cap yang didapat dengan cap yang dipakai pada setiap baris tabel. **Pada tiga baris pertama, batang cap yang dipakai lebih tinggi**, padahal kartu tidak bisa memakai cap yang belum ada.
+
+<Chart
+  title={<>Cap yang didapat dan cap yang dipakai menurut banyak cangkir Rabu yang dibayar</>}
+  description={<>Untuk <InlineMath math="w=0, 4, 8, 12, 16" />, cap yang didapat berturut-turut <InlineMath math="12, 17, 22, 27, 32" />, sedangkan cap yang dipakai cangkir gratis berturut-turut <InlineMath math="50, 40, 30, 20, 10" />. Cap yang didapat baru melebihi cap yang dipakai mulai <InlineMath math="w=12" />.</>}
+  categories={["0 cangkir Rabu", "4 cangkir Rabu", "8 cangkir Rabu", "12 cangkir Rabu", "16 cangkir Rabu"]}
+  bars="apart"
+  series={[
+    { label: "Cap yang didapat", mark: "bar", values: [0, 4, 8, 12, 16].map((w) => 2 * w + (48 - 3 * w) / 4) },
+    { label: "Cap yang dipakai cangkir gratis", mark: "bar", values: [0, 4, 8, 12, 16].map((w) => 10 * (17 - w - (48 - 3 * w) / 4)) },
+  ]}
+  valueLabel="Banyak cap"
+/>
+
 Hanya baris <InlineMath math="w=12" /> yang cocok. Urutannya memang ada: <InlineMath math="5" /> cangkir hari Rabu, <InlineMath math="1" /> cangkir gratis, <InlineMath math="5" /> cangkir hari Rabu, <InlineMath math="1" /> cangkir gratis, <InlineMath math="2" /> cangkir hari Rabu, lalu <InlineMath math="3" /> cangkir pada hari lain.
 
 <BlockMath math="12\cdot15{.}000+3\cdot20{.}000=180{.}000+60{.}000=240{.}000" />

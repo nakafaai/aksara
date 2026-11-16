@@ -11,6 +11,21 @@ Die Summe aller Ticketpreise beträgt:
 
 Der Durchschnitt ist <InlineMath math="\tfrac{173{.}000{.}000}{1{.}000}=173{.}000" /> Rupiah, also mehr als <InlineMath math="\text{Rp}170{.}000" />. Die erste Aussage ist wahr. Vorsicht beim einfachen Mittel der drei Preise, <InlineMath math="\tfrac{120{.}000+150{.}000+200{.}000}{3}\approx156{.}667" />. Dieser Wert ist falsch, weil **die Normalstufe die meisten Tickets enthält** und ihr Preis deshalb stärker zählen muss.
 
+Das Diagramm vergleicht den gewichteten Mittelwert mit dem einfachen Mittelwert der drei Preise. **Nur der gewichtete Mittelwert überschreitet die Linie bei <InlineMath math="\text{Rp}170{.}000" />**, weil die Normalstufe die meisten Tickets hat.
+
+<Chart
+  title={<>Durchschnittlicher Ticketpreis mit und ohne Gewichtung nach Ticketanzahl</>}
+  description={<>Der gewichtete Mittelwert aller <InlineMath math="1{.}000" /> Tickets beträgt <InlineMath math="\text{Rp}173{.}000" />. Der einfache Mittelwert der drei Preise beträgt etwa <InlineMath math="\text{Rp}156{.}667" />. Die waagerechte Linie markiert <InlineMath math="\text{Rp}170{.}000" />. Die Werteachse beginnt bei <InlineMath math="\text{Rp}140{.}000" />.</>}
+  categories={["Gewichteter Mittelwert", "Mittelwert der drei Preise"]}
+  bars="apart"
+  series={[
+    { label: "Mittelwert (Rupiah)", mark: "bar", values: [(150 * 120000 + 300 * 150000 + 550 * 200000) / 1000, (120000 + 150000 + 200000) / 3] },
+    { label: "Rp170.000", mark: "line", values: [170000, 170000] },
+  ]}
+  valueRange={{ min: 140000, max: 180000 }}
+  valueLabel="Durchschnittspreis (Rupiah)"
+/>
+
 # Der Durchschnitt der frühen Tickets
 
 Für die ersten <InlineMath math="450" /> Tickets beträgt die Preissumme <InlineMath math="18{.}000{.}000+45{.}000{.}000=63{.}000{.}000" /> Rupiah, also:

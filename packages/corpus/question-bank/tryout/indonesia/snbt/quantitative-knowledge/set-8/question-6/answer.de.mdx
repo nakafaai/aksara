@@ -27,6 +27,20 @@ Zusammen sind das <InlineMath math="28+9+1=38" /> Möglichkeiten.
 
 Zähle auch die Fälle, die die Bedingung nicht erfüllen: <InlineMath math="k=0" /> liefert <InlineMath math="\binom{5}{5}=1" />, <InlineMath math="k=2" /> liefert <InlineMath math="\binom{6}{4}=15" /> und <InlineMath math="k=4" /> liefert <InlineMath math="\binom{7}{3}=35" />. Alle Fälle zusammen ergeben <InlineMath math="1+15+35+28+9+1=89" />. Die Anzahl der Belegungen eines Bretts <InlineMath math="2\times n" /> erfüllt <InlineMath math="T_n=T_{n-1}+T_{n-2}" />, weil die erste Spalte entweder ein senkrechter Stein oder ein waagrechter Block bedeckt. Diese Folge lautet <InlineMath math="1,2,3,5,8,13,21,34,55,89" /> für <InlineMath math="n=1" /> bis <InlineMath math="n=10" />. **Die Gesamtzahl <InlineMath math="89" /> stimmt überein**, die Fallunterscheidung ist also vollständig.
 
+Das Diagramm teilt alle <InlineMath math="89" /> Belegungen nach der Anzahl <InlineMath math="k" /> der senkrechten Dominosteine auf. Nur **die drei Balken rechts**, <InlineMath math="k=6" />, <InlineMath math="8" /> und <InlineMath math="10" />, erfüllen die Bedingung, zusammen <InlineMath math="38" />.
+
+<Chart
+  title={<>Belegungen des Bretts <InlineMath math="2\times10" /> nach Anzahl senkrechter Steine</>}
+  description={<>Für <InlineMath math="k=0" />, <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="8" /> und <InlineMath math="10" /> gibt es <InlineMath math="1" />, <InlineMath math="15" />, <InlineMath math="35" />, <InlineMath math="28" />, <InlineMath math="9" /> und <InlineMath math="1" /> Belegungen. Der Wert <InlineMath math="k" /> ist immer gerade, und insgesamt sind es <InlineMath math="89" />.</>}
+  bars="apart"
+  categories={["0", "2", "4", "6", "8", "10"]}
+  series={[
+    { label: "Nicht mehr senkrechte", mark: "bar", values: [1, 15, 35, null, null, null] },
+    { label: "Mehr senkrechte", mark: "bar", values: [null, null, null, 28, 9, 1] },
+  ]}
+  valueLabel="Anzahl der Belegungen"
+/>
+
 # Häufige Fehler
 
 Wenn du waagrechte Steine für frei platzierbar hältst, wählst du vielleicht die Plätze der <InlineMath math="6" /> senkrechten Steine unter <InlineMath math="10" /> Spalten und kommst auf <InlineMath math="\binom{10}{6}=210" />. Doch **die übrigen Spalten müssen sich zu Blöcken der Breite <InlineMath math="2" /> zusammenfassen lassen**. Wenn du vergisst, dass <InlineMath math="k" /> gerade ist, suchst du vielleicht die unmöglichen Fälle <InlineMath math="k=7" /> oder <InlineMath math="k=9" />. Mit der Antwort <InlineMath math="89" /> ist die Bedingung über mehr senkrechte Steine noch nicht berücksichtigt.

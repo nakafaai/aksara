@@ -6,6 +6,20 @@ The garage floor takes <InlineMath math="5\cdot4\cdot0.1=2\text{ m}^3" /> of con
 
 One bag of cement carries <InlineMath math="6" /> parts of dry mix, which is <InlineMath math="6\cdot0.025=0.15\text{ m}^3" />. Two bags carry <InlineMath math="0.3\text{ m}^3" />, more than the mixer's capacity of <InlineMath math="0.2\text{ m}^3" />. So **every batch uses just one bag** and holds <InlineMath math="0.15\text{ m}^3" />, even though the mixer isn't full.
 
+The chart below compares one batch's content with the mixer's capacity. **A batch with two bags is already over the capacity line**, so every batch can only use one bag.
+
+<Chart
+  title={<>Content of one batch by number of cement bags</>}
+  description={<>One bag of cement carries <InlineMath math="0.15\text{ m}^3" /> of dry mix, and two bags carry <InlineMath math="0.3\text{ m}^3" />. The flat line marks the mixer's capacity of <InlineMath math="0.2\text{ m}^3" />.</>}
+  categories={["1 bag of cement", "2 bags of cement"]}
+  bars="apart"
+  series={[
+    { label: "Dry mix in one batch (m³)", mark: "bar", values: [6 * 0.025, 2 * 6 * 0.025] },
+    { label: "Mixer capacity", mark: "line", values: [0.2, 0.2] },
+  ]}
+  valueLabel="Dry mix (m³)"
+/>
+
 # The number of batches
 
 <BlockMath math="3.3:0.15=22" />

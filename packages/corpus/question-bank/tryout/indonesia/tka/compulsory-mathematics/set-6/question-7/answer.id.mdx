@@ -18,6 +18,40 @@ Ketaksamaan <InlineMath math="P(t)>Q(t)" /> diselesaikan dengan menyamakan bilan
 t&>7{,}2
 \end{aligned}" />
 
+Gambar kedua koloni terhadap waktu. **Kurvanya berpotongan di <InlineMath math="t=7{,}2" />, di antara dua penghitungan jam tepat**, jadi penghitungan pertama yang melihat P unggul adalah <InlineMath math="t=8" />.
+
+<MathVisual
+  title={<>Koloni P dan Q sejak pukul 05.00</>}
+  description={<>Sumbu mendatar adalah jam sejak pukul 05.00, sumbu tegak adalah banyak sel. Kurva <InlineMath math="P(t)=500\cdot2^{t/2}" /> naik dari <InlineMath math="500" />, dan kurva <InlineMath math="Q(t)=32{.}000\cdot2^{-t/3}" /> turun dari <InlineMath math="32{.}000" />. Keduanya bertemu di <InlineMath math="t=7{,}2" />, yaitu pukul 12.12. Pada penghitungan <InlineMath math="t=8" />, koloni P berisi <InlineMath math="8{.}000" /> sel dan berada di atas Q.</>}
+  labels={{
+    p: <InlineMath math="P(t)" />,
+    q: <InlineMath math="Q(t)" />,
+    cross: <>sama banyak, pukul 12.12</>,
+    count: <>pukul 13.00: <InlineMath math="8{.}000" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10.5 },
+      y: { min: -1200, max: 34000 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p", kind: "function", appearance: "primary", formula: "500 * 2^(x/2)", domain: { min: 0, max: 10 } },
+      { id: "q", kind: "function", appearance: "secondary", formula: "32000 * 2^(-x/3)", domain: { min: 0, max: 10 } },
+      { id: "cross", kind: "point", appearance: "warning", at: { x: 7.2, y: 500 * Math.pow(2, 3.6) } },
+      { id: "count", kind: "point", appearance: "answer", at: { x: 8, y: 8000 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 10, y: 16000 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 1, y: 32000 * Math.pow(2, -1 / 3) }, placement: "right" },
+      { key: "cross", objectId: "cross", at: { x: 7.2, y: 500 * Math.pow(2, 3.6) }, placement: "above-left" },
+      { key: "count", objectId: "count", at: { x: 8, y: 8000 }, placement: "right" },
+    ],
+  }}
+/>
+
 Langkah dari baris ketiga ke keempat sah karena <InlineMath math="2^{x}" /> selalu naik, jadi pangkat yang lebih besar memberi nilai yang lebih besar. Kedua koloni sama banyak tepat pada <InlineMath math="t=7{,}2" /> jam, yaitu pukul 12.12. **Tidak ada penghitungan pada pukul 12.12**, karena penghitungan hanya dilakukan pada jam tepat. Bilangan bulat terkecil yang lebih dari <InlineMath math="7{,}2" /> adalah <InlineMath math="8" />, jadi jawabannya pukul 13.00.
 
 # Cek pada dua penghitungan

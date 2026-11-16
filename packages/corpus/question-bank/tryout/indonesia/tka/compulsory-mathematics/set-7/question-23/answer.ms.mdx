@@ -7,6 +7,19 @@ Jumlah gaji jahitan ialah <InlineMath math="15\cdot4.8=72" />, jumlah gaji reka 
 - **Dalam setiap kumpulan, gaji terendah tidak melebihi min dan gaji tertinggi tidak kurang daripada min**. Semua gaji tidak mungkin berada di bawah min, kerana min itu sendiri akan menjadi lebih kecil.
 - Membuang satu nilai di bawah min akan menaikkan min, membuang nilai di atas min akan menurunkannya, dan menambah nilai di atas min akan menaikkannya.
 
+Satu susunan gaji yang sepadan dengan jadual sudah cukup untuk menguji pernyataan ketiga. **Daripada <InlineMath math="20" /> gaji, hanya <InlineMath math="6" /> yang berada di bawah <InlineMath math="5.4" /> juta**, jadi data ke-<InlineMath math="10" /> dan ke-<InlineMath math="11" /> sama-sama <InlineMath math="6" /> juta dan mediannya melepasi purata.
+
+<Chart
+  title={<>Satu susunan gaji yang sepadan dengan jadual</>}
+  description={<>Enam pekerja jahitan bergaji <InlineMath math="3" /> juta dan sembilan bergaji <InlineMath math="6" /> juta, maka jumlah gaji jahitan <InlineMath math="72" /> juta. Kelima-lima pekerja reka bentuk bergaji <InlineMath math="7.2" /> juta. Purata keseluruhan kekal <InlineMath math="5.4" /> juta, tetapi mediannya <InlineMath math="6" /> juta.</>}
+  bars="apart"
+  categories={["3 juta", "6 juta", "7.2 juta"]}
+  series={[
+    { label: "Bilangan pekerja", mark: "bar", values: [6, 9, 5] },
+  ]}
+  valueLabel="Orang"
+/>
+
 # Menilai setiap pernyataan
 
 1. **Betul**. Ada pekerja reka bentuk yang bergaji sekurang-kurangnya <InlineMath math="7.2" />, jadi gaji tertinggi dalam syarikat sekurang-kurangnya <InlineMath math="7.2" />. Ada pekerja jahitan yang bergaji paling banyak <InlineMath math="4.8" />, jadi gaji terendah paling banyak <InlineMath math="4.8" />. Bezanya sekurang-kurangnya <InlineMath math="7.2-4.8=2.4" />, walau apa pun susunan gajinya.

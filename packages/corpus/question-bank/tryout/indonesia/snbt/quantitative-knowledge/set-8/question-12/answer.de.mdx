@@ -30,6 +30,20 @@ O_{\text{neu}}&=2(4+50+50)=208
 
 Der Oberflächeninhalt wird sogar kleiner, die dritte Aussage ist falsch.
 
+Das Diagramm stellt beide Beispielquader nebeneinander. Beim Würfel **ist der neue Balken höher**, beim hohen, schmalen Quader dagegen niedriger. In welche Richtung sich die Oberfläche ändert, hängt von der Form des Quaders ab.
+
+<Chart
+  title={<>Oberfläche des Quaders vor und nach der Änderung</>}
+  description={<>Bei einem Würfel mit Kantenlänge <InlineMath math="1" /> steigt die Oberfläche von <InlineMath math="6" /> auf <InlineMath math="10" />. Bei einem Quader <InlineMath math="1\times1\times100" /> sinkt sie von <InlineMath math="402" /> auf <InlineMath math="208" />.</>}
+  categories={["Würfel mit Kante 1", "Quader 1 x 1 x 100"]}
+  bars="apart"
+  series={[
+    { label: "Ursprüngliche Oberfläche", mark: "bar", values: [6, 2 * (1 + 100 + 100)] },
+    { label: "Neue Oberfläche", mark: "bar", values: [2 * (4 + 1 / 2 + 1 / 2), 2 * (4 + 50 + 50)] },
+  ]}
+  valueLabel="Oberfläche"
+/>
+
 # Der Oberflächeninhalt des Zylinders
 
 Der Oberflächeninhalt eines geschlossenen Zylinders besteht aus <InlineMath math="2" /> Grundflächen und dem Mantel, also <InlineMath math="2\pi r^2+2\pi rh" />. Die Grundflächen werden <InlineMath math="4" />-mal so groß, der Mantel bleibt gleich, denn <InlineMath math="2\pi(2r)\left(\tfrac12h\right)=2\pi rh" />.

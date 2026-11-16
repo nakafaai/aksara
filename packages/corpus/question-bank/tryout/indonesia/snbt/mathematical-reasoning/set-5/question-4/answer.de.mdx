@@ -29,6 +29,21 @@ Könnte Sari die zweite Karte später kaufen, damit sie auch Tag <InlineMath mat
 &= 580
 \end{aligned}" />
 
+Das Diagramm zeigt die Tagesnummern der Besuche <InlineMath math="11" /> bis <InlineMath math="20" />. **Die letzten beiden Balken liegen schon über der Linie bei Tag <InlineMath math="47" />**, also können diese beiden Besuche die zweite Karte nicht mehr nutzen.
+
+<Chart
+  title={<>Tagesnummern der Besuche <InlineMath math="11" /> bis <InlineMath math="20" /> und Gültigkeit der zweiten Karte</>}
+  description={<>Die Besuche <InlineMath math="11" /> bis <InlineMath math="18" /> fallen auf die Tage <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="22" />, <InlineMath math="23" />, <InlineMath math="25" />, <InlineMath math="27" />, <InlineMath math="34" /> und <InlineMath math="41" />, also deckt sie die zweite Karte. Die Besuche <InlineMath math="19" /> und <InlineMath math="20" /> fallen auf die Tage <InlineMath math="48" /> und <InlineMath math="55" />. Die waagerechte Linie markiert Tag <InlineMath math="47" />, den letzten Gültigkeitstag der zweiten Karte.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${11 + i}`)}
+  series={[
+    { label: "Von der zweiten Karte gedeckt", mark: "bar", values: [18, 20, 22, 23, 25, 27, 34, 41, null, null] },
+    { label: "Mit Tagesticket bezahlt", mark: "bar", values: [null, null, null, null, null, null, null, null, 48, 55] },
+    { label: "Zweite Karte gültig bis Tag 47", mark: "line", values: Array.from({ length: 10 }, () => 18 + 29) },
+  ]}
+  valueLabel="Tagesnummer"
+/>
+
 # Vergleich mit den anderen Wegen
 
 Die Wege mit Mitgliedschaft oder mit nur einer Karte sind **teurer als** <InlineMath math="580" />:

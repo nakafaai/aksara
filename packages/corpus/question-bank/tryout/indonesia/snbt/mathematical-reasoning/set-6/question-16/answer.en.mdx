@@ -18,6 +18,20 @@ Pasar X's group aged <InlineMath math="30" /> or over has <InlineMath math="160"
 
 <BlockMath math="\frac{80}{160}\cdot 100\%=50\%" />
 
+The chart below works out Pasar X's overall share for several shares in the group aged <InlineMath math="30" /> or over. **The bar only reaches Pasar Y's line exactly at <InlineMath math="50\%" />**, because each <InlineMath math="5" />-point rise in that group adds only <InlineMath math="4" /> points overall.
+
+<Chart
+  title={<>Pasar X's overall share by the share in its group aged <InlineMath math="30" /> or over</>}
+  description={<>For shares of <InlineMath math="40\%" />, <InlineMath math="45\%" />, <InlineMath math="50\%" />, <InlineMath math="55\%" />, and <InlineMath math="60\%" /> in the group aged <InlineMath math="30" /> or over, Pasar X's overall share is <InlineMath math="48\%" />, <InlineMath math="52\%" />, <InlineMath math="56\%" />, <InlineMath math="60\%" />, and <InlineMath math="64\%" />. The flat line marks Pasar Y's overall share of <InlineMath math="56\%" />.</>}
+  bars="apart"
+  categories={["40%", "45%", "50%", "55%", "60%"]}
+  series={[
+    { label: "Pasar X overall share", mark: "bar", values: [40, 45, 50, 55, 60].map((p) => ((32 + 1.6 * p) / 200) * 100) },
+    { label: "Pasar Y, 56%", mark: "line", values: [56, 56, 56, 56, 56] },
+  ]}
+  valueLabel="QRIS users (%)"
+/>
+
 # Checking the result
 
 At <InlineMath math="50\%" />, that group gives <InlineMath math="80" /> people, so Pasar X has <InlineMath math="32+80=112" /> QRIS users, exactly <InlineMath math="56\%" />. If the group's percentage is a bit under <InlineMath math="50\%" />, say <InlineMath math="79" /> people, the total is <InlineMath math="111" />, **still short of the target**.

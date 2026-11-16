@@ -25,6 +25,21 @@ The extra starts at <InlineMath math="41-35=6" />. The fish are safe once the ex
 
 After the fourth change the extra is <InlineMath math="\frac{32}{27}" />, still more than <InlineMath math="1" /> because <InlineMath math="32>27" />. **Only after the fifth change is the extra <InlineMath math="\frac{64}{81}" />, less than <InlineMath math="1" />**.
 
+The chart below draws the salinity after each change. **The bars shrink more and more slowly**, and only the fifth bar drops below the <InlineMath math="36\text{ g/L}" /> line.
+
+<Chart
+  title={<>Tank salinity after each change of <InlineMath math="40" /> liters</>}
+  description={<>The salinity starts at <InlineMath math="41\text{ g/L}" />, then becomes <InlineMath math="39" />, about <InlineMath math="37.67" />, <InlineMath math="36.78" />, <InlineMath math="36.19" />, and <InlineMath math="35.79\text{ g/L}" /> after the first to fifth changes. The flat line marks the upper safe limit of <InlineMath math="36\text{ g/L}" />. The value axis starts at <InlineMath math="34" />.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Salinity (g/L)", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((k) => 35 + 6 * Math.pow(2 / 3, k)) },
+    { label: "Upper safe limit", mark: "line", values: [36, 36, 36, 36, 36, 36] },
+  ]}
+  valueRange={{ min: 34, max: 42 }}
+  valueLabel="Salinity (g/L)"
+/>
+
 # Checking the lower limit
 
 The refill water is at exactly <InlineMath math="35" />, so the extra always stays positive and **the salinity never drops below <InlineMath math="35\text{ g/L}" />**. The lower limit of <InlineMath math="33\text{ g/L}" /> is never broken, so the fifth change really does make the tank safe.

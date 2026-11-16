@@ -16,6 +16,40 @@ a\cdot b=6, \qquad a\cdot b^{3}&=54 \\
 \frac{a\cdot b^{3}}{a\cdot b}=b^{2}&=\frac{54}{6}=9
 \end{aligned}" />
 
+Draw <InlineMath math="f" /> after flipping the two inverse points into <InlineMath math="(1,\ 6)" /> and <InlineMath math="(3,\ 54)" />. **The point at <InlineMath math="x=\tfrac52" /> falls between <InlineMath math="f(2)=18" /> and <InlineMath math="f(3)=54" />**, so <InlineMath math="18\sqrt3\approx31.2" /> makes sense.
+
+<MathVisual
+  title={<>Graph of <InlineMath math="f(x)=2\cdot3^x" /> and its points</>}
+  description={<>The exponential curve <InlineMath math="f(x)=2\cdot3^x" /> for <InlineMath math="0\le x\le3.2" /> rises more and more steeply. It passes through <InlineMath math="(1,\ 6)" /> and <InlineMath math="(3,\ 54)" />, the points <InlineMath math="(6,\ 1)" /> and <InlineMath math="(54,\ 3)" /> of the inverse graph with their coordinates swapped. The point <InlineMath math="\left(\tfrac52,\ 18\sqrt3\right)" /> lies between them.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=2\cdot3^x" />,
+    one: <InlineMath math="(1,\ 6)" />,
+    three: <InlineMath math="(3,\ 54)" />,
+    half: <InlineMath math="\left(\tfrac52,\ 18\sqrt3\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.4, max: 3.6 },
+      y: { min: -4, max: 62 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2 * 3^x", domain: { min: 0, max: 3.2 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: 6 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: 3, y: 54 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 2.5, y: 18 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2, y: 18 }, placement: "below-right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 6 }, placement: "above-left" },
+      { key: "three", objectId: "three", at: { x: 3, y: 54 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: 2.5, y: 18 * Math.sqrt(3) }, placement: "left" },
+    ],
+  }}
+/>
+
 The equation <InlineMath math="b^{2}=9" /> has two solutions, <InlineMath math="b=3" /> and <InlineMath math="b=-3" />. **The condition <InlineMath math="b>0" /> rules out <InlineMath math="b=-3" />**, so <InlineMath math="b=3" /> and <InlineMath math="a=6\div3=2" />. The function is <InlineMath math="f(x)=2\cdot3^{x}" />.
 
 # Working with a fractional exponent

@@ -39,4 +39,19 @@ The <InlineMath math="10\%" /> fee only applies in full up to a deposit value of
 
 An added balance of <InlineMath math="78{,}000" /> is more than <InlineMath math="75{,}600" />. This statement is false.
 
+The chart below works out the share of the deposit value that reaches the balance. **The bars are exactly <InlineMath math="90\%" /> up to a deposit value of <InlineMath math="\text{Rp}60{,}000" />**, then rise above the line because the handling fee stops at <InlineMath math="\text{Rp}6{,}000" />.
+
+<Chart
+  title={<>Share of the deposit value that reaches the balance by deposit value</>}
+  description={<>For deposit values of <InlineMath math="\text{Rp}20{,}000" />, <InlineMath math="\text{Rp}40{,}000" />, and <InlineMath math="\text{Rp}60{,}000" />, the share reaching the balance is <InlineMath math="90\%" />. For <InlineMath math="\text{Rp}80{,}000" />, <InlineMath math="\text{Rp}100{,}000" />, and <InlineMath math="\text{Rp}120{,}000" />, it's <InlineMath math="92.5\%" />, <InlineMath math="94\%" />, and <InlineMath math="95\%" />. The value axis starts at <InlineMath math="85\%" />.</>}
+  categories={["Rp20,000", "Rp40,000", "Rp60,000", "Rp80,000", "Rp100,000", "Rp120,000"]}
+  bars="apart"
+  series={[
+    { label: "Share reaching the balance (%)", mark: "bar", values: [20000, 40000, 60000, 80000, 100000, 120000].map((v) => (100 * (v - Math.min(0.1 * v, 6000))) / v) },
+    { label: "Exactly 90%", mark: "line", values: [90, 90, 90, 90, 90, 90] },
+  ]}
+  valueRange={{ min: 85, max: 96 }}
+  valueLabel="Share (%)"
+/>
+
 So the first statement is true, and the second, third, and fourth statements are false.

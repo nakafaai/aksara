@@ -30,6 +30,18 @@ Kalikan persamaan pertama dengan <InlineMath math="2" />, lalu kurangi dengan pe
 b &= \frac{cd}{2d-c}
 \end{aligned}" />
 
+Diagram berikut merangkum langkah eliminasi itu. Kuncinya ada di faktor <InlineMath math="2" /> yang muncul dua kali pada <InlineMath math="12" />: **mengalikan persamaan pertama dengan <InlineMath math="2" />** membuat suku <InlineMath math="\tfrac{2}{a}" /> lenyap.
+
+<Mermaid
+  title={<>Mengeliminasi <InlineMath math="a" /> dari dua persamaan kebalikan</>}
+  description={<>Dari <InlineMath math="6=2\cdot3" /> diperoleh <InlineMath math="\tfrac1c=\tfrac1a+\tfrac1b" />, dan dari <InlineMath math="12=2\cdot2\cdot3" /> diperoleh <InlineMath math="\tfrac1d=\tfrac2a+\tfrac1b" />. Dua kali persamaan pertama dikurangi persamaan kedua memberi <InlineMath math="\tfrac2c-\tfrac1d=\tfrac1b" />, sehingga <InlineMath math="b=\tfrac{cd}{2d-c}" />.</>}
+  chart={`flowchart LR
+    A["6 = 2 x 3: 1/c = 1/a + 1/b"] -->|"kali 2"| C["2/c = 2/a + 2/b"]
+    B["12 = 2 x 2 x 3: 1/d = 2/a + 1/b"] --> D["2/c - 1/d = 1/b"]
+    C --> D
+    D --> E["b = cd/(2d - c)"]`}
+/>
+
 # Pemeriksaan
 
 Hitung ulang ruas kiri langsung dengan logaritma. Hasilnya memang <InlineMath math="\log_k 3" />, yaitu <InlineMath math="\tfrac{1}{b}" />.

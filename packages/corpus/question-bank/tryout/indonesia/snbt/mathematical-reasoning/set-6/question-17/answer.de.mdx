@@ -15,6 +15,18 @@ Diese <InlineMath math="1{,}65\text{ m}^3" /> Trockenmischung **enthalten schon 
 \text{Fläche}&=1:0{,}1=10\text{ m}^2
 \end{aligned}" />
 
+Das Diagramm fasst die ganze Rechenkette zusammen. **Jeder Pfeil macht eine Regel rückgängig**, von den Zementsäcken bis zur Bodenfläche.
+
+<Mermaid
+  title={<>Von <InlineMath math="11" /> Säcken Zement zur Bodenfläche</>}
+  description={<>Elf Säcke Zement tragen <InlineMath math="1{,}65\text{ m}^3" /> Trockenmischung. Ohne die Reserve von <InlineMath math="10\%" /> beträgt der Bedarf <InlineMath math="1{,}5\text{ m}^3" />, woraus <InlineMath math="1\text{ m}^3" /> Beton wird. Dieser Beton reicht bei <InlineMath math="10\text{ cm}" /> Dicke für einen Boden von <InlineMath math="10\text{ m}^2" />.</>}
+  chart={`flowchart LR
+    A["11 Säcke Zement"] -->|"mal 0,15 m³"| B["Trockenmischung 1,65 m³"]
+    B -->|"geteilt durch 1,1"| C["Bedarf 1,5 m³"]
+    C -->|"geteilt durch 1,5"| D["Beton 1 m³"]
+    D -->|"geteilt durch 0,1 m"| E["Boden 10 m²"]`}
+/>
+
 # Die verlockenden falschen Optionen
 
 Jede andere Option **lässt einen Schritt aus oder kehrt ihn um**.

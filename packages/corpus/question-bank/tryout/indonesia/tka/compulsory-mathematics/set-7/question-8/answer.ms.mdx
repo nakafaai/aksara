@@ -23,6 +23,37 @@ n^2+17n-1{,}050&=0 \\
 (n-25)(n+42)&=0
 \end{aligned}" />
 
+Lukis jumlah kerusi pada <InlineMath math="n" /> baris pertama sebagai fungsi <InlineMath math="n" />. **Lengkungnya memotong garis <InlineMath math="1{,}050" /> tepat sekali bagi <InlineMath math="n" /> positif**, iaitu pada <InlineMath math="n=25" />. Punca negatif persamaan kuadratik tidak bermakna di sini.
+
+<MathVisual
+  title={<>Jumlah kerusi mengikut bilangan baris</>}
+  description={<>Paksi mendatar ialah bilangan baris <InlineMath math="n" />, dan paksi tegak ialah jumlah kerusi. Lengkung <InlineMath math="S_n=n(n+17)" /> naik semakin pantas dari asalan. Garis mendatar pada <InlineMath math="1{,}050" /> memotong lengkung pada <InlineMath math="(25,\ 1{,}050)" />.</>}
+  labels={{
+    total: <InlineMath math="S_n=n(n+17)" />,
+    target: <InlineMath math="1{.}050" />,
+    hit: <InlineMath math="(25,\ 1{.}050)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: -40, max: 1400 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "x(x + 17)", domain: { min: 0, max: 30 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "1050", domain: { min: 0, max: 30 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 25, y: 1050 } },
+    ],
+    labels: [
+      { key: "total", objectId: "total", at: { x: 15, y: 480 }, placement: "below-right" },
+      { key: "target", objectId: "target", at: { x: 5, y: 1050 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 25, y: 1050 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Puncanya ialah <InlineMath math="n=25" /> atau <InlineMath math="n=-42" />. **Bilangan baris tidak mungkin negatif**, jadi <InlineMath math="n=25" />.
 
 # Kerusi pada baris terakhir

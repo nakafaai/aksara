@@ -7,6 +7,51 @@ Setiap hari kerja, Pak Andi menyetir mobilnya ke kantor dan memberi tumpangan ke
 | Citra | km <InlineMath math="24" /> | km <InlineMath math="60" /> |
 | Dewi | km <InlineMath math="48" /> | km <InlineMath math="60" /> |
 
+<MathVisual
+  title={<>Rute dari rumah Pak Andi ke kantor</>}
+  description={<>Jalan lurus dari km <InlineMath math="0" /> sampai km <InlineMath math="60" />. Pak Andi berangkat dari km <InlineMath math="0" />, Budi naik di km <InlineMath math="12" />, Citra naik di km <InlineMath math="24" />, Dewi naik di km <InlineMath math="48" />, dan kantor berada di km <InlineMath math="60" />. Jalan tol membentang dari km <InlineMath math="24" /> sampai km <InlineMath math="48" />.</>}
+  labels={{
+    andi: <>Pak Andi</>,
+    budi: <>Budi</>,
+    citra: <>Citra</>,
+    dewi: <>Dewi</>,
+    office: <>Kantor</>,
+    k0: <>km <InlineMath math="0" /></>,
+    k12: <>km <InlineMath math="12" /></>,
+    k24: <>km <InlineMath math="24" /></>,
+    k48: <>km <InlineMath math="48" /></>,
+    k60: <>km <InlineMath math="60" /></>,
+    toll: <>jalan tol</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 65 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "road", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "toll", kind: "segment", appearance: "warning", from: { x: 24, y: 0 }, to: { x: 48, y: 0 } },
+      { id: "home", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "stop-budi", kind: "point", appearance: "primary", at: { x: 12, y: 0 } },
+      { id: "stop-citra", kind: "point", appearance: "primary", at: { x: 24, y: 0 } },
+      { id: "stop-dewi", kind: "point", appearance: "primary", at: { x: 48, y: 0 } },
+      { id: "office", kind: "point", appearance: "primary", at: { x: 60, y: 0 } },
+    ],
+    labels: [
+      { key: "andi", objectId: "home", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "budi", objectId: "stop-budi", at: { x: 12, y: 0 }, placement: "above" },
+      { key: "citra", objectId: "stop-citra", at: { x: 24, y: 0 }, placement: "above" },
+      { key: "dewi", objectId: "stop-dewi", at: { x: 48, y: 0 }, placement: "above" },
+      { key: "office", objectId: "office", at: { x: 60, y: 0 }, placement: "above" },
+      { key: "k0", objectId: "home", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "k12", objectId: "stop-budi", at: { x: 12, y: 0 }, placement: "below" },
+      { key: "k24", objectId: "stop-citra", at: { x: 24, y: 0 }, placement: "below" },
+      { key: "k48", objectId: "stop-dewi", at: { x: 48, y: 0 }, placement: "below" },
+      { key: "k60", objectId: "office", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "toll", objectId: "toll", at: { x: 36, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Bagian jalan dari km <InlineMath math="24" /> sampai km <InlineMath math="48" /> adalah jalan tol dengan tarif <InlineMath math="\text{Rp}24{.}000" /> sekali lewat untuk setiap arah. Di jalan tol tidak ada orang yang naik atau turun. Mobil memakai <InlineMath math="1" /> liter bensin untuk setiap <InlineMath math="10\text{ km}" />, dan harga bensin <InlineMath math="\text{Rp}13{.}000" /> per liter.
 
 Aturan berbagi biaya:

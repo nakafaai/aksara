@@ -21,6 +21,17 @@ Golongan <InlineMath math="\mathrm{A}^-" /> dan <InlineMath math="\mathrm{AB}^-"
 
 Coba cek dengan menghitung secara berurutan. Banyak pasangan berurutan dengan golongan sama adalah <InlineMath math="2\cdot160=320" />, dan banyak semua pasangan berurutan <InlineMath math="40\cdot39=1{.}560" />. Hasilnya <InlineMath math="\tfrac{320}{1{.}560}=\tfrac{8}{39}" />, sama.
 
+Grafik berikut menghitung pasangan bergolongan sama untuk setiap golongan. **Golongan <InlineMath math="\mathrm{O}^+" /> menyumbang lebih dari separuh pasangan**, sedangkan golongan dengan satu donor tidak menyumbang sama sekali.
+
+<Chart
+  title={<>Banyak pasangan donor dengan golongan darah yang sama</>}
+  description={<>Banyak pasangannya: <InlineMath math="\mathrm{A}^+" /> <InlineMath math="36" />, <InlineMath math="\mathrm{B}^+" /> <InlineMath math="28" />, <InlineMath math="\mathrm{AB}^+" /> <InlineMath math="3" />, <InlineMath math="\mathrm{O}^+" /> <InlineMath math="91" />, <InlineMath math="\mathrm{A}^-" /> <InlineMath math="0" />, <InlineMath math="\mathrm{B}^-" /> <InlineMath math="1" />, <InlineMath math="\mathrm{AB}^-" /> <InlineMath math="0" />, dan <InlineMath math="\mathrm{O}^-" /> <InlineMath math="1" />. Jumlahnya <InlineMath math="160" /> dari <InlineMath math="780" /> pasangan.</>}
+  bars="apart"
+  categories={["A+", "B+", "AB+", "O+", "A−", "B−", "AB−", "O−"]}
+  series={[{ label: "Pasangan bergolongan sama", mark: "bar", values: [9, 8, 3, 14, 1, 2, 1, 2].map((k) => (k * (k - 1)) / 2) }]}
+  valueLabel="Banyak pasangan"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain memakai **syarat atau cara hitung yang salah**.

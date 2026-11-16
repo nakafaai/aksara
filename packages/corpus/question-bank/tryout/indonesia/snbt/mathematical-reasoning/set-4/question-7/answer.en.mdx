@@ -22,6 +22,17 @@ At the end of the first month the mean weight is <InlineMath math="40\text{ g}" 
 
 Each month's biomass is the number of fish alive times the mean weight, for example <InlineMath math="3{,}600\times0.25=900\text{ kg}" /> in the fifth month. The largest profit comes from **harvesting at the end of the fifth month**.
 
+The chart below draws the profit for each harvest month in that table. **The tallest bar is the fifth month**, and the sixth month's bar is a little shorter even though its biomass is bigger.
+
+<Chart
+  title={<>Profit by harvest month</>}
+  description={<>Harvesting at the end of months two to six gives a profit of <InlineMath math="\text{Rp}800{,}000" />, <InlineMath math="\text{Rp}1{,}400{,}000" />, <InlineMath math="\text{Rp}5{,}832{,}000" />, <InlineMath math="\text{Rp}9{,}400{,}000" />, and <InlineMath math="\text{Rp}9{,}320{,}000" />.</>}
+  bars="apart"
+  categories={["2", "3", "4", "5", "6"]}
+  series={[{ label: "Profit", mark: "bar", values: [8000 * 425 - 800000 * 2 - 1000000, 8000 * 600 - 800000 * 3 - 1000000, 12000 * 836 - 800000 * 4 - 1000000, 16000 * 900 - 800000 * 5 - 1000000, 16000 * 945 - 800000 * 6 - 1000000] }]}
+  valueLabel="Profit (rupiah)"
+/>
+
 # Why the sixth month loses
 
 Check it by comparing just the fifth and sixth months. Waiting one more month adds <InlineMath math="945-900=45\text{ kg}" /> of biomass at a gain of <InlineMath math="\text{Rp}16{,}000" /> per kilogram:

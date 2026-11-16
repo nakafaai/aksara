@@ -25,6 +25,34 @@ x-3=-6 &\;\Longrightarrow\; x=-3
 
 The product of the two roots is <InlineMath math="9\cdot(-3)=-27" />.
 
+Graphing the left side shows that there really are only two roots. The graph is symmetric about the line <InlineMath math="x=3" />, has a sharp corner at <InlineMath math="(3,-12)" />, and **crosses the <InlineMath math="x" />-axis only at <InlineMath math="-3" /> and <InlineMath math="9" />**, each <InlineMath math="6" /> away from <InlineMath math="3" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="y=x^2-6x-4|x-3|-3" /></>}
+  description={<>For <InlineMath math="x\ge3" />, the graph follows <InlineMath math="y=x^2-10x+9" />, and for <InlineMath math="x<3" />, it follows <InlineMath math="y=x^2-2x-15" />. The two parts meet at <InlineMath math="(3,-12)" />. The graph crosses the <InlineMath math="x" />-axis at <InlineMath math="x=-3" /> and <InlineMath math="x=9" />.</>}
+  labels={{
+    f: <InlineMath math="y=x^2-6x-4|x-3|-3" />,
+    left: <InlineMath math="x=-3" />,
+    right: <InlineMath math="x=9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 11 }, y: { min: -20, max: 12 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "left-piece", kind: "function", appearance: "primary", formula: "x^2 - 2x - 15", domain: { min: -4.6, max: 3 } },
+      { id: "right-piece", kind: "function", appearance: "primary", formula: "x^2 - 10x + 9", domain: { min: 3, max: 10.6 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 9, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "right-piece", at: { x: 3, y: -12 }, placement: "below" },
+      { key: "left", objectId: "left", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "right", objectId: "right", at: { x: 9, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Checking
 
 Put both roots back into the original equation.

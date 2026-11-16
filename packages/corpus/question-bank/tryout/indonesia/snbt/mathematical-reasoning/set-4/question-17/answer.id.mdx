@@ -19,6 +19,17 @@ Potongan bermotif adalah <InlineMath math="h+10" /> yang dibulatkan ke atas ke k
 
 Kedua rentang itu bersambung, jadi **gabungannya <InlineMath math="183\le h\le310" />**. Sebagai pemeriksaan, <InlineMath math="h=182" /> memberi potongan <InlineMath math="192\text{ cm}" />, dan <InlineMath math="h=311" /> memberi potongan <InlineMath math="384\text{ cm}" />.
 
+Grafik berikut menguji tinggi di kedua sisi setiap batas. **Batangnya bernilai tepat <InlineMath math="3" /> dari <InlineMath math="h=183" /> sampai <InlineMath math="h=310" />**, sedangkan tepat di luar rentang itu satu gulung memberi <InlineMath math="5" /> atau <InlineMath math="2" /> lembar.
+
+<Chart
+  title={<>Banyak lembar dari satu gulung wallpaper bermotif menurut tinggi dinding</>}
+  description={<>Untuk <InlineMath math="h=182" />, potongannya <InlineMath math="192\text{ cm}" /> dan satu gulung memberi <InlineMath math="5" /> lembar. Untuk <InlineMath math="h=183" /> dan <InlineMath math="246" />, potongannya <InlineMath math="256\text{ cm}" />. Untuk <InlineMath math="h=247" /> dan <InlineMath math="310" />, potongannya <InlineMath math="320\text{ cm}" />. Keempat tinggi itu memberi <InlineMath math="3" /> lembar. Untuk <InlineMath math="h=311" />, potongannya <InlineMath math="384\text{ cm}" /> dan satu gulung memberi <InlineMath math="2" /> lembar.</>}
+  bars="apart"
+  categories={["182", "183", "246", "247", "310", "311"]}
+  series={[{ label: "Lembar per gulung", mark: "bar", values: [182, 183, 246, 247, 310, 311].map((h) => Math.floor(1000 / (64 * Math.ceil((h + 10) / 64)))) }]}
+  valueLabel="Lembar per gulung"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain melupakan **satu aturan pemotongan**.

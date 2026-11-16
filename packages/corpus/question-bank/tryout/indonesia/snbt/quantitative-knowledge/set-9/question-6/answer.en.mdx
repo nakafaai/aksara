@@ -20,6 +20,17 @@ Group the values of <InlineMath math="m" /> by their remainder when divided by <
 
 That's <InlineMath math="4+1+5+2=12" /> values of <InlineMath math="m" /> that fail. The largest is <InlineMath math="23" />, which is still at most <InlineMath math="50" />, so **all twelve fall inside the range**. They match the even scores <InlineMath math="2,4,6,8,12,16,18,22,26,32,36,46" />.
 
+The chart below splits the numbers <InlineMath math="1" /> to <InlineMath math="100" /> into three groups. The first two bars are impossible scores: **every odd number** and the <InlineMath math="12" /> even numbers whose half can't be made from <InlineMath math="5" /> and <InlineMath math="7" />.
+
+<Chart
+  title={<>The numbers <InlineMath math="1" /> to <InlineMath math="100" /> by whether they can be a score</>}
+  description={<>There are <InlineMath math="50" /> odd numbers, all impossible. Of the <InlineMath math="50" /> even numbers, <InlineMath math="12" /> are impossible and <InlineMath math="38" /> can be scores. The impossible scores number <InlineMath math="50+12=62" />.</>}
+  categories={["Odd", "Even, impossible", "Even, possible"]}
+  bars="apart"
+  series={[{ label: "How many numbers", mark: "bar", values: [50, 12, 50 - 12] }]}
+  valueLabel="How many numbers"
+/>
+
 # Adding up and checking
 
 <BlockMath math="50+12=62" />

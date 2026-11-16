@@ -16,6 +16,40 @@ Sekarang hitung isi yang dicapai keran P bersama kebocoran saja, lalu **kekurang
 \text{lama keran Q menyala}&=\frac{272}{16}=17\text{ menit}
 \end{aligned}" />
 
+Gambar isi tandon kalau keran Q dibuka pukul 06.31. **Bagian terakhir garis harus naik <InlineMath math="32" /> liter per menit selama <InlineMath math="17" /> menit agar tepat menyentuh kapasitas pada menit ke-<InlineMath math="48" />**. Membuka keran Q lebih lambat menggeser tekukan itu ke kanan, dan garis tidak sempat mencapai kapasitas.
+
+<MathVisual
+  title={<>Isi tandon dengan keran Q dibuka pukul 06.31</>}
+  description={<>Sumbu mendatar adalah menit sejak pukul 06.00, sumbu tegak adalah isi dalam liter. Garis naik <InlineMath math="24" /> per menit sampai <InlineMath math="480" /> liter, lalu <InlineMath math="16" /> per menit sampai <InlineMath math="656" /> liter di menit ke-<InlineMath math="31" />, lalu <InlineMath math="32" /> per menit sampai <InlineMath math="1{.}200" /> liter di menit ke-<InlineMath math="48" />, yaitu pukul 06.48.</>}
+  labels={{
+    open: <InlineMath math="(31,\ 656)" />,
+    full: <InlineMath math="(48,\ 1{.}200)" />,
+    cap: <>kapasitas <InlineMath math="1{.}200" /> liter</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 52 },
+      y: { min: -40, max: 1300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 31 } },
+      { id: "both", kind: "function", appearance: "answer", formula: "656 + 32(x - 31)", domain: { min: 31, max: 48 } },
+      { id: "cap", kind: "function", appearance: "reference", formula: "1200", domain: { min: 0, max: 51 } },
+      { id: "open", kind: "point", appearance: "secondary", at: { x: 31, y: 656 } },
+      { id: "full", kind: "point", appearance: "answer", at: { x: 48, y: 1200 } },
+    ],
+    labels: [
+      { key: "open", objectId: "open", at: { x: 31, y: 656 }, placement: "below-right" },
+      { key: "full", objectId: "full", at: { x: 48, y: 1200 }, placement: "below-right" },
+      { key: "cap", objectId: "cap", at: { x: 10, y: 1200 }, placement: "above" },
+    ],
+  }}
+/>
+
 Keran Q harus menyala <InlineMath math="17" /> menit sebelum pukul 06.48, jadi harus dibuka pukul 06.31. Jam ini memang sesudah 06.20, jadi anggapan bahwa kebocoran sudah mulai sebelum keran Q dibuka terbukti cocok.
 
 # Cek dengan menelusuri ulang

@@ -30,6 +30,21 @@ w = 8 &: 0.8 \cdot 8 = 6.4 \to 6.0\text{ kg} \to \text{Rp}15{,}000
 
 <InlineMath math="8.125\text{ kg}" /> is enough, and <InlineMath math="8\text{ kg}" /> isn't.
 
+The chart below works out the deposit value for several weights of wet cardboard. **The bars stay at <InlineMath math="\text{Rp}15{,}000" /> up to <InlineMath math="8\text{ kg}" />**, then jump past the target line exactly at <InlineMath math="8.125\text{ kg}" />.
+
+<Chart
+  title={<>Deposit value of wet cardboard by weight</>}
+  description={<>Wet cardboard weighing <InlineMath math="7.5" />, <InlineMath math="7.75" />, and <InlineMath math="8\text{ kg}" /> counts as <InlineMath math="6.0\text{ kg}" /> and is worth <InlineMath math="\text{Rp}15{,}000" />. Wet cardboard weighing <InlineMath math="8.125" />, <InlineMath math="8.25" />, and <InlineMath math="8.5\text{ kg}" /> counts as <InlineMath math="6.5\text{ kg}" /> and is worth <InlineMath math="\text{Rp}16{,}250" />. The flat line marks the target of <InlineMath math="\text{Rp}16{,}000" />. The value axis starts at <InlineMath math="\text{Rp}14{,}000" />.</>}
+  categories={["7.5 kg", "7.75 kg", "8 kg", "8.125 kg", "8.25 kg", "8.5 kg"]}
+  bars="apart"
+  series={[
+    { label: "Deposit value", mark: "bar", values: [7.5, 7.75, 8, 8.125, 8.25, 8.5].map((w) => (Math.floor(0.8 * w * 2) / 2) * 2500) },
+    { label: "Target Rp16,000", mark: "line", values: [16000, 16000, 16000, 16000, 16000, 16000] },
+  ]}
+  valueRange={{ min: 14000, max: 17000 }}
+  valueLabel="Deposit value (rupiah)"
+/>
+
 # The wrong options
 
 Each other option **mishandles the rounding or the water cut**:

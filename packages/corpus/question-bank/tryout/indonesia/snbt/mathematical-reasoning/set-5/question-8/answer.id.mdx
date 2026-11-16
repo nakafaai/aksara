@@ -36,6 +36,22 @@ P_4 &= 1{.}280 - 12 \cdot 74 = 392 < 400 \\
 
 Siklus kelima baru dimulai setelah waktu habis, jadi tidak perlu diperiksa. Selisih juga tidak pernah turun ke <InlineMath math="0" />, karena setiap siklus tetap menambah <InlineMath math="320-4 \cdot 74=24" />. Jadi, dengan <InlineMath math="r=74" /> keduanya **tidak pernah bertemu**, sedangkan <InlineMath math="r=73" /> masih menghasilkan pertemuan.
 
+Grafik berikut membandingkan puncak selisih jarak pada setiap siklus untuk kedua lama istirahat. **Hanya puncak siklus keempat untuk <InlineMath math="r=73" /> yang melewati garis <InlineMath math="400" />**, sedangkan semua puncak untuk <InlineMath math="r=74" /> tetap di bawahnya.
+
+<Chart
+  title={<>Puncak selisih jarak pada setiap siklus untuk <InlineMath math="r=73" /> dan <InlineMath math="r=74" /></>}
+  description={<>Untuk <InlineMath math="r=73" />, puncak siklus pertama sampai keempat berturut-turut <InlineMath math="320" />, <InlineMath math="348" />, <InlineMath math="376" />, dan <InlineMath math="404" /> meter. Untuk <InlineMath math="r=74" />, berturut-turut <InlineMath math="320" />, <InlineMath math="344" />, <InlineMath math="368" />, dan <InlineMath math="392" /> meter. Garis datar menandai <InlineMath math="400" /> meter. Sumbu nilai dimulai dari <InlineMath math="300" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Istirahat 73 detik", mark: "bar", values: [0, 1, 2, 3].map((k) => k * (320 - 4 * 73) + 320) },
+    { label: "Istirahat 74 detik", mark: "bar", values: [0, 1, 2, 3].map((k) => k * (320 - 4 * 74) + 320) },
+    { label: "Satu putaran", mark: "line", values: [400, 400, 400, 400] },
+  ]}
+  valueRange={{ min: 300, max: 420 }}
+  valueLabel="Puncak selisih (m)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain **berhenti memeriksa di siklus yang salah**:

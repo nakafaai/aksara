@@ -19,6 +19,48 @@ Imej <InlineMath math="B'" /> mesti memenuhi dua syarat: titik tengah <InlineMat
 t&=4
 \end{aligned}" />
 
+Lukis garis cermin bersama kedua-dua pasangan titik. **Ruas <InlineMath math="AA'" /> dan <InlineMath math="BB'" /> sama-sama berserenjang dengan <InlineMath math="g" /> dan dibahagi dua oleh <InlineMath math="g" />**. Itulah dua syarat yang digunakan untuk mencari <InlineMath math="B'" />.
+
+<MathVisual
+  title={<>Garis cermin <InlineMath math="g" /> dan dua pasangan titik</>}
+  description={<>Garis <InlineMath math="g:\ y=\tfrac12x" /> melalui asalan dan <InlineMath math="M(4,2)" />, titik tengah <InlineMath math="AA'" />. Ruas dari <InlineMath math="A(5,0)" /> ke <InlineMath math="A'(3,4)" /> berserenjang dengan <InlineMath math="g" />. Ruas dari <InlineMath math="B(0,5)" /> ke <InlineMath math="B'(4,-3)" /> juga berserenjang dengan <InlineMath math="g" />, dan titik tengahnya <InlineMath math="(2,1)" /> terletak pada <InlineMath math="g" />.</>}
+  labels={{
+    g: <InlineMath math="g:\ y=\tfrac12x" />,
+    a: <InlineMath math="A(5,0)" />,
+    "a-image": <InlineMath math="A'(3,4)" />,
+    b: <InlineMath math="B(0,5)" />,
+    "b-image": <InlineMath math="B'(4,-3)" />,
+    m: <InlineMath math="M(4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 7 },
+      y: { min: -4.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "x/2", domain: { min: -1, max: 6.5 } },
+      { id: "aa", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "bb", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 4, y: -3 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 5, y: 0 } },
+      { id: "a-image", kind: "point", appearance: "primary", at: { x: 3, y: 4 } },
+      { id: "m", kind: "point", appearance: "construction", at: { x: 4, y: 2 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 0, y: 5 } },
+      { id: "b-image", kind: "point", appearance: "answer", at: { x: 4, y: -3 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 6, y: 3 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "a-image", objectId: "a-image", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "b-image", objectId: "b-image", at: { x: 4, y: -3 }, placement: "right" },
+      { key: "m", objectId: "m", at: { x: 4, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="B'=(4,\ 5-8)=(4,-3)" />. Sebagai semakan, <InlineMath math="|OB'|=\sqrt{16+9}=5=|OB|" />, sesuai kerana pantulan pada garis yang melalui <InlineMath math="O" /> mengekalkan jarak dari <InlineMath math="O" />.
 
 Jadi, imej titik <InlineMath math="B" /> ialah <InlineMath math="(4,-3)" />.

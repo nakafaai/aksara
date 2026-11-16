@@ -20,6 +20,34 @@ Löse <InlineMath math="2+\frac{1}{x+1}=k" />, also <InlineMath math="\frac{1}{x
 
 Der Kandidat kann nicht <InlineMath math="-1" /> sein, weil <InlineMath math="\frac{1}{k-2}" /> nie null ist. Er ist gleich <InlineMath math="1" />, wenn <InlineMath math="\frac{1}{k-2}=2" /> gilt, also für <InlineMath math="k=\frac52" />. Für <InlineMath math="k=\frac52" /> ist der einzige Kandidat das verbotene <InlineMath math="x=1" />, also **wird auch <InlineMath math="k=\frac52" /> nie erreicht**. Das ist der Wert der vereinfachten Form am Loch <InlineMath math="x=1" />, nämlich <InlineMath math="2+\frac12=\frac52" />.
 
+Der Graph von <InlineMath math="f" /> zeigt beide fehlenden Werte. Die gestrichelte Gerade <InlineMath math="y=2" /> ist eine Asymptote, die der Graph nie berührt, und **das Loch bei <InlineMath math="\left(1,\tfrac52\right)" />** sorgt dafür, dass auch der Wert <InlineMath math="\tfrac52" /> nicht angenommen wird.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=2+\tfrac{1}{x+1}" /> mit einem Loch bei <InlineMath math="x=1" /></>}
+  description={<>Der Graph hat zwei Äste, getrennt durch die gestrichelte Gerade <InlineMath math="x=-1" />, und beide nähern sich der gestrichelten Geraden <InlineMath math="y=2" />, ohne sie zu berühren. Der Punkt <InlineMath math="\left(1,\tfrac52\right)" /> ist als Loch markiert, weil <InlineMath math="x=1" /> nicht zum Definitionsbereich gehört.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    asym: <InlineMath math="y=2" />,
+    hole: <InlineMath math="\left(1,\tfrac52\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "asym", kind: "line", appearance: "construction", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }] },
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: -1, y: 0 }, { x: -1, y: 1 }] },
+      { id: "f", kind: "function", appearance: "primary", formula: "2 + 1/(x + 1)", domain: { min: -5, max: 5 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 1, y: 5 / 2 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: -3, y: 1.5 }, placement: "below" },
+      { key: "asym", objectId: "asym", at: { x: 4.5, y: 2 }, placement: "below" },
+      { key: "hole", objectId: "hole", at: { x: 1, y: 5 / 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Probe mit einer quadratischen Gleichung
 
 Multipliziere über Kreuz, ohne vorher zu kürzen. Für <InlineMath math="x\ne\pm1" /> ist <InlineMath math="f(x)=k" /> gleichwertig mit der folgenden Gleichung.

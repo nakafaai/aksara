@@ -16,6 +16,21 @@ The number of odd seats per row, <InlineMath math="9+n" />, is an arithmetic seq
 \text{C, rows }17\text{ to }30 &: 26+27+\cdots+39=\tfrac{14(26+39)}{2}=455
 \end{aligned}" />
 
+The chart below draws the number of odd-numbered seats in each row. The bars climb one at a time from <InlineMath math="10" /> to <InlineMath math="39" />, so **each category is one slice of an arithmetic sequence** that the formula above can add up.
+
+<Chart
+  title={<>Number of odd-numbered seats in each row</>}
+  description={<>Row <InlineMath math="n" /> has <InlineMath math="9+n" /> odd-numbered seats. Category A covers rows <InlineMath math="1" /> to <InlineMath math="6" /> with <InlineMath math="10" /> to <InlineMath math="15" /> seats, category B covers rows <InlineMath math="7" /> to <InlineMath math="16" /> with <InlineMath math="16" /> to <InlineMath math="25" /> seats, and category C covers rows <InlineMath math="17" /> to <InlineMath math="30" /> with <InlineMath math="26" /> to <InlineMath math="39" /> seats.</>}
+  bars="apart"
+  categories={Array.from({ length: 30 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Category A", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i < 6 ? 10 + i : null)) },
+    { label: "Category B", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 6 && i < 16 ? 10 + i : null)) },
+    { label: "Category C", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 16 ? 10 + i : null)) },
+  ]}
+  valueLabel="Odd seats"
+/>
+
 # The revenue
 
 Multiply each category's seat count by its price, because **each category has its own price**.

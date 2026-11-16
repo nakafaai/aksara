@@ -33,6 +33,43 @@ Nimm die jetzt bekannten Klassengrößen und **gewichte jeden Mittelwert mit sei
 
 Probe auf einem anderen Weg: Die Punktsumme aller drei Klassen ist <InlineMath math="75\times6k=450k" />. Nimm Klasse A mit der Summe <InlineMath math="50k" /> heraus, dann bleiben <InlineMath math="400k" /> für <InlineMath math="5k" /> Schüler, also der Mittelwert <InlineMath math="80" />.
 
+Der Zahlenstrahl zeigt das Ergebnis als Gleichgewichtspunkt. Klasse B ist dreimal so groß wie Klasse A und Klasse C doppelt so groß, also **liegt der gemeinsame Mittelwert von B und C bei <InlineMath math="80" />**, <InlineMath math="10" /> von <InlineMath math="70" /> und <InlineMath math="15" /> von <InlineMath math="95" /> entfernt, umgekehrt zum Größenverhältnis <InlineMath math="3:2" />.
+
+<MathVisual
+  title={<>Klassenmittelwerte und gemeinsame Mittelwerte auf einer Linie</>}
+  description={<>Auf der Notenlinie liegt der Mittelwert von A bei <InlineMath math="50" />, A und B zusammen bei <InlineMath math="65" />, der Mittelwert von B bei <InlineMath math="70" />, alle drei zusammen bei <InlineMath math="75" />, B und C zusammen bei <InlineMath math="80" /> und der Mittelwert von C bei <InlineMath math="95" />. Die Abstände von <InlineMath math="80" /> zu <InlineMath math="70" /> und zu <InlineMath math="95" /> stehen im Verhältnis <InlineMath math="10:15=2:3" />, umgekehrt zu den Klassengrößen <InlineMath math="3:2" />.</>}
+  labels={{
+    a: <InlineMath math="A:50" />,
+    ab: <InlineMath math="A+B:65" />,
+    b: <InlineMath math="B:70" />,
+    all: <InlineMath math="75" />,
+    bc: <InlineMath math="B+C:80" />,
+    c: <InlineMath math="C:95" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 45, max: 100 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 47, y: 0 }, to: { x: 98, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 50, y: 0 } },
+      { id: "mean-ab", kind: "point", appearance: "construction", at: { x: 65, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 70, y: 0 } },
+      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 75, y: 0 } },
+      { id: "mean-bc", kind: "point", appearance: "answer", at: { x: 80, y: 0 } },
+      { id: "mean-c", kind: "point", appearance: "primary", at: { x: 95, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mean-a", at: { x: 50, y: 0 }, placement: "above" },
+      { key: "ab", objectId: "mean-ab", at: { x: 65, y: 0 }, placement: "below" },
+      { key: "b", objectId: "mean-b", at: { x: 70, y: 0 }, placement: "above" },
+      { key: "all", objectId: "mean-all", at: { x: 75, y: 0 }, placement: "below" },
+      { key: "bc", objectId: "mean-bc", at: { x: 80, y: 0 }, placement: "above" },
+      { key: "c", objectId: "mean-c", at: { x: 95, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Die falschen Antworten
 
 - <InlineMath math="90" /> entsteht, wenn du das Verhältnis von A zu B zu <InlineMath math="3:1" /> umdrehst, wodurch auch die Größe von Klasse C falsch wird, nämlich <InlineMath math="4k" />.

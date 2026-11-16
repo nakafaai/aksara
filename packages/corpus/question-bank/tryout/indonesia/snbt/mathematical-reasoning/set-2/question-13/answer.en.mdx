@@ -33,6 +33,20 @@ Sort all the available start times at both counters from earliest to latest. At 
 
 In every <InlineMath math="12" /> minutes counter A starts <InlineMath math="3" /> services and counter B starts <InlineMath math="2" />, so the pattern repeats.
 
+The chart below draws the waiting times from that table, coloured by counter. **The last bar, person <InlineMath math="20" />, lands at counter A with a height of <InlineMath math="14" /> minutes**, and the waits have been falling since person <InlineMath math="11" />.
+
+<Chart
+  title={<>Waiting times of persons <InlineMath math="1" /> to <InlineMath math="20" /></>}
+  description={<>The waits of persons <InlineMath math="1" /> to <InlineMath math="10" /> are <InlineMath math="0, 0, 4, 6, 8, 12, 12, 16, 18, 20" /> minutes, and those of persons <InlineMath math="11" /> to <InlineMath math="20" /> are <InlineMath math="21, 18, 19, 18, 17, 18, 15, 16, 15, 14" /> minutes. The counters follow the pattern A, B, A, B, A every five people.</>}
+  bars="apart"
+  categories={Array.from({ length: 20 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Served at counter A", mark: "bar", values: [0, null, 4, null, 8, 12, null, 16, null, 20, 21, null, 19, null, 17, 18, null, 16, null, 14] },
+    { label: "Served at counter B", mark: "bar", values: [null, 0, null, 6, null, null, 12, null, 18, null, null, 18, null, 18, null, null, 15, null, 15, null] },
+  ]}
+  valueLabel="Wait (minutes)"
+/>
+
 # Person twenty's waiting time
 
 Person <InlineMath math="19" /> takes counter B at 08:42, so counter B is next free at 08:48. Counter A is free at 08:44, which is earlier, so **person <InlineMath math="20" /> goes to counter A at 08:44**. They arrived <InlineMath math="30" /> minutes after 08:00, at 08:30, and their service starts <InlineMath math="44" /> minutes after 08:00.

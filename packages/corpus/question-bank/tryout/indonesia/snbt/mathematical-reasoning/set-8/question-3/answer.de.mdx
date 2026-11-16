@@ -22,6 +22,21 @@ Die erste Aussage ist wahr. Bis zum <InlineMath math="15" />. Juli ist die Flasc
 
 Die zweite Aussage ist falsch. Ab dem <InlineMath math="16" />. Juli kostet die Flasche mit <InlineMath math="12\text{ kg}" /> <InlineMath math="\text{Rp}32{.}000" /> pro Tag, mehr als die Flasche mit <InlineMath math="5{,}5\text{ kg}" /> mit <InlineMath math="\text{Rp}31{.}000" /> pro Tag. Der Preis der großen Flasche stieg um <InlineMath math="\text{Rp}28{.}000" />, viel mehr als der der kleinen um <InlineMath math="\text{Rp}6{.}000" />.
 
+Das Diagramm vergleicht die Kosten pro Tag beider Flaschen vor und nach der Preiserhöhung. **Die Reihenfolge der beiden Flaschen kehrt sich um**: Vor der Erhöhung ist die große Flasche pro Tag billiger, danach teurer.
+
+<Chart
+  title={<>Gaskosten pro Tag für beide Flaschengrößen vor und nach der Preiserhöhung</>}
+  description={<>Bis zum <InlineMath math="15" />. Juli kostet die <InlineMath math="5{,}5\text{ kg}" />-Flasche <InlineMath math="\text{Rp}29{.}000" /> pro Tag und die <InlineMath math="12\text{ kg}" />-Flasche <InlineMath math="\text{Rp}28{.}000" /> pro Tag. Ab dem <InlineMath math="16" />. Juli sind es <InlineMath math="\text{Rp}31{.}000" /> und <InlineMath math="\text{Rp}32{.}000" /> pro Tag. Die Werteachse beginnt bei <InlineMath math="\text{Rp}25{.}000" />.</>}
+  categories={["Flasche 5,5 kg", "Flasche 12 kg"]}
+  bars="apart"
+  series={[
+    { label: "Bis 15. Juli", mark: "bar", values: [87000 / 3, 196000 / 7] },
+    { label: "Ab 16. Juli", mark: "bar", values: [93000 / 3, 224000 / 7] },
+  ]}
+  valueRange={{ min: 25000, max: 33000 }}
+  valueLabel="Kosten pro Tag (Rupiah)"
+/>
+
 # Ein etwas größerer Verbrauch
 
 Läuft der kleine Kocher <InlineMath math="8\text{ Stunden}" />, beträgt der Tagesverbrauch <InlineMath math="0{,}9+0{,}8=1{,}7\text{ kg}" />. Prüfe die Reichweite der Flasche mit <InlineMath math="12\text{ kg}" />:

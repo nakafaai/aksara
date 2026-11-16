@@ -25,6 +25,42 @@ Die Fliesen reichen von der Höhe <InlineMath math="0" /> bis <InlineMath math="
 \text{gestrichene Fläche}&=39{,}6-0{,}9-2{,}2=36{,}5\text{ m}^2
 \end{aligned}" />
 
+Sieh dir ein Wandstück mit Tür und Fenster an. **Die Fliesenlinie bei <InlineMath math="1{,}2\text{ m}" /> schneidet Tür und Fenster**, also wird vom Farbstreifen nur der Teil darüber abgezogen. Der untere Teil des Fensters liegt schon im gefliesten Bereich.
+
+<MathVisual
+  title={<>Teile von Tür und Fenster im Farbstreifen</>}
+  description={<>Ein Wandstück von <InlineMath math="3\text{ m}" /> Höhe, vom Boden bis <InlineMath math="1{,}2\text{ m}" /> gefliest, darüber der Farbstreifen. Die Tür, <InlineMath math="1\text{ m}" /> breit und <InlineMath math="2{,}1\text{ m}" /> hoch, reicht <InlineMath math="0{,}9\text{ m}" /> in den Farbstreifen. Das Fenster, <InlineMath math="2\text{ m}" /> breit von <InlineMath math="0{,}8" /> bis <InlineMath math="2{,}3\text{ m}" />, reicht <InlineMath math="1{,}1\text{ m}" /> hinein, und seine unteren <InlineMath math="0{,}4\text{ m}" /> liegen im gefliesten Bereich. Die waagerechte Lage von Tür und Fenster ist nur angedeutet.</>}
+  labels={{
+    tile: <>Fliesen</>,
+    "door-top": <InlineMath math="0{,}9\text{ m}^2" />,
+    "window-top": <InlineMath math="2{,}2\text{ m}^2" />,
+    "window-low": <><InlineMath math="0{,}4\text{ m}" /> in Fliesen</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6.5 },
+      y: { min: -0.4, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tile", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 1.2 }, { x: 0, y: 1.2 }] },
+      { id: "band", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 1.2 }, { x: 6, y: 1.2 }, { x: 6, y: 3 }, { x: 0, y: 3 }] },
+      { id: "door-low", kind: "polygon", appearance: "construction", vertices: [{ x: 0.5, y: 0 }, { x: 1.5, y: 0 }, { x: 1.5, y: 1.2 }, { x: 0.5, y: 1.2 }] },
+      { id: "door-top", kind: "polygon", appearance: "warning", vertices: [{ x: 0.5, y: 1.2 }, { x: 1.5, y: 1.2 }, { x: 1.5, y: 2.1 }, { x: 0.5, y: 2.1 }] },
+      { id: "window-low", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0.8 }, { x: 5, y: 0.8 }, { x: 5, y: 1.2 }, { x: 3, y: 1.2 }] },
+      { id: "window-top", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 1.2 }, { x: 5, y: 1.2 }, { x: 5, y: 2.3 }, { x: 3, y: 2.3 }] },
+    ],
+    labels: [
+      { key: "tile", objectId: "tile", at: { x: 2.25, y: 0.4 }, placement: "center" },
+      { key: "door-top", objectId: "door-top", at: { x: 1, y: 1.65 }, placement: "center" },
+      { key: "window-top", objectId: "window-top", at: { x: 4, y: 1.75 }, placement: "center" },
+      { key: "window-low", objectId: "window-low", at: { x: 5, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Schau dir das Fenster genau an. Seine Unterkante liegt bei <InlineMath math="0{,}8\text{ m}" />, tiefer als die Oberkante der Fliesen bei <InlineMath math="1{,}2\text{ m}" />. Die unteren <InlineMath math="0{,}4\text{ m}" /> des Fensters liegen also im gefliesten Bereich und dürfen nicht noch einmal abgezogen werden.
 
 # Farbe für zwei Anstriche

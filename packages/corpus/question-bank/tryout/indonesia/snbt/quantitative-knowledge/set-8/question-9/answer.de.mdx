@@ -33,6 +33,42 @@ Sieh dir die Zeile <InlineMath math="u=\pm3" /> an: Die Werte <InlineMath math="
 
 Zähle auch die Punkte mit <InlineMath math="u^2+v^2\le25" />. Die Zeilen liefern <InlineMath math="11" /> für <InlineMath math="u=0" />, je <InlineMath math="9" /> für <InlineMath math="u=\pm1,\pm2,\pm3" />, je <InlineMath math="7" /> für <InlineMath math="u=\pm4" /> und je <InlineMath math="1" /> für <InlineMath math="u=\pm5" />, zusammen <InlineMath math="81" />. Genau <InlineMath math="12" /> Punkte **liegen auf dem Kreis**: <InlineMath math="(\pm5,0)" />, <InlineMath math="(0,\pm5)" />, <InlineMath math="(\pm3,\pm4)" /> und <InlineMath math="(\pm4,\pm3)" />. Die Differenz <InlineMath math="81-12=69" /> bestätigt die Zählung.
 
+Der Kreis unten markiert die <InlineMath math="12" /> Gitterpunkte, die **genau auf dem Kreis liegen**. Sie erfüllen <InlineMath math="\le" />, aber nicht <InlineMath math="<" />, also fallen alle aus der Zählung.
+
+<MathVisual
+  title={<>Gitterpunkte genau auf dem Kreis mit Mittelpunkt <InlineMath math="(1,2)" /> und Radius <InlineMath math="5" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="(1,2)" /> und den Radius <InlineMath math="5" />. Zwölf Gitterpunkte liegen genau darauf: vier in Achsenrichtung, <InlineMath math="5" /> vom Mittelpunkt entfernt, und acht, deren Koordinaten sich vom Mittelpunkt um <InlineMath math="3" /> und <InlineMath math="4" /> unterscheiden. Echt im Inneren liegen <InlineMath math="69" /> Gitterpunkte.</>}
+  labels={{
+    circle: <InlineMath math="(x-1)^2+(y-2)^2=25" />,
+    center: <InlineMath math="(1,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 7 }, y: { min: -4, max: 8 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 1, y: 2 }, radius: 5 },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 1, y: 2 } },
+      { id: "e1", kind: "point", appearance: "warning", at: { x: 6, y: 2 } },
+      { id: "e2", kind: "point", appearance: "warning", at: { x: -4, y: 2 } },
+      { id: "e3", kind: "point", appearance: "warning", at: { x: 1, y: 7 } },
+      { id: "e4", kind: "point", appearance: "warning", at: { x: 1, y: -3 } },
+      { id: "e5", kind: "point", appearance: "warning", at: { x: 4, y: 6 } },
+      { id: "e6", kind: "point", appearance: "warning", at: { x: -2, y: 6 } },
+      { id: "e7", kind: "point", appearance: "warning", at: { x: 4, y: -2 } },
+      { id: "e8", kind: "point", appearance: "warning", at: { x: -2, y: -2 } },
+      { id: "e9", kind: "point", appearance: "warning", at: { x: 5, y: 5 } },
+      { id: "e10", kind: "point", appearance: "warning", at: { x: -3, y: 5 } },
+      { id: "e11", kind: "point", appearance: "warning", at: { x: 5, y: -1 } },
+      { id: "e12", kind: "point", appearance: "warning", at: { x: -3, y: -1 } },
+    ],
+    labels: [
+      { key: "circle", objectId: "circle", at: { x: 1, y: 7 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 1, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Die falschen Antworten
 
 - <InlineMath math="61" /> entsteht, wenn **die Konstanten aus der quadratischen Ergänzung rechts nicht addiert werden** und du <InlineMath math="u^2+v^2<20" /> zählst.

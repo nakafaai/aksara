@@ -14,6 +14,19 @@ s_y&=|a|\,s_x\\
 
 A participant with fewer errors, meaning a smaller <InlineMath math="x" />, must get a bigger <InlineMath math="y" />. So <InlineMath math="y" /> goes down when <InlineMath math="x" /> goes up, and **the ordering condition forces <InlineMath math="a" /> to be negative**: <InlineMath math="a=-\tfrac52" />. Find <InlineMath math="b" /> from the mean, then compute the final score for <InlineMath math="x=26" />.
 
+The chart below compares the two possible signs of <InlineMath math="a" />. Both lines pass through <InlineMath math="(20,60)" /> and are equally steep, but **only the falling line** gives a higher final score for fewer errors.
+
+<Chart
+  title={<>Final score against the number of errors for both signs of <InlineMath math="a" /></>}
+  description={<>For raw scores <InlineMath math="12" /> to <InlineMath math="28" />, the line <InlineMath math="y=-\tfrac52x+110" /> falls from <InlineMath math="80" /> to <InlineMath math="40" />, and the line <InlineMath math="y=\tfrac52x+10" /> rises from <InlineMath math="40" /> to <InlineMath math="80" />. Both give <InlineMath math="60" /> at <InlineMath math="x=20" />. At <InlineMath math="x=26" />, the falling line gives <InlineMath math="45" />.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${12 + 2 * i}`)}
+  series={[
+    { label: "a negative: y = -2.5x + 110", mark: "line", values: Array.from({ length: 9 }, (_, i) => -2.5 * (12 + 2 * i) + 110) },
+    { label: "a positive: y = 2.5x + 10", mark: "line", values: Array.from({ length: 9 }, (_, i) => 2.5 * (12 + 2 * i) + 10) },
+  ]}
+  valueLabel="Final score"
+/>
+
 <BlockMath math="\begin{aligned}
 60&=-\tfrac52\cdot20+b\\
 b&=60+50=110\\

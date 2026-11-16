@@ -14,6 +14,20 @@ With a reorder point of <InlineMath math="75" />, the first order arrives on day
 
 The second order is placed at the end of day <InlineMath math="7" /> and arrives on day <InlineMath math="10" />. The <InlineMath math="45" /> sacks in stock on the morning of day <InlineMath math="9" /> are **exactly the request of that day**, so no sales are lost up to day <InlineMath math="12" />.
 
+The chart below follows the end-of-day stock with a reorder point of <InlineMath math="75" />. **The stock only touches <InlineMath math="0" /> at the end of day <InlineMath math="9" />**, after that day's whole request is served, and the second order arrives the next morning.
+
+<Chart
+  title={<>End-of-day stock with a reorder point of <InlineMath math="75" /> sacks</>}
+  description={<>The stock at the end of days <InlineMath math="1" /> to <InlineMath math="12" /> is <InlineMath math="100, 75, 45, 25, 140, 100, 70, 45, 0, 100, 70, 50" /> sacks. Orders are placed at the end of days <InlineMath math="2" /> and <InlineMath math="7" /> and arrive on the mornings of days <InlineMath math="5" /> and <InlineMath math="10" />. The flat line marks the reorder point of <InlineMath math="75" /> sacks.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Stock at end of day", mark: "bar", values: [100, 75, 45, 25, 140, 100, 70, 45, 0, 100, 70, 50] },
+    { label: "Reorder point 75", mark: "line", values: Array.from({ length: 12 }, () => 75) },
+  ]}
+  valueLabel="Stock (sacks)"
+/>
+
 # The tempting wrong options
 
 Every other option also serves every request, but **it isn't the smallest**, because it comes from a wrong way of estimating.

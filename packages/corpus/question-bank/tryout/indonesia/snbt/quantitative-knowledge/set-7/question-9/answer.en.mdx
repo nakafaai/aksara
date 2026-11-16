@@ -20,6 +20,34 @@ Solve <InlineMath math="2+\frac{1}{x+1}=k" />, that is <InlineMath math="\frac{1
 
 The candidate can't be <InlineMath math="-1" />, because <InlineMath math="\frac{1}{k-2}" /> is never zero. It equals <InlineMath math="1" /> when <InlineMath math="\frac{1}{k-2}=2" />, that is <InlineMath math="k=\frac52" />. For <InlineMath math="k=\frac52" /> the only candidate is the forbidden <InlineMath math="x=1" />, so **<InlineMath math="k=\frac52" /> is never reached either**. It's the value of the simplified form at the hole <InlineMath math="x=1" />, namely <InlineMath math="2+\frac12=\frac52" />.
 
+The graph of <InlineMath math="f" /> below shows both missing values. The dashed line <InlineMath math="y=2" /> is an asymptote the graph never touches, and **the hole at <InlineMath math="\left(1,\tfrac52\right)" />** means the value <InlineMath math="\tfrac52" /> isn't reached either.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=2+\tfrac{1}{x+1}" /> with a hole at <InlineMath math="x=1" /></>}
+  description={<>The graph has two branches separated by the dashed line <InlineMath math="x=-1" />, and both branches get close to the dashed line <InlineMath math="y=2" /> without touching it. The point <InlineMath math="\left(1,\tfrac52\right)" /> is marked as a hole because <InlineMath math="x=1" /> isn't in the domain.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    asym: <InlineMath math="y=2" />,
+    hole: <InlineMath math="\left(1,\tfrac52\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "asym", kind: "line", appearance: "construction", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }] },
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: -1, y: 0 }, { x: -1, y: 1 }] },
+      { id: "f", kind: "function", appearance: "primary", formula: "2 + 1/(x + 1)", domain: { min: -5, max: 5 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 1, y: 5 / 2 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: -3, y: 1.5 }, placement: "below" },
+      { key: "asym", objectId: "asym", at: { x: 4.5, y: 2 }, placement: "below" },
+      { key: "hole", objectId: "hole", at: { x: 1, y: 5 / 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Checking with a quadratic equation
 
 Cross-multiply without simplifying first. For <InlineMath math="x\ne\pm1" />, the equation <InlineMath math="f(x)=k" /> is equivalent to the following one.

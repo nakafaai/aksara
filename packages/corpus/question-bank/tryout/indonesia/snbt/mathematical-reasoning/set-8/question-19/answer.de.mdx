@@ -21,6 +21,17 @@ Die Gruppen <InlineMath math="\mathrm{A}^-" /> und <InlineMath math="\mathrm{AB}
 
 Prüfe das mit geordneten Paaren. Es gibt <InlineMath math="2\cdot160=320" /> geordnete Paare mit gleicher Gruppe und insgesamt <InlineMath math="40\cdot39=1{.}560" /> geordnete Paare. Das ergibt <InlineMath math="\tfrac{320}{1{.}560}=\tfrac{8}{39}" />, dasselbe.
 
+Das Diagramm zählt die Paare gleicher Blutgruppe für jede Gruppe. **Die Gruppe <InlineMath math="\mathrm{O}^+" /> liefert mehr als die Hälfte solcher Paare**, Gruppen mit nur einem Spender liefern keine.
+
+<Chart
+  title={<>Anzahl der Spenderpaare mit gleicher Blutgruppe</>}
+  description={<>Die Paare sind: <InlineMath math="\mathrm{A}^+" /> <InlineMath math="36" />, <InlineMath math="\mathrm{B}^+" /> <InlineMath math="28" />, <InlineMath math="\mathrm{AB}^+" /> <InlineMath math="3" />, <InlineMath math="\mathrm{O}^+" /> <InlineMath math="91" />, <InlineMath math="\mathrm{A}^-" /> <InlineMath math="0" />, <InlineMath math="\mathrm{B}^-" /> <InlineMath math="1" />, <InlineMath math="\mathrm{AB}^-" /> <InlineMath math="0" /> und <InlineMath math="\mathrm{O}^-" /> <InlineMath math="1" />. Zusammen <InlineMath math="160" /> von <InlineMath math="780" /> Paaren.</>}
+  bars="apart"
+  categories={["A+", "B+", "AB+", "O+", "A−", "B−", "AB−", "O−"]}
+  series={[{ label: "Paare gleicher Gruppe", mark: "bar", values: [9, 8, 3, 14, 1, 2, 1, 2].map((k) => (k * (k - 1)) / 2) }]}
+  valueLabel="Paare"
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort nutzt **eine falsche Bedingung oder falsch gezählte Paare**.

@@ -34,6 +34,21 @@ Dimas has the highest final score, but <InlineMath math="P=62" /> is below <Inli
 
 Bayu has <InlineMath math="W=65" />. The rule says "at least <InlineMath math="65" />", so exactly <InlineMath math="65" /> still passes. Eka got one score of <InlineMath math="60" /> from an interviewer, but the condition applies to <InlineMath math="W" />, not to each interviewer's score. Eka's <InlineMath math="W" /> is <InlineMath math="82" />, so Eka passes too.
 
+The chart below draws all six candidates' final scores. **The tallest bar belongs to Dimas, but he's ruled out**, so the top three left are Bayu, Eka, then Ayu, who beats Citra on the higher test score.
+
+<Chart
+  title={<>Final scores of the six scholarship candidates</>}
+  description={<>The final scores are: Ayu <InlineMath math="82.65" />, Bayu <InlineMath math="83.35" />, Citra <InlineMath math="82.65" />, Dimas <InlineMath math="87.95" />, Eka <InlineMath math="83" />, and Fajar <InlineMath math="82.5" />. Dimas doesn't qualify because <InlineMath math="P=62" />. The score axis starts at <InlineMath math="80" />.</>}
+  bars="apart"
+  categories={["Ayu", "Bayu", "Citra", "Dimas", "Eka", "Fajar"]}
+  series={[
+    { label: "Qualifies", mark: "bar", values: [0.4 * 86 + 0.25 * 81 + 0.2 * 80 + 0.15 * 80, 0.4 * 90 + 0.25 * 65 + 0.2 * 88 + 0.15 * 90, 0.4 * 78 + 0.25 * 89 + 0.2 * 86 + 0.15 * 80, null, 0.4 * 86 + 0.25 * 82 + 0.2 * 82 + 0.15 * 78, 0.4 * 84 + 0.25 * 82 + 0.2 * 85 + 0.15 * 76] },
+    { label: "Ruled out, achievement below 65", mark: "bar", values: [null, null, null, 0.4 * 96 + 0.25 * 89 + 0.2 * 90 + 0.15 * 62, null, null] },
+  ]}
+  valueRange={{ min: 80, max: 89 }}
+  valueLabel="Final score"
+/>
+
 # Ranking and breaking the tie
 
 The qualified candidates rank as Bayu <InlineMath math="83.35" />, Eka <InlineMath math="83" />, then Ayu and Citra both at <InlineMath math="82.65" />, and Fajar <InlineMath math="82.5" />. For third place, **the tie is broken by** <InlineMath math="T" />: Ayu has <InlineMath math="86" /> and Citra has <InlineMath math="78" />, so Ayu goes first.

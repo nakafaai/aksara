@@ -34,6 +34,19 @@ Tickets come in whole numbers, so you **round up** to <InlineMath math="k=241" /
 
 Check both sides. After <InlineMath math="690" /> tickets, the organisers have <InlineMath math="56{,}700{,}000+240\cdot180{,}000=99{,}900{,}000" /> rupiah, still short. After <InlineMath math="691" /> tickets, they have <InlineMath math="56{,}700{,}000+241\cdot180{,}000=100{,}080{,}000" /> rupiah, which reaches the production cost.
 
+The chart below follows the organisers' income as tickets sell. **The line only passes the production cost between ticket <InlineMath math="690" /> and ticket <InlineMath math="691" />**, deep inside the normal tier.
+
+<Chart
+  title={<>Organisers' income by number of tickets sold</>}
+  description={<>After <InlineMath math="150" />, <InlineMath math="450" />, <InlineMath math="600" />, <InlineMath math="690" />, <InlineMath math="691" />, and <InlineMath math="1{,}000" /> tickets are sold, the organisers have received <InlineMath math="\text{Rp}16{,}200{,}000" />, <InlineMath math="\text{Rp}56{,}700{,}000" />, <InlineMath math="\text{Rp}83{,}700{,}000" />, <InlineMath math="\text{Rp}99{,}900{,}000" />, <InlineMath math="\text{Rp}100{,}080{,}000" />, and <InlineMath math="\text{Rp}155{,}700{,}000" />. The flat line marks the production cost of <InlineMath math="\text{Rp}100{,}000{,}000" />.</>}
+  categories={["150 tickets", "450 tickets", "600 tickets", "690 tickets", "691 tickets", "1,000 tickets"]}
+  series={[
+    { label: "Organisers' income", mark: "line", values: [150 * 108000, 150 * 108000 + 300 * 135000, 56700000 + 150 * 180000, 56700000 + 240 * 180000, 56700000 + 241 * 180000, 56700000 + 550 * 180000] },
+    { label: "Production cost", mark: "line", values: [100000000, 100000000, 100000000, 100000000, 100000000, 100000000] },
+  ]}
+  valueLabel="Income (rupiah)"
+/>
+
 # Common wrong answers
 
 A few shortcuts lead to other numbers. If you forget **the ninety percent share for the organisers**, you get <InlineMath math="635" /> tickets, because <InlineMath math="63{,}000{,}000+185\cdot200{,}000=100{,}000{,}000" />. If you round <InlineMath math="240\tfrac{5}{9}" /> down, you get <InlineMath math="690" /> tickets, but the money isn't enough yet. If you subtract the four ticket discount from the organisers' money, your answer comes out too large, because the platform pays that discount.

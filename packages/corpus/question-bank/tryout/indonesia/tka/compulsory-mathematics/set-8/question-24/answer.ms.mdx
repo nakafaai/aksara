@@ -4,6 +4,64 @@ Soalan ini bertanya kebarangkalian **tiga syarat serentak**: berselang-seli, And
 
 Lapan murid yang berbeza boleh disusun dalam <InlineMath math="8!=40{,}320" /> cara, dan menurut soalan semua susunan itu sama mungkin. Barisan berselang-seli mempunyai **dua corak**: murid lelaki di kedudukan <InlineMath math="1,3,5,7" />, atau murid lelaki di kedudukan <InlineMath math="2,4,6,8" />. Dalam corak pertama, hujung kiri (kedudukan <InlineMath math="1" />) milik murid lelaki dan hujung kanan (kedudukan <InlineMath math="8" />) milik murid perempuan. Corak kedua pula sebaliknya. Jadi dalam setiap corak, **hanya satu hujung yang boleh diduduki Andi**.
 
+Lukis kedua-dua corak sebagai dua baris lapan kedudukan. **Dalam setiap corak, Andi hanya ada satu hujung, dan jiran satu-satunya ialah kedudukan yang tidak boleh diduduki Bela**.
+
+<MathVisual
+  title={<>Dua corak berselang-seli dan kedudukan Andi</>}
+  description={<>Baris atas ialah corak pertama: murid lelaki di kedudukan <InlineMath math="1,3,5,7" />, murid perempuan di kedudukan <InlineMath math="2,4,6,8" />, Andi di kedudukan <InlineMath math="1" />, dan kedudukan <InlineMath math="2" /> tertutup untuk Bela. Baris bawah ialah corak kedua: murid perempuan di kedudukan <InlineMath math="1,3,5,7" />, murid lelaki di kedudukan <InlineMath math="2,4,6,8" />, Andi di kedudukan <InlineMath math="8" />, dan kedudukan <InlineMath math="7" /> tertutup untuk Bela. Setiap corak memberikan <InlineMath math="108" /> susunan.</>}
+  labels={{
+    "andi-one": <>Andi</>,
+    "block-one": <>bukan Bela</>,
+    "boy-one": <>lelaki</>,
+    "girl-one": <>perempuan</>,
+    "count-one": <InlineMath math="1\cdot3\cdot3!\cdot3!=108" />,
+    "andi-two": <>Andi</>,
+    "block-two": <>bukan Bela</>,
+    "boy-two": <>lelaki</>,
+    "girl-two": <>perempuan</>,
+    "count-two": <InlineMath math="108" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 13 },
+      y: { min: -1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "andi-one", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "block-one", kind: "point", appearance: "warning", at: { x: 2, y: 2 } },
+      { id: "boy-one", kind: "point", appearance: "primary", at: { x: 3, y: 2 } },
+      { id: "girl-one", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "boy-one-b", kind: "point", appearance: "primary", at: { x: 5, y: 2 } },
+      { id: "girl-one-b", kind: "point", appearance: "secondary", at: { x: 6, y: 2 } },
+      { id: "boy-one-c", kind: "point", appearance: "primary", at: { x: 7, y: 2 } },
+      { id: "count-one", kind: "point", appearance: "secondary", at: { x: 8, y: 2 } },
+      { id: "girl-two", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "boy-two", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "girl-two-b", kind: "point", appearance: "secondary", at: { x: 3, y: 0 } },
+      { id: "boy-two-b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "girl-two-c", kind: "point", appearance: "secondary", at: { x: 5, y: 0 } },
+      { id: "boy-two-c", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "block-two", kind: "point", appearance: "warning", at: { x: 7, y: 0 } },
+      { id: "andi-two", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "andi-one", objectId: "andi-one", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "block-one", objectId: "block-one", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "boy-one", objectId: "boy-one", at: { x: 3, y: 2 }, placement: "below" },
+      { key: "girl-one", objectId: "girl-one", at: { x: 4, y: 2 }, placement: "below" },
+      { key: "count-one", objectId: "count-one", at: { x: 8, y: 2 }, placement: "right" },
+      { key: "girl-two", objectId: "girl-two", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "boy-two", objectId: "boy-two", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "block-two", objectId: "block-two", at: { x: 7, y: 0 }, placement: "above-left" },
+      { key: "andi-two", objectId: "andi-two", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "count-two", objectId: "andi-two", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Mengira susunan yang sepadan
 
 Ambil corak pertama. Andi mesti berada di kedudukan <InlineMath math="1" />, dan satu-satunya jirannya berada di kedudukan <InlineMath math="2" />, iaitu tempat murid perempuan. Bela tidak boleh berada di kedudukan <InlineMath math="2" />, jadi **Bela memilih salah satu daripada tiga kedudukan perempuan yang lain**. Tiga murid perempuan yang lain mengisi tiga kedudukan perempuan yang tinggal, dan tiga murid lelaki yang lain mengisi tiga kedudukan lelaki yang tinggal:

@@ -13,6 +13,39 @@ Tulis setiap transformasi sebagai petua bagi titik am <InlineMath math="(x,y)" /
 \text{pembesaran pusat } (a,b)\text{, faktor } k&:\ (x,y)\mapsto\big(a+k(x-a),\ b+k(y-b)\big)
 \end{aligned}" />
 
+Satu titik boleh membuktikan bahawa sesuatu pasangan tidak boleh ditukar ganti, seperti dalam pernyataan keempat. **Titik <InlineMath math="(1,0)" /> yang diputar dahulu naik ke <InlineMath math="(0,1)" /> kemudian dipantulkan turun ke <InlineMath math="(0,-1)" />**, manakala yang dipantulkan dahulu kekal di tempatnya kemudian diputar ke <InlineMath math="(0,1)" />.
+
+<MathVisual
+  title={<>Satu titik dengan dua urutan penjelmaan</>}
+  description={<>Titik <InlineMath math="(1,0)" /> terletak pada paksi <InlineMath math="x" />. Putaran <InlineMath math="90^\circ" /> pada <InlineMath math="O" /> membawanya sepanjang lengkok ke <InlineMath math="(0,1)" />, kemudian pantulan pada paksi <InlineMath math="x" /> membawanya ke <InlineMath math="(0,-1)" />. Jika pantulan dibuat dahulu, titik itu tidak berpindah, kemudian putaran membawanya ke <InlineMath math="(0,1)" />. Kedua-dua hasil berbeza.</>}
+  labels={{
+    start: <InlineMath math="(1,0)" />,
+    "via-rotate": <InlineMath math="(0,-1)" />,
+    "via-reflect": <InlineMath math="(0,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.8, max: 2 },
+      y: { min: -1.8, max: 1.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "turn", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90 },
+      { id: "flip", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: 0, y: -1 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 1, y: 0 } },
+      { id: "via-rotate", kind: "point", appearance: "warning", at: { x: 0, y: -1 } },
+      { id: "via-reflect", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "via-rotate", objectId: "via-rotate", at: { x: 0, y: -1 }, placement: "below" },
+      { key: "via-reflect", objectId: "via-reflect", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jika kedua-dua susunan memberikan petua yang sama, pasangan itu boleh ditukar susunannya. **Jika petuanya berbeza, tunjukkan satu titik yang imejnya berbeza** supaya kesimpulannya pasti.
 
 # Menilai setiap pernyataan

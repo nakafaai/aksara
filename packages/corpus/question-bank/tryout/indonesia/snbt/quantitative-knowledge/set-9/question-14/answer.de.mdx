@@ -29,6 +29,43 @@ Die ursprüngliche Summe der Gruppe B ist <InlineMath math="80\cdot4=320" />. Da
 
 <BlockMath math="\bar{x}_B=\frac{320-98}{4-1}=\frac{222}{3}=74" />
 
+Der Zahlenstrahl zeigt alle diese Mittelwerte. Der Wegfall der Punktzahl <InlineMath math="98" /> weit rechts **zieht den Mittelwert von Gruppe B von <InlineMath math="80" /> auf <InlineMath math="74" />** und den gemeinsamen Mittelwert von <InlineMath math="71" /> auf <InlineMath math="68" />, während Gruppe A bei <InlineMath math="65" /> bleibt.
+
+<MathVisual
+  title={<>Die Mittelwerte vor und nach dem Austritt eines Mitglieds</>}
+  description={<>Auf der Punktlinie liegt der Mittelwert von Gruppe A bei <InlineMath math="65" />. Der gemeinsame Mittelwert sinkt von <InlineMath math="71" /> auf <InlineMath math="68" />. Der Mittelwert von Gruppe B sinkt von <InlineMath math="80" /> auf <InlineMath math="74" />. Das ausscheidende Mitglied hatte <InlineMath math="98" /> Punkte.</>}
+  labels={{
+    a: <InlineMath math="A:65" />,
+    after: <InlineMath math="68" />,
+    all: <InlineMath math="71" />,
+    newb: <InlineMath math="B:74" />,
+    b: <InlineMath math="80" />,
+    out: <InlineMath math="98" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 102 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 62, y: 0 }, to: { x: 100, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 65, y: 0 } },
+      { id: "mean-after", kind: "point", appearance: "construction", at: { x: 68, y: 0 } },
+      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 71, y: 0 } },
+      { id: "mean-newb", kind: "point", appearance: "answer", at: { x: 74, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 80, y: 0 } },
+      { id: "out", kind: "point", appearance: "warning", at: { x: 98, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mean-a", at: { x: 65, y: 0 }, placement: "above" },
+      { key: "after", objectId: "mean-after", at: { x: 68, y: 0 }, placement: "below" },
+      { key: "all", objectId: "mean-all", at: { x: 71, y: 0 }, placement: "above" },
+      { key: "newb", objectId: "mean-newb", at: { x: 74, y: 0 }, placement: "below" },
+      { key: "b", objectId: "mean-b", at: { x: 80, y: 0 }, placement: "above" },
+      { key: "out", objectId: "out", at: { x: 98, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Die Probe
 
 **Gruppe A ändert sich nicht**, ihre Summe ist <InlineMath math="6\cdot65=390" />. Die verbliebenen Mitglieder haben zusammen <InlineMath math="390+222=612" /> Punkte bei <InlineMath math="9" /> Personen, und <InlineMath math="\frac{612}{9}=68" />, wie in der Aufgabe.

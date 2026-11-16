@@ -33,6 +33,20 @@ Here **one truckload is cheaper even though it holds too much**, because the <In
 
 <BlockMath math="340{,}000+700{,}000=1{,}040{,}000" />
 
+The chart below compares the three ways of buying for both materials. **The shortest bar falls on a different way for each**: sand is cheapest as a tub and buckets, while gravel is cheapest as a truckload.
+
+<Chart
+  title={<>Cost of sand and gravel by way of buying</>}
+  description={<>Sand: buckets only <InlineMath math="\text{Rp}440{,}000" />, tub and buckets <InlineMath math="\text{Rp}340{,}000" />, truckload <InlineMath math="\text{Rp}500{,}000" />. Gravel: buckets only <InlineMath math="\text{Rp}825{,}000" />, tub and buckets <InlineMath math="\text{Rp}725{,}000" />, truckload <InlineMath math="\text{Rp}700{,}000" />.</>}
+  categories={["Buckets only", "Tub and buckets", "Truckload"]}
+  bars="apart"
+  series={[
+    { label: "Sand", mark: "bar", values: [22 * 20000, 300000 + 2 * 20000, 500000] },
+    { label: "Gravel", mark: "bar", values: [33 * 25000, 400000 + 13 * 25000, 700000] },
+  ]}
+  valueLabel="Cost (rupiah)"
+/>
+
 # The tempting wrong answers
 
 The answer <InlineMath math="1{,}065{,}000" /> comes from buying the gravel to fit, one tub and <InlineMath math="13" /> buckets, on the belief that **buying too much always loses**. The answer <InlineMath math="1{,}265{,}000" /> comes from buying everything by the bucket. The answer <InlineMath math="950{,}000" /> comes from forgetting the reserve, so that the sand is <InlineMath math="1\text{ m}^3" /> and the gravel is <InlineMath math="1.5\text{ m}^3" />.

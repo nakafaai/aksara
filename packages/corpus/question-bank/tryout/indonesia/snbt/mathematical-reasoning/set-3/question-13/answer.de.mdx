@@ -23,6 +23,36 @@ T &\ge 30
 
 Die Obergrenze ist <InlineMath math="T\le66-32=34" />, also ist <InlineMath math="T=30" /> erlaubt, und **das ist der schmalste Auftritt für beide Treppen**.
 
+Die Abbildung setzt beide Treppen mit <InlineMath math="R=16" /> und <InlineMath math="T=30" /> aneinander. **Die oberste Stufe jeder Treppe endet ohne Auftritt am Boden**, also hat die untere Treppe <InlineMath math="17" /> Auftritte und die obere <InlineMath math="16" />.
+
+<MathVisual
+  title={<>Seitenansicht beider Treppen mit gleichen Stufen</>}
+  description={<>Die untere Treppe hat <InlineMath math="18" /> Stufen von <InlineMath math="16\text{ cm}" /> Höhe und steigt auf <InlineMath math="510\text{ cm}" /> Länge um <InlineMath math="288\text{ cm}" />. Die obere Treppe hat <InlineMath math="17" /> gleiche Stufen und steigt auf <InlineMath math="480\text{ cm}" /> Länge um <InlineMath math="272\text{ cm}" />. Jeder Auftritt ist <InlineMath math="30\text{ cm}" /> breit, und die gesamte waagerechte Länge beträgt <InlineMath math="990\text{ cm}" />.</>}
+  labels={{
+    total: <InlineMath math="990\text{ cm}" />,
+    lower: <InlineMath math="288\text{ cm}" />,
+    upper: <InlineMath math="272\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -120, max: 1100 }, y: { min: -90, max: 620 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -100, y: 0 }, to: { x: 1050, y: 0 } },
+      { id: "middle", kind: "segment", appearance: "reference", from: { x: -100, y: 288 }, to: { x: 510, y: 288 } },
+      { id: "top", kind: "segment", appearance: "reference", from: { x: -100, y: 560 }, to: { x: 1050, y: 560 } },
+      { id: "first", kind: "function", appearance: "primary", formula: "16 * ceil(x / 30)", domain: { min: 0, max: 510 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "288 + 16 * ceil((x - 510) / 30)", domain: { min: 510, max: 990 } },
+      { id: "length", kind: "segment", appearance: "answer", from: { x: 0, y: -50 }, to: { x: 990, y: -50 } },
+    ],
+    labels: [
+      { key: "total", objectId: "length", at: { x: 495, y: -50 }, placement: "below" },
+      { key: "lower", objectId: "middle", at: { x: -100, y: 288 }, placement: "above-right" },
+      { key: "upper", objectId: "top", at: { x: -100, y: 560 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Auftritte und Gesamtlänge
 
 Die oberste Stufe jeder Treppe hat keinen Auftritt, weil **das obere Stockwerk nicht als Auftritt zählt**. Jede Treppe hat also einen Auftritt weniger als Stufen.

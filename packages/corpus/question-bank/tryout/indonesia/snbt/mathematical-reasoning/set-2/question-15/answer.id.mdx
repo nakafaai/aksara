@@ -29,6 +29,20 @@ Setiap <InlineMath math="12" /> menit, lima orang berikutnya mulai dilayani deng
 \text{nomor } 30&:\ \text{Loket A, mulai } 68,\ \text{selesai } 68+4=72
 \end{aligned}" />
 
+Grafik berikut menggambar kesepuluh waktu tunggu itu bersama rata-ratanya. **Garis rata-rata berada sedikit di bawah <InlineMath math="10" />**, tepat di <InlineMath math="9{,}6" /> menit.
+
+<Chart
+  title={<>Waktu tunggu orang nomor <InlineMath math="1" /> sampai <InlineMath math="10" /></>}
+  description={<>Waktu tunggunya berturut-turut <InlineMath math="0, 0, 4, 6, 8, 12, 12, 16, 18, 20" /> menit, dengan jumlah <InlineMath math="96" /> menit. Garis datar menandai rata-ratanya, <InlineMath math="9{,}6" /> menit.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Waktu tunggu", mark: "bar", values: [0, 0, 4, 6, 8, 12, 12, 16, 18, 20] },
+    { label: "Rata-rata", mark: "line", values: Array.from({ length: 10 }, () => 96 / 10) },
+  ]}
+  valueLabel="Waktu tunggu (menit)"
+/>
+
 Keduanya **selesai pada menit yang sama**, yaitu pukul 09.12. Orang nomor <InlineMath math="30" /> tidak selesai lebih awal, jadi pernyataan ini **salah**.
 
 # Pernyataan keempat

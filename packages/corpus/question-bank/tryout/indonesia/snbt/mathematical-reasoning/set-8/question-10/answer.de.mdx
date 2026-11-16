@@ -20,6 +20,17 @@ Der Ausdruck <InlineMath math="8{.}000n(145-n)" /> ist null bei <InlineMath math
 
 Prüfe einen Baum weniger: <InlineMath math="8{.}000\cdot69\cdot76=41{.}952{.}000" />, also kleiner. Prüfe auch pro Baum: Bei <InlineMath math="70" /> Bäumen trägt jeder Baum <InlineMath math="90\text{ kg}" /> und bringt <InlineMath math="90\cdot8{.}000-120{.}000=600{.}000" /> Rupiah ein, und <InlineMath math="70\cdot600{.}000=42{.}000{.}000" />.
 
+Das Diagramm berechnet den Gewinn mit dem Spezialdünger für <InlineMath math="40" /> bis <InlineMath math="70" /> Bäume. **Die Balken steigen bis zur Grenze des Gartens weiter**, weil die Formel ihren Gipfel erst bei <InlineMath math="72{,}5" /> Bäumen hat.
+
+<Chart
+  title={<>Gewinn mit Spezialdünger nach Anzahl der Bäume</>}
+  description={<>Für <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="50" />, <InlineMath math="55" />, <InlineMath math="60" />, <InlineMath math="65" /> und <InlineMath math="70" /> Bäume beträgt der Gewinn <InlineMath math="\text{Rp}33{,}6" />, <InlineMath math="36" />, <InlineMath math="38" />, <InlineMath math="39{,}6" />, <InlineMath math="40{,}8" />, <InlineMath math="41{,}6" /> und <InlineMath math="42" /> Millionen.</>}
+  bars="apart"
+  categories={["40", "45", "50", "55", "60", "65", "70"]}
+  series={[{ label: "Gewinn mit Dünger (Rupiah)", mark: "bar", values: [40, 45, 50, 55, 60, 65, 70].map((n) => 8000 * n * (145 - n)) }]}
+  valueLabel="Gewinn (Rupiah)"
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort übersieht eine Bedingung.

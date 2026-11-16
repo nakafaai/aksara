@@ -39,6 +39,19 @@ t=9 &: \ 56\cdot8-200=248
 
 Populasinya naik terus. Pada siklus berikutnya, <InlineMath math="248\to496\to960" /> karena tabung penuh, lalu panen menyisakan <InlineMath math="760" />. Sejak itu setiap siklus berulang dari <InlineMath math="760" /> ke <InlineMath math="960" /> lalu kembali ke <InlineMath math="760" />, jadi kultur tidak pernah habis.
 
+Grafik berikut mengikuti populasi sesudah setiap panen untuk kedua populasi awal itu. **Garis <InlineMath math="28" /> turun sampai habis pada <InlineMath math="t=6" />**, sedangkan garis <InlineMath math="29" /> terus naik sampai tertahan di <InlineMath math="760" />.
+
+<Chart
+  title={<>Banyak bakteri sesudah setiap panen untuk populasi awal <InlineMath math="28" /> dan <InlineMath math="29" /> juta sel</>}
+  description={<>Dengan populasi awal <InlineMath math="28" /> juta sel, banyak bakteri sesudah panen pada <InlineMath math="t=3" /> adalah <InlineMath math="24" />, lalu kultur habis pada <InlineMath math="t=6" />. Dengan populasi awal <InlineMath math="29" /> juta sel, banyak bakteri sesudah panen pada <InlineMath math="t=3, 6, 9, 12" /> berturut-turut <InlineMath math="32, 56, 248, 760" /> juta sel.</>}
+  categories={["0", "3", "6", "9", "12"]}
+  series={[
+    { label: "Populasi awal 28", mark: "line", values: [28, 28 * 8 - 200, 0, 0, 0] },
+    { label: "Populasi awal 29", mark: "line", values: [29, 29 * 8 - 200, 32 * 8 - 200, 56 * 8 - 200, 960 - 200] },
+  ]}
+  valueLabel="Bakteri (juta sel)"
+/>
+
 # Jebakan panen pertama
 
 Kalau kamu hanya memastikan panen pertama tidak menghabiskan kultur, syaratnya <InlineMath math="8P>200" />, yaitu <InlineMath math="P\ge26" />. Padahal <InlineMath math="26" /> menyisakan <InlineMath math="8" /> lalu <InlineMath math="64" />, dan **habis pada panen kedua**. Jawaban <InlineMath math="25" /> juga keliru, karena tepat <InlineMath math="200" /> pada panen pertama ikut diambil semuanya.

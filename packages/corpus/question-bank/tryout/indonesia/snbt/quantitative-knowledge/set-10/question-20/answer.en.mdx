@@ -10,6 +10,30 @@ Inside a box of side <InlineMath math="s" />, the corners of the square lie on t
 
 For <InlineMath math="a=0" /> you get the box itself, and every other value of <InlineMath math="a" /> gives one tilted square. So **one box of side <InlineMath math="s" /> holds exactly <InlineMath math="s" /> squares**.
 
+The figure below shows what one box of side <InlineMath math="4" /> holds. Besides the box itself, there are **three tilted squares** whose corners shift <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" /> units along the sides of the box, so the box holds exactly <InlineMath math="4" /> squares.
+
+<MathVisual
+  title={<>Four squares inside one box of side <InlineMath math="4" /></>}
+  description={<>An upright box with corners <InlineMath math="(0,0)" /> and <InlineMath math="(4,4)" />. Three tilted squares have their corners on the sides of the box: <InlineMath math="(1,0),(4,1),(3,4),(0,3)" />, then <InlineMath math="(2,0),(4,2),(2,4),(0,2)" />, then <InlineMath math="(3,0),(4,3),(1,4),(0,1)" />. Together with the box, that's <InlineMath math="4" /> squares.</>}
+  labels={{
+    box: <InlineMath math="s=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "box", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "tilt-1", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 4, y: 1 }, { x: 3, y: 4 }, { x: 0, y: 3 }] },
+      { id: "tilt-2", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 2 }] },
+      { id: "tilt-3", kind: "polygon", appearance: "highlight", vertices: [{ x: 3, y: 0 }, { x: 4, y: 3 }, { x: 1, y: 4 }, { x: 0, y: 1 }] },
+    ],
+    labels: [
+      { key: "box", objectId: "box", at: { x: 4, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Where the box can sit
 
 A box of side <InlineMath math="s" /> can shift right in <InlineMath math="6-s" /> ways and up in <InlineMath math="5-s" /> ways. The points are only <InlineMath math="4" /> units tall, so **the side of the box is at most <InlineMath math="4" />**.

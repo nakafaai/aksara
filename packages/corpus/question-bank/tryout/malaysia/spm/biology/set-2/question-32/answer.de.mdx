@@ -1,0 +1,21 @@
+# Das erste Kind verrät die Genotypen der Eltern
+
+Blutgruppe <InlineMath math="0" /> ist <InlineMath math="I^{O}I^{O}" /> (auch <InlineMath math="ii" /> geschrieben), das erste Kind hat also von **jedem** Elternteil <InlineMath math="I^{O}" /> erhalten. Ein Vater mit Blutgruppe A, der <InlineMath math="I^{O}" /> trägt, ist <InlineMath math="I^{A}I^{O}" />, die Mutter <InlineMath math="I^{B}I^{O}" />.
+
+<Mermaid
+  title={<>Die Kreuzung <InlineMath math="I^{A}I^{O}\times I^{B}I^{O}" /></>}
+  description={<>Jeder Elternteil gibt eines von zwei Allelen mit gleicher Chance weiter, die vier Kinder AB, A, B und <InlineMath math="0" /> haben also je eine Chance von einem Viertel.</>}
+  chart={"flowchart TD\n  F[Vater A: IA IO] --> AB[IA IB: AB, 1/4]\n  F --> AO[IA IO: A, 1/4]\n  M[Mutter B: IB IO] --> AB\n  M --> BO[IB IO: B, 1/4]\n  F --> OO[IO IO: 0, 1/4]\n  M --> AO\n  M --> OO\n  F --> BO"}
+/>
+
+Jeder Elternteil gibt jedes Allel mit der Chance einhalb weiter, also <InlineMath math="P(I^{A}I^{B})=\frac{1}{2}\times\frac{1}{2}=\frac{1}{4}" />. Das Geschlecht wird unabhängig festgelegt, mit <InlineMath math="P(\text{Mädchen})=\frac{1}{2}" />:
+
+<BlockMath math="P(\text{Mädchen mit AB})=\frac{1}{4}\times\frac{1}{2}=\frac{1}{8}." />
+
+Das erste Kind ändert die Chancen des nächsten nicht, es hat nur die Genotypen bewiesen. Die Wahrscheinlichkeit ist also <InlineMath math="\frac{1}{8}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{1}{4}" /> ist nur die Chance auf Blutgruppe AB und **vergisst die Chance auf ein Mädchen**.
+- <InlineMath math="\frac{1}{2}" /> ist nur die Chance auf ein Mädchen.
+- <InlineMath math="\frac{1}{32}" /> übersieht, was das erste Kind beweist, und hält jeden Elternteil nur mit der Chance einhalb für heterozygot.

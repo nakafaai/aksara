@@ -28,6 +28,20 @@ S_9&=10{,}000\cdot 9\cdot 16=1{,}440{,}000 \\
 S_{10}&=10{,}000\cdot 10\cdot 15=1{,}500{,}000
 \end{aligned}" />
 
+The chart below stacks up Rencana Menurun's interest month by month. **Bar <InlineMath math="9" /> touches the line exactly**, and only bar <InlineMath math="10" /> goes past it.
+
+<Chart
+  title={<>Rencana Menurun's total interest up to instalment <InlineMath math="k" /></>}
+  description={<>The total interest up to instalment <InlineMath math="k" /> is <InlineMath math="10{,}000\,k\,(25-k)" /> rupiah: <InlineMath math="240{,}000" /> at <InlineMath math="k=1" />, <InlineMath math="1{,}360{,}000" /> at <InlineMath math="k=8" />, <InlineMath math="1{,}440{,}000" /> at <InlineMath math="k=9" />, and <InlineMath math="1{,}500{,}000" /> at <InlineMath math="k=10" />. The flat line marks Rencana Tetap's interest for a year, <InlineMath math="1{,}440{,}000" /> rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Menurun interest so far", mark: "bar", values: Array.from({ length: 12 }, (_, i) => 10000 * (i + 1) * (25 - (i + 1))) },
+    { label: "Tetap interest for a year", mark: "line", values: Array.from({ length: 12 }, () => 12 * 120000) },
+  ]}
+  valueLabel="Interest (rupiah)"
+/>
+
 # Greater means not equal
 
 After the ninth instalment, Ani's total interest is exactly <InlineMath math="1{,}440{,}000" />, **equal to, but not yet greater than**, Rencana Tetap's total. After the tenth instalment it's <InlineMath math="1{,}500{,}000" />, and only now is it greater.

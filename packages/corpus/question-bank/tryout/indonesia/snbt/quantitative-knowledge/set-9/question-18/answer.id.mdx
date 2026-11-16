@@ -26,6 +26,18 @@ Hitungan deretan lurus <InlineMath math="L(10)=144" /> ikut memuat himpunan yang
 
 Hasilnya sama.
 
+Diagram berikut merangkum pembagian kasus pada bilangan <InlineMath math="1" />. Setiap cabang **memutus lingkaran menjadi barisan lurus**, sehingga hitungan barisan lurus bisa dipakai langsung.
+
+<Mermaid
+  title={<>Membagi himpunan renggang pada lingkaran menurut bilangan <InlineMath math="1" /></>}
+  description={<>Jika <InlineMath math="1" /> tidak dipilih, bilangan <InlineMath math="2" /> sampai <InlineMath math="10" /> menjadi barisan lurus dengan <InlineMath math="L(9)=89" /> himpunan renggang. Jika <InlineMath math="1" /> dipilih, bilangan <InlineMath math="2" /> dan <InlineMath math="10" /> terlarang, dan bilangan <InlineMath math="3" /> sampai <InlineMath math="9" /> memberi <InlineMath math="L(7)=34" />. Totalnya <InlineMath math="123" />.</>}
+  chart={`flowchart LR
+    S["Lingkaran 1 sampai 10"] -->|"1 tidak dipilih"| A["Barisan 2 sampai 10: L(9) = 89"]
+    S -->|"1 dipilih, 2 dan 10 terlarang"| B["Barisan 3 sampai 9: L(7) = 34"]
+    A --> T["89 + 34 = 123"]
+    B --> T`}
+/>
+
 # Pilihan yang menjebak
 
 - <InlineMath math="144" /> menghitung seolah bilangan berjajar lurus, **lupa bahwa <InlineMath math="10" /> dan <InlineMath math="1" /> bersebelahan**.

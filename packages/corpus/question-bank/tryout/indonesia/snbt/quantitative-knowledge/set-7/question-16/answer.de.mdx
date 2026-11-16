@@ -31,6 +31,37 @@ Schreib <InlineMath math="1={}^{2}\log2" />. Die Basis <InlineMath math="2" /> i
 \tfrac13<x&\le3
 \end{aligned}" />
 
+Der Graph der Verkettung zeigt diese Lösungsmenge. Die Kurve beginnt nahe der Geraden <InlineMath math="x=\tfrac13" /> sehr tief, steigt immer weiter und **schneidet die Gerade <InlineMath math="y=1" /> in <InlineMath math="(3,1)" />**. Der Teil der Kurve auf oder unter dieser Geraden entspricht dem dicken Stück <InlineMath math="\tfrac13<x\le3" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="y={}^{2}\log\left({}^{3}\log x+1\right)" /></>}
+  description={<>Die Kurve existiert nur für <InlineMath math="x>\tfrac13" /> und fällt nahe der gestrichelten Geraden <InlineMath math="x=\tfrac13" /> unbegrenzt. Sie steigt immer weiter und schneidet die Gerade <InlineMath math="y=1" /> in <InlineMath math="(3,1)" />. Das dicke Stück auf der <InlineMath math="x" />-Achse markiert <InlineMath math="\tfrac13<x\le3" />.</>}
+  labels={{
+    curve: <InlineMath math="y=(f^{-1}\circ g)(x)" />,
+    level: <InlineMath math="y=1" />,
+    end: <InlineMath math="(3,1)" />,
+    wall: <InlineMath math="x=\tfrac13" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: -3, max: 2.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 1 / 3, y: 0 }, { x: 1 / 3, y: 1 }] },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: 1 / 3, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "log_2(log_3(x) + 1)", domain: { min: 0.36, max: 10 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 8, y: Math.log2(Math.log(8) / Math.log(3) + 1) }, placement: "below" },
+      { key: "level", objectId: "level", at: { x: 9.5, y: 1 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 3, y: 1 }, placement: "above-left" },
+      { key: "wall", objectId: "wall", at: { x: 1 / 3, y: -2.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Prüfung der Ränder: Für <InlineMath math="x=3" /> ist der Wert <InlineMath math="{}^{2}\log(1+1)=1" />, also gehört <InlineMath math="x=3" /> dazu. Für <InlineMath math="x=\frac13" /> ist das Argument <InlineMath math="-1+1=0" />, und <InlineMath math="{}^{2}\log0" /> existiert nicht, also gehört <InlineMath math="x=\frac13" /> nicht dazu. Für <InlineMath math="x=1" /> in der Mitte ist der Wert <InlineMath math="{}^{2}\log1=0\le1" />.
 
 # Die falschen Antworten

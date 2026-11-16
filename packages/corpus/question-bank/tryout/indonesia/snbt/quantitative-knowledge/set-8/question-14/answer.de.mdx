@@ -14,6 +14,19 @@ s_y&=|a|\,s_x\\
 
 Wer weniger Fehler macht, also ein kleineres <InlineMath math="x" /> hat, muss ein größeres <InlineMath math="y" /> bekommen. Dann fällt <InlineMath math="y" />, wenn <InlineMath math="x" /> steigt, und **die Reihenfolgebedingung erzwingt ein negatives <InlineMath math="a" />**: <InlineMath math="a=-\tfrac52" />. Bestimme <InlineMath math="b" /> aus dem Mittelwert und berechne dann die Endnote für <InlineMath math="x=26" />.
 
+Das Diagramm vergleicht die beiden möglichen Vorzeichen von <InlineMath math="a" />. Beide Geraden gehen durch <InlineMath math="(20,60)" /> und sind gleich steil, aber **nur die fallende Gerade** gibt bei weniger Fehlern eine höhere Endnote.
+
+<Chart
+  title={<>Endnote gegen Fehlerzahl für beide Vorzeichen von <InlineMath math="a" /></>}
+  description={<>Für Rohwerte von <InlineMath math="12" /> bis <InlineMath math="28" /> fällt die Gerade <InlineMath math="y=-\tfrac52x+110" /> von <InlineMath math="80" /> auf <InlineMath math="40" />, die Gerade <InlineMath math="y=\tfrac52x+10" /> steigt von <InlineMath math="40" /> auf <InlineMath math="80" />. Beide liefern <InlineMath math="60" /> bei <InlineMath math="x=20" />. Bei <InlineMath math="x=26" /> liefert die fallende Gerade <InlineMath math="45" />.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${12 + 2 * i}`)}
+  series={[
+    { label: "a negativ: y = -2,5x + 110", mark: "line", values: Array.from({ length: 9 }, (_, i) => -2.5 * (12 + 2 * i) + 110) },
+    { label: "a positiv: y = 2,5x + 10", mark: "line", values: Array.from({ length: 9 }, (_, i) => 2.5 * (12 + 2 * i) + 10) },
+  ]}
+  valueLabel="Endnote"
+/>
+
 <BlockMath math="\begin{aligned}
 60&=-\tfrac52\cdot20+b\\
 b&=60+50=110\\

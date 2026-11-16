@@ -30,6 +30,19 @@ I&=2\cdot10^{-4}+4\cdot10^{-4}=6\cdot10^{-4}\ \text{W/m}^2 \\
 &=10\,(0{,}78+8)=87{,}8\text{ dB}
 \end{aligned}" />
 
+Vergleiche die Beiträge beider Bühnen am Gästezelt. **Die nähere Bühne B trägt doppelt so viel bei wie Bühne A**, und in Dezibel umgerechnet wird die Summe der Balken, nicht die Summe einzelner Pegel.
+
+<Chart
+  title={<>Schallintensität am Gästezelt</>}
+  description={<>In Einheiten von <InlineMath math="10^{-4}\ \text{W/m}^2" /> tragen acht große Trommeln aus <InlineMath math="20\text{ m}" /> <InlineMath math="2" /> bei, vier kleine Trommeln aus <InlineMath math="5\text{ m}" /> <InlineMath math="4" />, zusammen <InlineMath math="6" />. Diese Summe ergibt <InlineMath math="87{,}8\text{ dB}" />.</>}
+  bars="apart"
+  categories={["Bühne A", "Bühne B", "Gesamt"]}
+  series={[
+    { label: "Intensität", mark: "bar", values: [2, 4, 6] },
+  ]}
+  valueLabel="Vielfache von 0,0001 W/m²"
+/>
+
 Zur Kontrolle: Bühne B allein ergibt <InlineMath math="10\log(4\cdot10^8)=86\text{ dB}" />. Bühne A bringt nur die Hälfte der Intensität von B dazu, also **muss das Ergebnis über <InlineMath math="86\text{ dB}" /> und unter <InlineMath math="89\text{ dB}" /> liegen**. Der Wert <InlineMath math="87{,}8\text{ dB}" /> passt.
 
 # Warum die anderen Antworten falsch sind

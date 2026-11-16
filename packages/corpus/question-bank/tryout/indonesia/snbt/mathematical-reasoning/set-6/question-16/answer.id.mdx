@@ -18,6 +18,20 @@ Kelompok <InlineMath math="30\text{ tahun}" /> ke atas di Pasar X berisi <Inline
 
 <BlockMath math="\frac{80}{160}\cdot 100\%=50\%" />
 
+Grafik berikut menghitung persentase keseluruhan Pasar X untuk beberapa persentase kelompok <InlineMath math="30" /> tahun ke atas. **Batangnya baru menyentuh garis Pasar Y tepat pada <InlineMath math="50\%" />**, karena setiap kenaikan <InlineMath math="5" /> poin pada kelompok itu hanya menambah <InlineMath math="4" /> poin pada keseluruhan.
+
+<Chart
+  title={<>Persentase keseluruhan Pasar X menurut persentase kelompok <InlineMath math="30" /> tahun ke atas</>}
+  description={<>Untuk persentase kelompok <InlineMath math="30" /> tahun ke atas <InlineMath math="40\%" />, <InlineMath math="45\%" />, <InlineMath math="50\%" />, <InlineMath math="55\%" />, dan <InlineMath math="60\%" />, persentase keseluruhan Pasar X berturut-turut <InlineMath math="48\%" />, <InlineMath math="52\%" />, <InlineMath math="56\%" />, <InlineMath math="60\%" />, dan <InlineMath math="64\%" />. Garis datar menandai persentase keseluruhan Pasar Y, <InlineMath math="56\%" />.</>}
+  bars="apart"
+  categories={["40%", "45%", "50%", "55%", "60%"]}
+  series={[
+    { label: "Persentase keseluruhan Pasar X", mark: "bar", values: [40, 45, 50, 55, 60].map((p) => ((32 + 1.6 * p) / 200) * 100) },
+    { label: "Pasar Y, 56%", mark: "line", values: [56, 56, 56, 56, 56] },
+  ]}
+  valueLabel="Pemilih QRIS (%)"
+/>
+
 # Pemeriksaan hasil
 
 Dengan <InlineMath math="50\%" />, kelompok itu menyumbang <InlineMath math="80" /> orang, sehingga Pasar X punya <InlineMath math="32+80=112" /> pemilih QRIS, tepat <InlineMath math="56\%" />. Jika persentasenya sedikit di bawah <InlineMath math="50\%" />, misalnya <InlineMath math="79" /> orang, totalnya <InlineMath math="111" />, **masih kurang dari target**.

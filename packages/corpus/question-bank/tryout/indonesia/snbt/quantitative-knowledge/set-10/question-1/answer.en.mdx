@@ -27,6 +27,17 @@ All <InlineMath math="24" /> of those numbers are odd, so none of them is a mult
 
 <BlockMath math="63-24=39" />
 
+The chart below splits the <InlineMath math="83" /> fractions into three groups. You only want **the middle bar**: fractions that change but keep an even denominator.
+
+<Chart
+  title={<>The fractions <InlineMath math="\tfrac{k}{84}" /> by what simplifying does</>}
+  description={<>There are <InlineMath math="24" /> fractions that don't change, because <InlineMath math="k" /> is coprime to <InlineMath math="84" />. There are <InlineMath math="39" /> fractions that change and keep an even denominator. The other <InlineMath math="20" />, with <InlineMath math="k" /> a multiple of <InlineMath math="4" />, change and end up with an odd denominator.</>}
+  categories={["Unchanged", "Changed, even denominator", "Changed, odd denominator"]}
+  bars="apart"
+  series={[{ label: "Number of fractions", mark: "bar", values: [24, 83 - 20 - 24, 20] }]}
+  valueLabel="Number of fractions"
+/>
+
 # Checking another way
 
 Split the <InlineMath math="39" /> fractions by the type of <InlineMath math="k" />. First, <InlineMath math="k" /> is even but not a multiple of <InlineMath math="4" />: <InlineMath math="2,6,10,\ldots,82" />. That's <InlineMath math="21" /> numbers, and each one can be divided by <InlineMath math="2" /> without using up the factor <InlineMath math="2" /> in the denominator. Second, <InlineMath math="k" /> is odd and **shares the factor <InlineMath math="3" /> or <InlineMath math="7" /> with <InlineMath math="84" />**. There are <InlineMath math="42" /> odd numbers from <InlineMath math="1" /> to <InlineMath math="83" />, and <InlineMath math="24" /> of them are coprime to <InlineMath math="84" />, which leaves <InlineMath math="18" />.

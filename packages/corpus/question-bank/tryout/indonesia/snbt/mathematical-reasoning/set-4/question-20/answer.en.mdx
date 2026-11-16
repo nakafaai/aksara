@@ -12,6 +12,20 @@ Each roll has <InlineMath math="232\text{ cm}" /> left, shorter than one cut, so
 
 Two walls of equal width get <InlineMath math="12:2=6" /> strips each. Each wall is counted on its own, so a wall <InlineMath math="w\text{ cm}" /> wide needs <InlineMath math="w:50" /> strips, rounded up. Six strips cover at most <InlineMath math="6\cdot50=300\text{ cm}" />, and **a wall <InlineMath math="301\text{ cm}" /> wide already needs a seventh strip**.
 
+The chart below counts the strips one wall needs for a range of widths. **The bars stay on the <InlineMath math="6" />-strip line up to a width of <InlineMath math="300\text{ cm}" />**, then jump to <InlineMath math="7" /> from <InlineMath math="310\text{ cm}" />.
+
+<Chart
+  title={<>Strips one wall needs by its width</>}
+  description={<>A wall <InlineMath math="250\text{ cm}" /> wide needs <InlineMath math="5" /> strips, a wall <InlineMath math="260" /> to <InlineMath math="300\text{ cm}" /> wide needs <InlineMath math="6" /> strips, and a wall <InlineMath math="310" /> to <InlineMath math="350\text{ cm}" /> wide needs <InlineMath math="7" /> strips. The flat line marks the <InlineMath math="6" /> strips available for each wall.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${250 + 10 * i}`)}
+  series={[
+    { label: "Strips needed per wall", mark: "bar", values: Array.from({ length: 11 }, (_, i) => Math.ceil((250 + 10 * i) / 50)) },
+    { label: "Strips available per wall", mark: "line", values: Array.from({ length: 11 }, () => 12 / 2) },
+  ]}
+  valueLabel="Strips"
+/>
+
 # The tempting wrong options
 
 Every other option treats the wallpaper **more freely than the rules allow**.

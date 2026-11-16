@@ -1,3 +1,25 @@
 Sebidang taman berbentuk segitiga siku-siku dengan panjang kaki <InlineMath math="12\text{ m}" /> dan <InlineMath math="9\text{ m}" />. Di dalam taman itu akan dibuat kolam berbentuk persegi panjang. Dua sisi kolam berimpit dengan kedua kaki segitiga, dan titik sudut kolam yang berhadapan dengan titik sudut siku-siku terletak pada sisi miring segitiga.
 
+<MathVisual
+  title={<>Taman segitiga siku-siku dan kolam persegi panjang</>}
+  description={<>Taman berbentuk segitiga siku-siku dengan kaki <InlineMath math="12\text{ m}" /> mendatar dan <InlineMath math="9\text{ m}" /> tegak. Kolam persegi panjang menempel pada kedua kaki, dan sudut kolam di seberang sudut siku-siku terletak pada sisi miring. Ukuran kolam pada gambar hanya contoh.</>}
+  labels={{
+    long: <InlineMath math="12\text{ m}" />,
+    short: <InlineMath math="9\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 13 }, y: { min: -1.5, max: 10 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "garden", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "pond", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 3 }, { x: 0, y: 3 }] },
+    ],
+    labels: [
+      { key: "long", objectId: "garden", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "short", objectId: "garden", at: { x: 0, y: 4.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 Sisi kolam yang terletak pada kaki <InlineMath math="9\text{ m}" /> harus paling sedikit <InlineMath math="6\text{ m}" />. Luas kolam terbesar yang mungkin adalah ....

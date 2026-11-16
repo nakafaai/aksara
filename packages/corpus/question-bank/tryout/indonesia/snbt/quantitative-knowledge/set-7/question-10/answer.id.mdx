@@ -18,6 +18,20 @@ Kartu genap pertama muncul pada pengambilan ketiga berarti urutannya ganjil, gan
 
 <BlockMath math="P(E\cap G)=\tfrac{5}{10}\cdot\tfrac49\cdot\tfrac58=\tfrac{100}{720}=\tfrac{5}{36}" />
 
+Pohon peluang berikut memperlihatkan kedua cabang yang membentuk syarat <InlineMath math="G" />. Hanya **cabang ganjil-ganjil yang bisa diteruskan** ke kartu genap pertama di pengambilan ketiga, karena di cabang genap-genap kartu genap sudah muncul lebih dulu.
+
+<Mermaid
+  title={<>Pohon peluang tiga pengambilan pertama</>}
+  description={<>Ganjil lalu ganjil berpeluang <InlineMath math="\tfrac29" />, dan genap lalu genap juga <InlineMath math="\tfrac29" />, sehingga <InlineMath math="P(G)=\tfrac49" />. Dari cabang ganjil-ganjil, kartu ketiga genap dengan peluang <InlineMath math="\tfrac58" />, sehingga <InlineMath math="P(E\cap G)=\tfrac29\cdot\tfrac58=\tfrac{5}{36}" />.</>}
+  chart={`flowchart LR
+    S["10 kartu: 5 ganjil, 5 genap"] -->|"5/10 x 4/9 = 2/9"| OO["ganjil, ganjil"]
+    S -->|"5/10 x 4/9 = 2/9"| EE["genap, genap"]
+    OO -->|"5/8"| E["kartu ketiga genap: 5/36"]
+    EE --> X["genap sudah muncul, bukan E"]
+    OO --> G["P(G) = 2/9 + 2/9 = 4/9"]
+    EE --> G`}
+/>
+
 # Menghitung peluang bersyarat
 
 **Bagi peluang bersama dengan peluang syaratnya**, karena syarat itu menjadi ruang sampel yang baru.

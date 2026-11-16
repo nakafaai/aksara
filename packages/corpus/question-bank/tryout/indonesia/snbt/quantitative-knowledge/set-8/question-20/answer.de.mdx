@@ -31,6 +31,20 @@ Die Zahl <InlineMath math="n^2+n+1" /> ist genau dann durch <InlineMath math="49
 
 Direkte Probe: <InlineMath math="18^2+18+1=343=7\cdot49" />, <InlineMath math="30^2+30+1=931=19\cdot49" />, <InlineMath math="67^2+67+1=4557=93\cdot49" /> und <InlineMath math="79^2+79+1=6321=129\cdot49" />. Es fallen also <InlineMath math="4" /> Zahlen weg.
 
+Das Diagramm teilt die <InlineMath math="29" /> Zahlen mit Rest <InlineMath math="2" /> oder <InlineMath math="4" /> in zwei Teile. **Nur die kleinen Balken werden entfernt**: die vier Zahlen, bei denen <InlineMath math="n^2+n+1" /> auch durch <InlineMath math="49" /> teilbar ist.
+
+<Chart
+  title={<>Zahlen <InlineMath math="n\le100" />, bei denen <InlineMath math="n^2+n+1" /> durch <InlineMath math="7" /> teilbar ist</>}
+  description={<>Von den <InlineMath math="15" /> Zahlen mit Rest <InlineMath math="2" /> liefern <InlineMath math="2" /> auch ein Vielfaches von <InlineMath math="49" />, nämlich <InlineMath math="30" /> und <InlineMath math="79" />. Von den <InlineMath math="14" /> Zahlen mit Rest <InlineMath math="4" /> sind es ebenfalls <InlineMath math="2" />, nämlich <InlineMath math="18" /> und <InlineMath math="67" />. Übrig bleiben <InlineMath math="13+12=25" />.</>}
+  categories={["Rest 2 bei Division durch 7", "Rest 4 bei Division durch 7"]}
+  bars="apart"
+  series={[
+    { label: "Durch 7, nicht durch 49 teilbar", mark: "bar", values: [15 - 2, 14 - 2] },
+    { label: "Auch durch 49 teilbar", mark: "bar", values: [2, 2] },
+  ]}
+  valueLabel="Anzahl der Zahlen"
+/>
+
 <BlockMath math="29-4=25" />
 
 Häufige Fehler sind, bei <InlineMath math="29" /> stehen zu bleiben und damit die Bedingung mit <InlineMath math="49" /> zu vergessen, oder <InlineMath math="n=100" /> zu übersehen und <InlineMath math="24" /> zu erhalten.

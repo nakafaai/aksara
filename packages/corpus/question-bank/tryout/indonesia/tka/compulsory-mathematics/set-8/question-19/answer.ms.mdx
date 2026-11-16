@@ -31,6 +31,46 @@ Apabila <InlineMath math="p+l" /> tetap, **luas kebun bertambah apabila panjang 
 | <InlineMath math="16" /> | <InlineMath math="9" /> | <InlineMath math="144" /> | ya |
 | <InlineMath math="17" /> | <InlineMath math="8" /> | <InlineMath math="136" /> | ya |
 
+Lukis luas kebun dan luas tanaman sebagai fungsi panjang <InlineMath math="p" />. **Lengkung luas tanaman sentiasa <InlineMath math="46" /> di bawah lengkung luas kebun**, jadi cukup cari luas kebun terbesar yang masih di bawah garis <InlineMath math="150" />. Bagi <InlineMath math="p" /> bulat, itu berlaku pada <InlineMath math="p=16" />.
+
+<MathVisual
+  title={<>Luas kebun dan luas tanaman mengikut panjang kebun</>}
+  description={<>Paksi mendatar ialah panjang <InlineMath math="p" /> dalam meter, dengan lebar <InlineMath math="25-p" />. Lengkung atas ialah luas kebun <InlineMath math="p(25-p)" />, dan lengkung bawah ialah luas tanaman <InlineMath math="p(25-p)-46" />. Garis mendatar <InlineMath math="150" /> ialah had peraturan kampung. Titik <InlineMath math="(15,\ 150)" /> tepat pada had dan tidak dibenarkan, titik <InlineMath math="(16,\ 144)" /> di bawah had, dan luas tanamannya <InlineMath math="(16,\ 98)" />.</>}
+  labels={{
+    garden: <InlineMath math="p(25-p)" />,
+    plant: <InlineMath math="p(25-p)-46" />,
+    limit: <InlineMath math="150" />,
+    edge: <InlineMath math="(15,\ 150)" />,
+    best: <InlineMath math="(16,\ 144)" />,
+    crop: <InlineMath math="(16,\ 98)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 12, max: 23 },
+      y: { min: 40, max: 170 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "garden", kind: "function", appearance: "secondary", formula: "x(25 - x)", domain: { min: 12.5, max: 22 } },
+      { id: "plant", kind: "function", appearance: "primary", formula: "x(25 - x) - 46", domain: { min: 12.5, max: 22 } },
+      { id: "limit", kind: "function", appearance: "reference", formula: "150", domain: { min: 12.5, max: 22.5 } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 15, y: 150 } },
+      { id: "best", kind: "point", appearance: "secondary", at: { x: 16, y: 144 } },
+      { id: "crop", kind: "point", appearance: "answer", at: { x: 16, y: 98 } },
+    ],
+    labels: [
+      { key: "garden", objectId: "garden", at: { x: 20, y: 100 }, placement: "above-right" },
+      { key: "plant", objectId: "plant", at: { x: 20, y: 54 }, placement: "above-right" },
+      { key: "limit", objectId: "limit", at: { x: 21, y: 150 }, placement: "above" },
+      { key: "edge", objectId: "edge", at: { x: 15, y: 150 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 16, y: 144 }, placement: "below-right" },
+      { key: "crop", objectId: "crop", at: { x: 16, y: 98 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Pasangan seterusnya mempunyai luas yang lebih kecil, jadi luas kebun terbesar yang dibenarkan ialah <InlineMath math="144\text{ m}^2" />, iaitu kebun <InlineMath math="16\text{ m}\times9\text{ m}" />.
 
 <BlockMath math="L_\text{tanam}=(16-2)(9-2)=14\cdot7=98\text{ m}^2" />

@@ -33,4 +33,18 @@ n \text{ ungerade}&: \ \tfrac{n+1}{2}\le14 \;\Longrightarrow\; n\le27 \;\Longrig
 
 Für <InlineMath math="k=7" /> gibt es <InlineMath math="27" /> Werte, und der Median ist der <InlineMath math="14" />. Wert, der immer noch <InlineMath math="7" /> ist. Für <InlineMath math="k=8" /> gibt es <InlineMath math="28" /> Werte, und der Median wird <InlineMath math="\frac{7+8}{2}=7{,}5" />. Der Median bleibt also für <InlineMath math="k\le7" /> bei <InlineMath math="7" />, nicht nur für <InlineMath math="k\le6" />. Die vierte Aussage ist **falsch**.
 
+Das Diagramm vergleicht die ursprünglichen Daten mit den Daten, nachdem <InlineMath math="7" /> Schüler mit der Note <InlineMath math="8" /> dazukommen. Die Balken für <InlineMath math="5" />, <InlineMath math="6" /> und <InlineMath math="7" /> **bewegen sich nicht**, also besetzt die Note <InlineMath math="7" /> weiter die Plätze <InlineMath math="9" /> bis <InlineMath math="14" />, und Platz <InlineMath math="14" /> von <InlineMath math="27" /> Werten ist immer noch eine <InlineMath math="7" />.
+
+<Chart
+  title={<>Häufigkeiten vor und nach den zusätzlichen Noten <InlineMath math="8" /></>}
+  description={<>Die ursprünglichen Daten haben die Häufigkeiten <InlineMath math="3, 5, 6, 4, 2" /> für die Noten <InlineMath math="5" /> bis <InlineMath math="9" />. Nach <InlineMath math="7" /> zusätzlichen Noten <InlineMath math="8" /> sind es <InlineMath math="3, 5, 6, 11, 2" />, mit <InlineMath math="27" /> Werten. Der Median ist der <InlineMath math="14" />. Wert, also <InlineMath math="7" />.</>}
+  bars="apart"
+  categories={["5", "6", "7", "8", "9"]}
+  series={[
+    { label: "Ursprüngliche Daten", mark: "bar", values: [3, 5, 6, 4, 2] },
+    { label: "Plus 7 Schüler mit Note 8", mark: "bar", values: [3, 5, 6, 4 + 7, 2] },
+  ]}
+  valueLabel="Häufigkeit"
+/>
+
 Die erste Aussage ist also wahr, die zweite, dritte und vierte sind falsch.

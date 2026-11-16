@@ -8,6 +8,17 @@ Membuang <InlineMath math="20\text{ liter}" /> menyisakan <InlineMath math="\fra
 
 Sebagai contoh, dari <InlineMath math="42\text{ g/L}" /> sekali buang <InlineMath math="40\text{ liter}" /> memberi <InlineMath math="28\text{ g/L}" />, sedangkan dua kali buang <InlineMath math="20\text{ liter}" /> memberi <InlineMath math="29\frac16\text{ g/L}" />. Hasilnya berbeda. Pernyataan pertama **salah**.
 
+Grafik berikut membandingkan kedua cara itu dari salinitas awal <InlineMath math="42\text{ g/L}" />. **Kedua batang tidak sama tinggi**, jadi dua penggantian kecil tidak setara dengan satu penggantian besar.
+
+<Chart
+  title={<>Salinitas akhir dua cara mengganti air tawar dari <InlineMath math="42\text{ g/L}" /></>}
+  description={<>Satu penggantian <InlineMath math="40" /> liter memberi <InlineMath math="28\text{ g/L}" />. Dua penggantian <InlineMath math="20" /> liter memberi <InlineMath math="29\tfrac16\text{ g/L}" />.</>}
+  categories={["Sekali 40 liter", "Dua kali 20 liter"]}
+  bars="apart"
+  series={[{ label: "Salinitas akhir (g/L)", mark: "bar", values: [42 * (2 / 3), 42 * (5 / 6) * (5 / 6)] }]}
+  valueLabel="Salinitas (g/L)"
+/>
+
 # Penguapan diisi air laut buatan
 
 Setiap hari <InlineMath math="4\text{ liter}" /> air menguap tanpa membawa garam. Mengisi ulang <InlineMath math="4\text{ liter}" /> air laut buatan menambah <InlineMath math="4\cdot35=140" /> gram garam, dan isinya kembali <InlineMath math="120\text{ liter}" />.

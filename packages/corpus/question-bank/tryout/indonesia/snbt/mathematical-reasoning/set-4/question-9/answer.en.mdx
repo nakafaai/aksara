@@ -32,6 +32,21 @@ t &\ge 70.4
 
 Interviewer scores are whole numbers, so **the smallest score that works is** <InlineMath math="71" />. It's more than <InlineMath math="58" />, so it fits the case you used.
 
+The chart below works out Gita's final score for a third interviewer score from <InlineMath math="65" /> to <InlineMath math="75" />. Each extra point only lifts the final score by <InlineMath math="0.125" />, and **the first bar over the <InlineMath math="80" /> line is <InlineMath math="71" />**.
+
+<Chart
+  title={<>Gita's final score by the third interviewer's score</>}
+  description={<>For a third interviewer score <InlineMath math="t" /> above <InlineMath math="58" />, Gita's final score is <InlineMath math="60.7+0.25\cdot\tfrac{84+t}{2}" />. At <InlineMath math="t=70" /> it's <InlineMath math="79.95" />, and at <InlineMath math="t=71" /> it's <InlineMath math="80.075" />. The flat line marks the requirement of <InlineMath math="80" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${65 + i}`)}
+  series={[
+    { label: "Gita's final score", mark: "bar", values: Array.from({ length: 11 }, (_, i) => 60.7 + 0.25 * ((84 + 65 + i) / 2)) },
+    { label: "Requirement 80", mark: "line", values: Array.from({ length: 11 }, () => 80) },
+  ]}
+  valueRange={{ min: 78, max: 81 }}
+  valueLabel="Final score"
+/>
+
 # Checking the boundary
 
 Check <InlineMath math="t=71" /> and <InlineMath math="t=70" />:

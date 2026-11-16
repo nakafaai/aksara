@@ -28,6 +28,40 @@ Bei <InlineMath math="EF=16" /> hat das Dreieck <InlineMath math="DEF" /> die Se
 
 Probe für dieses Dreieck: Basis <InlineMath math="30" /> und Höhe <InlineMath math="8" /> ergeben die Fläche <InlineMath math="\frac{1}{2}\cdot30\cdot8=120" />, und der Schenkel ist <InlineMath math="\sqrt{15^2+8^2}=\sqrt{289}=17" />. Beides passt.
 
+Die Abbildung stellt beide gleichschenkligen Dreiecke mit Schenkeln <InlineMath math="17" /> nebeneinander. Das Dreieck <InlineMath math="DEF" /> **ist das Dreieck <InlineMath math="ABC" />, bei dem halbe Basis und Höhe die Rollen tauschen**: Seine Basis ist <InlineMath math="30" /> und seine Höhe <InlineMath math="8" />, die Fläche bleibt <InlineMath math="120" />.
+
+<MathVisual
+  title={<>Zwei gleichschenklige Dreiecke mit Schenkeln <InlineMath math="17" /> und Fläche <InlineMath math="120" /></>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> hat die Basis <InlineMath math="16" /> und die Höhe <InlineMath math="15" />. Das Dreieck <InlineMath math="DEF" /> hat die Basis <InlineMath math="30" /> und die Höhe <InlineMath math="8" />. Beide haben Schenkel der Länge <InlineMath math="17" /> und die Fläche <InlineMath math="120" />, aber verschiedene Formen.</>}
+  labels={{
+    abc: <InlineMath math="ABC" />,
+    def: <InlineMath math="DEF" />,
+    h1: <InlineMath math="15" />,
+    h2: <InlineMath math="8" />,
+    b1: <InlineMath math="16" />,
+    b2: <InlineMath math="30" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 37 }, y: { min: -3, max: 17 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "abc", kind: "polygon", appearance: "primary", vertices: [{ x: -8, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 15 }] },
+      { id: "def", kind: "polygon", appearance: "answer", vertices: [{ x: 5, y: 0 }, { x: 35, y: 0 }, { x: 20, y: 8 }] },
+      { id: "height-abc", kind: "segment", appearance: "construction", from: { x: 0, y: 15 }, to: { x: 0, y: 0 } },
+      { id: "height-def", kind: "segment", appearance: "construction", from: { x: 20, y: 8 }, to: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "abc", objectId: "abc", at: { x: 0, y: 15 }, placement: "above" },
+      { key: "def", objectId: "def", at: { x: 20, y: 8 }, placement: "above" },
+      { key: "h1", objectId: "height-abc", at: { x: 0, y: 7.5 }, placement: "left" },
+      { key: "h2", objectId: "height-def", at: { x: 20, y: 4 }, placement: "right" },
+      { key: "b1", objectId: "abc", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "b2", objectId: "def", at: { x: 27, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Vergleich und die verlockenden falschen Antworten
 
 Beide Größen sind gleich, <InlineMath math="P=Q=30" />. Das ist kein Zufall: Im Dreieck <InlineMath math="DEF" /> tauschen halbe Basis und Höhe die Rollen mit denen des Dreiecks <InlineMath math="ABC" />, also **ist die Hälfte von <InlineMath math="EF" /> gleich der Höhe des Dreiecks <InlineMath math="ABC" />**.

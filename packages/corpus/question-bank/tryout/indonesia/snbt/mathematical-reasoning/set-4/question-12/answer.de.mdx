@@ -22,6 +22,17 @@ Fajar liegt vorn, **wenn diese Differenz positiv ist**:
 x &< 30
 \end{aligned}" />
 
+Das Diagramm zeigt die Differenz <InlineMath math="1{,}5-0{,}05x" /> für jedes <InlineMath math="x" /> von <InlineMath math="20" /> bis <InlineMath math="40" />. **Die Balken sind bis <InlineMath math="x=29" /> positiv, verschwinden genau bei <InlineMath math="x=30" />** und werden dann negativ.
+
+<Chart
+  title={<>Fajars Endnote minus Ekas nach Testgewicht <InlineMath math="x" /></>}
+  description={<>Die Differenz fällt mit jedem Schritt von <InlineMath math="x" /> um <InlineMath math="0{,}05" />, von <InlineMath math="0{,}5" /> bei <InlineMath math="x=20" /> auf <InlineMath math="0" /> bei <InlineMath math="x=30" /> und dann auf <InlineMath math="-0{,}5" /> bei <InlineMath math="x=40" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${20 + i}`)}
+  series={[{ label: "Fajar minus Eka", mark: "bar", values: Array.from({ length: 21 }, (_, i) => 1.5 - 0.05 * (20 + i)) }]}
+  valueLabel="Differenz der Endnote"
+/>
+
 # Der Gleichstand an der Grenze
 
 Bei <InlineMath math="x=30" /> ist die Differenz null, beide Endnoten betragen also <InlineMath math="82{,}6" />. Die Regel bei Gleichstand bevorzugt das höhere <InlineMath math="T" />. Eka hat <InlineMath math="T=86" /> und Fajar <InlineMath math="T=84" />, also **bleibt Eka bei Gleichstand vorn**. Deshalb gehört <InlineMath math="x=30" /> nicht dazu, und die Antwort lautet <InlineMath math="20\le x\le29" />.

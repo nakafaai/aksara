@@ -1,0 +1,27 @@
+# Verdoppeln ist eine Zweierpotenz, und ein Vorsprung auch
+
+Nach <InlineMath math="n" /> Zyklen hat eine Probe ihre Ausgangszahl mal <InlineMath math="2^{n}" />. Y braucht **mehr als** eine Million:
+
+<BlockMath math="1280\times2^{n}>1\,000\,000\ \Rightarrow\ 2^{n}>781.25,\qquad 2^{9}=512\ \text{(zu wenig)},\quad 2^{10}=1024\ \text{(genug)}." />
+
+Y überschreitet eine Million also nach <InlineMath math="10" /> Zyklen. X beginnt mit <InlineMath math="\frac{1280}{10}=128=2^{7}" />-mal weniger Kopien und braucht genau <InlineMath math="7" /> Verdopplungen mehr: <InlineMath math="10\times2^{17}=1\,310\,720" />, so viel wie Y nach <InlineMath math="10" /> Zyklen.
+
+<Chart
+  title={<>Kopien nach jedem Zyklus</>}
+  categories={["8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]}
+  series={[
+    { label: "Probe X", mark: "line", values: [2560, 5120, 10240, 20480, 40960, 81920, 163840, 327680, 655360, 1310720] },
+    { label: "Probe Y", mark: "line", values: [327680, 655360, 1310720, 2621440, null, null, null, null, null, null] },
+    { label: "1.000.000 Kopien", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000] },
+  ]}
+  valueLabel="Zahl der Kopien"
+  description={<>Probe Y mit <InlineMath math="1280" /> Ausgangskopien überschreitet eine Million erstmals nach Zyklus <InlineMath math="10" /> mit <InlineMath math="1{.}310{.}720" /> Kopien. Probe X mit <InlineMath math="10" /> Ausgangskopien schafft das erst nach Zyklus <InlineMath math="17" />, sieben Zyklen später.</>}
+/>
+
+Y braucht also <InlineMath math="10" /> Zyklen, X <InlineMath math="7" /> mehr.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="9" /> Zyklen geben Y nur <InlineMath math="655\,360" /> Kopien, **noch unter** einer Million.
+- <InlineMath math="128" /> Zyklen mehr hält den Vorsprung für eine Zahl von Zyklen, doch jeder Zyklus verdoppelt nur, ein <InlineMath math="128" />-facher Abstand schließt sich in <InlineMath math="7" /> Zyklen.
+- <InlineMath math="1270" /> mehr ist der Unterschied der Ausgangskopien, nicht der Zyklen.

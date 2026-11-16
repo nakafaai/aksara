@@ -15,6 +15,40 @@ n=1:&\quad 10\log2=10\cdot0.30=3\text{ dB} \\
 n=2:&\quad 10\log\tfrac32=10\,(0.48-0.30)=1.8\text{ dB}
 \end{aligned}" />
 
+Draw the rise in level when one drum is added to <InlineMath math="n" /> drums. **The curve only touches <InlineMath math="3\text{ dB}" /> at <InlineMath math="n=1" />, then keeps falling**, so the first statement fails for <InlineMath math="n\ge2" />.
+
+<MathVisual
+  title={<>Rise in level when one large drum is added</>}
+  description={<>The horizontal axis is the starting number of drums <InlineMath math="n" />, and the vertical axis is the rise in dB, <InlineMath math="10\log\frac{n+1}{n}" />. The curve starts at about <InlineMath math="3\text{ dB}" /> at <InlineMath math="n=1" />, drops to about <InlineMath math="1.8\text{ dB}" /> at <InlineMath math="n=2" />, then keeps approaching zero. The horizontal line at <InlineMath math="3\text{ dB}" /> is touched only at <InlineMath math="n=1" />.</>}
+  labels={{
+    rise: <InlineMath math="10\log\frac{n+1}{n}" />,
+    three: <InlineMath math="3\text{ dB}" />,
+    one: <InlineMath math="(1,\ 3)" />,
+    two: <InlineMath math="(2,\ 1{,}8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0.5, max: 8.5 },
+      y: { min: -0.2, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rise", kind: "function", appearance: "primary", formula: "10 log_10((x + 1)/x)", domain: { min: 1, max: 8 } },
+      { id: "three", kind: "function", appearance: "reference", formula: "3", domain: { min: 0.8, max: 8.2 } },
+      { id: "one", kind: "point", appearance: "answer", at: { x: 1, y: 10 * Math.log10(2) } },
+      { id: "two", kind: "point", appearance: "warning", at: { x: 2, y: 10 * Math.log10(1.5) } },
+    ],
+    labels: [
+      { key: "rise", objectId: "rise", at: { x: 5, y: 10 * Math.log10(1.2) }, placement: "above-right" },
+      { key: "three", objectId: "three", at: { x: 6, y: 3 }, placement: "above" },
+      { key: "one", objectId: "one", at: { x: 1, y: 10 * Math.log10(2) }, placement: "below-right" },
+      { key: "two", objectId: "two", at: { x: 2, y: 10 * Math.log10(1.5) }, placement: "above-right" },
+    ],
+  }}
+/>
+
 The jump of <InlineMath math="3\text{ dB}" /> only happens from one drum to two, when the intensity doubles. The more drums you start with, the smaller the increase.
 
 # The second statement

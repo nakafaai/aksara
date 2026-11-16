@@ -26,6 +26,38 @@ There are <InlineMath math="5" /> intersection points, but a quadrilateral has o
 
 The value <InlineMath math="-33" /> is less than <InlineMath math="-18" />, so **the point <InlineMath math="(3,9)" /> lies outside the strip between the parallel lines**. The four lines bound two closed regions: a trapezoid with corners <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" />, <InlineMath math="(2,5)" />, and a small triangle <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" />. The quadrilateral is the trapezoid.
 
+The four lines below show both closed regions. The trapezoid between the two parallel lines is the quadrilateral you want, while **the small triangle with top corner <InlineMath math="(3,9)" /> sits outside that parallel strip**.
+
+<MathVisual
+  title={<>The regions bounded by the four lines</>}
+  description={<>The lines <InlineMath math="x-4y=-3" /> and <InlineMath math="x-4y=-18" /> are parallel. The trapezoid with corners <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" />, and <InlineMath math="(2,5)" /> lies between them and has area <InlineMath math="22.5" />. The triangle <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" /> lies outside that strip.</>}
+  labels={{
+    trap: <InlineMath math="22.5" />,
+    tri: <InlineMath math="(3,9)" />,
+    p11: <InlineMath math="(1,1)" />,
+    p93: <InlineMath math="(9,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "line-sum", kind: "line", appearance: "construction", through: [{ x: 9, y: 3 }, { x: 3, y: 9 }] },
+      { id: "line-low", kind: "line", appearance: "construction", through: [{ x: 1, y: 1 }, { x: 9, y: 3 }] },
+      { id: "line-high", kind: "line", appearance: "construction", through: [{ x: 2, y: 5 }, { x: 6, y: 6 }] },
+      { id: "line-steep", kind: "line", appearance: "construction", through: [{ x: 1, y: 1 }, { x: 3, y: 9 }] },
+      { id: "trap", kind: "polygon", appearance: "answer", vertices: [{ x: 1, y: 1 }, { x: 9, y: 3 }, { x: 6, y: 6 }, { x: 2, y: 5 }] },
+      { id: "tri", kind: "polygon", appearance: "warning", vertices: [{ x: 2, y: 5 }, { x: 6, y: 6 }, { x: 3, y: 9 }] },
+    ],
+    labels: [
+      { key: "trap", objectId: "trap", at: { x: 4.5, y: 3.5 }, placement: "center" },
+      { key: "tri", objectId: "tri", at: { x: 3, y: 9 }, placement: "above-left" },
+      { key: "p11", objectId: "trap", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "p93", objectId: "trap", at: { x: 9, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # The area from the coordinates
 
 The coordinate formula, often called the shoelace formula, gives the area of a polygon from its corners. The one condition is that **the corners are listed in order around the boundary**: <InlineMath math="(1,1)\to(9,3)\to(6,6)\to(2,5)" />.

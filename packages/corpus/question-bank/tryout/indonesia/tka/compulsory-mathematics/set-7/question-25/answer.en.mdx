@@ -22,6 +22,20 @@ If all four digits are different, neighbouring digits can't be equal. So **every
 n(A)&=9\cdot9\cdot8\cdot7=4{,}536
 \end{aligned}" />
 
+Compare the number of choices at each digit position. **Both counts agree for the first two digits and split at the third and fourth**, so the probability is <InlineMath math="\frac{8\cdot7}{9\cdot9}=\frac{56}{81}" />.
+
+<Chart
+  title={<>Number of choices for each PIN digit</>}
+  description={<>For a valid PIN, every position has <InlineMath math="9" /> choices. For a PIN with all digits different, the choices are <InlineMath math="9" />, <InlineMath math="9" />, <InlineMath math="8" />, and <InlineMath math="7" />. The difference lies only in the third and fourth digits.</>}
+  bars="apart"
+  categories={["First digit", "Second digit", "Third digit", "Fourth digit"]}
+  series={[
+    { label: "Valid PIN", mark: "bar", values: [9, 9, 9, 9] },
+    { label: "All digits different", mark: "bar", values: [9, 9, 8, 7] },
+  ]}
+  valueLabel="Choices"
+/>
+
 # The probability
 
 Divide the two counts, then simplify by dividing top and bottom by <InlineMath math="81" />. The example in the question, <InlineMath math="1213" />, shows that some valid PINs repeat a digit, so **the probability has to be less than <InlineMath math="1" />**.

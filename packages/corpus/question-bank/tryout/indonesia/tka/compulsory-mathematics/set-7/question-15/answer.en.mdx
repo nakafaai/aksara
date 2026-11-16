@@ -13,6 +13,39 @@ Write each transformation as a rule for a general point <InlineMath math="(x,y)"
 \text{dilation about } (a,b)\text{, factor } k&:\ (x,y)\mapsto\big(a+k(x-a),\ b+k(y-b)\big)
 \end{aligned}" />
 
+One point can prove that a pair does not commute, as in the fourth statement. **The point <InlineMath math="(1,0)" /> rotated first goes up to <InlineMath math="(0,1)" /> and is then reflected down to <InlineMath math="(0,-1)" />**, while reflected first it stays put and is then rotated to <InlineMath math="(0,1)" />.
+
+<MathVisual
+  title={<>One point under the two orders of transformation</>}
+  description={<>The point <InlineMath math="(1,0)" /> lies on the <InlineMath math="x" />-axis. The <InlineMath math="90^\circ" /> rotation about <InlineMath math="O" /> carries it along the arc to <InlineMath math="(0,1)" />, then the reflection in the <InlineMath math="x" />-axis carries it to <InlineMath math="(0,-1)" />. If the reflection comes first, the point does not move, then the rotation carries it to <InlineMath math="(0,1)" />. The two results differ.</>}
+  labels={{
+    start: <InlineMath math="(1,0)" />,
+    "via-rotate": <InlineMath math="(0,-1)" />,
+    "via-reflect": <InlineMath math="(0,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.8, max: 2 },
+      y: { min: -1.8, max: 1.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "turn", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90 },
+      { id: "flip", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: 0, y: -1 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 1, y: 0 } },
+      { id: "via-rotate", kind: "point", appearance: "warning", at: { x: 0, y: -1 } },
+      { id: "via-reflect", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "via-rotate", objectId: "via-rotate", at: { x: 0, y: -1 }, placement: "below" },
+      { key: "via-reflect", objectId: "via-reflect", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 If both orders give exactly the same rule, the pair can be swapped. **If the rules differ, name one point whose images differ**, so the conclusion is certain.
 
 # Judging each statement

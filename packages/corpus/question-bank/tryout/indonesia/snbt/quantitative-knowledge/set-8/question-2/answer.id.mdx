@@ -24,6 +24,33 @@ s=-3,\ p=-1&:\quad s^2-4p=9+4=13
 
 Calon pertama memberi diskriminan negatif, jadi <InlineMath math="x" /> dan <InlineMath math="y" /> tidak real dan calon itu dibuang. Yang tersisa hanya <InlineMath math="s=-3" /> dan <InlineMath math="p=-1" />.
 
+Grafik kedua persamaan memperlihatkan hasil itu. Lingkaran <InlineMath math="x^2+y^2=11" /> dan kurva <InlineMath math="xy-x-y=2" /> **hanya bertemu di dua titik**, dan keduanya punya jumlah koordinat <InlineMath math="-3" /> dan hasil kali <InlineMath math="-1" />. Pasangan <InlineMath math="s=5" />, <InlineMath math="p=7" /> tidak muncul sebagai titik potong karena tidak real.
+
+<MathVisual
+  title={<>Lingkaran dan kurva dari kedua persamaan</>}
+  description={<>Lingkaran berpusat di titik asal dengan jari-jari <InlineMath math="\sqrt{11}" />. Kurva <InlineMath math="y=\tfrac{x+2}{x-1}" /> punya dua cabang dengan asimtot <InlineMath math="x=1" />. Keduanya berpotongan di <InlineMath math="\left(\tfrac{-3+\sqrt{13}}{2},\tfrac{-3-\sqrt{13}}{2}\right)" /> dan di titik yang koordinatnya ditukar.</>}
+  labels={{
+    circle: <InlineMath math="x^2+y^2=11" />,
+    curve: <InlineMath math="xy-x-y=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(11) },
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "(x + 2)/(x - 1)", domain: { min: -5, max: 5 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: (-3 + Math.sqrt(13)) / 2, y: (-3 - Math.sqrt(13)) / 2 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: (-3 - Math.sqrt(13)) / 2, y: (-3 + Math.sqrt(13)) / 2 } },
+    ],
+    labels: [
+      { key: "circle", objectId: "circle", at: { x: -Math.sqrt(11) * Math.SQRT1_2, y: -Math.sqrt(11) * Math.SQRT1_2 }, placement: "below-left" },
+      { key: "curve", objectId: "curve", at: { x: 4, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Menghitung pangkat empat
 
 Kuadratkan <InlineMath math="x^2+y^2" />: hasilnya <InlineMath math="x^4+2x^2y^2+y^4" />. Jadi, **kurangkan dua kali kuadrat hasil kali** untuk mendapat <InlineMath math="x^4+y^4" />.

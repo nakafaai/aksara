@@ -38,6 +38,37 @@ AD^2 &= AB^2+BD^2-2\cdot AB\cdot BD\cos B \\
 
 Eine Länge ist nie negativ, also ist <InlineMath math="AD=6\text{ cm}" />.
 
+Das maßstabsgetreue Dreieck zeigt das Ergebnis. Die Winkelhalbierende <InlineMath math="AD" /> teilt <InlineMath math="BC" /> in <InlineMath math="3" /> und <InlineMath math="4" />, und **sie ist genauso lang wie <InlineMath math="AB=6" />**, also ist das Dreieck <InlineMath math="ABD" /> gleichschenklig.
+
+<MathVisual
+  title={<>Das Dreieck <InlineMath math="ABC" /> und die Winkelhalbierende <InlineMath math="AD" /></>}
+  description={<>Das Dreieck hat <InlineMath math="AB=6" />, <InlineMath math="AC=8" /> und <InlineMath math="BC=7" />. Die Winkelhalbierende von <InlineMath math="A" /> trifft <InlineMath math="BC" /> in <InlineMath math="D" />, mit <InlineMath math="BD=3" /> und <InlineMath math="DC=4" />. Die Länge von <InlineMath math="AD" /> ist <InlineMath math="6" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="AD=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }] },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }, to: { x: 3, y: 0 } },
+      { id: "point-d", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }, placement: "above" },
+      { key: "b", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "triangle", at: { x: 7, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ad", objectId: "bisector", at: { x: 9 / 4, y: (3 * Math.sqrt(15)) / 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Probe über den anderen Winkel
 
 Rechne noch einmal von der anderen Seite. Im Dreieck <InlineMath math="ABC" /> ist der Kosinus des Winkels <InlineMath math="C" /> gleich <InlineMath math="\cos C=\dfrac{64+49-36}{2\cdot 8\cdot 7}=\dfrac{11}{16}" />. Im Dreieck <InlineMath math="ADC" /> mit <InlineMath math="AC=8" /> und <InlineMath math="DC=4" /> bekommst du dasselbe Ergebnis.

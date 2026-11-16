@@ -19,6 +19,20 @@ Rechne für jede Stunde zuerst die Energie der Solaranlage minus die Energie, di
 
 Schau dir die erste Stunde an. Um 07.00 Uhr enthält der Akku genau <InlineMath math="1\text{ kWh}" />, also genau seine Reserve. Darum wird **der Fehlbetrag der ersten Stunde direkt bei PLN gekauft**. Ab 10.00-11.00 Uhr ist der Akku voll, und ein Überschuss von <InlineMath math="10\text{ kWh}" /> um die Mittagszeit geht verloren.
 
+Das Diagramm zum Akkustand zeigt zwei wichtige Dinge. Die Akkulinie **liegt von 11.00 bis 15.00 Uhr auf der Kapazitätslinie**, also geht der Überschuss am Mittag verloren, und um 17.00 Uhr enthält der Akku nur noch <InlineMath math="4\text{ kWh}" />, also nur <InlineMath math="3\text{ kWh}" /> über der Reserve.
+
+<Chart
+  title={<>Akkustand am Ende jeder Stunde, 08.00 bis 17.00 Uhr</>}
+  description={<>Der Akkustand am Ende der Stunden ist der Reihe nach <InlineMath math="1, 2, 4, 6, 6, 6, 6, 6, 5, 4" /> kWh. Die obere Linie markiert die Kapazität von <InlineMath math="6\text{ kWh}" />, die untere die Reserve von <InlineMath math="1\text{ kWh}" />. Der Akku erreicht die Kapazität um 11.00 Uhr und bleibt dort bis 15.00 Uhr.</>}
+  categories={["08", "09", "10", "11", "12", "13", "14", "15", "16", "17"]}
+  series={[
+    { label: "Akku am Stundenende", mark: "line", values: [1, 2, 4, 6, 6, 6, 6, 6, 5, 4] },
+    { label: "Kapazität 6 kWh", mark: "line", values: [6, 6, 6, 6, 6, 6, 6, 6, 6, 6] },
+    { label: "Reserve 1 kWh", mark: "line", values: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+  ]}
+  valueLabel="Energie (kWh)"
+/>
+
 # Der Bedarf am Abend
 
 Um 17.00 Uhr enthält der Akku <InlineMath math="4\text{ kWh}" />. Davon darf **nur der Teil oberhalb der Reserve verbraucht werden**.

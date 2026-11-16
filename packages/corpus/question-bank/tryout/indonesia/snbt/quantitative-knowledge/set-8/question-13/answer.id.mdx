@@ -23,6 +23,43 @@ Segitiga <InlineMath math="ATO" /> dan <InlineMath math="AOB" /> sebangun, karen
 AT&=\frac{AO^2}{AB}=\frac{144}{15}=9{,}6\text{ cm}
 \end{aligned}" />
 
+Gambar belah ketupat berikut memperlihatkan segitiga siku-siku yang dipakai. Jari-jari <InlineMath math="OT" /> **tegak lurus sisi <InlineMath math="AB" />**, sehingga titik <InlineMath math="T" /> membagi <InlineMath math="AB" /> menjadi <InlineMath math="AT=9{,}6" /> di dekat diagonal panjang dan <InlineMath math="BT=5{,}4" /> di dekat diagonal pendek.
+
+<MathVisual
+  title={<>Belah ketupat <InlineMath math="ABCD" /> dan lingkaran dalamnya</>}
+  description={<>Diagonal <InlineMath math="AC=24" /> mendatar dan diagonal <InlineMath math="BD=18" /> tegak, berpotongan di pusat <InlineMath math="O" />. Lingkaran dalam berpusat di <InlineMath math="O" /> dengan jari-jari <InlineMath math="7{,}2" /> menyinggung <InlineMath math="AB" /> di <InlineMath math="T" />. Ruas <InlineMath math="AT" /> panjangnya <InlineMath math="9{,}6" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+    t: <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -11, max: 11 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "rhombus", kind: "polygon", appearance: "reference", vertices: [{ x: -12, y: 0 }, { x: 0, y: 9 }, { x: 12, y: 0 }, { x: 0, y: -9 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "construction", from: { x: -12, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "diagonal-bd", kind: "segment", appearance: "construction", from: { x: 0, y: 9 }, to: { x: 0, y: -9 } },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 36 / 5 },
+      { id: "radius", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: -108 / 25, y: 144 / 25 } },
+      { id: "piece-at", kind: "segment", appearance: "answer", from: { x: -12, y: 0 }, to: { x: -108 / 25, y: 144 / 25 } },
+      { id: "point-t", kind: "point", appearance: "answer", at: { x: -108 / 25, y: 144 / 25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "rhombus", at: { x: -12, y: 0 }, placement: "left" },
+      { key: "b", objectId: "rhombus", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "c", objectId: "rhombus", at: { x: 12, y: 0 }, placement: "right" },
+      { key: "d", objectId: "rhombus", at: { x: 0, y: -9 }, placement: "below" },
+      { key: "o", objectId: "diagonal-ac", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "t", objectId: "point-t", at: { x: -108 / 25, y: 144 / 25 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Dengan cara yang sama, <InlineMath math="BT=\tfrac{BO^2}{AB}=\tfrac{81}{15}=5{,}4\text{ cm}" /> dan jari-jarinya <InlineMath math="OT=\tfrac{AO\cdot BO}{AB}=\tfrac{108}{15}=7{,}2\text{ cm}" />. Pemeriksaan: <InlineMath math="AT+BT=9{,}6+5{,}4=15" />, sama dengan panjang sisi, dan <InlineMath math="AT^2+OT^2=92{,}16+51{,}84=144=AO^2" />.
 
 # Pilihan yang keliru

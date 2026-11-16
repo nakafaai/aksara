@@ -24,6 +24,21 @@ x &= 8
 
 As a check, <InlineMath math="96-8=88\text{ liters}" /> remain at <InlineMath math="45\text{ g/L}" />, which is <InlineMath math="88\cdot45=3{,}960" /> grams of salt. Then <InlineMath math="32\text{ liters}" /> of fresh water fill it to <InlineMath math="120\text{ liters}" />, and <InlineMath math="\frac{3{,}960}{120}=33\text{ g/L}" />.
 
+The chart below works out the final salinity for several amounts of water removed. Every <InlineMath math="4" /> liters removed lowers the final salinity by <InlineMath math="1.5\text{ g/L}" />, and **the <InlineMath math="8" />-liter bar touches the target line exactly**.
+
+<Chart
+  title={<>Final salinity by water removed before refilling with fresh water</>}
+  description={<>If <InlineMath math="0" />, <InlineMath math="4" />, <InlineMath math="8" />, <InlineMath math="12" />, and <InlineMath math="16" /> liters are removed, the final salinity is <InlineMath math="36" />, <InlineMath math="34.5" />, <InlineMath math="33" />, <InlineMath math="31.5" />, and <InlineMath math="30\text{ g/L}" />. The flat line marks the target of <InlineMath math="33\text{ g/L}" />. The value axis starts at <InlineMath math="28" />.</>}
+  bars="apart"
+  categories={["0", "4", "8", "12", "16"]}
+  series={[
+    { label: "Final salinity (g/L)", mark: "bar", values: [0, 4, 8, 12, 16].map((x) => (4320 - 45 * x) / 120) },
+    { label: "Target 33 g/L", mark: "line", values: [33, 33, 33, 33, 33] },
+  ]}
+  valueRange={{ min: 28, max: 37 }}
+  valueLabel="Salinity (g/L)"
+/>
+
 # The wrong options
 
 - <InlineMath math="10\text{ liters}" /> comes from **ignoring evaporation**, so the water is removed from <InlineMath math="120\text{ liters}" /> at <InlineMath math="36\text{ g/L}" />.

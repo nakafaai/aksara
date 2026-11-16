@@ -24,6 +24,33 @@ s=-3,\ p=-1&:\quad s^2-4p=9+4=13
 
 Der erste Kandidat hat eine negative Diskriminante. Seine Werte <InlineMath math="x" /> und <InlineMath math="y" /> sind also nicht reell, und er fällt weg. Übrig bleiben nur <InlineMath math="s=-3" /> und <InlineMath math="p=-1" />.
 
+Die Graphen beider Gleichungen zeigen das Ergebnis. Der Kreis <InlineMath math="x^2+y^2=11" /> und die Kurve <InlineMath math="xy-x-y=2" /> **treffen sich nur in zwei Punkten**, und bei beiden haben die Koordinaten die Summe <InlineMath math="-3" /> und das Produkt <InlineMath math="-1" />. Das Paar <InlineMath math="s=5" />, <InlineMath math="p=7" /> taucht nicht als Schnittpunkt auf, weil es nicht reell ist.
+
+<MathVisual
+  title={<>Kreis und Kurve aus den beiden Gleichungen</>}
+  description={<>Der Kreis hat den Mittelpunkt im Ursprung und den Radius <InlineMath math="\sqrt{11}" />. Die Kurve <InlineMath math="y=\tfrac{x+2}{x-1}" /> hat zwei Äste mit der Asymptote <InlineMath math="x=1" />. Sie schneiden sich in <InlineMath math="\left(\tfrac{-3+\sqrt{13}}{2},\tfrac{-3-\sqrt{13}}{2}\right)" /> und im Punkt mit vertauschten Koordinaten.</>}
+  labels={{
+    circle: <InlineMath math="x^2+y^2=11" />,
+    curve: <InlineMath math="xy-x-y=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(11) },
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "(x + 2)/(x - 1)", domain: { min: -5, max: 5 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: (-3 + Math.sqrt(13)) / 2, y: (-3 - Math.sqrt(13)) / 2 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: (-3 - Math.sqrt(13)) / 2, y: (-3 + Math.sqrt(13)) / 2 } },
+    ],
+    labels: [
+      { key: "circle", objectId: "circle", at: { x: -Math.sqrt(11) * Math.SQRT1_2, y: -Math.sqrt(11) * Math.SQRT1_2 }, placement: "below-left" },
+      { key: "curve", objectId: "curve", at: { x: 4, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Die vierten Potenzen berechnen
 
 Quadrierst du <InlineMath math="x^2+y^2" />, erhältst du <InlineMath math="x^4+2x^2y^2+y^4" />. Ziehe also **das Doppelte vom Quadrat des Produkts** ab, um <InlineMath math="x^4+y^4" /> zu bekommen.

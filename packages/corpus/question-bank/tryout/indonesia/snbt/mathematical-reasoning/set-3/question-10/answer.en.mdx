@@ -18,6 +18,20 @@ At <InlineMath math="t=9" />, the doubling <InlineMath math="480\to960" /> fills
 
 At <InlineMath math="t=10" />, doubling gives <InlineMath math="760\cdot2=1{,}520" />, which is more than <InlineMath math="960" />. The count becomes <InlineMath math="960" />, and <InlineMath math="1{,}520-960=560" /> million cells die. That's the first time cells die because the tank is full.
 
+The chart below draws the result of each hour's doubling, before the capacity and harvest rules apply. **The bar at <InlineMath math="t=9" /> just touches the capacity line**, while the bar at <InlineMath math="t=10" /> is the first to break through.
+
+<Chart
+  title={<>Result of each hour's doubling from a starting population of <InlineMath math="30" /> million cells</>}
+  description={<>The doubling results at <InlineMath math="t=1" /> to <InlineMath math="10" /> are <InlineMath math="60, 120, 240, 80, 160, 320, 240, 480, 960, 1{,}520" /> million cells. The flat line marks the tank's capacity of <InlineMath math="960" /> million cells.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Result of doubling", mark: "bar", values: [60, 120, 240, 40 * 2, 80 * 2, 160 * 2, 120 * 2, 240 * 2, 480 * 2, 760 * 2] },
+    { label: "Capacity 960", mark: "line", values: Array.from({ length: 10 }, () => 960) },
+  ]}
+  valueLabel="Bacteria (million cells)"
+/>
+
 # Why the other options are wrong
 
 Each other option **forgets the harvest, misreads the limit or flips the order**.

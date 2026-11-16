@@ -22,6 +22,44 @@ Take a point <InlineMath math="(t,t^2)" /> on <InlineMath math="y=x^2" /> and di
 X=kt,\quad Y&=kt^2=k\left(\frac{X}{k}\right)^2=\frac{X^2}{k}
 \end{aligned}" />
 
+Draw the starting parabola, the target parabola, and one wrong image. **All three can share the vertex <InlineMath math="(3,3)" /> but differ in width**, so checking the vertex alone is not enough. A scale factor of <InlineMath math="-2" /> gives a wider parabola, not a narrower one.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y=x^2" />, the target, and the image with factor <InlineMath math="-2" /></>}
+  description={<>The parabola <InlineMath math="y=x^2" /> has its vertex at the origin. The target parabola <InlineMath math="y=-2(x-3)^2+3" /> opens downward, has its vertex at <InlineMath math="(3,3)" />, and is narrow. The image under the dilation about <InlineMath math="O" /> with factor <InlineMath math="-2" /> followed by the translation <InlineMath math="(3,3)" /> is <InlineMath math="y=-\tfrac12(x-3)^2+3" />, with the same vertex but wider. The point <InlineMath math="(2,2)" /> is the dilation centre in the first statement, placed between the origin and <InlineMath math="(3,3)" /> according to the factor <InlineMath math="-\tfrac12" />.</>}
+  labels={{
+    start: <InlineMath math="y=x^2" />,
+    target: <InlineMath math="y=-2(x-3)^2+3" />,
+    wide: <InlineMath math="y=-\tfrac12(x-3)^2+3" />,
+    top: <InlineMath math="(3,3)" />,
+    center: <InlineMath math="(2,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 7.5 },
+      y: { min: -6.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "x^2", domain: { min: -3, max: 3 } },
+      { id: "target", kind: "function", appearance: "primary", formula: "-2(x - 3)^2 + 3", domain: { min: 0.9, max: 5.1 } },
+      { id: "wide", kind: "function", appearance: "warning", formula: "-0.5(x - 3)^2 + 3", domain: { min: -1, max: 7 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "center", kind: "point", appearance: "construction", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: -2.5, y: 6.25 }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 4.5, y: -1.5 }, placement: "right" },
+      { key: "wide", objectId: "wide", at: { x: 6.5, y: -3.125 }, placement: "below-left" },
+      { key: "top", objectId: "top", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 2, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 The coefficient becomes <InlineMath math="\frac1k" />, **not <InlineMath math="k" />**. A dilation about another centre is a dilation about <InlineMath math="O" /> followed by a translation, so its coefficient is also <InlineMath math="\frac1k" />. A <InlineMath math="180^\circ" /> rotation is a dilation with factor <InlineMath math="-1" />, and a translation doesn't change the coefficient. In a composition the factors multiply. To get the coefficient <InlineMath math="-2" />, the product of the factors has to be <InlineMath math="-\frac12" />.
 
 The image of a point <InlineMath math="X" /> under a dilation with centre <InlineMath math="C" /> and factor <InlineMath math="k" /> is <InlineMath math="C+k(X-C)" />. That's the rule you'll use to track the vertex.

@@ -1,0 +1,27 @@
+# Pecah persilangan menjadi satu gen sekaligus
+
+Kedua gen ada di kromosom yang berbeda, jadi **memisah secara bebas** dan setiap gen bisa disilangkan sendiri. Lalu kalikan kedua peluangnya.
+
+<BlockMath math="\begin{aligned}
+Tt\times Tt&:\ P(\text{tinggi})=\tfrac{3}{4},\quad P(\text{pendek})=\tfrac{1}{4}\\
+Pp\times pp&:\ P(\text{ungu})=\tfrac{1}{2},\quad P(\text{putih})=\tfrac{1}{2}
+\end{aligned}" />
+
+Jadi, peluang tinggi dan putih adalah <InlineMath math="\frac{3}{4}\times\frac{1}{2}=\frac{3}{8}" />, dan pendek dan ungu <InlineMath math="\frac{1}{4}\times\frac{1}{2}=\frac{1}{8}" />. Dari <InlineMath math="320" /> keturunan, itu berarti <InlineMath math="\frac{3}{8}\times320=120" /> dan <InlineMath math="\frac{1}{8}\times320=40" />. Diagramnya menunjukkan sebaran <InlineMath math="3:3:1:1" /> secara utuh.
+
+<Chart
+  title={<>Keturunan yang Diharapkan dari <InlineMath math="TtPp\times Ttpp" /></>}
+  bars="apart"
+  categories={["Tinggi, ungu", "Tinggi, putih", "Pendek, ungu", "Pendek, putih"]}
+  series={[{ label: "Keturunan yang diharapkan", mark: "bar", values: [120, 120, 40, 40] }]}
+  valueLabel="Jumlah keturunan"
+  description={<>Dari <InlineMath math="320" /> keturunan, <InlineMath math="120" /> diharapkan tinggi dan ungu, <InlineMath math="120" /> tinggi dan putih, <InlineMath math="40" /> pendek dan ungu, dan <InlineMath math="40" /> pendek dan putih.</>}
+/>
+
+Jadi, <InlineMath math="120" /> keturunan diharapkan tinggi berbunga putih, dan <InlineMath math="40" /> pendek berbunga ungu.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="60" /> dan <InlineMath math="60" /> memakai rasio <InlineMath math="9:3:3:1" /> dari <InlineMath math="TtPp\times TtPp" />, padahal **induk kedua bergenotipe** <InlineMath math="pp" />, bukan <InlineMath math="Pp" />.
+- <InlineMath math="80" /> dan <InlineMath math="80" /> memakai rasio <InlineMath math="1:1:1:1" /> dari uji silang, yang mengharuskan induk kedua bergenotipe <InlineMath math="ttpp" />.
+- <InlineMath math="40" /> dan <InlineMath math="120" /> menukar kedua jawabannya.

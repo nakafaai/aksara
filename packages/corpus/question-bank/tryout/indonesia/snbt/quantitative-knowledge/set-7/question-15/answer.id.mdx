@@ -29,6 +29,19 @@ Karena <InlineMath math="k<1" />, selisih <InlineMath math="P-Q=k-1" /> selalu n
 
 Untuk <InlineMath math="k=0" />, akarnya <InlineMath math="0" /> dan <InlineMath math="2" />, sehingga <InlineMath math="P=4" /> dan <InlineMath math="Q=0+5=5" />. Untuk <InlineMath math="k=-3" />, akarnya <InlineMath math="3" /> dan <InlineMath math="-1" />, sehingga <InlineMath math="P=10" /> dan <InlineMath math="Q=-6+20=14" />. Kedua contoh memberi <InlineMath math="Q>P" />.
 
+Grafik berikut memperlihatkan <InlineMath math="P=4-2k" /> dan <InlineMath math="Q=5-3k" /> untuk beberapa nilai <InlineMath math="k<1" />. **Garis <InlineMath math="Q" /> selalu di atas garis <InlineMath math="P" />**, dan celahnya baru tertutup tepat di <InlineMath math="k=1" />, nilai yang dilarang oleh syarat akar berbeda.
+
+<Chart
+  title={<>Kuantitas <InlineMath math="P" /> dan <InlineMath math="Q" /> untuk beberapa nilai <InlineMath math="k" /></>}
+  description={<>Untuk <InlineMath math="k=-4" />, <InlineMath math="-3" />, <InlineMath math="-2" />, <InlineMath math="-1" />, dan <InlineMath math="0" />, nilai <InlineMath math="P=4-2k" /> adalah <InlineMath math="12, 10, 8, 6, 4" />, sedangkan <InlineMath math="Q=5-3k" /> adalah <InlineMath math="17, 14, 11, 8, 5" />. Selisihnya <InlineMath math="Q-P=1-k" /> selalu positif.</>}
+  categories={["-4", "-3", "-2", "-1", "0"]}
+  series={[
+    { label: "P", mark: "line", values: [-4, -3, -2, -1, 0].map((k) => 4 - 2 * k) },
+    { label: "Q", mark: "line", values: [-4, -3, -2, -1, 0].map((k) => 5 - 3 * k) },
+  ]}
+  valueLabel="Nilai"
+/>
+
 Jalan lain: <InlineMath math="c=5-5k=\tfrac54(4-4k)=\tfrac54(a-b)^2" />, jadi <InlineMath math="P-Q=(a-b)^2-\tfrac54(a-b)^2=-\tfrac14(a-b)^2" />. **Akar yang berbeda membuat <InlineMath math="(a-b)^2>0" />**, sehingga selisihnya negatif.
 
 Pilihan <InlineMath math="P>Q" /> muncul dari anggapan bahwa jumlah kuadrat pasti besar, pilihan <InlineMath math="P=Q" /> hanya terjadi jika <InlineMath math="a=b" /> yang dilarang soal, dan pilihan "tidak cukup" muncul jika syarat diskriminan tidak dipakai.

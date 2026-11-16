@@ -22,6 +22,40 @@ Jeder Pflanzstreifen ist <InlineMath math="7\text{ m}" /> breit. Auf der einen S
 
 Die erste Reihe liegt genau <InlineMath math="1\text{ m}" /> vom Feldrand entfernt, die fünfte <InlineMath math="1+4\cdot 1{,}2=5{,}8" /> Meter. Der Kanalrand liegt <InlineMath math="7\text{ m}" /> vom Feldrand entfernt, die fünfte Reihe ist also <InlineMath math="1{,}2\text{ m}" /> vom Kanal weg, das passt. Eine sechste Reihe läge <InlineMath math="7{,}0" /> Meter vom Feldrand entfernt, direkt am Kanalrand, und ist deshalb nicht erlaubt.
 
+Die Abbildung zeigt, wo die Reihen auf dem Feld liegen. **Die fünfte Reihe in jedem Streifen ist noch <InlineMath math="1{,}2\text{ m}" /> vom Kanal entfernt**, eine sechste Reihe läge aber genau am Kanalrand.
+
+<MathVisual
+  title={<>Lage der Setzlingsreihen in beiden Pflanzstreifen</>}
+  description={<>Das Feld von <InlineMath math="24\text{ m}\times 15\text{ m}" /> wird von einem <InlineMath math="1\text{ m}" /> breiten Kanal geteilt. Jeder Pflanzstreifen hat <InlineMath math="5" /> Reihen im Abstand von <InlineMath math="1{,}2\text{ m}" />, beginnend <InlineMath math="1\text{ m}" /> vom Feldrand. Jede Reihe reicht von <InlineMath math="1\text{ m}" /> bis <InlineMath math="22{,}6\text{ m}" /> und trägt <InlineMath math="28" /> Setzlinge.</>}
+  labels={{
+    row: <><InlineMath math="28" /> Setzlinge pro Reihe</>,
+    rows: <><InlineMath math="5" /> Reihen in jedem Streifen</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 27 }, y: { min: -2, max: 17 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "field", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 15 }, { x: 0, y: 15 }] },
+      { id: "channel", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 7 }, { x: 24, y: 7 }, { x: 24, y: 8 }, { x: 0, y: 8 }] },
+      { id: "low0", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 1 + 27 * 0.8, y: 1 } },
+      { id: "low1", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 1 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 1 } },
+      { id: "low2", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 2 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 2 } },
+      { id: "low3", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 3 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 3 } },
+      { id: "low4", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 4 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 4 } },
+      { id: "high0", kind: "segment", appearance: "primary", from: { x: 1, y: 14 }, to: { x: 1 + 27 * 0.8, y: 14 } },
+      { id: "high1", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 1 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 1 } },
+      { id: "high2", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 2 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 2 } },
+      { id: "high3", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 3 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 3 } },
+      { id: "high4", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 4 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 4 } },
+    ],
+    labels: [
+      { key: "row", objectId: "low0", at: { x: 1 + 13.5 * 0.8, y: 1 }, placement: "below" },
+      { key: "rows", objectId: "high0", at: { x: 1 + 13.5 * 0.8, y: 14 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Alle Setzlinge zusammen
 
 Es gibt **zwei gleiche Pflanzstreifen** mit je <InlineMath math="5" /> Reihen, und jede Reihe hat <InlineMath math="28" /> Setzlinge.

@@ -14,6 +14,19 @@ All <InlineMath math="91" /> of those automatically have an even product, becaus
 
 <BlockMath math="P=\frac{91}{189}=\frac{13}{27}" />
 
+The diagram below shows the sample space shrinking. **All <InlineMath math="91" /> outcomes containing a <InlineMath math="6" /> lie inside the even-product branch**, so the numerator stays <InlineMath math="91" /> while the denominator drops to <InlineMath math="189" />.
+
+<Mermaid
+  title={<>Sample space of three dice with an even product</>}
+  description={<>Of the <InlineMath math="216" /> outcomes, <InlineMath math="27" /> have an odd product and <InlineMath math="189" /> have an even product. Inside the even branch, <InlineMath math="91" /> outcomes contain at least one <InlineMath math="6" /> and <InlineMath math="98" /> do not. The probability is <InlineMath math="\frac{91}{189}=\frac{13}{27}" />.</>}
+  chart={`flowchart TD
+  S["All outcomes: 6³ = 216"] --> O["Odd product: 3³ = 27"]
+  S --> E["Even product: 216 − 27 = 189"]
+  E --> X["Contains a 6: 216 − 5³ = 91"]
+  E --> N["No 6: 189 − 91 = 98"]
+  X --> P["Probability: 91/189 = 13/27"]`}
+/>
+
 That makes sense: it's bigger than <InlineMath math="\tfrac{91}{216}" />, because knowing the product is even throws away outcomes that certainly have no <InlineMath math="6" />.
 
 So the probability is <InlineMath math="\tfrac{13}{27}" />.

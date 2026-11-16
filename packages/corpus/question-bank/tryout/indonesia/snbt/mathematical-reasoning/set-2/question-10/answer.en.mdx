@@ -24,6 +24,20 @@ Under Rencana Menurun the interest falls every month because the remaining princ
 
 The largest principal is <InlineMath math="9{,}600{,}000" />, and the money received is <InlineMath math="9{,}600{,}000-100{,}000=9{,}500{,}000" />.
 
+The chart below draws every month's instalment for the largest principal under each plan. **Rencana Menurun only comes close to the limit in month one**, and then its instalment falls a long way, while Rencana Tetap stays flat all year.
+
+<Chart
+  title={<>Monthly instalments at the largest principal that meets the condition</>}
+  description={<>With a principal of <InlineMath math="10{,}200{,}000" /> rupiah, the Rencana Tetap instalment is always <InlineMath math="952{,}000" /> rupiah. With a principal of <InlineMath math="9{,}600{,}000" /> rupiah, the Rencana Menurun instalment falls from <InlineMath math="992{,}000" /> rupiah in month one to <InlineMath math="816{,}000" /> rupiah in month <InlineMath math="12" />. The flat line marks the limit of <InlineMath math="1{,}000{,}000" /> rupiah.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Tetap, principal 10.2 million", mark: "line", values: Array.from({ length: 12 }, () => 10200000 / 12 + 0.01 * 10200000) },
+    { label: "Menurun, principal 9.6 million", mark: "line", values: Array.from({ length: 12 }, (_, i) => 9600000 / 12 + 0.02 * (9600000 - (9600000 / 12) * i)) },
+    { label: "Limit 1 million", mark: "line", values: Array.from({ length: 12 }, () => 1000000) },
+  ]}
+  valueLabel="Instalment (rupiah)"
+/>
+
 # Comparing the two plans
 
 Rencana Tetap gives <InlineMath math="9{,}996{,}000" /> rupiah and Rencana Menurun gives <InlineMath math="9{,}500{,}000" /> rupiah. **Rencana Tetap pays out more** even though its admin fee is higher, because Rencana Menurun's first instalment is so much heavier.

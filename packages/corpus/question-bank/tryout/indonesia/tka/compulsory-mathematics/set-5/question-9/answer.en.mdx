@@ -8,6 +8,46 @@ The five statements compare the exponential function <InlineMath math="f(x)=2^x"
 | <InlineMath math="g(x)" /> | <InlineMath math="-5" /> | <InlineMath math="5" /> | <InlineMath math="15" /> | <InlineMath math="25" /> | <InlineMath math="35" /> | <InlineMath math="45" /> | <InlineMath math="55" /> | <InlineMath math="65" /> | <InlineMath math="75" /> | <InlineMath math="105" /> | <InlineMath math="115" /> |
 | <InlineMath math="h(x)" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="9" /> | <InlineMath math="16" /> | <InlineMath math="25" /> | <InlineMath math="36" /> | <InlineMath math="49" /> | <InlineMath math="100" /> | <InlineMath math="121" /> |
 
+Draw the three functions next to the table. **The curve <InlineMath math="2^x" /> passes the line <InlineMath math="g" /> between <InlineMath math="x=6" /> and <InlineMath math="x=7" />, then leaves it behind**, while the parabola <InlineMath math="h" /> only passes the line <InlineMath math="g" /> between <InlineMath math="x=10" /> and <InlineMath math="x=11" />.
+
+<MathVisual
+  title={<>Graphs of <InlineMath math="f" />, <InlineMath math="g" />, and <InlineMath math="h" /></>}
+  description={<>The line <InlineMath math="g(x)=10x+5" />, the parabola <InlineMath math="h(x)=x^2" />, and the curve <InlineMath math="f(x)=2^x" /> for <InlineMath math="-1\le x\le12" />. At <InlineMath math="x=6" /> the curve <InlineMath math="f" /> is still at <InlineMath math="64" />, just below <InlineMath math="g(6)=65" />, and at <InlineMath math="x=7" /> it is already at <InlineMath math="128" />, far above <InlineMath math="g(7)=75" />. At <InlineMath math="x=11" /> the parabola is at <InlineMath math="121" />, above <InlineMath math="g(11)=115" />, while <InlineMath math="f(11)" /> has already left the picture.</>}
+  labels={{
+    exp: <InlineMath math="f(x)=2^x" />,
+    line: <InlineMath math="g(x)=10x+5" />,
+    square: <InlineMath math="h(x)=x^2" />,
+    close: <InlineMath math="(6,\ 64)" />,
+    pass: <InlineMath math="(7,\ 128)" />,
+    order: <InlineMath math="(11,\ 121)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 12.5 },
+      y: { min: -12, max: 160 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "exp", kind: "function", appearance: "primary", formula: "2^x", domain: { min: -1, max: 7.3 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "10x + 5", domain: { min: -1, max: 12 } },
+      { id: "square", kind: "function", appearance: "highlight", formula: "x^2", domain: { min: -1, max: 12 } },
+      { id: "close", kind: "point", appearance: "warning", at: { x: 6, y: 64 } },
+      { id: "pass", kind: "point", appearance: "answer", at: { x: 7, y: 128 } },
+      { id: "order", kind: "point", appearance: "answer", at: { x: 11, y: 121 } },
+    ],
+    labels: [
+      { key: "exp", objectId: "exp", at: { x: 7.2, y: Math.pow(2, 7.2) }, placement: "left" },
+      { key: "line", objectId: "line", at: { x: 12, y: 125 }, placement: "below-left" },
+      { key: "square", objectId: "square", at: { x: 12, y: 144 }, placement: "left" },
+      { key: "close", objectId: "close", at: { x: 6, y: 64 }, placement: "below-right" },
+      { key: "pass", objectId: "pass", at: { x: 7, y: 128 }, placement: "right" },
+      { key: "order", objectId: "order", at: { x: 11, y: 121 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # The first statement
 
 For <InlineMath math="x=1" /> to <InlineMath math="6" />, <InlineMath math="f" /> always stays below <InlineMath math="g" />. The closest call is <InlineMath math="x=6" />: <InlineMath math="64<65" />, **a gap of only <InlineMath math="1" />**, so <InlineMath math="6" /> doesn't work yet. At <InlineMath math="x=7" />, <InlineMath math="128>75" />. The statement is **True**.

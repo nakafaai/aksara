@@ -34,6 +34,38 @@ x&=1\pm\tfrac{\sqrt2}{2}
 
 Weil <InlineMath math="\tfrac{\sqrt2}{2}" /> kleiner als <InlineMath math="1" /> ist, liegen beide Lösungen in <InlineMath math="0\le x\le2" />. Die Periodizität kopiert sie nach <InlineMath math="x=5\pm\tfrac{\sqrt2}{2}" /> in <InlineMath math="4\le x\le6" />. Auf <InlineMath math="2\le x\le4" /> und <InlineMath math="6\le x\le8" /> sind die Werte von <InlineMath math="f" /> nicht positiv, dort gibt es also keine Lösung. Vorsicht: **Die Formel eines Abschnitts gilt nur auf diesem Abschnitt**. Die Gleichung <InlineMath math="(x-4)(x-2)=\tfrac12" /> hat zwar die Lösungen <InlineMath math="x=3\pm\tfrac{\sqrt6}{2}" />, aber <InlineMath math="\tfrac{\sqrt6}{2}" /> ist größer als <InlineMath math="1" />. Beide liegen also außerhalb von <InlineMath math="2\le x\le4" /> und fallen weg. Es bleiben genau <InlineMath math="4" /> Lösungen, die zweite Aussage ist wahr.
 
+Der Graph von <InlineMath math="f" /> zeigt die vier Lösungen. Die Gerade <InlineMath math="y=\tfrac12" /> schneidet nur **die Hügel über der <InlineMath math="x" />-Achse**, jeden zweimal, während die Täler unter der Achse sie nie erreichen.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f" /> auf <InlineMath math="-2\le x\le8" /></>}
+  description={<>Der Graph wechselt zwischen Hügeln und Tälern der Höhe <InlineMath math="1" />: Hügel auf <InlineMath math="0\le x\le2" /> und <InlineMath math="4\le x\le6" />, Täler auf <InlineMath math="-2\le x\le0" />, <InlineMath math="2\le x\le4" /> und <InlineMath math="6\le x\le8" />. Die Gerade <InlineMath math="y=\tfrac12" /> schneidet den Graphen bei <InlineMath math="1\pm\tfrac{\sqrt2}{2}" /> und <InlineMath math="5\pm\tfrac{\sqrt2}{2}" />.</>}
+  labels={{
+    level: <InlineMath math="y=\tfrac12" />,
+    f: <InlineMath math="y=f(x)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 8.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2.5, y: 0.5 }, to: { x: 8.5, y: 0.5 } },
+      { id: "p0", kind: "function", appearance: "primary", formula: "x(2 + x)", domain: { min: -2, max: 0 } },
+      { id: "p1", kind: "function", appearance: "primary", formula: "x(2 - x)", domain: { min: 0, max: 2 } },
+      { id: "p2", kind: "function", appearance: "primary", formula: "(x - 4)(x - 2)", domain: { min: 2, max: 4 } },
+      { id: "p3", kind: "function", appearance: "primary", formula: "(x - 4)(6 - x)", domain: { min: 4, max: 6 } },
+      { id: "p4", kind: "function", appearance: "primary", formula: "(x - 8)(x - 6)", domain: { min: 6, max: 8 } },
+      { id: "s1", kind: "point", appearance: "answer", at: { x: 1 - Math.SQRT1_2, y: 0.5 } },
+      { id: "s2", kind: "point", appearance: "answer", at: { x: 1 + Math.SQRT1_2, y: 0.5 } },
+      { id: "s3", kind: "point", appearance: "answer", at: { x: 5 - Math.SQRT1_2, y: 0.5 } },
+      { id: "s4", kind: "point", appearance: "answer", at: { x: 5 + Math.SQRT1_2, y: 0.5 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 7.8, y: 0.5 }, placement: "above" },
+      { key: "f", objectId: "p2", at: { x: 3, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Die dritte Aussage
 
 Prüfe eine ganze Periode. Beide Seiten wiederholen sich alle <InlineMath math="4" />, deshalb **reicht es, <InlineMath math="0\le x\le4" /> zu prüfen**.

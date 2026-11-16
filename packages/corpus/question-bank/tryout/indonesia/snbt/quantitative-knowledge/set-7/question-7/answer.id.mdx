@@ -25,6 +25,44 @@ y_O&=\frac{4+(-6)}{2}=-1
 
 Pusatnya <InlineMath math="O\left(\tfrac52,-1\right)" />. Perhatikan bahwa pusat itu berjarak <InlineMath math="1\text{ cm}" /> dari garis <InlineMath math="AC" />, jadi <InlineMath math="AC" /> bukan diameter.
 
+Gambar berikut memperlihatkan letak pusat itu. Kedua garis putus adalah sumbu tali busur <InlineMath math="AC" /> dan <InlineMath math="BD" />, dan **titik potongnya adalah pusat <InlineMath math="O" />**, sedikit di bawah diagonal <InlineMath math="AC" />.
+
+<MathVisual
+  title={<>Segi empat tali busur dengan diagonal tegak lurus</>}
+  description={<>Diagonal <InlineMath math="AC" /> mendatar dari <InlineMath math="A(-3,0)" /> sampai <InlineMath math="C(8,0)" />, dan diagonal <InlineMath math="BD" /> tegak dari <InlineMath math="B(0,4)" /> sampai <InlineMath math="D(0,-6)" />, berpotongan di <InlineMath math="P" />. Sumbu kedua tali busur, <InlineMath math="x=\tfrac52" /> dan <InlineMath math="y=-1" />, bertemu di pusat <InlineMath math="O\left(\tfrac52,-1\right)" />. Jari-jari <InlineMath math="OA" /> panjangnya <InlineMath math="\tfrac{5\sqrt5}{2}" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    p: <InlineMath math="P" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 9.5 }, y: { min: -7.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 5 / 2, y: -1 }, radius: Math.sqrt(125) / 2 },
+      { id: "bisector-ac", kind: "line", appearance: "construction", through: [{ x: 5 / 2, y: 0 }, { x: 5 / 2, y: 1 }] },
+      { id: "bisector-bd", kind: "line", appearance: "construction", through: [{ x: 0, y: -1 }, { x: 1, y: -1 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "primary", from: { x: -3, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "diagonal-bd", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 0, y: -6 } },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 5 / 2, y: -1 }, to: { x: -3, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-o", kind: "point", appearance: "answer", at: { x: 5 / 2, y: -1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "diagonal-ac", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "c", objectId: "diagonal-ac", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "b", objectId: "diagonal-bd", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "d", objectId: "diagonal-bd", at: { x: 0, y: -6 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "o", objectId: "point-o", at: { x: 5 / 2, y: -1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Menghitung jari-jari
 
 Jari-jari adalah **jarak dari pusat ke titik sudut mana pun**, karena semua titik sudut terletak pada lingkaran. Pakai teorema Pythagoras untuk <InlineMath math="OA" />.

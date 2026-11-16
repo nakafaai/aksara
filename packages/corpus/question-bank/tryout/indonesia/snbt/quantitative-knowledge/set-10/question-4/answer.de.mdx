@@ -30,6 +30,18 @@ Multipliziere die erste Gleichung mit <InlineMath math="2" /> und zieh dann die 
 b &= \frac{cd}{2d-c}
 \end{aligned}" />
 
+Das Diagramm fasst die Elimination zusammen. Der Schlüssel ist der Faktor <InlineMath math="2" />, der in <InlineMath math="12" /> doppelt vorkommt: **Wer die erste Gleichung mit <InlineMath math="2" /> multipliziert**, bringt den Term <InlineMath math="\tfrac{2}{a}" /> zum Verschwinden.
+
+<Mermaid
+  title={<><InlineMath math="a" /> aus den beiden Kehrwertgleichungen eliminieren</>}
+  description={<>Aus <InlineMath math="6=2\cdot3" /> folgt <InlineMath math="\tfrac1c=\tfrac1a+\tfrac1b" />, aus <InlineMath math="12=2\cdot2\cdot3" /> folgt <InlineMath math="\tfrac1d=\tfrac2a+\tfrac1b" />. Das Doppelte der ersten Gleichung minus die zweite ergibt <InlineMath math="\tfrac2c-\tfrac1d=\tfrac1b" />, also <InlineMath math="b=\tfrac{cd}{2d-c}" />.</>}
+  chart={`flowchart LR
+    A["6 = 2 x 3: 1/c = 1/a + 1/b"] -->|"mal 2"| C["2/c = 2/a + 2/b"]
+    B["12 = 2 x 2 x 3: 1/d = 2/a + 1/b"] --> D["2/c - 1/d = 1/b"]
+    C --> D
+    D --> E["b = cd/(2d - c)"]`}
+/>
+
 # Probe
 
 Rechne die linke Seite noch einmal direkt mit Logarithmen aus. Es kommt tatsächlich <InlineMath math="\log_k 3" /> heraus, also <InlineMath math="\tfrac{1}{b}" />.

@@ -20,6 +20,17 @@ Two sessions can't share a period, so two sessions need <InlineMath math="4" /> 
 
 As a check, **every run in the table holds exactly one session**, and there are <InlineMath math="3+3\cdot3+2=14" /> runs, so a timetable with <InlineMath math="14" /> sessions really can be built.
 
+The chart below sums up that table by day. **Monday to Thursday each hold <InlineMath math="3" /> sessions**, while Friday holds only <InlineMath math="2" /> because it has just one break.
+
+<Chart
+  title={<>Most lab sessions each day</>}
+  description={<>Monday, Tuesday, Wednesday, and Thursday each hold <InlineMath math="3" /> sessions, and Friday holds <InlineMath math="2" />. The total is <InlineMath math="14" /> sessions a week.</>}
+  categories={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]}
+  bars="apart"
+  series={[{ label: "Sessions per day", mark: "bar", values: [1 + 1 + 1, 1 + 1 + 1, 1 + 1 + 1, 1 + 1 + 1, 1 + 1] }]}
+  valueLabel="Sessions"
+/>
+
 # The wrong options
 
 - <InlineMath math="12" /> forgets Friday and only counts Monday to Thursday.

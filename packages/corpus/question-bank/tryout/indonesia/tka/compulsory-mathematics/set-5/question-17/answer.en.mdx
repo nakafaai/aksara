@@ -21,6 +21,40 @@ In the first stage, water only flows out. In the second stage, the pump pushes i
 | Level falls, pump off | <InlineMath math="22" /> litres per minute out | <InlineMath math="\frac{1{,}848}{22}=84" /> minutes |
 | Level rises, pump on | <InlineMath math="44" /> litres per minute in | <InlineMath math="\frac{1{,}848}{44}=42" /> minutes |
 
+Draw the volume of water above the cone-cylinder boundary against time. **The line falls <InlineMath math="22" /> litres per minute until it is empty, then rises at a net <InlineMath math="44" /> litres per minute**, twice as steep, so the rising stage takes only half as long as the falling one.
+
+<MathVisual
+  title={<>Water volume in the cylinder part over time</>}
+  description={<>The horizontal axis is time in minutes since 16:00, and the vertical axis is the volume of water in the cylinder part below the safety line, in litres. The line falls from <InlineMath math="1{,}848" /> with slope <InlineMath math="-22" /> and reaches zero at minute <InlineMath math="84" />, when the pump switches on. After that it rises with slope <InlineMath math="44" /> and returns to <InlineMath math="1{,}848" /> at minute <InlineMath math="126" />, when the pump switches off.</>}
+  labels={{
+    drain: <InlineMath math="-22" />,
+    fill: <InlineMath math="+44" />,
+    on: <>pump on, 17:24</>,
+    off: <>pump off, 18:06</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 136 },
+      y: { min: -120, max: 2050 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "drain", kind: "function", appearance: "secondary", formula: "1848 - 22x", domain: { min: 0, max: 84 } },
+      { id: "fill", kind: "function", appearance: "primary", formula: "44(x - 84)", domain: { min: 84, max: 126 } },
+      { id: "on", kind: "point", appearance: "warning", at: { x: 84, y: 0 } },
+      { id: "off", kind: "point", appearance: "answer", at: { x: 126, y: 1848 } },
+    ],
+    labels: [
+      { key: "drain", objectId: "drain", at: { x: 42, y: 924 }, placement: "above-right" },
+      { key: "fill", objectId: "fill", at: { x: 105, y: 924 }, placement: "right" },
+      { key: "on", objectId: "on", at: { x: 84, y: 0 }, placement: "below" },
+      { key: "off", objectId: "off", at: { x: 126, y: 1848 }, placement: "left" },
+    ],
+  }}
+/>
+
 The pump switches on <InlineMath math="84" /> minutes after 16:00, at 17:24. It switches off <InlineMath math="42" /> minutes later, at 18:06. The outlet pipe stays open until 20:00, so the net rate of <InlineMath math="44" /> litres per minute really holds for the whole second stage.
 
 So the pump switches off again at 18:06.

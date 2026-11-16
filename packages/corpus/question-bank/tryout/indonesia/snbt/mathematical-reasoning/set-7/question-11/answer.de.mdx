@@ -8,6 +8,17 @@ Wenn <InlineMath math="20\text{ Liter}" /> entfernt werden, bleiben <InlineMath 
 
 Zum Beispiel ergibt ein Wechsel von <InlineMath math="40\text{ Liter}" /> ab <InlineMath math="42\text{ g/L}" /> genau <InlineMath math="28\text{ g/L}" />, zwei Wechsel von <InlineMath math="20\text{ Liter}" /> ergeben <InlineMath math="29\frac16\text{ g/L}" />. Die Ergebnisse unterscheiden sich. Die erste Aussage ist **falsch**.
 
+Das Diagramm vergleicht beide Wege ab <InlineMath math="42\text{ g/L}" />. **Die beiden Balken sind nicht gleich hoch**, also sind zwei kleine Wechsel nicht dasselbe wie ein großer.
+
+<Chart
+  title={<>End-Salzgehalt zweier Wege mit Süßwasser ab <InlineMath math="42\text{ g/L}" /></>}
+  description={<>Ein Wechsel von <InlineMath math="40" /> Litern ergibt <InlineMath math="28\text{ g/L}" />. Zwei Wechsel von <InlineMath math="20" /> Litern ergeben <InlineMath math="29\tfrac16\text{ g/L}" />.</>}
+  categories={["Einmal 40 Liter", "Zweimal 20 Liter"]}
+  bars="apart"
+  series={[{ label: "End-Salzgehalt (g/L)", mark: "bar", values: [42 * (2 / 3), 42 * (5 / 6) * (5 / 6)] }]}
+  valueLabel="Salzgehalt (g/L)"
+/>
+
 # Verdunstung mit künstlichem Meerwasser ausgleichen
 
 Jeden Tag verdunsten <InlineMath math="4\text{ Liter}" /> Wasser ohne Salz. Auffüllen mit <InlineMath math="4\text{ Liter}" /> künstlichem Meerwasser bringt <InlineMath math="4\cdot35=140" /> Gramm Salz, und das Aquarium hat wieder <InlineMath math="120\text{ Liter}" />.

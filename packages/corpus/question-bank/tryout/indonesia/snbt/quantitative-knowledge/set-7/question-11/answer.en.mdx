@@ -33,6 +33,34 @@ x&\le4
 
 On <InlineMath math="0<x\le4" />, every value of <InlineMath math="x" /> is to the left of the vertex <InlineMath math="x=6" />, where the parabola is still rising. So **the largest area happens at the boundary <InlineMath math="x=4" />**, with <InlineMath math="y=9-3=6" /> and <InlineMath math="L=4\times6=24" />.
 
+The garden below shows both ponds. The pond at the vertex, <InlineMath math="6\times4.5" />, is bigger, but its upright side **doesn't reach the line <InlineMath math="y=6" />**. The biggest pond that follows the rule is <InlineMath math="4\times6" />, whose corner sits exactly on the hypotenuse.
+
+<MathVisual
+  title={<>A rectangular pond inside the triangular garden</>}
+  description={<>A right triangle with a horizontal leg of <InlineMath math="12" /> and an upright leg of <InlineMath math="9" />. The <InlineMath math="6\times4.5" /> pond has area <InlineMath math="27" />, but its upright side is only <InlineMath math="4.5" />. The <InlineMath math="4\times6" /> pond has area <InlineMath math="24" />, and its upright side is exactly <InlineMath math="6" />. The top corner of each pond lies on the hypotenuse.</>}
+  labels={{
+    best: <InlineMath math="4\times6" />,
+    vertex: <InlineMath math="6\times4.5" />,
+    limit: <InlineMath math="y=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "garden", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "vertex", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4.5 }, { x: 0, y: 4.5 }] },
+      { id: "best", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 6 }, { x: 0, y: 6 }] },
+      { id: "limit", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 4, y: 6 } },
+    ],
+    labels: [
+      { key: "best", objectId: "best", at: { x: 2, y: 3 }, placement: "center" },
+      { key: "vertex", objectId: "vertex", at: { x: 5, y: 1 }, placement: "center" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
 Check: the link between the sides can also be written as <InlineMath math="\frac{x}{12}+\frac{y}{9}=1" />, and the pair <InlineMath math="x=4" />, <InlineMath math="y=6" /> fits it because <InlineMath math="\frac{4}{12}+\frac{6}{9}=\frac13+\frac23=1" />. A smaller value, say <InlineMath math="x=3" />, gives <InlineMath math="y=6.75" /> and an area of <InlineMath math="20.25" />, which is less than <InlineMath math="24" />.
 
 # The wrong options

@@ -20,6 +20,17 @@ Teile die Werte von <InlineMath math="m" /> nach ihrem Rest beim Teilen durch <I
 
 Das sind <InlineMath math="4+1+5+2=12" /> Werte von <InlineMath math="m" />, die scheitern. Der größte ist <InlineMath math="23" />, also höchstens <InlineMath math="50" />, und damit **liegen alle zwölf im Bereich der Aufgabe**. Diese Werte gehören zu den geraden Punktständen <InlineMath math="2,4,6,8,12,16,18,22,26,32,36,46" />.
 
+Das Diagramm teilt die Zahlen <InlineMath math="1" /> bis <InlineMath math="100" /> in drei Gruppen. Die ersten beiden Balken sind unmögliche Punktzahlen: **alle ungeraden Zahlen** und die <InlineMath math="12" /> geraden Zahlen, deren Hälfte sich nicht aus <InlineMath math="5" /> und <InlineMath math="7" /> bilden lässt.
+
+<Chart
+  title={<>Die Zahlen <InlineMath math="1" /> bis <InlineMath math="100" /> danach, ob sie Punktzahlen sein können</>}
+  description={<>Es gibt <InlineMath math="50" /> ungerade Zahlen, alle unmöglich. Von den <InlineMath math="50" /> geraden Zahlen sind <InlineMath math="12" /> unmöglich und <InlineMath math="38" /> möglich. Unmöglich sind also <InlineMath math="50+12=62" /> Punktzahlen.</>}
+  categories={["Ungerade", "Gerade, unmöglich", "Gerade, möglich"]}
+  bars="apart"
+  series={[{ label: "Anzahl der Zahlen", mark: "bar", values: [50, 12, 50 - 12] }]}
+  valueLabel="Anzahl der Zahlen"
+/>
+
 # Zusammenzählen und prüfen
 
 <BlockMath math="50+12=62" />

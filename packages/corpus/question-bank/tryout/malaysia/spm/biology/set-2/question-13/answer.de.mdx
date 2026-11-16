@@ -1,0 +1,31 @@
+# Gefilterte Glucose mit der höchstmöglichen Rückresorption vergleichen
+
+Die pro Minute gefilterte Glucose ist das Filtratvolumen mal seiner Konzentration. Glucose erscheint im Harn, sobald diese Menge **größer** ist als die <InlineMath math="375\text{ mg}" />, die die Tubuli zurückholen können.
+
+<Chart
+  title={<>Glucose, die die Nieren pro Minute verarbeiten</>}
+  categories={["2.0 mg/cm³", "3.0 mg/cm³", "4.2 mg/cm³", "5.0 mg/cm³"]}
+  series={[
+    { label: "Gefiltert", mark: "line", values: [250, 375, 525, 625] },
+    { label: "Rückresorbiert", mark: "line", values: [250, 375, 375, 375] },
+    { label: "Geht in den Harn", mark: "line", values: [0, 0, 150, 250] },
+  ]}
+  valueLabel="Glucose (mg pro Minute)"
+  description={<>Bei <InlineMath math="2{,}0" /> und <InlineMath math="3{,}0\text{ mg}" /> pro Kubikzentimeter wird alle gefilterte Glucose rückresorbiert. Bei <InlineMath math="4{,}2" /> resorbieren die Tubuli ihr Maximum von <InlineMath math="375\text{ mg}" />, und <InlineMath math="150\text{ mg}" /> gehen in den Harn, bei <InlineMath math="5{,}0" /> sind es <InlineMath math="250\text{ mg}" />.</>}
+/>
+
+Die Schwelle ist die Konzentration, bei der die gefilterte Menge genau dem Höchstwert entspricht:
+
+<BlockMath math="125\times c=375\quad\Rightarrow\quad c=\frac{375}{125}=3.0\text{ mg cm}^{-3}." />
+
+Bei <InlineMath math="4.2\text{ mg cm}^{-3}" /> liegt die gefilterte Menge über dem Höchstwert, die Tubuli resorbieren also ihre vollen <InlineMath math="375\text{ mg}" />, und der Rest geht in den Harn:
+
+<BlockMath math="125\times4.2=525\text{ mg},\qquad 525-375=150\text{ mg pro Minute}." />
+
+Glucose erscheint also oberhalb von <InlineMath math="3.0\text{ mg cm}^{-3}" /> im Harn, und bei <InlineMath math="4.2\text{ mg cm}^{-3}" /> gelangen <InlineMath math="150\text{ mg}" /> Glucose pro Minute in den Harn.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="525\text{ mg}" /> ist die **gefilterte** Glucose und vergisst, dass davon <InlineMath math="375\text{ mg}" /> weiterhin resorbiert werden.
+- <InlineMath math="4.2\text{ mg cm}^{-3}" /> und <InlineMath math="0\text{ mg}" /> nimmt an, die Tubuli resorbierten immer die ganze Glucose, was oberhalb ihres Höchstwerts nicht mehr gilt.
+- <InlineMath math="1.2\text{ mg}" /> zieht die Konzentrationen ab, <InlineMath math="4.2-3.0" />, multipliziert aber nie mit den <InlineMath math="125\text{ cm}^3" />, die pro Minute gefiltert werden.

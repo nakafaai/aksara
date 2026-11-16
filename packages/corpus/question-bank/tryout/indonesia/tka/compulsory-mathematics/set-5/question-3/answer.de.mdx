@@ -18,6 +18,40 @@ Auffüllen auf <InlineMath math="200" /> Blätter ist günstiger, wenn <InlineMa
 | <InlineMath math="200" /> bis <InlineMath math="375" /> | genau <InlineMath math="n" /> Blätter | <InlineMath math="400n" /> |
 | <InlineMath math="376" /> bis <InlineMath math="499" /> | <InlineMath math="500" /> Blätter | <InlineMath math="150{.}000" /> |
 
+Zeichne die günstigsten Kosten für jeden Bedarf. **Die zwei waagerechten Teile sind die Bedarfe, die durch Auffüllen auf <InlineMath math="200" /> oder <InlineMath math="500" /> Blatt billiger werden**, und die dünne Linie darüber sind die Kosten für genau <InlineMath math="n" /> Blatt. Der höchste waagerechte Teil liegt bei <InlineMath math="150" />.
+
+<MathVisual
+  title={<>Günstigste Kosten nach Blattbedarf</>}
+  description={<>Die waagerechte Achse ist der Bedarf von <InlineMath math="n" /> Blatt, die senkrechte Achse die Kosten in tausend Rupiah. Die günstigsten Kosten steigen mit <InlineMath math="0{,}5n" /> bis <InlineMath math="n=160" />, bleiben bei <InlineMath math="80" /> bis <InlineMath math="n=199" />, steigen mit <InlineMath math="0{,}4n" /> bis <InlineMath math="n=375" /> und bleiben dann bei <InlineMath math="150" /> bis <InlineMath math="n=499" />. Die dünnen Linien zeigen über beiden waagerechten Teilen die Kosten für genau <InlineMath math="n" /> Blatt, etwa <InlineMath math="199{,}6" /> für <InlineMath math="499" /> Blatt.</>}
+  labels={{
+    "flat-low": <InlineMath math="80" />,
+    "flat-high": <InlineMath math="150" />,
+    "exact-high": <>genau <InlineMath math="n" /> Blatt</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 510 },
+      y: { min: -5, max: 210 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "exact-low", kind: "function", appearance: "reference", formula: "0.5x", domain: { min: 160, max: 199 } },
+      { id: "exact-high", kind: "function", appearance: "reference", formula: "0.4x", domain: { min: 375, max: 499 } },
+      { id: "rise-low", kind: "function", appearance: "primary", formula: "0.5x", domain: { min: 1, max: 160 } },
+      { id: "flat-low", kind: "function", appearance: "answer", formula: "80", domain: { min: 160, max: 199 } },
+      { id: "rise-mid", kind: "function", appearance: "primary", formula: "0.4x", domain: { min: 200, max: 375 } },
+      { id: "flat-high", kind: "function", appearance: "answer", formula: "150", domain: { min: 375, max: 499 } },
+    ],
+    labels: [
+      { key: "flat-low", objectId: "flat-low", at: { x: 180, y: 80 }, placement: "below" },
+      { key: "flat-high", objectId: "flat-high", at: { x: 437, y: 150 }, placement: "below" },
+      { key: "exact-high", objectId: "exact-high", at: { x: 499, y: 199.6 }, placement: "left" },
+    ],
+  }}
+/>
+
 Schau dir <InlineMath math="n=160" /> und <InlineMath math="n=375" /> an: Dort kostet das Auffüllen **genau gleich viel**, nicht weniger.
 
 # Die erste Aussage

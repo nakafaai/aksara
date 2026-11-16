@@ -18,6 +18,20 @@ Bei <InlineMath math="t=9" /> füllt die Verdopplung <InlineMath math="480\to960
 
 Bei <InlineMath math="t=10" /> ergibt die Verdopplung <InlineMath math="760\cdot2=1{.}520" />, also mehr als <InlineMath math="960" />. Die Zahl wird <InlineMath math="960" />, und <InlineMath math="1{.}520-960=560" /> Millionen Zellen sterben. Das ist das erste Mal, dass Bakterien wegen des vollen Behälters sterben.
 
+Das Diagramm zeigt das Ergebnis jeder stündlichen Verdopplung, bevor Kapazitäts- und Ernteregel greifen. **Der Balken bei <InlineMath math="t=9" /> berührt die Kapazitätslinie genau**, während der Balken bei <InlineMath math="t=10" /> als erster darüber hinausgeht.
+
+<Chart
+  title={<>Ergebnis jeder stündlichen Verdopplung bei einer Anfangspopulation von <InlineMath math="30" /> Millionen Zellen</>}
+  description={<>Die Verdopplungsergebnisse bei <InlineMath math="t=1" /> bis <InlineMath math="10" /> betragen <InlineMath math="60, 120, 240, 80, 160, 320, 240, 480, 960, 1{.}520" /> Millionen Zellen. Die waagerechte Linie markiert die Kapazität des Röhrchens, <InlineMath math="960" /> Millionen Zellen.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Ergebnis der Verdopplung", mark: "bar", values: [60, 120, 240, 40 * 2, 80 * 2, 160 * 2, 120 * 2, 240 * 2, 480 * 2, 760 * 2] },
+    { label: "Kapazität 960", mark: "line", values: Array.from({ length: 10 }, () => 960) },
+  ]}
+  valueLabel="Bakterien (Millionen Zellen)"
+/>
+
 # Warum die anderen Antworten falsch sind
 
 Jede andere Antwort **vergisst die Ernte, liest die Grenze falsch oder dreht die Reihenfolge um**.

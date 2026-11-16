@@ -38,3 +38,34 @@ If you only ask for positive current ages, you might pick <InlineMath math="C=5"
 Statement (1) alone and statement (2) alone each fall short, because each has a yes example and a no example. **Together they're enough**, because the condition <InlineMath math="C\ge6" /> forces the answer no. The option saying neither is enough comes from missing that hidden condition.
 
 So both statements together are enough to answer the question, but neither statement alone is.
+
+The figure below maps Cici's age <InlineMath math="C" /> across and Ani's age <InlineMath math="A" /> up. Both statements force <InlineMath math="A=12-C" />, and the condition <InlineMath math="C\ge6" /> leaves **only the part of that line below the line <InlineMath math="A=C" />**, where Ani is younger.
+
+<MathVisual
+  title={<>Ages of Ani and Cici that satisfy both statements</>}
+  description={<>The line <InlineMath math="A=12-C" /> crosses the line <InlineMath math="A=C" /> at <InlineMath math="(6,6)" />. The part with <InlineMath math="C<6" /> is ruled out, because Cici hadn't been born <InlineMath math="6" /> years ago. The part with <InlineMath math="C\ge6" /> lies entirely on or below the line <InlineMath math="A=C" />. One example is the point <InlineMath math="(8,4)" />.</>}
+  labels={{
+    allowed: <InlineMath math="A=12-C,\ C\ge6" />,
+    equal: <InlineMath math="A=C" />,
+    six: <InlineMath math="C=6" />,
+    example: <InlineMath math="(8,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 12.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "six", kind: "line", appearance: "construction", through: [{ x: 6, y: 0 }, { x: 6, y: 1 }] },
+      { id: "equal", kind: "function", appearance: "reference", formula: "x", domain: { min: 0, max: 12.5 } },
+      { id: "banned", kind: "function", appearance: "warning", formula: "12 - x", domain: { min: 0, max: 6 } },
+      { id: "allowed", kind: "function", appearance: "answer", formula: "12 - x", domain: { min: 6, max: 12 } },
+      { id: "example", kind: "point", appearance: "answer", at: { x: 8, y: 4 } },
+    ],
+    labels: [
+      { key: "allowed", objectId: "allowed", at: { x: 10, y: 2 }, placement: "above-right" },
+      { key: "equal", objectId: "equal", at: { x: 11, y: 11 }, placement: "above-left" },
+      { key: "six", objectId: "six", at: { x: 6, y: 11.5 }, placement: "right" },
+      { key: "example", objectId: "example", at: { x: 8, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>

@@ -23,6 +23,17 @@ Satu tiket pasti tidak mendapat potongan. Potongannya sepuluh persen dari harga 
 
 Coba cek dengan cara lain. Potongannya sepuluh persen dari semua tiket kecuali nomor <InlineMath math="148" />, yaitu <InlineMath math="10\%\cdot(1{.}260{.}000-120{.}000)=114{.}000" />. Maka totalnya <InlineMath math="1{.}260{.}000-114{.}000+15{.}000=1{.}161{.}000" />, sama.
 
+Grafik berikut menggambar uang yang dibayar pada ketiga transaksi itu. **Hanya transaksi pertama yang tidak dapat potongan**, dan isinya justru tiket termurah.
+
+<Chart
+  title={<>Uang yang dibayar pada setiap transaksi sembilan sahabat</>}
+  description={<>Transaksi tiket nomor <InlineMath math="148" /> membayar <InlineMath math="\text{Rp}125{.}000" />. Transaksi nomor <InlineMath math="149" /> sampai <InlineMath math="152" /> membayar <InlineMath math="\text{Rp}491{.}000" />. Transaksi nomor <InlineMath math="153" /> sampai <InlineMath math="156" /> membayar <InlineMath math="\text{Rp}545{.}000" />. Setiap transaksi sudah termasuk biaya layanan <InlineMath math="\text{Rp}5{.}000" />, dan jumlahnya <InlineMath math="\text{Rp}1{.}161{.}000" />.</>}
+  categories={["Nomor 148", "Nomor 149 sampai 152", "Nomor 153 sampai 156"]}
+  bars="apart"
+  series={[{ label: "Bayar per transaksi (rupiah)", mark: "bar", values: [120000 + 5000, 0.9 * (2 * 120000 + 2 * 150000) + 5000, 0.9 * (4 * 150000) + 5000] }]}
+  valueLabel="Uang dibayar (rupiah)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain muncul dari **satu kesalahan yang mudah terjadi**.

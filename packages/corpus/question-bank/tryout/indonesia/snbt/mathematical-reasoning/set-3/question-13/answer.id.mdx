@@ -23,6 +23,36 @@ T &\ge 30
 
 Batas atasnya <InlineMath math="T\le66-32=34" />, jadi <InlineMath math="T=30" /> diizinkan dan **inilah lebar tersempit untuk kedua tangga**.
 
+Gambar berikut menyambung kedua tangga dengan <InlineMath math="R=16" /> dan <InlineMath math="T=30" />. **Anak tangga teratas setiap tangga berakhir di lantai tanpa pijakan**, jadi tangga bawah punya <InlineMath math="17" /> pijakan dan tangga atas <InlineMath math="16" /> pijakan.
+
+<MathVisual
+  title={<>Tampak samping kedua tangga dengan anak tangga yang sama</>}
+  description={<>Tangga bawah memiliki <InlineMath math="18" /> anak tangga setinggi <InlineMath math="16\text{ cm}" /> dan naik <InlineMath math="288\text{ cm}" /> sepanjang <InlineMath math="510\text{ cm}" />. Tangga atas memiliki <InlineMath math="17" /> anak tangga yang sama dan naik <InlineMath math="272\text{ cm}" /> sepanjang <InlineMath math="480\text{ cm}" />. Setiap pijakan selebar <InlineMath math="30\text{ cm}" />, dan total panjang horizontalnya <InlineMath math="990\text{ cm}" />.</>}
+  labels={{
+    total: <InlineMath math="990\text{ cm}" />,
+    lower: <InlineMath math="288\text{ cm}" />,
+    upper: <InlineMath math="272\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -120, max: 1100 }, y: { min: -90, max: 620 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -100, y: 0 }, to: { x: 1050, y: 0 } },
+      { id: "middle", kind: "segment", appearance: "reference", from: { x: -100, y: 288 }, to: { x: 510, y: 288 } },
+      { id: "top", kind: "segment", appearance: "reference", from: { x: -100, y: 560 }, to: { x: 1050, y: 560 } },
+      { id: "first", kind: "function", appearance: "primary", formula: "16 * ceil(x / 30)", domain: { min: 0, max: 510 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "288 + 16 * ceil((x - 510) / 30)", domain: { min: 510, max: 990 } },
+      { id: "length", kind: "segment", appearance: "answer", from: { x: 0, y: -50 }, to: { x: 990, y: -50 } },
+    ],
+    labels: [
+      { key: "total", objectId: "length", at: { x: 495, y: -50 }, placement: "below" },
+      { key: "lower", objectId: "middle", at: { x: -100, y: 288 }, placement: "above-right" },
+      { key: "upper", objectId: "top", at: { x: -100, y: 560 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Banyak pijakan dan panjang total
 
 Anak tangga teratas setiap tangga tidak punya pijakan, karena **lantai atasnya tidak dihitung sebagai pijakan**. Jadi tiap tangga punya pijakan satu lebih sedikit daripada anak tangganya.

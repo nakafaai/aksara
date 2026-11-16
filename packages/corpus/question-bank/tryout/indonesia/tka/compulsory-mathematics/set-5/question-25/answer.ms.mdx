@@ -21,6 +21,19 @@ Hasil tambahnya gandaan <InlineMath math="3" /> jika kedua-dua bakinya <InlineMa
 \text{pasangan ganjil, hasil tambah bukan gandaan }3&=45-15=30
 \end{aligned}" />
 
+Rajah di bawah menunjukkan bahagian yang dibuang. **Hanya pasangan dua nombor ganjil yang boleh gagal pada syarat hasil darab**, dan daripada <InlineMath math="45" /> pasangan itu, <InlineMath math="15" /> masih lulus melalui syarat hasil tambah.
+
+<Mermaid
+  title={<>Mengasingkan <InlineMath math="190" /> pasangan kad</>}
+  description={<>Daripada <InlineMath math="190" /> pasangan, <InlineMath math="145" /> mempunyai hasil darab genap dan <InlineMath math="45" /> terdiri daripada dua nombor ganjil. Antara <InlineMath math="45" /> pasangan ganjil, <InlineMath math="15" /> mempunyai hasil tambah gandaan <InlineMath math="3" /> dan <InlineMath math="30" /> tidak. Hanya <InlineMath math="30" /> pasangan itu yang gagal pada kedua-dua syarat, maka kebarangkaliannya <InlineMath math="1-\frac{30}{190}=\frac{16}{19}" />.</>}
+  chart={`flowchart TD
+  S["Semua pasangan: C(20, 2) = 190"] --> E["Hasil darab genap: 145"]
+  S --> O["Dua nombor ganjil: C(10, 2) = 45"]
+  O --> O1["Ganjil, hasil tambah gandaan 3: C(3, 2) + 4 · 3 = 15"]
+  O --> O2["Gagal kedua-dua syarat: 45 − 15 = 30"]
+  O2 --> P["Kebarangkalian: 1 − 30/190 = 16/19"]`}
+/>
+
 # Kebarangkalian kesatuan
 
 <BlockMath math="P=1-\frac{30}{190}=\frac{160}{190}=\frac{16}{19}" />

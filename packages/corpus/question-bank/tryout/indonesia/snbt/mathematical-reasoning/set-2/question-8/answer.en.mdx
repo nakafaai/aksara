@@ -32,6 +32,20 @@ Yellow <InlineMath math="4.5\text{ litres}" /> needs three <InlineMath math="2\t
 
 <BlockMath math="(13-12.5)+(6-4.5)+(3-3)=0.5+1.5+0=2" />
 
+The chart below compares the paint needed with what the bought cans hold. **The gap between the bars is the leftover paint**: half a litre of white, one and a half litres of yellow, and no blue.
+
+<Chart
+  title={<>Base paint Bu Wati needs and what her cans hold</>}
+  description={<>Bu Wati needs <InlineMath math="12.5" /> litres of white, <InlineMath math="4.5" /> litres of yellow, and <InlineMath math="3" /> litres of blue. Her cans hold <InlineMath math="13" /> litres of white, <InlineMath math="6" /> litres of yellow, and <InlineMath math="3" /> litres of blue.</>}
+  categories={["White", "Yellow", "Blue"]}
+  bars="apart"
+  series={[
+    { label: "Needed (litres)", mark: "bar", values: [(5 / 10) * 15 + 5, (3 / 10) * 15, (2 / 10) * 15] },
+    { label: "In the cans (litres)", mark: "bar", values: [2 * 5 + 3 * 1, 3 * 2, 3 * 1] },
+  ]}
+  valueLabel="Volume (litres)"
+/>
+
 # Checking
 
 Another way: all the cans hold <InlineMath math="13+6+3=22" /> litres, and exactly <InlineMath math="20" /> litres get mixed. **The difference is what stays in the cans**, which is <InlineMath math="22-20=2" /> litres, the same as before.

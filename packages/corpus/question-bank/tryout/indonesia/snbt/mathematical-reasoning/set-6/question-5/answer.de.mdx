@@ -17,6 +17,20 @@ Im Abo sind die bezahlten Minuten einer Fahrt ihre Dauer minus <InlineMath math=
 
 Zusammen sind das <InlineMath math="5+18+24+11+7=65" /> bezahlte Minuten.
 
+Das Diagramm teilt jede Fahrt in freie und bezahlte Minuten. **Die Fahrten <InlineMath math="2" />, <InlineMath math="5" /> und <InlineMath math="7" /> haben gar keinen bezahlten Balken**, weil keine länger als <InlineMath math="20" /> Minuten dauert.
+
+<Chart
+  title={<>Freie und bezahlte Minuten jeder Fahrt von Dita im Abo</>}
+  description={<>Die bezahlten Minuten der Fahrten <InlineMath math="1" /> bis <InlineMath math="8" /> betragen <InlineMath math="5, 0, 18, 24, 0, 11, 0, 7" />, zusammen <InlineMath math="65" /> Minuten. Jede Fahrt über <InlineMath math="20" /> Minuten nutzt ihre <InlineMath math="20" /> freien Minuten voll.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Freie Minuten", mark: "bar", values: [25, 6, 38, 44, 15, 31, 9, 27].map((d) => Math.min(d, 20)) },
+    { label: "Bezahlte Minuten", mark: "bar", values: [25, 6, 38, 44, 15, 31, 9, 27].map((d) => Math.max(0, d - 20)) },
+  ]}
+  valueLabel="Minuten"
+/>
+
 # Die Obergrenze im Monat
 
 Ohne Obergrenze lägen die Minutengebühren bei <InlineMath math="65\cdot 500=\text{Rp}32{.}500" />. Das ist mehr als die Obergrenze, also **zahlt Dita nur <InlineMath math="\text{Rp}30{.}000" /> Minutengebühren**.

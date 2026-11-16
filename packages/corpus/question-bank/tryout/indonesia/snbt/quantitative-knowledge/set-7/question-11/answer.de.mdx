@@ -33,6 +33,34 @@ x&\le4
 
 Für <InlineMath math="0<x\le4" /> liegt jeder Wert von <InlineMath math="x" /> links vom Scheitel <InlineMath math="x=6" />, wo die Parabel noch steigt. Deshalb **liegt die größte Fläche am Rand <InlineMath math="x=4" />**, mit <InlineMath math="y=9-3=6" /> und <InlineMath math="L=4\times6=24" />.
 
+Der Garten zeigt beide Teiche. Der Teich am Scheitel, <InlineMath math="6\times4{,}5" />, ist größer, aber seine senkrechte Seite **erreicht die Linie <InlineMath math="y=6" /> nicht**. Der größte Teich, der die Regel einhält, ist <InlineMath math="4\times6" />, dessen Ecke genau auf der Hypotenuse liegt.
+
+<MathVisual
+  title={<>Ein rechteckiger Teich im dreieckigen Garten</>}
+  description={<>Ein rechtwinkliges Dreieck mit einer waagrechten Kathete von <InlineMath math="12" /> und einer senkrechten von <InlineMath math="9" />. Der Teich <InlineMath math="6\times4{,}5" /> hat die Fläche <InlineMath math="27" />, seine senkrechte Seite ist aber nur <InlineMath math="4{,}5" />. Der Teich <InlineMath math="4\times6" /> hat die Fläche <InlineMath math="24" />, und seine senkrechte Seite ist genau <InlineMath math="6" />. Die obere Ecke jedes Teichs liegt auf der Hypotenuse.</>}
+  labels={{
+    best: <InlineMath math="4\times6" />,
+    vertex: <InlineMath math="6\times4{,}5" />,
+    limit: <InlineMath math="y=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "garden", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "vertex", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4.5 }, { x: 0, y: 4.5 }] },
+      { id: "best", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 6 }, { x: 0, y: 6 }] },
+      { id: "limit", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 4, y: 6 } },
+    ],
+    labels: [
+      { key: "best", objectId: "best", at: { x: 2, y: 3 }, placement: "center" },
+      { key: "vertex", objectId: "vertex", at: { x: 5, y: 1 }, placement: "center" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
 Probe: Der Zusammenhang der Seiten lässt sich auch als <InlineMath math="\frac{x}{12}+\frac{y}{9}=1" /> schreiben, und das Paar <InlineMath math="x=4" />, <InlineMath math="y=6" /> erfüllt ihn, denn <InlineMath math="\frac{4}{12}+\frac{6}{9}=\frac13+\frac23=1" />. Ein kleinerer Wert, etwa <InlineMath math="x=3" />, liefert <InlineMath math="y=6{,}75" /> und die Fläche <InlineMath math="20{,}25" />, also weniger als <InlineMath math="24" />.
 
 # Die falschen Antworten

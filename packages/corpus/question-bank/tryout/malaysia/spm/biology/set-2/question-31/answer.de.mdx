@@ -1,0 +1,27 @@
+# Die Kreuzung Gen für Gen zerlegen
+
+Die Gene liegen auf verschiedenen Chromosomen, sie werden also **unabhängig verteilt**, und jedes Gen lässt sich für sich kreuzen. Dann multiplizierst du die beiden Wahrscheinlichkeiten.
+
+<BlockMath math="\begin{aligned}
+Tt\times Tt&:\ P(\text{hoch})=\tfrac{3}{4},\quad P(\text{niedrig})=\tfrac{1}{4}\\
+Pp\times pp&:\ P(\text{violett})=\tfrac{1}{2},\quad P(\text{weiß})=\tfrac{1}{2}
+\end{aligned}" />
+
+Hoch und weiß hat also die Wahrscheinlichkeit <InlineMath math="\frac{3}{4}\times\frac{1}{2}=\frac{3}{8}" />, niedrig und violett <InlineMath math="\frac{1}{4}\times\frac{1}{2}=\frac{1}{8}" />. Bei <InlineMath math="320" /> Nachkommen sind das <InlineMath math="\frac{3}{8}\times320=120" /> und <InlineMath math="\frac{1}{8}\times320=40" />. Das Diagramm zeigt die ganze Verteilung <InlineMath math="3:3:1:1" />.
+
+<Chart
+  title={<>Erwartete Nachkommen von <InlineMath math="TtPp\times Ttpp" /></>}
+  bars="apart"
+  categories={["Hoch, violett", "Hoch, weiß", "Niedrig, violett", "Niedrig, weiß"]}
+  series={[{ label: "Erwartete Nachkommen", mark: "bar", values: [120, 120, 40, 40] }]}
+  valueLabel="Zahl der Nachkommen"
+  description={<>Von <InlineMath math="320" /> Nachkommen sind <InlineMath math="120" /> hoch und violett, <InlineMath math="120" /> hoch und weiß, <InlineMath math="40" /> niedrig und violett und <InlineMath math="40" /> niedrig und weiß zu erwarten.</>}
+/>
+
+Zu erwarten sind also <InlineMath math="120" /> hohe Pflanzen mit weißen Blüten und <InlineMath math="40" /> niedrige mit violetten Blüten.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="60" /> und <InlineMath math="60" /> nimmt das Verhältnis <InlineMath math="9:3:3:1" /> von <InlineMath math="TtPp\times TtPp" />, doch **der zweite Elternteil ist** <InlineMath math="pp" />, nicht <InlineMath math="Pp" />.
+- <InlineMath math="80" /> und <InlineMath math="80" /> nimmt das Verhältnis <InlineMath math="1:1:1:1" /> einer Testkreuzung, für die der zweite Elternteil <InlineMath math="ttpp" /> sein müsste.
+- <InlineMath math="40" /> und <InlineMath math="120" /> vertauscht die beiden Antworten.

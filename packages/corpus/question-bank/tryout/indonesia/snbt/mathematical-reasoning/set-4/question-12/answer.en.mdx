@@ -22,6 +22,17 @@ Fajar is ahead **when this difference is positive**:
 x &< 30
 \end{aligned}" />
 
+The chart below draws the difference <InlineMath math="1.5-0.05x" /> for every <InlineMath math="x" /> from <InlineMath math="20" /> to <InlineMath math="40" />. **The bars are positive up to <InlineMath math="x=29" />, vanish exactly at <InlineMath math="x=30" />**, and then turn negative.
+
+<Chart
+  title={<>Fajar's final score minus Eka's by test weight <InlineMath math="x" /></>}
+  description={<>The difference drops by <InlineMath math="0.05" /> for each step up in <InlineMath math="x" />, from <InlineMath math="0.5" /> at <InlineMath math="x=20" /> to <InlineMath math="0" /> at <InlineMath math="x=30" />, and then to <InlineMath math="-0.5" /> at <InlineMath math="x=40" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${20 + i}`)}
+  series={[{ label: "Fajar minus Eka", mark: "bar", values: Array.from({ length: 21 }, (_, i) => 1.5 - 0.05 * (20 + i)) }]}
+  valueLabel="Difference in final score"
+/>
+
 # The tie at the boundary
 
 At <InlineMath math="x=30" /> the difference is zero, so both final scores are equal at <InlineMath math="82.6" />. The tie rule puts the higher <InlineMath math="T" /> first. Eka has <InlineMath math="T=86" /> and Fajar has <InlineMath math="T=84" />, so **in a tie Eka stays on top**. That's why <InlineMath math="x=30" /> is left out, and the answer is <InlineMath math="20\le x\le29" />.

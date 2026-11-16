@@ -39,6 +39,17 @@ Charging for <InlineMath math="1.5" /> hours always adds <InlineMath math="54\%"
 
 In the last three rows, whatever comes after charging happens above <InlineMath math="20\%" />, so it drains at the full rate. The largest value in the table is <InlineMath math="55\%" />.
 
+The chart below sums up that table. **The two tallest bars both put charging last**, while the shortest bar charges first, so gaming and reading run at the full rate.
+
+<Chart
+  title={<>Nara's battery at 16.30 for each order of activities</>}
+  description={<>Gaming, reading, then charging gives <InlineMath math="55\%" />. Reading, gaming, then charging also gives <InlineMath math="55\%" />. Gaming, charging, then reading gives <InlineMath math="50\%" />. Reading, charging, then gaming gives <InlineMath math="40\%" />. Charging first gives <InlineMath math="36\%" />.</>}
+  categories={["Game, read, charge", "Read, game, charge", "Game, charge, read", "Read, charge, game", "Charge first"]}
+  bars="apart"
+  series={[{ label: "Battery at 16.30 (%)", mark: "bar", values: [1 + 54, 1 + 54, 6 + 54 - 10, 16 + 54 - 30, 22 + 54 - 30 - 10] }]}
+  valueLabel="Battery (%)"
+/>
+
 # The wrong options
 
 - <InlineMath math="36\%" /> comes from **charging first**. You also get it if you ignore power saving mode: gaming and reading at full rate use <InlineMath math="40\%" />, more than <InlineMath math="22\%" />, so the best order seems to kill the phone.

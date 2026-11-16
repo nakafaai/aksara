@@ -35,6 +35,20 @@ Um 08:40 Uhr, nach der elften Mission, trinkt Citra den Trank. Dann startet sie 
 
 Mit <InlineMath math="32" /> bleibt die Energie unter <InlineMath math="60" />, der Zähler stoppt also nie. Dieser Plan startet <InlineMath math="11+6=17" /> Missionen, und die letzte startet um 09:04 Uhr, vor der Grenze 09:10 Uhr.
 
+Das Diagramm zeigt Citras Energie kurz vor jeder Mission dieses Plans. **Kein Balken fällt unter die Kostenlinie bei <InlineMath math="6" />**, und der Sprung nach 08.40 Uhr ist der Trank, den sie trinkt, wenn ihre Energie nur noch <InlineMath math="2" /> beträgt.
+
+<Chart
+  title={<>Citras Energie vor jeder normalen Mission</>}
+  description={<>Von 08.00 bis 08.40 Uhr beträgt die Energie vor den Missionen <InlineMath math="60, 54, 49, 44, 39, 34, 28, 23, 18, 13, 8" />. Nach dem Trank, von 08.44 bis 09.04 Uhr, beträgt sie <InlineMath math="32, 27, 22, 17, 12, 6" />. Die waagerechte Linie markiert die <InlineMath math="6" /> Energie für eine normale Mission.</>}
+  bars="apart"
+  categories={["08.00", "08.04", "08.08", "08.12", "08.16", "08.20", "08.24", "08.28", "08.32", "08.36", "08.40", "08.44", "08.48", "08.52", "08.56", "09.00", "09.04"]}
+  series={[
+    { label: "Energie vor der Mission", mark: "bar", values: [60, 54, 49, 44, 39, 34, 28, 23, 18, 13, 8, 32, 27, 22, 17, 12, 6] },
+    { label: "Kosten einer Mission", mark: "line", values: Array.from({ length: 17 }, () => 6) },
+  ]}
+  valueLabel="Energie"
+/>
+
 # Wenn der Trank zu früh getrunken wird
 
 Angenommen, Citra trinkt den Trank um 08:00 Uhr vor dem Spielen. Dann hat sie <InlineMath math="90" /> Energie, und das Auffüllen stoppt, bis die Energie unter <InlineMath math="60" /> fällt. Das passiert erst um 08:20 Uhr nach der sechsten Mission, also gehen die Auffüllungen von 08:05 bis 08:20 Uhr verloren. **Der Zeitpunkt des Tranks verändert das Ergebnis**.

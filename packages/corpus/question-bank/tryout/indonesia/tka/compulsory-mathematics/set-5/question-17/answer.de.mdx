@@ -21,6 +21,40 @@ In der ersten Phase fließt nur Wasser ab. In der zweiten Phase pumpt die Pumpe 
 | Spiegel sinkt, Pumpe aus | <InlineMath math="22" /> Liter pro Minute hinaus | <InlineMath math="\frac{1{.}848}{22}=84" /> Minuten |
 | Spiegel steigt, Pumpe an | <InlineMath math="44" /> Liter pro Minute hinein | <InlineMath math="\frac{1{.}848}{44}=42" /> Minuten |
 
+Zeichne das Wasservolumen oberhalb der Grenze zwischen Kegel und Zylinder über der Zeit. **Die Gerade fällt um <InlineMath math="22" /> Liter pro Minute bis zur Leere und steigt dann netto um <InlineMath math="44" /> Liter pro Minute**, doppelt so steil, also dauert der Anstieg nur halb so lange wie der Abfall.
+
+<MathVisual
+  title={<>Wasservolumen im Zylinderteil über der Zeit</>}
+  description={<>Die waagerechte Achse ist die Zeit in Minuten ab 16:00 Uhr, die senkrechte Achse das Wasservolumen im Zylinderteil unterhalb der Sicherheitslinie in Litern. Die Gerade fällt von <InlineMath math="1{.}848" /> mit Steigung <InlineMath math="-22" /> und erreicht null bei Minute <InlineMath math="84" />, wenn die Pumpe anspringt. Danach steigt sie mit Steigung <InlineMath math="44" /> und erreicht bei Minute <InlineMath math="126" /> wieder <InlineMath math="1{.}848" />, wenn die Pumpe abschaltet.</>}
+  labels={{
+    drain: <InlineMath math="-22" />,
+    fill: <InlineMath math="+44" />,
+    on: <>Pumpe an, 17:24 Uhr</>,
+    off: <>Pumpe aus, 18:06 Uhr</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 136 },
+      y: { min: -120, max: 2050 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "drain", kind: "function", appearance: "secondary", formula: "1848 - 22x", domain: { min: 0, max: 84 } },
+      { id: "fill", kind: "function", appearance: "primary", formula: "44(x - 84)", domain: { min: 84, max: 126 } },
+      { id: "on", kind: "point", appearance: "warning", at: { x: 84, y: 0 } },
+      { id: "off", kind: "point", appearance: "answer", at: { x: 126, y: 1848 } },
+    ],
+    labels: [
+      { key: "drain", objectId: "drain", at: { x: 42, y: 924 }, placement: "above-right" },
+      { key: "fill", objectId: "fill", at: { x: 105, y: 924 }, placement: "right" },
+      { key: "on", objectId: "on", at: { x: 84, y: 0 }, placement: "below" },
+      { key: "off", objectId: "off", at: { x: 126, y: 1848 }, placement: "left" },
+    ],
+  }}
+/>
+
 Die Pumpe schaltet sich <InlineMath math="84" /> Minuten nach 16:00 Uhr ein, also um 17:24 Uhr. Sie schaltet sich <InlineMath math="42" /> Minuten später aus, also um 18:06 Uhr. Das Abflussrohr bleibt bis 20:00 Uhr offen, die Nettorate von <InlineMath math="44" /> Litern pro Minute gilt also wirklich während der ganzen zweiten Phase.
 
 Die Pumpe schaltet sich also um 18:06 Uhr wieder aus.

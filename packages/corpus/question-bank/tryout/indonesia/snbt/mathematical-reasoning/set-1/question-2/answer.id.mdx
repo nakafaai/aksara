@@ -47,4 +47,15 @@ Panel tambahan memberi <InlineMath math="10\cdot1=10\text{ kWh}" />, lebih banya
 
 Keluarga itu masih membeli <InlineMath math="6\text{ kWh}" /> pada malam hari, jadi pernyataan keempat salah.
 
+Grafik berikut merangkum pembelian malam pada keempat keadaan. **Baterai yang lebih besar menurunkannya tepat ke separuh**, tanpa cadangan pembeliannya turun <InlineMath math="1\text{ kWh}" />, dan panel yang lebih kuat tetap menyisakan <InlineMath math="6\text{ kWh}" /> karena kapasitas baterai tidak berubah.
+
+<Chart
+  title={<>Energi yang dibeli dari PLN pada malam hari</>}
+  description={<>Pada hari asli, pembelian malam <InlineMath math="8\text{ kWh}" />. Dengan baterai <InlineMath math="10\text{ kWh}" />, pembelian malam <InlineMath math="4\text{ kWh}" />. Tanpa aturan cadangan, pembelian malam <InlineMath math="7\text{ kWh}" />. Dengan panel yang menghasilkan <InlineMath math="1\text{ kWh}" /> lebih banyak setiap jam, pembelian malam <InlineMath math="6\text{ kWh}" />.</>}
+  categories={["Hari asli", "Baterai 10 kWh", "Tanpa cadangan", "Panel lebih kuat"]}
+  bars="apart"
+  series={[{ label: "Pembelian malam (kWh)", mark: "bar", values: [11 - (4 - 1), 11 - (8 - 1), 11 - 4, 11 - (6 - 1)] }]}
+  valueLabel="Energi (kWh)"
+/>
+
 Jadi, pernyataan pertama benar, pernyataan kedua salah, pernyataan ketiga benar, dan pernyataan keempat salah.

@@ -18,6 +18,40 @@ Lös die Ungleichung <InlineMath math="P(t)>Q(t)" />, indem du alles zur Basis <
 t&>7{,}2
 \end{aligned}" />
 
+Zeichne beide Kolonien über der Zeit. **Die Kurven schneiden sich bei <InlineMath math="t=7{,}2" />, zwischen zwei Zählungen zur vollen Stunde**, also sieht erst die Zählung bei <InlineMath math="t=8" /> P vorne.
+
+<MathVisual
+  title={<>Kolonien P und Q ab 5:00 Uhr</>}
+  description={<>Die waagerechte Achse sind Stunden ab 5:00 Uhr, die senkrechte Achse die Zellzahl. Die Kurve <InlineMath math="P(t)=500\cdot2^{t/2}" /> steigt von <InlineMath math="500" />, die Kurve <InlineMath math="Q(t)=32{.}000\cdot2^{-t/3}" /> fällt von <InlineMath math="32{.}000" />. Sie treffen sich bei <InlineMath math="t=7{,}2" />, also um 12:12 Uhr. Bei der Zählung <InlineMath math="t=8" /> hat Kolonie P <InlineMath math="8{.}000" /> Zellen und liegt über Q.</>}
+  labels={{
+    p: <InlineMath math="P(t)" />,
+    q: <InlineMath math="Q(t)" />,
+    cross: <>gleich, 12:12 Uhr</>,
+    count: <>13:00 Uhr: <InlineMath math="8{.}000" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10.5 },
+      y: { min: -1200, max: 34000 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p", kind: "function", appearance: "primary", formula: "500 * 2^(x/2)", domain: { min: 0, max: 10 } },
+      { id: "q", kind: "function", appearance: "secondary", formula: "32000 * 2^(-x/3)", domain: { min: 0, max: 10 } },
+      { id: "cross", kind: "point", appearance: "warning", at: { x: 7.2, y: 500 * Math.pow(2, 3.6) } },
+      { id: "count", kind: "point", appearance: "answer", at: { x: 8, y: 8000 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 10, y: 16000 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 1, y: 32000 * Math.pow(2, -1 / 3) }, placement: "right" },
+      { key: "cross", objectId: "cross", at: { x: 7.2, y: 500 * Math.pow(2, 3.6) }, placement: "above-left" },
+      { key: "count", objectId: "count", at: { x: 8, y: 8000 }, placement: "right" },
+    ],
+  }}
+/>
+
 Der Schritt von der dritten zur vierten Zeile ist erlaubt, weil <InlineMath math="2^{x}" /> immer wächst: Ein größerer Exponent gibt einen größeren Wert. Gleich groß sind die Kolonien genau bei <InlineMath math="t=7{,}2" /> Stunden, also um 12:12 Uhr. **Um 12:12 Uhr wird nicht gezählt**, denn gezählt wird nur zur vollen Stunde. Die kleinste ganze Zahl über <InlineMath math="7{,}2" /> ist <InlineMath math="8" />, die Antwort ist also 13:00 Uhr.
 
 # Kontrolle an zwei Zählungen

@@ -39,6 +39,19 @@ Mit <InlineMath math="51" /> bleibt die Energie unter <InlineMath math="60" />, 
 
 12:00 Uhr ist kein Auffüllzeitpunkt, denn das nächste Auffüllen wäre um 12:03 Uhr. Das Tagesgeschenk bringt <InlineMath math="15" />, die Energie wird also <InlineMath math="51+15=66" />. Das liegt über <InlineMath math="60" />, also **stoppt das automatische Auffüllen wieder**. Bima verbraucht danach keine Energie mehr, deshalb bleibt sie bis 12:30 Uhr bei <InlineMath math="66" />.
 
+Das Diagramm fasst zusammen, wie sich Bimas Energie bewegt. **Solange die Energielinie über der Linie bei <InlineMath math="60" /> liegt, stoppt das automatische Auffüllen**, also von 10.03 bis 10.13 Uhr und ab 12.00 Uhr.
+
+<Chart
+  title={<>Bimas Energie nach jedem Ereignis, 10.00 bis 12.30 Uhr</>}
+  description={<>Bimas Energie beträgt <InlineMath math="52" /> um 10.00 Uhr, <InlineMath math="62" /> um 10.03 Uhr, <InlineMath math="42" /> um 10.13 Uhr, <InlineMath math="38" /> um 10.23 Uhr, <InlineMath math="32" /> um 10.27 Uhr, <InlineMath math="51" /> um 11.58 Uhr, dann <InlineMath math="66" /> um 12.00 Uhr und bleibt bis 12.30 Uhr bei <InlineMath math="66" />. Die waagerechte Linie markiert eine Energie von <InlineMath math="60" />.</>}
+  categories={["10.00", "10.03", "10.13", "10.23", "10.27", "11.58", "12.00", "12.30"]}
+  series={[
+    { label: "Bimas Energie", mark: "line", values: [52, 52 + 30 - 20, 62 - 20, 42 + 2 - 6, 38 - 6, 32 + 19, 51 + 15, 66] },
+    { label: "Grenze 60", mark: "line", values: [60, 60, 60, 60, 60, 60, 60, 60] },
+  ]}
+  valueLabel="Energie"
+/>
+
 # Kontrolle über alle Änderungen
 
 Rechne zur Kontrolle alle Änderungen auf einmal zusammen. Es gibt <InlineMath math="2+19=21" /> automatische Auffüllungen, einen Trank, ein Geschenk, zwei Bossmissionen und zwei normale Missionen. Die Summe muss **mit der schrittweisen Rechnung übereinstimmen**.

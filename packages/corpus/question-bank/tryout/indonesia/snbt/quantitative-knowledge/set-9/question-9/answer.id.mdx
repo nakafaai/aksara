@@ -37,6 +37,37 @@ Untuk <InlineMath math="x=3" /> dan <InlineMath math="x=-1" />, pangkatnya <Inli
 
 Jadi **<InlineMath math="x=1" /> memang tidak memenuhi**.
 
+Grafik pangkat <InlineMath math="y=x^2-2x" /> berikut memperlihatkan kedua syarat sekaligus. Pangkat harus berada **di dalam pita <InlineMath math="0\le y\le3" />**. Titik di <InlineMath math="x=-1" />, <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="3" /> ada di pita itu, sedangkan <InlineMath math="x=1" /> jatuh ke <InlineMath math="y=-1" />, di bawah pita.
+
+<MathVisual
+  title={<>Pangkat <InlineMath math="x^2-2x" /> dan pita <InlineMath math="0\le y\le3" /></>}
+  description={<>Parabola <InlineMath math="y=x^2-2x" /> punya titik terendah <InlineMath math="(1,-1)" />. Pita yang diarsir adalah <InlineMath math="0\le y\le3" />. Untuk bilangan bulat <InlineMath math="x=-1" />, <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="3" />, nilai pangkatnya <InlineMath math="3" />, <InlineMath math="0" />, <InlineMath math="0" />, dan <InlineMath math="3" />, semuanya di pita. Untuk <InlineMath math="x=1" />, pangkatnya <InlineMath math="-1" />.</>}
+  labels={{
+    curve: <InlineMath math="y=x^2-2x" />,
+    top: <InlineMath math="y=3" />,
+    one: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "band", kind: "region", appearance: "highlight", inequalities: ["y >= 0", "y <= 3", "x >= -2", "x <= 4"] },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 - 2x", domain: { min: -1.5, max: 3.5 } },
+      { id: "pm1", kind: "point", appearance: "answer", at: { x: -1, y: 3 } },
+      { id: "p0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "p1", kind: "point", appearance: "warning", at: { x: 1, y: -1 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: 5.25 }, placement: "left" },
+      { key: "top", objectId: "band", at: { x: -1.7, y: 3 }, placement: "above" },
+      { key: "one", objectId: "p1", at: { x: 1, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Pilihan yang menjebak
 
 - <InlineMath math="5" /> **lupa syarat <InlineMath math="x^2-2x\ge0" />**, sehingga <InlineMath math="x=1" /> ikut terhitung.

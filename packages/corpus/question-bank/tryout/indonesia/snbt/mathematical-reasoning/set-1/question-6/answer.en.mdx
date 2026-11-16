@@ -41,6 +41,19 @@ Compare the Outside Java cost with twice the Java cost for the same billed weigh
 &= 4{,}000w+7{,}000
 \end{aligned}" />
 
+The chart below draws both costs for billed weights from <InlineMath math="1" /> to <InlineMath math="10\text{ kg}" />. **The twice-Java line always stays on top**, and the gap widens by <InlineMath math="\text{Rp}4{,}000" /> per kilogram.
+
+<Chart
+  title={<>Twice the Java cost and the Outside Java cost by billed weight</>}
+  description={<>For billed weights <InlineMath math="w" /> from <InlineMath math="1" /> to <InlineMath math="10\text{ kg}" />, twice the Java cost is <InlineMath math="24{,}000w+22{,}000" /> and the Outside Java cost is <InlineMath math="20{,}000w+15{,}000" />. At <InlineMath math="w=1" /> they're <InlineMath math="\text{Rp}46{,}000" /> and <InlineMath math="\text{Rp}35{,}000" />, and at <InlineMath math="w=10" /> they're <InlineMath math="\text{Rp}262{,}000" /> and <InlineMath math="\text{Rp}215{,}000" />.</>}
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Twice the Java cost", mark: "line", values: Array.from({ length: 10 }, (_, i) => 2 * (12000 * (i + 1) + 11000)) },
+    { label: "Outside Java cost", mark: "line", values: Array.from({ length: 10 }, (_, i) => 20000 * (i + 1) + 15000) },
+  ]}
+  valueLabel="Cost (rupiah)"
+/>
+
 Since <InlineMath math="w\ge1" />, the difference <InlineMath math="4{,}000w+7{,}000" /> is always positive. That means **twice the Java cost is always larger** than the Outside Java cost. For example, at <InlineMath math="w=1" /> the cost is <InlineMath math="\text{Rp}35{,}000" /> against <InlineMath math="2\cdot\text{Rp}23{,}000=\text{Rp}46{,}000" />. The fourth statement is true.
 
 So the first statement is true, the second is true, the third is false, and the fourth is true.

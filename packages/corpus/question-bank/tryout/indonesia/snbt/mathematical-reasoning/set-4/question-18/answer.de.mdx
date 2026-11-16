@@ -8,6 +8,20 @@ Eine Wand von <InlineMath math="410\text{ cm}" /> Breite braucht <InlineMath mat
 
 Zwei dieser <InlineMath math="32" /> Bahnen liegen über der Tür, also **gibt es <InlineMath math="30" /> ganze Bahnen und <InlineMath math="2" /> kurze**. Eine kurze Bahn deckt <InlineMath math="240-200=40\text{ cm}" />.
 
+Das Diagramm vergleicht die Breite jeder Wand geteilt durch <InlineMath math="50\text{ cm}" /> mit den tatsächlich angebrachten Bahnen. **Jede Wand rundet für sich auf**, also brauchen die vier Wände zusammen <InlineMath math="32" /> Bahnen, nicht <InlineMath math="29" />.
+
+<Chart
+  title={<>Tapetenbahnen für jede Wand von Rinas Zimmer</>}
+  description={<>Eine Wand von <InlineMath math="410\text{ cm}" /> braucht <InlineMath math="8{,}2" /> Bahnbreiten, aufgerundet <InlineMath math="9" /> Bahnen. Eine Wand von <InlineMath math="310\text{ cm}" /> braucht <InlineMath math="6{,}2" /> Bahnbreiten, aufgerundet <InlineMath math="7" /> Bahnen. Zusammen sind es <InlineMath math="9+7+9+7=32" /> Bahnen.</>}
+  categories={["Wand 410 cm", "Wand 310 cm", "Zweite Wand 410 cm", "Wand 310 cm mit Tür"]}
+  bars="apart"
+  series={[
+    { label: "Breite geteilt durch 50 cm", mark: "bar", values: [410 / 50, 310 / 50, 410 / 50, 310 / 50] },
+    { label: "Angebrachte Bahnen", mark: "bar", values: [Math.ceil(410 / 50), Math.ceil(310 / 50), Math.ceil(410 / 50), Math.ceil(310 / 50)] },
+  ]}
+  valueLabel="Bahnen"
+/>
+
 # Die erste Aussage zu acht Rollen
 
 Der Zuschnitt ohne Muster für eine ganze Bahn ist <InlineMath math="240+10=250\text{ cm}" />, also ergibt eine Rolle <InlineMath math="4" /> Bahnen. Dreißig ganze Bahnen brauchen <InlineMath math="7" /> volle Rollen und <InlineMath math="2" /> Bahnen aus einer achten Rolle. Eine kurze Bahn wird nur auf <InlineMath math="40+10=50\text{ cm}" /> geschnitten, und **die achte Rolle hat noch <InlineMath math="500\text{ cm}" /> übrig**, also passen beide. Die erste Aussage ist wahr.

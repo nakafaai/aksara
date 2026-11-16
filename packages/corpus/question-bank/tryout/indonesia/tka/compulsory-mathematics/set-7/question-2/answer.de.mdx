@@ -30,6 +30,40 @@ n\cdot2{,}5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
 n&<38
 \end{aligned}" />
 
+Zeichne den Pegel in der ersten Reihe als Funktion der Anzahl großer Trommeln <InlineMath math="n" />. **Die Kurve erreicht <InlineMath math="90\text{ dB}" /> genau bei <InlineMath math="n=38" />**, und die Bedingung verlangt weniger als <InlineMath math="90" />, also ist die letzte ganze Zahl unter der Linie <InlineMath math="37" />.
+
+<MathVisual
+  title={<>Pegel in der ersten Reihe nach Anzahl großer Trommeln</>}
+  description={<>Die waagerechte Achse ist <InlineMath math="n" />, die senkrechte Achse der Pegel in dB, <InlineMath math="\mathrm{TI}(n)=70+10\log(2{,}5n+5)" />. Die Kurve steigt immer flacher. Die waagerechte Linie bei <InlineMath math="90\text{ dB}" /> ist die Grenze. Der Punkt für <InlineMath math="n=38" /> liegt genau auf der Linie, der Punkt für <InlineMath math="n=37" /> knapp darunter, bei etwa <InlineMath math="89{,}9\text{ dB}" />.</>}
+  labels={{
+    level: <InlineMath math="\mathrm{TI}(n)" />,
+    limit: <InlineMath math="90\text{ dB}" />,
+    best: <InlineMath math="n=37" />,
+    edge: <InlineMath math="n=38" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 24, max: 46 },
+      y: { min: 87.2, max: 91.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "primary", formula: "70 + 10 log_10(2.5x + 5)", domain: { min: 25, max: 45 } },
+      { id: "limit", kind: "function", appearance: "reference", formula: "90", domain: { min: 25, max: 45 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 37, y: 70 + 10 * Math.log10(97.5) } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 38, y: 90 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 27, y: 70 + 10 * Math.log10(72.5) }, placement: "below-right" },
+      { key: "limit", objectId: "limit", at: { x: 30, y: 90 }, placement: "above" },
+      { key: "best", objectId: "best", at: { x: 37, y: 70 + 10 * Math.log10(97.5) }, placement: "below-left" },
+      { key: "edge", objectId: "edge", at: { x: 38, y: 90 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Weil die Bedingung **kleiner als** lautet, ist <InlineMath math="n=38" /> nicht erlaubt. Bei <InlineMath math="n=38" /> ist die Intensität genau <InlineMath math="40\cdot2{,}5\cdot10^{-5}=10^{-3}" />, also genau <InlineMath math="90\text{ dB}" />. Bei <InlineMath math="n=37" /> ist sie <InlineMath math="39\cdot2{,}5\cdot10^{-5}=9{,}75\cdot10^{-4}" />, noch unter der Grenze.
 
 # Warum die anderen Antworten falsch sind

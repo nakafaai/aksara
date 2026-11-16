@@ -20,6 +20,37 @@ Katakan jejari silinder pejal ialah <InlineMath math="\rho" />. Tingginya <Inlin
 \rho&=15\text{ cm}
 \end{aligned}" />
 
+Bandingkan kedua-dua keratan rentas pada skala yang sama. **Silinder pejal <InlineMath math="25" /> kali lebih pendek daripada paip, jadi keratan rentasnya mesti <InlineMath math="25" /> kali lebih luas daripada gelang paip**: <InlineMath math="25\cdot9\pi=225\pi" />, iaitu bulatan berjejari <InlineMath math="15" />.
+
+<MathVisual
+  title={<>Keratan rentas paip dan silinder pejal</>}
+  description={<>Di kiri, keratan rentas paip ialah gelang di antara bulatan berjejari <InlineMath math="5" /> dan <InlineMath math="4" />, dengan luas <InlineMath math="9\pi\text{ cm}^2" />. Di kanan, keratan rentas silinder pejal ialah bulatan berjejari <InlineMath math="15" /> dengan luas <InlineMath math="225\pi\text{ cm}^2" />, dilukis pada skala yang sama.</>}
+  labels={{
+    pipe: <InlineMath math="9\pi" />,
+    solid: <InlineMath math="225\pi" />,
+    radius: <InlineMath math="\rho=15" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -28, max: 28 },
+      y: { min: -17, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe", kind: "region", appearance: "secondary", inequalities: ["(x + 20)^2 + y^2 <= 25", "(x + 20)^2 + y^2 >= 16"] },
+      { id: "solid", kind: "circle", appearance: "primary", center: { x: 10, y: 0 }, radius: 15 },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 10, y: 0 }, to: { x: 25, y: 0 } },
+    ],
+    labels: [
+      { key: "pipe", objectId: "pipe", at: { x: -20, y: 5 }, placement: "above" },
+      { key: "solid", objectId: "solid", at: { x: 10, y: 15 }, placement: "above" },
+      { key: "radius", objectId: "radius", at: { x: 17.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Yang ditanya ialah diameter, jadi <InlineMath math="d=2\rho=30\text{ cm}" />. Semak sama ada jawapan ini munasabah: paip sepanjang <InlineMath math="500\text{ cm}" /> menjadi silinder yang <InlineMath math="25" /> kali lebih pendek, jadi luas keratan rentasnya mesti <InlineMath math="25" /> kali luas cincin, iaitu <InlineMath math="25\cdot9\pi=225\pi" />. Itu memang luas bulatan berjejari <InlineMath math="15" />.
 
 # Mengapa pilihan lain salah

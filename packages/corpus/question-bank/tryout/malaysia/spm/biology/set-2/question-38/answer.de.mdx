@@ -1,0 +1,28 @@
+# Beide Gruppen Tag für Tag verfolgen
+
+Das Antibiotikum entfernt nur die Bakterien, die es abtöten kann, die beiden Gruppen verändern sich also **unterschiedlich**. Verfolge jede einzeln und vergleiche dann.
+
+<BlockMath math="\begin{aligned}
+\text{abtötbar}&: 1\,000\,000\xrightarrow{\times0.01}10\,000\xrightarrow{\times0.01}100\\
+\text{resistent}&: 100\to100\to100
+\end{aligned}" />
+
+Nach <InlineMath math="2" /> Tagen sind <InlineMath math="100" /> der <InlineMath math="200" /> Überlebenden resistent, also <InlineMath math="\frac{100}{200}=50\%" />.
+
+<Chart
+  title={<>Anteil resistenter Bakterien während der Behandlung</>}
+  categories={["Tag 0", "Tag 1", "Tag 2"]}
+  series={[
+    { label: "Resistenter Anteil (%)", mark: "line", values: [0.01, 0.99, 50] },
+  ]}
+  valueLabel="Resistente Bakterien (%)"
+  description={<>Der resistente Anteil liegt anfangs bei etwa <InlineMath math="0{,}01" /> Prozent, nach einem Tag bei etwa <InlineMath math="0{,}99" /> Prozent und nach zwei Tagen bei <InlineMath math="50" /> Prozent, wenn neben den <InlineMath math="100" /> resistenten noch <InlineMath math="100" /> abtötbare Bakterien leben.</>}
+/>
+
+Ein früher Abbruch hinterlässt eine Population, in der die Hälfte resistent ist, und diese Bakterien können sich zu einer Infektion vermehren, die das Antibiotikum nicht mehr behandelt. Resistent sind also <InlineMath math="50\%" /> der noch lebenden Bakterien.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0.01\%" /> ist der Anteil **vor** der Behandlung, <InlineMath math="\frac{100}{1\,000\,100}" />.
+- <InlineMath math="1\%" /> ist ungefähr der Anteil nach einem Tag, <InlineMath math="\frac{100}{10\,100}" />.
+- <InlineMath math="99\%" /> nimmt an, alle abtötbaren Bakterien seien tot, doch <InlineMath math="100" /> davon leben nach zwei Tagen noch.

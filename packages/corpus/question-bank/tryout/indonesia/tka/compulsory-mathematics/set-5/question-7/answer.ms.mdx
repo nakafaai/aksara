@@ -29,6 +29,41 @@ Semak kedua-duanya. <InlineMath math="2(2x+3)+3=4x+9" /> dan <InlineMath math="-
 
 <BlockMath math="5+(-11)=-6" />
 
+Lukis kedua-dua fungsi yang lulus. **Garis tegak <InlineMath math="x=1" /> memotong kedua-duanya pada dua ketinggian yang berbeza**, jadi ada dua nilai <InlineMath math="f(1)" /> yang perlu dijumlahkan.
+
+<MathVisual
+  title={<>Dua fungsi linear dengan <InlineMath math="f\circ f=4x+9" /></>}
+  description={<>Garis menaik <InlineMath math="f(x)=2x+3" /> dan garis menurun <InlineMath math="f(x)=-2x-9" /> sama-sama memenuhi <InlineMath math="(f\circ f)(x)=4x+9" />. Garis tegak <InlineMath math="x=1" /> memotong garis menaik pada <InlineMath math="(1,\ 5)" /> dan garis menurun pada <InlineMath math="(1,\ -11)" />.</>}
+  labels={{
+    up: <InlineMath math="f(x)=2x+3" />,
+    down: <InlineMath math="f(x)=-2x-9" />,
+    "up-one": <InlineMath math="(1,\ 5)" />,
+    "down-one": <InlineMath math="(1,\ -11)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 4 },
+      y: { min: -14, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "up", kind: "function", appearance: "primary", formula: "2x + 3", domain: { min: -6, max: 3.3 } },
+      { id: "down", kind: "function", appearance: "secondary", formula: "-2x - 9", domain: { min: -6, max: 2.4 } },
+      { id: "check", kind: "segment", appearance: "construction", from: { x: 1, y: -13 }, to: { x: 1, y: 8 } },
+      { id: "up-one", kind: "point", appearance: "answer", at: { x: 1, y: 5 } },
+      { id: "down-one", kind: "point", appearance: "answer", at: { x: 1, y: -11 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "down", objectId: "down", at: { x: -5, y: 1 }, placement: "right" },
+      { key: "up-one", objectId: "up-one", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "down-one", objectId: "down-one", at: { x: 1, y: -11 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi, hasil tambah semua nilai <InlineMath math="f(1)" /> yang mungkin ialah <InlineMath math="-6" />.
 
 # Mengapa pilihan lain salah

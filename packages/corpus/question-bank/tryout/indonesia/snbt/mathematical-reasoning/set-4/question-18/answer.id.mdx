@@ -8,6 +8,20 @@ Dinding selebar <InlineMath math="410\text{ cm}" /> memerlukan <InlineMath math=
 
 Dua dari <InlineMath math="32" /> lembar itu berada di atas pintu, jadi **ada <InlineMath math="30" /> lembar utuh dan <InlineMath math="2" /> lembar pendek**. Lembar pendek menutup <InlineMath math="240-200=40\text{ cm}" />.
 
+Grafik berikut membandingkan lebar setiap dinding dibagi <InlineMath math="50\text{ cm}" /> dengan lembar yang benar-benar dipasang. **Setiap dinding membulatkan sendiri**, jadi keempat dinding bersama-sama memakai <InlineMath math="32" /> lembar, bukan <InlineMath math="29" />.
+
+<Chart
+  title={<>Lembar wallpaper untuk setiap dinding kamar Rina</>}
+  description={<>Dinding <InlineMath math="410\text{ cm}" /> memerlukan <InlineMath math="8{,}2" /> lebar lembar, dibulatkan menjadi <InlineMath math="9" /> lembar. Dinding <InlineMath math="310\text{ cm}" /> memerlukan <InlineMath math="6{,}2" /> lebar lembar, dibulatkan menjadi <InlineMath math="7" /> lembar. Jumlahnya <InlineMath math="9+7+9+7=32" /> lembar.</>}
+  categories={["Dinding 410 cm", "Dinding 310 cm", "Dinding 410 cm kedua", "Dinding 310 cm berpintu"]}
+  bars="apart"
+  series={[
+    { label: "Lebar dibagi 50 cm", mark: "bar", values: [410 / 50, 310 / 50, 410 / 50, 310 / 50] },
+    { label: "Lembar yang dipasang", mark: "bar", values: [Math.ceil(410 / 50), Math.ceil(310 / 50), Math.ceil(410 / 50), Math.ceil(310 / 50)] },
+  ]}
+  valueLabel="Banyak lembar"
+/>
+
 # Pernyataan pertama tentang delapan gulung
 
 Potongan polos untuk lembar utuh adalah <InlineMath math="240+10=250\text{ cm}" />, jadi satu gulung menghasilkan <InlineMath math="4" /> lembar. Tiga puluh lembar utuh memerlukan <InlineMath math="7" /> gulung penuh dan <InlineMath math="2" /> lembar dari gulung kedelapan. Potongan lembar pendek hanya <InlineMath math="40+10=50\text{ cm}" />, dan **sisa gulung kedelapan masih <InlineMath math="500\text{ cm}" />**, jadi keduanya muat. Pernyataan pertama benar.

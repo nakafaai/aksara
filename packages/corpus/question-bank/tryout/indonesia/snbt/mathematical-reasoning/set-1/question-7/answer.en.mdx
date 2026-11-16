@@ -28,6 +28,20 @@ n &\le 11\tfrac{1}{6}
 
 The number of books has to be a whole number, so <InlineMath math="n=11" />. That many also fits, since the box holds up to <InlineMath math="20" /> books.
 
+The chart below works out the cost for <InlineMath math="8" /> to <InlineMath math="14" /> books. The bars for <InlineMath math="10" /> and <InlineMath math="11" /> books are the same height because both are billed at <InlineMath math="7\text{ kg}" />, and **the first bar over the budget line is <InlineMath math="12" /> books**.
+
+<Chart
+  title={<>Outside Java shipping cost by number of books</>}
+  description={<>For <InlineMath math="8" /> to <InlineMath math="14" /> books, the costs are <InlineMath math="\text{Rp}135{,}000" />, <InlineMath math="\text{Rp}135{,}000" />, <InlineMath math="\text{Rp}155{,}000" />, <InlineMath math="\text{Rp}155{,}000" />, <InlineMath math="\text{Rp}175{,}000" />, <InlineMath math="\text{Rp}195{,}000" />, and <InlineMath math="\text{Rp}195{,}000" />. The flat line marks the budget of <InlineMath math="\text{Rp}170{,}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 7 }, (_, i) => `${i + 8}`)}
+  series={[
+    { label: "Shipping cost", mark: "bar", values: Array.from({ length: 7 }, (_, i) => Math.max(0.6 + 0.6 * (i + 8), 6)).map((s) => 20000 * (s - Math.floor(s) > 0.3 ? Math.ceil(s) : Math.floor(s)) + 15000) },
+    { label: "Budget Rp170,000", mark: "line", values: Array.from({ length: 7 }, () => 170000) },
+  ]}
+  valueLabel="Cost (rupiah)"
+/>
+
 # Checking the answer
 
 With <InlineMath math="11" /> books, the actual weight is <InlineMath math="0.6+6.6=7.2\text{ kg}" />. The excess of <InlineMath math="0.2\text{ kg}" /> is dropped, the billed weight is <InlineMath math="7\text{ kg}" />, and the cost is <InlineMath math="\text{Rp}155{,}000" />. With <InlineMath math="12" /> books, the actual weight is <InlineMath math="7.8\text{ kg}" />, and the excess of <InlineMath math="0.8\text{ kg}" /> **forces rounding up** to <InlineMath math="8\text{ kg}" />, so the cost is <InlineMath math="\text{Rp}175{,}000" />, over the budget.

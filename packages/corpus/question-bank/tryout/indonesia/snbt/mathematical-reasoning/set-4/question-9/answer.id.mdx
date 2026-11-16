@@ -32,6 +32,21 @@ t &\ge 70{,}4
 
 Nilai pewawancara berupa bilangan bulat, jadi **nilai terkecil yang memenuhi adalah** <InlineMath math="71" />. Nilai ini memang lebih dari <InlineMath math="58" />, jadi cocok dengan kasus yang dipakai.
 
+Grafik berikut menghitung nilai akhir Gita untuk nilai pewawancara ketiga dari <InlineMath math="65" /> sampai <InlineMath math="75" />. Setiap tambahan satu poin hanya menaikkan nilai akhir <InlineMath math="0{,}125" />, dan **batang pertama yang melewati garis <InlineMath math="80" /> adalah <InlineMath math="71" />**.
+
+<Chart
+  title={<>Nilai akhir Gita menurut nilai pewawancara ketiga</>}
+  description={<>Untuk nilai pewawancara ketiga <InlineMath math="t" /> di atas <InlineMath math="58" />, nilai akhir Gita adalah <InlineMath math="60{,}7+0{,}25\cdot\tfrac{84+t}{2}" />. Untuk <InlineMath math="t=70" /> nilainya <InlineMath math="79{,}95" />, dan untuk <InlineMath math="t=71" /> nilainya <InlineMath math="80{,}075" />. Garis datar menandai syarat <InlineMath math="80" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${65 + i}`)}
+  series={[
+    { label: "Nilai akhir Gita", mark: "bar", values: Array.from({ length: 11 }, (_, i) => 60.7 + 0.25 * ((84 + 65 + i) / 2)) },
+    { label: "Syarat 80", mark: "line", values: Array.from({ length: 11 }, () => 80) },
+  ]}
+  valueRange={{ min: 78, max: 81 }}
+  valueLabel="Nilai akhir"
+/>
+
 # Memeriksa batasnya
 
 Cek <InlineMath math="t=71" /> dan <InlineMath math="t=70" />:

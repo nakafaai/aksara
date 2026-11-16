@@ -31,6 +31,17 @@ Von 08.00 bis 15.00 Uhr steigt der Akku nur, also ist ein Akku mit der Kapazitä
 C &\ge 14
 \end{aligned}" />
 
+Das Diagramm zeigt den Abendkauf für jede Kapazität von <InlineMath math="6" /> bis <InlineMath math="16\text{ kWh}" />. Jede zusätzliche <InlineMath math="1\text{ kWh}" /> Kapazität senkt den Kauf um <InlineMath math="1\text{ kWh}" />, und **die Balken verschwinden genau bei Kapazität <InlineMath math="14" />**. Mehr Kapazität spart nichts mehr.
+
+<Chart
+  title={<>Am Abend gekaufte Energie nach Akkukapazität</>}
+  description={<>Für Kapazitäten <InlineMath math="C" /> von <InlineMath math="6" /> bis <InlineMath math="14\text{ kWh}" /> beträgt der Abendkauf <InlineMath math="14-C" /> und fällt von <InlineMath math="8" /> auf <InlineMath math="0\text{ kWh}" />. Für <InlineMath math="C=15" /> und <InlineMath math="16" /> bleibt er bei <InlineMath math="0" />. Der Morgenkauf von <InlineMath math="1\text{ kWh}" /> hängt nicht von der Kapazität ab.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i + 6}`)}
+  series={[{ label: "Kauf am Abend (kWh)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => Math.max(0, 11 - (Math.min(i + 6, 16) - 3))) }]}
+  valueLabel="Energie (kWh)"
+/>
+
 # Kontrolle mit zwei Kapazitäten
 
 Mit <InlineMath math="C=14" /> verläuft der Akkustand <InlineMath math="1,2,4,7,10,12,14,14,13,12" />. Der Teil oberhalb der Reserve beträgt genau <InlineMath math="11\text{ kWh}" />, also wird am Abend nichts gekauft. Mit <InlineMath math="C=13" /> liegt der Stand am Ende des Nachmittags nur bei <InlineMath math="11\text{ kWh}" />, und nutzbar sind <InlineMath math="10\text{ kWh}" />. Dann **bleibt ein Kauf von** <InlineMath math="1\text{ kWh}" />, und die Ersparnis beträgt nur <InlineMath math="\text{Rp}17{.}500" />.

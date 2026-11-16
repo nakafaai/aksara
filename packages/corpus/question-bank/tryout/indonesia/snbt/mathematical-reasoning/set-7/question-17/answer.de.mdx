@@ -20,6 +20,22 @@ Zehn gleich lange Stunden müssen in diese Zeit passen.
 
 **Die Stundenlänge ist an allen vier Tagen gleich**, sie muss also beide Grenzen zugleich erfüllen. Die strengere Grenze ist die vom Montag, weil der Fahnenappell länger dauert. Die Länge ist eine ganze Zahl von Minuten, also bedeutet <InlineMath math="t\le39{,}5" /> **höchstens <InlineMath math="39" /> Minuten**.
 
+Das Diagramm berechnet, wann die Schule endet, in Minuten nach 07.00 Uhr, für mehrere Stundenlängen. **Der Montagsbalken überschreitet die Linie für 15.00 Uhr schon bei <InlineMath math="40" /> Minuten**, während der Balken für Dienstag bis Donnerstag noch deutlich darunter liegt.
+
+<Chart
+  title={<>Schulende mit <InlineMath math="10" /> Stunden nach Länge einer Stunde</>}
+  description={<>Bei Stunden von <InlineMath math="38" /> bis <InlineMath math="42" /> Minuten endet der Montag <InlineMath math="465" />, <InlineMath math="475" />, <InlineMath math="485" />, <InlineMath math="495" /> und <InlineMath math="505" /> Minuten nach 07.00 Uhr. Dienstag bis Donnerstag enden <InlineMath math="440" />, <InlineMath math="450" />, <InlineMath math="460" />, <InlineMath math="470" /> und <InlineMath math="480" /> Minuten nach 07.00 Uhr. Die waagerechte Linie markiert <InlineMath math="480" /> Minuten, also 15.00 Uhr. Die Werteachse beginnt bei <InlineMath math="400" />.</>}
+  bars="apart"
+  categories={["38", "39", "40", "41", "42"]}
+  series={[
+    { label: "Montag", mark: "bar", values: [38, 39, 40, 41, 42].map((t) => 40 + 10 * t + 45) },
+    { label: "Dienstag bis Donnerstag", mark: "bar", values: [38, 39, 40, 41, 42].map((t) => 15 + 10 * t + 45) },
+    { label: "15.00 Uhr", mark: "line", values: [480, 480, 480, 480, 480] },
+  ]}
+  valueRange={{ min: 400, max: 520 }}
+  valueLabel="Minuten nach 07.00 Uhr"
+/>
+
 # Probe
 
 Mit Stunden von <InlineMath math="39" /> Minuten endet der Montag <InlineMath math="40+390+45=475" /> Minuten nach 07.00 Uhr, also um 14.55 Uhr. Mit Stunden von <InlineMath math="40" /> Minuten endet er <InlineMath math="40+400+45=485" /> Minuten nach 07.00 Uhr, also um 15.05 Uhr, **<InlineMath math="5" /> Minuten zu spät**. Dienstag bis Donnerstag enden mit <InlineMath math="39" /> Minuten um 14.30 Uhr, das passt.

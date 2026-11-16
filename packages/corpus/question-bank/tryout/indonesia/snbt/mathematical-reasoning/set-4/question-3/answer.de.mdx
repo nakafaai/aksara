@@ -46,6 +46,21 @@ Prüfe <InlineMath math="900\text{ km}" />:
 
 Paket B ist tatsächlich am günstigsten, also passt dieser Kandidat zu allen Angaben.
 
+Das Diagramm zeichnet die Kosten aller drei Pakete für eine Miete von <InlineMath math="5" /> Tagen. Die Rechnungslinie schneidet die Linie von Paket A bei <InlineMath math="700\text{ km}" /> und die von Paket B bei <InlineMath math="900\text{ km}" />, aber **nur bei <InlineMath math="900\text{ km}" /> ist die schneidende Linie auch die unterste**.
+
+<Chart
+  title={<>Kosten einer Miete von <InlineMath math="5" /> Tagen nach Gesamtstrecke</>}
+  description={<>Paket A kostet <InlineMath math="800{.}000+1{.}500x" /> Rupiah. Paket B bleibt bis <InlineMath math="750\text{ km}" /> bei <InlineMath math="1{.}400{.}000" /> Rupiah und steigt dann um <InlineMath math="3{.}000" /> Rupiah pro Kilometer. Paket C bleibt bei <InlineMath math="2{.}000{.}000" /> Rupiah. Die waagerechte Linie markiert die Rechnung von <InlineMath math="1{.}850{.}000" /> Rupiah.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${600 + 50 * i}`)}
+  series={[
+    { label: "Paket A", mark: "line", values: Array.from({ length: 9 }, (_, i) => 800000 + 1500 * (600 + 50 * i)) },
+    { label: "Paket B", mark: "line", values: Array.from({ length: 9 }, (_, i) => 1400000 + 3000 * Math.max(0, 600 + 50 * i - 750)) },
+    { label: "Paket C", mark: "line", values: Array.from({ length: 9 }, () => 2000000) },
+    { label: "Rechnung von Herrn Bima", mark: "line", values: Array.from({ length: 9 }, () => 1850000) },
+  ]}
+  valueLabel="Kosten (Rupiah)"
+/>
+
 # Warum die anderen Antworten falsch sind
 
 Jede falsche Antwort entsteht aus **einem übersprungenen Schritt** in der Kette oben.
