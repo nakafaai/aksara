@@ -8,6 +8,29 @@ Satu skala mikrometer objektif (mikrometer meja) bernilai <InlineMath math="\fra
   chart={"flowchart LR\n  A[40 skala = 100 µm pada ×10] --> B[1 skala = 2.5 µm]\n  B -->|objektif ×40: ÷4| C[1 skala = 0.625 µm]\n  C -->|32 skala| D[sel = 20 µm]\n  D -->|gambar 60 mm| E[perbesaran ×3000]"}
 />
 
+Ganti lensa objektifnya dan lihat skala okuler tetap diam, sementara selnya melebar melintasinya.
+
+<MicroscopeLab
+  title={<>Skala Okuler di Dua Lensa Objektif</>}
+  description={<>Di <InlineMath math="\times10" />, satu skala bernilai <InlineMath math="2{,}5\,\mu\text{m}" />. Ganti ke <InlineMath math="\times40" /> dan skala yang sama jadi empat kali lebih halus.</>}
+  labels={{
+    across: <>Sel melintang medan</>,
+    cell: <>Panjang satu sel</>,
+    division: <>Satu skala okuler</>,
+    field: <>Diameter medan pandang</>,
+    magnification: <>Perbesaran total</>,
+    objective: "Pilih lensa objektif",
+    span: <>Panjang sel dalam skala</>,
+    view: "Mikroskop cahaya",
+    views: { eyepiece: "Lensa okuler", stand: "Mikroskop" },
+  }}
+  cell={20}
+  eyepiece={10}
+  graticule={{ eyepiece: 40, micrometer: 10 }}
+  objectives={[10, 40]}
+  specimen="onion"
+/>
+
 <BlockMath math="40\text{ skala okuler}=10\times10\,\mu\text{m}=100\,\mu\text{m},\qquad 1\text{ skala okuler}=2.5\,\mu\text{m}." />
 
 Skala okuler ada di dalam lensa okuler, jadi ukurannya tidak berubah saat lensa objektif diganti, tetapi bayangan spesimennya berubah. Lensa objektif <InlineMath math="\times40" /> memperbesar **empat kali lagi**, jadi satu skala okuler kini menutupi bagian spesimen yang **empat kali lebih kecil**:

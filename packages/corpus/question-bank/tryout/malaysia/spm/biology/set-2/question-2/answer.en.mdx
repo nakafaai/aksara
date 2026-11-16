@@ -8,6 +8,29 @@ One stage micrometer division is <InlineMath math="\frac{1\text{ mm}}{100}=0.01\
   chart={"flowchart LR\n  A[40 divisions = 100 µm at ×10] --> B[1 division = 2.5 µm]\n  B -->|×40 objective: ÷4| C[1 division = 0.625 µm]\n  C -->|32 divisions| D[cell = 20 µm]\n  D -->|60 mm drawing| E[magnification ×3000]"}
 />
 
+Switch objectives and watch the eyepiece scale stay put while the cell grows across it.
+
+<MicroscopeLab
+  title={<>Eyepiece Scale on Two Objectives</>}
+  description={<>At <InlineMath math="\times10" /> one division is <InlineMath math="2.5\,\mu\text{m}" />. Switch to <InlineMath math="\times40" /> and the same scale reads four times finer.</>}
+  labels={{
+    across: <>Cells across the field</>,
+    cell: <>Length of one cell</>,
+    division: <>One eyepiece division</>,
+    field: <>Field of view diameter</>,
+    magnification: <>Total magnification</>,
+    objective: "Choose an objective",
+    span: <>Cell length in divisions</>,
+    view: "Light microscope",
+    views: { eyepiece: "Eyepiece", stand: "Microscope" },
+  }}
+  cell={20}
+  eyepiece={10}
+  graticule={{ eyepiece: 40, micrometer: 10 }}
+  objectives={[10, 40]}
+  specimen="onion"
+/>
+
 <BlockMath math="40\text{ eyepiece divisions}=10\times10\,\mu\text{m}=100\,\mu\text{m},\qquad 1\text{ eyepiece division}=2.5\,\mu\text{m}." />
 
 The eyepiece scale sits inside the eyepiece, so it does not grow when the objective changes, but the specimen does. A <InlineMath math="\times40" /> objective magnifies **four times more**, so one eyepiece division now covers **four times less** of the specimen:
