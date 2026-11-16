@@ -8,6 +8,44 @@ The counter also records background radiation, which does not decay. **Only the 
 500\to250\to125:\ &2\text{ half-lives}\ \Rightarrow\ T_{1/2}=\frac{12}{2}=6.0\text{ hours}
 \end{aligned}" />
 
+Plot both count rates against time. The recorded curve levels off towards the background of <InlineMath math="20" /> counts per minute, while the corrected curve halves every <InlineMath math="6.0" /> hours.
+
+<MathVisual
+  title={<>Count rate with and without the background</>}
+  description={<>Count rate against time over <InlineMath math="12" /> hours, one vertical unit for <InlineMath math="50" /> counts per minute. The recorded rate falls from <InlineMath math="520" /> to <InlineMath math="145" /> and stays <InlineMath math="20" /> above the corrected rate. The corrected rate falls from <InlineMath math="500" /> to <InlineMath math="250" /> at <InlineMath math="6.0" /> hours and to <InlineMath math="125" /> at <InlineMath math="12" /> hours.</>}
+  labels={{
+    "recorded-start": <><InlineMath math="520" /></>,
+    "recorded-end": <><InlineMath math="145" /></>,
+    start: <><InlineMath math="500" /></>,
+    half: <><InlineMath math="250" /></>,
+    quarter: <><InlineMath math="125" /></>,
+    background: <>background <InlineMath math="20" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 14 }, y: { min: -1, max: 11.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "recorded", kind: "function", appearance: "primary", formula: "10 * 2^(-x/6) + 0.4", domain: { min: 0, max: 12 } },
+      { id: "corrected", kind: "function", appearance: "answer", formula: "10 * 2^(-x/6)", domain: { min: 0, max: 12 } },
+      { id: "background-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0.4 }, to: { x: 12, y: 0.4 } },
+      { id: "recorded-start-point", kind: "point", appearance: "primary", at: { x: 0, y: 10.4 } },
+      { id: "recorded-end-point", kind: "point", appearance: "primary", at: { x: 12, y: 2.9 } },
+      { id: "start-point", kind: "point", appearance: "answer", at: { x: 0, y: 10 } },
+      { id: "half-point", kind: "point", appearance: "answer", at: { x: 6, y: 5 } },
+      { id: "quarter-point", kind: "point", appearance: "answer", at: { x: 12, y: 2.5 } },
+    ],
+    labels: [
+      { key: "recorded-start", objectId: "recorded-start-point", at: { x: 0, y: 10.4 }, placement: "right" },
+      { key: "recorded-end", objectId: "recorded-end-point", at: { x: 12, y: 2.9 }, placement: "above" },
+      { key: "start", objectId: "start-point", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "half", objectId: "half-point", at: { x: 6, y: 5 }, placement: "below-left" },
+      { key: "quarter", objectId: "quarter-point", at: { x: 12, y: 2.5 }, placement: "below" },
+      { key: "background", objectId: "background-line", at: { x: 6, y: 0.4 }, placement: "below" },
+    ],
+  }}
+/>
+
 The ratio is exactly <InlineMath math="\tfrac{125}{500}=\tfrac14" />, so two half-lives pass in <InlineMath math="12" /> hours. So the half-life of the sample is <InlineMath math="6.0" /> hours.
 
 # Why the other options are wrong

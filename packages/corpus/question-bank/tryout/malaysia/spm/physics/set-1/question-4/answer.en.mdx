@@ -8,6 +8,32 @@ a&=\frac{F}{m}=\frac{4.0}{2.0}=2.0\text{ m s}^{-2}\\
 s&=\frac{v^2}{2a}=\frac{3.0^2}{2(2.0)}=2.25\text{ m}
 \end{aligned}" />
 
+The velocity-time graph of the block after the collision gives the same answer. It starts at <InlineMath math="3.0\text{ m s}^{-1}" />, falls steadily to zero at <InlineMath math="t=1.5\text{ s}" />, and the area under it is the sliding distance.
+
+<MathVisual
+  title={<>The block slows down after the collision</>}
+  description={<>Velocity of the block with the bullet inside, from just after the collision. It falls in a straight line from <InlineMath math="3.0\text{ m s}^{-1}" /> to zero at <InlineMath math="t=1.5\text{ s}" /> because the deceleration is a steady <InlineMath math="2.0\text{ m s}^{-2}" />, and the shaded triangle under the line is <InlineMath math="2.25\text{ m}" />.</>}
+  labels={{
+    start: <><InlineMath math="v=3.0\text{ m s}^{-1}" /></>,
+    stop: <><InlineMath math="t=1.5\text{ s}" /></>,
+    area: <><InlineMath math="s=\tfrac12(1.5)(3.0)=2.25\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.6, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area-shape", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }, { x: 1.5, y: 0 }] },
+      { id: "graph", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 1.5, y: 0 } },
+    ],
+    labels: [
+      { key: "start", objectId: "graph", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "stop", objectId: "graph", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "area", objectId: "area-shape", at: { x: 1, y: 1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 The deceleration uses the combined mass of <InlineMath math="2.0\text{ kg}" />, because the bullet moves with the block. So the block slides <InlineMath math="2.25\text{ m}" /> before it stops.
 
 # Why the other options are wrong

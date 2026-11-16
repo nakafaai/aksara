@@ -1,3 +1,34 @@
 Air mengalir secara mantap melalui sebatang paip mengufuk. Diameter bahagian lebar paip ialah <InlineMath math="4.0\text{ cm}" /> dan diameter bahagian sempit ialah <InlineMath math="2.0\text{ cm}" />. Laju air di bahagian lebar ialah <InlineMath math="0.50\text{ m s}^{-1}" />. Sebatang tiub tegak yang terbuka di hujung atas dipasang di atas setiap bahagian paip.
 
+<MathVisual
+  title={<>Paip mengufuk dengan dua tiub tegak</>}
+  description={<>Air mengalir dari kiri ke kanan, dari bahagian lebar berdiameter <InlineMath math="4.0\text{ cm}" /> pada <InlineMath math="0.50\text{ m s}^{-1}" /> ke bahagian sempit berdiameter <InlineMath math="2.0\text{ cm}" />. Satu tiub tegak yang terbuka dipasang di atas setiap bahagian.</>}
+  labels={{
+    "wide-diameter": <><InlineMath math="4.0\text{ cm}" /></>,
+    "narrow-diameter": <><InlineMath math="2.0\text{ cm}" /></>,
+    "wide-speed": <><InlineMath math="0.50\text{ m s}^{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe-top", kind: "polyline", appearance: "secondary", vertices: [{ x: -9, y: 4 }, { x: 0, y: 4 }, { x: 0, y: 2 }, { x: 9, y: 2 }] },
+      { id: "pipe-bottom", kind: "polyline", appearance: "secondary", vertices: [{ x: -9, y: -4 }, { x: 0, y: -4 }, { x: 0, y: -2 }, { x: 9, y: -2 }] },
+      { id: "tube-wide", kind: "polyline", appearance: "secondary", vertices: [{ x: -5, y: 4 }, { x: -5, y: 10 }] },
+      { id: "tube-wide-right", kind: "polyline", appearance: "secondary", vertices: [{ x: -4, y: 4 }, { x: -4, y: 10 }] },
+      { id: "tube-narrow", kind: "polyline", appearance: "secondary", vertices: [{ x: 4, y: 2 }, { x: 4, y: 10 }] },
+      { id: "tube-narrow-right", kind: "polyline", appearance: "secondary", vertices: [{ x: 5, y: 2 }, { x: 5, y: 10 }] },
+      { id: "wide-diameter", kind: "segment", appearance: "construction", from: { x: -8, y: -4 }, to: { x: -8, y: 4 } },
+      { id: "narrow-diameter", kind: "segment", appearance: "construction", from: { x: 8, y: -2 }, to: { x: 8, y: 2 } },
+      { id: "wide-speed", kind: "vector", appearance: "primary", from: { x: -4, y: 0 }, to: { x: -2.5, y: 0 } },
+    ],
+    labels: [
+      { key: "wide-diameter", objectId: "wide-diameter", at: { x: -8, y: 0 }, placement: "right" },
+      { key: "narrow-diameter", objectId: "narrow-diameter", at: { x: 8, y: 0 }, placement: "left" },
+      { key: "wide-speed", objectId: "wide-speed", at: { x: -3.25, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Antara berikut, yang manakah betul?

@@ -2,6 +2,49 @@
 
 The tension is an internal force, so it does not appear when you treat both blocks as one system. Find the system's acceleration first, then **isolate the block that only the string pulls**, which is P at the back.
 
+Mark every horizontal force on the picture. P feels the string pulling forward and friction pulling back, while Q feels the <InlineMath math="24\text{ N}" /> forward and the string pulling back.
+
+<MathVisual
+  title={<>Horizontal forces on each block</>}
+  description={<>Block P at the back feels the string tension <InlineMath math="T" /> forward and friction of <InlineMath math="4.0\text{ N}" /> backward. Block Q in front feels <InlineMath math="24\text{ N}" /> forward and the same tension <InlineMath math="T" /> backward. Both blocks share the acceleration of <InlineMath math="2.5\text{ m s}^{-2}" />, and the tension is <InlineMath math="19\text{ N}" />.</>}
+  labels={{
+    p: <><InlineMath math="P,\ 6.0\text{ kg}" /></>,
+    q: <><InlineMath math="Q,\ 2.0\text{ kg}" /></>,
+    pull: <><InlineMath math="24\text{ N}" /></>,
+    friction: <>friction <InlineMath math="4.0\text{ N}" /></>,
+    smooth: <>smooth floor</>,
+    "tension-p": <><InlineMath math="T=19\text{ N}" /></>,
+    "tension-q": <><InlineMath math="T=19\text{ N}" /></>,
+    acceleration: <><InlineMath math="a=2.5\text{ m s}^{-2}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 9 }, y: { min: -2.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -8, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "block-p", kind: "polygon", appearance: "secondary", vertices: [{ x: -7, y: 0 }, { x: -3, y: 0 }, { x: -3, y: 3 }, { x: -7, y: 3 }] },
+      { id: "block-q", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0 }, { x: 4.5, y: 0 }, { x: 4.5, y: 2 }, { x: 2, y: 2 }] },
+      { id: "string", kind: "segment", appearance: "construction", from: { x: -3, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "pull", kind: "vector", appearance: "primary", from: { x: 4.5, y: 1 }, to: { x: 7.5, y: 1 } },
+      { id: "friction", kind: "vector", appearance: "warning", from: { x: -4, y: -0.6 }, to: { x: -6.5, y: -0.6 } },
+      { id: "tension-p", kind: "vector", appearance: "answer", from: { x: -3, y: 1 }, to: { x: -1, y: 1 } },
+      { id: "tension-q", kind: "vector", appearance: "answer", from: { x: 2, y: 1 }, to: { x: 0, y: 1 } },
+      { id: "acceleration", kind: "vector", appearance: "highlight", from: { x: -1.5, y: 3.8 }, to: { x: 1.5, y: 3.8 } },
+    ],
+    labels: [
+      { key: "p", objectId: "block-p", at: { x: -5, y: 1.5 }, placement: "center" },
+      { key: "q", objectId: "block-q", at: { x: 3.25, y: 2 }, placement: "above" },
+      { key: "pull", objectId: "pull", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "friction", objectId: "friction", at: { x: -5.25, y: -0.6 }, placement: "below" },
+      { key: "smooth", objectId: "floor", at: { x: 3.25, y: 0 }, placement: "below" },
+      { key: "tension-p", objectId: "tension-p", at: { x: -2, y: 1 }, placement: "above" },
+      { key: "tension-q", objectId: "tension-q", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "acceleration", objectId: "acceleration", at: { x: 0, y: 3.8 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 a&=\frac{24-4.0}{6.0+2.0}=2.5\text{ m s}^{-2}\\
 T-4.0&=(6.0)(2.5)\ \Rightarrow\ T=19\text{ N}

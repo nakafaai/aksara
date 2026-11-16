@@ -4,6 +4,20 @@ The transistor switches on when the base voltage reaches a threshold. The LDR is
 
 <BlockMath math="V_B=\frac{R_{\text{LDR}}}{R+R_{\text{LDR}}}\,V" />
 
+Follow the chain from the resistor to the bulb. Each link is one step of the potential divider and the transistor switch.
+
+<Mermaid
+  title={<>How a smaller resistor switches the lamp on earlier</>}
+  description={<>Flow chart: a smaller <InlineMath math="R" /> gives the LDR a larger share of the supply voltage, so the base voltage reaches the switching value at a smaller LDR resistance. A smaller LDR resistance means brighter surroundings, so the bulb switches on earlier.</>}
+  chart={`
+flowchart TD
+  A["Replace R with a smaller resistor"] --> B["The LDR gets a larger share of the supply voltage"]
+  B --> C["The base voltage reaches the switching value at a smaller LDR resistance"]
+  C --> D["A smaller LDR resistance means brighter surroundings"]
+  D --> E["The bulb switches on earlier"]
+`}
+/>
+
 While it is still fairly bright, <InlineMath math="R_{\text{LDR}}" /> is smaller, so <InlineMath math="V_B" /> has not reached the threshold. For the threshold to be reached at that smaller <InlineMath math="R_{\text{LDR}}" />, **<InlineMath math="R" /> must be made smaller**, because a smaller <InlineMath math="R" /> gives the LDR a larger share of the voltage. So replace <InlineMath math="R" /> with a resistor of smaller resistance.
 
 # Why the other options are wrong

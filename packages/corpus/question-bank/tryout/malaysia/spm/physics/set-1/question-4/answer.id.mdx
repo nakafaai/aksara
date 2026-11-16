@@ -8,6 +8,32 @@ a&=\frac{F}{m}=\frac{4{,}0}{2{,}0}=2{,}0\text{ m s}^{-2}\\
 s&=\frac{v^2}{2a}=\frac{3{,}0^2}{2(2{,}0)}=2{,}25\text{ m}
 \end{aligned}" />
 
+Grafik kecepatan-waktu balok setelah tumbukan memberi jawaban yang sama. Grafiknya mulai di <InlineMath math="3{,}0\text{ m s}^{-1}" />, turun merata ke nol pada <InlineMath math="t=1{,}5\text{ s}" />, dan luas di bawahnya adalah jarak luncurnya.
+
+<MathVisual
+  title={<>Balok melambat setelah tumbukan</>}
+  description={<>Kecepatan balok berisi peluru, sejak sesaat setelah tumbukan. Kecepatannya turun lurus dari <InlineMath math="3{,}0\text{ m s}^{-1}" /> ke nol pada <InlineMath math="t=1{,}5\text{ s}" /> karena perlambatannya tetap <InlineMath math="2{,}0\text{ m s}^{-2}" />, dan segitiga yang diarsir di bawah garis itu bernilai <InlineMath math="2{,}25\text{ m}" />.</>}
+  labels={{
+    start: <><InlineMath math="v=3{,}0\text{ m s}^{-1}" /></>,
+    stop: <><InlineMath math="t=1{,}5\text{ s}" /></>,
+    area: <><InlineMath math="s=\tfrac12(1{,}5)(3{,}0)=2{,}25\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.6, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area-shape", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }, { x: 1.5, y: 0 }] },
+      { id: "graph", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 1.5, y: 0 } },
+    ],
+    labels: [
+      { key: "start", objectId: "graph", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "stop", objectId: "graph", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "area", objectId: "area-shape", at: { x: 1, y: 1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Perlambatan dihitung dengan massa gabungan <InlineMath math="2{,}0\text{ kg}" />, karena peluru ikut bergerak bersama balok. Jadi, balok meluncur sejauh <InlineMath math="2{,}25\text{ m}" /> sebelum berhenti.
 
 # Mengapa pilihan lain salah

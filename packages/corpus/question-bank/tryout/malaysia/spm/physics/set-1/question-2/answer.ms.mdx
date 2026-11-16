@@ -6,6 +6,36 @@ Tempoh bandul bergantung pada panjang berkesan hingga ke pusat ladung, iaitu <In
 
 Ini garis lurus dengan kecerunan <InlineMath math="\dfrac{4\pi^2}{g}" /> dan pintasan positif <InlineMath math="\dfrac{4\pi^2}{g}r" /> pada paksi <InlineMath math="T^2" />. **Ralat panjang hanya menganjakkan garis**, bukan mengubah kecerunannya.
 
+Lukis kedua-dua garis pada paksi yang sama. Data yang diukur dan garis yang kamu dapat jika mengukur hingga ke pusat ladung adalah selari, satu teranjak <InlineMath math="1.0\text{ cm}" /> ke kiri garis yang lain, jadi setiap pernyataan boleh dibaca daripada gambar ini.
+
+<MathVisual
+  title={<>Dua garis selari <InlineMath math="T^2" /> melawan <InlineMath math="l" /></>}
+  description={<>Garis data yang diukur mempunyai kecerunan <InlineMath math="4.0\text{ s}^2\text{ m}^{-1}" />, memotong paksi <InlineMath math="T^2" /> pada <InlineMath math="0.040\text{ s}^2" /> dan paksi <InlineMath math="l" /> pada <InlineMath math="l=-0.010\text{ m}" />. Garis bagi panjang yang diukur hingga ke pusat ladung selari dengannya dan melalui asalan.</>}
+  labels={{
+    measured: <>diukur hingga ke atas: <InlineMath math="T^2=4.0(l+0.010)" /></>,
+    centre: <>diukur hingga ke pusat: <InlineMath math="T^2=4.0\,l" /></>,
+    "cut-t": <><InlineMath math="0.040\text{ s}^2" /></>,
+    "cut-l": <><InlineMath math="l=-0.010\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 11 }, y: { min: -2, max: 10.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "measured-line", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -1, max: 9 } },
+      { id: "centre-line", kind: "function", appearance: "secondary", formula: "x", domain: { min: 0, max: 9 } },
+      { id: "cut-t-point", kind: "point", appearance: "highlight", at: { x: 0, y: 1 } },
+      { id: "cut-l-point", kind: "point", appearance: "highlight", at: { x: -1, y: 0 } },
+    ],
+    labels: [
+      { key: "measured", objectId: "measured-line", at: { x: 5, y: 6 }, placement: "above-left" },
+      { key: "centre", objectId: "centre-line", at: { x: 7, y: 7 }, placement: "below-right" },
+      { key: "cut-t", objectId: "cut-t-point", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "cut-l", objectId: "cut-l-point", at: { x: -1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Sekarang nilai setiap pernyataan. Pernyataan I betul kerana <InlineMath math="g=\dfrac{4\pi^2}{4.0}\approx9.87\text{ m s}^{-2}" /> dan kecerunan tidak mengandungi <InlineMath math="r" />. Pernyataan II betul kerana pintasannya <InlineMath math="4.0\times0.010=0.040\text{ s}^2" />. Pernyataan III salah kerana mengukur hingga ke pusat ladung hanya menganjakkan garis ke kiri sejauh <InlineMath math="r" />, dan kecerunannya kekal <InlineMath math="4.0\text{ s}^2\text{ m}^{-1}" />. Pernyataan IV betul kerana <InlineMath math="T^2=0" /> apabila <InlineMath math="l+r=0" />, iaitu pada <InlineMath math="l=-0.010\text{ m}" />. Jadi, pernyataan yang betul ialah I, II dan IV.
 
 # Kenapa pilihan lain salah

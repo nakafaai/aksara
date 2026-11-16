@@ -4,6 +4,20 @@ Der Transistor schaltet ein, wenn die Basisspannung einen Schwellenwert erreicht
 
 <BlockMath math="V_B=\frac{R_{\text{LDR}}}{R+R_{\text{LDR}}}\,V" />
 
+Folge der Kette vom Widerstand bis zur Lampe. Jedes Glied ist ein Schritt des Spannungsteilers und des Transistorschalters.
+
+<Mermaid
+  title={<>Wie ein kleinerer Widerstand die Lampe früher einschaltet</>}
+  description={<>Flussdiagramm: Ein kleinerer Widerstand <InlineMath math="R" /> gibt dem LDR einen größeren Anteil der Versorgungsspannung, also erreicht die Basisspannung den Schaltwert schon bei einem kleineren LDR-Widerstand. Ein kleinerer LDR-Widerstand heißt hellere Umgebung, also schaltet die Lampe früher ein.</>}
+  chart={`
+flowchart TD
+  A["R durch einen kleineren Widerstand ersetzen"] --> B["Der LDR bekommt einen größeren Anteil der Versorgungsspannung"]
+  B --> C["Die Basisspannung erreicht den Schaltwert bei kleinerem LDR-Widerstand"]
+  C --> D["Kleinerer LDR-Widerstand heißt hellere Umgebung"]
+  D --> E["Die Lampe schaltet früher ein"]
+`}
+/>
+
 Solange es noch recht hell ist, ist <InlineMath math="R_{\text{LDR}}" /> kleiner, und <InlineMath math="V_B" /> erreicht die Schwelle noch nicht. Damit die Schwelle schon bei diesem kleineren <InlineMath math="R_{\text{LDR}}" /> erreicht wird, **muss <InlineMath math="R" /> kleiner werden**, denn ein kleineres <InlineMath math="R" /> gibt dem LDR einen größeren Anteil der Spannung. Ersetze <InlineMath math="R" /> also durch einen Widerstand mit kleinerem Wert.
 
 # Warum die anderen Antworten falsch sind

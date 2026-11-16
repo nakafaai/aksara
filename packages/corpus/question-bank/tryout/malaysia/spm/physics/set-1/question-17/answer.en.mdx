@@ -7,6 +7,78 @@ u=10:\ \frac1v&=\frac1{15}-\frac1{10}=-\frac1{30}\ \Rightarrow\ v=-30\text{ cm},
 u=20:\ \frac1v&=\frac1{15}-\frac1{20}=\frac1{60}\ \Rightarrow\ v=+60\text{ cm},\ m=\frac{60}{20}=3
 \end{aligned}" />
 
+Ray diagrams show the same change. With the object inside the focal length, the rays spread out after the lens, and only their backward extensions meet, on the object's side.
+
+<MathVisual
+  title={<>Object <InlineMath math="10\text{ cm}" /> from the lens</>}
+  description={<>Ray diagram at one grid unit for <InlineMath math="5\text{ cm}" />, with the focal points <InlineMath math="15\text{ cm}" /> either side of the lens. The object stands <InlineMath math="10\text{ cm}" /> in front, inside the focal length. The dashed extensions of the two rays meet <InlineMath math="30\text{ cm}" /> in front of the lens at an upright image three times as tall.</>}
+  labels={{
+    "focus-left": <><InlineMath math="F" /></>,
+    "focus-right": <><InlineMath math="F" /></>,
+    object: <>object, <InlineMath math="u=10\text{ cm}" /></>,
+    image: <>virtual image, <InlineMath math="v=-30\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 7.5 }, y: { min: -4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -8, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -3.6 }, to: { x: 0, y: 3.6 } },
+      { id: "focus-left", kind: "point", appearance: "construction", at: { x: -3, y: 0 } },
+      { id: "focus-right", kind: "point", appearance: "construction", at: { x: 3, y: 0 } },
+      { id: "object", kind: "vector", appearance: "primary", from: { x: -2, y: 0 }, to: { x: -2, y: 1 } },
+      { id: "image", kind: "vector", appearance: "answer", from: { x: -6, y: 0 }, to: { x: -6, y: 3 } },
+      { id: "parallel-ray", kind: "segment", appearance: "highlight", from: { x: -2, y: 1 }, to: { x: 0, y: 1 } },
+      { id: "focal-ray", kind: "segment", appearance: "highlight", from: { x: 0, y: 1 }, to: { x: 6, y: -1 } },
+      { id: "centre-ray", kind: "segment", appearance: "highlight", from: { x: -2, y: 1 }, to: { x: 5, y: -2.5 } },
+      { id: "focal-back", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: -6, y: 3 } },
+      { id: "centre-back", kind: "segment", appearance: "construction", from: { x: -2, y: 1 }, to: { x: -6, y: 3 } },
+    ],
+    labels: [
+      { key: "focus-left", objectId: "focus-left", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "focus-right", objectId: "focus-right", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "object", objectId: "object", at: { x: -2, y: 1 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -6, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+Move the object past the focal point and the rays really cross on the far side of the lens, upside down.
+
+<MathVisual
+  title={<>Object <InlineMath math="20\text{ cm}" /> from the lens</>}
+  description={<>The same lens at the same scale, with the object <InlineMath math="20\text{ cm}" /> in front, beyond the focal point. The two rays cross <InlineMath math="60\text{ cm}" /> behind the lens at an inverted image three times as tall.</>}
+  labels={{
+    "focus-left": <><InlineMath math="F" /></>,
+    "focus-right": <><InlineMath math="F" /></>,
+    object: <>object, <InlineMath math="u=20\text{ cm}" /></>,
+    image: <>real image, <InlineMath math="v=60\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 14.5 }, y: { min: -4.4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 14, y: 0 } },
+      { id: "lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -3.6 }, to: { x: 0, y: 3.6 } },
+      { id: "focus-left", kind: "point", appearance: "construction", at: { x: -3, y: 0 } },
+      { id: "focus-right", kind: "point", appearance: "construction", at: { x: 3, y: 0 } },
+      { id: "object", kind: "vector", appearance: "primary", from: { x: -4, y: 0 }, to: { x: -4, y: 1 } },
+      { id: "image", kind: "vector", appearance: "answer", from: { x: 12, y: 0 }, to: { x: 12, y: -3 } },
+      { id: "parallel-ray", kind: "segment", appearance: "highlight", from: { x: -4, y: 1 }, to: { x: 0, y: 1 } },
+      { id: "focal-ray", kind: "segment", appearance: "highlight", from: { x: 0, y: 1 }, to: { x: 12, y: -3 } },
+      { id: "centre-ray", kind: "segment", appearance: "highlight", from: { x: -4, y: 1 }, to: { x: 12, y: -3 } },
+    ],
+    labels: [
+      { key: "focus-left", objectId: "focus-left", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "focus-right", objectId: "focus-right", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "object", objectId: "object", at: { x: -4, y: 1 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 12, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
 At the first position the image is virtual and upright, at the second it is real and inverted on the far side. The magnification happens to be equal, because both object distances are the same <InlineMath math="5\text{ cm}" /> from the focal point. So the image changes from virtual and upright to real and inverted, and its magnification stays at <InlineMath math="3" /> times.
 
 # Why the other options are wrong

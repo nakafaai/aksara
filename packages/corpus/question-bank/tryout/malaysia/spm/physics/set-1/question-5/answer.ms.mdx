@@ -7,6 +7,39 @@ Kira masa tiba setiap bola dari saat bola A dilontar. Bagi bola A, ambil arah ke
 \text{B: }15&=5t_B^2\ \Rightarrow\ t_B=\sqrt3\approx1.73\text{ s},\quad t=1.0+1.73=2.73\text{ s}
 \end{aligned}" />
 
+Graf tinggi-masa menunjukkan kenapa bola B sampai dahulu walaupun ia bermula kemudian. Bola A naik dahulu selama satu saat, manakala lengkung bola B hanya bermula di atas cenuram pada <InlineMath math="t=1.0\text{ s}" />.
+
+<MathVisual
+  title={<>Tinggi di atas laut bagi kedua-dua bola</>}
+  description={<>Tinggi melawan masa, dengan lima unit mendatar bagi setiap saat. Bola A bermula pada <InlineMath math="15\text{ m}" />, naik ke <InlineMath math="20\text{ m}" /> pada <InlineMath math="t=1.0\text{ s}" /> dan sampai ke laut pada <InlineMath math="t=3.0\text{ s}" />. Bola B bermula dari pegun pada <InlineMath math="15\text{ m}" /> pada <InlineMath math="t=1.0\text{ s}" /> dan sampai ke laut pada kira-kira <InlineMath math="t=2.73\text{ s}" />.</>}
+  labels={{
+    "a-land": <>A sampai pada <InlineMath math="t=3.0\text{ s}" /></>,
+    "b-land": <>B sampai pada <InlineMath math="t=2.73\text{ s}" /></>,
+    "b-start": <>B dilepaskan pada <InlineMath math="t=1.0\text{ s}" /></>,
+    "a-top": <>A di titik tertinggi, <InlineMath math="20\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 19 }, y: { min: -3, max: 23 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sea", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 17, y: 0 } },
+      { id: "ball-a", kind: "function", appearance: "primary", formula: "15 + 2x - x^2/5", domain: { min: 0, max: 15 } },
+      { id: "ball-b", kind: "function", appearance: "answer", formula: "15 - (x - 5)^2/5", domain: { min: 5, max: 5 + 5 * Math.sqrt(3) } },
+      { id: "a-top-point", kind: "point", appearance: "primary", at: { x: 5, y: 20 } },
+      { id: "b-start-point", kind: "point", appearance: "answer", at: { x: 5, y: 15 } },
+      { id: "a-land-point", kind: "point", appearance: "primary", at: { x: 15, y: 0 } },
+      { id: "b-land-point", kind: "point", appearance: "answer", at: { x: 5 + 5 * Math.sqrt(3), y: 0 } },
+    ],
+    labels: [
+      { key: "a-land", objectId: "a-land-point", at: { x: 15, y: 0 }, placement: "above-right" },
+      { key: "b-land", objectId: "b-land-point", at: { x: 5 + 5 * Math.sqrt(3), y: 0 }, placement: "below-left" },
+      { key: "b-start", objectId: "b-start-point", at: { x: 5, y: 15 }, placement: "below-left" },
+      { key: "a-top", objectId: "a-top-point", at: { x: 5, y: 20 }, placement: "above" },
+    ],
+  }}
+/>
+
 Punca negatif <InlineMath math="t=-1\text{ s}" /> dalam persamaan bola A ditolak. Bola B tiba pada <InlineMath math="2.73\text{ s}" />, manakala bola A pada <InlineMath math="3.0\text{ s}" />. Jadi, bola B mencecah laut dahulu, kira-kira <InlineMath math="0.27\text{ s}" /> lebih awal.
 
 # Kenapa pilihan lain salah

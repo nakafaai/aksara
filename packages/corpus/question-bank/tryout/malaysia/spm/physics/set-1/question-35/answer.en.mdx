@@ -4,6 +4,22 @@ A NAND gate gives <InlineMath math="0" /> only when both of its inputs are <Inli
 
 <BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
 
+Read the circuit backwards from <InlineMath math="Q" />. With <InlineMath math="C=1" /> the NAND gate only inverts, so each value of <InlineMath math="X" /> is the opposite of <InlineMath math="Q" />, and the four values of <InlineMath math="X" /> name gate P.
+
+<Mermaid
+  title={<>Working back through the NAND gate</>}
+  description={<>The circuit with the rows where <InlineMath math="C=1" />. The NAND gate then acts as a NOT gate, so <InlineMath math="Q" /> values of <InlineMath math="1, 0, 0, 0" /> come from <InlineMath math="X" /> values of <InlineMath math="0, 1, 1, 1" /> for <InlineMath math="AB=00, 01, 10, 11" />, which is the output of an OR gate.</>}
+  chart={`
+flowchart LR
+  A["A"] --> P["Gate P"]
+  B["B"] --> P
+  P -->|"X = 0, 1, 1, 1"| N["NAND with C = 1 acts as NOT"]
+  C["C = 1"] --> N
+  N --> Q["Q = 1, 0, 0, 0"]
+  P -.-> R["0 only when A = B = 0: an OR gate"]
+`}
+/>
+
 For <InlineMath math="AB=00,01,10,11" /> the values of <InlineMath math="Q" /> are <InlineMath math="1,0,0,0" />, so <InlineMath math="X" /> is <InlineMath math="0,1,1,1" />. An output of <InlineMath math="0" /> only when both inputs are <InlineMath math="0" /> is the mark of an OR gate. So gate P is an OR gate.
 
 # Why the other options are wrong

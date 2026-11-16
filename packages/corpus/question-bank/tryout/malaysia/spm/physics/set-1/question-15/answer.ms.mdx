@@ -2,6 +2,36 @@
 
 Dalam masa <InlineMath math="4.0\text{ s}" /> itu, bunyi bergerak ke tebing dan kembali, manakala bot terus bergerak ke arah tebing. Katakan jarak awal ialah <InlineMath math="d" />. **Gema bertemu bot pada titik yang sudah lebih dekat dengan tebing**, jadi jarak bunyi ditambah jarak bot sama dengan dua kali jarak awal.
 
+Lukis ketiga-tiga laluan di sepanjang garis dari bot ke cenuram. Perjalanan bunyi pergi dan balik, ditambah perjalanan pendek bot, meliputi jarak asal sebanyak dua kali.
+
+<MathVisual
+  title={<>Bunyi dan bot berkongsi jarak</>}
+  description={<>Bot bermula <InlineMath math="700\text{ m}" /> dari cenuram. Bunyi bergerak <InlineMath math="700\text{ m}" /> ke cenuram dan <InlineMath math="660\text{ m}" /> kembali, lalu bertemu bot yang sudah bergerak <InlineMath math="40\text{ m}" /> ke hadapan. Jumlahnya <InlineMath math="1400\text{ m}" />, dua kali jarak asal.</>}
+  labels={{
+    out: <>bunyi pergi: <InlineMath math="700\text{ m}" /></>,
+    back: <>gema balik: <InlineMath math="660\text{ m}" /></>,
+    boat: <>bot: <InlineMath math="40\text{ m}" /></>,
+    cliff: <>cenuram</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: -1.5, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cliff-face", kind: "segment", appearance: "reference", from: { x: 7, y: -0.6 }, to: { x: 7, y: 2.2 } },
+      { id: "sound-out", kind: "vector", appearance: "primary", from: { x: 0, y: 1.4 }, to: { x: 7, y: 1.4 } },
+      { id: "echo-back", kind: "vector", appearance: "primary", from: { x: 7, y: 0.7 }, to: { x: 0.4, y: 0.7 } },
+      { id: "boat-path", kind: "vector", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0.4, y: 0 } },
+    ],
+    labels: [
+      { key: "out", objectId: "sound-out", at: { x: 3.5, y: 1.4 }, placement: "above" },
+      { key: "back", objectId: "echo-back", at: { x: 3.7, y: 0.7 }, placement: "below" },
+      { key: "boat", objectId: "boat-path", at: { x: 0.2, y: 0 }, placement: "below" },
+      { key: "cliff", objectId: "cliff-face", at: { x: 7, y: 2.2 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 340(4.0)+10(4.0)&=2d\\
 1360+40&=2d\ \Rightarrow\ d=700\text{ m}

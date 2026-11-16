@@ -6,6 +6,36 @@ Periode bandul bergantung pada panjang efektif sampai pusat bandul, yaitu <Inlin
 
 Ini garis lurus dengan gradien <InlineMath math="\dfrac{4\pi^2}{g}" /> dan titik potong positif <InlineMath math="\dfrac{4\pi^2}{g}r" /> pada sumbu <InlineMath math="T^2" />. **Galat panjang hanya menggeser garis**, tidak mengubah kemiringannya.
 
+Gambar kedua garis pada sumbu yang sama. Data terukur dan garis yang kamu dapat kalau mengukur sampai pusat bandul sejajar, yang satu bergeser <InlineMath math="1{,}0\text{ cm}" /> ke kiri dari yang lain, jadi setiap pernyataan bisa kamu baca dari gambar ini.
+
+<MathVisual
+  title={<>Dua garis sejajar <InlineMath math="T^2" /> terhadap <InlineMath math="l" /></>}
+  description={<>Garis data terukur bergradien <InlineMath math="4{,}0\text{ s}^2\text{ m}^{-1}" />, memotong sumbu <InlineMath math="T^2" /> di <InlineMath math="0{,}040\text{ s}^2" /> dan sumbu <InlineMath math="l" /> di <InlineMath math="l=-0{,}010\text{ m}" />. Garis untuk panjang yang diukur sampai pusat bandul sejajar dengannya dan melewati titik asal.</>}
+  labels={{
+    measured: <>diukur sampai atas: <InlineMath math="T^2=4{,}0(l+0{,}010)" /></>,
+    centre: <>diukur sampai pusat: <InlineMath math="T^2=4{,}0\,l" /></>,
+    "cut-t": <><InlineMath math="0{,}040\text{ s}^2" /></>,
+    "cut-l": <><InlineMath math="l=-0{,}010\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 11 }, y: { min: -2, max: 10.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "measured-line", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -1, max: 9 } },
+      { id: "centre-line", kind: "function", appearance: "secondary", formula: "x", domain: { min: 0, max: 9 } },
+      { id: "cut-t-point", kind: "point", appearance: "highlight", at: { x: 0, y: 1 } },
+      { id: "cut-l-point", kind: "point", appearance: "highlight", at: { x: -1, y: 0 } },
+    ],
+    labels: [
+      { key: "measured", objectId: "measured-line", at: { x: 5, y: 6 }, placement: "above-left" },
+      { key: "centre", objectId: "centre-line", at: { x: 7, y: 7 }, placement: "below-right" },
+      { key: "cut-t", objectId: "cut-t-point", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "cut-l", objectId: "cut-l-point", at: { x: -1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Sekarang nilai setiap pernyataan. Pernyataan I benar karena <InlineMath math="g=\dfrac{4\pi^2}{4{,}0}\approx9{,}87\text{ m s}^{-2}" /> dan gradien tidak memuat <InlineMath math="r" />. Pernyataan II benar karena titik potongnya <InlineMath math="4{,}0\times0{,}010=0{,}040\text{ s}^2" />. Pernyataan III salah karena mengukur sampai pusat bandul hanya menggeser garis ke kiri sejauh <InlineMath math="r" />, gradiennya tetap <InlineMath math="4{,}0\text{ s}^2\text{ m}^{-1}" />. Pernyataan IV benar karena <InlineMath math="T^2=0" /> saat <InlineMath math="l+r=0" />, yaitu <InlineMath math="l=-0{,}010\text{ m}" />. Jadi, yang benar adalah I, II, dan IV.
 
 # Mengapa pilihan lain salah

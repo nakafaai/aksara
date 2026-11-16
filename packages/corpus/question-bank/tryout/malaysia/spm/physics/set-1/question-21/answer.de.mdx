@@ -2,6 +2,37 @@
 
 Die Waage zeigt die Normalkraft <InlineMath math="R" />, die den Schüler nach oben drückt. Sein Gewicht ist <InlineMath math="mg=600\text{ N}" />, die resultierende Kraft nach oben also <InlineMath math="R-mg" />. Eine Anzeige über dem Gewicht bedeutet: **Die Beschleunigung zeigt nach oben**.
 
+Zeichne die beiden Kräfte auf die Person maßstabsgetreu. Der Pfeil nach oben ist länger, also zeigen die resultierende Kraft und die Beschleunigung nach oben, egal in welche Richtung der Aufzug fährt.
+
+<MathVisual
+  title={<>Kräfte auf die Person im Aufzug</>}
+  description={<>Gezeichnet mit einer Einheit pro <InlineMath math="120\text{ N}" />: Die Normalkraft <InlineMath math="R=720\text{ N}" /> zeigt nach oben, die Gewichtskraft <InlineMath math="mg=600\text{ N}" /> nach unten. Ihre Differenz von <InlineMath math="120\text{ N}" /> nach oben ergibt eine Beschleunigung von <InlineMath math="2\text{ m s}^{-2}" /> nach oben.</>}
+  labels={{
+    normal: <><InlineMath math="R=720\text{ N}" /></>,
+    weight: <><InlineMath math="mg=600\text{ N}" /></>,
+    net: <>resultierend <InlineMath math="120\text{ N}" />, <InlineMath math="a=2\text{ m s}^{-2}" /></>,
+    scale: <>Waage</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8 }, y: { min: -4.8, max: 8.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale-plate", kind: "segment", appearance: "reference", from: { x: -1.6, y: 0 }, to: { x: 1.6, y: 0 } },
+      { id: "student", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.8, y: 0 }, { x: 0.8, y: 0 }, { x: 0.8, y: 3 }, { x: -0.8, y: 3 }] },
+      { id: "normal-force", kind: "vector", appearance: "primary", from: { x: 0.4, y: 1.5 }, to: { x: 0.4, y: 7.5 } },
+      { id: "weight-force", kind: "vector", appearance: "warning", from: { x: -0.4, y: 1.5 }, to: { x: -0.4, y: -3.5 } },
+      { id: "net-force", kind: "vector", appearance: "answer", from: { x: 2.6, y: 1.5 }, to: { x: 2.6, y: 2.5 } },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal-force", at: { x: 0.4, y: 7.5 }, placement: "above" },
+      { key: "weight", objectId: "weight-force", at: { x: -0.4, y: -3.5 }, placement: "below" },
+      { key: "net", objectId: "net-force", at: { x: 2.6, y: 2.5 }, placement: "right" },
+      { key: "scale", objectId: "scale-plate", at: { x: -1.6, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="a=\frac{R-mg}{m}=\frac{720-600}{60}=2\text{ m s}^{-2}\ \text{nach oben}" />
 
 Eine Beschleunigung nach oben verrät nicht die Bewegungsrichtung. Der Aufzug kann nach oben fahren und schneller werden oder nach unten fahren und langsamer werden. Von den Antworten passt nur die Abwärtsfahrt, die mit <InlineMath math="2\text{ m s}^{-2}" /> abbremst. Der Aufzug fährt also möglicherweise nach unten und wird dabei mit <InlineMath math="2\text{ m s}^{-2}" /> langsamer.

@@ -4,6 +4,20 @@ Transistor dihidupkan apabila voltan pangkalan mencapai satu nilai ambang. LDR b
 
 <BlockMath math="V_B=\frac{R_{\text{LDR}}}{R+R_{\text{LDR}}}\,V" />
 
+Ikut rantaian dari perintang hingga ke mentol. Setiap pautan ialah satu langkah pembahagi keupayaan dan suis transistor.
+
+<Mermaid
+  title={<>Bagaimana perintang lebih kecil menghidupkan lampu lebih awal</>}
+  description={<>Carta alir: <InlineMath math="R" /> yang lebih kecil memberi LDR bahagian voltan bekalan yang lebih besar, jadi voltan tapak mencapai nilai pensuisan pada rintangan LDR yang lebih kecil. Rintangan LDR yang lebih kecil bermaksud persekitaran lebih terang, jadi mentol menyala lebih awal.</>}
+  chart={`
+flowchart TD
+  A["Gantikan R dengan perintang yang lebih kecil"] --> B["LDR mendapat bahagian voltan bekalan yang lebih besar"]
+  B --> C["Voltan tapak mencapai nilai pensuisan pada rintangan LDR yang lebih kecil"]
+  C --> D["Rintangan LDR yang lebih kecil bermaksud persekitaran lebih terang"]
+  D --> E["Mentol menyala lebih awal"]
+`}
+/>
+
 Ketika masih agak cerah, <InlineMath math="R_{\text{LDR}}" /> lebih kecil, jadi <InlineMath math="V_B" /> belum mencapai ambang. Supaya ambang sudah dicapai pada <InlineMath math="R_{\text{LDR}}" /> yang lebih kecil itu, **<InlineMath math="R" /> mesti dikecilkan**, kerana <InlineMath math="R" /> yang lebih kecil memberi bahagian voltan yang lebih besar kepada LDR. Jadi, gantikan <InlineMath math="R" /> dengan perintang yang rintangannya lebih kecil.
 
 # Kenapa pilihan lain salah

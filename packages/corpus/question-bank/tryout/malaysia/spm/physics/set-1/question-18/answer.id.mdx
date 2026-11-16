@@ -2,6 +2,45 @@
 
 Ada dua langkah. Pertama, cari sudut bias di permukaan atas dengan hukum Snell. Kedua, karena permukaan sisi tegak lurus permukaan atas, **garis normal kedua permukaan juga saling tegak lurus**, sehingga sudut datang di sisi adalah <InlineMath math="90^\circ-r" />. Bandingkan sudut itu dengan sudut kritis kaca.
 
+Ikuti sinar itu melewati balok. Kedua garis normal saling tegak lurus, jadi sudut di sisi samping adalah sisa <InlineMath math="90^\circ" /> setelah dikurangi sudut bias.
+
+<MathVisual
+  title={<>Sinar di dalam balok kaca</>}
+  description={<>Sinar masuk ke sisi atas pada <InlineMath math="60^\circ" /> dan dibiaskan menjadi <InlineMath math="35{,}3^\circ" /> dari normal tegak. Sinar itu mengenai sisi samping pada <InlineMath math="54{,}7^\circ" /> dari normal mendatar, lebih besar dari sudut kritis <InlineMath math="41{,}8^\circ" />, jadi dipantulkan kembali ke dalam kaca.</>}
+  labels={{
+    glass: <>kaca, <InlineMath math="n=1{,}50" /></>,
+    incidence: <><InlineMath math="60^\circ" /></>,
+    side: <>sisi samping</>,
+    refraction: <><InlineMath math="35{,}3^\circ" /></>,
+    critical: <><InlineMath math="54{,}7^\circ>41{,}8^\circ" /></>,
+    reflection: <>pemantulan internal total</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6 }, y: { min: -6.5, max: 2.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "secondary", vertices: [{ x: -6, y: -5 }, { x: 0, y: -5 }, { x: 0, y: 0 }, { x: -6, y: 0 }] },
+      { id: "top-normal", kind: "segment", appearance: "construction", from: { x: -3, y: -2.2 }, to: { x: -3, y: 2.2 } },
+      { id: "incident", kind: "vector", appearance: "primary", from: { x: -3 - 1.5 * Math.sqrt(3), y: 1.5 }, to: { x: -3, y: 0 } },
+      { id: "incidence-arc", kind: "arc", appearance: "highlight", center: { x: -3, y: 0 }, radius: 0.9, startDegrees: 90, sweepDegrees: 60 },
+      { id: "refracted", kind: "segment", appearance: "answer", from: { x: -3, y: 0 }, to: { x: 0, y: -3 * Math.SQRT2 } },
+      { id: "refraction-arc", kind: "arc", appearance: "highlight", center: { x: -3, y: 0 }, radius: 1, startDegrees: 270, sweepDegrees: 90 - Math.atan(Math.SQRT2) * 180 / Math.PI },
+      { id: "side-normal", kind: "segment", appearance: "construction", from: { x: -2.2, y: -3 * Math.SQRT2 }, to: { x: 1.4, y: -3 * Math.SQRT2 } },
+      { id: "side-arc", kind: "arc", appearance: "highlight", center: { x: 0, y: -3 * Math.SQRT2 }, radius: 0.9, startDegrees: 180, sweepDegrees: -Math.atan(Math.SQRT2) * 180 / Math.PI },
+      { id: "reflected", kind: "vector", appearance: "answer", from: { x: 0, y: -3 * Math.SQRT2 }, to: { x: -(5 - 3 * Math.SQRT2) / Math.SQRT2, y: -5 } },
+    ],
+    labels: [
+      { key: "glass", objectId: "glass", at: { x: -5, y: -4.4 }, placement: "center" },
+      { key: "incidence", objectId: "incidence-arc", at: { x: -3 + 0.9 * Math.cos(2 * Math.PI / 3), y: 0.9 * Math.sin(2 * Math.PI / 3) }, placement: "above-left" },
+      { key: "side", objectId: "glass", at: { x: 0, y: -1.2 }, placement: "right" },
+      { key: "refraction", objectId: "refraction-arc", at: { x: -3 + Math.cos(3 * Math.PI / 2 + (Math.PI / 2 - Math.atan(Math.SQRT2)) / 2), y: Math.sin(3 * Math.PI / 2 + (Math.PI / 2 - Math.atan(Math.SQRT2)) / 2) }, placement: "below-right" },
+      { key: "critical", objectId: "side-arc", at: { x: 1.4, y: -3 * Math.SQRT2 }, placement: "right" },
+      { key: "reflection", objectId: "reflected", at: { x: -(5 - 3 * Math.SQRT2) / Math.SQRT2, y: -5 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \sin r&=\frac{\sin60^\circ}{1{,}50}=0{,}577\ \Rightarrow\ r\approx35{,}3^\circ\\
 i_2&=90^\circ-35{,}3^\circ\approx54{,}7^\circ\\

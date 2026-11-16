@@ -8,6 +8,32 @@ a&=\frac{F}{m}=\frac{4{,}0}{2{,}0}=2{,}0\text{ m s}^{-2}\\
 s&=\frac{v^2}{2a}=\frac{3{,}0^2}{2(2{,}0)}=2{,}25\text{ m}
 \end{aligned}" />
 
+Der Geschwindigkeit-Zeit-Graph des Blocks nach dem Stoß liefert dasselbe Ergebnis. Er beginnt bei <InlineMath math="3{,}0\text{ m s}^{-1}" />, fällt gleichmäßig auf null bei <InlineMath math="t=1{,}5\text{ s}" />, und die Fläche darunter ist der Rutschweg.
+
+<MathVisual
+  title={<>Der Block bremst nach dem Stoß ab</>}
+  description={<>Geschwindigkeit des Blocks mit dem Geschoss darin, direkt nach dem Stoß. Sie fällt geradlinig von <InlineMath math="3{,}0\text{ m s}^{-1}" /> auf null bei <InlineMath math="t=1{,}5\text{ s}" />, weil die Verzögerung konstant <InlineMath math="2{,}0\text{ m s}^{-2}" /> beträgt, und das schattierte Dreieck unter der Geraden ist <InlineMath math="2{,}25\text{ m}" />.</>}
+  labels={{
+    start: <><InlineMath math="v=3{,}0\text{ m s}^{-1}" /></>,
+    stop: <><InlineMath math="t=1{,}5\text{ s}" /></>,
+    area: <><InlineMath math="s=\tfrac12(1{,}5)(3{,}0)=2{,}25\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.6, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area-shape", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }, { x: 1.5, y: 0 }] },
+      { id: "graph", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 1.5, y: 0 } },
+    ],
+    labels: [
+      { key: "start", objectId: "graph", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "stop", objectId: "graph", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "area", objectId: "area-shape", at: { x: 1, y: 1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Für die Verzögerung nimmst du die Gesamtmasse <InlineMath math="2{,}0\text{ kg}" />, weil sich die Kugel mit dem Block bewegt. Der Block rutscht also <InlineMath math="2{,}25\text{ m}" />, bevor er stehen bleibt.
 
 # Warum die anderen Antworten falsch sind

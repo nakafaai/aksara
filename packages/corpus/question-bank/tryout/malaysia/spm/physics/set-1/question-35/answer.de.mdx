@@ -4,6 +4,22 @@ Ein NAND-Gatter liefert <InlineMath math="0" /> nur, wenn beide Eingänge <Inlin
 
 <BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
 
+Lies die Schaltung rückwärts von <InlineMath math="Q" /> aus. Bei <InlineMath math="C=1" /> kehrt das NAND-Gatter nur um, also ist jeder Wert von <InlineMath math="X" /> das Gegenteil von <InlineMath math="Q" />, und die vier Werte von <InlineMath math="X" /> verraten Gatter P.
+
+<Mermaid
+  title={<>Rückwärts durch das NAND-Gatter</>}
+  description={<>Die Schaltung für die Zeilen mit <InlineMath math="C=1" />. Das NAND-Gatter wirkt dann wie ein NOT-Gatter, also kommen die <InlineMath math="Q" />-Werte <InlineMath math="1, 0, 0, 0" /> von den <InlineMath math="X" />-Werten <InlineMath math="0, 1, 1, 1" /> für <InlineMath math="AB=00, 01, 10, 11" />, und das ist der Ausgang eines OR-Gatters.</>}
+  chart={`
+flowchart LR
+  A["A"] --> P["Gatter P"]
+  B["B"] --> P
+  P -->|"X = 0, 1, 1, 1"| N["NAND mit C = 1 wirkt als NOT"]
+  C["C = 1"] --> N
+  N --> Q["Q = 1, 0, 0, 0"]
+  P -.-> R["0 nur bei A = B = 0: ein OR-Gatter"]
+`}
+/>
+
 Für <InlineMath math="AB=00,01,10,11" /> ist <InlineMath math="Q" /> gleich <InlineMath math="1,0,0,0" />, also ist <InlineMath math="X" /> gleich <InlineMath math="0,1,1,1" />. Ausgang <InlineMath math="0" /> nur, wenn beide Eingänge <InlineMath math="0" /> sind, ist das Kennzeichen eines OR-Gatters. Gatter P ist also ein OR-Gatter.
 
 # Warum die anderen Antworten falsch sind

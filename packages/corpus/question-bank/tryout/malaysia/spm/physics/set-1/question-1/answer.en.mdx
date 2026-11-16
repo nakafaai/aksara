@@ -4,6 +4,56 @@
 
 <BlockMath math="\bar{x}_Q=\frac{2.62+2.62+2.61+2.63}{4}=2.62\text{ cm}\ \Rightarrow\ 2.62-2.50=+0.12\text{ cm}" />
 
+Put all sixteen readings on one scale and the pattern shows up at once. Q's dots sit in a tight cluster, but the whole cluster is shifted to the right of the actual length.
+
+<MathVisual
+  title={<>Readings against the actual length</>}
+  description={<>One row of dots per student, drawn to scale around the actual length of <InlineMath math="2.50\text{ cm}" />, where a repeated reading shares one dot. P and S sit around the actual length, R spreads from <InlineMath math="2.37" /> to <InlineMath math="2.66\text{ cm}" />, and Q's dots sit together from <InlineMath math="2.61" /> to <InlineMath math="2.63\text{ cm}" />, shifted <InlineMath math="0.12\text{ cm}" /> to the right.</>}
+  labels={{
+    "row-p": <>P</>,
+    "row-q": <>Q</>,
+    "row-r": <>R</>,
+    "row-s": <>S</>,
+    actual: <>actual length <InlineMath math="2.50\text{ cm}" /></>,
+    shift: <><InlineMath math="+0.12\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -22, max: 22 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-track", kind: "segment", appearance: "construction", from: { x: -16, y: 8 }, to: { x: 18, y: 8 } },
+      { id: "q-track", kind: "segment", appearance: "construction", from: { x: -16, y: 6 }, to: { x: 18, y: 6 } },
+      { id: "r-track", kind: "segment", appearance: "construction", from: { x: -16, y: 4 }, to: { x: 18, y: 4 } },
+      { id: "s-track", kind: "segment", appearance: "construction", from: { x: -16, y: 2 }, to: { x: 18, y: 2 } },
+      { id: "p1", kind: "point", appearance: "primary", at: { x: -2, y: 8 } },
+      { id: "p2", kind: "point", appearance: "primary", at: { x: 3, y: 8 } },
+      { id: "p3", kind: "point", appearance: "primary", at: { x: -3, y: 8 } },
+      { id: "p4", kind: "point", appearance: "primary", at: { x: 2, y: 8 } },
+      { id: "q1", kind: "point", appearance: "highlight", at: { x: 12, y: 6 } },
+      { id: "q2", kind: "point", appearance: "highlight", at: { x: 11, y: 6 } },
+      { id: "q3", kind: "point", appearance: "highlight", at: { x: 13, y: 6 } },
+      { id: "r1", kind: "point", appearance: "primary", at: { x: -9, y: 4 } },
+      { id: "r2", kind: "point", appearance: "primary", at: { x: 8, y: 4 } },
+      { id: "r3", kind: "point", appearance: "primary", at: { x: 16, y: 4 } },
+      { id: "r4", kind: "point", appearance: "primary", at: { x: -13, y: 4 } },
+      { id: "s1", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "s2", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "s3", kind: "point", appearance: "primary", at: { x: -1, y: 2 } },
+      { id: "actual", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 0, y: 9 } },
+      { id: "shift", kind: "vector", appearance: "answer", from: { x: 0, y: 7 }, to: { x: 12, y: 7 } },
+    ],
+    labels: [
+      { key: "row-p", objectId: "p-track", at: { x: -16, y: 8 }, placement: "left" },
+      { key: "row-q", objectId: "q-track", at: { x: -16, y: 6 }, placement: "left" },
+      { key: "row-r", objectId: "r-track", at: { x: -16, y: 4 }, placement: "left" },
+      { key: "row-s", objectId: "s-track", at: { x: -16, y: 2 }, placement: "left" },
+      { key: "actual", objectId: "actual", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "shift", objectId: "shift", at: { x: 6, y: 7 }, placement: "above" },
+    ],
+  }}
+/>
+
 The same shift in every reading is the mark of a systematic error, such as a zero error. Q's calliper always reads <InlineMath math="0.12\text{ cm}" /> too large, so its zero error is positive. So Q's readings are precise but not accurate, with a zero error of about <InlineMath math="+0.12\text{ cm}" />.
 
 # Why the other options are wrong

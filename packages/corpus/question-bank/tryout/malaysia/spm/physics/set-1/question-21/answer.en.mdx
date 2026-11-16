@@ -2,6 +2,37 @@
 
 The scale reads the normal force <InlineMath math="R" /> pushing the student up. The student's weight is <InlineMath math="mg=600\text{ N}" />, so the net upward force is <InlineMath math="R-mg" />. A reading larger than the weight means **the acceleration points upwards**.
 
+Draw the two forces on the student to scale. The upward arrow is longer, so the net force and the acceleration point up, whichever way the lift is moving.
+
+<MathVisual
+  title={<>Forces on the student in the lift</>}
+  description={<>Drawn at one unit for <InlineMath math="120\text{ N}" />: the normal force <InlineMath math="R=720\text{ N}" /> points up and the weight <InlineMath math="mg=600\text{ N}" /> points down. Their difference, <InlineMath math="120\text{ N}" /> upwards, gives an upward acceleration of <InlineMath math="2\text{ m s}^{-2}" />.</>}
+  labels={{
+    normal: <><InlineMath math="R=720\text{ N}" /></>,
+    weight: <><InlineMath math="mg=600\text{ N}" /></>,
+    net: <>net <InlineMath math="120\text{ N}" />, <InlineMath math="a=2\text{ m s}^{-2}" /></>,
+    scale: <>scale</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8 }, y: { min: -4.8, max: 8.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale-plate", kind: "segment", appearance: "reference", from: { x: -1.6, y: 0 }, to: { x: 1.6, y: 0 } },
+      { id: "student", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.8, y: 0 }, { x: 0.8, y: 0 }, { x: 0.8, y: 3 }, { x: -0.8, y: 3 }] },
+      { id: "normal-force", kind: "vector", appearance: "primary", from: { x: 0.4, y: 1.5 }, to: { x: 0.4, y: 7.5 } },
+      { id: "weight-force", kind: "vector", appearance: "warning", from: { x: -0.4, y: 1.5 }, to: { x: -0.4, y: -3.5 } },
+      { id: "net-force", kind: "vector", appearance: "answer", from: { x: 2.6, y: 1.5 }, to: { x: 2.6, y: 2.5 } },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal-force", at: { x: 0.4, y: 7.5 }, placement: "above" },
+      { key: "weight", objectId: "weight-force", at: { x: -0.4, y: -3.5 }, placement: "below" },
+      { key: "net", objectId: "net-force", at: { x: 2.6, y: 2.5 }, placement: "right" },
+      { key: "scale", objectId: "scale-plate", at: { x: -1.6, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="a=\frac{R-mg}{m}=\frac{720-600}{60}=2\text{ m s}^{-2}\ \text{upwards}" />
 
 An upward acceleration does not tell you the direction of motion. The lift may be moving up and speeding up, or moving down and slowing down. Among the options, only moving down while slowing at <InlineMath math="2\text{ m s}^{-2}" /> fits. So the lift could be moving downwards with its speed decreasing at <InlineMath math="2\text{ m s}^{-2}" />.

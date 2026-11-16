@@ -2,6 +2,44 @@
 
 Hukum Kepler ketiga menyatakan <InlineMath math="T^2\propto r^3" />, dengan <InlineMath math="r" /> jari-jari orbit dari **pusat Bumi**, bukan ketinggian dari permukaan. Jadi, ubah dulu ketinggian menjadi jari-jari orbit: satelit X berada di <InlineMath math="r_X=R+3R=4R" /> dan satelit Y di <InlineMath math="r_Y=R+R=2R" />.
 
+Gambar orbitnya sesuai skala di sekitar pusat Bumi. Ketinggian dimulai dari permukaan, tetapi jari-jari yang masuk ke hukum Kepler dimulai dari pusat.
+
+<MathVisual
+  title={<>Jari-jari orbit dari pusat Bumi</>}
+  description={<>Bumi berjari-jari <InlineMath math="R" /> ada di tengah, satelit Y bergerak pada lingkaran berjari-jari <InlineMath math="2R" /> dan satelit X pada lingkaran berjari-jari <InlineMath math="4R" />. Ketinggian X di atas permukaan adalah <InlineMath math="3R" />, tetapi jari-jari orbitnya <InlineMath math="4R" />.</>}
+  labels={{
+    earth: <>Bumi, jari-jari <InlineMath math="R" /></>,
+    x: <><InlineMath math="X" /></>,
+    y: <><InlineMath math="Y" /></>,
+    "radius-x": <><InlineMath math="r_X=4R" /></>,
+    "radius-y": <><InlineMath math="r_Y=2R" /></>,
+    "height-x": <>ketinggian <InlineMath math="3R" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 6 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "earth-shape", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "orbit-y", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "orbit-x", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "radius-x", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "radius-y", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "height-x", kind: "segment", appearance: "construction", from: { x: 1, y: -0.4 }, to: { x: 4, y: -0.4 } },
+      { id: "satellite-x", kind: "point", appearance: "highlight", at: { x: 4, y: 0 } },
+      { id: "satellite-y", kind: "point", appearance: "highlight", at: { x: 0, y: 2 } },
+    ],
+    labels: [
+      { key: "earth", objectId: "earth-shape", at: { x: 0, y: -1 }, placement: "below" },
+      { key: "x", objectId: "satellite-x", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "y", objectId: "satellite-y", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "radius-x", objectId: "radius-x", at: { x: 2.5, y: 0 }, placement: "above" },
+      { key: "radius-y", objectId: "radius-y", at: { x: 0, y: 1.4 }, placement: "right" },
+      { key: "height-x", objectId: "height-x", at: { x: 2.5, y: -0.4 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="T_Y=T_X\left(\frac{r_Y}{r_X}\right)^{3/2}=8{,}0\left(\frac{2R}{4R}\right)^{3/2}=\frac{8{,}0}{2\sqrt2}\approx2{,}8\text{ jam}" />
 
 Hasilnya masuk akal karena satelit yang lebih dekat bergerak lebih cepat pada lintasan yang lebih pendek. Jadi, periode orbit satelit Y sekitar <InlineMath math="2{,}8" /> jam.

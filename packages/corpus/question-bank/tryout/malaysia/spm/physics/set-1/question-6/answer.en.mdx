@@ -2,6 +2,36 @@
 
 There are two steps. First, the rifle and bullet are at rest before firing, so their total momentum is zero. **The bullet's forward momentum equals the rifle's backward momentum**. Second, the shoulder stops the rifle over a distance, so the work done by the force equals the rifle's kinetic energy.
 
+Draw the momenta right after firing. The two arrows are equal and opposite, so they add to zero, and the rifle's arrow gives its recoil speed for the second step.
+
+<MathVisual
+  title={<>Equal and opposite momenta, then the stop</>}
+  description={<>Top row: the bullet's momentum of <InlineMath math="8.0\text{ kg m s}^{-1}" /> points forward and the rifle's momentum of the same size points backward, so the total stays zero as before firing. Bottom row: the rifle moves back at <InlineMath math="2.0\text{ m s}^{-1}" /> while the shoulder pushes forward on it over <InlineMath math="0.040\text{ m}" />.</>}
+  labels={{
+    bullet: <>bullet: <InlineMath math="(0.020)(400)=8.0\text{ kg m s}^{-1}" /></>,
+    rifle: <>rifle: <InlineMath math="(4.0)\,v" /></>,
+    recoil: <><InlineMath math="v=2.0\text{ m s}^{-1}" /></>,
+    shoulder: <>shoulder force <InlineMath math="F" /> over <InlineMath math="0.040\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -3.5, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bullet-momentum", kind: "vector", appearance: "answer", from: { x: 0.3, y: 1.5 }, to: { x: 5, y: 1.5 } },
+      { id: "rifle-momentum", kind: "vector", appearance: "primary", from: { x: -0.3, y: 1.5 }, to: { x: -5, y: 1.5 } },
+      { id: "rifle-velocity", kind: "vector", appearance: "primary", from: { x: -1, y: -1 }, to: { x: -4, y: -1 } },
+      { id: "shoulder-force", kind: "vector", appearance: "highlight", from: { x: -7, y: -2.2 }, to: { x: -4, y: -2.2 } },
+    ],
+    labels: [
+      { key: "bullet", objectId: "bullet-momentum", at: { x: 2.65, y: 1.5 }, placement: "above" },
+      { key: "rifle", objectId: "rifle-momentum", at: { x: -2.65, y: 1.5 }, placement: "above" },
+      { key: "recoil", objectId: "rifle-velocity", at: { x: -2.5, y: -1 }, placement: "above" },
+      { key: "shoulder", objectId: "shoulder-force", at: { x: -5.5, y: -2.2 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 (0.020)(400)&=(4.0)\,v\ \Rightarrow\ v=2.0\text{ m s}^{-1}\\
 E_k&=\tfrac12(4.0)(2.0)^2=8.0\text{ J}\\

@@ -2,6 +2,36 @@
 
 Ada dua langkah. Pertama, senapang dan peluru pegun sebelum tembakan, jadi jumlah momentumnya sifar. **Momentum peluru ke hadapan sama dengan momentum senapang ke belakang**. Kedua, bahu menghentikan senapang dalam satu jarak, jadi kerja oleh daya itu sama dengan tenaga kinetik senapang.
 
+Lukis momentum sejurus selepas tembakan. Kedua-dua anak panah sama besar dan berlawanan arah, jadi jumlahnya sifar, dan anak panah senapang memberi laju sentakannya untuk langkah kedua.
+
+<MathVisual
+  title={<>Momentum sama dan bertentangan, kemudian berhenti</>}
+  description={<>Baris atas: momentum peluru <InlineMath math="8.0\text{ kg m s}^{-1}" /> menghala ke depan dan momentum senapang yang sama besar menghala ke belakang, jadi jumlahnya kekal sifar seperti sebelum tembakan. Baris bawah: senapang bergerak ke belakang pada <InlineMath math="2.0\text{ m s}^{-1}" /> sementara bahu menolaknya ke depan sejauh <InlineMath math="0.040\text{ m}" />.</>}
+  labels={{
+    bullet: <>peluru: <InlineMath math="(0.020)(400)=8.0\text{ kg m s}^{-1}" /></>,
+    rifle: <>senapang: <InlineMath math="(4.0)\,v" /></>,
+    recoil: <><InlineMath math="v=2.0\text{ m s}^{-1}" /></>,
+    shoulder: <>daya bahu <InlineMath math="F" /> sejauh <InlineMath math="0.040\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -3.5, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bullet-momentum", kind: "vector", appearance: "answer", from: { x: 0.3, y: 1.5 }, to: { x: 5, y: 1.5 } },
+      { id: "rifle-momentum", kind: "vector", appearance: "primary", from: { x: -0.3, y: 1.5 }, to: { x: -5, y: 1.5 } },
+      { id: "rifle-velocity", kind: "vector", appearance: "primary", from: { x: -1, y: -1 }, to: { x: -4, y: -1 } },
+      { id: "shoulder-force", kind: "vector", appearance: "highlight", from: { x: -7, y: -2.2 }, to: { x: -4, y: -2.2 } },
+    ],
+    labels: [
+      { key: "bullet", objectId: "bullet-momentum", at: { x: 2.65, y: 1.5 }, placement: "above" },
+      { key: "rifle", objectId: "rifle-momentum", at: { x: -2.65, y: 1.5 }, placement: "above" },
+      { key: "recoil", objectId: "rifle-velocity", at: { x: -2.5, y: -1 }, placement: "above" },
+      { key: "shoulder", objectId: "shoulder-force", at: { x: -5.5, y: -2.2 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 (0.020)(400)&=(4.0)\,v\ \Rightarrow\ v=2.0\text{ m s}^{-1}\\
 E_k&=\tfrac12(4.0)(2.0)^2=8.0\text{ J}\\

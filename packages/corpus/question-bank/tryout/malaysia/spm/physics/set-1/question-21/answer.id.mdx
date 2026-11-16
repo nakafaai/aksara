@@ -2,6 +2,37 @@
 
 Timbangan membaca gaya normal <InlineMath math="R" /> yang mendorong murid ke atas. Berat murid <InlineMath math="mg=600\text{ N}" />, jadi gaya total ke atas adalah <InlineMath math="R-mg" />. Bacaan lebih besar dari berat berarti **percepatan mengarah ke atas**.
 
+Gambar kedua gaya pada siswa itu sesuai skala. Panah ke atas lebih panjang, jadi gaya total dan percepatan mengarah ke atas, ke mana pun lift itu bergerak.
+
+<MathVisual
+  title={<>Gaya pada siswa di dalam lift</>}
+  description={<>Digambar satu satuan untuk <InlineMath math="120\text{ N}" />: gaya normal <InlineMath math="R=720\text{ N}" /> mengarah ke atas dan berat <InlineMath math="mg=600\text{ N}" /> mengarah ke bawah. Selisihnya, <InlineMath math="120\text{ N}" /> ke atas, memberi percepatan ke atas sebesar <InlineMath math="2\text{ m s}^{-2}" />.</>}
+  labels={{
+    normal: <><InlineMath math="R=720\text{ N}" /></>,
+    weight: <><InlineMath math="mg=600\text{ N}" /></>,
+    net: <>total <InlineMath math="120\text{ N}" />, <InlineMath math="a=2\text{ m s}^{-2}" /></>,
+    scale: <>timbangan</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8 }, y: { min: -4.8, max: 8.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale-plate", kind: "segment", appearance: "reference", from: { x: -1.6, y: 0 }, to: { x: 1.6, y: 0 } },
+      { id: "student", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.8, y: 0 }, { x: 0.8, y: 0 }, { x: 0.8, y: 3 }, { x: -0.8, y: 3 }] },
+      { id: "normal-force", kind: "vector", appearance: "primary", from: { x: 0.4, y: 1.5 }, to: { x: 0.4, y: 7.5 } },
+      { id: "weight-force", kind: "vector", appearance: "warning", from: { x: -0.4, y: 1.5 }, to: { x: -0.4, y: -3.5 } },
+      { id: "net-force", kind: "vector", appearance: "answer", from: { x: 2.6, y: 1.5 }, to: { x: 2.6, y: 2.5 } },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal-force", at: { x: 0.4, y: 7.5 }, placement: "above" },
+      { key: "weight", objectId: "weight-force", at: { x: -0.4, y: -3.5 }, placement: "below" },
+      { key: "net", objectId: "net-force", at: { x: 2.6, y: 2.5 }, placement: "right" },
+      { key: "scale", objectId: "scale-plate", at: { x: -1.6, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="a=\frac{R-mg}{m}=\frac{720-600}{60}=2\text{ m s}^{-2}\ \text{ke atas}" />
 
 Percepatan ke atas tidak memberi tahu arah gerak. Lift bisa bergerak ke atas sambil makin cepat, atau bergerak ke bawah sambil makin lambat. Di antara pilihan, hanya gerak ke bawah yang melambat <InlineMath math="2\text{ m s}^{-2}" /> yang cocok. Jadi, lift mungkin sedang bergerak ke bawah dengan laju yang berkurang <InlineMath math="2\text{ m s}^{-2}" />.

@@ -2,6 +2,44 @@
 
 Das dritte Keplersche Gesetz lautet <InlineMath math="T^2\propto r^3" />, wobei <InlineMath math="r" /> der Bahnradius vom **Erdmittelpunkt** ist, nicht die Höhe über der Oberfläche. Rechne also zuerst die Höhen in Bahnradien um: Satellit X ist bei <InlineMath math="r_X=R+3R=4R" /> und Satellit Y bei <InlineMath math="r_Y=R+R=2R" />.
 
+Zeichne die Bahnen maßstabsgetreu um den Erdmittelpunkt. Die Höhe beginnt an der Oberfläche, aber der Radius in Keplers Gesetz reicht bis zum Mittelpunkt.
+
+<MathVisual
+  title={<>Bahnradien vom Erdmittelpunkt aus</>}
+  description={<>Die Erde mit Radius <InlineMath math="R" /> liegt in der Mitte, Satellit Y kreist auf einem Kreis mit Radius <InlineMath math="2R" /> und Satellit X auf einem Kreis mit Radius <InlineMath math="4R" />. Die Höhe von X über der Oberfläche ist <InlineMath math="3R" />, sein Bahnradius aber <InlineMath math="4R" />.</>}
+  labels={{
+    earth: <>Erde, Radius <InlineMath math="R" /></>,
+    x: <><InlineMath math="X" /></>,
+    y: <><InlineMath math="Y" /></>,
+    "radius-x": <><InlineMath math="r_X=4R" /></>,
+    "radius-y": <><InlineMath math="r_Y=2R" /></>,
+    "height-x": <>Höhe <InlineMath math="3R" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 6 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "earth-shape", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "orbit-y", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "orbit-x", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "radius-x", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "radius-y", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "height-x", kind: "segment", appearance: "construction", from: { x: 1, y: -0.4 }, to: { x: 4, y: -0.4 } },
+      { id: "satellite-x", kind: "point", appearance: "highlight", at: { x: 4, y: 0 } },
+      { id: "satellite-y", kind: "point", appearance: "highlight", at: { x: 0, y: 2 } },
+    ],
+    labels: [
+      { key: "earth", objectId: "earth-shape", at: { x: 0, y: -1 }, placement: "below" },
+      { key: "x", objectId: "satellite-x", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "y", objectId: "satellite-y", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "radius-x", objectId: "radius-x", at: { x: 2.5, y: 0 }, placement: "above" },
+      { key: "radius-y", objectId: "radius-y", at: { x: 0, y: 1.4 }, placement: "right" },
+      { key: "height-x", objectId: "height-x", at: { x: 2.5, y: -0.4 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="T_Y=T_X\left(\frac{r_Y}{r_X}\right)^{3/2}=8{,}0\left(\frac{2R}{4R}\right)^{3/2}=\frac{8{,}0}{2\sqrt2}\approx2{,}8\text{ Stunden}" />
 
 Das passt, denn der nähere Satellit bewegt sich schneller auf einer kürzeren Bahn. Die Umlaufzeit von Satellit Y beträgt also etwa <InlineMath math="2{,}8" /> Stunden.

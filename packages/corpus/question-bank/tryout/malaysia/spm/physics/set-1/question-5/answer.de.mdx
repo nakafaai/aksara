@@ -7,6 +7,39 @@ Rechne jede Ankunftszeit ab dem Moment, in dem Ball A geworfen wird. Für Ball A
 \text{B: }15&=5t_B^2\ \Rightarrow\ t_B=\sqrt3\approx1{,}73\text{ s},\quad t=1{,}0+1{,}73=2{,}73\text{ s}
 \end{aligned}" />
 
+Der Höhe-Zeit-Graph zeigt, warum Ball B gewinnt, obwohl er später startet. Ball A steigt zuerst eine Sekunde lang, während die Kurve von Ball B erst bei <InlineMath math="t=1{,}0\text{ s}" /> oben an der Klippe beginnt.
+
+<MathVisual
+  title={<>Höhe über dem Meer für beide Bälle</>}
+  description={<>Höhe über der Zeit, mit fünf waagerechten Einheiten pro Sekunde. Ball A startet bei <InlineMath math="15\text{ m}" />, steigt bis <InlineMath math="20\text{ m}" /> bei <InlineMath math="t=1{,}0\text{ s}" /> und erreicht das Meer bei <InlineMath math="t=3{,}0\text{ s}" />. Ball B startet aus der Ruhe bei <InlineMath math="15\text{ m}" /> zur Zeit <InlineMath math="t=1{,}0\text{ s}" /> und erreicht das Meer bei etwa <InlineMath math="t=2{,}73\text{ s}" />.</>}
+  labels={{
+    "a-land": <>A landet bei <InlineMath math="t=3{,}0\text{ s}" /></>,
+    "b-land": <>B landet bei <InlineMath math="t=2{,}73\text{ s}" /></>,
+    "b-start": <>B losgelassen bei <InlineMath math="t=1{,}0\text{ s}" /></>,
+    "a-top": <>A am höchsten Punkt, <InlineMath math="20\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 19 }, y: { min: -3, max: 23 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sea", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 17, y: 0 } },
+      { id: "ball-a", kind: "function", appearance: "primary", formula: "15 + 2x - x^2/5", domain: { min: 0, max: 15 } },
+      { id: "ball-b", kind: "function", appearance: "answer", formula: "15 - (x - 5)^2/5", domain: { min: 5, max: 5 + 5 * Math.sqrt(3) } },
+      { id: "a-top-point", kind: "point", appearance: "primary", at: { x: 5, y: 20 } },
+      { id: "b-start-point", kind: "point", appearance: "answer", at: { x: 5, y: 15 } },
+      { id: "a-land-point", kind: "point", appearance: "primary", at: { x: 15, y: 0 } },
+      { id: "b-land-point", kind: "point", appearance: "answer", at: { x: 5 + 5 * Math.sqrt(3), y: 0 } },
+    ],
+    labels: [
+      { key: "a-land", objectId: "a-land-point", at: { x: 15, y: 0 }, placement: "above-right" },
+      { key: "b-land", objectId: "b-land-point", at: { x: 5 + 5 * Math.sqrt(3), y: 0 }, placement: "below-left" },
+      { key: "b-start", objectId: "b-start-point", at: { x: 5, y: 15 }, placement: "below-left" },
+      { key: "a-top", objectId: "a-top-point", at: { x: 5, y: 20 }, placement: "above" },
+    ],
+  }}
+/>
+
 Die negative Lösung <InlineMath math="t=-1\text{ s}" /> in der Gleichung von Ball A fällt weg. Ball B kommt bei <InlineMath math="2{,}73\text{ s}" /> an, Ball A bei <InlineMath math="3{,}0\text{ s}" />. Ball B erreicht das Meer also zuerst, etwa <InlineMath math="0{,}27\text{ s}" /> früher.
 
 # Warum die anderen Antworten falsch sind

@@ -4,6 +4,37 @@ The magnetic force must point upwards with a size equal to the weight of the wir
 
 <BlockMath math="I=\frac{mg}{Bl}=\frac{(0.0060)(10)}{(0.15)(0.20)}=\frac{0.060}{0.030}=2.0\text{ A}" />
 
+Set the three directions on one picture before you use your hand. The field points north, the force must point up to hold the wire, and the rule then fixes the current along the wire.
+
+<MathVisual
+  title={<>Field, current and force on the wire</>}
+  description={<>The wire lies east to west. The field of <InlineMath math="0.15\text{ T}" /> points north, the magnetic force of <InlineMath math="0.060\text{ N}" /> points up and balances the weight of <InlineMath math="0.060\text{ N}" />, and the current of <InlineMath math="2.0\text{ A}" /> flows east.</>}
+  labels={{
+    field: <>field <InlineMath math="B=0.15\text{ T}" />, north</>,
+    current: <>current <InlineMath math="I=2.0\text{ A}" />, east</>,
+    force: <>force <InlineMath math="BIl=0.060\text{ N}" />, up</>,
+    weight: <>weight <InlineMath math="mg=0.060\text{ N}" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3, max: 3 }, z: { min: -3, max: 3 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "wire", kind: "segment", appearance: "secondary", from: { x: -3, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 } },
+      { id: "current-arrow", kind: "vector", appearance: "primary", from: { x: 1, y: 0, z: 0 }, to: { x: 3, y: 0, z: 0 } },
+      { id: "field-arrow", kind: "vector", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2.5, z: 0 } },
+      { id: "force-arrow", kind: "vector", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 2.5 } },
+      { id: "weight-arrow", kind: "vector", appearance: "warning", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: -2.5 } },
+    ],
+    labels: [
+      { key: "field", objectId: "field-arrow", at: { x: 0, y: 2.5, z: 0 }, placement: "right" },
+      { key: "current", objectId: "current-arrow", at: { x: 3, y: 0, z: 0 }, placement: "below" },
+      { key: "force", objectId: "force-arrow", at: { x: 0, y: 0, z: 2.5 }, placement: "above" },
+      { key: "weight", objectId: "weight-arrow", at: { x: 0, y: 0, z: -2.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 For the direction, use Fleming's left-hand rule with the condition that **the force must point up**. The first finger points along the field, north, and the thumb points up, so the second finger, the current, points east. So the current is <InlineMath math="2.0\text{ A}" /> towards the east.
 
 # Why the other options are wrong

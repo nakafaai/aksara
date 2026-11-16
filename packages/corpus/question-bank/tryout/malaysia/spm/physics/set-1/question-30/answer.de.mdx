@@ -8,6 +8,35 @@ P'&=\frac{120^2}{57{,}6}=250\text{ W}=0{,}25\text{ kW}\\
 E&=P't=(0{,}25)(2{,}0)=0{,}50\text{ kWh}
 \end{aligned}" />
 
+Trag die Leistung über der Spannung für diesen festen Widerstand ein. Sie wächst mit dem Quadrat der Spannung, also landet die halbe Spannung bei einem Viertel der Leistung.
+
+<MathVisual
+  title={<>Leistung des Heizgeräts bei festem Widerstand</>}
+  description={<>Leistung über der Versorgungsspannung beim festen Widerstand von <InlineMath math="57{,}6\,\Omega" />, mit einer waagerechten Einheit pro <InlineMath math="40\text{ V}" /> und einer senkrechten pro <InlineMath math="200\text{ W}" />. Die Kurve geht durch <InlineMath math="1000\text{ W}" /> bei <InlineMath math="240\text{ V}" /> und <InlineMath math="250\text{ W}" /> bei <InlineMath math="120\text{ V}" />.</>}
+  labels={{
+    rated: <><InlineMath math="240\text{ V},\ 1000\text{ W}" /></>,
+    wrong: <><InlineMath math="120\text{ V},\ 250\text{ W}" /></>,
+    curve: <><InlineMath math="P=\dfrac{V^2}{57{,}6}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "power-curve", kind: "quadratic", appearance: "primary", coefficients: { a: 1 / 7.2, b: 0, c: 0 }, domain: { min: 0, max: 6.4 }, inputAxis: "x" },
+      { id: "rated-drop", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 5 } },
+      { id: "wrong-drop", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 1.25 } },
+      { id: "rated-point", kind: "point", appearance: "highlight", at: { x: 6, y: 5 } },
+      { id: "wrong-point", kind: "point", appearance: "answer", at: { x: 3, y: 1.25 } },
+    ],
+    labels: [
+      { key: "rated", objectId: "rated-point", at: { x: 6, y: 5 }, placement: "left" },
+      { key: "wrong", objectId: "wrong-point", at: { x: 3, y: 1.25 }, placement: "above-left" },
+      { key: "curve", objectId: "power-curve", at: { x: 4.5, y: 4.5 * 4.5 / 7.2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Die halbe Spannung halbiert auch den Strom, die Leistung sinkt also auf ein Viertel. Das Heizgerät verbraucht also <InlineMath math="0{,}50\text{ kWh}" />.
 
 # Warum die anderen Antworten falsch sind

@@ -1,3 +1,45 @@
 Dalam satu litar transistor <InlineMath math="npn" />, pangkalan disambungkan melalui perintang <InlineMath math="100\text{ k}\Omega" /> kepada bekalan <InlineMath math="4.7\text{ V}" />, dan pemancar disambungkan kepada <InlineMath math="0\text{ V}" />. Beza keupayaan pangkalan-pemancar ialah <InlineMath math="0.70\text{ V}" />. Pengumpul disambungkan melalui perintang <InlineMath math="1.0\text{ k}\Omega" /> kepada bekalan <InlineMath math="9.0\text{ V}" />. Arus pengumpul ialah <InlineMath math="100" /> kali arus pangkalan.
 
+<MathVisual
+  title={<>Litar transistor <InlineMath math="npn" /></>}
+  description={<>Tapak disambungkan melalui perintang <InlineMath math="100\text{ k}\Omega" /> kepada bekalan <InlineMath math="4.7\text{ V}" />. Pengumpul disambungkan melalui perintang <InlineMath math="1.0\text{ k}\Omega" /> kepada bekalan <InlineMath math="9.0\text{ V}" />, dan pemancar berada pada <InlineMath math="0\text{ V}" />.</>}
+  labels={{
+    "base-supply": <><InlineMath math="4.7\text{ V}" /></>,
+    "base-resistor": <><InlineMath math="100\text{ k}\Omega" /></>,
+    "collector-resistor": <><InlineMath math="1.0\text{ k}\Omega" /></>,
+    "collector-supply": <><InlineMath math="9.0\text{ V}" /></>,
+    ground: <><InlineMath math="0\text{ V}" /></>,
+    transistor: <><InlineMath math="npn" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 12.5 }, y: { min: 0.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base-supply", kind: "point", appearance: "primary", at: { x: 0.5, y: 4 } },
+      { id: "base-wire", kind: "segment", appearance: "secondary", from: { x: 0.5, y: 4 }, to: { x: 2, y: 4 } },
+      { id: "base-resistor", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 3.6 }, { x: 4, y: 3.6 }, { x: 4, y: 4.4 }, { x: 2, y: 4.4 }] },
+      { id: "collector-wire", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 5.3 }, to: { x: 6.5, y: 6 } },
+      { id: "collector-resistor", kind: "polygon", appearance: "primary", vertices: [{ x: 6.1, y: 6 }, { x: 6.9, y: 6 }, { x: 6.9, y: 7.6 }, { x: 6.1, y: 7.6 }] },
+      { id: "collector-feed", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 7.6 }, to: { x: 6.5, y: 8.5 } },
+      { id: "collector-supply", kind: "point", appearance: "primary", at: { x: 6.5, y: 8.5 } },
+      { id: "emitter-wire", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 2.7 }, to: { x: 6.5, y: 1.5 } },
+      { id: "ground", kind: "segment", appearance: "secondary", from: { x: 5.5, y: 1.5 }, to: { x: 7.5, y: 1.5 } },
+      { id: "transistor", kind: "circle", appearance: "secondary", center: { x: 6, y: 4 }, radius: 1.2 },
+      { id: "base-bar", kind: "segment", appearance: "primary", from: { x: 5.4, y: 3.2 }, to: { x: 5.4, y: 4.8 } },
+      { id: "base-lead", kind: "segment", appearance: "primary", from: { x: 4, y: 4 }, to: { x: 5.4, y: 4 } },
+      { id: "collector", kind: "segment", appearance: "primary", from: { x: 5.4, y: 4.4 }, to: { x: 6.5, y: 5.3 } },
+      { id: "emitter", kind: "vector", appearance: "primary", from: { x: 5.4, y: 3.6 }, to: { x: 6.5, y: 2.7 } },
+    ],
+    labels: [
+      { key: "base-supply", objectId: "base-supply", at: { x: 0.5, y: 4 }, placement: "left" },
+      { key: "base-resistor", objectId: "base-resistor", at: { x: 3, y: 4.4 }, placement: "above" },
+      { key: "collector-resistor", objectId: "collector-resistor", at: { x: 6.9, y: 6.8 }, placement: "right" },
+      { key: "collector-supply", objectId: "collector-supply", at: { x: 6.5, y: 8.5 }, placement: "above" },
+      { key: "ground", objectId: "ground", at: { x: 7.5, y: 1.5 }, placement: "right" },
+      { key: "transistor", objectId: "transistor", at: { x: 7.2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Berapakah beza keupayaan antara pengumpul dengan pemancar?

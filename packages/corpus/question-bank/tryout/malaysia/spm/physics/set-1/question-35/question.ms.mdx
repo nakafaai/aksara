@@ -1,5 +1,18 @@
 Dalam satu litar logik, input <InlineMath math="A" /> dan <InlineMath math="B" /> disambungkan kepada get logik P yang menghasilkan output <InlineMath math="X" />. Output <InlineMath math="X" /> dan input <InlineMath math="C" /> kemudian disambungkan kepada sebuah get TAKDAN (NAND) yang menghasilkan output <InlineMath math="Q" />. Jadual berikut menunjukkan sebahagian jadual kebenaran litar itu.
 
+<Mermaid
+  title={<>Litar logik</>}
+  description={<>Input <InlineMath math="A" /> dan <InlineMath math="B" /> masuk ke get logik P, dan output <InlineMath math="X" /> get itu masuk ke get NAND bersama input <InlineMath math="C" />. Get NAND memberikan output <InlineMath math="Q" />.</>}
+  chart={`
+flowchart LR
+  A["A"] --> P["Get P"]
+  B["B"] --> P
+  P -->|"X"| N["NAND"]
+  C["C"] --> N
+  N --> Q["Q"]
+`}
+/>
+
 | <InlineMath math="A" /> | <InlineMath math="B" /> | <InlineMath math="C" /> | <InlineMath math="Q" /> |
 | --- | --- | --- | --- |
 | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |

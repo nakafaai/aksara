@@ -4,6 +4,46 @@ Wasser ist inkompressibel, durch beide Abschnitte fließt pro Sekunde also dasse
 
 <BlockMath math="v_2=v_1\cdot\frac{A_1}{A_2}=0{,}50\times\left(\frac{4{,}0}{2{,}0}\right)^2=0{,}50\times4=2{,}0\text{ m s}^{-1}" />
 
+Trag beide Schritte ins Rohr ein. Der enge Abschnitt führt denselben Durchfluss mit vierfacher Geschwindigkeit, und das schnellere Wasser hat den kleineren Druck, also steht in seinem Röhrchen die niedrigere Säule.
+
+<MathVisual
+  title={<>Geschwindigkeit und Druck in beiden Abschnitten</>}
+  description={<>Der weite Abschnitt mit <InlineMath math="4{,}0\text{ cm}" /> Durchmesser führt Wasser mit <InlineMath math="0{,}50\text{ m s}^{-1}" />. Der enge Abschnitt mit <InlineMath math="2{,}0\text{ cm}" /> Durchmesser hat ein Viertel der Fläche, also ist der Pfeil für seine Geschwindigkeit von <InlineMath math="2{,}0\text{ m s}^{-1}" /> viermal so lang. Sein Druck ist kleiner, also steht das Wasser in seinem Röhrchen tiefer.</>}
+  labels={{
+    "wide-diameter": <><InlineMath math="4{,}0\text{ cm}" /></>,
+    "narrow-diameter": <><InlineMath math="2{,}0\text{ cm}" /></>,
+    "wide-speed": <><InlineMath math="0{,}50\text{ m s}^{-1}" /></>,
+    "narrow-speed": <><InlineMath math="2{,}0\text{ m s}^{-1}" /></>,
+    "wide-level": <>höherer Druck, höhere Säule</>,
+    "narrow-level": <>kleinerer Druck, niedrigere Säule</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe-top", kind: "polyline", appearance: "secondary", vertices: [{ x: -9, y: 4 }, { x: 0, y: 4 }, { x: 0, y: 2 }, { x: 9, y: 2 }] },
+      { id: "pipe-bottom", kind: "polyline", appearance: "secondary", vertices: [{ x: -9, y: -4 }, { x: 0, y: -4 }, { x: 0, y: -2 }, { x: 9, y: -2 }] },
+      { id: "tube-wide", kind: "polyline", appearance: "secondary", vertices: [{ x: -5, y: 4 }, { x: -5, y: 10 }] },
+      { id: "tube-wide-right", kind: "polyline", appearance: "secondary", vertices: [{ x: -4, y: 4 }, { x: -4, y: 10 }] },
+      { id: "tube-narrow", kind: "polyline", appearance: "secondary", vertices: [{ x: 4, y: 2 }, { x: 4, y: 10 }] },
+      { id: "tube-narrow-right", kind: "polyline", appearance: "secondary", vertices: [{ x: 5, y: 2 }, { x: 5, y: 10 }] },
+      { id: "wide-diameter", kind: "segment", appearance: "construction", from: { x: -8, y: -4 }, to: { x: -8, y: 4 } },
+      { id: "narrow-diameter", kind: "segment", appearance: "construction", from: { x: 8, y: -2 }, to: { x: 8, y: 2 } },
+      { id: "wide-speed", kind: "vector", appearance: "primary", from: { x: -4, y: 0 }, to: { x: -2.5, y: 0 } },
+      { id: "narrow-speed", kind: "vector", appearance: "answer", from: { x: 1, y: 0 }, to: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "wide-diameter", objectId: "wide-diameter", at: { x: -8, y: 0 }, placement: "right" },
+      { key: "narrow-diameter", objectId: "narrow-diameter", at: { x: 8, y: 0 }, placement: "left" },
+      { key: "wide-speed", objectId: "wide-speed", at: { x: -3.25, y: 0 }, placement: "below" },
+      { key: "narrow-speed", objectId: "narrow-speed", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "wide-level", objectId: "tube-wide", at: { x: -4.5, y: 10 }, placement: "above" },
+      { key: "narrow-level", objectId: "tube-narrow", at: { x: 4.5, y: 10 }, placement: "above" },
+    ],
+  }}
+/>
+
 Nach Bernoulli hat schneller fließendes Wasser in einem waagerechten Rohr den kleineren Druck. Im engen Abschnitt ist der Druck kleiner, das Wasser im Röhrchen darüber steigt also weniger hoch. Im engen Abschnitt fließt das Wasser also mit <InlineMath math="2{,}0\text{ m s}^{-1}" />, und der Wasserstand im Röhrchen darüber ist niedriger.
 
 # Warum die anderen Antworten falsch sind

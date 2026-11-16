@@ -1,3 +1,27 @@
 Sebuah blok berjisim <InlineMath math="5.0\text{ kg}" /> ditolak sehingga bergerak ke atas satah condong yang membuat sudut <InlineMath math="30^\circ" /> dengan ufuk, lalu dilepaskan ketika lajunya <InlineMath math="7.0\text{ m s}^{-1}" />. Daya geseran antara blok dengan satah ialah <InlineMath math="10\text{ N}" />. Ambil <InlineMath math="g=10\text{ m s}^{-2}" />.
 
+<MathVisual
+  title={<>Blok bergerak ke atas satah condong</>}
+  description={<>Sebuah blok pada satah yang condong <InlineMath math="30^\circ" /> kepada ufuk, bergerak ke atas satah pada <InlineMath math="7.0\text{ m s}^{-1}" /> ketika dilepaskan.</>}
+  labels={{
+    angle: <><InlineMath math="30^\circ" /></>,
+    velocity: <><InlineMath math="7.0\text{ m s}^{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 10 }, y: { min: -1.5, max: 7.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "incline", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.sqrt(3), y: 0 }, { x: 5 * Math.sqrt(3), y: 5 }] },
+      { id: "block", kind: "polygon", appearance: "secondary", vertices: [{ x: 1.5 * Math.sqrt(3), y: 1.5 }, { x: 2.5 * Math.sqrt(3), y: 2.5 }, { x: 2.5 * Math.sqrt(3) - 0.8, y: 2.5 + 0.8 * Math.sqrt(3) }, { x: 1.5 * Math.sqrt(3) - 0.8, y: 1.5 + 0.8 * Math.sqrt(3) }] },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 0, sweepDegrees: 30 },
+      { id: "velocity", kind: "vector", appearance: "primary", from: { x: 2 * Math.sqrt(3) - 1, y: 2 + Math.sqrt(3) }, to: { x: 3.25 * Math.sqrt(3) - 1, y: 3.25 + Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "angle", objectId: "angle", at: { x: 1.5 * Math.cos(Math.PI / 12), y: 1.5 * Math.sin(Math.PI / 12) }, placement: "right" },
+      { key: "velocity", objectId: "velocity", at: { x: 2.625 * Math.sqrt(3) - 1, y: 2.625 + Math.sqrt(3) }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Berapakah jarak yang dilalui blok itu ke atas satah selepas dilepaskan sehingga berhenti seketika?

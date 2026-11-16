@@ -8,6 +8,44 @@ Pencacah juga menghitung radiasi latar belakang yang tidak meluruh. **Hanya kece
 500\to250\to125:\ &2\text{ waktu paruh}\ \Rightarrow\ T_{1/2}=\frac{12}{2}=6{,}0\text{ jam}
 \end{aligned}" />
 
+Plot kedua laju cacah terhadap waktu. Kurva yang tercatat melandai mendekati latar <InlineMath math="20" /> cacah per menit, sedangkan kurva yang sudah dikoreksi menjadi setengah tiap <InlineMath math="6{,}0" /> jam.
+
+<MathVisual
+  title={<>Laju cacah dengan dan tanpa latar</>}
+  description={<>Laju cacah terhadap waktu selama <InlineMath math="12" /> jam, satu satuan tegak untuk <InlineMath math="50" /> cacah per menit. Laju yang tercatat turun dari <InlineMath math="520" /> ke <InlineMath math="145" /> dan selalu <InlineMath math="20" /> di atas laju yang dikoreksi. Laju yang dikoreksi turun dari <InlineMath math="500" /> ke <InlineMath math="250" /> pada <InlineMath math="6{,}0" /> jam dan ke <InlineMath math="125" /> pada <InlineMath math="12" /> jam.</>}
+  labels={{
+    "recorded-start": <><InlineMath math="520" /></>,
+    "recorded-end": <><InlineMath math="145" /></>,
+    start: <><InlineMath math="500" /></>,
+    half: <><InlineMath math="250" /></>,
+    quarter: <><InlineMath math="125" /></>,
+    background: <>latar <InlineMath math="20" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 14 }, y: { min: -1, max: 11.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "recorded", kind: "function", appearance: "primary", formula: "10 * 2^(-x/6) + 0.4", domain: { min: 0, max: 12 } },
+      { id: "corrected", kind: "function", appearance: "answer", formula: "10 * 2^(-x/6)", domain: { min: 0, max: 12 } },
+      { id: "background-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0.4 }, to: { x: 12, y: 0.4 } },
+      { id: "recorded-start-point", kind: "point", appearance: "primary", at: { x: 0, y: 10.4 } },
+      { id: "recorded-end-point", kind: "point", appearance: "primary", at: { x: 12, y: 2.9 } },
+      { id: "start-point", kind: "point", appearance: "answer", at: { x: 0, y: 10 } },
+      { id: "half-point", kind: "point", appearance: "answer", at: { x: 6, y: 5 } },
+      { id: "quarter-point", kind: "point", appearance: "answer", at: { x: 12, y: 2.5 } },
+    ],
+    labels: [
+      { key: "recorded-start", objectId: "recorded-start-point", at: { x: 0, y: 10.4 }, placement: "right" },
+      { key: "recorded-end", objectId: "recorded-end-point", at: { x: 12, y: 2.9 }, placement: "above" },
+      { key: "start", objectId: "start-point", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "half", objectId: "half-point", at: { x: 6, y: 5 }, placement: "below-left" },
+      { key: "quarter", objectId: "quarter-point", at: { x: 12, y: 2.5 }, placement: "below" },
+      { key: "background", objectId: "background-line", at: { x: 6, y: 0.4 }, placement: "below" },
+    ],
+  }}
+/>
+
 Perbandingannya tepat <InlineMath math="\tfrac{125}{500}=\tfrac14" />, jadi dua waktu paruh berlalu dalam <InlineMath math="12" /> jam. Jadi, waktu paruh sampel adalah <InlineMath math="6{,}0" /> jam.
 
 # Mengapa pilihan lain salah

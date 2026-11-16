@@ -4,6 +4,20 @@ Transistor menyala saat tegangan basis mencapai nilai ambang tertentu. LDR berad
 
 <BlockMath math="V_B=\frac{R_{\text{LDR}}}{R+R_{\text{LDR}}}\,V" />
 
+Ikuti rantai dari resistor sampai lampu. Tiap mata rantai adalah satu langkah pembagi tegangan dan sakelar transistor.
+
+<Mermaid
+  title={<>Bagaimana resistor yang lebih kecil menyalakan lampu lebih awal</>}
+  description={<>Diagram alir: <InlineMath math="R" /> yang lebih kecil memberi LDR bagian tegangan sumber yang lebih besar, jadi tegangan basis mencapai nilai sakelar pada hambatan LDR yang lebih kecil. Hambatan LDR yang lebih kecil berarti sekitarnya lebih terang, jadi lampu menyala lebih awal.</>}
+  chart={`
+flowchart TD
+  A["Ganti R dengan resistor yang lebih kecil"] --> B["LDR mendapat bagian tegangan sumber yang lebih besar"]
+  B --> C["Tegangan basis mencapai nilai sakelar pada hambatan LDR yang lebih kecil"]
+  C --> D["Hambatan LDR yang lebih kecil berarti sekitar lebih terang"]
+  D --> E["Lampu menyala lebih awal"]
+`}
+/>
+
 Saat masih agak terang, <InlineMath math="R_{\text{LDR}}" /> lebih kecil, sehingga <InlineMath math="V_B" /> belum mencapai ambang. Supaya ambang sudah tercapai pada <InlineMath math="R_{\text{LDR}}" /> yang lebih kecil itu, **bagian <InlineMath math="R" /> harus diperkecil**, karena <InlineMath math="R" /> yang lebih kecil memberi bagian tegangan yang lebih besar kepada LDR. Jadi, ganti <InlineMath math="R" /> dengan resistor yang hambatannya lebih kecil.
 
 # Mengapa pilihan lain salah

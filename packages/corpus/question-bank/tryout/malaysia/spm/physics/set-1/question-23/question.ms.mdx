@@ -1,3 +1,35 @@
 Tiga spring yang serupa mempunyai pemalar spring <InlineMath math="200\text{ N m}^{-1}" /> setiap satu. Spring P digantung dari siling. Dua spring yang lain, Q dan R, disusun selari dan digantung pada hujung bawah spring P. Satu beban <InlineMath math="20\text{ N}" /> digantung pada hujung bawah susunan selari Q dan R. Jisim spring boleh diabaikan.
 
+<MathVisual
+  title={<>Tiga spring serupa membawa beban</>}
+  description={<>Spring P tergantung dari siling. Spring Q dan R tergantung bersebelahan dari sebatang palang di hujung bawah P, dan beban <InlineMath math="20\text{ N}" /> tergantung dari palang yang menyambung hujung bawah kedua-duanya. Setiap spring mempunyai pemalar spring <InlineMath math="200\text{ N m}^{-1}" />.</>}
+  labels={{
+    p: <>P, <InlineMath math="k=200\text{ N m}^{-1}" /></>,
+    q: <><InlineMath math="Q" /></>,
+    r: <><InlineMath math="R" /></>,
+    load: <><InlineMath math="20\text{ N}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6.5 }, y: { min: -0.5, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ceiling", kind: "segment", appearance: "reference", from: { x: -2.5, y: 10 }, to: { x: 2.5, y: 10 } },
+      { id: "spring-p", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 10 }, { x: 0.5, y: 9.5 }, { x: -0.5, y: 8.7 }, { x: 0.5, y: 7.9 }, { x: -0.5, y: 7.1 }, { x: 0, y: 6.6 }, { x: 0, y: 6 }] },
+      { id: "upper-bar", kind: "segment", appearance: "secondary", from: { x: -1.5, y: 6 }, to: { x: 1.5, y: 6 } },
+      { id: "spring-q", kind: "polyline", appearance: "primary", vertices: [{ x: -1, y: 6 }, { x: -0.6, y: 5.6 }, { x: -1.4, y: 5 }, { x: -0.6, y: 4.4 }, { x: -1.4, y: 3.8 }, { x: -1, y: 3.4 }, { x: -1, y: 3 }] },
+      { id: "spring-r", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 6 }, { x: 1.4, y: 5.6 }, { x: 0.6, y: 5 }, { x: 1.4, y: 4.4 }, { x: 0.6, y: 3.8 }, { x: 1, y: 3.4 }, { x: 1, y: 3 }] },
+      { id: "lower-bar", kind: "segment", appearance: "secondary", from: { x: -1.5, y: 3 }, to: { x: 1.5, y: 3 } },
+      { id: "hook", kind: "segment", appearance: "secondary", from: { x: 0, y: 3 }, to: { x: 0, y: 2.2 } },
+      { id: "load", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.8, y: 0.6 }, { x: 0.8, y: 0.6 }, { x: 0.8, y: 2.2 }, { x: -0.8, y: 2.2 }] },
+    ],
+    labels: [
+      { key: "p", objectId: "spring-p", at: { x: 0.5, y: 8.3 }, placement: "right" },
+      { key: "q", objectId: "spring-q", at: { x: -1.4, y: 4.5 }, placement: "left" },
+      { key: "r", objectId: "spring-r", at: { x: 1.4, y: 4.5 }, placement: "right" },
+      { key: "load", objectId: "load", at: { x: 0.8, y: 1.4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Berapakah jumlah pemanjangan sistem spring itu?
