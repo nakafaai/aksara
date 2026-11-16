@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.20\\text{ g}$$ of copper forms, and the zinc ions reach $$0.050\\text{ mol dm}^{-3}$$",
+            "$$1.08\\text{ g}$$ of silver forms, and the copper(II) ions reach $$0.0050\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$0.050\\text{ g}$$ of copper forms, and the zinc ions reach $$0.20\\text{ mol dm}^{-3}$$",
+            "$$0.76\\text{ g}$$ of silver forms, and the copper(II) ions reach $$0.020\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$3.25\\text{ g}$$ of copper forms, and the zinc ions reach $$0.20\\text{ mol dm}^{-3}$$",
+            "$$1.87\\text{ g}$$ of silver forms, and the copper(II) ions reach $$0.069\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$3.20\\text{ g}$$ of copper forms, and the zinc ions reach $$0.20\\text{ mol dm}^{-3}$$",
+            "$$1.08\\text{ g}$$ of silver forms, and the copper(II) ions reach $$0.020\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.20\\text{ g}$$ kuprum terbentuk, dan ion zink mencapai $$0.050\\text{ mol dm}^{-3}$$",
+            "$$1.08\\text{ g}$$ argentum terbentuk, dan ion kuprum(II) mencapai $$0.0050\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$0.050\\text{ g}$$ kuprum terbentuk, dan ion zink mencapai $$0.20\\text{ mol dm}^{-3}$$",
+            "$$0.76\\text{ g}$$ argentum terbentuk, dan ion kuprum(II) mencapai $$0.020\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$3.25\\text{ g}$$ kuprum terbentuk, dan ion zink mencapai $$0.20\\text{ mol dm}^{-3}$$",
+            "$$1.87\\text{ g}$$ argentum terbentuk, dan ion kuprum(II) mencapai $$0.069\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$3.20\\text{ g}$$ kuprum terbentuk, dan ion zink mencapai $$0.20\\text{ mol dm}^{-3}$$",
+            "$$1.08\\text{ g}$$ argentum terbentuk, dan ion kuprum(II) mencapai $$0.020\\text{ mol dm}^{-3}$$",
         },
       ],
     },
