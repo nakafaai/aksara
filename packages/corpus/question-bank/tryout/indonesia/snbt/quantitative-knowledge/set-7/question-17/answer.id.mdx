@@ -26,6 +26,36 @@ b^2+5b-500&=0\\
 (b+25)(b-20)&=0
 \end{aligned}" />
 
+Gambar berikut memetakan pasangan <InlineMath math="(a,b)" />. Daerah yang diarsir adalah pasangan yang membuat harga naik. Kedua pernyataan bersama hanya menyisakan satu titik, <InlineMath math="(25,20)" />, dan **titik itu tepat di tepi daerah**, tempat harga akhir sama dengan harga mula-mula.
+
+<MathVisual
+  title={<>Pasangan persentase <InlineMath math="(a,b)" /> yang membuat harga naik</>}
+  description={<>Sumbu mendatar adalah <InlineMath math="a" /> dan sumbu tegak adalah <InlineMath math="b" />. Daerah yang diarsir memenuhi <InlineMath math="100(a-b)>ab" />. Kurva <InlineMath math="ab=500" /> dan garis <InlineMath math="a=b+5" /> sama-sama melewati bagian di dalam dan di luar daerah, jadi masing-masing tidak cukup. Keduanya bertemu di <InlineMath math="(25,20)" />, tepat di tepi daerah.</>}
+  labels={{
+    rise: <InlineMath math="100(a-b)>ab" />,
+    product: <InlineMath math="ab=500" />,
+    gap: <InlineMath math="a=b+5" />,
+    meet: <InlineMath math="(25,20)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "rise", kind: "region", appearance: "highlight", inequalities: ["100(x - y) > x y", "y > 0", "x < 60"] },
+      { id: "product", kind: "function", appearance: "primary", formula: "500/x", domain: { min: 8.4, max: 60 } },
+      { id: "gap", kind: "function", appearance: "secondary", formula: "x - 5", domain: { min: 5, max: 60 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 25, y: 20 } },
+    ],
+    labels: [
+      { key: "rise", objectId: "rise", at: { x: 45, y: 10 }, placement: "center" },
+      { key: "product", objectId: "product", at: { x: 10, y: 50 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 55, y: 50 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 25, y: 20 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Karena <InlineMath math="b>0" />, nilai <InlineMath math="b=-25" /> ditolak, jadi <InlineMath math="b=20" /> dan <InlineMath math="a=25" />. Faktor perubahannya <InlineMath math="1{,}25\times0{,}8=1" />, sama dengan memakai rumus tadi: <InlineMath math="100(a-b)=500=ab" />. Harga akhir **tepat sama dengan harga mula-mula**, jadi tidak lebih tinggi. Jawabannya pasti "tidak", dan jawaban yang pasti berarti informasinya cukup.
 
 Jebakannya ada dua. Melihat <InlineMath math="a>b" /> lalu menyimpulkan harga naik adalah keliru, dan menganggap "harga tetap" sebagai keadaan yang tidak menjawab pertanyaan juga keliru.

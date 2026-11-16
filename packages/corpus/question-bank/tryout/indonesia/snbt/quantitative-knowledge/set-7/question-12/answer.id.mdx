@@ -33,4 +33,18 @@ n \text{ ganjil}&: \ \tfrac{n+1}{2}\le14 \;\Longrightarrow\; n\le27 \;\Longright
 
 Untuk <InlineMath math="k=7" /> ada <InlineMath math="27" /> data, dan median adalah data ke-<InlineMath math="14" />, yang masih bernilai <InlineMath math="7" />. Untuk <InlineMath math="k=8" /> ada <InlineMath math="28" /> data, dan median menjadi <InlineMath math="\frac{7+8}{2}=7{,}5" />. Jadi median tetap <InlineMath math="7" /> untuk <InlineMath math="k\le7" />, bukan hanya <InlineMath math="k\le6" />. Pernyataan keempat **salah**.
 
+Grafik berikut membandingkan data semula dengan data setelah <InlineMath math="7" /> siswa bernilai <InlineMath math="8" /> ditambahkan. Batang nilai <InlineMath math="5" />, <InlineMath math="6" />, dan <InlineMath math="7" /> **tidak bergeser**, jadi nilai <InlineMath math="7" /> tetap menempati urutan ke-<InlineMath math="9" /> sampai ke-<InlineMath math="14" />, dan urutan ke-<InlineMath math="14" /> dari <InlineMath math="27" /> data masih bernilai <InlineMath math="7" />.
+
+<Chart
+  title={<>Frekuensi nilai sebelum dan sesudah tambahan nilai <InlineMath math="8" /></>}
+  description={<>Data semula punya frekuensi <InlineMath math="3, 5, 6, 4, 2" /> untuk nilai <InlineMath math="5" /> sampai <InlineMath math="9" />. Setelah <InlineMath math="7" /> nilai <InlineMath math="8" /> ditambahkan, frekuensinya <InlineMath math="3, 5, 6, 11, 2" />, dengan <InlineMath math="27" /> data. Median adalah data ke-<InlineMath math="14" />, yaitu <InlineMath math="7" />.</>}
+  bars="apart"
+  categories={["5", "6", "7", "8", "9"]}
+  series={[
+    { label: "Data semula", mark: "bar", values: [3, 5, 6, 4, 2] },
+    { label: "Tambah 7 siswa bernilai 8", mark: "bar", values: [3, 5, 6, 4 + 7, 2] },
+  ]}
+  valueLabel="Frekuensi"
+/>
+
 Jadi, pernyataan pertama benar, sedangkan pernyataan kedua, ketiga, dan keempat salah.

@@ -24,6 +24,20 @@ The number of factors <InlineMath math="5" /> in <InlineMath math="n!" /> comes 
 
 In both numbers there are far more factors <InlineMath math="2" />, so the factors <InlineMath math="5" /> decide. That gives <InlineMath math="P=8" /> and <InlineMath math="Q=7" />, so <InlineMath math="P>Q" />.
 
+The chart below compares the factors <InlineMath math="2" /> and <InlineMath math="5" /> in both numbers. The bars for the factor <InlineMath math="2" /> are much taller, so **the bars for the factor <InlineMath math="5" /> decide** the number of zeros: <InlineMath math="8" /> for <InlineMath math="P" /> and <InlineMath math="7" /> for <InlineMath math="Q" />.
+
+<Chart
+  title={<>Factors of <InlineMath math="2" /> and <InlineMath math="5" /> in <InlineMath math="25!\times25" /> and <InlineMath math="34!\times36" /></>}
+  description={<>The number <InlineMath math="26!-25!=25!\times25" /> has <InlineMath math="8" /> factors <InlineMath math="5" /> and <InlineMath math="22" /> factors <InlineMath math="2" />. The number <InlineMath math="34!+35!=34!\times36" /> has <InlineMath math="7" /> factors <InlineMath math="5" /> and <InlineMath math="34" /> factors <InlineMath math="2" />.</>}
+  bars="apart"
+  categories={["26! - 25!", "34! + 35!"]}
+  series={[
+    { label: "Factors of 5", mark: "bar", values: [5 + 1 + 2, 6 + 1] },
+    { label: "Factors of 2", mark: "bar", values: [12 + 6 + 3 + 1, 17 + 8 + 4 + 2 + 1 + 2] },
+  ]}
+  valueLabel="Number of factors"
+/>
+
 # The quick estimate trap
 
 A quick estimate often looks only at the largest factorial. The factorial <InlineMath math="26!" /> ends in <InlineMath math="5+1=6" /> zeros and <InlineMath math="35!" /> ends in <InlineMath math="7+1=8" /> zeros, which makes it look like <InlineMath math="Q>P" />. If you factor only <InlineMath math="P" /> correctly, you get <InlineMath math="8" /> against <InlineMath math="8" /> and you're tempted to pick <InlineMath math="P=Q" />. **Both numbers have to be factored**, and each has a single fixed value, so the information is enough.

@@ -27,6 +27,18 @@ For example, <InlineMath math="n=3" /> gives <InlineMath math="8" /> with remain
 
 Put them together: <InlineMath math="n" /> is odd and leaves remainder <InlineMath math="1" /> or <InlineMath math="2" /> on division by <InlineMath math="3" />. In the table, the columns with remainder <InlineMath math="1" /> by <InlineMath math="2" /> and a nonzero remainder by <InlineMath math="3" /> are columns <InlineMath math="1" /> and <InlineMath math="5" />. **Two possibilities are still left**, and both really happen.
 
+The diagram below combines both statements. Statement (1) removes remainder <InlineMath math="0" /> on division by <InlineMath math="3" />, statement (2) removes even numbers, and **two remainders on division by <InlineMath math="6" /> are still left**.
+
+<Mermaid
+  title={<>Remainders on division by <InlineMath math="6" /> that pass both statements</>}
+  description={<>Statement (1) leaves remainder <InlineMath math="1" /> or <InlineMath math="2" /> on division by <InlineMath math="3" />. Statement (2) leaves odd numbers. Together, the remainder on division by <InlineMath math="6" /> can be <InlineMath math="1" /> or <InlineMath math="5" />, for example <InlineMath math="n=7" /> and <InlineMath math="n=5" />.</>}
+  chart={`flowchart LR
+    S1["(1): remainder by 3 is 1 or 2"] --> K["remainder by 6: 1 or 5"]
+    S2["(2): n is odd"] --> K
+    K --> X1["n = 7: remainder 1"]
+    K --> X2["n = 5: remainder 5"]`}
+/>
+
 <BlockMath math="\begin{aligned}
 n=7&: \ 7^2+2=51=3\times17,\quad 7^2-1=48=8\times6,\quad \text{remainder by } 6 \text{ is } 1\\
 n=5&: \ 5^2+2=27=3\times9,\quad 5^2-1=24=8\times3,\quad \text{remainder by } 6 \text{ is } 5

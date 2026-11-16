@@ -32,6 +32,38 @@ Teste jetzt <InlineMath math="x=4{,}5" />. Eine halbe Potenz lässt sich schlech
 36\times512&=18{.}432<19{.}683
 \end{aligned}" />
 
+Der Graph von <InlineMath math="y=\left(\tfrac32\right)^x" /> zeigt, wo <InlineMath math="x" /> liegt. Bei <InlineMath math="x=4" /> liegt die Kurve noch unter der Geraden <InlineMath math="y=6" />, bei <InlineMath math="x=4{,}5" /> schon darüber, also **liegt der Schnittpunkt zwischen den beiden gestrichelten Linien**.
+
+<MathVisual
+  title={<>Die Kurve <InlineMath math="y=\left(\tfrac32\right)^x" /> und die Gerade <InlineMath math="y=6" /></>}
+  description={<>Die Exponentialkurve steigt immer schneller. Bei <InlineMath math="x=4" /> ist ihr Wert <InlineMath math="\tfrac{81}{16}" />, etwa <InlineMath math="5{,}06" />, also unter <InlineMath math="6" />. Bei <InlineMath math="x=4{,}5" /> ist er etwa <InlineMath math="6{,}2" />, also über <InlineMath math="6" />. Die Kurve schneidet die Gerade <InlineMath math="y=6" /> zwischen diesen beiden Werten.</>}
+  labels={{
+    curve: <InlineMath math="y=\left(\tfrac32\right)^x" />,
+    six: <InlineMath math="y=6" />,
+    four: <InlineMath math="x=4" />,
+    half: <InlineMath math="x=4{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 6 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "six", kind: "segment", appearance: "reference", from: { x: 2, y: 6 }, to: { x: 6, y: 6 } },
+      { id: "four", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 81 / 16 } },
+      { id: "half", kind: "segment", appearance: "construction", from: { x: 4.5, y: 0 }, to: { x: 4.5, y: 1.5 ** 4.5 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "1.5^x", domain: { min: 2, max: 6 } },
+      { id: "p4", kind: "point", appearance: "secondary", at: { x: 4, y: 81 / 16 } },
+      { id: "p45", kind: "point", appearance: "secondary", at: { x: 4.5, y: 1.5 ** 4.5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5.8, y: 1.5 ** 5.8 }, placement: "left" },
+      { key: "six", objectId: "six", at: { x: 2.3, y: 6 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 4, y: 1 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: 4.5, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="\left(\tfrac32\right)^9>36" />, das heißt <InlineMath math="\left(\tfrac32\right)^{4{,}5}>6" />. Die Potenz mit <InlineMath math="4{,}5" /> ist schon über <InlineMath math="6" /> hinaus, also gilt <InlineMath math="x<4{,}5" />. Zusammen mit dem vorigen Schritt folgt <InlineMath math="4<x<4{,}5" />.
 
 Eine Probe mit genauen Logarithmen, <InlineMath math="\log2\approx0{,}3010" /> und <InlineMath math="\log3\approx0{,}4771" />, ergibt <InlineMath math="x=\frac{\log3+\log2}{\log3-\log2}\approx\frac{0{,}7781}{0{,}1761}\approx4{,}42" />, passend zu diesem Intervall.

@@ -38,6 +38,17 @@ Zähl jetzt noch einmal direkt an den Faktoren von <InlineMath math="P" /> nach.
 
 Die Summe ist <InlineMath math="20+10+5+2+1=38" />, genau wie bei der Formel von Legendre.
 
+Das Diagramm zeigt, wie viele Faktoren <InlineMath math="2" /> jedes Glied von <InlineMath math="P" /> beiträgt. Die meisten Glieder liefern nur <InlineMath math="1" /> oder <InlineMath math="2" />, aber **<InlineMath math="32" /> liefert auf einmal <InlineMath math="5" />**, und alle Balken ergeben zusammen <InlineMath math="38" />.
+
+<Chart
+  title={<>Faktoren <InlineMath math="2" /> in jedem Glied von <InlineMath math="22" /> bis <InlineMath math="60" /></>}
+  description={<>Glieder, die keine Vielfachen von <InlineMath math="4" /> sind, liefern <InlineMath math="1" /> Faktor <InlineMath math="2" />. Die Glieder <InlineMath math="24" />, <InlineMath math="40" /> und <InlineMath math="56" /> liefern <InlineMath math="3" />, das Glied <InlineMath math="48" /> liefert <InlineMath math="4" /> und das Glied <InlineMath math="32" /> liefert <InlineMath math="5" />. Alle Balken ergeben zusammen <InlineMath math="38" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 20 }, (_, i) => `${22 + 2 * i}`)}
+  series={[{ label: "Faktoren 2 im Glied", mark: "bar", values: Array.from({ length: 20 }, (_, i) => Math.log2((22 + 2 * i) & -(22 + 2 * i))) }]}
+  valueLabel="Faktoren 2"
+/>
+
 # In eine Potenz von acht umrechnen
 
 Wegen <InlineMath math="8^n=2^{3n}" /> ist <InlineMath math="P" /> genau dann durch <InlineMath math="8^n" /> teilbar, wenn <InlineMath math="3n\le38" /> gilt. **Der Wert von <InlineMath math="n" /> muss ganzzahlig sein, also fällt der Bruchteil weg**, statt aufgerundet zu werden.

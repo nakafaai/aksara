@@ -33,6 +33,43 @@ Use the class sizes you now know and **weight each mean by its number of student
 
 A check by another route: the total of all three classes is <InlineMath math="75\times6k=450k" />. Take out class A, whose total is <InlineMath math="50k" />, and <InlineMath math="400k" /> is left for <InlineMath math="5k" /> students, a mean of <InlineMath math="80" />.
 
+The number line below shows that result as a balance point. Class B is three times class A and class C is twice class A, so the combined mean of B and C **sits at <InlineMath math="80" />**, <InlineMath math="10" /> from <InlineMath math="70" /> and <InlineMath math="15" /> from <InlineMath math="95" />, the reverse of the size ratio <InlineMath math="3:2" />.
+
+<MathVisual
+  title={<>Class means and combined means on one line</>}
+  description={<>On the score line, the mean of A sits at <InlineMath math="50" />, A and B combined at <InlineMath math="65" />, the mean of B at <InlineMath math="70" />, all three combined at <InlineMath math="75" />, B and C combined at <InlineMath math="80" />, and the mean of C at <InlineMath math="95" />. The distances from <InlineMath math="80" /> to <InlineMath math="70" /> and to <InlineMath math="95" /> are in the ratio <InlineMath math="10:15=2:3" />, the reverse of the class sizes <InlineMath math="3:2" />.</>}
+  labels={{
+    a: <InlineMath math="A:50" />,
+    ab: <InlineMath math="A+B:65" />,
+    b: <InlineMath math="B:70" />,
+    all: <InlineMath math="75" />,
+    bc: <InlineMath math="B+C:80" />,
+    c: <InlineMath math="C:95" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 45, max: 100 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 47, y: 0 }, to: { x: 98, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 50, y: 0 } },
+      { id: "mean-ab", kind: "point", appearance: "construction", at: { x: 65, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 70, y: 0 } },
+      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 75, y: 0 } },
+      { id: "mean-bc", kind: "point", appearance: "answer", at: { x: 80, y: 0 } },
+      { id: "mean-c", kind: "point", appearance: "primary", at: { x: 95, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mean-a", at: { x: 50, y: 0 }, placement: "above" },
+      { key: "ab", objectId: "mean-ab", at: { x: 65, y: 0 }, placement: "below" },
+      { key: "b", objectId: "mean-b", at: { x: 70, y: 0 }, placement: "above" },
+      { key: "all", objectId: "mean-all", at: { x: 75, y: 0 }, placement: "below" },
+      { key: "bc", objectId: "mean-bc", at: { x: 80, y: 0 }, placement: "above" },
+      { key: "c", objectId: "mean-c", at: { x: 95, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # The wrong options
 
 - <InlineMath math="90" /> comes from flipping the ratio of A to B to <InlineMath math="3:1" />, which also makes the size of class C wrong, <InlineMath math="4k" />.

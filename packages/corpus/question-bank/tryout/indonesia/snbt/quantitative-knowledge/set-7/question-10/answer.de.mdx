@@ -18,6 +18,20 @@ Die erste gerade Karte erscheint beim dritten Zug, wenn die Reihenfolge ungerade
 
 <BlockMath math="P(E\cap G)=\tfrac{5}{10}\cdot\tfrac49\cdot\tfrac58=\tfrac{100}{720}=\tfrac{5}{36}" />
 
+Der Wahrscheinlichkeitsbaum zeigt beide Zweige, aus denen die Bedingung <InlineMath math="G" /> besteht. Nur **der Zweig ungerade-ungerade kann weitergehen** zur ersten geraden Karte beim dritten Zug, weil im Zweig gerade-gerade schon eine gerade Karte erschienen ist.
+
+<Mermaid
+  title={<>Wahrscheinlichkeitsbaum für die ersten drei Züge</>}
+  description={<>Ungerade und dann ungerade hat die Wahrscheinlichkeit <InlineMath math="\tfrac29" />, gerade und dann gerade ebenfalls <InlineMath math="\tfrac29" />, also <InlineMath math="P(G)=\tfrac49" />. Im Zweig ungerade-ungerade ist die dritte Karte mit Wahrscheinlichkeit <InlineMath math="\tfrac58" /> gerade, also <InlineMath math="P(E\cap G)=\tfrac29\cdot\tfrac58=\tfrac{5}{36}" />.</>}
+  chart={`flowchart LR
+    S["10 Karten: 5 ungerade, 5 gerade"] -->|"5/10 x 4/9 = 2/9"| OO["ungerade, ungerade"]
+    S -->|"5/10 x 4/9 = 2/9"| EE["gerade, gerade"]
+    OO -->|"5/8"| E["dritte Karte gerade: 5/36"]
+    EE --> X["gerade schon erschienen, nicht E"]
+    OO --> G["P(G) = 2/9 + 2/9 = 4/9"]
+    EE --> G`}
+/>
+
 # Die bedingte Wahrscheinlichkeit berechnen
 
 **Teile die gemeinsame Wahrscheinlichkeit durch die Wahrscheinlichkeit der Bedingung**, weil die Bedingung zum neuen Ergebnisraum wird.

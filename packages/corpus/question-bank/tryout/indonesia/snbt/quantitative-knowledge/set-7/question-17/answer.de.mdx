@@ -26,6 +26,36 @@ b^2+5b-500&=0\\
 (b+25)(b-20)&=0
 \end{aligned}" />
 
+Die Abbildung zeigt die Paare <InlineMath math="(a,b)" />. Der schraffierte Bereich enthält die Paare, bei denen der Preis steigt. Beide Aussagen zusammen lassen nur einen Punkt übrig, <InlineMath math="(25,20)" />, und **dieser Punkt liegt genau auf dem Rand des Bereichs**, wo der Endpreis dem Anfangspreis entspricht.
+
+<MathVisual
+  title={<>Prozentpaare <InlineMath math="(a,b)" />, bei denen der Preis steigt</>}
+  description={<>Die waagrechte Achse ist <InlineMath math="a" />, die senkrechte <InlineMath math="b" />. Der schraffierte Bereich erfüllt <InlineMath math="100(a-b)>ab" />. Die Kurve <InlineMath math="ab=500" /> und die Gerade <InlineMath math="a=b+5" /> verlaufen beide teils innerhalb, teils außerhalb des Bereichs, also reicht keine allein. Sie treffen sich in <InlineMath math="(25,20)" />, genau auf dem Rand des Bereichs.</>}
+  labels={{
+    rise: <InlineMath math="100(a-b)>ab" />,
+    product: <InlineMath math="ab=500" />,
+    gap: <InlineMath math="a=b+5" />,
+    meet: <InlineMath math="(25,20)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "rise", kind: "region", appearance: "highlight", inequalities: ["100(x - y) > x y", "y > 0", "x < 60"] },
+      { id: "product", kind: "function", appearance: "primary", formula: "500/x", domain: { min: 8.4, max: 60 } },
+      { id: "gap", kind: "function", appearance: "secondary", formula: "x - 5", domain: { min: 5, max: 60 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 25, y: 20 } },
+    ],
+    labels: [
+      { key: "rise", objectId: "rise", at: { x: 45, y: 10 }, placement: "center" },
+      { key: "product", objectId: "product", at: { x: 10, y: 50 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 55, y: 50 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 25, y: 20 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Wegen <InlineMath math="b>0" /> fällt <InlineMath math="b=-25" /> weg, also ist <InlineMath math="b=20" /> und <InlineMath math="a=25" />. Der Faktor ist <InlineMath math="1{,}25\times0{,}8=1" />, passend zur Formel: <InlineMath math="100(a-b)=500=ab" />. Der Endpreis ist **genau gleich dem Anfangspreis**, also nicht höher. Die Antwort ist sicher "nein", und eine sichere Antwort bedeutet, dass die Angaben reichen.
 
 Hier lauern zwei Fallen. Aus <InlineMath math="a>b" /> auf einen Preisanstieg zu schließen ist falsch, und "der Preis bleibt gleich" als Fall zu sehen, der die Frage nicht beantwortet, ist ebenfalls falsch.

@@ -18,6 +18,20 @@ The first even card shows up on the third draw means the order is odd, odd, even
 
 <BlockMath math="P(E\cap G)=\tfrac{5}{10}\cdot\tfrac49\cdot\tfrac58=\tfrac{100}{720}=\tfrac{5}{36}" />
 
+The probability tree below shows both branches that make up the condition <InlineMath math="G" />. Only **the odd-odd branch can continue** to the first even card on the third draw, because on the even-even branch an even card has already appeared.
+
+<Mermaid
+  title={<>Probability tree for the first three draws</>}
+  description={<>Odd then odd has probability <InlineMath math="\tfrac29" />, and even then even also <InlineMath math="\tfrac29" />, so <InlineMath math="P(G)=\tfrac49" />. From the odd-odd branch, the third card is even with probability <InlineMath math="\tfrac58" />, so <InlineMath math="P(E\cap G)=\tfrac29\cdot\tfrac58=\tfrac{5}{36}" />.</>}
+  chart={`flowchart LR
+    S["10 cards: 5 odd, 5 even"] -->|"5/10 x 4/9 = 2/9"| OO["odd, odd"]
+    S -->|"5/10 x 4/9 = 2/9"| EE["even, even"]
+    OO -->|"5/8"| E["third card even: 5/36"]
+    EE --> X["even already appeared, not E"]
+    OO --> G["P(G) = 2/9 + 2/9 = 4/9"]
+    EE --> G`}
+/>
+
 # Computing the conditional probability
 
 **Divide the joint probability by the probability of the condition**, because the condition becomes the new sample space.
