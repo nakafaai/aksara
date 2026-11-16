@@ -8,6 +8,7 @@ export const FLOW_VOICE_RULES = [
       de: /\b(?:angenommen|stell dir vor)\b[^.!?\n]{0,180}\bGrundstück\b[^.!?\n]*[.!?]\s+(?:Nähere|Schätze|Berechne)\b[^.!?\n]{0,50}\bFläche\b/iu,
       en: /\b(?:suppose|imagine)\b[^.!?\n]{0,180}\b(?:plot|piece) of land\b[^.!?\n]*[.!?]\s+(?:Approximate|Estimate|Calculate)\b[^.!?\n]{0,50}\b(?:area|land)\b/iu,
       id: /\b(?:misalkan|bayangkan)\b[^.!?\n]{0,180}\b(?:tanah|lahan)\b[^.!?\n]*[.!?]\s+(?:Perkirakan|Hitung)\b[^.!?\n]{0,50}\b(?:luas|tanah|lahan)\b/iu,
+      ms: /\b(?:katakan|bayangkan|andaikan)\b[^.!?\n]{0,180}\b(?:tanah|lot)\b[^.!?\n]*[.!?]\s+(?:Anggarkan|Kira|Hitung)\b[^.!?\n]{0,50}\b(?:luas|tanah|lot)\b/iu,
     },
   },
   {
@@ -16,30 +17,35 @@ export const FLOW_VOICE_RULES = [
       de: /^(?!\s*>)(?:\s*\d+\.\s+)?(?:In dieser fiktiven Aufgabe\b|Das fiktive Modell\b|Eine hypothetische (?:Region hat|Substanz beginnt)|Ein hypothetisches (?:Medikament|Unternehmen)\b)/iu,
       en: /^(?!\s*>)(?:\s*\d+\.\s+)?(?:In this fictional exercise\b|The fictional model\b|A hypothetical (?:company|region|substance)\b|Suppose a hypothetical medicine\b|Consider a hypothetical company\b)/iu,
       id: /^(?!\s*>)(?:\s*\d+\.\s+)?(?:Dalam latihan fiktif ini\b|Model fiktif ini\b|Suatu (?:wilayah|zat) hipotetis\b|Anggap (?:sebuah perusahaan|suatu obat) hipotetis\b)/iu,
+      ms: /^(?!\s*>)(?:\s*\d+\.\s+)?(?:Dalam latihan rekaan ini\b|Model rekaan ini\b|Suatu (?:kawasan|bahan) hipotetikal\b|Anggap (?:sebuah syarikat|suatu ubat) hipotetikal\b)/iu,
     },
   },
   {
     id: "indonesian-trailing-bare-range",
     patterns: {
       id: /\b(?:sebagai|berupa|menjadi) rentang[.!?](?:\s|$)/iu,
+      ms: /\b(?:sebagai|berupa|menjadi) julat[.!?](?:\s|$)/iu,
     },
   },
   {
     id: "indonesian-uncertainty-propagation-calque",
     patterns: {
       id: /(?:\b(?:ketidakpastian|pengukuran|data ukur)\b[^.!?\n]{0,100}\baturan rambatan\b|\baturan rambatan\b[^.!?\n]{0,100}\b(?:ketidakpastian|pengukuran|data ukur)\b)/iu,
+      ms: /(?:\b(?:ketakpastian|pengukuran|data ukuran)\b[^.!?\n]{0,100}\bperaturan rambatan\b|\bperaturan rambatan\b[^.!?\n]{0,100}\b(?:ketakpastian|pengukuran|data ukuran)\b)/iu,
     },
   },
   {
     id: "indonesian-detached-discussion-passive",
     patterns: {
       id: /\b(?:ketika|saat)\b[^.!?\n]{0,100}\bikut dibahas\b/iu,
+      ms: /\b(?:ketika|semasa|apabila)\b[^.!?\n]{0,100}\bturut dibincangkan\b/iu,
     },
   },
   {
     id: "indonesian-meta-discussion-classification",
     patterns: {
       id: /\bdibahas (?:sebagai|dalam konteks)\b/iu,
+      ms: /\bdibincangkan (?:sebagai|dalam konteks)\b/iu,
     },
   },
   {
@@ -48,6 +54,7 @@ export const FLOW_VOICE_RULES = [
       de: /(?:\b(?:ein Grenzwert|der Grenzwert|Identifizierbarkeit|Atomökonomie|grüne Chemie|bedingte Wahrscheinlichkeit|Atomradius|erste Ionisierungsenergie|Elektronenaffinität|Elektronegativität)\b|die\s+`str\(\)`\s+Funktion)[^.!?\n]{0,180}\bfragt\b/iu,
       en: /(?:\b(?:a limit|the limit|identifiability|atom economy|green chemistry|conditional probability|atomic radius|first ionization energy|electron affinity|electronegativity)\b|the\s+`str\(\)`\s+function)[^.!?\n]{0,180}\basks?\b/iu,
       id: /(?:\b(?:limit|identifiabilitas|ekonomi atom|kimia hijau|peluang bersyarat|jari-jari atom|energi ionisasi pertama|afinitas elektron|keelektronegatifan)\b|fungsi\s+`str\(\)`)[^.!?\n]{0,180}\b(?:bertanya|menanyakan|meminta)\b/iu,
+      ms: /(?:\b(?:had fungsi|ekonomi atom|kimia hijau|kebarangkalian bersyarat|jejari atom|tenaga pengionan pertama|afiniti elektron|keelektronegatifan)\b|fungsi\s+`str\(\)`)[^.!?\n]{0,180}\b(?:bertanya|menanyakan|meminta)\b/iu,
     },
   },
   {
@@ -56,6 +63,7 @@ export const FLOW_VOICE_RULES = [
       de: /\bum (?:dieses|das) Konzept besser zu verstehen,?\s+(?:betrachte|sieh dir)\s+(?:einige|die folgenden) Beispiele?\b/iu,
       en: /\bto better understand (?:this|the) concept,?\s+(?:look at|consider)\s+(?:some|the following) examples?\b/iu,
       id: /\buntuk lebih memahami konsep ini,?\s+(?:lihat|perhatikan)\s+(?:beberapa contoh|contoh berikut)\b/iu,
+      ms: /\buntuk lebih memahami konsep ini,?\s+(?:lihat|perhatikan)\s+(?:beberapa contoh|contoh berikut)\b/iu,
     },
   },
   {
@@ -64,6 +72,7 @@ export const FLOW_VOICE_RULES = [
       de: /\bdies ist das häufigste Beispiel[.!?]?\s*$/iu,
       en: /\bthis is (?:the )?most common example[.!?]?\s*$/iu,
       id: /(?:\bpertanyaan menarik\s*:|\b(?:ini adalah )?contoh paling umum[.!?]?\s*$)/iu,
+      ms: /(?:\bsoalan menarik\s*:|\b(?:ini (?:adalah|ialah) )?contoh paling (?:biasa|lazim)[.!?]?\s*$)/iu,
     },
   },
   {
@@ -72,6 +81,7 @@ export const FLOW_VOICE_RULES = [
       de: /\b(?:Werkzeuge? in (?:einem|dem) Werkzeugkasten|Operatoren\b[^.!?\n]{0,60}\bwie Werkzeuge|wie ein Reißverschluss)\b/iu,
       en: /\b(?:tools? in (?:a|the) toolbox|operators?\b[^.!?\n]{0,60}\blike tools|like a zipper)\b/iu,
       id: /\b(?:alat di dalam kotak perkakas|operator\b[^.!?\n]{0,60}\bseperti alat|seperti resleting)\b/iu,
+      ms: /\b(?:alat di dalam kotak peralatan|operator\b[^.!?\n]{0,60}\bseperti alat|seperti zip)\b/iu,
     },
   },
   {
@@ -80,6 +90,7 @@ export const FLOW_VOICE_RULES = [
       de: /\b(?:genau )?deshalb ist\b[^.!?\n]{0,100}\bnützlich\b/iu,
       en: /\bthat is why\b[^.!?\n]{0,100}\buseful\b/iu,
       id: /\bitulah alasan\b[^.!?\n]{0,100}\bberguna\b/iu,
+      ms: /\bitulah sebabnya\b[^.!?\n]{0,100}\bberguna\b/iu,
     },
   },
   {
@@ -88,6 +99,7 @@ export const FLOW_VOICE_RULES = [
       de: /\bdirekter geht es mit\b/iu,
       en: /\banother more direct way is to use\b/iu,
       id: /\bcara lain yang lebih langsung adalah dengan menggunakan\b/iu,
+      ms: /\bcara lain yang lebih langsung (?:adalah|ialah) dengan menggunakan\b/iu,
     },
   },
   {
@@ -96,6 +108,7 @@ export const FLOW_VOICE_RULES = [
       de: /\b(?:schauen|sehen) wir uns\b/iu,
       en: /\b(?:let's|let us) (?:look|see|explore|examine|try)\b/iu,
       id: /\b(?:mari|ayo|yuk) (?:kita )?(?:lihat|melihat|simak|coba|mencoba|pelajari)\b/iu,
+      ms: /\b(?:mari|jom|ayuh) (?:kita )?(?:lihat|melihat|cuba|mencuba|belajar|pelajari|teliti)\b/iu,
     },
   },
   {
@@ -104,6 +117,7 @@ export const FLOW_VOICE_RULES = [
       de: /\b(?:nun betrachten wir|betrachten wir nun|wenden wir (?:nun )?(?:dieses Konzept|diesen Test|den Test|dieselbe Regel)\b[^.!?\n]{0,80}\ban|nun folgen einige|im Mittelpunkt stehen hier|das folgende Beispiel zeigt das vollständige Vorgehen)\b/iu,
       en: /\b(?:now consider|now look at|here we focus on|apply (?:this|the) (?:concept|test|method|rule|identity) to (?:an?|the) example|learn some basic|look at a simple example to understand the process|the following example shows the complete procedure)\b/iu,
       id: /\b(?:sekarang perhatikan|sekarang lihat|di sini kita akan (?:melihat|membahas|mempelajari)|terapkan (?:ini|(?:konsep|uji|tes|metode|aturan|identitas) ini) pada (?:sebuah )?contoh|mari belajar|lihat contoh sederhana untuk memahami prosesnya|lihat bagaimana caranya dengan contoh)\b/iu,
+      ms: /\b(?:sekarang perhatikan|sekarang lihat|di sini kita akan (?:melihat|membincangkan|mempelajari)|gunakan (?:ini|(?:konsep|ujian|kaedah|peraturan|identiti) ini) pada (?:satu |sebuah )?contoh)\b/iu,
     },
   },
   {
@@ -112,6 +126,7 @@ export const FLOW_VOICE_RULES = [
       de: /^\s*(?:Was (?:(?:aber|ist nun|geschieht),\s*)?wenn|Hast du (?:jemals|schon))\b/iu,
       en: /^\s*(?:(?:But|Now)\s+)?(?:What if|Have you ever)\b/iu,
       id: /^\s*(?:Namun,\s*)?(?:Bagaimana jika|Pernahkah)\b/iu,
+      ms: /^\s*(?:Namun,\s*)?(?:Bagaimana jika|Pernahkah)\b/iu,
     },
   },
   {
@@ -120,6 +135,7 @@ export const FLOW_VOICE_RULES = [
       de: /\b(?:das )?Ergebnis ist nicht (?:bloß|lediglich|nur) eine Zahl,?\s+sondern ein (?:vollständiges )?Modell\b/iu,
       en: /\b(?:the )?result is not (?:just|merely|only) a number,?\s+but (?:also )?a (?:complete )?model\b/iu,
       id: /\bhasilnya (?:bukan|tidak) (?:cuma|hanya|sekadar) angka,?\s+tetapi (?:juga )?(?:sebuah )?model\b/iu,
+      ms: /\bhasilnya (?:bukan|tidak) (?:sahaja|hanya|sekadar) nombor,?\s+tetapi (?:juga )?(?:satu )?model\b/iu,
     },
   },
   {
@@ -128,6 +144,7 @@ export const FLOW_VOICE_RULES = [
       de: /(?:^\s*Warum ist (?:das|dies) (?:nützlich|wichtig)\?|^#{2,5}\s+(?:Warum (?:ist|sind) .+ (?:nützlich|wichtig)|Wozu (?:dient|dienen) .+)\s*$)/iu,
       en: /(?:^\s*Why (?:is this useful|does this matter)\?|^#{2,5}\s+(?:Why (?:Is|Are) .+ (?:Useful|Important)|Why Does .+ Matter)\s*$)/iu,
       id: /(?:^\s*(?:Mengapa|Kenapa) ini (?:berguna|penting)\?|^#{2,5}\s+(?:Mengapa|Kenapa) .+ (?:Berguna|Penting)\s*$)/iu,
+      ms: /(?:^\s*(?:Mengapa|Kenapa) (?:ini|perkara ini) (?:berguna|penting)\?|^#{2,5}\s+(?:Mengapa|Kenapa) .+ (?:Berguna|Penting)\s*$)/iu,
     },
   },
   {
@@ -136,6 +153,7 @@ export const FLOW_VOICE_RULES = [
       de: /\b(?:diese[rs]?\s+)?(?:Tabelle|Vergleich|Beispiel|Modell|Formel|Prozess|Beziehung)\b[^.!?\n]{0,80}\b(?:lehrt|lädt)\s+(?:uns|dich)\b/iu,
       en: /\b(?:this\s+)?(?:table|comparison|example|model|formula|process|relationship)\b[^.!?\n]{0,80}\b(?:teaches|invites)\s+(?:us|you)\b/iu,
       id: /\b(?:tabel|perbandingan|contoh|model|rumus|proses|hubungan)(?:\s+ini)?\b[^.!?\n]{0,80}\b(?:mengajarkan|mengajak)\s+(?:kita|kamu|cara)\b/iu,
+      ms: /\b(?:jadual|perbandingan|contoh|model|rumus|proses|hubungan)(?:\s+ini)?\b[^.!?\n]{0,80}\b(?:mengajar|mengajak)\s+(?:kita|kamu|cara)\b/iu,
     },
   },
   {
@@ -144,6 +162,7 @@ export const FLOW_VOICE_RULES = [
       de: /\b(?:chemische Lektüre|was die Chemie liest|Chemie liest)\b/iu,
       en: /\b(?:what chemistry reads|chemistry reading|read the connection)\b/iu,
       id: /\b(?:yang dibaca dari kimia|bacaan kimianya|baca(?:lah)? hubungan(?:nya)?|hubungan(?:nya)? (?:bisa )?dibaca)\b/iu,
+      ms: /\b(?:yang dibaca daripada kimia|bacaan kimianya|baca(?:lah)? hubungan(?:nya)?|hubungan(?:nya)? (?:boleh )?dibaca)\b/iu,
     },
   },
   {
@@ -152,6 +171,7 @@ export const FLOW_VOICE_RULES = [
       de: /\bbis\b[^.!?\n]{0,35}\b(?:Idee|Konzept|Muster|Beziehung|Zusammenhang)\b[^.!?\n]{0,35}\b(?:sichtbar|erkennbar|klar)\s+(?:ist|sind|werden)\b/iu,
       en: /\buntil\b[^.!?\n]{0,35}\b(?:idea|concept|pattern|relationship)\b[^.!?\n]{0,35}\b(?:visible|clear|recognizable)\b/iu,
       id: /\b(?:sampai|hingga)\b[^.!?\n]{0,35}\b(?:ide|konsep|pola|hubungan)(?:nya)?\b[^.!?\n]{0,35}\b(?:terlihat|tampak|jelas|dapat dikenali)\b/iu,
+      ms: /\b(?:sampai|hingga|sehingga)\b[^.!?\n]{0,35}\b(?:idea|konsep|pola|corak|hubungan)(?:nya)?\b[^.!?\n]{0,35}\b(?:kelihatan|nampak|jelas|dapat dikenal pasti)\b/iu,
     },
   },
   {
@@ -160,6 +180,7 @@ export const FLOW_VOICE_RULES = [
       de: /\bdiese Tabelle ist keine\b[^.!?\n]{0,80}\b(?:Merk|Lern)liste\b/iu,
       en: /\bthis table is not\b[^.!?\n]{0,80}\b(?:memorization|memory|study) list\b/iu,
       id: /\btabel (?:ini|itu|tersebut) bukan\b[^.!?\n]{0,80}\b(?:hafalan|daftar hafalan)\b/iu,
+      ms: /\bjadual (?:ini|itu|tersebut) bukan\b[^.!?\n]{0,80}\b(?:hafalan|senarai hafalan)\b/iu,
     },
   },
   {
@@ -168,6 +189,7 @@ export const FLOW_VOICE_RULES = [
       de: /^#{2,6}[ \t]+[^\n]*(?:fühlt sich|auf einen Blick|bleibt klar)\b/iu,
       en: /^#{2,6}[ \t]+[^\n]*(?:feels?|makes more sense|at a glance|stays clear)\b/iu,
       id: /^#{2,6}[ \t]+[^\n]*(?:terasa|lebih masuk akal|secara ringkas)\b/iu,
+      ms: /^#{2,6}[ \t]+[^\n]*(?:terasa|lebih munasabah|lebih masuk akal|secara ringkas)\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

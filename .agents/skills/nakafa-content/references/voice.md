@@ -17,7 +17,8 @@
   uncertainty, and says them in plain, warm, evidence-led prose. When it speaks
   to the reader, it uses the same informal address as a lesson. It drops stiff
   academic framing such as `dengan demikian dapat disimpulkan bahwa`,
-  `es ist festzuhalten, dass`, or `it is worth noting that`, and keeps each
+  `oleh yang demikian dapat dirumuskan bahawa`, `es ist festzuhalten, dass`, or
+  `it is worth noting that`, and keeps each
   hedge exactly as strong as its evidence. Warm never means loose: a claim keeps
   its citation and a number keeps its unit and uncertainty.
 - German author voice uses `du`, the matching verb forms, and informal
@@ -34,6 +35,14 @@
   compare, or inspect something together. If only the learner acts, use `kamu`
   or a clear imperative. If only the explanation acts, name the subject rather
   than inventing a shared `kita`.
+- Malaysian Malay author voice addresses the learner as `kamu` and keeps
+  inclusive `kita` for steps teacher and learner really share. Never use
+  `anda`, `awak`, `kau`, `engkau`, `kalian` or `korang` for the learner, or
+  `aku` for the author. Ask with the plain imperative (`Cuba kira ...`,
+  `Semak ...`), never with `Sila`, `Mohon` or `hendaklah`. Write standard
+  Malaysian Malay, never Indonesian: the Malaysian Malay section of
+  [locale sources](locales.md#malaysian-malay) owns the register, the words
+  that differ, and the Malay humanizer pass.
 - English has no formal pronoun, so its formality lives in register. Write
   plain, warm English addressed to `you`: active verbs, short sentences, and
   contractions such as `it's`, `you'll`, and `don't` wherever a teacher would
@@ -100,11 +109,13 @@ push the learner away.
   rule has a condition, say why the condition matters with a case where it
   fails.
 - State facts directly. Indonesian framing such as `dapat dilihat bahwa`,
-  `dapat disimpulkan bahwa`, and `perlu diperhatikan bahwa`, and the English
-  and German equivalents, usually hide the fact behind a frame; say the fact.
+  `dapat disimpulkan bahwa`, and `perlu diperhatikan bahwa`, the Malay
+  `kita boleh lihat bahawa` and `perlu diingat bahawa`, and the English and
+  German equivalents, usually hide the fact behind a frame; say the fact.
 - Treat these generated-sounding shapes as review signals, judged in context:
   sweeping openers about everyday life or importance; closers that summarize
   what was just said; inflated significance such as `memainkan peran penting`,
+  `memainkan peranan penting`,
   `plays a crucial role`, or `spielt eine wichtige Rolle`; lists of three vague
   benefits; repeated `tidak hanya ... tetapi juga` or `not only ... but also`
   contrasts; and stacked hedges. Keep a sentence when it carries a concrete,

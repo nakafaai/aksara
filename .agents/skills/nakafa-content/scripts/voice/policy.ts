@@ -83,6 +83,8 @@ const BLOCKING_RULES = new Set([
   "malay-indonesian-itas-suffix",
   "malay-indonesian-science-term",
   "malay-indonesian-vocabulary",
+  "malay-author-self-reference",
+  "malay-formal-request",
   "malay-learner-address",
   "locale-representation-parity",
   "malformed-latex-command",

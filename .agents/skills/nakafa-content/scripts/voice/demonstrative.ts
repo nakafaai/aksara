@@ -8,6 +8,7 @@ export const DEMONSTRATIVE_VOICE_RULES = [
       de: /^#{2,6}[ \t]+[^\n]*\b(?:diese|dieser|dieses|diesen|diesem|solche|solcher|solches|solchen|jene|jener|jenes)\b/iu,
       en: /^#{2,6}[ \t]+[^\n]*\b(?:this|these|those|such)\b/iu,
       id: /^#{2,6}[ \t]+(?!apa\s+itu\b)[^\n]*\b(?:ini|itu|tersebut)\b/iu,
+      ms: /^#{2,6}[ \t]+(?!apa(?:kah)?\s+itu\b)[^\n]*\b(?:ini|itu|tersebut)\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

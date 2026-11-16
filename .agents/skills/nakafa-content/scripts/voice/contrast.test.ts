@@ -108,3 +108,18 @@ it("keeps factual negation, definitional exclusion, and real comparison", () => 
     );
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "anti-model-intensifier": "Ini tidak semudah yang disangka.",
+    "compressed-renewable-timescale-contrast":
+      "Sumber tenaga boleh diperbaharui boleh tersedia semula melalui proses semula jadi dalam jangka masa manusia, bukan jutaan tahun seperti bahan api fosil.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

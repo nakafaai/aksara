@@ -130,3 +130,24 @@ it("rejects a formula that only gives those values", () => {
     []
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "vague-concrete-transition": "Kita terangkan secara lebih konkrit.",
+    "vague-concretizing-claim": "Contoh ini menjadikan idea itu lebih konkrit.",
+    "vague-equation-truth": "Nilai ini menjadikan persamaan itu benar.",
+    "vague-formula-gives-those": "Rumus ini memberikan nilai-nilai itu.",
+    "vague-model-fidelity": "Model kedua lebih realistik.",
+    "vague-observation-claim": "Ulangan menjadikan pemerhatian lebih jelas.",
+    "vague-observation-ease": "Corak ini mudah dilihat.",
+    "vague-picture-claim": "Graf ini memberikan gambaran awal.",
+    "vague-sensory-claim": "Animasi ini memberikan rasa gerakan.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

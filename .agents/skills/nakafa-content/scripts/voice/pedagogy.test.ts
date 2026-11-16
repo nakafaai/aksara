@@ -240,3 +240,20 @@ it("rejects generic real world labels and picture transformations", () => {
     );
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "abstract-information-provider":
+      "Diskriminan memberikan maklumat tentang punca.",
+    "abstract-motion-reading": "Gerakan kereta itu dibaca daripada graf.",
+    "formulaic-complete-flow": "Langkah ini membentuk satu aliran lengkap.",
+    "vague-tool-for-reading": "Gunakan graf sebagai alat untuk membaca data.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

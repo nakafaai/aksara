@@ -53,7 +53,11 @@ For every authored target document or localized metadata record:
    compress, or replace a teaching unit.
 7. Apply the complete Humanizer skill again to the target draft. Humanizer may
    improve wording, rhythm, and clarity, but it may not remove teaching context,
-   reasoning steps, evidence, math, or components.
+   reasoning steps, evidence, math, or components. Then run the target
+   locale's own pass: `bahasa-indonesia` for Indonesian, `humanizer-de` for
+   German, and the [Malay humanizer pass](locales.md#malay-humanizer-pass) for
+   Malaysian Malay. Write Malay from the verified meaning, never by editing the
+   Indonesian sibling word by word.
 8. Check fabrication, terminology, headings, math, code, accessibility,
    punctuation, and route identity. Apply the [link policy](links.md)
    to source eligibility, claim-matched provenance, and every removed URL.

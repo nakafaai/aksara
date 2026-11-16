@@ -53,3 +53,17 @@ it("reviews a reporting transition split across a paragraph line", () => {
     ["contextless-measurement-reporting-imperative"]
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "contextless-measurement-reporting-imperative":
+      "Laporkan ketakpastian bacaan seperti berikut.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

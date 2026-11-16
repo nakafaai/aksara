@@ -77,3 +77,17 @@ it("keeps a task instruction that names the learner action valid", () => {
     );
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "bare-look-pointer": "Perhatikan jadual berikut.",
+    "counted-pointer-caption": "Tiga rumus berikut:",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

@@ -197,3 +197,17 @@ it("rejects Indonesian editorial classification in place of the subject relation
     []
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "curriculum-narrator": "Istilah ini digunakan dalam beberapa kurikulum.",
+    "invented-learning-setting": "Pelajaran ini membincangkan pecahan.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

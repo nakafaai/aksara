@@ -251,3 +251,21 @@ it("rejects a vague transformation of uncertainty into usefulness", () => {
     );
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "generic-most-common-method": "Ini kaedah yang paling biasa digunakan.",
+    "generic-safety-superlative": "Ini kaedah paling selamat.",
+    "stacked-comparative-praise": "Cara ini lebih cekap dan kemas.",
+    "stiff-process-nominalization": "Kaedah ini melibatkan pemfaktoran.",
+    "vague-information-preservation":
+      "Kaedah ini mengekalkan lebih banyak maklumat pada setiap arah.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

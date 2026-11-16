@@ -16,6 +16,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+.*\b(?:wichtig(?:e|en|er|es)?|wichtigst(?:e|en|er|es)?)\b/iu,
       en: /^#{2,6}[ \t]+.*\bimportant\b/iu,
       id: /^#{2,6}[ \t]+(?![^\n]*\bangka penting\b)[^\n]*\bpenting\b/iu,
+      ms: /^#{2,6}[ \t]+(?![^\n]*\bangka bererti\b)[^\n]*\bpenting\b/iu,
     },
   },
   {
@@ -23,6 +24,7 @@ export const HEADING_VOICE_RULES = [
     patterns: {
       de: /^#{2,6}[ \t]+Warum\s+(?!(?:ist|sind)\b)[^\n]*(?:wichtig|nützlich)(?:\s+(?:ist|sind))?\b[ \t]*$/iu,
       en: /^#{2,6}[ \t]+Why\s+(?!(?:is|are|does)\b)[^\n]*(?:matters?|useful|important)\b[ \t]*$/iu,
+      ms: /^#{2,6}[ \t]+(?:Mengapa|Kenapa)\s+(?!(?:ini|ia)\b)[^\n]*(?:penting|berguna)\b[ \t]*$/iu,
     },
   },
   {
@@ -31,6 +33,7 @@ export const HEADING_VOICE_RULES = [
       de: /^\|[^\n]*\b(?:Warum (?:das|es|sie) wichtig ist|Wichtige Grenze)\b[^\n]*\|/iu,
       en: /^\|[^\n]*\b(?:Why (?:it|this) matters|Important limit)\b[^\n]*\|/iu,
       id: /^\|[^\n]*\b(?:Mengapa (?:ini )?penting|Mengapa perlu ditanyakan|Batas penting)\b[^\n]*\|/iu,
+      ms: /^\|[^\n]*\b(?:(?:Mengapa|Kenapa) (?:ini )?penting|Had penting)\b[^\n]*\|/iu,
     },
   },
   {
@@ -39,6 +42,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+(?:(?:Anwendungen?|Beispiele?)(?: [^\n]+)? (?:im Alltag|im täglichen Leben|in konkreten Situationen)|Beispiele? aus (?:dem Alltag|dem täglichen Leben))[ \t]*$/iu,
       en: /^#{2,6}[ \t]+(?:(?:Applications?|Examples?)(?: of [^\n]+)? in (?:(?:Everyday|Daily|Real) Life|Real Situations)|(?:Everyday|Daily|Real) Life Examples?)[ \t]*$/iu,
       id: /^#{2,6}[ \t]+(?:(?:Aplikasi|Penerapan|Penggunaan|Kegunaan|Contoh)(?: [^\n]+)? (?:dalam )?(?:Kehidupan (?:Sehari hari|Harian|Nyata)|Situasi Nyata)|Contoh Kehidupan Sehari Hari)[ \t]*$/iu,
+      ms: /^#{2,6}[ \t]+(?:(?:Aplikasi|Penerapan|Penggunaan|Kegunaan|Contoh)(?: [^\n]+)? (?:dalam )?(?:Kehidupan (?:Seharian|Harian|Sebenar)|Situasi Sebenar)|Contoh Kehidupan Seharian)[ \t]*$/iu,
     },
   },
   {
@@ -47,6 +51,7 @@ export const HEADING_VOICE_RULES = [
       de: /(?:^#{2,6}[ \t]+(?:Praktische Anwendungen|Implementierung in realen Anwendungen)[ \t]*$|^\s*description:\s*"[^"]*\b(?:praktisch(?:e|en|er|es)? Anwendungen|Anwendungen in der realen Welt)\b)/iu,
       en: /(?:^#{2,6}[ \t]+(?:Practical Applications|Implementation in Real Applications)[ \t]*$|^\s*description:\s*"[^"]*\b(?:practical|real world) applications\b)/iu,
       id: /(?:^#{2,6}[ \t]+(?:Aplikasi Praktis|Implementasi dalam Aplikasi Nyata)[ \t]*$|^\s*description:\s*"[^"]*\b(?:aplikasi praktis|aplikasi nyata|penerapan nyata)\b)/iu,
+      ms: /(?:^#{2,6}[ \t]+(?:Aplikasi Praktikal|Pelaksanaan dalam Aplikasi Sebenar)[ \t]*$|^\s*description:\s*"[^"]*\b(?:aplikasi praktikal|aplikasi sebenar|penerapan sebenar)\b)/iu,
     },
   },
   {
@@ -55,6 +60,7 @@ export const HEADING_VOICE_RULES = [
       de: /(?:^#{2,6}[ \t]+[^\n]*\breales? Beispiel\b|\b(?:Beispiele?|Berechnungen?|Probleme?|Situationen?) (?:aus|in) der realen Welt\b)/iu,
       en: /(?:^#{2,6}[ \t]+[^\n]*\bReal Example\b|\breal[- ]world (?:calculations?|examples?|problems?|situations?)\b)/iu,
       id: /(?:^#{2,6}[ \t]+[^\n]*\bContoh Nyata\b|\b(?:masalah|contoh|situasi|perhitungan) dunia nyata\b)/iu,
+      ms: /(?:^#{2,6}[ \t]+[^\n]*\bContoh Sebenar\b|\b(?:masalah|contoh|situasi|pengiraan) dunia sebenar\b)/iu,
     },
   },
   {
@@ -63,6 +69,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+(?:Beispiel|Beispiele|Beispielanwendung|Beispielrechnung|Anwendungsbeispiel|Anwendungsbeispiele|Ausführliche Beispiele|Durchgerechnetes Beispiel|Ein konkretes Beispiel|Einfaches Beispiel|Ein kleines durchgerechnetes Beispiel|Ein weiteres Beispiel|Erstes Beispiel|Komplexes Beispiel|Weitere Beispiele|Vollständig durchgerechnetes Beispiel|Vollständig gerechnetes Beispiel|Zweites Beispiel)[ \t]*$/iu,
       en: /^#{2,6}[ \t]+(?:A Concrete Example|Another Example|Application Example|Application Examples|Calculation Example|Calculation Examples|Complete Calculation Example|Complete Solution Examples|Complex Example|Direct Calculation Examples|Example|Examples|Example Application|Example Problems|Expansion Examples|First Example|Further Examples|Second Example|Simple Example|Visualization Example|Worked Example|Worked Examples|Worked Example Under Stated Conditions|Worked Two Dimensional Example|Worked Vector Example|Worked Weighted Example)[ \t]*$/iu,
       id: /^#{2,6}[ \t]+(?:Contoh|Contoh Aplikasi|Contoh Bertahap|Contoh Cepat|Contoh dengan Pembahasan|Contoh dua dimensi|Contoh Kasus|Contoh Kedua|Contoh Kerja|Contoh Kompleks|Contoh Konkret|Contoh Lain|Contoh Pembahasan|Contoh Penerapan|Contoh Pengembangan|Contoh Perhitungan|Contoh Perhitungan dengan Kondisi Tertentu|Contoh Perhitungan Lengkap|Contoh Pertama|Contoh Sederhana|Contoh Soal|Contoh Terurai|Contoh terurai sederhana|Contoh Vektor|Contoh Visualisasi)[ \t]*$/iu,
+      ms: /^#{2,6}[ \t]+(?:Contoh|Contoh Aplikasi|Contoh Berperingkat|Contoh Pantas|Contoh dengan Penyelesaian|Contoh Kes|Contoh Kedua|Contoh Lain|Contoh Penyelesaian|Contoh Penerapan|Contoh Pengiraan|Contoh Pengiraan Lengkap|Contoh Pertama|Contoh Mudah|Contoh Ringkas|Contoh Soalan|Contoh Vektor|Contoh Visualisasi)[ \t]*$/iu,
     },
   },
   {
@@ -71,6 +78,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+(?:Überblick|Einführung|Zusammenfassung|Fazit|Anwendung|Anwendungen|Grundlagen|Konzept|Konzepte|Grundkonzept|Grundlegende Konzepte)[ \t]*$/iu,
       en: /^#{2,6}[ \t]+(?:Overview|Introduction|Summary|Conclusion|Application|Applications|Concept|Concepts|Basic Concept|Basic Concepts)[ \t]*$/iu,
       id: /^#{2,6}[ \t]+(?:Ringkasan|Kesimpulan|Pendahuluan|Penerapan|Aplikasi|Konsep|Konsep Dasar)[ \t]*$/iu,
+      ms: /^#{2,6}[ \t]+(?:Ringkasan|Rumusan|Kesimpulan|Pengenalan|Pendahuluan|Penerapan|Aplikasi|Konsep|Konsep Asas)[ \t]*$/iu,
     },
   },
   {
@@ -79,6 +87,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+(?:Quelle|Quellen|Quellenangaben|Quellenverzeichnis|Referenz|Referenzen|Literatur|Literaturverzeichnis|Weiterführende Literatur)[ \t]*$/iu,
       en: /^#{2,6}[ \t]+(?:Source|Sources|Reference|References|Bibliography|Further Reading|Works Cited)[ \t]*$/iu,
       id: /^#{2,6}[ \t]+(?:Sumber|Daftar Referensi|Daftar Sumber|Referensi|Daftar Pustaka|Bacaan Lanjutan|Rujukan)[ \t]*$/iu,
+      ms: /^#{2,6}[ \t]+(?:Sumber|Senarai Rujukan|Senarai Sumber|Rujukan|Bibliografi|Bacaan Lanjut|Bacaan Tambahan)[ \t]*$/iu,
     },
   },
   {
@@ -87,6 +96,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+(?:Berechnungsschritte|Detaillierte Berechnung|Rechenschritte|Lösungsschritte|Systematische Berechnungsschritte)[ \t]*$/iu,
       en: /^#{2,6}[ \t]+(?:Calculation Steps|Detailed Calculation|Solution Steps|Step by Step Calculation|Systematic Calculation Steps)[ \t]*$/iu,
       id: /^#{2,6}[ \t]+(?:Langkah Perhitungan|Langkah Perhitungan Sistematis|Langkah Penyelesaian|Perhitungan Detail|Perhitungan Terperinci)[ \t]*$/iu,
+      ms: /^#{2,6}[ \t]+(?:Langkah Pengiraan|Langkah Pengiraan Sistematik|Langkah Penyelesaian|Pengiraan Terperinci)[ \t]*$/iu,
     },
   },
   {
@@ -95,6 +105,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+Was ist\b/iu,
       en: /^#{2,6}[ \t]+What is\b/iu,
       id: /^#{2,6}[ \t]+Apa itu\b/iu,
+      ms: /^#{2,6}[ \t]+Apa(?:kah)? itu\b/iu,
     },
   },
   {
@@ -103,6 +114,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+(?:Verstehen\b|[^\n]+ verstehen[ \t]*$)/iu,
       en: /^#{2,6}[ \t]+Understanding\b/iu,
       id: /^#{2,6}[ \t]+Memahami\b/iu,
+      ms: /^#{2,6}[ \t]+Memahami\b/iu,
     },
   },
   {
@@ -111,6 +123,7 @@ export const HEADING_VOICE_RULES = [
       de: /^#{2,6}[ \t]+.*\b(?:hilft|helfen)\b/iu,
       en: /^#{2,6}[ \t]+.*\bhelps?\b/iu,
       id: /^#{2,6}[ \t]+.*\bmembantu\b/iu,
+      ms: /^#{2,6}[ \t]+.*\bmembantu\b/iu,
     },
   },
   {
@@ -123,6 +136,7 @@ export const HEADING_VOICE_RULES = [
     id: "indonesian-heading-dehyphenated-reduplication",
     patterns: {
       id: /^#{2,6}[ \t]+[^\n]*\b(?:Jari Jari|Rata Rata)\b/iu,
+      ms: /^#{2,6}[ \t]+[^\n]*\b(?:Nilai Nilai|Sifat Sifat|Ciri Ciri|Langkah Langkah|Jenis Jenis|Kedua Dua|Ketiga Tiga|Kanak Kanak)\b/iu,
     },
   },
   {
@@ -131,6 +145,7 @@ export const HEADING_VOICE_RULES = [
       de: /\b(?:Prinzipien|Regeln|Rahmen)\b[^.!?\n]{0,100}\bmach(?:t|en)\b[^.!?\n]{0,80}\b(?:Fragen|Ideen)\b[^.!?\n]{0,40}\b(?:leichter|klarer|geordneter)\b/iu,
       en: /\b(?:principles|rules|framework)\b[^.!?\n]{0,100}\bmakes?\b[^.!?\n]{0,80}\b(?:questions?|ideas?)\b[^.!?\n]{0,40}\b(?:easier|clearer|more organized)\b/iu,
       id: /\b(?:prinsip|aturan|kerangka)\b[^.!?\n]{0,100}\bmembuat\b[^.!?\n]{0,80}\b(?:pertanyaan|ide)\b[^.!?\n]{0,40}\b(?:lebih mudah|lebih jelas|lebih teratur)\b/iu,
+      ms: /\b(?:prinsip|peraturan|kerangka)\b[^.!?\n]{0,100}\b(?:membuat|menjadikan)\b[^.!?\n]{0,80}\b(?:soalan|idea)\b[^.!?\n]{0,40}\b(?:lebih mudah|lebih jelas|lebih teratur|lebih tersusun)\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

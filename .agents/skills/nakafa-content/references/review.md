@@ -12,11 +12,16 @@
   explaining the wording itself.
 - Read every sentence for register in every locale and genre, articles
   included. Rewrite a sentence that sounds like a textbook, a government letter,
-  or a contract: stiff `tersebut`, `dapat dilihat bahwa`, `es ist zu beachten`,
-  `one must`, `the reader should`, `it should be noted that`, and `shall`. Then
-  read it once more for the opposite failure, and remove slang, forced jokes,
-  invented anecdotes, and decoration. The gate blocks formal address in
-  Indonesian and German; English register depends on this read.
+  or a contract: stiff `tersebut`, `dapat dilihat bahwa`, `adalah merupakan`,
+  `hendaklah`, `es ist zu beachten`, `one must`, `the reader should`, `it
+  should be noted that`, and `shall`. Then read it once more for the opposite
+  failure, and remove slang, forced jokes, invented anecdotes, and decoration.
+  The gate blocks formal address in Indonesian, German, and Malaysian Malay;
+  English register depends on this read.
+- Read every Malaysian Malay sentence once more against the Malay humanizer
+  pass in [locale sources](locales.md#malay-humanizer-pass): Indonesian words,
+  stock AI phrasing, frames that hide the fact, and stiff textbook register.
+  The gate sees a listed form, not a paraphrase, so this read owns the class.
 - Retell the lesson aloud from start to finish. Confirm that each paragraph
   follows from a named fact, question, example, or result and gives the learner
   enough context for the next step. Reject a transition that only announces the

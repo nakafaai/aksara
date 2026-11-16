@@ -8,6 +8,7 @@ export const PEDAGOGY_VOICE_RULES = [
       de: /\b(?:bildet|ergibt)\s+(?:einen|eine)?\s*vollständige[nr]?\s+(?:Ablauf|Kette)\b/iu,
       en: /\b(?:follows?|forms?|creates?)\s+(?:a\s+)?complete\s+(?:chain|flow|sequence)\b/iu,
       id: /\b(?:membentuk|menghasilkan)\s+(?:satu\s+)?alur\s+lengkap\b/iu,
+      ms: /\b(?:membentuk|menghasilkan)\s+(?:satu\s+)?aliran\s+lengkap\b/iu,
     },
   },
   {
@@ -16,6 +17,7 @@ export const PEDAGOGY_VOICE_RULES = [
       de: /\bals\s+(?:ein\s+)?Werkzeug,?\s+um\b[^.!?\n]{0,80}\bzu lesen\b/iu,
       en: /\bas\s+(?:a\s+)?tool\s+(?:for reading|to read)\b/iu,
       id: /\bsebagai\s+alat\s+untuk\s+membaca\b/iu,
+      ms: /\bsebagai\s+alat\s+untuk\s+membaca\b/iu,
     },
   },
   {
@@ -24,6 +26,7 @@ export const PEDAGOGY_VOICE_RULES = [
       de: /\b(?:Diskriminante|Formel|Gleichung|Graph|Modell)\s+(?:gibt|liefert)\s+Informationen\s+(?:über|zu)\b/iu,
       en: /\b(?:discriminant|formula|graph|model|equation)\s+(?:gives?|provides?)\s+information\s+(?:about|on)\b/iu,
       id: /\b(?:diskriminan|grafik|model|persamaan|rumus)\s+(?:memberi|memberikan)\s+informasi\s+tentang\b/iu,
+      ms: /\b(?:pembeza layan|diskriminan|graf|model|persamaan|rumus|formula)\s+(?:memberi|memberikan)\s+maklumat\s+(?:tentang|mengenai)\b/iu,
     },
   },
   {
@@ -32,6 +35,7 @@ export const PEDAGOGY_VOICE_RULES = [
       de: /\bBewegung\b[^.!?\n]{0,100}\b(?:gelesen|liest)\b|\bSitz (?:des|eines) Beobachters\b|\bMesswert\b[^.!?\n]{0,50}\bSitz\b/iu,
       en: /\bmotion\b[^.!?\n]{0,100}\b(?:is read|reads?)\b|\bobserver(?:'s)? seat\b|\breading\b[^.!?\n]{0,50}\bseat\b/iu,
       id: /\bgerak\b[^.!?\n]{0,100}\b(?:dibaca|membaca)\b|\bkursi pengamat\b|\bbacaan\b[^.!?\n]{0,50}\bkursi\b/iu,
+      ms: /\bgerakan\b[^.!?\n]{0,100}\b(?:dibaca|membaca)\b|\bkerusi pemerhati\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];
@@ -44,6 +48,7 @@ export const REPETITIVE_OPENER_RULES = [
       de: /^\s*(?:Daher|Deshalb)\b/iu,
       en: /^\s*(?:Therefore|Thus|The calculation gives)\b/iu,
       id: /^\s*(?:Dengan demikian|Oleh karena itu)\b/iu,
+      ms: /^\s*(?:Dengan itu|Oleh itu|Oleh yang demikian|Justeru)\b/iu,
     },
   },
   {
@@ -52,6 +57,7 @@ export const REPETITIVE_OPENER_RULES = [
       de: /^\s*(?:Das|Dies) bedeutet\b/iu,
       en: /^\s*This means\b/iu,
       id: /^\s*Ini berarti\b/iu,
+      ms: /^\s*Ini bermakna\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

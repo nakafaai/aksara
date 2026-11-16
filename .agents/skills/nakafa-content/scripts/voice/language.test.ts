@@ -200,3 +200,36 @@ it("rejects a bare visibility adverb with no observer or result", () => {
     []
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "empty-important-term-label": "Istilah **isotop** penting.",
+    "indonesian-ambiguous-calculation-reference": "Semak pengiraannya.",
+    "indonesian-attached-dimana": "Rumah dimana dia tinggal.",
+    "indonesian-bare-modal-adjective": "Suhu itu boleh tinggi.",
+    "indonesian-bare-visibility-adverb": "Gas itu bergerak tanpa kelihatan.",
+    "indonesian-causative-modal": "Jadual ini membuat kita boleh mengira.",
+    "indonesian-formal-filler": "Pada asasnya, kadar ialah nisbah.",
+    "indonesian-informal-slang": "Jawapan takde unit.",
+    "indonesian-nonstandard-apapun": "Pilih nilai apapun.",
+    "indonesian-nonstandard-compound": "Murid seringkali lupa tanda.",
+    "indonesian-relative-di-mana": "Kira luas, di mana panjangnya 5 cm.",
+    "indonesian-stiff-interpret-instruction":
+      "Interpretasikan nilai kecerunan.",
+    "indonesian-stiff-serampangan": "Jangan pilih nilai sembarangan.",
+    "indonesian-unnamed-effect-purpose-reference":
+      "Kesannya boleh dirasai pada harga.",
+    "unexplained-output-scheduling": "Loji ini menjadualkan output.",
+    "unqualified-energy-density-claim":
+      "Bateri ini boleh mempunyai ketumpatan tenaga tinggi.",
+    "unqualified-fuel-storage-claim": "Bahan api boleh disimpan.",
+    "vague-benefit-risk-reference": "Kelebihan itu tidak menghapuskan risiko.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

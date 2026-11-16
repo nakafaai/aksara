@@ -15,6 +15,7 @@ const BLOCKQUOTE_VOICE_RULES = [
       de: /^\s*(?:Kurzer Check|Kurze Kontrolle|Kurz geprüft|Schnellcheck)\s*:/iu,
       en: /^\s*(?:Quick check|Quick test|Checkpoint)\s*:/iu,
       id: /^\s*(?:Cek cepat|Periksa cepat|Pemeriksaan cepat)\s*:/iu,
+      ms: /^\s*(?:Semakan pantas|Semak pantas|Semakan cepat|Semak cepat)\s*:/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];
