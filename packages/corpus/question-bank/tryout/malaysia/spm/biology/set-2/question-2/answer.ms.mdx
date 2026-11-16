@@ -8,6 +8,29 @@ Satu bahagian mikrometer pentas ialah <InlineMath math="\frac{1\text{ mm}}{100}=
   chart={"flowchart LR\n  A[40 bahagian = 100 µm pada ×10] --> B[1 bahagian = 2.5 µm]\n  B -->|objektif ×40: ÷4| C[1 bahagian = 0.625 µm]\n  C -->|32 bahagian| D[sel = 20 µm]\n  D -->|lukisan 60 mm| E[pembesaran ×3000]"}
 />
 
+Tukar kanta objektif dan lihat skala kanta mata kekal sedangkan sel membesar merentasinya.
+
+<MicroscopeLab
+  title={<>Skala Kanta Mata pada Dua Kanta Objektif</>}
+  description={<>Pada <InlineMath math="\times10" />, satu senggatan ialah <InlineMath math="2.5\,\mu\text{m}" />. Tukar ke <InlineMath math="\times40" /> dan skala yang sama membaca empat kali lebih halus.</>}
+  labels={{
+    across: <>Sel merentasi medan</>,
+    cell: <>Panjang satu sel</>,
+    division: <>Satu senggatan kanta mata</>,
+    field: <>Diameter medan penglihatan</>,
+    magnification: <>Pembesaran keseluruhan</>,
+    objective: "Pilih kanta objektif",
+    span: <>Panjang sel dalam senggatan</>,
+    view: "Mikroskop cahaya",
+    views: { eyepiece: "Kanta mata", stand: "Mikroskop" },
+  }}
+  cell={20}
+  eyepiece={10}
+  graticule={{ eyepiece: 40, micrometer: 10 }}
+  objectives={[10, 40]}
+  specimen="onion"
+/>
+
 <BlockMath math="40\text{ bahagian kanta mata}=10\times10\,\mu\text{m}=100\,\mu\text{m},\qquad 1\text{ bahagian kanta mata}=2.5\,\mu\text{m}." />
 
 Skala kanta mata berada di dalam kanta mata, jadi saiznya tidak berubah apabila kanta objektif ditukar, tetapi spesimen berubah. Kanta objektif <InlineMath math="\times40" /> membesarkan **empat kali ganda lagi**, jadi satu bahagian kanta mata kini meliputi **empat kali lebih kecil** daripada spesimen:

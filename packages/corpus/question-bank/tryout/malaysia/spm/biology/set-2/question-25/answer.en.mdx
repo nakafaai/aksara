@@ -8,6 +8,32 @@ An organ curves towards the side that grows less. Auxin only collects on one sid
   chart={"flowchart TD\n  A[Seedling laid flat] --> B[Root cap senses gravity: auxin collects below]\n  B --> C[Shoot: lower side faster, curves up]\n  B --> D[Root: lower side slower, curves down]\n  K[On a klinostat] --> E[No side stays lower: auxin even] --> F[Both grow straight]\n  R[Root cap removed] --> G[Gravity not sensed: no collection] --> H[Root grows straight]"}
 />
 
+Pick each seedling and compare how its shoot and root curve.
+
+<TropismLab
+  title={<>Seedlings Laid Flat in the Dark</>}
+  description={<>A lies still, B turns on a klinostat, and C has lost its root cap. Follow the auxin and the curves.</>}
+  labels={{
+    bend: <>Shoot bend</>,
+    directions: { away: <>away from gravity</>, straight: <>Grows straight</>, toward: <>towards gravity</> },
+    far: <>Auxin on the upper side</>,
+    growth: <>Growth</>,
+    hours: "Time",
+    near: <>Auxin on the lower side</>,
+    root: <>Root bend</>,
+    seedling: "Choose a seedling",
+    view: "Bean seedlings laid flat in the dark",
+  }}
+  setup={{
+    seedlings: [
+      { name: "A", treatment: "flat" },
+      { name: "B", treatment: "klinostat" },
+      { name: "C", treatment: "decapped" },
+    ],
+    stimulus: "gravity",
+  }}
+/>
+
 - I is correct: in the shoot the auxin on the lower side speeds up elongation, so the lower side grows faster and the shoot curves up.
 - II is correct: in the root the same auxin slows elongation, so the lower side grows more slowly and the root curves down.
 - III is correct: on a klinostat every side takes turns being lowest, so auxin ends up evenly spread and neither organ curves.

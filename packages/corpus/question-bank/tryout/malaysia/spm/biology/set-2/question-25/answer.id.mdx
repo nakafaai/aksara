@@ -8,6 +8,32 @@ Suatu organ melengkung ke arah sisi yang tumbuh lebih sedikit. Auksin hanya menu
   chart={"flowchart TD\n  A[Kecambah dibaringkan] --> B[Tudung akar merasakan gravitasi: auksin menumpuk di bawah]\n  B --> C[Batang: sisi bawah lebih cepat, melengkung ke atas]\n  B --> D[Akar: sisi bawah lebih lambat, melengkung ke bawah]\n  K[Di klinostat] --> E[Tidak ada sisi yang tetap di bawah: auksin rata] --> F[Keduanya tumbuh lurus]\n  R[Tudung akar dibuang] --> G[Gravitasi tidak terasa: tidak menumpuk] --> H[Akar tumbuh lurus]"}
 />
 
+Pilih tiap kecambah dan bandingkan cara pucuk dan akarnya melengkung.
+
+<TropismLab
+  title={<>Kecambah Dibaringkan di Tempat Gelap</>}
+  description={<>A diam terbaring, B berputar di klinostat, dan C kehilangan tudung akarnya. Ikuti auksin dan lengkungannya.</>}
+  labels={{
+    bend: <>Lengkungan pucuk</>,
+    directions: { away: <>menjauhi gravitasi</>, straight: <>Tumbuh lurus</>, toward: <>ke arah gravitasi</> },
+    far: <>Auksin di sisi atas</>,
+    growth: <>Pertumbuhan</>,
+    hours: "Waktu",
+    near: <>Auksin di sisi bawah</>,
+    root: <>Lengkungan akar</>,
+    seedling: "Pilih kecambah",
+    view: "Kecambah kacang dibaringkan di tempat gelap",
+  }}
+  setup={{
+    seedlings: [
+      { name: "A", treatment: "flat" },
+      { name: "B", treatment: "klinostat" },
+      { name: "C", treatment: "decapped" },
+    ],
+    stimulus: "gravity",
+  }}
+/>
+
 - I benar: di batang, auksin di sisi bawah mempercepat pemanjangan, jadi sisi bawah tumbuh lebih cepat dan batang melengkung ke atas.
 - II benar: di akar, auksin yang sama memperlambat pemanjangan, jadi sisi bawah tumbuh lebih lambat dan akar melengkung ke bawah.
 - III benar: di klinostat setiap sisi bergantian berada di bawah, jadi auksin tersebar rata dan tidak ada organ yang melengkung.

@@ -14,6 +14,29 @@ Jisim glukosa yang diturasi setiap minit ialah isi padu hasil turasan didarab de
   description={<>Pada <InlineMath math="2.0" /> dan <InlineMath math="3.0\text{ mg}" /> per sentimeter padu, semua glukosa yang diturasi diserap semula. Pada <InlineMath math="4.2" />, tubul menyerap semula maksimum <InlineMath math="375\text{ mg}" /> dan <InlineMath math="150\text{ mg}" /> masuk ke dalam air kencing, dan pada <InlineMath math="5.0" /> nilainya <InlineMath math="250\text{ mg}" />.</>}
 />
 
+Gerakkan glukosa plasma dan lihat tubul berhenti menyerap semula setiap butir.
+
+<NephronLab
+  title={<>Glukosa Melepasi Ambang Ginjal</>}
+  description={<>Gerakkan glukosa plasma melepasi <InlineMath math="3.0\text{ mg cm}^{-3}" /> dan lihat butir emas terlepas ke duktus.</>}
+  labels={{
+    daily: <>Air kencing sehari</>,
+    factor: <>Pemekatan urea</>,
+    filtrate: <>Hasil turasan sehari</>,
+    flow: <>Air kencing seminit</>,
+    load: <>Glukosa yang dituras</>,
+    plasma: "Glukosa plasma",
+    reabsorbed: <>Glukosa diserap semula</>,
+    solute: "Pilih bahan",
+    solutes: { glucose: "Glukosa", urea: "Urea" },
+    threshold: <>Ambang ginjal</>,
+    urine: <>Glukosa dalam air kencing</>,
+    view: "Satu nefron dengan bekalan darahnya",
+  }}
+  filtration={125}
+  glucose={{ maximum: 375, plasma: 4.2 }}
+/>
+
 Nilai ambang ialah kepekatan apabila jisim yang diturasi sama dengan nilai maksimum itu:
 
 <BlockMath math="125\times c=375\quad\Rightarrow\quad c=\frac{375}{125}=3.0\text{ mg cm}^{-3}." />
