@@ -1,22 +1,19 @@
-# Luas medan penglihatan, kemudian stoma per milimeter persegi
+# Kecilkan medan penglihatan dahulu, kemudian cari ketumpatan
 
-Ketumpatan ialah bilangan stoma per unit luas, jadi cari dahulu luas medan penglihatan. Rumus menggunakan **jejari**, iaitu separuh daripada diameter: <InlineMath math="r=\frac{0.40}{2}=0.20\text{ mm}" />.
+Stoma dikira pada <InlineMath math="\times400" />, jadi medan yang penting ialah medan pada <InlineMath math="\times400" />. Pembesaran yang **empat kali ganda** menunjukkan medan empat kali lebih sempit: diameternya <InlineMath math="\frac{1.6}{4}=0.4\text{ mm}" />.
 
 <Mermaid
-  title={<>Daripada Medan Penglihatan kepada Ketumpatan</>}
-  description={<>Diameter <InlineMath math="0.40\text{ mm}" /> memberi jejari <InlineMath math="0.20\text{ mm}" /> dan luas kira-kira <InlineMath math="0.1257" /> milimeter persegi, jadi <InlineMath math="30" /> stoma memberi kira-kira <InlineMath math="239" /> per milimeter persegi.</>}
-  chart={"flowchart LR\n  D[diameter 0.40 mm] -->|÷ 2| R[jejari 0.20 mm]\n  R -->|π j²| A[luas ≈ 0.1257 mm²]\n  A -->|30 ÷ luas| N[≈ 239 stoma per mm²]"}
+  title={<>Daripada <InlineMath math="\times100" /> kepada Ketumpatan pada <InlineMath math="\times400" /></>}
+  description={<>Pembesaran empat kali ganda menunjukkan medan empat kali lebih sempit, <InlineMath math="0.4\text{ mm}" /> dan bukannya <InlineMath math="1.6\text{ mm}" />. Jejarinya <InlineMath math="0.2\text{ mm}" /> dan luasnya kira-kira <InlineMath math="0.1257" /> milimeter persegi, jadi <InlineMath math="30" /> stoma memberi kira-kira <InlineMath math="239" /> per milimeter persegi.</>}
+  chart={"flowchart LR\n  A[×100: diameter 1.6 mm] -->|×400 empat kali ganda: ÷ 4| B[diameter 0.4 mm]\n  B -->|÷ 2| C[jejari 0.2 mm]\n  C -->|π j²| D[luas ≈ 0.1257 mm²]\n  D -->|30 ÷ luas| E[≈ 239 per mm²]"}
 />
 
-<BlockMath math="\begin{aligned}
-\text{luas}&=\pi r^2=\pi\times0.20^2\approx0.1257\text{ mm}^2\\
-\text{ketumpatan}&=\frac{30}{0.1257}\approx239\text{ stoma per mm}^2
-\end{aligned}" />
+<BlockMath math="j=\frac{0.4}{2}=0.2\text{ mm},\qquad \text{luas}=\pi\times0.2^2\approx0.1257\text{ mm}^2,\qquad \text{ketumpatan}=\frac{30}{0.1257}\approx239\text{ per mm}^2" />
 
-Jadi, permukaan bawah daun itu mempunyai kira-kira <InlineMath math="239" /> stoma per <InlineMath math="\text{mm}^2" />.
+Jadi, permukaan bawah daun mempunyai kira-kira <InlineMath math="239" /> stoma per <InlineMath math="\text{mm}^2" />.
 
 # Kenapa pilihan lain salah
 
-- Kira-kira <InlineMath math="60" /> menggunakan diameter <InlineMath math="0.40\text{ mm}" /> sebagai jejari, **lalu luasnya menjadi empat kali terlalu besar**.
-- <InlineMath math="750" /> mengabaikan <InlineMath math="\pi" /> dan membahagi <InlineMath math="30" /> dengan <InlineMath math="0.20^2=0.04" />.
-- Kira-kira <InlineMath math="24" /> membahagi dengan lilitan, <InlineMath math="2\pi r" />, yang merupakan panjang, bukan luas.
+- Kira-kira <InlineMath math="15" /> menggunakan medan penglihatan pada <InlineMath math="\times100" />, sedangkan **stoma dikira pada** <InlineMath math="\times400" />.
+- Kira-kira <InlineMath math="60" /> menggunakan diameter <InlineMath math="0.4\text{ mm}" /> sebagai jejari.
+- <InlineMath math="750" /> mengabaikan <InlineMath math="\pi" /> dalam luas.

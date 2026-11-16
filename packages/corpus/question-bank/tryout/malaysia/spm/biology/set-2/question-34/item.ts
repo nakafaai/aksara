@@ -13,7 +13,10 @@ const item: ItemSource = {
         { correct: false, label: "Man P" },
         { correct: true, label: "Man Q" },
         { correct: false, label: "Man R" },
-        { correct: false, label: "None of them, because the child shares a band with each man" },
+        {
+          correct: false,
+          label: "None of them, because the child shares a band with each man",
+        },
       ],
     },
     ms: {
@@ -22,7 +25,11 @@ const item: ItemSource = {
         { correct: false, label: "Lelaki P" },
         { correct: true, label: "Lelaki Q" },
         { correct: false, label: "Lelaki R" },
-        { correct: false, label: "Tiada seorang pun, kerana anak berkongsi satu jalur dengan setiap lelaki" },
+        {
+          correct: false,
+          label:
+            "Tiada seorang pun, kerana anak berkongsi satu jalur dengan setiap lelaki",
+        },
       ],
     },
   },

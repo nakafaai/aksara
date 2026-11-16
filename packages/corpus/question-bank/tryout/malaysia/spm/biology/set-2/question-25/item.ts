@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "Shoot: the lower side elongates faster. Root: the lower side elongates more slowly." },
-        { correct: false, label: "Shoot: the upper side elongates faster. Root: the upper side elongates more slowly." },
-        { correct: false, label: "Shoot: the lower side elongates more slowly. Root: the lower side elongates faster." },
-        { correct: false, label: "Shoot and root: the lower side elongates faster, because both receive more auxin there." },
+        { correct: true, label: "I, II and III only" },
+        { correct: false, label: "I and II only" },
+        { correct: false, label: "I, II and IV only" },
+        { correct: false, label: "II, III and IV only" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "Pucuk: bahagian bawah memanjang lebih cepat. Akar: bahagian bawah memanjang lebih perlahan." },
-        { correct: false, label: "Pucuk: bahagian atas memanjang lebih cepat. Akar: bahagian atas memanjang lebih perlahan." },
-        { correct: false, label: "Pucuk: bahagian bawah memanjang lebih perlahan. Akar: bahagian bawah memanjang lebih cepat." },
-        { correct: false, label: "Pucuk dan akar: bahagian bawah memanjang lebih cepat, kerana kedua-duanya menerima lebih banyak auksin di situ." },
+        { correct: true, label: "I, II dan III sahaja" },
+        { correct: false, label: "I dan II sahaja" },
+        { correct: false, label: "I, II dan IV sahaja" },
+        { correct: false, label: "II, III dan IV sahaja" },
       ],
     },
   },

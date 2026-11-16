@@ -1,21 +1,21 @@
-# Ein Pollenschlauch pro Samenanlage, zwei Gameten pro Schlauch
+# Ein Schlauch pro Samenanlage, dann die triploiden Kerne zählen
 
-Jeder Pollenschlauch wächst in **eine** Samenanlage, jede Samenanlage braucht also ihr eigenes Pollenkorn: <InlineMath math="30" /> Samenanlagen brauchen mindestens <InlineMath math="30" /> Pollenkörner.
+Jeder Pollenschlauch wächst in **eine** Samenanlage, <InlineMath math="30" /> Samenanlagen brauchen also mindestens <InlineMath math="30" /> Pollenkörner. In jeder verschmilzt ein Gamet mit der Eizelle, der andere mit den zwei Polkernen.
 
 <Mermaid
   title={<>Doppelte Befruchtung in einer Samenanlage</>}
-  description={<>Ein Pollenkorn schickt einen Schlauch in eine Samenanlage. Seine zwei Spermazellen verschmelzen mit der Eizelle und den zwei Polkernen, <InlineMath math="30" /> Samenanlagen brauchen also <InlineMath math="30" /> Pollenkörner und <InlineMath math="60" /> Gameten.</>}
-  chart={"flowchart LR\n  P[1 Pollenkorn] --> T[1 Pollenschlauch in 1 Samenanlage]\n  T --> G1[Gamet 1 + Eizelle: Zygote 2n]\n  T --> G2[Gamet 2 + 2 Polkerne: Endosperm 3n]\n  G1 --> S[30 Samenanlagen: 30 Körner, 60 Gameten]\n  G2 --> S"}
+  description={<>Ein Pollenschlauch wächst in eine Samenanlage. Ein Gamet mit <InlineMath math="12" /> Chromosomen verschmilzt mit der Eizelle, der andere mit den zwei Polkernen, zu einem Endospermkern mit <InlineMath math="36" /> Chromosomen. Dreißig Samenanlagen brauchen <InlineMath math="30" /> Pollenkörner und enthalten <InlineMath math="1080" /> Endospermchromosomen.</>}
+  chart={"flowchart LR\n  P[1 Pollenkorn] --> T[1 Schlauch in 1 Samenanlage]\n  T --> G1[Gamet n = 12 + Eizelle n = 12: Zygote 2n = 24]\n  T --> G2[Gamet n = 12 + 2 Polkerne n = 12: Endosperm 3n = 36]\n  G2 --> S[30 Samenanlagen × 36 = 1080 Chromosomen]"}
 />
 
-Bei der doppelten Befruchtung werden beide Spermazellen eines Schlauchs in derselben Samenanlage verbraucht. Eine verschmilzt mit der Eizelle zur diploiden Zygote, die andere mit den zwei Polkernen zum triploiden Endospermkern. Jede Samenanlage verbraucht also <InlineMath math="2" /> männliche Gameten:
+Gameten und Polkerne sind haploid, <InlineMath math="n=12" />, jeder Endospermkern ist also triploid:
 
-<BlockMath math="30\times2=60\text{ männliche Gameten}." />
+<BlockMath math="3n=12+12+12=36,\qquad 30\times36=1080\text{ Chromosomen}." />
 
-Nötig sind also mindestens <InlineMath math="30" /> Pollenkörner, und <InlineMath math="60" /> männliche Gameten sind beteiligt.
+Nötig sind also mindestens <InlineMath math="30" /> Pollenkörner, und die <InlineMath math="30" /> Endospermkerne enthalten zusammen <InlineMath math="1080" /> Chromosomen.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="15" /> Pollenkörner nimmt an, die beiden Gameten eines Schlauchs befruchteten **zwei verschiedene Samenanlagen**, doch beide wirken in derselben.
-- <InlineMath math="30" /> männliche Gameten vergisst den zweiten Gameten, der das Endosperm bildet.
-- <InlineMath math="60" /> Pollenkörner zählt ein Pollenkorn pro Gamet, doch jedes Korn bringt zwei mit.
+- <InlineMath math="15" /> Pollenkörner schickt die zwei Gameten eines Schlauchs in **zwei verschiedene Samenanlagen**, was auch die Endospermzahl halbiert.
+- <InlineMath math="720" /> hält das Endosperm für diploid, <InlineMath math="30\times24" />, und vergisst den zweiten Polkern.
+- <InlineMath math="60" /> Pollenkörner zählt ein Korn pro Gamet, doch jedes Korn bringt zwei mit.

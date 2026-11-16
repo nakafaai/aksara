@@ -1,25 +1,21 @@
-# Tetapkan semua variabel kecuali suhu
+# Tetapkan semua kecuali suhu, lalu baca lajunya
 
-Untuk menguji hipotesis ini, suhu adalah **satu-satunya** variabel yang boleh berubah. Massa ragi, konsentrasi glukosa, dan lama penghitungan harus sama, karena variabel terikatnya adalah jumlah total gelembung, dan jumlah itu bergantung pada ketiganya.
+Suhu harus menjadi satu-satunya variabel yang berubah. Variabel terikatnya adalah **laju per menit**, jadi lama penghitungan yang berbeda tidak merusak susunan alat: <InlineMath math="40" /> gelembung dalam <InlineMath math="5" /> menit dan <InlineMath math="80" /> dalam <InlineMath math="10" /> menit adalah laju yang sama, <InlineMath math="8" /> per menit.
 
 <Mermaid
   title={<>Susunan Alat yang Hanya Mengubah Suhu</>}
-  description={<>Q dan U hanya mengubah suhu dan tetap masuk. R mengubah ragi, S glukosa, dan T lama penghitungan, jadi ketiganya keluar.</>}
-  chart={"flowchart LR\n  P[P: 25 °C] --> Q[Q: 35 °C, lain sama: masuk]\n  P --> U[U: 45 °C, lain sama: masuk]\n  P --> R[R: ragi 4 g: keluar]\n  P --> S[S: glukosa 10%: keluar]\n  P --> T[T: 5 menit: keluar]"}
+  description={<>Q, T, dan U hanya mengubah suhu setelah jumlah gelembung diubah menjadi laju per menit. R mengubah ragi dan S glukosa, jadi keduanya keluar.</>}
+  chart={"flowchart LR\n  P[P: 25 °C] --> Q[Q: 35 °C: masuk]\n  P --> T[T: 45 °C, 5 menit, laju per menit: masuk]\n  P --> U[U: 55 °C: masuk]\n  P --> R[R: ragi 4 g: keluar]\n  P --> S[S: glukosa 10%: keluar]"}
 />
 
-Bandingkan setiap susunan alat dengan P, yang memakai <InlineMath math="2\text{ g}" /> ragi, glukosa <InlineMath math="5\%" />, dan waktu <InlineMath math="10" /> menit.
+- Q dan U hanya mengubah suhu, jadi tetap masuk.
+- T dihitung selama <InlineMath math="5" /> menit, tetapi jumlahnya dibagi <InlineMath math="5" /> menjadi gelembung per menit, jadi T juga masuk.
+- R menggandakan ragi dan S menggandakan glukosa, jadi masing-masing mengubah variabel kedua dan harus keluar.
 
-- Q hanya mengubah suhu, jadi Q tetap masuk kelompok.
-- R memakai <InlineMath math="4\text{ g}" /> ragi, jadi sel ragi yang lebih banyak, bukan suhu, bisa menaikkan jumlah gelembungnya.
-- S memakai glukosa <InlineMath math="10\%" />, jadi substrat yang lebih banyak bisa menaikkan jumlah gelembungnya.
-- T dihitung hanya <InlineMath math="5" /> menit, jadi totalnya tidak bisa dibandingkan dengan total <InlineMath math="10" /> menit.
-- U hanya mengubah suhu, jadi U tetap masuk kelompok.
-
-Jadi, kelompok sah yang paling besar adalah P, Q, dan U, yang mencakup tiga suhu dengan variabel lain tetap.
+Jadi, kelompok sah yang paling besar adalah P, Q, T, dan U, yang mencakup empat suhu.
 
 # Kenapa pilihan lain salah
 
-- P dan Q saja berhenti terlalu cepat dan melewatkan U, yang sama sahnya pada <InlineMath math="45^\circ\text{C}" />.
-- P, Q, S, dan U menerima S, padahal **S juga menggandakan konsentrasi glukosa**.
-- P, Q, T, dan U menerima T, padahal total yang dihitung selama <InlineMath math="5" /> menit tidak bisa dibandingkan dengan total selama <InlineMath math="10" /> menit.
+- P, Q, dan U melewatkan T, seolah-olah waktu hitung yang lebih singkat merusaknya, padahal **laju per menit sudah memperhitungkan waktunya**.
+- P, Q, S, T, dan U menerima S, yang juga menggandakan glukosa.
+- P, Q, R, T, dan U menerima R, yang juga menggandakan ragi.

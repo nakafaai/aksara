@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "The numbers of rats and frogs rise" },
-        { correct: false, label: "The number of grasshoppers rises" },
-        { correct: false, label: "The rice yield rises" },
-        { correct: false, label: "The number of frogs falls" },
+        { correct: true, label: "I, II and IV only" },
+        { correct: false, label: "I and II only" },
+        { correct: false, label: "I, II and III only" },
+        { correct: false, label: "II, III and IV only" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "Bilangan tikus dan katak meningkat" },
-        { correct: false, label: "Bilangan belalang meningkat" },
-        { correct: false, label: "Hasil padi meningkat" },
-        { correct: false, label: "Bilangan katak berkurang" },
+        { correct: true, label: "I, II dan IV sahaja" },
+        { correct: false, label: "I dan II sahaja" },
+        { correct: false, label: "I, II dan III sahaja" },
+        { correct: false, label: "II, III dan IV sahaja" },
       ],
     },
   },

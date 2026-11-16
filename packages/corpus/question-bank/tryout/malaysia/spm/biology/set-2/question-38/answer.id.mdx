@@ -1,22 +1,28 @@
-# Tanyakan apa yang diserang antibiotik
+# Ikuti dua kelompok itu hari demi hari
 
-Antibiotik bekerja pada struktur yang **hanya dimiliki bakteri**, seperti dinding sel dan ribosom bakteri. Periksa setiap pernyataan dengan fakta itu.
+Antibiotik hanya menyingkirkan bakteri yang bisa dibunuhnya, jadi dua kelompok itu berubah secara **berbeda**. Lacak masing-masing, lalu bandingkan.
 
-<Mermaid
-  title={<>Apa yang Bisa dan Tidak Bisa Dicapai Antibiotik</>}
-  description={<>Antibiotik menyerang dinding sel atau ribosom bakteri. Virus tidak punya keduanya dan hanya menyalin dirinya di dalam sel inang, jadi antibiotik tidak mengenainya. Berhenti terlalu cepat membiarkan bakteri paling tahan tetap hidup.</>}
-  chart={"flowchart TD\n  AB[Antibiotik] -->|menyerang dinding sel, ribosom| BA[Bakteri di tenggorokan]\n  BA -->|dosis penuh| K[Semua mati]\n  BA -->|berhenti terlalu cepat| S[Yang paling tahan bertahan dan berkembang biak: resistansi]\n  AB -.->|tanpa sasaran| V[Virus influenza]\n  V -->|menyalin diri hanya di dalam| H[Sel inang]"}
+<BlockMath math="\begin{aligned}
+\text{bisa dibunuh}&: 1\,000\,000\xrightarrow{\times0.01}10\,000\xrightarrow{\times0.01}100\\
+\text{resisten}&: 100\to100\to100
+\end{aligned}" />
+
+Setelah <InlineMath math="2" /> hari, <InlineMath math="100" /> dari <InlineMath math="200" /> bakteri yang hidup resisten, jadi <InlineMath math="\frac{100}{200}=50\%" />.
+
+<Chart
+  title={<>Bagian Bakteri Resisten Selama Pengobatan</>}
+  categories={["Hari 0", "Hari 1", "Hari 2"]}
+  series={[
+    { label: "Bagian resisten (%)", mark: "line", values: [0.01, 0.99, 50] },
+  ]}
+  valueLabel="Bakteri resisten (%)"
+  description={<>Bagian bakteri resisten sekitar <InlineMath math="0{,}01" /> persen di awal, sekitar <InlineMath math="0{,}99" /> persen setelah satu hari, dan <InlineMath math="50" /> persen setelah dua hari, saat <InlineMath math="100" /> bakteri yang bisa dibunuh tersisa bersama <InlineMath math="100" /> bakteri resisten.</>}
 />
 
-- Virus tidak punya dinding sel dan tidak membuat apa pun sendiri, jadi antibiotik tidak punya sasaran. Pernyataan I benar.
-- Virus hanya menyalin dirinya dengan memakai mesin di dalam sel inang. Pernyataan II benar.
-- Berhenti terlalu cepat membunuh bakteri yang paling lemah dan membiarkan yang paling tahan berkembang biak, jadi bakteri resisten makin banyak. Pernyataan III benar.
-- Virus memakai ribosom inang, bukan miliknya sendiri, jadi antibiotik tidak bisa menghalangi proteinnya dan tidak menyembuhkan influenza. Pernyataan IV salah.
-
-Jadi, I, II, dan III benar.
+Berhenti terlalu cepat meninggalkan populasi yang separuhnya bakteri resisten, dan bakteri itu bisa berkembang biak menjadi infeksi yang tidak bisa diobati antibiotik itu. Jadi, <InlineMath math="50\%" /> bakteri yang masih hidup resisten.
 
 # Kenapa pilihan lain salah
 
-- I dan II melewatkan III, yaitu cara dosis yang tidak dihabiskan **menyeleksi bakteri resisten**.
-- II dan IV menerima IV dan menolak I, yang mencampuradukkan apa yang bisa dicapai antibiotik.
-- I, III, dan IV menerima IV, padahal antibiotik tidak menyembuhkan infeksi virus.
+- <InlineMath math="0.01\%" /> adalah bagian **sebelum** pengobatan, <InlineMath math="\frac{100}{1\,000\,100}" />.
+- <InlineMath math="1\%" /> kira-kira bagian setelah satu hari, <InlineMath math="\frac{100}{10\,100}" />.
+- <InlineMath math="99\%" /> menganggap semua bakteri yang bisa dibunuh sudah mati, padahal <InlineMath math="100" /> di antaranya masih hidup setelah dua hari.

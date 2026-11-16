@@ -1,22 +1,28 @@
-# Tanya apa yang diserang oleh antibiotik
+# Ikut dua kumpulan itu hari demi hari
 
-Antibiotik bertindak pada struktur yang **hanya dimiliki oleh bakteria**, seperti dinding sel dan ribosom bakteria. Semak setiap pernyataan berdasarkan fakta itu.
+Antibiotik hanya menyingkirkan bakteria yang boleh dibunuhnya, jadi dua kumpulan itu berubah secara **berbeza**. Jejaki setiap kumpulan, kemudian bandingkan.
 
-<Mermaid
-  title={<>Apa yang Boleh dan Tidak Boleh Dicapai oleh Antibiotik</>}
-  description={<>Antibiotik menyerang dinding sel atau ribosom bakteria. Virus tiada kedua-duanya dan hanya menyalin dirinya di dalam sel perumah, jadi antibiotik tidak mengenainya. Berhenti awal meninggalkan bakteria paling tahan hidup.</>}
-  chart={"flowchart TD\n  AB[Antibiotik] -->|menyerang dinding sel, ribosom| BA[Bakteria dalam tekak]\n  BA -->|dos penuh| K[Semua mati]\n  BA -->|berhenti awal| S[Yang paling tahan hidup dan membiak: kerintangan]\n  AB -.->|tiada sasaran| V[Virus influenza]\n  V -->|menyalin diri hanya di dalam| H[Sel perumah]"}
+<BlockMath math="\begin{aligned}
+\text{boleh dibunuh}&: 1\,000\,000\xrightarrow{\times0.01}10\,000\xrightarrow{\times0.01}100\\
+\text{rintang}&: 100\to100\to100
+\end{aligned}" />
+
+Selepas <InlineMath math="2" /> hari, <InlineMath math="100" /> daripada <InlineMath math="200" /> bakteria yang hidup adalah rintang, jadi <InlineMath math="\frac{100}{200}=50\%" />.
+
+<Chart
+  title={<>Bahagian Bakteria Rintang Semasa Rawatan</>}
+  categories={["Hari 0", "Hari 1", "Hari 2"]}
+  series={[
+    { label: "Bahagian rintang (%)", mark: "line", values: [0.01, 0.99, 50] },
+  ]}
+  valueLabel="Bakteria rintang (%)"
+  description={<>Bahagian bakteria rintang kira-kira <InlineMath math="0.01" /> peratus pada awalnya, kira-kira <InlineMath math="0.99" /> peratus selepas satu hari, dan <InlineMath math="50" /> peratus selepas dua hari, apabila <InlineMath math="100" /> bakteria yang boleh dibunuh tinggal bersama <InlineMath math="100" /> bakteria rintang.</>}
 />
 
-- Virus tiada dinding sel dan tidak menghasilkan apa-apa sendiri, jadi antibiotik tiada sasaran untuk diserang. Pernyataan I betul.
-- Virus hanya menyalin dirinya dengan menggunakan jentera di dalam sel perumah. Pernyataan II betul.
-- Berhenti awal membunuh bakteria yang paling lemah dan meninggalkan bakteria paling tahan untuk membiak, jadi bakteria rintang menjadi lebih banyak. Pernyataan III betul.
-- Virus menggunakan ribosom perumah, bukan ribosomnya sendiri, jadi antibiotik tidak dapat menghalang proteinnya dan tidak menyembuhkan influenza. Pernyataan IV salah.
-
-Jadi, I, II dan III betul.
+Berhenti awal meninggalkan populasi yang separuhnya bakteria rintang, dan bakteria itu boleh membiak menjadi jangkitan yang tidak dapat dirawat oleh antibiotik itu. Jadi, <InlineMath math="50\%" /> bakteria yang masih hidup adalah rintang.
 
 # Kenapa pilihan lain salah
 
-- I dan II terlepas III, iaitu cara dos yang tidak dihabiskan **memilih bakteria rintang**.
-- II dan IV menerima IV dan menolak I, yang mengelirukan apa yang boleh dicapai oleh antibiotik.
-- I, III dan IV menerima IV, sedangkan antibiotik tidak menyembuhkan jangkitan virus.
+- <InlineMath math="0.01\%" /> ialah bahagian **sebelum** rawatan, <InlineMath math="\frac{100}{1\,000\,100}" />.
+- <InlineMath math="1\%" /> lebih kurang bahagian selepas satu hari, <InlineMath math="\frac{100}{10\,100}" />.
+- <InlineMath math="99\%" /> menganggap semua bakteria yang boleh dibunuh sudah mati, sedangkan <InlineMath math="100" /> daripadanya masih hidup selepas dua hari.

@@ -19,10 +19,22 @@ const item: ItemSource = {
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2021$$, dan pokok itu berumur $$14$$ tahun" },
-        { correct: true, label: "$$2022$$, dan pokok itu berumur $$14$$ tahun" },
-        { correct: false, label: "$$2022$$, dan pokok itu berumur $$28$$ tahun" },
-        { correct: false, label: "$$2017$$, dan pokok itu berumur $$14$$ tahun" },
+        {
+          correct: false,
+          label: "$$2021$$, dan pokok itu berumur $$14$$ tahun",
+        },
+        {
+          correct: true,
+          label: "$$2022$$, dan pokok itu berumur $$14$$ tahun",
+        },
+        {
+          correct: false,
+          label: "$$2022$$, dan pokok itu berumur $$28$$ tahun",
+        },
+        {
+          correct: false,
+          label: "$$2017$$, dan pokok itu berumur $$14$$ tahun",
+        },
       ],
     },
   },

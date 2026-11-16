@@ -1,21 +1,19 @@
-# Peptidbindungen Kette für Kette zählen
+# Kondensationen zum Aufbauen, Hydrolysen zum Schneiden zählen
 
-Jede Peptidbindung entsteht durch **Kondensation**, bei der ein Wassermolekül frei wird. Eine Kette aus <InlineMath math="n" /> Aminosäuren hat <InlineMath math="n-1" /> Peptidbindungen, weil die Bindungen **zwischen** benachbarten Aminosäuren liegen.
+Jede Peptidbindung entsteht durch Kondensation und setzt ein Wassermolekül frei, das Spalten einer Bindung durch Hydrolyse **verbraucht** eines. Eine Kette aus <InlineMath math="n" /> Aminosäuren hat <InlineMath math="n-1" /> Peptidbindungen.
 
 <Mermaid
-  title={<>Peptidbindungen in den beiden Ketten</>}
-  description={<>Kette A mit <InlineMath math="21" /> Aminosäuren hat <InlineMath math="20" /> Peptidbindungen, Kette B mit <InlineMath math="30" /> hat <InlineMath math="29" />, also werden <InlineMath math="49" /> Wassermoleküle frei. Die Disulfidbrücken tragen nichts bei.</>}
-  chart={"flowchart LR\n  A[Kette A: 21 Aminosäuren] --> A1[20 Bindungen, 20 Wasser]\n  B[Kette B: 30 Aminosäuren] --> B1[29 Bindungen, 29 Wasser]\n  A1 --> T[49 Wassermoleküle]\n  B1 --> T\n  D[3 Disulfidbrücken] -.->|kein Wasser| T"}
+  title={<>Aus einer Kette werden zwei</>}
+  description={<>Die Kette aus <InlineMath math="86" /> Aminosäuren bildet <InlineMath math="85" /> Peptidbindungen und setzt <InlineMath math="85" /> Wassermoleküle frei. Das Herausschneiden des Mittelstücks aus <InlineMath math="35" /> Aminosäuren hydrolysiert <InlineMath math="2" /> Bindungen und verbraucht <InlineMath math="2" /> Wassermoleküle, übrig bleiben Ketten aus <InlineMath math="21" /> und <InlineMath math="30" />.</>}
+  chart={"flowchart LR\n  A[86 freie Aminosäuren] -->|85 Kondensationen: 85 Wasser frei| B[eine Kette aus 86]\n  B -->|3 Disulfidbrücken, kein Wasser| C[gefaltete Kette]\n  C -->|2 Hydrolysen: 2 Wasser verbraucht| D[Kette aus 21 + Kette aus 30]\n  C --> E[Mittelstück aus 35 entfernt]"}
 />
 
-Die beiden Ketten sind getrennt, also zählt jede für sich:
+<BlockMath math="\text{gebildet}: 86-1=85\ \text{Bindungen},\ 85\ \text{Wasser frei},\qquad \text{geschnitten}: 2\ \text{Bindungen},\ 2\ \text{Wasser verbraucht}" />
 
-<BlockMath math="\text{Kette A}: 21-1=20,\qquad \text{Kette B}: 30-1=29,\qquad 20+29=49." />
-
-Die Disulfidbrücken verbinden die fertigen Ketten und setzen kein Wasser frei, sie ändern also nichts. Es werden <InlineMath math="49" /> Wassermoleküle frei.
+Probe: Die beiden Endketten haben <InlineMath math="20+29=49" /> Bindungen, das entfernte Stück <InlineMath math="34" />, also <InlineMath math="49+34+2=85" />. Es werden also <InlineMath math="85" /> Wassermoleküle frei und <InlineMath math="2" /> verbraucht.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="50" /> behandelt die <InlineMath math="51" /> Aminosäuren als **eine** Kette und zieht nur einmal <InlineMath math="1" /> ab.
-- <InlineMath math="51" /> rechnet ein Wassermolekül pro Aminosäure statt pro Peptidbindung.
-- <InlineMath math="52" /> zählt die drei Disulfidbrücken zu <InlineMath math="49" /> hinzu, obwohl sie kein Wasser freisetzen.
+- <InlineMath math="86" /> frei rechnet ein Wassermolekül pro Aminosäure statt pro Bindung.
+- <InlineMath math="49" /> zählt nur die Bindungen der Endketten und **vergisst die Bindungen des entfernten Stücks**.
+- <InlineMath math="35" /> verbraucht gibt jeder Aminosäure des Stücks ein Wassermolekül, doch geschnitten werden nur die zwei Bindungen, die es halten.

@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "P: Protista. Q: Monera. R: Fungi. S: Plantae." },
-        { correct: false, label: "P: Monera. Q: Plantae. R: Fungi. S: Plantae." },
-        { correct: false, label: "P: Monera. Q: Protista. R: Plantae. S: Plantae." },
-        { correct: true, label: "P: Monera. Q: Protista. R: Fungi. S: Plantae." },
+        {
+          correct: false,
+          label: "P: Plantae. Q: Protista. R: Fungi. S: Plantae.",
+        },
+        {
+          correct: false,
+          label: "P: Monera. Q: Protista. R: Protista. S: Plantae.",
+        },
+        {
+          correct: false,
+          label: "P: Monera. Q: Plantae. R: Fungi. S: Plantae.",
+        },
+        {
+          correct: true,
+          label: "P: Monera. Q: Protista. R: Fungi. S: Plantae.",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "P: Protista. Q: Monera. R: Fungi. S: Plantae." },
-        { correct: false, label: "P: Monera. Q: Plantae. R: Fungi. S: Plantae." },
-        { correct: false, label: "P: Monera. Q: Protista. R: Plantae. S: Plantae." },
-        { correct: true, label: "P: Monera. Q: Protista. R: Fungi. S: Plantae." },
+        {
+          correct: false,
+          label: "P: Plantae. Q: Protista. R: Fungi. S: Plantae.",
+        },
+        {
+          correct: false,
+          label: "P: Monera. Q: Protista. R: Protista. S: Plantae.",
+        },
+        {
+          correct: false,
+          label: "P: Monera. Q: Plantae. R: Fungi. S: Plantae.",
+        },
+        {
+          correct: true,
+          label: "P: Monera. Q: Protista. R: Fungi. S: Plantae.",
+        },
       ],
     },
   },

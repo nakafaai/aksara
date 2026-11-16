@@ -1,21 +1,19 @@
-# Hitung ikatan peptida per rantai
+# Hitung kondensasi untuk membangun, hidrolisis untuk memotong
 
-Setiap ikatan peptida terbentuk lewat **kondensasi**, yang melepaskan satu molekul air. Rantai dengan <InlineMath math="n" /> asam amino punya <InlineMath math="n-1" /> ikatan peptida, karena ikatan itu berada **di antara** asam amino yang bersebelahan.
+Setiap ikatan peptida terbentuk lewat kondensasi, yang melepaskan satu molekul air, dan memutus satu ikatan lewat hidrolisis **memakai** satu molekul air. Rantai dengan <InlineMath math="n" /> asam amino punya <InlineMath math="n-1" /> ikatan peptida.
 
 <Mermaid
-  title={<>Ikatan Peptida di Dua Rantai</>}
-  description={<>Rantai A dengan <InlineMath math="21" /> asam amino punya <InlineMath math="20" /> ikatan peptida dan rantai B dengan <InlineMath math="30" /> punya <InlineMath math="29" />, jadi <InlineMath math="49" /> molekul air dilepaskan. Jembatan disulfida tidak menambah apa pun.</>}
-  chart={"flowchart LR\n  A[Rantai A: 21 asam amino] --> A1[20 ikatan, 20 air]\n  B[Rantai B: 30 asam amino] --> B1[29 ikatan, 29 air]\n  A1 --> T[49 molekul air]\n  B1 --> T\n  D[3 jembatan disulfida] -.->|tanpa air| T"}
+  title={<>Dari Satu Rantai Menjadi Dua</>}
+  description={<>Membentuk rantai <InlineMath math="86" /> asam amino menghasilkan <InlineMath math="85" /> ikatan peptida dan melepaskan <InlineMath math="85" /> molekul air. Memotong bagian tengah <InlineMath math="35" /> asam amino menghidrolisis <InlineMath math="2" /> ikatan dan memakai <InlineMath math="2" /> molekul air, sehingga tersisa rantai <InlineMath math="21" /> dan <InlineMath math="30" />.</>}
+  chart={"flowchart LR\n  A[86 asam amino bebas] -->|85 kondensasi: 85 air dilepaskan| B[satu rantai 86]\n  B -->|3 jembatan disulfida, tanpa air| C[rantai terlipat]\n  C -->|2 hidrolisis: 2 air dipakai| D[rantai 21 + rantai 30]\n  C --> E[bagian tengah 35 dibuang]"}
 />
 
-Kedua rantai terpisah, jadi masing-masing dihitung sendiri:
+<BlockMath math="\text{dibentuk}: 86-1=85\ \text{ikatan},\ 85\ \text{air dilepaskan},\qquad \text{dipotong}: 2\ \text{ikatan},\ 2\ \text{air dipakai}" />
 
-<BlockMath math="\text{rantai A}: 21-1=20,\qquad \text{rantai B}: 30-1=29,\qquad 20+29=49." />
-
-Jembatan disulfida menyambung rantai yang sudah jadi dan tidak melepaskan air, jadi tidak menambah apa pun. Jadi, <InlineMath math="49" /> molekul air dilepaskan.
+Cek: dua rantai akhir punya <InlineMath math="20+29=49" /> ikatan dan bagian yang dibuang punya <InlineMath math="34" />, jadi <InlineMath math="49+34+2=85" />. Jadi, <InlineMath math="85" /> molekul air dilepaskan dan <InlineMath math="2" /> dipakai.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="50" /> menganggap <InlineMath math="51" /> asam amino itu sebagai **satu** rantai dan hanya mengurangi <InlineMath math="1" /> sekali.
-- <InlineMath math="51" /> melepaskan satu molekul air untuk setiap asam amino, bukan untuk setiap ikatan peptida.
-- <InlineMath math="52" /> menambahkan tiga jembatan disulfida ke <InlineMath math="49" />, padahal jembatan itu tidak melepaskan air.
+- <InlineMath math="86" /> dilepaskan memberi satu molekul air per asam amino, bukan per ikatan.
+- <InlineMath math="49" /> hanya menghitung ikatan rantai akhir dan **melupakan ikatan bagian yang dibuang**.
+- <InlineMath math="35" /> dipakai memberi satu molekul air untuk setiap asam amino bagian itu, padahal hanya dua ikatan penyambungnya yang dipotong.

@@ -1,25 +1,21 @@
-# Alles festhalten außer der Temperatur
+# Alles außer der Temperatur festhalten, dann die Rate lesen
 
-Um die Hypothese zu prüfen, darf sich **nur** die Temperatur ändern. Hefemasse, Glucosekonzentration und Zählzeit müssen gleich bleiben, denn gemessen wird die Gesamtzahl der Gasblasen, und diese Zahl hängt von allen dreien ab.
+Nur die Temperatur darf sich ändern. Gemessen wird eine **Rate pro Minute**, eine andere Zählzeit verdirbt einen Ansatz also nicht: <InlineMath math="40" /> Blasen in <InlineMath math="5" /> Minuten und <InlineMath math="80" /> in <InlineMath math="10" /> Minuten sind dieselbe Rate von <InlineMath math="8" /> pro Minute.
 
 <Mermaid
   title={<>Welche Ansätze nur die Temperatur ändern</>}
-  description={<>Q und U ändern nur die Temperatur und bleiben. R ändert die Hefe, S die Glucose und T die Zählzeit, also fallen sie heraus.</>}
-  chart={"flowchart LR\n  P[P: 25 °C] --> Q[Q: 35 °C, Rest gleich: bleibt]\n  P --> U[U: 45 °C, Rest gleich: bleibt]\n  P --> R[R: 4 g Hefe: raus]\n  P --> S[S: 10% Glucose: raus]\n  P --> T[T: 5 Minuten: raus]"}
+  description={<>Q, T und U ändern nur die Temperatur, sobald die Zählung in eine Rate pro Minute umgerechnet ist. R ändert die Hefe und S die Glucose, also fallen sie heraus.</>}
+  chart={"flowchart LR\n  P[P: 25 °C] --> Q[Q: 35 °C: bleibt]\n  P --> T[T: 45 °C, 5 min, Rate pro Minute: bleibt]\n  P --> U[U: 55 °C: bleibt]\n  P --> R[R: 4 g Hefe: raus]\n  P --> S[S: 10% Glucose: raus]"}
 />
 
-Vergleiche jeden Ansatz mit P, der <InlineMath math="2\text{ g}" /> Hefe, <InlineMath math="5\%" /> Glucose und <InlineMath math="10" /> Minuten verwendet.
+- Q und U ändern nur die Temperatur und bleiben.
+- T zählt <InlineMath math="5" /> Minuten, doch seine Zahl wird durch <InlineMath math="5" /> geteilt und ergibt Blasen pro Minute, also bleibt auch T.
+- R verdoppelt die Hefe und S die Glucose, jeder ändert also eine zweite Größe und fällt heraus.
 
-- Q ändert nur die Temperatur und gehört deshalb zur Gruppe.
-- R verwendet <InlineMath math="4\text{ g}" /> Hefe, also könnten mehr Hefezellen, nicht die Temperatur, die Blasenzahl erhöhen.
-- S verwendet <InlineMath math="10\%" /> Glucose, also könnte mehr Substrat die Blasenzahl erhöhen.
-- T zählt nur <InlineMath math="5" /> Minuten, deshalb lässt sich seine Summe nicht mit einer <InlineMath math="10" />-Minuten-Summe vergleichen.
-- U ändert nur die Temperatur und gehört deshalb zur Gruppe.
-
-Die größte gültige Gruppe ist also P, Q und U: drei Temperaturen, alles andere fest.
+Die größte gültige Gruppe ist also P, Q, T und U mit vier Temperaturen.
 
 # Warum die anderen Antworten falsch sind
 
-- Nur P und Q hört zu früh auf und übersieht U, das bei <InlineMath math="45^\circ\text{C}" /> genauso gültig ist.
-- P, Q, S und U nimmt S auf, doch **S verdoppelt auch die Glucosekonzentration**.
-- P, Q, T und U nimmt T auf, doch eine Summe über <InlineMath math="5" /> Minuten ist mit Summen über <InlineMath math="10" /> Minuten nicht vergleichbar.
+- P, Q und U lässt T weg, als verderbe die kürzere Zählung den Ansatz, doch **eine Rate pro Minute berücksichtigt die Zeit schon**.
+- P, Q, S, T und U nimmt S auf, das auch die Glucose verdoppelt.
+- P, Q, R, T und U nimmt R auf, das auch die Hefe verdoppelt.

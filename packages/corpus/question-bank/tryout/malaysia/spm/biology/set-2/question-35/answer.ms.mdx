@@ -1,26 +1,27 @@
-# Penggandaan ialah kuasa dua
+# Penggandaan ialah kuasa dua, dan kelebihan awal juga kuasa dua
 
-Selepas <InlineMath math="n" /> kitaran, <InlineMath math="10" /> salinan asal telah berganda dua sebanyak <InlineMath math="n" /> kali, jadi terdapat <InlineMath math="10\times2^{n}" /> salinan. Bilangan itu mesti **lebih daripada** sejuta:
+Selepas <InlineMath math="n" /> kitaran, satu sampel mempunyai bilangan awalnya didarab dengan <InlineMath math="2^{n}" />. Y memerlukan **lebih daripada** sejuta:
 
-<BlockMath math="10\times2^{n}>1\,000\,000\quad\Rightarrow\quad2^{n}>100\,000." />
+<BlockMath math="1280\times2^{n}>1\,000\,000\ \Rightarrow\ 2^{n}>781.25,\qquad 2^{9}=512\ \text{(tidak cukup)},\quad 2^{10}=1024\ \text{(cukup)}." />
 
-Oleh sebab <InlineMath math="2^{16}=65\,536" /> terlalu kecil dan <InlineMath math="2^{17}=131\,072" /> sudah mencukupi, bilangan kitaran paling sedikit ialah <InlineMath math="17" />. Carta menunjukkan bilangan salinan melepasi sasaran antara kitaran <InlineMath math="16" /> dengan <InlineMath math="17" />.
+Jadi, Y melepasi sejuta selepas <InlineMath math="10" /> kitaran. X bermula dengan <InlineMath math="\frac{1280}{10}=128=2^{7}" /> kali kurang salinan, jadi X memerlukan tepat <InlineMath math="7" /> penggandaan lagi untuk menyamai Y: <InlineMath math="10\times2^{17}=1\,310\,720" />, sama dengan Y selepas <InlineMath math="10" /> kitaran.
 
 <Chart
-  title={<>Salinan Selepas Setiap Kitaran PCR</>}
-  categories={["Kitaran 14", "Kitaran 15", "Kitaran 16", "Kitaran 17", "Kitaran 18"]}
+  title={<>Salinan Selepas Setiap Kitaran</>}
+  categories={["8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]}
   series={[
-    { label: "Salinan", mark: "line", values: [163840, 327680, 655360, 1310720, 2621440] },
-    { label: "1,000,000 salinan", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000] },
+    { label: "Sampel X", mark: "line", values: [2560, 5120, 10240, 20480, 40960, 81920, 163840, 327680, 655360, 1310720] },
+    { label: "Sampel Y", mark: "line", values: [327680, 655360, 1310720, 2621440, null, null, null, null, null, null] },
+    { label: "1,000,000 salinan", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000] },
   ]}
   valueLabel="Bilangan salinan"
-  description={<>Selepas <InlineMath math="14" /> kitaran terdapat <InlineMath math="163\,840" /> salinan, selepas <InlineMath math="15" /> terdapat <InlineMath math="327\,680" />, selepas <InlineMath math="16" /> terdapat <InlineMath math="655\,360" />, selepas <InlineMath math="17" /> terdapat <InlineMath math="1\,310\,720" /> dan selepas <InlineMath math="18" /> terdapat <InlineMath math="2\,621\,440" />. Garis sasaran kekal pada <InlineMath math="1\,000\,000" />, jadi bilangan salinan mula melepasinya pada kitaran <InlineMath math="17" />.</>}
+  description={<>Sampel Y, bermula dengan <InlineMath math="1280" /> salinan, mula melepasi sejuta selepas kitaran <InlineMath math="10" /> dengan <InlineMath math="1{,}310{,}720" /> salinan. Sampel X, bermula dengan <InlineMath math="10" />, hanya melepasinya selepas kitaran <InlineMath math="17" />, tujuh kitaran kemudian.</>}
 />
 
-Jadi, bilangan kitaran paling sedikit ialah <InlineMath math="17" />.
+Jadi, Y memerlukan <InlineMath math="10" /> kitaran, dan X memerlukan <InlineMath math="7" /> lagi.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="16" /> kitaran memberi <InlineMath math="655\,360" /> salinan, yang **masih di bawah** sejuta.
-- <InlineMath math="20" /> menggunakan <InlineMath math="2^{20}\approx1\,000\,000" /> dan terlupa bahawa tindak balas sudah bermula dengan <InlineMath math="10" /> salinan.
-- <InlineMath math="100\,000" /> menganggap setiap kitaran menambah <InlineMath math="10" /> salinan, sedangkan setiap kitaran menggandakan bilangannya.
+- <InlineMath math="9" /> kitaran hanya memberi Y <InlineMath math="655\,360" /> salinan, yang **masih di bawah** sejuta.
+- <InlineMath math="128" /> kitaran lagi menganggap kelebihan awal sebagai bilangan kitaran, sedangkan setiap kitaran hanya menggandakan, jadi jurang <InlineMath math="128" /> kali ditutup dalam <InlineMath math="7" /> kitaran.
+- <InlineMath math="1270" /> lagi ialah beza bilangan salinan awal, bukan beza kitaran.

@@ -1,22 +1,28 @@
-# Ask what the antibiotic attacks
+# Follow the two groups day by day
 
-An antibiotic works on structures that **only bacteria have**, such as the cell wall and bacterial ribosomes. Check each statement against that.
+The antibiotic only removes the bacteria it can kill, so the two groups change **differently**. Track each one, then compare.
 
-<Mermaid
-  title={<>What an Antibiotic Can and Cannot Reach</>}
-  description={<>An antibiotic attacks a bacterium's cell wall or ribosomes. A virus has neither and copies itself only inside a host cell, so the antibiotic misses it. Stopping the course early leaves the toughest bacteria alive.</>}
-  chart={"flowchart TD\n  AB[Antibiotic] -->|attacks cell wall, ribosomes| BA[Bacteria in the throat]\n  BA -->|full course| K[All killed]\n  BA -->|stopped early| S[Toughest survive and multiply: resistance]\n  AB -.->|no target| V[Influenza virus]\n  V -->|copies itself only inside| H[Host cells]"}
+<BlockMath math="\begin{aligned}
+\text{killable}&: 1\,000\,000\xrightarrow{\times0.01}10\,000\xrightarrow{\times0.01}100\\
+\text{resistant}&: 100\to100\to100
+\end{aligned}" />
+
+After <InlineMath math="2" /> days, <InlineMath math="100" /> of the <InlineMath math="200" /> survivors are resistant, so <InlineMath math="\frac{100}{200}=50\%" />.
+
+<Chart
+  title={<>Share of Resistant Bacteria During Treatment</>}
+  categories={["Day 0", "Day 1", "Day 2"]}
+  series={[
+    { label: "Resistant share (%)", mark: "line", values: [0.01, 0.99, 50] },
+  ]}
+  valueLabel="Resistant bacteria (%)"
+  description={<>The resistant share is about <InlineMath math="0.01" /> percent at the start, about <InlineMath math="0.99" /> percent after one day, and <InlineMath math="50" /> percent after two days, when <InlineMath math="100" /> killable bacteria remain beside the <InlineMath math="100" /> resistant ones.</>}
 />
 
-- A virus has no cell wall and makes nothing by itself, so the antibiotic has nothing to attack. Statement I is correct.
-- A virus copies itself only by using the machinery inside a host cell. Statement II is correct.
-- Stopping early kills the weakest bacteria and leaves the toughest ones to multiply, so resistant bacteria become more common. Statement III is correct.
-- The virus uses the host's ribosomes, not its own, so the antibiotic cannot block its proteins and does not cure influenza. Statement IV is wrong.
-
-So I, II and III are correct.
+Stopping early leaves a population in which half the bacteria are resistant, and they can multiply into an infection the antibiotic cannot treat. So <InlineMath math="50\%" /> of the bacteria still alive are resistant.
 
 # Why the other options are wrong
 
-- I and II misses III, the way an unfinished course **selects resistant bacteria**.
-- II and IV accepts IV and rejects I, which mixes up what an antibiotic can reach.
-- I, III and IV accepts IV, but antibiotics do not cure a viral infection.
+- <InlineMath math="0.01\%" /> is the share **before** treatment, <InlineMath math="\frac{100}{1\,000\,100}" />.
+- <InlineMath math="1\%" /> is roughly the share after one day, <InlineMath math="\frac{100}{10\,100}" />.
+- <InlineMath math="99\%" /> assumes the killable bacteria are all gone, but <InlineMath math="100" /> of them are still alive after two days.

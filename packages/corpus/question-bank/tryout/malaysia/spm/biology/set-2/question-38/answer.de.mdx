@@ -1,22 +1,28 @@
-# Frag, was das Antibiotikum angreift
+# Beide Gruppen Tag für Tag verfolgen
 
-Ein Antibiotikum wirkt auf Strukturen, die **nur Bakterien haben**, etwa die Zellwand und bakterielle Ribosomen. Prüfe jede Aussage daran.
+Das Antibiotikum entfernt nur die Bakterien, die es abtöten kann, die beiden Gruppen verändern sich also **unterschiedlich**. Verfolge jede einzeln und vergleiche dann.
 
-<Mermaid
-  title={<>Was ein Antibiotikum erreicht und was nicht</>}
-  description={<>Ein Antibiotikum greift die Zellwand oder die Ribosomen eines Bakteriums an. Ein Virus hat beides nicht und vermehrt sich nur in einer Wirtszelle, das Antibiotikum verfehlt es also. Ein zu früh abgebrochenes Antibiotikum lässt die zähesten Bakterien überleben.</>}
-  chart={"flowchart TD\n  AB[Antibiotikum] -->|greift Zellwand, Ribosomen an| BA[Bakterien im Hals]\n  BA -->|volle Dauer| K[Alle abgetötet]\n  BA -->|zu früh abgebrochen| S[Die zähesten überleben und vermehren sich: Resistenz]\n  AB -.->|kein Angriffspunkt| V[Influenzavirus]\n  V -->|vermehrt sich nur in| H[Wirtszellen]"}
+<BlockMath math="\begin{aligned}
+\text{abtötbar}&: 1\,000\,000\xrightarrow{\times0.01}10\,000\xrightarrow{\times0.01}100\\
+\text{resistent}&: 100\to100\to100
+\end{aligned}" />
+
+Nach <InlineMath math="2" /> Tagen sind <InlineMath math="100" /> der <InlineMath math="200" /> Überlebenden resistent, also <InlineMath math="\frac{100}{200}=50\%" />.
+
+<Chart
+  title={<>Anteil resistenter Bakterien während der Behandlung</>}
+  categories={["Tag 0", "Tag 1", "Tag 2"]}
+  series={[
+    { label: "Resistenter Anteil (%)", mark: "line", values: [0.01, 0.99, 50] },
+  ]}
+  valueLabel="Resistente Bakterien (%)"
+  description={<>Der resistente Anteil liegt anfangs bei etwa <InlineMath math="0{,}01" /> Prozent, nach einem Tag bei etwa <InlineMath math="0{,}99" /> Prozent und nach zwei Tagen bei <InlineMath math="50" /> Prozent, wenn neben den <InlineMath math="100" /> resistenten noch <InlineMath math="100" /> abtötbare Bakterien leben.</>}
 />
 
-- Ein Virus hat keine Zellwand und stellt selbst nichts her, das Antibiotikum hat also nichts zum Angreifen. Aussage I stimmt.
-- Ein Virus vermehrt sich nur mit der Maschinerie einer Wirtszelle. Aussage II stimmt.
-- Wer zu früh aufhört, tötet die schwächsten Bakterien und lässt die zähesten sich vermehren, resistente Bakterien werden also häufiger. Aussage III stimmt.
-- Das Virus nutzt die Ribosomen des Wirts, nicht eigene, das Antibiotikum kann seine Proteine also nicht blockieren und heilt keine Grippe. Aussage IV ist falsch.
-
-Richtig sind also I, II und III.
+Ein früher Abbruch hinterlässt eine Population, in der die Hälfte resistent ist, und diese Bakterien können sich zu einer Infektion vermehren, die das Antibiotikum nicht mehr behandelt. Resistent sind also <InlineMath math="50\%" /> der noch lebenden Bakterien.
 
 # Warum die anderen Antworten falsch sind
 
-- I und II übersieht III, die Art, wie eine abgebrochene Einnahme **resistente Bakterien auswählt**.
-- II und IV nimmt IV auf und verwirft I, was verwechselt, was ein Antibiotikum erreichen kann.
-- I, III und IV nimmt IV auf, doch Antibiotika heilen keine Virusinfektion.
+- <InlineMath math="0.01\%" /> ist der Anteil **vor** der Behandlung, <InlineMath math="\frac{100}{1\,000\,100}" />.
+- <InlineMath math="1\%" /> ist ungefähr der Anteil nach einem Tag, <InlineMath math="\frac{100}{10\,100}" />.
+- <InlineMath math="99\%" /> nimmt an, alle abtötbaren Bakterien seien tot, doch <InlineMath math="100" /> davon leben nach zwei Tagen noch.

@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$50$$" },
-        { correct: true, label: "$$49$$" },
-        { correct: false, label: "$$51$$" },
-        { correct: false, label: "$$52$$" },
+        { correct: false, label: "$$86$$ released and $$2$$ used" },
+        { correct: true, label: "$$85$$ released and $$2$$ used" },
+        { correct: false, label: "$$49$$ released and $$2$$ used" },
+        { correct: false, label: "$$85$$ released and $$35$$ used" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$50$$" },
-        { correct: true, label: "$$49$$" },
-        { correct: false, label: "$$51$$" },
-        { correct: false, label: "$$52$$" },
+        { correct: false, label: "$$86$$ dibebaskan dan $$2$$ digunakan" },
+        { correct: true, label: "$$85$$ dibebaskan dan $$2$$ digunakan" },
+        { correct: false, label: "$$49$$ dibebaskan dan $$2$$ digunakan" },
+        { correct: false, label: "$$85$$ dibebaskan dan $$35$$ digunakan" },
       ],
     },
   },

@@ -1,28 +1,27 @@
-# Net loss, then the water the plant can spare
+# Two net rates, one after the other
 
-The plant loses water through its leaves and gains it through its roots at the same time, so what matters is the **net loss**:
+What matters is the **net loss**, transpiration minus uptake, and it changes when the wind stops. The plant can spare <InlineMath math="300-270=30\text{ g}" /> before it wilts.
 
-<BlockMath math="35-20=15\text{ g per hour}." />
-
-It wilts at <InlineMath math="90\%" /> of <InlineMath math="300\text{ g}" />, which is <InlineMath math="270\text{ g}" />, so it can spare <InlineMath math="300-270=30\text{ g}" />:
-
-<BlockMath math="\text{time}=\frac{30\text{ g}}{15\text{ g per hour}}=2\text{ hours}." />
+<BlockMath math="\begin{aligned}
+1\text{ to }2\text{ pm}&: 35-20=15\text{ g per hour},\quad 30-15=15\text{ g left to lose}\\
+\text{from }2\text{ pm}&: 25-20=5\text{ g per hour},\quad \frac{15}{5}=3\text{ hours}
+\end{aligned}" />
 
 <Chart
-  title={<>Water in the Plant Hour by Hour</>}
-  categories={["Hour 0", "Hour 1", "Hour 2", "Hour 3"]}
+  title={<>Water in the Plant Through the Afternoon</>}
+  categories={["1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm"]}
   series={[
-    { label: "Water in the plant", mark: "line", values: [300, 285, 270, 255] },
-    { label: "Wilting level", mark: "line", values: [270, 270, 270, 270] },
+    { label: "Water in the plant", mark: "line", values: [300, 285, 280, 275, 270] },
+    { label: "Wilting level", mark: "line", values: [270, 270, 270, 270, 270] },
   ]}
   valueLabel="Water (g)"
-  description={<>The water falls from <InlineMath math="300" /> to <InlineMath math="285" />, <InlineMath math="270" /> and <InlineMath math="255\text{ g}" /> at hours <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="3" />. It reaches the wilting level of <InlineMath math="270\text{ g}" /> at hour <InlineMath math="2" />.</>}
+  description={<>The water falls <InlineMath math="15\text{ g}" /> in the windy first hour to <InlineMath math="285\text{ g}" />, then only <InlineMath math="5\text{ g}" /> an hour to <InlineMath math="280" />, <InlineMath math="275" /> and <InlineMath math="270\text{ g}" />, reaching the wilting level of <InlineMath math="270\text{ g}" /> at 5:00 pm.</>}
 />
 
-So the plant starts to wilt after <InlineMath math="2" /> hours, at <InlineMath math="3\text{ pm}" />.
+So the plant starts to wilt <InlineMath math="3" /> hours after 2:00 pm, at 5:00 pm.
 
 # Why the other options are wrong
 
-- About <InlineMath math="0.9" /> hour uses the transpiration rate alone, <InlineMath math="\frac{30}{35}" />, and **forgets the water the roots take in**.
-- <InlineMath math="1.5" /> hours divides by the uptake rate, <InlineMath math="\frac{30}{20}" />, which is not the rate of loss.
-- "Never" ignores that the plant loses more each hour than it takes in, so its water keeps falling.
+- About 1:50 pm uses transpiration alone and forgets the water the roots take in.
+- 3:00 pm keeps the windy rate of <InlineMath math="15\text{ g}" /> per hour all afternoon, but **the loss slows when the wind stops**.
+- "Never" ignores that the plant still loses <InlineMath math="5\text{ g}" /> more than it takes in every hour.

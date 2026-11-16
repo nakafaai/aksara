@@ -1,21 +1,19 @@
-# Count the peptide bonds chain by chain
+# Count condensations to build, hydrolyses to cut
 
-Each peptide bond forms by **condensation**, which releases one water molecule. A chain of <InlineMath math="n" /> amino acids has <InlineMath math="n-1" /> peptide bonds, because the bonds sit **between** neighbouring amino acids.
+Each peptide bond forms by condensation, releasing one water molecule, and breaking one by hydrolysis **uses** one. A chain of <InlineMath math="n" /> amino acids has <InlineMath math="n-1" /> peptide bonds.
 
 <Mermaid
-  title={<>Peptide Bonds in the Two Chains</>}
-  description={<>Chain A with <InlineMath math="21" /> amino acids has <InlineMath math="20" /> peptide bonds and chain B with <InlineMath math="30" /> has <InlineMath math="29" />, so <InlineMath math="49" /> water molecules are released. The disulfide bridges add none.</>}
-  chart={"flowchart LR\n  A[Chain A: 21 amino acids] --> A1[20 bonds, 20 water]\n  B[Chain B: 30 amino acids] --> B1[29 bonds, 29 water]\n  A1 --> T[49 water molecules]\n  B1 --> T\n  D[3 disulfide bridges] -.->|no water| T"}
+  title={<>From One Chain to Two</>}
+  description={<>Forming the 86-amino-acid chain makes <InlineMath math="85" /> peptide bonds and releases <InlineMath math="85" /> water molecules. Cutting out the 35-amino-acid middle piece hydrolyses <InlineMath math="2" /> bonds and uses <InlineMath math="2" /> water molecules, leaving chains of <InlineMath math="21" /> and <InlineMath math="30" />.</>}
+  chart={"flowchart LR\n  A[86 free amino acids] -->|85 condensations: 85 water released| B[one chain of 86]\n  B -->|3 disulfide bridges, no water| C[folded chain]\n  C -->|2 hydrolyses: 2 water used| D[chain of 21 + chain of 30]\n  C --> E[middle piece of 35 removed]"}
 />
 
-The two chains are separate, so each one is counted on its own:
+<BlockMath math="\text{formed}: 86-1=85\ \text{bonds},\ 85\ \text{water released},\qquad \text{cut}: 2\ \text{bonds},\ 2\ \text{water used}" />
 
-<BlockMath math="\text{chain A}: 21-1=20,\qquad \text{chain B}: 30-1=29,\qquad 20+29=49." />
-
-The disulfide bridges join the finished chains and release no water, so they add nothing. So <InlineMath math="49" /> water molecules are released.
+Check: the two final chains have <InlineMath math="20+29=49" /> bonds and the piece removed has <InlineMath math="34" />, so <InlineMath math="49+34+2=85" />. So <InlineMath math="85" /> water molecules are released and <InlineMath math="2" /> are used.
 
 # Why the other options are wrong
 
-- <InlineMath math="50" /> treats the <InlineMath math="51" /> amino acids as **one** chain and subtracts <InlineMath math="1" /> only once.
-- <InlineMath math="51" /> releases one water molecule per amino acid instead of one per peptide bond.
-- <InlineMath math="52" /> adds the three disulfide bridges to <InlineMath math="49" />, although they release no water.
+- <InlineMath math="86" /> released gives one water molecule per amino acid instead of one per bond.
+- <InlineMath math="49" /> counts only the bonds of the final chains and **forgets the bonds of the piece that was removed**.
+- <InlineMath math="35" /> used gives a water molecule to every amino acid of the piece, but only the two bonds joining it are cut.

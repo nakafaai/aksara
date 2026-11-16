@@ -10,19 +10,31 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$15$$ pollen grains and $$30$$ male gametes" },
-        { correct: true, label: "$$30$$ pollen grains and $$60$$ male gametes" },
-        { correct: false, label: "$$30$$ pollen grains and $$30$$ male gametes" },
-        { correct: false, label: "$$60$$ pollen grains and $$60$$ male gametes" },
+        {
+          correct: false,
+          label: "$$15$$ pollen grains and $$540$$ chromosomes",
+        },
+        {
+          correct: true,
+          label: "$$30$$ pollen grains and $$1080$$ chromosomes",
+        },
+        {
+          correct: false,
+          label: "$$30$$ pollen grains and $$720$$ chromosomes",
+        },
+        {
+          correct: false,
+          label: "$$60$$ pollen grains and $$1080$$ chromosomes",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$15$$ butir debunga dan $$30$$ gamet jantan" },
-        { correct: true, label: "$$30$$ butir debunga dan $$60$$ gamet jantan" },
-        { correct: false, label: "$$30$$ butir debunga dan $$30$$ gamet jantan" },
-        { correct: false, label: "$$60$$ butir debunga dan $$60$$ gamet jantan" },
+        { correct: false, label: "$$15$$ butir debunga dan $$540$$ kromosom" },
+        { correct: true, label: "$$30$$ butir debunga dan $$1080$$ kromosom" },
+        { correct: false, label: "$$30$$ butir debunga dan $$720$$ kromosom" },
+        { correct: false, label: "$$60$$ butir debunga dan $$1080$$ kromosom" },
       ],
     },
   },

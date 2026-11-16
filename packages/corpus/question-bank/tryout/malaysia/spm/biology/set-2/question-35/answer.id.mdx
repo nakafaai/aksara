@@ -1,26 +1,27 @@
-# Penggandaan adalah pangkat dua
+# Penggandaan adalah pangkat dua, dan keunggulan awal juga pangkat dua
 
-Setelah <InlineMath math="n" /> siklus, <InlineMath math="10" /> salinan awal sudah berlipat dua sebanyak <InlineMath math="n" /> kali, jadi ada <InlineMath math="10\times2^{n}" /> salinan. Jumlahnya harus **lebih dari** sejuta:
+Setelah <InlineMath math="n" /> siklus, sebuah sampel punya jumlah awalnya dikali <InlineMath math="2^{n}" />. Y butuh **lebih dari** sejuta:
 
-<BlockMath math="10\times2^{n}>1\,000\,000\quad\Rightarrow\quad2^{n}>100\,000." />
+<BlockMath math="1280\times2^{n}>1\,000\,000\ \Rightarrow\ 2^{n}>781.25,\qquad 2^{9}=512\ \text{(kurang)},\quad 2^{10}=1024\ \text{(cukup)}." />
 
-Karena <InlineMath math="2^{16}=65\,536" /> terlalu kecil dan <InlineMath math="2^{17}=131\,072" /> sudah cukup, jumlah siklus paling sedikit adalah <InlineMath math="17" />. Diagramnya menunjukkan jumlah salinan melewati target di antara siklus <InlineMath math="16" /> dan <InlineMath math="17" />.
+Jadi, Y melewati sejuta setelah <InlineMath math="10" /> siklus. X mulai dengan <InlineMath math="\frac{1280}{10}=128=2^{7}" /> kali lebih sedikit salinan, jadi butuh tepat <InlineMath math="7" /> penggandaan lagi untuk menyusul: <InlineMath math="10\times2^{17}=1\,310\,720" />, sama dengan Y setelah <InlineMath math="10" /> siklus.
 
 <Chart
-  title={<>Salinan Setelah Setiap Siklus PCR</>}
-  categories={["Siklus 14", "Siklus 15", "Siklus 16", "Siklus 17", "Siklus 18"]}
+  title={<>Salinan Setelah Setiap Siklus</>}
+  categories={["8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]}
   series={[
-    { label: "Salinan", mark: "line", values: [163840, 327680, 655360, 1310720, 2621440] },
-    { label: "1.000.000 salinan", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000] },
+    { label: "Sampel X", mark: "line", values: [2560, 5120, 10240, 20480, 40960, 81920, 163840, 327680, 655360, 1310720] },
+    { label: "Sampel Y", mark: "line", values: [327680, 655360, 1310720, 2621440, null, null, null, null, null, null] },
+    { label: "1.000.000 salinan", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000] },
   ]}
   valueLabel="Jumlah salinan"
-  description={<>Setelah <InlineMath math="14" /> siklus ada <InlineMath math="163\,840" /> salinan, setelah <InlineMath math="15" /> ada <InlineMath math="327\,680" />, setelah <InlineMath math="16" /> ada <InlineMath math="655\,360" />, setelah <InlineMath math="17" /> ada <InlineMath math="1\,310\,720" />, dan setelah <InlineMath math="18" /> ada <InlineMath math="2\,621\,440" />. Garis target tetap di <InlineMath math="1\,000\,000" />, jadi jumlah salinan pertama kali melewatinya pada siklus <InlineMath math="17" />.</>}
+  description={<>Sampel Y, mulai dari <InlineMath math="1280" /> salinan, pertama melewati sejuta setelah siklus <InlineMath math="10" /> dengan <InlineMath math="1{.}310{.}720" /> salinan. Sampel X, mulai dari <InlineMath math="10" />, baru melewatinya setelah siklus <InlineMath math="17" />, tujuh siklus kemudian.</>}
 />
 
-Jadi, jumlah siklus paling sedikit adalah <InlineMath math="17" />.
+Jadi, Y butuh <InlineMath math="10" /> siklus, dan X butuh <InlineMath math="7" /> lagi.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="16" /> siklus memberi <InlineMath math="655\,360" /> salinan, yang **masih di bawah** sejuta.
-- <InlineMath math="20" /> memakai <InlineMath math="2^{20}\approx1\,000\,000" /> dan lupa bahwa reaksinya sudah dimulai dengan <InlineMath math="10" /> salinan.
-- <InlineMath math="100\,000" /> menganggap setiap siklus menambah <InlineMath math="10" /> salinan, padahal setiap siklus melipatgandakan jumlahnya.
+- <InlineMath math="9" /> siklus hanya memberi Y <InlineMath math="655\,360" /> salinan, yang **masih di bawah** sejuta.
+- <InlineMath math="128" /> siklus lagi menganggap keunggulan awal sebagai jumlah siklus, padahal setiap siklus hanya menggandakan, jadi selisih <InlineMath math="128" /> kali tertutup dalam <InlineMath math="7" /> siklus.
+- <InlineMath math="1270" /> lagi adalah selisih jumlah salinan awal, bukan selisih siklus.
