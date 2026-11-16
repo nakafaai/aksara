@@ -12,20 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{AlSO}_4$$, with 26.0% sulfur by mass",
+          label:
+            "The hydrate is $$28.1\\%$$ sulfur by mass, and the solution holds $$0.30\\text{ mol}$$ of sulfate ions",
         },
         {
           correct: true,
           label:
-            "$$\\text{Al}_2(\\text{SO}_4)_3$$, with 28.1% sulfur by mass, and each formula unit gives 5 ions in water",
+            "The hydrate is $$14.4\\%$$ sulfur by mass, and the solution holds $$0.30\\text{ mol}$$ of sulfate ions",
         },
         {
           correct: false,
-          label: "$$\\text{Al}_2(\\text{SO}_4)_3$$, with 9.4% sulfur by mass",
+          label:
+            "The hydrate is $$14.4\\%$$ sulfur by mass, and the solution holds $$0.10\\text{ mol}$$ of sulfate ions",
         },
         {
           correct: false,
-          label: "$$\\text{Al}_3(\\text{SO}_4)_2$$, with 23.4% sulfur by mass",
+          label:
+            "The hydrate is $$4.8\\%$$ sulfur by mass, and the solution holds $$0.10\\text{ mol}$$ of sulfate ions",
         },
       ],
     },
@@ -34,22 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{AlSO}_4$$, dengan 26.0% sulfur mengikut jisim",
+          label:
+            "Hidrat itu mengandungi $$28.1\\%$$ sulfur mengikut jisim, dan larutan mengandungi $$0.30\\text{ mol}$$ ion sulfat",
         },
         {
           correct: true,
           label:
-            "$$\\text{Al}_2(\\text{SO}_4)_3$$, dengan 28.1% sulfur mengikut jisim, dan setiap unit formula menghasilkan 5 ion dalam air",
+            "Hidrat itu mengandungi $$14.4\\%$$ sulfur mengikut jisim, dan larutan mengandungi $$0.30\\text{ mol}$$ ion sulfat",
         },
         {
           correct: false,
           label:
-            "$$\\text{Al}_2(\\text{SO}_4)_3$$, dengan 9.4% sulfur mengikut jisim",
+            "Hidrat itu mengandungi $$14.4\\%$$ sulfur mengikut jisim, dan larutan mengandungi $$0.10\\text{ mol}$$ ion sulfat",
         },
         {
           correct: false,
           label:
-            "$$\\text{Al}_3(\\text{SO}_4)_2$$, dengan 23.4% sulfur mengikut jisim",
+            "Hidrat itu mengandungi $$4.8\\%$$ sulfur mengikut jisim, dan larutan mengandungi $$0.10\\text{ mol}$$ ion sulfat",
         },
       ],
     },

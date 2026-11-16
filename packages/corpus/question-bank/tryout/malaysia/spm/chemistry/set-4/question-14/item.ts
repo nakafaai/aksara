@@ -10,34 +10,50 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "7.2 g of crystals" },
-        { correct: false, label: "14.8 g of crystals" },
         {
-          correct: true,
+          correct: false,
           label:
-            "11.8 g of crystals, after the unreacted magnesium oxide is filtered off",
+            "$$14.8\\text{ g}$$ of crystals, and $$1.6\\text{ g}$$ of magnesium oxide on the filter paper",
         },
         {
           correct: false,
           label:
-            "5.8 g of crystals, after the unreacted magnesium oxide is filtered off",
+            "$$11.8\\text{ g}$$ of crystals, and $$2.4\\text{ g}$$ of magnesium oxide on the filter paper",
+        },
+        {
+          correct: true,
+          label:
+            "$$11.8\\text{ g}$$ of crystals, and $$1.6\\text{ g}$$ of magnesium oxide on the filter paper",
+        },
+        {
+          correct: false,
+          label:
+            "$$5.76\\text{ g}$$ of crystals, and $$1.6\\text{ g}$$ of magnesium oxide on the filter paper",
         },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "7.2 g hablur" },
-        { correct: false, label: "14.8 g hablur" },
         {
-          correct: true,
+          correct: false,
           label:
-            "11.8 g hablur, selepas magnesium oksida yang tidak bertindak balas dituras",
+            "$$14.8\\text{ g}$$ hablur, dan $$1.6\\text{ g}$$ magnesium oksida pada kertas turas",
         },
         {
           correct: false,
           label:
-            "5.8 g hablur, selepas magnesium oksida yang tidak bertindak balas dituras",
+            "$$11.8\\text{ g}$$ hablur, dan $$2.4\\text{ g}$$ magnesium oksida pada kertas turas",
+        },
+        {
+          correct: true,
+          label:
+            "$$11.8\\text{ g}$$ hablur, dan $$1.6\\text{ g}$$ magnesium oksida pada kertas turas",
+        },
+        {
+          correct: false,
+          label:
+            "$$5.76\\text{ g}$$ hablur, dan $$1.6\\text{ g}$$ magnesium oksida pada kertas turas",
         },
       ],
     },
