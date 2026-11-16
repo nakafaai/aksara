@@ -1,0 +1,26 @@
+# The solid's slope gives the heater's power, and both trends fix when melting starts and ends
+
+The power is unknown, so get it from the part of the graph where only the solid warms: <InlineMath math="20^\circ\text{C}" /> a minute in <InlineMath math="12.8\text{ g}" /> of solid. **The flat stretch does not start or end on a grid point**. The solid's line reaches <InlineMath math="80^\circ\text{C}" /> half a minute after the reading at <InlineMath math="2\text{ min}" />, and the liquid's line leaves <InlineMath math="80^\circ\text{C}" /> three quarters of a minute before the reading at <InlineMath math="9\text{ min}" />. During melting the heat pulls molecules apart against their attraction, so their kinetic energy, and the temperature, stay constant.
+
+<Chart
+  title={<>Melting time read three ways</>}
+  description={<>Counting only the flat grid points gives <InlineMath math="5.0\text{ min}" />, extending both trends to <InlineMath math="80^\circ\text{C}" /> gives <InlineMath math="5.75\text{ min}" />, and joining the last point below to the first point above gives <InlineMath math="7.0\text{ min}" />.</>}
+  bars="apart"
+  categories={["Grid points 3 to 8", "Trends meet 80 °C", "Last below to first above"]}
+  series={[
+    { label: "Time", mark: "bar", values: [5.0, 5.75, 7.0] },
+  ]}
+  valueLabel="Time (min)"
+/>
+
+<BlockMath math="\begin{aligned}
+P&=12.8\times1.30\times\tfrac{70-30}{2}=332.8\text{ J min}^{-1}\\
+t_1&=2+\tfrac{80-70}{20}=2.50\text{ min},\quad t_2=9-\tfrac{91.5-80}{106.8-91.5}=8.25\text{ min}\\
+\Delta H&=\tfrac{332.8\times(8.25-2.50)}{12.8\div128}=19\,100\text{ J mol}^{-1}=19.1\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="16.6\text{ kJ mol}^{-1}" /> counts only the grid points at <InlineMath math="80^\circ\text{C}" />, from <InlineMath math="3" /> to <InlineMath math="8\text{ min}" />, and misses the melting that happens before and after them.
+- A constant temperature means the average kinetic energy is constant. **The heat raises the potential energy of the molecules as they separate**.
+- <InlineMath math="23.3\text{ kJ mol}^{-1}" /> times the whole gap from <InlineMath math="2" /> to <InlineMath math="9\text{ min}" />, which includes warming the solid and the liquid.

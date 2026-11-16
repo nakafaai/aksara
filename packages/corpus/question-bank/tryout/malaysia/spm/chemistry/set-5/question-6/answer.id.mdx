@@ -1,0 +1,28 @@
+# Volume yang sama berisi jumlah molekul yang sama, jadi hitung molekul
+
+Pada suhu dan tekanan yang sama, **volume mengikuti jumlah molekul gas**. Setiap dua molekul amonia yang terurai menghasilkan empat, jadi volume bertambah, dan asam hanya menyerap amonia yang tersisa.
+
+<Chart
+  title={<>Volume gas di tiap tahap</>}
+  description={<>Awalnya <InlineMath math="60\text{ cm}^3" /> amonia. Sesudah dipanaskan <InlineMath math="36\text{ cm}^3" /> amonia, <InlineMath math="12\text{ cm}^3" /> nitrogen, dan <InlineMath math="36\text{ cm}^3" /> hidrogen. Sesudah asam, amonia habis.</>}
+  bars="apart"
+  categories={["Amonia", "Nitrogen", "Hidrogen"]}
+  series={[
+    { label: "Awal", mark: "bar", values: [60, 0, 0] },
+    { label: "Sesudah dipanaskan", mark: "bar", values: [36, 12, 36] },
+    { label: "Sesudah asam", mark: "bar", values: [0, 12, 36] },
+  ]}
+  valueLabel="Volume (cm³)"
+/>
+
+<BlockMath math="\begin{aligned}
+\text{terurai}&=0{,}40\times60=24\text{ cm}^3\rightarrow12\text{ cm}^3\ \text{N}_2+36\text{ cm}^3\ \text{H}_2\\
+\text{sesudah}&=36+12+36=84\text{ cm}^3\\
+\text{sesudah asam}&=84-36=48\text{ cm}^3
+\end{aligned}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="60\text{ cm}^3" /> mengabaikan bahwa penguraian menghasilkan lebih banyak molekul dari yang dipakai.
+- <InlineMath math="60\text{ cm}^3" /> sesudah asam mengurangi amonia yang terurai, <InlineMath math="24\text{ cm}^3" />, bukan amonia yang tersisa.
+- <InlineMath math="96\text{ cm}^3" /> menganggap <InlineMath math="60\%" /> terurai. **<InlineMath math="40\%" /> terurai dan <InlineMath math="60\%" /> tetap amonia**.

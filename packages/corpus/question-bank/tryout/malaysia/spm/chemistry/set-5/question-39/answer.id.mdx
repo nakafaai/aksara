@@ -1,0 +1,26 @@
+# Hitung parasetamol yang sudah diminum, lalu periksa batas mana yang tercapai lebih dulu
+
+Sirup flu juga obat parasetamol, jadi dua dosisnya ikut dihitung, yaitu <InlineMath math="240\text{ mg}" /> dan dua dari empat dosis. Batas harian <InlineMath math="1080\text{ mg}" /> menyisakan <InlineMath math="840\text{ mg}" />. **Tetapi hanya tersisa dua dosis, masing-masing paling banyak <InlineMath math="270\text{ mg}" />**, jadi jumlah dosis menghentikan anak itu pada <InlineMath math="540\text{ mg}" /> lagi, jauh di bawah batas harian.
+
+<Chart
+  title={<>Parasetamol dibanding batas harian</>}
+  description={<>Anak itu meminum <InlineMath math="240\text{ mg}" /> dalam sirup flu dan paling banyak <InlineMath math="540\text{ mg}" /> lagi, di bawah batas <InlineMath math="1080\text{ mg}" />.</>}
+  bars="apart"
+  categories={["Sirup flu diminum", "Dua dosis lagi", "Batas harian"]}
+  series={[
+    { label: "Parasetamol", mark: "bar", values: [240, 540, 1080] },
+  ]}
+  valueLabel="Parasetamol (mg)"
+/>
+
+<BlockMath math="\begin{aligned}
+\text{sirup flu}&=2\times7{,}5\times\tfrac{80}{5{,}0}=240\text{ mg},\quad\text{sisa harian}=18\times60-240=840\text{ mg}\\
+\text{dua dosis tersisa}&=2\times18\times15=540\text{ mg}<840\text{ mg}\Rightarrow V=540\times\tfrac{5{,}0}{120}=22{,}5\text{ mL}\\
+n&=\tfrac{0{,}240+0{,}540}{151}=5{,}17\times10^{-3}\text{ mol}
+\end{aligned}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="35{,}0\text{ mL}" /> memenuhi batas massa harian. **Itu memerlukan lebih dari empat dosis seluruhnya**, karena satu dosis paling banyak <InlineMath math="270\text{ mg}" />.
+- <InlineMath math="45{,}0\text{ mL}" /> lupa bahwa sirup flu sudah berisi parasetamol.
+- <InlineMath math="3{,}58\times10^{-3}\text{ mol}" /> hanya menghitung sirup biasa dan melewatkan <InlineMath math="240\text{ mg}" /> yang diminum sebelumnya.
