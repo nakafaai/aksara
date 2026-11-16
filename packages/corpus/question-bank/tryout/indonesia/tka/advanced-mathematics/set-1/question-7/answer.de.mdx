@@ -10,6 +10,46 @@ Q(x)&=(x-1)(x^3-4x^2+x+6) \\
 &=(x-1)(x+1)(x-2)(x-3)
 \end{aligned}" />
 
+Zeichne <InlineMath math="Q(x)=(x-1)(x+1)(x-2)(x-3)" />. **Der Graph schneidet die <InlineMath math="x" />-Achse in genau vier Punkten, drei davon auf der positiven Seite**, und der Rest bei Division durch <InlineMath math="x-4" /> ist die Höhe des Graphen bei <InlineMath math="x=4" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="Q(x)" /> und seine Nullstellen</>}
+  description={<>Die Kurve <InlineMath math="y=Q(x)" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-1" />, <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> und geht durch <InlineMath math="(0,\ -6)" />. Bei <InlineMath math="x=4" /> ist ihre Höhe <InlineMath math="30" />.</>}
+  labels={{
+    curve: <InlineMath math="Q(x)" />,
+    "root-a": <InlineMath math="-1" />,
+    "root-b": <InlineMath math="1" />,
+    "root-c": <InlineMath math="2" />,
+    "root-d": <InlineMath math="3" />,
+    four: <InlineMath math="(4,\ 30)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.6, max: 4.4 },
+      y: { min: -8, max: 34 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x - 1)*(x + 1)*(x - 2)*(x - 3)", domain: { min: -1.5, max: 4.1 } },
+      { id: "root-a", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "root-b", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "root-c", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "root-d", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "four", kind: "point", appearance: "secondary", at: { x: 4, y: 30 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -1.5, y: (-2.5) * (-0.5) * (-3.5) * (-4.5) }, placement: "right" },
+      { key: "root-a", objectId: "root-a", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "root-b", objectId: "root-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "root-c", objectId: "root-c", at: { x: 2, y: 0 }, placement: "above-left" },
+      { key: "root-d", objectId: "root-d", at: { x: 3, y: 0 }, placement: "above-left" },
+      { key: "four", objectId: "four", at: { x: 4, y: 30 }, placement: "left" },
+    ],
+  }}
+/>
+
 Die Lösungen von <InlineMath math="Q(x)=0" /> sind <InlineMath math="-1" />, <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" />. Wenn du die vier Faktoren wieder ausmultiplizierst, erhältst du tatsächlich <InlineMath math="x^4-5x^3+5x^2+5x-6" />.
 
 # Bewertung der Aussagen

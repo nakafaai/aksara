@@ -7,6 +7,46 @@ x(y-1)&=y+2 \\
 x&=\frac{y+2}{y-1}
 \end{aligned}" />
 
+Zeichne <InlineMath math="f" /> mit der Geraden <InlineMath math="y=x" />. **Der Graph ist symmetrisch zu <InlineMath math="y=x" />**, deshalb gilt <InlineMath math="f^{-1}=f" />. Die waagerechte Gerade <InlineMath math="y=1" /> wird nie erreicht.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=\frac{x+2}{x-1}" /> und sein Spiegelbild</>}
+  description={<>Die Kurve <InlineMath math="y=\frac{x+2}{x-1}" /> hat zwei Äste, getrennt durch die Senkrechte <InlineMath math="x=1" /> und die Waagerechte <InlineMath math="y=1" />. Die Punkte <InlineMath math="\left(5,\ \tfrac74\right)" /> und <InlineMath math="\left(\tfrac74,\ 5\right)" /> liegen beide auf der Kurve und sind Spiegelbilder an <InlineMath math="y=x" />. Der Punkt <InlineMath math="(2,\ 4)" /> zeigt <InlineMath math="f(2)=4" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=x" />,
+    flat: <InlineMath math="y=1" />,
+    five: <InlineMath math="\left(5,\ \tfrac74\right)" />,
+    back: <InlineMath math="\left(\tfrac74,\ 5\right)" />,
+    four: <InlineMath math="(2,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 7 },
+      y: { min: -6, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -6, max: 7 } },
+      { id: "flat", kind: "function", appearance: "reference", formula: "1", domain: { min: -6, max: 7 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 1, y: -6 }, to: { x: 1, y: 8 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: -6, max: 0.6 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: 1.43, max: 7 } },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 5, y: 7 / 4 } },
+      { id: "back", kind: "point", appearance: "secondary", at: { x: 7 / 4, y: 5 } },
+      { id: "four", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 6.5, y: 6.5 }, placement: "below-right" },
+      { key: "flat", objectId: "flat", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 5, y: 7 / 4 }, placement: "above-right" },
+      { key: "back", objectId: "back", at: { x: 7 / 4, y: 5 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Es ergibt sich <InlineMath math="f^{-1}(x)=\frac{x+2}{x-1}" />, also **dieselbe Vorschrift wie** <InlineMath math="f" /> **selbst**. Der letzte Schritt gilt nur für <InlineMath math="y\ne1" />, und das ist für die erste Aussage wichtig.
 
 1. Die Aussage über die Wertemenge ist falsch. Der Wert <InlineMath math="y=1" /> wird nie erreicht, denn <InlineMath math="\frac{x+2}{x-1}=1" /> führt auf <InlineMath math="x+2=x-1" />, also <InlineMath math="2=-1" />. Die Wertemenge sind alle reellen Zahlen außer <InlineMath math="1" />.

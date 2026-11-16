@@ -13,6 +13,40 @@ Substitute into the projection formula.
 
 <BlockMath math="\vec{c}=\frac{14}{9}\left(2\vec{i}+\vec{j}+2\vec{k}\right)=\frac{28}{9}\vec{i}+\frac{14}{9}\vec{j}+\frac{28}{9}\vec{k}" />
 
+Draw <InlineMath math="\vec a" /> and <InlineMath math="\vec b" /> in the plane that holds both. **The projection is the shadow of <InlineMath math="\vec a" /> along the line of <InlineMath math="\vec b" />**, and what's left over is perpendicular to <InlineMath math="\vec b" />.
+
+<MathVisual
+  title={<>The projection of <InlineMath math="\vec a" /> onto <InlineMath math="\vec b" /></>}
+  description={<>This plane holds <InlineMath math="\vec a" /> and <InlineMath math="\vec b" />. The length of <InlineMath math="\vec b" /> is <InlineMath math="3" /> and the length of <InlineMath math="\vec a" /> is <InlineMath math="6" />. The projection <InlineMath math="\vec c" /> lies on the line of <InlineMath math="\vec b" /> with length <InlineMath math="\tfrac{14}{3}" />, which is <InlineMath math="\tfrac{14}{9}" /> times <InlineMath math="\vec b" />. The vertical segment from the tip of <InlineMath math="\vec c" /> to the tip of <InlineMath math="\vec a" /> is <InlineMath math="\vec a-\vec c" />, perpendicular to <InlineMath math="\vec b" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    c: <InlineMath math="\vec c=\tfrac{14}{9}\vec b" />,
+    rest: <InlineMath math="\vec a-\vec c" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 5.5 },
+      y: { min: -0.8, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 14 / 3, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 14 / 3, y: 8 * Math.sqrt(2) / 3 } },
+      { id: "rest", kind: "segment", appearance: "construction", from: { x: 14 / 3, y: 0 }, to: { x: 14 / 3, y: 8 * Math.sqrt(2) / 3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 7 / 3, y: 4 * Math.sqrt(2) / 3 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 14 / 3, y: 0 }, placement: "below" },
+      { key: "rest", objectId: "rest", at: { x: 14 / 3, y: 4 * Math.sqrt(2) / 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check: the remainder <InlineMath math="\vec{a}-\vec{c}" /> must be perpendicular to <InlineMath math="\vec{b}" />. Indeed <InlineMath math="\vec{a}\cdot\vec{b}-\vec{c}\cdot\vec{b}=14-\frac{14}{9}\cdot9=0" />.
 
 So the orthogonal projection of <InlineMath math="\vec{a}" /> onto <InlineMath math="\vec{b}" /> is <InlineMath math="\frac{28}{9}\vec{i}+\frac{14}{9}\vec{j}+\frac{28}{9}\vec{k}" />.

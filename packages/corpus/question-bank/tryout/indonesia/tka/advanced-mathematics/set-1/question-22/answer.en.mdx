@@ -10,6 +10,36 @@ The denominator <InlineMath math="2x-8" /> turns out to be <InlineMath math="2(x
 
 <BlockMath math="\lim_{x\to4}\frac{\sqrt{2x+1}+3}{2}=\frac{\sqrt9+3}{2}=\frac{3+3}{2}=3" />
 
+Draw the original function near <InlineMath math="x=4" />. **After multiplying by the conjugate, its graph is the same as <InlineMath math="\frac{\sqrt{2x+1}+3}{2}" /> for <InlineMath math="x\ne4" />**, so its value heads to <InlineMath math="3" />.
+
+<MathVisual
+  title={<>The graph near <InlineMath math="x=4" /></>}
+  description={<>The curve <InlineMath math="y=\frac{x-4}{\sqrt{2x+1}-3}" /> for <InlineMath math="0\le x\le8" />. The function isn't defined exactly at <InlineMath math="x=4" />, but the curve heads to the point <InlineMath math="(4,\ 3)" /> from both sides.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{x-4}{\sqrt{2x+1}-3}" />,
+    target: <InlineMath math="(4,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 8 },
+      y: { min: 1, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(sqrt(2*x + 1) + 3)/2", domain: { min: 0, max: 8 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 4, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 7.5, y: 3.5 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 4, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 As a check, at <InlineMath math="x=4.01" /> we get <InlineMath math="\sqrt{9.02}\approx3.00333" />, so the original fraction is about <InlineMath math="\frac{0.01}{0.00333}\approx3" />.
 
 So the value of the limit is <InlineMath math="3" />.

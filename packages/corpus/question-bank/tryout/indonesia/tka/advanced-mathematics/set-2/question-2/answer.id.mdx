@@ -8,6 +8,34 @@ Tulis matriks koefisien, lalu hitung determinannya dengan ekspansi kofaktor sepa
 &=a-7
 \end{aligned}" />
 
+Gambar determinan matriks koefisien sebagai fungsi <InlineMath math="a" />. **Garis <InlineMath math="a-7" /> hanya menyentuh nol di satu tempat**, dan di sanalah sistem kehilangan penyelesaian tunggalnya.
+
+<MathVisual
+  title={<>Determinan matriks koefisien menurut <InlineMath math="a" /></>}
+  description={<>Sumbu mendatar adalah <InlineMath math="a" />, dan sumbu tegak adalah determinan matriks koefisien. Garis <InlineMath math="y=a-7" /> memotong sumbu mendatar hanya di <InlineMath math="a=7" />. Untuk setiap <InlineMath math="a" /> lain, determinannya tidak nol.</>}
+  labels={{
+    det: <InlineMath math="\det=a-7" />,
+    zero: <InlineMath math="a=7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -14, max: 14 },
+      y: { min: -21, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "det", kind: "function", appearance: "primary", formula: "x - 7", domain: { min: -14, max: 14 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "det", objectId: "det", at: { x: -10, y: -17 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 7, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Determinan nol saat <InlineMath math="a-7=0" />, yaitu <InlineMath math="a=7" />. Untuk nilai <InlineMath math="a" /> lain, determinannya tidak nol dan sistem selalu punya tepat satu penyelesaian.
 
 Jadi, sistem tidak memiliki penyelesaian tunggal jika <InlineMath math="a=7" />.

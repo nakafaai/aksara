@@ -5,6 +5,24 @@ A^2&=\begin{pmatrix} 3 & 1 \\ -2 & 1 \end{pmatrix}\begin{pmatrix} 3 & 1 \\ -2 & 
 pA+qI&=\begin{pmatrix} 3p+q & p \\ -2p & p+q \end{pmatrix}
 \end{aligned}" />
 
+Das Diagramm zeigt, in welcher Reihenfolge du die vier Einträge nutzt. **Die Einträge außerhalb der Diagonalen enthalten nur <InlineMath math="p" />**, also fängst du dort an, und die Diagonaleinträge liefern und prüfen dann <InlineMath math="q" />.
+
+<Mermaid
+  title={<>Vier Einträge, zwei Zahlen</>}
+  description={<>Der Eintrag in Zeile eins, Spalte zwei liefert <InlineMath math="p=4" />, der Eintrag in Zeile zwei, Spalte eins prüft das. Der Eintrag oben links liefert dann <InlineMath math="q=-5" />, der Eintrag unten rechts prüft es. Das Produkt ist <InlineMath math="pq=-20" />.</>}
+  chart={`flowchart TD
+  M["A² = pA + qI"] --> E12["Eintrag (1,2): 4 = p"]
+  M --> E21["Eintrag (2,1): -8 = -2p"]
+  M --> E11["Eintrag (1,1): 7 = 3p + q"]
+  M --> E22["Eintrag (2,2): -1 = p + q"]
+  E12 --> P["p = 4"]
+  E21 --> P
+  P --> E11
+  E11 --> Q["q = -5"]
+  Q --> E22
+  Q --> R["pq = -20"]`}
+/>
+
 Der Eintrag in Zeile eins, Spalte zwei liefert sofort <InlineMath math="p=4" />. Der Eintrag in Zeile zwei, Spalte eins bestätigt das, denn <InlineMath math="-2\cdot4=-8" />. Der Eintrag oben links liefert <InlineMath math="q" />.
 
 <BlockMath math="3(4)+q=7\ \Rightarrow\ q=-5" />

@@ -5,6 +5,35 @@ Ubah persamaan ke bentuk baku <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> dengan *
 (x-2)^2+(y+5)^2&=9
 \end{aligned}" />
 
+Gambar lingkaran dari bentuk bakunya. **Pusatnya di <InlineMath math="(2,\ -5)" />, di bawah sumbu <InlineMath math="X" />**, dan jari-jarinya <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Lingkaran <InlineMath math="(x-2)^2+(y+5)^2=9" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="(2,\ -5)" /> dengan jari-jari <InlineMath math="3" />. Titik paling kanannya <InlineMath math="(5,\ -5)" />, titik paling atasnya <InlineMath math="(2,\ -2)" />, sehingga seluruh lingkaran berada di bawah sumbu <InlineMath math="X" />.</>}
+  labels={{
+    centre: <InlineMath math="(2,\ -5)" />,
+    radius: <InlineMath math="r=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -9, max: -1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: -5 }, radius: 3 },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 2, y: -5 }, to: { x: 5, y: -5 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 2, y: -5 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: -5 }, placement: "below-left" },
+      { key: "radius", objectId: "radius", at: { x: 3.5, y: -5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Bilangan <InlineMath math="4" /> dan <InlineMath math="25" /> ditambahkan di kedua ruas, yaitu kuadrat dari setengah koefisien <InlineMath math="x" /> dan <InlineMath math="y" />. Karena <InlineMath math="y+5=y-(-5)" />, pusatnya <InlineMath math="(2,-5)" />, dan <InlineMath math="r=\sqrt9=3" />.
 
 Rumus cepat memberi hasil yang sama. Untuk <InlineMath math="x^2+y^2+Ax+By+C=0" />, pusatnya <InlineMath math="\left(-\frac A2,-\frac B2\right)=(2,-5)" /> dan <InlineMath math="r=\sqrt{4+25-20}=3" />.

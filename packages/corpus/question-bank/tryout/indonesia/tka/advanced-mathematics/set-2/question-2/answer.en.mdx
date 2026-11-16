@@ -8,6 +8,34 @@ Write the coefficient matrix and expand its determinant along the first row. The
 &=a-7
 \end{aligned}" />
 
+Draw the determinant of the coefficient matrix as a function of <InlineMath math="a" />. **The line <InlineMath math="a-7" /> is zero at only one place**, and that's where the system loses its unique solution.
+
+<MathVisual
+  title={<>Determinant of the coefficient matrix by <InlineMath math="a" /></>}
+  description={<>The horizontal axis is <InlineMath math="a" />, and the vertical axis is the determinant of the coefficient matrix. The line <InlineMath math="y=a-7" /> crosses the horizontal axis only at <InlineMath math="a=7" />. For every other <InlineMath math="a" />, the determinant isn't zero.</>}
+  labels={{
+    det: <InlineMath math="\det=a-7" />,
+    zero: <InlineMath math="a=7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -14, max: 14 },
+      y: { min: -21, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "det", kind: "function", appearance: "primary", formula: "x - 7", domain: { min: -14, max: 14 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "det", objectId: "det", at: { x: -10, y: -17 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 7, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 The determinant is zero when <InlineMath math="a-7=0" />, that is <InlineMath math="a=7" />. For every other value of <InlineMath math="a" /> the determinant is nonzero and the system has exactly one solution.
 
 So the system has no unique solution when <InlineMath math="a=7" />.

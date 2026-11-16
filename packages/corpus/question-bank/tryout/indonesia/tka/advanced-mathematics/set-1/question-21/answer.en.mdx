@@ -11,6 +11,36 @@ A limit uses only values of <InlineMath math="x" /> near <InlineMath math="2" />
 
 <BlockMath math="\lim_{x\to2}\frac{(x-2)(x^2+2x+4)}{(x-2)(x+3)}=\lim_{x\to2}\frac{x^2+2x+4}{x+3}=\frac{4+4+4}{2+3}=\frac{12}{5}" />
 
+Draw the original function near <InlineMath math="x=2" />. **Away from <InlineMath math="x=2" />, its graph is the same as <InlineMath math="\frac{x^2+2x+4}{x+3}" />**, so as <InlineMath math="x" /> approaches <InlineMath math="2" /> from both sides, the value approaches <InlineMath math="\tfrac{12}{5}" />.
+
+<MathVisual
+  title={<>The graph near <InlineMath math="x=2" /></>}
+  description={<>The curve <InlineMath math="y=\frac{x^3-8}{x^2+x-6}" /> for <InlineMath math="0\le x\le4" />. The function isn't defined exactly at <InlineMath math="x=2" />, but the curve heads to the point <InlineMath math="\left(2,\ \tfrac{12}{5}\right)" /> from the left and from the right.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{x^3-8}{x^2+x-6}" />,
+    target: <InlineMath math="\left(2,\ \tfrac{12}{5}\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 4 },
+      y: { min: 1, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 + 2*x + 4)/(x + 3)", domain: { min: 0, max: 4 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 12 / 5 }, to: { x: 2, y: 12 / 5 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 2, y: 1 }, to: { x: 2, y: 12 / 5 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 2, y: 12 / 5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: 23.25 / 6.5 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 2, y: 12 / 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 As a check, at <InlineMath math="x=2.01" /> the original fraction equals <InlineMath math="\frac{0.120601}{0.0501}\approx2.407" />, close to <InlineMath math="\frac{12}{5}=2.4" />.
 
 So the value of the limit is <InlineMath math="\frac{12}{5}" />.

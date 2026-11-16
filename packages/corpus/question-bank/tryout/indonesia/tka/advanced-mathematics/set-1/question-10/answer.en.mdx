@@ -4,6 +4,40 @@ This model is a **logarithmic function**. The most useful property is <InlineMat
 
 <BlockMath math="L(100I)=10\log\frac{100I}{I_0}=10\left(\log100+\log\frac{I}{I_0}\right)=20+L(I)" />
 
+Draw <InlineMath math="L" /> against <InlineMath math="\frac{I}{I_0}" />. **The curve keeps flattening, so the same added intensity gives smaller and smaller decibel gains**, while every multiplication of the intensity by <InlineMath math="10" /> always adds <InlineMath math="10" /> dB.
+
+<MathVisual
+  title={<>Intensity level against the intensity ratio</>}
+  description={<>The horizontal axis is <InlineMath math="\frac{I}{I_0}" />, and the vertical axis is <InlineMath math="L" /> in dB. The curve passes through <InlineMath math="(1,\ 0)" />, the sound with intensity <InlineMath math="I_0" />. Doubling the intensity to <InlineMath math="2I_0" /> only raises <InlineMath math="L" /> to <InlineMath math="10\log2\approx3" /> dB, and only at <InlineMath math="10I_0" /> does it reach <InlineMath math="10" /> dB.</>}
+  labels={{
+    curve: <InlineMath math="L=10\log\frac{I}{I_0}" />,
+    zero: <InlineMath math="(1,\ 0)" />,
+    double: <InlineMath math="(2,\ 10\log2)" />,
+    ten: <InlineMath math="(10,\ 10)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 11 },
+      y: { min: -2, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "10*log_10(x)", domain: { min: 0.6, max: 11 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "double", kind: "point", appearance: "warning", at: { x: 2, y: 10 * Math.log10(2) } },
+      { id: "ten", kind: "point", appearance: "secondary", at: { x: 10, y: 10 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 6, y: 10 * Math.log10(6) }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "double", objectId: "double", at: { x: 2, y: 10 * Math.log10(2) }, placement: "below-right" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 10 }, placement: "below" },
+    ],
+  }}
+/>
+
 2. The statement that an <InlineMath math="80" /> dB sound is twice as intense as a <InlineMath math="40" /> dB sound is false. From <InlineMath math="L=10\log\frac{I}{I_0}" />, the intensity is <InlineMath math="I=I_0\cdot10^{L/10}" />. The <InlineMath math="80" /> dB sound has <InlineMath math="I=I_0\cdot10^8" /> and the <InlineMath math="40" /> dB sound has <InlineMath math="I=I_0\cdot10^4" />, so their ratio is <InlineMath math="10^4=10{,}000" />, not <InlineMath math="2" />.
 3. The statement that every extra <InlineMath math="10^{-12}\text{ W/m}^2" /> adds <InlineMath math="10" /> dB is false. A logarithmic model does not add the same number of decibels for the same added intensity. For example, from <InlineMath math="I_0" /> to <InlineMath math="2I_0" /> the level rises from <InlineMath math="0" /> to <InlineMath math="10\log2" />, which is less than <InlineMath math="10" /> because <InlineMath math="\log2<\log10=1" />. A rise of exactly <InlineMath math="10" /> dB from <InlineMath math="I_0" /> needs the intensity <InlineMath math="10I_0" />, an extra <InlineMath math="9\cdot10^{-12}\text{ W/m}^2" />.
 4. The statement about the sound with intensity <InlineMath math="10^{-12}\text{ W/m}^2" /> is true. That intensity equals <InlineMath math="I_0" />, so <InlineMath math="L(I_0)=10\log1=10\cdot0=0" /> dB.

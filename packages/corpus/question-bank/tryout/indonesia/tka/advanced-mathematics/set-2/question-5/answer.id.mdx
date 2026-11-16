@@ -11,6 +11,41 @@ Karena <InlineMath math="h>0" />, kedua ruas boleh dikalikan dengan <InlineMath 
 
 <BlockMath math="\frac{300}{h}\ge\frac23\iff h\le450,\qquad \frac{300}{h}\le2\iff h\ge150" />
 
+Putar garis biaya di sekitar <InlineMath math="(6,\ 8)" />. **Garis biaya boleh berputar dari kemiringan garis protein sampai kemiringan garis lemak**, dan batas paling landai itu tercapai saat <InlineMath math="h=450" />.
+
+<MathVisual
+  title={<>Garis biaya yang masih menyentuh <InlineMath math="(6,\ 8)" /></>}
+  description={<>Daerah penyelesaiannya sama seperti sebelumnya. Garis biaya <InlineMath math="300x+hy" /> melalui <InlineMath math="(6,\ 8)" /> dengan kemiringan <InlineMath math="-\tfrac{300}{h}" />. Untuk <InlineMath math="h=150" />, garis itu berimpit dengan garis protein <InlineMath math="2x+y=20" />. Untuk <InlineMath math="h=450" />, garis itu berimpit dengan garis lemak <InlineMath math="2x+3y=36" /> dan juga menyentuh <InlineMath math="(18,\ 0)" />.</>}
+  labels={{
+    steep: <InlineMath math="h=150" />,
+    flat: <InlineMath math="h=450" />,
+    best: <InlineMath math="(6,\ 8)" />,
+    side: <InlineMath math="(18,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 24 },
+      y: { min: 0, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 26 }, { x: 0, y: 20 }, { x: 6, y: 8 }, { x: 18, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 26 }] },
+      { id: "steep", kind: "function", appearance: "primary", formula: "20 - 2*x", domain: { min: 0, max: 10 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "12 - (2/3)*x", domain: { min: 0, max: 18 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 8 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 18, y: 0 } },
+    ],
+    labels: [
+      { key: "steep", objectId: "steep", at: { x: 2, y: 16 }, placement: "left" },
+      { key: "flat", objectId: "flat", at: { x: 13.5, y: 3 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 18, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="(6,8)" /> termurah untuk <InlineMath math="150\le h\le450" />. Pemeriksaan di batas atas: untuk <InlineMath math="h=450" />, biaya di <InlineMath math="(6,8)" /> adalah <InlineMath math="1{.}800+3{.}600=5{.}400" /> dan biaya di <InlineMath math="(18,0)" /> juga <InlineMath math="5{.}400" />, sehingga keduanya sama-sama termurah. Untuk <InlineMath math="h=460" />, biaya di <InlineMath math="(6,8)" /> menjadi <InlineMath math="5{.}480" />, lebih mahal daripada <InlineMath math="5{.}400" />.
 
 Jadi, harga tertinggi satu karung pakan II adalah <InlineMath math="\text{Rp}450{.}000{,}00" />.

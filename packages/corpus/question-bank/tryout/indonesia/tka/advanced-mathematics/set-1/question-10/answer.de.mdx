@@ -4,6 +4,40 @@ Dieses Modell ist eine **Logarithmusfunktion**. Am nützlichsten ist die Regel <
 
 <BlockMath math="L(100I)=10\log\frac{100I}{I_0}=10\left(\log100+\log\frac{I}{I_0}\right)=20+L(I)" />
 
+Zeichne <InlineMath math="L" /> über <InlineMath math="\frac{I}{I_0}" />. **Die Kurve wird immer flacher, also bringt dieselbe zusätzliche Intensität immer weniger Dezibel**, während jede Verzehnfachung der Intensität stets <InlineMath math="10" /> dB hinzufügt.
+
+<MathVisual
+  title={<>Schallpegel über dem Intensitätsverhältnis</>}
+  description={<>Die waagerechte Achse ist <InlineMath math="\frac{I}{I_0}" />, die senkrechte <InlineMath math="L" /> in dB. Die Kurve geht durch <InlineMath math="(1,\ 0)" />, den Schall mit Intensität <InlineMath math="I_0" />. Eine Verdopplung auf <InlineMath math="2I_0" /> hebt <InlineMath math="L" /> nur auf <InlineMath math="10\log2\approx3" /> dB, erst bei <InlineMath math="10I_0" /> sind es <InlineMath math="10" /> dB.</>}
+  labels={{
+    curve: <InlineMath math="L=10\log\frac{I}{I_0}" />,
+    zero: <InlineMath math="(1,\ 0)" />,
+    double: <InlineMath math="(2,\ 10\log2)" />,
+    ten: <InlineMath math="(10,\ 10)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 11 },
+      y: { min: -2, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "10*log_10(x)", domain: { min: 0.6, max: 11 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "double", kind: "point", appearance: "warning", at: { x: 2, y: 10 * Math.log10(2) } },
+      { id: "ten", kind: "point", appearance: "secondary", at: { x: 10, y: 10 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 6, y: 10 * Math.log10(6) }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "double", objectId: "double", at: { x: 2, y: 10 * Math.log10(2) }, placement: "below-right" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 10 }, placement: "below" },
+    ],
+  }}
+/>
+
 2. Die Aussage, dass ein Schall mit <InlineMath math="80" /> dB doppelt so intensiv ist wie ein Schall mit <InlineMath math="40" /> dB, ist falsch. Aus <InlineMath math="L=10\log\frac{I}{I_0}" /> folgt <InlineMath math="I=I_0\cdot10^{L/10}" />. Der Schall mit <InlineMath math="80" /> dB hat <InlineMath math="I=I_0\cdot10^8" />, der mit <InlineMath math="40" /> dB hat <InlineMath math="I=I_0\cdot10^4" />. Das Verhältnis ist also <InlineMath math="10^4=10{.}000" />, nicht <InlineMath math="2" />.
 3. Die Aussage, dass jede zusätzliche Intensität von <InlineMath math="10^{-12}\text{ W/m}^2" /> den Pegel um <InlineMath math="10" /> dB erhöht, ist falsch. Ein logarithmisches Modell erhöht den Pegel bei gleicher zusätzlicher Intensität nicht um gleich viele Dezibel. Von <InlineMath math="I_0" /> auf <InlineMath math="2I_0" /> steigt der Pegel zum Beispiel von <InlineMath math="0" /> auf <InlineMath math="10\log2" />, und das ist weniger als <InlineMath math="10" />, weil <InlineMath math="\log2<\log10=1" />. Für einen Anstieg um genau <InlineMath math="10" /> dB ab <InlineMath math="I_0" /> braucht man die Intensität <InlineMath math="10I_0" />, also zusätzlich <InlineMath math="9\cdot10^{-12}\text{ W/m}^2" />.
 4. Die Aussage über den Schall mit der Intensität <InlineMath math="10^{-12}\text{ W/m}^2" /> ist wahr. Diese Intensität ist gleich <InlineMath math="I_0" />, also gilt <InlineMath math="L(I_0)=10\log1=10\cdot0=0" /> dB.

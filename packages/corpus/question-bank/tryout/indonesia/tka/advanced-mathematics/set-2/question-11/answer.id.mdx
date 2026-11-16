@@ -13,6 +13,40 @@ Substitusikan ke rumus proyeksi.
 
 <BlockMath math="\vec{c}=\frac{14}{9}\left(2\vec{i}+\vec{j}+2\vec{k}\right)=\frac{28}{9}\vec{i}+\frac{14}{9}\vec{j}+\frac{28}{9}\vec{k}" />
 
+Gambar <InlineMath math="\vec a" /> dan <InlineMath math="\vec b" /> pada bidang yang memuat keduanya. **Proyeksi adalah bayangan <InlineMath math="\vec a" /> di sepanjang garis <InlineMath math="\vec b" />**, dan sisanya tegak lurus <InlineMath math="\vec b" />.
+
+<MathVisual
+  title={<>Proyeksi <InlineMath math="\vec a" /> pada <InlineMath math="\vec b" /></>}
+  description={<>Bidang ini memuat <InlineMath math="\vec a" /> dan <InlineMath math="\vec b" />. Panjang <InlineMath math="\vec b" /> adalah <InlineMath math="3" /> dan panjang <InlineMath math="\vec a" /> adalah <InlineMath math="6" />. Proyeksi <InlineMath math="\vec c" /> terletak pada garis <InlineMath math="\vec b" /> dengan panjang <InlineMath math="\tfrac{14}{3}" />, yaitu <InlineMath math="\tfrac{14}{9}" /> kali <InlineMath math="\vec b" />. Ruas tegak dari ujung <InlineMath math="\vec c" /> ke ujung <InlineMath math="\vec a" /> adalah <InlineMath math="\vec a-\vec c" />, yang tegak lurus <InlineMath math="\vec b" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    c: <InlineMath math="\vec c=\tfrac{14}{9}\vec b" />,
+    rest: <InlineMath math="\vec a-\vec c" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 5.5 },
+      y: { min: -0.8, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 14 / 3, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 14 / 3, y: 8 * Math.sqrt(2) / 3 } },
+      { id: "rest", kind: "segment", appearance: "construction", from: { x: 14 / 3, y: 0 }, to: { x: 14 / 3, y: 8 * Math.sqrt(2) / 3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 7 / 3, y: 4 * Math.sqrt(2) / 3 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 14 / 3, y: 0 }, placement: "below" },
+      { key: "rest", objectId: "rest", at: { x: 14 / 3, y: 4 * Math.sqrt(2) / 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan: sisa <InlineMath math="\vec{a}-\vec{c}" /> harus tegak lurus <InlineMath math="\vec{b}" />. Memang <InlineMath math="\vec{a}\cdot\vec{b}-\vec{c}\cdot\vec{b}=14-\frac{14}{9}\cdot9=0" />.
 
 Jadi, proyeksi vektor ortogonal <InlineMath math="\vec{a}" /> pada <InlineMath math="\vec{b}" /> adalah <InlineMath math="\frac{28}{9}\vec{i}+\frac{14}{9}\vec{j}+\frac{28}{9}\vec{k}" />.
