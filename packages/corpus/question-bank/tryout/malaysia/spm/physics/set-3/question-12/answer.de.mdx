@@ -1,0 +1,29 @@
+# Absolutdruck und absolute Temperatur verwenden
+
+**Die Gasgesetze gelten für den Druck des Gases selbst, nicht für die Manometeranzeige**, und für die Temperatur in Kelvin.
+
+<BlockMath math="p_1=200+100=300\text{ kPa},\qquad T_1=300\text{ K},\qquad T_2=330\text{ K}" />
+
+# Erwärmung und Ausdehnung verbinden
+
+<BlockMath math="p_2=p_1\times\frac{T_2}{T_1}\times\frac{V_1}{V_2}=300\times\frac{330}{300}\times\frac{1}{1{,}02}=324\text{ kPa}" />
+
+<Chart
+  title={<>Absolutdruck und Überdruck</>}
+  description={<>Balkendiagramm: Vor der Fahrt hat die Luft <InlineMath math="300\text{ kPa}" /> absolut, und das Manometer zeigt <InlineMath math="200" />. Danach hat sie <InlineMath math="324\text{ kPa}" /> absolut, und es zeigt <InlineMath math="224" />.</>}
+  bars="apart"
+  categories={["Vorher", "Nachher"]}
+  series={[
+    { label: "Absolut", mark: "bar", values: [300, 324] },
+    { label: "Überdruck", mark: "bar", values: [200, 224] },
+  ]}
+  valueLabel="Druck (kPa)"
+/>
+
+**Das Manometer zeigt <InlineMath math="324-100=224\text{ kPa}" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="216\text{ kPa}" /> **wendet das Gasgesetz auf die Anzeige an, als wäre sie der Gasdruck**.
+- <InlineMath math="230\text{ kPa}" /> übergeht die <InlineMath math="2\%" /> Volumenzunahme.
+- <InlineMath math="422\text{ kPa}" /> rechnet das Verhältnis in Grad Celsius.

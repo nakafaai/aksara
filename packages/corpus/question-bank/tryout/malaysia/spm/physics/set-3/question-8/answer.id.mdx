@@ -1,0 +1,44 @@
+# Momentum di puncak
+
+Di puncak peluru hanya bergerak mendatar, dengan kecepatan <InlineMath math="v" />. **Satu bagian akhirnya diam, jadi momentum membuat bagian lain bergerak <InlineMath math="2v" />**.
+
+<BlockMath math="mv=\tfrac{m}{2}(0)+\tfrac{m}{2}u\ \Rightarrow\ u=2v" />
+
+# Waktu jatuh sama, kecepatan dua kali
+
+**Puncak berada di atas <InlineMath math="60\text{ m}" />, dan jatuh dari sana memakan separuh waktu terbang penuh, seperti pada lintasan yang utuh**. Dalam waktu itu peluru utuh akan menempuh <InlineMath math="60\text{ m}" /> lagi, jadi bagian yang lebih cepat menempuh <InlineMath math="120\text{ m}" /> lagi.
+
+<MathVisual
+  title={<>Lintasan sebelum dan sesudah pecah</>}
+  description={<>Peluru naik ke titik tertinggi di atas <InlineMath math="x=60\text{ m}" />. Satu bagian jatuh lurus ke <InlineMath math="x=60\text{ m}" />. Bagian lain melaju dengan dua kali kecepatan mendatar dan jatuh selama waktu yang sama, menempuh <InlineMath math="120\text{ m}" /> lagi dan mendarat di <InlineMath math="x=180\text{ m}" />.</>}
+  labels={{
+    up: <>sebelum pecah</>,
+    far: <>mendarat di <InlineMath math="180\text{ m}" /></>,
+    drop: <>jatuh di <InlineMath math="60\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 200 }, y: { min: -8, max: 52 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "up", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0.0 }, { x: 6, y: 8.55 }, { x: 12, y: 16.2 }, { x: 18, y: 22.95 }, { x: 24, y: 28.8 }, { x: 30, y: 33.75 }, { x: 36, y: 37.8 }, { x: 42, y: 40.95 }, { x: 48, y: 43.2 }, { x: 54, y: 44.55 }, { x: 60, y: 45.0 }] },
+      { id: "far", kind: "polyline", appearance: "primary", vertices: [{ x: 60, y: 45.0 }, { x: 72, y: 44.55 }, { x: 84, y: 43.2 }, { x: 96, y: 40.95 }, { x: 108, y: 37.8 }, { x: 120, y: 33.75 }, { x: 132, y: 28.8 }, { x: 144, y: 22.95 }, { x: 156, y: 16.2 }, { x: 168, y: 8.55 }, { x: 180, y: 0.0 }] },
+      { id: "drop", kind: "segment", appearance: "reference", from: { x: 60, y: 45 }, to: { x: 60, y: 0 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 195, y: 0 } },
+      { id: "land", kind: "point", appearance: "answer", at: { x: 180, y: 0 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 30, y: 33.75 }, placement: "above-left" },
+      { key: "far", objectId: "far", at: { x: 180, y: 0 }, placement: "above-left" },
+      { key: "drop", objectId: "drop", at: { x: 60, y: 10 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="x=60+120=180\text{ m}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="240\text{ m}" /> **menggandakan seluruh jangkauan, bukan hanya paruh kedua lintasan**.
+- <InlineMath math="120\text{ m}" /> tetap memakai titik mendarat semula, mengabaikan momentum tambahan.
+- <InlineMath math="145\text{ m}" /> membagi energi kinetik, bukan momentum, sehingga <InlineMath math="u=\sqrt2\,v" />.

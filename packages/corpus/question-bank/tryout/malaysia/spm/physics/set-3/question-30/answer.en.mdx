@@ -1,0 +1,29 @@
+# Two changes to the resistance
+
+<InlineMath math="R=V^2/P=240^2/1000=57.6\,\Omega" />. **Halving the length halves each piece's resistance, and putting the two halves in parallel halves it again**, so the new resistance is a quarter.
+
+<BlockMath math="R'=\frac{57.6}{4}=14.4\,\Omega,\qquad P'=\frac{240^2}{14.4}=4000\text{ W}" />
+
+<Chart
+  title={<>Resistance and current of the element</>}
+  description={<>Bar chart: the original wire has <InlineMath math="57.6\,\Omega" /> and draws <InlineMath math="4.2\text{ A}" />. The two halves in parallel have <InlineMath math="14.4\,\Omega" /> and would draw <InlineMath math="16.7\text{ A}" />, above the fuse's <InlineMath math="13\text{ A}" />.</>}
+  bars="apart"
+  categories={["Original wire", "Halves in parallel"]}
+  series={[
+    { label: "Resistance (Ω)", mark: "bar", values: [57.6, 14.4] },
+    { label: "Current (A)", mark: "bar", values: [4.2, 16.7] },
+  ]}
+  valueLabel="Value"
+/>
+
+# The fuse
+
+<BlockMath math="I=\frac{4000}{240}=16.7\text{ A}>13\text{ A}" />
+
+**The fuse blows**.
+
+# Why the other options are wrong
+
+- <InlineMath math="2000\text{ W}" /> **counts only one of the two halvings**.
+- <InlineMath math="4000\text{ W}" /> with the fuse holding misses that <InlineMath math="16.7\text{ A}" /> is above the fuse rating.
+- <InlineMath math="250\text{ W}" /> multiplies the resistance by four instead of dividing.

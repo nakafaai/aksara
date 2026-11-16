@@ -1,0 +1,44 @@
+# Impuls am höchsten Punkt
+
+Oben fliegt das Geschoss nur waagerecht, mit <InlineMath math="v" />. **Eine Hälfte steht danach still, also lässt der Impulserhaltungssatz die andere mit <InlineMath math="2v" /> fliegen**.
+
+<BlockMath math="mv=\tfrac{m}{2}(0)+\tfrac{m}{2}u\ \Rightarrow\ u=2v" />
+
+# Gleiche Fallzeit, doppelte Geschwindigkeit
+
+**Der höchste Punkt liegt über <InlineMath math="60\text{ m}" />, und der Fall von dort dauert die halbe Flugzeit, wie beim ganzen Flug**. In dieser Zeit flöge das ganze Geschoss <InlineMath math="60\text{ m}" /> weiter, die schnellere Hälfte also <InlineMath math="120\text{ m}" />.
+
+<MathVisual
+  title={<>Bahnen vor und nach dem Zerplatzen</>}
+  description={<>Das Geschoss steigt bis zum höchsten Punkt über <InlineMath math="x=60\text{ m}" />. Eine Hälfte fällt senkrecht auf <InlineMath math="x=60\text{ m}" />. Die andere fliegt mit doppelter Horizontalgeschwindigkeit gleich lange und landet <InlineMath math="120\text{ m}" /> weiter bei <InlineMath math="x=180\text{ m}" />.</>}
+  labels={{
+    up: <>vor dem Zerplatzen</>,
+    far: <>landet bei <InlineMath math="180\text{ m}" /></>,
+    drop: <>fällt bei <InlineMath math="60\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 200 }, y: { min: -8, max: 52 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "up", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0.0 }, { x: 6, y: 8.55 }, { x: 12, y: 16.2 }, { x: 18, y: 22.95 }, { x: 24, y: 28.8 }, { x: 30, y: 33.75 }, { x: 36, y: 37.8 }, { x: 42, y: 40.95 }, { x: 48, y: 43.2 }, { x: 54, y: 44.55 }, { x: 60, y: 45.0 }] },
+      { id: "far", kind: "polyline", appearance: "primary", vertices: [{ x: 60, y: 45.0 }, { x: 72, y: 44.55 }, { x: 84, y: 43.2 }, { x: 96, y: 40.95 }, { x: 108, y: 37.8 }, { x: 120, y: 33.75 }, { x: 132, y: 28.8 }, { x: 144, y: 22.95 }, { x: 156, y: 16.2 }, { x: 168, y: 8.55 }, { x: 180, y: 0.0 }] },
+      { id: "drop", kind: "segment", appearance: "reference", from: { x: 60, y: 45 }, to: { x: 60, y: 0 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 195, y: 0 } },
+      { id: "land", kind: "point", appearance: "answer", at: { x: 180, y: 0 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 30, y: 33.75 }, placement: "above-left" },
+      { key: "far", objectId: "far", at: { x: 180, y: 0 }, placement: "above-left" },
+      { key: "drop", objectId: "drop", at: { x: 60, y: 10 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="x=60+120=180\text{ m}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="240\text{ m}" /> **verdoppelt die ganze Weite statt nur der zweiten Flughälfte**.
+- <InlineMath math="120\text{ m}" /> behält den ursprünglichen Landepunkt und übergeht den zusätzlichen Impuls.
+- <InlineMath math="145\text{ m}" /> teilt die Bewegungsenergie statt des Impulses auf und erhält <InlineMath math="u=\sqrt2\,v" />.

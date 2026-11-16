@@ -1,0 +1,29 @@
+# Zwei Änderungen am Widerstand
+
+<InlineMath math="R=V^2/P=240^2/1000=57{,}6\,\Omega" />. **Die halbe Länge halbiert den Widerstand jedes Stücks, und das Parallelschalten der beiden Hälften halbiert ihn noch einmal**, der neue Widerstand ist also ein Viertel.
+
+<BlockMath math="R'=\frac{57{,}6}{4}=14{,}4\,\Omega,\qquad P'=\frac{240^2}{14{,}4}=4000\text{ W}" />
+
+<Chart
+  title={<>Widerstand und Strom des Heizelements</>}
+  description={<>Balkendiagramm: Der ursprüngliche Draht hat <InlineMath math="57{,}6\,\Omega" /> und zieht <InlineMath math="4{,}2\text{ A}" />. Die beiden Hälften parallel haben <InlineMath math="14{,}4\,\Omega" /> und zögen <InlineMath math="16{,}7\text{ A}" />, mehr als die <InlineMath math="13\text{ A}" /> der Sicherung.</>}
+  bars="apart"
+  categories={["Ursprünglicher Draht", "Hälften parallel"]}
+  series={[
+    { label: "Widerstand (Ω)", mark: "bar", values: [57.6, 14.4] },
+    { label: "Strom (A)", mark: "bar", values: [4.2, 16.7] },
+  ]}
+  valueLabel="Wert"
+/>
+
+# Die Sicherung
+
+<BlockMath math="I=\frac{4000}{240}=16{,}7\text{ A}>13\text{ A}" />
+
+**Die Sicherung brennt durch**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2000\text{ W}" /> **zählt nur eine der beiden Halbierungen**.
+- <InlineMath math="4000\text{ W}" /> mit haltender Sicherung übersieht, dass <InlineMath math="16{,}7\text{ A}" /> über dem Nennwert liegen.
+- <InlineMath math="250\text{ W}" /> multipliziert den Widerstand mit vier, statt durch vier zu teilen.

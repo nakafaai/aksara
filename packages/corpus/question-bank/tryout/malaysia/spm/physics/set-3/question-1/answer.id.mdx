@@ -1,0 +1,31 @@
+# Koreksi pembacaannya
+
+Nol selubung berada di atas garis datum saat rahang ditutup, jadi **alat membaca <InlineMath math="0{,}03\text{ mm}" /> terlalu kecil: kesalahan nolnya <InlineMath math="-0{,}03\text{ mm}" />**, dan menguranginya berarti menambah <InlineMath math="0{,}03\text{ mm}" />.
+
+<BlockMath math="d=6{,}72-(-0{,}03)=6{,}75\text{ mm}" />
+
+<Chart
+  title={<>Pembacaan, kesalahan nol, dan diameter sebenarnya</>}
+  description={<>Diagram batang dalam milimeter: alat membaca <InlineMath math="6{,}72" />, kesalahan nol <InlineMath math="-0{,}03" />, dan diameter sebenarnya <InlineMath math="6{,}72-(-0{,}03)=6{,}75" />.</>}
+  bars="apart"
+  categories={["Pembacaan", "Kesalahan nol", "Diameter sebenarnya"]}
+  series={[
+    { label: "Panjang", mark: "bar", values: [6.72, -0.03, 6.75] },
+  ]}
+  valueLabel="Panjang (mm)"
+/>
+
+# Massa jenis dari pangkat tiga diameter
+
+<BlockMath math="\begin{aligned}
+V&=\frac{\pi(6{,}75\times10^{-3})^3}{6}=1{,}61\times10^{-7}\text{ m}^3\\
+\rho&=\frac{1{,}26\times10^{-3}}{1{,}61\times10^{-7}}=7{,}82\times10^3\text{ kg m}^{-3}
+\end{aligned}" />
+
+**Kekeliruan kecil pada <InlineMath math="d" /> menjadi tiga kali lipat pada volume, karena itu pilihannya berdekatan**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="8{,}04\times10^3" /> **menambahkan kesalahan nol ke arah yang salah, memakai <InlineMath math="d=6{,}69\text{ mm}" />**.
+- <InlineMath math="7{,}93\times10^3" /> memakai pembacaan <InlineMath math="6{,}72\text{ mm}" /> yang belum dikoreksi.
+- <InlineMath math="0{,}98\times10^3" /> memasukkan diameter ke <InlineMath math="\tfrac43\pi r^3" /> seolah itu jari-jari.

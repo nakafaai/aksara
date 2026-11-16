@@ -1,0 +1,47 @@
+# Sudut genting di salutan, bukan di udara
+
+**Cahaya mesti terpantul di sempadan teras-salutan, jadi sudut genting menggunakan kedua-dua indeks**.
+
+<BlockMath math="\sin c=\frac{1.40}{1.50}=0.933\ \Rightarrow\ c=69.0^\circ" />
+
+Sinar yang bertemu sisi tepat pada <InlineMath math="69^\circ" /> bergerak pada <InlineMath math="90-69=21^\circ" /> terhadap paksi.
+
+<MathVisual
+  title={<>Sinar paling curam yang dikekalkan teras</>}
+  description={<>Satu sinar memasuki hujung pada <InlineMath math="33^\circ" /> terhadap paksi, membias kepada <InlineMath math="21^\circ" /> di dalam teras, dan bertemu sempadan teras-salutan pada <InlineMath math="69^\circ" />, tepat sudut genting, jadi ia baru sahaja terpantul.</>}
+  labels={{
+    inray: <><InlineMath math="33^\circ" /></>,
+    core: <><InlineMath math="21^\circ" /></>,
+    wall: <><InlineMath math="69^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -1.5, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "inray", kind: "segment", appearance: "secondary", from: { x: -2.0, y: -1.3 }, to: { x: 0, y: 0 } },
+      { id: "core", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.6, y: 1.0 } },
+      { id: "back", kind: "segment", appearance: "primary", from: { x: 2.6, y: 1.0 }, to: { x: 5.2, y: 0 } },
+      { id: "top", kind: "segment", appearance: "reference", from: { x: 0, y: 1.0 }, to: { x: 6.5, y: 1.0 } },
+      { id: "bottom", kind: "segment", appearance: "reference", from: { x: 0, y: -1.0 }, to: { x: 6.5, y: -1.0 } },
+      { id: "end", kind: "segment", appearance: "reference", from: { x: 0, y: -1.2 }, to: { x: 0, y: 1.2 } },
+    ],
+    labels: [
+      { key: "inray", objectId: "inray", at: { x: -1.0, y: -0.65 }, placement: "above-left" },
+      { key: "core", objectId: "core", at: { x: 1.3, y: 0.5 }, placement: "above-left" },
+      { key: "wall", objectId: "core", at: { x: 2.6, y: 1.0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Pembiasan di muka masuk
+
+**Sinar membias mendekati normal semasa masuk, jadi di luar hujung ia membuat sudut yang lebih besar**.
+
+<BlockMath math="\sin\theta=1.50\sin21.0^\circ=0.538\ \Rightarrow\ \theta=33^\circ" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="21^\circ" /> **ialah sudut di dalam teras, sebelum pembiasan di hujung diambil kira**.
+- <InlineMath math="69^\circ" /> ialah sudut genting itu sendiri, diukur dari normal kepada sisi.
+- <InlineMath math="90^\circ" /> menggunakan sudut genting kaca-udara <InlineMath math="42^\circ" />, seolah-olah tiada salutan.

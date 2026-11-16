@@ -1,0 +1,26 @@
+# Sisi sekunder
+
+**Tiga lampu paralel masing-masing mengambil <InlineMath math="24/12=2{,}0\text{ A}" />, jadi sekunder dialiri <InlineMath math="6{,}0\text{ A}" /> dan memberikan <InlineMath math="72\text{ W}" />**.
+
+# Sisi primer, dengan kerugian
+
+**Masukan harus lebih besar dari keluaran, karena hanya <InlineMath math="90\%" /> masukan yang sampai ke lampu**.
+
+<BlockMath math="P_{\text{masuk}}=\frac{72}{0{,}90}=80\text{ W},\qquad I_p=\frac{80}{240}=0{,}33\text{ A}" />
+
+<Chart
+  title={<>Daya masuk dan keluar transformator</>}
+  description={<>Diagram batang: tiga lampu mengambil <InlineMath math="72\text{ W}" /> dari sekunder, jadi primer harus menarik <InlineMath math="80\text{ W}" />, dan <InlineMath math="8\text{ W}" /> hilang di transformator.</>}
+  bars="apart"
+  categories={["Masukan", "Keluaran", "Hilang"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [80, 72, 8] },
+  ]}
+  valueLabel="Daya (W)"
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0{,}30\text{ A}" /> **menganggap transformatornya ideal, dengan masukan <InlineMath math="72\text{ W}" />**.
+- <InlineMath math="0{,}27\text{ A}" /> mengalikan dengan efisiensi, bukan membaginya, seolah masukan lebih kecil dari keluaran.
+- <InlineMath math="2{,}0\text{ A}" /> adalah arus pada satu lampu, bukan pada seluruh kumparan sekunder.

@@ -1,0 +1,29 @@
+# Zwei Lasten, zwei Gleichungen
+
+**Für beide Lasten gelten dieselbe Quellenspannung und derselbe Innenwiderstand**, also zweimal <InlineMath math="E=I(R+r)" />.
+
+<BlockMath math="\begin{aligned}
+E&=1{,}0(2{,}0+r)=0{,}50(5{,}0+r)\\
+2{,}0+r&=2{,}5+0{,}50r\ \Rightarrow\ r=1{,}0\,\Omega,\quad E=3{,}0\text{ V}
+\end{aligned}" />
+
+# Innen verlorene Leistung
+
+<BlockMath math="P_{\text{innen}}=I^2r=1{,}0^2\times1{,}0=1{,}0\text{ W}" />
+
+<Chart
+  title={<>Wohin die Leistung der Batterie geht</>}
+  description={<>Balkendiagramm: Die Batterie erzeugt <InlineMath math="3{,}0\text{ W}" />, davon heizen <InlineMath math="2{,}0\text{ W}" /> den Widerstand und <InlineMath math="1{,}0\text{ W}" /> gehen im eigenen Innenwiderstand verloren.</>}
+  bars="apart"
+  categories={["Erzeugt", "Im Widerstand", "Innen verloren"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [3.0, 2.0, 1.0] },
+  ]}
+  valueLabel="Leistung (W)"
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}5\text{ V}" /> **und <InlineMath math="0\,\Omega" /> halten die Klemmenspannung am <InlineMath math="5{,}0\,\Omega" />-Widerstand für die Quellenspannung**.
+- <InlineMath math="2{,}0\text{ W}" /> ist die Leistung im äußeren Widerstand, nicht in der Batterie.
+- <InlineMath math="4{,}0\text{ V}" /> und <InlineMath math="2{,}0\,\Omega" /> passen nicht zur zweiten Last, die dann <InlineMath math="0{,}57\text{ A}" /> führte.

@@ -1,0 +1,47 @@
+# Sudut kritis di selubung, bukan di udara
+
+**Cahaya harus terpantul di batas inti-selubung, jadi sudut kritis memakai kedua indeks**.
+
+<BlockMath math="\sin c=\frac{1{,}40}{1{,}50}=0{,}933\ \Rightarrow\ c=69{,}0^\circ" />
+
+Sinar yang mengenai sisi tepat pada <InlineMath math="69^\circ" /> merambat pada <InlineMath math="90-69=21^\circ" /> terhadap sumbu.
+
+<MathVisual
+  title={<>Sinar paling curam yang ditahan inti</>}
+  description={<>Sebuah sinar masuk ke ujung pada <InlineMath math="33^\circ" /> terhadap sumbu, membias menjadi <InlineMath math="21^\circ" /> di dalam inti, dan mengenai batas inti-selubung pada <InlineMath math="69^\circ" />, tepat sudut kritis, jadi sinar itu tepat terpantul.</>}
+  labels={{
+    inray: <><InlineMath math="33^\circ" /></>,
+    core: <><InlineMath math="21^\circ" /></>,
+    wall: <><InlineMath math="69^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -1.5, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "inray", kind: "segment", appearance: "secondary", from: { x: -2.0, y: -1.3 }, to: { x: 0, y: 0 } },
+      { id: "core", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.6, y: 1.0 } },
+      { id: "back", kind: "segment", appearance: "primary", from: { x: 2.6, y: 1.0 }, to: { x: 5.2, y: 0 } },
+      { id: "top", kind: "segment", appearance: "reference", from: { x: 0, y: 1.0 }, to: { x: 6.5, y: 1.0 } },
+      { id: "bottom", kind: "segment", appearance: "reference", from: { x: 0, y: -1.0 }, to: { x: 6.5, y: -1.0 } },
+      { id: "end", kind: "segment", appearance: "reference", from: { x: 0, y: -1.2 }, to: { x: 0, y: 1.2 } },
+    ],
+    labels: [
+      { key: "inray", objectId: "inray", at: { x: -1.0, y: -0.65 }, placement: "above-left" },
+      { key: "core", objectId: "core", at: { x: 1.3, y: 0.5 }, placement: "above-left" },
+      { key: "wall", objectId: "core", at: { x: 2.6, y: 1.0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Pembiasan di muka masuk
+
+**Sinar membias mendekati garis normal saat masuk, jadi di luar ujung sudutnya lebih besar**.
+
+<BlockMath math="\sin\theta=1{,}50\sin21{,}0^\circ=0{,}538\ \Rightarrow\ \theta=33^\circ" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="21^\circ" /> **adalah sudut di dalam inti, sebelum pembiasan di ujung diperhitungkan**.
+- <InlineMath math="69^\circ" /> adalah sudut kritis itu sendiri, diukur dari garis normal sisi.
+- <InlineMath math="90^\circ" /> memakai sudut kritis kaca-udara <InlineMath math="42^\circ" />, seolah tidak ada selubung.

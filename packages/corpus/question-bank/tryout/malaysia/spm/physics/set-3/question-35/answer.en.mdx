@@ -1,0 +1,27 @@
+# Work through the truth table
+
+| A | B | NAND | OR | X |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+
+<Chart
+  title={<>Output X for each pair of inputs</>}
+  description={<>Bar chart of X for the inputs AB <InlineMath math="=00,01,10,11" />: <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="0" />. The NAND blocks the case <InlineMath math="11" />, and the OR blocks the case <InlineMath math="00" />.</>}
+  bars="apart"
+  categories={["AB = 00", "AB = 01", "AB = 10", "AB = 11"]}
+  series={[
+    { label: "X", mark: "bar", values: [0, 1, 1, 0] },
+  ]}
+  valueLabel="Output"
+/>
+
+**The AND gate needs both of its inputs at <InlineMath math="1" />**. The OR gate is <InlineMath math="0" /> only when both inputs are <InlineMath math="0" />, and the NAND gate is <InlineMath math="0" /> only when both are <InlineMath math="1" />, so X is <InlineMath math="1" /> exactly when A and B differ.
+
+# Why the other options are wrong
+
+- **Equal inputs are the two cases the gates block**.
+- Both inputs at <InlineMath math="1" /> makes the NAND output <InlineMath math="0" />.
+- A or B at <InlineMath math="0" /> includes <InlineMath math="00" />, where the OR output is <InlineMath math="0" />.

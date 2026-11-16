@@ -1,0 +1,26 @@
+# The LDR's share of the supply
+
+**The LDR is the lower part of the divider, so the base voltage is its share of <InlineMath math="6.0\text{ V}" />**.
+
+<BlockMath math="\frac{R}{R+10}\times6.0=0.7\ \Rightarrow\ 6.0R=0.7R+7\ \Rightarrow\ R=\frac{7}{5.3}=1.3\text{ k}\Omega" />
+
+<Chart
+  title={<>Base voltage against LDR resistance</>}
+  description={<>Bar chart of the base-emitter voltage: <InlineMath math="0.29\text{ V}" /> for an LDR of <InlineMath math="0.5\text{ k}\Omega" /> in bright light, <InlineMath math="0.70\text{ V}" /> at <InlineMath math="1.3\text{ k}\Omega" />, and <InlineMath math="3.0\text{ V}" /> at <InlineMath math="10\text{ k}\Omega" /> in darkness.</>}
+  bars="apart"
+  categories={["0.5 kΩ, bright", "1.3 kΩ", "10 kΩ, dark"]}
+  series={[
+    { label: "Base voltage", mark: "bar", values: [0.29, 0.7, 3.0] },
+  ]}
+  valueLabel="Voltage (V)"
+/>
+
+# Dark or light
+
+**An LDR's resistance rises as the light fades**, which raises its share of the voltage. The base reaches <InlineMath math="0.7\text{ V}" /> once the LDR is above <InlineMath math="1.3\text{ k}\Omega" />, so the lamp lights in darkness.
+
+# Why the other options are wrong
+
+- **Bright light lowers the LDR's resistance and turns the transistor off**.
+- <InlineMath math="76\text{ k}\Omega" /> solves for the LDR as if it were the upper part of the divider.
+- <InlineMath math="1.2\text{ k}\Omega" /> takes <InlineMath math="0.7/6.0" /> of <InlineMath math="10\text{ k}\Omega" />, forgetting that the LDR is part of the total.

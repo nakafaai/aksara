@@ -1,0 +1,27 @@
+# Das Voltmeter wird Teil der Schaltung
+
+**Ein Voltmeter parallel zu einem Widerstand ändert den Widerstand dieses Schaltungsteils**, die Spannung teilt sich also nicht mehr gleich.
+
+<BlockMath math="\begin{aligned}
+10\text{ k}\Omega\parallel10\text{ k}\Omega&=5{,}0\text{ k}\Omega,\qquad V=12\times\frac{5{,}0}{5{,}0+10}=4{,}0\text{ V}\\
+10\text{ k}\Omega\parallel1{,}0\text{ M}\Omega&=9{,}90\text{ k}\Omega,\qquad V=12\times\frac{9{,}90}{9{,}90+10}=5{,}97\text{ V}
+\end{aligned}" />
+
+<Chart
+  title={<>Anzeige des Voltmeters gegen seinen Widerstand</>}
+  description={<>Balkendiagramm: Die wahre Spannung an einem Widerstand ist <InlineMath math="6{,}0\text{ V}" />. Ein Voltmeter mit <InlineMath math="10\text{ k}\Omega" /> zeigt <InlineMath math="4{,}0\text{ V}" />, eines mit <InlineMath math="1{,}0\text{ M}\Omega" /> zeigt <InlineMath math="5{,}97\text{ V}" />.</>}
+  bars="apart"
+  categories={["Ohne Messgerät", "Messgerät 10 kΩ", "Messgerät 1,0 MΩ"]}
+  series={[
+    { label: "Spannung", mark: "bar", values: [6.0, 4.0, 5.97] },
+  ]}
+  valueLabel="Spannung (V)"
+/>
+
+Ein Messgerät mit viel größerem Widerstand als der Widerstand stört kaum, darum haben Voltmeter einen großen Widerstand.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6{,}0\text{ V}" /> **für beide übergeht den Strom, den das Voltmeter zieht**.
+- <InlineMath math="6{,}0\text{ V}" /> für das Gerät mit <InlineMath math="1{,}0\text{ M}\Omega" /> rundet die kleine verbleibende Belastung weg.
+- <InlineMath math="3{,}0\text{ V}" /> teilt die Spannung auf drei gleiche Teile von <InlineMath math="10\text{ k}\Omega" /> auf, als läge das Gerät in Reihe.

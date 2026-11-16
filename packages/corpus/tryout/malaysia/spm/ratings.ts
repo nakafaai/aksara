@@ -9,6 +9,7 @@ import type { SetRating } from "#corpus/tryout/level";
 export const physicsRatings: readonly SetRating[] = [
   { items: 40, level: 4.33, raters: 8 },
   { items: 40, level: 4.07, raters: 2 },
+  { items: 40, level: 4.0, raters: 2 },
 ];
 
 /**

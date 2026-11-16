@@ -1,0 +1,44 @@
+# Momentum at the top
+
+At the top the shell moves only horizontally, at <InlineMath math="v" />. **One half ends up at rest, so momentum makes the other half move at <InlineMath math="2v" />**.
+
+<BlockMath math="mv=\tfrac{m}{2}(0)+\tfrac{m}{2}u\ \Rightarrow\ u=2v" />
+
+# Same fall time, double the speed
+
+**The top lies above <InlineMath math="60\text{ m}" />, and the fall from there takes half the full flight time, as in the unbroken flight**. In that time the unbroken shell would cover <InlineMath math="60\text{ m}" /> more, so the faster half covers <InlineMath math="120\text{ m}" /> more.
+
+<MathVisual
+  title={<>Paths before and after the split</>}
+  description={<>The shell rises to its highest point above <InlineMath math="x=60\text{ m}" />. One half drops straight down to <InlineMath math="x=60\text{ m}" />. The other half leaves at twice the horizontal speed and falls for the same time, travelling <InlineMath math="120\text{ m}" /> further to land at <InlineMath math="x=180\text{ m}" />.</>}
+  labels={{
+    up: <>before the split</>,
+    far: <>lands at <InlineMath math="180\text{ m}" /></>,
+    drop: <>drops at <InlineMath math="60\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 200 }, y: { min: -8, max: 52 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "up", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0.0 }, { x: 6, y: 8.55 }, { x: 12, y: 16.2 }, { x: 18, y: 22.95 }, { x: 24, y: 28.8 }, { x: 30, y: 33.75 }, { x: 36, y: 37.8 }, { x: 42, y: 40.95 }, { x: 48, y: 43.2 }, { x: 54, y: 44.55 }, { x: 60, y: 45.0 }] },
+      { id: "far", kind: "polyline", appearance: "primary", vertices: [{ x: 60, y: 45.0 }, { x: 72, y: 44.55 }, { x: 84, y: 43.2 }, { x: 96, y: 40.95 }, { x: 108, y: 37.8 }, { x: 120, y: 33.75 }, { x: 132, y: 28.8 }, { x: 144, y: 22.95 }, { x: 156, y: 16.2 }, { x: 168, y: 8.55 }, { x: 180, y: 0.0 }] },
+      { id: "drop", kind: "segment", appearance: "reference", from: { x: 60, y: 45 }, to: { x: 60, y: 0 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 195, y: 0 } },
+      { id: "land", kind: "point", appearance: "answer", at: { x: 180, y: 0 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 30, y: 33.75 }, placement: "above-left" },
+      { key: "far", objectId: "far", at: { x: 180, y: 0 }, placement: "above-left" },
+      { key: "drop", objectId: "drop", at: { x: 60, y: 10 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="x=60+120=180\text{ m}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="240\text{ m}" /> **doubles the whole range instead of only the second half of the flight**.
+- <InlineMath math="120\text{ m}" /> keeps the original landing point, ignoring the extra momentum.
+- <InlineMath math="145\text{ m}" /> shares the kinetic energy instead of the momentum, giving <InlineMath math="u=\sqrt2\,v" />.

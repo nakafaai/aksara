@@ -1,0 +1,41 @@
+# Stopping distance of each vehicle
+
+<BlockMath math="\begin{aligned}
+s_{\text{truck}}&=\frac{25^2}{2(8.0)}=39.1\text{ m}\\
+s_{\text{car}}&=25(0.70)+\frac{25^2}{2(6.0)}=17.5+52.1=69.6\text{ m}
+\end{aligned}" />
+
+# When the gap is smallest
+
+**The car brakes more gently, so it is still moving after the truck has stopped**, and the gap keeps shrinking until the car stops. The smallest gap is therefore reached at the very end, and the starting gap must cover the difference.
+
+<MathVisual
+  title={<>Velocity against time for the truck and the car</>}
+  description={<>The truck's line falls from <InlineMath math="25\text{ m s}^{-1}" /> to zero at <InlineMath math="3.1\text{ s}" />. The car's line stays at <InlineMath math="25" /> until <InlineMath math="0.70\text{ s}" /> and then falls to zero at <InlineMath math="4.9\text{ s}" />. The area between them, <InlineMath math="69.6-39.1=30.5\text{ m}" />, is the gap the car closes.</>}
+  labels={{
+    truck: <>truck, <InlineMath math="39.1\text{ m}" /></>,
+    car: <>car, <InlineMath math="69.6\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 5.4 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "truck", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 25 }, { x: 3.125, y: 0 }] },
+      { id: "car", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 25 }, { x: 0.7, y: 25 }, { x: 4.867, y: 0 }] },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.2, y: 0 } },
+    ],
+    labels: [
+      { key: "truck", objectId: "truck", at: { x: 1.6, y: 12.2 }, placement: "below-left" },
+      { key: "car", objectId: "car", at: { x: 3.2, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<BlockMath math="d_{\text{min}}=69.6-39.1=30.5\text{ m}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="17.5\text{ m}" /> **counts only the reaction distance, as if both braked equally hard**.
+- <InlineMath math="69.6\text{ m}" /> is the car's whole stopping distance, as if the truck stopped instantly.
+- <InlineMath math="13.0\text{ m}" /> compares the braking distances and forgets the car's reaction distance.

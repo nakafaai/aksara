@@ -1,0 +1,42 @@
+# Das Wasser liefert die Heizleistung
+
+**Die Leistung ist nicht angegeben, doch die Wasserphase nutzt eine bekannte spezifische Wärmekapazität**, also misst sie den Heizer.
+
+<BlockMath math="P=\frac{0{,}20\times4200\times20}{84}=200\text{ W}" />
+
+<MathVisual
+  title={<>Erwärmungskurve von Eis und Wasser</>}
+  description={<>Temperatur gegen Zeit: Anstieg von <InlineMath math="-10" /> auf <InlineMath math="0^\circ\text{C}" /> in den ersten <InlineMath math="21\text{ s}" />, ein flaches Stück bei <InlineMath math="0^\circ\text{C}" /> bis <InlineMath math="355\text{ s}" />, dann Anstieg auf <InlineMath math="20^\circ\text{C}" /> bei <InlineMath math="439\text{ s}" />. Die Steigung beim Wasser liefert die <InlineMath math="200\text{ W}" /> des Heizers.</>}
+  labels={{
+    ice: <>Eis, <InlineMath math="21\text{ s}" /></>,
+    melt: <>Schmelzen, <InlineMath math="334\text{ s}" /></>,
+    water: <>Wasser, <InlineMath math="84\text{ s}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 470 }, y: { min: -13, max: 24 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: -10 }, { x: 21, y: 0 }, { x: 355, y: 0 }, { x: 439, y: 20 }] },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 460, y: 0 } },
+    ],
+    labels: [
+      { key: "ice", objectId: "curve", at: { x: 10, y: -5 }, placement: "right" },
+      { key: "melt", objectId: "curve", at: { x: 188, y: 0 }, placement: "above" },
+      { key: "water", objectId: "curve", at: { x: 397, y: 10 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Die Leistung auf die anderen Phasen übertragen
+
+<BlockMath math="\begin{aligned}
+L&=\frac{200\times334}{0{,}20}=3{,}34\times10^5\text{ J kg}^{-1}\\
+c_{\text{Eis}}&=\frac{200\times21}{0{,}20\times10}=2100\text{ J kg}^{-1}\,^\circ\text{C}^{-1}
+\end{aligned}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6{,}68\times10^5" /> **teilt durch <InlineMath math="0{,}10\text{ kg}" />, die halbe Masse**.
+- <InlineMath math="8400" /> dreht den Vergleich der Steigungen um: Das Eis erwärmt sich hier pro Sekunde doppelt so schnell wie das Wasser, also ist seine spezifische Wärmekapazität halb so groß, nicht doppelt.
+- <InlineMath math="1{,}67\times10^5" /> und <InlineMath math="1050" /> setzen den Heizer mit <InlineMath math="100\text{ W}" /> an.

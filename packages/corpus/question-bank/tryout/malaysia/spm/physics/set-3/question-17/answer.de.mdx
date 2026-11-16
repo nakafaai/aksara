@@ -1,0 +1,47 @@
+# Grenzwinkel am Mantel, nicht an Luft
+
+**Das Licht muss an der Grenze zwischen Kern und Mantel reflektiert werden, also nutzt der Grenzwinkel beide Brechzahlen**.
+
+<BlockMath math="\sin c=\frac{1{,}40}{1{,}50}=0{,}933\ \Rightarrow\ c=69{,}0^\circ" />
+
+Ein Strahl, der die Seite genau unter <InlineMath math="69^\circ" /> trifft, läuft unter <InlineMath math="90-69=21^\circ" /> zur Achse.
+
+<MathVisual
+  title={<>Der steilste Strahl, den der Kern hält</>}
+  description={<>Ein Strahl tritt unter <InlineMath math="33^\circ" /> zur Achse in das Ende ein, wird im Kern auf <InlineMath math="21^\circ" /> gebrochen und trifft die Grenze zum Mantel unter <InlineMath math="69^\circ" />, genau dem Grenzwinkel, also wird er gerade noch reflektiert.</>}
+  labels={{
+    inray: <><InlineMath math="33^\circ" /></>,
+    core: <><InlineMath math="21^\circ" /></>,
+    wall: <><InlineMath math="69^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -1.5, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "inray", kind: "segment", appearance: "secondary", from: { x: -2.0, y: -1.3 }, to: { x: 0, y: 0 } },
+      { id: "core", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.6, y: 1.0 } },
+      { id: "back", kind: "segment", appearance: "primary", from: { x: 2.6, y: 1.0 }, to: { x: 5.2, y: 0 } },
+      { id: "top", kind: "segment", appearance: "reference", from: { x: 0, y: 1.0 }, to: { x: 6.5, y: 1.0 } },
+      { id: "bottom", kind: "segment", appearance: "reference", from: { x: 0, y: -1.0 }, to: { x: 6.5, y: -1.0 } },
+      { id: "end", kind: "segment", appearance: "reference", from: { x: 0, y: -1.2 }, to: { x: 0, y: 1.2 } },
+    ],
+    labels: [
+      { key: "inray", objectId: "inray", at: { x: -1.0, y: -0.65 }, placement: "above-left" },
+      { key: "core", objectId: "core", at: { x: 1.3, y: 0.5 }, placement: "above-left" },
+      { key: "wall", objectId: "core", at: { x: 2.6, y: 1.0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Brechung an der Eintrittsfläche
+
+**Der Strahl wird beim Eintritt zum Lot hin gebrochen, außerhalb des Endes ist sein Winkel also größer**.
+
+<BlockMath math="\sin\theta=1{,}50\sin21{,}0^\circ=0{,}538\ \Rightarrow\ \theta=33^\circ" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="21^\circ" /> **ist der Winkel im Kern, bevor die Brechung am Ende berücksichtigt ist**.
+- <InlineMath math="69^\circ" /> ist der Grenzwinkel selbst, vom Lot auf die Seite gemessen.
+- <InlineMath math="90^\circ" /> nimmt den Grenzwinkel Glas-Luft von <InlineMath math="42^\circ" />, als gäbe es keinen Mantel.

@@ -1,0 +1,26 @@
+# Sebelah sekunder
+
+**Tiga mentol secara selari masing-masing mengambil <InlineMath math="24/12=2.0\text{ A}" />, jadi sekunder membawa <InlineMath math="6.0\text{ A}" /> dan membekalkan <InlineMath math="72\text{ W}" />**.
+
+# Sebelah primer, dengan kehilangan
+
+**Input mesti melebihi output, kerana hanya <InlineMath math="90\%" /> daripada input sampai ke mentol**.
+
+<BlockMath math="P_{\text{masuk}}=\frac{72}{0.90}=80\text{ W},\qquad I_p=\frac{80}{240}=0.33\text{ A}" />
+
+<Chart
+  title={<>Kuasa masuk dan keluar transformer</>}
+  description={<>Carta bar: tiga mentol mengambil <InlineMath math="72\text{ W}" /> daripada sekunder, jadi primer mesti menarik <InlineMath math="80\text{ W}" />, dan <InlineMath math="8\text{ W}" /> hilang dalam transformer.</>}
+  bars="apart"
+  categories={["Input", "Output", "Hilang"]}
+  series={[
+    { label: "Kuasa", mark: "bar", values: [80, 72, 8] },
+  ]}
+  valueLabel="Kuasa (W)"
+/>
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0.30\text{ A}" /> **menganggap transformer unggul, dengan input <InlineMath math="72\text{ W}" />**.
+- <InlineMath math="0.27\text{ A}" /> mendarab dengan kecekapan, bukan membahagi, seolah-olah input kurang daripada output.
+- <InlineMath math="2.0\text{ A}" /> ialah arus dalam satu mentol, bukan dalam seluruh gegelung sekunder.

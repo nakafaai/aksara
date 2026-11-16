@@ -1,0 +1,27 @@
+# Isi tabel kebenarannya
+
+| A | B | NAND | OR | X |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+
+<Chart
+  title={<>Keluaran X untuk tiap pasangan masukan</>}
+  description={<>Diagram batang X untuk masukan AB <InlineMath math="=00,01,10,11" />: <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="0" />. Gerbang NAND menahan kasus <InlineMath math="11" />, dan gerbang OR menahan kasus <InlineMath math="00" />.</>}
+  bars="apart"
+  categories={["AB = 00", "AB = 01", "AB = 10", "AB = 11"]}
+  series={[
+    { label: "X", mark: "bar", values: [0, 1, 1, 0] },
+  ]}
+  valueLabel="Keluaran"
+/>
+
+**Gerbang AND memerlukan kedua masukannya bernilai <InlineMath math="1" />**. Gerbang OR bernilai <InlineMath math="0" /> hanya saat kedua masukan <InlineMath math="0" />, dan gerbang NAND bernilai <InlineMath math="0" /> hanya saat keduanya <InlineMath math="1" />, jadi X bernilai <InlineMath math="1" /> tepat saat A dan B berbeda.
+
+# Kenapa pilihan lain salah
+
+- **Masukan yang sama adalah dua kasus yang ditahan gerbang-gerbang itu**.
+- Kedua masukan <InlineMath math="1" /> membuat keluaran NAND <InlineMath math="0" />.
+- A atau B bernilai <InlineMath math="0" /> mencakup <InlineMath math="00" />, saat keluaran OR <InlineMath math="0" />.

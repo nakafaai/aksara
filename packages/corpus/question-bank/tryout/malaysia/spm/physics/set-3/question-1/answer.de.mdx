@@ -1,0 +1,31 @@
+# Die Ablesung korrigieren
+
+Die Null der Trommel steht bei geschlossenen Backen über der Bezugslinie, also **zeigt die Schraube <InlineMath math="0{,}03\text{ mm}" /> zu wenig: Der Nullpunktfehler ist <InlineMath math="-0{,}03\text{ mm}" />**, und sein Abziehen addiert <InlineMath math="0{,}03\text{ mm}" />.
+
+<BlockMath math="d=6{,}72-(-0{,}03)=6{,}75\text{ mm}" />
+
+<Chart
+  title={<>Ablesung, Nullpunktfehler und wahrer Durchmesser</>}
+  description={<>Balkendiagramm in Millimetern: Die Schraube zeigt <InlineMath math="6{,}72" />, der Nullpunktfehler ist <InlineMath math="-0{,}03" />, und der wahre Durchmesser ist <InlineMath math="6{,}72-(-0{,}03)=6{,}75" />.</>}
+  bars="apart"
+  categories={["Ablesung", "Nullpunktfehler", "Wahrer Durchmesser"]}
+  series={[
+    { label: "Länge", mark: "bar", values: [6.72, -0.03, 6.75] },
+  ]}
+  valueLabel="Länge (mm)"
+/>
+
+# Dichte aus der dritten Potenz des Durchmessers
+
+<BlockMath math="\begin{aligned}
+V&=\frac{\pi(6{,}75\times10^{-3})^3}{6}=1{,}61\times10^{-7}\text{ m}^3\\
+\rho&=\frac{1{,}26\times10^{-3}}{1{,}61\times10^{-7}}=7{,}82\times10^3\text{ kg m}^{-3}
+\end{aligned}" />
+
+**Ein kleiner Fehler in <InlineMath math="d" /> wächst im Volumen dreifach, darum liegen die Antworten so dicht beieinander**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="8{,}04\times10^3" /> **verrechnet den Nullpunktfehler in die falsche Richtung und nimmt <InlineMath math="d=6{,}69\text{ mm}" />**.
+- <InlineMath math="7{,}93\times10^3" /> nimmt die unkorrigierte Ablesung von <InlineMath math="6{,}72\text{ mm}" />.
+- <InlineMath math="0{,}98\times10^3" /> setzt den Durchmesser in <InlineMath math="\tfrac43\pi r^3" /> ein, als wäre er der Radius.

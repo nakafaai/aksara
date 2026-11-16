@@ -1,0 +1,26 @@
+# Secondary side
+
+**The three lamps in parallel each take <InlineMath math="24/12=2.0\text{ A}" />, so the secondary carries <InlineMath math="6.0\text{ A}" /> and delivers <InlineMath math="72\text{ W}" />**.
+
+# Primary side, with the losses
+
+**The input must exceed the output, since only <InlineMath math="90\%" /> of the input reaches the lamps**.
+
+<BlockMath math="P_{\text{in}}=\frac{72}{0.90}=80\text{ W},\qquad I_p=\frac{80}{240}=0.33\text{ A}" />
+
+<Chart
+  title={<>Power in and out of the transformer</>}
+  description={<>Bar chart: the three lamps take <InlineMath math="72\text{ W}" /> from the secondary, so the primary must draw <InlineMath math="80\text{ W}" />, and <InlineMath math="8\text{ W}" /> is lost in the transformer.</>}
+  bars="apart"
+  categories={["Input", "Output", "Lost"]}
+  series={[
+    { label: "Power", mark: "bar", values: [80, 72, 8] },
+  ]}
+  valueLabel="Power (W)"
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="0.30\text{ A}" /> **treats the transformer as ideal, with <InlineMath math="72\text{ W}" /> in**.
+- <InlineMath math="0.27\text{ A}" /> multiplies by the efficiency instead of dividing, as if the input were less than the output.
+- <InlineMath math="2.0\text{ A}" /> is the current in one lamp, not in the whole secondary coil.

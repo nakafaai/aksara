@@ -1,0 +1,27 @@
+# Setiap lapisan mengecil mengikut indeksnya sendiri
+
+**Dilihat dari atas, setiap lapisan kelihatan lebih nipis mengikut indeks biasannya sendiri, dan ketebalan ketara dijumlahkan**.
+
+<BlockMath math="d_{\text{ketara}}=\frac{4.0}{1.60}+\frac{12.0}{4/3}=2.5+9.0=11.5\text{ cm}" />
+
+<Chart
+  title={<>Ketebalan nyata dan ketara setiap lapisan</>}
+  description={<>Carta bar dalam sentimeter: minyak setebal <InlineMath math="4.0" /> kelihatan <InlineMath math="2.5" />, air setebal <InlineMath math="12.0" /> kelihatan <InlineMath math="9.0" />. Syiling kelihatan sedalam <InlineMath math="11.5" />, bukan <InlineMath math="16.0" />.</>}
+  bars="apart"
+  categories={["Minyak", "Air", "Seluruh kedalaman"]}
+  series={[
+    { label: "Nyata", mark: "bar", values: [4.0, 12.0, 16.0] },
+    { label: "Ketara", mark: "bar", values: [2.5, 9.0, 11.5] },
+  ]}
+  valueLabel="Ketebalan (cm)"
+/>
+
+# Berapa banyak ia terangkat
+
+<BlockMath math="16.0-11.5=4.5\text{ cm}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="4.0\text{ cm}" /> **menganggap seluruh <InlineMath math="16\text{ cm}" /> ialah air**.
+- <InlineMath math="5.1\text{ cm}" /> menggunakan purata kedua-dua indeks biasan bagi seluruh kedalaman.
+- <InlineMath math="6.0\text{ cm}" /> menganggap seluruh <InlineMath math="16\text{ cm}" /> ialah minyak.

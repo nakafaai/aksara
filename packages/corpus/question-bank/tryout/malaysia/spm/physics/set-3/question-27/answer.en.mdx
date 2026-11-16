@@ -1,0 +1,27 @@
+# The voltmeter joins the circuit
+
+**A voltmeter in parallel with a resistor changes the resistance of that part of the circuit**, so it no longer shares the supply equally.
+
+<BlockMath math="\begin{aligned}
+10\text{ k}\Omega\parallel10\text{ k}\Omega&=5.0\text{ k}\Omega,\qquad V=12\times\frac{5.0}{5.0+10}=4.0\text{ V}\\
+10\text{ k}\Omega\parallel1.0\text{ M}\Omega&=9.90\text{ k}\Omega,\qquad V=12\times\frac{9.90}{9.90+10}=5.97\text{ V}
+\end{aligned}" />
+
+<Chart
+  title={<>Voltmeter reading against its resistance</>}
+  description={<>Bar chart: the true voltage across one resistor is <InlineMath math="6.0\text{ V}" />. A <InlineMath math="10\text{ k}\Omega" /> voltmeter reads <InlineMath math="4.0\text{ V}" /> and a <InlineMath math="1.0\text{ M}\Omega" /> voltmeter reads <InlineMath math="5.97\text{ V}" />.</>}
+  bars="apart"
+  categories={["Without a meter", "10 kΩ meter", "1.0 MΩ meter"]}
+  series={[
+    { label: "Voltage", mark: "bar", values: [6.0, 4.0, 5.97] },
+  ]}
+  valueLabel="Voltage (V)"
+/>
+
+A meter much more resistant than the resistor barely disturbs it, which is why voltmeters are made with large resistance.
+
+# Why the other options are wrong
+
+- <InlineMath math="6.0\text{ V}" /> **for both ignores the current the voltmeter draws**.
+- <InlineMath math="6.0\text{ V}" /> for the <InlineMath math="1.0\text{ M}\Omega" /> meter rounds away the small loading that remains.
+- <InlineMath math="3.0\text{ V}" /> splits the supply over three equal <InlineMath math="10\text{ k}\Omega" /> parts, as if the meter were in series.

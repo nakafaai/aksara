@@ -1,0 +1,27 @@
+# Die Wahrheitstabelle durchgehen
+
+| A | B | NAND | OR | X |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+
+<Chart
+  title={<>Ausgang X für jedes Eingangspaar</>}
+  description={<>Balkendiagramm von X für die Eingänge AB <InlineMath math="=00,01,10,11" />: <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="0" />. Das NAND sperrt den Fall <InlineMath math="11" />, das OR den Fall <InlineMath math="00" />.</>}
+  bars="apart"
+  categories={["AB = 00", "AB = 01", "AB = 10", "AB = 11"]}
+  series={[
+    { label: "X", mark: "bar", values: [0, 1, 1, 0] },
+  ]}
+  valueLabel="Ausgang"
+/>
+
+**Das AND braucht an beiden Eingängen eine <InlineMath math="1" />**. Das OR ist nur bei zwei Nullen <InlineMath math="0" />, das NAND nur bei zwei Einsen, also ist X genau dann <InlineMath math="1" />, wenn A und B verschieden sind.
+
+# Warum die anderen Antworten falsch sind
+
+- **Gleiche Eingänge sind genau die beiden Fälle, die die Gatter sperren**.
+- Zwei Einsen machen den NAND-Ausgang zu <InlineMath math="0" />.
+- A oder B gleich <InlineMath math="0" /> schließt <InlineMath math="00" /> ein, wo der OR-Ausgang <InlineMath math="0" /> ist.

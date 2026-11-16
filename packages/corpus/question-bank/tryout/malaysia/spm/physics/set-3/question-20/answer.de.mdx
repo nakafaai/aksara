@@ -1,0 +1,27 @@
+# Jede Schicht schrumpft mit ihrer eigenen Brechzahl
+
+**Von oben gesehen wirkt jede Schicht um ihre eigene Brechzahl dünner, und die scheinbaren Dicken addieren sich**.
+
+<BlockMath math="d_{\text{schein}}=\frac{4{,}0}{1{,}60}+\frac{12{,}0}{4/3}=2{,}5+9{,}0=11{,}5\text{ cm}" />
+
+<Chart
+  title={<>Wahre und scheinbare Dicke jeder Schicht</>}
+  description={<>Balkendiagramm in Zentimetern: Das Öl ist <InlineMath math="4{,}0" /> dick und wirkt <InlineMath math="2{,}5" />, das Wasser ist <InlineMath math="12{,}0" /> dick und wirkt <InlineMath math="9{,}0" />. Die Münze wirkt <InlineMath math="11{,}5" /> tief statt <InlineMath math="16{,}0" />.</>}
+  bars="apart"
+  categories={["Öl", "Wasser", "Ganze Tiefe"]}
+  series={[
+    { label: "Wahr", mark: "bar", values: [4.0, 12.0, 16.0] },
+    { label: "Scheinbar", mark: "bar", values: [2.5, 9.0, 11.5] },
+  ]}
+  valueLabel="Dicke (cm)"
+/>
+
+# Um wie viel sie angehoben wirkt
+
+<BlockMath math="16{,}0-11{,}5=4{,}5\text{ cm}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4{,}0\text{ cm}" /> **behandelt die ganzen <InlineMath math="16\text{ cm}" /> als Wasser**.
+- <InlineMath math="5{,}1\text{ cm}" /> nimmt den Mittelwert der beiden Brechzahlen für die ganze Tiefe.
+- <InlineMath math="6{,}0\text{ cm}" /> behandelt die ganzen <InlineMath math="16\text{ cm}" /> als Öl.

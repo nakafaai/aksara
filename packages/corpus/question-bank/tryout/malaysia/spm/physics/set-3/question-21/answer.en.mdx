@@ -1,0 +1,46 @@
+# Both ropes pulling
+
+**The sideways components cancel, and the forward components add**.
+
+<BlockMath math="F=2(2000\cos30^\circ)-3000=3464-3000=464\text{ N},\qquad a=\frac{464}{1500}=0.31\text{ m s}^{-2}" />
+
+# One rope left
+
+**With one rope gone, its sideways pull is no longer cancelled**, and the forward pull drops below the water's resistance.
+
+<BlockMath math="\begin{aligned}
+F_{\text{forward}}&=2000\cos30^\circ-3000=-1268\text{ N}\\
+F_{\text{side}}&=2000\sin30^\circ=1000\text{ N}\\
+F&=\sqrt{1268^2+1000^2}=1615\text{ N}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Forces on the barge after one rope snaps</>}
+  description={<>The remaining rope pulls <InlineMath math="1732\text{ N}" /> forward and <InlineMath math="1000\text{ N}" /> sideways, and the water pushes <InlineMath math="3000\text{ N}" /> back. The resultant has <InlineMath math="1268\text{ N}" /> backward and <InlineMath math="1000\text{ N}" /> sideways, <InlineMath math="1615\text{ N}" /> in all.</>}
+  labels={{
+    rope: <>rope <InlineMath math="2000\text{ N}" /></>,
+    drag: <>water <InlineMath math="3000\text{ N}" /></>,
+    net: <>resultant <InlineMath math="1615\text{ N}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 2.4 }, y: { min: -0.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rope", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 1.732, y: 1.0 } },
+      { id: "drag", kind: "vector", appearance: "warning", from: { x: 0, y: 0 }, to: { x: -3.0, y: 0 } },
+      { id: "net", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -1.268, y: 1.0 } },
+    ],
+    labels: [
+      { key: "rope", objectId: "rope", at: { x: 0.9, y: 0.52 }, placement: "below-right" },
+      { key: "drag", objectId: "drag", at: { x: -2.2, y: 0 }, placement: "below" },
+      { key: "net", objectId: "net", at: { x: -0.7, y: 0.55 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="1268\text{ N}" /> **keeps only the forward-backward part and drops the uncancelled sideways pull**.
+- <InlineMath math="0.67\text{ m s}^{-2}" /> adds the rope tensions without resolving them.
+- <InlineMath math="1000\text{ N}" /> keeps only the sideways part.

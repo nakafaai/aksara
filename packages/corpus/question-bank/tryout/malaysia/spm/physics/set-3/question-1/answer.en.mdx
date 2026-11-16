@@ -1,0 +1,31 @@
+# Correct the reading
+
+The thimble's zero sits above the datum line when the jaws close, so **the gauge reads <InlineMath math="0.03\text{ mm}" /> too little: the zero error is <InlineMath math="-0.03\text{ mm}" />**, and subtracting it adds <InlineMath math="0.03\text{ mm}" />.
+
+<BlockMath math="d=6.72-(-0.03)=6.75\text{ mm}" />
+
+<Chart
+  title={<>Reading, zero error and true diameter</>}
+  description={<>Bar chart in millimetres: the gauge reads <InlineMath math="6.72" />, the zero error is <InlineMath math="-0.03" />, and the true diameter is <InlineMath math="6.72-(-0.03)=6.75" />.</>}
+  bars="apart"
+  categories={["Reading", "Zero error", "True diameter"]}
+  series={[
+    { label: "Length", mark: "bar", values: [6.72, -0.03, 6.75] },
+  ]}
+  valueLabel="Length (mm)"
+/>
+
+# Density from the cube of the diameter
+
+<BlockMath math="\begin{aligned}
+V&=\frac{\pi(6.75\times10^{-3})^3}{6}=1.61\times10^{-7}\text{ m}^3\\
+\rho&=\frac{1.26\times10^{-3}}{1.61\times10^{-7}}=7.82\times10^3\text{ kg m}^{-3}
+\end{aligned}" />
+
+**A small slip in <InlineMath math="d" /> grows threefold in the volume, which is why the options sit so close**.
+
+# Why the other options are wrong
+
+- <InlineMath math="8.04\times10^3" /> **adds the zero error the wrong way, using <InlineMath math="d=6.69\text{ mm}" />**.
+- <InlineMath math="7.93\times10^3" /> uses the uncorrected reading of <InlineMath math="6.72\text{ mm}" />.
+- <InlineMath math="0.98\times10^3" /> puts the diameter into <InlineMath math="\tfrac43\pi r^3" /> as if it were the radius.

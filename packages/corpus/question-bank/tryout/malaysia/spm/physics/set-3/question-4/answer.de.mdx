@@ -1,0 +1,41 @@
+# Anhalteweg jedes Fahrzeugs
+
+<BlockMath math="\begin{aligned}
+s_{\text{Lkw}}&=\frac{25^2}{2(8{,}0)}=39{,}1\text{ m}\\
+s_{\text{Auto}}&=25(0{,}70)+\frac{25^2}{2(6{,}0)}=17{,}5+52{,}1=69{,}6\text{ m}
+\end{aligned}" />
+
+# Wann die Lücke am kleinsten ist
+
+**Das Auto bremst sanfter, also fährt es noch, wenn der Lkw schon steht**, und die Lücke schrumpft, bis das Auto hält. Die kleinste Lücke tritt also ganz am Ende auf, und der Anfangsabstand muss die Differenz abdecken.
+
+<MathVisual
+  title={<>Geschwindigkeit gegen Zeit für Lkw und Auto</>}
+  description={<>Die Gerade des Lkw fällt von <InlineMath math="25\text{ m s}^{-1}" /> bei <InlineMath math="3{,}1\text{ s}" /> auf null. Die des Autos bleibt bis <InlineMath math="0{,}70\text{ s}" /> bei <InlineMath math="25" /> und fällt dann bei <InlineMath math="4{,}9\text{ s}" /> auf null. Die Fläche dazwischen, <InlineMath math="69{,}6-39{,}1=30{,}5\text{ m}" />, ist die Lücke, die das Auto schließt.</>}
+  labels={{
+    truck: <>Lkw, <InlineMath math="39{,}1\text{ m}" /></>,
+    car: <>Auto, <InlineMath math="69{,}6\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 5.4 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "truck", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 25 }, { x: 3.125, y: 0 }] },
+      { id: "car", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 25 }, { x: 0.7, y: 25 }, { x: 4.867, y: 0 }] },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.2, y: 0 } },
+    ],
+    labels: [
+      { key: "truck", objectId: "truck", at: { x: 1.6, y: 12.2 }, placement: "below-left" },
+      { key: "car", objectId: "car", at: { x: 3.2, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<BlockMath math="d_{\text{min}}=69{,}6-39{,}1=30{,}5\text{ m}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="17{,}5\text{ m}" /> **zählt nur den Reaktionsweg, als bremsten beide gleich stark**.
+- <InlineMath math="69{,}6\text{ m}" /> ist der ganze Anhalteweg des Autos, als stünde der Lkw sofort.
+- <InlineMath math="13{,}0\text{ m}" /> vergleicht die Bremswege und vergisst den Reaktionsweg des Autos.

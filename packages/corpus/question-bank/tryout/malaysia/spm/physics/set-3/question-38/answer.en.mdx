@@ -1,0 +1,27 @@
+# Remove the background first
+
+**The background reaches the detector whether or not the wood is there**, so it is not part of the wood's activity.
+
+<BlockMath math="66-2=64,\qquad 18-2=16,\qquad \frac{16}{64}=\frac14=\left(\frac12\right)^2" />
+
+<Chart
+  title={<>Count rates with the background removed</>}
+  description={<>Bar chart in counts per minute: the fresh wood measures <InlineMath math="66" /> and the ancient wood <InlineMath math="18" />, but after removing the background of <InlineMath math="2" /> they are <InlineMath math="64" /> and <InlineMath math="16" />, a ratio of exactly one quarter.</>}
+  bars="apart"
+  categories={["Fresh wood", "Ancient wood"]}
+  series={[
+    { label: "Measured", mark: "bar", values: [66, 18] },
+    { label: "Corrected", mark: "bar", values: [64, 16] },
+  ]}
+  valueLabel="Counts per minute"
+/>
+
+# Two half-lives
+
+<BlockMath math="t=2\times5730=11\,460\text{ years}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="10\,700" /> **years keeps the background in both counts, using the ratio <InlineMath math="18/66" />**.
+- <InlineMath math="22\,920" /> years counts four half-lives, as if a quarter were <InlineMath math="(1/2)^4" />.
+- <InlineMath math="5730" /> years is a single half-life, which would leave half the activity.

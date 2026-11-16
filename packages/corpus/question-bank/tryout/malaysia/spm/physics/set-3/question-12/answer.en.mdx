@@ -1,0 +1,29 @@
+# Use absolute pressure and absolute temperature
+
+**The gas laws hold for the pressure of the gas itself, not for the gauge reading**, and for temperature in kelvin.
+
+<BlockMath math="p_1=200+100=300\text{ kPa},\qquad T_1=300\text{ K},\qquad T_2=330\text{ K}" />
+
+# Combine the temperature rise and the expansion
+
+<BlockMath math="p_2=p_1\times\frac{T_2}{T_1}\times\frac{V_1}{V_2}=300\times\frac{330}{300}\times\frac{1}{1.02}=324\text{ kPa}" />
+
+<Chart
+  title={<>Absolute and gauge pressure</>}
+  description={<>Bar chart: before the drive the air is at <InlineMath math="300\text{ kPa}" /> absolute and the gauge reads <InlineMath math="200" />. After it, the air is at <InlineMath math="324\text{ kPa}" /> absolute and the gauge reads <InlineMath math="224" />.</>}
+  bars="apart"
+  categories={["Before", "After"]}
+  series={[
+    { label: "Absolute", mark: "bar", values: [300, 324] },
+    { label: "Gauge", mark: "bar", values: [200, 224] },
+  ]}
+  valueLabel="Pressure (kPa)"
+/>
+
+**The gauge reads <InlineMath math="324-100=224\text{ kPa}" />**.
+
+# Why the other options are wrong
+
+- <InlineMath math="216\text{ kPa}" /> **applies the gas law to the gauge reading as if it were the gas pressure**.
+- <InlineMath math="230\text{ kPa}" /> ignores the <InlineMath math="2\%" /> growth in volume.
+- <InlineMath math="422\text{ kPa}" /> uses degrees Celsius in the ratio.

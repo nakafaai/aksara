@@ -1,0 +1,29 @@
+# Guna tekanan mutlak dan suhu mutlak
+
+**Hukum gas berlaku bagi tekanan gas itu sendiri, bukan bacaan tolok**, dan bagi suhu dalam kelvin.
+
+<BlockMath math="p_1=200+100=300\text{ kPa},\qquad T_1=300\text{ K},\qquad T_2=330\text{ K}" />
+
+# Gabungkan kenaikan suhu dan pengembangan
+
+<BlockMath math="p_2=p_1\times\frac{T_2}{T_1}\times\frac{V_1}{V_2}=300\times\frac{330}{300}\times\frac{1}{1.02}=324\text{ kPa}" />
+
+<Chart
+  title={<>Tekanan mutlak dan tekanan tolok</>}
+  description={<>Carta bar: sebelum perjalanan udara berada pada <InlineMath math="300\text{ kPa}" /> mutlak dan tolok membaca <InlineMath math="200" />. Selepas itu, udara berada pada <InlineMath math="324\text{ kPa}" /> mutlak dan tolok membaca <InlineMath math="224" />.</>}
+  bars="apart"
+  categories={["Sebelum", "Selepas"]}
+  series={[
+    { label: "Mutlak", mark: "bar", values: [300, 324] },
+    { label: "Tolok", mark: "bar", values: [200, 224] },
+  ]}
+  valueLabel="Tekanan (kPa)"
+/>
+
+**Tolok membaca <InlineMath math="324-100=224\text{ kPa}" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="216\text{ kPa}" /> **menggunakan hukum gas pada bacaan tolok seolah-olah ia tekanan gas**.
+- <InlineMath math="230\text{ kPa}" /> mengabaikan pertambahan isi padu <InlineMath math="2\%" />.
+- <InlineMath math="422\text{ kPa}" /> menggunakan darjah Celsius dalam nisbah.

@@ -1,0 +1,44 @@
+# Panjang yang diukur kehilangan jari-jari
+
+Panjang sebenarnya sampai ke pusat adalah <InlineMath math="L=l+r" />, jadi grafiknya
+
+<BlockMath math="T^2=\frac{4\pi^2}{g}\,l+\frac{4\pi^2}{g}\,r" />
+
+**Gradien memberi <InlineMath math="g" />, dan titik potong dibagi gradien memberi jari-jari, bukan diameter**.
+
+<MathVisual
+  title={<>Garis <InlineMath math="T^2" /> dan titik potongnya dengan sumbu <InlineMath math="l" /></>}
+  description={<>Garis lurus <InlineMath math="T^2" /> terhadap <InlineMath math="l" />, gradien <InlineMath math="4{,}00" />, memotong sumbu <InlineMath math="T^2" /> di <InlineMath math="0{,}080\text{ s}^2" />. Jika diperpanjang, garis mencapai <InlineMath math="T^2=0" /> di <InlineMath math="l=-0{,}020\text{ m}" />, tempat panjang sebenarnya sampai ke pusat bandul nol, jadi jari-jarinya <InlineMath math="2{,}0\text{ cm}" />.</>}
+  labels={{
+    line: <>gradien <InlineMath math="4\pi^2/g=4{,}00" /></>,
+    cut: <><InlineMath math="0{,}080\text{ s}^2" /></>,
+    root: <><InlineMath math="l=-r=-0{,}020\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.06, max: 0.32 }, y: { min: -0.15, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "primary", from: { x: -0.02, y: 0 }, to: { x: 0.3, y: 1.28 } },
+      { id: "cut", kind: "point", appearance: "answer", at: { x: 0, y: 0.08 } },
+      { id: "root", kind: "point", appearance: "highlight", at: { x: -0.02, y: 0 } },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: -0.05, y: 0 }, to: { x: 0.3, y: 0 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 0.2, y: 0.88 }, placement: "above-left" },
+      { key: "cut", objectId: "cut", at: { x: 0, y: 0.08 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: -0.02, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+g&=\frac{4\pi^2}{4{,}00}=9{,}87\text{ m s}^{-2}\\
+r&=\frac{0{,}080}{4{,}00}=0{,}020\text{ m},\qquad d=2r=4{,}0\text{ cm}
+\end{aligned}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="2{,}0\text{ cm}" /> **adalah jari-jari, karena panjang diukur sampai ke bagian atas bandul**.
+- <InlineMath math="39{,}5\text{ m s}^{-2}" /> mengalikan gradien dengan <InlineMath math="\pi^2" />, bukan membagi <InlineMath math="4\pi^2" /> dengannya.
+- <InlineMath math="8{,}0\text{ cm}" /> membaca titik potong langsung sebagai panjang, tanpa membaginya dengan gradien.

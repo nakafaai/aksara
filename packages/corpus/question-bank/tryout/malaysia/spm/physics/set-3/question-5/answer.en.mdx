@@ -1,0 +1,40 @@
+# Acceleration in each phase
+
+**The scale reads the normal force, so <InlineMath math="R-mg=ma" />**.
+
+<BlockMath math="a_1=\frac{720-600}{60}=+2.0\text{ m s}^{-2},\qquad a_2=0,\qquad a_3=\frac{480-600}{60}=-2.0\text{ m s}^{-2}" />
+
+# How long the last phase lasts
+
+After <InlineMath math="2.0\text{ s}" /> the lift moves at <InlineMath math="4.0\text{ m s}^{-1}" />. **The question does not give the last phase's length: it lasts until the lift stops**, which at <InlineMath math="2.0\text{ m s}^{-2}" /> takes <InlineMath math="2.0\text{ s}" />.
+
+<MathVisual
+  title={<>Velocity of the lift against time</>}
+  description={<>The velocity rises from <InlineMath math="0" /> to <InlineMath math="4\text{ m s}^{-1}" /> in <InlineMath math="2.0\text{ s}" />, stays at <InlineMath math="4" /> until <InlineMath math="7.0\text{ s}" />, and falls back to <InlineMath math="0" /> at <InlineMath math="9.0\text{ s}" />. The area under the trapezium is <InlineMath math="4+20+4=28\text{ m}" />.</>}
+  labels={{
+    v: <><InlineMath math="v_{\text{max}}=4\text{ m s}^{-1}" /></>,
+    end: <><InlineMath math="t=9.0\text{ s}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 9.6 }, y: { min: -0.4, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 7, y: 4 }, { x: 9, y: 0 }] },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 9.3, y: 0 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 9, y: 0 } },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 4.5, y: 4 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 9, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="h=\tfrac12(4.0)(2.0)+4.0(5.0)+\tfrac12(4.0)(2.0)=4+20+4=28\text{ m}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="24\text{ m}" /> **leaves out the slowing phase**.
+- <InlineMath math="32\text{ m}" /> gives the slowing phase <InlineMath math="4.0\text{ s}" />, as if it ran at half the rate.
+- <InlineMath math="20\text{ m}" /> counts only the constant-speed phase.

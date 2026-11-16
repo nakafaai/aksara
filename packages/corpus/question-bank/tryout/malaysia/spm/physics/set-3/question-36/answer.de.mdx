@@ -1,0 +1,27 @@
+# Vor dem Umpolen
+
+**Eine Diode leitet nur in Durchlassrichtung**. Anfangs zeigt die Diode im Zweig von P in Stromrichtung und leitet, die im Zweig von Q sperrt. Strom fließt durch R und P.
+
+# Nach dem Umpolen
+
+**Das Umpolen kehrt den Strom um, also tauschen die Dioden ihre Rollen**: Die Diode im Zweig von Q ist jetzt in Durchlassrichtung, die im Zweig von P sperrt.
+
+<Chart
+  title={<>Welche Lampen leuchten, vorher und nachher</>}
+  description={<>Balkendiagramm mit <InlineMath math="1" /> für eine leuchtende Lampe: vor dem Umpolen leuchten P und R, danach Q und R, und P bleibt dunkel.</>}
+  bars="apart"
+  categories={["Lampe P", "Lampe Q", "Lampe R"]}
+  series={[
+    { label: "Vorher", mark: "bar", values: [1, 0, 1] },
+    { label: "Nachher", mark: "bar", values: [0, 1, 1] },
+  ]}
+  valueLabel="An (1) oder aus (0)"
+/>
+
+R führt in beiden Fällen den ganzen Strom und leuchtet weiter, also leuchten Q und R.
+
+# Warum die anderen Antworten falsch sind
+
+- **Nur P und R ist der Zustand vor dem Umpolen**.
+- Nur R nimmt an, beide Dioden sperrten, doch eine leitet immer.
+- P, Q und R bräuchten zwei gleichzeitig leitende Dioden.

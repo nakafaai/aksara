@@ -1,0 +1,27 @@
+# Each layer shrinks by its own index
+
+**Seen from above, each layer looks thinner by its own refractive index, and the apparent thicknesses add**.
+
+<BlockMath math="d_{\text{app}}=\frac{4.0}{1.60}+\frac{12.0}{4/3}=2.5+9.0=11.5\text{ cm}" />
+
+<Chart
+  title={<>Real and apparent thickness of each layer</>}
+  description={<>Bar chart in centimetres: the oil is <InlineMath math="4.0" /> thick and looks <InlineMath math="2.5" />, the water is <InlineMath math="12.0" /> thick and looks <InlineMath math="9.0" />. The coin looks <InlineMath math="11.5" /> deep instead of <InlineMath math="16.0" />.</>}
+  bars="apart"
+  categories={["Oil", "Water", "Whole depth"]}
+  series={[
+    { label: "Real", mark: "bar", values: [4.0, 12.0, 16.0] },
+    { label: "Apparent", mark: "bar", values: [2.5, 9.0, 11.5] },
+  ]}
+  valueLabel="Thickness (cm)"
+/>
+
+# How much it is raised
+
+<BlockMath math="16.0-11.5=4.5\text{ cm}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="4.0\text{ cm}" /> **treats the whole <InlineMath math="16\text{ cm}" /> as water**.
+- <InlineMath math="5.1\text{ cm}" /> uses the average of the two refractive indices for the whole depth.
+- <InlineMath math="6.0\text{ cm}" /> treats the whole <InlineMath math="16\text{ cm}" /> as oil.

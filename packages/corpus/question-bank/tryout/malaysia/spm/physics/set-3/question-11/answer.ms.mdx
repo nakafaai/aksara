@@ -1,0 +1,42 @@
+# Air memberi kuasa pemanas
+
+**Kuasa tidak diberikan, tetapi peringkat air menggunakan muatan haba tentu yang diketahui**, jadi ia mengukur pemanas.
+
+<BlockMath math="P=\frac{0.20\times4200\times20}{84}=200\text{ W}" />
+
+<MathVisual
+  title={<>Lengkung pemanasan ais dan air</>}
+  description={<>Suhu melawan masa: kenaikan dari <InlineMath math="-10" /> ke <InlineMath math="0^\circ\text{C}" /> dalam <InlineMath math="21\text{ s}" /> pertama, bahagian mendatar pada <InlineMath math="0^\circ\text{C}" /> hingga <InlineMath math="355\text{ s}" />, kemudian kenaikan ke <InlineMath math="20^\circ\text{C}" /> pada <InlineMath math="439\text{ s}" />. Kecerunan air memberi kuasa pemanas <InlineMath math="200\text{ W}" />.</>}
+  labels={{
+    ice: <>ais, <InlineMath math="21\text{ s}" /></>,
+    melt: <>melebur, <InlineMath math="334\text{ s}" /></>,
+    water: <>air, <InlineMath math="84\text{ s}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 470 }, y: { min: -13, max: 24 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: -10 }, { x: 21, y: 0 }, { x: 355, y: 0 }, { x: 439, y: 20 }] },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 460, y: 0 } },
+    ],
+    labels: [
+      { key: "ice", objectId: "curve", at: { x: 10, y: -5 }, placement: "right" },
+      { key: "melt", objectId: "curve", at: { x: 188, y: 0 }, placement: "above" },
+      { key: "water", objectId: "curve", at: { x: 397, y: 10 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Bawa kuasa itu ke peringkat lain
+
+<BlockMath math="\begin{aligned}
+L&=\frac{200\times334}{0.20}=3.34\times10^5\text{ J kg}^{-1}\\
+c_{\text{ais}}&=\frac{200\times21}{0.20\times10}=2100\text{ J kg}^{-1}\,^\circ\text{C}^{-1}
+\end{aligned}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="6.68\times10^5" /> **membahagi dengan <InlineMath math="0.10\text{ kg}" />, separuh jisim**.
+- <InlineMath math="8400" /> menterbalikkan perbandingan kecerunan: di sini ais menjadi panas dua kali lebih cepat sesaat berbanding air, jadi muatan haba tentunya separuh, bukan dua kali.
+- <InlineMath math="1.67\times10^5" /> dan <InlineMath math="1050" /> menganggap pemanas <InlineMath math="100\text{ W}" />.

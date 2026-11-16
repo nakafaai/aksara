@@ -1,0 +1,28 @@
+# Current drawn by each pair
+
+<InlineMath math="I=P/V" /> for each pair at <InlineMath math="240\text{ V}" />:
+
+<BlockMath math="\frac{3700}{240}=15.4\text{ A},\qquad \frac{3200}{240}=13.3\text{ A},\qquad \frac{2500}{240}=10.4\text{ A}" />
+
+**The kettle and toaster look close to the limit but still draw more than <InlineMath math="13\text{ A}" />**, so only the heater and toaster are safe.
+
+<Chart
+  title={<>Current drawn by each pair</>}
+  description={<>Bar chart against the <InlineMath math="13\text{ A}" /> fuse: kettle and heater draw <InlineMath math="15.4\text{ A}" />, kettle and toaster <InlineMath math="13.3\text{ A}" />, heater and toaster <InlineMath math="10.4\text{ A}" />. Only the last pair stays under <InlineMath math="13\text{ A}" />.</>}
+  bars="apart"
+  categories={["Kettle and heater", "Kettle and toaster", "Heater and toaster"]}
+  series={[
+    { label: "Current", mark: "bar", values: [15.4, 13.3, 10.4] },
+  ]}
+  valueLabel="Current (A)"
+/>
+
+# Cost of running the safe pair
+
+<BlockMath math="E=2.5\text{ kW}\times2\text{ h}\times30=150\text{ kWh},\qquad \text{cost}=150\times0.50=\text{RM}\,75" />
+
+# Why the other options are wrong
+
+- **The kettle and toaster draw <InlineMath math="13.3\text{ A}" />, just above the fuse rating**.
+- <InlineMath math="\text{RM}\,150" /> is the energy in <InlineMath math="\text{kWh}" />, not yet multiplied by the price.
+- The kettle and heater draw <InlineMath math="15.4\text{ A}" />.

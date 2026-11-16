@@ -1,0 +1,41 @@
+# Jarak henti tiap kendaraan
+
+<BlockMath math="\begin{aligned}
+s_{\text{truk}}&=\frac{25^2}{2(8{,}0)}=39{,}1\text{ m}\\
+s_{\text{mobil}}&=25(0{,}70)+\frac{25^2}{2(6{,}0)}=17{,}5+52{,}1=69{,}6\text{ m}
+\end{aligned}" />
+
+# Kapan jaraknya paling kecil
+
+**Mobil mengerem lebih lembut, jadi mobil masih bergerak setelah truk berhenti**, dan jaraknya terus mengecil sampai mobil berhenti. Jarak terkecil tercapai di akhir, jadi jarak awal harus menutupi selisihnya.
+
+<MathVisual
+  title={<>Kecepatan terhadap waktu untuk truk dan mobil</>}
+  description={<>Garis truk turun dari <InlineMath math="25\text{ m s}^{-1}" /> ke nol pada <InlineMath math="3{,}1\text{ s}" />. Garis mobil tetap <InlineMath math="25" /> sampai <InlineMath math="0{,}70\text{ s}" /> lalu turun ke nol pada <InlineMath math="4{,}9\text{ s}" />. Luas di antara keduanya, <InlineMath math="69{,}6-39{,}1=30{,}5\text{ m}" />, adalah jarak yang ditutup mobil.</>}
+  labels={{
+    truck: <>truk, <InlineMath math="39{,}1\text{ m}" /></>,
+    car: <>mobil, <InlineMath math="69{,}6\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 5.4 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "truck", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 25 }, { x: 3.125, y: 0 }] },
+      { id: "car", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 25 }, { x: 0.7, y: 25 }, { x: 4.867, y: 0 }] },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.2, y: 0 } },
+    ],
+    labels: [
+      { key: "truck", objectId: "truck", at: { x: 1.6, y: 12.2 }, placement: "below-left" },
+      { key: "car", objectId: "car", at: { x: 3.2, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<BlockMath math="d_{\text{min}}=69{,}6-39{,}1=30{,}5\text{ m}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="17{,}5\text{ m}" /> **hanya menghitung jarak reaksi, seolah keduanya mengerem sama kuat**.
+- <InlineMath math="69{,}6\text{ m}" /> adalah seluruh jarak henti mobil, seolah truk berhenti seketika.
+- <InlineMath math="13{,}0\text{ m}" /> membandingkan jarak pengereman dan lupa jarak reaksi mobil.

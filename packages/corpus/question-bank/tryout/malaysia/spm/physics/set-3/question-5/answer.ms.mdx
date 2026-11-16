@@ -1,0 +1,40 @@
+# Pecutan dalam setiap fasa
+
+**Penimbang membaca daya normal, jadi <InlineMath math="R-mg=ma" />**.
+
+<BlockMath math="a_1=\frac{720-600}{60}=+2.0\text{ m s}^{-2},\qquad a_2=0,\qquad a_3=\frac{480-600}{60}=-2.0\text{ m s}^{-2}" />
+
+# Berapa lama fasa terakhir
+
+Selepas <InlineMath math="2.0\text{ s}" /> lif bergerak pada <InlineMath math="4.0\text{ m s}^{-1}" />. **Soalan tidak memberi panjang fasa terakhir: ia berterusan sehingga lif berhenti**, yang pada <InlineMath math="2.0\text{ m s}^{-2}" /> mengambil <InlineMath math="2.0\text{ s}" />.
+
+<MathVisual
+  title={<>Halaju lif melawan masa</>}
+  description={<>Halaju naik dari <InlineMath math="0" /> ke <InlineMath math="4\text{ m s}^{-1}" /> dalam <InlineMath math="2.0\text{ s}" />, kekal <InlineMath math="4" /> hingga <InlineMath math="7.0\text{ s}" />, dan turun semula ke <InlineMath math="0" /> pada <InlineMath math="9.0\text{ s}" />. Luas di bawah trapezium ialah <InlineMath math="4+20+4=28\text{ m}" />.</>}
+  labels={{
+    v: <><InlineMath math="v_{\text{max}}=4\text{ m s}^{-1}" /></>,
+    end: <><InlineMath math="t=9.0\text{ s}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 9.6 }, y: { min: -0.4, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 7, y: 4 }, { x: 9, y: 0 }] },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 9.3, y: 0 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 9, y: 0 } },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 4.5, y: 4 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 9, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="h=\tfrac12(4.0)(2.0)+4.0(5.0)+\tfrac12(4.0)(2.0)=4+20+4=28\text{ m}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="24\text{ m}" /> **meninggalkan fasa nyahpecutan**.
+- <InlineMath math="32\text{ m}" /> memberi fasa nyahpecutan <InlineMath math="4.0\text{ s}" />, seolah-olah ia pada separuh kadar.
+- <InlineMath math="20\text{ m}" /> hanya mengira fasa laju malar.

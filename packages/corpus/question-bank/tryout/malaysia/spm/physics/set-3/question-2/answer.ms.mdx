@@ -1,0 +1,44 @@
+# Panjang yang diukur tertinggal jejari
+
+Panjang sebenar hingga ke pusat ialah <InlineMath math="L=l+r" />, jadi graf itu ialah
+
+<BlockMath math="T^2=\frac{4\pi^2}{g}\,l+\frac{4\pi^2}{g}\,r" />
+
+**Kecerunan memberi <InlineMath math="g" />, dan pintasan dibahagi kecerunan memberi jejari, bukan diameter**.
+
+<MathVisual
+  title={<>Garis <InlineMath math="T^2" /> dan titik ia bertemu paksi <InlineMath math="l" /></>}
+  description={<>Garis lurus <InlineMath math="T^2" /> melawan <InlineMath math="l" />, kecerunan <InlineMath math="4.00" />, memotong paksi <InlineMath math="T^2" /> pada <InlineMath math="0.080\text{ s}^2" />. Apabila dipanjangkan, ia mencapai <InlineMath math="T^2=0" /> pada <InlineMath math="l=-0.020\text{ m}" />, iaitu ketika panjang sebenar hingga ke pusat ladung sifar, jadi jejarinya <InlineMath math="2.0\text{ cm}" />.</>}
+  labels={{
+    line: <>kecerunan <InlineMath math="4\pi^2/g=4.00" /></>,
+    cut: <><InlineMath math="0.080\text{ s}^2" /></>,
+    root: <><InlineMath math="l=-r=-0.020\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.06, max: 0.32 }, y: { min: -0.15, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "primary", from: { x: -0.02, y: 0 }, to: { x: 0.3, y: 1.28 } },
+      { id: "cut", kind: "point", appearance: "answer", at: { x: 0, y: 0.08 } },
+      { id: "root", kind: "point", appearance: "highlight", at: { x: -0.02, y: 0 } },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: -0.05, y: 0 }, to: { x: 0.3, y: 0 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 0.2, y: 0.88 }, placement: "above-left" },
+      { key: "cut", objectId: "cut", at: { x: 0, y: 0.08 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: -0.02, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+g&=\frac{4\pi^2}{4.00}=9.87\text{ m s}^{-2}\\
+r&=\frac{0.080}{4.00}=0.020\text{ m},\qquad d=2r=4.0\text{ cm}
+\end{aligned}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2.0\text{ cm}" /> **ialah jejari, kerana panjang diukur hingga ke bahagian atas ladung**.
+- <InlineMath math="39.5\text{ m s}^{-2}" /> mendarab kecerunan dengan <InlineMath math="\pi^2" />, bukan membahagi <InlineMath math="4\pi^2" /> dengannya.
+- <InlineMath math="8.0\text{ cm}" /> membaca pintasan terus sebagai panjang, tanpa membahagi dengan kecerunan.

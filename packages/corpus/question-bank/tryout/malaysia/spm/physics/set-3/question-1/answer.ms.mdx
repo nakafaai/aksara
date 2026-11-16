@@ -1,0 +1,31 @@
+# Betulkan bacaan
+
+Sifar bidal berada di atas garis datum apabila rahang ditutup, jadi **tolok membaca <InlineMath math="0.03\text{ mm}" /> terlalu sedikit: ralat sifar ialah <InlineMath math="-0.03\text{ mm}" />**, dan menolaknya menambah <InlineMath math="0.03\text{ mm}" />.
+
+<BlockMath math="d=6.72-(-0.03)=6.75\text{ mm}" />
+
+<Chart
+  title={<>Bacaan, ralat sifar dan diameter sebenar</>}
+  description={<>Carta bar dalam milimeter: tolok membaca <InlineMath math="6.72" />, ralat sifar ialah <InlineMath math="-0.03" />, dan diameter sebenar ialah <InlineMath math="6.72-(-0.03)=6.75" />.</>}
+  bars="apart"
+  categories={["Bacaan", "Ralat sifar", "Diameter sebenar"]}
+  series={[
+    { label: "Panjang", mark: "bar", values: [6.72, -0.03, 6.75] },
+  ]}
+  valueLabel="Panjang (mm)"
+/>
+
+# Ketumpatan daripada kuasa tiga diameter
+
+<BlockMath math="\begin{aligned}
+V&=\frac{\pi(6.75\times10^{-3})^3}{6}=1.61\times10^{-7}\text{ m}^3\\
+\rho&=\frac{1.26\times10^{-3}}{1.61\times10^{-7}}=7.82\times10^3\text{ kg m}^{-3}
+\end{aligned}" />
+
+**Kesilapan kecil dalam <InlineMath math="d" /> menjadi tiga kali ganda dalam isi padu, sebab itu pilihan-pilihan itu sangat hampir**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="8.04\times10^3" /> **menambah ralat sifar ke arah yang salah, menggunakan <InlineMath math="d=6.69\text{ mm}" />**.
+- <InlineMath math="7.93\times10^3" /> menggunakan bacaan <InlineMath math="6.72\text{ mm}" /> yang belum dibetulkan.
+- <InlineMath math="0.98\times10^3" /> memasukkan diameter ke dalam <InlineMath math="\tfrac43\pi r^3" /> seolah-olah ia jejari.

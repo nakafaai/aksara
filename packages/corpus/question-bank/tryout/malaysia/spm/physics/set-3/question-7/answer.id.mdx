@@ -1,0 +1,42 @@
+# Apakah bola melewati dinding?
+
+Tanpa dinding, bola akan jatuh selama <InlineMath math="\sqrt{2(1{,}25)/10}=0{,}50\text{ s}" /> dan mendarat <InlineMath math="3{,}0\times0{,}50=1{,}5\text{ m}" /> jauhnya. **Itu melewati dinding di <InlineMath math="1{,}2\text{ m}" />, jadi bola mengenai dinding lebih dulu**.
+
+# Di mana bola mengenai dinding
+
+<BlockMath math="t=\frac{1{,}2}{3{,}0}=0{,}40\text{ s},\qquad \text{jatuh}=\tfrac12(10)(0{,}40)^2=0{,}80\text{ m}" />
+
+<MathVisual
+  title={<>Lintasan bola menuju dinding</>}
+  description={<>Parabola mulai di tepi meja, <InlineMath math="1{,}25\text{ m}" /> di atas, dan akan mencapai lantai <InlineMath math="1{,}5\text{ m}" /> jauhnya, tetapi dinding di <InlineMath math="1{,}2\text{ m}" /> menghentikannya setelah <InlineMath math="0{,}40\text{ s}" />, saat bola sudah jatuh <InlineMath math="0{,}80\text{ m}" />, di ketinggian <InlineMath math="0{,}45\text{ m}" />.</>}
+  labels={{
+    path: <>lintasan</>,
+    wall: <>dinding</>,
+    hit: <><InlineMath math="0{,}45\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 1.7 }, y: { min: -0.1, max: 1.45 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0.0, y: 1.25 }, { x: 0.3, y: 1.2 }, { x: 0.6, y: 1.05 }, { x: 0.9, y: 0.8 }, { x: 1.2, y: 0.45 }] },
+      { id: "ghost", kind: "polyline", appearance: "reference", vertices: [{ x: 1.2, y: 0.45 }, { x: 1.35, y: 0.2375 }, { x: 1.5, y: 0 }] },
+      { id: "wall", kind: "segment", appearance: "secondary", from: { x: 1.2, y: 0 }, to: { x: 1.2, y: 1.3 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -0.1, y: 0 }, to: { x: 1.6, y: 0 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 1.2, y: 0.45 } },
+    ],
+    labels: [
+      { key: "path", objectId: "path", at: { x: 0.6, y: 1.05 }, placement: "above" },
+      { key: "wall", objectId: "wall", at: { x: 1.2, y: 1.3 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 1.2, y: 0.45 }, placement: "left" },
+    ],
+  }}
+/>
+
+**Bola mengenai dinding <InlineMath math="1{,}25-0{,}80=0{,}45\text{ m}" /> di atas lantai**.
+
+# Kenapa pilihan lain salah
+
+- **Lantai di <InlineMath math="1{,}5\text{ m}" /> mengabaikan dinding yang menghalangi**.
+- <InlineMath math="0{,}80\text{ m}" /> adalah jarak jatuh bola, bukan ketinggiannya di atas lantai.
+- Kaki dinding memerlukan jangkauan tepat <InlineMath math="1{,}2\text{ m}" />, yang tidak dihasilkan kelajuan itu.

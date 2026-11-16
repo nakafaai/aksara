@@ -1,0 +1,28 @@
+# Pressure difference from the tubes
+
+<BlockMath math="\Delta P=\rho gh=1000\times10\times0.60=6000\text{ Pa}" />
+
+# Continuity links the two speeds
+
+**The same volume passes each section every second, so the throat, with half the area, carries water twice as fast**: <InlineMath math="v_2=2v_1" />.
+
+<BlockMath math="6000=\tfrac12(1000)\left(4v_1^2-v_1^2\right)=1500\,v_1^2\ \Rightarrow\ v_1=2.0\text{ m s}^{-1}" />
+
+<Chart
+  title={<>Speeds and pressure in the meter</>}
+  description={<>Bar chart: the water moves at <InlineMath math="2.0\text{ m s}^{-1}" /> in the wide part and <InlineMath math="4.0\text{ m s}^{-1}" /> in the throat, and the <InlineMath math="60\text{ cm}" /> difference in levels is a pressure drop of <InlineMath math="6.0\text{ kPa}" />.</>}
+  bars="apart"
+  categories={["Wide part", "Throat", "Pressure drop"]}
+  series={[
+    { label: "Speed (m/s) or kPa", mark: "bar", values: [2.0, 4.0, 6.0] },
+  ]}
+  valueLabel="Value"
+/>
+
+<BlockMath math="Q=A_1v_1=20\times10^{-4}\times2.0=4.0\times10^{-3}\text{ m}^3\text{ s}^{-1}=4.0\text{ L s}^{-1}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="3.5\text{ L}" /> **treats the wide part as still water, using <InlineMath math="\Delta P=\tfrac12\rho v_2^2" />**.
+- <InlineMath math="1.8\text{ L}" /> makes the throat speed <InlineMath math="4v_1" />, squaring the area ratio.
+- <InlineMath math="8.0\text{ L}" /> multiplies the throat speed by the wide area.

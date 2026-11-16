@@ -1,0 +1,27 @@
+# Voltmeter ikut menjadi bagian rangkaian
+
+**Voltmeter yang paralel dengan resistor mengubah hambatan bagian rangkaian itu**, jadi tegangan sumber tidak lagi terbagi rata.
+
+<BlockMath math="\begin{aligned}
+10\text{ k}\Omega\parallel10\text{ k}\Omega&=5{,}0\text{ k}\Omega,\qquad V=12\times\frac{5{,}0}{5{,}0+10}=4{,}0\text{ V}\\
+10\text{ k}\Omega\parallel1{,}0\text{ M}\Omega&=9{,}90\text{ k}\Omega,\qquad V=12\times\frac{9{,}90}{9{,}90+10}=5{,}97\text{ V}
+\end{aligned}" />
+
+<Chart
+  title={<>Pembacaan voltmeter terhadap hambatannya</>}
+  description={<>Diagram batang: tegangan sebenarnya pada satu resistor <InlineMath math="6{,}0\text{ V}" />. Voltmeter <InlineMath math="10\text{ k}\Omega" /> membaca <InlineMath math="4{,}0\text{ V}" /> dan voltmeter <InlineMath math="1{,}0\text{ M}\Omega" /> membaca <InlineMath math="5{,}97\text{ V}" />.</>}
+  bars="apart"
+  categories={["Tanpa meter", "Meter 10 kΩ", "Meter 1,0 MΩ"]}
+  series={[
+    { label: "Tegangan", mark: "bar", values: [6.0, 4.0, 5.97] },
+  ]}
+  valueLabel="Tegangan (V)"
+/>
+
+Meter yang hambatannya jauh lebih besar dari resistor hampir tidak mengganggunya, karena itu voltmeter dibuat dengan hambatan besar.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="6{,}0\text{ V}" /> **untuk keduanya mengabaikan arus yang ditarik voltmeter**.
+- <InlineMath math="6{,}0\text{ V}" /> untuk meter <InlineMath math="1{,}0\text{ M}\Omega" /> membulatkan efek pembebanan kecil yang tersisa.
+- <InlineMath math="3{,}0\text{ V}" /> membagi tegangan sumber ke tiga bagian <InlineMath math="10\text{ k}\Omega" /> yang sama, seolah meternya dipasang seri.

@@ -1,0 +1,25 @@
+# Nilai tiap pernyataan
+
+**Pembacaan paralaks terlalu besar atau terlalu kecil bergantung pada posisi mata dan arah skala**, jadi I salah.
+
+Variasi acak menyebar ke dua arah dan hilang saat dirata-rata, tetapi awal yang terlambat menggeser tiap pembacaan ke arah yang sama, jadi rata-rata tidak menghapusnya. II benar.
+
+Mulai terlambat dan berhenti tepat waktu memotong <InlineMath math="0{,}2\text{ s}" /> dari tiap selang, dengan cara yang sama setiap kali. Itu kesalahan sistematis, jadi III benar.
+
+<Chart
+  title={<>Periode dari satu dan dua puluh osilasi</>}
+  description={<>Diagram batang untuk periode sebenarnya <InlineMath math="1{,}50\text{ s}" />: mengukur satu osilasi dengan awal yang terlambat memberi <InlineMath math="1{,}30\text{ s}" />, dan dua puluh osilasi memberi <InlineMath math="29{,}8/20=1{,}49\text{ s}" />. Kesalahannya mengecil tetapi tidak hilang.</>}
+  bars="apart"
+  categories={["Sebenarnya", "Dari satu", "Dari dua puluh"]}
+  series={[
+    { label: "Periode", mark: "bar", values: [1.5, 1.3, 1.49] },
+  ]}
+  valueLabel="Periode (s)"
+/>
+
+Mengukur <InlineMath math="20" /> osilasi menyebarkan <InlineMath math="0{,}2\text{ s}" /> yang sama ke <InlineMath math="20" /> periode, jadi kesalahan pada satu periode turun menjadi <InlineMath math="0{,}01\text{ s}" />, tetapi tetap ada. IV salah.
+
+# Kenapa pilihan lain salah
+
+- **Pilihan yang memuat I menganggap paralaks selalu meleset ke satu arah**.
+- Pilihan yang memuat IV menyamakan memperkecil kesalahan dengan menghapusnya.

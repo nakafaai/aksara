@@ -1,0 +1,47 @@
+# Critical angle at the cladding, not at air
+
+**The light must reflect at the core-cladding boundary, so the critical angle uses both indices**.
+
+<BlockMath math="\sin c=\frac{1.40}{1.50}=0.933\ \Rightarrow\ c=69.0^\circ" />
+
+A ray meeting the side at exactly <InlineMath math="69^\circ" /> travels at <InlineMath math="90-69=21^\circ" /> to the axis.
+
+<MathVisual
+  title={<>The steepest ray the core keeps</>}
+  description={<>A ray enters the end at <InlineMath math="33^\circ" /> to the axis, bends to <InlineMath math="21^\circ" /> inside the core, and meets the core-cladding boundary at <InlineMath math="69^\circ" />, exactly the critical angle, so it just reflects.</>}
+  labels={{
+    inray: <><InlineMath math="33^\circ" /></>,
+    core: <><InlineMath math="21^\circ" /></>,
+    wall: <><InlineMath math="69^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -1.5, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "inray", kind: "segment", appearance: "secondary", from: { x: -2.0, y: -1.3 }, to: { x: 0, y: 0 } },
+      { id: "core", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.6, y: 1.0 } },
+      { id: "back", kind: "segment", appearance: "primary", from: { x: 2.6, y: 1.0 }, to: { x: 5.2, y: 0 } },
+      { id: "top", kind: "segment", appearance: "reference", from: { x: 0, y: 1.0 }, to: { x: 6.5, y: 1.0 } },
+      { id: "bottom", kind: "segment", appearance: "reference", from: { x: 0, y: -1.0 }, to: { x: 6.5, y: -1.0 } },
+      { id: "end", kind: "segment", appearance: "reference", from: { x: 0, y: -1.2 }, to: { x: 0, y: 1.2 } },
+    ],
+    labels: [
+      { key: "inray", objectId: "inray", at: { x: -1.0, y: -0.65 }, placement: "above-left" },
+      { key: "core", objectId: "core", at: { x: 1.3, y: 0.5 }, placement: "above-left" },
+      { key: "wall", objectId: "core", at: { x: 2.6, y: 1.0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Refraction at the entry face
+
+**The ray bends toward the normal as it enters, so outside the end it makes a larger angle**.
+
+<BlockMath math="\sin\theta=1.50\sin21.0^\circ=0.538\ \Rightarrow\ \theta=33^\circ" />
+
+# Why the other options are wrong
+
+- <InlineMath math="21^\circ" /> **is the angle inside the core, before undoing the refraction at the end**.
+- <InlineMath math="69^\circ" /> is the critical angle itself, measured from the normal to the side.
+- <InlineMath math="90^\circ" /> uses the glass-air critical angle of <InlineMath math="42^\circ" />, as if there were no cladding.

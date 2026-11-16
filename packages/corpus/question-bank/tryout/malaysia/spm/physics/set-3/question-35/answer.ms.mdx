@@ -1,0 +1,27 @@
+# Lengkapkan jadual kebenaran
+
+| A | B | TAK-DAN | ATAU | X |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+
+<Chart
+  title={<>Output X bagi setiap pasangan input</>}
+  description={<>Carta bar X bagi input AB <InlineMath math="=00,01,10,11" />: <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="0" />. Get TAK-DAN menyekat kes <InlineMath math="11" />, dan get ATAU menyekat kes <InlineMath math="00" />.</>}
+  bars="apart"
+  categories={["AB = 00", "AB = 01", "AB = 10", "AB = 11"]}
+  series={[
+    { label: "X", mark: "bar", values: [0, 1, 1, 0] },
+  ]}
+  valueLabel="Output"
+/>
+
+**Get DAN memerlukan kedua-dua inputnya bernilai <InlineMath math="1" />**. Get ATAU bernilai <InlineMath math="0" /> hanya apabila kedua-dua input <InlineMath math="0" />, dan get TAK-DAN bernilai <InlineMath math="0" /> hanya apabila kedua-duanya <InlineMath math="1" />, jadi X bernilai <InlineMath math="1" /> tepat apabila A dan B berbeza.
+
+# Mengapa pilihan lain salah
+
+- **Input yang sama ialah dua kes yang disekat oleh get-get itu**.
+- Kedua-dua input <InlineMath math="1" /> menjadikan output TAK-DAN <InlineMath math="0" />.
+- A atau B bernilai <InlineMath math="0" /> termasuk <InlineMath math="00" />, ketika output ATAU ialah <InlineMath math="0" />.

@@ -1,0 +1,29 @@
+# Two loads, two equations
+
+**The same e.m.f. and internal resistance hold for both loads**, so <InlineMath math="E=I(R+r)" /> twice.
+
+<BlockMath math="\begin{aligned}
+E&=1.0(2.0+r)=0.50(5.0+r)\\
+2.0+r&=2.5+0.50r\ \Rightarrow\ r=1.0\,\Omega,\quad E=3.0\text{ V}
+\end{aligned}" />
+
+# Power wasted inside
+
+<BlockMath math="P_{\text{inside}}=I^2r=1.0^2\times1.0=1.0\text{ W}" />
+
+<Chart
+  title={<>Where the battery's power goes</>}
+  description={<>Bar chart: the battery produces <InlineMath math="3.0\text{ W}" />, of which <InlineMath math="2.0\text{ W}" /> heats the resistor and <InlineMath math="1.0\text{ W}" /> is wasted in its own internal resistance.</>}
+  bars="apart"
+  categories={["Produced", "In the resistor", "Wasted inside"]}
+  series={[
+    { label: "Power", mark: "bar", values: [3.0, 2.0, 1.0] },
+  ]}
+  valueLabel="Power (W)"
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="2.5\text{ V}" /> and <InlineMath math="0\,\Omega" /> **take the terminal voltage across the <InlineMath math="5.0\,\Omega" /> resistor as the e.m.f**.
+- <InlineMath math="2.0\text{ W}" /> is the power in the external resistor, not inside the battery.
+- <InlineMath math="4.0\text{ V}" /> and <InlineMath math="2.0\,\Omega" /> do not fit the second load, which would then carry <InlineMath math="0.57\text{ A}" />.

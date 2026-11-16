@@ -1,0 +1,26 @@
+# Sekundärseite
+
+**Die drei parallelen Lampen nehmen je <InlineMath math="24/12=2{,}0\text{ A}" />, also führt die Sekundärspule <InlineMath math="6{,}0\text{ A}" /> und liefert <InlineMath math="72\text{ W}" />**.
+
+# Primärseite mit Verlusten
+
+**Die Aufnahme muss größer als die Abgabe sein, weil nur <InlineMath math="90\%" /> der Aufnahme die Lampen erreichen**.
+
+<BlockMath math="P_{\text{auf}}=\frac{72}{0{,}90}=80\text{ W},\qquad I_p=\frac{80}{240}=0{,}33\text{ A}" />
+
+<Chart
+  title={<>Leistung in den und aus dem Transformator</>}
+  description={<>Balkendiagramm: Die drei Lampen nehmen <InlineMath math="72\text{ W}" /> aus der Sekundärspule, also muss die Primärspule <InlineMath math="80\text{ W}" /> aufnehmen, und <InlineMath math="8\text{ W}" /> gehen im Transformator verloren.</>}
+  bars="apart"
+  categories={["Aufnahme", "Abgabe", "Verlust"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [80, 72, 8] },
+  ]}
+  valueLabel="Leistung (W)"
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}30\text{ A}" /> **behandelt den Transformator als ideal, mit <InlineMath math="72\text{ W}" /> Aufnahme**.
+- <InlineMath math="0{,}27\text{ A}" /> multipliziert mit dem Wirkungsgrad, statt zu teilen, als wäre die Aufnahme kleiner als die Abgabe.
+- <InlineMath math="2{,}0\text{ A}" /> ist der Strom einer Lampe, nicht der ganzen Sekundärspule.

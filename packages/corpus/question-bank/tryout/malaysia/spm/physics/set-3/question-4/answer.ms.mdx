@@ -1,0 +1,41 @@
+# Jarak berhenti setiap kenderaan
+
+<BlockMath math="\begin{aligned}
+s_{\text{lori}}&=\frac{25^2}{2(8.0)}=39.1\text{ m}\\
+s_{\text{kereta}}&=25(0.70)+\frac{25^2}{2(6.0)}=17.5+52.1=69.6\text{ m}
+\end{aligned}" />
+
+# Bilakah jarak paling kecil
+
+**Kereta membrek dengan lebih perlahan, jadi ia masih bergerak selepas lori berhenti**, dan jarak terus mengecil sehingga kereta berhenti. Jarak terkecil dicapai di penghujung, jadi jarak awal mesti meliputi bezanya.
+
+<MathVisual
+  title={<>Halaju melawan masa bagi lori dan kereta</>}
+  description={<>Garis lori jatuh dari <InlineMath math="25\text{ m s}^{-1}" /> ke sifar pada <InlineMath math="3.1\text{ s}" />. Garis kereta kekal <InlineMath math="25" /> hingga <InlineMath math="0.70\text{ s}" /> kemudian jatuh ke sifar pada <InlineMath math="4.9\text{ s}" />. Luas di antara keduanya, <InlineMath math="69.6-39.1=30.5\text{ m}" />, ialah jarak yang dirapatkan oleh kereta.</>}
+  labels={{
+    truck: <>lori, <InlineMath math="39.1\text{ m}" /></>,
+    car: <>kereta, <InlineMath math="69.6\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 5.4 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "truck", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 25 }, { x: 3.125, y: 0 }] },
+      { id: "car", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 25 }, { x: 0.7, y: 25 }, { x: 4.867, y: 0 }] },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.2, y: 0 } },
+    ],
+    labels: [
+      { key: "truck", objectId: "truck", at: { x: 1.6, y: 12.2 }, placement: "below-left" },
+      { key: "car", objectId: "car", at: { x: 3.2, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<BlockMath math="d_{\text{min}}=69.6-39.1=30.5\text{ m}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="17.5\text{ m}" /> **hanya mengira jarak tindak balas, seolah-olah kedua-duanya membrek sama kuat**.
+- <InlineMath math="69.6\text{ m}" /> ialah seluruh jarak berhenti kereta, seolah-olah lori berhenti serta-merta.
+- <InlineMath math="13.0\text{ m}" /> membandingkan jarak brek dan lupa jarak tindak balas kereta.

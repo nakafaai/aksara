@@ -1,0 +1,44 @@
+# Der gemessenen Länge fehlt der Radius
+
+Die wahre Länge bis zur Mitte ist <InlineMath math="L=l+r" />, also lautet der Graph
+
+<BlockMath math="T^2=\frac{4\pi^2}{g}\,l+\frac{4\pi^2}{g}\,r" />
+
+**Die Steigung liefert <InlineMath math="g" />, und der Achsenabschnitt geteilt durch die Steigung liefert den Radius, nicht den Durchmesser**.
+
+<MathVisual
+  title={<>Die <InlineMath math="T^2" />-Gerade und ihr Schnitt mit der <InlineMath math="l" />-Achse</>}
+  description={<>Die Gerade von <InlineMath math="T^2" /> gegen <InlineMath math="l" /> mit Steigung <InlineMath math="4{,}00" /> schneidet die <InlineMath math="T^2" />-Achse bei <InlineMath math="0{,}080\text{ s}^2" />. Nach hinten verlängert erreicht sie <InlineMath math="T^2=0" /> bei <InlineMath math="l=-0{,}020\text{ m}" />, wo die wahre Länge bis zur Mitte des Pendelkörpers null ist, also ist der Radius <InlineMath math="2{,}0\text{ cm}" />.</>}
+  labels={{
+    line: <>Steigung <InlineMath math="4\pi^2/g=4{,}00" /></>,
+    cut: <><InlineMath math="0{,}080\text{ s}^2" /></>,
+    root: <><InlineMath math="l=-r=-0{,}020\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.06, max: 0.32 }, y: { min: -0.15, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "primary", from: { x: -0.02, y: 0 }, to: { x: 0.3, y: 1.28 } },
+      { id: "cut", kind: "point", appearance: "answer", at: { x: 0, y: 0.08 } },
+      { id: "root", kind: "point", appearance: "highlight", at: { x: -0.02, y: 0 } },
+      { id: "ax", kind: "segment", appearance: "reference", from: { x: -0.05, y: 0 }, to: { x: 0.3, y: 0 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 0.2, y: 0.88 }, placement: "above-left" },
+      { key: "cut", objectId: "cut", at: { x: 0, y: 0.08 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: -0.02, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+g&=\frac{4\pi^2}{4{,}00}=9{,}87\text{ m s}^{-2}\\
+r&=\frac{0{,}080}{4{,}00}=0{,}020\text{ m},\qquad d=2r=4{,}0\text{ cm}
+\end{aligned}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}0\text{ cm}" /> **ist der Radius, weil bis zur Oberkante des Pendelkörpers gemessen wurde**.
+- <InlineMath math="39{,}5\text{ m s}^{-2}" /> multipliziert die Steigung mit <InlineMath math="\pi^2" />, statt <InlineMath math="4\pi^2" /> durch sie zu teilen.
+- <InlineMath math="8{,}0\text{ cm}" /> liest den Achsenabschnitt direkt als Länge ab, ohne durch die Steigung zu teilen.
