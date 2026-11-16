@@ -1,22 +1,24 @@
-# Wanted product over everything that went in
+# Atom economy reads the equation, yield reads the brewery
 
-Hydration: the reactants weigh <InlineMath math="28 + 18 = 46" />, and the product is all ethanol, <InlineMath math="46" />, so the atom economy is <InlineMath math="\tfrac{46}{46} \times 100\% = 100\%" />. **Every atom ends up in the product**.
+**Atom economy** uses only the equation: one glucose, <InlineMath math="180" />, gives two ethanol, <InlineMath math="2 \times 46 = 92" />, so it is <InlineMath math="\tfrac{92}{180} \times 100\% = 51\%" />. The rest leaves as carbon dioxide however well the brewery works.
+
+**Percentage yield** compares the real mass with the predicted one. Glucose: <InlineMath math="900 \div 180 = 5.00" /> kmol, which should give <InlineMath math="10.0" /> kmol of ethanol, <InlineMath math="10.0 \times 46 = 460\text{ kg}" />. The yield is <InlineMath math="\tfrac{368}{460} \times 100\% = 80\%" />.
 
 <Chart
-  title={<>Atom Economy of Two Routes to Ethanol</>}
+  title={<>Ethanol from <InlineMath math="900\text{ kg}" /> of Glucose</>}
   bars="apart"
-  categories={["Hydration of ethene", "Fermentation of glucose"]}
+  categories={["Predicted by the equation", "Obtained"]}
   series={[
-    { label: "Atom economy (%)", mark: "bar", values: [100, 51] },
+    { label: "Ethanol (kg)", mark: "bar", values: [460, 368] },
   ]}
-  valueLabel="Atom economy (%)"
-  description={<>Hydration of ethene: <InlineMath math="100\%" />. Fermentation of glucose: <InlineMath math="51\%" />.</>}
+  valueLabel="Ethanol (kg)"
+  description={<>Predicted <InlineMath math="460\text{ kg}" />, obtained <InlineMath math="368\text{ kg}" />.</>}
 />
 
-Fermentation: one glucose, <InlineMath math="180" />, gives two ethanol molecules, <InlineMath math="2 \times 46 = 92" />, so the atom economy is <InlineMath math="\tfrac{92}{180} \times 100\% = 51\%" />. The rest leaves as carbon dioxide. Fermentation still has other strengths: it runs on renewable sugar at body temperature.
+**Hydration** gives one ethanol per ethene. <InlineMath math="368 \div 46 = 8.00" /> kmol of ethanol needs <InlineMath math="8.00" /> kmol of ethene, <InlineMath math="8.00 \times 28 = 224\text{ kg}" />.
 
 # Why the other options are wrong
 
-- Yeast works well, but the carbon dioxide it gives off is a by-product, so nearly half the mass is not ethanol.
-- Steam is a reactant in hydration, but all of its atoms **end up in the ethanol**, so nothing is wasted.
-- Fermentation makes carbon dioxide as well as ethanol, so it cannot reach <InlineMath math="100\%" />.
+- An atom economy of <InlineMath math="100\%" /> mixes it up with yield. Even a perfect fermentation loses the **carbon dioxide's mass**.
+- <InlineMath math="41\%" /> divides the ethanol by the glucose, <InlineMath math="368 \div 900" />, instead of by the ethanol the equation predicts.
+- <InlineMath math="448\text{ kg}" /> takes two ethene per ethanol, copying the fermentation ratio into the hydration equation.

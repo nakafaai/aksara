@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Fermentation has an atom economy of 100%, because yeast wastes nothing",
+            "Atom economy $$100\\%$$, percentage yield $$80\\%$$, and hydration needs $$224\\text{ kg}$$ of ethene",
         },
         {
           correct: false,
           label:
-            "Hydration has an atom economy of about 51%, because steam is a reactant",
+            "Atom economy $$51\\%$$, percentage yield $$41\\%$$, and hydration needs $$224\\text{ kg}$$ of ethene",
         },
         {
           correct: false,
           label:
-            "Both routes have an atom economy of 100%, because both make only ethanol",
+            "Atom economy $$51\\%$$, percentage yield $$80\\%$$, and hydration needs $$448\\text{ kg}$$ of ethene",
         },
         {
           correct: true,
           label:
-            "Hydration has an atom economy of 100% and fermentation about 51%, because fermentation also forms carbon dioxide",
+            "Atom economy $$51\\%$$, percentage yield $$80\\%$$, and hydration needs $$224\\text{ kg}$$ of ethene",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Penapaian mempunyai ekonomi atom 100%, kerana yis tidak membazir",
+            "Ekonomi atom $$100\\%$$, peratus hasil $$80\\%$$, dan penghidratan memerlukan $$224\\text{ kg}$$ etena",
         },
         {
           correct: false,
           label:
-            "Penghidratan mempunyai ekonomi atom kira-kira 51%, kerana stim ialah bahan tindak balas",
+            "Ekonomi atom $$51\\%$$, peratus hasil $$41\\%$$, dan penghidratan memerlukan $$224\\text{ kg}$$ etena",
         },
         {
           correct: false,
           label:
-            "Kedua-dua kaedah mempunyai ekonomi atom 100%, kerana kedua-duanya hanya menghasilkan etanol",
+            "Ekonomi atom $$51\\%$$, peratus hasil $$80\\%$$, dan penghidratan memerlukan $$448\\text{ kg}$$ etena",
         },
         {
           correct: true,
           label:
-            "Penghidratan mempunyai ekonomi atom 100% dan penapaian kira-kira 51%, kerana penapaian juga menghasilkan karbon dioksida",
+            "Ekonomi atom $$51\\%$$, peratus hasil $$80\\%$$, dan penghidratan memerlukan $$224\\text{ kg}$$ etena",
         },
       ],
     },

@@ -1,22 +1,27 @@
-# Divide by the molar mass to get heat per gram
+# Count the oxygen the rocket must carry, then divide
 
-A rocket pays for every gram it lifts, so the useful figure is **heat per gram**: the heat of combustion divided by the molar mass.
+Balance each combustion per mole of fuel and add the oxygen's mass (<InlineMath math="\text{O}_2 = 32" />) to the fuel's:
+
+- Methanol: <InlineMath math="\text{CH}_3\text{OH} + \tfrac{3}{2}\text{O}_2" />, mass <InlineMath math="32 + 48 = 80" />, heat <InlineMath math="726 \div 80 = 9.08\text{ kJ g}^{-1}" />.
+- Ethanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} + 3\text{O}_2" />, mass <InlineMath math="46 + 96 = 142" />, heat <InlineMath math="1376 \div 142 = 9.69\text{ kJ g}^{-1}" />.
+- Octane: <InlineMath math="\text{C}_8\text{H}_{18} + \tfrac{25}{2}\text{O}_2" />, mass <InlineMath math="114 + 400 = 514" />, heat <InlineMath math="5470 \div 514 = 10.6\text{ kJ g}^{-1}" />.
+- Hydrogen: <InlineMath math="\text{H}_2 + \tfrac{1}{2}\text{O}_2" />, mass <InlineMath math="2 + 16 = 18" />, heat <InlineMath math="286 \div 18 = 15.9\text{ kJ g}^{-1}" />.
 
 <Chart
-  title={<>Heat Released per Gram of Fuel</>}
+  title={<>Heat per Gram of Fuel and Oxygen</>}
   bars="apart"
   categories={["Methanol", "Ethanol", "Octane", "Hydrogen"]}
   series={[
-    { label: "Heat released (kJ g⁻¹)", mark: "bar", values: [22.7, 29.9, 48.0, 143] },
+    { label: "Heat released (kJ g⁻¹)", mark: "bar", values: [9.08, 9.69, 10.6, 15.9] },
   ]}
   valueLabel="Heat released (kJ g⁻¹)"
-  description={<>Per gram: methanol <InlineMath math="22.7" />, ethanol <InlineMath math="29.9" />, octane <InlineMath math="48.0" /> and hydrogen <InlineMath math="143\text{ kJ}" />.</>}
+  description={<>Per gram of fuel and oxygen: methanol <InlineMath math="9.08" />, ethanol <InlineMath math="9.69" />, octane <InlineMath math="10.6" /> and hydrogen <InlineMath math="15.9\text{ kJ}" />.</>}
 />
 
-Methanol gives <InlineMath math="726 \div 32 = 22.7\text{ kJ g}^{-1}" />, ethanol <InlineMath math="1376 \div 46 = 29.9" />, octane <InlineMath math="5470 \div 114 = 48.0" /> and hydrogen <InlineMath math="286 \div 2 = 143" />. Hydrogen wins by far, and it burns to water alone: <InlineMath math="2\text{H}_2 + \text{O}_2 \rightarrow 2\text{H}_2\text{O}" />.
+Hydrogen still wins, but by far less than it seems from the fuel alone: the oxygen is **eight times** the mass of the hydrogen it burns.
 
 # Why the other options are wrong
 
-- Octane has the largest value per mole, but each mole weighs <InlineMath math="114" /> g, so per gram it gives only a third of hydrogen's heat.
-- Methanol's light molecules carry oxygen already, so it gives the **least** heat per gram of the four.
-- Ethanol gives <InlineMath math="29.9\text{ kJ g}^{-1}" />, far below hydrogen, and it does form carbon dioxide.
+- <InlineMath math="143\text{ kJ}" /> divides by the hydrogen alone and forgets the <InlineMath math="16" /> g of oxygen each <InlineMath math="2" /> g **of hydrogen needs**.
+- Octane has the largest heat per mole, but it needs <InlineMath math="400" /> g of oxygen per mole, so per gram of fuel and oxygen it comes second.
+- <InlineMath math="8.4\text{ kJ}" /> adds a whole mole of oxygen, <InlineMath math="32" /> g, per mole of hydrogen instead of half a mole.

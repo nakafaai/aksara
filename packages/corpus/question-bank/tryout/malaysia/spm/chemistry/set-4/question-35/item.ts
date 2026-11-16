@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Hydrogen gives the most heat per gram, about 143 kJ, and forms no carbon dioxide",
+            "Hydrogen, about $$15.9\\text{ kJ}$$ per gram of fuel and oxygen together",
         },
         {
           correct: false,
           label:
-            "Octane gives the most heat per gram, because it has the largest heat of combustion per mole",
+            "Hydrogen, about $$143\\text{ kJ}$$ per gram of fuel and oxygen together",
         },
         {
           correct: false,
           label:
-            "Methanol gives the most heat per gram, because its molecules are the lightest of the carbon fuels",
+            "Octane, about $$10.6\\text{ kJ}$$ per gram of fuel and oxygen together, because each mole of octane releases the most heat",
         },
         {
           correct: false,
           label:
-            "Ethanol gives the most heat per gram, about 29.9 kJ, and forms no carbon dioxide",
+            "Hydrogen, about $$8.4\\text{ kJ}$$ per gram of fuel and oxygen together",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Hidrogen membebaskan haba paling banyak per gram, kira-kira 143 kJ, dan tidak menghasilkan karbon dioksida",
+            "Hidrogen, kira-kira $$15.9\\text{ kJ}$$ bagi setiap gram bahan api dan oksigen bersama",
         },
         {
           correct: false,
           label:
-            "Oktana membebaskan haba paling banyak per gram, kerana haba pembakarannya per mol paling besar",
+            "Hidrogen, kira-kira $$143\\text{ kJ}$$ bagi setiap gram bahan api dan oksigen bersama",
         },
         {
           correct: false,
           label:
-            "Metanol membebaskan haba paling banyak per gram, kerana molekulnya paling ringan antara bahan api karbon",
+            "Oktana, kira-kira $$10.6\\text{ kJ}$$ bagi setiap gram bahan api dan oksigen bersama, kerana setiap mol oktana membebaskan haba paling banyak",
         },
         {
           correct: false,
           label:
-            "Etanol membebaskan haba paling banyak per gram, kira-kira 29.9 kJ, dan tidak menghasilkan karbon dioksida",
+            "Hidrogen, kira-kira $$8.4\\text{ kJ}$$ bagi setiap gram bahan api dan oksigen bersama",
         },
       ],
     },

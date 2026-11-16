@@ -1,22 +1,27 @@
-# Bagi dengan massa molar untuk mendapat kalor per gram
+# Hitung oksigen yang harus dibawa roket, lalu bagi
 
-Roket membayar tiap gram yang diangkatnya, jadi angka yang berguna adalah **kalor per gram**: kalor pembakaran dibagi massa molar.
+Setarakan tiap pembakaran per mol bahan bakar dan tambahkan massa oksigen (<InlineMath math="\text{O}_2 = 32" />) ke massa bahan bakar:
+
+- Metanol: <InlineMath math="\text{CH}_3\text{OH} + \tfrac{3}{2}\text{O}_2" />, massa <InlineMath math="32 + 48 = 80" />, kalor <InlineMath math="726 \div 80 = 9{,}08\text{ kJ g}^{-1}" />.
+- Etanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} + 3\text{O}_2" />, massa <InlineMath math="46 + 96 = 142" />, kalor <InlineMath math="1376 \div 142 = 9{,}69\text{ kJ g}^{-1}" />.
+- Oktana: <InlineMath math="\text{C}_8\text{H}_{18} + \tfrac{25}{2}\text{O}_2" />, massa <InlineMath math="114 + 400 = 514" />, kalor <InlineMath math="5470 \div 514 = 10{,}6\text{ kJ g}^{-1}" />.
+- Hidrogen: <InlineMath math="\text{H}_2 + \tfrac{1}{2}\text{O}_2" />, massa <InlineMath math="2 + 16 = 18" />, kalor <InlineMath math="286 \div 18 = 15{,}9\text{ kJ g}^{-1}" />.
 
 <Chart
-  title={<>Kalor per Gram Bahan Bakar</>}
+  title={<>Kalor per Gram Bahan Bakar dan Oksigen</>}
   bars="apart"
   categories={["Metanol", "Etanol", "Oktana", "Hidrogen"]}
   series={[
-    { label: "Kalor yang dilepas (kJ g⁻¹)", mark: "bar", values: [22.7, 29.9, 48.0, 143] },
+    { label: "Kalor dilepas (kJ g⁻¹)", mark: "bar", values: [9.08, 9.69, 10.6, 15.9] },
   ]}
-  valueLabel="Kalor yang dilepas (kJ g⁻¹)"
-  description={<>Per gram: metanol <InlineMath math="22{,}7" />, etanol <InlineMath math="29{,}9" />, oktana <InlineMath math="48{,}0" />, dan hidrogen <InlineMath math="143\text{ kJ}" />.</>}
+  valueLabel="Kalor dilepas (kJ g⁻¹)"
+  description={<>Per gram bahan bakar dan oksigen: metanol <InlineMath math="9{,}08" />, etanol <InlineMath math="9{,}69" />, oktana <InlineMath math="10{,}6" />, dan hidrogen <InlineMath math="15{,}9\text{ kJ}" />.</>}
 />
 
-Metanol memberi <InlineMath math="726 \div 32 = 22{,}7\text{ kJ g}^{-1}" />, etanol <InlineMath math="1376 \div 46 = 29{,}9" />, oktana <InlineMath math="5470 \div 114 = 48{,}0" />, dan hidrogen <InlineMath math="286 \div 2 = 143" />. Hidrogen unggul jauh, dan terbakar menjadi air saja: <InlineMath math="2\text{H}_2 + \text{O}_2 \rightarrow 2\text{H}_2\text{O}" />.
+Hidrogen tetap unggul, tetapi selisihnya jauh lebih kecil daripada kesan bila hanya bahan bakarnya yang dihitung: oksigennya **delapan kali** massa hidrogen yang dibakarnya.
 
 # Kenapa pilihan lain salah
 
-- Oktana punya nilai terbesar per mol, tapi tiap mol bermassa <InlineMath math="114" /> g, jadi per gram hanya memberi sepertiga kalor hidrogen.
-- Molekul metanol yang ringan sudah membawa oksigen, jadi kalornya **paling sedikit** per gram dari keempatnya.
-- Etanol memberi <InlineMath math="29{,}9\text{ kJ g}^{-1}" />, jauh di bawah hidrogen, dan menghasilkan karbon dioksida.
+- <InlineMath math="143\text{ kJ}" /> membagi dengan hidrogen saja dan lupa <InlineMath math="16" /> g oksigen yang dibutuhkan tiap <InlineMath math="2" /> g hidrogen.
+- Oktana punya kalor per mol terbesar, tetapi butuh <InlineMath math="400" /> g oksigen per mol, jadi per gram bahan bakar dan oksigen ia di urutan kedua.
+- <InlineMath math="8{,}4\text{ kJ}" /> menambahkan satu mol penuh oksigen, <InlineMath math="32" /> g, per mol hidrogen, bukan **setengah mol**.

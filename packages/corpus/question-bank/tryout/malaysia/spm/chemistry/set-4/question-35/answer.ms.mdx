@@ -1,22 +1,27 @@
-# Bahagikan dengan jisim molar untuk mendapat haba per gram
+# Kira oksigen yang perlu dibawa roket, kemudian bahagikan
 
-Roket membayar bagi setiap gram yang diangkat, jadi angka yang berguna ialah **haba per gram**: haba pembakaran dibahagi dengan jisim molar.
+Seimbangkan setiap pembakaran bagi satu mol bahan api dan tambahkan jisim oksigen (<InlineMath math="\text{O}_2 = 32" />) kepada jisim bahan api:
+
+- Metanol: <InlineMath math="\text{CH}_3\text{OH} + \tfrac{3}{2}\text{O}_2" />, jisim <InlineMath math="32 + 48 = 80" />, haba <InlineMath math="726 \div 80 = 9.08\text{ kJ g}^{-1}" />.
+- Etanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} + 3\text{O}_2" />, jisim <InlineMath math="46 + 96 = 142" />, haba <InlineMath math="1376 \div 142 = 9.69\text{ kJ g}^{-1}" />.
+- Oktana: <InlineMath math="\text{C}_8\text{H}_{18} + \tfrac{25}{2}\text{O}_2" />, jisim <InlineMath math="114 + 400 = 514" />, haba <InlineMath math="5470 \div 514 = 10.6\text{ kJ g}^{-1}" />.
+- Hidrogen: <InlineMath math="\text{H}_2 + \tfrac{1}{2}\text{O}_2" />, jisim <InlineMath math="2 + 16 = 18" />, haba <InlineMath math="286 \div 18 = 15.9\text{ kJ g}^{-1}" />.
 
 <Chart
-  title={<>Haba Dibebaskan per Gram Bahan Api</>}
+  title={<>Haba per Gram Bahan Api dan Oksigen</>}
   bars="apart"
   categories={["Metanol", "Etanol", "Oktana", "Hidrogen"]}
   series={[
-    { label: "Haba dibebaskan (kJ g⁻¹)", mark: "bar", values: [22.7, 29.9, 48.0, 143] },
+    { label: "Haba dibebaskan (kJ g⁻¹)", mark: "bar", values: [9.08, 9.69, 10.6, 15.9] },
   ]}
   valueLabel="Haba dibebaskan (kJ g⁻¹)"
-  description={<>Per gram: metanol <InlineMath math="22.7" />, etanol <InlineMath math="29.9" />, oktana <InlineMath math="48.0" /> dan hidrogen <InlineMath math="143\text{ kJ}" />.</>}
+  description={<>Bagi setiap gram bahan api dan oksigen: metanol <InlineMath math="9.08" />, etanol <InlineMath math="9.69" />, oktana <InlineMath math="10.6" /> dan hidrogen <InlineMath math="15.9\text{ kJ}" />.</>}
 />
 
-Metanol memberikan <InlineMath math="726 \div 32 = 22.7\text{ kJ g}^{-1}" />, etanol <InlineMath math="1376 \div 46 = 29.9" />, oktana <InlineMath math="5470 \div 114 = 48.0" /> dan hidrogen <InlineMath math="286 \div 2 = 143" />. Hidrogen jauh mendahului, dan ia terbakar menjadi air sahaja: <InlineMath math="2\text{H}_2 + \text{O}_2 \rightarrow 2\text{H}_2\text{O}" />.
+Hidrogen masih menang, tetapi jauh kurang daripada yang disangka jika dikira bahan api sahaja: oksigen itu **lapan kali** jisim hidrogen yang dibakarnya.
 
 # Kenapa pilihan lain salah
 
-- Oktana mempunyai nilai paling besar per mol, tetapi setiap mol berjisim <InlineMath math="114" /> g, jadi per gram ia hanya memberikan satu pertiga haba hidrogen.
-- Molekul metanol yang ringan sudah membawa oksigen, jadi ia memberikan haba **paling sedikit** per gram antara empat bahan api.
-- Etanol memberikan <InlineMath math="29.9\text{ kJ g}^{-1}" />, jauh di bawah hidrogen, dan ia menghasilkan karbon dioksida.
+- <InlineMath math="143\text{ kJ}" /> membahagi dengan hidrogen sahaja dan terlupa <InlineMath math="16" /> g oksigen yang diperlukan oleh setiap <InlineMath math="2" /> g hidrogen.
+- Oktana mempunyai haba per mol paling besar, tetapi memerlukan <InlineMath math="400" /> g oksigen per mol, jadi bagi setiap gram bahan api dan oksigen ia di tempat kedua.
+- <InlineMath math="8.4\text{ kJ}" /> menambah satu mol penuh oksigen, <InlineMath math="32" /> g, bagi setiap mol hidrogen, bukan **setengah mol**.
