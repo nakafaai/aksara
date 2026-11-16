@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "X is ethene, which decolourises bromine water" },
-        { correct: true, label: "X is ethanoic acid, which reacts with calcium carbonate to give a gas that turns limewater chalky" },
-        { correct: false, label: "X is ethyl ethanoate, which has a sweet fruity smell" },
-        { correct: false, label: "X decolourises the purple solution, because X is the reducing agent" },
+        { correct: false, label: "X is ethene, and it releases 1.8 dm³ of gas with excess calcium carbonate" },
+        { correct: true, label: "X is ethanoic acid; 4.5 g of it forms, and it releases 0.90 dm³ of carbon dioxide with excess calcium carbonate" },
+        { correct: false, label: "X is ethanoic acid; 4.5 g of it forms, and it releases 1.8 dm³ of carbon dioxide with excess calcium carbonate" },
+        { correct: false, label: "X is ethyl ethanoate, and 4.5 g of it forms" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "X ialah etena, yang menyahwarnakan air bromin" },
-        { correct: true, label: "X ialah asid etanoik, yang bertindak balas dengan kalsium karbonat menghasilkan gas yang mengeruhkan air kapur" },
-        { correct: false, label: "X ialah etil etanoat, yang berbau wangi buah-buahan" },
-        { correct: false, label: "X menyahwarnakan larutan ungu, kerana X ialah agen penurunan" },
+        { correct: false, label: "X ialah etena, dan ia membebaskan 1.8 dm³ gas dengan kalsium karbonat berlebihan" },
+        { correct: true, label: "X ialah asid etanoik; 4.5 g daripadanya terbentuk, dan ia membebaskan 0.90 dm³ karbon dioksida dengan kalsium karbonat berlebihan" },
+        { correct: false, label: "X ialah asid etanoik; 4.5 g daripadanya terbentuk, dan ia membebaskan 1.8 dm³ karbon dioksida dengan kalsium karbonat berlebihan" },
+        { correct: false, label: "X ialah etil etanoat, dan 4.5 g daripadanya terbentuk" },
       ],
     },
   },

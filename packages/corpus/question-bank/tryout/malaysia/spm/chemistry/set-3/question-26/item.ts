@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Each iron(II) ion gains one electron" },
-        { correct: false, label: "Bromine acts as the reducing agent" },
-        { correct: false, label: "One mole of bromine accepts one mole of electrons" },
-        { correct: true, label: "Iron(II) ions are oxidised, and one mole of bromine accepts two moles of electrons" },
+        { correct: false, label: "Iron(II) ions are reduced, and 50.0 cm³ of bromine water is needed" },
+        { correct: false, label: "Bromine is the reducing agent, and 25.0 cm³ of bromine water is needed" },
+        { correct: false, label: "Iron(II) ions are oxidised, and 100 cm³ of bromine water is needed" },
+        { correct: true, label: "Iron(II) ions are oxidised, and 50.0 cm³ of bromine water is needed" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Setiap ion ferum(II) menerima satu elektron" },
-        { correct: false, label: "Bromin bertindak sebagai agen penurunan" },
-        { correct: false, label: "Satu mol bromin menerima satu mol elektron" },
-        { correct: true, label: "Ion ferum(II) dioksidakan, dan satu mol bromin menerima dua mol elektron" },
+        { correct: false, label: "Ion ferum(II) diturunkan, dan 50.0 cm³ air bromin diperlukan" },
+        { correct: false, label: "Bromin ialah agen penurunan, dan 25.0 cm³ air bromin diperlukan" },
+        { correct: false, label: "Ion ferum(II) dioksidakan, dan 100 cm³ air bromin diperlukan" },
+        { correct: true, label: "Ion ferum(II) dioksidakan, dan 50.0 cm³ air bromin diperlukan" },
       ],
     },
   },
