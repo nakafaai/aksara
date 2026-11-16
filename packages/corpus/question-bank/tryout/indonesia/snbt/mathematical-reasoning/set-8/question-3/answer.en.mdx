@@ -22,6 +22,21 @@ The first statement is true. Up to <InlineMath math="15" /> July, the <InlineMat
 
 The second statement is false. From <InlineMath math="16" /> July, the <InlineMath math="12\text{ kg}" /> cylinder costs <InlineMath math="\text{Rp}32{,}000" /> a day, more than the <InlineMath math="5.5\text{ kg}" /> cylinder at <InlineMath math="\text{Rp}31{,}000" /> a day. The big cylinder's price went up by <InlineMath math="\text{Rp}28{,}000" />, far more than the small one's rise of <InlineMath math="\text{Rp}6{,}000" />.
 
+The chart below compares both cylinders' cost per day before and after the price rise. **The order of the two cylinders flips**: before the rise the big cylinder is cheaper per day, after it the big one is dearer.
+
+<Chart
+  title={<>Gas cost per day for both cylinder sizes before and after the price rise</>}
+  description={<>Up to <InlineMath math="15" /> July, the <InlineMath math="5.5\text{ kg}" /> cylinder costs <InlineMath math="\text{Rp}29{,}000" /> a day and the <InlineMath math="12\text{ kg}" /> cylinder <InlineMath math="\text{Rp}28{,}000" /> a day. From <InlineMath math="16" /> July, they cost <InlineMath math="\text{Rp}31{,}000" /> and <InlineMath math="\text{Rp}32{,}000" /> a day. The value axis starts at <InlineMath math="\text{Rp}25{,}000" />.</>}
+  categories={["5.5 kg cylinder", "12 kg cylinder"]}
+  bars="apart"
+  series={[
+    { label: "Up to 15 July", mark: "bar", values: [87000 / 3, 196000 / 7] },
+    { label: "From 16 July", mark: "bar", values: [93000 / 3, 224000 / 7] },
+  ]}
+  valueRange={{ min: 25000, max: 33000 }}
+  valueLabel="Cost per day (rupiah)"
+/>
+
 # A slightly larger daily use
 
 If the small stove runs for <InlineMath math="8\text{ hours}" />, the daily use becomes <InlineMath math="0.9+0.8=1.7\text{ kg}" />. Check how long the <InlineMath math="12\text{ kg}" /> cylinder lasts:

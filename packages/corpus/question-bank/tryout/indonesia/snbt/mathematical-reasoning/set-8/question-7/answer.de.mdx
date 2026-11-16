@@ -23,6 +23,17 @@ Ein Ticket bekommt sicher keinen Rabatt. Der Rabatt beträgt zehn Prozent des Ti
 
 Prüfe das auf einem zweiten Weg. Der Rabatt beträgt zehn Prozent aller Tickets außer Nummer <InlineMath math="148" />, also <InlineMath math="10\%\cdot(1{.}260{.}000-120{.}000)=114{.}000" />. Die Summe ist dann <InlineMath math="1{.}260{.}000-114{.}000+15{.}000=1{.}161{.}000" />, dasselbe Ergebnis.
 
+Das Diagramm zeigt das in jedem der drei Käufe gezahlte Geld. **Nur der erste Kauf bekommt keinen Rabatt**, und er enthält das billigste Ticket.
+
+<Chart
+  title={<>Gezahltes Geld bei jedem Kauf der neun Freunde</>}
+  description={<>Der Kauf von Ticket <InlineMath math="148" /> kostet <InlineMath math="\text{Rp}125{.}000" />. Der Kauf der Nummern <InlineMath math="149" /> bis <InlineMath math="152" /> kostet <InlineMath math="\text{Rp}491{.}000" />. Der Kauf der Nummern <InlineMath math="153" /> bis <InlineMath math="156" /> kostet <InlineMath math="\text{Rp}545{.}000" />. Jeder enthält die Servicegebühr von <InlineMath math="\text{Rp}5{.}000" />, zusammen sind es <InlineMath math="\text{Rp}1{.}161{.}000" />.</>}
+  categories={["Nummer 148", "Nummern 149 bis 152", "Nummern 153 bis 156"]}
+  bars="apart"
+  series={[{ label: "Bezahlt pro Kauf (Rupiah)", mark: "bar", values: [120000 + 5000, 0.9 * (2 * 120000 + 2 * 150000) + 5000, 0.9 * (4 * 150000) + 5000] }]}
+  valueLabel="Gezahltes Geld (Rupiah)"
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort entsteht durch **einen naheliegenden Fehler**.

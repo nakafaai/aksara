@@ -20,6 +20,17 @@ The expression <InlineMath math="8{,}000n(145-n)" /> is zero at <InlineMath math
 
 Check one tree fewer: <InlineMath math="8{,}000\cdot69\cdot76=41{,}952{,}000" />, which is smaller. Also check per tree: with <InlineMath math="70" /> trees, each tree yields <InlineMath math="90\text{ kg}" />, so it earns <InlineMath math="90\cdot8{,}000-120{,}000=600{,}000" /> rupiah, and <InlineMath math="70\cdot600{,}000=42{,}000{,}000" />.
 
+The chart below works out the profit with the special fertiliser for <InlineMath math="40" /> to <InlineMath math="70" /> trees. **The bars keep rising up to the orchard limit**, because the formula only peaks at <InlineMath math="72.5" /> trees.
+
+<Chart
+  title={<>Profit with the special fertiliser by number of trees</>}
+  description={<>For <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="50" />, <InlineMath math="55" />, <InlineMath math="60" />, <InlineMath math="65" />, and <InlineMath math="70" /> trees, the profit is <InlineMath math="\text{Rp}33.6" />, <InlineMath math="36" />, <InlineMath math="38" />, <InlineMath math="39.6" />, <InlineMath math="40.8" />, <InlineMath math="41.6" />, and <InlineMath math="42" /> million.</>}
+  bars="apart"
+  categories={["40", "45", "50", "55", "60", "65", "70"]}
+  series={[{ label: "Profit with fertiliser (rupiah)", mark: "bar", values: [40, 45, 50, 55, 60, 65, 70].map((n) => 8000 * n * (145 - n)) }]}
+  valueLabel="Profit (rupiah)"
+/>
+
 # The wrong options
 
 Each other option misses one condition.

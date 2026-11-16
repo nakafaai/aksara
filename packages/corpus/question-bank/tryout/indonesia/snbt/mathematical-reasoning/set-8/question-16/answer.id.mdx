@@ -31,6 +31,19 @@ e&=18
 
 Nilai <InlineMath math="18" /> memang ada di antara <InlineMath math="12" /> dan <InlineMath math="24" />, jadi syarat kemungkinan ini terpenuhi.
 
+Grafik berikut menggambar bagian Budi untuk setiap titik naik Eko antara km <InlineMath math="12" /> dan <InlineMath math="24" />. **Semakin jauh Eko naik, semakin besar bagian Budi**, dan garisnya memotong <InlineMath math="\text{Rp}23{.}420" /> tepat di km <InlineMath math="18" />.
+
+<Chart
+  title={<>Bagian pagi Budi menurut titik naik Eko</>}
+  description={<>Jika Eko naik di km <InlineMath math="12" />, <InlineMath math="18" />, dan <InlineMath math="24" />, bagian Budi berturut-turut <InlineMath math="\text{Rp}22{.}120" />, <InlineMath math="\text{Rp}23{.}420" />, dan <InlineMath math="\text{Rp}24{.}720" />. Bagian Budi naik <InlineMath math="\text{Rp}216{,}67" /> setiap kilometer. Garis datar menandai bagian yang diketahui, <InlineMath math="\text{Rp}23{.}420" />.</>}
+  categories={["12", "14", "16", "18", "20", "22", "24"]}
+  series={[
+    { label: "Bagian Budi (rupiah)", mark: "line", values: [12, 14, 16, 18, 20, 22, 24].map((e) => (1300 * (e - 12)) / 2 + (1300 * (24 - e)) / 3 + 16920) },
+    { label: "Bagian yang diketahui", mark: "line", values: [23420, 23420, 23420, 23420, 23420, 23420, 23420] },
+  ]}
+  valueLabel="Bagian Budi (rupiah)"
+/>
+
 # Pemeriksaan
 
 Masukkan <InlineMath math="e=18" />. Ruas km <InlineMath math="12" /> sampai <InlineMath math="18" /> berbiaya <InlineMath math="6\cdot1{.}300=7{.}800" />, dibagi dua menjadi <InlineMath math="3{.}900" />. Ruas km <InlineMath math="18" /> sampai <InlineMath math="24" /> juga <InlineMath math="7{.}800" />, dibagi tiga menjadi <InlineMath math="2{.}600" />. Bagian Budi menjadi <InlineMath math="3{.}900+2{.}600+16{.}920=23{.}420" />, **sama dengan yang diketahui**.

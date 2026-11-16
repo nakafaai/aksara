@@ -35,6 +35,20 @@ n&\ge35\tfrac{5}{9}
 
 Also passen <InlineMath math="n" /> von <InlineMath math="36" /> bis <InlineMath math="40" />. **Die Nullstelle dreißig der quadratischen Gleichung gilt hier nicht**, weil unter <InlineMath math="40" /> Bäumen jeder Baum weiter <InlineMath math="120\text{ kg}" /> trägt.
 
+Das Diagramm zeigt den Gewinn für jede gerade Baumzahl von <InlineMath math="30" /> bis <InlineMath math="70" />. **Die Balken über der Linie bilden einen lückenlosen Bereich**, von etwa <InlineMath math="36" /> bis <InlineMath math="64" /> Bäumen, und er beginnt nicht bei <InlineMath math="30" />.
+
+<Chart
+  title={<>Gewinn einer Saison nach Anzahl der Bäume</>}
+  description={<>Bis <InlineMath math="40" /> Bäume beträgt der Gewinn <InlineMath math="864{.}000" /> Rupiah pro Baum, also erreicht er die Linie erst ab <InlineMath math="36" /> Bäumen. Über <InlineMath math="40" /> Bäumen beträgt er <InlineMath math="16{.}000n(94-n)" /> Rupiah, was bei <InlineMath math="64" /> Bäumen genau die Linie trifft und danach darunter liegt. Die waagerechte Linie markiert <InlineMath math="\text{Rp}30{.}720{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${30 + 2 * i}`)}
+  series={[
+    { label: "Gewinn (Rupiah)", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (30 + 2 * i <= 40 ? 864000 * (30 + 2 * i) : 16000 * (30 + 2 * i) * (94 - (30 + 2 * i)))) },
+    { label: "Rp30.720.000", mark: "line", values: Array.from({ length: 21 }, () => 30720000) },
+  ]}
+  valueLabel="Gewinn (Rupiah)"
+/>
+
 # Beide Bereiche zusammen
 
 Zusammen ergeben beide Bereiche <InlineMath math="n" /> von <InlineMath math="36" /> bis <InlineMath math="64" />, wobei <InlineMath math="40" /> **nur einmal zählt**. Das sind <InlineMath math="64-36+1=29" /> Möglichkeiten.

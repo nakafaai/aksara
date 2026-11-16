@@ -34,6 +34,20 @@ Now show that <InlineMath math="27" /> really can be reached:
 
 **Every one of these matches**, and the total is <InlineMath math="2+1+1+14+9=27" /> patients. Check it from the patients' side: the ones left waiting are one <InlineMath math="\mathrm{O}^-" />, two <InlineMath math="\mathrm{A}^-" />, two <InlineMath math="\mathrm{O}^+" /> and three <InlineMath math="\mathrm{A}^+" /> patients, that's <InlineMath math="8" /> people. Out of <InlineMath math="35" /> patients, <InlineMath math="35-8=27" /> are served, a match.
 
+The chart below compares the patients waiting with the patients served under that hand-out. **Each group is served by as many bags as its own group has**, except <InlineMath math="\mathrm{O}^-" />, which uses both <InlineMath math="\mathrm{O}^-" /> bags.
+
+<Chart
+  title={<>Patients waiting and patients served by blood group</>}
+  description={<><InlineMath math="\mathrm{O}^-" /> patients: <InlineMath math="3" /> waiting, <InlineMath math="2" /> served. <InlineMath math="\mathrm{A}^-" /> patients: <InlineMath math="3" /> waiting, <InlineMath math="1" /> served. <InlineMath math="\mathrm{B}^-" /> patients: <InlineMath math="1" /> waiting, <InlineMath math="1" /> served. <InlineMath math="\mathrm{O}^+" /> patients: <InlineMath math="16" /> waiting, <InlineMath math="14" /> served. <InlineMath math="\mathrm{A}^+" /> patients: <InlineMath math="12" /> waiting, <InlineMath math="9" /> served. The total served is <InlineMath math="27" />.</>}
+  bars="apart"
+  categories={["O−", "A−", "B−", "O+", "A+"]}
+  series={[
+    { label: "Patients waiting", mark: "bar", values: [3, 3, 1, 16, 12] },
+    { label: "Patients served", mark: "bar", values: [2, 1, 1, 14, 9] },
+  ]}
+  valueLabel="Patients"
+/>
+
 # Common wrong answers
 
 If you count each patient group separately, letting the <InlineMath math="\mathrm{O}^+" /> patients use all <InlineMath math="16" /> O bags and the <InlineMath math="\mathrm{A}^+" /> patients use the same O bags again, you get <InlineMath math="2+3+1+16+12=34" />. That's too big because **the O bags get used more than once**. The answer <InlineMath math="35" /> assumes every patient is served, but only <InlineMath math="27" /> bags are useful.

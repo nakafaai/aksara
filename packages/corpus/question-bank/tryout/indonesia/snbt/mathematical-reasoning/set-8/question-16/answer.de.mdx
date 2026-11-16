@@ -31,6 +31,19 @@ e&=18
 
 <InlineMath math="18" /> liegt tatsächlich zwischen <InlineMath math="12" /> und <InlineMath math="24" />, die Bedingung dieses Falls ist also erfüllt.
 
+Das Diagramm zeigt Budis Anteil für jeden Einstiegspunkt von Eko zwischen km <InlineMath math="12" /> und <InlineMath math="24" />. **Je später Eko einsteigt, desto größer Budis Anteil**, und die Linie schneidet <InlineMath math="\text{Rp}23{.}420" /> genau bei km <InlineMath math="18" />.
+
+<Chart
+  title={<>Budis Morgenanteil nach Ekos Einstiegspunkt</>}
+  description={<>Steigt Eko bei km <InlineMath math="12" />, <InlineMath math="18" /> und <InlineMath math="24" /> ein, beträgt Budis Anteil <InlineMath math="\text{Rp}22{.}120" />, <InlineMath math="\text{Rp}23{.}420" /> und <InlineMath math="\text{Rp}24{.}720" />. Budis Anteil steigt um <InlineMath math="\text{Rp}216{,}67" /> pro Kilometer. Die waagerechte Linie markiert den bekannten Anteil von <InlineMath math="\text{Rp}23{.}420" />.</>}
+  categories={["12", "14", "16", "18", "20", "22", "24"]}
+  series={[
+    { label: "Budis Anteil (Rupiah)", mark: "line", values: [12, 14, 16, 18, 20, 22, 24].map((e) => (1300 * (e - 12)) / 2 + (1300 * (24 - e)) / 3 + 16920) },
+    { label: "Bekannter Anteil", mark: "line", values: [23420, 23420, 23420, 23420, 23420, 23420, 23420] },
+  ]}
+  valueLabel="Budis Anteil (Rupiah)"
+/>
+
 # Die Probe
 
 Setze <InlineMath math="e=18" /> ein. Der Abschnitt von km <InlineMath math="12" /> bis <InlineMath math="18" /> kostet <InlineMath math="6\cdot1{.}300=7{.}800" />, durch zwei geteilt <InlineMath math="3{.}900" />. Der Abschnitt von km <InlineMath math="18" /> bis <InlineMath math="24" /> kostet ebenfalls <InlineMath math="7{.}800" />, durch drei geteilt <InlineMath math="2{.}600" />. Budis Anteil ist <InlineMath math="3{.}900+2{.}600+16{.}920=23{.}420" />, **genau der gegebene Betrag**.

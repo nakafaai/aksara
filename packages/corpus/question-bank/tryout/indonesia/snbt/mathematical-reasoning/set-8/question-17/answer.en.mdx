@@ -6,6 +6,20 @@ By the ABO rule, a group B patient can take blood from B donors and O donors. By
 
 <BlockMath math="8+2+14+2=26" />
 
+The chart below draws the bags that suit that patient. **Of the <InlineMath math="26" /> suitable bags, only two small bars are rhesus negative**, with <InlineMath math="4" /> bags between them.
+
+<Chart
+  title={<>Blood bags that can go to a patient with <InlineMath math="\mathrm{B}^+" /> blood</>}
+  description={<>The suitable bags come from <InlineMath math="8" /> <InlineMath math="\mathrm{B}^+" /> donors, <InlineMath math="2" /> <InlineMath math="\mathrm{B}^-" /> donors, <InlineMath math="14" /> <InlineMath math="\mathrm{O}^+" /> donors, and <InlineMath math="2" /> <InlineMath math="\mathrm{O}^-" /> donors, so there are <InlineMath math="26" /> bags. Four of them are rhesus negative.</>}
+  bars="apart"
+  categories={["B+", "B−", "O+", "O−"]}
+  series={[
+    { label: "Rhesus positive donors", mark: "bar", values: [8, null, 14, null] },
+    { label: "Rhesus negative donors", mark: "bar", values: [null, 2, null, 2] },
+  ]}
+  valueLabel="Bags"
+/>
+
 # The conditional probability
 
 Among the <InlineMath math="26" /> suitable bags, the rhesus negative ones are <InlineMath math="\mathrm{B}^-" /> and <InlineMath math="\mathrm{O}^-" />, a total of <InlineMath math="2+2=4" />. Every suitable bag is equally likely, so **you divide by the number of suitable bags**:

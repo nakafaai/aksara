@@ -34,6 +34,20 @@ Sekarang tunjukkan bahwa <InlineMath math="27" /> memang bisa dicapai:
 
 **Semua pemberian ini cocok**, dan jumlahnya <InlineMath math="2+1+1+14+9=27" /> pasien. Coba cek dari sisi pasien: yang belum dilayani adalah satu pasien <InlineMath math="\mathrm{O}^-" />, dua pasien <InlineMath math="\mathrm{A}^-" />, dua pasien <InlineMath math="\mathrm{O}^+" />, dan tiga pasien <InlineMath math="\mathrm{A}^+" />, yaitu <InlineMath math="8" /> orang. Dari <InlineMath math="35" /> pasien, yang dilayani <InlineMath math="35-8=27" />, cocok.
 
+Grafik berikut membandingkan pasien yang menunggu dengan pasien yang dilayani pada pembagian itu. **Setiap golongan dilayani sebanyak kantong golongannya sendiri**, kecuali <InlineMath math="\mathrm{O}^-" />, yang memakai kedua kantong <InlineMath math="\mathrm{O}^-" />.
+
+<Chart
+  title={<>Pasien yang menunggu dan pasien yang dilayani menurut golongan</>}
+  description={<>Pasien <InlineMath math="\mathrm{O}^-" />: <InlineMath math="3" /> menunggu, <InlineMath math="2" /> dilayani. Pasien <InlineMath math="\mathrm{A}^-" />: <InlineMath math="3" /> menunggu, <InlineMath math="1" /> dilayani. Pasien <InlineMath math="\mathrm{B}^-" />: <InlineMath math="1" /> menunggu, <InlineMath math="1" /> dilayani. Pasien <InlineMath math="\mathrm{O}^+" />: <InlineMath math="16" /> menunggu, <InlineMath math="14" /> dilayani. Pasien <InlineMath math="\mathrm{A}^+" />: <InlineMath math="12" /> menunggu, <InlineMath math="9" /> dilayani. Jumlah yang dilayani <InlineMath math="27" />.</>}
+  bars="apart"
+  categories={["O−", "A−", "B−", "O+", "A+"]}
+  series={[
+    { label: "Pasien menunggu", mark: "bar", values: [3, 3, 1, 16, 12] },
+    { label: "Pasien dilayani", mark: "bar", values: [2, 1, 1, 14, 9] },
+  ]}
+  valueLabel="Banyak pasien"
+/>
+
 # Jawaban yang sering keliru
 
 Kalau setiap golongan pasien dihitung terpisah, misalnya pasien <InlineMath math="\mathrm{O}^+" /> dianggap bisa memakai semua <InlineMath math="16" /> kantong O dan pasien <InlineMath math="\mathrm{A}^+" /> juga memakai kantong O yang sama, hasilnya <InlineMath math="2+3+1+16+12=34" />. Angka itu terlalu besar karena **kantong O dipakai berkali-kali**. Jawaban <InlineMath math="35" /> menganggap semua pasien terlayani, padahal kantong yang berguna hanya <InlineMath math="27" />.

@@ -39,6 +39,21 @@ h&\le4{,}75
 
 Jam harus bulat, jadi dengan tabung ini <InlineMath math="h" /> paling besar <InlineMath math="4" />. Untuk <InlineMath math="h=5" />, pemakaian sehari <InlineMath math="1{,}4\text{ kg}" />, tabung hanya terpakai <InlineMath math="3" /> hari, dan biayanya <InlineMath math="\tfrac{93{.}000}{3}=31{.}000" /> rupiah per hari.
 
+Grafik berikut menghitung biaya gas per hari mulai <InlineMath math="16" /> Juli untuk setiap lama nyala kompor kecil. **Batang tabung <InlineMath math="12\text{ kg}" /> tetap di bawah garis sampai <InlineMath math="6" /> jam**, sedangkan batang tabung <InlineMath math="5{,}5\text{ kg}" /> sudah melewatinya pada <InlineMath math="5" /> jam.
+
+<Chart
+  title={<>Biaya gas per hari mulai <InlineMath math="16" /> Juli menurut lama nyala kompor kecil</>}
+  description={<>Dengan tabung <InlineMath math="12\text{ kg}" />, biaya per hari untuk <InlineMath math="3" /> sampai <InlineMath math="8" /> jam berturut-turut sekitar <InlineMath math="\text{Rp}22{.}400" />, <InlineMath math="\text{Rp}24{.}889" />, <InlineMath math="\text{Rp}28{.}000" />, <InlineMath math="\text{Rp}28{.}000" />, <InlineMath math="\text{Rp}32{.}000" />, dan <InlineMath math="\text{Rp}32{.}000" />. Dengan tabung <InlineMath math="5{,}5\text{ kg}" />, berturut-turut <InlineMath math="\text{Rp}23{.}250" />, <InlineMath math="\text{Rp}23{.}250" />, lalu <InlineMath math="\text{Rp}31{.}000" /> mulai <InlineMath math="5" /> jam. Garis datar menandai <InlineMath math="\text{Rp}30{.}000" />.</>}
+  bars="apart"
+  categories={["3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Tabung 12 kg", mark: "bar", values: [3, 4, 5, 6, 7, 8].map((h) => 224000 / Math.floor(120 / (9 + h))) },
+    { label: "Tabung 5,5 kg", mark: "bar", values: [3, 4, 5, 6, 7, 8].map((h) => 93000 / Math.floor(55 / (9 + h))) },
+    { label: "Batas Rp30.000", mark: "line", values: [30000, 30000, 30000, 30000, 30000, 30000] },
+  ]}
+  valueLabel="Biaya per hari (rupiah)"
+/>
+
 # Memilih ukuran tabung
 
 Tabung <InlineMath math="12\text{ kg}" /> mengizinkan sampai <InlineMath math="6" /> jam, sedangkan tabung <InlineMath math="5{,}5\text{ kg}" /> hanya sampai <InlineMath math="4" /> jam. Bu Sari boleh memilih, jadi **yang menentukan adalah batas yang lebih longgar**, yaitu <InlineMath math="6" /> jam dengan tabung <InlineMath math="12\text{ kg}" />.

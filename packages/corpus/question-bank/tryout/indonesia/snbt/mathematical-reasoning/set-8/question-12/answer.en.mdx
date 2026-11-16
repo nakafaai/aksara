@@ -35,6 +35,20 @@ n&\ge35\tfrac{5}{9}
 
 So <InlineMath math="n" /> from <InlineMath math="36" /> to <InlineMath math="40" /> works. **The root thirty from the quadratic doesn't apply here**, because below <InlineMath math="40" /> trees the yield per tree stays at <InlineMath math="120\text{ kg}" />.
 
+The chart below draws the profit for every even number of trees from <InlineMath math="30" /> to <InlineMath math="70" />. **The bars above the line form one unbroken stretch**, from about <InlineMath math="36" /> to <InlineMath math="64" /> trees, and it doesn't start at <InlineMath math="30" />.
+
+<Chart
+  title={<>One season's profit by number of trees</>}
+  description={<>Up to <InlineMath math="40" /> trees, the profit is <InlineMath math="864{,}000" /> rupiah per tree, so it only reaches the line from <InlineMath math="36" /> trees on. Above <InlineMath math="40" /> trees, the profit is <InlineMath math="16{,}000n(94-n)" /> rupiah, which exactly equals the line at <InlineMath math="64" /> trees and falls short after that. The flat line marks <InlineMath math="\text{Rp}30{,}720{,}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${30 + 2 * i}`)}
+  series={[
+    { label: "Profit (rupiah)", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (30 + 2 * i <= 40 ? 864000 * (30 + 2 * i) : 16000 * (30 + 2 * i) * (94 - (30 + 2 * i)))) },
+    { label: "Rp30,720,000", mark: "line", values: Array.from({ length: 21 }, () => 30720000) },
+  ]}
+  valueLabel="Profit (rupiah)"
+/>
+
 # Combining the two ranges
 
 Together the two ranges give <InlineMath math="n" /> from <InlineMath math="36" /> to <InlineMath math="64" />, with <InlineMath math="40" /> **counted once**. That's <InlineMath math="64-36+1=29" /> choices.

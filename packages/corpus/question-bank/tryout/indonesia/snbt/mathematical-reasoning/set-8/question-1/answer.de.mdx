@@ -39,6 +39,21 @@ h&\le4{,}75
 
 Auch die Stunden sind ganzzahlig, mit dieser Flasche ist <InlineMath math="h" /> also höchstens <InlineMath math="4" />. Für <InlineMath math="h=5" /> beträgt der Tagesverbrauch <InlineMath math="1{,}4\text{ kg}" />, die Flasche reicht nur <InlineMath math="3" /> Tage, und die Kosten betragen <InlineMath math="\tfrac{93{.}000}{3}=31{.}000" /> Rupiah pro Tag.
 
+Das Diagramm berechnet die Gaskosten pro Tag ab dem <InlineMath math="16" />. Juli für jede Laufzeit des kleinen Herds. **Der Balken der <InlineMath math="12\text{ kg}" />-Flasche bleibt bis <InlineMath math="6" /> Stunden unter der Linie**, während der Balken der <InlineMath math="5{,}5\text{ kg}" />-Flasche sie schon bei <InlineMath math="5" /> Stunden überschreitet.
+
+<Chart
+  title={<>Gaskosten pro Tag ab dem <InlineMath math="16" />. Juli nach Laufzeit des kleinen Herds</>}
+  description={<>Mit der <InlineMath math="12\text{ kg}" />-Flasche betragen die Kosten pro Tag für <InlineMath math="3" /> bis <InlineMath math="8" /> Stunden etwa <InlineMath math="\text{Rp}22{.}400" />, <InlineMath math="\text{Rp}24{.}889" />, <InlineMath math="\text{Rp}28{.}000" />, <InlineMath math="\text{Rp}28{.}000" />, <InlineMath math="\text{Rp}32{.}000" /> und <InlineMath math="\text{Rp}32{.}000" />. Mit der <InlineMath math="5{,}5\text{ kg}" />-Flasche sind es <InlineMath math="\text{Rp}23{.}250" />, <InlineMath math="\text{Rp}23{.}250" /> und ab <InlineMath math="5" /> Stunden <InlineMath math="\text{Rp}31{.}000" />. Die waagerechte Linie markiert <InlineMath math="\text{Rp}30{.}000" />.</>}
+  bars="apart"
+  categories={["3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Flasche 12 kg", mark: "bar", values: [3, 4, 5, 6, 7, 8].map((h) => 224000 / Math.floor(120 / (9 + h))) },
+    { label: "Flasche 5,5 kg", mark: "bar", values: [3, 4, 5, 6, 7, 8].map((h) => 93000 / Math.floor(55 / (9 + h))) },
+    { label: "Grenze Rp30.000", mark: "line", values: [30000, 30000, 30000, 30000, 30000, 30000] },
+  ]}
+  valueLabel="Kosten pro Tag (Rupiah)"
+/>
+
 # Die Wahl der Flaschengröße
 
 Die Flasche mit <InlineMath math="12\text{ kg}" /> erlaubt bis zu <InlineMath math="6" /> Stunden, die Flasche mit <InlineMath math="5{,}5\text{ kg}" /> nur bis zu <InlineMath math="4" /> Stunden. Bu Sari darf wählen, also **entscheidet die lockerere der beiden Grenzen**: <InlineMath math="6" /> Stunden mit der Flasche mit <InlineMath math="12\text{ kg}" />.
