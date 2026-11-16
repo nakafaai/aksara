@@ -59,7 +59,7 @@ function atomShellLab<E>(rich: RichSlot<E>) {
   return figure(
     Schema.Struct({
       defaultSampleId: Schema.optionalKey(Schema.Literals(SHELL_SAMPLES)),
-      description: Schema.optionalKey(rich),
+      description: rich,
       labels: Schema.Struct({
         atomicNumber: TextSchema,
         chooseAtom: TextSchema,
@@ -76,7 +76,7 @@ function atomShellLab<E>(rich: RichSlot<E>) {
           })
         ),
       }),
-      title: Schema.optionalKey(rich),
+      title: rich,
     }),
     answerAt(["labels", "samples", "*", "note"])
   );

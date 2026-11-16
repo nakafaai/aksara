@@ -21,7 +21,7 @@ function parabolicLab<E>(rich: RichSlot<E>) {
     Schema.Struct({
       decimalSeparator: Schema.optionalKey(DecimalSeparatorSchema),
       defaultLaunchId: Schema.optionalKey(Schema.Literals(LAUNCHES)),
-      description: Schema.optionalKey(rich),
+      description: rich,
       labels: Schema.Struct({
         chooseLaunch: TextSchema,
         factLabels: Schema.Struct({
@@ -32,7 +32,7 @@ function parabolicLab<E>(rich: RichSlot<E>) {
         }),
         viewLabel: TextSchema,
       }),
-      title: Schema.optionalKey(rich),
+      title: rich,
     })
   );
 }

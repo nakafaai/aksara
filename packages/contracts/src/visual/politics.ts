@@ -30,7 +30,7 @@ function axisChart<Labels extends Schema.Struct.Fields, E>(
 function nepotismStage<E>(rich: RichSlot<E>) {
   return figure(
     Schema.Struct({
-      description: Schema.optionalKey(rich),
+      description: rich,
       labels: Schema.Struct({
         delivery: rich,
         election: rich,

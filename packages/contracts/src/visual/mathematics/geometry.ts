@@ -7,7 +7,7 @@ import { figure } from "#contracts/visual/entry";
 function readingRoom<E>(rich: RichSlot<E>) {
   return figure(
     Schema.Struct({
-      description: Schema.optionalKey(rich),
+      description: rich,
       heightLabel: rich,
       widthLabel: rich,
     })

@@ -32,7 +32,7 @@ function biologyFields<Item extends Schema.Top, E>(
     defaultItemIndex: Schema.optionalKey(
       Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))
     ),
-    description: Schema.optionalKey(rich),
+    description: rich,
     labels: Schema.Struct({
       chooseMode: TextSchema,
       focusLabel: Schema.optionalKey(TextSchema),
@@ -40,7 +40,7 @@ function biologyFields<Item extends Schema.Top, E>(
       takeawayLabel: Schema.optionalKey(TextSchema),
       viewLabel: TextSchema,
     }),
-    title: Schema.optionalKey(rich),
+    title: rich,
   };
 }
 
