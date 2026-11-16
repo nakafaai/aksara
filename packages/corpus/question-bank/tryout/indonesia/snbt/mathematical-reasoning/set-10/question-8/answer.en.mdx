@@ -32,6 +32,21 @@ n &\ge \frac{4{,}800{,}000}{280{,}000}=17\tfrac{1}{7}
 
 The term has to be a whole number, so the smallest possible term is <InlineMath math="18" /> months.
 
+The chart below works out the instalment for terms of <InlineMath math="12" /> to <InlineMath math="20" /> months. **The <InlineMath math="17" />-month bar is still just over the limit line**, and the first bar below it is <InlineMath math="18" /> months.
+
+<Chart
+  title={<>Monthly instalment for terms of <InlineMath math="12" /> to <InlineMath math="20" /> months</>}
+  description={<>The instalments for <InlineMath math="12" /> to <InlineMath math="20" /> months are <InlineMath math="472{,}000" />, <InlineMath math="490{,}000" />, <InlineMath math="463{,}000" />, <InlineMath math="440{,}000" />, <InlineMath math="420{,}000" />, <InlineMath math="403{,}000" />, <InlineMath math="387{,}000" />, <InlineMath math="373{,}000" />, and <InlineMath math="360{,}000" /> rupiah. The flat line marks the limit of <InlineMath math="\text{Rp}400{,}000" />. The value axis starts at <InlineMath math="\text{Rp}300{,}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 12}`)}
+  series={[
+    { label: "Monthly instalment (rupiah)", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 1000 * Math.ceil((4800000 / (i + 12) + 4800000 * (i + 12 <= 12 ? 0.015 : 0.025)) / 1000)) },
+    { label: "Limit Rp400,000", mark: "line", values: Array.from({ length: 9 }, () => 400000) },
+  ]}
+  valueRange={{ min: 300000, max: 500000 }}
+  valueLabel="Instalment (rupiah)"
+/>
+
 # Checking around the boundary
 
 Test the <InlineMath math="17" />- and <InlineMath math="18" />-month terms directly.

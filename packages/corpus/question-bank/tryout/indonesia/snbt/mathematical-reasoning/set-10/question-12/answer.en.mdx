@@ -36,6 +36,17 @@ The volunteers needed at a station are the required cups divided by one voluntee
 
 Every station gets the same number of volunteers, so the number has to cover the hardest station. **The hardest station is station <InlineMath math="1" />**, because its time is the shortest, even though it has far fewer cups than station <InlineMath math="3" />.
 
+The chart below draws the volunteers each station needs. **The tallest bar is at station <InlineMath math="1" />**, because its filling time is the shortest, so that number has to be used at every station.
+
+<Chart
+  title={<>Volunteers each station needs so that <InlineMath math="40\%" /> of its planned cups are filled</>}
+  description={<>Stations <InlineMath math="1" /> to <InlineMath math="5" /> need <InlineMath math="7" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="5" />, and <InlineMath math="4" /> volunteers.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[{ label: "Volunteers needed", mark: "bar", values: [[2, 1320], [6, 1298], [10, 2508], [14, 2420], [18, 2310]].map((p) => Math.ceil((0.4 * p[1]) / (4 * (15 + 3 * p[0])))) }]}
+  valueLabel="Volunteers"
+/>
+
 # Checking at the first station
 
 With <InlineMath math="7" /> volunteers, station <InlineMath math="1" /> fills <InlineMath math="7\cdot84=588\ge528" /> cups. With <InlineMath math="6" /> volunteers, it fills only <InlineMath math="6\cdot84=504<528" /> cups, so **six volunteers aren't enough**. The other stations need at most <InlineMath math="6" /> volunteers, so <InlineMath math="7" /> volunteers are enough there too.

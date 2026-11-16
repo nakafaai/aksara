@@ -17,6 +17,22 @@ Target minggu kelima adalah <InlineMath math="1{.}200\text{ ppm}" />, jadi larut
 \text{stok A yang ditambahkan} &= 1{.}150-420=730\text{ ml}
 \end{aligned}" />
 
+Grafik berikut menghitung konsentrasi tandon penuh untuk beberapa banyak stok A tambahan. **Batang <InlineMath math="729\text{ ml}" /> masih sedikit di bawah pita sesuai**, dan batang <InlineMath math="730\text{ ml}" /> tepat menyentuh batas bawahnya.
+
+<Chart
+  title={<>Konsentrasi tandon <InlineMath math="200" /> liter menurut stok A yang ditambahkan</>}
+  description={<>Dengan tambahan <InlineMath math="600" />, <InlineMath math="700" />, <InlineMath math="729" />, <InlineMath math="730" />, dan <InlineMath math="800\text{ ml}" /> stok A, konsentrasinya <InlineMath math="1{.}020" />, <InlineMath math="1{.}120" />, <InlineMath math="1{.}149" />, <InlineMath math="1{.}150" />, dan <InlineMath math="1{.}220\text{ ppm}" />. Dua garis datar menandai batas <InlineMath math="1{.}150" /> dan <InlineMath math="1{.}250\text{ ppm}" />. Sumbu nilai dimulai dari <InlineMath math="950" />.</>}
+  bars="apart"
+  categories={["600", "700", "729", "730", "800"]}
+  series={[
+    { label: "Konsentrasi (ppm)", mark: "bar", values: [600, 700, 729, 730, 800].map((a) => ((420 + a) / 200) * 200) },
+    { label: "Batas bawah 1.150", mark: "line", values: [1150, 1150, 1150, 1150, 1150] },
+    { label: "Batas atas 1.250", mark: "line", values: [1250, 1250, 1250, 1250, 1250] },
+  ]}
+  valueRange={{ min: 950, max: 1300 }}
+  valueLabel="Konsentrasi (ppm)"
+/>
+
 # Pemeriksaan
 
 Setelah ditambah, tandon berisi <InlineMath math="420+730=1{.}150\text{ ml}" /> stok A dalam <InlineMath math="200" /> liter, jadi konsentrasinya <InlineMath math="\tfrac{1{.}150}{200}\cdot200=1{.}150\text{ ppm}" />. Nilai ini **tepat di batas bawah dan masih sesuai**. Dengan <InlineMath math="729\text{ ml}" /> saja, konsentrasinya <InlineMath math="1{.}149\text{ ppm}" />, sudah di luar rentang.

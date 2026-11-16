@@ -32,6 +32,21 @@ n &\ge \frac{4{.}800{.}000}{280{.}000}=17\tfrac{1}{7}
 
 Tenor harus bilangan bulat, jadi tenor terkecil yang mungkin adalah <InlineMath math="18" /> bulan.
 
+Grafik berikut menghitung cicilan untuk tenor <InlineMath math="12" /> sampai <InlineMath math="20" /> bulan. **Batang tenor <InlineMath math="17" /> masih sedikit di atas garis batas**, dan batang pertama yang turun di bawahnya adalah tenor <InlineMath math="18" />.
+
+<Chart
+  title={<>Cicilan per bulan untuk tenor <InlineMath math="12" /> sampai <InlineMath math="20" /> bulan</>}
+  description={<>Cicilan tenor <InlineMath math="12" /> sampai <InlineMath math="20" /> bulan berturut-turut <InlineMath math="472{.}000" />, <InlineMath math="490{.}000" />, <InlineMath math="463{.}000" />, <InlineMath math="440{.}000" />, <InlineMath math="420{.}000" />, <InlineMath math="403{.}000" />, <InlineMath math="387{.}000" />, <InlineMath math="373{.}000" />, dan <InlineMath math="360{.}000" /> rupiah. Garis datar menandai batas <InlineMath math="\text{Rp}400{.}000" />. Sumbu nilai dimulai dari <InlineMath math="\text{Rp}300{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 12}`)}
+  series={[
+    { label: "Cicilan per bulan (rupiah)", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 1000 * Math.ceil((4800000 / (i + 12) + 4800000 * (i + 12 <= 12 ? 0.015 : 0.025)) / 1000)) },
+    { label: "Batas Rp400.000", mark: "line", values: Array.from({ length: 9 }, () => 400000) },
+  ]}
+  valueRange={{ min: 300000, max: 500000 }}
+  valueLabel="Cicilan (rupiah)"
+/>
+
 # Pemeriksaan di sekitar batas
 
 Cek tenor <InlineMath math="17" /> dan <InlineMath math="18" /> bulan secara langsung.

@@ -36,6 +36,22 @@ Sekarang tunjukkan bahwa <InlineMath math="4" /> perjalanan memang cukup. Dua tr
 
 Setiap baris memenuhi kedua batas, dan **semua kendaraan terangkut tepat satu kali**: tiga truk, dua bus, lima mobil, dan satu pikap.
 
+Grafik berikut menggambar muatan keempat perjalanan itu. **Tidak ada batang yang melewati garis batasnya**, dan perjalanan pertama tepat menyentuh batas massa.
+
+<Chart
+  title={<>Panjang lajur dan massa setiap perjalanan pada rencana empat perjalanan</>}
+  description={<>Perjalanan pertama sampai keempat memakai <InlineMath math="20" />, <InlineMath math="26" />, <InlineMath math="27" />, dan <InlineMath math="12\text{ m}" />, dengan massa <InlineMath math="30" />, <InlineMath math="22" />, <InlineMath math="22" />, dan <InlineMath math="16\text{ ton}" />. Dua garis datar menandai batas <InlineMath math="40\text{ m}" /> dan <InlineMath math="30\text{ ton}" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Panjang lajur (m)", mark: "bar", values: [20, 10 + 2 * 5 + 6, 12 + 3 * 5, 12] },
+    { label: "Massa (ton)", mark: "bar", values: [30, 15 + 2 * 2 + 3, 16 + 3 * 2, 16] },
+    { label: "Batas panjang 40 m", mark: "line", values: [40, 40, 40, 40] },
+    { label: "Batas massa 30 ton", mark: "line", values: [30, 30, 30, 30] },
+  ]}
+  valueLabel="Nilai"
+/>
+
 # Jawaban yang sering muncul
 
 Kedua jawaban ini **salah membaca syarat pemuatan**.

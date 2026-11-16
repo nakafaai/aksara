@@ -41,4 +41,18 @@ Diese Werte kommen von <InlineMath math="264" />, <InlineMath math="259{,}6" />,
 
 Station <InlineMath math="2" /> bekommt <InlineMath math="13" /> Kartons, also nur <InlineMath math="1{.}300" /> Becher. Das Runden lässt hier nur <InlineMath math="1{.}300-1{.}298=2" /> Becher übrig, also ist **die Reserve aus dem Runden an Station <InlineMath math="2" /> fast null**. Wegen <InlineMath math="1{.}310>1{.}300" /> ist die vierte Vermutung falsch.
 
+Das Diagramm prüft die zweite und vierte Vermutung mit den tatsächlich vorhandenen Bechern. **An Station <InlineMath math="3" /> decken die Kartons den neuen Bedarf noch, an Station <InlineMath math="2" /> nicht**, weil das Aufrunden dort nur zwei Becher übrig lässt.
+
+<Chart
+  title={<>Becher in den Kartons und neuer Becherbedarf an Station <InlineMath math="2" /> und <InlineMath math="3" /></>}
+  description={<>Station <InlineMath math="2" /> bekommt <InlineMath math="1{.}300" /> Becher, ihre Vermutung braucht <InlineMath math="1{.}310" />. Station <InlineMath math="3" /> bekommt <InlineMath math="2{.}600" /> Becher, ihre Vermutung braucht <InlineMath math="2{.}580" />.</>}
+  categories={["Station 2", "Station 3"]}
+  bars="apart"
+  series={[
+    { label: "Becher in den Kartons", mark: "bar", values: [1300, 2600] },
+    { label: "Bedarf in der Vermutung", mark: "bar", values: [1310, 2 * 1290] },
+  ]}
+  valueLabel="Becher"
+/>
+
 Die erste Vermutung ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.

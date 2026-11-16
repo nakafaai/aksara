@@ -33,6 +33,21 @@ k &\ge 46{,}42\ldots
 
 Pakete müssen ganz sein, also **mindestens** <InlineMath math="47" /> Pakete, das sind <InlineMath math="47\cdot10=470" /> Portionen.
 
+Das Diagramm berechnet den wöchentlichen Reingewinn für Portionen in Zehnerschritten. **Der Balken für <InlineMath math="460" /> Portionen liegt noch unter der Ziellinie**, und der erste Balken darüber gehört zu <InlineMath math="470" /> Portionen.
+
+<Chart
+  title={<>Wöchentlicher Reingewinn nach verkauften Portionen</>}
+  description={<>Mit <InlineMath math="440" />, <InlineMath math="450" />, <InlineMath math="460" />, <InlineMath math="470" /> und <InlineMath math="480" /> Portionen beträgt der Reingewinn <InlineMath math="\text{Rp}532{.}000" />, <InlineMath math="\text{Rp}560{.}000" />, <InlineMath math="\text{Rp}588{.}000" />, <InlineMath math="\text{Rp}616{.}000" /> und <InlineMath math="\text{Rp}644{.}000" />. Die waagerechte Linie markiert das Ziel von <InlineMath math="\text{Rp}600{.}000" />. Die Werteachse beginnt bei <InlineMath math="\text{Rp}500{.}000" />.</>}
+  bars="apart"
+  categories={["440", "450", "460", "470", "480"]}
+  series={[
+    { label: "Wöchentlicher Reingewinn (Rupiah)", mark: "bar", values: [44, 45, 46, 47, 48].map((k) => 28000 * k - 700000) },
+    { label: "Ziel Rp600.000", mark: "line", values: [600000, 600000, 600000, 600000, 600000] },
+  ]}
+  valueRange={{ min: 500000, max: 660000 }}
+  valueLabel="Reingewinn (Rupiah)"
+/>
+
 # Kontrolle
 
 Mit <InlineMath math="46" /> Paketen beträgt der Reingewinn <InlineMath math="46\cdot28{.}000-700{.}000=588{.}000" />, das reicht noch nicht. Mit <InlineMath math="47" /> Paketen sind es <InlineMath math="616{.}000\ge600{.}000" />. Also **wird das siebenundvierzigste Paket wirklich gebraucht**.

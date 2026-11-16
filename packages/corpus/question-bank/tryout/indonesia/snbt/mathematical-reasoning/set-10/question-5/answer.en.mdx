@@ -32,6 +32,20 @@ Rina pays **the down payment and the admin fee at the start**, then <InlineMath 
 \text{difference} &= 6{,}854{,}000-5{,}760{,}000=1{,}094{,}000
 \end{aligned}" />
 
+The chart below separates the payments of both ways. **The credit buyer pays less at the start, but nine instalments make the total much bigger**.
+
+<Chart
+  title={<>Money paid for a cash purchase and a <InlineMath math="9" />-month credit purchase</>}
+  description={<>A cash buyer pays <InlineMath math="\text{Rp}5{,}760{,}000" /> at once. A credit buyer pays <InlineMath math="\text{Rp}1{,}400{,}000" /> at the start for the down payment and admin fee, then <InlineMath math="9" /> instalments adding up to <InlineMath math="\text{Rp}5{,}454{,}000" />, for a total of <InlineMath math="\text{Rp}6{,}854{,}000" />.</>}
+  categories={["Cash", "Credit 9 months"]}
+  bars="apart"
+  series={[
+    { label: "Paid at the start (rupiah)", mark: "bar", values: [6000000 - 0.04 * 6000000, 1200000 + 200000] },
+    { label: "Sum of instalments (rupiah)", mark: "bar", values: [0, 9 * 606000] },
+  ]}
+  valueLabel="Money (rupiah)"
+/>
+
 # Checking the rounding
 
 Each month Rina pays <InlineMath math="606{,}000-605{,}333.33\ldots=666.66\ldots" /> more than the exact value. Over <InlineMath math="9" /> months, **the extra from rounding** is <InlineMath math="9\cdot666.66\ldots=6{,}000" />. That fits, because <InlineMath math="4{,}800{,}000+648{,}000+6{,}000=5{,}454{,}000" />.
