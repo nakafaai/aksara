@@ -20,6 +20,41 @@ g(t)&=(t-2)^2-6 \\
 g(2)&=-6,\quad g(-1)=3,\quad g(8)=30
 \end{aligned}" />
 
+Zeichne <InlineMath math="g" /> nur über dem Intervall, das <InlineMath math="f" /> wirklich liefert. **Der Scheitel von <InlineMath math="g" /> bei <InlineMath math="t=2" /> liegt in <InlineMath math="-1\le t\le8" />**, also ist der kleinste Wert <InlineMath math="-6" />, und der größte liegt am weiter entfernten Ende <InlineMath math="t=8" />.
+
+<MathVisual
+  title={<>Funktion <InlineMath math="g" /> auf der Wertemenge von <InlineMath math="f" /></>}
+  description={<>Die waagerechte Achse ist <InlineMath math="t=f(x)" />, die senkrechte Achse <InlineMath math="g(t)" />. Die Strecke unter dem Graphen markiert das Intervall <InlineMath math="-1\le t\le8" />, die Wertemenge von <InlineMath math="f" />. Darüber fällt die Parabel <InlineMath math="g(t)=(t-2)^2-6" /> zum Scheitel <InlineMath math="(2,\ -6)" /> und steigt bis <InlineMath math="(8,\ 30)" />. Bei <InlineMath math="t=-1" /> ist der Wert nur <InlineMath math="3" />.</>}
+  labels={{
+    used: <InlineMath math="g(t)=(t-2)^2-6" />,
+    low: <InlineMath math="(2,\ -6)" />,
+    high: <InlineMath math="(8,\ 30)" />,
+    window: <InlineMath math="-1\le t\le8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 10 },
+      y: { min: -9, max: 33 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-rest", kind: "function", appearance: "reference", formula: "(x - 2)^2 - 6", domain: { min: -2.5, max: -1 } },
+      { id: "used", kind: "function", appearance: "primary", formula: "(x - 2)^2 - 6", domain: { min: -1, max: 8 } },
+      { id: "window", kind: "segment", appearance: "secondary", from: { x: -1, y: -8 }, to: { x: 8, y: -8 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 2, y: -6 } },
+      { id: "high", kind: "point", appearance: "answer", at: { x: 8, y: 30 } },
+    ],
+    labels: [
+      { key: "used", objectId: "used", at: { x: 6.5, y: 14.25 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 2, y: -6 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 8, y: 30 }, placement: "left" },
+      { key: "window", objectId: "window", at: { x: 3.5, y: -8 }, placement: "above" },
+    ],
+  }}
+/>
+
 Der Scheitel von <InlineMath math="g" /> bei <InlineMath math="t=2" /> **liegt in <InlineMath math="-1\le t\le8" />**, also ist der kleinste Wert <InlineMath math="-6" />. Der Wert <InlineMath math="t=2" /> wird auch wirklich erreicht, denn <InlineMath math="f(x)=2" /> liefert <InlineMath math="x=2\pm\sqrt3" />, und beide Stellen liegen zwischen <InlineMath math="0" /> und <InlineMath math="5" />. Der größte Wert liegt am Rand, der weiter von <InlineMath math="t=2" /> entfernt ist, also bei <InlineMath math="t=8" /> mit <InlineMath math="g(8)=30" />.
 
 Die Wertemenge von <InlineMath math="g\circ f" /> ist also <InlineMath math="-6\le y\le30" />.

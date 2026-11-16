@@ -30,6 +30,50 @@ TM&=\frac{4\sqrt{3}}{2}\cdot\sqrt{3}=6\text{ cm} \\
 V&=\tfrac{1}{3}\cdot s^{2}\cdot TM=\tfrac{1}{3}\cdot48\cdot6=96\text{ cm}^3
 \end{aligned}" />
 
+Lukis segi tiga <InlineMath math="TMN" /> yang menghubungkan tinggi piramid dengan tinggi sisi tegak. **Sudut <InlineMath math="60^\circ" /> di <InlineMath math="N" /> menjadikan <InlineMath math="TN" /> dua kali <InlineMath math="MN" /> dan <InlineMath math="TM" /> sama dengan <InlineMath math="\sqrt3" /> kali <InlineMath math="MN" />**. Dengan <InlineMath math="s=4\sqrt3" />, ketiga-tiga panjang itu ialah <InlineMath math="2\sqrt3" />, <InlineMath math="4\sqrt3" />, dan <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Segi tiga <InlineMath math="TMN" /> di dalam piramid</>}
+  description={<>Segi tiga bersudut tegak di <InlineMath math="M" />, pusat tapak. Sisi mendatar <InlineMath math="MN=2\sqrt3" /> ialah separuh tepi tapak, sisi tegak <InlineMath math="TM=6" /> ialah tinggi piramid, dan hipotenus <InlineMath math="TN=4\sqrt3" /> ialah tinggi sisi tegak. Sudut di <InlineMath math="N" /> ialah <InlineMath math="60^\circ" />.</>}
+  labels={{
+    t: <InlineMath math="T" />,
+    m: <InlineMath math="M" />,
+    n: <InlineMath math="N" />,
+    height: <InlineMath math="TM=6" />,
+    half: <InlineMath math="MN=2\sqrt3" />,
+    slant: <InlineMath math="TN=4\sqrt3" />,
+    angle: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 2 * Math.sqrt(3), y: 0 }, { x: 0, y: 6 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "half", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(3), y: 0 } },
+      { id: "slant", kind: "segment", appearance: "secondary", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 0, y: 6 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 2 * Math.sqrt(3), y: 0 }, radius: 0.8, startDegrees: 120, sweepDegrees: 60 },
+      { id: "t", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+      { id: "m", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "n", kind: "point", appearance: "primary", at: { x: 2 * Math.sqrt(3), y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "m", objectId: "m", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "n", objectId: "n", at: { x: 2 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      { key: "height", objectId: "height", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "slant", objectId: "slant", at: { x: Math.sqrt(3), y: 3 }, placement: "above-right" },
+      { key: "angle", objectId: "angle", at: { x: 2 * Math.sqrt(3) + 0.8 * Math.cos(5 * Math.PI / 6), y: 0.8 * Math.sin(5 * Math.PI / 6) }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Semak dengan teorem Pythagoras pada segi tiga <InlineMath math="TMN" />: <InlineMath math="TM^{2}+MN^{2}=36+12=48=TN^{2}" />. **Ketiga-tiga panjang itu konsisten**.
 
 # Kenapa pilihan lain salah

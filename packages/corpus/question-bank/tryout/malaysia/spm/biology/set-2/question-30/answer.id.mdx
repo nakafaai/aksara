@@ -1,0 +1,23 @@
+# Setiap peristiwa menyebabkan peristiwa berikutnya
+
+Ini adalah eutrofikasi. Susun rantainya dengan bertanya apa yang dibutuhkan setiap peristiwa sebelum bisa terjadi.
+
+<Mermaid
+  title={<>Dari Pupuk sampai Ikan Mati</>}
+  description={<>Pupuk terbawa masuk, alga meledak, alga mati, bakteri berkembang biak, BOD naik, dan ikan mati.</>}
+  chart={"flowchart LR\n  Q[Q: pupuk terbawa masuk] --> S[S: alga meledak]\n  S --> P[P: alga mati]\n  P --> R[R: bakteri berkembang biak pada alga mati]\n  R --> U[U: BOD naik]\n  U --> T[T: ikan mati]"}
+/>
+
+- Nutrien harus datang lebih dulu (Q), karena nutrien menyuburkan alga, yang lalu meledak (S).
+- Ledakan alga menghalangi cahaya di bawah permukaan, jadi alga mati dalam jumlah besar (P).
+- Bakteri baru bisa berkembang biak (R) setelah ada **alga mati untuk diuraikan**, jadi R terjadi setelah P.
+- Banyak bakteri yang berespirasi menghabiskan oksigen terlarut, dan itulah arti BOD yang tinggi (U).
+- Dengan oksigen yang tersisa terlalu sedikit, ikan mati (T).
+
+Jadi, urutannya adalah Q, S, P, R, U, T.
+
+# Kenapa pilihan lain salah
+
+- Q, S, R, P menaruh bakteri sebelum alga mati, padahal **bakteri menguraikan alga mati**, jadi tidak bisa berkembang biak lebih dulu.
+- Q, R, S, P membuat bakteri berkembang biak tepat setelah pupuk datang, sebelum ada ledakan alga yang mati.
+- Q, S, P, U, R menaikkan BOD sebelum bakteri berkembang biak, padahal respirasi bakterilah yang menaikkannya.

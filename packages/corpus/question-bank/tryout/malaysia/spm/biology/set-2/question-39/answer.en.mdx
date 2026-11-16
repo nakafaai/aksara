@@ -1,0 +1,27 @@
+# Two net rates, one after the other
+
+What matters is the **net loss**, transpiration minus uptake, and it changes when the wind stops. The plant can spare <InlineMath math="300-270=30\text{ g}" /> before it wilts.
+
+<BlockMath math="\begin{aligned}
+1\text{ to }2\text{ pm}&: 35-20=15\text{ g per hour},\quad 30-15=15\text{ g left to lose}\\
+\text{from }2\text{ pm}&: 25-20=5\text{ g per hour},\quad \frac{15}{5}=3\text{ hours}
+\end{aligned}" />
+
+<Chart
+  title={<>Water in the Plant Through the Afternoon</>}
+  categories={["1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm"]}
+  series={[
+    { label: "Water in the plant", mark: "line", values: [300, 285, 280, 275, 270] },
+    { label: "Wilting level", mark: "line", values: [270, 270, 270, 270, 270] },
+  ]}
+  valueLabel="Water (g)"
+  description={<>The water falls <InlineMath math="15\text{ g}" /> in the windy first hour to <InlineMath math="285\text{ g}" />, then only <InlineMath math="5\text{ g}" /> an hour to <InlineMath math="280" />, <InlineMath math="275" /> and <InlineMath math="270\text{ g}" />, reaching the wilting level of <InlineMath math="270\text{ g}" /> at 5:00 pm.</>}
+/>
+
+So the plant starts to wilt <InlineMath math="3" /> hours after 2:00 pm, at 5:00 pm.
+
+# Why the other options are wrong
+
+- About 1:50 pm uses transpiration alone and forgets the water the roots take in.
+- 3:00 pm keeps the windy rate of <InlineMath math="15\text{ g}" /> per hour all afternoon, but **the loss slows when the wind stops**.
+- "Never" ignores that the plant still loses <InlineMath math="5\text{ g}" /> more than it takes in every hour.

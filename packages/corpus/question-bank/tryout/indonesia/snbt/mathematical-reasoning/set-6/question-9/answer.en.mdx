@@ -20,6 +20,18 @@ The last bus A that still makes it is the one leaving at 21:36.
 
 Run Rina's trip from the start. Bus A leaves at 21:36 and reaches Halte Pasar at 22:01. Rina walks over and is ready by 22:05, boards the 22:22 bus B, and reaches Halte Kampus at 22:37. That's **not later than 22:40**. Her wait is <InlineMath math="21\text{ minutes}" />, more than <InlineMath math="15\text{ minutes}" />, so she doesn't get a free transfer. The question only asks about time, so the fare doesn't change the answer.
 
+The diagram below lays out Rina's trip from start to finish. **Each step adds time by its own rule**, and the end still lands before the 22:40 deadline.
+
+<Mermaid
+  title={<>Rina's trip on the 21:36 bus A and the 22:22 bus B</>}
+  description={<>Bus A leaves at 21:36 and reaches Halte Pasar at 22:01. After walking for <InlineMath math="4" /> minutes, Rina is ready at 22:05, boards bus B at 22:22, and reaches Halte Kampus at 22:37, three minutes before the 22:40 deadline.</>}
+  chart={`flowchart LR
+    A["Bus A leaves 21:36"] -->|"25 minutes"| B["Reaches Halte Pasar 22:01"]
+    B -->|"walk 4 minutes"| C["Ready to board 22:05"]
+    C -->|"wait"| D["Bus B leaves 22:22"]
+    D -->|"15 minutes"| E["Reaches Halte Kampus 22:37"]`}
+/>
+
 # Why the other options fail
 
 Each wrong option **uses a wrong rule or skips one travel time**.

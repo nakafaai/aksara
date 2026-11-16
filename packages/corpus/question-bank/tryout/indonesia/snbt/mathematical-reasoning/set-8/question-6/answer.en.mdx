@@ -11,6 +11,21 @@ The total price of all tickets is:
 
 The average is <InlineMath math="\tfrac{173{,}000{,}000}{1{,}000}=173{,}000" /> rupiah, which is more than <InlineMath math="\text{Rp}170{,}000" />. The first statement is true. Watch out for the plain average of the three prices, <InlineMath math="\tfrac{120{,}000+150{,}000+200{,}000}{3}\approx156{,}667" />. That value is wrong because **the normal tier holds the most tickets**, so its price must count for more.
 
+The chart below compares the weighted average with the plain average of the three prices. **Only the weighted average passes the <InlineMath math="\text{Rp}170{,}000" /> line**, because the normal tier holds the most tickets.
+
+<Chart
+  title={<>Average ticket price with and without weighting by number of tickets</>}
+  description={<>The weighted average of all <InlineMath math="1{,}000" /> tickets is <InlineMath math="\text{Rp}173{,}000" />. The plain average of the three prices is about <InlineMath math="\text{Rp}156{,}667" />. The flat line marks <InlineMath math="\text{Rp}170{,}000" />. The value axis starts at <InlineMath math="\text{Rp}140{,}000" />.</>}
+  categories={["Weighted average", "Average of three prices"]}
+  bars="apart"
+  series={[
+    { label: "Average (rupiah)", mark: "bar", values: [(150 * 120000 + 300 * 150000 + 550 * 200000) / 1000, (120000 + 150000 + 200000) / 3] },
+    { label: "Rp170,000", mark: "line", values: [170000, 170000] },
+  ]}
+  valueRange={{ min: 140000, max: 180000 }}
+  valueLabel="Average price (rupiah)"
+/>
+
 # The average of the early tickets
 
 For the first <InlineMath math="450" /> tickets, the total price is <InlineMath math="18{,}000{,}000+45{,}000{,}000=63{,}000{,}000" /> rupiah, so:

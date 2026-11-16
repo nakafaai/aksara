@@ -20,6 +20,20 @@ Group the amounts by their remainder when divided by <InlineMath math="7" />. Ad
 
 All seven remainders show up exactly once, so the table gives the smallest amount in every group. The largest of these smallest amounts is <InlineMath math="54" />, in the group with remainder <InlineMath math="5" />. The amount <InlineMath math="54-7=47" /> sits in the same group but is smaller, so it can't be made. In every other group the smallest amount is at most <InlineMath math="45" />, so every amount above <InlineMath math="47" /> in those groups can be made. In the remainder <InlineMath math="5" /> group, the next amount after <InlineMath math="47" /> is <InlineMath math="54" />, which can be made. So without the rule, the largest amount you can't make is <InlineMath math="47" />.
 
+The chart below shows the smallest amount you can make in each remainder group. **The tallest bar is in the remainder <InlineMath math="5" /> group**, at <InlineMath math="54" />, so <InlineMath math="54-7=47" /> is the largest amount you can't make without the rule.
+
+<Chart
+  title={<>Smallest amount you can make by remainder on division by <InlineMath math="7" /></>}
+  description={<>For remainders <InlineMath math="0" /> to <InlineMath math="6" />, the smallest amounts you can make from <InlineMath math="7" /> and <InlineMath math="9" /> stamps are <InlineMath math="0, 36, 9, 45, 18, 54, 27" />, in thousands of rupiah. The largest of these is <InlineMath math="54" />, in the remainder <InlineMath math="5" /> group.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5", "6"]}
+  series={[
+    { label: "Smallest amount in its group", mark: "bar", values: [0, 36, 9, 45, 18, null, 27] },
+    { label: "Largest smallest amount", mark: "bar", values: [null, null, null, null, null, 54, null] },
+  ]}
+  valueLabel="Amount (thousand rupiah)"
+/>
+
 # Putting the rule back
 
 A charge <InlineMath math="M" /> can be paid if and only if <InlineMath math="M-9" /> can be made. The largest charge that fails comes from setting <InlineMath math="M-9" /> equal to the largest amount you can't make.

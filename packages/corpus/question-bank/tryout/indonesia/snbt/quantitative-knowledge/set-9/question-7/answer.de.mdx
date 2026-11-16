@@ -18,6 +18,39 @@ Ein Mittelpunktswinkel ist so groß wie der Bogen, dem er gegenüberliegt, also 
 
 <BlockMath math="\angle OBC=\frac{180^\circ-80^\circ}{2}=50^\circ" />
 
+Der Kreis zeigt, wie die Bögen zusammenpassen. Die Bögen <InlineMath math="AB" /> und <InlineMath math="AC" /> messen je <InlineMath math="140^\circ" />, also **bleibt für den Bogen <InlineMath math="BC" /> unten nur <InlineMath math="80^\circ" />**, und das Dreieck <InlineMath math="OBC" /> ist gleichschenklig mit Spitzenwinkel <InlineMath math="80^\circ" />.
+
+<MathVisual
+  title={<>Die Tangente in <InlineMath math="A" /> und das Dreieck <InlineMath math="OBC" /></>}
+  description={<>Die Gerade <InlineMath math="\ell" /> berührt den Kreis in <InlineMath math="A" />, dem höchsten Punkt. Die Sehnen <InlineMath math="AB" /> und <InlineMath math="AC" /> sind gleich lang und spiegeln sich an der senkrechten Geraden durch <InlineMath math="O" />. Der Bogen <InlineMath math="BC" /> ohne <InlineMath math="A" /> misst <InlineMath math="80^\circ" />, also <InlineMath math="\angle BOC=80^\circ" /> und <InlineMath math="\angle OBC=50^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    o: <InlineMath math="O" />,
+    tangent: <InlineMath math="\ell" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -6, max: 6.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "tangent", kind: "line", appearance: "construction", through: [{ x: 0, y: 5 }, { x: 1, y: 5 }] },
+      { id: "chord-ab", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
+      { id: "chord-ac", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
+      { id: "obc", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "chord-ab", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "obc", at: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-right" },
+      { key: "c", objectId: "obc", at: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-left" },
+      { key: "o", objectId: "obc", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: 6, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Probe auf einem zweiten Weg
 
 Der Umfangswinkel <InlineMath math="BAC" /> liegt dem Bogen <InlineMath math="BC" /> gegenüber, ist also <InlineMath math="40^\circ" /> groß. Das Dreieck <InlineMath math="ABC" /> ist gleichschenklig mit <InlineMath math="AB=AC" />, also gilt <InlineMath math="\angle ABC=\frac{180^\circ-40^\circ}{2}=70^\circ" />. Im Dreieck <InlineMath math="OAB" /> ist der Mittelpunktswinkel <InlineMath math="AOB" /> gleich <InlineMath math="140^\circ" />, also <InlineMath math="\angle OBA=\frac{180^\circ-140^\circ}{2}=20^\circ" />. Alle drei Winkel des Dreiecks <InlineMath math="ABC" /> sind spitz, also **liegt <InlineMath math="O" /> in seinem Inneren**, und der Strahl <InlineMath math="BO" /> teilt den Winkel <InlineMath math="ABC" />.

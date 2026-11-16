@@ -16,6 +16,42 @@ Just before the <InlineMath math="5" />th dose, <InlineMath math="48" /> hours h
 &=85\text{ mg}
 \end{aligned}" />
 
+Draw the amount of drug in the body over <InlineMath math="48" /> hours. **Each dose lifts the graph by <InlineMath math="256\text{ mg}" />, then within <InlineMath math="12" /> hours the graph falls to a quarter**. Just before dose <InlineMath math="5" />, the graph is at <InlineMath math="85\text{ mg}" />.
+
+<MathVisual
+  title={<>Amount of drug in the body over four doses</>}
+  description={<>The horizontal axis is hours since the first dose, and the vertical axis is the amount of drug in mg. The graph jumps up by <InlineMath math="256" /> at hours <InlineMath math="0" />, <InlineMath math="12" />, <InlineMath math="24" />, and <InlineMath math="36" />, and between doses it halves every <InlineMath math="6" /> hours. The peak after the fourth dose is <InlineMath math="340" />, and at hour <InlineMath math="48" /> <InlineMath math="85" /> remains.</>}
+  labels={{
+    before: <>before dose <InlineMath math="5" />: <InlineMath math="85" /></>,
+    peak: <InlineMath math="340" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 51 },
+      y: { min: -12, max: 365 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "256 * 2^(-x/6)", domain: { min: 0, max: 12 } },
+      { id: "second", kind: "function", appearance: "primary", formula: "320 * 2^(-(x - 12)/6)", domain: { min: 12, max: 24 } },
+      { id: "third", kind: "function", appearance: "primary", formula: "336 * 2^(-(x - 24)/6)", domain: { min: 24, max: 36 } },
+      { id: "fourth", kind: "function", appearance: "primary", formula: "340 * 2^(-(x - 36)/6)", domain: { min: 36, max: 48 } },
+      { id: "dose-two", kind: "segment", appearance: "construction", from: { x: 12, y: 64 }, to: { x: 12, y: 320 } },
+      { id: "dose-three", kind: "segment", appearance: "construction", from: { x: 24, y: 80 }, to: { x: 24, y: 336 } },
+      { id: "dose-four", kind: "segment", appearance: "construction", from: { x: 36, y: 84 }, to: { x: 36, y: 340 } },
+      { id: "dose-one", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 256 } },
+      { id: "peak", kind: "point", appearance: "secondary", at: { x: 36, y: 340 } },
+      { id: "before", kind: "point", appearance: "answer", at: { x: 48, y: 85 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 48, y: 85 }, placement: "above" },
+      { key: "peak", objectId: "peak", at: { x: 36, y: 340 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 That's a geometric series with first term <InlineMath math="1" /> and ratio <InlineMath math="4" />. Check it another way: right after the <InlineMath math="4" />th dose the body holds <InlineMath math="256+64+16+4=340\text{ mg}" />, and <InlineMath math="12" /> hours later only <InlineMath math="\tfrac14\cdot340=85\text{ mg}" /> is left.
 
 So just before the <InlineMath math="5" />th dose, there are <InlineMath math="85\text{ mg}" /> of medicine in the body.

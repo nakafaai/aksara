@@ -15,6 +15,17 @@ n(A)&=56\cdot1\cdot2=112\\
 P(A)&=\frac{112}{512}=\frac{7}{32}
 \end{aligned}" />
 
+The chart below filters the outcomes step by step. Of the <InlineMath math="512" /> outcomes, <InlineMath math="336" /> have three different floors, and **exactly a third of those** put Ani on the lowest floor.
+
+<Chart
+  title={<>Filtering the floor choices</>}
+  description={<>All ordered outcomes number <InlineMath math="8^3=512" />. Outcomes with three different floors number <InlineMath math="8\cdot7\cdot6=336" />. Of those, Ani has the lowest floor in <InlineMath math="112" />, so the probability is <InlineMath math="\tfrac{112}{512}=\tfrac{7}{32}" />.</>}
+  categories={["All outcomes", "Three different floors", "Ani gets off first"]}
+  bars="apart"
+  series={[{ label: "Number of outcomes", mark: "bar", values: [8 ** 3, 8 * 7 * 6, (8 * 7 * 6) / 3] }]}
+  valueLabel="Number of outcomes"
+/>
+
 # Checking another way
 
 The probability that all three floors differ is <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Once the three floors differ, **each person is equally likely** to have the lowest one, so the chance that it's Ani is <InlineMath math="\frac{1}{3}" />.

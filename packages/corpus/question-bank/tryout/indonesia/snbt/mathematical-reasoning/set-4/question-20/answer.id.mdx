@@ -12,6 +12,20 @@ Sisa setiap gulung <InlineMath math="232\text{ cm}" />, lebih pendek daripada sa
 
 Dua dinding yang sama lebar masing-masing mendapat <InlineMath math="12:2=6" /> lembar. Setiap dinding dihitung sendiri, jadi dinding selebar <InlineMath math="w\text{ cm}" /> memerlukan <InlineMath math="w:50" /> lembar yang dibulatkan ke atas. Enam lembar menutup paling lebar <InlineMath math="6\cdot50=300\text{ cm}" />, dan **dinding selebar <InlineMath math="301\text{ cm}" /> sudah memerlukan lembar ketujuh**.
 
+Grafik berikut menghitung lembar yang diperlukan satu dinding untuk berbagai lebar. **Batangnya tetap di garis <InlineMath math="6" /> lembar sampai lebar <InlineMath math="300\text{ cm}" />**, lalu melompat ke <InlineMath math="7" /> mulai <InlineMath math="310\text{ cm}" />.
+
+<Chart
+  title={<>Lembar yang diperlukan satu dinding menurut lebarnya</>}
+  description={<>Dinding selebar <InlineMath math="250\text{ cm}" /> memerlukan <InlineMath math="5" /> lembar, dinding selebar <InlineMath math="260" /> sampai <InlineMath math="300\text{ cm}" /> memerlukan <InlineMath math="6" /> lembar, dan dinding selebar <InlineMath math="310" /> sampai <InlineMath math="350\text{ cm}" /> memerlukan <InlineMath math="7" /> lembar. Garis datar menandai <InlineMath math="6" /> lembar yang tersedia untuk setiap dinding.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${250 + 10 * i}`)}
+  series={[
+    { label: "Lembar yang diperlukan per dinding", mark: "bar", values: Array.from({ length: 11 }, (_, i) => Math.ceil((250 + 10 * i) / 50)) },
+    { label: "Lembar tersedia per dinding", mark: "line", values: Array.from({ length: 11 }, () => 12 / 2) },
+  ]}
+  valueLabel="Banyak lembar"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain menganggap wallpaper dapat dipakai **lebih bebas daripada aturannya**.

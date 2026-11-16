@@ -29,6 +29,20 @@ If you take <InlineMath math="4k+s" /> loose bottles with a remainder <InlineMat
 20&=3(6)+2 \Rightarrow \text{taken home } 4(6)+2=26
 \end{aligned}" />
 
+The diagram below traces the bill back to the number of bottles. **Both branches are valid, so the answer is two numbers**, one without the discount and one with it.
+
+<Mermaid
+  title={<>From a bill of <InlineMath math="\text{Rp}380{,}000" /> to the number of bottles</>}
+  description={<>A bill of <InlineMath math="380" /> thousand can come from a total of <InlineMath math="380" /> thousand without the discount or a total of <InlineMath math="400" /> thousand with the <InlineMath math="5\%" /> discount. Both totals can only be made of loose bottles, that is <InlineMath math="19" /> or <InlineMath math="20" /> paid bottles, so the bottles taken home are <InlineMath math="25" /> or <InlineMath math="26" />.</>}
+  chart={`flowchart TD
+  B["Bill (thousand rupiah): 380"] --> T1["No discount: T = 380"]
+  B --> T2["With discount: 0.95 T = 380 → T = 400"]
+  T1 --> P1["Bottles paid: 19 = 3 · 6 + 1"]
+  T2 --> P2["Bottles paid: 20 = 3 · 6 + 2"]
+  P1 --> H1["Taken home: 4 · 6 + 1 = 25"]
+  P2 --> H2["Taken home: 4 · 6 + 2 = 26"]`}
+/>
+
 Check: <InlineMath math="25" /> bottles make <InlineMath math="6" /> complete groups with <InlineMath math="1" /> left over, so you pay <InlineMath math="18+1=19" />. <InlineMath math="26" /> bottles make <InlineMath math="6" /> complete groups with <InlineMath math="2" /> left over, so you pay <InlineMath math="18+2=20" />. A <InlineMath math="27" />th bottle would push the payment to <InlineMath math="21" /> bottles.
 
 So the member could have taken home <InlineMath math="25" /> or <InlineMath math="26" /> bottles.

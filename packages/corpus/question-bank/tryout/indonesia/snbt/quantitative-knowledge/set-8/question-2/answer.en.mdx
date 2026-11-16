@@ -24,6 +24,33 @@ s=-3,\ p=-1&:\quad s^2-4p=9+4=13
 
 The first candidate gives a negative discriminant, so its <InlineMath math="x" /> and <InlineMath math="y" /> aren't real and it's thrown out. Only <InlineMath math="s=-3" /> and <InlineMath math="p=-1" /> remain.
 
+Graphing both equations shows that result. The circle <InlineMath math="x^2+y^2=11" /> and the curve <InlineMath math="xy-x-y=2" /> **meet at only two points**, and both points have coordinates with sum <InlineMath math="-3" /> and product <InlineMath math="-1" />. The pair <InlineMath math="s=5" />, <InlineMath math="p=7" /> doesn't show up as a crossing, because it isn't real.
+
+<MathVisual
+  title={<>The circle and the curve from the two equations</>}
+  description={<>The circle is centred at the origin with radius <InlineMath math="\sqrt{11}" />. The curve <InlineMath math="y=\tfrac{x+2}{x-1}" /> has two branches with asymptote <InlineMath math="x=1" />. They cross at <InlineMath math="\left(\tfrac{-3+\sqrt{13}}{2},\tfrac{-3-\sqrt{13}}{2}\right)" /> and at the point with those coordinates swapped.</>}
+  labels={{
+    circle: <InlineMath math="x^2+y^2=11" />,
+    curve: <InlineMath math="xy-x-y=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(11) },
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "(x + 2)/(x - 1)", domain: { min: -5, max: 5 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: (-3 + Math.sqrt(13)) / 2, y: (-3 - Math.sqrt(13)) / 2 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: (-3 - Math.sqrt(13)) / 2, y: (-3 + Math.sqrt(13)) / 2 } },
+    ],
+    labels: [
+      { key: "circle", objectId: "circle", at: { x: -Math.sqrt(11) * Math.SQRT1_2, y: -Math.sqrt(11) * Math.SQRT1_2 }, placement: "below-left" },
+      { key: "curve", objectId: "curve", at: { x: 4, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Computing the fourth powers
 
 Square <InlineMath math="x^2+y^2" />: you get <InlineMath math="x^4+2x^2y^2+y^4" />. So **subtract twice the square of the product** to get <InlineMath math="x^4+y^4" />.

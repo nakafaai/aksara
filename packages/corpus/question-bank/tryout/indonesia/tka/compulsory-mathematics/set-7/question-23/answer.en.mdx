@@ -7,6 +7,19 @@ The sewing total is <InlineMath math="15\cdot4.8=72" />, the design total is <In
 - **In every group, the lowest salary is at most the mean and the highest salary is at least the mean**. All the salaries can't sit below the mean, because then the mean itself would be smaller.
 - Removing a value below the mean pushes the mean up, removing a value above the mean pulls it down, and adding a value above the mean pushes it up.
 
+One salary arrangement that matches the table is enough to test the third statement. **Of the <InlineMath math="20" /> salaries, only <InlineMath math="6" /> are below <InlineMath math="5.4" /> million**, so the 10th and 11th values are both <InlineMath math="6" /> million and the median passes the mean.
+
+<Chart
+  title={<>One salary arrangement that matches the table</>}
+  description={<>Six sewing employees earn <InlineMath math="3" /> million and nine earn <InlineMath math="6" /> million, so the sewing total is <InlineMath math="72" /> million. All five design employees earn <InlineMath math="7.2" /> million. The overall average stays <InlineMath math="5.4" /> million, but the median is <InlineMath math="6" /> million.</>}
+  bars="apart"
+  categories={["3 million", "6 million", "7.2 million"]}
+  series={[
+    { label: "Number of employees", mark: "bar", values: [6, 9, 5] },
+  ]}
+  valueLabel="People"
+/>
+
 # Judging each statement
 
 1. **True**. Some design employee earns at least <InlineMath math="7.2" />, so the highest salary in the company is at least <InlineMath math="7.2" />. Some sewing employee earns at most <InlineMath math="4.8" />, so the lowest salary is at most <InlineMath math="4.8" />. The gap is at least <InlineMath math="7.2-4.8=2.4" />, whatever the salaries are.

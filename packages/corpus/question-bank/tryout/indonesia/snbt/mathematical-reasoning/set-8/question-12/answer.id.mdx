@@ -35,6 +35,20 @@ n&\ge35\tfrac{5}{9}
 
 Jadi <InlineMath math="n" /> dari <InlineMath math="36" /> sampai <InlineMath math="40" /> memenuhi. **Akar tiga puluh dari persamaan kuadrat tidak berlaku di sini**, karena untuk kurang dari <InlineMath math="40" /> pohon hasil per pohon tetap <InlineMath math="120\text{ kg}" />.
 
+Grafik berikut menggambar keuntungan untuk setiap banyak pohon genap dari <InlineMath math="30" /> sampai <InlineMath math="70" />. **Batang-batang di atas garis membentuk satu rentang tanpa celah**, dari sekitar <InlineMath math="36" /> sampai <InlineMath math="64" /> pohon, dan tidak mulai dari <InlineMath math="30" />.
+
+<Chart
+  title={<>Keuntungan satu musim menurut banyak pohon</>}
+  description={<>Sampai <InlineMath math="40" /> pohon, keuntungannya <InlineMath math="864{.}000" /> rupiah per pohon, sehingga baru mencapai garis mulai <InlineMath math="36" /> pohon. Di atas <InlineMath math="40" /> pohon, keuntungannya <InlineMath math="16{.}000n(94-n)" /> rupiah, yang tepat sama dengan garis pada <InlineMath math="64" /> pohon dan lebih kecil sesudahnya. Garis datar menandai <InlineMath math="\text{Rp}30{.}720{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${30 + 2 * i}`)}
+  series={[
+    { label: "Keuntungan (rupiah)", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (30 + 2 * i <= 40 ? 864000 * (30 + 2 * i) : 16000 * (30 + 2 * i) * (94 - (30 + 2 * i)))) },
+    { label: "Rp30.720.000", mark: "line", values: Array.from({ length: 21 }, () => 30720000) },
+  ]}
+  valueLabel="Keuntungan (rupiah)"
+/>
+
 # Menggabungkan kedua daerah
 
 Gabungan kedua daerah adalah <InlineMath math="n" /> dari <InlineMath math="36" /> sampai <InlineMath math="64" />, dengan <InlineMath math="40" /> **hanya dihitung sekali**. Banyaknya <InlineMath math="64-36+1=29" /> pilihan.

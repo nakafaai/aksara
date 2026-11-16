@@ -33,4 +33,18 @@ n \text{ odd}&: \ \tfrac{n+1}{2}\le14 \;\Longrightarrow\; n\le27 \;\Longrightarr
 
 For <InlineMath math="k=7" /> there are <InlineMath math="27" /> values, and the median is the <InlineMath math="14" />th value, which is still <InlineMath math="7" />. For <InlineMath math="k=8" /> there are <InlineMath math="28" /> values, and the median becomes <InlineMath math="\frac{7+8}{2}=7.5" />. So the median stays <InlineMath math="7" /> for <InlineMath math="k\le7" />, not only for <InlineMath math="k\le6" />. The fourth statement is **false**.
 
+The chart below compares the original data with the data after <InlineMath math="7" /> students scoring <InlineMath math="8" /> join. The bars for <InlineMath math="5" />, <InlineMath math="6" />, and <InlineMath math="7" /> **don't move**, so the score <InlineMath math="7" /> still fills positions <InlineMath math="9" /> to <InlineMath math="14" />, and position <InlineMath math="14" /> of <InlineMath math="27" /> values is still a <InlineMath math="7" />.
+
+<Chart
+  title={<>Score frequencies before and after adding scores of <InlineMath math="8" /></>}
+  description={<>The original data have frequencies <InlineMath math="3, 5, 6, 4, 2" /> for the scores <InlineMath math="5" /> to <InlineMath math="9" />. After <InlineMath math="7" /> scores of <InlineMath math="8" /> are added, the frequencies are <InlineMath math="3, 5, 6, 11, 2" />, with <InlineMath math="27" /> values. The median is the <InlineMath math="14" />th value, which is <InlineMath math="7" />.</>}
+  bars="apart"
+  categories={["5", "6", "7", "8", "9"]}
+  series={[
+    { label: "Original data", mark: "bar", values: [3, 5, 6, 4, 2] },
+    { label: "Plus 7 students scoring 8", mark: "bar", values: [3, 5, 6, 4 + 7, 2] },
+  ]}
+  valueLabel="Frequency"
+/>
+
 So the first statement is true, while the second, third, and fourth are false.

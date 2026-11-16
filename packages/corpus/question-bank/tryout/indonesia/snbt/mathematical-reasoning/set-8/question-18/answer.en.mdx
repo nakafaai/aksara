@@ -15,6 +15,20 @@ A rhesus negative patient **only takes blood from rhesus negative donors**. A rh
 | <InlineMath math="\mathrm{B}^+" /> | <InlineMath math="\mathrm{B}^+,\ \mathrm{B}^-,\ \mathrm{O}^+,\ \mathrm{O}^-" /> | <InlineMath math="8+2+14+2=26" /> |
 | <InlineMath math="\mathrm{AB}^+" /> | every donor | <InlineMath math="40" /> |
 
+The chart below draws that table for every patient group. **Every rhesus negative group stays short, including <InlineMath math="\mathrm{AB}^-" />**, while only <InlineMath math="\mathrm{A}^+" />, <InlineMath math="\mathrm{B}^+" />, and <InlineMath math="\mathrm{AB}^+" /> pass the half line.
+
+<Chart
+  title={<>Number of suitable donors for each patient group</>}
+  description={<><InlineMath math="\mathrm{O}^-" />, <InlineMath math="\mathrm{A}^-" />, <InlineMath math="\mathrm{B}^-" />, and <InlineMath math="\mathrm{AB}^-" /> patients suit <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="6" /> donors. <InlineMath math="\mathrm{O}^+" />, <InlineMath math="\mathrm{A}^+" />, <InlineMath math="\mathrm{B}^+" />, and <InlineMath math="\mathrm{AB}^+" /> patients suit <InlineMath math="16" />, <InlineMath math="26" />, <InlineMath math="26" />, and <InlineMath math="40" /> donors. The flat line marks <InlineMath math="20" /> donors, half of all donors.</>}
+  bars="apart"
+  categories={["O−", "A−", "B−", "AB−", "O+", "A+", "B+", "AB+"]}
+  series={[
+    { label: "Suitable donors", mark: "bar", values: [2, 1 + 2, 2 + 2, 6, 14 + 2, 9 + 1 + 14 + 2, 8 + 2 + 14 + 2, 40] },
+    { label: "Half of the donors", mark: "line", values: [20, 20, 20, 20, 20, 20, 20, 20] },
+  ]}
+  valueLabel="Donors"
+/>
+
 # Negative donors for positive patients
 
 The first statement says every, so one failing example is enough to refute it. An <InlineMath math="\mathrm{A}^-" /> donor passes the rhesus rule for a <InlineMath math="\mathrm{B}^+" /> patient but **fails the ABO rule**, because A donors only give to A and AB patients. The first statement is false.

@@ -24,6 +24,37 @@ Das Wasser erreicht den Riss um 6:20 Uhr, fünf Minuten bevor Hahn Q aufgeht. Ve
 | 6:20 bis 6:25 Uhr | Hahn P und Leck | <InlineMath math="24-8=16" /> Liter pro Minute | <InlineMath math="80" /> Liter | <InlineMath math="560" /> Liter |
 | 6:25 bis 6:30 Uhr | Hahn P, Hahn Q und Leck | <InlineMath math="24+16-8=32" /> Liter pro Minute | <InlineMath math="160" /> Liter | <InlineMath math="720" /> Liter |
 
+Zeichne den Inhalt des Tanks über der Zeit. **Die Gerade knickt zweimal: Sie wird flacher, wenn das Wasser den Riss erreicht, und steiler, wenn Hahn Q öffnet**. In Minute <InlineMath math="30" /> enthält der Tank <InlineMath math="720" /> Liter.
+
+<MathVisual
+  title={<>Tankinhalt ab 6:00 Uhr</>}
+  description={<>Die waagerechte Achse sind Minuten ab 6:00 Uhr, die senkrechte Achse der Inhalt in Litern. Die Gerade steigt um <InlineMath math="24" /> pro Minute auf <InlineMath math="480" /> Liter in Minute <InlineMath math="20" />, um <InlineMath math="16" /> pro Minute auf <InlineMath math="560" /> Liter in Minute <InlineMath math="25" /> und dann um <InlineMath math="32" /> pro Minute, bis der Tank in Minute <InlineMath math="45" /> voll ist. Die waagerechte Linie bei <InlineMath math="480" /> markiert die Höhe des Risses, der Punkt <InlineMath math="(30,\ 720)" /> markiert 6:30 Uhr.</>}
+  labels={{
+    hole: <>Riss, <InlineMath math="480" /> Liter</>,
+    now: <InlineMath math="(30,\ 720)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 48 },
+      y: { min: -40, max: 1260 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 25 } },
+      { id: "both", kind: "function", appearance: "primary", formula: "560 + 32(x - 25)", domain: { min: 25, max: 45 } },
+      { id: "hole", kind: "function", appearance: "reference", formula: "480", domain: { min: 0, max: 47 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 30, y: 720 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 40, y: 480 }, placement: "below" },
+      { key: "now", objectId: "now", at: { x: 30, y: 720 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Der gefüllte Anteil ist der Inhalt geteilt durch die Kapazität:
 
 <BlockMath math="\frac{720}{1{.}200}=\frac{3}{5}" />

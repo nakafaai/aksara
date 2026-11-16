@@ -14,6 +14,23 @@ Nach dem Umlegen liegen <InlineMath math="6" /> Kugeln in Kiste B. Zwei nacheina
 | blau | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 3,\ 1" /> | <InlineMath math="1+3+0=4" /> | <InlineMath math="\tfrac{4}{15}" /> |
 | grün | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 2,\ 2" /> | <InlineMath math="1+1+1=3" /> | <InlineMath math="\tfrac{3}{15}" /> |
 
+Der Baum unten verbindet die drei Fälle. **Jeder Zweig wird zuerst mit der Wahrscheinlichkeit seines Falls multipliziert**, also trägt der rote Fall mit <InlineMath math="\frac12" /> am meisten bei.
+
+<Mermaid
+  title={<>Wahrscheinlichkeit gleicher Farbe über drei Umlegefälle</>}
+  description={<>Die umgelegte Kugel ist rot mit Wahrscheinlichkeit <InlineMath math="\frac12" />, blau mit <InlineMath math="\frac14" /> und grün mit <InlineMath math="\frac14" />. Kiste B enthält dann rot, blau, grün in den Anzahlen <InlineMath math="3,2,1" />, <InlineMath math="2,3,1" /> oder <InlineMath math="2,2,2" />, mit den Wahrscheinlichkeiten gleicher Farbe <InlineMath math="\frac{4}{15}" />, <InlineMath math="\frac{4}{15}" /> und <InlineMath math="\frac{3}{15}" />. Die gewichtete Summe ist <InlineMath math="\frac14" />.</>}
+  chart={`flowchart LR
+  A["Kugel aus A"] -->|"1/2"| R["Rot: B = 3, 2, 1"]
+  A -->|"1/4"| U["Blau: B = 2, 3, 1"]
+  A -->|"1/4"| G["Grün: B = 2, 2, 2"]
+  R --> R1["Gleiche Farbe 4/15"]
+  U --> U1["Gleiche Farbe 4/15"]
+  G --> G1["Gleiche Farbe 3/15"]
+  R1 --> T["1/2 · 4/15 + 1/4 · 4/15 + 1/4 · 3/15 = 1/4"]
+  U1 --> T
+  G1 --> T`}
+/>
+
 Im roten Fall zum Beispiel ergeben drei rote Kugeln <InlineMath math="\binom32=3" /> Paare, zwei blaue Kugeln <InlineMath math="1" /> Paar, und eine einzelne grüne Kugel bildet kein Paar.
 
 # Die drei Fälle zusammenfassen

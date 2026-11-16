@@ -30,6 +30,38 @@ r=\tfrac12,\ s=3&: \ f(1)=-\left(1-\tfrac12\right)(1-3)=1>0
 
 In beiden Beispielen ist <InlineMath math="c=a\cdot rs" /> gleich <InlineMath math="-6" /> bzw. <InlineMath math="-\frac32" />, also sind beide gültig. Der Wert <InlineMath math="f(1)" /> kann negativ oder positiv sein, also **muss <InlineMath math="a+b+c>0" /> nicht gelten**. Die dritte Aussage ist **falsch**.
 
+Die Graphen beider Beispiele zeigen den Unterschied. Auf der Geraden <InlineMath math="x=1" /> liegt die erste Parabel unter der <InlineMath math="x" />-Achse und die zweite darüber, also **steht das Vorzeichen von <InlineMath math="f(1)" /> nicht fest**. Auf der Geraden <InlineMath math="x=-1" /> liegen beide Parabeln unter der Achse, passend zur zweiten Aussage.
+
+<MathVisual
+  title={<>Zwei Parabeln, die beide zur Beschreibung passen</>}
+  description={<>Die Parabeln <InlineMath math="y=-(x-2)(x-3)" /> und <InlineMath math="y=-\left(x-\tfrac12\right)(x-3)" /> sind nach unten geöffnet, schneiden die <InlineMath math="x" />-Achse an zwei positiven Stellen und die <InlineMath math="y" />-Achse unterhalb des Ursprungs. Bei <InlineMath math="x=1" /> hat die erste den Wert <InlineMath math="-2" />, die zweite den Wert <InlineMath math="1" />. Bei <InlineMath math="x=-1" /> sind beide Werte negativ.</>}
+  labels={{
+    first: <InlineMath math="r=2,\ s=3" />,
+    second: <InlineMath math="r=\tfrac12,\ s=3" />,
+    one: <InlineMath math="x=1" />,
+    minus: <InlineMath math="x=-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: -8, max: 3 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "one", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "minus", kind: "line", appearance: "construction", through: [{ x: -1, y: 0 }, { x: -1, y: 1 }] },
+      { id: "first", kind: "function", appearance: "primary", formula: "-(x - 2)(x - 3)", domain: { min: -0.5, max: 4 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "-(x - 0.5)(x - 3)", domain: { min: -1.3, max: 4 } },
+      { id: "first-one", kind: "point", appearance: "warning", at: { x: 1, y: -2 } },
+      { id: "second-one", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 3.5, y: -0.75 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: 1.75, y: 25 / 16 }, placement: "above" },
+      { key: "one", objectId: "one", at: { x: 1, y: -7 }, placement: "right" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: -7 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Der Höchstwert der Funktion
 
 Wegen <InlineMath math="a<0" /> ist die Parabel nach unten geöffnet und hat am Scheitel einen Höchstwert. Der Graph schneidet die <InlineMath math="x" />-Achse in zwei verschiedenen Punkten, also **muss der Scheitel oberhalb der <InlineMath math="x" />-Achse liegen**. Mit der Formel ist der Höchstwert <InlineMath math="-\frac{D}{4a}" />, mit der Diskriminante <InlineMath math="D=b^2-4ac>0" /> und <InlineMath math="a<0" />, also positiv. Die vierte Aussage ist **wahr**.

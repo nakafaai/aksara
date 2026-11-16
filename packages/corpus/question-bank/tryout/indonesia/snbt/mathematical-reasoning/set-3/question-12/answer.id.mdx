@@ -17,6 +17,19 @@ Pada <InlineMath math="t=6" />, <InlineMath math="640\cdot2=1{.}280" /> terpoton
 
 Ada <InlineMath math="4" /> kali panen, yaitu pada <InlineMath math="t=6, 12, 18, 24" />, jadi total panen jadwal baru <InlineMath math="4\cdot400=1{.}600" /> juta sel.
 
+Grafik berikut menumpuk hasil panen kedua jadwal sampai <InlineMath math="t=24" />. **Garis jadwal pada informasi berhenti di <InlineMath math="160" /> sejak <InlineMath math="t=3" />**, sedangkan garis jadwal baru naik <InlineMath math="400" /> setiap enam jam.
+
+<Chart
+  title={<>Total panen sampai setiap waktu untuk kedua jadwal</>}
+  description={<>Dengan jadwal pada informasi, total panen menjadi <InlineMath math="160" /> juta sel pada <InlineMath math="t=3" /> dan tidak bertambah lagi karena kultur habis. Dengan jadwal baru, total panen menjadi <InlineMath math="400" />, <InlineMath math="800" />, <InlineMath math="1{.}200" />, dan <InlineMath math="1{.}600" /> juta sel pada <InlineMath math="t=6, 12, 18, 24" />.</>}
+  categories={Array.from({ length: 8 }, (_, i) => `${3 * (i + 1)}`)}
+  series={[
+    { label: "Jadwal pada informasi", mark: "line", values: Array.from({ length: 8 }, () => 160) },
+    { label: "Jadwal baru", mark: "line", values: Array.from({ length: 8 }, (_, i) => 400 * Math.floor((i + 1) / 2)) },
+  ]}
+  valueLabel="Total panen (juta sel)"
+/>
+
 # Selisih kedua jadwal
 
 <BlockMath math="1{.}600-160=1{.}440" />

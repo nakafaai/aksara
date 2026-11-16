@@ -23,6 +23,37 @@ The order has <InlineMath math="504" /> sheets, which is <InlineMath math="500" 
 \text{total}&=151{,}200+120{,}000=271{,}200
 \end{aligned}" />
 
+Draw the printing cost as a function of the number of sheets. **The graph drops sharply exactly at <InlineMath math="500" /> sheets**, because the price per sheet applies to every sheet. Counting sheets module by module gives <InlineMath math="504" /> sheets, to the right of that drop.
+
+<MathVisual
+  title={<>Printing cost by number of sheets</>}
+  description={<>The horizontal axis is the number of sheets, and the vertical axis is the printing cost in thousands of rupiah. The graph has three straight pieces through the origin: <InlineMath math="0.5n" /> up to <InlineMath math="199" /> sheets, <InlineMath math="0.4n" /> from <InlineMath math="200" /> to <InlineMath math="499" /> sheets, and <InlineMath math="0.3n" /> from <InlineMath math="500" /> sheets. The point <InlineMath math="(489,\ 195.6)" /> is the result of adding pages first, and the point <InlineMath math="(504,\ 151.2)" /> is the correct cost.</>}
+  labels={{
+    pages: <><InlineMath math="489" /> sheets, wrong</>,
+    sheets: <><InlineMath math="504" /> sheets</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 570 },
+      y: { min: -5, max: 215 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "low", kind: "function", appearance: "primary", formula: "0.5x", domain: { min: 0, max: 199 } },
+      { id: "mid", kind: "function", appearance: "primary", formula: "0.4x", domain: { min: 200, max: 499 } },
+      { id: "high", kind: "function", appearance: "primary", formula: "0.3x", domain: { min: 500, max: 560 } },
+      { id: "pages", kind: "point", appearance: "warning", at: { x: 489, y: 195.6 } },
+      { id: "sheets", kind: "point", appearance: "answer", at: { x: 504, y: 151.2 } },
+    ],
+    labels: [
+      { key: "pages", objectId: "pages", at: { x: 489, y: 195.6 }, placement: "above-left" },
+      { key: "sheets", objectId: "sheets", at: { x: 504, y: 151.2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Compare this with counting the pages of all modules together: <InlineMath math="\frac{18\cdot27+12\cdot41}{2}=\frac{978}{2}=489" /> sheets. That number lands in the <InlineMath math="\text{Rp}400" /> tier. The <InlineMath math="15" /> extra sheets come from the empty back side of each module's last sheet, and they're exactly what pushes the order into the cheaper tier.
 
 So the total cost of the order is <InlineMath math="\text{Rp}271{,}200" />.

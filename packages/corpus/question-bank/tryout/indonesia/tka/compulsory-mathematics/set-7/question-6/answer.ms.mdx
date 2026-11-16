@@ -14,6 +14,44 @@ Berhati-hati di titik sempadan. Nilai <InlineMath math="x=2" /> masuk ke cabang 
 | <InlineMath math="6" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="0" /> |
 | <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3" /> |
 
+Lukis <InlineMath math="f" /> dan tandakan titik-titik yang dilalui. **Selepas langkah pertama, output berputar melalui tiga titik <InlineMath math="(-1,\ 0)" />, <InlineMath math="(0,\ 3)" />, dan <InlineMath math="(3,\ -1)" />**: output setiap titik menjadi input titik seterusnya.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f" /> dan putaran nilainya</>}
+  description={<>Tiga ruas garis: <InlineMath math="y=x+1" /> bagi <InlineMath math="x<0" />, <InlineMath math="y=3-x" /> bagi <InlineMath math="0\le x<2" />, dan <InlineMath math="y=x-4" /> bagi <InlineMath math="x\ge2" />. Titik <InlineMath math="(2,\ -2)" /> ialah langkah pertama dan <InlineMath math="(-2,\ -1)" /> langkah kedua. Selepas itu nilai berputar melalui <InlineMath math="(-1,\ 0)" />, <InlineMath math="(0,\ 3)" />, dan <InlineMath math="(3,\ -1)" />, kemudian kembali ke <InlineMath math="(-1,\ 0)" />.</>}
+  labels={{
+    start: <InlineMath math="(2,\ -2)" />,
+    a: <InlineMath math="(-1,\ 0)" />,
+    b: <InlineMath math="(0,\ 3)" />,
+    c: <InlineMath math="(3,\ -1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 4.5 },
+      y: { min: -3, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -3, max: 0 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "3 - x", domain: { min: 0, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x - 4", domain: { min: 2, max: 4 } },
+      { id: "start", kind: "point", appearance: "warning", at: { x: 2, y: -2 } },
+      { id: "first", kind: "point", appearance: "secondary", at: { x: -2, y: -1 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "b", kind: "point", appearance: "answer", at: { x: 0, y: 3 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 3, y: -1 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 2, y: -2 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 3, y: -1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Corak yang berulang
 
 Bermula daripada <InlineMath math="n=2" />, nilainya berputar <InlineMath math="-1,\ 0,\ 3,\ -1,\ 0,\ 3,\ \dots" /> dengan kala <InlineMath math="3" />. **Nilai <InlineMath math="-2" /> hanya muncul sekali pada awalnya** dan tidak termasuk dalam pusingan.

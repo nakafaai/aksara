@@ -14,6 +14,19 @@ Alle <InlineMath math="91" /> haben automatisch ein gerades Produkt, weil <Inlin
 
 <BlockMath math="P=\frac{91}{189}=\frac{13}{27}" />
 
+Das Diagramm unten zeigt, wie der Ergebnisraum schrumpft. **Alle <InlineMath math="91" /> Ergebnisse mit einer <InlineMath math="6" /> liegen im Zweig mit geradem Produkt**, also bleibt der Zähler <InlineMath math="91" />, während der Nenner auf <InlineMath math="189" /> sinkt.
+
+<Mermaid
+  title={<>Ergebnisraum dreier Würfel mit geradem Produkt</>}
+  description={<>Von den <InlineMath math="216" /> Ergebnissen haben <InlineMath math="27" /> ein ungerades und <InlineMath math="189" /> ein gerades Produkt. Im geraden Zweig enthalten <InlineMath math="91" /> Ergebnisse mindestens eine <InlineMath math="6" /> und <InlineMath math="98" /> keine. Die Wahrscheinlichkeit ist <InlineMath math="\frac{91}{189}=\frac{13}{27}" />.</>}
+  chart={`flowchart TD
+  S["Alle Ergebnisse: 6³ = 216"] --> O["Ungerades Produkt: 3³ = 27"]
+  S --> E["Gerades Produkt: 216 − 27 = 189"]
+  E --> X["Mit einer 6: 216 − 5³ = 91"]
+  E --> N["Ohne 6: 189 − 91 = 98"]
+  X --> P["Wahrscheinlichkeit: 91/189 = 13/27"]`}
+/>
+
 Das passt: Der Wert ist größer als <InlineMath math="\tfrac{91}{216}" />, weil die Angabe "gerade" Ergebnisse streicht, die sicher keine <InlineMath math="6" /> enthalten.
 
 Die Wahrscheinlichkeit ist also <InlineMath math="\tfrac{13}{27}" />.

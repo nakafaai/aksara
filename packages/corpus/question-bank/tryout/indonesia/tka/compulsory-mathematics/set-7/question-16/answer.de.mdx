@@ -20,6 +20,37 @@ Nenn den Radius des Vollzylinders <InlineMath math="\rho" />. Er ist <InlineMath
 \rho&=15\text{ cm}
 \end{aligned}" />
 
+Vergleiche beide Querschnitte im selben Maßstab. **Der Vollzylinder ist <InlineMath math="25" />-mal kürzer als das Rohr, also muss sein Querschnitt <InlineMath math="25" />-mal größer sein als der Rohrring**: <InlineMath math="25\cdot9\pi=225\pi" />, ein Kreis mit Radius <InlineMath math="15" />.
+
+<MathVisual
+  title={<>Querschnitt des Rohrs und des Vollzylinders</>}
+  description={<>Links ist der Querschnitt des Rohrs ein Ring zwischen Kreisen mit Radius <InlineMath math="5" /> und <InlineMath math="4" />, mit der Fläche <InlineMath math="9\pi\text{ cm}^2" />. Rechts ist der Querschnitt des Vollzylinders ein Kreis mit Radius <InlineMath math="15" /> und der Fläche <InlineMath math="225\pi\text{ cm}^2" />, im selben Maßstab gezeichnet.</>}
+  labels={{
+    pipe: <InlineMath math="9\pi" />,
+    solid: <InlineMath math="225\pi" />,
+    radius: <InlineMath math="\rho=15" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -28, max: 28 },
+      y: { min: -17, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe", kind: "region", appearance: "secondary", inequalities: ["(x + 20)^2 + y^2 <= 25", "(x + 20)^2 + y^2 >= 16"] },
+      { id: "solid", kind: "circle", appearance: "primary", center: { x: 10, y: 0 }, radius: 15 },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 10, y: 0 }, to: { x: 25, y: 0 } },
+    ],
+    labels: [
+      { key: "pipe", objectId: "pipe", at: { x: -20, y: 5 }, placement: "above" },
+      { key: "solid", objectId: "solid", at: { x: 10, y: 15 }, placement: "above" },
+      { key: "radius", objectId: "radius", at: { x: 17.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Gefragt ist der Durchmesser, also <InlineMath math="d=2\rho=30\text{ cm}" />. Kurze Plausibilitätsprüfung: Aus dem <InlineMath math="500\text{ cm}" /> langen Rohr wird ein <InlineMath math="25" />-mal kürzerer Zylinder, sein Querschnitt muss also <InlineMath math="25" />-mal so groß sein wie der Ring, <InlineMath math="25\cdot9\pi=225\pi" />. Das ist genau die Fläche eines Kreises mit Radius <InlineMath math="15" />.
 
 # Warum die anderen Antworten falsch sind

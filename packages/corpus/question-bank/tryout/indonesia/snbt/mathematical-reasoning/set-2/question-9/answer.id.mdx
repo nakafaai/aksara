@@ -28,6 +28,20 @@ S_9&=10{.}000\cdot 9\cdot 16=1{.}440{.}000 \\
 S_{10}&=10{.}000\cdot 10\cdot 15=1{.}500{.}000
 \end{aligned}" />
 
+Grafik berikut menumpuk bunga Rencana Menurun bulan demi bulan. **Batang ke-<InlineMath math="9" /> tepat menyentuh garis**, dan baru batang ke-<InlineMath math="10" /> yang melewatinya.
+
+<Chart
+  title={<>Total bunga Rencana Menurun sampai cicilan ke-<InlineMath math="k" /></>}
+  description={<>Total bunga sampai cicilan ke-<InlineMath math="k" /> adalah <InlineMath math="10{.}000\,k\,(25-k)" /> rupiah, yaitu <InlineMath math="240{.}000" /> pada <InlineMath math="k=1" />, <InlineMath math="1{.}360{.}000" /> pada <InlineMath math="k=8" />, <InlineMath math="1{.}440{.}000" /> pada <InlineMath math="k=9" />, dan <InlineMath math="1{.}500{.}000" /> pada <InlineMath math="k=10" />. Garis datar menandai bunga Rencana Tetap setahun, <InlineMath math="1{.}440{.}000" /> rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Bunga Menurun terkumpul", mark: "bar", values: Array.from({ length: 12 }, (_, i) => 10000 * (i + 1) * (25 - (i + 1))) },
+    { label: "Bunga Tetap setahun", mark: "line", values: Array.from({ length: 12 }, () => 12 * 120000) },
+  ]}
+  valueLabel="Bunga (rupiah)"
+/>
+
 # Lebih besar berarti tidak sama
 
 Setelah cicilan bulan kesembilan, total bunga Ani tepat <InlineMath math="1{.}440{.}000" />, **sama dengan, belum lebih besar dari** total bunga Rencana Tetap. Setelah cicilan bulan kesepuluh, totalnya <InlineMath math="1{.}500{.}000" />, dan baru di sini lebih besar.

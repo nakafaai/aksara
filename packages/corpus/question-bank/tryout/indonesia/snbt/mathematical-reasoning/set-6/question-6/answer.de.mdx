@@ -17,6 +17,20 @@ Die bezahlten Minuten einer Fahrt sind ihre Dauer minus <InlineMath math="20" />
 
 Weil die Obergrenze bei <InlineMath math="\text{Rp}30{.}000" /> liegt, zahlt Dita für ihre <InlineMath math="65" /> bezahlten Minuten nur <InlineMath math="\text{Rp}30{.}000" /> Minutengebühren.
 
+Das Diagramm summiert die Minutengebühren vor der Obergrenze für die ursprüngliche und die umgekehrte Reihenfolge. **Beide Linien enden am selben Punkt, <InlineMath math="\text{Rp}32{.}500" />**, also kappt die monatliche Obergrenze beide auf <InlineMath math="\text{Rp}30{.}000" />.
+
+<Chart
+  title={<>Bisherige Minutengebühren für zwei Reihenfolgen von Ditas Fahrten</>}
+  description={<>In der ursprünglichen Reihenfolge betragen die bisherigen Gebühren <InlineMath math="2{.}500, 2{.}500, 11{.}500, 23{.}500, 23{.}500, 29{.}000, 29{.}000, 32{.}500" /> Rupiah. In der umgekehrten Reihenfolge sind es <InlineMath math="3{.}500, 3{.}500, 9{.}000, 9{.}000, 21{.}000, 30{.}000, 30{.}000, 32{.}500" /> Rupiah. Die waagerechte Linie markiert die monatliche Obergrenze von <InlineMath math="\text{Rp}30{.}000" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Ursprüngliche Reihenfolge", mark: "line", values: [2500, 2500, 11500, 23500, 23500, 29000, 29000, 32500] },
+    { label: "Umgekehrte Reihenfolge", mark: "line", values: [3500, 3500, 9000, 9000, 21000, 30000, 30000, 32500] },
+    { label: "Obergrenze Rp30.000", mark: "line", values: Array.from({ length: 8 }, () => 30000) },
+  ]}
+  valueLabel="Minutengebühren (Rupiah)"
+/>
+
 # Die Aussage über die umgekehrte Reihenfolge
 
 Die Minutengebühr im Monat ist <InlineMath math="500" /> mal die Summe der bezahlten Minuten, gekappt bei <InlineMath math="30{.}000" />. **Die Summe der bezahlten Minuten hängt nicht von der Reihenfolge der Fahrten ab**, weil du Zahlen in jeder Reihenfolge addieren darfst. Die Gebühr bleibt also <InlineMath math="\text{Rp}30{.}000" />. Die Reihenfolge ändert nur, wann die Obergrenze erreicht wird. Bei umgekehrter Reihenfolge laufen die Gebühren als <InlineMath math="3{.}500" />, <InlineMath math="3{.}500" />, <InlineMath math="9{.}000" />, <InlineMath math="9{.}000" />, <InlineMath math="21{.}000" /> und dann <InlineMath math="30{.}000" /> bei Fahrt <InlineMath math="6" /> auf. Gezahlt wird gleich viel. Die Aussage ist **richtig**.

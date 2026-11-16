@@ -39,6 +39,21 @@ h&\le4.75
 
 Hours are whole too, so with this cylinder <InlineMath math="h" /> is at most <InlineMath math="4" />. For <InlineMath math="h=5" />, the daily use is <InlineMath math="1.4\text{ kg}" />, the cylinder lasts only <InlineMath math="3" /> days, and the cost is <InlineMath math="\tfrac{93{,}000}{3}=31{,}000" /> rupiah per day.
 
+The chart below works out the gas cost per day from <InlineMath math="16" /> July for each run of the small stove. **The <InlineMath math="12\text{ kg}" /> bar stays under the line up to <InlineMath math="6" /> hours**, while the <InlineMath math="5.5\text{ kg}" /> bar already passes it at <InlineMath math="5" /> hours.
+
+<Chart
+  title={<>Gas cost per day from <InlineMath math="16" /> July by the small stove's hours</>}
+  description={<>With the <InlineMath math="12\text{ kg}" /> cylinder, the cost per day for <InlineMath math="3" /> to <InlineMath math="8" /> hours is about <InlineMath math="\text{Rp}22{,}400" />, <InlineMath math="\text{Rp}24{,}889" />, <InlineMath math="\text{Rp}28{,}000" />, <InlineMath math="\text{Rp}28{,}000" />, <InlineMath math="\text{Rp}32{,}000" />, and <InlineMath math="\text{Rp}32{,}000" />. With the <InlineMath math="5.5\text{ kg}" /> cylinder, it's <InlineMath math="\text{Rp}23{,}250" />, <InlineMath math="\text{Rp}23{,}250" />, then <InlineMath math="\text{Rp}31{,}000" /> from <InlineMath math="5" /> hours on. The flat line marks <InlineMath math="\text{Rp}30{,}000" />.</>}
+  bars="apart"
+  categories={["3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "12 kg cylinder", mark: "bar", values: [3, 4, 5, 6, 7, 8].map((h) => 224000 / Math.floor(120 / (9 + h))) },
+    { label: "5.5 kg cylinder", mark: "bar", values: [3, 4, 5, 6, 7, 8].map((h) => 93000 / Math.floor(55 / (9 + h))) },
+    { label: "Limit Rp30,000", mark: "line", values: [30000, 30000, 30000, 30000, 30000, 30000] },
+  ]}
+  valueLabel="Cost per day (rupiah)"
+/>
+
 # Choosing the cylinder size
 
 The <InlineMath math="12\text{ kg}" /> cylinder allows up to <InlineMath math="6" /> hours, while the <InlineMath math="5.5\text{ kg}" /> cylinder allows only <InlineMath math="4" /> hours. Bu Sari gets to choose, so **the looser of the two limits decides**: <InlineMath math="6" /> hours with the <InlineMath math="12\text{ kg}" /> cylinder.

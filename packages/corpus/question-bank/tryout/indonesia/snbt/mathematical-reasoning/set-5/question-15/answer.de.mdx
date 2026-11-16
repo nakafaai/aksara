@@ -12,6 +12,17 @@ Beim Start um 13.00 laufen nur <InlineMath math="5\text{ GB}" /> schnell, und **
 
 Ein Unterschied von <InlineMath math="8{.}000" /> Sekunden sind <InlineMath math="2" /> Stunden <InlineMath math="13" /> Minuten <InlineMath math="20" /> Sekunden, also mehr als <InlineMath math="2" /> Stunden. Der Nachtdownload ist nach <InlineMath math="50" /> Minuten fertig, lange vor 06.00. Die Aussage ist richtig.
 
+Das Diagramm vergleicht, wie lange die Datei von <InlineMath math="15\text{ GB}" /> bei beiden Startzeiten braucht. **Der Balken für 13.00 Uhr ist fast viermal so hoch**, weil <InlineMath math="10\text{ GB}" /> davon langsam laufen.
+
+<Chart
+  title={<>Dauer für eine Datei von <InlineMath math="15\text{ GB}" /> nach Startzeit</>}
+  description={<>Mit Start um 13.00 Uhr dauert der Download <InlineMath math="11{.}000" /> Sekunden: <InlineMath math="5\text{ GB}" /> schnell und <InlineMath math="10\text{ GB}" /> langsam. Mit Start um 00.00 Uhr dauert er bei voller Geschwindigkeit <InlineMath math="3{.}000" /> Sekunden. Der Unterschied beträgt <InlineMath math="8{.}000" /> Sekunden.</>}
+  categories={["Start 13.00", "Start 00.00"]}
+  bars="apart"
+  series={[{ label: "Downloaddauer (Sekunden)", mark: "bar", values: [5 * 200 + 10 * 1000, 15 * 200] }]}
+  valueLabel="Downloaddauer (Sekunden)"
+/>
+
 # Eine große Datei in den Nachtstunden
 
 Die Nachtstunden dauern nur <InlineMath math="6" /> Stunden, also <InlineMath math="21{.}600" /> Sekunden. In dieser Zeit lassen sich **höchstens <InlineMath math="21{.}600 : 200 = 108\text{ GB}" />** herunterladen. Eine Datei mit <InlineMath math="120\text{ GB}" /> braucht <InlineMath math="24{.}000" /> Sekunden, die letzten <InlineMath math="12\text{ GB}" /> kommen also nach 06.00 und verbrauchen Hauptvolumen. Die Aussage ist falsch.

@@ -6,6 +6,20 @@ Der Garagenboden braucht <InlineMath math="5\cdot4\cdot0{,}1=2\text{ m}^3" /> Be
 
 Ein Sack Zement bringt <InlineMath math="6" /> Teile Trockenmischung mit, also <InlineMath math="6\cdot0{,}025=0{,}15\text{ m}^3" />. Zwei Säcke bringen <InlineMath math="0{,}3\text{ m}^3" /> mit, mehr als das Fassungsvermögen des Mischers von <InlineMath math="0{,}2\text{ m}^3" />. Also **nimmt jede Mischung nur einen Sack** und enthält <InlineMath math="0{,}15\text{ m}^3" />, obwohl der Mischer nicht voll ist.
 
+Das Diagramm vergleicht den Inhalt einer Ladung mit der Kapazität des Mischers. **Eine Ladung mit zwei Säcken liegt schon über der Kapazitätslinie**, also kann jede Ladung nur einen Sack verwenden.
+
+<Chart
+  title={<>Inhalt einer Ladung nach Anzahl der Zementsäcke</>}
+  description={<>Ein Sack Zement trägt <InlineMath math="0{,}15\text{ m}^3" /> Trockenmischung, zwei Säcke tragen <InlineMath math="0{,}3\text{ m}^3" />. Die waagerechte Linie markiert die Kapazität des Mischers, <InlineMath math="0{,}2\text{ m}^3" />.</>}
+  categories={["1 Sack Zement", "2 Säcke Zement"]}
+  bars="apart"
+  series={[
+    { label: "Trockenmischung pro Ladung (m³)", mark: "bar", values: [6 * 0.025, 2 * 6 * 0.025] },
+    { label: "Kapazität des Mischers", mark: "line", values: [0.2, 0.2] },
+  ]}
+  valueLabel="Trockenmischung (m³)"
+/>
+
 # Die Zahl der Mischungen
 
 <BlockMath math="3{,}3:0{,}15=22" />

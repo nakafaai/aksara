@@ -14,6 +14,44 @@ Pass an den Grenzstellen auf. Der Wert <InlineMath math="x=2" /> gehört zum Zwe
 | <InlineMath math="6" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="0" /> |
 | <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3" /> |
 
+Zeichne <InlineMath math="f" /> und markiere die Punkte, die die Iteration besucht. **Nach dem ersten Schritt kreisen die Werte durch drei Punkte <InlineMath math="(-1,\ 0)" />, <InlineMath math="(0,\ 3)" /> und <InlineMath math="(3,\ -1)" />**: Die Ausgabe jedes Punktes ist die Eingabe des nächsten.
+
+<MathVisual
+  title={<>Graph von <InlineMath math="f" /> und der Zyklus seiner Werte</>}
+  description={<>Drei Geradenstücke: <InlineMath math="y=x+1" /> für <InlineMath math="x<0" />, <InlineMath math="y=3-x" /> für <InlineMath math="0\le x<2" /> und <InlineMath math="y=x-4" /> für <InlineMath math="x\ge2" />. Der Punkt <InlineMath math="(2,\ -2)" /> ist der erste Schritt, <InlineMath math="(-2,\ -1)" /> der zweite. Danach kreisen die Werte durch <InlineMath math="(-1,\ 0)" />, <InlineMath math="(0,\ 3)" /> und <InlineMath math="(3,\ -1)" /> und kehren zu <InlineMath math="(-1,\ 0)" /> zurück.</>}
+  labels={{
+    start: <InlineMath math="(2,\ -2)" />,
+    a: <InlineMath math="(-1,\ 0)" />,
+    b: <InlineMath math="(0,\ 3)" />,
+    c: <InlineMath math="(3,\ -1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 4.5 },
+      y: { min: -3, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -3, max: 0 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "3 - x", domain: { min: 0, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x - 4", domain: { min: 2, max: 4 } },
+      { id: "start", kind: "point", appearance: "warning", at: { x: 2, y: -2 } },
+      { id: "first", kind: "point", appearance: "secondary", at: { x: -2, y: -1 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "b", kind: "point", appearance: "answer", at: { x: 0, y: 3 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 3, y: -1 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 2, y: -2 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 3, y: -1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Das wiederkehrende Muster
 
 Ab <InlineMath math="n=2" /> laufen die Werte im Kreis <InlineMath math="-1,\ 0,\ 3,\ -1,\ 0,\ 3,\ \dots" /> mit der Periode <InlineMath math="3" />. **Der Wert <InlineMath math="-2" /> kommt nur einmal am Anfang vor** und gehört nicht zum Kreislauf.

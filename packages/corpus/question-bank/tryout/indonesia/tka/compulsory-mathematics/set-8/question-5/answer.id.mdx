@@ -32,6 +32,41 @@ Untuk setiap nilai <InlineMath math="y" />, ambil <InlineMath math="x" /> terbes
 | <InlineMath math="5" /> | <InlineMath math="4{,}25;\ 5{,}25;\ 2" /> | <InlineMath math="2" /> | <InlineMath math="37" /> |
 | <InlineMath math="6" /> | <InlineMath math="3{,}5;\ 4{,}75;\ 0" /> | <InlineMath math="0" /> | <InlineMath math="30" /> |
 
+Gambar daerah yang memenuhi ketiga persediaan beserta garis keuntungan <InlineMath math="6x+5y=47" />. **Pojok <InlineMath math="(5{,}6;\ 3{,}2)" /> ada di atas garis itu tetapi bukan titik bulat**, sedangkan titik bulat <InlineMath math="(7,\ 1)" /> tepat di garis dan masih di dalam daerah.
+
+<MathVisual
+  title={<>Daerah persediaan dan titik bulat terbaik</>}
+  description={<>Sumbu mendatar adalah banyak lemari kecil <InlineMath math="x" />, sumbu tegak adalah banyak rak buku <InlineMath math="y" />. Daerah berwarna dibatasi garis papan <InlineMath math="4x+3y=32" />, garis perakitan <InlineMath math="4x+2y=31" />, dan garis pengecatan <InlineMath math="x+2y=12" />. Pojok terbaik <InlineMath math="(5{,}6;\ 3{,}2)" /> bukan pasangan bilangan cacah. Garis <InlineMath math="6x+5y=47" /> menyentuh titik bulat <InlineMath math="(7,\ 1)" /> di dalam daerah.</>}
+  labels={{
+    corner: <InlineMath math="(5{,}6;\ 3{,}2)" />,
+    best: <InlineMath math="(7,\ 1)" />,
+    level: <InlineMath math="6x+5y=47" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 9 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "feasible", kind: "region", appearance: "highlight", inequalities: ["4x + 3y <= 32", "4x + 2y <= 31", "x + 2y <= 12", "x >= 0", "y >= 0"] },
+      { id: "boards", kind: "function", appearance: "reference", formula: "(32 - 4x)/3", domain: { min: 0, max: 8 } },
+      { id: "assembly", kind: "function", appearance: "reference", formula: "(31 - 4x)/2", domain: { min: 4, max: 7.75 } },
+      { id: "paint", kind: "function", appearance: "reference", formula: "(12 - x)/2", domain: { min: 0, max: 9 } },
+      { id: "level", kind: "function", appearance: "secondary", formula: "(47 - 6x)/5", domain: { min: 2.5, max: 7.8 } },
+      { id: "corner", kind: "point", appearance: "warning", at: { x: 5.6, y: 3.2 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 7, y: 1 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 5.6, y: 3.2 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 7, y: 1 }, placement: "below-left" },
+      { key: "level", objectId: "level", at: { x: 2.5, y: 6.4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Nilai terbesar adalah <InlineMath math="47" /> di titik <InlineMath math="(7,1)" />. Cek: papan <InlineMath math="28+3=31\le32" />, perakitan <InlineMath math="28+2=30\le31" />, pengecatan <InlineMath math="7+2=9\le12" />. Titik ini jauh dari pojok <InlineMath math="(5{,}6;\ 3{,}2)" />, jadi membulatkan pojok tidak akan menemukannya.
 
 Jadi, keuntungan maksimum adalah <InlineMath math="\text{Rp}4{.}700{.}000" /> per minggu, dengan <InlineMath math="7" /> lemari kecil dan <InlineMath math="1" /> rak buku.

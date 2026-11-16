@@ -26,6 +26,20 @@ Karena jarak dihitung dalam kilometer bulat, **kelebihan dibulatkan ke bawah** m
 
 Mulai <InlineMath math="7" /> hari, tarif harian Paket B sudah <InlineMath math="0{,}8\times7\times350{.}000=1{.}960{.}000" />, lebih dari anggaran. Paket A juga makin buruk karena tarif hariannya terus naik. Jadi, **jarak terbesar diperoleh dengan Paket B** selama <InlineMath math="6" /> hari, yaitu <InlineMath math="973\text{ km}" />.
 
+Grafik berikut merangkum tabel itu. **Batang Paket B terus naik sampai <InlineMath math="6" /> hari**, lalu hilang pada <InlineMath math="7" /> hari karena biaya harinya saja sudah melewati anggaran.
+
+<Chart
+  title={<>Jarak terjauh yang muat dalam anggaran menurut lama sewa</>}
+  description={<>Dengan Paket A, jarak terjauhnya <InlineMath math="733" />, <InlineMath math="733" />, <InlineMath math="626" />, dan <InlineMath math="520\text{ km}" /> untuk sewa <InlineMath math="4" /> sampai <InlineMath math="7" /> hari. Dengan Paket B, jarak terjauhnya <InlineMath math="766" />, <InlineMath math="916" />, dan <InlineMath math="973\text{ km}" /> untuk sewa <InlineMath math="4" /> sampai <InlineMath math="6" /> hari, sedangkan sewa <InlineMath math="7" /> hari melewati anggaran.</>}
+  categories={["4 hari", "5 hari", "6 hari", "7 hari"]}
+  bars="apart"
+  series={[
+    { label: "Paket A", mark: "bar", values: [Math.floor((1900000 - 4 * 200000) / 1500), Math.floor((1900000 - 0.8 * 5 * 200000) / 1500), Math.floor((1900000 - 0.8 * 6 * 200000) / 1500), Math.floor((1900000 - 0.8 * 7 * 200000) / 1500)] },
+    { label: "Paket B", mark: "bar", values: [4 * 150 + Math.floor((1900000 - 4 * 350000) / 3000), 5 * 150 + Math.floor((1900000 - 0.8 * 5 * 350000) / 3000), 6 * 150 + Math.floor((1900000 - 0.8 * 6 * 350000) / 3000), null] },
+  ]}
+  valueLabel="Jarak (km)"
+/>
+
 # Memeriksa batas anggaran
 
 Cek biaya Paket B selama <InlineMath math="6" /> hari untuk jawaban itu dan untuk satu kilometer sesudahnya:

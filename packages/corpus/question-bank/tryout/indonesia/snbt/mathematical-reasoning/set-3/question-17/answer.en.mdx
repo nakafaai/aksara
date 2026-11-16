@@ -36,6 +36,21 @@ At the end of day <InlineMath math="8" />, the stock is <InlineMath math="55\le6
 
 At the end of day <InlineMath math="9" />, the stock of <InlineMath math="10" /> is below <InlineMath math="60" />, but the shop doesn't order again because an order is still on its way.
 
+The chart below sums up the stock at the end of every day. **Lost sales appear exactly two days after the stock drops below the <InlineMath math="60" /> line**, because the order only arrives three days later.
+
+<Chart
+  title={<>End-of-day stock and lost sales over <InlineMath math="12" /> days</>}
+  description={<>The stock at the end of days <InlineMath math="1" /> to <InlineMath math="12" /> is <InlineMath math="100, 75, 45, 25, 0, 110, 80, 55, 10, 0, 120, 100" /> sacks. Sales are lost on day <InlineMath math="5" />, <InlineMath math="10" /> sacks, and on day <InlineMath math="10" />, <InlineMath math="40" /> sacks. The flat line marks the reorder point of <InlineMath math="60" /> sacks.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Stock at end of day", mark: "bar", values: [100, 75, 45, 25, 0, 110, 80, 55, 10, 0, 120, 100] },
+    { label: "Lost sales", mark: "bar", values: [0, 0, 0, 0, 10, 0, 0, 0, 0, 40, 0, 0] },
+    { label: "Reorder point", mark: "line", values: Array.from({ length: 12 }, () => 60) },
+  ]}
+  valueLabel="Sacks"
+/>
+
 # The last days and the total
 
 On the morning of day <InlineMath math="11" />, the stock becomes <InlineMath math="150" />. Day <InlineMath math="11" /> leaves <InlineMath math="120" /> and day <InlineMath math="12" /> leaves <InlineMath math="100" />, so **no more sales are lost**.

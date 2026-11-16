@@ -29,6 +29,19 @@ Wegen <InlineMath math="k<1" /> ist die Differenz <InlineMath math="P-Q=k-1" /> 
 
 Für <InlineMath math="k=0" /> sind die Lösungen <InlineMath math="0" /> und <InlineMath math="2" />, also <InlineMath math="P=4" /> und <InlineMath math="Q=0+5=5" />. Für <InlineMath math="k=-3" /> sind die Lösungen <InlineMath math="3" /> und <InlineMath math="-1" />, also <InlineMath math="P=10" /> und <InlineMath math="Q=-6+20=14" />. Beide Beispiele ergeben <InlineMath math="Q>P" />.
 
+Das Diagramm zeigt <InlineMath math="P=4-2k" /> und <InlineMath math="Q=5-3k" /> für einige Werte <InlineMath math="k<1" />. **Die Linie für <InlineMath math="Q" /> liegt immer über der für <InlineMath math="P" />**, und die Lücke schließt sich erst bei <InlineMath math="k=1" />, dem Wert, den die Bedingung verschiedener Nullstellen ausschließt.
+
+<Chart
+  title={<>Die Größen <InlineMath math="P" /> und <InlineMath math="Q" /> für einige Werte von <InlineMath math="k" /></>}
+  description={<>Für <InlineMath math="k=-4" />, <InlineMath math="-3" />, <InlineMath math="-2" />, <InlineMath math="-1" /> und <InlineMath math="0" /> ist <InlineMath math="P=4-2k" /> gleich <InlineMath math="12, 10, 8, 6, 4" />, während <InlineMath math="Q=5-3k" /> die Werte <InlineMath math="17, 14, 11, 8, 5" /> liefert. Die Differenz <InlineMath math="Q-P=1-k" /> ist immer positiv.</>}
+  categories={["-4", "-3", "-2", "-1", "0"]}
+  series={[
+    { label: "P", mark: "line", values: [-4, -3, -2, -1, 0].map((k) => 4 - 2 * k) },
+    { label: "Q", mark: "line", values: [-4, -3, -2, -1, 0].map((k) => 5 - 3 * k) },
+  ]}
+  valueLabel="Wert"
+/>
+
 Ein zweiter Weg: <InlineMath math="c=5-5k=\tfrac54(4-4k)=\tfrac54(a-b)^2" />, also <InlineMath math="P-Q=(a-b)^2-\tfrac54(a-b)^2=-\tfrac14(a-b)^2" />. **Verschiedene Lösungen machen <InlineMath math="(a-b)^2>0" />**, also ist die Differenz negativ.
 
 Die Antwort <InlineMath math="P>Q" /> kommt von der Annahme, eine Quadratsumme müsse groß sein, <InlineMath math="P=Q" /> würde <InlineMath math="a=b" /> verlangen, was die Aufgabe ausschließt, und "die Angaben reichen nicht" entsteht, wenn du die Bedingung an die Diskriminante weglässt.

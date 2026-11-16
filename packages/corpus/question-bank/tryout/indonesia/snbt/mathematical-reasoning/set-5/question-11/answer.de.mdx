@@ -39,4 +39,19 @@ Die Gebühr von <InlineMath math="10\%" /> gilt nur bis zu einem Abgabewert von 
 
 Ein Zuwachs von <InlineMath math="78{.}000" /> ist mehr als <InlineMath math="75{.}600" />. Die Aussage ist falsch.
 
+Das Diagramm berechnet den Anteil des Abgabewerts, der aufs Guthaben geht. **Die Balken liegen bis zu einem Abgabewert von <InlineMath math="\text{Rp}60{.}000" /> genau bei <InlineMath math="90\%" />** und steigen dann über die Linie, weil die Gebühr bei <InlineMath math="\text{Rp}6{.}000" /> stehen bleibt.
+
+<Chart
+  title={<>Anteil des Abgabewerts, der aufs Guthaben geht, nach Abgabewert</>}
+  description={<>Bei Abgabewerten von <InlineMath math="\text{Rp}20{.}000" />, <InlineMath math="\text{Rp}40{.}000" /> und <InlineMath math="\text{Rp}60{.}000" /> gehen <InlineMath math="90\%" /> aufs Guthaben. Bei <InlineMath math="\text{Rp}80{.}000" />, <InlineMath math="\text{Rp}100{.}000" /> und <InlineMath math="\text{Rp}120{.}000" /> sind es <InlineMath math="92{,}5\%" />, <InlineMath math="94\%" /> und <InlineMath math="95\%" />. Die Werteachse beginnt bei <InlineMath math="85\%" />.</>}
+  categories={["Rp20.000", "Rp40.000", "Rp60.000", "Rp80.000", "Rp100.000", "Rp120.000"]}
+  bars="apart"
+  series={[
+    { label: "Anteil, der aufs Guthaben geht (%)", mark: "bar", values: [20000, 40000, 60000, 80000, 100000, 120000].map((v) => (100 * (v - Math.min(0.1 * v, 6000))) / v) },
+    { label: "Genau 90 %", mark: "line", values: [90, 90, 90, 90, 90, 90] },
+  ]}
+  valueRange={{ min: 85, max: 96 }}
+  valueLabel="Anteil (%)"
+/>
+
 Die erste Aussage ist also richtig, die zweite, dritte und vierte Aussage sind falsch.

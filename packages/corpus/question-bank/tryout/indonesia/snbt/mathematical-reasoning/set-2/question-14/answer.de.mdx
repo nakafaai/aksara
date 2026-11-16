@@ -26,6 +26,17 @@ Dieses Muster gilt, solange beide Schalter beschäftigt sind, also bis jemand ni
 
 Die kleinste Nummer ist <InlineMath math="42" />, denn <InlineMath math="12+5\cdot 6=42" /> und <InlineMath math="18-3\cdot 6=0" />.
 
+Das Diagramm zeigt die Wartezeiten der Personen <InlineMath math="11" /> bis <InlineMath math="44" />. Das Muster wiederholt sich alle fünf Balken und fällt dabei um drei Minuten, und **der erste Balken, der <InlineMath math="0" /> erreicht, gehört zu Person <InlineMath math="42" />**.
+
+<Chart
+  title={<>Wartezeiten der Personen, die nach 08.00 Uhr kommen</>}
+  description={<>Die Personen <InlineMath math="11" /> bis <InlineMath math="15" /> warten <InlineMath math="21, 18, 19, 18, 17" /> Minuten, und alle fünf Nummern sinkt die Wartezeit um <InlineMath math="3" /> Minuten. Person <InlineMath math="41" /> wartet noch <InlineMath math="3" /> Minuten, Person <InlineMath math="42" /> wartet <InlineMath math="0" /> Minuten, Person <InlineMath math="43" /> wartet <InlineMath math="1" /> Minute und Person <InlineMath math="44" /> wartet <InlineMath math="0" /> Minuten.</>}
+  bars="apart"
+  categories={Array.from({ length: 34 }, (_, i) => `${i + 11}`)}
+  series={[{ label: "Wartezeit", mark: "bar", values: [21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12, 13, 12, 11, 12, 9, 10, 9, 8, 9, 6, 7, 6, 5, 6, 3, 4, 3, 2, 3, 0, 1, 0] }]}
+  valueLabel="Wartezeit (Minuten)"
+/>
+
 # Direkte Kontrolle
 
 Person <InlineMath math="42" /> kommt <InlineMath math="3\cdot(42-10)=96" /> Minuten nach 08:00 Uhr an, also um 09:36 Uhr. Schalter B beginnt um 09:30 Uhr mit Person <InlineMath math="39" />, also **ist Schalter B genau um 09:36 Uhr frei**, wenn Person <InlineMath math="42" /> ankommt. Person <InlineMath math="41" /> wartet noch <InlineMath math="21-3\cdot 6=3" /> Minuten, vor Nummer <InlineMath math="42" /> wird also niemand sofort bedient.

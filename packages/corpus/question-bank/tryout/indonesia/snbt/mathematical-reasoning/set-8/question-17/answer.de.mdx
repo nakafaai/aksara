@@ -6,6 +6,20 @@ Nach der ABO-Regel kann jemand mit Gruppe B Blut von Spendern mit B und mit O er
 
 <BlockMath math="8+2+14+2=26" />
 
+Das Diagramm zeigt die Beutel, die zu diesem Patienten passen. **Von den <InlineMath math="26" /> passenden Beuteln sind nur zwei kleine Balken rhesus-negativ**, zusammen <InlineMath math="4" /> Beutel.
+
+<Chart
+  title={<>Blutbeutel, die ein Patient mit Blutgruppe <InlineMath math="\mathrm{B}^+" /> erhalten kann</>}
+  description={<>Die passenden Beutel stammen von <InlineMath math="8" /> Spendern mit <InlineMath math="\mathrm{B}^+" />, <InlineMath math="2" /> mit <InlineMath math="\mathrm{B}^-" />, <InlineMath math="14" /> mit <InlineMath math="\mathrm{O}^+" /> und <InlineMath math="2" /> mit <InlineMath math="\mathrm{O}^-" />, also <InlineMath math="26" /> Beutel. Vier davon sind rhesus-negativ.</>}
+  bars="apart"
+  categories={["B+", "B−", "O+", "O−"]}
+  series={[
+    { label: "Rhesus-positive Spender", mark: "bar", values: [8, null, 14, null] },
+    { label: "Rhesus-negative Spender", mark: "bar", values: [null, 2, null, 2] },
+  ]}
+  valueLabel="Beutel"
+/>
+
 # Die bedingte Wahrscheinlichkeit
 
 Unter den <InlineMath math="26" /> passenden Beuteln stammen <InlineMath math="2+2=4" /> von rhesus-negativen Spendern, nämlich <InlineMath math="\mathrm{B}^-" /> und <InlineMath math="\mathrm{O}^-" />. Jeder passende Beutel ist gleich wahrscheinlich, also **teilst du durch die Zahl der passenden Beutel**:

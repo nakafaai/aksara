@@ -26,6 +26,36 @@ b^2+5b-500&=0\\
 (b+25)(b-20)&=0
 \end{aligned}" />
 
+The figure below maps the pairs <InlineMath math="(a,b)" />. The shaded region holds the pairs that make the price go up. Together, the statements leave a single point, <InlineMath math="(25,20)" />, and **that point sits exactly on the edge of the region**, where the final price equals the starting price.
+
+<MathVisual
+  title={<>Percentage pairs <InlineMath math="(a,b)" /> that make the price go up</>}
+  description={<>The horizontal axis is <InlineMath math="a" /> and the vertical axis is <InlineMath math="b" />. The shaded region satisfies <InlineMath math="100(a-b)>ab" />. The curve <InlineMath math="ab=500" /> and the line <InlineMath math="a=b+5" /> both pass through parts inside and outside the region, so neither is enough alone. They meet at <InlineMath math="(25,20)" />, exactly on the edge of the region.</>}
+  labels={{
+    rise: <InlineMath math="100(a-b)>ab" />,
+    product: <InlineMath math="ab=500" />,
+    gap: <InlineMath math="a=b+5" />,
+    meet: <InlineMath math="(25,20)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "rise", kind: "region", appearance: "highlight", inequalities: ["100(x - y) > x y", "y > 0", "x < 60"] },
+      { id: "product", kind: "function", appearance: "primary", formula: "500/x", domain: { min: 8.4, max: 60 } },
+      { id: "gap", kind: "function", appearance: "secondary", formula: "x - 5", domain: { min: 5, max: 60 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 25, y: 20 } },
+    ],
+    labels: [
+      { key: "rise", objectId: "rise", at: { x: 45, y: 10 }, placement: "center" },
+      { key: "product", objectId: "product", at: { x: 10, y: 50 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 55, y: 50 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 25, y: 20 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Since <InlineMath math="b>0" />, the value <InlineMath math="b=-25" /> is rejected, so <InlineMath math="b=20" /> and <InlineMath math="a=25" />. The factor is <InlineMath math="1.25\times0.8=1" />, which matches the formula: <InlineMath math="100(a-b)=500=ab" />. The final price is **exactly equal to the starting price**, so it isn't higher. The answer is definitely "no", and a definite answer means the information is sufficient.
 
 There are two traps here. Seeing <InlineMath math="a>b" /> and concluding the price went up is wrong, and treating "the price stayed the same" as something that doesn't answer the question is wrong too.

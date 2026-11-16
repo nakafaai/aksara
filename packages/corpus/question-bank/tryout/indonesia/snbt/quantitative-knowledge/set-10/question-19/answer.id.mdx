@@ -34,6 +34,34 @@ Nilai <InlineMath math="24" /> tercapai di titik yang koordinatnya pecahan. Untu
 
 Semuanya melanggar kendala: <InlineMath math="(0,6)" /> dan <InlineMath math="(1,5)" /> membuat <InlineMath math="x+3y" /> lebih dari <InlineMath math="14" />, sedangkan <InlineMath math="(4,3)" />, <InlineMath math="(8,0)" />, dan <InlineMath math="(5,2)" /> membuat <InlineMath math="2x+y" /> lebih dari <InlineMath math="10" />. Titik <InlineMath math="(2,4)" /> memenuhi <InlineMath math="2\cdot 2+4=8\le 10" /> dan <InlineMath math="2+12=14\le 14" />, dengan nilai <InlineMath math="6+16=22" />. Jadi **maksimum untuk bilangan cacah adalah <InlineMath math="22" />**, bukan <InlineMath math="23" />. Membulatkan titik sudut ke <InlineMath math="(3,4)" /> juga gagal, karena <InlineMath math="3+12=15>14" />. Pernyataan ini salah.
 
+Gambar daerah <InlineMath math="D" /> berikut memperlihatkan kedua nilai maksimum. Garis <InlineMath math="3x+4y=24" /> **hanya menyentuh daerah di satu sudut** yang koordinatnya pecahan, sedangkan titik bulat terbaik di dalam daerah adalah <InlineMath math="(2,4)" />, sedikit di bawah garis itu.
+
+<MathVisual
+  title={<>Daerah <InlineMath math="D" /> dan garis selidik <InlineMath math="3x+4y=24" /></>}
+  description={<>Daerah <InlineMath math="D" /> bersudut <InlineMath math="(0,0)" />, <InlineMath math="(5,0)" />, <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />, dan <InlineMath math="\left(0,\tfrac{14}{3}\right)" />. Garis <InlineMath math="3x+4y=24" /> menyentuh daerah hanya di sudut <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />. Titik bulat <InlineMath math="(2,4)" /> ada di daerah dengan nilai <InlineMath math="22" />.</>}
+  labels={{
+    corner: <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />,
+    level: <InlineMath math="3x+4y=24" />,
+    whole: <InlineMath math="(2,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "region", kind: "region", appearance: "highlight", inequalities: ["x >= 0", "y >= 0", "2x + y <= 10", "x + 3y <= 14"] },
+      { id: "level", kind: "line", appearance: "secondary", through: [{ x: 0, y: 6 }, { x: 8, y: 0 }] },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 16 / 5, y: 18 / 5 } },
+      { id: "whole", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 16 / 5, y: 18 / 5 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 7, y: 0.75 }, placement: "above-right" },
+      { key: "whole", objectId: "whole", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Pernyataan ketiga
 
 Kendala <InlineMath math="2x+y\le 10" /> sudah memastikan <InlineMath math="2x+y" /> paling besar <InlineMath math="10" />. Nilai <InlineMath math="10" /> tercapai di seluruh sisi dari <InlineMath math="(5,0)" /> sampai <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />, misalnya di <InlineMath math="(5,0)" /> dan di <InlineMath math="(4,2)" />. Karena **fungsinya sejajar dengan satu sisi daerah**, maksimumnya tercapai di tak hingga banyak titik. Pernyataan ini salah.

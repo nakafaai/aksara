@@ -35,6 +35,20 @@ Pada <InlineMath math="n=15" /> kedua biaya sama, yaitu <InlineMath math="250+40
 
 Cek dari arah lain: pada <InlineMath math="n=14" />, biaya tanpa member <InlineMath math="250+40 \cdot 4=410" />, masih lebih murah daripada member. Jadi, batasnya memang terletak di antara <InlineMath math="15" /> dan <InlineMath math="16" />.
 
+Grafik berikut membandingkan kedua biaya untuk <InlineMath math="11" /> sampai <InlineMath math="18" /> kunjungan. **Batang <InlineMath math="n=15" /> tepat menyentuh garis member**, dan baru batang <InlineMath math="n=16" /> yang melewatinya.
+
+<Chart
+  title={<>Biaya termurah tanpa member dan biaya member baru menurut banyak kunjungan</>}
+  description={<>Untuk <InlineMath math="n=11" /> sampai <InlineMath math="16" />, biaya termurah tanpa member adalah <InlineMath math="250+40(n-10)" /> ribu rupiah, dari <InlineMath math="290" /> sampai <InlineMath math="490" /> ribu. Untuk <InlineMath math="n=17" /> dan <InlineMath math="18" />, biayanya <InlineMath math="500" /> ribu. Garis datar menandai biaya member baru, <InlineMath math="450" /> ribu rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 8 }, (_, i) => `${11 + i}`)}
+  series={[
+    { label: "Termurah tanpa member", mark: "bar", values: Array.from({ length: 8 }, (_, i) => Math.min(250 + 40 * (i + 1), 500)) },
+    { label: "Member baru", mark: "line", values: Array.from({ length: 8 }, () => 350 + 100) },
+  ]}
+  valueLabel="Biaya (ribu rupiah)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain muncul dari **satu langkah yang terlewat**:

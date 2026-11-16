@@ -32,6 +32,19 @@ Coba jalankan jadwal baru, pompa Q dari 06.40 sampai 07.40. Pada pukul 06.40 pom
 
 Isinya **tepat mencapai kapasitas tanpa melebihinya**, jadi tidak ada air yang terbuang. Jika pompa Q dinyalakan <InlineMath math="5\text{ menit}" /> lebih awal, keran K hanya terbuka <InlineMath math="135\text{ menit}" /> sampai pompa Q mati, dan puncaknya <InlineMath math="13{.}000-50\cdot 135=6{.}250\text{ liter}" />. Itu melebihi kapasitas.
 
+Grafik berikut mengikuti isi tandon dengan pompa Q pukul 06.40 sampai 07.40. **Puncaknya menyentuh garis kapasitas tepat pada pukul 07.40** tanpa melewatinya, lalu turun begitu pompa Q mati.
+
+<Chart
+  title={<>Isi tandon dengan pompa Q menyala pukul 06.40 sampai 07.40</>}
+  description={<>Isi tandon naik pelan menjadi <InlineMath math="3{.}000" /> liter pada pukul 06.40, naik cepat menjadi <InlineMath math="4{.}800" /> liter pada pukul 07.00, lalu <InlineMath math="6{.}000" /> liter tepat pada pukul 07.40. Sesudah itu isinya turun <InlineMath math="50" /> liter per menit. Garis datar menandai kapasitas <InlineMath math="6{.}000" /> liter.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Isi tandon, jadwal baru", mark: "line", values: [1000, 2200, 2400, 2600, 2800, 3000, 4800, 5400, 6000, 5000, 4000, 3000, 2000, 1000, 0, 0] },
+    { label: "Kapasitas 6.000 liter", mark: "line", values: Array.from({ length: 16 }, () => 6000) },
+  ]}
+  valueLabel="Isi tandon (liter)"
+/>
+
 # Jebakan pada pilihan lain
 
 Dua pilihan yang terlalu awal masih membuang air, dan **dua pilihan yang lebih lambat memang aman tetapi bukan yang paling awal**.

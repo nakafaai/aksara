@@ -25,6 +25,20 @@ Die Ungleichung ist streng, also **reichen <InlineMath math="60" /> Millionen no
 
 Wegen <InlineMath math="7\cdot5=35>31" /> ist <InlineMath math="\frac{7}{31}" /> tatsächlich mehr als <InlineMath math="\frac15" />.
 
+Das Diagramm berechnet Danis Anteil für mehrere Einlagen. **Der Balken für <InlineMath math="60" /> Millionen berührt die Fünftellinie genau**, also ist die erste Einlage, die wirklich darüber geht, <InlineMath math="70" /> Millionen.
+
+<Chart
+  title={<>Danis Anteil am verteilten Gewinn nach Einlage</>}
+  description={<>Bei Einlagen von <InlineMath math="40" />, <InlineMath math="50" />, <InlineMath math="60" />, <InlineMath math="70" /> und <InlineMath math="80" /> Millionen Rupiah beträgt Danis Anteil etwa <InlineMath math="14{,}3\%" />, <InlineMath math="17{,}2\%" />, genau <InlineMath math="20\%" />, etwa <InlineMath math="22{,}6\%" /> und <InlineMath math="25\%" />. Die waagerechte Linie markiert <InlineMath math="20\%" />, ein Fünftel.</>}
+  bars="apart"
+  categories={["40", "50", "60", "70", "80"]}
+  series={[
+    { label: "Danis Anteil (%)", mark: "bar", values: [40, 50, 60, 70, 80].map((x) => (100 * 6 * x) / (1440 + 6 * x)) },
+    { label: "Ein Fünftel", mark: "line", values: [20, 20, 20, 20, 20] },
+  ]}
+  valueLabel="Danis Anteil (%)"
+/>
+
 # Typische Fehler
 
 Wenn du **Danis Geld nicht zum Nenner addierst**, lautet die Bedingung <InlineMath math="6x>\frac{1{.}440}{5}=288" />, und <InlineMath math="50" /> Millionen scheinen zu reichen. Mit <InlineMath math="50" /> Millionen ist sein Anteil aber nur <InlineMath math="\frac{300}{1{.}740}=\frac{5}{29}" />, weniger als <InlineMath math="\frac15" />. Zählst du Danis Monate als <InlineMath math="5" /> (Dezember minus Juli), kommst du auf <InlineMath math="80" /> Millionen. Liest du "mehr als" als "mindestens", kommst du auf <InlineMath math="60" /> Millionen.

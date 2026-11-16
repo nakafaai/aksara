@@ -35,6 +35,20 @@ Pukul 08.40, setelah misi kesebelas, Citra meminum ramuan. Lalu ia memulai <Inli
 
 Energi <InlineMath math="32" /> tetap di bawah <InlineMath math="60" />, jadi penghitung tidak berhenti. Jadwal ini memulai <InlineMath math="11+6=17" /> misi, dan misi terakhir dimulai pukul 09.04, sebelum batas 09.10.
 
+Grafik berikut memperlihatkan energi Citra sesaat sebelum setiap misi pada jadwal itu. **Tidak ada batang yang turun di bawah garis kebutuhan <InlineMath math="6" />**, dan lonjakan sesudah pukul 08.40 adalah ramuan yang diminum ketika energinya tinggal <InlineMath math="2" />.
+
+<Chart
+  title={<>Energi Citra sebelum setiap misi biasa</>}
+  description={<>Dari pukul 08.00 sampai 08.40, energi sebelum misi berturut-turut <InlineMath math="60, 54, 49, 44, 39, 34, 28, 23, 18, 13, 8" />. Sesudah ramuan, dari pukul 08.44 sampai 09.04, energi sebelum misi berturut-turut <InlineMath math="32, 27, 22, 17, 12, 6" />. Garis datar menandai <InlineMath math="6" /> energi untuk satu misi biasa.</>}
+  bars="apart"
+  categories={["08.00", "08.04", "08.08", "08.12", "08.16", "08.20", "08.24", "08.28", "08.32", "08.36", "08.40", "08.44", "08.48", "08.52", "08.56", "09.00", "09.04"]}
+  series={[
+    { label: "Energi sebelum misi", mark: "bar", values: [60, 54, 49, 44, 39, 34, 28, 23, 18, 13, 8, 32, 27, 22, 17, 12, 6] },
+    { label: "Kebutuhan satu misi", mark: "line", values: Array.from({ length: 17 }, () => 6) },
+  ]}
+  valueLabel="Energi"
+/>
+
 # Jika ramuan diminum terlalu cepat
 
 Misalkan Citra meminum ramuan pukul 08.00 sebelum bermain. Energinya <InlineMath math="90" />, dan penambahan berhenti sampai energi turun di bawah <InlineMath math="60" />. Itu baru terjadi pukul 08.20, setelah misi keenam, jadi penambahan pukul 08.05 sampai 08.20 hilang. **Waktu minum ramuan ikut menentukan hasilnya**.

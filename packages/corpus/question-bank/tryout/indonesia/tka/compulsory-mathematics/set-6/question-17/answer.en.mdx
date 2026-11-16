@@ -25,6 +25,20 @@ For each number of <InlineMath math="2.5" />-litre cans, add as few <InlineMath 
 | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="6\text{ L}" /> | <InlineMath math="\text{Rp}255{,}000" /> |
 | <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="7.5\text{ L}" /> | <InlineMath math="\text{Rp}315{,}000" /> |
 
+Compare the four combinations that are enough. **The lowest bar is one large can and three small cans**, even though large cans are cheaper per litre, because the other combinations pay for too much leftover paint.
+
+<Chart
+  title={<>Cost of each sufficient combination of cans</>}
+  description={<>Six small cans cost <InlineMath math="270" /> thousand rupiah, one large and three small cans <InlineMath math="240" /> thousand rupiah, two large and one small can <InlineMath math="255" /> thousand rupiah, and three large cans <InlineMath math="315" /> thousand rupiah. The value axis starts at <InlineMath math="200" /> thousand rupiah.</>}
+  bars="apart"
+  categories={["0 large, 6 small", "1 large, 3 small", "2 large, 1 small", "3 large, 0 small"]}
+  series={[
+    { label: "Cost", mark: "bar", values: [270, 240, 255, 315] },
+  ]}
+  valueLabel="Thousand rupiah"
+  valueRange={{ min: 200, max: 330 }}
+/>
+
 Two big cans alone hold only <InlineMath math="5" /> litres, which isn't enough, so you still need one small can. The cost in the second row is
 
 <BlockMath math="1\cdot105{,}000+3\cdot45{,}000=105{,}000+135{,}000=240{,}000" />

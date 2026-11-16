@@ -27,6 +27,36 @@ Berat awal adalah yang lebih besar di antara berat aktual dan <InlineMath math="
 
 Kedua kasus digabung: berat aktual boleh berapa pun asalkan paling berat <InlineMath math="11{,}3\text{ kg}" />.
 
+Gambar berikut menyatukan kedua kasus itu. Sumbu mendatar adalah berat aktual, sumbu tegak adalah berat awal, dan berat tagihan <InlineMath math="11\text{ kg}" /> hanya muncul di pita antara <InlineMath math="10{,}3" /> dan <InlineMath math="11{,}3" />. **Grafik berat awal tetap di dalam pita sampai berat aktual <InlineMath math="11{,}3\text{ kg}" />**, lalu keluar dari atas.
+
+<MathVisual
+  title={<>Berat awal menurut berat aktual untuk kardus <InlineMath math="56\times40\times30\text{ cm}" /></>}
+  description={<>Berat awal sama dengan <InlineMath math="11{,}2\text{ kg}" /> selama berat aktual paling banyak <InlineMath math="11{,}2\text{ kg}" />, lalu sama dengan berat aktual. Dua garis datar di <InlineMath math="10{,}3" /> dan <InlineMath math="11{,}3\text{ kg}" /> membatasi berat awal yang ditagih <InlineMath math="11\text{ kg}" />. Grafik berada di antara keduanya untuk setiap berat aktual sampai <InlineMath math="11{,}3\text{ kg}" />, termasuk berat aktual di bawah <InlineMath math="9\text{ kg}" /> yang tidak tergambar.</>}
+  labels={{
+    vol: <InlineMath math="11{,}2" />,
+    upper: <InlineMath math="11{,}3" />,
+    lower: <InlineMath math="10{,}3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 9, max: 13.5 }, y: { min: 9, max: 13.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "upper", kind: "segment", appearance: "reference", from: { x: 9, y: 11.3 }, to: { x: 13.5, y: 11.3 } },
+      { id: "lower", kind: "segment", appearance: "reference", from: { x: 9, y: 10.3 }, to: { x: 13.5, y: 10.3 } },
+      { id: "inside", kind: "polyline", appearance: "answer", vertices: [{ x: 9, y: 11.2 }, { x: 11.2, y: 11.2 }, { x: 11.3, y: 11.3 }] },
+      { id: "outside", kind: "segment", appearance: "warning", from: { x: 11.3, y: 11.3 }, to: { x: 13.5, y: 13.5 } },
+      { id: "corner", kind: "point", appearance: "primary", at: { x: 11.2, y: 11.2 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 11.3, y: 11.3 } },
+    ],
+    labels: [
+      { key: "vol", objectId: "corner", at: { x: 11.2, y: 11.2 }, placement: "below" },
+      { key: "upper", objectId: "upper", at: { x: 9.5, y: 11.3 }, placement: "above" },
+      { key: "lower", objectId: "lower", at: { x: 9.5, y: 10.3 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Pemeriksaan
 
 Paket dengan berat aktual <InlineMath math="2\text{ kg}" /> punya berat awal <InlineMath math="11{,}2\text{ kg}" />, berat tagih <InlineMath math="11\text{ kg}" />, dan ongkos <InlineMath math="\text{Rp}235{.}000" />. Paket <InlineMath math="11{,}3\text{ kg}" /> juga berberat tagih <InlineMath math="11\text{ kg}" />. Paket <InlineMath math="11{,}4\text{ kg}" /> sudah berberat tagih <InlineMath math="12\text{ kg}" /> dan **berongkos lebih besar**, yaitu <InlineMath math="\text{Rp}255{.}000" />.

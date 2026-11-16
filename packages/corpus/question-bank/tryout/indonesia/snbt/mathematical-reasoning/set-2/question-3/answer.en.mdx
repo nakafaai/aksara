@@ -45,6 +45,20 @@ If the boss mission starts at 12:00 or later, the energy stays at <InlineMath ma
 
 In both cases she has at most <InlineMath math="75" /> at 12:30, so this statement is **true**.
 
+The chart below puts the results of four plans side by side. The plan with the boss mission at 12:10 **ends below the <InlineMath math="60" /> line** because refills are thrown away while the energy is full, while the plan with the potion last reaches <InlineMath math="90" />.
+
+<Chart
+  title={<>Nadia's energy at 12:30 under several plans</>}
+  description={<>A boss mission at 10:00 gives an energy of <InlineMath math="60" />. A boss mission at 12:10 gives <InlineMath math="59" />. A boss mission at 10:00 and then a potion at 12:15 gives <InlineMath math="90" />. A potion and a boss mission at 10:00 give <InlineMath math="75" />, the largest value when the potion is drunk at 10:00. The flat line marks an energy of <InlineMath math="60" />.</>}
+  categories={["Boss 10.00", "Boss 12.10", "Boss 10.00, potion 12.15", "Potion and boss 10.00"]}
+  bars="apart"
+  series={[
+    { label: "Energy at 12:30", mark: "bar", values: [60, 60 + 15 - 20 + 4, 60 + 30, 38 + 30 - 20 + 12 + 15] },
+    { label: "Limit 60", mark: "line", values: [60, 60, 60, 60] },
+  ]}
+  valueLabel="Energy"
+/>
+
 # Summary
 
 The first, third and fourth statements are true. The second is false, because **waiting while the energy is full throws refills away**.

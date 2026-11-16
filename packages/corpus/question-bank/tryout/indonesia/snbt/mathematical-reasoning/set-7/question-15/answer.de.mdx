@@ -28,6 +28,21 @@ g &> \frac{330}{7}=47\frac17
 
 Die kleinste ganze Zahl über <InlineMath math="47\frac17" /> ist <InlineMath math="48" />.
 
+Das Diagramm vergleicht den Wasserstand für beide Werte von <InlineMath math="g" /> ab dem Öffnen der Schleuse. **Der Gipfel für <InlineMath math="g=47" /> ragt knapp über die Awas-Linie**, während der Gipfel für <InlineMath math="g=48" /> darunter bleibt.
+
+<Chart
+  title={<>Wasserstand nach dem Öffnen der Schleuse für <InlineMath math="g=47" /> und <InlineMath math="g=48" /></>}
+  description={<>Für <InlineMath math="g=47" /> beträgt der Wasserstand um 08.40, 09.00, 10.00, 11.00 und 12.00 Uhr etwa <InlineMath math="250" />, <InlineMath math="254{,}3" />, <InlineMath math="297{,}3" />, <InlineMath math="300{,}3" /> und <InlineMath math="273{,}3" /> cm. Für <InlineMath math="g=48" /> sind es <InlineMath math="250" />, <InlineMath math="254" />, <InlineMath math="296" />, <InlineMath math="298" /> und <InlineMath math="270" /> cm. Die waagerechte Linie markiert <InlineMath math="300\text{ cm}" />. Die Werteachse beginnt bei <InlineMath math="240" />.</>}
+  categories={["08.40", "09.00", "10.00", "11.00", "12.00"]}
+  series={[
+    { label: "g = 47", mark: "line", values: [250, 250 + (60 - 47) / 3, 250 + (60 - 47) / 3 + (90 - 47), 250 + (60 - 47) / 3 + (90 - 47) + (50 - 47), 250 + (60 - 47) / 3 + (90 - 47) + (50 - 47) + (20 - 47)] },
+    { label: "g = 48", mark: "line", values: [250, 250 + (60 - 48) / 3, 250 + (60 - 48) / 3 + (90 - 48), 250 + (60 - 48) / 3 + (90 - 48) + (50 - 48), 250 + (60 - 48) / 3 + (90 - 48) + (50 - 48) + (20 - 48)] },
+    { label: "Status Awas", mark: "line", values: [300, 300, 300, 300, 300] },
+  ]}
+  valueRange={{ min: 240, max: 310 }}
+  valueLabel="Wasserstand (cm)"
+/>
+
 # Probe an den Werten neben der Grenze
 
 Für <InlineMath math="g=48" /> liegt der Höchststand bei <InlineMath math="250+4+42+2=298\text{ cm}" />, unter <InlineMath math="300" />. Nach 11.00 Uhr fällt das Wasser, und falls es bis <InlineMath math="250\text{ cm}" /> sinkt, bleibt es dort stehen, also **wird der Höchststand von <InlineMath math="298\text{ cm}" /> nicht mehr überschritten**. Für <InlineMath math="g=47" /> liegt der Höchststand bei <InlineMath math="250+\frac{13}{3}+43+3=300\frac13\text{ cm}" />, Awas wird also erreicht.

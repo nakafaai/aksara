@@ -24,6 +24,20 @@ Takaran yang diminum selalu kelipatan <InlineMath math="50\text{ mg}" />, karena
 
 Sebaliknya, **setiap anak** <InlineMath math="40\text{ kg}" /> **ke atas minum tepat** <InlineMath math="400\text{ mg}" /> karena batas sekali minum. Anak <InlineMath math="40\text{ kg}" />, <InlineMath math="50\text{ kg}" />, atau <InlineMath math="70\text{ kg}" /> memberi jumlah obat yang sama, jadi berat badannya tidak bisa ditentukan lebih tepat.
 
+Grafik berikut menghitung jumlah obat sesaat sebelum minum siang kedua untuk berbagai berat badan. **Sejak <InlineMath math="40\text{ kg}" /> batangnya berhenti naik** dan tepat menyentuh garis <InlineMath math="287{,}5\text{ mg}" />, karena dosisnya tertahan di <InlineMath math="400\text{ mg}" />.
+
+<Chart
+  title={<>Jumlah obat sesaat sebelum minum pukul 12.00 hari kedua menurut berat badan</>}
+  description={<>Untuk berat badan <InlineMath math="30" />, <InlineMath math="35" />, dan <InlineMath math="40\text{ kg}" /> ke atas, dosisnya <InlineMath math="300" />, <InlineMath math="350" />, dan <InlineMath math="400\text{ mg}" />, sehingga jumlahnya <InlineMath math="215{,}625" />, sekitar <InlineMath math="251{,}6" />, dan <InlineMath math="287{,}5\text{ mg}" />. Garis datar menandai jumlah yang diketahui, <InlineMath math="287{,}5\text{ mg}" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${30 + 5 * i}`)}
+  series={[
+    { label: "Jumlah sebelum siang kedua", mark: "bar", values: Array.from({ length: 9 }, (_, i) => (23 / 32) * Math.min(400, Math.floor((10 * (30 + 5 * i)) / 50) * 50)) },
+    { label: "Jumlah yang diketahui", mark: "line", values: Array.from({ length: 9 }, () => 287.5) },
+  ]}
+  valueLabel="Jumlah obat (mg)"
+/>
+
 # Pemeriksaan
 
 Untuk anak <InlineMath math="60\text{ kg}" />, takarannya <InlineMath math="400\text{ mg}" />. Jumlah obatnya <InlineMath math="175\text{ mg}" /> **sebelum minum pagi hari kedua**, <InlineMath math="575\text{ mg}" /> sesudahnya, lalu <InlineMath math="287{,}5\text{ mg}" /> sebelum minum siang. Untuk anak <InlineMath math="39\text{ kg}" />, takarannya <InlineMath math="350\text{ mg}" /> dan jumlahnya hanya <InlineMath math="\tfrac{23}{32}\cdot350\approx251{,}6\text{ mg}" />.

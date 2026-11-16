@@ -35,6 +35,17 @@ The largest product appears when **the terms are as close to each other as possi
 
 With four terms, the best arrangement is <InlineMath math="4,5,7,8" /> with product <InlineMath math="1{,}120" />, and with three terms it's <InlineMath math="7,8,9" /> with product <InlineMath math="504" />. **Both are smaller**, so <InlineMath math="1{,}680" /> really is the largest.
 
+The chart below compares the best product for each number of terms. **The five-term bar is the tallest**, so adding terms up to five really pays off, as long as the terms stay different and close together.
+
+<Chart
+  title={<>Largest product by the number of different terms</>}
+  description={<>With three terms, the best is <InlineMath math="7, 8, 9" />, with product <InlineMath math="504" />. With four terms, the best is <InlineMath math="4, 5, 7, 8" />, with product <InlineMath math="1{,}120" />. With five terms, the best is <InlineMath math="2, 4, 5, 6, 7" />, with product <InlineMath math="1{,}680" />.</>}
+  categories={["Three terms", "Four terms", "Five terms"]}
+  bars="apart"
+  series={[{ label: "Best product", mark: "bar", values: [7 * 8 * 9, 4 * 5 * 7 * 8, 2 * 4 * 5 * 6 * 7] }]}
+  valueLabel="Product"
+/>
+
 # The tempting wrong options
 
 - <InlineMath math="2{,}160" /> hands the leftover <InlineMath math="4" /> to the four smallest terms and gets <InlineMath math="3,4,5,6,6" />. The product is big, but **the <InlineMath math="6" /> appears twice**, which breaks the "different" condition.

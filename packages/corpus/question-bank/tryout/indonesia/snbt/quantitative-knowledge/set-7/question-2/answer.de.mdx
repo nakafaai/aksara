@@ -31,6 +31,42 @@ Also ist <InlineMath math="r=1" /> oder <InlineMath math="r=-5" />. **Beide Wert
 
 Schau dir die zweite Zeile an. Wenn du eine negative Zahl mit <InlineMath math="3" /> multiplizierst, wird sie **kleiner**, also gilt <InlineMath math="-15<-5" /> und damit <InlineMath math="\alpha<\beta" />. Allgemein ist <InlineMath math="\alpha-\beta=3\beta-\beta=2\beta" />, deshalb **zwingt die Bedingung <InlineMath math="\alpha>\beta" /> die Lösung <InlineMath math="\beta" /> ins Positive**. Nur <InlineMath math="r=1" /> bleibt übrig, also <InlineMath math="m=3" />, <InlineMath math="\alpha=3" /> und <InlineMath math="\beta=1" />.
 
+Die Graphen beider Gleichungen zeigen den Unterschied. Für <InlineMath math="m=3" /> liegt die Nullstelle <InlineMath math="\alpha=3" /> **rechts von** <InlineMath math="\beta=1" />. Für <InlineMath math="m=-21" /> liegt <InlineMath math="\alpha=-15" /> links von <InlineMath math="\beta=-5" />, also <InlineMath math="\alpha<\beta" />.
+
+<MathVisual
+  title={<>Zwei Gleichungen, die beide <InlineMath math="\alpha=3\beta" /> erfüllen</>}
+  description={<>Die Parabel <InlineMath math="y=x^2-4x+3" /> für <InlineMath math="m=3" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="1" /> und <InlineMath math="3" />. Die Parabel <InlineMath math="y=x^2+20x+75" /> für <InlineMath math="m=-21" /> schneidet sie bei <InlineMath math="-15" /> und <InlineMath math="-5" />. Im zweiten Fall liegt die Nullstelle, die das Dreifache der anderen ist, links.</>}
+  labels={{
+    kept: <InlineMath math="m=3" />,
+    dropped: <InlineMath math="m=-21" />,
+    a3: <InlineMath math="\alpha=3" />,
+    b1: <InlineMath math="\beta=1" />,
+    a15: <InlineMath math="\alpha=-15" />,
+    b5: <InlineMath math="\beta=-5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -18, max: 6 }, y: { min: -27, max: 10 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "kept", kind: "function", appearance: "answer", formula: "x^2 - 4x + 3", domain: { min: -1.5, max: 5.5 } },
+      { id: "dropped", kind: "function", appearance: "warning", formula: "x^2 + 20x + 75", domain: { min: -17.5, max: -2.5 } },
+      { id: "a3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "b1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "a15", kind: "point", appearance: "warning", at: { x: -15, y: 0 } },
+      { id: "b5", kind: "point", appearance: "warning", at: { x: -5, y: 0 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 5, y: 8 }, placement: "left" },
+      { key: "dropped", objectId: "dropped", at: { x: -10, y: -25 }, placement: "below" },
+      { key: "a3", objectId: "a3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "a15", objectId: "a15", at: { x: -15, y: 0 }, placement: "above-left" },
+      { key: "b5", objectId: "b5", at: { x: -5, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\alpha^2+\beta^2=3^2+1^2=10" />
 
 Eine Probe mit der Identität für die Quadratsumme liefert dasselbe Ergebnis.

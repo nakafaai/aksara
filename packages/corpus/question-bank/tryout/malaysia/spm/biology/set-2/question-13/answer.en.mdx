@@ -1,0 +1,31 @@
+# Compare the glucose filtered with the most that can be reabsorbed
+
+The glucose filtered each minute is the filtrate volume times its concentration. Glucose appears in the urine as soon as this load is **more** than the <InlineMath math="375\text{ mg}" /> that the tubules can take back.
+
+<Chart
+  title={<>Glucose Handled by the Kidneys Each Minute</>}
+  categories={["2.0 mg/cm³", "3.0 mg/cm³", "4.2 mg/cm³", "5.0 mg/cm³"]}
+  series={[
+    { label: "Filtered", mark: "line", values: [250, 375, 525, 625] },
+    { label: "Reabsorbed", mark: "line", values: [250, 375, 375, 375] },
+    { label: "Passes into urine", mark: "line", values: [0, 0, 150, 250] },
+  ]}
+  valueLabel="Glucose (mg per minute)"
+  description={<>At <InlineMath math="2.0" /> and <InlineMath math="3.0\text{ mg}" /> per cubic centimetre all filtered glucose is reabsorbed. At <InlineMath math="4.2" /> the tubules reabsorb their maximum of <InlineMath math="375\text{ mg}" /> and <InlineMath math="150\text{ mg}" /> passes into the urine, and at <InlineMath math="5.0" /> it is <InlineMath math="250\text{ mg}" />.</>}
+/>
+
+The threshold is the concentration at which the filtered load just equals the maximum:
+
+<BlockMath math="125\times c=375\quad\Rightarrow\quad c=\frac{375}{125}=3.0\text{ mg cm}^{-3}." />
+
+At <InlineMath math="4.2\text{ mg cm}^{-3}" />, the filtered load is above the maximum, so the tubules reabsorb their full <InlineMath math="375\text{ mg}" /> and the rest passes into the urine:
+
+<BlockMath math="125\times4.2=525\text{ mg},\qquad 525-375=150\text{ mg per minute}." />
+
+So glucose first appears in the urine above <InlineMath math="3.0\text{ mg cm}^{-3}" />, and at <InlineMath math="4.2\text{ mg cm}^{-3}" /> the urine receives <InlineMath math="150\text{ mg}" /> of glucose per minute.
+
+# Why the other options are wrong
+
+- <InlineMath math="525\text{ mg}" /> is the glucose **filtered**, and it forgets that <InlineMath math="375\text{ mg}" /> of it is still reabsorbed.
+- <InlineMath math="4.2\text{ mg cm}^{-3}" /> and <InlineMath math="0\text{ mg}" /> assumes the tubules always reabsorb all glucose, which fails once the load passes their maximum.
+- <InlineMath math="1.2\text{ mg}" /> subtracts the concentrations, <InlineMath math="4.2-3.0" />, but never multiplies by the <InlineMath math="125\text{ cm}^3" /> filtered each minute.

@@ -27,6 +27,20 @@ That's <InlineMath math="28+9+1=38" /> ways.
 
 Count the cases that don't meet the condition as well: <InlineMath math="k=0" /> gives <InlineMath math="\binom{5}{5}=1" />, <InlineMath math="k=2" /> gives <InlineMath math="\binom{6}{4}=15" />, and <InlineMath math="k=4" /> gives <InlineMath math="\binom{7}{3}=35" />. All cases together make <InlineMath math="1+15+35+28+9+1=89" />. The number of coverings of a <InlineMath math="2\times n" /> board satisfies <InlineMath math="T_n=T_{n-1}+T_{n-2}" />, because the first column is covered either by one vertical domino or by one horizontal block. That sequence is <InlineMath math="1,2,3,5,8,13,21,34,55,89" /> for <InlineMath math="n=1" /> to <InlineMath math="n=10" />. **The total of <InlineMath math="89" /> matches**, so the case split is complete.
 
+The chart below splits all <InlineMath math="89" /> coverings by the number of vertical dominoes <InlineMath math="k" />. Only **the three bars on the right**, <InlineMath math="k=6" />, <InlineMath math="8" />, and <InlineMath math="10" />, meet the condition, and they add up to <InlineMath math="38" />.
+
+<Chart
+  title={<>Coverings of the <InlineMath math="2\times10" /> board by number of vertical dominoes</>}
+  description={<>For <InlineMath math="k=0" />, <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="8" />, and <InlineMath math="10" />, the numbers of coverings are <InlineMath math="1" />, <InlineMath math="15" />, <InlineMath math="35" />, <InlineMath math="28" />, <InlineMath math="9" />, and <InlineMath math="1" />. The value of <InlineMath math="k" /> is always even, and the total is <InlineMath math="89" />.</>}
+  bars="apart"
+  categories={["0", "2", "4", "6", "8", "10"]}
+  series={[
+    { label: "Not more vertical", mark: "bar", values: [1, 15, 35, null, null, null] },
+    { label: "More vertical", mark: "bar", values: [null, null, null, 28, 9, 1] },
+  ]}
+  valueLabel="Number of coverings"
+/>
+
 # Common mistakes
 
 If you treat horizontal dominoes as free to go anywhere, you might choose the places of the <InlineMath math="6" /> vertical dominoes among <InlineMath math="10" /> columns and get <InlineMath math="\binom{10}{6}=210" />, but **the leftover columns have to pair up into blocks <InlineMath math="2" /> wide**. If you forget that <InlineMath math="k" /> is even, you might look for the impossible cases <InlineMath math="k=7" /> or <InlineMath math="k=9" />. If you answer <InlineMath math="89" />, you haven't used the condition about having more vertical dominoes.

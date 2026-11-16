@@ -20,6 +20,20 @@ The first five rows are the five cheapest packages, and **all five are different
 
 <BlockMath math="24{,}000+27{,}000+28{,}000+30{,}000+32{,}000=141{,}000" />
 
+The chart below lines up the prices of all seven healthy packages from that table. **The first five bars are the packages Sinta buys**, and the last two bars are both <InlineMath math="35" /> thousand rupiah.
+
+<Chart
+  title={<>Price of each healthy package, cheapest first</>}
+  description={<>The seven healthy packages cost <InlineMath math="24" />, <InlineMath math="27" />, <InlineMath math="28" />, <InlineMath math="30" />, <InlineMath math="32" />, <InlineMath math="35" />, and <InlineMath math="35" /> thousand rupiah, in the order of the table rows. The first five add up to <InlineMath math="141" /> thousand rupiah.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Five cheapest packages", mark: "bar", values: [5 + 12 + 4 + 3, 5 + 12 + 4 + 2 * 3, 5 + 12 + 2 * 4 + 3, 5 + 12 + 4 + 3 * 3, 5 + 2 * 12 + 3, null, null] },
+    { label: "Not chosen", mark: "bar", values: [null, null, null, null, null, 5 + 2 * 12 + 2 * 3, 5 + 12 + 6 * 3] },
+  ]}
+  valueLabel="Price (thousand rupiah)"
+/>
+
 # The tempting wrong answers
 
 The answer <InlineMath math="120{,}000" /> comes from buying the cheapest package five times, although Sinta may not repeat a package. The answer <InlineMath math="144{,}000" /> comes from missing the package at <InlineMath math="\text{Rp}32{,}000" /> and taking one at <InlineMath math="\text{Rp}35{,}000" /> instead. Answers below <InlineMath math="141{,}000" /> usually use **a package without chicken whose protein doesn't reach <InlineMath math="40\text{ g}" />**.

@@ -20,6 +20,19 @@ Von 18.00 bis 06.00 Uhr vergehen <InlineMath math="12" /> Stunden ohne Einnahme.
 
 <BlockMath math="700\cdot\tfrac{1}{2}\cdot\tfrac{1}{2}=\frac{700}{4}=175\text{ mg}" />
 
+Das Diagramm verfolgt die Menge des Medikaments. Tagsüber steigt die Linie, weil jede Einnahme <InlineMath math="400\text{ mg}" /> hinzufügt, und **nachts halbiert sie sich zweimal**, von <InlineMath math="700" /> auf <InlineMath math="350" /> und dann auf <InlineMath math="175\text{ mg}" />.
+
+<Chart
+  title={<>Menge des Medikaments im Körper eines Kindes mit <InlineMath math="60\text{ kg}" /></>}
+  description={<>Nach den Einnahmen um 06.00, 12.00 und 18.00 Uhr beträgt die Menge <InlineMath math="400" />, <InlineMath math="600" /> und <InlineMath math="700\text{ mg}" />. Ohne Medikament sinkt sie auf <InlineMath math="350\text{ mg}" /> um 24.00 Uhr und auf <InlineMath math="175\text{ mg}" /> um 06.00 Uhr am zweiten Tag.</>}
+  categories={["06.00", "12.00", "18.00", "24.00", "06.00 Tag 2"]}
+  series={[
+    { label: "Nach jeder Einnahme", mark: "line", values: [400, 400 / 2 + 400, 600 / 2 + 400, null, null] },
+    { label: "Nacht ohne Medikament", mark: "line", values: [null, null, 700, 700 / 2, 700 / 4] },
+  ]}
+  valueLabel="Menge (mg)"
+/>
+
 # Kontrolle
 
 Um 24.00 Uhr sind noch <InlineMath math="350\text{ mg}" /> im Körper und <InlineMath math="6" /> Stunden später <InlineMath math="175\text{ mg}" />. Das Ergebnis ist auch plausibel, weil es **kleiner als eine Einzeldosis** von <InlineMath math="400\text{ mg}" /> ist: Die lange Nacht baut den größten Teil ab.

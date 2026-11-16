@@ -18,6 +18,20 @@ Pada <InlineMath math="t=9" />, penggandaan <InlineMath math="480\to960" /> tepa
 
 Pada <InlineMath math="t=10" />, penggandaan memberi <InlineMath math="760\cdot2=1{.}520" />, yang lebih dari <InlineMath math="960" />. Banyak bakteri menjadi <InlineMath math="960" />, dan <InlineMath math="1{.}520-960=560" /> juta sel mati. Inilah saat pertama bakteri mati karena tabung penuh.
 
+Grafik berikut menggambar hasil penggandaan pada setiap jam, sebelum aturan kapasitas dan panen diterapkan. **Batang <InlineMath math="t=9" /> tepat menyentuh garis kapasitas**, sedangkan batang <InlineMath math="t=10" /> adalah yang pertama menembusnya.
+
+<Chart
+  title={<>Hasil penggandaan bakteri pada setiap jam dengan populasi awal <InlineMath math="30" /> juta sel</>}
+  description={<>Hasil penggandaan pada <InlineMath math="t=1" /> sampai <InlineMath math="10" /> berturut-turut <InlineMath math="60, 120, 240, 80, 160, 320, 240, 480, 960, 1{.}520" /> juta sel. Garis datar menandai kapasitas tabung, <InlineMath math="960" /> juta sel.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Hasil penggandaan", mark: "bar", values: [60, 120, 240, 40 * 2, 80 * 2, 160 * 2, 120 * 2, 240 * 2, 480 * 2, 760 * 2] },
+    { label: "Kapasitas 960", mark: "line", values: Array.from({ length: 10 }, () => 960) },
+  ]}
+  valueLabel="Bakteri (juta sel)"
+/>
+
 # Mengapa pilihan lain keliru
 
 Setiap pilihan lain **melupakan panen, salah membaca batas, atau membalik urutan**.

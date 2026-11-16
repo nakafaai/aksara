@@ -2,6 +2,36 @@ Sebuah rumah akan dibuatkan tangga lurus dari lantai bawah ke lantai atas. Jarak
 
 Setiap anak tangga memiliki pijakan datar dengan lebar <InlineMath math="T" /> yang sama, kecuali anak tangga teratas: anak tangga teratas langsung berakhir di lantai atas, dan lantai atas tidak dihitung sebagai pijakan. Panjang horizontal tangga adalah jumlah lebar semua pijakannya.
 
+<MathVisual
+  title={<>Tampak samping tangga lurus</>}
+  description={<>Gambar skematis tangga dengan empat anak tangga. Setiap anak tangga setinggi <InlineMath math="R" /> dan setiap pijakan selebar <InlineMath math="T" />. Anak tangga teratas langsung berakhir di lantai atas tanpa pijakan. Jarak tegak dari lantai bawah ke lantai atas adalah <InlineMath math="H" />.</>}
+  labels={{
+    rise: <InlineMath math="R" />,
+    tread: <InlineMath math="T" />,
+    height: <InlineMath math="H" />,
+    upper: <>lantai atas</>,
+    lower: <>lantai bawah</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 13 }, y: { min: -1.5, max: 8 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "stair", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0, y: 1.6 }, { x: 2.8, y: 1.6 }, { x: 2.8, y: 3.2 }, { x: 5.6, y: 3.2 }, { x: 5.6, y: 4.8 }, { x: 8.4, y: 4.8 }, { x: 8.4, y: 6.4 }] },
+      { id: "lower", kind: "segment", appearance: "reference", from: { x: -2, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "upper", kind: "segment", appearance: "reference", from: { x: 8.4, y: 6.4 }, to: { x: 12, y: 6.4 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 11, y: 0 }, to: { x: 11, y: 6.4 } },
+    ],
+    labels: [
+      { key: "rise", objectId: "stair", at: { x: 0, y: 0.8 }, placement: "left" },
+      { key: "tread", objectId: "stair", at: { x: 1.4, y: 1.6 }, placement: "above" },
+      { key: "height", objectId: "height", at: { x: 11, y: 3.2 }, placement: "right" },
+      { key: "upper", objectId: "upper", at: { x: 10.2, y: 6.4 }, placement: "above" },
+      { key: "lower", objectId: "lower", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Rancangan tangga harus memenuhi dua aturan berikut.
 
 - **Aturan tanjakan**: <InlineMath math="15\text{ cm}\le R\le18\text{ cm}" />.

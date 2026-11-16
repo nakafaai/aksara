@@ -27,6 +27,42 @@ t_{\text{balik}}&=\frac{12}{16}+1+\frac{8}{16} \\
 &=\tfrac34+1+\tfrac12=2\tfrac14\text{ jam}=2\text{ jam }15\text{ minit}
 \end{aligned}" />
 
+Lukis jarak bot dari P terhadap masa. **Bahagian ketika hanyut tetap menurun, cuma lebih landai**, kerana arus terus membawa bot ke arah P. Garis mencapai sifar pada jam ke-<InlineMath math="5.25" />.
+
+<MathVisual
+  title={<>Jarak bot dari jeti P mengikut masa</>}
+  description={<>Paksi mendatar ialah masa dalam jam sejak bertolak, dan paksi tegak ialah jarak dari P dalam km. Garis naik <InlineMath math="8" /> km sejam hingga Q pada <InlineMath math="24\text{ km}" /> pada jam ke-<InlineMath math="3" />. Kemudian garis turun <InlineMath math="16" /> km sejam hingga titik tengah, turun <InlineMath math="4" /> km sejam selama sejam ketika enjin mati, dan turun <InlineMath math="16" /> km sejam lagi hingga P pada jam ke-<InlineMath math="5.25" />.</>}
+  labels={{
+    up: <>melawan arus, <InlineMath math="8\text{ km/j}" /></>,
+    drift: <>hanyut, <InlineMath math="4\text{ km/j}" /></>,
+    end: <>tiba di P, <InlineMath math="5\tfrac14" /> jam</>,
+    q: <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.2, max: 5.7 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "up", kind: "function", appearance: "primary", formula: "8x", domain: { min: 0, max: 3 } },
+      { id: "down", kind: "function", appearance: "primary", formula: "24 - 16(x - 3)", domain: { min: 3, max: 3.75 } },
+      { id: "drift", kind: "function", appearance: "warning", formula: "12 - 4(x - 3.75)", domain: { min: 3.75, max: 4.75 } },
+      { id: "home", kind: "function", appearance: "primary", formula: "8 - 16(x - 4.75)", domain: { min: 4.75, max: 5.25 } },
+      { id: "q", kind: "point", appearance: "secondary", at: { x: 3, y: 24 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 5.25, y: 0 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 1.5, y: 12 }, placement: "above-left" },
+      { key: "drift", objectId: "drift", at: { x: 4.25, y: 10 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 5.25, y: 0 }, placement: "above-right" },
+      { key: "q", objectId: "q", at: { x: 3, y: 24 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jumlah masa ialah <InlineMath math="3\text{ jam}+2\text{ jam }15\text{ minit}=5\text{ jam }15\text{ minit}" />.
 
 Untuk semakan, tanpa enjin mati perjalanan balik mengambil <InlineMath math="\tfrac{24}{16}=1.5" /> jam. Enjin mati menambah <InlineMath math="1" /> jam, tetapi <InlineMath math="4\text{ km}" /> sudah dilalui dengan hanyut, jadi menjimatkan <InlineMath math="\tfrac4{16}" /> jam atau <InlineMath math="15" /> minit. Hasilnya <InlineMath math="1.5" /> jam tambah <InlineMath math="45" /> minit, iaitu <InlineMath math="2" /> jam <InlineMath math="15" /> minit.

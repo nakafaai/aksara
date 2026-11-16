@@ -20,6 +20,20 @@ Multiply the seat count by the category's price, because **the ticket price depe
 
 After <InlineMath math="144+400=544" /> tickets, the revenue is only <InlineMath math="\text{Rp}96{,}000{,}000" />. So **category B sells out before the target is reached**, and the rest of the target has to come from category C tickets.
 
+The chart below shows the revenue so far each time a category sells out. **The target line sits between the second and third bars**, so the revenue only reaches the target while category C tickets are on sale.
+
+<Chart
+  title={<>Revenue so far after each category sells out</>}
+  description={<>Once category A sells out, after <InlineMath math="144" /> tickets, the revenue is <InlineMath math="\text{Rp}36{,}000{,}000" />. Once category B sells out, after <InlineMath math="544" /> tickets, it's <InlineMath math="\text{Rp}96{,}000{,}000" />. Once category C sells out, after <InlineMath math="1{,}440" /> tickets, it's <InlineMath math="\text{Rp}185{,}600{,}000" />. The flat line marks the target of <InlineMath math="\text{Rp}100{,}000{,}000" />.</>}
+  categories={["A sold out", "A and B sold out", "All sold out"]}
+  bars="apart"
+  series={[
+    { label: "Revenue so far", mark: "bar", values: [144 * 250000, 144 * 250000 + 400 * 150000, 144 * 250000 + 400 * 150000 + 896 * 100000] },
+    { label: "Target Rp100 million", mark: "line", values: [100000000, 100000000, 100000000] },
+  ]}
+  valueLabel="Revenue (rupiah)"
+/>
+
 # The category C tickets needed
 
 **The rest of the target** is <InlineMath math="\text{Rp}100{,}000{,}000-\text{Rp}96{,}000{,}000=\text{Rp}4{,}000{,}000" />. Each category C ticket is worth <InlineMath math="\text{Rp}100{,}000" />.

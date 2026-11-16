@@ -30,6 +30,18 @@ Multiply the first equation by <InlineMath math="2" />, then subtract the second
 b &= \frac{cd}{2d-c}
 \end{aligned}" />
 
+The diagram below sums up the elimination. The key is the factor <InlineMath math="2" /> that appears twice in <InlineMath math="12" />: **multiplying the first equation by <InlineMath math="2" />** makes the term <InlineMath math="\tfrac{2}{a}" /> disappear.
+
+<Mermaid
+  title={<>Eliminating <InlineMath math="a" /> from the two reciprocal equations</>}
+  description={<>From <InlineMath math="6=2\cdot3" /> you get <InlineMath math="\tfrac1c=\tfrac1a+\tfrac1b" />, and from <InlineMath math="12=2\cdot2\cdot3" /> you get <InlineMath math="\tfrac1d=\tfrac2a+\tfrac1b" />. Twice the first equation minus the second gives <InlineMath math="\tfrac2c-\tfrac1d=\tfrac1b" />, so <InlineMath math="b=\tfrac{cd}{2d-c}" />.</>}
+  chart={`flowchart LR
+    A["6 = 2 x 3: 1/c = 1/a + 1/b"] -->|"times 2"| C["2/c = 2/a + 2/b"]
+    B["12 = 2 x 2 x 3: 1/d = 2/a + 1/b"] --> D["2/c - 1/d = 1/b"]
+    C --> D
+    D --> E["b = cd/(2d - c)"]`}
+/>
+
 # Checking
 
 Work out the left side again directly with logarithms. It really is <InlineMath math="\log_k 3" />, which is <InlineMath math="\tfrac{1}{b}" />.

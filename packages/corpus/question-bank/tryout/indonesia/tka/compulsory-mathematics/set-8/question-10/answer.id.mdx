@@ -17,6 +17,55 @@ Karena sudut <InlineMath math="B" /> siku-siku, segitiga <InlineMath math="ABD" 
 
 <BlockMath math="AD=\sqrt{12^2+6^2}=\sqrt{180}=6\sqrt5\text{ cm}" />
 
+Gambar segitiganya dengan ukuran yang sudah ditemukan. **Sisi <InlineMath math="12" />, <InlineMath math="16" />, dan <InlineMath math="20" /> membuat sudut <InlineMath math="B" /> siku-siku**, sehingga garis bagi <InlineMath math="AD" /> menjadi sisi miring segitiga siku-siku <InlineMath math="ABD" />.
+
+<MathVisual
+  title={<>Segitiga <InlineMath math="ABC" /> dengan garis bagi <InlineMath math="AD" /></>}
+  description={<>Segitiga siku-siku di <InlineMath math="B" /> dengan <InlineMath math="AB=12" /> tegak dan <InlineMath math="BC=16" /> mendatar, sehingga <InlineMath math="AC=20" />. Titik <InlineMath math="D" /> membagi <InlineMath math="BC" /> menjadi <InlineMath math="BD=6" /> dan <InlineMath math="DC=10" />. Ruas <InlineMath math="AD" /> adalah sisi miring segitiga <InlineMath math="ABD" /> dengan kaki <InlineMath math="12" /> dan <InlineMath math="6" />, sehingga panjangnya <InlineMath math="6\sqrt5" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ab: <InlineMath math="12" />,
+    bd: <InlineMath math="6" />,
+    dc: <InlineMath math="10" />,
+    ac: <InlineMath math="20" />,
+    bisector: <InlineMath math="6\sqrt5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 18 },
+      y: { min: -2, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 12 } },
+      { id: "bd", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "dc", kind: "segment", appearance: "primary", from: { x: 6, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "ac", kind: "segment", appearance: "primary", from: { x: 0, y: 12 }, to: { x: 16, y: 0 } },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 0, y: 12 }, to: { x: 6, y: 0 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 0, y: 12 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 16, y: 0 } },
+      { id: "d", kind: "point", appearance: "answer", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 12 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "c", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "ab", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "bd", objectId: "bd", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "dc", objectId: "dc", at: { x: 11, y: 0 }, placement: "below" },
+      { key: "ac", objectId: "ac", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "bisector", objectId: "bisector", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Sebagai cek, rumus panjang garis bagi <InlineMath math="AD^2=AB\cdot AC-BD\cdot DC=240-60=180" /> memberi hasil yang sama.
 
 Jadi, panjang <InlineMath math="AD" /> adalah <InlineMath math="6\sqrt5\text{ cm}" />.

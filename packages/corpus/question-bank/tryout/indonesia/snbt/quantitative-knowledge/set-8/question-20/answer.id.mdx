@@ -31,6 +31,20 @@ Bilangan <InlineMath math="n^2+n+1" /> habis dibagi <InlineMath math="49" /> tep
 
 Periksa langsung: <InlineMath math="18^2+18+1=343=7\cdot49" />, <InlineMath math="30^2+30+1=931=19\cdot49" />, <InlineMath math="67^2+67+1=4557=93\cdot49" />, dan <InlineMath math="79^2+79+1=6321=129\cdot49" />. Ada <InlineMath math="4" /> bilangan yang harus dibuang.
 
+Grafik berikut membagi <InlineMath math="29" /> bilangan yang bersisa <InlineMath math="2" /> atau <InlineMath math="4" /> menjadi dua bagian. **Hanya batang kecil yang dibuang**, yaitu empat bilangan yang membuat <InlineMath math="n^2+n+1" /> juga habis dibagi <InlineMath math="49" />.
+
+<Chart
+  title={<>Bilangan <InlineMath math="n\le100" /> yang membuat <InlineMath math="n^2+n+1" /> habis dibagi <InlineMath math="7" /></>}
+  description={<>Dari <InlineMath math="15" /> bilangan bersisa <InlineMath math="2" />, ada <InlineMath math="2" /> yang juga memberi kelipatan <InlineMath math="49" />, yaitu <InlineMath math="30" /> dan <InlineMath math="79" />. Dari <InlineMath math="14" /> bilangan bersisa <InlineMath math="4" />, ada <InlineMath math="2" /> seperti itu, yaitu <InlineMath math="18" /> dan <InlineMath math="67" />. Sisanya <InlineMath math="13+12=25" />.</>}
+  categories={["Sisa 2 jika dibagi 7", "Sisa 4 jika dibagi 7"]}
+  bars="apart"
+  series={[
+    { label: "Habis dibagi 7, tidak oleh 49", mark: "bar", values: [15 - 2, 14 - 2] },
+    { label: "Juga habis dibagi 49", mark: "bar", values: [2, 2] },
+  ]}
+  valueLabel="Banyak bilangan"
+/>
+
 <BlockMath math="29-4=25" />
 
 Kesalahan yang sering terjadi adalah berhenti di <InlineMath math="29" />, yaitu lupa syarat tidak habis dibagi <InlineMath math="49" />, atau melewatkan <InlineMath math="n=100" /> sehingga mendapat <InlineMath math="24" />.

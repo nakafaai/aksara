@@ -26,6 +26,18 @@ The straight-row count <InlineMath math="L(10)=144" /> also includes subsets tha
 
 The result matches.
 
+The diagram below sums up the split on the number <InlineMath math="1" />. Each branch **breaks the circle into a straight row**, so the straight-row count applies directly.
+
+<Mermaid
+  title={<>Splitting the spread-out subsets of the circle on the number <InlineMath math="1" /></>}
+  description={<>If <InlineMath math="1" /> isn't chosen, the numbers <InlineMath math="2" /> to <InlineMath math="10" /> form a straight row with <InlineMath math="L(9)=89" /> spread-out subsets. If <InlineMath math="1" /> is chosen, <InlineMath math="2" /> and <InlineMath math="10" /> are off limits, and the numbers <InlineMath math="3" /> to <InlineMath math="9" /> give <InlineMath math="L(7)=34" />. The total is <InlineMath math="123" />.</>}
+  chart={`flowchart LR
+    S["Circle 1 to 10"] -->|"1 not chosen"| A["Row 2 to 10: L(9) = 89"]
+    S -->|"1 chosen, 2 and 10 off limits"| B["Row 3 to 9: L(7) = 34"]
+    A --> T["89 + 34 = 123"]
+    B --> T`}
+/>
+
 # The tempting wrong options
 
 - <InlineMath math="144" /> counts as if the numbers sat in a straight row and **forgets that <InlineMath math="10" /> and <InlineMath math="1" /> are neighbours**.

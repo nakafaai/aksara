@@ -28,6 +28,20 @@ n &\le 11\tfrac{1}{6}
 
 Banyak buku harus bilangan bulat, jadi <InlineMath math="n=11" />. Jumlah ini juga muat karena kardus dapat memuat <InlineMath math="20" /> buku.
 
+Grafik berikut menghitung ongkos untuk <InlineMath math="8" /> sampai <InlineMath math="14" /> buku. Batang untuk <InlineMath math="10" /> dan <InlineMath math="11" /> buku sama tinggi karena keduanya ditagih <InlineMath math="7\text{ kg}" />, dan **batang pertama yang melewati garis batas adalah <InlineMath math="12" /> buku**.
+
+<Chart
+  title={<>Ongkos kirim ke Luar Jawa menurut banyak buku</>}
+  description={<>Untuk <InlineMath math="8" /> sampai <InlineMath math="14" /> buku, ongkosnya berturut-turut <InlineMath math="\text{Rp}135{.}000" />, <InlineMath math="\text{Rp}135{.}000" />, <InlineMath math="\text{Rp}155{.}000" />, <InlineMath math="\text{Rp}155{.}000" />, <InlineMath math="\text{Rp}175{.}000" />, <InlineMath math="\text{Rp}195{.}000" />, dan <InlineMath math="\text{Rp}195{.}000" />. Garis datar menandai batas <InlineMath math="\text{Rp}170{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 7 }, (_, i) => `${i + 8}`)}
+  series={[
+    { label: "Ongkos kirim", mark: "bar", values: Array.from({ length: 7 }, (_, i) => Math.max(0.6 + 0.6 * (i + 8), 6)).map((s) => 20000 * (s - Math.floor(s) > 0.3 ? Math.ceil(s) : Math.floor(s)) + 15000) },
+    { label: "Batas Rp170.000", mark: "line", values: Array.from({ length: 7 }, () => 170000) },
+  ]}
+  valueLabel="Ongkos (rupiah)"
+/>
+
 # Pemeriksaan
 
 Dengan <InlineMath math="11" /> buku, berat aktualnya <InlineMath math="0{,}6+6{,}6=7{,}2\text{ kg}" />. Kelebihan <InlineMath math="0{,}2\text{ kg}" /> dihapus, berat tagihnya <InlineMath math="7\text{ kg}" />, dan ongkosnya <InlineMath math="\text{Rp}155{.}000" />. Dengan <InlineMath math="12" /> buku, berat aktualnya <InlineMath math="7{,}8\text{ kg}" />, kelebihan <InlineMath math="0{,}8\text{ kg}" /> **memaksa pembulatan ke atas** menjadi <InlineMath math="8\text{ kg}" />, dan ongkosnya <InlineMath math="\text{Rp}175{.}000" />, melewati anggaran.

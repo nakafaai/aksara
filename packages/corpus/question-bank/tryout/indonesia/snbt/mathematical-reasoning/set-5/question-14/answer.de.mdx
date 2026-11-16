@@ -25,6 +25,20 @@ Mach ab dem <InlineMath math="15" />. weiter, einem Dienstag:
 
 Das Hauptvolumen ist **genau dann aufgebraucht, wenn der Download tagsüber am <InlineMath math="17" />. fertig ist**. Alle Downloads am <InlineMath math="17" />. laufen also noch mit <InlineMath math="40\text{ Mbps}" />.
 
+Das Diagramm summiert das verbrauchte Hauptkontingent bis zum Ende jedes Datums. **Der Balken für Datum <InlineMath math="17" /> berührt die Linie bei <InlineMath math="100\text{ GB}" /> genau**, also fällt der erste Tagesdownload ohne Kontingent auf das nächste Datum.
+
+<Chart
+  title={<>Verbrauchtes Hauptkontingent bis zum Ende jedes Datums</>}
+  description={<>Der Verbrauch steigt montags bis freitags um <InlineMath math="4\text{ GB}" /> und samstags und sonntags um <InlineMath math="12\text{ GB}" />. Bis Ende Datum <InlineMath math="7" /> sind <InlineMath math="44\text{ GB}" /> verbraucht, bis Datum <InlineMath math="14" /> <InlineMath math="88\text{ GB}" /> und bis Datum <InlineMath math="17" /> genau <InlineMath math="100\text{ GB}" />. Nachtdownloads zählen nicht.</>}
+  bars="apart"
+  categories={Array.from({ length: 17 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Verbrauchtes Hauptkontingent", mark: "bar", values: [4, 8, 12, 16, 28, 40, 44, 48, 52, 56, 60, 72, 84, 88, 92, 96, 100] },
+    { label: "Hauptkontingent 100 GB", mark: "line", values: Array.from({ length: 17 }, () => 100) },
+  ]}
+  valueLabel="Verbrauch (GB)"
+/>
+
 # Der erste langsame Download
 
 Der <InlineMath math="18" />. ist ein Freitag. Sein Nachtdownload (00.00 bis 06.00) läuft weiter mit <InlineMath math="40\text{ Mbps}" />. Sein Download tagsüber beginnt ohne Hauptvolumen, also ist **das der erste Download mit <InlineMath math="8\text{ Mbps}" />**.

@@ -28,6 +28,46 @@ Harga <InlineMath math="b" /> juga harus kelipatan <InlineMath math="500" />, ar
 | <InlineMath math="4{.}000" /> | <InlineMath math="7{.}000" /> | <InlineMath math="29{.}000" /> |
 | <InlineMath math="5{.}000" /> | <InlineMath math="5{.}500" /> | <InlineMath math="26{.}500" /> |
 
+Gambar kelima pasangan harga pada garis <InlineMath math="2b+3p=26" /> dalam ribu rupiah. **Semua titik ada di atas garis <InlineMath math="b=p" />, dan titik terakhir <InlineMath math="(5,\ 5{,}5)" /> nyaris menyentuhnya**, jadi harga pulpen bisa tepat <InlineMath math="5" /> ribu. Titik <InlineMath math="(1,\ 11{,}5)" /> ada di atas garis <InlineMath math="3b+2p=35" />.
+
+<MathVisual
+  title={<>Pasangan harga pulpen dan buku yang mungkin</>}
+  description={<>Sumbu mendatar adalah harga pulpen <InlineMath math="p" />, sumbu tegak adalah harga buku <InlineMath math="b" />, keduanya dalam ribu rupiah. Lima titik <InlineMath math="(1,\ 11{,}5)" />, <InlineMath math="(2,\ 10)" />, <InlineMath math="(3,\ 8{,}5)" />, <InlineMath math="(4,\ 7)" />, dan <InlineMath math="(5,\ 5{,}5)" /> terletak pada garis <InlineMath math="2b+3p=26" /> dan di atas garis <InlineMath math="b=p" />. Garis <InlineMath math="3b+2p=35" /> memisahkan titik <InlineMath math="(1,\ 11{,}5)" /> dari keempat titik lainnya.</>}
+  labels={{
+    budget: <InlineMath math="2b+3p=26" />,
+    equal: <InlineMath math="b=p" />,
+    level: <InlineMath math="3b+2p=35" />,
+    cheap: <InlineMath math="(1,\ 11{,}5)" />,
+    edge: <InlineMath math="(5,\ 5{,}5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6.8 },
+      y: { min: 3, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "budget", kind: "function", appearance: "primary", formula: "13 - 1.5x", domain: { min: 0, max: 6 } },
+      { id: "equal", kind: "function", appearance: "reference", formula: "x", domain: { min: 3, max: 6.5 } },
+      { id: "level", kind: "function", appearance: "warning", formula: "(35 - 2x)/3", domain: { min: 0, max: 6 } },
+      { id: "cheap", kind: "point", appearance: "warning", at: { x: 1, y: 11.5 } },
+      { id: "p2", kind: "point", appearance: "primary", at: { x: 2, y: 10 } },
+      { id: "p3", kind: "point", appearance: "primary", at: { x: 3, y: 8.5 } },
+      { id: "p4", kind: "point", appearance: "primary", at: { x: 4, y: 7 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 5, y: 5.5 } },
+    ],
+    labels: [
+      { key: "budget", objectId: "budget", at: { x: 5.8, y: 4.3 }, placement: "below-left" },
+      { key: "equal", objectId: "equal", at: { x: 6.3, y: 6.3 }, placement: "above-left" },
+      { key: "level", objectId: "level", at: { x: 0.2, y: 34.6 / 3 }, placement: "above-right" },
+      { key: "cheap", objectId: "cheap", at: { x: 1, y: 11.5 }, placement: "below-left" },
+      { key: "edge", objectId: "edge", at: { x: 5, y: 5.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Setiap baris memenuhi <InlineMath math="2b+3p=26{.}000" />, <InlineMath math="b>p" />, dan kelipatan <InlineMath math="500" />.
 
 # Pernyataan pertama

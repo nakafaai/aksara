@@ -18,6 +18,20 @@ Die Gruppe ab <InlineMath math="30\text{ Jahren}" /> in Pasar X hat <InlineMath 
 
 <BlockMath math="\frac{80}{160}\cdot 100\%=50\%" />
 
+Das Diagramm berechnet den Gesamtanteil von Pasar X für mehrere Anteile in der Gruppe ab <InlineMath math="30" />. **Der Balken erreicht die Linie von Pasar Y genau bei <InlineMath math="50\%" />**, weil jeder Anstieg um <InlineMath math="5" /> Punkte in dieser Gruppe insgesamt nur <InlineMath math="4" /> Punkte bringt.
+
+<Chart
+  title={<>Gesamtanteil von Pasar X nach dem Anteil in der Gruppe ab <InlineMath math="30" /></>}
+  description={<>Bei Anteilen von <InlineMath math="40\%" />, <InlineMath math="45\%" />, <InlineMath math="50\%" />, <InlineMath math="55\%" /> und <InlineMath math="60\%" /> in der Gruppe ab <InlineMath math="30" /> beträgt der Gesamtanteil von Pasar X <InlineMath math="48\%" />, <InlineMath math="52\%" />, <InlineMath math="56\%" />, <InlineMath math="60\%" /> und <InlineMath math="64\%" />. Die waagerechte Linie markiert den Gesamtanteil von Pasar Y, <InlineMath math="56\%" />.</>}
+  bars="apart"
+  categories={["40%", "45%", "50%", "55%", "60%"]}
+  series={[
+    { label: "Gesamtanteil Pasar X", mark: "bar", values: [40, 45, 50, 55, 60].map((p) => ((32 + 1.6 * p) / 200) * 100) },
+    { label: "Pasar Y, 56 %", mark: "line", values: [56, 56, 56, 56, 56] },
+  ]}
+  valueLabel="QRIS-Nutzer (%)"
+/>
+
 # Kontrolle des Ergebnisses
 
 Bei <InlineMath math="50\%" /> liefert diese Gruppe <InlineMath math="80" /> Personen, also hat Pasar X <InlineMath math="32+80=112" /> QRIS-Nutzer, genau <InlineMath math="56\%" />. Liegt der Gruppenanteil knapp unter <InlineMath math="50\%" />, etwa bei <InlineMath math="79" /> Personen, sind es <InlineMath math="111" />, **also noch zu wenig**.

@@ -29,6 +29,20 @@ Kalau ia membawa <InlineMath math="4k+s" /> botol lepas dengan sisa <InlineMath 
 20&=3(6)+2 \Rightarrow \text{dibawa pulang } 4(6)+2=26
 \end{aligned}" />
 
+Diagram berikut menelusuri tagihan mundur sampai ke banyak botol. **Kedua cabang sah, jadi jawabannya dua bilangan**, satu tanpa potongan dan satu dengan potongan.
+
+<Mermaid
+  title={<>Dari tagihan <InlineMath math="\text{Rp}380{.}000" /> ke banyak botol</>}
+  description={<>Tagihan <InlineMath math="380" /> ribu bisa berasal dari total <InlineMath math="380" /> ribu tanpa potongan atau total <InlineMath math="400" /> ribu dengan potongan <InlineMath math="5\%" />. Kedua total hanya bisa dibentuk dari botol lepas, yaitu <InlineMath math="19" /> atau <InlineMath math="20" /> botol yang dibayar, sehingga botol yang dibawa pulang <InlineMath math="25" /> atau <InlineMath math="26" />.</>}
+  chart={`flowchart TD
+  B["Tagihan (ribu rupiah): 380"] --> T1["Tanpa potongan: T = 380"]
+  B --> T2["Dengan potongan: 0,95 T = 380 → T = 400"]
+  T1 --> P1["Botol dibayar: 19 = 3 · 6 + 1"]
+  T2 --> P2["Botol dibayar: 20 = 3 · 6 + 2"]
+  P1 --> H1["Dibawa pulang: 4 · 6 + 1 = 25"]
+  P2 --> H2["Dibawa pulang: 4 · 6 + 2 = 26"]`}
+/>
+
 Cek: <InlineMath math="25" /> botol berisi <InlineMath math="6" /> kelompok utuh dan sisa <InlineMath math="1" />, jadi dibayar <InlineMath math="18+1=19" />. <InlineMath math="26" /> botol berisi <InlineMath math="6" /> kelompok utuh dan sisa <InlineMath math="2" />, jadi dibayar <InlineMath math="18+2=20" />. Botol ke-<InlineMath math="27" /> sudah membuat bayarannya menjadi <InlineMath math="21" /> botol.
 
 Jadi, banyak botol yang mungkin ia bawa pulang adalah <InlineMath math="25" /> atau <InlineMath math="26" />.

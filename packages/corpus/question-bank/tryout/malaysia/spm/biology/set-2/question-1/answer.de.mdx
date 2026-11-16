@@ -1,0 +1,21 @@
+# Alles außer der Temperatur festhalten, dann die Rate lesen
+
+Nur die Temperatur darf sich ändern. Gemessen wird eine **Rate pro Minute**, eine andere Zählzeit verdirbt einen Ansatz also nicht: <InlineMath math="40" /> Blasen in <InlineMath math="5" /> Minuten und <InlineMath math="80" /> in <InlineMath math="10" /> Minuten sind dieselbe Rate von <InlineMath math="8" /> pro Minute.
+
+<Mermaid
+  title={<>Welche Ansätze nur die Temperatur ändern</>}
+  description={<>Q, T und U ändern nur die Temperatur, sobald die Zählung in eine Rate pro Minute umgerechnet ist. R ändert die Hefe und S die Glucose, also fallen sie heraus.</>}
+  chart={"flowchart LR\n  P[P: 25 °C] --> Q[Q: 35 °C: bleibt]\n  P --> T[T: 45 °C, 5 min, Rate pro Minute: bleibt]\n  P --> U[U: 55 °C: bleibt]\n  P --> R[R: 4 g Hefe: raus]\n  P --> S[S: 10% Glucose: raus]"}
+/>
+
+- Q und U ändern nur die Temperatur und bleiben.
+- T zählt <InlineMath math="5" /> Minuten, doch seine Zahl wird durch <InlineMath math="5" /> geteilt und ergibt Blasen pro Minute, also bleibt auch T.
+- R verdoppelt die Hefe und S die Glucose, jeder ändert also eine zweite Größe und fällt heraus.
+
+Die größte gültige Gruppe ist also P, Q, T und U mit vier Temperaturen.
+
+# Warum die anderen Antworten falsch sind
+
+- P, Q und U lässt T weg, als verderbe die kürzere Zählung den Ansatz, doch **eine Rate pro Minute berücksichtigt die Zeit schon**.
+- P, Q, S, T und U nimmt S auf, das auch die Glucose verdoppelt.
+- P, Q, R, T und U nimmt R auf, das auch die Hefe verdoppelt.

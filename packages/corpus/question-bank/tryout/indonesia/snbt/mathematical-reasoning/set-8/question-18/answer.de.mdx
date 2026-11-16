@@ -15,6 +15,20 @@ Wer rhesus-negativ ist, **erhält nur Blut von rhesus-negativen Spendern**. Wer 
 | <InlineMath math="\mathrm{B}^+" /> | <InlineMath math="\mathrm{B}^+,\ \mathrm{B}^-,\ \mathrm{O}^+,\ \mathrm{O}^-" /> | <InlineMath math="8+2+14+2=26" /> |
 | <InlineMath math="\mathrm{AB}^+" /> | alle Spender | <InlineMath math="40" /> |
 
+Das Diagramm zeigt die Tabelle für jede Patientengruppe. **Alle rhesus-negativen Gruppen bleiben kurz, auch <InlineMath math="\mathrm{AB}^-" />**, während nur <InlineMath math="\mathrm{A}^+" />, <InlineMath math="\mathrm{B}^+" /> und <InlineMath math="\mathrm{AB}^+" /> die Hälftelinie überschreiten.
+
+<Chart
+  title={<>Anzahl passender Spender für jede Patientengruppe</>}
+  description={<>Patienten mit <InlineMath math="\mathrm{O}^-" />, <InlineMath math="\mathrm{A}^-" />, <InlineMath math="\mathrm{B}^-" /> und <InlineMath math="\mathrm{AB}^-" /> passen zu <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="6" /> Spendern. Patienten mit <InlineMath math="\mathrm{O}^+" />, <InlineMath math="\mathrm{A}^+" />, <InlineMath math="\mathrm{B}^+" /> und <InlineMath math="\mathrm{AB}^+" /> passen zu <InlineMath math="16" />, <InlineMath math="26" />, <InlineMath math="26" /> und <InlineMath math="40" /> Spendern. Die waagerechte Linie markiert <InlineMath math="20" /> Spender, die Hälfte aller Spender.</>}
+  bars="apart"
+  categories={["O−", "A−", "B−", "AB−", "O+", "A+", "B+", "AB+"]}
+  series={[
+    { label: "Passende Spender", mark: "bar", values: [2, 1 + 2, 2 + 2, 6, 14 + 2, 9 + 1 + 14 + 2, 8 + 2 + 14 + 2, 40] },
+    { label: "Hälfte der Spender", mark: "line", values: [20, 20, 20, 20, 20, 20, 20, 20] },
+  ]}
+  valueLabel="Spender"
+/>
+
 # Negative Spender für positive Empfänger
 
 Die erste Aussage behauptet etwas für jeden Fall, also widerlegt sie schon ein Gegenbeispiel. Ein Spender mit <InlineMath math="\mathrm{A}^-" /> erfüllt für jemanden mit <InlineMath math="\mathrm{B}^+" /> die Rhesus-Regel, **scheitert aber an der ABO-Regel**, weil Spender mit A nur an A und AB geben. Die erste Aussage ist falsch.

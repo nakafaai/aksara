@@ -1,0 +1,27 @@
+# Doubling is a power of two, and a head start is a power of two too
+
+After <InlineMath math="n" /> cycles a sample has its starting number times <InlineMath math="2^{n}" />. Y needs **more than** a million:
+
+<BlockMath math="1280\times2^{n}>1\,000\,000\ \Rightarrow\ 2^{n}>781.25,\qquad 2^{9}=512\ \text{(too few)},\quad 2^{10}=1024\ \text{(enough)}." />
+
+So Y passes a million after <InlineMath math="10" /> cycles. X starts with <InlineMath math="\frac{1280}{10}=128=2^{7}" /> times fewer copies, so it needs exactly <InlineMath math="7" /> more doublings to catch up: <InlineMath math="10\times2^{17}=1\,310\,720" />, the same as Y after <InlineMath math="10" /> cycles.
+
+<Chart
+  title={<>Copies After Each Cycle</>}
+  categories={["8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]}
+  series={[
+    { label: "Sample X", mark: "line", values: [2560, 5120, 10240, 20480, 40960, 81920, 163840, 327680, 655360, 1310720] },
+    { label: "Sample Y", mark: "line", values: [327680, 655360, 1310720, 2621440, null, null, null, null, null, null] },
+    { label: "1,000,000 copies", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000] },
+  ]}
+  valueLabel="Number of copies"
+  description={<>Sample Y, starting at <InlineMath math="1280" /> copies, first passes one million after cycle <InlineMath math="10" /> with <InlineMath math="1{,}310{,}720" /> copies. Sample X, starting at <InlineMath math="10" />, passes it only after cycle <InlineMath math="17" />, seven cycles later.</>}
+/>
+
+So Y needs <InlineMath math="10" /> cycles, and X needs <InlineMath math="7" /> more.
+
+# Why the other options are wrong
+
+- <InlineMath math="9" /> cycles gives Y only <InlineMath math="655\,360" /> copies, **still below** a million.
+- <InlineMath math="128" /> more cycles treats the head start as a number of cycles, but each cycle only doubles, so a <InlineMath math="128" />-fold gap closes in <InlineMath math="7" /> cycles.
+- <InlineMath math="1270" /> more is the difference in starting copies, not in cycles.

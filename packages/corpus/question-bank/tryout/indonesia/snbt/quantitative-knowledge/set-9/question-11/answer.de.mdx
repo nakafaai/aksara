@@ -35,6 +35,17 @@ Das größte Produkt entsteht, wenn **die Summanden möglichst nah beieinander l
 
 Mit vier Summanden ist <InlineMath math="4,5,7,8" /> am besten, mit dem Produkt <InlineMath math="1{.}120" />, und mit drei Summanden <InlineMath math="7,8,9" /> mit dem Produkt <InlineMath math="504" />. **Beide sind kleiner**, also ist <InlineMath math="1{.}680" /> wirklich das größte Produkt.
 
+Das Diagramm vergleicht das beste Produkt für jede Anzahl von Summanden. **Der Balken für fünf Summanden ist am höchsten**, also lohnt es sich, bis zu fünf Summanden zu nehmen, solange sie verschieden und nah beieinander bleiben.
+
+<Chart
+  title={<>Größtes Produkt nach der Anzahl verschiedener Summanden</>}
+  description={<>Mit drei Summanden ist <InlineMath math="7, 8, 9" /> am besten, mit Produkt <InlineMath math="504" />. Mit vier Summanden ist <InlineMath math="4, 5, 7, 8" /> am besten, mit Produkt <InlineMath math="1{.}120" />. Mit fünf Summanden ist <InlineMath math="2, 4, 5, 6, 7" /> am besten, mit Produkt <InlineMath math="1{.}680" />.</>}
+  categories={["Drei Summanden", "Vier Summanden", "Fünf Summanden"]}
+  bars="apart"
+  series={[{ label: "Bestes Produkt", mark: "bar", values: [7 * 8 * 9, 4 * 5 * 7 * 8, 2 * 4 * 5 * 6 * 7] }]}
+  valueLabel="Produkt"
+/>
+
 # Die verlockenden falschen Antworten
 
 - <InlineMath math="2{.}160" /> verteilt den Rest <InlineMath math="4" /> auf die vier kleinsten Summanden und erhält <InlineMath math="3,4,5,6,6" />. Das Produkt ist groß, aber **die <InlineMath math="6" /> kommt zweimal vor**, und das verletzt die Bedingung "verschieden".

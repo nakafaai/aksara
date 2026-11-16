@@ -29,6 +29,21 @@ Bisakah kartu kedua dibeli lebih lambat supaya ikut menanggung hari ke-<InlineMa
 &= 580
 \end{aligned}" />
 
+Grafik berikut menaruh nomor hari kunjungan ke-<InlineMath math="11" /> sampai ke-<InlineMath math="20" />. **Dua batang terakhir sudah berada di atas garis hari ke-<InlineMath math="47" />**, jadi kedua kunjungan itu tidak lagi bisa memakai kartu kedua.
+
+<Chart
+  title={<>Nomor hari kunjungan ke-<InlineMath math="11" /> sampai ke-<InlineMath math="20" /> dan masa berlaku kartu kedua</>}
+  description={<>Kunjungan ke-<InlineMath math="11" /> sampai ke-<InlineMath math="18" /> jatuh pada hari ke-<InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="22" />, <InlineMath math="23" />, <InlineMath math="25" />, <InlineMath math="27" />, <InlineMath math="34" />, dan <InlineMath math="41" />, sehingga ditanggung kartu kedua. Kunjungan ke-<InlineMath math="19" /> dan ke-<InlineMath math="20" /> jatuh pada hari ke-<InlineMath math="48" /> dan <InlineMath math="55" />. Garis datar menandai hari ke-<InlineMath math="47" />, hari terakhir kartu kedua berlaku.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${11 + i}`)}
+  series={[
+    { label: "Ditanggung kartu kedua", mark: "bar", values: [18, 20, 22, 23, 25, 27, 34, 41, null, null] },
+    { label: "Dibayar tiket harian", mark: "bar", values: [null, null, null, null, null, null, null, null, 48, 55] },
+    { label: "Kartu kedua berlaku sampai hari ke-47", mark: "line", values: Array.from({ length: 10 }, () => 18 + 29) },
+  ]}
+  valueLabel="Nomor hari"
+/>
+
 # Membandingkan dengan cara lain
 
 Cara yang memakai member atau hanya satu kartu ternyata **lebih mahal daripada** <InlineMath math="580" />:

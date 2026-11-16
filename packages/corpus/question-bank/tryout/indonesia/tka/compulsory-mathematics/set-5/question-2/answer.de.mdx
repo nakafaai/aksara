@@ -25,6 +25,43 @@ Bestelle jetzt genau <InlineMath math="500" /> Blätter: die Blätter der Hefte 
 n&\le31{,}25
 \end{aligned}" />
 
+Vergleiche beide Bestellwege in einem Graphen. **Mit genau <InlineMath math="500" /> Blatt steigen die Kosten nur um <InlineMath math="4" /> tausend pro Modul, also ist die Gerade viel flacher**. Diese flache Gerade überschreitet das Budget erst nach <InlineMath math="31" /> Modulen, die Gerade ohne Zusatzblätter schon nach <InlineMath math="27" />.
+
+<MathVisual
+  title={<>Gesamtkosten nach Anzahl der Module</>}
+  description={<>Die waagerechte Achse ist die Anzahl der Module <InlineMath math="n" />, die senkrechte Achse die Gesamtkosten in tausend Rupiah. Die steile Gerade <InlineMath math="10n" /> sind die Kosten ohne Zusatzblätter, die flache Gerade <InlineMath math="150+4n" /> die Kosten bei genau <InlineMath math="500" /> Blatt. Die waagerechte Linie bei <InlineMath math="275" /> ist das Budget. Die Punkte <InlineMath math="(27,\ 270)" /> und <InlineMath math="(31,\ 274)" /> sind die größten Modulzahlen für jeden Weg.</>}
+  labels={{
+    plain: <>ohne Zusatz <InlineMath math="10n" /></>,
+    padded: <><InlineMath math="500" /> Blatt: <InlineMath math="150+4n" /></>,
+    budget: <InlineMath math="275" />,
+    "plain-best": <InlineMath math="(27,\ 270)" />,
+    "padded-best": <InlineMath math="(31,\ 274)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 13, max: 36 },
+      y: { min: 190, max: 345 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plain", kind: "function", appearance: "secondary", formula: "10x", domain: { min: 20, max: 33 } },
+      { id: "padded", kind: "function", appearance: "primary", formula: "150 + 4x", domain: { min: 15, max: 33 } },
+      { id: "budget", kind: "function", appearance: "reference", formula: "275", domain: { min: 14, max: 35 } },
+      { id: "plain-best", kind: "point", appearance: "secondary", at: { x: 27, y: 270 } },
+      { id: "padded-best", kind: "point", appearance: "answer", at: { x: 31, y: 274 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain", at: { x: 32, y: 320 }, placement: "left" },
+      { key: "padded", objectId: "padded", at: { x: 18, y: 222 }, placement: "below-right" },
+      { key: "budget", objectId: "budget", at: { x: 15, y: 275 }, placement: "above" },
+      { key: "plain-best", objectId: "plain-best", at: { x: 27, y: 270 }, placement: "above-left" },
+      { key: "padded-best", objectId: "padded-best", at: { x: 31, y: 274 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Also <InlineMath math="n=31" />. Probe: <InlineMath math="31" /> Hefte brauchen <InlineMath math="465" /> Blätter, mit <InlineMath math="35" /> leeren Blättern sind es <InlineMath math="500" />, und die Summe ist <InlineMath math="150{.}000+124{.}000=274{.}000" /> Rupiah. Für <InlineMath math="32" /> Hefte ist der günstigste Weg ebenfalls <InlineMath math="500" /> Blätter, mit <InlineMath math="150{.}000+128{.}000=278{.}000" /> Rupiah, und das liegt über dem Budget.
 
 Es können also höchstens <InlineMath math="31" /> Hefte bestellt werden.

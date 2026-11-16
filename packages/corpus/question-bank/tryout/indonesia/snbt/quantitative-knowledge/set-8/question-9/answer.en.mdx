@@ -33,6 +33,42 @@ Look at the row <InlineMath math="u=\pm3" />: the values <InlineMath math="v=\pm
 
 Count the points with <InlineMath math="u^2+v^2\le25" /> too. The rows give <InlineMath math="11" /> for <InlineMath math="u=0" />, <InlineMath math="9" /> for each of <InlineMath math="u=\pm1,\pm2,\pm3" />, <InlineMath math="7" /> for each of <InlineMath math="u=\pm4" />, and <InlineMath math="1" /> for each of <InlineMath math="u=\pm5" />, which makes <InlineMath math="81" />. There are <InlineMath math="12" /> points **lying exactly on the circle**: <InlineMath math="(\pm5,0)" />, <InlineMath math="(0,\pm5)" />, <InlineMath math="(\pm3,\pm4)" />, and <InlineMath math="(\pm4,\pm3)" />. The difference <InlineMath math="81-12=69" /> matches the count above.
 
+The circle below marks the <InlineMath math="12" /> lattice points that sit **exactly on the circle**. They satisfy <InlineMath math="\le" /> but not <InlineMath math="<" />, so all of them are left out of the count.
+
+<MathVisual
+  title={<>Lattice points exactly on the circle with centre <InlineMath math="(1,2)" /> and radius <InlineMath math="5" /></>}
+  description={<>The circle has centre <InlineMath math="(1,2)" /> and radius <InlineMath math="5" />. Twelve lattice points sit exactly on it: four along the axis directions, <InlineMath math="5" /> away from the centre, and eight whose coordinates differ from the centre by <InlineMath math="3" /> and <InlineMath math="4" />. The lattice points strictly inside the circle number <InlineMath math="69" />.</>}
+  labels={{
+    circle: <InlineMath math="(x-1)^2+(y-2)^2=25" />,
+    center: <InlineMath math="(1,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 7 }, y: { min: -4, max: 8 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 1, y: 2 }, radius: 5 },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 1, y: 2 } },
+      { id: "e1", kind: "point", appearance: "warning", at: { x: 6, y: 2 } },
+      { id: "e2", kind: "point", appearance: "warning", at: { x: -4, y: 2 } },
+      { id: "e3", kind: "point", appearance: "warning", at: { x: 1, y: 7 } },
+      { id: "e4", kind: "point", appearance: "warning", at: { x: 1, y: -3 } },
+      { id: "e5", kind: "point", appearance: "warning", at: { x: 4, y: 6 } },
+      { id: "e6", kind: "point", appearance: "warning", at: { x: -2, y: 6 } },
+      { id: "e7", kind: "point", appearance: "warning", at: { x: 4, y: -2 } },
+      { id: "e8", kind: "point", appearance: "warning", at: { x: -2, y: -2 } },
+      { id: "e9", kind: "point", appearance: "warning", at: { x: 5, y: 5 } },
+      { id: "e10", kind: "point", appearance: "warning", at: { x: -3, y: 5 } },
+      { id: "e11", kind: "point", appearance: "warning", at: { x: 5, y: -1 } },
+      { id: "e12", kind: "point", appearance: "warning", at: { x: -3, y: -1 } },
+    ],
+    labels: [
+      { key: "circle", objectId: "circle", at: { x: 1, y: 7 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 1, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # The wrong options
 
 - <InlineMath math="61" /> comes from **not adding the constants from completing the squares to the right side**, so you'd count <InlineMath math="u^2+v^2<20" />.

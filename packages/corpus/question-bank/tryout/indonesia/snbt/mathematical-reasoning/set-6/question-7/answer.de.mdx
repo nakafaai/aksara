@@ -19,6 +19,19 @@ Die Minutengebühren steigen pro Fahrt um <InlineMath math="\text{Rp}10{.}000" /
 | <InlineMath math="5" /> | <InlineMath math="60{.}000" /> | <InlineMath math="60{.}000" /> |
 | <InlineMath math="6" /> | <InlineMath math="72{.}000" /> | <InlineMath math="60{.}000" /> |
 
+Das Diagramm zeichnet beide Gesamtkosten aus der Tabelle. Die Abo-Linie **wird ab der dritten Fahrt flach**, während die Normaltarif-Linie weiter steigt, sie bei <InlineMath math="5" /> Fahrten einholt und bei <InlineMath math="6" /> Fahrten überholt.
+
+<Chart
+  title={<>Gesamtkosten für Fahrten von <InlineMath math="40" /> Minuten nach Anzahl der Fahrten</>}
+  description={<>Der Normaltarif kostet <InlineMath math="12{.}000" /> Rupiah mal die Anzahl der Fahrten. Das Abo kostet <InlineMath math="40{.}000" />, <InlineMath math="50{.}000" /> und ab der dritten Fahrt gleichbleibend <InlineMath math="60{.}000" /> Rupiah. Bei <InlineMath math="5" /> Fahrten kosten beide gleich viel.</>}
+  categories={Array.from({ length: 7 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Normaltarif", mark: "line", values: Array.from({ length: 7 }, (_, i) => 12000 * (i + 1)) },
+    { label: "Abo", mark: "line", values: Array.from({ length: 7 }, (_, i) => 30000 + Math.min(10000 * (i + 1), 30000)) },
+  ]}
+  valueLabel="Gesamtkosten (Rupiah)"
+/>
+
 # Die Bedingung für günstiger
 
 Das Abo muss **wirklich günstiger** sein, nicht nur gleich teuer. Für <InlineMath math="n" /> Fahrten mit <InlineMath math="n\ge 3" /> lautet die Bedingung:

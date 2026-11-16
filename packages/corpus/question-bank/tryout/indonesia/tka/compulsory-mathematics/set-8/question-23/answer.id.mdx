@@ -35,3 +35,20 @@ Taksiran median memang <InlineMath math="34" />, tetapi taksiran bukan kepastian
 Angka <InlineMath math="20" /> berasal dari taksiran <InlineMath math="\tfrac12\cdot16+12=20" />, yang menganggap kelas <InlineMath math="40\le t<50" /> terbagi dua sama rata. **Salah**.
 
 Jadi, urutannya adalah Benar, Salah, Salah.
+
+Diagram ini merangkum cara kerja ketiga pernyataan. **Setiap pernyataan diuji dengan kasus paling ekstrem yang masih cocok dengan tabel**. Pernyataan yang lolos dari kasus ekstrem pasti benar, dan yang gagal cukup dibantah oleh satu contoh.
+
+<Mermaid
+  title={<>Menguji setiap pernyataan dengan kasus ekstrem</>}
+  description={<>Pernyataan 1 diuji dengan menaruh setiap siswa sedekat mungkin dengan batas atas kelasnya, dan rata-ratanya tetap kurang dari <InlineMath math="40{,}5" />. Pernyataan 2 dibantah oleh dua puluh siswa yang membaca tepat <InlineMath math="30" /> menit. Pernyataan 3 dibantah oleh enam belas siswa yang membaca tepat <InlineMath math="40" /> menit.</>}
+  chart={`flowchart TD
+  P1["Pernyataan 1: rata-rata pasti kurang dari 41?"] --> C1["Setiap siswa di bawah batas atas kelasnya"]
+  C1 --> R1["rata-rata < 3.240 : 80 = 40,5"]
+  R1 --> V1["Benar"]
+  P2["Pernyataan 2: median pasti lebih dari 32?"] --> C2["Contoh: 20 siswa kelas 30 sampai 40 membaca tepat 30 menit"]
+  C2 --> R2["median = 30, tidak lebih dari 32"]
+  R2 --> V2["Salah"]
+  P3["Pernyataan 3: pasti paling sedikit 20 siswa membaca 45 menit atau lebih?"] --> C3["Contoh: 16 siswa kelas 40 sampai 50 membaca tepat 40 menit"]
+  C3 --> R3["hanya 6 + 6 = 12 siswa, kurang dari 20"]
+  R3 --> V3["Salah"]`}
+/>

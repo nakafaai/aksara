@@ -46,6 +46,21 @@ Uji calon <InlineMath math="900\text{ km}" />:
 
 Paket B memang termurah, jadi calon ini cocok dengan semua keterangan.
 
+Grafik berikut menggambar biaya ketiga paket untuk sewa <InlineMath math="5" /> hari. Garis tagihan dipotong garis Paket A di <InlineMath math="700\text{ km}" /> dan garis Paket B di <InlineMath math="900\text{ km}" />, tetapi **hanya di <InlineMath math="900\text{ km}" /> garis yang memotong itu juga garis paling bawah**.
+
+<Chart
+  title={<>Biaya sewa <InlineMath math="5" /> hari menurut jarak total</>}
+  description={<>Biaya Paket A adalah <InlineMath math="800{.}000+1{.}500x" /> rupiah. Biaya Paket B tetap <InlineMath math="1{.}400{.}000" /> rupiah sampai <InlineMath math="750\text{ km}" />, lalu naik <InlineMath math="3{.}000" /> rupiah per kilometer. Biaya Paket C tetap <InlineMath math="2{.}000{.}000" /> rupiah. Garis datar menandai tagihan <InlineMath math="1{.}850{.}000" /> rupiah.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${600 + 50 * i}`)}
+  series={[
+    { label: "Paket A", mark: "line", values: Array.from({ length: 9 }, (_, i) => 800000 + 1500 * (600 + 50 * i)) },
+    { label: "Paket B", mark: "line", values: Array.from({ length: 9 }, (_, i) => 1400000 + 3000 * Math.max(0, 600 + 50 * i - 750)) },
+    { label: "Paket C", mark: "line", values: Array.from({ length: 9 }, () => 2000000) },
+    { label: "Tagihan Pak Bima", mark: "line", values: Array.from({ length: 9 }, () => 1850000) },
+  ]}
+  valueLabel="Biaya (rupiah)"
+/>
+
 # Mengapa pilihan lain keliru
 
 Setiap pilihan yang salah berasal dari **satu langkah yang terlewat** dalam rantai di atas.

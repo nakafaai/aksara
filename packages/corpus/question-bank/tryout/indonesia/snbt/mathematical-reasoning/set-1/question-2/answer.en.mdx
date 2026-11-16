@@ -47,4 +47,15 @@ The extra panel output adds <InlineMath math="10\cdot1=10\text{ kWh}" />, more t
 
 The family still buys <InlineMath math="6\text{ kWh}" /> in the evening, so the fourth statement is false.
 
+The chart below sums up the evening purchase in all four situations. **The bigger battery cuts it to exactly half**, dropping the reserve cuts it by <InlineMath math="1\text{ kWh}" />, and the stronger panel still leaves <InlineMath math="6\text{ kWh}" /> because the battery's capacity doesn't change.
+
+<Chart
+  title={<>Energy bought from PLN in the evening</>}
+  description={<>On the original day, the evening purchase is <InlineMath math="8\text{ kWh}" />. With a <InlineMath math="10\text{ kWh}" /> battery, it's <InlineMath math="4\text{ kWh}" />. Without the reserve rule, it's <InlineMath math="7\text{ kWh}" />. With a panel that gives <InlineMath math="1\text{ kWh}" /> more every hour, it's <InlineMath math="6\text{ kWh}" />.</>}
+  categories={["Original day", "Battery 10 kWh", "No reserve", "Stronger panel"]}
+  bars="apart"
+  series={[{ label: "Evening purchase (kWh)", mark: "bar", values: [11 - (4 - 1), 11 - (8 - 1), 11 - 4, 11 - (6 - 1)] }]}
+  valueLabel="Energy (kWh)"
+/>
+
 So the first statement is true, the second is false, the third is true, and the fourth is false.

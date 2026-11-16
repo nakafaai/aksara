@@ -10,6 +10,30 @@ Sebuah sekolah mencatat lama waktu membaca per hari dari <InlineMath math="80" /
 | <InlineMath math="t<60" /> | <InlineMath math="74" /> |
 | <InlineMath math="t<70" /> | <InlineMath math="80" /> |
 
+<MathVisual
+  title={<>Ogif frekuensi kumulatif kurang dari</>}
+  description={<>Grafik garis patah yang menghubungkan titik <InlineMath math="(0,0)" />, <InlineMath math="(10,2)" />, <InlineMath math="(20,8)" />, <InlineMath math="(30,32)" />, <InlineMath math="(40,52)" />, <InlineMath math="(50,68)" />, <InlineMath math="(60,74)" />, dan <InlineMath math="(70,80)" />. Sumbu mendatar adalah lama membaca dalam menit, sumbu tegak adalah frekuensi kumulatif.</>}
+  labels={{
+    top: <InlineMath math="(70,80)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 75 },
+      y: { min: -4, max: 86 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ogive", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 2 }, { x: 20, y: 8 }, { x: 30, y: 32 }, { x: 40, y: 52 }, { x: 50, y: 68 }, { x: 60, y: 74 }, { x: 70, y: 80 }] },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 70, y: 80 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 70, y: 80 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Lama membaca setiap siswa secara persis tidak diketahui. Yang diketahui hanya tabel di atas, dengan kelas-kelas <InlineMath math="0\le t<10" />, <InlineMath math="10\le t<20" />, dan seterusnya sampai <InlineMath math="60\le t<70" />.
 
 Aturan penaksiran yang dipakai sekolah itu sebagai berikut. Siswa dalam satu kelas dianggap menyebar sama rata di sepanjang kelas tersebut, dan anggapan ini dipakai untuk menaksir banyak siswa pada suatu rentang waktu, median, kuartil, dan persentil. Untuk <InlineMath math="n=80" /> data yang diurutkan, median ditaksir sebagai nilai data ke-<InlineMath math="\tfrac{n}{2}" />, kuartil bawah data ke-<InlineMath math="\tfrac{n}{4}" />, kuartil atas data ke-<InlineMath math="\tfrac{3n}{4}" />, dan persentil ke-<InlineMath math="k" /> data ke-<InlineMath math="\tfrac{k}{100}\cdot n" />. Rata-rata ditaksir dengan menganggap setiap siswa membaca selama nilai tengah kelasnya.

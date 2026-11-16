@@ -17,6 +17,20 @@ On the subscription, the paid minutes of a trip are its length minus <InlineMath
 
 The paid minutes add up to <InlineMath math="5+18+24+11+7=65" />.
 
+The chart below splits each trip into free minutes and paid minutes. **Trips <InlineMath math="2" />, <InlineMath math="5" />, and <InlineMath math="7" /> have no paid bar at all**, because none of them goes past <InlineMath math="20" /> minutes.
+
+<Chart
+  title={<>Free and paid minutes of each of Dita's trips on the subscription</>}
+  description={<>The paid minutes of trips <InlineMath math="1" /> to <InlineMath math="8" /> are <InlineMath math="5, 0, 18, 24, 0, 11, 0, 7" />, adding up to <InlineMath math="65" /> minutes. Every trip longer than <InlineMath math="20" /> minutes uses all <InlineMath math="20" /> of its free minutes.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Free minutes", mark: "bar", values: [25, 6, 38, 44, 15, 31, 9, 27].map((d) => Math.min(d, 20)) },
+    { label: "Paid minutes", mark: "bar", values: [25, 6, 38, 44, 15, 31, 9, 27].map((d) => Math.max(0, d - 20)) },
+  ]}
+  valueLabel="Minutes"
+/>
+
 # The monthly cap
 
 Without the cap, the minute charges would be <InlineMath math="65\cdot 500=\text{Rp}32{,}500" />. That's over the monthly cap, so **Dita only pays <InlineMath math="\text{Rp}30{,}000" /> in minute charges**.

@@ -25,6 +25,44 @@ Now compare the balls with the cell, then take what's left:
 \text{empty part}&=1-\frac{\pi}{6}\approx1-0.524=0.476
 \end{aligned}" />
 
+Look at one cell from above and from the side. **From above, the tube's circle takes up <InlineMath math="\tfrac{\pi}{4}" /> of the square base, and from the side, the three balls fill <InlineMath math="\tfrac23" /> of the tube**. The product of the two fractions is <InlineMath math="\tfrac{\pi}{6}" />.
+
+<MathVisual
+  title={<>One cell seen from above and from the side</>}
+  description={<>On the left, the top view: a square of side <InlineMath math="2r" /> with the tube's circle of radius <InlineMath math="r" /> inside it. On the right, the side view: a rectangle <InlineMath math="2r" /> wide and <InlineMath math="6r" /> tall holding three ball circles of radius <InlineMath math="r" />, each touching the walls and the neighbouring ball.</>}
+  labels={{
+    top: <>top view</>,
+    side: <>side view</>,
+    width: <InlineMath math="2r" />,
+    height: <InlineMath math="6r" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 7.5 },
+      y: { min: -0.8, max: 6.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top-cell", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
+      { id: "top", kind: "circle", appearance: "primary", center: { x: 1, y: 3 }, radius: 1 },
+      { id: "side", kind: "polygon", appearance: "reference", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 4, y: 6 }] },
+      { id: "ball-one", kind: "circle", appearance: "answer", center: { x: 5, y: 1 }, radius: 1 },
+      { id: "ball-two", kind: "circle", appearance: "answer", center: { x: 5, y: 3 }, radius: 1 },
+      { id: "ball-three", kind: "circle", appearance: "answer", center: { x: 5, y: 5 }, radius: 1 },
+      { id: "width", kind: "segment", appearance: "construction", from: { x: 4, y: -0.4 }, to: { x: 6, y: -0.4 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 6.5, y: 0 }, to: { x: 6.5, y: 6 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 1, y: 4 }, placement: "above" },
+      { key: "side", objectId: "side", at: { x: 4, y: 6 }, placement: "above" },
+      { key: "width", objectId: "width", at: { x: 5, y: -0.4 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 6.5, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Check in two stages
 
 Redo it in two steps. The tube takes up <InlineMath math="\frac{6\pi r^3}{24r^3}=\frac{\pi}{4}" /> of the cell, and the balls take up <InlineMath math="\frac{4\pi r^3}{6\pi r^3}=\frac23" /> of the tube. So the balls take up <InlineMath math="\frac23\cdot\frac{\pi}{4}=\frac{\pi}{6}" /> of the cell, the same result. The empty space inside the tube is <InlineMath math="\frac13" /> of the tube, which is <InlineMath math="\frac13\cdot\frac{\pi}{4}=\frac{\pi}{12}" /> of the cell. Add it to the gaps outside the tube:

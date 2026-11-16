@@ -18,6 +18,19 @@ Dua pilihan masih bertahan, jadi lanjutkan keduanya. Dengan stok awal <InlineMat
 
 Dengan stok awal <InlineMath math="80" />, stok pada hari ke-<InlineMath math="4" /> sampai ke-<InlineMath math="8" /> adalah <InlineMath math="135" />, <InlineMath math="100" />, <InlineMath math="60" />, <InlineMath math="30" />, dan <InlineMath math="5" />. Pesanan kedua dibuat pada akhir hari ke-<InlineMath math="6" /> dan tiba pada hari ke-<InlineMath math="9" />, tepat sebelum permintaan <InlineMath math="45" /> dan <InlineMath math="50" /> karung. Stok hari ke-<InlineMath math="9" /> sampai ke-<InlineMath math="12" /> adalah <InlineMath math="110" />, <InlineMath math="60" />, <InlineMath math="30" />, dan <InlineMath math="10" />, jadi **tidak ada permintaan yang gagal dilayani**.
 
+Grafik berikut mengikuti stok akhir hari untuk kedua stok awal yang tersisa. **Garis stok awal <InlineMath math="100" /> jatuh ke <InlineMath math="0" /> pada hari ke-<InlineMath math="9" />**, sedangkan garis stok awal <InlineMath math="80" /> selalu terisi lagi sebelum habis.
+
+<Chart
+  title={<>Stok akhir hari untuk stok awal <InlineMath math="100" /> dan <InlineMath math="80" /> karung</>}
+  description={<>Dengan stok awal <InlineMath math="100" /> karung, stok akhir hari ke-<InlineMath math="1" /> sampai ke-<InlineMath math="12" /> berturut-turut <InlineMath math="80, 55, 25, 5, 120, 80, 50, 25, 0, 100, 70, 50" />, dan hari ke-<InlineMath math="9" /> kehilangan <InlineMath math="20" /> karung. Dengan stok awal <InlineMath math="80" /> karung, stok akhirnya berturut-turut <InlineMath math="60, 35, 5, 135, 100, 60, 30, 5, 110, 60, 30, 10" /> tanpa penjualan hilang.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Stok awal 100", mark: "line", values: [80, 55, 25, 5, 120, 80, 50, 25, 0, 100, 70, 50] },
+    { label: "Stok awal 80", mark: "line", values: [60, 35, 5, 135, 100, 60, 30, 5, 110, 60, 30, 10] },
+  ]}
+  valueLabel="Stok (karung)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain gagal pada **satu hari ketika pesanan belum tiba**.

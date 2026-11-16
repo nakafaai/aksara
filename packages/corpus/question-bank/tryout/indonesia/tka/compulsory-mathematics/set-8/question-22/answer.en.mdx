@@ -12,6 +12,49 @@ To find the <InlineMath math="k" />th value, find the class it's in, then **move
 
 <BlockMath math="k\text{th value}=L+\frac{k-F}{f}\cdot10" />
 
+This formula is the same as reading an ogive whose points are joined by straight lines. **From the <InlineMath math="k" />th value on the vertical axis, go across to the curve, then down to the horizontal axis**. All four measures being tested are read this way.
+
+<MathVisual
+  title={<>Reading quartiles, the median, and a percentile from the ogive</>}
+  description={<>The ogive joins the points <InlineMath math="(0,0)" />, <InlineMath math="(10,2)" />, <InlineMath math="(20,8)" />, <InlineMath math="(30,32)" />, <InlineMath math="(40,52)" />, <InlineMath math="(50,68)" />, <InlineMath math="(60,74)" />, and <InlineMath math="(70,80)" />. Guide lines from the <InlineMath math="20" />th, <InlineMath math="40" />th, <InlineMath math="60" />th, and <InlineMath math="64" />th values hit the curve at <InlineMath math="t=25" />, <InlineMath math="t=34" />, <InlineMath math="t=45" />, and <InlineMath math="t=47.5" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1=25" />,
+    median: <InlineMath math="\text{median}=34" />,
+    q3: <InlineMath math="Q_3=45" />,
+    p80: <InlineMath math="P_{80}=47.5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 72 },
+      y: { min: 0, max: 84 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ogive", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 2 }, { x: 20, y: 8 }, { x: 30, y: 32 }, { x: 40, y: 52 }, { x: 50, y: 68 }, { x: 60, y: 74 }, { x: 70, y: 80 }] },
+      { id: "q1-across", kind: "segment", appearance: "construction", from: { x: 0, y: 20 }, to: { x: 25, y: 20 } },
+      { id: "q1-down", kind: "segment", appearance: "construction", from: { x: 25, y: 20 }, to: { x: 25, y: 0 } },
+      { id: "median-across", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 34, y: 40 } },
+      { id: "median-down", kind: "segment", appearance: "construction", from: { x: 34, y: 40 }, to: { x: 34, y: 0 } },
+      { id: "q3-across", kind: "segment", appearance: "construction", from: { x: 0, y: 60 }, to: { x: 45, y: 60 } },
+      { id: "q3-down", kind: "segment", appearance: "construction", from: { x: 45, y: 60 }, to: { x: 45, y: 0 } },
+      { id: "p80-across", kind: "segment", appearance: "construction", from: { x: 0, y: 64 }, to: { x: 47.5, y: 64 } },
+      { id: "p80-down", kind: "segment", appearance: "construction", from: { x: 47.5, y: 64 }, to: { x: 47.5, y: 0 } },
+      { id: "q1", kind: "point", appearance: "answer", at: { x: 25, y: 20 } },
+      { id: "median", kind: "point", appearance: "warning", at: { x: 34, y: 40 } },
+      { id: "q3", kind: "point", appearance: "answer", at: { x: 45, y: 60 } },
+      { id: "p80", kind: "point", appearance: "warning", at: { x: 47.5, y: 64 } },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 25, y: 20 }, placement: "right" },
+      { key: "median", objectId: "median", at: { x: 34, y: 40 }, placement: "right" },
+      { key: "q3", objectId: "q3", at: { x: 45, y: 60 }, placement: "below-right" },
+      { key: "p80", objectId: "p80", at: { x: 47.5, y: 64 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Judging each statement
 
 **Statement 1**. The median is the <InlineMath math="40" />th value. Before the class <InlineMath math="30\le t<40" /> there are <InlineMath math="32" /> values, and up to the end of that class there are <InlineMath math="52" />, so the <InlineMath math="40" />th value is in that class:

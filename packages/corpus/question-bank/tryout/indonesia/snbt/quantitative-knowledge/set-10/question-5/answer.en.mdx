@@ -22,6 +22,17 @@ Multiply both quantities by <InlineMath math="12" /> to clear the fractions. Mul
 
 The difference is <InlineMath math="12Q-12P=1" />, so <InlineMath math="Q-P=\dfrac{1}{12}" />. **This difference doesn't depend on <InlineMath math="n" />** and it's always positive, so <InlineMath math="Q>P" /> for every positive integer <InlineMath math="n" />.
 
+A chart of the difference <InlineMath math="Q-P" /> for the first eight values of <InlineMath math="n" /> shows that result. **Every bar has the same height**, <InlineMath math="\tfrac{1}{12}" />, so the difference doesn't depend on <InlineMath math="n" /> and is always positive.
+
+<Chart
+  title={<>The difference <InlineMath math="Q-P" /> for <InlineMath math="n=1" /> to <InlineMath math="8" /></>}
+  description={<>For every <InlineMath math="n" /> from <InlineMath math="1" /> to <InlineMath math="8" />, the difference <InlineMath math="Q-P" /> is <InlineMath math="\tfrac{1}{12}" />, about <InlineMath math="0.083" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 8 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Difference Q - P", mark: "bar", values: Array.from({ length: 8 }, (_, i) => ((i + 2) / 2) ** 2 + (i + 1) ** 2 / 12 - ((i + 2) * (2 * (i + 1) + 1)) / 6) }]}
+  valueLabel="Difference"
+/>
+
 # Checking with an example
 
 For <InlineMath math="n=3" />, the data are <InlineMath math="1,2,3" />.

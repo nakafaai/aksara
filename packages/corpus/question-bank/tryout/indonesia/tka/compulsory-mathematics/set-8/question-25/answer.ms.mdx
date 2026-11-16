@@ -27,6 +27,23 @@ P(\text{II dan MM})&=\frac23\cdot\frac{1}{10}=\frac{2}{30} \\
 P(\text{MM})&=\frac{3}{30}+\frac{2}{30}=\frac{5}{30}
 \end{aligned}" />
 
+Pokok kebarangkalian di bawah menunjukkan kedua-dua jalan. **Hanya dua cabang yang berakhir dengan dua merah**, dan cabang beg I lebih berat walaupun beg itu lebih jarang dipilih.
+
+<Mermaid
+  title={<>Pokok kebarangkalian dua biji bola merah</>}
+  description={<>Dadu memilih beg I dengan kebarangkalian <InlineMath math="\tfrac13" /> dan beg II dengan kebarangkalian <InlineMath math="\tfrac23" />. Daripada beg I, dua merah keluar dengan kebarangkalian <InlineMath math="\tfrac{3}{10}" />, dan daripada beg II dengan kebarangkalian <InlineMath math="\tfrac{1}{10}" />. Jalan beg I memberikan <InlineMath math="\tfrac{3}{30}" />, jalan beg II memberikan <InlineMath math="\tfrac{2}{30}" />, jadi <InlineMath math="P(\text{I}\mid\text{MM})=\tfrac35" />.</>}
+  chart={`flowchart TD
+  S["Baling dadu"] -->|"1/3"| A["Beg I"]
+  S -->|"2/3"| B["Beg II"]
+  A -->|"3/10"| AR["Beg I dan MM: 3/30"]
+  A -->|"7/10"| AX["bukan MM"]
+  B -->|"1/10"| BR["Beg II dan MM: 2/30"]
+  B -->|"9/10"| BX["bukan MM"]
+  AR --> T["P(MM) = 5/30"]
+  BR --> T
+  T --> Q["P(I | MM) = 3/5"]`}
+/>
+
 Daripada semua kesudahan dua merah, **bahagian yang melalui beg I** ialah
 
 <BlockMath math="P(\text{I}\mid\text{MM})=\frac{3/30}{5/30}=\frac35" />

@@ -27,6 +27,40 @@ Keliling terbesar ada di lebar terkecil, yaitu <InlineMath math="w=3{,}5" />. Ni
 | <InlineMath math="4" /> | <InlineMath math="15{,}75" /> | <InlineMath math="39{,}5" /> |
 | mendekati <InlineMath math="4{,}5" /> | mendekati <InlineMath math="14" /> | mendekati <InlineMath math="37" /> |
 
+Gambar keliling sebagai fungsi lebar di seluruh selang pembulatan. **Kurvanya turun dari kiri ke kanan**, jadi keliling terbesar ada di ujung kiri <InlineMath math="w=3{,}5" />, yang boleh dipakai. Ujung kanan <InlineMath math="4{,}5" /> tidak termasuk.
+
+<MathVisual
+  title={<>Keliling lahan menurut lebar sebenarnya</>}
+  description={<>Sumbu mendatar adalah lebar <InlineMath math="w" /> dari <InlineMath math="3{,}5" /> sampai <InlineMath math="4{,}5" /> meter, sumbu tegak adalah keliling dalam meter. Kurva <InlineMath math="K(w)=2\left(w+\frac{63}{w}\right)" /> turun dari <InlineMath math="43" /> di <InlineMath math="w=3{,}5" />, melewati <InlineMath math="39{,}5" /> di <InlineMath math="w=4" />, menuju <InlineMath math="37" /> di <InlineMath math="w=4{,}5" />. Titik kiri termasuk selang, titik kanan tidak.</>}
+  labels={{
+    curve: <InlineMath math="K(w)=2\left(w+\frac{63}{w}\right)" />,
+    best: <InlineMath math="(3{,}5,\ 43)" />,
+    measured: <InlineMath math="(4,\ 39{,}5)" />,
+    edge: <InlineMath math="(4{,}5,\ 37)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 3.3, max: 4.75 },
+      y: { min: 35.5, max: 44.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2(x + 63/x)", domain: { min: 3.5, max: 4.5 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 3.5, y: 43 } },
+      { id: "measured", kind: "point", appearance: "secondary", at: { x: 4, y: 39.5 } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 4.5, y: 37 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4.2, y: 2 * (4.2 + 15) }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 3.5, y: 43 }, placement: "right" },
+      { key: "measured", objectId: "measured", at: { x: 4, y: 39.5 }, placement: "below-left" },
+      { key: "edge", objectId: "edge", at: { x: 4.5, y: 37 }, placement: "left" },
+    ],
+  }}
+/>
+
 Cek baris pertama: <InlineMath math="3{,}5\cdot18=63" />, dan <InlineMath math="2(3{,}5+18)=43" />.
 
 Jadi, keliling lahan yang terbesar yang mungkin adalah <InlineMath math="43\text{ m}" />.

@@ -28,6 +28,40 @@ If <InlineMath math="EF=16" />, triangle <InlineMath math="DEF" /> has sides <In
 
 Check this triangle: base <InlineMath math="30" /> and height <InlineMath math="8" /> give area <InlineMath math="\frac{1}{2}\cdot30\cdot8=120" />, and the leg is <InlineMath math="\sqrt{15^2+8^2}=\sqrt{289}=17" />. Both fit.
 
+The figure below puts both isosceles triangles with legs <InlineMath math="17" /> side by side. Triangle <InlineMath math="DEF" /> **is triangle <InlineMath math="ABC" /> with half the base and the height swapping roles**: its base is <InlineMath math="30" /> and its height <InlineMath math="8" />, but its area is still <InlineMath math="120" />.
+
+<MathVisual
+  title={<>Two isosceles triangles with legs <InlineMath math="17" /> and area <InlineMath math="120" /></>}
+  description={<>Triangle <InlineMath math="ABC" /> has base <InlineMath math="16" /> and height <InlineMath math="15" />. Triangle <InlineMath math="DEF" /> has base <InlineMath math="30" /> and height <InlineMath math="8" />. Both have legs of <InlineMath math="17" /> and area <InlineMath math="120" />, but different shapes.</>}
+  labels={{
+    abc: <InlineMath math="ABC" />,
+    def: <InlineMath math="DEF" />,
+    h1: <InlineMath math="15" />,
+    h2: <InlineMath math="8" />,
+    b1: <InlineMath math="16" />,
+    b2: <InlineMath math="30" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 37 }, y: { min: -3, max: 17 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "abc", kind: "polygon", appearance: "primary", vertices: [{ x: -8, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 15 }] },
+      { id: "def", kind: "polygon", appearance: "answer", vertices: [{ x: 5, y: 0 }, { x: 35, y: 0 }, { x: 20, y: 8 }] },
+      { id: "height-abc", kind: "segment", appearance: "construction", from: { x: 0, y: 15 }, to: { x: 0, y: 0 } },
+      { id: "height-def", kind: "segment", appearance: "construction", from: { x: 20, y: 8 }, to: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "abc", objectId: "abc", at: { x: 0, y: 15 }, placement: "above" },
+      { key: "def", objectId: "def", at: { x: 20, y: 8 }, placement: "above" },
+      { key: "h1", objectId: "height-abc", at: { x: 0, y: 7.5 }, placement: "left" },
+      { key: "h2", objectId: "height-def", at: { x: 20, y: 4 }, placement: "right" },
+      { key: "b1", objectId: "abc", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "b2", objectId: "def", at: { x: 27, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Comparing and the tempting wrong options
 
 The two quantities are equal, <InlineMath math="P=Q=30" />. That's no accident: in triangle <InlineMath math="DEF" />, half the base and the height swap roles with those of triangle <InlineMath math="ABC" />, so **half of <InlineMath math="EF" /> equals the height of triangle <InlineMath math="ABC" />**.

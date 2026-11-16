@@ -39,6 +39,19 @@ t=9 &: \ 56\cdot8-200=248
 
 Die Population wächst immer weiter. Im nächsten Zyklus gilt <InlineMath math="248\to496\to960" />, weil der Behälter voll ist, und die Ernte lässt <InlineMath math="760" /> übrig. Ab dann wiederholt sich jeder Zyklus von <InlineMath math="760" /> über <InlineMath math="960" /> zurück zu <InlineMath math="760" />, die Kultur erlischt also nie.
 
+Das Diagramm verfolgt die Population nach jeder Ernte für beide Anfangspopulationen. **Die Linie für <InlineMath math="28" /> fällt, bis die Kultur bei <InlineMath math="t=6" /> erschöpft ist**, während die Linie für <InlineMath math="29" /> weiter steigt, bis sie bei <InlineMath math="760" /> gehalten wird.
+
+<Chart
+  title={<>Bakterien nach jeder Ernte bei Anfangspopulationen von <InlineMath math="28" /> und <InlineMath math="29" /> Millionen Zellen</>}
+  description={<>Bei einer Anfangspopulation von <InlineMath math="28" /> Millionen Zellen beträgt die Anzahl nach der Ernte bei <InlineMath math="t=3" /> noch <InlineMath math="24" />, und bei <InlineMath math="t=6" /> ist die Kultur erschöpft. Bei einer Anfangspopulation von <InlineMath math="29" /> Millionen Zellen beträgt sie nach den Ernten bei <InlineMath math="t=3, 6, 9, 12" /> der Reihe nach <InlineMath math="32, 56, 248, 760" /> Millionen Zellen.</>}
+  categories={["0", "3", "6", "9", "12"]}
+  series={[
+    { label: "Anfangspopulation 28", mark: "line", values: [28, 28 * 8 - 200, 0, 0, 0] },
+    { label: "Anfangspopulation 29", mark: "line", values: [29, 29 * 8 - 200, 32 * 8 - 200, 56 * 8 - 200, 960 - 200] },
+  ]}
+  valueLabel="Bakterien (Millionen Zellen)"
+/>
+
 # Die Falle der ersten Ernte
 
 Prüfst du nur, dass die erste Ernte die Kultur nicht auslöscht, lautet die Bedingung <InlineMath math="8P>200" />, also <InlineMath math="P\ge26" />. Aber <InlineMath math="26" /> lässt <InlineMath math="8" /> übrig, dann <InlineMath math="64" />, und **erlischt bei der zweiten Ernte**. Auch <InlineMath math="25" /> ist falsch, denn genau <InlineMath math="200" /> werden bei der ersten Ernte komplett genommen.

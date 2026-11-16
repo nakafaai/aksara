@@ -32,6 +32,41 @@ Nimm für jeden Wert von <InlineMath math="y" /> das größte <InlineMath math="
 | <InlineMath math="5" /> | <InlineMath math="4{,}25;\ 5{,}25;\ 2" /> | <InlineMath math="2" /> | <InlineMath math="37" /> |
 | <InlineMath math="6" /> | <InlineMath math="3{,}5;\ 4{,}75;\ 0" /> | <InlineMath math="0" /> | <InlineMath math="30" /> |
 
+Zeichne das Gebiet, das alle drei Vorräte erlauben, zusammen mit der Gewinngeraden <InlineMath math="6x+5y=47" />. **Die Ecke <InlineMath math="(5{,}6;\ 3{,}2)" /> liegt über dieser Geraden, ist aber kein ganzzahliger Punkt**, während der ganzzahlige Punkt <InlineMath math="(7,\ 1)" /> genau auf der Geraden und noch im Gebiet liegt.
+
+<MathVisual
+  title={<>Vorratsgebiet und der beste ganzzahlige Punkt</>}
+  description={<>Die waagerechte Achse ist die Anzahl kleiner Schränke <InlineMath math="x" />, die senkrechte Achse die Anzahl Bücherregale <InlineMath math="y" />. Das gefärbte Gebiet wird begrenzt von der Brettergeraden <InlineMath math="4x+3y=32" />, der Montagegeraden <InlineMath math="4x+2y=31" /> und der Lackiergeraden <InlineMath math="x+2y=12" />. Die beste Ecke <InlineMath math="(5{,}6;\ 3{,}2)" /> ist kein Paar ganzer Zahlen. Die Gerade <InlineMath math="6x+5y=47" /> berührt den ganzzahligen Punkt <InlineMath math="(7,\ 1)" /> im Gebiet.</>}
+  labels={{
+    corner: <InlineMath math="(5{,}6;\ 3{,}2)" />,
+    best: <InlineMath math="(7,\ 1)" />,
+    level: <InlineMath math="6x+5y=47" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 9 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "feasible", kind: "region", appearance: "highlight", inequalities: ["4x + 3y <= 32", "4x + 2y <= 31", "x + 2y <= 12", "x >= 0", "y >= 0"] },
+      { id: "boards", kind: "function", appearance: "reference", formula: "(32 - 4x)/3", domain: { min: 0, max: 8 } },
+      { id: "assembly", kind: "function", appearance: "reference", formula: "(31 - 4x)/2", domain: { min: 4, max: 7.75 } },
+      { id: "paint", kind: "function", appearance: "reference", formula: "(12 - x)/2", domain: { min: 0, max: 9 } },
+      { id: "level", kind: "function", appearance: "secondary", formula: "(47 - 6x)/5", domain: { min: 2.5, max: 7.8 } },
+      { id: "corner", kind: "point", appearance: "warning", at: { x: 5.6, y: 3.2 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 7, y: 1 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 5.6, y: 3.2 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 7, y: 1 }, placement: "below-left" },
+      { key: "level", objectId: "level", at: { x: 2.5, y: 6.4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Der größte Wert ist <InlineMath math="47" /> im Punkt <InlineMath math="(7|1)" />. Probe: Bretter <InlineMath math="28+3=31\le32" />, Montage <InlineMath math="28+2=30\le31" />, Lackieren <InlineMath math="7+2=9\le12" />. Dieser Punkt liegt weit weg von der Ecke <InlineMath math="(5{,}6|3{,}2)" />, Runden der Ecke findet ihn also nie.
 
 Der größte Gewinn beträgt also <InlineMath math="\text{Rp}4{.}700{.}000" /> pro Woche, mit <InlineMath math="7" /> kleinen Schränken und <InlineMath math="1" /> Bücherregal.

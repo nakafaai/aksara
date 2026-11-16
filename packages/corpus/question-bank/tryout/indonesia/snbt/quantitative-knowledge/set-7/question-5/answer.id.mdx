@@ -24,6 +24,20 @@ Banyak faktor <InlineMath math="5" /> dalam <InlineMath math="n!" /> dihitung de
 
 Di kedua bilangan, faktor <InlineMath math="2" /> jauh lebih banyak, jadi faktor <InlineMath math="5" /> yang menentukan. Hasilnya <InlineMath math="P=8" /> dan <InlineMath math="Q=7" />, sehingga <InlineMath math="P>Q" />.
 
+Grafik berikut membandingkan faktor <InlineMath math="2" /> dan <InlineMath math="5" /> pada kedua bilangan. Batang faktor <InlineMath math="2" /> jauh lebih tinggi, jadi **batang faktor <InlineMath math="5" /> yang menentukan** banyak nol: <InlineMath math="8" /> untuk <InlineMath math="P" /> dan <InlineMath math="7" /> untuk <InlineMath math="Q" />.
+
+<Chart
+  title={<>Faktor <InlineMath math="2" /> dan <InlineMath math="5" /> pada <InlineMath math="25!\times25" /> dan <InlineMath math="34!\times36" /></>}
+  description={<>Bilangan <InlineMath math="26!-25!=25!\times25" /> punya <InlineMath math="8" /> faktor <InlineMath math="5" /> dan <InlineMath math="22" /> faktor <InlineMath math="2" />. Bilangan <InlineMath math="34!+35!=34!\times36" /> punya <InlineMath math="7" /> faktor <InlineMath math="5" /> dan <InlineMath math="34" /> faktor <InlineMath math="2" />.</>}
+  bars="apart"
+  categories={["26! - 25!", "34! + 35!"]}
+  series={[
+    { label: "Faktor 5", mark: "bar", values: [5 + 1 + 2, 6 + 1] },
+    { label: "Faktor 2", mark: "bar", values: [12 + 6 + 3 + 1, 17 + 8 + 4 + 2 + 1 + 2] },
+  ]}
+  valueLabel="Banyak faktor"
+/>
+
 # Jebakan perkiraan cepat
 
 Perkiraan cepat sering memakai faktorial terbesar saja. Faktorial <InlineMath math="26!" /> punya <InlineMath math="5+1=6" /> nol di ujung dan <InlineMath math="35!" /> punya <InlineMath math="7+1=8" /> nol di ujung, sehingga seolah-olah <InlineMath math="Q>P" />. Jika hanya <InlineMath math="P" /> yang difaktorkan dengan benar, kamu mendapat <InlineMath math="8" /> lawan <InlineMath math="8" /> dan tergoda memilih <InlineMath math="P=Q" />. **Kedua bilangan harus difaktorkan**, dan keduanya punya nilai tunggal, jadi informasinya juga cukup.

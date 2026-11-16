@@ -35,3 +35,20 @@ Anggaran median memang <InlineMath math="34" />, tetapi anggaran bukan kepastian
 Nombor <InlineMath math="20" /> datang daripada anggaran <InlineMath math="\tfrac12\cdot16+12=20" />, yang menganggap kelas <InlineMath math="40\le t<50" /> terbahagi dua sama rata. **Salah**.
 
 Jadi, keputusannya ialah Betul, Salah, Salah.
+
+Rajah ini merumuskan cara ketiga-tiga pernyataan dinilai. **Setiap pernyataan diuji dengan kes paling ekstrem yang masih sepadan dengan jadual**. Pernyataan yang lulus kes ekstrem itu pasti betul, dan yang gagal cukup disangkal oleh satu contoh.
+
+<Mermaid
+  title={<>Menguji setiap pernyataan dengan kes ekstrem</>}
+  description={<>Pernyataan 1 diuji dengan meletakkan setiap murid sedekat mungkin dengan sempadan atas kelasnya, dan min masih kurang daripada <InlineMath math="40.5" />. Pernyataan 2 disangkal oleh dua puluh murid yang membaca tepat <InlineMath math="30" /> minit. Pernyataan 3 disangkal oleh enam belas murid yang membaca tepat <InlineMath math="40" /> minit.</>}
+  chart={`flowchart TD
+  P1["Pernyataan 1: min pasti kurang daripada 41?"] --> C1["Setiap murid di bawah sempadan atas kelasnya"]
+  C1 --> R1["min < 3,240 / 80 = 40.5"]
+  R1 --> V1["Betul"]
+  P2["Pernyataan 2: median pasti lebih daripada 32?"] --> C2["Contoh: 20 murid kelas 30 hingga 40 membaca tepat 30 minit"]
+  C2 --> R2["median = 30, tidak lebih daripada 32"]
+  R2 --> V2["Salah"]
+  P3["Pernyataan 3: pasti sekurang-kurangnya 20 murid membaca 45 minit atau lebih?"] --> C3["Contoh: 16 murid kelas 40 hingga 50 membaca tepat 40 minit"]
+  C3 --> R3["hanya 6 + 6 = 12 murid, kurang daripada 20"]
+  R3 --> V3["Salah"]`}
+/>

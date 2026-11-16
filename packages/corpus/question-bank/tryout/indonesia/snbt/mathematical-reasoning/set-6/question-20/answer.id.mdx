@@ -6,6 +6,20 @@ Beton lantai garasi <InlineMath math="5\cdot4\cdot0{,}1=2\text{ m}^3" />, bahan 
 
 Satu sak semen membawa <InlineMath math="6" /> bagian bahan kering, yaitu <InlineMath math="6\cdot0{,}025=0{,}15\text{ m}^3" />. Dua sak membawa <InlineMath math="0{,}3\text{ m}^3" />, lebih dari daya muat molen <InlineMath math="0{,}2\text{ m}^3" />. Jadi **setiap adukan hanya memakai satu sak** dan berisi <InlineMath math="0{,}15\text{ m}^3" />, walaupun molen belum penuh.
 
+Grafik berikut membandingkan isi satu adukan dengan kapasitas molen. **Adukan dengan dua sak sudah melewati garis kapasitas**, jadi setiap adukan hanya bisa memakai satu sak.
+
+<Chart
+  title={<>Isi satu adukan menurut banyak sak semen</>}
+  description={<>Satu sak semen membawa bahan kering <InlineMath math="0{,}15\text{ m}^3" />, dan dua sak membawa <InlineMath math="0{,}3\text{ m}^3" />. Garis datar menandai kapasitas molen, <InlineMath math="0{,}2\text{ m}^3" />.</>}
+  categories={["1 sak semen", "2 sak semen"]}
+  bars="apart"
+  series={[
+    { label: "Bahan kering satu adukan (m³)", mark: "bar", values: [6 * 0.025, 2 * 6 * 0.025] },
+    { label: "Kapasitas molen", mark: "line", values: [0.2, 0.2] },
+  ]}
+  valueLabel="Bahan kering (m³)"
+/>
+
 # Banyak adukan
 
 <BlockMath math="3{,}3:0{,}15=22" />

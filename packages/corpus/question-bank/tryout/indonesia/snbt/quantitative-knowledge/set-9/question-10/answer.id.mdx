@@ -15,6 +15,17 @@ n(A)&=56\cdot1\cdot2=112\\
 P(A)&=\frac{112}{512}=\frac{7}{32}
 \end{aligned}" />
 
+Grafik berikut menyaring hasil percobaan bertahap. Dari <InlineMath math="512" /> hasil, <InlineMath math="336" /> punya tiga lantai berbeda, dan **tepat sepertiganya** menaruh Ani di lantai terendah.
+
+<Chart
+  title={<>Menyaring hasil pemilihan lantai</>}
+  description={<>Semua hasil berurutan ada <InlineMath math="8^3=512" />. Hasil dengan tiga lantai berbeda ada <InlineMath math="8\cdot7\cdot6=336" />. Di antaranya, Ani mendapat lantai terendah pada <InlineMath math="112" /> hasil, sehingga peluangnya <InlineMath math="\tfrac{112}{512}=\tfrac{7}{32}" />.</>}
+  categories={["Semua hasil", "Tiga lantai berbeda", "Ani turun paling dulu"]}
+  bars="apart"
+  series={[{ label: "Banyak hasil", mark: "bar", values: [8 ** 3, 8 * 7 * 6, (8 * 7 * 6) / 3] }]}
+  valueLabel="Banyak hasil"
+/>
+
 # Memeriksa dengan jalan lain
 
 Peluang ketiga lantai berbeda adalah <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Kalau ketiga lantai sudah berbeda, **setiap orang punya kesempatan yang sama** untuk berada di lantai terendah, jadi peluang Ani yang terendah adalah <InlineMath math="\frac{1}{3}" />.

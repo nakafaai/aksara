@@ -18,6 +18,19 @@ Two options are still alive, so carry both on. With an opening stock of <InlineM
 
 With an opening stock of <InlineMath math="80" />, the stock on days <InlineMath math="4" /> to <InlineMath math="8" /> is <InlineMath math="135" />, <InlineMath math="100" />, <InlineMath math="60" />, <InlineMath math="30" /> and <InlineMath math="5" />. The second order is placed at the end of day <InlineMath math="6" /> and arrives on day <InlineMath math="9" />, just before the requests for <InlineMath math="45" /> and <InlineMath math="50" /> sacks. The stock on days <InlineMath math="9" /> to <InlineMath math="12" /> is <InlineMath math="110" />, <InlineMath math="60" />, <InlineMath math="30" /> and <InlineMath math="10" />, so **no request goes unserved**.
 
+The chart below follows the end-of-day stock for the two opening stocks still alive. **The line for an opening stock of <InlineMath math="100" /> hits <InlineMath math="0" /> on day <InlineMath math="9" />**, while the line for <InlineMath math="80" /> always gets refilled before it runs out.
+
+<Chart
+  title={<>End-of-day stock for opening stocks of <InlineMath math="100" /> and <InlineMath math="80" /> sacks</>}
+  description={<>With an opening stock of <InlineMath math="100" /> sacks, the stock at the end of days <InlineMath math="1" /> to <InlineMath math="12" /> is <InlineMath math="80, 55, 25, 5, 120, 80, 50, 25, 0, 100, 70, 50" />, and day <InlineMath math="9" /> loses <InlineMath math="20" /> sacks. With an opening stock of <InlineMath math="80" /> sacks, it's <InlineMath math="60, 35, 5, 135, 100, 60, 30, 5, 110, 60, 30, 10" /> with no lost sales.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Opening stock 100", mark: "line", values: [80, 55, 25, 5, 120, 80, 50, 25, 0, 100, 70, 50] },
+    { label: "Opening stock 80", mark: "line", values: [60, 35, 5, 135, 100, 60, 30, 5, 110, 60, 30, 10] },
+  ]}
+  valueLabel="Stock (sacks)"
+/>
+
 # The tempting wrong options
 
 Every other option fails on **one day when the order hasn't arrived yet**.

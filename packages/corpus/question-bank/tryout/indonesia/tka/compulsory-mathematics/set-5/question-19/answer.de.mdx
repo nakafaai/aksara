@@ -27,6 +27,40 @@ Der größte Umfang liegt bei der kleinsten Breite, <InlineMath math="w=3{,}5" /
 | <InlineMath math="4" /> | <InlineMath math="15{,}75" /> | <InlineMath math="39{,}5" /> |
 | nahe <InlineMath math="4{,}5" /> | nahe <InlineMath math="14" /> | nahe <InlineMath math="37" /> |
 
+Zeichne den Umfang als Funktion der Breite über das ganze Rundungsintervall. **Die Kurve fällt von links nach rechts**, also liegt der größte Umfang am linken Ende <InlineMath math="w=3{,}5" />, das erlaubt ist. Das rechte Ende <InlineMath math="4{,}5" /> gehört nicht dazu.
+
+<MathVisual
+  title={<>Umfang des Grundstücks nach tatsächlicher Breite</>}
+  description={<>Die waagerechte Achse ist die Breite <InlineMath math="w" /> von <InlineMath math="3{,}5" /> bis <InlineMath math="4{,}5" /> Metern, die senkrechte Achse der Umfang in Metern. Die Kurve <InlineMath math="K(w)=2\left(w+\frac{63}{w}\right)" /> fällt von <InlineMath math="43" /> bei <InlineMath math="w=3{,}5" /> über <InlineMath math="39{,}5" /> bei <InlineMath math="w=4" /> auf <InlineMath math="37" /> bei <InlineMath math="w=4{,}5" /> zu. Der linke Punkt gehört zum Intervall, der rechte nicht.</>}
+  labels={{
+    curve: <InlineMath math="K(w)=2\left(w+\frac{63}{w}\right)" />,
+    best: <InlineMath math="(3{,}5,\ 43)" />,
+    measured: <InlineMath math="(4,\ 39{,}5)" />,
+    edge: <InlineMath math="(4{,}5,\ 37)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 3.3, max: 4.75 },
+      y: { min: 35.5, max: 44.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2(x + 63/x)", domain: { min: 3.5, max: 4.5 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 3.5, y: 43 } },
+      { id: "measured", kind: "point", appearance: "secondary", at: { x: 4, y: 39.5 } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 4.5, y: 37 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4.2, y: 2 * (4.2 + 15) }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 3.5, y: 43 }, placement: "right" },
+      { key: "measured", objectId: "measured", at: { x: 4, y: 39.5 }, placement: "below-left" },
+      { key: "edge", objectId: "edge", at: { x: 4.5, y: 37 }, placement: "left" },
+    ],
+  }}
+/>
+
 Probe für die erste Zeile: <InlineMath math="3{,}5\cdot18=63" />, und <InlineMath math="2(3{,}5+18)=43" />.
 
 Der größtmögliche Umfang des Grundstücks beträgt also <InlineMath math="43\text{ m}" />.

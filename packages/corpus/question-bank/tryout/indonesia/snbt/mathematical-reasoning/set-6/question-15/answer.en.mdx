@@ -16,6 +16,21 @@ From this condition alone, <InlineMath math="n" /> is at least <InlineMath math=
 
 The number of new QRIS users, <InlineMath math="0.8n=\frac{4n}{5}" />, has to be a whole number because it counts people. That only happens when **<InlineMath math="n" /> is a multiple of <InlineMath math="5" />**. For <InlineMath math="n=86" />, the new QRIS users would be <InlineMath math="68.8" /> people, which can't happen. The smallest multiple of <InlineMath math="5" /> that's at least <InlineMath math="86" /> is <InlineMath math="90" />.
 
+The chart below works out Pasar X's overall share for numbers of new respondents that are multiples of <InlineMath math="5" />. **The bar for <InlineMath math="85" /> is still just under the target line**, and the bar for <InlineMath math="90" /> is the first one past it.
+
+<Chart
+  title={<>Pasar X's overall share of QRIS users by number of new respondents</>}
+  description={<>With <InlineMath math="75" />, <InlineMath math="80" />, <InlineMath math="85" />, <InlineMath math="90" />, and <InlineMath math="95" /> new respondents, the share is about <InlineMath math="50.9\%" />, <InlineMath math="51.4\%" />, <InlineMath math="51.9\%" />, <InlineMath math="52.4\%" />, and <InlineMath math="52.9\%" />. The flat line marks the target of <InlineMath math="52\%" />. The value axis starts at <InlineMath math="50\%" />.</>}
+  bars="apart"
+  categories={["75", "80", "85", "90", "95"]}
+  series={[
+    { label: "Pasar X overall share", mark: "bar", values: [75, 80, 85, 90, 95].map((n) => ((80 + 0.8 * n) / (200 + n)) * 100) },
+    { label: "Target 52%", mark: "line", values: [52, 52, 52, 52, 52] },
+  ]}
+  valueRange={{ min: 50, max: 54 }}
+  valueLabel="QRIS users (%)"
+/>
+
 # Checking the result
 
 Compare <InlineMath math="n=90" /> with the multiple of <InlineMath math="5" /> just before it, <InlineMath math="n=85" />. To compare a fraction with <InlineMath math="52\%" />, **cross-multiply so you don't have to divide**.

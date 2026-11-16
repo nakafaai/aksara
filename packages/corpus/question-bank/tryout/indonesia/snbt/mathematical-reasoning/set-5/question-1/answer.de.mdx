@@ -35,6 +35,20 @@ Bei <InlineMath math="n=15" /> sind beide Kosten gleich: <InlineMath math="250+4
 
 Prüfe von der anderen Seite: Bei <InlineMath math="n=14" /> kostet es ohne Mitgliedschaft <InlineMath math="250+40 \cdot 4=410" />, noch billiger als die Mitgliedschaft. Die Grenze liegt also wirklich zwischen <InlineMath math="15" /> und <InlineMath math="16" />.
 
+Das Diagramm vergleicht beide Kosten für <InlineMath math="11" /> bis <InlineMath math="18" /> Besuche. **Der Balken für <InlineMath math="n=15" /> berührt die Mitgliedslinie genau**, und erst der Balken für <InlineMath math="n=16" /> geht darüber hinaus.
+
+<Chart
+  title={<>Günstigste Kosten ohne Mitgliedschaft und Kosten einer neuen Mitgliedschaft nach Anzahl der Besuche</>}
+  description={<>Für <InlineMath math="n=11" /> bis <InlineMath math="16" /> betragen die günstigsten Kosten ohne Mitgliedschaft <InlineMath math="250+40(n-10)" /> Tausend Rupiah, von <InlineMath math="290" /> bis <InlineMath math="490" /> Tausend. Für <InlineMath math="n=17" /> und <InlineMath math="18" /> sind es <InlineMath math="500" /> Tausend. Die waagerechte Linie markiert die Kosten einer neuen Mitgliedschaft, <InlineMath math="450" /> Tausend Rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 8 }, (_, i) => `${11 + i}`)}
+  series={[
+    { label: "Am günstigsten ohne Mitgliedschaft", mark: "bar", values: Array.from({ length: 8 }, (_, i) => Math.min(250 + 40 * (i + 1), 500)) },
+    { label: "Neue Mitgliedschaft", mark: "line", values: Array.from({ length: 8 }, () => 350 + 100) },
+  ]}
+  valueLabel="Kosten (Tausend Rupiah)"
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort entsteht aus **einem übersprungenen Schritt**:

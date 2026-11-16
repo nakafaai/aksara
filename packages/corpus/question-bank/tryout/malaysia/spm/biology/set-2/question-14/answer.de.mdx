@@ -1,0 +1,28 @@
+# Die Drehmomente um den Ellbogen ausgleichen
+
+Der Unterarm ist ein **einarmiger Hebel**, bei dem die Kraft zwischen Drehpunkt und Last angreift: Der Drehpunkt liegt im Ellbogen, der Bizeps setzt nahe daran an, die Lasten liegen weiter außen. Der Unterarm ruht, also ist das Drehmoment des Bizeps um den Ellbogen gleich dem Drehmoment **beider** Gewichte zusammen:
+
+<Chart
+  title={<>Drehmomente um den Ellbogen</>}
+  bars="apart"
+  categories={["Ball", "Unterarm", "Bizeps"]}
+  series={[
+    { label: "Drehmoment (N cm)", mark: "bar", values: [960, 225, 1185] },
+  ]}
+  valueLabel="Drehmoment (N cm)"
+  description={<>Der Ball dreht den Unterarm mit <InlineMath math="960" /> Newtonzentimetern, das Eigengewicht des Unterarms mit <InlineMath math="225" />, der Bizeps muss also aus nur <InlineMath math="4\text{ cm}" /> Abstand <InlineMath math="1185" /> liefern.</>}
+/>
+
+<BlockMath math="\begin{aligned}
+F\times4&=30\times32+15\times15\\
+4F&=960+225=1185\\
+F&=\frac{1185}{4}=296.25\text{ N}
+\end{aligned}" />
+
+Der Bizeps muss also mit <InlineMath math="296.25\text{ N}" /> ziehen, etwa dem Zehnfachen des Ballgewichts, weil sein kurzer Abstand zum Ellbogen ihm wenig Hebelwirkung gibt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="240\text{ N}" /> gleicht nur den Ball aus, <InlineMath math="\frac{30\times32}{4}" />, und **vergisst das Gewicht des Unterarms selbst**.
+- <InlineMath math="45\text{ N}" /> addiert nur die beiden Gewichte und übersieht ihre Abstände zum Drehpunkt.
+- <InlineMath math="1185\text{ N}" /> ist das gesamte Drehmoment in <InlineMath math="\text{N cm}" />, noch nicht durch den Abstand des Bizeps von <InlineMath math="4\text{ cm}" /> geteilt.

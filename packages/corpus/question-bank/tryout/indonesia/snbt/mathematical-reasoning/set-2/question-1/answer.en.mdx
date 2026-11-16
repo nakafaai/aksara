@@ -39,6 +39,19 @@ An energy of <InlineMath math="51" /> is still below <InlineMath math="60" />, s
 
 12:00 isn't a refill time, because the next refill would be at 12:03. The daily gift adds <InlineMath math="15" />, so the energy becomes <InlineMath math="51+15=66" />. That's above <InlineMath math="60" />, so **the automatic refill stops again**. Bima doesn't spend any energy afterwards, so it stays at <InlineMath math="66" /> until 12:30.
 
+The chart below sums up how Bima's energy moves. **While the energy line sits above the <InlineMath math="60" /> line, the automatic refill stops**, which happens from 10:03 to 10:13 and from 12:00 on.
+
+<Chart
+  title={<>Bima's energy after each event, 10:00 to 12:30</>}
+  description={<>Bima's energy is <InlineMath math="52" /> at 10:00, <InlineMath math="62" /> at 10:03, <InlineMath math="42" /> at 10:13, <InlineMath math="38" /> at 10:23, <InlineMath math="32" /> at 10:27, <InlineMath math="51" /> at 11:58, then <InlineMath math="66" /> at 12:00, and it stays at <InlineMath math="66" /> until 12:30. The flat line marks an energy of <InlineMath math="60" />.</>}
+  categories={["10.00", "10.03", "10.13", "10.23", "10.27", "11.58", "12.00", "12.30"]}
+  series={[
+    { label: "Bima's energy", mark: "line", values: [52, 52 + 30 - 20, 62 - 20, 42 + 2 - 6, 38 - 6, 32 + 19, 51 + 15, 66] },
+    { label: "Limit 60", mark: "line", values: [60, 60, 60, 60, 60, 60, 60, 60] },
+  ]}
+  valueLabel="Energy"
+/>
+
 # Checking by adding every change
 
 Now recount by adding all the changes at once. There are <InlineMath math="2+19=21" /> automatic refills, one potion, one gift, two boss missions and two normal missions. **The total has to match** the step-by-step result.

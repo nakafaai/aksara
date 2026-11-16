@@ -15,6 +15,18 @@ Bahan kering <InlineMath math="1{,}65\text{ m}^3" /> itu **sudah termasuk cadang
 \text{luas}&=1:0{,}1=10\text{ m}^2
 \end{aligned}" />
 
+Diagram berikut merangkum seluruh rantai perhitungan itu. **Setiap panah membalik satu aturan**, mulai dari sak semen sampai luas lantai.
+
+<Mermaid
+  title={<>Dari <InlineMath math="11" /> sak semen ke luas lantai</>}
+  description={<>Sebelas sak semen memuat bahan kering <InlineMath math="1{,}65\text{ m}^3" />. Tanpa cadangan <InlineMath math="10\%" />, keperluannya <InlineMath math="1{,}5\text{ m}^3" />, yang menghasilkan beton <InlineMath math="1\text{ m}^3" />. Beton setebal <InlineMath math="10\text{ cm}" /> itu cukup untuk lantai <InlineMath math="10\text{ m}^2" />.</>}
+  chart={`flowchart LR
+    A["11 sak semen"] -->|"kali 0,15 m³"| B["Bahan kering 1,65 m³"]
+    B -->|"bagi 1,1"| C["Keperluan 1,5 m³"]
+    C -->|"bagi 1,5"| D["Beton 1 m³"]
+    D -->|"bagi 0,1 m"| E["Lantai 10 m²"]`}
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain **melewatkan atau membalik satu langkah**.

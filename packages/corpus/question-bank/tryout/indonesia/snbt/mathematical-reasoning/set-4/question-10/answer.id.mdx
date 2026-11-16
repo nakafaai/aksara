@@ -34,6 +34,21 @@ Dimas punya nilai akhir tertinggi, tetapi <InlineMath math="P=62" /> di bawah <I
 
 Bayu punya <InlineMath math="W=65" />. Aturannya berbunyi "paling sedikit <InlineMath math="65" />", jadi nilai tepat <InlineMath math="65" /> masih lolos. Eka menerima satu nilai <InlineMath math="60" /> dari pewawancara, tetapi syarat berlaku untuk <InlineMath math="W" />, bukan untuk setiap nilai pewawancara. Nilai <InlineMath math="W" /> Eka adalah <InlineMath math="82" />, jadi Eka juga lolos.
 
+Grafik berikut menggambar nilai akhir keenam calon. **Batang tertinggi milik Dimas, tetapi ia gugur**, sehingga tiga besar yang tersisa adalah Bayu, Eka, lalu Ayu yang menang atas Citra karena nilai tesnya lebih tinggi.
+
+<Chart
+  title={<>Nilai akhir keenam calon beasiswa</>}
+  description={<>Nilai akhirnya: Ayu <InlineMath math="82{,}65" />, Bayu <InlineMath math="83{,}35" />, Citra <InlineMath math="82{,}65" />, Dimas <InlineMath math="87{,}95" />, Eka <InlineMath math="83" />, dan Fajar <InlineMath math="82{,}5" />. Dimas tidak memenuhi syarat karena <InlineMath math="P=62" />. Sumbu nilai dimulai dari <InlineMath math="80" />.</>}
+  bars="apart"
+  categories={["Ayu", "Bayu", "Citra", "Dimas", "Eka", "Fajar"]}
+  series={[
+    { label: "Memenuhi syarat", mark: "bar", values: [0.4 * 86 + 0.25 * 81 + 0.2 * 80 + 0.15 * 80, 0.4 * 90 + 0.25 * 65 + 0.2 * 88 + 0.15 * 90, 0.4 * 78 + 0.25 * 89 + 0.2 * 86 + 0.15 * 80, null, 0.4 * 86 + 0.25 * 82 + 0.2 * 82 + 0.15 * 78, 0.4 * 84 + 0.25 * 82 + 0.2 * 85 + 0.15 * 76] },
+    { label: "Gugur karena prestasi di bawah 65", mark: "bar", values: [null, null, null, 0.4 * 96 + 0.25 * 89 + 0.2 * 90 + 0.15 * 62, null, null] },
+  ]}
+  valueRange={{ min: 80, max: 89 }}
+  valueLabel="Nilai akhir"
+/>
+
 # Mengurutkan dan memutus nilai seri
 
 Urutan calon yang lolos: Bayu <InlineMath math="83{,}35" />, Eka <InlineMath math="83" />, lalu Ayu dan Citra sama-sama <InlineMath math="82{,}65" />, dan Fajar <InlineMath math="82{,}5" />. Untuk tempat ketiga, **nilai seri diputus dengan nilai** <InlineMath math="T" />: Ayu punya <InlineMath math="86" />, Citra punya <InlineMath math="78" />, jadi Ayu yang didahulukan.

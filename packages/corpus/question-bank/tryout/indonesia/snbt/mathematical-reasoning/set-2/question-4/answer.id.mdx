@@ -33,6 +33,20 @@ Sekarang pastikan jadwalnya benar-benar bisa dijalankan, termasuk lama setiap mi
 
 Dari 09.20 sampai 10.40 terjadi <InlineMath math="16" /> penambahan, jadi energi naik dari <InlineMath math="4" /> ke <InlineMath math="20" />. Dari 10.45 sampai 12.00 terjadi <InlineMath math="16" /> penambahan, lalu hadiah datang, jadi <InlineMath math="0+16+15=31" />. Dari 12.05 sampai 12.45 terjadi <InlineMath math="9" /> penambahan, jadi <InlineMath math="11+9=20" />, tepat cukup untuk misi keenam. Sebelum 12.45 energi selalu kurang dari <InlineMath math="20" /> sesudah misi kelima, jadi misi keenam tidak bisa lebih awal.
 
+Grafik berikut menggambar tabel itu. **Batang sebelum misi tidak pernah di bawah <InlineMath math="20" />**, dan pada pukul 12.45 batangnya tepat <InlineMath math="20" />, jadi misi keenam tidak bisa dimulai lebih awal.
+
+<Chart
+  title={<>Energi Rio sebelum dan sesudah setiap misi bos</>}
+  description={<>Misi bos dimulai pukul 09.00, 09.10, 09.20, 10.40, 12.00, dan 12.45. Energi sebelum misi berturut-turut <InlineMath math="60, 42, 24, 20, 31, 20" />, dan energi sesudah misi berturut-turut <InlineMath math="40, 22, 4, 0, 11, 0" />.</>}
+  bars="apart"
+  categories={["09.00", "09.10", "09.20", "10.40", "12.00", "12.45"]}
+  series={[
+    { label: "Energi sebelum misi", mark: "bar", values: [60, 42, 24, 4 + 16, 0 + 16 + 15, 11 + 9] },
+    { label: "Energi sesudah misi", mark: "bar", values: [60 - 20, 42 - 20, 24 - 20, 20 - 20, 31 - 20, 20 - 20] },
+  ]}
+  valueLabel="Energi"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain berasal dari **satu langkah hitung yang tergelincir**.

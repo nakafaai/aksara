@@ -16,6 +16,40 @@ Rechne jetzt aus, was Hahn P zusammen mit dem Leck allein schafft. **Die Lücke 
 \text{Laufzeit von Q}&=\frac{272}{16}=17\text{ Minuten}
 \end{aligned}" />
 
+Zeichne den Tankinhalt, wenn Hahn Q um 6:31 Uhr öffnet. **Das letzte Stück der Geraden muss <InlineMath math="17" /> Minuten lang um <InlineMath math="32" /> Liter pro Minute steigen, um die Kapazität genau in Minute <InlineMath math="48" /> zu erreichen**. Öffnet Hahn Q später, rückt der Knick nach rechts, und die Gerade erreicht die Kapazität nicht rechtzeitig.
+
+<MathVisual
+  title={<>Tankinhalt, wenn Hahn Q um 6:31 Uhr öffnet</>}
+  description={<>Die waagerechte Achse sind Minuten ab 6:00 Uhr, die senkrechte Achse der Inhalt in Litern. Die Gerade steigt um <InlineMath math="24" /> pro Minute auf <InlineMath math="480" /> Liter, dann um <InlineMath math="16" /> pro Minute auf <InlineMath math="656" /> Liter in Minute <InlineMath math="31" /> und dann um <InlineMath math="32" /> pro Minute auf <InlineMath math="1{.}200" /> Liter in Minute <InlineMath math="48" />, also um 6:48 Uhr.</>}
+  labels={{
+    open: <InlineMath math="(31,\ 656)" />,
+    full: <InlineMath math="(48,\ 1{.}200)" />,
+    cap: <>Kapazität <InlineMath math="1{.}200" /> Liter</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 52 },
+      y: { min: -40, max: 1300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 31 } },
+      { id: "both", kind: "function", appearance: "answer", formula: "656 + 32(x - 31)", domain: { min: 31, max: 48 } },
+      { id: "cap", kind: "function", appearance: "reference", formula: "1200", domain: { min: 0, max: 51 } },
+      { id: "open", kind: "point", appearance: "secondary", at: { x: 31, y: 656 } },
+      { id: "full", kind: "point", appearance: "answer", at: { x: 48, y: 1200 } },
+    ],
+    labels: [
+      { key: "open", objectId: "open", at: { x: 31, y: 656 }, placement: "below-right" },
+      { key: "full", objectId: "full", at: { x: 48, y: 1200 }, placement: "below-right" },
+      { key: "cap", objectId: "cap", at: { x: 10, y: 1200 }, placement: "above" },
+    ],
+  }}
+/>
+
 Hahn Q muss <InlineMath math="17" /> Minuten vor 6:48 Uhr laufen, also um 6:31 Uhr öffnen. Das liegt nach 6:20 Uhr, die Annahme, dass das Leck schon vor dem Öffnen von Hahn Q begonnen hat, stimmt also.
 
 # Kontrolle durch Nachverfolgen

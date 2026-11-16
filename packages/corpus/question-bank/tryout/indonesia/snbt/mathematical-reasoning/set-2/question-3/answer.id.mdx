@@ -45,6 +45,20 @@ Jika misi bos dimulai pukul 12.00 atau sesudahnya, energi tetap <InlineMath math
 
 Dalam kedua kasus energi pukul 12.30 paling banyak <InlineMath math="75" />, jadi pernyataan ini **benar**.
 
+Grafik berikut menaruh hasil keempat rencana berdampingan. Rencana dengan misi bos pukul 12.10 **berakhir di bawah garis <InlineMath math="60" />** karena penambahan terbuang selama energinya penuh, sedangkan rencana dengan ramuan paling akhir mencapai <InlineMath math="90" />.
+
+<Chart
+  title={<>Energi Nadia pada pukul 12.30 untuk beberapa rencana</>}
+  description={<>Misi bos pukul 10.00 memberi energi <InlineMath math="60" />. Misi bos pukul 12.10 memberi <InlineMath math="59" />. Misi bos pukul 10.00 lalu ramuan pukul 12.15 memberi <InlineMath math="90" />. Ramuan dan misi bos pukul 10.00 memberi <InlineMath math="75" />, nilai terbesar jika ramuan diminum pukul 10.00. Garis datar menandai energi <InlineMath math="60" />.</>}
+  categories={["Bos 10.00", "Bos 12.10", "Bos 10.00, ramuan 12.15", "Ramuan dan bos 10.00"]}
+  bars="apart"
+  series={[
+    { label: "Energi pukul 12.30", mark: "bar", values: [60, 60 + 15 - 20 + 4, 60 + 30, 38 + 30 - 20 + 12 + 15] },
+    { label: "Batas 60", mark: "line", values: [60, 60, 60, 60] },
+  ]}
+  valueLabel="Energi"
+/>
+
 # Ringkasan
 
 Pernyataan pertama, ketiga, dan keempat benar. Pernyataan kedua salah, karena **menunggu dalam keadaan penuh membuang penambahan otomatis**.

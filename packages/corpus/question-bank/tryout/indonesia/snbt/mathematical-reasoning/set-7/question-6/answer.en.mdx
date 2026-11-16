@@ -34,4 +34,19 @@ Joining at the start of April means Citra's money works for <InlineMath math="9"
 
 Since <InlineMath math="9\cdot2=18>17" />, the fraction <InlineMath math="\frac{9}{17}" /> is more than a half. The fourth statement is **true**.
 
+The chart below compares Citra's part in the actual case and in both what-ifs. **The second bar drops below the half line**, while the third bar rises above it.
+
+<Chart
+  title={<>Citra's part of the shared profit in three cases</>}
+  description={<>In the actual case, Citra's part is <InlineMath math="\tfrac{1}{2}" />, or <InlineMath math="50\%" />. If Ayu doesn't withdraw, Citra's part is <InlineMath math="\tfrac{4}{9}" />, about <InlineMath math="44.4\%" />. If Citra joins at the start of April, her part is <InlineMath math="\tfrac{9}{17}" />, about <InlineMath math="52.9\%" />. The value axis starts at <InlineMath math="40\%" />.</>}
+  categories={["Actual case", "Ayu keeps her money in", "Citra joins in April"]}
+  bars="apart"
+  series={[
+    { label: "Citra's part (%)", mark: "bar", values: [(100 * 720) / 1440, (100 * 720) / 1620, (100 * 810) / 1530] },
+    { label: "Half", mark: "line", values: [50, 50, 50] },
+  ]}
+  valueRange={{ min: 40, max: 55 }}
+  valueLabel="Citra's part (%)"
+/>
+
 So the first statement is true, the second is false, the third is false, and the fourth is true.

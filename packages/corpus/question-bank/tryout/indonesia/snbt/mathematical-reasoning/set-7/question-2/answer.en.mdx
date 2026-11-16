@@ -41,6 +41,19 @@ Plug in at exactly 14.00. From 13.15 to 14.00 the battery loses <InlineMath math
 
 If you plug in later, the battery falls for longer and climbs for less time, so **the final battery has to end below <InlineMath math="55\%" />**. The phone doesn't die before charging either, since its lowest level is <InlineMath math="12.5\%" />.
 
+The chart below follows Bayu's battery if the charger goes in at 14.00. The line **falls slowly in power saving mode, climbs quickly back to <InlineMath math="20\%" />**, then rises more gently until it touches the target exactly at 16.00.
+
+<Chart
+  title={<>Bayu's battery every <InlineMath math="15" /> minutes with the charger plugged in at 14.00</>}
+  description={<>The battery falls from <InlineMath math="25\%" /> to <InlineMath math="20\%" /> at 13.15, then to <InlineMath math="12.5\%" /> at 14.00. After plugging in, it's back at <InlineMath math="20\%" /> at 14.15 and rises <InlineMath math="5\%" /> every <InlineMath math="15" /> minutes up to <InlineMath math="55\%" /> at 16.00. The flat line marks the target of <InlineMath math="55\%" />.</>}
+  categories={["13.00", "13.15", "13.30", "13.45", "14.00", "14.15", "14.30", "14.45", "15.00", "15.15", "15.30", "15.45", "16.00"]}
+  series={[
+    { label: "Bayu's battery (%)", mark: "line", values: [25, 20, 17.5, 15, 12.5, 20, 25, 30, 35, 40, 45, 50, 55] },
+    { label: "Target 55%", mark: "line", values: Array.from({ length: 13 }, () => 55) },
+  ]}
+  valueLabel="Battery (%)"
+/>
+
 # Common slips
 
 If you **ignore power saving mode**, the battery seems to fall and rise at <InlineMath math="20\%" /> per hour. Then the charger seems to be needed by 13.45, which is <InlineMath math="45" /> minutes, even though saving mode buys extra time. If you forget to subtract the video drain while charging, the battery seems to rise <InlineMath math="40\%" /> per hour and you allow far too much time.

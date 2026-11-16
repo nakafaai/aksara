@@ -27,6 +27,17 @@ O\to A \text{ ohne } B&: 12-(2\times2)=8\\
 A\to T \text{ ohne } C&: 12-(2\times2)=8
 \end{aligned}" />
 
+Das Diagramm zeigt die beiden Teile jedes Weges. Der Punkt <InlineMath math="B" /> kann nur den ersten Teil verderben und <InlineMath math="C" /> nur den zweiten, also **wird jeder Teil für sich bereinigt**, bevor du multiplizierst.
+
+<Mermaid
+  title={<>Die Wege des Roboters, geteilt am Pflichtpunkt <InlineMath math="A" /></>}
+  description={<>Von <InlineMath math="O" /> nach <InlineMath math="A" /> gibt es <InlineMath math="12" /> Wege, davon gehen <InlineMath math="4" /> durch <InlineMath math="B" />, also bleiben <InlineMath math="8" />. Von <InlineMath math="A" /> nach <InlineMath math="T" /> gibt es <InlineMath math="12" /> Wege, davon gehen <InlineMath math="4" /> durch <InlineMath math="C" />, also bleiben <InlineMath math="8" />. Insgesamt sind es <InlineMath math="8\times8=64" /> Wege.</>}
+  chart={`flowchart LR
+    O["O(0,0,0)"] -->|"12 Wege, 4 durch B entfernen"| A["A(1,2,1): 8 Arten"]
+    A -->|"12 Wege, 4 durch C entfernen"| T["T(3,3,2): 8 Arten"]
+    T --> R["8 x 8 = 64"]`}
+/>
+
 # Die beiden Teile verbinden
 
 Jeder sichere erste Teil lässt sich mit jedem sicheren zweiten Teil kombinieren, also nimmst du **die Produktregel**.

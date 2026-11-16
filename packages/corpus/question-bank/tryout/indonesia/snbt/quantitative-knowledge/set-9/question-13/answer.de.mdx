@@ -30,6 +30,39 @@ k&=\frac{99}{24}=\frac{33}{8}
 
 Dann ist <InlineMath math="R^2=49+\frac{1089}{64}=\frac{4225}{64}" />, also <InlineMath math="R=\frac{65}{8}" />, genau wie oben.
 
+Die Abbildung zeigt, wo der Mittelpunkt liegt. Er liegt auf der Symmetrieachse, aber **deutlich unter der halben Höhe des Trapezes**, weil die untere Seite <InlineMath math="AB" /> viel länger ist als die obere Seite <InlineMath math="CD" />.
+
+<MathVisual
+  title={<>Das gleichschenklige Trapez <InlineMath math="ABCD" /> und sein Umkreis</>}
+  description={<>Das Trapez hat die Ecken <InlineMath math="A(-7,0)" />, <InlineMath math="B(7,0)" />, <InlineMath math="C(2,12)" /> und <InlineMath math="D(-2,12)" />, mit der Diagonale <InlineMath math="AC=15" />. Der Kreis durch alle vier Ecken hat den Mittelpunkt <InlineMath math="\left(0,\tfrac{33}{8}\right)" /> und den Radius <InlineMath math="\tfrac{65}{8}" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="\left(0,\tfrac{33}{8}\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 9 }, y: { min: -5, max: 13 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 33 / 8 }, radius: 65 / 8 },
+      { id: "trap", kind: "polygon", appearance: "primary", vertices: [{ x: -7, y: 0 }, { x: 7, y: 0 }, { x: 2, y: 12 }, { x: -2, y: 12 }] },
+      { id: "diagonal", kind: "segment", appearance: "secondary", from: { x: -7, y: 0 }, to: { x: 2, y: 12 } },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 0, y: 33 / 8 }, to: { x: -7, y: 0 } },
+      { id: "center", kind: "point", appearance: "answer", at: { x: 0, y: 33 / 8 } },
+    ],
+    labels: [
+      { key: "a", objectId: "trap", at: { x: -7, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "trap", at: { x: 7, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "trap", at: { x: 2, y: 12 }, placement: "above-right" },
+      { key: "d", objectId: "trap", at: { x: -2, y: 12 }, placement: "above-left" },
+      { key: "o", objectId: "center", at: { x: 0, y: 33 / 8 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Die verlockenden falschen Antworten
 
 - <InlineMath math="\frac{15}{2}\text{ cm}" /> behandelt die Diagonale <InlineMath math="AC" /> als Durchmesser. Das stimmt nur für <InlineMath math="\angle ABC=90^\circ" />, aber <InlineMath math="\sin B=\frac{12}{13}" /> ist **nicht <InlineMath math="1" />**.

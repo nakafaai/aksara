@@ -30,6 +30,20 @@ Dalam kedua kasus **selalu ada pangkat yang ganjil**, yaitu <InlineMath math="7"
 
 Angka <InlineMath math="15" /> itu penting. Kalau banyak faktor <InlineMath math="k^2" /> adalah <InlineMath math="9" />, kasus <InlineMath math="k=p^4" /> memberi jawaban "ya", sedangkan kasus <InlineMath math="k=pq" /> memberi jawaban "tidak".
 
+Diagram berikut menaruh kedua alur berdampingan. Keduanya **berakhir di pangkat ganjil** pada faktorisasi <InlineMath math="k" />, dan pangkat ganjil langsung menutup kemungkinan <InlineMath math="k" /> kuadrat sempurna.
+
+<Mermaid
+  title={<>Dua alur yang sama-sama menjawab tidak</>}
+  description={<>Pernyataan (1): banyak faktor <InlineMath math="2k" /> ganjil, jadi <InlineMath math="2k" /> kuadrat sempurna, sehingga <InlineMath math="k=2j^2" /> dengan pangkat <InlineMath math="2" /> ganjil. Pernyataan (2): <InlineMath math="(2e_1+1)(2e_2+1)\cdots=15" />, jadi <InlineMath math="k=p^7" /> atau <InlineMath math="k=pq^2" />, sama-sama punya pangkat ganjil. Kedua alur menyimpulkan <InlineMath math="k" /> bukan kuadrat sempurna.</>}
+  chart={`flowchart TD
+    S1["(1) banyak faktor 2k ganjil"] --> A1["2k kuadrat sempurna"]
+    A1 --> B1["k = 2j kuadrat, pangkat 2 ganjil"]
+    S2["(2) banyak faktor k kuadrat = 15"] --> A2["k = p pangkat 7 atau k = p q kuadrat"]
+    A2 --> B2["ada pangkat 7 atau 1, ganjil"]
+    B1 --> T["k bukan kuadrat sempurna"]
+    B2 --> T`}
+/>
+
 # Pilihan yang keliru
 
 Kedua pernyataan masing-masing cukup, jadi **setiap pilihan yang menyebut salah satu pernyataan tidak cukup itu keliru**.

@@ -33,6 +33,34 @@ x&\le4
 
 Pada <InlineMath math="0<x\le4" />, semua nilai <InlineMath math="x" /> ada di sebelah kiri puncak <InlineMath math="x=6" />, tempat parabola masih naik. Jadi **luas terbesar tercapai di batas <InlineMath math="x=4" />**, dengan <InlineMath math="y=9-3=6" /> dan <InlineMath math="L=4\times6=24" />.
 
+Gambar taman berikut memperlihatkan kedua kolam. Kolam di titik puncak, <InlineMath math="6\times4{,}5" />, lebih luas, tetapi sisi tegaknya **tidak mencapai garis <InlineMath math="y=6" />**. Kolam terbesar yang mematuhi syarat adalah <InlineMath math="4\times6" />, yang sudutnya tepat di sisi miring.
+
+<MathVisual
+  title={<>Kolam persegi panjang di dalam taman segitiga</>}
+  description={<>Segitiga siku-siku dengan kaki <InlineMath math="12" /> mendatar dan <InlineMath math="9" /> tegak. Kolam <InlineMath math="6\times4{,}5" /> memberi luas <InlineMath math="27" />, tetapi sisi tegaknya hanya <InlineMath math="4{,}5" />. Kolam <InlineMath math="4\times6" /> memberi luas <InlineMath math="24" /> dan sisi tegaknya tepat <InlineMath math="6" />. Sudut atas kedua kolam terletak di sisi miring.</>}
+  labels={{
+    best: <InlineMath math="4\times6" />,
+    vertex: <InlineMath math="6\times4{,}5" />,
+    limit: <InlineMath math="y=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "garden", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "vertex", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4.5 }, { x: 0, y: 4.5 }] },
+      { id: "best", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 6 }, { x: 0, y: 6 }] },
+      { id: "limit", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 4, y: 6 } },
+    ],
+    labels: [
+      { key: "best", objectId: "best", at: { x: 2, y: 3 }, placement: "center" },
+      { key: "vertex", objectId: "vertex", at: { x: 5, y: 1 }, placement: "center" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
 Pemeriksaan: hubungan kedua sisi juga bisa ditulis <InlineMath math="\frac{x}{12}+\frac{y}{9}=1" />, dan pasangan <InlineMath math="x=4" />, <InlineMath math="y=6" /> memenuhinya karena <InlineMath math="\frac{4}{12}+\frac{6}{9}=\frac13+\frac23=1" />. Nilai yang lebih kecil, misalnya <InlineMath math="x=3" />, memberi <InlineMath math="y=6{,}75" /> dan luas <InlineMath math="20{,}25" />, lebih kecil dari <InlineMath math="24" />.
 
 # Pilihan yang keliru

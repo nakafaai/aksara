@@ -24,6 +24,37 @@ The water reaches the crack at 6:20, five minutes before tap Q opens. Now track 
 | 6:20 to 6:25 | tap P and the leak | <InlineMath math="24-8=16" /> liters per minute | <InlineMath math="80" /> liters | <InlineMath math="560" /> liters |
 | 6:25 to 6:30 | tap P, tap Q and the leak | <InlineMath math="24+16-8=32" /> liters per minute | <InlineMath math="160" /> liters | <InlineMath math="720" /> liters |
 
+Draw the tank's contents against time. **The line bends twice: it flattens when the water passes the crack, then steepens again when tap Q opens**. At minute <InlineMath math="30" /> the tank holds <InlineMath math="720" /> litres.
+
+<MathVisual
+  title={<>Tank contents since 6:00</>}
+  description={<>The horizontal axis is minutes since 6:00, and the vertical axis is the contents in litres. The line rises <InlineMath math="24" /> per minute to <InlineMath math="480" /> litres at minute <InlineMath math="20" />, rises <InlineMath math="16" /> per minute to <InlineMath math="560" /> litres at minute <InlineMath math="25" />, then rises <InlineMath math="32" /> per minute until full at minute <InlineMath math="45" />. The horizontal line at <InlineMath math="480" /> marks the height of the crack, and the point <InlineMath math="(30,\ 720)" /> marks 6:30.</>}
+  labels={{
+    hole: <>crack, <InlineMath math="480" /> litres</>,
+    now: <InlineMath math="(30,\ 720)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 48 },
+      y: { min: -40, max: 1260 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 25 } },
+      { id: "both", kind: "function", appearance: "primary", formula: "560 + 32(x - 25)", domain: { min: 25, max: 45 } },
+      { id: "hole", kind: "function", appearance: "reference", formula: "480", domain: { min: 0, max: 47 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 30, y: 720 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 40, y: 480 }, placement: "below" },
+      { key: "now", objectId: "now", at: { x: 30, y: 720 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 The fraction of the tank that's full is the volume divided by the capacity:
 
 <BlockMath math="\frac{720}{1{,}200}=\frac{3}{5}" />

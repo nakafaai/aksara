@@ -14,6 +14,19 @@ Semua <InlineMath math="91" /> hasil itu otomatis punya hasil kali genap, karena
 
 <BlockMath math="P=\frac{91}{189}=\frac{13}{27}" />
 
+Diagram berikut memperlihatkan ruang sampel yang menyusut. **Semua <InlineMath math="91" /> hasil yang memuat mata <InlineMath math="6" /> berada di dalam cabang hasil kali genap**, jadi pembilangnya tetap <InlineMath math="91" />, sedangkan penyebutnya turun menjadi <InlineMath math="189" />.
+
+<Mermaid
+  title={<>Ruang sampel tiga dadu dengan hasil kali genap</>}
+  description={<>Dari <InlineMath math="216" /> hasil, <InlineMath math="27" /> berhasil kali ganjil dan <InlineMath math="189" /> berhasil kali genap. Di dalam cabang genap ada <InlineMath math="91" /> hasil yang memuat paling sedikit satu mata <InlineMath math="6" /> dan <InlineMath math="98" /> yang tidak. Peluangnya <InlineMath math="\frac{91}{189}=\frac{13}{27}" />.</>}
+  chart={`flowchart TD
+  S["Semua hasil: 6³ = 216"] --> O["Hasil kali ganjil: 3³ = 27"]
+  S --> E["Hasil kali genap: 216 − 27 = 189"]
+  E --> X["Ada mata 6: 216 − 5³ = 91"]
+  E --> N["Tanpa mata 6: 189 − 91 = 98"]
+  X --> P["Peluang: 91/189 = 13/27"]`}
+/>
+
 Hasil ini masuk akal: lebih besar dari <InlineMath math="\tfrac{91}{216}" />, karena informasi "genap" membuang hasil yang pasti tanpa mata <InlineMath math="6" />.
 
 Jadi, peluangnya adalah <InlineMath math="\tfrac{13}{27}" />.

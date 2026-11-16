@@ -20,6 +20,17 @@ Bentuk <InlineMath math="8{.}000n(145-n)" /> bernilai nol di <InlineMath math="n
 
 Coba cek satu pohon sebelumnya: <InlineMath math="8{.}000\cdot69\cdot76=41{.}952{.}000" />, lebih kecil. Cek juga lewat hasil per pohon: dengan <InlineMath math="70" /> pohon, setiap pohon menghasilkan <InlineMath math="90\text{ kg}" />, jadi untung per pohon <InlineMath math="90\cdot8{.}000-120{.}000=600{.}000" /> rupiah, dan <InlineMath math="70\cdot600{.}000=42{.}000{.}000" />.
 
+Grafik berikut menghitung keuntungan dengan pupuk khusus untuk <InlineMath math="40" /> sampai <InlineMath math="70" /> pohon. **Batangnya terus naik sampai batas kebun**, karena puncak rumusnya baru di <InlineMath math="72{,}5" /> pohon.
+
+<Chart
+  title={<>Keuntungan dengan pupuk khusus menurut banyak pohon</>}
+  description={<>Untuk <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="50" />, <InlineMath math="55" />, <InlineMath math="60" />, <InlineMath math="65" />, dan <InlineMath math="70" /> pohon, keuntungannya <InlineMath math="\text{Rp}33{,}6" />, <InlineMath math="36" />, <InlineMath math="38" />, <InlineMath math="39{,}6" />, <InlineMath math="40{,}8" />, <InlineMath math="41{,}6" />, dan <InlineMath math="42" /> juta.</>}
+  bars="apart"
+  categories={["40", "45", "50", "55", "60", "65", "70"]}
+  series={[{ label: "Keuntungan dengan pupuk (rupiah)", mark: "bar", values: [40, 45, 50, 55, 60, 65, 70].map((n) => 8000 * n * (145 - n)) }]}
+  valueLabel="Keuntungan (rupiah)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain melewatkan satu syarat.

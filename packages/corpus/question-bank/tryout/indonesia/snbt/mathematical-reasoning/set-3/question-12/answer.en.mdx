@@ -17,6 +17,19 @@ At <InlineMath math="t=6" />, <InlineMath math="640\cdot2=1{,}280" /> is cut dow
 
 There are <InlineMath math="4" /> harvests, at <InlineMath math="t=6, 12, 18, 24" />, so the new schedule harvests <InlineMath math="4\cdot400=1{,}600" /> million cells in total.
 
+The chart below adds up each schedule's harvest up to <InlineMath math="t=24" />. **The original schedule's line stops at <InlineMath math="160" /> from <InlineMath math="t=3" /> on**, while the new schedule's line climbs <InlineMath math="400" /> every six hours.
+
+<Chart
+  title={<>Total harvest up to each time for both schedules</>}
+  description={<>With the schedule in the information, the total harvest becomes <InlineMath math="160" /> million cells at <InlineMath math="t=3" /> and never grows again because the culture runs out. With the new schedule, the total harvest becomes <InlineMath math="400" />, <InlineMath math="800" />, <InlineMath math="1{,}200" />, and <InlineMath math="1{,}600" /> million cells at <InlineMath math="t=6, 12, 18, 24" />.</>}
+  categories={Array.from({ length: 8 }, (_, i) => `${3 * (i + 1)}`)}
+  series={[
+    { label: "Schedule in the information", mark: "line", values: Array.from({ length: 8 }, () => 160) },
+    { label: "New schedule", mark: "line", values: Array.from({ length: 8 }, (_, i) => 400 * Math.floor((i + 1) / 2)) },
+  ]}
+  valueLabel="Total harvest (million cells)"
+/>
+
 # The difference between the schedules
 
 <BlockMath math="1{,}600-160=1{,}440" />

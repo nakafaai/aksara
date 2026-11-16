@@ -39,6 +39,19 @@ t=9 &: \ 56\cdot8-200=248
 
 The population keeps growing. In the next cycle, <InlineMath math="248\to496\to960" /> because the tank is full, and the harvest leaves <InlineMath math="760" />. From then on every cycle repeats from <InlineMath math="760" /> to <InlineMath math="960" /> and back to <InlineMath math="760" />, so the culture never runs out.
 
+The chart below follows the population after each harvest for both starting populations. **The <InlineMath math="28" /> line falls until it runs out at <InlineMath math="t=6" />**, while the <InlineMath math="29" /> line keeps climbing until it's held at <InlineMath math="760" />.
+
+<Chart
+  title={<>Bacteria after each harvest for starting populations of <InlineMath math="28" /> and <InlineMath math="29" /> million cells</>}
+  description={<>With a starting population of <InlineMath math="28" /> million cells, the count after the harvest at <InlineMath math="t=3" /> is <InlineMath math="24" />, and the culture runs out at <InlineMath math="t=6" />. With a starting population of <InlineMath math="29" /> million cells, the count after the harvests at <InlineMath math="t=3, 6, 9, 12" /> is <InlineMath math="32, 56, 248, 760" /> million cells.</>}
+  categories={["0", "3", "6", "9", "12"]}
+  series={[
+    { label: "Starting population 28", mark: "line", values: [28, 28 * 8 - 200, 0, 0, 0] },
+    { label: "Starting population 29", mark: "line", values: [29, 29 * 8 - 200, 32 * 8 - 200, 56 * 8 - 200, 960 - 200] },
+  ]}
+  valueLabel="Bacteria (million cells)"
+/>
+
 # The first harvest trap
 
 If you only check that the first harvest doesn't wipe out the culture, the condition is <InlineMath math="8P>200" />, which means <InlineMath math="P\ge26" />. But <InlineMath math="26" /> leaves <InlineMath math="8" />, then <InlineMath math="64" />, and **runs out at the second harvest**. The answer <InlineMath math="25" /> is wrong too, because exactly <InlineMath math="200" /> at the first harvest is taken completely.

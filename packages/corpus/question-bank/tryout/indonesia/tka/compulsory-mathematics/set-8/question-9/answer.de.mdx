@@ -7,6 +7,20 @@ Jede Aussage benutzt eine Verkettung, also stellst du zuerst die vollständigen 
 | <InlineMath math="(g\circ f)(x)" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="6" /> |
 | <InlineMath math="(f\circ g)(x)" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
 
+Verfolge jedes Element durch <InlineMath math="f" /> und dann <InlineMath math="g" />. **Die Haken markieren die Werte von <InlineMath math="x" />, die zu sich selbst zurückkehren, es sind drei**, und die Ausgabe <InlineMath math="2" /> kommt zweimal vor, also hat <InlineMath math="g\circ f" /> keine Umkehrfunktion.
+
+<Mermaid
+  title={<>Weg jedes Elements durch <InlineMath math="g\circ f" /></>}
+  description={<>Ein Pfeildiagramm von <InlineMath math="x" /> zu <InlineMath math="f(x)" /> und weiter zu <InlineMath math="g(f(x))" />. Die Elemente <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="6" /> kehren zu sich selbst zurück. Die Elemente <InlineMath math="2" /> und <InlineMath math="4" /> enden beide bei <InlineMath math="2" />. Kein Weg endet bei <InlineMath math="4" />.</>}
+  chart={`flowchart LR
+  X1["x = 1"] -->|f| A1["4"] -->|g| B1["1 ✓"]
+  X2["x = 2"] -->|f| A2["6"] -->|g| B2["2 ✓"]
+  X3["x = 3"] -->|f| A3["2"] -->|g| B3["5"]
+  X4["x = 4"] -->|f| A4["5"] -->|g| B4["2"]
+  X5["x = 5"] -->|f| A5["1"] -->|g| B5["3"]
+  X6["x = 6"] -->|f| A6["3"] -->|g| B6["6 ✓"]`}
+/>
+
 Jetzt kannst du jede Aussage an dieser Tabelle prüfen, Spalte für Spalte.
 
 # Jede Aussage prüfen

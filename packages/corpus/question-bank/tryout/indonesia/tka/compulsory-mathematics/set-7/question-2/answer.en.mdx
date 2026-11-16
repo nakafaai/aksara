@@ -30,6 +30,40 @@ n\cdot2.5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
 n&<38
 \end{aligned}" />
 
+Draw the level at the front row as a function of the number of large drums <InlineMath math="n" />. **The curve touches <InlineMath math="90\text{ dB}" /> exactly at <InlineMath math="n=38" />**, and the condition is below <InlineMath math="90" />, so the last whole number under the line is <InlineMath math="37" />.
+
+<MathVisual
+  title={<>Level at the front row by number of large drums</>}
+  description={<>The horizontal axis is <InlineMath math="n" />, and the vertical axis is the level in dB, <InlineMath math="\mathrm{TI}(n)=70+10\log(2.5n+5)" />. The curve rises ever more gently. The horizontal line at <InlineMath math="90\text{ dB}" /> is the limit. The point for <InlineMath math="n=38" /> lies exactly on the line, and the point for <InlineMath math="n=37" /> lies just below it, at about <InlineMath math="89.9\text{ dB}" />.</>}
+  labels={{
+    level: <InlineMath math="\mathrm{TI}(n)" />,
+    limit: <InlineMath math="90\text{ dB}" />,
+    best: <InlineMath math="n=37" />,
+    edge: <InlineMath math="n=38" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 24, max: 46 },
+      y: { min: 87.2, max: 91.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "primary", formula: "70 + 10 log_10(2.5x + 5)", domain: { min: 25, max: 45 } },
+      { id: "limit", kind: "function", appearance: "reference", formula: "90", domain: { min: 25, max: 45 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 37, y: 70 + 10 * Math.log10(97.5) } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 38, y: 90 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 27, y: 70 + 10 * Math.log10(72.5) }, placement: "below-right" },
+      { key: "limit", objectId: "limit", at: { x: 30, y: 90 }, placement: "above" },
+      { key: "best", objectId: "best", at: { x: 37, y: 70 + 10 * Math.log10(97.5) }, placement: "below-left" },
+      { key: "edge", objectId: "edge", at: { x: 38, y: 90 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Because the condition says **less than**, <InlineMath math="n=38" /> isn't allowed. With <InlineMath math="n=38" /> the intensity is exactly <InlineMath math="40\cdot2.5\cdot10^{-5}=10^{-3}" />, which is exactly <InlineMath math="90\text{ dB}" />. With <InlineMath math="n=37" /> it's <InlineMath math="39\cdot2.5\cdot10^{-5}=9.75\cdot10^{-4}" />, still below the limit.
 
 # Why the other options are wrong

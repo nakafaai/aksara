@@ -16,6 +16,42 @@ Sejurus sebelum dos ke-<InlineMath math="5" />, sudah <InlineMath math="48" /> j
 &=85\text{ mg}
 \end{aligned}" />
 
+Lukis jumlah ubat dalam badan selama <InlineMath math="48" /> jam. **Setiap dos menaikkan graf sebanyak <InlineMath math="256\text{ mg}" />, kemudian dalam <InlineMath math="12" /> jam graf turun kepada suku**. Tepat sebelum dos ke-<InlineMath math="5" />, graf berada pada <InlineMath math="85\text{ mg}" />.
+
+<MathVisual
+  title={<>Jumlah ubat dalam badan sepanjang empat dos</>}
+  description={<>Paksi mendatar ialah jam sejak dos pertama, dan paksi tegak ialah jumlah ubat dalam mg. Graf melonjak <InlineMath math="256" /> pada jam ke-<InlineMath math="0" />, <InlineMath math="12" />, <InlineMath math="24" />, dan <InlineMath math="36" />, dan di antara dos ia menyusut separuh setiap <InlineMath math="6" /> jam. Puncak selepas dos keempat ialah <InlineMath math="340" />, dan pada jam ke-<InlineMath math="48" /> tinggal <InlineMath math="85" />.</>}
+  labels={{
+    before: <>sebelum dos ke-<InlineMath math="5" />: <InlineMath math="85" /></>,
+    peak: <InlineMath math="340" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 51 },
+      y: { min: -12, max: 365 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "256 * 2^(-x/6)", domain: { min: 0, max: 12 } },
+      { id: "second", kind: "function", appearance: "primary", formula: "320 * 2^(-(x - 12)/6)", domain: { min: 12, max: 24 } },
+      { id: "third", kind: "function", appearance: "primary", formula: "336 * 2^(-(x - 24)/6)", domain: { min: 24, max: 36 } },
+      { id: "fourth", kind: "function", appearance: "primary", formula: "340 * 2^(-(x - 36)/6)", domain: { min: 36, max: 48 } },
+      { id: "dose-two", kind: "segment", appearance: "construction", from: { x: 12, y: 64 }, to: { x: 12, y: 320 } },
+      { id: "dose-three", kind: "segment", appearance: "construction", from: { x: 24, y: 80 }, to: { x: 24, y: 336 } },
+      { id: "dose-four", kind: "segment", appearance: "construction", from: { x: 36, y: 84 }, to: { x: 36, y: 340 } },
+      { id: "dose-one", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 256 } },
+      { id: "peak", kind: "point", appearance: "secondary", at: { x: 36, y: 340 } },
+      { id: "before", kind: "point", appearance: "answer", at: { x: 48, y: 85 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 48, y: 85 }, placement: "above" },
+      { key: "peak", objectId: "peak", at: { x: 36, y: 340 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Ini ialah siri geometri dengan sebutan pertama <InlineMath math="1" /> dan nisbah sepunya <InlineMath math="4" />. Semak dengan cara lain: sejurus selepas dos ke-<InlineMath math="4" />, badan mengandungi <InlineMath math="256+64+16+4=340\text{ mg}" />, dan <InlineMath math="12" /> jam kemudian hanya <InlineMath math="\tfrac14\cdot340=85\text{ mg}" /> yang tinggal.
 
 Jadi, baki ubat sejurus sebelum dos ke-<InlineMath math="5" /> ialah <InlineMath math="85\text{ mg}" />.

@@ -7,6 +7,20 @@ Setiap pernyataan menggunakan fungsi gubahan, jadi bina dahulu jadual lengkap <I
 | <InlineMath math="(g\circ f)(x)" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="6" /> |
 | <InlineMath math="(f\circ g)(x)" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
 
+Ikuti setiap unsur melalui <InlineMath math="f" /> kemudian <InlineMath math="g" />. **Tanda semak menandakan <InlineMath math="x" /> yang kembali kepada dirinya sendiri, ada tiga**, dan output <InlineMath math="2" /> muncul dua kali, jadi <InlineMath math="g\circ f" /> tiada songsang.
+
+<Mermaid
+  title={<>Laluan setiap unsur melalui <InlineMath math="g\circ f" /></>}
+  description={<>Gambar rajah anak panah dari <InlineMath math="x" /> ke <InlineMath math="f(x)" /> kemudian ke <InlineMath math="g(f(x))" />. Unsur <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="6" /> kembali kepada dirinya sendiri. Unsur <InlineMath math="2" /> dan <InlineMath math="4" /> sama-sama berakhir di <InlineMath math="2" />. Tiada laluan yang berakhir di <InlineMath math="4" />.</>}
+  chart={`flowchart LR
+  X1["x = 1"] -->|f| A1["4"] -->|g| B1["1 ✓"]
+  X2["x = 2"] -->|f| A2["6"] -->|g| B2["2 ✓"]
+  X3["x = 3"] -->|f| A3["2"] -->|g| B3["5"]
+  X4["x = 4"] -->|f| A4["5"] -->|g| B4["2"]
+  X5["x = 5"] -->|f| A5["1"] -->|g| B5["3"]
+  X6["x = 6"] -->|f| A6["3"] -->|g| B6["6 ✓"]`}
+/>
+
 Sekarang setiap pernyataan boleh dinilai dengan membaca jadual ini, satu lajur demi satu lajur.
 
 # Menilai setiap pernyataan

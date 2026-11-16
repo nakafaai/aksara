@@ -30,6 +30,20 @@ Solange das Wehr offen ist, sinkt jede Änderung um <InlineMath math="30\text{ c
 
 Der Status Awas beginnt um 09.00 Uhr plus <InlineMath math="40" /> Minuten, also um 09.40 Uhr. Zur Probe: Um 10.00 Uhr steht das Wasser bei <InlineMath math="260+60=320\text{ cm}" />, und <InlineMath math="300" /> liegt tatsächlich zwischen <InlineMath math="260" /> und <InlineMath math="320" />.
 
+Das Diagramm verfolgt den Wasserstand alle <InlineMath math="20" /> Minuten. **Die Linie knickt genau bei <InlineMath math="250\text{ cm}" /> um 08.40 Uhr ab**, weil die Schleuse öffnet, und berührt die Awas-Linie erst um 09.40 Uhr.
+
+<Chart
+  title={<>Wasserstand von 06.00 bis 10.00 Uhr</>}
+  description={<>Der Wasserstand steigt von <InlineMath math="140\text{ cm}" /> auf <InlineMath math="180" /> um 07.00 Uhr, <InlineMath math="210" /> um 08.00 Uhr, <InlineMath math="250" /> um 08.40 Uhr, <InlineMath math="260" /> um 09.00 Uhr, <InlineMath math="300" /> um 09.40 Uhr und <InlineMath math="320\text{ cm}" /> um 10.00 Uhr. Zwei waagerechte Linien markieren <InlineMath math="250\text{ cm}" /> und <InlineMath math="300\text{ cm}" />.</>}
+  categories={["06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Wasserstand (cm)", mark: "line", values: [140, 140 + 40 / 3, 140 + 80 / 3, 180, 190, 200, 210, 230, 250, 260, 280, 300, 320] },
+    { label: "Schleuse öffnet", mark: "line", values: Array.from({ length: 13 }, () => 250) },
+    { label: "Status Awas", mark: "line", values: Array.from({ length: 13 }, () => 300) },
+  ]}
+  valueLabel="Wasserstand (cm)"
+/>
+
 # Die falschen Antworten
 
 - 08.40 Uhr ist der Beginn des Status **Siaga** bei <InlineMath math="250\text{ cm}" />, noch nicht Awas.

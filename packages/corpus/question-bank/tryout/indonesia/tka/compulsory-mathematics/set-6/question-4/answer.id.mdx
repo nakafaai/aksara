@@ -29,6 +29,38 @@ Dari pukul 06.00 sampai 17.00 ada <InlineMath math="11" /> jam. Pompa B bekerja 
 k&\ge6{,}5
 \end{aligned}" />
 
+Gambar sisa air kolam untuk dua jam mematikan pompa A. **Setelah pompa A mati, garis menjadi tiga kali lebih landai karena hanya pompa B yang bekerja**. Mematikan A pukul 13.00 membuat garis menyentuh nol sebelum batas pukul 17.00, sedangkan pukul 12.00 terlambat.
+
+<MathVisual
+  title={<>Sisa air kolam untuk dua jam mematikan pompa A</>}
+  description={<>Sumbu mendatar adalah jam sejak pukul 06.00, sumbu tegak adalah bagian kolam yang masih berisi air. Dengan kedua pompa, garis turun <InlineMath math="\frac18" /> per jam. Kalau A dimatikan setelah <InlineMath math="7" /> jam, sisa <InlineMath math="\frac18" /> turun <InlineMath math="\frac{1}{24}" /> per jam dan habis di jam ke-<InlineMath math="10" />, yaitu pukul 16.00. Kalau A dimatikan setelah <InlineMath math="6" /> jam, sisa <InlineMath math="\frac14" /> baru habis di jam ke-<InlineMath math="12" />, yaitu pukul 18.00. Garis tegak di jam ke-<InlineMath math="11" /> adalah batas pukul 17.00.</>}
+  labels={{
+    deadline: <>batas pukul 17.00</>,
+    good: <>A mati pukul 13.00</>,
+    bad: <>A mati pukul 12.00</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 12.8 },
+      y: { min: -0.06, max: 1.08 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "together", kind: "function", appearance: "primary", formula: "1 - x/8", domain: { min: 0, max: 7 } },
+      { id: "good", kind: "function", appearance: "answer", formula: "1/8 - (x - 7)/24", domain: { min: 7, max: 10 } },
+      { id: "bad", kind: "function", appearance: "warning", formula: "1/4 - (x - 6)/24", domain: { min: 6, max: 12 } },
+      { id: "deadline", kind: "segment", appearance: "reference", from: { x: 11, y: 0 }, to: { x: 11, y: 1 } },
+    ],
+    labels: [
+      { key: "deadline", objectId: "deadline", at: { x: 11, y: 1 }, placement: "above" },
+      { key: "good", objectId: "good", at: { x: 8.5, y: 1 / 16 }, placement: "below-left" },
+      { key: "bad", objectId: "bad", at: { x: 9, y: 1 / 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Pompa A hanya bisa dimatikan tepat pada jam bulat, jadi <InlineMath math="k" /> harus bilangan bulat. Bilangan bulat terkecil yang memenuhi <InlineMath math="k\ge6{,}5" /> adalah <InlineMath math="k=7" />, yaitu pukul 13.00.
 
 # Cek kedua sisi batas

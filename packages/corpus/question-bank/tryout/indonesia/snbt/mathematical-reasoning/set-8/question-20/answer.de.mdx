@@ -34,6 +34,20 @@ Zeige jetzt, dass <InlineMath math="27" /> tatsächlich erreichbar ist:
 
 **Jede dieser Gaben passt**, zusammen sind es <InlineMath math="2+1+1+14+9=27" /> Personen. Prüfe das von der anderen Seite: Ohne Blut bleiben eine Person mit <InlineMath math="\mathrm{O}^-" />, zwei mit <InlineMath math="\mathrm{A}^-" />, zwei mit <InlineMath math="\mathrm{O}^+" /> und drei mit <InlineMath math="\mathrm{A}^+" />, also <InlineMath math="8" /> Personen. Von <InlineMath math="35" /> Wartenden werden <InlineMath math="35-8=27" /> versorgt, es passt.
 
+Das Diagramm vergleicht die wartenden mit den versorgten Patienten bei dieser Verteilung. **Jede Gruppe wird mit so vielen Beuteln versorgt, wie ihre eigene Gruppe hat**, außer <InlineMath math="\mathrm{O}^-" />, die beide <InlineMath math="\mathrm{O}^-" />-Beutel nutzt.
+
+<Chart
+  title={<>Wartende und versorgte Patienten nach Blutgruppe</>}
+  description={<>Patienten mit <InlineMath math="\mathrm{O}^-" />: <InlineMath math="3" /> warten, <InlineMath math="2" /> versorgt. Mit <InlineMath math="\mathrm{A}^-" />: <InlineMath math="3" /> warten, <InlineMath math="1" /> versorgt. Mit <InlineMath math="\mathrm{B}^-" />: <InlineMath math="1" /> wartet, <InlineMath math="1" /> versorgt. Mit <InlineMath math="\mathrm{O}^+" />: <InlineMath math="16" /> warten, <InlineMath math="14" /> versorgt. Mit <InlineMath math="\mathrm{A}^+" />: <InlineMath math="12" /> warten, <InlineMath math="9" /> versorgt. Versorgt werden insgesamt <InlineMath math="27" />.</>}
+  bars="apart"
+  categories={["O−", "A−", "B−", "O+", "A+"]}
+  series={[
+    { label: "Wartende Patienten", mark: "bar", values: [3, 3, 1, 16, 12] },
+    { label: "Versorgte Patienten", mark: "bar", values: [2, 1, 1, 14, 9] },
+  ]}
+  valueLabel="Patienten"
+/>
+
 # Häufige falsche Antworten
 
 Wer jede Gruppe einzeln zählt und dabei die Gruppe <InlineMath math="\mathrm{O}^+" /> alle <InlineMath math="16" /> Beutel mit O nutzen lässt und die Gruppe <InlineMath math="\mathrm{A}^+" /> dieselben Beutel noch einmal, erhält <InlineMath math="2+3+1+16+12=34" />. Das ist zu groß, weil **die Beutel mit O mehrfach verwendet werden**. Die Antwort <InlineMath math="35" /> nimmt an, dass alle versorgt werden, doch es gibt nur <InlineMath math="27" /> nützliche Beutel.

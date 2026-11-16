@@ -29,6 +29,20 @@ Nimmst du <InlineMath math="4k+s" /> Einzelflaschen mit einem Rest <InlineMath m
 20&=3(6)+2 \Rightarrow \text{mitgenommen } 4(6)+2=26
 \end{aligned}" />
 
+Das Diagramm unten verfolgt die Rechnung zurück bis zur Flaschenzahl. **Beide Zweige sind gültig, also besteht die Antwort aus zwei Zahlen**, eine ohne und eine mit Rabatt.
+
+<Mermaid
+  title={<>Von einer Rechnung über <InlineMath math="\text{Rp}380{.}000" /> zur Flaschenzahl</>}
+  description={<>Eine Rechnung von <InlineMath math="380" /> tausend kann aus einer Summe von <InlineMath math="380" /> tausend ohne Rabatt oder aus <InlineMath math="400" /> tausend mit <InlineMath math="5\%" /> Rabatt stammen. Beide Summen lassen sich nur aus einzelnen Flaschen bilden, also <InlineMath math="19" /> oder <InlineMath math="20" /> bezahlte Flaschen, und mitgenommen werden <InlineMath math="25" /> oder <InlineMath math="26" />.</>}
+  chart={`flowchart TD
+  B["Rechnung (tausend Rupiah): 380"] --> T1["Ohne Rabatt: T = 380"]
+  B --> T2["Mit Rabatt: 0,95 T = 380 → T = 400"]
+  T1 --> P1["Bezahlte Flaschen: 19 = 3 · 6 + 1"]
+  T2 --> P2["Bezahlte Flaschen: 20 = 3 · 6 + 2"]
+  P1 --> H1["Mitgenommen: 4 · 6 + 1 = 25"]
+  P2 --> H2["Mitgenommen: 4 · 6 + 2 = 26"]`}
+/>
+
 Probe: <InlineMath math="25" /> Flaschen sind <InlineMath math="6" /> volle Gruppen und <InlineMath math="1" /> Rest, also bezahlst du <InlineMath math="18+1=19" />. <InlineMath math="26" /> Flaschen sind <InlineMath math="6" /> volle Gruppen und <InlineMath math="2" /> Rest, also bezahlst du <InlineMath math="18+2=20" />. Mit <InlineMath math="27" /> Flaschen müsstest du schon <InlineMath math="21" /> Flaschen bezahlen.
 
 Das Mitglied hat also <InlineMath math="25" /> oder <InlineMath math="26" /> Flaschen mitgenommen.

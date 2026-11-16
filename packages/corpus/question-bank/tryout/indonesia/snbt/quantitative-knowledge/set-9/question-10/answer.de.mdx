@@ -15,6 +15,17 @@ n(A)&=56\cdot1\cdot2=112\\
 P(A)&=\frac{112}{512}=\frac{7}{32}
 \end{aligned}" />
 
+Das Diagramm siebt die Ergebnisse schrittweise. Von den <InlineMath math="512" /> Ergebnissen haben <InlineMath math="336" /> drei verschiedene Stockwerke, und **genau ein Drittel davon** gibt Ani das niedrigste Stockwerk.
+
+<Chart
+  title={<>Die Stockwerkwahl aussieben</>}
+  description={<>Alle geordneten Ergebnisse sind <InlineMath math="8^3=512" />. Ergebnisse mit drei verschiedenen Stockwerken gibt es <InlineMath math="8\cdot7\cdot6=336" />. Davon hat Ani bei <InlineMath math="112" /> das niedrigste Stockwerk, also ist die Wahrscheinlichkeit <InlineMath math="\tfrac{112}{512}=\tfrac{7}{32}" />.</>}
+  categories={["Alle Ergebnisse", "Drei verschiedene Stockwerke", "Ani steigt zuerst aus"]}
+  bars="apart"
+  series={[{ label: "Anzahl der Ergebnisse", mark: "bar", values: [8 ** 3, 8 * 7 * 6, (8 * 7 * 6) / 3] }]}
+  valueLabel="Anzahl der Ergebnisse"
+/>
+
 # Probe auf einem zweiten Weg
 
 Die Wahrscheinlichkeit für drei verschiedene Stockwerke ist <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Sind die drei Stockwerke verschieden, hat **jede Person dieselbe Chance** auf das niedrigste, also ist die Chance für Ani <InlineMath math="\frac{1}{3}" />.

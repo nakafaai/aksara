@@ -23,6 +23,20 @@ d&\le 1{,}1\text{ m}=110\text{ cm}
 
 Angka <InlineMath math="110" /> sudah kelipatan <InlineMath math="5" />, jadi jarak terbesar <InlineMath math="110\text{ cm}" />.
 
+Grafik berikut menghitung banyak bibit untuk setiap jarak antarbaris dari <InlineMath math="90" /> sampai <InlineMath math="130\text{ cm}" />. **Batang terakhir yang masih mencapai garis target adalah <InlineMath math="110\text{ cm}" />**, lalu banyak bibit langsung turun ke <InlineMath math="280" />.
+
+<Chart
+  title={<>Banyak bibit menurut jarak antarbaris</>}
+  description={<>Untuk jarak <InlineMath math="90" /> sampai <InlineMath math="105\text{ cm}" />, setiap bagian memuat <InlineMath math="7" /> baris dan totalnya <InlineMath math="392" /> bibit. Untuk jarak <InlineMath math="110\text{ cm}" />, setiap bagian memuat <InlineMath math="6" /> baris dan totalnya <InlineMath math="336" /> bibit. Untuk jarak <InlineMath math="115" /> sampai <InlineMath math="130\text{ cm}" />, setiap bagian memuat <InlineMath math="5" /> baris dan totalnya <InlineMath math="280" /> bibit. Garis datar menandai target <InlineMath math="336" /> bibit.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${90 + 5 * i}`)}
+  series={[
+    { label: "Banyak bibit", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 2 * 28 * (Math.floor(550 / (90 + 5 * i)) + 1)) },
+    { label: "Target 336 bibit", mark: "line", values: Array.from({ length: 9 }, () => 336) },
+  ]}
+  valueLabel="Banyak bibit"
+/>
+
 # Pemeriksaan
 
 Dengan <InlineMath math="d=1{,}1" />, setiap pita memuat <InlineMath math="\lfloor 5{,}5:1{,}1\rfloor+1=6" /> baris, jadi totalnya <InlineMath math="2\cdot 6\cdot 28=336" /> bibit, pas memenuhi. Dengan kelipatan berikutnya, <InlineMath math="d=1{,}15" />, setiap pita hanya memuat <InlineMath math="\lfloor 5{,}5:1{,}15\rfloor+1=4+1=5" /> baris, jadi totalnya <InlineMath math="280" /> bibit. Jadi **<InlineMath math="110\text{ cm}" /> adalah batas terakhir yang masih cukup**.

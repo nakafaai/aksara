@@ -18,6 +18,22 @@ Doppelt so viele Plätze wie in Kategorie B sind <InlineMath math="800" />, und 
 
 Für <InlineMath math="17+2n=50" /> bräuchte man <InlineMath math="2n=33" />, also <InlineMath math="n=16{,}5" />, und das ist keine ganze Zahl. Der Grund: **Jede Reihe hat eine ungerade Platzzahl**, während <InlineMath math="50" /> gerade ist. Reihe <InlineMath math="16" /> hat <InlineMath math="49" /> Plätze und Reihe <InlineMath math="17" /> hat <InlineMath math="51" />. Die zweite Aussage ist falsch.
 
+Das Diagramm zeigt die Anzahl der Sitze in jeder Reihe. Die Linie bei <InlineMath math="50" /> Sitzen **fällt genau in die Lücke zwischen Reihe <InlineMath math="16" /> und Reihe <InlineMath math="17" />**, also ist kein Balken genau <InlineMath math="50" /> hoch.
+
+<Chart
+  title={<>Anzahl der Sitze in jeder Reihe der Tribüne</>}
+  description={<>Reihe <InlineMath math="n" /> hat <InlineMath math="17+2n" /> Sitze, von <InlineMath math="19" /> Sitzen in Reihe <InlineMath math="1" /> bis <InlineMath math="77" /> Sitzen in Reihe <InlineMath math="30" />. Reihe <InlineMath math="16" /> hat <InlineMath math="49" /> Sitze und Reihe <InlineMath math="17" /> hat <InlineMath math="51" /> Sitze. Die waagerechte Linie markiert <InlineMath math="50" /> Sitze.</>}
+  bars="apart"
+  categories={Array.from({ length: 30 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Kategorie A", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i < 6 ? 19 + 2 * i : null)) },
+    { label: "Kategorie B", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 6 && i < 16 ? 19 + 2 * i : null)) },
+    { label: "Kategorie C", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 16 ? 19 + 2 * i : null)) },
+    { label: "50 Sitze", mark: "line", values: Array.from({ length: 30 }, () => 50) },
+  ]}
+  valueLabel="Sitze"
+/>
+
 # Die dritte Aussage zu zwei benachbarten Reihen
 
 Zwei benachbarte Reihen, Reihe <InlineMath math="n" /> und Reihe <InlineMath math="n+1" />, haben zusammen so viele Plätze.

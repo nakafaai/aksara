@@ -35,6 +35,21 @@ Drei Zeilen liest man leicht falsch.
 
 Kostenlos umsteigen die Fahrgäste der Abfahrten um 21:18, 22:12 und 22:48 Uhr, also bei <InlineMath math="3" /> Abfahrten.
 
+Das Diagramm färbt jede Abfahrt nach ihrem Gratisumstieg. **Nur drei Balken bleiben auf oder unter der Linie bei <InlineMath math="15" /> Minuten**, und der Balken mit <InlineMath math="15" /> Minuten für Bus A um 22.12 Uhr berührt diese Linie genau.
+
+<Chart
+  title={<>Wartezeit jeder Abfahrt von Bus A und ihr Gratisumstieg</>}
+  description={<>Die Busse A um 21.18, 22.12 und 22.48 Uhr ergeben Wartezeiten von <InlineMath math="9" />, <InlineMath math="15" /> und <InlineMath math="9" /> Minuten, also ist der Umstieg gratis. Die Busse A um 21.00, 21.36, 21.54, 22.30 und 23.06 Uhr ergeben Wartezeiten über <InlineMath math="15" /> Minuten. Die Busse A um 23.24 und 23.42 Uhr bekommen keinen Bus B.</>}
+  bars="apart"
+  categories={["21.00", "21.18", "21.36", "21.54", "22.12", "22.30", "22.48", "23.06", "23.24", "23.42"]}
+  series={[
+    { label: "Gratisumstieg", mark: "bar", values: [null, 9, null, null, 15, null, 9, null, null, null] },
+    { label: "Bus B zahlen", mark: "bar", values: [27, null, 21, 33, null, 27, null, 21, null, null] },
+    { label: "Grenze 15 Minuten", mark: "line", values: Array.from({ length: 10 }, () => 15) },
+  ]}
+  valueLabel="Wartezeit (Minuten)"
+/>
+
 # Kontrolle mit dem wiederkehrenden Muster
 
 Bus A wiederholt sich alle <InlineMath math="18\text{ Minuten}" /> und Bus B alle <InlineMath math="30\text{ Minuten}" />, also wiederholen sich die Wartezeiten alle <InlineMath math="90\text{ Minuten}" />, dem kleinsten gemeinsamen Vielfachen. In den ersten <InlineMath math="90\text{ Minuten}" /> gibt es **zwei kostenlose Umstiege**, um 21:18 und 22:12 Uhr. Die nächsten <InlineMath math="90\text{ Minuten}" /> würden 22:48 und 23:42 Uhr liefern. Der Bus A um 23:42 Uhr bekommt aber keinen Bus B mehr, weil Bus B nicht mehr fährt, also bleibt nur 22:48 Uhr. Zusammen sind es weiterhin <InlineMath math="2+1=3" />.

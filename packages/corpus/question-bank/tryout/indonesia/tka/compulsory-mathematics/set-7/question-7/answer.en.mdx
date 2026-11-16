@@ -31,6 +31,40 @@ u-10&=18 \\
 u&=28
 \end{aligned}" />
 
+Draw the bill before the discount as a function of usage. **The line for a <InlineMath math="160" /> thousand bill meets the graph in the second block**, before the corner <InlineMath math="(30,\ 170)" />, so the usage is found with the rate of <InlineMath math="5{,}000" /> per cubic metre.
+
+<MathVisual
+  title={<>Bill before the discount by water usage</>}
+  description={<>The horizontal axis is usage in cubic metres, and the vertical axis is the bill in thousands of rupiah. The graph starts at <InlineMath math="40" />, rises <InlineMath math="3" /> per cubic metre to <InlineMath math="70" /> at <InlineMath math="10\text{ m}^3" />, rises <InlineMath math="5" /> per cubic metre to <InlineMath math="170" /> at <InlineMath math="30\text{ m}^3" />, then rises <InlineMath math="8" /> per cubic metre. The horizontal line at <InlineMath math="160" /> meets the graph at <InlineMath math="(28,\ 160)" />.</>}
+  labels={{
+    bill: <InlineMath math="160" />,
+    use: <InlineMath math="(28,\ 160)" />,
+    edge: <InlineMath math="(30,\ 170)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 36 },
+      y: { min: 25, max: 220 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "40 + 3x", domain: { min: 0, max: 10 } },
+      { id: "second", kind: "function", appearance: "primary", formula: "70 + 5(x - 10)", domain: { min: 10, max: 30 } },
+      { id: "third", kind: "function", appearance: "primary", formula: "170 + 8(x - 30)", domain: { min: 30, max: 35 } },
+      { id: "bill", kind: "function", appearance: "reference", formula: "160", domain: { min: 0, max: 35 } },
+      { id: "use", kind: "point", appearance: "answer", at: { x: 28, y: 160 } },
+      { id: "edge", kind: "point", appearance: "secondary", at: { x: 30, y: 170 } },
+    ],
+    labels: [
+      { key: "bill", objectId: "bill", at: { x: 4, y: 160 }, placement: "above" },
+      { key: "use", objectId: "use", at: { x: 28, y: 160 }, placement: "below-right" },
+      { key: "edge", objectId: "edge", at: { x: 30, y: 170 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 As a check, the bill for <InlineMath math="28\text{ m}^3" /> is <InlineMath math="40{,}000+30{,}000+90{,}000=160{,}000" />, and after the discount it's <InlineMath math="0.75\cdot160{,}000=120{,}000" />. **That's exactly the amount paid**.
 
 # Why the other options are wrong

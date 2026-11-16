@@ -32,6 +32,46 @@ Gabungkan kedua hasil:
 
 <BlockMath math="-2\le x<6{,}5" />
 
+Gambar kedua himpunan penyelesaian pada garis bilangan, lalu irisannya. **Batas kiri datang dari pertidaksamaan mutlak, batas kanan dari pertidaksamaan pecahan**, dan di antaranya ada sembilan bilangan bulat.
+
+<MathVisual
+  title={<>Irisan kedua pertidaksamaan</>}
+  description={<>Baris atas adalah <InlineMath math="x<6{,}5" /> dari pertidaksamaan pertama, terbuka di <InlineMath math="6{,}5" />. Baris tengah adalah <InlineMath math="-2\le x\le8" /> dari pertidaksamaan kedua. Baris bawah adalah irisannya, <InlineMath math="-2\le x<6{,}5" />, dengan titik-titik di bilangan bulat <InlineMath math="-2" /> sampai <InlineMath math="6" />.</>}
+  labels={{
+    first: <><InlineMath math="x<6{,}5" /></>,
+    second: <><InlineMath math="-2\le x\le8" /></>,
+    both: <InlineMath math="-2\le x<6{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 9.5 },
+      y: { min: -0.8, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "secondary", from: { x: -4, y: 2 }, to: { x: 6.5, y: 2 } },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: -2, y: 1 }, to: { x: 8, y: 1 } },
+      { id: "both", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 6.5, y: 0 } },
+      { id: "n-2", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "n-1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "n0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "n1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "n2", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "n3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "n4", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "n5", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+      { id: "n6", kind: "point", appearance: "answer", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "both", objectId: "both", at: { x: 2.25, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Bilangan bulatnya adalah <InlineMath math="-2,-1,0,1,2,3,4,5,6" />, yaitu **sembilan bilangan**. Cek ujung kanan dengan pertidaksamaan pertama: untuk <InlineMath math="x=6" /> ruas kiri <InlineMath math="\frac{17}{3}-\frac94=\frac{41}{12}" /> dan ruas kanan <InlineMath math="\frac{19}{6}=\frac{38}{12}" />, jadi benar. Untuk <InlineMath math="x=7" /> ruas kiri <InlineMath math="\frac{43}{12}" /> dan ruas kanan <InlineMath math="\frac{46}{12}" />, jadi gagal.
 
 Jadi, banyak bilangan bulat yang memenuhi kedua pertidaksamaan adalah <InlineMath math="9" />.

@@ -22,6 +22,17 @@ So <InlineMath math="x\in\{1,2,3\}" /> gives <InlineMath math="3" /> choices, <I
 \text{probability} &= \frac{12}{40}=\frac{3}{10}
 \end{aligned}" />
 
+The chart below filters the divisors of <InlineMath math="2160" /> step by step. The condition <InlineMath math="6\mid d" /> leaves <InlineMath math="24" />, and then the condition on the partner **cuts it again to <InlineMath math="12" />**, because the exponents of <InlineMath math="2" /> and <InlineMath math="3" /> are also capped from above.
+
+<Chart
+  title={<>Filtering the positive divisors of <InlineMath math="2160" /></>}
+  description={<>There are <InlineMath math="40" /> divisors in all. The divisors that are multiples of <InlineMath math="6" /> number <InlineMath math="24" />. The divisors that are multiples of <InlineMath math="6" /> and whose partner is also a multiple of <InlineMath math="6" /> number <InlineMath math="12" />, so the probability is <InlineMath math="\tfrac{12}{40}=\tfrac{3}{10}" />.</>}
+  categories={["All divisors", "d divisible by 6", "Both divisible by 6"]}
+  bars="apart"
+  series={[{ label: "Number of divisors", mark: "bar", values: [5 * 4 * 2, 4 * 3 * 2, 3 * 2 * 2] }]}
+  valueLabel="Number of divisors"
+/>
+
 # Checking another way
 
 If <InlineMath math="d=6e" /> and <InlineMath math="\tfrac{2160}{d}=6f" />, then <InlineMath math="36ef=2160" />, so <InlineMath math="ef=60" />. Each divisor <InlineMath math="e" /> of <InlineMath math="60=2^2\cdot 3\cdot 5" /> gives exactly one suitable <InlineMath math="d" />, and **<InlineMath math="60" /> has <InlineMath math="3\cdot 2\cdot 2=12" /> divisors**. You get the same <InlineMath math="12" /> out of <InlineMath math="40" />.

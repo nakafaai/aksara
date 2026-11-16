@@ -12,6 +12,20 @@ The target of <InlineMath math="22" /> hours is <InlineMath math="22\cdot60=1{,}
 
 By the end of Wednesday the total is <InlineMath math="360+405+405=1{,}170" /> minutes. That's still <InlineMath math="1{,}320-1{,}170=150" /> minutes short, so the target is reached on Thursday.
 
+The chart below adds up Raka's lesson time by the end of each day. **The <InlineMath math="22" />-hour line sits between the Wednesday and Thursday bars**, so the target is reached partway through Thursday.
+
+<Chart
+  title={<>Raka's total lesson time by the end of each day</>}
+  description={<>By the end of Monday, Tuesday, Wednesday, Thursday, and Friday, the total lesson time is <InlineMath math="360" />, <InlineMath math="765" />, <InlineMath math="1{,}170" />, <InlineMath math="1{,}575" />, and <InlineMath math="1{,}785" /> minutes. The flat line marks <InlineMath math="1{,}320" /> minutes, which is <InlineMath math="22" /> hours.</>}
+  categories={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]}
+  bars="apart"
+  series={[
+    { label: "Total lesson time (minutes)", mark: "bar", values: [360, 360 + 405, 360 + 2 * 405, 360 + 3 * 405, 360 + 3 * 405 + 210] },
+    { label: "22 hours", mark: "line", values: [1320, 1320, 1320, 1320, 1320] },
+  ]}
+  valueLabel="Lesson time (minutes)"
+/>
+
 # The exact minute on Thursday
 
 On Thursday, period <InlineMath math="1" /> starts at 07.15. Periods <InlineMath math="1" /> to <InlineMath math="3" /> give <InlineMath math="3\cdot45=135" /> minutes and end at 09.30. **The break from 09.30 to 09.45 adds no lesson time**, so the remaining <InlineMath math="150-135=15" /> minutes come from period <InlineMath math="4" />, which starts at 09.45.

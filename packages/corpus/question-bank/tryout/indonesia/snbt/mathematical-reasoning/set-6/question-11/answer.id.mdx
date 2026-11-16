@@ -35,6 +35,21 @@ Ada tiga baris yang mudah salah dibaca.
 
 Keberangkatan dengan transfer gratis adalah 21.18, 22.12, dan 22.48, jadi ada <InlineMath math="3" /> keberangkatan.
 
+Grafik berikut mewarnai setiap keberangkatan menurut transfer gratisnya. **Hanya tiga batang yang tidak melewati garis <InlineMath math="15" /> menit**, dan batang <InlineMath math="15" /> menit untuk bus A pukul 22.12 tepat menyentuh garis itu.
+
+<Chart
+  title={<>Waktu tunggu setiap keberangkatan bus A dan transfer gratisnya</>}
+  description={<>Bus A pukul 21.18, 22.12, dan 22.48 memberi waktu tunggu <InlineMath math="9" />, <InlineMath math="15" />, dan <InlineMath math="9" /> menit, sehingga transfernya gratis. Bus A pukul 21.00, 21.36, 21.54, 22.30, dan 23.06 memberi waktu tunggu lebih dari <InlineMath math="15" /> menit. Bus A pukul 23.24 dan 23.42 tidak mendapat bus B.</>}
+  bars="apart"
+  categories={["21.00", "21.18", "21.36", "21.54", "22.12", "22.30", "22.48", "23.06", "23.24", "23.42"]}
+  series={[
+    { label: "Transfer gratis", mark: "bar", values: [null, 9, null, null, 15, null, 9, null, null, null] },
+    { label: "Bayar bus B", mark: "bar", values: [27, null, 21, 33, null, 27, null, 21, null, null] },
+    { label: "Batas 15 menit", mark: "line", values: Array.from({ length: 10 }, () => 15) },
+  ]}
+  valueLabel="Waktu tunggu (menit)"
+/>
+
 # Pemeriksaan dengan pola berulang
 
 Bus A berulang setiap <InlineMath math="18\text{ menit}" /> dan bus B setiap <InlineMath math="30\text{ menit}" />, jadi pola waktu tunggu berulang setiap <InlineMath math="90\text{ menit}" />, kelipatan persekutuan terkecil keduanya. Dalam <InlineMath math="90\text{ menit}" /> pertama ada **dua transfer gratis**, yaitu 21.18 dan 22.12. Dalam <InlineMath math="90\text{ menit}" /> berikutnya pola itu akan memberi 22.48 dan 23.42. Namun bus A pukul 23.42 tidak mendapat bus B karena bus B sudah berhenti, jadi hanya 22.48 yang tersisa. Hasilnya tetap <InlineMath math="2+1=3" />.

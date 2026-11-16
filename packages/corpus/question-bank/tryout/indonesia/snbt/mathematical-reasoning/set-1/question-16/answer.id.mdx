@@ -16,6 +16,20 @@ k=12 &: 144+216=360
 
 Untuk <InlineMath math="k=12" />, kursi A tepat <InlineMath math="360" />. Angka ini **tidak kurang dari seperempat**, jadi <InlineMath math="k=12" /> tidak boleh dipakai. Nilai <InlineMath math="k" /> terbesar adalah <InlineMath math="11" />.
 
+Grafik berikut menggambar banyak kursi kategori A untuk setiap batas <InlineMath math="k" />. **Batang <InlineMath math="k=12" /> sudah menyentuh garis seperempat tribun**, jadi batang terakhir yang masih di bawah garis adalah <InlineMath math="k=11" />.
+
+<Chart
+  title={<>Banyak kursi kategori A menurut batas <InlineMath math="k" /></>}
+  description={<>Untuk <InlineMath math="k=6" /> sampai <InlineMath math="16" />, kategori A memiliki <InlineMath math="k^2+18k" /> kursi, dari <InlineMath math="144" /> sampai <InlineMath math="544" />. Pada <InlineMath math="k=11" /> ada <InlineMath math="319" /> kursi dan pada <InlineMath math="k=12" /> ada <InlineMath math="360" /> kursi. Garis datar menandai seperempat tribun, yaitu <InlineMath math="360" /> kursi.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i + 6}`)}
+  series={[
+    { label: "Kursi kategori A", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i + 6) * (i + 6) + 18 * (i + 6)) },
+    { label: "Seperempat tribun", mark: "line", values: Array.from({ length: 11 }, () => 1440 / 4) },
+  ]}
+  valueLabel="Banyak kursi"
+/>
+
 # Pendapatan terbesar
 
 Dengan pembagian semula, pendapatan penuh adalah <InlineMath math="144\cdot250{.}000+400\cdot150{.}000+896\cdot100{.}000=185{.}600{.}000" /> rupiah. Baris ke-<InlineMath math="7" /> sampai ke-<InlineMath math="11" /> pindah dari B ke A, sehingga **setiap kursinya naik** <InlineMath math="\text{Rp}100{.}000" />, bukan <InlineMath math="\text{Rp}250{.}000" />.

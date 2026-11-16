@@ -32,6 +32,42 @@ The product is negative or zero for <InlineMath math="x\le-3" /> and for <Inline
 
 Restrict to <InlineMath math="-10\le x\le10" /> and count each part, **including both ends** because the sign is <InlineMath math="\le" />.
 
+The number line below marks the solutions inside <InlineMath math="-10\le x\le10" />. There are two thick pieces and **one lone point at <InlineMath math="x=7" />**, which comes from the square factor.
+
+<MathVisual
+  title={<>Solutions of the inequality on <InlineMath math="-10\le x\le10" /></>}
+  description={<>The piece from <InlineMath math="-10" /> to <InlineMath math="-3" /> and the piece from <InlineMath math="1" /> to <InlineMath math="4" /> are thick, with every end included. The point <InlineMath math="7" /> is marked on its own. The first piece holds <InlineMath math="8" /> integers, the second holds <InlineMath math="4" />, and the point <InlineMath math="7" /> adds <InlineMath math="1" />.</>}
+  labels={{
+    m10: <InlineMath math="-10" />,
+    m3: <InlineMath math="-3" />,
+    one: <InlineMath math="1" />,
+    four: <InlineMath math="4" />,
+    seven: <InlineMath math="7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 11 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "range", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "left", kind: "segment", appearance: "answer", from: { x: -10, y: 0 }, to: { x: -3, y: 0 } },
+      { id: "middle", kind: "segment", appearance: "answer", from: { x: 1, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "end-left", kind: "point", appearance: "answer", at: { x: -10, y: 0 } },
+      { id: "end-m3", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+      { id: "end-one", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "end-four", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "seven", kind: "point", appearance: "highlight", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "m10", objectId: "end-left", at: { x: -10, y: 0 }, placement: "below" },
+      { key: "m3", objectId: "end-m3", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "one", objectId: "end-one", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "four", objectId: "end-four", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "seven", objectId: "seven", at: { x: 7, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 -10\le x\le-3&: \ 8 \text{ integers}\\
 1\le x\le4&: \ 4 \text{ integers}\\

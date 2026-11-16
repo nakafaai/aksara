@@ -30,6 +30,50 @@ TM&=\frac{4\sqrt{3}}{2}\cdot\sqrt{3}=6\text{ cm} \\
 V&=\tfrac{1}{3}\cdot s^{2}\cdot TM=\tfrac{1}{3}\cdot48\cdot6=96\text{ cm}^3
 \end{aligned}" />
 
+Draw triangle <InlineMath math="TMN" />, which links the height of the pyramid with the height of a side face. **The <InlineMath math="60^\circ" /> angle at <InlineMath math="N" /> makes <InlineMath math="TN" /> twice <InlineMath math="MN" /> and <InlineMath math="TM" /> equal to <InlineMath math="\sqrt3" /> times <InlineMath math="MN" />**. With <InlineMath math="s=4\sqrt3" />, the three lengths are <InlineMath math="2\sqrt3" />, <InlineMath math="4\sqrt3" />, and <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Triangle <InlineMath math="TMN" /> inside the pyramid</>}
+  description={<>A right triangle at <InlineMath math="M" />, the centre of the base. The horizontal leg <InlineMath math="MN=2\sqrt3" /> is half a base edge, the vertical leg <InlineMath math="TM=6" /> is the height of the pyramid, and the hypotenuse <InlineMath math="TN=4\sqrt3" /> is the height of a side face. The angle at <InlineMath math="N" /> is <InlineMath math="60^\circ" />.</>}
+  labels={{
+    t: <InlineMath math="T" />,
+    m: <InlineMath math="M" />,
+    n: <InlineMath math="N" />,
+    height: <InlineMath math="TM=6" />,
+    half: <InlineMath math="MN=2\sqrt3" />,
+    slant: <InlineMath math="TN=4\sqrt3" />,
+    angle: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 2 * Math.sqrt(3), y: 0 }, { x: 0, y: 6 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "half", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(3), y: 0 } },
+      { id: "slant", kind: "segment", appearance: "secondary", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 0, y: 6 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 2 * Math.sqrt(3), y: 0 }, radius: 0.8, startDegrees: 120, sweepDegrees: 60 },
+      { id: "t", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+      { id: "m", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "n", kind: "point", appearance: "primary", at: { x: 2 * Math.sqrt(3), y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "m", objectId: "m", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "n", objectId: "n", at: { x: 2 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      { key: "height", objectId: "height", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "slant", objectId: "slant", at: { x: Math.sqrt(3), y: 3 }, placement: "above-right" },
+      { key: "angle", objectId: "angle", at: { x: 2 * Math.sqrt(3) + 0.8 * Math.cos(5 * Math.PI / 6), y: 0.8 * Math.sin(5 * Math.PI / 6) }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Check with Pythagoras in triangle <InlineMath math="TMN" />: <InlineMath math="TM^{2}+MN^{2}=36+12=48=TN^{2}" />. **The three lengths fit together**.
 
 # Why the other options are wrong

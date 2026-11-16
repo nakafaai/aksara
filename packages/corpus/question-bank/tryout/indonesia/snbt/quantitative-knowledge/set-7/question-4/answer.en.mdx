@@ -32,6 +32,38 @@ Now test <InlineMath math="x=4.5" />. A half power is hard to compute directly, 
 36\times512&=18{,}432<19{,}683
 \end{aligned}" />
 
+The graph of <InlineMath math="y=\left(\tfrac32\right)^x" /> below shows where <InlineMath math="x" /> sits. The curve is still below the line <InlineMath math="y=6" /> at <InlineMath math="x=4" />, but already above it at <InlineMath math="x=4.5" />, so **the crossing lies between the two dashed lines**.
+
+<MathVisual
+  title={<>The curve <InlineMath math="y=\left(\tfrac32\right)^x" /> and the line <InlineMath math="y=6" /></>}
+  description={<>The exponential curve rises faster and faster. At <InlineMath math="x=4" /> its value is <InlineMath math="\tfrac{81}{16}" />, about <InlineMath math="5.06" />, below <InlineMath math="6" />. At <InlineMath math="x=4.5" /> its value is about <InlineMath math="6.2" />, above <InlineMath math="6" />. The curve crosses the line <InlineMath math="y=6" /> between those two values.</>}
+  labels={{
+    curve: <InlineMath math="y=\left(\tfrac32\right)^x" />,
+    six: <InlineMath math="y=6" />,
+    four: <InlineMath math="x=4" />,
+    half: <InlineMath math="x=4.5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 6 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "six", kind: "segment", appearance: "reference", from: { x: 2, y: 6 }, to: { x: 6, y: 6 } },
+      { id: "four", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 81 / 16 } },
+      { id: "half", kind: "segment", appearance: "construction", from: { x: 4.5, y: 0 }, to: { x: 4.5, y: 1.5 ** 4.5 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "1.5^x", domain: { min: 2, max: 6 } },
+      { id: "p4", kind: "point", appearance: "secondary", at: { x: 4, y: 81 / 16 } },
+      { id: "p45", kind: "point", appearance: "secondary", at: { x: 4.5, y: 1.5 ** 4.5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5.8, y: 1.5 ** 5.8 }, placement: "left" },
+      { key: "six", objectId: "six", at: { x: 2.3, y: 6 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 4, y: 1 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: 4.5, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 So <InlineMath math="\left(\tfrac32\right)^9>36" />, which means <InlineMath math="\left(\tfrac32\right)^{4.5}>6" />. The power <InlineMath math="4.5" /> already overshoots <InlineMath math="6" />, so <InlineMath math="x<4.5" />. Together with the previous step, <InlineMath math="4<x<4.5" />.
 
 A check with accurate logs, <InlineMath math="\log2\approx0.3010" /> and <InlineMath math="\log3\approx0.4771" />, gives <InlineMath math="x=\frac{\log3+\log2}{\log3-\log2}\approx\frac{0.7781}{0.1761}\approx4.42" />, which fits that interval.

@@ -25,6 +25,21 @@ Am Anfang beträgt der Überschuss <InlineMath math="41-35=6" />. Die Fische sin
 
 Nach dem vierten Wechsel beträgt der Überschuss <InlineMath math="\frac{32}{27}" />, wegen <InlineMath math="32>27" /> also noch mehr als <InlineMath math="1" />. **Erst nach dem fünften Wechsel ist er mit <InlineMath math="\frac{64}{81}" /> kleiner als <InlineMath math="1" />**.
 
+Das Diagramm zeigt den Salzgehalt nach jedem Wasserwechsel. **Die Balken schrumpfen immer langsamer**, und erst der fünfte Balken fällt unter die Linie bei <InlineMath math="36\text{ g/L}" />.
+
+<Chart
+  title={<>Salzgehalt nach jedem Wechsel von <InlineMath math="40" /> Litern</>}
+  description={<>Der Salzgehalt beginnt bei <InlineMath math="41\text{ g/L}" /> und beträgt nach dem ersten bis fünften Wechsel <InlineMath math="39" />, etwa <InlineMath math="37{,}67" />, <InlineMath math="36{,}78" />, <InlineMath math="36{,}19" /> und <InlineMath math="35{,}79\text{ g/L}" />. Die waagerechte Linie markiert die obere sichere Grenze von <InlineMath math="36\text{ g/L}" />. Die Werteachse beginnt bei <InlineMath math="34" />.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Salzgehalt (g/L)", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((k) => 35 + 6 * Math.pow(2 / 3, k)) },
+    { label: "Obere sichere Grenze", mark: "line", values: [36, 36, 36, 36, 36, 36] },
+  ]}
+  valueRange={{ min: 34, max: 42 }}
+  valueLabel="Salzgehalt (g/L)"
+/>
+
 # Die untere Grenze prüfen
 
 Das Auffüllwasser hat genau <InlineMath math="35" />, der Überschuss bleibt also immer positiv, und **der Salzgehalt fällt nie unter <InlineMath math="35\text{ g/L}" />**. Die untere Grenze von <InlineMath math="33\text{ g/L}" /> wird nie verletzt, der fünfte Wechsel macht das Aquarium also wirklich sicher.

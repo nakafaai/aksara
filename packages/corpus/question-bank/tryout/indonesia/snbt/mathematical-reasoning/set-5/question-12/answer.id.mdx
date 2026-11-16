@@ -36,6 +36,21 @@ Botol plastik tetap memberi <InlineMath math="14{.}000" />, jadi kaleng harus be
 
 Saldo <InlineMath math="108{.}000" /> kurang dari <InlineMath math="110{.}000" />, sedangkan <InlineMath math="113{.}400" /> cukup. Nilai <InlineMath math="50{.}000" /> juga masih di bawah <InlineMath math="60{.}000" />, jadi biaya <InlineMath math="10\%" /> tadi memang berlaku.
 
+Grafik berikut menghitung saldo sesudah setoran minggu ketiga untuk tiga kemungkinan berat kaleng yang dihitung. **Batang <InlineMath math="2{,}5\text{ kg}" /> masih kurang sedikit dari garis**, jadi berat kaleng yang dihitung harus <InlineMath math="3{,}0\text{ kg}" />.
+
+<Chart
+  title={<>Saldo Rina sesudah setoran minggu ketiga menurut berat kaleng yang dihitung</>}
+  description={<>Dengan berat kaleng yang dihitung <InlineMath math="2{,}0" />, <InlineMath math="2{,}5" />, dan <InlineMath math="3{,}0\text{ kg}" />, saldonya berturut-turut <InlineMath math="\text{Rp}102{.}600" />, <InlineMath math="\text{Rp}108{.}000" />, dan <InlineMath math="\text{Rp}113{.}400" />. Garis datar menandai saldo yang diperlukan, <InlineMath math="\text{Rp}110{.}000" />. Sumbu nilai dimulai dari <InlineMath math="\text{Rp}90{.}000" />.</>}
+  categories={["Kaleng 2,0 kg", "Kaleng 2,5 kg", "Kaleng 3,0 kg"]}
+  bars="apart"
+  series={[
+    { label: "Saldo sesudah minggu ketiga", mark: "bar", values: [2, 2.5, 3].map((c) => 68400 + 0.9 * (14000 + 12000 * c)) },
+    { label: "Saldo yang diperlukan", mark: "line", values: [110000, 110000, 110000] },
+  ]}
+  valueRange={{ min: 90000, max: 120000 }}
+  valueLabel="Saldo (rupiah)"
+/>
+
 # Tambahan berat kaleng
 
 Berat <InlineMath math="3{,}0\text{ kg}" /> dipakai kalau **seluruh kaleng yang ditimbang** paling sedikit <InlineMath math="3{,}0\text{ kg}" />. Rina sudah membawa <InlineMath math="2{,}3\text{ kg}" />, jadi tambahannya paling sedikit <InlineMath math="3{,}0-2{,}3=0{,}7\text{ kg}" />.

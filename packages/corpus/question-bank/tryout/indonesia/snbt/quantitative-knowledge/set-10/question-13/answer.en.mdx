@@ -30,6 +30,41 @@ CP &= 2\sqrt{2}
 
 The midpoint of the chord is <InlineMath math="(s,2)" />. So <InlineMath math="C" /> sits at height <InlineMath math="2+\sqrt{2}" /> and <InlineMath math="P" /> sits at height <InlineMath math="2-\sqrt{2}" />. The height of <InlineMath math="P" /> is between <InlineMath math="0" /> and <InlineMath math="s" />, so <InlineMath math="P" /> really lies on side <InlineMath math="BC" />.
 
+The figure below shows the circle that's used. The circle with radius <InlineMath math="2" /> touches <InlineMath math="AB" /> and <InlineMath math="AD" />, passes through <InlineMath math="C" />, and **meets side <InlineMath math="BC" /> again at <InlineMath math="P" />**. The chord <InlineMath math="CP" /> has length <InlineMath math="2\sqrt2" />.
+
+<MathVisual
+  title={<>Square <InlineMath math="ABCD" /> and the circle with centre <InlineMath math="O(2,2)" /></>}
+  description={<>The square has side <InlineMath math="2+\sqrt2" />, with <InlineMath math="A" /> at the origin. The circle with centre <InlineMath math="(2,2)" /> and radius <InlineMath math="2" /> touches the bottom and left sides and passes through <InlineMath math="C" />. It meets side <InlineMath math="BC" /> at <InlineMath math="C" /> and at <InlineMath math="P" />, at height <InlineMath math="2-\sqrt2" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    p: <InlineMath math="P" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.2 }, y: { min: -0.6, max: 4.2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 2 + Math.SQRT2, y: 0 }, { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, { x: 0, y: 2 + Math.SQRT2 }] },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, to: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 2, y: 2 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "square", at: { x: 2 + Math.SQRT2, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "square", at: { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, placement: "above-right" },
+      { key: "d", objectId: "square", at: { x: 0, y: 2 + Math.SQRT2 }, placement: "above-left" },
+      { key: "p", objectId: "point-p", at: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 }, placement: "right" },
+      { key: "o", objectId: "center", at: { x: 2, y: 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 # Checking with the power of a point
 
 The circle touches <InlineMath math="AB" /> at <InlineMath math="T=(2,0)" />, so <InlineMath math="BT=s-2=\sqrt{2}" />. From point <InlineMath math="B" />, **the tangent length squared equals the product of the two pieces of a line** that cuts through the circle, here <InlineMath math="BP" /> and <InlineMath math="BC" />.

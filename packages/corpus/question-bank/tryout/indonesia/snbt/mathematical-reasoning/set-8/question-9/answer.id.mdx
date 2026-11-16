@@ -28,6 +28,20 @@ Kedua nilai, <InlineMath math="45" /> dan <InlineMath math="55" />, lebih dari <
 
 Dari <InlineMath math="45" /> pohon, hasilnya naik menjadi <InlineMath math="4{.}992\text{ kg}" />, jadi kemungkinan ini gugur. Dari <InlineMath math="55" /> pohon, hasilnya turun menjadi <InlineMath math="4{.}872\text{ kg}" />. Jadi musim lalu ada <InlineMath math="55" /> pohon, dan musim ini ada <InlineMath math="58" /> pohon.
 
+Grafik berikut menggambar total panen untuk beberapa banyak pohon. **Garis panen memotong garis <InlineMath math="4{.}950\text{ kg}" /> dua kali**, di <InlineMath math="45" /> dan <InlineMath math="55" /> pohon, dan hanya dari <InlineMath math="55" /> pohon tambahan tiga pohon membuat panen turun.
+
+<Chart
+  title={<>Total panen jeruk menurut banyak pohon</>}
+  description={<>Untuk <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="48" />, <InlineMath math="50" />, <InlineMath math="55" />, <InlineMath math="58" />, dan <InlineMath math="60" /> pohon, total panennya <InlineMath math="4{.}800" />, <InlineMath math="4{.}950" />, <InlineMath math="4{.}992" />, <InlineMath math="5{.}000" />, <InlineMath math="4{.}950" />, <InlineMath math="4{.}872" />, dan <InlineMath math="4{.}800\text{ kg}" />. Garis datar menandai panen musim lalu, <InlineMath math="4{.}950\text{ kg}" />. Sumbu nilai dimulai dari <InlineMath math="4{.}700" />.</>}
+  categories={["40", "45", "48", "50", "55", "58", "60"]}
+  series={[
+    { label: "Total panen (kg)", mark: "line", values: [40, 45, 48, 50, 55, 58, 60].map((n) => n * (200 - 2 * n)) },
+    { label: "Panen musim lalu", mark: "line", values: [4950, 4950, 4950, 4950, 4950, 4950, 4950] },
+  ]}
+  valueRange={{ min: 4700, max: 5050 }}
+  valueLabel="Total panen (kg)"
+/>
+
 # Keuntungan musim ini
 
 Hasil penjualan dihitung dari panen musim ini, dan **biaya perawatan dihitung untuk semua pohon musim ini**:

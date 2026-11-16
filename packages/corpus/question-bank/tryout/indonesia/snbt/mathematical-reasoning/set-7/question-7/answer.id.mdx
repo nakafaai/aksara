@@ -25,6 +25,20 @@ Tanda pertidaksamaannya tegas, jadi **setoran <InlineMath math="60" /> juta belu
 
 Karena <InlineMath math="7\cdot5=35>31" />, pecahan <InlineMath math="\frac{7}{31}" /> memang lebih dari <InlineMath math="\frac15" />.
 
+Grafik berikut menghitung bagian Dani untuk beberapa setoran. **Batang <InlineMath math="60" /> juta tepat menyentuh garis seperlima**, jadi setoran pertama yang benar-benar melewatinya adalah <InlineMath math="70" /> juta.
+
+<Chart
+  title={<>Bagian Dani dari laba yang dibagi menurut setorannya</>}
+  description={<>Dengan setoran <InlineMath math="40" />, <InlineMath math="50" />, <InlineMath math="60" />, <InlineMath math="70" />, dan <InlineMath math="80" /> juta rupiah, bagian Dani sekitar <InlineMath math="14{,}3\%" />, <InlineMath math="17{,}2\%" />, tepat <InlineMath math="20\%" />, sekitar <InlineMath math="22{,}6\%" />, dan <InlineMath math="25\%" />. Garis datar menandai <InlineMath math="20\%" />, yaitu seperlima.</>}
+  bars="apart"
+  categories={["40", "50", "60", "70", "80"]}
+  series={[
+    { label: "Bagian Dani (%)", mark: "bar", values: [40, 50, 60, 70, 80].map((x) => (100 * 6 * x) / (1440 + 6 * x)) },
+    { label: "Seperlima", mark: "line", values: [20, 20, 20, 20, 20] },
+  ]}
+  valueLabel="Bagian Dani (%)"
+/>
+
 # Kesalahan yang sering terjadi
 
 Kalau **penyebut tidak ditambah modal Dani**, syaratnya menjadi <InlineMath math="6x>\frac{1{.}440}{5}=288" />, sehingga <InlineMath math="50" /> juta tampak cukup. Padahal bagian <InlineMath math="50" /> juta hanya <InlineMath math="\frac{300}{1{.}740}=\frac{5}{29}" />, kurang dari <InlineMath math="\frac15" />. Kalau bulan Dani dihitung <InlineMath math="5" /> (Desember dikurangi Juli), hasilnya <InlineMath math="80" /> juta. Kalau tanda "lebih dari" dibaca "paling sedikit", hasilnya <InlineMath math="60" /> juta.

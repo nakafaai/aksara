@@ -27,6 +27,17 @@ O\to A \text{ tanpa } B&: 12-(2\times2)=8\\
 A\to T \text{ tanpa } C&: 12-(2\times2)=8
 \end{aligned}" />
 
+Diagram berikut memperlihatkan kedua bagian lintasan. Titik <InlineMath math="B" /> hanya bisa merusak bagian pertama dan titik <InlineMath math="C" /> hanya bagian kedua, jadi **setiap bagian dibersihkan sendiri-sendiri** sebelum dikalikan.
+
+<Mermaid
+  title={<>Lintasan robot dibagi di titik wajib <InlineMath math="A" /></>}
+  description={<>Dari <InlineMath math="O" /> ke <InlineMath math="A" /> ada <InlineMath math="12" /> lintasan, dan <InlineMath math="4" /> di antaranya melewati <InlineMath math="B" />, jadi tersisa <InlineMath math="8" />. Dari <InlineMath math="A" /> ke <InlineMath math="T" /> ada <InlineMath math="12" /> lintasan, dan <InlineMath math="4" /> di antaranya melewati <InlineMath math="C" />, jadi tersisa <InlineMath math="8" />. Banyak lintasan seluruhnya <InlineMath math="8\times8=64" />.</>}
+  chart={`flowchart LR
+    O["O(0,0,0)"] -->|"12 lintasan, buang 4 lewat B"| A["A(1,2,1): 8 cara"]
+    A -->|"12 lintasan, buang 4 lewat C"| T["T(3,3,2): 8 cara"]
+    T --> R["8 x 8 = 64"]`}
+/>
+
 # Menggabungkan kedua bagian
 
 Setiap bagian pertama yang aman bisa dipasangkan dengan setiap bagian kedua yang aman, jadi pakai **aturan perkalian**.

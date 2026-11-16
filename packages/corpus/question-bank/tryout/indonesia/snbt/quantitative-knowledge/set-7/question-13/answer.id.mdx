@@ -18,6 +18,31 @@ Lubang harus muat di dalam sisi kubus yang berbentuk persegi <InlineMath math="9
 
 Perhatikan bahwa jari-jari yang ditolak tidak memberi volume negatif: <InlineMath math="729-225\pi" /> masih positif karena <InlineMath math="225\pi<225\times3{,}2=720" />. Jadi kesalahan ini **hanya terlihat jika kamu memeriksa apakah lubangnya muat**.
 
+Gambar sisi kubus berikut memperlihatkan alasannya. Lingkaran berjari-jari <InlineMath math="4" /> **muat di dalam persegi <InlineMath math="9" /> kali <InlineMath math="9" />**, sedangkan lingkaran berjari-jari <InlineMath math="5" /> keluar melewati keempat sisinya.
+
+<MathVisual
+  title={<>Dua calon lubang pada sisi kubus</>}
+  description={<>Sisi kubus berupa persegi <InlineMath math="9" /> kali <InlineMath math="9" /> dengan pusat di tengah. Lingkaran berjari-jari <InlineMath math="4" /> ada di dalam persegi. Lingkaran berjari-jari <InlineMath math="5" /> berdiameter <InlineMath math="10" /> dan menembus keempat sisi persegi.</>}
+  labels={{
+    fits: <InlineMath math="r=4" />,
+    big: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "face", kind: "polygon", appearance: "reference", vertices: [{ x: -4.5, y: -4.5 }, { x: 4.5, y: -4.5 }, { x: 4.5, y: 4.5 }, { x: -4.5, y: 4.5 }] },
+      { id: "fits", kind: "circle", appearance: "answer", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "big", kind: "circle", appearance: "warning", center: { x: 0, y: 0 }, radius: 5 },
+    ],
+    labels: [
+      { key: "fits", objectId: "fits", at: { x: 0, y: 4 }, placement: "below" },
+      { key: "big", objectId: "big", at: { x: 0, y: -5 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Menghitung volume
 
 Volume benda adalah **volume kubus dikurangi volume tabung yang dibuang**. Tinggi tabung sama dengan rusuk kubus, <InlineMath math="9\text{ cm}" />.

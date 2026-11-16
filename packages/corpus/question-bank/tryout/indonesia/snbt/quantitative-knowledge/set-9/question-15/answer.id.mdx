@@ -26,6 +26,19 @@ n=4&\;\Longrightarrow\;P=2^4=16,\quad Q=4^2=16
 
 Untuk <InlineMath math="n=3" /> berlaku <InlineMath math="Q>P" />, sedangkan untuk <InlineMath math="n=4" /> berlaku <InlineMath math="P=Q" />. Kedua nilai sama-sama sah, jadi **tidak ada satu hubungan yang selalu benar**.
 
+Grafik berikut membandingkan <InlineMath math="P=2^n" /> dan <InlineMath math="Q=n^2" /> untuk <InlineMath math="n=1" /> sampai <InlineMath math="6" />. Di <InlineMath math="n=3" /> garis <InlineMath math="Q" /> di atas, di <InlineMath math="n=4" /> **kedua garis bertemu**, dan baru di <InlineMath math="n=5" /> garis <InlineMath math="P" /> menyalip, tetapi nilai itu tidak diizinkan.
+
+<Chart
+  title={<>Nilai <InlineMath math="2^n" /> dan <InlineMath math="n^2" /> untuk <InlineMath math="n=1" /> sampai <InlineMath math="6" /></>}
+  description={<>Nilai <InlineMath math="2^n" /> adalah <InlineMath math="2, 4, 8, 16, 32, 64" />, dan nilai <InlineMath math="n^2" /> adalah <InlineMath math="1, 4, 9, 16, 25, 36" />. Untuk nilai yang diizinkan, <InlineMath math="n=3" /> memberi <InlineMath math="8<9" /> dan <InlineMath math="n=4" /> memberi <InlineMath math="16=16" />.</>}
+  valueLabel="Nilai"
+  categories={Array.from({ length: 6 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "P", mark: "line", values: Array.from({ length: 6 }, (_, i) => 2 ** (i + 1)) },
+    { label: "Q", mark: "line", values: Array.from({ length: 6 }, (_, i) => (i + 1) ** 2) },
+  ]}
+/>
+
 # Pilihan yang menjebak
 
 - <InlineMath math="Q>P" /> **hanya memeriksa <InlineMath math="n=3" />**. Memang <InlineMath math="Q" /> tidak pernah kalah dari <InlineMath math="P" /> di sini, tetapi untuk <InlineMath math="n=4" /> keduanya sama.

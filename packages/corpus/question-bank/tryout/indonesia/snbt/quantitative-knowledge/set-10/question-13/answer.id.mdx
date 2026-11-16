@@ -30,6 +30,41 @@ CP &= 2\sqrt{2}
 
 Titik tengah tali busur ada di <InlineMath math="(s,2)" />. Jadi <InlineMath math="C" /> ada di ketinggian <InlineMath math="2+\sqrt{2}" /> dan <InlineMath math="P" /> ada di ketinggian <InlineMath math="2-\sqrt{2}" />. Ketinggian <InlineMath math="P" /> ada di antara <InlineMath math="0" /> dan <InlineMath math="s" />, jadi <InlineMath math="P" /> memang terletak pada sisi <InlineMath math="BC" />.
 
+Gambar berikut memperlihatkan lingkaran yang dipakai. Lingkaran berjari-jari <InlineMath math="2" /> menyinggung <InlineMath math="AB" /> dan <InlineMath math="AD" />, melewati <InlineMath math="C" />, dan **memotong sisi <InlineMath math="BC" /> sekali lagi di <InlineMath math="P" />**. Tali busur <InlineMath math="CP" /> panjangnya <InlineMath math="2\sqrt2" />.
+
+<MathVisual
+  title={<>Persegi <InlineMath math="ABCD" /> dan lingkaran berpusat <InlineMath math="O(2,2)" /></>}
+  description={<>Persegi bersisi <InlineMath math="2+\sqrt2" /> dengan <InlineMath math="A" /> di titik asal. Lingkaran berpusat di <InlineMath math="(2,2)" /> dengan jari-jari <InlineMath math="2" /> menyinggung sisi bawah dan sisi kiri, lalu melewati <InlineMath math="C" />. Lingkaran itu memotong sisi <InlineMath math="BC" /> di <InlineMath math="C" /> dan di <InlineMath math="P" />, pada ketinggian <InlineMath math="2-\sqrt2" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    p: <InlineMath math="P" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.2 }, y: { min: -0.6, max: 4.2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 2 + Math.SQRT2, y: 0 }, { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, { x: 0, y: 2 + Math.SQRT2 }] },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, to: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 2, y: 2 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "square", at: { x: 2 + Math.SQRT2, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "square", at: { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, placement: "above-right" },
+      { key: "d", objectId: "square", at: { x: 0, y: 2 + Math.SQRT2 }, placement: "above-left" },
+      { key: "p", objectId: "point-p", at: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 }, placement: "right" },
+      { key: "o", objectId: "center", at: { x: 2, y: 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 # Pemeriksaan dengan kuasa titik
 
 Lingkaran menyinggung <InlineMath math="AB" /> di <InlineMath math="T=(2,0)" />, jadi <InlineMath math="BT=s-2=\sqrt{2}" />. Dari titik <InlineMath math="B" />, **kuadrat panjang garis singgung sama dengan hasil kali kedua potongan garis** yang menembus lingkaran, yaitu <InlineMath math="BP" /> dan <InlineMath math="BC" />.

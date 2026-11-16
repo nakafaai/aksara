@@ -32,6 +32,46 @@ Setze beide Ergebnisse zusammen:
 
 <BlockMath math="-2\le x<6{,}5" />
 
+Zeichne beide Lösungsmengen auf einem Zahlenstrahl und dann ihre Schnittmenge. **Die linke Grenze stammt aus der Betragsungleichung, die rechte aus der Bruchungleichung**, und dazwischen liegen neun ganze Zahlen.
+
+<MathVisual
+  title={<>Schnittmenge der beiden Ungleichungen</>}
+  description={<>Die obere Zeile ist <InlineMath math="x<6{,}5" /> aus der ersten Ungleichung, offen bei <InlineMath math="6{,}5" />. Die mittlere Zeile ist <InlineMath math="-2\le x\le8" /> aus der zweiten Ungleichung. Die untere Zeile ist die Schnittmenge, <InlineMath math="-2\le x<6{,}5" />, mit Punkten bei den ganzen Zahlen <InlineMath math="-2" /> bis <InlineMath math="6" />.</>}
+  labels={{
+    first: <><InlineMath math="x<6{,}5" /></>,
+    second: <><InlineMath math="-2\le x\le8" /></>,
+    both: <InlineMath math="-2\le x<6{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 9.5 },
+      y: { min: -0.8, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "secondary", from: { x: -4, y: 2 }, to: { x: 6.5, y: 2 } },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: -2, y: 1 }, to: { x: 8, y: 1 } },
+      { id: "both", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 6.5, y: 0 } },
+      { id: "n-2", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "n-1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "n0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "n1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "n2", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "n3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "n4", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "n5", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+      { id: "n6", kind: "point", appearance: "answer", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "both", objectId: "both", at: { x: 2.25, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die ganzen Zahlen sind <InlineMath math="-2,-1,0,1,2,3,4,5,6" />, also **neun Zahlen**. Prüfe das rechte Ende in der ersten Ungleichung: Für <InlineMath math="x=6" /> ist die linke Seite <InlineMath math="\frac{17}{3}-\frac94=\frac{41}{12}" /> und die rechte <InlineMath math="\frac{19}{6}=\frac{38}{12}" />, das passt. Für <InlineMath math="x=7" /> ist die linke Seite <InlineMath math="\frac{43}{12}" /> und die rechte <InlineMath math="\frac{46}{12}" />, das passt nicht.
 
 Es erfüllen also <InlineMath math="9" /> ganze Zahlen beide Ungleichungen.

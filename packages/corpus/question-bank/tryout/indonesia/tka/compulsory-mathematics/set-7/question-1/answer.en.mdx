@@ -30,6 +30,19 @@ I&=2\cdot10^{-4}+4\cdot10^{-4}=6\cdot10^{-4}\ \text{W/m}^2 \\
 &=10\,(0.78+8)=87.8\text{ dB}
 \end{aligned}" />
 
+Compare what the two stages contribute at the guest tent. **The nearer stage B contributes twice as much as stage A**, and what gets converted to decibels is the total of the bars, not the sum of separate levels.
+
+<Chart
+  title={<>Sound intensity at the guest tent</>}
+  description={<>In units of <InlineMath math="10^{-4}\ \text{W/m}^2" />, eight large drums from <InlineMath math="20\text{ m}" /> contribute <InlineMath math="2" />, four small drums from <InlineMath math="5\text{ m}" /> contribute <InlineMath math="4" />, and the total is <InlineMath math="6" />. That total is what converts to <InlineMath math="87.8\text{ dB}" />.</>}
+  bars="apart"
+  categories={["Stage A", "Stage B", "Total"]}
+  series={[
+    { label: "Intensity", mark: "bar", values: [2, 4, 6] },
+  ]}
+  valueLabel="Multiples of 0.0001 W/m²"
+/>
+
 As a check, stage B alone gives <InlineMath math="10\log(4\cdot10^8)=86\text{ dB}" />. Stage A adds only half of B's intensity, so **the result must be above <InlineMath math="86\text{ dB}" /> but below <InlineMath math="89\text{ dB}" />**. The value <InlineMath math="87.8\text{ dB}" /> fits.
 
 # Why the other options are wrong

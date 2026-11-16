@@ -22,6 +22,17 @@ Fajar unggul **kalau selisih ini positif**:
 x &< 30
 \end{aligned}" />
 
+Grafik berikut menggambar selisih <InlineMath math="1{,}5-0{,}05x" /> untuk setiap <InlineMath math="x" /> dari <InlineMath math="20" /> sampai <InlineMath math="40" />. **Batangnya positif sampai <InlineMath math="x=29" />, habis tepat di <InlineMath math="x=30" />**, lalu berbalik negatif.
+
+<Chart
+  title={<>Selisih nilai akhir Fajar dikurangi Eka menurut bobot tes <InlineMath math="x" /></>}
+  description={<>Selisihnya turun <InlineMath math="0{,}05" /> setiap kenaikan <InlineMath math="x" />, dari <InlineMath math="0{,}5" /> pada <InlineMath math="x=20" /> sampai <InlineMath math="0" /> pada <InlineMath math="x=30" />, lalu <InlineMath math="-0{,}5" /> pada <InlineMath math="x=40" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${20 + i}`)}
+  series={[{ label: "Selisih nilai Fajar dan Eka", mark: "bar", values: Array.from({ length: 21 }, (_, i) => 1.5 - 0.05 * (20 + i)) }]}
+  valueLabel="Selisih nilai akhir"
+/>
+
 # Nilai seri pada batasnya
 
 Saat <InlineMath math="x=30" />, selisihnya nol, jadi nilai akhir keduanya sama, yaitu <InlineMath math="82{,}6" />. Aturan seri mendahulukan nilai <InlineMath math="T" /> yang lebih tinggi. Eka punya <InlineMath math="T=86" /> dan Fajar <InlineMath math="T=84" />, jadi **pada nilai seri Eka tetap di atas**. Karena itu <InlineMath math="x=30" /> tidak ikut, dan jawabannya <InlineMath math="20\le x\le29" />.

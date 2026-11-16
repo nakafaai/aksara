@@ -1,0 +1,27 @@
+# Pecahkan kacukan kepada satu gen pada satu masa
+
+Kedua-dua gen terletak pada kromosom yang berlainan, jadi **gen itu berpisah secara bebas** dan setiap gen boleh dikacuk sendiri. Kemudian darabkan kedua-dua kebarangkalian.
+
+<BlockMath math="\begin{aligned}
+Tt\times Tt&:\ P(\text{tinggi})=\tfrac{3}{4},\quad P(\text{rendah})=\tfrac{1}{4}\\
+Pp\times pp&:\ P(\text{ungu})=\tfrac{1}{2},\quad P(\text{putih})=\tfrac{1}{2}
+\end{aligned}" />
+
+Jadi, kebarangkalian tinggi dan putih ialah <InlineMath math="\frac{3}{4}\times\frac{1}{2}=\frac{3}{8}" />, dan rendah dan ungu <InlineMath math="\frac{1}{4}\times\frac{1}{2}=\frac{1}{8}" />. Daripada <InlineMath math="320" /> anak, nilai itu ialah <InlineMath math="\frac{3}{8}\times320=120" /> dan <InlineMath math="\frac{1}{8}\times320=40" />. Carta menunjukkan keseluruhan taburan <InlineMath math="3:3:1:1" />.
+
+<Chart
+  title={<>Anak yang Dijangka bagi <InlineMath math="TtPp\times Ttpp" /></>}
+  bars="apart"
+  categories={["Tinggi, ungu", "Tinggi, putih", "Rendah, ungu", "Rendah, putih"]}
+  series={[{ label: "Anak yang dijangka", mark: "bar", values: [120, 120, 40, 40] }]}
+  valueLabel="Bilangan anak"
+  description={<>Daripada <InlineMath math="320" /> anak, <InlineMath math="120" /> dijangka tinggi dan ungu, <InlineMath math="120" /> tinggi dan putih, <InlineMath math="40" /> rendah dan ungu, dan <InlineMath math="40" /> rendah dan putih.</>}
+/>
+
+Jadi, <InlineMath math="120" /> anak dijangka tinggi dengan bunga putih, dan <InlineMath math="40" /> rendah dengan bunga ungu.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="60" /> dan <InlineMath math="60" /> menggunakan nisbah <InlineMath math="9:3:3:1" /> bagi <InlineMath math="TtPp\times TtPp" />, sedangkan **induk kedua ialah** <InlineMath math="pp" />, bukan <InlineMath math="Pp" />.
+- <InlineMath math="80" /> dan <InlineMath math="80" /> menggunakan nisbah <InlineMath math="1:1:1:1" /> bagi kacukan uji, yang memerlukan induk kedua bergenotip <InlineMath math="ttpp" />.
+- <InlineMath math="40" /> dan <InlineMath math="120" /> menukar kedua-dua jawapan.

@@ -24,6 +24,42 @@ Suche jetzt <InlineMath math="x" /> mit <InlineMath math="f(x)=4" />:
 3x-1=4\ &\Rightarrow\ x=\tfrac53,\ \text{aber }\tfrac53\not\ge2\ \text{(verworfen)}
 \end{aligned}" />
 
+Zeichne beide Äste von <InlineMath math="f" /> mit den Geraden <InlineMath math="y=11" /> und <InlineMath math="y=4" />. **Jede waagerechte Gerade trifft nur einen Ast**, weil der linke Ast unter <InlineMath math="5" /> bleibt und der rechte bei <InlineMath math="5" /> beginnt. Die Gerade <InlineMath math="y=11" /> trifft den rechten Ast bei <InlineMath math="x=4" />, danach trifft <InlineMath math="y=4" /> den linken Ast bei <InlineMath math="x=0" />.
+
+<MathVisual
+  title={<><InlineMath math="f^{-1}" /> an zwei Ästen ablesen</>}
+  description={<>Der linke Ast <InlineMath math="y=\frac{x}{2}+4" /> für <InlineMath math="x<2" /> steigt bis knapp unter <InlineMath math="5" />. Der rechte Ast <InlineMath math="y=3x-1" /> für <InlineMath math="x\ge2" /> beginnt in <InlineMath math="(2,\ 5)" /> und steigt steiler. Die waagerechte Gerade <InlineMath math="y=11" /> trifft den rechten Ast in <InlineMath math="(4,\ 11)" />, die waagerechte Gerade <InlineMath math="y=4" /> den linken Ast in <InlineMath math="(0,\ 4)" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{x}{2}+4" />,
+    right: <InlineMath math="y=3x-1" />,
+    first: <InlineMath math="(4,\ 11)" />,
+    second: <InlineMath math="(0,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 6.5 },
+      y: { min: -1, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x/2 + 4", domain: { min: -4.5, max: 2 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "3x - 1", domain: { min: 2, max: 5 } },
+      { id: "eleven", kind: "function", appearance: "reference", formula: "11", domain: { min: -4.5, max: 6 } },
+      { id: "four", kind: "function", appearance: "reference", formula: "4", domain: { min: -4.5, max: 6 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 4, y: 11 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -4, y: 2 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 5, y: 14 }, placement: "left" },
+      { key: "first", objectId: "first", at: { x: 4, y: 11 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: 0, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="f^{-1}(4)=0" />. Probe: <InlineMath math="f(0)=\frac02+4=4" />. Diesmal **fällt gerade der zweite Zweig weg**, also umgekehrt wie im ersten Schritt.
 
 Damit ist <InlineMath math="f^{-1}\left(f^{-1}(11)\right)=0" />.

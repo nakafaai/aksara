@@ -36,6 +36,22 @@ P_4 &= 1{.}280 - 12 \cdot 74 = 392 < 400 \\
 
 Zyklus fünf beginnt erst nach Ablauf der Zeit, du musst ihn also nicht prüfen. Der Unterschied fällt auch nie auf <InlineMath math="0" />, weil jeder Zyklus weiterhin <InlineMath math="320-4 \cdot 74=24" /> dazulegt. Mit <InlineMath math="r=74" /> **treffen sich die beiden also nie**, mit <InlineMath math="r=73" /> dagegen schon.
 
+Das Diagramm vergleicht den höchsten Unterschied in jedem Zyklus für beide Pausenlängen. **Nur der vierte Gipfel für <InlineMath math="r=73" /> geht über die Linie bei <InlineMath math="400" />**, während alle Gipfel für <InlineMath math="r=74" /> darunter bleiben.
+
+<Chart
+  title={<>Höchster Streckenunterschied in jedem Zyklus für <InlineMath math="r=73" /> und <InlineMath math="r=74" /></>}
+  description={<>Für <InlineMath math="r=73" /> betragen die Gipfel der Zyklen eins bis vier <InlineMath math="320" />, <InlineMath math="348" />, <InlineMath math="376" /> und <InlineMath math="404" /> Meter. Für <InlineMath math="r=74" /> sind es <InlineMath math="320" />, <InlineMath math="344" />, <InlineMath math="368" /> und <InlineMath math="392" /> Meter. Die waagerechte Linie markiert <InlineMath math="400" /> Meter. Die Werteachse beginnt bei <InlineMath math="300" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Pause von 73 Sekunden", mark: "bar", values: [0, 1, 2, 3].map((k) => k * (320 - 4 * 73) + 320) },
+    { label: "Pause von 74 Sekunden", mark: "bar", values: [0, 1, 2, 3].map((k) => k * (320 - 4 * 74) + 320) },
+    { label: "Eine Runde", mark: "line", values: [400, 400, 400, 400] },
+  ]}
+  valueRange={{ min: 300, max: 420 }}
+  valueLabel="Höchster Unterschied (m)"
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort **hört beim falschen Zyklus mit dem Prüfen auf**:

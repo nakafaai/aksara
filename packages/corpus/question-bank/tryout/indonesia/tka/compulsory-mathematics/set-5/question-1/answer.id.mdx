@@ -23,6 +23,37 @@ Pesanan ini berisi <InlineMath math="504" /> lembar, yaitu <InlineMath math="500
 \text{total}&=151{.}200+120{.}000=271{.}200
 \end{aligned}" />
 
+Gambar biaya cetak sebagai fungsi banyak lembar. **Grafiknya turun tajam tepat di <InlineMath math="500" /> lembar**, karena harga per lembar berlaku untuk semua lembar. Menghitung lembar per modul memberi <InlineMath math="504" /> lembar, di kanan lompatan itu.
+
+<MathVisual
+  title={<>Biaya cetak menurut banyak lembar</>}
+  description={<>Sumbu mendatar adalah banyak lembar, sumbu tegak adalah biaya cetak dalam ribu rupiah. Grafik terdiri atas tiga ruas garis dari titik asal: <InlineMath math="0{,}5n" /> sampai <InlineMath math="199" /> lembar, <InlineMath math="0{,}4n" /> dari <InlineMath math="200" /> sampai <InlineMath math="499" /> lembar, dan <InlineMath math="0{,}3n" /> mulai <InlineMath math="500" /> lembar. Titik <InlineMath math="(489,\ 195{,}6)" /> adalah hasil kalau halaman dijumlah dulu, dan titik <InlineMath math="(504,\ 151{,}2)" /> adalah biaya yang benar.</>}
+  labels={{
+    pages: <><InlineMath math="489" /> lembar, keliru</>,
+    sheets: <><InlineMath math="504" /> lembar</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 570 },
+      y: { min: -5, max: 215 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "low", kind: "function", appearance: "primary", formula: "0.5x", domain: { min: 0, max: 199 } },
+      { id: "mid", kind: "function", appearance: "primary", formula: "0.4x", domain: { min: 200, max: 499 } },
+      { id: "high", kind: "function", appearance: "primary", formula: "0.3x", domain: { min: 500, max: 560 } },
+      { id: "pages", kind: "point", appearance: "warning", at: { x: 489, y: 195.6 } },
+      { id: "sheets", kind: "point", appearance: "answer", at: { x: 504, y: 151.2 } },
+    ],
+    labels: [
+      { key: "pages", objectId: "pages", at: { x: 489, y: 195.6 }, placement: "above-left" },
+      { key: "sheets", objectId: "sheets", at: { x: 504, y: 151.2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Coba bandingkan dengan menghitung halaman semua modul sekaligus: <InlineMath math="\frac{18\cdot27+12\cdot41}{2}=\frac{978}{2}=489" /> lembar. Angka ini jatuh di tingkat <InlineMath math="\text{Rp}400" />. Selisih <InlineMath math="15" /> lembar itu berasal dari sisi kosong di lembar terakhir setiap modul, dan justru membuat pesanan naik ke tingkat harga yang lebih murah.
 
 Jadi, total biaya pesanan itu adalah <InlineMath math="\text{Rp}271{.}200" />.

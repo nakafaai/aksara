@@ -30,6 +30,19 @@ Without use, the phone is on standby, so below <InlineMath math="80\%" /> the ba
 
 The battery ends at <InlineMath math="82\%" />, not <InlineMath math="86\%" />. You get <InlineMath math="86\%" /> if you use <InlineMath math="36\%" /> per hour for the whole hour. The third statement is **false**.
 
+The chart below follows the battery during an hour of charging without use. **The line bends exactly at <InlineMath math="80\%" />** at minute <InlineMath math="50" />, then only creeps up to <InlineMath math="82\%" />.
+
+<Chart
+  title={<>Battery charging without use, starting from <InlineMath math="50\%" /></>}
+  description={<>The battery rises <InlineMath math="6\%" /> every <InlineMath math="10" /> minutes from <InlineMath math="50\%" /> to <InlineMath math="80\%" /> at minute <InlineMath math="50" />, then rises <InlineMath math="2\%" /> in the last <InlineMath math="10" /> minutes to <InlineMath math="82\%" />. The flat line marks <InlineMath math="80\%" />.</>}
+  categories={["0", "10", "20", "30", "40", "50", "60"]}
+  series={[
+    { label: "Battery (%)", mark: "line", values: [0, 10, 20, 30, 40, 50, 60].map((m) => (m <= 50 ? 50 + (36 * m) / 60 : 80 + (12 * (m - 50)) / 60)) },
+    { label: "Limit 80%", mark: "line", values: [80, 80, 80, 80, 80, 80, 80] },
+  ]}
+  valueLabel="Battery (%)"
+/>
+
 # Swapping reading and video
 
 First order: reading for <InlineMath math="3" /> hours uses <InlineMath math="30\%" />, so the battery is at exactly <InlineMath math="20\%" />. The hour of video then runs in saving mode at <InlineMath math="10\%" /> per hour, leaving <InlineMath math="10\%" />.

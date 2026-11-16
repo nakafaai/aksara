@@ -16,6 +16,20 @@ Say the customer pays for <InlineMath math="w" /> cups on Wednesdays and <Inline
 
 Every free cup removes <InlineMath math="10" /> stamps, so the stamps left can't be negative. The first three rows are out. The card can't pile up stamps either, because **once it holds <InlineMath math="10" /> stamps, the next order is free straight away**. Before a free order the card holds at most <InlineMath math="9+2=11" /> stamps, so <InlineMath math="22" /> stamps can't be left. The last row is out too.
 
+The chart below compares the stamps earned with the stamps used in each row of the table. **In the first three rows the stamps-used bar is taller**, but a card can't spend stamps it doesn't have.
+
+<Chart
+  title={<>Stamps earned and stamps used by the number of paid Wednesday cups</>}
+  description={<>For <InlineMath math="w=0, 4, 8, 12, 16" />, the stamps earned are <InlineMath math="12, 17, 22, 27, 32" />, while the stamps used by free cups are <InlineMath math="50, 40, 30, 20, 10" />. The stamps earned only pass the stamps used from <InlineMath math="w=12" /> on.</>}
+  categories={["0 Wednesday cups", "4 Wednesday cups", "8 Wednesday cups", "12 Wednesday cups", "16 Wednesday cups"]}
+  bars="apart"
+  series={[
+    { label: "Stamps earned", mark: "bar", values: [0, 4, 8, 12, 16].map((w) => 2 * w + (48 - 3 * w) / 4) },
+    { label: "Stamps used by free cups", mark: "bar", values: [0, 4, 8, 12, 16].map((w) => 10 * (17 - w - (48 - 3 * w) / 4)) },
+  ]}
+  valueLabel="Stamps"
+/>
+
 Only the row <InlineMath math="w=12" /> fits. Such an order really exists: <InlineMath math="5" /> Wednesday cups, <InlineMath math="1" /> free cup, <InlineMath math="5" /> Wednesday cups, <InlineMath math="1" /> free cup, <InlineMath math="2" /> Wednesday cups, then <InlineMath math="3" /> cups on other days.
 
 <BlockMath math="12\cdot15{,}000+3\cdot20{,}000=180{,}000+60{,}000=240{,}000" />

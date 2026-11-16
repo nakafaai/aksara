@@ -15,6 +15,20 @@ Alle vier Notizen brauchen das ganze Bild des Wasserstands von 06.00 Uhr bis 14.
 | 12.00-13.00 | <InlineMath math="15\text{ mm}" /> | <InlineMath math="10-30=-20" /> | <InlineMath math="310\text{ cm}" /> |
 | 13.00-14.00 | <InlineMath math="5\text{ mm}" /> | <InlineMath math="-10-30=-40" /> | <InlineMath math="270\text{ cm}" /> |
 
+Das Diagramm zeigt den Wasserstand aus der Tabelle zusammen mit dem Stand, den es ohne Schleuse gäbe. **Mit Schleuse liegt der Gipfel bei <InlineMath math="340\text{ cm}" /> um 11.00 Uhr**, ohne Schleuse steigt die Linie bis 13.00 Uhr über <InlineMath math="400\text{ cm}" /> hinaus.
+
+<Chart
+  title={<>Stündlicher Wasserstand mit und ohne Schleuse</>}
+  description={<>Mit Schleuse beträgt der Wasserstand von 06.00 bis 14.00 Uhr <InlineMath math="140, 180, 210, 260, 320, 340, 330, 310, 270" /> cm. Ohne Schleuse beträgt er <InlineMath math="140, 180, 210, 270, 360, 410, 430, 440, 430" /> cm. Die waagerechte Linie markiert <InlineMath math="400\text{ cm}" />.</>}
+  categories={["06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00"]}
+  series={[
+    { label: "Mit Schleuse", mark: "line", values: [140, 180, 210, 260, 320, 340, 330, 310, 270] },
+    { label: "Ohne Schleuse", mark: "line", values: [140, 180, 210, 270, 360, 410, 430, 440, 430] },
+    { label: "400 cm", mark: "line", values: Array.from({ length: 9 }, () => 400) },
+  ]}
+  valueLabel="Wasserstand (cm)"
+/>
+
 # Die Notiz zum höchsten Stand
 
 Das Wasser steigt bis 11.00 Uhr und fällt danach, also **liegt der Höchststand bei <InlineMath math="340\text{ cm}" /> um 11.00 Uhr**. Die erste Notiz ist **wahr**.

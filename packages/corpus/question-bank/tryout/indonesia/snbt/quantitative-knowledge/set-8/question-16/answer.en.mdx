@@ -33,6 +33,39 @@ So <InlineMath math="t=0" /> or <InlineMath math="t=2" />. The value <InlineMath
 
 That's <InlineMath math="2+3=5" /> in total. Check a few values: <InlineMath math="f(2)=4-4-3=-3" /> and then <InlineMath math="f(-3)=9-6-3=0" />, and <InlineMath math="f(1+\sqrt7)=8+2\sqrt7-2-2\sqrt7-3=3" /> and then <InlineMath math="f(3)=0" />.
 
+The W-shaped graph of <InlineMath math="f" /> shows all five solutions. The line <InlineMath math="y=3" /> cuts the two outer arms at <InlineMath math="2" /> points, and the line <InlineMath math="y=-3" /> **touches the middle peak at <InlineMath math="x=0" />** and cuts at <InlineMath math="x=\pm2" />, for <InlineMath math="3" /> points.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=x^2-2|x|-3" /> and two horizontal lines</>}
+  description={<>The graph drops to its lowest points <InlineMath math="(-1,-4)" /> and <InlineMath math="(1,-4)" />, with a small peak at <InlineMath math="(0,-3)" />. The line <InlineMath math="y=3" /> cuts the graph at <InlineMath math="x=\pm\left(1+\sqrt7\right)" />. The line <InlineMath math="y=-3" /> meets the graph at <InlineMath math="x=-2" />, <InlineMath math="x=0" />, and <InlineMath math="x=2" />.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    up: <InlineMath math="y=3" />,
+    down: <InlineMath math="y=-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -5, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "up", kind: "segment", appearance: "reference", from: { x: -4.5, y: 3 }, to: { x: 4.5, y: 3 } },
+      { id: "down", kind: "segment", appearance: "reference", from: { x: -4.5, y: -3 }, to: { x: 4.5, y: -3 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "x^2 + 2x - 3", domain: { min: -4.1, max: 0 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x^2 - 2x - 3", domain: { min: 0, max: 4.1 } },
+      { id: "u1", kind: "point", appearance: "answer", at: { x: 1 + Math.sqrt(7), y: 3 } },
+      { id: "u2", kind: "point", appearance: "answer", at: { x: -1 - Math.sqrt(7), y: 3 } },
+      { id: "d1", kind: "point", appearance: "answer", at: { x: 2, y: -3 } },
+      { id: "d2", kind: "point", appearance: "answer", at: { x: -2, y: -3 } },
+      { id: "d0", kind: "point", appearance: "answer", at: { x: 0, y: -3 } },
+    ],
+    labels: [
+      { key: "f", objectId: "right", at: { x: 1, y: -4 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "down", objectId: "down", at: { x: -3.8, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
 # The wrong options
 
 - <InlineMath math="2" /> comes from using only <InlineMath math="y=3" /> and forgetting <InlineMath math="y=-3" />.

@@ -8,6 +8,17 @@ Removing <InlineMath math="20\text{ liters}" /> keeps <InlineMath math="\frac{10
 
 For example, starting at <InlineMath math="42\text{ g/L}" />, one change of <InlineMath math="40\text{ liters}" /> gives <InlineMath math="28\text{ g/L}" />, while two changes of <InlineMath math="20\text{ liters}" /> give <InlineMath math="29\frac16\text{ g/L}" />. The results differ. The first statement is **false**.
 
+The chart below compares both ways, starting from <InlineMath math="42\text{ g/L}" />. **The two bars aren't the same height**, so two small changes aren't the same as one big change.
+
+<Chart
+  title={<>Final salinity of two ways of changing to fresh water from <InlineMath math="42\text{ g/L}" /></>}
+  description={<>One change of <InlineMath math="40" /> liters gives <InlineMath math="28\text{ g/L}" />. Two changes of <InlineMath math="20" /> liters give <InlineMath math="29\tfrac16\text{ g/L}" />.</>}
+  categories={["Once 40 liters", "Twice 20 liters"]}
+  bars="apart"
+  series={[{ label: "Final salinity (g/L)", mark: "bar", values: [42 * (2 / 3), 42 * (5 / 6) * (5 / 6)] }]}
+  valueLabel="Salinity (g/L)"
+/>
+
 # Topping up evaporation with artificial seawater
 
 Each day <InlineMath math="4\text{ liters}" /> of water evaporate without taking any salt. Refilling with <InlineMath math="4\text{ liters}" /> of artificial seawater adds <InlineMath math="4\cdot35=140" /> grams of salt, and the tank is back to <InlineMath math="120\text{ liters}" />.

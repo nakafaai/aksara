@@ -1,0 +1,21 @@
+# Tetapkan semua kecuali suhu, lalu baca lajunya
+
+Suhu harus menjadi satu-satunya variabel yang berubah. Variabel terikatnya adalah **laju per menit**, jadi lama penghitungan yang berbeda tidak merusak susunan alat: <InlineMath math="40" /> gelembung dalam <InlineMath math="5" /> menit dan <InlineMath math="80" /> dalam <InlineMath math="10" /> menit adalah laju yang sama, <InlineMath math="8" /> per menit.
+
+<Mermaid
+  title={<>Susunan Alat yang Hanya Mengubah Suhu</>}
+  description={<>Q, T, dan U hanya mengubah suhu setelah jumlah gelembung diubah menjadi laju per menit. R mengubah ragi dan S glukosa, jadi keduanya keluar.</>}
+  chart={"flowchart LR\n  P[P: 25 °C] --> Q[Q: 35 °C: masuk]\n  P --> T[T: 45 °C, 5 menit, laju per menit: masuk]\n  P --> U[U: 55 °C: masuk]\n  P --> R[R: ragi 4 g: keluar]\n  P --> S[S: glukosa 10%: keluar]"}
+/>
+
+- Q dan U hanya mengubah suhu, jadi tetap masuk.
+- T dihitung selama <InlineMath math="5" /> menit, tetapi jumlahnya dibagi <InlineMath math="5" /> menjadi gelembung per menit, jadi T juga masuk.
+- R menggandakan ragi dan S menggandakan glukosa, jadi masing-masing mengubah variabel kedua dan harus keluar.
+
+Jadi, kelompok sah yang paling besar adalah P, Q, T, dan U, yang mencakup empat suhu.
+
+# Kenapa pilihan lain salah
+
+- P, Q, dan U melewatkan T, seolah-olah waktu hitung yang lebih singkat merusaknya, padahal **laju per menit sudah memperhitungkan waktunya**.
+- P, Q, S, T, dan U menerima S, yang juga menggandakan glukosa.
+- P, Q, R, T, dan U menerima R, yang juga menggandakan ragi.

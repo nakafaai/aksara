@@ -15,6 +15,20 @@ Keempat catatan memerlukan gambaran lengkap tinggi muka air dari pukul 06.00 sam
 | 12.00-13.00 | <InlineMath math="15\text{ mm}" /> | <InlineMath math="10-30=-20" /> | <InlineMath math="310\text{ cm}" /> |
 | 13.00-14.00 | <InlineMath math="5\text{ mm}" /> | <InlineMath math="-10-30=-40" /> | <InlineMath math="270\text{ cm}" /> |
 
+Grafik berikut menggambar tinggi muka air dari tabel itu bersama tinggi yang akan terjadi tanpa pintu air. **Dengan pintu air, puncaknya <InlineMath math="340\text{ cm}" /> pada pukul 11.00**, sedangkan tanpa pintu air garisnya terus naik melewati <InlineMath math="400\text{ cm}" /> sampai pukul 13.00.
+
+<Chart
+  title={<>Tinggi muka air setiap jam dengan dan tanpa pintu air</>}
+  description={<>Dengan pintu air, tinggi muka air pada pukul 06.00 sampai 14.00 berturut-turut <InlineMath math="140, 180, 210, 260, 320, 340, 330, 310, 270" /> cm. Tanpa pintu air, berturut-turut <InlineMath math="140, 180, 210, 270, 360, 410, 430, 440, 430" /> cm. Garis datar menandai <InlineMath math="400\text{ cm}" />.</>}
+  categories={["06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00"]}
+  series={[
+    { label: "Dengan pintu air", mark: "line", values: [140, 180, 210, 260, 320, 340, 330, 310, 270] },
+    { label: "Tanpa pintu air", mark: "line", values: [140, 180, 210, 270, 360, 410, 430, 440, 430] },
+    { label: "400 cm", mark: "line", values: Array.from({ length: 9 }, () => 400) },
+  ]}
+  valueLabel="Tinggi muka air (cm)"
+/>
+
 # Catatan tentang tinggi tertinggi
 
 Air naik sampai pukul 11.00 dan turun sesudahnya, jadi **puncaknya <InlineMath math="340\text{ cm}" /> pukul 11.00**. Catatan pertama **benar**.

@@ -27,6 +27,19 @@ Starting from <InlineMath math="g=0" /> at the start, record <InlineMath math="g
 
 The difference never reaches <InlineMath math="800" />, so all you need to find is **every time <InlineMath math="g" /> passes <InlineMath math="400" />**, going up or going down.
 
+The chart below joins up the values of <InlineMath math="g" /> from that table. **The zigzag line crosses the <InlineMath math="400" /> line five times**: three times going up and twice going down.
+
+<Chart
+  title={<>Distance difference between Andi and Bima at each switch between running and drinking</>}
+  description={<>At seconds <InlineMath math="0, 320, 370, 690, 740, 1{,}060, 1{,}110, 1{,}430, 1{,}480, 1{,}500" />, the difference is <InlineMath math="0, 320, 120, 440, 240, 560, 360, 680, 480, 500" /> metres. The flat line marks a one-lap difference of <InlineMath math="400" /> metres. The gaps between categories on the time axis aren't drawn to scale.</>}
+  categories={["0", "320", "370", "690", "740", "1060", "1110", "1430", "1480", "1500"]}
+  series={[
+    { label: "Distance difference g", mark: "line", values: [0, 320, 120, 440, 240, 560, 360, 680, 480, 500] },
+    { label: "One lap", mark: "line", values: Array.from({ length: 10 }, () => 400) },
+  ]}
+  valueLabel="Difference (m)"
+/>
+
 # Counting each meeting
 
 A meeting happens **each time <InlineMath math="g" /> passes <InlineMath math="400" />**, so compare <InlineMath math="g" /> at the start and end of each stretch:

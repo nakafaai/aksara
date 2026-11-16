@@ -20,6 +20,37 @@ Misalkan jari-jari tabung pejal <InlineMath math="\rho" />. Tingginya <InlineMat
 \rho&=15\text{ cm}
 \end{aligned}" />
 
+Bandingkan kedua penampang pada skala yang sama. **Tabung pejal <InlineMath math="25" /> kali lebih pendek dari pipa, jadi penampangnya harus <InlineMath math="25" /> kali lebih luas dari cincin pipa**: <InlineMath math="25\cdot9\pi=225\pi" />, yaitu lingkaran berjari-jari <InlineMath math="15" />.
+
+<MathVisual
+  title={<>Penampang pipa dan penampang tabung pejal</>}
+  description={<>Di kiri, penampang pipa berupa cincin di antara lingkaran berjari-jari <InlineMath math="5" /> dan <InlineMath math="4" />, dengan luas <InlineMath math="9\pi\text{ cm}^2" />. Di kanan, penampang tabung pejal berupa lingkaran berjari-jari <InlineMath math="15" /> dengan luas <InlineMath math="225\pi\text{ cm}^2" />, digambar dengan skala yang sama.</>}
+  labels={{
+    pipe: <InlineMath math="9\pi" />,
+    solid: <InlineMath math="225\pi" />,
+    radius: <InlineMath math="\rho=15" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -28, max: 28 },
+      y: { min: -17, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe", kind: "region", appearance: "secondary", inequalities: ["(x + 20)^2 + y^2 <= 25", "(x + 20)^2 + y^2 >= 16"] },
+      { id: "solid", kind: "circle", appearance: "primary", center: { x: 10, y: 0 }, radius: 15 },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 10, y: 0 }, to: { x: 25, y: 0 } },
+    ],
+    labels: [
+      { key: "pipe", objectId: "pipe", at: { x: -20, y: 5 }, placement: "above" },
+      { key: "solid", objectId: "solid", at: { x: 10, y: 15 }, placement: "above" },
+      { key: "radius", objectId: "radius", at: { x: 17.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Yang ditanyakan adalah diameter, jadi <InlineMath math="d=2\rho=30\text{ cm}" />. Cek kewajarannya: pipa sepanjang <InlineMath math="500\text{ cm}" /> menjadi tabung yang <InlineMath math="25" /> kali lebih pendek, jadi luas penampangnya harus <InlineMath math="25" /> kali luas cincin, yaitu <InlineMath math="25\cdot9\pi=225\pi" />. Itu memang luas lingkaran berjari-jari <InlineMath math="15" />.
 
 # Kenapa pilihan lain salah

@@ -50,6 +50,17 @@ e_2+2e_3&=18
 
 The third line is the difference of the first two. So <InlineMath math="e_2=18-2e_3" />, an even number minus an even number. The result is always even, so the third statement is **true**.
 
+The chart below shows how many students take exactly two activities for each possible number of students who take all three. **Every bar is even**, and the bars stop at <InlineMath math="e_3=8" />, because the students who take all three are among the <InlineMath math="8" /> Futsal and Music students.
+
+<Chart
+  title={<>The relation <InlineMath math="e_2=18-2e_3" /></>}
+  description={<>For <InlineMath math="e_3=0" /> to <InlineMath math="8" />, the number of students taking exactly two activities is <InlineMath math="18, 16, 14, \ldots, 2" />, all even. The value <InlineMath math="e_3=9" /> is impossible because <InlineMath math="t\le8" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, t) => `${t}`)}
+  series={[{ label: "Exactly two activities", mark: "bar", values: Array.from({ length: 9 }, (_, t) => 18 - 2 * t) }]}
+  valueLabel="Number of students"
+/>
+
 # Students who take all three activities
 
 From <InlineMath math="e_2+2e_3=18" /> you only get <InlineMath math="e_3\le9" />, and that bound is tempting. But every student who takes all three activities also takes Futsal and Music, so **they're among the eight Futsal and Music students**.

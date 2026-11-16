@@ -23,6 +23,19 @@ On Monday, period <InlineMath math="8" /> starts after the second break, at 13.0
 
 Monday's period <InlineMath math="8" /> starts earlier, so the first statement is **false**.
 
+The chart below draws the start of each period in minutes after 07.00. **Monday's line starts higher but climbs more gently**, so by period <InlineMath math="8" /> it's already below Tuesday's line.
+
+<Chart
+  title={<>Start time of each period on Monday and Tuesday</>}
+  description={<>On Monday, periods <InlineMath math="1" /> to <InlineMath math="9" /> start <InlineMath math="40, 80, 120, 160, 215, 255, 295, 365, 405" /> minutes after 07.00. On Tuesday, they start <InlineMath math="15, 60, 105, 165, 210, 255, 330, 375, 420" /> minutes after 07.00. Period <InlineMath math="8" /> starts at 13.05 on Monday and at 13.15 on Tuesday.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+  series={[
+    { label: "Monday", mark: "line", values: [40, 80, 120, 160, 160 + 40 + 15, 255, 295, 295 + 40 + 30, 405] },
+    { label: "Tuesday", mark: "line", values: [15, 60, 105, 105 + 45 + 15, 210, 255, 255 + 45 + 30, 375, 420] },
+  ]}
+  valueLabel="Minutes after 07.00"
+/>
+
 # Comparing total lesson time
 
 Total lesson time is the number of periods times their length: Friday <InlineMath math="6\cdot35=210" /> minutes, Monday <InlineMath math="9\cdot40=360" /> minutes, and Tuesday <InlineMath math="9\cdot45=405" /> minutes. Half of Monday's lesson time is <InlineMath math="180" /> minutes, and half of Tuesday's is <InlineMath math="202.5" /> minutes.

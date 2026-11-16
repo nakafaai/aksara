@@ -30,4 +30,17 @@ Um ein „immer“ zu widerlegen, reicht ein Gegenbeispiel. Vergleich die Anfang
 
 Beide Anfangspopulationen liefern dasselbe Ergebnis, weil **die Kapazität des Behälters den Unterschied am Anfang auslöscht**. Die vierte Aussage ist **falsch**.
 
+Das Diagramm verfolgt die Population nach jeder Ernte für beide Anfangspopulationen. **Beide Linien treffen sich bei <InlineMath math="t=6" /> bei <InlineMath math="760" />** und trennen sich nie wieder.
+
+<Chart
+  title={<>Bakterien nach jeder Ernte für zwei Anfangspopulationen</>}
+  description={<>Bei einer Anfangspopulation von <InlineMath math="40" /> Millionen Zellen beträgt die Anzahl nach den Ernten bei <InlineMath math="t=3, 6, 9, 12" /> der Reihe nach <InlineMath math="120, 760, 760, 760" /> Millionen Zellen. Bei einer Anfangspopulation von <InlineMath math="100" /> Millionen Zellen sind es <InlineMath math="600, 760, 760, 760" /> Millionen Zellen.</>}
+  categories={["0", "3", "6", "9", "12"]}
+  series={[
+    { label: "Anfangspopulation 40", mark: "line", values: [40, 40 * 8 - 200, 960 - 200, 960 - 200, 960 - 200] },
+    { label: "Anfangspopulation 100", mark: "line", values: [100, 100 * 8 - 200, 960 - 200, 960 - 200, 960 - 200] },
+  ]}
+  valueLabel="Bakterien (Millionen Zellen)"
+/>
+
 Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte falsch.

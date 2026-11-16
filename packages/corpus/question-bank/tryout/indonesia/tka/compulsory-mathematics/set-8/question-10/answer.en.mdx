@@ -17,6 +17,55 @@ Since the angle at <InlineMath math="B" /> is a right angle, triangle <InlineMat
 
 <BlockMath math="AD=\sqrt{12^2+6^2}=\sqrt{180}=6\sqrt5\text{ cm}" />
 
+Draw the triangle with the lengths you have found. **Sides <InlineMath math="12" />, <InlineMath math="16" />, and <InlineMath math="20" /> make angle <InlineMath math="B" /> a right angle**, so the bisector <InlineMath math="AD" /> is the hypotenuse of the right triangle <InlineMath math="ABD" />.
+
+<MathVisual
+  title={<>Triangle <InlineMath math="ABC" /> with bisector <InlineMath math="AD" /></>}
+  description={<>A triangle with a right angle at <InlineMath math="B" />, with <InlineMath math="AB=12" /> vertical and <InlineMath math="BC=16" /> horizontal, so <InlineMath math="AC=20" />. Point <InlineMath math="D" /> splits <InlineMath math="BC" /> into <InlineMath math="BD=6" /> and <InlineMath math="DC=10" />. Segment <InlineMath math="AD" /> is the hypotenuse of triangle <InlineMath math="ABD" /> with legs <InlineMath math="12" /> and <InlineMath math="6" />, so its length is <InlineMath math="6\sqrt5" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ab: <InlineMath math="12" />,
+    bd: <InlineMath math="6" />,
+    dc: <InlineMath math="10" />,
+    ac: <InlineMath math="20" />,
+    bisector: <InlineMath math="6\sqrt5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 18 },
+      y: { min: -2, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 12 } },
+      { id: "bd", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "dc", kind: "segment", appearance: "primary", from: { x: 6, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "ac", kind: "segment", appearance: "primary", from: { x: 0, y: 12 }, to: { x: 16, y: 0 } },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 0, y: 12 }, to: { x: 6, y: 0 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 0, y: 12 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 16, y: 0 } },
+      { id: "d", kind: "point", appearance: "answer", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 12 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "c", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "ab", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "bd", objectId: "bd", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "dc", objectId: "dc", at: { x: 11, y: 0 }, placement: "below" },
+      { key: "ac", objectId: "ac", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "bisector", objectId: "bisector", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 As a check, the bisector length formula <InlineMath math="AD^2=AB\cdot AC-BD\cdot DC=240-60=180" /> gives the same result.
 
 So <InlineMath math="AD" /> is <InlineMath math="6\sqrt5\text{ cm}" /> long.

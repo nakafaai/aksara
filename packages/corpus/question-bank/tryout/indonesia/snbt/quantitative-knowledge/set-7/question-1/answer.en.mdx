@@ -38,6 +38,17 @@ Now count again straight from the terms of <InlineMath math="P" />. A term that 
 
 The total is <InlineMath math="20+10+5+2+1=38" />, the same as Legendre's formula gave.
 
+The chart below shows how many factors <InlineMath math="2" /> each term of <InlineMath math="P" /> contributes. Most terms give only <InlineMath math="1" /> or <InlineMath math="2" />, but **<InlineMath math="32" /> gives <InlineMath math="5" /> at once**, and all the bars add up to <InlineMath math="38" />.
+
+<Chart
+  title={<>Factors of <InlineMath math="2" /> in each term from <InlineMath math="22" /> to <InlineMath math="60" /></>}
+  description={<>Terms that aren't multiples of <InlineMath math="4" /> give <InlineMath math="1" /> factor <InlineMath math="2" />. The terms <InlineMath math="24" />, <InlineMath math="40" />, and <InlineMath math="56" /> give <InlineMath math="3" />, the term <InlineMath math="48" /> gives <InlineMath math="4" />, and the term <InlineMath math="32" /> gives <InlineMath math="5" />. All the bars add up to <InlineMath math="38" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 20 }, (_, i) => `${22 + 2 * i}`)}
+  series={[{ label: "Factors of 2 in the term", mark: "bar", values: Array.from({ length: 20 }, (_, i) => Math.log2((22 + 2 * i) & -(22 + 2 * i))) }]}
+  valueLabel="Factors of 2"
+/>
+
 # Turning it into a power of eight
 
 Since <InlineMath math="8^n=2^{3n}" />, <InlineMath math="P" /> is divisible by <InlineMath math="8^n" /> exactly when <InlineMath math="3n\le38" />. **The value of <InlineMath math="n" /> has to be a whole number, so you drop the fraction** instead of rounding up.

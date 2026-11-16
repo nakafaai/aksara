@@ -18,6 +18,31 @@ The hole has to fit inside a face of the cube, a <InlineMath math="9\text{ cm}" 
 
 Notice that the rejected radius doesn't give a negative volume: <InlineMath math="729-225\pi" /> is still positive, because <InlineMath math="225\pi<225\times3.2=720" />. So this mistake **only shows up if you check whether the hole fits**.
 
+The cube face below shows why. The circle with radius <InlineMath math="4" /> **fits inside the <InlineMath math="9" /> by <InlineMath math="9" /> square**, while the circle with radius <InlineMath math="5" /> spills past all four sides.
+
+<MathVisual
+  title={<>The two candidate holes on a face of the cube</>}
+  description={<>A face of the cube is a <InlineMath math="9" /> by <InlineMath math="9" /> square centred on the hole's axis. The circle with radius <InlineMath math="4" /> lies inside the square. The circle with radius <InlineMath math="5" /> has diameter <InlineMath math="10" /> and pokes through all four sides of the square.</>}
+  labels={{
+    fits: <InlineMath math="r=4" />,
+    big: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "face", kind: "polygon", appearance: "reference", vertices: [{ x: -4.5, y: -4.5 }, { x: 4.5, y: -4.5 }, { x: 4.5, y: 4.5 }, { x: -4.5, y: 4.5 }] },
+      { id: "fits", kind: "circle", appearance: "answer", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "big", kind: "circle", appearance: "warning", center: { x: 0, y: 0 }, radius: 5 },
+    ],
+    labels: [
+      { key: "fits", objectId: "fits", at: { x: 0, y: 4 }, placement: "below" },
+      { key: "big", objectId: "big", at: { x: 0, y: -5 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Computing the volume
 
 The volume is **the cube's volume minus the volume of the cylinder that was removed**. The cylinder is as tall as the cube's edge, <InlineMath math="9\text{ cm}" />.

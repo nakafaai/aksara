@@ -27,6 +27,20 @@ Jumlahnya <InlineMath math="28+9+1=38" /> cara.
 
 Hitung juga kasus yang tidak memenuhi syarat: <InlineMath math="k=0" /> memberi <InlineMath math="\binom{5}{5}=1" />, <InlineMath math="k=2" /> memberi <InlineMath math="\binom{6}{4}=15" />, dan <InlineMath math="k=4" /> memberi <InlineMath math="\binom{7}{3}=35" />. Semua kasus berjumlah <InlineMath math="1+15+35+28+9+1=89" />. Banyak cara menutup papan <InlineMath math="2\times n" /> memenuhi <InlineMath math="T_n=T_{n-1}+T_{n-2}" />, karena kolom pertama ditutup satu domino tegak atau satu blok mendatar. Barisan itu adalah <InlineMath math="1,2,3,5,8,13,21,34,55,89" /> untuk <InlineMath math="n=1" /> sampai <InlineMath math="n=10" />. **Total <InlineMath math="89" /> cocok**, jadi pembagian kasusnya lengkap.
 
+Grafik berikut membagi seluruh <InlineMath math="89" /> cara menurut banyak domino tegak <InlineMath math="k" />. Hanya **tiga batang di kanan**, <InlineMath math="k=6" />, <InlineMath math="8" />, dan <InlineMath math="10" />, yang memenuhi syarat, dan jumlahnya <InlineMath math="38" />.
+
+<Chart
+  title={<>Banyak penutupan papan <InlineMath math="2\times10" /> menurut banyak domino tegak</>}
+  description={<>Untuk <InlineMath math="k=0" />, <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="8" />, dan <InlineMath math="10" />, banyak caranya <InlineMath math="1" />, <InlineMath math="15" />, <InlineMath math="35" />, <InlineMath math="28" />, <InlineMath math="9" />, dan <InlineMath math="1" />. Nilai <InlineMath math="k" /> selalu genap, dan totalnya <InlineMath math="89" />.</>}
+  bars="apart"
+  categories={["0", "2", "4", "6", "8", "10"]}
+  series={[
+    { label: "Tegak tidak lebih banyak", mark: "bar", values: [1, 15, 35, null, null, null] },
+    { label: "Tegak lebih banyak", mark: "bar", values: [null, null, null, 28, 9, 1] },
+  ]}
+  valueLabel="Banyak cara"
+/>
+
 # Kesalahan yang sering terjadi
 
 Jika domino mendatar dianggap bisa diletakkan bebas, kamu mungkin memilih posisi <InlineMath math="6" /> domino tegak di antara <InlineMath math="10" /> kolom dan mendapat <InlineMath math="\binom{10}{6}=210" />, padahal **sisa kolomnya harus bisa dipasangkan menjadi blok selebar <InlineMath math="2" />**. Jika lupa bahwa <InlineMath math="k" /> genap, kamu bisa mencari kasus <InlineMath math="k=7" /> atau <InlineMath math="k=9" /> yang tidak mungkin terjadi. Jika menjawab <InlineMath math="89" />, syarat lebih banyak domino tegak belum dipakai.

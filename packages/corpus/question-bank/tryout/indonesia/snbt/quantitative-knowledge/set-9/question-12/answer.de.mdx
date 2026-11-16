@@ -40,4 +40,37 @@ Der Abstand ist kleiner als der Radius, also schneidet die Gerade den Kreis in z
 
 Der Kreis berührt die <InlineMath math="y" />-Achse, wenn <InlineMath math="r=|3|=3" /> gilt, also <InlineMath math="25-c=9" /> und <InlineMath math="c=16" />. Der Abstand des Ursprungs zum Mittelpunkt ist <InlineMath math="\sqrt{3^2+4^2}=5" />, **größer als der Radius** <InlineMath math="3" />. Andersherum: Setzt du den Ursprung in die linke Seite ein, erhältst du <InlineMath math="c=16>0" />, ein Zeichen für einen Punkt außerhalb des Kreises. Die Aussage ist **falsch**.
 
+Die Abbildung zeichnet die drei Kreise aus den Aussagen zwei, drei und vier um denselben Mittelpunkt. Der Kreis für <InlineMath math="c=9" /> berührt die <InlineMath math="x" />-Achse, **schneidet aber die <InlineMath math="y" />-Achse**, die Gerade <InlineMath math="4x-3y=0" /> schneidet den Kreis für <InlineMath math="c=0" /> zweimal, und der Kreis für <InlineMath math="c=16" /> berührt die <InlineMath math="y" />-Achse, mit dem Ursprung außerhalb.
+
+<MathVisual
+  title={<>Kreise mit Mittelpunkt <InlineMath math="(3,-4)" /> für drei Werte von <InlineMath math="c" /></>}
+  description={<>Alle drei Kreise haben den Mittelpunkt <InlineMath math="(3,-4)" />. Für <InlineMath math="c=9" /> ist der Radius <InlineMath math="4" />, der Kreis berührt die <InlineMath math="x" />-Achse und schneidet die <InlineMath math="y" />-Achse. Für <InlineMath math="c=0" /> ist der Radius <InlineMath math="5" />, der Kreis geht durch den Ursprung, und die Gerade <InlineMath math="4x-3y=0" /> schneidet ihn zweimal. Für <InlineMath math="c=16" /> ist der Radius <InlineMath math="3" />, und der Kreis berührt die <InlineMath math="y" />-Achse.</>}
+  labels={{
+    c9: <InlineMath math="c=9" />,
+    c16: <InlineMath math="c=16" />,
+    c0: <InlineMath math="c=0" />,
+    line: <InlineMath math="4x-3y=0" />,
+    center: <InlineMath math="(3,-4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 10 }, y: { min: -11, max: 3 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "c0", kind: "circle", appearance: "reference", center: { x: 3, y: -4 }, radius: 5 },
+      { id: "c9", kind: "circle", appearance: "primary", center: { x: 3, y: -4 }, radius: 4 },
+      { id: "c16", kind: "circle", appearance: "secondary", center: { x: 3, y: -4 }, radius: 3 },
+      { id: "line", kind: "line", appearance: "warning", through: [{ x: 0, y: 0 }, { x: 3, y: 4 }] },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 8, y: -4 }, placement: "right" },
+      { key: "c9", objectId: "c9", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "c16", objectId: "c16", at: { x: 0, y: -4 }, placement: "left" },
+      { key: "line", objectId: "line", at: { x: -1.5, y: -2 }, placement: "left" },
+      { key: "center", objectId: "center", at: { x: 3, y: -4 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die zweite Aussage ist also wahr, die erste, dritte und vierte sind falsch.

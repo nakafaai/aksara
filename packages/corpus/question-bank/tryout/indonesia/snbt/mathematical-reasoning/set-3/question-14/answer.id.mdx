@@ -39,6 +39,20 @@ Untuk <InlineMath math="n=16" />, semua nilai <InlineMath math="26" /> sampai <I
 
 <BlockMath math="5+2+0+0=7" />
 
+Grafik berikut menghitung pilihan <InlineMath math="T" /> untuk setiap <InlineMath math="n" />, sebelum dan sesudah batas ruang. **Batas ruang menghapus semua pilihan untuk <InlineMath math="n=18" /> dan <InlineMath math="n=19" />**, sehingga yang tersisa hanya <InlineMath math="5+2=7" /> rancangan.
+
+<Chart
+  title={<>Banyak lebar pijakan yang boleh untuk setiap banyak anak tangga</>}
+  description={<>Aturan langkah membolehkan <InlineMath math="5" />, <InlineMath math="4" />, <InlineMath math="5" />, dan <InlineMath math="4" /> nilai <InlineMath math="T" /> untuk <InlineMath math="n=16, 17, 18, 19" />. Sesudah batas panjang <InlineMath math="480\text{ cm}" />, yang tersisa berturut-turut <InlineMath math="5" />, <InlineMath math="2" />, <InlineMath math="0" />, dan <InlineMath math="0" /> nilai.</>}
+  bars="apart"
+  categories={["16", "17", "18", "19"]}
+  series={[
+    { label: "Lolos aturan langkah", mark: "bar", values: [30 - 26 + 1, 32 - 29 + 1, 34 - 30 + 1, 35 - 32 + 1] },
+    { label: "Juga muat di ruang", mark: "bar", values: [30 - 26 + 1, 30 - 29 + 1, 0, 0] },
+  ]}
+  valueLabel="Banyak pilihan T"
+/>
+
 # Cek jebakan
 
 Kalau lantai atas ikut dihitung sebagai pijakan, syaratnya menjadi <InlineMath math="nT\le480" />, dan **pilihan untuk <InlineMath math="n=17" /> hilang semua**, sehingga hanya ada <InlineMath math="5" /> rancangan. Kalau batas atas <InlineMath math="2R+T\le66" /> dilupakan, <InlineMath math="n=16" /> mendapat tambahan <InlineMath math="T=31" /> dan <InlineMath math="T=32" />, sehingga terhitung <InlineMath math="9" /> rancangan. Keduanya keliru.

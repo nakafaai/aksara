@@ -7,6 +7,20 @@ Semua pernyataan memakai komposisi, jadi buat dulu tabel lengkap <InlineMath mat
 | <InlineMath math="(g\circ f)(x)" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="6" /> |
 | <InlineMath math="(f\circ g)(x)" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
 
+Ikuti setiap anggota melalui <InlineMath math="f" /> lalu <InlineMath math="g" />. **Tanda centang menandai <InlineMath math="x" /> yang kembali ke dirinya sendiri, ada tiga**, dan keluaran <InlineMath math="2" /> muncul dua kali sehingga <InlineMath math="g\circ f" /> tidak punya invers.
+
+<Mermaid
+  title={<>Jalur setiap anggota melalui <InlineMath math="g\circ f" /></>}
+  description={<>Diagram panah dari <InlineMath math="x" /> ke <InlineMath math="f(x)" /> lalu ke <InlineMath math="g(f(x))" />. Anggota <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="6" /> kembali ke dirinya sendiri. Anggota <InlineMath math="2" /> dan <InlineMath math="4" /> sama-sama berakhir di <InlineMath math="2" />. Tidak ada jalur yang berakhir di <InlineMath math="4" />.</>}
+  chart={`flowchart LR
+  X1["x = 1"] -->|f| A1["4"] -->|g| B1["1 ✓"]
+  X2["x = 2"] -->|f| A2["6"] -->|g| B2["2 ✓"]
+  X3["x = 3"] -->|f| A3["2"] -->|g| B3["5"]
+  X4["x = 4"] -->|f| A4["5"] -->|g| B4["2"]
+  X5["x = 5"] -->|f| A5["1"] -->|g| B5["3"]
+  X6["x = 6"] -->|f| A6["3"] -->|g| B6["6 ✓"]`}
+/>
+
 Sekarang setiap pernyataan bisa dinilai dengan membaca tabel ini, satu kolom demi satu kolom.
 
 # Menilai setiap pernyataan

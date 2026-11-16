@@ -26,6 +26,36 @@ f(4) &= 3+0+27=30 \\
 f(13) &= 12+18+0=30
 \end{aligned}" />
 
+The graph of <InlineMath math="f" /> below shows that flat bottom. The slope changes from <InlineMath math="-6" /> to <InlineMath math="-4" />, then **becomes zero along <InlineMath math="4\le x\le13" />**, and only rises with slope <InlineMath math="6" /> after <InlineMath math="x=13" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=|x-1|+2|x-4|+3|x-13|" /></>}
+  description={<>The graph falls with slope <InlineMath math="-6" /> until <InlineMath math="x=1" />, then with slope <InlineMath math="-4" /> until <InlineMath math="x=4" />. From <InlineMath math="x=4" /> to <InlineMath math="x=13" /> it's flat at <InlineMath math="y=30" />. After that it rises with slope <InlineMath math="6" />.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    left: <InlineMath math="(4,30)" />,
+    right: <InlineMath math="(13,30)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "p1", kind: "function", appearance: "primary", formula: "48 - 6x", domain: { min: -1, max: 1 } },
+      { id: "p2", kind: "function", appearance: "primary", formula: "46 - 4x", domain: { min: 1, max: 4 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "30", domain: { min: 4, max: 13 } },
+      { id: "p4", kind: "function", appearance: "primary", formula: "6x - 48", domain: { min: 13, max: 16 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: 4, y: 30 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 13, y: 30 } },
+    ],
+    labels: [
+      { key: "f", objectId: "p2", at: { x: 2, y: 38 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: 4, y: 30 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 13, y: 30 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Adding up the integers
 
 The integers in <InlineMath math="[4,13]" /> are <InlineMath math="4,5,\ldots,13" />, which is <InlineMath math="10" /> numbers. **Both ends count**, because the value there is <InlineMath math="30" /> too.

@@ -21,6 +21,40 @@ Pada tahap pertama hanya ada air keluar. Pada tahap kedua pompa memasukkan <Inli
 | Air turun, pompa mati | <InlineMath math="22" /> liter per menit keluar | <InlineMath math="\frac{1{.}848}{22}=84" /> menit |
 | Air naik, pompa menyala | <InlineMath math="44" /> liter per menit masuk | <InlineMath math="\frac{1{.}848}{44}=42" /> menit |
 
+Gambar volume air di atas batas kerucut-tabung terhadap waktu. **Garisnya turun <InlineMath math="22" /> liter per menit sampai habis, lalu naik dengan debit bersih <InlineMath math="44" /> liter per menit**, dua kali lebih curam, sehingga tahap naik hanya butuh separuh waktu tahap turun.
+
+<MathVisual
+  title={<>Volume air di bagian tabung menurut waktu</>}
+  description={<>Sumbu mendatar adalah waktu dalam menit sejak pukul 16.00, sumbu tegak adalah volume air di bagian tabung di bawah garis batas aman, dalam liter. Garis turun dari <InlineMath math="1{.}848" /> dengan kemiringan <InlineMath math="-22" /> dan menyentuh nol di menit ke-<InlineMath math="84" />, saat pompa menyala. Setelah itu garis naik dengan kemiringan <InlineMath math="44" /> dan kembali ke <InlineMath math="1{.}848" /> di menit ke-<InlineMath math="126" />, saat pompa mati.</>}
+  labels={{
+    drain: <InlineMath math="-22" />,
+    fill: <InlineMath math="+44" />,
+    on: <>pompa menyala, pukul 17.24</>,
+    off: <>pompa mati, pukul 18.06</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 136 },
+      y: { min: -120, max: 2050 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "drain", kind: "function", appearance: "secondary", formula: "1848 - 22x", domain: { min: 0, max: 84 } },
+      { id: "fill", kind: "function", appearance: "primary", formula: "44(x - 84)", domain: { min: 84, max: 126 } },
+      { id: "on", kind: "point", appearance: "warning", at: { x: 84, y: 0 } },
+      { id: "off", kind: "point", appearance: "answer", at: { x: 126, y: 1848 } },
+    ],
+    labels: [
+      { key: "drain", objectId: "drain", at: { x: 42, y: 924 }, placement: "above-right" },
+      { key: "fill", objectId: "fill", at: { x: 105, y: 924 }, placement: "right" },
+      { key: "on", objectId: "on", at: { x: 84, y: 0 }, placement: "below" },
+      { key: "off", objectId: "off", at: { x: 126, y: 1848 }, placement: "left" },
+    ],
+  }}
+/>
+
 Pompa menyala <InlineMath math="84" /> menit setelah pukul 16.00, yaitu pukul 17.24. Pompa mati <InlineMath math="42" /> menit kemudian, yaitu pukul 18.06. Pipa keluar masih terbuka sampai pukul 20.00, jadi debit bersih <InlineMath math="44" /> liter per menit memang berlaku sepanjang tahap kedua.
 
 Jadi, pompa mati kembali pada pukul 18.06.

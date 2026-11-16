@@ -30,6 +30,51 @@ The point <InlineMath math="H" /> is at the other end of the diagonal, on the fa
 
 <BlockMath math="d_H=BH-d_B=6\sqrt3-2\sqrt3=4\sqrt3\text{ cm}" />
 
+Slice the cube along the diagonal plane <InlineMath math="BDHF" />. **Plane <InlineMath math="ACF" /> cuts this slice along segment <InlineMath math="FO" />, and that segment is perpendicular to the space diagonal <InlineMath math="BH" />**. The crossing point splits <InlineMath math="BH" /> into <InlineMath math="2\sqrt3" /> on the side of <InlineMath math="B" /> and <InlineMath math="4\sqrt3" /> on the side of <InlineMath math="H" />.
+
+<MathVisual
+  title={<>Diagonal plane <InlineMath math="BDHF" /> and the distance from <InlineMath math="H" /> to plane <InlineMath math="ACF" /></>}
+  description={<>Rectangle <InlineMath math="BDHF" /> measures <InlineMath math="6\sqrt2\times6" />, with <InlineMath math="O" /> the midpoint of <InlineMath math="BD" />, the centre of the base. Segment <InlineMath math="FO" /> is the trace of plane <InlineMath math="ACF" /> on this slice. Diagonal <InlineMath math="BH" />, of length <InlineMath math="6\sqrt3" />, crosses <InlineMath math="FO" /> at a right angle at the point <InlineMath math="2\sqrt3" /> from <InlineMath math="B" /> and <InlineMath math="4\sqrt3" /> from <InlineMath math="H" />.</>}
+  labels={{
+    b: <InlineMath math="B" />,
+    d: <InlineMath math="D" />,
+    h: <InlineMath math="H" />,
+    f: <InlineMath math="F" />,
+    o: <InlineMath math="O" />,
+    near: <InlineMath math="2\sqrt3" />,
+    far: <InlineMath math="4\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9.5 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "section", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6 * Math.sqrt(2), y: 0 }, { x: 6 * Math.sqrt(2), y: 6 }, { x: 0, y: 6 }] },
+      { id: "trace", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 3 * Math.sqrt(2), y: 0 } },
+      { id: "near", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(2), y: 2 } },
+      { id: "far", kind: "segment", appearance: "answer", from: { x: 2 * Math.sqrt(2), y: 2 }, to: { x: 6 * Math.sqrt(2), y: 6 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: 6 * Math.sqrt(2), y: 0 } },
+      { id: "h", kind: "point", appearance: "answer", at: { x: 6 * Math.sqrt(2), y: 6 } },
+      { id: "f", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 3 * Math.sqrt(2), y: 0 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "d", objectId: "d", at: { x: 6 * Math.sqrt(2), y: 0 }, placement: "below-right" },
+      { key: "h", objectId: "h", at: { x: 6 * Math.sqrt(2), y: 6 }, placement: "above-right" },
+      { key: "f", objectId: "f", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "o", objectId: "o", at: { x: 3 * Math.sqrt(2), y: 0 }, placement: "below" },
+      { key: "near", objectId: "near", at: { x: Math.sqrt(2), y: 1 }, placement: "above-left" },
+      { key: "far", objectId: "far", at: { x: 4 * Math.sqrt(2), y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Check with the pyramid <InlineMath math="H.ACF" />. The solid <InlineMath math="ACFH" /> is the cube minus four corners like <InlineMath math="B.ACF" />, so its volume is <InlineMath math="216-4\cdot36=72" />, and <InlineMath math="\frac{3\cdot72}{18\sqrt3}=\frac{12}{\sqrt3}=4\sqrt3" />. **It matches**.
 
 So the distance from <InlineMath math="H" /> to the plane <InlineMath math="ACF" /> is <InlineMath math="4\sqrt3\text{ cm}" />, which is two thirds of the space diagonal.

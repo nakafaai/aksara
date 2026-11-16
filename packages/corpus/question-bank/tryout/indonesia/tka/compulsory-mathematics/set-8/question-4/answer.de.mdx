@@ -23,6 +23,20 @@ a-c=4&:\quad c=a-4,\ 4a-4=12 \Rightarrow a=4,\ c=0,\ b=9 \\
 c-a=4&:\quad c=a+4,\ 4a+4=12 \Rightarrow a=2,\ c=6,\ b=5
 \end{aligned}" />
 
+Der Baum unten trennt die beiden Vorzeichen der Differenz. **Der linke Zweig scheitert, weil seine Umkehrung mit <InlineMath math="0" /> beginnt**, also erfüllt nur <InlineMath math="256" /> alle Bedingungen.
+
+<Mermaid
+  title={<>Zwei Fälle für das Vorzeichen der Differenz</>}
+  description={<>Von <InlineMath math="|a-c|=4" /> gehen zwei Zweige aus. Der Zweig <InlineMath math="a-c=4" /> liefert <InlineMath math="490" />, dessen Umkehrung <InlineMath math="094" /> keine dreistellige Zahl ist. Der Zweig <InlineMath math="c-a=4" /> liefert <InlineMath math="256" /> mit Umkehrung <InlineMath math="652" />, und das Produkt aus Hunderter- und Zehnerziffer ist <InlineMath math="10" />.</>}
+  chart={`flowchart TD
+  S["|a − c| = 4"] --> K1["a − c = 4"]
+  S --> K2["c − a = 4"]
+  K1 --> N1["490 → 094"]
+  K2 --> N2["256 → 652"]
+  N1 --> R1["verworfen, nicht dreistellig"]
+  N2 --> R2["gültig: 2 × 5 = 10"]`}
+/>
+
 Der erste Fall liefert <InlineMath math="490" />. Umgedreht wird daraus <InlineMath math="094" />, also <InlineMath math="94" />, und das ist **keine dreistellige Zahl**. Die Aufgabe schließt diesen Fall aus. Der zweite Fall liefert <InlineMath math="256" /> mit der Umkehrung <InlineMath math="652" />.
 
 Probe für <InlineMath math="256" />: <InlineMath math="2+5+6=13" />, <InlineMath math="5=2(2)+1" /> und <InlineMath math="652-256=396" />. Alle Bedingungen stimmen.

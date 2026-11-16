@@ -25,6 +25,19 @@ Selama istirahat hanya Loket A yang menerima orang baru, setiap <InlineMath math
 
 Orang nomor <InlineMath math="17" /> datang pukul 08.21 dan baru dilayani pukul 08.44, jadi ia menunggu <InlineMath math="44-21=23" /> menit.
 
+Grafik berikut membandingkan waktu tunggu pada hari itu dengan hari biasa. **Selama istirahat garisnya naik satu menit setiap orang** sampai puncak <InlineMath math="23" /> menit pada orang nomor <InlineMath math="17" />, lalu turun lagi begitu Loket B kembali bekerja.
+
+<Chart
+  title={<>Waktu tunggu orang nomor <InlineMath math="11" /> sampai <InlineMath math="22" /></>}
+  description={<>Pada hari Loket B istirahat, waktu tunggunya berturut-turut <InlineMath math="21, 18, 19, 20, 21, 22, 23, 21, 21, 21, 19, 20" /> menit. Pada hari biasa, waktu tunggunya berturut-turut <InlineMath math="21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12" /> menit.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 11}`)}
+  series={[
+    { label: "Hari Loket B istirahat", mark: "line", values: [21, 18, 19, 20, 21, 22, 23, 21, 21, 21, 19, 20] },
+    { label: "Hari biasa", mark: "line", values: [21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12] },
+  ]}
+  valueLabel="Waktu tunggu (menit)"
+/>
+
 # Sesudah istirahat
 
 Mulai 08.44 kedua loket kembali sibuk terus. Dalam setiap <InlineMath math="12" /> menit, Loket A memulai <InlineMath math="3" /> pelayanan dan Loket B <InlineMath math="2" /> pelayanan, sedangkan yang datang hanya <InlineMath math="4" /> orang. Jadi orang nomor <InlineMath math="n+5" /> mulai <InlineMath math="12" /> menit setelah orang nomor <InlineMath math="n" />, tetapi datang <InlineMath math="15" /> menit setelahnya, sehingga **setiap lima nomor waktu tunggu turun tiga menit**.

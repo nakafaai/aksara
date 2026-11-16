@@ -4,6 +4,64 @@ Gefragt ist die Wahrscheinlichkeit für **drei Bedingungen zugleich**: abwechsel
 
 Acht verschiedene Schüler lassen sich auf <InlineMath math="8!=40{.}320" /> Arten aufstellen, und laut Aufgabe sind alle diese Reihenfolgen gleich wahrscheinlich. Eine abwechselnde Reihe hat **zwei Muster**: Jungen auf den Plätzen <InlineMath math="1,3,5,7" /> oder Jungen auf den Plätzen <InlineMath math="2,4,6,8" />. Im ersten Muster gehört das linke Ende (Platz <InlineMath math="1" />) einem Jungen und das rechte Ende (Platz <InlineMath math="8" />) einem Mädchen. Im zweiten Muster ist es umgekehrt. In jedem Muster **steht Andi also nur ein Ende zur Verfügung**.
 
+Zeichne die beiden Muster als zwei Reihen mit acht Plätzen. **In jedem Muster hat Andi nur ein Ende, und der einzige Nachbarplatz ist der Platz, den Bela nicht nehmen darf**.
+
+<MathVisual
+  title={<>Die beiden abwechselnden Muster und Andis Platz</>}
+  description={<>Die obere Reihe ist das erste Muster: Jungen auf den Plätzen <InlineMath math="1,3,5,7" />, Mädchen auf den Plätzen <InlineMath math="2,4,6,8" />, Andi auf Platz <InlineMath math="1" />, und Platz <InlineMath math="2" /> ist für Bela gesperrt. Die untere Reihe ist das zweite Muster: Mädchen auf den Plätzen <InlineMath math="1,3,5,7" />, Jungen auf den Plätzen <InlineMath math="2,4,6,8" />, Andi auf Platz <InlineMath math="8" />, und Platz <InlineMath math="7" /> ist für Bela gesperrt. Jedes Muster liefert <InlineMath math="108" /> Reihenfolgen.</>}
+  labels={{
+    "andi-one": <>Andi</>,
+    "block-one": <>nicht Bela</>,
+    "boy-one": <>Junge</>,
+    "girl-one": <>Mädchen</>,
+    "count-one": <InlineMath math="1\cdot3\cdot3!\cdot3!=108" />,
+    "andi-two": <>Andi</>,
+    "block-two": <>nicht Bela</>,
+    "boy-two": <>Junge</>,
+    "girl-two": <>Mädchen</>,
+    "count-two": <InlineMath math="108" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 13 },
+      y: { min: -1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "andi-one", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "block-one", kind: "point", appearance: "warning", at: { x: 2, y: 2 } },
+      { id: "boy-one", kind: "point", appearance: "primary", at: { x: 3, y: 2 } },
+      { id: "girl-one", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "boy-one-b", kind: "point", appearance: "primary", at: { x: 5, y: 2 } },
+      { id: "girl-one-b", kind: "point", appearance: "secondary", at: { x: 6, y: 2 } },
+      { id: "boy-one-c", kind: "point", appearance: "primary", at: { x: 7, y: 2 } },
+      { id: "count-one", kind: "point", appearance: "secondary", at: { x: 8, y: 2 } },
+      { id: "girl-two", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "boy-two", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "girl-two-b", kind: "point", appearance: "secondary", at: { x: 3, y: 0 } },
+      { id: "boy-two-b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "girl-two-c", kind: "point", appearance: "secondary", at: { x: 5, y: 0 } },
+      { id: "boy-two-c", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "block-two", kind: "point", appearance: "warning", at: { x: 7, y: 0 } },
+      { id: "andi-two", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "andi-one", objectId: "andi-one", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "block-one", objectId: "block-one", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "boy-one", objectId: "boy-one", at: { x: 3, y: 2 }, placement: "below" },
+      { key: "girl-one", objectId: "girl-one", at: { x: 4, y: 2 }, placement: "below" },
+      { key: "count-one", objectId: "count-one", at: { x: 8, y: 2 }, placement: "right" },
+      { key: "girl-two", objectId: "girl-two", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "boy-two", objectId: "boy-two", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "block-two", objectId: "block-two", at: { x: 7, y: 0 }, placement: "above-left" },
+      { key: "andi-two", objectId: "andi-two", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "count-two", objectId: "andi-two", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Die passenden Reihenfolgen zählen
 
 Nimm das erste Muster. Andi muss auf Platz <InlineMath math="1" /> stehen, und sein einziger Nachbar steht auf Platz <InlineMath math="2" />, einem Mädchenplatz. Bela darf nicht auf Platz <InlineMath math="2" />, also **wählt Bela einen der drei anderen Mädchenplätze**. Die übrigen drei Mädchen besetzen die restlichen drei Mädchenplätze, und die übrigen drei Jungen die restlichen drei Jungenplätze:

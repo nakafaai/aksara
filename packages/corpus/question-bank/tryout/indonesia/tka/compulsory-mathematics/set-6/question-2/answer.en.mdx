@@ -16,6 +16,40 @@ Now work out how much tap P and the leak manage on their own, and then **tap Q h
 \text{running time of Q}&=\frac{272}{16}=17\text{ minutes}
 \end{aligned}" />
 
+Draw the tank's contents when tap Q opens at 6:31. **The last part of the line must rise <InlineMath math="32" /> litres per minute for <InlineMath math="17" /> minutes to touch the capacity exactly at minute <InlineMath math="48" />**. Opening tap Q later pushes that bend to the right, and the line never reaches the capacity in time.
+
+<MathVisual
+  title={<>Tank contents with tap Q opened at 6:31</>}
+  description={<>The horizontal axis is minutes since 6:00, and the vertical axis is the contents in litres. The line rises <InlineMath math="24" /> per minute to <InlineMath math="480" /> litres, then <InlineMath math="16" /> per minute to <InlineMath math="656" /> litres at minute <InlineMath math="31" />, then <InlineMath math="32" /> per minute to <InlineMath math="1{,}200" /> litres at minute <InlineMath math="48" />, which is 6:48.</>}
+  labels={{
+    open: <InlineMath math="(31,\ 656)" />,
+    full: <InlineMath math="(48,\ 1{.}200)" />,
+    cap: <>capacity <InlineMath math="1{,}200" /> litres</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 52 },
+      y: { min: -40, max: 1300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 31 } },
+      { id: "both", kind: "function", appearance: "answer", formula: "656 + 32(x - 31)", domain: { min: 31, max: 48 } },
+      { id: "cap", kind: "function", appearance: "reference", formula: "1200", domain: { min: 0, max: 51 } },
+      { id: "open", kind: "point", appearance: "secondary", at: { x: 31, y: 656 } },
+      { id: "full", kind: "point", appearance: "answer", at: { x: 48, y: 1200 } },
+    ],
+    labels: [
+      { key: "open", objectId: "open", at: { x: 31, y: 656 }, placement: "below-right" },
+      { key: "full", objectId: "full", at: { x: 48, y: 1200 }, placement: "below-right" },
+      { key: "cap", objectId: "cap", at: { x: 10, y: 1200 }, placement: "above" },
+    ],
+  }}
+/>
+
 Tap Q has to run for <InlineMath math="17" /> minutes before 6:48, so it has to open at 6:31. That's after 6:20, so the assumption that the leak had already started before tap Q opened holds.
 
 # Check by tracing it again
