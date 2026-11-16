@@ -10,6 +10,7 @@ import {
 
 const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
   {
+    explanation: "figure",
     interactions: ["choice", "matrix", "numericEntry"],
     items: 30,
     key: "general-reasoning",
@@ -30,6 +31,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
+    explanation: "evidence",
     interactions: ["choice", "matrix"],
     items: 20,
     key: "general-knowledge-and-understanding",
@@ -50,6 +52,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
+    explanation: "evidence",
     interactions: ["choice", "matrix"],
     items: 20,
     key: "reading-comprehension-and-writing",
@@ -70,6 +73,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
+    explanation: "figure",
     interactions: ["choice", "matrix", "numericEntry"],
     items: 20,
     key: "quantitative-knowledge",
@@ -90,6 +94,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
+    explanation: "evidence",
     interactions: ["choice", "matrix"],
     items: 30,
     key: "literacy-in-indonesian",
@@ -110,6 +115,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
+    explanation: "evidence",
     interactions: ["choice", "matrix"],
     items: 20,
     key: "literacy-in-english",
@@ -130,6 +136,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
+    explanation: "figure",
     interactions: ["choice", "matrix", "numericEntry"],
     items: 20,
     key: "mathematical-reasoning",

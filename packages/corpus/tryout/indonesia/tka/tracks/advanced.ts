@@ -18,6 +18,7 @@ export const tkaAdvancedMathematicsTrack = {
     scoring: { kind: "raw" },
     sections: [
       {
+        explanation: "figure",
         interactions: ["choice", "matrix"],
         items: 25,
         key: "advanced-mathematics",
