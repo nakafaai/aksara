@@ -1,0 +1,326 @@
+export const metadata = {
+  title: "Chemical Bond Notes for Form Four Chemistry",
+  description:
+    "Form 4 Chemistry Chapter 5: build ionic formulas, draw covalent bonds and explain hydrogen, dative and metallic bonds, with worked examples and practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Chemical Bond",
+};
+
+## Why Atoms Form Bonds
+
+A **chemical bond** is the attraction that holds atoms or ions together in a substance. Atoms bond to reach a stable **octet** (eight valence electrons) or **duplet** (two valence electrons), like a noble gas. There are three main routes: a metal atom **transfers** electrons to a non-metal atom (ionic bond), non-metal atoms **share** electrons (covalent bond), and metal atoms release their valence electrons into a **sea of electrons** (metallic bond).
+
+So when you meet a compound, ask first: which atoms are involved? A metal with a non-metal usually forms an ionic bond. Two non-metals form a covalent bond. A metal on its own forms a metallic bond. You'll need the number of [valence electrons](/en/subjects/chemistry/structure-matter/valence-electron) in each atom, because that number decides how many electrons are transferred or shared.
+
+Noble gases such as neon (<InlineMath math="2.8" />) and argon (<InlineMath math="2.8.8" />) are already stable, so they hardly react at all. Other atoms react until their electron arrangement matches the nearest noble gas.
+
+## Ionic Bonds from Electron Transfer
+
+An **ionic bond** forms when a metal atom gives away its valence electrons and a non-metal atom takes them. The metal atom becomes a **cation** (a positive ion), the non-metal atom becomes an **anion** (a negative ion), and the two ions are held by a strong **electrostatic attraction**.
+
+Take sodium and chlorine. Sodium (<InlineMath math="2.8.1" />) loses one electron and becomes <InlineMath math="\mathrm{Na^+}" /> with the arrangement <InlineMath math="2.8" />. Chlorine (<InlineMath math="2.8.7" />) gains that electron and becomes <InlineMath math="\mathrm{Cl^-}" /> with the arrangement <InlineMath math="2.8.8" />. Play the model and watch the metal's outer electron cross into the non-metal's outer shell while both particles change size.
+
+<IonFormationLab
+  title={<>Two Atoms Becoming Two Ions</>}
+  description={
+    <>
+      Pick a metal and non-metal pair, then play the animation. The metal's
+      valence electrons move across until both ions have a noble gas
+      arrangement.
+    </>
+  }
+  pairs={["sodium-chlorine", "magnesium-oxygen", "lithium-fluorine", "potassium-chlorine"]}
+  labels={{
+    choose: "Pick a pair of atoms",
+    metalRadius: <>Radius of the metal particle</>,
+    metalShells: <>Electron arrangement of the metal</>,
+    nonmetalRadius: <>Radius of the non-metal particle</>,
+    nonmetalShells: <>Electron arrangement of the non-metal</>,
+    progress: "Electron transfer progress",
+    view: "Electron transfer as ions form",
+  }}
+/>
+
+Notice that the sodium ion ends up **smaller** than the sodium atom because a whole shell is gone, while the chloride ion ends up **larger** because the extra electron adds repulsion. Millions of these ions then stack into an ordered **crystal lattice**. Each ion is surrounded by ions of opposite charge, so an ionic compound has no single molecules.
+
+<IonLatticeLab
+  title={<>The Crystal Lattice of an Ionic Compound</>}
+  description={
+    <>
+      Rotate the lattice and compare the crystals. Each cation sits among six
+      anions, and each anion sits among six cations.
+    </>
+  }
+  crystals={["sodium-chloride", "magnesium-oxide", "potassium-chloride"]}
+  labels={{
+    cells: "Unit cells per edge",
+    choose: "Pick a crystal",
+    count: <>Number of ions</>,
+    formula: <>Formula</>,
+    ions: <>Ions and their radii</>,
+    lattice: <>Unit cell edge</>,
+    view: "Ionic crystal lattice",
+  }}
+/>
+
+### Example Formula of Magnesium Chloride
+
+Build the **formula of the ionic compound** formed by magnesium (proton number <InlineMath math="12" />) and chlorine (proton number <InlineMath math="17" />).
+
+Start with the electron arrangements. Magnesium is <InlineMath math="2.8.2" />, so it loses <InlineMath math="2" /> electrons. Chlorine is <InlineMath math="2.8.7" />, so each chlorine atom needs to gain just <InlineMath math="1" /> electron:
+
+<MathContainer>
+<BlockMath math="\mathrm{Mg} \rightarrow \mathrm{Mg^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{Cl} + e^- \rightarrow \mathrm{Cl^-}" />
+</MathContainer>
+
+One magnesium atom gives away two electrons, so you need two chlorine atoms to take both of them. The formula is <InlineMath math="\mathrm{MgCl_2}" />.
+
+Check the total charge. An ionic compound has to be neutral:
+
+<BlockMath math="(+2) + 2 \times (-1) = 0" />
+
+The total is zero, so <InlineMath math="\mathrm{MgCl_2}" /> is right. The <InlineMath math="\mathrm{Mg^{2+}}" /> ion is now <InlineMath math="2.8" /> and each <InlineMath math="\mathrm{Cl^-}" /> is now <InlineMath math="2.8.8" />, both octets.
+
+### Example Formula of Magnesium Oxide
+
+Magnesium (<InlineMath math="2.8.2" />) reacts with oxygen (<InlineMath math="2.6" />). Magnesium loses <InlineMath math="2" /> electrons and oxygen gains <InlineMath math="2" /> electrons, so **the ratio is one to one** and the formula is <InlineMath math="\mathrm{MgO}" />.
+
+<BlockMath math="(+2) + (-2) = 0" />
+
+The ion charges in <InlineMath math="\mathrm{MgO}" /> are <InlineMath math="+2" /> and <InlineMath math="-2" />, bigger than the <InlineMath math="+1" /> and <InlineMath math="-1" /> in <InlineMath math="\mathrm{NaCl}" />. The attraction between the ions is stronger, and that's why magnesium oxide melts at a much higher temperature. Compare the unit cell edges of the two crystals in the lattice model above.
+
+## Covalent Bonds from Shared Electrons
+
+A **covalent bond** forms when two non-metal atoms **share a pair of electrons**. Each shared pair is one bond. Both non-metal atoms want to gain electrons, so neither one gives electrons away completely. They share instead.
+
+How many pairs they share depends on how many electrons each atom still needs for an octet:
+
+| Molecule | Electrons each atom needs | Type of bond |
+| :--- | :--- | :--- |
+| <InlineMath math="\mathrm{H_2}" /> | <InlineMath math="1" /> (for a duplet) | Single bond, <InlineMath math="\mathrm{H{-}H}" /> |
+| <InlineMath math="\mathrm{O_2}" /> | <InlineMath math="2" /> | Double bond, <InlineMath math="\mathrm{O{=}O}" /> |
+| <InlineMath math="\mathrm{N_2}" /> | <InlineMath math="3" /> | Triple bond, <InlineMath math="\mathrm{N{\equiv}N}" /> |
+
+Rotate the molecules in the model below. Compare water, ammonia and methane: the central atom shares electrons with two, three and four hydrogen atoms, matching how many electrons oxygen, nitrogen and carbon need.
+
+<MoleculeShapeLab
+  title={<>Covalent Molecules in Three Dimensions</>}
+  description={
+    <>
+      Pick a molecule and rotate it. Each stick between two atoms is one
+      shared pair of electrons.
+    </>
+  }
+  molecules={[
+    { id: "hydrogen", name: "hydrogen" },
+    { id: "oxygen", name: "oxygen" },
+    { id: "nitrogen", name: "nitrogen" },
+    { id: "water", name: "water" },
+    { id: "ammonia", name: "ammonia" },
+    { id: "methane", name: "methane" },
+    { id: "carbon-dioxide", name: "carbon dioxide" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Pick a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Covalent molecules",
+  }}
+/>
+
+Now try an example. Draw the bonds in <InlineMath math="\mathrm{CO_2}" />. Carbon is <InlineMath math="2.4" />, so it needs <InlineMath math="4" /> more electrons. Each oxygen is <InlineMath math="2.6" />, so each oxygen needs <InlineMath math="2" /> more electrons.
+
+Carbon shares two pairs of electrons with each oxygen. That gives two double bonds:
+
+<BlockMath math="\mathrm{O{=}C{=}O}" />
+
+Check every atom. Carbon has <InlineMath math="4" /> shared pairs, which is <InlineMath math="8" /> electrons. Each oxygen has <InlineMath math="2" /> shared pairs and <InlineMath math="2" /> lone pairs, also <InlineMath math="8" /> electrons. Check the total number of valence electrons too:
+
+<BlockMath math="4 + 6 + 6 = 16 = 4 \times 2 + 4 \times 2" />
+
+Four shared pairs and four lone pairs make <InlineMath math="16" /> electrons, the same as the valence electrons you started with. So the structure is right.
+
+## Hydrogen Bonds and Dative Bonds
+
+These two bonds look special, but both come from the same ideas: electron pairs and the attraction between charges. A hydrogen bond acts **between molecules**, while a dative bond is a covalent bond whose two electrons both come from the same atom.
+
+### Hydrogen Bonds between Molecules
+
+A **hydrogen bond** is the attraction between a hydrogen atom bonded to a highly electronegative atom, namely **nitrogen, oxygen or fluorine**, and a nitrogen, oxygen or fluorine atom in another molecule. The strongly electronegative atom pulls the bonding electrons towards itself, so the hydrogen end becomes slightly positive and is drawn to a lone pair on the neighbouring molecule.
+
+Hydrogen bonds raise boiling points sharply. In each pair in this chart, the left molecule has hydrogen bonds and the right molecule from the same group doesn't.
+
+<Chart
+  title={<>Boiling Points with and without Hydrogen Bonds</>}
+  bars="apart"
+  categories={["Water and hydrogen sulfide", "Ammonia and phosphine", "Hydrogen fluoride and hydrogen chloride"]}
+  series={[
+    { label: "Has hydrogen bonds", mark: "bar", values: [100, -33, 20] },
+    { label: "No hydrogen bonds", mark: "bar", values: [-60, -88, -85] },
+  ]}
+  valueLabel="Boiling point (°C)"
+  description={
+    <>
+      Water <InlineMath math="100^\circ\text{C}" /> against hydrogen sulfide{" "}
+      <InlineMath math="-60^\circ\text{C}" />, ammonia{" "}
+      <InlineMath math="-33^\circ\text{C}" /> against phosphine{" "}
+      <InlineMath math="-88^\circ\text{C}" />, hydrogen fluoride{" "}
+      <InlineMath math="20^\circ\text{C}" /> against hydrogen chloride{" "}
+      <InlineMath math="-85^\circ\text{C}" />.
+    </>
+  }
+/>
+
+Hydrogen sulfide molecules are heavier than water molecules, yet hydrogen sulfide boils <InlineMath math="160^\circ\text{C}" /> lower. Sulfur isn't electronegative enough, so <InlineMath math="\mathrm{H_2S}" /> molecules are held only by weak van der Waals forces. Water molecules are held by hydrogen bonds, so separating them takes more energy.
+
+### Dative Bonds in the Ammonium Ion
+
+A **dative bond** is a covalent bond in which **both electrons of the shared pair come from one atom**. That atom needs a lone pair, and the atom or ion receiving it needs an empty space for two electrons.
+
+Ammonia has one lone pair on its nitrogen. A hydrogen ion <InlineMath math="\mathrm{H^+}" /> has no electrons at all. Nitrogen donates its lone pair, and an ammonium ion forms:
+
+<BlockMath math="\mathrm{NH_3} + \mathrm{H^+} \rightarrow \mathrm{NH_4^+}" />
+
+The hydronium ion forms the same way when water donates one lone pair on its oxygen to <InlineMath math="\mathrm{H^+}" />, giving <InlineMath math="\mathrm{H_3O^+}" />. Once <InlineMath math="\mathrm{NH_4^+}" /> has formed, all four <InlineMath math="\mathrm{N{-}H}" /> bonds are identical. The word dative only tells you where the electrons came from.
+
+## Metallic Bonds in a Sea of Electrons
+
+In a metal, every atom releases its valence electrons. Those electrons are **delocalised**, which means they move freely through the whole metal and form a sea of electrons. A **metallic bond** is the electrostatic attraction between that sea of electrons and the positively charged metal ions.
+
+This model explains why metals conduct electricity. Move the slider and watch the electrons drift to the right when a voltage is applied, while the metal ions stay at their lattice positions.
+
+<MathVisual
+  title={<>Free Electrons in a Metal Lattice</>}
+  description={
+    <>
+      The blue points are the fixed, positively charged metal ions. The orange
+      points are delocalised electrons. The slider <InlineMath math="s" />{" "}
+      moves the electrons towards the positive terminal.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 1.4, value: 0, step: 0.05, label: "s" },
+    ],
+    objects: [
+      { id: "ion-1", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "ion-2", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "ion-3", kind: "point", appearance: "primary", at: { x: 5, y: 1 } },
+      { id: "ion-4", kind: "point", appearance: "primary", at: { x: 7, y: 1 } },
+      { id: "ion-5", kind: "point", appearance: "primary", at: { x: 9, y: 1 } },
+      { id: "ion-6", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "ion-7", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+      { id: "ion-8", kind: "point", appearance: "primary", at: { x: 5, y: 3 } },
+      { id: "ion-9", kind: "point", appearance: "primary", at: { x: 7, y: 3 } },
+      { id: "ion-10", kind: "point", appearance: "primary", at: { x: 9, y: 3 } },
+      { id: "electron-1", kind: "marker", x: "0.4 + s", y: "2", appearance: "warning" },
+      { id: "electron-2", kind: "marker", x: "2.4 + s", y: "2", appearance: "warning" },
+      { id: "electron-3", kind: "marker", x: "4.4 + s", y: "2", appearance: "warning" },
+      { id: "electron-4", kind: "marker", x: "6.4 + s", y: "2", appearance: "warning" },
+      { id: "electron-5", kind: "marker", x: "1.6 + s", y: "4", appearance: "warning" },
+      { id: "electron-6", kind: "marker", x: "3.6 + s", y: "4", appearance: "warning" },
+      { id: "electron-7", kind: "marker", x: "5.6 + s", y: "4", appearance: "warning" },
+      { id: "electron-8", kind: "marker", x: "7.6 + s", y: "4", appearance: "warning" },
+      { id: "flow", kind: "vector", appearance: "reference", from: { x: 3, y: 0.3 }, to: { x: 7, y: 0.3 } },
+    ],
+    labels: [
+      { key: "ion", objectId: "ion-1", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "electron", objectId: "electron-1", at: { x: "0.4 + s", y: "2" }, placement: "above" },
+      { key: "flow", objectId: "flow", at: { x: 7, y: 0.3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    s: <>Electron drift <InlineMath math="s" /></>,
+    ion: <InlineMath math="\mathrm{M^+}" />,
+    electron: <InlineMath math="e^-" />,
+    flow: <>Direction of electron flow</>,
+  }}
+/>
+
+The same sea of electrons explains other properties. Metals can be hammered and drawn into wires because layers of ions can slide without breaking the bond: the sea of electrons still holds the ions in their new positions. Metals also conduct heat well because the free electrons carry energy quickly.
+
+## Comparing Ionic and Covalent Compounds
+
+The type of bond decides the physical properties. In an ionic compound, the **strong ionic bonds** have to be overcome to melt the solid. In a simple covalent molecule, the covalent bonds inside each molecule don't break on melting. All you need to overcome are the weak **forces between molecules**.
+
+<Chart
+  title={<>Melting Points of Ionic and Covalent Substances</>}
+  bars="apart"
+  categories={["Sodium chloride", "Potassium chloride", "Iodine", "Naphthalene"]}
+  series={[
+    { label: "Melting point (°C)", mark: "bar", values: [801, 770, 114, 80] },
+  ]}
+  valueLabel="Melting point (°C)"
+  description={
+    <>
+      Ionic compounds: sodium chloride <InlineMath math="801^\circ\text{C}" />{" "}
+      and potassium chloride <InlineMath math="770^\circ\text{C}" />. Simple
+      covalent substances: iodine <InlineMath math="114^\circ\text{C}" /> and
+      naphthalene <InlineMath math="80^\circ\text{C}" />.
+    </>
+  }
+/>
+
+This table sums up the differences that SPM questions ask about again and again:
+
+| Property | Ionic compound | Simple covalent compound |
+| :--- | :--- | :--- |
+| Melting and boiling points | High | Low |
+| Electrical conductivity | Conducts when molten or in aqueous solution | Doesn't conduct in any state |
+| Solubility | Mostly soluble in water | Mostly soluble in organic solvents |
+
+An ionic compound conducts only when its ions can move. In the solid, the ions are locked at lattice positions, so solid sodium chloride doesn't conduct. Once it's melted or dissolved in water, the ions move freely and a current flows. Some covalent substances have a **giant covalent structure**, such as diamond and silicon dioxide. These have very high melting points because every atom is covalently bonded to its neighbours throughout the crystal.
+
+## Common Mistakes about Chemical Bonds
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Sodium chloride forms by sharing electrons. | Sodium is a metal and chlorine is a non-metal, so electrons are transferred. | Metal with non-metal means an ionic bond. |
+| Solid sodium chloride conducts electricity. | The ions are locked in the lattice and can't move. | Ask whether any ions or electrons are free to move. |
+| Naphthalene melts easily because its covalent bonds are weak. | Melting only overcomes the forces between molecules. The covalent bonds inside each molecule stay intact. | Separate bonds inside a molecule from forces between molecules. |
+| A hydrogen bond is a bond between two hydrogen atoms. | A hydrogen bond is the attraction between H on N, O or F and the N, O or F of another molecule. | Look for hydrogen bonded to N, O or F. |
+
+The second and third mistakes show up most often in SPM structured questions. You'll avoid both if you always ask **which particles** move or get separated.
+
+## Practice on Chemical Bonds
+
+These questions start with a simple formula and finish with explaining a property. **Write the electron arrangement first** for every atom.
+
+1. Aluminium (proton number <InlineMath math="13" />) reacts with oxygen (proton number <InlineMath math="8" />). Find the formula of the compound formed.
+
+2. Explain how the bond in a nitrogen molecule, <InlineMath math="\mathrm{N_2}" />, forms. How many pairs of electrons are shared?
+
+3. Element <InlineMath math="\mathrm{X}" /> has proton number <InlineMath math="19" /> and element <InlineMath math="\mathrm{Y}" /> has proton number <InlineMath math="17" />. State the type of bond in the compound they form, its formula, and whether its aqueous solution conducts electricity.
+
+4. The relative molecular mass of water is <InlineMath math="18" /> and that of hydrogen sulfide is <InlineMath math="34" />. Explain why the boiling point of water (<InlineMath math="100^\circ\text{C}" />) is so much higher than that of hydrogen sulfide (<InlineMath math="-60^\circ\text{C}" />).
+
+### Solutions
+
+**Solution 1**: Aluminium is <InlineMath math="2.8.3" />, so it loses <InlineMath math="3" /> electrons and becomes <InlineMath math="\mathrm{Al^{3+}}" />. Oxygen is <InlineMath math="2.6" />, so it gains <InlineMath math="2" /> electrons and becomes <InlineMath math="\mathrm{O^{2-}}" />. The lowest common multiple of <InlineMath math="3" /> and <InlineMath math="2" /> is <InlineMath math="6" />, so two aluminium ions give six electrons to three oxide ions. The formula is <InlineMath math="\mathrm{Al_2O_3}" />.
+
+<BlockMath math="2 \times (+3) + 3 \times (-2) = 0" />
+
+The total charge is zero, so the formula is right.
+
+**Solution 2**: Nitrogen is <InlineMath math="2.5" />, so each atom needs <InlineMath math="3" /> more electrons. The two nitrogen atoms share three pairs of electrons and form a triple bond, <InlineMath math="\mathrm{N{\equiv}N}" />. Each atom now has <InlineMath math="6" /> shared electrons and <InlineMath math="2" /> electrons in a lone pair, which is an octet:
+
+<BlockMath math="3 \times 2 + 2 = 8" />
+
+The answer is **three pairs of electrons** shared.
+
+**Solution 3**: The electron arrangement of <InlineMath math="\mathrm{X}" /> is <InlineMath math="2.8.8.1" />, so <InlineMath math="\mathrm{X}" /> is a metal that loses <InlineMath math="1" /> electron and becomes <InlineMath math="\mathrm{X^+}" />. The arrangement of <InlineMath math="\mathrm{Y}" /> is <InlineMath math="2.8.7" />, so <InlineMath math="\mathrm{Y}" /> is a non-metal that gains <InlineMath math="1" /> electron and becomes <InlineMath math="\mathrm{Y^-}" />. The bond is an **ionic bond** and the formula is <InlineMath math="\mathrm{XY}" />, because <InlineMath math="(+1) + (-1) = 0" />. In aqueous solution, the <InlineMath math="\mathrm{X^+}" /> and <InlineMath math="\mathrm{Y^-}" /> ions move freely, so the solution **conducts electricity**.
+
+**Solution 4**: A larger molecular mass usually means stronger van der Waals forces, so mass alone would make you expect hydrogen sulfide to boil at the higher temperature. The data show the opposite. In water, hydrogen is bonded to the strongly electronegative oxygen, so water molecules form **hydrogen bonds** with each other. Sulfur isn't electronegative enough, so hydrogen sulfide molecules are held only by weak van der Waals forces. Overcoming hydrogen bonds takes more heat energy, so water's boiling point is higher by:
+
+<BlockMath math="100^\circ\text{C} - (-60^\circ\text{C}) = 160^\circ\text{C}" />
+
+Check it against the boiling point chart: the pair of water and hydrogen sulfide shows the same gap.

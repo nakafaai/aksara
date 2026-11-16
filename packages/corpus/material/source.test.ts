@@ -81,22 +81,22 @@ layer(NodeServices.layer)("material source", (it) => {
       Effect.gen(function* () {
         const sources = yield* decodeMaterialSources();
 
-        expect(sources).toHaveLength(36);
+        expect(sources).toHaveLength(38);
         expect(
           Arr.reduce(
             sources,
             0,
             (count, source) => count + source.sections.length
           )
-        ).toBe(383);
+        ).toBe(385);
         expect(
           HashSet.size(HashSet.fromIterable(Arr.map(sources, ({ key }) => key)))
-        ).toBe(36);
+        ).toBe(38);
         expect(
           HashSet.size(
             HashSet.fromIterable(Arr.map(sources, ({ assetRoot }) => assetRoot))
           )
-        ).toBe(36);
+        ).toBe(38);
 
         const sectionsWithEvidence = Arr.flatMap(sources, ({ sections }) =>
           Arr.filter(sections, ({ evidenceUrls }) => evidenceUrls !== undefined)
