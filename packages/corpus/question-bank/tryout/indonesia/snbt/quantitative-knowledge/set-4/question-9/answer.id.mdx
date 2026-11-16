@@ -22,6 +22,42 @@ Syarat kedua kebalikannya: pasangan <InlineMath math="d" /> **tidak memuat fakto
 \text{yang dicari}&=24-9=15
 \end{aligned}" />
 
+Gambar berikut memetakan setiap pasangan pangkat <InlineMath math="(a,b)" /> yang membuat <InlineMath math="d" /> kelipatan <InlineMath math="6" />. Titik yang lolos ada **di kolom <InlineMath math="a=4" /> atau di baris <InlineMath math="b=2" />**, dan setiap titik mewakili <InlineMath math="3" /> pilihan <InlineMath math="c" />.
+
+<MathVisual
+  title={<>Pasangan pangkat <InlineMath math="(a,b)" /> untuk <InlineMath math="d=2^a\cdot3^b\cdot5^c" /></>}
+  description={<>Ada <InlineMath math="8" /> titik dengan <InlineMath math="a" /> dari <InlineMath math="1" /> sampai <InlineMath math="4" /> dan <InlineMath math="b" /> dari <InlineMath math="1" /> sampai <InlineMath math="2" />. Lima titik lolos, yaitu semua titik di baris <InlineMath math="b=2" /> dan titik <InlineMath math="(4,1)" />. Tiga titik gagal, yaitu <InlineMath math="(1,1)" />, <InlineMath math="(2,1)" />, dan <InlineMath math="(3,1)" />. Dengan <InlineMath math="3" /> pilihan <InlineMath math="c" />, banyak <InlineMath math="d" /> adalah <InlineMath math="5\cdot3=15" />.</>}
+  labels={{
+    a: <InlineMath math="a" />,
+    b: <InlineMath math="b" />,
+    ok: <InlineMath math="a=4" />,
+    top: <InlineMath math="b=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "p11", kind: "point", appearance: "warning", at: { x: 1, y: 1 } },
+      { id: "p21", kind: "point", appearance: "warning", at: { x: 2, y: 1 } },
+      { id: "p31", kind: "point", appearance: "warning", at: { x: 3, y: 1 } },
+      { id: "p41", kind: "point", appearance: "answer", at: { x: 4, y: 1 } },
+      { id: "p12", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "p22", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+      { id: "p32", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+      { id: "p42", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+      { id: "axis-a", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0.5 }, to: { x: 4.5, y: 0.5 } },
+      { id: "axis-b", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0.5 }, to: { x: 0.5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "axis-a", at: { x: 4.5, y: 0.5 }, placement: "right" },
+      { key: "b", objectId: "axis-b", at: { x: 0.5, y: 2.5 }, placement: "above" },
+      { key: "ok", objectId: "p41", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "top", objectId: "p12", at: { x: 1, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Coba cek dengan menghitung langsung. Jika <InlineMath math="a=4" />, ada <InlineMath math="2\cdot3=6" /> pilihan untuk <InlineMath math="b" /> dan <InlineMath math="c" />. Jika <InlineMath math="a\le3" /> dan <InlineMath math="b=2" />, ada <InlineMath math="3\cdot3=9" /> pilihan. Totalnya <InlineMath math="6+9=15" />. Contohnya <InlineMath math="d=48=2^4\cdot3" /> memberi pasangan <InlineMath math="75" />, yang memang tidak habis dibagi <InlineMath math="6" />.
 
 # Jebakan yang perlu dihindari

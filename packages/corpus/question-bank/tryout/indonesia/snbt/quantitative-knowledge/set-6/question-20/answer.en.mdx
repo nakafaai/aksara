@@ -41,6 +41,17 @@ For example, <InlineMath math="u_{15}=108=12\cdot9" /> and <InlineMath math="u_{
 
 <BlockMath math="\text{answer}=32-11=21" />
 
+The chart below filters the terms step by step. Of the <InlineMath math="129" /> terms between <InlineMath math="100" /> and <InlineMath math="1{,}000" />, <InlineMath math="32" /> are multiples of <InlineMath math="4" />, and **<InlineMath math="11" /> of those are also multiples of <InlineMath math="3" />**, which leaves <InlineMath math="21" />.
+
+<Chart
+  title={<>Filtering the terms <InlineMath math="u_n=7n+3" /></>}
+  description={<>Terms <InlineMath math="14" /> to <InlineMath math="142" /> number <InlineMath math="129" />. Of those, <InlineMath math="32" /> are divisible by <InlineMath math="4" />, and <InlineMath math="11" /> are divisible by <InlineMath math="12" />. The terms divisible by <InlineMath math="4" /> but not by <InlineMath math="3" /> number <InlineMath math="21" />.</>}
+  categories={["Between 100 and 1,000", "Multiples of 4", "Multiples of 12", "Multiples of 4, not 3"]}
+  bars="apart"
+  series={[{ label: "Number of terms", mark: "bar", values: [142 - 14 + 1, (139 - 15) / 4 + 1, (135 - 15) / 12 + 1, (139 - 15) / 4 + 1 - ((135 - 15) / 12 + 1)] }]}
+  valueLabel="Number of terms"
+/>
+
 Check with the pattern: group the <InlineMath math="32" /> term numbers in threes, and the first number of each group is a multiple of three. There are <InlineMath math="10" /> full groups and two numbers left over, <InlineMath math="135" /> and <InlineMath math="139" />. Of those two, only <InlineMath math="135" /> is a multiple of three, so the count is <InlineMath math="10+1=11" />, matching the count above. A common slip is forgetting to remove the multiples of <InlineMath math="12" />, which gives <InlineMath math="32" />.
 
 So the number of terms that meet all the conditions is <InlineMath math="21" />.

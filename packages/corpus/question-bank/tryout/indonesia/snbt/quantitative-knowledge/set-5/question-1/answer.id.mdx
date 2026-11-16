@@ -23,6 +23,17 @@ Akibatnya **angka satuan yang boleh dipakai bergantung pada angka puluhan**. Kal
 
 Setelah <InlineMath math="c" /> dan <InlineMath math="d" /> dipilih, angka <InlineMath math="a=9-c" /> dan <InlineMath math="b=9-d" /> **sudah pasti**, jadi cukup hitung pasangan <InlineMath math="(c,d)" />. Syarat <InlineMath math="a\ge1" /> memberi <InlineMath math="c\le8" />, jadi <InlineMath math="c" /> bernilai <InlineMath math="0" /> sampai <InlineMath math="8" />. Ada <InlineMath math="5" /> nilai <InlineMath math="c" /> genap (<InlineMath math="0,2,4,6,8" />) dan <InlineMath math="4" /> nilai ganjil (<InlineMath math="1,3,5,7" />).
 
+Grafik berikut memperlihatkan banyak pilihan <InlineMath math="d" /> untuk setiap angka puluhan <InlineMath math="c" />. Tinggi batang **bergantian <InlineMath math="3" /> dan <InlineMath math="2" />** mengikuti genap atau ganjilnya <InlineMath math="c" />, dan <InlineMath math="c=9" /> tidak ada karena membuat <InlineMath math="a=0" />.
+
+<Chart
+  title={<>Pilihan angka satuan untuk setiap angka puluhan</>}
+  description={<>Untuk <InlineMath math="c" /> genap, yaitu <InlineMath math="0, 2, 4, 6, 8" />, ada <InlineMath math="3" /> pilihan <InlineMath math="d" />: <InlineMath math="0" />, <InlineMath math="4" />, atau <InlineMath math="8" />. Untuk <InlineMath math="c" /> ganjil, yaitu <InlineMath math="1, 3, 5, 7" />, ada <InlineMath math="2" /> pilihan: <InlineMath math="2" /> atau <InlineMath math="6" />. Jumlah semua batang <InlineMath math="23" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, c) => `${c}`)}
+  series={[{ label: "Pilihan angka satuan d", mark: "bar", values: Array.from({ length: 9 }, (_, c) => (c % 2 === 0 ? 3 : 2)) }]}
+  valueLabel="Banyak pilihan"
+/>
+
 <BlockMath math="5\times3+4\times2=15+8=23" />
 
 Cek satu contoh: untuk <InlineMath math="c=8" /> dan <InlineMath math="d=8" />, bilangannya <InlineMath math="1{.}188" />. Jumlah angkanya <InlineMath math="1+1+8+8=18" /> dan <InlineMath math="1{.}188=44\times27" />.

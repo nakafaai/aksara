@@ -18,6 +18,22 @@ Das Wort PERMATA besteht aus P, E, R, M, A, T, A. Erster und letzter Buchstabe k
 
 Es gilt <InlineMath math="Q=120" /> und <InlineMath math="P=60" />, also **ist <InlineMath math="Q" /> doppelt so groß wie <InlineMath math="P" />**, und die richtige Beziehung ist <InlineMath math="Q>P" />.
 
+Das Diagramm stellt beide Zählungen nebeneinander. Bei <InlineMath math="P" /> **schrumpft die Vokalreihenfolge die Vokalwahl auf eine einzige Möglichkeit**. Bei <InlineMath math="Q" /> sind beide A an den Enden verbraucht, also sind die fünf Buchstaben in der Mitte alle verschieden.
+
+<Mermaid
+  title={<><InlineMath math="P" /> und <InlineMath math="Q" /> zählen</>}
+  description={<>Für <InlineMath math="P" />: den ersten Konsonanten auf <InlineMath math="3" /> Arten wählen, die Vokalplätze auf <InlineMath math="\binom53=10" /> Arten, die Vokale auf <InlineMath math="1" /> Art einsetzen und die beiden übrigen Konsonanten auf <InlineMath math="2" /> Arten anordnen, also <InlineMath math="P=60" />. Für <InlineMath math="Q" />: beide Enden müssen A sein, und die <InlineMath math="5" /> verschiedenen Buchstaben in der Mitte lassen sich auf <InlineMath math="5!=120" /> Arten anordnen.</>}
+  chart={`flowchart LR
+    P0["SEPATU"] --> P1["erster Konsonant: 3 Arten"]
+    P1 --> P2["Vokalplätze: C(5,3) = 10"]
+    P2 --> P3["Reihenfolge A, E, U: 1 Art"]
+    P3 --> P4["2 übrige Konsonanten: 2 Arten"]
+    P4 --> P5["P = 60"]
+    Q0["PERMATA"] --> Q1["gleiche Enden: nur A ... A"]
+    Q1 --> Q2["P, E, R, M, T in der Mitte: 5! Arten"]
+    Q2 --> Q3["Q = 120"]`}
+/>
+
 # Warum die anderen Antworten falsch sind
 
 - <InlineMath math="P=Q" /> entsteht, wenn du bei <InlineMath math="P" /> den Konsonanten vorn vergisst und <InlineMath math="P=120" /> erhältst, oder wenn du <InlineMath math="Q" /> noch durch <InlineMath math="2!" /> teilst und <InlineMath math="Q=60" /> erhältst, obwohl beide A schon an den Enden stehen.

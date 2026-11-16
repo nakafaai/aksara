@@ -12,6 +12,36 @@ x^2-1&=(x+1)\cdot{}^{2}\log3\\
 
 Jadi <InlineMath math="x=-1" /> atau <InlineMath math="x=1+{}^{2}\log3" />. Untuk <InlineMath math="x=-1" />, kedua ruas bernilai <InlineMath math="2^0=3^0=1" />, jadi akar ini sah.
 
+Grafik kedua ruas setelah diberi logaritma memperlihatkan mengapa ada dua akar. Parabola <InlineMath math="y=x^2-1" /> dan garis <InlineMath math="y=(x+1)\,{}^{2}\log3" /> **bertemu dua kali**, dan salah satunya di <InlineMath math="x=-1" />, tempat kedua ruas sama-sama nol. Membagi dengan <InlineMath math="x+1" /> berarti membuang titik itu.
+
+<MathVisual
+  title={<>Kedua ruas persamaan setelah diberi logaritma basis <InlineMath math="2" /></>}
+  description={<>Parabola <InlineMath math="y=x^2-1" /> dan garis <InlineMath math="y=(x+1)\,{}^{2}\log3" /> berpotongan di <InlineMath math="x=-1" /> dan di <InlineMath math="x=1+{}^{2}\log3" />, sekitar <InlineMath math="2{,}58" />. Di <InlineMath math="x=-1" />, kedua ruas bernilai <InlineMath math="0" />.</>}
+  labels={{
+    parabola: <InlineMath math="y=x^2-1" />,
+    line: <InlineMath math="y=(x+1)\,{}^{2}\log3" />,
+    first: <InlineMath math="x=-1" />,
+    second: <InlineMath math="x=1+{}^{2}\log3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -2, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 1", domain: { min: -3, max: 3.3 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "(x + 1) log_2(3)", domain: { min: -3, max: 4 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: 1 + Math.log2(3), y: (1 + Math.log2(3)) ** 2 - 1 } },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: -2.8, y: 2.8 ** 2 - 1 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 3.5, y: 4.5 * Math.log2(3) }, placement: "above-left" },
+      { key: "first", objectId: "first", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "second", objectId: "second", at: { x: 1 + Math.log2(3), y: (1 + Math.log2(3)) ** 2 - 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Menghitung nilai dua pangkat x
 
 Untuk akar kedua, pakai sifat **bilangan pokok yang dipangkatkan logaritma dengan basis yang sama menghasilkan bilangan di dalam logaritma**, yaitu <InlineMath math="2^{{}^{2}\log3}=3" />.

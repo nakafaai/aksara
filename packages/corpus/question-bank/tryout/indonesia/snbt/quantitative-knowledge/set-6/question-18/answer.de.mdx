@@ -24,6 +24,17 @@ Gesucht sind die fairen Verteilungen, bei denen Wörterbuch und Atlas nicht zusa
 
 <BlockMath math="150-36=114" />
 
+Das Diagramm stellt alle Zählungen nacheinander dar. Von <InlineMath math="243" /> freien Möglichkeiten lässt die Bedingung, dass jeder ein Buch bekommt, <InlineMath math="150" /> übrig, und dann **werden die <InlineMath math="36" /> Möglichkeiten entfernt, bei denen Wörterbuch und Atlas zusammen bleiben**.
+
+<Chart
+  title={<>Die Möglichkeiten, fünf Bücher zu verteilen, aussieben</>}
+  description={<>Ohne Bedingung gibt es <InlineMath math="243" /> Möglichkeiten. Bei <InlineMath math="150" /> davon bekommt jedes Kind mindestens ein Buch. Bei <InlineMath math="36" /> dieser Möglichkeiten bekommen Wörterbuch und Atlas dasselbe Kind. Übrig bleiben <InlineMath math="114" /> Möglichkeiten.</>}
+  categories={["Ohne Bedingung", "Jeder bekommt ein Buch", "Wörterbuch und Atlas zusammen", "Alle Bedingungen erfüllt"]}
+  bars="apart"
+  series={[{ label: "Anzahl der Möglichkeiten", mark: "bar", values: [3 ** 5, 3 ** 5 - 3 * 2 ** 5 + 3, 3 ** 4 - 3 * 2 ** 4 + 3, 3 ** 5 - 3 * 2 ** 5 + 3 - (3 ** 4 - 3 * 2 ** 4 + 3)] }]}
+  valueLabel="Anzahl der Möglichkeiten"
+/>
+
 Prüfe das auf direktem Weg. Für das Wörterbuch gibt es <InlineMath math="3" /> mögliche Empfänger, für den Atlas <InlineMath math="2" />, zusammen <InlineMath math="6" /> Möglichkeiten. Die drei übrigen Bücher sind frei, solange **die dritte Person, die noch nichts hat, mindestens ein Buch bekommt**.
 
 <BlockMath math="\begin{aligned}

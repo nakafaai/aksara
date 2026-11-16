@@ -32,4 +32,35 @@ Jadi pernyataan (2) berarti <InlineMath math="x<0" /> atau <InlineMath math="x>\
 
 Pernyataan (1) memberi <InlineMath math="x\le0" />, dan satu-satunya nilai di situ yang menjawab tidak adalah <InlineMath math="x=0" />. **Pernyataan (2) membuang kasus <InlineMath math="x=0" />** karena <InlineMath math="\tfrac10" /> tidak terdefinisi, dan bagian <InlineMath math="x>\tfrac12" /> tidak cocok dengan <InlineMath math="x\le0" />. Irisannya tinggal <InlineMath math="x<0" />, dan untuk setiap <InlineMath math="x" /> negatif berlaku <InlineMath math="x^2>0>x" />. Jawabannya selalu ya, jadi kedua pernyataan bersama cukup.
 
+Grafik berikut memperlihatkan alasannya. Parabola <InlineMath math="y=x^2" /> ada di atas garis <InlineMath math="y=x" /> di mana pun kecuali di antara <InlineMath math="0" /> dan <InlineMath math="1" />. Kedua pernyataan bersama menyisakan **ruas tebal <InlineMath math="x<0" />**, tempat parabola selalu di atas garis, sedangkan titik <InlineMath math="x=0" /> sudah dibuang.
+
+<MathVisual
+  title={<>Kapan <InlineMath math="x^2>x" /></>}
+  description={<>Parabola <InlineMath math="y=x^2" /> dan garis <InlineMath math="y=x" /> bertemu di <InlineMath math="(0,0)" /> dan <InlineMath math="(1,1)" />. Di antara kedua titik itu garis ada di atas parabola, dan di luar keduanya parabola ada di atas garis. Ruas tebal pada sumbu-<InlineMath math="x" /> menandai <InlineMath math="x<0" />, sisa dari kedua pernyataan, dan titik <InlineMath math="x=0" /> ditandai sebagai titik yang dibuang.</>}
+  labels={{
+    square: <InlineMath math="y=x^2" />,
+    line: <InlineMath math="y=x" />,
+    zero: <InlineMath math="0" />,
+    one: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 2.5 }, y: { min: -3, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "both", kind: "segment", appearance: "highlight", from: { x: -3, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -2.4, max: 2.4 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x", domain: { min: -3, max: 2.5 } },
+      { id: "zero", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+      { id: "one", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: -2, y: 4 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: -2, y: -2 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Jadi, dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.

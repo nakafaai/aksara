@@ -14,6 +14,38 @@ Eine waagerechte Gerade <InlineMath math="y=k" /> schneidet diesen Graphen so of
 | <InlineMath math="k=4" /> | <InlineMath math="3" /> |
 | <InlineMath math="k>4" /> | <InlineMath math="2" /> |
 
+Der W-förmige Graph macht die Tabelle sichtbar. Die Gerade <InlineMath math="y=2" /> schneidet alle vier Arme des Graphen, die Gerade <InlineMath math="y=4" /> dagegen **berührt die kleine Spitze bei <InlineMath math="(0,4)" /> nur** und schneidet die beiden äußeren Arme, trifft den Graphen also dreimal.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=\left|x^2-4\right|" /> und zwei waagrechte Geraden</>}
+  description={<>Der Graph ist <InlineMath math="0" /> bei <InlineMath math="x=-2" /> und <InlineMath math="x=2" />, hat eine kleine Spitze bei <InlineMath math="(0,4)" /> und steigt nach links und rechts weiter. Die Gerade <InlineMath math="y=2" /> schneidet ihn in vier Punkten. Die Gerade <InlineMath math="y=4" /> trifft ihn bei <InlineMath math="x=-2\sqrt2" />, <InlineMath math="x=0" /> und <InlineMath math="x=2\sqrt2" />.</>}
+  labels={{
+    f: <InlineMath math="y=\left|x^2-4\right|" />,
+    four: <InlineMath math="y=4" />,
+    two: <InlineMath math="y=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x^2 - 4", domain: { min: -3.3, max: -2 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "4 - x^2", domain: { min: -2, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x^2 - 4", domain: { min: 2, max: 3.3 } },
+      { id: "four", kind: "segment", appearance: "secondary", from: { x: -3.5, y: 4 }, to: { x: 3.5, y: 4 } },
+      { id: "two", kind: "segment", appearance: "construction", from: { x: -3.5, y: 2 }, to: { x: 3.5, y: 2 } },
+      { id: "peak", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+      { id: "four-left", kind: "point", appearance: "answer", at: { x: -2 * Math.sqrt(2), y: 4 } },
+      { id: "four-right", kind: "point", appearance: "answer", at: { x: 2 * Math.sqrt(2), y: 4 } },
+    ],
+    labels: [
+      { key: "f", objectId: "right", at: { x: 3.3, y: 3.3 ** 2 - 4 }, placement: "left" },
+      { key: "four", objectId: "four", at: { x: -3.2, y: 4 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: -3.2, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Die erste und die vierte Aussage
 
 Bei <InlineMath math="f(x)=4" /> gibt es für den Inhalt des Betrags zwei Möglichkeiten.

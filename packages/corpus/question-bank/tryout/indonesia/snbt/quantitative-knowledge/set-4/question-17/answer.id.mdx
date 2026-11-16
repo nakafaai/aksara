@@ -27,6 +27,20 @@ Untuk <InlineMath math="d=3" />, bilangan semula <InlineMath math="2" />, <Inlin
 
 <BlockMath math="S_5=\frac{3\left(2^5-1\right)}{2-1}=3\cdot31=93" />
 
+Grafik berikut membandingkan barisan geometri dari kedua akar. Akar <InlineMath math="d=-6" /> memberi barisan menurun <InlineMath math="12, 6, 3, \ldots" />, tetapi barisan aslinya memuat <InlineMath math="-1" />, jadi **hanya batang untuk <InlineMath math="d=3" /> yang dipakai**.
+
+<Chart
+  title={<>Lima suku pertama barisan geometri dari kedua akar</>}
+  description={<>Untuk <InlineMath math="d=3" />, barisannya <InlineMath math="3, 6, 12, 24, 48" /> dengan rasio <InlineMath math="2" /> dan jumlah <InlineMath math="93" />. Untuk <InlineMath math="d=-6" />, barisannya <InlineMath math="12, 6, 3, \tfrac32, \tfrac34" /> dengan rasio <InlineMath math="\tfrac12" />, tetapi akar ini dibuang karena bilangan aslinya <InlineMath math="11, 5, -1" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "d = 3, rasio 2", mark: "bar", values: Array.from({ length: 5 }, (_, i) => 3 * 2 ** i) },
+    { label: "d = -6, dibuang", mark: "bar", values: Array.from({ length: 5 }, (_, i) => 12 / 2 ** i) },
+  ]}
+  valueLabel="Nilai suku"
+/>
+
 Coba cek dengan menjumlahkan langsung: <InlineMath math="3+6+12+24+48=93" />.
 
 # Pilihan yang menjebak

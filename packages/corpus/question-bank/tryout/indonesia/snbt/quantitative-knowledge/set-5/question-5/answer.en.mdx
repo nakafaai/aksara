@@ -25,6 +25,19 @@ x=24:&\quad P=\tfrac{69}{6}=11.5>10.5
 
 All three values satisfy <InlineMath math="x\ge12" />, so the median really is <InlineMath math="10.5" /> each time. **All three relationships can happen**, so the information isn't enough.
 
+The chart below plots <InlineMath math="P" /> and <InlineMath math="Q" /> for every <InlineMath math="x" /> from <InlineMath math="12" /> to <InlineMath math="24" />. The median stays flat at <InlineMath math="10.5" /> while the mean rises, so **the two lines cross at <InlineMath math="x=18" />** and the order flips.
+
+<Chart
+  title={<>The mean and the median for <InlineMath math="x" /> from <InlineMath math="12" /> to <InlineMath math="24" /></>}
+  description={<>The mean <InlineMath math="\tfrac{45+x}{6}" /> rises from <InlineMath math="9.5" /> at <InlineMath math="x=12" /> to <InlineMath math="11.5" /> at <InlineMath math="x=24" />. The median stays at <InlineMath math="10.5" />. The two lines meet at <InlineMath math="x=18" />.</>}
+  categories={Array.from({ length: 13 }, (_, i) => `${i + 12}`)}
+  series={[
+    { label: "Mean P", mark: "line", values: Array.from({ length: 13 }, (_, i) => (45 + i + 12) / 6) },
+    { label: "Median Q", mark: "line", values: Array.from({ length: 13 }, () => 10.5) },
+  ]}
+  valueLabel="Value"
+/>
+
 # Why the other options are wrong
 
 - <InlineMath math="Q>P" /> comes from solving <InlineMath math="\tfrac{9+x}{2}=10.5" /> to get only <InlineMath math="x=12" /> and **forgetting that the median stays <InlineMath math="10.5" /> for larger <InlineMath math="x" />**.

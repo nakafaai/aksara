@@ -42,6 +42,18 @@ Untuk <InlineMath math="d=7" />, pasangan <InlineMath math="m=5" /> dan <InlineM
 
 Kedua syarat terpenuhi, dan pasangan ini satu-satunya yang lolos, jadi selisihnya pasti <InlineMath math="42" />.
 
+Diagram berikut merangkum penyaringan itu. Dari delapan calon FPB, hanya dua yang lolos uji diskriminan, dan **syarat saling prima membuang salah satunya**.
+
+<Mermaid
+  title={<>Menyaring calon FPB kedua bilangan</>}
+  description={<>Calon FPB adalah faktor <InlineMath math="56" />. Hanya <InlineMath math="d=7" /> dan <InlineMath math="d=8" /> yang memberi diskriminan kuadrat sempurna. Untuk <InlineMath math="d=8" />, pasangan <InlineMath math="6" /> dan <InlineMath math="8" /> tidak saling prima, jadi dibuang. Untuk <InlineMath math="d=7" />, pasangan <InlineMath math="5" /> dan <InlineMath math="11" /> memberi bilangan <InlineMath math="35" /> dan <InlineMath math="77" /> dengan selisih <InlineMath math="42" />.</>}
+  chart={`flowchart LR
+    A["d faktor dari 56: 1, 2, 4, 7, 8, 14, 28, 56"] -->|"uji diskriminan"| B["d = 7: m = 5, n = 11"]
+    A -->|"uji diskriminan"| C["d = 8: m = 6, n = 8"]
+    C -->|"6 dan 8 tidak saling prima"| X["dibuang"]
+    B -->|"5 dan 11 saling prima"| D["35 dan 77, selisih 42"]`}
+/>
+
 # Pilihan yang menjebak
 
 Setiap pilihan lain muncul dari **satu langkah yang terlewat** di jalan tadi.

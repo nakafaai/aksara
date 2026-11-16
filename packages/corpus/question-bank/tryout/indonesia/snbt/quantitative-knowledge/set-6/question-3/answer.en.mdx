@@ -32,6 +32,39 @@ x\le-\tfrac12:\quad g(x) &= (4-x)+(2x+1)=x+5 \\
 x\ge4:\quad g(x) &= (x-4)-(2x+1)=-x-5
 \end{aligned}" />
 
+The graph of <InlineMath math="g" /> below sums up two things at once. The part of the graph on or above the <InlineMath math="x" />-axis is the solution set <InlineMath math="-5\le x\le1" />, and **its peak is at <InlineMath math="x=-\tfrac12" />**, not at an integer, with value <InlineMath math="\tfrac92" />.
+
+<MathVisual
+  title={<>The graph of the difference <InlineMath math="g(x)=|x-4|-|2x+1|" /></>}
+  description={<>The graph rises with slope <InlineMath math="1" /> until <InlineMath math="x=-\tfrac12" />, falls with slope <InlineMath math="-3" /> until <InlineMath math="x=4" />, and then falls with slope <InlineMath math="-1" />. Its peak is <InlineMath math="\left(-\tfrac12,\tfrac92\right)" />. The graph is on or above the <InlineMath math="x" />-axis for <InlineMath math="-5\le x\le1" />, marked by the thick piece.</>}
+  labels={{
+    g: <InlineMath math="y=g(x)" />,
+    top: <InlineMath math="\left(-\tfrac12,\tfrac92\right)" />,
+    left: <InlineMath math="-5" />,
+    right: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 6 }, y: { min: -12, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: -5, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "left-piece", kind: "function", appearance: "primary", formula: "x + 5", domain: { min: -7, max: -0.5 } },
+      { id: "middle-piece", kind: "function", appearance: "primary", formula: "3 - 3x", domain: { min: -0.5, max: 4 } },
+      { id: "right-piece", kind: "function", appearance: "primary", formula: "-x - 5", domain: { min: 4, max: 6 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: -0.5, y: 4.5 } },
+      { id: "left", kind: "point", appearance: "secondary", at: { x: -5, y: 0 } },
+      { id: "right", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "middle-piece", at: { x: 3, y: -6 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: -0.5, y: 4.5 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -5, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 On the left <InlineMath math="g" /> goes up, and in the middle and on the right it goes down. So **the largest value sits at the corner** <InlineMath math="x=-\tfrac12" />, where <InlineMath math="g\left(-\tfrac12\right)=\tfrac92" />. Since <InlineMath math="\tfrac92" /> is more than <InlineMath math="4" />, statement three is **false**. If you only try integers, the largest value really is <InlineMath math="g(-1)=5-1=4" />, and that's the trap.
 
 # Statement four

@@ -30,6 +30,21 @@ Untuk setiap <InlineMath math="c" />, cari pasangan <InlineMath math="a\le b\le 
 | <InlineMath math="7, 8, 9" /> | <InlineMath math="81" /> | <InlineMath math="113" /> | lancip |
 | <InlineMath math="8, 8, 8" /> | <InlineMath math="64" /> | <InlineMath math="128" /> | lancip |
 
+Grafik berikut meringkas tabel menurut sisi terpanjangnya. Totalnya <InlineMath math="12" /> segitiga, segitiga tumpul ada <InlineMath math="5" />, dan **kolom <InlineMath math="c=11" /> masih memuat satu segitiga lancip**, yaitu <InlineMath math="2, 11, 11" />.
+
+<Chart
+  title={<>Jenis segitiga berkeliling <InlineMath math="24" /> menurut sisi terpanjang <InlineMath math="c" /></>}
+  description={<>Untuk <InlineMath math="c=8" />, ada <InlineMath math="1" /> segitiga lancip. Untuk <InlineMath math="c=9" />, ada <InlineMath math="2" /> segitiga lancip. Untuk <InlineMath math="c=10" />, ada <InlineMath math="2" /> lancip, <InlineMath math="1" /> siku-siku, dan <InlineMath math="1" /> tumpul. Untuk <InlineMath math="c=11" />, ada <InlineMath math="1" /> lancip dan <InlineMath math="4" /> tumpul.</>}
+  bars="apart"
+  categories={["c = 8", "c = 9", "c = 10", "c = 11"]}
+  series={[
+    { label: "Lancip", mark: "bar", values: [1, 2, 2, 1] },
+    { label: "Siku-siku", mark: "bar", values: [0, 0, 1, 0] },
+    { label: "Tumpul", mark: "bar", values: [0, 0, 1, 4] },
+  ]}
+  valueLabel="Banyak segitiga"
+/>
+
 # Menilai setiap pernyataan
 
 Pernyataan pertama benar: daftar itu berisi <InlineMath math="5+4+2+1=12" /> segitiga untuk <InlineMath math="c=11, 10, 9, 8" />. Jika <InlineMath math="c=12" /> ikut dihitung, kamu akan mendapat segitiga palsu seperti <InlineMath math="6, 6, 12" />.

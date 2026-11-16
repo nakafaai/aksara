@@ -52,6 +52,38 @@ f(6) &= 50-1=49=7^2
 
 Ketiga titik cocok, dan titik puncaknya <InlineMath math="(1,-1)" />.
 
+Grafik berikut menaruh kedua calon itu bersama. Untuk <InlineMath math="k=1" />, ketiga titik **segaris di <InlineMath math="y=1" />**, sehingga tidak ada parabola. Untuk <InlineMath math="k=7" />, parabola melewati <InlineMath math="(2,1)" />, <InlineMath math="(3,7)" />, dan <InlineMath math="(6,49)" /> dengan puncak di sumbu <InlineMath math="x=1" />.
+
+<MathVisual
+  title={<>Dua calon nilai <InlineMath math="k" /></>}
+  description={<>Garis mendatar <InlineMath math="y=1" /> untuk <InlineMath math="k=1" /> bukan parabola. Parabola <InlineMath math="y=2(x-1)^2-1" /> untuk <InlineMath math="k=7" /> melewati <InlineMath math="(2,1)" />, <InlineMath math="(3,7)" />, dan <InlineMath math="(6,49)" />, dengan puncak <InlineMath math="(1,-1)" />.</>}
+  labels={{
+    curve: <InlineMath math="y=2(x-1)^2-1" />,
+    flat: <InlineMath math="y=1" />,
+    vertex: <InlineMath math="(1,-1)" />,
+    p6: <InlineMath math="(6,49)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -3, max: 52 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "flat", kind: "function", appearance: "warning", formula: "1", domain: { min: -1, max: 7 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2(x - 1)^2 - 1", domain: { min: -1, max: 6.05 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 1, y: -1 } },
+      { id: "p2", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+      { id: "p3", kind: "point", appearance: "reference", at: { x: 3, y: 7 } },
+      { id: "p6", kind: "point", appearance: "reference", at: { x: 6, y: 49 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5, y: 31 }, placement: "left" },
+      { key: "flat", objectId: "flat", at: { x: 6.5, y: 1 }, placement: "above" },
+      { key: "vertex", objectId: "vertex", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "p6", objectId: "p6", at: { x: 6, y: 49 }, placement: "left" },
+    ],
+  }}
+/>
+
 # Mengapa pilihan lain keliru
 
 Pilihan yang salah muncul dari **kandidat yang tidak diperiksa** atau dari membaca nilai yang salah.

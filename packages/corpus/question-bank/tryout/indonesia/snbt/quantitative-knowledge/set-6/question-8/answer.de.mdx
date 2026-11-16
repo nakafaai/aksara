@@ -39,6 +39,21 @@ Der Mittelwert ist also **mindestens <InlineMath math="25" />**, gefragt ist abe
 20,20,20,40,40,40:\quad \text{Summe} &= 180,\ \text{Mittelwert }30
 \end{aligned}" />
 
+Das Diagramm stellt beide Gruppen nebeneinander. Bei beiden ergeben die drei jüngsten Alter zusammen <InlineMath math="60" /> und der Median ist <InlineMath math="30" />, aber **der Mittelwert der ersten Gruppe liegt genau auf der Linie bei <InlineMath math="25" />**, der der zweiten darüber.
+
+<Chart
+  title={<>Zwei Gruppen, die beide Aussagen erfüllen</>}
+  description={<>Die erste Gruppe hat die Alter <InlineMath math="15, 15, 30, 30, 30, 30" />, mit Summe <InlineMath math="150" /> und Mittelwert <InlineMath math="25" />. Die zweite hat die Alter <InlineMath math="20, 20, 20, 40, 40, 40" />, mit Summe <InlineMath math="180" /> und Mittelwert <InlineMath math="30" />. Die Linie markiert einen Mittelwert von <InlineMath math="25" />.</>}
+  bars="apart"
+  categories={["a1", "a2", "a3", "a4", "a5", "a6"]}
+  series={[
+    { label: "Mittelwert genau 25", mark: "bar", values: [15, 15, 30, 30, 30, 30] },
+    { label: "Mittelwert 30", mark: "bar", values: [20, 20, 20, 40, 40, 40] },
+    { label: "Grenze 25", mark: "line", values: [25, 25, 25, 25, 25, 25] },
+  ]}
+  valueLabel="Alter (Jahre)"
+/>
+
 Die erste Gruppe erfüllt beide Aussagen: Die drei Jüngsten ergeben <InlineMath math="15+15+30=60" />, und der Median ist <InlineMath math="\tfrac{30+30}{2}=30" />, doch der Mittelwert ist genau <InlineMath math="25" />, die Antwort also Nein. Die zweite Gruppe erfüllt ebenfalls beide, mit dem Median <InlineMath math="\tfrac{20+40}{2}=30" />, und liefert Ja. Selbst beide Aussagen zusammen reichen nicht aus. Die Falle ist, die Schranke mindestens <InlineMath math="25" /> als mehr als <InlineMath math="25" /> zu lesen.
 
 Aussage (1) und Aussage (2) reichen also nicht aus, um die Frage zu beantworten.

@@ -31,6 +31,34 @@ Untuk <InlineMath math="a=-3" />, kedua garis sejajar. Rumus jarak dua garis sej
 
 <BlockMath math="d=\frac{|6-(-9)|}{\sqrt{(-3)^2+2^2}}=\frac{15}{\sqrt{13}}" />
 
+Gambar kedua garis untuk <InlineMath math="a=-3" /> memperlihatkan jarak itu. Ruas tegak lurus dari titik <InlineMath math="(0,3)" /> pada <InlineMath math="g" /> ke garis <InlineMath math="h" /> **panjangnya <InlineMath math="\tfrac{15}{\sqrt{13}}" />**, sekitar <InlineMath math="4{,}2" />, jauh lebih panjang daripada <InlineMath math="\tfrac{3}{\sqrt{13}}" />.
+
+<MathVisual
+  title={<>Garis <InlineMath math="g" /> dan <InlineMath math="h" /> yang sejajar untuk <InlineMath math="a=-3" /></>}
+  description={<>Garis <InlineMath math="g:\ -3x+2y=6" /> dan garis <InlineMath math="h:\ 3x-2y=9" /> sama-sama bergradien <InlineMath math="\tfrac32" />. Ruas dari <InlineMath math="(0,3)" /> pada <InlineMath math="g" /> tegak lurus ke <InlineMath math="h" /> dan berujung di <InlineMath math="\left(\tfrac{45}{13},\tfrac{9}{13}\right)" />. Panjangnya <InlineMath math="\tfrac{15}{\sqrt{13}}" />.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    h: <InlineMath math="h" />,
+    d: <InlineMath math="\tfrac{15}{\sqrt{13}}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 7 }, y: { min: -6, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "1.5x + 3", domain: { min: -5, max: 10 / 3 } },
+      { id: "h", kind: "function", appearance: "secondary", formula: "1.5x - 4.5", domain: { min: -1, max: 7 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 45 / 13, y: 9 / 13 } },
+      { id: "point-g", kind: "point", appearance: "primary", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: -4, y: -3 }, placement: "above-left" },
+      { key: "h", objectId: "h", at: { x: 6, y: 4.5 }, placement: "below-right" },
+      { key: "d", objectId: "gap", at: { x: 45 / 26, y: 3 / 2 + 9 / 26 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Cek dengan titik <InlineMath math="(0,3)" /> pada <InlineMath math="g" />: jaraknya ke <InlineMath math="3x-2y-9=0" /> adalah <InlineMath math="\tfrac{|0-6-9|}{\sqrt{13}}=\tfrac{15}{\sqrt{13}}" />. Nilai <InlineMath math="\tfrac{3}{\sqrt{13}}" /> muncul kalau <InlineMath math="9-6" /> dihitung tanpa menyamakan koefisien. Pernyataan ketiga salah.
 
 # Pernyataan keempat

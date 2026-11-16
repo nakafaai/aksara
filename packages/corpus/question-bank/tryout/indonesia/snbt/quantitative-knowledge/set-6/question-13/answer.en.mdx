@@ -16,6 +16,39 @@ A line's direction vector is its end point minus its start point. Then find the 
 \overrightarrow{AG}\cdot\overrightarrow{BD} &= 2(-2)+4(4)+4(0)=12
 \end{aligned}" />
 
+The box below shows both lines. The space diagonal <InlineMath math="AG" /> climbs from a bottom corner to the opposite top corner, while the base diagonal <InlineMath math="BD" /> stays on the floor, so **they cross without meeting**. Rotate the figure to see that the angle isn't a right angle.
+
+<MathVisual
+  title={<>The space diagonal <InlineMath math="AG" /> and the base diagonal <InlineMath math="BD" /></>}
+  description={<>A box with <InlineMath math="AB=2" />, <InlineMath math="AD=4" />, and <InlineMath math="AE=4" />. The segment <InlineMath math="AG" /> joins <InlineMath math="A(0,0,0)" /> and <InlineMath math="G(2,4,4)" />, and the segment <InlineMath math="BD" /> joins <InlineMath math="B(2,0,0)" /> and <InlineMath math="D(0,4,0)" /> on the base.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    d: <InlineMath math="D" />,
+    g: <InlineMath math="G" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: -1, max: 5 }, z: { min: -1, max: 5 } },
+    view: { kind: "camera", position: { x: 9, y: -6, z: 7 }, target: { x: 1, y: 2, z: 2 } },
+    objects: [
+      { id: "box", kind: "cuboid", appearance: "reference", center: { x: 1, y: 2, z: 2 }, size: { length: 2, width: 4, height: 4 } },
+      { id: "ag", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 4, z: 4 } },
+      { id: "bd", kind: "segment", appearance: "secondary", from: { x: 2, y: 0, z: 0 }, to: { x: 0, y: 4, z: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0, z: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2, y: 0, z: 0 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 4, z: 0 } },
+      { id: "point-g", kind: "point", appearance: "reference", at: { x: 2, y: 4, z: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 2, y: 0, z: 0 }, placement: "below-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 4, z: 0 }, placement: "left" },
+      { key: "g", objectId: "point-g", at: { x: 2, y: 4, z: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Taking the acute angle
 
 A line has no front or back. If you use <InlineMath math="\overrightarrow{DB}=(2,-4,0)" />, the dot product becomes <InlineMath math="-12" /> and the angle turns obtuse, even though the line is the same. That's why **the angle between two lines is always the acute one**, so you use the absolute value of the dot product.

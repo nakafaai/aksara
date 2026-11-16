@@ -34,6 +34,37 @@ f(x)-14&=\frac{2x^2-14x+12}{x}\\
 
 For <InlineMath math="x\ge6" />, the factor <InlineMath math="x-1" /> is positive, the factor <InlineMath math="x-6" /> isn't negative, and <InlineMath math="x" /> is positive. So <InlineMath math="f(x)-14\ge0" />, with equality exactly at <InlineMath math="x=6" />. **The minimum sits at the end of the range**, at <InlineMath math="x=6" /> and <InlineMath math="y=2" />, and that pair satisfies <InlineMath math="6\ge3\cdot2" />.
 
+The graph of <InlineMath math="f" /> below shows both points. The lowest point of the curve, with value <InlineMath math="4\sqrt6" />, sits left of the line <InlineMath math="x=6" />, so it's outside the allowed region. On <InlineMath math="x\ge6" /> the curve keeps rising, so **its smallest value is at the end, <InlineMath math="(6,14)" />**.
+
+<MathVisual
+  title={<>The curve <InlineMath math="f(x)=2x+\tfrac{12}{x}" /> and the region <InlineMath math="x\ge6" /></>}
+  description={<>The curve falls to its lowest point at <InlineMath math="x=\sqrt6" />, with value <InlineMath math="4\sqrt6" />, and then rises. The thick piece on the <InlineMath math="x" />-axis marks the allowed region, <InlineMath math="x\ge6" />. On that region the curve always rises, and its smallest value is <InlineMath math="14" /> at <InlineMath math="x=6" />.</>}
+  labels={{
+    f: <InlineMath math="y=2x+\tfrac{12}{x}" />,
+    best: <InlineMath math="(6,14)" />,
+    bound: <InlineMath math="4\sqrt6" />,
+    start: <InlineMath math="x=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "allowed", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 14, y: 0 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "2x + 12/x", domain: { min: 0.45, max: 14 } },
+      { id: "start", kind: "line", appearance: "construction", through: [{ x: 6, y: 0 }, { x: 6, y: 1 }] },
+      { id: "bound", kind: "point", appearance: "warning", at: { x: Math.sqrt(6), y: 4 * Math.sqrt(6) } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 14 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 12, y: 25 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 6, y: 14 }, placement: "below-right" },
+      { key: "bound", objectId: "bound", at: { x: Math.sqrt(6), y: 4 * Math.sqrt(6) }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 6, y: 28 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check with another value in the range: <InlineMath math="x=12" /> and <InlineMath math="y=1" /> give <InlineMath math="2x+y=25" />, which is bigger than <InlineMath math="14" />.
 
 # Why the other options are wrong

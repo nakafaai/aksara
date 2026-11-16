@@ -41,6 +41,43 @@ Triangles <InlineMath math="ADC" /> and <InlineMath math="ACB" /> are similar, b
 AD &= \frac{AC^2}{AB}=\frac{900}{50}=18
 \end{aligned}" />
 
+Drawing the triangle at its true size shows how the hypotenuse splits. Since <InlineMath math="AC" /> is the shorter leg, **the piece next to <InlineMath math="A" /> is the shorter piece too**, <InlineMath math="18" />, while the piece next to <InlineMath math="B" /> is <InlineMath math="32" />.
+
+<MathVisual
+  title={<>The altitude <InlineMath math="CD" /> splits the hypotenuse <InlineMath math="AB" /></>}
+  description={<>The triangle has a right angle at <InlineMath math="C" />, with <InlineMath math="AC=30" />, <InlineMath math="BC=40" />, and <InlineMath math="AB=50" />. The altitude <InlineMath math="CD=24" /> lands at <InlineMath math="D" /> on <InlineMath math="AB" /> and splits the hypotenuse into <InlineMath math="AD=18" /> and <InlineMath math="DB=32" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="18" />,
+    db: <InlineMath math="32" />,
+    cd: <InlineMath math="24" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 44 }, y: { min: -4, max: 34 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 0, y: 30 }] },
+      { id: "altitude", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 72 / 5, y: 96 / 5 } },
+      { id: "piece-ad", kind: "segment", appearance: "answer", from: { x: 0, y: 30 }, to: { x: 72 / 5, y: 96 / 5 } },
+      { id: "piece-db", kind: "segment", appearance: "secondary", from: { x: 72 / 5, y: 96 / 5 }, to: { x: 40, y: 0 } },
+      { id: "point-d", kind: "point", appearance: "highlight", at: { x: 72 / 5, y: 96 / 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 30 }, placement: "above-left" },
+      { key: "b", objectId: "triangle", at: { x: 40, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 72 / 5, y: 96 / 5 }, placement: "above-right" },
+      { key: "ad", objectId: "piece-ad", at: { x: 36 / 5, y: 123 / 5 }, placement: "above-right" },
+      { key: "db", objectId: "piece-db", at: { x: 136 / 5, y: 48 / 5 }, placement: "above-right" },
+      { key: "cd", objectId: "altitude", at: { x: 36 / 5, y: 48 / 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Check with the other piece: <InlineMath math="DB=\tfrac{BC^2}{AB}=\tfrac{1{,}600}{50}=32" />. They add up to <InlineMath math="18+32=50=AB" />, and their product is <InlineMath math="18\cdot32=576=24^2=CD^2" />, which matches the rule for the altitude to the hypotenuse.
 
 # Why the other options fail

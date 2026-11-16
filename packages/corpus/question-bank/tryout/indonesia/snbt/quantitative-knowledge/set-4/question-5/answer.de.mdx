@@ -19,6 +19,39 @@ R_1^2&=\left(\tfrac{s}{2}\right)^2+(2s)^2=\tfrac{17}{4}s^2\\
 Q&=\tfrac{1}{2}\pi R_1^2-2s^2=\tfrac{17}{8}\pi s^2-2s^2
 \end{aligned}" />
 
+Die Abbildung nutzt <InlineMath math="s=2" />, damit du beide Figuren vergleichen kannst. Dasselbe Rechteck wirkt **im Kreis <InlineMath math="L_2" /> viel enger** als im Halbkreis <InlineMath math="L_1" />, weil seine aufrechte lange Seite den Bogen von <InlineMath math="L_1" /> weit nach oben drückt.
+
+<MathVisual
+  title={<>Dasselbe Rechteck in <InlineMath math="L_1" /> und <InlineMath math="L_2" /></>}
+  description={<>Mit <InlineMath math="s=2" /> misst das Rechteck <InlineMath math="2" /> mal <InlineMath math="4" />. Links liegt seine kurze Seite in der Mitte des Durchmessers des Halbkreises <InlineMath math="L_1" /> mit Radius <InlineMath math="R_1=\sqrt{17}" />. Rechts liegen alle vier Ecken auf dem Kreis <InlineMath math="L_2" /> mit Radius <InlineMath math="R_2=\sqrt5" />.</>}
+  labels={{
+    l1: <InlineMath math="L_1" />,
+    l2: <InlineMath math="L_2" />,
+    r1: <InlineMath math="R_1" />,
+    r2: <InlineMath math="R_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 13.5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "semicircle", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(17), startDegrees: 0, sweepDegrees: 180 },
+      { id: "diameter", kind: "segment", appearance: "primary", from: { x: -Math.sqrt(17), y: 0 }, to: { x: Math.sqrt(17), y: 0 } },
+      { id: "rect-one", kind: "polygon", appearance: "reference", vertices: [{ x: -1, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 4 }, { x: -1, y: 4 }] },
+      { id: "radius-one", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 10, y: 0 }, radius: Math.sqrt(5) },
+      { id: "rect-two", kind: "polygon", appearance: "reference", vertices: [{ x: 9, y: -2 }, { x: 11, y: -2 }, { x: 11, y: 2 }, { x: 9, y: 2 }] },
+      { id: "radius-two", kind: "segment", appearance: "highlight", from: { x: 10, y: 0 }, to: { x: 11, y: 2 } },
+    ],
+    labels: [
+      { key: "l1", objectId: "semicircle", at: { x: -Math.sqrt(17) * Math.SQRT1_2, y: Math.sqrt(17) * Math.SQRT1_2 }, placement: "above-left" },
+      { key: "l2", objectId: "circle", at: { x: 10 + Math.sqrt(5) * Math.SQRT1_2, y: -Math.sqrt(5) * Math.SQRT1_2 }, placement: "below-right" },
+      { key: "r1", objectId: "radius-one", at: { x: 1 / 2, y: 2 }, placement: "right" },
+      { key: "r2", objectId: "radius-two", at: { x: 21 / 2, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Vergleichen
 
 Der Teil <InlineMath math="-2s^2" /> steht auf beiden Seiten, also vergleichst du <InlineMath math="\tfrac{17}{8}\pi s^2" /> mit <InlineMath math="\tfrac{5}{4}\pi s^2=\tfrac{10}{8}\pi s^2" />. Weil <InlineMath math="17>10" /> und <InlineMath math="s>0" /> ist, **ist <InlineMath math="Q" /> größer als <InlineMath math="P" />**. Mit <InlineMath math="\pi\approx3{,}14" /> sind das etwa <InlineMath math="Q\approx4{,}68s^2" /> und <InlineMath math="P\approx1{,}93s^2" />.

@@ -34,6 +34,37 @@ f(x)-14&=\frac{2x^2-14x+12}{x}\\
 
 Für <InlineMath math="x\ge6" /> ist der Faktor <InlineMath math="x-1" /> positiv, der Faktor <InlineMath math="x-6" /> nicht negativ und <InlineMath math="x" /> positiv. Also gilt <InlineMath math="f(x)-14\ge0" />, mit Gleichheit genau bei <InlineMath math="x=6" />. **Das Minimum liegt am Rand des Bereichs**, bei <InlineMath math="x=6" /> und <InlineMath math="y=2" />, und dieses Paar erfüllt <InlineMath math="6\ge3\cdot2" />.
 
+Der Graph von <InlineMath math="f" /> zeigt beide Punkte. Der Tiefpunkt der Kurve mit dem Wert <InlineMath math="4\sqrt6" /> liegt links der Geraden <InlineMath math="x=6" />, also außerhalb des erlaubten Bereichs. Für <InlineMath math="x\ge6" /> steigt die Kurve immer weiter, also **liegt ihr kleinster Wert am Rand, bei <InlineMath math="(6,14)" />**.
+
+<MathVisual
+  title={<>Die Kurve <InlineMath math="f(x)=2x+\tfrac{12}{x}" /> und der Bereich <InlineMath math="x\ge6" /></>}
+  description={<>Die Kurve fällt bis zu ihrem Tiefpunkt bei <InlineMath math="x=\sqrt6" /> mit dem Wert <InlineMath math="4\sqrt6" /> und steigt dann. Das dicke Stück auf der <InlineMath math="x" />-Achse markiert den erlaubten Bereich <InlineMath math="x\ge6" />. Dort steigt die Kurve immer, und ihr kleinster Wert ist <InlineMath math="14" /> bei <InlineMath math="x=6" />.</>}
+  labels={{
+    f: <InlineMath math="y=2x+\tfrac{12}{x}" />,
+    best: <InlineMath math="(6,14)" />,
+    bound: <InlineMath math="4\sqrt6" />,
+    start: <InlineMath math="x=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "allowed", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 14, y: 0 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "2x + 12/x", domain: { min: 0.45, max: 14 } },
+      { id: "start", kind: "line", appearance: "construction", through: [{ x: 6, y: 0 }, { x: 6, y: 1 }] },
+      { id: "bound", kind: "point", appearance: "warning", at: { x: Math.sqrt(6), y: 4 * Math.sqrt(6) } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 14 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 12, y: 25 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 6, y: 14 }, placement: "below-right" },
+      { key: "bound", objectId: "bound", at: { x: Math.sqrt(6), y: 4 * Math.sqrt(6) }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 6, y: 28 }, placement: "right" },
+    ],
+  }}
+/>
+
 Probe mit einem anderen Wert aus dem Bereich: <InlineMath math="x=12" /> und <InlineMath math="y=1" /> liefern <InlineMath math="2x+y=25" />, mehr als <InlineMath math="14" />.
 
 # Warum die anderen Antworten falsch sind

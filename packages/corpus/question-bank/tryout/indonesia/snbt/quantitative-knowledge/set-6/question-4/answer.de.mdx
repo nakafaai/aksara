@@ -33,6 +33,37 @@ x^2-4x-5 &\le 0 \\
 
 Die Schnittmenge von <InlineMath math="x>3" /> und <InlineMath math="-1\le x\le5" /> ist <InlineMath math="3<x\le5" />. **Die einzigen ganzen Zahlen sind <InlineMath math="4" /> und <InlineMath math="5" />**, ihre Summe ist <InlineMath math="4+5=9" />.
 
+Der Graph der linken Seite für <InlineMath math="x>3" /> zeigt die Richtung der Ungleichung. Die Kurve **fällt immer weiter**, weil die Basis kleiner als eins ist, also bleibt sie nur bis <InlineMath math="x=5" /> auf oder über der Geraden <InlineMath math="y=-3" />.
+
+<MathVisual
+  title={<>Die linke Seite der Ungleichung für <InlineMath math="x>3" /></>}
+  description={<>Die Kurve <InlineMath math="y=\log_{\frac12}(x-1)+\log_{\frac12}(x-3)" /> beginnt nahe der Geraden <InlineMath math="x=3" /> sehr hoch und fällt immer weiter. Sie schneidet die Gerade <InlineMath math="y=-3" /> in <InlineMath math="(5,-3)" />. Das dicke Stück auf der <InlineMath math="x" />-Achse markiert <InlineMath math="3<x\le5" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\log_{\frac12}(x-1)+\log_{\frac12}(x-3)" />,
+    level: <InlineMath math="y=-3" />,
+    five: <InlineMath math="(5,-3)" />,
+    wall: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 8 }, y: { min: -6, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 2, y: -3 }, to: { x: 8, y: -3 } },
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: 3, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "-log_2(x - 1) - log_2(x - 3)", domain: { min: 3.005, max: 8 } },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 5, y: -3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: -Math.log2(2.5) - Math.log2(0.5) }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 7.5, y: -3 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 5, y: -3 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 3, y: -5.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Prüfe das an der ursprünglichen Ungleichung. Bei <InlineMath math="x=5" /> liegt der Wert genau auf der Grenze, bei <InlineMath math="x=6" /> schon darüber hinaus.
 
 <BlockMath math="\begin{aligned}

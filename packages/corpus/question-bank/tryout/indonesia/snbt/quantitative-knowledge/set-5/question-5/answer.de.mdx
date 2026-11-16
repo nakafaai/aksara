@@ -25,6 +25,19 @@ x=24:&\quad P=\tfrac{69}{6}=11{,}5>10{,}5
 
 Alle drei Werte erfüllen <InlineMath math="x\ge12" />, der Median ist also jedes Mal <InlineMath math="10{,}5" />. **Alle drei Beziehungen sind möglich**, die Angaben reichen also nicht aus.
 
+Das Diagramm zeigt <InlineMath math="P" /> und <InlineMath math="Q" /> für jedes <InlineMath math="x" /> von <InlineMath math="12" /> bis <InlineMath math="24" />. Der Median bleibt flach bei <InlineMath math="10{,}5" />, der Mittelwert steigt, also **kreuzen sich die beiden Linien bei <InlineMath math="x=18" />** und die Reihenfolge dreht sich um.
+
+<Chart
+  title={<>Mittelwert und Median für <InlineMath math="x" /> von <InlineMath math="12" /> bis <InlineMath math="24" /></>}
+  description={<>Der Mittelwert <InlineMath math="\tfrac{45+x}{6}" /> steigt von <InlineMath math="9{,}5" /> bei <InlineMath math="x=12" /> auf <InlineMath math="11{,}5" /> bei <InlineMath math="x=24" />. Der Median bleibt <InlineMath math="10{,}5" />. Die beiden Linien treffen sich bei <InlineMath math="x=18" />.</>}
+  categories={Array.from({ length: 13 }, (_, i) => `${i + 12}`)}
+  series={[
+    { label: "Mittelwert P", mark: "line", values: Array.from({ length: 13 }, (_, i) => (45 + i + 12) / 6) },
+    { label: "Median Q", mark: "line", values: Array.from({ length: 13 }, () => 10.5) },
+  ]}
+  valueLabel="Wert"
+/>
+
 # Warum die anderen Antworten falsch sind
 
 - <InlineMath math="Q>P" /> entsteht, wenn du <InlineMath math="\tfrac{9+x}{2}=10{,}5" /> nur zu <InlineMath math="x=12" /> löst und **vergisst, dass der Median auch für größere <InlineMath math="x" /> bei <InlineMath math="10{,}5" /> bleibt**.

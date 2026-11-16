@@ -33,6 +33,32 @@ Das Feld in Zeile <InlineMath math="3" />, Spalte <InlineMath math="5" /> liegt 
 
 Jetzt muss die obere Linie über beiden Feldern liegen, die untere unter beiden und so weiter. **Jede Linie muss also die strengere der beiden Bedingungen erfüllen**.
 
+Das Brett zeigt diese strengere Bedingung. Jedes Rechteck, das beide Felder enthält, **muss das kleinste markierte Rechteck überdecken**, von Zeile <InlineMath math="1" /> bis <InlineMath math="3" /> und von Spalte <InlineMath math="2" /> bis <InlineMath math="5" />. Seine untere Linie kann noch eine Zeile tiefer liegen, und die linke und rechte Linie können jeweils eine Spalte weiter außen liegen.
+
+<MathVisual
+  title={<>Das Brett mit <InlineMath math="4" /> mal <InlineMath math="6" /> Feldern und zwei schraffierten Feldern</>}
+  description={<>Die schraffierten Felder liegen in Zeile <InlineMath math="1" />, Spalte <InlineMath math="2" /> und in Zeile <InlineMath math="3" />, Spalte <InlineMath math="5" />. Das kleinste Rechteck, das beide enthält, reicht von Zeile <InlineMath math="1" /> bis <InlineMath math="3" /> und von Spalte <InlineMath math="2" /> bis <InlineMath math="5" />. Seine obere Linie liegt fest am oberen Brettrand, die untere kann unter Zeile <InlineMath math="3" /> oder Zeile <InlineMath math="4" /> liegen, und die linke und rechte Linie haben jeweils <InlineMath math="2" /> Möglichkeiten.</>}
+  labels={{
+    first: <InlineMath math="(1,2)" />,
+    second: <InlineMath math="(3,5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "board", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 0, y: 4 }] },
+      { id: "smallest", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 4 }, { x: 1, y: 4 }] },
+      { id: "first", kind: "polygon", appearance: "warning", vertices: [{ x: 1, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 1, y: 4 }] },
+      { id: "second", kind: "polygon", appearance: "warning", vertices: [{ x: 4, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 2 }, { x: 4, y: 2 }] },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1.5, y: 3.5 }, placement: "center" },
+      { key: "second", objectId: "second", at: { x: 4.5, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \text{oben} &\in\{0\}, & \text{unten} &\in\{3,4\} \\
 \text{links} &\in\{0,1\}, & \text{rechts} &\in\{5,6\} \\

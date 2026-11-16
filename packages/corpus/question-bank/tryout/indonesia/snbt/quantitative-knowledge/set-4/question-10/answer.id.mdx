@@ -24,6 +24,21 @@ Dari jalan ketiga, <InlineMath math="x=4" /> membuat bilangan pokoknya <InlineMa
 
 Pada jalan kedua, pangkat <InlineMath math="4" /> memang genap. Jalan ini mudah terlewat karena orang sering hanya memeriksa bilangan pokok <InlineMath math="1" /> dan pangkat <InlineMath math="0" />.
 
+Diagram berikut merangkum ketiga jalur dan saringannya. Setiap jalur memberi calon, lalu **syaratnya sendiri** memutuskan apakah calon itu lolos.
+
+<Mermaid
+  title={<>Tiga jalur menuju pangkat bernilai <InlineMath math="1" /></>}
+  description={<>Jalur basis <InlineMath math="1" /> memberi <InlineMath math="x=5" />, dan lolos. Jalur basis <InlineMath math="-1" /> memberi <InlineMath math="x=3" /> dengan pangkat <InlineMath math="4" /> yang genap, dan lolos. Jalur pangkat <InlineMath math="0" /> memberi <InlineMath math="x=4" /> dan <InlineMath math="x=7" />. Calon <InlineMath math="x=4" /> dibuang karena menghasilkan <InlineMath math="0^0" />, sedangkan <InlineMath math="x=7" /> lolos.</>}
+  chart={`flowchart LR
+    A["(x - 4) pangkat (x - 4)(x - 7) = 1"] --> B["basis 1: x = 5"]
+    A --> C["basis -1: x = 3"]
+    A --> D["pangkat 0: x = 4 atau x = 7"]
+    B --> B1["1 pangkat -2 = 1, lolos"]
+    C --> C1["pangkat 4 genap, lolos"]
+    D --> D1["x = 4: 0 pangkat 0, dibuang"]
+    D --> D2["x = 7: 3 pangkat 0 = 1, lolos"]`}
+/>
+
 # Menjumlahkan penyelesaian
 
 **Tiga nilai yang lolos** adalah <InlineMath math="x=3" />, <InlineMath math="x=5" />, dan <InlineMath math="x=7" />. Jumlahnya <InlineMath math="3+5+7=15" />. Coba cek <InlineMath math="x=3" /> sekali lagi langsung ke soal: <InlineMath math="(3-4)^{9-33+28}=(-1)^4=1" />.

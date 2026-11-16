@@ -19,6 +19,39 @@ R_1^2&=\left(\tfrac{s}{2}\right)^2+(2s)^2=\tfrac{17}{4}s^2\\
 Q&=\tfrac{1}{2}\pi R_1^2-2s^2=\tfrac{17}{8}\pi s^2-2s^2
 \end{aligned}" />
 
+Gambar berikut memakai <InlineMath math="s=2" /> supaya kedua bangun bisa dibandingkan. Persegi panjang yang sama tampak **jauh lebih sesak di dalam lingkaran <InlineMath math="L_2" />** daripada di dalam setengah lingkaran <InlineMath math="L_1" />, karena sisi panjangnya yang tegak mendorong busur <InlineMath math="L_1" /> jauh ke atas.
+
+<MathVisual
+  title={<>Persegi panjang yang sama di dalam <InlineMath math="L_1" /> dan <InlineMath math="L_2" /></>}
+  description={<>Dengan <InlineMath math="s=2" />, persegi panjang berukuran <InlineMath math="2" /> kali <InlineMath math="4" />. Di kiri, sisi pendeknya ada di tengah diameter setengah lingkaran <InlineMath math="L_1" />, dan jari-jarinya <InlineMath math="R_1=\sqrt{17}" />. Di kanan, keempat titik sudutnya ada pada lingkaran <InlineMath math="L_2" />, dan jari-jarinya <InlineMath math="R_2=\sqrt5" />.</>}
+  labels={{
+    l1: <InlineMath math="L_1" />,
+    l2: <InlineMath math="L_2" />,
+    r1: <InlineMath math="R_1" />,
+    r2: <InlineMath math="R_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 13.5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "semicircle", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(17), startDegrees: 0, sweepDegrees: 180 },
+      { id: "diameter", kind: "segment", appearance: "primary", from: { x: -Math.sqrt(17), y: 0 }, to: { x: Math.sqrt(17), y: 0 } },
+      { id: "rect-one", kind: "polygon", appearance: "reference", vertices: [{ x: -1, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 4 }, { x: -1, y: 4 }] },
+      { id: "radius-one", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 10, y: 0 }, radius: Math.sqrt(5) },
+      { id: "rect-two", kind: "polygon", appearance: "reference", vertices: [{ x: 9, y: -2 }, { x: 11, y: -2 }, { x: 11, y: 2 }, { x: 9, y: 2 }] },
+      { id: "radius-two", kind: "segment", appearance: "highlight", from: { x: 10, y: 0 }, to: { x: 11, y: 2 } },
+    ],
+    labels: [
+      { key: "l1", objectId: "semicircle", at: { x: -Math.sqrt(17) * Math.SQRT1_2, y: Math.sqrt(17) * Math.SQRT1_2 }, placement: "above-left" },
+      { key: "l2", objectId: "circle", at: { x: 10 + Math.sqrt(5) * Math.SQRT1_2, y: -Math.sqrt(5) * Math.SQRT1_2 }, placement: "below-right" },
+      { key: "r1", objectId: "radius-one", at: { x: 1 / 2, y: 2 }, placement: "right" },
+      { key: "r2", objectId: "radius-two", at: { x: 21 / 2, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Membandingkan
 
 Bagian <InlineMath math="-2s^2" /> sama pada kedua ruas, jadi bandingkan <InlineMath math="\tfrac{17}{8}\pi s^2" /> dengan <InlineMath math="\tfrac{5}{4}\pi s^2=\tfrac{10}{8}\pi s^2" />. Karena <InlineMath math="17>10" /> dan <InlineMath math="s>0" />, **<InlineMath math="Q" /> lebih besar daripada <InlineMath math="P" />**. Dengan <InlineMath math="\pi\approx3{,}14" />, kira-kira <InlineMath math="Q\approx4{,}68s^2" /> dan <InlineMath math="P\approx1{,}93s^2" />.

@@ -39,6 +39,21 @@ So the mean is **at least <InlineMath math="25" />**, but the question asks for 
 20,20,20,40,40,40:\quad \text{sum} &= 180,\ \text{mean }30
 \end{aligned}" />
 
+The chart below puts both groups side by side. Both have three youngest ages adding up to <InlineMath math="60" /> and a median of <InlineMath math="30" />, but **the first group's mean sits exactly on the line at <InlineMath math="25" />**, while the second group's mean is above it.
+
+<Chart
+  title={<>Two groups that satisfy both statements</>}
+  description={<>The first group has ages <InlineMath math="15, 15, 30, 30, 30, 30" />, with sum <InlineMath math="150" /> and mean <InlineMath math="25" />. The second group has ages <InlineMath math="20, 20, 20, 40, 40, 40" />, with sum <InlineMath math="180" /> and mean <InlineMath math="30" />. The line marks a mean of <InlineMath math="25" />.</>}
+  bars="apart"
+  categories={["a1", "a2", "a3", "a4", "a5", "a6"]}
+  series={[
+    { label: "Mean exactly 25", mark: "bar", values: [15, 15, 30, 30, 30, 30] },
+    { label: "Mean 30", mark: "bar", values: [20, 20, 20, 40, 40, 40] },
+    { label: "Limit 25", mark: "line", values: [25, 25, 25, 25, 25, 25] },
+  ]}
+  valueLabel="Age (years)"
+/>
+
 The first group satisfies both statements: the three youngest give <InlineMath math="15+15+30=60" /> and the median is <InlineMath math="\tfrac{30+30}{2}=30" />, but the mean is exactly <InlineMath math="25" />, so the answer is no. The second group satisfies both too, with median <InlineMath math="\tfrac{20+40}{2}=30" />, and the answer is yes. Even both statements together aren't sufficient. The trap is reading the bound at least <InlineMath math="25" /> as more than <InlineMath math="25" />.
 
 So statement (1) and statement (2) are not sufficient to answer the question.

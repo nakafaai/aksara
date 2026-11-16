@@ -42,6 +42,18 @@ Für <InlineMath math="d=7" /> sind <InlineMath math="m=5" /> und <InlineMath ma
 
 Beide Bedingungen stimmen, und dieses Paar ist das einzige, das übrig bleibt. Die Differenz ist also sicher <InlineMath math="42" />.
 
+Das Diagramm fasst die Auswahl zusammen. Von den acht Kandidaten für den ggT bestehen nur zwei den Diskriminantentest, und **die Bedingung „teilerfremd“ wirft einen davon hinaus**.
+
+<Mermaid
+  title={<>Die Kandidaten für den ggT aussieben</>}
+  description={<>Die Kandidaten für den ggT sind die Teiler von <InlineMath math="56" />. Nur <InlineMath math="d=7" /> und <InlineMath math="d=8" /> liefern eine Quadratzahl als Diskriminante. Für <InlineMath math="d=8" /> ist das Paar <InlineMath math="6" /> und <InlineMath math="8" /> nicht teilerfremd und fällt weg. Für <InlineMath math="d=7" /> liefert das Paar <InlineMath math="5" /> und <InlineMath math="11" /> die Zahlen <InlineMath math="35" /> und <InlineMath math="77" /> mit Differenz <InlineMath math="42" />.</>}
+  chart={`flowchart LR
+    A["d teilt 56: 1, 2, 4, 7, 8, 14, 28, 56"] -->|"Diskriminantentest"| B["d = 7: m = 5, n = 11"]
+    A -->|"Diskriminantentest"| C["d = 8: m = 6, n = 8"]
+    C -->|"6 und 8 nicht teilerfremd"| X["fällt weg"]
+    B -->|"5 und 11 teilerfremd"| D["35 und 77, Differenz 42"]`}
+/>
+
 # Die verlockenden falschen Optionen
 
 Jede andere Option entsteht durch **einen übersprungenen Schritt** auf diesem Weg.

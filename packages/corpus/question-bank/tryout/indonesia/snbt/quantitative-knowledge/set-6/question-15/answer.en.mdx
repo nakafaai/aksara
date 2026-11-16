@@ -9,6 +9,29 @@ A_{\text{hexagon}} &= 6\cdot\frac{\sqrt3}{4}\left(\frac{K}{6}\right)^2=\frac{\sq
 A_{\text{circle}} &= \pi\left(\frac{K}{2\pi}\right)^2=\frac{K^2}{4\pi}
 \end{aligned}" />
 
+The figure below draws both shapes with perimeter <InlineMath math="12" /> around one centre. The circle **bulges a little past the middle of each side** of the hexagon but falls short at each corner, so the two areas differ only slightly.
+
+<MathVisual
+  title={<>A regular hexagon and a circle with perimeter <InlineMath math="12" /></>}
+  description={<>The hexagon has side <InlineMath math="2" /> and the circle has radius <InlineMath math="\tfrac{6}{\pi}" />, about <InlineMath math="1.91" />, drawn around the same centre. The circle's radius is a little less than the distance from the centre to a corner of the hexagon, <InlineMath math="2" />, but more than the distance to a side, <InlineMath math="\sqrt3" />.</>}
+  labels={{
+    circle: <InlineMath math="r=\tfrac{6}{\pi}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -2.4, max: 2.4 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "hexagon", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 0 }, { x: 1, y: Math.sqrt(3) }, { x: -1, y: Math.sqrt(3) }, { x: -2, y: 0 }, { x: -1, y: -Math.sqrt(3) }, { x: 1, y: -Math.sqrt(3) }] },
+      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 6 / Math.PI },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -6 / Math.PI } },
+    ],
+    labels: [
+      { key: "circle", objectId: "radius", at: { x: 0, y: -3 / Math.PI }, placement: "right" },
+    ],
+  }}
+/>
+
 # Comparing the ratio
 
 Divide the hexagon's area by the circle's area. The factor <InlineMath math="K^2" /> cancels, so **the result is the same for any perimeter**.

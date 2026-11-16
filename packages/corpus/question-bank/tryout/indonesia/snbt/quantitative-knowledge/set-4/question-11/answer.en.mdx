@@ -29,6 +29,44 @@ CB&=\sqrt{(5-2)^2+(5-1)^2}=\sqrt{9+16}=5\\
 CA+CB&=10
 \end{aligned}" />
 
+The figure below shows why the best point moves to an end. The point <InlineMath math="P^*" /> is on the extension of the line, **outside segment <InlineMath math="CD" />**. Along the segment, the sum of distances keeps rising as you move away from <InlineMath math="P^*" />, so the shortest allowed path is <InlineMath math="A\to C\to B" />.
+
+<MathVisual
+  title={<>Segment <InlineMath math="CD" />, the mirror image <InlineMath math="A'" />, and the shortest path</>}
+  description={<>The line <InlineMath math="y=2x-5" /> is dashed, and segment <InlineMath math="CD" /> from <InlineMath math="C(5,5)" /> to <InlineMath math="D(7,9)" /> is thick. The mirror image of <InlineMath math="A(0,5)" /> is <InlineMath math="A'(8,1)" />. The line <InlineMath math="A'B" /> meets the line at <InlineMath math="P^*(3,1)" />, outside the segment. The path used is <InlineMath math="A\to C\to B" />, with length <InlineMath math="5+5=10" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    aa: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    star: <InlineMath math="P^*" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line", kind: "line", appearance: "construction", through: [{ x: 5, y: 5 }, { x: 7, y: 9 }] },
+      { id: "segment", kind: "segment", appearance: "primary", from: { x: 5, y: 5 }, to: { x: 7, y: 9 } },
+      { id: "mirror-path", kind: "segment", appearance: "construction", from: { x: 2, y: 1 }, to: { x: 8, y: 1 } },
+      { id: "best", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 5 }, { x: 5, y: 5 }, { x: 2, y: 1 }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-aa", kind: "point", appearance: "construction", at: { x: 8, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+      { id: "point-star", kind: "point", appearance: "warning", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "aa", objectId: "point-aa", at: { x: 8, y: 1 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "c", objectId: "segment", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "d", objectId: "segment", at: { x: 7, y: 9 }, placement: "right" },
+      { key: "star", objectId: "point-star", at: { x: 3, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Compare with other points of the segment. At the midpoint <InlineMath math="(6,7)" />, the sum is <InlineMath math="2\sqrt{10}+2\sqrt{13}" />, which is more than <InlineMath math="6+7=13" />. At <InlineMath math="D" />, it's <InlineMath math="\sqrt{65}+\sqrt{89}" />, which is more than <InlineMath math="8+9=17" />. Both are bigger than <InlineMath math="10" />.
 
 # The tempting wrong options

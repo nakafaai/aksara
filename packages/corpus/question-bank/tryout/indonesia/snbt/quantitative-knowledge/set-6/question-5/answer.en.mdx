@@ -33,6 +33,17 @@ Q &= 2\sqrt4=4
 
 At <InlineMath math="x=2" /> the difference of squares is <InlineMath math="4(2-1)=4" />, which is positive, so <InlineMath math="P>Q" />. The same holds for every <InlineMath math="x\ge2" />. Because <InlineMath math="x=1" /> gives <InlineMath math="P=Q" /> and <InlineMath math="x=2" /> gives <InlineMath math="P>Q" />, **no single relation can be picked**.
 
+A chart of the difference <InlineMath math="P-Q" /> for the first eight positive integers shows the pattern. **The bar at <InlineMath math="x=1" /> has height zero**, while every other bar is positive, so the relation changes from equal to greater.
+
+<Chart
+  title={<>The difference <InlineMath math="P-Q=\sqrt{x}+\sqrt{x+8}-2\sqrt{x+3}" /></>}
+  description={<>For <InlineMath math="x=1" />, the difference is exactly <InlineMath math="0" />. For <InlineMath math="x=2" /> to <InlineMath math="8" />, it's positive, roughly between <InlineMath math="0.10" /> and <InlineMath math="0.20" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 8 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Difference P - Q", mark: "bar", values: Array.from({ length: 8 }, (_, i) => Math.sqrt(i + 1) + Math.sqrt(i + 9) - 2 * Math.sqrt(i + 4)) }]}
+  valueLabel="Difference"
+/>
+
 # Why the other options fail
 
 Each of the other three options is only true for **some values of <InlineMath math="x" />**.

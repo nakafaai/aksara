@@ -17,6 +17,20 @@ y=4:\quad N=4,&\quad\binom{6}{2}=15\\
 \text{insgesamt}&=45+28+15=88
 \end{aligned}" />
 
+Das Diagramm vergleicht jeden Fall mit und ohne die Bedingung für das älteste Kind. Die Bedingung **kürzt jeden Fall**, und zwar umso stärker, je größer der Anteil des jüngsten Kindes ist, weil das älteste mehr Bonbons zurücklegen muss.
+
+<Chart
+  title={<>Anzahl der Möglichkeiten nach dem Anteil <InlineMath math="y" /> des jüngsten Kindes</>}
+  description={<>Mit der Bedingung liefern die Fälle <InlineMath math="y=2" />, <InlineMath math="y=3" /> und <InlineMath math="y=4" /> jeweils <InlineMath math="45" />, <InlineMath math="28" /> und <InlineMath math="15" /> Möglichkeiten, zusammen <InlineMath math="88" />. Ohne sie sind es <InlineMath math="55" />, <InlineMath math="45" /> und <InlineMath math="36" />, zusammen <InlineMath math="136" />.</>}
+  bars="apart"
+  categories={["y = 2", "y = 3", "y = 4"]}
+  series={[
+    { label: "Ältestes bekommt mehr als Jüngstes", mark: "bar", values: [(10 * 9) / 2, (8 * 7) / 2, (6 * 5) / 2] },
+    { label: "Ohne Bedingung für das Älteste", mark: "bar", values: [(11 * 10) / 2, (10 * 9) / 2, (9 * 8) / 2] },
+  ]}
+  valueLabel="Anzahl der Möglichkeiten"
+/>
+
 Prüf den Fall <InlineMath math="y=4" /> auf einem anderen Weg. Das älteste Kind bekommt mindestens <InlineMath math="5" />, die beiden mittleren mindestens <InlineMath math="2" />, und zusammen teilen sie <InlineMath math="13" />. Die <InlineMath math="4" /> übrigen Bonbons frei auf <InlineMath math="3" /> Kinder verteilt ergeben <InlineMath math="15" /> Möglichkeiten, wie in der Rechnung oben. Ohne die Bedingung für das älteste Kind ergeben die drei Fälle zusammen <InlineMath math="55+45+36=136" />, und <InlineMath math="88" /> ist wie erwartet kleiner.
 
 # Die verlockenden falschen Optionen

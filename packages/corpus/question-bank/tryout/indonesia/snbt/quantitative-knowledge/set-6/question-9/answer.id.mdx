@@ -38,6 +38,20 @@ u_1+u_3+u_5+\dots &= \frac{a}{1-r^2} \\
 &= \frac{\tfrac{15}{4}}{1-\tfrac{1}{16}}=\frac{15}{4}\cdot\frac{16}{15}=4
 \end{aligned}" />
 
+Grafik enam suku pertama memperlihatkan tandanya. Suku bernomor ganjil **semuanya positif** dan suku bernomor genap semuanya negatif, jadi jumlah suku ganjil memang lebih besar daripada jumlah seluruh deret.
+
+<Chart
+  title={<>Enam suku pertama dengan <InlineMath math="a=\tfrac{15}{4}" /> dan <InlineMath math="r=-\tfrac14" /></>}
+  description={<>Suku-sukunya <InlineMath math="\tfrac{15}{4}" />, <InlineMath math="-\tfrac{15}{16}" />, <InlineMath math="\tfrac{15}{64}" />, <InlineMath math="-\tfrac{15}{256}" />, dan seterusnya. Suku ganjil positif dan berjumlah <InlineMath math="4" />, suku genap negatif dan berjumlah <InlineMath math="-1" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `u${i + 1}`)}
+  series={[
+    { label: "Suku bernomor ganjil", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (i % 2 === 0 ? (15 / 4) * (-1 / 4) ** i : null)) },
+    { label: "Suku bernomor genap", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (i % 2 === 1 ? (15 / 4) * (-1 / 4) ** i : null)) },
+  ]}
+  valueLabel="Nilai suku"
+/>
+
 Cek lewat suku bernomor genap, <InlineMath math="ar,ar^3,\dots" />, yang jumlahnya <InlineMath math="\tfrac{ar}{1-r^2}=4\cdot\left(-\tfrac14\right)=-1" />. Ganjil ditambah genap memberi <InlineMath math="4+(-1)=3" />, sama dengan jumlah deret semula. Suku genapnya negatif karena <InlineMath math="r<0" />, jadi wajar kalau jumlah suku ganjil melebihi <InlineMath math="3" />.
 
 # Mengapa pilihan lain keliru

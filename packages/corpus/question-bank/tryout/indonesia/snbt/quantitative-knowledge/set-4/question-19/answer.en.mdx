@@ -32,6 +32,36 @@ m&=\frac{8\pm\sqrt{64-56}}{2}=4\pm\sqrt2
 
 Both values are valid.
 
+The graph below gives another way to see the condition <InlineMath math="f\bigl(f(x)\bigr)=x" />: the graph of <InlineMath math="f" /> has to be **symmetric about the line <InlineMath math="y=x" />**, because <InlineMath math="f" /> is its own inverse. The line <InlineMath math="y=x" /> and the lines with slope <InlineMath math="-1" /> pass, while <InlineMath math="y=x-4" /> runs parallel to <InlineMath math="y=x" /> and isn't symmetric about it.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f" /> for the four candidate values of <InlineMath math="m" /></>}
+  description={<>For <InlineMath math="m=6" />, the graph is the line <InlineMath math="y=x" /> itself. For <InlineMath math="m=4+\sqrt2" /> and <InlineMath math="m=4-\sqrt2" />, the graphs are lines with slope <InlineMath math="-1" />, <InlineMath math="y=-x-2+\sqrt2" /> and <InlineMath math="y=-x-2-\sqrt2" />, which are perpendicular to <InlineMath math="y=x" />. For <InlineMath math="m=2" />, the graph is <InlineMath math="y=x-4" />, parallel to <InlineMath math="y=x" /> and shifted down.</>}
+  labels={{
+    six: <InlineMath math="m=6" />,
+    two: <InlineMath math="m=2" />,
+    plus: <InlineMath math="m=4+\sqrt2" />,
+    minus: <InlineMath math="m=4-\sqrt2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "six", kind: "function", appearance: "answer", formula: "x", domain: { min: -6, max: 6 } },
+      { id: "two", kind: "function", appearance: "warning", formula: "x - 4", domain: { min: -2, max: 6 } },
+      { id: "plus", kind: "function", appearance: "primary", formula: "-x - 2 + sqrt(2)", domain: { min: -5, max: 5 } },
+      { id: "minus", kind: "function", appearance: "secondary", formula: "-x - 2 - sqrt(2)", domain: { min: -5, max: 2 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 5, y: 5 }, placement: "above-left" },
+      { key: "two", objectId: "two", at: { x: 5, y: 1 }, placement: "below-right" },
+      { key: "plus", objectId: "plus", at: { x: -4, y: 2 + Math.sqrt(2) }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: -3, y: 1 - Math.sqrt(2) }, placement: "below-left" },
+    ],
+  }}
+/>
+
 # The product of all values
 
 **All the values of <InlineMath math="m" /> that survive** are <InlineMath math="6" />, <InlineMath math="4+\sqrt2" />, and <InlineMath math="4-\sqrt2" />.

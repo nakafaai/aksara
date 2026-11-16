@@ -31,6 +31,20 @@ Since <InlineMath math="0.245=\frac14-0.005" />, the condition becomes **the sub
 
 For <InlineMath math="n=8" />, <InlineMath math="9\cdot10=90" /> isn't enough. For <InlineMath math="n=9" />, <InlineMath math="10\cdot11=110>100" />. So the smallest <InlineMath math="n" /> is <InlineMath math="9" />.
 
+The graph of <InlineMath math="S_n" /> below shows how it grows. The sum keeps rising toward <InlineMath math="\tfrac14" />, more and more slowly, and **it only passes the line at <InlineMath math="0.245" /> when <InlineMath math="n=9" />**.
+
+<Chart
+  title={<>The sum <InlineMath math="S_n=\tfrac14-\tfrac{1}{2(n+1)(n+2)}" /> for <InlineMath math="n=1" /> to <InlineMath math="12" /></>}
+  description={<>The value of <InlineMath math="S_n" /> rises from <InlineMath math="\tfrac16" /> at <InlineMath math="n=1" /> toward <InlineMath math="0.25" />. For <InlineMath math="n=8" />, <InlineMath math="S_8=\tfrac{11}{45}" />, still below <InlineMath math="0.245" />. For <InlineMath math="n=9" />, <InlineMath math="S_9=\tfrac{27}{110}" />, already above it.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Sum S_n", mark: "line", values: Array.from({ length: 12 }, (_, i) => 1 / 4 - 1 / (2 * (i + 2) * (i + 3))) },
+    { label: "Limit 0.245", mark: "line", values: Array.from({ length: 12 }, () => 0.245) },
+  ]}
+  valueRange={{ min: 0.15, max: 0.26 }}
+  valueLabel="Value of the sum"
+/>
+
 Check with ordinary fractions. <InlineMath math="S_8=\frac14-\frac{1}{180}=\frac{11}{45}" /> and <InlineMath math="S_9=\frac14-\frac{1}{220}=\frac{27}{110}" />, while <InlineMath math="0.245=\frac{49}{200}" />. Cross-multiply: <InlineMath math="11\cdot200=2200<2205=49\cdot45" />, so <InlineMath math="S_8" /> hasn't passed it yet. Then <InlineMath math="27\cdot200=5400>5390=49\cdot110" />, so <InlineMath math="S_9" /> has.
 
 # The tempting wrong options

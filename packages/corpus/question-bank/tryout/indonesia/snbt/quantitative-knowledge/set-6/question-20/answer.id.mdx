@@ -41,6 +41,17 @@ Contohnya <InlineMath math="u_{15}=108=12\cdot9" /> dan <InlineMath math="u_{135
 
 <BlockMath math="\text{jawaban}=32-11=21" />
 
+Grafik berikut menyaring suku-suku itu bertahap. Dari <InlineMath math="129" /> suku di antara <InlineMath math="100" /> dan <InlineMath math="1{.}000" />, ada <InlineMath math="32" /> kelipatan <InlineMath math="4" />, dan **<InlineMath math="11" /> di antaranya juga kelipatan <InlineMath math="3" />**, sehingga tersisa <InlineMath math="21" />.
+
+<Chart
+  title={<>Menyaring suku <InlineMath math="u_n=7n+3" /></>}
+  description={<>Suku ke-<InlineMath math="14" /> sampai ke-<InlineMath math="142" /> ada <InlineMath math="129" />. Di antaranya, <InlineMath math="32" /> habis dibagi <InlineMath math="4" />, dan <InlineMath math="11" /> habis dibagi <InlineMath math="12" />. Suku yang habis dibagi <InlineMath math="4" /> tetapi tidak habis dibagi <InlineMath math="3" /> ada <InlineMath math="21" />.</>}
+  categories={["Antara 100 dan 1.000", "Kelipatan 4", "Kelipatan 12", "Kelipatan 4, bukan 3"]}
+  bars="apart"
+  series={[{ label: "Banyak suku", mark: "bar", values: [142 - 14 + 1, (139 - 15) / 4 + 1, (135 - 15) / 12 + 1, (139 - 15) / 4 + 1 - ((135 - 15) / 12 + 1)] }]}
+  valueLabel="Banyak suku"
+/>
+
 Cek dengan pola: kelompokkan <InlineMath math="32" /> nomor tadi per tiga, dan nomor pertama setiap kelompok adalah kelipatan tiga. Ada <InlineMath math="10" /> kelompok penuh dan dua nomor sisa, yaitu <InlineMath math="135" /> dan <InlineMath math="139" />. Dari sisa itu hanya <InlineMath math="135" /> kelipatan tiga, jadi banyaknya <InlineMath math="10+1=11" />, sesuai hitungan tadi. Kesalahan yang sering terjadi adalah lupa membuang kelipatan <InlineMath math="12" />, sehingga menjawab <InlineMath math="32" />.
 
 Jadi, banyak suku yang memenuhi semua syarat itu adalah <InlineMath math="21" />.

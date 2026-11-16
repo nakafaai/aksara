@@ -24,6 +24,39 @@ Nach dem Nachfüllen steht das Wasser auf <InlineMath math="\frac34" /> der Höh
 \text{nachgefülltes Wasser}&=\tfrac{63}{8}-7=\tfrac{63}{8}-\tfrac{56}{8}=\tfrac78\text{ Liter}
 \end{aligned}" />
 
+Der Querschnitt zeigt alle drei Teile. Das Anfangswasser füllt den breiten unteren Teil, das zugegebene Wasser ist **nur eine dünne Schicht dort, wo der Kegel schon schmal ist**, und der restliche Leerraum ist ein kleiner Kegel an der Spitze.
+
+<MathVisual
+  title={<>Querschnitt des Kegels vor und nach dem Auffüllen</>}
+  description={<>Ein Querschnitt des Kegels mit der Spitze oben. Der untere Teil bis zur halben Höhe enthält die anfänglichen <InlineMath math="7" /> Liter. Die Schicht zwischen halber Höhe und drei Vierteln der Höhe ist das zugegebene Wasser, <InlineMath math="\tfrac78" /> Liter. Der kleine Kegel über drei Vierteln der Höhe ist der Leerraum am Ende, <InlineMath math="\tfrac18" /> Liter.</>}
+  labels={{
+    old: <InlineMath math="7\text{ L}" />,
+    added: <InlineMath math="\tfrac78\text{ L}" />,
+    empty: <InlineMath math="\tfrac18\text{ L}" />,
+    half: <InlineMath math="\tfrac12 t" />,
+    three: <InlineMath math="\tfrac34 t" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 6.5 }, y: { min: -0.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "old", kind: "polygon", appearance: "primary", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 2, y: 4 }, { x: -2, y: 4 }] },
+      { id: "added", kind: "polygon", appearance: "answer", vertices: [{ x: -2, y: 4 }, { x: 2, y: 4 }, { x: 1, y: 6 }, { x: -1, y: 6 }] },
+      { id: "empty", kind: "polygon", appearance: "construction", vertices: [{ x: -1, y: 6 }, { x: 1, y: 6 }, { x: 0, y: 8 }] },
+      { id: "level-half", kind: "segment", appearance: "reference", from: { x: 2, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "level-three", kind: "segment", appearance: "reference", from: { x: 1, y: 6 }, to: { x: 5, y: 6 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 0, y: 2 }, placement: "center" },
+      { key: "added", objectId: "added", at: { x: 0, y: 5 }, placement: "center" },
+      { key: "empty", objectId: "empty", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "half", objectId: "level-half", at: { x: 5, y: 4 }, placement: "right" },
+      { key: "three", objectId: "level-three", at: { x: 5, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Prüf das über den leeren Raum. Am Anfang war er <InlineMath math="8-7=1" /> Liter groß, am Ende <InlineMath math="\frac18" /> Liter. Er ist um <InlineMath math="1-\frac18=\frac78" /> Liter geschrumpft, genau so viel Wasser ist hineingeflossen. Dass die Menge so klein ist, passt auch: Die Schicht zwischen halber Höhe und <InlineMath math="\frac34" /> der Höhe liegt dort, wo der Kegel schon schmal ist.
 
 # Die verlockenden falschen Optionen

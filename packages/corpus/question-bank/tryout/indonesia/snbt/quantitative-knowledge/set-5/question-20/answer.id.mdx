@@ -23,6 +23,20 @@ Faktorisasi prima <InlineMath math="576=2^6\cdot3^2" />, jadi banyak faktor posi
 
 Cek dengan daftarnya: <InlineMath math="x<y" /> terjadi tepat ketika <InlineMath math="d<24" />, yaitu <InlineMath math="d=1,2,3,4,6,8,9,12,16,18" />, ada <InlineMath math="10" /> nilai. Contohnya, <InlineMath math="d=1" /> memberi <InlineMath math="(25,600)" />, dan <InlineMath math="\tfrac{1}{25}+\tfrac{1}{600}=\tfrac{24+1}{600}=\tfrac{1}{24}" />.
 
+Grafik berikut menaruh kesepuluh pasangan berdampingan. Untuk setiap pembagi <InlineMath math="d<24" />, **batang <InlineMath math="x" /> selalu lebih pendek dari batang <InlineMath math="y" />**, dan keduanya makin mendekat sampai bertemu di <InlineMath math="48" /> saat <InlineMath math="d=24" />, yang tidak ikut dihitung.
+
+<Chart
+  title={<>Sepuluh pasangan <InlineMath math="(x,y)" /> dengan <InlineMath math="x<y" /></>}
+  description={<>Untuk pembagi <InlineMath math="d=1, 2, 3, 4, 6, 8, 9, 12, 16, 18" /> dari <InlineMath math="576" />, nilai <InlineMath math="x=24+d" /> naik dari <InlineMath math="25" /> sampai <InlineMath math="42" />, sedangkan <InlineMath math="y=24+\tfrac{576}{d}" /> turun dari <InlineMath math="600" /> sampai <InlineMath math="56" />.</>}
+  bars="apart"
+  categories={[1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => `d = ${d}`)}
+  series={[
+    { label: "x", mark: "bar", values: [1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => 24 + d) },
+    { label: "y", mark: "bar", values: [1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => 24 + 576 / d) },
+  ]}
+  valueLabel="Nilai"
+/>
+
 # Kesalahan yang sering terjadi
 
 **Pasangan dengan <InlineMath math="x=y" /> harus dibuang sebelum membagi dua**. Kalau tidak, hasilnya <InlineMath math="11" />. Jawaban <InlineMath math="21" /> menghitung pasangan terurut tanpa syarat <InlineMath math="x<y" />, dan jawaban <InlineMath math="4" /> muncul kalau yang dihitung faktor <InlineMath math="24" />, bukan faktor <InlineMath math="24^2" />.

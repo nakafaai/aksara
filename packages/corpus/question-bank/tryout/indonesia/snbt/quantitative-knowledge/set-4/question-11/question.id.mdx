@@ -1,3 +1,30 @@
 Diketahui titik <InlineMath math="A(0,5)" />, <InlineMath math="B(2,1)" />, <InlineMath math="C(5,5)" />, dan <InlineMath math="D(7,9)" />. Titik <InlineMath math="P" /> bergerak sepanjang ruas garis <InlineMath math="CD" />, termasuk kedua titik ujungnya.
 
+<MathVisual
+  title={<>Titik <InlineMath math="A" />, <InlineMath math="B" />, dan ruas <InlineMath math="CD" /></>}
+  description={<>Titik <InlineMath math="A(0,5)" /> dan <InlineMath math="B(2,1)" /> pada bidang koordinat, serta ruas garis <InlineMath math="CD" /> dari <InlineMath math="C(5,5)" /> sampai <InlineMath math="D(7,9)" />, tempat titik <InlineMath math="P" /> bergerak.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "segment", kind: "segment", appearance: "primary", from: { x: 5, y: 5 }, to: { x: 7, y: 9 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "c", objectId: "segment", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "d", objectId: "segment", at: { x: 7, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
+
 Nilai minimum <InlineMath math="PA+PB" /> adalah ....

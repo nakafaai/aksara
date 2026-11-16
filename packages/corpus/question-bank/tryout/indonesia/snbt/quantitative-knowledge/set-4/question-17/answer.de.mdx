@@ -27,6 +27,20 @@ Für <InlineMath math="d=3" /> lauten die ursprünglichen Zahlen <InlineMath mat
 
 <BlockMath math="S_5=\frac{3\left(2^5-1\right)}{2-1}=3\cdot31=93" />
 
+Das Diagramm vergleicht die geometrischen Folgen aus beiden Lösungen. Die Lösung <InlineMath math="d=-6" /> liefert die fallende Folge <InlineMath math="12, 6, 3, \ldots" />, aber ihre ursprünglichen Zahlen enthalten <InlineMath math="-1" />, also **zählen nur die Balken für <InlineMath math="d=3" />**.
+
+<Chart
+  title={<>Die ersten fünf Glieder der geometrischen Folge aus beiden Lösungen</>}
+  description={<>Für <InlineMath math="d=3" /> lautet die Folge <InlineMath math="3, 6, 12, 24, 48" />, mit Quotient <InlineMath math="2" /> und Summe <InlineMath math="93" />. Für <InlineMath math="d=-6" /> lautet sie <InlineMath math="12, 6, 3, \tfrac32, \tfrac34" /> mit Quotient <InlineMath math="\tfrac12" />, aber diese Lösung fällt weg, weil die ursprünglichen Zahlen <InlineMath math="11, 5, -1" /> sind.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "d = 3, Quotient 2", mark: "bar", values: Array.from({ length: 5 }, (_, i) => 3 * 2 ** i) },
+    { label: "d = -6, fällt weg", mark: "bar", values: Array.from({ length: 5 }, (_, i) => 12 / 2 ** i) },
+  ]}
+  valueLabel="Wert des Glieds"
+/>
+
 Prüf das durch direktes Addieren: <InlineMath math="3+6+12+24+48=93" />.
 
 # Die verlockenden falschen Optionen

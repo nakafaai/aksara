@@ -21,6 +21,37 @@ Nachdem <InlineMath math="4" /> Schüler und <InlineMath math="3" /> Schülerinn
 
 <BlockMath math="\frac{4k-4}{3k-3}=\frac{4(k-1)}{3(k-1)}=\frac43\quad\text{für jedes }k\ge2" />
 
+Die Abbildung setzt beide Bedingungen auf einen Zahlenstrahl für <InlineMath math="k" />. Ihre Überschneidung ist nur das kurze Stück von <InlineMath math="4" /> bis kurz vor <InlineMath math="5" />, und **die einzige ganze Zahl darin ist <InlineMath math="k=4" />**.
+
+<MathVisual
+  title={<>Die beiden Bedingungen aus Aussage (1)</>}
+  description={<>Das obere Stück markiert <InlineMath math="k<5" />, das Ende <InlineMath math="5" /> gehört nicht dazu. Das untere Stück markiert <InlineMath math="k\ge4" />. Die Überschneidung ist <InlineMath math="4\le k<5" /> und enthält nur die ganze Zahl <InlineMath math="4" />.</>}
+  labels={{
+    first: <InlineMath math="k<5" />,
+    second: <InlineMath math="k\ge4" />,
+    four: <InlineMath math="k=4" />,
+    five: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "secondary", from: { x: 0, y: 0.6 }, to: { x: 5, y: 0.6 } },
+      { id: "second", kind: "segment", appearance: "primary", from: { x: 4, y: -0.6 }, to: { x: 8, y: -0.6 } },
+      { id: "overlap", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "four", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "five", kind: "point", appearance: "construction", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 2.5, y: 0.6 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 6.5, y: -0.6 }, placement: "below" },
+      { key: "four", objectId: "four", at: { x: 4, y: 0 }, placement: "left" },
+      { key: "five", objectId: "five", at: { x: 5, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 Das Verhältnis **bleibt immer <InlineMath math="4:3" />**, weil auch die Gehenden im Verhältnis <InlineMath math="4:3" /> stehen. Aussage (2) sagt also nichts Neues über <InlineMath math="k" />. Eine Klasse mit <InlineMath math="8" /> Schülern und <InlineMath math="6" /> Schülerinnen erfüllt Aussage (2), eine mit <InlineMath math="16" /> Schülern und <InlineMath math="12" /> Schülerinnen ebenso. Die Zahl der Schülerinnen kann <InlineMath math="6" /> oder <InlineMath math="12" /> sein, Aussage (2) allein reicht also nicht.
 
 # Beide Aussagen zusammen

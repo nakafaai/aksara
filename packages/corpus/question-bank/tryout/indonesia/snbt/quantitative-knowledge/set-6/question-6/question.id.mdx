@@ -2,4 +2,19 @@ Sebuah papan dibagi menjadi petak-petak persegi satuan yang tersusun dalam <Inli
 
 Persegi panjang yang dimaksud terdiri atas satu petak atau lebih dan sisi-sisinya terletak pada garis-garis papan. Persegi juga dihitung sebagai persegi panjang.
 
+<MathVisual
+  title={<>Papan <InlineMath math="4" /> baris dan <InlineMath math="6" /> kolom</>}
+  description={<>Papan petak persegi satuan dengan <InlineMath math="4" /> baris dan <InlineMath math="6" /> kolom. Petak pada baris <InlineMath math="1" /> kolom <InlineMath math="2" /> dan petak pada baris <InlineMath math="3" /> kolom <InlineMath math="5" /> diarsir. Baris dihitung dari atas dan kolom dari kiri.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "board", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 0, y: 4 }] },
+      { id: "first", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 1, y: 4 }] },
+      { id: "second", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 2 }, { x: 4, y: 2 }] },
+    ],
+  }}
+/>
+
 Banyak persegi panjang seperti itu yang tidak memuat satu pun petak yang diarsir adalah .... Tuliskan jawaban dalam bentuk bilangan bulat.

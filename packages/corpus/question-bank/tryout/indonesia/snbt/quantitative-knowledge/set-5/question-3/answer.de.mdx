@@ -15,6 +15,35 @@ Beide Bedingungen zusammen ergeben <InlineMath math="1-\sqrt5\le x<0" /> oder <I
 
 Wegen <InlineMath math="2<\sqrt5<3" /> liegt der linke Rand <InlineMath math="1-\sqrt5" /> zwischen <InlineMath math="-2" /> und <InlineMath math="-1" />, und der rechte Rand <InlineMath math="1+\sqrt5" /> liegt zwischen <InlineMath math="3" /> und <InlineMath math="4" />. Die einzige ganze Zahl im linken Intervall ist <InlineMath math="-1" />, im rechten nur <InlineMath math="3" />. Beide liefern <InlineMath math="u=3" />, und das liegt tatsächlich zwischen <InlineMath math="0" /> und <InlineMath math="4" />. Wenn du nur <InlineMath math="u\le4" /> benutzt, zählst du auch <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="2" /> mit, aber **der Logarithmus von null oder einer negativen Zahl ist nicht definiert**. Der Definitionsbereich enthält genau <InlineMath math="2" /> ganze Zahlen, die erste Aussage ist also wahr.
 
+Der Graph von <InlineMath math="h" /> zeigt alle diese Ergebnisse auf einmal. Er besteht aus **zwei Ästen, die zur Geraden <InlineMath math="x=1" /> symmetrisch liegen**. Jeder berührt an seinem äußeren Ende die Null und steigt unbegrenzt, je näher er <InlineMath math="x=0" /> oder <InlineMath math="x=2" /> kommt.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="h(x)=\sqrt{2-{}^{2}\log\left(x^2-2x\right)}" /></>}
+  description={<>Der linke Ast ist für <InlineMath math="1-\sqrt5\le x<0" /> definiert, der rechte für <InlineMath math="2<x\le1+\sqrt5" />. Beide Äste sind an ihrem äußeren Ende <InlineMath math="0" /> und steigen immer höher, wenn <InlineMath math="x" /> sich <InlineMath math="0" /> oder <InlineMath math="2" /> nähert. Die gestrichelte Gerade <InlineMath math="x=1" /> ist die Symmetrieachse.</>}
+  labels={{
+    left: <InlineMath math="1-\sqrt5" />,
+    right: <InlineMath math="1+\sqrt5" />,
+    mirror: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -0.5, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "mirror", kind: "line", appearance: "construction", through: [{ x: 1, y: 0 }, { x: 1, y: 1 }] },
+      { id: "left-branch", kind: "function", appearance: "primary", formula: "sqrt(2 - log_2(x^2 - 2x))", domain: { min: 1 - Math.sqrt(5), max: -0.001 } },
+      { id: "right-branch", kind: "function", appearance: "primary", formula: "sqrt(2 - log_2(x^2 - 2x))", domain: { min: 2.001, max: 1 + Math.sqrt(5) } },
+      { id: "end-left", kind: "point", appearance: "answer", at: { x: 1 - Math.sqrt(5), y: 0 } },
+      { id: "end-right", kind: "point", appearance: "answer", at: { x: 1 + Math.sqrt(5), y: 0 } },
+    ],
+    labels: [
+      { key: "left", objectId: "end-left", at: { x: 1 - Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "right", objectId: "end-right", at: { x: 1 + Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "mirror", objectId: "mirror", at: { x: 1, y: 3.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Die zweite Aussage
 
 Der Wert <InlineMath math="h(x)=0" /> bedeutet <InlineMath math="{}^{2}\log u=2" />, also <InlineMath math="u=4" />.

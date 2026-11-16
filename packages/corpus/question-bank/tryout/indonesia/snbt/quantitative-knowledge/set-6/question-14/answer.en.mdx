@@ -26,6 +26,20 @@ If one score of <InlineMath math="10" /> is corrected to <InlineMath math="17" /
 
 All three conditions hold, so the true value is <InlineMath math="16" />.
 
+The chart below compares the data before and after the correction, both sorted. **The fourth bar stays at <InlineMath math="7" />** and the value <InlineMath math="10" /> still appears twice, while the score <InlineMath math="9" /> moves to the end as <InlineMath math="16" />.
+
+<Chart
+  title={<>Scores of seven players before and after the correction</>}
+  description={<>The recorded data <InlineMath math="2, 5, 6, 7, 9, 10, 10" /> add up to <InlineMath math="49" />. The corrected data <InlineMath math="2, 5, 6, 7, 10, 10, 16" /> add up to <InlineMath math="56" />. Both have median <InlineMath math="7" /> and mode <InlineMath math="10" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Recorded data", mark: "bar", values: [2, 5, 6, 7, 9, 10, 10] },
+    { label: "Data after the correction", mark: "bar", values: [2, 5, 6, 7, 10, 10, 9 + 7] },
+  ]}
+  valueLabel="Score"
+/>
+
 # Why the other options fail
 
 Each wrong option is a candidate that **passes one condition but fails another**.

@@ -32,6 +32,17 @@ P(A)&=\frac{40}{190}=\frac{4}{19}
 
 Check it another way. The pairs whose product is divisible by <InlineMath math="4" /> number <InlineMath math="95" />, and those divisible by <InlineMath math="8" /> number <InlineMath math="55" />. The difference is <InlineMath math="95-55=40" />, matching the count above.
 
+The chart below splits all <InlineMath math="190" /> pairs by how many factors of <InlineMath math="2" /> their product has. The third bar, exactly two factors, is **the only group divisible by <InlineMath math="4" /> but not by <InlineMath math="8" />**.
+
+<Chart
+  title={<>All pairs by the number of factors of <InlineMath math="2" /> in the product</>}
+  description={<>There are <InlineMath math="45" /> pairs with no factor of <InlineMath math="2" />, <InlineMath math="50" /> with exactly one, <InlineMath math="40" /> with exactly two, and <InlineMath math="55" /> with three or more. Together that's <InlineMath math="190" />.</>}
+  categories={["No factor", "One factor", "Exactly two factors", "Three or more"]}
+  bars="apart"
+  series={[{ label: "Number of pairs", mark: "bar", values: [10 * 9 / 2, 10 * 5, 10 * 3 + (5 * 4) / 2, 190 - 45 - 50 - 40] }]}
+  valueLabel="Number of pairs"
+/>
+
 # The tempting wrong options
 
 Each other option comes from **a forgotten group or a mix-up about order**.

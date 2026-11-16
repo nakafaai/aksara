@@ -32,4 +32,35 @@ So statement (2) means <InlineMath math="x<0" /> or <InlineMath math="x>\tfrac12
 
 Statement (1) gives <InlineMath math="x\le0" />, and the only value there that answers no is <InlineMath math="x=0" />. **Statement (2) removes the case <InlineMath math="x=0" />**, because <InlineMath math="\tfrac10" /> isn't defined, and its part <InlineMath math="x>\tfrac12" /> doesn't fit <InlineMath math="x\le0" />. What's left is <InlineMath math="x<0" />, and every negative <InlineMath math="x" /> has <InlineMath math="x^2>0>x" />. The answer is always yes, so both statements together are sufficient.
 
+The graph below shows why. The parabola <InlineMath math="y=x^2" /> is above the line <InlineMath math="y=x" /> everywhere except between <InlineMath math="0" /> and <InlineMath math="1" />. Together, the statements leave **the thick piece <InlineMath math="x<0" />**, where the parabola is always above the line, while the point <InlineMath math="x=0" /> is already thrown out.
+
+<MathVisual
+  title={<>When <InlineMath math="x^2>x" /></>}
+  description={<>The parabola <InlineMath math="y=x^2" /> and the line <InlineMath math="y=x" /> meet at <InlineMath math="(0,0)" /> and <InlineMath math="(1,1)" />. Between those points the line is above the parabola, and outside them the parabola is above the line. The thick piece on the <InlineMath math="x" />-axis marks <InlineMath math="x<0" />, what's left from both statements, and the point <InlineMath math="x=0" /> is marked as thrown out.</>}
+  labels={{
+    square: <InlineMath math="y=x^2" />,
+    line: <InlineMath math="y=x" />,
+    zero: <InlineMath math="0" />,
+    one: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 2.5 }, y: { min: -3, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "both", kind: "segment", appearance: "highlight", from: { x: -3, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -2.4, max: 2.4 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x", domain: { min: -3, max: 2.5 } },
+      { id: "zero", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+      { id: "one", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: -2, y: 4 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: -2, y: -2 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 So both statements together are sufficient to answer the question, but neither statement alone is.

@@ -31,6 +31,33 @@ x-y>0\quad&\Rightarrow\quad x+y>0
 
 Also gilt <InlineMath math="x>y" /> und <InlineMath math="x>-y" />, das heißt, <InlineMath math="x" /> ist größer als <InlineMath math="|y|" /> und sicher positiv. Aber **das Vorzeichen von <InlineMath math="y" /> bleibt unbekannt**. Das Paar <InlineMath math="x=3" /> und <InlineMath math="y=1" /> erfüllt beide Aussagen und liefert <InlineMath math="|4|<|2|" />, was falsch ist, also Nein. Das Paar <InlineMath math="x=3" /> und <InlineMath math="y=-1" /> erfüllt ebenfalls beide und liefert <InlineMath math="|2|<|4|" />, was stimmt, also Ja. Auch zusammen reichen die Aussagen nicht aus.
 
+Die Abbildung markiert alle Paare, die beide Aussagen erfüllen: den Bereich <InlineMath math="x>|y|" /> zwischen den Geraden <InlineMath math="y=x" /> und <InlineMath math="y=-x" />. Dieser Bereich **reicht über und unter die <InlineMath math="x" />-Achse**, also kann <InlineMath math="y" /> positiv oder negativ sein.
+
+<MathVisual
+  title={<>Der Bereich, der beide Aussagen erfüllt</>}
+  description={<>Ein nach rechts offener Keil zwischen den Geraden <InlineMath math="y=x" /> und <InlineMath math="y=-x" />. Der Punkt <InlineMath math="(3,1)" /> liegt im oberen Teil, wo <InlineMath math="x" /> und <InlineMath math="y" /> dasselbe Vorzeichen haben. Der Punkt <InlineMath math="(3,-1)" /> liegt im unteren Teil, wo die Vorzeichen verschieden sind.</>}
+  labels={{
+    yes: <InlineMath math="(3,-1)" />,
+    no: <InlineMath math="(3,1)" />,
+    region: <InlineMath math="x>|y|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "region", kind: "region", appearance: "highlight", inequalities: ["x > y", "x > -y", "x < 5"] },
+      { id: "yes", kind: "point", appearance: "answer", at: { x: 3, y: -1 } },
+      { id: "no", kind: "point", appearance: "warning", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "yes", objectId: "yes", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "no", objectId: "no", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "region", objectId: "region", at: { x: 4, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 Die Antwort, dass beide Aussagen zusammen ausreichen, ist eine Falle für alle, die aufhören, sobald sie wissen, dass <InlineMath math="x" /> positiv ist, und das Vorzeichen von <InlineMath math="y" /> nicht mehr prüfen.
 
 Aussage (1) und Aussage (2) reichen also weder allein noch zusammen aus, um die Frage zu beantworten.

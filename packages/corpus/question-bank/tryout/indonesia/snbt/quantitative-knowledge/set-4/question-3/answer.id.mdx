@@ -14,6 +14,38 @@ Garis mendatar <InlineMath math="y=k" /> memotong grafik ini sebanyak berikut.
 | <InlineMath math="k=4" /> | <InlineMath math="3" /> |
 | <InlineMath math="k>4" /> | <InlineMath math="2" /> |
 
+Grafik berbentuk W berikut membuat tabel itu terlihat. Garis <InlineMath math="y=2" /> memotong keempat lengan grafik, sedangkan garis <InlineMath math="y=4" /> **hanya menyentuh puncak kecil di <InlineMath math="(0,4)" />** dan memotong dua lengan luar, jadi titik potongnya tiga.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=\left|x^2-4\right|" /> dan dua garis mendatar</>}
+  description={<>Grafik bernilai <InlineMath math="0" /> di <InlineMath math="x=-2" /> dan <InlineMath math="x=2" />, punya puncak kecil di <InlineMath math="(0,4)" />, dan naik terus ke kiri dan ke kanan. Garis <InlineMath math="y=2" /> memotongnya di empat titik. Garis <InlineMath math="y=4" /> memotongnya di <InlineMath math="x=-2\sqrt2" />, <InlineMath math="x=0" />, dan <InlineMath math="x=2\sqrt2" />.</>}
+  labels={{
+    f: <InlineMath math="y=\left|x^2-4\right|" />,
+    four: <InlineMath math="y=4" />,
+    two: <InlineMath math="y=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x^2 - 4", domain: { min: -3.3, max: -2 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "4 - x^2", domain: { min: -2, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x^2 - 4", domain: { min: 2, max: 3.3 } },
+      { id: "four", kind: "segment", appearance: "secondary", from: { x: -3.5, y: 4 }, to: { x: 3.5, y: 4 } },
+      { id: "two", kind: "segment", appearance: "construction", from: { x: -3.5, y: 2 }, to: { x: 3.5, y: 2 } },
+      { id: "peak", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+      { id: "four-left", kind: "point", appearance: "answer", at: { x: -2 * Math.sqrt(2), y: 4 } },
+      { id: "four-right", kind: "point", appearance: "answer", at: { x: 2 * Math.sqrt(2), y: 4 } },
+    ],
+    labels: [
+      { key: "f", objectId: "right", at: { x: 3.3, y: 3.3 ** 2 - 4 }, placement: "left" },
+      { key: "four", objectId: "four", at: { x: -3.2, y: 4 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: -3.2, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Pernyataan pertama dan keempat
 
 Untuk <InlineMath math="f(x)=4" />, ada dua kemungkinan isi tanda mutlak.

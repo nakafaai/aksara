@@ -27,6 +27,20 @@ Look at the pattern: from <InlineMath math="k=3" /> to <InlineMath math="k=4" />
 
 An interquartile range of <InlineMath math="6" /> at <InlineMath math="k=3" /> and <InlineMath math="k=4" /> **is not yet below <InlineMath math="6" />**, because the condition is strict. The first value that passes is <InlineMath math="4.5" /> at <InlineMath math="k=5" />.
 
+The chart below shows the interquartile range for each number of make-up students. The bars drop in steps, and at <InlineMath math="k=3" /> and <InlineMath math="k=4" /> they **sit exactly on the line at <InlineMath math="6" />**, not below it. Only the bar at <InlineMath math="k=5" /> drops to <InlineMath math="4.5" />.
+
+<Chart
+  title={<>Interquartile range by number of make-up students <InlineMath math="k" /></>}
+  description={<>For <InlineMath math="k=0" /> to <InlineMath math="5" />, the interquartile range is <InlineMath math="26" />, <InlineMath math="16" />, <InlineMath math="16" />, <InlineMath math="6" />, <InlineMath math="6" />, and <InlineMath math="4.5" />. The line marks the limit <InlineMath math="6" />, and only <InlineMath math="k=5" /> is below it.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Interquartile range", mark: "bar", values: [30 - 4, 24 - 8, 24 - 8, 18 - 12, 18 - 12, 17 - 12.5] },
+    { label: "Limit 6", mark: "line", values: [6, 6, 6, 6, 6, 6] },
+  ]}
+  valueLabel="Interquartile range"
+/>
+
 # Checking the other options
 
 The option <InlineMath math="3" /> reads the condition as **at most <InlineMath math="6" />**, but the problem asks for less than <InlineMath math="6" />. The option <InlineMath math="4" /> puts the middle value into both halves when <InlineMath math="n=15" />, but the rule says to leave it out. The option <InlineMath math="6" /> removes two middle values when the number of data is even, but that rule only applies when it's odd. The option <InlineMath math="16" /> is the total number of data at <InlineMath math="k=5" />, not the number of make-up students.

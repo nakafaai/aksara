@@ -23,6 +23,17 @@ That means **the allowed units digits depend on the tens digit**. If <InlineMath
 
 Once you pick <InlineMath math="c" /> and <InlineMath math="d" />, the digits <InlineMath math="a=9-c" /> and <InlineMath math="b=9-d" /> **are fixed**, so you only need to count the pairs <InlineMath math="(c,d)" />. The condition <InlineMath math="a\ge1" /> gives <InlineMath math="c\le8" />, so <InlineMath math="c" /> runs from <InlineMath math="0" /> to <InlineMath math="8" />. That's <InlineMath math="5" /> even values of <InlineMath math="c" /> (<InlineMath math="0,2,4,6,8" />) and <InlineMath math="4" /> odd ones (<InlineMath math="1,3,5,7" />).
 
+The chart below shows how many choices of <InlineMath math="d" /> each tens digit <InlineMath math="c" /> allows. The bars **take turns at <InlineMath math="3" /> and <InlineMath math="2" />** depending on whether <InlineMath math="c" /> is even or odd, and <InlineMath math="c=9" /> is missing because it would make <InlineMath math="a=0" />.
+
+<Chart
+  title={<>Choices of units digit for each tens digit</>}
+  description={<>For even <InlineMath math="c" />, namely <InlineMath math="0, 2, 4, 6, 8" />, there are <InlineMath math="3" /> choices of <InlineMath math="d" />: <InlineMath math="0" />, <InlineMath math="4" />, or <InlineMath math="8" />. For odd <InlineMath math="c" />, namely <InlineMath math="1, 3, 5, 7" />, there are <InlineMath math="2" /> choices: <InlineMath math="2" /> or <InlineMath math="6" />. All the bars add up to <InlineMath math="23" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, c) => `${c}`)}
+  series={[{ label: "Choices of units digit d", mark: "bar", values: Array.from({ length: 9 }, (_, c) => (c % 2 === 0 ? 3 : 2)) }]}
+  valueLabel="Number of choices"
+/>
+
 <BlockMath math="5\times3+4\times2=15+8=23" />
 
 Check one example: with <InlineMath math="c=8" /> and <InlineMath math="d=8" />, the number is <InlineMath math="1{,}188" />. Its digits add up to <InlineMath math="1+1+8+8=18" />, and <InlineMath math="1{,}188=44\times27" />.

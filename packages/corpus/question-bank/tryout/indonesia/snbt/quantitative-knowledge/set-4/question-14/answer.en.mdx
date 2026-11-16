@@ -33,6 +33,19 @@ So <InlineMath math="P>Q" /> exactly when <InlineMath math="\left(1+\frac{13}{24
 
 So <InlineMath math="P>Q" />. Check both bounds together. The previous section gave <InlineMath math="Q>\frac P2" />, and this one gives <InlineMath math="Q<P" />. That puts <InlineMath math="Q" /> between <InlineMath math="\frac P2" /> and <InlineMath math="P" />, so the two results don't clash.
 
+The diagram below sums up the comparison. The shortcut on the top branch **stops too early** because it drops a factor of <InlineMath math="2" />, while the bottom branch carries every factor to the end.
+
+<Mermaid
+  title={<>Comparing <InlineMath math="2^{89}" /> and <InlineMath math="3^{56}" /></>}
+  description={<>The shortcut compares <InlineMath math="2^{88}=2048^8" /> with <InlineMath math="3^{56}=2187^8" />, but that only gives <InlineMath math="Q>\tfrac P2" />. The full route writes <InlineMath math="P=2\cdot256^{11}" /> and <InlineMath math="Q=3\cdot243^{11}" />, then uses the binomial expansion to get <InlineMath math="\left(\tfrac{256}{243}\right)^{11}>\tfrac32" />, so <InlineMath math="P>Q" />.</>}
+  chart={`flowchart TD
+    A["P = 2 to the 89, Q = 3 to the 56"] --> B["drop a factor 2: 2048 to the 8 vs 2187 to the 8"]
+    B --> B1["only gives Q > P/2, not decided"]
+    A --> C["P = 2 x 256 to the 11, Q = 3 x 243 to the 11"]
+    C --> D["(256/243) to the 11 > 1 + 143/243 > 3/2"]
+    D --> E["P/Q > (2/3)(3/2) = 1, so P > Q"]`}
+/>
+
 # The tempting wrong options
 
 The other options come from **stopping the comparison too early**.

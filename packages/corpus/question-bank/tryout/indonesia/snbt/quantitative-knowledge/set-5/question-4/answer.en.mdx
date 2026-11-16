@@ -12,6 +12,36 @@ x^2-1&=(x+1)\cdot{}^{2}\log3\\
 
 So <InlineMath math="x=-1" /> or <InlineMath math="x=1+{}^{2}\log3" />. For <InlineMath math="x=-1" />, both sides equal <InlineMath math="2^0=3^0=1" />, so this root is valid.
 
+Graphing both sides after taking logarithms shows why there are two roots. The parabola <InlineMath math="y=x^2-1" /> and the line <InlineMath math="y=(x+1)\,{}^{2}\log3" /> **meet twice**, and one of the meetings is at <InlineMath math="x=-1" />, where both sides are zero. Dividing by <InlineMath math="x+1" /> throws that point away.
+
+<MathVisual
+  title={<>Both sides of the equation after taking logarithms base <InlineMath math="2" /></>}
+  description={<>The parabola <InlineMath math="y=x^2-1" /> and the line <InlineMath math="y=(x+1)\,{}^{2}\log3" /> cross at <InlineMath math="x=-1" /> and at <InlineMath math="x=1+{}^{2}\log3" />, about <InlineMath math="2.58" />. At <InlineMath math="x=-1" />, both sides are <InlineMath math="0" />.</>}
+  labels={{
+    parabola: <InlineMath math="y=x^2-1" />,
+    line: <InlineMath math="y=(x+1)\,{}^{2}\log3" />,
+    first: <InlineMath math="x=-1" />,
+    second: <InlineMath math="x=1+{}^{2}\log3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -2, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 1", domain: { min: -3, max: 3.3 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "(x + 1) log_2(3)", domain: { min: -3, max: 4 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: 1 + Math.log2(3), y: (1 + Math.log2(3)) ** 2 - 1 } },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: -2.8, y: 2.8 ** 2 - 1 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 3.5, y: 4.5 * Math.log2(3) }, placement: "above-left" },
+      { key: "first", objectId: "first", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "second", objectId: "second", at: { x: 1 + Math.log2(3), y: (1 + Math.log2(3)) ** 2 - 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Working out two to the power x
 
 For the second root, use the rule that **a base raised to a logarithm with that same base gives back the number inside the logarithm**, so <InlineMath math="2^{{}^{2}\log3}=3" />.

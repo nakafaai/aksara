@@ -12,6 +12,36 @@ x^2-1&=(x+1)\cdot{}^{2}\log3\\
 
 Also gilt <InlineMath math="x=-1" /> oder <InlineMath math="x=1+{}^{2}\log3" />. Für <InlineMath math="x=-1" /> sind beide Seiten <InlineMath math="2^0=3^0=1" />, diese Lösung ist also gültig.
 
+Die Graphen beider Seiten nach dem Logarithmieren zeigen, warum es zwei Lösungen gibt. Die Parabel <InlineMath math="y=x^2-1" /> und die Gerade <InlineMath math="y=(x+1)\,{}^{2}\log3" /> **treffen sich zweimal**, einmal bei <InlineMath math="x=-1" />, wo beide Seiten null sind. Wer durch <InlineMath math="x+1" /> teilt, wirft diesen Punkt weg.
+
+<MathVisual
+  title={<>Beide Seiten der Gleichung nach dem Logarithmieren zur Basis <InlineMath math="2" /></>}
+  description={<>Die Parabel <InlineMath math="y=x^2-1" /> und die Gerade <InlineMath math="y=(x+1)\,{}^{2}\log3" /> schneiden sich bei <InlineMath math="x=-1" /> und bei <InlineMath math="x=1+{}^{2}\log3" />, etwa <InlineMath math="2{,}58" />. Bei <InlineMath math="x=-1" /> sind beide Seiten <InlineMath math="0" />.</>}
+  labels={{
+    parabola: <InlineMath math="y=x^2-1" />,
+    line: <InlineMath math="y=(x+1)\,{}^{2}\log3" />,
+    first: <InlineMath math="x=-1" />,
+    second: <InlineMath math="x=1+{}^{2}\log3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -2, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 1", domain: { min: -3, max: 3.3 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "(x + 1) log_2(3)", domain: { min: -3, max: 4 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: 1 + Math.log2(3), y: (1 + Math.log2(3)) ** 2 - 1 } },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: -2.8, y: 2.8 ** 2 - 1 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 3.5, y: 4.5 * Math.log2(3) }, placement: "above-left" },
+      { key: "first", objectId: "first", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "second", objectId: "second", at: { x: 1 + Math.log2(3), y: (1 + Math.log2(3)) ** 2 - 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Zwei hoch x berechnen
 
 Für die zweite Lösung hilft die Regel: **Eine Basis hoch ihren eigenen Logarithmus ergibt die Zahl im Logarithmus**, also <InlineMath math="2^{{}^{2}\log3}=3" />.

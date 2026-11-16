@@ -13,6 +13,20 @@ a_n&=S_n-S_{n-1}\\
 
 Rumus <InlineMath math="4n-7" /> memberi <InlineMath math="-3" /> untuk <InlineMath math="n=1" />, padahal <InlineMath math="a_1=0" />. Perbedaan itu datang dari **konstanta <InlineMath math="3" /> di rumus <InlineMath math="S_n" />**. Jadi barisannya <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, dan seterusnya.
 
+Grafik delapan suku pertama memperlihatkan perbedaannya. Mulai <InlineMath math="n=2" />, setiap batang tepat di garis <InlineMath math="4n-7" />, tetapi **batang pertama setinggi <InlineMath math="0" />**, di atas nilai rumus <InlineMath math="-3" />.
+
+<Chart
+  title={<>Suku <InlineMath math="a_n" /> dan rumus <InlineMath math="4n-7" /></>}
+  description={<>Suku-sukunya <InlineMath math="0, 1, 5, 9, 13, 17, 21, 25" />. Garis <InlineMath math="4n-7" /> melewati semua batang mulai <InlineMath math="n=2" />, tetapi di <InlineMath math="n=1" /> garis itu bernilai <InlineMath math="-3" />, sedangkan suku pertama <InlineMath math="0" />.</>}
+  categories={Array.from({ length: 8 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Suku sebenarnya", mark: "bar", values: Array.from({ length: 8 }, (_, i) => (i === 0 ? 2 - 5 + 3 : 4 * (i + 1) - 7)) },
+    { label: "Rumus 4n - 7", mark: "line", values: Array.from({ length: 8 }, (_, i) => 4 * (i + 1) - 7) },
+  ]}
+  bars="apart"
+  valueLabel="Nilai suku"
+/>
+
 # Pernyataan pertama
 
 Selisih dua suku pertama adalah <InlineMath math="a_2-a_1=1-0=1" />, sedangkan selisih berikutnya <InlineMath math="a_3-a_2=5-1=4" />. **Beda yang tidak tetap berarti bukan barisan aritmetika**, jadi pernyataan pertama salah.

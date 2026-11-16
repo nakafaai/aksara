@@ -4,6 +4,39 @@ The volume of a pyramid needs its height, but a net only shows flat faces. The p
 
 Let <InlineMath math="O" /> be the centre of the square base and let <InlineMath math="s" /> be the height of each side triangle, the distance from the triangle's tip to the base side it's attached to. In the flat net, each tip lies on the line through <InlineMath math="O" /> that's perpendicular to that side. So **the distance from a tip to <InlineMath math="O" /> is half the base side plus <InlineMath math="s" />**, which is <InlineMath math="3+s" />. The four tips are the same distance from <InlineMath math="O" /> in four perpendicular directions, so that distance is half the diagonal of the big square.
 
+The net below shows that distance. Going from the centre <InlineMath math="O" /> to the tip of the top triangle, you pass **half the base side, <InlineMath math="3" />, and then the triangle height <InlineMath math="s" />**, and the four tips form the dashed big square.
+
+<MathVisual
+  title={<>The pyramid's net laid flat</>}
+  description={<>The square base has side <InlineMath math="6" /> and centre <InlineMath math="O" />, with four isosceles triangles attached to its sides. The tips of the four triangles are the corners of a big square whose diagonals pass through <InlineMath math="O" />. The distance from <InlineMath math="O" /> to each tip is <InlineMath math="3+s" />, half the diagonal of the big square.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    half: <InlineMath math="3" />,
+    s: <InlineMath math="s" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 9 }, y: { min: -9, max: 9 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 8 }, { x: 8, y: 0 }, { x: 0, y: -8 }, { x: -8, y: 0 }] },
+      { id: "base", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: -3 }, { x: 3, y: -3 }, { x: 3, y: 3 }, { x: -3, y: 3 }] },
+      { id: "top", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 3 }, { x: 3, y: 3 }, { x: 0, y: 8 }] },
+      { id: "right", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 3 }, { x: 3, y: -3 }, { x: 8, y: 0 }] },
+      { id: "bottom", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: -3 }, { x: -3, y: -3 }, { x: 0, y: -8 }] },
+      { id: "left", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: -3 }, { x: -3, y: 3 }, { x: -8, y: 0 }] },
+      { id: "to-side", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "slant", kind: "segment", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 0, y: 8 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "half", objectId: "to-side", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "s", objectId: "slant", at: { x: 0, y: 5.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 # The height of each side triangle
 
 A square's area is **half the square of its diagonal**. From the area <InlineMath math="128\text{ cm}^2" /> you can get the diagonal.

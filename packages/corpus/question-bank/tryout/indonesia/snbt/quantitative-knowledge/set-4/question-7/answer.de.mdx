@@ -27,6 +27,20 @@ Schau dir das Muster an: Von <InlineMath math="k=3" /> zu <InlineMath math="k=4"
 
 Ein Interquartilsabstand von <InlineMath math="6" /> bei <InlineMath math="k=3" /> und <InlineMath math="k=4" /> **liegt noch nicht unter <InlineMath math="6" />**, weil die Bedingung streng ist. Der erste Wert, der passt, ist <InlineMath math="4{,}5" /> bei <InlineMath math="k=5" />.
 
+Das Diagramm zeigt den Interquartilsabstand für jede Anzahl von Nachschreibern. Die Balken fallen in Stufen, und bei <InlineMath math="k=3" /> und <InlineMath math="k=4" /> **stehen sie genau auf der Linie bei <InlineMath math="6" />**, nicht darunter. Erst der Balken bei <InlineMath math="k=5" /> fällt auf <InlineMath math="4{,}5" />.
+
+<Chart
+  title={<>Interquartilsabstand nach Anzahl der Nachschreiber <InlineMath math="k" /></>}
+  description={<>Für <InlineMath math="k=0" /> bis <InlineMath math="5" /> beträgt der Interquartilsabstand <InlineMath math="26" />, <InlineMath math="16" />, <InlineMath math="16" />, <InlineMath math="6" />, <InlineMath math="6" /> und <InlineMath math="4{,}5" />. Die Linie markiert die Grenze <InlineMath math="6" />, und nur <InlineMath math="k=5" /> liegt darunter.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Interquartilsabstand", mark: "bar", values: [30 - 4, 24 - 8, 24 - 8, 18 - 12, 18 - 12, 17 - 12.5] },
+    { label: "Grenze 6", mark: "line", values: [6, 6, 6, 6, 6, 6] },
+  ]}
+  valueLabel="Interquartilsabstand"
+/>
+
 # Die anderen Antworten prüfen
 
 Die Antwort <InlineMath math="3" /> liest die Bedingung als **höchstens <InlineMath math="6" />**, gefragt ist aber weniger als <InlineMath math="6" />. Die Antwort <InlineMath math="4" /> nimmt bei <InlineMath math="n=15" /> den mittleren Wert in beide Hälften auf, obwohl die Regel ihn herauslässt. Die Antwort <InlineMath math="6" /> entfernt bei gerader Anzahl zwei mittlere Werte, obwohl diese Regel nur bei ungerader Anzahl gilt. Die Antwort <InlineMath math="16" /> ist die Gesamtzahl der Daten bei <InlineMath math="k=5" />, nicht die Anzahl der Nachschreiber.

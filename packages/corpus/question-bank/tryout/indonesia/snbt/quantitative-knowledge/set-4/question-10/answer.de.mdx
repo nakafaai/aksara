@@ -24,6 +24,21 @@ Beim dritten Weg macht <InlineMath math="x=4" /> die Basis zu <InlineMath math="
 
 Beim zweiten Weg ist der Exponent <InlineMath math="4" /> tatsächlich gerade. Diesen Weg übersieht man leicht, weil viele nur Basis <InlineMath math="1" /> und Exponent <InlineMath math="0" /> prüfen.
 
+Das Diagramm fasst die drei Wege und ihre Filter zusammen. Jeder Weg liefert Kandidaten, und dann entscheidet **seine eigene Bedingung**, ob ein Kandidat bleibt.
+
+<Mermaid
+  title={<>Drei Wege zu einer Potenz mit Wert <InlineMath math="1" /></>}
+  description={<>Der Weg mit Basis <InlineMath math="1" /> liefert <InlineMath math="x=5" />, das bleibt. Der Weg mit Basis <InlineMath math="-1" /> liefert <InlineMath math="x=3" /> mit dem geraden Exponenten <InlineMath math="4" />, das bleibt. Der Weg mit Exponent <InlineMath math="0" /> liefert <InlineMath math="x=4" /> und <InlineMath math="x=7" />. Der Kandidat <InlineMath math="x=4" /> fällt weg, weil er <InlineMath math="0^0" /> ergibt, <InlineMath math="x=7" /> bleibt.</>}
+  chart={`flowchart LR
+    A["(x - 4) hoch (x - 4)(x - 7) = 1"] --> B["Basis 1: x = 5"]
+    A --> C["Basis -1: x = 3"]
+    A --> D["Exponent 0: x = 4 oder x = 7"]
+    B --> B1["1 hoch -2 = 1, bleibt"]
+    C --> C1["Exponent 4 gerade, bleibt"]
+    D --> D1["x = 4: 0 hoch 0, fällt weg"]
+    D --> D2["x = 7: 3 hoch 0 = 1, bleibt"]`}
+/>
+
 # Die Lösungen addieren
 
 **Die drei übrig gebliebenen Werte** sind <InlineMath math="x=3" />, <InlineMath math="x=5" /> und <InlineMath math="x=7" />. Ihre Summe ist <InlineMath math="3+5+7=15" />. Prüf <InlineMath math="x=3" /> noch einmal direkt in der Gleichung: <InlineMath math="(3-4)^{9-33+28}=(-1)^4=1" />.

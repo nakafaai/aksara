@@ -19,6 +19,22 @@ Von <InlineMath math="1{.}000" /> Menschen sind <InlineMath math="10\%" /> krank
 \text{gesund und zweimal positiv}&=20\%\times180=36
 \end{aligned}" />
 
+Das Diagramm verfolgt <InlineMath math="1{.}000" /> Einwohner durch beide Tests. Der Zweig der Gesunden ist anfangs viel größer, aber **jeder Test kürzt ihn auf ein Fünftel**, während der Zweig der Kranken fast ganz bleibt.
+
+<Mermaid
+  title={<>Tausend Einwohner durch zwei Tests</>}
+  description={<>Von <InlineMath math="1{.}000" /> Einwohnern sind <InlineMath math="100" /> krank und <InlineMath math="900" /> gesund. Der erste Test ist positiv bei <InlineMath math="90" /> Kranken und <InlineMath math="180" /> Gesunden. Der zweite Test ist erneut positiv bei <InlineMath math="81" /> Kranken und <InlineMath math="36" /> Gesunden, also sind <InlineMath math="117" /> Personen zweimal positiv.</>}
+  chart={`flowchart LR
+    P["1.000 Einwohner"] --> S["100 krank"]
+    P --> H["900 gesund"]
+    S -->|"90%"| S1["90 positiv bei Test 1"]
+    H -->|"20%"| H1["180 positiv bei Test 1"]
+    S1 -->|"90%"| S2["81 zweimal positiv"]
+    H1 -->|"20%"| H2["36 zweimal positiv"]
+    S2 --> T["117 zweimal positiv, davon 81 krank"]
+    H2 --> T`}
+/>
+
 # Die bedingte Wahrscheinlichkeit
 
 Zweimal positiv getestet wurden <InlineMath math="81+36=117" /> Menschen, und <InlineMath math="81" /> davon sind krank.

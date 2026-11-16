@@ -1,3 +1,27 @@
 Jaring-jaring sebuah limas persegi beraturan terdiri atas alas berbentuk persegi dengan panjang sisi <InlineMath math="6\text{ cm}" /> dan <InlineMath math="4" /> segitiga sama kaki yang kongruen. Setiap segitiga menempel pada satu sisi persegi alas. Saat jaring-jaring itu terbentang datar, semua titik puncak segitiga itu menjadi titik-titik sudut sebuah persegi yang luasnya <InlineMath math="128\text{ cm}^2" />.
 
+<MathVisual
+  title={<>Jaring-jaring limas persegi beraturan yang terbentang datar</>}
+  description={<>Persegi alas bersisi <InlineMath math="6\text{ cm}" /> dengan empat segitiga sama kaki kongruen yang menempel di setiap sisinya. Puncak keempat segitiga menjadi titik sudut persegi besar putus-putus yang luasnya <InlineMath math="128\text{ cm}^2" />.</>}
+  labels={{
+    side: <InlineMath math="6\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 9 }, y: { min: -9, max: 9 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 8 }, { x: 8, y: 0 }, { x: 0, y: -8 }, { x: -8, y: 0 }] },
+      { id: "base", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: -3 }, { x: 3, y: -3 }, { x: 3, y: 3 }, { x: -3, y: 3 }] },
+      { id: "top", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 3 }, { x: 3, y: 3 }, { x: 0, y: 8 }] },
+      { id: "right", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 3 }, { x: 3, y: -3 }, { x: 8, y: 0 }] },
+      { id: "bottom", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: -3 }, { x: -3, y: -3 }, { x: 0, y: -8 }] },
+      { id: "left", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: -3 }, { x: -3, y: 3 }, { x: -8, y: 0 }] },
+    ],
+    labels: [
+      { key: "side", objectId: "base", at: { x: 0, y: -3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Volume limas itu adalah ....

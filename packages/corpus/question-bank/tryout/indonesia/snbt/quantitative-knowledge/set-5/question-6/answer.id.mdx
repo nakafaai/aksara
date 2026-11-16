@@ -25,6 +25,17 @@ Susunan yang membuat kedua pasangan bersebelahan ikut terhitung di kelompok pert
 \text{memenuhi syarat}&=720-384=336
 \end{aligned}" />
 
+Grafik berikut menaruh semua angka inklusi-eksklusi berdampingan. Dua batang tengah sama-sama memuat <InlineMath math="96" /> susunan dari batang keempat, jadi **batang keempat ditambahkan kembali sekali**, dan batang terakhir adalah sisanya.
+
+<Chart
+  title={<>Susunan duduk melingkar dan pelanggarannya</>}
+  description={<>Semua susunan ada <InlineMath math="720" />. Susunan dengan Ani dan Budi bersebelahan ada <InlineMath math="240" />, susunan dengan Citra dan Dodi bersebelahan juga <InlineMath math="240" />, dan susunan dengan kedua pasangan bersebelahan ada <InlineMath math="96" />. Susunan yang memenuhi syarat ada <InlineMath math="720-(240+240-96)=336" />.</>}
+  categories={["Semua", "Ani dan Budi berdekatan", "Citra dan Dodi berdekatan", "Kedua pasangan", "Memenuhi syarat"]}
+  bars="apart"
+  series={[{ label: "Banyak susunan", mark: "bar", values: [720, 240, 240, 96, 720 - (240 + 240 - 96)] }]}
+  valueLabel="Banyak susunan"
+/>
+
 # Pemeriksaan dengan jalan lain
 
 Hitung bertahap. Susunan dengan Ani dan Budi tidak bersebelahan ada <InlineMath math="720-240=480" />. Dari <InlineMath math="240" /> susunan dengan Citra dan Dodi bersebelahan, sebanyak <InlineMath math="96" /> juga membuat Ani dan Budi bersebelahan, jadi yang membuat Ani dan Budi tidak bersebelahan ada <InlineMath math="240-96=144" />. Buang susunan itu dari <InlineMath math="480" />.

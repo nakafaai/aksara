@@ -23,6 +23,20 @@ Die Primfaktorzerlegung ist <InlineMath math="576=2^6\cdot3^2" />, also hat <Inl
 
 Probe mit der Liste: <InlineMath math="x<y" /> gilt genau für <InlineMath math="d<24" />, also für <InlineMath math="d=1,2,3,4,6,8,9,12,16,18" />, das sind <InlineMath math="10" /> Werte. Zum Beispiel liefert <InlineMath math="d=1" /> das Paar <InlineMath math="(25,600)" />, und es gilt <InlineMath math="\tfrac{1}{25}+\tfrac{1}{600}=\tfrac{24+1}{600}=\tfrac{1}{24}" />.
 
+Das Diagramm stellt die zehn Paare nebeneinander. Für jeden Teiler <InlineMath math="d<24" /> **ist der Balken für <InlineMath math="x" /> immer kürzer als der für <InlineMath math="y" />**, und beide nähern sich, bis sie sich bei <InlineMath math="d=24" /> in <InlineMath math="48" /> treffen, was nicht zählt.
+
+<Chart
+  title={<>Die zehn Paare <InlineMath math="(x,y)" /> mit <InlineMath math="x<y" /></>}
+  description={<>Für die Teiler <InlineMath math="d=1, 2, 3, 4, 6, 8, 9, 12, 16, 18" /> von <InlineMath math="576" /> steigt <InlineMath math="x=24+d" /> von <InlineMath math="25" /> bis <InlineMath math="42" />, während <InlineMath math="y=24+\tfrac{576}{d}" /> von <InlineMath math="600" /> bis <InlineMath math="56" /> fällt.</>}
+  bars="apart"
+  categories={[1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => `d = ${d}`)}
+  series={[
+    { label: "x", mark: "bar", values: [1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => 24 + d) },
+    { label: "y", mark: "bar", values: [1, 2, 3, 4, 6, 8, 9, 12, 16, 18].map((d) => 24 + 576 / d) },
+  ]}
+  valueLabel="Wert"
+/>
+
 # Typische Fehler
 
 **Das Paar mit <InlineMath math="x=y" /> musst du vor dem Halbieren entfernen**. Sonst erhältst du <InlineMath math="11" />. Die Antwort <InlineMath math="21" /> zählt geordnete Paare ohne die Bedingung <InlineMath math="x<y" />, und die Antwort <InlineMath math="4" /> entsteht, wenn du die Teiler von <InlineMath math="24" /> statt die Teiler von <InlineMath math="24^2" /> zählst.

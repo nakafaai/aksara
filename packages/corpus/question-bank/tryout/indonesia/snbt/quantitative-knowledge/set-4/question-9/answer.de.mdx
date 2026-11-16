@@ -22,6 +22,42 @@ Die zweite Bedingung ist das Gegenteil: Dem Partner von <InlineMath math="d" /> 
 \text{gesucht}&=24-9=15
 \end{aligned}" />
 
+Die Abbildung zeigt jedes Exponentenpaar <InlineMath math="(a,b)" />, das <InlineMath math="d" /> zu einem Vielfachen von <InlineMath math="6" /> macht. Die passenden Punkte liegen **in der Spalte <InlineMath math="a=4" /> oder in der Zeile <InlineMath math="b=2" />**, und jeder Punkt steht für <InlineMath math="3" /> Möglichkeiten für <InlineMath math="c" />.
+
+<MathVisual
+  title={<>Exponentenpaare <InlineMath math="(a,b)" /> für <InlineMath math="d=2^a\cdot3^b\cdot5^c" /></>}
+  description={<>Es gibt <InlineMath math="8" /> Punkte mit <InlineMath math="a" /> von <InlineMath math="1" /> bis <InlineMath math="4" /> und <InlineMath math="b" /> von <InlineMath math="1" /> bis <InlineMath math="2" />. Fünf Punkte passen: alle Punkte der Zeile <InlineMath math="b=2" /> und der Punkt <InlineMath math="(4,1)" />. Drei Punkte scheitern: <InlineMath math="(1,1)" />, <InlineMath math="(2,1)" /> und <InlineMath math="(3,1)" />. Mit <InlineMath math="3" /> Möglichkeiten für <InlineMath math="c" /> gibt es <InlineMath math="5\cdot3=15" /> Werte für <InlineMath math="d" />.</>}
+  labels={{
+    a: <InlineMath math="a" />,
+    b: <InlineMath math="b" />,
+    ok: <InlineMath math="a=4" />,
+    top: <InlineMath math="b=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "p11", kind: "point", appearance: "warning", at: { x: 1, y: 1 } },
+      { id: "p21", kind: "point", appearance: "warning", at: { x: 2, y: 1 } },
+      { id: "p31", kind: "point", appearance: "warning", at: { x: 3, y: 1 } },
+      { id: "p41", kind: "point", appearance: "answer", at: { x: 4, y: 1 } },
+      { id: "p12", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "p22", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+      { id: "p32", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+      { id: "p42", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+      { id: "axis-a", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0.5 }, to: { x: 4.5, y: 0.5 } },
+      { id: "axis-b", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0.5 }, to: { x: 0.5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "axis-a", at: { x: 4.5, y: 0.5 }, placement: "right" },
+      { key: "b", objectId: "axis-b", at: { x: 0.5, y: 2.5 }, placement: "above" },
+      { key: "ok", objectId: "p41", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "top", objectId: "p12", at: { x: 1, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Prüf das durch direktes Zählen. Für <InlineMath math="a=4" /> gibt es <InlineMath math="2\cdot3=6" /> Möglichkeiten für <InlineMath math="b" /> und <InlineMath math="c" />. Für <InlineMath math="a\le3" /> und <InlineMath math="b=2" /> gibt es <InlineMath math="3\cdot3=9" /> Möglichkeiten. Zusammen sind das <InlineMath math="6+9=15" />. Zum Beispiel hat <InlineMath math="d=48=2^4\cdot3" /> den Partner <InlineMath math="75" />, und der ist tatsächlich nicht durch <InlineMath math="6" /> teilbar.
 
 # Fallen, die du vermeiden solltest

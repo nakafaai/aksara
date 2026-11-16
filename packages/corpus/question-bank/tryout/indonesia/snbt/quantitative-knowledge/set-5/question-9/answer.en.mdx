@@ -18,6 +18,20 @@ k=16:&\quad S_{16}=\frac{16\cdot111}{2}=888\\
 k=17:&\quad S_{17}=\frac{17\cdot118}{2}=1{,}003
 \end{aligned}" />
 
+The chart below shows the sum of the first <InlineMath math="k" /> terms around that estimate. The bar for <InlineMath math="k=16" /> is still under the line at <InlineMath math="1{,}000" />, and **the bar for <InlineMath math="k=17" /> is the first to pass it**.
+
+<Chart
+  title={<>The sum <InlineMath math="S_k=\tfrac{k(7k-1)}{2}" /> for <InlineMath math="k=13" /> to <InlineMath math="18" /></>}
+  description={<>The sums are <InlineMath math="585" />, <InlineMath math="679" />, <InlineMath math="780" />, <InlineMath math="888" />, <InlineMath math="1{,}003" />, and <InlineMath math="1{,}125" /> for <InlineMath math="k=13" /> to <InlineMath math="18" />. The limit line sits at <InlineMath math="1{,}000" />, between <InlineMath math="k=16" /> and <InlineMath math="k=17" />.</>}
+  categories={Array.from({ length: 6 }, (_, i) => `${i + 13}`)}
+  series={[
+    { label: "Sum of the first k terms", mark: "bar", values: Array.from({ length: 6 }, (_, i) => ((i + 13) * (7 * (i + 13) - 1)) / 2) },
+    { label: "Limit 1,000", mark: "line", values: Array.from({ length: 6 }, () => 1000) },
+  ]}
+  bars="apart"
+  valueLabel="Sum"
+/>
+
 With <InlineMath math="16" /> terms it isn't enough yet, and <InlineMath math="17" /> terms pass <InlineMath math="1{,}000" />. So **the number of terms has to be rounded up to <InlineMath math="17" />**.
 
 # From the number of terms to n

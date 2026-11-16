@@ -19,6 +19,22 @@ Out of <InlineMath math="1{,}000" /> people, <InlineMath math="10\%" /> are sick
 \text{healthy and positive twice}&=20\%\times180=36
 \end{aligned}" />
 
+The diagram below follows <InlineMath math="1{,}000" /> residents through both tests. The healthy branch is much bigger at the start, but **each test cuts it to a fifth**, while the sick branch stays almost whole.
+
+<Mermaid
+  title={<>A thousand residents through two tests</>}
+  description={<>Of <InlineMath math="1{,}000" /> residents, <InlineMath math="100" /> are sick and <InlineMath math="900" /> are healthy. The first test is positive for <InlineMath math="90" /> sick and <InlineMath math="180" /> healthy people. The second test is positive again for <InlineMath math="81" /> sick and <InlineMath math="36" /> healthy people, so <InlineMath math="117" /> people test positive twice.</>}
+  chart={`flowchart LR
+    P["1,000 residents"] --> S["100 sick"]
+    P --> H["900 healthy"]
+    S -->|"90%"| S1["90 positive on test 1"]
+    H -->|"20%"| H1["180 positive on test 1"]
+    S1 -->|"90%"| S2["81 positive twice"]
+    H1 -->|"20%"| H2["36 positive twice"]
+    S2 --> T["117 positive twice, 81 of them sick"]
+    H2 --> T`}
+/>
+
 # The conditional probability
 
 There are <InlineMath math="81+36=117" /> people who tested positive twice, and <InlineMath math="81" /> of them are sick.

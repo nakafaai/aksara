@@ -32,6 +32,39 @@ x\le-\tfrac12:\quad g(x) &= (4-x)+(2x+1)=x+5 \\
 x\ge4:\quad g(x) &= (x-4)-(2x+1)=-x-5
 \end{aligned}" />
 
+Grafik <InlineMath math="g" /> berikut merangkum dua hal sekaligus. Bagian grafik di atas sumbu-<InlineMath math="x" /> adalah himpunan penyelesaian <InlineMath math="-5\le x\le1" />, dan **puncaknya ada di <InlineMath math="x=-\tfrac12" />**, bukan di bilangan bulat, dengan nilai <InlineMath math="\tfrac92" />.
+
+<MathVisual
+  title={<>Grafik selisih <InlineMath math="g(x)=|x-4|-|2x+1|" /></>}
+  description={<>Grafik naik dengan kemiringan <InlineMath math="1" /> sampai <InlineMath math="x=-\tfrac12" />, lalu turun dengan kemiringan <InlineMath math="-3" /> sampai <InlineMath math="x=4" />, lalu turun dengan kemiringan <InlineMath math="-1" />. Puncaknya <InlineMath math="\left(-\tfrac12,\tfrac92\right)" />. Grafik ada di atas atau tepat di sumbu-<InlineMath math="x" /> untuk <InlineMath math="-5\le x\le1" />, yang ditandai ruas tebal.</>}
+  labels={{
+    g: <InlineMath math="y=g(x)" />,
+    top: <InlineMath math="\left(-\tfrac12,\tfrac92\right)" />,
+    left: <InlineMath math="-5" />,
+    right: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 6 }, y: { min: -12, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: -5, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "left-piece", kind: "function", appearance: "primary", formula: "x + 5", domain: { min: -7, max: -0.5 } },
+      { id: "middle-piece", kind: "function", appearance: "primary", formula: "3 - 3x", domain: { min: -0.5, max: 4 } },
+      { id: "right-piece", kind: "function", appearance: "primary", formula: "-x - 5", domain: { min: 4, max: 6 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: -0.5, y: 4.5 } },
+      { id: "left", kind: "point", appearance: "secondary", at: { x: -5, y: 0 } },
+      { id: "right", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "middle-piece", at: { x: 3, y: -6 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: -0.5, y: 4.5 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -5, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Di kiri <InlineMath math="g" /> naik, di tengah dan kanan <InlineMath math="g" /> turun. Jadi **nilai terbesarnya ada di titik belok** <InlineMath math="x=-\tfrac12" />, yaitu <InlineMath math="g\left(-\tfrac12\right)=\tfrac92" />. Nilai <InlineMath math="\tfrac92" /> lebih dari <InlineMath math="4" />, jadi pernyataan ketiga **salah**. Kalau kamu hanya mencoba bilangan bulat, nilai terbesarnya memang <InlineMath math="g(-1)=5-1=4" />, dan di situlah jebakannya.
 
 # Pernyataan keempat

@@ -30,6 +30,37 @@ x>5:&\quad(x-5)+(x+1)=6\ \Rightarrow\ x=5\ \text{(not in this case)}
 
 The solution set is <InlineMath math="-1\le x\le5" />, and **both ends count**.
 
+Graphing the left side for <InlineMath math="a=5" /> shows why. The graph is **flat exactly at height <InlineMath math="6" />** from <InlineMath math="x=-1" /> to <InlineMath math="x=5" />, so every point on that flat part, both ends included, satisfies the equation.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="|x-5|+|x+1|" /></>}
+  description={<>The graph falls with slope <InlineMath math="-2" /> until <InlineMath math="x=-1" />, stays flat at <InlineMath math="y=6" /> from <InlineMath math="x=-1" /> to <InlineMath math="x=5" />, and then rises with slope <InlineMath math="2" />. The flat part lies on the line <InlineMath math="y=6" /> and holds the integers <InlineMath math="-1" /> to <InlineMath math="5" />.</>}
+  labels={{
+    sum: <InlineMath math="y=|x-5|+|x+1|" />,
+    left: <InlineMath math="-1" />,
+    right: <InlineMath math="5" />,
+    level: <InlineMath math="y=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left-piece", kind: "function", appearance: "primary", formula: "-2x + 4", domain: { min: -4, max: -1 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "6", domain: { min: -1, max: 5 } },
+      { id: "right-piece", kind: "function", appearance: "primary", formula: "2x - 4", domain: { min: 5, max: 8 } },
+      { id: "end-left", kind: "point", appearance: "answer", at: { x: -1, y: 6 } },
+      { id: "end-right", kind: "point", appearance: "answer", at: { x: 5, y: 6 } },
+    ],
+    labels: [
+      { key: "sum", objectId: "right-piece", at: { x: 7, y: 10 }, placement: "left" },
+      { key: "left", objectId: "end-left", at: { x: -1, y: 6 }, placement: "below-left" },
+      { key: "right", objectId: "end-right", at: { x: 5, y: 6 }, placement: "below-right" },
+      { key: "level", objectId: "flat", at: { x: 2, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Adding the integers
 
 The integers in that interval, **including both ends**, are <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="5" />.
