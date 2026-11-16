@@ -33,6 +33,16 @@ Es gibt <InlineMath math="7" /> Tripel mit <InlineMath math="a=b" />. Genauso gi
 \text{gesuchte Tripel}&=133-19=114
 \end{aligned}" />
 
+Das Diagramm fasst die drei Zählschichten zusammen. Jeder Pfeil wirft eine Sorte Tripel hinaus, die eine Bedingung verletzt, und **die Zahl ganz rechts ist das, was alle drei Bedingungen erfüllt**.
+
+<Mermaid
+  title={<>Drei Schichten beim Zählen der Tripel</>}
+  description={<>Starte mit <InlineMath math="406" /> positiven Tripeln mit Summe <InlineMath math="30" />, entferne die <InlineMath math="3\cdot91=273" /> Tripel mit einer Zahl über <InlineMath math="15" />, sodass <InlineMath math="133" /> bleiben, und entferne dann die <InlineMath math="19" /> Tripel mit einer doppelten Zahl, sodass <InlineMath math="114" /> bleiben.</>}
+  chart={`flowchart LR
+    A["Alle positiven Tripel: 406"] -->|"3 x 91 = 273 über 15 entfernen"| B["133 Tripel"]
+    B -->|"19 mit doppelter Zahl entfernen"| C["114 Tripel"]`}
+/>
+
 # Das Ergebnis prüfen
 
 Drei verschiedene Zahlen lassen sich auf <InlineMath math="3!=6" /> Arten anordnen. Die Anzahl der gesuchten geordneten Tripel muss also ein Vielfaches von <InlineMath math="6" /> sein. Das Ergebnis ist <InlineMath math="114=6\cdot19" />, also gibt es **<InlineMath math="19" /> Mengen aus drei verschiedenen Zahlen**, die passen, zum Beispiel <InlineMath math="\{1,14,15\}" /> und <InlineMath math="\{9,10,11\}" />.

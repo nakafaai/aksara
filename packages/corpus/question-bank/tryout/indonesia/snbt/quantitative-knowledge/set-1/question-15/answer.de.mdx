@@ -30,6 +30,36 @@ Wegen <InlineMath math="(6\sqrt5)^2=180>49=7^2" /> gilt **in diesem Fall <Inline
 
 # Die Schlussfolgerung ziehen
 
+Wenn du beide Dreiecke im selben Maßstab zeichnest, siehst du das Problem. Das Dreieck <InlineMath math="4, 4, 7" /> ist flach und breit, das Dreieck <InlineMath math="4, 7, 7" /> hoch und schmal, und **ihre Flächen liegen auf verschiedenen Seiten von <InlineMath math="7" />**.
+
+<MathVisual
+  title={<>Zwei gleichschenklige Dreiecke, die beide möglich sind</>}
+  description={<>Das linke Dreieck hat die Seiten <InlineMath math="4, 4, 7" />, die Basis <InlineMath math="7" /> und die Höhe <InlineMath math="\tfrac{\sqrt{15}}{2}" />, also die Fläche <InlineMath math="\tfrac{7\sqrt{15}}{4}" />, etwa <InlineMath math="6{,}8" />. Das rechte Dreieck hat die Seiten <InlineMath math="4, 7, 7" />, die Basis <InlineMath math="4" /> und die Höhe <InlineMath math="3\sqrt5" />, also die Fläche <InlineMath math="6\sqrt5" />, etwa <InlineMath math="13{,}4" />. Die gestrichelten Linien sind die Höhen der Dreiecke.</>}
+  labels={{
+    first: <InlineMath math="\tfrac{7\sqrt{15}}{4}" />,
+    second: <InlineMath math="6\sqrt5" />,
+    base1: <InlineMath math="7" />,
+    base2: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -1.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "triangle-447", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7 / 2, y: Math.sqrt(15) / 2 }] },
+      { id: "triangle-477", kind: "polygon", appearance: "primary", vertices: [{ x: 9, y: 0 }, { x: 13, y: 0 }, { x: 11, y: 3 * Math.sqrt(5) }] },
+      { id: "height-447", kind: "segment", appearance: "construction", from: { x: 7 / 2, y: Math.sqrt(15) / 2 }, to: { x: 7 / 2, y: 0 } },
+      { id: "height-477", kind: "segment", appearance: "construction", from: { x: 11, y: 3 * Math.sqrt(5) }, to: { x: 11, y: 0 } },
+    ],
+    labels: [
+      { key: "first", objectId: "triangle-447", at: { x: 7 / 2, y: Math.sqrt(15) / 2 }, placement: "above" },
+      { key: "second", objectId: "triangle-477", at: { x: 11, y: 3 * Math.sqrt(5) }, placement: "above" },
+      { key: "base1", objectId: "triangle-447", at: { x: 7 / 4, y: 0 }, placement: "below" },
+      { key: "base2", objectId: "triangle-477", at: { x: 10, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Beide Dreiecke passen zu allen Angaben der Aufgabe, aber das eine liefert <InlineMath math="P<Q" /> und das andere <InlineMath math="P>Q" />. Also **lässt sich die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> nicht festlegen**.
 
 Die Antwort <InlineMath math="P>Q" /> entsteht, wenn du nur das Dreieck <InlineMath math="4, 7, 7" /> nimmst, etwa weil du das Dreieck <InlineMath math="4, 4, 7" /> für unmöglich hältst. Die Antwort <InlineMath math="Q>P" /> entsteht, wenn du nur das Dreieck <InlineMath math="4, 4, 7" /> nimmst. Die Antwort <InlineMath math="P=Q" /> tritt in keinem Fall ein, denn <InlineMath math="\left(\frac{7\sqrt{15}}{4}\right)^2=\frac{735}{16}" /> und <InlineMath math="180" /> sind beide von <InlineMath math="49" /> verschieden.

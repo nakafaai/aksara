@@ -27,6 +27,41 @@ Prüfe die übrigen Kantenmitten in <InlineMath math="x-y+z=3" />.
 
 Die Ebene geht also durch sechs Kantenmitten, nämlich die von <InlineMath math="AB" />, <InlineMath math="BC" />, <InlineMath math="CG" />, <InlineMath math="GH" />, <InlineMath math="HE" /> und <InlineMath math="EA" />. Ein Würfel hat nur sechs Seitenflächen, also hat eine Schnittfläche höchstens sechs Seiten. **Die Schnittfläche ist ein Sechseck** mit diesen sechs Mittelpunkten als Ecken.
 
+Der Würfel unten zeigt die Schnittfläche. Die Ebene hört nicht beim Dreieck <InlineMath math="PQR" /> auf, sondern schneidet noch drei weitere Kanten, also ist **die Schnittfläche ein Sechseck** mit Kantenmitten als Ecken.
+
+<MathVisual
+  title={<>Schnitt der Ebene <InlineMath math="PQR" /> mit dem Würfel</>}
+  description={<>Der Würfel <InlineMath math="ABCD.EFGH" /> mit Kantenlänge <InlineMath math="6" /> wird von der Ebene <InlineMath math="x-y+z=3" /> geschnitten. Die Schnittfläche ist ein Sechseck mit Ecken in den Mitten der Kanten <InlineMath math="AB" />, <InlineMath math="BC" />, <InlineMath math="CG" />, <InlineMath math="GH" />, <InlineMath math="HE" /> und <InlineMath math="EA" />. Die Punkte <InlineMath math="P" />, <InlineMath math="Q" /> und <InlineMath math="R" /> sind drei davon. Drehe die Abbildung, dann siehst du, dass alle sechs Seiten gleich lang sind.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    r: <InlineMath math="R" />,
+    a: <InlineMath math="A" />,
+    g: <InlineMath math="G" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -1, max: 7 }, z: { min: -1, max: 7 } },
+    view: { kind: "camera", position: { x: 15, y: -9, z: 11 }, target: { x: 3, y: 3, z: 3 } },
+    objects: [
+      { id: "cube", kind: "cuboid", appearance: "reference", center: { x: 3, y: 3, z: 3 }, size: { length: 6, width: 6, height: 6 } },
+      { id: "hexagon", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0, z: 0 }, { x: 6, y: 3, z: 0 }, { x: 6, y: 6, z: 3 }, { x: 3, y: 6, z: 6 }, { x: 0, y: 3, z: 6 }, { x: 0, y: 0, z: 3 }] },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 3, y: 0, z: 0 } },
+      { id: "point-q", kind: "point", appearance: "highlight", at: { x: 6, y: 3, z: 0 } },
+      { id: "point-r", kind: "point", appearance: "highlight", at: { x: 3, y: 6, z: 6 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0, z: 0 } },
+      { id: "point-g", kind: "point", appearance: "reference", at: { x: 6, y: 6, z: 6 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 3, y: 0, z: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 6, y: 3, z: 0 }, placement: "below-right" },
+      { key: "r", objectId: "point-r", at: { x: 3, y: 6, z: 6 }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "g", objectId: "point-g", at: { x: 6, y: 6, z: 6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Die Fläche des Sechsecks berechnen
 
 Zwei benachbarte Mittelpunkte, etwa <InlineMath math="P" /> und <InlineMath math="Q" />, haben den Abstand <InlineMath math="\sqrt{3^2+3^2+0^2}=3\sqrt2" />. Genauso zeigst du, dass alle sechs Seiten gleich lang sind. Auch der Würfelmittelpunkt <InlineMath math="(3,3,3)" /> erfüllt <InlineMath math="3-3+3=3" />, und sein Abstand zu jeder Ecke ist ebenfalls <InlineMath math="3\sqrt2" />, zum Beispiel zu <InlineMath math="P" /> über die Differenz <InlineMath math="(0,-3,-3)" />. Das Sechseck **zerfällt also in sechs gleichseitige Dreiecke** mit der Seite <InlineMath math="3\sqrt2" />. Der Flächeninhalt <InlineMath math="L" /> des Sechsecks ist sechsmal die Fläche eines solchen Dreiecks.

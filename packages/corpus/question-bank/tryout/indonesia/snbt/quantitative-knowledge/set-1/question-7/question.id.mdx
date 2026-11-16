@@ -1,3 +1,38 @@
 Trapesium <InlineMath math="ABCD" /> mempunyai sisi sejajar <InlineMath math="AB" /> dan <InlineMath math="CD" /> dengan <InlineMath math="AB<CD" />. Diagonal <InlineMath math="AC" /> dan <InlineMath math="BD" /> berpotongan di titik <InlineMath math="O" />. Luas segitiga <InlineMath math="AOB" /> adalah <InlineMath math="9\text{ cm}^2" /> dan luas segitiga <InlineMath math="COD" /> adalah <InlineMath math="25\text{ cm}^2" />.
 
+<MathVisual
+  title={<>Trapesium <InlineMath math="ABCD" /> dengan diagonal dan perpanjangan kaki</>}
+  description={<>Trapesium <InlineMath math="ABCD" /> dengan <InlineMath math="AB" /> sejajar <InlineMath math="CD" /> dan <InlineMath math="AB" /> lebih pendek. Diagonal <InlineMath math="AC" /> dan <InlineMath math="BD" /> berpotongan di <InlineMath math="O" />. Kaki <InlineMath math="DA" /> dan <InlineMath math="CB" /> diperpanjang dengan garis putus sampai bertemu di <InlineMath math="E" />.</>}
+  labels={{
+    e: <InlineMath math="E" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 21 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "trapezoid", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 8, y: 8 }, { x: 2, y: 8 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 2, y: 8 }, to: { x: 10, y: 0 } },
+      { id: "diagonal-bd", kind: "segment", appearance: "secondary", from: { x: 8, y: 8 }, to: { x: 0, y: 0 } },
+      { id: "extension-ae", kind: "segment", appearance: "construction", from: { x: 2, y: 8 }, to: { x: 5, y: 20 } },
+      { id: "extension-be", kind: "segment", appearance: "construction", from: { x: 8, y: 8 }, to: { x: 5, y: 20 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 5, y: 20 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+    ],
+    labels: [
+      { key: "e", objectId: "point-e", at: { x: 5, y: 20 }, placement: "above" },
+      { key: "a", objectId: "trapezoid", at: { x: 2, y: 8 }, placement: "left" },
+      { key: "b", objectId: "trapezoid", at: { x: 8, y: 8 }, placement: "right" },
+      { key: "c", objectId: "trapezoid", at: { x: 10, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "trapezoid", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "o", objectId: "point-o", at: { x: 5, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Perpanjangan kaki <InlineMath math="DA" /> dan <InlineMath math="CB" /> berpotongan di titik <InlineMath math="E" />. Luas segitiga <InlineMath math="EAB" /> adalah ....

@@ -22,6 +22,17 @@ Jadi banyak susunan yang memenuhi kedua syarat adalah
 
 <BlockMath math="120-24=96" />
 
+Diagram berikut merangkum hitungan tadi. Cabang atas memenuhi syarat huruf A, lalu cabang bawah **membuang susunan yang dua huruf M-nya masih menempel**.
+
+<Mermaid
+  title={<>Menghitung susunan MAMALIA dengan metode celah</>}
+  description={<>Huruf M, M, L, I disusun dalam <InlineMath math="12" /> cara dan membentuk <InlineMath math="5" /> celah. Tiga huruf A ditaruh di <InlineMath math="3" /> dari <InlineMath math="5" /> celah, jadi ada <InlineMath math="120" /> susunan. Susunan dengan blok MM ada <InlineMath math="3!\cdot\binom43=24" />. Sisanya <InlineMath math="96" /> susunan.</>}
+  chart={`flowchart LR
+    A["Susun M, M, L, I: 4!/2! = 12"] --> B["Taruh 3 A di 5 celah: 12 x 10 = 120"]
+    B --> D["120 - 24 = 96"]
+    C["Blok MM, L, I: 3! = 6, A di 4 celah: 6 x 4 = 24"] -->|"dibuang"| D`}
+/>
+
 # Memeriksa hasil
 
 Kata MAMALIA sendiri memenuhi syarat, karena urutan M, A, M, A, L, I, A tidak punya dua huruf sama yang bersebelahan. Penghitungan semua <InlineMath math="420" /> susunan satu per satu juga memberi **tepat <InlineMath math="96" /> susunan** yang lolos.

@@ -1,3 +1,45 @@
 Kubus <InlineMath math="ABCD.EFGH" /> mempunyai panjang rusuk <InlineMath math="6\text{ cm}" />. Bidang <InlineMath math="ABCD" /> adalah alas, sedangkan <InlineMath math="AE" />, <InlineMath math="BF" />, <InlineMath math="CG" />, dan <InlineMath math="DH" /> adalah rusuk tegak. Titik <InlineMath math="P" />, <InlineMath math="Q" />, dan <InlineMath math="R" /> berturut-turut adalah titik tengah rusuk <InlineMath math="AB" />, <InlineMath math="BC" />, dan <InlineMath math="GH" />.
 
+<MathVisual
+  title={<>Kubus <InlineMath math="ABCD.EFGH" /> dengan titik <InlineMath math="P" />, <InlineMath math="Q" />, dan <InlineMath math="R" /></>}
+  description={<>Kubus dengan alas <InlineMath math="ABCD" /> dan rusuk tegak <InlineMath math="AE" />, <InlineMath math="BF" />, <InlineMath math="CG" />, <InlineMath math="DH" />. Titik <InlineMath math="P" /> di tengah <InlineMath math="AB" />, titik <InlineMath math="Q" /> di tengah <InlineMath math="BC" />, dan titik <InlineMath math="R" /> di tengah <InlineMath math="GH" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    g: <InlineMath math="G" />,
+    h: <InlineMath math="H" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    r: <InlineMath math="R" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -1, max: 7 }, z: { min: -1, max: 7 } },
+    view: { kind: "camera", position: { x: 15, y: -9, z: 11 }, target: { x: 3, y: 3, z: 3 } },
+    objects: [
+      { id: "cube", kind: "cuboid", appearance: "reference", center: { x: 3, y: 3, z: 3 }, size: { length: 6, width: 6, height: 6 } },
+      { id: "point-p", kind: "point", appearance: "primary", at: { x: 3, y: 0, z: 0 } },
+      { id: "point-q", kind: "point", appearance: "primary", at: { x: 6, y: 3, z: 0 } },
+      { id: "point-r", kind: "point", appearance: "primary", at: { x: 3, y: 6, z: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "cube", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "b", objectId: "cube", at: { x: 6, y: 0, z: 0 }, placement: "below" },
+      { key: "c", objectId: "cube", at: { x: 6, y: 6, z: 0 }, placement: "right" },
+      { key: "d", objectId: "cube", at: { x: 0, y: 6, z: 0 }, placement: "left" },
+      { key: "e", objectId: "cube", at: { x: 0, y: 0, z: 6 }, placement: "left" },
+      { key: "f", objectId: "cube", at: { x: 6, y: 0, z: 6 }, placement: "right" },
+      { key: "g", objectId: "cube", at: { x: 6, y: 6, z: 6 }, placement: "above-right" },
+      { key: "h", objectId: "cube", at: { x: 0, y: 6, z: 6 }, placement: "above-left" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 0, z: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 6, y: 3, z: 0 }, placement: "below-right" },
+      { key: "r", objectId: "point-r", at: { x: 3, y: 6, z: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
 Bidang yang melalui titik <InlineMath math="P" />, <InlineMath math="Q" />, dan <InlineMath math="R" /> memotong kubus itu. Luas irisan bidang itu dengan kubus adalah ....

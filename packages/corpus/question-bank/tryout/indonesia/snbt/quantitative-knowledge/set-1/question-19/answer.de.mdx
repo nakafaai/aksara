@@ -19,6 +19,18 @@ Für <InlineMath math="k=2" /> bekommst du ebenfalls <InlineMath math="y=0" />, 
 
 Für <InlineMath math="k=3" /> bleibt nur die Bedingung <InlineMath math="y+z=1" />, und <InlineMath math="y" /> ist frei wählbar. Jede Wahl von <InlineMath math="y" /> liefert eine Lösung, also gibt es **unendlich viele Lösungen**.
 
+Das Diagramm ordnet die drei Fälle als Zweige an. Jeder Weg **beginnt bei der Gleichung <InlineMath math="(k-3)y=0" />** und verzweigt sich dann nach dem Wert von <InlineMath math="k-2" />.
+
+<Mermaid
+  title={<>Anzahl der Lösungen je nach <InlineMath math="k" /></>}
+  description={<>Für <InlineMath math="k=3" /> gilt <InlineMath math="(k-3)y=0" /> immer, und das System hat unendlich viele Lösungen. Für <InlineMath math="k\ne3" /> folgt <InlineMath math="y=0" />. Für <InlineMath math="k=2" /> widerspricht die Forderung <InlineMath math="y=1" /> dem Wert <InlineMath math="y=0" />, also gibt es keine Lösung. Für jedes andere <InlineMath math="k" /> gibt es genau eine Lösung, mit <InlineMath math="y=0" />.</>}
+  chart={`flowchart TD
+    A["(k - 3)y = 0 und y + (k - 2)z = 1"] -->|"k = 3"| B["y frei, y + z = 1: unendlich viele"]
+    A -->|"k nicht 3"| C["y = 0"]
+    C -->|"k = 2"| D["0 = 1: keine Lösung"]
+    C -->|"k nicht 2"| E["z = 1/(k - 2): genau eine, y = 0"]`}
+/>
+
 Prüfe mit der Determinante der Koeffizienten:
 
 <BlockMath math="\begin{vmatrix}1&1&1\\2&3&k\\3&k&3\end{vmatrix}=(9-k^2)-(6-3k)+(2k-9)=-(k-2)(k-3)" />

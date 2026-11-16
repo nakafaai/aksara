@@ -23,6 +23,20 @@ r&\in\{0,2\}
 
 Der Exponent <InlineMath math="q" /> muss gerade und mindestens <InlineMath math="1" /> sein, also ist er mindestens <InlineMath math="2" />.
 
+Das Diagramm vergleicht alle Exponentenwahlen mit denen, die beide Bedingungen erfüllen. Die gesuchte Anzahl ist **das Produkt der passenden Balken**: <InlineMath math="6\cdot2\cdot2" />.
+
+<Chart
+  title={<>Exponentenwahl für den Teiler <InlineMath math="d=2^p\cdot3^q\cdot5^r" /></>}
+  description={<>Der Exponent <InlineMath math="p" /> hat <InlineMath math="13" /> Möglichkeiten, davon sind <InlineMath math="6" /> gerade und mindestens <InlineMath math="2" />. Der Exponent <InlineMath math="q" /> hat <InlineMath math="6" /> Möglichkeiten, davon sind nur <InlineMath math="2" /> gerade und mindestens <InlineMath math="1" />. Der Exponent <InlineMath math="r" /> hat <InlineMath math="3" /> Möglichkeiten, davon sind <InlineMath math="2" /> gerade.</>}
+  bars="apart"
+  categories={["Exponent p von 2", "Exponent q von 3", "Exponent r von 5"]}
+  series={[
+    { label: "Alle Möglichkeiten", mark: "bar", values: [12 + 1, 5 + 1, 2 + 1] },
+    { label: "Erfüllen beide Bedingungen", mark: "bar", values: [12 / 2, 2, 2] },
+  ]}
+  valueLabel="Anzahl der Möglichkeiten"
+/>
+
 # Die Teiler zählen
 
 Jede Wahl von <InlineMath math="p" />, <InlineMath math="q" /> und <InlineMath math="r" /> liefert einen anderen Teiler, also ist **die Anzahl das Produkt der Wahlmöglichkeiten**.

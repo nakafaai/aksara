@@ -34,6 +34,48 @@ Pembuat nol pembilang, yaitu <InlineMath math="1" /> dan <InlineMath math="7" />
 
 Pada selang <InlineMath math="-4<x\le1" /> ada <InlineMath math="-3, -2, -1, 0, 1" />, tetapi **<InlineMath math="-3" /> dibuang** karena penyebutnya nol. Pada selang <InlineMath math="7\le x<9" /> ada <InlineMath math="7" /> dan <InlineMath math="8" />. Lalu tambahkan <InlineMath math="6" />.
 
+Gambar garis bilangan berikut mengumpulkan semua syarat itu. Ruas tebal adalah dua selang penyelesaian, ujung <InlineMath math="-4" /> dan <InlineMath math="9" /> tidak ikut, titik <InlineMath math="6" /> berdiri sendiri, dan <InlineMath math="-3" /> **ditandai sebagai titik yang dibuang**. Bilangan bulat yang tersisa tinggal dibaca dari gambar.
+
+<MathVisual
+  title={<>Bilangan bulat yang memenuhi pertidaksamaan</>}
+  description={<>Pada sumbu-<InlineMath math="x" />, ruas dari <InlineMath math="-4" /> sampai <InlineMath math="1" /> dan ruas dari <InlineMath math="7" /> sampai <InlineMath math="9" /> diberi tanda. Ujung <InlineMath math="-4" /> dan <InlineMath math="9" /> tidak termasuk, sedangkan <InlineMath math="1" /> dan <InlineMath math="7" /> termasuk. Bilangan bulat penyelesaiannya <InlineMath math="-2" />, <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="6" />, <InlineMath math="7" />, dan <InlineMath math="8" />. Titik <InlineMath math="-3" /> dibuang karena penyebutnya nol.</>}
+  labels={{
+    a: <InlineMath math="-4" />,
+    b: <InlineMath math="-3" />,
+    c: <InlineMath math="1" />,
+    d: <InlineMath math="6" />,
+    e: <InlineMath math="7" />,
+    g: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 11 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "left-interval", kind: "segment", appearance: "highlight", from: { x: -4, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "right-interval", kind: "segment", appearance: "highlight", from: { x: 7, y: 0 }, to: { x: 9, y: 0 } },
+      { id: "open-left", kind: "point", appearance: "construction", at: { x: -4, y: 0 } },
+      { id: "open-right", kind: "point", appearance: "construction", at: { x: 9, y: 0 } },
+      { id: "excluded", kind: "point", appearance: "warning", at: { x: -3, y: 0 } },
+      { id: "n-2", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "n-1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "n0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "n1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "n6", kind: "point", appearance: "answer", at: { x: 6, y: 0 } },
+      { id: "n7", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+      { id: "n8", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "open-left", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "b", objectId: "excluded", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "c", objectId: "n1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "d", objectId: "n6", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "e", objectId: "n7", at: { x: 7, y: 0 }, placement: "below" },
+      { key: "g", objectId: "open-right", at: { x: 9, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="(-2)+(-1)+0+1+6+7+8=19" />
 
 # Memeriksa hasil

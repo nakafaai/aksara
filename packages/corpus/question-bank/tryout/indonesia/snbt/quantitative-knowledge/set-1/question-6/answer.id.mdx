@@ -33,6 +33,16 @@ Ada <InlineMath math="7" /> tripel dengan <InlineMath math="a=b" />. Begitu juga
 \text{banyak tripel yang dicari}&=133-19=114
 \end{aligned}" />
 
+Diagram berikut merangkum ketiga lapis hitungan. Setiap panah membuang satu jenis tripel yang melanggar syarat, jadi **angka di ujung kanan adalah tripel yang lolos ketiga syarat**.
+
+<Mermaid
+  title={<>Tiga lapis penghitungan tripel</>}
+  description={<>Mulai dari <InlineMath math="406" /> tripel positif berjumlah <InlineMath math="30" />, buang <InlineMath math="3\cdot91=273" /> tripel yang punya bilangan di atas <InlineMath math="15" /> sehingga tersisa <InlineMath math="133" />, lalu buang <InlineMath math="19" /> tripel yang punya bilangan kembar sehingga tersisa <InlineMath math="114" />.</>}
+  chart={`flowchart LR
+    A["Semua tripel positif: 406"] -->|"buang 3 x 91 = 273 yang melewati 15"| B["133 tripel"]
+    B -->|"buang 19 yang punya bilangan kembar"| C["114 tripel"]`}
+/>
+
 # Memeriksa hasil
 
 Tiga bilangan yang berbeda bisa diurutkan dengan <InlineMath math="3!=6" /> cara. Jadi banyak tripel terurut yang dicari harus kelipatan <InlineMath math="6" />. Hasilnya <InlineMath math="114=6\cdot19" />, jadi **ada <InlineMath math="19" /> himpunan tiga bilangan berbeda** yang memenuhi syarat, misalnya <InlineMath math="\{1,14,15\}" /> dan <InlineMath math="\{9,10,11\}" />.

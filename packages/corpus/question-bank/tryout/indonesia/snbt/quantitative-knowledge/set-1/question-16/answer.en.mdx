@@ -24,6 +24,18 @@ x&=15
 
 The value <InlineMath math="x=15" /> meets the condition <InlineMath math="x\neq4" />.
 
+The diagram below sums up both steps. The top arrows follow <InlineMath math="g\circ f" />, which is <InlineMath math="f" /> first and then <InlineMath math="g" />. The dashed arrows are the inverse, which walks **backward by undoing <InlineMath math="g" /> first**.
+
+<Mermaid
+  title={<>Forward and backward through <InlineMath math="g\circ f" /></>}
+  description={<>Forward: <InlineMath math="f" /> sends <InlineMath math="x=15" /> to <InlineMath math="3" />, then <InlineMath math="g" /> sends <InlineMath math="3" /> to <InlineMath math="8" />. Backward: <InlineMath math="g^{-1}" /> takes <InlineMath math="8" /> to <InlineMath math="3" />, then <InlineMath math="f^{-1}" /> takes <InlineMath math="3" /> to <InlineMath math="15" />.</>}
+  chart={`flowchart LR
+    X["x = 15"] -->|"f"| Y["f(x) = 3"]
+    Y -->|"g"| Z["g(3) = 8"]
+    Z -.->|"step 1: undo g, 3y - 1 = 8"| Y
+    Y -.->|"step 2: undo f, (2x + 3)/(x - 4) = 3"| X`}
+/>
+
 # Checking the result
 
 Put <InlineMath math="15" /> into <InlineMath math="g\circ f" />: <InlineMath math="f(15)=\frac{33}{11}=3" />, then <InlineMath math="g(3)=9-1=8" />. **You land back on <InlineMath math="8" />**, so <InlineMath math="15" /> really is the input you want.

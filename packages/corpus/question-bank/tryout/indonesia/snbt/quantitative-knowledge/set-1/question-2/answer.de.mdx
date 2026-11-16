@@ -12,6 +12,38 @@ p^2&=9
 
 Es gibt zwei Kandidaten, <InlineMath math="p=3" /> oder <InlineMath math="p=-3" />. Laut Aufgabe sind **beide Lösungen positiv**, also ist ihre Summe positiv: <InlineMath math="-p>0" />. Der Kandidat <InlineMath math="p=3" /> fällt weg, weil er die Summe <InlineMath math="-3" /> liefert. Also gilt <InlineMath math="p=-3" />, die Gleichung lautet <InlineMath math="x^2-3x+1=0" />, und es ist <InlineMath math="\alpha+\beta=3" /> und <InlineMath math="\alpha\beta=1" />. Die Diskriminante ist <InlineMath math="9-4=5>0" />, also sind beide Lösungen wirklich reell.
 
+Die Graphen der beiden Kandidaten zeigen den Grund. Die Parabel für <InlineMath math="p=3" /> schneidet die <InlineMath math="x" />-Achse an zwei negativen Stellen, die Parabel für <InlineMath math="p=-3" /> an zwei positiven. Nur **die zweite Parabel passt zur Bedingung mit zwei positiven Nullstellen**.
+
+<MathVisual
+  title={<>Die beiden Kandidaten für <InlineMath math="p" /></>}
+  description={<>Die Parabel <InlineMath math="y=x^2+3x+1" /> für <InlineMath math="p=3" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="\tfrac{-3-\sqrt5}{2}" /> und <InlineMath math="\tfrac{-3+\sqrt5}{2}" />, beide negativ. Die Parabel <InlineMath math="y=x^2-3x+1" /> für <InlineMath math="p=-3" /> schneidet sie bei <InlineMath math="\tfrac{3-\sqrt5}{2}" /> und <InlineMath math="\tfrac{3+\sqrt5}{2}" />, beide positiv.</>}
+  labels={{
+    rejected: <InlineMath math="p=3" />,
+    kept: <InlineMath math="p=-3" />,
+    alpha: <InlineMath math="\alpha" />,
+    beta: <InlineMath math="\beta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve-rejected", kind: "function", appearance: "warning", formula: "x^2 + 3x + 1", domain: { min: -4.5, max: 1 } },
+      { id: "curve-kept", kind: "function", appearance: "answer", formula: "x^2 - 3x + 1", domain: { min: -1, max: 4.5 } },
+      { id: "root-rejected-left", kind: "point", appearance: "warning", at: { x: (-3 - Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-rejected-right", kind: "point", appearance: "warning", at: { x: (-3 + Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-alpha", kind: "point", appearance: "answer", at: { x: (3 - Math.sqrt(5)) / 2, y: 0 } },
+      { id: "root-beta", kind: "point", appearance: "answer", at: { x: (3 + Math.sqrt(5)) / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "rejected", objectId: "curve-rejected", at: { x: -3.5, y: 2.75 }, placement: "left" },
+      { key: "kept", objectId: "curve-kept", at: { x: 3.5, y: 2.75 }, placement: "right" },
+      { key: "alpha", objectId: "root-alpha", at: { x: (3 - Math.sqrt(5)) / 2, y: 0 }, placement: "below" },
+      { key: "beta", objectId: "root-beta", at: { x: (3 + Math.sqrt(5)) / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Die dritten Potenzen vereinfachen
 
 Weil <InlineMath math="\alpha" /> eine Lösung ist, gilt <InlineMath math="\alpha^2-3\alpha+1=0" />, also <InlineMath math="\alpha^2=3\alpha-1" />. Damit darfst du **jedes <InlineMath math="\alpha^2" /> durch <InlineMath math="3\alpha-1" /> ersetzen**. Für <InlineMath math="\alpha^3" /> multiplizierst du zuerst <InlineMath math="\alpha^2" /> mit <InlineMath math="\alpha" /> und ersetzt dann das neu entstandene <InlineMath math="\alpha^2" />.

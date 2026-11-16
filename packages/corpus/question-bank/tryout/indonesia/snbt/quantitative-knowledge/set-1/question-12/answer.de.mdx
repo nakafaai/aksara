@@ -34,4 +34,19 @@ Bei <InlineMath math="b=c=8" /> gilt <InlineMath math="a\le7" />, <InlineMath ma
 
 Bei <InlineMath math="c=d=8" /> gilt <InlineMath math="a<b\le7" /> und <InlineMath math="e=34-a-b\ge34-6-7=21" />, also <InlineMath math="e-a\ge21-6=15" />. In beiden Fällen ist **die Spannweite mindestens <InlineMath math="7" />**, und die Daten <InlineMath math="7, 8, 8, 13, 14" /> erreichen genau <InlineMath math="7" />. Die vierte Aussage ist wahr.
 
+Das Diagramm stellt die drei Beispieldatensätze nebeneinander, jeweils vom kleinsten zum größten Wert sortiert. Die Spannweite jedes Beispiels ist **der Abstand vom ersten zum fünften Balken**: <InlineMath math="30" />, <InlineMath math="5" /> und <InlineMath math="7" />.
+
+<Chart
+  title={<>Drei Datensätze mit Mittelwert <InlineMath math="10" />, Median <InlineMath math="8" /> und Modus <InlineMath math="8" /></>}
+  description={<>Das Beispiel zu Aussage eins ist <InlineMath math="1, 2, 8, 8, 31" /> mit Spannweite <InlineMath math="30" />. Das Beispiel zu den Aussagen zwei und drei ist <InlineMath math="8, 8, 8, 13, 13" /> mit Spannweite <InlineMath math="5" /> und größtem Wert <InlineMath math="13" />. Das Beispiel zu Aussage vier ist <InlineMath math="7, 8, 8, 13, 14" /> mit Spannweite <InlineMath math="7" />. Alle drei haben die Summe <InlineMath math="50" /> und als dritten Wert <InlineMath math="8" />.</>}
+  bars="apart"
+  categories={["Wert 1", "Wert 2", "Wert 3", "Wert 4", "Wert 5"]}
+  series={[
+    { label: "Spannweite 30", mark: "bar", values: [1, 2, 8, 8, 31] },
+    { label: "Spannweite 5", mark: "bar", values: [8, 8, 8, 13, 13] },
+    { label: "Spannweite 7", mark: "bar", values: [7, 8, 8, 13, 14] },
+  ]}
+  valueLabel="Wert"
+/>
+
 Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte wahr.

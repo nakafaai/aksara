@@ -31,6 +31,21 @@ Divide <InlineMath math="500" /> by what one block holds.
 
 So <InlineMath math="13" /> full blocks, the numbers <InlineMath math="1" /> to <InlineMath math="13\times60=780" />, already contain <InlineMath math="13\times38=494" /> chosen numbers. **The <InlineMath math="500" />th number is the <InlineMath math="6" />th chosen number in the next block**, the block from <InlineMath math="781" /> to <InlineMath math="840" />. Because the pattern repeats, that number is <InlineMath math="780+9=789" />.
 
+The chart below shows how many chosen numbers have piled up by the end of each block. The bar for block <InlineMath math="13" /> is still under the line at <InlineMath math="500" />, and the bar for block <InlineMath math="14" /> is already past it. So the <InlineMath math="500" />th number has to sit **inside block <InlineMath math="14" />**.
+
+<Chart
+  title={<>Chosen numbers collected block by block</>}
+  description={<>Each block holds <InlineMath math="38" /> chosen numbers. By the end of blocks <InlineMath math="11" />, <InlineMath math="12" />, <InlineMath math="13" />, and <InlineMath math="14" />, the totals are <InlineMath math="418" />, <InlineMath math="456" />, <InlineMath math="494" />, and <InlineMath math="532" />. The target line sits at <InlineMath math="500" />, between block <InlineMath math="13" /> and block <InlineMath math="14" />.</>}
+  bars="apart"
+  categories={["Block 11", "Block 12", "Block 13", "Block 14"]}
+  series={[
+    { label: "Collected by the end of the block", mark: "bar", values: [11 * 38, 12 * 38, 13 * 38, 14 * 38] },
+    { label: "Position you want", mark: "line", values: [500, 500, 500, 500] },
+  ]}
+  valueLabel="Chosen numbers"
+  valueRange={{ min: 380, max: 560 }}
+/>
+
 # Checking the result
 
 Check the numbers from <InlineMath math="781" /> to <InlineMath math="789" /> directly. The numbers <InlineMath math="784" /> and <InlineMath math="788" /> are divisible by <InlineMath math="4" />, and <InlineMath math="786" /> is divisible by <InlineMath math="6" />. The rest, <InlineMath math="781, 782, 783, 785, 787, 789" />, are **exactly six chosen numbers**, and the sixth one is <InlineMath math="789" />.

@@ -18,6 +18,21 @@ Since <InlineMath math="48=2^4\cdot3" />, statement (2) means <InlineMath math="
 
 Every <InlineMath math="n" /> that satisfies (2) is divisible by <InlineMath math="12" /> too. For example, <InlineMath math="n=12" /> gives <InlineMath math="1{,}728=48\cdot36" />, while <InlineMath math="n=6" /> doesn't satisfy (2) because <InlineMath math="216=48\cdot4+24" />. Statement (2) alone is enough.
 
+The diagram below puts both paths side by side. The key is in the middle boxes: **an even exponent or a multiple of three can't stop exactly at the limit**, so both statements force <InlineMath math="a\ge2" /> and <InlineMath math="b\ge1" />.
+
+<Mermaid
+  title={<>Two paths to the factor <InlineMath math="12" /></>}
+  description={<>Statement (1) gives <InlineMath math="2a\ge3" /> and <InlineMath math="2b\ge1" />, so <InlineMath math="a\ge2" /> and <InlineMath math="b\ge1" />. Statement (2) gives <InlineMath math="3a\ge4" /> and <InlineMath math="3b\ge1" />, so again <InlineMath math="a\ge2" /> and <InlineMath math="b\ge1" />. Both paths end at the conclusion that <InlineMath math="n" /> is divisible by <InlineMath math="12" />.</>}
+  chart={`flowchart TD
+    S1["(1) n² divisible by 24 = 2³ · 3"] --> E1["2a at least 3 and 2b at least 1"]
+    E1 --> R1["2a is even, so 2a is at least 4"]
+    S2["(2) n³ divisible by 48 = 2⁴ · 3"] --> E2["3a at least 4 and 3b at least 1"]
+    E2 --> R2["a = 1 only gives 3, so a is at least 2"]
+    R1 --> K["a at least 2 and b at least 1"]
+    R2 --> K
+    K --> Y["n divisible by 12"]`}
+/>
+
 # Why the other options are tempting
 
 The option that both statements are needed together comes from reading (1) only as "<InlineMath math="n" /> is even and a multiple of <InlineMath math="3" />", or reading (2) only as "<InlineMath math="n" /> is even". Those readings **ignore that a square always has even prime exponents** and a cube always has prime exponents that are multiples of <InlineMath math="3" />. The option that neither statement is enough comes from assuming <InlineMath math="n=6" /> fits, but <InlineMath math="6" /> fails both statements.

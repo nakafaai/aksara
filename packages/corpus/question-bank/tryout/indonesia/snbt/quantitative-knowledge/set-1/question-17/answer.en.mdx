@@ -30,6 +30,42 @@ From <InlineMath math="BC=10" /> you get <InlineMath math="BM=MC=5=AM" />. Point
 
 The first example, <InlineMath math="AB=6" /> and <InlineMath math="AC=8" />, gives an area of <InlineMath math="24\text{ cm}^2" />. The second example, <InlineMath math="AB=AC=5\sqrt2" />, also satisfies (2), since <InlineMath math="50+50=2\cdot25+\frac{100}{2}" />, but its area is <InlineMath math="\frac12\cdot5\sqrt2\cdot5\sqrt2=25\text{ cm}^2" />. Two different areas mean statement (2) alone isn't enough.
 
+The figure below puts both examples on the same base <InlineMath math="BC" />. Points <InlineMath math="A_1" /> and <InlineMath math="A_2" /> are both <InlineMath math="5" /> away from <InlineMath math="M" />, so both sit on the semicircle with diameter <InlineMath math="BC" />. Their heights differ, so **their areas differ too**.
+
+<MathVisual
+  title={<>Two triangles that both satisfy statement (2)</>}
+  description={<>The base <InlineMath math="BC=10" /> has midpoint <InlineMath math="M" />. Point <InlineMath math="A_1" /> gives sides <InlineMath math="6" /> and <InlineMath math="8" />, height <InlineMath math="4.8" />, and area <InlineMath math="24" />. Point <InlineMath math="A_2" /> gives two sides of <InlineMath math="5\sqrt2" />, height <InlineMath math="5" />, and area <InlineMath math="25" />. Both medians <InlineMath math="AM" /> have length <InlineMath math="5" />.</>}
+  labels={{
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    m: <InlineMath math="M" />,
+    first: <InlineMath math="A_1" />,
+    second: <InlineMath math="A_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "circle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 5, startDegrees: 0, sweepDegrees: 180 },
+      { id: "triangle-first", kind: "polygon", appearance: "primary", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }, { x: -7 / 5, y: 24 / 5 }] },
+      { id: "triangle-second", kind: "polygon", appearance: "secondary", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }, { x: 0, y: 5 }] },
+      { id: "median-first", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: -7 / 5, y: 24 / 5 } },
+      { id: "median-second", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -5, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "b", objectId: "point-b", at: { x: -5, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "point-c", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "first", objectId: "triangle-first", at: { x: -7 / 5, y: 24 / 5 }, placement: "above-left" },
+      { key: "second", objectId: "triangle-second", at: { x: 0, y: 5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Why the other options are tempting
 
 The options that need both statements, or that say neither is enough, come from thinking statement (1) **still needs the angle between <InlineMath math="AB" /> and <InlineMath math="AC" />**, when the median already fixes the third side. The option that each statement alone is enough comes from thinking the right angle in statement (2) already fixes the area.

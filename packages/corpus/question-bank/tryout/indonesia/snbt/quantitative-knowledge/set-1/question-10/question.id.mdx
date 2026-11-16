@@ -1,3 +1,43 @@
 Titik <InlineMath math="P" /> terletak di luar lingkaran yang berpusat di <InlineMath math="O" />. Garis singgung dari <InlineMath math="P" /> menyinggung lingkaran di titik <InlineMath math="T" />, dengan <InlineMath math="PT=12\text{ cm}" />. Sebuah garis lain melalui <InlineMath math="P" /> memotong lingkaran di titik <InlineMath math="A" /> dan <InlineMath math="B" />, dengan <InlineMath math="A" /> terletak di antara <InlineMath math="P" /> dan <InlineMath math="B" />, dan panjang tali busur <InlineMath math="AB=7\text{ cm}" />. Tali busur <InlineMath math="TB" /> melalui titik <InlineMath math="O" />.
 
+<MathVisual
+  title={<>Garis singgung dan garis potong dari titik <InlineMath math="P" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="O" />. Garis singgung dari <InlineMath math="P" /> menyentuh lingkaran di <InlineMath math="T" />. Garis lain dari <InlineMath math="P" /> memotong lingkaran di <InlineMath math="A" /> lalu <InlineMath math="B" />. Tali busur <InlineMath math="TB" /> melalui <InlineMath math="O" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    t: <InlineMath math="T" />,
+    b: <InlineMath math="B" />,
+    a: <InlineMath math="A" />,
+    o: <InlineMath math="O" />,
+    pt: <InlineMath math="12\text{ cm}" />,
+    ab: <InlineMath math="7\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 14 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 * Math.sqrt(7) },
+      { id: "chord-tb", kind: "segment", appearance: "secondary", from: { x: 0, y: 2 * Math.sqrt(7) }, to: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "tangent", kind: "segment", appearance: "primary", from: { x: 12, y: 2 * Math.sqrt(7) }, to: { x: 0, y: 2 * Math.sqrt(7) } },
+      { id: "secant-outside", kind: "segment", appearance: "primary", from: { x: 12, y: 2 * Math.sqrt(7) }, to: { x: 21 / 4, y: -Math.sqrt(7) / 4 } },
+      { id: "chord-ab", kind: "segment", appearance: "highlight", from: { x: 21 / 4, y: -Math.sqrt(7) / 4 }, to: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 12, y: 2 * Math.sqrt(7) } },
+      { id: "point-t", kind: "point", appearance: "reference", at: { x: 0, y: 2 * Math.sqrt(7) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: -2 * Math.sqrt(7) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 21 / 4, y: -Math.sqrt(7) / 4 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 12, y: 2 * Math.sqrt(7) }, placement: "right" },
+      { key: "t", objectId: "point-t", at: { x: 0, y: 2 * Math.sqrt(7) }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 0, y: -2 * Math.sqrt(7) }, placement: "below-left" },
+      { key: "a", objectId: "point-a", at: { x: 21 / 4, y: -Math.sqrt(7) / 4 }, placement: "right" },
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "pt", objectId: "tangent", at: { x: 6, y: 2 * Math.sqrt(7) }, placement: "above" },
+      { key: "ab", objectId: "chord-ab", at: { x: 21 / 8, y: -9 * Math.sqrt(7) / 8 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Panjang jari-jari lingkaran itu adalah ....

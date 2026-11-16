@@ -18,6 +18,21 @@ Wegen <InlineMath math="48=2^4\cdot3" /> bedeutet Aussage (2), dass <InlineMath 
 
 Auch jedes <InlineMath math="n" />, das (2) erfüllt, ist durch <InlineMath math="12" /> teilbar. Zum Beispiel liefert <InlineMath math="n=12" /> den Wert <InlineMath math="1{.}728=48\cdot36" />, während <InlineMath math="n=6" /> die Aussage (2) nicht erfüllt, denn <InlineMath math="216=48\cdot4+24" />. Aussage (2) allein reicht.
 
+Das Diagramm stellt beide Wege nebeneinander. Der Schlüssel steckt in den mittleren Kästen: **ein gerader Exponent oder ein Vielfaches von drei kann nicht genau an der Grenze stehen bleiben**, also erzwingen beide Aussagen <InlineMath math="a\ge2" /> und <InlineMath math="b\ge1" />.
+
+<Mermaid
+  title={<>Zwei Wege zum Teiler <InlineMath math="12" /></>}
+  description={<>Aussage (1) liefert <InlineMath math="2a\ge3" /> und <InlineMath math="2b\ge1" />, also <InlineMath math="a\ge2" /> und <InlineMath math="b\ge1" />. Aussage (2) liefert <InlineMath math="3a\ge4" /> und <InlineMath math="3b\ge1" />, also ebenfalls <InlineMath math="a\ge2" /> und <InlineMath math="b\ge1" />. Beide Wege enden bei der Folgerung, dass <InlineMath math="n" /> durch <InlineMath math="12" /> teilbar ist.</>}
+  chart={`flowchart TD
+    S1["(1) n² teilbar durch 24 = 2³ · 3"] --> E1["2a mindestens 3 und 2b mindestens 1"]
+    E1 --> R1["2a ist gerade, also mindestens 4"]
+    S2["(2) n³ teilbar durch 48 = 2⁴ · 3"] --> E2["3a mindestens 4 und 3b mindestens 1"]
+    E2 --> R2["a = 1 gibt nur 3, also a mindestens 2"]
+    R1 --> K["a mindestens 2 und b mindestens 1"]
+    R2 --> K
+    K --> Y["n teilbar durch 12"]`}
+/>
+
 # Warum die anderen Antworten verlocken
 
 Die Antwort, dass beide Aussagen zusammen nötig sind, entsteht, wenn du (1) nur als „<InlineMath math="n" /> ist gerade und durch <InlineMath math="3" /> teilbar“ oder (2) nur als „<InlineMath math="n" /> ist gerade“ liest. Diese Lesart **übersieht, dass ein Quadrat nur gerade Primexponenten hat** und eine dritte Potenz nur Exponenten, die Vielfache von <InlineMath math="3" /> sind. Die Antwort, dass keine Aussage reicht, entsteht, wenn du annimmst, dass <InlineMath math="n=6" /> passt, aber <InlineMath math="6" /> scheitert an beiden Aussagen.

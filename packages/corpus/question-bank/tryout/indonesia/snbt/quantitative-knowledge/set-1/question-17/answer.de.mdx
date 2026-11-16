@@ -30,6 +30,42 @@ Aus <InlineMath math="BC=10" /> folgt <InlineMath math="BM=MC=5=AM" />. Der Punk
 
 Das erste Beispiel, <InlineMath math="AB=6" /> und <InlineMath math="AC=8" />, liefert die Fläche <InlineMath math="24\text{ cm}^2" />. Das zweite Beispiel, <InlineMath math="AB=AC=5\sqrt2" />, erfüllt (2) ebenfalls, denn <InlineMath math="50+50=2\cdot25+\frac{100}{2}" />, hat aber die Fläche <InlineMath math="\frac12\cdot5\sqrt2\cdot5\sqrt2=25\text{ cm}^2" />. Zwei verschiedene Flächen bedeuten, dass Aussage (2) allein nicht reicht.
 
+Die Abbildung stellt beide Beispiele auf dieselbe Grundseite <InlineMath math="BC" />. Die Punkte <InlineMath math="A_1" /> und <InlineMath math="A_2" /> sind beide <InlineMath math="5" /> von <InlineMath math="M" /> entfernt, liegen also auf dem Halbkreis über <InlineMath math="BC" />. Ihre Höhen sind verschieden, also **sind auch ihre Flächen verschieden**.
+
+<MathVisual
+  title={<>Zwei Dreiecke, die beide Aussage (2) erfüllen</>}
+  description={<>Die Grundseite <InlineMath math="BC=10" /> hat den Mittelpunkt <InlineMath math="M" />. Der Punkt <InlineMath math="A_1" /> liefert die Seiten <InlineMath math="6" /> und <InlineMath math="8" />, die Höhe <InlineMath math="4{,}8" /> und die Fläche <InlineMath math="24" />. Der Punkt <InlineMath math="A_2" /> liefert zwei Seiten der Länge <InlineMath math="5\sqrt2" />, die Höhe <InlineMath math="5" /> und die Fläche <InlineMath math="25" />. Beide Seitenhalbierenden <InlineMath math="AM" /> sind <InlineMath math="5" /> lang.</>}
+  labels={{
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    m: <InlineMath math="M" />,
+    first: <InlineMath math="A_1" />,
+    second: <InlineMath math="A_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "circle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 5, startDegrees: 0, sweepDegrees: 180 },
+      { id: "triangle-first", kind: "polygon", appearance: "primary", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }, { x: -7 / 5, y: 24 / 5 }] },
+      { id: "triangle-second", kind: "polygon", appearance: "secondary", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }, { x: 0, y: 5 }] },
+      { id: "median-first", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: -7 / 5, y: 24 / 5 } },
+      { id: "median-second", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -5, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "b", objectId: "point-b", at: { x: -5, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "point-c", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "first", objectId: "triangle-first", at: { x: -7 / 5, y: 24 / 5 }, placement: "above-left" },
+      { key: "second", objectId: "triangle-second", at: { x: 0, y: 5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Warum die anderen Antworten verlocken
 
 Die Antworten, dass beide Aussagen zusammen nötig sind oder keine reicht, entstehen, wenn du meinst, Aussage (1) **brauche noch den Winkel zwischen <InlineMath math="AB" /> und <InlineMath math="AC" />**, obwohl die Seitenhalbierende die dritte Seite schon festlegt. Die Antwort, dass jede Aussage allein reicht, entsteht, wenn du meinst, der rechte Winkel aus Aussage (2) lege die Fläche schon fest.

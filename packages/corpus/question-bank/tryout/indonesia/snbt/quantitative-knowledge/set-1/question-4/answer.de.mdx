@@ -41,6 +41,40 @@ Ein Schnittpunkt erfüllt <InlineMath math="f(x)=f^{-1}(x)" /> mit <InlineMath m
 
 Die einzige Lösung ist <InlineMath math="x=1" />, und <InlineMath math="f(1)=\frac22=1" />. Die beiden Graphen **schneiden sich genau im Punkt <InlineMath math="(1,1)" />**, also ist die dritte Aussage wahr.
 
+Die Graphen beider Funktionen zeigen dasselbe Ergebnis. Der Graph von <InlineMath math="f^{-1}" /> ist das Spiegelbild des Graphen von <InlineMath math="f" /> an der Geraden <InlineMath math="y=x" />. Die doppelte Nullstelle von <InlineMath math="4(x-1)^2=0" /> sieht man daran, dass **beide Kurven die Gerade <InlineMath math="y=x" /> nur in einem Punkt berühren** und nicht auf die andere Seite wechseln.
+
+<MathVisual
+  title={<>Die Graphen von <InlineMath math="f" />, <InlineMath math="f^{-1}" /> und die Gerade <InlineMath math="y=x" /></>}
+  description={<>Der Graph von <InlineMath math="f(x)=\tfrac{3x-1}{x+1}" /> hat die Asymptoten <InlineMath math="x=-1" /> und <InlineMath math="y=3" />. Der Graph von <InlineMath math="f^{-1}(x)=\tfrac{x+1}{3-x}" /> hat die Asymptoten <InlineMath math="x=3" /> und <InlineMath math="y=-1" />. Beide Graphen liegen spiegelbildlich zu <InlineMath math="y=x" /> und treffen sich nur in <InlineMath math="(1,1)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    mirror: <InlineMath math="y=x" />,
+    meet: <InlineMath math="(1,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 9 }, y: { min: -7, max: 9 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "asymptote-f-vertical", kind: "line", appearance: "construction", through: [{ x: -1, y: 0 }, { x: -1, y: 1 }] },
+      { id: "asymptote-f-horizontal", kind: "line", appearance: "construction", through: [{ x: 0, y: 3 }, { x: 1, y: 3 }] },
+      { id: "asymptote-inverse-vertical", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "asymptote-inverse-horizontal", kind: "line", appearance: "construction", through: [{ x: 0, y: -1 }, { x: 1, y: -1 }] },
+      { id: "mirror", kind: "line", appearance: "reference", through: [{ x: 0, y: 0 }, { x: 2, y: 2 }] },
+      { id: "f", kind: "function", appearance: "primary", formula: "(3x - 1)/(x + 1)", domain: { min: -7, max: 9 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "(x + 1)/(3 - x)", domain: { min: -7, max: 9 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: -4, y: 13 / 3 }, placement: "above-left" },
+      { key: "inverse", objectId: "inverse", at: { x: 5, y: -3 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 7, y: 7 }, placement: "above-left" },
+      { key: "meet", objectId: "meet", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Die Ergebnisse prüfen
 
 Teste die Formel der Verkettung bei <InlineMath math="x=2" />. Direkt gerechnet ist <InlineMath math="f(2)=\frac53" /> und <InlineMath math="f\left(\frac53\right)=\frac{4}{\frac83}=\frac32" />. Die Formel <InlineMath math="\frac{2x-1}{x}" /> liefert ebenfalls <InlineMath math="\frac32" />, also **passt die Formel an einer erlaubten Stelle**. Teste auch die Umkehrfunktion: <InlineMath math="f^{-1}(2)=\frac{2+1}{3-2}=3" />, und tatsächlich ist <InlineMath math="f(3)=\frac{8}{4}=2" />.

@@ -31,6 +31,21 @@ Bagi <InlineMath math="500" /> dengan isi satu blok.
 
 Artinya, <InlineMath math="13" /> blok penuh, yaitu bilangan <InlineMath math="1" /> sampai <InlineMath math="13\times60=780" />, sudah memuat <InlineMath math="13\times38=494" /> bilangan terpilih. **Bilangan ke-<InlineMath math="500" /> adalah bilangan terpilih ke-<InlineMath math="6" /> di blok berikutnya**, yaitu blok <InlineMath math="781" /> sampai <InlineMath math="840" />. Karena polanya berulang, bilangan itu adalah <InlineMath math="780+9=789" />.
 
+Grafik berikut menunjukkan banyak bilangan terpilih yang sudah terkumpul di akhir setiap blok. Batang blok ke-<InlineMath math="13" /> masih di bawah garis <InlineMath math="500" />, dan batang blok ke-<InlineMath math="14" /> sudah melewatinya. Jadi, bilangan ke-<InlineMath math="500" /> pasti ada **di dalam blok ke-<InlineMath math="14" />**.
+
+<Chart
+  title={<>Bilangan terpilih yang terkumpul per blok</>}
+  description={<>Setiap blok berisi <InlineMath math="38" /> bilangan terpilih. Sampai akhir blok ke-<InlineMath math="11" />, ke-<InlineMath math="12" />, ke-<InlineMath math="13" />, dan ke-<InlineMath math="14" />, banyaknya berturut-turut <InlineMath math="418" />, <InlineMath math="456" />, <InlineMath math="494" />, dan <InlineMath math="532" />. Garis target ada di <InlineMath math="500" />, di antara blok ke-<InlineMath math="13" /> dan ke-<InlineMath math="14" />.</>}
+  bars="apart"
+  categories={["Blok 11", "Blok 12", "Blok 13", "Blok 14"]}
+  series={[
+    { label: "Terkumpul sampai akhir blok", mark: "bar", values: [11 * 38, 12 * 38, 13 * 38, 14 * 38] },
+    { label: "Urutan yang dicari", mark: "line", values: [500, 500, 500, 500] },
+  ]}
+  valueLabel="Banyak bilangan terpilih"
+  valueRange={{ min: 380, max: 560 }}
+/>
+
 # Memeriksa hasil
 
 Cek bilangan dari <InlineMath math="781" /> sampai <InlineMath math="789" /> secara langsung. Bilangan <InlineMath math="784" /> dan <InlineMath math="788" /> habis dibagi <InlineMath math="4" />, sedangkan <InlineMath math="786" /> habis dibagi <InlineMath math="6" />. Sisanya, yaitu <InlineMath math="781, 782, 783, 785, 787, 789" />, **tepat enam bilangan terpilih**, dan yang keenam adalah <InlineMath math="789" />.

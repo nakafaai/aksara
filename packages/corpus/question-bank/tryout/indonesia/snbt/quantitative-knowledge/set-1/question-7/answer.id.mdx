@@ -20,6 +20,53 @@ Segitiga <InlineMath math="AOB" /> dan <InlineMath math="BOC" /> sama-sama berpu
 
 Karena <InlineMath math="AB\parallel CD" />, segitiga <InlineMath math="EAB" /> sebangun dengan segitiga <InlineMath math="ECD" /> dengan perbandingan sisi <InlineMath math="3:5" />. Perbandingan luasnya **kuadrat dari perbandingan sisi**, yaitu <InlineMath math="9:25" />. Tulis <InlineMath math="[EAB]=9k" /> dan <InlineMath math="[ECD]=25k" />. Trapesium adalah segitiga besar dikurangi segitiga kecil.
 
+Gambar berikut memakai satu trapesium yang cocok, dengan <InlineMath math="AB=6" />, <InlineMath math="CD=10" />, dan tinggi <InlineMath math="8" />, supaya hubungan luasnya terlihat. Segitiga <InlineMath math="ECD" /> terdiri atas segitiga kecil <InlineMath math="EAB" /> ditambah trapesium, jadi **selisih luas kedua segitiga sebangun itu sama dengan luas trapesium**.
+
+<MathVisual
+  title={<>Trapesium <InlineMath math="ABCD" /> dan titik potong kaki <InlineMath math="E" /></>}
+  description={<>Kaki <InlineMath math="DA" /> dan <InlineMath math="CB" /> diperpanjang ke atas dan bertemu di <InlineMath math="E" />. Diagonal bertemu di <InlineMath math="O" />. Luas segitiga <InlineMath math="AOB" /> adalah <InlineMath math="9" />, luas segitiga <InlineMath math="COD" /> adalah <InlineMath math="25" />, dan luas segitiga <InlineMath math="EAB" /> di atas trapesium adalah <InlineMath math="36" />, semuanya dalam <InlineMath math="\text{cm}^2" />.</>}
+  labels={{
+    e: <InlineMath math="E" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+    small: <InlineMath math="9" />,
+    big: <InlineMath math="25" />,
+    top: <InlineMath math="36" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 21 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "triangle-eab", kind: "polygon", appearance: "answer", vertices: [{ x: 5, y: 20 }, { x: 2, y: 8 }, { x: 8, y: 8 }] },
+      { id: "triangle-aob", kind: "polygon", appearance: "highlight", vertices: [{ x: 2, y: 8 }, { x: 8, y: 8 }, { x: 5, y: 5 }] },
+      { id: "triangle-cod", kind: "polygon", appearance: "secondary", vertices: [{ x: 10, y: 0 }, { x: 0, y: 0 }, { x: 5, y: 5 }] },
+      { id: "leg-ad", kind: "segment", appearance: "primary", from: { x: 2, y: 8 }, to: { x: 0, y: 0 } },
+      { id: "leg-bc", kind: "segment", appearance: "primary", from: { x: 8, y: 8 }, to: { x: 10, y: 0 } },
+      { id: "point-e", kind: "point", appearance: "answer", at: { x: 5, y: 20 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 2, y: 8 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: 8 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+    ],
+    labels: [
+      { key: "e", objectId: "point-e", at: { x: 5, y: 20 }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 2, y: 8 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: 8 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: 10, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "o", objectId: "point-o", at: { x: 5, y: 5 }, placement: "below" },
+      { key: "small", objectId: "triangle-aob", at: { x: 5, y: 7 }, placement: "center" },
+      { key: "big", objectId: "triangle-cod", at: { x: 5, y: 5 / 3 }, placement: "center" },
+      { key: "top", objectId: "triangle-eab", at: { x: 5, y: 12 }, placement: "center" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 [ECD]-[EAB]&=[ABCD]\\
 25k-9k&=64\\

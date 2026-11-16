@@ -34,4 +34,19 @@ If <InlineMath math="b=c=8" />, then <InlineMath math="a\le7" />, <InlineMath ma
 
 If <InlineMath math="c=d=8" />, then <InlineMath math="a<b\le7" /> and <InlineMath math="e=34-a-b\ge34-6-7=21" />, so <InlineMath math="e-a\ge21-6=15" />. In both cases **the range is at least <InlineMath math="7" />**, and the data <InlineMath math="7, 8, 8, 13, 14" /> reach exactly <InlineMath math="7" />. Statement four is true.
 
+The chart below puts the three example data sets side by side, sorted from smallest to largest. The range of each example is **the gap from the first bar to the fifth bar**: <InlineMath math="30" />, <InlineMath math="5" />, and <InlineMath math="7" />.
+
+<Chart
+  title={<>Three data sets with mean <InlineMath math="10" />, median <InlineMath math="8" />, and mode <InlineMath math="8" /></>}
+  description={<>The example for statement one is <InlineMath math="1, 2, 8, 8, 31" />, with range <InlineMath math="30" />. The example for statements two and three is <InlineMath math="8, 8, 8, 13, 13" />, with range <InlineMath math="5" /> and largest value <InlineMath math="13" />. The example for statement four is <InlineMath math="7, 8, 8, 13, 14" />, with range <InlineMath math="7" />. All three add up to <InlineMath math="50" /> and have <InlineMath math="8" /> as their third value.</>}
+  bars="apart"
+  categories={["Value 1", "Value 2", "Value 3", "Value 4", "Value 5"]}
+  series={[
+    { label: "Range 30", mark: "bar", values: [1, 2, 8, 8, 31] },
+    { label: "Range 5", mark: "bar", values: [8, 8, 8, 13, 13] },
+    { label: "Range 7", mark: "bar", values: [7, 8, 8, 13, 14] },
+  ]}
+  valueLabel="Value"
+/>
+
 So statement one is true, statement two is false, statement three is true, and statement four is true.
