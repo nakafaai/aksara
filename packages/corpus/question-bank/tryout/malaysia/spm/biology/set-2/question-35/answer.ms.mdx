@@ -1,0 +1,26 @@
+# Penggandaan ialah kuasa dua
+
+Selepas <InlineMath math="n" /> kitaran, <InlineMath math="10" /> salinan asal telah berganda dua sebanyak <InlineMath math="n" /> kali, jadi terdapat <InlineMath math="10\times2^{n}" /> salinan. Bilangan itu mesti **lebih daripada** sejuta:
+
+<BlockMath math="10\times2^{n}>1\,000\,000\quad\Rightarrow\quad2^{n}>100\,000." />
+
+Oleh sebab <InlineMath math="2^{16}=65\,536" /> terlalu kecil dan <InlineMath math="2^{17}=131\,072" /> sudah mencukupi, bilangan kitaran paling sedikit ialah <InlineMath math="17" />. Carta menunjukkan bilangan salinan melepasi sasaran antara kitaran <InlineMath math="16" /> dengan <InlineMath math="17" />.
+
+<Chart
+  title={<>Salinan Selepas Setiap Kitaran PCR</>}
+  categories={["Kitaran 14", "Kitaran 15", "Kitaran 16", "Kitaran 17", "Kitaran 18"]}
+  series={[
+    { label: "Salinan", mark: "line", values: [163840, 327680, 655360, 1310720, 2621440] },
+    { label: "1,000,000 salinan", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000] },
+  ]}
+  valueLabel="Bilangan salinan"
+  description={<>Selepas <InlineMath math="14" /> kitaran terdapat <InlineMath math="163\,840" /> salinan, selepas <InlineMath math="15" /> terdapat <InlineMath math="327\,680" />, selepas <InlineMath math="16" /> terdapat <InlineMath math="655\,360" />, selepas <InlineMath math="17" /> terdapat <InlineMath math="1\,310\,720" /> dan selepas <InlineMath math="18" /> terdapat <InlineMath math="2\,621\,440" />. Garis sasaran kekal pada <InlineMath math="1\,000\,000" />, jadi bilangan salinan mula melepasinya pada kitaran <InlineMath math="17" />.</>}
+/>
+
+Jadi, bilangan kitaran paling sedikit ialah <InlineMath math="17" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="16" /> kitaran memberi <InlineMath math="655\,360" /> salinan, yang **masih di bawah** sejuta.
+- <InlineMath math="20" /> menggunakan <InlineMath math="2^{20}\approx1\,000\,000" /> dan terlupa bahawa tindak balas sudah bermula dengan <InlineMath math="10" /> salinan.
+- <InlineMath math="100\,000" /> menganggap setiap kitaran menambah <InlineMath math="10" /> salinan, sedangkan setiap kitaran menggandakan bilangannya.

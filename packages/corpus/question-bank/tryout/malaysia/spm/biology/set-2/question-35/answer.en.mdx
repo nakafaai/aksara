@@ -1,0 +1,26 @@
+# Doubling is a power of two
+
+After <InlineMath math="n" /> cycles the <InlineMath math="10" /> starting copies have doubled <InlineMath math="n" /> times, so there are <InlineMath math="10\times2^{n}" /> copies. The count must be **more than** a million:
+
+<BlockMath math="10\times2^{n}>1\,000\,000\quad\Rightarrow\quad2^{n}>100\,000." />
+
+Since <InlineMath math="2^{16}=65\,536" /> is too small and <InlineMath math="2^{17}=131\,072" /> is enough, the smallest number of cycles is <InlineMath math="17" />. The chart shows the count crossing the target between cycles <InlineMath math="16" /> and <InlineMath math="17" />.
+
+<Chart
+  title={<>Copies After Each PCR Cycle</>}
+  categories={["Cycle 14", "Cycle 15", "Cycle 16", "Cycle 17", "Cycle 18"]}
+  series={[
+    { label: "Copies", mark: "line", values: [163840, 327680, 655360, 1310720, 2621440] },
+    { label: "1,000,000 copies", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000] },
+  ]}
+  valueLabel="Number of copies"
+  description={<>After <InlineMath math="14" /> cycles there are <InlineMath math="163\,840" /> copies, after <InlineMath math="15" /> there are <InlineMath math="327\,680" />, after <InlineMath math="16" /> there are <InlineMath math="655\,360" />, after <InlineMath math="17" /> there are <InlineMath math="1\,310\,720" /> and after <InlineMath math="18" /> there are <InlineMath math="2\,621\,440" />. The target line stays at <InlineMath math="1\,000\,000" />, so the count first passes it at cycle <InlineMath math="17" />.</>}
+/>
+
+So the smallest number of cycles is <InlineMath math="17" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="16" /> cycles give <InlineMath math="655\,360" /> copies, which is **still below** a million.
+- <InlineMath math="20" /> uses <InlineMath math="2^{20}\approx1\,000\,000" /> and forgets that the reaction already starts with <InlineMath math="10" /> copies.
+- <InlineMath math="100\,000" /> treats each cycle as adding <InlineMath math="10" /> copies, but each cycle doubles the number.

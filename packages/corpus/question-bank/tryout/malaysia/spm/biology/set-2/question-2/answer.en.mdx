@@ -1,0 +1,27 @@
+# Calibrate the eyepiece scale, then rescale it for the new lens
+
+One stage micrometer division is <InlineMath math="\frac{1\text{ mm}}{100}=0.01\text{ mm}=10\,\mu\text{m}" />. With the <InlineMath math="\times10" /> objective, <InlineMath math="40" /> eyepiece divisions cover <InlineMath math="10" /> stage divisions, so
+
+<Mermaid
+  title={<>From the Stage Micrometer to the Drawing</>}
+  description={<>Forty eyepiece divisions equal <InlineMath math="100" /> micrometres at <InlineMath math="\times10" />, so one division is <InlineMath math="2.5" /> micrometres, and <InlineMath math="0.625" /> micrometres at <InlineMath math="\times40" />. The cell is <InlineMath math="20" /> micrometres, and the <InlineMath math="60\text{ mm}" /> drawing is <InlineMath math="\times3000" />.</>}
+  chart={"flowchart LR\n  A[40 divisions = 100 µm at ×10] --> B[1 division = 2.5 µm]\n  B -->|×40 objective: ÷4| C[1 division = 0.625 µm]\n  C -->|32 divisions| D[cell = 20 µm]\n  D -->|60 mm drawing| E[magnification ×3000]"}
+/>
+
+<BlockMath math="40\text{ eyepiece divisions}=10\times10\,\mu\text{m}=100\,\mu\text{m},\qquad 1\text{ eyepiece division}=2.5\,\mu\text{m}." />
+
+The eyepiece scale sits inside the eyepiece, so it does not grow when the objective changes, but the specimen does. A <InlineMath math="\times40" /> objective magnifies **four times more**, so one eyepiece division now covers **four times less** of the specimen:
+
+<BlockMath math="1\text{ eyepiece division}=\frac{2.5\,\mu\text{m}}{4}=0.625\,\mu\text{m},\qquad \text{cell length}=32\times0.625\,\mu\text{m}=20\,\mu\text{m}." />
+
+The drawing magnification compares the drawing with the real cell in the same unit, and <InlineMath math="60\text{ mm}=60\,000\,\mu\text{m}" />:
+
+<BlockMath math="\text{magnification}=\frac{60\,000\,\mu\text{m}}{20\,\mu\text{m}}=3000." />
+
+So the drawing is magnified <InlineMath math="\times3000" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\times750" /> keeps the <InlineMath math="\times10" /> calibration of <InlineMath math="2.5\,\mu\text{m}" /> per division, which gives a cell of <InlineMath math="80\,\mu\text{m}" />.
+- <InlineMath math="\times400" /> is the magnification of the microscope, **not of the drawing**.
+- <InlineMath math="\times187.5" /> multiplies by <InlineMath math="4" /> instead of dividing, giving <InlineMath math="10\,\mu\text{m}" /> per division and a cell of <InlineMath math="320\,\mu\text{m}" />.

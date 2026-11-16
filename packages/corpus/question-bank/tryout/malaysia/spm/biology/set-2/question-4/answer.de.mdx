@@ -1,0 +1,21 @@
+# Peptidbindungen Kette für Kette zählen
+
+Jede Peptidbindung entsteht durch **Kondensation**, bei der ein Wassermolekül frei wird. Eine Kette aus <InlineMath math="n" /> Aminosäuren hat <InlineMath math="n-1" /> Peptidbindungen, weil die Bindungen **zwischen** benachbarten Aminosäuren liegen.
+
+<Mermaid
+  title={<>Peptidbindungen in den beiden Ketten</>}
+  description={<>Kette A mit <InlineMath math="21" /> Aminosäuren hat <InlineMath math="20" /> Peptidbindungen, Kette B mit <InlineMath math="30" /> hat <InlineMath math="29" />, also werden <InlineMath math="49" /> Wassermoleküle frei. Die Disulfidbrücken tragen nichts bei.</>}
+  chart={"flowchart LR\n  A[Kette A: 21 Aminosäuren] --> A1[20 Bindungen, 20 Wasser]\n  B[Kette B: 30 Aminosäuren] --> B1[29 Bindungen, 29 Wasser]\n  A1 --> T[49 Wassermoleküle]\n  B1 --> T\n  D[3 Disulfidbrücken] -.->|kein Wasser| T"}
+/>
+
+Die beiden Ketten sind getrennt, also zählt jede für sich:
+
+<BlockMath math="\text{Kette A}: 21-1=20,\qquad \text{Kette B}: 30-1=29,\qquad 20+29=49." />
+
+Die Disulfidbrücken verbinden die fertigen Ketten und setzen kein Wasser frei, sie ändern also nichts. Es werden <InlineMath math="49" /> Wassermoleküle frei.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="50" /> behandelt die <InlineMath math="51" /> Aminosäuren als **eine** Kette und zieht nur einmal <InlineMath math="1" /> ab.
+- <InlineMath math="51" /> rechnet ein Wassermolekül pro Aminosäure statt pro Peptidbindung.
+- <InlineMath math="52" /> zählt die drei Disulfidbrücken zu <InlineMath math="49" /> hinzu, obwohl sie kein Wasser freisetzen.

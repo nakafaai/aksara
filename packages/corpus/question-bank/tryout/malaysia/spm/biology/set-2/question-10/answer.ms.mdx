@@ -1,0 +1,22 @@
+# Namakan setiap kumpulan darah, kemudian semak dengan antibodi pesakit
+
+Sel darah merah bergumpal dengan serum anti-A apabila sel itu membawa antigen A, dan dengan serum anti-B apabila membawa antigen B. Jadi, jadual itu memberi kumpulan darah berikut:
+
+<Mermaid
+  title={<>Menyemak Setiap Penderma dengan Anti-A Pesakit</>}
+  description={<>Plasma pesakit mengandungi anti-A. W dan X membawa antigen A dan ditolak. Y dan Z tidak membawa antigen A dan selamat.</>}
+  chart={"flowchart LR\n  P[Pesakit kumpulan B: anti-A dalam plasma] --> W[W, kumpulan A: antigen A, tidak selamat]\n  P --> X[X, kumpulan AB: antigen A, tidak selamat]\n  P --> Y[Y, kumpulan O: tiada antigen, selamat]\n  P --> Z[Z, kumpulan B: antigen B sahaja, selamat]"}
+/>
+
+- W membawa antigen A sahaja: kumpulan A.
+- X membawa antigen A dan B: kumpulan AB.
+- Y tidak membawa sebarang antigen: kumpulan O.
+- Z membawa antigen B sahaja: kumpulan B.
+
+Pesakit berdarah kumpulan B, jadi plasmanya mengandungi antibodi **anti-A**. Sel darah merah penderma selamat hanya jika sel itu **tidak membawa antigen A**, jika tidak, anti-A pesakit akan menggumpalkannya. W dan X membawa antigen A, jadi tidak selamat. Y dan Z tidak membawa antigen A, jadi selamat. Jadi, pesakit itu boleh menerima darah daripada Y dan Z sahaja.
+
+# Kenapa pilihan lain salah
+
+- Y sahaja menerima penderma universal tetapi menolak Z, sedangkan sel kumpulan B tidak membawa antigen A.
+- X dan Z menerima X, kerana tersilap menganggap kumpulan AB sebagai penderma universal. Kumpulan AB ialah **penerima** universal.
+- W, Y dan Z menerima W, yang antigen A-nya akan digumpalkan oleh anti-A pesakit.

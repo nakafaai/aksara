@@ -1,0 +1,21 @@
+# Count the peptide bonds chain by chain
+
+Each peptide bond forms by **condensation**, which releases one water molecule. A chain of <InlineMath math="n" /> amino acids has <InlineMath math="n-1" /> peptide bonds, because the bonds sit **between** neighbouring amino acids.
+
+<Mermaid
+  title={<>Peptide Bonds in the Two Chains</>}
+  description={<>Chain A with <InlineMath math="21" /> amino acids has <InlineMath math="20" /> peptide bonds and chain B with <InlineMath math="30" /> has <InlineMath math="29" />, so <InlineMath math="49" /> water molecules are released. The disulfide bridges add none.</>}
+  chart={"flowchart LR\n  A[Chain A: 21 amino acids] --> A1[20 bonds, 20 water]\n  B[Chain B: 30 amino acids] --> B1[29 bonds, 29 water]\n  A1 --> T[49 water molecules]\n  B1 --> T\n  D[3 disulfide bridges] -.->|no water| T"}
+/>
+
+The two chains are separate, so each one is counted on its own:
+
+<BlockMath math="\text{chain A}: 21-1=20,\qquad \text{chain B}: 30-1=29,\qquad 20+29=49." />
+
+The disulfide bridges join the finished chains and release no water, so they add nothing. So <InlineMath math="49" /> water molecules are released.
+
+# Why the other options are wrong
+
+- <InlineMath math="50" /> treats the <InlineMath math="51" /> amino acids as **one** chain and subtracts <InlineMath math="1" /> only once.
+- <InlineMath math="51" /> releases one water molecule per amino acid instead of one per peptide bond.
+- <InlineMath math="52" /> adds the three disulfide bridges to <InlineMath math="49" />, although they release no water.

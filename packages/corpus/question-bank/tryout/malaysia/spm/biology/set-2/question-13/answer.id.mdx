@@ -1,0 +1,31 @@
+# Bandingkan glukosa yang tersaring dengan batas reabsorpsi
+
+Glukosa yang tersaring setiap menit adalah volume filtrat dikali konsentrasinya. Glukosa muncul di urine begitu jumlah ini **melebihi** <InlineMath math="375\text{ mg}" /> yang bisa diserap kembali oleh tubulus.
+
+<Chart
+  title={<>Glukosa yang Ditangani Ginjal Setiap Menit</>}
+  categories={["2.0 mg/cm³", "3.0 mg/cm³", "4.2 mg/cm³", "5.0 mg/cm³"]}
+  series={[
+    { label: "Tersaring", mark: "line", values: [250, 375, 525, 625] },
+    { label: "Diserap kembali", mark: "line", values: [250, 375, 375, 375] },
+    { label: "Masuk ke urine", mark: "line", values: [0, 0, 150, 250] },
+  ]}
+  valueLabel="Glukosa (mg per menit)"
+  description={<>Pada <InlineMath math="2{,}0" /> dan <InlineMath math="3{,}0\text{ mg}" /> per sentimeter kubik semua glukosa yang tersaring diserap kembali. Pada <InlineMath math="4{,}2" /> tubulus menyerap kembali maksimum <InlineMath math="375\text{ mg}" /> dan <InlineMath math="150\text{ mg}" /> masuk ke urine, dan pada <InlineMath math="5{,}0" /> menjadi <InlineMath math="250\text{ mg}" />.</>}
+/>
+
+Ambangnya adalah konsentrasi saat glukosa tersaring tepat sama dengan batas itu:
+
+<BlockMath math="125\times c=375\quad\Rightarrow\quad c=\frac{375}{125}=3.0\text{ mg cm}^{-3}." />
+
+Pada <InlineMath math="4.2\text{ mg cm}^{-3}" />, glukosa tersaring melebihi batas, jadi tubulus menyerap kembali penuh <InlineMath math="375\text{ mg}" /> dan sisanya masuk ke urine:
+
+<BlockMath math="125\times4.2=525\text{ mg},\qquad 525-375=150\text{ mg per menit}." />
+
+Jadi, glukosa mulai muncul di urine di atas <InlineMath math="3.0\text{ mg cm}^{-3}" />, dan pada <InlineMath math="4.2\text{ mg cm}^{-3}" /> urine menerima <InlineMath math="150\text{ mg}" /> glukosa per menit.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="525\text{ mg}" /> adalah glukosa yang **tersaring**, dan lupa bahwa <InlineMath math="375\text{ mg}" /> di antaranya tetap diserap kembali.
+- <InlineMath math="4.2\text{ mg cm}^{-3}" /> dan <InlineMath math="0\text{ mg}" /> menganggap tubulus selalu menyerap kembali semua glukosa, padahal itu gagal begitu jumlahnya melewati batas.
+- <InlineMath math="1.2\text{ mg}" /> mengurangkan konsentrasi, <InlineMath math="4.2-3.0" />, tetapi tidak mengalikannya dengan <InlineMath math="125\text{ cm}^3" /> yang tersaring setiap menit.

@@ -1,0 +1,33 @@
+# An jedem Ende den Druck nach außen mit dem Sog nach innen vergleichen
+
+Der Nettodruck ist Blutdruck minus osmotischer Druck. Ein positiver Wert drückt Flüssigkeit **hinaus**, ein negativer zieht sie **hinein**.
+
+<Chart
+  title={<>Nettodruck entlang der Kapillare</>}
+  bars="apart"
+  categories={["Arterielles Ende", "Venöses Ende"]}
+  series={[
+    { label: "Normales Plasmaprotein", mark: "bar", values: [1.0, -1.7] },
+    { label: "Wenig Plasmaprotein", mark: "bar", values: [2.3, -0.4] },
+  ]}
+  valueLabel="Nettodruck (kPa), positiv = hinaus"
+  description={<>Normalerweise tritt Flüssigkeit mit <InlineMath math="1{,}0\text{ kPa}" /> aus und kehrt mit <InlineMath math="1{,}7\text{ kPa}" /> zurück. Mit wenig Plasmaprotein tritt sie mit <InlineMath math="2{,}3\text{ kPa}" /> aus und kehrt nur mit <InlineMath math="0{,}4\text{ kPa}" /> zurück, Gewebeflüssigkeit staut sich also.</>}
+/>
+
+<BlockMath math="\begin{aligned}
+\text{arterielles Ende}&:\ 4.3-3.3=+1.0\text{ kPa}\quad(\text{hinaus})\\
+\text{venöses Ende}&:\ 1.6-3.3=-1.7\text{ kPa}\quad(\text{hinein})
+\end{aligned}" />
+
+- Aussage I hat den richtigen Betrag, aber die falsche Richtung: Am venösen Ende wird Flüssigkeit **zurückgezogen**. Sie ist falsch.
+- Aussage II passt zum arteriellen Ende und stimmt.
+- Bei einem osmotischen Druck von <InlineMath math="2.0\text{ kPa}" /> drückt das arterielle Ende <InlineMath math="4.3-2.0=2.3\text{ kPa}" /> hinaus, das venöse Ende zieht nur <InlineMath math="2.0-1.6=0.4\text{ kPa}" /> zurück. Mehr Flüssigkeit tritt aus, weniger kehrt zurück, und Gewebeflüssigkeit staut sich als Schwellung (Ödem), wie bei Kwashiorkor. Aussage III stimmt.
+- Gewebeflüssigkeit, die nicht zurückkehrt, gelangt in die **Lymphkapillaren** und fließt als Lymphe zurück, nicht über die Venen. Aussage IV ist falsch.
+
+Richtig sind also nur II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- I und II nimmt I auf und liest die <InlineMath math="1.7\text{ kPa}" /> am venösen Ende als nach außen gerichtet, **obwohl sie nach innen wirken**.
+- I, III und IV nimmt I und IV auf und verwirft den richtigen arteriellen Druck in II.
+- III und IV nimmt IV auf, doch die übrige Gewebeflüssigkeit kehrt über das Lymphsystem zurück.

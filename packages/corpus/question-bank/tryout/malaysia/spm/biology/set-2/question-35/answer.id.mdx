@@ -1,0 +1,26 @@
+# Penggandaan adalah pangkat dua
+
+Setelah <InlineMath math="n" /> siklus, <InlineMath math="10" /> salinan awal sudah berlipat dua sebanyak <InlineMath math="n" /> kali, jadi ada <InlineMath math="10\times2^{n}" /> salinan. Jumlahnya harus **lebih dari** sejuta:
+
+<BlockMath math="10\times2^{n}>1\,000\,000\quad\Rightarrow\quad2^{n}>100\,000." />
+
+Karena <InlineMath math="2^{16}=65\,536" /> terlalu kecil dan <InlineMath math="2^{17}=131\,072" /> sudah cukup, jumlah siklus paling sedikit adalah <InlineMath math="17" />. Diagramnya menunjukkan jumlah salinan melewati target di antara siklus <InlineMath math="16" /> dan <InlineMath math="17" />.
+
+<Chart
+  title={<>Salinan Setelah Setiap Siklus PCR</>}
+  categories={["Siklus 14", "Siklus 15", "Siklus 16", "Siklus 17", "Siklus 18"]}
+  series={[
+    { label: "Salinan", mark: "line", values: [163840, 327680, 655360, 1310720, 2621440] },
+    { label: "1.000.000 salinan", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000] },
+  ]}
+  valueLabel="Jumlah salinan"
+  description={<>Setelah <InlineMath math="14" /> siklus ada <InlineMath math="163\,840" /> salinan, setelah <InlineMath math="15" /> ada <InlineMath math="327\,680" />, setelah <InlineMath math="16" /> ada <InlineMath math="655\,360" />, setelah <InlineMath math="17" /> ada <InlineMath math="1\,310\,720" />, dan setelah <InlineMath math="18" /> ada <InlineMath math="2\,621\,440" />. Garis target tetap di <InlineMath math="1\,000\,000" />, jadi jumlah salinan pertama kali melewatinya pada siklus <InlineMath math="17" />.</>}
+/>
+
+Jadi, jumlah siklus paling sedikit adalah <InlineMath math="17" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="16" /> siklus memberi <InlineMath math="655\,360" /> salinan, yang **masih di bawah** sejuta.
+- <InlineMath math="20" /> memakai <InlineMath math="2^{20}\approx1\,000\,000" /> dan lupa bahwa reaksinya sudah dimulai dengan <InlineMath math="10" /> salinan.
+- <InlineMath math="100\,000" /> menganggap setiap siklus menambah <InlineMath math="10" /> salinan, padahal setiap siklus melipatgandakan jumlahnya.

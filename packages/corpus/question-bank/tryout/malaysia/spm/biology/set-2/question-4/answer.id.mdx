@@ -1,0 +1,21 @@
+# Hitung ikatan peptida per rantai
+
+Setiap ikatan peptida terbentuk lewat **kondensasi**, yang melepaskan satu molekul air. Rantai dengan <InlineMath math="n" /> asam amino punya <InlineMath math="n-1" /> ikatan peptida, karena ikatan itu berada **di antara** asam amino yang bersebelahan.
+
+<Mermaid
+  title={<>Ikatan Peptida di Dua Rantai</>}
+  description={<>Rantai A dengan <InlineMath math="21" /> asam amino punya <InlineMath math="20" /> ikatan peptida dan rantai B dengan <InlineMath math="30" /> punya <InlineMath math="29" />, jadi <InlineMath math="49" /> molekul air dilepaskan. Jembatan disulfida tidak menambah apa pun.</>}
+  chart={"flowchart LR\n  A[Rantai A: 21 asam amino] --> A1[20 ikatan, 20 air]\n  B[Rantai B: 30 asam amino] --> B1[29 ikatan, 29 air]\n  A1 --> T[49 molekul air]\n  B1 --> T\n  D[3 jembatan disulfida] -.->|tanpa air| T"}
+/>
+
+Kedua rantai terpisah, jadi masing-masing dihitung sendiri:
+
+<BlockMath math="\text{rantai A}: 21-1=20,\qquad \text{rantai B}: 30-1=29,\qquad 20+29=49." />
+
+Jembatan disulfida menyambung rantai yang sudah jadi dan tidak melepaskan air, jadi tidak menambah apa pun. Jadi, <InlineMath math="49" /> molekul air dilepaskan.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="50" /> menganggap <InlineMath math="51" /> asam amino itu sebagai **satu** rantai dan hanya mengurangi <InlineMath math="1" /> sekali.
+- <InlineMath math="51" /> melepaskan satu molekul air untuk setiap asam amino, bukan untuk setiap ikatan peptida.
+- <InlineMath math="52" /> menambahkan tiga jembatan disulfida ke <InlineMath math="49" />, padahal jembatan itu tidak melepaskan air.

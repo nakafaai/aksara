@@ -1,0 +1,26 @@
+# Verdoppeln ist eine Zweierpotenz
+
+Nach <InlineMath math="n" /> Zyklen haben sich die <InlineMath math="10" /> Ausgangskopien <InlineMath math="n" />-mal verdoppelt, es gibt also <InlineMath math="10\times2^{n}" /> Kopien. Die Zahl muss **größer als** eine Million sein:
+
+<BlockMath math="10\times2^{n}>1\,000\,000\quad\Rightarrow\quad2^{n}>100\,000." />
+
+Weil <InlineMath math="2^{16}=65\,536" /> zu klein ist und <InlineMath math="2^{17}=131\,072" /> reicht, sind mindestens <InlineMath math="17" /> Zyklen nötig. Das Diagramm zeigt, wie die Zahl zwischen Zyklus <InlineMath math="16" /> und <InlineMath math="17" /> die Ziellinie überschreitet.
+
+<Chart
+  title={<>Kopien nach jedem PCR-Zyklus</>}
+  categories={["Zyklus 14", "Zyklus 15", "Zyklus 16", "Zyklus 17", "Zyklus 18"]}
+  series={[
+    { label: "Kopien", mark: "line", values: [163840, 327680, 655360, 1310720, 2621440] },
+    { label: "1.000.000 Kopien", mark: "line", values: [1000000, 1000000, 1000000, 1000000, 1000000] },
+  ]}
+  valueLabel="Zahl der Kopien"
+  description={<>Nach <InlineMath math="14" /> Zyklen gibt es <InlineMath math="163\,840" /> Kopien, nach <InlineMath math="15" /> sind es <InlineMath math="327\,680" />, nach <InlineMath math="16" /> sind es <InlineMath math="655\,360" />, nach <InlineMath math="17" /> sind es <InlineMath math="1\,310\,720" /> und nach <InlineMath math="18" /> sind es <InlineMath math="2\,621\,440" />. Die Ziellinie bleibt bei <InlineMath math="1\,000\,000" />, die Zahl überschreitet sie also erstmals in Zyklus <InlineMath math="17" />.</>}
+/>
+
+Mindestens nötig sind also <InlineMath math="17" /> Zyklen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="16" /> Zyklen ergeben <InlineMath math="655\,360" /> Kopien, das ist **noch unter** einer Million.
+- <InlineMath math="20" /> rechnet mit <InlineMath math="2^{20}\approx1\,000\,000" /> und vergisst, dass die Reaktion schon mit <InlineMath math="10" /> Kopien beginnt.
+- <InlineMath math="100\,000" /> lässt jeden Zyklus <InlineMath math="10" /> Kopien hinzufügen, doch jeder Zyklus verdoppelt die Zahl.

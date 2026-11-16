@@ -1,0 +1,25 @@
+# Keep every variable fixed except temperature
+
+To test the hypothesis, temperature is the **only** variable that may change. Mass of yeast, glucose concentration and counting time must stay the same, because the responding variable is a total count, and a total count depends on all three.
+
+<Mermaid
+  title={<>Which Set-ups Keep Everything but Temperature Fixed</>}
+  description={<>Q and U change only the temperature and stay. R changes the yeast, S the glucose and T the counting time, so they leave.</>}
+  chart={"flowchart LR\n  P[P: 25 °C] --> Q[Q: 35 °C, same rest: keep]\n  P --> U[U: 45 °C, same rest: keep]\n  P --> R[R: 4 g yeast: drop]\n  P --> S[S: 10% glucose: drop]\n  P --> T[T: 5 minutes: drop]"}
+/>
+
+Check each set-up against P, which uses <InlineMath math="2\text{ g}" /> of yeast, <InlineMath math="5\%" /> glucose and <InlineMath math="10" /> minutes.
+
+- Q changes only the temperature, so it stays in the group.
+- R uses <InlineMath math="4\text{ g}" /> of yeast, so more yeast cells, not the temperature, could raise its count.
+- S uses <InlineMath math="10\%" /> glucose, so more substrate could raise its count.
+- T counts for only <InlineMath math="5" /> minutes, so its total is not comparable with a <InlineMath math="10" />-minute total.
+- U changes only the temperature, so it stays in the group.
+
+So the largest valid group is P, Q and U, which covers three temperatures with everything else fixed.
+
+# Why the other options are wrong
+
+- P and Q only stops too early and misses U, which is just as valid at <InlineMath math="45^\circ\text{C}" />.
+- P, Q, S and U accepts S, but **S also doubles the glucose concentration**.
+- P, Q, T and U accepts T, but a total counted over <InlineMath math="5" /> minutes cannot be compared with totals counted over <InlineMath math="10" /> minutes.

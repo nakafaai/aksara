@@ -1,0 +1,17 @@
+# Take away the mother's bands, then match what is left
+
+Every band of the child came from the mother or from the father. So remove the bands the mother can explain, and the father must carry **all** the rest.
+
+<Mermaid
+  title={<>Sorting the Child's Bands</>}
+  description={<>The child's bands <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="7" /> come from the mother. Bands <InlineMath math="3" /> and <InlineMath math="6" /> must come from the father. P has band <InlineMath math="3" /> only, R has band <InlineMath math="6" /> only, and Q has both.</>}
+  chart={"flowchart TD\n  C[Child: 1, 3, 4, 6, 7] --> M[From the mother: 1, 4, 7]\n  C --> F[Must come from the father: 3, 6]\n  F --> P[P: has 3, lacks 6]\n  F --> Q[Q: has 3 and 6]\n  F --> R[R: has 6, lacks 3]"}
+/>
+
+The child has bands <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="6" /> and <InlineMath math="7" />. The mother has <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="7" />, so bands <InlineMath math="3" /> and <InlineMath math="6" /> must come from the father. P has band <InlineMath math="3" /> but not <InlineMath math="6" />, R has <InlineMath math="6" /> but not <InlineMath math="3" />, and only Q has both. So man Q could be the biological father.
+
+# Why the other options are wrong
+
+- Man P shares band <InlineMath math="3" />, but **he lacks band** <InlineMath math="6" />, which the mother cannot explain either.
+- Man R shares band <InlineMath math="6" /> and band <InlineMath math="7" />, but band <InlineMath math="7" /> is already the mother's, and he lacks band <InlineMath math="3" />.
+- The last option forgets that a father must explain every band the mother cannot, and only Q does.

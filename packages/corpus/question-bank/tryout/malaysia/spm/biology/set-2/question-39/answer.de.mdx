@@ -1,0 +1,28 @@
+# Nettoverlust, dann das Wasser, das die Pflanze entbehren kann
+
+Die Pflanze verliert Wasser über die Blätter und nimmt gleichzeitig Wasser über die Wurzeln auf, entscheidend ist also der **Nettoverlust**:
+
+<BlockMath math="35-20=15\text{ g pro Stunde}." />
+
+Sie welkt bei <InlineMath math="90\%" /> von <InlineMath math="300\text{ g}" />, also bei <InlineMath math="270\text{ g}" />, und kann <InlineMath math="300-270=30\text{ g}" /> entbehren:
+
+<BlockMath math="\text{Zeit}=\frac{30\text{ g}}{15\text{ g pro Stunde}}=2\text{ Stunden}." />
+
+<Chart
+  title={<>Wasser in der Pflanze Stunde für Stunde</>}
+  categories={["Stunde 0", "Stunde 1", "Stunde 2", "Stunde 3"]}
+  series={[
+    { label: "Wasser in der Pflanze", mark: "line", values: [300, 285, 270, 255] },
+    { label: "Welkgrenze", mark: "line", values: [270, 270, 270, 270] },
+  ]}
+  valueLabel="Wasser (g)"
+  description={<>Das Wasser sinkt in den Stunden <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> von <InlineMath math="300" /> auf <InlineMath math="285" />, <InlineMath math="270" /> und <InlineMath math="255\text{ g}" />. Die Welkgrenze von <InlineMath math="270\text{ g}" /> wird in Stunde <InlineMath math="2" /> erreicht.</>}
+/>
+
+Die Pflanze beginnt also nach <InlineMath math="2" /> Stunden zu welken, um <InlineMath math="15" /> Uhr.
+
+# Warum die anderen Antworten falsch sind
+
+- Etwa <InlineMath math="0.9" /> Stunden rechnet nur mit der Transpiration, <InlineMath math="\frac{30}{35}" />, und **vergisst das Wasser, das die Wurzeln aufnehmen**.
+- <InlineMath math="1.5" /> Stunden teilt durch die Aufnahmerate, <InlineMath math="\frac{30}{20}" />, die keine Verlustrate ist.
+- „Nie“ übersieht, dass die Pflanze jede Stunde mehr verliert, als sie aufnimmt, ihr Wasser also weiter sinkt.

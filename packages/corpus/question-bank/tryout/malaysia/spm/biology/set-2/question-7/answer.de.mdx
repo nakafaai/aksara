@@ -1,0 +1,27 @@
+# Lesen, was jedes Respirometer misst
+
+Die Kapillaren haben denselben Innendurchmesser, also steht jede Strecke für ein Volumen, und beide lassen sich direkt vergleichen.
+
+<Chart
+  title={<>Gasaustausch der Samen in <InlineMath math="20" /> Minuten</>}
+  bars="apart"
+  categories={["Aufgenommener Sauerstoff", "Abgegebenes Kohlenstoffdioxid"]}
+  series={[
+    { label: "Volumen (mm Kapillare)", mark: "bar", values: [30, 21] },
+  ]}
+  valueLabel="Volumen (mm Kapillare)"
+  description={<>Die Samen nehmen Sauerstoff im Wert von <InlineMath math="30\text{ mm}" /> Kapillare auf und geben Kohlenstoffdioxid im Wert von <InlineMath math="21\text{ mm}" /> ab, der RQ ist also <InlineMath math="21" /> durch <InlineMath math="30" />.</>}
+/>
+
+- In X bindet Kaliumhydroxid das gesamte Kohlenstoffdioxid, die Flüssigkeit bewegt sich also nur, weil Sauerstoff aufgenommen wird. **Aufgenommener Sauerstoff** <InlineMath math="=30" /> Einheiten.
+- In Y bleibt das Kohlenstoffdioxid in der Luft. Die Flüssigkeit bewegt sich um den aufgenommenen Sauerstoff **minus** das abgegebene Kohlenstoffdioxid, also <InlineMath math="30-\text{CO}_2=9" />, und damit **abgegebenes Kohlenstoffdioxid** <InlineMath math="=21" /> Einheiten.
+
+<BlockMath math="\text{RQ}=\frac{21}{30}=0.70" />
+
+Ein RQ von etwa <InlineMath math="0.7" /> ist der Wert für **Fett**, weil Fettmoleküle wenig Sauerstoff enthalten und deshalb pro abgegebenem Kohlenstoffdioxid mehr Sauerstoff nötig ist. Kohlenhydrate ergeben <InlineMath math="1.0" />, Proteine etwa <InlineMath math="0.9" />. Der RQ ist also <InlineMath math="0.70" />, und die Samen veratmen vor allem Fett, wie ölhaltige Samen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0.30" /> nimmt die <InlineMath math="9\text{ mm}" /> von Y als Kohlenstoffdioxidvolumen, doch diese Bewegung ist die **Differenz** aus aufgenommenem Sauerstoff und abgegebenem Kohlenstoffdioxid.
+- <InlineMath math="1.00" /> würde verlangen, dass sich die Flüssigkeit in Y gar nicht bewegt, denn nur dann wäre das abgegebene Kohlenstoffdioxid gleich dem aufgenommenen Sauerstoff.
+- <InlineMath math="1.43" /> kehrt das Verhältnis um, Sauerstoff durch Kohlenstoffdioxid.

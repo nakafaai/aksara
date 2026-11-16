@@ -1,0 +1,22 @@
+# Name each blood group, then check it against the patient's antibody
+
+A red blood cell clumps with anti-A serum when it carries antigen A, and with anti-B serum when it carries antigen B. So the table gives the groups:
+
+<Mermaid
+  title={<>Checking Each Donor Against the Patient's Anti-A</>}
+  description={<>The patient's plasma holds anti-A. W and X carry antigen A and are refused. Y and Z carry no antigen A and are safe.</>}
+  chart={"flowchart LR\n  P[Patient group B: anti-A in plasma] --> W[W, group A: antigen A, unsafe]\n  P --> X[X, group AB: antigen A, unsafe]\n  P --> Y[Y, group O: no antigen, safe]\n  P --> Z[Z, group B: antigen B only, safe]"}
+/>
+
+- W carries antigen A only: group A.
+- X carries antigens A and B: group AB.
+- Y carries neither antigen: group O.
+- Z carries antigen B only: group B.
+
+The patient has group B, so the plasma contains **anti-A** antibody. Donor red blood cells are safe only if they carry **no antigen A**, otherwise the patient's anti-A clumps them. W and X carry antigen A, so they are unsafe. Y and Z carry no antigen A, so they are safe. So the patient can receive blood from Y and Z only.
+
+# Why the other options are wrong
+
+- Y only accepts the universal donor but rejects Z, although group B cells carry no antigen A.
+- X and Z accepts X, wrongly treating group AB as a universal donor. Group AB is the universal **recipient**.
+- W, Y and Z accepts W, whose antigen A is clumped by the patient's anti-A.
