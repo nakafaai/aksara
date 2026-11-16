@@ -1,22 +1,25 @@
-# Oksida murni dulu, lalu dua atom besi per satuan rumus
+# Hitung dalam kilomol, lalu baca kedua perbandingan dari persamaan
 
-Hanya <InlineMath math="80\%" /> bijih yang berupa besi(III) oksida: <InlineMath math="0{,}80 \times 1{,}6 = 1{,}28" /> ton, atau <InlineMath math="1\,280\,000" /> g. Dengan <InlineMath math="M_r = 2(56) + 3(16) = 160" />, itu <InlineMath math="8000" /> mol.
+Bijihnya berisi <InlineMath math="1{,}6 \times 0{,}80 = 1{,}28" /> ton besi(III) oksida, <InlineMath math="M_r = 160" />: <InlineMath math="1{,}28 \times 10^6 \div 160 = 8{,}0 \times 10^3" /> mol.
 
 <Mermaid
   title={<>Dari Bijih ke Besi</>}
-  description={<><InlineMath math="1{,}6" /> ton bijih memuat <InlineMath math="1{,}28" /> ton besi(III) oksida, <InlineMath math="8000\text{ mol}" />, yang menghasilkan <InlineMath math="16" /> <InlineMath math="000\text{ mol}" /> besi, <InlineMath math="0{,}896" /> ton.</>}
+  description={<><InlineMath math="1{,}28" /> ton besi(III) oksida adalah <InlineMath math="8{,}0" /> kilomol. Ia memakai <InlineMath math="24" /> kilomol karbon monoksida dan semestinya memberi <InlineMath math="16" /> kilomol besi, <InlineMath math="0{,}896" /> ton.</>}
   chart={`
     flowchart LR
-      N0["bijih: 1,6 t"] --> N1["Fe2O3 pada 80%: 1,28 t, 8000 mol"]
-      N1["Fe2O3 pada 80%: 1,28 t, 8000 mol"] --> N2["2 Fe per Fe2O3: 16 000 mol"]
-      N2["2 Fe per Fe2O3: 16 000 mol"] --> N3["Fe: 0,896 t"]
+      N0["1,6 t bijih × 80% = 1,28 t Fe2O3"] --> N1["8,0 kmol Fe2O3"]
+      N1 --> N2["× 2: 16 kmol Fe, 0,896 t secara teori"]
+      N2 --> N3["0,806 dari 0,896: 90%"]
+      N1 --> N4["× 3: 24 kmol CO, 576 m³"]
   `}
 />
 
-Tiap satuan rumus memuat **dua atom besi**, jadi terbentuk <InlineMath math="16\,000" /> mol besi: <InlineMath math="16\,000 \times 56 = 896\,000" /> g, yaitu <InlineMath math="0{,}896" /> ton. Karbon monoksida mengambil oksigen dari oksida dan teroksidasi menjadi karbon dioksida, jadi ia reduktor.
+**Besi**: dua per oksida, <InlineMath math="1{,}6 \times 10^4" /> mol, atau <InlineMath math="1{,}6 \times 10^4 \times 56 = 0{,}896" /> ton secara teori. Rendemennya <InlineMath math="\tfrac{0{,}806}{0{,}896} \times 100\% = 90\%" />.
+
+**Karbon monoksida**: tiga per oksida, <InlineMath math="2{,}4 \times 10^4" /> mol, atau <InlineMath math="2{,}4 \times 10^4 \times 24 = 5{,}76 \times 10^5\text{ dm}^3 = 576\text{ m}^3" />. Kehilangan di terak terjadi setelah reduksi, jadi tidak mengubah gas yang dipakai.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="1{,}12" /> ton menganggap seluruh bijih adalah besi(III) oksida, dan karbon monoksida menerima oksigen, yang menjadikannya reduktor.
-- Besi(III) oksida **kehilangan oksigen**, jadi tereduksi dan berperan sebagai oksidator.
-- <InlineMath math="0{,}448" /> ton menghitung satu atom besi per satuan rumus, bukan dua.
+- <InlineMath math="192\text{ m}^3" /> memakai satu karbon monoksida per besi(III) oksida, padahal tiap oksida melepas tiga atom oksigen.
+- <InlineMath math="72\%" /> menganggap seluruh <InlineMath math="1{,}6" /> ton bijih adalah besi(III) oksida, sehingga meramalkan <InlineMath math="1{,}12" /> ton besi.
+- <InlineMath math="384\text{ m}^3" /> memakai satu karbon monoksida per atom besi, dua per oksida, bukan **tiga**.

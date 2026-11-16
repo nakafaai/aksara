@@ -1,22 +1,25 @@
-# Erst das reine Oxid, dann zwei Eisenatome je Formeleinheit
+# In Kilomol rechnen, dann beide Verhältnisse aus der Gleichung lesen
 
-Nur <InlineMath math="80\%" /> des Erzes sind Eisen(III)-oxid: <InlineMath math="0{,}80 \times 1{,}6 = 1{,}28" /> Tonnen oder <InlineMath math="1\,280\,000" /> g. Mit <InlineMath math="M_r = 2(56) + 3(16) = 160" /> sind das <InlineMath math="8000" /> mol.
+Das Erz enthält <InlineMath math="1{,}6 \times 0{,}80 = 1{,}28" /> Tonnen Eisen(III)-oxid, <InlineMath math="M_r = 160" />: <InlineMath math="1{,}28 \times 10^6 \div 160 = 8{,}0 \times 10^3" /> mol.
 
 <Mermaid
   title={<>Vom Erz zum Eisen</>}
-  description={<><InlineMath math="1{,}6" /> Tonnen Erz enthalten <InlineMath math="1{,}28" /> Tonnen Eisen(III)-oxid, <InlineMath math="8000\text{ mol}" />, die <InlineMath math="16" /> <InlineMath math="000\text{ mol}" /> Eisen ergeben, <InlineMath math="0{,}896" /> Tonnen.</>}
+  description={<><InlineMath math="1{,}28" /> Tonnen Eisen(III)-oxid sind <InlineMath math="8{,}0" /> Kilomol. Sie brauchen <InlineMath math="24" /> Kilomol Kohlenstoffmonoxid und sollten <InlineMath math="16" /> Kilomol Eisen liefern, <InlineMath math="0{,}896" /> Tonnen.</>}
   chart={`
     flowchart LR
-      N0["Erz: 1,6 t"] --> N1["Fe2O3 zu 80%: 1,28 t, 8000 mol"]
-      N1["Fe2O3 zu 80%: 1,28 t, 8000 mol"] --> N2["2 Fe je Fe2O3: 16 000 mol"]
-      N2["2 Fe je Fe2O3: 16 000 mol"] --> N3["Fe: 0,896 t"]
+      N0["1,6 t Erz × 80% = 1,28 t Fe2O3"] --> N1["8,0 kmol Fe2O3"]
+      N1 --> N2["× 2: 16 kmol Fe, theoretisch 0,896 t"]
+      N2 --> N3["0,806 von 0,896: 90%"]
+      N1 --> N4["× 3: 24 kmol CO, 576 m³"]
   `}
 />
 
-Jede Formeleinheit enthält **zwei Eisenatome**, es entstehen also <InlineMath math="16\,000" /> mol Eisen: <InlineMath math="16\,000 \times 56 = 896\,000" /> g, das sind <InlineMath math="0{,}896" /> Tonnen. Kohlenstoffmonoxid nimmt dem Oxid Sauerstoff ab und wird zu Kohlenstoffdioxid oxidiert, es ist also das Reduktionsmittel.
+**Eisen**: zwei je Oxid, <InlineMath math="1{,}6 \times 10^4" /> mol, also theoretisch <InlineMath math="1{,}6 \times 10^4 \times 56 = 0{,}896" /> Tonnen. Die Ausbeute beträgt <InlineMath math="\tfrac{0{,}806}{0{,}896} \times 100\% = 90\%" />.
+
+**Kohlenstoffmonoxid**: drei je Oxid, <InlineMath math="2{,}4 \times 10^4" /> mol, also <InlineMath math="2{,}4 \times 10^4 \times 24 = 5{,}76 \times 10^5\text{ dm}^3 = 576\text{ m}^3" />. Der Verlust in der Schlacke entsteht nach der Reduktion und ändert das verbrauchte Gas nicht.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="1{,}12" /> Tonnen behandelt das ganze Erz als Eisen(III)-oxid, und Kohlenstoffmonoxid nimmt Sauerstoff auf, ist also das Reduktionsmittel.
-- Eisen(III)-oxid **gibt Sauerstoff ab**, wird also reduziert und wirkt als Oxidationsmittel.
-- <InlineMath math="0{,}448" /> Tonnen zählt ein Eisenatom je Formeleinheit statt zwei.
+- <InlineMath math="192\text{ m}^3" /> nimmt ein Kohlenstoffmonoxid je Eisen(III)-oxid an, doch jedes Oxid gibt drei Sauerstoffatome ab.
+- <InlineMath math="72\%" /> behandelt alle <InlineMath math="1{,}6" /> Tonnen Erz als Eisen(III)-oxid und erwartet so <InlineMath math="1{,}12" /> Tonnen Eisen.
+- <InlineMath math="384\text{ m}^3" /> nimmt ein Kohlenstoffmonoxid je Eisenatom an, also zwei je Oxid statt **drei**.

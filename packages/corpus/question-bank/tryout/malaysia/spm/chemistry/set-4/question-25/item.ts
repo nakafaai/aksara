@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "1.12 tonnes of iron, with carbon monoxide as the oxidising agent",
+            "A yield of $$90\\%$$, using $$192\\text{ m}^3$$ of carbon monoxide",
         },
         {
           correct: false,
           label:
-            "0.896 tonnes of iron, with iron(III) oxide as the reducing agent",
+            "A yield of $$72\\%$$, using $$576\\text{ m}^3$$ of carbon monoxide",
         },
         {
           correct: true,
           label:
-            "0.896 tonnes of iron, with carbon monoxide as the reducing agent",
+            "A yield of $$90\\%$$, using $$576\\text{ m}^3$$ of carbon monoxide",
         },
         {
           correct: false,
           label:
-            "0.448 tonnes of iron, with carbon monoxide as the reducing agent",
+            "A yield of $$90\\%$$, using $$384\\text{ m}^3$$ of carbon monoxide",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "1.12 tan ferum, dengan karbon monoksida sebagai agen pengoksidaan",
+            "Peratus hasil $$90\\%$$, menggunakan $$192\\text{ m}^3$$ karbon monoksida",
         },
         {
           correct: false,
           label:
-            "0.896 tan ferum, dengan ferum(III) oksida sebagai agen penurunan",
+            "Peratus hasil $$72\\%$$, menggunakan $$576\\text{ m}^3$$ karbon monoksida",
         },
         {
           correct: true,
           label:
-            "0.896 tan ferum, dengan karbon monoksida sebagai agen penurunan",
+            "Peratus hasil $$90\\%$$, menggunakan $$576\\text{ m}^3$$ karbon monoksida",
         },
         {
           correct: false,
           label:
-            "0.448 tan ferum, dengan karbon monoksida sebagai agen penurunan",
+            "Peratus hasil $$90\\%$$, menggunakan $$384\\text{ m}^3$$ karbon monoksida",
         },
       ],
     },

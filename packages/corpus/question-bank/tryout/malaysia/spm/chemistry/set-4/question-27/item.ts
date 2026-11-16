@@ -12,17 +12,24 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "X is $$\\\\text{C}_4\\\\text{H}_8$$, and 2.4 dm³ of it forms",
+          label:
+            "X is ethane, $$4.8\\text{ dm}^3$$ of it forms, and it does not react with bromine",
         },
         {
           correct: false,
-          label: "X is $$\\\\text{C}_2\\\\text{H}_4$$, and 2.4 dm³ of it forms",
+          label:
+            "X is ethene, $$2.4\\text{ dm}^3$$ of it forms, and it decolourises $$16\\text{ g}$$ of bromine",
         },
         {
           correct: false,
-          label: "X is $$\\\\text{C}_2\\\\text{H}_6$$, and 4.8 dm³ of it forms",
+          label:
+            "X is ethene, $$4.8\\text{ dm}^3$$ of it forms, and it decolourises $$16\\text{ g}$$ of bromine",
         },
-        { correct: true, label: "X is ethene, and 4.8 dm³ of it forms" },
+        {
+          correct: true,
+          label:
+            "X is ethene, $$4.8\\text{ dm}^3$$ of it forms, and it decolourises $$32\\text{ g}$$ of bromine",
+        },
       ],
     },
     ms: {
@@ -31,21 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "X ialah $$\\\\text{C}_4\\\\text{H}_8$$, dan 2.4 dm³ daripadanya terbentuk",
+            "X ialah etana, $$4.8\\text{ dm}^3$$ terbentuk, dan ia tidak bertindak balas dengan bromin",
         },
         {
           correct: false,
           label:
-            "X ialah $$\\\\text{C}_2\\\\text{H}_4$$, dan 2.4 dm³ daripadanya terbentuk",
+            "X ialah etena, $$2.4\\text{ dm}^3$$ terbentuk, dan ia menyahwarnakan $$16\\text{ g}$$ bromin",
         },
         {
           correct: false,
           label:
-            "X ialah $$\\\\text{C}_2\\\\text{H}_6$$, dan 4.8 dm³ daripadanya terbentuk",
+            "X ialah etena, $$4.8\\text{ dm}^3$$ terbentuk, dan ia menyahwarnakan $$16\\text{ g}$$ bromin",
         },
         {
           correct: true,
-          label: "X ialah etena, dan 4.8 dm³ daripadanya terbentuk",
+          label:
+            "X ialah etena, $$4.8\\text{ dm}^3$$ terbentuk, dan ia menyahwarnakan $$32\\text{ g}$$ bromin",
         },
       ],
     },

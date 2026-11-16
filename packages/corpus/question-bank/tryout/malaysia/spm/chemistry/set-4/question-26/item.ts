@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "0.0167 mol dm⁻³, and the solution turns from orange to green",
+          label: "$$16.7\\%$$, and the dichromate turns from orange to green",
         },
         {
           correct: false,
-          label: "0.100 mol dm⁻³, and the solution turns from green to orange",
+          label: "$$11.1\\%$$, and the dichromate turns from orange to green",
         },
         {
           correct: true,
-          label: "0.100 mol dm⁻³, and the solution turns from orange to green",
+          label: "$$66.7\\%$$, and the dichromate turns from orange to green",
         },
         {
           correct: false,
-          label: "0.600 mol dm⁻³, and the solution turns from orange to green",
+          label: "$$33.4\\%$$, and the dichromate turns from green to orange",
         },
       ],
     },
@@ -34,22 +34,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "0.0167 mol dm⁻³, dan larutan bertukar daripada jingga kepada hijau",
+            "$$16.7\\%$$, dan dikromat bertukar daripada jingga kepada hijau",
         },
         {
           correct: false,
           label:
-            "0.100 mol dm⁻³, dan larutan bertukar daripada hijau kepada jingga",
+            "$$11.1\\%$$, dan dikromat bertukar daripada jingga kepada hijau",
         },
         {
           correct: true,
           label:
-            "0.100 mol dm⁻³, dan larutan bertukar daripada jingga kepada hijau",
+            "$$66.7\\%$$, dan dikromat bertukar daripada jingga kepada hijau",
         },
         {
           correct: false,
           label:
-            "0.600 mol dm⁻³, dan larutan bertukar daripada jingga kepada hijau",
+            "$$33.4\\%$$, dan dikromat bertukar daripada hijau kepada jingga",
         },
       ],
     },
