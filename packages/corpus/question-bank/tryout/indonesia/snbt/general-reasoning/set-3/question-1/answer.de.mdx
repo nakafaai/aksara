@@ -14,6 +14,20 @@ Die Was-wäre-wenn-Schlussfolgerung prüft genau das. Verteile die beschatteten 
 
 Diese Schlussfolgerung ist sicher, denn sie nutzt nur die Zahlen der Tabelle und die Annahme, die in der Option selbst steht. Prüfe das Ergebnis: <InlineMath math="940-840=100" />, genau der Vorsprung an jedem Hang. Das passt, denn bei gleicher Verteilung wandert der Vorsprung von <InlineMath math="100" /> an jedem Hang unverändert in den Gesamtdurchschnitt.
 
+Das Diagramm stellt alle diese Durchschnitte nebeneinander. **Beschattete Gärten gewinnen an jedem Hang und bei gleicher Hangverteilung, verlieren aber im tatsächlichen Gesamtwert**, weil die meisten von ihnen am Steilhang liegen.
+
+<Chart
+  title={<>Durchschnittlicher Kaffeeertrag nach Hang und insgesamt</>}
+  description={<>Am flachen Hang bringen beschattete Gärten <InlineMath math="1{.}000" /> und unbeschattete <InlineMath math="900" /> Kilogramm pro Hektar. Am Steilhang <InlineMath math="700" /> und <InlineMath math="600" />. Insgesamt <InlineMath math="760" /> und <InlineMath math="840" />. Bei gleicher Hangverteilung kämen beschattete Gärten auf <InlineMath math="940" />, unbeschattete blieben bei <InlineMath math="840" />.</>}
+  categories={["Flacher Hang", "Steilhang", "Insgesamt", "Gleiche Hangverteilung"]}
+  bars="apart"
+  series={[
+    { label: "Beschattet", mark: "bar", values: [1000, 700, (10 * 1000 + 40 * 700) / 50, (40 * 1000 + 10 * 700) / 50] },
+    { label: "Unbeschattet", mark: "bar", values: [900, 600, (40 * 900 + 10 * 600) / 50, (40 * 900 + 10 * 600) / 50] },
+  ]}
+  valueLabel="Kilogramm pro Hektar"
+/>
+
 Darum scheitern die anderen Optionen.
 
 - Die Option, nach der unbeschattete Gärten an beiden Hängen besser sind, dreht die Tabelle um. An jedem Hang liegen die beschatteten Gärten vorn. Der Fehler: Das Gesamtergebnis (<InlineMath math="760<840" />) wird auf jede Gruppe übertragen.

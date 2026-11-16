@@ -21,6 +21,17 @@ Prüf das Ergebnis, indem du die Gruppe „Yoga oder Pilates ohne Schwimmen“ i
 | nur Pilates | <InlineMath math="60-17-(30-8)-8" /> | <InlineMath math="13" /> |
 | Summe | <InlineMath math="17+28+13" /> | <InlineMath math="58" /> |
 
+Das Diagramm zeigt die drei Teile der Gutscheingruppe. **Die drei Balken überschneiden sich nicht**, also ergibt ihre Summe direkt die Zahl der Gutscheine.
+
+<Chart
+  title={<>Mitglieder mit Yoga oder Pilates, aber ohne Schwimmen, nach Teil</>}
+  description={<>Es gibt <InlineMath math="17" /> Mitglieder mit Yoga und Pilates ohne Schwimmen, <InlineMath math="28" /> nur mit Yoga und <InlineMath math="13" /> nur mit Pilates. Zusammen sind es <InlineMath math="58" /> Mitglieder.</>}
+  categories={["Yoga und Pilates", "Nur Yoga", "Nur Pilates"]}
+  bars="apart"
+  series={[{ label: "Mitglieder", mark: "bar", values: [25 - 8, 85 - 17 - (40 - 8) - 8, 60 - 17 - (30 - 8) - 8] }]}
+  valueLabel="Mitglieder"
+/>
+
 Das Ergebnis stimmt überein: <InlineMath math="58" />.
 
 Einige falsche Ergebnisse tauchen oft auf:

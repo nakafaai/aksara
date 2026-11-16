@@ -16,6 +16,46 @@ Titik potong dengan sumbu <InlineMath math="X" /> didapat dari <InlineMath math=
 
 <BlockMath math="P\left(\frac{20}{3},0\right),\qquad Q(0,5),\qquad L=\frac12\cdot\frac{20}{3}\cdot5=\frac{50}{3}" />
 
+Gambar lingkaran, jari-jari <InlineMath math="MT" />, dan garis singgungnya. **Garis singgung tegak lurus <InlineMath math="MT" /> dan memotong kedua sumbu**, sehingga segitiga <InlineMath math="OPQ" /> siku-siku di titik asal.
+
+<MathVisual
+  title={<>Garis singgung di <InlineMath math="T(4,2)" /> dan segitiga <InlineMath math="OPQ" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="M(1,-2)" /> dengan jari-jari <InlineMath math="5" />. Garis singgung <InlineMath math="3x+4y=20" /> menyentuh lingkaran di <InlineMath math="T(4,2)" />, tegak lurus jari-jari <InlineMath math="MT" />. Garis itu memotong sumbu <InlineMath math="X" /> di <InlineMath math="P\left(\tfrac{20}{3},0\right)" /> dan sumbu <InlineMath math="Y" /> di <InlineMath math="Q(0,5)" />, dan segitiga <InlineMath math="OPQ" /> diarsir.</>}
+  labels={{
+    m: <InlineMath math="M(1,-2)" />,
+    t: <InlineMath math="T(4,2)" />,
+    p: <InlineMath math="P\left(\tfrac{20}{3},0\right)" />,
+    q: <InlineMath math="Q(0,5)" />,
+    tangent: <InlineMath math="3x+4y=20" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 8 },
+      y: { min: -8, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 1, y: -2 }, radius: 5 },
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20 / 3, y: 0 }, { x: 0, y: 5 }] },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 1, y: -2 }, to: { x: 4, y: 2 } },
+      { id: "tangent", kind: "function", appearance: "primary", formula: "(20 - 3*x)/4", domain: { min: -1, max: 7.5 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 1, y: -2 } },
+      { id: "t", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 20 / 3, y: 0 } },
+      { id: "q", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 1, y: -2 }, placement: "below" },
+      { key: "t", objectId: "t", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "p", objectId: "p", at: { x: 20 / 3, y: 0 }, placement: "below" },
+      { key: "q", objectId: "q", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "tangent", objectId: "tangent", at: { x: -1, y: 23 / 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi, luas segitiga <InlineMath math="OPQ" /> adalah <InlineMath math="\frac{50}{3}" /> satuan luas.
 
 - <InlineMath math="\frac{25}{6}" /> memakai garis normal <InlineMath math="MT" />, yaitu <InlineMath math="4x-3y=10" />, bukan garis singgungnya.

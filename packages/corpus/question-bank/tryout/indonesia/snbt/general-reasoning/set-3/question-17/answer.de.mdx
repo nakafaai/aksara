@@ -34,6 +34,24 @@ Die zwei Zeilen, die Regel 7 verletzen, setzen Hamid direkt neben Cahya: Stuhl 8
 
 <BlockMath math="\begin{aligned} \text{Kandidaten} &= 2 \times 2 \times 2 = 8 \\ \text{gültige Sitzordnungen} &= 8 - 2 = 6 \end{aligned}" />
 
+Das Diagramm zeichnet den Baum der Verzweigungen. **Jeder Zweig für Asri und Cahya liefert zwei Kandidaten**, und Regel 7 streicht in zwei Zweigen je einen Kandidaten.
+
+<Mermaid
+  title={<>Baum der Sitzordnungen, die alle Regeln erfüllen</>}
+  description={<>Asri sitzt auf Stuhl <InlineMath math="1" /> oder <InlineMath math="5" />. In beiden Fällen sitzt Cahya auf Stuhl <InlineMath math="3" /> oder <InlineMath math="7" />, und Fajar hat zwei Möglichkeiten, also gibt es <InlineMath math="8" /> Kandidaten. Jeder Zweig mit Cahya auf Stuhl <InlineMath math="7" /> verliert durch Regel 7 einen Kandidaten, also bleiben <InlineMath math="6" /> Sitzordnungen.</>}
+  chart={`flowchart LR
+    S["Start"] --> A1["Asri auf Stuhl 1"]
+    S --> A5["Asri auf Stuhl 5"]
+    A1 --> C13["Cahya auf Stuhl 3: 2 Kandidaten, 2 gültig"]
+    A1 --> C17["Cahya auf Stuhl 7: 2 Kandidaten, 1 gültig"]
+    A5 --> C53["Cahya auf Stuhl 3: 2 Kandidaten, 2 gültig"]
+    A5 --> C57["Cahya auf Stuhl 7: 2 Kandidaten, 1 gültig"]
+    C13 --> T["Insgesamt 6 gültige Sitzordnungen"]
+    C17 --> T
+    C53 --> T
+    C57 --> T`}
+/>
+
 Der erste Faktor kommt von den zwei Möglichkeiten für Asris Stuhl, der zweite von den zwei Möglichkeiten für Cahyas Stuhl und der dritte von den zwei Möglichkeiten für Fajars Stuhl. Galuh und Hamid erzeugen keine weiteren Zweige, weil Regel 6 ihre Reihenfolge schon festlegt.
 
 Zur Kontrolle nimm die letzte Zeile: Bonar <InlineMath math="1" />, Galuh <InlineMath math="2" />, Hamid <InlineMath math="3" />, Elok <InlineMath math="4" />, Asri <InlineMath math="5" />, Fajar <InlineMath math="6" />, Cahya <InlineMath math="7" />, Dimas <InlineMath math="8" />. Asri sitzt Bonar gegenüber, Dimas sitzt neben Cahya, aber nicht neben Asri, Elok auf Stuhl 4 sitzt Dimas auf Stuhl 8 gegenüber, Fajar auf Stuhl 6 ist zwei Stühle von Elok entfernt, Galuhs Nummer ist kleiner als Hamids, und Hamid auf Stuhl 3 sitzt nicht neben Cahya auf Stuhl 7. Alle Regeln gelten.

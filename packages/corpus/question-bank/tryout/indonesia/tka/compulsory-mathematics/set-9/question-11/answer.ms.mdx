@@ -9,6 +9,52 @@ OA&=\tfrac12\cdot12\sqrt2=6\sqrt2 \\
 TO&=\sqrt{TA^2-OA^2}=\sqrt{121-72}=\sqrt{49}=7
 \end{aligned}" />
 
+Potong piramid melalui <InlineMath math="T" />, pusat tapak <InlineMath math="O" />, dan <InlineMath math="C" />. **Segi tiga <InlineMath math="TOC" /> bersudut tegak di <InlineMath math="O" />, dan <InlineMath math="P" /> di tengah hipotenusnya berada separuh jalan ke atas**.
+
+<MathVisual
+  title={<>Segi tiga <InlineMath math="TOC" /> dan titik <InlineMath math="P" /></>}
+  description={<>Segi tiga bersudut tegak <InlineMath math="TOC" /> mempunyai tapak <InlineMath math="OC=6\sqrt2" />, tinggi <InlineMath math="TO=7" />, dan hipotenus <InlineMath math="TC=11" />. Titik <InlineMath math="P" /> ialah titik tengah <InlineMath math="TC" />, dan ruas tegak dari <InlineMath math="P" /> ke tapak panjangnya <InlineMath math="3.5" />, separuh daripada <InlineMath math="TO" />.</>}
+  labels={{
+    t: <InlineMath math="T" />,
+    o: <InlineMath math="O" />,
+    c: <InlineMath math="C" />,
+    p: <InlineMath math="P" />,
+    height: <InlineMath math="7" />,
+    half: <InlineMath math="3{,}5" />,
+    base: <InlineMath math="6\sqrt2" />,
+    slant: <InlineMath math="11" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 10 },
+      y: { min: -1, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slant", kind: "segment", appearance: "primary", from: { x: 6 * Math.sqrt(2), y: 0 }, to: { x: 0, y: 7 } },
+      { id: "height", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 7 } },
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6 * Math.sqrt(2), y: 0 } },
+      { id: "half", kind: "segment", appearance: "answer", from: { x: 3 * Math.sqrt(2), y: 0 }, to: { x: 3 * Math.sqrt(2), y: 3.5 } },
+      { id: "t", kind: "point", appearance: "secondary", at: { x: 0, y: 7 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "c", kind: "point", appearance: "secondary", at: { x: 6 * Math.sqrt(2), y: 0 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 3 * Math.sqrt(2), y: 3.5 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 7 }, placement: "above" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "c", at: { x: 6 * Math.sqrt(2), y: 0 }, placement: "below-right" },
+      { key: "p", objectId: "p", at: { x: 3 * Math.sqrt(2), y: 3.5 }, placement: "above-right" },
+      { key: "height", objectId: "height", at: { x: 0, y: 3.5 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: 3 * Math.sqrt(2), y: 1.75 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: 3 * Math.sqrt(2), y: 0 }, placement: "below" },
+      { key: "slant", objectId: "slant", at: { x: 1.5 * Math.sqrt(2), y: 5.25 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Tinggi titik P
 
 Titik <InlineMath math="P" /> ialah titik tengah <InlineMath math="TC" />. Apabila kamu bergerak dari <InlineMath math="C" /> di tapak ke <InlineMath math="T" /> di puncak, ketinggian bertambah secara berkadar, jadi di pertengahan jalan **tingginya tepat separuh daripada tinggi <InlineMath math="T" />**, iaitu <InlineMath math="3.5" />.

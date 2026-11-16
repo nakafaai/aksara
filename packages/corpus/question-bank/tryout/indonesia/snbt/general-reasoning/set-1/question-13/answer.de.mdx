@@ -16,6 +16,17 @@ Es gibt drei Schritte, und nur diese drei.
 
 Das Ergebnis lautet: Es gibt eine Person, die die regionale Auswahl bestanden hat und nie schwer verletzt war, aber weder im Kernteam der Provinz ist noch ein Sportstipendium hat.
 
+Das Diagramm fasst die drei Schritte zusammen. **Nur das Wort „alle“ und die Oder-Forderung ändern sich**, die Beschreibung der Gruppe bleibt ganz.
+
+<Mermaid
+  title={<>Drei Schritte, die die Aussage in ihre Verneinung verwandeln</>}
+  description={<>Ausgangsaussage: Alle Sportler, die die Regionalauswahl bestanden haben und nie schwer verletzt waren, sind im Kernteam oder haben ein Stipendium. „Alle“ wird zu „es gibt“, die Gruppenbeschreibung bleibt, und die Oder-Forderung wird zu nicht im Kernteam und ohne Stipendium.</>}
+  chart={`flowchart LR
+    A["Alle Sportler dieser Gruppe"] -->|"alle wird zu es gibt"| B["Es gibt einen Sportler dieser Gruppe"]
+    C["Auswahl bestanden und nie schwer verletzt"] -->|"bleibt"| D["Auswahl bestanden und nie schwer verletzt"]
+    E["Kernteam oder Stipendium"] -->|"De Morgan"| F["Nicht im Kernteam und ohne Stipendium"]`}
+/>
+
 Die anderen Auswahlen scheitern an diesen Fehlern.
 
 - Die Version mit "nicht im Kernteam oder kein Stipendium" vergisst, "oder" in "und" zu verwandeln. Eine Person aus der Gruppe mit Stipendium, aber ohne Kernteam passt dazu, widerlegt die ursprüngliche Aussage aber nicht.

@@ -19,6 +19,19 @@ Jede Abfahrt ist voll besetzt, außer der letzten Gruppe, die nur den Rest mitni
 
 Bis Minute <InlineMath math="80" /> sind <InlineMath math="144" /> Personen losgefahren, es warten also noch <InlineMath math="150-144=6" />. Das erste Fahrzeug, das danach wieder am Bahnhof ist, ist **der Bus, zurück in Minute** <InlineMath math="100" />, denn die Kleinbusse kommen erst in Minute <InlineMath math="120" /> zurück.
 
+Das Diagramm summiert die abgefahrenen Teilnehmenden in der Reihenfolge der Abfahrten. **Der letzte Schritt bringt nur <InlineMath math="6" /> Personen dazu**, und ihn übernimmt der Bus, der in Minute <InlineMath math="100" /> abfährt.
+
+<Chart
+  title={<>Abgefahrene Teilnehmende in der Reihenfolge der Abfahrten</>}
+  description={<>Der Bus in Minute <InlineMath math="0" /> bringt <InlineMath math="30" /> Personen, die zwei Kleinbusse in Minute <InlineMath math="0" /> erhöhen auf <InlineMath math="58" />, die zwei Kleinbusse in Minute <InlineMath math="40" /> auf <InlineMath math="86" />, der Bus in Minute <InlineMath math="50" /> auf <InlineMath math="116" />, die zwei Kleinbusse in Minute <InlineMath math="80" /> auf <InlineMath math="144" />, und der Bus in Minute <InlineMath math="100" /> bringt die letzten <InlineMath math="6" /> Personen.</>}
+  categories={["Bus Minute 0", "Kleinbusse Minute 0", "Kleinbusse Minute 40", "Bus Minute 50", "Kleinbusse Minute 80", "Bus Minute 100"]}
+  series={[
+    { label: "Bereits abgefahrene Teilnehmende", mark: "line", values: [30, 58, 86, 116, 144, 150] },
+    { label: "150 Teilnehmende", mark: "line", values: [150, 150, 150, 150, 150, 150] },
+  ]}
+  valueLabel="Teilnehmende"
+/>
+
 # Wann die letzte Person ankommt
 
 Der Bus nimmt die letzten <InlineMath math="6" /> Personen mit und kommt <InlineMath math="25" /> Minuten später an.

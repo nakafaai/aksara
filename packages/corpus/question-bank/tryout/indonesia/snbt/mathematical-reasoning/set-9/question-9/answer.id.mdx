@@ -15,6 +15,20 @@ Saldo dikalikan <InlineMath math="1{,}1" /> pada akhir setiap tahun. Setoran awa
 
 Saldonya <InlineMath math="\text{Rp}94{.}024{.}000{,}00" />.
 
+Grafik berikut membandingkan saldo akhir setiap tahun dengan total uang yang sudah masuk. **Celah antara batang dan garis makin lebar setiap tahun**, karena setoran lama terus tumbuh sementara setoran baru ditambahkan.
+
+<Chart
+  title={<>Saldo akhir tahun dan total uang masuk, tahun ke-<InlineMath math="1" /> sampai ke-<InlineMath math="5" /></>}
+  description={<>Setiap awal tahun masuk <InlineMath math="14" /> juta rupiah. Saldo akhir tahun ke-<InlineMath math="1" /> sampai ke-<InlineMath math="5" /> berturut-turut <InlineMath math="15{,}4" />, <InlineMath math="32{,}34" />, <InlineMath math="50{,}974" />, <InlineMath math="71{,}47" />, dan <InlineMath math="94{,}024" /> juta rupiah, sedangkan total uang masuk berturut-turut <InlineMath math="14" />, <InlineMath math="28" />, <InlineMath math="42" />, <InlineMath math="56" />, dan <InlineMath math="70" /> juta rupiah.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Saldo akhir tahun (juta rupiah)", mark: "bar", values: [14 * 1.1, 14 * (1.1 + 1.21), 14 * (1.1 + 1.21 + 1.331), 14 * (1.1 + 1.21 + 1.331 + 1.464), 14 * (1.1 + 1.21 + 1.331 + 1.464 + 1.611)] },
+    { label: "Total uang masuk (juta rupiah)", mark: "line", values: [14, 28, 42, 56, 70] },
+  ]}
+  valueLabel="Juta rupiah"
+/>
+
 # Cek tahun demi tahun
 
 Kamu juga bisa menambah <InlineMath math="14" /> lalu mengalikan <InlineMath math="1{,}1" /> setiap tahun, dalam juta rupiah.

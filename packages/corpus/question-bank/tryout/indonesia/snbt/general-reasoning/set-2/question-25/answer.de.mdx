@@ -29,6 +29,21 @@ Prüf die Grenze, indem du die Rechnung pro Person für <InlineMath math="154" /
 
 Mit <InlineMath math="154" /> kWh klappt es noch, mit <InlineMath math="155" /> kWh nicht mehr. Im Mai hat Made <InlineMath math="4{.}238-4{.}068=170\text{ kWh}" /> verbraucht, die Einsparung muss also mindestens <InlineMath math="170-154=16" /> kWh betragen.
 
+Das Diagramm berechnet die Rechnung pro Bewohner der Familie Made für mehrere Verbräuche. **Der Balken für <InlineMath math="154" /> kWh liegt noch unter der Grenzlinie**, der Balken für <InlineMath math="155" /> kWh schon darüber.
+
+<Chart
+  title={<>Juni-Rechnung pro Bewohner der Familie Made nach Verbrauch</>}
+  description={<>Jede zusätzliche <InlineMath math="1" /> kWh in Block III erhöht die Rechnung pro Bewohner um etwa <InlineMath math="\text{Rp}367" />. Bei <InlineMath math="154" /> kWh sind es etwa <InlineMath math="\text{Rp}45{.}967" /> pro Bewohner, bei <InlineMath math="155" /> kWh etwa <InlineMath math="\text{Rp}46{.}333" />. Die waagerechte Linie markiert die Grenze von <InlineMath math="\text{Rp}46{.}250" />. Die Werteachse beginnt bei <InlineMath math="\text{Rp}44{.}000" />.</>}
+  bars="apart"
+  categories={["150", "151", "152", "153", "154", "155", "156"]}
+  series={[
+    { label: "Rechnung pro Bewohner bei Made (Rupiah)", mark: "bar", values: [150, 151, 152, 153, 154, 155, 156].map((u) => (176000 + (u - 120) * 2200 + 25000) / 6) },
+    { label: "Grenze aus der Familie Hasan", mark: "line", values: Array.from({ length: 7 }, () => 185000 / 4) },
+  ]}
+  valueRange={{ min: 44000, max: 47500 }}
+  valueLabel="Rechnung pro Bewohner (Rupiah)"
+/>
+
 Ein paar Abkürzungen, die schiefgehen:
 
 - Verbrauch pro Person statt Rechnung pro Person vergleichen: Hasan verbraucht <InlineMath math="110\div4=27{,}5" /> kWh pro Person, das würde Made auf <InlineMath math="6\times27{,}5=165" /> kWh begrenzen und nur <InlineMath math="5" /> kWh Einsparung verlangen. Das ist falsch, weil Mades zusätzliche kWh im teureren Block III liegen.

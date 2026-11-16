@@ -29,6 +29,22 @@ Die Masse würde noch reichen, aber **die Spurlänge reicht nicht**. Eine einzig
 &= 1{.}250{.}000
 \end{aligned}" />
 
+Das Diagramm vergleicht die Ladung der zweiten Fahrt ohne und mit dem Lkw auf Platz <InlineMath math="9" />. **Der Massenbalken bleibt unter seiner Linie, aber der Längenbalken überschreitet <InlineMath math="40\text{ m}" />**, also bleibt der Lkw zurück.
+
+<Chart
+  title={<>Spurlänge und Masse der zweiten Fahrt ohne und mit Lkw <InlineMath math="9" /></>}
+  description={<>Fünf Autos und ein Pick-up belegen <InlineMath math="31\text{ m}" /> und wiegen <InlineMath math="13\text{ Tonnen}" />. Mit Lkw <InlineMath math="9" /> werden es <InlineMath math="41\text{ m}" /> und <InlineMath math="28\text{ Tonnen}" />. Zwei waagerechte Linien markieren die Grenzen von <InlineMath math="40\text{ m}" /> und <InlineMath math="30\text{ Tonnen}" />.</>}
+  categories={["Ohne Lkw 9", "Mit Lkw 9"]}
+  bars="apart"
+  series={[
+    { label: "Spurlänge (m)", mark: "bar", values: [5 * 5 + 6, 5 * 5 + 6 + 10] },
+    { label: "Masse (Tonnen)", mark: "bar", values: [5 * 2 + 3, 5 * 2 + 3 + 15] },
+    { label: "Längengrenze 40 m", mark: "line", values: [40, 40] },
+    { label: "Massengrenze 30 Tonnen", mark: "line", values: [30, 30] },
+  ]}
+  valueLabel="Wert"
+/>
+
 # Kontrolle über alle Tarife
 
 Lade weiter. Der Lkw auf Platz <InlineMath math="9" /> und der folgende Bus wiegen <InlineMath math="15+16=31\text{ Tonnen}" />, also fährt der Lkw allein. Zwei Busse wiegen <InlineMath math="16+16=32\text{ Tonnen}" />, also **fährt jeder Bus allein**. Die Warteschlange ist nach <InlineMath math="5" /> Fahrten leer, und jedes Fahrzeug fährt genau einmal.

@@ -14,6 +14,20 @@ Rechne **Tag für Tag**, denn die Fahrgäste vom Sonntag können keine freien Pl
 
 Nimm den Montag als Beispiel: <InlineMath math="3 \times 200 = 600" /> Plätze reichen nicht für <InlineMath math="672" /> Personen, <InlineMath math="4 \times 200 = 800" /> dagegen schon. Samstag und Sonntag solltest du genau prüfen. Am Samstag ist <InlineMath math="792 \le 800" />, also reichen vier Abfahrten noch. Am Sonntag ist <InlineMath math="828 > 800" />, also brauchst du fünf.
 
+Das Diagramm vergleicht die stärkere Richtung mit den Plätzen pro Hafen. **Jeder Platzbalken ist das kleinste Vielfache von <InlineMath math="200" />, das nicht kürzer ist als sein Fahrgastbalken**.
+
+<Chart
+  title={<>Fahrgäste in der stärkeren Richtung und bereitgestellte Plätze in der nächsten Woche</>}
+  description={<>Von Montag bis Sonntag fährt die stärkere Richtung <InlineMath math="672" />, <InlineMath math="456" />, <InlineMath math="504" />, <InlineMath math="660" />, <InlineMath math="636" />, <InlineMath math="792" /> und <InlineMath math="828" /> Fahrgäste. Die Plätze sind <InlineMath math="800" />, <InlineMath math="600" />, <InlineMath math="600" />, <InlineMath math="800" />, <InlineMath math="800" />, <InlineMath math="800" /> und <InlineMath math="1{.}000" />, also <InlineMath math="4" />, <InlineMath math="3" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="4" /> und <InlineMath math="5" /> Abfahrten.</>}
+  categories={["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]}
+  bars="apart"
+  series={[
+    { label: "Stärkere Richtung", mark: "bar", values: [560, 380, 420, 550, 530, 660, 690].map((v) => (v * 12) / 10) },
+    { label: "Plätze aus Abfahrten pro Hafen", mark: "bar", values: [560, 380, 420, 550, 530, 660, 690].map((v) => Math.ceil((v * 12) / 10 / 200) * 200) },
+  ]}
+  valueLabel="Personen oder Plätze"
+/>
+
 Addiere die Abfahrten pro Hafen und verdopple, weil es zwei Häfen gibt.
 
 <BlockMath math="\begin{aligned}

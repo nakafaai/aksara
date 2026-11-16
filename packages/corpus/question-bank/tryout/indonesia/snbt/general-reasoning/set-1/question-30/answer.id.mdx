@@ -9,6 +9,17 @@ Untuk setiap banyak bus sedang <InlineMath math="b" />, sisa penumpang adalah <I
 | <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="107" /> | <InlineMath math="\text{Rp}7{.}250{.}000" /> |
 | <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="124" /> | <InlineMath math="\text{Rp}8{.}400{.}000" /> |
 
+Grafik berikut menggambar biaya untuk setiap banyak bus sedang. **Batang terpendek ada pada satu bus sedang**, walaupun bus sedang sedikit lebih murah per kursi.
+
+<Chart
+  title={<>Biaya sewa paling murah menurut banyak bus sedang</>}
+  description={<>Dengan <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="4" /> bus sedang beserta minibus secukupnya, biayanya <InlineMath math="\text{Rp}6{.}850{.}000" />, <InlineMath math="\text{Rp}7{.}050{.}000" />, <InlineMath math="\text{Rp}7{.}250{.}000" />, dan <InlineMath math="\text{Rp}8{.}400{.}000" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[{ label: "Biaya sewa (rupiah)", mark: "bar", values: [1, 2, 3, 4].map((b) => 2100000 * b + 950000 * Math.ceil(Math.max(0, 96 - 31 * b) / 14)) }]}
+  valueLabel="Biaya (rupiah)"
+/>
+
 Biaya baris pertama dihitung seperti ini:
 
 <BlockMath math="1\times2{.}100{.}000+5\times950{.}000 = 2{.}100{.}000+4{.}750{.}000 = 6{.}850{.}000" />

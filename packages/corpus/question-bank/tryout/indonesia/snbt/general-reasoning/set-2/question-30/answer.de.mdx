@@ -26,6 +26,17 @@ Probier <InlineMath math="T=18" />. Die Sirupbedingung verlangt <InlineMath math
 
 Beide Sorten liegen auch bei mindestens <InlineMath math="3" />. Mit <InlineMath math="10" /> Sirupkörben und <InlineMath math="8" /> Gebäckkörben kommst du also auf <InlineMath math="18" /> Körbe, und keine Aufteilung schafft mehr.
 
+Das Diagramm berechnet die größte Gesamtzahl für jede Zahl von Sirupkörben. **Der Gipfel liegt bei <InlineMath math="10" /> Sirupkörben**, wo Kuchen und Sirup beide fast aufgebraucht sind.
+
+<Chart
+  title={<>Größte Zahl an Geschenkkörben nach Zahl der Sirupkörbe</>}
+  description={<>Bei <InlineMath math="3" /> bis <InlineMath math="12" /> Sirupkörben und so vielen Kuchenkörben wie möglich ergeben sich <InlineMath math="13" />, <InlineMath math="14" />, <InlineMath math="14" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="18" />, <InlineMath math="17" /> und <InlineMath math="16" /> Körbe.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 3}`)}
+  series={[{ label: "Meiste Geschenkkörbe", mark: "bar", values: Array.from({ length: 10 }, (_, i) => i + 3 + Math.min(Math.floor((44 - (i + 3)) / 4), 28 - 2 * (i + 3))) }]}
+  valueLabel="Körbe insgesamt"
+/>
+
 Die anderen Optionen entstehen durch zu schnelle Strategien:
 
 - <InlineMath math="13" /> entsteht, wenn du <InlineMath math="3" /> Sirupkörbe packst und dann so viele Gebäckkörbe wie möglich. Das Gebäck reicht nur für <InlineMath math="10" /> Gebäckkörbe, während viel Sirup übrig bleibt.

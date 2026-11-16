@@ -9,6 +9,17 @@ For each number of medium buses <InlineMath math="b" />, the passengers left ove
 | <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="107" /> | <InlineMath math="\text{Rp}7{,}250{,}000" /> |
 | <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="124" /> | <InlineMath math="\text{Rp}8{,}400{,}000" /> |
 
+The chart below draws the cost for each number of medium buses. **The shortest bar is at one medium bus**, even though a medium bus is slightly cheaper per seat.
+
+<Chart
+  title={<>Cheapest rental cost by number of medium buses</>}
+  description={<>With <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="4" /> medium buses plus just enough minibuses, the cost is <InlineMath math="\text{Rp}6{,}850{,}000" />, <InlineMath math="\text{Rp}7{,}050{,}000" />, <InlineMath math="\text{Rp}7{,}250{,}000" />, and <InlineMath math="\text{Rp}8{,}400{,}000" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[{ label: "Rental cost (rupiah)", mark: "bar", values: [1, 2, 3, 4].map((b) => 2100000 * b + 950000 * Math.ceil(Math.max(0, 96 - 31 * b) / 14)) }]}
+  valueLabel="Cost (rupiah)"
+/>
+
 Here's the cost in the first row:
 
 <BlockMath math="1\times2{,}100{,}000+5\times950{,}000 = 2{,}100{,}000+4{,}750{,}000 = 6{,}850{,}000" />

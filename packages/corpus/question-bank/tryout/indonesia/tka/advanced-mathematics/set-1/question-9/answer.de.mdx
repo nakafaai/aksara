@@ -9,6 +9,38 @@ Der Kosinus ist <InlineMath math="-1" />, wenn sein Argument <InlineMath math="1
 x&=110^\circ+k\cdot180^\circ
 \end{aligned}" />
 
+Zeichne <InlineMath math="f" /> über das ganze Intervall. **Der Graph schwingt zwischen <InlineMath math="-3" /> und <InlineMath math="5" />, und in diesem Intervall gibt es nur einen tiefsten Punkt**.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=1+4\cos(2x-40^\circ)" /></>}
+  description={<>Die waagerechte Achse ist <InlineMath math="x" /> in Grad von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />. Die Kurve erreicht ihr Maximum <InlineMath math="5" /> bei <InlineMath math="x=20^\circ" /> und ihren tiefsten Wert <InlineMath math="-3" /> bei <InlineMath math="x=110^\circ" />, wo sie die waagerechte Linie bei <InlineMath math="-3" /> berührt.</>}
+  labels={{
+    curve: <InlineMath math="f(x)" />,
+    low: <InlineMath math="(110^\circ,\ -3)" />,
+    floor: <InlineMath math="-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 180 },
+      y: { min: -4, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1 + 4*cos((2*x - 40)*pi/180)", domain: { min: 0, max: 180 } },
+      { id: "floor", kind: "function", appearance: "construction", formula: "-3", domain: { min: 0, max: 180 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 110, y: -3 } },
+      { id: "high", kind: "point", appearance: "secondary", at: { x: 20, y: 5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 20, y: 5 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 110, y: -3 }, placement: "above-right" },
+      { key: "floor", objectId: "floor", at: { x: 5, y: -3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Im Intervall <InlineMath math="0^\circ\le x\le180^\circ" /> liegt nur <InlineMath math="x=110^\circ" />.
 
 Zur Kontrolle: <InlineMath math="f(110^\circ)=1+4\cos180^\circ=1-4=-3" />.

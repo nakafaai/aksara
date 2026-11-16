@@ -21,6 +21,45 @@ M&=280\left(\tfrac{1}{2}\right)^{3/6}=280\left(\tfrac{1}{2}\right)^{1/2} \\
 &=280\cdot\tfrac{1}{2}\sqrt{2}=140\sqrt{2}\approx197.4\text{ mg}
 \end{aligned}" />
 
+The graph below shows the blood level from 06:00 onwards. **Each tablet makes the graph jump up by <InlineMath math="160" />, then the level decays again**. The last point is the level <InlineMath math="3" /> hours after the third jump.
+
+<MathVisual
+  title={<>The blood level from tablet to tablet</>}
+  description={<>The horizontal axis is time in hours since 06:00, and the vertical axis is the amount of active substance in mg. The level jumps to <InlineMath math="160" /> at <InlineMath math="t=0" />, to <InlineMath math="240" /> at <InlineMath math="t=6" />, and to <InlineMath math="280" /> at <InlineMath math="t=12" />. At <InlineMath math="t=15" />, which is 21:00, the level is <InlineMath math="140\sqrt{2}\approx197.4" />.</>}
+  labels={{
+    first: <InlineMath math="160" />,
+    second: <InlineMath math="240" />,
+    third: <InlineMath math="280" />,
+    now: <InlineMath math="140\sqrt{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 16 },
+      y: { min: 0, max: 300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "dose-one", kind: "function", appearance: "primary", formula: "160 * 2^(-x/6)", domain: { min: 0, max: 6 } },
+      { id: "dose-two", kind: "function", appearance: "primary", formula: "240 * 2^(-(x - 6)/6)", domain: { min: 6, max: 12 } },
+      { id: "dose-three", kind: "function", appearance: "primary", formula: "280 * 2^(-(x - 12)/6)", domain: { min: 12, max: 15 } },
+      { id: "jump-two", kind: "segment", appearance: "construction", from: { x: 6, y: 80 }, to: { x: 6, y: 240 } },
+      { id: "jump-three", kind: "segment", appearance: "construction", from: { x: 12, y: 120 }, to: { x: 12, y: 280 } },
+      { id: "first", kind: "point", appearance: "secondary", at: { x: 0, y: 160 } },
+      { id: "second", kind: "point", appearance: "secondary", at: { x: 6, y: 240 } },
+      { id: "third", kind: "point", appearance: "secondary", at: { x: 12, y: 280 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 15, y: 140 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 0, y: 160 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 6, y: 240 }, placement: "above-right" },
+      { key: "third", objectId: "third", at: { x: 12, y: 280 }, placement: "above-right" },
+      { key: "now", objectId: "now", at: { x: 15, y: 140 * Math.sqrt(2) }, placement: "below" },
+    ],
+  }}
+/>
+
 Check it by working out what's left of each tablet on its own. The 06:00 tablet has been in the blood for <InlineMath math="15" /> hours, the 12:00 tablet for <InlineMath math="9" /> hours, and the 18:00 tablet for just <InlineMath math="3" /> hours.
 
 <BlockMath math="\begin{aligned}

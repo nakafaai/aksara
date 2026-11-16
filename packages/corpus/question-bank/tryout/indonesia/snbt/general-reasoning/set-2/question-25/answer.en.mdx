@@ -29,6 +29,21 @@ Check the boundary by working out the bill per resident for <InlineMath math="15
 
 <InlineMath math="154" /> kWh still works, and <InlineMath math="155" /> kWh doesn't. Made used <InlineMath math="4{,}238-4{,}068=170\text{ kWh}" /> in May, so the cut must be at least <InlineMath math="170-154=16" /> kWh.
 
+The chart below works out the Made family's bill per resident for several usage levels. **The <InlineMath math="154" /> kWh bar is still under the limit line**, while the <InlineMath math="155" /> kWh bar is already past it.
+
+<Chart
+  title={<>The Made family's June bill per resident by usage</>}
+  description={<>Each extra <InlineMath math="1" /> kWh in Block III raises the bill per resident by about <InlineMath math="\text{Rp}367" />. At <InlineMath math="154" /> kWh the bill is about <InlineMath math="\text{Rp}45{,}967" /> per resident, and at <InlineMath math="155" /> kWh about <InlineMath math="\text{Rp}46{,}333" />. The flat line marks the limit of <InlineMath math="\text{Rp}46{,}250" />. The value axis starts at <InlineMath math="\text{Rp}44{,}000" />.</>}
+  bars="apart"
+  categories={["150", "151", "152", "153", "154", "155", "156"]}
+  series={[
+    { label: "Made's bill per resident (rupiah)", mark: "bar", values: [150, 151, 152, 153, 154, 155, 156].map((u) => (176000 + (u - 120) * 2200 + 25000) / 6) },
+    { label: "Limit from the Hasan family", mark: "line", values: Array.from({ length: 7 }, () => 185000 / 4) },
+  ]}
+  valueRange={{ min: 44000, max: 47500 }}
+  valueLabel="Bill per resident (rupiah)"
+/>
+
 Some shortcuts that go wrong:
 
 - Comparing usage per resident instead of bill per resident: Hasan uses <InlineMath math="110\div4=27.5" /> kWh per person, which would cap Made at <InlineMath math="6\times27.5=165" /> kWh and need a cut of only <InlineMath math="5" /> kWh. That's wrong because Made's extra kWh sit in the pricier Block III.

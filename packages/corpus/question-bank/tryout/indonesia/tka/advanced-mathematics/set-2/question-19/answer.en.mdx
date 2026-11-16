@@ -12,6 +12,47 @@ y&=-(x^2-6x+9)+2x-6+1 \\
 y&=-x^2+8x-14
 \end{aligned}" />
 
+Follow the vertex through both steps. **The reflection flips the parabola, then the translation shifts it whole, <InlineMath math="3" /> right and <InlineMath math="1" /> up**.
+
+<MathVisual
+  title={<>The parabola before and after both transformations</>}
+  description={<>The starting parabola <InlineMath math="y=x^2-2x" /> has vertex <InlineMath math="(1,-1)" />. After reflection in the <InlineMath math="X" />-axis it becomes <InlineMath math="y=-x^2+2x" /> with vertex <InlineMath math="(1,1)" />. The translation arrow <InlineMath math="(3,1)" /> takes that vertex to <InlineMath math="(4,2)" />, the vertex of the final parabola <InlineMath math="y=-x^2+8x-14" />.</>}
+  labels={{
+    start: <InlineMath math="y=x^2-2x" />,
+    flip: <InlineMath math="y=-x^2+2x" />,
+    end: <InlineMath math="y=-x^2+8x-14" />,
+    "v-start": <InlineMath math="(1,-1)" />,
+    "v-flip": <InlineMath math="(1,1)" />,
+    "v-end": <InlineMath math="(4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6.5 },
+      y: { min: -3, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "x^2 - 2*x", domain: { min: -0.7, max: 2.7 } },
+      { id: "flip", kind: "function", appearance: "secondary", formula: "-x^2 + 2*x", domain: { min: -0.7, max: 2.7 } },
+      { id: "end", kind: "function", appearance: "answer", formula: "-x^2 + 8*x - 14", domain: { min: 1.8, max: 6.2 } },
+      { id: "shift", kind: "vector", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 4, y: 2 } },
+      { id: "v-start", kind: "point", appearance: "reference", at: { x: 1, y: -1 } },
+      { id: "v-flip", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "v-end", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 2.5, y: 1.25 }, placement: "right" },
+      { key: "flip", objectId: "flip", at: { x: -0.5, y: -1.25 }, placement: "below" },
+      { key: "end", objectId: "end", at: { x: 6, y: -2 }, placement: "left" },
+      { key: "v-start", objectId: "v-start", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "v-flip", objectId: "v-flip", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "v-end", objectId: "v-end", at: { x: 4, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check with the vertex. The vertex of <InlineMath math="y=x^2-2x" /> is <InlineMath math="(1,-1)" />. The reflection sends it to <InlineMath math="(1,1)" />, and the translation to <InlineMath math="(4,2)" />. In the final equation, <InlineMath math="-16+32-14=2" />, so the vertex is indeed <InlineMath math="(4,2)" />.
 
 So the image has equation <InlineMath math="y=-x^2+8x-14" />.

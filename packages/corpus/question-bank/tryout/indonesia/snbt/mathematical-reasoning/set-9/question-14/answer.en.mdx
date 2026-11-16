@@ -14,6 +14,20 @@ The total is <InlineMath math="3{,}290" /> minutes. Sleep debt is tracked night 
 
 On Monday night the user sleeps <InlineMath math="20" /> minutes over target, but the debt is still zero, so that extra is wasted.
 
+The chart below draws each night's effective sleep together with the sleep debt. **On Monday night the debt line stays at zero even though there's extra sleep**, and that's why the week ends with <InlineMath math="90" /> minutes of debt, not <InlineMath math="70" />.
+
+<Chart
+  title={<>Effective sleep and sleep debt each night</>}
+  description={<>The effective sleep from Monday to Sunday is <InlineMath math="500" />, <InlineMath math="375" />, <InlineMath math="380" />, <InlineMath math="515" />, <InlineMath math="360" />, <InlineMath math="600" />, and <InlineMath math="560" /> minutes. The sleep debt after each night is <InlineMath math="0" />, <InlineMath math="105" />, <InlineMath math="205" />, <InlineMath math="170" />, <InlineMath math="290" />, <InlineMath math="170" />, and <InlineMath math="90" /> minutes.</>}
+  categories={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
+  bars="apart"
+  series={[
+    { label: "Effective sleep (minutes)", mark: "bar", values: [500, 375, 380, 515, 360, 600, 560] },
+    { label: "Sleep debt (minutes)", mark: "line", values: [0, 105, 205, 170, 290, 170, 90] },
+  ]}
+  valueLabel="Minutes"
+/>
+
 # The first statement about the difference formula
 
 That formula gives <InlineMath math="7\times480-3{,}290=3{,}360-3{,}290=70" /> minutes. The real debt is <InlineMath math="90" /> minutes, because **the extra <InlineMath math="20" /> minutes on Monday night can't pay off debt that doesn't exist yet**. The formula only works if the debt never sits at zero when there's extra sleep. The first statement is false.

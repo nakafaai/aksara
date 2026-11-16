@@ -31,6 +31,17 @@ Höchstens <InlineMath math="48\text{ kg}" /> bedeutet höchstens <InlineMath ma
 
 Zum Vergleich: Null Rest gibt es erst bei <InlineMath math="5" /> Chargen, zum Beispiel bei <InlineMath math="49\text{ kg}" />: <InlineMath math="36{.}750-1{.}000=35{.}750=143\times250" />. Bis <InlineMath math="48\text{ kg}" /> ist die dritte Aussage wahr.
 
+Das Diagramm berechnet den Dark-Rest nach Anzahl der Durchgänge. **Der Rest wird erst bei <InlineMath math="5" /> Durchgängen null**, also bleibt bis <InlineMath math="48\text{ kg}" />, höchstens <InlineMath math="4" /> Durchgänge, immer etwas übrig.
+
+<Chart
+  title={<>Dark-Kaffee, der keinen Beutel füllt, nach Anzahl der Durchgänge</>}
+  description={<>Bei <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" /> Durchgängen nimmt die Verkostung <InlineMath math="200" /> bis <InlineMath math="1{.}000\text{ g}" />, und der Dark-Rest beträgt <InlineMath math="50" />, <InlineMath math="100" />, <InlineMath math="150" />, <InlineMath math="200" /> und <InlineMath math="0\text{ g}" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[{ label: "Dark-Rest (g)", mark: "bar", values: [1, 2, 3, 4, 5].map((b) => (250 - ((200 * b) % 250)) % 250) }]}
+  valueLabel="Rest (g)"
+/>
+
 # Die vierte Aussage über vierzig Beutel Light
 
 Höchstens <InlineMath math="12\text{ kg}" /> braucht nur eine Charge. **Am meisten Light liefert das größte Gewicht**, also <InlineMath math="12\text{ kg}" />.

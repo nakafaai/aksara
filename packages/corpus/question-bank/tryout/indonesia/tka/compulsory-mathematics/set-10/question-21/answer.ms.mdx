@@ -8,6 +8,48 @@ Selepas disusun, datanya ialah <InlineMath math="2,\ 3,\ 4,\ 6,\ 6,\ 7,\ 11,\ 17
 
 <BlockMath math="\text{median}=\frac{6+6}{2}=6\text{ jam}" />
 
+Plotkan lapan murid sebagai titik (masa belajar, markah). **Hanya tiga titik berada di kanan garis median <InlineMath math="6" /> jam**, dan dua titik yang tepat pada garis itu tidak dikira.
+
+<MathVisual
+  title={<>Masa belajar dan markah ujian lapan murid</>}
+  description={<>Paksi mendatar ialah masa belajar seminggu dalam jam, dan paksi tegak ialah markah ujian. Garis tegak pada <InlineMath math="6" /> jam ialah median masa belajar, dan Asri serta Indra tepat pada garis itu. Di kanannya ada Hana <InlineMath math="(7,\ 70)" />, Bima <InlineMath math="(11,\ 88)" />, dan Fajar <InlineMath math="(17,\ 82)" />, dan garis mendatar <InlineMath math="80" /> ialah min markah mereka.</>}
+  labels={{
+    median: <InlineMath math="\text{median}=6" />,
+    mean: <InlineMath math="\bar x=80" />,
+    hana: <>Hana</>,
+    bima: <>Bima</>,
+    fajar: <>Fajar</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 19 },
+      y: { min: 50, max: 95 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "median", kind: "segment", appearance: "warning", from: { x: 6, y: 50 }, to: { x: 6, y: 92 } },
+      { id: "mean", kind: "segment", appearance: "answer", from: { x: 7, y: 80 }, to: { x: 17, y: 80 } },
+      { id: "asri", kind: "point", appearance: "secondary", at: { x: 6, y: 72 } },
+      { id: "bima", kind: "point", appearance: "answer", at: { x: 11, y: 88 } },
+      { id: "citra", kind: "point", appearance: "secondary", at: { x: 4, y: 66 } },
+      { id: "dani", kind: "point", appearance: "secondary", at: { x: 2, y: 56 } },
+      { id: "eka", kind: "point", appearance: "secondary", at: { x: 3, y: 58 } },
+      { id: "fajar", kind: "point", appearance: "answer", at: { x: 17, y: 82 } },
+      { id: "hana", kind: "point", appearance: "answer", at: { x: 7, y: 70 } },
+      { id: "indra", kind: "point", appearance: "secondary", at: { x: 6, y: 68 } },
+    ],
+    labels: [
+      { key: "median", objectId: "median", at: { x: 6, y: 92 }, placement: "above" },
+      { key: "mean", objectId: "mean", at: { x: 14, y: 80 }, placement: "above" },
+      { key: "hana", objectId: "hana", at: { x: 7, y: 70 }, placement: "right" },
+      { key: "bima", objectId: "bima", at: { x: 11, y: 88 }, placement: "above" },
+      { key: "fajar", objectId: "fajar", at: { x: 17, y: 82 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Murid yang dikira
 
 Syaratnya masa belajar **lebih daripada** <InlineMath math="6" />, jadi Asri dan Indra yang tepat <InlineMath math="6" /> jam tidak termasuk. Yang layak hanyalah Hana (<InlineMath math="7" /> jam), Bima (<InlineMath math="11" /> jam) dan Fajar (<InlineMath math="17" /> jam):

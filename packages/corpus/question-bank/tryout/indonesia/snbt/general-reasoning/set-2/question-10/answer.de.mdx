@@ -24,6 +24,20 @@ Beim <InlineMath math="7" />. Glied ist die Zahl <InlineMath math="2 \times 33 -
 
 Prüf es auf einem anderen Weg. Ohne Umlauf lauten die Alphabetstellen <InlineMath math="2, 4, 7, 12, 21, 38, 71" />, und ihre Abstände sind <InlineMath math="2, 3, 5, 9, 17, 33" />, genau die Zahlen der Folge. Die Stelle <InlineMath math="71" /> läuft zweimal um: <InlineMath math="71 - 52 = 19" />, also S. Dasselbe Ergebnis.
 
+Das Diagramm stellt beide Teile jedes Glieds nebeneinander. **Jeder Sprung der Linie der Buchstabenposition ist gleich dem Zahlenbalken des Glieds, von dem er ausgeht**.
+
+<Chart
+  title={<>Buchstabenposition ohne Umlauf und Zahl in den Gliedern <InlineMath math="1" /> bis <InlineMath math="7" /></>}
+  description={<>Ohne Rücksprung zu A lauten die Buchstabenpositionen <InlineMath math="2, 4, 7, 12, 21, 38, 71" />. Die Zahlen lauten <InlineMath math="2, 3, 5, 9, 17, 33, 65" />. Die Abstände der Buchstabenpositionen betragen <InlineMath math="2, 3, 5, 9, 17, 33" />, gleich der Zahl im vorigen Glied.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Buchstabenposition ohne Umlauf", mark: "line", values: [2, 4, 7, 12, 21, 38, 71] },
+    { label: "Zahl im Glied", mark: "bar", values: [2, 3, 5, 9, 17, 33, 65] },
+  ]}
+  bars="apart"
+  valueLabel="Wert"
+/>
+
 Die anderen Optionen entstehen durch diese Fehler:
 
 - <InlineMath math="\text{L}33" /> ist das <InlineMath math="6" />. Glied. Das passiert, wenn du einen Schritt zu früh aufhörst.

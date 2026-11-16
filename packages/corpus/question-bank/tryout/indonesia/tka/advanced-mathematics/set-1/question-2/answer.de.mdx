@@ -6,6 +6,18 @@ Die Determinante ist nicht null, also existiert <InlineMath math="A^{-1}" />. Be
 
 <BlockMath math="A^{-1}=\frac{1}{1}\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" />
 
+Das Diagramm vergleicht die beiden Seiten, von denen <InlineMath math="A^{-1}" /> multipliziert werden kann. **Nur die Multiplikation von rechts bringt <InlineMath math="A^{-1}" /> direkt neben <InlineMath math="A" />**, sodass <InlineMath math="AA^{-1}=I" /> verschwindet.
+
+<Mermaid
+  title={<>Von welcher Seite <InlineMath math="A^{-1}" /> multipliziert wird</>}
+  description={<>Der Hauptweg multipliziert <InlineMath math="XA=B" /> von rechts mit <InlineMath math="A^{-1}" />, sodass <InlineMath math="AA^{-1}" /> zu <InlineMath math="I" /> wird und <InlineMath math="X=BA^{-1}" /> bleibt. Der gestrichelte Weg multipliziert von links, sodass <InlineMath math="X" /> zwischen <InlineMath math="A^{-1}" /> und <InlineMath math="A" /> steht und nichts wegfällt.</>}
+  chart={`flowchart TD
+  E["X·A = B"] -->|"von rechts mit A⁻¹ multiplizieren"| R["X·A·A⁻¹ = B·A⁻¹"]
+  R --> X["X = B·A⁻¹"]
+  E -.->|"von links mit A⁻¹ multiplizieren"| W["A⁻¹·X·A = A⁻¹·B"]
+  W -.-> N["X steht zwischen A⁻¹ und A"]`}
+/>
+
 Multipliziere beide Seiten von <InlineMath math="XA=B" /> von rechts mit <InlineMath math="A^{-1}" />. Wegen <InlineMath math="AA^{-1}=I" /> bleibt links nur <InlineMath math="X" /> stehen.
 
 <BlockMath math="\begin{aligned}

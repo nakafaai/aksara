@@ -29,4 +29,18 @@ Pernyataan keempat tentang bibit yang mati. Bibit mati adalah bibit ditanam diku
 
 Separuh dari <InlineMath math="31{.}900" /> adalah <InlineMath math="15{.}950" />, dan Karangsari menyumbang <InlineMath math="18{.}000" />, sekitar <InlineMath math="56\%" />. Pernyataan keempat Benar. Jebakannya adalah memakai bagian Karangsari dari bibit yang ditanam, <InlineMath math="20{.}000 : 45{.}000 \approx 44\%" />, yang kurang dari separuh. Penyebut yang diminta adalah bibit yang mati, bukan bibit yang ditanam.
 
+Grafik berikut menggambar bibit yang mati di setiap desa. **Batang Karangsari sendirian sudah melewati garis separuh seluruh bibit mati**, walaupun bibit yang ditanamnya kurang dari separuh.
+
+<Chart
+  title={<>Bibit bakau yang mati sampai 2025 menurut desa</>}
+  description={<>Bibit yang mati di Karangsari <InlineMath math="18{.}000" />, di Muarabaru <InlineMath math="1{.}500" />, di Pasirkuning <InlineMath math="6{.}000" />, dan di Lontar <InlineMath math="6{.}400" />, sehingga jumlahnya <InlineMath math="31{.}900" />. Garis datar menandai separuhnya, <InlineMath math="15{.}950" />.</>}
+  bars="apart"
+  categories={["Karangsari", "Muarabaru", "Pasirkuning", "Lontar"]}
+  series={[
+    { label: "Bibit mati", mark: "bar", values: [20000 - 2000, 5000 - 3500, 12000 - 6000, 8000 - 1600] },
+    { label: "Separuh bibit mati", mark: "line", values: Array.from({ length: 4 }, () => (18000 + 1500 + 6000 + 6400) / 2) },
+  ]}
+  valueLabel="Banyak bibit"
+/>
+
 Jadi, pernyataan pertama dan keempat benar, sedangkan pernyataan kedua dan ketiga salah.

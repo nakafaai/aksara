@@ -10,6 +10,43 @@ There are <InlineMath math="30+x" /> students who aren't only children, with <In
 \text{all students}&:\ 40\text{ students},\ \text{total }112,\ \text{mean }2.8
 \end{aligned}" />
 
+Draw both means as <InlineMath math="k" /> new students with <InlineMath math="3" /> siblings join. **The two curves approach the line at <InlineMath math="3" /> from opposite sides**: the mean of all students rises from below, the mean of the students who aren't only children falls from above, and neither touches the line.
+
+<MathVisual
+  title={<>Two means as new students join</>}
+  description={<>The horizontal axis is the number of new students <InlineMath math="k" />, and the vertical axis is the mean number of siblings. The lower curve <InlineMath math="\tfrac{112+3k}{40+k}" /> starts at <InlineMath math="2.8" /> and rises towards <InlineMath math="3" />. The upper curve <InlineMath math="\tfrac{112+3k}{35+k}" /> starts at <InlineMath math="3.2" /> and falls towards <InlineMath math="3" />. The points at <InlineMath math="k=4" /> are <InlineMath math="\tfrac{124}{44}" /> and <InlineMath math="\tfrac{124}{39}" />.</>}
+  labels={{
+    all: <>all students</>,
+    rest: <>not only children</>,
+    three: <InlineMath math="3" />,
+    "all-four": <InlineMath math="\tfrac{124}{44}" />,
+    "rest-four": <InlineMath math="\tfrac{124}{39}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: 2.7, max: 3.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "all", kind: "function", appearance: "primary", formula: "(112 + 3*x)/(40 + x)", domain: { min: 0, max: 60 } },
+      { id: "rest", kind: "function", appearance: "secondary", formula: "(112 + 3*x)/(35 + x)", domain: { min: 0, max: 60 } },
+      { id: "three", kind: "function", appearance: "warning", formula: "3", domain: { min: 0, max: 60 } },
+      { id: "all-four", kind: "point", appearance: "answer", at: { x: 4, y: 124 / 44 } },
+      { id: "rest-four", kind: "point", appearance: "answer", at: { x: 4, y: 124 / 39 } },
+    ],
+    labels: [
+      { key: "all", objectId: "all", at: { x: 50, y: 262 / 90 }, placement: "below" },
+      { key: "rest", objectId: "rest", at: { x: 50, y: 262 / 85 }, placement: "above" },
+      { key: "three", objectId: "three", at: { x: 58, y: 3 }, placement: "above" },
+      { key: "all-four", objectId: "all-four", at: { x: 4, y: 124 / 44 }, placement: "below-right" },
+      { key: "rest-four", objectId: "rest-four", at: { x: 4, y: 124 / 39 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 The number <InlineMath math="3" /> **sits between the two means**, and that's the key to the first two statements.
 
 # Judging each statement

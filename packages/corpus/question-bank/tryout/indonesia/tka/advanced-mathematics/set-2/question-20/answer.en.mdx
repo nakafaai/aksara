@@ -11,6 +11,49 @@ Check: <InlineMath math="T(1,2)=(2+2,\ -1+2)=(4,1)" /> and <InlineMath math="T(3
 
 <BlockMath math="\begin{pmatrix} 2 & 1 \\ -1 & 1 \end{pmatrix}\begin{pmatrix} 2 \\ -1 \end{pmatrix}=\begin{pmatrix} 4-1 \\ -2-1 \end{pmatrix}=\begin{pmatrix} 3 \\ -3 \end{pmatrix}" />
 
+Draw the three points with their images under <InlineMath math="T=\begin{pmatrix} 2 & 1 \\ -1 & 1 \end{pmatrix}" />. **The two known pairs fix <InlineMath math="T" />**, and the same <InlineMath math="T" /> then carries the third point.
+
+<MathVisual
+  title={<>Three points and their images under <InlineMath math="T" /></>}
+  description={<>Arrows join each point to its image: <InlineMath math="(1,2)" /> to <InlineMath math="(4,1)" />, <InlineMath math="(3,5)" /> to <InlineMath math="(11,2)" />, and <InlineMath math="(2,-1)" /> to <InlineMath math="(3,-3)" />.</>}
+  labels={{
+    one: <InlineMath math="(1,2)" />,
+    "one-image": <InlineMath math="(4,1)" />,
+    two: <InlineMath math="(3,5)" />,
+    "two-image": <InlineMath math="(11,2)" />,
+    three: <InlineMath math="(2,-1)" />,
+    "three-image": <InlineMath math="(3,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 12 },
+      y: { min: -4, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "map-one", kind: "vector", appearance: "construction", from: { x: 1, y: 2 }, to: { x: 4, y: 1 } },
+      { id: "map-two", kind: "vector", appearance: "construction", from: { x: 3, y: 5 }, to: { x: 11, y: 2 } },
+      { id: "map-three", kind: "vector", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 3, y: -3 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "one-image", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 3, y: 5 } },
+      { id: "two-image", kind: "point", appearance: "primary", at: { x: 11, y: 2 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "three-image", kind: "point", appearance: "answer", at: { x: 3, y: -3 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "one-image", objectId: "one-image", at: { x: 4, y: 1 }, placement: "below" },
+      { key: "two", objectId: "two", at: { x: 3, y: 5 }, placement: "above" },
+      { key: "two-image", objectId: "two-image", at: { x: 11, y: 2 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: 2, y: -1 }, placement: "left" },
+      { key: "three-image", objectId: "three-image", at: { x: 3, y: -3 }, placement: "right" },
+    ],
+  }}
+/>
+
 A route without the matrix gives the same answer. Write <InlineMath math="(2,-1)=-13(1,2)+5(3,5)" />. Because <InlineMath math="T" /> is linear, the image is <InlineMath math="-13(4,1)+5(11,2)=(3,-3)" />.
 
 So the image of <InlineMath math="(2,-1)" /> is <InlineMath math="(3,-3)" />.

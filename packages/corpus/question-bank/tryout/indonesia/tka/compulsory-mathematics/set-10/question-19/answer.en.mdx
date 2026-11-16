@@ -35,6 +35,47 @@ Once the block is out, the remaining water spreads over the whole base of the ta
 
 <BlockMath math="\text{water level}=\frac{92{,}400}{3{,}080}=30\text{ cm}" />
 
+Draw the water height as a function of the water volume, with and without the concrete block. **While the block is inside, the water rises faster and stops at the <InlineMath math="40\text{ cm}" /> rim**. Once the block is lifted out, the same volume drops onto the gentler line.
+
+<MathVisual
+  title={<>Water height by water volume in the tank</>}
+  description={<>The horizontal axis is the water volume in thousands of <InlineMath math="\text{cm}^3" />, and the vertical axis is the water height in cm. The steep line <InlineMath math="h=\tfrac{V}{2{,}310}" /> holds while the block is in the tank, and the gentle line <InlineMath math="h=\tfrac{V}{3{,}080}" /> holds after the block is lifted out. The starting water, <InlineMath math="73.92" /> thousand <InlineMath math="\text{cm}^3" />, stands at <InlineMath math="32" />. After pouring, the water stops at the rim at a volume of <InlineMath math="92.4" /> thousand <InlineMath math="\text{cm}^3" />, and that volume without the block stands at <InlineMath math="30" />.</>}
+  labels={{
+    with: <>with block</>,
+    without: <>without block</>,
+    rim: <InlineMath math="40" />,
+    start: <InlineMath math="(73.92,\ 32)" />,
+    full: <InlineMath math="(92.4,\ 40)" />,
+    after: <InlineMath math="(92.4,\ 30)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 105 },
+      y: { min: 0, max: 46 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "with", kind: "function", appearance: "primary", formula: "1000*x/2310", domain: { min: 0, max: 92.4 } },
+      { id: "without", kind: "function", appearance: "secondary", formula: "1000*x/3080", domain: { min: 0, max: 103.4 } },
+      { id: "rim", kind: "function", appearance: "warning", formula: "40", domain: { min: 0, max: 105 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 92.4, y: 40 }, to: { x: 92.4, y: 30 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 73.92, y: 32 } },
+      { id: "full", kind: "point", appearance: "primary", at: { x: 92.4, y: 40 } },
+      { id: "after", kind: "point", appearance: "answer", at: { x: 92.4, y: 30 } },
+    ],
+    labels: [
+      { key: "with", objectId: "with", at: { x: 46.2, y: 20 }, placement: "above-left" },
+      { key: "without", objectId: "without", at: { x: 61.6, y: 20 }, placement: "below-right" },
+      { key: "rim", objectId: "rim", at: { x: 10, y: 40 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 73.92, y: 32 }, placement: "left" },
+      { key: "full", objectId: "full", at: { x: 92.4, y: 40 }, placement: "above" },
+      { key: "after", objectId: "after", at: { x: 92.4, y: 30 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Check it another way. Before the lift, the submerged part of the block was <InlineMath math="40\text{ cm}" /> tall, with volume <InlineMath math="770\cdot40=30{,}800\text{ cm}^3" />. **The space the block leaves behind** makes the water drop <InlineMath math="\frac{30{,}800}{3{,}080}=10\text{ cm}" />, from <InlineMath math="40" /> to <InlineMath math="30\text{ cm}" />.
 
 So the water level in the tank is now <InlineMath math="30\text{ cm}" />.

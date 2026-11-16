@@ -17,6 +17,22 @@ The week-five target is <InlineMath math="1{,}200\text{ ppm}" />, so the solutio
 \text{stock A to add} &= 1{,}150-420=730\text{ ml}
 \end{aligned}" />
 
+The chart below works out the full tank's concentration for several amounts of added stock A. **The <InlineMath math="729\text{ ml}" /> bar is still just under the suitable band**, and the <InlineMath math="730\text{ ml}" /> bar touches its lower bound exactly.
+
+<Chart
+  title={<>Concentration of the <InlineMath math="200" />-litre tank by stock A added</>}
+  description={<>With <InlineMath math="600" />, <InlineMath math="700" />, <InlineMath math="729" />, <InlineMath math="730" />, and <InlineMath math="800\text{ ml}" /> of stock A added, the concentration is <InlineMath math="1{,}020" />, <InlineMath math="1{,}120" />, <InlineMath math="1{,}149" />, <InlineMath math="1{,}150" />, and <InlineMath math="1{,}220\text{ ppm}" />. Two flat lines mark the bounds of <InlineMath math="1{,}150" /> and <InlineMath math="1{,}250\text{ ppm}" />. The value axis starts at <InlineMath math="950" />.</>}
+  bars="apart"
+  categories={["600", "700", "729", "730", "800"]}
+  series={[
+    { label: "Concentration (ppm)", mark: "bar", values: [600, 700, 729, 730, 800].map((a) => ((420 + a) / 200) * 200) },
+    { label: "Lower bound 1,150", mark: "line", values: [1150, 1150, 1150, 1150, 1150] },
+    { label: "Upper bound 1,250", mark: "line", values: [1250, 1250, 1250, 1250, 1250] },
+  ]}
+  valueRange={{ min: 950, max: 1300 }}
+  valueLabel="Concentration (ppm)"
+/>
+
 # Checking
 
 After the top-up, the tank holds <InlineMath math="420+730=1{,}150\text{ ml}" /> of stock A in <InlineMath math="200" /> litres, so the concentration is <InlineMath math="\tfrac{1{,}150}{200}\cdot200=1{,}150\text{ ppm}" />. That's **right on the lower bound and still suitable**. With only <InlineMath math="729\text{ ml}" />, the concentration would be <InlineMath math="1{,}149\text{ ppm}" />, already outside the range.

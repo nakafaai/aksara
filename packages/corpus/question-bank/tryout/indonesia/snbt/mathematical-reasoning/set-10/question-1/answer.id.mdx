@@ -29,6 +29,22 @@ Massanya masih cukup, tetapi **panjang lajur yang tidak cukup**. Satu batas yang
 &= 1{.}250{.}000
 \end{aligned}" />
 
+Grafik berikut membandingkan muatan perjalanan kedua tanpa dan dengan truk ke-<InlineMath math="9" />. **Batang massa masih di bawah garisnya, tetapi batang panjang melewati <InlineMath math="40\text{ m}" />**, jadi truk itu tertahan.
+
+<Chart
+  title={<>Panjang lajur dan massa perjalanan kedua tanpa dan dengan truk ke-<InlineMath math="9" /></>}
+  description={<>Lima mobil dan satu pikap memakai <InlineMath math="31\text{ m}" /> dan berbobot <InlineMath math="13\text{ ton}" />. Jika truk ke-<InlineMath math="9" /> ikut, panjangnya menjadi <InlineMath math="41\text{ m}" /> dan massanya <InlineMath math="28\text{ ton}" />. Dua garis datar menandai batas <InlineMath math="40\text{ m}" /> dan <InlineMath math="30\text{ ton}" />.</>}
+  categories={["Tanpa truk ke-9", "Dengan truk ke-9"]}
+  bars="apart"
+  series={[
+    { label: "Panjang lajur (m)", mark: "bar", values: [5 * 5 + 6, 5 * 5 + 6 + 10] },
+    { label: "Massa (ton)", mark: "bar", values: [5 * 2 + 3, 5 * 2 + 3 + 15] },
+    { label: "Batas panjang 40 m", mark: "line", values: [40, 40] },
+    { label: "Batas massa 30 ton", mark: "line", values: [30, 30] },
+  ]}
+  valueLabel="Nilai"
+/>
+
 # Pemeriksaan dengan seluruh tarif
 
 Teruskan pemuatannya. Truk pada urutan <InlineMath math="9" /> dan bus berikutnya bermassa <InlineMath math="15+16=31\text{ ton}" />, jadi truk berangkat sendiri. Dua bus bermassa <InlineMath math="16+16=32\text{ ton}" />, jadi **setiap bus berangkat sendiri**. Antrean habis dalam <InlineMath math="5" /> perjalanan, dan setiap kendaraan ikut tepat satu kali.

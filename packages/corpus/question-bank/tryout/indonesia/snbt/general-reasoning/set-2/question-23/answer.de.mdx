@@ -19,6 +19,20 @@ Mit einem Zähler beträgt der Verbrauch <InlineMath math="110+35=145\text{ kWh}
 
 Der Unterschied ist <InlineMath math="256{.}000-252{.}000=4{.}000" />. Die eingesparte Grundgebühr von <InlineMath math="\text{Rp}25{.}000" /> verliert gegen den Anstieg der Verbrauchskosten. Ohne Grundgebühr zahlt ein Zähler <InlineMath math="231{.}000" />, zwei Zähler zahlen <InlineMath math="160{.}000+42{.}000=202{.}000" />, die Verbrauchskosten steigen also um <InlineMath math="29{.}000" /> Rupiah.
 
+Das Diagramm teilt beide Zahlungswege in Verbrauchskosten und Grundgebühr. **Die gesparte Grundgebühr ist kleiner als der Anstieg der Verbrauchskosten**, also ist ein Zähler sogar etwas teurer.
+
+<Chart
+  title={<>Juni-Rechnung der beiden Familien mit zwei Zählern und mit einem Zähler</>}
+  description={<>Mit zwei Zählern betragen die Verbrauchskosten <InlineMath math="\text{Rp}202{.}000" /> und die Grundgebühren <InlineMath math="\text{Rp}50{.}000" />, also <InlineMath math="\text{Rp}252{.}000" />. Mit einem Zähler betragen die Verbrauchskosten <InlineMath math="\text{Rp}231{.}000" /> und die Grundgebühr <InlineMath math="\text{Rp}25{.}000" />, also <InlineMath math="\text{Rp}256{.}000" />.</>}
+  categories={["Zwei Zähler", "Ein Zähler"]}
+  bars="apart"
+  series={[
+    { label: "Verbrauchskosten", mark: "bar", values: [40 * 1200 + 70 * 1600 + 35 * 1200, 40 * 1200 + 80 * 1600 + 25 * 2200] },
+    { label: "Grundgebühr", mark: "bar", values: [2 * 25000, 25000] },
+  ]}
+  valueLabel="Kosten (Rupiah)"
+/>
+
 Prüf diesen Anstieg Kilowattstunde für Kilowattstunde. Alle <InlineMath math="35" /> kWh von Familie Lestari verlieren den Tarif von Block I und rutschen in Block II, das sind <InlineMath math="400" /> Rupiah mehr pro kWh, also <InlineMath math="35\times400=14{.}000" />. Dadurch werden <InlineMath math="25" /> kWh von Block II in Block III geschoben und kosten <InlineMath math="600" /> Rupiah mehr pro kWh, also <InlineMath math="25\times600=15{.}000" />. Zusammen sind das <InlineMath math="29{.}000" />, genau wie oben.
 
 Die anderen Optionen locken, weil jede nur einen Teil der Änderung erfasst:

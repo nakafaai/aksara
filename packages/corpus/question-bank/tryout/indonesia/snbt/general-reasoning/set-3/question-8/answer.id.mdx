@@ -4,6 +4,18 @@ Pembaginya adalah <InlineMath math="300" /> pengunjung ruang baca. Jadi, <Inline
 
 Masalah yang lebih dalam ada pada sampelnya. Survei dilakukan di ruang baca, jadi **hanya orang yang sudah datang ke perpustakaan yang bisa ditanya**. Penunggak yang belum kembali tidak mungkin berada di ruang baca, jadi mereka tidak pernah bisa tertangkap survei. Sampel seperti ini tidak mewakili seluruh penunggak, dan tidak bisa mengukur berapa bagian penunggak yang kembali.
 
+Diagram berikut memperlihatkan siapa saja yang bisa terjaring survei. **Hanya penunggak yang sudah kembali yang bisa duduk di ruang baca**, sehingga yang belum kembali tidak pernah terhitung.
+
+<Mermaid
+  title={<>Siapa yang dapat terjaring survei ruang baca</>}
+  description={<>Dari <InlineMath math="1{.}500" /> penunggak, sebagian sudah kembali dan sebagian belum. Hanya yang sudah kembali yang bisa ditemui di ruang baca, dan di sana mereka tercatat <InlineMath math="120" /> dari <InlineMath math="300" /> pengunjung. Penunggak yang belum kembali tidak pernah masuk survei.</>}
+  chart={`flowchart LR
+    A["1.500 penunggak denda"] --> B["Sudah kembali"]
+    A --> C["Belum kembali"]
+    B --> D["Bisa ditemui di ruang baca: 120 dari 300 pengunjung"]
+    C -.->|"tidak datang"| E["Tidak pernah masuk survei"]`}
+/>
+
 Pilihan lain gugur karena alasan berikut.
 
 - Ukuran <InlineMath math="300" /> bukan inti masalahnya. Survei terhadap <InlineMath math="3{.}000" /> pengunjung pun tetap hanya menjangkau orang yang sudah datang. Yang salah adalah siapa yang disurvei, bukan berapa banyak.

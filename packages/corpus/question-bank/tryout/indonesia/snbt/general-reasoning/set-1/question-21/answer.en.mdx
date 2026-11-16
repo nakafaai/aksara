@@ -19,6 +19,20 @@ Now build the sequence from the bottom up. Add each new second difference to the
 
 The seventh term, <InlineMath math="99" />, and the eighth term, <InlineMath math="157" />, are still not more than <InlineMath math="200" />. The ninth term, <InlineMath math="235" />, is the first one that goes past it.
 
+The chart below draws the first nine terms. **The bar for term <InlineMath math="8" /> is still under the <InlineMath math="200" /> line**, and the bar for term <InlineMath math="9" /> is the first one past it.
+
+<Chart
+  title={<>Terms <InlineMath math="1" /> to <InlineMath math="9" /> of the sequence</>}
+  description={<>The terms are <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="7" />, <InlineMath math="15" />, <InlineMath math="31" />, <InlineMath math="58" />, <InlineMath math="99" />, <InlineMath math="157" />, and <InlineMath math="235" />. The flat line marks <InlineMath math="200" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+  series={[
+    { label: "Term value", mark: "bar", values: [3, 4, 7, 15, 31, 58, 58 + 41, 58 + 41 + 58, 58 + 41 + 58 + 78] },
+    { label: "Limit 200", mark: "line", values: Array.from({ length: 9 }, () => 200) },
+  ]}
+  valueLabel="Term value"
+/>
+
 Check it the other way round. The new first differences are <InlineMath math="41, 58, 78" />, and the gaps between them are <InlineMath math="17" /> and <InlineMath math="20" />. Both continue the pattern <InlineMath math="2, 5, 8, 11, 14" />, which rises by <InlineMath math="3" />, so the work is consistent.
 
 Two wrong shortcuts are common. If you treat the second difference as a constant <InlineMath math="11" />, the sequence becomes <InlineMath math="96, 145, 205" />, and you'd answer <InlineMath math="205" />. If you stop at the very next term, you get <InlineMath math="99" />, but <InlineMath math="99" /> hasn't passed <InlineMath math="200" /> yet.

@@ -19,6 +19,20 @@ Dengan satu meteran, pemakaiannya <InlineMath math="110+35=145\text{ kWh}" />. A
 
 Selisihnya <InlineMath math="256{.}000-252{.}000=4{.}000" />. Biaya beban yang hilang, <InlineMath math="\text{Rp}25{.}000" />, kalah oleh kenaikan biaya pemakaian. Tanpa biaya beban, satu meteran membayar <InlineMath math="231{.}000" />, sedangkan dua meteran membayar <InlineMath math="160{.}000+42{.}000=202{.}000" />, jadi biaya pemakaian naik <InlineMath math="29{.}000" /> rupiah.
 
+Grafik berikut memecah tagihan kedua cara menjadi biaya pemakaian dan biaya beban. **Biaya beban yang hilang lebih kecil daripada kenaikan biaya pemakaian**, jadi satu meteran justru sedikit lebih mahal.
+
+<Chart
+  title={<>Tagihan Juni kedua keluarga dengan dua meteran dan dengan satu meteran</>}
+  description={<>Dengan dua meteran, biaya pemakaiannya <InlineMath math="\text{Rp}202{.}000" /> dan biaya bebannya <InlineMath math="\text{Rp}50{.}000" />, jadi <InlineMath math="\text{Rp}252{.}000" />. Dengan satu meteran, biaya pemakaiannya <InlineMath math="\text{Rp}231{.}000" /> dan biaya bebannya <InlineMath math="\text{Rp}25{.}000" />, jadi <InlineMath math="\text{Rp}256{.}000" />.</>}
+  categories={["Dua meteran", "Satu meteran"]}
+  bars="apart"
+  series={[
+    { label: "Biaya pemakaian", mark: "bar", values: [40 * 1200 + 70 * 1600 + 35 * 1200, 40 * 1200 + 80 * 1600 + 25 * 2200] },
+    { label: "Biaya beban", mark: "bar", values: [2 * 25000, 25000] },
+  ]}
+  valueLabel="Biaya (rupiah)"
+/>
+
 Cek kenaikan itu dari sisi kWh. Semua <InlineMath math="35" /> kWh milik Lestari kehilangan tarif Blok I dan naik ke tarif Blok II, yaitu <InlineMath math="400" /> rupiah lebih mahal per kWh, totalnya <InlineMath math="35\times400=14{.}000" />. Akibatnya, <InlineMath math="25" /> kWh terdorong dari Blok II ke Blok III dan naik <InlineMath math="600" /> rupiah per kWh, totalnya <InlineMath math="25\times600=15{.}000" />. Jumlahnya <InlineMath math="29{.}000" />, sama dengan hitungan di atas.
 
 Pilihan lain menggoda karena masing-masing hanya menangkap sebagian perubahan:

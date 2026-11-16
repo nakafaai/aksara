@@ -7,6 +7,20 @@ Die vier Aussagen benutzen **verschiedene Bezugsgrößen**: pro Medikamentengabe
 | Nacht | <InlineMath math="2{.}000" /> | <InlineMath math="18" /> | <InlineMath math="\tfrac{18}{2{.}000}\cdot 1{.}000=9" /> | <InlineMath math="18:2=9" /> |
 | Summe | <InlineMath math="13{.}200" /> | <InlineMath math="78" /> | | |
 
+Das Diagramm stellt beide Maße nebeneinander. **Die Spätschicht liegt pro Tausend über der Frühschicht, pro Pflegekraft aber gleichauf**, und der Balken für die ganze Station liegt unter <InlineMath math="6" />.
+
+<Chart
+  title={<>Zwei Fehlermaße nach Schicht, Januar bis März</>}
+  description={<>Fehler pro <InlineMath math="1{.}000" /> Medikamentengaben: Frühschicht <InlineMath math="5" />, Spätschicht <InlineMath math="6" />, Nachtschicht <InlineMath math="9" /> und die ganze Station etwa <InlineMath math="5{,}9" />. Fehler pro Pflegekraft: Frühschicht <InlineMath math="6" />, Spätschicht <InlineMath math="6" /> und Nachtschicht <InlineMath math="9" />.</>}
+  categories={["Frühschicht", "Spätschicht", "Nachtschicht", "Ganze Station"]}
+  bars="apart"
+  series={[
+    { label: "Fehler pro 1.000 Medikamentengaben", mark: "bar", values: [(36 / 7200) * 1000, (24 / 4000) * 1000, (18 / 2000) * 1000, (78 / 13200) * 1000] },
+    { label: "Fehler pro Pflegekraft", mark: "bar", values: [36 / 6, 24 / 4, 18 / 2, null] },
+  ]}
+  valueLabel="Anzahl Fehler"
+/>
+
 Aussage 1 ist richtig. Sie enthält zwei Brüche mit verschiedenen Nennern. Ein Sechstel von <InlineMath math="13{.}200" /> ist <InlineMath math="2{.}200" />, und die Nachtschicht gibt nur <InlineMath math="2{.}000" /> Medikamente, also weniger als ein Sechstel. Ein Fünftel von <InlineMath math="78" /> ist <InlineMath math="15{,}6" />, und die Nachtschicht verursacht <InlineMath math="18" /> Fehler, also mehr als ein Fünftel.
 
 Aussage 2 ist falsch. Pro Pflegekraft haben Spät- und Frühschicht beide <InlineMath math="6" /> Fehler, die Spätschicht liegt also nicht höher. Die Falle: Du überträgst die Reihenfolge der Quoten pro <InlineMath math="1{.}000" /> Gaben (Spät <InlineMath math="6" />, Früh <InlineMath math="5" />) auf den Vergleich pro Pflegekraft. Die beiden Reihenfolgen unterscheiden sich, weil jede Pflegekraft der Frühschicht <InlineMath math="7{.}200:6=1{.}200" /> Gaben übernimmt, jede der Spätschicht nur <InlineMath math="4{.}000:4=1{.}000" />.

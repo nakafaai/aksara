@@ -26,6 +26,20 @@ Banyak truk harus bulat, jadi paling sedikit <InlineMath math="8" /> truk.
 
 Cek kedua sisi batasnya. Dengan <InlineMath math="8" /> truk, stok menjadi <InlineMath math="51+48=99" />, lalu pada lima akhir minggu berikutnya <InlineMath math="88, 77, 66, 55, 44" />. Semuanya paling sedikit <InlineMath math="40" />. Dengan <InlineMath math="7" /> truk, stok menjadi <InlineMath math="93" />, lalu <InlineMath math="82, 71, 60, 49, 38" />. Minggu kelima turun di bawah <InlineMath math="40" />, jadi <InlineMath math="7" /> truk tidak cukup.
 
+Grafik berikut mengikuti stok Bakung selama lima minggu sesudah tambahan beras. **Garis tujuh truk jatuh di bawah stok aman pada minggu terakhir**, sedangkan garis delapan truk tetap di atasnya.
+
+<Chart
+  title={<>Stok Gudang Bakung sesudah tambahan beras pada akhir minggu ke-<InlineMath math="9" /></>}
+  description={<>Dengan <InlineMath math="8" /> truk, stoknya <InlineMath math="99" /> ton pada minggu ke-<InlineMath math="9" />, lalu <InlineMath math="88" />, <InlineMath math="77" />, <InlineMath math="66" />, <InlineMath math="55" />, dan <InlineMath math="44" /> ton. Dengan <InlineMath math="7" /> truk, stoknya <InlineMath math="93" />, lalu <InlineMath math="82" />, <InlineMath math="71" />, <InlineMath math="60" />, <InlineMath math="49" />, dan <InlineMath math="38" /> ton. Garis datar menandai stok aman <InlineMath math="40" /> ton.</>}
+  categories={["9", "10", "11", "12", "13", "14"]}
+  series={[
+    { label: "Dengan 8 truk", mark: "line", values: [0, 1, 2, 3, 4, 5].map((j) => 51 + 6 * 8 - 11 * j) },
+    { label: "Dengan 7 truk", mark: "line", values: [0, 1, 2, 3, 4, 5].map((j) => 51 + 6 * 7 - 11 * j) },
+    { label: "Stok aman 40 ton", mark: "line", values: [40, 40, 40, 40, 40, 40] },
+  ]}
+  valueLabel="Stok (ton)"
+/>
+
 Beberapa jawaban keliru yang sering muncul:
 
 - <InlineMath math="7" /> truk muncul jika <InlineMath math="7{,}33" /> dibulatkan ke bawah. Hasil yang sama muncul jika susut dilupakan, karena truk lalu datang pada minggu ke-<InlineMath math="10" /> dengan stok <InlineMath math="50" /> dan penurunan hanya <InlineMath math="10" /> ton per minggu.

@@ -10,6 +10,20 @@ Berechne den Anstieg in jeder Zeile:
 
 Bei niedriger Dichte stiegen beide Gruppen um <InlineMath math="4" /> Punkte. Bei hoher Dichte stiegen die belüfteten Teiche um <InlineMath math="16 - 8 = 8" /> Punkte weniger als die Teiche ohne Belüfter.
 
+Das Diagramm stellt den Anstieg der Sterblichkeit beider Gruppen bei jeder Besatzdichte nebeneinander. **Bei niedriger Dichte sind beide Balken gleich hoch, bei hoher Dichte ist der Balken ohne Belüfter doppelt so hoch**.
+
+<Chart
+  title={<>Anstieg der durchschnittlichen Sterblichkeit vom früheren zum letzten Zyklus</>}
+  description={<>Bei niedriger Besatzdichte stiegen Becken mit und ohne Belüfter beide um <InlineMath math="4" /> Prozentpunkte. Bei hoher Besatzdichte stiegen Becken mit Belüfter um <InlineMath math="8" /> Prozentpunkte, Becken ohne Belüfter um <InlineMath math="16" />.</>}
+  categories={["Niedrige Besatzdichte", "Hohe Besatzdichte"]}
+  bars="apart"
+  series={[
+    { label: "Mit Belüfter", mark: "bar", values: [14 - 10, 30 - 22] },
+    { label: "Ohne Belüfter", mark: "bar", values: [14 - 10, 42 - 26] },
+  ]}
+  valueLabel="Anstieg der Sterblichkeit (Prozentpunkte)"
+/>
+
 Warum kommt Pak Rusdi dann auf denselben Anstieg von <InlineMath math="7" /> Punkten? Berechne die Gesamtdurchschnitte, gewichtet mit der Teichzahl:
 
 <BlockMath math="\begin{aligned} \text{Belüftet: } & \frac{5(10) + 15(22)}{20} = 19 \to \frac{5(14) + 15(30)}{20} = 26 \\ \text{Ohne Belüfter: } & \frac{15(10) + 5(26)}{20} = 14 \to \frac{15(14) + 5(42)}{20} = 21 \end{aligned}" />

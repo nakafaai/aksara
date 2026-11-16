@@ -31,6 +31,54 @@ Jetzt nutzt du die Bedingung für den Abstand zum Ursprung.
 |OP_2|&=\sqrt{7^2+5^2}=\sqrt{74}>5
 \end{aligned}" />
 
+Zeichne beide möglichen Zentren mit dem Kreis vom Radius <InlineMath math="5" /> um <InlineMath math="O" />. **Beide Zentren liegen auf der Mittelsenkrechten von <InlineMath math="AA'" />, aber nur <InlineMath math="P_1" /> liegt im Kreis**. Von <InlineMath math="P_1" /> aus wird der Pfeil zu <InlineMath math="B" /> um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn gedreht.
+
+<MathVisual
+  title={<>Das Drehzentrum und das Bild von <InlineMath math="B" /></>}
+  description={<>Die gestrichelte Linie ist die Mittelsenkrechte von <InlineMath math="AA'" />, also <InlineMath math="x-3y+8=0" />. Das mögliche Zentrum <InlineMath math="P_1(1,3)" /> liegt im Kreis <InlineMath math="|OP|<5" />, <InlineMath math="P_2(7,5)" /> liegt außerhalb. Von <InlineMath math="P_1" /> aus geht der Pfeil zu <InlineMath math="A(5,1)" /> in den Pfeil zu <InlineMath math="A'(3,7)" /> über, und der Pfeil zu <InlineMath math="B(4,6)" /> dreht sich genauso in den Pfeil zu <InlineMath math="B'(-2,6)" />.</>}
+  labels={{
+    a: <InlineMath math="A(5,1)" />,
+    "a-image": <InlineMath math="A'(3,7)" />,
+    centre: <InlineMath math="P_1(1,3)" />,
+    far: <InlineMath math="P_2(7,5)" />,
+    b: <InlineMath math="B(4,6)" />,
+    "b-image": <InlineMath math="B'(-2,6)" />,
+    limit: <InlineMath math="|OP|<5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 9 },
+      y: { min: -5.5, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "limit", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "bisector", kind: "function", appearance: "construction", formula: "(x + 8)/3", domain: { min: -5, max: 9 } },
+      { id: "to-a", kind: "vector", appearance: "secondary", from: { x: 1, y: 3 }, to: { x: 5, y: 1 } },
+      { id: "to-a-image", kind: "vector", appearance: "secondary", from: { x: 1, y: 3 }, to: { x: 3, y: 7 } },
+      { id: "to-b", kind: "vector", appearance: "primary", from: { x: 1, y: 3 }, to: { x: 4, y: 6 } },
+      { id: "to-b-image", kind: "vector", appearance: "answer", from: { x: 1, y: 3 }, to: { x: -2, y: 6 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "a-image", kind: "point", appearance: "secondary", at: { x: 3, y: 7 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 1, y: 3 } },
+      { id: "far", kind: "point", appearance: "warning", at: { x: 7, y: 5 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 4, y: 6 } },
+      { id: "b-image", kind: "point", appearance: "answer", at: { x: -2, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "a-image", objectId: "a-image", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "centre", objectId: "centre", at: { x: 1, y: 3 }, placement: "below" },
+      { key: "far", objectId: "far", at: { x: 7, y: 5 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "b-image", objectId: "b-image", at: { x: -2, y: 6 }, placement: "left" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: -5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Das Zentrum ist also <InlineMath math="P(1,3)" />, und **die Drehung läuft gegen den Uhrzeigersinn**. Kurze Kontrolle: <InlineMath math="\overrightarrow{PA}=(4,-2)" /> und <InlineMath math="\overrightarrow{PA'}=(2,4)" /> sind gleich lang, nämlich <InlineMath math="\sqrt{20}" />, und ihr Skalarprodukt ist <InlineMath math="8-8=0" />. Sie stehen also wirklich senkrecht aufeinander.
 
 # Das Bild von B

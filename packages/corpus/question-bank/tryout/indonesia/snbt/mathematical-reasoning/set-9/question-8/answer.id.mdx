@@ -10,6 +10,20 @@ Dua tim terkecil saja sudah <InlineMath math="9+10=19" /> orang, lebih dari <Inl
 
 Tiga tim terkecil sudah <InlineMath math="9+10+12=31" /> orang, lebih dari <InlineMath math="30" /> kursi bus. Jadi satu perjalanan bus paling banyak membawa dua tim. Dua tim mana pun muat di bus, karena dua tim terbesar hanya <InlineMath math="13+14=27" /> orang.
 
+Grafik berikut menaruh setiap tim di samping kapasitas minibus. **Setiap batang muat sendirian, tetapi dua batang terkecil saja sudah <InlineMath math="19" /> orang**, jadi satu minibus hanya bisa membawa satu tim.
+
+<Chart
+  title={<>Banyak anggota setiap tim dan kapasitas minibus</>}
+  description={<>Keenam tim beranggotakan <InlineMath math="9" />, <InlineMath math="10" />, <InlineMath math="12" />, <InlineMath math="12" />, <InlineMath math="13" />, dan <InlineMath math="14" /> orang. Garis datar menandai kapasitas minibus, <InlineMath math="14" /> orang.</>}
+  bars="apart"
+  categories={["9", "10", "12", "12", "13", "14"]}
+  series={[
+    { label: "Anggota tim", mark: "bar", values: [9, 10, 12, 12, 13, 14] },
+    { label: "Kapasitas minibus", mark: "line", values: [14, 14, 14, 14, 14, 14] },
+  ]}
+  valueLabel="Banyak orang"
+/>
+
 # Rencana termurah
 
 Misalkan ada <InlineMath math="b" /> perjalanan bus dan <InlineMath math="m" /> perjalanan minibus. Keenam tim harus terangkut, jadi <InlineMath math="2b+m\ge6" />, dengan <InlineMath math="b\le2" /> dan <InlineMath math="m\le4" />. Coba setiap nilai <InlineMath math="b" />.

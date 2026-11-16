@@ -19,6 +19,43 @@ x^2-x-6&=x-1 \\
 x^2-2x-5&=0
 \end{aligned}" />
 
+Draw both sides as graphs. **The two crossing points sit symmetrically about the line <InlineMath math="x=1" />**, so the two values of <InlineMath math="x" /> add up to <InlineMath math="2\cdot1=2" />.
+
+<MathVisual
+  title={<>The two sides of the determinant equation as graphs</>}
+  description={<>The parabola <InlineMath math="y=x^2-x-6" /> is the left determinant, and the line <InlineMath math="y=x-1" /> is the right determinant. They cross at <InlineMath math="x=1-\sqrt6" /> and <InlineMath math="x=1+\sqrt6" />, each <InlineMath math="\sqrt6" /> away from the vertical line <InlineMath math="x=1" />.</>}
+  labels={{
+    left: <InlineMath math="y=x^2-x-6" />,
+    right: <InlineMath math="y=x-1" />,
+    axis: <InlineMath math="x=1" />,
+    low: <InlineMath math="x=1-\sqrt6" />,
+    high: <InlineMath math="x=1+\sqrt6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 5 },
+      y: { min: -8, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x^2 - x - 6", domain: { min: -2.8, max: 4.6 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -3, max: 5 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 1, y: -8 }, to: { x: 1, y: 8 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 1 - Math.sqrt(6), y: -Math.sqrt(6) } },
+      { id: "high", kind: "point", appearance: "answer", at: { x: 1 + Math.sqrt(6), y: Math.sqrt(6) } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -2.5, y: 2.75 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 4.5, y: 3.5 }, placement: "below-right" },
+      { key: "axis", objectId: "axis", at: { x: 1, y: -8 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 1 - Math.sqrt(6), y: -Math.sqrt(6) }, placement: "left" },
+      { key: "high", objectId: "high", at: { x: 1 + Math.sqrt(6), y: Math.sqrt(6) }, placement: "above-left" },
+    ],
+  }}
+/>
+
 The discriminant of this quadratic is <InlineMath math="D=(-2)^2-4(1)(-5)=24" />. Since <InlineMath math="D>0" />, there are two different real values of <InlineMath math="x" />, namely <InlineMath math="x=1+\sqrt6" /> and <InlineMath math="x=1-\sqrt6" />. The sum-of-roots formula gives <InlineMath math="-\frac{b}{a}=-\frac{-2}{1}=2" />, and adding the roots directly gives the same value, <InlineMath math="(1+\sqrt6)+(1-\sqrt6)=2" />.
 
 So the sum of all real values of <InlineMath math="x" /> that satisfy the equation is <InlineMath math="2" />.

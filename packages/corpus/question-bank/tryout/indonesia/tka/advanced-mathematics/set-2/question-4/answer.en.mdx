@@ -23,6 +23,44 @@ C(6,8)&=1{,}800+2{,}000=3{,}800 \\
 C(18,0)&=300\cdot18=5{,}400
 \end{aligned}" />
 
+Draw the feasible region. **It opens up and to the right and has three corners**, so you only need to compare the cost at those three points.
+
+<MathVisual
+  title={<>Feasible region for the protein and fat needs</>}
+  description={<>The horizontal axis is the number of sacks of feed I, and the vertical axis is the number of sacks of feed II. The shaded region lies above the line <InlineMath math="2x+y=20" /> and above the line <InlineMath math="2x+3y=36" />, with corners <InlineMath math="(0,\ 20)" />, <InlineMath math="(6,\ 8)" />, and <InlineMath math="(18,\ 0)" />. The lowest cost is at <InlineMath math="(6,\ 8)" />.</>}
+  labels={{
+    protein: <InlineMath math="2x+y=20" />,
+    fat: <InlineMath math="2x+3y=36" />,
+    best: <InlineMath math="(6,\ 8)" />,
+    top: <InlineMath math="(0,\ 20)" />,
+    side: <InlineMath math="(18,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 24 },
+      y: { min: 0, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 26 }, { x: 0, y: 20 }, { x: 6, y: 8 }, { x: 18, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 26 }] },
+      { id: "protein", kind: "segment", appearance: "primary", from: { x: 0, y: 20 }, to: { x: 10, y: 0 } },
+      { id: "fat", kind: "segment", appearance: "secondary", from: { x: 0, y: 12 }, to: { x: 18, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 8 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 0, y: 20 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 18, y: 0 } },
+    ],
+    labels: [
+      { key: "protein", objectId: "protein", at: { x: 8, y: 4 }, placement: "below-left" },
+      { key: "fat", objectId: "fat", at: { x: 3, y: 10 }, placement: "below-left" },
+      { key: "best", objectId: "best", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "top", objectId: "top", at: { x: 0, y: 20 }, placement: "right" },
+      { key: "side", objectId: "side", at: { x: 18, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 So the minimum weekly cost is <InlineMath math="\text{Rp}3{,}800{,}000.00" />, by buying <InlineMath math="6" /> sacks of feed I and <InlineMath math="8" /> sacks of feed II.
 
 - <InlineMath math="\text{Rp}5{,}000{,}000.00" /> is the cost at the corner <InlineMath math="(0,20)" />, feed II only.

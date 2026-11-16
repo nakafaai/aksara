@@ -8,6 +8,20 @@ Damit die Zahlen gut lesbar bleiben, rechne mit Unfällen pro <InlineMath math="
 | Kreuzungen | <InlineMath math="20 : 40 = 0{,}50" /> | <InlineMath math="60 : 100 = 0{,}60" /> | plus genau <InlineMath math="20\%" /> |
 | Insgesamt | <InlineMath math="50 : 40 = 1{,}25" /> | <InlineMath math="75 : 100 = 0{,}75" /> | minus <InlineMath math="40\%" /> |
 
+Das Diagramm vergleicht das Risiko pro <InlineMath math="10{.}000" /> Fahrten in beiden Jahren. **Der Balken für Straßenabschnitte bricht ein, der für Kreuzungen steigt sogar**, also passt eine Gesamtzahl nicht auf jeden Teil.
+
+<Chart
+  title={<>Radunfälle pro <InlineMath math="10{.}000" /> Fahrten nach Ort</>}
+  description={<>Auf Straßenabschnitten fiel das Risiko von <InlineMath math="0{,}75" /> auf <InlineMath math="0{,}15" />. An Kreuzungen stieg es von <InlineMath math="0{,}50" /> auf <InlineMath math="0{,}60" />. Insgesamt fiel es von <InlineMath math="1{,}25" /> auf <InlineMath math="0{,}75" />.</>}
+  categories={["Straßenabschnitte", "Kreuzungen", "Insgesamt"]}
+  bars="apart"
+  series={[
+    { label: "2024", mark: "bar", values: [30 / 40, 20 / 40, 50 / 40] },
+    { label: "2025", mark: "bar", values: [15 / 100, 60 / 100, 75 / 100] },
+  ]}
+  valueLabel="Unfälle pro 10.000 Fahrten"
+/>
+
 Prüf jetzt die Schlussfolgerung, die mit einer Schätzung arbeitet. Wenn das Risiko pro Fahrt von 2024 weiter gegolten hätte, wäre die Zahl der Unfälle 2025 dieses Risiko mal <InlineMath math="100" /> Blöcke.
 
 <BlockMath math="\begin{aligned} \text{Straßenabschnitte: } 0{,}75 \times 100 &= 75 \text{ erwartet, tatsächlich } 15 \\ \text{Kreuzungen: } 0{,}50 \times 100 &= 50 \text{ erwartet, tatsächlich } 60 \end{aligned}" />

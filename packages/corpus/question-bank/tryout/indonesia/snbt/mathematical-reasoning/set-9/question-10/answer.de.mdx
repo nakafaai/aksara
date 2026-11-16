@@ -30,6 +30,20 @@ S_{10} &= 6{,}716+1{,}772+1{,}949+2{,}144+2{,}358+2{,}594=17{,}533
 
 Vergleiche mit <InlineMath math="2{,}5\times6{,}716=16{,}79" />. Weil <InlineMath math="17{,}533>16{,}79" />, ist die dritte Aussage wahr.
 
+Das Diagramm summiert die Wachstumsfaktoren aus der Tabelle. **Der Balken für Jahr <InlineMath math="10" /> überschreitet die Linie beim <InlineMath math="2{,}5" />-Fachen der Fünfjahressumme**, weil die Faktoren der späten Jahre viel größer sind.
+
+<Chart
+  title={<>Summe der Wachstumsfaktoren von Jahr <InlineMath math="1" /> bis Jahr <InlineMath math="n" /></>}
+  description={<>Die Summen der Faktoren betragen <InlineMath math="1{,}1" />, <InlineMath math="2{,}31" />, <InlineMath math="3{,}641" />, <InlineMath math="5{,}105" />, <InlineMath math="6{,}716" />, <InlineMath math="8{,}488" />, <InlineMath math="10{,}437" />, <InlineMath math="12{,}581" />, <InlineMath math="14{,}939" /> und <InlineMath math="17{,}533" /> für <InlineMath math="n=1" /> bis <InlineMath math="10" />. Die waagerechte Linie markiert <InlineMath math="2{,}5\times6{,}716=16{,}79" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Summe der Faktoren bis Jahr n", mark: "bar", values: [1.1, 2.31, 3.641, 5.105, 6.716, 8.488, 10.437, 12.581, 14.939, 17.533] },
+    { label: "2,5-fache Fünfjahressumme", mark: "line", values: Array.from({ length: 10 }, () => 2.5 * 6.716) },
+  ]}
+  valueLabel="Summe der Faktoren"
+/>
+
 # Die vierte Aussage über die Verdopplung
 
 Das Geld vom Anfang von Jahr <InlineMath math="1" /> ist bis zum Ende von Jahr <InlineMath math="7" /> genau <InlineMath math="7" />-mal gewachsen, sein Faktor ist also <InlineMath math="(1{,}1)^7=1{,}949" />. Dieser Faktor liegt **noch unter zwei**. Mehr als doppelt so viel ist es erst am Ende von Jahr <InlineMath math="8" />, mit dem Faktor <InlineMath math="2{,}144" />. Eine schnelle Schätzung wie <InlineMath math="72:10\approx7{,}2" /> Jahre verleitet zu Jahr <InlineMath math="7" />, aber die Tabelle sagt: noch nicht. Die vierte Aussage ist falsch.

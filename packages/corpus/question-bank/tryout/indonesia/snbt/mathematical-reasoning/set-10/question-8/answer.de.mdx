@@ -32,6 +32,21 @@ n &\ge \frac{4{.}800{.}000}{280{.}000}=17\tfrac{1}{7}
 
 Die Laufzeit muss eine ganze Zahl sein, also ist die kleinste mögliche Laufzeit <InlineMath math="18" /> Monate.
 
+Das Diagramm berechnet die Rate für Laufzeiten von <InlineMath math="12" /> bis <InlineMath math="20" /> Monaten. **Der Balken für <InlineMath math="17" /> Monate liegt noch knapp über der Grenzlinie**, und der erste Balken darunter gehört zu <InlineMath math="18" /> Monaten.
+
+<Chart
+  title={<>Monatliche Rate für Laufzeiten von <InlineMath math="12" /> bis <InlineMath math="20" /> Monaten</>}
+  description={<>Die Raten für <InlineMath math="12" /> bis <InlineMath math="20" /> Monate betragen <InlineMath math="472{.}000" />, <InlineMath math="490{.}000" />, <InlineMath math="463{.}000" />, <InlineMath math="440{.}000" />, <InlineMath math="420{.}000" />, <InlineMath math="403{.}000" />, <InlineMath math="387{.}000" />, <InlineMath math="373{.}000" /> und <InlineMath math="360{.}000" /> Rupiah. Die waagerechte Linie markiert die Grenze von <InlineMath math="\text{Rp}400{.}000" />. Die Werteachse beginnt bei <InlineMath math="\text{Rp}300{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 12}`)}
+  series={[
+    { label: "Monatliche Rate (Rupiah)", mark: "bar", values: Array.from({ length: 9 }, (_, i) => 1000 * Math.ceil((4800000 / (i + 12) + 4800000 * (i + 12 <= 12 ? 0.015 : 0.025)) / 1000)) },
+    { label: "Grenze Rp400.000", mark: "line", values: Array.from({ length: 9 }, () => 400000) },
+  ]}
+  valueRange={{ min: 300000, max: 500000 }}
+  valueLabel="Rate (Rupiah)"
+/>
+
 # Kontrolle an der Grenze
 
 Teste die Laufzeiten von <InlineMath math="17" /> und <InlineMath math="18" /> Monaten direkt.

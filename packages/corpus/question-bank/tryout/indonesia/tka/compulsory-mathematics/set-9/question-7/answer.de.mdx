@@ -43,6 +43,52 @@ Zwischen den beiden Fällen liegt eine **Lücke**, nämlich <InlineMath math="x=
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | <InlineMath math="K(x)" /> | <InlineMath math="579" /> | <InlineMath math="600" /> | <InlineMath math="636" /> | <InlineMath math="567" /> | <InlineMath math="591" /> | <InlineMath math="600" /> | <InlineMath math="600" /> | <InlineMath math="591" /> |
 
+Zeichne den Gewinn für beide Fälle mit der Linie bei <InlineMath math="600" />. **Die Gerätemiete lässt die Kurve direkt nach <InlineMath math="x=32" /> absacken**, also zerfällt der Teil der Kurve auf oder über der Linie in zwei Bereiche.
+
+<MathVisual
+  title={<>Tagesgewinn nach Anzahl der Taschen</>}
+  description={<>Die waagerechte Achse ist die Anzahl <InlineMath math="x" /> der Taschen, die senkrechte Achse der Gewinn in Tausend Rupiah. Die linke Kurve <InlineMath math="-x^2+80x-900" /> gilt bis <InlineMath math="x=32" /> und erreicht <InlineMath math="600" /> bei <InlineMath math="x=30" />. Die rechte Kurve <InlineMath math="-x^2+80x-984" /> beginnt bei <InlineMath math="(33,\ 567)" /> und liegt für <InlineMath math="36\le x\le44" /> auf oder über der Linie bei <InlineMath math="600" />. Die Strecken unten markieren die beiden Bereiche <InlineMath math="30\le x\le32" /> und <InlineMath math="36\le x\le44" />.</>}
+  labels={{
+    plain: <InlineMath math="-x^2+80x-900" />,
+    rent: <InlineMath math="-x^2+80x-984" />,
+    target: <InlineMath math="600" />,
+    low: <InlineMath math="(30,\ 600)" />,
+    drop: <InlineMath math="(33,\ 567)" />,
+    "range-one": <InlineMath math="30\le x\le32" />,
+    "range-two": <InlineMath math="36\le x\le44" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 26, max: 48 },
+      y: { min: 490, max: 660 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plain", kind: "function", appearance: "primary", formula: "-x^2 + 80*x - 900", domain: { min: 26, max: 32 } },
+      { id: "rent", kind: "function", appearance: "secondary", formula: "-x^2 + 80*x - 984", domain: { min: 33, max: 48 } },
+      { id: "target", kind: "function", appearance: "warning", formula: "600", domain: { min: 26, max: 48 } },
+      { id: "range-one", kind: "segment", appearance: "answer", from: { x: 30, y: 500 }, to: { x: 32, y: 500 } },
+      { id: "range-two", kind: "segment", appearance: "answer", from: { x: 36, y: 500 }, to: { x: 44, y: 500 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 30, y: 600 } },
+      { id: "high", kind: "point", appearance: "secondary", at: { x: 32, y: 636 } },
+      { id: "drop", kind: "point", appearance: "warning", at: { x: 33, y: 567 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 36, y: 600 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 44, y: 600 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain", at: { x: 27, y: 27 * 80 - 729 - 900 }, placement: "above-left" },
+      { key: "rent", objectId: "rent", at: { x: 46, y: 46 * 80 - 2116 - 984 }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 47, y: 600 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 30, y: 600 }, placement: "above-left" },
+      { key: "drop", objectId: "drop", at: { x: 33, y: 567 }, placement: "below" },
+      { key: "range-one", objectId: "range-one", at: { x: 31, y: 500 }, placement: "above" },
+      { key: "range-two", objectId: "range-two", at: { x: 40, y: 500 }, placement: "above" },
+    ],
+  }}
+/>
+
 Die Werte <InlineMath math="x=30" />, <InlineMath math="36" /> und <InlineMath math="44" /> liefern genau <InlineMath math="600" /> Gewinn, und alle drei zählen, weil mindestens <InlineMath math="600" /> verlangt ist.
 
 # Warum die anderen Antworten falsch sind

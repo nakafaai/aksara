@@ -11,6 +11,17 @@ Sieh dir das Muster von X in einem Zyklus von <InlineMath math="10" /> Minuten a
 | <InlineMath math="28" /> | <InlineMath math="1{.}440" /> | <InlineMath math="1{.}400" /> | <InlineMath math="+40" /> |
 | <InlineMath math="30" /> | <InlineMath math="1{.}440" /> | <InlineMath math="1{.}500" /> | <InlineMath math="-60" /> |
 
+Das Diagramm zeigt den Abstand der Maschinen aus der Tabelle. **Die Balken schwingen in jedem Zyklus über und unter null**, also hängt die Führung von der Minute ab.
+
+<Chart
+  title={<>Blattabstand zwischen Maschine X und Y am Ende jeder Arbeitsphase und Pause</>}
+  description={<>In den Minuten <InlineMath math="8" />, <InlineMath math="10" />, <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="28" /> und <InlineMath math="30" /> betragen die Blätter von X minus die von Y <InlineMath math="80" />, <InlineMath math="-20" />, <InlineMath math="60" />, <InlineMath math="-40" />, <InlineMath math="40" /> und <InlineMath math="-60" />.</>}
+  bars="apart"
+  categories={["8", "10", "18", "20", "28", "30"]}
+  series={[{ label: "Blätter von X minus Blätter von Y", mark: "bar", values: [480 - 400, 480 - 500, 960 - 900, 960 - 1000, 1440 - 1400, 1440 - 1500] }]}
+  valueLabel="Blattabstand"
+/>
+
 Aussage 1 ist Salah (falsch). Y holt X zum ersten Mal in der ersten Pause von X ein: X bleibt bei <InlineMath math="480" />, und Y erreicht <InlineMath math="480" /> in Minute <InlineMath math="480\div50=9{,}6" />. Sobald X wieder arbeitet, liegt X aber wieder vorne. In Minute <InlineMath math="13" /> hat X zum Beispiel <InlineMath math="480+3\times60=660" /> Blatt gedruckt, Y erst <InlineMath math="13\times50=650" />. Die Durchschnittsrate von X beträgt zwar <InlineMath math="480\div10=48" /> Blatt pro Minute, weniger als <InlineMath math="50" />, aber das heißt nicht, dass X in jedem Moment hinten liegt.
 
 Aussage 2 ist Benar (richtig). Minute <InlineMath math="30" /> ist das Ende des dritten Zyklus, X hat also <InlineMath math="3\times8=24" /> Minuten gearbeitet und <InlineMath math="24\times60=1{.}440" /> Blatt gedruckt. Y hat <InlineMath math="30\times50=1{.}500" /> Blatt gedruckt. Der Unterschied beträgt <InlineMath math="1{.}500-1{.}440=60" /> Blatt zugunsten von Y. Die schnelle Rechnung <InlineMath math="30\times60=1{.}800" /> ist falsch, weil sie so tut, als würde X nie anhalten.

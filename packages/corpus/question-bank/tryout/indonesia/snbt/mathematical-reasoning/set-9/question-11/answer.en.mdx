@@ -22,6 +22,20 @@ B_8 &= 9\times(2.144+1.949+1.772)+16\times(1.611+1.464+1.331+1.210+1.100) \\
 
 The year <InlineMath math="8" /> balance is past <InlineMath math="135" />. **The balance always goes up from one year to the next**, because of the new deposit and the growth, so every year before year <InlineMath math="7" /> is also below <InlineMath math="135" />.
 
+The chart below draws each year-end balance using the factors from the table. **The year <InlineMath math="7" /> bar is still just under the target line**, and the year <InlineMath math="8" /> bar clears it easily.
+
+<Chart
+  title={<>Pension balance at the end of each year</>}
+  description={<>The balances at the end of years <InlineMath math="1" /> to <InlineMath math="8" /> are <InlineMath math="9.9" />, <InlineMath math="20.79" />, <InlineMath math="32.769" />, <InlineMath math="53.645" />, <InlineMath math="76.614" />, <InlineMath math="101.879" />, <InlineMath math="129.668" />, and <InlineMath math="160.241" /> million rupiah. The flat line marks the target of <InlineMath math="135" /> million rupiah.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Year-end balance (million rupiah)", mark: "bar", values: [9.9, 20.79, 32.769, 53.645, 76.614, 101.879, 129.668, 160.241] },
+    { label: "Target 135 million", mark: "line", values: Array.from({ length: 8 }, () => 135) },
+  ]}
+  valueLabel="Balance (million rupiah)"
+/>
+
 # A year by year check
 
 Second route: each year, add the money going in, then multiply by <InlineMath math="1.1" />. The numbers are rounded to two decimal places.

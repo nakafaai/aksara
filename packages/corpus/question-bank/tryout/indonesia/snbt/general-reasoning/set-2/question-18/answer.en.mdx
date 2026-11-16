@@ -26,6 +26,20 @@ This table shows whose sentence matches their type in each option.
 | Raka liar, Sekar honest, Tegar honest | Match | Match | Match |
 | Raka honest, Sekar liar, Tegar liar | Match | No match | No match |
 
+The chart below counts the sentences that match their speaker's type in each option. **Only one option reaches the line at three**: Raka a liar, Sekar honest, and Tegar honest.
+
+<Chart
+  title={<>Number of sentences that match their speaker's type in each option</>}
+  description={<>Raka honest, Sekar honest, Tegar liar matches <InlineMath math="2" /> sentences. Raka honest, Sekar liar, Tegar honest matches <InlineMath math="1" />. Raka liar, Sekar honest, Tegar liar matches <InlineMath math="2" />. Raka liar, Sekar honest, Tegar honest matches <InlineMath math="3" />. Raka honest, Sekar liar, Tegar liar matches <InlineMath math="1" />. The labels list Raka, Sekar, Tegar, with H for honest and L for liar.</>}
+  categories={["H, H, L", "H, L, H", "L, H, L", "L, H, H", "H, L, L"]}
+  bars="apart"
+  series={[
+    { label: "Sentences that match", mark: "bar", values: [2, 1, 2, 3, 1] },
+    { label: "All three sentences", mark: "line", values: [3, 3, 3, 3, 3] },
+  ]}
+  valueLabel="Sentences that match"
+/>
+
 - Raka honest, Sekar honest, Tegar liar passes for Sekar and Tegar. The trap is running Sekar's sentence with Raka honest and never testing Raka's own claim, even though Tegar is the only liar.
 - Raka honest, Sekar liar, Tegar honest is exactly what denying Sekar's sentence gives. The trap is stopping there, even though this assignment has only one liar.
 - Raka liar, Sekar honest, Tegar liar forgets that Raka counts himself. With two liars, Raka's sentence would be true, yet Raka is a liar.

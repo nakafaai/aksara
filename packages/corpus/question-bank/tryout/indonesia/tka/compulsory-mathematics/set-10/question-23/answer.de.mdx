@@ -10,6 +10,48 @@ Nenn Gitas Note <InlineMath math="x" />. Die acht ursprünglichen Noten ergeben 
 x&>79
 \end{aligned}" />
 
+Zeichne die acht ursprünglichen Ergebnisse mit dem Bereich von Gitas Ergebnis. **Gitas ganzer Bereich liegt rechts von <InlineMath math="70" />**, also ändern sich die fünf kleinsten Werte nie, und Gitas Ergebnis kann unter <InlineMath math="82" /> oder über <InlineMath math="88" /> liegen.
+
+<MathVisual
+  title={<>Die ursprünglichen Ergebnisse und der Bereich von Gitas Ergebnis</>}
+  description={<>Die Punkte auf der unteren Linie sind die ursprünglichen Ergebnisse <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />, mit <InlineMath math="70" /> als <InlineMath math="5" />. von neun Werten. Die Strecke darüber ist Gitas mögliches Ergebnis, <InlineMath math="79<x\le100" />, mit offenem linkem Ende. Die Strecke reicht über <InlineMath math="82" /> und <InlineMath math="88" />.</>}
+  labels={{
+    gita: <InlineMath math="79<x\le100" />,
+    "score-5": <InlineMath math="70=5.\text{ Wert}" />,
+    "score-6": <InlineMath math="72" />,
+    "score-7": <InlineMath math="82" />,
+    "score-8": <InlineMath math="88" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 50, max: 102 },
+      y: { min: -1, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "score-1", kind: "point", appearance: "secondary", at: { x: 56, y: 0 } },
+      { id: "score-2", kind: "point", appearance: "secondary", at: { x: 58, y: 0 } },
+      { id: "score-3", kind: "point", appearance: "secondary", at: { x: 66, y: 0 } },
+      { id: "score-4", kind: "point", appearance: "secondary", at: { x: 68, y: 0 } },
+      { id: "score-5", kind: "point", appearance: "primary", at: { x: 70, y: 0 } },
+      { id: "score-6", kind: "point", appearance: "secondary", at: { x: 72, y: 0 } },
+      { id: "score-7", kind: "point", appearance: "secondary", at: { x: 82, y: 0 } },
+      { id: "score-8", kind: "point", appearance: "secondary", at: { x: 88, y: 0 } },
+      { id: "gita", kind: "segment", appearance: "answer", from: { x: 79, y: 0.6 }, to: { x: 100, y: 0.6 } },
+      { id: "gita-low", kind: "point", appearance: "answer", at: { x: 79, y: 0.6 } },
+    ],
+    labels: [
+      { key: "gita", objectId: "gita", at: { x: 89.5, y: 0.6 }, placement: "above" },
+      { key: "score-5", objectId: "score-5", at: { x: 70, y: 0 }, placement: "below" },
+      { key: "score-6", objectId: "score-6", at: { x: 72, y: 0 }, placement: "above" },
+      { key: "score-7", objectId: "score-7", at: { x: 82, y: 0 }, placement: "below" },
+      { key: "score-8", objectId: "score-8", at: { x: 88, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Außerdem gehen die Noten höchstens bis <InlineMath math="100" />, also sind Gitas mögliche Noten <InlineMath math="79<x\le100" />.
 
 # Jede Aussage prüfen

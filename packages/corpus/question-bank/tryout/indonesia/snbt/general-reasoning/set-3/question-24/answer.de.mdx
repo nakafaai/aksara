@@ -21,6 +21,17 @@ Aussage 3: Benar (richtig). Summiere jede Richtung über die sieben Tage.
 
 Karang Mas liegt mit <InlineMath math="100" /> Fahrgästen vorn. Der Mitarbeiter im Text hat sich täuschen lassen, weil Batu Lintang tatsächlich an vier Tagen vorn liegt: Dienstag, Mittwoch, Donnerstag und Samstag. Diese Vorsprünge sind aber klein: <InlineMath math="40 + 20 + 170 + 20 = 250" />. Karang Mas liegt nur am Montag und Sonntag vorn, dafür deutlich: <InlineMath math="200 + 150 = 350" />. Am Freitag sind beide gleich. An mehr Tagen vorn zu liegen heißt also nicht, in der Summe vorn zu liegen.
 
+Das Diagramm zeichnet den täglichen Abstand der beiden Richtungen. **Es gibt mehr Balken unter null, aber die zwei Balken über null sind viel länger**, also gewinnt Karang Mas trotzdem die Summe.
+
+<Chart
+  title={<>Fahrgäste ab Karang Mas minus Fahrgäste ab Batu Lintang an jedem Tag</>}
+  description={<>Karang Mas liegt am Montag mit <InlineMath math="200" /> und am Sonntag mit <InlineMath math="150" /> vorn. Batu Lintang liegt am Dienstag, Mittwoch, Donnerstag und Samstag mit <InlineMath math="40" />, <InlineMath math="20" />, <InlineMath math="170" /> und <InlineMath math="20" /> vorn. Am Freitag herrscht Gleichstand. Alle Abstände ergeben zusammen <InlineMath math="350-250=100" /> für Karang Mas.</>}
+  categories={["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]}
+  bars="apart"
+  series={[{ label: "Vorsprung von Karang Mas vor Batu Lintang", mark: "bar", values: [560 - 360, 340 - 380, 400 - 420, 380 - 550, 530 - 530, 640 - 660, 690 - 540] }]}
+  valueLabel="Abstand an Fahrgästen"
+/>
+
 Aussage 4: Salah (falsch). Samstag und Sonntag zusammen hatten <InlineMath math="1{.}300 + 1{.}230 = 2{.}530" /> Fahrgäste. Der Nenner muss die ganze Woche sein, also <InlineMath math="3{.}440 + 3{.}540 = 6{.}980" />.
 
 <BlockMath math="\frac{2{.}530}{6{.}980} \approx 36{,}2\% < 40\%" />

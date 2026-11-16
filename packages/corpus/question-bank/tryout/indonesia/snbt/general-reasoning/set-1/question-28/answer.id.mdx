@@ -19,6 +19,19 @@ Lambang <InlineMath math="\min" /> berarti nilai yang lebih kecil di antara kedu
 | <InlineMath math="9" /> | <InlineMath math="80" /> | <InlineMath math="72" /> |
 | <InlineMath math="10" /> | <InlineMath math="88" /> | <InlineMath math="72" /> |
 
+Grafik berikut menggambar kedua biaya menurut jam yang dihitung. **Kedua garis bertemu dua kali, pada <InlineMath math="4" /> jam dan <InlineMath math="8" /> jam**, dan sesudah <InlineMath math="8" /> jam garis Q menjadi datar karena batas harian.
+
+<Chart
+  title={<>Biaya ruang P dan ruang Q menurut jam yang dihitung</>}
+  description={<>Biaya ruang P tetap <InlineMath math="40" /> ribu rupiah sampai <InlineMath math="4" /> jam, lalu naik <InlineMath math="8" /> ribu per jam. Biaya ruang Q naik <InlineMath math="10" /> ribu per jam sampai tertahan di <InlineMath math="72" /> ribu rupiah. Keduanya sama pada <InlineMath math="4" /> jam, yaitu <InlineMath math="40" /> ribu, dan pada <InlineMath math="8" /> jam, yaitu <InlineMath math="72" /> ribu.</>}
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Ruang P", mark: "line", values: Array.from({ length: 10 }, (_, i) => (i + 1 <= 4 ? 40 : 40 + 8 * (i + 1 - 4))) },
+    { label: "Ruang Q", mark: "line", values: Array.from({ length: 10 }, (_, i) => Math.min(10 * (i + 1), 72)) },
+  ]}
+  valueLabel="Biaya (ribu rupiah)"
+/>
+
 **Pernyataan 1** bernilai Benar. Pemakaian lebih dari <InlineMath math="8" /> jam dihitung paling sedikit <InlineMath math="9" /> jam. Biaya P paling sedikit <InlineMath math="40+8\times5=80" /> ribu dan terus naik, sedangkan biaya Q tertahan di <InlineMath math="72" /> ribu. Jika batas atas Q dilupakan, biaya Q seolah-olah <InlineMath math="90" /> ribu atau lebih, dan pernyataannya keliru dinilai salah.
 
 **Pernyataan 2** bernilai Salah. Lama <InlineMath math="5" /> jam <InlineMath math="10" /> menit dihitung <InlineMath math="6" /> jam, jadi biayanya <InlineMath math="40+8\times2=56" /> ribu, tidak kurang dari <InlineMath math="50" /> ribu. Tanpa pembulatan, biaya itu seolah-olah hanya <InlineMath math="48" /> ribu ditambah sedikit, lalu tampak benar.

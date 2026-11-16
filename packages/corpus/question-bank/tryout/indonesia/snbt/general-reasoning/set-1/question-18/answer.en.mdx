@@ -20,6 +20,20 @@ Check with a table for all four suspects. T means true and F means false.
 
 Only the Kirana row has exactly one true statement, and that statement is Lutfi's.
 
+The chart below counts the true statements for each possible culprit. **Only Kirana's bar sits exactly on the line at one**, so Kirana is the culprit.
+
+<Chart
+  title={<>Number of true statements by who the culprit is</>}
+  description={<>If the culprit is Joko, <InlineMath math="2" /> statements are true. If Kirana, <InlineMath math="1" />. If Lutfi, <InlineMath math="3" />. If Maya, <InlineMath math="2" />. The flat line marks exactly one true statement.</>}
+  bars="apart"
+  categories={["Joko", "Kirana", "Lutfi", "Maya"]}
+  series={[
+    { label: "True statements", mark: "bar", values: [2, 1, 3, 2] },
+    { label: "Exactly one", mark: "line", values: [1, 1, 1, 1] },
+  ]}
+  valueLabel="True statements"
+/>
+
 The other options fail because of these slips.
 
 - Joko as culprit with Kirana truthful comes from trusting Kirana's accusation right away. In that case Maya's statement is true as well, so two statements are true.

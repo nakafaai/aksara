@@ -13,6 +13,47 @@ V_{\text{baki}}&=\frac13\pi\cdot3^2\cdot6=18\pi\text{ cm}^3 \\
 &=\left(\tfrac12\right)^3\cdot144\pi
 \end{aligned}" />
 
+Lukis keratan rentas corong dan silinder. **Air yang tinggal ialah kon kecil setinggi separuh corong, tetapi isinya cuma <InlineMath math="\tfrac18" /> daripada air asal**, jadi hampir semua air berpindah ke silinder.
+
+<MathVisual
+  title={<>Keratan rentas corong dan silinder</>}
+  description={<>Di kiri, keratan rentas corong: segi tiga dengan jejari mulut <InlineMath math="6" /> dan tinggi <InlineMath math="12" />. Air yang tinggal ialah segi tiga kecil setinggi <InlineMath math="6" /> dengan jejari permukaan <InlineMath math="3" />. Di kanan, keratan rentas silinder berjejari <InlineMath math="3" /> dengan air setinggi <InlineMath math="14" />.</>}
+  labels={{
+    mouth: <InlineMath math="r=6" />,
+    full: <InlineMath math="12" />,
+    left: <InlineMath math="r=3" />,
+    level: <InlineMath math="6" />,
+    tube: <InlineMath math="r=3" />,
+    water: <InlineMath math="t=14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 18 },
+      y: { min: -1, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "funnel", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6, y: 12 }, { x: -6, y: 12 }] },
+      { id: "left", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
+      { id: "mouth", kind: "segment", appearance: "construction", from: { x: 0, y: 12 }, to: { x: 6, y: 12 } },
+      { id: "full", kind: "segment", appearance: "construction", from: { x: -7, y: 0 }, to: { x: -7, y: 12 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: -4, y: 6 } },
+      { id: "tube", kind: "polygon", appearance: "reference", vertices: [{ x: 10, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 16 }, { x: 10, y: 16 }] },
+      { id: "water", kind: "polygon", appearance: "answer", vertices: [{ x: 10, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 14 }, { x: 10, y: 14 }] },
+    ],
+    labels: [
+      { key: "mouth", objectId: "mouth", at: { x: 3, y: 12 }, placement: "above" },
+      { key: "full", objectId: "full", at: { x: -7, y: 9 }, placement: "left" },
+      { key: "left", objectId: "left", at: { x: 1.5, y: 6 }, placement: "above" },
+      { key: "level", objectId: "level", at: { x: -4, y: 3 }, placement: "left" },
+      { key: "tube", objectId: "tube", at: { x: 13, y: 16 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 16, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi air yang tinggal hanya <InlineMath math="\frac18" /> daripada air asal. **Separuh tinggi hanya memuatkan satu perlapan isi padu**, kerana bahagian corong yang lebar berada di atas.
 
 # Air yang masuk ke dalam silinder

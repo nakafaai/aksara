@@ -24,6 +24,19 @@ Periksa pernyataan (2). Karena skornya berbeda, selisih <InlineMath math="c-a" /
 
 Ada dua kemungkinan, yaitu <InlineMath math="5,\ 6,\ 7" /> dan <InlineMath math="4,\ 6,\ 8" />. Skor tertingginya bisa <InlineMath math="7" /> atau <InlineMath math="8" />, jadi pernyataan (2) saja tidak cukup.
 
+Diagram berikut menaruh kedua pernyataan berdampingan. **Pernyataan (1) hanya menyisakan satu susunan skor, sedangkan pernyataan (2) menyisakan dua**.
+
+<Mermaid
+  title={<>Susunan skor yang tersisa pada setiap pernyataan</>}
+  description={<>Ketiga skor berbeda dan berjumlah <InlineMath math="18" />. Dengan skor terendah <InlineMath math="5" />, hanya susunan <InlineMath math="5, 6, 7" /> yang mungkin, jadi skor tertinggi <InlineMath math="7" />. Dengan selisih kurang dari <InlineMath math="5" />, susunan <InlineMath math="5, 6, 7" /> dan <InlineMath math="4, 6, 8" /> sama-sama mungkin.</>}
+  chart={`flowchart LR
+    A["Tiga skor berbeda, jumlah 18"] --> B["Pernyataan 1: terendah 5"]
+    A --> C["Pernyataan 2: selisih kurang dari 5"]
+    B --> D["Hanya 5, 6, 7: tertinggi 7"]
+    C --> E["5, 6, 7: tertinggi 7"]
+    C --> F["4, 6, 8: tertinggi 8"]`}
+/>
+
 Pilihan lain muncul dari pemeriksaan yang berhenti terlalu cepat:
 
 - "Dua pernyataan bersama-sama cukup" dipilih kalau kamu menganggap <InlineMath math="b+c=13" /> masih punya banyak jawaban dan lupa bahwa syarat <InlineMath math="5<b<c" /> hanya menyisakan <InlineMath math="6" /> dan <InlineMath math="7" />.

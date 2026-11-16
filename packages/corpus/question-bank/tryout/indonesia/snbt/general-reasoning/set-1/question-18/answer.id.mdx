@@ -20,6 +20,20 @@ Periksa dengan tabel untuk keempat calon pelaku. Huruf B berarti benar dan S ber
 
 Hanya baris Kirana yang memiliki tepat satu pernyataan benar, dan pernyataan itu milik Lutfi.
 
+Grafik berikut menghitung pernyataan yang benar untuk setiap kemungkinan pelaku. **Hanya batang Kirana yang tepat menyentuh garis satu**, jadi Kiranalah pelakunya.
+
+<Chart
+  title={<>Banyak pernyataan benar menurut siapa pelakunya</>}
+  description={<>Jika pelakunya Joko, ada <InlineMath math="2" /> pernyataan benar. Jika Kirana, ada <InlineMath math="1" />. Jika Lutfi, ada <InlineMath math="3" />. Jika Maya, ada <InlineMath math="2" />. Garis datar menandai tepat satu pernyataan benar.</>}
+  bars="apart"
+  categories={["Joko", "Kirana", "Lutfi", "Maya"]}
+  series={[
+    { label: "Banyak pernyataan benar", mark: "bar", values: [2, 1, 3, 2] },
+    { label: "Tepat satu", mark: "line", values: [1, 1, 1, 1] },
+  ]}
+  valueLabel="Pernyataan benar"
+/>
+
 Pilihan lain gagal karena kesalahan berikut.
 
 - Joko pelaku dengan Kirana jujur muncul kalau kamu langsung memercayai tuduhan Kirana. Pada keadaan itu pernyataan Maya juga benar, jadi ada dua pernyataan benar.

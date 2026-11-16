@@ -19,6 +19,20 @@ Sekarang bangun barisan dari bawah ke atas. Selisih tingkat dua yang baru ditamb
 
 Suku ketujuh <InlineMath math="99" /> dan suku kedelapan <InlineMath math="157" /> masih belum lebih dari <InlineMath math="200" />. Suku kesembilan <InlineMath math="235" /> adalah suku pertama yang melewatinya.
 
+Grafik berikut menggambar kesembilan suku pertama. **Batang suku ke-<InlineMath math="8" /> masih di bawah garis <InlineMath math="200" />**, dan batang suku ke-<InlineMath math="9" /> adalah yang pertama melewatinya.
+
+<Chart
+  title={<>Suku ke-<InlineMath math="1" /> sampai ke-<InlineMath math="9" /> barisan itu</>}
+  description={<>Suku-sukunya <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="7" />, <InlineMath math="15" />, <InlineMath math="31" />, <InlineMath math="58" />, <InlineMath math="99" />, <InlineMath math="157" />, dan <InlineMath math="235" />. Garis datar menandai <InlineMath math="200" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+  series={[
+    { label: "Nilai suku", mark: "bar", values: [3, 4, 7, 15, 31, 58, 58 + 41, 58 + 41 + 58, 58 + 41 + 58 + 78] },
+    { label: "Batas 200", mark: "line", values: Array.from({ length: 9 }, () => 200) },
+  ]}
+  valueLabel="Nilai suku"
+/>
+
 Cek lagi dari arah sebaliknya. Selisih tingkat satu yang baru adalah <InlineMath math="41, 58, 78" />, dan selisih di antara ketiganya adalah <InlineMath math="17" /> dan <InlineMath math="20" />. Keduanya meneruskan pola <InlineMath math="2, 5, 8, 11, 14" /> yang naik <InlineMath math="3" />, jadi perhitungannya konsisten.
 
 Dua jalan pintas yang keliru sering muncul. Kalau selisih tingkat dua dianggap tetap <InlineMath math="11" />, barisannya menjadi <InlineMath math="96, 145, 205" />, sehingga muncul jawaban <InlineMath math="205" />. Kalau kamu berhenti pada suku berikutnya saja, kamu mendapat <InlineMath math="99" />, padahal <InlineMath math="99" /> belum melewati <InlineMath math="200" />.

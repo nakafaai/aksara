@@ -7,6 +7,46 @@ x(y-1)&=y+2 \\
 x&=\frac{y+2}{y-1}
 \end{aligned}" />
 
+Gambar <InlineMath math="f" /> bersama garis <InlineMath math="y=x" />. **Grafiknya simetris terhadap <InlineMath math="y=x" />**, itulah sebabnya <InlineMath math="f^{-1}=f" />. Garis mendatar <InlineMath math="y=1" /> tidak pernah dicapai.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=\frac{x+2}{x-1}" /> dan cerminnya</>}
+  description={<>Kurva <InlineMath math="y=\frac{x+2}{x-1}" /> punya dua cabang yang dipisahkan garis tegak <InlineMath math="x=1" /> dan garis mendatar <InlineMath math="y=1" />. Titik <InlineMath math="\left(5,\ \tfrac74\right)" /> dan <InlineMath math="\left(\tfrac74,\ 5\right)" /> sama-sama pada kurva dan saling bercermin terhadap <InlineMath math="y=x" />. Titik <InlineMath math="(2,\ 4)" /> menunjukkan bahwa <InlineMath math="f(2)=4" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=x" />,
+    flat: <InlineMath math="y=1" />,
+    five: <InlineMath math="\left(5,\ \tfrac74\right)" />,
+    back: <InlineMath math="\left(\tfrac74,\ 5\right)" />,
+    four: <InlineMath math="(2,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 7 },
+      y: { min: -6, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -6, max: 7 } },
+      { id: "flat", kind: "function", appearance: "reference", formula: "1", domain: { min: -6, max: 7 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 1, y: -6 }, to: { x: 1, y: 8 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: -6, max: 0.6 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: 1.43, max: 7 } },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 5, y: 7 / 4 } },
+      { id: "back", kind: "point", appearance: "secondary", at: { x: 7 / 4, y: 5 } },
+      { id: "four", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 6.5, y: 6.5 }, placement: "below-right" },
+      { key: "flat", objectId: "flat", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 5, y: 7 / 4 }, placement: "above-right" },
+      { key: "back", objectId: "back", at: { x: 7 / 4, y: 5 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Ternyata <InlineMath math="f^{-1}(x)=\frac{x+2}{x-1}" />, **rumusnya sama dengan** <InlineMath math="f" /> **sendiri**. Langkah terakhir hanya sah jika <InlineMath math="y\ne1" />, dan itu penting untuk pernyataan pertama.
 
 1. Pernyataan tentang daerah hasil salah. Nilai <InlineMath math="y=1" /> tidak pernah dicapai, sebab <InlineMath math="\frac{x+2}{x-1}=1" /> memberi <InlineMath math="x+2=x-1" />, yaitu <InlineMath math="2=-1" />. Daerah hasilnya semua bilangan real kecuali <InlineMath math="1" />.

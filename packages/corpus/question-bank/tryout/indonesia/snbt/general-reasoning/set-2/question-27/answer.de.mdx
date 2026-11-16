@@ -20,6 +20,19 @@ Schritt drei: Bestimme, wie viel Rückstand noch fehlt. Sobald die Uhr wieder l�
 
 Neunundzwanzig Tage nach dem 1. Mai um 15.00 Uhr ist der 30. Mai um 15.00 Uhr. In diesem Moment zeigt die Uhr <InlineMath math="3" /> Uhr, und auf einem <InlineMath math="12" />-Stunden-Zifferblatt sieht das genauso aus wie 15.00 Uhr.
 
+Das Diagramm verfolgt die Verspätung der Uhr. **Der Sprung in der Mitte sind die drei Stunden, in denen die Uhr steht**, und die Linie erreicht eine volle Umdrehung erst am <InlineMath math="30" />. Mai.
+
+<Chart
+  title={<>Verspätung der Wanduhr seit dem Stellen</>}
+  description={<>Die Verspätung beträgt <InlineMath math="0" /> Minuten am <InlineMath math="1" />. März um 12.00 Uhr, <InlineMath math="366" /> Minuten am <InlineMath math="1" />. Mai um 12.00 Uhr, <InlineMath math="546" /> Minuten am <InlineMath math="1" />. Mai um 15.00 Uhr und <InlineMath math="720" /> Minuten am <InlineMath math="30" />. Mai um 15.00 Uhr. Die waagerechte Linie markiert <InlineMath math="720" /> Minuten, eine volle Umdrehung eines Zifferblatts mit <InlineMath math="12" /> Stunden.</>}
+  categories={["1. März 12.00", "1. Mai 12.00", "1. Mai 15.00", "30. Mai 15.00"]}
+  series={[
+    { label: "Verspätung (Minuten)", mark: "line", values: [0, 61 * 6, 61 * 6 + 180, 61 * 6 + 180 + 29 * 6] },
+    { label: "Eine volle Umdrehung, 720 Minuten", mark: "line", values: [720, 720, 720, 720] },
+  ]}
+  valueLabel="Verspätung (Minuten)"
+/>
+
 Prüf, dass das wirklich das erste Mal ist: Vor dem Batterieausfall lag der Rückstand erst bei <InlineMath math="366" /> Minuten, nach dem Stillstand bei <InlineMath math="546" /> Minuten. Beides erreicht <InlineMath math="720" /> nicht, also gibt es keinen früheren Zeitpunkt.
 
 Die anderen Optionen lassen jeweils einen Schritt aus:

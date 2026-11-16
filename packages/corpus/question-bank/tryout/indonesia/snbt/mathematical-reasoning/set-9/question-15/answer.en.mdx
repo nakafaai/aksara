@@ -33,6 +33,17 @@ For the debt to reach zero, the effective sleep has to cover that night's target
 
 Check: with <InlineMath math="570" /> minutes the debt is <InlineMath math="90+480-570=0" />. With <InlineMath math="569" /> minutes it's still <InlineMath math="1" /> minute. So it takes **at least <InlineMath math="570" /> minutes**, which is <InlineMath math="9" /> hours <InlineMath math="30" /> minutes.
 
+The chart below follows the sleep debt up to next Monday night. **The <InlineMath math="90" /> minutes of debt from Sunday only clear** if next Monday night gives <InlineMath math="570" /> minutes of effective sleep.
+
+<Chart
+  title={<>Sleep debt after each night, up to next Monday night</>}
+  description={<>The sleep debt after Monday to Sunday is <InlineMath math="0" />, <InlineMath math="105" />, <InlineMath math="205" />, <InlineMath math="170" />, <InlineMath math="290" />, <InlineMath math="170" />, and <InlineMath math="90" /> minutes. With <InlineMath math="570" /> minutes of effective sleep next Monday night, the debt becomes <InlineMath math="0" />.</>}
+  categories={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Next Mon"]}
+  bars="apart"
+  series={[{ label: "Sleep debt (minutes)", mark: "bar", values: [0, 105, 205, 170, 290, 170, 90, 90 + 480 - 570] }]}
+  valueLabel="Sleep debt (minutes)"
+/>
+
 # Traps to avoid
 
 Other answers show up when **the debt is taken from the total difference alone** or the target is forgotten.

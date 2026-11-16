@@ -19,6 +19,18 @@ Now add the two bars for each day and divide by that day's capacity.
 | Saturday | <InlineMath math="660+640=1{,}300" /> | <InlineMath math="1{,}600" /> | <InlineMath math="81.25\%" /> |
 | Sunday | <InlineMath math="540+690=1{,}230" /> | <InlineMath math="1{,}600" /> | <InlineMath math="\approx 76.9\%" /> |
 
+The chart below draws the occupancy column from the table. **Friday's bar is the tallest**, even though Saturday has the most passengers, because Saturday's capacity is bigger.
+
+<Chart
+  title={<>Ferry occupancy for each day</>}
+  description={<>Occupancy from Monday to Friday is about <InlineMath math="76.7\%" />, <InlineMath math="60\%" />, <InlineMath math="68.3\%" />, <InlineMath math="77.5\%" />, and <InlineMath math="88.3\%" />, with a capacity of <InlineMath math="1{,}200" />. Saturday is <InlineMath math="81.25\%" /> and Sunday about <InlineMath math="76.9\%" />, with a capacity of <InlineMath math="1{,}600" />.</>}
+  categories={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
+  bars="apart"
+  series={[{ label: "Occupancy (%)", mark: "bar", values: [(920 / 1200) * 100, (720 / 1200) * 100, (820 / 1200) * 100, (930 / 1200) * 100, (1060 / 1200) * 100, (1300 / 1600) * 100, (1230 / 1600) * 100] }]}
+  valueLabel="Occupancy (%)"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 The highest occupancy is on Friday. Check it against the closest rival, Saturday. To match Friday, Saturday would need about <InlineMath math="0.883 \times 1{,}600 \approx 1{,}413" /> passengers. It only had <InlineMath math="1{,}300" />, so Saturday really does fall short.
 
 Here's why the other options are tempting.

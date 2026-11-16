@@ -19,6 +19,19 @@ Each departure carries a full load, except the last group, which carries only wh
 
 By minute <InlineMath math="80" />, <InlineMath math="144" /> people have left, so <InlineMath math="150-144=6" /> are still waiting. The first vehicle back at the station after that is **the bus, back at minute** <InlineMath math="100" />, since the minibuses only return at minute <InlineMath math="120" />.
 
+The chart below adds up the participants who have left, in order of departure. **The last step only adds <InlineMath math="6" /> people**, and it's taken by the bus leaving at minute <InlineMath math="100" />.
+
+<Chart
+  title={<>Participants who have left, in order of departure</>}
+  description={<>The bus at minute <InlineMath math="0" /> carries <InlineMath math="30" /> people, the two minibuses at minute <InlineMath math="0" /> bring the total to <InlineMath math="58" />, the two minibuses at minute <InlineMath math="40" /> to <InlineMath math="86" />, the bus at minute <InlineMath math="50" /> to <InlineMath math="116" />, the two minibuses at minute <InlineMath math="80" /> to <InlineMath math="144" />, and the bus at minute <InlineMath math="100" /> carries the last <InlineMath math="6" /> people.</>}
+  categories={["Bus minute 0", "Minibuses minute 0", "Minibuses minute 40", "Bus minute 50", "Minibuses minute 80", "Bus minute 100"]}
+  series={[
+    { label: "Participants who have left", mark: "line", values: [30, 58, 86, 116, 144, 150] },
+    { label: "150 participants", mark: "line", values: [150, 150, 150, 150, 150, 150] },
+  ]}
+  valueLabel="Participants"
+/>
+
 # When the last participant arrives
 
 The bus takes the last <InlineMath math="6" /> people and arrives <InlineMath math="25" /> minutes later.

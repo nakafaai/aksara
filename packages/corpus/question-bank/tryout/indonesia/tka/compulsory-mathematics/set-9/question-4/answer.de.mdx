@@ -38,6 +38,43 @@ Setze jetzt <InlineMath math="R(n)" /> ein. Weil <InlineMath math="n" /> positiv
 n&>120
 \end{aligned}" />
 
+Zeichne die Durchschnittskosten mit der Grenzlinie bei <InlineMath math="45" /> Tausend Rupiah. **Die Kurve fällt erst nach <InlineMath math="n=120" /> unter die Linie**, also ist die erste passende ganze Zahl <InlineMath math="121" />.
+
+<MathVisual
+  title={<>Durchschnittskosten pro T-Shirt nach Stückzahl</>}
+  description={<>Die waagerechte Achse ist die Anzahl <InlineMath math="n" /> der T-Shirts, die senkrechte Achse die Durchschnittskosten in Tausend Rupiah. Die Kurve <InlineMath math="R(n)=35+\tfrac{1{.}200}{n}" /> geht durch beide Datenpunkte <InlineMath math="(40,\ 65)" /> und <InlineMath math="(100,\ 47)" /> und trifft die Grenzlinie bei <InlineMath math="45" /> genau in <InlineMath math="(120,\ 45)" />. Rechts davon liegt die Kurve unter der Linie.</>}
+  labels={{
+    average: <InlineMath math="R(n)" />,
+    limit: <>Grenze 45</>,
+    small: <InlineMath math="(40,\ 65)" />,
+    large: <InlineMath math="(100,\ 47)" />,
+    edge: <InlineMath math="(120,\ 45)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 20, max: 200 },
+      y: { min: 30, max: 80 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "35 + 1200/x", domain: { min: 25, max: 195 } },
+      { id: "limit", kind: "function", appearance: "warning", formula: "45", domain: { min: 25, max: 195 } },
+      { id: "small", kind: "point", appearance: "secondary", at: { x: 40, y: 65 } },
+      { id: "large", kind: "point", appearance: "secondary", at: { x: 100, y: 47 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 120, y: 45 } },
+    ],
+    labels: [
+      { key: "average", objectId: "average", at: { x: 30, y: 75 }, placement: "right" },
+      { key: "limit", objectId: "limit", at: { x: 180, y: 45 }, placement: "above" },
+      { key: "small", objectId: "small", at: { x: 40, y: 65 }, placement: "right" },
+      { key: "large", objectId: "large", at: { x: 100, y: 47 }, placement: "above-right" },
+      { key: "edge", objectId: "edge", at: { x: 120, y: 45 }, placement: "below" },
+    ],
+  }}
+/>
+
 Bei <InlineMath math="n=120" /> sind die Durchschnittskosten genau <InlineMath math="45{.}000" /> und der Gewinn <InlineMath math="9{.}000" />, also **genau** <InlineMath math="20\%" /> und nicht mehr. Bei <InlineMath math="n=121" /> sind die Durchschnittskosten <InlineMath math="35{.}000+9{.}917{,}36=44{.}917{,}36" />, schon unter <InlineMath math="45{.}000" />.
 
 # Warum die anderen Antworten falsch sind

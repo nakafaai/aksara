@@ -20,6 +20,20 @@ P runs <InlineMath math="14" /> hours on Monday and <InlineMath math="13" /> hou
 
 P's maintenance starts at 12:00 and 18:00 on Monday, but at 08:00, 14:00, and 20:00 on Tuesday. **The carried hours shift the maintenance times** every day, so they aren't the same. The second statement is false.
 
+The chart below compares both machines' good parts each day. **P's bar is always taller than Q's**, even on Tuesday and Wednesday when P runs only <InlineMath math="13" /> hours.
+
+<Chart
+  title={<>Good parts from each machine per day, Monday to Wednesday</>}
+  description={<>Machine P makes <InlineMath math="1{,}596" />, <InlineMath math="1{,}482" />, and <InlineMath math="1{,}482" /> good parts on Monday, Tuesday, and Wednesday. Machine Q makes <InlineMath math="1{,}134" /> good parts every day.</>}
+  categories={["Monday", "Tuesday", "Wednesday"]}
+  bars="apart"
+  series={[
+    { label: "Machine P", mark: "bar", values: [14 * 114, 13 * 114, 13 * 114] },
+    { label: "Machine Q", mark: "bar", values: [14 * 81, 14 * 81, 14 * 81] },
+  ]}
+  valueLabel="Good parts"
+/>
+
 # The third statement about daily output
 
 P's smallest output comes on a day with <InlineMath math="13" /> running hours, while Q always runs <InlineMath math="14" /> hours.

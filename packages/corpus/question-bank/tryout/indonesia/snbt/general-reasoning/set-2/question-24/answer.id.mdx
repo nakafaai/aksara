@@ -25,6 +25,20 @@ Pernyataan 2 bernilai Salah. Bagi tagihan dengan pemakaian.
 
 Biaya rata-rata Lestari justru lebih tinggi. Jebakannya, tanpa biaya beban Lestari memang lebih murah per kWh (<InlineMath math="1{.}200" /> lawan <InlineMath math="160{.}000\div110\approx1{.}455" />). Begitu **biaya beban ikut dihitung**, beban itu hanya dibagi ke <InlineMath math="35" /> kWh milik Lestari sehingga rata-ratanya naik tajam.
 
+Grafik berikut membandingkan tagihan rata-rata per kWh ketiga keluarga, dengan dan tanpa biaya beban. **Tanpa biaya beban Lestari paling murah, tetapi begitu biaya beban dihitung Lestari justru paling mahal**.
+
+<Chart
+  title={<>Tagihan rata-rata per kWh pada bulan Mei</>}
+  description={<>Termasuk biaya beban, rata-ratanya sekitar <InlineMath math="1{.}682" /> rupiah per kWh untuk Hasan, <InlineMath math="1{.}914" /> untuk Lestari, dan <InlineMath math="1{.}829" /> untuk Made. Tanpa biaya beban, sekitar <InlineMath math="1{.}455" /> untuk Hasan, <InlineMath math="1{.}200" /> untuk Lestari, dan <InlineMath math="1{.}682" /> untuk Made.</>}
+  categories={["Hasan", "Lestari", "Made"]}
+  bars="apart"
+  series={[
+    { label: "Termasuk biaya beban", mark: "bar", values: [185000 / 110, 67000 / 35, 311000 / 170] },
+    { label: "Tanpa biaya beban", mark: "bar", values: [160000 / 110, 42000 / 35, 286000 / 170] },
+  ]}
+  valueLabel="Rupiah per kWh"
+/>
+
 Pernyataan 3 bernilai Salah. Bagian pertamanya benar: <InlineMath math="2\times110=220" />, dan <InlineMath math="170" /> kurang dari <InlineMath math="220" />. Bagian keduanya salah: <InlineMath math="2\times185{.}000=370{.}000" />, sedangkan tagihan Made hanya <InlineMath math="311{.}000" />. Tarif bertingkat memang membuat Made membayar lebih mahal per kWh, tetapi pemakaian Made <InlineMath math="50" /> kWh lebih sedikit daripada dua kali pemakaian Hasan, dan selisih itu tidak tertutup oleh tarif Blok III. Karena kata "tetapi" menuntut kedua bagian benar, pernyataan ini salah.
 
 Pernyataan 4 bernilai Benar. "Lebih tinggi daripada tagihan Hasan" berarti **tagihan Hasan menjadi pembagi**.

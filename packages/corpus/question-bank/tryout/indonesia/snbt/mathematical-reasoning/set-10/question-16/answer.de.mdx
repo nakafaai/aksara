@@ -25,6 +25,21 @@ x &\ge 13\tfrac{1}{3}
 
 Weggegossen wird in ganzen Litern, also mindestens <InlineMath math="14" /> Liter.
 
+Das Diagramm berechnet die Konzentration des vollen Tanks, nachdem ein Teil der Lösung abgelassen wurde. **Der Balken für <InlineMath math="13" /> Liter liegt noch über der Obergrenze**, und der erste Balken darunter gehört zu <InlineMath math="14" /> Litern.
+
+<Chart
+  title={<>Konzentration des vollen Tanks nach abgelassener Lösung</>}
+  description={<>Werden <InlineMath math="10" /> bis <InlineMath math="16" /> Liter abgelassen und der Tank mit Wasser gefüllt, beträgt die Konzentration <InlineMath math="1{.}275" />, <InlineMath math="1{.}267{,}5" />, <InlineMath math="1{.}260" />, <InlineMath math="1{.}252{,}5" />, <InlineMath math="1{.}245" />, <InlineMath math="1{.}237{,}5" /> und <InlineMath math="1{.}230\text{ ppm}" />. Die waagerechte Linie markiert die Obergrenze von <InlineMath math="1{.}250\text{ ppm}" />. Die Werteachse beginnt bei <InlineMath math="1{.}200" />.</>}
+  bars="apart"
+  categories={["10", "11", "12", "13", "14", "15", "16"]}
+  series={[
+    { label: "Konzentration nach dem Auffüllen (ppm)", mark: "bar", values: [10, 11, 12, 13, 14, 15, 16].map((x) => 7.5 * (180 - x)) },
+    { label: "Obergrenze 1.250", mark: "line", values: [1250, 1250, 1250, 1250, 1250, 1250, 1250] },
+  ]}
+  valueRange={{ min: 1200, max: 1300 }}
+  valueLabel="Konzentration (ppm)"
+/>
+
 # Kontrolle beider Grenzen
 
 Mit <InlineMath math="x=14" /> beträgt die Konzentration <InlineMath math="7{,}5\cdot166=1{.}245\text{ ppm}" />. Das liegt unter <InlineMath math="1{.}250" /> und über <InlineMath math="1{.}150" />, also **passt die Lösung**. Mit <InlineMath math="x=13" /> sind es <InlineMath math="7{,}5\cdot167=1{.}252{,}5\text{ ppm}" />, noch zu stark.

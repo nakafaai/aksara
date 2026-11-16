@@ -33,6 +33,21 @@ k &\ge 46{,}42\ldots
 
 Paket harus utuh, jadi **paling sedikit** <InlineMath math="47" /> paket, yaitu <InlineMath math="47\cdot10=470" /> porsi.
 
+Grafik berikut menghitung laba bersih mingguan untuk banyak porsi kelipatan sepuluh. **Batang <InlineMath math="460" /> porsi masih di bawah garis target**, dan batang pertama yang melewatinya adalah <InlineMath math="470" /> porsi.
+
+<Chart
+  title={<>Laba bersih mingguan menurut banyak porsi yang terjual</>}
+  description={<>Dengan <InlineMath math="440" />, <InlineMath math="450" />, <InlineMath math="460" />, <InlineMath math="470" />, dan <InlineMath math="480" /> porsi, laba bersihnya <InlineMath math="\text{Rp}532{.}000" />, <InlineMath math="\text{Rp}560{.}000" />, <InlineMath math="\text{Rp}588{.}000" />, <InlineMath math="\text{Rp}616{.}000" />, dan <InlineMath math="\text{Rp}644{.}000" />. Garis datar menandai target <InlineMath math="\text{Rp}600{.}000" />. Sumbu nilai dimulai dari <InlineMath math="\text{Rp}500{.}000" />.</>}
+  bars="apart"
+  categories={["440", "450", "460", "470", "480"]}
+  series={[
+    { label: "Laba bersih mingguan (rupiah)", mark: "bar", values: [44, 45, 46, 47, 48].map((k) => 28000 * k - 700000) },
+    { label: "Target Rp600.000", mark: "line", values: [600000, 600000, 600000, 600000, 600000] },
+  ]}
+  valueRange={{ min: 500000, max: 660000 }}
+  valueLabel="Laba bersih (rupiah)"
+/>
+
 # Pemeriksaan
 
 Dengan <InlineMath math="46" /> paket, laba bersihnya <InlineMath math="46\cdot28{.}000-700{.}000=588{.}000" />, masih kurang. Dengan <InlineMath math="47" /> paket, laba bersihnya <InlineMath math="616{.}000\ge600{.}000" />. Jadi **paket keempat puluh tujuh memang diperlukan**.

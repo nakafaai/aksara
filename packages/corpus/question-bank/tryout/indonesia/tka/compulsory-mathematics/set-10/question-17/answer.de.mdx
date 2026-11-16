@@ -10,6 +10,46 @@ h=40:&\quad \text{Breite}=120\text{ cm},\quad L_{40}=\frac{60+120}{2}\cdot40=3{.
 \frac{L_{40}}{L_{20}}&=\frac{3{.}600}{1{.}500}=2{,}4
 \end{aligned}" />
 
+Zeichne die Wasserquerschnitte bei beiden Tiefen in den Querschnitt des Kanals. **Die Sohle von <InlineMath math="60" /> bleibt gleich, nur die beiden Seiten werden breiter**, also verdoppelt sich die Fläche bei doppelter Tiefe nicht bloß.
+
+<MathVisual
+  title={<>Wasserquerschnitt bei <InlineMath math="20" /> und <InlineMath math="40\text{ cm}" /> Tiefe</>}
+  description={<>Maße in cm. Der Kanal hat eine Sohle von <InlineMath math="60" /> und eine Tiefe von <InlineMath math="80" />. Bei <InlineMath math="20" /> Tiefe ist die Wasseroberfläche <InlineMath math="90" /> breit und die Querschnittsfläche <InlineMath math="1{.}500" />. Bei <InlineMath math="40" /> Tiefe ist die Oberfläche <InlineMath math="120" /> breit und die Fläche <InlineMath math="3{.}600" />, also das <InlineMath math="2{,}4" />-Fache der ersten.</>}
+  labels={{
+    base: <InlineMath math="60" />,
+    low: <InlineMath math="90" />,
+    high: <InlineMath math="120" />,
+    "depth-low": <InlineMath math="20" />,
+    "depth-high": <InlineMath math="40" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -100, max: 100 },
+      y: { min: -15, max: 90 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "channel", kind: "polygon", appearance: "reference", vertices: [{ x: -90, y: 80 }, { x: -30, y: 0 }, { x: 30, y: 0 }, { x: 90, y: 80 }] },
+      { id: "water-high", kind: "polygon", appearance: "secondary", vertices: [{ x: -60, y: 40 }, { x: -30, y: 0 }, { x: 30, y: 0 }, { x: 60, y: 40 }] },
+      { id: "water-low", kind: "polygon", appearance: "primary", vertices: [{ x: -45, y: 20 }, { x: -30, y: 0 }, { x: 30, y: 0 }, { x: 45, y: 20 }] },
+      { id: "base", kind: "segment", appearance: "construction", from: { x: -30, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "low", kind: "segment", appearance: "answer", from: { x: -45, y: 20 }, to: { x: 45, y: 20 } },
+      { id: "high", kind: "segment", appearance: "answer", from: { x: -60, y: 40 }, to: { x: 60, y: 40 } },
+      { id: "depth-low", kind: "segment", appearance: "construction", from: { x: 75, y: 0 }, to: { x: 75, y: 20 } },
+      { id: "depth-high", kind: "segment", appearance: "construction", from: { x: 90, y: 0 }, to: { x: 90, y: 40 } },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "low", objectId: "low", at: { x: 0, y: 20 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 0, y: 40 }, placement: "above" },
+      { key: "depth-low", objectId: "depth-low", at: { x: 75, y: 10 }, placement: "left" },
+      { key: "depth-high", objectId: "depth-high", at: { x: 90, y: 20 }, placement: "right" },
+    ],
+  }}
+/>
+
 Die Tiefe verdoppelt sich, die Fläche wird aber <InlineMath math="2{,}4" />-mal so groß. Der Grund: Der Boden bleibt <InlineMath math="60\text{ cm}" /> breit, nur die Seiten gehen auseinander.
 
 # Die Füllzeit

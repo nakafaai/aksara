@@ -11,6 +11,20 @@ Periksa apakah aturan itu berlanjut. JNBE diputar menjadi NBEJ, lalu dibandingka
 | PDGL | DGLP | <InlineMath math="+3" /> | GJOS |
 | GJOS | JOSG | <InlineMath math="+4" /> | NSWK |
 
+Grafik berikut mencatat besar geseran di setiap langkah. **Geserannya bertambah satu setiap langkah**, dan totalnya sampai kelompok kelima adalah <InlineMath math="10" />.
+
+<Chart
+  title={<>Besar geseran huruf dari satu kelompok ke kelompok berikutnya</>}
+  description={<>Geserannya <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, lalu <InlineMath math="4" /> langkah. Totalnya sejak DIMA menjadi <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" />, lalu <InlineMath math="10" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Geser pada langkah itu", mark: "bar", values: [1, 2, 3, 4] },
+    { label: "Total geser sejak DIMA", mark: "bar", values: [1, 1 + 2, 1 + 2 + 3, 1 + 2 + 3 + 4] },
+  ]}
+  valueLabel="Banyak langkah di alfabet"
+/>
+
 Untuk kelompok kelima, putar GJOS menjadi JOSG, lalu geser setiap huruf maju <InlineMath math="4" /> langkah: <InlineMath math="\mathrm{J}\to\mathrm{N}" />, <InlineMath math="\mathrm{O}\to\mathrm{S}" />, <InlineMath math="\mathrm{S}\to\mathrm{W}" />, <InlineMath math="\mathrm{G}\to\mathrm{K}" />. Hasilnya NSWK.
 
 Ada cek cepat. Empat kali putaran pada kelompok empat huruf mengembalikan urutan semula, dan total geserannya <InlineMath math="1+2+3+4=10" />. Jadi, kelompok kelima harus sama dengan DIMA yang setiap hurufnya maju <InlineMath math="10" /> langkah: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Hasilnya sama, NSWK.

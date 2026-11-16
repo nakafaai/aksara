@@ -26,6 +26,17 @@ Try <InlineMath math="T=18" />. The syrup condition needs <InlineMath math="x\le
 
 Both kinds are also at least <InlineMath math="3" />. So <InlineMath math="10" /> syrup hampers and <InlineMath math="8" /> cake hampers give <InlineMath math="18" />, and no arrangement gives more.
 
+The chart below works out the largest total for each number of syrup hampers. **The peak is at <InlineMath math="10" /> syrup hampers**, where cake and syrup are both nearly used up.
+
+<Chart
+  title={<>Largest number of hampers by number of syrup hampers</>}
+  description={<>For <InlineMath math="3" /> to <InlineMath math="12" /> syrup hampers, with as many cake hampers as possible, the totals are <InlineMath math="13" />, <InlineMath math="14" />, <InlineMath math="14" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="18" />, <InlineMath math="17" />, and <InlineMath math="16" /> hampers.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 3}`)}
+  series={[{ label: "Most hampers", mark: "bar", values: Array.from({ length: 10 }, (_, i) => i + 3 + Math.min(Math.floor((44 - (i + 3)) / 4), 28 - 2 * (i + 3))) }]}
+  valueLabel="Total hampers"
+/>
+
 The other options come from strategies that move too fast:
 
 - <InlineMath math="13" /> comes from making <InlineMath math="3" /> syrup hampers and then as many cake hampers as possible. The cake only covers <InlineMath math="10" /> cake hampers, while plenty of syrup is left over.

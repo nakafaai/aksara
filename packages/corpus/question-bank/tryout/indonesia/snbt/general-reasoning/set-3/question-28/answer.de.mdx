@@ -9,6 +9,19 @@ T(v) &= 60 + 2v
 
 Daraus brauchst du <InlineMath math="B(20) = 70" />, <InlineMath math="B(30) = 120" />, <InlineMath math="B(35) = 155" />, <InlineMath math="B(40) = 190" /> und <InlineMath math="T(30) = 120" />.
 
+Das Diagramm zeichnet beide Rechnungen. **Die Linie des Stufentarifs wird an jeder Stufengrenze steiler und berührt die Linie des Festtarifs genau bei <InlineMath math="30\text{ m}^3" />**, danach liegt sie darüber.
+
+<Chart
+  title={<>Monatsrechnung beider Tarife nach Wasserverbrauch</>}
+  description={<>Der Stufentarif steigt um <InlineMath math="3" />, <InlineMath math="5" /> und dann <InlineMath math="7" /> Tausend Rupiah pro Kubikmeter, der Festtarif beginnt bei <InlineMath math="60" /> Tausend und steigt um <InlineMath math="2" /> Tausend pro Kubikmeter. Bei <InlineMath math="30\text{ m}^3" /> kosten beide <InlineMath math="120" /> Tausend. Bei <InlineMath math="40\text{ m}^3" /> kostet der Stufentarif <InlineMath math="190" /> und der Festtarif <InlineMath math="140" /> Tausend.</>}
+  categories={["0", "5", "10", "15", "20", "25", "30", "35", "40"]}
+  series={[
+    { label: "Stufentarif", mark: "line", values: [0, 5, 10, 15, 20, 25, 30, 35, 40].map((v) => (v <= 15 ? 3 * v : v <= 30 ? 45 + 5 * (v - 15) : 120 + 7 * (v - 30))) },
+    { label: "Festtarif", mark: "line", values: [0, 5, 10, 15, 20, 25, 30, 35, 40].map((v) => 60 + 2 * v) },
+  ]}
+  valueLabel="Rechnung (Tausend Rupiah)"
+/>
+
 Aussage 1: Benar (richtig). Die Stufenrechnung für <InlineMath math="20\text{ m}^3" /> beträgt <InlineMath math="45 + 25 = 70" /> Tausend Rupiah, der Durchschnitt also:
 
 <BlockMath math="70{.}000 \div 20 = 3{.}500 < 4{.}000" />

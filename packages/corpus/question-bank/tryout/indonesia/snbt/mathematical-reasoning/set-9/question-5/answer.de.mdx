@@ -31,6 +31,20 @@ Nur <InlineMath math="b=2" /> ist möglich, also **sind beide Busfahrten Pflicht
 
 Prüf die Zeiten: Die zwei Busfahrten kommen um 07.25 Uhr und 08.15 Uhr an, die drei Kleinbusfahrten nutzen die zwei Abfahrten um 07.00 Uhr und eine um 07.40 Uhr. Alle kommen vor 08.30 Uhr an.
 
+Das Diagramm zählt die Sitzplätze mehrerer Fahrtpläne, die noch pünktlich ankommen. **Der erste Balken über der Linie bei <InlineMath math="100" /> sind zwei Busse und drei Kleinbusse**, der günstigste ausreichende Plan.
+
+<Chart
+  title={<>Sitzplätze für Fahrtpläne mit Ankunft bis 08.30 Uhr</>}
+  description={<>Ein Bus und vier Kleinbusse ergeben <InlineMath math="86" /> Plätze. Zwei Busse und zwei Kleinbusse ergeben <InlineMath math="88" /> Plätze. Zwei Busse und drei Kleinbusse ergeben <InlineMath math="102" /> Plätze für <InlineMath math="\text{Rp}495{.}000" />. Zwei Busse und vier Kleinbusse ergeben <InlineMath math="116" /> Plätze. Die waagerechte Linie markiert <InlineMath math="100" /> Teilnehmende.</>}
+  categories={["1 Bus, 4 Kleinbusse", "2 Busse, 2 Kleinbusse", "2 Busse, 3 Kleinbusse", "2 Busse, 4 Kleinbusse"]}
+  bars="apart"
+  series={[
+    { label: "Sitzplätze", mark: "bar", values: [30 + 4 * 14, 60 + 2 * 14, 60 + 3 * 14, 60 + 4 * 14] },
+    { label: "100 Teilnehmende", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Sitzplätze"
+/>
+
 # Die falschen Antworten
 
 Die anderen Antworten **vergessen die Zeitgrenze oder suchen nicht nach der günstigsten Kombination**.
