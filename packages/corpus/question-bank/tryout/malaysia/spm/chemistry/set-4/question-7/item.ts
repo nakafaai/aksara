@@ -12,8 +12,16 @@ const item: ItemSource = {
       options: [
         { correct: false, label: "$$0.602 \\\\times 10^{23}$$ ions in total" },
         { correct: false, label: "$$1.20 \\\\times 10^{23}$$ ions in total" },
-        { correct: true, label: "$$1.81 \\\\times 10^{23}$$ ions in total, of which $$1.20 \\\\times 10^{23}$$ are chloride ions" },
-        { correct: false, label: "$$1.81 \\\\times 10^{23}$$ ions in total, of which $$0.602 \\\\times 10^{23}$$ are chloride ions" },
+        {
+          correct: true,
+          label:
+            "$$1.81 \\\\times 10^{23}$$ ions in total, of which $$1.20 \\\\times 10^{23}$$ are chloride ions",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.81 \\\\times 10^{23}$$ ions in total, of which $$0.602 \\\\times 10^{23}$$ are chloride ions",
+        },
       ],
     },
     ms: {
@@ -21,8 +29,16 @@ const item: ItemSource = {
       options: [
         { correct: false, label: "$$0.602 \\\\times 10^{23}$$ ion semuanya" },
         { correct: false, label: "$$1.20 \\\\times 10^{23}$$ ion semuanya" },
-        { correct: true, label: "$$1.81 \\\\times 10^{23}$$ ion semuanya, dengan $$1.20 \\\\times 10^{23}$$ daripadanya ion klorida" },
-        { correct: false, label: "$$1.81 \\\\times 10^{23}$$ ion semuanya, dengan $$0.602 \\\\times 10^{23}$$ daripadanya ion klorida" },
+        {
+          correct: true,
+          label:
+            "$$1.81 \\\\times 10^{23}$$ ion semuanya, dengan $$1.20 \\\\times 10^{23}$$ daripadanya ion klorida",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.81 \\\\times 10^{23}$$ ion semuanya, dengan $$0.602 \\\\times 10^{23}$$ daripadanya ion klorida",
+        },
       ],
     },
   },
