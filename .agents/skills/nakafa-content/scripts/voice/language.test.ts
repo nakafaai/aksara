@@ -234,12 +234,13 @@ it("holds Malaysian Malay prose to the same rules", () => {
   }
 });
 
-it("keeps a Malay menjadikan that a refusal follows", () => {
-  assert.deepEqual(
-    findLessonVoiceIssues(
-      "ms",
-      "Nombor yang menjadikan penyebut sifar tidak boleh menjadi penyelesaian."
-    ),
-    []
-  );
+it("keeps a Malay menjadikan that a refusal or a comparison follows", () => {
+  const sources = [
+    "Nombor yang menjadikan penyebut sifar tidak boleh menjadi penyelesaian.",
+    "Tempoh kajian tidak menjadikan kaedah itu lebih boleh dipercayai.",
+  ];
+
+  for (const source of sources) {
+    assert.deepEqual(findLessonVoiceIssues("ms", source), []);
+  }
 });
