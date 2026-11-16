@@ -9,6 +9,29 @@ A_{\text{Sechseck}} &= 6\cdot\frac{\sqrt3}{4}\left(\frac{K}{6}\right)^2=\frac{\s
 A_{\text{Kreis}} &= \pi\left(\frac{K}{2\pi}\right)^2=\frac{K^2}{4\pi}
 \end{aligned}" />
 
+Die Abbildung zeichnet beide Figuren mit Umfang <InlineMath math="12" /> um denselben Mittelpunkt. Der Kreis **ragt in der Mitte jeder Sechseckseite ein wenig hinaus**, bleibt an jeder Ecke aber etwas zurück, also unterscheiden sich die Flächen nur knapp.
+
+<MathVisual
+  title={<>Ein regelmäßiges Sechseck und ein Kreis mit Umfang <InlineMath math="12" /></>}
+  description={<>Das Sechseck hat die Seitenlänge <InlineMath math="2" />, der Kreis den Radius <InlineMath math="\tfrac{6}{\pi}" />, etwa <InlineMath math="1{,}91" />, beide um denselben Mittelpunkt. Der Kreisradius ist etwas kleiner als der Abstand vom Mittelpunkt zu einer Ecke des Sechsecks, <InlineMath math="2" />, aber größer als der Abstand zu einer Seite, <InlineMath math="\sqrt3" />.</>}
+  labels={{
+    circle: <InlineMath math="r=\tfrac{6}{\pi}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -2.4, max: 2.4 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "hexagon", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 0 }, { x: 1, y: Math.sqrt(3) }, { x: -1, y: Math.sqrt(3) }, { x: -2, y: 0 }, { x: -1, y: -Math.sqrt(3) }, { x: 1, y: -Math.sqrt(3) }] },
+      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 6 / Math.PI },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -6 / Math.PI } },
+    ],
+    labels: [
+      { key: "circle", objectId: "radius", at: { x: 0, y: -3 / Math.PI }, placement: "right" },
+    ],
+  }}
+/>
+
 # Das Verhältnis vergleichen
 
 Teile die Fläche des Sechsecks durch die Fläche des Kreises. Der Faktor <InlineMath math="K^2" /> kürzt sich weg, also ist **das Ergebnis für jeden Umfang gleich**.

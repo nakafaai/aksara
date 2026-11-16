@@ -35,6 +35,42 @@ Check it a second way. The rule can be written as <InlineMath math="f(x+1)-(x+1)
 
 The two chains have different constants, <InlineMath math="2" /> and <InlineMath math="\tfrac74" />. That's why one formula isn't enough.
 
+The graph below shows both chains. The points of the integer chain lie on the parabola <InlineMath math="y=x^2+2" />, while the points of the half chain lie on the parabola <InlineMath math="y=x^2+\tfrac74" />. **Two different parabolas** are the reason one formula isn't enough.
+
+<MathVisual
+  title={<>The two chains of values of <InlineMath math="f" /></>}
+  description={<>The points <InlineMath math="(1,3)" />, <InlineMath math="(0,2)" />, <InlineMath math="(-1,3)" />, and <InlineMath math="(-2,6)" /> lie on the parabola <InlineMath math="y=x^2+2" />. The points <InlineMath math="\left(\tfrac12,2\right)" />, <InlineMath math="\left(\tfrac32,4\right)" />, <InlineMath math="\left(\tfrac52,8\right)" />, and <InlineMath math="\left(\tfrac72,14\right)" /> lie on the parabola <InlineMath math="y=x^2+\tfrac74" />, slightly below the first one.</>}
+  labels={{
+    whole: <InlineMath math="y=x^2+2" />,
+    half: <InlineMath math="y=x^2+\tfrac74" />,
+    m2: <InlineMath math="(-2,6)" />,
+    h7: <InlineMath math="\left(\tfrac72,14\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4.5 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "whole", kind: "function", appearance: "primary", formula: "x^2 + 2", domain: { min: -2.5, max: 1.5 } },
+      { id: "half", kind: "function", appearance: "secondary", formula: "x^2 + 7/4", domain: { min: 0, max: 3.7 } },
+      { id: "w1", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "w0", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "wm1", kind: "point", appearance: "primary", at: { x: -1, y: 3 } },
+      { id: "wm2", kind: "point", appearance: "answer", at: { x: -2, y: 6 } },
+      { id: "h1", kind: "point", appearance: "secondary", at: { x: 1 / 2, y: 2 } },
+      { id: "h3", kind: "point", appearance: "secondary", at: { x: 3 / 2, y: 4 } },
+      { id: "h5", kind: "point", appearance: "secondary", at: { x: 5 / 2, y: 8 } },
+      { id: "h7", kind: "point", appearance: "answer", at: { x: 7 / 2, y: 14 } },
+    ],
+    labels: [
+      { key: "whole", objectId: "whole", at: { x: -2.5, y: 8.25 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 3, y: 10.75 }, placement: "left" },
+      { key: "m2", objectId: "wm2", at: { x: -2, y: 6 }, placement: "left" },
+      { key: "h7", objectId: "h7", at: { x: 7 / 2, y: 14 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Why the other options fail
 
 The wrong options come from **merging the two chains** or from miscounting the steps.

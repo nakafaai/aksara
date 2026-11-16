@@ -33,6 +33,32 @@ The square in row <InlineMath math="3" />, column <InlineMath math="5" /> lies b
 
 Now the top line has to be above both squares, the bottom line below both, and so on. So **each line has to meet the stricter of the two conditions**.
 
+The board below shows that stricter condition. Every rectangle containing both squares **has to cover the smallest marked rectangle**, from row <InlineMath math="1" /> to row <InlineMath math="3" /> and from column <InlineMath math="2" /> to column <InlineMath math="5" />. Its bottom line can still drop one row, and its left and right lines can each widen by one column.
+
+<MathVisual
+  title={<>The <InlineMath math="4" /> by <InlineMath math="6" /> board with two shaded squares</>}
+  description={<>The shaded squares are in row <InlineMath math="1" />, column <InlineMath math="2" /> and in row <InlineMath math="3" />, column <InlineMath math="5" />. The smallest rectangle containing both runs from row <InlineMath math="1" /> to row <InlineMath math="3" /> and from column <InlineMath math="2" /> to column <InlineMath math="5" />. Its top line is locked to the board's top edge, its bottom line can sit below row <InlineMath math="3" /> or row <InlineMath math="4" />, and its left and right lines each have <InlineMath math="2" /> choices.</>}
+  labels={{
+    first: <InlineMath math="(1,2)" />,
+    second: <InlineMath math="(3,5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "board", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 0, y: 4 }] },
+      { id: "smallest", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 4 }, { x: 1, y: 4 }] },
+      { id: "first", kind: "polygon", appearance: "warning", vertices: [{ x: 1, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 1, y: 4 }] },
+      { id: "second", kind: "polygon", appearance: "warning", vertices: [{ x: 4, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 2 }, { x: 4, y: 2 }] },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1.5, y: 3.5 }, placement: "center" },
+      { key: "second", objectId: "second", at: { x: 4.5, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \text{top} &\in\{0\}, & \text{bottom} &\in\{3,4\} \\
 \text{left} &\in\{0,1\}, & \text{right} &\in\{5,6\} \\

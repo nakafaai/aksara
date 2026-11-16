@@ -24,6 +24,17 @@ The distributions you want are the fair ones that don't put the dictionary and a
 
 <BlockMath math="150-36=114" />
 
+The chart below lines up every count. Out of <InlineMath math="243" /> free ways, the everyone-gets-a-book condition leaves <InlineMath math="150" />, and then **the <InlineMath math="36" /> ways that keep the dictionary and atlas together are removed**.
+
+<Chart
+  title={<>Filtering the ways to hand out five books</>}
+  description={<>With no condition there are <InlineMath math="243" /> ways. The ways that give every student at least one book number <InlineMath math="150" />. Of those, <InlineMath math="36" /> give the dictionary and the atlas to the same student. That leaves <InlineMath math="114" /> ways.</>}
+  categories={["No condition", "Everyone gets a book", "Dictionary and atlas together", "All conditions met"]}
+  bars="apart"
+  series={[{ label: "Number of ways", mark: "bar", values: [3 ** 5, 3 ** 5 - 3 * 2 ** 5 + 3, 3 ** 4 - 3 * 2 ** 4 + 3, 3 ** 5 - 3 * 2 ** 5 + 3 - (3 ** 4 - 3 * 2 ** 4 + 3)] }]}
+  valueLabel="Number of ways"
+/>
+
 Check it by a direct route. The dictionary has <InlineMath math="3" /> possible receivers and the atlas has <InlineMath math="2" />, giving <InlineMath math="6" /> ways. The remaining three books are free, as long as **the third student, who has no book yet, gets at least one**.
 
 <BlockMath math="\begin{aligned}

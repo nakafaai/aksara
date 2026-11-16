@@ -35,6 +35,38 @@ x &= 2
 
 There's only one solution. Two solutions show up if you square both sides without the condition: <InlineMath math="(x+1)^2=(2x-1)^2" /> gives <InlineMath math="3x^2-6x=0" />, so <InlineMath math="x=0" /> or <InlineMath math="x=2" />. At <InlineMath math="x=0" /> the left side is <InlineMath math="\sqrt1=1" /> while the right side is <InlineMath math="-1" />, so **<InlineMath math="x=0" /> is an extraneous root** created by squaring. Statement three is **false**.
 
+Graphing both sides shows why there's only one solution. The curve <InlineMath math="y=\sqrt{(x+1)^2}=|x+1|" /> is a V shape that **never dips below the <InlineMath math="x" />-axis**, so it only meets the line <InlineMath math="y=2x-1" /> at <InlineMath math="(2,3)" />. At <InlineMath math="x=0" />, the curve is at <InlineMath math="1" /> while the line is at <InlineMath math="-1" />.
+
+<MathVisual
+  title={<>The two sides of statement three</>}
+  description={<>The curve <InlineMath math="y=|x+1|" /> is a V shape with lowest point <InlineMath math="(-1,0)" />. The line <InlineMath math="y=2x-1" /> meets it only at <InlineMath math="(2,3)" />. At <InlineMath math="x=0" />, the curve passes through <InlineMath math="(0,1)" /> and the line through <InlineMath math="(0,-1)" />, so <InlineMath math="x=0" /> isn't a solution.</>}
+  labels={{
+    root: <InlineMath math="y=\sqrt{(x+1)^2}" />,
+    line: <InlineMath math="y=2x-1" />,
+    meet: <InlineMath math="(2,3)" />,
+    fake: <InlineMath math="x=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -3, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "left-piece", kind: "function", appearance: "primary", formula: "-x - 1", domain: { min: -4, max: -1 } },
+      { id: "right-piece", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -1, max: 4 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "2x - 1", domain: { min: -1, max: 3.5 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "fake-top", kind: "point", appearance: "warning", at: { x: 0, y: 1 } },
+      { id: "fake-bottom", kind: "point", appearance: "warning", at: { x: 0, y: -1 } },
+    ],
+    labels: [
+      { key: "root", objectId: "left-piece", at: { x: -3, y: 2 }, placement: "above" },
+      { key: "line", objectId: "line", at: { x: 3.5, y: 6 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "fake", objectId: "fake-bottom", at: { x: 0, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Statement four
 
 For <InlineMath math="a\le0" />, the number <InlineMath math="-a" /> is non-negative, so <InlineMath math="\sqrt{-a}" /> is defined. By the meaning of a square root, **a square root times itself gives back the number under the root**, which is <InlineMath math="-a" />, not <InlineMath math="a" />. A counterexample is <InlineMath math="a=-4" />.

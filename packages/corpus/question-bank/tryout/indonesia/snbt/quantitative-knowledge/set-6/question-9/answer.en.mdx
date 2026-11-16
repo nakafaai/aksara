@@ -38,6 +38,20 @@ u_1+u_3+u_5+\dots &= \frac{a}{1-r^2} \\
 &= \frac{\tfrac{15}{4}}{1-\tfrac{1}{16}}=\frac{15}{4}\cdot\frac{16}{15}=4
 \end{aligned}" />
 
+A chart of the first six terms shows the signs. The odd-numbered terms are **all positive** and the even-numbered terms are all negative, so the odd terms really do add up to more than the whole series.
+
+<Chart
+  title={<>The first six terms with <InlineMath math="a=\tfrac{15}{4}" /> and <InlineMath math="r=-\tfrac14" /></>}
+  description={<>The terms are <InlineMath math="\tfrac{15}{4}" />, <InlineMath math="-\tfrac{15}{16}" />, <InlineMath math="\tfrac{15}{64}" />, <InlineMath math="-\tfrac{15}{256}" />, and so on. The odd terms are positive and add up to <InlineMath math="4" />, and the even terms are negative and add up to <InlineMath math="-1" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `u${i + 1}`)}
+  series={[
+    { label: "Odd-numbered terms", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (i % 2 === 0 ? (15 / 4) * (-1 / 4) ** i : null)) },
+    { label: "Even-numbered terms", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (i % 2 === 1 ? (15 / 4) * (-1 / 4) ** i : null)) },
+  ]}
+  valueLabel="Value of the term"
+/>
+
 Check it through the even-numbered terms, <InlineMath math="ar,ar^3,\dots" />, whose sum is <InlineMath math="\tfrac{ar}{1-r^2}=4\cdot\left(-\tfrac14\right)=-1" />. Odd plus even gives <InlineMath math="4+(-1)=3" />, the sum of the original series. The even terms are negative because <InlineMath math="r<0" />, so it makes sense that the odd terms add up to more than <InlineMath math="3" />.
 
 # Why the other options fail

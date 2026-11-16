@@ -41,6 +41,43 @@ Segitiga <InlineMath math="ADC" /> dan segitiga <InlineMath math="ACB" /> sebang
 AD &= \frac{AC^2}{AB}=\frac{900}{50}=18
 \end{aligned}" />
 
+Gambar segitiga dengan ukuran sebenarnya memperlihatkan pembagian sisi miring itu. Karena <InlineMath math="AC" /> kaki yang lebih pendek, **potongan di dekat <InlineMath math="A" /> juga yang lebih pendek**, yaitu <InlineMath math="18" />, sedangkan potongan di dekat <InlineMath math="B" /> adalah <InlineMath math="32" />.
+
+<MathVisual
+  title={<>Garis tinggi <InlineMath math="CD" /> membagi sisi miring <InlineMath math="AB" /></>}
+  description={<>Segitiga siku-siku di <InlineMath math="C" /> dengan <InlineMath math="AC=30" />, <InlineMath math="BC=40" />, dan <InlineMath math="AB=50" />. Garis tinggi <InlineMath math="CD=24" /> jatuh di <InlineMath math="D" /> pada <InlineMath math="AB" />, dan membagi sisi miring menjadi <InlineMath math="AD=18" /> dan <InlineMath math="DB=32" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="18" />,
+    db: <InlineMath math="32" />,
+    cd: <InlineMath math="24" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 44 }, y: { min: -4, max: 34 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 0, y: 30 }] },
+      { id: "altitude", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 72 / 5, y: 96 / 5 } },
+      { id: "piece-ad", kind: "segment", appearance: "answer", from: { x: 0, y: 30 }, to: { x: 72 / 5, y: 96 / 5 } },
+      { id: "piece-db", kind: "segment", appearance: "secondary", from: { x: 72 / 5, y: 96 / 5 }, to: { x: 40, y: 0 } },
+      { id: "point-d", kind: "point", appearance: "highlight", at: { x: 72 / 5, y: 96 / 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 30 }, placement: "above-left" },
+      { key: "b", objectId: "triangle", at: { x: 40, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 72 / 5, y: 96 / 5 }, placement: "above-right" },
+      { key: "ad", objectId: "piece-ad", at: { x: 36 / 5, y: 123 / 5 }, placement: "above-right" },
+      { key: "db", objectId: "piece-db", at: { x: 136 / 5, y: 48 / 5 }, placement: "above-right" },
+      { key: "cd", objectId: "altitude", at: { x: 36 / 5, y: 48 / 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Cek dengan potongan lainnya: <InlineMath math="DB=\tfrac{BC^2}{AB}=\tfrac{1{.}600}{50}=32" />. Jumlahnya <InlineMath math="18+32=50=AB" />, dan hasil kalinya <InlineMath math="18\cdot32=576=24^2=CD^2" />, sesuai sifat garis tinggi ke sisi miring.
 
 # Mengapa pilihan lain keliru

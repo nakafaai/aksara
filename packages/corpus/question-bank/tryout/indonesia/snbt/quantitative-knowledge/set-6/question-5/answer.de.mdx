@@ -33,6 +33,17 @@ Q &= 2\sqrt4=4
 
 Bei <InlineMath math="x=2" /> ist die Differenz der Quadrate <InlineMath math="4(2-1)=4" /> positiv, also gilt <InlineMath math="P>Q" />. Das gilt genauso für jedes <InlineMath math="x\ge2" />. Weil <InlineMath math="x=1" /> zu <InlineMath math="P=Q" /> und <InlineMath math="x=2" /> zu <InlineMath math="P>Q" /> führt, **lässt sich keine einzelne Beziehung festlegen**.
 
+Ein Diagramm der Differenz <InlineMath math="P-Q" /> für die ersten acht positiven ganzen Zahlen zeigt das Muster. **Der Balken bei <InlineMath math="x=1" /> hat die Höhe null**, alle anderen sind positiv, also wechselt die Beziehung von gleich zu größer.
+
+<Chart
+  title={<>Die Differenz <InlineMath math="P-Q=\sqrt{x}+\sqrt{x+8}-2\sqrt{x+3}" /></>}
+  description={<>Für <InlineMath math="x=1" /> ist die Differenz genau <InlineMath math="0" />. Für <InlineMath math="x=2" /> bis <InlineMath math="8" /> ist sie positiv, etwa zwischen <InlineMath math="0{,}10" /> und <InlineMath math="0{,}20" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 8 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Differenz P - Q", mark: "bar", values: Array.from({ length: 8 }, (_, i) => Math.sqrt(i + 1) + Math.sqrt(i + 9) - 2 * Math.sqrt(i + 4)) }]}
+  valueLabel="Differenz"
+/>
+
 # Warum die anderen Antworten nicht passen
 
 Jede der drei anderen Antworten stimmt nur für **einen Teil der Werte von <InlineMath math="x" />**.

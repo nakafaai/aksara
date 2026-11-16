@@ -33,6 +33,32 @@ Petak pada baris <InlineMath math="3" /> kolom <InlineMath math="5" /> berada di
 
 Sekarang garis atas harus di atas kedua petak, garis bawah di bawah kedua petak, dan seterusnya. Jadi **setiap garis harus memenuhi syarat yang lebih ketat dari dua petak itu**.
 
+Gambar papan berikut memperlihatkan syarat yang lebih ketat itu. Setiap persegi panjang yang memuat kedua petak **harus menutupi persegi panjang terkecil yang ditandai**, dari baris <InlineMath math="1" /> sampai <InlineMath math="3" /> dan dari kolom <InlineMath math="2" /> sampai <InlineMath math="5" />. Garis bawahnya masih bisa turun satu baris, dan garis kiri serta kanannya masih bisa melebar satu kolom.
+
+<MathVisual
+  title={<>Papan <InlineMath math="4" /> kali <InlineMath math="6" /> dengan dua petak diarsir</>}
+  description={<>Petak diarsir ada di baris <InlineMath math="1" /> kolom <InlineMath math="2" /> dan di baris <InlineMath math="3" /> kolom <InlineMath math="5" />. Persegi panjang terkecil yang memuat keduanya membentang dari baris <InlineMath math="1" /> sampai <InlineMath math="3" /> dan dari kolom <InlineMath math="2" /> sampai <InlineMath math="5" />. Garis atasnya terkunci di tepi atas papan, garis bawahnya bisa di bawah baris <InlineMath math="3" /> atau baris <InlineMath math="4" />, dan garis kiri serta kanannya masing-masing punya <InlineMath math="2" /> pilihan.</>}
+  labels={{
+    first: <InlineMath math="(1,2)" />,
+    second: <InlineMath math="(3,5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "board", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 0, y: 4 }] },
+      { id: "smallest", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 4 }, { x: 1, y: 4 }] },
+      { id: "first", kind: "polygon", appearance: "warning", vertices: [{ x: 1, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 1, y: 4 }] },
+      { id: "second", kind: "polygon", appearance: "warning", vertices: [{ x: 4, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 2 }, { x: 4, y: 2 }] },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1.5, y: 3.5 }, placement: "center" },
+      { key: "second", objectId: "second", at: { x: 4.5, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \text{atas} &\in\{0\}, & \text{bawah} &\in\{3,4\} \\
 \text{kiri} &\in\{0,1\}, & \text{kanan} &\in\{5,6\} \\

@@ -31,6 +31,43 @@ P(x)=2x+4:\quad & P(1)=6,\ P(4)=12,\ P(5)=14 \\
 P(x)=7x-x^2:\quad & P(1)=6,\ P(4)=12,\ P(0)=0,\ P(6)=6,\ P(7)=0
 \end{aligned}" />
 
+Die Graphen beider Beispiele zeigen, dass die anderen vier Möglichkeiten wirklich eintreten können. Die Gerade <InlineMath math="y=2x+4" /> und die Parabel <InlineMath math="y=7x-x^2" /> **gehen beide durch <InlineMath math="(1,6)" /> und <InlineMath math="(4,12)" />** und treffen dann die Punkte dieser Antworten. Nur den Punkt <InlineMath math="(-1,7)" /> erreicht kein Polynom mit ganzzahligen Koeffizienten.
+
+<MathVisual
+  title={<>Zwei Polynome mit ganzzahligen Koeffizienten, <InlineMath math="P(1)=6" /> und <InlineMath math="P(4)=12" /></>}
+  description={<>Die Gerade <InlineMath math="y=2x+4" /> geht durch <InlineMath math="(5,14)" />. Die Parabel <InlineMath math="y=7x-x^2" /> geht durch <InlineMath math="(0,0)" />, <InlineMath math="(6,6)" /> und <InlineMath math="(7,0)" />. Der Punkt <InlineMath math="(-1,7)" /> ist als unmöglich markiert, weil <InlineMath math="-1-1" /> kein Teiler von <InlineMath math="7-6" /> ist.</>}
+  labels={{
+    line: <InlineMath math="y=2x+4" />,
+    curve: <InlineMath math="y=7x-x^2" />,
+    bad: <InlineMath math="(-1,7)" />,
+    p1: <InlineMath math="(1,6)" />,
+    p4: <InlineMath math="(4,12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -2, max: 16 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "2x + 4", domain: { min: -2, max: 6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "7x - x^2", domain: { min: -0.25, max: 7.25 } },
+      { id: "p1", kind: "point", appearance: "reference", at: { x: 1, y: 6 } },
+      { id: "p4", kind: "point", appearance: "reference", at: { x: 4, y: 12 } },
+      { id: "p5", kind: "point", appearance: "answer", at: { x: 5, y: 14 } },
+      { id: "p0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "p6", kind: "point", appearance: "answer", at: { x: 6, y: 6 } },
+      { id: "p7", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: -1, y: 7 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 5.5, y: 15 }, placement: "left" },
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: 12.25 }, placement: "above" },
+      { key: "bad", objectId: "bad", at: { x: -1, y: 7 }, placement: "above" },
+      { key: "p1", objectId: "p1", at: { x: 1, y: 6 }, placement: "right" },
+      { key: "p4", objectId: "p4", at: { x: 4, y: 12 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Probe für das zweite Polynom: <InlineMath math="P(0)=0" />, <InlineMath math="P(4)=28-16=12" />, <InlineMath math="P(6)=42-36=6" /> und <InlineMath math="P(7)=49-49=0" />. Die anderen vier Aussagen können also alle stimmen.
 
 # Warum die anderen Antworten nicht passen

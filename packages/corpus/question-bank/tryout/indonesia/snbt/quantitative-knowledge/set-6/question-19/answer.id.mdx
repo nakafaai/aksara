@@ -35,6 +35,38 @@ x &= 2
 
 Hanya ada satu penyelesaian. Angka dua penyelesaian muncul kalau kamu mengkuadratkan kedua ruas tanpa syarat: <InlineMath math="(x+1)^2=(2x-1)^2" /> memberi <InlineMath math="3x^2-6x=0" />, yaitu <InlineMath math="x=0" /> atau <InlineMath math="x=2" />. Untuk <InlineMath math="x=0" />, ruas kiri <InlineMath math="\sqrt1=1" /> sedangkan ruas kanan <InlineMath math="-1" />, jadi **<InlineMath math="x=0" /> adalah akar palsu** dari pengkuadratan. Pernyataan ketiga **salah**.
 
+Grafik kedua ruas memperlihatkan mengapa hanya ada satu penyelesaian. Kurva <InlineMath math="y=\sqrt{(x+1)^2}=|x+1|" /> berbentuk V dan **tidak pernah di bawah sumbu-<InlineMath math="x" />**, jadi kurva itu hanya bertemu garis <InlineMath math="y=2x-1" /> di <InlineMath math="(2,3)" />. Di <InlineMath math="x=0" />, kurva bernilai <InlineMath math="1" /> sedangkan garis bernilai <InlineMath math="-1" />.
+
+<MathVisual
+  title={<>Ruas kiri dan ruas kanan pernyataan tiga</>}
+  description={<>Kurva <InlineMath math="y=|x+1|" /> berbentuk V dengan titik terendah <InlineMath math="(-1,0)" />. Garis <InlineMath math="y=2x-1" /> memotongnya hanya di <InlineMath math="(2,3)" />. Di <InlineMath math="x=0" />, kurva melewati <InlineMath math="(0,1)" /> dan garis melewati <InlineMath math="(0,-1)" />, jadi <InlineMath math="x=0" /> bukan penyelesaian.</>}
+  labels={{
+    root: <InlineMath math="y=\sqrt{(x+1)^2}" />,
+    line: <InlineMath math="y=2x-1" />,
+    meet: <InlineMath math="(2,3)" />,
+    fake: <InlineMath math="x=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -3, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "left-piece", kind: "function", appearance: "primary", formula: "-x - 1", domain: { min: -4, max: -1 } },
+      { id: "right-piece", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -1, max: 4 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "2x - 1", domain: { min: -1, max: 3.5 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "fake-top", kind: "point", appearance: "warning", at: { x: 0, y: 1 } },
+      { id: "fake-bottom", kind: "point", appearance: "warning", at: { x: 0, y: -1 } },
+    ],
+    labels: [
+      { key: "root", objectId: "left-piece", at: { x: -3, y: 2 }, placement: "above" },
+      { key: "line", objectId: "line", at: { x: 3.5, y: 6 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "fake", objectId: "fake-bottom", at: { x: 0, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Pernyataan keempat
 
 Untuk <InlineMath math="a\le0" />, bilangan <InlineMath math="-a" /> tidak negatif, jadi <InlineMath math="\sqrt{-a}" /> terdefinisi. Menurut arti akar kuadrat, **akar kuadrat dikali dirinya sendiri kembali ke bilangan di dalam akar**, yaitu <InlineMath math="-a" />, bukan <InlineMath math="a" />. Contoh penyangkalnya <InlineMath math="a=-4" />.

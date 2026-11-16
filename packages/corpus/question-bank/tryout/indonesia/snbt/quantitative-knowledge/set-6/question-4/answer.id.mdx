@@ -33,6 +33,37 @@ x^2-4x-5 &\le 0 \\
 
 Irisan <InlineMath math="x>3" /> dan <InlineMath math="-1\le x\le5" /> adalah <InlineMath math="3<x\le5" />. **Bilangan bulatnya hanya <InlineMath math="4" /> dan <InlineMath math="5" />**, jadi jumlahnya <InlineMath math="4+5=9" />.
 
+Grafik ruas kiri untuk <InlineMath math="x>3" /> memperlihatkan arah pertidaksamaannya. Kurva **turun terus** karena basisnya kurang dari satu, sehingga nilainya hanya bertahan di atas atau tepat di garis <InlineMath math="y=-3" /> sampai <InlineMath math="x=5" />.
+
+<MathVisual
+  title={<>Ruas kiri pertidaksamaan untuk <InlineMath math="x>3" /></>}
+  description={<>Kurva <InlineMath math="y=\log_{\frac12}(x-1)+\log_{\frac12}(x-3)" /> mulai sangat tinggi di dekat garis <InlineMath math="x=3" /> dan turun terus. Kurva memotong garis <InlineMath math="y=-3" /> di <InlineMath math="(5,-3)" />. Ruas tebal pada sumbu-<InlineMath math="x" /> menandai <InlineMath math="3<x\le5" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\log_{\frac12}(x-1)+\log_{\frac12}(x-3)" />,
+    level: <InlineMath math="y=-3" />,
+    five: <InlineMath math="(5,-3)" />,
+    wall: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 8 }, y: { min: -6, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 2, y: -3 }, to: { x: 8, y: -3 } },
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: 3, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "-log_2(x - 1) - log_2(x - 3)", domain: { min: 3.005, max: 8 } },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 5, y: -3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: -Math.log2(2.5) - Math.log2(0.5) }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 7.5, y: -3 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 5, y: -3 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 3, y: -5.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Cek ke pertidaksamaan awal. Untuk <InlineMath math="x=5" /> nilainya tepat di batas, dan untuk <InlineMath math="x=6" /> nilainya sudah lewat batas.
 
 <BlockMath math="\begin{aligned}

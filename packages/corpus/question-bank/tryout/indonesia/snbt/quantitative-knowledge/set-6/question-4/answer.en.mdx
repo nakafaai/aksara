@@ -33,6 +33,37 @@ x^2-4x-5 &\le 0 \\
 
 The overlap of <InlineMath math="x>3" /> and <InlineMath math="-1\le x\le5" /> is <InlineMath math="3<x\le5" />. **The only integers are <InlineMath math="4" /> and <InlineMath math="5" />**, so the sum is <InlineMath math="4+5=9" />.
 
+Graphing the left side for <InlineMath math="x>3" /> shows which way the inequality goes. The curve **keeps falling** because the base is less than one, so it only stays on or above the line <InlineMath math="y=-3" /> up to <InlineMath math="x=5" />.
+
+<MathVisual
+  title={<>The left side of the inequality for <InlineMath math="x>3" /></>}
+  description={<>The curve <InlineMath math="y=\log_{\frac12}(x-1)+\log_{\frac12}(x-3)" /> starts very high near the line <InlineMath math="x=3" /> and keeps falling. It crosses the line <InlineMath math="y=-3" /> at <InlineMath math="(5,-3)" />. The thick piece on the <InlineMath math="x" />-axis marks <InlineMath math="3<x\le5" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\log_{\frac12}(x-1)+\log_{\frac12}(x-3)" />,
+    level: <InlineMath math="y=-3" />,
+    five: <InlineMath math="(5,-3)" />,
+    wall: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 8 }, y: { min: -6, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 2, y: -3 }, to: { x: 8, y: -3 } },
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: 3, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "-log_2(x - 1) - log_2(x - 3)", domain: { min: 3.005, max: 8 } },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 5, y: -3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3.5, y: -Math.log2(2.5) - Math.log2(0.5) }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 7.5, y: -3 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 5, y: -3 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 3, y: -5.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check against the original inequality. At <InlineMath math="x=5" /> the value sits exactly on the boundary, and at <InlineMath math="x=6" /> it has already gone past it.
 
 <BlockMath math="\begin{aligned}

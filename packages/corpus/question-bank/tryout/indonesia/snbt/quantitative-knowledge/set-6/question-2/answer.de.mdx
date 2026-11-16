@@ -52,6 +52,38 @@ f(6) &= 50-1=49=7^2
 
 Alle drei Punkte passen, und der Scheitelpunkt ist <InlineMath math="(1,-1)" />.
 
+Der Graph zeigt beide Kandidaten zusammen. Für <InlineMath math="k=1" /> liegen die drei Punkte **auf der Geraden <InlineMath math="y=1" />**, es gibt also keine Parabel. Für <InlineMath math="k=7" /> geht die Parabel durch <InlineMath math="(2,1)" />, <InlineMath math="(3,7)" /> und <InlineMath math="(6,49)" />, mit dem Scheitel auf der Achse <InlineMath math="x=1" />.
+
+<MathVisual
+  title={<>Die beiden Kandidaten für <InlineMath math="k" /></>}
+  description={<>Die waagrechte Gerade <InlineMath math="y=1" /> für <InlineMath math="k=1" /> ist keine Parabel. Die Parabel <InlineMath math="y=2(x-1)^2-1" /> für <InlineMath math="k=7" /> geht durch <InlineMath math="(2,1)" />, <InlineMath math="(3,7)" /> und <InlineMath math="(6,49)" />, mit Scheitel <InlineMath math="(1,-1)" />.</>}
+  labels={{
+    curve: <InlineMath math="y=2(x-1)^2-1" />,
+    flat: <InlineMath math="y=1" />,
+    vertex: <InlineMath math="(1,-1)" />,
+    p6: <InlineMath math="(6,49)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -3, max: 52 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "flat", kind: "function", appearance: "warning", formula: "1", domain: { min: -1, max: 7 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2(x - 1)^2 - 1", domain: { min: -1, max: 6.05 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 1, y: -1 } },
+      { id: "p2", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+      { id: "p3", kind: "point", appearance: "reference", at: { x: 3, y: 7 } },
+      { id: "p6", kind: "point", appearance: "reference", at: { x: 6, y: 49 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5, y: 31 }, placement: "left" },
+      { key: "flat", objectId: "flat", at: { x: 6.5, y: 1 }, placement: "above" },
+      { key: "vertex", objectId: "vertex", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "p6", objectId: "p6", at: { x: 6, y: 49 }, placement: "left" },
+    ],
+  }}
+/>
+
 # Warum die anderen Antworten nicht passen
 
 Die falschen Antworten entstehen aus **einem ungeprüften Kandidaten** oder aus einem falsch abgelesenen Wert.

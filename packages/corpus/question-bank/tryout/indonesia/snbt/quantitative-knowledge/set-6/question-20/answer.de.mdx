@@ -41,6 +41,17 @@ Zum Beispiel ist <InlineMath math="u_{15}=108=12\cdot9" /> und <InlineMath math=
 
 <BlockMath math="\text{Antwort}=32-11=21" />
 
+Das Diagramm siebt die Glieder schrittweise aus. Von den <InlineMath math="129" /> Gliedern zwischen <InlineMath math="100" /> und <InlineMath math="1{.}000" /> sind <InlineMath math="32" /> Vielfache von <InlineMath math="4" />, und **<InlineMath math="11" /> davon sind auch Vielfache von <InlineMath math="3" />**, also bleiben <InlineMath math="21" />.
+
+<Chart
+  title={<>Die Glieder <InlineMath math="u_n=7n+3" /> aussieben</>}
+  description={<>Die Glieder <InlineMath math="14" /> bis <InlineMath math="142" /> sind <InlineMath math="129" /> Stück. Davon sind <InlineMath math="32" /> durch <InlineMath math="4" /> teilbar und <InlineMath math="11" /> durch <InlineMath math="12" />. Durch <InlineMath math="4" />, aber nicht durch <InlineMath math="3" /> teilbar sind <InlineMath math="21" /> Glieder.</>}
+  categories={["Zwischen 100 und 1.000", "Vielfache von 4", "Vielfache von 12", "Vielfache von 4, nicht von 3"]}
+  bars="apart"
+  series={[{ label: "Anzahl der Glieder", mark: "bar", values: [142 - 14 + 1, (139 - 15) / 4 + 1, (135 - 15) / 12 + 1, (139 - 15) / 4 + 1 - ((135 - 15) / 12 + 1)] }]}
+  valueLabel="Anzahl der Glieder"
+/>
+
 Prüfe das am Muster: Teile die <InlineMath math="32" /> Nummern in Dreiergruppen, dann ist die erste Nummer jeder Gruppe ein Vielfaches von drei. Es gibt <InlineMath math="10" /> volle Gruppen und zwei übrige Nummern, <InlineMath math="135" /> und <InlineMath math="139" />. Davon ist nur <InlineMath math="135" /> ein Vielfaches von drei, also ergibt sich <InlineMath math="10+1=11" />, passend zur Zählung oben. Ein häufiger Fehler ist, die Vielfachen von <InlineMath math="12" /> nicht abzuziehen, dann kommt <InlineMath math="32" /> heraus.
 
 Die Anzahl der Glieder, die alle Bedingungen erfüllen, ist also <InlineMath math="21" />.

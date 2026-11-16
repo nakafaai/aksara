@@ -26,6 +26,20 @@ Wird ein Wert <InlineMath math="10" /> zu <InlineMath math="17" /> korrigiert, k
 
 Alle drei Bedingungen sind erfüllt, der richtige Wert ist also <InlineMath math="16" />.
 
+Das Diagramm vergleicht die Daten vor und nach der Korrektur, beide sortiert. **Der vierte Balken bleibt bei <InlineMath math="7" />** und der Wert <InlineMath math="10" /> kommt weiter zweimal vor, während die Punktzahl <InlineMath math="9" /> als <InlineMath math="16" /> ans Ende rückt.
+
+<Chart
+  title={<>Punktzahlen von sieben Teilnehmenden vor und nach der Korrektur</>}
+  description={<>Die notierten Daten <InlineMath math="2, 5, 6, 7, 9, 10, 10" /> ergeben zusammen <InlineMath math="49" />. Die korrigierten Daten <InlineMath math="2, 5, 6, 7, 10, 10, 16" /> ergeben zusammen <InlineMath math="56" />. Beide haben den Median <InlineMath math="7" /> und den Modus <InlineMath math="10" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Notierte Daten", mark: "bar", values: [2, 5, 6, 7, 9, 10, 10] },
+    { label: "Daten nach der Korrektur", mark: "bar", values: [2, 5, 6, 7, 10, 10, 9 + 7] },
+  ]}
+  valueLabel="Punktzahl"
+/>
+
 # Warum die anderen Antworten nicht passen
 
 Jede falsche Antwort ist ein Kandidat, der **eine Bedingung erfüllt, aber an einer anderen scheitert**.

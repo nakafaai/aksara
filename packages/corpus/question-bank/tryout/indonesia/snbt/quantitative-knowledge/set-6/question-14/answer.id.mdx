@@ -26,6 +26,20 @@ Kalau satu skor <InlineMath math="10" /> dikoreksi menjadi <InlineMath math="17"
 
 Ketiga syarat terpenuhi, jadi nilai benarnya <InlineMath math="16" />.
 
+Grafik berikut membandingkan data sebelum dan sesudah koreksi, keduanya diurutkan. **Batang keempat tetap <InlineMath math="7" />** dan nilai <InlineMath math="10" /> masih muncul dua kali, sedangkan skor <InlineMath math="9" /> pindah ke ujung sebagai <InlineMath math="16" />.
+
+<Chart
+  title={<>Skor tujuh peserta sebelum dan sesudah koreksi</>}
+  description={<>Data tercatat <InlineMath math="2, 5, 6, 7, 9, 10, 10" /> berjumlah <InlineMath math="49" />. Data setelah koreksi <InlineMath math="2, 5, 6, 7, 10, 10, 16" /> berjumlah <InlineMath math="56" />. Pada keduanya, median <InlineMath math="7" /> dan modus <InlineMath math="10" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Data tercatat", mark: "bar", values: [2, 5, 6, 7, 9, 10, 10] },
+    { label: "Data setelah koreksi", mark: "bar", values: [2, 5, 6, 7, 10, 10, 9 + 7] },
+  ]}
+  valueLabel="Skor"
+/>
+
 # Mengapa pilihan lain keliru
 
 Setiap pilihan yang salah adalah kandidat yang **lolos satu syarat tetapi gagal di syarat lain**.

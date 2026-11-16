@@ -33,6 +33,17 @@ Q &= 2\sqrt4=4
 
 Untuk <InlineMath math="x=2" />, selisih kuadratnya <InlineMath math="4(2-1)=4" /> bernilai positif, jadi <InlineMath math="P>Q" />. Hal yang sama berlaku untuk setiap <InlineMath math="x\ge2" />. Karena <InlineMath math="x=1" /> memberi <InlineMath math="P=Q" /> dan <InlineMath math="x=2" /> memberi <InlineMath math="P>Q" />, **satu hubungan pasti tidak bisa dipilih**.
 
+Grafik selisih <InlineMath math="P-Q" /> untuk delapan bilangan bulat positif pertama memperlihatkan polanya. **Batang <InlineMath math="x=1" /> setinggi nol**, sedangkan batang lain positif, jadi hubungannya berubah dari sama dengan menjadi lebih besar.
+
+<Chart
+  title={<>Selisih <InlineMath math="P-Q=\sqrt{x}+\sqrt{x+8}-2\sqrt{x+3}" /></>}
+  description={<>Untuk <InlineMath math="x=1" />, selisihnya tepat <InlineMath math="0" />. Untuk <InlineMath math="x=2" /> sampai <InlineMath math="8" />, selisihnya positif, kira-kira antara <InlineMath math="0{,}10" /> dan <InlineMath math="0{,}20" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 8 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Selisih P - Q", mark: "bar", values: Array.from({ length: 8 }, (_, i) => Math.sqrt(i + 1) + Math.sqrt(i + 9) - 2 * Math.sqrt(i + 4)) }]}
+  valueLabel="Selisih"
+/>
+
 # Mengapa pilihan lain keliru
 
 Ketiga pilihan lain hanya benar untuk **sebagian nilai <InlineMath math="x" />**.

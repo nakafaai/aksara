@@ -16,6 +16,39 @@ Der Richtungsvektor einer Geraden ist Endpunkt minus Anfangspunkt. Danach berech
 \overrightarrow{AG}\cdot\overrightarrow{BD} &= 2(-2)+4(4)+4(0)=12
 \end{aligned}" />
 
+Der Quader zeigt beide Geraden. Die Raumdiagonale <InlineMath math="AG" /> steigt von einer unteren Ecke zur gegenüberliegenden oberen Ecke, die Grundflächendiagonale <InlineMath math="BD" /> bleibt am Boden, also **kreuzen sie sich, ohne sich zu treffen**. Drehe die Abbildung, dann siehst du, dass der Winkel kein rechter ist.
+
+<MathVisual
+  title={<>Die Raumdiagonale <InlineMath math="AG" /> und die Grundflächendiagonale <InlineMath math="BD" /></>}
+  description={<>Ein Quader mit <InlineMath math="AB=2" />, <InlineMath math="AD=4" /> und <InlineMath math="AE=4" />. Die Strecke <InlineMath math="AG" /> verbindet <InlineMath math="A(0,0,0)" /> mit <InlineMath math="G(2,4,4)" />, die Strecke <InlineMath math="BD" /> verbindet <InlineMath math="B(2,0,0)" /> mit <InlineMath math="D(0,4,0)" /> in der Grundfläche.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    d: <InlineMath math="D" />,
+    g: <InlineMath math="G" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: -1, max: 5 }, z: { min: -1, max: 5 } },
+    view: { kind: "camera", position: { x: 9, y: -6, z: 7 }, target: { x: 1, y: 2, z: 2 } },
+    objects: [
+      { id: "box", kind: "cuboid", appearance: "reference", center: { x: 1, y: 2, z: 2 }, size: { length: 2, width: 4, height: 4 } },
+      { id: "ag", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 4, z: 4 } },
+      { id: "bd", kind: "segment", appearance: "secondary", from: { x: 2, y: 0, z: 0 }, to: { x: 0, y: 4, z: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0, z: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2, y: 0, z: 0 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 4, z: 0 } },
+      { id: "point-g", kind: "point", appearance: "reference", at: { x: 2, y: 4, z: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 2, y: 0, z: 0 }, placement: "below-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 4, z: 0 }, placement: "left" },
+      { key: "g", objectId: "point-g", at: { x: 2, y: 4, z: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Den spitzen Winkel nehmen
 
 Eine Gerade hat kein Vorne und Hinten. Nimmst du <InlineMath math="\overrightarrow{DB}=(2,-4,0)" />, wird das Skalarprodukt <InlineMath math="-12" /> und der Winkel stumpf, obwohl es dieselbe Gerade ist. Deshalb ist **der Winkel zwischen zwei Geraden immer der spitze**, und du nimmst den Betrag des Skalarprodukts.

@@ -25,6 +25,43 @@ Jumlah <InlineMath math="2" /> hanya dari <InlineMath math="(1,1)" />, yang hasi
 4+5 &= 9\ \text{(bukan prima)}
 \end{aligned}" />
 
+Gambar berikut menandai kelima belas hasil yang memenuhi syarat sebagai titik <InlineMath math="(\text{dadu }1,\text{dadu }2)" />. Titik-titiknya membentuk tanda tambah di baris dan kolom <InlineMath math="4" />, ditambah empat titik dari mata <InlineMath math="2" /> dan <InlineMath math="6" />. **Hanya empat titik di dekat pusat tanda tambah** yang jumlahnya prima.
+
+<MathVisual
+  title={<>Ruang sampel baru: hasil kali habis dibagi <InlineMath math="4" /></>}
+  description={<>Ada <InlineMath math="15" /> titik. Sebelas titik ada di baris atau kolom mata <InlineMath math="4" />, dan empat titik lagi adalah <InlineMath math="(2,2)" />, <InlineMath math="(2,6)" />, <InlineMath math="(6,2)" />, dan <InlineMath math="(6,6)" />. Titik dengan jumlah prima adalah <InlineMath math="(1,4)" />, <InlineMath math="(4,1)" />, <InlineMath math="(3,4)" />, dan <InlineMath math="(4,3)" />.</>}
+  labels={{
+    p14: <InlineMath math="(1,4)" />,
+    p41: <InlineMath math="(4,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "p14", kind: "point", appearance: "answer", at: { x: 1, y: 4 } },
+      { id: "p34", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "p41", kind: "point", appearance: "answer", at: { x: 4, y: 1 } },
+      { id: "p43", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "p54", kind: "point", appearance: "secondary", at: { x: 5, y: 4 } },
+      { id: "p45", kind: "point", appearance: "secondary", at: { x: 4, y: 5 } },
+      { id: "p42", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "p44", kind: "point", appearance: "secondary", at: { x: 4, y: 4 } },
+      { id: "p46", kind: "point", appearance: "secondary", at: { x: 4, y: 6 } },
+      { id: "p24", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "p64", kind: "point", appearance: "secondary", at: { x: 6, y: 4 } },
+      { id: "p22", kind: "point", appearance: "secondary", at: { x: 2, y: 2 } },
+      { id: "p26", kind: "point", appearance: "secondary", at: { x: 2, y: 6 } },
+      { id: "p62", kind: "point", appearance: "secondary", at: { x: 6, y: 2 } },
+      { id: "p66", kind: "point", appearance: "secondary", at: { x: 6, y: 6 } },
+    ],
+    labels: [
+      { key: "p14", objectId: "p14", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "p41", objectId: "p41", at: { x: 4, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Setiap pasangan bisa muncul dalam dua urutan, jadi hasil yang cocok adalah <InlineMath math="(4,1)" />, <InlineMath math="(1,4)" />, <InlineMath math="(4,3)" />, dan <InlineMath math="(3,4)" />. Ada <InlineMath math="4" /> hasil.
 
 # Menghitung peluangnya
