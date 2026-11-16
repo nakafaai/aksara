@@ -13,13 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The strip gains mass because copper is deposited, and 3.2 g of copper forms",
+            "$$3.20\\text{ g}$$ of copper forms, and the zinc ions reach $$0.050\\text{ mol dm}^{-3}$$",
         },
-        { correct: false, label: "0.050 g of copper forms" },
-        { correct: false, label: "3.25 g of copper forms" },
+        {
+          correct: false,
+          label:
+            "$$0.050\\text{ g}$$ of copper forms, and the zinc ions reach $$0.20\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$3.25\\text{ g}$$ of copper forms, and the zinc ions reach $$0.20\\text{ mol dm}^{-3}$$",
+        },
         {
           correct: true,
-          label: "3.2 g of copper forms and 3.25 g of zinc dissolves",
+          label:
+            "$$3.20\\text{ g}$$ of copper forms, and the zinc ions reach $$0.20\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -29,13 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jalur bertambah jisim kerana kuprum terenap, dan 3.2 g kuprum terbentuk",
+            "$$3.20\\text{ g}$$ kuprum terbentuk, dan ion zink mencapai $$0.050\\text{ mol dm}^{-3}$$",
         },
-        { correct: false, label: "0.050 g kuprum terbentuk" },
-        { correct: false, label: "3.25 g kuprum terbentuk" },
+        {
+          correct: false,
+          label:
+            "$$0.050\\text{ g}$$ kuprum terbentuk, dan ion zink mencapai $$0.20\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$3.25\\text{ g}$$ kuprum terbentuk, dan ion zink mencapai $$0.20\\text{ mol dm}^{-3}$$",
+        },
         {
           correct: true,
-          label: "3.2 g kuprum terbentuk dan 3.25 g zink melarut",
+          label:
+            "$$3.20\\text{ g}$$ kuprum terbentuk, dan ion zink mencapai $$0.20\\text{ mol dm}^{-3}$$",
         },
       ],
     },

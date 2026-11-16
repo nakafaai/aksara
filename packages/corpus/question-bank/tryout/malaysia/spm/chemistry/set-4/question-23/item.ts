@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "2.16 g of copper, because the same current flows through both cells",
+            "$$1.28\\text{ g}$$ of copper, and $$0.24\\text{ dm}^3$$ of oxygen",
         },
         {
           correct: false,
           label:
-            "1.28 g of copper, because the same number of moles is deposited in both cells",
+            "$$0.64\\text{ g}$$ of copper, and $$0.24\\text{ dm}^3$$ of oxygen",
         },
         {
           correct: true,
           label:
-            "0.64 g of copper, because each copper(II) ion needs two electrons while each silver ion needs one",
+            "$$0.64\\text{ g}$$ of copper, and $$0.12\\text{ dm}^3$$ of oxygen",
         },
         {
           correct: false,
           label:
-            "0.32 g of copper, because copper is less electropositive than silver",
+            "$$0.64\\text{ g}$$ of copper, and $$0.24\\text{ dm}^3$$ of hydrogen",
         },
       ],
     },
@@ -37,23 +37,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "2.16 g kuprum, kerana arus yang sama mengalir melalui kedua-dua sel",
+          label: "$$1.28\\text{ g}$$ kuprum, dan $$0.24\\text{ dm}^3$$ oksigen",
         },
         {
           correct: false,
-          label:
-            "1.28 g kuprum, kerana bilangan mol yang sama terenap dalam kedua-dua sel",
+          label: "$$0.64\\text{ g}$$ kuprum, dan $$0.24\\text{ dm}^3$$ oksigen",
         },
         {
           correct: true,
-          label:
-            "0.64 g kuprum, kerana setiap ion kuprum(II) memerlukan dua elektron manakala setiap ion argentum memerlukan satu",
+          label: "$$0.64\\text{ g}$$ kuprum, dan $$0.12\\text{ dm}^3$$ oksigen",
         },
         {
           correct: false,
           label:
-            "0.32 g kuprum, kerana kuprum kurang elektropositif daripada argentum",
+            "$$0.64\\text{ g}$$ kuprum, dan $$0.24\\text{ dm}^3$$ hidrogen",
         },
       ],
     },

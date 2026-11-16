@@ -13,21 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The copper electrode loses 0.64 g, because copper atoms give up electrons",
+            "The zinc electrode loses $$0.65\\text{ g}$$, the copper electrode gains $$0.64\\text{ g}$$, and the copper(II) ions fall to $$0.49\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "The zinc electrode gains 0.65 g, because zinc ions are discharged on it",
+            "The zinc electrode loses $$0.65\\text{ g}$$, the copper electrode gains $$0.64\\text{ g}$$, and the copper(II) ions stay at $$0.50\\text{ mol dm}^{-3}$$ because the salt bridge replaces them",
         },
         {
           correct: false,
-          label: "Electrons flow through the wire from copper to zinc",
+          label:
+            "The copper electrode loses $$0.64\\text{ g}$$, the zinc electrode gains $$0.65\\text{ g}$$, and the copper(II) ions rise to $$0.60\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "The zinc electrode loses 0.65 g, the copper electrode gains 0.64 g, and the blue colour of the copper(II) sulfate solution fades",
+            "The zinc electrode loses $$0.65\\text{ g}$$, the copper electrode gains $$0.64\\text{ g}$$, and the copper(II) ions fall to $$0.40\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -37,21 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Elektrod kuprum kehilangan 0.64 g, kerana atom kuprum melepaskan elektron",
+            "Elektrod zink kehilangan $$0.65\\text{ g}$$, elektrod kuprum bertambah $$0.64\\text{ g}$$, dan ion kuprum(II) berkurang kepada $$0.49\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Elektrod zink bertambah 0.65 g, kerana ion zink dinyahcas padanya",
+            "Elektrod zink kehilangan $$0.65\\text{ g}$$, elektrod kuprum bertambah $$0.64\\text{ g}$$, dan ion kuprum(II) kekal $$0.50\\text{ mol dm}^{-3}$$ kerana titian garam menggantikannya",
         },
         {
           correct: false,
-          label: "Elektron mengalir melalui wayar dari kuprum ke zink",
+          label:
+            "Elektrod kuprum kehilangan $$0.64\\text{ g}$$, elektrod zink bertambah $$0.65\\text{ g}$$, dan ion kuprum(II) bertambah kepada $$0.60\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "Elektrod zink kehilangan 0.65 g, elektrod kuprum bertambah 0.64 g, dan warna biru larutan kuprum(II) sulfat menjadi pudar",
+            "Elektrod zink kehilangan $$0.65\\text{ g}$$, elektrod kuprum bertambah $$0.64\\text{ g}$$, dan ion kuprum(II) berkurang kepada $$0.40\\text{ mol dm}^{-3}$$",
         },
       ],
     },
