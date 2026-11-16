@@ -1,0 +1,32 @@
+# Presisi adalah kedekatan antarpembacaan, akurasi adalah kedekatan dengan nilai sebenarnya
+
+Nilai dua hal secara terpisah: **sebaran tiga pembacaan tiap siswa** (presisi) dan **jarak rata-ratanya dari <InlineMath math="0{,}100" />** (akurasi).
+
+<Chart
+  title={<>Tiga Pembacaan Tiap Siswa</>}
+  bars="apart"
+  categories={["Pembacaan 1", "Pembacaan 2", "Pembacaan 3"]}
+  series={[
+    { label: "P", mark: "bar", values: [0.099, 0.1, 0.101] },
+    { label: "Q", mark: "bar", values: [0.11, 0.111, 0.11] },
+    { label: "R", mark: "bar", values: [0.09, 0.105, 0.112] },
+    { label: "S", mark: "bar", values: [0.095, 0.1, 0.106] },
+  ]}
+  valueLabel="Konsentrasi (mol dm⁻³)"
+  description={<>Pembacaan <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. P: <InlineMath math="0{,}099" />, <InlineMath math="0{,}100" />, <InlineMath math="0{,}101" />. Q: <InlineMath math="0{,}110" />, <InlineMath math="0{,}111" />, <InlineMath math="0{,}110" />. R: <InlineMath math="0{,}090" />, <InlineMath math="0{,}105" />, <InlineMath math="0{,}112" />. S: <InlineMath math="0{,}095" />, <InlineMath math="0{,}100" />, <InlineMath math="0{,}106" />.</>}
+/>
+
+| Siswa | Sebaran | Rata-rata | Penilaian |
+| --- | --- | --- | --- |
+| P | <InlineMath math="0{,}002" /> | <InlineMath math="0{,}100" /> | presisi dan akurat |
+| Q | <InlineMath math="0{,}001" /> | <InlineMath math="0{,}110" /> | presisi, tidak akurat |
+| R | <InlineMath math="0{,}022" /> | <InlineMath math="0{,}102" /> | tidak keduanya |
+| S | <InlineMath math="0{,}011" /> | <InlineMath math="0{,}100" /> | akurat secara rata-rata, tidak presisi |
+
+Pembacaan Q hanya berselisih <InlineMath math="0{,}001" />, tapi semuanya sekitar <InlineMath math="10\%" /> terlalu tinggi, tanda galat sistematis seperti larutan standar yang dibuat keliru.
+
+# Kenapa pilihan lain salah
+
+- P **presisi sekaligus akurat**, jadi bukan "tidak akurat".
+- R menyebar lebar dan rata-ratanya meleset, jadi tidak presisi dan tidak akurat.
+- S rata-ratanya tepat, tapi pembacaannya menyebar <InlineMath math="0{,}011" />, jadi akurat secara rata-rata tapi tidak presisi.
