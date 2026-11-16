@@ -4,6 +4,35 @@ Eine Aussage reicht aus, wenn sie ein sicheres Ja oder ein sicheres Nein erzwing
 
 Aus Aussage (1) folgt <InlineMath math="a=3k" /> und <InlineMath math="b=4k" /> für ein <InlineMath math="k>0" />, aber <InlineMath math="c" /> **ist noch frei**. Mit <InlineMath math="c=5k" /> gilt <InlineMath math="9k^2+16k^2=25k^2" />, das Dreieck hat also bei <InlineMath math="C" /> einen rechten Winkel. Mit <InlineMath math="c=6k" /> existiert das Dreieck wegen <InlineMath math="3k+4k>6k" />, aber <InlineMath math="36k^2\ne 9k^2+16k^2" />, also ist der Winkel gegenüber der längsten Seite kein rechter. Ein Fall liefert Ja, ein anderer Nein, also reicht Aussage (1) allein nicht aus.
 
+Die Abbildung legt beide Beispiele auf dieselbe Seite <InlineMath math="a=3" />. Die Seite <InlineMath math="b=4" /> dreht sich um den Punkt <InlineMath math="C" />, und **das Verhältnis <InlineMath math="3:4" /> legt den Winkel nicht fest**: Mit <InlineMath math="c=5" /> ist der Winkel bei <InlineMath math="C" /> recht, mit <InlineMath math="c=6" /> stumpf.
+
+<MathVisual
+  title={<>Zwei Dreiecke mit <InlineMath math="a:b=3:4" /></>}
+  description={<>Beide Dreiecke haben <InlineMath math="BC=3" /> und <InlineMath math="CA=4" />. Im ersten ist <InlineMath math="AB=5" /> und der Winkel bei <InlineMath math="C" /> recht. Im zweiten ist <InlineMath math="AB=6" /> und der Winkel bei <InlineMath math="C" /> stumpf, weil <InlineMath math="6^2>3^2+4^2" /> ist.</>}
+  labels={{
+    c: <InlineMath math="C" />,
+    b: <InlineMath math="B" />,
+    right: <InlineMath math="c=5" />,
+    wide: <InlineMath math="c=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "side-a", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "right", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 4 }] },
+      { id: "wide", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: -11 / 6, y: Math.sqrt(455) / 6 }] },
+    ],
+    labels: [
+      { key: "c", objectId: "side-a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "side-a", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "right", objectId: "right", at: { x: 3 / 2, y: 2 }, placement: "right" },
+      { key: "wide", objectId: "wide", at: { x: -11 / 6, y: Math.sqrt(455) / 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Zweite Aussage allein
 
 Aus <InlineMath math="c^4=a^4+b^4" /> folgt <InlineMath math="c^4>a^4" /> und <InlineMath math="c^4>b^4" />, also ist <InlineMath math="c" /> **die längste Seite**. Nur der Winkel <InlineMath math="C" /> könnte ein rechter sein, also vergleichst du <InlineMath math="c^2" /> mit <InlineMath math="a^2+b^2" />.

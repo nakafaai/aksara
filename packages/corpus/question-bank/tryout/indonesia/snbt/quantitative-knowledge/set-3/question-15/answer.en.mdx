@@ -32,6 +32,20 @@ Use a common denominator: <InlineMath math="Q=\tfrac{21}{40}=\tfrac{525}{1000}" 
 
 Now see why the colour condition matters. For <InlineMath math="r=3" />, you'd get <InlineMath math="P=3\cdot\left(\tfrac{3}{10}\right)^2\cdot\tfrac{7}{10}=\tfrac{189}{1000}" /> and <InlineMath math="Q=\tfrac{\binom{3}{2}\binom{7}{1}}{120}=\tfrac{175}{1000}" />, so <InlineMath math="P>Q" />. Without the condition that there are more red balls, the answer couldn't be decided.
 
+The chart below compares both quantities for both possible boxes. With <InlineMath math="7" /> red balls, the bar for <InlineMath math="Q" /> is taller. With <InlineMath math="3" /> red balls, **the order flips**, so the condition about more red balls really does decide the answer.
+
+<Chart
+  title={<>Probability of exactly two red in three draws</>}
+  description={<>With <InlineMath math="7" /> red and <InlineMath math="3" /> white, <InlineMath math="P=\tfrac{441}{1000}" /> and <InlineMath math="Q=\tfrac{525}{1000}" />. With <InlineMath math="3" /> red and <InlineMath math="7" /> white, <InlineMath math="P=\tfrac{189}{1000}" /> and <InlineMath math="Q=\tfrac{175}{1000}" />.</>}
+  categories={["7 red, used", "3 red, thrown out"]}
+  bars="apart"
+  series={[
+    { label: "P, with replacement", mark: "bar", values: [441 / 1000, 189 / 1000] },
+    { label: "Q, without replacement", mark: "bar", values: [21 / 40, 175 / 1000] },
+  ]}
+  valueLabel="Probability"
+/>
+
 # Checking the other options
 
 The option <InlineMath math="P>Q" /> comes from using <InlineMath math="r=3" />, or from guessing that drawing without replacement **always lowers the probability**. The option <InlineMath math="P=Q" /> comes from noticing that one draw is red with probability <InlineMath math="\tfrac{7}{10}" /> in both schemes and then assuming the same holds for the combined event over three draws. The option that the information isn't enough comes from not using the condition about more red balls to throw out <InlineMath math="r=3" />.

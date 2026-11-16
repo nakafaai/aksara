@@ -14,6 +14,20 @@ Satu kelompok <InlineMath math="10" /> bilangan berurutan memuat setiap angka sa
 
 Perhatikan bahwa **pangkat kelipatan empat tidak mempertahankan angka satuan**, jadi jumlah satu kelompok bukan <InlineMath math="45" />.
 
+Grafik berikut membandingkan kedua pola itu dalam satu blok. Garis adalah angka satuan bilangannya sendiri, yang berjumlah <InlineMath math="45" />. Batang adalah angka satuan pangkat <InlineMath math="2024" />, yang **hanya bernilai <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, atau <InlineMath math="6" />** dan berjumlah <InlineMath math="33" />.
+
+<Chart
+  title={<>Angka satuan <InlineMath math="d" /> dan <InlineMath math="d^{2024}" /> dalam satu blok</>}
+  description={<>Untuk angka satuan <InlineMath math="d" /> dari <InlineMath math="1" /> sampai <InlineMath math="9" /> lalu <InlineMath math="0" />, angka satuan <InlineMath math="d^{2024}" /> adalah <InlineMath math="1, 6, 1, 6, 5, 6, 1, 6, 1, 0" />, dengan jumlah <InlineMath math="33" />. Angka satuan <InlineMath math="d" /> sendiri berjumlah <InlineMath math="45" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${(i + 1) % 10}`)}
+  series={[
+    { label: "Angka satuan pangkat 2024", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i + 1) ** 4 % 10) },
+    { label: "Angka satuan bilangannya", mark: "line", values: Array.from({ length: 10 }, (_, i) => (i + 1) % 10) },
+  ]}
+  valueLabel="Angka satuan"
+/>
+
 # Kelompok penuh dan sisa suku
 
 Bilangan <InlineMath math="1" /> sampai <InlineMath math="2040" /> membentuk <InlineMath math="204" /> kelompok penuh. Sisanya adalah **enam suku terakhir** <InlineMath math="2041" /> sampai <InlineMath math="2046" />, yang angka satuannya <InlineMath math="1" /> sampai <InlineMath math="6" />.

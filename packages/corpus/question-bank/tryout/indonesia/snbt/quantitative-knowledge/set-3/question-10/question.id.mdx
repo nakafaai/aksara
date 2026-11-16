@@ -1,3 +1,35 @@
 Titik <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" />, <InlineMath math="E" />, dan <InlineMath math="F" /> adalah titik-titik sudut sebuah segi enam beraturan yang berpusat di titik <InlineMath math="O" />. Dari tujuh titik <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" />, <InlineMath math="E" />, <InlineMath math="F" />, dan <InlineMath math="O" /> dipilih tiga titik berbeda secara acak, dan setiap pilihan tiga titik berpeluang sama.
 
+<MathVisual
+  title={<>Segi enam beraturan <InlineMath math="ABCDEF" /> dan pusatnya</>}
+  description={<>Segi enam beraturan dengan titik sudut <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" />, <InlineMath math="E" />, <InlineMath math="F" /> berurutan dan pusat <InlineMath math="O" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hexagon", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0 }, { x: 2, y: 2 * Math.sqrt(3) }, { x: -2, y: 2 * Math.sqrt(3) }, { x: -4, y: 0 }, { x: -2, y: -2 * Math.sqrt(3) }, { x: 2, y: -2 * Math.sqrt(3) }] },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "hexagon", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "b", objectId: "hexagon", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "c", objectId: "hexagon", at: { x: -2, y: 2 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "d", objectId: "hexagon", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "e", objectId: "hexagon", at: { x: -2, y: -2 * Math.sqrt(3) }, placement: "below-left" },
+      { key: "f", objectId: "hexagon", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below-right" },
+      { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Peluang ketiga titik terpilih membentuk segitiga yang memuat <InlineMath math="O" /> di bagian dalamnya, dengan <InlineMath math="O" /> tidak terletak pada sisi segitiga dan bukan titik sudutnya, adalah ....

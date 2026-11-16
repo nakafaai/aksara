@@ -23,6 +23,47 @@ k&\le 7
 
 The seventh triangle has base angles of <InlineMath math="84^\circ" /> and an apex angle of <InlineMath math="180^\circ-2\cdot 84^\circ=12^\circ" />, so it exists. The eighth triangle would need base angles of <InlineMath math="96^\circ" />, which is impossible.
 
+The figure below draws every segment at its true size. Each new segment **stands steeper on the ray it starts from**. The last segment, <InlineMath math="P_7P_8" />, is already almost perpendicular to <InlineMath math="AX" />, because its base angle is <InlineMath math="84^\circ" />, so there's no room for an eighth triangle.
+
+<MathVisual
+  title={<>Segments of length <InlineMath math="1" /> inside a <InlineMath math="12^\circ" /> angle</>}
+  description={<>Angle <InlineMath math="XAY" /> measures <InlineMath math="12^\circ" />, with ray <InlineMath math="AX" /> horizontal. The zigzag from <InlineMath math="A" /> to <InlineMath math="P_1" />, <InlineMath math="P_2" />, and on to <InlineMath math="P_8" /> is made of <InlineMath math="8" /> segments of length <InlineMath math="1" />, touching <InlineMath math="AY" /> and <InlineMath math="AX" /> in turn. The base angles of the isosceles triangles along the zigzag grow as <InlineMath math="12^\circ" />, <InlineMath math="24^\circ" />, up to <InlineMath math="84^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    p1: <InlineMath math="P_1" />,
+    p2: <InlineMath math="P_2" />,
+    p8: <InlineMath math="P_8" />,
+    angle: <InlineMath math="12^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.4 }, y: { min: -0.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "ray-x", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.3, y: 0 } },
+      { id: "ray-y", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.3 * Math.cos(Math.PI / 15), y: 5.3 * Math.sin(Math.PI / 15) } },
+      { id: "zigzag", kind: "polyline", appearance: "primary", vertices: [
+        { x: 0, y: 0 },
+        { x: Math.cos(Math.PI / 15), y: Math.sin(Math.PI / 15) },
+        { x: 2 * Math.cos(Math.PI / 15), y: 0 },
+        { x: (1 + 2 * Math.cos((2 * Math.PI) / 15)) * Math.cos(Math.PI / 15), y: (1 + 2 * Math.cos((2 * Math.PI) / 15)) * Math.sin(Math.PI / 15) },
+        { x: 2 * Math.cos(Math.PI / 15) + 2 * Math.cos(Math.PI / 5), y: 0 },
+        { x: (1 + 2 * Math.cos((2 * Math.PI) / 15) + 2 * Math.cos((4 * Math.PI) / 15)) * Math.cos(Math.PI / 15), y: (1 + 2 * Math.cos((2 * Math.PI) / 15) + 2 * Math.cos((4 * Math.PI) / 15)) * Math.sin(Math.PI / 15) },
+        { x: 2 * Math.cos(Math.PI / 15) + 2 * Math.cos(Math.PI / 5) + 2 * Math.cos(Math.PI / 3), y: 0 },
+        { x: (1 + 2 * Math.cos((2 * Math.PI) / 15) + 2 * Math.cos((4 * Math.PI) / 15) + 2 * Math.cos((2 * Math.PI) / 5)) * Math.cos(Math.PI / 15), y: (1 + 2 * Math.cos((2 * Math.PI) / 15) + 2 * Math.cos((4 * Math.PI) / 15) + 2 * Math.cos((2 * Math.PI) / 5)) * Math.sin(Math.PI / 15) },
+        { x: 2 * Math.cos(Math.PI / 15) + 2 * Math.cos(Math.PI / 5) + 2 * Math.cos(Math.PI / 3) + 2 * Math.cos((7 * Math.PI) / 15), y: 0 },
+      ] },
+    ],
+    labels: [
+      { key: "a", objectId: "zigzag", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "p1", objectId: "zigzag", at: { x: Math.cos(Math.PI / 15), y: Math.sin(Math.PI / 15) }, placement: "above" },
+      { key: "p2", objectId: "zigzag", at: { x: 2 * Math.cos(Math.PI / 15), y: 0 }, placement: "below" },
+      { key: "p8", objectId: "zigzag", at: { x: 2 * Math.cos(Math.PI / 15) + 2 * Math.cos(Math.PI / 5) + 2 * Math.cos(Math.PI / 3) + 2 * Math.cos((7 * Math.PI) / 15), y: 0 }, placement: "below" },
+      { key: "angle", objectId: "ray-x", at: { x: 0.6, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Counting the segments
 
 The first segment <InlineMath math="AP_1" /> doesn't form a new triangle. After that, **every triangle adds exactly one segment**, from <InlineMath math="P_1P_2" /> to <InlineMath math="P_7P_8" />. The number of segments is <InlineMath math="1+7=8" />.

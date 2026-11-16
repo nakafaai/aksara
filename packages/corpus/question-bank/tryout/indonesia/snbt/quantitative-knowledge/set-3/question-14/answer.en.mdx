@@ -36,6 +36,43 @@ x\cdot 6b&=6b+86\cdot 6b=522b\\
 x&=87
 \end{aligned}" />
 
+The number line below shows what that ratio means. A combined mean always **sits closer to the bigger group**. The mean <InlineMath math="60" /> is <InlineMath math="10" /> from A and <InlineMath math="20" /> from B, so A is twice B. The mean <InlineMath math="86" /> is <InlineMath math="6" /> from B and <InlineMath math="1" /> from C, so C is six times B.
+
+<MathVisual
+  title={<>Group means and combined means on one line</>}
+  description={<>On the score line, the mean of A sits at <InlineMath math="50" />, A and B combined at <InlineMath math="60" />, all three combined at <InlineMath math="78" />, the mean of B at <InlineMath math="80" />, B and C combined at <InlineMath math="86" />, and the mean of C at <InlineMath math="87" />. The gaps <InlineMath math="10" /> and <InlineMath math="20" /> give <InlineMath math="a:b=2:1" />, and the gaps <InlineMath math="6" /> and <InlineMath math="1" /> give <InlineMath math="c:b=6:1" />.</>}
+  labels={{
+    a: <InlineMath math="A:50" />,
+    ab: <InlineMath math="A+B:60" />,
+    all: <InlineMath math="78" />,
+    b: <InlineMath math="B:80" />,
+    bc: <InlineMath math="B+C:86" />,
+    c: <InlineMath math="C:87" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 46, max: 91 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 48, y: 0 }, to: { x: 89, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 50, y: 0 } },
+      { id: "mean-ab", kind: "point", appearance: "construction", at: { x: 60, y: 0 } },
+      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 78, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 80, y: 0 } },
+      { id: "mean-bc", kind: "point", appearance: "construction", at: { x: 86, y: 0 } },
+      { id: "mean-c", kind: "point", appearance: "answer", at: { x: 87, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mean-a", at: { x: 50, y: 0 }, placement: "above" },
+      { key: "ab", objectId: "mean-ab", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "all", objectId: "mean-all", at: { x: 78, y: 0 }, placement: "below" },
+      { key: "b", objectId: "mean-b", at: { x: 80, y: 0 }, placement: "above" },
+      { key: "bc", objectId: "mean-bc", at: { x: 86, y: 0 }, placement: "below" },
+      { key: "c", objectId: "mean-c", at: { x: 87, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Checking with sample group sizes
 
 Take <InlineMath math="b=1" />, so <InlineMath math="a=2" /> and <InlineMath math="c=6" />. The total scores are <InlineMath math="100" />, <InlineMath math="80" />, and <InlineMath math="6\cdot 87=522" />. The combined mean of A and B is <InlineMath math="\tfrac{180}{3}=60" />, of B and C it's <InlineMath math="\tfrac{602}{7}=86" />, and of everyone it's <InlineMath math="\tfrac{702}{9}=78" />. **All three combined means match**, and the same ratio gives the same result for any value of <InlineMath math="b" />.

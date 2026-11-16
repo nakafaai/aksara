@@ -22,6 +22,33 @@ Dengan <InlineMath math="x=n+f" />, berlaku <InlineMath math="\lfloor 2x\rfloor=
 
 Kasus kedua memberi <InlineMath math="3{,}5\le x<4" />. Contohnya, <InlineMath math="x=3{,}5" /> memberi <InlineMath math="\lfloor 3{,}5\rfloor+\lfloor 7\rfloor=3+7=10" />. Persamaan itu punya penyelesaian, jadi pernyataan kedua salah. Jebakannya adalah hanya mencoba <InlineMath math="3n=10" />.
 
+Grafik tangga berikut memperlihatkan nilai yang bisa dicapai ruas kiri. Setiap tangga naik bergantian <InlineMath math="2" /> lalu <InlineMath math="1" />, jadi **nilai <InlineMath math="9" /> dilompati, tetapi nilai <InlineMath math="10" /> tercapai** pada seluruh anak tangga <InlineMath math="3{,}5\le x<4" />.
+
+<MathVisual
+  title={<>Fungsi tangga <InlineMath math="\lfloor x\rfloor+\lfloor 2x\rfloor" /></>}
+  description={<>Untuk <InlineMath math="2\le x<5" />, nilai <InlineMath math="\lfloor x\rfloor+\lfloor 2x\rfloor" /> berupa tangga <InlineMath math="6, 7, 9, 10, 12, 13" />, dengan lompatan di setiap kelipatan <InlineMath math="\tfrac12" />. Anak tangga setinggi <InlineMath math="10" /> membentang dari <InlineMath math="x=3{,}5" /> sampai tepat sebelum <InlineMath math="x=4" />, dan berimpit dengan garis <InlineMath math="y=10" />.</>}
+  labels={{
+    steps: <InlineMath math="y=\lfloor x\rfloor+\lfloor 2x\rfloor" />,
+    level: <InlineMath math="y=10" />,
+    hit: <InlineMath math="3{,}5\le x<4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 5 }, y: { min: 5, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 2, y: 10 }, to: { x: 5, y: 10 } },
+      { id: "steps", kind: "function", appearance: "primary", formula: "floor(x) + floor(2x)", domain: { min: 2, max: 4.99 } },
+      { id: "hit", kind: "segment", appearance: "answer", from: { x: 3.5, y: 10 }, to: { x: 4, y: 10 } },
+    ],
+    labels: [
+      { key: "steps", objectId: "steps", at: { x: 2.25, y: 6 }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 2.2, y: 10 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 3.75, y: 10 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Pernyataan ketiga
 
 Bagi menjadi dua kasus menurut bagian pecahan <InlineMath math="f" />.

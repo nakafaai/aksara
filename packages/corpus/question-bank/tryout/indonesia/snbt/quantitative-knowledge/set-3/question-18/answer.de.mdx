@@ -14,6 +14,39 @@ P\to B&:\ 4 \text{ rechts},\ 3 \text{ hoch},\quad \binom{7}{3}=35\\
 
 Ein Weg benutzt das gesperrte Stück, wenn er von <InlineMath math="(3,2)" /> direkt nach <InlineMath math="(4,2)" /> geht. Teile so einen Weg in drei Abschnitte und **multipliziere die Anzahlen der einzelnen Abschnitte**.
 
+Die Abbildung markiert die gesperrte Straße und einen Weg, der weiterhin erlaubt ist. Dieser Weg **geht durch die Kreuzung <InlineMath math="(3,2)" />, biegt aber nach oben zu <InlineMath math="(3,3)" /> ab** statt nach rechts, also nutzt er die gesperrte Straße nicht.
+
+<MathVisual
+  title={<>Das Straßennetz von <InlineMath math="A" /> nach <InlineMath math="B" /> über <InlineMath math="P" /></>}
+  description={<>Ein Gitter von <InlineMath math="6" /> mal <InlineMath math="4" /> mit <InlineMath math="A(0,0)" />, <InlineMath math="P(2,1)" /> und <InlineMath math="B(6,4)" />. Die Straße von <InlineMath math="(3,2)" /> nach <InlineMath math="(4,2)" /> ist gesperrt. Ein erlaubter Weg: <InlineMath math="(0,0)\to(2,0)\to(2,1)\to(3,1)\to(3,3)\to(6,3)\to(6,4)" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    p: <InlineMath math="P" />,
+    b: <InlineMath math="B" />,
+    left: <InlineMath math="(3,2)" />,
+    right: <InlineMath math="(4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 3 }, { x: 6, y: 3 }, { x: 6, y: 4 }] },
+      { id: "closed", kind: "segment", appearance: "warning", from: { x: 3, y: 2 }, to: { x: 4, y: 2 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 4 }, placement: "above-right" },
+      { key: "left", objectId: "closed", at: { x: 3, y: 2 }, placement: "left" },
+      { key: "right", objectId: "closed", at: { x: 4, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 A\to P&:\ 3\\
 P\to(3,2)&:\ 1 \text{ rechts},\ 1 \text{ hoch},\quad \binom{2}{1}=2\\

@@ -24,6 +24,43 @@ Ada <InlineMath math="\binom{6}{3}=20" /> segitiga yang titik sudutnya diambil d
 
 Diagonal panjang melewati <InlineMath math="O" />, jadi segitiga yang memakai diagonal itu sebagai sisi memuat <InlineMath math="O" /> tepat di sisinya. Tiga titik berurutan terletak di satu sisi garis yang menghubungkan dua titik ujungnya, dan garis itu tidak melewati <InlineMath math="O" />, jadi <InlineMath math="O" /> berada di luar. **Hanya segitiga sama sisi <InlineMath math="ACE" /> dan <InlineMath math="BDF" />** yang memuat <InlineMath math="O" /> di dalamnya, karena pusat segitiga sama sisi itu tepat di <InlineMath math="O" />.
 
+Gambar segi enam berikut memperlihatkan ketiga jenis itu. Diagonal panjang <InlineMath math="AD" /> melewati <InlineMath math="O" />, jadi setiap segitiga yang memakainya sebagai sisi **menaruh <InlineMath math="O" /> tepat di sisinya**. Hanya segitiga <InlineMath math="ACE" /> dan <InlineMath math="BDF" /> yang mengurung <InlineMath math="O" /> di dalam.
+
+<MathVisual
+  title={<>Segi enam beraturan dan segitiga yang memuat pusatnya</>}
+  description={<>Segi enam beraturan <InlineMath math="ABCDEF" /> berpusat di <InlineMath math="O" />. Segitiga sama sisi <InlineMath math="ACE" /> dan <InlineMath math="BDF" /> membentuk bintang dengan <InlineMath math="O" /> di tengah keduanya. Diagonal panjang <InlineMath math="AD" /> melalui <InlineMath math="O" />, sehingga segitiga seperti <InlineMath math="ABD" /> memuat <InlineMath math="O" /> pada sisinya.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hexagon", kind: "polygon", appearance: "reference", vertices: [{ x: 4, y: 0 }, { x: 2, y: 2 * Math.sqrt(3) }, { x: -2, y: 2 * Math.sqrt(3) }, { x: -4, y: 0 }, { x: -2, y: -2 * Math.sqrt(3) }, { x: 2, y: -2 * Math.sqrt(3) }] },
+      { id: "ace", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0 }, { x: -2, y: 2 * Math.sqrt(3) }, { x: -2, y: -2 * Math.sqrt(3) }] },
+      { id: "bdf", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: -4, y: 0 }, { x: 2, y: -2 * Math.sqrt(3) }] },
+      { id: "diagonal", kind: "segment", appearance: "warning", from: { x: 4, y: 0 }, to: { x: -4, y: 0 } },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "hexagon", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "b", objectId: "hexagon", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "c", objectId: "hexagon", at: { x: -2, y: 2 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "d", objectId: "hexagon", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "e", objectId: "hexagon", at: { x: -2, y: -2 * Math.sqrt(3) }, placement: "below-left" },
+      { key: "f", objectId: "hexagon", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below-right" },
+      { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Peluang dan pemeriksaannya
 
 <BlockMath math="P=\frac{2}{35}" />

@@ -36,6 +36,43 @@ x\cdot 6b&=6b+86\cdot 6b=522b\\
 x&=87
 \end{aligned}" />
 
+Garis bilangan berikut memperlihatkan arti perbandingan itu. Rata-rata gabungan selalu **lebih dekat ke kelompok yang lebih besar**. Rata-rata <InlineMath math="60" /> berjarak <InlineMath math="10" /> dari A dan <InlineMath math="20" /> dari B, jadi A dua kali B. Rata-rata <InlineMath math="86" /> berjarak <InlineMath math="6" /> dari B dan <InlineMath math="1" /> dari C, jadi C enam kali B.
+
+<MathVisual
+  title={<>Rata-rata kelompok dan rata-rata gabungan pada satu garis</>}
+  description={<>Pada garis nilai, rata-rata A ada di <InlineMath math="50" />, gabungan A dan B di <InlineMath math="60" />, gabungan ketiganya di <InlineMath math="78" />, rata-rata B di <InlineMath math="80" />, gabungan B dan C di <InlineMath math="86" />, dan rata-rata C di <InlineMath math="87" />. Jarak <InlineMath math="10" /> dan <InlineMath math="20" /> memberi <InlineMath math="a:b=2:1" />, dan jarak <InlineMath math="6" /> dan <InlineMath math="1" /> memberi <InlineMath math="c:b=6:1" />.</>}
+  labels={{
+    a: <InlineMath math="A:50" />,
+    ab: <InlineMath math="A+B:60" />,
+    all: <InlineMath math="78" />,
+    b: <InlineMath math="B:80" />,
+    bc: <InlineMath math="B+C:86" />,
+    c: <InlineMath math="C:87" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 46, max: 91 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 48, y: 0 }, to: { x: 89, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 50, y: 0 } },
+      { id: "mean-ab", kind: "point", appearance: "construction", at: { x: 60, y: 0 } },
+      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 78, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 80, y: 0 } },
+      { id: "mean-bc", kind: "point", appearance: "construction", at: { x: 86, y: 0 } },
+      { id: "mean-c", kind: "point", appearance: "answer", at: { x: 87, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mean-a", at: { x: 50, y: 0 }, placement: "above" },
+      { key: "ab", objectId: "mean-ab", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "all", objectId: "mean-all", at: { x: 78, y: 0 }, placement: "below" },
+      { key: "b", objectId: "mean-b", at: { x: 80, y: 0 }, placement: "above" },
+      { key: "bc", objectId: "mean-bc", at: { x: 86, y: 0 }, placement: "below" },
+      { key: "c", objectId: "mean-c", at: { x: 87, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Memeriksa dengan contoh banyak siswa
 
 Ambil <InlineMath math="b=1" />, sehingga <InlineMath math="a=2" /> dan <InlineMath math="c=6" />. Jumlah nilainya <InlineMath math="100" />, <InlineMath math="80" />, dan <InlineMath math="6\cdot 87=522" />. Rata-rata gabungan A dan B adalah <InlineMath math="\tfrac{180}{3}=60" />, gabungan B dan C adalah <InlineMath math="\tfrac{602}{7}=86" />, dan semuanya <InlineMath math="\tfrac{702}{9}=78" />. **Ketiga rata-rata gabungan cocok**, dan perbandingan yang sama memberi hasil yang sama untuk berapa pun nilai <InlineMath math="b" />.

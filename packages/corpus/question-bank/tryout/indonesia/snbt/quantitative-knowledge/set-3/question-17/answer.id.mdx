@@ -4,6 +4,35 @@ Sebuah pernyataan cukup jika memaksa jawaban pasti ya atau pasti tidak. Sudut si
 
 Dari pernyataan (1), <InlineMath math="a=3k" /> dan <InlineMath math="b=4k" /> untuk suatu <InlineMath math="k>0" />, tetapi <InlineMath math="c" /> **masih bebas**. Untuk <InlineMath math="c=5k" />, berlaku <InlineMath math="9k^2+16k^2=25k^2" />, jadi segitiganya siku-siku di <InlineMath math="C" />. Untuk <InlineMath math="c=6k" />, segitiganya ada karena <InlineMath math="3k+4k>6k" />, tetapi <InlineMath math="36k^2\ne 9k^2+16k^2" />, jadi sudut di depan sisi terpanjang tidak siku-siku. Ada jawaban ya dan ada jawaban tidak, jadi pernyataan (1) saja tidak cukup.
 
+Gambar berikut menaruh kedua contoh pada sisi <InlineMath math="a=3" /> yang sama. Sisi <InlineMath math="b=4" /> berputar di titik <InlineMath math="C" />, dan **perbandingan <InlineMath math="3:4" /> tidak mengunci sudutnya**: dengan <InlineMath math="c=5" /> sudut <InlineMath math="C" /> siku-siku, dengan <InlineMath math="c=6" /> sudutnya tumpul.
+
+<MathVisual
+  title={<>Dua segitiga dengan <InlineMath math="a:b=3:4" /></>}
+  description={<>Kedua segitiga punya <InlineMath math="BC=3" /> dan <InlineMath math="CA=4" />. Pada segitiga pertama, <InlineMath math="AB=5" /> dan sudut <InlineMath math="C" /> siku-siku. Pada segitiga kedua, <InlineMath math="AB=6" /> dan sudut <InlineMath math="C" /> tumpul, karena <InlineMath math="6^2>3^2+4^2" />.</>}
+  labels={{
+    c: <InlineMath math="C" />,
+    b: <InlineMath math="B" />,
+    right: <InlineMath math="c=5" />,
+    wide: <InlineMath math="c=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "side-a", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "right", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 4 }] },
+      { id: "wide", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: -11 / 6, y: Math.sqrt(455) / 6 }] },
+    ],
+    labels: [
+      { key: "c", objectId: "side-a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "side-a", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "right", objectId: "right", at: { x: 3 / 2, y: 2 }, placement: "right" },
+      { key: "wide", objectId: "wide", at: { x: -11 / 6, y: Math.sqrt(455) / 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Pernyataan kedua saja
 
 Dari <InlineMath math="c^4=a^4+b^4" />, berlaku <InlineMath math="c^4>a^4" /> dan <InlineMath math="c^4>b^4" />, jadi <InlineMath math="c" /> adalah **sisi terpanjang**. Hanya sudut <InlineMath math="C" /> yang mungkin siku-siku, jadi bandingkan <InlineMath math="c^2" /> dengan <InlineMath math="a^2+b^2" />.

@@ -24,6 +24,41 @@ a\ge 2&:\quad 4a-3=5 \implies a=2\ \text{(fits)}
 
 In the first case, the vertex is left of the interval, so <InlineMath math="f" /> falls across the whole interval and the maximum is <InlineMath math="f(-1)" />. In the third case, the vertex is to the right or exactly at <InlineMath math="x=2" />, so the maximum is <InlineMath math="f(2)" />. The only possible values are <InlineMath math="a=-\tfrac{5}{2}" /> and <InlineMath math="a=2" />, and their sum is <InlineMath math="-\tfrac{5}{2}+2=-\tfrac{1}{2}" />.
 
+The graph below puts the three parabolas over the interval <InlineMath math="-1\le x\le2" />, marked by two dashed lines. For <InlineMath math="a=-\tfrac52" /> and <InlineMath math="a=2" />, the highest point **inside the interval** sits exactly on the line <InlineMath math="y=5" />. For <InlineMath math="a=-2" />, the vertex is outside the interval, so inside the interval the value only reaches <InlineMath math="4" />.
+
+<MathVisual
+  title={<>The maximum of <InlineMath math="f(x)=-x^2+2ax+1" /> on <InlineMath math="-1\le x\le2" /></>}
+  description={<>The parabola for <InlineMath math="a=-\tfrac52" /> has its vertex at <InlineMath math="x=-\tfrac52" />, left of the interval, and reaches <InlineMath math="5" /> at <InlineMath math="x=-1" />. The parabola for <InlineMath math="a=2" /> has its vertex exactly at <InlineMath math="(2,5)" />. The parabola for <InlineMath math="a=-2" /> has its vertex at <InlineMath math="(-2,5)" />, outside the interval, and only reaches <InlineMath math="4" /> at <InlineMath math="x=-1" />.</>}
+  labels={{
+    left: <InlineMath math="a=-\tfrac52" />,
+    right: <InlineMath math="a=2" />,
+    rejected: <InlineMath math="a=-2" />,
+    level: <InlineMath math="y=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -6, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "edge-left", kind: "segment", appearance: "construction", from: { x: -1, y: -6 }, to: { x: -1, y: 9 } },
+      { id: "edge-right", kind: "segment", appearance: "construction", from: { x: 2, y: -6 }, to: { x: 2, y: 9 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -5, y: 5 }, to: { x: 5, y: 5 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "-x^2 - 5x + 1", domain: { min: -5, max: 1 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "-x^2 + 4x + 1", domain: { min: -1, max: 5 } },
+      { id: "rejected", kind: "function", appearance: "warning", formula: "-x^2 - 4x + 1", domain: { min: -5, max: 1 } },
+      { id: "top-left", kind: "point", appearance: "answer", at: { x: -1, y: 5 } },
+      { id: "top-right", kind: "point", appearance: "answer", at: { x: 2, y: 5 } },
+      { id: "top-rejected", kind: "point", appearance: "warning", at: { x: -1, y: 4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -5 / 2, y: 29 / 4 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "rejected", objectId: "rejected", at: { x: -4, y: 1 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 4.5, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Checking each parameter value
 
 For <InlineMath math="a=-\tfrac{5}{2}" />: <InlineMath math="f(-1)=5" /> and <InlineMath math="f(2)=-13" />, with the vertex outside the interval, so the maximum is <InlineMath math="5" />. For <InlineMath math="a=2" />: <InlineMath math="f(2)=5" /> and <InlineMath math="f(-1)=-4" />, so the maximum is <InlineMath math="5" />. For <InlineMath math="a=-2" />, the vertex is at <InlineMath math="x=-2" />, outside the interval, so **the maximum on the interval is only <InlineMath math="f(-1)=4" />**, not <InlineMath math="5" />. The value <InlineMath math="a=-2" /> really has to go.

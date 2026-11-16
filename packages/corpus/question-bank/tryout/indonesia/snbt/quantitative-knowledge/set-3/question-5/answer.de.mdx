@@ -20,6 +20,30 @@ Beide Nenner sind positiv, sie haben also dieselbe Reihenfolge wie ihre Quadrate
 \left(\sqrt{n+1}+\sqrt{n}\right)^2=2n+1+2\sqrt{n^2+n}&<2n+1+(2n+1)=4n+2
 \end{aligned}" />
 
+Die Graphen beider Vergleichsseiten zeigen die Beziehung für jedes <InlineMath math="n" />. Die Gerade <InlineMath math="y=2x+1" /> **liegt immer ein Stück über** der Kurve <InlineMath math="y=2\sqrt{x^2+x}" />. Die Lücke wird kleiner, schließt sich aber nie, also dreht sich die Ungleichung nie um.
+
+<MathVisual
+  title={<>Der Term <InlineMath math="2\sqrt{n^2+n}" /> im Vergleich mit <InlineMath math="2n+1" /></>}
+  description={<>Für <InlineMath math="x" /> von <InlineMath math="0" /> bis <InlineMath math="6" /> liegt die Gerade <InlineMath math="y=2x+1" /> über der Kurve <InlineMath math="y=2\sqrt{x^2+x}" />. Bei <InlineMath math="x=0" /> beträgt der Abstand <InlineMath math="1" />, bei <InlineMath math="x=6" /> nur noch etwa <InlineMath math="0{,}04" />, aber er bleibt positiv.</>}
+  labels={{
+    curve: <InlineMath math="y=2\sqrt{x^2+x}" />,
+    line: <InlineMath math="y=2x+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "2x + 1", domain: { min: 0, max: 6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2 sqrt(x^2 + x)", domain: { min: 0, max: 6 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 2, y: 5 }, placement: "above-left" },
+      { key: "curve", objectId: "curve", at: { x: 3, y: 2 * Math.sqrt(12) }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Also gilt <InlineMath math="\sqrt{n+1}+\sqrt{n}<\sqrt{4n+2}" />. Der Nenner von <InlineMath math="P" /> ist kleiner, daher ist <InlineMath math="P>Q" /> für jede positive ganze Zahl <InlineMath math="n" />.
 
 # Probe an einem Beispiel

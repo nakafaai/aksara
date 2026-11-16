@@ -32,6 +32,20 @@ Samakan penyebutnya: <InlineMath math="Q=\tfrac{21}{40}=\tfrac{525}{1000}" /> da
 
 Sekarang lihat mengapa syarat warna itu penting. Untuk <InlineMath math="r=3" />, diperoleh <InlineMath math="P=3\cdot\left(\tfrac{3}{10}\right)^2\cdot\tfrac{7}{10}=\tfrac{189}{1000}" /> dan <InlineMath math="Q=\tfrac{\binom{3}{2}\binom{7}{1}}{120}=\tfrac{175}{1000}" />, sehingga <InlineMath math="P>Q" />. Tanpa syarat bola merah lebih banyak, jawabannya tidak bisa diputuskan.
 
+Grafik berikut membandingkan kedua kuantitas untuk kedua isi kotak. Untuk <InlineMath math="7" /> merah, batang <InlineMath math="Q" /> lebih tinggi. Untuk <InlineMath math="3" /> merah, **urutannya berbalik**, jadi syarat merah lebih banyak memang menentukan jawaban.
+
+<Chart
+  title={<>Peluang tepat dua merah dari tiga pengambilan</>}
+  description={<>Untuk <InlineMath math="7" /> merah dan <InlineMath math="3" /> putih, <InlineMath math="P=\tfrac{441}{1000}" /> dan <InlineMath math="Q=\tfrac{525}{1000}" />. Untuk <InlineMath math="3" /> merah dan <InlineMath math="7" /> putih, <InlineMath math="P=\tfrac{189}{1000}" /> dan <InlineMath math="Q=\tfrac{175}{1000}" />.</>}
+  categories={["7 merah, dipakai", "3 merah, dibuang"]}
+  bars="apart"
+  series={[
+    { label: "P, dengan pengembalian", mark: "bar", values: [441 / 1000, 189 / 1000] },
+    { label: "Q, tanpa pengembalian", mark: "bar", values: [21 / 40, 175 / 1000] },
+  ]}
+  valueLabel="Peluang"
+/>
+
 # Memeriksa pilihan lain
 
 Pilihan <InlineMath math="P>Q" /> muncul kalau kamu memakai <InlineMath math="r=3" />, atau menduga tanpa pengembalian **selalu memperkecil peluang**. Pilihan <InlineMath math="P=Q" /> muncul karena peluang satu pengambilan merah memang <InlineMath math="\tfrac{7}{10}" /> pada kedua cara, lalu kesamaan itu dianggap berlaku juga untuk kejadian gabungan tiga pengambilan. Pilihan informasi tidak cukup muncul kalau syarat bola merah lebih banyak tidak dipakai untuk membuang <InlineMath math="r=3" />.

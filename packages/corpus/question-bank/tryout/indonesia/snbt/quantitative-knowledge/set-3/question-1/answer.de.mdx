@@ -14,6 +14,20 @@ Ein Block aus <InlineMath math="10" /> aufeinanderfolgenden Zahlen enthält jede
 
 Achte darauf: **Ein Exponent aus der Viererreihe erhält die Einerstelle nicht**, deshalb ergibt ein Block nicht <InlineMath math="45" />.
 
+Das Diagramm vergleicht beide Muster in einem Block. Die Linie ist die Einerziffer der Zahl selbst, zusammen <InlineMath math="45" />. Die Balken sind die Einerziffern der Potenz <InlineMath math="2024" />, die **nur <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" /> oder <InlineMath math="6" /> sind** und zusammen <InlineMath math="33" /> ergeben.
+
+<Chart
+  title={<>Einerziffern von <InlineMath math="d" /> und <InlineMath math="d^{2024}" /> in einem Block</>}
+  description={<>Für die Einerziffern von <InlineMath math="d" /> von <InlineMath math="1" /> bis <InlineMath math="9" /> und dann <InlineMath math="0" /> sind die Einerziffern von <InlineMath math="d^{2024}" /> gleich <InlineMath math="1, 6, 1, 6, 5, 6, 1, 6, 1, 0" />, zusammen <InlineMath math="33" />. Die Einerziffern von <InlineMath math="d" /> selbst ergeben zusammen <InlineMath math="45" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${(i + 1) % 10}`)}
+  series={[
+    { label: "Einerziffer der Potenz 2024", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i + 1) ** 4 % 10) },
+    { label: "Einerziffer der Zahl", mark: "line", values: Array.from({ length: 10 }, (_, i) => (i + 1) % 10) },
+  ]}
+  valueLabel="Einerziffer"
+/>
+
 # Volle Blöcke und die übrigen Summanden
 
 Die Zahlen <InlineMath math="1" /> bis <InlineMath math="2040" /> bilden <InlineMath math="204" /> volle Blöcke. Übrig bleiben **die letzten sechs Summanden** <InlineMath math="2041" /> bis <InlineMath math="2046" /> mit den Einerstellen <InlineMath math="1" /> bis <InlineMath math="6" />.

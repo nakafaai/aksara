@@ -14,6 +14,20 @@ A block of <InlineMath math="10" /> consecutive numbers contains every units dig
 
 Notice that **a power that is a multiple of four doesn't keep the units digit**, so one block does not add up to <InlineMath math="45" />.
 
+The chart below compares both patterns in one block. The line is the units digit of the number itself, which adds up to <InlineMath math="45" />. The bars are the units digits of the power <InlineMath math="2024" />, which **only take the values <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, or <InlineMath math="6" />** and add up to <InlineMath math="33" />.
+
+<Chart
+  title={<>Units digits of <InlineMath math="d" /> and <InlineMath math="d^{2024}" /> in one block</>}
+  description={<>For units digits of <InlineMath math="d" /> from <InlineMath math="1" /> to <InlineMath math="9" /> and then <InlineMath math="0" />, the units digits of <InlineMath math="d^{2024}" /> are <InlineMath math="1, 6, 1, 6, 5, 6, 1, 6, 1, 0" />, which add up to <InlineMath math="33" />. The units digits of <InlineMath math="d" /> itself add up to <InlineMath math="45" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${(i + 1) % 10}`)}
+  series={[
+    { label: "Units digit of the power 2024", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i + 1) ** 4 % 10) },
+    { label: "Units digit of the number", mark: "line", values: Array.from({ length: 10 }, (_, i) => (i + 1) % 10) },
+  ]}
+  valueLabel="Units digit"
+/>
+
 # Full blocks and the leftover terms
 
 The numbers <InlineMath math="1" /> to <InlineMath math="2040" /> form <InlineMath math="204" /> full blocks. What's left are **the last six terms** <InlineMath math="2041" /> to <InlineMath math="2046" />, whose units digits are <InlineMath math="1" /> to <InlineMath math="6" />.

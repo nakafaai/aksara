@@ -23,6 +23,47 @@ k&\le 7
 
 Das siebte Dreieck hat Basiswinkel von <InlineMath math="84^\circ" /> und den Spitzenwinkel <InlineMath math="180^\circ-2\cdot 84^\circ=12^\circ" />, es existiert also. Das achte Dreieck bräuchte Basiswinkel von <InlineMath math="96^\circ" />, das ist unmöglich.
 
+Die Abbildung zeichnet alle Strecken in wahrer Größe. Jede neue Strecke **steht steiler auf dem Strahl, von dem sie ausgeht**. Die letzte Strecke, <InlineMath math="P_7P_8" />, steht fast senkrecht auf <InlineMath math="AX" />, weil ihr Basiswinkel <InlineMath math="84^\circ" /> beträgt, also ist kein Platz für ein achtes Dreieck.
+
+<MathVisual
+  title={<>Strecken der Länge <InlineMath math="1" /> in einem Winkel von <InlineMath math="12^\circ" /></>}
+  description={<>Der Winkel <InlineMath math="XAY" /> misst <InlineMath math="12^\circ" />, der Strahl <InlineMath math="AX" /> liegt waagrecht. Der Zickzack von <InlineMath math="A" /> über <InlineMath math="P_1" />, <InlineMath math="P_2" /> bis <InlineMath math="P_8" /> besteht aus <InlineMath math="8" /> Strecken der Länge <InlineMath math="1" />, die abwechselnd <InlineMath math="AY" /> und <InlineMath math="AX" /> berühren. Die Basiswinkel der gleichschenkligen Dreiecke entlang des Zickzacks wachsen von <InlineMath math="12^\circ" /> über <InlineMath math="24^\circ" /> bis <InlineMath math="84^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    p1: <InlineMath math="P_1" />,
+    p2: <InlineMath math="P_2" />,
+    p8: <InlineMath math="P_8" />,
+    angle: <InlineMath math="12^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.4 }, y: { min: -0.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "ray-x", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.3, y: 0 } },
+      { id: "ray-y", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.3 * Math.cos(Math.PI / 15), y: 5.3 * Math.sin(Math.PI / 15) } },
+      { id: "zigzag", kind: "polyline", appearance: "primary", vertices: [
+        { x: 0, y: 0 },
+        { x: Math.cos(Math.PI / 15), y: Math.sin(Math.PI / 15) },
+        { x: 2 * Math.cos(Math.PI / 15), y: 0 },
+        { x: (1 + 2 * Math.cos((2 * Math.PI) / 15)) * Math.cos(Math.PI / 15), y: (1 + 2 * Math.cos((2 * Math.PI) / 15)) * Math.sin(Math.PI / 15) },
+        { x: 2 * Math.cos(Math.PI / 15) + 2 * Math.cos(Math.PI / 5), y: 0 },
+        { x: (1 + 2 * Math.cos((2 * Math.PI) / 15) + 2 * Math.cos((4 * Math.PI) / 15)) * Math.cos(Math.PI / 15), y: (1 + 2 * Math.cos((2 * Math.PI) / 15) + 2 * Math.cos((4 * Math.PI) / 15)) * Math.sin(Math.PI / 15) },
+        { x: 2 * Math.cos(Math.PI / 15) + 2 * Math.cos(Math.PI / 5) + 2 * Math.cos(Math.PI / 3), y: 0 },
+        { x: (1 + 2 * Math.cos((2 * Math.PI) / 15) + 2 * Math.cos((4 * Math.PI) / 15) + 2 * Math.cos((2 * Math.PI) / 5)) * Math.cos(Math.PI / 15), y: (1 + 2 * Math.cos((2 * Math.PI) / 15) + 2 * Math.cos((4 * Math.PI) / 15) + 2 * Math.cos((2 * Math.PI) / 5)) * Math.sin(Math.PI / 15) },
+        { x: 2 * Math.cos(Math.PI / 15) + 2 * Math.cos(Math.PI / 5) + 2 * Math.cos(Math.PI / 3) + 2 * Math.cos((7 * Math.PI) / 15), y: 0 },
+      ] },
+    ],
+    labels: [
+      { key: "a", objectId: "zigzag", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "p1", objectId: "zigzag", at: { x: Math.cos(Math.PI / 15), y: Math.sin(Math.PI / 15) }, placement: "above" },
+      { key: "p2", objectId: "zigzag", at: { x: 2 * Math.cos(Math.PI / 15), y: 0 }, placement: "below" },
+      { key: "p8", objectId: "zigzag", at: { x: 2 * Math.cos(Math.PI / 15) + 2 * Math.cos(Math.PI / 5) + 2 * Math.cos(Math.PI / 3) + 2 * Math.cos((7 * Math.PI) / 15), y: 0 }, placement: "below" },
+      { key: "angle", objectId: "ray-x", at: { x: 0.6, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Die Strecken zählen
 
 Die erste Strecke <InlineMath math="AP_1" /> bildet kein neues Dreieck. Danach **fügt jedes Dreieck genau eine Strecke hinzu**, von <InlineMath math="P_1P_2" /> bis <InlineMath math="P_7P_8" />. Es sind also <InlineMath math="1+7=8" /> Strecken.

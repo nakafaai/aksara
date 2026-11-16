@@ -20,6 +20,30 @@ Kedua penyebut positif, jadi urutannya sama dengan urutan kuadratnya. Kuadrat pe
 \left(\sqrt{n+1}+\sqrt{n}\right)^2=2n+1+2\sqrt{n^2+n}&<2n+1+(2n+1)=4n+2
 \end{aligned}" />
 
+Grafik kedua sisi pembanding itu memperlihatkan hubungannya untuk setiap <InlineMath math="n" />. Garis <InlineMath math="y=2x+1" /> **selalu sedikit di atas** kurva <InlineMath math="y=2\sqrt{x^2+x}" />. Celahnya mengecil, tetapi tidak pernah tertutup, jadi ketaksamaannya tidak pernah berbalik.
+
+<MathVisual
+  title={<>Suku <InlineMath math="2\sqrt{n^2+n}" /> dibandingkan dengan <InlineMath math="2n+1" /></>}
+  description={<>Untuk <InlineMath math="x" /> dari <InlineMath math="0" /> sampai <InlineMath math="6" />, garis <InlineMath math="y=2x+1" /> ada di atas kurva <InlineMath math="y=2\sqrt{x^2+x}" />. Di <InlineMath math="x=0" /> selisihnya <InlineMath math="1" />, dan di <InlineMath math="x=6" /> selisihnya tinggal sekitar <InlineMath math="0{,}04" />, tetapi tetap positif.</>}
+  labels={{
+    curve: <InlineMath math="y=2\sqrt{x^2+x}" />,
+    line: <InlineMath math="y=2x+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "2x + 1", domain: { min: 0, max: 6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2 sqrt(x^2 + x)", domain: { min: 0, max: 6 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 2, y: 5 }, placement: "above-left" },
+      { key: "curve", objectId: "curve", at: { x: 3, y: 2 * Math.sqrt(12) }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="\sqrt{n+1}+\sqrt{n}<\sqrt{4n+2}" />. Penyebut <InlineMath math="P" /> lebih kecil, sehingga <InlineMath math="P>Q" /> untuk setiap bilangan bulat positif <InlineMath math="n" />.
 
 # Memeriksa dengan contoh

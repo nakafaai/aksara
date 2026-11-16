@@ -30,6 +30,19 @@ Aussage (2) gilt für den Rest <InlineMath math="1" /> und den Rest <InlineMath 
 
 Der einzige Rest, der beide erfüllt, ist <InlineMath math="1" />. Also gilt <InlineMath math="n=4m+1" /> für eine ganze Zahl <InlineMath math="m" />, und **<InlineMath math="n" /> ist sicher ungerade**. Zum Beispiel sind für <InlineMath math="n=5" /> die Werte <InlineMath math="25+15=40" /> und <InlineMath math="25+5+2=32" /> beide durch <InlineMath math="4" /> teilbar, und <InlineMath math="5" /> ist tatsächlich ungerade.
 
+Das Diagramm fasst beide Tabellen zusammen. Jede Aussage lässt zwei Reste zu, aber **gemeinsam bleibt nur ein Rest**, nämlich <InlineMath math="1" />.
+
+<Mermaid
+  title={<>Reste bei Division durch <InlineMath math="4" />, die jede Aussage zulässt</>}
+  description={<>Aussage (1) lässt die Reste <InlineMath math="0" /> und <InlineMath math="1" /> zu, also kann <InlineMath math="n" /> gerade oder ungerade sein. Aussage (2) lässt die Reste <InlineMath math="1" /> und <InlineMath math="2" /> zu, also ist es noch offen. Zusammen bleibt nur der Rest <InlineMath math="1" />, also ist <InlineMath math="n" /> sicher ungerade.</>}
+  chart={`flowchart LR
+    S1["(1): Rest 0 oder 1"] --> T["Beide: Rest 1"]
+    S2["(2): Rest 1 oder 2"] --> T
+    S1 -.-> X1["gerade oder ungerade"]
+    S2 -.-> X2["gerade oder ungerade"]
+    T --> Y["n = 4m + 1, sicher ungerade"]`}
+/>
+
 Die Wahl "Aussage (1) allein reicht" entsteht meist aus der Annahme, <InlineMath math="n(n+3)" /> sei nur für gerade <InlineMath math="n" /> durch <InlineMath math="4" /> teilbar, doch <InlineMath math="n=1" /> klappt auch. Die Wahl "keine der Aussagen reicht" entsteht, wenn du nicht prüfst, wo sich die beiden Restmengen überschneiden.
 
 Beide Aussagen zusammen reichen also aus, um zu zeigen, dass <InlineMath math="n" /> ungerade ist, eine allein aber nicht.

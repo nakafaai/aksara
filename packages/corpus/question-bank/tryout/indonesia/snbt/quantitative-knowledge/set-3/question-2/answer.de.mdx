@@ -23,6 +23,32 @@ s=7,\ p=5&:\quad 7^2-4\cdot 5=29\ge 0
 
 Beim ersten Paar sind <InlineMath math="x" /> und <InlineMath math="y" /> nicht reell, also streichst du es. Übrig bleibt nur <InlineMath math="s=7" /> und <InlineMath math="p=5" />.
 
+Die Graphen der beiden Hilfsgleichungen zeigen den Unterschied. Die Parabel für <InlineMath math="s=5" /> und <InlineMath math="p=7" /> **liegt ganz über der waagrechten Achse**, hat also keine reellen Nullstellen. Die Parabel für <InlineMath math="s=7" /> und <InlineMath math="p=5" /> schneidet die Achse zweimal, und das sind die Werte von <InlineMath math="x" /> und <InlineMath math="y" />.
+
+<MathVisual
+  title={<>Die beiden Kandidaten für Summe und Produkt</>}
+  description={<>Die Parabel <InlineMath math="z^2-5z+7" /> hat ihren Tiefpunkt bei <InlineMath math="\left(\tfrac52,\tfrac34\right)" />, über der Achse, und schneidet sie nie. Die Parabel <InlineMath math="z^2-7z+5" /> hat ihren Tiefpunkt bei <InlineMath math="\left(\tfrac72,-\tfrac{29}{4}\right)" /> und schneidet die Achse bei <InlineMath math="\tfrac{7-\sqrt{29}}{2}" /> und <InlineMath math="\tfrac{7+\sqrt{29}}{2}" />.</>}
+  labels={{
+    rejected: <InlineMath math="z^2-5z+7" />,
+    kept: <InlineMath math="z^2-7z+5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "rejected", kind: "function", appearance: "warning", formula: "x^2 - 5x + 7", domain: { min: -0.5, max: 5.5 } },
+      { id: "kept", kind: "function", appearance: "answer", formula: "x^2 - 7x + 5", domain: { min: -0.5, max: 7.8 } },
+      { id: "root-small", kind: "point", appearance: "answer", at: { x: (7 - Math.sqrt(29)) / 2, y: 0 } },
+      { id: "root-large", kind: "point", appearance: "answer", at: { x: (7 + Math.sqrt(29)) / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "rejected", objectId: "rejected", at: { x: 5, y: 7 }, placement: "left" },
+      { key: "kept", objectId: "kept", at: { x: 3.5, y: -29 / 4 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Die Summe der dritten Potenzen
 
 Multipliziere aus: <InlineMath math="(x+y)^3=x^3+3x^2y+3xy^2+y^3=x^3+y^3+3xy(x+y)" />. Daraus folgt, dass **<InlineMath math="x^3+y^3" /> gleich <InlineMath math="s^3-3ps" /> ist**.

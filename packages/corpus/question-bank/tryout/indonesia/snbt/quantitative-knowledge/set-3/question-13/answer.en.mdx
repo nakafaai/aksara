@@ -26,6 +26,45 @@ Folding reflects the flap across the crease. The points <InlineMath math="P" /> 
 
 So **corner <InlineMath math="D'" /> sticks out past side <InlineMath math="CD" />**. The folded flap is the quadrilateral <InlineMath math="MPQD'" />, and the side <InlineMath math="QM" /> lies right on the edge <InlineMath math="CD" />. The part of the flap that still lies on the paper is the triangle <InlineMath math="PQM" />, and the triangle <InlineMath math="QD'M" /> hangs over the edge.
 
+The figure below shows the paper after folding. The crease <InlineMath math="PQ" /> carries the trapezoid <InlineMath math="APQD" /> across. Only **triangle <InlineMath math="PQM" />** lands on top of the paper, while the small triangle <InlineMath math="QD'M" /> hangs past side <InlineMath math="CD" />.
+
+<MathVisual
+  title={<>The fold that brings <InlineMath math="A" /> to <InlineMath math="M" /></>}
+  description={<>Rectangle <InlineMath math="ABCD" /> measures <InlineMath math="16" /> by <InlineMath math="6" />. The crease joins <InlineMath math="P\left(\tfrac{25}{4},0\right)" /> on <InlineMath math="AB" /> and <InlineMath math="Q\left(\tfrac74,6\right)" /> on <InlineMath math="CD" />. After folding, triangle <InlineMath math="PQM" /> lies on top of the paper, and triangle <InlineMath math="QD'M" />, with its corner <InlineMath math="D'" /> at height <InlineMath math="\tfrac{192}{25}" />, hangs above side <InlineMath math="CD" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    dd: <InlineMath math="D'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "paper", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 6 }, { x: 0, y: 6 }] },
+      { id: "flap", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 25 / 4, y: 0 }, { x: 7 / 4, y: 6 }, { x: 0, y: 6 }] },
+      { id: "double", kind: "polygon", appearance: "answer", vertices: [{ x: 25 / 4, y: 0 }, { x: 8, y: 6 }, { x: 7 / 4, y: 6 }] },
+      { id: "overhang", kind: "polygon", appearance: "warning", vertices: [{ x: 7 / 4, y: 6 }, { x: 8, y: 6 }, { x: 56 / 25, y: 192 / 25 }] },
+      { id: "crease", kind: "segment", appearance: "secondary", from: { x: 25 / 4, y: 0 }, to: { x: 7 / 4, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "paper", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "paper", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "paper", at: { x: 16, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "paper", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "m", objectId: "double", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "p", objectId: "crease", at: { x: 25 / 4, y: 0 }, placement: "below" },
+      { key: "q", objectId: "crease", at: { x: 7 / 4, y: 6 }, placement: "above-left" },
+      { key: "dd", objectId: "overhang", at: { x: 56 / 25, y: 192 / 25 }, placement: "above" },
+    ],
+  }}
+/>
+
 # The double layer area
 
 The triangle <InlineMath math="PQM" /> has its base <InlineMath math="QM" /> on side <InlineMath math="CD" />, and its height is the distance from <InlineMath math="P" /> to that side.

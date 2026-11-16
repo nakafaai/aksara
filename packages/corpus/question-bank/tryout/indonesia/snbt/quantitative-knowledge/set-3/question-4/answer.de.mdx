@@ -36,6 +36,40 @@ Nach dem Basiswechsel ist <InlineMath math="{}^{ab}\log (bc)=\dfrac{{}^{a}\log (
 
 Aus <InlineMath math="m=\tfrac{1}{2}" /> folgt <InlineMath math="b=a^{1/2}" />, und aus <InlineMath math="{}^{b}\log c=4" /> folgt <InlineMath math="c=b^4=a^2" />. Dann ist <InlineMath math="ab=a^{3/2}" /> und <InlineMath math="bc=a^{5/2}" />, der Logarithmus also <InlineMath math="\tfrac{5/2}{3/2}=\tfrac{5}{3}" />. Ein konkretes Beispiel: <InlineMath math="a=16" />, <InlineMath math="b=4" /> und <InlineMath math="c=256" /> erfüllen alle Bedingungen, und **das Beispiel passt**, denn <InlineMath math="64^{5/3}=1024=bc" />.
 
+Die Abbildung setzt jede Zahl auf eine Exponentenachse zur Basis <InlineMath math="a" />. Der Logarithmus von <InlineMath math="bc" /> zur Basis <InlineMath math="ab" /> ist **die Position von <InlineMath math="bc" /> geteilt durch die Position von <InlineMath math="ab" />**, also <InlineMath math="\tfrac52" /> durch <InlineMath math="\tfrac32" />.
+
+<MathVisual
+  title={<>Jede Zahl als Potenz von <InlineMath math="a" /></>}
+  description={<>Auf der Exponentenachse liegt <InlineMath math="b" /> bei <InlineMath math="\tfrac12" />, <InlineMath math="a" /> bei <InlineMath math="1" />, <InlineMath math="ab" /> bei <InlineMath math="\tfrac32" />, <InlineMath math="c" /> bei <InlineMath math="2" /> und <InlineMath math="bc" /> bei <InlineMath math="\tfrac52" />. Die Position von <InlineMath math="ab" /> ist die Summe der Positionen von <InlineMath math="a" /> und <InlineMath math="b" />, die von <InlineMath math="bc" /> die Summe der Positionen von <InlineMath math="b" /> und <InlineMath math="c" />.</>}
+  labels={{
+    b: <InlineMath math="b=a^{1/2}" />,
+    a: <InlineMath math="a=a^{1}" />,
+    ab: <InlineMath math="ab=a^{3/2}" />,
+    c: <InlineMath math="c=a^{2}" />,
+    bc: <InlineMath math="bc=a^{5/2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.25, max: 3 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2.75, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "secondary", at: { x: 1 / 2, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "point-ab", kind: "point", appearance: "highlight", at: { x: 3 / 2, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "point-bc", kind: "point", appearance: "answer", at: { x: 5 / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "b", objectId: "point-b", at: { x: 1 / 2, y: 0 }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "point-ab", at: { x: 3 / 2, y: 0 }, placement: "above" },
+      { key: "c", objectId: "point-c", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "bc", objectId: "point-bc", at: { x: 5 / 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Die anderen Antworten prüfen
 
 Die Antwort <InlineMath math="\tfrac{10}{3}" /> nutzt <InlineMath math="m=2" /> und **übersieht die Bedingung <InlineMath math="b<a" />**. Die Antwort <InlineMath math="3" /> überspringt die Verkettung und nimmt <InlineMath math="{}^{a}\log c=4" />. Die Antwort <InlineMath math="\tfrac{5}{2}" /> bleibt bei <InlineMath math="{}^{a}\log (bc)" /> stehen, ohne die Basis zu wechseln. Die Antwort <InlineMath math="5" /> teilt nur durch <InlineMath math="{}^{a}\log b" />, obwohl der Nenner <InlineMath math="{}^{a}\log (ab)" /> ist.

@@ -28,6 +28,22 @@ Suche für jede Primzahl einzeln das kleinste passende <InlineMath math="n" />.
 
 Die Primzahl <InlineMath math="5" /> braucht also <InlineMath math="n\ge 25" />, die Primzahl <InlineMath math="3" /> braucht <InlineMath math="n\ge 27" />, und die Primzahl <InlineMath math="2" /> braucht <InlineMath math="n\ge 20" />. Die Anzahl der Faktoren <InlineMath math="3" /> **springt bei <InlineMath math="n=27" /> von <InlineMath math="10" /> auf <InlineMath math="13" />**, weil <InlineMath math="27=3^3" /> drei Faktoren auf einmal liefert. Alle drei Bedingungen gelten zusammen genau für <InlineMath math="n\ge 27" />.
 
+Das Diagramm zählt die Faktoren <InlineMath math="3" /> und <InlineMath math="5" /> in <InlineMath math="n!" /> für <InlineMath math="n=20" /> bis <InlineMath math="28" />. Die Balken für den Faktor <InlineMath math="5" /> erreichen ihre Linie bei <InlineMath math="n=25" />, aber **die Balken für den Faktor <InlineMath math="3" /> überschreiten die Linie bei <InlineMath math="12" /> erst bei <InlineMath math="n=27" />**.
+
+<Chart
+  title={<>Faktoren <InlineMath math="3" /> und <InlineMath math="5" /> in <InlineMath math="n!" /></>}
+  description={<>Von <InlineMath math="n=20" /> bis <InlineMath math="26" /> steigt die Anzahl der Faktoren <InlineMath math="3" /> von <InlineMath math="8" /> auf <InlineMath math="10" /> und springt bei <InlineMath math="n=27" /> auf <InlineMath math="13" />. Die Anzahl der Faktoren <InlineMath math="5" /> steigt bei <InlineMath math="n=25" /> von <InlineMath math="4" /> auf <InlineMath math="6" />. Die Linien markieren den Bedarf von <InlineMath math="12" /> Faktoren <InlineMath math="3" /> und <InlineMath math="6" /> Faktoren <InlineMath math="5" />.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${i + 20}`)}
+  series={[
+    { label: "Faktoren 3 in n!", mark: "bar", values: Array.from({ length: 9 }, (_, i) => Math.floor((i + 20) / 3) + Math.floor((i + 20) / 9) + Math.floor((i + 20) / 27)) },
+    { label: "Faktoren 5 in n!", mark: "bar", values: Array.from({ length: 9 }, (_, i) => Math.floor((i + 20) / 5) + Math.floor((i + 20) / 25)) },
+    { label: "12 Faktoren 3 nötig", mark: "line", values: Array.from({ length: 9 }, () => 12) },
+    { label: "6 Faktoren 5 nötig", mark: "line", values: Array.from({ length: 9 }, () => 6) },
+  ]}
+  bars="apart"
+  valueLabel="Anzahl der Faktoren"
+/>
+
 # Das Ergebnis prüfen
 
 Für <InlineMath math="n=27" /> gibt es <InlineMath math="13+6+3+1=23\ge 18" /> Faktoren <InlineMath math="2" />, <InlineMath math="13\ge 12" /> Faktoren <InlineMath math="3" /> und <InlineMath math="5+1=6" /> Faktoren <InlineMath math="5" />. Für <InlineMath math="n=26" /> gibt es **nur <InlineMath math="10" /> Faktoren <InlineMath math="3" />**, also ist <InlineMath math="26!" /> noch nicht teilbar.

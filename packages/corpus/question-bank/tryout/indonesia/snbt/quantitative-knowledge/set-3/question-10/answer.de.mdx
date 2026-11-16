@@ -24,6 +24,43 @@ Es gibt <InlineMath math="\binom{6}{3}=20" /> Dreiecke, deren Ecken aus dem Sech
 
 Eine lange Diagonale geht durch <InlineMath math="O" />, also liegt <InlineMath math="O" /> genau auf der Seite eines Dreiecks, das diese Diagonale als Seite hat. Drei benachbarte Ecken liegen auf einer Seite der Geraden durch die beiden äußeren Ecken, und diese Gerade verfehlt <InlineMath math="O" />, also liegt <InlineMath math="O" /> außerhalb. **Nur die gleichseitigen Dreiecke <InlineMath math="ACE" /> und <InlineMath math="BDF" />** enthalten <InlineMath math="O" /> im Inneren, denn ihr Mittelpunkt ist genau <InlineMath math="O" />.
 
+Das Sechseck unten zeigt alle drei Arten. Die lange Diagonale <InlineMath math="AD" /> geht durch <InlineMath math="O" />, also **liegt <InlineMath math="O" /> genau auf der Seite** jedes Dreiecks, das sie als Seite nutzt. Nur die Dreiecke <InlineMath math="ACE" /> und <InlineMath math="BDF" /> schließen <InlineMath math="O" /> im Inneren ein.
+
+<MathVisual
+  title={<>Ein regelmäßiges Sechseck und die Dreiecke, die seinen Mittelpunkt enthalten</>}
+  description={<>Das regelmäßige Sechseck <InlineMath math="ABCDEF" /> hat den Mittelpunkt <InlineMath math="O" />. Die gleichseitigen Dreiecke <InlineMath math="ACE" /> und <InlineMath math="BDF" /> bilden einen Stern mit <InlineMath math="O" /> in der Mitte beider. Die lange Diagonale <InlineMath math="AD" /> geht durch <InlineMath math="O" />, also hat ein Dreieck wie <InlineMath math="ABD" /> den Punkt <InlineMath math="O" /> auf einer Seite.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hexagon", kind: "polygon", appearance: "reference", vertices: [{ x: 4, y: 0 }, { x: 2, y: 2 * Math.sqrt(3) }, { x: -2, y: 2 * Math.sqrt(3) }, { x: -4, y: 0 }, { x: -2, y: -2 * Math.sqrt(3) }, { x: 2, y: -2 * Math.sqrt(3) }] },
+      { id: "ace", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0 }, { x: -2, y: 2 * Math.sqrt(3) }, { x: -2, y: -2 * Math.sqrt(3) }] },
+      { id: "bdf", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: -4, y: 0 }, { x: 2, y: -2 * Math.sqrt(3) }] },
+      { id: "diagonal", kind: "segment", appearance: "warning", from: { x: 4, y: 0 }, to: { x: -4, y: 0 } },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "hexagon", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "b", objectId: "hexagon", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "c", objectId: "hexagon", at: { x: -2, y: 2 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "d", objectId: "hexagon", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "e", objectId: "hexagon", at: { x: -2, y: -2 * Math.sqrt(3) }, placement: "below-left" },
+      { key: "f", objectId: "hexagon", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below-right" },
+      { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Die Wahrscheinlichkeit und eine Probe
 
 <BlockMath math="P=\frac{2}{35}" />

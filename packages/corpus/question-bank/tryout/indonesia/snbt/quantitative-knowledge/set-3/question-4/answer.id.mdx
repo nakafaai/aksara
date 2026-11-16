@@ -36,6 +36,40 @@ Dengan rumus ganti basis, <InlineMath math="{}^{ab}\log (bc)=\dfrac{{}^{a}\log (
 
 Dari <InlineMath math="m=\tfrac{1}{2}" />, <InlineMath math="b=a^{1/2}" />, dan dari <InlineMath math="{}^{b}\log c=4" />, <InlineMath math="c=b^4=a^2" />. Maka <InlineMath math="ab=a^{3/2}" /> dan <InlineMath math="bc=a^{5/2}" />, sehingga logaritmanya <InlineMath math="\tfrac{5/2}{3/2}=\tfrac{5}{3}" />. Contoh nyata: <InlineMath math="a=16" />, <InlineMath math="b=4" />, dan <InlineMath math="c=256" /> memenuhi semua syarat, dan **contoh itu cocok**, karena <InlineMath math="64^{5/3}=1024=bc" />.
 
+Gambar berikut menaruh setiap bilangan pada garis pangkat basis <InlineMath math="a" />. Logaritma basis <InlineMath math="ab" /> dari <InlineMath math="bc" /> adalah **perbandingan posisi <InlineMath math="bc" /> terhadap posisi <InlineMath math="ab" />**, yaitu <InlineMath math="\tfrac52" /> banding <InlineMath math="\tfrac32" />.
+
+<MathVisual
+  title={<>Semua bilangan sebagai pangkat dari <InlineMath math="a" /></>}
+  description={<>Pada garis pangkat, <InlineMath math="b" /> ada di <InlineMath math="\tfrac12" />, <InlineMath math="a" /> di <InlineMath math="1" />, <InlineMath math="ab" /> di <InlineMath math="\tfrac32" />, <InlineMath math="c" /> di <InlineMath math="2" />, dan <InlineMath math="bc" /> di <InlineMath math="\tfrac52" />. Posisi <InlineMath math="ab" /> adalah jumlah posisi <InlineMath math="a" /> dan <InlineMath math="b" />, dan posisi <InlineMath math="bc" /> adalah jumlah posisi <InlineMath math="b" /> dan <InlineMath math="c" />.</>}
+  labels={{
+    b: <InlineMath math="b=a^{1/2}" />,
+    a: <InlineMath math="a=a^{1}" />,
+    ab: <InlineMath math="ab=a^{3/2}" />,
+    c: <InlineMath math="c=a^{2}" />,
+    bc: <InlineMath math="bc=a^{5/2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.25, max: 3 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2.75, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "secondary", at: { x: 1 / 2, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "point-ab", kind: "point", appearance: "highlight", at: { x: 3 / 2, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "point-bc", kind: "point", appearance: "answer", at: { x: 5 / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "b", objectId: "point-b", at: { x: 1 / 2, y: 0 }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "point-ab", at: { x: 3 / 2, y: 0 }, placement: "above" },
+      { key: "c", objectId: "point-c", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "bc", objectId: "point-bc", at: { x: 5 / 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Memeriksa pilihan lain
 
 Pilihan <InlineMath math="\tfrac{10}{3}" /> memakai <InlineMath math="m=2" />, yaitu **lupa syarat <InlineMath math="b<a" />**. Pilihan <InlineMath math="3" /> melompati rantai basis dan memakai <InlineMath math="{}^{a}\log c=4" />. Pilihan <InlineMath math="\tfrac{5}{2}" /> berhenti di <InlineMath math="{}^{a}\log (bc)" /> tanpa mengganti basis. Pilihan <InlineMath math="5" /> membagi dengan <InlineMath math="{}^{a}\log b" /> saja, padahal penyebutnya <InlineMath math="{}^{a}\log (ab)" />.
