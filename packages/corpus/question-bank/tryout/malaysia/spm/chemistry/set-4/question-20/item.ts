@@ -13,21 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "3.69 dm³ of hydrogen forms, because all 10.0 g of the brass reacts",
+            "$$10.9\\text{ g}$$ of black solid; zinc is $$13.0\\%$$ of the brass",
         },
         {
           correct: false,
-          label: "1.11 dm³ of hydrogen forms, and 3.0 g of solid is left",
+          label:
+            "$$9.02\\text{ g}$$ of black solid; zinc is $$27.9\\%$$ of the brass",
         },
         {
           correct: true,
           label:
-            "1.11 dm³ of hydrogen forms, and 7.0 g of copper is left unreacted",
+            "$$9.25\\text{ g}$$ of black solid; zinc is $$26.0\\%$$ of the brass",
         },
         {
           correct: false,
           label:
-            "2.22 dm³ of hydrogen forms, because each zinc atom gives two hydrogen atoms",
+            "$$12.5\\text{ g}$$ of black solid; zinc is $$26.0\\%$$ of the brass",
         },
       ],
     },
@@ -37,21 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "3.69 dm³ hidrogen terbentuk, kerana kesemua 10.0 g loyang bertindak balas",
+            "$$10.9\\text{ g}$$ pepejal hitam; zink ialah $$13.0\\%$$ daripada loyang",
         },
         {
           correct: false,
-          label: "1.11 dm³ hidrogen terbentuk, dan 3.0 g pepejal berbaki",
+          label:
+            "$$9.02\\text{ g}$$ pepejal hitam; zink ialah $$27.9\\%$$ daripada loyang",
         },
         {
           correct: true,
           label:
-            "1.11 dm³ hidrogen terbentuk, dan 7.0 g kuprum berbaki tanpa bertindak balas",
+            "$$9.25\\text{ g}$$ pepejal hitam; zink ialah $$26.0\\%$$ daripada loyang",
         },
         {
           correct: false,
           label:
-            "2.22 dm³ hidrogen terbentuk, kerana setiap atom zink memberikan dua atom hidrogen",
+            "$$12.5\\text{ g}$$ pepejal hitam; zink ialah $$26.0\\%$$ daripada loyang",
         },
       ],
     },
