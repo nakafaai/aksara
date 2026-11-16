@@ -25,6 +25,51 @@ Titik pada lengkok major melihat <InlineMath math="AB" /> dengan sudut <InlineMa
 &=6\sqrt{2}\,\pi\text{ cm}
 \end{aligned}" />
 
+Lukis bulatan itu bersama satu titik <InlineMath math="C" /> untuk semakan. **Lengkok major di sebelah yang sama dengan pusat <InlineMath math="O" /> ialah tempat semua titik yang melihat <InlineMath math="AB" /> pada sudut <InlineMath math="45^\circ" />**. Lengkok minor di seberang garis <InlineMath math="AB" /> melihatnya pada sudut <InlineMath math="135^\circ" />.
+
+<MathVisual
+  title={<>Lengkok titik yang melihat <InlineMath math="AB" /> pada <InlineMath math="45^\circ" /></>}
+  description={<>Ruas <InlineMath math="AB" /> sepanjang <InlineMath math="8" /> mendatar. Pusat <InlineMath math="O" /> terletak <InlineMath math="4" /> unit di atas titik tengah <InlineMath math="AB" />, maka <InlineMath math="\angle AOB=90^\circ" /> dan jejarinya <InlineMath math="R=4\sqrt2" />. Lengkok major <InlineMath math="270^\circ" /> di atas <InlineMath math="AB" /> ialah laluan yang dicari, manakala lengkok minor <InlineMath math="90^\circ" /> di bawah <InlineMath math="AB" /> tidak digunakan. Titik <InlineMath math="C" /> di hujung diameter dari <InlineMath math="A" /> terletak tepat di atas <InlineMath math="B" />, dengan <InlineMath math="BC=8" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    o: <InlineMath math="O" />,
+    major: <InlineMath math="270^\circ" />,
+    radius: <InlineMath math="R=4\sqrt2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -3, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "major", kind: "arc", appearance: "answer", center: { x: 0, y: 4 }, radius: 4 * Math.sqrt(2), startDegrees: 315, sweepDegrees: 270 },
+      { id: "minor", kind: "arc", appearance: "warning", center: { x: 0, y: 4 }, radius: 4 * Math.sqrt(2), startDegrees: 225, sweepDegrees: 90 },
+      { id: "chord", kind: "segment", appearance: "primary", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: -4, y: 0 } },
+      { id: "other-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 4, y: 0 } },
+      { id: "diameter", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 4, y: 8 } },
+      { id: "side", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 8 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: -4, y: 0 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "c", kind: "point", appearance: "secondary", at: { x: 4, y: 8 } },
+      { id: "o", kind: "point", appearance: "construction", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "c", at: { x: 4, y: 8 }, placement: "above-right" },
+      { key: "o", objectId: "o", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "major", objectId: "major", at: { x: -4 * Math.sqrt(2), y: 4 }, placement: "left" },
+      { key: "radius", objectId: "radius", at: { x: -2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Semak dengan satu titik khas. Ambil <InlineMath math="C" /> supaya <InlineMath math="AC" /> ialah diameter. Sudut <InlineMath math="ABC" /> dicangkum oleh diameter, jadi saiznya <InlineMath math="90^\circ" />. Dengan <InlineMath math="\angle ACB=45^\circ" />, segi tiga <InlineMath math="ABC" /> ialah segi tiga bersudut tegak sama kaki, maka <InlineMath math="BC=AB=8" /> dan <InlineMath math="AC=8\sqrt{2}=2R" />. Hasil ini sepadan dengan <InlineMath math="R=4\sqrt{2}" />.
 
 # Mengapa pilihan lain salah

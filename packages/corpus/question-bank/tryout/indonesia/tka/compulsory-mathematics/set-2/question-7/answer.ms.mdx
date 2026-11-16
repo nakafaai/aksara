@@ -25,6 +25,39 @@ Bagi <InlineMath math="x\ge14" />, kamu sudah berada di sebelah kanan verteks, i
 
 <BlockMath math="L(14)=14\cdot(48-28)=14\cdot20=280" />
 
+Lukis <InlineMath math="L(x)" /> dan tandakan bahagian yang memenuhi syarat tembok. **Puncak parabola berada di sebelah kiri garis <InlineMath math="x=14" />, jadi di luar kawasan yang dibenarkan**. Dalam kawasan yang dibenarkan, graf terus menurun, maka titik tertingginya berada di hujung kiri.
+
+<MathVisual
+  title={<>Luas kandang dan syarat tembok</>}
+  description={<>Parabola <InlineMath math="L(x)=-2(x-12)^2+288" /> bagi <InlineMath math="0\le x\le24" />. Garis tegak <InlineMath math="x=14" /> memisahkan bahagian kiri, tempat sisi yang menempel tembok lebih daripada <InlineMath math="20\text{ m}" />, daripada bahagian kanan yang memenuhi syarat. Puncak <InlineMath math="(12,\ 288)" /> berada di bahagian kiri, manakala titik tertinggi bahagian kanan ialah <InlineMath math="(14,\ 280)" />.</>}
+  labels={{
+    vertex: <InlineMath math="(12,\ 288)" />,
+    best: <InlineMath math="(14,\ 280)" />,
+    limit: <InlineMath math="x=14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 25 },
+      y: { min: -15, max: 320 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "blocked", kind: "function", appearance: "reference", formula: "-2(x - 12)^2 + 288", domain: { min: 0, max: 14 } },
+      { id: "allowed", kind: "function", appearance: "primary", formula: "-2(x - 12)^2 + 288", domain: { min: 14, max: 24 } },
+      { id: "limit", kind: "segment", appearance: "construction", from: { x: 14, y: 0 }, to: { x: 14, y: 300 } },
+      { id: "vertex", kind: "point", appearance: "warning", at: { x: 12, y: 288 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 14, y: 280 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: 12, y: 288 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 14, y: 280 }, placement: "right" },
+      { key: "limit", objectId: "limit", at: { x: 14, y: 300 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Semak: dawai yang digunakan ialah <InlineMath math="2\cdot14+(20-2)=46\text{ m}" />, dan sisi <InlineMath math="20\text{ m}" /> tepat sepanjang tembok. Sebagai perbandingan, <InlineMath math="x=15" /> memberikan <InlineMath math="15\cdot18=270" />, lebih kecil.
 
 Jadi, luas terbesar kandang itu ialah <InlineMath math="280\text{ m}^2" />.

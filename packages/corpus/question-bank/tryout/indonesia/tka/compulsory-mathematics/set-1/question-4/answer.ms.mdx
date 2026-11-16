@@ -35,6 +35,43 @@ Rumus <InlineMath math="c=2a-60" /> semakin besar apabila <InlineMath math="a" /
 
 <BlockMath math="b=180-138=42,\qquad c=2\cdot46-60=32" />
 
+Lukis <InlineMath math="b" /> dan <InlineMath math="c" /> sebagai fungsi <InlineMath math="a" /> supaya ketiga-tiga syarat kelihatan serentak. Kupon A lebih banyak daripada kupon B **hanya di sebelah kanan titik persilangan <InlineMath math="a=45" />**, dan di situ garis <InlineMath math="c" /> terus naik. Jadi nombor bulat pertama di sebelah kanan titik persilangan, <InlineMath math="a=46" />, memberikan <InlineMath math="c" /> yang paling kecil.
+
+<MathVisual
+  title={<>Bilangan kupon B dan C mengikut bilangan kupon A</>}
+  description={<>Paksi mendatar ialah <InlineMath math="a" /> dari <InlineMath math="31" /> hingga <InlineMath math="59" />, julat yang menjadikan <InlineMath math="b\ge1" /> dan <InlineMath math="c\ge1" />. Garis <InlineMath math="b=180-3a" /> menurun, garis <InlineMath math="c=2a-60" /> menaik, dan garis rujukan <InlineMath math="b=a" /> bersilang dengan garis <InlineMath math="b" /> pada <InlineMath math="(45,\ 45)" />. Syarat <InlineMath math="a>b" /> berlaku di sebelah kanan titik itu. Titik <InlineMath math="(46,\ 32)" /> pada garis <InlineMath math="c" /> ialah nilai <InlineMath math="c" /> terkecil yang sah.</>}
+  labels={{
+    b: <InlineMath math="b=180-3a" />,
+    c: <InlineMath math="c=2a-60" />,
+    equal: <InlineMath math="b=a" />,
+    tie: <InlineMath math="a=b=45" />,
+    least: <InlineMath math="(46,\ 32)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 28, max: 62 },
+      y: { min: -4, max: 92 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "b", kind: "function", appearance: "secondary", formula: "180 - 3x", domain: { min: 31, max: 59 } },
+      { id: "c", kind: "function", appearance: "primary", formula: "2x - 60", domain: { min: 31, max: 59 } },
+      { id: "equal", kind: "function", appearance: "reference", formula: "x", domain: { min: 31, max: 59 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 45, y: 45 } },
+      { id: "least", kind: "point", appearance: "answer", at: { x: 46, y: 32 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 35, y: 75 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 55, y: 50 }, placement: "below-right" },
+      { key: "equal", objectId: "equal", at: { x: 58, y: 58 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 45, y: 45 }, placement: "left" },
+      { key: "least", objectId: "least", at: { x: 46, y: 32 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Semak semula: <InlineMath math="46+42+32=120" /> dan <InlineMath math="50\cdot46+30\cdot42+20\cdot32=2{,}300+1{,}260+640=4{,}200" /> ribu rupiah. Syarat <InlineMath math="46>42" /> juga dipenuhi, jadi **jualan ini memang boleh berlaku**.
 
 # Mengapa pilihan lain salah

@@ -26,6 +26,52 @@ From those <InlineMath math="63" /> calls, take the ones shorter than <InlineMat
 \text{fraction}&=\frac{49}{63}=\frac{7}{9}
 \end{aligned}" />
 
+Draw the histogram and cut it at <InlineMath math="7.5" /> minutes and <InlineMath math="22.5" /> minutes. Because the calls are spread evenly, **cutting a class at its middle takes half its frequency**. The denominator is everything right of <InlineMath math="7.5" />, that is <InlineMath math="49+14=63" />.
+
+<MathVisual
+  title={<>Histogram of call lengths cut at <InlineMath math="7.5" /> and <InlineMath math="22.5" /> minutes</>}
+  description={<>A histogram of six classes <InlineMath math="5" /> minutes wide with frequencies <InlineMath math="6" />, <InlineMath math="22" />, <InlineMath math="14" />, <InlineMath math="18" />, <InlineMath math="12" />, and <InlineMath math="8" />. The part left of <InlineMath math="7.5" /> minutes holds <InlineMath math="17" /> short calls. The part from <InlineMath math="7.5" /> to <InlineMath math="22.5" /> minutes holds <InlineMath math="49" /> calls, and the part right of <InlineMath math="22.5" /> minutes holds <InlineMath math="14" /> calls.</>}
+  labels={{
+    "short-a": <InlineMath math="6" />,
+    "short-b": <InlineMath math="11" />,
+    "in-a": <InlineMath math="11" />,
+    "in-b": <InlineMath math="14" />,
+    "in-c": <InlineMath math="18" />,
+    "in-d": <InlineMath math="6" />,
+    "out-a": <InlineMath math="6" />,
+    "out-b": <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: -1, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "short-a", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 6 }, { x: 0, y: 6 }] },
+      { id: "short-b", kind: "polygon", appearance: "reference", vertices: [{ x: 5, y: 0 }, { x: 7.5, y: 0 }, { x: 7.5, y: 22 }, { x: 5, y: 22 }] },
+      { id: "in-a", kind: "polygon", appearance: "answer", vertices: [{ x: 7.5, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 22 }, { x: 7.5, y: 22 }] },
+      { id: "in-b", kind: "polygon", appearance: "answer", vertices: [{ x: 10, y: 0 }, { x: 15, y: 0 }, { x: 15, y: 14 }, { x: 10, y: 14 }] },
+      { id: "in-c", kind: "polygon", appearance: "answer", vertices: [{ x: 15, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 18 }, { x: 15, y: 18 }] },
+      { id: "in-d", kind: "polygon", appearance: "answer", vertices: [{ x: 20, y: 0 }, { x: 22.5, y: 0 }, { x: 22.5, y: 12 }, { x: 20, y: 12 }] },
+      { id: "out-a", kind: "polygon", appearance: "secondary", vertices: [{ x: 22.5, y: 0 }, { x: 25, y: 0 }, { x: 25, y: 12 }, { x: 22.5, y: 12 }] },
+      { id: "out-b", kind: "polygon", appearance: "secondary", vertices: [{ x: 25, y: 0 }, { x: 30, y: 0 }, { x: 30, y: 8 }, { x: 25, y: 8 }] },
+    ],
+    labels: [
+      { key: "short-a", objectId: "short-a", at: { x: 2.5, y: 3 }, placement: "center" },
+      { key: "short-b", objectId: "short-b", at: { x: 6.25, y: 11 }, placement: "center" },
+      { key: "in-a", objectId: "in-a", at: { x: 8.75, y: 11 }, placement: "center" },
+      { key: "in-b", objectId: "in-b", at: { x: 12.5, y: 7 }, placement: "center" },
+      { key: "in-c", objectId: "in-c", at: { x: 17.5, y: 9 }, placement: "center" },
+      { key: "in-d", objectId: "in-d", at: { x: 21.25, y: 6 }, placement: "center" },
+      { key: "out-a", objectId: "out-a", at: { x: 23.75, y: 6 }, placement: "center" },
+      { key: "out-b", objectId: "out-b", at: { x: 27.5, y: 4 }, placement: "center" },
+    ],
+  }}
+/>
+
 Check it from the other side. The calls that aren't short but last at least <InlineMath math="22.5" /> minutes number <InlineMath math="6+8=14" />, and <InlineMath math="49+14=63" />. So the complement is <InlineMath math="\frac{14}{63}=\frac29" />, and <InlineMath math="\frac79+\frac29=1" />.
 
 # Why the other options are wrong

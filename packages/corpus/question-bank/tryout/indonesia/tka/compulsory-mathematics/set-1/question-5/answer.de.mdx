@@ -8,6 +8,42 @@ Die Steigungen sind <InlineMath math="-3" />, dann <InlineMath math="1" />, dann
 
 Jede Aussage löst du abschnittsweise, und **das Ergebnis jedes Abschnitts musst du mit dessen eigener Bedingung schneiden**.
 
+Zeichne <InlineMath math="g" /> einmal, dann liest du jede Aussage am Graphen ab. **Die Lösung von <InlineMath math="g(x)\le k" /> ist der Teil der <InlineMath math="x" />-Achse, über dem der Graph unter der Linie in Höhe <InlineMath math="k" /> liegt**. Der tiefste Punkt <InlineMath math="(-1,\ 4)" /> liefert die Bedingung <InlineMath math="k\ge4" />, und die ungleichen Steigungen links und rechts machen die Lösungsmenge unsymmetrisch.
+
+<MathVisual
+  title={<>Graph der linken Seite und zwei Schranken <InlineMath math="k" /></>}
+  description={<>Der Graph von <InlineMath math="g(x)=|x-3|+2\,|x+1|" /> besteht aus drei Geradenstücken: Steigung <InlineMath math="-3" /> für <InlineMath math="x\le-1" />, Steigung <InlineMath math="1" /> für <InlineMath math="-1\le x\le3" /> und Steigung <InlineMath math="3" /> für <InlineMath math="x\ge3" />. Sein tiefster Punkt ist <InlineMath math="(-1,\ 4)" />. Die waagerechte Strecke bei <InlineMath math="k=10" /> trifft den Graphen bei <InlineMath math="x=-3" /> und <InlineMath math="x=\frac{11}{3}" />, die Strecke bei <InlineMath math="k=6" /> bei <InlineMath math="x=-\frac{5}{3}" /> und <InlineMath math="x=1" />.</>}
+  labels={{
+    g: <InlineMath math="g(x)" />,
+    ten: <InlineMath math="k=10" />,
+    six: <InlineMath math="k=6" />,
+    low: <InlineMath math="(-1,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 5 },
+      y: { min: -1, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "1 - 3x", domain: { min: -4, max: -1 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "x + 5", domain: { min: -1, max: 3 } },
+      { id: "g", kind: "function", appearance: "primary", formula: "3x - 1", domain: { min: 3, max: 4.5 } },
+      { id: "ten", kind: "segment", appearance: "answer", from: { x: -3, y: 10 }, to: { x: 11 / 3, y: 10 } },
+      { id: "six", kind: "segment", appearance: "secondary", from: { x: -5 / 3, y: 6 }, to: { x: 1, y: 6 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: -1, y: 4 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 4, y: 11 }, placement: "right" },
+      { key: "ten", objectId: "ten", at: { x: 1 / 3, y: 10 }, placement: "above" },
+      { key: "six", objectId: "six", at: { x: -1 / 3, y: 6 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: -1, y: 4 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Erste Aussage
 
 Für <InlineMath math="k=10" />:

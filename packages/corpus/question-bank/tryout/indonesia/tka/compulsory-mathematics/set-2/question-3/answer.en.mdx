@@ -19,6 +19,37 @@ mn&=m^n \\
 n&=m^{n-1}
 \end{aligned}" />
 
+Draw both sides of the condition <InlineMath math="n=m^{n-1}" /> for <InlineMath math="m=2" />, the value of <InlineMath math="m" /> that makes the right side smallest. **The two graphs meet only at <InlineMath math="n=2" />**, and then <InlineMath math="2^{n-1}" /> races away. For <InlineMath math="m\ge3" /> the right side is even larger, so no new meeting appears.
+
+<MathVisual
+  title={<>Left side <InlineMath math="n" /> and right side <InlineMath math="2^{n-1}" /></>}
+  description={<>For <InlineMath math="2\le n\le5" />, the line <InlineMath math="n" /> rises by one each step, while the curve <InlineMath math="2^{n-1}" /> doubles each step. They meet exactly at <InlineMath math="(2,\ 2)" />. At <InlineMath math="n=3" /> the curve is already at <InlineMath math="4" /> while the line is at <InlineMath math="3" />, and at <InlineMath math="n=5" /> the curve is at <InlineMath math="16" /> while the line is at <InlineMath math="5" />.</>}
+  labels={{
+    line: <InlineMath math="n" />,
+    power: <InlineMath math="2^{n-1}" />,
+    meet: <InlineMath math="(2,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 1.5, max: 5.5 },
+      y: { min: 0, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "x", domain: { min: 2, max: 5 } },
+      { id: "power", kind: "function", appearance: "secondary", formula: "2^(x - 1)", domain: { min: 2, max: 5 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "power", objectId: "power", at: { x: 5, y: 16 }, placement: "right" },
+      { key: "meet", objectId: "meet", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Now check every value of <InlineMath math="n" />. For <InlineMath math="n=2" /> the condition reads <InlineMath math="2=m" />, so the pair <InlineMath math="(2,2)" /> works. Check: <InlineMath math="\left(2^2\right)^2=16" /> and <InlineMath math="2^{\left(2^2\right)}=2^4=16" />.
 
 For <InlineMath math="n\ge3" />, the right side is smallest when <InlineMath math="m=2" />, giving <InlineMath math="2^{n-1}" />. But <InlineMath math="2^{n-1}" /> is already bigger than <InlineMath math="n" />: <InlineMath math="2^2=4>3" />, <InlineMath math="2^3=8>4" />, and each time <InlineMath math="n" /> goes up by one, the left side grows by only <InlineMath math="1" /> while <InlineMath math="2^{n-1}" /> doubles. So for <InlineMath math="n\ge3" /> **there's no other pair**.

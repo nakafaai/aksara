@@ -21,6 +21,38 @@ Dengan harga ekspor <InlineMath math="\text{Rp}b" />, kreditnya <InlineMath math
 b&\ge1{.}050
 \end{aligned}" />
 
+Gambar tagihan September sebagai fungsi harga ekspor <InlineMath math="b" />. **Tagihan turun <InlineMath math="200" /> rupiah setiap kali <InlineMath math="b" /> naik satu rupiah, lalu berhenti di biaya tetap**. Titik beloknya adalah harga ekspor paling kecil yang dicari.
+
+<MathVisual
+  title={<>Tagihan September menurut harga ekspor</>}
+  description={<>Sumbu mendatar adalah harga ekspor <InlineMath math="b" /> dalam rupiah per kWh, sumbu tegak adalah tagihan September dalam ribu rupiah. Untuk <InlineMath math="b\le1{.}050" /> tagihannya <InlineMath math="30+210-0{,}2b" /> ribu rupiah dan turun lurus. Grafik menyentuh biaya tetap <InlineMath math="30" /> di <InlineMath math="b=1{.}050" /> dan mendatar sesudahnya. Pada harga sekarang <InlineMath math="b=800" />, tagihannya <InlineMath math="80" /> ribu rupiah.</>}
+  labels={{
+    corner: <InlineMath math="(1{.}050,\ 30)" />,
+    now: <>sekarang: <InlineMath math="b=800" /></>,
+    fixed: <>biaya tetap</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -60, max: 1460 },
+      y: { min: -15, max: 265 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "falling", kind: "function", appearance: "primary", formula: "240 - 0.2x", domain: { min: 0, max: 1050 } },
+      { id: "fixed", kind: "function", appearance: "answer", formula: "30", domain: { min: 1050, max: 1400 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 1050, y: 30 } },
+      { id: "now", kind: "point", appearance: "secondary", at: { x: 800, y: 80 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 1050, y: 30 }, placement: "below" },
+      { key: "now", objectId: "now", at: { x: 800, y: 80 }, placement: "above-right" },
+      { key: "fixed", objectId: "fixed", at: { x: 1300, y: 30 }, placement: "above" },
+    ],
+  }}
+/>
+
 Cek dengan <InlineMath math="b=1{.}050" />: kreditnya <InlineMath math="200\cdot1{.}050=210{.}000" />, sama persis dengan biaya impor, jadi tagihannya <InlineMath math="\text{Rp}30{.}000" />. Dengan harga sekarang <InlineMath math="\text{Rp}800" />, tagihannya masih <InlineMath math="30{.}000+210{.}000-160{.}000=80{.}000" />.
 
 Jadi, nilai <InlineMath math="b" /> paling kecil adalah <InlineMath math="\text{Rp}1{.}050" /> per kWh.

@@ -31,6 +31,45 @@ At <InlineMath math="u=8" /> both cost <InlineMath math="60" /> thousand. So Kuo
 u&<18
 \end{aligned}" />
 
+Draw both cost functions. **Kuota is cheaper exactly where its graph lies below the graph of Hemat**, between the two crossings at <InlineMath math="u=8" /> and <InlineMath math="u=18" />. The crossings themselves do not count because the costs are equal there.
+
+<MathVisual
+  title={<>Costs of Hemat and Kuota</>}
+  description={<>The horizontal axis is the weight <InlineMath math="u" /> in kg, and the vertical axis is the cost in thousands of rupiah. Hemat is flat at <InlineMath math="30" /> up to <InlineMath math="u=3" />, then rises <InlineMath math="6" /> per kg. Kuota is flat at <InlineMath math="60" /> up to <InlineMath math="u=12" />, then rises <InlineMath math="10" /> per kg. The graphs cross at <InlineMath math="(8,\ 60)" /> and <InlineMath math="(18,\ 120)" />, and between them the graph of Kuota lies below. The segment on the horizontal axis marks the whole weights <InlineMath math="9\le u\le17" />.</>}
+  labels={{
+    saver: <>Hemat</>,
+    quota: <>Kuota</>,
+    low: <InlineMath math="(8,\ 60)" />,
+    high: <InlineMath math="(18,\ 120)" />,
+    cheaper: <InlineMath math="9\le u\le17" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 41 },
+      y: { min: -10, max: 260 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "saver-flat", kind: "function", appearance: "secondary", formula: "30", domain: { min: 0, max: 3 } },
+      { id: "saver", kind: "function", appearance: "secondary", formula: "6x + 12", domain: { min: 3, max: 40 } },
+      { id: "quota-flat", kind: "function", appearance: "primary", formula: "60", domain: { min: 0, max: 12 } },
+      { id: "quota", kind: "function", appearance: "primary", formula: "10x - 60", domain: { min: 12, max: 31 } },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 8, y: 60 } },
+      { id: "high", kind: "point", appearance: "warning", at: { x: 18, y: 120 } },
+      { id: "cheaper", kind: "segment", appearance: "answer", from: { x: 9, y: 0 }, to: { x: 17, y: 0 } },
+    ],
+    labels: [
+      { key: "saver", objectId: "saver", at: { x: 38, y: 240 }, placement: "below-right" },
+      { key: "quota", objectId: "quota", at: { x: 30, y: 240 }, placement: "left" },
+      { key: "low", objectId: "low", at: { x: 8, y: 60 }, placement: "above-left" },
+      { key: "high", objectId: "high", at: { x: 18, y: 120 }, placement: "above-left" },
+      { key: "cheaper", objectId: "cheaper", at: { x: 13, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 At <InlineMath math="u=18" /> both cost <InlineMath math="120" /> thousand. So Kuota is cheaper for <InlineMath math="u=13,14,\ldots,17" />. After <InlineMath math="18" />, Hemat wins again because its extra rate is lower.
 
 | Weight | Cheaper plan |

@@ -40,6 +40,50 @@ Titik <InlineMath math="(1,2)" /> ada di garis pertama sehingga tidak berpindah,
 
 <BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(-(x-1+1),\ -1+1-y\big)=(-x,-y)" />
 
+Ikuti satu titik, misalnya <InlineMath math="Q(3,1)" />, melalui komposisi pertama dan keempat. **Langkah pertamanya sama, tetapi pusat rotasi kedua mengirim titik itu ke tempat berbeda**. Hanya pusat <InlineMath math="(0,-1)" /> yang mendaratkannya di <InlineMath math="(-3,-1)" />, tempat yang dituju rotasi <InlineMath math="180^\circ" /> terhadap <InlineMath math="O" />.
+
+<MathVisual
+  title={<>Satu titik melalui dua komposisi rotasi</>}
+  description={<>Rotasi <InlineMath math="90^\circ" /> dengan pusat <InlineMath math="(1,0)" /> memindahkan <InlineMath math="Q(3,1)" /> ke <InlineMath math="(0,2)" />. Dari sana, rotasi <InlineMath math="90^\circ" /> dengan pusat <InlineMath math="(0,1)" /> mengirimnya ke <InlineMath math="(-1,1)" />, sedangkan rotasi <InlineMath math="90^\circ" /> dengan pusat <InlineMath math="(0,-1)" /> mengirimnya ke <InlineMath math="(-3,-1)" />. Rotasi <InlineMath math="180^\circ" /> terhadap <InlineMath math="O" /> memetakan <InlineMath math="Q" /> ke <InlineMath math="(-3,-1)" />.</>}
+  labels={{
+    start: <InlineMath math="Q(3,1)" />,
+    middle: <InlineMath math="(0,2)" />,
+    wrong: <InlineMath math="(-1,1)" />,
+    right: <InlineMath math="(-3,-1)" />,
+    "center-one": <InlineMath math="(1,0)" />,
+    "center-up": <InlineMath math="(0,1)" />,
+    "center-down": <InlineMath math="(0,-1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 4 },
+      y: { min: -2, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-turn", kind: "vector", appearance: "secondary", from: { x: 3, y: 1 }, to: { x: 0, y: 2 } },
+      { id: "wrong", kind: "vector", appearance: "warning", from: { x: 0, y: 2 }, to: { x: -1, y: 1 } },
+      { id: "right", kind: "vector", appearance: "answer", from: { x: 0, y: 2 }, to: { x: -3, y: -1 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "middle", kind: "point", appearance: "secondary", at: { x: 0, y: 2 } },
+      { id: "center-one", kind: "point", appearance: "construction", at: { x: 1, y: 0 } },
+      { id: "center-up", kind: "point", appearance: "construction", at: { x: 0, y: 1 } },
+      { id: "center-down", kind: "point", appearance: "construction", at: { x: 0, y: -1 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "wrong", objectId: "wrong", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: -3, y: -1 }, placement: "below" },
+      { key: "center-one", objectId: "center-one", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "center-up", objectId: "center-up", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "center-down", objectId: "center-down", at: { x: 0, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Bandingkan dengan komposisi pertama: sudutnya sama, hanya pusat kedua yang berbeda, dan **perbedaan pusat itulah yang memutuskan**.
 
 **Benar**. Pada komposisi kelima, translasi dikerjakan lebih dahulu, baru rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="(2,1)" />.

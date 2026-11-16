@@ -10,6 +10,43 @@ Nilai mutlak berubah bentuk pada titik yang menjadikan isinya sifar, iaitu <Inli
 
 Grafnya **mendatar di kiri, menurun di tengah, kemudian mendatar semula di kanan**. Di tengah, nilainya turun daripada <InlineMath math="6" /> hingga <InlineMath math="-6" />.
 
+Lukis grafnya, kerana setiap pernyataan terbaca daripada bentuknya. **Bahagian mendatar memberikan penyelesaian tak terhingga banyak, manakala bahagian condong memberikan tepat satu bagi setiap nilai antara <InlineMath math="-6" /> dan <InlineMath math="6" />**. Jalur antara <InlineMath math="y=-4" /> dan <InlineMath math="y=4" /> hanya disentuh oleh bahagian condong, bagi <InlineMath math="-1\le x\le3" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x)=|x-4|-|x+2|" /></>}
+  description={<>Graf mendatar pada <InlineMath math="y=6" /> bagi <InlineMath math="x\le-2" />, turun mengikut <InlineMath math="y=2-2x" /> dari <InlineMath math="(-2,\ 6)" /> hingga <InlineMath math="(4,\ -6)" />, kemudian mendatar pada <InlineMath math="y=-6" /> bagi <InlineMath math="x\ge4" />. Garis bantu <InlineMath math="y=4" /> dan <InlineMath math="y=-4" /> bertemu bahagian condong pada <InlineMath math="x=-1" /> dan <InlineMath math="x=3" />. Titik <InlineMath math="\left(-\tfrac12,\ 3\right)" /> ialah satu-satunya titik dengan <InlineMath math="f(x)=3" />.</>}
+  labels={{
+    high: <InlineMath math="y=6" />,
+    low: <InlineMath math="y=-6" />,
+    three: <InlineMath math="\left(-\tfrac12,\ 3\right)" />,
+    band: <InlineMath math="-1\le x\le3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 8.5 },
+      y: { min: -7.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "high", kind: "function", appearance: "primary", formula: "6", domain: { min: -6, max: -2 } },
+      { id: "slope", kind: "function", appearance: "primary", formula: "2 - 2x", domain: { min: -2, max: 4 } },
+      { id: "low", kind: "function", appearance: "primary", formula: "-6", domain: { min: 4, max: 8 } },
+      { id: "top", kind: "segment", appearance: "construction", from: { x: -6, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "bottom", kind: "segment", appearance: "construction", from: { x: -6, y: -4 }, to: { x: 8, y: -4 } },
+      { id: "band", kind: "segment", appearance: "answer", from: { x: -1, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: -0.5, y: 3 } },
+    ],
+    labels: [
+      { key: "high", objectId: "high", at: { x: -4, y: 6 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 6, y: -6 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: -0.5, y: 3 }, placement: "left" },
+      { key: "band", objectId: "band", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 1. **Salah**. Nilai maksimumnya memang <InlineMath math="6" />, tetapi dicapai oleh semua <InlineMath math="x\le-2" />, jadi tak terhingga banyak nilai <InlineMath math="x" />.

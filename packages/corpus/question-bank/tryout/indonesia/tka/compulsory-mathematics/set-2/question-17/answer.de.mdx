@@ -18,6 +18,43 @@ Die Bahnen liegen nebeneinander und decken die <InlineMath math="12\text{ m}" />
 4\text{ Bahnen}&:\ 4+3\cdot3{,}5=14{,}5\text{ m}\ge12\text{ m}
 \end{aligned}" />
 
+Rolle das gewölbte Dach zu einem Rechteck ab, dann siehst du die Bahnen nebeneinander. **Jede neue Bahn bringt wegen der Überlappung von <InlineMath math="0{,}5\text{ m}" /> nur <InlineMath math="3{,}5\text{ m}" /> dazu**, also enden drei Bahnen bei <InlineMath math="11\text{ m}" /> und eine vierte ist nötig.
+
+<MathVisual
+  title={<>Vier Folienbahnen auf dem abgerollten Dach</>}
+  description={<>Das Dach ist zu einem Rechteck von <InlineMath math="12\text{ m}" /> Länge mit einer Bogenbreite von <InlineMath math="11\text{ m}" /> abgerollt. Vier Bahnen von <InlineMath math="4\text{ m}" /> Breite und <InlineMath math="12\text{ m}" /> Länge liegen nebeneinander ab <InlineMath math="0" />, <InlineMath math="3{,}5" />, <InlineMath math="7" /> und <InlineMath math="10{,}5" />, sodass benachbarte Bahnen sich um <InlineMath math="0{,}5\text{ m}" /> überlappen. Jede Bahn steht an beiden Bogenenden <InlineMath math="0{,}5\text{ m}" /> zum Festklemmen über.</>}
+  labels={{
+    roof: <InlineMath math="12\text{ m}" />,
+    first: <InlineMath math="1" />,
+    second: <InlineMath math="2" />,
+    third: <InlineMath math="3" />,
+    fourth: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 15.5 },
+      y: { min: -1.5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 12 }, { x: 0, y: 12 }] },
+      { id: "second", kind: "polygon", appearance: "secondary", vertices: [{ x: 3.5, y: 0 }, { x: 7.5, y: 0 }, { x: 7.5, y: 12 }, { x: 3.5, y: 12 }] },
+      { id: "third", kind: "polygon", appearance: "primary", vertices: [{ x: 7, y: 0 }, { x: 11, y: 0 }, { x: 11, y: 12 }, { x: 7, y: 12 }] },
+      { id: "fourth", kind: "polygon", appearance: "secondary", vertices: [{ x: 10.5, y: 0 }, { x: 14.5, y: 0 }, { x: 14.5, y: 12 }, { x: 10.5, y: 12 }] },
+      { id: "roof", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0.5 }, { x: 12, y: 0.5 }, { x: 12, y: 11.5 }, { x: 0, y: 11.5 }] },
+    ],
+    labels: [
+      { key: "roof", objectId: "roof", at: { x: 6, y: 0.5 }, placement: "below" },
+      { key: "first", objectId: "first", at: { x: 1.75, y: 6 }, placement: "center" },
+      { key: "second", objectId: "second", at: { x: 5.5, y: 6 }, placement: "center" },
+      { key: "third", objectId: "third", at: { x: 9, y: 6 }, placement: "center" },
+      { key: "fourth", objectId: "fourth", at: { x: 12.75, y: 6 }, placement: "center" },
+    ],
+  }}
+/>
+
 Drei Bahnen lassen noch eine Lücke, du brauchst also <InlineMath math="4" /> Bahnen. Für das Dach sind das <InlineMath math="4\cdot12=48\text{ m}" /> Rollenlänge.
 
 # Die beiden Stirnseiten

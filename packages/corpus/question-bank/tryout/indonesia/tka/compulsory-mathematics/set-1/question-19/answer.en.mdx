@@ -14,6 +14,45 @@ L_{\text{triangle}}&=\tfrac12\cdot6\sqrt{3}\cdot3=9\sqrt{3} \\
 L_{\text{segment}}&=12\pi-9\sqrt{3}\text{ dm}^2
 \end{aligned}" />
 
+Draw the vertical cross-section of the tank in decimetres. **The diesel fills the segment below the chord, and the space asked for is the rest of the circle above it**. The triangle from the centre to both ends of the chord gives a central angle of <InlineMath math="120^\circ" />.
+
+<MathVisual
+  title={<>Vertical cross-section of the horizontal tank</>}
+  description={<>A circle of radius <InlineMath math="6\text{ dm}" />. The diesel surface is a horizontal chord <InlineMath math="3\text{ dm}" /> below the centre, from <InlineMath math="(-3\sqrt3,\ -3)" /> to <InlineMath math="(3\sqrt3,\ -3)" />. The diesel fills the segment below the chord, and the empty space is the part of the circle above it. The two radii to the ends of the chord form a central angle of <InlineMath math="120^\circ" />, and the perpendicular from the centre to the chord has length <InlineMath math="3" />.</>}
+  labels={{
+    empty: <>empty space</>,
+    fuel: <>diesel</>,
+    angle: <InlineMath math="120^\circ" />,
+    radius: <InlineMath math="6" />,
+    gap: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "empty", kind: "region", appearance: "answer", inequalities: ["x^2 + y^2 <= 36", "y >= -3"] },
+      { id: "fuel", kind: "region", appearance: "secondary", inequalities: ["x^2 + y^2 <= 36", "y <= -3"] },
+      { id: "wall", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: -3 } },
+      { id: "other-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3 * Math.sqrt(3), y: -3 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -3 } },
+      { id: "angle", kind: "point", appearance: "construction", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "empty", objectId: "empty", at: { x: 0, y: 3 }, placement: "center" },
+      { key: "fuel", objectId: "fuel", at: { x: 0, y: -4.5 }, placement: "center" },
+      { key: "angle", objectId: "angle", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "radius", objectId: "radius", at: { x: 1.5 * Math.sqrt(3), y: -1.5 }, placement: "above-right" },
+      { key: "gap", objectId: "gap", at: { x: 0, y: -1.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 The fuel's volume is the segment area times the length of the tank.
 
 <BlockMath math="V_{\text{fuel}}=20\,(12\pi-9\sqrt{3})=240\pi-180\sqrt{3}\text{ litres}" />

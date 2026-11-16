@@ -13,6 +13,39 @@ L_{\text{water section}}&=\tfrac12\cdot25\cdot25=312.5\text{ cm}^2 \\
 V_{\text{left}}&=312.5\cdot30=9{,}375\text{ cm}^3=9.375\text{ litres}
 \end{aligned}" />
 
+Draw the side cross-section of the tank when its base is tilted <InlineMath math="45^\circ" />. **The water surface is horizontal and touches the lip of the wall**, so the water left forms an isosceles right triangle with legs of <InlineMath math="25" />.
+
+<MathVisual
+  title={<>Side cross-section of the tank tilted <InlineMath math="45^\circ" /></>}
+  description={<>The pivot edge is on the floor. The <InlineMath math="40\text{ cm}" /> base rises to the left at <InlineMath math="45^\circ" />, and the <InlineMath math="25\text{ cm}" /> wall above the pivot edge rises to the right, perpendicular to the base. The water surface is the horizontal line through the lip of the wall. The water left is a right triangle at the pivot edge with both legs <InlineMath math="25\text{ cm}" />, one along the wall and one along the base.</>}
+  labels={{
+    wall: <InlineMath math="25" />,
+    base: <InlineMath math="25" />,
+    tank: <><InlineMath math="40\times25" /> cross-section</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -36, max: 24 },
+      y: { min: -3, max: 50 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -34, y: 0 }, to: { x: 22, y: 0 } },
+      { id: "tank", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: -20 * Math.sqrt(2), y: 20 * Math.sqrt(2) }, { x: -7.5 * Math.sqrt(2), y: 32.5 * Math.sqrt(2) }, { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }] },
+      { id: "water", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }, { x: -12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }] },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) } },
+      { id: "base", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 6.25 * Math.sqrt(2), y: 6.25 * Math.sqrt(2) }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: -6.25 * Math.sqrt(2), y: 6.25 * Math.sqrt(2) }, placement: "left" },
+      { key: "tank", objectId: "tank", at: { x: -7.5 * Math.sqrt(2), y: 32.5 * Math.sqrt(2) }, placement: "above" },
+    ],
+  }}
+/>
+
 # The water that spills
 
 The <InlineMath math="9.375" /> litres left is less than the <InlineMath math="18" /> litres you started with, so water really does spill. **The spill is the starting water minus the water left**.

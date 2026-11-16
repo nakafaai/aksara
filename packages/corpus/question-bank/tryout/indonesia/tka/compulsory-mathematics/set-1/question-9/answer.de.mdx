@@ -10,6 +10,22 @@ Eine Potenz <InlineMath math="B^E" /> ist nur auf drei Arten gleich <InlineMath 
 | Exponent null | <InlineMath math="E=0" /> und <InlineMath math="B\ne0" /> | <InlineMath math="5^0=1" /> |
 | Basis minus eins | <InlineMath math="B=-1" /> und <InlineMath math="E" /> gerade | <InlineMath math="(-1)^2=1" /> |
 
+Der Baum unten führt die drei Fälle bis zu jedem Lösungskandidaten. **Jeder Zweig hat seine eigene Bedingung, die du prüfen musst**, und nur ein Kandidat fällt heraus.
+
+<Mermaid
+  title={<>Drei Fälle einer Potenz mit dem Wert eins</>}
+  description={<>Von <InlineMath math="B^E=1" /> gehen drei Zweige aus. Der Zweig <InlineMath math="B=1" /> liefert <InlineMath math="x=2" /> und <InlineMath math="x=5" />, beide gültig. Der Zweig <InlineMath math="E=0" /> mit <InlineMath math="B\ne0" /> liefert <InlineMath math="x=1" />, gültig wegen <InlineMath math="B=5" />. Der Zweig <InlineMath math="B=-1" /> mit geradem Exponenten liefert <InlineMath math="x=3" />, gültig, und <InlineMath math="x=4" />, verworfen, weil sein Exponent <InlineMath math="3" /> ist.</>}
+  chart={`flowchart TD
+  S["B^E = 1"] --> C1["B = 1"]
+  S --> C2["E = 0 und B ≠ 0"]
+  S --> C3["B = -1 und E gerade"]
+  C1 --> X2["x = 2: gültig"]
+  C1 --> X5["x = 5: gültig"]
+  C2 --> X1["x = 1, B = 5: gültig"]
+  C3 --> X3["x = 3, E = 2: gültig"]
+  C3 --> X4["x = 4, E = 3: verworfen"]`}
+/>
+
 Ist <InlineMath math="B" /> positiv und nicht <InlineMath math="1" />, muss der Exponent <InlineMath math="0" /> sein. Ist <InlineMath math="B" /> negativ, erlaubt die Regel der Aufgabe nur ganzzahlige Exponenten, und eine ganzzahlige Potenz einer negativen Zahl außer <InlineMath math="-1" /> ist nie <InlineMath math="1" />, außer der Exponent ist null. Also **decken die drei Fälle der Tabelle alles ab**.
 
 # Basis eins

@@ -27,6 +27,49 @@ L_{ABB'A'}&=32-(2+8+4+6) \\
 &=12\text{ square units}
 \end{aligned}" />
 
+Draw the four points with their bounding rectangle. **Quadrilateral <InlineMath math="ABB'A'" /> is the <InlineMath math="8\times4" /> rectangle with four corner triangles removed**. The segments from <InlineMath math="P" /> to each point and its image are equal and perpendicular, which gives the check.
+
+<MathVisual
+  title={<>Quadrilateral <InlineMath math="ABB'A'" /> inside its bounding rectangle</>}
+  description={<>Points <InlineMath math="A(4,2)" /> and <InlineMath math="B(6,4)" /> rotate <InlineMath math="90^\circ" /> about <InlineMath math="P(1,1)" /> to <InlineMath math="A'(0,4)" /> and <InlineMath math="B'(-2,6)" />. Quadrilateral <InlineMath math="ABB'A'" /> lies inside the rectangle from <InlineMath math="x=-2" /> to <InlineMath math="x=6" /> and from <InlineMath math="y=2" /> to <InlineMath math="y=6" />. Segments <InlineMath math="PA" /> and <InlineMath math="PA'" />, and <InlineMath math="PB" /> and <InlineMath math="PB'" />, form right angles at <InlineMath math="P" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 7.5 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "box", kind: "polygon", appearance: "reference", vertices: [{ x: -2, y: 2 }, { x: 6, y: 2 }, { x: 6, y: 6 }, { x: -2, y: 6 }] },
+      { id: "quad", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 2 }, { x: 6, y: 4 }, { x: -2, y: 6 }, { x: 0, y: 4 }] },
+      { id: "arm-a", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 4, y: 2 } },
+      { id: "arm-a-image", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 0, y: 4 } },
+      { id: "arm-b", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 6, y: 4 } },
+      { id: "arm-b-image", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: -2, y: 6 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 6, y: 4 } },
+      { id: "a-image", kind: "point", appearance: "secondary", at: { x: 0, y: 4 } },
+      { id: "b-image", kind: "point", appearance: "secondary", at: { x: -2, y: 6 } },
+      { id: "p", kind: "point", appearance: "construction", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 4, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a-image", objectId: "a-image", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "b-image", objectId: "b-image", at: { x: -2, y: 6 }, placement: "above-left" },
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 There's a quick way to check. Triangles <InlineMath math="PAA'" /> and <InlineMath math="PBB'" /> are right isosceles triangles at <InlineMath math="P" />, because a <InlineMath math="90^\circ" /> rotation keeps every distance to the centre. Triangle <InlineMath math="PAB" /> and its image <InlineMath math="PA'B'" /> are congruent, so their contributions cancel. What's left is the difference of the two right triangles.
 
 <BlockMath math="\begin{aligned}

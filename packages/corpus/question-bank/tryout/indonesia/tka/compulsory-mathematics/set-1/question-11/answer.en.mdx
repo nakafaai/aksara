@@ -25,6 +25,51 @@ The runner covers the whole first straight, one semicircular bend of radius <Inl
 \text{run}&=85+120.89+49=254.89\text{ m}
 \end{aligned}" />
 
+Draw the inner edge of lane 3 with triangle <InlineMath math="SPT" /> inside it. **The runner's path is the first straight, one semicircle, then <InlineMath math="49\text{ m}" /> of the second straight**. The point <InlineMath math="36\text{ m}" /> the other way falls on the bend, not on a straight, so it is rejected.
+
+<MathVisual
+  title={<>Runner's path from <InlineMath math="S" /> to <InlineMath math="T" /> in lane 3</>}
+  description={<>The inner edge of lane 3 has straights of <InlineMath math="85\text{ m}" /> and bends of radius <InlineMath math="38.5\text{ m}" />, so the two straights are <InlineMath math="77\text{ m}" /> apart. The runner starts at <InlineMath math="S" /> at the end of the lower straight, runs along it, goes round the right bend, and stops at <InlineMath math="T" /> on the upper straight, <InlineMath math="49\text{ m}" /> past the end of the bend. Triangle <InlineMath math="SPT" /> has a right angle at <InlineMath math="P" /> with <InlineMath math="PT=77" /> and <InlineMath math="ST=85" />, so <InlineMath math="SP=36" />. The other point at distance <InlineMath math="85" /> from <InlineMath math="S" /> on the line of the upper straight lies outside the straight.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    t: <InlineMath math="T" />,
+    p: <InlineMath math="P" />,
+    chord: <InlineMath math="85" />,
+    across: <InlineMath math="77" />,
+    rejected: <>rejected</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -50, max: 130 },
+      y: { min: -46, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-straight", kind: "segment", appearance: "answer", from: { x: 0, y: -38.5 }, to: { x: 85, y: -38.5 } },
+      { id: "bend", kind: "arc", appearance: "answer", center: { x: 85, y: 0 }, radius: 38.5, startDegrees: 270, sweepDegrees: 180 },
+      { id: "second-run", kind: "segment", appearance: "answer", from: { x: 85, y: 38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "second-rest", kind: "segment", appearance: "reference", from: { x: 36, y: 38.5 }, to: { x: 0, y: 38.5 } },
+      { id: "other-bend", kind: "arc", appearance: "reference", center: { x: 0, y: 0 }, radius: 38.5, startDegrees: 90, sweepDegrees: 180 },
+      { id: "chord", kind: "segment", appearance: "construction", from: { x: 0, y: -38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 36, y: -38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "s", kind: "point", appearance: "primary", at: { x: 0, y: -38.5 } },
+      { id: "t", kind: "point", appearance: "answer", at: { x: 36, y: 38.5 } },
+      { id: "p", kind: "point", appearance: "construction", at: { x: 36, y: -38.5 } },
+      { id: "rejected", kind: "point", appearance: "warning", at: { x: -36, y: 38.5 } },
+    ],
+    labels: [
+      { key: "s", objectId: "s", at: { x: 0, y: -38.5 }, placement: "below-left" },
+      { key: "t", objectId: "t", at: { x: 36, y: 38.5 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 36, y: -38.5 }, placement: "below" },
+      { key: "chord", objectId: "chord", at: { x: 18, y: 0 }, placement: "left" },
+      { key: "across", objectId: "across", at: { x: 36, y: 19.25 }, placement: "right" },
+      { key: "rejected", objectId: "rejected", at: { x: -36, y: 38.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check where <InlineMath math="T" /> is: from <InlineMath math="S" />, <InlineMath math="T" /> is <InlineMath math="36\text{ m}" /> along the track direction and <InlineMath math="77\text{ m}" /> across the field, and <InlineMath math="36^2+77^2=1{,}296+5{,}929=7{,}225=85^2" />.
 
 # Why the other options are wrong

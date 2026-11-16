@@ -18,6 +18,39 @@ Data di antara dua kedudukan yang diketahui boleh mengambil apa-apa nilai di ant
 \text{B terbesar}&=50+6\cdot62+7\cdot68+7\cdot76+6\cdot92=1{,}982,\quad \bar b=\tfrac{1{,}982}{27}\approx73.41
 \end{aligned}" />
 
+Lukis julat min yang mungkin bagi setiap kelas. **Kedua-dua julat bertindih, jadi jadual tidak memastikan kelas mana yang minnya lebih besar**. Sebaliknya, seluruh julat kelas A berada di sebelah kanan <InlineMath math="63" />.
+
+<MathVisual
+  title={<>Julat min yang mungkin bagi kedua-dua kelas</>}
+  description={<>Ruas atas ialah julat min kelas A, dari <InlineMath math="\frac{1{,}960}{31}\approx63.23" /> hingga <InlineMath math="\frac{2{,}334}{31}\approx75.29" />. Ruas bawah ialah julat min kelas B, dari <InlineMath math="\frac{1{,}758}{27}\approx65.11" /> hingga <InlineMath math="\frac{1{,}982}{27}\approx73.41" />. Julat B berada di dalam julat A, dan garis tegak pada <InlineMath math="63" /> berada di sebelah kiri hujung bawah julat A.</>}
+  labels={{
+    a: <>min kelas A</>,
+    b: <>min kelas B</>,
+    line: <InlineMath math="63" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 60, max: 78 },
+      y: { min: 0.2, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 1960 / 31, y: 2 }, to: { x: 2334 / 31, y: 2 } },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 1758 / 27, y: 1 }, to: { x: 1982 / 27, y: 1 } },
+      { id: "a-low", kind: "point", appearance: "answer", at: { x: 1960 / 31, y: 2 } },
+      { id: "b-high", kind: "point", appearance: "warning", at: { x: 1982 / 27, y: 1 } },
+      { id: "line", kind: "segment", appearance: "construction", from: { x: 63, y: 0.5 }, to: { x: 63, y: 2.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2147 / 31, y: 2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1870 / 27, y: 1 }, placement: "below" },
+      { key: "line", objectId: "line", at: { x: 63, y: 0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Dalam data A terkecil, contohnya, <InlineMath math="a_1" /> hingga <InlineMath math="a_7" /> bernilai <InlineMath math="40" /> dan <InlineMath math="a_8" /> hingga <InlineMath math="a_{15}" /> bernilai <InlineMath math="56" />. Data ini tetap memberi <InlineMath math="Q_1=a_8=56" />, median <InlineMath math="a_{16}=70" /> dan seterusnya, jadi ia sepadan dengan jadual.
 
 # Menilai setiap pernyataan

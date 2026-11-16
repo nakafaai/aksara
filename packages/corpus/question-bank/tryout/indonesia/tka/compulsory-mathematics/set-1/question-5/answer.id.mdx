@@ -8,6 +8,42 @@ Kemiringannya <InlineMath math="-3" />, lalu <InlineMath math="1" />, lalu <Inli
 
 Setiap pernyataan diselesaikan per bagian, lalu **hasil tiap bagian harus diiriskan dengan syarat bagiannya sendiri**.
 
+Gambar <InlineMath math="g" /> sekali, lalu setiap pernyataan tinggal dibaca dari grafik. **Penyelesaian <InlineMath math="g(x)\le k" /> adalah bagian sumbu <InlineMath math="x" /> tempat grafik ada di bawah garis setinggi <InlineMath math="k" />**. Titik terendah <InlineMath math="(-1,\ 4)" /> memberi syarat <InlineMath math="k\ge4" />, dan kemiringan yang tidak sama di kiri dan kanan membuat himpunan penyelesaian tidak simetris.
+
+<MathVisual
+  title={<>Grafik ruas kiri dan dua batas <InlineMath math="k" /></>}
+  description={<>Grafik <InlineMath math="g(x)=|x-3|+2\,|x+1|" /> terdiri atas tiga ruas garis: kemiringan <InlineMath math="-3" /> untuk <InlineMath math="x\le-1" />, kemiringan <InlineMath math="1" /> untuk <InlineMath math="-1\le x\le3" />, dan kemiringan <InlineMath math="3" /> untuk <InlineMath math="x\ge3" />. Titik terendahnya <InlineMath math="(-1,\ 4)" />. Ruas mendatar di <InlineMath math="k=10" /> memotong grafik di <InlineMath math="x=-3" /> dan <InlineMath math="x=\frac{11}{3}" />, sedangkan ruas di <InlineMath math="k=6" /> memotongnya di <InlineMath math="x=-\frac{5}{3}" /> dan <InlineMath math="x=1" />.</>}
+  labels={{
+    g: <InlineMath math="g(x)" />,
+    ten: <InlineMath math="k=10" />,
+    six: <InlineMath math="k=6" />,
+    low: <InlineMath math="(-1,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 5 },
+      y: { min: -1, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "1 - 3x", domain: { min: -4, max: -1 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "x + 5", domain: { min: -1, max: 3 } },
+      { id: "g", kind: "function", appearance: "primary", formula: "3x - 1", domain: { min: 3, max: 4.5 } },
+      { id: "ten", kind: "segment", appearance: "answer", from: { x: -3, y: 10 }, to: { x: 11 / 3, y: 10 } },
+      { id: "six", kind: "segment", appearance: "secondary", from: { x: -5 / 3, y: 6 }, to: { x: 1, y: 6 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: -1, y: 4 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 4, y: 11 }, placement: "right" },
+      { key: "ten", objectId: "ten", at: { x: 1 / 3, y: 10 }, placement: "above" },
+      { key: "six", objectId: "six", at: { x: -1 / 3, y: 6 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: -1, y: 4 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Pernyataan pertama
 
 Untuk <InlineMath math="k=10" />:

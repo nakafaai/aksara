@@ -10,6 +10,22 @@ Kuasa <InlineMath math="B^E" /> bernilai <InlineMath math="1" /> hanya melalui t
 | indeks sifar | <InlineMath math="E=0" /> dan <InlineMath math="B\ne0" /> | <InlineMath math="5^0=1" /> |
 | asas negatif satu | <InlineMath math="B=-1" /> dan <InlineMath math="E" /> genap | <InlineMath math="(-1)^2=1" /> |
 
+Pohon di bawah memetakan ketiga-tiga kes hingga ke setiap calon penyelesaian. **Setiap cabang ada syarat sendiri yang perlu disemak**, dan hanya satu calon yang tersingkir.
+
+<Mermaid
+  title={<>Tiga kes kuasa yang bernilai satu</>}
+  description={<>Daripada <InlineMath math="B^E=1" /> keluar tiga cabang. Cabang <InlineMath math="B=1" /> memberikan <InlineMath math="x=2" /> dan <InlineMath math="x=5" />, kedua-duanya diterima. Cabang <InlineMath math="E=0" /> dengan <InlineMath math="B\ne0" /> memberikan <InlineMath math="x=1" />, diterima kerana <InlineMath math="B=5" />. Cabang <InlineMath math="B=-1" /> dengan kuasa genap memberikan <InlineMath math="x=3" /> yang diterima dan <InlineMath math="x=4" /> yang ditolak kerana kuasanya <InlineMath math="3" />.</>}
+  chart={`flowchart TD
+  S["B^E = 1"] --> C1["B = 1"]
+  S --> C2["E = 0 dan B ≠ 0"]
+  S --> C3["B = -1 dan E genap"]
+  C1 --> X2["x = 2: diterima"]
+  C1 --> X5["x = 5: diterima"]
+  C2 --> X1["x = 1, B = 5: diterima"]
+  C3 --> X3["x = 3, E = 2: diterima"]
+  C3 --> X4["x = 4, E = 3: ditolak"]`}
+/>
+
 Jika <InlineMath math="B" /> positif dan bukan <InlineMath math="1" />, indeksnya mesti <InlineMath math="0" />. Jika <InlineMath math="B" /> negatif, peraturan soalan hanya membenarkan indeks integer, dan kuasa integer bagi nombor negatif selain <InlineMath math="-1" /> tidak pernah sama dengan <InlineMath math="1" /> kecuali indeksnya sifar. Jadi **tiga kes dalam jadual sudah meliputi semua kemungkinan**.
 
 # Asas satu

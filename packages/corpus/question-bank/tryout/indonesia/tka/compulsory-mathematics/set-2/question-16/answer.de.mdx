@@ -10,6 +10,37 @@ V_{\text{Dach}}&=\tfrac12\cdot\pi r^2\cdot12=\tfrac12\cdot\tfrac{22}{7}\cdot\tfr
 V&=126+231=357\text{ m}^3
 \end{aligned}" />
 
+Der Querschnitt am Ende zeigt beide Teile des Luftraums. **Das Rechteck unten wird zum Quader, der Halbkreis oben zum halben Zylinder**, beide <InlineMath math="12\text{ m}" /> lang.
+
+<MathVisual
+  title={<>Querschnitt des Luftraums im Gewächshaus</>}
+  description={<>Der Querschnitt am Ende besteht aus einem Rechteck <InlineMath math="7\times1{,}5" /> unten und einem Halbkreis mit Radius <InlineMath math="3{,}5" /> darüber. Auf <InlineMath math="12\text{ m}" /> Länge wird das Rechteck zu einem Quader mit <InlineMath math="126\text{ m}^3" /> und der Halbkreis zu einem halben Zylinder mit <InlineMath math="231\text{ m}^3" />.</>}
+  labels={{
+    box: <InlineMath math="126\text{ m}^3" />,
+    roof: <InlineMath math="231\text{ m}^3" />,
+    radius: <InlineMath math="r=3{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "box", kind: "polygon", appearance: "secondary", vertices: [{ x: -3.5, y: 0 }, { x: 3.5, y: 0 }, { x: 3.5, y: 1.5 }, { x: -3.5, y: 1.5 }] },
+      { id: "roof", kind: "region", appearance: "primary", inequalities: ["x^2 + (y - 1.5)^2 <= 12.25", "y >= 1.5"] },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 1.5 }, to: { x: 3.5, y: 1.5 } },
+    ],
+    labels: [
+      { key: "box", objectId: "box", at: { x: -1.75, y: 0.75 }, placement: "center" },
+      { key: "roof", objectId: "roof", at: { x: 0, y: 3.2 }, placement: "center" },
+      { key: "radius", objectId: "radius", at: { x: 1.75, y: 1.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Die Luft eines Ventilators
 
 Der Luftstrom ist pro Stunde angegeben, die Bedingung aber pro <InlineMath math="2" /> Minuten. Bring zuerst die Einheiten zusammen. Eine Stunde hat <InlineMath math="60" /> Minuten, also sind **<InlineMath math="2" /> Minuten genau <InlineMath math="\frac{1}{30}" /> Stunde**.

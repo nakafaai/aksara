@@ -15,6 +15,17 @@ Dafür wählst du zuerst <InlineMath math="4" /> der <InlineMath math="5" /> Mus
 P(\text{kein Paar})&=\frac{80}{210}=\frac{8}{21}
 \end{aligned}" />
 
+Das Diagramm unten zeigt den Ablauf. **Alle Möglichkeiten zerfallen in zwei Gruppen ohne Überschneidung**, also ist die gesuchte Gruppe alle Möglichkeiten minus die Gruppe ohne Paar.
+
+<Mermaid
+  title={<>Zählen über das Gegenereignis</>}
+  description={<>Von den <InlineMath math="210" /> Möglichkeiten, <InlineMath math="4" /> Socken zu wählen, enthalten <InlineMath math="80" /> kein Paar, nämlich <InlineMath math="5" /> Musterwahlen mal <InlineMath math="16" /> Seitenwahlen. Die übrigen <InlineMath math="130" /> Möglichkeiten enthalten mindestens ein Paar, also ist die Wahrscheinlichkeit <InlineMath math="\frac{130}{210}=\frac{13}{21}" />.</>}
+  chart={`flowchart TD
+  A["Alle Möglichkeiten: C(10, 4) = 210"] --> B["Kein Paar: C(5, 4) · 2⁴ = 80"]
+  A --> C["Mindestens ein Paar: 210 − 80 = 130"]
+  C --> D["Wahrscheinlichkeit: 130/210 = 13/21"]`}
+/>
+
 # Die gesuchte Wahrscheinlichkeit
 
 **Ziehe von eins ab**:

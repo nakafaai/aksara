@@ -19,6 +19,48 @@ Karena datanya terurut, kalau <InlineMath math="a_k=v" />, **semua data dari pos
 
 <BlockMath math="50,\ \underbrace{55,\dots,55}_{5},\ 62,\ \underbrace{65,\dots,65}_{6},\ 68,\ 68,\ \underbrace{70,\dots,70}_{5},\ 76,\ \underbrace{80,\dots,80}_{5},\ 92" />
 
+Gambar contoh data itu sebagai tangga nilai terurut. **Posisi ke-<InlineMath math="7" />, ke-<InlineMath math="14" />, dan ke-<InlineMath math="21" /> cocok dengan tabel, tetapi anak tangga <InlineMath math="68" /> juga menutupi posisi ke-<InlineMath math="15" />**. Karena itu satu dari tiga belas data teratas tidak lebih dari <InlineMath math="68" />.
+
+<MathVisual
+  title={<>Satu contoh data kelas B yang cocok dengan tabel</>}
+  description={<>Sumbu mendatar adalah posisi data terurut dari <InlineMath math="1" /> sampai <InlineMath math="27" />, sumbu tegak adalah nilai. Anak tangganya bernilai <InlineMath math="50" /> di posisi <InlineMath math="1" />, <InlineMath math="55" /> di posisi <InlineMath math="2" /> sampai <InlineMath math="6" />, <InlineMath math="62" /> di posisi <InlineMath math="7" />, <InlineMath math="65" /> di posisi <InlineMath math="8" /> sampai <InlineMath math="13" />, <InlineMath math="68" /> di posisi <InlineMath math="14" /> dan <InlineMath math="15" />, <InlineMath math="70" /> di posisi <InlineMath math="16" /> sampai <InlineMath math="20" />, <InlineMath math="76" /> di posisi <InlineMath math="21" />, <InlineMath math="80" /> di posisi <InlineMath math="22" /> sampai <InlineMath math="26" />, dan <InlineMath math="92" /> di posisi <InlineMath math="27" />.</>}
+  labels={{
+    q1: <InlineMath math="b_7=62" />,
+    median: <InlineMath math="b_{14}=68" />,
+    q3: <InlineMath math="b_{21}=76" />,
+    tie: <InlineMath math="b_{15}=68" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 28 },
+      y: { min: 45, max: 96 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "run-50", kind: "segment", appearance: "primary", from: { x: 0.5, y: 50 }, to: { x: 1.5, y: 50 } },
+      { id: "run-55", kind: "segment", appearance: "primary", from: { x: 1.5, y: 55 }, to: { x: 6.5, y: 55 } },
+      { id: "run-62", kind: "segment", appearance: "primary", from: { x: 6.5, y: 62 }, to: { x: 7.5, y: 62 } },
+      { id: "run-65", kind: "segment", appearance: "primary", from: { x: 7.5, y: 65 }, to: { x: 13.5, y: 65 } },
+      { id: "tie", kind: "segment", appearance: "warning", from: { x: 13.5, y: 68 }, to: { x: 15.5, y: 68 } },
+      { id: "run-70", kind: "segment", appearance: "primary", from: { x: 15.5, y: 70 }, to: { x: 20.5, y: 70 } },
+      { id: "run-76", kind: "segment", appearance: "primary", from: { x: 20.5, y: 76 }, to: { x: 21.5, y: 76 } },
+      { id: "run-80", kind: "segment", appearance: "primary", from: { x: 21.5, y: 80 }, to: { x: 26.5, y: 80 } },
+      { id: "run-92", kind: "segment", appearance: "primary", from: { x: 26.5, y: 92 }, to: { x: 27.5, y: 92 } },
+      { id: "q1", kind: "point", appearance: "secondary", at: { x: 7, y: 62 } },
+      { id: "median", kind: "point", appearance: "secondary", at: { x: 14, y: 68 } },
+      { id: "q3", kind: "point", appearance: "secondary", at: { x: 21, y: 76 } },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 7, y: 62 }, placement: "above-left" },
+      { key: "median", objectId: "median", at: { x: 14, y: 68 }, placement: "above-left" },
+      { key: "q3", objectId: "q3", at: { x: 21, y: 76 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 15.5, y: 68 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Di sini <InlineMath math="b_7=62" />, <InlineMath math="b_{14}=68" />, <InlineMath math="b_{21}=76" />, sesuai tabel. Tetapi <InlineMath math="b_{15}=68" />, sehingga yang lebih dari <InlineMath math="68" /> hanya <InlineMath math="5+1+5+1=12" /> siswa.
 
 **Benar**. Pernyataan ketiga: <InlineMath math="b_{21}=76" />, jadi <InlineMath math="b_{21}" /> sampai <InlineMath math="b_{27}" />, yaitu <InlineMath math="7" /> siswa, mendapat paling sedikit <InlineMath math="76" />.

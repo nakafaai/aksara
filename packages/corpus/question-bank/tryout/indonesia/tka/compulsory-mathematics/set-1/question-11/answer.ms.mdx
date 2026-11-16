@@ -25,6 +25,51 @@ Pelari melalui seluruh bahagian lurus pertama, satu selekoh separuh bulatan berj
 \text{larian}&=85+120.89+49=254.89\text{ m}
 \end{aligned}" />
 
+Lukis tepi dalam lorong 3 dengan segi tiga <InlineMath math="SPT" /> di dalamnya. **Laluan pelari ialah bahagian lurus pertama, satu separuh bulatan, kemudian <InlineMath math="49\text{ m}" /> pada bahagian lurus kedua**. Titik yang <InlineMath math="36\text{ m}" /> ke arah bertentangan jatuh di selekoh, bukan di bahagian lurus, jadi ia ditolak.
+
+<MathVisual
+  title={<>Laluan pelari dari <InlineMath math="S" /> ke <InlineMath math="T" /> di lorong 3</>}
+  description={<>Tepi dalam lorong 3 mempunyai bahagian lurus sepanjang <InlineMath math="85\text{ m}" /> dan selekoh berjejari <InlineMath math="38.5\text{ m}" />, jadi kedua-dua bahagian lurus berjarak <InlineMath math="77\text{ m}" />. Pelari bertolak dari <InlineMath math="S" /> di hujung bahagian lurus bawah, menyusuri bahagian itu, mengelilingi selekoh kanan, kemudian berhenti di <InlineMath math="T" /> pada bahagian lurus atas, <InlineMath math="49\text{ m}" /> dari hujung selekoh. Segi tiga <InlineMath math="SPT" /> bersudut tegak di <InlineMath math="P" /> dengan <InlineMath math="PT=77" /> dan <InlineMath math="ST=85" />, maka <InlineMath math="SP=36" />. Titik lain yang berjarak <InlineMath math="85" /> dari <InlineMath math="S" /> pada garis bahagian lurus atas terletak di luar bahagian lurus.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    t: <InlineMath math="T" />,
+    p: <InlineMath math="P" />,
+    chord: <InlineMath math="85" />,
+    across: <InlineMath math="77" />,
+    rejected: <>ditolak</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -50, max: 130 },
+      y: { min: -46, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-straight", kind: "segment", appearance: "answer", from: { x: 0, y: -38.5 }, to: { x: 85, y: -38.5 } },
+      { id: "bend", kind: "arc", appearance: "answer", center: { x: 85, y: 0 }, radius: 38.5, startDegrees: 270, sweepDegrees: 180 },
+      { id: "second-run", kind: "segment", appearance: "answer", from: { x: 85, y: 38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "second-rest", kind: "segment", appearance: "reference", from: { x: 36, y: 38.5 }, to: { x: 0, y: 38.5 } },
+      { id: "other-bend", kind: "arc", appearance: "reference", center: { x: 0, y: 0 }, radius: 38.5, startDegrees: 90, sweepDegrees: 180 },
+      { id: "chord", kind: "segment", appearance: "construction", from: { x: 0, y: -38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 36, y: -38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "s", kind: "point", appearance: "primary", at: { x: 0, y: -38.5 } },
+      { id: "t", kind: "point", appearance: "answer", at: { x: 36, y: 38.5 } },
+      { id: "p", kind: "point", appearance: "construction", at: { x: 36, y: -38.5 } },
+      { id: "rejected", kind: "point", appearance: "warning", at: { x: -36, y: 38.5 } },
+    ],
+    labels: [
+      { key: "s", objectId: "s", at: { x: 0, y: -38.5 }, placement: "below-left" },
+      { key: "t", objectId: "t", at: { x: 36, y: 38.5 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 36, y: -38.5 }, placement: "below" },
+      { key: "chord", objectId: "chord", at: { x: 18, y: 0 }, placement: "left" },
+      { key: "across", objectId: "across", at: { x: 36, y: 19.25 }, placement: "right" },
+      { key: "rejected", objectId: "rejected", at: { x: -36, y: 38.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Semak kedudukan <InlineMath math="T" />: dari <InlineMath math="S" />, titik <InlineMath math="T" /> beranjak <InlineMath math="36\text{ m}" /> searah trek dan <InlineMath math="77\text{ m}" /> merentasi padang, dan <InlineMath math="36^2+77^2=1{,}296+5{,}929=7{,}225=85^2" />.
 
 # Mengapa pilihan lain salah

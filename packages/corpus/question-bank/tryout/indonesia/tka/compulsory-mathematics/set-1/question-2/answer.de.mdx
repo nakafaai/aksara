@@ -22,6 +22,38 @@ Der Rest der Fahrt, von km <InlineMath math="8" /> bis km <InlineMath math="22" 
 &=63{.}600
 \end{aligned}" />
 
+Der Graph des Preises zur Stoßzeit zeigt diese Aufteilung. **Die Höhe des Graphen bei <InlineMath math="d=8" /> ist der gemeinsame Teil**, und der Anstieg von <InlineMath math="d=8" /> bis <InlineMath math="d=22" /> ist der Restteil, den Eka allein zahlt.
+
+<MathVisual
+  title={<>Preis zur Stoßzeit, geteilt bei Kilometer <InlineMath math="8" /></>}
+  description={<>Die waagerechte Achse ist die Strecke <InlineMath math="d" /> in km, die senkrechte Achse der Preis zur Stoßzeit in zehntausend Rupiah. Der Graph bleibt bis <InlineMath math="d=2" /> bei <InlineMath math="1" />, steigt bis <InlineMath math="d=12" /> um <InlineMath math="0{,}54" /> pro km und danach um <InlineMath math="0{,}42" /> pro km. Bei <InlineMath math="d=8" /> ist er <InlineMath math="4{,}24" /> hoch, das ist der gemeinsame Teil von <InlineMath math="\text{Rp}42{.}400" />. Bei <InlineMath math="d=22" /> ist er <InlineMath math="10{,}6" /> hoch. Die senkrechte Strecke bei <InlineMath math="d=22" /> von <InlineMath math="4{,}24" /> bis <InlineMath math="10{,}6" /> ist der Restteil von <InlineMath math="\text{Rp}63{.}600" />.</>}
+  labels={{
+    shared: <>halbiert: <InlineMath math="\text{Rp}42{.}400" /></>,
+    eka: <>Eka allein: <InlineMath math="\text{Rp}63{.}600" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 24 },
+      y: { min: -0.5, max: 11.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "door", kind: "function", appearance: "primary", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "1 + 0.54(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "far", kind: "function", appearance: "primary", formula: "6.4 + 0.42(x - 12)", domain: { min: 12, max: 22 } },
+      { id: "shared", kind: "segment", appearance: "secondary", from: { x: 8, y: 0 }, to: { x: 8, y: 4.24 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 8, y: 4.24 }, to: { x: 22, y: 4.24 } },
+      { id: "eka", kind: "segment", appearance: "answer", from: { x: 22, y: 4.24 }, to: { x: 22, y: 10.6 } },
+    ],
+    labels: [
+      { key: "shared", objectId: "shared", at: { x: 8, y: 2.12 }, placement: "left" },
+      { key: "eka", objectId: "eka", at: { x: 22, y: 7.42 }, placement: "left" },
+    ],
+  }}
+/>
+
 Eka zahlt die Hälfte des gemeinsamen Teils und den ganzen Rest:
 
 <BlockMath math="21{.}200+63{.}600=84{.}800" />

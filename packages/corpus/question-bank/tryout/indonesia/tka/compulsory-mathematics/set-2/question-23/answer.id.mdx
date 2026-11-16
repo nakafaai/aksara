@@ -18,6 +18,39 @@ Data di antara dua posisi yang diketahui boleh bernilai berapa saja di antara ke
 \text{B terbesar}&=50+6\cdot62+7\cdot68+7\cdot76+6\cdot92=1{.}982,\quad \bar b=\tfrac{1{.}982}{27}\approx73{,}41
 \end{aligned}" />
 
+Gambar rentang rata-rata yang mungkin untuk setiap kelas. **Kedua rentang bertumpuk, jadi tabel tidak memastikan kelas mana yang rata-ratanya lebih besar**. Sebaliknya, seluruh rentang kelas A ada di kanan <InlineMath math="63" />.
+
+<MathVisual
+  title={<>Rentang rata-rata yang mungkin untuk kedua kelas</>}
+  description={<>Ruas atas adalah rentang rata-rata kelas A, dari <InlineMath math="\frac{1{.}960}{31}\approx63{,}23" /> sampai <InlineMath math="\frac{2{.}334}{31}\approx75{,}29" />. Ruas bawah adalah rentang rata-rata kelas B, dari <InlineMath math="\frac{1{.}758}{27}\approx65{,}11" /> sampai <InlineMath math="\frac{1{.}982}{27}\approx73{,}41" />. Rentang B berada di dalam rentang A, dan garis tegak di <InlineMath math="63" /> ada di kiri ujung bawah rentang A.</>}
+  labels={{
+    a: <>rata-rata kelas A</>,
+    b: <>rata-rata kelas B</>,
+    line: <InlineMath math="63" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 60, max: 78 },
+      y: { min: 0.2, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 1960 / 31, y: 2 }, to: { x: 2334 / 31, y: 2 } },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 1758 / 27, y: 1 }, to: { x: 1982 / 27, y: 1 } },
+      { id: "a-low", kind: "point", appearance: "answer", at: { x: 1960 / 31, y: 2 } },
+      { id: "b-high", kind: "point", appearance: "warning", at: { x: 1982 / 27, y: 1 } },
+      { id: "line", kind: "segment", appearance: "construction", from: { x: 63, y: 0.5 }, to: { x: 63, y: 2.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2147 / 31, y: 2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1870 / 27, y: 1 }, placement: "below" },
+      { key: "line", objectId: "line", at: { x: 63, y: 0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pada data A terkecil, misalnya, <InlineMath math="a_1" /> sampai <InlineMath math="a_7" /> bernilai <InlineMath math="40" /> dan <InlineMath math="a_8" /> sampai <InlineMath math="a_{15}" /> bernilai <InlineMath math="56" />. Data ini tetap memberi <InlineMath math="Q_1=a_8=56" />, median <InlineMath math="a_{16}=70" />, dan seterusnya, jadi cocok dengan tabel.
 
 # Menilai setiap pernyataan

@@ -31,6 +31,45 @@ Pada <InlineMath math="u=8" />, kedua-duanya <InlineMath math="60" /> ribu. Jadi
 u&<18
 \end{aligned}" />
 
+Lukis kedua-dua fungsi kos. **Pakej Kuota lebih murah tepat di bahagian grafnya berada di bawah graf Pakej Hemat**, iaitu di antara dua titik persilangan <InlineMath math="u=8" /> dan <InlineMath math="u=18" />. Titik persilangan itu sendiri tidak dikira kerana kosnya sama.
+
+<MathVisual
+  title={<>Kos Pakej Hemat dan Pakej Kuota</>}
+  description={<>Paksi mendatar ialah berat <InlineMath math="u" /> dalam kg, dan paksi tegak ialah kos dalam ribu rupiah. Pakej Hemat mendatar pada <InlineMath math="30" /> hingga <InlineMath math="u=3" />, kemudian naik <InlineMath math="6" /> sekilogram. Pakej Kuota mendatar pada <InlineMath math="60" /> hingga <InlineMath math="u=12" />, kemudian naik <InlineMath math="10" /> sekilogram. Kedua-dua graf bersilang pada <InlineMath math="(8,\ 60)" /> dan <InlineMath math="(18,\ 120)" />, dan di antaranya graf Pakej Kuota berada di bawah. Ruas pada paksi mendatar menandakan berat bulat <InlineMath math="9\le u\le17" />.</>}
+  labels={{
+    saver: <>Hemat</>,
+    quota: <>Kuota</>,
+    low: <InlineMath math="(8,\ 60)" />,
+    high: <InlineMath math="(18,\ 120)" />,
+    cheaper: <InlineMath math="9\le u\le17" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 41 },
+      y: { min: -10, max: 260 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "saver-flat", kind: "function", appearance: "secondary", formula: "30", domain: { min: 0, max: 3 } },
+      { id: "saver", kind: "function", appearance: "secondary", formula: "6x + 12", domain: { min: 3, max: 40 } },
+      { id: "quota-flat", kind: "function", appearance: "primary", formula: "60", domain: { min: 0, max: 12 } },
+      { id: "quota", kind: "function", appearance: "primary", formula: "10x - 60", domain: { min: 12, max: 31 } },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 8, y: 60 } },
+      { id: "high", kind: "point", appearance: "warning", at: { x: 18, y: 120 } },
+      { id: "cheaper", kind: "segment", appearance: "answer", from: { x: 9, y: 0 }, to: { x: 17, y: 0 } },
+    ],
+    labels: [
+      { key: "saver", objectId: "saver", at: { x: 38, y: 240 }, placement: "below-right" },
+      { key: "quota", objectId: "quota", at: { x: 30, y: 240 }, placement: "left" },
+      { key: "low", objectId: "low", at: { x: 8, y: 60 }, placement: "above-left" },
+      { key: "high", objectId: "high", at: { x: 18, y: 120 }, placement: "above-left" },
+      { key: "cheaper", objectId: "cheaper", at: { x: 13, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pada <InlineMath math="u=18" />, kedua-duanya <InlineMath math="120" /> ribu. Jadi Kuota lebih murah bagi <InlineMath math="u=13,14,\ldots,17" />. Selepas <InlineMath math="18" />, Hemat kembali lebih murah kerana kadar bagi kg tambahannya lebih rendah.
 
 | Berat | Pakej yang lebih murah |

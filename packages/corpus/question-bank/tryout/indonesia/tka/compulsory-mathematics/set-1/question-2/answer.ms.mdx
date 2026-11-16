@@ -22,6 +22,38 @@ Baki perjalanan, dari km ke-<InlineMath math="8" /> hingga km ke-<InlineMath mat
 &=63{,}600
 \end{aligned}" />
 
+Graf tambang waktu puncak menunjukkan pembahagian ini. **Tinggi graf pada <InlineMath math="d=8" /> ialah bahagian bersama**, manakala kenaikan graf dari <InlineMath math="d=8" /> ke <InlineMath math="d=22" /> ialah baki yang ditanggung Eka seorang.
+
+<MathVisual
+  title={<>Tambang waktu puncak dipecahkan pada km ke-<InlineMath math="8" /></>}
+  description={<>Paksi mendatar ialah jarak <InlineMath math="d" /> dalam km, dan paksi tegak ialah tambang waktu puncak dalam puluh ribu rupiah. Graf mendatar pada <InlineMath math="1" /> hingga <InlineMath math="d=2" />, naik <InlineMath math="0.54" /> sekilometer hingga <InlineMath math="d=12" />, kemudian naik <InlineMath math="0.42" /> sekilometer. Pada <InlineMath math="d=8" /> tingginya <InlineMath math="4.24" />, iaitu bahagian bersama <InlineMath math="\text{Rp}42{,}400" />. Pada <InlineMath math="d=22" /> tingginya <InlineMath math="10.6" />. Ruas tegak pada <InlineMath math="d=22" /> dari <InlineMath math="4.24" /> hingga <InlineMath math="10.6" /> ialah baki <InlineMath math="\text{Rp}63{,}600" />.</>}
+  labels={{
+    shared: <>dibahagi dua: <InlineMath math="\text{Rp}42{,}400" /></>,
+    eka: <>Eka seorang: <InlineMath math="\text{Rp}63{,}600" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 24 },
+      y: { min: -0.5, max: 11.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "door", kind: "function", appearance: "primary", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "1 + 0.54(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "far", kind: "function", appearance: "primary", formula: "6.4 + 0.42(x - 12)", domain: { min: 12, max: 22 } },
+      { id: "shared", kind: "segment", appearance: "secondary", from: { x: 8, y: 0 }, to: { x: 8, y: 4.24 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 8, y: 4.24 }, to: { x: 22, y: 4.24 } },
+      { id: "eka", kind: "segment", appearance: "answer", from: { x: 22, y: 4.24 }, to: { x: 22, y: 10.6 } },
+    ],
+    labels: [
+      { key: "shared", objectId: "shared", at: { x: 8, y: 2.12 }, placement: "left" },
+      { key: "eka", objectId: "eka", at: { x: 22, y: 7.42 }, placement: "left" },
+    ],
+  }}
+/>
+
 Eka membayar separuh daripada bahagian bersama dan seluruh baki:
 
 <BlockMath math="21{,}200+63{,}600=84{,}800" />

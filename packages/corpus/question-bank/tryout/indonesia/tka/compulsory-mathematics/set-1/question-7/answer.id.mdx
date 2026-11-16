@@ -28,6 +28,47 @@ Cek dengan posisi kedua mobil pada <InlineMath math="t=0{,}54" />, yaitu sekitar
 
 <BlockMath math="\sqrt{8{,}4^2+11{,}2^2}=\sqrt{70{,}56+125{,}44}=\sqrt{196}=14" />
 
+Gambar posisi kedua mobil pada saat terdekat. A sudah bergerak <InlineMath math="21{,}6\text{ km}" /> ke selatan tetapi masih di utara <InlineMath math="O" />, sedangkan B sudah bergerak <InlineMath math="16{,}2\text{ km}" /> ke timur dan melewati <InlineMath math="O" />. **Jarak keduanya adalah sisi miring segitiga siku-siku** dengan kaki <InlineMath math="8{,}4" /> dan <InlineMath math="11{,}2" />.
+
+<MathVisual
+  title={<>Posisi kedua mobil pada saat terdekat</>}
+  description={<>Persimpangan <InlineMath math="O" /> di titik asal, utara ke atas dan timur ke kanan, satuan km. Mobil A berangkat dari <InlineMath math="A_0=(0,\ 30)" /> dan pada <InlineMath math="t=0{,}54" /> jam sampai di <InlineMath math="A=(0,\ 8{,}4)" />. Mobil B berangkat dari <InlineMath math="B_0=(-5,\ 0)" /> dan sampai di <InlineMath math="B=(11{,}2,\ 0)" />. Ruas <InlineMath math="AB" /> adalah sisi miring segitiga siku-siku di <InlineMath math="O" /> dengan panjang <InlineMath math="14\text{ km}" />.</>}
+  labels={{
+    "start-a": <InlineMath math="A_0" />,
+    "start-b": <InlineMath math="B_0" />,
+    "now-a": <InlineMath math="A" />,
+    "now-b": <InlineMath math="B" />,
+    gap: <InlineMath math="14\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 26 },
+      y: { min: -4, max: 33 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "north-south", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 32 } },
+      { id: "west-east", kind: "segment", appearance: "reference", from: { x: -7, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "move-a", kind: "vector", appearance: "secondary", from: { x: 0, y: 30 }, to: { x: 0, y: 8.4 } },
+      { id: "move-b", kind: "vector", appearance: "secondary", from: { x: -5, y: 0 }, to: { x: 11.2, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 8.4 }, to: { x: 11.2, y: 0 } },
+      { id: "start-a", kind: "point", appearance: "primary", at: { x: 0, y: 30 } },
+      { id: "start-b", kind: "point", appearance: "primary", at: { x: -5, y: 0 } },
+      { id: "now-a", kind: "point", appearance: "answer", at: { x: 0, y: 8.4 } },
+      { id: "now-b", kind: "point", appearance: "answer", at: { x: 11.2, y: 0 } },
+    ],
+    labels: [
+      { key: "start-a", objectId: "start-a", at: { x: 0, y: 30 }, placement: "right" },
+      { key: "start-b", objectId: "start-b", at: { x: -5, y: 0 }, placement: "above" },
+      { key: "now-a", objectId: "now-a", at: { x: 0, y: 8.4 }, placement: "left" },
+      { key: "now-b", objectId: "now-b", at: { x: 11.2, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 5.6, y: 4.2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Saat itu B sudah melewati persimpangan, sedangkan A belum. Jadi saat terdekat **tidak terjadi ketika salah satu mobil tepat di persimpangan**.
 
 # Kenapa pilihan lain salah

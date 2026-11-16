@@ -10,6 +10,44 @@ The door fare isn't multiplied, so
 
 **Every statement can be judged from these two formulas**, as long as you check each part of the distance range.
 
+Draw both graphs first, because the next three statements read straight off their shapes. **The flat start** settles the second statement, **the slopes after km <InlineMath math="12" />** the third, and **two points of equal height <InlineMath math="3\text{ km}" /> apart** the fourth.
+
+<MathVisual
+  title={<>Off-peak and peak-hour fares</>}
+  description={<>The horizontal axis is the distance <InlineMath math="d" /> in km, and the vertical axis is the fare in tens of thousands of rupiah. Both graphs coincide at <InlineMath math="1" /> for <InlineMath math="0<d\le2" />. Graph <InlineMath math="F" /> rises <InlineMath math="0.45" /> per km up to <InlineMath math="d=12" />, then <InlineMath math="0.35" /> per km. Graph <InlineMath math="P" /> rises <InlineMath math="0.54" /> per km, then <InlineMath math="0.42" /> per km. A horizontal segment at height <InlineMath math="7.3" /> joins the point of <InlineMath math="P" /> at <InlineMath math="d=\frac{99}{7}" /> to the point of <InlineMath math="F" /> at <InlineMath math="d=\frac{120}{7}" />, exactly <InlineMath math="3\text{ km}" /> further.</>}
+  labels={{
+    door: <InlineMath math="F=P=\text{Rp}10{,}000" />,
+    off: <InlineMath math="F" />,
+    peak: <InlineMath math="P" />,
+    shift: <InlineMath math="3\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 20 },
+      y: { min: -0.5, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "door", kind: "function", appearance: "reference", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "off-middle", kind: "function", appearance: "secondary", formula: "1 + 0.45(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "off", kind: "function", appearance: "secondary", formula: "5.5 + 0.35(x - 12)", domain: { min: 12, max: 18 } },
+      { id: "peak-middle", kind: "function", appearance: "primary", formula: "1 + 0.54(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "peak", kind: "function", appearance: "primary", formula: "6.4 + 0.42(x - 12)", domain: { min: 12, max: 18 } },
+      { id: "shift", kind: "segment", appearance: "answer", from: { x: 99 / 7, y: 7.3 }, to: { x: 120 / 7, y: 7.3 } },
+      { id: "peak-meet", kind: "point", appearance: "answer", at: { x: 99 / 7, y: 7.3 } },
+      { id: "off-meet", kind: "point", appearance: "answer", at: { x: 120 / 7, y: 7.3 } },
+    ],
+    labels: [
+      { key: "door", objectId: "door", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "off", objectId: "off", at: { x: 18, y: 7.6 }, placement: "right" },
+      { key: "peak", objectId: "peak", at: { x: 18, y: 8.92 }, placement: "right" },
+      { key: "shift", objectId: "shift", at: { x: 219 / 14, y: 7.3 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Statement one
 
 From the formula for <InlineMath math="F" />, the per-km part is <InlineMath math="K=F-10{,}000" />. Put that into the formula for <InlineMath math="P" />:

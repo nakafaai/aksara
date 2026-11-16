@@ -29,6 +29,37 @@ f(t)&=\frac{5\cdot\frac{t+1}{2}}{2\cdot\frac{t+1}{2}+2}=\frac{\frac{5(t+1)}{2}}{
 f(7)&=\frac{35+5}{14+6}=\frac{40}{20}=2
 \end{aligned}" />
 
+Lukis <InlineMath math="f" /> dan garis <InlineMath math="y=2" />. **Nilai <InlineMath math="f^{-1}(2)" /> ialah koordinat mendatar titik persilangannya**, iaitu input yang dihantar <InlineMath math="f" /> ke output <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Mencari input dengan output <InlineMath math="2" /></>}
+  description={<>Lengkung <InlineMath math="f(t)=\frac{5t+5}{2t+6}" /> bagi <InlineMath math="-2\le t\le10" /> menaik dan menghampiri <InlineMath math="\frac52" />. Garis mendatar <InlineMath math="y=2" /> bertemu lengkung tepat sekali, pada titik <InlineMath math="(7,\ 2)" />.</>}
+  labels={{
+    curve: <InlineMath math="f(t)=\frac{5t+5}{2t+6}" />,
+    level: <InlineMath math="y=2" />,
+    hit: <InlineMath math="(7,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 11 },
+      y: { min: -3, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(5x + 5)/(2x + 6)", domain: { min: -2, max: 10 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "2", domain: { min: -2, max: 10 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 7, y: 2 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: 1.25 }, placement: "above-left" },
+      { key: "level", objectId: "level", at: { x: -1, y: 2 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 7, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 **Hasilnya sepadan dengan output yang diminta**. Jadi, nilai <InlineMath math="f^{-1}(2)" /> ialah <InlineMath math="7" />.
 
 # Mengapa pilihan lain salah

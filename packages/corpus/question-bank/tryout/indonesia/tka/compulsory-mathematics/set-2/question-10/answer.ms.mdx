@@ -18,6 +18,52 @@ Segi tiga <InlineMath math="AOD" /> dan <InlineMath math="COD" /> berkongsi bucu
 
 <BlockMath math="36+24+24+16=100" />
 
+Tulis luas keempat-empat segi tiga pada gambar trapezium. **Dua segi tiga di sisi kiri dan kanan sentiasa sama luas**, dan segi tiga atas mengikut nisbah <InlineMath math="3:2" /> pada pepenjuru.
+
+<MathVisual
+  title={<>Empat segi tiga yang dibentuk oleh pepenjuru trapezium</>}
+  description={<>Trapezium <InlineMath math="ABCD" /> dengan <InlineMath math="AB" /> selari dengan <InlineMath math="DC" /> dibahagikan oleh pepenjurunya kepada empat segi tiga yang bertemu di <InlineMath math="O" />. Segi tiga <InlineMath math="AOB" /> di bawah berluas <InlineMath math="36" />, segi tiga <InlineMath math="BOC" /> dan <InlineMath math="AOD" /> di kedua-dua sisi masing-masing berluas <InlineMath math="24" />, dan segi tiga <InlineMath math="COD" /> di atas berluas <InlineMath math="16" />. Jumlahnya <InlineMath math="100" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    aob: <InlineMath math="36" />,
+    boc: <InlineMath math="24" />,
+    aod: <InlineMath math="24" />,
+    cod: <InlineMath math="16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7 },
+      y: { min: -2, max: 22 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "aob", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 12 }, { x: 6, y: 0 }] },
+      { id: "boc", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 0 }, { x: 3, y: 12 }, { x: 5, y: 20 }] },
+      { id: "aod", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 12 }, { x: 1, y: 20 }] },
+      { id: "cod", kind: "polygon", appearance: "answer", vertices: [{ x: 5, y: 20 }, { x: 3, y: 12 }, { x: 1, y: 20 }] },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 5, y: 20 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: 1, y: 20 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "c", at: { x: 5, y: 20 }, placement: "above-right" },
+      { key: "d", objectId: "d", at: { x: 1, y: 20 }, placement: "above-left" },
+      { key: "aob", objectId: "aob", at: { x: 3, y: 4 }, placement: "center" },
+      { key: "boc", objectId: "boc", at: { x: 14 / 3, y: 32 / 3 }, placement: "center" },
+      { key: "aod", objectId: "aod", at: { x: 4 / 3, y: 32 / 3 }, placement: "center" },
+      { key: "cod", objectId: "cod", at: { x: 3, y: 52 / 3 }, placement: "center" },
+    ],
+  }}
+/>
+
 Jadi, luas trapezium <InlineMath math="ABCD" /> ialah <InlineMath math="100\text{ cm}^2" />.
 
 # Mengapa pilihan lain salah

@@ -13,6 +13,39 @@ L_{\text{penampang air}}&=\tfrac12\cdot25\cdot25=312{,}5\text{ cm}^2 \\
 V_{\text{sisa}}&=312{,}5\cdot30=9{.}375\text{ cm}^3=9{,}375\text{ liter}
 \end{aligned}" />
 
+Gambar penampang samping akuarium saat alasnya miring <InlineMath math="45^\circ" />. **Permukaan air mendatar dan menyentuh bibir dinding**, sehingga air yang tersisa membentuk segitiga siku-siku sama kaki dengan kaki <InlineMath math="25" />.
+
+<MathVisual
+  title={<>Penampang samping akuarium yang dimiringkan <InlineMath math="45^\circ" /></>}
+  description={<>Rusuk tumpuan ada di lantai. Alas <InlineMath math="40\text{ cm}" /> naik ke kiri dengan kemiringan <InlineMath math="45^\circ" />, dan dinding <InlineMath math="25\text{ cm}" /> di atas rusuk tumpuan naik ke kanan, tegak lurus alas. Permukaan air adalah garis mendatar melalui bibir dinding. Air yang tersisa adalah segitiga siku-siku di rusuk tumpuan dengan kedua kaki <InlineMath math="25\text{ cm}" />, satu di dinding dan satu di alas.</>}
+  labels={{
+    wall: <InlineMath math="25" />,
+    base: <InlineMath math="25" />,
+    tank: <>penampang <InlineMath math="40\times25" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -36, max: 24 },
+      y: { min: -3, max: 50 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -34, y: 0 }, to: { x: 22, y: 0 } },
+      { id: "tank", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: -20 * Math.sqrt(2), y: 20 * Math.sqrt(2) }, { x: -7.5 * Math.sqrt(2), y: 32.5 * Math.sqrt(2) }, { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }] },
+      { id: "water", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }, { x: -12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }] },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) } },
+      { id: "base", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 6.25 * Math.sqrt(2), y: 6.25 * Math.sqrt(2) }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: -6.25 * Math.sqrt(2), y: 6.25 * Math.sqrt(2) }, placement: "left" },
+      { key: "tank", objectId: "tank", at: { x: -7.5 * Math.sqrt(2), y: 32.5 * Math.sqrt(2) }, placement: "above" },
+    ],
+  }}
+/>
+
 # Air yang tumpah
 
 Air sisa <InlineMath math="9{,}375" /> liter lebih sedikit dari <InlineMath math="18" /> liter, jadi memang ada air yang tumpah. **Air yang tumpah adalah selisih air awal dan air sisa**.

@@ -37,6 +37,44 @@ Karena <InlineMath math="x=2y" />, cukup minta <InlineMath math="y>0" />. Pembil
 | <InlineMath math="-5<k<-1" /> | negatif | positif | negatif |
 | <InlineMath math="k>-1" /> | positif | positif | positif |
 
+Gambar <InlineMath math="y" /> sebagai fungsi <InlineMath math="k" />. **Grafik ada di atas sumbu tepat untuk <InlineMath math="k<-5" /> dan <InlineMath math="k>-1" />**, dengan garis tegak <InlineMath math="k=-5" /> sebagai asimtot. Titik di <InlineMath math="k=1" /> tetap harus dibuang karena di sana sistemnya tidak punya penyelesaian tunggal.
+
+<MathVisual
+  title={<>Nilai <InlineMath math="y" /> menurut <InlineMath math="k" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{k+1}{k+5}" /> punya asimtot tegak di <InlineMath math="k=-5" /> dan memotong sumbu mendatar di <InlineMath math="k=-1" />. Di kiri asimtot kurva berada di atas sumbu, di antara <InlineMath math="k=-5" /> dan <InlineMath math="k=-1" /> kurva berada di bawah sumbu, dan di kanan <InlineMath math="k=-1" /> kurva kembali di atas sumbu. Titik <InlineMath math="\left(1,\ \frac13\right)" /> diberi tanda peringatan karena untuk <InlineMath math="k=1" /> penyelesaiannya tak hingga banyak. Ruas di sumbu mendatar menandai himpunan jawabannya.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{k+1}{k+5}" />,
+    hole: <InlineMath math="k=1" />,
+    wall: <InlineMath math="k=-5" />,
+    zero: <InlineMath math="k=-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12.5, max: 6.5 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 1)/(x + 5)", domain: { min: -12, max: -5.25 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x + 1)/(x + 5)", domain: { min: -4.75, max: 6 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: -5, y: -6 }, to: { x: -5, y: 6 } },
+      { id: "far-left", kind: "segment", appearance: "answer", from: { x: -12, y: 0 }, to: { x: -5, y: 0 } },
+      { id: "middle", kind: "segment", appearance: "answer", from: { x: -1, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "right", kind: "segment", appearance: "answer", from: { x: 1, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "zero", kind: "point", appearance: "construction", at: { x: -1, y: 0 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 1, y: 1 / 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 6, y: 7 / 11 }, placement: "above-left" },
+      { key: "hole", objectId: "hole", at: { x: 1, y: 1 / 3 }, placement: "above" },
+      { key: "wall", objectId: "wall", at: { x: -5, y: 5 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: -1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="y>0" /> untuk <InlineMath math="k<-5" /> atau <InlineMath math="k>-1" />. Sekarang ingat kasus <InlineMath math="k=1" />. Nilai ini ada di dalam <InlineMath math="k>-1" />, tetapi di sana penyelesaiannya tak hingga banyak, bukan tepat satu. Jadi **<InlineMath math="k=1" /> harus dibuang**.
 
 Cek <InlineMath math="k=-6" />: <InlineMath math="y=\frac{-5}{-1}=5" /> dan <InlineMath math="x=10" />. Substitusi: <InlineMath math="-3\cdot10+4\cdot5=-10=2(-6)+2" /> dan <InlineMath math="2\cdot10-5\cdot5=-5=-6+1" />.

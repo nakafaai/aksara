@@ -19,6 +19,48 @@ Weil die Daten sortiert sind, gilt: Ist <InlineMath math="a_k=v" />, dann ist **
 
 <BlockMath math="50,\ \underbrace{55,\dots,55}_{5},\ 62,\ \underbrace{65,\dots,65}_{6},\ 68,\ 68,\ \underbrace{70,\dots,70}_{5},\ 76,\ \underbrace{80,\dots,80}_{5},\ 92" />
 
+Zeichne diesen Beispieldatensatz als Treppe der sortierten Werte. **Die Positionen <InlineMath math="7" />, <InlineMath math="14" /> und <InlineMath math="21" /> passen zur Tabelle, aber die Stufe <InlineMath math="68" /> reicht auch über Position <InlineMath math="15" />**. Also ist einer der dreizehn obersten Werte nicht größer als <InlineMath math="68" />.
+
+<MathVisual
+  title={<>Ein Datensatz für Klasse B, der zur Tabelle passt</>}
+  description={<>Die waagerechte Achse ist die Position in der Sortierung von <InlineMath math="1" /> bis <InlineMath math="27" />, die senkrechte Achse der Wert. Die Stufen sind <InlineMath math="50" /> auf Position <InlineMath math="1" />, <InlineMath math="55" /> auf den Positionen <InlineMath math="2" /> bis <InlineMath math="6" />, <InlineMath math="62" /> auf Position <InlineMath math="7" />, <InlineMath math="65" /> auf den Positionen <InlineMath math="8" /> bis <InlineMath math="13" />, <InlineMath math="68" /> auf den Positionen <InlineMath math="14" /> und <InlineMath math="15" />, <InlineMath math="70" /> auf den Positionen <InlineMath math="16" /> bis <InlineMath math="20" />, <InlineMath math="76" /> auf Position <InlineMath math="21" />, <InlineMath math="80" /> auf den Positionen <InlineMath math="22" /> bis <InlineMath math="26" /> und <InlineMath math="92" /> auf Position <InlineMath math="27" />.</>}
+  labels={{
+    q1: <InlineMath math="b_7=62" />,
+    median: <InlineMath math="b_{14}=68" />,
+    q3: <InlineMath math="b_{21}=76" />,
+    tie: <InlineMath math="b_{15}=68" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 28 },
+      y: { min: 45, max: 96 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "run-50", kind: "segment", appearance: "primary", from: { x: 0.5, y: 50 }, to: { x: 1.5, y: 50 } },
+      { id: "run-55", kind: "segment", appearance: "primary", from: { x: 1.5, y: 55 }, to: { x: 6.5, y: 55 } },
+      { id: "run-62", kind: "segment", appearance: "primary", from: { x: 6.5, y: 62 }, to: { x: 7.5, y: 62 } },
+      { id: "run-65", kind: "segment", appearance: "primary", from: { x: 7.5, y: 65 }, to: { x: 13.5, y: 65 } },
+      { id: "tie", kind: "segment", appearance: "warning", from: { x: 13.5, y: 68 }, to: { x: 15.5, y: 68 } },
+      { id: "run-70", kind: "segment", appearance: "primary", from: { x: 15.5, y: 70 }, to: { x: 20.5, y: 70 } },
+      { id: "run-76", kind: "segment", appearance: "primary", from: { x: 20.5, y: 76 }, to: { x: 21.5, y: 76 } },
+      { id: "run-80", kind: "segment", appearance: "primary", from: { x: 21.5, y: 80 }, to: { x: 26.5, y: 80 } },
+      { id: "run-92", kind: "segment", appearance: "primary", from: { x: 26.5, y: 92 }, to: { x: 27.5, y: 92 } },
+      { id: "q1", kind: "point", appearance: "secondary", at: { x: 7, y: 62 } },
+      { id: "median", kind: "point", appearance: "secondary", at: { x: 14, y: 68 } },
+      { id: "q3", kind: "point", appearance: "secondary", at: { x: 21, y: 76 } },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 7, y: 62 }, placement: "above-left" },
+      { key: "median", objectId: "median", at: { x: 14, y: 68 }, placement: "above-left" },
+      { key: "q3", objectId: "q3", at: { x: 21, y: 76 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 15.5, y: 68 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Hier ist <InlineMath math="b_7=62" />, <InlineMath math="b_{14}=68" /> und <InlineMath math="b_{21}=76" />, wie in der Tabelle. Aber <InlineMath math="b_{15}=68" />, sodass nur <InlineMath math="5+1+5+1=12" /> Schüler mehr als <InlineMath math="68" /> haben.
 
 **Richtig**. Dritte Aussage: <InlineMath math="b_{21}=76" />, also haben <InlineMath math="b_{21}" /> bis <InlineMath math="b_{27}" />, das sind <InlineMath math="7" /> Schüler, mindestens <InlineMath math="76" />.

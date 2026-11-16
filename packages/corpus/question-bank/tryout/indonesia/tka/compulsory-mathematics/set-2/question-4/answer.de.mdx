@@ -31,6 +31,45 @@ Bei <InlineMath math="u=8" /> kosten beide <InlineMath math="60" /> Tausend. Kuo
 u&<18
 \end{aligned}" />
 
+Zeichne beide Kostenfunktionen. **Das Paket Kuota ist genau dort günstiger, wo sein Graph unter dem Graphen des Pakets Hemat liegt**, also zwischen den Schnittpunkten bei <InlineMath math="u=8" /> und <InlineMath math="u=18" />. Die Schnittpunkte selbst zählen nicht, weil die Kosten dort gleich sind.
+
+<MathVisual
+  title={<>Kosten der Pakete Hemat und Kuota</>}
+  description={<>Die waagerechte Achse ist das Gewicht <InlineMath math="u" /> in kg, die senkrechte Achse die Kosten in tausend Rupiah. Das Paket Hemat bleibt bis <InlineMath math="u=3" /> bei <InlineMath math="30" /> und steigt dann um <InlineMath math="6" /> pro kg. Das Paket Kuota bleibt bis <InlineMath math="u=12" /> bei <InlineMath math="60" /> und steigt dann um <InlineMath math="10" /> pro kg. Die Graphen schneiden sich in <InlineMath math="(8,\ 60)" /> und <InlineMath math="(18,\ 120)" />, und dazwischen liegt der Graph von Kuota unten. Die Strecke auf der waagerechten Achse markiert die ganzen Gewichte <InlineMath math="9\le u\le17" />.</>}
+  labels={{
+    saver: <>Hemat</>,
+    quota: <>Kuota</>,
+    low: <InlineMath math="(8,\ 60)" />,
+    high: <InlineMath math="(18,\ 120)" />,
+    cheaper: <InlineMath math="9\le u\le17" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 41 },
+      y: { min: -10, max: 260 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "saver-flat", kind: "function", appearance: "secondary", formula: "30", domain: { min: 0, max: 3 } },
+      { id: "saver", kind: "function", appearance: "secondary", formula: "6x + 12", domain: { min: 3, max: 40 } },
+      { id: "quota-flat", kind: "function", appearance: "primary", formula: "60", domain: { min: 0, max: 12 } },
+      { id: "quota", kind: "function", appearance: "primary", formula: "10x - 60", domain: { min: 12, max: 31 } },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 8, y: 60 } },
+      { id: "high", kind: "point", appearance: "warning", at: { x: 18, y: 120 } },
+      { id: "cheaper", kind: "segment", appearance: "answer", from: { x: 9, y: 0 }, to: { x: 17, y: 0 } },
+    ],
+    labels: [
+      { key: "saver", objectId: "saver", at: { x: 38, y: 240 }, placement: "below-right" },
+      { key: "quota", objectId: "quota", at: { x: 30, y: 240 }, placement: "left" },
+      { key: "low", objectId: "low", at: { x: 8, y: 60 }, placement: "above-left" },
+      { key: "high", objectId: "high", at: { x: 18, y: 120 }, placement: "above-left" },
+      { key: "cheaper", objectId: "cheaper", at: { x: 13, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Bei <InlineMath math="u=18" /> kosten beide <InlineMath math="120" /> Tausend. Kuota ist also billiger für <InlineMath math="u=13,14,\ldots,17" />. Ab <InlineMath math="19" /> gewinnt wieder Hemat, weil sein Preis pro zusätzlichem kg kleiner ist.
 
 | Gewicht | Billigeres Paket |

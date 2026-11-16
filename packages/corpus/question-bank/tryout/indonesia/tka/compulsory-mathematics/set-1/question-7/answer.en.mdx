@@ -28,6 +28,47 @@ Check it with the positions at <InlineMath math="t=0.54" />, which is about <Inl
 
 <BlockMath math="\sqrt{8.4^2+11.2^2}=\sqrt{70.56+125.44}=\sqrt{196}=14" />
 
+Draw where both cars are at the closest moment. A has moved <InlineMath math="21.6\text{ km}" /> south but is still north of <InlineMath math="O" />, while B has moved <InlineMath math="16.2\text{ km}" /> east and passed <InlineMath math="O" />. **The distance between them is the hypotenuse of a right triangle** with legs <InlineMath math="8.4" /> and <InlineMath math="11.2" />.
+
+<MathVisual
+  title={<>Positions of both cars at the closest moment</>}
+  description={<>The junction <InlineMath math="O" /> is at the origin, north is up and east is right, in km. Car A starts at <InlineMath math="A_0=(0,\ 30)" /> and at <InlineMath math="t=0.54" /> hours reaches <InlineMath math="A=(0,\ 8.4)" />. Car B starts at <InlineMath math="B_0=(-5,\ 0)" /> and reaches <InlineMath math="B=(11.2,\ 0)" />. Segment <InlineMath math="AB" /> is the hypotenuse of a right triangle at <InlineMath math="O" />, of length <InlineMath math="14\text{ km}" />.</>}
+  labels={{
+    "start-a": <InlineMath math="A_0" />,
+    "start-b": <InlineMath math="B_0" />,
+    "now-a": <InlineMath math="A" />,
+    "now-b": <InlineMath math="B" />,
+    gap: <InlineMath math="14\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 26 },
+      y: { min: -4, max: 33 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "north-south", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 32 } },
+      { id: "west-east", kind: "segment", appearance: "reference", from: { x: -7, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "move-a", kind: "vector", appearance: "secondary", from: { x: 0, y: 30 }, to: { x: 0, y: 8.4 } },
+      { id: "move-b", kind: "vector", appearance: "secondary", from: { x: -5, y: 0 }, to: { x: 11.2, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 8.4 }, to: { x: 11.2, y: 0 } },
+      { id: "start-a", kind: "point", appearance: "primary", at: { x: 0, y: 30 } },
+      { id: "start-b", kind: "point", appearance: "primary", at: { x: -5, y: 0 } },
+      { id: "now-a", kind: "point", appearance: "answer", at: { x: 0, y: 8.4 } },
+      { id: "now-b", kind: "point", appearance: "answer", at: { x: 11.2, y: 0 } },
+    ],
+    labels: [
+      { key: "start-a", objectId: "start-a", at: { x: 0, y: 30 }, placement: "right" },
+      { key: "start-b", objectId: "start-b", at: { x: -5, y: 0 }, placement: "above" },
+      { key: "now-a", objectId: "now-a", at: { x: 0, y: 8.4 }, placement: "left" },
+      { key: "now-b", objectId: "now-b", at: { x: 11.2, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 5.6, y: 4.2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 At that moment B has already passed the crossing and A hasn't reached it yet. So the closest moment **doesn't happen when one car is right at the crossing**.
 
 # Why the other options are wrong

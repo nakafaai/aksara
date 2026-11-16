@@ -18,6 +18,52 @@ Die Dreiecke <InlineMath math="AOD" /> und <InlineMath math="COD" /> haben die g
 
 <BlockMath math="36+24+24+16=100" />
 
+Schreibe die Flächen der vier Dreiecke in das Trapez. **Die beiden seitlichen Dreiecke links und rechts sind immer gleich groß**, und das obere Dreieck folgt dem Verhältnis <InlineMath math="3:2" /> auf der Diagonale.
+
+<MathVisual
+  title={<>Vier Dreiecke, die die Diagonalen des Trapezes bilden</>}
+  description={<>Das Trapez <InlineMath math="ABCD" /> mit <InlineMath math="AB" /> parallel zu <InlineMath math="DC" /> wird von seinen Diagonalen in vier Dreiecke geteilt, die sich in <InlineMath math="O" /> treffen. Das untere Dreieck <InlineMath math="AOB" /> hat die Fläche <InlineMath math="36" />, die seitlichen Dreiecke <InlineMath math="BOC" /> und <InlineMath math="AOD" /> haben je <InlineMath math="24" />, und das obere Dreieck <InlineMath math="COD" /> hat <InlineMath math="16" />. Zusammen sind das <InlineMath math="100" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    aob: <InlineMath math="36" />,
+    boc: <InlineMath math="24" />,
+    aod: <InlineMath math="24" />,
+    cod: <InlineMath math="16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7 },
+      y: { min: -2, max: 22 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "aob", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 12 }, { x: 6, y: 0 }] },
+      { id: "boc", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 0 }, { x: 3, y: 12 }, { x: 5, y: 20 }] },
+      { id: "aod", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 12 }, { x: 1, y: 20 }] },
+      { id: "cod", kind: "polygon", appearance: "answer", vertices: [{ x: 5, y: 20 }, { x: 3, y: 12 }, { x: 1, y: 20 }] },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 5, y: 20 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: 1, y: 20 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "c", at: { x: 5, y: 20 }, placement: "above-right" },
+      { key: "d", objectId: "d", at: { x: 1, y: 20 }, placement: "above-left" },
+      { key: "aob", objectId: "aob", at: { x: 3, y: 4 }, placement: "center" },
+      { key: "boc", objectId: "boc", at: { x: 14 / 3, y: 32 / 3 }, placement: "center" },
+      { key: "aod", objectId: "aod", at: { x: 4 / 3, y: 32 / 3 }, placement: "center" },
+      { key: "cod", objectId: "cod", at: { x: 3, y: 52 / 3 }, placement: "center" },
+    ],
+  }}
+/>
+
 Die Fläche des Trapezes <InlineMath math="ABCD" /> ist also <InlineMath math="100\text{ cm}^2" />.
 
 # Warum die anderen Antworten falsch sind

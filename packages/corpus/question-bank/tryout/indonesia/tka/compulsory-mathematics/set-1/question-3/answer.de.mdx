@@ -10,6 +10,44 @@ Die Grundgebühr wird nicht multipliziert, also
 
 **Jede Aussage lässt sich mit diesen zwei Formeln beurteilen**, solange du jeden Streckenabschnitt prüfst.
 
+Zeichne zuerst beide Graphen, denn die nächsten drei Aussagen liest du direkt an ihrer Form ab. **Der waagerechte Anfang** entscheidet die zweite Aussage, **die Steigungen nach Kilometer <InlineMath math="12" />** die dritte und **zwei gleich hohe Punkte im Abstand <InlineMath math="3\text{ km}" />** die vierte.
+
+<MathVisual
+  title={<>Preise außerhalb und während der Stoßzeit</>}
+  description={<>Die waagerechte Achse ist die Strecke <InlineMath math="d" /> in km, die senkrechte Achse der Preis in zehntausend Rupiah. Beide Graphen fallen für <InlineMath math="0<d\le2" /> bei <InlineMath math="1" /> zusammen. Der Graph <InlineMath math="F" /> steigt bis <InlineMath math="d=12" /> um <InlineMath math="0{,}45" /> pro km, danach um <InlineMath math="0{,}35" /> pro km. Der Graph <InlineMath math="P" /> steigt um <InlineMath math="0{,}54" /> pro km, danach um <InlineMath math="0{,}42" /> pro km. Eine waagerechte Strecke in Höhe <InlineMath math="7{,}3" /> verbindet den Punkt von <InlineMath math="P" /> bei <InlineMath math="d=\frac{99}{7}" /> mit dem Punkt von <InlineMath math="F" /> bei <InlineMath math="d=\frac{120}{7}" />, genau <InlineMath math="3\text{ km}" /> weiter.</>}
+  labels={{
+    door: <InlineMath math="F=P=\text{Rp}10{.}000" />,
+    off: <InlineMath math="F" />,
+    peak: <InlineMath math="P" />,
+    shift: <InlineMath math="3\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 20 },
+      y: { min: -0.5, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "door", kind: "function", appearance: "reference", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "off-middle", kind: "function", appearance: "secondary", formula: "1 + 0.45(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "off", kind: "function", appearance: "secondary", formula: "5.5 + 0.35(x - 12)", domain: { min: 12, max: 18 } },
+      { id: "peak-middle", kind: "function", appearance: "primary", formula: "1 + 0.54(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "peak", kind: "function", appearance: "primary", formula: "6.4 + 0.42(x - 12)", domain: { min: 12, max: 18 } },
+      { id: "shift", kind: "segment", appearance: "answer", from: { x: 99 / 7, y: 7.3 }, to: { x: 120 / 7, y: 7.3 } },
+      { id: "peak-meet", kind: "point", appearance: "answer", at: { x: 99 / 7, y: 7.3 } },
+      { id: "off-meet", kind: "point", appearance: "answer", at: { x: 120 / 7, y: 7.3 } },
+    ],
+    labels: [
+      { key: "door", objectId: "door", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "off", objectId: "off", at: { x: 18, y: 7.6 }, placement: "right" },
+      { key: "peak", objectId: "peak", at: { x: 18, y: 8.92 }, placement: "right" },
+      { key: "shift", objectId: "shift", at: { x: 219 / 14, y: 7.3 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Erste Aussage
 
 Aus der Formel für <InlineMath math="F" /> folgt für den Kilometeranteil <InlineMath math="K=F-10{.}000" />. Setz das in die Formel für <InlineMath math="P" /> ein:

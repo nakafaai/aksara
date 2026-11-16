@@ -28,6 +28,47 @@ Prüf das mit den Positionen bei <InlineMath math="t=0{,}54" />, also gegen 07:3
 
 <BlockMath math="\sqrt{8{,}4^2+11{,}2^2}=\sqrt{70{,}56+125{,}44}=\sqrt{196}=14" />
 
+Zeichne, wo beide Autos im Moment des kleinsten Abstands sind. A ist <InlineMath math="21{,}6\text{ km}" /> nach Süden gefahren und noch nördlich von <InlineMath math="O" />, B ist <InlineMath math="16{,}2\text{ km}" /> nach Osten gefahren und hat <InlineMath math="O" /> schon passiert. **Der Abstand ist die Hypotenuse eines rechtwinkligen Dreiecks** mit den Katheten <InlineMath math="8{,}4" /> und <InlineMath math="11{,}2" />.
+
+<MathVisual
+  title={<>Lage beider Autos im Moment des kleinsten Abstands</>}
+  description={<>Die Kreuzung <InlineMath math="O" /> liegt im Ursprung, Norden ist oben und Osten rechts, Einheit km. Auto A startet in <InlineMath math="A_0=(0,\ 30)" /> und erreicht bei <InlineMath math="t=0{,}54" /> Stunden <InlineMath math="A=(0,\ 8{,}4)" />. Auto B startet in <InlineMath math="B_0=(-5,\ 0)" /> und erreicht <InlineMath math="B=(11{,}2,\ 0)" />. Die Strecke <InlineMath math="AB" /> ist die Hypotenuse eines bei <InlineMath math="O" /> rechtwinkligen Dreiecks und <InlineMath math="14\text{ km}" /> lang.</>}
+  labels={{
+    "start-a": <InlineMath math="A_0" />,
+    "start-b": <InlineMath math="B_0" />,
+    "now-a": <InlineMath math="A" />,
+    "now-b": <InlineMath math="B" />,
+    gap: <InlineMath math="14\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 26 },
+      y: { min: -4, max: 33 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "north-south", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 32 } },
+      { id: "west-east", kind: "segment", appearance: "reference", from: { x: -7, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "move-a", kind: "vector", appearance: "secondary", from: { x: 0, y: 30 }, to: { x: 0, y: 8.4 } },
+      { id: "move-b", kind: "vector", appearance: "secondary", from: { x: -5, y: 0 }, to: { x: 11.2, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 8.4 }, to: { x: 11.2, y: 0 } },
+      { id: "start-a", kind: "point", appearance: "primary", at: { x: 0, y: 30 } },
+      { id: "start-b", kind: "point", appearance: "primary", at: { x: -5, y: 0 } },
+      { id: "now-a", kind: "point", appearance: "answer", at: { x: 0, y: 8.4 } },
+      { id: "now-b", kind: "point", appearance: "answer", at: { x: 11.2, y: 0 } },
+    ],
+    labels: [
+      { key: "start-a", objectId: "start-a", at: { x: 0, y: 30 }, placement: "right" },
+      { key: "start-b", objectId: "start-b", at: { x: -5, y: 0 }, placement: "above" },
+      { key: "now-a", objectId: "now-a", at: { x: 0, y: 8.4 }, placement: "left" },
+      { key: "now-b", objectId: "now-b", at: { x: 11.2, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 5.6, y: 4.2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 In diesem Moment hat B die Kreuzung schon passiert, A noch nicht. Der nächste Moment ist also **nicht der, in dem ein Auto genau an der Kreuzung steht**.
 
 # Warum die anderen Antworten falsch sind

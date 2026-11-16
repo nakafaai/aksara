@@ -14,6 +14,45 @@ L_{\text{segi tiga}}&=\tfrac12\cdot6\sqrt{3}\cdot3=9\sqrt{3} \\
 L_{\text{tembereng}}&=12\pi-9\sqrt{3}\text{ dm}^2
 \end{aligned}" />
 
+Lukis keratan rentas tegak tangki dalam desimeter. **Diesel memenuhi tembereng di bawah perentas, dan ruang yang dicari ialah baki bulatan di atasnya**. Segi tiga dari pusat ke kedua-dua hujung perentas memberikan sudut pusat <InlineMath math="120^\circ" />.
+
+<MathVisual
+  title={<>Keratan rentas tegak tangki yang mendatar</>}
+  description={<>Bulatan berjejari <InlineMath math="6\text{ dm}" />. Permukaan diesel ialah perentas mendatar <InlineMath math="3\text{ dm}" /> di bawah pusat, dari <InlineMath math="(-3\sqrt3,\ -3)" /> hingga <InlineMath math="(3\sqrt3,\ -3)" />. Diesel memenuhi tembereng di bawah perentas, dan ruang kosong ialah bahagian bulatan di atasnya. Dua jejari ke hujung perentas membentuk sudut pusat <InlineMath math="120^\circ" />, dan garis serenjang dari pusat ke perentas panjangnya <InlineMath math="3" />.</>}
+  labels={{
+    empty: <>ruang kosong</>,
+    fuel: <>diesel</>,
+    angle: <InlineMath math="120^\circ" />,
+    radius: <InlineMath math="6" />,
+    gap: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "empty", kind: "region", appearance: "answer", inequalities: ["x^2 + y^2 <= 36", "y >= -3"] },
+      { id: "fuel", kind: "region", appearance: "secondary", inequalities: ["x^2 + y^2 <= 36", "y <= -3"] },
+      { id: "wall", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: -3 } },
+      { id: "other-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3 * Math.sqrt(3), y: -3 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -3 } },
+      { id: "angle", kind: "point", appearance: "construction", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "empty", objectId: "empty", at: { x: 0, y: 3 }, placement: "center" },
+      { key: "fuel", objectId: "fuel", at: { x: 0, y: -4.5 }, placement: "center" },
+      { key: "angle", objectId: "angle", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "radius", objectId: "radius", at: { x: 1.5 * Math.sqrt(3), y: -1.5 }, placement: "above-right" },
+      { key: "gap", objectId: "gap", at: { x: 0, y: -1.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 Isi padu diesel ialah luas tembereng didarab panjang tangki.
 
 <BlockMath math="V_{\text{diesel}}=20\,(12\pi-9\sqrt{3})=240\pi-180\sqrt{3}\text{ liter}" />

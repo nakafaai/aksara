@@ -10,6 +10,44 @@ Tarif buka pintu tidak didarab, jadi
 
 **Setiap pernyataan boleh dinilai daripada dua rumus ini**, asalkan kamu menyemak setiap bahagian julat jarak.
 
+Lukis kedua-dua graf dahulu, kerana tiga pernyataan seterusnya terbaca terus daripada bentuknya. **Bahagian awal yang mendatar** digunakan dalam pernyataan kedua, **kecerunan selepas km ke-<InlineMath math="12" />** dalam pernyataan ketiga, dan **dua titik yang sama tinggi berjarak <InlineMath math="3\text{ km}" />** dalam pernyataan keempat.
+
+<MathVisual
+  title={<>Tambang luar waktu puncak dan waktu puncak</>}
+  description={<>Paksi mendatar ialah jarak <InlineMath math="d" /> dalam km, dan paksi tegak ialah tambang dalam puluh ribu rupiah. Kedua-dua graf bertindih pada <InlineMath math="1" /> bagi <InlineMath math="0<d\le2" />. Graf <InlineMath math="F" /> naik <InlineMath math="0.45" /> sekilometer hingga <InlineMath math="d=12" />, kemudian <InlineMath math="0.35" /> sekilometer. Graf <InlineMath math="P" /> naik <InlineMath math="0.54" /> sekilometer, kemudian <InlineMath math="0.42" /> sekilometer. Ruas mendatar pada ketinggian <InlineMath math="7.3" /> menghubungkan titik <InlineMath math="P" /> pada <InlineMath math="d=\frac{99}{7}" /> dengan titik <InlineMath math="F" /> pada <InlineMath math="d=\frac{120}{7}" />, tepat <InlineMath math="3\text{ km}" /> lebih jauh.</>}
+  labels={{
+    door: <InlineMath math="F=P=\text{Rp}10{,}000" />,
+    off: <InlineMath math="F" />,
+    peak: <InlineMath math="P" />,
+    shift: <InlineMath math="3\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 20 },
+      y: { min: -0.5, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "door", kind: "function", appearance: "reference", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "off-middle", kind: "function", appearance: "secondary", formula: "1 + 0.45(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "off", kind: "function", appearance: "secondary", formula: "5.5 + 0.35(x - 12)", domain: { min: 12, max: 18 } },
+      { id: "peak-middle", kind: "function", appearance: "primary", formula: "1 + 0.54(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "peak", kind: "function", appearance: "primary", formula: "6.4 + 0.42(x - 12)", domain: { min: 12, max: 18 } },
+      { id: "shift", kind: "segment", appearance: "answer", from: { x: 99 / 7, y: 7.3 }, to: { x: 120 / 7, y: 7.3 } },
+      { id: "peak-meet", kind: "point", appearance: "answer", at: { x: 99 / 7, y: 7.3 } },
+      { id: "off-meet", kind: "point", appearance: "answer", at: { x: 120 / 7, y: 7.3 } },
+    ],
+    labels: [
+      { key: "door", objectId: "door", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "off", objectId: "off", at: { x: 18, y: 7.6 }, placement: "right" },
+      { key: "peak", objectId: "peak", at: { x: 18, y: 8.92 }, placement: "right" },
+      { key: "shift", objectId: "shift", at: { x: 219 / 14, y: 7.3 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Pernyataan pertama
 
 Daripada rumus <InlineMath math="F" />, bahagian setiap km ialah <InlineMath math="K=F-10{,}000" />. Gantikan ke dalam rumus <InlineMath math="P" />:

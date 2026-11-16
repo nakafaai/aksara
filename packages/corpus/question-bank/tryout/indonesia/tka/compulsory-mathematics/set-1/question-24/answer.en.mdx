@@ -15,6 +15,17 @@ For that, first choose <InlineMath math="4" /> patterns out of <InlineMath math=
 P(\text{no pair})&=\frac{80}{210}=\frac{8}{21}
 \end{aligned}" />
 
+The diagram below shows the flow. **All ways split into two groups that do not overlap**, so the group asked for is all ways minus the group with no pair.
+
+<Mermaid
+  title={<>Counting through the complement</>}
+  description={<>Of the <InlineMath math="210" /> ways to choose <InlineMath math="4" /> socks, <InlineMath math="80" /> contain no pair, that is <InlineMath math="5" /> choices of patterns times <InlineMath math="16" /> choices of sides. The other <InlineMath math="130" /> ways contain at least one pair, so the probability is <InlineMath math="\frac{130}{210}=\frac{13}{21}" />.</>}
+  chart={`flowchart TD
+  A["All ways: C(10, 4) = 210"] --> B["No pair: C(5, 4) · 2⁴ = 80"]
+  A --> C["At least one pair: 210 − 80 = 130"]
+  C --> D["Probability: 130/210 = 13/21"]`}
+/>
+
 # The probability you want
 
 **Subtract from one**:

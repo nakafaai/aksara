@@ -1,3 +1,39 @@
 Persegi <InlineMath math="ABCD" /> mempunyai titik sudut <InlineMath math="A(1,1)" />, <InlineMath math="B(5,1)" />, <InlineMath math="C(5,5)" />, dan <InlineMath math="D(1,5)" />. Titik <InlineMath math="O" /> adalah titik asal <InlineMath math="(0,0)" />.
 
+<MathVisual
+  title={<>Persegi <InlineMath math="ABCD" /> pada bidang koordinat</>}
+  description={<>Persegi dengan titik sudut <InlineMath math="A(1,1)" />, <InlineMath math="B(5,1)" />, <InlineMath math="C(5,5)" />, dan <InlineMath math="D(1,5)" />, serta titik asal <InlineMath math="O" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 5 }, { x: 1, y: 5 }] },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 5, y: 1 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 5, y: 5 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: 1, y: 5 } },
+      { id: "o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: 1 }, placement: "below-right" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1 }, placement: "below-right" },
+      { key: "c", objectId: "c", at: { x: 5, y: 5 }, placement: "above-right" },
+      { key: "d", objectId: "d", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Pilih semua transformasi yang memetakan persegi <InlineMath math="ABCD" /> tepat ke dirinya sendiri, artinya bayangan keempat titik sudutnya adalah keempat titik sudut persegi itu juga.

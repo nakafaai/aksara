@@ -19,6 +19,48 @@ Because the data are sorted, if <InlineMath math="a_k=v" />, then **every value 
 
 <BlockMath math="50,\ \underbrace{55,\dots,55}_{5},\ 62,\ \underbrace{65,\dots,65}_{6},\ 68,\ 68,\ \underbrace{70,\dots,70}_{5},\ 76,\ \underbrace{80,\dots,80}_{5},\ 92" />
 
+Draw that sample data set as a staircase of sorted scores. **Positions <InlineMath math="7" />, <InlineMath math="14" />, and <InlineMath math="21" /> match the table, but the <InlineMath math="68" /> step also covers position <InlineMath math="15" />**. So one of the thirteen top scores is not more than <InlineMath math="68" />.
+
+<MathVisual
+  title={<>One data set for class B that matches the table</>}
+  description={<>The horizontal axis is the position in sorted order from <InlineMath math="1" /> to <InlineMath math="27" />, and the vertical axis is the score. The steps are <InlineMath math="50" /> at position <InlineMath math="1" />, <InlineMath math="55" /> at positions <InlineMath math="2" /> to <InlineMath math="6" />, <InlineMath math="62" /> at position <InlineMath math="7" />, <InlineMath math="65" /> at positions <InlineMath math="8" /> to <InlineMath math="13" />, <InlineMath math="68" /> at positions <InlineMath math="14" /> and <InlineMath math="15" />, <InlineMath math="70" /> at positions <InlineMath math="16" /> to <InlineMath math="20" />, <InlineMath math="76" /> at position <InlineMath math="21" />, <InlineMath math="80" /> at positions <InlineMath math="22" /> to <InlineMath math="26" />, and <InlineMath math="92" /> at position <InlineMath math="27" />.</>}
+  labels={{
+    q1: <InlineMath math="b_7=62" />,
+    median: <InlineMath math="b_{14}=68" />,
+    q3: <InlineMath math="b_{21}=76" />,
+    tie: <InlineMath math="b_{15}=68" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 28 },
+      y: { min: 45, max: 96 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "run-50", kind: "segment", appearance: "primary", from: { x: 0.5, y: 50 }, to: { x: 1.5, y: 50 } },
+      { id: "run-55", kind: "segment", appearance: "primary", from: { x: 1.5, y: 55 }, to: { x: 6.5, y: 55 } },
+      { id: "run-62", kind: "segment", appearance: "primary", from: { x: 6.5, y: 62 }, to: { x: 7.5, y: 62 } },
+      { id: "run-65", kind: "segment", appearance: "primary", from: { x: 7.5, y: 65 }, to: { x: 13.5, y: 65 } },
+      { id: "tie", kind: "segment", appearance: "warning", from: { x: 13.5, y: 68 }, to: { x: 15.5, y: 68 } },
+      { id: "run-70", kind: "segment", appearance: "primary", from: { x: 15.5, y: 70 }, to: { x: 20.5, y: 70 } },
+      { id: "run-76", kind: "segment", appearance: "primary", from: { x: 20.5, y: 76 }, to: { x: 21.5, y: 76 } },
+      { id: "run-80", kind: "segment", appearance: "primary", from: { x: 21.5, y: 80 }, to: { x: 26.5, y: 80 } },
+      { id: "run-92", kind: "segment", appearance: "primary", from: { x: 26.5, y: 92 }, to: { x: 27.5, y: 92 } },
+      { id: "q1", kind: "point", appearance: "secondary", at: { x: 7, y: 62 } },
+      { id: "median", kind: "point", appearance: "secondary", at: { x: 14, y: 68 } },
+      { id: "q3", kind: "point", appearance: "secondary", at: { x: 21, y: 76 } },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 7, y: 62 }, placement: "above-left" },
+      { key: "median", objectId: "median", at: { x: 14, y: 68 }, placement: "above-left" },
+      { key: "q3", objectId: "q3", at: { x: 21, y: 76 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 15.5, y: 68 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Here <InlineMath math="b_7=62" />, <InlineMath math="b_{14}=68" /> and <InlineMath math="b_{21}=76" />, just like the table. But <InlineMath math="b_{15}=68" />, so only <InlineMath math="5+1+5+1=12" /> students score more than <InlineMath math="68" />.
 
 **True**. Third statement: <InlineMath math="b_{21}=76" />, so <InlineMath math="b_{21}" /> to <InlineMath math="b_{27}" />, that's <InlineMath math="7" /> students, score at least <InlineMath math="76" />.

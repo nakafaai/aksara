@@ -31,6 +31,40 @@ n=20&:\ 14.7+20\cdot0.16=17.9\text{ cm}\le18\text{ cm} \\
 n=21&:\ 14.7+21\cdot0.16=18.06\text{ cm}>18\text{ cm}
 \end{aligned}" />
 
+Draw the water height against the number of small marbles. **The line rises <InlineMath math="0.16\text{ cm}" /> per marble and passes the rim between marble <InlineMath math="20" /> and marble <InlineMath math="21" />**.
+
+<MathVisual
+  title={<>Water height by number of small marbles</>}
+  description={<>The horizontal axis is the number of small marbles <InlineMath math="n" />, and the vertical axis is the water height in cm. The line <InlineMath math="14.7+0.16n" /> starts at <InlineMath math="14.7" /> and rises steadily. The horizontal line at <InlineMath math="18" /> is the rim of the tube. The point for <InlineMath math="n=20" /> is at <InlineMath math="17.9" />, below the rim, while the point for <InlineMath math="n=21" /> is at <InlineMath math="18.06" />, above the rim.</>}
+  labels={{
+    level: <InlineMath math="14.7+0.16n" />,
+    rim: <>rim <InlineMath math="18\text{ cm}" /></>,
+    last: <InlineMath math="(20,\ 17{,}9)" />,
+    spill: <InlineMath math="(21,\ 18{,}06)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 23 },
+      y: { min: 14.4, max: 18.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "primary", formula: "14.7 + 0.16x", domain: { min: 0, max: 22 } },
+      { id: "rim", kind: "function", appearance: "reference", formula: "18", domain: { min: 0, max: 22 } },
+      { id: "last", kind: "point", appearance: "answer", at: { x: 20, y: 17.9 } },
+      { id: "spill", kind: "point", appearance: "warning", at: { x: 21, y: 18.06 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 5, y: 15.5 }, placement: "below-right" },
+      { key: "rim", objectId: "rim", at: { x: 3, y: 18 }, placement: "above" },
+      { key: "last", objectId: "last", at: { x: 20, y: 17.9 }, placement: "below-right" },
+      { key: "spill", objectId: "spill", at: { x: 21, y: 18.06 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Why the other options are wrong
 
 - <InlineMath math="9" /> comes from treating volume as proportional to the diameter, so the rise would be <InlineMath math="0.54\cdot\frac23=0.36\text{ cm}" />.

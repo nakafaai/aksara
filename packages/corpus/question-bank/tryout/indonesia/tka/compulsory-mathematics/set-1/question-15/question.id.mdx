@@ -1,3 +1,33 @@
 Ruas garis <InlineMath math="AB" /> dengan <InlineMath math="A(4,2)" /> dan <InlineMath math="B(6,4)" /> dirotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat <InlineMath math="P(1,1)" />. Bayangan titik <InlineMath math="A" /> dan <InlineMath math="B" /> berturut-turut adalah <InlineMath math="A'" /> dan <InlineMath math="B'" />.
 
+<MathVisual
+  title={<>Ruas <InlineMath math="AB" /> dan pusat rotasi <InlineMath math="P" /></>}
+  description={<>Bidang koordinat dengan ruas garis dari <InlineMath math="A(4,2)" /> ke <InlineMath math="B(6,4)" /> dan titik <InlineMath math="P(1,1)" /> sebagai pusat rotasi.</>}
+  labels={{
+    a: <InlineMath math="A(4,2)" />,
+    b: <InlineMath math="B(6,4)" />,
+    p: <InlineMath math="P(1,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 7.5 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "segment", kind: "segment", appearance: "primary", from: { x: 4, y: 2 }, to: { x: 6, y: 4 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 6, y: 4 } },
+      { id: "p", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "b", objectId: "b", at: { x: 6, y: 4 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Luas segi empat <InlineMath math="ABB'A'" /> adalah ....

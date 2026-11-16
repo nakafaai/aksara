@@ -2,6 +2,50 @@
 
 Eine Abbildung bildet das Quadrat auf sich selbst ab, wenn **die Bilder der vier Ecken genau die Menge <InlineMath math="\{A,B,C,D\}" /> sind**, auch wenn sie die Plätze tauschen. Schreib jede Abbildung zuerst als eine Regel und prüf dann die vier Ecken.
 
+Zeichne zuerst das Quadrat. **Jede richtige Abbildung ist eine Symmetrie des Quadrats selbst**: die Spiegelung an der Geraden <InlineMath math="x=3" />, die Drehung um <InlineMath math="90^\circ" /> um den Mittelpunkt <InlineMath math="(3,3)" /> oder die Punktspiegelung an diesem Mittelpunkt. Das Bild in Warnfarbe stammt von der Spiegelung an <InlineMath math="y=x" /> mit anschließender Verschiebung um <InlineMath math="(2,-2)" />, die das Quadrat aus seiner Lage schiebt.
+
+<MathVisual
+  title={<>Quadrat <InlineMath math="ABCD" /> und seine Symmetrien</>}
+  description={<>Das Quadrat <InlineMath math="ABCD" /> mit den Ecken <InlineMath math="(1,1)" />, <InlineMath math="(5,1)" />, <InlineMath math="(5,5)" /> und <InlineMath math="(1,5)" /> hat den Mittelpunkt <InlineMath math="(3,3)" /> und die senkrechte Symmetrieachse <InlineMath math="x=3" />. Sein Bild unter <InlineMath math="(x,y)\mapsto(y+2,\,x-2)" /> ist das Quadrat mit den Ecken <InlineMath math="(3,-1)" />, <InlineMath math="(7,-1)" />, <InlineMath math="(7,3)" /> und <InlineMath math="(3,3)" />, das das ursprüngliche Quadrat nicht überdeckt.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    axis: <InlineMath math="x=3" />,
+    center: <InlineMath math="(3,3)" />,
+    shifted: <InlineMath math="(x,y)\mapsto(y+2,\,x-2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -2.5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 5 }, { x: 1, y: 5 }] },
+      { id: "shifted", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: -1 }, { x: 7, y: -1 }, { x: 7, y: 3 }, { x: 3, y: 3 }] },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 6.5 } },
+      { id: "center", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 5, y: 1 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 5, y: 5 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: 1, y: 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 5, y: 5 }, placement: "above-right" },
+      { key: "d", objectId: "d", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "axis", objectId: "axis", at: { x: 3, y: 6.5 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 3, y: 3 }, placement: "above-left" },
+      { key: "shifted", objectId: "shifted", at: { x: 5, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Jede Möglichkeit prüfen
 
 **Spiegelung an der <InlineMath math="y" />-Achse, dann Verschiebung um <InlineMath math="(6,0)" />**. Die Regel ist <InlineMath math="(x,y)\mapsto(-x+6,\,y)" />. Die Bilder sind <InlineMath math="A\mapsto(5,1)=B" />, <InlineMath math="B\mapsto(1,1)=A" />, <InlineMath math="C\mapsto(1,5)=D" /> und <InlineMath math="D\mapsto(5,5)=C" />. Das ist dasselbe wie die Spiegelung an der Geraden <InlineMath math="x=3" />, einer Symmetrieachse des Quadrats. Richtig.

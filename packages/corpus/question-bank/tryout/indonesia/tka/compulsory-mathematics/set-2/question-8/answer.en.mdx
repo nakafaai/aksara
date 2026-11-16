@@ -18,6 +18,43 @@ The multiples of <InlineMath math="12" /> show up in the sum for <InlineMath mat
 
 <BlockMath math="1{,}300+816-2\cdot432=1{,}252" />
 
+A Venn diagram shows why you subtract twice. **Only the two crescents outside the overlap are chosen**. The sum of multiples of <InlineMath math="4" /> holds the left crescent and the overlap, the sum of multiples of <InlineMath math="6" /> holds the right crescent and the overlap, so the overlap is counted twice.
+
+<MathVisual
+  title={<>Sums of the numbers in each part of the Venn diagram</>}
+  description={<>The left circle holds the multiples of <InlineMath math="4" /> and the right circle the multiples of <InlineMath math="6" /> from <InlineMath math="1" /> to <InlineMath math="100" />. Their overlap holds the multiples of <InlineMath math="12" />, with sum <InlineMath math="432" />, and is not chosen. The part of multiples of <InlineMath math="4" /> only sums to <InlineMath math="1{,}300-432=868" />, and the part of multiples of <InlineMath math="6" /> only sums to <InlineMath math="816-432=384" />.</>}
+  labels={{
+    four: <>multiples of <InlineMath math="4" /></>,
+    six: <>multiples of <InlineMath math="6" /></>,
+    "only-four": <InlineMath math="868" />,
+    "only-six": <InlineMath math="384" />,
+    both: <InlineMath math="432" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 4.5 },
+      y: { min: -3, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "only-four", kind: "region", appearance: "answer", inequalities: ["(x + 1.5)^2 + y^2 <= 6.25", "(x - 1.5)^2 + y^2 >= 6.25"] },
+      { id: "only-six", kind: "region", appearance: "answer", inequalities: ["(x - 1.5)^2 + y^2 <= 6.25", "(x + 1.5)^2 + y^2 >= 6.25"] },
+      { id: "both", kind: "region", appearance: "warning", inequalities: ["(x + 1.5)^2 + y^2 <= 6.25", "(x - 1.5)^2 + y^2 <= 6.25"] },
+      { id: "four", kind: "circle", appearance: "primary", center: { x: -1.5, y: 0 }, radius: 2.5 },
+      { id: "six", kind: "circle", appearance: "secondary", center: { x: 1.5, y: 0 }, radius: 2.5 },
+    ],
+    labels: [
+      { key: "four", objectId: "four", at: { x: -1.5, y: 2.5 }, placement: "above-left" },
+      { key: "six", objectId: "six", at: { x: 1.5, y: 2.5 }, placement: "above-right" },
+      { key: "only-four", objectId: "only-four", at: { x: -2.6, y: 0 }, placement: "center" },
+      { key: "only-six", objectId: "only-six", at: { x: 2.6, y: 0 }, placement: "center" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 So the sum of all the chosen numbers is <InlineMath math="1{,}252" />.
 
 # Why the other options are wrong

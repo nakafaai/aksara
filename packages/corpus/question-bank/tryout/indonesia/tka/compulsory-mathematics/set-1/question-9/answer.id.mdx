@@ -10,6 +10,22 @@ Bentuk <InlineMath math="B^E" /> bernilai <InlineMath math="1" /> hanya dengan t
 | pangkat nol | <InlineMath math="E=0" /> dan <InlineMath math="B\ne0" /> | <InlineMath math="5^0=1" /> |
 | bilangan pokok minus satu | <InlineMath math="B=-1" /> dan <InlineMath math="E" /> genap | <InlineMath math="(-1)^2=1" /> |
 
+Pohon berikut memetakan ketiga kasus sampai ke setiap calon penyelesaian. **Setiap cabang punya syarat sendiri yang harus dicek**, dan hanya satu calon yang gugur.
+
+<Mermaid
+  title={<>Tiga kasus pangkat bernilai satu</>}
+  description={<>Dari <InlineMath math="B^E=1" /> keluar tiga cabang. Cabang <InlineMath math="B=1" /> memberi <InlineMath math="x=2" /> dan <InlineMath math="x=5" />, keduanya diterima. Cabang <InlineMath math="E=0" /> dengan <InlineMath math="B\ne0" /> memberi <InlineMath math="x=1" />, diterima karena <InlineMath math="B=5" />. Cabang <InlineMath math="B=-1" /> dengan pangkat genap memberi <InlineMath math="x=3" /> yang diterima dan <InlineMath math="x=4" /> yang ditolak karena pangkatnya <InlineMath math="3" />.</>}
+  chart={`flowchart TD
+  S["B^E = 1"] --> C1["B = 1"]
+  S --> C2["E = 0 dan B ≠ 0"]
+  S --> C3["B = -1 dan E genap"]
+  C1 --> X2["x = 2: diterima"]
+  C1 --> X5["x = 5: diterima"]
+  C2 --> X1["x = 1, B = 5: diterima"]
+  C3 --> X3["x = 3, E = 2: diterima"]
+  C3 --> X4["x = 4, E = 3: ditolak"]`}
+/>
+
 Kalau <InlineMath math="B" /> positif dan bukan <InlineMath math="1" />, pangkatnya harus <InlineMath math="0" />. Kalau <InlineMath math="B" /> negatif, aturan soal hanya mengizinkan pangkat bulat, dan pangkat bulat dari bilangan negatif selain <InlineMath math="-1" /> tidak pernah sama dengan <InlineMath math="1" /> kecuali pangkatnya nol. Jadi **ketiga kasus di tabel sudah mencakup semua kemungkinan**.
 
 # Bilangan pokok satu

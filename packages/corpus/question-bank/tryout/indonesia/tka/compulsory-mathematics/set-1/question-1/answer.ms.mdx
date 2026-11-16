@@ -28,6 +28,36 @@ Jika bahagian pertama <InlineMath math="a\le2" />, tempahan itu tetap membayar <
 
 <BlockMath math="\text{jumlah}=10{,}000+\left[10{,}000+4{,}500(11.4-a-2)\right]=62{,}300-4{,}500a\ge62{,}300-9{,}000=53{,}300" />
 
+Lukis jumlah tambang bagi setiap titik pemecahan supaya coraknya jelas. Grafnya **mendatar pada <InlineMath math="\text{Rp}53{,}300" />** selagi kedua-dua bahagian sekurang-kurangnya <InlineMath math="2\text{ km}" />, kemudian naik di kedua-dua hujung. Tiada bahagian graf yang turun hingga ke garis satu tempahan.
+
+<MathVisual
+  title={<>Jumlah tambang dua tempahan mengikut titik pemecahan</>}
+  description={<>Paksi mendatar ialah panjang bahagian pertama <InlineMath math="a" /> dalam km, dari <InlineMath math="0" /> hingga <InlineMath math="11.4" />. Paksi tegak ialah jumlah tambang dalam ribu rupiah. Graf turun dari <InlineMath math="62.3" /> ke <InlineMath math="53.3" /> bagi <InlineMath math="0\le a\le2" />, mendatar pada <InlineMath math="53.3" /> bagi <InlineMath math="2\le a\le9.4" />, kemudian naik semula ke <InlineMath math="62.3" /> pada <InlineMath math="a=11.4" />. Garis rujukan pada <InlineMath math="52.3" /> ialah tambang satu tempahan dan sentiasa berada di bawah graf.</>}
+  labels={{
+    flat: <InlineMath math="\text{Rp}53{,}300" />,
+    single: <>satu tempahan <InlineMath math="\text{Rp}52{,}300" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 12 },
+      y: { min: 50, max: 64 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "short-first", kind: "function", appearance: "primary", formula: "62.3 - 4.5x", domain: { min: 0, max: 2 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "53.3", domain: { min: 2, max: 9.4 } },
+      { id: "short-second", kind: "function", appearance: "primary", formula: "11 + 4.5x", domain: { min: 9.4, max: 11.4 } },
+      { id: "single", kind: "function", appearance: "reference", formula: "52.3", domain: { min: 0, max: 11.4 } },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 5.7, y: 53.3 }, placement: "above" },
+      { key: "single", objectId: "single", at: { x: 5.7, y: 52.3 }, placement: "below" },
+    ],
+  }}
+/>
+
 **Bahagian yang terlalu pendek sebenarnya membazirkan jarak percuma**, contohnya <InlineMath math="a=1.4" /> memberi <InlineMath math="\text{Rp}56{,}000" />. Jumlah paling kecil tetap <InlineMath math="\text{Rp}53{,}300" />.
 
 Jadi, jumlah tambang paling sedikit ialah <InlineMath math="\text{Rp}53{,}300" />.

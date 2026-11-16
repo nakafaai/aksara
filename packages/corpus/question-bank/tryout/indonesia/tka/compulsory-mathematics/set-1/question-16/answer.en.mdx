@@ -22,6 +22,47 @@ CP_{\text{max}}&=OC+3=16 \\
 PQ_{\text{max}}&=3\cdot16=48
 \end{aligned}" />
 
+Draw that farthest position. **<InlineMath math="P" />, <InlineMath math="O" />, <InlineMath math="C" />, and <InlineMath math="Q" /> lie on one line**, with <InlineMath math="P" /> on the side of the circle facing away from <InlineMath math="C" />. The image <InlineMath math="Q" /> lies across <InlineMath math="C" /> and twice as far from <InlineMath math="C" />.
+
+<MathVisual
+  title={<>Positions of <InlineMath math="P" /> and <InlineMath math="Q" /> at the largest distance</>}
+  description={<>A circle of radius <InlineMath math="3" /> is centred at <InlineMath math="O" />, and <InlineMath math="C(5,12)" /> is <InlineMath math="13" /> away from <InlineMath math="O" />. Point <InlineMath math="P" /> lies on the extension of <InlineMath math="CO" /> beyond <InlineMath math="O" />, so <InlineMath math="CP=13+3=16" />. Its image <InlineMath math="Q" /> lies across <InlineMath math="C" /> on the same line with <InlineMath math="CQ=32" />, so <InlineMath math="PQ=48" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    o: <InlineMath math="O" />,
+    c: <InlineMath math="C" />,
+    q: <InlineMath math="Q" />,
+    near: <InlineMath math="CP=16" />,
+    far: <InlineMath math="CQ=32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 20 },
+      y: { min: -6, max: 44 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "near", kind: "segment", appearance: "secondary", from: { x: -15 / 13, y: -36 / 13 }, to: { x: 5, y: 12 } },
+      { id: "far", kind: "segment", appearance: "answer", from: { x: 5, y: 12 }, to: { x: 225 / 13, y: 540 / 13 } },
+      { id: "o", kind: "point", appearance: "construction", at: { x: 0, y: 0 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: -15 / 13, y: -36 / 13 } },
+      { id: "c", kind: "point", appearance: "construction", at: { x: 5, y: 12 } },
+      { id: "q", kind: "point", appearance: "answer", at: { x: 225 / 13, y: 540 / 13 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -15 / 13, y: -36 / 13 }, placement: "below-left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 5, y: 12 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: 225 / 13, y: 540 / 13 }, placement: "right" },
+      { key: "near", objectId: "near", at: { x: 25 / 13, y: 60 / 13 }, placement: "left" },
+      { key: "far", objectId: "far", at: { x: 145 / 13, y: 348 / 13 }, placement: "left" },
+    ],
+  }}
+/>
+
 For comparison, the point of the circle nearest to <InlineMath math="C" /> is <InlineMath math="13-3=10" /> away, so the smallest <InlineMath math="PQ" /> is <InlineMath math="3\cdot10=30" />. So <InlineMath math="PQ" /> always lies between <InlineMath math="30" /> and <InlineMath math="48" />.
 
 # Why the other options are wrong

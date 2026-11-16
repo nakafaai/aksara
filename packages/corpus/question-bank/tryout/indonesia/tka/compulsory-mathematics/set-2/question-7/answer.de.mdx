@@ -25,6 +25,39 @@ Für <InlineMath math="x\ge14" /> bist du schon rechts vom Scheitel, wo <InlineM
 
 <BlockMath math="L(14)=14\cdot(48-28)=14\cdot20=280" />
 
+Zeichne <InlineMath math="L(x)" /> und markiere den Teil, der die Mauerbedingung erfüllt. **Der Scheitel der Parabel liegt links der Geraden <InlineMath math="x=14" />, also außerhalb des zulässigen Bereichs**. Im zulässigen Bereich fällt der Graph nur noch, also liegt sein höchster Punkt am linken Ende.
+
+<MathVisual
+  title={<>Fläche des Geheges und die Mauerbedingung</>}
+  description={<>Die Parabel <InlineMath math="L(x)=-2(x-12)^2+288" /> für <InlineMath math="0\le x\le24" />. Die senkrechte Gerade <InlineMath math="x=14" /> trennt den linken Teil, in dem die Seite an der Mauer länger als <InlineMath math="20\text{ m}" /> ist, vom rechten Teil, der die Bedingung erfüllt. Der Scheitel <InlineMath math="(12,\ 288)" /> liegt im linken Teil, der höchste Punkt des rechten Teils ist <InlineMath math="(14,\ 280)" />.</>}
+  labels={{
+    vertex: <InlineMath math="(12,\ 288)" />,
+    best: <InlineMath math="(14,\ 280)" />,
+    limit: <InlineMath math="x=14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 25 },
+      y: { min: -15, max: 320 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "blocked", kind: "function", appearance: "reference", formula: "-2(x - 12)^2 + 288", domain: { min: 0, max: 14 } },
+      { id: "allowed", kind: "function", appearance: "primary", formula: "-2(x - 12)^2 + 288", domain: { min: 14, max: 24 } },
+      { id: "limit", kind: "segment", appearance: "construction", from: { x: 14, y: 0 }, to: { x: 14, y: 300 } },
+      { id: "vertex", kind: "point", appearance: "warning", at: { x: 12, y: 288 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 14, y: 280 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: 12, y: 288 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 14, y: 280 }, placement: "right" },
+      { key: "limit", objectId: "limit", at: { x: 14, y: 300 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Probe: Der Draht reicht genau, <InlineMath math="2\cdot14+(20-2)=46\text{ m}" />, und die Seite von <InlineMath math="20\text{ m}" /> passt genau an die Mauer. Zum Vergleich liefert <InlineMath math="x=15" /> nur <InlineMath math="15\cdot18=270" />.
 
 Die größte Fläche des Geheges beträgt also <InlineMath math="280\text{ m}^2" />.

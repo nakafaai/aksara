@@ -18,6 +18,43 @@ Kelipatan <InlineMath math="12" /> ikut terhitung di jumlah kelipatan <InlineMat
 
 <BlockMath math="1{.}300+816-2\cdot432=1{.}252" />
 
+Diagram Venn memperlihatkan kenapa pengurangannya dua kali. **Yang dipilih hanya kedua bulan sabit di luar irisan**. Jumlah kelipatan <InlineMath math="4" /> memuat bulan sabit kiri dan irisan, jumlah kelipatan <InlineMath math="6" /> memuat bulan sabit kanan dan irisan, jadi irisan terhitung dua kali.
+
+<MathVisual
+  title={<>Jumlah bilangan pada setiap bagian diagram Venn</>}
+  description={<>Lingkaran kiri memuat kelipatan <InlineMath math="4" /> dan lingkaran kanan memuat kelipatan <InlineMath math="6" /> dari <InlineMath math="1" /> sampai <InlineMath math="100" />. Irisannya memuat kelipatan <InlineMath math="12" /> dengan jumlah <InlineMath math="432" /> dan tidak dipilih. Bagian kelipatan <InlineMath math="4" /> saja berjumlah <InlineMath math="1{.}300-432=868" />, dan bagian kelipatan <InlineMath math="6" /> saja berjumlah <InlineMath math="816-432=384" />.</>}
+  labels={{
+    four: <>kelipatan <InlineMath math="4" /></>,
+    six: <>kelipatan <InlineMath math="6" /></>,
+    "only-four": <InlineMath math="868" />,
+    "only-six": <InlineMath math="384" />,
+    both: <InlineMath math="432" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 4.5 },
+      y: { min: -3, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "only-four", kind: "region", appearance: "answer", inequalities: ["(x + 1.5)^2 + y^2 <= 6.25", "(x - 1.5)^2 + y^2 >= 6.25"] },
+      { id: "only-six", kind: "region", appearance: "answer", inequalities: ["(x - 1.5)^2 + y^2 <= 6.25", "(x + 1.5)^2 + y^2 >= 6.25"] },
+      { id: "both", kind: "region", appearance: "warning", inequalities: ["(x + 1.5)^2 + y^2 <= 6.25", "(x - 1.5)^2 + y^2 <= 6.25"] },
+      { id: "four", kind: "circle", appearance: "primary", center: { x: -1.5, y: 0 }, radius: 2.5 },
+      { id: "six", kind: "circle", appearance: "secondary", center: { x: 1.5, y: 0 }, radius: 2.5 },
+    ],
+    labels: [
+      { key: "four", objectId: "four", at: { x: -1.5, y: 2.5 }, placement: "above-left" },
+      { key: "six", objectId: "six", at: { x: 1.5, y: 2.5 }, placement: "above-right" },
+      { key: "only-four", objectId: "only-four", at: { x: -2.6, y: 0 }, placement: "center" },
+      { key: "only-six", objectId: "only-six", at: { x: 2.6, y: 0 }, placement: "center" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 Jadi, jumlah semua bilangan yang dipilih adalah <InlineMath math="1{.}252" />.
 
 # Kenapa pilihan lain salah

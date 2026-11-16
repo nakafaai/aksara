@@ -28,6 +28,36 @@ Kalau bagian pertama <InlineMath math="a\le2" />, pesanan itu tetap membayar <In
 
 <BlockMath math="\text{total}=10{.}000+\left[10{.}000+4{.}500(11{,}4-a-2)\right]=62{.}300-4{.}500a\ge62{.}300-9{.}000=53{.}300" />
 
+Gambar total tarif untuk setiap titik pemecahan supaya polanya kelihatan. Garisnya **mendatar di <InlineMath math="\text{Rp}53{.}300" />** selama kedua bagian paling sedikit <InlineMath math="2\text{ km}" />, lalu naik di kedua ujung. Tidak ada bagian grafik yang turun sampai ke garis satu pesanan.
+
+<MathVisual
+  title={<>Total tarif dua pesanan menurut titik pemecahan</>}
+  description={<>Sumbu mendatar adalah panjang bagian pertama <InlineMath math="a" /> dalam km, dari <InlineMath math="0" /> sampai <InlineMath math="11{,}4" />. Sumbu tegak adalah total tarif dalam ribuan rupiah. Grafik turun dari <InlineMath math="62{,}3" /> ke <InlineMath math="53{,}3" /> untuk <InlineMath math="0\le a\le2" />, mendatar di <InlineMath math="53{,}3" /> untuk <InlineMath math="2\le a\le9{,}4" />, lalu naik lagi ke <InlineMath math="62{,}3" /> di <InlineMath math="a=11{,}4" />. Garis acuan di <InlineMath math="52{,}3" /> adalah tarif satu pesanan dan selalu ada di bawah grafik.</>}
+  labels={{
+    flat: <InlineMath math="\text{Rp}53{.}300" />,
+    single: <>satu pesanan <InlineMath math="\text{Rp}52{.}300" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 12 },
+      y: { min: 50, max: 64 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "short-first", kind: "function", appearance: "primary", formula: "62.3 - 4.5x", domain: { min: 0, max: 2 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "53.3", domain: { min: 2, max: 9.4 } },
+      { id: "short-second", kind: "function", appearance: "primary", formula: "11 + 4.5x", domain: { min: 9.4, max: 11.4 } },
+      { id: "single", kind: "function", appearance: "reference", formula: "52.3", domain: { min: 0, max: 11.4 } },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 5.7, y: 53.3 }, placement: "above" },
+      { key: "single", objectId: "single", at: { x: 5.7, y: 52.3 }, placement: "below" },
+    ],
+  }}
+/>
+
 **Bagian yang terlalu pendek justru membuang jarak gratis**, misalnya <InlineMath math="a=1{,}4" /> memberi <InlineMath math="\text{Rp}56{.}000" />. Total paling kecil tetap <InlineMath math="\text{Rp}53{.}300" />.
 
 Jadi, total tarif paling sedikit adalah <InlineMath math="\text{Rp}53{.}300" />.

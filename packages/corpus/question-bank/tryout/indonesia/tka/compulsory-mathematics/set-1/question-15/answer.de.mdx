@@ -27,6 +27,49 @@ L_{ABB'A'}&=32-(2+8+4+6) \\
 &=12\text{ Flächeneinheiten}
 \end{aligned}" />
 
+Zeichne die vier Punkte mit ihrem umschließenden Rechteck. **Das Viereck <InlineMath math="ABB'A'" /> ist das Rechteck <InlineMath math="8\times4" /> ohne die vier Eckdreiecke**. Die Strecken von <InlineMath math="P" /> zu jedem Punkt und seinem Bild sind gleich lang und stehen senkrecht aufeinander, das liefert die Probe.
+
+<MathVisual
+  title={<>Viereck <InlineMath math="ABB'A'" /> im umschließenden Rechteck</>}
+  description={<>Die Punkte <InlineMath math="A(4,2)" /> und <InlineMath math="B(6,4)" /> gehen bei der Drehung um <InlineMath math="90^\circ" /> um <InlineMath math="P(1,1)" /> in <InlineMath math="A'(0,4)" /> und <InlineMath math="B'(-2,6)" /> über. Das Viereck <InlineMath math="ABB'A'" /> liegt im Rechteck von <InlineMath math="x=-2" /> bis <InlineMath math="x=6" /> und von <InlineMath math="y=2" /> bis <InlineMath math="y=6" />. Die Strecken <InlineMath math="PA" /> und <InlineMath math="PA'" /> sowie <InlineMath math="PB" /> und <InlineMath math="PB'" /> bilden bei <InlineMath math="P" /> rechte Winkel.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 7.5 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "box", kind: "polygon", appearance: "reference", vertices: [{ x: -2, y: 2 }, { x: 6, y: 2 }, { x: 6, y: 6 }, { x: -2, y: 6 }] },
+      { id: "quad", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 2 }, { x: 6, y: 4 }, { x: -2, y: 6 }, { x: 0, y: 4 }] },
+      { id: "arm-a", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 4, y: 2 } },
+      { id: "arm-a-image", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 0, y: 4 } },
+      { id: "arm-b", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 6, y: 4 } },
+      { id: "arm-b-image", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: -2, y: 6 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 6, y: 4 } },
+      { id: "a-image", kind: "point", appearance: "secondary", at: { x: 0, y: 4 } },
+      { id: "b-image", kind: "point", appearance: "secondary", at: { x: -2, y: 6 } },
+      { id: "p", kind: "point", appearance: "construction", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 4, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a-image", objectId: "a-image", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "b-image", objectId: "b-image", at: { x: -2, y: 6 }, placement: "above-left" },
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Es gibt eine schnelle Probe. Die Dreiecke <InlineMath math="PAA'" /> und <InlineMath math="PBB'" /> sind gleichschenklig rechtwinklig mit dem rechten Winkel bei <InlineMath math="P" />, denn eine Drehung um <InlineMath math="90^\circ" /> erhält jeden Abstand zum Zentrum. Das Dreieck <InlineMath math="PAB" /> und sein Bild <InlineMath math="PA'B'" /> sind kongruent, ihre Beiträge heben sich also auf. Übrig bleibt die Differenz der beiden rechtwinkligen Dreiecke.
 
 <BlockMath math="\begin{aligned}

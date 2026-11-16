@@ -13,6 +13,39 @@ L_{\text{Wasserquerschnitt}}&=\tfrac12\cdot25\cdot25=312{,}5\text{ cm}^2 \\
 V_{\text{Rest}}&=312{,}5\cdot30=9{.}375\text{ cm}^3=9{,}375\text{ Liter}
 \end{aligned}" />
 
+Zeichne den seitlichen Querschnitt des Aquariums, wenn der Boden um <InlineMath math="45^\circ" /> geneigt ist. **Die Wasseroberfläche ist waagerecht und berührt den Rand der Wand**, also bildet das restliche Wasser ein gleichschenklig-rechtwinkliges Dreieck mit Schenkeln <InlineMath math="25" />.
+
+<MathVisual
+  title={<>Seitlicher Querschnitt des um <InlineMath math="45^\circ" /> geneigten Aquariums</>}
+  description={<>Die Kippkante liegt auf dem Boden. Der Boden von <InlineMath math="40\text{ cm}" /> steigt unter <InlineMath math="45^\circ" /> nach links, und die Wand von <InlineMath math="25\text{ cm}" /> über der Kippkante steigt senkrecht zum Boden nach rechts. Die Wasseroberfläche ist die waagerechte Linie durch den Rand der Wand. Das restliche Wasser ist ein bei der Kippkante rechtwinkliges Dreieck mit zwei Schenkeln von <InlineMath math="25\text{ cm}" />, einer an der Wand und einer am Boden.</>}
+  labels={{
+    wall: <InlineMath math="25" />,
+    base: <InlineMath math="25" />,
+    tank: <>Querschnitt <InlineMath math="40\times25" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -36, max: 24 },
+      y: { min: -3, max: 50 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -34, y: 0 }, to: { x: 22, y: 0 } },
+      { id: "tank", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: -20 * Math.sqrt(2), y: 20 * Math.sqrt(2) }, { x: -7.5 * Math.sqrt(2), y: 32.5 * Math.sqrt(2) }, { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }] },
+      { id: "water", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }, { x: -12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) }] },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) } },
+      { id: "base", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -12.5 * Math.sqrt(2), y: 12.5 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 6.25 * Math.sqrt(2), y: 6.25 * Math.sqrt(2) }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: -6.25 * Math.sqrt(2), y: 6.25 * Math.sqrt(2) }, placement: "left" },
+      { key: "tank", objectId: "tank", at: { x: -7.5 * Math.sqrt(2), y: 32.5 * Math.sqrt(2) }, placement: "above" },
+    ],
+  }}
+/>
+
 # Das übergelaufene Wasser
 
 Die verbleibenden <InlineMath math="9{,}375" /> Liter sind weniger als die <InlineMath math="18" /> Liter vom Anfang, es läuft also wirklich Wasser über. **Das übergelaufene Wasser ist die Differenz aus Anfangsmenge und Rest**.

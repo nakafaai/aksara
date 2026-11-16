@@ -19,6 +19,44 @@ d+3&=12 \\
 d&=9
 \end{aligned}" />
 
+Draw both of Dinda's positions with the lamp's ray over her head. **Each position gives a pair of similar triangles whose large base is the distance to the pole plus the shadow**. The arrow under the ground is how far Dinda moves.
+
+<MathVisual
+  title={<>Dinda's shadow at two positions</>}
+  description={<>A <InlineMath math="6\text{ m}" /> pole stands at the origin with the lamp on top. In the first position Dinda, <InlineMath math="1.5\text{ m}" /> tall, stands <InlineMath math="6\text{ m}" /> from the pole and her shadow reaches <InlineMath math="8\text{ m}" />. In the second position she stands <InlineMath math="9\text{ m}" /> from the pole and her shadow reaches <InlineMath math="12\text{ m}" />. The arrow from <InlineMath math="6" /> to <InlineMath math="9" /> shows a move of <InlineMath math="3\text{ m}" />.</>}
+  labels={{
+    pole: <InlineMath math="6\text{ m}" />,
+    first: <InlineMath math="2" />,
+    second: <InlineMath math="3" />,
+    walk: <InlineMath math="3\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "ray-first", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 8, y: 0 } },
+      { id: "ray-second", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 12, y: 0 } },
+      { id: "dinda-first", kind: "segment", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 6, y: 1.5 } },
+      { id: "dinda-second", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: 1.5 } },
+      { id: "first", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "second", kind: "segment", appearance: "highlight", from: { x: 9, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "walk", kind: "vector", appearance: "answer", from: { x: 6, y: -0.5 }, to: { x: 9, y: -0.5 } },
+    ],
+    labels: [
+      { key: "pole", objectId: "pole", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "first", objectId: "first", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 10.5, y: 0 }, placement: "above" },
+      { key: "walk", objectId: "walk", at: { x: 7.5, y: -0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Dinda moves from <InlineMath math="6" /> m to <InlineMath math="9" /> m from the post, so the distance walked is <InlineMath math="9-6=3" /> m.
 
 So Dinda walks <InlineMath math="3" /> m.

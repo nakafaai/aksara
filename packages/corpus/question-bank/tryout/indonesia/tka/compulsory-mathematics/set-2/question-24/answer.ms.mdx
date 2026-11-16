@@ -32,6 +32,18 @@ Semak dengan cara lain, berdasarkan berapa orang antara Andi dan Budi yang masuk
 \text{jumlah}&=65+110=175
 \end{aligned}" />
 
+Rajah di bawah merumuskan semakan itu. **Setiap jawatankuasa masuk tepat satu cabang**, jadi kedua-dua cabang boleh dijumlahkan tanpa ada yang terkira dua kali.
+
+<Mermaid
+  title={<>Jawatankuasa mengikut penyertaan Andi dan Budi</>}
+  description={<>Selepas Rani dikeluarkan, calonnya <InlineMath math="5" /> lelaki dan <InlineMath math="5" /> perempuan. Cabang tanpa Andi dan Budi memberikan <InlineMath math="70-5=65" /> jawatankuasa, kerana jawatankuasa yang semuanya perempuan dibuang. Cabang dengan tepat seorang daripada mereka memberikan <InlineMath math="2\cdot(56-1)=110" /> jawatankuasa, kerana jawatankuasa yang semuanya lelaki dibuang. Jumlahnya <InlineMath math="175" />.</>}
+  chart={`flowchart TD
+  S["Calon: 5 lelaki + 5 perempuan"] --> N["Tanpa Andi dan Budi: C(8, 4) − C(5, 4) = 65"]
+  S --> O["Tepat seorang daripada mereka: 2 · (C(8, 3) − C(3, 3)) = 110"]
+  N --> T["Jumlah: 65 + 110 = 175"]
+  O --> T`}
+/>
+
 Pada baris pertama, calon tinggal <InlineMath math="3" /> lelaki dan <InlineMath math="5" /> perempuan, dan jawatankuasa semua perempuan mesti dibuang. Pada baris kedua, sudah ada seorang lelaki, jadi tiga ahli lain cuma tidak boleh semuanya lelaki.
 
 # Mengapa pilihan lain salah

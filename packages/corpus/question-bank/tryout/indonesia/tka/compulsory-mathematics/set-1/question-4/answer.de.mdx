@@ -35,6 +35,43 @@ Die Formel <InlineMath math="c=2a-60" /> wächst mit <InlineMath math="a" />, al
 
 <BlockMath math="b=180-138=42,\qquad c=2\cdot46-60=32" />
 
+Zeichne <InlineMath math="b" /> und <InlineMath math="c" /> als Funktionen von <InlineMath math="a" />, dann siehst du alle drei Bedingungen auf einmal. Es gibt mehr A-Gutscheine als B-Gutscheine **nur rechts vom Schnittpunkt bei <InlineMath math="a=45" />**, und dort steigt die Gerade von <InlineMath math="c" /> weiter. Die erste ganze Zahl rechts vom Schnittpunkt, <InlineMath math="a=46" />, liefert also das kleinste <InlineMath math="c" />.
+
+<MathVisual
+  title={<>Anzahl der B- und C-Gutscheine nach Anzahl der A-Gutscheine</>}
+  description={<>Die waagerechte Achse ist <InlineMath math="a" /> von <InlineMath math="31" /> bis <InlineMath math="59" />, der Bereich mit <InlineMath math="b\ge1" /> und <InlineMath math="c\ge1" />. Die Gerade <InlineMath math="b=180-3a" /> fällt, die Gerade <InlineMath math="c=2a-60" /> steigt, und die Bezugsgerade <InlineMath math="b=a" /> schneidet die Gerade von <InlineMath math="b" /> in <InlineMath math="(45,\ 45)" />. Die Bedingung <InlineMath math="a>b" /> gilt rechts von diesem Punkt. Der Punkt <InlineMath math="(46,\ 32)" /> auf der Geraden von <InlineMath math="c" /> ist der kleinste zulässige Wert von <InlineMath math="c" />.</>}
+  labels={{
+    b: <InlineMath math="b=180-3a" />,
+    c: <InlineMath math="c=2a-60" />,
+    equal: <InlineMath math="b=a" />,
+    tie: <InlineMath math="a=b=45" />,
+    least: <InlineMath math="(46,\ 32)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 28, max: 62 },
+      y: { min: -4, max: 92 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "b", kind: "function", appearance: "secondary", formula: "180 - 3x", domain: { min: 31, max: 59 } },
+      { id: "c", kind: "function", appearance: "primary", formula: "2x - 60", domain: { min: 31, max: 59 } },
+      { id: "equal", kind: "function", appearance: "reference", formula: "x", domain: { min: 31, max: 59 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 45, y: 45 } },
+      { id: "least", kind: "point", appearance: "answer", at: { x: 46, y: 32 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 35, y: 75 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 55, y: 50 }, placement: "below-right" },
+      { key: "equal", objectId: "equal", at: { x: 58, y: 58 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 45, y: 45 }, placement: "left" },
+      { key: "least", objectId: "least", at: { x: 46, y: 32 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="46+42+32=120" /> und <InlineMath math="50\cdot46+30\cdot42+20\cdot32=2{.}300+1{.}260+640=4{.}200" /> Tausend Rupiah. Auch <InlineMath math="46>42" /> stimmt, also **ist dieser Verkauf tatsächlich möglich**.
 
 # Warum die anderen Antworten falsch sind

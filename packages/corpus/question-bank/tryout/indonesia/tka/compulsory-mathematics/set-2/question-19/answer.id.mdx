@@ -31,6 +31,40 @@ n=20&:\ 14{,}7+20\cdot0{,}16=17{,}9\text{ cm}\le18\text{ cm} \\
 n=21&:\ 14{,}7+21\cdot0{,}16=18{,}06\text{ cm}>18\text{ cm}
 \end{aligned}" />
 
+Gambar tinggi air terhadap banyak kelereng kecil. **Garisnya naik <InlineMath math="0{,}16\text{ cm}" /> per kelereng dan melewati bibir tabung di antara kelereng ke-<InlineMath math="20" /> dan ke-<InlineMath math="21" />**.
+
+<MathVisual
+  title={<>Tinggi air menurut banyak kelereng kecil</>}
+  description={<>Sumbu mendatar adalah banyak kelereng kecil <InlineMath math="n" />, sumbu tegak adalah tinggi air dalam cm. Garis <InlineMath math="14{,}7+0{,}16n" /> mulai di <InlineMath math="14{,}7" /> dan naik lurus. Garis mendatar di <InlineMath math="18" /> adalah bibir tabung. Titik untuk <InlineMath math="n=20" /> ada di <InlineMath math="17{,}9" />, di bawah bibir, sedangkan titik untuk <InlineMath math="n=21" /> ada di <InlineMath math="18{,}06" />, di atas bibir.</>}
+  labels={{
+    level: <InlineMath math="14{,}7+0{,}16n" />,
+    rim: <>bibir tabung <InlineMath math="18\text{ cm}" /></>,
+    last: <InlineMath math="(20,\ 17{,}9)" />,
+    spill: <InlineMath math="(21,\ 18{,}06)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 23 },
+      y: { min: 14.4, max: 18.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "primary", formula: "14.7 + 0.16x", domain: { min: 0, max: 22 } },
+      { id: "rim", kind: "function", appearance: "reference", formula: "18", domain: { min: 0, max: 22 } },
+      { id: "last", kind: "point", appearance: "answer", at: { x: 20, y: 17.9 } },
+      { id: "spill", kind: "point", appearance: "warning", at: { x: 21, y: 18.06 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 5, y: 15.5 }, placement: "below-right" },
+      { key: "rim", objectId: "rim", at: { x: 3, y: 18 }, placement: "above" },
+      { key: "last", objectId: "last", at: { x: 20, y: 17.9 }, placement: "below-right" },
+      { key: "spill", objectId: "spill", at: { x: 21, y: 18.06 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Kenapa pilihan lain salah
 
 - <InlineMath math="9" /> muncul kalau volume dianggap sebanding dengan diameter, sehingga kenaikannya <InlineMath math="0{,}54\cdot\frac23=0{,}36\text{ cm}" />.
