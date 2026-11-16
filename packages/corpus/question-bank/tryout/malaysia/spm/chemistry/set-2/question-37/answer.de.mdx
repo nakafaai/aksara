@@ -1,0 +1,34 @@
+# Die Bindungen der Kette zählen, dann ihr Wasser abziehen
+
+Jede Amidbindung entsteht, wenn eine Carboxygruppe der Säure auf eine Aminogruppe des Diamins trifft, und dabei wird ein Wassermolekül frei. **Eine gerade Kette aus <InlineMath math="1000" /> Monomeren hat eine Bindung weniger, als sie Monomere hat**, so wie eine Perlenkette eine Lücke weniger hat als Perlen.
+
+<Mermaid
+  title={<>Monomere, verbunden durch Amidbindungen</>}
+  description={<>Säure und Diamin wechseln sich entlang der Kette ab. Jeder Pfeil ist eine Amidbindung und ein abgegebenes Wassermolekül, und die Kette endet beim <InlineMath math="1000" />. Monomer.</>}
+  chart={"flowchart LR\n  A1[\"Hexandisäure\"] -->|Amidbindung, H2O frei| B1[\"Hexan-1,6-diamin\"]\n  B1 -->|Amidbindung, H2O frei| A2[\"Hexandisäure\"]\n  A2 -->|Amidbindung, H2O frei| B2[\"Hexan-1,6-diamin\"]\n  B2 -.-> Z[\"bis zum 1000. Monomer\"]"}
+/>
+
+<BlockMath math="\begin{aligned}
+\text{Bindungen}&=1000-1=999\ \Rightarrow\ 999\ \text{H}_2\text{O}\\
+M_r&=500(146)+500(116)-999(18)\\
+&=73{.}000+58{.}000-17{.}982=113{.}018
+\end{aligned}" />
+
+<Chart
+  title={<>Masse der Monomere, des Wassers und der Kette</>}
+  description={<>Die Monomere ergeben zusammen <InlineMath math="131{.}000" />. Das abgegebene Wasser macht <InlineMath math="17{.}982" /> aus, also bleiben <InlineMath math="113{.}018" /> für die Kette.</>}
+  bars="apart"
+  categories={["Monomere", "Abgegebenes Wasser", "Nylonkette"]}
+  series={[
+    { label: "Relative Masse", mark: "bar", values: [131000, 17982, 113018] },
+  ]}
+  valueLabel="Relative Masse"
+/>
+
+Die Kette setzt also <InlineMath math="999" /> Wassermoleküle frei und hat eine relative Molekülmasse von <InlineMath math="113{.}018" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1000" /> Wassermoleküle gibt eines pro Monomer. Die beiden Kettenenden behalten ihre Gruppen, also gibt es eine Bindung weniger.
+- <InlineMath math="500" /> zählt ein Wassermolekül pro Monomerpaar. **Jede Bindung zwischen Nachbarn setzt Wasser frei, auch die zwischen einem Paar und dem nächsten**.
+- <InlineMath math="131{.}000" /> zählt das Wasser richtig, zieht seine Masse aber nie von den Monomeren ab.

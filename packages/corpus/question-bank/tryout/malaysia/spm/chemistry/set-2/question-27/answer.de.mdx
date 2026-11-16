@@ -1,0 +1,30 @@
+# Erst den Trend fortsetzen, dann die Wärme nutzen
+
+Das Diagramm endet bei Butan, also muss die Verbrennungsenthalpie von Pentan aus dem Trend kommen. Jede weitere <InlineMath math="\text{CH}_2" />-Einheit bringt etwa gleich viel dazu, <InlineMath math="2220-1560=660" /> und <InlineMath math="2880-2220=660\text{ kJ}" />, weil jedes Alkan eine <InlineMath math="\text{CH}_2" />-Gruppe mehr verbrennt. Dann **legt die vom Wasser aufgenommene Wärme die Stoffmenge Pentan fest**.
+
+Das Diagramm verlängert die Linie um einen Schritt, bis Pentan.
+
+<Chart
+  title={<>Verbrennungsenthalpie bis Pentan verlängert</>}
+  description={<>Die gemessenen Werte steigen von <InlineMath math="890" /> für Methan bis <InlineMath math="2880\text{ kJ mol}^{-1}" /> für Butan. Ein weiterer Schritt von <InlineMath math="660" /> ergibt etwa <InlineMath math="3540\text{ kJ mol}^{-1}" /> für Pentan.</>}
+  categories={["Methan", "Ethan", "Propan", "Butan", "Pentan"]}
+  series={[
+    { label: "Gemessen", mark: "line", values: [890, 1560, 2220, 2880, null] },
+    { label: "Vorhergesagt", mark: "line", values: [null, null, null, 2880, 2880 + (2880 - 2220)] },
+  ]}
+  valueLabel="Verbrennungsenthalpie (kJ pro mol)"
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta H(\text{C}_5\text{H}_{12})&\approx-(2880+660)=-3540\text{ kJ mol}^{-1}\\
+Q&=250\times4{,}2\times40{,}0=42{.}000\text{ J}=42{,}0\text{ kJ}\\
+n&=\frac{42{,}0}{3540}=0{,}0119\text{ mol}\Rightarrow m=0{,}0119\times72=0{,}85\text{ g}
+\end{aligned}" />
+
+Es werden also etwa <InlineMath math="0{,}85\text{ g}" /> Pentan verbrannt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}05\text{ g}" /> nimmt die <InlineMath math="2880\text{ kJ mol}^{-1}" /> von Butan, bleibt also beim letzten Wert im Diagramm stehen, statt bis Pentan zu verlängern.
+- <InlineMath math="0{,}72\text{ g}" /> geht zwei Schritte weiter, <InlineMath math="2880+2\cdot660=4200" />, das ist die Vorhersage für Hexan.
+- <InlineMath math="0{,}69\text{ g}" /> rechnet die Stoffmenge mit der molaren Masse von Butan, <InlineMath math="58" />, um. **Pentan ist <InlineMath math="\text{C}_5\text{H}_{12}" />, seine molare Masse also <InlineMath math="72" />**.

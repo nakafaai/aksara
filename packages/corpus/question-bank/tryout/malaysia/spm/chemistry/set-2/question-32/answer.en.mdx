@@ -1,0 +1,49 @@
+# Each ethene takes one hydrogen and leaves one ethane
+
+Ethane does not react. Ethene adds hydrogen, so two volumes of gas become one. **Every cubic centimetre of ethene shrinks the total by one cubic centimetre**, which makes the decrease equal to the ethene.
+
+<BlockMath math="\begin{aligned}
+\text{C}_2\text{H}_4+\text{H}_2&\rightarrow\text{C}_2\text{H}_6\\
+\text{decrease}&=(30+40)-50=20\text{ cm}^3\\
+V(\text{C}_2\text{H}_4)&=20\text{ cm}^3
+\end{aligned}" />
+
+Turn the two molecules: ethane is ethene with its double bond opened and one hydrogen atom added to each carbon.
+
+<MoleculeShapeLab
+  title={<>Ethene becomes ethane</>}
+  description={<>Ethene has a double bond between its two carbon atoms. After it adds hydrogen, ethane has only single bonds.</>}
+  molecules={[
+    { id: "ethene", name: "ethene" },
+    { id: "ethane", name: "ethane" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Ethene and ethane",
+  }}
+/>
+
+<Chart
+  title={<>Gas volumes before and after</>}
+  description={<>Before: <InlineMath math="20\text{ cm}^3" /> ethene, <InlineMath math="10\text{ cm}^3" /> ethane and <InlineMath math="40\text{ cm}^3" /> hydrogen. After: no ethene, <InlineMath math="30\text{ cm}^3" /> ethane and <InlineMath math="20\text{ cm}^3" /> hydrogen, <InlineMath math="50\text{ cm}^3" /> in all.</>}
+  bars="apart"
+  categories={["Ethene", "Ethane", "Hydrogen"]}
+  series={[
+    { label: "Before", mark: "bar", values: [20, 10, 40] },
+    { label: "After", mark: "bar", values: [0, 30, 20] },
+  ]}
+  valueLabel="Volume (cm³)"
+/>
+
+Check it: <InlineMath math="30\text{ cm}^3" /> of ethane and <InlineMath math="20\text{ cm}^3" /> of hydrogen are left, <InlineMath math="50\text{ cm}^3" /> in all, as measured.
+
+# Why the other options are wrong
+
+- <InlineMath math="10\text{ cm}^3" /> splits the <InlineMath math="20\text{ cm}^3" /> decrease between ethene and hydrogen, but one volume of each becomes one volume of ethane, so the loss equals the ethene alone.
+- <InlineMath math="30\text{ cm}^3" /> treats the whole mixture as ethene. Then <InlineMath math="30\text{ cm}^3" /> of hydrogen would react and only <InlineMath math="40\text{ cm}^3" /> of gas would remain.
+- <InlineMath math="40\text{ cm}^3" /> assumes all the hydrogen is used up. **Hydrogen is in excess here**, and <InlineMath math="20\text{ cm}^3" /> of it is left over.

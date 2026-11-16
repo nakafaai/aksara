@@ -1,0 +1,29 @@
+# Compare the heat the fuel gives with the heat the water gets
+
+The data book value tells you how much heat the burnt propan-1-ol released. The temperature rise tells you how much of it the water actually took in. **The percentage is the heat absorbed over the heat released**, so the smaller number goes on top.
+
+<BlockMath math="\begin{aligned}
+n(\text{C}_3\text{H}_7\text{OH})&=\frac{0.90}{60}=0.015\text{ mol}\\
+\text{heat released}&=0.015\times2016=30.24\text{ kJ}\\
+\text{heat absorbed}&=250\times4.2\times24.0=25\,200\text{ J}=25.2\text{ kJ}\\
+\text{percentage}&=\frac{25.2}{30.24}\times100\%=83.3\%
+\end{aligned}" />
+
+<Chart
+  title={<>Heat released and heat absorbed</>}
+  description={<>Burning <InlineMath math="0.015\text{ mol}" /> of propan-1-ol releases <InlineMath math="30.24\text{ kJ}" />, and the water absorbs <InlineMath math="25.2\text{ kJ}" />. The rest warms the can and the air.</>}
+  bars="apart"
+  categories={["Released by the fuel", "Absorbed by the water"]}
+  series={[
+    { label: "Heat", mark: "bar", values: [30.24, 25.2] },
+  ]}
+  valueLabel="Heat (kJ)"
+/>
+
+So <InlineMath math="83.3\%" /> of the heat reaches the water, and the rest is lost to the can and the surrounding air.
+
+# Why the other options are wrong
+
+- <InlineMath math="63.9\%" /> uses <InlineMath math="46" />, the molar mass of ethanol. Propan-1-ol is <InlineMath math="\text{C}_3\text{H}_7\text{OH}" />, so its molar mass is <InlineMath math="60" />.
+- <InlineMath math="120\%" /> divides the heat released by the heat absorbed. **No more than all of the heat can reach the water, so the percentage must be under <InlineMath math="100\%" />**.
+- <InlineMath math="1.25\%" /> compares the water's <InlineMath math="25.2\text{ kJ}" /> with the heat of a whole mole, <InlineMath math="2016\text{ kJ}" />, instead of the <InlineMath math="0.015\text{ mol}" /> that burnt.

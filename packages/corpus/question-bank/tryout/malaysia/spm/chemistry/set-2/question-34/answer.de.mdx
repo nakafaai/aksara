@@ -1,0 +1,48 @@
+# Das Wasser kühlt ab, also nimmt das Lösen Wärme auf
+
+Die Wärme, die den Feststoff auflöst, kommt aus dem Wasser, deshalb sinkt die Temperatur. **Wärme aufnehmen heißt endotherm, also ist das Vorzeichen positiv**. Berechne die Wärme aus dem Temperaturabfall und teile sie dann durch die gelöste Stoffmenge.
+
+<BlockMath math="\begin{aligned}
+\Delta\theta&=28{,}0-24{,}6=3{,}4^\circ\text{C}\\
+Q&=50\times4{,}2\times3{,}4=714\text{ J}=0{,}714\text{ kJ}\\
+n(\text{NH}_4\text{NO}_3)&=\frac{2{,}0}{80}=0{,}025\text{ mol}\\
+\Delta H&=+\frac{0{,}714}{0{,}025}=+28{,}6\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+Im Energiediagramm liegen die gelösten Ionen um diesen Betrag über Feststoff und Wasser, denn sie tragen jetzt die Wärme, die das Wasser verloren hat.
+
+<MathVisual
+  title={<>Energiediagramm für das Lösen von Ammoniumnitrat</>}
+  description={<>Die Produkte, die gelösten Ionen, liegen höher als die Edukte, Feststoff und Wasser. Der Pfeil zeigt nach oben und gibt <InlineMath math="+28{,}6\text{ kJ mol}^{-1}" /> an.</>}
+  labels={{
+    energy: <>Energie</>,
+    reactants: <InlineMath math="\text{NH}_4\text{NO}_3(s)+\text{H}_2\text{O}(l)" />,
+    products: <InlineMath math="\text{NH}_4^+(aq)+\text{NO}_3^-(aq)" />,
+    change: <InlineMath math="\Delta H=+28{,}6\text{ kJ mol}^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -0.6, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "vector", appearance: "reference", from: { x: -0.5, y: -0.4 }, to: { x: -0.5, y: 2 } },
+      { id: "reactant-level", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "product-level", kind: "segment", appearance: "primary", from: { x: 2.8, y: 1.4 }, to: { x: 5, y: 1.4 } },
+      { id: "enthalpy", kind: "vector", appearance: "answer", from: { x: 2.5, y: 0 }, to: { x: 2.5, y: 1.4 } },
+    ],
+    labels: [
+      { key: "energy", objectId: "axis", at: { x: -0.5, y: 2 }, placement: "above" },
+      { key: "reactants", objectId: "reactant-level", at: { x: 1.1, y: 0 }, placement: "below" },
+      { key: "products", objectId: "product-level", at: { x: 3.9, y: 1.4 }, placement: "above" },
+      { key: "change", objectId: "enthalpy", at: { x: 2.5, y: 0.7 }, placement: "right" },
+    ],
+  }}
+/>
+
+Die Enthalpieänderung beträgt also <InlineMath math="+28{,}6\text{ kJ mol}^{-1}" />, mit den Produkten über den Edukten.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-28{,}6\text{ kJ mol}^{-1}" /> deutet den Temperaturabfall als abgegebene Wärme. Das Wasser hat Wärme an das Lösen verloren, also hat die Reaktion sie aufgenommen.
+- <InlineMath math="+0{,}714\text{ kJ mol}^{-1}" /> ist die Wärme für <InlineMath math="2{,}0\text{ g}" />, nicht für ein Mol. **Teile durch <InlineMath math="0{,}025\text{ mol}" />, um den Wert pro Mol zu bekommen**.
+- Ein positives <InlineMath math="\Delta H" /> mit den Edukten oben widerspricht sich. Edukte über den Produkten würden bedeuten, dass Energie frei wird.

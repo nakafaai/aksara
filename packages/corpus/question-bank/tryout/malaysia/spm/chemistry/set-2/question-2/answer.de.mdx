@@ -1,0 +1,42 @@
+# Zwei unbekannte Häufigkeiten brauchen zwei Gleichungen
+
+Bei drei Isotopen und einer gegebenen Häufigkeit sind zwei Häufigkeiten unbekannt. **Eine Gleichung liefert die Summe der Prozente, die andere der gewichtete Mittelwert**.
+
+Sei <InlineMath math="x" /> der Anteil von Magnesium-25 und <InlineMath math="y" /> der Anteil von Magnesium-26 in Prozent.
+
+- Prozente: <InlineMath math="x + y = 100 - 79 = 21" />.
+- Gewichteter Mittelwert: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24{,}32" />, also <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
+- Ziehe <InlineMath math="25(x + y) = 525" /> ab: <InlineMath math="y = 536 - 525 = 11" />, und <InlineMath math="x = 10" />.
+
+<Chart
+  title={<>Häufigkeit der Magnesiumisotope</>}
+  bars="apart"
+  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
+  series={[
+    { label: "Häufigkeit (%)", mark: "bar", values: [79, 10, 11] },
+  ]}
+  valueLabel="Häufigkeit (%)"
+  description={<>Magnesium-24 macht <InlineMath math="79\%" />, Magnesium-25 <InlineMath math="10\%" /> und Magnesium-26 <InlineMath math="11\%" /> der Atome aus.</>}
+/>
+
+<MassSpectrometerLab
+  title={<>Magnesium im Massenspektrometer</>}
+  description={<>Die drei Isotope laufen auf drei Bahnen, und die Peakhöhen geben ihre Häufigkeiten.</>}
+  samples={["magnesium"]}
+  labels={{
+    average: <>Mittlere relative Atommasse</>,
+    choose: "Element wählen",
+    isotopes: <>Isotope und Häufigkeit</>,
+    north: "N",
+    radius: <>Bahnradius</>,
+    ratio: <>Verhältnis der Radien</>,
+    south: "S",
+    view: "Massenspektrometer",
+  }}
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="10\,\%" /> ist die Häufigkeit von Magnesium-25: **Die beiden Unbekannten wurden am Ende vertauscht**.
+- <InlineMath math="21\,\%" /> fasst beide schwereren Isotope zusammen, als wäre Magnesium-26 das einzige andere Isotop.
+- <InlineMath math="5{,}5\,\%" /> halbiert die übrigen <InlineMath math="11\,\%" />, als müssten sie noch einmal geteilt werden.

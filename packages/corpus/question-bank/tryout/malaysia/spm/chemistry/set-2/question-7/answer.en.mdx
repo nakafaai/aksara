@@ -1,0 +1,42 @@
+# Ion charge matters most, ion size next, and the count of ions not at all
+
+The attraction between ions grows with **the product of their charges** and with how close small ions can get. Compare pairs that differ in only one of these.
+
+<Chart
+  title={<>Melting Points of Four Ionic Compounds</>}
+  bars="apart"
+  categories={["NaCl", "NaF", "MgF₂", "MgO"]}
+  series={[
+    { label: "Melting point (°C)", mark: "bar", values: [801, 993, 1263, 2852] },
+  ]}
+  valueLabel="Melting point (°C)"
+  description={<>Melting points: sodium chloride <InlineMath math="801" />, sodium fluoride <InlineMath math="993" />, magnesium fluoride <InlineMath math="1263" /> and magnesium oxide <InlineMath math="2852^\circ\text{C}" />.</>}
+/>
+
+- I is correct: <InlineMath math="\text{Mg}^{2+}" /> and <InlineMath math="\text{O}^{2-}" /> attract with charges <InlineMath math="2 \times 2" />, against <InlineMath math="1 \times 1" /> for <InlineMath math="\text{Na}^+" /> and <InlineMath math="\text{F}^-" />, so magnesium oxide melts at <InlineMath math="2852" /> against <InlineMath math="993^\circ\text{C}" />.
+- II is correct: both compounds hold <InlineMath math="\text{Na}^+" />, and the smaller <InlineMath math="\text{F}^-" /> sits closer to it than <InlineMath math="\text{Cl}^-" />, so the attraction is stronger.
+- III is wrong as an explanation: magnesium fluoride melts higher because <InlineMath math="\text{Mg}^{2+}" /> carries a larger charge than <InlineMath math="\text{Na}^+" />. **The number of ions per formula unit does not set the strength of the attraction**.
+- IV is wrong: ions in a solid lattice cannot move, so the solids do not conduct.
+
+So I and II are correct.
+
+<IonLatticeLab
+  title={<>Sodium Chloride Beside Magnesium Oxide</>}
+  description={<>Both crystals share the rock-salt lattice. Compare the ion radii and the unit cell edge: the doubly charged ions sit closer together.</>}
+  crystals={["sodium-chloride", "magnesium-oxide"]}
+  labels={{
+    cells: "Unit cells per edge",
+    choose: "Choose a crystal",
+    count: <>Number of ions</>,
+    formula: <>Formula</>,
+    ions: <>Ions and their radii</>,
+    lattice: <>Unit cell edge</>,
+    view: "Ionic crystal lattice",
+  }}
+/>
+
+# Why the other options are wrong
+
+- I and III only accepts III's reason, which **counts ions instead of comparing charges**.
+- II and IV only accepts IV, which holds only for the molten or dissolved compounds.
+- I, II and III only adds III, the same counting slip.

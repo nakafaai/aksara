@@ -1,0 +1,42 @@
+# Die Ionenladung zählt am meisten, die Ionengröße danach, die Zahl der Ionen gar nicht
+
+Die Anziehung zwischen Ionen wächst mit **dem Produkt ihrer Ladungen** und damit, wie nah kleine Ionen sich kommen. Vergleiche Paare, die sich nur in einem Punkt unterscheiden.
+
+<Chart
+  title={<>Schmelzpunkte von vier Ionenverbindungen</>}
+  bars="apart"
+  categories={["NaCl", "NaF", "MgF₂", "MgO"]}
+  series={[
+    { label: "Schmelzpunkt (°C)", mark: "bar", values: [801, 993, 1263, 2852] },
+  ]}
+  valueLabel="Schmelzpunkt (°C)"
+  description={<>Schmelzpunkte: Natriumchlorid <InlineMath math="801" />, Natriumfluorid <InlineMath math="993" />, Magnesiumfluorid <InlineMath math="1263" /> und Magnesiumoxid <InlineMath math="2852^\circ\text{C}" />.</>}
+/>
+
+- I stimmt: <InlineMath math="\text{Mg}^{2+}" /> und <InlineMath math="\text{O}^{2-}" /> ziehen sich mit den Ladungen <InlineMath math="2 \times 2" /> an, <InlineMath math="\text{Na}^+" /> und <InlineMath math="\text{F}^-" /> nur mit <InlineMath math="1 \times 1" />, also schmilzt Magnesiumoxid bei <InlineMath math="2852" /> statt bei <InlineMath math="993^\circ\text{C}" />.
+- II stimmt: Beide Verbindungen enthalten <InlineMath math="\text{Na}^+" />, und das kleinere <InlineMath math="\text{F}^-" /> kommt ihm näher als <InlineMath math="\text{Cl}^-" />, also ist die Anziehung stärker.
+- III ist als Erklärung falsch: Magnesiumfluorid schmilzt höher, weil <InlineMath math="\text{Mg}^{2+}" /> eine größere Ladung trägt als <InlineMath math="\text{Na}^+" />. **Die Zahl der Ionen pro Formeleinheit bestimmt die Stärke der Anziehung nicht**.
+- IV ist falsch: Ionen im festen Gitter können sich nicht bewegen, also leiten die Feststoffe nicht.
+
+Richtig sind also I und II.
+
+<IonLatticeLab
+  title={<>Natriumchlorid neben Magnesiumoxid</>}
+  description={<>Beide Kristalle haben dasselbe Steinsalzgitter. Vergleiche die Ionenradien und die Kante der Elementarzelle: Die zweifach geladenen Ionen liegen enger beieinander.</>}
+  crystals={["sodium-chloride", "magnesium-oxide"]}
+  labels={{
+    cells: "Elementarzellen pro Kante",
+    choose: "Kristall wählen",
+    count: <>Anzahl der Ionen</>,
+    formula: <>Formel</>,
+    ions: <>Ionen und ihre Radien</>,
+    lattice: <>Kante der Elementarzelle</>,
+    view: "Ionengitter",
+  }}
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und III nimmt die Begründung von III auf, die **Ionen zählt, statt Ladungen zu vergleichen**.
+- Nur II und IV nimmt IV auf, was nur für geschmolzene oder gelöste Verbindungen gilt.
+- Nur I, II und III fügt III hinzu, denselben Zählfehler.

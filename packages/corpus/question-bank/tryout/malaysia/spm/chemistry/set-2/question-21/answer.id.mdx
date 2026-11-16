@@ -1,0 +1,50 @@
+# Letakkan setiap logam pada satu skala terhadap tembaga
+
+Tembaga adalah kutub positif di tiga sel, jadi P, Q, dan R berada di bawah tembaga dalam deret elektrokimia, sebesar <InlineMath math="2{,}70" />, <InlineMath math="0{,}40" />, dan <InlineMath math="1{,}10\text{ V}" />. Di sel terakhir S adalah kutub positif, jadi **S berada di atas tembaga**, sebesar <InlineMath math="0{,}46\text{ V}" />. Tegangan tertinggi datang dari dua logam yang paling berjauhan pada skala itu.
+
+Pada satu skala dengan tembaga di nol, P adalah logam terendah dan S satu-satunya logam di atas tembaga.
+
+<MathVisual
+  title={<>Keempat logam pada satu skala dengan tembaga di nol</>}
+  description={<>P berada di <InlineMath math="-2{,}70\text{ V}" />, R di <InlineMath math="-1{,}10\text{ V}" />, Q di <InlineMath math="-0{,}40\text{ V}" />, tembaga di nol, dan S di <InlineMath math="+0{,}46\text{ V}" />. Panah dari P ke S merentang <InlineMath math="3{,}16\text{ V}" />, jarak terbesar.</>}
+  labels={{
+    p: <InlineMath math="\mathrm{P}:\ -2{,}70\text{ V}" />,
+    r: <InlineMath math="\mathrm{R}:\ -1{,}10\text{ V}" />,
+    q: <InlineMath math="\mathrm{Q}:\ -0{,}40\text{ V}" />,
+    cu: <InlineMath math="\mathrm{Cu}:\ 0" />,
+    s: <InlineMath math="\mathrm{S}:\ +0{,}46\text{ V}" />,
+    gap: <InlineMath math="E_{\text{sel}}=3{,}16\text{ V}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "secondary", at: { x: 0, y: -2.7 } },
+      { id: "point-r", kind: "point", appearance: "construction", at: { x: 0, y: -1.1 } },
+      { id: "point-q", kind: "point", appearance: "construction", at: { x: 0, y: -0.4 } },
+      { id: "point-cu", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "primary", at: { x: 0, y: 0.46 } },
+      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.8, y: -2.7 }, to: { x: 0.8, y: 0.46 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: -2.7 }, placement: "left" },
+      { key: "r", objectId: "point-r", at: { x: 0, y: -1.1 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -0.4 }, placement: "left" },
+      { key: "cu", objectId: "point-cu", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0.46 }, placement: "left" },
+      { key: "gap", objectId: "cell-voltage", at: { x: 0.8, y: -1.12 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="E_{\text{sel}}=0{,}46-(-2{,}70)=3{,}16\text{ V}" />
+
+P lebih rendah dalam deret, jadi P melepas elektron dan menjadi kutub negatif. Jadi P dan S menghasilkan <InlineMath math="3{,}16\text{ V}" />, dengan P sebagai kutub negatif.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="2{,}24\text{ V}" /> mengurangkan <InlineMath math="0{,}46" /> dari <InlineMath math="2{,}70" />, seakan-akan S juga di bawah tembaga. **Kolom kutub menempatkan S di sisi lain tembaga**.
+- <InlineMath math="3{,}16\text{ V}" /> dengan S sebagai kutub negatif membalik perannya: logam yang lebih rendah dalam deret, P, yang melepas elektron.
+- P dan Q pada <InlineMath math="2{,}30\text{ V}" /> membaca sel S seolah-olah tembaga juga kutub positifnya, jadi Q tampak lebih jauh dari P daripada S.

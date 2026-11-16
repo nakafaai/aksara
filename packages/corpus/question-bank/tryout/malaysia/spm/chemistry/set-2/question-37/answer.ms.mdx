@@ -1,0 +1,34 @@
+# Kira rangkai dalam rantai, kemudian tolak air yang dibebaskan
+
+Setiap rangkai amida terbentuk apabila kumpulan karboksil asid bertemu kumpulan amino diamina, dan rangkai itu membebaskan satu molekul air. **Rantai lurus <InlineMath math="1000" /> monomer mempunyai satu rangkai kurang daripada bilangan monomernya**, sama seperti barisan manik ada satu celah kurang daripada bilangan maniknya.
+
+<Mermaid
+  title={<>Monomer yang disambung oleh rangkai amida</>}
+  description={<>Asid dan diamina berselang-seli di sepanjang rantai. Setiap anak panah ialah satu rangkai amida dan satu molekul air yang dibebaskan, dan rantai berakhir pada monomer ke-<InlineMath math="1000" />.</>}
+  chart={"flowchart LR\n  A1[\"asid heksanadioik\"] -->|rangkai amida, H2O keluar| B1[\"heksana-1,6-diamina\"]\n  B1 -->|rangkai amida, H2O keluar| A2[\"asid heksanadioik\"]\n  A2 -->|rangkai amida, H2O keluar| B2[\"heksana-1,6-diamina\"]\n  B2 -.-> Z[\"hingga monomer ke-1000\"]"}
+/>
+
+<BlockMath math="\begin{aligned}
+\text{rangkai}&=1000-1=999\ \Rightarrow\ 999\ \text{H}_2\text{O}\\
+M_r&=500(146)+500(116)-999(18)\\
+&=73\,000+58\,000-17\,982=113\,018
+\end{aligned}" />
+
+<Chart
+  title={<>Jisim monomer, air dan rantai</>}
+  description={<>Jumlah monomer ialah <InlineMath math="131\,000" />. Air yang dibebaskan ialah <InlineMath math="17\,982" />, jadi tinggal <InlineMath math="113\,018" /> untuk rantai.</>}
+  bars="apart"
+  categories={["Monomer", "Air dibebaskan", "Rantai nilon"]}
+  series={[
+    { label: "Jisim relatif", mark: "bar", values: [131000, 17982, 113018] },
+  ]}
+  valueLabel="Jisim relatif"
+/>
+
+Jadi rantai itu membebaskan <InlineMath math="999" /> molekul air dan jisim molekul relatifnya <InlineMath math="113\,018" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1000" /> molekul air memberi satu bagi setiap monomer. Kedua-dua hujung rantai mengekalkan kumpulannya, jadi rangkai kurang satu.
+- <InlineMath math="500" /> mengira satu molekul air bagi setiap pasangan monomer. **Setiap rangkai antara monomer bersebelahan membebaskan air, termasuk rangkai antara satu pasangan dengan pasangan seterusnya**.
+- <InlineMath math="131\,000" /> mengira air dengan betul tetapi tidak menolak jisimnya daripada jisim monomer.

@@ -1,0 +1,42 @@
+# Dua kelimpahan yang tidak diketahui memerlukan dua persamaan
+
+Dengan tiga isotop dan satu kelimpahan diberi, dua kelimpahan tidak diketahui. **Satu persamaan datang daripada jumlah peratus iaitu <InlineMath math="100" />, satu lagi daripada purata berpemberat**.
+
+Biar <InlineMath math="x" /> ialah peratus magnesium-25 dan <InlineMath math="y" /> peratus magnesium-26.
+
+- Peratus: <InlineMath math="x + y = 100 - 79 = 21" />.
+- Purata berpemberat: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24.32" />, jadi <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
+- Tolak <InlineMath math="25(x + y) = 525" />: <InlineMath math="y = 536 - 525 = 11" />, dan <InlineMath math="x = 10" />.
+
+<Chart
+  title={<>Kelimpahan Isotop Magnesium</>}
+  bars="apart"
+  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
+  series={[
+    { label: "Kelimpahan (%)", mark: "bar", values: [79, 10, 11] },
+  ]}
+  valueLabel="Kelimpahan (%)"
+  description={<>Magnesium-24 membentuk <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" /> dan magnesium-26 <InlineMath math="11\%" /> daripada atom.</>}
+/>
+
+<MassSpectrometerLab
+  title={<>Magnesium dalam Spektrometer Jisim</>}
+  description={<>Tiga isotop membelok pada tiga lintasan, dan tinggi puncak memberi kelimpahannya.</>}
+  samples={["magnesium"]}
+  labels={{
+    average: <>Purata jisim atom relatif</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jejari lintasan</>,
+    ratio: <>Nisbah jejari</>,
+    south: "S",
+    view: "Spektrometer jisim",
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="10\%" /> ialah kelimpahan magnesium-25: **dua pemboleh ubah tertukar** pada akhirnya.
+- <InlineMath math="21\%" /> menggabungkan kedua-dua isotop yang lebih berat, seolah-olah magnesium-26 satu-satunya isotop lain.
+- <InlineMath math="5.5\%" /> membahagi dua baki <InlineMath math="11\%" />, seolah-olah ia perlu dikongsi lagi.

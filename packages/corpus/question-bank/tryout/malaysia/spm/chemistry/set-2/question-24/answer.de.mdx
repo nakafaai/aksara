@@ -1,0 +1,34 @@
+# Die Konzentration entscheidet, welches Ion an der Anode entladen wird
+
+An einer inerten Anode werden Hydroxidionen vor Chloridionen entladen, **außer die Chloridionen sind viel konzentrierter**. Durch beide Zellen in Reihe fließt derselbe Strom.
+
+<ElectrolysisLab
+  title={<>Zwei Zellen in Reihe</>}
+  description={<>Zelle I enthält verdünnte, Zelle II konzentrierte Natriumchloridlösung, jeweils mit Kohleelektroden, an einer Batterie.</>}
+  cells={[{ electrode: "carbon", electrolyte: "sodium-chloride-dilute" }, { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" }]}
+  electrons={0.04}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>An der Anode</>,
+    atCathode: <>An der Kathode</>,
+    battery: "Batterie",
+    cathode: "Kathode",
+    cells: [<>Zelle I: verdünnte Natriumchloridlösung, Kohleelektroden</>, <>Zelle II: konzentrierte Natriumchloridlösung, Kohleelektroden</>],
+    electrons: <>Geflossene Elektronen</>,
+    ph: <>pH-Wert des Elektrolyten</>,
+    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
+    view: "Zwei Elektrolysezellen in Reihe mit Kohleelektroden in verdünnter und konzentrierter Natriumchloridlösung",
+  }}
+/>
+
+- Zelle I, verdünnt: Hydroxidionen werden entladen, <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />, es entsteht Sauerstoff.
+- Zelle II, konzentriert: Chloridionen werden entladen, <InlineMath math="2\text{Cl}^- \rightarrow \text{Cl}_2 + 2e^-" />, es entsteht Chlor.
+- In Zelle II liefern <InlineMath math="2" /> mol Elektronen <InlineMath math="1" /> mol <InlineMath math="\text{Cl}_2" />, also liefern <InlineMath math="0{,}04" /> mol Elektronen <InlineMath math="0{,}02" /> mol.
+- Volumen Chlor: <InlineMath math="0{,}02 \times 24 = 0{,}48\text{ dm}^3" />.
+
+# Warum die anderen Antworten falsch sind
+
+- Chlor in Zelle I und Sauerstoff in Zelle II vertauscht die Zellen, **als ob Verdünnen die Chloridionen begünstigen würde**.
+- <InlineMath math="0{,}96\text{ dm}^3" /> rechnet ein Mol Chlor pro Mol Elektronen und vergisst, dass jedes <InlineMath math="\text{Cl}_2" /> zwei braucht.
+- Chlor an beiden Anoden übersieht den Einfluss der Konzentration in der verdünnten Zelle.

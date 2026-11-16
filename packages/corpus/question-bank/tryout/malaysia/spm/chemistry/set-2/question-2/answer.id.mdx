@@ -1,0 +1,42 @@
+# Dua kelimpahan yang belum diketahui butuh dua persamaan
+
+Dengan tiga isotop dan satu kelimpahan diketahui, dua kelimpahan lain belum diketahui. **Satu persamaan datang dari jumlah persentase yang <InlineMath math="100" />, satu lagi dari rata-rata berbobot**.
+
+Misalkan <InlineMath math="x" /> persentase magnesium-25 dan <InlineMath math="y" /> persentase magnesium-26.
+
+- Persentase: <InlineMath math="x + y = 100 - 79 = 21" />.
+- Rata-rata berbobot: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24{,}32" />, jadi <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
+- Kurangi dengan <InlineMath math="25(x + y) = 525" />: <InlineMath math="y = 536 - 525 = 11" />, dan <InlineMath math="x = 10" />.
+
+<Chart
+  title={<>Kelimpahan Isotop Magnesium</>}
+  bars="apart"
+  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
+  series={[
+    { label: "Kelimpahan (%)", mark: "bar", values: [79, 10, 11] },
+  ]}
+  valueLabel="Kelimpahan (%)"
+  description={<>Magnesium-24 menyusun <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" />, dan magnesium-26 <InlineMath math="11\%" /> dari atomnya.</>}
+/>
+
+<MassSpectrometerLab
+  title={<>Magnesium dalam Spektrometer Massa</>}
+  description={<>Tiga isotop berbelok di tiga lintasan, dan tinggi puncak memberi kelimpahannya.</>}
+  samples={["magnesium"]}
+  labels={{
+    average: <>Massa atom relatif rata-rata</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jari-jari lintasan</>,
+    ratio: <>Perbandingan jari-jari</>,
+    south: "S",
+    view: "Spektrometer massa",
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="10\%" /> adalah kelimpahan magnesium-25: **dua variabel tertukar** di akhir.
+- <InlineMath math="21\%" /> menggabungkan kedua isotop yang lebih berat, seakan-akan magnesium-26 satu-satunya isotop lain.
+- <InlineMath math="5{,}5\%" /> membagi dua sisa <InlineMath math="11\%" />, seakan-akan harus dibagi lagi.

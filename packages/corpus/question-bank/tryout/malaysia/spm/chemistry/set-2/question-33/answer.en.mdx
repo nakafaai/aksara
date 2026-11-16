@@ -1,0 +1,31 @@
+# Extend the cooling line back to the moment of mixing
+
+The cup starts losing heat as soon as the reaction warms it, so the first reading after mixing is already too low. **Draw the cooling line back to minute <InlineMath math="2.0" />** to get the temperature the mixture would have reached with no heat loss.
+
+The second line runs the cooling back half a minute, at the same <InlineMath math="0.4^\circ\text{C}" /> per half minute.
+
+<Chart
+  title={<>Cooling line extended to the mixing time</>}
+  description={<>After mixing, the readings fall by <InlineMath math="0.4^\circ\text{C}" /> every half minute. Extended back to minute <InlineMath math="2.0" />, the line meets <InlineMath math="42.0^\circ\text{C}" />, which is <InlineMath math="14.0^\circ\text{C}" /> above the starting <InlineMath math="28.0^\circ\text{C}" />.</>}
+  categories={["0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0"]}
+  series={[
+    { label: "Readings", mark: "line", values: [28.0, 28.0, 28.0, 28.0, null, 41.6, 41.2, 40.8, 40.4, 40.0, 39.6] },
+    { label: "Cooling line extended", mark: "line", values: [null, null, null, null, 42.0, 41.6, 41.2, 40.8, 40.4, 40.0, 39.6] },
+  ]}
+  valueLabel="Temperature (°C)"
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta\theta&=42.0-28.0=14.0^\circ\text{C}\\
+Q&=50\times4.2\times14.0=2940\text{ J}=2.94\text{ kJ}\\
+n(\text{H}_2\text{O})&=\frac{25}{1000}\times2.0=0.050\text{ mol}\\
+\Delta H&=-\frac{2.94}{0.050}=-58.8\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+So the heat of neutralisation is <InlineMath math="-58.8\text{ kJ mol}^{-1}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="-57.1\text{ kJ mol}^{-1}" /> uses the highest reading, <InlineMath math="41.6^\circ\text{C}" />, which the cup had already cooled to by the time it was read.
+- <InlineMath math="+58.8\text{ kJ mol}^{-1}" /> drops the sign. **Neutralisation gives out heat, so its heat change is negative**.
+- <InlineMath math="-117.6\text{ kJ mol}^{-1}" /> divides by <InlineMath math="0.025" />, the volume in cubic decimetres, and forgets to multiply by the concentration, <InlineMath math="2.0\text{ mol dm}^{-3}" />.

@@ -1,0 +1,29 @@
+# Bandingkan kalor yang diberikan bahan bakar dengan kalor yang diterima air
+
+Nilai buku data memberi tahu berapa kalor yang dilepas propan-1-ol yang terbakar. Kenaikan suhu memberi tahu berapa bagian yang benar-benar diserap air. **Persentasenya adalah kalor diserap per kalor dilepas**, jadi angka yang lebih kecil di atas.
+
+<BlockMath math="\begin{aligned}
+n(\text{C}_3\text{H}_7\text{OH})&=\frac{0{,}90}{60}=0{,}015\text{ mol}\\
+\text{kalor dilepas}&=0{,}015\times2016=30{,}24\text{ kJ}\\
+\text{kalor diserap}&=250\times4{,}2\times24{,}0=25{.}200\text{ J}=25{,}2\text{ kJ}\\
+\text{persentase}&=\frac{25{,}2}{30{,}24}\times100\%=83{,}3\%
+\end{aligned}" />
+
+<Chart
+  title={<>Kalor dilepas dan kalor diserap</>}
+  description={<>Pembakaran <InlineMath math="0{,}015\text{ mol}" /> propan-1-ol melepas <InlineMath math="30{,}24\text{ kJ}" />, dan air menyerap <InlineMath math="25{,}2\text{ kJ}" />. Sisanya memanaskan kaleng dan udara.</>}
+  bars="apart"
+  categories={["Dilepas bahan bakar", "Diserap air"]}
+  series={[
+    { label: "Kalor", mark: "bar", values: [30.24, 25.2] },
+  ]}
+  valueLabel="Kalor (kJ)"
+/>
+
+Jadi <InlineMath math="83{,}3\%" /> kalor sampai ke air, dan sisanya hilang ke kaleng dan udara sekitar.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="63{,}9\%" /> memakai <InlineMath math="46" />, massa molar etanol. Propan-1-ol adalah <InlineMath math="\text{C}_3\text{H}_7\text{OH}" />, jadi massa molarnya <InlineMath math="60" />.
+- <InlineMath math="120\%" /> membagi kalor dilepas dengan kalor diserap. **Kalor yang sampai ke air tidak mungkin melebihi seluruh kalor, jadi persentasenya pasti di bawah <InlineMath math="100\%" />**.
+- <InlineMath math="1{,}25\%" /> membandingkan <InlineMath math="25{,}2\text{ kJ}" /> pada air dengan kalor satu mol penuh, <InlineMath math="2016\text{ kJ}" />, bukan <InlineMath math="0{,}015\text{ mol}" /> yang terbakar.

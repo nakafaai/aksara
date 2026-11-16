@@ -1,0 +1,41 @@
+# The same electrons, two different anodes
+
+In series, both cells pass the same <InlineMath math="0.10\text{ mol}" /> of electrons. The cathodes behave alike, but the anodes do not: a copper anode dissolves and replaces every copper(II) ion it loses, while **a carbon anode only discharges hydroxide ions**.
+
+Run both cells in the lab and compare the two solutions.
+
+<ElectrolysisLab
+  title={<>Both cells after <InlineMath math="0.10\text{ mol}" /> of electrons</>}
+  description={<>In P the copper anode dissolves as fast as copper deposits, so the solution stays blue. In Q copper deposits while oxygen forms, so the copper(II) ions run out.</>}
+  cells={[
+    { electrode: "copper", electrolyte: "copper-sulfate" },
+    { electrode: "carbon", electrolyte: "copper-sulfate" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>At the anode</>,
+    atCathode: <>At the cathode</>,
+    battery: "Battery",
+    cathode: "Cathode",
+    cells: [<>Cell P: copper electrodes</>, <>Cell Q: carbon electrodes</>],
+    electrons: <>Electrons passed</>,
+    ph: <>pH of the electrolyte</>,
+    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
+    view: "Two electrolysis cells of copper(II) sulfate in series",
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{Cu})&=\frac{0.10}{2}=0.050\text{ mol}\Rightarrow m=0.050\times64=3.2\text{ g}\\
+n(\text{Cu}^{2+})\text{ in Q}&=0.50\times\frac{100}{1000}=0.050\text{ mol}
+\end{aligned}" />
+
+The <InlineMath math="0.050\text{ mol}" /> of copper deposited in Q is every copper(II) ion it held, and nothing replaces them, so the blue colour disappears. So the anode of P loses <InlineMath math="3.2\text{ g}" />, and the solution in Q turns colourless as oxygen forms at its anode.
+
+# Why the other options are wrong
+
+- The blue fading in P swaps the cells: in P the copper anode keeps the copper(II) ions at the same level.
+- <InlineMath math="6.4\text{ g}" /> takes the <InlineMath math="0.10\text{ mol}" /> of electrons as moles of copper. **Each copper(II) ion needs two electrons**.
+- Q staying blue treats the carbon anode like the copper one, though nothing in Q replaces the copper(II) ions that leave the solution.

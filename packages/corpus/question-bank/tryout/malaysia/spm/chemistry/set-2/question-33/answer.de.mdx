@@ -1,0 +1,31 @@
+# Die Abkühlungslinie bis zum Zeitpunkt des Mischens zurückverlängern
+
+Der Becher verliert Wärme, sobald die Reaktion ihn erwärmt, also ist schon der erste Messwert nach dem Mischen zu niedrig. **Verlängere die Abkühlungslinie zurück bis Minute <InlineMath math="2{,}0" />**, dann hast du die Temperatur, die ohne Wärmeverlust erreicht worden wäre.
+
+Die zweite Linie führt die Abkühlung eine halbe Minute zurück, mit denselben <InlineMath math="0{,}4^\circ\text{C}" /> pro halbe Minute.
+
+<Chart
+  title={<>Abkühlungslinie bis zum Mischzeitpunkt verlängert</>}
+  description={<>Nach dem Mischen fallen die Werte um <InlineMath math="0{,}4^\circ\text{C}" /> pro halbe Minute. Zurück bis Minute <InlineMath math="2{,}0" /> verlängert, trifft die Linie <InlineMath math="42{,}0^\circ\text{C}" />, also <InlineMath math="14{,}0^\circ\text{C}" /> über den anfänglichen <InlineMath math="28{,}0^\circ\text{C}" />.</>}
+  categories={["0", "0,5", "1,0", "1,5", "2,0", "2,5", "3,0", "3,5", "4,0", "4,5", "5,0"]}
+  series={[
+    { label: "Messwerte", mark: "line", values: [28.0, 28.0, 28.0, 28.0, null, 41.6, 41.2, 40.8, 40.4, 40.0, 39.6] },
+    { label: "Abkühlungslinie verlängert", mark: "line", values: [null, null, null, null, 42.0, 41.6, 41.2, 40.8, 40.4, 40.0, 39.6] },
+  ]}
+  valueLabel="Temperatur (°C)"
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta\theta&=42{,}0-28{,}0=14{,}0^\circ\text{C}\\
+Q&=50\times4{,}2\times14{,}0=2940\text{ J}=2{,}94\text{ kJ}\\
+n(\text{H}_2\text{O})&=\frac{25}{1000}\times2{,}0=0{,}050\text{ mol}\\
+\Delta H&=-\frac{2{,}94}{0{,}050}=-58{,}8\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+Die Neutralisationsenthalpie beträgt also <InlineMath math="-58{,}8\text{ kJ mol}^{-1}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-57{,}1\text{ kJ mol}^{-1}" /> nimmt den höchsten Messwert, <InlineMath math="41{,}6^\circ\text{C}" />, doch beim Ablesen war der Becher schon etwas abgekühlt.
+- <InlineMath math="+58{,}8\text{ kJ mol}^{-1}" /> lässt das Vorzeichen weg. **Neutralisation gibt Wärme ab, also ist ihre Enthalpieänderung negativ**.
+- <InlineMath math="-117{,}6\text{ kJ mol}^{-1}" /> teilt durch <InlineMath math="0{,}025" />, das Volumen in Kubikdezimetern, und vergisst, mit der Konzentration <InlineMath math="2{,}0\text{ mol dm}^{-3}" /> zu multiplizieren.

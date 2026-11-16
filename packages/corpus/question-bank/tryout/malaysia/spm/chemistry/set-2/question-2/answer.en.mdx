@@ -1,0 +1,42 @@
+# Two unknown abundances need two equations
+
+With three isotopes and one abundance given, two abundances are unknown. **One equation comes from the percentages adding up to <InlineMath math="100" />, the other from the weighted average**.
+
+Let <InlineMath math="x" /> be the percentage of magnesium-25 and <InlineMath math="y" /> the percentage of magnesium-26.
+
+- Percentages: <InlineMath math="x + y = 100 - 79 = 21" />.
+- Weighted average: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24.32" />, so <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
+- Subtract <InlineMath math="25(x + y) = 525" />: <InlineMath math="y = 536 - 525 = 11" />, and <InlineMath math="x = 10" />.
+
+<Chart
+  title={<>Abundance of the Magnesium Isotopes</>}
+  bars="apart"
+  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
+  series={[
+    { label: "Abundance (%)", mark: "bar", values: [79, 10, 11] },
+  ]}
+  valueLabel="Abundance (%)"
+  description={<>Magnesium-24 makes up <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" /> and magnesium-26 <InlineMath math="11\%" /> of the atoms.</>}
+/>
+
+<MassSpectrometerLab
+  title={<>Magnesium in a Mass Spectrometer</>}
+  description={<>The three isotopes bend on three paths, and the peak heights give their abundances.</>}
+  samples={["magnesium"]}
+  labels={{
+    average: <>Average relative atomic mass</>,
+    choose: "Choose an element",
+    isotopes: <>Isotopes and abundance</>,
+    north: "N",
+    radius: <>Path radius</>,
+    ratio: <>Ratio of radii</>,
+    south: "S",
+    view: "Mass spectrometer",
+  }}
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="10\%" /> is the abundance of magnesium-25: **the two unknowns were swapped** at the end.
+- <InlineMath math="21\%" /> lumps both heavier isotopes together, as if magnesium-26 were the only other isotope.
+- <InlineMath math="5.5\%" /> halves the remaining <InlineMath math="11\%" />, as if it had to be shared again.

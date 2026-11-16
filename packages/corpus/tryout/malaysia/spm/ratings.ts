@@ -11,11 +11,13 @@ export const physicsRatings: readonly SetRating[] = [
 
 /**
  * The level rating of each SPM Kimia Paper 1 set, set 1 onward in order.
- * Eight raters rated all 40 items of set 1 alone on 15 Nov 2026. A rewritten
- * set replaces its entry with a rating of its new items.
+ * Eight raters rated all 40 items of set 1 alone on 15 Nov 2026, and two
+ * raters rated all 40 items of set 2 alone on 16 Nov 2026 (3.41 and 3.60). A
+ * rewritten set replaces its entry with a rating of its new items.
  */
 export const chemistryRatings: readonly SetRating[] = [
   { items: 40, level: 4.14, raters: 8 },
+  { items: 40, level: 3.51, raters: 2 },
 ];
 
 /**

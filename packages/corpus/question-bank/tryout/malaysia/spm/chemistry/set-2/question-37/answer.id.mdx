@@ -1,0 +1,34 @@
+# Hitung ikatan di rantai, lalu kurangi air yang lepas
+
+Setiap ikatan amida terbentuk saat gugus karboksil asam bertemu gugus amino diamina, dan ikatan itu melepas satu molekul air. **Rantai lurus <InlineMath math="1000" /> monomer punya ikatan satu lebih sedikit dari jumlah monomernya**, sama seperti deretan manik punya celah satu lebih sedikit dari jumlah maniknya.
+
+<Mermaid
+  title={<>Monomer yang disambung ikatan amida</>}
+  description={<>Asam dan diamina berselang-seling di sepanjang rantai. Tiap panah adalah satu ikatan amida dan satu molekul air yang lepas, dan rantai berakhir di monomer ke-<InlineMath math="1000" />.</>}
+  chart={"flowchart LR\n  A1[\"asam heksanadioat\"] -->|ikatan amida, H2O lepas| B1[\"heksana-1,6-diamina\"]\n  B1 -->|ikatan amida, H2O lepas| A2[\"asam heksanadioat\"]\n  A2 -->|ikatan amida, H2O lepas| B2[\"heksana-1,6-diamina\"]\n  B2 -.-> Z[\"sampai monomer ke-1000\"]"}
+/>
+
+<BlockMath math="\begin{aligned}
+\text{ikatan}&=1000-1=999\ \Rightarrow\ 999\ \text{H}_2\text{O}\\
+M_r&=500(146)+500(116)-999(18)\\
+&=73{.}000+58{.}000-17{.}982=113{.}018
+\end{aligned}" />
+
+<Chart
+  title={<>Massa monomer, air, dan rantai</>}
+  description={<>Total monomer <InlineMath math="131{.}000" />. Air yang lepas <InlineMath math="17{.}982" />, jadi tersisa <InlineMath math="113{.}018" /> untuk rantai.</>}
+  bars="apart"
+  categories={["Monomer", "Air yang lepas", "Rantai nilon"]}
+  series={[
+    { label: "Massa relatif", mark: "bar", values: [131000, 17982, 113018] },
+  ]}
+  valueLabel="Massa relatif"
+/>
+
+Jadi rantai itu melepas <InlineMath math="999" /> molekul air dan massa molekul relatifnya <InlineMath math="113{.}018" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1000" /> molekul air memberi satu untuk tiap monomer. Kedua ujung rantai tetap menyimpan gugusnya, jadi ikatannya kurang satu.
+- <InlineMath math="500" /> menghitung satu molekul air untuk tiap pasang monomer. **Setiap ikatan antar tetangga melepas air, termasuk ikatan antara satu pasang dan pasang berikutnya**.
+- <InlineMath math="131{.}000" /> menghitung airnya dengan benar, tetapi tidak mengurangi massanya dari massa monomer.

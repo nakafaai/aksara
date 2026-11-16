@@ -1,0 +1,50 @@
+# Put every metal on one scale against copper
+
+Copper is the positive terminal in three cells, so P, Q and R sit below copper in the electrochemical series, by <InlineMath math="2.70" />, <InlineMath math="0.40" /> and <InlineMath math="1.10\text{ V}" />. In the last cell S is the positive terminal, so **S sits above copper**, by <InlineMath math="0.46\text{ V}" />. The highest voltage comes from the two metals that stand farthest apart on that scale.
+
+On one scale with copper at zero, P is the lowest metal and S is the only one above copper.
+
+<MathVisual
+  title={<>The four metals on one scale with copper at zero</>}
+  description={<>P is at <InlineMath math="-2.70\text{ V}" />, R at <InlineMath math="-1.10\text{ V}" />, Q at <InlineMath math="-0.40\text{ V}" />, copper at zero and S at <InlineMath math="+0.46\text{ V}" />. The arrow from P to S spans <InlineMath math="3.16\text{ V}" />, the largest gap.</>}
+  labels={{
+    p: <InlineMath math="\mathrm{P}:\ -2.70\text{ V}" />,
+    r: <InlineMath math="\mathrm{R}:\ -1.10\text{ V}" />,
+    q: <InlineMath math="\mathrm{Q}:\ -0.40\text{ V}" />,
+    cu: <InlineMath math="\mathrm{Cu}:\ 0" />,
+    s: <InlineMath math="\mathrm{S}:\ +0.46\text{ V}" />,
+    gap: <InlineMath math="E_{\text{cell}}=3.16\text{ V}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "secondary", at: { x: 0, y: -2.7 } },
+      { id: "point-r", kind: "point", appearance: "construction", at: { x: 0, y: -1.1 } },
+      { id: "point-q", kind: "point", appearance: "construction", at: { x: 0, y: -0.4 } },
+      { id: "point-cu", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "primary", at: { x: 0, y: 0.46 } },
+      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.8, y: -2.7 }, to: { x: 0.8, y: 0.46 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: -2.7 }, placement: "left" },
+      { key: "r", objectId: "point-r", at: { x: 0, y: -1.1 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -0.4 }, placement: "left" },
+      { key: "cu", objectId: "point-cu", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0.46 }, placement: "left" },
+      { key: "gap", objectId: "cell-voltage", at: { x: 0.8, y: -1.12 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="E_{\text{cell}}=0.46-(-2.70)=3.16\text{ V}" />
+
+P is lower in the series, so P gives up electrons and is the negative terminal. So P and S give <InlineMath math="3.16\text{ V}" />, with P as the negative terminal.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.24\text{ V}" /> subtracts <InlineMath math="0.46" /> from <InlineMath math="2.70" />, as if S were also below copper. **The terminal column puts S on the other side of copper**.
+- <InlineMath math="3.16\text{ V}" /> with S as the negative terminal reverses the roles: the metal lower in the series, P, gives up the electrons.
+- P and Q at <InlineMath math="2.30\text{ V}" /> reads the S cell as if copper were its positive terminal too, so Q looks farther from P than S does.

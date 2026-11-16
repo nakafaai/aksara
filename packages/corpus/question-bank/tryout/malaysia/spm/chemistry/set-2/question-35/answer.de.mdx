@@ -1,0 +1,29 @@
+# Vergleich die Wärme des Brennstoffs mit der Wärme, die das Wasser bekommt
+
+Der Tabellenwert sagt dir, wie viel Wärme das verbrannte Propan-1-ol abgegeben hat. Der Temperaturanstieg sagt dir, wie viel davon das Wasser wirklich aufgenommen hat. **Der Anteil ist aufgenommene Wärme durch abgegebene Wärme**, also steht die kleinere Zahl oben.
+
+<BlockMath math="\begin{aligned}
+n(\text{C}_3\text{H}_7\text{OH})&=\frac{0{,}90}{60}=0{,}015\text{ mol}\\
+\text{abgegebene Wärme}&=0{,}015\times2016=30{,}24\text{ kJ}\\
+\text{aufgenommene Wärme}&=250\times4{,}2\times24{,}0=25{.}200\text{ J}=25{,}2\text{ kJ}\\
+\text{Anteil}&=\frac{25{,}2}{30{,}24}\times100\%=83{,}3\%
+\end{aligned}" />
+
+<Chart
+  title={<>Abgegebene und aufgenommene Wärme</>}
+  description={<>Das Verbrennen von <InlineMath math="0{,}015\text{ mol}" /> Propan-1-ol gibt <InlineMath math="30{,}24\text{ kJ}" /> ab, und das Wasser nimmt <InlineMath math="25{,}2\text{ kJ}" /> auf. Der Rest erwärmt die Dose und die Luft.</>}
+  bars="apart"
+  categories={["Vom Brennstoff abgegeben", "Vom Wasser aufgenommen"]}
+  series={[
+    { label: "Wärme", mark: "bar", values: [30.24, 25.2] },
+  ]}
+  valueLabel="Wärme (kJ)"
+/>
+
+Es kommen also <InlineMath math="83{,}3\%" /> der Wärme im Wasser an, der Rest geht an die Dose und die umgebende Luft verloren.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="63{,}9\%" /> nimmt <InlineMath math="46" />, die molare Masse von Ethanol. Propan-1-ol ist <InlineMath math="\text{C}_3\text{H}_7\text{OH}" />, seine molare Masse ist also <InlineMath math="60" />.
+- <InlineMath math="120\%" /> teilt die abgegebene durch die aufgenommene Wärme. **Mehr als die gesamte Wärme kann nicht im Wasser ankommen, also muss der Anteil unter <InlineMath math="100\%" /> liegen**.
+- <InlineMath math="1{,}25\%" /> vergleicht die <InlineMath math="25{,}2\text{ kJ}" /> des Wassers mit der Wärme eines ganzen Mols, <InlineMath math="2016\text{ kJ}" />, statt mit den <InlineMath math="0{,}015\text{ mol}" />, die verbrannt sind.

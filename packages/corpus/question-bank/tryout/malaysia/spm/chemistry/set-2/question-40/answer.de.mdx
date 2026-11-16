@@ -1,0 +1,28 @@
+# Ausbeute und Atomökonomie messen zwei verschiedene Verluste
+
+Die Ausbeute sagt dir, wie viel des möglichen Ethanols die Charge wirklich geliefert hat, also bestimmt sie, wie viel Glucose du brauchst. Die Atomökonomie folgt allein aus der Gleichung. **Selbst bei perfekter Ausbeute trägt das Kohlenstoffdioxid einen Teil jedes Glucosemoleküls davon**.
+
+<BlockMath math="\begin{aligned}
+n(\text{C}_2\text{H}_5\text{OH})&=\frac{46{.}000}{46}=1000\text{ mol}\ \Rightarrow\ n(\text{C}_6\text{H}_{12}\text{O}_6)=500\text{ mol}\\
+m(\text{Glucose})&=\frac{500\times180}{0{,}80}=112{.}500\text{ g}=112{,}5\text{ kg}\\
+\text{Atomökonomie}&=\frac{2(46)}{180}\times100\%=\frac{92}{180}\times100\%=51{,}1\%
+\end{aligned}" />
+
+<Chart
+  title={<>Wohin die Masse von einem Mol Glucose geht</>}
+  description={<>Ein Mol Glucose, <InlineMath math="180\text{ g}" />, wird zu <InlineMath math="92\text{ g}" /> Ethanol und <InlineMath math="88\text{ g}" /> Kohlenstoffdioxid. Nur das Ethanol ist das gewünschte Produkt.</>}
+  bars="apart"
+  categories={["Glucose", "Ethanol", "Kohlenstoffdioxid"]}
+  series={[
+    { label: "Masse", mark: "bar", values: [180, 92, 88] },
+  ]}
+  valueLabel="Masse aus einem Mol Glucose (g)"
+/>
+
+Die Charge verbraucht also <InlineMath math="112{,}5\text{ kg}" /> Glucose, und die Atomökonomie beträgt <InlineMath math="51{,}1\%" />, egal wie hoch die Ausbeute ist.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="90\text{ kg}" /> ist die Glucose für volle Ausbeute. Bei <InlineMath math="80\%" /> braucht die Fabrik mehr, <InlineMath math="90\div0{,}80" />.
+- <InlineMath math="225\text{ kg}" /> rechnet mit einer Glucose pro Ethanol und übersieht die <InlineMath math="2" /> vor <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />. Eine Glucose liefert zwei Ethanolmoleküle.
+- <InlineMath math="100\%" /> zählt das Kohlenstoffdioxid als gewünschtes Produkt. **Nur das Ethanol zählt**, also geht fast die Hälfte der Masse schon laut Gleichung verloren.
