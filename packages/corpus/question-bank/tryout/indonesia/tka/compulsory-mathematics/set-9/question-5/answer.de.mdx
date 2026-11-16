@@ -31,6 +31,38 @@ Nimm an, es passiert in <InlineMath math="t" /> Jahren. Ayah und Ibu werden je <
 t&=8
 \end{aligned}" />
 
+Zeichne beide Seiten als Geraden über <InlineMath math="t" />. **Die Gerade für das Fünffache von Kakaks Alter steigt um <InlineMath math="5" /> pro Jahr, die Summe der Alter von Ayah und Ibu nur um <InlineMath math="2" />**, also holt die Gerade, die tiefer beginnt, bei <InlineMath math="t=8" /> auf.
+
+<MathVisual
+  title={<>Alter von Ayah und Ibu zusammen gegen das Fünffache von Kakaks Alter</>}
+  description={<>Die waagerechte Achse ist die Anzahl <InlineMath math="t" /> der Jahre ab heute, die senkrechte Achse das Alter in Jahren. Die Gerade <InlineMath math="99+2t" /> beginnt bei <InlineMath math="99" />, die Gerade <InlineMath math="5(15+t)" /> beginnt bei <InlineMath math="75" />, steigt aber schneller. Beide treffen sich in <InlineMath math="(8,\ 115)" />.</>}
+  labels={{
+    parents: <InlineMath math="99+2t" />,
+    five: <InlineMath math="5(15+t)" />,
+    meet: <InlineMath math="(8,\ 115)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 14 },
+      y: { min: 60, max: 150 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parents", kind: "function", appearance: "primary", formula: "99 + 2*x", domain: { min: 0, max: 14 } },
+      { id: "five", kind: "function", appearance: "secondary", formula: "5*(15 + x)", domain: { min: 0, max: 14 } },
+      { id: "meet-down", kind: "segment", appearance: "construction", from: { x: 8, y: 115 }, to: { x: 8, y: 60 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 8, y: 115 } },
+    ],
+    labels: [
+      { key: "parents", objectId: "parents", at: { x: 1, y: 101 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 2, y: 85 }, placement: "below-right" },
+      { key: "meet", objectId: "meet", at: { x: 8, y: 115 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Der Wert <InlineMath math="t" /> ist positiv, es passiert also in <InlineMath math="8" /> Jahren. Probe: Dann ist Ayah <InlineMath math="59" />, Ibu <InlineMath math="56" /> und Kakak <InlineMath math="23" />, und <InlineMath math="59+56=115=5\cdot23" />.
 
 # Die Summe der Alter zu diesem Zeitpunkt

@@ -18,6 +18,21 @@ Mit <InlineMath math="36\text{ kg}" /> gibt es nur <InlineMath math="105" /> Beu
 
 Jedes zusätzliche Kilogramm bringt <InlineMath math="750\text{ g}" /> und höchstens eine neue Charge, die <InlineMath math="200\text{ g}" /> abgibt. Ein größeres Gewicht liefert also nie weniger Beutel, und alles unter <InlineMath math="36\text{ kg}" /> reicht sicher nicht. Das kleinste Gewicht für Dark ist <InlineMath math="38\text{ kg}" />.
 
+Das Diagramm zählt die Dark-Beutel für mehrere Rohbohnengewichte. **Der Balken für <InlineMath math="37\text{ kg}" /> liegt noch unter der Bestelllinie**, weil das siebenunddreißigste Kilogramm einen vierten Durchgang erzwingt, und der erste ausreichende Balken gehört zu <InlineMath math="38\text{ kg}" />.
+
+<Chart
+  title={<>Anzahl der Dark-Beutel nach Rohbohnengewicht</>}
+  description={<>Rohbohnengewichte von <InlineMath math="35" />, <InlineMath math="36" />, <InlineMath math="37" />, <InlineMath math="38" /> und <InlineMath math="39\text{ kg}" /> ergeben <InlineMath math="102" />, <InlineMath math="105" />, <InlineMath math="107" />, <InlineMath math="110" /> und <InlineMath math="113" /> Dark-Beutel. Die waagerechte Linie markiert die Bestellung von <InlineMath math="108" /> Beuteln. Die Werteachse beginnt bei <InlineMath math="95" />.</>}
+  bars="apart"
+  categories={["35", "36", "37", "38", "39"]}
+  series={[
+    { label: "Dark-Beutel", mark: "bar", values: [35, 36, 37, 38, 39].map((w) => Math.floor((750 * w - 200 * Math.ceil(w / 12)) / 250)) },
+    { label: "Bestellung 108 Beutel", mark: "line", values: [108, 108, 108, 108, 108] },
+  ]}
+  valueRange={{ min: 95, max: 115 }}
+  valueLabel="Beutel"
+/>
+
 # Beutel Light aus dem Rest
 
 Übrig bleiben <InlineMath math="50-38=12\text{ kg}" /> Rohkaffee. **Das passt genau in eine Charge**, also gehen nur <InlineMath math="200\text{ g}" /> in die Probe.

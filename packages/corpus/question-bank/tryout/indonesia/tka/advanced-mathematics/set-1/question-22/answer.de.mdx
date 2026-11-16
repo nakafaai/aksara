@@ -10,6 +10,36 @@ Der Nenner <InlineMath math="2x-8" /> ist also <InlineMath math="2(x-4)" />. Fü
 
 <BlockMath math="\lim_{x\to4}\frac{\sqrt{2x+1}+3}{2}=\frac{\sqrt9+3}{2}=\frac{3+3}{2}=3" />
 
+Zeichne die ursprüngliche Funktion in der Nähe von <InlineMath math="x=4" />. **Nach dem Erweitern mit dem konjugierten Term stimmt ihr Graph für <InlineMath math="x\ne4" /> mit <InlineMath math="\frac{\sqrt{2x+1}+3}{2}" /> überein**, also geht ihr Wert gegen <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Der Graph in der Nähe von <InlineMath math="x=4" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{x-4}{\sqrt{2x+1}-3}" /> für <InlineMath math="0\le x\le8" />. Genau bei <InlineMath math="x=4" /> ist die Funktion nicht definiert, aber die Kurve läuft von beiden Seiten auf den Punkt <InlineMath math="(4,\ 3)" /> zu.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{x-4}{\sqrt{2x+1}-3}" />,
+    target: <InlineMath math="(4,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 8 },
+      y: { min: 1, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(sqrt(2*x + 1) + 3)/2", domain: { min: 0, max: 8 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 4, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 7.5, y: 3.5 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 4, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Zur Kontrolle: Bei <InlineMath math="x=4{,}01" /> ist <InlineMath math="\sqrt{9{,}02}\approx3{,}00333" />, also hat der ursprüngliche Bruch etwa den Wert <InlineMath math="\frac{0{,}01}{0{,}00333}\approx3" />.
 
 Der Grenzwert beträgt also <InlineMath math="3" />.

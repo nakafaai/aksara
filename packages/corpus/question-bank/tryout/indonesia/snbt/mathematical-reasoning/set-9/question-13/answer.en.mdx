@@ -27,6 +27,21 @@ x &\ge 540\text{ minutes}=9\text{ hours}
 
 Check: the <InlineMath math="14" />-night total becomes <InlineMath math="3{,}290+2{,}350+2\times540=6{,}720" /> minutes, and <InlineMath math="6{,}720\div14=480" /> minutes, exactly <InlineMath math="8" /> hours.
 
+The chart below puts all fourteen nights side by side. **Next week's Saturday and Sunday bars have to climb to <InlineMath math="540" /> minutes** to make up for the other nights below the target line.
+
+<Chart
+  title={<>Effective sleep over fourteen nights</>}
+  description={<>The table's week: <InlineMath math="500" />, <InlineMath math="375" />, <InlineMath math="380" />, <InlineMath math="515" />, <InlineMath math="360" />, <InlineMath math="600" />, and <InlineMath math="560" /> minutes. The next week: <InlineMath math="470" /> minutes Monday to Friday, then <InlineMath math="540" /> minutes on Saturday and Sunday. The flat line marks the target of <InlineMath math="480" /> minutes. The total is exactly <InlineMath math="6{,}720" /> minutes.</>}
+  categories={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon 2", "Tue 2", "Wed 2", "Thu 2", "Fri 2", "Sat 2", "Sun 2"]}
+  bars="apart"
+  series={[
+    { label: "The table's week", mark: "bar", values: [500, 375, 380, 515, 360, 600, 560, null, null, null, null, null, null, null] },
+    { label: "The next week", mark: "bar", values: [null, null, null, null, null, null, null, 470, 470, 470, 470, 470, (6720 - 3290 - 2350) / 2, (6720 - 3290 - 2350) / 2] },
+    { label: "Target 480 minutes", mark: "line", values: Array.from({ length: 14 }, () => 480) },
+  ]}
+  valueLabel="Effective sleep (minutes)"
+/>
+
 # The wrong options
 
 The other options **leave out one part of the <InlineMath math="14" />-night total**.

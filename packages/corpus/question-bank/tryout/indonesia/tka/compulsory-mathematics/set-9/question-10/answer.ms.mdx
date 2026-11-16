@@ -15,6 +15,52 @@ L_{\text{kecil}}&=\tfrac{\sqrt3}{4}\cdot4^2=4\sqrt3 \\
 L_{\text{bintang}}&=12\cdot4\sqrt3=48\sqrt3
 \end{aligned}" />
 
+Lukis kedua-dua segi tiga di dalam heksagon. **Garis-garisnya memotong bintang kepada <InlineMath math="12" /> segi tiga sama sisi kecil yang kongruen**: enam dalam heksagon tengah dan enam di hujung-hujung bintang.
+
+<MathVisual
+  title={<>Bintang daripada segi tiga <InlineMath math="ACE" /> dan <InlineMath math="BDF" /></>}
+  description={<>Heksagon sekata <InlineMath math="ABCDEF" /> memuatkan segi tiga sama sisi <InlineMath math="ACE" /> dan <InlineMath math="BDF" /> bersisi <InlineMath math="12" />. Kedua-duanya membahagikan setiap sisi kepada tiga bahagian sepanjang <InlineMath math="4" />. Heksagon tengah dibahagikan kepada enam segi tiga kecil oleh tiga pepenjurunya, dan satu hujung bintang, segi tiga kecil berluas <InlineMath math="4\sqrt3" />, dilorek.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    tip: <InlineMath math="4\sqrt3" />,
+    side: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -8, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "hexagon", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 4 * Math.sqrt(3) }, { x: 6, y: 2 * Math.sqrt(3) }, { x: 6, y: -2 * Math.sqrt(3) }, { x: 0, y: -4 * Math.sqrt(3) }, { x: -6, y: -2 * Math.sqrt(3) }, { x: -6, y: 2 * Math.sqrt(3) }] },
+      { id: "ace", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 4 * Math.sqrt(3) }, { x: 6, y: -2 * Math.sqrt(3) }, { x: -6, y: -2 * Math.sqrt(3) }] },
+      { id: "bdf", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 2 * Math.sqrt(3) }, { x: 0, y: -4 * Math.sqrt(3) }, { x: -6, y: 2 * Math.sqrt(3) }] },
+      { id: "tip", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 4 * Math.sqrt(3) }, { x: 2, y: 2 * Math.sqrt(3) }, { x: -2, y: 2 * Math.sqrt(3) }] },
+      { id: "cut-one", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "cut-two", kind: "segment", appearance: "construction", from: { x: -2, y: -2 * Math.sqrt(3) }, to: { x: 2, y: 2 * Math.sqrt(3) } },
+      { id: "cut-three", kind: "segment", appearance: "construction", from: { x: -2, y: 2 * Math.sqrt(3) }, to: { x: 2, y: -2 * Math.sqrt(3) } },
+      { id: "side", kind: "segment", appearance: "highlight", from: { x: 2, y: 2 * Math.sqrt(3) }, to: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "hexagon", at: { x: 0, y: 4 * Math.sqrt(3) }, placement: "above" },
+      { key: "b", objectId: "hexagon", at: { x: 6, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "c", objectId: "hexagon", at: { x: 6, y: -2 * Math.sqrt(3) }, placement: "below-right" },
+      { key: "d", objectId: "hexagon", at: { x: 0, y: -4 * Math.sqrt(3) }, placement: "below" },
+      { key: "e", objectId: "hexagon", at: { x: -6, y: -2 * Math.sqrt(3) }, placement: "below-left" },
+      { key: "f", objectId: "hexagon", at: { x: -6, y: 2 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "tip", objectId: "tip", at: { x: 0, y: 3 * Math.sqrt(3) }, placement: "left" },
+      { key: "side", objectId: "side", at: { x: 3, y: Math.sqrt(3) }, placement: "right" },
+    ],
+  }}
+/>
+
 Sebagai semakan, <InlineMath math="L_{ACE}=9\cdot4\sqrt3=36\sqrt3" />, sama dengan pengiraan pertama.
 
 Jadi, luas kawasan bintang itu ialah <InlineMath math="48\sqrt3\text{ cm}^2" />.

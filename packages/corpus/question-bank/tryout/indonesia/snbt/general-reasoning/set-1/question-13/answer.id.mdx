@@ -16,6 +16,17 @@ Ada tiga langkah, dan hanya tiga.
 
 Hasilnya adalah "ada atlet yang lolos seleksi daerah dan belum pernah cedera berat, tetapi bukan anggota tim inti provinsi dan bukan penerima beasiswa olahraga".
 
+Diagram berikut merangkum ketiga langkah itu. **Hanya kata "semua" dan tuntutan "atau" yang berubah**, sedangkan keterangan kelompoknya tetap utuh.
+
+<Mermaid
+  title={<>Tiga langkah mengubah pernyataan menjadi ingkarannya</>}
+  description={<>Pernyataan asal: semua atlet yang lolos seleksi daerah dan belum pernah cedera berat adalah anggota tim inti atau penerima beasiswa. Kata semua menjadi ada, keterangan kelompok tetap, dan tuntutan atau menjadi bukan anggota tim inti dan bukan penerima beasiswa.</>}
+  chart={`flowchart LR
+    A["Semua atlet dalam kelompok itu"] -->|"semua menjadi ada"| B["Ada atlet dalam kelompok itu"]
+    C["Lolos seleksi dan belum cedera berat"] -->|"tetap"| D["Lolos seleksi dan belum cedera berat"]
+    E["Tim inti atau beasiswa"] -->|"De Morgan"| F["Bukan tim inti dan bukan beasiswa"]`}
+/>
+
 Pilihan lain gagal karena kesalahan berikut.
 
 - Versi dengan "bukan anggota tim inti atau bukan penerima beasiswa" lupa mengubah "atau" menjadi "dan". Atlet di kelompok itu yang menerima beasiswa tetapi bukan anggota tim inti memenuhi pilihan ini, padahal ia tidak membantah pernyataan asal.

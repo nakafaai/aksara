@@ -27,6 +27,17 @@ Sekarang susun rantainya dari "robot tidak dalam mode hemat daya".
 
 Jadi, "jika robot tidak dijalankan dalam mode hemat daya, tim lolos ke tingkat nasional" sah. Langkah terakhir hanya bisa diambil karena premis 1 berbentuk "jika dan hanya jika". Kalau premis 1 hanya berbunyi "jika lolos, maka di bawah <InlineMath math="90" /> detik", rantainya putus di <InlineMath math="W" />.
 
+Diagram berikut menggambar rantai itu bersama arah setiap premis. **Langkah terakhir hanya sah karena premis pertama berlaku dua arah**.
+
+<Mermaid
+  title={<>Rantai dari tidak memakai mode hemat daya sampai lolos ke tingkat nasional</>}
+  description={<>Jika robot tidak dalam mode hemat daya, baterai cadangan terpasang menurut kontraposisi premis ketiga. Baterai cadangan membuat robot selesai kurang dari <InlineMath math="90" /> detik menurut premis kedua. Karena premis pertama berlaku dua arah, robot yang selesai kurang dari <InlineMath math="90" /> detik membuat tim lolos.</>}
+  chart={`flowchart LR
+    H["Tidak mode hemat daya"] -->|"kontraposisi premis 3"| B["Baterai cadangan dipasang"]
+    B -->|"premis 2"| W["Selesai kurang dari 90 detik"]
+    W <-->|"premis 1, dua arah"| L["Lolos ke tingkat nasional"]`}
+/>
+
 Cek dari arah sebaliknya. Bentuk kontrapositif simpulan itu adalah <InlineMath math="\neg L \Rightarrow H" />. Kalau tim tidak lolos, robot tidak di bawah <InlineMath math="90" /> detik (premis 1), jadi baterai cadangan tidak dipasang (kontrapositif premis 2), sehingga robot dalam mode hemat daya (premis 3). Hasilnya sama.
 
 Keempat pilihan lain masing-masing memakai satu langkah terbalik.

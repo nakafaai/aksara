@@ -8,6 +8,18 @@ Gib jedem Teil einen Namen, damit die Form sichtbar wird.
 
 Die ursprüngliche Aussage ist <InlineMath math="p \Rightarrow (q \wedge r)" />. Eine Wenn-dann-Aussage ist nur in einer Lage falsch: Der Wenn-Teil tritt ein, der Dann-Teil aber nicht. Also **bleibt der Wenn-Teil genau so, wie er ist**, samt seinem *tidak ada*, und nur der Dann-Teil wird verneint.
 
+Das Diagramm verfolgt, wann die ursprüngliche Aussage falsch ist. **Nur ein Weg endet bei "falsch"**: <InlineMath math="p" /> tritt ein, aber <InlineMath math="q" /> und <InlineMath math="r" /> treten nicht beide ein.
+
+<Mermaid
+  title={<>Wann eine Wenn-dann-Aussage mit zwei Versprechen falsch wird</>}
+  description={<>Tritt <InlineMath math="p" /> nicht ein, bleibt die ursprüngliche Aussage wahr. Treten <InlineMath math="p" />, <InlineMath math="q" /> und <InlineMath math="r" /> ein, ist sie wahr. Falsch ist sie nur, wenn <InlineMath math="p" /> eintritt und <InlineMath math="q" /> oder <InlineMath math="r" /> ausbleibt.</>}
+  chart={`flowchart LR
+    A{"Kein Freiwilliger fehlt?"} -->|"nein"| T1["Aussage wahr"]
+    A -->|"ja"| B{"Posten pünktlich und alle versorgt?"}
+    B -->|"ja"| T2["Aussage wahr"]
+    B -->|"nein: eines fehlt"| F["Aussage falsch"]`}
+/>
+
 <BlockMath math="\neg\big(p \Rightarrow (q \wedge r)\big) \equiv p \wedge \neg(q \wedge r) \equiv p \wedge (\neg q \vee \neg r)" />
 
 Der zweite Schritt nutzt das Gesetz von De Morgan: Die Verneinung von "<InlineMath math="q" /> und <InlineMath math="r" />" ist "nicht <InlineMath math="q" /> oder nicht <InlineMath math="r" />". Jetzt übersetzt du jeden Teil zurück.

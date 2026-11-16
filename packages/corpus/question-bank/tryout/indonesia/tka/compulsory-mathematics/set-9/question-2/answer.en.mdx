@@ -28,6 +28,43 @@ The checks are <InlineMath math="3" /> hours apart, which is half of <InlineMath
 | Tuesday 12:00 | <InlineMath math="18" /> | <InlineMath math="35" /> |
 | Tuesday 15:00 | <InlineMath math="21" /> | <InlineMath math="17.5\sqrt{2}\approx24.7" /> |
 
+Plot the check results on the decay curve. **The first check truly below the line at <InlineMath math="35" /> is <InlineMath math="t=21" />**, because the point at <InlineMath math="t=18" /> sits exactly on the line.
+
+<MathVisual
+  title={<>Check results every <InlineMath math="3" /> hours</>}
+  description={<>The horizontal axis is time in hours since 18:00 on Monday, and the vertical axis is the amount of active substance in mg. The curve <InlineMath math="280\left(\tfrac12\right)^{t/6}" /> falls from <InlineMath math="280" />. The check points are at <InlineMath math="t=3,6,\ldots,21" />. The point <InlineMath math="(18,\ 35)" /> sits exactly on the limit line at <InlineMath math="35" />, and the point at <InlineMath math="t=21" />, which is 15:00 on Tuesday, lies below it.</>}
+  labels={{
+    limit: <InlineMath math="35" />,
+    equal: <InlineMath math="(18,\ 35)" />,
+    below: <InlineMath math="(21,\ 17.5\sqrt{2})" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 24 },
+      y: { min: 0, max: 290 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "decay", kind: "function", appearance: "primary", formula: "280 * 2^(-x/6)", domain: { min: 0, max: 23 } },
+      { id: "limit", kind: "function", appearance: "warning", formula: "35", domain: { min: 0, max: 23 } },
+      { id: "check-one", kind: "point", appearance: "secondary", at: { x: 3, y: 140 * Math.sqrt(2) } },
+      { id: "check-two", kind: "point", appearance: "secondary", at: { x: 6, y: 140 } },
+      { id: "check-three", kind: "point", appearance: "secondary", at: { x: 9, y: 70 * Math.sqrt(2) } },
+      { id: "check-four", kind: "point", appearance: "secondary", at: { x: 12, y: 70 } },
+      { id: "check-five", kind: "point", appearance: "secondary", at: { x: 15, y: 35 * Math.sqrt(2) } },
+      { id: "equal", kind: "point", appearance: "warning", at: { x: 18, y: 35 } },
+      { id: "below", kind: "point", appearance: "answer", at: { x: 21, y: 17.5 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 1, y: 35 }, placement: "above" },
+      { key: "equal", objectId: "equal", at: { x: 18, y: 35 }, placement: "above-right" },
+      { key: "below", objectId: "below", at: { x: 21, y: 17.5 * Math.sqrt(2) }, placement: "below" },
+    ],
+  }}
+/>
+
 At 12:00 the amount is exactly <InlineMath math="35\text{ mg}" />. The number <InlineMath math="35" /> isn't less than <InlineMath math="35" />, so this check **doesn't meet the condition yet**. The next check, at 15:00, shows about <InlineMath math="24.7\text{ mg}" />, and that's below <InlineMath math="35\text{ mg}" />.
 
 # Why the other options are wrong

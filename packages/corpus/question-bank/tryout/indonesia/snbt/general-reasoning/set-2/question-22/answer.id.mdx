@@ -22,6 +22,20 @@ Sekarang perhatikan pembaginya. Pertanyaannya meminta persen **dari peserta yang
 
 Cek balik: kalau <InlineMath math="35\%" /> dari <InlineMath math="20" /> orang lolos, itu <InlineMath math="7" /> orang. Bersama <InlineMath math="45" /> orang dari jalur langsung, totalnya <InlineMath math="52" /> orang, cocok dengan <InlineMath math="52\%" /> dari <InlineMath math="100" /> peserta.
 
+Diagram berikut menelusuri <InlineMath math="100" /> peserta melalui kedua tahap. **Pembagi yang benar adalah <InlineMath math="20" /> orang yang lolos lewat ujian ulang**, bukan seluruh peserta.
+
+<Mermaid
+  title={<>Seratus peserta melalui dua tahap seleksi</>}
+  description={<>Dari <InlineMath math="100" /> peserta, <InlineMath math="60" /> lolos langsung dan <InlineMath math="40" /> gagal. Dari yang gagal, <InlineMath math="20" /> lolos lewat ujian ulang. Di tahap 2, <InlineMath math="45" /> dari jalur langsung lolos, sehingga <InlineMath math="52-45=7" /> orang lolos dari jalur ujian ulang.</>}
+  chart={`flowchart LR
+    A["100 peserta"] --> B["60 lolos langsung"]
+    A --> C["40 gagal tahap 1"]
+    C --> D["20 lolos ujian ulang"]
+    C --> E["20 berhenti"]
+    B --> F["45 lolos tahap 2"]
+    D --> G["7 lolos tahap 2"]`}
+/>
+
 Pilihan lain muncul dari pembagi yang salah atau rata-rata yang salah:
 
 - <InlineMath math="7\%" /> berhenti di <InlineMath math="7" /> orang dari <InlineMath math="100" /> peserta awal. Angka itu belum dibagi dengan kelompok ujian ulang.

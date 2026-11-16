@@ -14,6 +14,44 @@ t^2+8t&=0 \\
 t(t+8)&=0 \quad\Rightarrow\quad t=0 \;\text{or}\; t=-8
 \end{aligned}" />
 
+Draw <InlineMath math="f" /> with the line <InlineMath math="y=21" />. **The line meets the parabola twice, but only the meeting at <InlineMath math="t=0" /> lies in the domain <InlineMath math="t\ge-4" />**.
+
+<MathVisual
+  title={<>The parabola <InlineMath math="f" /> and the line <InlineMath math="y=21" /></>}
+  description={<>The parabola <InlineMath math="y=t^2+8t+21" /> has vertex <InlineMath math="(-4,\ 5)" />. The part right of the vertex is the domain of <InlineMath math="f" />, and the part to the left is drawn faintly. The line <InlineMath math="y=21" /> meets the parabola at <InlineMath math="(-8,\ 21)" /> outside the domain and at <InlineMath math="(0,\ 21)" /> inside it.</>}
+  labels={{
+    kept: <InlineMath math="f(t)=t^2+8t+21,\ t\ge-4" />,
+    level: <InlineMath math="21" />,
+    root: <InlineMath math="(0,\ 21)" />,
+    dropped: <InlineMath math="(-8,\ 21)" />,
+    vertex: <InlineMath math="(-4,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -9.5, max: 2 },
+      y: { min: 0, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cut", kind: "function", appearance: "reference", formula: "x^2 + 8*x + 21", domain: { min: -9, max: -4 } },
+      { id: "kept", kind: "function", appearance: "primary", formula: "x^2 + 8*x + 21", domain: { min: -4, max: 1 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "21", domain: { min: -9.5, max: 2 } },
+      { id: "vertex", kind: "point", appearance: "secondary", at: { x: -4, y: 5 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 0, y: 21 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: -8, y: 21 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 1, y: 30 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 1.5, y: 21 }, placement: "below" },
+      { key: "root", objectId: "root", at: { x: 0, y: 21 }, placement: "above-left" },
+      { key: "dropped", objectId: "dropped", at: { x: -8, y: 21 }, placement: "above-right" },
+      { key: "vertex", objectId: "vertex", at: { x: -4, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
 The quadratic equation gives two roots, but **the domain of <InlineMath math="f" /> is only <InlineMath math="t\ge-4" />**. On that domain <InlineMath math="f" /> keeps increasing, so it has an inverse, and the root <InlineMath math="t=-8" /> is thrown out. So <InlineMath math="f^{-1}(21)=0" />, which means <InlineMath math="g(x)" /> must equal <InlineMath math="0" />.
 
 # Inverting the linear function

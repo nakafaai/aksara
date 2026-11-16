@@ -11,6 +11,49 @@ Periksa: <InlineMath math="T(1,2)=(2+2,\ -1+2)=(4,1)" /> dan <InlineMath math="T
 
 <BlockMath math="\begin{pmatrix} 2 & 1 \\ -1 & 1 \end{pmatrix}\begin{pmatrix} 2 \\ -1 \end{pmatrix}=\begin{pmatrix} 4-1 \\ -2-1 \end{pmatrix}=\begin{pmatrix} 3 \\ -3 \end{pmatrix}" />
 
+Gambar ketiga titik bersama bayangannya oleh <InlineMath math="T=\begin{pmatrix} 2 & 1 \\ -1 & 1 \end{pmatrix}" />. **Dua pasangan yang diketahui menentukan <InlineMath math="T" />**, lalu <InlineMath math="T" /> yang sama membawa titik ketiga.
+
+<MathVisual
+  title={<>Tiga titik dan bayangannya oleh <InlineMath math="T" /></>}
+  description={<>Panah menghubungkan setiap titik dengan bayangannya: <InlineMath math="(1,2)" /> ke <InlineMath math="(4,1)" />, <InlineMath math="(3,5)" /> ke <InlineMath math="(11,2)" />, dan <InlineMath math="(2,-1)" /> ke <InlineMath math="(3,-3)" />.</>}
+  labels={{
+    one: <InlineMath math="(1,2)" />,
+    "one-image": <InlineMath math="(4,1)" />,
+    two: <InlineMath math="(3,5)" />,
+    "two-image": <InlineMath math="(11,2)" />,
+    three: <InlineMath math="(2,-1)" />,
+    "three-image": <InlineMath math="(3,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 12 },
+      y: { min: -4, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "map-one", kind: "vector", appearance: "construction", from: { x: 1, y: 2 }, to: { x: 4, y: 1 } },
+      { id: "map-two", kind: "vector", appearance: "construction", from: { x: 3, y: 5 }, to: { x: 11, y: 2 } },
+      { id: "map-three", kind: "vector", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 3, y: -3 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "one-image", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 3, y: 5 } },
+      { id: "two-image", kind: "point", appearance: "primary", at: { x: 11, y: 2 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "three-image", kind: "point", appearance: "answer", at: { x: 3, y: -3 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "one-image", objectId: "one-image", at: { x: 4, y: 1 }, placement: "below" },
+      { key: "two", objectId: "two", at: { x: 3, y: 5 }, placement: "above" },
+      { key: "two-image", objectId: "two-image", at: { x: 11, y: 2 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: 2, y: -1 }, placement: "left" },
+      { key: "three-image", objectId: "three-image", at: { x: 3, y: -3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Cara lain tanpa mencari matriks juga memberi hasil yang sama. Tulis <InlineMath math="(2,-1)=-13(1,2)+5(3,5)" />. Karena <InlineMath math="T" /> linear, bayangannya <InlineMath math="-13(4,1)+5(11,2)=(3,-3)" />.
 
 Jadi, bayangan titik <InlineMath math="(2,-1)" /> adalah <InlineMath math="(3,-3)" />.

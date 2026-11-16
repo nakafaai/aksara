@@ -23,6 +23,43 @@ f(6)=6(2-a)+a+3=15-5a&\le0 \\
 a&\ge3
 \end{aligned}" />
 
+Gambar <InlineMath math="f(x)=(2-a)x+a+3" /> untuk beberapa nilai <InlineMath math="a" />. **Garis yang sah harus di atas sumbu <InlineMath math="x" /> sepanjang ruas yang disorot, tetapi tidak di atasnya pada <InlineMath math="x=6" />**.
+
+<MathVisual
+  title={<>Garis <InlineMath math="f(x)=(2-a)x+a+3" /> di sekitar batas</>}
+  description={<>Untuk <InlineMath math="a=3" />, garis <InlineMath math="f(x)=6-x" /> positif di seluruh ruas <InlineMath math="-1\le x\le4" /> dan tepat nol di <InlineMath math="x=6" />, jadi nilai ini ikut. Untuk <InlineMath math="a=3{,}5" />, garisnya masih positif di ruas itu dan negatif di <InlineMath math="x=6" />. Untuk <InlineMath math="a=\tfrac{11}{3}" />, garisnya menyentuh nol di <InlineMath math="x=4" />, jadi nilai ini tidak ikut.</>}
+  labels={{
+    low: <InlineMath math="a=3" />,
+    mid: <InlineMath math="a=3{,}5" />,
+    high: <InlineMath math="a=\tfrac{11}{3}" />,
+    range: <InlineMath math="-1\le x\le4" />,
+    six: <InlineMath math="x=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 7 },
+      y: { min: -4, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "range", kind: "segment", appearance: "highlight", from: { x: -1, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: -4 }, to: { x: 6, y: 8 } },
+      { id: "low", kind: "function", appearance: "answer", formula: "6 - x", domain: { min: -1.5, max: 6.5 } },
+      { id: "mid", kind: "function", appearance: "primary", formula: "6.5 - 1.5*x", domain: { min: -1.5, max: 6.5 } },
+      { id: "high", kind: "function", appearance: "warning", formula: "20/3 - (5/3)*x", domain: { min: -1.5, max: 6.5 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 6.5, y: -0.5 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 6.5, y: -3.25 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: -0.5, y: 7.5 }, placement: "right" },
+      { key: "range", objectId: "range", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "six", objectId: "six", at: { x: 6, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 Irisan ketiganya adalah <InlineMath math="3\le a<\frac{11}{3}" />. Syarat <InlineMath math="a>-\frac{1}{2}" /> otomatis terpenuhi oleh <InlineMath math="a\ge3" />.
 
 Cek kedua batasnya. Untuk <InlineMath math="a=3" />, <InlineMath math="f(x)=-x+6" /> bernilai <InlineMath math="7" /> sampai <InlineMath math="2" /> pada selang itu, jadi positif, dan <InlineMath math="f(6)=0" /> membuat <InlineMath math="0>0" /> salah. Jadi <InlineMath math="a=3" /> ikut. Untuk <InlineMath math="a=\frac{11}{3}" />, <InlineMath math="f(4)=0" />, jadi pertidaksamaan gagal di <InlineMath math="x=4" /> dan nilai ini tidak ikut.

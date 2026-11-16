@@ -25,6 +25,20 @@ Statement 2 is Salah (false). Divide each bill by its usage.
 
 Lestari's average is actually higher. The trap is that without the fixed charge, Lestari really is cheaper per kWh (<InlineMath math="1{,}200" /> against <InlineMath math="160{,}000\div110\approx1{,}455" />). Once **the fixed charge is included**, it's spread over only <InlineMath math="35" /> kWh for Lestari, so the average jumps.
 
+The chart below compares the three families' average bill per kWh, with and without the fixed charge. **Without the fixed charge Lestari is the cheapest, but once it's counted Lestari is the most expensive**.
+
+<Chart
+  title={<>Average bill per kWh in May</>}
+  description={<>Including the fixed charge, the average is about <InlineMath math="1{,}682" /> rupiah per kWh for Hasan, <InlineMath math="1{,}914" /> for Lestari, and <InlineMath math="1{,}829" /> for Made. Without it, about <InlineMath math="1{,}455" /> for Hasan, <InlineMath math="1{,}200" /> for Lestari, and <InlineMath math="1{,}682" /> for Made.</>}
+  categories={["Hasan", "Lestari", "Made"]}
+  bars="apart"
+  series={[
+    { label: "Including fixed charge", mark: "bar", values: [185000 / 110, 67000 / 35, 311000 / 170] },
+    { label: "Without fixed charge", mark: "bar", values: [160000 / 110, 42000 / 35, 286000 / 170] },
+  ]}
+  valueLabel="Rupiah per kWh"
+/>
+
 Statement 3 is Salah (false). The first part is true: <InlineMath math="2\times110=220" />, and <InlineMath math="170" /> is less than <InlineMath math="220" />. The second part is false: <InlineMath math="2\times185{,}000=370{,}000" />, while Made's bill is only <InlineMath math="311{,}000" />. The tiered rates do make Made pay more per kWh, but Made uses <InlineMath math="50" /> kWh less than twice Hasan's usage, and the Block III rate doesn't close that gap. Since "but" needs both parts to be true, the statement is false.
 
 Statement 4 is Benar (true). "Higher than Hasan's bill" means **Hasan's bill is the divisor**.

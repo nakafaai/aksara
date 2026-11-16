@@ -29,6 +29,21 @@ Cek batasnya dengan menghitung tagihan per penghuni untuk <InlineMath math="154"
 
 Pemakaian <InlineMath math="154" /> kWh masih memenuhi, sedangkan <InlineMath math="155" /> kWh sudah tidak. Pemakaian Mei Made <InlineMath math="4{.}238-4{.}068=170\text{ kWh}" />, jadi pengurangannya paling sedikit <InlineMath math="170-154=16" /> kWh.
 
+Grafik berikut menghitung tagihan per penghuni Keluarga Made untuk beberapa pemakaian. **Batang <InlineMath math="154" /> kWh masih di bawah garis batas**, sedangkan batang <InlineMath math="155" /> kWh sudah melewatinya.
+
+<Chart
+  title={<>Tagihan Juni per penghuni Keluarga Made menurut pemakaiannya</>}
+  description={<>Setiap tambahan <InlineMath math="1" /> kWh di blok III menaikkan tagihan per penghuni sekitar <InlineMath math="\text{Rp}367" />. Pada <InlineMath math="154" /> kWh tagihannya sekitar <InlineMath math="\text{Rp}45{.}967" /> per penghuni, dan pada <InlineMath math="155" /> kWh sekitar <InlineMath math="\text{Rp}46{.}333" />. Garis datar menandai batas <InlineMath math="\text{Rp}46{.}250" />. Sumbu nilai dimulai dari <InlineMath math="\text{Rp}44{.}000" />.</>}
+  bars="apart"
+  categories={["150", "151", "152", "153", "154", "155", "156"]}
+  series={[
+    { label: "Tagihan per penghuni Made (rupiah)", mark: "bar", values: [150, 151, 152, 153, 154, 155, 156].map((u) => (176000 + (u - 120) * 2200 + 25000) / 6) },
+    { label: "Batas dari Keluarga Hasan", mark: "line", values: Array.from({ length: 7 }, () => 185000 / 4) },
+  ]}
+  valueRange={{ min: 44000, max: 47500 }}
+  valueLabel="Tagihan per penghuni (rupiah)"
+/>
+
 Beberapa jalan pintas yang keliru:
 
 - Membandingkan pemakaian per penghuni, bukan tagihan per penghuni: Hasan memakai <InlineMath math="110\div4=27{,}5" /> kWh per orang, sehingga Made dibatasi <InlineMath math="6\times27{,}5=165" /> kWh dan cukup berhemat <InlineMath math="5" /> kWh. Ini salah karena tarif per kWh Made di Blok III lebih mahal.

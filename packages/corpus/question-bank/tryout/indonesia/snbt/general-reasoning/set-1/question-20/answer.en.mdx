@@ -8,6 +8,18 @@ Case two: Sekar is younger than Oki. Now Sekar is younger than Oki, Putri, and W
 
 In both cases, **Rafi is always older than Sekar**, even though the reason differs. In case one the reason is fact 5. In case two the reason is fact 4.
 
+The diagram below puts both cases side by side, from oldest to youngest. **In both branches, Rafi sits above Sekar**, even though the reason differs.
+
+<Mermaid
+  title={<>Age order in both cases</>}
+  description={<>In case one, Sekar is older than Wulan, and the order is Rafi, Tegar, Sekar, Wulan, Putri, Oki. In case two, Sekar is younger than Oki, so Sekar is the youngest, and Rafi is older than Putri, so Rafi is also older than Sekar.</>}
+  chart={`flowchart TB
+    S["Fact 2: Sekar above Wulan or below Oki"] --> K1["Case 1: Rafi, Tegar, Sekar, Wulan, Putri, Oki"]
+    S --> K2["Case 2: Rafi above Putri, Putri above Oki, Oki above Sekar"]
+    K1 --> R["Rafi is older than Sekar"]
+    K2 --> R`}
+/>
+
 The other statements hold only in some orders. Every order in this table, written from oldest, fits all five facts.
 
 | Statement | Order that breaks it |

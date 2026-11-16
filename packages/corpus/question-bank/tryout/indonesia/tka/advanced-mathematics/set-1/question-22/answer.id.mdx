@@ -10,6 +10,36 @@ Penyebut <InlineMath math="2x-8" /> ternyata sama dengan <InlineMath math="2(x-4
 
 <BlockMath math="\lim_{x\to4}\frac{\sqrt{2x+1}+3}{2}=\frac{\sqrt9+3}{2}=\frac{3+3}{2}=3" />
 
+Gambar fungsi semula di sekitar <InlineMath math="x=4" />. **Setelah dikalikan bentuk sekawan, grafiknya sama dengan <InlineMath math="\frac{\sqrt{2x+1}+3}{2}" /> untuk <InlineMath math="x\ne4" />**, sehingga nilainya menuju <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Grafik di sekitar <InlineMath math="x=4" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{x-4}{\sqrt{2x+1}-3}" /> untuk <InlineMath math="0\le x\le8" />. Fungsi ini tidak terdefinisi tepat di <InlineMath math="x=4" />, tetapi kurvanya menuju titik <InlineMath math="(4,\ 3)" /> dari kedua sisi.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{x-4}{\sqrt{2x+1}-3}" />,
+    target: <InlineMath math="(4,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 8 },
+      y: { min: 1, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(sqrt(2*x + 1) + 3)/2", domain: { min: 0, max: 8 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 4, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 7.5, y: 3.5 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 4, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Sebagai pemeriksaan, untuk <InlineMath math="x=4{,}01" /> diperoleh <InlineMath math="\sqrt{9{,}02}\approx3{,}00333" />, sehingga pecahan semula bernilai sekitar <InlineMath math="\frac{0{,}01}{0{,}00333}\approx3" />.
 
 Jadi, nilai limit tersebut adalah <InlineMath math="3" />.

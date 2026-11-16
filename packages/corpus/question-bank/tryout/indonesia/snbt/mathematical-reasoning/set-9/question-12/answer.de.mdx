@@ -23,6 +23,21 @@ d=14 &: (14+4)\times8{,}488=18\times8{,}488=152{,}784\ge150
 
 Eine Einzahlung von <InlineMath math="13{,}5" /> Millionen reicht noch nicht, <InlineMath math="14" /> Millionen reichen. **Eine größere Einzahlung ergibt immer einen größeren Kontostand**, also sind <InlineMath math="14" /> Millionen das Minimum.
 
+Das Diagramm berechnet den Kontostand am Ende von Jahr <InlineMath math="6" /> für Einzahlungen in Schritten von einer halben Million. **Der Balken für <InlineMath math="13{,}5" /> Millionen liegt noch unter der Ziellinie**, und der erste Balken darüber gehört zu <InlineMath math="14" /> Millionen.
+
+<Chart
+  title={<>Kontostand am Ende von Jahr <InlineMath math="6" /> nach jährlicher Einzahlung</>}
+  description={<>Für Einzahlungen von <InlineMath math="12" />, <InlineMath math="12{,}5" />, <InlineMath math="13" />, <InlineMath math="13{,}5" />, <InlineMath math="14" />, <InlineMath math="14{,}5" /> und <InlineMath math="15" /> Millionen Rupiah beträgt der Kontostand etwa <InlineMath math="135{,}8" />, <InlineMath math="140{,}1" />, <InlineMath math="144{,}3" />, <InlineMath math="148{,}5" />, <InlineMath math="152{,}8" />, <InlineMath math="157{,}0" /> und <InlineMath math="161{,}3" /> Millionen Rupiah. Die waagerechte Linie markiert das Ziel von <InlineMath math="150" /> Millionen Rupiah. Die Werteachse beginnt bei <InlineMath math="130" />.</>}
+  categories={["12", "12,5", "13", "13,5", "14", "14,5", "15"]}
+  bars="apart"
+  series={[
+    { label: "Kontostand Ende Jahr 6 (Millionen Rupiah)", mark: "bar", values: [12, 12.5, 13, 13.5, 14, 14.5, 15].map((d) => (d + 4) * 8.488) },
+    { label: "Ziel 150 Millionen", mark: "line", values: [150, 150, 150, 150, 150, 150, 150] },
+  ]}
+  valueRange={{ min: 130, max: 165 }}
+  valueLabel="Kontostand (Millionen Rupiah)"
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort **übergeht eine Bedingung der Regeln**.

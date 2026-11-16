@@ -24,4 +24,18 @@ Statement 4 is false, even though both changes are <InlineMath math="120" /> pac
 
 The same difference divided by different bases gives different percentages.
 
+The chart below draws both kinds of pack in both weeks. **Both bars change by <InlineMath math="120" /> packs, but from different starting heights**, so their percentage changes differ.
+
+<Chart
+  title={<>High-sugar packs and packs not high in sugar sold</>}
+  description={<>High-sugar packs fell from <InlineMath math="480" /> to <InlineMath math="360" />, a drop of <InlineMath math="25\%" />. Packs not high in sugar rose from <InlineMath math="320" /> to <InlineMath math="440" />, a rise of <InlineMath math="37.5\%" />.</>}
+  categories={["Before the labels", "After the labels"]}
+  bars="apart"
+  series={[
+    { label: "High-sugar packs", mark: "bar", values: [480, 360] },
+    { label: "Packs not high in sugar", mark: "bar", values: [800 - 480, 800 - 360] },
+  ]}
+  valueLabel="Packs"
+/>
+
 So statements 2 and 3 are true, while statements 1 and 4 are false.

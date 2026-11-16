@@ -28,6 +28,20 @@ One box holds <InlineMath math="100" /> cups, and its contents can't be shared w
 \text{total boxes} &= 14+13+26+25+24=102
 \end{aligned}" />
 
+The chart below compares each station's planned cups with the whole boxes it gets. **The gap in every pair of bars is less than one box**, so no station can drop a box.
+
+<Chart
+  title={<>Planned cups and cups in whole boxes at each station</>}
+  description={<>The planned cups at stations <InlineMath math="1" /> to <InlineMath math="5" /> are <InlineMath math="1{,}320" />, <InlineMath math="1{,}298" />, <InlineMath math="2{,}508" />, <InlineMath math="2{,}420" />, and <InlineMath math="2{,}310" />. The boxes hold <InlineMath math="1{,}400" />, <InlineMath math="1{,}300" />, <InlineMath math="2{,}600" />, <InlineMath math="2{,}500" />, and <InlineMath math="2{,}400" /> cups, which is <InlineMath math="102" /> boxes.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Planned cups", mark: "bar", values: [1.1 * 1200, 1.1 * 1180, 1.1 * 2280, 1.1 * 2200, 1.1 * 2100] },
+    { label: "Cups in whole boxes", mark: "bar", values: [1400, 1300, 2600, 2500, 2400] },
+  ]}
+  valueLabel="Cups"
+/>
+
 # Checking the leftover cups
 
 Each station's box count is the smallest possible exactly when its leftover cups are fewer than one box. The leftovers are <InlineMath math="80" />, <InlineMath math="2" />, <InlineMath math="92" />, <InlineMath math="80" />, and <InlineMath math="90" /> cups. All of them are under <InlineMath math="100" />, so **no station can drop a box**.

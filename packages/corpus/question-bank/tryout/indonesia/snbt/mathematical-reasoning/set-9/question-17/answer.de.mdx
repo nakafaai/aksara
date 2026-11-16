@@ -17,6 +17,20 @@ Am Dienstag fehlt Maschine P also nur noch <InlineMath math="1" /> Stunde bis zu
 
 Maschine Q ist einfacher: Zwei Blöcke aus <InlineMath math="7" /> Betriebsstunden und <InlineMath math="1" /> Wartungsstunde füllen die <InlineMath math="16" /> Schichtstunden genau, also beginnt sie jeden Tag bei null und läuft <InlineMath math="14" /> Stunden.
 
+Das Diagramm teilt die <InlineMath math="16" /> Schichtstunden am Dienstag für beide Maschinen auf. **Maschine P verliert gegenüber Montag eine Betriebsstunde**, weil die vom Montag übertragenen Stunden drei Wartungen erzwingen.
+
+<Chart
+  title={<>Betriebs- und Wartungsstunden am Dienstag</>}
+  description={<>Maschine P läuft <InlineMath math="13" /> Stunden und wird <InlineMath math="3" /> Stunden gewartet. Maschine Q läuft <InlineMath math="14" /> Stunden und wird <InlineMath math="2" /> Stunden gewartet. Jede Maschine füllt genau <InlineMath math="16" /> Schichtstunden.</>}
+  categories={["Maschine P", "Maschine Q"]}
+  bars="apart"
+  series={[
+    { label: "Betriebsstunden", mark: "bar", values: [1 + 5 + 5 + 2, 7 + 7] },
+    { label: "Wartungsstunden", mark: "bar", values: [3, 2] },
+  ]}
+  valueLabel="Stunden"
+/>
+
 # Gute Teile am Dienstag
 
 <BlockMath math="13\times114+14\times81=1{.}482+1{.}134=2{.}616" />

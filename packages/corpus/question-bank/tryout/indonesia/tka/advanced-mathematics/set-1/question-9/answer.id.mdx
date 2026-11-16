@@ -9,6 +9,38 @@ Kosinus bernilai <InlineMath math="-1" /> ketika sudutnya <InlineMath math="180^
 x&=110^\circ+k\cdot180^\circ
 \end{aligned}" />
 
+Gambar <InlineMath math="f" /> pada seluruh selang. **Grafik naik-turun di antara <InlineMath math="-3" /> dan <InlineMath math="5" />, dan titik terendahnya di selang ini hanya satu**.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=1+4\cos(2x-40^\circ)" /></>}
+  description={<>Sumbu mendatar adalah <InlineMath math="x" /> dalam derajat dari <InlineMath math="0^\circ" /> sampai <InlineMath math="180^\circ" />. Kurva mencapai puncak <InlineMath math="5" /> di <InlineMath math="x=20^\circ" /> dan titik terendah <InlineMath math="-3" /> di <InlineMath math="x=110^\circ" />, menyentuh garis mendatar <InlineMath math="-3" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)" />,
+    low: <InlineMath math="(110^\circ,\ -3)" />,
+    floor: <InlineMath math="-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 180 },
+      y: { min: -4, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1 + 4*cos((2*x - 40)*pi/180)", domain: { min: 0, max: 180 } },
+      { id: "floor", kind: "function", appearance: "construction", formula: "-3", domain: { min: 0, max: 180 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 110, y: -3 } },
+      { id: "high", kind: "point", appearance: "secondary", at: { x: 20, y: 5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 20, y: 5 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 110, y: -3 }, placement: "above-right" },
+      { key: "floor", objectId: "floor", at: { x: 5, y: -3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pada selang <InlineMath math="0^\circ\le x\le180^\circ" />, hanya <InlineMath math="x=110^\circ" /> yang memenuhi.
 
 Sebagai pemeriksaan, <InlineMath math="f(110^\circ)=1+4\cos180^\circ=1-4=-3" />.

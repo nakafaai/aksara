@@ -29,6 +29,46 @@ With <InlineMath math="40" /> values, **the median is the average of the <Inline
 
 <BlockMath math="Q_1=\frac{1+1}{2}=1,\qquad \text{median}=\frac{3+3}{2}=3,\qquad Q_3=\frac{4+4}{2}=4" />
 
+Put the measures on one box plot. **The median line at <InlineMath math="3" /> sits to the right of the mean <InlineMath math="2.8" />**, and the width of the box is the interquartile range <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Box plot of the number of siblings</>}
+  description={<>The data run from <InlineMath math="0" /> to <InlineMath math="5" /> siblings. The box runs from <InlineMath math="Q_1=1" /> to <InlineMath math="Q_3=4" />, with the median line at <InlineMath math="3" />. The mean of all students, <InlineMath math="2.8" />, is marked below the box, a little to the left of the median.</>}
+  labels={{
+    q1: <InlineMath math="Q_1=1" />,
+    median: <InlineMath math="\text{median}=3" />,
+    q3: <InlineMath math="Q_3=4" />,
+    mean: <InlineMath math="\bar x=2{,}8" />,
+    iqr: <InlineMath math="Q_3-Q_1=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 5.5 },
+      y: { min: -1, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "box", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 4, y: 1 }, { x: 4, y: 2 }, { x: 1, y: 2 }] },
+      { id: "low-whisker", kind: "segment", appearance: "reference", from: { x: 0, y: 1.5 }, to: { x: 1, y: 1.5 } },
+      { id: "high-whisker", kind: "segment", appearance: "reference", from: { x: 4, y: 1.5 }, to: { x: 5, y: 1.5 } },
+      { id: "median", kind: "segment", appearance: "answer", from: { x: 3, y: 1 }, to: { x: 3, y: 2 } },
+      { id: "iqr", kind: "segment", appearance: "construction", from: { x: 1, y: 0.5 }, to: { x: 4, y: 0.5 } },
+      { id: "q1", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "q3", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "mean", kind: "point", appearance: "warning", at: { x: 2.8, y: 0 } },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "median", objectId: "median", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "q3", objectId: "q3", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "mean", objectId: "mean", at: { x: 2.8, y: 0 }, placement: "below" },
+      { key: "iqr", objectId: "iqr", at: { x: 2.5, y: 0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Judging each statement
 
 1. **False**. More than <InlineMath math="3" /> siblings means <InlineMath math="4" /> or <InlineMath math="5" />: <InlineMath math="5+9=14" /> students. Fewer than <InlineMath math="3" /> means <InlineMath math="0" />, <InlineMath math="1" /> or <InlineMath math="2" />: <InlineMath math="5+6+4=15" /> students. They're only one apart, but they're not equal.

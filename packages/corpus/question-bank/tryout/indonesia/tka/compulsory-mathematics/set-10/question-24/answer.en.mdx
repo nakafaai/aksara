@@ -21,6 +21,74 @@ The sum of two dice runs from <InlineMath math="2" /> to <InlineMath math="12" /
 | <InlineMath math="7" /> | <InlineMath math="(1,6),\ (6,1),\ (2,5),\ (5,2),\ (3,4),\ (4,3)" /> | <InlineMath math="6" /> |
 | <InlineMath math="11" /> | <InlineMath math="(5,6),\ (6,5)" /> | <InlineMath math="2" /> |
 
+Plot the <InlineMath math="36" /> outcomes as points (first die, second die). **The six doubles on the diagonal are removed**, which leaves <InlineMath math="30" /> points, and <InlineMath math="14" /> of them have a prime sum.
+
+<MathVisual
+  title={<>Outcomes of the last throw of two dice</>}
+  description={<>The horizontal axis is the first die and the vertical axis is the second die. The six points on the diagonal are the doubles that trigger a rethrow, including <InlineMath math="(1,1)" /> with sum <InlineMath math="2" />. Off the diagonal, the <InlineMath math="14" /> highlighted points have sum <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" />, or <InlineMath math="11" />, and the other <InlineMath math="16" /> points have a sum that isn't prime.</>}
+  labels={{
+    p11: <>double</>,
+    p12: <InlineMath math="3" />,
+    p14: <InlineMath math="5" />,
+    p16: <InlineMath math="7" />,
+    p56: <InlineMath math="11" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 7 },
+      y: { min: 0, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p11", kind: "point", appearance: "warning", at: { x: 1, y: 1 } },
+      { id: "p12", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "p13", kind: "point", appearance: "reference", at: { x: 1, y: 3 } },
+      { id: "p14", kind: "point", appearance: "answer", at: { x: 1, y: 4 } },
+      { id: "p15", kind: "point", appearance: "reference", at: { x: 1, y: 5 } },
+      { id: "p16", kind: "point", appearance: "answer", at: { x: 1, y: 6 } },
+      { id: "p21", kind: "point", appearance: "answer", at: { x: 2, y: 1 } },
+      { id: "p22", kind: "point", appearance: "warning", at: { x: 2, y: 2 } },
+      { id: "p23", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "p24", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+      { id: "p25", kind: "point", appearance: "answer", at: { x: 2, y: 5 } },
+      { id: "p26", kind: "point", appearance: "reference", at: { x: 2, y: 6 } },
+      { id: "p31", kind: "point", appearance: "reference", at: { x: 3, y: 1 } },
+      { id: "p32", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+      { id: "p33", kind: "point", appearance: "warning", at: { x: 3, y: 3 } },
+      { id: "p34", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "p35", kind: "point", appearance: "reference", at: { x: 3, y: 5 } },
+      { id: "p36", kind: "point", appearance: "reference", at: { x: 3, y: 6 } },
+      { id: "p41", kind: "point", appearance: "answer", at: { x: 4, y: 1 } },
+      { id: "p42", kind: "point", appearance: "reference", at: { x: 4, y: 2 } },
+      { id: "p43", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "p44", kind: "point", appearance: "warning", at: { x: 4, y: 4 } },
+      { id: "p45", kind: "point", appearance: "reference", at: { x: 4, y: 5 } },
+      { id: "p46", kind: "point", appearance: "reference", at: { x: 4, y: 6 } },
+      { id: "p51", kind: "point", appearance: "reference", at: { x: 5, y: 1 } },
+      { id: "p52", kind: "point", appearance: "answer", at: { x: 5, y: 2 } },
+      { id: "p53", kind: "point", appearance: "reference", at: { x: 5, y: 3 } },
+      { id: "p54", kind: "point", appearance: "reference", at: { x: 5, y: 4 } },
+      { id: "p55", kind: "point", appearance: "warning", at: { x: 5, y: 5 } },
+      { id: "p56", kind: "point", appearance: "answer", at: { x: 5, y: 6 } },
+      { id: "p61", kind: "point", appearance: "answer", at: { x: 6, y: 1 } },
+      { id: "p62", kind: "point", appearance: "reference", at: { x: 6, y: 2 } },
+      { id: "p63", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "p64", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+      { id: "p65", kind: "point", appearance: "answer", at: { x: 6, y: 5 } },
+      { id: "p66", kind: "point", appearance: "warning", at: { x: 6, y: 6 } },
+    ],
+    labels: [
+      { key: "p11", objectId: "p11", at: { x: 1, y: 1 }, placement: "below-right" },
+      { key: "p12", objectId: "p12", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "p14", objectId: "p14", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "p16", objectId: "p16", at: { x: 1, y: 6 }, placement: "left" },
+      { key: "p56", objectId: "p56", at: { x: 5, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="P=\frac{2+4+6+2}{30}=\frac{14}{30}=\frac{7}{15}" />
 
 So the probability that the sum on the last roll is prime is <InlineMath math="\frac{7}{15}" />.

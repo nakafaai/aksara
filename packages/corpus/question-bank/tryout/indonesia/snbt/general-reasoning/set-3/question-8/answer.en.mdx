@@ -4,6 +4,18 @@ The denominator is the <InlineMath math="300" /> reading-room visitors. So <Inli
 
 The deeper problem is the sample. The survey happened in the reading room, so **only people who already came to the library could be asked**. Debtors who haven't come back can't be in the reading room, so the survey could never catch them. A sample like this doesn't represent all debtors, and it can't measure what share of them returned.
 
+The diagram below shows who the survey could catch. **Only debtors who already came back can sit in the reading room**, so those who haven't come back are never counted.
+
+<Mermaid
+  title={<>Who the reading-room survey can catch</>}
+  description={<>Of the <InlineMath math="1{,}500" /> debtors, some have come back and some haven't. Only those who came back can be found in the reading room, where they make up <InlineMath math="120" /> of the <InlineMath math="300" /> visitors. Debtors who haven't come back never enter the survey.</>}
+  chart={`flowchart LR
+    A["1,500 members with unpaid fines"] --> B["Came back"]
+    A --> C["Haven't come back"]
+    B --> D["Can be found in the reading room: 120 of 300 visitors"]
+    C -.->|"don't visit"| E["Never enter the survey"]`}
+/>
+
 Here's why the other options fail.
 
 - The size of <InlineMath math="300" /> isn't the core problem. A survey of <InlineMath math="3{,}000" /> visitors would still reach only people who already came. What's wrong is who was surveyed, not how many.

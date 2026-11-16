@@ -13,6 +13,40 @@ Samakan dengan nol.
 
 <BlockMath math="9+k(-6)=0\ \Rightarrow\ k=\frac96=\frac32" />
 
+Gambar <InlineMath math="\vec a" />, <InlineMath math="\vec b" />, dan jumlah <InlineMath math="\vec a+k\vec b" />. **Dengan <InlineMath math="k=\tfrac32" />, ujung jumlah itu jatuh tepat di atas pangkal <InlineMath math="\vec a" />**, sehingga jumlahnya tegak lurus <InlineMath math="\vec a" />.
+
+<MathVisual
+  title={<>Vektor <InlineMath math="\vec a+k\vec b" /> yang tegak lurus <InlineMath math="\vec a" /></>}
+  description={<>Vektor <InlineMath math="\vec a" /> sepanjang <InlineMath math="3" /> mendatar, dan <InlineMath math="\vec b" /> sepanjang <InlineMath math="4" /> membentuk sudut <InlineMath math="120^\circ" /> dengannya. Dari ujung <InlineMath math="\vec a" />, panah <InlineMath math="\tfrac32\vec b" /> mundur <InlineMath math="3" /> satuan secara mendatar, tepat sepanjang <InlineMath math="\vec a" />. Hasilnya, <InlineMath math="\vec a+\tfrac32\vec b" /> tegak lurus <InlineMath math="\vec a" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    scaled: <InlineMath math="\tfrac32\vec b" />,
+    sum: <InlineMath math="\vec a+\tfrac32\vec b" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 3.5 },
+      y: { min: -0.5, max: 5.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -2, y: 2 * Math.sqrt(3) } },
+      { id: "scaled", kind: "vector", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 0, y: 3 * Math.sqrt(3) } },
+      { id: "sum", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: -1, y: Math.sqrt(3) }, placement: "left" },
+      { key: "scaled", objectId: "scaled", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "sum", objectId: "sum", at: { x: 0, y: 3 * Math.sqrt(3) }, placement: "above" },
+    ],
+  }}
+/>
+
 Jadi, nilai <InlineMath math="k" /> adalah <InlineMath math="\frac32" />.
 
 - <InlineMath math="-\frac32" /> memakai <InlineMath math="\cos120^\circ=\frac12" />, sehingga tanda hasil kali skalarnya salah.

@@ -8,6 +8,19 @@ Let <InlineMath math="a" /> be the number of medications given from 04.00 to 07.
 
 So the data shows nurses err more often in the last hours only if the medications given from 04.00 to 07.00 are **less than two-thirds** of all night-shift medications. Test it by reversing it. If the last hours handle two-thirds or more, their error rate is equal to or lower than the earlier rate. The data no longer points to fatigue, and the prediction loses its footing. An assumption whose reversal breaks the argument is the required one.
 
+The chart below works out the error rate in both parts of the night shift for several values of <InlineMath math="a" />. **The two lines cross between <InlineMath math="1{,}200" /> and <InlineMath math="1{,}500" />**, exactly at two-thirds of <InlineMath math="2{,}000" />, so the head of nursing's conclusion only holds to the left of that crossing.
+
+<Chart
+  title={<>Errors per <InlineMath math="1{,}000" /> medications by the number given from 04.00 to 07.00</>}
+  description={<>If <InlineMath math="a" /> medications are given from 04.00 to 07.00, the error rate there is <InlineMath math="12" /> per <InlineMath math="a" />, while earlier it's <InlineMath math="6" /> per <InlineMath math="2{,}000-a" />, both times <InlineMath math="1{,}000" />. At <InlineMath math="a=600" />, the rates are about <InlineMath math="20" /> and <InlineMath math="4.3" />. At <InlineMath math="a=1{,}800" />, about <InlineMath math="6.7" /> and <InlineMath math="30" />.</>}
+  categories={["600", "900", "1200", "1500", "1800"]}
+  series={[
+    { label: "04.00 to 07.00", mark: "line", values: [600, 900, 1200, 1500, 1800].map((a) => (12 / a) * 1000) },
+    { label: "21.00 to 04.00", mark: "line", values: [600, 900, 1200, 1500, 1800].map((a) => (6 / (2000 - a)) * 1000) },
+  ]}
+  valueLabel="Errors per 1,000 medications"
+/>
+
 Here's why the other options fail.
 
 - "Less than half" is enough, but it isn't required. Say the last hours handle <InlineMath math="60\%" /> of the medications, <InlineMath math="1{,}200" />. Their rate is <InlineMath math="12\div 1{,}200" />, or <InlineMath math="10" /> per <InlineMath math="1{,}000" />, while the earlier rate is <InlineMath math="6\div 800" />, or <InlineMath math="7.5" /> per <InlineMath math="1{,}000" />. The argument still works above one half, so this condition is too strict.

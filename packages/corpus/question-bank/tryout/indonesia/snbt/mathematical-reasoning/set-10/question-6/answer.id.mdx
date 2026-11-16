@@ -37,6 +37,18 @@ Jumlahkan **semua pembayaran Dodi dari hari pembelian sampai hari pelunasan**.
 
 Jika Dodi membayar semua cicilan, totalnya <InlineMath math="1{.}400{.}000+12\cdot472{.}000=7{.}064{.}000" />. Pelunasan dipercepat menghapus bunga <InlineMath math="7\cdot72{.}000=504{.}000" /> tetapi menambah denda <InlineMath math="84{.}000" />. **Penghematannya** <InlineMath math="504{.}000-84{.}000=420{.}000" />, dan memang <InlineMath math="7{.}064{.}000-420{.}000=6{.}644{.}000" />.
 
+Grafik berikut membandingkan pelunasan dipercepat dengan membayar semua cicilan. **Pelunasan dipercepat lebih murah <InlineMath math="\text{Rp}420{.}000" />**, karena bunga tujuh bulan hilang dan dendanya jauh lebih kecil.
+
+<Chart
+  title={<>Seluruh uang Dodi dengan dan tanpa pelunasan dipercepat</>}
+  description={<>Jika Dodi membayar semua <InlineMath math="12" /> cicilan, totalnya <InlineMath math="\text{Rp}7{.}064{.}000" />. Dengan pelunasan dipercepat sesudah cicilan kelima, totalnya <InlineMath math="\text{Rp}6{.}644{.}000" />. Sumbu nilai dimulai dari <InlineMath math="\text{Rp}6{.}000{.}000" />.</>}
+  categories={["Semua cicilan", "Lunas sesudah cicilan kelima"]}
+  bars="apart"
+  series={[{ label: "Seluruh uang dikeluarkan (rupiah)", mark: "bar", values: [1400000 + 12 * 472000, 1400000 + 5 * 472000 + 1.03 * (4800000 - 5 * 400000)] }]}
+  valueRange={{ min: 6000000, max: 7200000 }}
+  valueLabel="Uang (rupiah)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan yang keliru **salah menghitung uang pelunasan**.

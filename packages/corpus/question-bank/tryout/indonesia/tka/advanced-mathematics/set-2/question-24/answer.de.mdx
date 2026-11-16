@@ -9,6 +9,40 @@ Jede der beiden Vorschriften ist für sich stetig, zu prüfen ist also nur die N
 \lim_{x\to2^+}f(x)&=f(2)=2b-1=2(3)-1=5
 \end{aligned}" />
 
+Zeichne <InlineMath math="f" /> mit <InlineMath math="a=1" /> und <InlineMath math="b=3" />. **Die beiden Teile treffen sich ohne Lücke in <InlineMath math="(2,\ 5)" />**, und der rechte Teil geht durch <InlineMath math="(3,\ 8)" />.
+
+<MathVisual
+  title={<>Der bei <InlineMath math="x=2" /> stetige Graph von <InlineMath math="f" /></>}
+  description={<>Für <InlineMath math="x<2" /> ist der Graph die Parabel <InlineMath math="y=x^2+1" />, für <InlineMath math="x\ge2" /> die Gerade <InlineMath math="y=3x-1" />. Beide treffen sich in <InlineMath math="(2,\ 5)" />, und die Gerade geht durch <InlineMath math="(3,\ 8)" />, passend zu <InlineMath math="f(3)=8" />.</>}
+  labels={{
+    left: <InlineMath math="x^2+1" />,
+    right: <InlineMath math="3x-1" />,
+    join: <InlineMath math="(2,\ 5)" />,
+    three: <InlineMath math="(3,\ 8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4 },
+      y: { min: 0, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x^2 + 1", domain: { min: -1, max: 2 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "3*x - 1", domain: { min: 2, max: 4 } },
+      { id: "join", kind: "point", appearance: "answer", at: { x: 2, y: 5 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: 3, y: 8 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 3.5, y: 9.5 }, placement: "left" },
+      { key: "join", objectId: "join", at: { x: 2, y: 5 }, placement: "above-left" },
+      { key: "three", objectId: "three", at: { x: 3, y: 8 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Gleichsetzen liefert <InlineMath math="4+a=5" />, also <InlineMath math="a=1" />. Probe: Mit <InlineMath math="a=1" /> und <InlineMath math="b=3" /> liefern beide Vorschriften bei <InlineMath math="x=2" /> den Wert <InlineMath math="5" />, und <InlineMath math="f(3)=9-1=8" />.
 
 Also ist <InlineMath math="a+b=1+3=4" />.

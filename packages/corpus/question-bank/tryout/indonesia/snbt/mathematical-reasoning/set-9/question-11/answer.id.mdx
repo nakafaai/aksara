@@ -22,6 +22,20 @@ B_8 &= 9\times(2{,}144+1{,}949+1{,}772)+16\times(1{,}611+1{,}464+1{,}331+1{,}210
 
 Saldo tahun ke-<InlineMath math="8" /> sudah melewati <InlineMath math="135" />. **Saldo selalu naik dari tahun ke tahun**, karena ada setoran baru dan pertumbuhan, jadi tahun-tahun sebelum tahun ke-<InlineMath math="7" /> pasti juga kurang dari <InlineMath math="135" />.
 
+Grafik berikut menggambar saldo akhir setiap tahun dengan faktor dari tabel. **Batang tahun ke-<InlineMath math="7" /> masih sedikit di bawah garis target**, dan batang tahun ke-<InlineMath math="8" /> melewatinya jauh.
+
+<Chart
+  title={<>Saldo dana pensiun pada akhir setiap tahun</>}
+  description={<>Saldo akhir tahun ke-<InlineMath math="1" /> sampai ke-<InlineMath math="8" /> berturut-turut <InlineMath math="9{,}9" />, <InlineMath math="20{,}79" />, <InlineMath math="32{,}769" />, <InlineMath math="53{,}645" />, <InlineMath math="76{,}614" />, <InlineMath math="101{,}879" />, <InlineMath math="129{,}668" />, dan <InlineMath math="160{,}241" /> juta rupiah. Garis datar menandai target <InlineMath math="135" /> juta rupiah.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Saldo akhir tahun (juta rupiah)", mark: "bar", values: [9.9, 20.79, 32.769, 53.645, 76.614, 101.879, 129.668, 160.241] },
+    { label: "Target 135 juta", mark: "line", values: Array.from({ length: 8 }, () => 135) },
+  ]}
+  valueLabel="Saldo (juta rupiah)"
+/>
+
 # Cek tahun demi tahun
 
 Cara kedua: setiap tahun tambahkan dana yang masuk, lalu kalikan <InlineMath math="1{,}1" />. Angkanya dibulatkan sampai dua angka di belakang koma.

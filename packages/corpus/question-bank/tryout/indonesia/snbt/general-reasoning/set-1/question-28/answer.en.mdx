@@ -19,6 +19,19 @@ The symbol <InlineMath math="\min" /> means the smaller of the two values. This 
 | <InlineMath math="9" /> | <InlineMath math="80" /> | <InlineMath math="72" /> |
 | <InlineMath math="10" /> | <InlineMath math="88" /> | <InlineMath math="72" /> |
 
+The chart below draws both costs by charged hours. **The two lines meet twice, at <InlineMath math="4" /> hours and at <InlineMath math="8" /> hours**, and after <InlineMath math="8" /> hours the Q line goes flat because of the daily cap.
+
+<Chart
+  title={<>Cost of room P and room Q by charged hours</>}
+  description={<>Room P stays at <InlineMath math="40" /> thousand rupiah up to <InlineMath math="4" /> hours, then rises by <InlineMath math="8" /> thousand an hour. Room Q rises by <InlineMath math="10" /> thousand an hour until it's held at <InlineMath math="72" /> thousand rupiah. They're equal at <InlineMath math="4" /> hours, at <InlineMath math="40" /> thousand, and at <InlineMath math="8" /> hours, at <InlineMath math="72" /> thousand.</>}
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Room P", mark: "line", values: Array.from({ length: 10 }, (_, i) => (i + 1 <= 4 ? 40 : 40 + 8 * (i + 1 - 4))) },
+    { label: "Room Q", mark: "line", values: Array.from({ length: 10 }, (_, i) => Math.min(10 * (i + 1), 72)) },
+  ]}
+  valueLabel="Cost (thousand rupiah)"
+/>
+
 **Statement 1** is Benar. Any stay longer than <InlineMath math="8" /> hours is charged as at least <InlineMath math="9" /> hours. Room P then costs at least <InlineMath math="40+8\times5=80" /> thousand and keeps rising, while room Q stays capped at <InlineMath math="72" /> thousand. If you forget the cap, Q seems to cost <InlineMath math="90" /> thousand or more, and you'd wrongly call the statement false.
 
 **Statement 2** is Salah. A stay of <InlineMath math="5" /> hours <InlineMath math="10" /> minutes is charged as <InlineMath math="6" /> hours, so it costs <InlineMath math="40+8\times2=56" /> thousand, which isn't less than <InlineMath math="50" /> thousand. Without rounding, the cost looks like just over <InlineMath math="48" /> thousand, and the statement seems true.

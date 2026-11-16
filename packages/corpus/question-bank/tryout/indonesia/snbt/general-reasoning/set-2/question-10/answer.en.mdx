@@ -24,6 +24,20 @@ For the 7th term, the number is <InlineMath math="2 \times 33 - 1 = 65" />, and 
 
 Check it another way. Without wrapping, the letter positions are <InlineMath math="2, 4, 7, 12, 21, 38, 71" />, and the gaps between them are <InlineMath math="2, 3, 5, 9, 17, 33" />, exactly the numbers in the sequence. Position <InlineMath math="71" /> wraps around twice: <InlineMath math="71 - 52 = 19" />, which is S. Same answer.
 
+The chart below puts both parts of each term side by side. **Each jump in the letter-position line equals the number bar of the term it starts from**.
+
+<Chart
+  title={<>Letter position before wrapping and the number in terms <InlineMath math="1" /> to <InlineMath math="7" /></>}
+  description={<>Without wrapping back to A, the letter positions are <InlineMath math="2, 4, 7, 12, 21, 38, 71" />. The numbers are <InlineMath math="2, 3, 5, 9, 17, 33, 65" />. The gaps between letter positions are <InlineMath math="2, 3, 5, 9, 17, 33" />, the same as the number in the previous term.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Letter position before wrapping", mark: "line", values: [2, 4, 7, 12, 21, 38, 71] },
+    { label: "Number in the term", mark: "bar", values: [2, 3, 5, 9, 17, 33, 65] },
+  ]}
+  bars="apart"
+  valueLabel="Value"
+/>
+
 The other options come from these slips:
 
 - <InlineMath math="\text{L}33" /> is the 6th term. You get it if you stop one step too early.

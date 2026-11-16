@@ -32,6 +32,41 @@ Die Spitze läuft auf einem Kreis mit Radius <InlineMath math="11\text{ cm}" />,
 &=7\cdot2\pi=14\pi\text{ cm}
 \end{aligned}" />
 
+Zeichne beide Zeiger beim zweiten rechten Winkel. **Die Spitze des Minutenzeigers hat vom <InlineMath math="12" /> aus einen Bogen von <InlineMath math="\tfrac{2{.}520}{11}" /> Grad zurückgelegt**, etwas mehr als einen halben Kreis.
+
+<MathVisual
+  title={<>Weg der Minutenzeigerspitze bis zum zweiten rechten Winkel</>}
+  description={<>Der Kreis mit Radius <InlineMath math="11" /> ist der Weg der Minutenzeigerspitze. Der markierte Bogen läuft im Uhrzeigersinn vom <InlineMath math="12" /> aus über <InlineMath math="\tfrac{2{.}520}{11}^\circ\approx229^\circ" /> und hat die Länge <InlineMath math="14\pi" />. In diesem Moment steht der Stundenzeiger bei <InlineMath math="\tfrac{1{.}530}{11}^\circ" /> vom <InlineMath math="12" /> aus, genau <InlineMath math="90^\circ" /> hinter dem Minutenzeiger.</>}
+  labels={{
+    path: <InlineMath math="14\pi" />,
+    minute: <>Minutenzeiger</>,
+    hour: <>Stundenzeiger</>,
+    twelve: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 13 },
+      y: { min: -13, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "face", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 11 },
+      { id: "path", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 11, startDegrees: 2430 / 11, sweepDegrees: 2520 / 11 },
+      { id: "twelve", kind: "point", appearance: "secondary", at: { x: 0, y: 11 } },
+      { id: "minute", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 11 * Math.cos((2430 / 11) * Math.PI / 180), y: 11 * Math.sin((2430 / 11) * Math.PI / 180) } },
+      { id: "hour", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 7 * Math.cos((3420 / 11) * Math.PI / 180), y: 7 * Math.sin((3420 / 11) * Math.PI / 180) } },
+    ],
+    labels: [
+      { key: "path", objectId: "path", at: { x: 11, y: 0 }, placement: "right" },
+      { key: "minute", objectId: "minute", at: { x: 11 * Math.cos((2430 / 11) * Math.PI / 180), y: 11 * Math.sin((2430 / 11) * Math.PI / 180) }, placement: "below-left" },
+      { key: "hour", objectId: "hour", at: { x: 7 * Math.cos((3420 / 11) * Math.PI / 180), y: 7 * Math.sin((3420 / 11) * Math.PI / 180) }, placement: "below-right" },
+      { key: "twelve", objectId: "twelve", at: { x: 0, y: 11 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="\frac{2{.}520}{11}\approx229^\circ" /> ist etwas mehr als eine halbe Drehung, das passt zu etwa <InlineMath math="38" /> Minuten.
 
 Die Spitze des Minutenzeigers legt also <InlineMath math="14\pi" /> cm zurück.

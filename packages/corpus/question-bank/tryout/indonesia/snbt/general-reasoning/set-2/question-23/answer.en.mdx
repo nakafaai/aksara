@@ -19,6 +19,20 @@ With one meter, the usage is <InlineMath math="110+35=145\text{ kWh}" />. That p
 
 The difference is <InlineMath math="256{,}000-252{,}000=4{,}000" />. The fixed charge you save, <InlineMath math="\text{Rp}25{,}000" />, loses to the rise in usage cost. Without the fixed charge, one meter pays <InlineMath math="231{,}000" />, while two meters pay <InlineMath math="160{,}000+42{,}000=202{,}000" />, so the usage cost goes up by <InlineMath math="29{,}000" /> rupiah.
 
+The chart below splits both ways of paying into usage cost and fixed charge. **The fixed charge you save is smaller than the rise in usage cost**, so one meter actually costs a little more.
+
+<Chart
+  title={<>The two families' June bill with two meters and with one meter</>}
+  description={<>With two meters, the usage cost is <InlineMath math="\text{Rp}202{,}000" /> and the fixed charges are <InlineMath math="\text{Rp}50{,}000" />, so <InlineMath math="\text{Rp}252{,}000" />. With one meter, the usage cost is <InlineMath math="\text{Rp}231{,}000" /> and the fixed charge is <InlineMath math="\text{Rp}25{,}000" />, so <InlineMath math="\text{Rp}256{,}000" />.</>}
+  categories={["Two meters", "One meter"]}
+  bars="apart"
+  series={[
+    { label: "Usage cost", mark: "bar", values: [40 * 1200 + 70 * 1600 + 35 * 1200, 40 * 1200 + 80 * 1600 + 25 * 2200] },
+    { label: "Fixed charge", mark: "bar", values: [2 * 25000, 25000] },
+  ]}
+  valueLabel="Cost (rupiah)"
+/>
+
 Check that rise kWh by kWh. All <InlineMath math="35" /> of the Lestari family's kWh lose the Block I rate and move up to the Block II rate, which is <InlineMath math="400" /> rupiah more per kWh, so <InlineMath math="35\times400=14{,}000" />. As a result, <InlineMath math="25" /> kWh get pushed from Block II into Block III and cost <InlineMath math="600" /> rupiah more per kWh, so <InlineMath math="25\times600=15{,}000" />. Together that's <InlineMath math="29{,}000" />, the same as above.
 
 The other options are tempting because each one catches only part of the change:

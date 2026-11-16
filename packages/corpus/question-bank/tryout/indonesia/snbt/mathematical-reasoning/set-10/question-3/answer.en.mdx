@@ -30,4 +30,15 @@ The truck and a bus **may now travel together**, and the last bus crosses alone.
 
 The queue becomes two trucks, six small vehicles, two buses, and then the truck. The first trip is the two trucks, and the second trip is the six small vehicles, because the next bus would make the length <InlineMath math="31+12=43\text{ m}" />. After that, **no pair of heavy vehicles fits**: two buses weigh <InlineMath math="32\text{ tonnes}" />, and a bus with a truck weighs <InlineMath math="31\text{ tonnes}" />. The bus, the bus, and the truck each cross alone, so the queue still needs <InlineMath math="5" /> trips. The fourth statement is false.
 
+The chart below compares the number of trips for the original queue and each change. **Only the missing third car and the <InlineMath math="31" />-tonne limit cut a trip**, while moving the truck to the back changes nothing.
+
+<Chart
+  title={<>Number of trips for the original queue and each change</>}
+  description={<>The original queue needs <InlineMath math="5" /> trips. Without the third car, it needs <InlineMath math="4" />. With a mass limit of <InlineMath math="31" /> tonnes, it needs <InlineMath math="4" />. With truck <InlineMath math="9" /> moved to the back, it still needs <InlineMath math="5" />.</>}
+  categories={["Original queue", "Third car drops out", "Limit 31 tonnes", "Truck 9 at the back"]}
+  bars="apart"
+  series={[{ label: "Trips", mark: "bar", values: [5, 4, 4, 5] }]}
+  valueLabel="Trips"
+/>
+
 So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.

@@ -23,6 +23,19 @@ There are two smaller rules inside. The multiplier alternates <InlineMath math="
 
 Check the limit. The term <InlineMath math="235" /> is still below <InlineMath math="500" />, and the next term, <InlineMath math="705" />, is above it. Nothing sits between them, so <InlineMath math="705" /> really is the first term past the limit. It's the 12th term.
 
+The chart below draws the first twelve terms. **The terms only cross the <InlineMath math="500" /> line at the twelfth term**, jumping from <InlineMath math="235" /> to <InlineMath math="705" />.
+
+<Chart
+  title={<>Terms of the sequence compared with the limit of <InlineMath math="500" /></>}
+  description={<>The first eleven terms are <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="17" />, <InlineMath math="34" />, <InlineMath math="37" />, <InlineMath math="111" />, <InlineMath math="115" />, <InlineMath math="230" />, and <InlineMath math="235" />, all below <InlineMath math="500" />. The twelfth term is <InlineMath math="705" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+  series={[
+    { label: "Term value", mark: "line", values: [2, 2 * 2, 4 + 1, 5 * 3, 15 + 2, 17 * 2, 34 + 3, 37 * 3, 111 + 4, 115 * 2, 230 + 5, 235 * 3] },
+    { label: "Limit of 500", mark: "line", values: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500] },
+  ]}
+  valueLabel="Value"
+/>
+
 Two common slips give similar numbers:
 
 - If you think the added number stays at <InlineMath math="4" />, you get <InlineMath math="115, 230, 234, 702" />, so you'd answer <InlineMath math="702" />.

@@ -30,6 +30,17 @@ Check it another way by counting according to the number of boys on the team. Wi
 
 That's <InlineMath math="60+140+80=280" />, the same as before.
 
+The chart below splits all the valid teams by number of boys. **Teams with two boys are the most common**, and the three bars add up to <InlineMath math="280" />.
+
+<Chart
+  title={<>Number of valid teams by number of boys</>}
+  description={<>There are <InlineMath math="60" /> teams with one boy, <InlineMath math="140" /> with two boys, and <InlineMath math="80" /> with three boys, for a total of <InlineMath math="280" /> teams.</>}
+  categories={["1 boy", "2 boys", "3 boys"]}
+  bars="apart"
+  series={[{ label: "Teams", mark: "bar", values: [6 * 10, (15 - 1) * 10, (20 - 4) * 5] }]}
+  valueLabel="Teams"
+/>
+
 Some tempting results that are wrong:
 
 - <InlineMath math="274" /> comes from subtracting all <InlineMath math="36" /> Dimas-and-Rafi teams from <InlineMath math="310" />. The six all-boy teams then get removed twice.

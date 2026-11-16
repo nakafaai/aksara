@@ -11,6 +11,41 @@ Because <InlineMath math="h>0" />, you can multiply by <InlineMath math="h" /> w
 
 <BlockMath math="\frac{300}{h}\ge\frac23\iff h\le450,\qquad \frac{300}{h}\le2\iff h\ge150" />
 
+Rotate the cost line about <InlineMath math="(6,\ 8)" />. **The cost line may turn from the slope of the protein line to the slope of the fat line**, and the gentlest of those limits is reached at <InlineMath math="h=450" />.
+
+<MathVisual
+  title={<>Cost lines that still touch <InlineMath math="(6,\ 8)" /></>}
+  description={<>The feasible region is the same as before. The cost line <InlineMath math="300x+hy" /> through <InlineMath math="(6,\ 8)" /> has slope <InlineMath math="-\tfrac{300}{h}" />. For <InlineMath math="h=150" />, it lies on the protein line <InlineMath math="2x+y=20" />. For <InlineMath math="h=450" />, it lies on the fat line <InlineMath math="2x+3y=36" /> and also touches <InlineMath math="(18,\ 0)" />.</>}
+  labels={{
+    steep: <InlineMath math="h=150" />,
+    flat: <InlineMath math="h=450" />,
+    best: <InlineMath math="(6,\ 8)" />,
+    side: <InlineMath math="(18,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 24 },
+      y: { min: 0, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 26 }, { x: 0, y: 20 }, { x: 6, y: 8 }, { x: 18, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 26 }] },
+      { id: "steep", kind: "function", appearance: "primary", formula: "20 - 2*x", domain: { min: 0, max: 10 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "12 - (2/3)*x", domain: { min: 0, max: 18 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 8 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 18, y: 0 } },
+    ],
+    labels: [
+      { key: "steep", objectId: "steep", at: { x: 2, y: 16 }, placement: "left" },
+      { key: "flat", objectId: "flat", at: { x: 13.5, y: 3 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 18, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 So <InlineMath math="(6,8)" /> is cheapest for <InlineMath math="150\le h\le450" />. Check the upper end: for <InlineMath math="h=450" />, the cost at <InlineMath math="(6,8)" /> is <InlineMath math="1{,}800+3{,}600=5{,}400" /> and the cost at <InlineMath math="(18,0)" /> is also <InlineMath math="5{,}400" />, so both are cheapest. For <InlineMath math="h=460" />, the cost at <InlineMath math="(6,8)" /> becomes <InlineMath math="5{,}480" />, more than <InlineMath math="5{,}400" />.
 
 So the highest price for one sack of feed II is <InlineMath math="\text{Rp}450{,}000.00" />.

@@ -26,6 +26,17 @@ A <InlineMath math="13" />-month term already uses <InlineMath math="2.5\%" /> i
 
 After rounding, the <InlineMath math="13" />-month instalment is <InlineMath math="490{,}000" />. The term is longer, but **the rise in monthly interest is bigger** than the drop in the principal part. The second statement is false.
 
+The chart below draws the instalment for every term. The bars keep falling up to <InlineMath math="12" /> months, then **jump up at <InlineMath math="13" /> months** because the monthly interest changes from <InlineMath math="1.5\%" /> to <InlineMath math="2.5\%" />.
+
+<Chart
+  title={<>Monthly instalment by term</>}
+  description={<>The <InlineMath math="3" />-month instalment is <InlineMath math="\text{Rp}1{,}672{,}000" /> and falls to <InlineMath math="\text{Rp}472{,}000" /> at <InlineMath math="12" /> months. At <InlineMath math="13" /> months it rises to <InlineMath math="\text{Rp}490{,}000" />, then falls again to <InlineMath math="\text{Rp}320{,}000" /> at <InlineMath math="24" /> months.</>}
+  bars="apart"
+  categories={Array.from({ length: 22 }, (_, i) => `${i + 3}`)}
+  series={[{ label: "Monthly instalment (rupiah)", mark: "bar", values: Array.from({ length: 22 }, (_, i) => 1000 * Math.ceil((4800000 / (i + 3) + 4800000 * (i + 3 <= 12 ? 0.015 : 0.025)) / 1000)) }]}
+  valueLabel="Instalment (rupiah)"
+/>
+
 # Rounding with nine months
 
 The <InlineMath math="9" />-month instalment before rounding is <InlineMath math="\tfrac{4{,}800{,}000}{9}+72{,}000=605{,}333.33\ldots" />, which rounds up to <InlineMath math="606{,}000" />.

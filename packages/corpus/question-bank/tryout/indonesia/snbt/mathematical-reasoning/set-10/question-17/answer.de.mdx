@@ -38,6 +38,19 @@ Eine Woche bringt einen Reingewinn von <InlineMath math="-90{.}000+255{.}000+120
 
 Am Montag der dritten Woche **sinkt die Summe durch die Miete** von <InlineMath math="1{.}400{.}000" /> auf <InlineMath math="1{.}310{.}000" />, also noch unter das Startkapital. Am Dienstag der dritten Woche beträgt sie <InlineMath math="1{.}565{.}000\ge1{.}500{.}000" />.
 
+Das Diagramm verfolgt den aufgelaufenen Reingewinn Tag für Tag. **Die Linie sinkt jeden Montag wegen der Miete** und überschreitet die Kapitallinie erst am Dienstag der dritten Woche.
+
+<Chart
+  title={<>Aufgelaufener Reingewinn der Kantine seit dem ersten Tag</>}
+  description={<>Der aufgelaufene Reingewinn beträgt am Ende der ersten Woche <InlineMath math="\text{Rp}700{.}000" /> und am Ende der zweiten Woche <InlineMath math="\text{Rp}1{.}400{.}000" />. Am Montag der dritten Woche fällt er auf <InlineMath math="\text{Rp}1{.}310{.}000" /> und steigt am Dienstag der dritten Woche auf <InlineMath math="\text{Rp}1{.}565{.}000" />. Die waagerechte Linie markiert das Gerätekapital von <InlineMath math="\text{Rp}1{.}500{.}000" />.</>}
+  categories={["Mo 1", "Di 1", "Mi 1", "Do 1", "Fr 1", "Mo 2", "Di 2", "Mi 2", "Do 2", "Fr 2", "Mo 3", "Di 3"]}
+  series={[
+    { label: "Aufgelaufener Reingewinn (Rupiah)", mark: "line", values: [-90000, 165000, 285000, 505000, 700000, 610000, 865000, 985000, 1205000, 1400000, 1310000, 1565000] },
+    { label: "Startkapital für Geräte", mark: "line", values: Array.from({ length: 12 }, () => 1500000) },
+  ]}
+  valueLabel="Aufgelaufener Reingewinn (Rupiah)"
+/>
+
 # Kontrolle
 
 Jede Freitagssumme ist ein Vielfaches von <InlineMath math="700{.}000" />, dem Reingewinn einer Woche. Nach zwei Wochen sind es <InlineMath math="1{.}400{.}000" />, also **kommt das Kapital sicher in der dritten Woche zurück**, und die Tabelle zeigt, dass es am Dienstag passiert.

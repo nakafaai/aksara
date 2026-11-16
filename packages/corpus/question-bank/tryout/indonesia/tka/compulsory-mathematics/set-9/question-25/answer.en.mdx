@@ -11,6 +11,19 @@ There are <InlineMath math="\binom93=84" /> possible committees. Group them by t
 | <InlineMath math="2" /> | <InlineMath math="\binom42\binom51=30" /> | <InlineMath math="\frac23" /> | <InlineMath math="20" /> |
 | <InlineMath math="3" /> | <InlineMath math="\binom43=4" /> | <InlineMath math="1" /> | <InlineMath math="4" /> |
 
+Count the pairs of a committee and one of its girls as spokesperson, which is the number of committees times <InlineMath math="k" />. **Of the <InlineMath math="112" /> pairs that fit the information, <InlineMath math="60" /> come from committees with exactly <InlineMath math="2" /> girls**, so the probability is <InlineMath math="\tfrac{60}{112}=\tfrac{15}{28}" />.
+
+<Chart
+  title={<>Pairs of a committee and a girl spokesperson</>}
+  description={<>For committees with <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" /> girls, the numbers of pairs of a committee and a girl spokesperson are <InlineMath math="10\cdot0=0" />, <InlineMath math="40\cdot1=40" />, <InlineMath math="30\cdot2=60" />, and <InlineMath math="4\cdot3=12" />. They add up to <InlineMath math="112" />.</>}
+  bars="apart"
+  categories={["0 girls", "1 girl", "2 girls", "3 girls"]}
+  series={[
+    { label: "Committee and girl spokesperson", mark: "bar", values: [0, 40, 60, 12] },
+  ]}
+  valueLabel="Number of pairs"
+/>
+
 The last column already accounts for **who gets picked as spokesperson**, not just who's on the committee.
 
 # The conditional probability

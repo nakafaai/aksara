@@ -31,6 +31,38 @@ Say it happens <InlineMath math="t" /> years from now. Ayah and Ibu each gain <I
 t&=8
 \end{aligned}" />
 
+Draw both sides as lines against <InlineMath math="t" />. **The line for five times Kakak's age rises <InlineMath math="5" /> per year, while the sum of Ayah's and Ibu's ages rises only <InlineMath math="2" />**, so the line that starts lower catches up at <InlineMath math="t=8" />.
+
+<MathVisual
+  title={<>Ayah's and Ibu's ages added versus five times Kakak's age</>}
+  description={<>The horizontal axis is the number of years <InlineMath math="t" /> from now, and the vertical axis is age in years. The line <InlineMath math="99+2t" /> starts at <InlineMath math="99" />, and the line <InlineMath math="5(15+t)" /> starts at <InlineMath math="75" /> but rises faster. They meet at <InlineMath math="(8,\ 115)" />.</>}
+  labels={{
+    parents: <InlineMath math="99+2t" />,
+    five: <InlineMath math="5(15+t)" />,
+    meet: <InlineMath math="(8,\ 115)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 14 },
+      y: { min: 60, max: 150 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parents", kind: "function", appearance: "primary", formula: "99 + 2*x", domain: { min: 0, max: 14 } },
+      { id: "five", kind: "function", appearance: "secondary", formula: "5*(15 + x)", domain: { min: 0, max: 14 } },
+      { id: "meet-down", kind: "segment", appearance: "construction", from: { x: 8, y: 115 }, to: { x: 8, y: 60 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 8, y: 115 } },
+    ],
+    labels: [
+      { key: "parents", objectId: "parents", at: { x: 1, y: 101 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 2, y: 85 }, placement: "below-right" },
+      { key: "meet", objectId: "meet", at: { x: 8, y: 115 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 The value of <InlineMath math="t" /> is positive, so it happens <InlineMath math="8" /> years from now. Check: by then Ayah is <InlineMath math="59" />, Ibu <InlineMath math="56" /> and Kakak <InlineMath math="23" />, and <InlineMath math="59+56=115=5\cdot23" />.
 
 # The sum of their ages then

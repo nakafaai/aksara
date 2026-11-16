@@ -14,6 +14,20 @@ The "what if" conclusion tests exactly that. Spread the shaded farms like the un
 
 This conclusion is certain, because it uses only the table's numbers and the assumption stated inside the option itself. Check it: <InlineMath math="940-840=100" />, the same lead as on each slope. That makes sense, since once the spread is equal, the <InlineMath math="100" /> lead on each slope carries straight into the overall average.
 
+The chart below puts all those averages side by side. **Shaded farms win on each slope and with an equal slope mix, yet lose in the actual overall figure**, because most of them sit on the steep slope.
+
+<Chart
+  title={<>Average coffee yield by slope and overall</>}
+  description={<>On the gentle slope, shaded farms yield <InlineMath math="1{,}000" /> and unshaded farms <InlineMath math="900" /> kilograms per hectare. On the steep slope, <InlineMath math="700" /> and <InlineMath math="600" />. Overall, <InlineMath math="760" /> and <InlineMath math="840" />. With the same slope mix, shaded farms would reach <InlineMath math="940" /> while unshaded farms stay at <InlineMath math="840" />.</>}
+  categories={["Gentle slope", "Steep slope", "Overall", "Same slope mix"]}
+  bars="apart"
+  series={[
+    { label: "Shaded", mark: "bar", values: [1000, 700, (10 * 1000 + 40 * 700) / 50, (40 * 1000 + 10 * 700) / 50] },
+    { label: "Unshaded", mark: "bar", values: [900, 600, (40 * 900 + 10 * 600) / 50, (40 * 900 + 10 * 600) / 50] },
+  ]}
+  valueLabel="Kilograms per hectare"
+/>
+
 Here's why the other options fail.
 
 - The option saying unshaded farms do better on both slopes flips the table. On each slope, the shaded farms are ahead. The slip is pushing the overall result (<InlineMath math="760<840" />) down into every group.

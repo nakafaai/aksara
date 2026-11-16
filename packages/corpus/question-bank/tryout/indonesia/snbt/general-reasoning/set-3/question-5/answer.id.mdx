@@ -7,6 +7,20 @@ Keempat pernyataan memakai **pembagi yang berbeda-beda**: per pemberian obat, pe
 | Malam | <InlineMath math="2{.}000" /> | <InlineMath math="18" /> | <InlineMath math="\tfrac{18}{2{.}000}\cdot 1{.}000=9" /> | <InlineMath math="18:2=9" /> |
 | Total | <InlineMath math="13{.}200" /> | <InlineMath math="78" /> | | |
 
+Grafik berikut menaruh kedua ukuran itu berdampingan. **Sif sore lebih tinggi dari sif pagi pada angka per seribu, tetapi sama per perawat**, dan batang seluruh bangsal ada di bawah <InlineMath math="6" />.
+
+<Chart
+  title={<>Dua ukuran kesalahan menurut sif, Januari sampai Maret</>}
+  description={<>Kesalahan per <InlineMath math="1{.}000" /> pemberian obat: pagi <InlineMath math="5" />, sore <InlineMath math="6" />, malam <InlineMath math="9" />, dan seluruh bangsal sekitar <InlineMath math="5{,}9" />. Kesalahan per perawat: pagi <InlineMath math="6" />, sore <InlineMath math="6" />, dan malam <InlineMath math="9" />.</>}
+  categories={["Pagi", "Sore", "Malam", "Seluruh bangsal"]}
+  bars="apart"
+  series={[
+    { label: "Kesalahan per 1.000 pemberian obat", mark: "bar", values: [(36 / 7200) * 1000, (24 / 4000) * 1000, (18 / 2000) * 1000, (78 / 13200) * 1000] },
+    { label: "Kesalahan per perawat", mark: "bar", values: [36 / 6, 24 / 4, 18 / 2, null] },
+  ]}
+  valueLabel="Banyak kesalahan"
+/>
+
 Pernyataan 1 benar. Ada dua pecahan dengan penyebut yang berbeda. Seperenam dari <InlineMath math="13{.}200" /> adalah <InlineMath math="2{.}200" />, dan sif malam hanya menangani <InlineMath math="2{.}000" /> pemberian, jadi kurang dari seperenam. Seperlima dari <InlineMath math="78" /> adalah <InlineMath math="15{,}6" />, dan sif malam menyumbang <InlineMath math="18" /> kesalahan, jadi lebih dari seperlima.
 
 Pernyataan 2 salah. Per perawat, sif sore dan sif pagi sama-sama <InlineMath math="6" /> kesalahan, jadi sif sore tidak lebih besar. Jebakannya adalah memindahkan urutan angka kesalahan per <InlineMath math="1{.}000" /> pemberian (sore <InlineMath math="6" />, pagi <InlineMath math="5" />) ke perbandingan per perawat. Kedua urutan berbeda karena setiap perawat pagi menangani <InlineMath math="7{.}200:6=1{.}200" /> pemberian, sedangkan setiap perawat sore hanya <InlineMath math="4{.}000:4=1{.}000" />.

@@ -33,6 +33,17 @@ Agar utang menjadi nol, tidur efektif harus menutup target malam itu dan seluruh
 
 Cek: dengan <InlineMath math="570" /> menit, utangnya <InlineMath math="90+480-570=0" />. Dengan <InlineMath math="569" /> menit, utangnya masih <InlineMath math="1" /> menit. Jadi **paling sedikit <InlineMath math="570" /> menit**, yaitu <InlineMath math="9" /> jam <InlineMath math="30" /> menit.
 
+Grafik berikut mengikuti utang tidur sampai Senin malam pekan berikutnya. **Utang <InlineMath math="90" /> menit dari Minggu baru habis** jika Senin malam berikutnya memberi <InlineMath math="570" /> menit tidur efektif.
+
+<Chart
+  title={<>Utang tidur sesudah setiap malam, sampai Senin malam pekan berikutnya</>}
+  description={<>Utang tidur sesudah Senin sampai Minggu berturut-turut <InlineMath math="0" />, <InlineMath math="105" />, <InlineMath math="205" />, <InlineMath math="170" />, <InlineMath math="290" />, <InlineMath math="170" />, dan <InlineMath math="90" /> menit. Dengan <InlineMath math="570" /> menit tidur efektif pada Senin malam berikutnya, utangnya menjadi <InlineMath math="0" />.</>}
+  categories={["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min", "Sen berikutnya"]}
+  bars="apart"
+  series={[{ label: "Utang tidur (menit)", mark: "bar", values: [0, 105, 205, 170, 290, 170, 90, 90 + 480 - 570] }]}
+  valueLabel="Utang tidur (menit)"
+/>
+
 # Jebakan yang perlu dihindari
 
 Jawaban lain muncul kalau **utang dihitung dengan selisih total saja** atau targetnya terlupa.

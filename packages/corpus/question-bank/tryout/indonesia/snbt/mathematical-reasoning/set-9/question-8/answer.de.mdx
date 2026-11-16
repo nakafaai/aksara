@@ -10,6 +10,20 @@ Schon die zwei kleinsten Teams haben <InlineMath math="9+10=19" /> Personen, meh
 
 Die drei kleinsten Teams haben <InlineMath math="9+10+12=31" /> Personen, mehr als die <InlineMath math="30" /> Plätze des Busses. Eine Busfahrt nimmt also höchstens zwei Teams mit. Zwei beliebige Teams passen in den Bus, denn die zwei größten haben nur <InlineMath math="13+14=27" /> Personen.
 
+Das Diagramm stellt jedes Team neben die Kapazität des Kleinbusses. **Jeder Balken passt allein hinein, aber schon die zwei kleinsten Balken ergeben <InlineMath math="19" /> Personen**, also kann ein Kleinbus nur ein Team befördern.
+
+<Chart
+  title={<>Mitglieder jedes Teams und Kapazität des Kleinbusses</>}
+  description={<>Die sechs Teams haben <InlineMath math="9" />, <InlineMath math="10" />, <InlineMath math="12" />, <InlineMath math="12" />, <InlineMath math="13" /> und <InlineMath math="14" /> Mitglieder. Die waagerechte Linie markiert die Kapazität des Kleinbusses, <InlineMath math="14" /> Personen.</>}
+  bars="apart"
+  categories={["9", "10", "12", "12", "13", "14"]}
+  series={[
+    { label: "Teammitglieder", mark: "bar", values: [9, 10, 12, 12, 13, 14] },
+    { label: "Kapazität Kleinbus", mark: "line", values: [14, 14, 14, 14, 14, 14] },
+  ]}
+  valueLabel="Personen"
+/>
+
 # Der günstigste Plan
 
 Angenommen, es gibt <InlineMath math="b" /> Busfahrten und <InlineMath math="m" /> Kleinbusfahrten. Alle sechs Teams müssen fahren, also <InlineMath math="2b+m\ge6" /> mit <InlineMath math="b\le2" /> und <InlineMath math="m\le4" />. Probier jeden Wert von <InlineMath math="b" /> aus.

@@ -29,6 +29,40 @@ m=3&:\ f(x)=5x^2-10x+5=5(x-1)^2 \\
 m=5&:\ f(x)=7x^2-14x+7=7(x-1)^2
 \end{aligned}" />
 
+Draw all three possibilities together with the <InlineMath math="x" />-axis. **Two parabolas touch the <InlineMath math="x" />-axis at <InlineMath math="(1,0)" />, while <InlineMath math="m=-2" /> only gives a horizontal line** that never meets it.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f" /> for the three candidate values of <InlineMath math="m" /></>}
+  description={<>For <InlineMath math="m=3" />, the graph is <InlineMath math="y=5(x-1)^2" />, and for <InlineMath math="m=5" />, it's <InlineMath math="y=7(x-1)^2" />. Both touch the <InlineMath math="x" />-axis exactly at <InlineMath math="(1,0)" />. For <InlineMath math="m=-2" />, the graph is the line <InlineMath math="y=35" />, far above the <InlineMath math="x" />-axis.</>}
+  labels={{
+    three: <InlineMath math="m=3" />,
+    five: <InlineMath math="m=5" />,
+    flat: <InlineMath math="m=-2:\ y=35" />,
+    touch: <InlineMath math="(1,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 4 },
+      y: { min: -5, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "three", kind: "function", appearance: "primary", formula: "5*(x - 1)^2", domain: { min: -1.8, max: 3.8 } },
+      { id: "five", kind: "function", appearance: "secondary", formula: "7*(x - 1)^2", domain: { min: -1.3, max: 3.3 } },
+      { id: "flat", kind: "function", appearance: "warning", formula: "35", domain: { min: -2, max: 4 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "three", objectId: "three", at: { x: 3.5, y: 5 * Math.pow(2.5, 2) }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 3, y: 28 }, placement: "left" },
+      { key: "flat", objectId: "flat", at: { x: -1, y: 35 }, placement: "above" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 For <InlineMath math="m=-2" />, the coefficient of <InlineMath math="x^2" /> becomes zero, so <InlineMath math="f" /> **isn't a quadratic function anymore**. Its graph is the horizontal line <InlineMath math="y=35" />, which never reaches the <InlineMath math="x" />-axis. Throw this value out. The other two values give parabolas that touch the <InlineMath math="x" />-axis at <InlineMath math="(1,0)" />.
 
 <BlockMath math="3\cdot5=15" />

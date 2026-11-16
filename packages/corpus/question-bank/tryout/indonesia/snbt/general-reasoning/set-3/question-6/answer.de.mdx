@@ -8,6 +8,19 @@ Wie deutlich? Sei <InlineMath math="p" /> die Zahl der nächtlichen Gaben von Ap
 
 Die nächtlichen Gaben müssen von <InlineMath math="2{.}000" /> auf unter etwa <InlineMath math="1{.}667" /> fallen, also um mehr als ein Sechstel, rund <InlineMath math="16{,}7\%" />. Dieses Sechstel kommt vom Zähler: Die Fehler sanken um genau ein Sechstel, von <InlineMath math="18" /> auf <InlineMath math="15" />, also muss der Nenner um mehr als ein Sechstel fallen, damit der Bruch steigt.
 
+Das Diagramm zeichnet die nächtliche Fehlerquote mit <InlineMath math="15" /> Fehlern für mehrere Werte von <InlineMath math="p" />. **Die Linie steigt erst über <InlineMath math="9" />, wenn <InlineMath math="p" /> unter etwa <InlineMath math="1{.}667" /> fällt**.
+
+<Chart
+  title={<>Nächtliche Fehlerquote mit <InlineMath math="15" /> Fehlern nach Zahl der Medikamentengaben</>}
+  description={<>Die Quote ist <InlineMath math="15" /> pro <InlineMath math="p" />, mal <InlineMath math="1{.}000" />. Bei <InlineMath math="p=2{.}000" /> sind es <InlineMath math="7{,}5" />. Bei <InlineMath math="p=1{.}500" /> sind es <InlineMath math="10" />, über der alten Quote von <InlineMath math="9" />.</>}
+  categories={["1400", "1500", "1600", "1700", "1800", "1900", "2000"]}
+  series={[
+    { label: "Nachtquote April bis Juni", mark: "line", values: [1400, 1500, 1600, 1700, 1800, 1900, 2000].map((p) => (15 / p) * 1000) },
+    { label: "Nachtquote Januar bis März", mark: "line", values: [9, 9, 9, 9, 9, 9, 9] },
+  ]}
+  valueLabel="Fehler pro 1.000 Gaben"
+/>
+
 Wenn die Routinemedikamente von 05.00 auf 08.00 Uhr verlegt werden, sinken die nächtlichen Gaben um etwa ein Viertel, ungefähr von <InlineMath math="2{.}000" /> auf <InlineMath math="1{.}500" />. Prüfe das:
 
 <BlockMath math="\frac{15}{1{.}500}\cdot 1{.}000=10>9" />

@@ -27,6 +27,17 @@ Now build the chain starting from "the robot isn't in power-saving mode".
 
 So "if the robot doesn't run in power-saving mode, the team qualifies for the national round" is valid. The last step only works because premise 1 is an "if and only if". If premise 1 just said "if the team qualifies, the robot finishes in under <InlineMath math="90" /> seconds", the chain would break at <InlineMath math="W" />.
 
+The diagram below draws that chain together with the direction of each premise. **The last step is only valid because premise 1 works in both directions**.
+
+<Mermaid
+  title={<>The chain from not using power-saving mode to qualifying</>}
+  description={<>If the robot isn't in power-saving mode, the backup battery is installed by the contrapositive of premise 3. The backup battery makes the robot finish in under <InlineMath math="90" /> seconds by premise 2. Because premise 1 works both ways, a robot that finishes in under <InlineMath math="90" /> seconds makes the team qualify.</>}
+  chart={`flowchart LR
+    H["Not in power-saving mode"] -->|"contrapositive of premise 3"| B["Backup battery installed"]
+    B -->|"premise 2"| W["Finishes in under 90 seconds"]
+    W <-->|"premise 1, both ways"| L["Qualifies for the national round"]`}
+/>
+
 Check it from the other end. The contrapositive of the conclusion is <InlineMath math="\neg L \Rightarrow H" />. If the team doesn't qualify, the robot didn't finish in under <InlineMath math="90" /> seconds (premise 1), so the backup battery wasn't installed (contrapositive of premise 2), so the robot runs in power-saving mode (premise 3). Same result.
 
 Each of the other four options uses one step in the wrong direction.

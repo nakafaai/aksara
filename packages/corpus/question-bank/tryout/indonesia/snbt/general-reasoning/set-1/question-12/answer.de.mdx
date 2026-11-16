@@ -14,6 +14,19 @@ Verfolge jetzt die Kette.
 
 Hier endet die Kette. Prämisse 4 hilft nur, wenn du weißt, dass <InlineMath math="f" /> wahr oder <InlineMath math="s" /> falsch ist, du weißt aber, dass <InlineMath math="s" /> wahr ist. Prämisse 5 hilft nur, wenn du weißt, dass <InlineMath math="p" /> wahr oder <InlineMath math="v" /> falsch ist, du weißt aber, dass <InlineMath math="p" /> falsch ist. Festival und Gastcoach bleiben also offen.
 
+Das Diagramm zeichnet diese Kette zusammen mit den Prämissen, die auf halbem Weg stehen bleiben. **Die bewiesene Kette läuft von <InlineMath math="\neg k" /> bis <InlineMath math="s" />**, während Festival und Gasttrainer unbekannt bleiben.
+
+<Mermaid
+  title={<>Die Schlusskette aus der Tatsache, dass keine neuen Kostüme gemacht wurden</>}
+  description={<>Es wurden keine neuen Kostüme gemacht, also kam nach Prämisse 1 kein neuer Sponsor dazu. Dann wird nach Prämisse 2 die Halle mit der Chorkasse gemietet, und nach Prämisse 3 gibt es jeden Samstag Zusatzproben. Die Prämissen 4 und 5 liefern nichts weiter, also bleiben Festival und Gasttrainer unbekannt.</>}
+  chart={`flowchart LR
+    K["Keine neuen Kostüme"] -->|"Prämisse 1"| P["Kein neuer Sponsor"]
+    P -->|"Prämisse 2"| G["Halle mit Kassengeld gemietet"]
+    G -->|"Prämisse 3"| S["Zusatzproben jeden Samstag"]
+    S -.->|"Prämisse 4 liefert nichts"| F["Festival: unbekannt"]
+    P -.->|"Prämisse 5 liefert nichts"| V["Gasttrainer: unbekannt"]`}
+/>
+
 Die Schlussfolgerung mit <InlineMath math="\neg p" /> und <InlineMath math="s" /> lautet "kein neuer Sponsor steigt ein, und jeden Samstag gibt es Zusatzproben". Beide Teile sind bewiesen.
 
 Jede andere Auswahl enthält einen Teil, der nicht bewiesen ist.

@@ -23,6 +23,21 @@ The concentration is the stock A per litre times <InlineMath math="200" />.
 
 Check the division: <InlineMath math="184\cdot1{,}250=230{,}000" />. The suitable range for week five runs from <InlineMath math="1{,}150" /> to <InlineMath math="1{,}250\text{ ppm}" />, and **both bounds count**. So the solution sits exactly on the upper bound and is still suitable.
 
+The chart below follows the concentration from Monday morning to Wednesday morning. **The line rises every day and stops exactly on the upper bound** on Wednesday morning.
+
+<Chart
+  title={<>Concentration of the solution each morning, Monday to Wednesday</>}
+  description={<>The concentration is <InlineMath math="1{,}200\text{ ppm}" /> on Monday morning, about <InlineMath math="1{,}224\text{ ppm}" /> on Tuesday morning, and exactly <InlineMath math="1{,}250\text{ ppm}" /> on Wednesday morning. Two flat lines mark the bounds of <InlineMath math="1{,}150" /> and <InlineMath math="1{,}250\text{ ppm}" />. The value axis starts at <InlineMath math="1{,}100" />.</>}
+  categories={["Monday morning", "Tuesday morning", "Wednesday morning"]}
+  series={[
+    { label: "Concentration (ppm)", mark: "line", values: [1200, ((1200 - 25) / (200 - 8)) * 200, ((1200 - 50) / (200 - 16)) * 200] },
+    { label: "Lower bound 1,150", mark: "line", values: [1150, 1150, 1150] },
+    { label: "Upper bound 1,250", mark: "line", values: [1250, 1250, 1250] },
+  ]}
+  valueRange={{ min: 1100, max: 1300 }}
+  valueLabel="Concentration (ppm)"
+/>
+
 # Why the concentration goes up
 
 On the first day the water drops by <InlineMath math="\tfrac{8}{200}=4\%" />, while stock A drops by only <InlineMath math="\tfrac{25}{1{,}200}" />, about <InlineMath math="2\%" />. **Water disappears faster than nutrients**, so the solution gets stronger. A result of <InlineMath math="1{,}250\text{ ppm}" />, above the starting <InlineMath math="1{,}200\text{ ppm}" />, makes sense.

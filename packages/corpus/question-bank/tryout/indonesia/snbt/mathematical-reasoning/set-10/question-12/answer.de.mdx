@@ -36,6 +36,17 @@ Die Helfer einer Station sind die Pflichtbecher geteilt durch die Becher eines H
 
 Jede Station bekommt gleich viele Helfer, also muss die Zahl für die schwierigste Station reichen. **Die schwierigste Station ist Station <InlineMath math="1" />**, weil sie die kürzeste Zeit hat, obwohl sie viel weniger Becher braucht als Station <InlineMath math="3" />.
 
+Das Diagramm zeigt die Helfer, die jede Station braucht. **Der höchste Balken steht bei Station <InlineMath math="1" />**, weil ihre Füllzeit die kürzeste ist, also muss diese Zahl an jeder Station gelten.
+
+<Chart
+  title={<>Benötigte Helfer pro Station, damit <InlineMath math="40\%" /> der geplanten Becher gefüllt sind</>}
+  description={<>Die Stationen <InlineMath math="1" /> bis <InlineMath math="5" /> brauchen <InlineMath math="7" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="5" /> und <InlineMath math="4" /> Helfer.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[{ label: "Benötigte Helfer", mark: "bar", values: [[2, 1320], [6, 1298], [10, 2508], [14, 2420], [18, 2310]].map((p) => Math.ceil((0.4 * p[1]) / (4 * (15 + 3 * p[0])))) }]}
+  valueLabel="Helfer"
+/>
+
 # Kontrolle an der ersten Station
 
 Mit <InlineMath math="7" /> Helfern füllt Station <InlineMath math="1" /> <InlineMath math="7\cdot84=588\ge528" /> Becher. Mit <InlineMath math="6" /> Helfern sind es nur <InlineMath math="6\cdot84=504<528" /> Becher, also **reichen sechs Helfer nicht**. Die anderen Stationen brauchen höchstens <InlineMath math="6" /> Helfer, also reichen <InlineMath math="7" /> Helfer auch dort.

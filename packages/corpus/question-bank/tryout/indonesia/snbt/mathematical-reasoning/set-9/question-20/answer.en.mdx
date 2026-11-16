@@ -22,6 +22,20 @@ Under the new rule, P runs <InlineMath math="10" /> hours and then gets <InlineM
 
 The new rule gives <InlineMath math="14+14=28" /> running hours in total. On Tuesday, **the new rule uses only <InlineMath math="2" /> maintenance hours**, while the old rule uses <InlineMath math="3" />.
 
+The chart below compares machine P's running hours under both rules. **The Monday bars are the same height**, and the whole difference comes from Tuesday, when the new rule needs only one maintenance stop.
+
+<Chart
+  title={<>Machine P's running hours on Monday and Tuesday by maintenance rule</>}
+  description={<>Under the old rule, machine P runs <InlineMath math="14" /> hours on Monday and <InlineMath math="13" /> hours on Tuesday. Under the new rule, it runs <InlineMath math="14" /> hours on Monday and <InlineMath math="14" /> hours on Tuesday.</>}
+  categories={["Monday", "Tuesday"]}
+  bars="apart"
+  series={[
+    { label: "Old rule", mark: "bar", values: [5 + 5 + 4, 1 + 5 + 5 + 2] },
+    { label: "New rule", mark: "bar", values: [10 + 4, 6 + 8] },
+  ]}
+  valueLabel="Running hours"
+/>
+
 # The difference in good parts
 
 Each running hour of P makes <InlineMath math="95\%\times120=114" /> good parts.

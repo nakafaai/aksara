@@ -12,6 +12,46 @@ Bei einer Laufzeit von <InlineMath math="n" /> Monaten und dem Zinssatz <InlineM
 | <InlineMath math="12" /> Monate | <InlineMath math="0{,}18" /> | <InlineMath math="\frac{1{,}18p}{12}" /> | <InlineMath math="9{.}000{.}000+0{,}19p" /> |
 | <InlineMath math="18" /> Monate | <InlineMath math="0{,}225" /> | <InlineMath math="\frac{1{,}225p}{18}" /> | <InlineMath math="9{.}000{.}000+0{,}235p" /> |
 
+Zeichne die Gesamtzahlungen der drei Laufzeiten als Geraden über dem Kreditbetrag <InlineMath math="p" />. **Alle drei beginnen im selben Punkt und laufen dann auseinander**, also ist der Abstand zwischen <InlineMath math="18" /> und <InlineMath math="12" /> Monaten am rechten Ende am größten, und die Gerade für <InlineMath math="6" /> Monate überschreitet die <InlineMath math="10\%" />-Marke erst nach <InlineMath math="p=3{,}15" />.
+
+<MathVisual
+  title={<>Gesamtzahlung der drei Laufzeiten nach Kreditbetrag</>}
+  description={<>Die waagerechte Achse ist der Kreditbetrag <InlineMath math="p" />, die senkrechte die Gesamtzahlung, beide in Millionen Rupiah, mit <InlineMath math="0<p\le7{,}2" />. Die Geraden sind <InlineMath math="9+0{,}16p" />, <InlineMath math="9+0{,}19p" /> und <InlineMath math="9+0{,}235p" />. Bei <InlineMath math="p=7{,}2" /> beträgt der Abstand zwischen den Geraden für <InlineMath math="18" /> und <InlineMath math="12" /> Monate <InlineMath math="0{,}324" />. Die waagerechte Linie bei <InlineMath math="9{,}504" /> liegt <InlineMath math="10\%" /> über dem Barpreis, und die Gerade für <InlineMath math="6" /> Monate schneidet sie bei <InlineMath math="p=3{,}15" />.</>}
+  labels={{
+    six: <InlineMath math="6\text{ Monate}" />,
+    twelve: <InlineMath math="12\text{ Monate}" />,
+    eighteen: <InlineMath math="18\text{ Monate}" />,
+    bar: <InlineMath math="9{,}504" />,
+    cross: <InlineMath math="p=3{,}15" />,
+    gap: <InlineMath math="0{,}324" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 7.6 },
+      y: { min: 8.9, max: 10.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "six", kind: "function", appearance: "primary", formula: "9 + 0.16*x", domain: { min: 0, max: 7.2 } },
+      { id: "twelve", kind: "function", appearance: "secondary", formula: "9 + 0.19*x", domain: { min: 0, max: 7.2 } },
+      { id: "eighteen", kind: "function", appearance: "highlight", formula: "9 + 0.235*x", domain: { min: 0, max: 7.2 } },
+      { id: "bar", kind: "function", appearance: "warning", formula: "9.504", domain: { min: 0, max: 7.2 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 7.2, y: 9 + 0.19 * 7.2 }, to: { x: 7.2, y: 9 + 0.235 * 7.2 } },
+      { id: "cross", kind: "point", appearance: "answer", at: { x: 3.15, y: 9.504 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 6, y: 9 + 0.16 * 6 }, placement: "below-right" },
+      { key: "twelve", objectId: "twelve", at: { x: 5, y: 9 + 0.19 * 5 }, placement: "below-right" },
+      { key: "eighteen", objectId: "eighteen", at: { x: 4, y: 9 + 0.235 * 4 }, placement: "above-left" },
+      { key: "bar", objectId: "bar", at: { x: 0.5, y: 9.504 }, placement: "above" },
+      { key: "cross", objectId: "cross", at: { x: 3.15, y: 9.504 }, placement: "below-right" },
+      { key: "gap", objectId: "gap", at: { x: 7.2, y: 9 + 0.2125 * 7.2 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Erste Aussage
 
 Die Hälfte der Rate bei <InlineMath math="6" /> Monaten ist <InlineMath math="\frac{1{,}15p}{12}" />. Vergleich sie mit der Rate bei <InlineMath math="12" /> Monaten.
