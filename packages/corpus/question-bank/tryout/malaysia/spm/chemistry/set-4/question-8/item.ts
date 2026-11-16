@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "0.016 mol dm⁻³, and 125 cm³ of it diluted to 500 cm³ gives 0.10 mol dm⁻³",
+          label: "0.016 mol dm⁻³, and the diluted solution has pH 12",
         },
         {
           correct: false,
-          label:
-            "0.40 mol dm⁻³, and 250 cm³ of it diluted to 500 cm³ gives 0.10 mol dm⁻³",
+          label: "0.40 mol dm⁻³, and the diluted solution has pH 13",
         },
         {
           correct: false,
-          label:
-            "0.40 mol dm⁻³, and 62.5 cm³ of it diluted to 500 cm³ gives 0.10 mol dm⁻³",
+          label: "0.40 mol dm⁻³, and the diluted solution has pH 2",
         },
         {
           correct: true,
-          label:
-            "0.40 mol dm⁻³, and 125 cm³ of it diluted to 500 cm³ gives 0.10 mol dm⁻³",
+          label: "0.40 mol dm⁻³, and the diluted solution has pH 12",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "0.016 mol dm⁻³, dan 125 cm³ daripadanya dicairkan hingga 500 cm³ memberikan 0.10 mol dm⁻³",
+          label: "0.016 mol dm⁻³, dan larutan cair mempunyai pH 12",
         },
         {
           correct: false,
-          label:
-            "0.40 mol dm⁻³, dan 250 cm³ daripadanya dicairkan hingga 500 cm³ memberikan 0.10 mol dm⁻³",
+          label: "0.40 mol dm⁻³, dan larutan cair mempunyai pH 13",
         },
         {
           correct: false,
-          label:
-            "0.40 mol dm⁻³, dan 62.5 cm³ daripadanya dicairkan hingga 500 cm³ memberikan 0.10 mol dm⁻³",
+          label: "0.40 mol dm⁻³, dan larutan cair mempunyai pH 2",
         },
         {
           correct: true,
-          label:
-            "0.40 mol dm⁻³, dan 125 cm³ daripadanya dicairkan hingga 500 cm³ memberikan 0.10 mol dm⁻³",
+          label: "0.40 mol dm⁻³, dan larutan cair mempunyai pH 12",
         },
       ],
     },
