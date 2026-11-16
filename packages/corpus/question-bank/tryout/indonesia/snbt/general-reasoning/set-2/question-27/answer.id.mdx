@@ -20,6 +20,19 @@ Langkah ketiga, hitung sisa keterlambatan yang dibutuhkan. Setelah berjalan lagi
 
 Dua puluh sembilan hari setelah 1 Mei pukul 15.00 adalah 30 Mei pukul 15.00. Pada saat itu jarum jam menunjuk pukul 03.00, dan pada jam berangka <InlineMath math="1" /> sampai <InlineMath math="12" />, tampilan itu sama dengan pukul 15.00.
 
+Grafik berikut mengikuti keterlambatan jam itu. **Lompatan di tengah adalah tiga jam ketika jam berhenti**, dan garisnya baru menyentuh satu putaran penuh pada <InlineMath math="30" /> Mei.
+
+<Chart
+  title={<>Keterlambatan jam dinding sejak disetel</>}
+  description={<>Keterlambatannya <InlineMath math="0" /> menit pada <InlineMath math="1" /> Maret pukul 12.00, <InlineMath math="366" /> menit pada <InlineMath math="1" /> Mei pukul 12.00, <InlineMath math="546" /> menit pada <InlineMath math="1" /> Mei pukul 15.00, dan <InlineMath math="720" /> menit pada <InlineMath math="30" /> Mei pukul 15.00. Garis datar menandai <InlineMath math="720" /> menit, satu putaran penuh jam <InlineMath math="12" /> angka.</>}
+  categories={["1 Maret 12.00", "1 Mei 12.00", "1 Mei 15.00", "30 Mei 15.00"]}
+  series={[
+    { label: "Keterlambatan (menit)", mark: "line", values: [0, 61 * 6, 61 * 6 + 180, 61 * 6 + 180 + 29 * 6] },
+    { label: "Satu putaran, 720 menit", mark: "line", values: [720, 720, 720, 720] },
+  ]}
+  valueLabel="Keterlambatan (menit)"
+/>
+
 Cek bahwa ini memang yang pertama: sebelum baterai habis keterlambatannya baru <InlineMath math="366" /> menit, dan setelah berhenti baru <InlineMath math="546" /> menit. Keduanya belum mencapai <InlineMath math="720" />, jadi tidak ada saat yang lebih awal.
 
 Pilihan lain muncul dari satu langkah yang terlewat:

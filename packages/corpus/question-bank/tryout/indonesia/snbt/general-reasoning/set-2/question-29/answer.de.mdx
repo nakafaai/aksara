@@ -30,6 +30,17 @@ Prüf das auf einem zweiten Weg, indem du nach der Zahl der Jungen im Team zähl
 
 Zusammen sind das <InlineMath math="60+140+80=280" />, genau wie oben.
 
+Das Diagramm teilt alle gültigen Teams nach der Zahl der Jungen. **Teams mit zwei Jungen sind am häufigsten**, und die drei Balken ergeben zusammen <InlineMath math="280" />.
+
+<Chart
+  title={<>Anzahl gültiger Teams nach Zahl der Jungen</>}
+  description={<>Es gibt <InlineMath math="60" /> Teams mit einem Jungen, <InlineMath math="140" /> mit zwei Jungen und <InlineMath math="80" /> mit drei Jungen, zusammen <InlineMath math="280" /> Teams.</>}
+  categories={["1 Junge", "2 Jungen", "3 Jungen"]}
+  bars="apart"
+  series={[{ label: "Teams", mark: "bar", values: [6 * 10, (15 - 1) * 10, (20 - 4) * 5] }]}
+  valueLabel="Teams"
+/>
+
 Ein paar verlockende Ergebnisse, die falsch sind:
 
 - <InlineMath math="274" /> entsteht, wenn du alle <InlineMath math="36" /> Teams mit Dimas und Rafi von <InlineMath math="310" /> abziehst. Dann fallen die sechs reinen Jungenteams doppelt weg.

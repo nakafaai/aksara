@@ -8,6 +8,20 @@ To keep the numbers easy to read, count crashes per <InlineMath math="10{,}000" 
 | Intersections | <InlineMath math="20 : 40 = 0.50" /> | <InlineMath math="60 : 100 = 0.60" /> | up exactly <InlineMath math="20\%" /> |
 | Overall | <InlineMath math="50 : 40 = 1.25" /> | <InlineMath math="75 : 100 = 0.75" /> | down <InlineMath math="40\%" /> |
 
+The chart below compares the risk per <InlineMath math="10{,}000" /> trips in both years. **The road-segment bar plunges, while the intersection bar actually rises**, so one overall figure doesn't fit every part.
+
+<Chart
+  title={<>Cyclist crashes per <InlineMath math="10{,}000" /> trips by location</>}
+  description={<>On road segments, the risk fell from <InlineMath math="0.75" /> to <InlineMath math="0.15" />. At intersections, it rose from <InlineMath math="0.50" /> to <InlineMath math="0.60" />. Overall, it fell from <InlineMath math="1.25" /> to <InlineMath math="0.75" />.</>}
+  categories={["Road segments", "Intersections", "Overall"]}
+  bars="apart"
+  series={[
+    { label: "2024", mark: "bar", values: [30 / 40, 20 / 40, 50 / 40] },
+    { label: "2025", mark: "bar", values: [15 / 100, 60 / 100, 75 / 100] },
+  ]}
+  valueLabel="Crashes per 10,000 trips"
+/>
+
 Now test the conclusion that uses an estimate. If the 2024 risk per trip still applied, the number of crashes in 2025 would be the 2024 risk times <InlineMath math="100" /> blocks of trips.
 
 <BlockMath math="\begin{aligned} \text{road segments: } 0.75 \times 100 &= 75 \text{ expected, but } 15 \text{ happened} \\ \text{intersections: } 0.50 \times 100 &= 50 \text{ expected, but } 60 \text{ happened} \end{aligned}" />

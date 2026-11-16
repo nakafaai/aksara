@@ -26,6 +26,16 @@ Rewrite each option the same way.
 
 The equivalent option moves <InlineMath math="q" /> to the right as <InlineMath math="\neg q" />, and moves <InlineMath math="r" /> to the left as <InlineMath math="\neg r" />. All four pieces come back intact.
 
+The diagram below shows how both implications reach the same "or" form. **Any piece that moves across the arrow has to be negated**.
+
+<Mermaid
+  title={<>Two implications with the same "or" form</>}
+  description={<>The original, if late and a reference item then a fine or a frozen card, means not late or not reference or a fine or a frozen card. The equivalent option, if late and no fine then not reference or a frozen card, gives the same four pieces.</>}
+  chart={`flowchart LR
+    A["Late and reference, so fine or frozen"] --> C["Not late or not reference or fine or frozen"]
+    B["Late and no fine, so not reference or frozen"] --> C`}
+/>
+
 Check it with one situation. Say Rendi is late, the book is a reference item, he doesn't pay a fine, and his card isn't frozen. The original is false, because its condition is met but the result doesn't happen. The equivalent option is false too, because "late and doesn't pay" is met while "not reference or frozen" doesn't happen. The two agree.
 
 Each of the other options fails in one situation.

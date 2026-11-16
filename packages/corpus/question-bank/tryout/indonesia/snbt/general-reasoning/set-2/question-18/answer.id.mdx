@@ -26,6 +26,20 @@ Tabel ini menunjukkan kalimat siapa yang cocok dengan jenisnya pada setiap pilih
 | Raka pembohong, Sekar jujur, Tegar jujur | Cocok | Cocok | Cocok |
 | Raka jujur, Sekar pembohong, Tegar pembohong | Cocok | Tidak cocok | Tidak cocok |
 
+Grafik berikut menghitung kalimat yang cocok dengan jenis pengucapnya pada setiap pilihan. **Hanya satu pilihan yang mencapai garis tiga**, yaitu Raka pembohong, Sekar jujur, dan Tegar jujur.
+
+<Chart
+  title={<>Banyak kalimat yang cocok dengan jenis pengucapnya pada setiap pilihan</>}
+  description={<>Pilihan Raka jujur, Sekar jujur, Tegar pembohong cocok pada <InlineMath math="2" /> kalimat. Raka jujur, Sekar pembohong, Tegar jujur cocok pada <InlineMath math="1" />. Raka pembohong, Sekar jujur, Tegar pembohong cocok pada <InlineMath math="2" />. Raka pembohong, Sekar jujur, Tegar jujur cocok pada <InlineMath math="3" />. Raka jujur, Sekar pembohong, Tegar pembohong cocok pada <InlineMath math="1" />.</>}
+  categories={["J, J, P", "J, P, J", "P, J, P", "P, J, J", "J, P, P"]}
+  bars="apart"
+  series={[
+    { label: "Kalimat yang cocok", mark: "bar", values: [2, 1, 2, 3, 1] },
+    { label: "Ketiga kalimat", mark: "line", values: [3, 3, 3, 3, 3] },
+  ]}
+  valueLabel="Kalimat yang cocok"
+/>
+
 - Raka jujur, Sekar jujur, Tegar pembohong lolos untuk Sekar dan Tegar. Jebakannya adalah memakai kalimat Sekar dengan Raka jujur tanpa pernah menguji kalimat Raka sendiri, padahal pembohongnya hanya Tegar.
 - Raka jujur, Sekar pembohong, Tegar jujur adalah hasil tepat dari menyangkal kalimat Sekar. Jebakannya adalah berhenti di situ, padahal susunan ini hanya punya satu pembohong.
 - Raka pembohong, Sekar jujur, Tegar pembohong lupa bahwa Raka ikut terhitung. Dengan dua pembohong, kalimat Raka justru benar, padahal Raka pembohong.
