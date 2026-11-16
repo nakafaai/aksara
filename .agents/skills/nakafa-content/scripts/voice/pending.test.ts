@@ -40,6 +40,7 @@ it.effect("prints each pending rule's count, fix, and occurrences", () =>
       Effect.gen(function* () {
         yield* printPending("json", [issue]);
         yield* printPending("text", undefined);
+        yield* printPending("text", [{ ...issue, rule: "semicolon" }]);
         yield* printPending("text", [issue]);
       })
     );
