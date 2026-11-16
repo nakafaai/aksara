@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "applying",
+    cognitiveLevel: "analysing",
     contentDomain: "form-5",
     topic: "carbon-compounds",
   },
@@ -12,41 +12,46 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "9.2 g of ethanol, because all the glucose ferments",
+          label: "Ethanol is limiting, and the percentage yield is $$40\\%$$",
         },
         {
           correct: true,
-          label: "7.36 g of ethanol, and the fermentation went 80% of the way",
-        },
-        {
-          correct: false,
-          label: "3.68 g of ethanol, and the fermentation went 40% of the way",
+          label:
+            "Ethanoic acid is limiting, and the percentage yield is $$60\\%$$",
         },
         {
           correct: false,
           label:
-            "14.7 g of ethanol, because each carbon dioxide molecule pairs with two ethanol molecules",
+            "Ethanoic acid is limiting, and the percentage yield is $$88\\%$$",
+        },
+        {
+          correct: false,
+          label: "Ethanol is limiting, and the percentage yield is $$77\\%$$",
         },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "9.2 g etanol, kerana semua glukosa ditapai" },
+        {
+          correct: false,
+          label:
+            "Etanol ialah bahan pengehad, dan peratus hasil ialah $$40\\%$$",
+        },
         {
           correct: true,
           label:
-            "7.36 g etanol, dan penapaian berlaku 80% daripada jumlah penuh",
+            "Asid etanoik ialah bahan pengehad, dan peratus hasil ialah $$60\\%$$",
         },
         {
           correct: false,
           label:
-            "3.68 g etanol, dan penapaian berlaku 40% daripada jumlah penuh",
+            "Asid etanoik ialah bahan pengehad, dan peratus hasil ialah $$88\\%$$",
         },
         {
           correct: false,
           label:
-            "14.7 g etanol, kerana setiap molekul karbon dioksida berpasangan dengan dua molekul etanol",
+            "Etanol ialah bahan pengehad, dan peratus hasil ialah $$77\\%$$",
         },
       ],
     },

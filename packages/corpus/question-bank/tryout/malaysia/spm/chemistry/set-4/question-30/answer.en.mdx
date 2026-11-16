@@ -1,22 +1,22 @@
-# The mass lost is the carbon dioxide, which counts the ethanol
+# Compare moles, then measure the ester against the limiting acid
 
-Only carbon dioxide leaves the flask, so the <InlineMath math="7.04" /> g lost is carbon dioxide: <InlineMath math="7.04 \div 44 = 0.16" /> mol. The equation makes **one ethanol for every carbon dioxide**, so <InlineMath math="0.16" /> mol of ethanol formed: <InlineMath math="0.16 \times 46 = 7.36" /> g.
+Ethanoic acid, <InlineMath math="M_r = 60" />: <InlineMath math="6.0 \div 60 = 0.10" /> mol. Ethanol, <InlineMath math="M_r = 46" />: <InlineMath math="6.9 \div 46 = 0.15" /> mol. They react one to one, so **the acid runs out first**, even though the two masses are close.
 
-<Mermaid
-  title={<>From Lost Mass to Ethanol</>}
-  description={<>The flask loses <InlineMath math="7.04\text{ g}" /> of carbon dioxide, <InlineMath math="0.16\text{ mol}" />. Each carbon dioxide comes with one ethanol, so <InlineMath math="0.16\text{ mol}" /> of ethanol formed, <InlineMath math="80\%" /> of the <InlineMath math="0.20\text{ mol}" /> possible from <InlineMath math="0.10\text{ mol}" /> of glucose.</>}
-  chart={`
-    flowchart LR
-      N0["mass lost: 7.04 g CO2"] --> N1["CO2: 0.16 mol"]
-      N1["CO2: 0.16 mol"] --> N2["C2H5OH: 0.16 mol, 7.36 g"]
-      N2["C2H5OH: 0.16 mol, 7.36 g"] --> N3["0.16 of 0.20 mol: 80%"]
-  `}
+<Chart
+  title={<>Ethyl Ethanoate Expected and Obtained</>}
+  bars="apart"
+  categories={["Expected", "Obtained"]}
+  series={[
+    { label: "Mass of ester (g)", mark: "bar", values: [8.8, 5.28] },
+  ]}
+  valueLabel="Mass of ester (g)"
+  description={<>Expected <InlineMath math="8.80\text{ g}" />, obtained <InlineMath math="5.28\text{ g}" />.</>}
 />
 
-The glucose was <InlineMath math="18.0 \div 180 = 0.10" /> mol, which could give <InlineMath math="0.20" /> mol of ethanol. The fermentation went <InlineMath math="\tfrac{0.16}{0.20} \times 100\% = 80\%" /> of the way.
+Ethyl ethanoate, <InlineMath math="M_r = 88" />: <InlineMath math="0.10" /> mol could give <InlineMath math="0.10 \times 88 = 8.80" /> g. The yield is <InlineMath math="\tfrac{5.28}{8.80} \times 100\% = 60\%" />. Esterification is **reversible**, so the mixture reaches equilibrium before all the acid reacts, and some ester is lost in purification.
 
 # Why the other options are wrong
 
-- <InlineMath math="9.2\text{ g}" /> assumes all the glucose fermented, but that would release <InlineMath math="8.8" /> g of carbon dioxide, not <InlineMath math="7.04" /> g.
-- <InlineMath math="3.68\text{ g}" /> treats each carbon dioxide as half an ethanol, but the equation **pairs them one to one**.
-- <InlineMath math="14.7\text{ g}" /> doubles the ethanol and would need more glucose than the flask held.
+- <InlineMath math="40\%" /> takes ethanol as limiting and expects <InlineMath math="13.2" /> g of ester, more than the **acid can make**.
+- <InlineMath math="88\%" /> divides the ester's mass by the acid's mass, <InlineMath math="5.28 \div 6.0" />, ignoring that their molar masses differ.
+- <InlineMath math="77\%" /> divides the ester's mass by the ethanol's mass, and ethanol is in excess.
