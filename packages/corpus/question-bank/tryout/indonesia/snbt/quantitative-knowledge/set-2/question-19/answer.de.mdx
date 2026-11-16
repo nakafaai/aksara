@@ -20,6 +20,37 @@ x+3&>(x-3)^2=x^2-6x+9\\
 
 Zusammen mit <InlineMath math="x\ge3" /> liefert dieser Fall <InlineMath math="3\le x<6" />. Die vollständige Lösungsmenge ist <InlineMath math="-3\le x<6" />. Der Rand <InlineMath math="6" /> gehört nicht dazu, denn <InlineMath math="\sqrt9=3" /> ist nicht größer als <InlineMath math="3" />.
 
+Die Graphen beider Seiten fassen die zwei Fälle zusammen. Die Wurzelkurve liegt **von <InlineMath math="x=-3" /> bis zum Schnittpunkt <InlineMath math="(6,3)" />** über der Geraden, auch im linken Teil, wo die Gerade negativ ist. Das dicke Stück auf der <InlineMath math="x" />-Achse ist die Lösungsmenge.
+
+<MathVisual
+  title={<>Die Kurve <InlineMath math="y=\sqrt{x+3}" /> und die Gerade <InlineMath math="y=x-3" /></>}
+  description={<>Die Wurzelkurve beginnt in <InlineMath math="(-3,0)" /> und steigt langsam. Die Gerade <InlineMath math="y=x-3" /> bleibt unter der Kurve, bis sich beide in <InlineMath math="(6,3)" /> treffen, danach steigt die Gerade über die Kurve. Das dicke Stück von <InlineMath math="-3" /> bis <InlineMath math="6" /> auf der <InlineMath math="x" />-Achse markiert <InlineMath math="-3\le x<6" />.</>}
+  labels={{
+    root: <InlineMath math="y=\sqrt{x+3}" />,
+    line: <InlineMath math="y=x-3" />,
+    meet: <InlineMath math="(6,3)" />,
+    start: <InlineMath math="-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 9 }, y: { min: -7, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: -3, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x + 3)", domain: { min: -3, max: 9 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 3", domain: { min: -4, max: 9 } },
+      { id: "meet", kind: "point", appearance: "warning", at: { x: 6, y: 3 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+    ],
+    labels: [
+      { key: "root", objectId: "root", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "line", objectId: "line", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "meet", objectId: "meet", at: { x: 6, y: 3 }, placement: "below-right" },
+      { key: "start", objectId: "start", at: { x: -3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Die vier Aussagen beurteilen
 
 **Aussage 1**. Die Zahl <InlineMath math="x=0" /> erfüllt die Ungleichung, denn <InlineMath math="\sqrt3>-3" />, aber <InlineMath math="0" /> ist nicht größer als <InlineMath math="1" />. Die Bedingung <InlineMath math="x>1" /> entsteht, wenn du **ohne Fallunterscheidung quadrierst** und so das ganze Intervall <InlineMath math="-3\le x\le1" /> verlierst. Diese Aussage ist **falsch**.

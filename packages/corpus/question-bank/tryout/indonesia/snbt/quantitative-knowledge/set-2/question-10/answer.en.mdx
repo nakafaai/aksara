@@ -23,6 +23,20 @@ The three sixth powers appear in <InlineMath math="|A|" /> and again in <InlineM
 
 Check it another way. There are <InlineMath math="97-3=94" /> squares that aren't cubes and <InlineMath math="19-3=16" /> cubes that aren't squares. Together that's <InlineMath math="94+16=110" />, the same.
 
+The chart below splits each group into two parts. What you want is only **the bars that meet exactly one condition**, while the three sixth powers show up in both groups and get thrown out of both.
+
+<Chart
+  title={<>Squares and cubes from <InlineMath math="10" /> to <InlineMath math="10{,}000" /></>}
+  description={<>Of the <InlineMath math="97" /> squares, <InlineMath math="94" /> aren't cubes and <InlineMath math="3" /> are also cubes. Of the <InlineMath math="19" /> cubes, <InlineMath math="16" /> aren't squares and <InlineMath math="3" /> are also squares. Those three are <InlineMath math="64" />, <InlineMath math="729" />, and <InlineMath math="4{,}096" />.</>}
+  categories={["Squares", "Cubes"]}
+  bars="apart"
+  series={[
+    { label: "Meets exactly one condition", mark: "bar", values: [97 - 3, 19 - 3] },
+    { label: "Both a square and a cube", mark: "bar", values: [3, 3] },
+  ]}
+  valueLabel="How many numbers"
+/>
+
 # Common mistakes
 
 - The result <InlineMath math="113" /> subtracts the overlap **only once**. That's the number of squares or cubes, including the ones that are both.

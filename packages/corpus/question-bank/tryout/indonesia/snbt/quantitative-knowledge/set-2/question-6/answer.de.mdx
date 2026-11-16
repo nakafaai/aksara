@@ -31,6 +31,33 @@ a^2-a-2&=0\\
 
 Der Kandidat <InlineMath math="a=2" /> wird **durch die Bedingung <InlineMath math="a\ne2" /> ausgeschlossen**, also ist <InlineMath math="a=-1" />. Probe: <InlineMath math="f(-1)=-2+1+1=0=f(2)" />.
 
+Der Graph von <InlineMath math="f" /> zeigt, dass der Wert <InlineMath math="f(2)=0" /> nur an zwei Stellen erreicht wird, nämlich dort, wo der Graph die <InlineMath math="x" />-Achse schneidet. Eine davon ist <InlineMath math="x=2" /> selbst, also ist **die andere <InlineMath math="a" />**.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=\tfrac2x-x+1" /></>}
+  description={<>Der Graph hat zwei Äste, getrennt durch <InlineMath math="x=0" />. Der linke Ast schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="x=-1" />, der rechte bei <InlineMath math="x=2" />. An beiden Stellen ist der Funktionswert <InlineMath math="0" />, genau wie <InlineMath math="f(2)" />.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    kept: <InlineMath math="a=-1" />,
+    dropped: <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f", kind: "function", appearance: "primary", formula: "2/x - x + 1", domain: { min: -5, max: 5 } },
+      { id: "kept", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 4, y: -2.5 }, placement: "below-left" },
+      { key: "kept", objectId: "kept", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "dropped", objectId: "dropped", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Fallen in den anderen Antworten
 
 - <InlineMath math="-2" /> ist das Produkt der beiden Lösungen von <InlineMath math="a^2-a-2=0" />, nicht die andere Lösung. Aus <InlineMath math="2\cdot a=-2" /> folgt die andere Lösung <InlineMath math="-1" />.

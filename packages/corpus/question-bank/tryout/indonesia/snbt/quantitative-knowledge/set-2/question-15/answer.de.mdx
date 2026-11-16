@@ -24,6 +24,17 @@ Addiere die quadrierten Abweichungen der beiden neuen Werte und **teile durch di
 \text{neue Varianz}&=\frac{40+50}{12}=\frac{90}{12}=\frac{15}{2}
 \end{aligned}" />
 
+Das Diagramm zeigt, woher die Summe <InlineMath math="90" /> kommt. Die alten Daten tragen <InlineMath math="40" /> bei, und **jeder neue Wert trägt <InlineMath math="25" /> bei**, weil beide <InlineMath math="5" /> vom Mittelwert entfernt liegen.
+
+<Chart
+  title={<>Quadrierte Abweichungen im neuen Datensatz</>}
+  description={<>Die zehn alten Werte tragen <InlineMath math="10\times4=40" /> bei. Der Wert <InlineMath math="10" /> trägt <InlineMath math="(10-15)^2=25" /> bei, der Wert <InlineMath math="20" /> trägt <InlineMath math="(20-15)^2=25" /> bei. Zusammen sind das <InlineMath math="90" />, geteilt durch <InlineMath math="12" /> Werte.</>}
+  categories={["Zehn alte Werte", "Wert 10", "Wert 20"]}
+  bars="apart"
+  series={[{ label: "Quadrierte Abweichung", mark: "bar", values: [10 * 2 ** 2, (10 - 15) ** 2, (20 - 15) ** 2] }]}
+  valueLabel="Quadrierte Abweichung"
+/>
+
 Probe mit echten Daten. Fünfmal <InlineMath math="13" /> und fünfmal <InlineMath math="17" /> haben den Mittelwert <InlineMath math="15" /> und die Varianz <InlineMath math="4" />, also die Standardabweichung <InlineMath math="2" />. Nach dem Hinzufügen von <InlineMath math="10" /> und <InlineMath math="20" /> ist die Summe der quadrierten Abweichungen <InlineMath math="10\times4+25+25=90" />, und die Varianz ist <InlineMath math="\tfrac{90}{12}=\tfrac{15}{2}" />.
 
 # Fallen in den anderen Antworten

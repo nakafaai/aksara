@@ -30,6 +30,40 @@ DH&=AD-AH=6-\frac{27}{5}=\frac35
 
 Pengurangan ini benar karena <InlineMath math="\tfrac{27}{5}<6" />, jadi <InlineMath math="H" /> terletak di antara <InlineMath math="A" /> dan <InlineMath math="D" />. Cek dari arah <InlineMath math="B" />: <InlineMath math="BH=\tfrac{BC^2}{AB}=\tfrac{144}{15}=\tfrac{48}{5}" /> dan <InlineMath math="BD=9" />, sehingga <InlineMath math="DH=\tfrac{48}{5}-9=\tfrac35" />. Hasilnya sama.
 
+Gambar segitiga dengan ukuran sebenarnya memperlihatkan urutan titiknya. Dari <InlineMath math="A" /> ke <InlineMath math="B" />, kaki garis tinggi <InlineMath math="H" /> muncul lebih dulu, lalu titik singgung <InlineMath math="D" />, jadi **<InlineMath math="DH" /> adalah ruas pendek di antara keduanya**.
+
+<MathVisual
+  title={<>Lingkaran dalam, titik <InlineMath math="D" />, dan kaki garis tinggi <InlineMath math="H" /></>}
+  description={<>Segitiga siku-siku di <InlineMath math="C" /> dengan <InlineMath math="AC=9" />, <InlineMath math="BC=12" />, dan <InlineMath math="AB=15" />. Lingkaran dalam berjari-jari <InlineMath math="3" /> menyinggung <InlineMath math="AB" /> di <InlineMath math="D" />, dengan <InlineMath math="AD=6" />. Garis tinggi dari <InlineMath math="C" /> jatuh di <InlineMath math="H" />, dengan <InlineMath math="AH=\tfrac{27}{5}" />. Ruas <InlineMath math="DH" /> panjangnya <InlineMath math="\tfrac35" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    h: <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 3, y: 3 }, radius: 3 },
+      { id: "altitude", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 108 / 25, y: 144 / 25 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 108 / 25, y: 144 / 25 }, to: { x: 24 / 5, y: 27 / 5 } },
+      { id: "point-d", kind: "point", appearance: "secondary", at: { x: 24 / 5, y: 27 / 5 } },
+      { id: "point-h", kind: "point", appearance: "highlight", at: { x: 108 / 25, y: 144 / 25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 9 }, placement: "above-left" },
+      { key: "b", objectId: "triangle", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 24 / 5, y: 27 / 5 }, placement: "above-right" },
+      { key: "h", objectId: "point-h", at: { x: 108 / 25, y: 144 / 25 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Jebakan pada pilihan lain
 
 - <InlineMath math="\tfrac65\text{ cm}" /> memakai **tinggi <InlineMath math="CH=\tfrac{9\cdot12}{15}=\tfrac{36}{5}" /> sebagai <InlineMath math="AH" />**, lalu menghitung <InlineMath math="\tfrac{36}{5}-6" />.

@@ -12,6 +12,20 @@ Dari <InlineMath math="9" /> siswa, semua panitia empat orang ada <InlineMath ma
 
 Jika Andi dan Budi sama-sama masuk, dua anggota lain dipilih dari <InlineMath math="7" /> siswa sisanya: <InlineMath math="\binom72=21" /> panitia. Tetapi <InlineMath math="\binom32=3" /> di antaranya berisi laki-laki semua, yaitu Andi, Budi, dan dua dari tiga siswa laki-laki lain. Ketiga panitia itu **sudah dibuang pada langkah pertama**, jadi jangan dibuang dua kali. Panitia campuran yang memuat Andi dan Budi ada <InlineMath math="21-3=18" />.
 
+Grafik berikut membagi <InlineMath math="21" /> panitia yang memuat Andi dan Budi menurut dua anggota lainnya. Hanya **dua batang kanan** yang masih perlu dibuang dari <InlineMath math="120" />.
+
+<Chart
+  title={<>Panitia yang memuat Andi dan Budi</>}
+  description={<>Dua anggota lainnya bisa dua laki-laki, sebanyak <InlineMath math="3" /> panitia, satu laki-laki dan satu perempuan, sebanyak <InlineMath math="3\times4=12" /> panitia, atau dua perempuan, sebanyak <InlineMath math="6" /> panitia. Tiga panitia laki-laki semua sudah terbuang di langkah pertama, jadi yang dibuang sekarang <InlineMath math="12+6=18" />.</>}
+  categories={["Dua laki-laki lain", "Satu laki-laki, satu perempuan", "Dua perempuan"]}
+  bars="apart"
+  series={[
+    { label: "Sudah dibuang di langkah pertama", mark: "bar", values: [3, null, null] },
+    { label: "Dibuang sekarang", mark: "bar", values: [null, 3 * 4, 6] },
+  ]}
+  valueLabel="Banyak panitia"
+/>
+
 # Hasil akhir
 
 <BlockMath math="120-18=102" />

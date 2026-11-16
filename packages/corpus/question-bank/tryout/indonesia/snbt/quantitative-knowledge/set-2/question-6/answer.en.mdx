@@ -31,6 +31,33 @@ a^2-a-2&=0\\
 
 The candidate <InlineMath math="a=2" /> is **ruled out by the condition <InlineMath math="a\ne2" />**, so <InlineMath math="a=-1" />. Check: <InlineMath math="f(-1)=-2+1+1=0=f(2)" />.
 
+The graph of <InlineMath math="f" /> shows that the value <InlineMath math="f(2)=0" /> is reached in only two places, where the graph crosses the <InlineMath math="x" />-axis. One of them is <InlineMath math="x=2" /> itself, so **the other one is <InlineMath math="a" />**.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=\tfrac2x-x+1" /></>}
+  description={<>The graph has two branches split by <InlineMath math="x=0" />. The left branch crosses the <InlineMath math="x" />-axis at <InlineMath math="x=-1" />, and the right branch crosses it at <InlineMath math="x=2" />. At both points the function value is <InlineMath math="0" />, the same as <InlineMath math="f(2)" />.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    kept: <InlineMath math="a=-1" />,
+    dropped: <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f", kind: "function", appearance: "primary", formula: "2/x - x + 1", domain: { min: -5, max: 5 } },
+      { id: "kept", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 4, y: -2.5 }, placement: "below-left" },
+      { key: "kept", objectId: "kept", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "dropped", objectId: "dropped", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Traps in the other options
 
 - <InlineMath math="-2" /> is the product of the two roots of <InlineMath math="a^2-a-2=0" />, not the other root. From <InlineMath math="2\cdot a=-2" />, the other root is <InlineMath math="-1" />.

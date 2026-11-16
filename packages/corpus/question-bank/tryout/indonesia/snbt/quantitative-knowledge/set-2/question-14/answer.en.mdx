@@ -22,6 +22,39 @@ The first statement is **true**.
 
 Plug <InlineMath math="x=3" /> into the general form: <InlineMath math="P(3)=2\cdot1\cdot H(3)+7=2H(3)+7" />. This value depends on <InlineMath math="H" />, so **values away from one and two aren't locked in**. For <InlineMath math="H(x)=0" />, <InlineMath math="P(3)=7" />. For <InlineMath math="H(x)=1" />, <InlineMath math="P(x)=x^2-x+3" /> and <InlineMath math="P(3)=9" />. Both polynomials fit the given facts, but their values at <InlineMath math="3" /> differ. The second statement is **false**.
 
+Graphing both examples shows why. The line <InlineMath math="y=2x+1" /> and the parabola <InlineMath math="y=x^2-x+3" /> **both pass through <InlineMath math="(1,3)" /> and <InlineMath math="(2,5)" />**, but at <InlineMath math="x=3" /> they split to different values.
+
+<MathVisual
+  title={<>Two polynomials that fit both facts</>}
+  description={<>The line <InlineMath math="y=2x+1" /> for <InlineMath math="H(x)=0" /> and the parabola <InlineMath math="y=x^2-x+3" /> for <InlineMath math="H(x)=1" /> meet at <InlineMath math="(1,3)" /> and <InlineMath math="(2,5)" />. On the vertical line <InlineMath math="x=3" />, the line has value <InlineMath math="7" /> and the parabola has value <InlineMath math="9" />.</>}
+  labels={{
+    line: <InlineMath math="H(x)=0" />,
+    curve: <InlineMath math="H(x)=1" />,
+    seven: <InlineMath math="7" />,
+    nine: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "check", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "line", kind: "function", appearance: "primary", formula: "2x + 1", domain: { min: -0.5, max: 4 } },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "x^2 - x + 3", domain: { min: -0.5, max: 4 } },
+      { id: "given-1", kind: "point", appearance: "reference", at: { x: 1, y: 3 } },
+      { id: "given-2", kind: "point", appearance: "reference", at: { x: 2, y: 5 } },
+      { id: "seven", kind: "point", appearance: "highlight", at: { x: 3, y: 7 } },
+      { id: "nine", kind: "point", appearance: "highlight", at: { x: 3, y: 9 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 3.8, y: 8.6 }, placement: "below-right" },
+      { key: "curve", objectId: "curve", at: { x: 3.8, y: 3.8 ** 2 - 3.8 + 3 }, placement: "left" },
+      { key: "seven", objectId: "seven", at: { x: 3, y: 7 }, placement: "below-left" },
+      { key: "nine", objectId: "nine", at: { x: 3, y: 9 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # The remainder after a shift
 
 Let <InlineMath math="G(x)=P(x+1)" />. The divisor <InlineMath math="x^2-x=x(x-1)" /> has roots <InlineMath math="0" /> and <InlineMath math="1" />, so what you need are **the values at the new divisor's roots**: <InlineMath math="G(0)=P(1)=3" /> and <InlineMath math="G(1)=P(2)=5" />. The remainder is <InlineMath math="ux+v" /> with <InlineMath math="v=3" /> and <InlineMath math="u+v=5" />, so <InlineMath math="u=2" /> and the remainder is <InlineMath math="2x+3" />. The third statement is **true**.

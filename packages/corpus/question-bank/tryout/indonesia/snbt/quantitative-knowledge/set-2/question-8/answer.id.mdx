@@ -15,6 +15,21 @@ Dari <InlineMath math="c=b" />, selisihnya menjadi <InlineMath math="\tfrac{d-a}
 
 Dari <InlineMath math="d>a" />, suku <InlineMath math="d-a" /> positif, tetapi <InlineMath math="c-b" /> bisa negatif dan menarik rata-rata ke bawah. Jadi **ujung atas yang lebih jauh belum menjamin rata-rata di atas median**. Data <InlineMath math="2,\ 10,\ 10,\ 10,\ 19" /> memenuhi pernyataan (2), karena <InlineMath math="19-10=9>8=10-2" />, dan rata-ratanya <InlineMath math="\tfrac{51}{5}>10" />. Data <InlineMath math="2,\ 8,\ 10,\ 10,\ 19" /> juga memenuhi pernyataan (2), tetapi rata-ratanya <InlineMath math="\tfrac{49}{5}<10" />. Pernyataan (2) saja tidak cukup.
 
+Grafik berikut menaruh kedua contoh pernyataan (2) berdampingan. Ujung atas dan ujung bawahnya sama, tetapi pada contoh kedua **<InlineMath math="x_2" /> turun dari <InlineMath math="10" /> ke <InlineMath math="8" />**. Penurunan itu cukup untuk menarik rata-rata dari <InlineMath math="\tfrac{51}{5}" /> ke <InlineMath math="\tfrac{49}{5}" />, di bawah median <InlineMath math="10" />.
+
+<Chart
+  title={<>Dua data yang sama-sama memenuhi pernyataan (2)</>}
+  description={<>Data pertama <InlineMath math="2, 10, 10, 10, 19" /> berata-rata <InlineMath math="\tfrac{51}{5}" />, di atas median <InlineMath math="10" />. Data kedua <InlineMath math="2, 8, 10, 10, 19" /> berata-rata <InlineMath math="\tfrac{49}{5}" />, di bawah median <InlineMath math="10" />. Pada keduanya, data terbesar berjarak <InlineMath math="9" /> dari median dan data terkecil berjarak <InlineMath math="8" />.</>}
+  bars="apart"
+  categories={["x1", "x2", "x3", "x4", "x5"]}
+  series={[
+    { label: "Data 2, 10, 10, 10, 19", mark: "bar", values: [2, 10, 10, 10, 19] },
+    { label: "Data 2, 8, 10, 10, 19", mark: "bar", values: [2, 8, 10, 10, 19] },
+    { label: "Median", mark: "line", values: [10, 10, 10, 10, 10] },
+  ]}
+  valueLabel="Nilai data"
+/>
+
 # Kedua pernyataan bersama
 
 Gabungkan <InlineMath math="c=b" /> dan <InlineMath math="d>a" />. Suku <InlineMath math="c-b" /> **hilang karena bernilai nol**, dan suku yang tersisa positif.

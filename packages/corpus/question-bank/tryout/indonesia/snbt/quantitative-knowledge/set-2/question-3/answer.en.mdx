@@ -27,6 +27,33 @@ h(10)&=\tfrac{24}{1{,}024}+10-10=\tfrac{3}{128}>0
 
 The sign of <InlineMath math="h" /> changes between <InlineMath math="0" /> and <InlineMath math="2" />, and changes again between <InlineMath math="2" /> and <InlineMath math="10" />. The graph has no breaks, so there are at least two intersections. The second one is easy to miss: **the line crosses the <InlineMath math="x" />-axis at <InlineMath math="x=10" />, while the graph of <InlineMath math="f" /> always stays above that axis**.
 
+The graph below shows both crossings. The first one is easy to see, between <InlineMath math="x=0" /> and <InlineMath math="x=2" />. The second one sits **just before <InlineMath math="x=10" />**, where the line dives through the <InlineMath math="x" />-axis while the exponential curve stays a little above it.
+
+<MathVisual
+  title={<>The curve <InlineMath math="f" /> and the line <InlineMath math="y=10-x" /></>}
+  description={<>The curve <InlineMath math="y=24\cdot2^{-x}" /> falls from <InlineMath math="24" /> at <InlineMath math="x=0" /> and gets closer and closer to the <InlineMath math="x" />-axis without touching it. The line <InlineMath math="y=10-x" /> crosses it once between <InlineMath math="x=0" /> and <InlineMath math="x=2" />, and once more between <InlineMath math="x=9" /> and <InlineMath math="x=10" />, just before the line crosses the <InlineMath math="x" />-axis at <InlineMath math="x=10" />.</>}
+  labels={{
+    f: <InlineMath math="y=24\cdot2^{-x}" />,
+    line: <InlineMath math="y=10-x" />,
+    tail: <InlineMath math="x=10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 25 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f", kind: "function", appearance: "primary", formula: "24 * 2^(-x)", domain: { min: -0.15, max: 11 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "10 - x", domain: { min: -1, max: 11 } },
+      { id: "tail", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 1, y: 12 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 4, y: 6 }, placement: "above-right" },
+      { key: "tail", objectId: "tail", at: { x: 10, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 More than two is impossible too. The slope of <InlineMath math="24\cdot2^{-x}" /> keeps rising, from very steep to almost flat, and the term <InlineMath math="x-10" /> adds a fixed slope. So the slope of <InlineMath math="h" /> always rises, which means <InlineMath math="h" /> can only go down and then up once, and it crosses zero at most twice. The second statement is **true**.
 
 # Comparing two function values

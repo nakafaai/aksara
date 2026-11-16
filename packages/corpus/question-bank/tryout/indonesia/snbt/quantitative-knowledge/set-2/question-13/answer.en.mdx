@@ -10,6 +10,37 @@ Cut the cone straight through its axis. The cross-section is an isosceles triang
 
 The top of the ball sits at height <InlineMath math="2r=6" />, so the small cone above it has height <InlineMath math="8-6=2" />. The small cone is similar to the big one with scale factor <InlineMath math="k=\tfrac28=\tfrac14" />, and **volume scales with the cube of the scale factor**.
 
+A cross-section through the cone's axis shows the cut. The ball becomes the incircle of the triangle, its top sits at height <InlineMath math="6" />, and **the small triangle above the cutting line** is the cross-section of the small cone, with height <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Cross-section of the cone, the ball, and the cutting plane</>}
+  description={<>An isosceles triangle with base <InlineMath math="12" /> and height <InlineMath math="8" />. Its incircle has radius <InlineMath math="3" /> and centre at height <InlineMath math="3" />. The horizontal cutting line touches the circle at height <InlineMath math="6" /> and crosses the triangle over a length of <InlineMath math="3" />. The small triangle above it has height <InlineMath math="2" />.</>}
+  labels={{
+    r: <InlineMath math="r=3" />,
+    cut: <InlineMath math="y=6" />,
+    small: <InlineMath math="2" />,
+    base: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "reference", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 8 }] },
+      { id: "top-cone", kind: "polygon", appearance: "highlight", vertices: [{ x: -3 / 2, y: 6 }, { x: 3 / 2, y: 6 }, { x: 0, y: 8 }] },
+      { id: "ball", kind: "circle", appearance: "primary", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 3, y: 3 } },
+      { id: "cut", kind: "segment", appearance: "secondary", from: { x: -3 / 2, y: 6 }, to: { x: 3 / 2, y: 6 } },
+    ],
+    labels: [
+      { key: "r", objectId: "radius", at: { x: 3 / 2, y: 3 }, placement: "below" },
+      { key: "cut", objectId: "cut", at: { x: 3 / 2, y: 6 }, placement: "right" },
+      { key: "small", objectId: "top-cone", at: { x: 0, y: 7 }, placement: "left" },
+      { key: "base", objectId: "cone", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 V_{\text{big}}&=\tfrac13\pi\times6^2\times8=96\pi\\
 V_{\text{small}}&=\left(\tfrac14\right)^3\times96\pi=\tfrac{3}{2}\pi

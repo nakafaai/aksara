@@ -27,6 +27,33 @@ h(10)&=\tfrac{24}{1{.}024}+10-10=\tfrac{3}{128}>0
 
 Tanda <InlineMath math="h" /> berganti di antara <InlineMath math="0" /> dan <InlineMath math="2" />, lalu berganti lagi di antara <InlineMath math="2" /> dan <InlineMath math="10" />. Grafiknya tidak putus, jadi ada paling sedikit dua titik potong. Titik kedua mudah terlewat: **garis menembus sumbu-<InlineMath math="x" /> di <InlineMath math="x=10" />, sedangkan grafik <InlineMath math="f" /> selalu di atas sumbu itu**.
 
+Grafik berikut memperlihatkan kedua titik potong itu. Titik pertama jelas terlihat di antara <InlineMath math="x=0" /> dan <InlineMath math="x=2" />. Titik kedua ada **sangat dekat sebelum <InlineMath math="x=10" />**, tempat garis turun menembus sumbu-<InlineMath math="x" /> sementara kurva eksponen masih sedikit di atasnya.
+
+<MathVisual
+  title={<>Kurva <InlineMath math="f" /> dan garis <InlineMath math="y=10-x" /></>}
+  description={<>Kurva <InlineMath math="y=24\cdot2^{-x}" /> turun dari <InlineMath math="24" /> di <InlineMath math="x=0" /> dan makin mendekati sumbu-<InlineMath math="x" /> tanpa menyentuhnya. Garis <InlineMath math="y=10-x" /> memotongnya sekali di antara <InlineMath math="x=0" /> dan <InlineMath math="x=2" />, lalu sekali lagi di antara <InlineMath math="x=9" /> dan <InlineMath math="x=10" />, tepat sebelum garis itu memotong sumbu-<InlineMath math="x" /> di <InlineMath math="x=10" />.</>}
+  labels={{
+    f: <InlineMath math="y=24\cdot2^{-x}" />,
+    line: <InlineMath math="y=10-x" />,
+    tail: <InlineMath math="x=10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 25 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f", kind: "function", appearance: "primary", formula: "24 * 2^(-x)", domain: { min: -0.15, max: 11 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "10 - x", domain: { min: -1, max: 11 } },
+      { id: "tail", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 1, y: 12 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 4, y: 6 }, placement: "above-right" },
+      { key: "tail", objectId: "tail", at: { x: 10, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Lebih dari dua juga tidak mungkin. Kemiringan <InlineMath math="24\cdot2^{-x}" /> terus naik dari sangat curam ke hampir datar, dan suku <InlineMath math="x-10" /> menambah kemiringan tetap. Jadi kemiringan <InlineMath math="h" /> selalu naik, sehingga <InlineMath math="h" /> hanya bisa turun lalu naik sekali dan memotong nol paling banyak dua kali. Pernyataan kedua **benar**.
 
 # Perbandingan dua nilai fungsi

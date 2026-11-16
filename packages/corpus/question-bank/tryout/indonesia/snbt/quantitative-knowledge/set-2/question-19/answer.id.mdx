@@ -20,6 +20,37 @@ x+3&>(x-3)^2=x^2-6x+9\\
 
 Digabung dengan <InlineMath math="x\ge3" />, kasus ini memberi <InlineMath math="3\le x<6" />. Himpunan penyelesaian lengkapnya adalah <InlineMath math="-3\le x<6" />. Ujung <InlineMath math="6" /> tidak ikut, karena <InlineMath math="\sqrt9=3" /> tidak lebih besar daripada <InlineMath math="3" />.
 
+Grafik kedua ruas merangkum kedua kasus. Kurva akar ada di atas garis **sejak <InlineMath math="x=-3" /> sampai titik potong <InlineMath math="(6,3)" />**, termasuk bagian kiri tempat garisnya negatif. Ruas tebal pada sumbu-<InlineMath math="x" /> adalah himpunan penyelesaiannya.
+
+<MathVisual
+  title={<>Kurva <InlineMath math="y=\sqrt{x+3}" /> dan garis <InlineMath math="y=x-3" /></>}
+  description={<>Kurva akar mulai di <InlineMath math="(-3,0)" /> dan naik pelan. Garis <InlineMath math="y=x-3" /> ada di bawah kurva sampai keduanya bertemu di <InlineMath math="(6,3)" />, lalu garis naik melewati kurva. Ruas tebal dari <InlineMath math="-3" /> sampai <InlineMath math="6" /> pada sumbu-<InlineMath math="x" /> menandai <InlineMath math="-3\le x<6" />.</>}
+  labels={{
+    root: <InlineMath math="y=\sqrt{x+3}" />,
+    line: <InlineMath math="y=x-3" />,
+    meet: <InlineMath math="(6,3)" />,
+    start: <InlineMath math="-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 9 }, y: { min: -7, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "solution", kind: "segment", appearance: "highlight", from: { x: -3, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x + 3)", domain: { min: -3, max: 9 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 3", domain: { min: -4, max: 9 } },
+      { id: "meet", kind: "point", appearance: "warning", at: { x: 6, y: 3 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+    ],
+    labels: [
+      { key: "root", objectId: "root", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "line", objectId: "line", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "meet", objectId: "meet", at: { x: 6, y: 3 }, placement: "below-right" },
+      { key: "start", objectId: "start", at: { x: -3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Menilai keempat pernyataan
 
 **Pernyataan pertama**. Bilangan <InlineMath math="x=0" /> memenuhi, karena <InlineMath math="\sqrt3>-3" />, padahal <InlineMath math="0" /> tidak lebih dari <InlineMath math="1" />. Syarat <InlineMath math="x>1" /> muncul jika kamu **mengkuadratkan tanpa membagi kasus**, sehingga seluruh selang <InlineMath math="-3\le x\le1" /> hilang. Pernyataan ini **salah**.

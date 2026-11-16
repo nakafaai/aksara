@@ -15,6 +15,21 @@ Aus <InlineMath math="c=b" /> wird die Differenz zu <InlineMath math="\tfrac{d-a
 
 Aus <InlineMath math="d>a" /> ist der Term <InlineMath math="d-a" /> positiv, aber <InlineMath math="c-b" /> kann negativ sein und den Mittelwert nach unten ziehen. **Ein weiter entferntes oberes Ende garantiert also keinen Mittelwert über dem Median**. Die Daten <InlineMath math="2,\ 10,\ 10,\ 10,\ 19" /> erfüllen Aussage (2), denn <InlineMath math="19-10=9>8=10-2" />, und ihr Mittelwert ist <InlineMath math="\tfrac{51}{5}>10" />. Die Daten <InlineMath math="2,\ 8,\ 10,\ 10,\ 19" /> erfüllen Aussage (2) ebenfalls, haben aber den Mittelwert <InlineMath math="\tfrac{49}{5}<10" />. Aussage (2) allein reicht nicht aus.
 
+Das Diagramm stellt beide Beispiele zu Aussage (2) nebeneinander. Oberes und unteres Ende sind gleich, aber im zweiten Beispiel **sinkt <InlineMath math="x_2" /> von <InlineMath math="10" /> auf <InlineMath math="8" />**. Das reicht, um den Mittelwert von <InlineMath math="\tfrac{51}{5}" /> auf <InlineMath math="\tfrac{49}{5}" /> zu drücken, unter den Median <InlineMath math="10" />.
+
+<Chart
+  title={<>Zwei Datensätze, die beide Aussage (2) erfüllen</>}
+  description={<>Der erste Datensatz <InlineMath math="2, 10, 10, 10, 19" /> hat den Mittelwert <InlineMath math="\tfrac{51}{5}" />, über dem Median <InlineMath math="10" />. Der zweite, <InlineMath math="2, 8, 10, 10, 19" />, hat den Mittelwert <InlineMath math="\tfrac{49}{5}" />, unter dem Median <InlineMath math="10" />. In beiden liegt der größte Wert <InlineMath math="9" /> und der kleinste <InlineMath math="8" /> vom Median entfernt.</>}
+  bars="apart"
+  categories={["x1", "x2", "x3", "x4", "x5"]}
+  series={[
+    { label: "Daten 2, 10, 10, 10, 19", mark: "bar", values: [2, 10, 10, 10, 19] },
+    { label: "Daten 2, 8, 10, 10, 19", mark: "bar", values: [2, 8, 10, 10, 19] },
+    { label: "Median", mark: "line", values: [10, 10, 10, 10, 10] },
+  ]}
+  valueLabel="Wert"
+/>
+
 # Beide Aussagen zusammen
 
 Verbinde <InlineMath math="c=b" /> und <InlineMath math="d>a" />. Der Term <InlineMath math="c-b" /> **fällt weg, weil er null ist**, und der verbleibende Term ist positiv.

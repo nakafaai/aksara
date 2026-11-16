@@ -28,6 +28,20 @@ u_1+u_4&=\frac{u_2^3+u_3^3}{u_2u_3}=\frac{\left(u_2+u_3\right)^3-3u_2u_3\left(u_
 
 Prüfe das mit einer konkreten Folge. Für <InlineMath math="u_2=4" /> und <InlineMath math="u_3=-3" /> ist der Quotient <InlineMath math="-\tfrac34" />, also <InlineMath math="u_1=-\tfrac{16}{3}" /> und <InlineMath math="u_4=\tfrac94" />. Die Summe ist <InlineMath math="-\tfrac{64}{12}+\tfrac{27}{12}=-\tfrac{37}{12}" />, und das Produkt ist <InlineMath math="\left(-\tfrac{16}{3}\right)(4)(-3)\left(\tfrac94\right)=144" />. Die umgekehrte Reihenfolge, <InlineMath math="u_2=-3" /> und <InlineMath math="u_3=4" />, vertauscht nur <InlineMath math="u_1" /> und <InlineMath math="u_4" />, die Summe bleibt also gleich.
 
+Ein Diagramm dieser Beispielfolge zeigt das Vorzeichenmuster. Ein negativer Quotient lässt die Vorzeichen **abwechseln**, also haben auch die äußeren Glieder <InlineMath math="u_1" /> und <InlineMath math="u_4" /> verschiedene Vorzeichen, und ihre Summe ist nicht gleich <InlineMath math="u_2+u_3=1" />.
+
+<Chart
+  title={<>Die ersten vier Glieder mit Quotient <InlineMath math="-\tfrac34" /></>}
+  description={<>Die Glieder sind <InlineMath math="u_1=-\tfrac{16}{3}" />, <InlineMath math="u_2=4" />, <InlineMath math="u_3=-3" /> und <InlineMath math="u_4=\tfrac94" />. Das Produkt der äußeren Glieder ist gleich dem der mittleren, nämlich <InlineMath math="-12" />, aber die äußeren Glieder ergeben zusammen <InlineMath math="-\tfrac{37}{12}" />, die mittleren <InlineMath math="1" />.</>}
+  bars="apart"
+  categories={["u1", "u2", "u3", "u4"]}
+  series={[
+    { label: "Äußere Glieder", mark: "bar", values: [-16 / 3, null, null, 9 / 4] },
+    { label: "Mittlere Glieder", mark: "bar", values: [null, 4, -3, null] },
+  ]}
+  valueLabel="Wert des Glieds"
+/>
+
 # Fallen in den anderen Antworten
 
 - <InlineMath math="-\tfrac{35}{12}" /> verwendet <InlineMath math="u_2u_3=12" />, obwohl dieser Fall keine reellen Glieder liefert.

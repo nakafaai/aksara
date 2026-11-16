@@ -30,6 +30,40 @@ DH&=AD-AH=6-\frac{27}{5}=\frac35
 
 Die Subtraktion stimmt, weil <InlineMath math="\tfrac{27}{5}<6" /> ist und <InlineMath math="H" /> daher zwischen <InlineMath math="A" /> und <InlineMath math="D" /> liegt. Probe von <InlineMath math="B" /> aus: <InlineMath math="BH=\tfrac{BC^2}{AB}=\tfrac{144}{15}=\tfrac{48}{5}" /> und <InlineMath math="BD=9" />, also <InlineMath math="DH=\tfrac{48}{5}-9=\tfrac35" />. Dasselbe Ergebnis.
 
+Wenn du das Dreieck maßstabsgetreu zeichnest, siehst du die Reihenfolge der Punkte. Von <InlineMath math="A" /> nach <InlineMath math="B" /> kommt zuerst der Höhenfußpunkt <InlineMath math="H" />, dann der Berührpunkt <InlineMath math="D" />, also ist **<InlineMath math="DH" /> das kurze Stück dazwischen**.
+
+<MathVisual
+  title={<>Inkreis, Punkt <InlineMath math="D" /> und Höhenfußpunkt <InlineMath math="H" /></>}
+  description={<>Das Dreieck ist rechtwinklig bei <InlineMath math="C" />, mit <InlineMath math="AC=9" />, <InlineMath math="BC=12" /> und <InlineMath math="AB=15" />. Der Inkreis mit Radius <InlineMath math="3" /> berührt <InlineMath math="AB" /> in <InlineMath math="D" />, mit <InlineMath math="AD=6" />. Die Höhe von <InlineMath math="C" /> trifft <InlineMath math="AB" /> in <InlineMath math="H" />, mit <InlineMath math="AH=\tfrac{27}{5}" />. Das Stück <InlineMath math="DH" /> ist <InlineMath math="\tfrac35" /> lang.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    h: <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 3, y: 3 }, radius: 3 },
+      { id: "altitude", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 108 / 25, y: 144 / 25 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 108 / 25, y: 144 / 25 }, to: { x: 24 / 5, y: 27 / 5 } },
+      { id: "point-d", kind: "point", appearance: "secondary", at: { x: 24 / 5, y: 27 / 5 } },
+      { id: "point-h", kind: "point", appearance: "highlight", at: { x: 108 / 25, y: 144 / 25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 9 }, placement: "above-left" },
+      { key: "b", objectId: "triangle", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 24 / 5, y: 27 / 5 }, placement: "above-right" },
+      { key: "h", objectId: "point-h", at: { x: 108 / 25, y: 144 / 25 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Fallen in den anderen Antworten
 
 - <InlineMath math="\tfrac65\text{ cm}" /> verwendet **die Höhe <InlineMath math="CH=\tfrac{9\cdot12}{15}=\tfrac{36}{5}" /> als <InlineMath math="AH" />** und rechnet dann <InlineMath math="\tfrac{36}{5}-6" />.

@@ -20,6 +20,40 @@ Das Dreieck <InlineMath math="ABD" /> ist gleichschenklig, weil <InlineMath math
 
 Die Winkel <InlineMath math="ACB" /> und <InlineMath math="ADB" /> stehen beide über der Sehne <InlineMath math="AB" />, und die Punkte <InlineMath math="C" /> und <InlineMath math="D" /> liegen auf demselben Bogen. **Umfangswinkel über demselben Bogen sind gleich groß**, also gilt <InlineMath math="\angle ACB=54^\circ" />, egal wo <InlineMath math="C" /> auf dem Bogen <InlineMath math="BD" /> liegt.
 
+Die Abbildung zeigt beide Umfangswinkel. Der Winkel <InlineMath math="ACB" /> bei <InlineMath math="C" /> und der Winkel <InlineMath math="ADB" /> bei <InlineMath math="D" /> **stehen beide über der Sehne <InlineMath math="AB" />** vom selben Bogen aus, also sind sie gleich groß.
+
+<MathVisual
+  title={<>Sehnenviereck <InlineMath math="ABCD" /> mit <InlineMath math="AB=AD" /></>}
+  description={<>Die Punkte <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" /> liegen der Reihe nach auf dem Kreis, mit <InlineMath math="\angle BAD=72^\circ" /> und <InlineMath math="AB=AD" />. Der Winkel <InlineMath math="ADB" /> bei <InlineMath math="D" /> misst <InlineMath math="54^\circ" />. Der Winkel <InlineMath math="ACB" /> bei <InlineMath math="C" /> steht über derselben Sehne <InlineMath math="AB" />, also misst er ebenfalls <InlineMath math="54^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    atc: <InlineMath math="54^\circ" />,
+    atd: <InlineMath math="54^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "quad", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: -5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, { x: 0, y: -5 }, { x: 5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }] },
+      { id: "chord-ac", kind: "segment", appearance: "highlight", from: { x: 0, y: 5 }, to: { x: 0, y: -5 } },
+      { id: "chord-db", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, to: { x: -5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) } },
+    ],
+    labels: [
+      { key: "a", objectId: "quad", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "quad", at: { x: -5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, placement: "left" },
+      { key: "c", objectId: "quad", at: { x: 0, y: -5 }, placement: "below" },
+      { key: "d", objectId: "quad", at: { x: 5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, placement: "right" },
+      { key: "atc", objectId: "chord-ac", at: { x: 0, y: -4 }, placement: "left" },
+      { key: "atd", objectId: "chord-db", at: { x: 5 * Math.cos(Math.PI / 10) - 1, y: -5 * Math.sin(Math.PI / 10) }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Prüfe das mit dem Winkel bei <InlineMath math="C" />. Aus demselben Grund gilt <InlineMath math="\angle ACD=\angle ABD=54^\circ" />, und <InlineMath math="54^\circ+54^\circ=108^\circ=\angle BCD" />. Das passt.
 
 # Die beiden Größen vergleichen

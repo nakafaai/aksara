@@ -31,6 +31,37 @@ k\ \text{even}&:\quad \text{integers } -\tfrac{k+4}{2},\ \ldots,\ \tfrac{k-6}{2}
 
 For odd <InlineMath math="k" />, <InlineMath math="k+1=20" /> gives <InlineMath math="k=19" />, and <InlineMath math="19" /> is indeed odd. For even <InlineMath math="k" />, <InlineMath math="k=20" />, and <InlineMath math="20" /> is indeed even. So there are two values of <InlineMath math="k" />, and their sum is <InlineMath math="19+20=39" />.
 
+The graph of <InlineMath math="S(x)" /> is a bowl with a flat bottom at height <InlineMath math="9" />. The line <InlineMath math="y=k" /> meets the walls of the bowl at the two ends of the solution interval. For <InlineMath math="k=19" />, the ends land **exactly on the integers** <InlineMath math="-12" /> and <InlineMath math="7" />. For <InlineMath math="k=20" />, the ends are at <InlineMath math="-12.5" /> and <InlineMath math="7.5" />, so no new integer gets in.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="S(x)=|x-2|+|x+7|" /> and two values of <InlineMath math="k" /></>}
+  description={<>The graph falls with slope <InlineMath math="-2" /> until <InlineMath math="x=-7" />, stays flat at <InlineMath math="y=9" /> from <InlineMath math="x=-7" /> to <InlineMath math="x=2" />, and then rises with slope <InlineMath math="2" />. The segment <InlineMath math="y=19" /> runs from <InlineMath math="x=-12" /> to <InlineMath math="x=7" />, and the segment <InlineMath math="y=20" /> from <InlineMath math="x=-12.5" /> to <InlineMath math="x=7.5" />. Both hold the integers <InlineMath math="-12" /> to <InlineMath math="7" />.</>}
+  labels={{
+    s: <InlineMath math="y=S(x)" />,
+    k19: <InlineMath math="k=19" />,
+    k20: <InlineMath math="k=20" />,
+    flat: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 10 }, y: { min: 0, max: 24 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "-2x - 5", domain: { min: -14, max: -7 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "9", domain: { min: -7, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "2x + 5", domain: { min: 2, max: 9 } },
+      { id: "level-19", kind: "segment", appearance: "secondary", from: { x: -12, y: 19 }, to: { x: 7, y: 19 } },
+      { id: "level-20", kind: "segment", appearance: "highlight", from: { x: -12.5, y: 20 }, to: { x: 7.5, y: 20 } },
+    ],
+    labels: [
+      { key: "s", objectId: "right", at: { x: 8, y: 21 }, placement: "right" },
+      { key: "k19", objectId: "level-19", at: { x: -2.5, y: 19 }, placement: "below" },
+      { key: "k20", objectId: "level-20", at: { x: -2.5, y: 20 }, placement: "above" },
+      { key: "flat", objectId: "middle", at: { x: -2.5, y: 9 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Checking the result
 
 For <InlineMath math="k=19" />, the solutions are <InlineMath math="-12\le x\le7" />, which holds <InlineMath math="7-(-12)+1=20" /> integers. For <InlineMath math="k=20" />, the solutions are <InlineMath math="-12.5\le x\le7.5" />, which holds the integers <InlineMath math="-12" /> to <InlineMath math="7" />, again <InlineMath math="20" />. For <InlineMath math="k=21" />, the interval becomes <InlineMath math="-13\le x\le8" /> and holds <InlineMath math="22" /> integers, so **the count jumps from twenty straight to twenty-two**.

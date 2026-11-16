@@ -24,6 +24,17 @@ Add the squared deviations of the two new values, then **divide by the new count
 \text{new variance}&=\frac{40+50}{12}=\frac{90}{12}=\frac{15}{2}
 \end{aligned}" />
 
+The chart below shows where that total of <InlineMath math="90" /> comes from. The old data add <InlineMath math="40" />, and **each new value adds <InlineMath math="25" />**, because both sit <InlineMath math="5" /> away from the mean.
+
+<Chart
+  title={<>Squared deviations in the new data</>}
+  description={<>The ten old values add <InlineMath math="10\times4=40" />. The value <InlineMath math="10" /> adds <InlineMath math="(10-15)^2=25" />, and the value <InlineMath math="20" /> adds <InlineMath math="(20-15)^2=25" />. The total is <InlineMath math="90" />, which is then divided by <InlineMath math="12" /> values.</>}
+  categories={["Ten old values", "Value 10", "Value 20"]}
+  bars="apart"
+  series={[{ label: "Squared deviation", mark: "bar", values: [10 * 2 ** 2, (10 - 15) ** 2, (20 - 15) ** 2] }]}
+  valueLabel="Squared deviation"
+/>
+
 Check it with real data. Five copies of <InlineMath math="13" /> and five copies of <InlineMath math="17" /> have mean <InlineMath math="15" /> and variance <InlineMath math="4" />, so their standard deviation is <InlineMath math="2" />. After adding <InlineMath math="10" /> and <InlineMath math="20" />, the sum of squared deviations is <InlineMath math="10\times4+25+25=90" />, and the variance is <InlineMath math="\tfrac{90}{12}=\tfrac{15}{2}" />.
 
 # Traps in the other options

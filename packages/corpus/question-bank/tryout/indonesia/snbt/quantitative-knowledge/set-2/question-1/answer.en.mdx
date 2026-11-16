@@ -31,6 +31,20 @@ From <InlineMath math="0" /> to <InlineMath math="99" />, the numbers that leave
 
 Check it a second way. The remainders of powers of two on division by <InlineMath math="100" /> repeat every <InlineMath math="20" /> steps starting from <InlineMath math="2^2" />, because <InlineMath math="2^{22}=4{,}194{,}304" /> ends in <InlineMath math="04" />, just like <InlineMath math="2^2" />. The exponent <InlineMath math="20k+16" /> is at least <InlineMath math="16" />, so <InlineMath math="N" /> ends the same way as <InlineMath math="2^{16}=65{,}536" />, that is, in <InlineMath math="36" />. The results match.
 
+A chart of the last two digits of <InlineMath math="2^n" /> shows the cycle. From <InlineMath math="n=2" /> on, the values repeat every <InlineMath math="20" /> steps, because the bar at <InlineMath math="n=22" /> equals the bar at <InlineMath math="n=2" />. The exponent <InlineMath math="20k+16" /> always lands in **the same spot as <InlineMath math="n=16" />**.
+
+<Chart
+  title={<>The last two digits of <InlineMath math="2^n" /> for <InlineMath math="n=2" /> to <InlineMath math="22" /></>}
+  description={<>Each bar is the remainder of <InlineMath math="2^n" /> on division by <InlineMath math="100" />. For <InlineMath math="n=2" /> it's <InlineMath math="4" />, and for <InlineMath math="n=22" /> it's <InlineMath math="4" /> again, so the cycle has length <InlineMath math="20" />. The bar at <InlineMath math="n=16" /> is <InlineMath math="36" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${i + 2}`)}
+  series={[
+    { label: "Last two digits", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i + 2 === 16 ? null : (2 ** (i + 2)) % 100)) },
+    { label: "Exponent 16", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i + 2 === 16 ? (2 ** (i + 2)) % 100 : null)) },
+  ]}
+  valueLabel="Last two digits"
+/>
+
 # Traps in the other options
 
 - <InlineMath math="16" /> comes from using the odd-exponent pattern, <InlineMath math="4^{2026}\equiv4\pmod{20}" />, and then computing <InlineMath math="2^4=16" />.

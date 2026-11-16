@@ -22,6 +22,39 @@ Pernyataan pertama **benar**.
 
 Masukkan <InlineMath math="x=3" /> ke bentuk umum: <InlineMath math="P(3)=2\cdot1\cdot H(3)+7=2H(3)+7" />. Nilai ini bergantung pada <InlineMath math="H" />, jadi **nilai di luar titik satu dan dua tidak terkunci**. Untuk <InlineMath math="H(x)=0" />, <InlineMath math="P(3)=7" />. Untuk <InlineMath math="H(x)=1" />, <InlineMath math="P(x)=x^2-x+3" /> dan <InlineMath math="P(3)=9" />. Kedua suku banyak itu memenuhi keterangan soal, tetapi nilainya di <InlineMath math="3" /> berbeda. Pernyataan kedua **salah**.
 
+Grafik kedua contoh memperlihatkan alasannya. Garis <InlineMath math="y=2x+1" /> dan parabola <InlineMath math="y=x^2-x+3" /> **sama-sama melewati <InlineMath math="(1,3)" /> dan <InlineMath math="(2,5)" />**, tetapi di <InlineMath math="x=3" /> keduanya berpisah ke nilai yang berbeda.
+
+<MathVisual
+  title={<>Dua suku banyak yang memenuhi kedua keterangan</>}
+  description={<>Garis <InlineMath math="y=2x+1" /> untuk <InlineMath math="H(x)=0" /> dan parabola <InlineMath math="y=x^2-x+3" /> untuk <InlineMath math="H(x)=1" /> bertemu di <InlineMath math="(1,3)" /> dan <InlineMath math="(2,5)" />. Di garis tegak <InlineMath math="x=3" />, garis bernilai <InlineMath math="7" /> dan parabola bernilai <InlineMath math="9" />.</>}
+  labels={{
+    line: <InlineMath math="H(x)=0" />,
+    curve: <InlineMath math="H(x)=1" />,
+    seven: <InlineMath math="7" />,
+    nine: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "check", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "line", kind: "function", appearance: "primary", formula: "2x + 1", domain: { min: -0.5, max: 4 } },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "x^2 - x + 3", domain: { min: -0.5, max: 4 } },
+      { id: "given-1", kind: "point", appearance: "reference", at: { x: 1, y: 3 } },
+      { id: "given-2", kind: "point", appearance: "reference", at: { x: 2, y: 5 } },
+      { id: "seven", kind: "point", appearance: "highlight", at: { x: 3, y: 7 } },
+      { id: "nine", kind: "point", appearance: "highlight", at: { x: 3, y: 9 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 3.8, y: 8.6 }, placement: "below-right" },
+      { key: "curve", objectId: "curve", at: { x: 3.8, y: 3.8 ** 2 - 3.8 + 3 }, placement: "left" },
+      { key: "seven", objectId: "seven", at: { x: 3, y: 7 }, placement: "below-left" },
+      { key: "nine", objectId: "nine", at: { x: 3, y: 9 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Sisa setelah pergeseran
 
 Misalkan <InlineMath math="G(x)=P(x+1)" />. Pembaginya <InlineMath math="x^2-x=x(x-1)" /> berakar <InlineMath math="0" /> dan <InlineMath math="1" />, jadi yang dibutuhkan adalah **nilai di akar pembagi yang baru**: <InlineMath math="G(0)=P(1)=3" /> dan <InlineMath math="G(1)=P(2)=5" />. Sisanya <InlineMath math="ux+v" /> dengan <InlineMath math="v=3" /> dan <InlineMath math="u+v=5" />, jadi <InlineMath math="u=2" /> dan sisanya <InlineMath math="2x+3" />. Pernyataan ketiga **benar**.

@@ -31,6 +31,20 @@ Dari <InlineMath math="0" /> sampai <InlineMath math="99" />, bilangan yang bers
 
 Cek dengan jalur kedua. Sisa pangkat dua jika dibagi <InlineMath math="100" /> berulang setiap <InlineMath math="20" /> langkah mulai dari <InlineMath math="2^2" />, sebab <InlineMath math="2^{22}=4{.}194{.}304" /> berakhiran <InlineMath math="04" />, sama seperti <InlineMath math="2^2" />. Pangkat <InlineMath math="20k+16" /> paling kecil <InlineMath math="16" />, jadi <InlineMath math="N" /> berakhiran sama dengan <InlineMath math="2^{16}=65{.}536" />, yaitu <InlineMath math="36" />. Hasilnya cocok.
 
+Grafik dua digit terakhir <InlineMath math="2^n" /> memperlihatkan siklusnya. Mulai <InlineMath math="n=2" />, nilainya berulang setiap <InlineMath math="20" /> langkah, karena batang <InlineMath math="n=22" /> sama dengan batang <InlineMath math="n=2" />. Pangkat <InlineMath math="20k+16" /> selalu jatuh di **posisi yang sama dengan <InlineMath math="n=16" />**.
+
+<Chart
+  title={<>Dua digit terakhir <InlineMath math="2^n" /> untuk <InlineMath math="n=2" /> sampai <InlineMath math="22" /></>}
+  description={<>Setiap batang adalah sisa <InlineMath math="2^n" /> jika dibagi <InlineMath math="100" />. Untuk <InlineMath math="n=2" /> nilainya <InlineMath math="4" />, dan untuk <InlineMath math="n=22" /> nilainya kembali <InlineMath math="4" />, jadi siklusnya panjang <InlineMath math="20" />. Batang <InlineMath math="n=16" /> bernilai <InlineMath math="36" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 21 }, (_, i) => `${i + 2}`)}
+  series={[
+    { label: "Dua digit terakhir", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i + 2 === 16 ? null : (2 ** (i + 2)) % 100)) },
+    { label: "Pangkat 16", mark: "bar", values: Array.from({ length: 21 }, (_, i) => (i + 2 === 16 ? (2 ** (i + 2)) % 100 : null)) },
+  ]}
+  valueLabel="Dua digit terakhir"
+/>
+
 # Jebakan pada pilihan lain
 
 - <InlineMath math="16" /> muncul jika kamu memakai pola pangkat ganjil, <InlineMath math="4^{2026}\equiv4\pmod{20}" />, lalu menghitung <InlineMath math="2^4=16" />.

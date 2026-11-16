@@ -22,6 +22,39 @@ Die erste Aussage ist **wahr**.
 
 Setze <InlineMath math="x=3" /> in die allgemeine Form ein: <InlineMath math="P(3)=2\cdot1\cdot H(3)+7=2H(3)+7" />. Dieser Wert hängt von <InlineMath math="H" /> ab, **Werte außerhalb von eins und zwei sind also nicht festgelegt**. Für <InlineMath math="H(x)=0" /> ist <InlineMath math="P(3)=7" />. Für <InlineMath math="H(x)=1" /> ist <InlineMath math="P(x)=x^2-x+3" /> und <InlineMath math="P(3)=9" />. Beide Polynome erfüllen die Angaben, haben bei <InlineMath math="3" /> aber verschiedene Werte. Die zweite Aussage ist **falsch**.
 
+Die Graphen beider Beispiele zeigen den Grund. Die Gerade <InlineMath math="y=2x+1" /> und die Parabel <InlineMath math="y=x^2-x+3" /> **gehen beide durch <InlineMath math="(1,3)" /> und <InlineMath math="(2,5)" />**, laufen bei <InlineMath math="x=3" /> aber zu verschiedenen Werten auseinander.
+
+<MathVisual
+  title={<>Zwei Polynome, die beide Angaben erfüllen</>}
+  description={<>Die Gerade <InlineMath math="y=2x+1" /> für <InlineMath math="H(x)=0" /> und die Parabel <InlineMath math="y=x^2-x+3" /> für <InlineMath math="H(x)=1" /> treffen sich in <InlineMath math="(1,3)" /> und <InlineMath math="(2,5)" />. Auf der senkrechten Geraden <InlineMath math="x=3" /> hat die Gerade den Wert <InlineMath math="7" /> und die Parabel den Wert <InlineMath math="9" />.</>}
+  labels={{
+    line: <InlineMath math="H(x)=0" />,
+    curve: <InlineMath math="H(x)=1" />,
+    seven: <InlineMath math="7" />,
+    nine: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "check", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "line", kind: "function", appearance: "primary", formula: "2x + 1", domain: { min: -0.5, max: 4 } },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "x^2 - x + 3", domain: { min: -0.5, max: 4 } },
+      { id: "given-1", kind: "point", appearance: "reference", at: { x: 1, y: 3 } },
+      { id: "given-2", kind: "point", appearance: "reference", at: { x: 2, y: 5 } },
+      { id: "seven", kind: "point", appearance: "highlight", at: { x: 3, y: 7 } },
+      { id: "nine", kind: "point", appearance: "highlight", at: { x: 3, y: 9 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 3.8, y: 8.6 }, placement: "below-right" },
+      { key: "curve", objectId: "curve", at: { x: 3.8, y: 3.8 ** 2 - 3.8 + 3 }, placement: "left" },
+      { key: "seven", objectId: "seven", at: { x: 3, y: 7 }, placement: "below-left" },
+      { key: "nine", objectId: "nine", at: { x: 3, y: 9 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Der Rest nach einer Verschiebung
 
 Setze <InlineMath math="G(x)=P(x+1)" />. Der Teiler <InlineMath math="x^2-x=x(x-1)" /> hat die Nullstellen <InlineMath math="0" /> und <InlineMath math="1" />, du brauchst also **die Werte an den Nullstellen des neuen Teilers**: <InlineMath math="G(0)=P(1)=3" /> und <InlineMath math="G(1)=P(2)=5" />. Der Rest ist <InlineMath math="ux+v" /> mit <InlineMath math="v=3" /> und <InlineMath math="u+v=5" />, also <InlineMath math="u=2" />, und der Rest lautet <InlineMath math="2x+3" />. Die dritte Aussage ist **wahr**.

@@ -2,6 +2,36 @@ Titik sudut segiempat <InlineMath math="ABCD" /> terletak berurutan pada sebuah 
 
 Berdasarkan informasi yang diberikan, manakah hubungan antara kuantitas <InlineMath math="P" /> dan <InlineMath math="Q" /> berikut yang benar?
 
+<MathVisual
+  title={<>Segiempat <InlineMath math="ABCD" /> pada lingkaran</>}
+  description={<>Titik <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, dan <InlineMath math="D" /> berurutan pada lingkaran, dengan <InlineMath math="AB=AD" />. Sudut di <InlineMath math="A" /> besarnya <InlineMath math="(2x+12)^\circ" /> dan sudut di <InlineMath math="C" /> besarnya <InlineMath math="(3x+18)^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    anglea: <InlineMath math="(2x+12)^\circ" />,
+    anglec: <InlineMath math="(3x+18)^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "quad", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: -5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, { x: 3, y: -4 }, { x: 5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "quad", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "quad", at: { x: -5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, placement: "left" },
+      { key: "c", objectId: "quad", at: { x: 3, y: -4 }, placement: "below" },
+      { key: "d", objectId: "quad", at: { x: 5 * Math.cos(Math.PI / 10), y: -5 * Math.sin(Math.PI / 10) }, placement: "right" },
+      { key: "anglea", objectId: "quad", at: { x: 0, y: 5 }, placement: "below" },
+      { key: "anglec", objectId: "quad", at: { x: 3, y: -4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 | <InlineMath math="P" /> | <InlineMath math="Q" /> |
 | :---: | :---: |
 | Besar <InlineMath math="\angle ACB" /> | <InlineMath math="(2x-7)^\circ" /> |
