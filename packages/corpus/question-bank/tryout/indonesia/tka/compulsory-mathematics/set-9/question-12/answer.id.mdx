@@ -8,6 +8,49 @@ Urutan titik sudut tidak ditentukan, jadi **setiap titik di antara <InlineMath m
 | <InlineMath math="C" /> | <InlineMath math="A+B-C" /> | <InlineMath math="(-5,1)" /> |
 | <InlineMath math="A" /> | <InlineMath math="B+C-A" /> | <InlineMath math="(11,-1)" /> |
 
+Gambar ketiga jajargenjang sekaligus. **Jajargenjang dengan <InlineMath math="D(7,7)" /> punya sudut siku-siku di <InlineMath math="B" />**, sedangkan dua lainnya jelas memakai pasangan sisi yang berbeda, sehingga kelilingnya berbeda.
+
+<MathVisual
+  title={<>Tiga kemungkinan jajargenjang dari <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /></>}
+  description={<>Titik <InlineMath math="A(1,4)" />, <InlineMath math="B(3,0)" />, dan <InlineMath math="C(9,3)" /> dipakai oleh ketiga jajargenjang. Titik keempatnya <InlineMath math="(7,7)" />, <InlineMath math="(-5,1)" />, atau <InlineMath math="(11,-1)" />. Jajargenjang <InlineMath math="ABCD" /> dengan <InlineMath math="D(7,7)" /> adalah persegi panjang, dan dua lainnya jajargenjang miring yang memakai <InlineMath math="AC" /> sebagai sisi, bukan diagonal.</>}
+  labels={{
+    a: <InlineMath math="A(1,4)" />,
+    b: <InlineMath math="B(3,0)" />,
+    c: <InlineMath math="C(9,3)" />,
+    "d-one": <InlineMath math="(7,7)" />,
+    "d-two": <InlineMath math="(-5,1)" />,
+    "d-three": <InlineMath math="(11,-1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 12 },
+      y: { min: -2, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", appearance: "answer", vertices: [{ x: 1, y: 4 }, { x: 3, y: 0 }, { x: 9, y: 3 }, { x: 7, y: 7 }] },
+      { id: "left", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 4 }, { x: -5, y: 1 }, { x: 3, y: 0 }, { x: 9, y: 3 }] },
+      { id: "right", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 4 }, { x: 3, y: 0 }, { x: 11, y: -1 }, { x: 9, y: 3 }] },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 4 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 9, y: 3 } },
+      { id: "d-one", kind: "point", appearance: "answer", at: { x: 7, y: 7 } },
+      { id: "d-two", kind: "point", appearance: "secondary", at: { x: -5, y: 1 } },
+      { id: "d-three", kind: "point", appearance: "secondary", at: { x: 11, y: -1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: 4 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 9, y: 3 }, placement: "right" },
+      { key: "d-one", objectId: "d-one", at: { x: 7, y: 7 }, placement: "above" },
+      { key: "d-two", objectId: "d-two", at: { x: -5, y: 1 }, placement: "left" },
+      { key: "d-three", objectId: "d-three", at: { x: 11, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 Pernyataan pertama: ketiga titik <InlineMath math="D" /> berbeda, jadi ada tepat tiga kemungkinan. Pernyataan ini **Benar**.

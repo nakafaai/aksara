@@ -9,6 +9,52 @@ OA&=\tfrac12\cdot12\sqrt2=6\sqrt2 \\
 TO&=\sqrt{TA^2-OA^2}=\sqrt{121-72}=\sqrt{49}=7
 \end{aligned}" />
 
+Slice the pyramid through <InlineMath math="T" />, the base centre <InlineMath math="O" />, and <InlineMath math="C" />. **Triangle <InlineMath math="TOC" /> is right-angled at <InlineMath math="O" />, and <InlineMath math="P" /> at the middle of its hypotenuse sits halfway up**.
+
+<MathVisual
+  title={<>Triangle <InlineMath math="TOC" /> and the point <InlineMath math="P" /></>}
+  description={<>The right triangle <InlineMath math="TOC" /> has base <InlineMath math="OC=6\sqrt2" />, height <InlineMath math="TO=7" />, and hypotenuse <InlineMath math="TC=11" />. The point <InlineMath math="P" /> is the midpoint of <InlineMath math="TC" />, and the vertical segment from <InlineMath math="P" /> to the base has length <InlineMath math="3.5" />, half of <InlineMath math="TO" />.</>}
+  labels={{
+    t: <InlineMath math="T" />,
+    o: <InlineMath math="O" />,
+    c: <InlineMath math="C" />,
+    p: <InlineMath math="P" />,
+    height: <InlineMath math="7" />,
+    half: <InlineMath math="3{,}5" />,
+    base: <InlineMath math="6\sqrt2" />,
+    slant: <InlineMath math="11" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 10 },
+      y: { min: -1, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slant", kind: "segment", appearance: "primary", from: { x: 6 * Math.sqrt(2), y: 0 }, to: { x: 0, y: 7 } },
+      { id: "height", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 7 } },
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6 * Math.sqrt(2), y: 0 } },
+      { id: "half", kind: "segment", appearance: "answer", from: { x: 3 * Math.sqrt(2), y: 0 }, to: { x: 3 * Math.sqrt(2), y: 3.5 } },
+      { id: "t", kind: "point", appearance: "secondary", at: { x: 0, y: 7 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "c", kind: "point", appearance: "secondary", at: { x: 6 * Math.sqrt(2), y: 0 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 3 * Math.sqrt(2), y: 3.5 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 7 }, placement: "above" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "c", at: { x: 6 * Math.sqrt(2), y: 0 }, placement: "below-right" },
+      { key: "p", objectId: "p", at: { x: 3 * Math.sqrt(2), y: 3.5 }, placement: "above-right" },
+      { key: "height", objectId: "height", at: { x: 0, y: 3.5 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: 3 * Math.sqrt(2), y: 1.75 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: 3 * Math.sqrt(2), y: 0 }, placement: "below" },
+      { key: "slant", objectId: "slant", at: { x: 1.5 * Math.sqrt(2), y: 5.25 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Height of point P
 
 <InlineMath math="P" /> is the midpoint of <InlineMath math="TC" />. As you walk from <InlineMath math="C" /> on the base up to <InlineMath math="T" />, the height grows in proportion, so halfway along **the height is exactly half the height of <InlineMath math="T" />**, which is <InlineMath math="3.5" />.

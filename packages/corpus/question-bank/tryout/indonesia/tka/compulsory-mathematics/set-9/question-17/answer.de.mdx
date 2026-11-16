@@ -9,6 +9,55 @@ AD=CE&=\sqrt{BC^2-EB^2} \\
 &=\sqrt{10^2-6^2}=\sqrt{64}=8\text{ cm}
 \end{aligned}" />
 
+Zeichne das Trapez auf der Karte mit der Hilfslinie <InlineMath math="CE" />. **Die Senkrechte von <InlineMath math="C" /> schneidet das rechtwinklige Dreieck <InlineMath math="CEB" /> ab**, dessen Hypotenuse <InlineMath math="10" /> und dessen Grundseite <InlineMath math="6" /> ist, also ist seine Höhe <InlineMath math="8" />.
+
+<MathVisual
+  title={<>Das Trapez <InlineMath math="ABCD" /> auf der Karte und die Hilfslinie <InlineMath math="CE" /></>}
+  description={<>Längen in cm auf der Karte. Das Trapez hat rechte Winkel bei <InlineMath math="A" /> und <InlineMath math="D" />, mit <InlineMath math="AB=11" />, <InlineMath math="DC=5" /> und <InlineMath math="BC=10" />. Die Senkrechte <InlineMath math="CE" /> teilt <InlineMath math="AB" /> in <InlineMath math="AE=5" /> und <InlineMath math="EB=6" />, und das rechtwinklige Dreieck <InlineMath math="CEB" /> liefert <InlineMath math="CE=AD=8" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    top: <InlineMath math="5" />,
+    left: <InlineMath math="AE=5" />,
+    rest: <InlineMath math="6" />,
+    slant: <InlineMath math="10" />,
+    height: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 12 },
+      y: { min: -1, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "garden", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 11, y: 0 }, { x: 5, y: 8 }, { x: 0, y: 8 }] },
+      { id: "corner", kind: "polygon", appearance: "secondary", vertices: [{ x: 5, y: 0 }, { x: 11, y: 0 }, { x: 5, y: 8 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 5, y: 8 }, to: { x: 5, y: 0 } },
+      { id: "top", kind: "segment", appearance: "primary", from: { x: 0, y: 8 }, to: { x: 5, y: 8 } },
+      { id: "left", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "rest", kind: "segment", appearance: "highlight", from: { x: 5, y: 0 }, to: { x: 11, y: 0 } },
+      { id: "slant", kind: "segment", appearance: "highlight", from: { x: 11, y: 0 }, to: { x: 5, y: 8 } },
+    ],
+    labels: [
+      { key: "a", objectId: "garden", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "garden", at: { x: 11, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "garden", at: { x: 5, y: 8 }, placement: "above-right" },
+      { key: "d", objectId: "garden", at: { x: 0, y: 8 }, placement: "above-left" },
+      { key: "e", objectId: "height", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "top", objectId: "top", at: { x: 2.5, y: 8 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: 2.5, y: 0 }, placement: "above" },
+      { key: "rest", objectId: "rest", at: { x: 8, y: 0 }, placement: "below" },
+      { key: "slant", objectId: "slant", at: { x: 8, y: 4 }, placement: "above-right" },
+      { key: "height", objectId: "height", at: { x: 5, y: 4 }, placement: "left" },
+    ],
+  }}
+/>
+
 Denk dran: **Abgezogen werden die Quadrate**, nicht die Längen. <InlineMath math="10-6=4" /> cm ist nicht <InlineMath math="AD" />.
 
 # Umfang und Drahtlänge

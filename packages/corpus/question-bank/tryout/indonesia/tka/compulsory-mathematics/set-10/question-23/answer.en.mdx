@@ -10,6 +10,48 @@ Call Gita's score <InlineMath math="x" />. The eight original scores add up to <
 x&>79
 \end{aligned}" />
 
+Draw the eight original scores with the range of Gita's score. **All of Gita's range lies to the right of <InlineMath math="70" />**, so the five smallest scores never change, and Gita's score can fall below <InlineMath math="82" /> or above <InlineMath math="88" />.
+
+<MathVisual
+  title={<>The original scores and the range of Gita's score</>}
+  description={<>The points on the lower line are the original scores <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />, with <InlineMath math="70" /> as the <InlineMath math="5" />th of nine values. The segment above them is Gita's possible score, <InlineMath math="79<x\le100" />, with an open left end. The segment passes <InlineMath math="82" /> and <InlineMath math="88" />.</>}
+  labels={{
+    gita: <InlineMath math="79<x\le100" />,
+    "score-5": <InlineMath math="70=5\text{th value}" />,
+    "score-6": <InlineMath math="72" />,
+    "score-7": <InlineMath math="82" />,
+    "score-8": <InlineMath math="88" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 50, max: 102 },
+      y: { min: -1, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "score-1", kind: "point", appearance: "secondary", at: { x: 56, y: 0 } },
+      { id: "score-2", kind: "point", appearance: "secondary", at: { x: 58, y: 0 } },
+      { id: "score-3", kind: "point", appearance: "secondary", at: { x: 66, y: 0 } },
+      { id: "score-4", kind: "point", appearance: "secondary", at: { x: 68, y: 0 } },
+      { id: "score-5", kind: "point", appearance: "primary", at: { x: 70, y: 0 } },
+      { id: "score-6", kind: "point", appearance: "secondary", at: { x: 72, y: 0 } },
+      { id: "score-7", kind: "point", appearance: "secondary", at: { x: 82, y: 0 } },
+      { id: "score-8", kind: "point", appearance: "secondary", at: { x: 88, y: 0 } },
+      { id: "gita", kind: "segment", appearance: "answer", from: { x: 79, y: 0.6 }, to: { x: 100, y: 0.6 } },
+      { id: "gita-low", kind: "point", appearance: "answer", at: { x: 79, y: 0.6 } },
+    ],
+    labels: [
+      { key: "gita", objectId: "gita", at: { x: 89.5, y: 0.6 }, placement: "above" },
+      { key: "score-5", objectId: "score-5", at: { x: 70, y: 0 }, placement: "below" },
+      { key: "score-6", objectId: "score-6", at: { x: 72, y: 0 }, placement: "above" },
+      { key: "score-7", objectId: "score-7", at: { x: 82, y: 0 }, placement: "below" },
+      { key: "score-8", objectId: "score-8", at: { x: 88, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Scores also go up to <InlineMath math="100" /> at most, so Gita's possible scores are <InlineMath math="79<x\le100" />.
 
 # Checking each statement

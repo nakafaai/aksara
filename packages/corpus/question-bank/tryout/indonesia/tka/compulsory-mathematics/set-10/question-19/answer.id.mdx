@@ -35,6 +35,47 @@ Begitu balok diangkat, air yang tersisa menyebar ke seluruh alas bak:
 
 <BlockMath math="\text{tinggi air}=\frac{92{.}400}{3{.}080}=30\text{ cm}" />
 
+Gambar tinggi air sebagai fungsi volume air, dengan dan tanpa balok beton. **Selama balok masih di dalam, air naik lebih cepat dan terhenti di bibir <InlineMath math="40\text{ cm}" />**. Setelah balok diangkat, volume yang sama turun ke garis yang lebih landai.
+
+<MathVisual
+  title={<>Tinggi air menurut volume air di bak</>}
+  description={<>Sumbu mendatar adalah volume air dalam ribu <InlineMath math="\text{cm}^3" />, dan sumbu tegak adalah tinggi air dalam cm. Garis curam <InlineMath math="h=\tfrac{V}{2{.}310}" /> berlaku selama balok di dalam bak, dan garis landai <InlineMath math="h=\tfrac{V}{3{.}080}" /> berlaku setelah balok diangkat. Air awal <InlineMath math="73{,}92" /> ribu <InlineMath math="\text{cm}^3" /> setinggi <InlineMath math="32" />. Setelah penuangan, air terhenti di bibir pada volume <InlineMath math="92{,}4" /> ribu <InlineMath math="\text{cm}^3" />, dan volume itu tanpa balok setinggi <InlineMath math="30" />.</>}
+  labels={{
+    with: <>dengan balok</>,
+    without: <>tanpa balok</>,
+    rim: <InlineMath math="40" />,
+    start: <InlineMath math="(73{,}92;\ 32)" />,
+    full: <InlineMath math="(92{,}4;\ 40)" />,
+    after: <InlineMath math="(92{,}4;\ 30)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 105 },
+      y: { min: 0, max: 46 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "with", kind: "function", appearance: "primary", formula: "1000*x/2310", domain: { min: 0, max: 92.4 } },
+      { id: "without", kind: "function", appearance: "secondary", formula: "1000*x/3080", domain: { min: 0, max: 103.4 } },
+      { id: "rim", kind: "function", appearance: "warning", formula: "40", domain: { min: 0, max: 105 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 92.4, y: 40 }, to: { x: 92.4, y: 30 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 73.92, y: 32 } },
+      { id: "full", kind: "point", appearance: "primary", at: { x: 92.4, y: 40 } },
+      { id: "after", kind: "point", appearance: "answer", at: { x: 92.4, y: 30 } },
+    ],
+    labels: [
+      { key: "with", objectId: "with", at: { x: 46.2, y: 20 }, placement: "above-left" },
+      { key: "without", objectId: "without", at: { x: 61.6, y: 20 }, placement: "below-right" },
+      { key: "rim", objectId: "rim", at: { x: 10, y: 40 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 73.92, y: 32 }, placement: "left" },
+      { key: "full", objectId: "full", at: { x: 92.4, y: 40 }, placement: "above" },
+      { key: "after", objectId: "after", at: { x: 92.4, y: 30 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Cek dari arah lain. Sebelum diangkat, bagian balok yang terendam setinggi <InlineMath math="40\text{ cm}" />, volumenya <InlineMath math="770\cdot40=30{.}800\text{ cm}^3" />. **Ruang yang ditinggalkan balok** membuat air turun <InlineMath math="\frac{30{.}800}{3{.}080}=10\text{ cm}" />, dari <InlineMath math="40" /> menjadi <InlineMath math="30\text{ cm}" />.
 
 Jadi, tinggi permukaan air di bak sekarang adalah <InlineMath math="30\text{ cm}" />.

@@ -38,6 +38,43 @@ Sekarang gantikan rumus <InlineMath math="R(n)" />. Oleh kerana <InlineMath math
 n&>120
 \end{aligned}" />
 
+Lukis kos purata bersama garis had <InlineMath math="45" /> ribu rupiah. **Lengkung hanya turun di bawah garis selepas melepasi <InlineMath math="n=120" />**, jadi nombor bulat pertama yang memenuhi ialah <InlineMath math="121" />.
+
+<MathVisual
+  title={<>Kos purata sehelai baju mengikut bilangan baju</>}
+  description={<>Paksi mendatar ialah bilangan baju <InlineMath math="n" />, dan paksi tegak ialah kos purata dalam ribu rupiah. Lengkung <InlineMath math="R(n)=35+\tfrac{1{,}200}{n}" /> melalui kedua-dua titik data <InlineMath math="(40,\ 65)" /> dan <InlineMath math="(100,\ 47)" />, kemudian bertemu garis had <InlineMath math="45" /> tepat pada <InlineMath math="(120,\ 45)" />. Di sebelah kanan titik itu lengkung berada di bawah garis.</>}
+  labels={{
+    average: <InlineMath math="R(n)" />,
+    limit: <>had 45</>,
+    small: <InlineMath math="(40,\ 65)" />,
+    large: <InlineMath math="(100,\ 47)" />,
+    edge: <InlineMath math="(120,\ 45)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 20, max: 200 },
+      y: { min: 30, max: 80 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "35 + 1200/x", domain: { min: 25, max: 195 } },
+      { id: "limit", kind: "function", appearance: "warning", formula: "45", domain: { min: 25, max: 195 } },
+      { id: "small", kind: "point", appearance: "secondary", at: { x: 40, y: 65 } },
+      { id: "large", kind: "point", appearance: "secondary", at: { x: 100, y: 47 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 120, y: 45 } },
+    ],
+    labels: [
+      { key: "average", objectId: "average", at: { x: 30, y: 75 }, placement: "right" },
+      { key: "limit", objectId: "limit", at: { x: 180, y: 45 }, placement: "above" },
+      { key: "small", objectId: "small", at: { x: 40, y: 65 }, placement: "right" },
+      { key: "large", objectId: "large", at: { x: 100, y: 47 }, placement: "above-right" },
+      { key: "edge", objectId: "edge", at: { x: 120, y: 45 }, placement: "below" },
+    ],
+  }}
+/>
+
 Bagi <InlineMath math="n=120" />, kos puratanya tepat <InlineMath math="45{,}000" /> dan untungnya <InlineMath math="9{,}000" />, iaitu **tepat** <InlineMath math="20\%" />, belum lebih. Bagi <InlineMath math="n=121" />, kos puratanya <InlineMath math="35{,}000+9{,}917.36=44{,}917.36" />, sudah di bawah <InlineMath math="45{,}000" />.
 
 # Mengapa pilihan lain salah

@@ -27,6 +27,20 @@ P(\text{Gewinn})&=\frac25\cdot\frac12=\frac15 \\
 H_e&=60\cdot\frac15=12\text{ Runden}
 \end{aligned}" />
 
+Der Baum unten fasst beide Stufen zusammen. **Nur ein Weg endet mit einem Gewinn**, und seine Wahrscheinlichkeit ist das Produkt der beiden Äste.
+
+<Mermaid
+  title={<>Wahrscheinlichkeitsbaum für eine Runde</>}
+  description={<>Von den <InlineMath math="10" /> Kartenpaaren haben <InlineMath math="4" /> eine gerade Summe, also hat der gerade Ast die Wahrscheinlichkeit <InlineMath math="\tfrac25" />. Danach haben mindestens <InlineMath math="2" /> Zahlseiten in <InlineMath math="3" /> Würfen die Wahrscheinlichkeit <InlineMath math="\tfrac12" />. Die Gewinnwahrscheinlichkeit ist <InlineMath math="\tfrac15" />, und die erwartete Häufigkeit ist <InlineMath math="60\cdot\tfrac15=12" /> Runden.</>}
+  chart={`flowchart TD
+  S["2 von 5 Karten ziehen"] -->|"4/10"| E["Gerade Summe"]
+  S -->|"6/10"| O["Ungerade Summe: verloren"]
+  E -->|"1/2"| W["Mindestens 2 Zahlseiten: gewonnen"]
+  E -->|"1/2"| L["Weniger als 2 Zahlseiten: verloren"]
+  W --> P["P(gewonnen) = 2/5 · 1/2 = 1/5"]
+  P --> F["60 · 1/5 = 12"]`}
+/>
+
 # Warum die anderen Antworten falsch sind
 
 - <InlineMath math="15" /> Runden setzen die Wahrscheinlichkeit einer geraden Summe auf <InlineMath math="\frac12" />: <InlineMath math="60\cdot\frac12\cdot\frac12" />.

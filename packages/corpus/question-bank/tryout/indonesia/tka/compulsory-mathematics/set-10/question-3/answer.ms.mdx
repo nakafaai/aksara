@@ -12,6 +12,46 @@ Untuk tempoh <InlineMath math="n" /> bulan dengan kadar <InlineMath math="r" /> 
 | <InlineMath math="12" /> bulan | <InlineMath math="0.18" /> | <InlineMath math="\frac{1.18p}{12}" /> | <InlineMath math="9{,}000{,}000+0.19p" /> |
 | <InlineMath math="18" /> bulan | <InlineMath math="0.225" /> | <InlineMath math="\frac{1.225p}{18}" /> | <InlineMath math="9{,}000{,}000+0.235p" /> |
 
+Lukis jumlah bayaran ketiga-tiga tempoh sebagai garis terhadap pokok <InlineMath math="p" />. **Ketiga-tiganya bermula dari titik yang sama, kemudian melebar**, jadi beza tempoh <InlineMath math="18" /> dan <InlineMath math="12" /> bulan paling besar di hujung kanan, dan garis tempoh <InlineMath math="6" /> bulan hanya melepasi tanda <InlineMath math="10\%" /> selepas <InlineMath math="p=3.15" />.
+
+<MathVisual
+  title={<>Jumlah bayaran ketiga-tiga tempoh mengikut pokok</>}
+  description={<>Paksi mendatar ialah pokok <InlineMath math="p" /> dan paksi tegak ialah jumlah bayaran, kedua-duanya dalam juta rupiah, dengan <InlineMath math="0<p\le7.2" />. Garisnya <InlineMath math="9+0.16p" />, <InlineMath math="9+0.19p" />, dan <InlineMath math="9+0.235p" />. Pada <InlineMath math="p=7.2" />, jarak garis tempoh <InlineMath math="18" /> dan <InlineMath math="12" /> bulan ialah <InlineMath math="0.324" />. Garis mendatar <InlineMath math="9.504" /> ialah <InlineMath math="10\%" /> di atas harga tunai, dan garis tempoh <InlineMath math="6" /> bulan memotongnya pada <InlineMath math="p=3.15" />.</>}
+  labels={{
+    six: <InlineMath math="6\text{ bulan}" />,
+    twelve: <InlineMath math="12\text{ bulan}" />,
+    eighteen: <InlineMath math="18\text{ bulan}" />,
+    bar: <InlineMath math="9.504" />,
+    cross: <InlineMath math="p=3.15" />,
+    gap: <InlineMath math="0.324" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 7.6 },
+      y: { min: 8.9, max: 10.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "six", kind: "function", appearance: "primary", formula: "9 + 0.16*x", domain: { min: 0, max: 7.2 } },
+      { id: "twelve", kind: "function", appearance: "secondary", formula: "9 + 0.19*x", domain: { min: 0, max: 7.2 } },
+      { id: "eighteen", kind: "function", appearance: "highlight", formula: "9 + 0.235*x", domain: { min: 0, max: 7.2 } },
+      { id: "bar", kind: "function", appearance: "warning", formula: "9.504", domain: { min: 0, max: 7.2 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 7.2, y: 9 + 0.19 * 7.2 }, to: { x: 7.2, y: 9 + 0.235 * 7.2 } },
+      { id: "cross", kind: "point", appearance: "answer", at: { x: 3.15, y: 9.504 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 6, y: 9 + 0.16 * 6 }, placement: "below-right" },
+      { key: "twelve", objectId: "twelve", at: { x: 5, y: 9 + 0.19 * 5 }, placement: "below-right" },
+      { key: "eighteen", objectId: "eighteen", at: { x: 4, y: 9 + 0.235 * 4 }, placement: "above-left" },
+      { key: "bar", objectId: "bar", at: { x: 0.5, y: 9.504 }, placement: "above" },
+      { key: "cross", objectId: "cross", at: { x: 3.15, y: 9.504 }, placement: "below-right" },
+      { key: "gap", objectId: "gap", at: { x: 7.2, y: 9 + 0.2125 * 7.2 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Pernyataan pertama
 
 Separuh daripada ansuran tempoh <InlineMath math="6" /> bulan ialah <InlineMath math="\frac{1.15p}{12}" />. Bandingkan dengan ansuran tempoh <InlineMath math="12" /> bulan.

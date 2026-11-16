@@ -10,6 +10,46 @@ h=40:&\quad \text{lebar}=120\text{ cm},\quad L_{40}=\frac{60+120}{2}\cdot40=3{.}
 \frac{L_{40}}{L_{20}}&=\frac{3{.}600}{1{.}500}=2{,}4
 \end{aligned}" />
 
+Gambar penampang air pada kedua kedalaman di dalam penampang saluran. **Dasar <InlineMath math="60" /> tetap, hanya kedua sisi yang melebar**, jadi menggandakan kedalaman tidak sekadar menggandakan luasnya.
+
+<MathVisual
+  title={<>Penampang air pada kedalaman <InlineMath math="20" /> dan <InlineMath math="40\text{ cm}" /></>}
+  description={<>Ukuran dalam cm. Saluran berdasar <InlineMath math="60" /> dan dalamnya <InlineMath math="80" />. Pada kedalaman <InlineMath math="20" />, permukaan air selebar <InlineMath math="90" /> dan luas penampangnya <InlineMath math="1{.}500" />. Pada kedalaman <InlineMath math="40" />, permukaan air selebar <InlineMath math="120" /> dan luasnya <InlineMath math="3{.}600" />, yaitu <InlineMath math="2{,}4" /> kali luas pertama.</>}
+  labels={{
+    base: <InlineMath math="60" />,
+    low: <InlineMath math="90" />,
+    high: <InlineMath math="120" />,
+    "depth-low": <InlineMath math="20" />,
+    "depth-high": <InlineMath math="40" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -100, max: 100 },
+      y: { min: -15, max: 90 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "channel", kind: "polygon", appearance: "reference", vertices: [{ x: -90, y: 80 }, { x: -30, y: 0 }, { x: 30, y: 0 }, { x: 90, y: 80 }] },
+      { id: "water-high", kind: "polygon", appearance: "secondary", vertices: [{ x: -60, y: 40 }, { x: -30, y: 0 }, { x: 30, y: 0 }, { x: 60, y: 40 }] },
+      { id: "water-low", kind: "polygon", appearance: "primary", vertices: [{ x: -45, y: 20 }, { x: -30, y: 0 }, { x: 30, y: 0 }, { x: 45, y: 20 }] },
+      { id: "base", kind: "segment", appearance: "construction", from: { x: -30, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "low", kind: "segment", appearance: "answer", from: { x: -45, y: 20 }, to: { x: 45, y: 20 } },
+      { id: "high", kind: "segment", appearance: "answer", from: { x: -60, y: 40 }, to: { x: 60, y: 40 } },
+      { id: "depth-low", kind: "segment", appearance: "construction", from: { x: 75, y: 0 }, to: { x: 75, y: 20 } },
+      { id: "depth-high", kind: "segment", appearance: "construction", from: { x: 90, y: 0 }, to: { x: 90, y: 40 } },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "low", objectId: "low", at: { x: 0, y: 20 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 0, y: 40 }, placement: "above" },
+      { key: "depth-low", objectId: "depth-low", at: { x: 75, y: 10 }, placement: "left" },
+      { key: "depth-high", objectId: "depth-high", at: { x: 90, y: 20 }, placement: "right" },
+    ],
+  }}
+/>
+
 Kedalaman menjadi dua kali, tetapi luasnya menjadi <InlineMath math="2{,}4" /> kali. Alasannya, dasar saluran tetap <InlineMath math="60\text{ cm}" />, sedangkan hanya bagian samping yang ikut melebar.
 
 # Waktu pengisian

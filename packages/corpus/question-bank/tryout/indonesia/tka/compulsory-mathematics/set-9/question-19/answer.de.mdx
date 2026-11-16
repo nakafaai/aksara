@@ -13,6 +13,47 @@ V_{\text{Rest}}&=\frac13\pi\cdot3^2\cdot6=18\pi\text{ cm}^3 \\
 &=\left(\tfrac12\right)^3\cdot144\pi
 \end{aligned}" />
 
+Zeichne die Querschnitte von Trichter und Zylinder. **Das restliche Wasser bildet einen kleinen Kegel von halber Trichterhöhe, enthält aber nur <InlineMath math="\tfrac18" /> des ursprünglichen Wassers**, also fließt fast alles Wasser in den Zylinder.
+
+<MathVisual
+  title={<>Querschnitte von Trichter und Zylinder</>}
+  description={<>Links der Querschnitt des Trichters: ein Dreieck mit Öffnungsradius <InlineMath math="6" /> und Höhe <InlineMath math="12" />. Das restliche Wasser ist ein kleines Dreieck der Höhe <InlineMath math="6" /> mit Oberflächenradius <InlineMath math="3" />. Rechts der Querschnitt des Zylinders mit Radius <InlineMath math="3" /> und Wasser bis zur Höhe <InlineMath math="14" />.</>}
+  labels={{
+    mouth: <InlineMath math="r=6" />,
+    full: <InlineMath math="12" />,
+    left: <InlineMath math="r=3" />,
+    level: <InlineMath math="6" />,
+    tube: <InlineMath math="r=3" />,
+    water: <InlineMath math="t=14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 18 },
+      y: { min: -1, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "funnel", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6, y: 12 }, { x: -6, y: 12 }] },
+      { id: "left", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
+      { id: "mouth", kind: "segment", appearance: "construction", from: { x: 0, y: 12 }, to: { x: 6, y: 12 } },
+      { id: "full", kind: "segment", appearance: "construction", from: { x: -7, y: 0 }, to: { x: -7, y: 12 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: -4, y: 6 } },
+      { id: "tube", kind: "polygon", appearance: "reference", vertices: [{ x: 10, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 16 }, { x: 10, y: 16 }] },
+      { id: "water", kind: "polygon", appearance: "answer", vertices: [{ x: 10, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 14 }, { x: 10, y: 14 }] },
+    ],
+    labels: [
+      { key: "mouth", objectId: "mouth", at: { x: 3, y: 12 }, placement: "above" },
+      { key: "full", objectId: "full", at: { x: -7, y: 9 }, placement: "left" },
+      { key: "left", objectId: "left", at: { x: 1.5, y: 6 }, placement: "above" },
+      { key: "level", objectId: "level", at: { x: -4, y: 3 }, placement: "left" },
+      { key: "tube", objectId: "tube", at: { x: 13, y: 16 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 16, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
+
 Es bleibt also nur <InlineMath math="\frac18" /> des Wassers übrig. **Die halbe Höhe fasst nur ein Achtel des Volumens**, weil der breite Teil des Trichters oben liegt.
 
 # Das Wasser im Zylinder

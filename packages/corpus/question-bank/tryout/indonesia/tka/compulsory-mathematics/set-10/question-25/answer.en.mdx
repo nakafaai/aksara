@@ -31,6 +31,19 @@ Notice that <InlineMath math="A" />'s <InlineMath math="0.9" /> sits on the top 
 | <InlineMath math="B" /> works, <InlineMath math="C" /> broken | <InlineMath math="0.6\cdot0.5=0.3" /> |
 | <InlineMath math="B" /> broken, <InlineMath math="C" /> works | <InlineMath math="0.4\cdot0.5=0.2" /> |
 
+Compare the probabilities of the three states of <InlineMath math="B" /> and <InlineMath math="C" /> that light the lamp. **The middle bar, the state where <InlineMath math="C" /> is broken, is <InlineMath math="0.3" /> out of a total of <InlineMath math="0.8" />**, which is <InlineMath math="\tfrac38" />.
+
+<Chart
+  title={<>States of <InlineMath math="B" /> and <InlineMath math="C" /> when the lamp is on</>}
+  description={<>When <InlineMath math="A" /> works, the lamp lights in three states. <InlineMath math="B" /> and <InlineMath math="C" /> both working has probability <InlineMath math="0.3" />, <InlineMath math="B" /> working and <InlineMath math="C" /> broken has probability <InlineMath math="0.3" />, and <InlineMath math="B" /> broken and <InlineMath math="C" /> working has probability <InlineMath math="0.2" />. Together they make <InlineMath math="0.8" />.</>}
+  bars="apart"
+  categories={["B and C work", "B works, C broken", "B broken, C works"]}
+  series={[
+    { label: "Probability", mark: "bar", values: [0.3, 0.3, 0.2] },
+  ]}
+  valueLabel="Probability"
+/>
+
 The share with <InlineMath math="C" /> broken is <InlineMath math="\frac{0.3}{0.3+0.3+0.2}=\frac{0.3}{0.8}=\frac38" />, the same as before.
 
 So the probability that switch <InlineMath math="C" /> isn't working while the lamp is on is <InlineMath math="\frac{3}{8}" />.

@@ -10,6 +10,48 @@ Katakan markah Gita ialah <InlineMath math="x" />. Jumlah markah lapan murid asa
 x&>79
 \end{aligned}" />
 
+Lukis lapan markah asal bersama julat markah Gita. **Seluruh julat markah Gita berada di kanan <InlineMath math="70" />**, jadi lima markah terkecil tidak pernah berubah, dan markah Gita boleh jatuh di bawah <InlineMath math="82" /> atau di atas <InlineMath math="88" />.
+
+<MathVisual
+  title={<>Markah asal dan julat markah Gita</>}
+  description={<>Titik-titik pada garis bawah ialah markah asal <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />, dengan <InlineMath math="70" /> sebagai data ke-<InlineMath math="5" /> daripada sembilan data. Ruas di atasnya ialah markah Gita yang mungkin, <InlineMath math="79<x\le100" />, dengan hujung kiri terbuka. Ruas itu melepasi <InlineMath math="82" /> dan <InlineMath math="88" />.</>}
+  labels={{
+    gita: <InlineMath math="79<x\le100" />,
+    "score-5": <InlineMath math="70=\text{data ke-}5" />,
+    "score-6": <InlineMath math="72" />,
+    "score-7": <InlineMath math="82" />,
+    "score-8": <InlineMath math="88" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 50, max: 102 },
+      y: { min: -1, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "score-1", kind: "point", appearance: "secondary", at: { x: 56, y: 0 } },
+      { id: "score-2", kind: "point", appearance: "secondary", at: { x: 58, y: 0 } },
+      { id: "score-3", kind: "point", appearance: "secondary", at: { x: 66, y: 0 } },
+      { id: "score-4", kind: "point", appearance: "secondary", at: { x: 68, y: 0 } },
+      { id: "score-5", kind: "point", appearance: "primary", at: { x: 70, y: 0 } },
+      { id: "score-6", kind: "point", appearance: "secondary", at: { x: 72, y: 0 } },
+      { id: "score-7", kind: "point", appearance: "secondary", at: { x: 82, y: 0 } },
+      { id: "score-8", kind: "point", appearance: "secondary", at: { x: 88, y: 0 } },
+      { id: "gita", kind: "segment", appearance: "answer", from: { x: 79, y: 0.6 }, to: { x: 100, y: 0.6 } },
+      { id: "gita-low", kind: "point", appearance: "answer", at: { x: 79, y: 0.6 } },
+    ],
+    labels: [
+      { key: "gita", objectId: "gita", at: { x: 89.5, y: 0.6 }, placement: "above" },
+      { key: "score-5", objectId: "score-5", at: { x: 70, y: 0 }, placement: "below" },
+      { key: "score-6", objectId: "score-6", at: { x: 72, y: 0 }, placement: "above" },
+      { key: "score-7", objectId: "score-7", at: { x: 82, y: 0 }, placement: "below" },
+      { key: "score-8", objectId: "score-8", at: { x: 88, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Markah juga paling tinggi <InlineMath math="100" />, jadi markah Gita yang mungkin ialah <InlineMath math="79<x\le100" />.
 
 # Menyemak setiap pernyataan

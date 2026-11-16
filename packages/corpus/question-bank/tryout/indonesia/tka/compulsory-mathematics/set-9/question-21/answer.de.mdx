@@ -22,6 +22,46 @@ n&=5+6+4+11+5+9=40 \\
 \bar x&=\frac{112}{40}=2{,}8
 \end{aligned}" />
 
+Zeichne die Häufigkeiten mit der Linie des Mittelwerts. **Die Linie bei <InlineMath math="2{,}8" /> liegt zwischen den Balken für <InlineMath math="2" /> und <InlineMath math="3" />**, also liegt jeder Schüler mit <InlineMath math="3" /> oder mehr Geschwistern über dem Mittelwert.
+
+<MathVisual
+  title={<>Anzahl der Schüler nach Geschwisterzahl</>}
+  description={<>Die Balken für <InlineMath math="0" /> bis <InlineMath math="5" /> Geschwister haben die Höhen <InlineMath math="5,\ 6,\ 4,\ 11,\ 5,\ 9" />. Der Mittelwert aller Schüler liegt bei <InlineMath math="2{,}8" />, die Linie bei <InlineMath math="3{,}2" /> ist der Mittelwert der Schüler, die keine Einzelkinder sind. Die drei Balken rechts von <InlineMath math="2{,}8" /> ergeben zusammen <InlineMath math="11+5+9=25" /> Schüler.</>}
+  labels={{
+    mean: <InlineMath math="\bar x=2{,}8" />,
+    trap: <InlineMath math="3{,}2" />,
+    three: <InlineMath math="11" />,
+    four: <InlineMath math="5" />,
+    five: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 5.6 },
+      y: { min: 0, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zero", kind: "polygon", appearance: "reference", vertices: [{ x: -0.3, y: 0 }, { x: 0.3, y: 0 }, { x: 0.3, y: 5 }, { x: -0.3, y: 5 }] },
+      { id: "one", kind: "polygon", appearance: "reference", vertices: [{ x: 0.7, y: 0 }, { x: 1.3, y: 0 }, { x: 1.3, y: 6 }, { x: 0.7, y: 6 }] },
+      { id: "two", kind: "polygon", appearance: "reference", vertices: [{ x: 1.7, y: 0 }, { x: 2.3, y: 0 }, { x: 2.3, y: 4 }, { x: 1.7, y: 4 }] },
+      { id: "three", kind: "polygon", appearance: "answer", vertices: [{ x: 2.7, y: 0 }, { x: 3.3, y: 0 }, { x: 3.3, y: 11 }, { x: 2.7, y: 11 }] },
+      { id: "four", kind: "polygon", appearance: "answer", vertices: [{ x: 3.7, y: 0 }, { x: 4.3, y: 0 }, { x: 4.3, y: 5 }, { x: 3.7, y: 5 }] },
+      { id: "five", kind: "polygon", appearance: "answer", vertices: [{ x: 4.7, y: 0 }, { x: 5.3, y: 0 }, { x: 5.3, y: 9 }, { x: 4.7, y: 9 }] },
+      { id: "mean", kind: "segment", appearance: "primary", from: { x: 2.8, y: 0 }, to: { x: 2.8, y: 12.5 } },
+      { id: "trap", kind: "segment", appearance: "warning", from: { x: 3.2, y: 0 }, to: { x: 3.2, y: 12.5 } },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 2.8, y: 12.5 }, placement: "above-left" },
+      { key: "trap", objectId: "trap", at: { x: 3.2, y: 12.5 }, placement: "above-right" },
+      { key: "three", objectId: "three", at: { x: 3, y: 11 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 4, y: 5 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 5, y: 9 }, placement: "above" },
+    ],
+  }}
+/>
+
 Der Mittelwert aller Schüler ist <InlineMath math="2{,}8" />, also **kleiner als <InlineMath math="3{,}2" />**, weil die Einzelkinder den Mittelwert nach unten ziehen.
 
 # Schüler über dem Mittelwert

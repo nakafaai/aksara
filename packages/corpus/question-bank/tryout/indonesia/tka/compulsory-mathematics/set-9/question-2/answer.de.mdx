@@ -28,6 +28,43 @@ Zwischen zwei Messungen liegen <InlineMath math="3" /> Stunden, also die Hälfte
 | Dienstag 12 Uhr | <InlineMath math="18" /> | <InlineMath math="35" /> |
 | Dienstag 15 Uhr | <InlineMath math="21" /> | <InlineMath math="17{,}5\sqrt{2}\approx24{,}7" /> |
 
+Trage die Messwerte auf der Abnahmekurve ein. **Die erste Messung wirklich unter der Linie bei <InlineMath math="35" /> ist <InlineMath math="t=21" />**, denn der Punkt bei <InlineMath math="t=18" /> liegt genau auf der Linie.
+
+<MathVisual
+  title={<>Messwerte alle <InlineMath math="3" /> Stunden</>}
+  description={<>Die waagerechte Achse ist die Zeit in Stunden seit Montag 18 Uhr, die senkrechte Achse die Wirkstoffmenge in mg. Die Kurve <InlineMath math="280\left(\tfrac12\right)^{t/6}" /> fällt von <InlineMath math="280" /> ab. Die Messpunkte liegen bei <InlineMath math="t=3,6,\ldots,21" />. Der Punkt <InlineMath math="(18,\ 35)" /> liegt genau auf der Grenzlinie bei <InlineMath math="35" />, und der Punkt bei <InlineMath math="t=21" />, also Dienstag 15 Uhr, liegt darunter.</>}
+  labels={{
+    limit: <InlineMath math="35" />,
+    equal: <InlineMath math="(18,\ 35)" />,
+    below: <InlineMath math="(21,\ 17{,}5\sqrt{2})" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 24 },
+      y: { min: 0, max: 290 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "decay", kind: "function", appearance: "primary", formula: "280 * 2^(-x/6)", domain: { min: 0, max: 23 } },
+      { id: "limit", kind: "function", appearance: "warning", formula: "35", domain: { min: 0, max: 23 } },
+      { id: "check-one", kind: "point", appearance: "secondary", at: { x: 3, y: 140 * Math.sqrt(2) } },
+      { id: "check-two", kind: "point", appearance: "secondary", at: { x: 6, y: 140 } },
+      { id: "check-three", kind: "point", appearance: "secondary", at: { x: 9, y: 70 * Math.sqrt(2) } },
+      { id: "check-four", kind: "point", appearance: "secondary", at: { x: 12, y: 70 } },
+      { id: "check-five", kind: "point", appearance: "secondary", at: { x: 15, y: 35 * Math.sqrt(2) } },
+      { id: "equal", kind: "point", appearance: "warning", at: { x: 18, y: 35 } },
+      { id: "below", kind: "point", appearance: "answer", at: { x: 21, y: 17.5 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 1, y: 35 }, placement: "above" },
+      { key: "equal", objectId: "equal", at: { x: 18, y: 35 }, placement: "above-right" },
+      { key: "below", objectId: "below", at: { x: 21, y: 17.5 * Math.sqrt(2) }, placement: "below" },
+    ],
+  }}
+/>
+
 Um 12 Uhr sind genau <InlineMath math="35\text{ mg}" /> im Blut. Die Zahl <InlineMath math="35" /> ist nicht kleiner als <InlineMath math="35" />, diese Messung **erfüllt die Bedingung also noch nicht**. Die nächste Messung um 15 Uhr zeigt etwa <InlineMath math="24{,}7\text{ mg}" />, und das ist kleiner als <InlineMath math="35\text{ mg}" />.
 
 # Warum die anderen Antworten falsch sind
