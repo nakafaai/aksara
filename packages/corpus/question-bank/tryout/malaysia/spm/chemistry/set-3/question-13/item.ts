@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{HF}$$ boils highest because its covalent bond is the strongest and must break when it boils" },
-        { correct: false, label: "$$\\text{HCl}$$ boils lowest because its molecules are the smallest of the four" },
-        { correct: true, label: "$$\\text{HF}$$ molecules form hydrogen bonds with each other, while from $$\\text{HCl}$$ to $$\\text{HI}$$ the boiling point rises with molecular size" },
-        { correct: false, label: "$$\\text{HI}$$ boils higher than $$\\text{HCl}$$ because it is an ionic compound" },
+        { correct: false, label: "$$\\text{H}_2\\text{S}$$ boils above $$\\text{H}_2\\text{O}$$, because its molecules are heavier" },
+        { correct: false, label: "$$\\text{CH}_4$$ boils lowest, because its carbon-hydrogen bonds are the weakest and break first" },
+        { correct: true, label: "$$\\text{H}_2\\text{O}$$, $$\\text{NH}_3$$ and $$\\text{HF}$$ form hydrogen bonds between molecules while $$\\text{H}_2\\text{S}$$ does not, so $$\\text{H}_2\\text{S}$$ boils below $$\\text{H}_2\\text{O}$$ although its molecules are heavier" },
+        { correct: false, label: "$$\\text{NH}_3$$ boils below $$\\text{CH}_4$$, because nitrogen is less electronegative than carbon" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{HF}$$ mendidih paling tinggi kerana ikatan kovalennya paling kuat dan mesti diputuskan semasa mendidih" },
-        { correct: false, label: "$$\\text{HCl}$$ mendidih paling rendah kerana molekulnya paling kecil antara empat" },
-        { correct: true, label: "Molekul $$\\text{HF}$$ membentuk ikatan hidrogen sesama sendiri, manakala daripada $$\\text{HCl}$$ kepada $$\\text{HI}$$ takat didih naik dengan saiz molekul" },
-        { correct: false, label: "$$\\text{HI}$$ mendidih lebih tinggi daripada $$\\text{HCl}$$ kerana ia sebatian ion" },
+        { correct: false, label: "$$\\text{H}_2\\text{S}$$ mendidih di atas $$\\text{H}_2\\text{O}$$, kerana molekulnya lebih berat" },
+        { correct: false, label: "$$\\text{CH}_4$$ mendidih paling rendah, kerana ikatan karbon-hidrogennya paling lemah dan putus dahulu" },
+        { correct: true, label: "$$\\text{H}_2\\text{O}$$, $$\\text{NH}_3$$ dan $$\\text{HF}$$ membentuk ikatan hidrogen antara molekul manakala $$\\text{H}_2\\text{S}$$ tidak, jadi $$\\text{H}_2\\text{S}$$ mendidih di bawah $$\\text{H}_2\\text{O}$$ walaupun molekulnya lebih berat" },
+        { correct: false, label: "$$\\text{NH}_3$$ mendidih di bawah $$\\text{CH}_4$$, kerana nitrogen kurang elektronegatif daripada karbon" },
       ],
     },
   },

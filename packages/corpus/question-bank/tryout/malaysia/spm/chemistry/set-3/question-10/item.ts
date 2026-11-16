@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "applying",
+    cognitiveLevel: "analysing",
     contentDomain: "form-4",
     topic: "periodic-table",
   },
@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Radon boils below xenon, because it has fewer valence electrons" },
-        { correct: true, label: "Radon boils above xenon, because its larger atoms attract each other more strongly" },
-        { correct: false, label: "Radon boils below xenon, because noble gases become more reactive down the group" },
-        { correct: false, label: "Radon boils at the same temperature as xenon, because both have a stable octet" },
+        { correct: false, label: "Astatine is a gas at room temperature, and it is more reactive than iodine" },
+        { correct: true, label: "Astatine is a dark solid, and it reacts with hot iron wool more slowly than iodine because its outer shell is farther from the nucleus" },
+        { correct: false, label: "Astatine displaces iodine from potassium iodide solution" },
+        { correct: false, label: "Astatine melts below iodine, because its molecules are larger" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Radon mendidih di bawah xenon, kerana ia mempunyai lebih sedikit elektron valens" },
-        { correct: true, label: "Radon mendidih di atas xenon, kerana atomnya yang lebih besar menarik satu sama lain dengan lebih kuat" },
-        { correct: false, label: "Radon mendidih di bawah xenon, kerana gas adi menjadi lebih reaktif menuruni kumpulan" },
-        { correct: false, label: "Radon mendidih pada suhu yang sama dengan xenon, kerana kedua-duanya mempunyai oktet yang stabil" },
+        { correct: false, label: "Astatin ialah gas pada suhu bilik, dan ia lebih reaktif daripada iodin" },
+        { correct: true, label: "Astatin ialah pepejal gelap, dan ia bertindak balas dengan wul besi panas lebih perlahan daripada iodin kerana petala luarnya lebih jauh dari nukleus" },
+        { correct: false, label: "Astatin menyesarkan iodin daripada larutan kalium iodida" },
+        { correct: false, label: "Astatin melebur di bawah iodin, kerana molekulnya lebih besar" },
       ],
     },
   },
