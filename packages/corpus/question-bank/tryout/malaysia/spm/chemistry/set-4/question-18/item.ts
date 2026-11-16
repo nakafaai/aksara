@@ -12,21 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "About 60 s, because the time falls by 20 s for every 10 °C",
+          label:
+            "About 20 s, because each 10 °C rise halves the time and the water does not change the mass of sulfur needed",
         },
         {
           correct: true,
           label:
-            "About 20 s, because the rate roughly doubles for every 10 °C rise as more colliding particles have at least the activation energy",
-        },
-        {
-          correct: false,
-          label: "About 20 s, because the particles get larger when heated",
+            "About 40 s, because the 10 °C rise halves the time and halving the thiosulfate concentration doubles it",
         },
         {
           correct: false,
           label:
-            "The cross disappears at once, because the reaction has no activation energy at 50 °C",
+            "About 80 s, because halving the concentration makes collisions four times less frequent",
+        },
+        {
+          correct: false,
+          label:
+            "About 40 s, because the water makes the particles move more slowly, which cancels the heating",
         },
       ],
     },
@@ -35,22 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Kira-kira 60 s, kerana masa berkurang 20 s bagi setiap 10 °C",
+          label:
+            "Kira-kira 20 s, kerana setiap kenaikan 10 °C menjadikan masa separuh dan air tidak mengubah jisim sulfur yang diperlukan",
         },
         {
           correct: true,
           label:
-            "Kira-kira 20 s, kerana kadar lebih kurang berganda dua bagi setiap kenaikan 10 °C apabila lebih banyak zarah yang berlanggar mempunyai sekurang-kurangnya tenaga pengaktifan",
+            "Kira-kira 40 s, kerana kenaikan 10 °C menjadikan masa separuh dan kepekatan tiosulfat yang separuh menggandakannya",
         },
         {
           correct: false,
           label:
-            "Kira-kira 20 s, kerana zarah menjadi lebih besar apabila dipanaskan",
+            "Kira-kira 80 s, kerana kepekatan yang separuh menjadikan perlanggaran empat kali kurang kerap",
         },
         {
           correct: false,
           label:
-            "Tanda pangkah hilang serta-merta, kerana tindak balas tiada tenaga pengaktifan pada 50 °C",
+            "Kira-kira 40 s, kerana air menjadikan zarah bergerak lebih perlahan, yang membatalkan kesan pemanasan",
         },
       ],
     },
