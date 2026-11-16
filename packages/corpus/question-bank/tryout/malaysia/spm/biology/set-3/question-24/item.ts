@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "P with S, and only P turns blue-black" },
-        { correct: false, label: "P with R, and only P turns blue-black" },
-        { correct: false, label: "Q with S, and P and Q turn blue-black" },
-        { correct: false, label: "P with S, and P and R turn blue-black" },
+        { correct: true, label: "I, II and IV only" },
+        { correct: false, label: "I and II only" },
+        { correct: false, label: "I, II and III only" },
+        { correct: false, label: "II, III and IV only" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "P dengan S, dan hanya P menjadi biru tua" },
-        { correct: false, label: "P dengan R, dan hanya P menjadi biru tua" },
-        { correct: false, label: "Q dengan S, dan P serta Q menjadi biru tua" },
-        { correct: false, label: "P dengan S, dan P serta R menjadi biru tua" },
+        { correct: true, label: "I, II dan IV sahaja" },
+        { correct: false, label: "I dan II sahaja" },
+        { correct: false, label: "I, II dan III sahaja" },
+        { correct: false, label: "II, III dan IV sahaja" },
       ],
     },
   },

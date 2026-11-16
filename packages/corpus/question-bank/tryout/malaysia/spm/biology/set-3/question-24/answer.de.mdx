@@ -1,21 +1,30 @@
-# Bereiche vergleichen, die sich nur in einer Bedingung unterscheiden
+# Jede Zeit in eine Rate umrechnen, dann den bremsenden Faktor suchen
 
-Die <InlineMath math="48" /> Stunden im Dunkeln verbrauchen die Stärke, die schon in den Blättern war. Jede Stärke, die danach gefunden wird, entstand also in den <InlineMath math="6" /> Stunden Licht. Ein fairer Vergleich ändert **nur eine Bedingung**.
+Eine kürzere Zeit bis zum Aufsteigen bedeutet **schnellere Fotosynthese**, also werden Raten verglichen, mit Rate <InlineMath math="=\tfrac{100}{\text{Zeit}}" />. Ein Faktor ist begrenzend, wenn seine Erhöhung die Rate erhöht.
 
-<Mermaid
-  title={<>Was jeder Bereich hat und was ihm fehlt</>}
-  description={<>Nur Bereich P hat Chlorophyll, Licht und Kohlenstoffdioxid zugleich, also bildet nur P Stärke und wird blauschwarz. Q fehlt Chlorophyll, R Licht und S Kohlenstoffdioxid, sie bleiben gelbbraun.</>}
-  chart={"flowchart LR\n  P[P: Chlorophyll, Licht, Kohlenstoffdioxid] --> Y[Stärke: blauschwarz]\n  Q[Q: kein Chlorophyll] --> N[Keine Stärke: gelbbraun]\n  R[R: kein Licht] --> N\n  S[S: kein Kohlenstoffdioxid] --> N"}
+<BlockMath math="\text{schwaches Licht}: \tfrac{100}{20}=5,\qquad \text{starkes Licht}: \tfrac{100}{10}=10\ \text{bei }0{,}2\,\%,\quad \tfrac{100}{5}=20\ \text{bei }0{,}5\,\%\text{ und }1{,}0\,\%" />
+
+<Chart
+  title={<>Fotosyntheserate aus den aufsteigenden Blattscheiben</>}
+  bars="apart"
+  categories={["0%", "0,2%", "0,5%", "1,0%"]}
+  series={[
+    { label: "Schwaches Licht", mark: "bar", values: [0, 5, 5, 5] },
+    { label: "Starkes Licht", mark: "bar", values: [0, 10, 20, 20] },
+  ]}
+  valueLabel="Rate (100 ÷ Zeit, bis die Hälfte schwimmt)"
+  description={<>Bei schwachem Licht beträgt die Rate <InlineMath math="0" />, <InlineMath math="5" />, <InlineMath math="5" /> und <InlineMath math="5" />, bei starkem Licht <InlineMath math="0" />, <InlineMath math="10" />, <InlineMath math="20" /> und <InlineMath math="20" /> bei <InlineMath math="0" />, <InlineMath math="0{,}2" />, <InlineMath math="0{,}5" /> und <InlineMath math="1{,}0\,\%" /> Hydrogencarbonat.</>}
 />
 
-- P und S sind beide grün und beide im Licht. Sie unterscheiden sich nur im Kohlenstoffdioxid, das die Kalilauge aus S entfernt. Der Vergleich von P mit S prüft also Kohlenstoffdioxid.
-- P und R unterscheiden sich nur im Licht, dieses Paar prüft also Licht. P und Q unterscheiden sich nur im Chlorophyll.
-- Stärke entsteht nur dort, wo Chlorophyll, Licht und Kohlenstoffdioxid **alle vorhanden** sind, also nur in Bereich P.
+- I: Ohne Hydrogencarbonat gelangt kein Kohlenstoffdioxid zu den Chloroplasten, die Fotosynthese steht still, und kein Sauerstoff sammelt sich, der die Scheiben hebt. Aussage I stimmt.
+- II: Bei schwachem Licht bleibt die Rate bei <InlineMath math="5" />, ob die Lösung <InlineMath math="0{,}2\,\%" />, <InlineMath math="0{,}5\,\%" /> oder <InlineMath math="1{,}0\,\%" /> enthält. Mehr Kohlenstoffdioxid bringt nichts, also **begrenzt das Licht**. Aussage II stimmt.
+- III: Bei <InlineMath math="0{,}2\,\%" /> beträgt die Rate bei schwachem Licht <InlineMath math="5" /> und bei starkem Licht <InlineMath math="10" />, schwaches Licht liefert also **die Hälfte**, nicht das Doppelte. Aussage III ist falsch.
+- IV: Bei starkem Licht verdoppelt der Schritt von <InlineMath math="0{,}2\,\%" /> auf <InlineMath math="0{,}5\,\%" /> die Rate von <InlineMath math="10" /> auf <InlineMath math="20" />, bei <InlineMath math="0{,}2\,\%" /> begrenzt also Kohlenstoffdioxid. Der Schritt auf <InlineMath math="1{,}0\,\%" /> ändert nichts, bei <InlineMath math="0{,}5\,\%" /> begrenzt Kohlenstoffdioxid also nicht mehr. Aussage IV stimmt.
 
-P wird also mit S verglichen, und nur P wird blauschwarz.
+Richtig sind also die Aussagen I, II und IV.
 
 # Warum die anderen Antworten falsch sind
 
-- P mit R ändert das Licht, **dieses Paar prüft also den Lichtbedarf, nicht den Kohlenstoffdioxidbedarf**.
-- Q mit S ändert zwei Bedingungen zugleich, und Q hat kein Chlorophyll, **bildet also keine Stärke**.
-- P und R blauschwarz vergisst, dass die Pflanze entstärkt wurde und R **sechs Stunden ohne Licht** war.
+- Nur I und II verwirft IV und übersieht, dass der begrenzende Faktor zwischen <InlineMath math="0{,}2\,\%" /> und <InlineMath math="0{,}5\,\%" /> **vom Kohlenstoffdioxid zu etwas anderem wechselt**.
+- Nur I, II und III vergleicht die Zeiten direkt, sodass die längeren <InlineMath math="20" /> Minuten wie doppelt so viel Fotosynthese wirken, **obwohl sie die halbe Rate bedeuten**.
+- Nur II, III und IV verwirft I und übernimmt den verkehrten Zeitvergleich.

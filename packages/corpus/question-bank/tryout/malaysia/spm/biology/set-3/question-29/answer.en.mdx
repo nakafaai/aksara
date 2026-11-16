@@ -1,22 +1,22 @@
-# Count shared taxa from the top of the hierarchy down
+# Classify by the features that define each kingdom, in order
 
-The more taxa two organisms share, the more **closely related** they are. Start from the kingdom and stop at the first taxon where they differ.
+The first split is the **nucleus**: no nuclear membrane means Monera. After that, the cell wall and the body plan decide. Plantae and Animalia are made of many cells forming tissues, while single cells with a nucleus are Protista unless they are fungi.
 
 <Mermaid
-  title={<>Where the Five Mammals Branch Apart</>}
-  description={<>All five are mammals. The cat, tiger and leopard share the order Carnivora and the family Felidae, and only the tiger and leopard share the genus Panthera. The tapir and the mousedeer sit in two different orders.</>}
-  chart={"flowchart TD\n  M[Class Mammalia] --> CA[Order Carnivora]\n  M --> PE[Order Perissodactyla]\n  M --> AR[Order Artiodactyla]\n  CA --> FE[Family Felidae]\n  FE --> PA[Genus Panthera]\n  FE --> FL[Genus Felis: domestic cat]\n  PA --> TI[Tiger]\n  PA --> LE[Leopard]\n  PE --> TA[Malayan tapir]\n  AR --> MO[Lesser mousedeer]"}
+  title={<>Sorting Organisms Into the Five Kingdoms</>}
+  description={<>Without a nuclear membrane, Y is in Monera. With a chitin wall and no chloroplasts, X is a fungus even though it is one cell. W and Z have nuclei but are single cells that do not form tissues, so both are in Protista.</>}
+  chart={"flowchart TD\n  A{Nucleus with a membrane?} -- no --> MO[Monera: Y]\n  A -- yes --> B{Cell wall of chitin and no chloroplasts?}\n  B -- yes --> FU[Fungi: X, even as one cell]\n  B -- no --> C{Many cells forming tissues?}\n  C -- no --> PR[Protista: W and Z]\n  C -- yes --> PA[Plantae or Animalia]"}
 />
 
-- I: the tiger and the leopard share the kingdom, phylum, class, order Carnivora, family Felidae and genus *Panthera*, and differ only in species. Statement I is correct.
-- II: the cat and the tiger share the kingdom, phylum, class, order and family, which is five taxa, and split at the genus. Statement II is correct.
-- III: in binomial naming the genus starts with a capital letter, the species name is all **lower case**, and the whole name is printed in italics: *Panthera tigris*. Statement III is wrong.
-- IV: the table puts the tapir in Perissodactyla and the mousedeer in Artiodactyla. Having hooves does not decide the order. Statement IV is wrong.
+- I: W has cellulose and chloroplasts like a plant, but it is a single cell with no tissues. Single-celled algae belong to Protista. Statement I is correct.
+- II: X has a nucleus, a wall of **chitin** and no chloroplasts, which marks a fungus. Yeast is a fungus made of one cell. Statement II is correct.
+- III: Y has no nuclear membrane and a peptidoglycan wall, so it is a bacterium in Monera. Being one cell is not what puts an organism in Protista. Statement III is wrong.
+- IV: Z has chloroplasts but no cell wall and swims with a flagellum, like *Euglena*. It is a single cell, so it belongs to Protista. Chloroplasts alone do not make a plant. Statement IV is wrong.
 
 So statements I and II are correct.
 
 # Why the other options are wrong
 
-- I, II and IV only groups animals by one visible feature, **but the table places the tapir and the mousedeer in different orders**.
-- II and III only rejects I and accepts a capital letter for the species name, **which binomial naming never uses**.
-- I and III only accepts the wrong spelling and misses the **five taxa** shared by the cat and the tiger.
+- I, II and IV only lets chloroplasts decide, **but Z is a single cell with no tissues**.
+- II and III only puts W in Plantae because of its cellulose and chloroplasts, and puts Y in Protista, **although Y has no nucleus**.
+- I and III only rejects X as a fungus because it is one cell, **but a chitin wall marks fungi, including yeast**.

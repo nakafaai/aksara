@@ -1,21 +1,29 @@
-# Den einen Hirnteil finden, der alle Beobachtungen eines Patienten erklärt
+# Die Energie über eine ganze Woche bilanzieren, nicht über einen Tag
 
-Ein einziger geschädigter Teil muss **alle** Beobachtungen eines Patienten erklären, jeder Hinweis muss also zum selben Teil passen.
+Fett ändert sich nur, wenn **Aufnahme und Verbrauch nicht zusammenpassen**. Der Überschuss entsteht jeden Tag, auch an Tagen mit Spaziergang, also müssen die Spaziergänge ihn erst ausgleichen, bevor Fett verbrannt wird.
 
-<Mermaid
-  title={<>Jeden Patienten einem Hirnteil zuordnen</>}
-  description={<>Schlechtes Gleichgewicht und schlechte Koordination weisen auf das Kleinhirn. Eine Atmung, die nicht auf Kohlenstoffdioxid reagiert, weist auf das verlängerte Mark. Beide Probleme von Patient M weisen auf den Hypothalamus.</>}
-  chart={"flowchart LR\n  K[K: schlechtes Gleichgewicht und Koordination] --> CB[Kleinhirn]\n  L[L: Atmung reagiert nicht auf Kohlenstoffdioxid] --> MO[Verlängertes Mark]\n  M1[M: Temperatur ungeregelt] --> HY[Hypothalamus]\n  M2[M: viel verdünnter Urin] --> HY"}
+<BlockMath math="\text{erste }37\text{ Tage}:\quad (10\,200-9600)\cdot37=600\cdot37=22\,200\text{ kJ},\qquad \frac{22\,200}{37\,000}=0{,}6\text{ kg}" />
+
+Jetzt eine ganze Woche mit Spaziergängen:
+
+<BlockMath math="\text{Überschuss}=600\cdot7=4200\text{ kJ},\qquad \text{Spaziergänge}=1400\cdot4=5600\text{ kJ},\qquad \text{netto}=4200-5600=-1400\text{ kJ pro Woche}" />
+
+<BlockMath math="\text{Wochen}=\frac{22\,200}{1400}\approx15{,}9\approx16" />
+
+<Chart
+  title={<>Als zusätzliches Fett gespeicherte Energie nach Beginn der Spaziergänge</>}
+  categories={["Woche 0", "Woche 4", "Woche 8", "Woche 12", "Woche 16"]}
+  series={[
+    { label: "Zusätzlich gespeicherte Energie (Tausend kJ)", mark: "line", values: [22.2, 16.6, 11.0, 5.4, -0.2] },
+  ]}
+  valueLabel="Zusätzlich gespeicherte Energie (Tausend kJ)"
+  description={<>Die zusätzlich als Fett gespeicherte Energie sinkt um <InlineMath math="1{,}4" /> Tausend Kilojoule pro Woche, von <InlineMath math="22{,}2" /> in Woche <InlineMath math="0" /> auf <InlineMath math="5{,}4" /> in Woche <InlineMath math="12" /> und auf etwa <InlineMath math="0" /> kurz vor Woche <InlineMath math="16" />.</>}
 />
 
-- K: Hinfallen und der missglückte Finger-Nase-Versuch zeigen schlechtes Gleichgewicht und schlechte Koordination willkürlicher Bewegungen. Das ist Aufgabe des **Kleinhirns**. Die normale Sprache schließt das Großhirn als geschädigten Teil aus.
-- L: Das verlängerte Mark bemerkt einen Anstieg von Kohlenstoffdioxid und beschleunigt die Atmung. Eine Atemfrequenz, die Kohlenstoffdioxid ignoriert, weist auf das **verlängerte Mark**.
-- M: Der Hypothalamus regelt die Körpertemperatur und bildet außerdem ADH, das Hormon, das den Urin konzentriert. Fallen beide zugleich aus, weist das auf den **Hypothalamus**.
-
-K hat also ein geschädigtes Kleinhirn, L ein geschädigtes verlängertes Mark und M einen geschädigten Hypothalamus.
+Sie nimmt also <InlineMath math="0{,}6\text{ kg}" /> Fett zu und braucht etwa <InlineMath math="16" /> Wochen Spaziergänge, um es wieder zu verlieren.
 
 # Warum die anderen Antworten falsch sind
 
-- K mit dem Großhirn beschuldigt den Teil für Denken und Sprache, **doch K spricht normal** und nur die Koordination versagt.
-- L mit dem Hypothalamus und M mit dem verlängerten Mark vertauscht beide, **obwohl das verlängerte Mark die Atmung und der Hypothalamus die Temperatur regelt**.
-- M mit der Hypophyse erklärt den verdünnten Urin, weil ADH dort ausgeschüttet wird, **aber nicht die ungeregelte Körpertemperatur**.
+- Etwa <InlineMath math="4" /> Wochen teilt durch die <InlineMath math="5600\text{ kJ}" /> der Spaziergänge und vergisst, dass **der tägliche Überschuss weiterläuft**.
+- Etwa <InlineMath math="7" /> Wochen zählt den Überschuss nur an den Spaziertagen, <InlineMath math="4\cdot(1400-600)=3200\text{ kJ}" />, und **lässt die drei Tage ohne Spaziergang weg**.
+- Nie verlieren betrachtet nur Essen und Ruhe, **doch die Spaziergänge verbrauchen** jede Woche <InlineMath math="5600\text{ kJ}" /> zusätzlich.
