@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "The unvulcanised strip is more elastic, because it stretches further under the load" },
-        { correct: false, label: "Vulcanisation removes every double bond, so the vulcanised strip stretches less" },
-        { correct: true, label: "The vulcanised strip returns to its original length, because sulfur cross-links pull the polymer chains back after stretching" },
-        { correct: false, label: "Sulfur atoms let the polymer chains slide past each other more easily" },
+        { correct: false, label: "Ammonia makes latex coagulate, because its hydroxide ions neutralise the charge on the rubber particles" },
+        { correct: false, label: "Untreated latex coagulates within an hour, because oxygen in the air oxidises the rubber" },
+        { correct: true, label: "Untreated latex coagulates later than the acidified sample, because bacteria slowly produce lactic acid whose hydrogen ions neutralise the negative charge on the rubber particles" },
+        { correct: false, label: "Ethanoic acid makes latex coagulate by breaking the double bonds in rubber" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Jalur tidak tervulkan lebih kenyal, kerana ia meregang lebih panjang di bawah beban" },
-        { correct: false, label: "Pemvulkanan menyingkirkan setiap ikatan ganda dua, jadi jalur tervulkan kurang meregang" },
-        { correct: true, label: "Jalur tervulkan kembali kepada panjang asalnya, kerana rangkai silang sulfur menarik rantai polimer kembali selepas diregangkan" },
-        { correct: false, label: "Atom sulfur membolehkan rantai polimer menggelongsor melepasi satu sama lain dengan lebih mudah" },
+        { correct: false, label: "Ammonia menyebabkan lateks menggumpal, kerana ion hidroksidanya meneutralkan cas pada zarah getah" },
+        { correct: false, label: "Lateks tanpa rawatan menggumpal dalam masa sejam, kerana oksigen di udara mengoksidakan getah" },
+        { correct: true, label: "Lateks tanpa rawatan menggumpal lebih lewat daripada sampel berasid, kerana bakteria perlahan-lahan menghasilkan asid laktik yang ion hidrogennya meneutralkan cas negatif pada zarah getah" },
+        { correct: false, label: "Asid etanoik menyebabkan lateks menggumpal dengan memutuskan ikatan ganda dua dalam getah" },
       ],
     },
   },

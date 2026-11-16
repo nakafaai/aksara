@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "n = 1000, and the polymer is saturated" },
-        { correct: false, label: "n = 1000, and the polymer decolourises bromine water" },
-        { correct: false, label: "n = 1500, and its monomer is ethene" },
-        { correct: false, label: "n = 1000, and it forms by condensation with water given off" },
+        { correct: true, label: "n = 2000, and chlorine makes up 56.8% of the polymer by mass" },
+        { correct: false, label: "n = 2000, and chlorine makes up 35.5% of the polymer by mass" },
+        { correct: false, label: "n = 1000, and chlorine makes up 56.8% of the polymer by mass" },
+        { correct: false, label: "n = 2000, and the polymer decolourises bromine water" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "n = 1000, dan polimer itu tepu" },
-        { correct: false, label: "n = 1000, dan polimer itu menyahwarnakan air bromin" },
-        { correct: false, label: "n = 1500, dan monomernya ialah etena" },
-        { correct: false, label: "n = 1000, dan ia terbentuk melalui kondensasi dengan air dibebaskan" },
+        { correct: true, label: "n = 2000, dan klorin membentuk 56.8% jisim polimer" },
+        { correct: false, label: "n = 2000, dan klorin membentuk 35.5% jisim polimer" },
+        { correct: false, label: "n = 1000, dan klorin membentuk 56.8% jisim polimer" },
+        { correct: false, label: "n = 2000, dan polimer itu menyahwarnakan air bromin" },
       ],
     },
   },
