@@ -8,17 +8,26 @@ n(\text{Cu})&=\frac{0.64}{64}=0.010\text{ mol}\ \Rightarrow\ n(e^-)=0.020\text{ 
 V&=0.0050\times24=0.12\text{ dm}^3
 \end{aligned}" />
 
-Rajah ini mengikut elektron di sepanjang litar. Kedua-dua elektrod berkongsi <InlineMath math="0.020\text{ mol}" /> elektron yang sama, dan anod meninggalkan ion hidrogen.
+Lihat sel daripada soalan semasa arus mengalir. Kuprum menyalut katod dan oksigen terbebas di anod, bagi <InlineMath math="0.020\text{ mol}" /> elektron yang sama.
 
-<Mermaid
-  title={<>Bilangan elektron di kedua-dua elektrod</>}
-  description={<>Di katod, <InlineMath math="0.010\text{ mol}" /> kuprum menerima <InlineMath math="0.020\text{ mol}" /> elektron. Di anod, <InlineMath math="0.020\text{ mol}" /> elektron yang sama datang daripada ion hidroksida dan menghasilkan <InlineMath math="0.0050\text{ mol}" /> oksigen, manakala ion hidrogen tertinggal.</>}
-  chart={`
-    flowchart LR
-      A["Katod: Cu²⁺ + 2e⁻ → Cu<br/>0.64 g = 0.010 mol Cu"] -->|"0.020 mol e⁻ yang sama"| B["Anod: 4OH⁻ → O₂ + 2H₂O + 4e⁻"]
-      B --> C["0.020 ÷ 4 = 0.0050 mol O₂<br/>0.0050 × 24 = 0.12 dm³"]
-      B --> D["OH⁻ digunakan, H⁺ tertinggal<br/>pH berkurang"]
-  `}
+<ElectrolysisLab
+  title={<>Elektrolisis larutan kuprum(II) sulfat</>}
+  description={<>Dua elektrod karbon dalam larutan kuprum(II) sulfat, disambung kepada bateri.</>}
+  cells={[{ electrode: "carbon", electrolyte: "copper-sulfate" }]}
+  electrons={0.02}
+  showProducts
+  labels={{
+    anode: "Anod",
+    atAnode: <>Di anod</>,
+    atCathode: <>Di katod</>,
+    battery: "Bateri",
+    cathode: "Katod",
+    cells: [<>Larutan kuprum(II) sulfat, elektrod karbon</>],
+    electrons: <>Elektron yang mengalir</>,
+    ph: <>pH elektrolit</>,
+    trends: { falls: <>berkurang</>, rises: <>bertambah</>, steady: <>tidak berubah</> },
+    view: "Sel elektrolisis dengan elektrod karbon dalam larutan kuprum(II) sulfat",
+  }}
 />
 
 Ion <InlineMath math="\text{OH}^-" /> daripada air terus digunakan, jadi ion <InlineMath math="\text{H}^+" /> terkumpul dan larutan semakin berasid. Maka, <InlineMath math="0.12\text{ dm}^3" /> oksigen terbebas di anod, dan pH larutan berkurang.
