@@ -25,6 +25,25 @@ The chart puts the amounts of both experiments together. In experiment I the aci
   valueLabel="Amount (mol)"
 />
 
+Move the time slider in the lab. The powder curve is steeper at the start, and the experiment I curve levels off at <InlineMath math="0.025\text{ mol}" />, half of experiment II's <InlineMath math="0.050\text{ mol}" />. The curves' steepness is a model of the faster start, and only the two final amounts come from the working.
+
+<GasRateLab
+  title={<>Carbon dioxide from chips and from powder</>}
+  description={<>Calcium carbonate chips in experiment I and calcium carbonate powder in experiment II, each flask joined to a gas syringe.</>}
+  runs={[
+    { amount: 0.025, solid: "chips" },
+    { amount: 0.05, solid: "powder" },
+  ]}
+  showCurves
+  labels={{
+    final: <>final amount of carbon dioxide</>,
+    runs: [<>Experiment I</>, <>Experiment II</>],
+    solids: { chips: <>chips</>, granules: <>granules</>, powder: <>powder</> },
+    time: "Time",
+    view: "Gas collection in two experiments",
+  }}
+/>
+
 So experiment II has a higher initial rate and a final volume of gas twice that of experiment I.
 
 # Why the other options are wrong
