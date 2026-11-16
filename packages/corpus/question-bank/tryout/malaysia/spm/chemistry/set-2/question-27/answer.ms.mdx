@@ -1,0 +1,42 @@
+# Setiap unit karbon tambahan menambah haba yang sama
+
+Ahli siri homolog berbeza sebanyak **satu unit <InlineMath math="\text{CH}_2" />**. Membakar unit tambahan itu membebaskan tenaga yang hampir sama setiap kali, jadi haba pembakaran naik dengan langkah yang sama.
+
+<Chart
+  title={<>Haba Pembakaran Empat Alkana Pertama</>}
+  categories={["Atom karbon: 1", "Atom karbon: 2", "Atom karbon: 3", "Atom karbon: 4"]}
+  series={[
+    { label: "Haba pembakaran (kJ mol⁻¹)", mark: "line", values: [890, 1560, 2220, 2880] },
+  ]}
+  valueLabel="Haba pembakaran (kJ mol⁻¹)"
+  description={<>Metana membebaskan <InlineMath math="890" />, etana <InlineMath math="1560" />, propana <InlineMath math="2220" /> dan butana <InlineMath math="2880\text{ kJ mol}^{-1}" />, naik kira-kira <InlineMath math="660" /> bagi setiap atom karbon tambahan.</>}
+/>
+
+Langkahnya ialah <InlineMath math="1560 - 890 = 670" />, <InlineMath math="2220 - 1560 = 660" /> dan <InlineMath math="2880 - 2220 = 660" />. Pentana mempunyai satu atom karbon lebih daripada butana:
+
+<InlineMath math="2880 + 660 = 3540\text{ kJ mol}^{-1}" />
+
+<MoleculeShapeLab
+  title={<>Tiga Ahli Siri Alkana</>}
+  description={<>Putar setiap molekul: setiap langkah menambah satu atom karbon dan dua atom hidrogen.</>}
+  molecules={[
+    { id: "methane", name: "Metana" },
+    { id: "ethane", name: "Etana" },
+    { id: "propane", name: "Propana" },
+  ]}
+  labels={{
+    atoms: <>Atom penyusun</>,
+    choose: "Pilih molekul",
+    fill: <>Model isi ruang</>,
+    formula: <>Formula molekul</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut atau panjang ikatan</>,
+    view: "Model molekul tiga dimensi",
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="3200\text{ kJ mol}^{-1}" /> hanya menambah kira-kira separuh langkah, **seolah-olah siri itu semakin mendatar**.
+- <InlineMath math="4200\text{ kJ mol}^{-1}" /> menambah dua langkah, iaitu ramalan bagi heksana.
+- <InlineMath math="2950\text{ kJ mol}^{-1}" /> hampir tidak melepasi butana, mengabaikan unit <InlineMath math="\text{CH}_2" /> tambahan.
