@@ -2,21 +2,42 @@ Two electrolytic cells are connected in series to a battery. The first cell cont
 
 The diagram shows the set-up of the apparatus.
 
-<ElectrolysisLab
-  title={<>Two electrolytic cells in series</>}
-  description={<>Silver nitrate solution with silver electrodes, then copper(II) sulfate solution with carbon electrodes, on one battery.</>}
-  cells={[{ electrode: "silver", electrolyte: "silver-nitrate" }, { electrode: "carbon", electrolyte: "copper-sulfate" }]}
+<MathVisual
+  title={<>Two electrolytic cells connected in series</>}
+  description={<>A battery drives one current through two cells in turn. The first cell holds silver nitrate solution with two silver electrodes. The second cell holds copper(II) sulfate solution with two carbon electrodes. A wire joins an electrode of the first cell to an electrode of the second cell.</>}
   labels={{
-    anode: "Anode",
-    atAnode: <>At the anode</>,
-    atCathode: <>At the cathode</>,
-    battery: "Battery",
-    cathode: "Cathode",
-    cells: [<>Silver nitrate solution, silver electrodes</>, <>Copper(II) sulfate solution, carbon electrodes</>],
-    electrons: <>Electrons passed</>,
-    ph: <>pH of the electrolyte</>,
-    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
-    view: "Two electrolysis cells connected in series",
+    silver: <>Silver electrodes</>,
+    carbon: <>Carbon electrodes</>,
+    nitrate: <>Silver nitrate solution</>,
+    sulfate: <>Copper(II) sulfate solution</>,
+    battery: <>Battery</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 21 }, y: { min: -1.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "nitrate-solution", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0.5 }, { x: 8, y: 0.5 }, { x: 8, y: 4.5 }, { x: 1, y: 4.5 }] },
+      { id: "sulfate-solution", kind: "polygon", appearance: "primary", vertices: [{ x: 12, y: 0.5 }, { x: 19, y: 0.5 }, { x: 19, y: 4.5 }, { x: 12, y: 4.5 }] },
+      { id: "first-beaker", kind: "polyline", appearance: "reference", vertices: [{ x: 1, y: 6 }, { x: 1, y: 0.5 }, { x: 8, y: 0.5 }, { x: 8, y: 6 }] },
+      { id: "second-beaker", kind: "polyline", appearance: "reference", vertices: [{ x: 12, y: 6 }, { x: 12, y: 0.5 }, { x: 19, y: 0.5 }, { x: 19, y: 6 }] },
+      { id: "silver-left", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 1.5 }, { x: 3.6, y: 1.5 }, { x: 3.6, y: 7 }, { x: 3, y: 7 }] },
+      { id: "silver-right", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 1.5 }, { x: 6.6, y: 1.5 }, { x: 6.6, y: 7 }, { x: 6, y: 7 }] },
+      { id: "carbon-left", kind: "polygon", appearance: "warning", vertices: [{ x: 14, y: 1.5 }, { x: 14.6, y: 1.5 }, { x: 14.6, y: 7 }, { x: 14, y: 7 }] },
+      { id: "carbon-right", kind: "polygon", appearance: "warning", vertices: [{ x: 17, y: 1.5 }, { x: 17.6, y: 1.5 }, { x: 17.6, y: 7 }, { x: 17, y: 7 }] },
+      { id: "battery-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 9.6, y: 9 }, { x: 3.3, y: 9 }, { x: 3.3, y: 7 }] },
+      { id: "link-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 6.3, y: 7 }, { x: 6.3, y: 8 }, { x: 14.3, y: 8 }, { x: 14.3, y: 7 }] },
+      { id: "return-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 10.4, y: 9 }, { x: 17.3, y: 9 }, { x: 17.3, y: 7 }] },
+      { id: "battery-long-plate", kind: "segment", appearance: "highlight", from: { x: 9.6, y: 8.4 }, to: { x: 9.6, y: 9.6 } },
+      { id: "battery-short-plate", kind: "segment", appearance: "highlight", from: { x: 10.4, y: 8.7 }, to: { x: 10.4, y: 9.3 } },
+    ],
+    labels: [
+      { key: "silver", objectId: "silver-left", at: { x: 3, y: 6.5 }, placement: "left" },
+      { key: "carbon", objectId: "carbon-left", at: { x: 14, y: 6.5 }, placement: "left" },
+      { key: "nitrate", objectId: "nitrate-solution", at: { x: 4.5, y: 0.5 }, placement: "below" },
+      { key: "sulfate", objectId: "sulfate-solution", at: { x: 15.5, y: 0.5 }, placement: "below" },
+      { key: "battery", objectId: "battery-long-plate", at: { x: 9.6, y: 9.6 }, placement: "above" },
+    ],
   }}
 />
 

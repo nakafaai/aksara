@@ -8,26 +8,17 @@ n(\text{Cu})&=\frac{0{,}64}{64}=0{,}010\text{ mol}\ \Rightarrow\ n(e^-)=0{,}020\
 V&=0{,}0050\times24=0{,}12\text{ dm}^3
 \end{aligned}" />
 
-Lihat sel dari soal saat arus mengalir. Tembaga melapisi katode dan oksigen keluar di anode, untuk <InlineMath math="0{,}020\text{ mol}" /> elektron yang sama.
+Diagram ini mengikuti elektron di sepanjang rangkaian. Kedua elektrode berbagi <InlineMath math="0{,}020\text{ mol}" /> elektron yang sama, dan anode meninggalkan ion hidrogen.
 
-<ElectrolysisLab
-  title={<>Elektrolisis larutan tembaga(II) sulfat</>}
-  description={<>Dua elektrode karbon dalam larutan tembaga(II) sulfat, tersambung ke baterai.</>}
-  cells={[{ electrode: "carbon", electrolyte: "copper-sulfate" }]}
-  electrons={0.02}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>Di anode</>,
-    atCathode: <>Di katode</>,
-    battery: "Baterai",
-    cathode: "Katode",
-    cells: [<>Larutan tembaga(II) sulfat, elektrode karbon</>],
-    electrons: <>Elektron yang mengalir</>,
-    ph: <>pH elektrolit</>,
-    trends: { falls: <>turun</>, rises: <>naik</>, steady: <>tetap</> },
-    view: "Sel elektrolisis dengan elektrode karbon dalam larutan tembaga(II) sulfat",
-  }}
+<Mermaid
+  title={<>Jumlah elektron di kedua elektrode</>}
+  description={<>Di katode, <InlineMath math="0{,}010\text{ mol}" /> tembaga menerima <InlineMath math="0{,}020\text{ mol}" /> elektron. Di anode, <InlineMath math="0{,}020\text{ mol}" /> elektron yang sama berasal dari ion hidroksida dan menghasilkan <InlineMath math="0{,}0050\text{ mol}" /> oksigen, sementara ion hidrogen tertinggal.</>}
+  chart={`
+    flowchart LR
+      A["Katode: Cu²⁺ + 2e⁻ → Cu<br/>0,64 g = 0,010 mol Cu"] -->|"0,020 mol e⁻ yang sama"| B["Anode: 4OH⁻ → O₂ + 2H₂O + 4e⁻"]
+      B --> C["0,020 ÷ 4 = 0,0050 mol O₂<br/>0,0050 × 24 = 0,12 dm³"]
+      B --> D["OH⁻ terpakai, H⁺ tertinggal<br/>pH turun"]
+  `}
 />
 
 Ion <InlineMath math="\text{OH}^-" /> dari air terus terpakai, sehingga ion <InlineMath math="\text{H}^+" /> menumpuk dan larutan makin asam. Jadi, terlepas <InlineMath math="0{,}12\text{ dm}^3" /> oksigen di anode, dan pH larutan turun.
