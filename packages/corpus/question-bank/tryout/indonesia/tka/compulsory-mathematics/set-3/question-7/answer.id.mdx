@@ -30,6 +30,43 @@ Dengan <InlineMath math="a=-5" />, kita punya <InlineMath math="1-a=6" />.
 
 <BlockMath math="f(6)=6^2+6+6=48" />
 
+Gambar <InlineMath math="f" /> dan garis <InlineMath math="y=26" />. **Garis itu memotong parabola di dua titik, dan syarat <InlineMath math="a<0" /> hanya menyisakan titik kiri**. Dari sana <InlineMath math="1-a=6" />, dan nilai yang diminta adalah tinggi grafik di <InlineMath math="x=6" />.
+
+<MathVisual
+  title={<>Mencari <InlineMath math="a" /> lalu <InlineMath math="f(1-a)" /></>}
+  description={<>Parabola <InlineMath math="f(x)=x^2+x+6" /> dipotong garis mendatar <InlineMath math="y=26" /> di <InlineMath math="x=-5" /> dan <InlineMath math="x=4" />. Titik <InlineMath math="x=4" /> ditolak karena tidak negatif. Titik <InlineMath math="(6,\ 48)" /> pada parabola menunjukkan <InlineMath math="f(6)=48" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=x^2+x+6" />,
+    level: <InlineMath math="y=26" />,
+    kept: <InlineMath math="a=-5" />,
+    dropped: <>ditolak</>,
+    target: <InlineMath math="(6,\ 48)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7.5, max: 8 },
+      y: { min: -2, max: 56 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 + x + 6", domain: { min: -7, max: 6.5 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "26", domain: { min: -7, max: 7.5 } },
+      { id: "kept", kind: "point", appearance: "secondary", at: { x: -5, y: 26 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: 4, y: 26 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 6, y: 48 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -6, y: 36 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 0, y: 26 }, placement: "above" },
+      { key: "kept", objectId: "kept", at: { x: -5, y: 26 }, placement: "below-right" },
+      { key: "dropped", objectId: "dropped", at: { x: 4, y: 26 }, placement: "below-right" },
+      { key: "target", objectId: "target", at: { x: 6, y: 48 }, placement: "right" },
+    ],
+  }}
+/>
+
 Cek cepat lewat rumus awal: <InlineMath math="f(6)" /> sama dengan <InlineMath math="f(2x-1)" /> untuk <InlineMath math="x=3{,}5" />, dan <InlineMath math="4(3{,}5)^2-2(3{,}5)+6=49-7+6=48" />. **Hasilnya sama**.
 
 # Kenapa pilihan lain salah

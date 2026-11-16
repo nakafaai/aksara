@@ -14,6 +14,47 @@ Sisipkan <InlineMath math="13{,}8" /> ke tempatnya. **Data yang sudah urut** mem
 
 <BlockMath math="12{,}9\quad13{,}3\quad13{,}5\quad13{,}5\quad13{,}8\quad13{,}9\quad14{,}1\quad14{,}4\quad14{,}6\quad14{,}6\quad14{,}8\quad15{,}2\quad15{,}8\quad16{,}9" />
 
+Gambar keempat belas waktu sebagai titik, dengan nilai kembar bertumpuk. **Garis median jatuh tepat di antara titik ke-<InlineMath math="7" /> dan ke-<InlineMath math="8" />**, dan dua tumpukan setinggi sama menunjukkan dua modus.
+
+<MathVisual
+  title={<>Waktu lari keempat belas siswa XI A</>}
+  description={<>Empat belas titik dari <InlineMath math="12{,}9" /> sampai <InlineMath math="16{,}9" /> detik. Dua tumpukan berisi dua titik ada di <InlineMath math="13{,}5" /> dan di <InlineMath math="14{,}6" />. Titik Raka di <InlineMath math="13{,}8" />. Titik ke-<InlineMath math="7" /> dan ke-<InlineMath math="8" />, yaitu <InlineMath math="14{,}1" /> dan <InlineMath math="14{,}4" />, diapit garis median di <InlineMath math="14{,}25" />.</>}
+  labels={{
+    median: <InlineMath math="14{,}25" />,
+    raka: <>Raka</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 12.5, max: 17.3 },
+      y: { min: -0.2, max: 2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 12.9, y: 0.4 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 13.3, y: 0.4 } },
+      { id: "t-3", kind: "point", appearance: "secondary", at: { x: 13.5, y: 0.4 } },
+      { id: "t-4", kind: "point", appearance: "secondary", at: { x: 13.5, y: 0.8 } },
+      { id: "raka", kind: "point", appearance: "highlight", at: { x: 13.8, y: 0.4 } },
+      { id: "t-6", kind: "point", appearance: "primary", at: { x: 13.9, y: 0.4 } },
+      { id: "t-7", kind: "point", appearance: "answer", at: { x: 14.1, y: 0.4 } },
+      { id: "t-8", kind: "point", appearance: "answer", at: { x: 14.4, y: 0.4 } },
+      { id: "t-9", kind: "point", appearance: "secondary", at: { x: 14.6, y: 0.4 } },
+      { id: "t-10", kind: "point", appearance: "secondary", at: { x: 14.6, y: 0.8 } },
+      { id: "t-11", kind: "point", appearance: "primary", at: { x: 14.8, y: 0.4 } },
+      { id: "t-12", kind: "point", appearance: "primary", at: { x: 15.2, y: 0.4 } },
+      { id: "t-13", kind: "point", appearance: "primary", at: { x: 15.8, y: 0.4 } },
+      { id: "t-14", kind: "point", appearance: "primary", at: { x: 16.9, y: 0.4 } },
+      { id: "median", kind: "segment", appearance: "answer", from: { x: 14.25, y: 0 }, to: { x: 14.25, y: 1.4 } },
+    ],
+    labels: [
+      { key: "median", objectId: "median", at: { x: 14.25, y: 1.4 }, placement: "above" },
+      { key: "raka", objectId: "raka", at: { x: 13.8, y: 0.4 }, placement: "below" },
+    ],
+  }}
+/>
+
 Ada <InlineMath math="14" /> data, jadi mediannya rata-rata data ke-<InlineMath math="7" /> dan ke-<InlineMath math="8" />.
 
 # Menilai setiap pernyataan

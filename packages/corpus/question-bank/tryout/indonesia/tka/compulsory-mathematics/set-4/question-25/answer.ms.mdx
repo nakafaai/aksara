@@ -10,6 +10,26 @@ Ada tiga cara Andi menang, dan ketiga-tiganya saling eksklusif.
 | Masuk pada balingan kedua | Andi tersasar, Budi tersasar, Andi masuk | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12=\tfrac14" /> |
 | Masuk pada balingan ketiga | dua pusingan tersasar, kemudian Andi masuk | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac23\cdot\tfrac34=\tfrac18" /> |
 
+Pohon di bawah mengikuti permainan balingan demi balingan. **Andi hanya mendapat balingan seterusnya jika Budi tersasar**, jadi setiap laluan ke kemenangan Andi melalui cabang <InlineMath math="\frac23" /> milik Budi.
+
+<Mermaid
+  title={<>Pohon kebarangkalian balingan Andi dan Budi</>}
+  description={<>Balingan Andi masuk dengan kebarangkalian <InlineMath math="\frac14" />, <InlineMath math="\frac12" />, kemudian <InlineMath math="\frac34" />. Setiap balingan Budi masuk dengan kebarangkalian <InlineMath math="\frac13" /> dan tersasar dengan kebarangkalian <InlineMath math="\frac23" />. Tiga laluan berakhir dengan kemenangan Andi, tiga dengan kemenangan Budi, dan satu seri selepas enam balingan tersasar.</>}
+  chart={`flowchart LR
+  A1["Andi membaling 1"] -->|"1/4"| W1["Andi menang"]
+  A1 -->|"3/4"| B1["Budi membaling 1"]
+  B1 -->|"1/3"| L1["Budi menang"]
+  B1 -->|"2/3"| A2["Andi membaling 2"]
+  A2 -->|"1/2"| W2["Andi menang"]
+  A2 -->|"1/2"| B2["Budi membaling 2"]
+  B2 -->|"1/3"| L2["Budi menang"]
+  B2 -->|"2/3"| A3["Andi membaling 3"]
+  A3 -->|"3/4"| W3["Andi menang"]
+  A3 -->|"1/4"| B3["Budi membaling 3"]
+  B3 -->|"1/3"| L3["Budi menang"]
+  B3 -->|"2/3"| D["Seri"]`}
+/>
+
 <BlockMath math="P(\text{Andi menang})=\tfrac14+\tfrac14+\tfrac18=\tfrac58" />
 
 # Semak dengan kesudahan lain

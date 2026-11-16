@@ -17,6 +17,18 @@ Ein Teil dieser <InlineMath math="240" /> Anordnungen setzt auch Citra und Dimas
 \text{gesuchte Anordnungen}&=240-96=144
 \end{aligned}" />
 
+Das Diagramm unten zeigt, woher die <InlineMath math="144" /> kommen. **Von den Sitzordnungen mit Ana und Budi nebeneinander fallen die weg, in denen auch Citra und Dimas nebeneinander sitzen**.
+
+<Mermaid
+  title={<>Sitzordnungen am runden Tisch aussortieren</>}
+  description={<>Es gibt <InlineMath math="720" /> Sitzordnungen. Davon setzen <InlineMath math="240" /> Ana und Budi nebeneinander. Von diesen <InlineMath math="240" /> setzen <InlineMath math="96" /> auch Citra und Dimas nebeneinander und fallen weg, also bleiben <InlineMath math="144" />. Die Wahrscheinlichkeit ist <InlineMath math="\frac{144}{720}=\frac15" />.</>}
+  chart={`flowchart TD
+  A["Alle Sitzordnungen: (7 − 1)! = 720"] --> B["Ana und Budi nebeneinander: (6 − 1)! · 2 = 240"]
+  B --> C["Auch Citra und Dimas nebeneinander: (5 − 1)! · 2 · 2 = 96"]
+  B --> D["Gesuchte Sitzordnungen: 240 − 96 = 144"]
+  D --> P["Wahrscheinlichkeit: 144/720 = 1/5"]`}
+/>
+
 # Die Wahrscheinlichkeit
 
 **Teile durch die Anzahl aller Anordnungen**:

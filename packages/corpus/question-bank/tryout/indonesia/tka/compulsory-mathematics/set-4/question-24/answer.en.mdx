@@ -13,6 +13,22 @@ Two slots have conditions: the first digit must be <InlineMath math="4" />, <Inl
 | <InlineMath math="4" /> or <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="2\cdot3\cdot20=120" /> |
 | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="1\cdot4\cdot20=80" /> |
 
+The case tree below shows why the first digit has to be split off. **If the first digit is even, it cannot be used again at the end**, so only three choices remain for the last digit.
+
+<Mermaid
+  title={<>Cases of even numbers above <InlineMath math="4{,}000" /></>}
+  description={<>The branch with first digit <InlineMath math="4" /> or <InlineMath math="6" /> leaves <InlineMath math="3" /> choices for the last digit and <InlineMath math="20" /> arrangements of the two middle digits, giving <InlineMath math="120" /> numbers. The branch with first digit <InlineMath math="5" /> leaves <InlineMath math="4" /> choices for the last digit and <InlineMath math="20" /> arrangements of the middle digits, giving <InlineMath math="80" /> numbers. The total is <InlineMath math="200" /> out of <InlineMath math="720" />.</>}
+  chart={`flowchart TD
+  S["Even and above 4,000"] --> A["First digit 4 or 6: 2 ways"]
+  S --> B["First digit 5: 1 way"]
+  A --> A1["Last digit 0, 2, or the unused 4/6: 3 ways"]
+  B --> B1["Last digit 0, 2, 4, 6: 4 ways"]
+  A1 --> A2["Two middle digits: 5 · 4 = 20 → 2 · 3 · 20 = 120"]
+  B1 --> B2["Two middle digits: 5 · 4 = 20 → 1 · 4 · 20 = 80"]
+  A2 --> T["Total: 120 + 80 = 200 out of 720"]
+  B2 --> T`}
+/>
+
 <BlockMath math="P=\frac{120+80}{720}=\frac{200}{720}=\frac{5}{18}" />
 
 So the probability is <InlineMath math="\tfrac{5}{18}" />.

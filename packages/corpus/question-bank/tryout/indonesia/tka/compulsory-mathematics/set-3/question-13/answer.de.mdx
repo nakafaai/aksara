@@ -17,6 +17,45 @@ Das Endbild ist <InlineMath math="(1,5)" />, also **setzt du jede Koordinate gle
 -a+2k&=5
 \end{aligned}" />
 
+Zeichne beide Geraden und den Weg des Punktes. **Die Gerade <InlineMath math="y=x+3" /> steht senkrecht auf der Spiegelachse <InlineMath math="y=-x" />**, also landet das Bild von <InlineMath math="P" /> wieder auf derselben Geraden, in <InlineMath math="(0,3)" />. Der Verschiebungspfeil <InlineMath math="(1,2)" /> bringt es dann nach <InlineMath math="(1,5)" />.
+
+<MathVisual
+  title={<>Spiegelung an <InlineMath math="y=-x" />, dann Verschiebung</>}
+  description={<>Der Punkt <InlineMath math="P(-3,0)" /> liegt auf der Geraden <InlineMath math="y=x+3" />. Die Spiegelung an der Geraden <InlineMath math="y=-x" /> bringt ihn nach <InlineMath math="(0,3)" />, das ebenfalls auf <InlineMath math="y=x+3" /> liegt, weil diese Gerade senkrecht auf der Spiegelachse steht. Die Verschiebung um <InlineMath math="(1,2)" /> bringt <InlineMath math="(0,3)" /> zum Endbild <InlineMath math="(1,5)" />.</>}
+  labels={{
+    line: <InlineMath math="y=x+3" />,
+    mirror: <InlineMath math="y=-x" />,
+    p: <InlineMath math="P(-3,0)" />,
+    reflected: <InlineMath math="(0,3)" />,
+    image: <InlineMath math="(1,5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 3.5 },
+      y: { min: -2.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + 3", domain: { min: -5, max: 2.5 } },
+      { id: "mirror", kind: "function", appearance: "reference", formula: "-x", domain: { min: -4, max: 2.5 } },
+      { id: "flip", kind: "segment", appearance: "construction", from: { x: -3, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "shift", kind: "vector", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 1, y: 5 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+      { id: "reflected", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "image", kind: "point", appearance: "primary", at: { x: 1, y: 5 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: -4.5, y: -1.5 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 2, y: -2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "reflected", objectId: "reflected", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 1, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Ziehst du die erste Gleichung von der zweiten ab, erhältst du <InlineMath math="k=1" />. Dann ist <InlineMath math="-a+1=4" />, also <InlineMath math="a=-3" /> und <InlineMath math="P=(-3,0)" />.
 
 Probe: <InlineMath math="(-3,0)" /> liegt auf <InlineMath math="y=x+3" />. Die Spiegelung an <InlineMath math="y=-x" /> ergibt <InlineMath math="(0,3)" />, die Verschiebung um <InlineMath math="(1,2)" /> ergibt <InlineMath math="(1,5)" />.

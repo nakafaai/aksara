@@ -20,6 +20,47 @@ Wegen <InlineMath math="x\le1" /> ist <InlineMath math="x-2" /> immer negativ, a
 
 <BlockMath math="f^{-1}(x)=2-\sqrt{x-3},\qquad x\ge4" />
 
+Zeichne den Ast <InlineMath math="f" /> und sein Spiegelbild an <InlineMath math="y=x" />. **Der linke Ast der Parabel wird zu einer Kurve gespiegelt, die unterhalb der Geraden <InlineMath math="y=1" /> fällt**, also muss vor der Wurzel ein Minus stehen, und die Umkehrkurve beginnt erst bei <InlineMath math="x=4" />.
+
+<MathVisual
+  title={<>Ast <InlineMath math="f" /> und seine Umkehrfunktion</>}
+  description={<>Die Parabel <InlineMath math="y=(x-2)^2+3" />, eingeschränkt auf <InlineMath math="x\le1" />, ist der Ast <InlineMath math="f" />, der bis <InlineMath math="(1,\ 4)" /> fällt. Der Teil der Parabel für <InlineMath math="x>1" /> ist blass gezeichnet, weil er nicht zu <InlineMath math="f" /> gehört. Sein Spiegelbild an <InlineMath math="y=x" /> ist die Kurve <InlineMath math="f^{-1}(x)=2-\sqrt{x-3}" />, die in <InlineMath math="(4,\ 1)" /> beginnt und nach rechts fällt. Der Punkt <InlineMath math="(-1,\ 12)" /> auf <InlineMath math="f" /> gehört zu <InlineMath math="(12,\ -1)" /> auf <InlineMath math="f^{-1}" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    mirror: <InlineMath math="y=x" />,
+    point: <InlineMath math="(-1,\ 12)" />,
+    image: <InlineMath math="(12,\ -1)" />,
+    corner: <InlineMath math="(4,\ 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 13.5 },
+      y: { min: -3, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rest", kind: "function", appearance: "reference", formula: "(x - 2)^2 + 3", domain: { min: 1, max: 4 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "(x - 2)^2 + 3", domain: { min: -1.4, max: 1 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "2 - sqrt(x - 3)", domain: { min: 4, max: 13 } },
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -2.5, max: 13 } },
+      { id: "point", kind: "point", appearance: "primary", at: { x: -1, y: 12 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 12, y: -1 } },
+      { id: "corner", kind: "point", appearance: "secondary", at: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 0, y: 7 }, placement: "right" },
+      { key: "inverse", objectId: "inverse", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 11, y: 11 }, placement: "above-left" },
+      { key: "point", objectId: "point", at: { x: -1, y: 12 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 12, y: -1 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 4, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Jede Aussage einzeln
 
 1. **Falsch**. Die Umkehrfunktion gibt es, aber das Vorzeichen stimmt nicht. Die Formel <InlineMath math="2+\sqrt{x-3}" /> liefert immer mindestens <InlineMath math="2" />, zum Beispiel <InlineMath math="4" /> bei <InlineMath math="x=7" />, dabei muss jeder Wert der Umkehrfunktion im Definitionsbereich von <InlineMath math="f" /> liegen, also bei <InlineMath math="x\le1" />.

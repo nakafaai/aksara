@@ -13,6 +13,22 @@ Dua petak ada syarat: digit pertama mesti <InlineMath math="4" />, <InlineMath m
 | <InlineMath math="4" /> atau <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="2\cdot3\cdot20=120" /> |
 | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="1\cdot4\cdot20=80" /> |
 
+Pohon kes di bawah menunjukkan sebab digit pertama perlu dipisahkan. **Jika digit pertama genap, digit itu tidak boleh digunakan lagi di hujung**, jadi pilihan digit terakhir tinggal tiga.
+
+<Mermaid
+  title={<>Kes nombor genap melebihi <InlineMath math="4{,}000" /></>}
+  description={<>Cabang digit pertama <InlineMath math="4" /> atau <InlineMath math="6" /> meninggalkan <InlineMath math="3" /> pilihan digit terakhir dan <InlineMath math="20" /> susunan dua digit tengah, maka ada <InlineMath math="120" /> nombor. Cabang digit pertama <InlineMath math="5" /> meninggalkan <InlineMath math="4" /> pilihan digit terakhir dan <InlineMath math="20" /> susunan digit tengah, maka ada <InlineMath math="80" /> nombor. Jumlahnya <InlineMath math="200" /> daripada <InlineMath math="720" />.</>}
+  chart={`flowchart TD
+  S["Genap dan melebihi 4,000"] --> A["Digit pertama 4 atau 6: 2 cara"]
+  S --> B["Digit pertama 5: 1 cara"]
+  A --> A1["Digit terakhir 0, 2, atau 4/6 yang belum dipakai: 3 cara"]
+  B --> B1["Digit terakhir 0, 2, 4, 6: 4 cara"]
+  A1 --> A2["Dua digit tengah: 5 · 4 = 20 → 2 · 3 · 20 = 120"]
+  B1 --> B2["Dua digit tengah: 5 · 4 = 20 → 1 · 4 · 20 = 80"]
+  A2 --> T["Jumlah: 120 + 80 = 200 daripada 720"]
+  B2 --> T`}
+/>
+
 <BlockMath math="P=\frac{120+80}{720}=\frac{200}{720}=\frac{5}{18}" />
 
 Jadi, kebarangkaliannya ialah <InlineMath math="\tfrac{5}{18}" />.

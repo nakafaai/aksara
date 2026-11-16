@@ -23,6 +23,19 @@ The loss is money out minus money in. Divide it by the money out to get the perc
 \text{loss percent}&=\frac{152{,}000}{1{,}250{,}000}\cdot100\%=12.16\%
 \end{aligned}" />
 
+The diagram below follows Dimas's one gram from purchase until it is all sold. **The <InlineMath math="\text{Rp}25{,}000" /> fee is taken on both branches**, so the small sale in May adds almost nothing.
+
+<Mermaid
+  title={<>Money out and money in for Dimas's gold</>}
+  description={<>Dimas buys <InlineMath math="1" /> gram for <InlineMath math="\text{Rp}1{,}250{,}000" />. Selling <InlineMath math="0.8" /> grams in February brings <InlineMath math="\text{Rp}863{,}000" /> and selling <InlineMath math="0.2" /> grams in May brings <InlineMath math="\text{Rp}235{,}000" />, both after the fee. The total is <InlineMath math="\text{Rp}1{,}098{,}000" />, so the loss is <InlineMath math="\text{Rp}152{,}000" />, or <InlineMath math="12.16\%" />.</>}
+  chart={`flowchart TD
+  B["Buy in January: 1 gram = 1,250,000"] --> F["Sell in February: 0.8 · 1,110,000 − 25,000 = 863,000"]
+  B --> M["Sell in May: 0.2 · 1,300,000 − 25,000 = 235,000"]
+  F --> T["Total received: 1,098,000"]
+  M --> T
+  T --> L["Loss: 1,250,000 − 1,098,000 = 152,000 → 12.16%"]`}
+/>
+
 Notice that the May sale on its own doesn't make a profit either. That <InlineMath math="0.2" /> gram cost <InlineMath math="250{,}000" /> and brought in <InlineMath math="235{,}000" />. A fixed fee of <InlineMath math="\text{Rp}25{,}000" /> **hurts a small sale a lot**.
 
 # The tempting options

@@ -28,6 +28,20 @@ A third order adds a <InlineMath math="\text{Rp}25{,}000" /> service fee but bri
 &=2{,}040{,}000-270{,}000+75{,}000=1{,}845{,}000
 \end{aligned}" />
 
+Compare the total cost for each number of orders. **The bar drops from two to three orders, then rises again at four orders**, because the fourth order brings no new discount.
+
+<Chart
+  title={<>Total cost of <InlineMath math="16" /> tickets by number of orders</>}
+  description={<>With two orders the total is <InlineMath math="1{,}910" /> thousand rupiah, with three orders <InlineMath math="1{,}845" /> thousand rupiah, and with four orders <InlineMath math="1{,}870" /> thousand rupiah. The value axis starts at <InlineMath math="1{,}800" /> thousand rupiah so the differences show.</>}
+  bars="apart"
+  categories={["2 orders", "3 orders", "4 orders"]}
+  series={[
+    { label: "Total cost", mark: "bar", values: [1910, 1845, 1870] },
+  ]}
+  valueLabel="Thousand rupiah"
+  valueRange={{ min: 1800, max: 1930 }}
+/>
+
 Check the limits: every order has at most <InlineMath math="9" /> tickets, and every order holds one complete group. All the rules are met.
 
 # Why the other options are wrong

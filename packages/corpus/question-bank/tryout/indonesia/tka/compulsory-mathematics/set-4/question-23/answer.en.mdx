@@ -31,6 +31,40 @@ A mean of <InlineMath math="41" /> means a total of <InlineMath math="11\cdot41=
 
 <BlockMath math="S^2=\frac{360+121}{11}-(41-40)^2=\frac{481}{11}-1=\frac{470}{11}\approx42.7>36" />
 
+Draw the variance of the eleven values as a function of <InlineMath math="v" />. **The variance is smallest at <InlineMath math="v=40" /> and only passes <InlineMath math="36" /> once <InlineMath math="v" /> is more than about <InlineMath math="6.3" /> away from <InlineMath math="40" />**. That is why <InlineMath math="v=46" /> is still below the line and <InlineMath math="v=51" /> is above it.
+
+<MathVisual
+  title={<>Variance of the eleven values by <InlineMath math="v" /></>}
+  description={<>The curve <InlineMath math="S^2(v)=\frac{360}{11}+\frac{10(v-40)^2}{121}" /> is a parabola with lowest value <InlineMath math="\frac{360}{11}\approx32.7" /> at <InlineMath math="v=40" />. The horizontal line <InlineMath math="S^2=36" /> matches a standard deviation of <InlineMath math="6" />. The point for <InlineMath math="v=46" /> is at <InlineMath math="\frac{4{,}320}{121}\approx35.7" />, below the line, and the point for <InlineMath math="v=51" /> is at <InlineMath math="\frac{470}{11}\approx42.7" />, above the line.</>}
+  labels={{
+    curve: <InlineMath math="S^2(v)" />,
+    six: <InlineMath math="S^2=36" />,
+    near: <InlineMath math="v=46" />,
+    far: <InlineMath math="v=51" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 25, max: 56 },
+      y: { min: 30, max: 47 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "360/11 + 10(x - 40)^2/121", domain: { min: 27, max: 54 } },
+      { id: "six", kind: "function", appearance: "reference", formula: "36", domain: { min: 26, max: 55 } },
+      { id: "near", kind: "point", appearance: "secondary", at: { x: 46, y: 4320 / 121 } },
+      { id: "far", kind: "point", appearance: "answer", at: { x: 51, y: 470 / 11 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 30, y: 360 / 11 + 1000 / 121 }, placement: "left" },
+      { key: "six", objectId: "six", at: { x: 28, y: 36 }, placement: "above" },
+      { key: "near", objectId: "near", at: { x: 46, y: 4320 / 121 }, placement: "below-right" },
+      { key: "far", objectId: "far", at: { x: 51, y: 470 / 11 }, placement: "left" },
+    ],
+  }}
+/>
+
 The standard deviation is **more than** <InlineMath math="6" />. This statement is **True**.
 
 So the answers are True, False, True.

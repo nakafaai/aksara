@@ -20,6 +20,38 @@ V_{\text{Metall}}&=\tfrac43\pi\left(R^3-r^3\right) \\
 &=\tfrac43\pi\cdot91=\tfrac{364}{3}\pi\text{ cm}^3
 \end{aligned}" />
 
+Vergleiche den Querschnitt des Gewichts mit der Wasserschicht, die steigt. **Die ganze Kugel samt Hohlraum verdrängt Wasser im Umfang der Schicht von <InlineMath math="288\pi" />**, die Masse stammt aber nur vom Metallring zwischen <InlineMath math="r=5" /> und <InlineMath math="R=6" />.
+
+<MathVisual
+  title={<>Querschnitt des Gewichts und das verdrängte Wasser</>}
+  description={<>Links ist der Querschnitt der Kugel mit Mittelpunkt im Ursprung: ein äußerer Kreis mit Radius <InlineMath math="R=6" /> und ein Hohlraum mit Radius <InlineMath math="r=5" />, dazwischen Metall von <InlineMath math="1" /> Dicke. Rechts ist der Querschnitt der Wasserschicht, die im Zylinder steigt, so breit wie der Durchmesser <InlineMath math="24" /> und <InlineMath math="2" /> hoch, mit dem Volumen <InlineMath math="288\pi" />, gleich dem äußeren Volumen der Kugel.</>}
+  labels={{
+    outer: <InlineMath math="R=6" />,
+    inner: <InlineMath math="r=5" />,
+    slab: <InlineMath math="\pi\cdot12^2\cdot2=288\pi" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 35 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "metal", kind: "region", appearance: "primary", inequalities: ["x^2 + y^2 <= 36", "x^2 + y^2 >= 25"] },
+      { id: "outer", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "inner", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "slab", kind: "polygon", appearance: "secondary", vertices: [{ x: 10, y: -1 }, { x: 34, y: -1 }, { x: 34, y: 1 }, { x: 10, y: 1 }] },
+    ],
+    labels: [
+      { key: "outer", objectId: "outer", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "inner", objectId: "inner", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "slab", objectId: "slab", at: { x: 22, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Masse des Gewichts
 
 Die Masse ist Dichte mal Metallvolumen:

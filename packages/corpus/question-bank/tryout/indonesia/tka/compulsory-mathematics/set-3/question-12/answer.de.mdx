@@ -21,6 +21,55 @@ x^2-64&=400-x^2 \\
 x&=\sqrt{232}=2\sqrt{58}
 \end{aligned}" />
 
+Zeichne das Dreieck mit seinen drei parallelen Strecken. **Die Fläche des ähnlichen Dreiecks über jeder Strecke ist proportional zum Quadrat ihrer Länge**, also <InlineMath math="8^2=64" />, <InlineMath math="x^2=232" /> und <InlineMath math="20^2=400" />. Die beiden Teile des Trapezes sind gleich groß, weil <InlineMath math="232-64=400-232" />.
+
+<MathVisual
+  title={<>Dreieck <InlineMath math="ABC" /> und drei Parallelen zu <InlineMath math="BC" /></>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> hat die Grundseite <InlineMath math="BC=20" />. Die Strecke <InlineMath math="DE=8" /> liegt parallel zu <InlineMath math="BC" /> bei <InlineMath math="\tfrac25" /> des Weges von <InlineMath math="A" /> aus und bildet das kleine Dreieck <InlineMath math="ADE" />. Zwischen <InlineMath math="DE" /> und <InlineMath math="BC" /> liegt eine Parallele der Länge <InlineMath math="2\sqrt{58}\approx15{,}2" />, die das Trapez <InlineMath math="DBCE" /> in zwei gleich große Teile teilt.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    small: <InlineMath math="8" />,
+    middle: <InlineMath math="2\sqrt{58}" />,
+    base: <InlineMath math="20" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -11.5, max: 11.5 },
+      y: { min: -1.5, max: 11.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 10 }, { x: -4, y: 6 }, { x: 4, y: 6 }] },
+      { id: "upper", kind: "polygon", appearance: "secondary", vertices: [{ x: -4, y: 6 }, { x: -Math.sqrt(58), y: 10 - Math.sqrt(58) }, { x: Math.sqrt(58), y: 10 - Math.sqrt(58) }, { x: 4, y: 6 }] },
+      { id: "lower", kind: "polygon", appearance: "highlight", vertices: [{ x: -Math.sqrt(58), y: 10 - Math.sqrt(58) }, { x: -10, y: 0 }, { x: 10, y: 0 }, { x: Math.sqrt(58), y: 10 - Math.sqrt(58) }] },
+      { id: "small", kind: "segment", appearance: "primary", from: { x: -4, y: 6 }, to: { x: 4, y: 6 } },
+      { id: "middle", kind: "segment", appearance: "answer", from: { x: -Math.sqrt(58), y: 10 - Math.sqrt(58) }, to: { x: Math.sqrt(58), y: 10 - Math.sqrt(58) } },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 0, y: 10 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: -10, y: 0 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 10, y: 0 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: -4, y: 6 } },
+      { id: "e", kind: "point", appearance: "primary", at: { x: 4, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 10 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: -10, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "c", at: { x: 10, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: -4, y: 6 }, placement: "left" },
+      { key: "e", objectId: "e", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "small", objectId: "small", at: { x: 0, y: 6 }, placement: "below" },
+      { key: "middle", objectId: "middle", at: { x: 0, y: 10 - Math.sqrt(58) }, placement: "below" },
+      { key: "base", objectId: "base", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die Länge ist nicht der Mittelwert <InlineMath math="\tfrac{8+20}{2}=14" />, weil die Fläche mit dem Quadrat wächst. Die Aussage ist **Richtig**.
 
 Die Reihenfolge ist also Falsch, Falsch, Richtig.

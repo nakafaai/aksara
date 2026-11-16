@@ -31,6 +31,40 @@ Min <InlineMath math="41" /> bermaksud jumlah <InlineMath math="11\cdot41=451" /
 
 <BlockMath math="S^2=\frac{360+121}{11}-(41-40)^2=\frac{481}{11}-1=\frac{470}{11}\approx42.7>36" />
 
+Lukis varians sebelas data sebagai fungsi <InlineMath math="v" />. **Varians paling kecil apabila <InlineMath math="v=40" /> dan hanya melepasi <InlineMath math="36" /> jika <InlineMath math="v" /> berjarak lebih daripada kira-kira <InlineMath math="6.3" /> dari <InlineMath math="40" />**. Sebab itu <InlineMath math="v=46" /> masih di bawah garis, manakala <InlineMath math="v=51" /> di atasnya.
+
+<MathVisual
+  title={<>Varians sebelas data mengikut <InlineMath math="v" /></>}
+  description={<>Lengkung <InlineMath math="S^2(v)=\frac{360}{11}+\frac{10(v-40)^2}{121}" /> ialah parabola dengan nilai terendah <InlineMath math="\frac{360}{11}\approx32.7" /> pada <InlineMath math="v=40" />. Garis mendatar <InlineMath math="S^2=36" /> sepadan dengan sisihan piawai <InlineMath math="6" />. Titik bagi <InlineMath math="v=46" /> berada pada <InlineMath math="\frac{4{,}320}{121}\approx35.7" />, di bawah garis, dan titik bagi <InlineMath math="v=51" /> berada pada <InlineMath math="\frac{470}{11}\approx42.7" />, di atas garis.</>}
+  labels={{
+    curve: <InlineMath math="S^2(v)" />,
+    six: <InlineMath math="S^2=36" />,
+    near: <InlineMath math="v=46" />,
+    far: <InlineMath math="v=51" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 25, max: 56 },
+      y: { min: 30, max: 47 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "360/11 + 10(x - 40)^2/121", domain: { min: 27, max: 54 } },
+      { id: "six", kind: "function", appearance: "reference", formula: "36", domain: { min: 26, max: 55 } },
+      { id: "near", kind: "point", appearance: "secondary", at: { x: 46, y: 4320 / 121 } },
+      { id: "far", kind: "point", appearance: "answer", at: { x: 51, y: 470 / 11 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 30, y: 360 / 11 + 1000 / 121 }, placement: "left" },
+      { key: "six", objectId: "six", at: { x: 28, y: 36 }, placement: "above" },
+      { key: "near", objectId: "near", at: { x: 46, y: 4320 / 121 }, placement: "below-right" },
+      { key: "far", objectId: "far", at: { x: 51, y: 470 / 11 }, placement: "left" },
+    ],
+  }}
+/>
+
 Sisihan piawainya **lebih daripada** <InlineMath math="6" />. Pernyataan ini **Betul**.
 
 Jadi, susunannya Betul, Salah, Betul.

@@ -20,6 +20,38 @@ V_{\text{logam}}&=\tfrac43\pi\left(R^3-r^3\right) \\
 &=\tfrac43\pi\cdot91=\tfrac{364}{3}\pi\text{ cm}^3
 \end{aligned}" />
 
+Bandingkan penampang bandul dengan lapisan air yang naik. **Seluruh bola, termasuk rongganya, mendesak air sebanyak lapisan <InlineMath math="288\pi" />**, tetapi massa hanya datang dari cincin logam di antara <InlineMath math="r=5" /> dan <InlineMath math="R=6" />.
+
+<MathVisual
+  title={<>Penampang bandul dan air yang terdesak</>}
+  description={<>Di kiri, penampang bola berpusat di titik asal: lingkaran luar berjari-jari <InlineMath math="R=6" /> dan rongga berjari-jari <InlineMath math="r=5" />, dengan logam setebal <InlineMath math="1" /> di antaranya. Di kanan, penampang lapisan air yang naik di tabung, selebar diameter <InlineMath math="24" /> dan setinggi <InlineMath math="2" />, bervolume <InlineMath math="288\pi" />, sama dengan volume bola luar.</>}
+  labels={{
+    outer: <InlineMath math="R=6" />,
+    inner: <InlineMath math="r=5" />,
+    slab: <InlineMath math="\pi\cdot12^2\cdot2=288\pi" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 35 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "metal", kind: "region", appearance: "primary", inequalities: ["x^2 + y^2 <= 36", "x^2 + y^2 >= 25"] },
+      { id: "outer", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "inner", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "slab", kind: "polygon", appearance: "secondary", vertices: [{ x: 10, y: -1 }, { x: 34, y: -1 }, { x: 34, y: 1 }, { x: 10, y: 1 }] },
+    ],
+    labels: [
+      { key: "outer", objectId: "outer", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "inner", objectId: "inner", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "slab", objectId: "slab", at: { x: 22, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Massa bandul
 
 Massa sama dengan massa jenis dikali volume logam:

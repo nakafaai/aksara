@@ -41,6 +41,22 @@ Cek setiap hari pada tabel terhadap <InlineMath math="34<x<46" />:
 | <InlineMath math="9" /> | <InlineMath math="32" /> | <InlineMath math="8" /> | tidak |
 | <InlineMath math="10" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | tidak |
 
+Gambar penjualan setiap hari bersama batas <InlineMath math="34" /> dan <InlineMath math="46" /> gelas. **Hanya batang yang ujungnya benar-benar di antara kedua garis yang dihitung**. Dua batang setinggi <InlineMath math="46" /> tepat menyentuh garis atas, jadi tidak masuk.
+
+<Chart
+  title={<>Penjualan harian dan pita satu simpangan baku</>}
+  description={<>Batang menunjukkan banyak gelas pada hari ke-<InlineMath math="1" /> sampai ke-<InlineMath math="10" />: <InlineMath math="41" />, <InlineMath math="33" />, <InlineMath math="46" />, <InlineMath math="38" />, <InlineMath math="31" />, <InlineMath math="45" />, <InlineMath math="40" />, <InlineMath math="48" />, <InlineMath math="32" />, dan <InlineMath math="46" />. Garis mendatar di <InlineMath math="34" /> dan <InlineMath math="46" /> adalah rata-rata dikurangi dan ditambah satu simpangan baku. Hari ke-<InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, dan <InlineMath math="7" /> berada di antara kedua garis.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Gelas terjual", mark: "bar", values: [41, 33, 46, 38, 31, 45, 40, 48, 32, 46] },
+    { label: "Rata-rata dikurangi simpangan baku", mark: "line", values: [34, 34, 34, 34, 34, 34, 34, 34, 34, 34] },
+    { label: "Rata-rata ditambah simpangan baku", mark: "line", values: [46, 46, 46, 46, 46, 46, 46, 46, 46, 46] },
+  ]}
+  valueLabel="Banyak gelas"
+  valueRange={{ min: 25, max: 50 }}
+/>
+
 Dua hari dengan <InlineMath math="46" /> gelas tepat berjarak satu simpangan baku, bukan kurang dari satu simpangan baku, jadi keduanya **tidak ikut dihitung**. Yang memenuhi hanya hari dengan <InlineMath math="41" />, <InlineMath math="38" />, <InlineMath math="45" />, dan <InlineMath math="40" /> gelas.
 
 # Kenapa pilihan lain salah

@@ -10,6 +10,20 @@ The rule: the <InlineMath math="10\%" /> discount is given only when the normal 
 | Budi | <InlineMath math="62{,}100" /> | normal <InlineMath math="62{,}100>60{,}000" />, should have had a discount | normal <InlineMath math="69{,}000>60{,}000" />, fits | discounted |
 | Citra | <InlineMath math="54{,}000" /> | normal <InlineMath math="54{,}000\le60{,}000" />, fits | normal exactly <InlineMath math="60{,}000" />, not more than <InlineMath math="60{,}000" /> | no discount |
 
+Compare each receipt's normal price with the discount threshold. **Only Budi's bar passes the <InlineMath math="60" /> thousand line**, so only Budi's receipt has to be divided by <InlineMath math="0.9" />.
+
+<Chart
+  title={<>Normal price of each receipt and the discount threshold</>}
+  description={<>The normal price is <InlineMath math="48" /> thousand rupiah on Ani's receipt, <InlineMath math="69" /> thousand rupiah on Budi's, and <InlineMath math="54" /> thousand rupiah on Citra's. The horizontal line at <InlineMath math="60" /> thousand rupiah is the discount threshold. Only Budi's receipt is above it.</>}
+  bars="apart"
+  categories={["Ani", "Budi", "Citra"]}
+  series={[
+    { label: "Normal price", mark: "bar", values: [48, 69, 54] },
+    { label: "Discount threshold", mark: "line", values: [60, 60, 60] },
+  ]}
+  valueLabel="Thousand rupiah"
+/>
+
 Citra's receipt is the boundary case. A normal price of <InlineMath math="60{,}000" /> is **not more than** <InlineMath math="60{,}000" />, so there's no discount. Citra's normal price is <InlineMath math="54{,}000" />.
 
 # Adding the three equations

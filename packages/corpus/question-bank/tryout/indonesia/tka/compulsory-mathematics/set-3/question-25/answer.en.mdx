@@ -7,6 +7,39 @@ Your friend's remark throws out every result that has no <InlineMath math="5" />
 \text{only second die }5&:\ (1,5),(2,5),(3,5),(4,5),(6,5)
 \end{aligned}" />
 
+Draw the <InlineMath math="36" /> outcomes as squares, first die across and second die up. **Your friend's remark leaves only the row and the column of <InlineMath math="5" />**, which cross at <InlineMath math="(5,5)" />, so they hold <InlineMath math="6+6-1=11" /> squares. Two of them contain a <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Outcomes of two dice that show a <InlineMath math="5" /></>}
+  description={<>A <InlineMath math="6\times6" /> board with the first die on the horizontal axis and the second die on the vertical axis. The column for first die <InlineMath math="5" /> and the row for second die <InlineMath math="5" /> are shaded and share the square <InlineMath math="(5,5)" />, so <InlineMath math="11" /> squares are shaded. The squares <InlineMath math="(2,5)" /> and <InlineMath math="(5,2)" /> are marked as the outcomes asked for.</>}
+  labels={{
+    column: <>first die <InlineMath math="5" /></>,
+    "two-five": <InlineMath math="(2,5)" />,
+    "five-two": <InlineMath math="(5,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 7.5 },
+      y: { min: 0, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "board", kind: "polygon", appearance: "reference", vertices: [{ x: 0.5, y: 0.5 }, { x: 6.5, y: 0.5 }, { x: 6.5, y: 6.5 }, { x: 0.5, y: 6.5 }] },
+      { id: "column", kind: "polygon", appearance: "highlight", vertices: [{ x: 4.5, y: 0.5 }, { x: 5.5, y: 0.5 }, { x: 5.5, y: 6.5 }, { x: 4.5, y: 6.5 }] },
+      { id: "row", kind: "polygon", appearance: "highlight", vertices: [{ x: 0.5, y: 4.5 }, { x: 6.5, y: 4.5 }, { x: 6.5, y: 5.5 }, { x: 0.5, y: 5.5 }] },
+      { id: "two-five", kind: "polygon", appearance: "answer", vertices: [{ x: 1.5, y: 4.5 }, { x: 2.5, y: 4.5 }, { x: 2.5, y: 5.5 }, { x: 1.5, y: 5.5 }] },
+      { id: "five-two", kind: "polygon", appearance: "answer", vertices: [{ x: 4.5, y: 1.5 }, { x: 5.5, y: 1.5 }, { x: 5.5, y: 2.5 }, { x: 4.5, y: 2.5 }] },
+    ],
+    labels: [
+      { key: "column", objectId: "column", at: { x: 5, y: 6.5 }, placement: "above" },
+      { key: "two-five", objectId: "two-five", at: { x: 2, y: 5 }, placement: "center" },
+      { key: "five-two", objectId: "five-two", at: { x: 5, y: 2 }, placement: "center" },
+    ],
+  }}
+/>
+
 The result <InlineMath math="(5,5)" /> is counted only once, so **there are <InlineMath math="11" /> equally likely results**, not <InlineMath math="12" />.
 
 # The results you want

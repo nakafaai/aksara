@@ -20,6 +20,47 @@ Since <InlineMath math="x\le1" />, <InlineMath math="x-2" /> is always negative,
 
 <BlockMath math="f^{-1}(x)=2-\sqrt{x-3},\qquad x\ge4" />
 
+Draw the branch <InlineMath math="f" /> and its mirror image in <InlineMath math="y=x" />. **The left branch of the parabola reflects into a curve that falls below the line <InlineMath math="y=1" />**, so the sign in front of the root must be minus, and the inverse curve only starts at <InlineMath math="x=4" />.
+
+<MathVisual
+  title={<>Branch <InlineMath math="f" /> and its inverse</>}
+  description={<>The parabola <InlineMath math="y=(x-2)^2+3" /> restricted to <InlineMath math="x\le1" /> becomes the branch <InlineMath math="f" />, which falls to <InlineMath math="(1,\ 4)" />. The part of the parabola for <InlineMath math="x>1" /> is drawn faintly because it is not part of <InlineMath math="f" />. Its mirror image in <InlineMath math="y=x" /> is the curve <InlineMath math="f^{-1}(x)=2-\sqrt{x-3}" />, which starts at <InlineMath math="(4,\ 1)" /> and falls to the right. The point <InlineMath math="(-1,\ 12)" /> on <InlineMath math="f" /> pairs with <InlineMath math="(12,\ -1)" /> on <InlineMath math="f^{-1}" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    mirror: <InlineMath math="y=x" />,
+    point: <InlineMath math="(-1,\ 12)" />,
+    image: <InlineMath math="(12,\ -1)" />,
+    corner: <InlineMath math="(4,\ 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 13.5 },
+      y: { min: -3, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rest", kind: "function", appearance: "reference", formula: "(x - 2)^2 + 3", domain: { min: 1, max: 4 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "(x - 2)^2 + 3", domain: { min: -1.4, max: 1 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "2 - sqrt(x - 3)", domain: { min: 4, max: 13 } },
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -2.5, max: 13 } },
+      { id: "point", kind: "point", appearance: "primary", at: { x: -1, y: 12 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 12, y: -1 } },
+      { id: "corner", kind: "point", appearance: "secondary", at: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 0, y: 7 }, placement: "right" },
+      { key: "inverse", objectId: "inverse", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 11, y: 11 }, placement: "above-left" },
+      { key: "point", objectId: "point", at: { x: -1, y: 12 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 12, y: -1 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 4, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Judging each statement
 
 1. **False**. The inverse does exist, but the sign is wrong. The formula <InlineMath math="2+\sqrt{x-3}" /> always gives at least <InlineMath math="2" />, for example <InlineMath math="4" /> at <InlineMath math="x=7" />, while every value of the inverse has to lie in the domain of <InlineMath math="f" />, <InlineMath math="x\le1" />.

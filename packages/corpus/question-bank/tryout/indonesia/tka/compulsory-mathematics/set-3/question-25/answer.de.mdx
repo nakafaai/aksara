@@ -7,6 +7,39 @@ Die Bemerkung deines Freundes streicht jedes Ergebnis ohne <InlineMath math="5" 
 \text{nur zweiter Würfel }5&:\ (1,5),(2,5),(3,5),(4,5),(6,5)
 \end{aligned}" />
 
+Zeichne die <InlineMath math="36" /> Ergebnisse als Felder, erster Würfel waagerecht, zweiter senkrecht. **Die Bemerkung des Freundes lässt nur die Zeile und die Spalte der <InlineMath math="5" /> übrig**, die sich in <InlineMath math="(5,5)" /> kreuzen, also <InlineMath math="6+6-1=11" /> Felder. Zwei davon enthalten eine <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Ergebnisse zweier Würfel mit einer <InlineMath math="5" /></>}
+  description={<>Ein Feld von <InlineMath math="6\times6" /> mit dem ersten Würfel auf der waagerechten und dem zweiten auf der senkrechten Achse. Die Spalte für den ersten Würfel <InlineMath math="5" /> und die Zeile für den zweiten Würfel <InlineMath math="5" /> sind gefärbt und teilen sich das Feld <InlineMath math="(5,5)" />, also sind <InlineMath math="11" /> Felder gefärbt. Die Felder <InlineMath math="(2,5)" /> und <InlineMath math="(5,2)" /> sind als gesuchte Ergebnisse markiert.</>}
+  labels={{
+    column: <>erster Würfel <InlineMath math="5" /></>,
+    "two-five": <InlineMath math="(2,5)" />,
+    "five-two": <InlineMath math="(5,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 7.5 },
+      y: { min: 0, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "board", kind: "polygon", appearance: "reference", vertices: [{ x: 0.5, y: 0.5 }, { x: 6.5, y: 0.5 }, { x: 6.5, y: 6.5 }, { x: 0.5, y: 6.5 }] },
+      { id: "column", kind: "polygon", appearance: "highlight", vertices: [{ x: 4.5, y: 0.5 }, { x: 5.5, y: 0.5 }, { x: 5.5, y: 6.5 }, { x: 4.5, y: 6.5 }] },
+      { id: "row", kind: "polygon", appearance: "highlight", vertices: [{ x: 0.5, y: 4.5 }, { x: 6.5, y: 4.5 }, { x: 6.5, y: 5.5 }, { x: 0.5, y: 5.5 }] },
+      { id: "two-five", kind: "polygon", appearance: "answer", vertices: [{ x: 1.5, y: 4.5 }, { x: 2.5, y: 4.5 }, { x: 2.5, y: 5.5 }, { x: 1.5, y: 5.5 }] },
+      { id: "five-two", kind: "polygon", appearance: "answer", vertices: [{ x: 4.5, y: 1.5 }, { x: 5.5, y: 1.5 }, { x: 5.5, y: 2.5 }, { x: 4.5, y: 2.5 }] },
+    ],
+    labels: [
+      { key: "column", objectId: "column", at: { x: 5, y: 6.5 }, placement: "above" },
+      { key: "two-five", objectId: "two-five", at: { x: 2, y: 5 }, placement: "center" },
+      { key: "five-two", objectId: "five-two", at: { x: 5, y: 2 }, placement: "center" },
+    ],
+  }}
+/>
+
 Das Ergebnis <InlineMath math="(5,5)" /> zählt nur einmal, also **gibt es <InlineMath math="11" /> gleich wahrscheinliche Ergebnisse**, nicht <InlineMath math="12" />.
 
 # Die gesuchten Ergebnisse

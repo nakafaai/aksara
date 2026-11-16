@@ -40,6 +40,46 @@ Die linke Seite ist ein Vielfaches von <InlineMath math="3" />, also muss auch <
 | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="7" /> | erfüllt alle Bedingungen |
 | <InlineMath math="6" /> | <InlineMath math="-1" /> | keine | verworfen, <InlineMath math="e" /> ist negativ |
 
+Zeichne beide Gleichungen in der <InlineMath math="(e,\ r)" />-Ebene. **Das gefärbte Gebiet enthält die Bestellungen, die einen Rabatt bekommen und beide Ticketarten enthalten**. Nur der Punkt <InlineMath math="(4,\ 3)" /> ist ganzzahlig, liegt auf der Geraden <InlineMath math="3e+5r=27" /> und im Gebiet.
+
+<MathVisual
+  title={<>Mögliche Ticketpaare <InlineMath math="(e,\ r)" /></>}
+  description={<>Die waagerechte Achse ist die Anzahl der Early-Bird-Tickets <InlineMath math="e" />, die senkrechte Achse die Anzahl der regulären Tickets <InlineMath math="r" />. Das gefärbte Gebiet erfüllt <InlineMath math="e\ge1" />, <InlineMath math="r\ge1" /> und <InlineMath math="5\le e+r\le9" />. Die Gerade <InlineMath math="3e+5r=27" /> für den Fall mit einem Rabatt geht durch <InlineMath math="(4,\ 3)" /> im Gebiet und durch <InlineMath math="(9,\ 0)" />, das kein reguläres Ticket enthält. Die Gerade <InlineMath math="3e+5r=24" /> für den Fall ohne Rabatt geht durch <InlineMath math="(3,\ 3)" />, das <InlineMath math="6" /> Tickets enthält und damit seinem Fall widerspricht.</>}
+  labels={{
+    allowed: <>ein Rabatt</>,
+    discount: <InlineMath math="3e+5r=27" />,
+    plain: <InlineMath math="3e+5r=24" />,
+    fit: <InlineMath math="(4,\ 3)" />,
+    "no-regular": <InlineMath math="(9,\ 0)" />,
+    "too-many": <InlineMath math="(3,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "allowed", kind: "region", appearance: "highlight", inequalities: ["x >= 1", "y >= 1", "x + y >= 5", "x + y <= 9"] },
+      { id: "discount", kind: "function", appearance: "primary", formula: "(27 - 3x)/5", domain: { min: 0, max: 9 } },
+      { id: "plain", kind: "function", appearance: "reference", formula: "(24 - 3x)/5", domain: { min: 0, max: 8 } },
+      { id: "fit", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "no-regular", kind: "point", appearance: "warning", at: { x: 9, y: 0 } },
+      { id: "too-many", kind: "point", appearance: "warning", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "allowed", objectId: "allowed", at: { x: 6, y: 2.2 }, placement: "center" },
+      { key: "discount", objectId: "discount", at: { x: 1, y: 4.8 }, placement: "above-right" },
+      { key: "plain", objectId: "plain", at: { x: 0.5, y: 4.5 }, placement: "below-left" },
+      { key: "fit", objectId: "fit", at: { x: 4, y: 3 }, placement: "above-right" },
+      { key: "no-regular", objectId: "no-regular", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "too-many", objectId: "too-many", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Fajars Bestellung enthält also <InlineMath math="4" /> Early-Bird-Tickets und <InlineMath math="3" /> reguläre Tickets, zusammen <InlineMath math="7" /> Tickets. Das liegt zwischen <InlineMath math="5" /> und <InlineMath math="9" />, sie bekommt also wirklich einen Rabatt.
 
 Zur Kontrolle rechnest du die Zahlung nach:

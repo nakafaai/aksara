@@ -19,6 +19,40 @@ You can get the square of the difference from <InlineMath math="a^{2}+b^{2}" /> 
 a-b&=4\ \text{ or }\ a-b=-4
 \end{aligned}" />
 
+Draw the left side as a function of <InlineMath math="x" />. **The graph is symmetric about the vertical axis, so the line <InlineMath math="y=72" /> meets it at two points of opposite sign**. The condition <InlineMath math="x<0" /> picks the left point, where <InlineMath math="2^x<2^{-x}" /> so <InlineMath math="a-b" /> is negative.
+
+<MathVisual
+  title={<>Two solutions and the choice <InlineMath math="x<0" /></>}
+  description={<>The curve <InlineMath math="4^{x+1}+2^{2-2x}=4\left(4^x+4^{-x}\right)" /> is a valley with lowest point <InlineMath math="(0,\ 8)" />, symmetric about the vertical axis. The horizontal line <InlineMath math="y=72" /> meets it at <InlineMath math="x=-\log_2\left(2+\sqrt5\right)\approx-2.08" /> and <InlineMath math="x=\log_2\left(2+\sqrt5\right)\approx2.08" />. Only the left point satisfies <InlineMath math="x<0" />.</>}
+  labels={{
+    curve: <InlineMath math="4^{x+1}+2^{2-2x}" />,
+    level: <InlineMath math="y=72" />,
+    kept: <InlineMath math="x<0" />,
+    dropped: <>rejected</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 3.2 },
+      y: { min: -5, max: 95 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "4^(x + 1) + 2^(2 - 2x)", domain: { min: -2.6, max: 2.6 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "72", domain: { min: -3, max: 3 } },
+      { id: "kept", kind: "point", appearance: "answer", at: { x: -Math.log2(2 + Math.sqrt(5)), y: 72 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: Math.log2(2 + Math.sqrt(5)), y: 72 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 8 }, placement: "below" },
+      { key: "level", objectId: "level", at: { x: 0, y: 72 }, placement: "above" },
+      { key: "kept", objectId: "kept", at: { x: -Math.log2(2 + Math.sqrt(5)), y: 72 }, placement: "below-left" },
+      { key: "dropped", objectId: "dropped", at: { x: Math.log2(2 + Math.sqrt(5)), y: 72 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 There are two possibilities, and the condition <InlineMath math="x<0" /> picks one. If <InlineMath math="x" /> is negative, then <InlineMath math="a=2^{x}<1" /> and <InlineMath math="b=2^{-x}>1" />. So <InlineMath math="a<b" />, which means **<InlineMath math="a-b" /> has to be negative**: <InlineMath math="a-b=-4" />.
 
 # The difference of cubes

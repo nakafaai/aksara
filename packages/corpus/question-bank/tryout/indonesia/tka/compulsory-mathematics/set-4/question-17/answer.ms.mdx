@@ -21,6 +21,40 @@ Setiap baris menutup <InlineMath math="35\text{ cm}" /> di sepanjang kecondongan
 \text{genting dua satah}&=2\cdot18\cdot50=1{,}800
 \end{aligned}" />
 
+Bentangkan satu satah bumbung menjadi segi empat tepat. **Tujuh belas baris genting hanya menutup <InlineMath math="5.95\text{ m}" />, jadi baris ke-<InlineMath math="18" /> tetap dipasang walaupun hanya <InlineMath math="5\text{ cm}" /> yang digunakan**. Setiap baris mengandungi <InlineMath math="50" /> genting.
+
+<MathVisual
+  title={<>Satu satah bumbung dan baris-baris gentingnya</>}
+  description={<>Satah bumbung ialah segi empat tepat <InlineMath math="12\text{ m}" /> selari dengan perabung dan <InlineMath math="6\text{ m}" /> mengikut kecondongan. Lapan belas baris genting masing-masing <InlineMath math="35\text{ cm}" /> menutup hingga <InlineMath math="6.3\text{ m}" />, sedikit melepasi tepi satah. Baris terakhir, dari <InlineMath math="5.95\text{ m}" /> hingga <InlineMath math="6.3\text{ m}" />, ditandakan kerana hanya <InlineMath math="5\text{ cm}" /> yang digunakan.</>}
+  labels={{
+    plane: <InlineMath math="12\text{ m}" />,
+    slope: <InlineMath math="6\text{ m}" />,
+    tiles: <><InlineMath math="18" /> baris × <InlineMath math="50" /> genting</>,
+    last: <>baris ke-<InlineMath math="18" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 14 },
+      y: { min: -1, max: 7.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tiles", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 6.3 }, { x: 0, y: 6.3 }] },
+      { id: "plane", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 6 }, { x: 0, y: 6 }] },
+      { id: "last", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 5.95 }, { x: 12, y: 5.95 }, { x: 12, y: 6.3 }, { x: 0, y: 6.3 }] },
+      { id: "slope", kind: "segment", appearance: "construction", from: { x: -0.5, y: 0 }, to: { x: -0.5, y: 6 } },
+    ],
+    labels: [
+      { key: "plane", objectId: "plane", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "slope", objectId: "slope", at: { x: -0.5, y: 3 }, placement: "left" },
+      { key: "tiles", objectId: "tiles", at: { x: 6, y: 3 }, placement: "center" },
+      { key: "last", objectId: "last", at: { x: 12, y: 6.3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Baris ke-<InlineMath math="18" /> hanya menggunakan <InlineMath math="600-17\cdot35=5\text{ cm}" /> daripada kecondongan, tetapi setiap genting dalam baris itu tetap dikira sebiji.
 
 # Genting perabung dan jumlahnya

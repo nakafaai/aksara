@@ -19,6 +19,22 @@ Find **how far each new value is from the new mean**, <InlineMath math="42" />, 
 S&=\sqrt{\tfrac{160}{10}}=4
 \end{aligned}" />
 
+Compare the old and new data day by day. **Only four bars rise by <InlineMath math="5" />, and they are the four lowest days**, so the new data cluster more tightly around the mean <InlineMath math="42" /> and the standard deviation drops.
+
+<Chart
+  title={<>Daily sales before and after the correction</>}
+  description={<>Days <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="5" />, and <InlineMath math="9" /> rise from <InlineMath math="33" />, <InlineMath math="38" />, <InlineMath math="31" />, and <InlineMath math="32" /> to <InlineMath math="38" />, <InlineMath math="43" />, <InlineMath math="36" />, and <InlineMath math="37" />. The other days stay the same. The horizontal line at <InlineMath math="42" /> is the new mean.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Before", mark: "bar", values: [41, 33, 46, 38, 31, 45, 40, 48, 32, 46] },
+    { label: "After", mark: "bar", values: [41, 38, 46, 43, 36, 45, 40, 48, 37, 46] },
+    { label: "New mean", mark: "line", values: [42, 42, 42, 42, 42, 42, 42, 42, 42, 42] },
+  ]}
+  valueLabel="Glasses"
+  valueRange={{ min: 25, max: 50 }}
+/>
+
 # Judging each statement
 
 1. **False**. The median rises from <InlineMath math="40.5" /> to <InlineMath math="42" />, because the two middle values change.

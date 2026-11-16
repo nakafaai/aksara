@@ -19,6 +19,45 @@ t&=\sqrt{10^2-6^2}=\sqrt{64}=8\text{ cm} \\
 V_{\text{kon}}&=\frac{1}{3}\pi j^2t=\frac{1}{3}\pi\cdot36\cdot8=96\pi\text{ cm}^3
 \end{aligned}" />
 
+Bandingkan keratan rentas bola berongga dengan keratan rentas satu kon. **Logamnya hanyalah gelang di antara dua bulatan**, dan tinggi kon muncul sebagai sisi segi tiga bersudut tegak dengan hipotenus <InlineMath math="10" /> dan tapak <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Keratan rentas bola berongga dan satu kon</>}
+  description={<>Di kiri ialah keratan rentas bola berpusat di asalan: bulatan luar berjejari <InlineMath math="12" /> dan rongga berjejari <InlineMath math="3" />, dengan logam di antara kedua-duanya. Di kanan, keratan rentas kon ialah segi tiga sama kaki dengan tapak <InlineMath math="12" />, tinggi sendeng <InlineMath math="10" />, dan tinggi <InlineMath math="8" />. Tinggi itu dan jejari tapak <InlineMath math="6" /> membentuk segi tiga bersudut tegak dengan tinggi sendeng.</>}
+  labels={{
+    shell: <InlineMath math="12" />,
+    hole: <InlineMath math="3" />,
+    height: <InlineMath math="t=8" />,
+    slant: <InlineMath math="10" />,
+    base: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 30 },
+      y: { min: -13.5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "metal", kind: "region", appearance: "primary", inequalities: ["x^2 + y^2 <= 144", "x^2 + y^2 >= 9"] },
+      { id: "shell", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 12 } },
+      { id: "hole", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "cone", kind: "polygon", appearance: "secondary", vertices: [{ x: 16, y: -12 }, { x: 28, y: -12 }, { x: 22, y: -4 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 22, y: -12 }, to: { x: 22, y: -4 } },
+      { id: "slant", kind: "segment", appearance: "secondary", from: { x: 16, y: -12 }, to: { x: 22, y: -4 } },
+      { id: "base", kind: "segment", appearance: "construction", from: { x: 22, y: -12 }, to: { x: 28, y: -12 } },
+    ],
+    labels: [
+      { key: "shell", objectId: "shell", at: { x: 0, y: 7.5 }, placement: "right" },
+      { key: "hole", objectId: "hole", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 22, y: -8 }, placement: "right" },
+      { key: "slant", objectId: "slant", at: { x: 19, y: -8 }, placement: "left" },
+      { key: "base", objectId: "base", at: { x: 25, y: -12 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Bilangan kon
 
 Bahagikan isi padu logam dengan isi padu satu kon:

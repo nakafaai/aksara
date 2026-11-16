@@ -28,6 +28,37 @@ Sekarang cari <InlineMath math="n" /> terkecil dengan untung negatif.
 n&>25
 \end{aligned}" />
 
+Lukis untung harian sebagai garis yang menurun. **Garisnya menyentuh sifar tepat pada hari ke-<InlineMath math="25" />**, yang bermakna pulang modal, dan hanya berada di bawah sifar pada hari ke-<InlineMath math="26" />.
+
+<MathVisual
+  title={<>Untung harian gerai mengikut hari</>}
+  description={<>Paksi mendatar ialah hari ke-<InlineMath math="n" />, dan paksi tegak ialah untung dalam ribu rupiah. Garis <InlineMath math="U_n=300-12n" /> menurun <InlineMath math="12" /> setiap hari daripada <InlineMath math="288" /> pada hari pertama. Titik <InlineMath math="(25,\ 0)" /> menandakan hari pulang modal, dan titik <InlineMath math="(26,\ -12)" /> menandakan hari pertama yang rugi.</>}
+  labels={{
+    profit: <InlineMath math="U_n=300-12n" />,
+    even: <InlineMath math="(25,\ 0)" />,
+    loss: <InlineMath math="(26,\ -12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: -70, max: 310 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "profit", kind: "function", appearance: "primary", formula: "300 - 12x", domain: { min: 1, max: 30 } },
+      { id: "even", kind: "point", appearance: "warning", at: { x: 25, y: 0 } },
+      { id: "loss", kind: "point", appearance: "answer", at: { x: 26, y: -12 } },
+    ],
+    labels: [
+      { key: "profit", objectId: "profit", at: { x: 8, y: 204 }, placement: "above-right" },
+      { key: "even", objectId: "even", at: { x: 25, y: 0 }, placement: "above-left" },
+      { key: "loss", objectId: "loss", at: { x: 26, y: -12 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Pada hari ke-<InlineMath math="25" />, untungnya <InlineMath math="300-300=0" />. Itu **belum rugi**, cuma pulang modal. Pada hari ke-<InlineMath math="26" />, untungnya <InlineMath math="300-312=-12" />, iaitu rugi <InlineMath math="\text{Rp}12{,}000" />. Jadi gerai itu pertama kali rugi pada hari ke-<InlineMath math="26" />.
 
 # Pilihan yang memerangkap

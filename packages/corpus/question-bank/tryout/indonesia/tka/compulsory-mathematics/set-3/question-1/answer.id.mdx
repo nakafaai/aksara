@@ -28,6 +28,20 @@ Pesanan ketiga menambah biaya layanan <InlineMath math="\text{Rp}25{.}000" />, t
 &=2{.}040{.}000-270{.}000+75{.}000=1{.}845{.}000
 \end{aligned}" />
 
+Bandingkan biaya total untuk setiap banyak pesanan. **Batangnya turun dari dua ke tiga pesanan, lalu naik lagi di empat pesanan**, karena pesanan keempat tidak membawa potongan baru.
+
+<Chart
+  title={<>Biaya total <InlineMath math="16" /> tiket menurut banyak pesanan</>}
+  description={<>Dengan dua pesanan biaya totalnya <InlineMath math="1{.}910" /> ribu rupiah, dengan tiga pesanan <InlineMath math="1{.}845" /> ribu rupiah, dan dengan empat pesanan <InlineMath math="1{.}870" /> ribu rupiah. Sumbu nilai dimulai dari <InlineMath math="1{.}800" /> ribu rupiah supaya selisihnya terlihat.</>}
+  bars="apart"
+  categories={["2 pesanan", "3 pesanan", "4 pesanan"]}
+  series={[
+    { label: "Biaya total", mark: "bar", values: [1910, 1845, 1870] },
+  ]}
+  valueLabel="Ribu rupiah"
+  valueRange={{ min: 1800, max: 1930 }}
+/>
+
 Cek batasnya: setiap pesanan berisi paling banyak <InlineMath math="9" /> tiket, dan setiap pesanan memuat satu kelompok lengkap. Semua aturan terpenuhi.
 
 # Kenapa pilihan lain salah

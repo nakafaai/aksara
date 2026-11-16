@@ -14,6 +14,47 @@ Slot <InlineMath math="13.8" /> into its place. **Sorted data** makes every chec
 
 <BlockMath math="12.9\quad13.3\quad13.5\quad13.5\quad13.8\quad13.9\quad14.1\quad14.4\quad14.6\quad14.6\quad14.8\quad15.2\quad15.8\quad16.9" />
 
+Draw the fourteen times as dots, with equal values stacked. **The median line falls exactly between dot <InlineMath math="7" /> and dot <InlineMath math="8" />**, and two stacks of the same height show two modes.
+
+<MathVisual
+  title={<>Running times of all fourteen XI A students</>}
+  description={<>Fourteen dots from <InlineMath math="12.9" /> to <InlineMath math="16.9" /> seconds. Stacks of two dots stand at <InlineMath math="13.5" /> and at <InlineMath math="14.6" />. Raka's dot is at <InlineMath math="13.8" />. Dots <InlineMath math="7" /> and <InlineMath math="8" />, at <InlineMath math="14.1" /> and <InlineMath math="14.4" />, sit on either side of the median line at <InlineMath math="14.25" />.</>}
+  labels={{
+    median: <InlineMath math="14{,}25" />,
+    raka: <>Raka</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 12.5, max: 17.3 },
+      y: { min: -0.2, max: 2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 12.9, y: 0.4 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 13.3, y: 0.4 } },
+      { id: "t-3", kind: "point", appearance: "secondary", at: { x: 13.5, y: 0.4 } },
+      { id: "t-4", kind: "point", appearance: "secondary", at: { x: 13.5, y: 0.8 } },
+      { id: "raka", kind: "point", appearance: "highlight", at: { x: 13.8, y: 0.4 } },
+      { id: "t-6", kind: "point", appearance: "primary", at: { x: 13.9, y: 0.4 } },
+      { id: "t-7", kind: "point", appearance: "answer", at: { x: 14.1, y: 0.4 } },
+      { id: "t-8", kind: "point", appearance: "answer", at: { x: 14.4, y: 0.4 } },
+      { id: "t-9", kind: "point", appearance: "secondary", at: { x: 14.6, y: 0.4 } },
+      { id: "t-10", kind: "point", appearance: "secondary", at: { x: 14.6, y: 0.8 } },
+      { id: "t-11", kind: "point", appearance: "primary", at: { x: 14.8, y: 0.4 } },
+      { id: "t-12", kind: "point", appearance: "primary", at: { x: 15.2, y: 0.4 } },
+      { id: "t-13", kind: "point", appearance: "primary", at: { x: 15.8, y: 0.4 } },
+      { id: "t-14", kind: "point", appearance: "primary", at: { x: 16.9, y: 0.4 } },
+      { id: "median", kind: "segment", appearance: "answer", from: { x: 14.25, y: 0 }, to: { x: 14.25, y: 1.4 } },
+    ],
+    labels: [
+      { key: "median", objectId: "median", at: { x: 14.25, y: 1.4 }, placement: "above" },
+      { key: "raka", objectId: "raka", at: { x: 13.8, y: 0.4 }, placement: "below" },
+    ],
+  }}
+/>
+
 There are <InlineMath math="14" /> values, so the median is the average of the <InlineMath math="7" />th and <InlineMath math="8" />th values.
 
 # Judging each statement

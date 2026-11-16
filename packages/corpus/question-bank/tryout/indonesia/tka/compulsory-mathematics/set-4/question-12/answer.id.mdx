@@ -20,6 +20,49 @@ Pernyataan ketiga: luas <InlineMath math="96" /> berarti <InlineMath math="pq=19
 
 <BlockMath math="(p+q)^2=p^2+q^2+2pq=400+384=784" />
 
+Gambar dua belah ketupat bersisi <InlineMath math="10" /> dengan pusat yang sama. **Belah ketupat berdiagonal <InlineMath math="16" /> dan <InlineMath math="12" /> berluas <InlineMath math="96" />**, sedangkan persegi bersisi <InlineMath math="10" /> yang juga belah ketupat berluas tepat <InlineMath math="100" />. Persegi itu membantah pernyataan kedua.
+
+<MathVisual
+  title={<>Belah ketupat bersisi <InlineMath math="10" /> dan persegi bersisi <InlineMath math="10" /></>}
+  description={<>Belah ketupat <InlineMath math="ABCD" /> berdiagonal <InlineMath math="AC=16" /> dan <InlineMath math="BD=12" /> yang berpotongan tegak lurus di tengah, sehingga setiap sisinya <InlineMath math="\sqrt{8^2+6^2}=10" />. Persegi berdiagonal <InlineMath math="10\sqrt2" /> digambar dengan pusat yang sama. Keduanya bersisi <InlineMath math="10" />, tetapi luasnya <InlineMath math="96" /> dan <InlineMath math="100" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    side: <InlineMath math="10" />,
+    square: <>persegi, luas <InlineMath math="100" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -9.5, max: 9.5 },
+      y: { min: -8, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: -5 * Math.sqrt(2), y: 0 }, { x: 0, y: -5 * Math.sqrt(2) }, { x: 5 * Math.sqrt(2), y: 0 }, { x: 0, y: 5 * Math.sqrt(2) }] },
+      { id: "rhombus", kind: "polygon", appearance: "primary", vertices: [{ x: -8, y: 0 }, { x: 0, y: -6 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
+      { id: "long", kind: "segment", appearance: "secondary", from: { x: -8, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "short", kind: "segment", appearance: "secondary", from: { x: 0, y: -6 }, to: { x: 0, y: 6 } },
+      { id: "side", kind: "segment", appearance: "answer", from: { x: -8, y: 0 }, to: { x: 0, y: -6 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: -8, y: 0 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 0, y: -6 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 8, y: 0 } },
+      { id: "d", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 0, y: -6 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "side", objectId: "side", at: { x: -4, y: -3 }, placement: "below-left" },
+      { key: "square", objectId: "square", at: { x: 2.5 * Math.sqrt(2), y: 2.5 * Math.sqrt(2) }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Karena <InlineMath math="p+q>0" />, didapat <InlineMath math="p+q=28" />, misalnya diagonal <InlineMath math="12" /> dan <InlineMath math="16" />. Pernyataan ini **Benar**.
 
 Jadi, urutannya Benar, Salah, Benar.
