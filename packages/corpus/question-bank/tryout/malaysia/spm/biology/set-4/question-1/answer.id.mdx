@@ -1,0 +1,30 @@
+# Bagi dengan cahaya yang diteruskan tiap filter sebelum membandingkan warna
+
+Warna adalah variabel bebas, tetapi filter juga mengubah **jumlah cahaya** yang sampai ke tumbuhan. Selama perbedaan kedua ini belum dihilangkan, hitungan mentah membandingkan dua hal sekaligus.
+
+<BlockMath math="\text{merah}: \tfrac{30}{40}\times10=7{,}5,\qquad \text{biru}: \tfrac{26}{20}\times10=13,\qquad \text{hijau}: \tfrac{8}{30}\times10\approx2{,}7\ \text{gelembung per menit untuk tiap }10\%" />
+
+<Chart
+  title={<>Gelembung dari Elodea di Balik Tiap Filter</>}
+  bars="apart"
+  categories={["Merah", "Biru", "Hijau"]}
+  series={[
+    { label: "Gelembung per menit", mark: "bar", values: [30, 26, 8] },
+    { label: "Gelembung per menit untuk tiap 10% cahaya yang diteruskan", mark: "bar", values: [7.5, 13, 2.7] },
+  ]}
+  valueLabel="Jumlah"
+  description={<>Hitungan mentahnya <InlineMath math="30" /> untuk merah, <InlineMath math="26" /> untuk biru, dan <InlineMath math="8" /> untuk hijau. Setelah dibagi dengan cahaya yang diteruskan tiap filter, nilainya menjadi <InlineMath math="7{,}5" />, <InlineMath math="13" />, dan sekitar <InlineMath math="2{,}7" /> gelembung per menit untuk tiap <InlineMath math="10\%" /> cahaya, jadi cahaya biru paling efektif.</>}
+/>
+
+- I: merah menghasilkan gelembung terbanyak hanya karena filternya meneruskan cahaya dua kali lipat filter biru. Per satuan cahaya, merah dikalahkan biru. Pernyataan I salah.
+- II: biru menghasilkan <InlineMath math="13" /> gelembung per menit untuk tiap <InlineMath math="10\%" /> cahaya, nilai tertinggi. Pernyataan II benar.
+- III: hijau hanya sekitar <InlineMath math="2{,}7" />, paling rendah. Klorofil menyerap sedikit cahaya hijau dan memantulkan banyak darinya, itulah sebabnya daun tampak hijau. Pernyataan III benar.
+- IV: intensitas cahaya ikut berubah dengan filter, jadi seharusnya menjadi **variabel kontrol**, misalnya dengan menggeser lampu sampai meter menunjukkan angka yang sama. Pernyataan IV benar.
+
+Jadi pernyataan II, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I, III, dan IV saja memercayai hitungan mentah untuk merah, **padahal filter merah meneruskan cahaya dua kali lipat filter biru**.
+- II dan IV saja menolak III, **padahal hijau memang menghasilkan gelembung paling sedikit per satuan cahaya**.
+- I dan III saja membaca hitungan mentah dan melewatkan **intensitas cahaya yang tidak dikendalikan**.

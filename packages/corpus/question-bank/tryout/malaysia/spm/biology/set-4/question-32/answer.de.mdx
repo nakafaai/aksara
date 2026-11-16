@@ -1,0 +1,28 @@
+# Jedes Z-Chromosom vom Elterntier zum Küken verfolgen
+
+Eine Tochter ist <InlineMath math="ZW" />, und ihr <InlineMath math="W" /> stammt von der Mutter, ihr **einziges Z stammt also vom Vater**. Ein Sohn erhält von jedem Elternteil ein <InlineMath math="Z" />.
+
+<BlockMath math="\text{Eltern}: Z^bZ^b\ (\text{ungesperberter Hahn})\times Z^BW\ (\text{gesperberte Henne})" />
+
+<BlockMath math="\text{erste Generation}: \text{Söhne } Z^BZ^b\ (\text{gesperbert}),\qquad \text{Töchter } Z^bW\ (\text{ungesperbert})" />
+
+<BlockMath math="\text{zweite Generation}: Z^BZ^b\times Z^bW\ \Rightarrow\ \text{Töchter } Z^BW,\ Z^bW\ \Rightarrow\ \tfrac{1}{2}\text{ gesperbert}" />
+
+<Chart
+  title={<>Gesperberte Küken in jeder Gruppe</>}
+  bars="apart"
+  categories={["Söhne der ersten Generation", "Töchter der ersten Generation", "Söhne der zweiten Generation", "Töchter der zweiten Generation"]}
+  series={[
+    { label: "Gesperbert", mark: "bar", values: [100, 0, 50, 50] },
+  ]}
+  valueLabel="Gesperbert (%)"
+  description={<>Alle Söhne der ersten Generation sind gesperbert, keine Tochter. In der zweiten Generation sind die Hälfte der Söhne und die Hälfte der Töchter gesperbert.</>}
+/>
+
+Jeder Sohn der ersten Generation erhält <InlineMath math="Z^B" /> von der gesperberten Mutter und ist gesperbert, jede Tochter erhält <InlineMath math="Z^b" /> vom ungesperberten Vater und ist ungesperbert. Züchter nutzen diese Kreuzung, um Eintagsküken am Gefieder nach Geschlecht zu sortieren. In der zweiten Generation erhält jede Tochter eines der beiden <InlineMath math="Z" />-Chromosomen des Vaters, die Hälfte ist also gesperbert.
+
+# Warum die anderen Antworten falsch sind
+
+- Alle Küken gesperbert behandelt das Gen als **autosomal**, sodass ein dominantes Allel eines Elternteils jedes Küken erreicht.
+- Die Hälfte jedes Geschlechts gesperbert bräuchte **ein heterozygotes Elterntier**, doch der Hahn ist <InlineMath math="Z^bZ^b" />, und die Henne hat nur ein <InlineMath math="Z" />.
+- Söhne ungesperbert und Töchter gesperbert überträgt das **menschliche Muster**, in dem der Vater sein X an Töchter gibt, auf einen Vogel, bei dem die Mutter die zwei verschiedenen Geschlechtschromosomen hat.
