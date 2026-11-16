@@ -1,22 +1,22 @@
-# Titer berasal dari dua pembacaan, jadi membawa dua ketidakpastian
+# Persen ketidakpastian bertambah saat nilai dikali atau dibagi
 
-Titer adalah selisih pembacaan: <InlineMath math="24{,}80 - 1{,}25 = 23{,}55\text{ cm}^3" />. Tiap pembacaan bisa meleset <InlineMath math="0{,}05\text{ cm}^3" /> ke arah mana pun, dan pada kasus terburuk **kedua galat bertambah**, jadi ketidakpastian titer <InlineMath math="\pm 0{,}10\text{ cm}^3" />.
+Bagian pipet: <InlineMath math="\tfrac{0{,}06}{25{,}00} \times 100\% = 0{,}24\%" />. Titernya <InlineMath math="24{,}80 - 1{,}25 = 23{,}55\text{ cm}^3" />, dibangun dari dua pembacaan, jadi ketidakpastiannya <InlineMath math="2 \times 0{,}05 = 0{,}10\text{ cm}^3" />: <InlineMath math="\tfrac{0{,}10}{23{,}55} \times 100\% = 0{,}42\%" />.
 
 <Chart
-  title={<>Pembacaan Buret</>}
+  title={<>Persen Ketidakpastian Tiap Pengukuran</>}
   bars="apart"
-  categories={["Awal", "Akhir"]}
+  categories={["Pipet", "Titer", "Konsentrasi"]}
   series={[
-    { label: "Pembacaan (cm³)", mark: "bar", values: [1.25, 24.8] },
+    { label: "Persen ketidakpastian (%)", mark: "bar", values: [<InlineMath math="0{,}24" />, <InlineMath math="0{,}42" />, <InlineMath math="0{,}66" />] },
   ]}
-  valueLabel="Pembacaan (cm³)"
-  description={<>Pembacaan awal <InlineMath math="1{,}25\text{ cm}^3" />, pembacaan akhir <InlineMath math="24{,}80\text{ cm}^3" />. Tiap pembacaan punya ketidakpastian <InlineMath math="\pm 0{,}05\text{ cm}^3" />.</>}
+  valueLabel="Persen ketidakpastian (%)"
+  description={<>Pipet <InlineMath math="0{,}24" />%, titer <InlineMath math="0{,}42" />%, dan konsentrasi yang dihitung dari keduanya <InlineMath math="0{,}66" />%.</>}
 />
 
-Sebagai bagian dari titer: <InlineMath math="\tfrac{0{,}10}{23{,}55} \times 100\% = 0{,}42\%" />. Titer yang lebih besar membuat <InlineMath math="\pm 0{,}10\text{ cm}^3" /> yang sama menjadi persen yang lebih kecil, makanya titrasi menargetkan titer di atas sekitar <InlineMath math="20\text{ cm}^3" />.
+Konsentrasi didapat dengan membagi satu volume dengan yang lain, dan untuk hasil kali atau hasil bagi **persen ketidakpastian bertambah**: <InlineMath math="0{,}24\% + 0{,}42\% = 0{,}66\%" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="\pm 0{,}05\text{ cm}^3" /> hanya menghitung satu pembacaan, padahal titer butuh **kedua** pembacaan awal dan akhir.
-- <InlineMath math="26{,}05\text{ cm}^3" /> menjumlahkan pembacaan, bukan mengurangkannya.
-- <InlineMath math="4{,}2" />% salah satu tempat desimal: <InlineMath math="0{,}10 \div 23{,}55" /> adalah <InlineMath math="0{,}0042" />, yaitu <InlineMath math="0{,}42\%" />.
+- Tiap alat punya ketidakpastian, dan <InlineMath math="0{,}24" />% dari pipet juga sampai ke jawaban.
+- Ketidakpastian tidak pernah saling menghapus lewat pengurangan, jadi totalnya tidak bisa **lebih kecil** dari bagian mana pun.
+- <InlineMath math="0{,}21" />% menghitung satu pembacaan buret, padahal titer butuh dua.

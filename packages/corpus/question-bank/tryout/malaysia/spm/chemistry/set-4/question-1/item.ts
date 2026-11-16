@@ -13,23 +13,18 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A titre of 23.55 cm³ with an uncertainty of ±0.05 cm³, which is 0.21%",
+            "0.42%, from the burette alone, because a pipette has no uncertainty",
         },
         {
           correct: true,
           label:
-            "A titre of 23.55 cm³ with an uncertainty of ±0.10 cm³, which is 0.42%",
+            "0.66%, adding the 0.24% of the pipette to the 0.42% of the titre",
         },
         {
           correct: false,
-          label:
-            "A titre of 26.05 cm³ with an uncertainty of ±0.10 cm³, which is 0.38%",
+          label: "0.18%, the difference between the two uncertainties",
         },
-        {
-          correct: false,
-          label:
-            "A titre of 23.55 cm³ with an uncertainty of ±0.10 cm³, which is 4.2%",
-        },
+        { correct: false, label: "0.21%, from one burette reading" },
       ],
     },
     ms: {
@@ -37,20 +32,15 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Titer 23.55 cm³ dengan ketakpastian ±0.05 cm³, iaitu 0.21%",
+          label:
+            "0.42%, daripada buret sahaja, kerana pipet tiada ketakpastian",
         },
         {
           correct: true,
-          label: "Titer 23.55 cm³ dengan ketakpastian ±0.10 cm³, iaitu 0.42%",
+          label: "0.66%, menjumlahkan 0.24% pipet dengan 0.42% titer",
         },
-        {
-          correct: false,
-          label: "Titer 26.05 cm³ dengan ketakpastian ±0.10 cm³, iaitu 0.38%",
-        },
-        {
-          correct: false,
-          label: "Titer 23.55 cm³ dengan ketakpastian ±0.10 cm³, iaitu 4.2%",
-        },
+        { correct: false, label: "0.18%, iaitu beza antara dua ketakpastian" },
+        { correct: false, label: "0.21%, daripada satu bacaan buret" },
       ],
     },
   },

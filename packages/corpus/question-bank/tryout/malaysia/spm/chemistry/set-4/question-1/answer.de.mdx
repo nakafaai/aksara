@@ -1,22 +1,22 @@
-# Ein Titer kommt aus zwei Ablesungen und trägt zwei Unsicherheiten
+# Prozentuale Unsicherheiten addieren sich beim Multiplizieren und Dividieren
 
-Der Titer ist die Differenz der Ablesungen: <InlineMath math="24{,}80 - 1{,}25 = 23{,}55\text{ cm}^3" />. Jede Ablesung kann um <InlineMath math="0{,}05\text{ cm}^3" /> in beide Richtungen danebenliegen, und im ungünstigsten Fall **addieren sich beide Fehler**, der Titer ist also auf <InlineMath math="\pm 0{,}10\text{ cm}^3" /> unsicher.
+Anteil der Pipette: <InlineMath math="\tfrac{0{,}06}{25{,}00} \times 100\% = 0{,}24\%" />. Der Titer ist <InlineMath math="24{,}80 - 1{,}25 = 23{,}55\text{ cm}^3" /> aus zwei Ablesungen, also auf <InlineMath math="2 \times 0{,}05 = 0{,}10\text{ cm}^3" /> unsicher: <InlineMath math="\tfrac{0{,}10}{23{,}55} \times 100\% = 0{,}42\%" />.
 
 <Chart
-  title={<>Bürettenablesungen</>}
+  title={<>Prozentuale Unsicherheit jeder Messung</>}
   bars="apart"
-  categories={["Anfang", "Ende"]}
+  categories={["Pipette", "Titer", "Konzentration"]}
   series={[
-    { label: "Ablesung (cm³)", mark: "bar", values: [1.25, 24.8] },
+    { label: "Prozentuale Unsicherheit (%)", mark: "bar", values: [<InlineMath math="0{,}24" />, <InlineMath math="0{,}42" />, <InlineMath math="0{,}66" />] },
   ]}
-  valueLabel="Ablesung (cm³)"
-  description={<>Anfangsablesung <InlineMath math="1{,}25\text{ cm}^3" />, Endablesung <InlineMath math="24{,}80\text{ cm}^3" />. Jede Ablesung ist auf <InlineMath math="\pm 0{,}05\text{ cm}^3" /> unsicher.</>}
+  valueLabel="Prozentuale Unsicherheit (%)"
+  description={<>Pipette <InlineMath math="0{,}24" />%, Titer <InlineMath math="0{,}42" />% und die daraus berechnete Konzentration <InlineMath math="0{,}66" />%.</>}
 />
 
-Als Anteil am Titer: <InlineMath math="\tfrac{0{,}10}{23{,}55} \times 100\% = 0{,}42\%" />. Bei einem größeren Titer wären dieselben <InlineMath math="\pm 0{,}10\text{ cm}^3" /> ein kleinerer Prozentsatz, deshalb zielt man bei Titrationen auf Titer über etwa <InlineMath math="20\text{ cm}^3" />.
+Die Konzentration entsteht durch Teilen des einen Volumens durch das andere, und bei Produkten und Quotienten **addieren sich die prozentualen Unsicherheiten**: <InlineMath math="0{,}24\% + 0{,}42\% = 0{,}66\%" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="\pm 0{,}05\text{ cm}^3" /> zählt nur eine Ablesung, der Titer braucht aber **beide**, Anfang und Ende.
-- <InlineMath math="26{,}05\text{ cm}^3" /> addiert die Ablesungen, statt sie zu subtrahieren.
-- <InlineMath math="4{,}2" />% verrutscht um eine Dezimalstelle: <InlineMath math="0{,}10 \div 23{,}55" /> ist <InlineMath math="0{,}0042" />, also <InlineMath math="0{,}42\%" />.
+- Jedes Gerät hat eine Unsicherheit, und die <InlineMath math="0{,}24" />% der Pipette gehen ebenfalls ins Ergebnis ein.
+- Unsicherheiten heben sich nie durch Subtraktion auf, die Summe kann also nicht **kleiner** sein als ein Teil.
+- <InlineMath math="0{,}21" />% zählt eine Bürettenablesung, der Titer braucht aber zwei.

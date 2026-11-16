@@ -1,22 +1,22 @@
-# A titre comes from two readings, so it carries two uncertainties
+# Percentage uncertainties add when values are multiplied or divided
 
-The titre is the difference of the readings: <InlineMath math="24.80 - 1.25 = 23.55\text{ cm}^3" />. Each reading can be off by <InlineMath math="0.05\text{ cm}^3" /> in either direction, and in the worst case **the two errors add**, so the titre is uncertain by <InlineMath math="\pm 0.10\text{ cm}^3" />.
+The pipette's share: <InlineMath math="\tfrac{0.06}{25.00} \times 100\% = 0.24\%" />. The titre is <InlineMath math="24.80 - 1.25 = 23.55\text{ cm}^3" />, built from two readings, so it is uncertain by <InlineMath math="2 \times 0.05 = 0.10\text{ cm}^3" />: <InlineMath math="\tfrac{0.10}{23.55} \times 100\% = 0.42\%" />.
 
 <Chart
-  title={<>Burette Readings</>}
+  title={<>Percentage Uncertainty of Each Measurement</>}
   bars="apart"
-  categories={["Initial", "Final"]}
+  categories={["Pipette", "Titre", "Concentration"]}
   series={[
-    { label: "Reading (cm³)", mark: "bar", values: [1.25, 24.8] },
+    { label: "Percentage uncertainty (%)", mark: "bar", values: [<InlineMath math="0.24" />, <InlineMath math="0.42" />, <InlineMath math="0.66" />] },
   ]}
-  valueLabel="Reading (cm³)"
-  description={<>Initial reading <InlineMath math="1.25\text{ cm}^3" />, final reading <InlineMath math="24.80\text{ cm}^3" />. Each reading is uncertain by <InlineMath math="\pm 0.05\text{ cm}^3" />.</>}
+  valueLabel="Percentage uncertainty (%)"
+  description={<>Pipette <InlineMath math="0.24\%" />, titre <InlineMath math="0.42\%" />, and the concentration found from both <InlineMath math="0.66\%" />.</>}
 />
 
-As a share of the titre: <InlineMath math="\tfrac{0.10}{23.55} \times 100\% = 0.42\%" />. A larger titre would make the same <InlineMath math="\pm 0.10\text{ cm}^3" /> a smaller percentage, which is why titrations aim for titres above about <InlineMath math="20\text{ cm}^3" />.
+The concentration comes from dividing one volume by the other, and for a product or a quotient the **percentage uncertainties add**: <InlineMath math="0.24\% + 0.42\% = 0.66\%" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="\pm 0.05\text{ cm}^3" /> counts only one reading, though the titre needs **both** the initial and the final reading.
-- <InlineMath math="26.05\text{ cm}^3" /> adds the readings instead of subtracting them.
-- <InlineMath math="4.2\%" /> slips a decimal place: <InlineMath math="0.10 \div 23.55" /> is <InlineMath math="0.0042" />, which is <InlineMath math="0.42\%" />.
+- Every instrument has an uncertainty, and the pipette's <InlineMath math="0.24\%" /> also reaches the answer.
+- Uncertainties never cancel by subtraction, so the total cannot be **smaller** than either part.
+- <InlineMath math="0.21\%" /> counts one burette reading, but the titre needs two.
