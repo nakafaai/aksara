@@ -1,0 +1,25 @@
+# Convert every temperature to kelvin before comparing it with the table
+
+Add <InlineMath math="273" /> to each Celsius temperature: <InlineMath math="27^\circ\text{C}" /> is <InlineMath math="300\text{ K}" />, <InlineMath math="127^\circ\text{C}" /> is <InlineMath math="400\text{ K}" /> and <InlineMath math="-200^\circ\text{C}" /> is <InlineMath math="73\text{ K}" />. **An element is a gas above its boiling point and a liquid between its melting and boiling points**. At <InlineMath math="300\text{ K}" /> only P and S are above their boiling points. R at <InlineMath math="400\text{ K}" /> and S at <InlineMath math="73\text{ K}" /> both lie between the two points, so both are liquids.
+
+<Chart
+  title={<>Boiling points in degrees Celsius</>}
+  description={<>P boils at <InlineMath math="-34^\circ\text{C}" />, Q at <InlineMath math="59^\circ\text{C}" />, R at <InlineMath math="184^\circ\text{C}" /> and S at <InlineMath math="-183^\circ\text{C}" />.</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Boiling point", mark: "bar", values: [-34, 59, 184, -183] },
+  ]}
+  valueLabel="Boiling point (°C)"
+/>
+
+<BlockMath math="\begin{aligned}
+300\text{ K}&>239\text{ K},\,90\text{ K}\ (\text{P},\ \text{S gases})\\
+387&<400<457\ (\text{R liquid}),\quad54<73<90\ (\text{S liquid})
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- Comparing the Celsius numbers directly with the kelvin values makes every element look solid. **Convert to kelvin first**.
+- <InlineMath math="73\text{ K}" /> is above S's melting point, <InlineMath math="54\text{ K}" />, so S has melted and is a liquid, not a solid.
+- Q boils at <InlineMath math="332\text{ K}" />, so at <InlineMath math="300\text{ K}" /> it is still a liquid.

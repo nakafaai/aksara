@@ -1,0 +1,25 @@
+# Rechne jede Temperatur in Kelvin um, bevor du sie mit der Tabelle vergleichst
+
+Addiere <InlineMath math="273" /> zu jeder Celsiustemperatur: <InlineMath math="27^\circ\text{C}" /> sind <InlineMath math="300\text{ K}" />, <InlineMath math="127^\circ\text{C}" /> sind <InlineMath math="400\text{ K}" /> und <InlineMath math="-200^\circ\text{C}" /> sind <InlineMath math="73\text{ K}" />. **Ein Element ist über seinem Siedepunkt gasförmig und zwischen Schmelz- und Siedepunkt flüssig**. Bei <InlineMath math="300\text{ K}" /> liegen nur P und S über ihrem Siedepunkt. R bei <InlineMath math="400\text{ K}" /> und S bei <InlineMath math="73\text{ K}" /> liegen beide zwischen den zwei Punkten, also sind beide flüssig.
+
+<Chart
+  title={<>Siedepunkte in Grad Celsius</>}
+  description={<>P siedet bei <InlineMath math="-34^\circ\text{C}" />, Q bei <InlineMath math="59^\circ\text{C}" />, R bei <InlineMath math="184^\circ\text{C}" /> und S bei <InlineMath math="-183^\circ\text{C}" />.</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Siedepunkt", mark: "bar", values: [-34, 59, 184, -183] },
+  ]}
+  valueLabel="Siedepunkt (°C)"
+/>
+
+<BlockMath math="\begin{aligned}
+300\text{ K}&>239\text{ K},{.}90\text{ K}\ (\text{P},\ \text{S gases})\\
+387&<400<457\ (\text{R liquid}),\quad54<73<90\ (\text{S liquid})
+\end{aligned}" />
+
+# Warum die anderen Antworten falsch sind
+
+- Wer die Celsiuszahlen direkt mit den Kelvinwerten vergleicht, hält jedes Element für fest. **Erst in Kelvin umrechnen**.
+- <InlineMath math="73\text{ K}" /> liegt über dem Schmelzpunkt von S, <InlineMath math="54\text{ K}" />, also ist S geschmolzen und flüssig, nicht fest.
+- Q siedet bei <InlineMath math="332\text{ K}" />, also ist es bei <InlineMath math="300\text{ K}" /> noch flüssig.
