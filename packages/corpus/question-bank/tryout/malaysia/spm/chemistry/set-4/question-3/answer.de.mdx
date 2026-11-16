@@ -1,22 +1,22 @@
-# Erst die mittlere Masse, dann der Anteil eines Isotops
+# Den Mittelwert in Häufigkeiten umrechnen, dann über die Verbindung zählen
 
-Die relative Atommasse ist <InlineMath math="0{,}199 \times 10 + 0{,}801 \times 11 = 1{,}99 + 8{,}81 = 10{,}8" />. <InlineMath math="1{,}08" /> g natürliches Bor sind also <InlineMath math="1{,}08 \div 10{,}8 = 0{,}100" /> mol Atome.
+Bor-10 sei der Anteil <InlineMath math="x" /> der Atome. Die mittlere Masse ist <InlineMath math="10{,}0x + 11{,}0(1 - x) = 10{,}8" />, also <InlineMath math="11{,}0 - x = 10{,}8" /> und <InlineMath math="x = 0{,}20" />: Bor-10 stellt <InlineMath math="20\%" /> der Atome.
 
 <Chart
   title={<>Isotope des Bors</>}
   bars="apart"
   categories={["Bor-10", "Bor-11"]}
   series={[
-    { label: "Häufigkeit (%)", mark: "bar", values: [19.9, 80.1] },
+    { label: "Häufigkeit (%)", mark: "bar", values: [20, 80] },
   ]}
   valueLabel="Häufigkeit (%)"
-  description={<>Bor-10: <InlineMath math="19{,}9" />%. Bor-11: <InlineMath math="80{,}1" />%.</>}
+  description={<>Bor-10 stellt <InlineMath math="20\%" /> der Atome, Bor-11 <InlineMath math="80\%" />.</>}
 />
 
-Jedes Atom ist mit <InlineMath math="19{,}9\%" /> Wahrscheinlichkeit Bor-10, Bor-10 macht also <InlineMath math="0{,}199 \times 0{,}100 = 0{,}0199" /> mol aus: <InlineMath math="0{,}0199 \times 6{,}02 \times 10^{23} = 1{,}20 \times 10^{22}" /> Atome. **Die mittlere Masse legt die Gesamtzahl fest**, die Häufigkeit greift ein Isotop heraus.
+Bortrifluorid: <InlineMath math="M_r = 10{,}8 + 3 \times 19 = 67{,}8" />, also <InlineMath math="6{,}78 \div 67{,}8 = 0{,}100" /> mol mit **einem Boratom je Formeleinheit**, also <InlineMath math="0{,}100" /> mol Bor. Bor-10: <InlineMath math="0{,}20 \times 0{,}100 = 0{,}020" /> mol, also <InlineMath math="0{,}020 \times 6{,}02 \times 10^{23} = 1{,}20 \times 10^{22}" /> Atome.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="4{,}82 \times 10^{22}" /> nimmt die Häufigkeit von **Bor-11**, nicht von Bor-10.
-- <InlineMath math="10{,}5" /> ist der einfache Mittelwert von <InlineMath math="10" /> und <InlineMath math="11" /> und übergeht, dass Bor-11 viermal so häufig ist.
-- <InlineMath math="6{,}02 \times 10^{22}" /> zählt alle Boratome, beide Isotope zusammen.
+- <InlineMath math="80\%" /> gehört zu Bor-11. Der Mittelwert <InlineMath math="10{,}8" /> liegt näher an <InlineMath math="11{,}0" />, also ist das schwerere **Isotop das häufigere**.
+- <InlineMath math="6{,}02 \times 10^{22}" /> zählt alle Boratome und vergisst, dass nur ein Fünftel Bor-10 ist.
+- <InlineMath math="50\%" /> ergäbe einen Mittelwert von <InlineMath math="10{,}5" />, nicht <InlineMath math="10{,}8" />.
