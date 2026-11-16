@@ -55,12 +55,12 @@ describe("long decimal coordinates", () => {
 
   it("ignores long decimals that no x, y, or z coordinate carries", () => {
     for (const source of [
-      '<LineEquation title="Label" description="A label." data={[{ points: [{ x: 1, y: 1, z: 0 }], labels: [{ text: "A", at: 0, offset: [3.464101615, -0.8, 0] }] }]} />',
+      '<FunctionChart title="Label" description="A label." data={[{ points: [{ x: 1, y: 1, z: 0 }], labels: [{ text: "A", at: 0, offset: [3.464101615, -0.8, 0] }] }]} />',
       curveWith("[{ x: 1, y: 1, z: 0, radius: 0.123456 }]"),
       curveWith("[{ [x]: 0.123456, y: 1 }]"),
       curveWith("[{ 1: 0.12345, y: 1 }]"),
       curveWith("[{ x: 1, y: 1 }].map(({ x = 0.123456 }) => x)"),
-      '<LineEquation title="Camera" description="A view." cameraPosition={[3.5355339, 3.5355339, 5]} cameraTarget={[0.123456, 0, 0]} data={[]} />',
+      '<FunctionChart title="Camera" description="A view." cameraPosition={[3.5355339, 3.5355339, 5]} cameraTarget={[0.123456, 0, 0]} data={[]} />',
     ]) {
       assert.deepStrictEqual(literalRules(source), []);
     }

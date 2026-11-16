@@ -6,8 +6,8 @@ import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 
 it("checks named matrix methods in learner-visible component props", () => {
   const source = [
-    '<LineEquation title="QR algorithm" />',
-    "<LineEquation",
+    '<FunctionChart title="QR algorithm" />',
+    "<FunctionChart",
     '  description={<>Compare SVD with <InlineMath math="\\mathrm{QR}" />.</>}',
     "/>",
   ].join("\n");
@@ -41,7 +41,7 @@ it("preserves QR codes links code headings and metadata", () => {
     "QR LU SVD",
     "```",
     "<CodeBlock>QR LU SVD</CodeBlock>",
-    "<LineEquation",
+    "<FunctionChart",
     "  data={() => {",
     "    // QR LU SVD are code-comment labels, not learner prose.",
     "    return [];",

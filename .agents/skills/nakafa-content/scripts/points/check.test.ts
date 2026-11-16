@@ -77,21 +77,23 @@ layer(NodeServices.layer, { excludeTestServices: true })(
       })
     );
 
-    it.effect("fails a lesson that loses a LineEquation against its base", () =>
-      Effect.gen(function* () {
-        const root = yield* commitLesson(COMPUTED_CURVE, COMPUTED_CURVE);
-        yield* writeFiles(root, { [LESSON]: lesson(COMPUTED_CURVE) });
-        const result = yield* check(root);
+    it.effect(
+      "fails a lesson that loses a FunctionChart against its base",
+      () =>
+        Effect.gen(function* () {
+          const root = yield* commitLesson(COMPUTED_CURVE, COMPUTED_CURVE);
+          yield* writeFiles(root, { [LESSON]: lesson(COMPUTED_CURVE) });
+          const result = yield* check(root);
 
-        assert.strictEqual(result.code, 1);
-        assert.strictEqual(
-          result.error[0],
-          `${LESSON}:1:1 [interactive-visuals-fell] interactive visuals fell from 2 to 1 (LineEquation 2 to 1): a revision never removes 3D or animation`
-        );
-      })
+          assert.strictEqual(result.code, 1);
+          assert.strictEqual(
+            result.error[0],
+            `${LESSON}:1:1 [interactive-visuals-fell] interactive visuals fell from 2 to 1 (FunctionChart 2 to 1): a revision never removes 3D or animation`
+          );
+        })
     );
 
-    it.effect("passes a lesson that gains a LineEquation", () =>
+    it.effect("passes a lesson that gains a FunctionChart", () =>
       Effect.gen(function* () {
         const root = yield* commitLesson(COMPUTED_CURVE);
         yield* writeFiles(root, {
@@ -162,7 +164,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         assert.strictEqual(result.code, 1);
         assert.strictEqual(
           result.error[0],
-          `${SIBLING}:1:1 [interactive-visuals-fell] interactive visuals fell from 2 to 1 (LineEquation 2 to 1): a revision never removes 3D or animation`
+          `${SIBLING}:1:1 [interactive-visuals-fell] interactive visuals fell from 2 to 1 (FunctionChart 2 to 1): a revision never removes 3D or animation`
         );
       })
     );
@@ -244,7 +246,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
     it.effect("fails with a typed error for a document it cannot parse", () =>
       Effect.gen(function* () {
         const root = yield* commitLesson(COMPUTED_CURVE);
-        yield* writeFiles(root, { [LESSON]: lesson("<LineEquation title=") });
+        yield* writeFiles(root, { [LESSON]: lesson("<FunctionChart title=") });
         const head = yield* check(root);
         yield* commitAll(root, "broken lesson");
         yield* writeFiles(root, { [LESSON]: lesson(COMPUTED_CURVE) });

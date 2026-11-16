@@ -19,6 +19,14 @@ to the catalog and to Nakafa's renderer is available in every content kind at
 once. A prompt or a reading never shows answer state; an explanation may (see
 [questions](questions.md) and [solutions](solutions.md)).
 
+Nothing limits what a visual may be. When no catalog visual models the idea
+well, build one: a custom three.js scene, a p5 simulation, or an interactive
+lab in Nakafa's design system and renderer, with its entry and props schema in
+the catalog here, so it serves lessons and try-outs alike. Biology, chemistry,
+and physics expect custom three-dimensional models of their apparatus,
+particles, organs, fields, and processes. Content that names a new visual
+publishes once Nakafa's production renderer draws it.
+
 - Use prose for explanation, interpretation, uncertainty, and causal reasoning.
 - Use a short list for parallel items that do not need cross-column comparison.
 - Use a Markdown table for exact mappings or repeated comparisons. Keep cells
@@ -128,10 +136,10 @@ once. A prompt or a reading never shows answer state; an explanation may (see
 A visual's title, description, labels, facts, and legends are JSX nodes, never
 strings, so every mathematical or chemical expression in them renders through
 `<InlineMath />`: `title={<>Fungsi <InlineMath math="f(x) = x^2" /></>}`. The
-[mathematics rules](math.md) own what counts as math. `LineEquation`,
-`Triangle`, `UnitCircle`, `NumberLine`, `Inequality`, and `VectorChart` are
-retired: draw with `MathVisual` (D36). The voice gate reports each string text
-prop as `string-visual-text`, each retired visual as `retired-visual`, and each
+[mathematics rules](math.md) own what counts as math. Lines, number lines,
+circles, triangles, inequalities, and vectors are `MathVisual` scenes (D36);
+the catalog holds no separate component for them, so the compiler refuses one.
+The voice gate reports each string text prop as `string-visual-text` and each
 plain-text expression as `plain-math-text`.
 
 ## Computed and exact visuals

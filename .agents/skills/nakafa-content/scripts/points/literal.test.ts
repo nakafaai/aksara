@@ -98,13 +98,13 @@ describe("expressions that a component owns", () => {
 
 describe("expressions outside a plain attribute", () => {
   it("scans a series inside a flow expression", () => {
-    const wrapped = `{<LineEquation title="Series" description="A wrapped series." data={[{ points: ${typedObjects(9)} }]} />}`;
+    const wrapped = `{<FunctionChart title="Series" description="A wrapped series." data={[{ points: ${typedObjects(9)} }]} />}`;
 
     assert.deepStrictEqual(literalRules(wrapped), ["literal-points"]);
   });
 
   it("scans a spread attribute and ignores empty or text expressions", () => {
-    const spread = `<LineEquation title="Series" description="A spread." {...{ data: [{ points: ${typedObjects(9)} }] }} />`;
+    const spread = `<FunctionChart title="Series" description="A spread." {...{ data: [{ points: ${typedObjects(9)} }] }} />`;
 
     assert.deepStrictEqual(literalRules(spread), ["literal-points"]);
     assert.deepStrictEqual(literalRules('<>{" "}</>'), []);

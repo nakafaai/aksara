@@ -20,29 +20,29 @@ function owners(...blocks: readonly string[]) {
 describe("document elements", () => {
   it("names every element of the page, nested or inline, in order", () => {
     const { elements } = inspect(
-      '<ContentStack>\n<LineEquation title="A" description="B" data={[]} />\n</ContentStack>',
-      'A circle <UnitCircle title="C" description="D" /> sits in a sentence.'
+      '<ContentStack>\n<FunctionChart title="A" description="B" data={[]} />\n</ContentStack>',
+      'A circle <VirusStructureLab title="C" description="D" /> sits in a sentence.'
     );
 
     assert.deepStrictEqual(elements, [
       "InlineMath",
       "ContentStack",
-      "LineEquation",
-      "UnitCircle",
+      "FunctionChart",
+      "VirusStructureLab",
     ]);
   });
 
   it("names an element that an expression writes", () => {
     const { elements } = inspect(
-      '{<LineEquation title="A" description="B" data={[]} />}',
-      '<ContentBlock title={<UnitCircle title="C" description="D" />} />'
+      '{<FunctionChart title="A" description="B" data={[]} />}',
+      '<ContentBlock title={<VirusStructureLab title="C" description="D" />} />'
     );
 
     assert.deepStrictEqual(elements, [
       "InlineMath",
-      "LineEquation",
+      "FunctionChart",
       "ContentBlock",
-      "UnitCircle",
+      "VirusStructureLab",
     ]);
   });
 
@@ -61,12 +61,12 @@ describe("document expressions", () => {
   it("gives each attribute expression the element that holds it", () => {
     assert.deepStrictEqual(
       owners(
-        '<LineEquation title="A" description="B" data={[{ x: 1 }]} />',
-        '<UnitCircle title="C" description="D" angle={2} />'
+        '<FunctionChart title="A" description="B" data={[{ x: 1 }]} />',
+        '<VirusStructureLab title="C" description="D" angle={2} />'
       ),
       [
-        ["LineEquation", 1],
-        ["UnitCircle", 2],
+        ["FunctionChart", 1],
+        ["VirusStructureLab", 2],
       ]
     );
   });
@@ -86,12 +86,12 @@ describe("document expressions", () => {
   it("keeps the outer element for a fragment and loses it for a member name", () => {
     assert.deepStrictEqual(
       owners(
-        '<LineEquation title={<>{1}</>} description="A" data={[]} cameraTarget={[2]} />',
+        '<FunctionChart title={<>{1}</>} description="A" data={[]} cameraTarget={[2]} />',
         "{<Charts.Line data={[3]} />}"
       ),
       [
-        ["LineEquation", 1],
-        ["LineEquation", 2],
+        ["FunctionChart", 1],
+        ["FunctionChart", 2],
         [undefined, 3],
       ]
     );
@@ -101,12 +101,12 @@ describe("document expressions", () => {
     assert.deepStrictEqual(
       owners(
         "{[4]}",
-        '<LineEquation title="A" description="B" {...{ data: [5] }} />',
+        '<FunctionChart title="A" description="B" {...{ data: [5] }} />',
         "Plain text with {/* a comment */} inside, {6} and a string {'7'}."
       ),
       [
         [undefined, 4],
-        ["LineEquation", 5],
+        ["FunctionChart", 5],
         [undefined, 6],
       ]
     );

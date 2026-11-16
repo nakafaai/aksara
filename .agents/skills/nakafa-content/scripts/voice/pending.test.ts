@@ -11,9 +11,9 @@ function pending(source: string) {
   );
 }
 
-it("finds retired visuals, string visual text, and plain-text math", () => {
+it("finds string visual text and plain-text math", () => {
   const source = [
-    '<LineEquation title="Garis lurus" data={[]} />',
+    '<MathVisual title="Garis lurus" scene={scene} />',
     "",
     '<MathVisual description="Kurva naik" variant="area" {...shared} />',
     "",
@@ -25,8 +25,7 @@ it("finds retired visuals, string visual text, and plain-text math", () => {
   ].join("\n");
   assert.deepEqual(pending(source), [
     "plain-math-text 6:8",
-    "retired-visual 1:1",
-    "string-visual-text 1:15",
+    "string-visual-text 1:13",
     "string-visual-text 3:13",
   ]);
 });
@@ -35,11 +34,11 @@ it.effect("prints each pending rule's count, fix, and occurrences", () =>
   Effect.gen(function* () {
     const issue = {
       column: 1,
-      excerpt: '<LineEquation title="Garis" />',
+      excerpt: 'title="Garis"',
       file: "id.mdx",
       line: 2,
       locale: "id" as const,
-      rule: "retired-visual",
+      rule: "string-visual-text",
     };
     const { log } = yield* capture(
       Effect.gen(function* () {
@@ -49,8 +48,8 @@ it.effect("prints each pending rule's count, fix, and occurrences", () =>
       })
     );
     assert.deepEqual(log, [
-      "1 [retired-visual] pending: draw it with MathVisual, the one math visual (D36)",
-      'id.mdx:2:1 [retired-visual] <LineEquation title="Garis" />',
+      '1 [string-visual-text] pending: write the prop as JSX, such as description={<>Area <InlineMath math="x^2" /></>}',
+      'id.mdx:2:1 [string-visual-text] title="Garis"',
     ]);
   })
 );

@@ -342,9 +342,8 @@ and superscripts, math symbols and arrows, Greek letters, element formulas with
 a count that does not start with 0, the diatomic gases, and simple equations
 between numbers and one-letter variables in the text a learner reads, headings
 and component text props included, with math components, code, links, and
-metadata kept out; `string-visual-text` (D39) finds a title, description,
-labels, facts, or legend prop written as a string instead of JSX; and
-`retired-visual` (D36) finds a retired visual component. The gate prints each
+metadata kept out; and `string-visual-text` (D39) finds a title, description,
+labels, facts, or legend prop written as a string instead of JSX. The gate prints each
 rule's count, its fix, and every occurrence on each run and fails on none yet.
 The change that clears a rule's last occurrence adds it to the blocking set,
 with no allowlist.

@@ -155,7 +155,7 @@ describe("content tree", () => {
       element("fragment", {}, [
         element("InlineMath", { math: "x" }),
         element("p", {}, [
-          element("LineEquation", {
+          element("ScatterDiagram", {
             data: [{ labels: element("BlockMath", { math: "y" }) }],
           }),
           "text",
@@ -167,7 +167,7 @@ describe("content tree", () => {
 
     expect(contentTreeComponentNames(tree)).toEqual([
       "InlineMath",
-      "LineEquation",
+      "ScatterDiagram",
       "BlockMath",
       "Table",
       "Highlight",

@@ -15,17 +15,18 @@ function parse(...blocks: readonly string[]) {
   return inspectDocument(parseLessonMdx(lesson(...blocks)));
 }
 
-/** Writes one self-closing LineEquation, the most common lesson visual. */
-const LINE = '<LineEquation title="Line" description="A line." data={[]} />';
-const UNIT_CIRCLE = '<UnitCircle title="Circle" description="A circle." />';
+/** Writes one self-closing FunctionChart, the most common lesson visual. */
+const LINE = '<FunctionChart title="Line" description="A line." data={[]} />';
+const UNIT_CIRCLE =
+  '<VirusStructureLab title="Circle" description="A circle." />';
 
 describe("interactive visual names", () => {
   it("counts every renderer component that models a concept", () => {
     for (const name of [
-      "LineEquation",
+      "FunctionChart",
       "MathVisual",
       "ScatterDiagram",
-      "UnitCircle",
+      "VirusStructureLab",
       "WindEnergyConversionLab",
     ]) {
       assert.isTrue(isInteractiveVisual(name), name);
@@ -67,9 +68,9 @@ describe("visual inventory", () => {
     );
 
     assert.deepStrictEqual([...countVisuals(tree)].sort(), [
-      ["LineEquation", 2],
+      ["FunctionChart", 2],
       ["MathVisual", 1],
-      ["UnitCircle", 1],
+      ["VirusStructureLab", 1],
     ]);
   });
 });
@@ -83,8 +84,8 @@ describe("visuals written inside expressions", () => {
     );
 
     assert.deepStrictEqual([...countVisuals(tree)].sort(), [
-      ["LineEquation", 1],
-      ["UnitCircle", 1],
+      ["FunctionChart", 1],
+      ["VirusStructureLab", 1],
     ]);
   });
 
@@ -99,7 +100,7 @@ describe("visuals written inside expressions", () => {
 
     assert.include(
       findVisualLoss(base, parse(UNIT_CIRCLE))?.message,
-      "fell from 2 to 1 (LineEquation 1 to 0)"
+      "fell from 2 to 1 (FunctionChart 1 to 0)"
     );
   });
 
@@ -121,7 +122,7 @@ describe("visual loss", () => {
     assert.strictEqual(loss?.column, 1);
     assert.include(
       loss?.message,
-      "interactive visuals fell from 5 to 2 (LineEquation 2 to 1, UnitCircle 3 to 1)"
+      "interactive visuals fell from 5 to 2 (FunctionChart 2 to 1, VirusStructureLab 3 to 1)"
     );
   });
 
@@ -131,7 +132,7 @@ describe("visual loss", () => {
 
     assert.include(
       findVisualLoss(base, head)?.message,
-      "interactive visuals fell from 2 to 1 (UnitCircle 1 to 0)"
+      "interactive visuals fell from 2 to 1 (VirusStructureLab 1 to 0)"
     );
   });
 

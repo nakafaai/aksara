@@ -32,7 +32,7 @@ const MARKUP = [
 
 describe("visual catalog", () => {
   it("names every component of Nakafa's renderer once, in code-unit order", () => {
-    expect(VISUAL_NAMES).toHaveLength(184);
+    expect(VISUAL_NAMES).toHaveLength(181);
     expect(VISUAL_NAMES).toEqual(
       Arr.sort(Arr.dedupe(VISUAL_NAMES), Order.String)
     );
@@ -76,14 +76,6 @@ describe("visual catalog", () => {
 
 describe("answer state of the catalog", () => {
   it("names the props that state a result, and nothing in a plain visual", () => {
-    expect(
-      answerState("UnitCircle", {
-        angle: 30,
-        description: [text("An angle")],
-        title: [text("Angle")],
-        trigValues: { sin: "1/2" },
-      })
-    ).toEqual(["trigValues"]);
     expect(answerState("BarChart", { data: [] })).toEqual([]);
     expect(
       answerState("GreenhouseEffectLab", { labels: { meaning: [text("M")] } })

@@ -118,7 +118,7 @@ it("keeps an unterminated or entity-bearing attribute unreported", () => {
 
 it("reads math nested in a component fragment prop", () => {
   const source = [
-    "<LineEquation",
+    "<FunctionChart",
     '  title={<>Graph of <InlineMath math="g(x) = 2^x" /></>}',
     "  description={",
     "    <>",
@@ -152,20 +152,20 @@ it("reads math nested in a component data value", () => {
 
 it("reads an expression math prop nested in a fragment", () => {
   const math = JSON.stringify(String.raw`5 \text{Einheiten}`);
-  const source = `<LineEquation description={<>Shifted by <InlineMath math={${math}} /></>} />`;
+  const source = `<FunctionChart description={<>Shifted by <InlineMath math={${math}} /></>} />`;
   assert.deepEqual(locatedIn(source), [{ line: 1, rule: GLUED }]);
 });
 
 it("keeps nested math props without a static value unreported", () => {
   assert.deepEqual(
     rulesForSource(
-      "A <LineEquation description={<>x <InlineMath math /></>} />"
+      "A <FunctionChart description={<>x <InlineMath math /></>} />"
     ),
     []
   );
   assert.deepEqual(
     rulesForSource(
-      "A <LineEquation description={<>x <InlineMath math={name} /></>} />"
+      "A <FunctionChart description={<>x <InlineMath math={name} /></>} />"
     ),
     []
   );
@@ -174,7 +174,7 @@ it("keeps nested math props without a static value unreported", () => {
 it("keeps nested math props with an unaligned entity unreported", () => {
   assert.deepEqual(
     rulesForSource(
-      'A <LineEquation description={<>x <InlineMath math="a &amp; b & c" /></>} />'
+      'A <FunctionChart description={<>x <InlineMath math="a &amp; b & c" /></>} />'
     ),
     []
   );

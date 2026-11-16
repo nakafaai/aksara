@@ -67,7 +67,7 @@ it("recognizes tables, code, quotations and components as support", () => {
     "| Input | Output |\n| --- | --- |\n| One | Two |",
     "```python\nprint(2)\n```",
     "> An exact quotation.",
-    '<LineEquation title="Example" description="Compare the lines." data={[]} />',
+    '<FunctionChart title="Example" description="Compare the lines." data={[]} />',
   ]) {
     const [review] = reviewTeachingSections(
       parseLessonMdx(
@@ -145,7 +145,7 @@ it("checks the unheaded body rendered beneath an app-owned answer heading", () =
 it("does not borrow emphasis from a quotation or a component label", () => {
   for (const support of [
     "> A **quoted condition** remains exact.",
-    "<LineEquation data={[{ points: [], labels: [{ text: <Highlight>Line label</Highlight> }] }]} />",
+    "<FunctionChart data={[{ points: [], labels: [{ text: <Highlight>Line label</Highlight> }] }]} />",
     "```md\n**A code sample**\n```",
   ]) {
     const tree = parseLessonMdx(
