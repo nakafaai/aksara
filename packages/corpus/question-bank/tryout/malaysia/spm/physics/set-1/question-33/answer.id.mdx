@@ -4,6 +4,37 @@ Gaya magnet harus mengarah ke atas dengan besar sama dengan berat kawat, jadi <I
 
 <BlockMath math="I=\frac{mg}{Bl}=\frac{(0{,}0060)(10)}{(0{,}15)(0{,}20)}=\frac{0{,}060}{0{,}030}=2{,}0\text{ A}" />
 
+Taruh ketiga arah pada satu gambar sebelum kamu memakai tanganmu. Medan mengarah ke utara, gaya harus mengarah ke atas untuk menahan kawat, lalu kaidah itu menentukan arah arus di sepanjang kawat.
+
+<MathVisual
+  title={<>Medan, arus, dan gaya pada kawat</>}
+  description={<>Kawat terbentang dari timur ke barat. Medan <InlineMath math="0{,}15\text{ T}" /> mengarah ke utara, gaya magnet <InlineMath math="0{,}060\text{ N}" /> mengarah ke atas dan mengimbangi berat <InlineMath math="0{,}060\text{ N}" />, dan arus <InlineMath math="2{,}0\text{ A}" /> mengalir ke timur.</>}
+  labels={{
+    field: <>medan <InlineMath math="B=0{,}15\text{ T}" />, utara</>,
+    current: <>arus <InlineMath math="I=2{,}0\text{ A}" />, timur</>,
+    force: <>gaya <InlineMath math="BIl=0{,}060\text{ N}" />, atas</>,
+    weight: <>berat <InlineMath math="mg=0{,}060\text{ N}" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3, max: 3 }, z: { min: -3, max: 3 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "wire", kind: "segment", appearance: "secondary", from: { x: -3, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 } },
+      { id: "current-arrow", kind: "vector", appearance: "primary", from: { x: 1, y: 0, z: 0 }, to: { x: 3, y: 0, z: 0 } },
+      { id: "field-arrow", kind: "vector", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2.5, z: 0 } },
+      { id: "force-arrow", kind: "vector", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 2.5 } },
+      { id: "weight-arrow", kind: "vector", appearance: "warning", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: -2.5 } },
+    ],
+    labels: [
+      { key: "field", objectId: "field-arrow", at: { x: 0, y: 2.5, z: 0 }, placement: "right" },
+      { key: "current", objectId: "current-arrow", at: { x: 3, y: 0, z: 0 }, placement: "below" },
+      { key: "force", objectId: "force-arrow", at: { x: 0, y: 0, z: 2.5 }, placement: "above" },
+      { key: "weight", objectId: "weight-arrow", at: { x: 0, y: 0, z: -2.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Untuk arah, pakai kaidah tangan kiri Fleming dengan syarat **gaya harus ke atas**. Jari telunjuk menunjuk medan ke utara dan ibu jari ke atas, maka jari tengah, yaitu arah arus, menunjuk ke timur. Jadi, arusnya <InlineMath math="2{,}0\text{ A}" /> ke arah timur.
 
 # Mengapa pilihan lain salah

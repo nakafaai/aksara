@@ -1,3 +1,45 @@
 A <InlineMath math="6.0\text{ V}" /> battery with negligible internal resistance is connected to three bulbs. Bulb <InlineMath math="L_1" /> of resistance <InlineMath math="4.0\,\Omega" /> is connected in series with a parallel combination of bulb <InlineMath math="L_2" /> of resistance <InlineMath math="6.0\,\Omega" /> and bulb <InlineMath math="L_3" /> of resistance <InlineMath math="12\,\Omega" />. Assume the resistance of each bulb stays constant.
 
+<MathVisual
+  title={<>Three bulbs connected to a battery</>}
+  description={<>A <InlineMath math="6.0\text{ V}" /> battery drives bulb <InlineMath math="L_1" /> of <InlineMath math="4.0\,\Omega" /> in series with bulbs <InlineMath math="L_2" /> of <InlineMath math="6.0\,\Omega" /> and <InlineMath math="L_3" /> of <InlineMath math="12\,\Omega" />, which are connected in parallel.</>}
+  labels={{
+    battery: <><InlineMath math="6.0\text{ V}" /></>,
+    "bulb-1": <><InlineMath math="L_1,\ 4.0\,\Omega" /></>,
+    "bulb-2": <><InlineMath math="L_2,\ 6.0\,\Omega" /></>,
+    "bulb-3": <><InlineMath math="L_3,\ 12\,\Omega" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 12 }, y: { min: -1, max: 5.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "battery-long", kind: "segment", appearance: "primary", from: { x: -0.6, y: 2.2 }, to: { x: 0.6, y: 2.2 } },
+      { id: "battery-short", kind: "segment", appearance: "primary", from: { x: -0.3, y: 1.8 }, to: { x: 0.3, y: 1.8 } },
+      { id: "wire-left", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 2.2 }, { x: 0, y: 4 }, { x: 2.5, y: 4 }] },
+      { id: "wire-top", kind: "polyline", appearance: "secondary", vertices: [{ x: 3.5, y: 4 }, { x: 8, y: 4 }, { x: 8, y: 2.5 }] },
+      { id: "wire-bottom", kind: "polyline", appearance: "secondary", vertices: [{ x: 8, y: 1.5 }, { x: 8, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1.8 }] },
+      { id: "branch-top", kind: "segment", appearance: "secondary", from: { x: 6, y: 4 }, to: { x: 6, y: 2.5 } },
+      { id: "branch-bottom", kind: "segment", appearance: "secondary", from: { x: 6, y: 1.5 }, to: { x: 6, y: 0 } },
+      { id: "junction-top", kind: "point", appearance: "secondary", at: { x: 6, y: 4 } },
+      { id: "junction-bottom", kind: "point", appearance: "secondary", at: { x: 6, y: 0 } },
+      { id: "bulb-1", kind: "circle", appearance: "primary", center: { x: 3, y: 4 }, radius: 0.5 },
+      { id: "bulb-1-cross-a", kind: "segment", appearance: "primary", from: { x: 2.65, y: 3.65 }, to: { x: 3.35, y: 4.35 } },
+      { id: "bulb-1-cross-b", kind: "segment", appearance: "primary", from: { x: 2.65, y: 4.35 }, to: { x: 3.35, y: 3.65 } },
+      { id: "bulb-2", kind: "circle", appearance: "primary", center: { x: 6, y: 2 }, radius: 0.5 },
+      { id: "bulb-2-cross-a", kind: "segment", appearance: "primary", from: { x: 5.65, y: 1.65 }, to: { x: 6.35, y: 2.35 } },
+      { id: "bulb-2-cross-b", kind: "segment", appearance: "primary", from: { x: 5.65, y: 2.35 }, to: { x: 6.35, y: 1.65 } },
+      { id: "bulb-3", kind: "circle", appearance: "primary", center: { x: 8, y: 2 }, radius: 0.5 },
+      { id: "bulb-3-cross-a", kind: "segment", appearance: "primary", from: { x: 7.65, y: 1.65 }, to: { x: 8.35, y: 2.35 } },
+      { id: "bulb-3-cross-b", kind: "segment", appearance: "primary", from: { x: 7.65, y: 2.35 }, to: { x: 8.35, y: 1.65 } },
+    ],
+    labels: [
+      { key: "battery", objectId: "battery-long", at: { x: -0.6, y: 2.2 }, placement: "left" },
+      { key: "bulb-1", objectId: "bulb-1", at: { x: 3, y: 4.5 }, placement: "above" },
+      { key: "bulb-2", objectId: "bulb-2", at: { x: 5.5, y: 2 }, placement: "left" },
+      { key: "bulb-3", objectId: "bulb-3", at: { x: 8.5, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 The filament of bulb <InlineMath math="L_3" /> then breaks. What happens to the brightness of bulbs <InlineMath math="L_1" /> and <InlineMath math="L_2" />?

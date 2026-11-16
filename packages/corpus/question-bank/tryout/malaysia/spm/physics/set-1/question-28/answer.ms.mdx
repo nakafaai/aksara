@@ -8,6 +8,42 @@ I_1&=\frac{2.5}{5.0}=0.50\text{ A},\quad I_2=\frac{2.0}{2.0}=1.0\text{ A}\\
 I_3&=\frac{E}{R+r}=\frac{3.0}{1.0+1.0}=1.5\text{ A}
 \end{aligned}" />
 
+Plot kedua-dua bacaan sebagai voltan terminal melawan arus. Kedua-duanya terletak pada garis <InlineMath math="V=E-Ir" />, yang memotong paksi voltan pada <InlineMath math="E" /> dan turun sebanyak <InlineMath math="r" /> bagi setiap ampere. Garis <InlineMath math="V=(1.0)\,I" /> bagi perintang baharu bersilang dengannya pada arus baharu.
+
+<MathVisual
+  title={<>Voltan terminal melawan arus</>}
+  description={<>Bacaan <InlineMath math="(0.50\text{ A},\ 2.5\text{ V})" /> dan <InlineMath math="(1.0\text{ A},\ 2.0\text{ V})" /> terletak pada garis <InlineMath math="V=3.0-1.0\,I" />, yang bermula pada <InlineMath math="E=3.0\text{ V}" />. Garis <InlineMath math="V=(1.0)\,I" /> bagi perintang <InlineMath math="1.0\,\Omega" /> bersilang dengannya pada <InlineMath math="I=1.5\text{ A}" />.</>}
+  labels={{
+    first: <><InlineMath math="5.0\,\Omega:\ 0.50\text{ A},\ 2.5\text{ V}" /></>,
+    second: <><InlineMath math="2.0\,\Omega:\ 1.0\text{ A},\ 2.0\text{ V}" /></>,
+    emf: <><InlineMath math="E=3.0\text{ V}" /></>,
+    answer: <><InlineMath math="I=1.5\text{ A}" /></>,
+    "cell-line": <><InlineMath math="V=3.0-1.0\,I" /></>,
+    "load-line": <><InlineMath math="V=(1.0)\,I" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 3.8 }, y: { min: -0.6, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell-line", kind: "function", appearance: "primary", formula: "3 - x", domain: { min: 0, max: 3 } },
+      { id: "load-line", kind: "function", appearance: "secondary", formula: "x", domain: { min: 0, max: 2.4 } },
+      { id: "first-reading", kind: "point", appearance: "highlight", at: { x: 0.5, y: 2.5 } },
+      { id: "second-reading", kind: "point", appearance: "highlight", at: { x: 1, y: 2 } },
+      { id: "emf-point", kind: "point", appearance: "primary", at: { x: 0, y: 3 } },
+      { id: "new-current", kind: "point", appearance: "answer", at: { x: 1.5, y: 1.5 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first-reading", at: { x: 0.5, y: 2.5 }, placement: "above-right" },
+      { key: "second", objectId: "second-reading", at: { x: 1, y: 2 }, placement: "below-left" },
+      { key: "emf", objectId: "emf-point", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "answer", objectId: "new-current", at: { x: 1.5, y: 1.5 }, placement: "below-right" },
+      { key: "cell-line", objectId: "cell-line", at: { x: 2.6, y: 0.4 }, placement: "above-right" },
+      { key: "load-line", objectId: "load-line", at: { x: 2.2, y: 2.2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Jadi, arus dengan perintang <InlineMath math="1.0\,\Omega" /> ialah <InlineMath math="1.5\text{ A}" />.
 
 # Kenapa pilihan lain salah

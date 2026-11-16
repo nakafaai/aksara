@@ -2,6 +2,32 @@
 
 The heater's power is not given, but you can find it from the stage where liquid K warms up. **The same power** then acts during melting. Use the temperature change of <InlineMath math="20^\circ\text{C}" />, not the final temperature, and the time in seconds.
 
+Sketch the heating curve from the start of melting. The same heater runs through both stretches, so the energy in each stretch is proportional to its time, <InlineMath math="300\text{ s}" /> against <InlineMath math="120\text{ s}" />.
+
+<MathVisual
+  title={<>Heating curve of K</>}
+  description={<>Temperature of K against time from the start of melting, with the temperature axis drawn at one unit for <InlineMath math="4^\circ\text{C}" />. The flat stretch at <InlineMath math="80^\circ\text{C}" /> lasts <InlineMath math="5.0\text{ min}" /> while K melts, then the liquid warms in a straight line to <InlineMath math="100^\circ\text{C}" /> in <InlineMath math="2.0\text{ min}" />.</>}
+  labels={{
+    melt: <>melting: <InlineMath math="5.0\text{ min}" /> at <InlineMath math="80^\circ\text{C}" /></>,
+    warm: <>liquid: <InlineMath math="+20^\circ\text{C}" /> in <InlineMath math="2.0\text{ min}" /></>,
+    top: <><InlineMath math="100^\circ\text{C}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10 }, y: { min: -1.8, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "melting", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "warming", kind: "segment", appearance: "primary", from: { x: 5, y: 0 }, to: { x: 7, y: 5 } },
+    ],
+    labels: [
+      { key: "melt", objectId: "melting", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "warm", objectId: "warming", at: { x: 6, y: 2.5 }, placement: "right" },
+      { key: "top", objectId: "warming", at: { x: 7, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 Q_1&=mc\Delta\theta=(0.20)(2000)(20)=8000\text{ J}\\
 P&=\frac{8000}{120}\approx66.7\text{ W}\\

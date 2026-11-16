@@ -1,3 +1,34 @@
 Two loudspeakers connected to the same audio signal generator are placed <InlineMath math="1.5\text{ m}" /> apart. A student walks along a straight line parallel to the line of the loudspeakers and <InlineMath math="6.0\text{ m}" /> from it. The student finds that loud sounds are heard every <InlineMath math="1.2\text{ m}" />. The speed of sound in air is <InlineMath math="330\text{ m s}^{-1}" />.
 
+<MathVisual
+  title={<>Two loudspeakers and the student's path</>}
+  description={<>Loudspeakers <InlineMath math="S_1" /> and <InlineMath math="S_2" /> stand <InlineMath math="1.5\text{ m}" /> apart. The student walks along a straight line parallel to them, <InlineMath math="6.0\text{ m}" /> away.</>}
+  labels={{
+    s1: <><InlineMath math="S_1" /></>,
+    s2: <><InlineMath math="S_2" /></>,
+    separation: <><InlineMath math="1.5\text{ m}" /></>,
+    distance: <><InlineMath math="6.0\text{ m}" /></>,
+    walk: <>student's path</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 9.5 }, y: { min: -4.4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "speaker-1", kind: "point", appearance: "secondary", at: { x: 0, y: 0.75 } },
+      { id: "speaker-2", kind: "point", appearance: "secondary", at: { x: 0, y: -0.75 } },
+      { id: "separation", kind: "segment", appearance: "construction", from: { x: -0.6, y: 0.75 }, to: { x: -0.6, y: -0.75 } },
+      { id: "distance", kind: "segment", appearance: "construction", from: { x: 0, y: -3.4 }, to: { x: 6, y: -3.4 } },
+      { id: "walk", kind: "segment", appearance: "primary", from: { x: 6, y: -3.6 }, to: { x: 6, y: 3.6 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "speaker-1", at: { x: 0, y: 0.75 }, placement: "above" },
+      { key: "s2", objectId: "speaker-2", at: { x: 0, y: -0.75 }, placement: "below" },
+      { key: "separation", objectId: "separation", at: { x: -0.6, y: 0 }, placement: "left" },
+      { key: "distance", objectId: "distance", at: { x: 3, y: -3.4 }, placement: "below" },
+      { key: "walk", objectId: "walk", at: { x: 6, y: 3.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 What is the frequency of the sound?

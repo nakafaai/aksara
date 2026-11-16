@@ -2,6 +2,41 @@
 
 Ada dua keputusan. Pertama, gas mendorong air di lengannya **turun**, jadi tekanan gas lebih besar dari tekanan atmosfer sebesar tekanan kolom air <InlineMath math="27{,}2\text{ cm}" />. Kedua, kolom air harus diubah menjadi cm Hg sebelum dijumlahkan dengan <InlineMath math="76\text{ cm Hg}" />. Kolom yang memberi tekanan sama berbanding terbalik dengan massa jenisnya.
 
+Baca manometer itu sebagai keseimbangan pada permukaan yang lebih rendah. Gas mendorong di sisi kiri, dan udara ditambah kolom air ekstra mendorong di sisi kanan, jadi gas harus lebih besar sebanyak kolom itu.
+
+<MathVisual
+  title={<>Tekanan seimbang pada permukaan yang lebih rendah</>}
+  description={<>Digambar satu satuan untuk <InlineMath math="2\text{ cm}" />. Gas mendorong permukaan air kiri turun sampai <InlineMath math="27{,}2\text{ cm}" /> di bawah permukaan kanan, tempat atmosfer <InlineMath math="76\text{ cm Hg}" /> menekan. Kolom air itu setara dengan <InlineMath math="2{,}0\text{ cm Hg}" />, jadi tekanan gas adalah <InlineMath math="78\text{ cm Hg}" />.</>}
+  labels={{
+    gas: <>ke sumber gas</>,
+    open: <>terbuka ke udara</>,
+    difference: <><InlineMath math="27{,}2\text{ cm}" /> air <InlineMath math="=2{,}0\text{ cm Hg}" /></>,
+    "gas-push": <><InlineMath math="p_{\text{gas}}=76+2{,}0=78\text{ cm Hg}" /></>,
+    "air-push": <><InlineMath math="76\text{ cm Hg}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 12 }, y: { min: -1.5, max: 24.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 17.6 }, { x: 2, y: 17.6 }, { x: 2, y: 1 }, { x: -2, y: 1 }, { x: -2, y: 4 }, { x: -3, y: 4 }] },
+      { id: "tube-outer", kind: "polyline", appearance: "primary", vertices: [{ x: -3, y: 22 }, { x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 22 }] },
+      { id: "tube-inner", kind: "polyline", appearance: "primary", vertices: [{ x: -2, y: 22 }, { x: -2, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 22 }] },
+      { id: "level-line", kind: "segment", appearance: "construction", from: { x: -3, y: 4 }, to: { x: 4.5, y: 4 } },
+      { id: "difference", kind: "segment", appearance: "construction", from: { x: 4, y: 4 }, to: { x: 4, y: 17.6 } },
+      { id: "gas-push", kind: "vector", appearance: "highlight", from: { x: -2.5, y: 9.5 }, to: { x: -2.5, y: 4.4 } },
+      { id: "air-push", kind: "vector", appearance: "highlight", from: { x: 2.5, y: 21.5 }, to: { x: 2.5, y: 18 } },
+    ],
+    labels: [
+      { key: "gas", objectId: "tube-outer", at: { x: -2.5, y: 22 }, placement: "above-left" },
+      { key: "open", objectId: "tube-outer", at: { x: 2.5, y: 22 }, placement: "above-right" },
+      { key: "difference", objectId: "difference", at: { x: 4, y: 10.8 }, placement: "right" },
+      { key: "gas-push", objectId: "gas-push", at: { x: -2.5, y: 9.5 }, placement: "above" },
+      { key: "air-push", objectId: "air-push", at: { x: 2.5, y: 21.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 h_{\text{Hg}}&=27{,}2\times\frac{1{,}0}{13{,}6}=2{,}0\text{ cm Hg}\\
 p_{\text{gas}}&=76+2{,}0=78\text{ cm Hg}

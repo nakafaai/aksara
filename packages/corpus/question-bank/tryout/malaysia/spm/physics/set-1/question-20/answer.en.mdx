@@ -2,6 +2,45 @@
 
 The power of a lens in dioptres is the reciprocal of its focal length in **metres**, <InlineMath math="f=\dfrac1P" />. In normal adjustment, the focal point of the objective coincides with that of the eyepiece, so the length of the telescope is <InlineMath math="f_o+f_e" /> and its magnification is <InlineMath math="\dfrac{f_o}{f_e}" />.
 
+Draw the two lenses to scale. In normal adjustment both focal points meet at one point between the lenses, so the separation is one focal length plus the other.
+
+<MathVisual
+  title={<>Telescope in normal adjustment</>}
+  description={<>Drawn at one unit for <InlineMath math="10\text{ cm}" />. A ray parallel to the axis passes through the objective and meets the axis at the shared focal point <InlineMath math="100\text{ cm}" /> away, which lies <InlineMath math="5\text{ cm}" /> in front of the eyepiece. The lenses are <InlineMath math="105\text{ cm}" /> apart.</>}
+  labels={{
+    objective: <>objective, <InlineMath math="+1.0\text{ D}" /></>,
+    eyepiece: <>eyepiece, <InlineMath math="+20\text{ D}" /></>,
+    focus: <>shared focal point</>,
+    fo: <><InlineMath math="f_o=100\text{ cm}" /></>,
+    fe: <><InlineMath math="f_e=5\text{ cm}" /></>,
+    length: <><InlineMath math="L=105\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 14 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -2, y: 0 }, to: { x: 12.5, y: 0 } },
+      { id: "objective-lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -2 }, to: { x: 0, y: 2 } },
+      { id: "eyepiece-lens", kind: "segment", appearance: "secondary", from: { x: 10.5, y: -1 }, to: { x: 10.5, y: 1 } },
+      { id: "incoming-ray", kind: "segment", appearance: "highlight", from: { x: -2, y: 1 }, to: { x: 0, y: 1 } },
+      { id: "converging-ray", kind: "segment", appearance: "highlight", from: { x: 0, y: 1 }, to: { x: 10, y: 0 } },
+      { id: "focal-point", kind: "point", appearance: "answer", at: { x: 10, y: 0 } },
+      { id: "objective-focal", kind: "segment", appearance: "construction", from: { x: 0, y: -2.6 }, to: { x: 10, y: -2.6 } },
+      { id: "eyepiece-focal", kind: "segment", appearance: "construction", from: { x: 10, y: -1.6 }, to: { x: 10.5, y: -1.6 } },
+      { id: "separation", kind: "segment", appearance: "answer", from: { x: 0, y: 2.6 }, to: { x: 10.5, y: 2.6 } },
+    ],
+    labels: [
+      { key: "objective", objectId: "objective-lens", at: { x: 0, y: -2 }, placement: "left" },
+      { key: "eyepiece", objectId: "eyepiece-lens", at: { x: 10.5, y: 1 }, placement: "above-right" },
+      { key: "focus", objectId: "focal-point", at: { x: 10, y: 0 }, placement: "below-left" },
+      { key: "fo", objectId: "objective-focal", at: { x: 5, y: -2.6 }, placement: "below" },
+      { key: "fe", objectId: "eyepiece-focal", at: { x: 10.5, y: -1.6 }, placement: "right" },
+      { key: "length", objectId: "separation", at: { x: 5.25, y: 2.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 f_o&=\frac1{1.0}=1.0\text{ m}=100\text{ cm}, &\quad f_e&=\frac1{20}=0.05\text{ m}=5\text{ cm}\\
 M&=\frac{f_o}{f_e}=\frac{100}{5}=20, &\quad L&=f_o+f_e=105\text{ cm}

@@ -2,6 +2,37 @@
 
 Penimbang membaca daya normal <InlineMath math="R" /> yang menolak murid ke atas. Berat murid ialah <InlineMath math="mg=600\text{ N}" />, jadi daya paduan ke atas ialah <InlineMath math="R-mg" />. Bacaan yang lebih besar daripada berat bermaksud **pecutan menghala ke atas**.
 
+Lukis kedua-dua daya pada murid itu mengikut skala. Anak panah ke atas lebih panjang, jadi daya paduan dan pecutan menghala ke atas, walau ke mana pun lif itu bergerak.
+
+<MathVisual
+  title={<>Daya pada murid di dalam lif</>}
+  description={<>Dilukis satu unit bagi <InlineMath math="120\text{ N}" />: daya normal <InlineMath math="R=720\text{ N}" /> menghala ke atas dan berat <InlineMath math="mg=600\text{ N}" /> menghala ke bawah. Bezanya, <InlineMath math="120\text{ N}" /> ke atas, memberi pecutan ke atas sebanyak <InlineMath math="2\text{ m s}^{-2}" />.</>}
+  labels={{
+    normal: <><InlineMath math="R=720\text{ N}" /></>,
+    weight: <><InlineMath math="mg=600\text{ N}" /></>,
+    net: <>paduan <InlineMath math="120\text{ N}" />, <InlineMath math="a=2\text{ m s}^{-2}" /></>,
+    scale: <>penimbang</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8 }, y: { min: -4.8, max: 8.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale-plate", kind: "segment", appearance: "reference", from: { x: -1.6, y: 0 }, to: { x: 1.6, y: 0 } },
+      { id: "student", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.8, y: 0 }, { x: 0.8, y: 0 }, { x: 0.8, y: 3 }, { x: -0.8, y: 3 }] },
+      { id: "normal-force", kind: "vector", appearance: "primary", from: { x: 0.4, y: 1.5 }, to: { x: 0.4, y: 7.5 } },
+      { id: "weight-force", kind: "vector", appearance: "warning", from: { x: -0.4, y: 1.5 }, to: { x: -0.4, y: -3.5 } },
+      { id: "net-force", kind: "vector", appearance: "answer", from: { x: 2.6, y: 1.5 }, to: { x: 2.6, y: 2.5 } },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal-force", at: { x: 0.4, y: 7.5 }, placement: "above" },
+      { key: "weight", objectId: "weight-force", at: { x: -0.4, y: -3.5 }, placement: "below" },
+      { key: "net", objectId: "net-force", at: { x: 2.6, y: 2.5 }, placement: "right" },
+      { key: "scale", objectId: "scale-plate", at: { x: -1.6, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="a=\frac{R-mg}{m}=\frac{720-600}{60}=2\text{ m s}^{-2}\ \text{ke atas}" />
 
 Pecutan ke atas tidak memberitahu arah gerakan. Lif mungkin bergerak ke atas sambil semakin laju, atau bergerak ke bawah sambil semakin perlahan. Antara pilihan yang diberi, hanya gerakan ke bawah yang semakin perlahan pada kadar <InlineMath math="2\text{ m s}^{-2}" /> yang sepadan. Jadi, lif itu mungkin bergerak ke bawah dengan laju yang berkurang pada kadar <InlineMath math="2\text{ m s}^{-2}" />.

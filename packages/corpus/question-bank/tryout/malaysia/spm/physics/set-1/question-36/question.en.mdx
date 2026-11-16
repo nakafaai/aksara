@@ -1,3 +1,53 @@
 An automatic lamp circuit uses an <InlineMath math="npn" /> transistor as a switch. The base of the transistor is connected to the midpoint of a potential divider. A fixed resistor <InlineMath math="R" /> is connected between the positive terminal of the supply and the base, and a light-dependent resistor (LDR) is connected between the base and the negative terminal of the supply. The bulb is in the collector circuit. The resistance of the LDR increases as the light intensity decreases.
 
+<MathVisual
+  title={<>An automatic lamp circuit</>}
+  description={<>The fixed resistor <InlineMath math="R" /> joins the positive rail to the base, and the LDR joins the base to the negative rail. The bulb sits between the positive rail and the collector of the <InlineMath math="npn" /> transistor, and the emitter goes to the negative rail.</>}
+  labels={{
+    positive: <><InlineMath math="+" /></>,
+    negative: <><InlineMath math="-" /></>,
+    resistor: <><InlineMath math="R" /></>,
+    ldr: <>LDR</>,
+    bulb: <>bulb</>,
+    transistor: <><InlineMath math="npn" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "positive-rail", kind: "segment", appearance: "secondary", from: { x: 0, y: 8 }, to: { x: 10, y: 8 } },
+      { id: "negative-rail", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "r-top", kind: "segment", appearance: "secondary", from: { x: 2, y: 8 }, to: { x: 2, y: 6.8 } },
+      { id: "resistor", kind: "polygon", appearance: "primary", vertices: [{ x: 1.6, y: 5.2 }, { x: 2.4, y: 5.2 }, { x: 2.4, y: 6.8 }, { x: 1.6, y: 6.8 }] },
+      { id: "r-bottom", kind: "segment", appearance: "secondary", from: { x: 2, y: 5.2 }, to: { x: 2, y: 2.8 } },
+      { id: "ldr-ring", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 1 },
+      { id: "ldr", kind: "polygon", appearance: "primary", vertices: [{ x: 1.7, y: 1.4 }, { x: 2.3, y: 1.4 }, { x: 2.3, y: 2.6 }, { x: 1.7, y: 2.6 }] },
+      { id: "ldr-bottom", kind: "segment", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: 2, y: 0 } },
+      { id: "light-a", kind: "vector", appearance: "highlight", from: { x: 0, y: 3.8 }, to: { x: 1, y: 2.9 } },
+      { id: "light-b", kind: "vector", appearance: "highlight", from: { x: -0.4, y: 3.2 }, to: { x: 0.6, y: 2.3 } },
+      { id: "base-node", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "collector-wire", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 5.3 }, to: { x: 6.5, y: 5.7 } },
+      { id: "bulb", kind: "circle", appearance: "primary", center: { x: 6.5, y: 6.3 }, radius: 0.6 },
+      { id: "bulb-cross-a", kind: "segment", appearance: "primary", from: { x: 6.1, y: 5.9 }, to: { x: 6.9, y: 6.7 } },
+      { id: "bulb-cross-b", kind: "segment", appearance: "primary", from: { x: 6.1, y: 6.7 }, to: { x: 6.9, y: 5.9 } },
+      { id: "bulb-wire", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 6.9 }, to: { x: 6.5, y: 8 } },
+      { id: "emitter-wire", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 2.7 }, to: { x: 6.5, y: 0 } },
+      { id: "transistor", kind: "circle", appearance: "secondary", center: { x: 6, y: 4 }, radius: 1.2 },
+      { id: "base-bar", kind: "segment", appearance: "primary", from: { x: 5.4, y: 3.2 }, to: { x: 5.4, y: 4.8 } },
+      { id: "base-lead", kind: "segment", appearance: "primary", from: { x: 2, y: 4 }, to: { x: 5.4, y: 4 } },
+      { id: "collector", kind: "segment", appearance: "primary", from: { x: 5.4, y: 4.4 }, to: { x: 6.5, y: 5.3 } },
+      { id: "emitter", kind: "vector", appearance: "primary", from: { x: 5.4, y: 3.6 }, to: { x: 6.5, y: 2.7 } },
+    ],
+    labels: [
+      { key: "positive", objectId: "positive-rail", at: { x: 10, y: 8 }, placement: "right" },
+      { key: "negative", objectId: "negative-rail", at: { x: 10, y: 0 }, placement: "right" },
+      { key: "resistor", objectId: "resistor", at: { x: 2.4, y: 6 }, placement: "right" },
+      { key: "ldr", objectId: "ldr-ring", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "bulb", objectId: "bulb", at: { x: 7.1, y: 6.3 }, placement: "right" },
+      { key: "transistor", objectId: "transistor", at: { x: 7.2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 The bulb switches on only when it is already too dark. Which change makes the bulb switch on earlier, while the surroundings are still brighter?

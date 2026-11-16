@@ -7,6 +7,39 @@ Work out each arrival time from the moment ball A is thrown. For ball A, take up
 \text{B: }15&=5t_B^2\ \Rightarrow\ t_B=\sqrt3\approx1.73\text{ s},\quad t=1.0+1.73=2.73\text{ s}
 \end{aligned}" />
 
+The height-time graph shows why ball B wins although it starts later. Ball A first climbs for one second, while ball B's curve only begins at the cliff top at <InlineMath math="t=1.0\text{ s}" />.
+
+<MathVisual
+  title={<>Height above the sea for both balls</>}
+  description={<>Height against time, with five horizontal units for each second. Ball A starts at <InlineMath math="15\text{ m}" />, rises to <InlineMath math="20\text{ m}" /> at <InlineMath math="t=1.0\text{ s}" /> and reaches the sea at <InlineMath math="t=3.0\text{ s}" />. Ball B starts from rest at <InlineMath math="15\text{ m}" /> at <InlineMath math="t=1.0\text{ s}" /> and reaches the sea at about <InlineMath math="t=2.73\text{ s}" />.</>}
+  labels={{
+    "a-land": <>A lands at <InlineMath math="t=3.0\text{ s}" /></>,
+    "b-land": <>B lands at <InlineMath math="t=2.73\text{ s}" /></>,
+    "b-start": <>B released at <InlineMath math="t=1.0\text{ s}" /></>,
+    "a-top": <>A at its highest, <InlineMath math="20\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 19 }, y: { min: -3, max: 23 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sea", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 17, y: 0 } },
+      { id: "ball-a", kind: "function", appearance: "primary", formula: "15 + 2x - x^2/5", domain: { min: 0, max: 15 } },
+      { id: "ball-b", kind: "function", appearance: "answer", formula: "15 - (x - 5)^2/5", domain: { min: 5, max: 5 + 5 * Math.sqrt(3) } },
+      { id: "a-top-point", kind: "point", appearance: "primary", at: { x: 5, y: 20 } },
+      { id: "b-start-point", kind: "point", appearance: "answer", at: { x: 5, y: 15 } },
+      { id: "a-land-point", kind: "point", appearance: "primary", at: { x: 15, y: 0 } },
+      { id: "b-land-point", kind: "point", appearance: "answer", at: { x: 5 + 5 * Math.sqrt(3), y: 0 } },
+    ],
+    labels: [
+      { key: "a-land", objectId: "a-land-point", at: { x: 15, y: 0 }, placement: "above-right" },
+      { key: "b-land", objectId: "b-land-point", at: { x: 5 + 5 * Math.sqrt(3), y: 0 }, placement: "below-left" },
+      { key: "b-start", objectId: "b-start-point", at: { x: 5, y: 15 }, placement: "below-left" },
+      { key: "a-top", objectId: "a-top-point", at: { x: 5, y: 20 }, placement: "above" },
+    ],
+  }}
+/>
+
 The negative root <InlineMath math="t=-1\text{ s}" /> in ball A's equation is rejected. Ball B arrives at <InlineMath math="2.73\text{ s}" /> and ball A at <InlineMath math="3.0\text{ s}" />. So ball B reaches the sea first, about <InlineMath math="0.27\text{ s}" /> earlier.
 
 # Why the other options are wrong

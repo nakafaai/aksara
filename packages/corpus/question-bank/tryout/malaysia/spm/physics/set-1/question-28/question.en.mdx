@@ -1,3 +1,35 @@
 A cell is connected to a <InlineMath math="5.0\,\Omega" /> resistor, and a voltmeter across the terminals of the cell reads <InlineMath math="2.5\text{ V}" />. When the resistor is replaced with a <InlineMath math="2.0\,\Omega" /> resistor, the voltmeter reads <InlineMath math="2.0\text{ V}" />.
 
+<MathVisual
+  title={<>A cell connected to a resistor</>}
+  description={<>A cell is connected to a resistor <InlineMath math="R" />, and a voltmeter <InlineMath math="V" /> is connected across the terminals of the cell.</>}
+  labels={{
+    meter: <><InlineMath math="V" /></>,
+    resistor: <><InlineMath math="R" /></>,
+    cell: <>cell</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 9 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell-long", kind: "segment", appearance: "primary", from: { x: -0.6, y: 2.2 }, to: { x: 0.6, y: 2.2 } },
+      { id: "cell-short", kind: "segment", appearance: "primary", from: { x: -0.3, y: 1.8 }, to: { x: 0.3, y: 1.8 } },
+      { id: "wire-top", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 2.2 }, { x: 0, y: 4 }, { x: 6, y: 4 }, { x: 6, y: 2.8 }] },
+      { id: "wire-bottom", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 1.8 }, { x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 1.2 }] },
+      { id: "resistor", kind: "polygon", appearance: "primary", vertices: [{ x: 5.6, y: 1.2 }, { x: 6.4, y: 1.2 }, { x: 6.4, y: 2.8 }, { x: 5.6, y: 2.8 }] },
+      { id: "voltmeter", kind: "circle", appearance: "primary", center: { x: -2.2, y: 2 }, radius: 0.6 },
+      { id: "meter-top", kind: "polyline", appearance: "secondary", vertices: [{ x: -2.2, y: 2.6 }, { x: -2.2, y: 3.2 }, { x: 0, y: 3.2 }] },
+      { id: "meter-bottom", kind: "polyline", appearance: "secondary", vertices: [{ x: -2.2, y: 1.4 }, { x: -2.2, y: 0.8 }, { x: 0, y: 0.8 }] },
+      { id: "junction-top", kind: "point", appearance: "secondary", at: { x: 0, y: 3.2 } },
+      { id: "junction-bottom", kind: "point", appearance: "secondary", at: { x: 0, y: 0.8 } },
+    ],
+    labels: [
+      { key: "meter", objectId: "voltmeter", at: { x: -2.2, y: 2 }, placement: "center" },
+      { key: "resistor", objectId: "resistor", at: { x: 6.4, y: 2 }, placement: "right" },
+      { key: "cell", objectId: "cell-long", at: { x: 0.6, y: 2.2 }, placement: "right" },
+    ],
+  }}
+/>
+
 What is the current in the circuit if the resistor is then replaced with a <InlineMath math="1.0\,\Omega" /> resistor?

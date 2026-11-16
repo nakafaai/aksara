@@ -2,6 +2,47 @@
 
 Loud sounds occur where the interference is constructive, and the distance between two successive loud sounds is <InlineMath math="x" /> in <InlineMath math="\lambda=\dfrac{ax}{D}" />. Here <InlineMath math="a=1.5\text{ m}" /> is the distance between the loudspeakers and <InlineMath math="D=6.0\text{ m}" /> is the distance to the walking line. **The wavelength is not yet the answer**, because the question asks for the frequency.
 
+Mark <InlineMath math="a" />, <InlineMath math="D" /> and <InlineMath math="x" /> on the layout before you substitute. Each distance has its own place in <InlineMath math="\lambda=\dfrac{ax}{D}" />, and swapping <InlineMath math="a" /> with <InlineMath math="D" /> is the usual slip.
+
+<MathVisual
+  title={<>The three distances of the interference pattern</>}
+  description={<>The loudspeakers are <InlineMath math="a=1.5\text{ m}" /> apart and the walking line is <InlineMath math="D=6.0\text{ m}" /> away. The loud points on the line sit <InlineMath math="x=1.2\text{ m}" /> apart, one of them straight opposite the middle of the loudspeakers.</>}
+  labels={{
+    s1: <><InlineMath math="S_1" /></>,
+    s2: <><InlineMath math="S_2" /></>,
+    separation: <><InlineMath math="a=1.5\text{ m}" /></>,
+    distance: <><InlineMath math="D=6.0\text{ m}" /></>,
+    walk: <>loud points on the path</>,
+    gap: <><InlineMath math="x=1.2\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 9.5 }, y: { min: -4.4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "speaker-1", kind: "point", appearance: "secondary", at: { x: 0, y: 0.75 } },
+      { id: "speaker-2", kind: "point", appearance: "secondary", at: { x: 0, y: -0.75 } },
+      { id: "separation", kind: "segment", appearance: "construction", from: { x: -0.6, y: 0.75 }, to: { x: -0.6, y: -0.75 } },
+      { id: "distance", kind: "segment", appearance: "construction", from: { x: 0, y: -3.4 }, to: { x: 6, y: -3.4 } },
+      { id: "walk", kind: "segment", appearance: "primary", from: { x: 6, y: -3.6 }, to: { x: 6, y: 3.6 } },
+      { id: "loud-0", kind: "point", appearance: "highlight", at: { x: 6, y: -2.4 } },
+      { id: "loud-1", kind: "point", appearance: "highlight", at: { x: 6, y: -1.2 } },
+      { id: "loud-2", kind: "point", appearance: "highlight", at: { x: 6, y: 0 } },
+      { id: "loud-3", kind: "point", appearance: "highlight", at: { x: 6, y: 1.2 } },
+      { id: "loud-4", kind: "point", appearance: "highlight", at: { x: 6, y: 2.4 } },
+      { id: "fringe-gap", kind: "segment", appearance: "answer", from: { x: 6.6, y: 0 }, to: { x: 6.6, y: 1.2 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "speaker-1", at: { x: 0, y: 0.75 }, placement: "above" },
+      { key: "s2", objectId: "speaker-2", at: { x: 0, y: -0.75 }, placement: "below" },
+      { key: "separation", objectId: "separation", at: { x: -0.6, y: 0 }, placement: "left" },
+      { key: "distance", objectId: "distance", at: { x: 3, y: -3.4 }, placement: "below" },
+      { key: "walk", objectId: "walk", at: { x: 6, y: 3.6 }, placement: "above" },
+      { key: "gap", objectId: "fringe-gap", at: { x: 6.6, y: 0.6 }, placement: "right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \lambda&=\frac{ax}{D}=\frac{(1.5)(1.2)}{6.0}=0.30\text{ m}\\
 f&=\frac{v}{\lambda}=\frac{330}{0.30}=1100\text{ Hz}

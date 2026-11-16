@@ -4,6 +4,22 @@ Get TAKDAN memberi <InlineMath math="0" /> hanya apabila kedua-dua inputnya <Inl
 
 <BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
 
+Baca litar itu ke belakang dari <InlineMath math="Q" />. Dengan <InlineMath math="C=1" />, get NAND hanya menyongsangkan, jadi setiap nilai <InlineMath math="X" /> ialah lawan bagi <InlineMath math="Q" />, dan empat nilai <InlineMath math="X" /> itu menamakan get P.
+
+<Mermaid
+  title={<>Bekerja ke belakang melalui get NAND</>}
+  description={<>Litar itu dengan baris yang mempunyai <InlineMath math="C=1" />. Get NAND kemudian bertindak sebagai get NOT, jadi nilai <InlineMath math="Q" /> iaitu <InlineMath math="1, 0, 0, 0" /> datang daripada nilai <InlineMath math="X" /> iaitu <InlineMath math="0, 1, 1, 1" /> bagi <InlineMath math="AB=00, 01, 10, 11" />, iaitu output get OR.</>}
+  chart={`
+flowchart LR
+  A["A"] --> P["Get P"]
+  B["B"] --> P
+  P -->|"X = 0, 1, 1, 1"| N["NAND dengan C = 1 bertindak sebagai NOT"]
+  C["C = 1"] --> N
+  N --> Q["Q = 1, 0, 0, 0"]
+  P -.-> R["0 hanya apabila A = B = 0: get OR"]
+`}
+/>
+
 Bagi <InlineMath math="AB=00,01,10,11" />, nilai <InlineMath math="Q" /> ialah <InlineMath math="1,0,0,0" />, jadi <InlineMath math="X" /> ialah <InlineMath math="0,1,1,1" />. Output <InlineMath math="0" /> hanya apabila kedua-dua input <InlineMath math="0" /> ialah ciri get ATAU. Jadi, get P ialah get ATAU.
 
 # Kenapa pilihan lain salah

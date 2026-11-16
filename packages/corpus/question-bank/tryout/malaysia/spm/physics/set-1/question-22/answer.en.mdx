@@ -2,6 +2,38 @@
 
 While the block moves up, the component of weight along the plane and **the friction both point down the plane**, because friction always opposes the motion. Both slow the block down.
 
+Add the forces along the plane to the picture, drawn to scale. The two downhill arrows add up to <InlineMath math="35\text{ N}" />, and that total sets the deceleration.
+
+<MathVisual
+  title={<>Forces along the plane while the block rises</>}
+  description={<>The block moves up the <InlineMath math="30^\circ" /> plane at <InlineMath math="7.0\text{ m s}^{-1}" />. Drawn at one unit for <InlineMath math="5\text{ N}" />, the component of weight <InlineMath math="mg\sin30^\circ=25\text{ N}" /> and the friction of <InlineMath math="10\text{ N}" /> both point down the plane.</>}
+  labels={{
+    angle: <><InlineMath math="30^\circ" /></>,
+    velocity: <><InlineMath math="u=7.0\text{ m s}^{-1}" /></>,
+    "weight-part": <><InlineMath math="mg\sin30^\circ=25\text{ N}" /></>,
+    friction: <>friction <InlineMath math="10\text{ N}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 10 }, y: { min: -1.5, max: 7.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "incline", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.sqrt(3), y: 0 }, { x: 5 * Math.sqrt(3), y: 5 }] },
+      { id: "block", kind: "polygon", appearance: "secondary", vertices: [{ x: 1.5 * Math.sqrt(3), y: 1.5 }, { x: 2.5 * Math.sqrt(3), y: 2.5 }, { x: 2.5 * Math.sqrt(3) - 0.8, y: 2.5 + 0.8 * Math.sqrt(3) }, { x: 1.5 * Math.sqrt(3) - 0.8, y: 1.5 + 0.8 * Math.sqrt(3) }] },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 0, sweepDegrees: 30 },
+      { id: "velocity", kind: "vector", appearance: "primary", from: { x: 2 * Math.sqrt(3) - 1, y: 2 + Math.sqrt(3) }, to: { x: 3.25 * Math.sqrt(3) - 1, y: 3.25 + Math.sqrt(3) } },
+      { id: "weight-part", kind: "vector", appearance: "warning", from: { x: 2 * Math.sqrt(3) - 0.4, y: 2 + 0.4 * Math.sqrt(3) }, to: { x: -0.5 * Math.sqrt(3) - 0.4, y: -0.5 + 0.4 * Math.sqrt(3) } },
+      { id: "friction", kind: "vector", appearance: "warning", from: { x: 2 * Math.sqrt(3), y: 2 }, to: { x: Math.sqrt(3), y: 1 } },
+    ],
+    labels: [
+      { key: "angle", objectId: "angle", at: { x: 1.5 * Math.cos(Math.PI / 12), y: 1.5 * Math.sin(Math.PI / 12) }, placement: "right" },
+      { key: "velocity", objectId: "velocity", at: { x: 2.625 * Math.sqrt(3) - 1, y: 2.625 + Math.sqrt(3) }, placement: "above-left" },
+      { key: "weight-part", objectId: "weight-part", at: { x: 0.75 * Math.sqrt(3) - 0.4, y: 0.75 + 0.4 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "friction", objectId: "friction", at: { x: 1.5 * Math.sqrt(3), y: 1.5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 mg\sin30^\circ&=(5.0)(10)(0.5)=25\text{ N}\\
 a&=\frac{25+10}{5.0}=7.0\text{ m s}^{-2}\ \text{(deceleration)}\\

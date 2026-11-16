@@ -4,6 +4,46 @@ Air tidak boleh dimampatkan, jadi isi padu yang melalui setiap saat adalah sama 
 
 <BlockMath math="v_2=v_1\cdot\frac{A_1}{A_2}=0.50\times\left(\frac{4.0}{2.0}\right)^2=0.50\times4=2.0\text{ m s}^{-1}" />
 
+Letakkan kedua-dua langkah pada paip itu. Bahagian sempit membawa aliran yang sama pada empat kali laju, dan air yang lebih laju mempunyai tekanan lebih rendah, jadi tiubnya memegang turus yang lebih rendah.
+
+<MathVisual
+  title={<>Laju dan tekanan dalam dua bahagian</>}
+  description={<>Bahagian lebar berdiameter <InlineMath math="4.0\text{ cm}" /> membawa air pada <InlineMath math="0.50\text{ m s}^{-1}" />. Bahagian sempit berdiameter <InlineMath math="2.0\text{ cm}" /> mempunyai suku luas, jadi anak panah bagi lajunya <InlineMath math="2.0\text{ m s}^{-1}" /> empat kali lebih panjang. Tekanannya lebih rendah, jadi air dalam tiubnya berada lebih rendah.</>}
+  labels={{
+    "wide-diameter": <><InlineMath math="4.0\text{ cm}" /></>,
+    "narrow-diameter": <><InlineMath math="2.0\text{ cm}" /></>,
+    "wide-speed": <><InlineMath math="0.50\text{ m s}^{-1}" /></>,
+    "narrow-speed": <><InlineMath math="2.0\text{ m s}^{-1}" /></>,
+    "wide-level": <>tekanan lebih tinggi, turus lebih tinggi</>,
+    "narrow-level": <>tekanan lebih rendah, turus lebih rendah</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe-top", kind: "polyline", appearance: "secondary", vertices: [{ x: -9, y: 4 }, { x: 0, y: 4 }, { x: 0, y: 2 }, { x: 9, y: 2 }] },
+      { id: "pipe-bottom", kind: "polyline", appearance: "secondary", vertices: [{ x: -9, y: -4 }, { x: 0, y: -4 }, { x: 0, y: -2 }, { x: 9, y: -2 }] },
+      { id: "tube-wide", kind: "polyline", appearance: "secondary", vertices: [{ x: -5, y: 4 }, { x: -5, y: 10 }] },
+      { id: "tube-wide-right", kind: "polyline", appearance: "secondary", vertices: [{ x: -4, y: 4 }, { x: -4, y: 10 }] },
+      { id: "tube-narrow", kind: "polyline", appearance: "secondary", vertices: [{ x: 4, y: 2 }, { x: 4, y: 10 }] },
+      { id: "tube-narrow-right", kind: "polyline", appearance: "secondary", vertices: [{ x: 5, y: 2 }, { x: 5, y: 10 }] },
+      { id: "wide-diameter", kind: "segment", appearance: "construction", from: { x: -8, y: -4 }, to: { x: -8, y: 4 } },
+      { id: "narrow-diameter", kind: "segment", appearance: "construction", from: { x: 8, y: -2 }, to: { x: 8, y: 2 } },
+      { id: "wide-speed", kind: "vector", appearance: "primary", from: { x: -4, y: 0 }, to: { x: -2.5, y: 0 } },
+      { id: "narrow-speed", kind: "vector", appearance: "answer", from: { x: 1, y: 0 }, to: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "wide-diameter", objectId: "wide-diameter", at: { x: -8, y: 0 }, placement: "right" },
+      { key: "narrow-diameter", objectId: "narrow-diameter", at: { x: 8, y: 0 }, placement: "left" },
+      { key: "wide-speed", objectId: "wide-speed", at: { x: -3.25, y: 0 }, placement: "below" },
+      { key: "narrow-speed", objectId: "narrow-speed", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "wide-level", objectId: "tube-wide", at: { x: -4.5, y: 10 }, placement: "above" },
+      { key: "narrow-level", objectId: "tube-narrow", at: { x: 4.5, y: 10 }, placement: "above" },
+    ],
+  }}
+/>
+
 Mengikut prinsip Bernoulli, dalam paip mengufuk air yang lebih laju mempunyai tekanan yang lebih rendah. Tekanan di bahagian sempit lebih rendah, jadi air dalam tiub di atasnya naik lebih rendah. Jadi, laju di bahagian sempit ialah <InlineMath math="2.0\text{ m s}^{-1}" /> dan aras air dalam tiub di atasnya lebih rendah.
 
 # Kenapa pilihan lain salah

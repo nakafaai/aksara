@@ -1,3 +1,35 @@
 Dua blok, P berjisim <InlineMath math="6.0\text{ kg}" /> dan Q berjisim <InlineMath math="2.0\text{ kg}" />, disambungkan oleh seutas tali ringan di atas lantai mengufuk. Satu daya mengufuk <InlineMath math="24\text{ N}" /> dikenakan pada Q supaya kedua-dua blok bergerak bersama dengan Q di hadapan. Lantai di bawah Q licin, tetapi daya geseran <InlineMath math="4.0\text{ N}" /> bertindak pada P.
 
+<MathVisual
+  title={<>Blok P dan Q disambung dengan tali</>}
+  description={<>Blok P berjisim <InlineMath math="6.0\text{ kg}" /> di belakang disambung dengan tali ringan kepada blok Q berjisim <InlineMath math="2.0\text{ kg}" /> di hadapan. Daya <InlineMath math="24\text{ N}" /> menarik Q ke hadapan di bahagian lantai yang licin, dan daya geseran <InlineMath math="4.0\text{ N}" /> bertindak ke belakang pada P.</>}
+  labels={{
+    p: <><InlineMath math="P,\ 6.0\text{ kg}" /></>,
+    q: <><InlineMath math="Q,\ 2.0\text{ kg}" /></>,
+    pull: <><InlineMath math="24\text{ N}" /></>,
+    friction: <>geseran <InlineMath math="4.0\text{ N}" /></>,
+    smooth: <>lantai licin</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 9 }, y: { min: -2.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -8, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "block-p", kind: "polygon", appearance: "secondary", vertices: [{ x: -7, y: 0 }, { x: -3, y: 0 }, { x: -3, y: 3 }, { x: -7, y: 3 }] },
+      { id: "block-q", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0 }, { x: 4.5, y: 0 }, { x: 4.5, y: 2 }, { x: 2, y: 2 }] },
+      { id: "string", kind: "segment", appearance: "construction", from: { x: -3, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "pull", kind: "vector", appearance: "primary", from: { x: 4.5, y: 1 }, to: { x: 7.5, y: 1 } },
+      { id: "friction", kind: "vector", appearance: "warning", from: { x: -4, y: -0.6 }, to: { x: -6.5, y: -0.6 } },
+    ],
+    labels: [
+      { key: "p", objectId: "block-p", at: { x: -5, y: 1.5 }, placement: "center" },
+      { key: "q", objectId: "block-q", at: { x: 3.25, y: 2 }, placement: "above" },
+      { key: "pull", objectId: "pull", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "friction", objectId: "friction", at: { x: -5.25, y: -0.6 }, placement: "below" },
+      { key: "smooth", objectId: "floor", at: { x: 3.25, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Berapakah tegangan tali itu?

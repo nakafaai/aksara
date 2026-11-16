@@ -2,6 +2,54 @@
 
 There are three linked steps. First, the voltage across the base resistor is the supply voltage **minus the <InlineMath math="0.70\text{ V}" /> between base and emitter**, so the base current comes from <InlineMath math="4.0\text{ V}" />. Second, the collector current is <InlineMath math="100" /> times the base current. Third, the <InlineMath math="9.0\text{ V}" /> supply is shared between the collector resistor and the transistor.
 
+Write each value on the circuit as you find it. The base loop gives <InlineMath math="I_B" />, the transistor multiplies it into <InlineMath math="I_C" />, and the collector loop splits the <InlineMath math="9.0\text{ V}" />.
+
+<MathVisual
+  title={<>Currents and voltages in the transistor circuit</>}
+  description={<>The base resistor takes <InlineMath math="4.7-0.70=4.0\text{ V}" />, so <InlineMath math="I_B=40\ \mu\text{A}" /> flows into the base. The collector current is <InlineMath math="100" /> times larger, <InlineMath math="4.0\text{ mA}" />, which drops <InlineMath math="4.0\text{ V}" /> across the <InlineMath math="1.0\text{ k}\Omega" /> resistor and leaves <InlineMath math="V_{CE}=5.0\text{ V}" /> across the transistor.</>}
+  labels={{
+    "base-supply": <><InlineMath math="4.7\text{ V}" /></>,
+    "base-resistor": <><InlineMath math="100\text{ k}\Omega:\ 4.0\text{ V}" /></>,
+    "collector-resistor": <><InlineMath math="1.0\text{ k}\Omega:\ 4.0\text{ V}" /></>,
+    "collector-supply": <><InlineMath math="9.0\text{ V}" /></>,
+    ground: <><InlineMath math="0\text{ V}" /></>,
+    transistor: <><InlineMath math="V_{CE}=5.0\text{ V}" /></>,
+    "base-current": <><InlineMath math="I_B=40\ \mu\text{A}" /></>,
+    "collector-current": <><InlineMath math="I_C=4.0\text{ mA}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 12.5 }, y: { min: 0.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base-supply", kind: "point", appearance: "primary", at: { x: 0.5, y: 4 } },
+      { id: "base-wire", kind: "segment", appearance: "secondary", from: { x: 0.5, y: 4 }, to: { x: 2, y: 4 } },
+      { id: "base-resistor", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 3.6 }, { x: 4, y: 3.6 }, { x: 4, y: 4.4 }, { x: 2, y: 4.4 }] },
+      { id: "collector-wire", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 5.3 }, to: { x: 6.5, y: 6 } },
+      { id: "collector-resistor", kind: "polygon", appearance: "primary", vertices: [{ x: 6.1, y: 6 }, { x: 6.9, y: 6 }, { x: 6.9, y: 7.6 }, { x: 6.1, y: 7.6 }] },
+      { id: "collector-feed", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 7.6 }, to: { x: 6.5, y: 8.5 } },
+      { id: "collector-supply", kind: "point", appearance: "primary", at: { x: 6.5, y: 8.5 } },
+      { id: "emitter-wire", kind: "segment", appearance: "secondary", from: { x: 6.5, y: 2.7 }, to: { x: 6.5, y: 1.5 } },
+      { id: "ground", kind: "segment", appearance: "secondary", from: { x: 5.5, y: 1.5 }, to: { x: 7.5, y: 1.5 } },
+      { id: "transistor", kind: "circle", appearance: "secondary", center: { x: 6, y: 4 }, radius: 1.2 },
+      { id: "base-bar", kind: "segment", appearance: "primary", from: { x: 5.4, y: 3.2 }, to: { x: 5.4, y: 4.8 } },
+      { id: "base-lead", kind: "segment", appearance: "primary", from: { x: 4, y: 4 }, to: { x: 5.4, y: 4 } },
+      { id: "collector", kind: "segment", appearance: "primary", from: { x: 5.4, y: 4.4 }, to: { x: 6.5, y: 5.3 } },
+      { id: "emitter", kind: "vector", appearance: "primary", from: { x: 5.4, y: 3.6 }, to: { x: 6.5, y: 2.7 } },
+    ],
+    labels: [
+      { key: "base-supply", objectId: "base-supply", at: { x: 0.5, y: 4 }, placement: "left" },
+      { key: "base-resistor", objectId: "base-resistor", at: { x: 3, y: 4.4 }, placement: "above" },
+      { key: "collector-resistor", objectId: "collector-resistor", at: { x: 6.9, y: 6.8 }, placement: "right" },
+      { key: "collector-supply", objectId: "collector-supply", at: { x: 6.5, y: 8.5 }, placement: "above" },
+      { key: "ground", objectId: "ground", at: { x: 7.5, y: 1.5 }, placement: "right" },
+      { key: "transistor", objectId: "transistor", at: { x: 7.2, y: 4 }, placement: "right" },
+      { key: "base-current", objectId: "base-wire", at: { x: 1.25, y: 4 }, placement: "below" },
+      { key: "collector-current", objectId: "collector-wire", at: { x: 6.5, y: 5.6 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 I_B&=\frac{4.7-0.70}{100\times10^3}=4.0\times10^{-5}\text{ A}\\
 I_C&=100\times4.0\times10^{-5}=4.0\times10^{-3}\text{ A}\\

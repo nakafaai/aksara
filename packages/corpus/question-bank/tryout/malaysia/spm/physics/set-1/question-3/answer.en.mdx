@@ -2,6 +2,41 @@
 
 Displacement equals the area under the velocity-time graph, with **area below the time axis counted as negative**. Work out each interval by its shape: a triangle where the velocity changes uniformly from or to zero, a rectangle where it is constant.
 
+Sketch the graph from the table first. Each shaded piece is one interval, and the piece below the time axis is the backward motion.
+
+<MathVisual
+  title={<>The four areas under the velocity-time graph</>}
+  description={<>The velocity rises from <InlineMath math="0" /> to <InlineMath math="12\text{ m s}^{-1}" /> over the first <InlineMath math="4\text{ s}" />, stays flat until <InlineMath math="t=10\text{ s}" />, falls to zero at <InlineMath math="t=13\text{ s}" /> and drops below the axis to <InlineMath math="-6\text{ m s}^{-1}" /> at <InlineMath math="t=15\text{ s}" />. The shaded areas are <InlineMath math="24" />, <InlineMath math="72" />, <InlineMath math="18" /> and <InlineMath math="-6\text{ m}" />.</>}
+  labels={{
+    s1: <><InlineMath math="24\text{ m}" /></>,
+    s2: <><InlineMath math="72\text{ m}" /></>,
+    s3: <><InlineMath math="18\text{ m}" /></>,
+    s4: <><InlineMath math="-6\text{ m}" /></>,
+    top: <><InlineMath math="v=12\text{ m s}^{-1}" /></>,
+    end: <><InlineMath math="t=15\text{ s}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 18 }, y: { min: -8, max: 14 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a1", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 12 }, { x: 4, y: 0 }] },
+      { id: "a2", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0 }, { x: 4, y: 12 }, { x: 10, y: 12 }, { x: 10, y: 0 }] },
+      { id: "a3", kind: "polygon", appearance: "primary", vertices: [{ x: 10, y: 0 }, { x: 10, y: 12 }, { x: 13, y: 0 }] },
+      { id: "a4", kind: "polygon", appearance: "warning", vertices: [{ x: 13, y: 0 }, { x: 15, y: -6 }, { x: 15, y: 0 }] },
+      { id: "graph", kind: "polyline", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 12 }, { x: 10, y: 12 }, { x: 13, y: 0 }, { x: 15, y: -6 }] },
+    ],
+    labels: [
+      { key: "s1", objectId: "a1", at: { x: 8 / 3, y: 4 }, placement: "center" },
+      { key: "s2", objectId: "a2", at: { x: 7, y: 6 }, placement: "center" },
+      { key: "s3", objectId: "a3", at: { x: 11, y: 4 }, placement: "center" },
+      { key: "s4", objectId: "a4", at: { x: 15, y: -3 }, placement: "right" },
+      { key: "top", objectId: "graph", at: { x: 7, y: 12 }, placement: "above" },
+      { key: "end", objectId: "graph", at: { x: 15, y: -6 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 s_1&=\tfrac12(4)(12)=24\text{ m}\\
 s_2&=(6)(12)=72\text{ m}\\

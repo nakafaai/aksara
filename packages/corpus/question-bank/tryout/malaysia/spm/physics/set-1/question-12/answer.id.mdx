@@ -2,6 +2,32 @@
 
 Daya pemanas tidak diberikan, tetapi bisa dicari dari tahap ketika cairan K naik suhunya. **Daya yang sama** lalu dipakai selama tahap peleburan. Gunakan perubahan suhu <InlineMath math="20^\circ\text{C}" />, bukan suhu akhirnya, dan waktu dalam detik.
 
+Buat sketsa kurva pemanasan sejak peleburan dimulai. Pemanas yang sama bekerja di kedua bagian, jadi energi di tiap bagian sebanding dengan waktunya, <InlineMath math="300\text{ s}" /> dibandingkan <InlineMath math="120\text{ s}" />.
+
+<MathVisual
+  title={<>Kurva pemanasan K</>}
+  description={<>Suhu K terhadap waktu sejak peleburan dimulai, dengan sumbu suhu digambar satu satuan untuk <InlineMath math="4^\circ\text{C}" />. Bagian datar pada <InlineMath math="80^\circ\text{C}" /> berlangsung <InlineMath math="5{,}0\text{ min}" /> selama K melebur, lalu cairannya menghangat lurus sampai <InlineMath math="100^\circ\text{C}" /> dalam <InlineMath math="2{,}0\text{ min}" />.</>}
+  labels={{
+    melt: <>melebur: <InlineMath math="5{,}0\text{ min}" /> pada <InlineMath math="80^\circ\text{C}" /></>,
+    warm: <>cairan: <InlineMath math="+20^\circ\text{C}" /> dalam <InlineMath math="2{,}0\text{ min}" /></>,
+    top: <><InlineMath math="100^\circ\text{C}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10 }, y: { min: -1.8, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "melting", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "warming", kind: "segment", appearance: "primary", from: { x: 5, y: 0 }, to: { x: 7, y: 5 } },
+    ],
+    labels: [
+      { key: "melt", objectId: "melting", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "warm", objectId: "warming", at: { x: 6, y: 2.5 }, placement: "right" },
+      { key: "top", objectId: "warming", at: { x: 7, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 Q_1&=mc\Delta\theta=(0{,}20)(2000)(20)=8000\text{ J}\\
 P&=\frac{8000}{120}\approx66{,}7\text{ W}\\

@@ -2,6 +2,40 @@
 
 Objek yang terapung menyesarkan cecair yang beratnya sama dengan beratnya sendiri. Dalam air, bahagian yang tenggelam ialah <InlineMath math="500-200=300\text{ cm}^3" />, jadi jisim blok sama dengan jisim <InlineMath math="300\text{ cm}^3" /> air. Dalam minyak, **jisim blok tidak berubah**, tetapi minyak lebih ringan, jadi blok mesti menyesarkan isi padu yang lebih besar.
 
+Lukis blok itu dalam kedua-dua cecair pada skala yang sama. Jisimnya tidak berubah, jadi minyak yang kurang tumpat memerlukan bahagian tenggelam yang lebih dalam untuk menampung berat yang sama.
+
+<MathVisual
+  title={<>Blok di dalam air dan di dalam minyak</>}
+  description={<>Blok yang sama bersaiz <InlineMath math="500\text{ cm}^3" /> dilukis pada satu skala. Di dalam air, <InlineMath math="300\text{ cm}^3" /> berada di bawah permukaan dan <InlineMath math="200\text{ cm}^3" /> di atas. Di dalam minyak, ia terapung lebih rendah, dengan <InlineMath math="375\text{ cm}^3" /> di bawah permukaan dan <InlineMath math="125\text{ cm}^3" /> di atas.</>}
+  labels={{
+    water: <>air</>,
+    oil: <>minyak</>,
+    "water-above": <><InlineMath math="200\text{ cm}^3" /> di atas</>,
+    "oil-above": <><InlineMath math="125\text{ cm}^3" /> di atas</>,
+    "water-under": <><InlineMath math="300\text{ cm}^3" /> di bawah</>,
+    "oil-under": <><InlineMath math="375\text{ cm}^3" /> di bawah</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 16.5 }, y: { min: -2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water-tank", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 0, y: 4 }] },
+      { id: "oil-tank", kind: "polygon", appearance: "reference", vertices: [{ x: 9, y: 0 }, { x: 15, y: 0 }, { x: 15, y: 4 }, { x: 9, y: 4 }] },
+      { id: "block-water", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1 }, { x: 4, y: 1 }, { x: 4, y: 6 }, { x: 2, y: 6 }] },
+      { id: "block-oil", kind: "polygon", appearance: "primary", vertices: [{ x: 11, y: 0.25 }, { x: 13, y: 0.25 }, { x: 13, y: 5.25 }, { x: 11, y: 5.25 }] },
+    ],
+    labels: [
+      { key: "water", objectId: "water-tank", at: { x: 5, y: 2 }, placement: "center" },
+      { key: "oil", objectId: "oil-tank", at: { x: 14, y: 2 }, placement: "center" },
+      { key: "water-above", objectId: "block-water", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "oil-above", objectId: "block-oil", at: { x: 12, y: 5.25 }, placement: "above" },
+      { key: "water-under", objectId: "water-tank", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "oil-under", objectId: "oil-tank", at: { x: 12, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 m&=(1.0)(300)=300\text{ g}\\
 V_{\text{tenggelam}}&=\frac{300}{0.80}=375\text{ cm}^3\\

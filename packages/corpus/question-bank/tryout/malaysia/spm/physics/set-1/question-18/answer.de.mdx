@@ -2,6 +2,45 @@
 
 Es gibt zwei Schritte. Erstens bestimmst du mit dem Brechungsgesetz den Brechungswinkel an der Oberseite. Zweitens steht die Seitenfläche senkrecht auf der Oberseite, also **stehen auch die Lote beider Flächen senkrecht aufeinander**, und der Einfallswinkel an der Seite ist <InlineMath math="90^\circ-r" />. Diesen Winkel vergleichst du mit dem Grenzwinkel des Glases.
 
+Verfolge den Strahl durch den Block. Die beiden Lote stehen senkrecht aufeinander, also ist der Winkel an der Seitenfläche der Rest von <InlineMath math="90^\circ" /> nach dem Brechungswinkel.
+
+<MathVisual
+  title={<>Der Strahl im Glasblock</>}
+  description={<>Der Strahl tritt unter <InlineMath math="60^\circ" /> in die obere Fläche ein und wird auf <InlineMath math="35{,}3^\circ" /> zum senkrechten Lot gebrochen. Er trifft die Seitenfläche unter <InlineMath math="54{,}7^\circ" /> zum waagerechten Lot, mehr als der Grenzwinkel von <InlineMath math="41{,}8^\circ" />, und wird deshalb ins Glas zurückreflektiert.</>}
+  labels={{
+    glass: <>Glas, <InlineMath math="n=1{,}50" /></>,
+    incidence: <><InlineMath math="60^\circ" /></>,
+    side: <>Seitenfläche</>,
+    refraction: <><InlineMath math="35{,}3^\circ" /></>,
+    critical: <><InlineMath math="54{,}7^\circ>41{,}8^\circ" /></>,
+    reflection: <>Totalreflexion</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6 }, y: { min: -6.5, max: 2.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "secondary", vertices: [{ x: -6, y: -5 }, { x: 0, y: -5 }, { x: 0, y: 0 }, { x: -6, y: 0 }] },
+      { id: "top-normal", kind: "segment", appearance: "construction", from: { x: -3, y: -2.2 }, to: { x: -3, y: 2.2 } },
+      { id: "incident", kind: "vector", appearance: "primary", from: { x: -3 - 1.5 * Math.sqrt(3), y: 1.5 }, to: { x: -3, y: 0 } },
+      { id: "incidence-arc", kind: "arc", appearance: "highlight", center: { x: -3, y: 0 }, radius: 0.9, startDegrees: 90, sweepDegrees: 60 },
+      { id: "refracted", kind: "segment", appearance: "answer", from: { x: -3, y: 0 }, to: { x: 0, y: -3 * Math.SQRT2 } },
+      { id: "refraction-arc", kind: "arc", appearance: "highlight", center: { x: -3, y: 0 }, radius: 1, startDegrees: 270, sweepDegrees: 90 - Math.atan(Math.SQRT2) * 180 / Math.PI },
+      { id: "side-normal", kind: "segment", appearance: "construction", from: { x: -2.2, y: -3 * Math.SQRT2 }, to: { x: 1.4, y: -3 * Math.SQRT2 } },
+      { id: "side-arc", kind: "arc", appearance: "highlight", center: { x: 0, y: -3 * Math.SQRT2 }, radius: 0.9, startDegrees: 180, sweepDegrees: -Math.atan(Math.SQRT2) * 180 / Math.PI },
+      { id: "reflected", kind: "vector", appearance: "answer", from: { x: 0, y: -3 * Math.SQRT2 }, to: { x: -(5 - 3 * Math.SQRT2) / Math.SQRT2, y: -5 } },
+    ],
+    labels: [
+      { key: "glass", objectId: "glass", at: { x: -5, y: -4.4 }, placement: "center" },
+      { key: "incidence", objectId: "incidence-arc", at: { x: -3 + 0.9 * Math.cos(2 * Math.PI / 3), y: 0.9 * Math.sin(2 * Math.PI / 3) }, placement: "above-left" },
+      { key: "side", objectId: "glass", at: { x: 0, y: -1.2 }, placement: "right" },
+      { key: "refraction", objectId: "refraction-arc", at: { x: -3 + Math.cos(3 * Math.PI / 2 + (Math.PI / 2 - Math.atan(Math.SQRT2)) / 2), y: Math.sin(3 * Math.PI / 2 + (Math.PI / 2 - Math.atan(Math.SQRT2)) / 2) }, placement: "below-right" },
+      { key: "critical", objectId: "side-arc", at: { x: 1.4, y: -3 * Math.SQRT2 }, placement: "right" },
+      { key: "reflection", objectId: "reflected", at: { x: -(5 - 3 * Math.SQRT2) / Math.SQRT2, y: -5 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \sin r&=\frac{\sin60^\circ}{1{,}50}=0{,}577\ \Rightarrow\ r\approx35{,}3^\circ\\
 i_2&=90^\circ-35{,}3^\circ\approx54{,}7^\circ\\

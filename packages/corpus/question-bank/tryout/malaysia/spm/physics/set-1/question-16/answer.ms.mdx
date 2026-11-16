@@ -2,6 +2,47 @@
 
 Bunyi kuat berlaku di tempat interferens membina, dan jarak antara dua bunyi kuat yang berturutan ialah <InlineMath math="x" /> dalam <InlineMath math="\lambda=\dfrac{ax}{D}" />. Di sini <InlineMath math="a=1.5\text{ m}" /> ialah jarak antara pembesar suara dan <InlineMath math="D=6.0\text{ m}" /> ialah jarak ke garis laluan murid. **Panjang gelombang belum menjadi jawapan**, kerana soalan meminta frekuensi.
 
+Tandakan <InlineMath math="a" />, <InlineMath math="D" /> dan <InlineMath math="x" /> pada susunan itu sebelum menggantikan nilai. Setiap jarak mempunyai tempatnya sendiri dalam <InlineMath math="\lambda=\dfrac{ax}{D}" />, dan menukar <InlineMath math="a" /> dengan <InlineMath math="D" /> ialah kesilapan yang biasa.
+
+<MathVisual
+  title={<>Tiga jarak dalam corak interferens</>}
+  description={<>Pembesar suara berjarak <InlineMath math="a=1.5\text{ m}" /> dan garis laluan berada sejauh <InlineMath math="D=6.0\text{ m}" />. Titik-titik bunyi kuat pada garis itu berjarak <InlineMath math="x=1.2\text{ m}" />, dan salah satunya betul-betul bertentangan dengan tengah pembesar suara.</>}
+  labels={{
+    s1: <><InlineMath math="S_1" /></>,
+    s2: <><InlineMath math="S_2" /></>,
+    separation: <><InlineMath math="a=1.5\text{ m}" /></>,
+    distance: <><InlineMath math="D=6.0\text{ m}" /></>,
+    walk: <>titik bunyi kuat pada laluan</>,
+    gap: <><InlineMath math="x=1.2\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 9.5 }, y: { min: -4.4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "speaker-1", kind: "point", appearance: "secondary", at: { x: 0, y: 0.75 } },
+      { id: "speaker-2", kind: "point", appearance: "secondary", at: { x: 0, y: -0.75 } },
+      { id: "separation", kind: "segment", appearance: "construction", from: { x: -0.6, y: 0.75 }, to: { x: -0.6, y: -0.75 } },
+      { id: "distance", kind: "segment", appearance: "construction", from: { x: 0, y: -3.4 }, to: { x: 6, y: -3.4 } },
+      { id: "walk", kind: "segment", appearance: "primary", from: { x: 6, y: -3.6 }, to: { x: 6, y: 3.6 } },
+      { id: "loud-0", kind: "point", appearance: "highlight", at: { x: 6, y: -2.4 } },
+      { id: "loud-1", kind: "point", appearance: "highlight", at: { x: 6, y: -1.2 } },
+      { id: "loud-2", kind: "point", appearance: "highlight", at: { x: 6, y: 0 } },
+      { id: "loud-3", kind: "point", appearance: "highlight", at: { x: 6, y: 1.2 } },
+      { id: "loud-4", kind: "point", appearance: "highlight", at: { x: 6, y: 2.4 } },
+      { id: "fringe-gap", kind: "segment", appearance: "answer", from: { x: 6.6, y: 0 }, to: { x: 6.6, y: 1.2 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "speaker-1", at: { x: 0, y: 0.75 }, placement: "above" },
+      { key: "s2", objectId: "speaker-2", at: { x: 0, y: -0.75 }, placement: "below" },
+      { key: "separation", objectId: "separation", at: { x: -0.6, y: 0 }, placement: "left" },
+      { key: "distance", objectId: "distance", at: { x: 3, y: -3.4 }, placement: "below" },
+      { key: "walk", objectId: "walk", at: { x: 6, y: 3.6 }, placement: "above" },
+      { key: "gap", objectId: "fringe-gap", at: { x: 6.6, y: 0.6 }, placement: "right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \lambda&=\frac{ax}{D}=\frac{(1.5)(1.2)}{6.0}=0.30\text{ m}\\
 f&=\frac{v}{\lambda}=\frac{330}{0.30}=1100\text{ Hz}

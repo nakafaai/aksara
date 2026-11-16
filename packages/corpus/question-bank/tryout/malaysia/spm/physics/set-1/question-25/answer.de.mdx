@@ -2,6 +2,40 @@
 
 Ein schwimmender Körper verdrängt so viel Flüssigkeit, wie er selbst wiegt. Im Wasser sind <InlineMath math="500-200=300\text{ cm}^3" /> eingetaucht, die Masse des Blocks ist also die von <InlineMath math="300\text{ cm}^3" /> Wasser. Im Öl **bleibt die Masse des Blocks gleich**, doch Öl ist leichter, der Block muss also ein größeres Volumen verdrängen.
 
+Zeichne den Block in beiden Flüssigkeiten im selben Maßstab. Seine Masse ändert sich nicht, also braucht das weniger dichte Öl einen tieferen eingetauchten Teil, um dasselbe Gewicht zu tragen.
+
+<MathVisual
+  title={<>Der Block in Wasser und in Öl</>}
+  description={<>Derselbe Block mit <InlineMath math="500\text{ cm}^3" /> in einem Maßstab. In Wasser liegen <InlineMath math="300\text{ cm}^3" /> unter der Oberfläche und <InlineMath math="200\text{ cm}^3" /> darüber. In Öl schwimmt er tiefer, mit <InlineMath math="375\text{ cm}^3" /> unter der Oberfläche und <InlineMath math="125\text{ cm}^3" /> darüber.</>}
+  labels={{
+    water: <>Wasser</>,
+    oil: <>Öl</>,
+    "water-above": <><InlineMath math="200\text{ cm}^3" /> darüber</>,
+    "oil-above": <><InlineMath math="125\text{ cm}^3" /> darüber</>,
+    "water-under": <><InlineMath math="300\text{ cm}^3" /> darunter</>,
+    "oil-under": <><InlineMath math="375\text{ cm}^3" /> darunter</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 16.5 }, y: { min: -2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water-tank", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 0, y: 4 }] },
+      { id: "oil-tank", kind: "polygon", appearance: "reference", vertices: [{ x: 9, y: 0 }, { x: 15, y: 0 }, { x: 15, y: 4 }, { x: 9, y: 4 }] },
+      { id: "block-water", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1 }, { x: 4, y: 1 }, { x: 4, y: 6 }, { x: 2, y: 6 }] },
+      { id: "block-oil", kind: "polygon", appearance: "primary", vertices: [{ x: 11, y: 0.25 }, { x: 13, y: 0.25 }, { x: 13, y: 5.25 }, { x: 11, y: 5.25 }] },
+    ],
+    labels: [
+      { key: "water", objectId: "water-tank", at: { x: 5, y: 2 }, placement: "center" },
+      { key: "oil", objectId: "oil-tank", at: { x: 14, y: 2 }, placement: "center" },
+      { key: "water-above", objectId: "block-water", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "oil-above", objectId: "block-oil", at: { x: 12, y: 5.25 }, placement: "above" },
+      { key: "water-under", objectId: "water-tank", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "oil-under", objectId: "oil-tank", at: { x: 12, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 m&=(1{,}0)(300)=300\text{ g}\\
 V_{\text{ein}}&=\frac{300}{0{,}80}=375\text{ cm}^3\\

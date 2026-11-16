@@ -2,6 +2,51 @@
 
 Kedalaman semu diukur dari permukaan teratas, padahal permukaan teratas ikut naik saat minyak dituang. Jadi, **ubah kedalaman semu menjadi tinggi bayangan di atas dasar**, sebelum dan sesudahnya.
 
+Gambar kedua keadaan dengan tiap ketinggian diukur dari dasar, tempat koin itu tetap berada. Jadi pergeseran bayangan adalah selisih dua ketinggian, bukan selisih dua kedalaman semu.
+
+<MathVisual
+  title={<>Bayangan koin sebelum dan sesudah minyak</>}
+  description={<>Kiri: air sedalam <InlineMath math="12\text{ cm}" />, kedalaman semu <InlineMath math="9{,}0\text{ cm}" />, jadi bayangan berada <InlineMath math="3{,}0\text{ cm}" /> di atas dasar. Kanan: minyak <InlineMath math="6{,}0\text{ cm}" /> di atasnya, kedalaman semu <InlineMath math="13\text{ cm}" /> dari permukaan yang sekarang setinggi <InlineMath math="18\text{ cm}" />, jadi bayangan berada <InlineMath math="5{,}0\text{ cm}" /> di atas dasar.</>}
+  labels={{
+    before: <>sebelum</>,
+    after: <>sesudah</>,
+    water: <>air</>,
+    oil: <>minyak</>,
+    coin: <>koin</>,
+    "image-before": <>bayangan, <InlineMath math="3{,}0\text{ cm}" /> ke atas</>,
+    "image-after": <>bayangan, <InlineMath math="5{,}0\text{ cm}" /> ke atas</>,
+    "depth-before": <><InlineMath math="9{,}0\text{ cm}" /></>,
+    "depth-after": <><InlineMath math="13\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 17.5 }, y: { min: -2, max: 20.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water-before", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 12 }, { x: 0, y: 12 }] },
+      { id: "coin-before", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "image-before", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "depth-before", kind: "segment", appearance: "construction", from: { x: 4.6, y: 12 }, to: { x: 4.6, y: 3 } },
+      { id: "water-after", kind: "polygon", appearance: "secondary", vertices: [{ x: 8, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 12 }, { x: 8, y: 12 }] },
+      { id: "oil", kind: "polygon", appearance: "reference", vertices: [{ x: 8, y: 12 }, { x: 12, y: 12 }, { x: 12, y: 18 }, { x: 8, y: 18 }] },
+      { id: "coin-after", kind: "point", appearance: "primary", at: { x: 10, y: 0 } },
+      { id: "image-after", kind: "point", appearance: "answer", at: { x: 10, y: 5 } },
+      { id: "depth-after", kind: "segment", appearance: "construction", from: { x: 12.6, y: 18 }, to: { x: 12.6, y: 5 } },
+    ],
+    labels: [
+      { key: "before", objectId: "water-before", at: { x: 2, y: 12 }, placement: "above" },
+      { key: "image-before", objectId: "image-before", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "depth-before", objectId: "depth-before", at: { x: 4.6, y: 7.5 }, placement: "right" },
+      { key: "water", objectId: "water-after", at: { x: 10, y: 8 }, placement: "center" },
+      { key: "oil", objectId: "oil", at: { x: 10, y: 15 }, placement: "center" },
+      { key: "coin", objectId: "coin-after", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "after", objectId: "oil", at: { x: 10, y: 18 }, placement: "above" },
+      { key: "image-after", objectId: "image-after", at: { x: 10, y: 5 }, placement: "above" },
+      { key: "depth-after", objectId: "depth-after", at: { x: 12.6, y: 11.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \text{sebelum: }&d=\frac{12}{4/3}=9{,}0\text{ cm},\ h=12-9{,}0=3{,}0\text{ cm}\\
 \text{sesudah: }&d=\frac{6{,}0}{1{,}5}+\frac{12}{4/3}=13\text{ cm},\ h=18-13=5{,}0\text{ cm}

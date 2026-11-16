@@ -7,6 +7,78 @@ u=10:\ \frac1v&=\frac1{15}-\frac1{10}=-\frac1{30}\ \Rightarrow\ v=-30\text{ cm},
 u=20:\ \frac1v&=\frac1{15}-\frac1{20}=\frac1{60}\ \Rightarrow\ v=+60\text{ cm},\ m=\frac{60}{20}=3
 \end{aligned}" />
 
+Diagram sinar menunjukkan perubahan yang sama. Saat benda berada di dalam jarak fokus, sinar-sinar menyebar setelah lensa, dan hanya perpanjangan ke belakangnya yang bertemu, di sisi benda.
+
+<MathVisual
+  title={<>Benda <InlineMath math="10\text{ cm}" /> dari lensa</>}
+  description={<>Diagram sinar dengan satu satuan grid untuk <InlineMath math="5\text{ cm}" />, dan titik fokus <InlineMath math="15\text{ cm}" /> di kedua sisi lensa. Benda berdiri <InlineMath math="10\text{ cm}" /> di depan, di dalam jarak fokus. Perpanjangan putus-putus kedua sinar bertemu <InlineMath math="30\text{ cm}" /> di depan lensa pada bayangan tegak yang tiga kali lebih tinggi.</>}
+  labels={{
+    "focus-left": <><InlineMath math="F" /></>,
+    "focus-right": <><InlineMath math="F" /></>,
+    object: <>benda, <InlineMath math="u=10\text{ cm}" /></>,
+    image: <>bayangan maya, <InlineMath math="v=-30\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 7.5 }, y: { min: -4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -8, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -3.6 }, to: { x: 0, y: 3.6 } },
+      { id: "focus-left", kind: "point", appearance: "construction", at: { x: -3, y: 0 } },
+      { id: "focus-right", kind: "point", appearance: "construction", at: { x: 3, y: 0 } },
+      { id: "object", kind: "vector", appearance: "primary", from: { x: -2, y: 0 }, to: { x: -2, y: 1 } },
+      { id: "image", kind: "vector", appearance: "answer", from: { x: -6, y: 0 }, to: { x: -6, y: 3 } },
+      { id: "parallel-ray", kind: "segment", appearance: "highlight", from: { x: -2, y: 1 }, to: { x: 0, y: 1 } },
+      { id: "focal-ray", kind: "segment", appearance: "highlight", from: { x: 0, y: 1 }, to: { x: 6, y: -1 } },
+      { id: "centre-ray", kind: "segment", appearance: "highlight", from: { x: -2, y: 1 }, to: { x: 5, y: -2.5 } },
+      { id: "focal-back", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: -6, y: 3 } },
+      { id: "centre-back", kind: "segment", appearance: "construction", from: { x: -2, y: 1 }, to: { x: -6, y: 3 } },
+    ],
+    labels: [
+      { key: "focus-left", objectId: "focus-left", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "focus-right", objectId: "focus-right", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "object", objectId: "object", at: { x: -2, y: 1 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -6, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+Geser benda melewati titik fokus, dan sinar-sinarnya benar-benar berpotongan di seberang lensa, dalam keadaan terbalik.
+
+<MathVisual
+  title={<>Benda <InlineMath math="20\text{ cm}" /> dari lensa</>}
+  description={<>Lensa yang sama pada skala yang sama, dengan benda <InlineMath math="20\text{ cm}" /> di depan, melewati titik fokus. Kedua sinar berpotongan <InlineMath math="60\text{ cm}" /> di belakang lensa pada bayangan terbalik yang tiga kali lebih tinggi.</>}
+  labels={{
+    "focus-left": <><InlineMath math="F" /></>,
+    "focus-right": <><InlineMath math="F" /></>,
+    object: <>benda, <InlineMath math="u=20\text{ cm}" /></>,
+    image: <>bayangan nyata, <InlineMath math="v=60\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 14.5 }, y: { min: -4.4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 14, y: 0 } },
+      { id: "lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -3.6 }, to: { x: 0, y: 3.6 } },
+      { id: "focus-left", kind: "point", appearance: "construction", at: { x: -3, y: 0 } },
+      { id: "focus-right", kind: "point", appearance: "construction", at: { x: 3, y: 0 } },
+      { id: "object", kind: "vector", appearance: "primary", from: { x: -4, y: 0 }, to: { x: -4, y: 1 } },
+      { id: "image", kind: "vector", appearance: "answer", from: { x: 12, y: 0 }, to: { x: 12, y: -3 } },
+      { id: "parallel-ray", kind: "segment", appearance: "highlight", from: { x: -4, y: 1 }, to: { x: 0, y: 1 } },
+      { id: "focal-ray", kind: "segment", appearance: "highlight", from: { x: 0, y: 1 }, to: { x: 12, y: -3 } },
+      { id: "centre-ray", kind: "segment", appearance: "highlight", from: { x: -4, y: 1 }, to: { x: 12, y: -3 } },
+    ],
+    labels: [
+      { key: "focus-left", objectId: "focus-left", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "focus-right", objectId: "focus-right", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "object", objectId: "object", at: { x: -4, y: 1 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 12, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pada posisi pertama bayangan maya dan tegak, pada posisi kedua nyata dan terbalik di sisi seberang. Perbesarannya kebetulan sama, karena kedua jarak benda berjarak sama, <InlineMath math="5\text{ cm}" />, dari titik fokus. Jadi, bayangan berubah dari maya tegak menjadi nyata terbalik, dan perbesarannya tetap <InlineMath math="3" /> kali.
 
 # Mengapa pilihan lain salah

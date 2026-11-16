@@ -2,6 +2,40 @@
 
 Frekuensi ditentukan oleh sumber, jadi **frekuensi tidak berubah apabila gelombang memasuki kawasan cetek**. Dari kawasan dalam, <InlineMath math="f=\dfrac{v}{\lambda}=\dfrac{20}{2.0}=10\text{ Hz}" />. Panjang gelombang dan arah perambatan kemudian mengikut perubahan laju.
 
+Lukis arah perambatan di sempadan. Gelombang menjadi perlahan di kawasan cetek, jadi sinarnya membengkok mendekati garis normal dan setiap panjang gelombang menjadi lebih pendek.
+
+<MathVisual
+  title={<>Gelombang air dibiaskan di sempadan</>}
+  description={<>Di kawasan dalam, dengan <InlineMath math="v=20\text{ cm s}^{-1}" /> dan <InlineMath math="\lambda=2.0\text{ cm}" />, sinar menuju sempadan pada <InlineMath math="30^\circ" /> dari garis normal. Di kawasan cetek, dengan <InlineMath math="v=12\text{ cm s}^{-1}" />, sinar membengkok mendekati normal kepada kira-kira <InlineMath math="17^\circ" /> dan panjang gelombang menjadi <InlineMath math="1.2\text{ cm}" />.</>}
+  labels={{
+    deep: <>dalam: <InlineMath math="v=20\text{ cm s}^{-1}" />, <InlineMath math="\lambda=2.0\text{ cm}" /></>,
+    shallow: <>cetek: <InlineMath math="v=12\text{ cm s}^{-1}" />, <InlineMath math="\lambda=1.2\text{ cm}" /></>,
+    incidence: <><InlineMath math="i=30^\circ" /></>,
+    refraction: <><InlineMath math="r\approx17^\circ" /></>,
+    normal: <>normal</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "boundary", kind: "segment", appearance: "reference", from: { x: -5.5, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "normal-line", kind: "segment", appearance: "construction", from: { x: 0, y: -4.6 }, to: { x: 0, y: 4.6 } },
+      { id: "incident", kind: "vector", appearance: "primary", from: { x: -2, y: 2 * Math.sqrt(3) }, to: { x: 0, y: 0 } },
+      { id: "refracted", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 1.2, y: -4 * Math.sqrt(0.91) } },
+      { id: "incidence-arc", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1.3, startDegrees: 90, sweepDegrees: 30 },
+      { id: "refraction-arc", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1.3, startDegrees: 270, sweepDegrees: Math.asin(0.3) * 180 / Math.PI },
+    ],
+    labels: [
+      { key: "deep", objectId: "boundary", at: { x: 2.5, y: 0 }, placement: "above-right" },
+      { key: "shallow", objectId: "boundary", at: { x: -2.5, y: 0 }, placement: "below-left" },
+      { key: "incidence", objectId: "incidence-arc", at: { x: 1.3 * Math.cos(7 * Math.PI / 12), y: 1.3 * Math.sin(7 * Math.PI / 12) }, placement: "above-left" },
+      { key: "refraction", objectId: "refraction-arc", at: { x: 1.3 * Math.cos(3 * Math.PI / 2 + Math.asin(0.3) / 2), y: 1.3 * Math.sin(3 * Math.PI / 2 + Math.asin(0.3) / 2) }, placement: "below-right" },
+      { key: "normal", objectId: "normal-line", at: { x: 0, y: 4.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \lambda_2&=\frac{v_2}{f}=\frac{12}{10}=1.2\text{ cm}\\
 \sin r&=\frac{v_2}{v_1}\sin i=\frac{12}{20}\sin30^\circ=0.30\ \Rightarrow\ r\approx17^\circ

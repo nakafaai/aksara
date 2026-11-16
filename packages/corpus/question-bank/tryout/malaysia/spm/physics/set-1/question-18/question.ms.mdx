@@ -1,3 +1,29 @@
 Satu sinar cahaya di udara menuju ke permukaan atas sebuah blok kaca segi empat tepat dengan sudut tuju <InlineMath math="60^\circ" />. Sinar itu terbias ke dalam kaca lalu tiba di permukaan sisi blok yang tegak, iaitu berserenjang dengan permukaan atas. Indeks biasan kaca ialah <InlineMath math="1.50" />.
 
+<MathVisual
+  title={<>Sinar memasuki permukaan atas blok kaca</>}
+  description={<>Sebuah blok kaca segi empat tepat dengan indeks biasan <InlineMath math="1.50" />. Satu sinar di udara menuju permukaan atas pada <InlineMath math="60^\circ" /> dari garis normal. Permukaan sisi tegak di sebelah kanan berserenjang dengan permukaan atas.</>}
+  labels={{
+    glass: <>kaca, <InlineMath math="n=1.50" /></>,
+    incidence: <><InlineMath math="60^\circ" /></>,
+    side: <>permukaan sisi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6 }, y: { min: -6.5, max: 2.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "secondary", vertices: [{ x: -6, y: -5 }, { x: 0, y: -5 }, { x: 0, y: 0 }, { x: -6, y: 0 }] },
+      { id: "top-normal", kind: "segment", appearance: "construction", from: { x: -3, y: -2.2 }, to: { x: -3, y: 2.2 } },
+      { id: "incident", kind: "vector", appearance: "primary", from: { x: -3 - 1.5 * Math.sqrt(3), y: 1.5 }, to: { x: -3, y: 0 } },
+      { id: "incidence-arc", kind: "arc", appearance: "highlight", center: { x: -3, y: 0 }, radius: 0.9, startDegrees: 90, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "glass", objectId: "glass", at: { x: -5, y: -4.4 }, placement: "center" },
+      { key: "incidence", objectId: "incidence-arc", at: { x: -3 + 0.9 * Math.cos(2 * Math.PI / 3), y: 0.9 * Math.sin(2 * Math.PI / 3) }, placement: "above-left" },
+      { key: "side", objectId: "glass", at: { x: 0, y: -1.2 }, placement: "right" },
+    ],
+  }}
+/>
+
 Apakah yang berlaku kepada sinar itu di permukaan sisi?

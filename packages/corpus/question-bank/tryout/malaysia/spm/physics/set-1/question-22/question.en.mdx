@@ -1,3 +1,27 @@
 A block of mass <InlineMath math="5.0\text{ kg}" /> is pushed so that it moves up a plane inclined at <InlineMath math="30^\circ" /> to the horizontal, and it is released when its speed is <InlineMath math="7.0\text{ m s}^{-1}" />. The frictional force between the block and the plane is <InlineMath math="10\text{ N}" />. Take <InlineMath math="g=10\text{ m s}^{-2}" />.
 
+<MathVisual
+  title={<>A block moving up an inclined plane</>}
+  description={<>A block on a plane inclined at <InlineMath math="30^\circ" /> to the horizontal, moving up the plane at <InlineMath math="7.0\text{ m s}^{-1}" /> at the moment it is released.</>}
+  labels={{
+    angle: <><InlineMath math="30^\circ" /></>,
+    velocity: <><InlineMath math="7.0\text{ m s}^{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 10 }, y: { min: -1.5, max: 7.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "incline", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.sqrt(3), y: 0 }, { x: 5 * Math.sqrt(3), y: 5 }] },
+      { id: "block", kind: "polygon", appearance: "secondary", vertices: [{ x: 1.5 * Math.sqrt(3), y: 1.5 }, { x: 2.5 * Math.sqrt(3), y: 2.5 }, { x: 2.5 * Math.sqrt(3) - 0.8, y: 2.5 + 0.8 * Math.sqrt(3) }, { x: 1.5 * Math.sqrt(3) - 0.8, y: 1.5 + 0.8 * Math.sqrt(3) }] },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 0, sweepDegrees: 30 },
+      { id: "velocity", kind: "vector", appearance: "primary", from: { x: 2 * Math.sqrt(3) - 1, y: 2 + Math.sqrt(3) }, to: { x: 3.25 * Math.sqrt(3) - 1, y: 3.25 + Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "angle", objectId: "angle", at: { x: 1.5 * Math.cos(Math.PI / 12), y: 1.5 * Math.sin(Math.PI / 12) }, placement: "right" },
+      { key: "velocity", objectId: "velocity", at: { x: 2.625 * Math.sqrt(3) - 1, y: 2.625 + Math.sqrt(3) }, placement: "above-left" },
+    ],
+  }}
+/>
+
 How far does the block travel up the plane after it is released until it momentarily stops?

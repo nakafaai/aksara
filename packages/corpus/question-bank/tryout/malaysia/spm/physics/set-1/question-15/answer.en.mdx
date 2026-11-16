@@ -2,6 +2,36 @@
 
 During the <InlineMath math="4.0\text{ s}" />, the sound travels to the cliff and back, while the boat keeps moving towards the cliff. Let the starting distance be <InlineMath math="d" />. **The echo meets the boat at a point already closer to the cliff**, so the distance of the sound plus the distance of the boat equals twice the starting distance.
 
+Draw the three paths along the line from the boat to the cliff. The sound's trip out and back, plus the boat's short trip, cover the starting distance twice.
+
+<MathVisual
+  title={<>The sound and the boat share the distance</>}
+  description={<>The boat starts <InlineMath math="700\text{ m}" /> from the cliff. The sound travels <InlineMath math="700\text{ m}" /> to the cliff and <InlineMath math="660\text{ m}" /> back, meeting the boat after it has moved <InlineMath math="40\text{ m}" /> forward. Together they cover <InlineMath math="1400\text{ m}" />, twice the starting distance.</>}
+  labels={{
+    out: <>sound out: <InlineMath math="700\text{ m}" /></>,
+    back: <>echo back: <InlineMath math="660\text{ m}" /></>,
+    boat: <>boat: <InlineMath math="40\text{ m}" /></>,
+    cliff: <>cliff</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: -1.5, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cliff-face", kind: "segment", appearance: "reference", from: { x: 7, y: -0.6 }, to: { x: 7, y: 2.2 } },
+      { id: "sound-out", kind: "vector", appearance: "primary", from: { x: 0, y: 1.4 }, to: { x: 7, y: 1.4 } },
+      { id: "echo-back", kind: "vector", appearance: "primary", from: { x: 7, y: 0.7 }, to: { x: 0.4, y: 0.7 } },
+      { id: "boat-path", kind: "vector", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0.4, y: 0 } },
+    ],
+    labels: [
+      { key: "out", objectId: "sound-out", at: { x: 3.5, y: 1.4 }, placement: "above" },
+      { key: "back", objectId: "echo-back", at: { x: 3.7, y: 0.7 }, placement: "below" },
+      { key: "boat", objectId: "boat-path", at: { x: 0.2, y: 0 }, placement: "below" },
+      { key: "cliff", objectId: "cliff-face", at: { x: 7, y: 2.2 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 340(4.0)+10(4.0)&=2d\\
 1360+40&=2d\ \Rightarrow\ d=700\text{ m}

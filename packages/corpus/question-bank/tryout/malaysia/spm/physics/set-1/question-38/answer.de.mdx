@@ -8,6 +8,44 @@ Der Zähler erfasst auch die Untergrundstrahlung, und die zerfällt nicht. **Nur
 500\to250\to125:\ &2\text{ Halbwertszeiten}\ \Rightarrow\ T_{1/2}=\frac{12}{2}=6{,}0\text{ Stunden}
 \end{aligned}" />
 
+Trag beide Zählraten über der Zeit ein. Die gemessene Kurve flacht zum Nulleffekt von <InlineMath math="20" /> Impulsen pro Minute hin ab, während die korrigierte Kurve sich alle <InlineMath math="6{,}0" /> Stunden halbiert.
+
+<MathVisual
+  title={<>Zählrate mit und ohne Nulleffekt</>}
+  description={<>Zählrate über der Zeit in <InlineMath math="12" /> Stunden, eine senkrechte Einheit pro <InlineMath math="50" /> Impulse pro Minute. Die gemessene Rate fällt von <InlineMath math="520" /> auf <InlineMath math="145" /> und liegt immer <InlineMath math="20" /> über der korrigierten. Die korrigierte Rate fällt von <InlineMath math="500" /> auf <InlineMath math="250" /> nach <InlineMath math="6{,}0" /> Stunden und auf <InlineMath math="125" /> nach <InlineMath math="12" /> Stunden.</>}
+  labels={{
+    "recorded-start": <><InlineMath math="520" /></>,
+    "recorded-end": <><InlineMath math="145" /></>,
+    start: <><InlineMath math="500" /></>,
+    half: <><InlineMath math="250" /></>,
+    quarter: <><InlineMath math="125" /></>,
+    background: <>Nulleffekt <InlineMath math="20" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 14 }, y: { min: -1, max: 11.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "recorded", kind: "function", appearance: "primary", formula: "10 * 2^(-x/6) + 0.4", domain: { min: 0, max: 12 } },
+      { id: "corrected", kind: "function", appearance: "answer", formula: "10 * 2^(-x/6)", domain: { min: 0, max: 12 } },
+      { id: "background-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0.4 }, to: { x: 12, y: 0.4 } },
+      { id: "recorded-start-point", kind: "point", appearance: "primary", at: { x: 0, y: 10.4 } },
+      { id: "recorded-end-point", kind: "point", appearance: "primary", at: { x: 12, y: 2.9 } },
+      { id: "start-point", kind: "point", appearance: "answer", at: { x: 0, y: 10 } },
+      { id: "half-point", kind: "point", appearance: "answer", at: { x: 6, y: 5 } },
+      { id: "quarter-point", kind: "point", appearance: "answer", at: { x: 12, y: 2.5 } },
+    ],
+    labels: [
+      { key: "recorded-start", objectId: "recorded-start-point", at: { x: 0, y: 10.4 }, placement: "right" },
+      { key: "recorded-end", objectId: "recorded-end-point", at: { x: 12, y: 2.9 }, placement: "above" },
+      { key: "start", objectId: "start-point", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "half", objectId: "half-point", at: { x: 6, y: 5 }, placement: "below-left" },
+      { key: "quarter", objectId: "quarter-point", at: { x: 12, y: 2.5 }, placement: "below" },
+      { key: "background", objectId: "background-line", at: { x: 6, y: 0.4 }, placement: "below" },
+    ],
+  }}
+/>
+
 Das Verhältnis ist genau <InlineMath math="\tfrac{125}{500}=\tfrac14" />, in <InlineMath math="12" /> Stunden vergehen also zwei Halbwertszeiten. Die Halbwertszeit der Probe beträgt also <InlineMath math="6{,}0" /> Stunden.
 
 # Warum die anderen Antworten falsch sind

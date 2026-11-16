@@ -7,6 +7,51 @@ x_2&=3{,}0\times\frac{1{,}5}{2{,}0}\times\frac{0{,}40}{0{,}20}=4{,}5\text{ mm}\\
 \text{Zahl der Abstände}&=\frac{27}{4{,}5}=6
 \end{aligned}" />
 
+Zeichne die Streifen im neuen Abstand von <InlineMath math="4{,}5\text{ mm}" /> von P bis Q. Zähl die Punkte, nicht die Lücken.
+
+<MathVisual
+  title={<>Helle Streifen von P bis Q</>}
+  description={<>Sieben helle Streifen als Punkte entlang des Schirms, im Abstand von <InlineMath math="4{,}5\text{ mm}" />, von P bei <InlineMath math="0" /> bis Q bei <InlineMath math="27\text{ mm}" />. Die sechs Lücken dazwischen ergeben zusammen <InlineMath math="27\text{ mm}" />.</>}
+  labels={{
+    p: <>P, <InlineMath math="1" /></>,
+    q: <>Q, <InlineMath math="7" /></>,
+    n2: <><InlineMath math="2" /></>,
+    n3: <><InlineMath math="3" /></>,
+    n4: <><InlineMath math="4" /></>,
+    n5: <><InlineMath math="5" /></>,
+    n6: <><InlineMath math="6" /></>,
+    span: <><InlineMath math="27\text{ mm}=6\times4{,}5\text{ mm}" /></>,
+    gap: <><InlineMath math="x=4{,}5\text{ mm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 30 }, y: { min: -4, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fringe-1", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "fringe-2", kind: "point", appearance: "highlight", at: { x: 4.5, y: 0 } },
+      { id: "fringe-3", kind: "point", appearance: "highlight", at: { x: 9, y: 0 } },
+      { id: "fringe-4", kind: "point", appearance: "highlight", at: { x: 13.5, y: 0 } },
+      { id: "fringe-5", kind: "point", appearance: "highlight", at: { x: 18, y: 0 } },
+      { id: "fringe-6", kind: "point", appearance: "highlight", at: { x: 22.5, y: 0 } },
+      { id: "fringe-7", kind: "point", appearance: "highlight", at: { x: 27, y: 0 } },
+      { id: "span", kind: "segment", appearance: "construction", from: { x: 0, y: -1.8 }, to: { x: 27, y: -1.8 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 1.8 }, to: { x: 4.5, y: 1.8 } },
+    ],
+    labels: [
+      { key: "p", objectId: "fringe-1", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "q", objectId: "fringe-7", at: { x: 27, y: 0 }, placement: "above" },
+      { key: "n2", objectId: "fringe-2", at: { x: 4.5, y: 0 }, placement: "above" },
+      { key: "n3", objectId: "fringe-3", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "n4", objectId: "fringe-4", at: { x: 13.5, y: 0 }, placement: "above" },
+      { key: "n5", objectId: "fringe-5", at: { x: 18, y: 0 }, placement: "above" },
+      { key: "n6", objectId: "fringe-6", at: { x: 22.5, y: 0 }, placement: "above" },
+      { key: "span", objectId: "span", at: { x: 13.5, y: -1.8 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 2.25, y: 1.8 }, placement: "above" },
+    ],
+  }}
+/>
+
 Dann machst du aus der Zahl der Abstände eine Zahl von Streifen. Sechs Abstände zwischen P und Q werden von **sieben hellen Streifen** begrenzt, so wie sechs Zaunfelder sieben Pfosten brauchen. Von P bis Q gibt es also <InlineMath math="7" /> helle Streifen.
 
 # Warum die anderen Antworten falsch sind

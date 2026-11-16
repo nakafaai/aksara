@@ -1,3 +1,35 @@
 Two blocks, P of mass <InlineMath math="6.0\text{ kg}" /> and Q of mass <InlineMath math="2.0\text{ kg}" />, are joined by a light string on a horizontal floor. A horizontal force of <InlineMath math="24\text{ N}" /> is applied to Q so that both blocks move together with Q in front. The floor under Q is smooth, but a frictional force of <InlineMath math="4.0\text{ N}" /> acts on P.
 
+<MathVisual
+  title={<>Blocks P and Q joined by a string</>}
+  description={<>Block P of mass <InlineMath math="6.0\text{ kg}" /> at the back is joined by a light string to block Q of mass <InlineMath math="2.0\text{ kg}" /> in front. A force of <InlineMath math="24\text{ N}" /> pulls Q forward on the smooth part of the floor, and a frictional force of <InlineMath math="4.0\text{ N}" /> acts backward on P.</>}
+  labels={{
+    p: <><InlineMath math="P,\ 6.0\text{ kg}" /></>,
+    q: <><InlineMath math="Q,\ 2.0\text{ kg}" /></>,
+    pull: <><InlineMath math="24\text{ N}" /></>,
+    friction: <>friction <InlineMath math="4.0\text{ N}" /></>,
+    smooth: <>smooth floor</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 9 }, y: { min: -2.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -8, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "block-p", kind: "polygon", appearance: "secondary", vertices: [{ x: -7, y: 0 }, { x: -3, y: 0 }, { x: -3, y: 3 }, { x: -7, y: 3 }] },
+      { id: "block-q", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0 }, { x: 4.5, y: 0 }, { x: 4.5, y: 2 }, { x: 2, y: 2 }] },
+      { id: "string", kind: "segment", appearance: "construction", from: { x: -3, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "pull", kind: "vector", appearance: "primary", from: { x: 4.5, y: 1 }, to: { x: 7.5, y: 1 } },
+      { id: "friction", kind: "vector", appearance: "warning", from: { x: -4, y: -0.6 }, to: { x: -6.5, y: -0.6 } },
+    ],
+    labels: [
+      { key: "p", objectId: "block-p", at: { x: -5, y: 1.5 }, placement: "center" },
+      { key: "q", objectId: "block-q", at: { x: 3.25, y: 2 }, placement: "above" },
+      { key: "pull", objectId: "pull", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "friction", objectId: "friction", at: { x: -5.25, y: -0.6 }, placement: "below" },
+      { key: "smooth", objectId: "floor", at: { x: 3.25, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 What is the tension in the string?

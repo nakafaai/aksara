@@ -1,3 +1,34 @@
 Water flows steadily through a horizontal pipe. The diameter of the wide section of the pipe is <InlineMath math="4.0\text{ cm}" /> and the diameter of the narrow section is <InlineMath math="2.0\text{ cm}" />. The speed of the water in the wide section is <InlineMath math="0.50\text{ m s}^{-1}" />. A vertical tube, open at the top, is fitted above each section of the pipe.
 
+<MathVisual
+  title={<>A horizontal pipe with two vertical tubes</>}
+  description={<>Water flows from left to right, from the wide section of diameter <InlineMath math="4.0\text{ cm}" /> at <InlineMath math="0.50\text{ m s}^{-1}" /> into the narrow section of diameter <InlineMath math="2.0\text{ cm}" />. An open vertical tube stands above each section.</>}
+  labels={{
+    "wide-diameter": <><InlineMath math="4.0\text{ cm}" /></>,
+    "narrow-diameter": <><InlineMath math="2.0\text{ cm}" /></>,
+    "wide-speed": <><InlineMath math="0.50\text{ m s}^{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe-top", kind: "polyline", appearance: "secondary", vertices: [{ x: -9, y: 4 }, { x: 0, y: 4 }, { x: 0, y: 2 }, { x: 9, y: 2 }] },
+      { id: "pipe-bottom", kind: "polyline", appearance: "secondary", vertices: [{ x: -9, y: -4 }, { x: 0, y: -4 }, { x: 0, y: -2 }, { x: 9, y: -2 }] },
+      { id: "tube-wide", kind: "polyline", appearance: "secondary", vertices: [{ x: -5, y: 4 }, { x: -5, y: 10 }] },
+      { id: "tube-wide-right", kind: "polyline", appearance: "secondary", vertices: [{ x: -4, y: 4 }, { x: -4, y: 10 }] },
+      { id: "tube-narrow", kind: "polyline", appearance: "secondary", vertices: [{ x: 4, y: 2 }, { x: 4, y: 10 }] },
+      { id: "tube-narrow-right", kind: "polyline", appearance: "secondary", vertices: [{ x: 5, y: 2 }, { x: 5, y: 10 }] },
+      { id: "wide-diameter", kind: "segment", appearance: "construction", from: { x: -8, y: -4 }, to: { x: -8, y: 4 } },
+      { id: "narrow-diameter", kind: "segment", appearance: "construction", from: { x: 8, y: -2 }, to: { x: 8, y: 2 } },
+      { id: "wide-speed", kind: "vector", appearance: "primary", from: { x: -4, y: 0 }, to: { x: -2.5, y: 0 } },
+    ],
+    labels: [
+      { key: "wide-diameter", objectId: "wide-diameter", at: { x: -8, y: 0 }, placement: "right" },
+      { key: "narrow-diameter", objectId: "narrow-diameter", at: { x: 8, y: 0 }, placement: "left" },
+      { key: "wide-speed", objectId: "wide-speed", at: { x: -3.25, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Which of the following is correct?

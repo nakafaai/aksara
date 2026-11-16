@@ -1,3 +1,29 @@
 Sebuah jek hidraulik mempunyai omboh kecil dengan luas keratan rentas <InlineMath math="0.0020\text{ m}^2" /> dan omboh besar dengan luas keratan rentas <InlineMath math="0.10\text{ m}^2" />. Satu daya <InlineMath math="150\text{ N}" /> dikenakan pada omboh kecil, dan omboh kecil itu ditolak ke bawah sejauh <InlineMath math="20\text{ cm}" />. Ambil <InlineMath math="g=10\text{ m s}^{-2}" /> dan abaikan geseran.
 
+<MathVisual
+  title={<>Jek hidraulik</>}
+  description={<>Daya <InlineMath math="150\text{ N}" /> menolak ke bawah omboh kecil yang luasnya <InlineMath math="0.0020\text{ m}^2" />, dan omboh itu turun <InlineMath math="20\text{ cm}" />. Cecair menghubungkannya dengan omboh besar yang luasnya <InlineMath math="0.10\text{ m}^2" />.</>}
+  labels={{
+    "small-force": <><InlineMath math="150\text{ N}" />, turun <InlineMath math="20\text{ cm}" /></>,
+    "small-area": <><InlineMath math="0.0020\text{ m}^2" /></>,
+    "large-area": <><InlineMath math="0.10\text{ m}^2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 13 }, y: { min: -0.8, max: 9.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "liquid", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 5 }, { x: 4, y: 5 }, { x: 4, y: 1.5 }, { x: 1, y: 1.5 }, { x: 1, y: 6 }, { x: 0, y: 6 }] },
+      { id: "small-piston", kind: "segment", appearance: "primary", from: { x: -0.2, y: 6 }, to: { x: 1.2, y: 6 } },
+      { id: "large-piston", kind: "segment", appearance: "primary", from: { x: 3.8, y: 5 }, to: { x: 10.2, y: 5 } },
+      { id: "small-force", kind: "vector", appearance: "primary", from: { x: 0.5, y: 8.6 }, to: { x: 0.5, y: 6.2 } },
+    ],
+    labels: [
+      { key: "small-force", objectId: "small-force", at: { x: 0.5, y: 8.6 }, placement: "above" },
+      { key: "small-area", objectId: "liquid", at: { x: 0, y: 3.5 }, placement: "left" },
+      { key: "large-area", objectId: "liquid", at: { x: 7, y: 2.8 }, placement: "center" },
+    ],
+  }}
+/>
+
 Berapakah jisim maksimum yang boleh diangkat oleh omboh besar dan jarak omboh besar itu naik?

@@ -1,3 +1,32 @@
 Sebuah bekas mengandungi air sedalam <InlineMath math="12\text{ cm}" /> dan sekeping syiling terletak di dasarnya. Syiling itu dilihat tegak dari atas. Kemudian, minyak yang tidak bercampur dengan air dituang di atas air sehingga membentuk lapisan setebal <InlineMath math="6.0\text{ cm}" />. Indeks biasan air ialah <InlineMath math="\tfrac43" /> dan indeks biasan minyak ialah <InlineMath math="1.5" />.
 
+<MathVisual
+  title={<>Lapisan minyak di atas air dan syiling</>}
+  description={<>Sekeping syiling terletak di dasar bekas yang berisi air sedalam <InlineMath math="12\text{ cm}" />. Satu lapisan minyak setebal <InlineMath math="6.0\text{ cm}" /> terapung di atas air.</>}
+  labels={{
+    water: <>air</>,
+    oil: <>minyak</>,
+    coin: <>syiling</>,
+    "water-depth": <><InlineMath math="12\text{ cm}" /></>,
+    "oil-depth": <><InlineMath math="6.0\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 15 }, y: { min: -2, max: 20 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water-after", kind: "polygon", appearance: "secondary", vertices: [{ x: 8, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 12 }, { x: 8, y: 12 }] },
+      { id: "oil", kind: "polygon", appearance: "reference", vertices: [{ x: 8, y: 12 }, { x: 12, y: 12 }, { x: 12, y: 18 }, { x: 8, y: 18 }] },
+      { id: "coin-after", kind: "point", appearance: "primary", at: { x: 10, y: 0 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-after", at: { x: 10, y: 8 }, placement: "center" },
+      { key: "oil", objectId: "oil", at: { x: 10, y: 15 }, placement: "center" },
+      { key: "coin", objectId: "coin-after", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "water-depth", objectId: "water-after", at: { x: 8, y: 6 }, placement: "left" },
+      { key: "oil-depth", objectId: "oil", at: { x: 8, y: 15 }, placement: "left" },
+    ],
+  }}
+/>
+
 Berapakah anjakan imej syiling, diukur dari dasar bekas, selepas minyak dituang?

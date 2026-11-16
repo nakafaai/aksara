@@ -4,6 +4,22 @@ Gerbang NAND mengeluarkan <InlineMath math="0" /> hanya jika kedua masukannya <I
 
 <BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
 
+Baca rangkaian itu mundur dari <InlineMath math="Q" />. Dengan <InlineMath math="C=1" />, gerbang NAND hanya membalik, jadi tiap nilai <InlineMath math="X" /> adalah kebalikan <InlineMath math="Q" />, dan empat nilai <InlineMath math="X" /> itu menunjukkan gerbang P.
+
+<Mermaid
+  title={<>Mundur melalui gerbang NAND</>}
+  description={<>Rangkaian itu dengan baris yang memiliki <InlineMath math="C=1" />. Gerbang NAND lalu bekerja sebagai gerbang NOT, jadi nilai <InlineMath math="Q" /> yaitu <InlineMath math="1, 0, 0, 0" /> berasal dari nilai <InlineMath math="X" /> yaitu <InlineMath math="0, 1, 1, 1" /> untuk <InlineMath math="AB=00, 01, 10, 11" />, yaitu keluaran gerbang OR.</>}
+  chart={`
+flowchart LR
+  A["A"] --> P["Gerbang P"]
+  B["B"] --> P
+  P -->|"X = 0, 1, 1, 1"| N["NAND dengan C = 1 bekerja sebagai NOT"]
+  C["C = 1"] --> N
+  N --> Q["Q = 1, 0, 0, 0"]
+  P -.-> R["0 hanya saat A = B = 0: gerbang OR"]
+`}
+/>
+
 Untuk <InlineMath math="AB=00,01,10,11" />, nilai <InlineMath math="Q" /> adalah <InlineMath math="1,0,0,0" />, jadi <InlineMath math="X" /> adalah <InlineMath math="0,1,1,1" />. Keluaran <InlineMath math="0" /> hanya saat kedua masukan <InlineMath math="0" /> adalah ciri gerbang OR. Jadi, gerbang P adalah gerbang OR.
 
 # Mengapa pilihan lain salah

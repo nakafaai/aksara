@@ -1,5 +1,32 @@
 A gas supply is connected to one arm of a U-tube manometer containing water. The other arm is open to the atmosphere. The water level in the arm connected to the gas supply is <InlineMath math="27.2\text{ cm}" /> lower than the water level in the open arm.
 
+<MathVisual
+  title={<>A water manometer connected to a gas supply</>}
+  description={<>A U-tube holds water. The left arm is connected to the gas supply and the right arm is open to the atmosphere. The water level in the left arm is <InlineMath math="27.2\text{ cm}" /> lower than in the right arm.</>}
+  labels={{
+    gas: <>to the gas supply</>,
+    open: <>open to the air</>,
+    difference: <><InlineMath math="27.2\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 12 }, y: { min: -1.5, max: 24.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 17.6 }, { x: 2, y: 17.6 }, { x: 2, y: 1 }, { x: -2, y: 1 }, { x: -2, y: 4 }, { x: -3, y: 4 }] },
+      { id: "tube-outer", kind: "polyline", appearance: "primary", vertices: [{ x: -3, y: 22 }, { x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 22 }] },
+      { id: "tube-inner", kind: "polyline", appearance: "primary", vertices: [{ x: -2, y: 22 }, { x: -2, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 22 }] },
+      { id: "level-line", kind: "segment", appearance: "construction", from: { x: -3, y: 4 }, to: { x: 4.5, y: 4 } },
+      { id: "difference", kind: "segment", appearance: "construction", from: { x: 4, y: 4 }, to: { x: 4, y: 17.6 } },
+    ],
+    labels: [
+      { key: "gas", objectId: "tube-outer", at: { x: -2.5, y: 22 }, placement: "above-left" },
+      { key: "open", objectId: "tube-outer", at: { x: 2.5, y: 22 }, placement: "above-right" },
+      { key: "difference", objectId: "difference", at: { x: 4, y: 10.8 }, placement: "right" },
+    ],
+  }}
+/>
+
 The atmospheric pressure is <InlineMath math="76\text{ cm Hg}" />. The density of water is <InlineMath math="1.0\text{ g cm}^{-3}" /> and the density of mercury is <InlineMath math="13.6\text{ g cm}^{-3}" />.
 
 What is the pressure of the gas?

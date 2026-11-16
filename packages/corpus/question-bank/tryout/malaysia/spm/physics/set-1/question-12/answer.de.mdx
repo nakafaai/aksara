@@ -2,6 +2,32 @@
 
 Die Leistung des Heizers ist nicht gegeben, lässt sich aber aus der Phase bestimmen, in der die Flüssigkeit K wärmer wird. **Dieselbe Leistung** wirkt dann auch beim Schmelzen. Nimm die Temperaturänderung von <InlineMath math="20^\circ\text{C}" />, nicht die Endtemperatur, und die Zeit in Sekunden.
 
+Skizziere die Heizkurve ab dem Beginn des Schmelzens. Derselbe Heizer läuft in beiden Abschnitten, also ist die Energie in jedem Abschnitt proportional zu seiner Dauer, <InlineMath math="300\text{ s}" /> gegenüber <InlineMath math="120\text{ s}" />.
+
+<MathVisual
+  title={<>Heizkurve von K</>}
+  description={<>Temperatur von K über der Zeit ab dem Beginn des Schmelzens, die Temperaturachse mit einer Einheit pro <InlineMath math="4^\circ\text{C}" />. Das flache Stück bei <InlineMath math="80^\circ\text{C}" /> dauert <InlineMath math="5{,}0\text{ min}" />, solange K schmilzt, danach erwärmt sich die Flüssigkeit geradlinig in <InlineMath math="2{,}0\text{ min}" /> auf <InlineMath math="100^\circ\text{C}" />.</>}
+  labels={{
+    melt: <>Schmelzen: <InlineMath math="5{,}0\text{ min}" /> bei <InlineMath math="80^\circ\text{C}" /></>,
+    warm: <>Flüssigkeit: <InlineMath math="+20^\circ\text{C}" /> in <InlineMath math="2{,}0\text{ min}" /></>,
+    top: <><InlineMath math="100^\circ\text{C}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10 }, y: { min: -1.8, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "melting", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "warming", kind: "segment", appearance: "primary", from: { x: 5, y: 0 }, to: { x: 7, y: 5 } },
+    ],
+    labels: [
+      { key: "melt", objectId: "melting", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "warm", objectId: "warming", at: { x: 6, y: 2.5 }, placement: "right" },
+      { key: "top", objectId: "warming", at: { x: 7, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 Q_1&=mc\Delta\theta=(0{,}20)(2000)(20)=8000\text{ J}\\
 P&=\frac{8000}{120}\approx66{,}7\text{ W}\\
