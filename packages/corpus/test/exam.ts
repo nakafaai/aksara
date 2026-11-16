@@ -41,6 +41,7 @@ export function testSet(number: number) {
 
 /** The one section of the subject track, entered from its set. */
 export const testSubjectSection: SectionSourceInput = {
+  explanation: "figure",
   interactions: ["choice", "matrix"],
   items: 2,
   key: "test-subject",
@@ -52,6 +53,7 @@ export const testSubjectSection: SectionSourceInput = {
 
 /** The first section of the year track, asked in Indonesian. */
 export const testReasoningSection: SectionSourceInput = {
+  explanation: "figure",
   interactions: ["choice"],
   items: 1,
   key: "test-reasoning",
@@ -64,6 +66,7 @@ export const testReasoningSection: SectionSourceInput = {
 
 /** The second section of the year track, asked in English. */
 export const testEnglishSection: SectionSourceInput = {
+  explanation: "figure",
   interactions: ["choice"],
   items: 1,
   key: "test-english",

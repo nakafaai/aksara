@@ -21,6 +21,21 @@ One cubic metre of mix needs <InlineMath math="360\text{ kg}" /> of cement, whic
 \text{Total}&=21+21=42\text{ bags}
 \end{aligned}" />
 
+Compare what each stage needs with what it buys. **Both needs are just above <InlineMath math="20" /> bags, so each has to be rounded up to <InlineMath math="21" /> bags**, even though the two needs together are under <InlineMath math="41" /> bags.
+
+<Chart
+  title={<>Cement needed and bags bought per stage</>}
+  description={<>Stage I needs <InlineMath math="20.79" /> bags and buys <InlineMath math="21" /> bags. Stage II needs <InlineMath math="20.196" /> bags and also buys <InlineMath math="21" /> bags. The value axis starts at <InlineMath math="18" /> bags so the gaps show.</>}
+  bars="apart"
+  categories={["Stage I", "Stage II"]}
+  series={[
+    { label: "Needed", mark: "bar", values: [20.79, 20.196] },
+    { label: "Bought", mark: "bar", values: [21, 21] },
+  ]}
+  valueLabel="Bags of cement"
+  valueRange={{ min: 18, max: 22 }}
+/>
+
 Each stage rounds up because bags are only sold whole. Twenty bags aren't enough for stage I, and the cement left over from stage I can't be used in stage II. **If you bought everything at once**, you'd need <InlineMath math="20.79+20.196=40.986" /> bags, so <InlineMath math="41" /> would do. But buying per stage makes one extra bag unavoidable.
 
 So Pak Darmo has to buy at least <InlineMath math="42" /> bags of cement.

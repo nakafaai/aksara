@@ -4,6 +4,41 @@ Dari rata-rata gabungan, **jumlah waktu XI A** adalah <InlineMath math="24\cdot1
 
 Untuk XI B hanya ada rata-ratanya, <InlineMath math="13{,}95" />. Kata **pasti** artinya pernyataan harus benar untuk setiap kemungkinan isi data XI B yang rata-ratanya <InlineMath math="13{,}95" />.
 
+Letakkan keempat nilai pada satu garis bilangan. **Rata-rata XI B ada di kanan waktu Raka tetapi di kiri median XI A**. Rata-rata boleh di atas waktu Raka tanpa satu pun siswa yang lebih cepat dari Raka, tetapi tidak mungkin di bawah median XI A kalau semua datanya di atas median itu.
+
+<MathVisual
+  title={<>Waktu Raka, rata-rata XI B, dan median serta rata-rata XI A</>}
+  description={<>Pada garis bilangan dari kiri ke kanan: waktu Raka <InlineMath math="13{,}8" />, rata-rata XI B <InlineMath math="13{,}95" />, median XI A <InlineMath math="14{,}25" />, dan rata-rata XI A <InlineMath math="\frac{201{,}3}{14}\approx14{,}38" />.</>}
+  labels={{
+    raka: <>Raka <InlineMath math="13{,}8" /></>,
+    "mean-b": <>rata-rata XI B <InlineMath math="13{,}95" /></>,
+    median: <>median XI A <InlineMath math="14{,}25" /></>,
+    "mean-a": <>rata-rata XI A <InlineMath math="14{,}38" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 13.6, max: 14.55 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 13.65, y: 0 }, to: { x: 14.5, y: 0 } },
+      { id: "raka", kind: "point", appearance: "secondary", at: { x: 13.8, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "answer", at: { x: 13.95, y: 0 } },
+      { id: "median", kind: "point", appearance: "primary", at: { x: 14.25, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 201.3 / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "raka", objectId: "raka", at: { x: 13.8, y: 0 }, placement: "below" },
+      { key: "mean-b", objectId: "mean-b", at: { x: 13.95, y: 0 }, placement: "above" },
+      { key: "median", objectId: "median", at: { x: 14.25, y: 0 }, placement: "below" },
+      { key: "mean-a", objectId: "mean-a", at: { x: 201.3 / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 Pernyataan pertama: rata-rata XI A adalah <InlineMath math="\frac{201{,}3}{14}\approx14{,}38" />. Nilai ini **lebih dari <InlineMath math="14{,}3" />**. Pernyataan ini **Benar**.

@@ -40,6 +40,46 @@ Ruas kiri kelipatan <InlineMath math="3" />, jadi <InlineMath math="5r" /> juga 
 | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="7" /> | memenuhi semua syarat |
 | <InlineMath math="6" /> | <InlineMath math="-1" /> | tidak ada | ditolak, <InlineMath math="e" /> negatif |
 
+Gambar kedua persamaan pada bidang <InlineMath math="(e,\ r)" />. **Daerah berwarna adalah pesanan yang mendapat satu potongan dan memuat kedua jenis tiket**. Hanya titik <InlineMath math="(4,\ 3)" /> yang bulat, ada di garis <InlineMath math="3e+5r=27" />, dan ada di dalam daerah itu.
+
+<MathVisual
+  title={<>Pasangan tiket <InlineMath math="(e,\ r)" /> yang mungkin</>}
+  description={<>Sumbu mendatar adalah banyak tiket <InlineMath math="e" /> early bird, sumbu tegak adalah banyak tiket reguler <InlineMath math="r" />. Daerah berwarna memenuhi <InlineMath math="e\ge1" />, <InlineMath math="r\ge1" />, dan <InlineMath math="5\le e+r\le9" />. Garis <InlineMath math="3e+5r=27" /> untuk kasus satu potongan melewati <InlineMath math="(4,\ 3)" /> di dalam daerah dan <InlineMath math="(9,\ 0)" /> yang tidak memuat tiket reguler. Garis <InlineMath math="3e+5r=24" /> untuk kasus tanpa potongan melewati <InlineMath math="(3,\ 3)" />, yang berisi <InlineMath math="6" /> tiket sehingga bertentangan dengan kasusnya.</>}
+  labels={{
+    allowed: <>satu potongan</>,
+    discount: <InlineMath math="3e+5r=27" />,
+    plain: <InlineMath math="3e+5r=24" />,
+    fit: <InlineMath math="(4,\ 3)" />,
+    "no-regular": <InlineMath math="(9,\ 0)" />,
+    "too-many": <InlineMath math="(3,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "allowed", kind: "region", appearance: "highlight", inequalities: ["x >= 1", "y >= 1", "x + y >= 5", "x + y <= 9"] },
+      { id: "discount", kind: "function", appearance: "primary", formula: "(27 - 3x)/5", domain: { min: 0, max: 9 } },
+      { id: "plain", kind: "function", appearance: "reference", formula: "(24 - 3x)/5", domain: { min: 0, max: 8 } },
+      { id: "fit", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "no-regular", kind: "point", appearance: "warning", at: { x: 9, y: 0 } },
+      { id: "too-many", kind: "point", appearance: "warning", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "allowed", objectId: "allowed", at: { x: 6, y: 2.2 }, placement: "center" },
+      { key: "discount", objectId: "discount", at: { x: 1, y: 4.8 }, placement: "above-right" },
+      { key: "plain", objectId: "plain", at: { x: 0.5, y: 4.5 }, placement: "below-left" },
+      { key: "fit", objectId: "fit", at: { x: 4, y: 3 }, placement: "above-right" },
+      { key: "no-regular", objectId: "no-regular", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "too-many", objectId: "too-many", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Jadi pesanan Fajar berisi <InlineMath math="4" /> tiket *early bird* dan <InlineMath math="3" /> tiket reguler, totalnya <InlineMath math="7" /> tiket. Banyaknya ada di antara <InlineMath math="5" /> dan <InlineMath math="9" />, jadi memang mendapat satu potongan.
 
 Cek dengan menghitung ulang pembayarannya:

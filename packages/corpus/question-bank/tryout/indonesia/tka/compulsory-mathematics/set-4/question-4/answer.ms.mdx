@@ -10,6 +10,20 @@ Peraturannya: potongan <InlineMath math="10\%" /> diberi hanya jika harga biasa 
 | Budi | <InlineMath math="62{,}100" /> | biasa <InlineMath math="62{,}100>60{,}000" />, sepatutnya dapat potongan | biasa <InlineMath math="69{,}000>60{,}000" />, padan | ada potongan |
 | Citra | <InlineMath math="54{,}000" /> | biasa <InlineMath math="54{,}000\le60{,}000" />, padan | biasa tepat <InlineMath math="60{,}000" />, tidak lebih daripada <InlineMath math="60{,}000" /> | tanpa potongan |
 
+Bandingkan harga biasa setiap resit dengan had potongan. **Hanya bar Budi yang melepasi garis <InlineMath math="60" /> ribu**, jadi hanya resit Budi yang perlu dibahagi <InlineMath math="0.9" />.
+
+<Chart
+  title={<>Harga biasa setiap resit dan had potongan</>}
+  description={<>Harga biasa resit Ani <InlineMath math="48" /> ribu rupiah, resit Budi <InlineMath math="69" /> ribu rupiah, dan resit Citra <InlineMath math="54" /> ribu rupiah. Garis mendatar pada <InlineMath math="60" /> ribu rupiah ialah had potongan. Hanya resit Budi yang melebihinya.</>}
+  bars="apart"
+  categories={["Ani", "Budi", "Citra"]}
+  series={[
+    { label: "Harga biasa", mark: "bar", values: [48, 69, 54] },
+    { label: "Had potongan", mark: "line", values: [60, 60, 60] },
+  ]}
+  valueLabel="Ribu rupiah"
+/>
+
 Resit Citra ialah kes sempadan. Harga biasa <InlineMath math="60{,}000" /> **tidak lebih daripada** <InlineMath math="60{,}000" />, jadi tiada potongan. Harga biasa Citra ialah <InlineMath math="54{,}000" />.
 
 # Menjumlahkan ketiga-tiga persamaan

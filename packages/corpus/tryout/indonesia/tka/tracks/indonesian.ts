@@ -18,6 +18,7 @@ export const tkaIndonesianTrack = {
     scoring: { kind: "raw" },
     sections: [
       {
+        explanation: "evidence",
         interactions: ["choice", "matrix"],
         items: 25,
         key: "indonesian-language",

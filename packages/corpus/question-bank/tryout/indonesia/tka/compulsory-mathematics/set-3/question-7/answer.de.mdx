@@ -30,6 +30,43 @@ Mit <InlineMath math="a=-5" /> ist <InlineMath math="1-a=6" />.
 
 <BlockMath math="f(6)=6^2+6+6=48" />
 
+Zeichne <InlineMath math="f" /> und die Gerade <InlineMath math="y=26" />. **Die Gerade schneidet die Parabel in zwei Punkten, und die Bedingung <InlineMath math="a<0" /> lässt nur den linken übrig**. Daraus folgt <InlineMath math="1-a=6" />, und gesucht ist die Höhe des Graphen bei <InlineMath math="x=6" />.
+
+<MathVisual
+  title={<>Zuerst <InlineMath math="a" />, dann <InlineMath math="f(1-a)" /></>}
+  description={<>Die Parabel <InlineMath math="f(x)=x^2+x+6" /> schneidet die waagerechte Gerade <InlineMath math="y=26" /> bei <InlineMath math="x=-5" /> und <InlineMath math="x=4" />. Der Punkt bei <InlineMath math="x=4" /> fällt weg, weil er nicht negativ ist. Der Punkt <InlineMath math="(6,\ 48)" /> auf der Parabel zeigt <InlineMath math="f(6)=48" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=x^2+x+6" />,
+    level: <InlineMath math="y=26" />,
+    kept: <InlineMath math="a=-5" />,
+    dropped: <>verworfen</>,
+    target: <InlineMath math="(6,\ 48)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7.5, max: 8 },
+      y: { min: -2, max: 56 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 + x + 6", domain: { min: -7, max: 6.5 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "26", domain: { min: -7, max: 7.5 } },
+      { id: "kept", kind: "point", appearance: "secondary", at: { x: -5, y: 26 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: 4, y: 26 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 6, y: 48 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -6, y: 36 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 0, y: 26 }, placement: "above" },
+      { key: "kept", objectId: "kept", at: { x: -5, y: 26 }, placement: "below-right" },
+      { key: "dropped", objectId: "dropped", at: { x: 4, y: 26 }, placement: "below-right" },
+      { key: "target", objectId: "target", at: { x: 6, y: 48 }, placement: "right" },
+    ],
+  }}
+/>
+
 Kurze Probe mit der Ausgangsformel: <InlineMath math="f(6)" /> ist <InlineMath math="f(2x-1)" /> für <InlineMath math="x=3{,}5" />, und <InlineMath math="4(3{,}5)^2-2(3{,}5)+6=49-7+6=48" />. **Beide Wege liefern dasselbe**.
 
 # Warum die anderen Antworten falsch sind

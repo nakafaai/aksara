@@ -25,6 +25,7 @@ export const tuDarmstadtEntranceTrack = {
     scoring: { kind: "raw" },
     sections: [
       {
+        explanation: "figure",
         interactions: ["choice"],
         items: 8,
         key: "tu-darmstadt-mathematics",

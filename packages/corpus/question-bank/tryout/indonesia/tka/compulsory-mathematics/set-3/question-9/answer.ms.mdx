@@ -20,6 +20,47 @@ Kerana <InlineMath math="x\le1" />, nilai <InlineMath math="x-2" /> sentiasa neg
 
 <BlockMath math="f^{-1}(x)=2-\sqrt{x-3},\qquad x\ge4" />
 
+Lukis cabang <InlineMath math="f" /> dan pantulannya pada <InlineMath math="y=x" />. **Cabang kiri parabola dipantulkan menjadi lengkung yang menurun di bawah garis <InlineMath math="y=1" />**, jadi tanda di hadapan punca kuasa mesti negatif, dan lengkung songsang hanya bermula pada <InlineMath math="x=4" />.
+
+<MathVisual
+  title={<>Cabang <InlineMath math="f" /> dan songsangnya</>}
+  description={<>Parabola <InlineMath math="y=(x-2)^2+3" /> yang dihadkan pada <InlineMath math="x\le1" /> menjadi cabang <InlineMath math="f" /> yang menurun hingga <InlineMath math="(1,\ 4)" />. Bahagian parabola bagi <InlineMath math="x>1" /> dilukis nipis kerana bukan sebahagian daripada <InlineMath math="f" />. Pantulannya pada <InlineMath math="y=x" /> ialah lengkung <InlineMath math="f^{-1}(x)=2-\sqrt{x-3}" /> yang bermula pada <InlineMath math="(4,\ 1)" /> dan menurun ke kanan. Titik <InlineMath math="(-1,\ 12)" /> pada <InlineMath math="f" /> berpasangan dengan <InlineMath math="(12,\ -1)" /> pada <InlineMath math="f^{-1}" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    mirror: <InlineMath math="y=x" />,
+    point: <InlineMath math="(-1,\ 12)" />,
+    image: <InlineMath math="(12,\ -1)" />,
+    corner: <InlineMath math="(4,\ 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 13.5 },
+      y: { min: -3, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rest", kind: "function", appearance: "reference", formula: "(x - 2)^2 + 3", domain: { min: 1, max: 4 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "(x - 2)^2 + 3", domain: { min: -1.4, max: 1 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "2 - sqrt(x - 3)", domain: { min: 4, max: 13 } },
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -2.5, max: 13 } },
+      { id: "point", kind: "point", appearance: "primary", at: { x: -1, y: 12 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 12, y: -1 } },
+      { id: "corner", kind: "point", appearance: "secondary", at: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 0, y: 7 }, placement: "right" },
+      { key: "inverse", objectId: "inverse", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 11, y: 11 }, placement: "above-left" },
+      { key: "point", objectId: "point", at: { x: -1, y: 12 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 12, y: -1 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 4, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 1. **Salah**. Fungsi songsang memang wujud, tetapi tandanya salah. Rumus <InlineMath math="2+\sqrt{x-3}" /> sentiasa memberi sekurang-kurangnya <InlineMath math="2" />, contohnya <InlineMath math="4" /> apabila <InlineMath math="x=7" />, sedangkan setiap nilai fungsi songsang mesti berada dalam domain <InlineMath math="f" />, iaitu <InlineMath math="x\le1" />.

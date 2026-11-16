@@ -44,13 +44,25 @@ const ExamTranslationMapSchema = localizedSourceMapSchema(
 );
 
 /**
+ * What every worked answer of a section must show beside its prose. A
+ * `figure` section, mathematics or science, teaches each answer with at least
+ * one visual: a MathVisual, a chart, a diagram, a lab, or a three-dimensional
+ * model. An `evidence` section, reading or language, may show a table or a
+ * highlighted quotation instead. `bun run explanations` holds every changed
+ * answer to its section's kind.
+ */
+export const ExplanationKindSchema = Schema.Literals(["figure", "evidence"]);
+export type ExplanationKind = typeof ExplanationKindSchema.Type;
+
+/**
  * One section of an exam profile: the languages its items are asked in, the
  * first being the one a learner starts in, how many items it has, how long it
- * lasts, the interactions it allows, and its names and routes. Every set of the
+ * lasts, what its explanations show, the interactions it allows, and its names and routes. Every set of the
  * track sits the same sections in this order, each with its own items, and
  * every item of a section is written in each of its languages.
  */
 export const SectionSourceSchema = Schema.Struct({
+  explanation: ExplanationKindSchema,
   interactions: Schema.NonEmptyArray(InteractionKindSchema),
   items: PositiveIntSchema,
   key: KebabKeySchema,

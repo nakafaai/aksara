@@ -9,6 +9,39 @@ Take a customer who buys <InlineMath math="0.2" /> gram in February, which costs
 235{,}000&<240{,}000
 \end{aligned}" />
 
+Draw the customer's profit as a function of the weight <InlineMath math="m" /> bought in February and sold in May. **The line only crosses zero at <InlineMath math="m=0.25" /> grams**, so weights of <InlineMath math="0.1" /> and <InlineMath math="0.2" /> grams still lose money.
+
+<MathVisual
+  title={<>Profit from buying in February and selling in May, by weight</>}
+  description={<>The horizontal axis is the weight <InlineMath math="m" /> in grams, and the vertical axis is the profit in thousands of rupiah, <InlineMath math="100m-25" />. The line crosses the horizontal axis at <InlineMath math="m=0.25" />. The points for <InlineMath math="m=0.1" /> and <InlineMath math="m=0.2" /> lie below zero, at <InlineMath math="-15" /> and <InlineMath math="-5" />, while the point for <InlineMath math="m=0.3" /> lies at <InlineMath math="5" />.</>}
+  labels={{
+    profit: <>profit <InlineMath math="100m-25" /></>,
+    even: <InlineMath math="m=0{,}25" />,
+    small: <InlineMath math="(0{,}2,\ -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.05, max: 1.05 },
+      y: { min: -30, max: 80 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "profit", kind: "function", appearance: "primary", formula: "100x - 25", domain: { min: 0.1, max: 1 } },
+      { id: "even", kind: "point", appearance: "construction", at: { x: 0.25, y: 0 } },
+      { id: "tenth", kind: "point", appearance: "warning", at: { x: 0.1, y: -15 } },
+      { id: "small", kind: "point", appearance: "warning", at: { x: 0.2, y: -5 } },
+      { id: "third", kind: "point", appearance: "answer", at: { x: 0.3, y: 5 } },
+    ],
+    labels: [
+      { key: "profit", objectId: "profit", at: { x: 0.8, y: 55 }, placement: "above-left" },
+      { key: "even", objectId: "even", at: { x: 0.25, y: 0 }, placement: "below-right" },
+      { key: "small", objectId: "small", at: { x: 0.2, y: -5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 This customer loses <InlineMath math="\text{Rp}5{,}000" />. In general there's a profit only when <InlineMath math="100{,}000\,m>25{,}000" />, that is <InlineMath math="m>0.25" /> gram. At <InlineMath math="0.1" /> and <InlineMath math="0.2" /> gram the customer loses money. The statement is **False**.
 
 # The second statement

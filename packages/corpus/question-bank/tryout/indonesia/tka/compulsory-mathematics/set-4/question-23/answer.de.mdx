@@ -31,6 +31,40 @@ Ein Mittelwert von <InlineMath math="41" /> heißt Summe <InlineMath math="11\cd
 
 <BlockMath math="S^2=\frac{360+121}{11}-(41-40)^2=\frac{481}{11}-1=\frac{470}{11}\approx42{,}7>36" />
 
+Zeichne die Varianz der elf Werte als Funktion von <InlineMath math="v" />. **Die Varianz ist bei <InlineMath math="v=40" /> am kleinsten und überschreitet <InlineMath math="36" /> erst, wenn <InlineMath math="v" /> mehr als etwa <InlineMath math="6{,}3" /> von <InlineMath math="40" /> entfernt ist**. Deshalb liegt <InlineMath math="v=46" /> noch unter der Linie, <InlineMath math="v=51" /> darüber.
+
+<MathVisual
+  title={<>Varianz der elf Werte in Abhängigkeit von <InlineMath math="v" /></>}
+  description={<>Die Kurve <InlineMath math="S^2(v)=\frac{360}{11}+\frac{10(v-40)^2}{121}" /> ist eine Parabel mit kleinstem Wert <InlineMath math="\frac{360}{11}\approx32{,}7" /> bei <InlineMath math="v=40" />. Die waagerechte Linie <InlineMath math="S^2=36" /> entspricht einer Standardabweichung von <InlineMath math="6" />. Der Punkt für <InlineMath math="v=46" /> liegt bei <InlineMath math="\frac{4{.}320}{121}\approx35{,}7" />, unter der Linie, der Punkt für <InlineMath math="v=51" /> bei <InlineMath math="\frac{470}{11}\approx42{,}7" />, darüber.</>}
+  labels={{
+    curve: <InlineMath math="S^2(v)" />,
+    six: <InlineMath math="S^2=36" />,
+    near: <InlineMath math="v=46" />,
+    far: <InlineMath math="v=51" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 25, max: 56 },
+      y: { min: 30, max: 47 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "360/11 + 10(x - 40)^2/121", domain: { min: 27, max: 54 } },
+      { id: "six", kind: "function", appearance: "reference", formula: "36", domain: { min: 26, max: 55 } },
+      { id: "near", kind: "point", appearance: "secondary", at: { x: 46, y: 4320 / 121 } },
+      { id: "far", kind: "point", appearance: "answer", at: { x: 51, y: 470 / 11 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 30, y: 360 / 11 + 1000 / 121 }, placement: "left" },
+      { key: "six", objectId: "six", at: { x: 28, y: 36 }, placement: "above" },
+      { key: "near", objectId: "near", at: { x: 46, y: 4320 / 121 }, placement: "below-right" },
+      { key: "far", objectId: "far", at: { x: 51, y: 470 / 11 }, placement: "left" },
+    ],
+  }}
+/>
+
 Die Standardabweichung ist **größer als** <InlineMath math="6" />. Die Aussage ist **Richtig**.
 
 Die Reihenfolge ist also Richtig, Falsch, Richtig.

@@ -41,6 +41,22 @@ Prüfe jeden Tag der Tabelle mit <InlineMath math="34<x<46" />:
 | <InlineMath math="9" /> | <InlineMath math="32" /> | <InlineMath math="8" /> | nein |
 | <InlineMath math="10" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | nein |
 
+Zeichne die Tagesverkäufe mit den Grenzen <InlineMath math="34" /> und <InlineMath math="46" /> Gläser. **Nur Balken, deren Spitze echt zwischen den beiden Linien liegt, zählen**. Die zwei Balken der Höhe <InlineMath math="46" /> berühren genau die obere Linie und fallen weg.
+
+<Chart
+  title={<>Tagesverkäufe und das Band einer Standardabweichung</>}
+  description={<>Die Balken zeigen die verkauften Gläser an den Tagen <InlineMath math="1" /> bis <InlineMath math="10" />: <InlineMath math="41" />, <InlineMath math="33" />, <InlineMath math="46" />, <InlineMath math="38" />, <InlineMath math="31" />, <InlineMath math="45" />, <InlineMath math="40" />, <InlineMath math="48" />, <InlineMath math="32" /> und <InlineMath math="46" />. Die waagerechten Linien bei <InlineMath math="34" /> und <InlineMath math="46" /> sind Mittelwert minus und plus eine Standardabweichung. Die Tage <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" /> und <InlineMath math="7" /> liegen zwischen den Linien.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Verkaufte Gläser", mark: "bar", values: [41, 33, 46, 38, 31, 45, 40, 48, 32, 46] },
+    { label: "Mittelwert minus Standardabweichung", mark: "line", values: [34, 34, 34, 34, 34, 34, 34, 34, 34, 34] },
+    { label: "Mittelwert plus Standardabweichung", mark: "line", values: [46, 46, 46, 46, 46, 46, 46, 46, 46, 46] },
+  ]}
+  valueLabel="Gläser"
+  valueRange={{ min: 25, max: 50 }}
+/>
+
 Die zwei Tage mit <InlineMath math="46" /> Bechern liegen genau eine Standardabweichung entfernt, nicht weniger, also **zählen sie nicht mit**. Es bleiben nur die Tage mit <InlineMath math="41" />, <InlineMath math="38" />, <InlineMath math="45" /> und <InlineMath math="40" /> Bechern.
 
 # Warum die anderen Antworten falsch sind

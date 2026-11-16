@@ -18,6 +18,7 @@ export const tkaCompulsoryMathematicsTrack = {
     scoring: { kind: "raw" },
     sections: [
       {
+        explanation: "figure",
         interactions: ["choice", "matrix"],
         items: 25,
         key: "compulsory-mathematics",

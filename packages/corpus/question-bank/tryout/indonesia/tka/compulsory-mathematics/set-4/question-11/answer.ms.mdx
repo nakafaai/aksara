@@ -6,6 +6,46 @@ Titik <InlineMath math="G" /> berada di permukaan atas, tetapi permukaan atas ba
 
 <BlockMath math="AG=\sqrt{(15+9)^2+7^2}=\sqrt{576+49}=\sqrt{625}=25" />
 
+Buka sisi <InlineMath math="ABFE" /> dan <InlineMath math="BCGF" /> menjadi satu segi empat tepat. **Laluan terpendek tanpa melalui penutup ialah pepenjuru segi empat tepat <InlineMath math="24\times7" />**, dari <InlineMath math="A" /> di bucu kiri bawah ke <InlineMath math="G" /> di bucu kanan atas.
+
+<MathVisual
+  title={<>Bentangan dua sisi tegak dan laluan semut</>}
+  description={<>Sisi <InlineMath math="ABFE" /> berukuran <InlineMath math="15\times7" /> dan sisi <InlineMath math="BCGF" /> berukuran <InlineMath math="9\times7" /> dibuka bersebelahan menjadi segi empat tepat <InlineMath math="24\times7" />. Ruas lurus dari <InlineMath math="A" /> ke <InlineMath math="G" /> memotong tepi <InlineMath math="BF" /> dan panjangnya <InlineMath math="\sqrt{24^2+7^2}=25" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    g: <InlineMath math="G" />,
+    front: <InlineMath math="15" />,
+    side: <InlineMath math="9" />,
+    path: <InlineMath math="25" />,
+    tall: <InlineMath math="7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 25.5 },
+      y: { min: -2, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "front", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 15, y: 0 }, { x: 15, y: 7 }, { x: 0, y: 7 }] },
+      { id: "side", kind: "polygon", appearance: "secondary", vertices: [{ x: 15, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 7 }, { x: 15, y: 7 }] },
+      { id: "tall", kind: "segment", appearance: "construction", from: { x: 24, y: 0 }, to: { x: 24, y: 7 } },
+      { id: "path", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 24, y: 7 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "g", kind: "point", appearance: "answer", at: { x: 24, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "g", objectId: "g", at: { x: 24, y: 7 }, placement: "above-right" },
+      { key: "front", objectId: "front", at: { x: 7.5, y: 0 }, placement: "below" },
+      { key: "side", objectId: "side", at: { x: 19.5, y: 0 }, placement: "below" },
+      { key: "tall", objectId: "tall", at: { x: 24, y: 3.5 }, placement: "right" },
+      { key: "path", objectId: "path", at: { x: 12, y: 3.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Laluan melalui <InlineMath math="ADHE" /> kemudian <InlineMath math="DCGH" /> memberikan segi empat tepat yang sama saiz, <InlineMath math="9+15" /> darab <InlineMath math="7" />, jadi panjangnya juga <InlineMath math="25" />.
 
 # Laluan yang dilarang

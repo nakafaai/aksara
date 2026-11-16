@@ -31,6 +31,44 @@ Also gilt <InlineMath math="2<d<6" />, das heißt <InlineMath math="d=3,4,5" />.
 | <InlineMath math="5" /> | <InlineMath math="-2" /> und <InlineMath math="8" /> | <InlineMath math="6{,}5" /> | ja |
 | <InlineMath math="6" /> | <InlineMath math="-3" /> und <InlineMath math="9" /> | <InlineMath math="12" /> | nein, muss kleiner als <InlineMath math="12" /> sein |
 
+Zeichne die Parabel zusammen mit dem Streifen <InlineMath math="-4<y<12" />. **Die gesuchten ganzen Zahlen sind die Punkte des Graphen im Inneren des Streifens, nicht auf seinem Rand**. Auf jeder Seite der Achse sind es drei, und die vier Randpunkte mit Warnzeichen fallen weg.
+
+<MathVisual
+  title={<>Parabel <InlineMath math="f" /> und der Streifen <InlineMath math="-4<y<12" /></>}
+  description={<>Die Parabel <InlineMath math="f(x)=\tfrac12(x-3)^2-6" /> hat ihren Scheitel in <InlineMath math="(3,\ -6)" />. Der gefärbte Streifen zwischen <InlineMath math="y=-4" /> und <InlineMath math="y=12" /> hat gestrichelte Ränder, weil beide Zeichen streng sind. Der Graph trifft den unteren Rand bei <InlineMath math="x=1" /> und <InlineMath math="x=5" />, den oberen bei <InlineMath math="x=-3" /> und <InlineMath math="x=9" />. Die Strecken auf der waagerechten Achse markieren die ganzen Zahlen <InlineMath math="-2" />, <InlineMath math="-1" />, <InlineMath math="0" /> und <InlineMath math="6" />, <InlineMath math="7" />, <InlineMath math="8" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=\tfrac12(x-3)^2-6" />,
+    band: <InlineMath math="-4<y<12" />,
+    "left-in": <InlineMath math="x=-2,-1,0" />,
+    "right-in": <InlineMath math="x=6,7,8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 10.5 },
+      y: { min: -7.5, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "band", kind: "region", appearance: "highlight", inequalities: ["y > -4", "y < 12"] },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x - 3)^2/2 - 6", domain: { min: -3.5, max: 9.5 } },
+      { id: "left-in", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "right-in", kind: "segment", appearance: "answer", from: { x: 6, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "low-left", kind: "point", appearance: "warning", at: { x: 1, y: -4 } },
+      { id: "low-right", kind: "point", appearance: "warning", at: { x: 5, y: -4 } },
+      { id: "high-left", kind: "point", appearance: "warning", at: { x: -3, y: 12 } },
+      { id: "high-right", kind: "point", appearance: "warning", at: { x: 9, y: 12 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3, y: -6 }, placement: "below" },
+      { key: "band", objectId: "band", at: { x: 3, y: 8 }, placement: "center" },
+      { key: "left-in", objectId: "left-in", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "right-in", objectId: "right-in", at: { x: 7, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Es passen <InlineMath math="-2,-1,0,6,7,8" />, also <InlineMath math="6" /> Zahlen. Beachte, dass <InlineMath math="x=1" /> aus der Aufgabe genau auf der unteren Grenze liegt und deshalb herausfällt.
 
 # Warum die anderen Antworten falsch sind

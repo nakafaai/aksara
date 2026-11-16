@@ -13,6 +13,46 @@ Höhe, Mantellinie und Grundkreisradius bilden ein rechtwinkliges Dreieck. **Die
 
 <BlockMath math="t=\sqrt{15^2-9^2}=\sqrt{225-81}=\sqrt{144}=12\text{ cm}" />
 
+Links ist der Karton, der gerollt wird, rechts der Querschnitt des entstehenden Kegels. **Der Bogen von <InlineMath math="216^\circ" /> wird zum Umfang der Grundfläche, und der Radius des Kartons wird zur Mantellinie**, also hat die Grundfläche den Radius <InlineMath math="9" /> und die Höhe ist <InlineMath math="12" />.
+
+<MathVisual
+  title={<>Der übrige Karton und der daraus gerollte Kegel</>}
+  description={<>Der Kartonkreis mit Radius <InlineMath math="15" /> ist geteilt in einen verwendeten Teil von <InlineMath math="216^\circ" /> und einen weggeworfenen Sektor von <InlineMath math="144^\circ" />. Der Querschnitt des Kegels rechts ist ein gleichschenkliges Dreieck mit Mantellinie <InlineMath math="15" />, Grundkreisradius <InlineMath math="9" /> und Höhe <InlineMath math="12" />.</>}
+  labels={{
+    kept: <InlineMath math="216^\circ" />,
+    removed: <InlineMath math="144^\circ" />,
+    slant: <InlineMath math="15" />,
+    height: <InlineMath math="12" />,
+    radius: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 45 },
+      y: { min: -16, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "kept", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 15, startDegrees: 0, sweepDegrees: 216 },
+      { id: "removed", kind: "arc", appearance: "warning", center: { x: 0, y: 0 }, radius: 15, startDegrees: 216, sweepDegrees: 144 },
+      { id: "edge-start", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 15, y: 0 } },
+      { id: "edge-end", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 15 * Math.cos(1.2 * Math.PI), y: 15 * Math.sin(1.2 * Math.PI) } },
+      { id: "cone", kind: "polygon", appearance: "secondary", vertices: [{ x: 25, y: -6 }, { x: 43, y: -6 }, { x: 34, y: 6 }] },
+      { id: "slant", kind: "segment", appearance: "secondary", from: { x: 25, y: -6 }, to: { x: 34, y: 6 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 34, y: -6 }, to: { x: 34, y: 6 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 34, y: -6 }, to: { x: 43, y: -6 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 15 * Math.cos(0.6 * Math.PI), y: 15 * Math.sin(0.6 * Math.PI) }, placement: "above" },
+      { key: "removed", objectId: "removed", at: { x: 15 * Math.cos(1.6 * Math.PI), y: 15 * Math.sin(1.6 * Math.PI) }, placement: "below" },
+      { key: "slant", objectId: "slant", at: { x: 29.5, y: 0 }, placement: "left" },
+      { key: "height", objectId: "height", at: { x: 34, y: 0 }, placement: "right" },
+      { key: "radius", objectId: "radius", at: { x: 38.5, y: -6 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Vom Kegel in den Zylinder
 
 Das Wasservolumen ist das Kegelvolumen.

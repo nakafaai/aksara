@@ -21,6 +21,40 @@ Each row covers <InlineMath math="35\text{ cm}" /> up the slope, and each tile i
 \text{tiles on both planes}&=2\cdot18\cdot50=1{,}800
 \end{aligned}" />
 
+Unroll one roof plane into a rectangle. **Seventeen rows of tiles only cover <InlineMath math="5.95\text{ m}" />, so row <InlineMath math="18" /> is still laid even though only <InlineMath math="5\text{ cm}" /> of it is used**. Each row holds <InlineMath math="50" /> tiles.
+
+<MathVisual
+  title={<>One roof plane and its rows of tiles</>}
+  description={<>The roof plane is a rectangle <InlineMath math="12\text{ m}" /> along the ridge and <InlineMath math="6\text{ m}" /> along the slope. Eighteen rows of <InlineMath math="35\text{ cm}" /> each cover up to <InlineMath math="6.3\text{ m}" />, a little past the edge of the plane. The last row, from <InlineMath math="5.95\text{ m}" /> to <InlineMath math="6.3\text{ m}" />, is marked because only <InlineMath math="5\text{ cm}" /> of it is used.</>}
+  labels={{
+    plane: <InlineMath math="12\text{ m}" />,
+    slope: <InlineMath math="6\text{ m}" />,
+    tiles: <><InlineMath math="18" /> rows × <InlineMath math="50" /> tiles</>,
+    last: <>row <InlineMath math="18" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 14 },
+      y: { min: -1, max: 7.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tiles", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 6.3 }, { x: 0, y: 6.3 }] },
+      { id: "plane", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 6 }, { x: 0, y: 6 }] },
+      { id: "last", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 5.95 }, { x: 12, y: 5.95 }, { x: 12, y: 6.3 }, { x: 0, y: 6.3 }] },
+      { id: "slope", kind: "segment", appearance: "construction", from: { x: -0.5, y: 0 }, to: { x: -0.5, y: 6 } },
+    ],
+    labels: [
+      { key: "plane", objectId: "plane", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "slope", objectId: "slope", at: { x: -0.5, y: 3 }, placement: "left" },
+      { key: "tiles", objectId: "tiles", at: { x: 6, y: 3 }, placement: "center" },
+      { key: "last", objectId: "last", at: { x: 12, y: 6.3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Row <InlineMath math="18" /> only uses <InlineMath math="600-17\cdot35=5\text{ cm}" /> of the slope, but every tile in that row still counts as one tile.
 
 # The ridge tiles and the total

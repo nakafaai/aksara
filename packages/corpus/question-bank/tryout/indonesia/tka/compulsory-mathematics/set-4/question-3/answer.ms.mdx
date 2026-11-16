@@ -9,6 +9,39 @@ Ambil pelanggan yang membeli <InlineMath math="0.2" /> gram pada Februari, iaitu
 235{,}000&<240{,}000
 \end{aligned}" />
 
+Lukis untung pelanggan sebagai fungsi berat <InlineMath math="m" /> yang dibeli pada Februari dan dijual pada Mei. **Garisnya hanya melepasi sifar pada <InlineMath math="m=0.25" /> gram**, jadi berat <InlineMath math="0.1" /> dan <InlineMath math="0.2" /> gram masih rugi.
+
+<MathVisual
+  title={<>Untung beli Februari, jual Mei, mengikut berat</>}
+  description={<>Paksi mendatar ialah berat <InlineMath math="m" /> dalam gram, dan paksi tegak ialah untung dalam ribu rupiah, iaitu <InlineMath math="100m-25" />. Garis memotong paksi mendatar pada <InlineMath math="m=0.25" />. Titik bagi <InlineMath math="m=0.1" /> dan <InlineMath math="m=0.2" /> berada di bawah sifar, pada <InlineMath math="-15" /> dan <InlineMath math="-5" />, manakala titik bagi <InlineMath math="m=0.3" /> berada pada <InlineMath math="5" />.</>}
+  labels={{
+    profit: <>untung <InlineMath math="100m-25" /></>,
+    even: <InlineMath math="m=0{,}25" />,
+    small: <InlineMath math="(0{,}2,\ -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.05, max: 1.05 },
+      y: { min: -30, max: 80 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "profit", kind: "function", appearance: "primary", formula: "100x - 25", domain: { min: 0.1, max: 1 } },
+      { id: "even", kind: "point", appearance: "construction", at: { x: 0.25, y: 0 } },
+      { id: "tenth", kind: "point", appearance: "warning", at: { x: 0.1, y: -15 } },
+      { id: "small", kind: "point", appearance: "warning", at: { x: 0.2, y: -5 } },
+      { id: "third", kind: "point", appearance: "answer", at: { x: 0.3, y: 5 } },
+    ],
+    labels: [
+      { key: "profit", objectId: "profit", at: { x: 0.8, y: 55 }, placement: "above-left" },
+      { key: "even", objectId: "even", at: { x: 0.25, y: 0 }, placement: "below-right" },
+      { key: "small", objectId: "small", at: { x: 0.2, y: -5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Pelanggan ini rugi <InlineMath math="\text{Rp}5{,}000" />. Secara umum, untung hanya berlaku apabila <InlineMath math="100{,}000\,m>25{,}000" />, iaitu <InlineMath math="m>0.25" /> gram. Bagi <InlineMath math="0.1" /> dan <InlineMath math="0.2" /> gram, pelanggan itu rugi. Pernyataan ini **Salah**.
 
 # Pernyataan kedua

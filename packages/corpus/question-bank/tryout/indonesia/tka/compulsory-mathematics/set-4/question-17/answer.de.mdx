@@ -21,6 +21,40 @@ Jede Reihe deckt <InlineMath math="35\text{ cm}" /> entlang der Neigung, und jed
 \text{Ziegel auf beiden Flächen}&=2\cdot18\cdot50=1{.}800
 \end{aligned}" />
 
+Klappe eine Dachfläche zu einem Rechteck auf. **Siebzehn Ziegelreihen decken erst <InlineMath math="5{,}95\text{ m}" /> ab, also wird die <InlineMath math="18" />. Reihe trotzdem verlegt, obwohl nur <InlineMath math="5\text{ cm}" /> davon genutzt werden**. Jede Reihe enthält <InlineMath math="50" /> Ziegel.
+
+<MathVisual
+  title={<>Eine Dachfläche und ihre Ziegelreihen</>}
+  description={<>Die Dachfläche ist ein Rechteck von <InlineMath math="12\text{ m}" /> entlang des Firsts und <InlineMath math="6\text{ m}" /> entlang der Neigung. Achtzehn Reihen zu je <InlineMath math="35\text{ cm}" /> decken bis <InlineMath math="6{,}3\text{ m}" /> ab, etwas über den Rand der Fläche hinaus. Die letzte Reihe, von <InlineMath math="5{,}95\text{ m}" /> bis <InlineMath math="6{,}3\text{ m}" />, ist markiert, weil davon nur <InlineMath math="5\text{ cm}" /> genutzt werden.</>}
+  labels={{
+    plane: <InlineMath math="12\text{ m}" />,
+    slope: <InlineMath math="6\text{ m}" />,
+    tiles: <><InlineMath math="18" /> Reihen × <InlineMath math="50" /> Ziegel</>,
+    last: <>Reihe <InlineMath math="18" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 14 },
+      y: { min: -1, max: 7.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tiles", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 6.3 }, { x: 0, y: 6.3 }] },
+      { id: "plane", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 6 }, { x: 0, y: 6 }] },
+      { id: "last", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 5.95 }, { x: 12, y: 5.95 }, { x: 12, y: 6.3 }, { x: 0, y: 6.3 }] },
+      { id: "slope", kind: "segment", appearance: "construction", from: { x: -0.5, y: 0 }, to: { x: -0.5, y: 6 } },
+    ],
+    labels: [
+      { key: "plane", objectId: "plane", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "slope", objectId: "slope", at: { x: -0.5, y: 3 }, placement: "left" },
+      { key: "tiles", objectId: "tiles", at: { x: 6, y: 3 }, placement: "center" },
+      { key: "last", objectId: "last", at: { x: 12, y: 6.3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Die <InlineMath math="18" />. Reihe deckt nur noch <InlineMath math="600-17\cdot35=5\text{ cm}" /> der Neigung ab, trotzdem zählt jeder Ziegel darin als ein Ziegel.
 
 # Die Firstziegel und die Summe

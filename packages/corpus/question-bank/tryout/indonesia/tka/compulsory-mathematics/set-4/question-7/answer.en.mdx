@@ -40,6 +40,43 @@ The case <InlineMath math="f(x)=-7" /> gives a new equation whose **constant ter
 x^2-6x+6&=0,\qquad D=(-6)^2-4\cdot1\cdot6=12>0
 \end{aligned}" />
 
+Draw the parabola with both horizontal lines. **The line <InlineMath math="y=-15" /> lies below the lowest point <InlineMath math="-13" />, so it never touches the parabola**. Only the line <InlineMath math="y=-7" /> gives roots, and its two roots are symmetric about <InlineMath math="x=3" />.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="f" /> with the lines <InlineMath math="y=-7" /> and <InlineMath math="y=-15" /></>}
+  description={<>The parabola <InlineMath math="f(x)=2(x-3)^2-13" /> has its vertex at <InlineMath math="(3,\ -13)" />. The horizontal line <InlineMath math="y=-7" /> meets the parabola at <InlineMath math="x=3-\sqrt3" /> and <InlineMath math="x=3+\sqrt3" />. The horizontal line <InlineMath math="y=-15" /> lies below the vertex and does not meet the parabola.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=2(x-3)^2-13" />,
+    seven: <InlineMath math="y=-7" />,
+    fifteen: <InlineMath math="y=-15" />,
+    left: <InlineMath math="3-\sqrt3" />,
+    right: <InlineMath math="3+\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7.5 },
+      y: { min: -17, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2(x - 3)^2 - 13", domain: { min: -0.4, max: 6.4 } },
+      { id: "seven", kind: "function", appearance: "secondary", formula: "-7", domain: { min: -0.5, max: 7 } },
+      { id: "fifteen", kind: "function", appearance: "warning", formula: "-15", domain: { min: -0.5, max: 7 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: 3 - Math.sqrt(3), y: -7 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 3 + Math.sqrt(3), y: -7 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5.5, y: 0.5 }, placement: "right" },
+      { key: "seven", objectId: "seven", at: { x: 6.5, y: -7 }, placement: "above" },
+      { key: "fifteen", objectId: "fifteen", at: { x: 6.5, y: -15 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: 3 - Math.sqrt(3), y: -7 }, placement: "below-left" },
+      { key: "right", objectId: "right", at: { x: 3 + Math.sqrt(3), y: -7 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 There are two real roots, <InlineMath math="x=3\pm\sqrt3" />. By Vieta, the product of the roots of <InlineMath math="px^2+qx+r=0" /> is <InlineMath math="\frac{r}{p}" />, here <InlineMath math="\frac{6}{1}=6" />. Direct check: <InlineMath math="(3+\sqrt3)(3-\sqrt3)=9-3=6" />.
 
 # The tempting options

@@ -28,6 +28,37 @@ Such jetzt das kleinste <InlineMath math="n" /> mit negativem Gewinn.
 n&>25
 \end{aligned}" />
 
+Zeichne den Tagesgewinn als fallende Gerade. **Die Gerade erreicht null genau am Tag <InlineMath math="25" />**, also beim Gleichstand, und fällt erst am Tag <InlineMath math="26" /> unter null.
+
+<MathVisual
+  title={<>Tagesgewinn des Standes nach Tag</>}
+  description={<>Die waagerechte Achse ist der Tag <InlineMath math="n" />, die senkrechte Achse der Gewinn in tausend Rupiah. Die Gerade <InlineMath math="U_n=300-12n" /> fällt jeden Tag um <InlineMath math="12" />, ausgehend von <InlineMath math="288" /> am ersten Tag. Der Punkt <InlineMath math="(25,\ 0)" /> markiert den Tag ohne Gewinn und Verlust, der Punkt <InlineMath math="(26,\ -12)" /> den ersten Tag mit Verlust.</>}
+  labels={{
+    profit: <InlineMath math="U_n=300-12n" />,
+    even: <InlineMath math="(25,\ 0)" />,
+    loss: <InlineMath math="(26,\ -12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: -70, max: 310 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "profit", kind: "function", appearance: "primary", formula: "300 - 12x", domain: { min: 1, max: 30 } },
+      { id: "even", kind: "point", appearance: "warning", at: { x: 25, y: 0 } },
+      { id: "loss", kind: "point", appearance: "answer", at: { x: 26, y: -12 } },
+    ],
+    labels: [
+      { key: "profit", objectId: "profit", at: { x: 8, y: 204 }, placement: "above-right" },
+      { key: "even", objectId: "even", at: { x: 25, y: 0 }, placement: "above-left" },
+      { key: "loss", objectId: "loss", at: { x: 26, y: -12 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Am Tag <InlineMath math="25" /> ist der Gewinn <InlineMath math="300-300=0" />. Das ist **noch kein Verlust**, nur ausgeglichen. Am Tag <InlineMath math="26" /> ist der Gewinn <InlineMath math="300-312=-12" />, also ein Verlust von <InlineMath math="\text{Rp}12{.}000" />. Der Stand macht also zum ersten Mal am Tag <InlineMath math="26" /> Verlust.
 
 # Die verlockenden Antworten

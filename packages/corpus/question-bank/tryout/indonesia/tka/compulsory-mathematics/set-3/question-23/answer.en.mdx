@@ -4,6 +4,41 @@ From the combined mean, **the XI A total** is <InlineMath math="24\cdot14.2-10\c
 
 For XI B there's only the mean, <InlineMath math="13.95" />. The word **certainly** means the statement has to hold for every possible XI B data set with mean <InlineMath math="13.95" />.
 
+Place all four values on one number line. **The XI B mean is right of Raka's time but left of the XI A median**. A mean can sit above Raka's time with no student faster than Raka, but it cannot sit below the XI A median if every value is at or above that median.
+
+<MathVisual
+  title={<>Raka's time, the XI B mean, and the XI A median and mean</>}
+  description={<>On the number line from left to right: Raka's time <InlineMath math="13.8" />, the XI B mean <InlineMath math="13.95" />, the XI A median <InlineMath math="14.25" />, and the XI A mean <InlineMath math="\frac{201.3}{14}\approx14.38" />.</>}
+  labels={{
+    raka: <>Raka <InlineMath math="13.8" /></>,
+    "mean-b": <>XI B mean <InlineMath math="13.95" /></>,
+    median: <>XI A median <InlineMath math="14.25" /></>,
+    "mean-a": <>XI A mean <InlineMath math="14.38" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 13.6, max: 14.55 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 13.65, y: 0 }, to: { x: 14.5, y: 0 } },
+      { id: "raka", kind: "point", appearance: "secondary", at: { x: 13.8, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "answer", at: { x: 13.95, y: 0 } },
+      { id: "median", kind: "point", appearance: "primary", at: { x: 14.25, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 201.3 / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "raka", objectId: "raka", at: { x: 13.8, y: 0 }, placement: "below" },
+      { key: "mean-b", objectId: "mean-b", at: { x: 13.95, y: 0 }, placement: "above" },
+      { key: "median", objectId: "median", at: { x: 14.25, y: 0 }, placement: "below" },
+      { key: "mean-a", objectId: "mean-a", at: { x: 201.3 / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Judging each statement
 
 First statement: the XI A mean is <InlineMath math="\frac{201.3}{14}\approx14.38" />. That's **more than <InlineMath math="14.3" />**. This statement is **True**.

@@ -7,6 +7,39 @@ Keterangan teman itu membuang semua hasil yang tidak memuat mata <InlineMath mat
 \text{dadu kedua }5\text{ saja}&:\ (1,5),(2,5),(3,5),(4,5),(6,5)
 \end{aligned}" />
 
+Gambar ke-<InlineMath math="36" /> hasil sebagai petak, dadu pertama mendatar dan dadu kedua tegak. **Keterangan teman itu menyisakan baris dan kolom mata <InlineMath math="5" />**, yang bersilang di <InlineMath math="(5,5)" />, jadi isinya <InlineMath math="6+6-1=11" /> petak. Dua di antaranya memuat mata <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Hasil dua dadu yang memuat mata <InlineMath math="5" /></>}
+  description={<>Papan <InlineMath math="6\times6" /> dengan dadu pertama pada sumbu mendatar dan dadu kedua pada sumbu tegak. Kolom dadu pertama <InlineMath math="5" /> dan baris dadu kedua <InlineMath math="5" /> diwarnai, dan keduanya berbagi petak <InlineMath math="(5,5)" />, sehingga ada <InlineMath math="11" /> petak berwarna. Petak <InlineMath math="(2,5)" /> dan <InlineMath math="(5,2)" /> ditandai sebagai hasil yang diminta.</>}
+  labels={{
+    column: <>dadu pertama <InlineMath math="5" /></>,
+    "two-five": <InlineMath math="(2,5)" />,
+    "five-two": <InlineMath math="(5,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 7.5 },
+      y: { min: 0, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "board", kind: "polygon", appearance: "reference", vertices: [{ x: 0.5, y: 0.5 }, { x: 6.5, y: 0.5 }, { x: 6.5, y: 6.5 }, { x: 0.5, y: 6.5 }] },
+      { id: "column", kind: "polygon", appearance: "highlight", vertices: [{ x: 4.5, y: 0.5 }, { x: 5.5, y: 0.5 }, { x: 5.5, y: 6.5 }, { x: 4.5, y: 6.5 }] },
+      { id: "row", kind: "polygon", appearance: "highlight", vertices: [{ x: 0.5, y: 4.5 }, { x: 6.5, y: 4.5 }, { x: 6.5, y: 5.5 }, { x: 0.5, y: 5.5 }] },
+      { id: "two-five", kind: "polygon", appearance: "answer", vertices: [{ x: 1.5, y: 4.5 }, { x: 2.5, y: 4.5 }, { x: 2.5, y: 5.5 }, { x: 1.5, y: 5.5 }] },
+      { id: "five-two", kind: "polygon", appearance: "answer", vertices: [{ x: 4.5, y: 1.5 }, { x: 5.5, y: 1.5 }, { x: 5.5, y: 2.5 }, { x: 4.5, y: 2.5 }] },
+    ],
+    labels: [
+      { key: "column", objectId: "column", at: { x: 5, y: 6.5 }, placement: "above" },
+      { key: "two-five", objectId: "two-five", at: { x: 2, y: 5 }, placement: "center" },
+      { key: "five-two", objectId: "five-two", at: { x: 5, y: 2 }, placement: "center" },
+    ],
+  }}
+/>
+
 Hasil <InlineMath math="(5,5)" /> hanya dihitung sekali, jadi **ada <InlineMath math="11" /> hasil yang sama mungkin**, bukan <InlineMath math="12" />.
 
 # Hasil yang diminta

@@ -19,6 +19,40 @@ Kuasa dua bagi beza boleh dikira daripada <InlineMath math="a^{2}+b^{2}" /> dan 
 a-b&=4\ \text{ atau }\ a-b=-4
 \end{aligned}" />
 
+Lukis belah kiri sebagai fungsi <InlineMath math="x" />. **Graf itu simetri terhadap paksi tegak, jadi garis <InlineMath math="y=72" /> memotongnya pada dua titik yang berlawanan tanda**. Syarat <InlineMath math="x<0" /> memilih titik kiri, tempat <InlineMath math="2^x<2^{-x}" /> maka <InlineMath math="a-b" /> negatif.
+
+<MathVisual
+  title={<>Dua penyelesaian dan pilihan <InlineMath math="x<0" /></>}
+  description={<>Lengkung <InlineMath math="4^{x+1}+2^{2-2x}=4\left(4^x+4^{-x}\right)" /> berbentuk lembah dengan titik terendah <InlineMath math="(0,\ 8)" /> dan simetri terhadap paksi tegak. Garis mendatar <InlineMath math="y=72" /> memotongnya pada <InlineMath math="x=-\log_2\left(2+\sqrt5\right)\approx-2.08" /> dan <InlineMath math="x=\log_2\left(2+\sqrt5\right)\approx2.08" />. Hanya titik kiri yang memenuhi <InlineMath math="x<0" />.</>}
+  labels={{
+    curve: <InlineMath math="4^{x+1}+2^{2-2x}" />,
+    level: <InlineMath math="y=72" />,
+    kept: <InlineMath math="x<0" />,
+    dropped: <>ditolak</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 3.2 },
+      y: { min: -5, max: 95 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "4^(x + 1) + 2^(2 - 2x)", domain: { min: -2.6, max: 2.6 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "72", domain: { min: -3, max: 3 } },
+      { id: "kept", kind: "point", appearance: "answer", at: { x: -Math.log2(2 + Math.sqrt(5)), y: 72 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: Math.log2(2 + Math.sqrt(5)), y: 72 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 8 }, placement: "below" },
+      { key: "level", objectId: "level", at: { x: 0, y: 72 }, placement: "above" },
+      { key: "kept", objectId: "kept", at: { x: -Math.log2(2 + Math.sqrt(5)), y: 72 }, placement: "below-left" },
+      { key: "dropped", objectId: "dropped", at: { x: Math.log2(2 + Math.sqrt(5)), y: 72 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Ada dua kemungkinan, dan syarat <InlineMath math="x<0" /> yang memilih. Jika <InlineMath math="x" /> negatif, maka <InlineMath math="a=2^{x}<1" /> dan <InlineMath math="b=2^{-x}>1" />. Jadi <InlineMath math="a<b" />, maka **<InlineMath math="a-b" /> mesti negatif**, iaitu <InlineMath math="a-b=-4" />.
 
 # Beza dua kuasa tiga

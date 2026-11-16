@@ -35,6 +35,48 @@ Das Zeichen ist **echt größer**, also fällt <InlineMath math="k=4" /> weg. Zu
 | <InlineMath math="7" /> | <InlineMath math="(5,21)" /> | <InlineMath math="730{.}000" /> |
 | <InlineMath math="8" /> | <InlineMath math="(0,24)" /> | <InlineMath math="720{.}000" />, aber keine Dreierschachtel |
 
+Zeichne alle Pläne mit genau <InlineMath math="120" /> Stück zusammen mit der Budgetgeraden. **Das gefärbte Gebiet enthält die Pläne, die weniger als <InlineMath math="\text{Rp}760{.}000" /> kosten**, und sein Rand ist gestrichelt, weil Kosten von genau <InlineMath math="760{.}000" /> nichts übrig lassen. Von den sieben Punkten auf der Kuchengeraden liegen nur drei in diesem Gebiet.
+
+<MathVisual
+  title={<>Kaufpläne und die Budgetgrenze</>}
+  description={<>Die waagerechte Achse ist die Anzahl der Schachteln mit <InlineMath math="3" /> Stück, <InlineMath math="x" />, die senkrechte die Anzahl der Schachteln mit <InlineMath math="5" /> Stück, <InlineMath math="y" />. Die sieben ganzzahligen Punkte auf der Geraden <InlineMath math="3x+5y=120" /> reichen von <InlineMath math="(35,\ 3)" /> bis <InlineMath math="(5,\ 21)" />. Die Gerade <InlineMath math="20x+30y=760" /> geht durch <InlineMath math="(20,\ 12)" />, und das Gebiet darunter ist gefärbt. Die Punkte <InlineMath math="(15,\ 15)" />, <InlineMath math="(10,\ 18)" /> und <InlineMath math="(5,\ 21)" /> liegen darin.</>}
+  labels={{
+    cakes: <InlineMath math="3x+5y=120" />,
+    budget: <InlineMath math="20x+30y=760" />,
+    "k-4": <InlineMath math="(20,\ 12)" />,
+    "k-5": <InlineMath math="(15,\ 15)" />,
+    "k-7": <InlineMath math="(5,\ 21)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 41 },
+      y: { min: -1, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cheap", kind: "region", appearance: "highlight", inequalities: ["20x + 30y < 760", "x >= 0", "y >= 0"] },
+      { id: "cakes", kind: "function", appearance: "primary", formula: "(120 - 3x)/5", domain: { min: 0, max: 40 } },
+      { id: "budget", kind: "function", appearance: "reference", formula: "(760 - 20x)/30", domain: { min: 0, max: 38 } },
+      { id: "k-1", kind: "point", appearance: "secondary", at: { x: 35, y: 3 } },
+      { id: "k-2", kind: "point", appearance: "secondary", at: { x: 30, y: 6 } },
+      { id: "k-3", kind: "point", appearance: "secondary", at: { x: 25, y: 9 } },
+      { id: "k-4", kind: "point", appearance: "warning", at: { x: 20, y: 12 } },
+      { id: "k-5", kind: "point", appearance: "answer", at: { x: 15, y: 15 } },
+      { id: "k-6", kind: "point", appearance: "answer", at: { x: 10, y: 18 } },
+      { id: "k-7", kind: "point", appearance: "answer", at: { x: 5, y: 21 } },
+    ],
+    labels: [
+      { key: "cakes", objectId: "cakes", at: { x: 36, y: 2.4 }, placement: "above-right" },
+      { key: "budget", objectId: "budget", at: { x: 2, y: 24 }, placement: "above-right" },
+      { key: "k-4", objectId: "k-4", at: { x: 20, y: 12 }, placement: "above-right" },
+      { key: "k-5", objectId: "k-5", at: { x: 15, y: 15 }, placement: "below-left" },
+      { key: "k-7", objectId: "k-7", at: { x: 5, y: 21 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Es gibt <InlineMath math="3" /> Pläne, die alle Bedingungen erfüllen.
 
 # Die verlockenden Antworten

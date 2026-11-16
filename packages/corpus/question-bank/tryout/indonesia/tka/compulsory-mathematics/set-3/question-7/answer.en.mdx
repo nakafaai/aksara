@@ -30,6 +30,43 @@ With <InlineMath math="a=-5" />, you get <InlineMath math="1-a=6" />.
 
 <BlockMath math="f(6)=6^2+6+6=48" />
 
+Draw <InlineMath math="f" /> and the line <InlineMath math="y=26" />. **The line meets the parabola at two points, and the condition <InlineMath math="a<0" /> keeps only the left one**. From there <InlineMath math="1-a=6" />, and the value asked for is the height of the graph at <InlineMath math="x=6" />.
+
+<MathVisual
+  title={<>Finding <InlineMath math="a" />, then <InlineMath math="f(1-a)" /></>}
+  description={<>The parabola <InlineMath math="f(x)=x^2+x+6" /> meets the horizontal line <InlineMath math="y=26" /> at <InlineMath math="x=-5" /> and <InlineMath math="x=4" />. The point at <InlineMath math="x=4" /> is rejected because it is not negative. The point <InlineMath math="(6,\ 48)" /> on the parabola shows <InlineMath math="f(6)=48" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=x^2+x+6" />,
+    level: <InlineMath math="y=26" />,
+    kept: <InlineMath math="a=-5" />,
+    dropped: <>rejected</>,
+    target: <InlineMath math="(6,\ 48)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7.5, max: 8 },
+      y: { min: -2, max: 56 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 + x + 6", domain: { min: -7, max: 6.5 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "26", domain: { min: -7, max: 7.5 } },
+      { id: "kept", kind: "point", appearance: "secondary", at: { x: -5, y: 26 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: 4, y: 26 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 6, y: 48 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -6, y: 36 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 0, y: 26 }, placement: "above" },
+      { key: "kept", objectId: "kept", at: { x: -5, y: 26 }, placement: "below-right" },
+      { key: "dropped", objectId: "dropped", at: { x: 4, y: 26 }, placement: "below-right" },
+      { key: "target", objectId: "target", at: { x: 6, y: 48 }, placement: "right" },
+    ],
+  }}
+/>
+
 A quick check with the original formula: <InlineMath math="f(6)" /> is <InlineMath math="f(2x-1)" /> at <InlineMath math="x=3.5" />, and <InlineMath math="4(3.5)^2-2(3.5)+6=49-7+6=48" />. **The results agree**.
 
 # Why the other options are wrong

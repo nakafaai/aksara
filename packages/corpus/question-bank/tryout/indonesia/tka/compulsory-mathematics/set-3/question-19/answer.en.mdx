@@ -19,6 +19,45 @@ h&=\sqrt{10^2-6^2}=\sqrt{64}=8\text{ cm} \\
 V_{\text{cone}}&=\frac{1}{3}\pi r^2h=\frac{1}{3}\pi\cdot36\cdot8=96\pi\text{ cm}^3
 \end{aligned}" />
 
+Compare the cross-section of the hollow ball with that of one cone. **The metal is only the ring between the two circles**, and the cone's height appears as a leg of a right triangle with hypotenuse <InlineMath math="10" /> and base <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Cross-sections of the hollow ball and one cone</>}
+  description={<>On the left is the cross-section of the ball centred at the origin: an outer circle of radius <InlineMath math="12" /> and a cavity of radius <InlineMath math="3" />, with metal between them. On the right, the cone's cross-section is an isosceles triangle with base <InlineMath math="12" />, slant height <InlineMath math="10" />, and height <InlineMath math="8" />. That height and the base radius <InlineMath math="6" /> form a right triangle with the slant height.</>}
+  labels={{
+    shell: <InlineMath math="12" />,
+    hole: <InlineMath math="3" />,
+    height: <InlineMath math="t=8" />,
+    slant: <InlineMath math="10" />,
+    base: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 30 },
+      y: { min: -13.5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "metal", kind: "region", appearance: "primary", inequalities: ["x^2 + y^2 <= 144", "x^2 + y^2 >= 9"] },
+      { id: "shell", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 12 } },
+      { id: "hole", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "cone", kind: "polygon", appearance: "secondary", vertices: [{ x: 16, y: -12 }, { x: 28, y: -12 }, { x: 22, y: -4 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 22, y: -12 }, to: { x: 22, y: -4 } },
+      { id: "slant", kind: "segment", appearance: "secondary", from: { x: 16, y: -12 }, to: { x: 22, y: -4 } },
+      { id: "base", kind: "segment", appearance: "construction", from: { x: 22, y: -12 }, to: { x: 28, y: -12 } },
+    ],
+    labels: [
+      { key: "shell", objectId: "shell", at: { x: 0, y: 7.5 }, placement: "right" },
+      { key: "hole", objectId: "hole", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 22, y: -8 }, placement: "right" },
+      { key: "slant", objectId: "slant", at: { x: 19, y: -8 }, placement: "left" },
+      { key: "base", objectId: "base", at: { x: 25, y: -12 }, placement: "below" },
+    ],
+  }}
+/>
+
 # The number of cones
 
 Divide the metal's volume by the volume of one cone:

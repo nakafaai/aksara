@@ -10,6 +10,26 @@ There are three ways for Andi to win, and they can't happen together.
 | In on throw <InlineMath math="2" /> | Andi misses, Budi misses, Andi scores | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12=\tfrac14" /> |
 | In on throw <InlineMath math="3" /> | two rounds of misses, then Andi scores | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac23\cdot\tfrac34=\tfrac18" /> |
 
+The tree below follows the game throw by throw. **Andi only gets another throw if Budi misses**, so every path to an Andi win passes through Budi's <InlineMath math="\frac23" /> branch.
+
+<Mermaid
+  title={<>Probability tree of Andi's and Budi's throws</>}
+  description={<>Andi's throws go in with probability <InlineMath math="\frac14" />, <InlineMath math="\frac12" />, then <InlineMath math="\frac34" />. Each of Budi's throws goes in with probability <InlineMath math="\frac13" /> and misses with probability <InlineMath math="\frac23" />. Three paths end with Andi winning, three with Budi winning, and one in a draw after six misses.</>}
+  chart={`flowchart LR
+  A1["Andi throws 1"] -->|"1/4"| W1["Andi wins"]
+  A1 -->|"3/4"| B1["Budi throws 1"]
+  B1 -->|"1/3"| L1["Budi wins"]
+  B1 -->|"2/3"| A2["Andi throws 2"]
+  A2 -->|"1/2"| W2["Andi wins"]
+  A2 -->|"1/2"| B2["Budi throws 2"]
+  B2 -->|"1/3"| L2["Budi wins"]
+  B2 -->|"2/3"| A3["Andi throws 3"]
+  A3 -->|"3/4"| W3["Andi wins"]
+  A3 -->|"1/4"| B3["Budi throws 3"]
+  B3 -->|"1/3"| L3["Budi wins"]
+  B3 -->|"2/3"| D["Draw"]`}
+/>
+
 <BlockMath math="P(\text{Andi wins})=\tfrac14+\tfrac14+\tfrac18=\tfrac58" />
 
 # Check with the other outcomes

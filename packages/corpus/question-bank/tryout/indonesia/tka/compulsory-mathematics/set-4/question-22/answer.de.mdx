@@ -19,6 +19,22 @@ Bestimme für jeden neuen Wert **den Abstand zum neuen Mittelwert**, also zu <In
 S&=\sqrt{\tfrac{160}{10}}=4
 \end{aligned}" />
 
+Vergleiche alte und neue Daten Tag für Tag. **Nur vier Balken steigen um <InlineMath math="5" />, und es sind die vier niedrigsten Tage**, also liegen die neuen Daten enger um den Mittelwert <InlineMath math="42" />, und die Standardabweichung sinkt.
+
+<Chart
+  title={<>Tagesverkäufe vor und nach der Korrektur</>}
+  description={<>Die Tage <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="5" /> und <InlineMath math="9" /> steigen von <InlineMath math="33" />, <InlineMath math="38" />, <InlineMath math="31" /> und <InlineMath math="32" /> auf <InlineMath math="38" />, <InlineMath math="43" />, <InlineMath math="36" /> und <InlineMath math="37" />. Die übrigen Tage bleiben gleich. Die waagerechte Linie bei <InlineMath math="42" /> ist der neue Mittelwert.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Vorher", mark: "bar", values: [41, 33, 46, 38, 31, 45, 40, 48, 32, 46] },
+    { label: "Nachher", mark: "bar", values: [41, 38, 46, 43, 36, 45, 40, 48, 37, 46] },
+    { label: "Neuer Mittelwert", mark: "line", values: [42, 42, 42, 42, 42, 42, 42, 42, 42, 42] },
+  ]}
+  valueLabel="Gläser"
+  valueRange={{ min: 25, max: 50 }}
+/>
+
 # Jede Aussage prüfen
 
 1. **Falsch**. Der Median steigt von <InlineMath math="40{,}5" /> auf <InlineMath math="42" />, weil sich die beiden mittleren Werte ändern.
