@@ -23,6 +23,21 @@ Konsentrasi sama dengan stok A per liter dikali <InlineMath math="200" />.
 
 Cek pembagiannya: <InlineMath math="184\cdot1{.}250=230{.}000" />. Rentang yang sesuai untuk minggu kelima adalah <InlineMath math="1{.}150" /> sampai <InlineMath math="1{.}250\text{ ppm}" />, dan **kedua batas itu termasuk**. Jadi larutan tepat berada di batas atas dan masih sesuai.
 
+Grafik berikut mengikuti konsentrasi larutan dari Senin pagi sampai Rabu pagi. **Garisnya naik setiap hari dan berhenti tepat di batas atas** pada Rabu pagi.
+
+<Chart
+  title={<>Konsentrasi larutan setiap pagi, Senin sampai Rabu</>}
+  description={<>Konsentrasinya <InlineMath math="1{.}200\text{ ppm}" /> pada Senin pagi, sekitar <InlineMath math="1{.}224\text{ ppm}" /> pada Selasa pagi, dan tepat <InlineMath math="1{.}250\text{ ppm}" /> pada Rabu pagi. Dua garis datar menandai batas <InlineMath math="1{.}150" /> dan <InlineMath math="1{.}250\text{ ppm}" />. Sumbu nilai dimulai dari <InlineMath math="1{.}100" />.</>}
+  categories={["Senin pagi", "Selasa pagi", "Rabu pagi"]}
+  series={[
+    { label: "Konsentrasi (ppm)", mark: "line", values: [1200, ((1200 - 25) / (200 - 8)) * 200, ((1200 - 50) / (200 - 16)) * 200] },
+    { label: "Batas bawah 1.150", mark: "line", values: [1150, 1150, 1150] },
+    { label: "Batas atas 1.250", mark: "line", values: [1250, 1250, 1250] },
+  ]}
+  valueRange={{ min: 1100, max: 1300 }}
+  valueLabel="Konsentrasi (ppm)"
+/>
+
 # Mengapa konsentrasinya naik
 
 Air berkurang <InlineMath math="\tfrac{8}{200}=4\%" /> pada hari pertama, sedangkan stok A hanya berkurang <InlineMath math="\tfrac{25}{1{.}200}" />, kira-kira <InlineMath math="2\%" />. **Air hilang lebih cepat daripada nutrisi**, jadi larutan makin pekat. Hasil <InlineMath math="1{.}250\text{ ppm}" /> yang lebih besar dari <InlineMath math="1{.}200\text{ ppm}" /> memang masuk akal.

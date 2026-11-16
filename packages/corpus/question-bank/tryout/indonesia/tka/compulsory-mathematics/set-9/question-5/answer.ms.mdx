@@ -31,6 +31,38 @@ Katakan peristiwa itu berlaku <InlineMath math="t" /> tahun dari sekarang. Ayah 
 t&=8
 \end{aligned}" />
 
+Lukis kedua-dua belah sebagai garis terhadap <InlineMath math="t" />. **Garis lima kali umur Kakak naik <InlineMath math="5" /> setahun, sedangkan jumlah umur Ayah dan Ibu hanya naik <InlineMath math="2" />**, jadi garis yang bermula lebih rendah itu mengejar pada <InlineMath math="t=8" />.
+
+<MathVisual
+  title={<>Jumlah umur Ayah dan Ibu berbanding lima kali umur Kakak</>}
+  description={<>Paksi mendatar ialah bilangan tahun <InlineMath math="t" /> dari sekarang, dan paksi tegak ialah umur dalam tahun. Garis <InlineMath math="99+2t" /> bermula pada <InlineMath math="99" />, dan garis <InlineMath math="5(15+t)" /> bermula pada <InlineMath math="75" /> tetapi naik lebih cepat. Kedua-duanya bertemu pada <InlineMath math="(8,\ 115)" />.</>}
+  labels={{
+    parents: <InlineMath math="99+2t" />,
+    five: <InlineMath math="5(15+t)" />,
+    meet: <InlineMath math="(8,\ 115)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 14 },
+      y: { min: 60, max: 150 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parents", kind: "function", appearance: "primary", formula: "99 + 2*x", domain: { min: 0, max: 14 } },
+      { id: "five", kind: "function", appearance: "secondary", formula: "5*(15 + x)", domain: { min: 0, max: 14 } },
+      { id: "meet-down", kind: "segment", appearance: "construction", from: { x: 8, y: 115 }, to: { x: 8, y: 60 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 8, y: 115 } },
+    ],
+    labels: [
+      { key: "parents", objectId: "parents", at: { x: 1, y: 101 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 2, y: 85 }, placement: "below-right" },
+      { key: "meet", objectId: "meet", at: { x: 8, y: 115 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Nilai <InlineMath math="t" /> positif, jadi peristiwa itu berlaku <InlineMath math="8" /> tahun lagi. Semak: pada masa itu Ayah berumur <InlineMath math="59" />, Ibu <InlineMath math="56" />, dan Kakak <InlineMath math="23" />, dan <InlineMath math="59+56=115=5\cdot23" />.
 
 # Jumlah umur pada masa itu

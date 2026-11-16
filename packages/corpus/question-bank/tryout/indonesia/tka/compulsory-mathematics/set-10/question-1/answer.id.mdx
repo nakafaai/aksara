@@ -22,6 +22,38 @@ Sekarang samakan rumus itu dengan total yang diketahui.
 p&=5{.}400{.}000
 \end{aligned}" />
 
+Gambar total pembayaran sebagai fungsi pokok utang. **Garisnya mulai di harga normal dan naik <InlineMath math="0{,}19" /> untuk setiap rupiah pokok**, jadi cukup cari pokok tempat garis itu mencapai total yang diketahui.
+
+<MathVisual
+  title={<>Total pembayaran kredit tenor <InlineMath math="12" /> bulan menurut pokok utang</>}
+  description={<>Sumbu mendatar adalah pokok utang <InlineMath math="p" /> dan sumbu tegak adalah total pembayaran, keduanya dalam juta rupiah. Garis <InlineMath math="9+0{,}19p" /> memotong garis total <InlineMath math="10{,}026" /> di <InlineMath math="p=5{,}4" />, yaitu pokok <InlineMath math="\text{Rp}5{.}400{.}000" />.</>}
+  labels={{
+    total: <InlineMath math="9+0{,}19p" />,
+    target: <InlineMath math="10{,}026" />,
+    hit: <InlineMath math="(5{,}4;\ 10{,}026)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 7.2 },
+      y: { min: 8.8, max: 10.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "9 + 0.19*x", domain: { min: 0, max: 7.2 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "10.026", domain: { min: 0, max: 7.2 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 5.4, y: 10.026 }, to: { x: 5.4, y: 8.8 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 5.4, y: 10.026 } },
+    ],
+    labels: [
+      { key: "total", objectId: "total", at: { x: 2, y: 9.38 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 1, y: 10.026 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 5.4, y: 10.026 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Uang mukanya <InlineMath math="9{.}000{.}000-5{.}400{.}000=3{.}600{.}000" />, yaitu <InlineMath math="40\%" /> dari harga normal, jadi **syarat uang muka paling sedikit <InlineMath math="20\%" /> terpenuhi**. Cicilannya adalah pokok ditambah seluruh bunga, dibagi <InlineMath math="12" />.
 
 <BlockMath math="\text{cicilan}=\frac{5{.}400{.}000+0{,}18\cdot5{.}400{.}000}{12}=\frac{6{.}372{.}000}{12}=531{.}000" />

@@ -29,6 +29,20 @@ Machine Q runs <InlineMath math="7" /> hours and then gets <InlineMath math="1" 
 
 Check it by **adding up each day separately**: Monday gives <InlineMath math="14\times114+14\times81=2{,}730" />, and Tuesday and Wednesday each give <InlineMath math="13\times114+14\times81=2{,}616" />. Together that's <InlineMath math="2{,}730+2{,}616+2{,}616=7{,}962" />, the same.
 
+The chart below adds up the good parts by the end of each day. **The Wednesday bar stops just short of the order line**, <InlineMath math="38" /> parts short.
+
+<Chart
+  title={<>Good parts collected by the end of each day</>}
+  description={<>By the end of Monday, <InlineMath math="2{,}730" /> good parts are collected, by the end of Tuesday <InlineMath math="5{,}346" />, and by the end of Wednesday <InlineMath math="7{,}962" />. The flat line marks the order of <InlineMath math="8{,}000" /> good parts.</>}
+  categories={["Monday", "Tuesday", "Wednesday"]}
+  bars="apart"
+  series={[
+    { label: "Good parts so far", mark: "bar", values: [14 * 114 + 14 * 81, 14 * 114 + 14 * 81 + 13 * 114 + 14 * 81, 40 * 114 + 42 * 81] },
+    { label: "Order of 8,000", mark: "line", values: [8000, 8000, 8000] },
+  ]}
+  valueLabel="Good parts"
+/>
+
 # Traps to avoid
 
 The shortfall is small, so **one miscounted hour already flips the conclusion**.

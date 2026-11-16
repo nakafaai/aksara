@@ -31,6 +31,20 @@ Hanya <InlineMath math="b=2" /> yang mungkin, jadi **kedua perjalanan bus wajib 
 
 Cek waktunya: dua perjalanan bus tiba pukul 07.25 dan 08.15, sedangkan tiga perjalanan minibus memakai dua keberangkatan pukul 07.00 dan satu keberangkatan pukul 07.40. Semuanya tiba sebelum 08.30.
 
+Grafik berikut menghitung kursi beberapa susunan perjalanan yang masih tiba tepat waktu. **Batang pertama yang melewati garis <InlineMath math="100" /> adalah dua bus dan tiga minibus**, susunan termurah yang cukup.
+
+<Chart
+  title={<>Banyak kursi untuk susunan perjalanan yang tiba paling lambat pukul 08.30</>}
+  description={<>Satu bus dan empat minibus memberi <InlineMath math="86" /> kursi. Dua bus dan dua minibus memberi <InlineMath math="88" /> kursi. Dua bus dan tiga minibus memberi <InlineMath math="102" /> kursi dengan biaya <InlineMath math="\text{Rp}495{.}000" />. Dua bus dan empat minibus memberi <InlineMath math="116" /> kursi. Garis datar menandai <InlineMath math="100" /> peserta.</>}
+  categories={["1 bus, 4 minibus", "2 bus, 2 minibus", "2 bus, 3 minibus", "2 bus, 4 minibus"]}
+  bars="apart"
+  series={[
+    { label: "Banyak kursi", mark: "bar", values: [30 + 4 * 14, 60 + 2 * 14, 60 + 3 * 14, 60 + 4 * 14] },
+    { label: "100 peserta", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Banyak kursi"
+/>
+
 # Pilihan yang keliru
 
 Pilihan lain **melupakan batas waktu atau tidak mencari kombinasi termurah**.

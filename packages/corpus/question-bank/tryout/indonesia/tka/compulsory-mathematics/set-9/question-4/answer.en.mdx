@@ -38,6 +38,43 @@ Now plug in <InlineMath math="R(n)" />. Since <InlineMath math="n" /> is positiv
 n&>120
 \end{aligned}" />
 
+Draw the average cost with the limit line at <InlineMath math="45" /> thousand rupiah. **The curve only drops below the line after passing <InlineMath math="n=120" />**, so the first whole number that works is <InlineMath math="121" />.
+
+<MathVisual
+  title={<>Average cost per shirt by number of shirts</>}
+  description={<>The horizontal axis is the number of shirts <InlineMath math="n" />, and the vertical axis is the average cost in thousands of rupiah. The curve <InlineMath math="R(n)=35+\tfrac{1{,}200}{n}" /> passes through both data points <InlineMath math="(40,\ 65)" /> and <InlineMath math="(100,\ 47)" />, then meets the limit line at <InlineMath math="45" /> exactly at <InlineMath math="(120,\ 45)" />. To the right of that point the curve is below the line.</>}
+  labels={{
+    average: <InlineMath math="R(n)" />,
+    limit: <>limit 45</>,
+    small: <InlineMath math="(40,\ 65)" />,
+    large: <InlineMath math="(100,\ 47)" />,
+    edge: <InlineMath math="(120,\ 45)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 20, max: 200 },
+      y: { min: 30, max: 80 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "35 + 1200/x", domain: { min: 25, max: 195 } },
+      { id: "limit", kind: "function", appearance: "warning", formula: "45", domain: { min: 25, max: 195 } },
+      { id: "small", kind: "point", appearance: "secondary", at: { x: 40, y: 65 } },
+      { id: "large", kind: "point", appearance: "secondary", at: { x: 100, y: 47 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 120, y: 45 } },
+    ],
+    labels: [
+      { key: "average", objectId: "average", at: { x: 30, y: 75 }, placement: "right" },
+      { key: "limit", objectId: "limit", at: { x: 180, y: 45 }, placement: "above" },
+      { key: "small", objectId: "small", at: { x: 40, y: 65 }, placement: "right" },
+      { key: "large", objectId: "large", at: { x: 100, y: 47 }, placement: "above-right" },
+      { key: "edge", objectId: "edge", at: { x: 120, y: 45 }, placement: "below" },
+    ],
+  }}
+/>
+
 For <InlineMath math="n=120" />, the average cost is exactly <InlineMath math="45{,}000" /> and the profit is <InlineMath math="9{,}000" />, which is **exactly** <InlineMath math="20\%" />, not more. For <InlineMath math="n=121" />, the average cost is <InlineMath math="35{,}000+9{,}917.36=44{,}917.36" />, already below <InlineMath math="45{,}000" />.
 
 # Why the other options are wrong

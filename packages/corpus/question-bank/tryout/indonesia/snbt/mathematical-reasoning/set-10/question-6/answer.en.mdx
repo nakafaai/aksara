@@ -37,6 +37,18 @@ Add up **every payment from the day of purchase to the day of the payoff**.
 
 If Dodi paid every instalment, the total would be <InlineMath math="1{,}400{,}000+12\cdot472{,}000=7{,}064{,}000" />. Paying off early removes <InlineMath math="7\cdot72{,}000=504{,}000" /> of interest but adds a penalty of <InlineMath math="84{,}000" />. **The saving** is <InlineMath math="504{,}000-84{,}000=420{,}000" />, and indeed <InlineMath math="7{,}064{,}000-420{,}000=6{,}644{,}000" />.
 
+The chart below compares the early payoff with paying every instalment. **The early payoff is <InlineMath math="\text{Rp}420{,}000" /> cheaper**, because seven months of interest disappear and the penalty is much smaller.
+
+<Chart
+  title={<>Dodi's total payment with and without the early payoff</>}
+  description={<>If Dodi pays all <InlineMath math="12" /> instalments, the total is <InlineMath math="\text{Rp}7{,}064{,}000" />. With the early payoff after the fifth instalment, the total is <InlineMath math="\text{Rp}6{,}644{,}000" />. The value axis starts at <InlineMath math="\text{Rp}6{,}000{,}000" />.</>}
+  categories={["All instalments", "Paid off after the fifth"]}
+  bars="apart"
+  series={[{ label: "Total money paid (rupiah)", mark: "bar", values: [1400000 + 12 * 472000, 1400000 + 5 * 472000 + 1.03 * (4800000 - 5 * 400000)] }]}
+  valueRange={{ min: 6000000, max: 7200000 }}
+  valueLabel="Money (rupiah)"
+/>
+
 # The wrong options
 
 Each wrong option **gets the payoff amount wrong**.

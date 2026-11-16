@@ -10,6 +10,43 @@ Murid yang bukan anak tunggal ada <InlineMath math="30+x" /> orang dengan jumlah
 \text{semua murid}&:\ 40\text{ murid},\ \text{jumlah }112,\ \text{min }2.8
 \end{aligned}" />
 
+Lukis kedua-dua min apabila <InlineMath math="k" /> murid baharu dengan <InlineMath math="3" /> adik-beradik menyertai kelas. **Kedua-dua lengkung mendekati garis <InlineMath math="3" /> dari arah bertentangan**: min semua murid naik dari bawah, min murid yang bukan anak tunggal turun dari atas, dan tiada yang menyentuh garis itu.
+
+<MathVisual
+  title={<>Dua min apabila murid baharu menyertai kelas</>}
+  description={<>Paksi mendatar ialah bilangan murid baharu <InlineMath math="k" />, dan paksi tegak ialah min bilangan adik-beradik. Lengkung bawah <InlineMath math="\tfrac{112+3k}{40+k}" /> bermula pada <InlineMath math="2.8" /> dan naik menuju <InlineMath math="3" />. Lengkung atas <InlineMath math="\tfrac{112+3k}{35+k}" /> bermula pada <InlineMath math="3.2" /> dan turun menuju <InlineMath math="3" />. Titik pada <InlineMath math="k=4" /> ialah <InlineMath math="\tfrac{124}{44}" /> dan <InlineMath math="\tfrac{124}{39}" />.</>}
+  labels={{
+    all: <>semua murid</>,
+    rest: <>bukan anak tunggal</>,
+    three: <InlineMath math="3" />,
+    "all-four": <InlineMath math="\tfrac{124}{44}" />,
+    "rest-four": <InlineMath math="\tfrac{124}{39}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: 2.7, max: 3.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "all", kind: "function", appearance: "primary", formula: "(112 + 3*x)/(40 + x)", domain: { min: 0, max: 60 } },
+      { id: "rest", kind: "function", appearance: "secondary", formula: "(112 + 3*x)/(35 + x)", domain: { min: 0, max: 60 } },
+      { id: "three", kind: "function", appearance: "warning", formula: "3", domain: { min: 0, max: 60 } },
+      { id: "all-four", kind: "point", appearance: "answer", at: { x: 4, y: 124 / 44 } },
+      { id: "rest-four", kind: "point", appearance: "answer", at: { x: 4, y: 124 / 39 } },
+    ],
+    labels: [
+      { key: "all", objectId: "all", at: { x: 50, y: 262 / 90 }, placement: "below" },
+      { key: "rest", objectId: "rest", at: { x: 50, y: 262 / 85 }, placement: "above" },
+      { key: "three", objectId: "three", at: { x: 58, y: 3 }, placement: "above" },
+      { key: "all-four", objectId: "all-four", at: { x: 4, y: 124 / 44 }, placement: "below-right" },
+      { key: "rest-four", objectId: "rest-four", at: { x: 4, y: 124 / 39 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Nombor <InlineMath math="3" /> **terletak di antara kedua-dua min itu**, dan inilah kunci bagi dua pernyataan pertama.
 
 # Menilai setiap pernyataan

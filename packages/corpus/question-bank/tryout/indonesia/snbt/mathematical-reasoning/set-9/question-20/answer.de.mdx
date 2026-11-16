@@ -22,6 +22,20 @@ Nach der neuen Regel läuft P <InlineMath math="10" /> Stunden und wird dann <In
 
 Die neue Regel ergibt zusammen <InlineMath math="14+14=28" /> Betriebsstunden. Am Dienstag **braucht die neue Regel nur <InlineMath math="2" /> Wartungsstunden**, die alte dagegen <InlineMath math="3" />.
 
+Das Diagramm vergleicht die Betriebsstunden von Maschine P nach beiden Regeln. **Die Montagsbalken sind gleich hoch**, und der ganze Unterschied entsteht am Dienstag, wenn die neue Regel nur eine Wartung braucht.
+
+<Chart
+  title={<>Betriebsstunden von Maschine P am Montag und Dienstag nach Wartungsregel</>}
+  description={<>Nach der alten Regel läuft Maschine P am Montag <InlineMath math="14" /> Stunden und am Dienstag <InlineMath math="13" /> Stunden. Nach der neuen Regel läuft sie am Montag <InlineMath math="14" /> Stunden und am Dienstag <InlineMath math="14" /> Stunden.</>}
+  categories={["Montag", "Dienstag"]}
+  bars="apart"
+  series={[
+    { label: "Alte Regel", mark: "bar", values: [5 + 5 + 4, 1 + 5 + 5 + 2] },
+    { label: "Neue Regel", mark: "bar", values: [10 + 4, 6 + 8] },
+  ]}
+  valueLabel="Betriebsstunden"
+/>
+
 # Der Unterschied bei den guten Teilen
 
 Jede Betriebsstunde von P liefert <InlineMath math="95\%\times120=114" /> gute Teile.

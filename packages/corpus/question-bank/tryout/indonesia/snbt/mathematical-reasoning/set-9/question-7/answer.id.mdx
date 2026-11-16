@@ -19,6 +19,19 @@ Setiap keberangkatan membawa peserta sebanyak kapasitasnya, kecuali rombongan te
 
 Sampai menit <InlineMath math="80" /> sudah <InlineMath math="144" /> peserta berangkat, jadi tersisa <InlineMath math="150-144=6" /> orang. Kendaraan pertama yang kembali ke stasiun sesudah itu adalah **bus yang kembali pada menit** <InlineMath math="100" />, karena minibus baru kembali pada menit <InlineMath math="120" />.
 
+Grafik berikut menumpuk peserta yang sudah berangkat menurut urutan keberangkatan. **Langkah terakhir hanya naik <InlineMath math="6" /> orang**, dan langkah itu diambil bus yang berangkat pada menit ke-<InlineMath math="100" />.
+
+<Chart
+  title={<>Total peserta yang sudah berangkat menurut urutan keberangkatan</>}
+  description={<>Bus pada menit <InlineMath math="0" /> membawa <InlineMath math="30" /> orang, dua minibus pada menit <InlineMath math="0" /> membuat totalnya <InlineMath math="58" />, dua minibus pada menit <InlineMath math="40" /> membuatnya <InlineMath math="86" />, bus pada menit <InlineMath math="50" /> membuatnya <InlineMath math="116" />, dua minibus pada menit <InlineMath math="80" /> membuatnya <InlineMath math="144" />, dan bus pada menit <InlineMath math="100" /> membawa <InlineMath math="6" /> orang terakhir.</>}
+  categories={["Bus menit 0", "Minibus menit 0", "Minibus menit 40", "Bus menit 50", "Minibus menit 80", "Bus menit 100"]}
+  series={[
+    { label: "Total peserta berangkat", mark: "line", values: [30, 58, 86, 116, 144, 150] },
+    { label: "150 peserta", mark: "line", values: [150, 150, 150, 150, 150, 150] },
+  ]}
+  valueLabel="Banyak peserta"
+/>
+
 # Saat peserta terakhir tiba
 
 Bus membawa <InlineMath math="6" /> orang terakhir dan tiba setelah <InlineMath math="25" /> menit.

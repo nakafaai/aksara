@@ -1,3 +1,36 @@
 Sebuah saluran irigasi lurus memiliki penampang melintang berbentuk trapesium sama kaki. Dasar saluran datar dan lebarnya <InlineMath math="60\text{ cm}" />. Lebar bibir atas saluran <InlineMath math="180\text{ cm}" />. Kedua dinding saluran miring, dan panjang setiap dinding miring, diukur dari tepi dasar sampai bibir saluran, adalah <InlineMath math="100\text{ cm}" />.
 
 Permukaan air di dalam saluran selalu mendatar. Kecepatan aliran air dianggap sama, yaitu <InlineMath math="0{,}5\text{ m/s}" />, berapa pun kedalaman airnya. Debit air, yaitu volume air yang melewati suatu penampang dalam setiap satuan waktu, sama dengan luas penampang air dikali kecepatan aliran.
+
+<MathVisual
+  title={<>Penampang melintang saluran</>}
+  description={<>Trapesium sama kaki dengan dasar mendatar selebar <InlineMath math="60\text{ cm}" />, bibir atas selebar <InlineMath math="180\text{ cm}" />, dan dua dinding miring yang masing-masing panjangnya <InlineMath math="100\text{ cm}" />.</>}
+  labels={{
+    base: <InlineMath math="60\text{ cm}" />,
+    top: <InlineMath math="180\text{ cm}" />,
+    left: <InlineMath math="100\text{ cm}" />,
+    right: <InlineMath math="100\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -100, max: 100 },
+      y: { min: -15, max: 95 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "channel", kind: "polygon", appearance: "reference", vertices: [{ x: -90, y: 80 }, { x: -30, y: 0 }, { x: 30, y: 0 }, { x: 90, y: 80 }] },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: -30, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "top", kind: "segment", appearance: "construction", from: { x: -90, y: 80 }, to: { x: 90, y: 80 } },
+      { id: "left", kind: "segment", appearance: "primary", from: { x: -90, y: 80 }, to: { x: -30, y: 0 } },
+      { id: "right", kind: "segment", appearance: "primary", from: { x: 30, y: 0 }, to: { x: 90, y: 80 } },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "top", objectId: "top", at: { x: 0, y: 80 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -60, y: 40 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 60, y: 40 }, placement: "right" },
+    ],
+  }}
+/>

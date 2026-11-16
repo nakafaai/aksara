@@ -32,6 +32,41 @@ Ujung jarum menit menempuh busur lingkaran berjari-jari <InlineMath math="11\tex
 &=7\cdot2\pi=14\pi\text{ cm}
 \end{aligned}" />
 
+Gambar posisi kedua jarum saat siku-siku kedua. **Ujung jarum menit sudah menempuh busur <InlineMath math="\tfrac{2{.}520}{11}" /> derajat dari angka <InlineMath math="12" />**, sedikit lebih dari setengah keliling.
+
+<MathVisual
+  title={<>Lintasan ujung jarum menit sampai siku-siku kedua</>}
+  description={<>Lingkaran berjari-jari <InlineMath math="11" /> adalah lintasan ujung jarum menit. Busur yang disorot berjalan searah jarum jam dari angka <InlineMath math="12" /> sejauh <InlineMath math="\tfrac{2{.}520}{11}^\circ\approx229^\circ" /> dan panjangnya <InlineMath math="14\pi" />. Pada saat itu jarum jam berada di <InlineMath math="\tfrac{1{.}530}{11}^\circ" /> dari angka <InlineMath math="12" />, tepat <InlineMath math="90^\circ" /> di belakang jarum menit.</>}
+  labels={{
+    path: <InlineMath math="14\pi" />,
+    minute: <>jarum menit</>,
+    hour: <>jarum jam</>,
+    twelve: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 13 },
+      y: { min: -13, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "face", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 11 },
+      { id: "path", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 11, startDegrees: 2430 / 11, sweepDegrees: 2520 / 11 },
+      { id: "twelve", kind: "point", appearance: "secondary", at: { x: 0, y: 11 } },
+      { id: "minute", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 11 * Math.cos((2430 / 11) * Math.PI / 180), y: 11 * Math.sin((2430 / 11) * Math.PI / 180) } },
+      { id: "hour", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 7 * Math.cos((3420 / 11) * Math.PI / 180), y: 7 * Math.sin((3420 / 11) * Math.PI / 180) } },
+    ],
+    labels: [
+      { key: "path", objectId: "path", at: { x: 11, y: 0 }, placement: "right" },
+      { key: "minute", objectId: "minute", at: { x: 11 * Math.cos((2430 / 11) * Math.PI / 180), y: 11 * Math.sin((2430 / 11) * Math.PI / 180) }, placement: "below-left" },
+      { key: "hour", objectId: "hour", at: { x: 7 * Math.cos((3420 / 11) * Math.PI / 180), y: 7 * Math.sin((3420 / 11) * Math.PI / 180) }, placement: "below-right" },
+      { key: "twelve", objectId: "twelve", at: { x: 0, y: 11 }, placement: "above" },
+    ],
+  }}
+/>
+
 Cek: <InlineMath math="\frac{2{.}520}{11}\approx229^\circ" />, sedikit lebih dari setengah putaran, cocok dengan sekitar <InlineMath math="38" /> menit.
 
 Jadi, panjang lintasan ujung jarum menit adalah <InlineMath math="14\pi" /> cm.

@@ -31,6 +31,17 @@ Berat paling banyak <InlineMath math="48\text{ kg}" /> berarti paling banyak <In
 
 Sebagai pembanding, kopi sisa baru bisa nol pada <InlineMath math="5" /> batch, misalnya <InlineMath math="49\text{ kg}" />: <InlineMath math="36{.}750-1{.}000=35{.}750=143\times250" />. Untuk berat sampai <InlineMath math="48\text{ kg}" />, pernyataan ketiga benar.
 
+Grafik berikut menghitung sisa kopi dark menurut banyak batch. **Sisanya baru habis pada <InlineMath math="5" /> batch**, jadi sampai <InlineMath math="48\text{ kg}" />, yang paling banyak <InlineMath math="4" /> batch, selalu ada sisa.
+
+<Chart
+  title={<>Sisa kopi dark yang tidak masuk kantong menurut banyak batch</>}
+  description={<>Untuk <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="5" /> batch, uji rasa mengambil <InlineMath math="200" /> sampai <InlineMath math="1{.}000\text{ g}" />, dan sisa kopi dark berturut-turut <InlineMath math="50" />, <InlineMath math="100" />, <InlineMath math="150" />, <InlineMath math="200" />, dan <InlineMath math="0\text{ g}" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[{ label: "Sisa kopi dark (g)", mark: "bar", values: [1, 2, 3, 4, 5].map((b) => (250 - ((200 * b) % 250)) % 250) }]}
+  valueLabel="Sisa (g)"
+/>
+
 # Pernyataan keempat tentang empat puluh kantong light
 
 Berat paling banyak <InlineMath math="12\text{ kg}" /> hanya perlu satu batch. **Kopi light paling banyak didapat dari berat terbesar**, yaitu <InlineMath math="12\text{ kg}" />.

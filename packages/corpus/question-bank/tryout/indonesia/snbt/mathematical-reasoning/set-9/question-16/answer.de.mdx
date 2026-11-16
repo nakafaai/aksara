@@ -19,6 +19,18 @@ Von Mitternacht bis 05.15 Uhr sind es <InlineMath math="5\times60+15=315" /> Min
 
 Kontrolle: Von 21.05 bis 24.00 Uhr sind es <InlineMath math="175" /> Minuten, dazu <InlineMath math="315" /> Minuten bis 05.15 Uhr, zusammen <InlineMath math="490" /> Minuten. Minus <InlineMath math="20" /> Minuten Wachzeit bleiben <InlineMath math="470" /> Minuten effektiver Schlaf, genau der Durchschnitt.
 
+Das Diagramm ordnet diese Nacht von der Schlafenszeit bis zum Aufwachen. **Die Zeit vor und nach Mitternacht muss zusammen <InlineMath math="490" /> Minuten ergeben**, also effektiver Schlaf plus Wachzeit.
+
+<Mermaid
+  title={<>Zeit im Bett von 21.05 bis 05.15 Uhr</>}
+  description={<>Von 21.05 bis 24.00 Uhr sind es <InlineMath math="175" /> Minuten, von 24.00 bis 05.15 Uhr <InlineMath math="315" /> Minuten, also liegt die Person <InlineMath math="490" /> Minuten im Bett. Abzüglich <InlineMath math="20" /> Minuten Wachzeit bleiben <InlineMath math="470" /> Minuten effektiver Schlaf.</>}
+  chart={`flowchart LR
+    A["Schlafenszeit 21.05"] -->|"175 Minuten"| B["Mitternacht 24.00"]
+    B -->|"315 Minuten"| C["Aufwachen 05.15"]
+    C --> D["Im Bett 490 Minuten"]
+    D -->|"minus 20 Minuten wach"| E["Effektiver Schlaf 470 Minuten"]`}
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort **nimmt das falsche Maß für die Schlafdauer** oder vergisst die Wachzeit.

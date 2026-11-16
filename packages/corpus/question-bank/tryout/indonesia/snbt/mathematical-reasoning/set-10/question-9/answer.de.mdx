@@ -28,6 +28,20 @@ Ein Karton enthält <InlineMath math="100" /> Becher, und sein Inhalt darf nicht
 \text{Kartons gesamt} &= 14+13+26+25+24=102
 \end{aligned}" />
 
+Das Diagramm vergleicht die geplanten Becher jeder Station mit den ganzen Kartons, die sie bekommt. **Die Lücke in jedem Balkenpaar ist kleiner als ein Karton**, also kann keine Station einen Karton weglassen.
+
+<Chart
+  title={<>Geplante Becher und Becher in ganzen Kartons an jeder Station</>}
+  description={<>Die geplanten Becher an den Stationen <InlineMath math="1" /> bis <InlineMath math="5" /> betragen <InlineMath math="1{.}320" />, <InlineMath math="1{.}298" />, <InlineMath math="2{.}508" />, <InlineMath math="2{.}420" /> und <InlineMath math="2{.}310" />. Die Kartons enthalten <InlineMath math="1{.}400" />, <InlineMath math="1{.}300" />, <InlineMath math="2{.}600" />, <InlineMath math="2{.}500" /> und <InlineMath math="2{.}400" /> Becher, also <InlineMath math="102" /> Kartons.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Geplante Becher", mark: "bar", values: [1.1 * 1200, 1.1 * 1180, 1.1 * 2280, 1.1 * 2200, 1.1 * 2100] },
+    { label: "Becher in ganzen Kartons", mark: "bar", values: [1400, 1300, 2600, 2500, 2400] },
+  ]}
+  valueLabel="Becher"
+/>
+
 # Kontrolle der übrigen Becher
 
 Die Kartonzahl einer Station ist genau dann die kleinste, wenn weniger als ein Karton Becher übrig bleibt. Übrig bleiben <InlineMath math="80" />, <InlineMath math="2" />, <InlineMath math="92" />, <InlineMath math="80" /> und <InlineMath math="90" /> Becher. Alle liegen unter <InlineMath math="100" />, also **kann keine Station auf einen Karton verzichten**.

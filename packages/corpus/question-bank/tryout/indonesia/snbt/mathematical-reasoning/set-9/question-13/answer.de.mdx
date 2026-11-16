@@ -27,6 +27,21 @@ x &\ge 540\text{ Minuten}=9\text{ Stunden}
 
 Kontrolle: Die Summe der <InlineMath math="14" /> Nächte wird <InlineMath math="3{.}290+2{.}350+2\times540=6{.}720" /> Minuten, und <InlineMath math="6{.}720:14=480" /> Minuten sind genau <InlineMath math="8" /> Stunden.
 
+Das Diagramm stellt alle vierzehn Nächte nebeneinander. **Die Balken für Samstag und Sonntag der Folgewoche müssen auf <InlineMath math="540" /> Minuten steigen**, um die anderen Nächte unter der Ziellinie auszugleichen.
+
+<Chart
+  title={<>Effektiver Schlaf über vierzehn Nächte</>}
+  description={<>Woche aus der Tabelle: <InlineMath math="500" />, <InlineMath math="375" />, <InlineMath math="380" />, <InlineMath math="515" />, <InlineMath math="360" />, <InlineMath math="600" /> und <InlineMath math="560" /> Minuten. Folgewoche: Montag bis Freitag je <InlineMath math="470" /> Minuten, dann Samstag und Sonntag je <InlineMath math="540" /> Minuten. Die waagerechte Linie markiert das Ziel von <InlineMath math="480" /> Minuten. Zusammen sind es genau <InlineMath math="6{.}720" /> Minuten.</>}
+  categories={["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So", "Mo 2", "Di 2", "Mi 2", "Do 2", "Fr 2", "Sa 2", "So 2"]}
+  bars="apart"
+  series={[
+    { label: "Woche aus der Tabelle", mark: "bar", values: [500, 375, 380, 515, 360, 600, 560, null, null, null, null, null, null, null] },
+    { label: "Folgewoche", mark: "bar", values: [null, null, null, null, null, null, null, 470, 470, 470, 470, 470, (6720 - 3290 - 2350) / 2, (6720 - 3290 - 2350) / 2] },
+    { label: "Ziel 480 Minuten", mark: "line", values: Array.from({ length: 14 }, () => 480) },
+  ]}
+  valueLabel="Effektiver Schlaf (Minuten)"
+/>
+
 # Die falschen Antworten
 
 Die anderen Antworten **lassen einen Teil der Summe über <InlineMath math="14" /> Nächte weg**.

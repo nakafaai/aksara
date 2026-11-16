@@ -32,6 +32,41 @@ The tip moves along a circle of radius <InlineMath math="11\text{ cm}" />, so **
 &=7\cdot2\pi=14\pi\text{ cm}
 \end{aligned}" />
 
+Draw both hands at the second right angle. **The tip of the minute hand has travelled an arc of <InlineMath math="\tfrac{2{,}520}{11}" /> degrees from the <InlineMath math="12" />**, a little more than half the circle.
+
+<MathVisual
+  title={<>Path of the minute hand's tip up to the second right angle</>}
+  description={<>The circle of radius <InlineMath math="11" /> is the path of the minute hand's tip. The highlighted arc runs clockwise from the <InlineMath math="12" /> through <InlineMath math="\tfrac{2{,}520}{11}^\circ\approx229^\circ" /> and has length <InlineMath math="14\pi" />. At that moment the hour hand is at <InlineMath math="\tfrac{1{,}530}{11}^\circ" /> from the <InlineMath math="12" />, exactly <InlineMath math="90^\circ" /> behind the minute hand.</>}
+  labels={{
+    path: <InlineMath math="14\pi" />,
+    minute: <>minute hand</>,
+    hour: <>hour hand</>,
+    twelve: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 13 },
+      y: { min: -13, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "face", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 11 },
+      { id: "path", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 11, startDegrees: 2430 / 11, sweepDegrees: 2520 / 11 },
+      { id: "twelve", kind: "point", appearance: "secondary", at: { x: 0, y: 11 } },
+      { id: "minute", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 11 * Math.cos((2430 / 11) * Math.PI / 180), y: 11 * Math.sin((2430 / 11) * Math.PI / 180) } },
+      { id: "hour", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 7 * Math.cos((3420 / 11) * Math.PI / 180), y: 7 * Math.sin((3420 / 11) * Math.PI / 180) } },
+    ],
+    labels: [
+      { key: "path", objectId: "path", at: { x: 11, y: 0 }, placement: "right" },
+      { key: "minute", objectId: "minute", at: { x: 11 * Math.cos((2430 / 11) * Math.PI / 180), y: 11 * Math.sin((2430 / 11) * Math.PI / 180) }, placement: "below-left" },
+      { key: "hour", objectId: "hour", at: { x: 7 * Math.cos((3420 / 11) * Math.PI / 180), y: 7 * Math.sin((3420 / 11) * Math.PI / 180) }, placement: "below-right" },
+      { key: "twelve", objectId: "twelve", at: { x: 0, y: 11 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="\frac{2{,}520}{11}\approx229^\circ" />, a bit more than half a turn, which fits about <InlineMath math="38" /> minutes.
 
 So the tip of the minute hand travels <InlineMath math="14\pi" /> cm.

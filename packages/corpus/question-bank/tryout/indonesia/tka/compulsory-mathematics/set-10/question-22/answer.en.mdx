@@ -19,6 +19,54 @@ Sort the eight scores: <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" 
 
 <BlockMath math="\text{median}=\frac{70+72}{2}=71=69+2" />
 
+Compare the original data with the data in statement 3. **Indra's change pushes one score past the middle position**, so the <InlineMath math="4" />th and <InlineMath math="5" />th values change from <InlineMath math="68" /> and <InlineMath math="70" /> to <InlineMath math="70" /> and <InlineMath math="72" />.
+
+<MathVisual
+  title={<>Exam scores before and after the change in statement 3</>}
+  description={<>The top row is the eight original scores <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />, with median <InlineMath math="69" />. The bottom row is the scores after Indra becomes <InlineMath math="74" /> and Bima becomes <InlineMath math="82" />, which are <InlineMath math="56,\ 58,\ 66,\ 70,\ 72,\ 74,\ 82,\ 82" />, with median <InlineMath math="71" />. The two middle points in each row are highlighted.</>}
+  labels={{
+    "median-before": <InlineMath math="69" />,
+    "median-after": <InlineMath math="71" />,
+    "before-1": <>original</>,
+    "after-1": <>statement 3</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 50, max: 92 },
+      y: { min: -1, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before-1", kind: "point", appearance: "secondary", at: { x: 56, y: 2 } },
+      { id: "before-2", kind: "point", appearance: "secondary", at: { x: 58, y: 2 } },
+      { id: "before-3", kind: "point", appearance: "secondary", at: { x: 66, y: 2 } },
+      { id: "before-4", kind: "point", appearance: "primary", at: { x: 68, y: 2 } },
+      { id: "before-5", kind: "point", appearance: "primary", at: { x: 70, y: 2 } },
+      { id: "before-6", kind: "point", appearance: "secondary", at: { x: 72, y: 2 } },
+      { id: "before-7", kind: "point", appearance: "secondary", at: { x: 82, y: 2 } },
+      { id: "before-8", kind: "point", appearance: "secondary", at: { x: 88, y: 2 } },
+      { id: "after-1", kind: "point", appearance: "secondary", at: { x: 56, y: 0 } },
+      { id: "after-2", kind: "point", appearance: "secondary", at: { x: 58, y: 0 } },
+      { id: "after-3", kind: "point", appearance: "secondary", at: { x: 66, y: 0 } },
+      { id: "after-4", kind: "point", appearance: "answer", at: { x: 70, y: 0 } },
+      { id: "after-5", kind: "point", appearance: "answer", at: { x: 72, y: 0 } },
+      { id: "after-6", kind: "point", appearance: "secondary", at: { x: 74, y: 0 } },
+      { id: "after-7", kind: "point", appearance: "secondary", at: { x: 82, y: 0 } },
+      { id: "after-8", kind: "point", appearance: "secondary", at: { x: 82, y: 0.3 } },
+      { id: "median-before", kind: "segment", appearance: "warning", from: { x: 69, y: 1.6 }, to: { x: 69, y: 2.4 } },
+      { id: "median-after", kind: "segment", appearance: "warning", from: { x: 71, y: -0.4 }, to: { x: 71, y: 0.6 } },
+    ],
+    labels: [
+      { key: "median-before", objectId: "median-before", at: { x: 69, y: 2.4 }, placement: "above" },
+      { key: "median-after", objectId: "median-after", at: { x: 71, y: 0.6 }, placement: "above" },
+      { key: "before-1", objectId: "before-1", at: { x: 56, y: 2 }, placement: "above" },
+      { key: "after-1", objectId: "after-1", at: { x: 56, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 The median rises by exactly <InlineMath math="2" />. **True**.
 
 **Statement 4**. Without Dani, seven scores remain: <InlineMath math="58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />. The median is now the <InlineMath math="4" />th value, <InlineMath math="70" />, so the median does rise. But the mean is <InlineMath math="\frac{560-56}{7}=\frac{504}{7}=72" />, which rises too, because the removed score is below the mean. **False**.

@@ -14,6 +14,44 @@ t^2+8t&=0 \\
 t(t+8)&=0 \quad\Rightarrow\quad t=0 \;\text{oder}\; t=-8
 \end{aligned}" />
 
+Zeichne <InlineMath math="f" /> mit der Geraden <InlineMath math="y=21" />. **Die Gerade schneidet die Parabel zweimal, aber nur der Schnitt bei <InlineMath math="t=0" /> liegt im Definitionsbereich <InlineMath math="t\ge-4" />**.
+
+<MathVisual
+  title={<>Die Parabel <InlineMath math="f" /> und die Gerade <InlineMath math="y=21" /></>}
+  description={<>Die Parabel <InlineMath math="y=t^2+8t+21" /> hat den Scheitel <InlineMath math="(-4,\ 5)" />. Der Teil rechts vom Scheitel ist der Definitionsbereich von <InlineMath math="f" />, der linke Teil ist blass gezeichnet. Die Gerade <InlineMath math="y=21" /> schneidet die Parabel in <InlineMath math="(-8,\ 21)" /> außerhalb des Definitionsbereichs und in <InlineMath math="(0,\ 21)" /> innerhalb.</>}
+  labels={{
+    kept: <InlineMath math="f(t)=t^2+8t+21,\ t\ge-4" />,
+    level: <InlineMath math="21" />,
+    root: <InlineMath math="(0,\ 21)" />,
+    dropped: <InlineMath math="(-8,\ 21)" />,
+    vertex: <InlineMath math="(-4,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -9.5, max: 2 },
+      y: { min: 0, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cut", kind: "function", appearance: "reference", formula: "x^2 + 8*x + 21", domain: { min: -9, max: -4 } },
+      { id: "kept", kind: "function", appearance: "primary", formula: "x^2 + 8*x + 21", domain: { min: -4, max: 1 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "21", domain: { min: -9.5, max: 2 } },
+      { id: "vertex", kind: "point", appearance: "secondary", at: { x: -4, y: 5 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 0, y: 21 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: -8, y: 21 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 1, y: 30 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 1.5, y: 21 }, placement: "below" },
+      { key: "root", objectId: "root", at: { x: 0, y: 21 }, placement: "above-left" },
+      { key: "dropped", objectId: "dropped", at: { x: -8, y: 21 }, placement: "above-right" },
+      { key: "vertex", objectId: "vertex", at: { x: -4, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die quadratische Gleichung liefert zwei Lösungen, aber **der Definitionsbereich von <InlineMath math="f" /> ist nur <InlineMath math="t\ge-4" />**. Dort steigt <InlineMath math="f" /> ständig, ist also umkehrbar, und die Lösung <InlineMath math="t=-8" /> fällt weg. Also ist <InlineMath math="f^{-1}(21)=0" />, und <InlineMath math="g(x)" /> muss gleich <InlineMath math="0" /> sein.
 
 # Die lineare Funktion umkehren

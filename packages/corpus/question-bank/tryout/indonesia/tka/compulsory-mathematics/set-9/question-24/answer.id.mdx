@@ -27,6 +27,20 @@ P(\text{menang})&=\frac25\cdot\frac12=\frac15 \\
 F_h&=60\cdot\frac15=12\text{ putaran}
 \end{aligned}" />
 
+Pohon berikut merangkum kedua tahap. **Hanya satu jalur yang berakhir dengan menang**, dan peluangnya hasil kali kedua cabang.
+
+<Mermaid
+  title={<>Pohon peluang satu putaran</>}
+  description={<>Dari <InlineMath math="10" /> pasangan kartu, <InlineMath math="4" /> berjumlah genap, jadi cabang genap berpeluang <InlineMath math="\tfrac25" />. Setelah itu, paling sedikit <InlineMath math="2" /> angka dari <InlineMath math="3" /> lemparan berpeluang <InlineMath math="\tfrac12" />. Peluang menang <InlineMath math="\tfrac15" />, dan frekuensi harapannya <InlineMath math="60\cdot\tfrac15=12" /> putaran.</>}
+  chart={`flowchart TD
+  S["Ambil 2 dari 5 kartu"] -->|"4/10"| E["Jumlah genap"]
+  S -->|"6/10"| O["Jumlah ganjil: kalah"]
+  E -->|"1/2"| W["Paling sedikit 2 angka: menang"]
+  E -->|"1/2"| L["Kurang dari 2 angka: kalah"]
+  W --> P["P(menang) = 2/5 · 1/2 = 1/5"]
+  P --> F["60 · 1/5 = 12"]`}
+/>
+
 # Kenapa pilihan lain salah
 
 - <InlineMath math="15" /> putaran menganggap peluang jumlah genap <InlineMath math="\frac12" />: <InlineMath math="60\cdot\frac12\cdot\frac12" />.

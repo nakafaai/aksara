@@ -24,6 +24,20 @@ Hanya kantong <InlineMath math="250\text{ g}" /> yang penuh yang dijual, jadi ba
 
 Kamu dapat <InlineMath math="58" /> kantong light dan <InlineMath math="43" /> kantong dark, total <InlineMath math="101" /> kantong. **Sisa light dan sisa dark tidak boleh digabung** menjadi satu kantong, karena satu kantong hanya berisi satu tingkat sangrai.
 
+Grafik berikut membandingkan kopi yang tersisa sesudah uji rasa dengan kopi yang benar-benar masuk kantong penuh. **Celah kecil di atas setiap pasangan batang adalah sisa yang tidak dijual**, yaitu <InlineMath math="220\text{ g}" /> light dan <InlineMath math="100\text{ g}" /> dark.
+
+<Chart
+  title={<>Kopi sangrai sesudah uji rasa dan kopi dalam kantong penuh</>}
+  description={<>Kopi light sesudah uji rasa <InlineMath math="14{.}720\text{ g}" />, dan <InlineMath math="14{.}500\text{ g}" /> di antaranya mengisi <InlineMath math="58" /> kantong. Kopi dark sesudah uji rasa <InlineMath math="10{.}850\text{ g}" />, dan <InlineMath math="10{.}750\text{ g}" /> di antaranya mengisi <InlineMath math="43" /> kantong.</>}
+  bars="apart"
+  categories={["Light", "Dark"]}
+  series={[
+    { label: "Kopi sesudah uji rasa (g)", mark: "bar", values: [0.84 * 18000 - 2 * 200, 0.75 * 15000 - 2 * 200] },
+    { label: "Kopi dalam kantong penuh (g)", mark: "bar", values: [58 * 250, 43 * 250] },
+  ]}
+  valueLabel="Berat kopi (g)"
+/>
+
 # Pendapatan dikurangi semua biaya
 
 Pendapatan datang dari kantong yang terjual. Biayanya ada tiga: biji hijau <InlineMath math="33\text{ kg}" />, gas untuk <InlineMath math="4" /> batch, dan <InlineMath math="101" /> kantong.

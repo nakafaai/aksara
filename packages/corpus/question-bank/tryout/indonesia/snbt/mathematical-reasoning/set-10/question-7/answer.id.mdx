@@ -26,6 +26,17 @@ Tenor <InlineMath math="13" /> bulan sudah memakai bunga <InlineMath math="2{,}5
 
 Setelah dibulatkan, cicilan tenor <InlineMath math="13" /> bulan menjadi <InlineMath math="490{.}000" />. Tenornya lebih panjang, tetapi **kenaikan bunga per bulan lebih besar** daripada penurunan bagian pokoknya. Pernyataan kedua salah.
 
+Grafik berikut menggambar cicilan untuk setiap tenor. Batangnya turun terus sampai tenor <InlineMath math="12" /> bulan, lalu **melompat naik pada tenor <InlineMath math="13" />** karena bunga per bulan berubah dari <InlineMath math="1{,}5\%" /> menjadi <InlineMath math="2{,}5\%" />.
+
+<Chart
+  title={<>Cicilan per bulan menurut tenor</>}
+  description={<>Cicilan tenor <InlineMath math="3" /> bulan adalah <InlineMath math="\text{Rp}1{.}672{.}000" /> dan turun sampai <InlineMath math="\text{Rp}472{.}000" /> pada tenor <InlineMath math="12" /> bulan. Pada tenor <InlineMath math="13" /> bulan cicilannya naik menjadi <InlineMath math="\text{Rp}490{.}000" />, lalu turun lagi sampai <InlineMath math="\text{Rp}320{.}000" /> pada tenor <InlineMath math="24" /> bulan.</>}
+  bars="apart"
+  categories={Array.from({ length: 22 }, (_, i) => `${i + 3}`)}
+  series={[{ label: "Cicilan per bulan (rupiah)", mark: "bar", values: Array.from({ length: 22 }, (_, i) => 1000 * Math.ceil((4800000 / (i + 3) + 4800000 * (i + 3 <= 12 ? 0.015 : 0.025)) / 1000)) }]}
+  valueLabel="Cicilan (rupiah)"
+/>
+
 # Pembulatan pada tenor sembilan bulan
 
 Cicilan tenor <InlineMath math="9" /> bulan sebelum dibulatkan adalah <InlineMath math="\tfrac{4{.}800{.}000}{9}+72{.}000=605{.}333{,}33\ldots" />, lalu dibulatkan menjadi <InlineMath math="606{.}000" />.

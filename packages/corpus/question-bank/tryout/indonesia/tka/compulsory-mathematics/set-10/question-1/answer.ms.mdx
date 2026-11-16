@@ -22,6 +22,38 @@ Sekarang samakan ungkapan itu dengan jumlah yang diberikan.
 p&=5{,}400{,}000
 \end{aligned}" />
 
+Lukis jumlah bayaran sebagai fungsi pokok. **Garisnya bermula pada harga biasa dan naik <InlineMath math="0.19" /> bagi setiap rupiah pokok**, jadi cukup cari pokok tempat garis itu mencapai jumlah yang diketahui.
+
+<MathVisual
+  title={<>Jumlah bayaran kredit tempoh <InlineMath math="12" /> bulan mengikut pokok</>}
+  description={<>Paksi mendatar ialah pokok <InlineMath math="p" /> dan paksi tegak ialah jumlah bayaran, kedua-duanya dalam juta rupiah. Garis <InlineMath math="9+0.19p" /> bertemu garis jumlah <InlineMath math="10.026" /> pada <InlineMath math="p=5.4" />, iaitu pokok <InlineMath math="\text{Rp}5{,}400{,}000" />.</>}
+  labels={{
+    total: <InlineMath math="9+0.19p" />,
+    target: <InlineMath math="10.026" />,
+    hit: <InlineMath math="(5.4,\ 10.026)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 7.2 },
+      y: { min: 8.8, max: 10.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "9 + 0.19*x", domain: { min: 0, max: 7.2 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "10.026", domain: { min: 0, max: 7.2 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 5.4, y: 10.026 }, to: { x: 5.4, y: 8.8 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 5.4, y: 10.026 } },
+    ],
+    labels: [
+      { key: "total", objectId: "total", at: { x: 2, y: 9.38 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 1, y: 10.026 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 5.4, y: 10.026 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Bayaran pendahuluan ialah <InlineMath math="9{,}000{,}000-5{,}400{,}000=3{,}600{,}000" />, iaitu <InlineMath math="40\%" /> daripada harga biasa, jadi **syarat pendahuluan sekurang-kurangnya <InlineMath math="20\%" /> dipenuhi**. Ansuran ialah pokok berserta seluruh faedah, dibahagi dengan <InlineMath math="12" />.
 
 <BlockMath math="\text{ansuran}=\frac{5{,}400{,}000+0.18\cdot5{,}400{,}000}{12}=\frac{6{,}372{,}000}{12}=531{,}000" />

@@ -29,6 +29,20 @@ Mesin Q beroperasi <InlineMath math="7" /> jam lalu dirawat <InlineMath math="1"
 
 Cek dengan **menjumlahkan hasil setiap hari**: Senin <InlineMath math="14\times114+14\times81=2{.}730" />, Selasa dan Rabu masing-masing <InlineMath math="13\times114+14\times81=2{.}616" />. Jumlahnya <InlineMath math="2{.}730+2{.}616+2{.}616=7{.}962" />, sama.
 
+Grafik berikut menumpuk komponen baik sampai akhir setiap hari. **Batang Rabu berhenti tepat sedikit di bawah garis pesanan**, kurang <InlineMath math="38" /> komponen.
+
+<Chart
+  title={<>Komponen baik yang terkumpul sampai akhir setiap hari</>}
+  description={<>Sampai akhir Senin terkumpul <InlineMath math="2{.}730" /> komponen baik, sampai akhir Selasa <InlineMath math="5{.}346" />, dan sampai akhir Rabu <InlineMath math="7{.}962" />. Garis datar menandai pesanan <InlineMath math="8{.}000" /> komponen baik.</>}
+  categories={["Senin", "Selasa", "Rabu"]}
+  bars="apart"
+  series={[
+    { label: "Komponen baik terkumpul", mark: "bar", values: [14 * 114 + 14 * 81, 14 * 114 + 14 * 81 + 13 * 114 + 14 * 81, 40 * 114 + 42 * 81] },
+    { label: "Pesanan 8.000", mark: "line", values: [8000, 8000, 8000] },
+  ]}
+  valueLabel="Komponen baik"
+/>
+
 # Jebakan yang perlu dihindari
 
 Kekurangannya kecil, jadi **satu jam yang salah hitung sudah membalik kesimpulan**.

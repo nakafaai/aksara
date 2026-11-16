@@ -33,6 +33,21 @@ k &\ge 46.42\ldots
 
 Bundles have to be whole, so **at least** <InlineMath math="47" /> bundles, which is <InlineMath math="47\cdot10=470" /> portions.
 
+The chart below works out the weekly net profit for portions in steps of ten. **The <InlineMath math="460" />-portion bar is still under the target line**, and the first bar past it is <InlineMath math="470" /> portions.
+
+<Chart
+  title={<>Weekly net profit by number of portions sold</>}
+  description={<>With <InlineMath math="440" />, <InlineMath math="450" />, <InlineMath math="460" />, <InlineMath math="470" />, and <InlineMath math="480" /> portions, the net profit is <InlineMath math="\text{Rp}532{,}000" />, <InlineMath math="\text{Rp}560{,}000" />, <InlineMath math="\text{Rp}588{,}000" />, <InlineMath math="\text{Rp}616{,}000" />, and <InlineMath math="\text{Rp}644{,}000" />. The flat line marks the target of <InlineMath math="\text{Rp}600{,}000" />. The value axis starts at <InlineMath math="\text{Rp}500{,}000" />.</>}
+  bars="apart"
+  categories={["440", "450", "460", "470", "480"]}
+  series={[
+    { label: "Weekly net profit (rupiah)", mark: "bar", values: [44, 45, 46, 47, 48].map((k) => 28000 * k - 700000) },
+    { label: "Target Rp600,000", mark: "line", values: [600000, 600000, 600000, 600000, 600000] },
+  ]}
+  valueRange={{ min: 500000, max: 660000 }}
+  valueLabel="Net profit (rupiah)"
+/>
+
 # Checking
 
 With <InlineMath math="46" /> bundles, the net profit is <InlineMath math="46\cdot28{,}000-700{,}000=588{,}000" />, still short. With <InlineMath math="47" /> bundles, it's <InlineMath math="616{,}000\ge600{,}000" />. So **the forty-seventh bundle really is needed**.

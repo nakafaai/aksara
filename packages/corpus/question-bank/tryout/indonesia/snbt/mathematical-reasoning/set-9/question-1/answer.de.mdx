@@ -24,6 +24,20 @@ Verkauft werden nur volle Beutel zu <InlineMath math="250\text{ g}" />. Teil als
 
 Das sind <InlineMath math="58" /> Beutel Light und <InlineMath math="43" /> Beutel Dark, zusammen <InlineMath math="101" /> Beutel. **Die Reste von Light und Dark darfst du nicht zusammenlegen**, denn ein Beutel enthält nur eine Röststufe.
 
+Das Diagramm vergleicht den Kaffee nach der Verkostung mit dem Kaffee, der tatsächlich in volle Beutel kommt. **Die kleine Lücke über jedem Balkenpaar ist der Rest, der nicht verkauft wird**, <InlineMath math="220\text{ g}" /> Light und <InlineMath math="100\text{ g}" /> Dark.
+
+<Chart
+  title={<>Gerösteter Kaffee nach der Verkostung und Kaffee in vollen Beuteln</>}
+  description={<>Light-Kaffee wiegt nach der Verkostung <InlineMath math="14{.}720\text{ g}" />, davon füllen <InlineMath math="14{.}500\text{ g}" /> genau <InlineMath math="58" /> Beutel. Dark-Kaffee wiegt nach der Verkostung <InlineMath math="10{.}850\text{ g}" />, davon füllen <InlineMath math="10{.}750\text{ g}" /> genau <InlineMath math="43" /> Beutel.</>}
+  bars="apart"
+  categories={["Light", "Dark"]}
+  series={[
+    { label: "Kaffee nach der Verkostung (g)", mark: "bar", values: [0.84 * 18000 - 2 * 200, 0.75 * 15000 - 2 * 200] },
+    { label: "Kaffee in vollen Beuteln (g)", mark: "bar", values: [58 * 250, 43 * 250] },
+  ]}
+  valueLabel="Kaffeegewicht (g)"
+/>
+
 # Erlös minus alle Kosten
 
 Der Erlös kommt aus den verkauften Beuteln. Kosten gibt es drei: <InlineMath math="33\text{ kg}" /> Rohkaffee, Gas für <InlineMath math="4" /> Chargen und <InlineMath math="101" /> Beutel.

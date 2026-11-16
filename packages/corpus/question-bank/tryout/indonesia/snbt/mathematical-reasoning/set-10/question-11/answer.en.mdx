@@ -41,4 +41,18 @@ These come from <InlineMath math="264" />, <InlineMath math="259.6" />, <InlineM
 
 Station <InlineMath math="2" /> gets <InlineMath math="13" /> boxes, so it has only <InlineMath math="1{,}300" /> cups. The rounding leaves just <InlineMath math="1{,}300-1{,}298=2" /> spare cups here, so **the spare from rounding at station <InlineMath math="2" /> is almost nothing**. Since <InlineMath math="1{,}310>1{,}300" />, the fourth claim is false.
 
+The chart below tests the second and fourth claims against the cups actually in the boxes. **At station <InlineMath math="3" /> the boxes still cover the new need, but at station <InlineMath math="2" /> they don't**, because rounding there leaves only two spare cups.
+
+<Chart
+  title={<>Cups in the boxes and the new cup need at stations <InlineMath math="2" /> and <InlineMath math="3" /></>}
+  description={<>Station <InlineMath math="2" /> gets <InlineMath math="1{,}300" /> cups, while its claim needs <InlineMath math="1{,}310" />. Station <InlineMath math="3" /> gets <InlineMath math="2{,}600" /> cups, while its claim needs <InlineMath math="2{,}580" />.</>}
+  categories={["Station 2", "Station 3"]}
+  bars="apart"
+  series={[
+    { label: "Cups in the boxes", mark: "bar", values: [1300, 2600] },
+    { label: "Need in the claim", mark: "bar", values: [1310, 2 * 1290] },
+  ]}
+  valueLabel="Cups"
+/>
+
 So the first claim is **false**, the second is **true**, the third is **true**, and the fourth is **false**.

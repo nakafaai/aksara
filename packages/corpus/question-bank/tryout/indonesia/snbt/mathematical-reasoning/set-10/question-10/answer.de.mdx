@@ -34,6 +34,20 @@ Ziehe die Kanister jedes Mal ab, wenn der Wagen eine Station verlässt.
 
 Station <InlineMath math="4" /> braucht <InlineMath math="26" /> Kanister, aber im Wagen sind nur noch <InlineMath math="25" />. Laut Aufgabe werden **alle restlichen Kanister an dieser Station abgeladen**, also bekommt Station <InlineMath math="4" /> genau <InlineMath math="25" /> Kanister, und dort fehlt <InlineMath math="1" /> Kanister.
 
+Das Diagramm vergleicht die Kanister im Wagen bei Ankunft an jeder Station mit dem Bedarf dieser Station. **Station <InlineMath math="4" /> ist die erste, bei der der Bedarfsbalken höher ist**, also bekommt sie nur die restlichen <InlineMath math="25" /> Kanister.
+
+<Chart
+  title={<>Kanister im Lieferwagen und Bedarf jeder Station</>}
+  description={<>Bei Ankunft an den Stationen <InlineMath math="1" /> bis <InlineMath math="4" /> hat der Wagen <InlineMath math="80" />, <InlineMath math="66" />, <InlineMath math="52" /> und <InlineMath math="25" /> Kanister. Die Stationen brauchen <InlineMath math="14" />, <InlineMath math="14" />, <InlineMath math="27" /> und <InlineMath math="26" /> Kanister.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Kanister im Wagen bei Ankunft", mark: "bar", values: [80, 80 - 14, 80 - 14 - 14, 80 - 14 - 14 - 27] },
+    { label: "Benötigte Kanister der Station", mark: "bar", values: [14, 14, 27, 26] },
+  ]}
+  valueLabel="Kanister"
+/>
+
 # Kontrolle
 
 Die abgeladenen Kanister ergeben <InlineMath math="14+14+27+25=80" />, **genau die Anfangsladung des Wagens**. Station <InlineMath math="5" /> bekommt von diesem Wagen nichts.

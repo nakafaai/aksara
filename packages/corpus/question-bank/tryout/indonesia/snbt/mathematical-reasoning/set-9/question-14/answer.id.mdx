@@ -14,6 +14,20 @@ Totalnya <InlineMath math="3{.}290" /> menit. Utang tidur dihitung malam demi ma
 
 Pada Senin malam ia tidur <InlineMath math="20" /> menit lebih dari target, tetapi utangnya masih nol, jadi kelebihan itu terbuang.
 
+Grafik berikut menggambar tidur efektif setiap malam bersama utang tidurnya. **Pada Senin malam garis utang tetap di nol walaupun tidurnya lebih**, dan itulah sebabnya utang akhir pekan menjadi <InlineMath math="90" /> menit, bukan <InlineMath math="70" />.
+
+<Chart
+  title={<>Tidur efektif dan utang tidur setiap malam</>}
+  description={<>Tidur efektif Senin sampai Minggu berturut-turut <InlineMath math="500" />, <InlineMath math="375" />, <InlineMath math="380" />, <InlineMath math="515" />, <InlineMath math="360" />, <InlineMath math="600" />, dan <InlineMath math="560" /> menit. Utang tidur sesudah setiap malam berturut-turut <InlineMath math="0" />, <InlineMath math="105" />, <InlineMath math="205" />, <InlineMath math="170" />, <InlineMath math="290" />, <InlineMath math="170" />, dan <InlineMath math="90" /> menit.</>}
+  categories={["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]}
+  bars="apart"
+  series={[
+    { label: "Tidur efektif (menit)", mark: "bar", values: [500, 375, 380, 515, 360, 600, 560] },
+    { label: "Utang tidur (menit)", mark: "line", values: [0, 105, 205, 170, 290, 170, 90] },
+  ]}
+  valueLabel="Menit"
+/>
+
 # Pernyataan pertama tentang rumus selisih
 
 Rumus itu memberi <InlineMath math="7\times480-3{.}290=3{.}360-3{.}290=70" /> menit. Utang yang sebenarnya <InlineMath math="90" /> menit, karena **kelebihan <InlineMath math="20" /> menit pada Senin malam tidak boleh mengurangi utang yang belum ada**. Rumus selisih hanya benar kalau utang tidak pernah menyentuh nol saat ada kelebihan. Pernyataan pertama salah.

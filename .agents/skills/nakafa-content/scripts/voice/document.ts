@@ -26,6 +26,7 @@ import { documentProfile } from "#nakafa-content/voice/profile";
 import { findLearnerFacingSemicolonIssues } from "#nakafa-content/voice/punctuation";
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
+import { findStringVisualText } from "#nakafa-content/voice/visual";
 
 /**
  * Applies structural checks to assessed prompts and authored voice to
@@ -53,6 +54,7 @@ export function findDocumentIssues(
     ...findHighlightVariantIssues(source, tree),
     ...findDroppedSpaceIssues(source, tree),
     ...findPlainNumbers(source, tree),
+    ...findStringVisualText(source, tree),
     ...findDollarMathIssues(source, tree),
     ...findClockMathIssues(locale, source, tree),
   ];

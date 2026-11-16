@@ -33,6 +33,50 @@ Die Bedingung <InlineMath math="y\ge1" /> ist durch <InlineMath math="z\le9" /> 
 | <InlineMath math="y=60-4z" /> | <InlineMath math="44" /> | <InlineMath math="40" /> | <InlineMath math="36" /> | <InlineMath math="32" /> | <InlineMath math="28" /> | <InlineMath math="24" /> |
 | <InlineMath math="x=3z-10" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="11" /> | <InlineMath math="14" /> | <InlineMath math="17" /> |
 
+Zeichne <InlineMath math="y=60-4z" /> mit beiden Grenzen. **Gültig sind die ganzzahligen Punkte auf dieser Geraden rechts von <InlineMath math="z=\tfrac{11}{3}" /> und oberhalb der Geraden <InlineMath math="y=2z" />**. Davon gibt es sechs.
+
+<MathVisual
+  title={<>Mögliche Anzahlen der Scheine zu <InlineMath math="\text{Rp}5{.}000" /> und <InlineMath math="\text{Rp}2{.}000" /></>}
+  description={<>Die waagerechte Achse ist <InlineMath math="z" />, die Anzahl der Scheine zu <InlineMath math="\text{Rp}5{.}000" />, die senkrechte Achse <InlineMath math="y" />, die Anzahl der Scheine zu <InlineMath math="\text{Rp}2{.}000" />. Die Senkrechte <InlineMath math="z=\tfrac{11}{3}" /> ist die Grenze <InlineMath math="x\ge1" />, und die Gerade <InlineMath math="y=2z" /> ist die Grenze <InlineMath math="y>2z" />. Die sechs Punkte von <InlineMath math="(4,\ 44)" /> bis <InlineMath math="(9,\ 24)" /> erfüllen alles, während <InlineMath math="(10,\ 20)" /> genau auf <InlineMath math="y=2z" /> liegt und nicht zählt.</>}
+  labels={{
+    count: <InlineMath math="y=60-4z" />,
+    double: <InlineMath math="y=2z" />,
+    floor: <InlineMath math="z=\tfrac{11}{3}" />,
+    first: <InlineMath math="(4,\ 44)" />,
+    last: <InlineMath math="(9,\ 24)" />,
+    out: <InlineMath math="(10,\ 20)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 2, max: 12 },
+      y: { min: 0, max: 56 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "count", kind: "function", appearance: "primary", formula: "60 - 4*x", domain: { min: 2, max: 12 } },
+      { id: "double", kind: "function", appearance: "warning", formula: "2*x", domain: { min: 2, max: 12 } },
+      { id: "floor", kind: "segment", appearance: "construction", from: { x: 11 / 3, y: 0 }, to: { x: 11 / 3, y: 54 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 4, y: 44 } },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 5, y: 40 } },
+      { id: "six", kind: "point", appearance: "answer", at: { x: 6, y: 36 } },
+      { id: "seven", kind: "point", appearance: "answer", at: { x: 7, y: 32 } },
+      { id: "eight", kind: "point", appearance: "answer", at: { x: 8, y: 28 } },
+      { id: "last", kind: "point", appearance: "answer", at: { x: 9, y: 24 } },
+      { id: "out", kind: "point", appearance: "warning", at: { x: 10, y: 20 } },
+    ],
+    labels: [
+      { key: "count", objectId: "count", at: { x: 11, y: 16 }, placement: "below-left" },
+      { key: "double", objectId: "double", at: { x: 11, y: 22 }, placement: "above" },
+      { key: "floor", objectId: "floor", at: { x: 11 / 3, y: 54 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 4, y: 44 }, placement: "above-right" },
+      { key: "last", objectId: "last", at: { x: 9, y: 24 }, placement: "above-right" },
+      { key: "out", objectId: "out", at: { x: 10, y: 20 }, placement: "below" },
+    ],
+  }}
+/>
+
 Prüf eine Spalte, etwa <InlineMath math="(2,44,4)" />: Das sind <InlineMath math="2+44+4=50" /> Scheine im Wert von <InlineMath math="2+88+20=110" /> Tausend. Der Wert <InlineMath math="z=10" /> ergibt <InlineMath math="y=20" />, also genau <InlineMath math="2z" />, und erfüllt damit "lebih dari" (mehr als) nicht.
 
 Es gibt also <InlineMath math="6" /> mögliche Zusammensetzungen.
