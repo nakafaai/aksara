@@ -1,25 +1,25 @@
-# Convert every temperature to kelvin before comparing it with the table
+# Weight the masses by abundance, then take magnesium-26's share of the atoms
 
-Add <InlineMath math="273" /> to each Celsius temperature: <InlineMath math="27^\circ\text{C}" /> is <InlineMath math="300\text{ K}" />, <InlineMath math="127^\circ\text{C}" /> is <InlineMath math="400\text{ K}" /> and <InlineMath math="-200^\circ\text{C}" /> is <InlineMath math="73\text{ K}" />. **An element is a gas above its boiling point and a liquid between its melting and boiling points**. At <InlineMath math="300\text{ K}" /> only P and S are above their boiling points. R at <InlineMath math="400\text{ K}" /> and S at <InlineMath math="73\text{ K}" /> both lie between the two points, so both are liquids.
+**The relative atomic mass is the abundance-weighted mean, not the plain mean of the three mass numbers**: <InlineMath math="0.79\times24+0.10\times25+0.11\times26=24.32" />. The sample is then <InlineMath math="2.432\div24.32=0.1000\text{ mol}" /> of atoms, <InlineMath math="6.02\times10^{22}" />, and only <InlineMath math="11\%" /> of them are magnesium-26. Burning changes nothing in the nucleus, so the count is the same in the oxide.
 
 <Chart
-  title={<>Boiling points in degrees Celsius</>}
-  description={<>P boils at <InlineMath math="-34^\circ\text{C}" />, Q at <InlineMath math="59^\circ\text{C}" />, R at <InlineMath math="184^\circ\text{C}" /> and S at <InlineMath math="-183^\circ\text{C}" />.</>}
+  title={<>Abundance of each isotope</>}
+  description={<>Magnesium-24 is <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" /> and magnesium-26 <InlineMath math="11\%" /> of the atoms.</>}
   bars="apart"
-  categories={["P", "Q", "R", "S"]}
+  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
   series={[
-    { label: "Boiling point", mark: "bar", values: [-34, 59, 184, -183] },
+    { label: "Abundance", mark: "bar", values: [79, 10, 11] },
   ]}
-  valueLabel="Boiling point (°C)"
+  valueLabel="Abundance (%)"
 />
 
 <BlockMath math="\begin{aligned}
-300\text{ K}&>239\text{ K},\,90\text{ K}\ (\text{P},\ \text{S gases})\\
-387&<400<457\ (\text{R liquid}),\quad54<73<90\ (\text{S liquid})
+A_r&=0.79(24)+0.10(25)+0.11(26)=24.32\\
+N(^{26}\text{Mg})&=0.11\times\tfrac{2.432}{24.32}\times6.02\times10^{23}=6.62\times10^{21}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- Comparing the Celsius numbers directly with the kelvin values makes every element look solid. **Convert to kelvin first**.
-- <InlineMath math="73\text{ K}" /> is above S's melting point, <InlineMath math="54\text{ K}" />, so S has melted and is a liquid, not a solid.
-- Q boils at <InlineMath math="332\text{ K}" />, so at <InlineMath math="300\text{ K}" /> it is still a liquid.
+- <InlineMath math="25.00" /> averages the three mass numbers equally. **Magnesium-24 is far more common**.
+- <InlineMath math="2.01\times10^{22}" /> gives each isotope a third of the atoms instead of using the abundances.
+- <InlineMath math="6.02\times10^{22}" /> counts every magnesium atom, not only the magnesium-26.

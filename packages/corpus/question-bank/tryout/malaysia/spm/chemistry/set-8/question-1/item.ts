@@ -10,48 +10,27 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "It is valid, because temperature is the manipulated variable",
-        },
-        {
-          correct: true,
-          label:
-            "It is not valid, because the size of the calcium carbonate pieces also changed",
-        },
+        { correct: false, label: "The first heating, $$x=6$$" },
+        { correct: true, label: "The last two heatings, $$x=7$$" },
         {
           correct: false,
           label:
-            "It is valid, because the acid was the same in both experiments",
+            "The last two heatings for the salt and the first heating for the water, $$x=6$$",
         },
-        {
-          correct: false,
-          label:
-            "It is not valid, because the mass of calcium carbonate should have risen with the temperature",
-        },
+        { correct: false, label: "The last two heatings, $$x=14$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "Ia sah, kerana suhu ialah pemboleh ubah dimanipulasikan",
-        },
-        {
-          correct: true,
-          label:
-            "Ia tidak sah, kerana saiz kepingan kalsium karbonat juga berubah",
-        },
-        {
-          correct: false,
-          label: "Ia sah, kerana asid adalah sama dalam kedua-dua eksperimen",
-        },
+        { correct: false, label: "Pemanasan pertama, $$x=6$$" },
+        { correct: true, label: "Dua pemanasan terakhir, $$x=7$$" },
         {
           correct: false,
           label:
-            "Ia tidak sah, kerana jisim kalsium karbonat sepatutnya bertambah dengan suhu",
+            "Dua pemanasan terakhir bagi garam dan pemanasan pertama bagi air, $$x=6$$",
         },
+        { correct: false, label: "Dua pemanasan terakhir, $$x=14$$" },
       ],
     },
   },

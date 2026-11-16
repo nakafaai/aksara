@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "About $$1700$$ times larger, $$12$$ times further apart",
+          label: "$$1700$$ times larger, $$1.97\\times10^{19}$$ molecules",
         },
         {
           correct: false,
-          label: "About $$1330$$ times larger, $$11$$ times further apart",
+          label: "$$1330$$ times larger, $$2.51\\times10^{19}$$ molecules",
         },
         {
           correct: false,
-          label: "About $$1700$$ times larger, $$1700$$ times further apart",
+          label: "$$1700$$ times larger, $$3.34\\times10^{22}$$ molecules",
         },
         {
           correct: false,
-          label: "About $$1700$$ times larger, $$41$$ times further apart",
+          label: "$$1700$$ times larger, $$5.91\\times10^{19}$$ molecules",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Lebih kurang $$1700$$ kali ganda, $$12$$ kali lebih jauh",
+          label: "$$1700$$ kali ganda, $$1.97\\times10^{19}$$ molekul",
         },
         {
           correct: false,
-          label: "Lebih kurang $$1330$$ kali ganda, $$11$$ kali lebih jauh",
+          label: "$$1330$$ kali ganda, $$2.51\\times10^{19}$$ molekul",
         },
         {
           correct: false,
-          label: "Lebih kurang $$1700$$ kali ganda, $$1700$$ kali lebih jauh",
+          label: "$$1700$$ kali ganda, $$3.34\\times10^{22}$$ molekul",
         },
         {
           correct: false,
-          label: "Lebih kurang $$1700$$ kali ganda, $$41$$ kali lebih jauh",
+          label: "$$1700$$ kali ganda, $$5.91\\times10^{19}$$ molekul",
         },
       ],
     },

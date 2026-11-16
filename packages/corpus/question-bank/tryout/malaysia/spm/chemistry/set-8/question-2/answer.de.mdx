@@ -1,25 +1,25 @@
-# Rechne jede Temperatur in Kelvin um, bevor du sie mit der Tabelle vergleichst
+# Gewichte die Massen nach der Häufigkeit und nimm dann den Anteil der Magnesium-26-Atome
 
-Addiere <InlineMath math="273" /> zu jeder Celsiustemperatur: <InlineMath math="27^\circ\text{C}" /> sind <InlineMath math="300\text{ K}" />, <InlineMath math="127^\circ\text{C}" /> sind <InlineMath math="400\text{ K}" /> und <InlineMath math="-200^\circ\text{C}" /> sind <InlineMath math="73\text{ K}" />. **Ein Element ist über seinem Siedepunkt gasförmig und zwischen Schmelz- und Siedepunkt flüssig**. Bei <InlineMath math="300\text{ K}" /> liegen nur P und S über ihrem Siedepunkt. R bei <InlineMath math="400\text{ K}" /> und S bei <InlineMath math="73\text{ K}" /> liegen beide zwischen den zwei Punkten, also sind beide flüssig.
+**Die relative Atommasse ist das nach Häufigkeit gewichtete Mittel, nicht das einfache Mittel der drei Massenzahlen**: <InlineMath math="0{,}79\times24+0{,}10\times25+0{,}11\times26=24{,}32" />. Die Probe sind dann <InlineMath math="2{,}432\div24{,}32=0{,}1000\text{ mol}" /> Atome, <InlineMath math="6{,}02\times10^{22}" />, und nur <InlineMath math="11\%" /> davon sind Magnesium-26. Die Verbrennung ändert die Kerne nicht, also ist die Zahl im Oxid dieselbe.
 
 <Chart
-  title={<>Siedepunkte in Grad Celsius</>}
-  description={<>P siedet bei <InlineMath math="-34^\circ\text{C}" />, Q bei <InlineMath math="59^\circ\text{C}" />, R bei <InlineMath math="184^\circ\text{C}" /> und S bei <InlineMath math="-183^\circ\text{C}" />.</>}
+  title={<>Häufigkeit jedes Isotops</>}
+  description={<>Magnesium-24 macht <InlineMath math="79\%" />, Magnesium-25 <InlineMath math="10\%" /> und Magnesium-26 <InlineMath math="11\%" /> der Atome aus.</>}
   bars="apart"
-  categories={["P", "Q", "R", "S"]}
+  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
   series={[
-    { label: "Siedepunkt", mark: "bar", values: [-34, 59, 184, -183] },
+    { label: "Häufigkeit", mark: "bar", values: [79, 10, 11] },
   ]}
-  valueLabel="Siedepunkt (°C)"
+  valueLabel="Häufigkeit (%)"
 />
 
 <BlockMath math="\begin{aligned}
-300\text{ K}&>239\text{ K},{.}90\text{ K}\ (\text{P},\ \text{S gases})\\
-387&<400<457\ (\text{R liquid}),\quad54<73<90\ (\text{S liquid})
+A_r&=0{,}79(24)+0{,}10(25)+0{,}11(26)=24{,}32\\
+N(^{26}\text{Mg})&=0{,}11\times\tfrac{2{,}432}{24{,}32}\times6{,}02\times10^{23}=6{,}62\times10^{21}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- Wer die Celsiuszahlen direkt mit den Kelvinwerten vergleicht, hält jedes Element für fest. **Erst in Kelvin umrechnen**.
-- <InlineMath math="73\text{ K}" /> liegt über dem Schmelzpunkt von S, <InlineMath math="54\text{ K}" />, also ist S geschmolzen und flüssig, nicht fest.
-- Q siedet bei <InlineMath math="332\text{ K}" />, also ist es bei <InlineMath math="300\text{ K}" /> noch flüssig.
+- <InlineMath math="25{,}00" /> mittelt die drei Massenzahlen gleich. **Magnesium-24 ist weit häufiger**.
+- <InlineMath math="2{,}01\times10^{22}" /> gibt jedem Isotop ein Drittel der Atome, statt die Häufigkeiten zu nutzen.
+- <InlineMath math="6{,}02\times10^{22}" /> zählt alle Magnesiumatome, nicht nur Magnesium-26.

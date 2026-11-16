@@ -10,43 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$7.53\\times10^{22}$$, $$3.00\\text{ dm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$1.51\\times10^{22}$$, $$300\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$1.00\\times10^{22}$$, $$400\\text{ cm}^3$$",
-        },
-        {
-          correct: true,
-          label: "$$1.51\\times10^{22}$$, $$600\\text{ cm}^3$$",
-        },
+        { correct: false, label: "$$11.5\\text{ kg}$$, $$21.0\\text{ kg}$$" },
+        { correct: false, label: "$$22.9\\text{ kg}$$, $$21.0\\text{ kg}$$" },
+        { correct: false, label: "$$45.8\\text{ kg}$$, $$12.4\\text{ kg}$$" },
+        { correct: true, label: "$$22.9\\text{ kg}$$, $$12.4\\text{ kg}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$7.53\\times10^{22}$$, $$3.00\\text{ dm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$1.51\\times10^{22}$$, $$300\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$1.00\\times10^{22}$$, $$400\\text{ cm}^3$$",
-        },
-        {
-          correct: true,
-          label: "$$1.51\\times10^{22}$$, $$600\\text{ cm}^3$$",
-        },
+        { correct: false, label: "$$11.5\\text{ kg}$$, $$21.0\\text{ kg}$$" },
+        { correct: false, label: "$$22.9\\text{ kg}$$, $$21.0\\text{ kg}$$" },
+        { correct: false, label: "$$45.8\\text{ kg}$$, $$12.4\\text{ kg}$$" },
+        { correct: true, label: "$$22.9\\text{ kg}$$, $$12.4\\text{ kg}$$" },
       ],
     },
   },
