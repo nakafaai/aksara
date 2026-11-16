@@ -2,6 +2,17 @@ You do not need to find <InlineMath math="B" />. Use **the determinant of a prod
 
 <BlockMath math="\det C=\det A\cdot\det B\cdot\frac{1}{\det A}=\det B" />
 
+The diagram below follows the determinant factors from left to right. **The factors <InlineMath math="\det A" /> and <InlineMath math="\tfrac{1}{\det A}" /> cancel**, so only <InlineMath math="\det B" /> is left, and it must equal <InlineMath math="\det C" />.
+
+<Mermaid
+  title={<>Determinant factors in <InlineMath math="ABA^{-1}" /></>}
+  description={<>Starting from <InlineMath math="1" />, multiplying by <InlineMath math="\det A=2" /> gives <InlineMath math="2" />, multiplying by <InlineMath math="\det B" /> gives <InlineMath math="2\det B" />, and multiplying by <InlineMath math="\tfrac{1}{\det A}=\tfrac12" /> brings it back to <InlineMath math="\det B" />. Since <InlineMath math="ABA^{-1}=C" />, its value is <InlineMath math="\det C=3" />.</>}
+  chart={`flowchart LR
+  S["start: 1"] -->|"× det A = 2"| P1["2"]
+  P1 -->|"× det B"| P2["2 · det B"]
+  P2 -->|"× 1/det A = 1/2"| E["det B = det C = 3"]`}
+/>
+
 The factors <InlineMath math="\det A" /> and <InlineMath math="\frac{1}{\det A}" /> cancel, whatever <InlineMath math="\det A" /> is. So just compute <InlineMath math="\det C" />.
 
 <BlockMath math="\det B=\det C=2\cdot2-1\cdot1=3" />

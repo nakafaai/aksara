@@ -5,6 +5,42 @@ Let <InlineMath math="P(a,b)" />. A <InlineMath math="90^\circ" /> anticlockwise
 5-b&=5-a &&\Leftrightarrow\quad a=b
 \end{aligned}" />
 
+Draw the centre of rotation, <InlineMath math="A" />, and its image. **The arrow from <InlineMath math="P" /> to <InlineMath math="A" /> turns a quarter turn anticlockwise and becomes the arrow from <InlineMath math="P" /> to <InlineMath math="A'" />**, with the same length.
+
+<MathVisual
+  title={<>A <InlineMath math="90^\circ" /> rotation about <InlineMath math="P(2,2)" /></>}
+  description={<>The arrow from <InlineMath math="P(2,2)" /> to <InlineMath math="A(5,1)" /> is <InlineMath math="(3,-1)" />. After a <InlineMath math="90^\circ" /> anticlockwise turn it becomes <InlineMath math="(1,3)" /> and ends at <InlineMath math="A'(3,5)" />. Both arrows have length <InlineMath math="\sqrt{10}" /> and are perpendicular.</>}
+  labels={{
+    p: <InlineMath math="P(2,2)" />,
+    a: <InlineMath math="A(5,1)" />,
+    image: <InlineMath math="A'(3,5)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6.5 },
+      y: { min: 0, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-a", kind: "vector", appearance: "secondary", from: { x: 2, y: 2 }, to: { x: 5, y: 1 } },
+      { id: "to-image", kind: "vector", appearance: "answer", from: { x: 2, y: 2 }, to: { x: 3, y: 5 } },
+      { id: "turn", kind: "arc", appearance: "construction", center: { x: 2, y: 2 }, radius: 0.8, startDegrees: 360 - Math.atan(1 / 3) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 3, y: 5 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 2 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 3, y: 5 }, placement: "above" },
+      { key: "turn", objectId: "turn", at: { x: 2.8, y: 2.3 }, placement: "right" },
+    ],
+  }}
+/>
+
 So <InlineMath math="a=b=2" /> and <InlineMath math="P(2,2)" />.
 
 Check: <InlineMath math="\overrightarrow{PA}=(3,-1)" /> turns into <InlineMath math="(1,3)" />, and <InlineMath math="P+(1,3)=(3,5)=A'" />. Both vectors have length <InlineMath math="\sqrt{10}" /> and their dot product is <InlineMath math="3-3=0" />, so the angle is indeed a right angle.

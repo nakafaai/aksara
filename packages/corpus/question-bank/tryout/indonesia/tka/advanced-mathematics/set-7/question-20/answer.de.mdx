@@ -5,6 +5,41 @@ Punkte auf der Spiegelachse bewegen sich bei der Spiegelung nicht. Die Gerade <I
 0{,}8x-0{,}6y&=y\ \Rightarrow\ 0{,}8x=1{,}6y\ \Rightarrow\ y=\frac12x
 \end{aligned}" />
 
+Zeichne die Spiegelachse, einen Fixpunkt und einen Vektor mit seinem Bild. **Der Punkt <InlineMath math="(2,1)" /> bleibt liegen, und <InlineMath math="(1,0)" /> geht nach <InlineMath math="(0{,}6;\ 0{,}8)" /> auf der anderen Seite der Geraden**, mit der Spiegelachse genau in der Mitte.
+
+<MathVisual
+  title={<>Spiegelung durch <InlineMath math="M" /> an der Geraden <InlineMath math="y=\tfrac12x" /></>}
+  description={<>Die Gerade <InlineMath math="y=\tfrac12x" /> geht durch den Ursprung und den Fixpunkt <InlineMath math="(2,1)" />. Der Vektor <InlineMath math="(1,0)" /> wird von <InlineMath math="M" /> auf <InlineMath math="(0{,}6;\ 0{,}8)" /> abgebildet, die erste Spalte von <InlineMath math="M" />. Die Strecke zwischen den beiden Spitzen steht senkrecht auf der Spiegelachse und wird von ihr halbiert.</>}
+  labels={{
+    mirror: <InlineMath math="y=\tfrac12x" />,
+    fixed: <InlineMath math="(2,1)" />,
+    e: <InlineMath math="(1,0)" />,
+    image: <InlineMath math="(0{,}6;\ 0{,}8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 2.6 },
+      y: { min: -0.4, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "answer", formula: "x/2", domain: { min: -0.3, max: 2.6 } },
+      { id: "e", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "image", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0.6, y: 0.8 } },
+      { id: "join", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 0.6, y: 0.8 } },
+      { id: "fixed", kind: "point", appearance: "answer", at: { x: 2, y: 1 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 2.5, y: 1.25 }, placement: "above-left" },
+      { key: "fixed", objectId: "fixed", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "e", objectId: "e", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 0.6, y: 0.8 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Beide Gleichungen liefern dieselbe Gerade, <InlineMath math="y=\frac12x" />. Probe: <InlineMath math="M\begin{pmatrix} 2 \\ 1 \end{pmatrix}=\begin{pmatrix} 1{,}2+0{,}8 \\ 1{,}6-0{,}6 \end{pmatrix}=\begin{pmatrix} 2 \\ 1 \end{pmatrix}" />. Die Richtung senkrecht zur Achse wird dagegen umgekehrt: <InlineMath math="M\begin{pmatrix} 1 \\ -2 \end{pmatrix}=\begin{pmatrix} -1 \\ 2 \end{pmatrix}" />.
 
 Also ist <InlineMath math="m=\frac12" />.

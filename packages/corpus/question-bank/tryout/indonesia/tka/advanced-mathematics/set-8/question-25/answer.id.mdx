@@ -2,6 +2,43 @@ Nilai mutlak membuat rumus <InlineMath math="f" /> bergantung pada tanda <Inline
 
 <BlockMath math="f(x)=\begin{cases} x+1, & x>2 \\ -(x+1), & x<2 \end{cases}" />
 
+Gambar <InlineMath math="f" /> di kedua sisi <InlineMath math="x=2" />. **Dari kanan grafiknya menuju <InlineMath math="3" />, dari kiri menuju <InlineMath math="-3" />**, jadi limit di <InlineMath math="x=2" /> tidak ada, sedangkan di <InlineMath math="x=-1" /> grafiknya mulus melewati nol.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f" /> yang terbelah di <InlineMath math="x=2" /></>}
+  description={<>Untuk <InlineMath math="x<2" />, grafiknya garis menurun <InlineMath math="y=-(x+1)" /> yang melewati <InlineMath math="(-1,\ 0)" /> dan menuju <InlineMath math="(2,\ -3)" />. Untuk <InlineMath math="x>2" />, grafiknya garis naik <InlineMath math="y=x+1" /> yang mulai dari dekat <InlineMath math="(2,\ 3)" />.</>}
+  labels={{
+    right: <InlineMath math="x+1" />,
+    left: <InlineMath math="-(x+1)" />,
+    high: <InlineMath math="(2,\ 3)" />,
+    low: <InlineMath math="(2,\ -3)" />,
+    zero: <InlineMath math="(-1,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 5 },
+      y: { min: -4, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "secondary", formula: "-(x + 1)", domain: { min: -3, max: 1.97 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: 2.03, max: 5 } },
+      { id: "high", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 2, y: -3 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+    ],
+    labels: [
+      { key: "right", objectId: "right", at: { x: 4, y: 5 }, placement: "above-left" },
+      { key: "left", objectId: "left", at: { x: -2, y: 1 }, placement: "above-right" },
+      { key: "high", objectId: "high", at: { x: 2, y: 3 }, placement: "above-left" },
+      { key: "low", objectId: "low", at: { x: 2, y: -3 }, placement: "below-right" },
+      { key: "zero", objectId: "zero", at: { x: -1, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Untuk <InlineMath math="x>2" />, <InlineMath math="|x-2|=x-2" /> sehingga faktornya tercoret. Untuk <InlineMath math="x<2" />, <InlineMath math="|x-2|=-(x-2)" /> sehingga muncul tanda negatif.
 
 - **Benar.** Dari kanan, <InlineMath math="f(x)=x+1\to3" />.

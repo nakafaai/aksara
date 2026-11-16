@@ -2,6 +2,17 @@ Matriks <InlineMath math="B" /> tidak perlu dicari. Pakai **sifat determinan has
 
 <BlockMath math="\det C=\det A\cdot\det B\cdot\frac{1}{\det A}=\det B" />
 
+Diagram berikut mengikuti faktor determinan dari kiri ke kanan. **Faktor <InlineMath math="\det A" /> dan <InlineMath math="\tfrac{1}{\det A}" /> saling menghapus**, jadi yang tersisa hanya <InlineMath math="\det B" />, yang harus sama dengan <InlineMath math="\det C" />.
+
+<Mermaid
+  title={<>Faktor determinan pada <InlineMath math="ABA^{-1}" /></>}
+  description={<>Mulai dari <InlineMath math="1" />, perkalian dengan <InlineMath math="\det A=2" /> memberi <InlineMath math="2" />, perkalian dengan <InlineMath math="\det B" /> memberi <InlineMath math="2\det B" />, dan perkalian dengan <InlineMath math="\tfrac{1}{\det A}=\tfrac12" /> mengembalikannya ke <InlineMath math="\det B" />. Karena <InlineMath math="ABA^{-1}=C" />, nilainya <InlineMath math="\det C=3" />.</>}
+  chart={`flowchart LR
+  S["mulai: 1"] -->|"× det A = 2"| P1["2"]
+  P1 -->|"× det B"| P2["2 · det B"]
+  P2 -->|"× 1/det A = 1/2"| E["det B = det C = 3"]`}
+/>
+
 Faktor <InlineMath math="\det A" /> dan <InlineMath math="\frac{1}{\det A}" /> saling meniadakan, berapa pun nilai <InlineMath math="\det A" />. Jadi cukup hitung <InlineMath math="\det C" />.
 
 <BlockMath math="\det B=\det C=2\cdot2-1\cdot1=3" />

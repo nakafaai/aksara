@@ -6,6 +6,42 @@ k^2+2k-8&<0 \\
 (k+4)(k-2)&<0
 \end{aligned}" />
 
+Draw the circle and the vertical line <InlineMath math="x=1" />, where every point <InlineMath math="P(1,k)" /> lies. **The part of the line inside the circle runs from <InlineMath math="k=-4" /> to <InlineMath math="k=2" />**, without the two ends, which sit exactly on the circle.
+
+<MathVisual
+  title={<>The point <InlineMath math="P(1,k)" /> inside the circle</>}
+  description={<>The circle has centre <InlineMath math="(2,-1)" /> and radius <InlineMath math="\sqrt{10}" />. The line <InlineMath math="x=1" /> cuts it at <InlineMath math="(1,2)" /> and <InlineMath math="(1,-4)" />. The highlighted segment between those points is where <InlineMath math="P" /> is inside the circle.</>}
+  labels={{
+    line: <InlineMath math="x=1" />,
+    top: <InlineMath math="(1,2)" />,
+    bottom: <InlineMath math="(1,-4)" />,
+    centre: <InlineMath math="(2,-1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 6 },
+      y: { min: -5.5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: Math.sqrt(10) },
+      { id: "line", kind: "segment", appearance: "construction", from: { x: 1, y: -5.5 }, to: { x: 1, y: 3 } },
+      { id: "inside", kind: "segment", appearance: "answer", from: { x: 1, y: -4 }, to: { x: 1, y: 2 } },
+      { id: "top", kind: "point", appearance: "warning", at: { x: 1, y: 2 } },
+      { id: "bottom", kind: "point", appearance: "warning", at: { x: 1, y: -4 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "top", objectId: "top", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "bottom", objectId: "bottom", at: { x: 1, y: -4 }, placement: "below-left" },
+      { key: "centre", objectId: "centre", at: { x: 2, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
 The product is negative when <InlineMath math="k" /> lies between the two roots, so <InlineMath math="-4<k<2" />.
 
 Another way: the circle has centre <InlineMath math="(2,-1)" /> and <InlineMath math="r^2=4+1+5=10" />. Being inside means <InlineMath math="(1-2)^2+(k+1)^2<10" />, that is <InlineMath math="(k+1)^2<9" />, so <InlineMath math="-3<k+1<3" />.

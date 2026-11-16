@@ -5,6 +5,41 @@ Points on the mirror do not move under the reflection. So the line <InlineMath m
 0.8x-0.6y&=y\ \Rightarrow\ 0.8x=1.6y\ \Rightarrow\ y=\frac12x
 \end{aligned}" />
 
+Draw the mirror line, one fixed point, and one vector with its image. **The point <InlineMath math="(2,1)" /> doesn't move, and <InlineMath math="(1,0)" /> is sent to <InlineMath math="(0.6,\ 0.8)" /> on the other side of the line**, with the mirror line exactly in the middle.
+
+<MathVisual
+  title={<>Reflection by <InlineMath math="M" /> in the line <InlineMath math="y=\tfrac12x" /></>}
+  description={<>The line <InlineMath math="y=\tfrac12x" /> passes through the origin and the fixed point <InlineMath math="(2,1)" />. The vector <InlineMath math="(1,0)" /> is sent by <InlineMath math="M" /> to <InlineMath math="(0.6,\ 0.8)" />, the first column of <InlineMath math="M" />. The segment joining the two tips is perpendicular to the mirror line and is cut in half by it.</>}
+  labels={{
+    mirror: <InlineMath math="y=\tfrac12x" />,
+    fixed: <InlineMath math="(2,1)" />,
+    e: <InlineMath math="(1,0)" />,
+    image: <InlineMath math="(0.6,\ 0.8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 2.6 },
+      y: { min: -0.4, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "answer", formula: "x/2", domain: { min: -0.3, max: 2.6 } },
+      { id: "e", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "image", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0.6, y: 0.8 } },
+      { id: "join", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 0.6, y: 0.8 } },
+      { id: "fixed", kind: "point", appearance: "answer", at: { x: 2, y: 1 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 2.5, y: 1.25 }, placement: "above-left" },
+      { key: "fixed", objectId: "fixed", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "e", objectId: "e", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 0.6, y: 0.8 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Both equations give the same line, <InlineMath math="y=\frac12x" />. Check: <InlineMath math="M\begin{pmatrix} 2 \\ 1 \end{pmatrix}=\begin{pmatrix} 1.2+0.8 \\ 1.6-0.6 \end{pmatrix}=\begin{pmatrix} 2 \\ 1 \end{pmatrix}" />. The direction perpendicular to the mirror is reversed instead: <InlineMath math="M\begin{pmatrix} 1 \\ -2 \end{pmatrix}=\begin{pmatrix} -1 \\ 2 \end{pmatrix}" />.
 
 So <InlineMath math="m=\frac12" />.

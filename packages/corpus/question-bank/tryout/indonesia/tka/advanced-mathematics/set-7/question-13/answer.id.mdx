@@ -2,6 +2,41 @@ Mulailah dari dua fakta dasar: <InlineMath math="|\vec{u}|=|\vec{v}|=3" /> dan <
 
 <BlockMath math="\vec{u}+\vec{v}=3\vec{i}+3\vec{j}+0\vec{k},\qquad \vec{u}-\vec{v}=\vec{i}-\vec{j}+4\vec{k}" />
 
+Gambar <InlineMath math="\vec u" /> dan <InlineMath math="\vec v" /> pada bidang yang memuat keduanya. **Keduanya sepanjang <InlineMath math="3" /> dan saling tegak lurus, jadi membentuk persegi**, dan <InlineMath math="\vec u\pm\vec v" /> adalah kedua diagonalnya.
+
+<MathVisual
+  title={<>Persegi dari <InlineMath math="\vec u" /> dan <InlineMath math="\vec v" /></>}
+  description={<>Vektor <InlineMath math="\vec u" /> dan <InlineMath math="\vec v" /> sama-sama sepanjang <InlineMath math="3" /> dan bertemu tegak lurus, membentuk persegi bersisi <InlineMath math="3" />. Diagonal <InlineMath math="\vec u+\vec v" /> dan <InlineMath math="\vec u-\vec v" /> sama panjang, yaitu <InlineMath math="3\sqrt2" />, saling tegak lurus, dan masing-masing membentuk sudut <InlineMath math="45^\circ" /> dengan sisi persegi.</>}
+  labels={{
+    u: <InlineMath math="\vec u" />,
+    v: <InlineMath math="\vec v" />,
+    sum: <InlineMath math="\vec u+\vec v" />,
+    diff: <InlineMath math="\vec u-\vec v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 3.6 },
+      y: { min: -0.6, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }] },
+      { id: "u", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "v", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "sum", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "diff", kind: "vector", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "u", objectId: "u", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 2.4, y: 2.4 }, placement: "above-left" },
+      { key: "diff", objectId: "diff", at: { x: 2.4, y: 0.6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 1. Pernyataan bahwa kedua diagonal tegak lurus benar: <InlineMath math="(\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v})=|\vec{u}|^2-|\vec{v}|^2=0" />. Dengan komponen: <InlineMath math="3-3+0=0" />.
 2. Pernyataan bahwa panjang kedua diagonal sama benar. Karena <InlineMath math="\vec{u}\cdot\vec{v}=0" />, <InlineMath math="|\vec{u}\pm\vec{v}|^2=|\vec{u}|^2+|\vec{v}|^2=18" /> untuk kedua tanda.
 3. Pernyataan <InlineMath math="|\vec{u}+\vec{v}|=3\sqrt2" /> benar, karena <InlineMath math="\sqrt{18}=3\sqrt2" />.

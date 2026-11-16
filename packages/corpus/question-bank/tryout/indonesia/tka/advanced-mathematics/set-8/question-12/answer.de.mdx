@@ -7,6 +7,43 @@ Der Winkel <InlineMath math="ABC" /> ist der Winkel bei <InlineMath math="B" /> 
 &=\frac{0-1+0}{\sqrt2\cdot\sqrt2}=-\frac12
 \end{aligned}" />
 
+Zeichne die beiden Stäbe in der Ebene, die sie enthält. **Beide Stäbe haben die Länge <InlineMath math="\sqrt2" />, und der Kosinus des Winkels ist negativ**, also ist der Winkel bei <InlineMath math="B" /> stumpf, nämlich <InlineMath math="120^\circ" />.
+
+<MathVisual
+  title={<>Der Winkel <InlineMath math="ABC" /> im Eisengestell</>}
+  description={<>Die Stäbe <InlineMath math="BA" /> und <InlineMath math="BC" /> sind beide <InlineMath math="\sqrt2" /> lang und treffen sich bei <InlineMath math="B" /> im Winkel <InlineMath math="120^\circ" />. Die Strecke <InlineMath math="AC" /> der Länge <InlineMath math="\sqrt6" /> schließt das Dreieck.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    angle: <InlineMath math="120^\circ" />,
+    ac: <InlineMath math="\sqrt6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.2, max: 1.9 },
+      y: { min: -0.5, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ba", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(2), y: 0 } },
+      { id: "bc", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: -Math.sqrt(2) / 2, y: Math.sqrt(6) / 2 } },
+      { id: "ac", kind: "segment", appearance: "construction", from: { x: Math.sqrt(2), y: 0 }, to: { x: -Math.sqrt(2) / 2, y: Math.sqrt(6) / 2 } },
+      { id: "angle", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 0.35, startDegrees: 0, sweepDegrees: 120 },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "ba", at: { x: Math.sqrt(2), y: 0 }, placement: "below-right" },
+      { key: "b", objectId: "b", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c", objectId: "bc", at: { x: -Math.sqrt(2) / 2, y: Math.sqrt(6) / 2 }, placement: "above-left" },
+      { key: "angle", objectId: "angle", at: { x: 0.18, y: 0.3 }, placement: "above-right" },
+      { key: "ac", objectId: "ac", at: { x: Math.sqrt(2) / 4, y: Math.sqrt(6) / 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Der Winkel zwischen <InlineMath math="0^\circ" /> und <InlineMath math="180^\circ" /> mit Kosinus <InlineMath math="-\frac12" /> ist <InlineMath math="120^\circ" />.
 
 Probe mit dem Kosinussatz: <InlineMath math="AC^2=1+4+1=6" />, und <InlineMath math="BA^2+BC^2-2\cdot BA\cdot BC\cos120^\circ=2+2+2=6" />.

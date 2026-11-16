@@ -4,6 +4,44 @@ Der Inkreisradius ist der Flächeninhalt geteilt durch den halben Umfang.
 
 <BlockMath math="r=\frac{\frac12\cdot12\cdot5}{\frac12(12+5+13)}=\frac{30}{15}=2" />
 
+Zeichne das Grundstück und den größten Teich darin. **Der Teich berührt alle drei Seiten, also hat sein Mittelpunkt von jeder Seite denselben Abstand <InlineMath math="r=2" />**, auch von beiden Achsen.
+
+<MathVisual
+  title={<>Der Inkreis des Dreiecks <InlineMath math="OPQ" /></>}
+  description={<>Das Grundstück ist das rechtwinklige Dreieck mit den Ecken <InlineMath math="O(0,0)" />, <InlineMath math="P(12,0)" /> und <InlineMath math="Q(0,5)" />. Der Kreis mit Mittelpunkt <InlineMath math="(2,2)" /> und Radius <InlineMath math="2" /> berührt die <InlineMath math="X" />-Achse, die <InlineMath math="Y" />-Achse und die Hypotenuse <InlineMath math="PQ" />. Die drei gestrichelten Strecken vom Mittelpunkt zu den Seiten sind alle <InlineMath math="2" /> lang.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P(12,0)" />,
+    q: <InlineMath math="Q(0,5)" />,
+    centre: <InlineMath math="(2,2)" />,
+    r: <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "land", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 5 }] },
+      { id: "pond", kind: "circle", appearance: "answer", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 2, y: 2 }, to: { x: 36 / 13, y: 50 / 13 } },
+      { id: "to-x", kind: "segment", appearance: "construction", from: { x: 2, y: 2 }, to: { x: 2, y: 0 } },
+      { id: "to-y", kind: "segment", appearance: "construction", from: { x: 2, y: 2 }, to: { x: 0, y: 2 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "o", objectId: "land", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "land", at: { x: 12, y: 0 }, placement: "below" },
+      { key: "q", objectId: "land", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "centre", objectId: "centre", at: { x: 2, y: 2 }, placement: "below-right" },
+      { key: "r", objectId: "r", at: { x: 31 / 13, y: 38 / 13 }, placement: "right" },
+    ],
+  }}
+/>
+
 Der Kreis berührt beide Achsen, also hat sein Mittelpunkt von beiden den Abstand <InlineMath math="2" /> und liegt bei <InlineMath math="(2,2)" />.
 
 <BlockMath math="(x-2)^2+(y-2)^2=4\ \Leftrightarrow\ x^2+y^2-4x-4y+4=0" />

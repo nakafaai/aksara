@@ -6,6 +6,36 @@ For <InlineMath math="x\ne-1" /> you may cancel that factor, and the simplified 
 
 <BlockMath math="\lim_{x\to-1}\frac{x+2}{x-1}=\frac{-1+2}{-1-1}=-\frac12" />
 
+Draw <InlineMath math="p" /> after simplifying. **At <InlineMath math="x=-1" /> the graph only has a hole**, so the limit is the height of that hole, while at <InlineMath math="x=1" /> the graph genuinely breaks.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="p(x)=\frac{x+2}{x-1}" /> with a hole at <InlineMath math="x=-1" /></>}
+  description={<>The curve <InlineMath math="y=\frac{x+2}{x-1}" /> has two branches left and right of the vertical line <InlineMath math="x=1" />. On the left branch, the point <InlineMath math="\left(-1,\ -\tfrac12\right)" /> is marked as a hole because <InlineMath math="p(-1)" /> isn't defined.</>}
+  labels={{
+    hole: <InlineMath math="\left(-1,\ -\tfrac12\right)" />,
+    wall: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 1, y: -7 }, to: { x: 1, y: 9 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: -5, max: 0.6 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: 1.4, max: 5 } },
+      { id: "hole", kind: "point", appearance: "answer", at: { x: -1, y: -0.5 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: -1, y: -0.5 }, placement: "below-left" },
+      { key: "wall", objectId: "wall", at: { x: 1, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
+
 So <InlineMath math="\lim_{x\to-1}p(x)=-\frac12" />.
 
 - <InlineMath math="\frac12" /> has a sign slip in the denominator, <InlineMath math="-1-1" />.

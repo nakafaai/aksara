@@ -14,6 +14,45 @@ x'+2y'+4-12&=0 \\
 x'+2y'-8&=0
 \end{aligned}" />
 
+Draw the starting line, the centre of dilation, and the images of two points. **Every point is pulled away from <InlineMath math="(0,1)" /> until its distance is three times as large**, so the image is a parallel line farther from the centre.
+
+<MathVisual
+  title={<>Dilating the line about <InlineMath math="(0,1)" /></>}
+  description={<>The starting line <InlineMath math="x+2y-4=0" /> passes through <InlineMath math="(4,0)" /> and <InlineMath math="(0,2)" />. The dashed segments from the centre <InlineMath math="(0,1)" /> are stretched three times, taking those points to <InlineMath math="(12,-2)" /> and <InlineMath math="(0,4)" />. The line through both images is <InlineMath math="x+2y-8=0" />.</>}
+  labels={{
+    start: <InlineMath math="x+2y-4=0" />,
+    end: <InlineMath math="x+2y-8=0" />,
+    centre: <InlineMath math="(0,1)" />,
+    a: <InlineMath math="(4,0)\to(12,-2)" />,
+    b: <InlineMath math="(0,2)\to(0,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -3, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "(4 - x)/2", domain: { min: -1, max: 13 } },
+      { id: "end", kind: "function", appearance: "answer", formula: "(8 - x)/2", domain: { min: -1, max: 13 } },
+      { id: "ray-a", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: 12, y: -2 } },
+      { id: "ray-b", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: 0, y: 4 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: 12, y: -2 } },
+      { id: "b", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 10, y: -3 }, placement: "above-left" },
+      { key: "end", objectId: "end", at: { x: 6, y: 1 }, placement: "above-right" },
+      { key: "centre", objectId: "centre", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: 12, y: -2 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 0, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check: the point <InlineMath math="(4,0)" /> on the original line maps to <InlineMath math="(12,-2)" />, and <InlineMath math="12-4-8=0" />. The point <InlineMath math="(0,2)" /> maps to <InlineMath math="(0,4)" />, and <InlineMath math="0+8-8=0" />.
 
 So the image is <InlineMath math="x+2y-8=0" />.

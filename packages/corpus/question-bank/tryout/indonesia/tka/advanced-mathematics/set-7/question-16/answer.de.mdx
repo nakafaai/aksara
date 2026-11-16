@@ -8,6 +8,47 @@ Die Orte mit Empfang sind die Punkte innerhalb oder auf dem Kreis mit Mittelpunk
 | <InlineMath math="D(25,38)" /> | <InlineMath math="225+324=549" /> | kleiner |
 | <InlineMath math="E(32,5)" /> | <InlineMath math="484+225=709" /> | größer |
 
+Zeichne die Sendereichweite und die fünf Dörfer. **Nur das Dorf <InlineMath math="D" /> liegt im Kreis mit Radius <InlineMath math="25" />**, die anderen vier liegen knapp außerhalb.
+
+<MathVisual
+  title={<>Die Sendereichweite des Turms <InlineMath math="M(10,20)" /></>}
+  description={<>Der schraffierte Bereich ist der Kreis mit Mittelpunkt <InlineMath math="M(10,20)" /> und Radius <InlineMath math="25" />. Das Dorf <InlineMath math="D(25,38)" /> liegt darin, die Dörfer <InlineMath math="A(30,40)" />, <InlineMath math="B(-10,0)" />, <InlineMath math="C(0,45)" /> und <InlineMath math="E(32,5)" /> liegen außerhalb des Kreises.</>}
+  labels={{
+    m: <InlineMath math="M" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -18, max: 38 },
+      y: { min: -8, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "range", kind: "circle", appearance: "highlight", center: { x: 10, y: 20 }, radius: 25 },
+      { id: "m", kind: "point", appearance: "primary", at: { x: 10, y: 20 } },
+      { id: "a", kind: "point", appearance: "warning", at: { x: 30, y: 40 } },
+      { id: "b", kind: "point", appearance: "warning", at: { x: -10, y: 0 } },
+      { id: "c", kind: "point", appearance: "warning", at: { x: 0, y: 45 } },
+      { id: "d", kind: "point", appearance: "answer", at: { x: 25, y: 38 } },
+      { id: "e", kind: "point", appearance: "warning", at: { x: 32, y: 5 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 10, y: 20 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 30, y: 40 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -10, y: 0 }, placement: "left" },
+      { key: "c", objectId: "c", at: { x: 0, y: 45 }, placement: "above" },
+      { key: "d", objectId: "d", at: { x: 25, y: 38 }, placement: "left" },
+      { key: "e", objectId: "e", at: { x: 32, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Nur beim Dorf <InlineMath math="D" /> ist das Abstandsquadrat nicht größer als <InlineMath math="625" />. Sein Abstand beträgt <InlineMath math="\sqrt{549}\approx23{,}4" /> km.
 
 Das Dorf mit Empfang ist also <InlineMath math="D(25,38)" />.

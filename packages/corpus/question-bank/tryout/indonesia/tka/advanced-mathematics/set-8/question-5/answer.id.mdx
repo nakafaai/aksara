@@ -12,6 +12,39 @@ K(40,20)&=2{.}000+800=2{.}800 \\
 K(0,40)&=1{.}600
 \end{aligned}" />
 
+Gambar daerah baru bersama garis keuntungan yang melewati <InlineMath math="(60,\ 0)" />. **Garis keuntungan lebih curam daripada sisi <InlineMath math="x+y=60" />**, jadi saat digeser menjauh, titik terakhir yang disentuhnya adalah pojok di sumbu mendatar.
+
+<MathVisual
+  title={<>Daerah penyelesaian setelah mesin jilid diperbaiki</>}
+  description={<>Daerah lama digambar samar. Daerah baru berada di bawah garis <InlineMath math="x+2y=80" /> dan <InlineMath math="x+y=60" />, dengan titik pojok <InlineMath math="(0,\ 0)" />, <InlineMath math="(60,\ 0)" />, <InlineMath math="(40,\ 20)" />, dan <InlineMath math="(0,\ 40)" />. Garis putus-putus <InlineMath math="50x+40y=3{.}000" /> hanya menyentuh daerah baru di <InlineMath math="(60,\ 0)" />.</>}
+  labels={{
+    best: <InlineMath math="(60,\ 0)" />,
+    corner: <InlineMath math="(40,\ 20)" />,
+    level: <InlineMath math="50x+40y=3{.}000" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 82 },
+      y: { min: 0, max: 78 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "after", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 40, y: 20 }, { x: 0, y: 40 }] },
+      { id: "before", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "level", kind: "function", appearance: "construction", formula: "75 - 1.25*x", domain: { min: 0, max: 60 } },
+      { id: "corner", kind: "point", appearance: "reference", at: { x: 40, y: 20 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 60, y: 0 } },
+    ],
+    labels: [
+      { key: "best", objectId: "best", at: { x: 60, y: 0 }, placement: "above-right" },
+      { key: "corner", objectId: "corner", at: { x: 40, y: 20 }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 10, y: 62.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Titik <InlineMath math="(60,0)" /> memenuhi batas mesin potong, karena <InlineMath math="60\le80" />. Garis selidik <InlineMath math="50x+40y=k" /> bergradien <InlineMath math="-\frac54" />, lebih curam daripada garis <InlineMath math="x+y=60" /> yang bergradien <InlineMath math="-1" />, sehingga titik terakhir yang tersentuh adalah titik pada sumbu <InlineMath math="X" />.
 
 Jadi, keuntungan maksimum sekarang <InlineMath math="\text{Rp}3{.}000{.}000{,}00" />, dengan membuat <InlineMath math="60" /> pak buku tulis saja.

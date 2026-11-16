@@ -23,6 +23,47 @@ K(1,8)&=4+48=52 \\
 K(6,3)&=24+18=42
 \end{aligned}" />
 
+Zeichne den zulässigen Bereich. **Die beiden Nährstoffbedarfe geben untere Grenzen, die Beutelgrenze gibt eine obere Grenze**, also ist der Bereich ein kleines Dreieck mit drei Ecken.
+
+<MathVisual
+  title={<>Zulässiger Bereich für Kalzium, Protein und Anzahl der Beutel</>}
+  description={<>Die waagerechte Achse ist die Anzahl der Beutel Milch A, die senkrechte die Anzahl der Beutel Milch B. Der schraffierte Bereich liegt über den Geraden <InlineMath math="2x+y=10" /> und <InlineMath math="x+3y=15" /> und unter der Geraden <InlineMath math="x+y=9" />. Seine Ecken sind <InlineMath math="(3,\ 4)" />, <InlineMath math="(1,\ 8)" /> und <InlineMath math="(6,\ 3)" />, und die niedrigsten Kosten liegen bei <InlineMath math="(3,\ 4)" />.</>}
+  labels={{
+    calcium: <InlineMath math="2x+y=10" />,
+    protein: <InlineMath math="x+3y=15" />,
+    cap: <InlineMath math="x+y=9" />,
+    best: <InlineMath math="(3,\ 4)" />,
+    top: <InlineMath math="(1,\ 8)" />,
+    side: <InlineMath math="(6,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 10 },
+      y: { min: 0, max: 10.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 3, y: 4 }, { x: 6, y: 3 }, { x: 1, y: 8 }] },
+      { id: "calcium", kind: "segment", appearance: "primary", from: { x: 0, y: 10 }, to: { x: 5, y: 0 } },
+      { id: "protein", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 10, y: 5 / 3 } },
+      { id: "cap", kind: "segment", appearance: "reference", from: { x: 0, y: 9 }, to: { x: 9, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 1, y: 8 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "calcium", objectId: "calcium", at: { x: 4.5, y: 1 }, placement: "left" },
+      { key: "protein", objectId: "protein", at: { x: 9, y: 2 }, placement: "above" },
+      { key: "cap", objectId: "cap", at: { x: 8, y: 1 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 3, y: 4 }, placement: "below-left" },
+      { key: "top", objectId: "top", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "side", objectId: "side", at: { x: 6, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Die minimalen Kosten betragen also <InlineMath math="\text{Rp}36{.}000{,}00" />, mit <InlineMath math="3" /> Beuteln Milch A und <InlineMath math="4" /> Beuteln Milch B.
 
 - <InlineMath math="\text{Rp}42{.}000{,}00" /> sind die Kosten in der Ecke <InlineMath math="(6,3)" />.

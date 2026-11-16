@@ -8,6 +8,37 @@ s(2+h)-s(2)&=11h+2h^2=h(11+2h)
 
 <BlockMath math="\lim_{h\to0}\frac{h(11+2h)}{h}=\lim_{h\to0}(11+2h)=11" />
 
+Zeichne den Weg des Balls über der Zeit. **Die Momentangeschwindigkeit bei <InlineMath math="t=2" /> ist die Steigung der Tangente im Punkt <InlineMath math="(2,\ 14)" />**, und diese Tangente hat die Steigung <InlineMath math="11" />.
+
+<MathVisual
+  title={<>Der Weggraph <InlineMath math="s(t)" /> und die Tangente bei <InlineMath math="t=2" /></>}
+  description={<>Die waagerechte Achse ist die Zeit <InlineMath math="t" /> in Sekunden, die senkrechte der Weg in Metern. Die Kurve <InlineMath math="s(t)=2t^2+3t" /> geht durch <InlineMath math="(2,\ 14)" />. Die Tangente in diesem Punkt ist <InlineMath math="y=11t-8" /> mit Steigung <InlineMath math="11" />.</>}
+  labels={{
+    curve: <InlineMath math="s(t)=2t^2+3t" />,
+    tangent: <InlineMath math="\text{Steigung }11" />,
+    two: <InlineMath math="(2,\ 14)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 3.5 },
+      y: { min: 0, max: 36 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*x^2 + 3*x", domain: { min: 0, max: 3.3 } },
+      { id: "tangent", kind: "function", appearance: "answer", formula: "11*x - 8", domain: { min: 0.9, max: 3.3 } },
+      { id: "two", kind: "point", appearance: "answer", at: { x: 2, y: 14 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: 25 }, placement: "below-right" },
+      { key: "two", objectId: "two", at: { x: 2, y: 14 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Probe: Die Durchschnittsgeschwindigkeit auf <InlineMath math="[2;\,2{,}1]" /> ist <InlineMath math="\frac{s(2{,}1)-s(2)}{0{,}1}=\frac{15{,}12-14}{0{,}1}=11{,}2" />, und je kürzer das Intervall, desto näher liegt sie bei <InlineMath math="11" />.
 
 Die Momentangeschwindigkeit der Kugel bei <InlineMath math="t=2" /> beträgt also <InlineMath math="11" /> Meter pro Sekunde.

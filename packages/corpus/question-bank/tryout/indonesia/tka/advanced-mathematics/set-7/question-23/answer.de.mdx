@@ -6,6 +6,37 @@ Die Fixkosten verteilen sich auf immer mehr T-Shirts, ihr Anteil pro Stück geht
 
 <BlockMath math="\lim_{x\to\infty}R(x)=0+15{.}000=15{.}000" />
 
+Zeichne die Durchschnittskosten über der Anzahl der T-Shirts. **Der Fixkostenanteil pro T-Shirt schrumpft immer weiter, also schmiegt sich die Kurve an die Linie bei <InlineMath math="15" /> Tausend Rupiah**, die Druckkosten pro T-Shirt.
+
+<MathVisual
+  title={<>Durchschnittskosten pro T-Shirt nach Stückzahl</>}
+  description={<>Die waagerechte Achse ist die Anzahl <InlineMath math="x" /> der T-Shirts, die senkrechte die Durchschnittskosten in Tausend Rupiah. Die Kurve <InlineMath math="R(x)=\tfrac{2{.}000}{x}+15" /> fällt anfangs steil, geht durch <InlineMath math="(1{.}000;\ 17)" /> und kommt dann der Waagerechten bei <InlineMath math="15" /> immer näher.</>}
+  labels={{
+    curve: <InlineMath math="R(x)" />,
+    level: <InlineMath math="15" />,
+    thousand: <InlineMath math="(1{.}000;\ 17)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 2000 },
+      y: { min: 10, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2000/x + 15", domain: { min: 80, max: 2000 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "15", domain: { min: 0, max: 2000 } },
+      { id: "thousand", kind: "point", appearance: "secondary", at: { x: 1000, y: 17 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 150, y: 2000 / 150 + 15 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 1800, y: 15 }, placement: "below" },
+      { key: "thousand", objectId: "thousand", at: { x: 1000, y: 17 }, placement: "above" },
+    ],
+  }}
+/>
+
 Zum Beispiel betragen die Durchschnittskosten für <InlineMath math="x=1{.}000" /> genau <InlineMath math="2{.}000+15{.}000=17{.}000" /> Rupiah, für <InlineMath math="x=100{.}000" /> nur noch <InlineMath math="15{.}020" /> Rupiah.
 
 Die Durchschnittskosten pro T-Shirt nähern sich also <InlineMath math="\text{Rp}15{.}000{,}00" />.

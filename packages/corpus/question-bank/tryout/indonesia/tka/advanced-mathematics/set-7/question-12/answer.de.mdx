@@ -9,6 +9,46 @@ Die Länge des parallelen Teils ist die skalare Projektion von <InlineMath math=
 
 <BlockMath math="\text{Abstand}^2=|\overrightarrow{OP}|^2-\left(\frac{10}{3}\right)^2=14-\frac{100}{9}=\frac{26}{9}\ \Rightarrow\ \text{Abstand}=\frac{\sqrt{26}}{3}" />
 
+Zeichne <InlineMath math="O" />, <InlineMath math="P" /> und die Gerade <InlineMath math="g" /> in der Ebene, die alle drei enthält. **Die Strecke <InlineMath math="OP" /> zerfällt in einen Teil entlang <InlineMath math="g" /> und einen Teil senkrecht zu <InlineMath math="g" />**, und dieser senkrechte Teil ist der Abstand.
+
+<MathVisual
+  title={<>Der Abstand des Punktes <InlineMath math="P" /> von der Geraden <InlineMath math="g" /></>}
+  description={<>Die waagerechte Gerade ist <InlineMath math="g" /> durch <InlineMath math="O" />. Die Strecke <InlineMath math="OP" /> der Länge <InlineMath math="\sqrt{14}" /> bildet ein rechtwinkliges Dreieck mit ihrer Projektion auf <InlineMath math="g" /> der Länge <InlineMath math="\tfrac{10}{3}" /> und der senkrechten Strecke <InlineMath math="QP" /> der Länge <InlineMath math="\tfrac{\sqrt{26}}{3}" />.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    along: <InlineMath math="\tfrac{10}{3}" />,
+    gap: <InlineMath math="\tfrac{\sqrt{26}}{3}" />,
+    op: <InlineMath math="\sqrt{14}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 5 },
+      y: { min: -0.6, max: 2.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "segment", appearance: "reference", from: { x: -0.5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "along", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 10 / 3, y: 0 } },
+      { id: "op", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10 / 3, y: Math.sqrt(26) / 3 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 10 / 3, y: 0 }, to: { x: 10 / 3, y: Math.sqrt(26) / 3 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 10 / 3, y: Math.sqrt(26) / 3 } },
+      { id: "q", kind: "point", appearance: "secondary", at: { x: 10 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 4.8, y: 0 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 10 / 3, y: Math.sqrt(26) / 3 }, placement: "above" },
+      { key: "q", objectId: "q", at: { x: 10 / 3, y: 0 }, placement: "below-right" },
+      { key: "along", objectId: "along", at: { x: 5 / 3, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 10 / 3, y: Math.sqrt(26) / 6 }, placement: "right" },
+      { key: "op", objectId: "op", at: { x: 5 / 3, y: Math.sqrt(26) / 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Probe: Der Lotfußpunkt ist <InlineMath math="Q=\frac{10}{9}(1,2,2)" />, und <InlineMath math="\overrightarrow{QP}=\left(\frac89,\frac79,-\frac{11}{9}\right)" /> steht tatsächlich senkrecht auf <InlineMath math="\vec{d}" />, denn <InlineMath math="8+14-22=0" />. Seine Länge ist <InlineMath math="\frac{\sqrt{64+49+121}}{9}=\frac{\sqrt{234}}{9}=\frac{\sqrt{26}}{3}" />.
 
 Der Abstand von <InlineMath math="P" /> zu <InlineMath math="g" /> beträgt also <InlineMath math="\frac{\sqrt{26}}{3}" />.

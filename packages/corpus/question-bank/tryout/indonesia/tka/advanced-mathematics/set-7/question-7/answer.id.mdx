@@ -2,6 +2,40 @@ Faktorkan <InlineMath math="P(x)" /> lebih dulu, karena **tanda <InlineMath math
 
 <BlockMath math="P(x)=(x+1)(x^2+x-6)=(x+1)(x-2)(x+3)" />
 
+Gambar <InlineMath math="P(x)=(x+1)(x-2)(x+3)" />. **Grafiknya berada di bawah sumbu <InlineMath math="x" /> tepat di antara akar <InlineMath math="-1" /> dan <InlineMath math="2" />**, dan tingginya di <InlineMath math="x=-2" /> adalah sisa pembagian oleh <InlineMath math="x+2" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)" /> dan tandanya</>}
+  description={<>Kurva memotong sumbu <InlineMath math="x" /> di <InlineMath math="-3" />, <InlineMath math="-1" />, dan <InlineMath math="2" />. Ruas yang disorot pada sumbu <InlineMath math="x" />, <InlineMath math="-1<x<2" />, adalah tempat kurva di bawah sumbu. Di <InlineMath math="x=-2" />, tingginya <InlineMath math="4" />.</>}
+  labels={{
+    curve: <InlineMath math="y=(x+1)(x-2)(x+3)" />,
+    below: <InlineMath math="-1<x<2" />,
+    minus: <InlineMath math="(-2,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.7, max: 2.7 },
+      y: { min: -10, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x + 1)*(x - 2)*(x + 3)", domain: { min: -3.6, max: 2.6 } },
+      { id: "below", kind: "segment", appearance: "answer", from: { x: -1, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "root-a", kind: "point", appearance: "secondary", at: { x: -3, y: 0 } },
+      { id: "root-b", kind: "point", appearance: "secondary", at: { x: -1, y: 0 } },
+      { id: "root-c", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "minus", kind: "point", appearance: "warning", at: { x: -2, y: 4 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.5, y: 3.5 * 0.5 * 5.5 }, placement: "left" },
+      { key: "below", objectId: "below", at: { x: 0.5, y: 0 }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: -2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
 1. Pernyataan bahwa <InlineMath math="x-1" /> faktor salah, karena <InlineMath math="P(1)=1+2-5-6=-8\ne0" />.
 2. Pernyataan tentang pemfaktoran benar. Pemeriksaan: <InlineMath math="(x+1)(x-2)=x^2-x-2" />, lalu <InlineMath math="(x^2-x-2)(x+3)=x^3+2x^2-5x-6" />.
 3. Pernyataan bahwa sisa pembagian oleh <InlineMath math="x+2" /> adalah <InlineMath math="-4" /> salah. Sisanya <InlineMath math="P(-2)=-8+8+10-6=4" />.

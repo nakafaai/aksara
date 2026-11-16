@@ -2,6 +2,34 @@ Untuk limit fungsi rasional di tak hingga, **bandingkan pangkat tertinggi pembil
 
 <BlockMath math="\lim_{x\to\infty}\frac{5x^3-2x}{x^4+3}=\lim_{x\to\infty}\frac{\frac5x-\frac{2}{x^3}}{1+\frac{3}{x^4}}=\frac{0-0}{1+0}=0" />
 
+Gambar fungsi itu untuk <InlineMath math="x" /> besar. **Penyebut berderajat empat tumbuh lebih cepat daripada pembilang berderajat tiga**, jadi kurvanya turun dan merapat ke sumbu <InlineMath math="x" />.
+
+<MathVisual
+  title={<>Grafik untuk <InlineMath math="x" /> besar</>}
+  description={<>Kurva <InlineMath math="y=\frac{5x^3-2x}{x^4+3}" /> untuk <InlineMath math="1\le x\le60" />. Kurvanya naik sebentar sampai sekitar <InlineMath math="1{,}9" /> di dekat <InlineMath math="x=2" />, lalu turun terus dan makin dekat ke garis <InlineMath math="y=0" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{5x^3-2x}{x^4+3}" />,
+    level: <InlineMath math="y=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: -0.2, max: 2.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(5*x^3 - 2*x)/(x^4 + 3)", domain: { min: 1, max: 60 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "0", domain: { min: 0, max: 60 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10, y: (5000 - 20) / 10003 }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 55, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Penyebut tumbuh lebih cepat daripada pembilang, jadi pecahannya mengecil menuju <InlineMath math="0" />. Contoh: untuk <InlineMath math="x=100" />, nilainya sekitar <InlineMath math="0{,}05" />, dan untuk <InlineMath math="x=1000" /> sekitar <InlineMath math="0{,}005" />.
 
 Jadi, nilai limitnya <InlineMath math="0" />.

@@ -6,6 +6,36 @@ Für <InlineMath math="x\ne-1" /> darfst du diesen Faktor kürzen, und die verei
 
 <BlockMath math="\lim_{x\to-1}\frac{x+2}{x-1}=\frac{-1+2}{-1-1}=-\frac12" />
 
+Zeichne <InlineMath math="p" /> nach dem Kürzen. **Bei <InlineMath math="x=-1" /> hat der Graph nur ein Loch**, also ist der Grenzwert die Höhe dieses Lochs, während der Graph bei <InlineMath math="x=1" /> wirklich abreißt.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="p(x)=\frac{x+2}{x-1}" /> mit einem Loch bei <InlineMath math="x=-1" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{x+2}{x-1}" /> hat zwei Äste links und rechts der Senkrechten <InlineMath math="x=1" />. Auf dem linken Ast ist der Punkt <InlineMath math="\left(-1,\ -\tfrac12\right)" /> als Loch markiert, weil <InlineMath math="p(-1)" /> nicht definiert ist.</>}
+  labels={{
+    hole: <InlineMath math="\left(-1,\ -\tfrac12\right)" />,
+    wall: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 1, y: -7 }, to: { x: 1, y: 9 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: -5, max: 0.6 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x - 1)", domain: { min: 1.4, max: 5 } },
+      { id: "hole", kind: "point", appearance: "answer", at: { x: -1, y: -0.5 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: -1, y: -0.5 }, placement: "below-left" },
+      { key: "wall", objectId: "wall", at: { x: 1, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="\lim_{x\to-1}p(x)=-\frac12" />.
 
 - <InlineMath math="\frac12" /> hat einen Vorzeichenfehler im Nenner, <InlineMath math="-1-1" />.

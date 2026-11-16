@@ -5,6 +5,42 @@ Setze <InlineMath math="P(a,b)" />. Eine Drehung um <InlineMath math="90^\circ" 
 5-b&=5-a &&\Leftrightarrow\quad a=b
 \end{aligned}" />
 
+Zeichne das Drehzentrum, <InlineMath math="A" /> und sein Bild. **Der Pfeil von <InlineMath math="P" /> nach <InlineMath math="A" /> dreht sich um eine Vierteldrehung gegen den Uhrzeigersinn und wird zum Pfeil von <InlineMath math="P" /> nach <InlineMath math="A'" />**, bei gleicher Länge.
+
+<MathVisual
+  title={<>Eine Drehung um <InlineMath math="90^\circ" /> um <InlineMath math="P(2,2)" /></>}
+  description={<>Der Pfeil von <InlineMath math="P(2,2)" /> nach <InlineMath math="A(5,1)" /> ist <InlineMath math="(3,-1)" />. Nach einer Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn wird er zu <InlineMath math="(1,3)" /> und endet in <InlineMath math="A'(3,5)" />. Beide Pfeile sind <InlineMath math="\sqrt{10}" /> lang und stehen senkrecht aufeinander.</>}
+  labels={{
+    p: <InlineMath math="P(2,2)" />,
+    a: <InlineMath math="A(5,1)" />,
+    image: <InlineMath math="A'(3,5)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6.5 },
+      y: { min: 0, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-a", kind: "vector", appearance: "secondary", from: { x: 2, y: 2 }, to: { x: 5, y: 1 } },
+      { id: "to-image", kind: "vector", appearance: "answer", from: { x: 2, y: 2 }, to: { x: 3, y: 5 } },
+      { id: "turn", kind: "arc", appearance: "construction", center: { x: 2, y: 2 }, radius: 0.8, startDegrees: 360 - Math.atan(1 / 3) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 3, y: 5 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 2 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 3, y: 5 }, placement: "above" },
+      { key: "turn", objectId: "turn", at: { x: 2.8, y: 2.3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="a=b=2" /> und <InlineMath math="P(2,2)" />.
 
 Probe: <InlineMath math="\overrightarrow{PA}=(3,-1)" /> wird zu <InlineMath math="(1,3)" /> gedreht, und <InlineMath math="P+(1,3)=(3,5)=A'" />. Beide Vektoren haben die Länge <InlineMath math="\sqrt{10}" />, und ihr Skalarprodukt ist <InlineMath math="3-3=0" />, der Winkel ist also tatsächlich ein rechter.

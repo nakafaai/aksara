@@ -2,6 +2,17 @@ Transpos **menukar baris menjadi kolom**: entri baris ke-<InlineMath math="i" />
 
 <BlockMath math="A^T=\begin{pmatrix} 2x & 3 \\ y+1 & 4 \end{pmatrix}=\begin{pmatrix} 6 & 3 \\ 5 & 4 \end{pmatrix}" />
 
+Diagram berikut melacak ke mana setiap entri <InlineMath math="A" /> pindah saat ditranspos. **Entri diagonal tetap di tempatnya, sedangkan dua entri lainnya bertukar posisi**, lalu barulah disamakan dengan <InlineMath math="B" />.
+
+<Mermaid
+  title={<>Perpindahan entri saat <InlineMath math="A" /> ditranspos</>}
+  description={<>Entri <InlineMath math="2x" /> tetap di posisi <InlineMath math="(1,1)" /> dan disamakan dengan <InlineMath math="6" />. Entri <InlineMath math="y+1" /> pindah dari posisi <InlineMath math="(1,2)" /> ke <InlineMath math="(2,1)" /> dan disamakan dengan <InlineMath math="5" />. Entri <InlineMath math="3" /> pindah ke posisi <InlineMath math="(1,2)" /> dan cocok dengan <InlineMath math="3" />.</>}
+  chart={`flowchart LR
+  A11["A: 2x di (1,1)"] --> T11["Aᵀ di (1,1): 2x = 6"]
+  A12["A: y + 1 di (1,2)"] --> T21["Aᵀ di (2,1): y + 1 = 5"]
+  A21["A: 3 di (2,1)"] --> T12["Aᵀ di (1,2): 3 = 3"]`}
+/>
+
 Entri yang tidak memuat variabel sudah cocok: <InlineMath math="3=3" /> dan <InlineMath math="4=4" />. Dua entri lainnya memberi nilai variabel.
 
 <BlockMath math="2x=6\ \Rightarrow\ x=3,\qquad y+1=5\ \Rightarrow\ y=4" />

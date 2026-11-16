@@ -2,6 +2,40 @@ Factor <InlineMath math="P(x)" /> first, because **the sign of <InlineMath math=
 
 <BlockMath math="P(x)=(x+1)(x^2+x-6)=(x+1)(x-2)(x+3)" />
 
+Draw <InlineMath math="P(x)=(x+1)(x-2)(x+3)" />. **The graph lies below the <InlineMath math="x" />-axis exactly between the roots <InlineMath math="-1" /> and <InlineMath math="2" />**, and its height at <InlineMath math="x=-2" /> is the remainder on division by <InlineMath math="x+2" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="P(x)" /> and its sign</>}
+  description={<>The curve crosses the <InlineMath math="x" />-axis at <InlineMath math="-3" />, <InlineMath math="-1" />, and <InlineMath math="2" />. The highlighted part of the <InlineMath math="x" />-axis, <InlineMath math="-1<x<2" />, is where the curve is below the axis. At <InlineMath math="x=-2" />, its height is <InlineMath math="4" />.</>}
+  labels={{
+    curve: <InlineMath math="y=(x+1)(x-2)(x+3)" />,
+    below: <InlineMath math="-1<x<2" />,
+    minus: <InlineMath math="(-2,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.7, max: 2.7 },
+      y: { min: -10, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x + 1)*(x - 2)*(x + 3)", domain: { min: -3.6, max: 2.6 } },
+      { id: "below", kind: "segment", appearance: "answer", from: { x: -1, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "root-a", kind: "point", appearance: "secondary", at: { x: -3, y: 0 } },
+      { id: "root-b", kind: "point", appearance: "secondary", at: { x: -1, y: 0 } },
+      { id: "root-c", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "minus", kind: "point", appearance: "warning", at: { x: -2, y: 4 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.5, y: 3.5 * 0.5 * 5.5 }, placement: "left" },
+      { key: "below", objectId: "below", at: { x: 0.5, y: 0 }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: -2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
 1. The statement that <InlineMath math="x-1" /> is a factor is false, because <InlineMath math="P(1)=1+2-5-6=-8\ne0" />.
 2. The statement about the factorisation is true. Check: <InlineMath math="(x+1)(x-2)=x^2-x-2" />, and <InlineMath math="(x^2-x-2)(x+3)=x^3+2x^2-5x-6" />.
 3. The statement that the remainder on division by <InlineMath math="x+2" /> is <InlineMath math="-4" /> is false. The remainder is <InlineMath math="P(-2)=-8+8+10-6=4" />.

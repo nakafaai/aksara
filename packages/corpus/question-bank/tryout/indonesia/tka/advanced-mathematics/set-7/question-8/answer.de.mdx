@@ -9,6 +9,39 @@ Der mittlere Summand ist <InlineMath math="2" />, denn <InlineMath math="2^a\cdo
 
 <BlockMath math="f(2a)=\big(f(a)\big)^2-2=\left(\frac52\right)^2-2=\frac{25}{4}-\frac84=\frac{17}{4}" />
 
+Zeichne <InlineMath math="f" />. **Der Graph ist symmetrisch zur senkrechten Achse, also liefern <InlineMath math="a=1" /> und <InlineMath math="a=-1" /> beide <InlineMath math="f(a)=\tfrac52" />**, und beide liefern <InlineMath math="f(2a)=\tfrac{17}{4}" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=2^x+2^{-x}" /></>}
+  description={<>Die Kurve ist ein Tal mit dem tiefsten Punkt <InlineMath math="(0,\ 2)" />. Die Punkte <InlineMath math="\left(\pm1,\ \tfrac52\right)" /> und <InlineMath math="\left(\pm2,\ \tfrac{17}{4}\right)" /> liegen auf der Kurve, als symmetrische Paare links und rechts der senkrechten Achse.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=2^x+2^{-x}" />,
+    a: <InlineMath math="\left(1,\ \tfrac52\right)" />,
+    twice: <InlineMath math="\left(2,\ \tfrac{17}{4}\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 2.5 },
+      y: { min: 0, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2^x + 2^(-x)", domain: { min: -2.4, max: 2.4 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 1, y: 2.5 } },
+      { id: "a-left", kind: "point", appearance: "secondary", at: { x: -1, y: 2.5 } },
+      { id: "twice", kind: "point", appearance: "answer", at: { x: 2, y: 4.25 } },
+      { id: "twice-left", kind: "point", appearance: "answer", at: { x: -2, y: 4.25 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 2 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2.5 }, placement: "right" },
+      { key: "twice", objectId: "twice", at: { x: 2, y: 4.25 }, placement: "right" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="2^a+2^{-a}=\frac52" /> gilt für <InlineMath math="2^a=2" />, also <InlineMath math="a=1" />. Dann ist <InlineMath math="f(2)=4+\frac14=\frac{17}{4}" />. Auch <InlineMath math="a=-1" /> erfüllt die Gleichung und liefert dasselbe.
 
 Also ist <InlineMath math="f(2a)=\frac{17}{4}" />.

@@ -1,5 +1,36 @@
 Die Matrix <InlineMath math="S" /> **vertauscht die beiden Komponenten** eines Vektors: <InlineMath math="S\begin{pmatrix} a \\ b \end{pmatrix}=\begin{pmatrix} b \\ a \end{pmatrix}" />. Geometrisch ist das die Spiegelung an der Geraden <InlineMath math="y=x" />.
 
+Sieh <InlineMath math="S" /> als Spiegelung an <InlineMath math="y=x" />. **Eine Figur wird wie ein Spiegelbild umgeklappt, ihre Orientierung kehrt sich also um**, deshalb ist <InlineMath math="\det S=-1" />, und zweimal gespiegelt liegt die Figur wieder an ihrem Platz.
+
+<MathVisual
+  title={<>Ein Dreieck und sein Bild unter <InlineMath math="S" /></>}
+  description={<>Das Dreieck mit den Ecken <InlineMath math="(1,0)" />, <InlineMath math="(3,0)" /> und <InlineMath math="(1,1)" /> wird von <InlineMath math="S" /> auf das Dreieck <InlineMath math="(0,1)" />, <InlineMath math="(0,3)" /> und <InlineMath math="(1,1)" /> abgebildet. Jeder Punkt tauscht seine Koordinaten, und die beiden Dreiecke liegen symmetrisch zur Geraden <InlineMath math="y=x" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=x" />,
+    start: <InlineMath math="(3,0)" />,
+    image: <InlineMath math="(0,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -0.5, max: 3.5 } },
+      { id: "start", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 3, y: 0 }, { x: 1, y: 1 }] },
+      { id: "image", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 1 }, { x: 0, y: 3 }, { x: 1, y: 1 }] },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 3.2, y: 3.2 }, placement: "below-right" },
+      { key: "start", objectId: "start", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 0, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="S^2=I" /> ist richtig. Zweimal vertauschen stellt die Reihenfolge wieder her: <InlineMath math="S^2=\begin{pmatrix} 0\cdot0+1\cdot1 & 0\cdot1+1\cdot0 \\ 1\cdot0+0\cdot1 & 1\cdot1+0\cdot0 \end{pmatrix}=I" />.
 2. Die Aussage <InlineMath math="\det S=1" /> ist falsch: <InlineMath math="\det S=0\cdot0-1\cdot1=-1" />. Eine negative Determinante zeigt eine Spiegelung an, die die Orientierung umkehrt.
 3. Die Aussage <InlineMath math="S^{-1}=S" /> ist richtig, denn <InlineMath math="S\cdot S=I" /> nach der ersten Aussage.

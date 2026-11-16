@@ -4,6 +4,37 @@ First find the unit prices with **the inverse of the coefficient matrix**, then 
 
 <BlockMath math="\begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 570-370 \\ -380+555 \end{pmatrix}=\frac15\begin{pmatrix} 200 \\ 175 \end{pmatrix}=\begin{pmatrix} 40 \\ 35 \end{pmatrix}" />
 
+Each row of the matrix equation is a line in the <InlineMath math="(d,a)" /> plane. **The unit prices are where the two lines cross**, at <InlineMath math="d=40" /> and <InlineMath math="a=35" />.
+
+<MathVisual
+  title={<>The two groups as two lines</>}
+  description={<>The horizontal axis is the adult ticket price <InlineMath math="d" />, and the vertical axis is the child ticket price <InlineMath math="a" />, both in thousands of rupiah. The lines <InlineMath math="3d+2a=190" /> and <InlineMath math="2d+3a=185" /> cross at <InlineMath math="(40,\ 35)" />.</>}
+  labels={{
+    first: <InlineMath math="3d+2a=190" />,
+    second: <InlineMath math="2d+3a=185" />,
+    meet: <InlineMath math="(40,\ 35)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 20, max: 60 },
+      y: { min: 15, max: 55 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "(190 - 3*x)/2", domain: { min: 25, max: 55 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "(185 - 2*x)/3", domain: { min: 20, max: 60 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 40, y: 35 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 27, y: 54.5 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 58, y: 23 }, placement: "above" },
+      { key: "meet", objectId: "meet", at: { x: 40, y: 35 }, placement: "right" },
+    ],
+  }}
+/>
+
 An adult ticket costs <InlineMath math="\text{Rp}40{,}000.00" /> and a child ticket <InlineMath math="\text{Rp}35{,}000.00" />. Check: <InlineMath math="3(40)+2(35)=190" /> and <InlineMath math="2(40)+3(35)=185" />.
 
 <BlockMath math="4d+5a=4(40)+5(35)=160+175=335" />

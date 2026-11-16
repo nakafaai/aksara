@@ -13,6 +13,37 @@ a+b&=4 \\
 2a&=56\ \Rightarrow\ a=28,\quad b=-24
 \end{aligned}" />
 
+Sisa pembagian oleh <InlineMath math="(x-1)(x-3)" /> adalah garis yang melewati titik grafik <InlineMath math="Q" /> di <InlineMath math="x=1" /> dan <InlineMath math="x=3" />. **Kedua titik itu adalah <InlineMath math="(1,\ 4)" /> dan <InlineMath math="(3,\ 60)" />**, dan garis yang melewati keduanya adalah <InlineMath math="y=28x-24" />.
+
+<MathVisual
+  title={<>Garis sisa melalui dua titik grafik <InlineMath math="Q" /></>}
+  description={<>Titik <InlineMath math="(1,\ 4)" /> berasal dari <InlineMath math="Q(1)=2\cdot2" />, dan titik <InlineMath math="(3,\ 60)" /> berasal dari <InlineMath math="Q(3)=10\cdot6" />. Garis <InlineMath math="y=28x-24" /> melewati kedua titik itu.</>}
+  labels={{
+    line: <InlineMath math="y=28x-24" />,
+    one: <InlineMath math="(1,\ 4)" />,
+    three: <InlineMath math="(3,\ 60)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 4 },
+      y: { min: -10, max: 70 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "answer", formula: "28*x - 24", domain: { min: 0.5, max: 3.4 } },
+      { id: "one", kind: "point", appearance: "primary", at: { x: 1, y: 4 } },
+      { id: "three", kind: "point", appearance: "primary", at: { x: 3, y: 60 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 2, y: 32 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 3, y: 60 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi, sisa pembagian <InlineMath math="Q(x)" /> oleh <InlineMath math="(x-1)(x-3)" /> adalah <InlineMath math="28x-24" />.
 
 - <InlineMath math="2x" /> adalah sisa pembagian <InlineMath math="P(x)" />, bukan <InlineMath math="Q(x)" />, karena faktor <InlineMath math="x^2+1" /> dilupakan.

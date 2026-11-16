@@ -4,6 +4,39 @@ Der Ausgangskreis hat den Mittelpunkt <InlineMath math="(2,-1)" /> und <InlineMa
 
 <BlockMath math="(2,-1)\mapsto(2,\ 2\cdot1-(-1))=(2,3)" />
 
+Zeichne den Ausgangskreis, die Spiegelachse und das Bild. **Der Mittelpunkt <InlineMath math="(2,-1)" /> liegt <InlineMath math="2" /> unter der Geraden <InlineMath math="y=1" />, also liegt sein Bild <InlineMath math="2" /> darüber**, und der Radius bleibt gleich.
+
+<MathVisual
+  title={<>Spiegelung des Kreises an <InlineMath math="y=1" /></>}
+  description={<>Der Ausgangskreis hat den Mittelpunkt <InlineMath math="(2,-1)" /> und den Radius <InlineMath math="2" />. Sein Bild hat den Mittelpunkt <InlineMath math="(2,3)" /> und denselben Radius. Die beiden Kreise berühren sich genau auf der Geraden <InlineMath math="y=1" />, im Punkt <InlineMath math="(2,1)" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=1" />,
+    start: <InlineMath math="(2,-1)" />,
+    end: <InlineMath math="(2,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -3.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "1", domain: { min: -1, max: 5 } },
+      { id: "start-circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 2 },
+      { id: "end-circle", kind: "circle", appearance: "answer", center: { x: 2, y: 3 }, radius: 2 },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 1 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "end", objectId: "end", at: { x: 2, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe: Der Mittelpunkt von <InlineMath math="(2,-1)" /> und <InlineMath math="(2,3)" /> ist <InlineMath math="(2,1)" /> und liegt auf <InlineMath math="y=1" />. Schreib die Normalform auf und multipliziere aus.
 
 <BlockMath math="(x-2)^2+(y-3)^2=4\iff x^2+y^2-4x-6y+9=0" />

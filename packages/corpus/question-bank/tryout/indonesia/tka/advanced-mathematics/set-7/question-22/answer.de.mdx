@@ -6,6 +6,35 @@ Zerlege in einen Standardgrenzwert mit Sinus und einen Teil, in den du direkt ei
 
 <BlockMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}\cdot\lim_{x\to0}\frac{1}{\sqrt{x+4}+2}=4\cdot\frac14=1" />
 
+Zeichne die Funktion auf beiden Seiten der Null. **Die Kurve fällt sanft und hat genau bei <InlineMath math="x=0" /> die Höhe <InlineMath math="1" />**, obwohl die Funktion dort selbst nicht definiert ist.
+
+<MathVisual
+  title={<>Der Graph in der Nähe von <InlineMath math="x=0" /></>}
+  description={<>Die Kurve für <InlineMath math="x" /> zwischen <InlineMath math="-3" /> und <InlineMath math="3" />, ohne <InlineMath math="x=0" />. Von links und von rechts läuft sie auf den Punkt <InlineMath math="(0,\ 1)" /> zu.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{\sqrt{x+4}-2}{\sin\frac x4}" />,
+    target: <InlineMath math="(0,\ 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 3.2 },
+      y: { min: 0.7, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(sqrt(x + 4) - 2)/sin(x/4)", domain: { min: -3, max: -0.02 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(sqrt(x + 4) - 2)/sin(x/4)", domain: { min: 0.02, max: 3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -2, y: (Math.sqrt(2) - 2) / Math.sin(-0.5) }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Bruch etwa <InlineMath math="0{,}9994" />.
 
 Der Grenzwert ist also <InlineMath math="1" />.

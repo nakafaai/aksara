@@ -2,6 +2,41 @@ Start from two basic facts: <InlineMath math="|\vec{u}|=|\vec{v}|=3" /> and <Inl
 
 <BlockMath math="\vec{u}+\vec{v}=3\vec{i}+3\vec{j}+0\vec{k},\qquad \vec{u}-\vec{v}=\vec{i}-\vec{j}+4\vec{k}" />
 
+Draw <InlineMath math="\vec u" /> and <InlineMath math="\vec v" /> in the plane that holds both. **Both have length <InlineMath math="3" /> and are perpendicular, so they form a square**, and <InlineMath math="\vec u\pm\vec v" /> are its two diagonals.
+
+<MathVisual
+  title={<>The square made by <InlineMath math="\vec u" /> and <InlineMath math="\vec v" /></>}
+  description={<>The vectors <InlineMath math="\vec u" /> and <InlineMath math="\vec v" /> both have length <InlineMath math="3" /> and meet at a right angle, forming a square of side <InlineMath math="3" />. The diagonals <InlineMath math="\vec u+\vec v" /> and <InlineMath math="\vec u-\vec v" /> have the same length, <InlineMath math="3\sqrt2" />, are perpendicular, and each makes a <InlineMath math="45^\circ" /> angle with the sides.</>}
+  labels={{
+    u: <InlineMath math="\vec u" />,
+    v: <InlineMath math="\vec v" />,
+    sum: <InlineMath math="\vec u+\vec v" />,
+    diff: <InlineMath math="\vec u-\vec v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 3.6 },
+      y: { min: -0.6, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }] },
+      { id: "u", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "v", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "sum", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "diff", kind: "vector", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "u", objectId: "u", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 2.4, y: 2.4 }, placement: "above-left" },
+      { key: "diff", objectId: "diff", at: { x: 2.4, y: 0.6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 1. The statement that the diagonals are perpendicular is true: <InlineMath math="(\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v})=|\vec{u}|^2-|\vec{v}|^2=0" />. In components: <InlineMath math="3-3+0=0" />.
 2. The statement that the diagonals have equal length is true. Because <InlineMath math="\vec{u}\cdot\vec{v}=0" />, <InlineMath math="|\vec{u}\pm\vec{v}|^2=|\vec{u}|^2+|\vec{v}|^2=18" /> for both signs.
 3. The statement <InlineMath math="|\vec{u}+\vec{v}|=3\sqrt2" /> is true, because <InlineMath math="\sqrt{18}=3\sqrt2" />.

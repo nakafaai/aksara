@@ -2,6 +2,43 @@ The absolute value makes the rule for <InlineMath math="f" /> depend on the sign
 
 <BlockMath math="f(x)=\begin{cases} x+1, & x>2 \\ -(x+1), & x<2 \end{cases}" />
 
+Draw <InlineMath math="f" /> on both sides of <InlineMath math="x=2" />. **From the right the graph heads to <InlineMath math="3" />, from the left to <InlineMath math="-3" />**, so the limit at <InlineMath math="x=2" /> doesn't exist, while at <InlineMath math="x=-1" /> the graph passes smoothly through zero.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f" />, split at <InlineMath math="x=2" /></>}
+  description={<>For <InlineMath math="x<2" />, the graph is the falling line <InlineMath math="y=-(x+1)" />, which passes through <InlineMath math="(-1,\ 0)" /> and heads to <InlineMath math="(2,\ -3)" />. For <InlineMath math="x>2" />, it's the rising line <InlineMath math="y=x+1" />, which starts near <InlineMath math="(2,\ 3)" />.</>}
+  labels={{
+    right: <InlineMath math="x+1" />,
+    left: <InlineMath math="-(x+1)" />,
+    high: <InlineMath math="(2,\ 3)" />,
+    low: <InlineMath math="(2,\ -3)" />,
+    zero: <InlineMath math="(-1,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 5 },
+      y: { min: -4, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "secondary", formula: "-(x + 1)", domain: { min: -3, max: 1.97 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: 2.03, max: 5 } },
+      { id: "high", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 2, y: -3 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+    ],
+    labels: [
+      { key: "right", objectId: "right", at: { x: 4, y: 5 }, placement: "above-left" },
+      { key: "left", objectId: "left", at: { x: -2, y: 1 }, placement: "above-right" },
+      { key: "high", objectId: "high", at: { x: 2, y: 3 }, placement: "above-left" },
+      { key: "low", objectId: "low", at: { x: 2, y: -3 }, placement: "below-right" },
+      { key: "zero", objectId: "zero", at: { x: -1, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 For <InlineMath math="x>2" />, <InlineMath math="|x-2|=x-2" />, so the factor cancels. For <InlineMath math="x<2" />, <InlineMath math="|x-2|=-(x-2)" />, which brings in a minus sign.
 
 - **True.** From the right, <InlineMath math="f(x)=x+1\to3" />.

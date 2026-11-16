@@ -5,6 +5,42 @@ Die Vorschrift enthält zwei Teile, die den Definitionsbereich einschränken, al
 x-1\ne0&\iff x\ne1
 \end{aligned}" />
 
+Zeichne beide Bedingungen zugleich. **Die Wurzel ist nur unter dem Halbkreis von <InlineMath math="-2" /> bis <InlineMath math="2" /> definiert**, und die Gerade <InlineMath math="x=1" /> fällt weg, weil dort der Nenner null ist.
+
+<MathVisual
+  title={<>Der Definitionsbereich von <InlineMath math="\frac{\sqrt{4-x^2}}{x-1}" /></>}
+  description={<>Der Halbkreis <InlineMath math="y=\sqrt{4-x^2}" /> existiert für <InlineMath math="-2\le x\le2" />, einschließlich beider Enden. Die Senkrechte <InlineMath math="x=1" /> schneidet dieses Intervall. Der markierte Teil der <InlineMath math="x" />-Achse ist der Definitionsbereich: von <InlineMath math="-2" /> bis <InlineMath math="2" /> ohne <InlineMath math="1" />.</>}
+  labels={{
+    root: <InlineMath math="y=\sqrt{4-x^2}" />,
+    gap: <InlineMath math="x=1" />,
+    left: <InlineMath math="-2" />,
+    right: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: -0.8, max: 2.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "root", kind: "function", appearance: "secondary", formula: "sqrt(4 - x^2)", domain: { min: -2, max: 2 } },
+      { id: "gap", kind: "segment", appearance: "warning", from: { x: 1, y: -0.6 }, to: { x: 1, y: 2.4 } },
+      { id: "domain-left", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 0.95, y: 0 } },
+      { id: "domain-right", kind: "segment", appearance: "answer", from: { x: 1.05, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "root", objectId: "root", at: { x: -1, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 1, y: 2.4 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die Randwerte <InlineMath math="-2" /> und <InlineMath math="2" /> gehören dazu, denn dort ist <InlineMath math="\sqrt0=0" /> definiert, und der Nenner ist nicht null. Zum Beispiel ist <InlineMath math="f(2)=\frac{0}{1}=0" />.
 
 Der maximale Definitionsbereich ist also <InlineMath math="\{x\mid -2\le x\le2,\ x\ne1\}" />.

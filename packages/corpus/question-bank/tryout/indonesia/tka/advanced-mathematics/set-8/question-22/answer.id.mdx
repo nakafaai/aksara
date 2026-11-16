@@ -4,6 +4,34 @@ Substitusi <InlineMath math="x=1" /> memberi <InlineMath math="\frac{2-2}{0}=\fr
 
 <BlockMath math="\lim_{x\to1}\frac{\sqrt[3]{x+7}-2}{x-1}=\lim_{u\to2}\frac{u-2}{(u-2)(u^2+2u+4)}=\frac{1}{4+4+4}=\frac{1}{12}" />
 
+Gambar fungsi itu setelah dimisalkan <InlineMath math="u=\sqrt[3]{x+7}" />. **Untuk <InlineMath math="x\ne1" />, grafiknya sama dengan <InlineMath math="\frac{1}{u^2+2u+4}" />**, kurva mulus yang melewati ketinggian <InlineMath math="\tfrac{1}{12}" /> di <InlineMath math="x=1" />.
+
+<MathVisual
+  title={<>Grafik di sekitar <InlineMath math="x=1" /></>}
+  description={<>Kurva untuk <InlineMath math="-6\le x\le8" />, tanpa <InlineMath math="x=1" />. Kurvanya turun pelan, dan dari kiri maupun kanan menuju titik <InlineMath math="\left(1,\ \tfrac{1}{12}\right)" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{\sqrt[3]{x+7}-2}{x-1}" />,
+    target: <InlineMath math="\left(1,\ \tfrac{1}{12}\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 8 },
+      y: { min: 0.05, max: 0.15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1/((x + 7)^(2/3) + 2*(x + 7)^(1/3) + 4)", domain: { min: -6, max: 8 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 1, y: 1 / 12 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -5, y: 1 / (Math.pow(2, 2 / 3) + 2 * Math.pow(2, 1 / 3) + 4) }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 1, y: 1 / 12 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=1{,}001" />, <InlineMath math="\sqrt[3]{8{,}001}\approx2{,}0000833" />, jadi nilai pecahannya sekitar <InlineMath math="0{,}0833" />, mendekati <InlineMath math="\frac{1}{12}" />.
 
 Jadi, nilai limitnya <InlineMath math="\frac{1}{12}" />.

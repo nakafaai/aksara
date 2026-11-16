@@ -13,6 +13,37 @@ a+b&=4 \\
 2a&=56\ \Rightarrow\ a=28,\quad b=-24
 \end{aligned}" />
 
+The remainder on division by <InlineMath math="(x-1)(x-3)" /> is the line through the points of the graph of <InlineMath math="Q" /> at <InlineMath math="x=1" /> and <InlineMath math="x=3" />. **Those points are <InlineMath math="(1,\ 4)" /> and <InlineMath math="(3,\ 60)" />**, and the line through both is <InlineMath math="y=28x-24" />.
+
+<MathVisual
+  title={<>The remainder line through two points of the graph of <InlineMath math="Q" /></>}
+  description={<>The point <InlineMath math="(1,\ 4)" /> comes from <InlineMath math="Q(1)=2\cdot2" />, and the point <InlineMath math="(3,\ 60)" /> comes from <InlineMath math="Q(3)=10\cdot6" />. The line <InlineMath math="y=28x-24" /> passes through both points.</>}
+  labels={{
+    line: <InlineMath math="y=28x-24" />,
+    one: <InlineMath math="(1,\ 4)" />,
+    three: <InlineMath math="(3,\ 60)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 4 },
+      y: { min: -10, max: 70 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "answer", formula: "28*x - 24", domain: { min: 0.5, max: 3.4 } },
+      { id: "one", kind: "point", appearance: "primary", at: { x: 1, y: 4 } },
+      { id: "three", kind: "point", appearance: "primary", at: { x: 3, y: 60 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 2, y: 32 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 3, y: 60 }, placement: "right" },
+    ],
+  }}
+/>
+
 So the remainder when <InlineMath math="Q(x)" /> is divided by <InlineMath math="(x-1)(x-3)" /> is <InlineMath math="28x-24" />.
 
 - <InlineMath math="2x" /> is the remainder of <InlineMath math="P(x)" />, not of <InlineMath math="Q(x)" />, because the factor <InlineMath math="x^2+1" /> was forgotten.

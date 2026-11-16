@@ -6,6 +6,18 @@ Die Schreibweise <InlineMath math="(g\circ f)(x)" /> bedeutet <InlineMath math="
 &=2x^2-1
 \end{aligned}" />
 
+Das Diagramm zeigt die Reihenfolge in <InlineMath math="g\circ f" />. **Zuerst wirkt <InlineMath math="f" />, dann geht das Ergebnis in <InlineMath math="g" />**, und das Beispiel <InlineMath math="x=2" /> folgt demselben Weg.
+
+<Mermaid
+  title={<>Die Reihenfolge in <InlineMath math="g\circ f" /></>}
+  description={<>Obere Zeile: <InlineMath math="f" /> bringt <InlineMath math="x" /> auf <InlineMath math="x^2+1" />, dann bringt <InlineMath math="g" /> das auf <InlineMath math="2x^2-1" />. Untere Zeile: <InlineMath math="2" /> geht nach <InlineMath math="5" /> und dann nach <InlineMath math="7" />, passend zu <InlineMath math="2\cdot4-1" />.</>}
+  chart={`flowchart LR
+  X["x"] -->|"f"| F["x² + 1"]
+  F -->|"g"| G["2(x² + 1) - 3 = 2x² - 1"]
+  X2["x = 2"] -->|"f"| F2["5"]
+  F2 -->|"g"| G2["7"]`}
+/>
+
 Probe bei <InlineMath math="x=2" />: <InlineMath math="f(2)=5" /> und <InlineMath math="g(5)=7" />, und auch <InlineMath math="2\cdot4-1=7" />.
 
 Also ist <InlineMath math="(g\circ f)(x)=2x^2-1" />.

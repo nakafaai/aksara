@@ -2,6 +2,42 @@ Lies Mittelpunkte und Radien ab. <InlineMath math="L_1" /> hat den Mittelpunkt <
 
 Der Abstand der Mittelpunkte ist <InlineMath math="OM=5" />, genau <InlineMath math="r_1+r_2=3+2" />. **Ist der Mittelpunktsabstand gleich der Summe der Radien**, berühren sich die Kreise von außen.
 
+Zeichne beide Kreise und alle Geraden, die beide berühren. **Die Kreise berühren sich in <InlineMath math="(3,0)" />, also gibt es drei gemeinsame Tangenten**: zwei äußere Geraden und eine Senkrechte im Berührpunkt.
+
+<MathVisual
+  title={<>Zwei Kreise, die sich von außen berühren</>}
+  description={<>Der Kreis <InlineMath math="L_1" /> hat den Mittelpunkt <InlineMath math="(0,0)" /> und den Radius <InlineMath math="3" />, <InlineMath math="L_2" /> den Mittelpunkt <InlineMath math="(5,0)" /> und den Radius <InlineMath math="2" />. Sie berühren sich in <InlineMath math="(3,0)" />. Die Senkrechte <InlineMath math="x=3" /> berührt beide in diesem Punkt, und die beiden gestrichelten Geraden berühren beide von außen.</>}
+  labels={{
+    first: <InlineMath math="L_1" />,
+    second: <InlineMath math="L_2" />,
+    touch: <InlineMath math="(3,0)" />,
+    inner: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 9 },
+      y: { min: -4.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "second", kind: "circle", appearance: "secondary", center: { x: 5, y: 0 }, radius: 2 },
+      { id: "inner", kind: "segment", appearance: "answer", from: { x: 3, y: -4 }, to: { x: 3, y: 4 } },
+      { id: "outer-top", kind: "function", appearance: "construction", formula: "(15 - x)/sqrt(24)", domain: { min: -4, max: 9 } },
+      { id: "outer-bottom", kind: "function", appearance: "construction", formula: "(x - 15)/sqrt(24)", domain: { min: -4, max: 9 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 7, y: 0 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "inner", objectId: "inner", at: { x: 3, y: -4 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. **Wahr.** <InlineMath math="OM=r_1+r_2" />, also berühren sich die Kreise von außen.
 2. **Wahr.** Der Berührpunkt liegt auf der Strecke <InlineMath math="OM" />, im Abstand <InlineMath math="3" /> von <InlineMath math="O" />, also bei <InlineMath math="(3,0)" />. Er erfüllt beide Gleichungen: <InlineMath math="9+0=9" /> und <InlineMath math="9+0-30+21=0" />.
 3. **Falsch.** Drei Geraden berühren beide Kreise zugleich: zwei äußere Tangenten und eine im Punkt <InlineMath math="(3,0)" />, nämlich <InlineMath math="x=3" />.

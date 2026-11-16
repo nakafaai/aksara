@@ -4,6 +4,38 @@ Pada soal sebelumnya, batas kalsium dan protein bertemu di <InlineMath math="(3,
 
 <BlockMath math="\min(x+y)=7\quad\text{di }(3,4)" />
 
+Gambar daerah yang memenuhi kedua kebutuhan gizi bersama batas baru. **Seluruh garis <InlineMath math="x+y=6" /> berada di bawah daerah itu**, karena titik daerah yang paling dekat ke titik asal, <InlineMath math="(3,\ 4)" />, sudah memakai <InlineMath math="7" /> sachet.
+
+<MathVisual
+  title={<>Kebutuhan gizi dan batas <InlineMath math="6" /> sachet</>}
+  description={<>Daerah yang diarsir memenuhi <InlineMath math="2x+y\ge10" /> dan <InlineMath math="x+3y\ge15" />, dengan titik pojok <InlineMath math="(0,10)" />, <InlineMath math="(3,4)" />, dan <InlineMath math="(15,0)" />. Garis putus-putus <InlineMath math="x+y=7" /> hanya menyentuh daerah itu di <InlineMath math="(3,\ 4)" />. Garis <InlineMath math="x+y=6" /> berada seluruhnya di bawah daerah, jadi tidak ada titik yang memenuhi semua syarat.</>}
+  labels={{
+    need: <>cukup gizi</>,
+    cap: <InlineMath math="x+y=6" />,
+    corner: <InlineMath math="(3,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 16 },
+      y: { min: 0, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "need", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 11 }, { x: 0, y: 10 }, { x: 3, y: 4 }, { x: 15, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 11 }] },
+      { id: "cap", kind: "segment", appearance: "warning", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 0, y: 7 }, to: { x: 7, y: 0 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "need", objectId: "need", at: { x: 10, y: 7 }, placement: "center" },
+      { key: "cap", objectId: "cap", at: { x: 1, y: 5 }, placement: "below-left" },
+      { key: "corner", objectId: "corner", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi setiap rencana yang cukup kalsium dan protein memerlukan paling sedikit <InlineMath math="7" /> sachet. Syarat baru <InlineMath math="x+y\le6" /> tidak bisa dipenuhi bersamaan dengan kedua kebutuhan itu. Pemeriksaan pada titik-titik yang berbatasan dengan syarat baru menunjukkan hal yang sama.
 
 <BlockMath math="\begin{aligned}

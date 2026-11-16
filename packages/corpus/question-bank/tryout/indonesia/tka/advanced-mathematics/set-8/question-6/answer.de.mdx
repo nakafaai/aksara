@@ -13,6 +13,37 @@ a+b&=4 \\
 2a&=56\ \Rightarrow\ a=28,\quad b=-24
 \end{aligned}" />
 
+Der Rest bei Division durch <InlineMath math="(x-1)(x-3)" /> ist die Gerade durch die Punkte des Graphen von <InlineMath math="Q" /> bei <InlineMath math="x=1" /> und <InlineMath math="x=3" />. **Diese Punkte sind <InlineMath math="(1,\ 4)" /> und <InlineMath math="(3,\ 60)" />**, und die Gerade durch beide ist <InlineMath math="y=28x-24" />.
+
+<MathVisual
+  title={<>Die Restgerade durch zwei Punkte des Graphen von <InlineMath math="Q" /></>}
+  description={<>Der Punkt <InlineMath math="(1,\ 4)" /> stammt von <InlineMath math="Q(1)=2\cdot2" />, der Punkt <InlineMath math="(3,\ 60)" /> von <InlineMath math="Q(3)=10\cdot6" />. Die Gerade <InlineMath math="y=28x-24" /> geht durch beide Punkte.</>}
+  labels={{
+    line: <InlineMath math="y=28x-24" />,
+    one: <InlineMath math="(1,\ 4)" />,
+    three: <InlineMath math="(3,\ 60)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 4 },
+      y: { min: -10, max: 70 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "answer", formula: "28*x - 24", domain: { min: 0.5, max: 3.4 } },
+      { id: "one", kind: "point", appearance: "primary", at: { x: 1, y: 4 } },
+      { id: "three", kind: "point", appearance: "primary", at: { x: 3, y: 60 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 2, y: 32 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 3, y: 60 }, placement: "right" },
+    ],
+  }}
+/>
+
 Der Rest bei Division von <InlineMath math="Q(x)" /> durch <InlineMath math="(x-1)(x-3)" /> ist also <InlineMath math="28x-24" />.
 
 - <InlineMath math="2x" /> ist der Rest von <InlineMath math="P(x)" />, nicht von <InlineMath math="Q(x)" />, weil der Faktor <InlineMath math="x^2+1" /> vergessen wurde.

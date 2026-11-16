@@ -14,6 +14,45 @@ x'+2y'+4-12&=0 \\
 x'+2y'-8&=0
 \end{aligned}" />
 
+Gambar garis awal, pusat dilatasi, dan bayangan dua titik. **Setiap titik ditarik menjauh dari <InlineMath math="(0,1)" /> sampai jaraknya tiga kali lipat**, jadi bayangannya garis sejajar yang lebih jauh dari pusat.
+
+<MathVisual
+  title={<>Dilatasi garis dengan pusat <InlineMath math="(0,1)" /></>}
+  description={<>Garis awal <InlineMath math="x+2y-4=0" /> melewati <InlineMath math="(4,0)" /> dan <InlineMath math="(0,2)" />. Ruas putus-putus dari pusat <InlineMath math="(0,1)" /> diperpanjang tiga kali, membawa kedua titik ke <InlineMath math="(12,-2)" /> dan <InlineMath math="(0,4)" />. Garis yang melewati kedua bayangan adalah <InlineMath math="x+2y-8=0" />.</>}
+  labels={{
+    start: <InlineMath math="x+2y-4=0" />,
+    end: <InlineMath math="x+2y-8=0" />,
+    centre: <InlineMath math="(0,1)" />,
+    a: <InlineMath math="(4,0)\to(12,-2)" />,
+    b: <InlineMath math="(0,2)\to(0,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -3, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "(4 - x)/2", domain: { min: -1, max: 13 } },
+      { id: "end", kind: "function", appearance: "answer", formula: "(8 - x)/2", domain: { min: -1, max: 13 } },
+      { id: "ray-a", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: 12, y: -2 } },
+      { id: "ray-b", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: 0, y: 4 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: 12, y: -2 } },
+      { id: "b", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 10, y: -3 }, placement: "above-left" },
+      { key: "end", objectId: "end", at: { x: 6, y: 1 }, placement: "above-right" },
+      { key: "centre", objectId: "centre", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: 12, y: -2 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 0, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan: titik <InlineMath math="(4,0)" /> pada garis semula dipetakan ke <InlineMath math="(12,-2)" />, dan <InlineMath math="12-4-8=0" />. Titik <InlineMath math="(0,2)" /> dipetakan ke <InlineMath math="(0,4)" />, dan <InlineMath math="0+8-8=0" />.
 
 Jadi, bayangannya <InlineMath math="x+2y-8=0" />.

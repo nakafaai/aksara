@@ -4,6 +4,38 @@ In the previous question the calcium and protein limits met at <InlineMath math=
 
 <BlockMath math="\min(x+y)=7\quad\text{at }(3,4)" />
 
+Draw the region that meets both nutrition needs together with the new limit. **The whole line <InlineMath math="x+y=6" /> lies below that region**, because the region's point nearest the origin, <InlineMath math="(3,\ 4)" />, already uses <InlineMath math="7" /> sachets.
+
+<MathVisual
+  title={<>Nutrition needs and the limit of <InlineMath math="6" /> sachets</>}
+  description={<>The shaded region satisfies <InlineMath math="2x+y\ge10" /> and <InlineMath math="x+3y\ge15" />, with corners <InlineMath math="(0,10)" />, <InlineMath math="(3,4)" />, and <InlineMath math="(15,0)" />. The dashed line <InlineMath math="x+y=7" /> touches the region only at <InlineMath math="(3,\ 4)" />. The line <InlineMath math="x+y=6" /> lies entirely below the region, so no point meets every condition.</>}
+  labels={{
+    need: <>enough nutrition</>,
+    cap: <InlineMath math="x+y=6" />,
+    corner: <InlineMath math="(3,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 16 },
+      y: { min: 0, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "need", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 11 }, { x: 0, y: 10 }, { x: 3, y: 4 }, { x: 15, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 11 }] },
+      { id: "cap", kind: "segment", appearance: "warning", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 0, y: 7 }, to: { x: 7, y: 0 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "need", objectId: "need", at: { x: 10, y: 7 }, placement: "center" },
+      { key: "cap", objectId: "cap", at: { x: 1, y: 5 }, placement: "below-left" },
+      { key: "corner", objectId: "corner", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 So every plan with enough calcium and protein needs at least <InlineMath math="7" /> sachets. The new condition <InlineMath math="x+y\le6" /> cannot hold together with both needs. Checking the points that touch the new limit shows the same.
 
 <BlockMath math="\begin{aligned}

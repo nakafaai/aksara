@@ -8,6 +8,47 @@ The places that receive the broadcast are the points inside or on the circle wit
 | <InlineMath math="D(25,38)" /> | <InlineMath math="225+324=549" /> | smaller |
 | <InlineMath math="E(32,5)" /> | <InlineMath math="484+225=709" /> | larger |
 
+Draw the broadcast range and the five villages. **Only village <InlineMath math="D" /> lies inside the circle of radius <InlineMath math="25" />**, while the other four sit just outside it.
+
+<MathVisual
+  title={<>The broadcast range of the tower <InlineMath math="M(10,20)" /></>}
+  description={<>The shaded region is the circle with centre <InlineMath math="M(10,20)" /> and radius <InlineMath math="25" />. Village <InlineMath math="D(25,38)" /> is inside it, while villages <InlineMath math="A(30,40)" />, <InlineMath math="B(-10,0)" />, <InlineMath math="C(0,45)" />, and <InlineMath math="E(32,5)" /> are outside the circle.</>}
+  labels={{
+    m: <InlineMath math="M" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -18, max: 38 },
+      y: { min: -8, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "range", kind: "circle", appearance: "highlight", center: { x: 10, y: 20 }, radius: 25 },
+      { id: "m", kind: "point", appearance: "primary", at: { x: 10, y: 20 } },
+      { id: "a", kind: "point", appearance: "warning", at: { x: 30, y: 40 } },
+      { id: "b", kind: "point", appearance: "warning", at: { x: -10, y: 0 } },
+      { id: "c", kind: "point", appearance: "warning", at: { x: 0, y: 45 } },
+      { id: "d", kind: "point", appearance: "answer", at: { x: 25, y: 38 } },
+      { id: "e", kind: "point", appearance: "warning", at: { x: 32, y: 5 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 10, y: 20 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 30, y: 40 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -10, y: 0 }, placement: "left" },
+      { key: "c", objectId: "c", at: { x: 0, y: 45 }, placement: "above" },
+      { key: "d", objectId: "d", at: { x: 25, y: 38 }, placement: "left" },
+      { key: "e", objectId: "e", at: { x: 32, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Only village <InlineMath math="D" /> has a squared distance not above <InlineMath math="625" />. Its distance is <InlineMath math="\sqrt{549}\approx23.4" /> km.
 
 So the village that receives the broadcast is <InlineMath math="D(25,38)" />.

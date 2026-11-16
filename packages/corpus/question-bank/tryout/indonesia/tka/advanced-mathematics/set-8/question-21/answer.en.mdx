@@ -2,6 +2,34 @@ For a rational function at infinity, **compare the highest powers in the numerat
 
 <BlockMath math="\lim_{x\to\infty}\frac{5x^3-2x}{x^4+3}=\lim_{x\to\infty}\frac{\frac5x-\frac{2}{x^3}}{1+\frac{3}{x^4}}=\frac{0-0}{1+0}=0" />
 
+Draw the function for large <InlineMath math="x" />. **The degree-four denominator grows faster than the degree-three numerator**, so the curve falls and hugs the <InlineMath math="x" />-axis.
+
+<MathVisual
+  title={<>The graph for large <InlineMath math="x" /></>}
+  description={<>The curve <InlineMath math="y=\frac{5x^3-2x}{x^4+3}" /> for <InlineMath math="1\le x\le60" />. It rises briefly to about <InlineMath math="1.9" /> near <InlineMath math="x=2" />, then keeps falling and gets closer and closer to the line <InlineMath math="y=0" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{5x^3-2x}{x^4+3}" />,
+    level: <InlineMath math="y=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: -0.2, max: 2.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(5*x^3 - 2*x)/(x^4 + 3)", domain: { min: 1, max: 60 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "0", domain: { min: 0, max: 60 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10, y: (5000 - 20) / 10003 }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 55, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 The denominator grows faster than the numerator, so the fraction shrinks towards <InlineMath math="0" />. For example, at <InlineMath math="x=100" /> it is about <InlineMath math="0.05" />, and at <InlineMath math="x=1000" /> about <InlineMath math="0.005" />.
 
 So the limit is <InlineMath math="0" />.

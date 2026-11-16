@@ -1,5 +1,36 @@
 Matriks <InlineMath math="S" /> **menukar kedua komponen** sebuah vektor: <InlineMath math="S\begin{pmatrix} a \\ b \end{pmatrix}=\begin{pmatrix} b \\ a \end{pmatrix}" />. Secara geometri, itu pencerminan terhadap garis <InlineMath math="y=x" />.
 
+Lihat <InlineMath math="S" /> sebagai pencerminan terhadap <InlineMath math="y=x" />. **Bangun dibalik seperti bayangan di cermin, jadi orientasinya terbalik**, itulah sebabnya <InlineMath math="\det S=-1" />, dan mencerminkan dua kali mengembalikan bangun ke tempatnya.
+
+<MathVisual
+  title={<>Segitiga dan bayangannya oleh <InlineMath math="S" /></>}
+  description={<>Segitiga dengan titik sudut <InlineMath math="(1,0)" />, <InlineMath math="(3,0)" />, dan <InlineMath math="(1,1)" /> dibawa <InlineMath math="S" /> ke segitiga <InlineMath math="(0,1)" />, <InlineMath math="(0,3)" />, dan <InlineMath math="(1,1)" />. Setiap titik bertukar koordinat, dan kedua segitiga simetris terhadap garis <InlineMath math="y=x" />.</>}
+  labels={{
+    mirror: <InlineMath math="y=x" />,
+    start: <InlineMath math="(3,0)" />,
+    image: <InlineMath math="(0,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -0.5, max: 3.5 } },
+      { id: "start", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 3, y: 0 }, { x: 1, y: 1 }] },
+      { id: "image", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 1 }, { x: 0, y: 3 }, { x: 1, y: 1 }] },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 3.2, y: 3.2 }, placement: "below-right" },
+      { key: "start", objectId: "start", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 0, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Pernyataan <InlineMath math="S^2=I" /> benar. Menukar dua kali mengembalikan urutan semula: <InlineMath math="S^2=\begin{pmatrix} 0\cdot0+1\cdot1 & 0\cdot1+1\cdot0 \\ 1\cdot0+0\cdot1 & 1\cdot1+0\cdot0 \end{pmatrix}=I" />.
 2. Pernyataan <InlineMath math="\det S=1" /> salah: <InlineMath math="\det S=0\cdot0-1\cdot1=-1" />. Determinan negatif menandakan pencerminan, yang membalik orientasi.
 3. Pernyataan <InlineMath math="S^{-1}=S" /> benar, karena <InlineMath math="S\cdot S=I" /> dari pernyataan pertama.
