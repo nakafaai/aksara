@@ -28,6 +28,20 @@ n &\le 11\tfrac{1}{6}
 
 Die Anzahl der Bücher ist ganzzahlig, also ist <InlineMath math="n=11" />. So viele passen auch hinein, denn der Karton fasst bis zu <InlineMath math="20" /> Bücher.
 
+Das Diagramm berechnet die Kosten für <InlineMath math="8" /> bis <InlineMath math="14" /> Bücher. Die Balken für <InlineMath math="10" /> und <InlineMath math="11" /> Bücher sind gleich hoch, weil beide mit <InlineMath math="7\text{ kg}" /> abgerechnet werden, und **der erste Balken über der Budgetlinie gehört zu <InlineMath math="12" /> Büchern**.
+
+<Chart
+  title={<>Versandkosten außerhalb Javas nach Anzahl der Bücher</>}
+  description={<>Für <InlineMath math="8" /> bis <InlineMath math="14" /> Bücher betragen die Kosten der Reihe nach <InlineMath math="\text{Rp}135{.}000" />, <InlineMath math="\text{Rp}135{.}000" />, <InlineMath math="\text{Rp}155{.}000" />, <InlineMath math="\text{Rp}155{.}000" />, <InlineMath math="\text{Rp}175{.}000" />, <InlineMath math="\text{Rp}195{.}000" /> und <InlineMath math="\text{Rp}195{.}000" />. Die waagerechte Linie markiert das Budget von <InlineMath math="\text{Rp}170{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 7 }, (_, i) => `${i + 8}`)}
+  series={[
+    { label: "Versandkosten", mark: "bar", values: Array.from({ length: 7 }, (_, i) => Math.max(0.6 + 0.6 * (i + 8), 6)).map((s) => 20000 * (s - Math.floor(s) > 0.3 ? Math.ceil(s) : Math.floor(s)) + 15000) },
+    { label: "Budget Rp170.000", mark: "line", values: Array.from({ length: 7 }, () => 170000) },
+  ]}
+  valueLabel="Kosten (Rupiah)"
+/>
+
 # Kontrolle
 
 Mit <InlineMath math="11" /> Büchern wiegt das Paket <InlineMath math="0{,}6+6{,}6=7{,}2\text{ kg}" />. Der Überschuss von <InlineMath math="0{,}2\text{ kg}" /> fällt weg, das berechnete Gewicht ist <InlineMath math="7\text{ kg}" />, und es kostet <InlineMath math="\text{Rp}155{.}000" />. Mit <InlineMath math="12" /> Büchern wiegt es <InlineMath math="7{,}8\text{ kg}" />, und der Überschuss von <InlineMath math="0{,}8\text{ kg}" /> **erzwingt das Aufrunden** auf <InlineMath math="8\text{ kg}" />. Dann kostet es <InlineMath math="\text{Rp}175{.}000" /> und liegt über dem Budget.

@@ -20,6 +20,19 @@ From 18.00 to 06.00 there are <InlineMath math="12" /> hours with no dose. That'
 
 <BlockMath math="700\cdot\tfrac{1}{2}\cdot\tfrac{1}{2}=\frac{700}{4}=175\text{ mg}" />
 
+The chart below follows the amount of the drug. During the day the line climbs because each dose adds <InlineMath math="400\text{ mg}" />, and then **at night it halves twice**, from <InlineMath math="700" /> to <InlineMath math="350" /> and then to <InlineMath math="175\text{ mg}" />.
+
+<Chart
+  title={<>Amount of the drug in a <InlineMath math="60\text{ kg}" /> child's body</>}
+  description={<>After the doses at 06.00, 12.00, and 18.00, the amount is <InlineMath math="400" />, <InlineMath math="600" />, and <InlineMath math="700\text{ mg}" />. Without medicine, it drops to <InlineMath math="350\text{ mg}" /> at 24.00 and to <InlineMath math="175\text{ mg}" /> at 06.00 on the second day.</>}
+  categories={["06.00", "12.00", "18.00", "24.00", "06.00 day 2"]}
+  series={[
+    { label: "After each dose", mark: "line", values: [400, 400 / 2 + 400, 600 / 2 + 400, null, null] },
+    { label: "Night without medicine", mark: "line", values: [null, null, 700, 700 / 2, 700 / 4] },
+  ]}
+  valueLabel="Amount (mg)"
+/>
+
 # Checking the answer
 
 At 24.00 the amount is down to <InlineMath math="350\text{ mg}" />, and <InlineMath math="6" /> hours later it's <InlineMath math="175\text{ mg}" />. The result also makes sense because it's **smaller than one dose** of <InlineMath math="400\text{ mg}" />: the long night clears out most of the drug.

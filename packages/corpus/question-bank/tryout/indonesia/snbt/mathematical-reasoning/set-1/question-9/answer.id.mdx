@@ -20,6 +20,19 @@ Dari pukul 18.00 sampai 06.00 ada <InlineMath math="12" /> jam tanpa obat. Itu b
 
 <BlockMath math="700\cdot\tfrac{1}{2}\cdot\tfrac{1}{2}=\frac{700}{4}=175\text{ mg}" />
 
+Grafik berikut mengikuti jumlah obat itu. Pada siang hari garisnya naik karena setiap minum menambah <InlineMath math="400\text{ mg}" />, lalu **pada malam hari garisnya turun ke separuh dua kali**, dari <InlineMath math="700" /> ke <InlineMath math="350" /> lalu ke <InlineMath math="175\text{ mg}" />.
+
+<Chart
+  title={<>Jumlah obat di dalam tubuh anak <InlineMath math="60\text{ kg}" /></>}
+  description={<>Sesudah minum pukul 06.00, 12.00, dan 18.00, jumlah obatnya berturut-turut <InlineMath math="400" />, <InlineMath math="600" />, dan <InlineMath math="700\text{ mg}" />. Tanpa obat, jumlahnya menjadi <InlineMath math="350\text{ mg}" /> pada pukul 24.00 dan <InlineMath math="175\text{ mg}" /> pada pukul 06.00 hari kedua.</>}
+  categories={["06.00", "12.00", "18.00", "24.00", "06.00 hari ke-2"]}
+  series={[
+    { label: "Sesudah minum obat", mark: "line", values: [400, 400 / 2 + 400, 600 / 2 + 400, null, null] },
+    { label: "Malam tanpa obat", mark: "line", values: [null, null, 700, 700 / 2, 700 / 4] },
+  ]}
+  valueLabel="Jumlah obat (mg)"
+/>
+
 # Pemeriksaan
 
 Pada pukul 24.00 jumlah obat tinggal <InlineMath math="350\text{ mg}" />, dan <InlineMath math="6" /> jam kemudian <InlineMath math="175\text{ mg}" />. Hasil ini juga masuk akal karena **lebih kecil daripada satu takaran** <InlineMath math="400\text{ mg}" />, sebab malam yang panjang membuang sebagian besar obat.

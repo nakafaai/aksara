@@ -16,6 +16,20 @@ Angenommen, der Kunde bezahlt <InlineMath math="w" /> Tassen an Mittwochen und <
 
 Jede Gratistasse löscht <InlineMath math="10" /> Stempel, also können nicht weniger als null Stempel übrig bleiben. Die ersten drei Zeilen fallen weg. Die Karte kann auch keine Stempel horten, denn **sobald sie <InlineMath math="10" /> Stempel hat, ist die nächste Bestellung sofort gratis**. Vor einer Gratisbestellung hat die Karte höchstens <InlineMath math="9+2=11" /> Stempel, also können nicht <InlineMath math="22" /> übrig bleiben. Auch die letzte Zeile fällt weg.
 
+Das Diagramm vergleicht die erhaltenen mit den verbrauchten Stempeln in jeder Tabellenzeile. **In den ersten drei Zeilen ist der Balken der verbrauchten Stempel höher**, aber eine Karte kann keine Stempel ausgeben, die sie nicht hat.
+
+<Chart
+  title={<>Erhaltene und verbrauchte Stempel nach Anzahl der bezahlten Mittwochstassen</>}
+  description={<>Für <InlineMath math="w=0, 4, 8, 12, 16" /> betragen die erhaltenen Stempel <InlineMath math="12, 17, 22, 27, 32" />, die für Gratistassen verbrauchten <InlineMath math="50, 40, 30, 20, 10" />. Erst ab <InlineMath math="w=12" /> sind die erhaltenen Stempel mehr als die verbrauchten.</>}
+  categories={["0 Mittwochstassen", "4 Mittwochstassen", "8 Mittwochstassen", "12 Mittwochstassen", "16 Mittwochstassen"]}
+  bars="apart"
+  series={[
+    { label: "Erhaltene Stempel", mark: "bar", values: [0, 4, 8, 12, 16].map((w) => 2 * w + (48 - 3 * w) / 4) },
+    { label: "Für Gratistassen verbrauchte Stempel", mark: "bar", values: [0, 4, 8, 12, 16].map((w) => 10 * (17 - w - (48 - 3 * w) / 4)) },
+  ]}
+  valueLabel="Stempel"
+/>
+
 Nur die Zeile <InlineMath math="w=12" /> passt. Eine solche Reihenfolge gibt es wirklich: <InlineMath math="5" /> Mittwochstassen, <InlineMath math="1" /> Gratistasse, <InlineMath math="5" /> Mittwochstassen, <InlineMath math="1" /> Gratistasse, <InlineMath math="2" /> Mittwochstassen und dann <InlineMath math="3" /> Tassen an anderen Tagen.
 
 <BlockMath math="12\cdot15{.}000+3\cdot20{.}000=180{.}000+60{.}000=240{.}000" />

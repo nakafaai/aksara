@@ -39,6 +39,20 @@ A <InlineMath math="39\text{ kg}" /> child is allowed <InlineMath math="390\text
 
 The <InlineMath math="39\text{ kg}" /> child stays safe, while **the** <InlineMath math="40\text{ kg}" /> **child goes over the limit** on the second evening.
 
+The chart below draws the amount after each dose for both doses. Both lines **peak on the second evening**, and only the <InlineMath math="400\text{ mg}" /> line breaks through the safe limit.
+
+<Chart
+  title={<>Amount of the drug after each dose over two days</>}
+  description={<>After each dose, the amount is <InlineMath math="D" />, <InlineMath math="\tfrac{3}{2}D" />, <InlineMath math="\tfrac{7}{4}D" />, <InlineMath math="\tfrac{23}{16}D" />, <InlineMath math="\tfrac{55}{32}D" />, and <InlineMath math="\tfrac{119}{64}D" />. For <InlineMath math="D=350\text{ mg}" />, the peak is about <InlineMath math="650.8\text{ mg}" />. For <InlineMath math="D=400\text{ mg}" />, the peak is <InlineMath math="743.75\text{ mg}" />. The flat line marks the limit of <InlineMath math="700\text{ mg}" />.</>}
+  categories={["Morning 1", "Midday 1", "Evening 1", "Morning 2", "Midday 2", "Evening 2"]}
+  series={[
+    { label: "Dose 350 mg", mark: "line", values: [1, 3 / 2, 7 / 4, 23 / 16, 55 / 32, 119 / 64].map((k) => k * 350) },
+    { label: "Dose 400 mg", mark: "line", values: [1, 3 / 2, 7 / 4, 23 / 16, 55 / 32, 119 / 64].map((k) => k * 400) },
+    { label: "Safe limit 700 mg", mark: "line", values: [700, 700, 700, 700, 700, 700] },
+  ]}
+  valueLabel="Amount (mg)"
+/>
+
 # Common wrong answers
 
 - An answer of <InlineMath math="37" /> comes from forgetting the measuring-spoon rule, so <InlineMath math="10w\le376.5" /> gives <InlineMath math="w\le37" /> straight away. But children of <InlineMath math="38" /> and <InlineMath math="39\text{ kg}" /> still take only <InlineMath math="350\text{ mg}" />.

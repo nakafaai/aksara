@@ -18,6 +18,22 @@ Twice category B's seats is <InlineMath math="800" />, and category C has <Inlin
 
 For <InlineMath math="17+2n=50" />, you'd need <InlineMath math="2n=33" />, so <InlineMath math="n=16.5" />, which isn't a whole number. That's because **every row has an odd number of seats**, while <InlineMath math="50" /> is even. Row <InlineMath math="16" /> has <InlineMath math="49" /> seats and row <InlineMath math="17" /> has <InlineMath math="51" />. The second statement is false.
 
+The chart below draws the number of seats in each row. The <InlineMath math="50" />-seat line **falls right in the gap between row <InlineMath math="16" /> and row <InlineMath math="17" />**, so no bar is exactly <InlineMath math="50" /> tall.
+
+<Chart
+  title={<>Number of seats in each row of the stand</>}
+  description={<>Row <InlineMath math="n" /> has <InlineMath math="17+2n" /> seats, from <InlineMath math="19" /> seats in row <InlineMath math="1" /> to <InlineMath math="77" /> seats in row <InlineMath math="30" />. Row <InlineMath math="16" /> has <InlineMath math="49" /> seats and row <InlineMath math="17" /> has <InlineMath math="51" /> seats. The flat line marks <InlineMath math="50" /> seats.</>}
+  bars="apart"
+  categories={Array.from({ length: 30 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Category A", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i < 6 ? 19 + 2 * i : null)) },
+    { label: "Category B", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 6 && i < 16 ? 19 + 2 * i : null)) },
+    { label: "Category C", mark: "bar", values: Array.from({ length: 30 }, (_, i) => (i >= 16 ? 19 + 2 * i : null)) },
+    { label: "50 seats", mark: "line", values: Array.from({ length: 30 }, () => 50) },
+  ]}
+  valueLabel="Seats"
+/>
+
 # The third statement on two neighbouring rows
 
 Two neighbouring rows, row <InlineMath math="n" /> and row <InlineMath math="n+1" />, have this many seats together.

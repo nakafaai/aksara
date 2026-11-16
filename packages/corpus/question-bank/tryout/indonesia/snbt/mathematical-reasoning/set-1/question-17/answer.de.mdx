@@ -12,6 +12,17 @@ Die Karte hat schon vor Tag <InlineMath math="10" /> genau <InlineMath math="10"
 
 Die Tage <InlineMath math="11" /> bis <InlineMath math="16" /> bringen <InlineMath math="6" /> Stempel, der Mittwoch an Tag <InlineMath math="17" /> bringt <InlineMath math="2" /> Stempel, und die Tage <InlineMath math="18" /> und <InlineMath math="19" /> bringen <InlineMath math="2" /> Stempel. Die Karte hat wieder <InlineMath math="10" /> Stempel, also **ist die Tasse an Tag <InlineMath math="20" />, einem Samstag, gratis**. Die Tage <InlineMath math="21" /> bis <InlineMath math="28" /> bringen nur <InlineMath math="1+1+1+2+4=9" /> Stempel, zu wenig für eine dritte Gratistasse.
 
+Das Diagramm verfolgt Dimas' Karte Tag für Tag. Die Balken **fallen genau an Tag <InlineMath math="10" /> und Tag <InlineMath math="20" /> auf <InlineMath math="0" />**, an den Tagen mit Gratistasse, und an Tag <InlineMath math="28" /> hat die Karte erst <InlineMath math="9" /> Stempel.
+
+<Chart
+  title={<>Stempel auf Dimas' Karte nach der Bestellung jedes Tages</>}
+  description={<>Tag <InlineMath math="1" /> ist ein Montag, also sind die Mittwoche die Tage <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" /> und <InlineMath math="24" />. Die Karte erreicht <InlineMath math="10" /> Stempel an den Tagen <InlineMath math="9" /> und <InlineMath math="19" /> und ist an den Tagen <InlineMath math="10" /> und <InlineMath math="20" /> wieder leer, weil diese Tassen gratis sind. An Tag <InlineMath math="28" /> hat die Karte <InlineMath math="9" /> Stempel.</>}
+  bars="apart"
+  categories={Array.from({ length: 28 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Stempel nach der Bestellung", mark: "bar", values: [1, 2, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 0, 1, 2, 3, 5, 6, 7, 8, 9] }]}
+  valueLabel="Stempel"
+/>
+
 # Der bezahlte Betrag
 
 Von den <InlineMath math="4" /> Mittwochen **werden nur <InlineMath math="3" /> bezahlt**. Von den anderen <InlineMath math="24" /> Tagen ist <InlineMath math="1" /> gratis, also werden <InlineMath math="23" /> bezahlt.

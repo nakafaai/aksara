@@ -20,6 +20,20 @@ Multipliziere die Platzzahl mit dem Preis der Kategorie, denn **der Ticketpreis 
 
 Nach <InlineMath math="144+400=544" /> Tickets liegen die Einnahmen erst bei <InlineMath math="\text{Rp}96{.}000{.}000" />. Also **ist Kategorie B ausverkauft, bevor das Ziel erreicht ist**, und der Rest muss aus Tickets der Kategorie C kommen.
 
+Das Diagramm zeigt die bisherigen Einnahmen jedes Mal, wenn eine Kategorie ausverkauft ist. **Die Ziellinie liegt zwischen dem zweiten und dem dritten Balken**, also erreichen die Einnahmen das Ziel erst, während Karten der Kategorie C verkauft werden.
+
+<Chart
+  title={<>Bisherige Einnahmen, nachdem jede Kategorie ausverkauft ist</>}
+  description={<>Ist Kategorie A nach <InlineMath math="144" /> Karten ausverkauft, betragen die Einnahmen <InlineMath math="\text{Rp}36{.}000{.}000" />. Ist Kategorie B nach <InlineMath math="544" /> Karten ausverkauft, sind es <InlineMath math="\text{Rp}96{.}000{.}000" />. Ist Kategorie C nach <InlineMath math="1{.}440" /> Karten ausverkauft, sind es <InlineMath math="\text{Rp}185{.}600{.}000" />. Die waagerechte Linie markiert das Ziel von <InlineMath math="\text{Rp}100{.}000{.}000" />.</>}
+  categories={["A ausverkauft", "A und B ausverkauft", "Alles ausverkauft"]}
+  bars="apart"
+  series={[
+    { label: "Bisherige Einnahmen", mark: "bar", values: [144 * 250000, 144 * 250000 + 400 * 150000, 144 * 250000 + 400 * 150000 + 896 * 100000] },
+    { label: "Ziel Rp100 Millionen", mark: "line", values: [100000000, 100000000, 100000000] },
+  ]}
+  valueLabel="Einnahmen (Rupiah)"
+/>
+
 # Die nötigen Tickets der Kategorie C
 
 **Bis zum Ziel** fehlen <InlineMath math="\text{Rp}100{.}000{.}000-\text{Rp}96{.}000{.}000=\text{Rp}4{.}000{.}000" />. Jedes Ticket der Kategorie C bringt <InlineMath math="\text{Rp}100{.}000" />.

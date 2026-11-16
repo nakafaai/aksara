@@ -12,6 +12,17 @@ Kartu sudah berisi <InlineMath math="10" /> cap sebelum hari ke-<InlineMath math
 
 Hari ke-<InlineMath math="11" /> sampai ke-<InlineMath math="16" /> memberi <InlineMath math="6" /> cap, Rabu hari ke-<InlineMath math="17" /> memberi <InlineMath math="2" /> cap, lalu hari ke-<InlineMath math="18" /> dan ke-<InlineMath math="19" /> memberi <InlineMath math="2" /> cap. Kartu kembali berisi <InlineMath math="10" /> cap, jadi **cangkir hari ke-<InlineMath math="20" />, hari Sabtu, gratis**. Hari ke-<InlineMath math="21" /> sampai ke-<InlineMath math="28" /> hanya memberi <InlineMath math="1+1+1+2+4=9" /> cap, belum cukup untuk cangkir gratis ketiga.
 
+Grafik berikut mengikuti isi kartu Dimas setiap hari. Batangnya **jatuh ke <InlineMath math="0" /> tepat pada hari ke-<InlineMath math="10" /> dan ke-<InlineMath math="20" />**, yaitu hari cangkir gratis, dan pada hari ke-<InlineMath math="28" /> kartunya baru berisi <InlineMath math="9" /> cap.
+
+<Chart
+  title={<>Isi kartu cap Dimas sesudah pesanan setiap hari</>}
+  description={<>Hari ke-<InlineMath math="1" /> adalah Senin, jadi hari Rabu jatuh pada hari ke-<InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" />, dan <InlineMath math="24" />. Kartu mencapai <InlineMath math="10" /> cap pada hari ke-<InlineMath math="9" /> dan ke-<InlineMath math="19" />, lalu kosong pada hari ke-<InlineMath math="10" /> dan ke-<InlineMath math="20" /> karena cangkirnya gratis. Pada hari ke-<InlineMath math="28" /> kartu berisi <InlineMath math="9" /> cap.</>}
+  bars="apart"
+  categories={Array.from({ length: 28 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Cap sesudah pesanan", mark: "bar", values: [1, 2, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 0, 1, 2, 3, 5, 6, 7, 8, 9] }]}
+  valueLabel="Banyak cap"
+/>
+
 # Total yang dibayar
 
 Dari <InlineMath math="4" /> hari Rabu, **hanya <InlineMath math="3" /> yang dibayar**. Dari <InlineMath math="24" /> hari lainnya, <InlineMath math="1" /> gratis, jadi <InlineMath math="23" /> dibayar.

@@ -45,6 +45,20 @@ Ein Kind mit <InlineMath math="20\text{ kg}" /> bekommt <InlineMath math="200\te
 \text{vor der dritten Morgeneinnahme} &= \tfrac{1}{4}\cdot371{,}875\approx92{,}97\text{ mg}
 \end{aligned}" />
 
+Das Diagramm zeigt jede Einnahme des Kindes. Achte auf den Balken vor der Einnahme an jedem Morgen: **er steigt von <InlineMath math="0" /> auf <InlineMath math="87{,}5" /> und dann auf etwa <InlineMath math="92{,}97\text{ mg}" />**, also wiederholen sich die Morgen nicht mit derselben Menge.
+
+<Chart
+  title={<>Menge des Medikaments vor und nach jeder Einnahme bei einem Kind mit <InlineMath math="20\text{ kg}" /></>}
+  description={<>Vor den Einnahmen am ersten Morgen, ersten Mittag, ersten Abend, zweiten Morgen, zweiten Mittag, zweiten Abend und dritten Morgen beträgt die Menge <InlineMath math="0" />, <InlineMath math="100" />, <InlineMath math="150" />, <InlineMath math="87{,}5" />, <InlineMath math="143{,}75" />, <InlineMath math="171{,}875" /> und etwa <InlineMath math="92{,}97\text{ mg}" />. Jede Einnahme fügt <InlineMath math="200\text{ mg}" /> hinzu.</>}
+  categories={["Morgen 1", "Mittag 1", "Abend 1", "Morgen 2", "Mittag 2", "Abend 2", "Morgen 3"]}
+  bars="apart"
+  series={[
+    { label: "Vor der Einnahme", mark: "bar", values: [0, 200 / 2, 300 / 2, 350 / 4, 287.5 / 2, 343.75 / 2, 371.875 / 4] },
+    { label: "Nach der Einnahme", mark: "bar", values: [200, 200 / 2 + 200, 300 / 2 + 200, 350 / 4 + 200, 287.5 / 2 + 200, 343.75 / 2 + 200, null] },
+  ]}
+  valueLabel="Menge (mg)"
+/>
+
 Die Menge steigt von <InlineMath math="87{,}5\text{ mg}" /> auf etwa <InlineMath math="92{,}97\text{ mg}" />, weil sich der Rest vom Vortag weiter ansammelt. Die vierte Aussage ist falsch.
 
 Die erste Aussage ist also falsch, die zweite wahr, die dritte falsch und die vierte falsch.

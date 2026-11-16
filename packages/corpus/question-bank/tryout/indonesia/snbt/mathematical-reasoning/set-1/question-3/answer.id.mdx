@@ -31,6 +31,17 @@ Dari pukul 08.00 sampai 15.00 isi baterai hanya naik, jadi baterai berkapasitas 
 C &\ge 14
 \end{aligned}" />
 
+Grafik berikut memperlihatkan pembelian malam untuk setiap kapasitas dari <InlineMath math="6" /> sampai <InlineMath math="16\text{ kWh}" />. Setiap tambahan <InlineMath math="1\text{ kWh}" /> kapasitas memangkas pembelian <InlineMath math="1\text{ kWh}" />, dan **batangnya habis tepat di kapasitas <InlineMath math="14" />**. Kapasitas lebih besar tidak menambah penghematan.
+
+<Chart
+  title={<>Energi yang dibeli malam hari menurut kapasitas baterai</>}
+  description={<>Untuk kapasitas <InlineMath math="C" /> dari <InlineMath math="6" /> sampai <InlineMath math="14\text{ kWh}" />, pembelian malam adalah <InlineMath math="14-C" />, turun dari <InlineMath math="8" /> ke <InlineMath math="0\text{ kWh}" />. Untuk <InlineMath math="C=15" /> dan <InlineMath math="16" />, pembelian malam tetap <InlineMath math="0" />. Pembelian pagi <InlineMath math="1\text{ kWh}" /> tidak bergantung pada kapasitas.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i + 6}`)}
+  series={[{ label: "Pembelian malam (kWh)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => Math.max(0, 11 - (Math.min(i + 6, 16) - 3))) }]}
+  valueLabel="Energi (kWh)"
+/>
+
 # Pemeriksaan dua kapasitas
 
 Dengan <InlineMath math="C=14" />, isi baterai menjadi <InlineMath math="1,2,4,7,10,12,14,14,13,12" />. Bagian di atas cadangan tepat <InlineMath math="11\text{ kWh}" />, jadi malam hari tidak membeli listrik. Dengan <InlineMath math="C=13" />, isi saat sore berakhir hanya <InlineMath math="11\text{ kWh}" /> dan bagian yang boleh dipakai <InlineMath math="10\text{ kWh}" />, sehingga **masih ada pembelian** <InlineMath math="1\text{ kWh}" /> dan penghematannya hanya <InlineMath math="\text{Rp}17{.}500" />.

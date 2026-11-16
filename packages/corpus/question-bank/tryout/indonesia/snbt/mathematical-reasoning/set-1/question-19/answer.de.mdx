@@ -30,6 +30,17 @@ Die Grenze wird nur erreicht, wenn **alle vier Mittwoche bezahlt werden**, also 
 
 Dieser Plan enthält <InlineMath math="4" /> Mittwochstassen, <InlineMath math="12" /> normale Tassen und <InlineMath math="2" /> Gratistassen.
 
+Das Diagramm verfolgt Bu Ratnas Karte mit diesem Plan. Ein Tag ohne Balken ist ein Tag ohne Bestellung, und **die Karte ist genau an Tag <InlineMath math="18" /> und Tag <InlineMath math="28" /> leer**, zwei Tagen, die keine Mittwoche sind.
+
+<Chart
+  title={<>Stempel auf Bu Ratnas Karte nach jeder Bestellung</>}
+  description={<>Bu Ratna bestellt an den Mittwochen von Tag <InlineMath math="3" /> und Tag <InlineMath math="10" />, dann jeden Tag ab Tag <InlineMath math="13" />. Ihre Karte hat <InlineMath math="2" />, dann <InlineMath math="4" /> Stempel, steigt bis Tag <InlineMath math="17" /> auf <InlineMath math="10" />, ist an Tag <InlineMath math="18" /> leer, steigt bis Tag <InlineMath math="27" /> wieder auf <InlineMath math="10" /> und ist an Tag <InlineMath math="28" /> leer.</>}
+  bars="apart"
+  categories={Array.from({ length: 28 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Stempel nach der Bestellung", mark: "bar", values: [null, null, 2, null, null, null, null, null, null, 4, null, null, 5, 6, 7, 8, 10, 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 0] }]}
+  valueLabel="Stempel"
+/>
+
 # Die verlockenden falschen Antworten
 
 Die Antwort <InlineMath math="16" /> entsteht, wenn du das ganze Geld zum normalen Preis ausgibst, also <InlineMath math="15" /> Tassen und <InlineMath math="1" /> Gratistasse. Die Antwort <InlineMath math="20" /> entsteht, wenn du jede Tasse zum Mittwochspreis rechnest, obwohl **es nur vier Mittwoche gibt**. Auch jeden Tag ab Tag <InlineMath math="1" /> zu bestellen ist schlechter, denn die erste Gratistasse fällt dann auf den Mittwoch an Tag <InlineMath math="10" />.
