@@ -1,0 +1,31 @@
+# Find the plasma from the dilution, then scale up to whole blood
+
+A known amount of dye spread through an unknown volume gives a measured concentration, so **volume equals amount divided by concentration**. Plasma is only the part of blood that is not cells, so divide by the plasma share to get whole blood.
+
+<BlockMath math="\text{plasma}: \frac{10\text{ mg}}{4\text{ mg/L}}=2.5\text{ L},\qquad \text{blood}: \frac{2.5}{1-0.45}=\frac{2.5}{0.55}\approx4.5\text{ L}" />
+
+<BlockMath math="\text{anaemia}: \frac{2.5}{1-0.30}=\frac{2.5}{0.70}\approx3.6\text{ L}" />
+
+<Chart
+  title={<>Plasma, Cells and Whole Blood</>}
+  bars="apart"
+  categories={["Plasma", "Blood cells", "Whole blood"]}
+  series={[
+    { label: "Volume", mark: "bar", values: [2.5, 2.05, 4.55] },
+  ]}
+  valueLabel="Volume (L)"
+  description={<>The dye shows <InlineMath math="2.5" /> L of plasma. Since plasma is <InlineMath math="55\%" /> of blood, the blood volume is about <InlineMath math="4.5" /> L, with about <InlineMath math="2.0" /> L of cells.</>}
+/>
+
+- I: <InlineMath math="10\text{ mg}" /> at <InlineMath math="4\text{ mg}" /> per litre fills <InlineMath math="2.5\text{ L}" />. Statement I is correct.
+- II: plasma is <InlineMath math="55\%" /> of blood, so blood is <InlineMath math="\tfrac{2.5}{0.55}\approx4.5\text{ L}" />. The value <InlineMath math="5.6\text{ L}" /> comes from dividing by the **cell share**, <InlineMath math="0.45" />. Statement II is wrong.
+- III: dye lost from the plasma lowers the concentration measured, and a lower concentration gives a larger calculated volume. Statement III is correct.
+- IV: with only <InlineMath math="30\%" /> cells, plasma is <InlineMath math="70\%" /> of the blood, so <InlineMath math="\tfrac{2.5}{0.70}\approx3.6\text{ L}" />. Statement IV is correct.
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and III only accepts <InlineMath math="5.6\text{ L}" />, **dividing by the cell share instead of the plasma share**, and rejects IV.
+- II and IV only rejects I and III, **the dilution step and the effect of leaked dye**.
+- I, II, III and IV accepts II, **which uses the wrong share of the blood**.

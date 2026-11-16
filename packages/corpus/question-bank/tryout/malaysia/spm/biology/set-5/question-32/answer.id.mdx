@@ -1,0 +1,28 @@
+# Tangani kedua gen secara terpisah, lalu kalikan
+
+Kedua gen berada di kromosom yang berbeda, jadi diwariskan **secara bebas**. Hitung peluang tiap sifat di antara semua anak, lalu kalikan.
+
+<BlockMath math="X^GX^g\times X^GY:\quad X^GX^G,\ X^GX^g,\ X^GY,\ X^gY\ \Rightarrow\ P(\text{putra dengan defisiensi G6PD})=\tfrac{1}{4}" />
+
+<BlockMath math="Tt\times Tt:\quad TT,\ Tt,\ Tt,\ tt\ \Rightarrow\ P(\text{bukan talasemia major})=\tfrac{3}{4}" />
+
+<BlockMath math="\tfrac{1}{4}\times\tfrac{3}{4}=\tfrac{3}{16}" />
+
+<Chart
+  title={<>Peluang Tiap Hasil untuk Anak Berikutnya</>}
+  bars="apart"
+  categories={["Putra dengan defisiensi G6PD saja", "Putra dengan kedua kondisi", "Putri dengan defisiensi G6PD"]}
+  series={[
+    { label: "Peluang", mark: "bar", values: [18.75, 6.25, 0] },
+  ]}
+  valueLabel="Peluang (%)"
+  description={<>Putra dengan defisiensi G6PD saja berpeluang <InlineMath math="18{,}75\%" />, putra dengan kedua kondisi <InlineMath math="6{,}25\%" />, dan putri dengan defisiensi G6PD tidak berpeluang.</>}
+/>
+
+Soal ini menanyakan **anak berikutnya**, yang bisa putra atau putri, jadi peluang putra dengan defisiensi G6PD sudah mencakup peluang <InlineMath math="\tfrac{1}{2}" /> untuk mendapat putra. Jawabannya <InlineMath math="\tfrac{3}{16}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\tfrac{3}{8}" /> memakai <InlineMath math="\tfrac{1}{2}" /> untuk defisiensi G6PD, yaitu peluang **di antara putra saja**, bukan di antara semua anak.
+- <InlineMath math="\tfrac{1}{16}" /> adalah peluang putra dengan defisiensi G6PD yang **juga** menghidap talasemia major, <InlineMath math="\tfrac{1}{4}\times\tfrac{1}{4}" />.
+- <InlineMath math="\tfrac{1}{4}" /> adalah peluang putra dengan defisiensi G6PD dan **mengabaikan gen talasemia** sama sekali.

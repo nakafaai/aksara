@@ -1,0 +1,31 @@
+# Hitung pengenceran tiap tabung, lalu bandingkan tabung terakhir yang menggumpal
+
+Tiap tabung mengencerkan serum separuh lagi, jadi bergeser **tiga tabung lebih jauh** berarti serum bisa diencerkan <InlineMath math="2^3" /> kali lagi dan tetap bekerja. Itu menunjukkan berapa banyak lagi antibodi yang dikandungnya.
+
+<BlockMath math="\text{tabung }n: 10\times2^{\,n-1},\qquad \text{tabung }6: 10\times2^5=320,\qquad \text{tabung }9: 10\times2^8=2560" />
+
+<BlockMath math="\frac{2560}{320}=8" />
+
+<Chart
+  title={<>Titer Antibodi pada Dua Sampel</>}
+  bars="apart"
+  categories={["Hari kedua", "Hari keenam belas"]}
+  series={[
+    { label: "Titer", mark: "bar", values: [320, 2560] },
+  ]}
+  valueLabel="Pengenceran terbesar yang masih menggumpal (satu bagian dalam)"
+  description={<>Pada hari kedua serum masih menggumpalkan bakteri pada satu bagian dalam <InlineMath math="320" />. Pada hari keenam belas pada satu bagian dalam <InlineMath math="2560" />, delapan kali lebih encer.</>}
+/>
+
+- I: tabung <InlineMath math="6" /> berisi serum yang diencerkan <InlineMath math="320" /> kali, jadi titernya satu bagian dalam <InlineMath math="320" />. Pernyataan I benar.
+- II: serum kedua tetap bekerja saat diencerkan <InlineMath math="8" /> kali lagi, jadi berisi sekitar <InlineMath math="8" /> kali lebih banyak antibodi. Pernyataan II benar.
+- III: antibodi naik selama sakit karena sel plasma pasien sendiri yang membuatnya, yaitu kekebalan **aktif**. Pernyataan III salah.
+- IV: antibodi punya dua sisi pengikat antigen. Terikat pada dua bakteri sekaligus, antibodi menautkan banyak bakteri menjadi gumpalan. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan IV saja menolak II, biasanya karena menganggap tiga tabung tambahan sebagai **tiga kali antibodi**, bukan <InlineMath math="2\times2\times2=8" /> kali.
+- II dan III saja menolak titer dan **dua sisi pengikat**, lalu menyebut responsnya pasif.
+- I, II, dan III saja menerima III, **padahal sel pasien sendiri yang membuat antibodi itu**.

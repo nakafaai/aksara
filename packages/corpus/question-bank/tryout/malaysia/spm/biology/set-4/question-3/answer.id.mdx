@@ -1,0 +1,28 @@
+# Hitung tiap konsentrasi baru, lalu baca tingkat pecah dari kurva
+
+Air masuk ke sel darah merah secara **osmosis** setiap kali larutan lebih encer daripada <InlineMath math="0{,}90\%" />. Banyaknya sel yang pecah bergantung pada seberapa encer, karena sel berbeda dalam kemampuan menahan pembengkakan. Jadi tiap campuran harus diubah menjadi konsentrasi dulu.
+
+<Chart
+  title={<>Sel Darah Merah yang Pecah di Tiap Larutan Garam</>}
+  categories={["0,30%", "0,40%", "0,45%", "0,50%", "0,60%", "0,90%", "2,0%"]}
+  series={[
+    { label: "Sel pecah (%)", mark: "line", values: [100, 85, 50, 15, 0, 0, 0] },
+  ]}
+  valueLabel="Sel pecah (%)"
+  description={<>Semua sel pecah pada <InlineMath math="0{,}30\%" />, <InlineMath math="85\%" /> pada <InlineMath math="0{,}40\%" />, <InlineMath math="50\%" /> pada <InlineMath math="0{,}45\%" />, <InlineMath math="15\%" /> pada <InlineMath math="0{,}50\%" />, dan tidak ada yang pecah mulai <InlineMath math="0{,}60\%" />.</>}
+/>
+
+<BlockMath math="\text{I}: \tfrac{0{,}30+0{,}90}{2}=0{,}60\%,\qquad \text{III}: \tfrac{0{,}40+0{,}50}{2}=0{,}45\%,\qquad \text{IV}: \tfrac{0{,}90+0}{2}=0{,}45\%" />
+
+- I: campurannya <InlineMath math="0{,}60\%" />, tempat tidak ada sel yang pecah, walaupun air tetap masuk dan sel membengkak. Pernyataan I benar.
+- II: <InlineMath math="0{,}45\%" /> hanya separuh kepekatan plasma, jadi masih **hipotonik**. Separuh sel pecah karena hanya separuh yang lebih lemah tidak sanggup menahan pembengkakan. Pernyataan II salah.
+- III: campurannya <InlineMath math="0{,}45\%" />, tempat <InlineMath math="50\%" /> sel pecah. Pernyataan III benar.
+- IV: mengencerkan <InlineMath math="0{,}90\%" /> dengan air sama volume menjadikannya <InlineMath math="0{,}45\%" />, jadi lagi-lagi sekitar separuh sel pecah. Pernyataan IV benar.
+
+Jadi pernyataan I, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan IV saja menganggap titik separuh sebagai isotonik, **padahal isotonik adalah** <InlineMath math="0{,}90\%" />, tempat tidak ada sel yang pecah.
+- III dan IV saja menolak I, lupa bahwa campuran <InlineMath math="0{,}60\%" /> **terlalu lemah untuk memecahkan** sel mana pun.
+- I dan IV saja menolak III, **padahal rata-rata kedua larutan tepat** <InlineMath math="0{,}45\%" />.

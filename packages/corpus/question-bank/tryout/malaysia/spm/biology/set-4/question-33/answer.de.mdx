@@ -1,0 +1,30 @@
+# Verhältnis und Wurfgröße mit der Vorhersage einer normalen Kreuzung vergleichen
+
+Zwei gelbe Eltern, die beide graue Junge bekommen, müssen beide <InlineMath math="Yy" /> sein. Eine normale Kreuzung <InlineMath math="Yy\times Yy" /> ergibt ein **Verhältnis von <InlineMath math="3:1" />**, hier aber <InlineMath math="\tfrac{160}{80}=2:1" />, und die Würfe sind kleiner.
+
+<Mermaid
+  title={<>Was mit jedem Genotyp zweier gelber Eltern geschieht</>}
+  description={<>Zwei mischerbige gelbe Eltern bilden YY, Yy und yy im Verhältnis <InlineMath math="1:2:1" />. Die YY-Embryonen sterben vor der Geburt, also kommen gelbe und graue Junge im Verhältnis <InlineMath math="2:1" /> zur Welt.</>}
+  chart={"flowchart LR\n  P[Gelb Yy × gelb Yy] --> A[1 YY: stirbt vor der Geburt]\n  P --> B[2 Yy: gelb]\n  P --> C[1 yy: grau]"}
+/>
+
+<Chart
+  title={<>Geborene Junge und Wurfgröße</>}
+  bars="apart"
+  categories={["Gelb × gelb", "Gelb × grau"]}
+  series={[
+    { label: "Mittlere Wurfgröße", mark: "bar", values: [6, 8] },
+  ]}
+  valueLabel="Mittlere Wurfgröße"
+  description={<>Würfe zweier gelber Eltern haben im Mittel <InlineMath math="6" /> Junge, Würfe eines gelben und eines grauen Elternteils <InlineMath math="8" />.</>}
+/>
+
+Stirbt das <InlineMath math="YY" />-Viertel vor der Geburt, bleiben <InlineMath math="2" /> gelbe <InlineMath math="(Yy)" /> auf <InlineMath math="1" /> graues <InlineMath math="(yy)" />, passend zu <InlineMath math="160:80" />. Der Verlust eines Viertels jedes Wurfs passt auch zur Größe: <InlineMath math="\tfrac{3}{4}\cdot8=6" /> Junge, genau der Mittelwert zweier gelber Eltern. Die Kreuzung eines gelben mit einem grauen Elternteil bildet nie <InlineMath math="YY" />, ihre Würfe bleiben bei <InlineMath math="8" />.
+
+Embryonen mit zwei gelben Allelen sterben also vor der Geburt, und jede gelbe Maus, die geboren wird, ist mischerbig.
+
+# Warum die anderen Antworten falsch sind
+
+- Gelb rezessiv widerspricht den Daten, **denn zwei rezessive Eltern könnten nie graue Junge bekommen**.
+- Tod nach der Geburt erklärt das Ergebnis nicht, **denn die Jungen wurden bei der Geburt gezählt**, und die Würfe sind schon kleiner.
+- Reinerbig gelbe Eltern würden nur gelbe Junge bekommen, **was den Anteil gelber Junge erhöhen statt senken würde**.

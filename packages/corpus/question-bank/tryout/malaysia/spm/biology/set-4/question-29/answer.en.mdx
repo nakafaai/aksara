@@ -1,0 +1,31 @@
+# Remove one group of decomposers at a time and see how much slower decay gets
+
+Each finer mesh **shuts out one more group** of organisms. The difference between two bags is the share of decay done by the group that only one bag lets in.
+
+<Chart
+  title={<>Leaf Mass Left in Each Bag</>}
+  categories={["Month 0", "Month 2", "Month 4", "Month 6"]}
+  series={[
+    { label: "Coarse mesh", mark: "line", values: [100, 60, 30, 10] },
+    { label: "Medium mesh", mark: "line", values: [100, 75, 50, 30] },
+    { label: "Fine mesh", mark: "line", values: [100, 90, 78, 66] },
+    { label: "Fine mesh with fungicide", mark: "line", values: [100, 97, 94, 91] },
+  ]}
+  valueLabel="Leaf mass left (%)"
+  description={<>After six months, <InlineMath math="10\%" /> is left in the coarse bags, <InlineMath math="30\%" /> in the medium bags, <InlineMath math="66\%" /> in the fine bags and <InlineMath math="91\%" /> in the fine bags treated with fungicide.</>}
+/>
+
+<BlockMath math="\text{fine mesh, microorganisms}: 100-66=34\%,\qquad \text{bacteria alone}: 100-91=9\%,\qquad \text{fungi}: 34-9=25\%" />
+
+- I: with earthworms and insects, in the coarse bags, only <InlineMath math="10\%" /> is left, against <InlineMath math="30\%" /> when they are kept out. They tear the leaves into small pieces, giving microorganisms more surface. Statement I is correct.
+- II: fine mesh lets in only fungi and bacteria, and <InlineMath math="100-66=34\%" /> of the mass is gone. Statement II is correct.
+- III: with the fungi killed only <InlineMath math="9\%" /> is lost, so fungi account for <InlineMath math="25" /> of the <InlineMath math="34" /> percentage points, about three quarters. Statement III is correct.
+- IV: even in the coarse bags, the fragments left by animals are finally broken down by fungi and bacteria, which release the **nutrients** back into the soil. Earthworms do not replace them. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, missing that killing the fungi cuts microbial decay from <InlineMath math="34\%" /> to **only** <InlineMath math="9\%" />.
+- I and III only rejects II, **although** <InlineMath math="100-66" /> is exactly <InlineMath math="34" />.
+- II, III and IV only rejects the clear effect of large animals and makes microorganisms unnecessary.

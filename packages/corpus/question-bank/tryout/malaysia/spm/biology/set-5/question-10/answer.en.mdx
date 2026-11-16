@@ -1,0 +1,30 @@
+# Build oxygen use from three factors and multiply them
+
+Oxygen used per minute is the blood pumped per minute times the oxygen **taken out of each litre**. Blood pumped per minute is heart rate times stroke volume, and heart rate comes from the gap between beats on the ECG.
+
+<BlockMath math="\text{rest}: \frac{20}{25}=0.8\text{ s per beat}\Rightarrow\frac{60}{0.8}=75\text{ beats/min},\qquad \text{exercise}: \frac{12}{25}=0.48\text{ s}\Rightarrow125\text{ beats/min}" />
+
+<BlockMath math="\text{rest}: 75\times0.070=5.25\text{ L/min},\ \ 5.25\times(200-150)\approx263\text{ mL/min}" />
+
+<BlockMath math="\text{exercise}: 125\times0.100=12.5\text{ L/min},\ \ 12.5\times(200-80)=1500\text{ mL/min}" />
+
+<BlockMath math="\frac{1500}{263}\approx5.7" />
+
+<Chart
+  title={<>How Much Each Factor Rises During Exercise</>}
+  bars="apart"
+  categories={["Heart rate", "Stroke volume", "Oxygen taken per litre", "Oxygen used per minute"]}
+  series={[
+    { label: "Exercise value", mark: "bar", values: [1.67, 1.43, 2.4, 5.7] },
+  ]}
+  valueLabel="Times the resting value"
+  description={<>Heart rate rises <InlineMath math="1.67" /> times, stroke volume <InlineMath math="1.43" /> times and the oxygen taken from each litre <InlineMath math="2.4" /> times. Multiplied together, oxygen used per minute rises <InlineMath math="5.7" /> times.</>}
+/>
+
+Each factor rises a little, but because they multiply, oxygen use rises about <InlineMath math="5.7" /> times.
+
+# Why the other options are wrong
+
+- About <InlineMath math="1.7" /> times counts only the **faster heart rate**, <InlineMath math="\tfrac{125}{75}" />.
+- About <InlineMath math="2.4" /> times counts only the **rise in blood pumped**, <InlineMath math="\tfrac{12.5}{5.25}" />, or only the extra oxygen taken from each litre, and misses the other factor.
+- About <InlineMath math="4.0" /> times multiplies heart rate by oxygen taken per litre, <InlineMath math="1.67\times2.4" />, and **leaves out the larger stroke volume**.

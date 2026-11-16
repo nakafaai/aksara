@@ -1,0 +1,31 @@
+# <InlineMath math="R" /> für normale Helligkeit bestimmen
+
+Jede Lampe zieht <InlineMath math="3{,}0/6{,}0=0{,}50\text{ A}" /> und hat den Widerstand <InlineMath math="6{,}0^2/3{,}0=12\,\Omega" />. Das Paar zieht <InlineMath math="1{,}0\text{ A}" /> bei <InlineMath math="6{,}0\text{ V}" />, und **der Innenwiderstand nimmt seinen Anteil an den übrigen <InlineMath math="6{,}0\text{ V}" />**.
+
+<BlockMath math="12-6{,}0=1{,}0\times(R+1{,}0)\ \Rightarrow\ R=5{,}0\,\Omega" />
+
+# Nur noch eine Lampe
+
+**Die verbleibende Lampe liegt jetzt allein in Reihe mit <InlineMath math="R" /> und dem Innenwiderstand**. Der Gesamtwiderstand steigt, doch die Lampe erhält jetzt den ganzen Strom statt der Hälfte.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{12}{12+5{,}0+1{,}0}=0{,}667\text{ A}\\
+P&=0{,}667^2\times12=5{,}3\text{ W}
+\end{aligned}" />
+
+<Chart
+  title={<>Leistung einer Lampe vorher und nachher</>}
+  description={<>Balkendiagramm: Jede Lampe setzt <InlineMath math="3{,}0\text{ W}" /> um, solange beide brennen, und die verbleibende Lampe <InlineMath math="5{,}3\text{ W}" />, nachdem die andere ausgefallen ist, weit über ihrer Nennleistung.</>}
+  bars="apart"
+  categories={["Beide Lampen", "Eine Lampe übrig"]}
+  series={[
+    { label: "Leistung einer Lampe", mark: "bar", values: [3.0, 5.3] },
+  ]}
+  valueLabel="Leistung (W)"
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3{,}0\text{ W}" /> **nimmt an, die verbleibende Lampe leuchte unverändert weiter**.
+- <InlineMath math="6{,}0\,\Omega" /> vergisst den Innenwiderstand, und die <InlineMath math="4{,}8\text{ W}" /> tragen diesen Fehler weiter.
+- <InlineMath math="4{,}0\,\Omega" /> zählt den Innenwiderstand doppelt.

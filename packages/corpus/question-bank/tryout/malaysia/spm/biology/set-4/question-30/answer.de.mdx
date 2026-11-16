@@ -1,0 +1,28 @@
+# Eine Art entfernen und sehen, wohin sich die andere ausbreitet
+
+Breitet sich eine Art in neues Gebiet aus, sobald ihr Nachbar entfernt ist, dann **hielt der Nachbar sie fern**. Ändert sich nichts, setzt etwas anderes die Grenze, etwa das Austrocknen weiter oben.
+
+<Chart
+  title={<>Bedeckung zweier Seepockenarten am Ufer</>}
+  categories={["0,5 m", "1,0 m", "1,5 m", "2,0 m", "2,5 m"]}
+  series={[
+    { label: "X, Y vorhanden", mark: "line", values: [0, 0, 10, 60, 70] },
+    { label: "X, Y entfernt", mark: "line", values: [50, 60, 70, 70, 70] },
+    { label: "Y, X vorhanden oder entfernt", mark: "line", values: [80, 70, 40, 0, 0] },
+  ]}
+  valueLabel="Bedeckung (%)"
+  description={<>Mit Y bedeckt X von <InlineMath math="0{,}5" /> bis <InlineMath math="2{,}5\text{ m}" /> <InlineMath math="0" />, <InlineMath math="0" />, <InlineMath math="10" />, <InlineMath math="60" /> und <InlineMath math="70\,\%" />. Ohne Y bedeckt X in jeder Höhe <InlineMath math="50" /> bis <InlineMath math="70\,\%" />. Y bedeckt <InlineMath math="80" />, <InlineMath math="70" />, <InlineMath math="40" />, <InlineMath math="0" /> und <InlineMath math="0\,\%" />, ob X entfernt wird oder nicht.</>}
+/>
+
+- I: Mit Y fehlt X unterhalb von <InlineMath math="1{,}5\text{ m}" />. Ohne Y bedeckt X dort <InlineMath math="50" /> bis <InlineMath math="60\,\%" />. Y verdrängte X vom unteren Ufer. Aussage I stimmt.
+- II: Y endet bei <InlineMath math="2{,}0\text{ m}" />, ob X entfernt wird oder nicht. Nicht X hält Y vom oberen Ufer fern, also muss ein physikalischer Faktor wie das Austrocknen die Grenze setzen. Aussage II stimmt.
+- III: X kann von <InlineMath math="0{,}5\text{ m}" /> bis <InlineMath math="2{,}5\text{ m}" /> wachsen, kommt mit Y aber nur ab <InlineMath math="1{,}5\text{ m}" /> vor. Sein möglicher Bereich ist größer als sein tatsächlicher. Aussage III stimmt.
+- IV: Das Entfernen von Y lässt X nach unten wachsen, die beiden **konkurrieren also** um Platz. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und III verwirft II, **obwohl sich die obere Grenze von Y beim Entfernen von X nicht verschiebt**.
+- Nur II, III und IV hält das Entfernen für einen Beweis fehlender Konkurrenz, **dabei breitet sich X erst aus, wenn Y weg ist**.
+- Nur I, II und IV verwirft III und übersieht, dass X **weiter unten wächst**, sobald es freigestellt ist.

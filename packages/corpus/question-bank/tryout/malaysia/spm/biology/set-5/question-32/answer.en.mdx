@@ -1,0 +1,28 @@
+# Treat the two genes separately, then multiply
+
+The genes are on different chromosomes, so they are inherited **independently**. Work out the chance for each trait among all children, then multiply.
+
+<BlockMath math="X^GX^g\times X^GY:\quad X^GX^G,\ X^GX^g,\ X^GY,\ X^gY\ \Rightarrow\ P(\text{son with G6PD deficiency})=\tfrac{1}{4}" />
+
+<BlockMath math="Tt\times Tt:\quad TT,\ Tt,\ Tt,\ tt\ \Rightarrow\ P(\text{no thalassaemia major})=\tfrac{3}{4}" />
+
+<BlockMath math="\tfrac{1}{4}\times\tfrac{3}{4}=\tfrac{3}{16}" />
+
+<Chart
+  title={<>Chance of Each Outcome for the Next Child</>}
+  bars="apart"
+  categories={["Son with G6PD deficiency only", "Son with both conditions", "Daughter with G6PD deficiency"]}
+  series={[
+    { label: "Chance", mark: "bar", values: [18.75, 6.25, 0] },
+  ]}
+  valueLabel="Chance (%)"
+  description={<>A son with G6PD deficiency only has a chance of <InlineMath math="18.75\%" />, a son with both conditions <InlineMath math="6.25\%" />, and a daughter with G6PD deficiency none.</>}
+/>
+
+The question asks about the **next child**, who could be a son or a daughter, so the chance of a son with G6PD deficiency already includes the <InlineMath math="\tfrac{1}{2}" /> chance of a son. The answer is <InlineMath math="\tfrac{3}{16}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac{3}{8}" /> uses <InlineMath math="\tfrac{1}{2}" /> for G6PD deficiency, the chance **among sons only**, not among all children.
+- <InlineMath math="\tfrac{1}{16}" /> is the chance of a son with G6PD deficiency who **also** has thalassaemia major, <InlineMath math="\tfrac{1}{4}\times\tfrac{1}{4}" />.
+- <InlineMath math="\tfrac{1}{4}" /> is the chance of a son with G6PD deficiency and **ignores the thalassaemia gene** altogether.

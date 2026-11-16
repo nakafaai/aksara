@@ -1,0 +1,44 @@
+# Masa jatuh relatif kepada lantai yang memecut
+
+Pada <InlineMath math="t=1.0\text{ s}" /> lif masih memecut ke atas pada <InlineMath math="1.5\text{ m s}^{-2}" /> dan bergerak ke atas pada <InlineMath math="1.5\text{ m s}^{-1}" />. Bolt berkongsi halaju itu, jadi **relatif kepada lantai ia bermula pegun dan mendekat pada <InlineMath math="10+1.5=11.5\text{ m s}^{-2}" />**.
+
+<BlockMath math="t=\sqrt{\frac{2(2.5)}{11.5}}=0.66\text{ s}" />
+
+Bolt mendarat pada <InlineMath math="t=1.66\text{ s}" />, sebelum lif berhenti memecut pada <InlineMath math="t=2.0\text{ s}" />.
+
+# Kedudukan bolt dalam aci
+
+**Dalam aci, bolt bermula dengan <InlineMath math="1.5\text{ m s}^{-1}" /> ke atas dan hanya graviti bertindak padanya**.
+
+<BlockMath math="s=1.5(0.66)-\tfrac12(10)(0.66)^2=0.99-2.17=-1.18\text{ m}" />
+
+<MathVisual
+  title={<>Ketinggian bolt dan lantai dalam aci</>}
+  description={<>Ketinggian dalam aci melawan masa selepas bolt tertanggal. Lantai bermula pada <InlineMath math="0" /> dan naik semakin laju. Bolt bermula pada <InlineMath math="2.5\text{ m}" />, naik sebentar, kemudian jatuh. Kedua-duanya bertemu pada <InlineMath math="t=0.66\text{ s}" />, pada ketinggian <InlineMath math="1.32\text{ m}" />, iaitu <InlineMath math="1.18\text{ m}" /> di bawah titik mula bolt.</>}
+  labels={{
+    floor: <>lantai</>,
+    bolt: <>bolt</>,
+    hit: <><InlineMath math="t=0.66\text{ s}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.03, max: 0.75 }, y: { min: -0.2, max: 3.0 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "polyline", appearance: "secondary", vertices: [{ x: 0.0, y: 0.0 }, { x: 0.0549, y: 0.0847 }, { x: 0.1099, y: 0.1739 }, { x: 0.1648, y: 0.2677 }, { x: 0.2198, y: 0.3659 }, { x: 0.2747, y: 0.4687 }, { x: 0.3297, y: 0.5761 }, { x: 0.3846, y: 0.6879 }, { x: 0.4396, y: 0.8043 }, { x: 0.4945, y: 0.9253 }, { x: 0.5495, y: 1.0507 }, { x: 0.6045, y: 1.1807 }, { x: 0.6594, y: 1.3152 }] },
+      { id: "bolt", kind: "polyline", appearance: "primary", vertices: [{ x: 0.0, y: 2.5 }, { x: 0.0549, y: 2.5673 }, { x: 0.1099, y: 2.6045 }, { x: 0.1648, y: 2.6114 }, { x: 0.2198, y: 2.5881 }, { x: 0.2747, y: 2.5347 }, { x: 0.3297, y: 2.451 }, { x: 0.3846, y: 2.3372 }, { x: 0.4396, y: 2.1932 }, { x: 0.4945, y: 2.0189 }, { x: 0.5495, y: 1.8145 }, { x: 0.6045, y: 1.5799 }, { x: 0.6594, y: 1.3151 }] },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 0.6594, y: 1.315 } },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor", at: { x: 0.33, y: 0.58 }, placement: "below-right" },
+      { key: "bolt", objectId: "bolt", at: { x: 0.15, y: 2.6 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 0.6594, y: 1.315 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0.71\text{ s}" /> **menganggap lif bergerak dengan halaju malar, yang hanya berlaku selepas <InlineMath math="t=2.0\text{ s}" />**.
+- <InlineMath math="2.17\text{ m}" /> lupa bahawa bolt bermula dengan halaju lif ke atas.
+- <InlineMath math="0.77\text{ s}" /> menolak pecutan lif daripada <InlineMath math="g" />, bukan menambahnya.

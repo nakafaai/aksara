@@ -1,0 +1,25 @@
+# Pangkatkan bagian luas dengan pangkat pada aturannya, lalu balikkan untuk pertanyaan sebaliknya
+
+Dengan <InlineMath math="S=cA^{0{,}25}" />, konstantanya saling meniadakan saat dua luas dibandingkan, jadi **bagian spesies** yang bertahan adalah bagian luas dipangkatkan <InlineMath math="0{,}25" />. Untuk mencari luas bagi bagian spesies tertentu, pangkatkan bagian itu dengan <InlineMath math="4" />.
+
+<BlockMath math="\frac{S_{\text{baru}}}{S_{\text{awal}}}=\left(\frac{A_{\text{baru}}}{A_{\text{awal}}}\right)^{0{,}25}=0{,}1^{0{,}25}\approx0{,}56" />
+
+<BlockMath math="0{,}8=\left(\frac{A_{\text{sisa}}}{A_{\text{awal}}}\right)^{0{,}25}\ \Rightarrow\ \frac{A_{\text{sisa}}}{A_{\text{awal}}}=0{,}8^4\approx0{,}41" />
+
+<Chart
+  title={<>Bagian Spesies yang Bertahan untuk Tiap Bagian Hutan yang Tersisa</>}
+  categories={["10%", "25%", "41%", "60%", "100%"]}
+  series={[
+    { label: "Spesies bertahan", mark: "line", values: [56, 71, 80, 88, 100] },
+  ]}
+  valueLabel="Spesies bertahan (%)"
+  description={<>Menyisakan <InlineMath math="10\%" /> hutan mempertahankan sekitar <InlineMath math="56\%" /> spesiesnya, dan menyisakan <InlineMath math="41\%" /> mempertahankan <InlineMath math="80\%" />. Spesies berkurang jauh lebih lambat daripada luas.</>}
+/>
+
+Sekitar <InlineMath math="56\%" /> spesies bertahan di <InlineMath math="10\%" /> luas, dan <InlineMath math="41\%" /> luas akan mempertahankan <InlineMath math="80\%" />. Mula-mula spesies hilang jauh lebih lambat daripada habitat, tetapi kehilangannya makin cepat saat potongan terakhir habis.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="10\%" /> dan <InlineMath math="80\%" /> menganggap spesies berkurang **sebanding dengan luas**, mengabaikan pangkat <InlineMath math="0{,}25" />.
+- <InlineMath math="56\%" /> dan <InlineMath math="80\%" /> benar untuk bagian pertama tetapi menyisakan <InlineMath math="80\%" /> luas untuk <InlineMath math="80\%" /> spesies, **alih-alih memangkatkan <InlineMath math="0{,}8" /> dengan <InlineMath math="4" />**.
+- <InlineMath math="32\%" /> dan <InlineMath math="64\%" /> memakai **pangkat <InlineMath math="0{,}5" />, bukan <InlineMath math="0{,}25" />**, yaitu akar kuadrat dan kuadrat.

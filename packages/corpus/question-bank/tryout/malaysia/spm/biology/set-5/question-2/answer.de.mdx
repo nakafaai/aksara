@@ -1,0 +1,31 @@
+# Jede Bildlänge in eine echte Größe umrechnen und dann mit der Grenze vergleichen
+
+Der Maßstabsbalken rechnet Bildlängen in echte Längen um. Ob ein Lichtmikroskop ein Detail zeigt, hängt von seinem **Auflösungsvermögen** ab, dem kleinsten Abstand, den es noch trennt, nicht von seiner Vergrößerung.
+
+<BlockMath math="\text{Vergrößerung}=\frac{20\text{ mm}}{1\text{ µm}}=\frac{20\,000\text{ µm}}{1\text{ µm}}=20\,000" />
+
+<BlockMath math="\text{Mitochondrium}: \frac{36}{20}=1{,}8\text{ µm},\qquad \text{Cristae-Abstand}: \frac{0{,}6}{20}=0{,}03\text{ µm},\qquad \text{Ribosom}: \frac{0{,}5}{20}=0{,}025\text{ µm}" />
+
+<Chart
+  title={<>Echte Größe jeder Struktur gegen die Grenze des Lichtmikroskops</>}
+  bars="apart"
+  categories={["Länge des Mitochondriums", "Abstand der Cristae", "Ribosom", "Grenze des Lichtmikroskops"]}
+  series={[
+    { label: "Größe", mark: "bar", values: [1800, 30, 25, 200] },
+  ]}
+  valueLabel="Größe (nm)"
+  description={<>Das Mitochondrium ist <InlineMath math="1800" /> nm lang, weit über der Grenze von <InlineMath math="200" /> nm. Der Abstand der Cristae, <InlineMath math="30" /> nm, und ein Ribosom, <InlineMath math="25" /> nm, liegen beide weit darunter.</>}
+/>
+
+- I: <InlineMath math="36\text{ mm}" /> im Bild sind <InlineMath math="\tfrac{36}{20}=1{,}8\text{ µm}" />. Aussage I stimmt.
+- II: <InlineMath math="20\text{ mm}" /> sind <InlineMath math="20\,000\text{ µm}" />, die Vergrößerung ist also <InlineMath math="20\,000" />, nicht <InlineMath math="2000" />. Aussage II ist falsch.
+- III: Die Cristae liegen nur <InlineMath math="0{,}03\text{ µm}" /> auseinander, weit unter der Grenze von <InlineMath math="0{,}2\text{ µm}" />. Das Mitochondrium erscheint als Punkt, sein Inneres lässt sich nicht auflösen. Aussage III ist falsch.
+- IV: Ein Ribosom misst <InlineMath math="0{,}025\text{ µm}" />. Mehr Vergrößerung vergrößert nur die Unschärfe, denn Details unterhalb der Grenze gehen verloren. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und IV akzeptiert <InlineMath math="2000" />, weil <InlineMath math="20\text{ mm}" /> als **<InlineMath math="2000\text{ µm}" /> statt <InlineMath math="20" /> <InlineMath math="000\text{ µm}" />** gelesen werden.
+- Nur II und III verwirft beide richtigen Aussagen und **verwechselt die Größe des Mitochondriums mit dem Abstand seiner Cristae**.
+- Nur I, III und IV akzeptiert III, **obwohl die Cristae viel dichter als <InlineMath math="0{,}2\text{ µm}" /> liegen**.

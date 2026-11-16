@@ -1,0 +1,29 @@
+# Der Luftdruck auf dem Berg ist unbekannt
+
+Mit dem offenen Ende nach oben addiert der Faden seine <InlineMath math="10\text{ cmHg}" /> zum Luftdruck <InlineMath math="P" />, mit dem offenen Ende nach unten zieht er sie ab. **Boyle-Mariotte für beide Lagen liefert eine Gleichung für <InlineMath math="P" />**, die üblichen <InlineMath math="76\text{ cmHg}" /> werden also nicht gebraucht und sind hier falsch.
+
+<BlockMath math="(P+10)(15{,}0)=(P-10)(20{,}0)\ \Rightarrow\ 15P+150=20P-200\ \Rightarrow\ P=70\text{ cmHg}" />
+
+# Die Röhre waagerecht legen
+
+**Waagerecht trägt der Faden nichts bei, also steht das Gas unter <InlineMath math="70\text{ cmHg}" />**.
+
+<BlockMath math="L=\frac{80\times15{,}0}{70}=17{,}1\text{ cm}" />
+
+<Chart
+  title={<>Druck und Länge der eingeschlossenen Luft</>}
+  description={<>Balkendiagramm für die drei Lagen: offenes Ende oben, <InlineMath math="80\text{ cmHg}" /> und <InlineMath math="15{,}0\text{ cm}" />, then waagerecht, <InlineMath math="70\text{ cmHg}" /> und <InlineMath math="17{,}1\text{ cm}" />, then offenes Ende unten, <InlineMath math="60\text{ cmHg}" /> und <InlineMath math="20{,}0\text{ cm}" />. Jedes Produkt aus Druck und Länge ist <InlineMath math="1200" />.</>}
+  bars="apart"
+  categories={["Offenes Ende oben", "Waagerecht", "Offenes Ende unten"]}
+  series={[
+    { label: "Druck (cmHg)", mark: "bar", values: [80, 70, 60] },
+    { label: "Länge (cm)", mark: "bar", values: [15.0, 17.1, 20.0] },
+  ]}
+  valueLabel="Wert"
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="17{,}5\text{ cm}" /> **mittelt die beiden Längen, doch die Länge geht mit <InlineMath math="1/P" />, nicht linear mit der Wirkung des Fadens**.
+- <InlineMath math="76\text{ cmHg}" /> setzt den Luftdruck auf Meereshöhe an, was den beiden gemessenen Längen widerspricht.
+- <InlineMath math="80\text{ cmHg}" /> ist der Gasdruck bei offenem Ende oben, nicht der Luftdruck.

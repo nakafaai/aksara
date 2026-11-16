@@ -1,0 +1,26 @@
+# Count the paracetamol already taken, then check which limit is reached first
+
+The cold-and-flu syrup is also a paracetamol medicine, so its two doses count, <InlineMath math="240\text{ mg}" /> and two of the four doses. The daily limit of <InlineMath math="1080\text{ mg}" /> leaves room for <InlineMath math="840\text{ mg}" />. **But only two doses remain, each at most <InlineMath math="270\text{ mg}" />**, so the dose count stops the child at <InlineMath math="540\text{ mg}" /> more, well under the daily limit.
+
+<Chart
+  title={<>Paracetamol against the daily limit</>}
+  description={<>The child takes <InlineMath math="240\text{ mg}" /> in the cold syrup and at most <InlineMath math="540\text{ mg}" /> more, under the limit of <InlineMath math="1080\text{ mg}" />.</>}
+  bars="apart"
+  categories={["Cold syrup taken", "Two more doses", "Daily limit"]}
+  series={[
+    { label: "Paracetamol", mark: "bar", values: [240, 540, 1080] },
+  ]}
+  valueLabel="Paracetamol (mg)"
+/>
+
+<BlockMath math="\begin{aligned}
+\text{cold syrup}&=2\times7.5\times\tfrac{80}{5.0}=240\text{ mg},\quad\text{daily room}=18\times60-240=840\text{ mg}\\
+\text{two doses left}&=2\times18\times15=540\text{ mg}<840\text{ mg}\Rightarrow V=540\times\tfrac{5.0}{120}=22.5\text{ mL}\\
+n&=\tfrac{0.240+0.540}{151}=5.17\times10^{-3}\text{ mol}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="35.0\text{ mL}" /> fills the daily mass limit. **That would need more than four doses in all**, since one dose can hold at most <InlineMath math="270\text{ mg}" />.
+- <InlineMath math="45.0\text{ mL}" /> forgets that the cold-and-flu syrup already contains paracetamol.
+- <InlineMath math="3.58\times10^{-3}\text{ mol}" /> counts only the plain syrup and leaves out the <InlineMath math="240\text{ mg}" /> taken earlier.

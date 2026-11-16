@@ -1,0 +1,32 @@
+# Cari hambatan kabel lama
+
+**Pada <InlineMath math="1{,}0\text{ kV}" /> arusnya <InlineMath math="200\text{ kW}/1{,}0\text{ kV}=200\text{ A}" />, dan dayanya yang hilang <InlineMath math="0{,}16\times200=32\text{ kW}" />**.
+
+<BlockMath math="R=\frac{32\,000}{200^2}=0{,}80\,\Omega\ \Rightarrow\ R_{\text{baru}}=0{,}40\,\Omega" />
+
+# Ikuti daya melewati transformator dan kabel baru
+
+**Transformator hanya meneruskan <InlineMath math="90\%" />**, jadi kabel menerima <InlineMath math="180\text{ kW}" /> pada <InlineMath math="2{,}0\text{ kV}" />.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{180\,000}{2000}=90\text{ A}\\
+P_{\text{hilang}}&=90^2\times0{,}40=3{,}24\text{ kW}\\
+P_{\text{ujung}}&=180-3{,}24=177\text{ kW}
+\end{aligned}" />
+
+<Chart
+  title={<>Daya yang sampai di ujung</>}
+  description={<>Diagram batang: <InlineMath math="168\text{ kW}" /> sebelum perubahan, <InlineMath math="196\text{ kW}" /> jika transformatornya ideal, dan <InlineMath math="177\text{ kW}" /> dengan transformator nyata berefisiensi <InlineMath math="90\%" />.</>}
+  bars="apart"
+  categories={["Sebelum", "Transformator ideal", "Transformator nyata"]}
+  series={[
+    { label: "Daya sampai", mark: "bar", values: [168, 196, 177] },
+  ]}
+  valueLabel="Daya (kW)"
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="196\text{ kW}" /> **menganggap transformatornya ideal, sehingga <InlineMath math="100\text{ A}" /> masuk ke kabel**.
+- <InlineMath math="174\text{ kW}" /> tetap memakai hambatan kabel lama <InlineMath math="0{,}80\,\Omega" />.
+- <InlineMath math="180\text{ kW}" /> melupakan daya yang hilang di kabel baru.

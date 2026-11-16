@@ -1,0 +1,43 @@
+# Ikuti cahaya melewati lensa, cermin, dan lensa lagi
+
+Pada lintasan pertama lensa akan membentuk bayangan di <InlineMath math="v" /> dengan <InlineMath math="\dfrac1{20}=\dfrac1{30}+\dfrac1v" />, jadi <InlineMath math="v=60\text{ cm}" />. Titik itu berada <InlineMath math="20\text{ cm}" /> di balik cermin, jadi cahaya tidak pernah sampai ke sana. **Cermin melipat cahaya yang mengumpul itu kembali, dan cahaya bertemu <InlineMath math="20\text{ cm}" /> di depan cermin**, yaitu <InlineMath math="20\text{ cm}" /> dari lensa.
+
+<MathVisual
+  title={<>Posisi bayangan di sepanjang sumbu</>}
+  description={<>Lensa di <InlineMath math="0" />, benda di <InlineMath math="-30\text{ cm}" />, dan cermin di <InlineMath math="40\text{ cm}" />. Lensa saja akan membentuk bayangan di <InlineMath math="60\text{ cm}" />, melewati cermin. Cermin melipatnya kembali ke <InlineMath math="20\text{ cm}" />, tepat di titik fokus lensa.</>}
+  labels={{
+    obj: <>benda</>,
+    lens: <>lensa</>,
+    mirror: <>cermin</>,
+    first: <>bayangan seharusnya, <InlineMath math="60\text{ cm}" /></>,
+    fold: <>bayangan terlipat di <InlineMath math="F" />, <InlineMath math="20\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -35, max: 65 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -34, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "obj", kind: "vector", appearance: "primary", from: { x: -30, y: 0 }, to: { x: -30, y: 6 } },
+      { id: "lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -9 }, to: { x: 0, y: 9 } },
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 40, y: -9 }, to: { x: 40, y: 9 } },
+      { id: "first", kind: "point", appearance: "warning", at: { x: 60, y: 0 } },
+      { id: "fold", kind: "point", appearance: "answer", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "obj", objectId: "obj", at: { x: -30, y: 6 }, placement: "above" },
+      { key: "lens", objectId: "lens", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 40, y: 9 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "fold", objectId: "fold", at: { x: 20, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Titik itu adalah titik fokus lensa. Cahaya yang menyebar dari titik fokus keluar dari lensa cembung sejajar sumbu, jadi <InlineMath math="v\to\infty" /> dan tidak ada bayangan akhir yang terbentuk.
+
+# Kenapa pilihan lain salah
+
+- Bayangan nyata <InlineMath math="30\text{ cm}" /> di depan lensa memakai <InlineMath math="u=60\text{ cm}" /> saat kembali, yaitu jarak ke bayangan seharusnya, bukan <InlineMath math="20\text{ cm}" />. **Cermin memindahkan bayangan ke <InlineMath math="20\text{ cm}" /> dari lensa**.
+- Bayangan nyata <InlineMath math="20\text{ cm}" /> di belakang lensa adalah tempat cahaya pantul bertemu, sebelum melewati lensa lagi.
+- Bayangan nyata <InlineMath math="60\text{ cm}" /> di depan lensa hanya mencerminkan hasil lintasan pertama, tanpa memperhitungkan posisi cermin.

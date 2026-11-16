@@ -1,0 +1,29 @@
+# Die Möglichkeiten je Paar verdoppeln und dann die beiden Eltern multiplizieren
+
+Jedes Paar kann sich auf zwei Arten anordnen, unabhängig von den anderen, <InlineMath math="n" /> Paare ergeben also <InlineMath math="2^n" /> Gametensorten. Jede Gamete des einen Elternteils kann jede des anderen treffen, die **beiden Zahlen multiplizieren sich** also.
+
+<BlockMath math="2^4=16,\qquad 16\cdot16=256,\qquad 2^{23}=8\,388\,608" />
+
+<Chart
+  title={<>Gametensorten je Zahl der Chromosomenpaare</>}
+  bars="apart"
+  categories={["Ein Paar", "Zwei Paare", "Drei Paare", "Vier Paare"]}
+  series={[
+    { label: "Gametensorten", mark: "bar", values: [2, 4, 8, 16] },
+  ]}
+  valueLabel="Gametensorten"
+  description={<>Jedes weitere Paar verdoppelt die Gametensorten: <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="8" /> und <InlineMath math="16" /> für ein bis vier Paare.</>}
+/>
+
+- I: Vier Paare ergeben <InlineMath math="2^4=16" /> Gametensorten. Aussage I stimmt.
+- II: Jede der <InlineMath math="16" /> Eizellen kann jedes der <InlineMath math="16" /> Spermien treffen, es gibt also <InlineMath math="16\cdot16=256" /> Kombinationen, nicht <InlineMath math="16+16=32" />. Aussage II ist falsch.
+- III: <InlineMath math="2^{23}" /> sind etwa <InlineMath math="8{,}4" /> Millionen. Aussage III stimmt.
+- IV: Crossing-over tauscht Stücke zwischen homologen Chromosomen aus und schafft neue Allelkombinationen auf jedem Chromosom, die wahre Zahl der Gameten ist also weit größer. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III addiert in II die Gameten beider Eltern, **obwohl sich Kombinationen multiplizieren**, und verwirft IV.
+- Nur II und IV verwirft I und III, **die Verdopplung mit jedem Paar**.
+- I, II, III und IV akzeptiert <InlineMath math="32" />, **das addiert, wo multipliziert werden muss**.

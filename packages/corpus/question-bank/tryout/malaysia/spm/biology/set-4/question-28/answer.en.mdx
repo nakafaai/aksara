@@ -1,0 +1,31 @@
+# Work out the index, then ask what it measures beyond the number of species
+
+Both habitats hold four species, so counting species cannot tell them apart. Simpson's index also weighs **how evenly** the individuals are spread among the species.
+
+<Chart
+  title={<>Individuals of Each Species in Two Habitats</>}
+  bars="apart"
+  categories={["Species A", "Species B", "Species C", "Species D"]}
+  series={[
+    { label: "Habitat X", mark: "bar", values: [5, 5, 5, 5] },
+    { label: "Habitat Y", mark: "bar", values: [17, 1, 1, 1] },
+  ]}
+  valueLabel="Number of individuals"
+  description={<>Habitat X has <InlineMath math="5" /> individuals of each of the four species. Habitat Y has <InlineMath math="17" /> of species A and <InlineMath math="1" /> each of B, C and D.</>}
+/>
+
+<BlockMath math="N(N-1)=20\times19=380" />
+
+<BlockMath math="\text{X}: \sum n(n-1)=4\times(5\times4)=80,\qquad D=1-\frac{80}{380}\approx0.79" />
+
+<BlockMath math="\text{Y}: \sum n(n-1)=17\times16+0+0+0=272,\qquad D=1-\frac{272}{380}\approx0.28" />
+
+In habitat Y one species makes up <InlineMath math="17" /> of the <InlineMath math="20" /> animals, so two animals picked at random are very likely to be the same species. That is low diversity, even with four species present.
+
+So X is about <InlineMath math="0.79" /> and Y about <InlineMath math="0.28" />, and X is more diverse even though both have four species.
+
+# Why the other options are wrong
+
+- Equally diverse looks only at the **number of species** and ignores how evenly the animals are spread.
+- <InlineMath math="0.21" /> and <InlineMath math="0.72" /> stops at the fraction and **forgets to subtract it from one**, which reverses the conclusion.
+- Y more diverse reads one thriving species as variety, **but dominance by one species lowers diversity**.

@@ -1,0 +1,24 @@
+# Each circuit picks one row of the table
+
+**The lamp's resistance changes with current, so each circuit must be solved by finding the row that satisfies it**, not with a fixed resistance.
+
+<Chart
+  title={<>Resistance of the lamp at each current</>}
+  description={<>Bar chart of <InlineMath math="V/I" /> from the table: <InlineMath math="5.0\,\Omega" /> at <InlineMath math="0.10\text{ A}" />, <InlineMath math="7.5\,\Omega" /> at <InlineMath math="0.20\text{ A}" />, <InlineMath math="10\,\Omega" /> at <InlineMath math="0.30\text{ A}" /> and <InlineMath math="12.5\,\Omega" /> at <InlineMath math="0.40\text{ A}" />. The filament's resistance rises as it heats.</>}
+  bars="apart"
+  categories={["0.10 A", "0.20 A", "0.30 A", "0.40 A"]}
+  series={[
+    { label: "Resistance", mark: "bar", values: [5.0, 7.5, 10.0, 12.5] },
+  ]}
+  valueLabel="Resistance (Ω)"
+/>
+
+- **I**: <InlineMath math="5.0/0.40=12.5\,\Omega" />, correct.
+- **II**: two identical lamps share <InlineMath math="6.0\text{ V}" /> equally, <InlineMath math="3.0\text{ V}" /> each, which the table pairs with <InlineMath math="0.30\text{ A}" />. Correct.
+- **III**: each lamp carries <InlineMath math="I" /> and the resistor <InlineMath math="2I" />, so <InlineMath math="V+5.0(2I)=6.0" />. The row <InlineMath math="0.30\text{ A}" />, <InlineMath math="3.0\text{ V}" /> fits, giving <InlineMath math="0.60\text{ A}" /> from the supply. Correct.
+- **IV**: at <InlineMath math="0.40\text{ A}" /> the lamp needs <InlineMath math="5.0\text{ V}" /> and the resistor <InlineMath math="4.0\text{ V}" />, which is <InlineMath math="9.0\text{ V}" />, more than the supply. The row that fits <InlineMath math="V+10I=6.0" /> is <InlineMath math="0.30\text{ A}" />. Wrong.
+
+# Why the other options are wrong
+
+- I and III only **rejects II, but equal lamps in series must share the voltage equally**.
+- Options with IV take the current at which the lamp would reach <InlineMath math="12.5\,\Omega" />, without checking the voltages add up to <InlineMath math="6.0\text{ V}" />.

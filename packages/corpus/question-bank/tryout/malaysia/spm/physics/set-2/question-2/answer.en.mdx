@@ -1,0 +1,28 @@
+# Turn the height ratio into a speed ratio
+
+The gradient is a ratio of heights. Height goes with the square of the speed, so **each bounce keeps <InlineMath math="\sqrt{0.64}=0.8" /> of the speed**, and a flight up and down lasts <InlineMath math="2v/g" />, so each flight is <InlineMath math="0.8" /> times the one before.
+
+<BlockMath math="\begin{aligned}
+t_0&=\sqrt{\frac{2(2.00)}{10}}=0.632\text{ s},\quad v_0=g\,t_0=6.32\text{ m s}^{-1}\\
+\text{flight 1}&=\frac{2(0.8\,v_0)}{g}=1.6\,t_0=1.01\text{ s}\\
+\text{flight 2}&=0.8\times1.01=0.81\text{ s}
+\end{aligned}" />
+
+<Chart
+  title={<>Time of each part of the motion</>}
+  description={<>Bar chart: the first fall takes <InlineMath math="0.63\text{ s}" />, the flight after the first bounce <InlineMath math="1.01\text{ s}" /> and the flight after the second bounce <InlineMath math="0.81\text{ s}" />, a total of <InlineMath math="2.45\text{ s}" />.</>}
+  bars="apart"
+  categories={["First fall", "Flight 1", "Flight 2"]}
+  series={[
+    { label: "Time", mark: "bar", values: [0.63, 1.01, 0.81] },
+  ]}
+  valueLabel="Time (s)"
+/>
+
+The third strike ends the second flight: <InlineMath math="0.63+1.01+0.81=2.45\text{ s}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.96\text{ s}" /> **shrinks each flight time by <InlineMath math="0.64" />, as if time followed height**.
+- <InlineMath math="1.64\text{ s}" /> stops at the second strike.
+- <InlineMath math="1.54\text{ s}" /> counts each flight as one way only, rising but not falling back.

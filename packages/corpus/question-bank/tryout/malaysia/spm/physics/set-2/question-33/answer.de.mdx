@@ -1,0 +1,32 @@
+# Den Widerstand der alten Kabel bestimmen
+
+**Bei <InlineMath math="1{,}0\text{ kV}" /> fließen <InlineMath math="200\text{ kW}/1{,}0\text{ kV}=200\text{ A}" />, und der Verlust beträgt <InlineMath math="0{,}16\times200=32\text{ kW}" />**.
+
+<BlockMath math="R=\frac{32\,000}{200^2}=0{,}80\,\Omega\ \Rightarrow\ R_{\text{neu}}=0{,}40\,\Omega" />
+
+# Die Leistung durch Transformator und neue Kabel verfolgen
+
+**Der Transformator gibt nur <InlineMath math="90\%" /> weiter**, also erhalten die Kabel <InlineMath math="180\text{ kW}" /> bei <InlineMath math="2{,}0\text{ kV}" />.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{180\,000}{2000}=90\text{ A}\\
+P_{\text{Verlust}}&=90^2\times0{,}40=3{,}24\text{ kW}\\
+P_{\text{Ende}}&=180-3{,}24=177\text{ kW}
+\end{aligned}" />
+
+<Chart
+  title={<>Am Ende ankommende Leistung</>}
+  description={<>Balkendiagramm: <InlineMath math="168\text{ kW}" /> vor der Änderung, <InlineMath math="196\text{ kW}" /> mit einem idealen Transformator und <InlineMath math="177\text{ kW}" /> mit dem echten Transformator von <InlineMath math="90\%" /> Wirkungsgrad.</>}
+  bars="apart"
+  categories={["Vorher", "Idealer Transformator", "Echter Transformator"]}
+  series={[
+    { label: "Ankommende Leistung", mark: "bar", values: [168, 196, 177] },
+  ]}
+  valueLabel="Leistung (kW)"
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="196\text{ kW}" /> **behandelt den Transformator als ideal und schickt <InlineMath math="100\text{ A}" /> in die Kabel**.
+- <InlineMath math="174\text{ kW}" /> behält den alten Kabelwiderstand von <InlineMath math="0{,}80\,\Omega" />.
+- <InlineMath math="180\text{ kW}" /> vergisst den Verlust in den neuen Kabeln.

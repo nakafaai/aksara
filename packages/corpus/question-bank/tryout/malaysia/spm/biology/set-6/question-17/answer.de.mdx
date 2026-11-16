@@ -1,0 +1,32 @@
+# Jeden Anteil mit dem Herzzeitvolumen multiplizieren, auf das er sich bezieht
+
+Ein Anteil von <InlineMath math="5\text{ L}" /> und ein Anteil von <InlineMath math="25\text{ L}" /> beziehen sich auf verschiedene Gesamtmengen. Vor dem Vergleich von Ruhe und Belastung wird jeder in **Liter pro Minute** umgerechnet.
+
+<BlockMath math="\text{Muskel}: 0{,}20\cdot5=1\to0{,}84\cdot25=21,\qquad \text{Gehirn}: 0{,}15\cdot5=0{,}75\to0{,}03\cdot25=0{,}75" />
+
+<BlockMath math="\text{Darm}: 1{,}25\to0{,}75,\qquad \text{Nieren}: 0{,}20\cdot5=1\to0{,}02\cdot25=0{,}5" />
+
+<Chart
+  title={<>Durchblutung jedes Organs in Ruhe und bei harter Belastung</>}
+  bars="apart"
+  categories={["Skelettmuskel", "Darm", "Gehirn", "Nieren"]}
+  series={[
+    { label: "In Ruhe", mark: "bar", values: [1, 1.25, 0.75, 1] },
+    { label: "Harte Belastung", mark: "bar", values: [21, 0.75, 0.75, 0.5] },
+  ]}
+  valueLabel="Durchblutung (L/min)"
+  description={<>Die Muskeldurchblutung steigt von <InlineMath math="1" /> auf <InlineMath math="21" /> L/min. Der Darm fällt von <InlineMath math="1{,}25" /> auf <InlineMath math="0{,}75" />, die Nieren halbieren sich von <InlineMath math="1" /> auf <InlineMath math="0{,}5" />, und das Gehirn bleibt bei <InlineMath math="0{,}75" /> L/min.</>}
+/>
+
+- I: Der Anteil steigt etwa auf das Vierfache, die Durchblutung aber von <InlineMath math="1" /> auf <InlineMath math="21\text{ L}" /> pro Minute, etwa auf das <InlineMath math="21" />-Fache, weil auch das Herzzeitvolumen fünfmal so groß ist. Aussage I ist falsch.
+- II: <InlineMath math="15\,\%" /> von <InlineMath math="5" /> und <InlineMath math="3\,\%" /> von <InlineMath math="25" /> sind beide <InlineMath math="0{,}75\text{ L}" /> pro Minute, die Versorgung des Gehirns bleibt also geschützt. Aussage II stimmt.
+- III: Die Darmdurchblutung fällt von <InlineMath math="1{,}25" /> auf <InlineMath math="0{,}75\text{ L}" /> pro Minute, obwohl das Herz mehr pumpt, seine Arteriolen müssen sich also verengen und Blut zu den Muskeln umleiten. Aussage III stimmt.
+- IV: Die Nierendurchblutung fällt von <InlineMath math="1" /> auf <InlineMath math="0{,}5\text{ L}" /> pro Minute, auf die Hälfte. Aussage IV stimmt.
+
+Richtig sind also die Aussagen II, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III akzeptiert I, **vergleicht Anteile statt Liter**, und verwirft IV.
+- Nur I und IV verwirft II und III, **obwohl das Gehirn <InlineMath math="0{,}75\text{ L}" /> behält und der Darm Durchblutung verliert**.
+- Nur II und IV verwirft III, **die Arteriolenverengung, die die Darmdurchblutung senkt**.

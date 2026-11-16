@@ -1,0 +1,25 @@
+# Den Heterozygoten folgen, denn nur sie bringen neue Homozygote hervor
+
+Ein Homozygoter, der sich selbst bestäubt, bringt nur seinesgleichen hervor. Eine <InlineMath math="Aa" />-Pflanze ergibt <InlineMath math="\tfrac{1}{4}AA" />, <InlineMath math="\tfrac{1}{2}Aa" /> und <InlineMath math="\tfrac{1}{4}aa" />, **jede Generation halbiert also die Heterozygoten** und verteilt die verlorene Hälfte gleich auf beide Homozygoten.
+
+<BlockMath math="Aa\text{ nach vier Generationen}: \left(\tfrac{1}{2}\right)^4=\tfrac{1}{16},\qquad aa: \frac{1-\tfrac{1}{16}}{2}=\frac{15}{32}" />
+
+<Chart
+  title={<>Heterozygote Pflanzen in jeder Selbstungsgeneration</>}
+  bars="apart"
+  categories={["Beginn", "Erste", "Zweite", "Dritte", "Vierte"]}
+  series={[
+    { label: "Heterozygot", mark: "bar", values: [100, 50, 25, 12.5, 6.25] },
+    { label: "Rezessiver Phänotyp", mark: "bar", values: [0, 25, 37.5, 43.75, 46.9] },
+  ]}
+  valueLabel="Anteil der Pflanzen (%)"
+  description={<>Heterozygote halbieren sich in jeder Generation, von <InlineMath math="100\,\%" /> auf <InlineMath math="6{,}25\,\%" />. Pflanzen mit rezessivem Phänotyp steigen von <InlineMath math="0" /> auf etwa <InlineMath math="47\,\%" />.</>}
+/>
+
+Nach vier Generationen sind nur noch <InlineMath math="\tfrac{1}{16}" /> der Pflanzen heterozygot, und <InlineMath math="\tfrac{15}{32}" />, fast die Hälfte, sind <InlineMath math="aa" /> und zeigen den rezessiven Phänotyp. Deshalb liefert Selbstung rasch reinerbige Linien.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\tfrac{1}{16}" /> und <InlineMath math="\tfrac{1}{4}" /> hält den rezessiven Anteil bei **dem <InlineMath math="\frac{1}{4}" /> der ersten Generation**, obwohl jede Generation mehr <InlineMath math="aa" /> hinzufügt.
+- <InlineMath math="\tfrac{1}{8}" /> und <InlineMath math="\tfrac{7}{16}" /> ist das Ergebnis nach **drei Generationen**, nicht vier.
+- <InlineMath math="\tfrac{1}{2}" /> und <InlineMath math="\tfrac{1}{4}" /> behandelt jede Generation als **neue Kreuzung** <InlineMath math="Aa\times Aa" /> und übersieht, dass Homozygote reinerbig weiterzüchten.

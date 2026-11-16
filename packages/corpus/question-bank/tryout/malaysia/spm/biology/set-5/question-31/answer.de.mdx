@@ -1,0 +1,29 @@
+# Stress nur für Wochen addieren, die die Schwelle überschreiten
+
+Die Schwelle liegt bei <InlineMath math="30\,^\circ\text{C}" />, doch der Stress einer zählenden Woche wird ab <InlineMath math="29\,^\circ\text{C}" /> gemessen. Eine Woche mit <InlineMath math="29{,}5\,^\circ\text{C}" /> liegt **unter der Schwelle** und trägt gar nichts bei.
+
+<BlockMath math="1{,}0+1{,}5+2{,}0+2{,}5+2{,}0+1{,}0=10\text{ Grad-Erwärmungswochen}" />
+
+<Chart
+  title={<>Wöchentlich hinzukommender Hitzestress</>}
+  bars="apart"
+  categories={["Woche 1", "Woche 2", "Woche 3", "Woche 4", "Woche 5", "Woche 6", "Woche 7", "Woche 8"]}
+  series={[
+    { label: "Hinzukommender Hitzestress", mark: "bar", values: [0, 1.0, 1.5, 2.0, 2.5, 2.0, 1.0, 0] },
+  ]}
+  valueLabel="Grad-Erwärmungswochen"
+  description={<>Woche eins und acht tragen nichts bei. Die übrigen Wochen tragen <InlineMath math="1" />, <InlineMath math="1{,}5" />, <InlineMath math="2" />, <InlineMath math="2{,}5" />, <InlineMath math="2" /> und <InlineMath math="1" /> bei, zusammen <InlineMath math="10" />.</>}
+/>
+
+- I: Die Wochen <InlineMath math="2" /> bis <InlineMath math="7" /> tragen zusammen <InlineMath math="10" /> bei, mehr als die <InlineMath math="8" />, die meist zu verbreitetem Absterben führen. Aussage I stimmt.
+- II: <InlineMath math="29{,}5\,^\circ\text{C}" /> liegt unter <InlineMath math="30\,^\circ\text{C}" />, die Wochen <InlineMath math="1" /> und <InlineMath math="8" /> tragen also nichts bei. <InlineMath math="29{,}5-29=0{,}5" /> zu rechnen übergeht die Schwelle. Aussage II ist falsch.
+- III: Hitzegestresste Korallen stoßen ihre symbiotischen Algen ab, die ihnen Farbe und den Großteil ihrer Nahrung geben, und das weiße Skelett wird sichtbar. Aussage III stimmt.
+- IV: Eine gebleichte Koralle ist geschwächt, aber noch nicht tot. Kühlt das Wasser rechtzeitig ab, können die Algen ihr Gewebe wieder besiedeln. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III akzeptiert II, das **die Schwelle von <InlineMath math="30^\circ\text{C}" /> überspringt**, und verwirft IV.
+- Nur II und IV verwirft die Summe von <InlineMath math="10" /> und **den Verlust der Algen**.
+- I, II, III und IV addiert <InlineMath math="0{,}5" /> für die Wochen <InlineMath math="1" /> und <InlineMath math="8" />, **obwohl sie unter der Schwelle liegen**.

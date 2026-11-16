@@ -1,0 +1,26 @@
+# Leistung bei der niedrigeren Spannung
+
+**Die Nennwerte legen den Widerstand fest, nicht die Leistung**. Bei konstantem <InlineMath math="R" /> wächst die Leistung mit dem Quadrat der Spannung.
+
+<BlockMath math="P=2000\times\left(\frac{220}{240}\right)^2=1681\text{ W},\qquad P_{\text{Wasser}}=0{,}90\times1681=1513\text{ W}" />
+
+<Chart
+  title={<>Leistung des Heizelements</>}
+  description={<>Balkendiagramm: <InlineMath math="2000\text{ W}" /> bei den angegebenen <InlineMath math="240\text{ V}" />, <InlineMath math="1681\text{ W}" /> bei <InlineMath math="220\text{ V}" /> und davon <InlineMath math="1513\text{ W}" />, die das Wasser erreichen.</>}
+  bars="apart"
+  categories={["Nennwert", "Bei 220 V", "Ins Wasser"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [2000, 1681, 1513] },
+  ]}
+  valueLabel="Leistung (W)"
+/>
+
+# Zeit zum Erhitzen des Wassers
+
+<BlockMath math="t=\frac{1{,}5\times4200\times75}{1513}=312\text{ s}=5{,}2\text{ Minuten}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4{,}4\text{ Minuten}" /> **rechnet mit den angegebenen <InlineMath math="2{,}0\text{ kW}" /> bei der niedrigeren Spannung**.
+- <InlineMath math="4{,}8\text{ Minuten}" /> skaliert die Leistung mit der Spannung statt mit ihrem Quadrat.
+- <InlineMath math="4{,}2\text{ Minuten}" /> teilt die Leistung durch <InlineMath math="0{,}90" />, statt zu multiplizieren, als brächten die Verluste Wärme hinzu.

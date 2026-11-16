@@ -1,0 +1,30 @@
+# Read one cell
+
+**The <InlineMath math="V" /> intercept is the e.m.f., <InlineMath math="1.5\text{ V}" />, and the <InlineMath math="I" /> intercept is the short-circuit current, so <InlineMath math="r=1.5/3.0=0.50\,\Omega" />**.
+
+# A reversed cell subtracts its e.m.f. but still adds its resistance
+
+**The backwards cell opposes one of the others**, so the net e.m.f. is <InlineMath math="1.5+1.5-1.5=1.5\text{ V}" />. Its internal resistance is still in the path of the current, so all three resistances add.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{1.5}{2.0+3(0.50)}=0.43\text{ A}\\
+V&=0.43\times2.0=0.86\text{ V}
+\end{aligned}" />
+
+<Chart
+  title={<>The three cells in series</>}
+  description={<>Bar chart of e.m.f. and internal resistance: with all cells the right way, <InlineMath math="4.5\text{ V}" /> and <InlineMath math="1.5\,\Omega" />, and with one reversed, <InlineMath math="1.5\text{ V}" /> and still <InlineMath math="1.5\,\Omega" />.</>}
+  bars="apart"
+  categories={["All the right way", "One reversed"]}
+  series={[
+    { label: "E.m.f. (V)", mark: "bar", values: [4.5, 1.5] },
+    { label: "Internal resistance (Ω)", mark: "bar", values: [1.5, 1.5] },
+  ]}
+  valueLabel="Value"
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="1.29\text{ A}" /> **ignores the reversed cell and uses <InlineMath math="4.5\text{ V}" />**.
+- <InlineMath math="0.50\text{ A}" /> leaves out the internal resistance of the reversed cell.
+- <InlineMath math="0.75\text{ A}" /> ignores every internal resistance.

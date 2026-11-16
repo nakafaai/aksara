@@ -1,0 +1,25 @@
+# Ikuti heterozigotnya, karena hanya itu yang menghasilkan homozigot baru
+
+Homozigot yang menyerbuk sendiri hanya menghasilkan jenisnya sendiri. Tumbuhan <InlineMath math="Aa" /> yang menyerbuk sendiri memberi <InlineMath math="\tfrac{1}{4}AA" />, <InlineMath math="\tfrac{1}{2}Aa" />, dan <InlineMath math="\tfrac{1}{4}aa" />, jadi **tiap generasi memangkas heterozigot separuh** dan membagi separuh yang hilang sama rata ke kedua homozigot.
+
+<BlockMath math="Aa\text{ setelah empat generasi}: \left(\tfrac{1}{2}\right)^4=\tfrac{1}{16},\qquad aa: \frac{1-\tfrac{1}{16}}{2}=\frac{15}{32}" />
+
+<Chart
+  title={<>Tumbuhan Heterozigot di Tiap Generasi Penyerbukan Sendiri</>}
+  bars="apart"
+  categories={["Awal", "Pertama", "Kedua", "Ketiga", "Keempat"]}
+  series={[
+    { label: "Heterozigot", mark: "bar", values: [100, 50, 25, 12.5, 6.25] },
+    { label: "Fenotipe resesif", mark: "bar", values: [0, 25, 37.5, 43.75, 46.9] },
+  ]}
+  valueLabel="Bagian tumbuhan (%)"
+  description={<>Heterozigot menyusut separuh tiap generasi, dari <InlineMath math="100\%" /> ke <InlineMath math="6{,}25\%" />. Tumbuhan berfenotipe resesif naik dari <InlineMath math="0" /> ke sekitar <InlineMath math="47\%" />.</>}
+/>
+
+Setelah empat generasi hanya <InlineMath math="\tfrac{1}{16}" /> tumbuhan yang heterozigot, dan <InlineMath math="\tfrac{15}{32}" />, hampir separuh, adalah <InlineMath math="aa" /> dan menunjukkan fenotipe resesif. Itulah sebabnya penyerbukan sendiri cepat menghasilkan galur murni.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\tfrac{1}{16}" /> dan <InlineMath math="\tfrac{1}{4}" /> mempertahankan bagian resesif pada **<InlineMath math="\frac{1}{4}" /> generasi pertama**, padahal tiap generasi menambah lebih banyak <InlineMath math="aa" />.
+- <InlineMath math="\tfrac{1}{8}" /> dan <InlineMath math="\tfrac{7}{16}" /> adalah hasil setelah **tiga generasi**, bukan empat.
+- <InlineMath math="\tfrac{1}{2}" /> dan <InlineMath math="\tfrac{1}{4}" /> menganggap tiap generasi sebagai **persilangan baru** <InlineMath math="Aa\times Aa" />, mengabaikan bahwa homozigot menghasilkan keturunan murni.

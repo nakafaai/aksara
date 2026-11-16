@@ -1,0 +1,24 @@
+# Jede Reihenfolge zählen, in der eines von drei Kindern betroffen ist
+
+Jedes Kind ist mit <InlineMath math="\tfrac{1}{4}" /> betroffen und mit <InlineMath math="\tfrac{3}{4}" /> nicht betroffen. **Genau eines** betroffen kann in drei Reihenfolgen eintreten: das erste, das zweite oder das dritte Kind.
+
+<BlockMath math="P(\text{eine Reihenfolge})=\tfrac{1}{4}\cdot\tfrac{3}{4}\cdot\tfrac{3}{4}=\tfrac{9}{64},\qquad 3\cdot\tfrac{9}{64}=\tfrac{27}{64}\approx42\,\%" />
+
+<Chart
+  title={<>Zahl betroffener Kinder unter drei</>}
+  bars="apart"
+  categories={["Keines", "Genau eines", "Genau zwei", "Alle drei"]}
+  series={[
+    { label: "Wahrscheinlichkeit", mark: "bar", values: [42.2, 42.2, 14.1, 1.6] },
+  ]}
+  valueLabel="Wahrscheinlichkeit (%)"
+  description={<>Kein betroffenes Kind und genau ein betroffenes Kind haben je eine Wahrscheinlichkeit von etwa <InlineMath math="42\,\%" />. Genau zwei liegen bei etwa <InlineMath math="14\,\%" />, alle drei unter <InlineMath math="2\,\%" />.</>}
+/>
+
+Die vier Ergebnisse ergeben zusammen <InlineMath math="1" />: <InlineMath math="\tfrac{27}{64}+\tfrac{27}{64}+\tfrac{9}{64}+\tfrac{1}{64}=1" />. Die Wahrscheinlichkeit für genau ein betroffenes Kind ist <InlineMath math="\tfrac{27}{64}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\tfrac{9}{64}" /> ist die Wahrscheinlichkeit **einer bestimmten Reihenfolge**, etwa nur das erste Kind betroffen, und übersieht die beiden anderen.
+- <InlineMath math="\tfrac{37}{64}" /> ist die Wahrscheinlichkeit für **mindestens ein** betroffenes Kind, <InlineMath math="1-\left(\tfrac{3}{4}\right)^3" />, die auch zwei oder drei Betroffene mitzählt.
+- <InlineMath math="\tfrac{1}{4}" /> ist die Wahrscheinlichkeit für **ein einzelnes Kind** und sagt nichts darüber, wie viele von drei betroffen sind.

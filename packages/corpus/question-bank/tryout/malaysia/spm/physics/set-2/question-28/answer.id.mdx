@@ -1,0 +1,31 @@
+# Tentukan <InlineMath math="R" /> untuk nyala normal
+
+Tiap lampu menarik <InlineMath math="3{,}0/6{,}0=0{,}50\text{ A}" /> dan berhambatan <InlineMath math="6{,}0^2/3{,}0=12\,\Omega" />. Pasangan itu menarik <InlineMath math="1{,}0\text{ A}" /> pada <InlineMath math="6{,}0\text{ V}" />, dan **hambatan dalam ikut mengambil bagian dari sisa <InlineMath math="6{,}0\text{ V}" />**.
+
+<BlockMath math="12-6{,}0=1{,}0\times(R+1{,}0)\ \Rightarrow\ R=5{,}0\,\Omega" />
+
+# Tinggal satu lampu
+
+**Lampu yang tersisa kini sendirian seri dengan <InlineMath math="R" /> dan hambatan dalam**. Hambatan total naik, tetapi lampu itu kini menerima seluruh arus, bukan separuhnya.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{12}{12+5{,}0+1{,}0}=0{,}667\text{ A}\\
+P&=0{,}667^2\times12=5{,}3\text{ W}
+\end{aligned}" />
+
+<Chart
+  title={<>Daya lampu sebelum dan sesudah</>}
+  description={<>Diagram batang: tiap lampu mendisipasikan <InlineMath math="3{,}0\text{ W}" /> saat keduanya menyala, dan lampu yang tersisa mendisipasikan <InlineMath math="5{,}3\text{ W}" /> setelah lampu lain rusak, jauh di atas ratingnya.</>}
+  bars="apart"
+  categories={["Kedua lampu", "Satu lampu tersisa"]}
+  series={[
+    { label: "Daya satu lampu", mark: "bar", values: [3.0, 5.3] },
+  ]}
+  valueLabel="Daya (W)"
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="3{,}0\text{ W}" /> **menganggap lampu yang tersisa tidak berubah**.
+- <InlineMath math="6{,}0\,\Omega" /> melupakan hambatan dalam, dan <InlineMath math="4{,}8\text{ W}" />-nya membawa kekeliruan itu.
+- <InlineMath math="4{,}0\,\Omega" /> menghitung hambatan dalam dua kali.

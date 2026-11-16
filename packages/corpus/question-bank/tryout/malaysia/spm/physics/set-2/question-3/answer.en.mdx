@@ -1,0 +1,39 @@
+# Judge each statement on its own
+
+Statement I comes from the drag force. <InlineMath math="\eta=\dfrac{F}{6\pi rv}" /> has units <InlineMath math="\dfrac{\text{kg m s}^{-2}}{\text{m}\cdot\text{m s}^{-1}}=\text{kg m}^{-1}\text{ s}^{-1}" />, so I is true. Statement II follows the formula, since <InlineMath math="v_t\propto r^2" /> for the same materials, so doubling <InlineMath math="r" /> gives four times the speed.
+
+<MathVisual
+  title={<>Forces on the sphere at terminal speed</>}
+  description={<>The weight acts down, while the drag force and the upthrust from the oil both act up and together balance the weight.</>}
+  labels={{
+    w: <>weight</>,
+    f: <>drag <InlineMath math="F" /></>,
+    u: <>upthrust</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -2.4, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ball", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 0.5 },
+      { id: "w", kind: "vector", appearance: "warning", from: { x: 0, y: -0.5 }, to: { x: 0, y: -2.2 } },
+      { id: "f", kind: "vector", appearance: "primary", from: { x: 0.25, y: 0.43 }, to: { x: 0.25, y: 1.6 } },
+      { id: "u", kind: "vector", appearance: "secondary", from: { x: -0.25, y: 0.43 }, to: { x: -0.25, y: 0.9 } },
+    ],
+    labels: [
+      { key: "w", objectId: "w", at: { x: 0, y: -2.2 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: 0.25, y: 1.6 }, placement: "right" },
+      { key: "u", objectId: "u", at: { x: -0.25, y: 0.9 }, placement: "left" },
+    ],
+  }}
+/>
+
+**Statement III leaves out the upthrust**. At terminal speed the forces balance, so drag plus upthrust equals the weight, and the drag alone is smaller than the weight. That is why <InlineMath math="(\rho-\sigma)" /> appears in the formula. Statement IV is false because the seven SI base quantities are length, mass, time, current, temperature, amount of substance and luminous intensity.
+
+So only I and II are correct.
+
+# Why the other options are wrong
+
+- I and III only keeps III. **The upthrust also holds the sphere up**, so drag is less than the weight.
+- II and IV only drops the correct unit in I and accepts <InlineMath math="\eta" /> as a base quantity, but it is a derived quantity.
+- I, II and III only again accepts III, which ignores the upthrust.

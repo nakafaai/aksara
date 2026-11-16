@@ -1,0 +1,48 @@
+# Herausfinden, welcher Draht zuerst <InlineMath math="30\text{ N}" /> erreicht
+
+Bilanziere die waagerechten und senkrechten Komponenten für ein Bild der Gewichtskraft <InlineMath math="W" />.
+
+<BlockMath math="\begin{aligned}
+T_P\cos30^\circ&=T_Q\cos60^\circ\ \Rightarrow\ T_Q=\sqrt3\,T_P\\
+T_P\sin30^\circ+T_Q\sin60^\circ&=W\ \Rightarrow\ T_P=\frac{W}{2},\ T_Q=0{,}87W
+\end{aligned}" />
+
+<MathVisual
+  title={<>Kräfte auf das Bild</>}
+  description={<>Die Spannkraft im Draht P zeigt nach links oben unter <InlineMath math="30^\circ" /> zur Waagerechten, die im Draht Q nach rechts oben unter <InlineMath math="60^\circ" />, und das Gewicht nach unten. Die Zerlegung liefert <InlineMath math="T_P=W/2" /> und <InlineMath math="T_Q=0{,}87W" />, also erreicht Q zuerst <InlineMath math="30\text{ N}" />.</>}
+  labels={{
+    tp: <><InlineMath math="T_P=W/2" /></>,
+    tq: <><InlineMath math="T_Q=0{,}87W" /></>,
+    w: <><InlineMath math="W" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.0 }, y: { min: -1.25, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tp", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -0.866, y: 0.5 } },
+      { id: "tq", kind: "vector", appearance: "warning", from: { x: 0, y: 0 }, to: { x: 0.5, y: 0.866 } },
+      { id: "w", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: -1 } },
+      { id: "o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "tp", objectId: "tp", at: { x: -0.433, y: 0.25 }, placement: "above-left" },
+      { key: "tq", objectId: "tq", at: { x: 0.25, y: 0.433 }, placement: "right" },
+      { key: "w", objectId: "w", at: { x: 0, y: -0.6 }, placement: "right" },
+    ],
+  }}
+/>
+
+**Der steilere Draht trägt mehr**, also reißt Q zuerst: <InlineMath math="0{,}87W=30\text{ N}" /> ergibt <InlineMath math="W=34{,}6\text{ N}" />.
+
+# Dasselbe Bild symmetrisch aufhängen
+
+**Jeder Draht trägt jetzt mit seiner senkrechten Komponente die halbe Last**. Die Spannkraft sinkt, je steiler die Drähte sind, also ist der kleinste sichere Winkel der, bei dem die Spannkraft genau <InlineMath math="30\text{ N}" /> beträgt.
+
+<BlockMath math="2(30)\sin\theta=34{,}6\ \Rightarrow\ \sin\theta=0{,}577\ \Rightarrow\ \theta=35{,}3^\circ" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="54{,}7^\circ" /> **löst <InlineMath math="\cos\theta=0{,}577" /> und lässt die waagerechte Komponente die Last tragen**.
+- <InlineMath math="30{,}0^\circ" /> löst <InlineMath math="\tan\theta=0{,}577" />, und bei <InlineMath math="30^\circ" /> bräuchte jeder Draht <InlineMath math="34{,}6\text{ N}" /> und risse.
+- <InlineMath math="60{,}0\text{ N}" /> lässt Draht P zuerst <InlineMath math="30\text{ N}" /> erreichen, doch Q ist schon bei <InlineMath math="34{,}6\text{ N}" /> gerissen.
