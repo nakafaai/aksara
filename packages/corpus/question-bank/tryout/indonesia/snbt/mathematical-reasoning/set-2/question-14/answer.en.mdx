@@ -26,6 +26,17 @@ That pattern holds while both counters stay busy, which is until someone doesn't
 
 The smallest number is <InlineMath math="42" />, since <InlineMath math="12+5\cdot 6=42" /> and <InlineMath math="18-3\cdot 6=0" />.
 
+The chart below draws the waits of persons <InlineMath math="11" /> to <InlineMath math="44" />. The pattern repeats every five bars while dropping three minutes, and **the first bar to touch <InlineMath math="0" /> is person <InlineMath math="42" />**.
+
+<Chart
+  title={<>Waiting times of the people arriving after 08:00</>}
+  description={<>Persons <InlineMath math="11" /> to <InlineMath math="15" /> wait <InlineMath math="21, 18, 19, 18, 17" /> minutes, and every five numbers later the wait drops by <InlineMath math="3" /> minutes. Person <InlineMath math="41" /> still waits <InlineMath math="3" /> minutes, person <InlineMath math="42" /> waits <InlineMath math="0" /> minutes, person <InlineMath math="43" /> waits <InlineMath math="1" /> minute, and person <InlineMath math="44" /> waits <InlineMath math="0" /> minutes.</>}
+  bars="apart"
+  categories={Array.from({ length: 34 }, (_, i) => `${i + 11}`)}
+  series={[{ label: "Waiting time", mark: "bar", values: [21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12, 13, 12, 11, 12, 9, 10, 9, 8, 9, 6, 7, 6, 5, 6, 3, 4, 3, 2, 3, 0, 1, 0] }]}
+  valueLabel="Wait (minutes)"
+/>
+
 # A direct check
 
 Person <InlineMath math="42" /> arrives <InlineMath math="3\cdot(42-10)=96" /> minutes after 08:00, at 09:36. Counter B starts serving person <InlineMath math="39" /> at 09:30, so **counter B frees up exactly at 09:36**, just as person <InlineMath math="42" /> arrives. Person <InlineMath math="41" /> still waits <InlineMath math="21-3\cdot 6=3" /> minutes, so nobody before number <InlineMath math="42" /> is served straight away.

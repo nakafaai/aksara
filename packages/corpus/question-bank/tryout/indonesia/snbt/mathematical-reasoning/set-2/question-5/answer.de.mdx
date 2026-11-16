@@ -47,6 +47,20 @@ Die <InlineMath math="5\text{-Liter}" />-Dose ist pro Liter zwar günstiger, abe
 
 <BlockMath math="335{.}000+330{.}000+280{.}000=945{.}000" />
 
+Das Diagramm vergleicht die benötigte Farbe mit dem Inhalt der gekauften Dosen. **Jeder Kaufbalken ist gleich hoch oder etwas höher als der Bedarfsbalken**, und keine einzige Dose könnte wegfallen.
+
+<Chart
+  title={<>Grundfarbe, die Bu Rina braucht und kauft</>}
+  description={<>Bu Rina braucht <InlineMath math="8" /> Liter Weiß, <InlineMath math="4{,}8" /> Liter Gelb und <InlineMath math="3{,}2" /> Liter Blau. Die gekauften Dosen enthalten <InlineMath math="8" /> Liter Weiß aus einer großen und drei kleinen Dosen, <InlineMath math="6" /> Liter Gelb aus drei Dosen und <InlineMath math="4" /> Liter Blau aus vier Dosen.</>}
+  categories={["Weiß", "Gelb", "Blau"]}
+  bars="apart"
+  series={[
+    { label: "Benötigt (Liter)", mark: "bar", values: [(5 / 10) * 16, (3 / 10) * 16, (2 / 10) * 16] },
+    { label: "Gekauft (Liter)", mark: "bar", values: [5 + 3 * 1, 3 * 2, 4 * 1] },
+  ]}
+  valueLabel="Volumen (Liter)"
+/>
+
 # Kontrolle
 
 Die Dosen enthalten <InlineMath math="8\text{ Liter}" /> Weiß, <InlineMath math="6\text{ Liter}" /> Gelb und <InlineMath math="4\text{ Liter}" /> Blau. Jede Menge ist **mindestens so groß wie der Bedarf** von <InlineMath math="8" />, <InlineMath math="4{,}8" /> und <InlineMath math="3{,}2" /> Litern, und keine Dose kann wegfallen, ohne dass eine Farbe fehlt.

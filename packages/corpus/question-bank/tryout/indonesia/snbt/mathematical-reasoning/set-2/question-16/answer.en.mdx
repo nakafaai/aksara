@@ -25,6 +25,19 @@ During the break only counter A takes new people, every <InlineMath math="4" /> 
 
 Person <InlineMath math="17" /> arrives at 08:21 and is only served at 08:44, so they wait <InlineMath math="44-21=23" /> minutes.
 
+The chart below compares that day's waits with a usual day. **During the break the line climbs one minute per person** up to a peak of <InlineMath math="23" /> minutes at person <InlineMath math="17" />, then falls again once counter B is back.
+
+<Chart
+  title={<>Waiting times of persons <InlineMath math="11" /> to <InlineMath math="22" /></>}
+  description={<>On the day counter B takes a break, the waits are <InlineMath math="21, 18, 19, 20, 21, 22, 23, 21, 21, 21, 19, 20" /> minutes. On a usual day, they're <InlineMath math="21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12" /> minutes.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 11}`)}
+  series={[
+    { label: "Day counter B takes a break", mark: "line", values: [21, 18, 19, 20, 21, 22, 23, 21, 21, 21, 19, 20] },
+    { label: "Usual day", mark: "line", values: [21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12] },
+  ]}
+  valueLabel="Wait (minutes)"
+/>
+
 # After the break
 
 From 08:44 both counters stay busy again. Every <InlineMath math="12" /> minutes counter A starts <InlineMath math="3" /> services and counter B starts <InlineMath math="2" />, while only <InlineMath math="4" /> people arrive. So person <InlineMath math="n+5" /> starts <InlineMath math="12" /> minutes after person <InlineMath math="n" /> but arrives <InlineMath math="15" /> minutes later, which means **every five numbers the wait drops by three minutes**.

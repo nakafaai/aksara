@@ -22,6 +22,40 @@ Each planting strip is <InlineMath math="7\text{ m}" /> wide. One side is the fi
 
 The first row is exactly <InlineMath math="1\text{ m}" /> from the field edge, and the fifth row is <InlineMath math="1+4\cdot 1.2=5.8" /> metres from it. The channel edge is <InlineMath math="7\text{ m}" /> from the field edge, so the fifth row is <InlineMath math="1.2\text{ m}" /> from the channel, which is fine. A sixth row would be <InlineMath math="7.0" /> metres from the field edge, right at the channel edge, so it isn't allowed.
 
+The figure below shows where those rows sit on the field. **The fifth row in each strip is still <InlineMath math="1.2\text{ m}" /> from the channel**, but a sixth row would land right on the channel edge.
+
+<MathVisual
+  title={<>Where the seedling rows sit in both planting strips</>}
+  description={<>The <InlineMath math="24\text{ m}\times 15\text{ m}" /> field is split by a <InlineMath math="1\text{ m}" /> channel. Each planting strip has <InlineMath math="5" /> rows <InlineMath math="1.2\text{ m}" /> apart, starting <InlineMath math="1\text{ m}" /> from the field edge. Each row runs from <InlineMath math="1\text{ m}" /> to <InlineMath math="22.6\text{ m}" /> and holds <InlineMath math="28" /> seedlings.</>}
+  labels={{
+    row: <><InlineMath math="28" /> seedlings per row</>,
+    rows: <><InlineMath math="5" /> rows in each strip</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 27 }, y: { min: -2, max: 17 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "field", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 15 }, { x: 0, y: 15 }] },
+      { id: "channel", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 7 }, { x: 24, y: 7 }, { x: 24, y: 8 }, { x: 0, y: 8 }] },
+      { id: "low0", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 1 + 27 * 0.8, y: 1 } },
+      { id: "low1", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 1 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 1 } },
+      { id: "low2", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 2 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 2 } },
+      { id: "low3", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 3 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 3 } },
+      { id: "low4", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 4 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 4 } },
+      { id: "high0", kind: "segment", appearance: "primary", from: { x: 1, y: 14 }, to: { x: 1 + 27 * 0.8, y: 14 } },
+      { id: "high1", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 1 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 1 } },
+      { id: "high2", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 2 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 2 } },
+      { id: "high3", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 3 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 3 } },
+      { id: "high4", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 4 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 4 } },
+    ],
+    labels: [
+      { key: "row", objectId: "low0", at: { x: 1 + 13.5 * 0.8, y: 1 }, placement: "below" },
+      { key: "rows", objectId: "high0", at: { x: 1 + 13.5 * 0.8, y: 14 }, placement: "above" },
+    ],
+  }}
+/>
+
 # All the seedlings
 
 There are **two identical planting strips**, each with <InlineMath math="5" /> rows, and each row has <InlineMath math="28" /> seedlings.

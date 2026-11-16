@@ -11,6 +11,19 @@ k&>7
 
 Pada bulan ketujuh, bunga Rencana Menurun <InlineMath math="20{.}000\cdot 6=120{.}000" />, **tepat sama, belum lebih kecil**. Cicilannya baru lebih kecil mulai bulan kedelapan, jadi pernyataan ini **salah**.
 
+Grafik berikut menggambar cicilan kedua rencana bulan demi bulan. **Kedua garis bertemu tepat di bulan ke-<InlineMath math="7" />**, dan garis Rencana Menurun baru turun di bawahnya mulai bulan ke-<InlineMath math="8" />.
+
+<Chart
+  title={<>Cicilan bulanan kedua rencana untuk pinjaman <InlineMath math="12" /> juta rupiah</>}
+  description={<>Cicilan Rencana Tetap selalu <InlineMath math="1{.}120{.}000" /> rupiah. Cicilan Rencana Menurun pada bulan ke-<InlineMath math="k" /> adalah <InlineMath math="1{.}000{.}000+20{.}000\,(13-k)" /> rupiah, turun dari <InlineMath math="1{.}240{.}000" /> sampai <InlineMath math="1{.}020{.}000" /> rupiah. Keduanya sama pada bulan ke-<InlineMath math="7" />.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Cicilan Rencana Tetap", mark: "line", values: Array.from({ length: 12 }, () => 1000000 + 120000) },
+    { label: "Cicilan Rencana Menurun", mark: "line", values: Array.from({ length: 12 }, (_, i) => 1000000 + 20000 * (12 - i)) },
+  ]}
+  valueLabel="Cicilan (rupiah)"
+/>
+
 # Pernyataan kedua
 
 Dengan bunga <InlineMath math="1{,}8\%" />, bunga setiap bulan adalah <InlineMath math="1{,}8\%" /> dari sisa pokok. Jumlah sisa pokok dari bulan pertama sampai kedua belas adalah <InlineMath math="12+11+\cdots+1=78" /> juta, jadi **total bunga sama dengan persen bunga kali jumlah semua sisa pokok**.

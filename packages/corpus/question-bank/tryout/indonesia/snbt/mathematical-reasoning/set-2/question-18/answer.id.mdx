@@ -22,6 +22,40 @@ Setiap bagian tanam selebar <InlineMath math="7\text{ m}" />. Satu sisinya tepi 
 
 Baris pertama tepat <InlineMath math="1\text{ m}" /> dari tepi lahan, dan baris kelima <InlineMath math="1+4\cdot 1{,}2=5{,}8" /> meter dari tepi lahan. Tepi saluran ada <InlineMath math="7\text{ m}" /> dari tepi lahan, jadi baris kelima berjarak <InlineMath math="1{,}2\text{ m}" /> dari saluran, aman. Baris keenam akan berada <InlineMath math="7{,}0" /> meter dari tepi lahan, tepat di tepi saluran, jadi tidak boleh.
 
+Gambar berikut memperlihatkan letak baris itu di lahan. **Baris kelima di setiap bagian masih berjarak <InlineMath math="1{,}2\text{ m}" /> dari saluran**, tetapi baris keenam akan jatuh tepat di tepi saluran.
+
+<MathVisual
+  title={<>Letak baris bibit pada kedua bagian tanam</>}
+  description={<>Lahan <InlineMath math="24\text{ m}\times 15\text{ m}" /> dibelah saluran selebar <InlineMath math="1\text{ m}" />. Di setiap bagian tanam ada <InlineMath math="5" /> baris berjarak <InlineMath math="1{,}2\text{ m}" />, mulai <InlineMath math="1\text{ m}" /> dari tepi lahan. Setiap baris membentang dari <InlineMath math="1\text{ m}" /> sampai <InlineMath math="22{,}6\text{ m}" /> dan memuat <InlineMath math="28" /> bibit.</>}
+  labels={{
+    row: <><InlineMath math="28" /> bibit per baris</>,
+    rows: <><InlineMath math="5" /> baris di setiap bagian</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 27 }, y: { min: -2, max: 17 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "field", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 15 }, { x: 0, y: 15 }] },
+      { id: "channel", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 7 }, { x: 24, y: 7 }, { x: 24, y: 8 }, { x: 0, y: 8 }] },
+      { id: "low0", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 1 + 27 * 0.8, y: 1 } },
+      { id: "low1", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 1 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 1 } },
+      { id: "low2", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 2 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 2 } },
+      { id: "low3", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 3 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 3 } },
+      { id: "low4", kind: "segment", appearance: "primary", from: { x: 1, y: 1 + 1.2 * 4 }, to: { x: 1 + 27 * 0.8, y: 1 + 1.2 * 4 } },
+      { id: "high0", kind: "segment", appearance: "primary", from: { x: 1, y: 14 }, to: { x: 1 + 27 * 0.8, y: 14 } },
+      { id: "high1", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 1 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 1 } },
+      { id: "high2", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 2 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 2 } },
+      { id: "high3", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 3 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 3 } },
+      { id: "high4", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 1.2 * 4 }, to: { x: 1 + 27 * 0.8, y: 14 - 1.2 * 4 } },
+    ],
+    labels: [
+      { key: "row", objectId: "low0", at: { x: 1 + 13.5 * 0.8, y: 1 }, placement: "below" },
+      { key: "rows", objectId: "high0", at: { x: 1 + 13.5 * 0.8, y: 14 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Jumlah seluruh bibit
 
 Ada **dua bagian tanam yang sama**, masing-masing <InlineMath math="5" /> baris, dan setiap baris <InlineMath math="28" /> bibit.

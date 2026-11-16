@@ -22,6 +22,64 @@ A reserve of at least <InlineMath math="10\%" /> of <InlineMath math="280" /> is
 13\cdot 24&=312\ge 308
 \end{aligned}" />
 
+The figure below shows those turned rows. **The channel cuts every row into two short pieces**, and each piece holds only <InlineMath math="7" /> seedlings.
+
+<MathVisual
+  title={<>Seedling rows parallel to the <InlineMath math="15\text{ m}" /> side</>}
+  description={<>There are <InlineMath math="19" /> rows <InlineMath math="1.2\text{ m}" /> apart that cross the channel. Each row splits into two pieces, one in each planting strip, and each piece holds <InlineMath math="7" /> seedlings <InlineMath math="0.8\text{ m}" /> apart, for a total of <InlineMath math="266" /> seedlings.</>}
+  labels={{
+    piece: <><InlineMath math="7" /> seedlings</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 26 }, y: { min: -2, max: 17 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "field", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 15 }, { x: 0, y: 15 }] },
+      { id: "channel", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 7 }, { x: 24, y: 7 }, { x: 24, y: 8 }, { x: 0, y: 8 }] },
+      { id: "low0", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 1, y: 1 + 6 * 0.8 } },
+      { id: "low1", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 1, y: 1 }, to: { x: 1 + 1.2 * 1, y: 1 + 6 * 0.8 } },
+      { id: "low2", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 2, y: 1 }, to: { x: 1 + 1.2 * 2, y: 1 + 6 * 0.8 } },
+      { id: "low3", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 3, y: 1 }, to: { x: 1 + 1.2 * 3, y: 1 + 6 * 0.8 } },
+      { id: "low4", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 4, y: 1 }, to: { x: 1 + 1.2 * 4, y: 1 + 6 * 0.8 } },
+      { id: "low5", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 5, y: 1 }, to: { x: 1 + 1.2 * 5, y: 1 + 6 * 0.8 } },
+      { id: "low6", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 6, y: 1 }, to: { x: 1 + 1.2 * 6, y: 1 + 6 * 0.8 } },
+      { id: "low7", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 7, y: 1 }, to: { x: 1 + 1.2 * 7, y: 1 + 6 * 0.8 } },
+      { id: "low8", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 8, y: 1 }, to: { x: 1 + 1.2 * 8, y: 1 + 6 * 0.8 } },
+      { id: "low9", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 9, y: 1 }, to: { x: 1 + 1.2 * 9, y: 1 + 6 * 0.8 } },
+      { id: "low10", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 10, y: 1 }, to: { x: 1 + 1.2 * 10, y: 1 + 6 * 0.8 } },
+      { id: "low11", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 11, y: 1 }, to: { x: 1 + 1.2 * 11, y: 1 + 6 * 0.8 } },
+      { id: "low12", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 12, y: 1 }, to: { x: 1 + 1.2 * 12, y: 1 + 6 * 0.8 } },
+      { id: "low13", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 13, y: 1 }, to: { x: 1 + 1.2 * 13, y: 1 + 6 * 0.8 } },
+      { id: "low14", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 14, y: 1 }, to: { x: 1 + 1.2 * 14, y: 1 + 6 * 0.8 } },
+      { id: "low15", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 15, y: 1 }, to: { x: 1 + 1.2 * 15, y: 1 + 6 * 0.8 } },
+      { id: "low16", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 16, y: 1 }, to: { x: 1 + 1.2 * 16, y: 1 + 6 * 0.8 } },
+      { id: "low17", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 17, y: 1 }, to: { x: 1 + 1.2 * 17, y: 1 + 6 * 0.8 } },
+      { id: "low18", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 18, y: 1 }, to: { x: 1 + 1.2 * 18, y: 1 + 6 * 0.8 } },
+      { id: "high0", kind: "segment", appearance: "primary", from: { x: 1, y: 14 - 6 * 0.8 }, to: { x: 1, y: 14 } },
+      { id: "high1", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 1, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 1, y: 14 } },
+      { id: "high2", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 2, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 2, y: 14 } },
+      { id: "high3", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 3, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 3, y: 14 } },
+      { id: "high4", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 4, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 4, y: 14 } },
+      { id: "high5", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 5, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 5, y: 14 } },
+      { id: "high6", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 6, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 6, y: 14 } },
+      { id: "high7", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 7, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 7, y: 14 } },
+      { id: "high8", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 8, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 8, y: 14 } },
+      { id: "high9", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 9, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 9, y: 14 } },
+      { id: "high10", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 10, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 10, y: 14 } },
+      { id: "high11", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 11, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 11, y: 14 } },
+      { id: "high12", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 12, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 12, y: 14 } },
+      { id: "high13", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 13, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 13, y: 14 } },
+      { id: "high14", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 14, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 14, y: 14 } },
+      { id: "high15", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 15, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 15, y: 14 } },
+      { id: "high16", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 16, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 16, y: 14 } },
+      { id: "high17", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 17, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 17, y: 14 } },
+      { id: "high18", kind: "segment", appearance: "primary", from: { x: 1 + 1.2 * 18, y: 14 - 6 * 0.8 }, to: { x: 1 + 1.2 * 18, y: 14 } },
+    ],
+    labels: [{ key: "piece", objectId: "low0", at: { x: 1, y: 1 + 3 * 0.8 }, placement: "left" }],
+  }}
+/>
+
 Twelve trays aren't enough, and thirteen are. This statement is **true**.
 
 # The third statement

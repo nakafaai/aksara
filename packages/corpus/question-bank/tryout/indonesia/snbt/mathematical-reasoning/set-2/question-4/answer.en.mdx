@@ -33,6 +33,20 @@ Now make sure the schedule really works, including the <InlineMath math="10" /> 
 
 From 09:20 to 10:40 there are <InlineMath math="16" /> refills, so the energy climbs from <InlineMath math="4" /> to <InlineMath math="20" />. From 10:45 to 12:00 there are <InlineMath math="16" /> refills and then the gift, so <InlineMath math="0+16+15=31" />. From 12:05 to 12:45 there are <InlineMath math="9" /> refills, so <InlineMath math="11+9=20" />, just enough for the sixth mission. Before 12:45 the energy after the fifth mission is always below <InlineMath math="20" />, so the sixth mission can't start any earlier.
 
+The chart below draws that table. **The before-mission bar never drops below <InlineMath math="20" />**, and at 12:45 it's exactly <InlineMath math="20" />, so the sixth mission can't start any earlier.
+
+<Chart
+  title={<>Rio's energy before and after each boss mission</>}
+  description={<>The boss missions start at 09:00, 09:10, 09:20, 10:40, 12:00, and 12:45. The energy before each mission is <InlineMath math="60, 42, 24, 20, 31, 20" />, and the energy after each mission is <InlineMath math="40, 22, 4, 0, 11, 0" />.</>}
+  bars="apart"
+  categories={["09.00", "09.10", "09.20", "10.40", "12.00", "12.45"]}
+  series={[
+    { label: "Energy before the mission", mark: "bar", values: [60, 42, 24, 4 + 16, 0 + 16 + 15, 11 + 9] },
+    { label: "Energy after the mission", mark: "bar", values: [60 - 20, 42 - 20, 24 - 20, 20 - 20, 31 - 20, 20 - 20] },
+  ]}
+  valueLabel="Energy"
+/>
+
 # The wrong options
 
 Each other option comes from **one counting step that slips**.

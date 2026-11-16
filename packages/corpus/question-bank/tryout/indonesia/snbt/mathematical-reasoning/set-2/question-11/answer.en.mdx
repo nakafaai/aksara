@@ -11,6 +11,19 @@ k&>7
 
 In month seven Rencana Menurun's interest is <InlineMath math="20{,}000\cdot 6=120{,}000" />, **exactly equal, not yet smaller**. Its instalment only becomes smaller from month eight, so this statement is **false**.
 
+The chart below draws both plans' instalments month by month. **The two lines meet exactly at month <InlineMath math="7" />**, and the Rencana Menurun line only drops below from month <InlineMath math="8" />.
+
+<Chart
+  title={<>Monthly instalments of both plans for a loan of <InlineMath math="12" /> million rupiah</>}
+  description={<>The Rencana Tetap instalment is always <InlineMath math="1{,}120{,}000" /> rupiah. The Rencana Menurun instalment in month <InlineMath math="k" /> is <InlineMath math="1{,}000{,}000+20{,}000\,(13-k)" /> rupiah, falling from <InlineMath math="1{,}240{,}000" /> to <InlineMath math="1{,}020{,}000" /> rupiah. They're equal in month <InlineMath math="7" />.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Rencana Tetap instalment", mark: "line", values: Array.from({ length: 12 }, () => 1000000 + 120000) },
+    { label: "Rencana Menurun instalment", mark: "line", values: Array.from({ length: 12 }, (_, i) => 1000000 + 20000 * (12 - i)) },
+  ]}
+  valueLabel="Instalment (rupiah)"
+/>
+
 # The second statement
 
 At <InlineMath math="1.8\%" />, each month's interest is <InlineMath math="1.8\%" /> of the remaining principal. The remaining principal from month one to month twelve adds up to <InlineMath math="12+11+\cdots+1=78" /> million, so **the total interest is the rate times the sum of all remaining principals**.

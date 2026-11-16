@@ -26,6 +26,17 @@ Pola itu berlaku selama kedua loket terus sibuk, yaitu sampai ada orang yang tid
 
 Nomor terkecil adalah <InlineMath math="42" />, karena <InlineMath math="12+5\cdot 6=42" /> dan <InlineMath math="18-3\cdot 6=0" />.
 
+Grafik berikut menggambar waktu tunggu orang nomor <InlineMath math="11" /> sampai <InlineMath math="44" />. Polanya berulang setiap lima batang sambil turun tiga menit, dan **batang pertama yang menyentuh <InlineMath math="0" /> adalah orang nomor <InlineMath math="42" />**.
+
+<Chart
+  title={<>Waktu tunggu orang yang datang sesudah pukul 08.00</>}
+  description={<>Waktu tunggu orang nomor <InlineMath math="11" /> sampai <InlineMath math="15" /> adalah <InlineMath math="21, 18, 19, 18, 17" /> menit, dan setiap lima nomor berikutnya waktu tunggunya turun <InlineMath math="3" /> menit. Orang nomor <InlineMath math="41" /> masih menunggu <InlineMath math="3" /> menit, orang nomor <InlineMath math="42" /> menunggu <InlineMath math="0" /> menit, orang nomor <InlineMath math="43" /> menunggu <InlineMath math="1" /> menit, dan orang nomor <InlineMath math="44" /> menunggu <InlineMath math="0" /> menit.</>}
+  bars="apart"
+  categories={Array.from({ length: 34 }, (_, i) => `${i + 11}`)}
+  series={[{ label: "Waktu tunggu", mark: "bar", values: [21, 18, 19, 18, 17, 18, 15, 16, 15, 14, 15, 12, 13, 12, 11, 12, 9, 10, 9, 8, 9, 6, 7, 6, 5, 6, 3, 4, 3, 2, 3, 0, 1, 0] }]}
+  valueLabel="Waktu tunggu (menit)"
+/>
+
 # Pemeriksaan langsung
 
 Orang nomor <InlineMath math="42" /> datang <InlineMath math="3\cdot(42-10)=96" /> menit setelah 08.00, yaitu pukul 09.36. Loket B memulai pelayanan pukul 09.30 untuk orang nomor <InlineMath math="39" />, jadi **Loket B kosong tepat pukul 09.36**, saat orang nomor <InlineMath math="42" /> datang. Orang nomor <InlineMath math="41" /> sebelumnya masih menunggu <InlineMath math="21-3\cdot 6=3" /> menit, jadi tidak ada orang sebelum nomor <InlineMath math="42" /> yang langsung dilayani.

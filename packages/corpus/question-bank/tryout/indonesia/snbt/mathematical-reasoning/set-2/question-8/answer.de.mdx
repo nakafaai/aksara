@@ -32,6 +32,20 @@ Für <InlineMath math="4{,}5\text{ Liter}" /> Gelb brauchst du drei <InlineMath 
 
 <BlockMath math="(13-12{,}5)+(6-4{,}5)+(3-3)=0{,}5+1{,}5+0=2" />
 
+Das Diagramm vergleicht die benötigte Farbe mit dem Inhalt der gekauften Dosen. **Der Abstand zwischen den Balken ist der Rest**: ein halber Liter Weiß, anderthalb Liter Gelb und kein Blau.
+
+<Chart
+  title={<>Grundfarbe, die Bu Wati braucht, und der Inhalt ihrer Dosen</>}
+  description={<>Bu Wati braucht <InlineMath math="12{,}5" /> Liter Weiß, <InlineMath math="4{,}5" /> Liter Gelb und <InlineMath math="3" /> Liter Blau. Ihre Dosen enthalten <InlineMath math="13" /> Liter Weiß, <InlineMath math="6" /> Liter Gelb und <InlineMath math="3" /> Liter Blau.</>}
+  categories={["Weiß", "Gelb", "Blau"]}
+  bars="apart"
+  series={[
+    { label: "Benötigt (Liter)", mark: "bar", values: [(5 / 10) * 15 + 5, (3 / 10) * 15, (2 / 10) * 15] },
+    { label: "In den Dosen (Liter)", mark: "bar", values: [2 * 5 + 3 * 1, 3 * 2, 3 * 1] },
+  ]}
+  valueLabel="Volumen (Liter)"
+/>
+
 # Kontrolle
 
 Anders gerechnet: Alle Dosen fassen <InlineMath math="13+6+3=22" /> Liter, gemischt werden genau <InlineMath math="20" /> Liter. **Die Differenz bleibt in den Dosen**, also <InlineMath math="22-20=2" /> Liter, wie vorhin.

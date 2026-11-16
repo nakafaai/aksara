@@ -20,6 +20,61 @@ Jarak dua tiang berdampingan paling jauh <InlineMath math="3\text{ m}" />, jadi 
 
 Potongan <InlineMath math="10{,}5\text{ m}" /> tidak cukup dengan <InlineMath math="3" /> jarak, karena setiap jarak akan menjadi <InlineMath math="3{,}5\text{ m}" />. Dengan <InlineMath math="4" /> jarak, setiap jarak <InlineMath math="10{,}5:4=2{,}625\text{ m}" />, dan itu boleh.
 
+Gambar berikut menaruh semua tiang itu pada pagar. Sisi bawah dan kedua sisi pendek terbagi rata setiap <InlineMath math="3\text{ m}" />, sedangkan **setiap potongan <InlineMath math="10{,}5\text{ m}" /> di samping gerbang memerlukan <InlineMath math="4" /> celah**, sehingga tiangnya lebih rapat.
+
+<MathVisual
+  title={<>Letak <InlineMath math="27" /> tiang pada pagar lahan</>}
+  description={<>Sisi bawah <InlineMath math="24\text{ m}" /> memiliki <InlineMath math="9" /> tiang berjarak <InlineMath math="3\text{ m}" />. Setiap sisi <InlineMath math="15\text{ m}" /> memiliki tiang setiap <InlineMath math="3\text{ m}" />. Sisi atas terbagi menjadi dua potongan <InlineMath math="10{,}5\text{ m}" /> dengan tiang setiap <InlineMath math="2{,}625\text{ m}" />, dipisahkan gerbang <InlineMath math="3\text{ m}" /> yang diapit dua tiang.</>}
+  labels={{
+    long: <InlineMath math="24\text{ m}" />,
+    short: <InlineMath math="15\text{ m}" />,
+    piece: <InlineMath math="10{,}5\text{ m}" />,
+    gate: <InlineMath math="3\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 27 }, y: { min: -2, max: 17 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "fence", kind: "polyline", appearance: "reference", vertices: [{ x: 10.5, y: 15 }, { x: 0, y: 15 }, { x: 0, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 15 }, { x: 13.5, y: 15 }] },
+      { id: "gate", kind: "segment", appearance: "warning", from: { x: 10.5, y: 15 }, to: { x: 13.5, y: 15 } },
+      { id: "bottom0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "bottom1", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "bottom2", kind: "point", appearance: "answer", at: { x: 6, y: 0 } },
+      { id: "bottom3", kind: "point", appearance: "answer", at: { x: 9, y: 0 } },
+      { id: "bottom4", kind: "point", appearance: "answer", at: { x: 12, y: 0 } },
+      { id: "bottom5", kind: "point", appearance: "answer", at: { x: 15, y: 0 } },
+      { id: "bottom6", kind: "point", appearance: "answer", at: { x: 18, y: 0 } },
+      { id: "bottom7", kind: "point", appearance: "answer", at: { x: 21, y: 0 } },
+      { id: "bottom8", kind: "point", appearance: "answer", at: { x: 24, y: 0 } },
+      { id: "left0", kind: "point", appearance: "answer", at: { x: 0, y: 3 } },
+      { id: "left1", kind: "point", appearance: "answer", at: { x: 0, y: 6 } },
+      { id: "left2", kind: "point", appearance: "answer", at: { x: 0, y: 9 } },
+      { id: "left3", kind: "point", appearance: "answer", at: { x: 0, y: 12 } },
+      { id: "left4", kind: "point", appearance: "answer", at: { x: 0, y: 15 } },
+      { id: "right0", kind: "point", appearance: "answer", at: { x: 24, y: 3 } },
+      { id: "right1", kind: "point", appearance: "answer", at: { x: 24, y: 6 } },
+      { id: "right2", kind: "point", appearance: "answer", at: { x: 24, y: 9 } },
+      { id: "right3", kind: "point", appearance: "answer", at: { x: 24, y: 12 } },
+      { id: "right4", kind: "point", appearance: "answer", at: { x: 24, y: 15 } },
+      { id: "topleft0", kind: "point", appearance: "answer", at: { x: 10.5 / 4, y: 15 } },
+      { id: "topleft1", kind: "point", appearance: "answer", at: { x: (10.5 / 4) * 2, y: 15 } },
+      { id: "topleft2", kind: "point", appearance: "answer", at: { x: (10.5 / 4) * 3, y: 15 } },
+      { id: "topleft3", kind: "point", appearance: "answer", at: { x: (10.5 / 4) * 4, y: 15 } },
+      { id: "topright0", kind: "point", appearance: "answer", at: { x: 13.5, y: 15 } },
+      { id: "topright1", kind: "point", appearance: "answer", at: { x: 13.5 + 10.5 / 4, y: 15 } },
+      { id: "topright2", kind: "point", appearance: "answer", at: { x: 13.5 + (10.5 / 4) * 2, y: 15 } },
+      { id: "topright3", kind: "point", appearance: "answer", at: { x: 13.5 + (10.5 / 4) * 3, y: 15 } },
+    ],
+    labels: [
+      { key: "long", objectId: "fence", at: { x: 12, y: 0 }, placement: "below" },
+      { key: "short", objectId: "fence", at: { x: 0, y: 7.5 }, placement: "left" },
+      { key: "piece", objectId: "fence", at: { x: 5.25, y: 15 }, placement: "above" },
+      { key: "gate", objectId: "gate", at: { x: 12, y: 15 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Dari jarak ke tiang
 
 Pagar keliling lahan tertutup, jadi setiap jarak berakhir di satu tiang dan setiap tiang memulai satu jarak. Karena itu **banyak tiang sama dengan banyak jarak**, dan bukaan gerbang dihitung sebagai satu jarak di antara dua tiang tepi gerbang.

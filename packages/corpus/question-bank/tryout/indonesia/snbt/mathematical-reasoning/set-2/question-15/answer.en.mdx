@@ -29,6 +29,20 @@ Every <InlineMath math="12" /> minutes, the next five people start in the same p
 \text{person } 30&:\ \text{counter A, starts } 68,\ \text{ends } 68+4=72
 \end{aligned}" />
 
+The chart below draws those ten waits with their mean. **The mean line sits just below <InlineMath math="10" />**, at exactly <InlineMath math="9.6" /> minutes.
+
+<Chart
+  title={<>Waiting times of persons <InlineMath math="1" /> to <InlineMath math="10" /></>}
+  description={<>The waits are <InlineMath math="0, 0, 4, 6, 8, 12, 12, 16, 18, 20" /> minutes, adding up to <InlineMath math="96" /> minutes. The flat line marks their mean of <InlineMath math="9.6" /> minutes.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Waiting time", mark: "bar", values: [0, 0, 4, 6, 8, 12, 12, 16, 18, 20] },
+    { label: "Mean", mark: "line", values: Array.from({ length: 10 }, () => 96 / 10) },
+  ]}
+  valueLabel="Wait (minutes)"
+/>
+
 Both **finish at the same minute**, 09:12. Person <InlineMath math="30" /> doesn't finish earlier, so this statement is **false**.
 
 # The fourth statement

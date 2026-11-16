@@ -24,6 +24,20 @@ Bei Rencana Menurun sinken die Zinsen jeden Monat, weil die Restschuld kleiner w
 
 Das größte Darlehen ist <InlineMath math="9{.}600{.}000" />, ausgezahlt werden <InlineMath math="9{.}600{.}000-100{.}000=9{.}500{.}000" />.
 
+Das Diagramm zeigt die Rate jedes Monats für das größte Darlehen in beiden Plänen. **Rencana Menurun kommt nur im ersten Monat nah an die Grenze**, danach fällt die Rate deutlich, während Rencana Tetap das ganze Jahr flach bleibt.
+
+<Chart
+  title={<>Monatsraten beim größten Darlehen, das die Bedingung erfüllt</>}
+  description={<>Bei einem Darlehen von <InlineMath math="10{.}200{.}000" /> Rupiah beträgt die Rate der Rencana Tetap immer <InlineMath math="952{.}000" /> Rupiah. Bei einem Darlehen von <InlineMath math="9{.}600{.}000" /> Rupiah fällt die Rate der Rencana Menurun von <InlineMath math="992{.}000" /> Rupiah im ersten Monat auf <InlineMath math="816{.}000" /> Rupiah im Monat <InlineMath math="12" />. Die waagerechte Linie markiert die Grenze von <InlineMath math="1{.}000{.}000" /> Rupiah.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Tetap, Darlehen 10,2 Millionen", mark: "line", values: Array.from({ length: 12 }, () => 10200000 / 12 + 0.01 * 10200000) },
+    { label: "Menurun, Darlehen 9,6 Millionen", mark: "line", values: Array.from({ length: 12 }, (_, i) => 9600000 / 12 + 0.02 * (9600000 - (9600000 / 12) * i)) },
+    { label: "Grenze 1 Million", mark: "line", values: Array.from({ length: 12 }, () => 1000000) },
+  ]}
+  valueLabel="Rate (Rupiah)"
+/>
+
 # Die beiden Pläne vergleichen
 
 Rencana Tetap zahlt <InlineMath math="9{.}996{.}000" /> Rupiah aus, Rencana Menurun <InlineMath math="9{.}500{.}000" /> Rupiah. **Rencana Tetap zahlt mehr aus**, obwohl die Gebühr höher ist, weil die erste Rate bei Rencana Menurun so viel schwerer ist.

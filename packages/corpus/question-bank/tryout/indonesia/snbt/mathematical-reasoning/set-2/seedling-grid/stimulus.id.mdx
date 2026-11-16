@@ -4,3 +4,30 @@ Pak Darto menyiapkan lahan berbentuk persegi panjang berukuran <InlineMath math=
 - Bibit ditanam dalam baris-baris lurus yang sejajar sisi <InlineMath math="24\text{ m}" />. Dalam satu baris, jarak dua bibit yang berdampingan tepat <InlineMath math="0{,}8\text{ m}" />. Dalam satu bagian tanam, jarak dua baris yang berdampingan tepat <InlineMath math="1{,}2\text{ m}" />.
 - Setiap bibit harus berjarak paling sedikit <InlineMath math="1\text{ m}" /> dari tepi lahan dan paling sedikit <InlineMath math="0{,}5\text{ m}" /> dari tepi saluran.
 - Lahan dipagari di sepanjang tepinya. Di setiap pojok lahan harus ada tiang, dan jarak dua tiang yang berdampingan paling jauh <InlineMath math="3\text{ m}" />. Di tengah salah satu sisi <InlineMath math="24\text{ m}" /> ada gerbang selebar <InlineMath math="3\text{ m}" />. Bukaan gerbang tidak berpagar dan tidak bertiang, tetapi di kedua tepi gerbang harus ada tiang.
+
+<MathVisual
+  title={<>Denah lahan bibit cabai Pak Darto</>}
+  description={<>Lahan berbentuk persegi panjang <InlineMath math="24\text{ m}\times 15\text{ m}" />. Saluran air selebar <InlineMath math="1\text{ m}" /> membelah lahan di tengah, sejajar sisi <InlineMath math="24\text{ m}" />, sehingga terbentuk dua bagian tanam selebar <InlineMath math="7\text{ m}" />. Gerbang selebar <InlineMath math="3\text{ m}" /> berada di tengah salah satu sisi <InlineMath math="24\text{ m}" />.</>}
+  labels={{
+    long: <InlineMath math="24\text{ m}" />,
+    short: <InlineMath math="15\text{ m}" />,
+    channel: <InlineMath math="1\text{ m}" />,
+    gate: <InlineMath math="3\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 27 }, y: { min: -2, max: 17 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "field", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 15 }, { x: 0, y: 15 }] },
+      { id: "channel", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 7 }, { x: 24, y: 7 }, { x: 24, y: 8 }, { x: 0, y: 8 }] },
+      { id: "gate", kind: "segment", appearance: "warning", from: { x: 10.5, y: 15 }, to: { x: 13.5, y: 15 } },
+    ],
+    labels: [
+      { key: "long", objectId: "field", at: { x: 12, y: 0 }, placement: "below" },
+      { key: "short", objectId: "field", at: { x: 24, y: 11.5 }, placement: "right" },
+      { key: "channel", objectId: "channel", at: { x: 24, y: 7.5 }, placement: "right" },
+      { key: "gate", objectId: "gate", at: { x: 12, y: 15 }, placement: "above" },
+    ],
+  }}
+/>

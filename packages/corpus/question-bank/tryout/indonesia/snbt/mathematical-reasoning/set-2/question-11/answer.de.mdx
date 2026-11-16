@@ -11,6 +11,19 @@ k&>7
 
 Im siebten Monat betragen die Zinsen bei Rencana Menurun <InlineMath math="20{.}000\cdot 6=120{.}000" />, **genau gleich, noch nicht kleiner**. Die Rate wird erst ab dem achten Monat kleiner, die Aussage ist also **falsch**.
 
+Das Diagramm zeigt die Raten beider Pläne Monat für Monat. **Die beiden Linien treffen sich genau im Monat <InlineMath math="7" />**, und die Linie der Rencana Menurun fällt erst ab Monat <InlineMath math="8" /> darunter.
+
+<Chart
+  title={<>Monatsraten beider Pläne für ein Darlehen von <InlineMath math="12" /> Millionen Rupiah</>}
+  description={<>Die Rate der Rencana Tetap beträgt immer <InlineMath math="1{.}120{.}000" /> Rupiah. Die Rate der Rencana Menurun im Monat <InlineMath math="k" /> beträgt <InlineMath math="1{.}000{.}000+20{.}000\,(13-k)" /> Rupiah und fällt von <InlineMath math="1{.}240{.}000" /> auf <InlineMath math="1{.}020{.}000" /> Rupiah. Im Monat <InlineMath math="7" /> sind beide gleich.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Rate Rencana Tetap", mark: "line", values: Array.from({ length: 12 }, () => 1000000 + 120000) },
+    { label: "Rate Rencana Menurun", mark: "line", values: Array.from({ length: 12 }, (_, i) => 1000000 + 20000 * (12 - i)) },
+  ]}
+  valueLabel="Rate (Rupiah)"
+/>
+
 # Die zweite Aussage
 
 Mit <InlineMath math="1{,}8\%" /> betragen die Zinsen jeden Monat <InlineMath math="1{,}8\%" /> der Restschuld. Die Restschulden von Monat eins bis Monat zwölf ergeben zusammen <InlineMath math="12+11+\cdots+1=78" /> Millionen, also **sind die Gesamtzinsen der Zinssatz mal die Summe aller Restschulden**.
