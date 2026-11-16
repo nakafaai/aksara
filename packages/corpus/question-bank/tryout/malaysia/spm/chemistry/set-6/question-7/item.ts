@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$72.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$90.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$80.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$720\\text{ cm}^3$$" },
+        { correct: true, label: "$$7.20\\text{ cm}^3$$" },
+        { correct: false, label: "$$9.00\\text{ cm}^3$$" },
+        { correct: false, label: "$$72.0\\text{ cm}^3$$" },
+        { correct: false, label: "$$8.00\\text{ cm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$72.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$90.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$80.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$720\\text{ cm}^3$$" },
+        { correct: true, label: "$$7.20\\text{ cm}^3$$" },
+        { correct: false, label: "$$9.00\\text{ cm}^3$$" },
+        { correct: false, label: "$$72.0\\text{ cm}^3$$" },
+        { correct: false, label: "$$8.00\\text{ cm}^3$$" },
       ],
     },
   },
