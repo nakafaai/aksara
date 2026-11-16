@@ -9,26 +9,16 @@ Dalam rangkaian seri, **jumlah elektron yang melewati kedua sel sama**. Hitung m
 V_{\text{O}_2}&=\frac{0{,}020}{4}\times24{.}000=120\text{ cm}^3
 \end{aligned}" />
 
-Lihat kedua sel dari soal saat arus mengalir. Perak berpindah dari anode ke katode di sel pertama, sedangkan tembaga dan oksigen terbentuk di sel kedua, semuanya untuk <InlineMath math="0{,}020\text{ mol}" /> elektron yang sama.
+Diagram ini mengikuti satu arus yang melewati kedua sel secara bergantian. <InlineMath math="0{,}020\text{ mol}" /> elektron yang sama bekerja di setiap elektrode.
 
-<ElectrolysisLab
-  title={<>Dua sel elektrolisis yang dirangkai seri</>}
-  description={<>Larutan perak nitrat dengan elektrode perak, lalu larutan tembaga(II) sulfat dengan elektrode karbon, pada satu baterai.</>}
-  cells={[{ electrode: "silver", electrolyte: "silver-nitrate" }, { electrode: "carbon", electrolyte: "copper-sulfate" }]}
-  electrons={0.02}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>Di anode</>,
-    atCathode: <>Di katode</>,
-    battery: "Baterai",
-    cathode: "Katode",
-    cells: [<>Larutan perak nitrat, elektrode perak</>, <>Larutan tembaga(II) sulfat, elektrode karbon</>],
-    electrons: <>Elektron yang mengalir</>,
-    ph: <>pH elektrolit</>,
-    trends: { falls: <>turun</>, rises: <>naik</>, steady: <>tetap</> },
-    view: "Dua sel elektrolisis yang dirangkai seri",
-  }}
+<Mermaid
+  title={<>Satu arus melewati dua sel</>}
+  description={<>Katode perak bertambah <InlineMath math="2{,}16\text{ g}" />, yang membutuhkan <InlineMath math="0{,}020\text{ mol}" /> elektron. Di sel kedua, elektron itu mengendapkan <InlineMath math="0{,}010\text{ mol}" /> tembaga, yaitu <InlineMath math="0{,}64\text{ g}" />, dan melepaskan <InlineMath math="0{,}0050\text{ mol}" /> oksigen, yaitu <InlineMath math="120\text{ cm}^3" />.</>}
+  chart={`
+    flowchart LR
+      A["Sel pertama, katode<br/>Ag⁺ + e⁻ → Ag<br/>2,16 g = 0,020 mol"] -->|"0,020 mol e⁻ yang sama"| B["Sel kedua, katode<br/>Cu²⁺ + 2e⁻ → Cu<br/>0,010 mol = 0,64 g"]
+      A -->|"0,020 mol e⁻ yang sama"| C["Sel kedua, anode<br/>4OH⁻ → O₂ + 2H₂O + 4e⁻<br/>0,0050 mol = 120 cm³"]
+  `}
 />
 
 Jadi, katode sel kedua bertambah <InlineMath math="0{,}64\text{ g}" /> dan terbentuk <InlineMath math="120\text{ cm}^3" /> oksigen.
