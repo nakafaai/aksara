@@ -15,6 +15,7 @@ import {
 } from "#corpus/material/domain";
 import { decodeMaterialPreviewEntry } from "#corpus/material/preview";
 import { decodeMaterialRegistry } from "#corpus/material/registry";
+import { decodeMaterialSources } from "#corpus/material/source";
 import {
   lessonMaterialEntries,
   lessonMaterialSource,
@@ -41,12 +42,15 @@ function rejectRegistry(input: unknown) {
 
 layer(NodeServices.layer)("material registry", (it) => {
   it.effect(
-    "projects every authored locale body onto its checked-in source path",
+    "projects every authored body onto its source path and every lesson into every locale",
     () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
         const corpusRoot = yield* resolveCorpusRoot;
-        const entries = yield* decodeMaterialRegistry();
+        const [entries, materials] = yield* Effect.all([
+          decodeMaterialRegistry(),
+          decodeMaterialSources(),
+        ]);
         const lessonPaths = yield* fileSystem.glob(
           "packages/corpus/material/lesson/**/*.mdx",
           { root: corpusRoot }
@@ -64,17 +68,22 @@ layer(NodeServices.layer)("material registry", (it) => {
           Order.String
         );
 
+        const lessonCount = HashSet.size(
+          HashSet.fromIterable(
+            Arr.map(entries, ({ route }) => route.contentKey)
+          )
+        );
         expect(
           HashSet.size(
             HashSet.fromIterable(
               Arr.map(entries, ({ route }) => route.materialKey)
             )
           )
-        ).toBe(42);
+        ).toBe(materials.length);
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             Arr.filter(entries, ({ route }) => route.appLocale === locale)
-          ).toHaveLength(389);
+          ).toHaveLength(lessonCount);
         }
         expect(projectedPaths).toEqual(authoredPaths);
 

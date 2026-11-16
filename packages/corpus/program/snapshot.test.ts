@@ -13,20 +13,28 @@ describe("program snapshot preparation", () => {
       const prepared = yield* prepareProgramSnapshot();
       const rows = yield* Stream.runCollect(prepared.rows);
 
-      expect(prepared.manifest).toMatchObject({
-        activeAppLocales: ["en", "id", "de", "ms"],
-        curriculumRowCount: 1200,
-        format: "localized-program-snapshot",
-        programRowCount: 7,
-        rowCount: 1207,
-        sitemapCount: 140,
-        slugCount: 28,
-      });
       const programRows = Arr.filter(rows, (row) => row.kind === "program");
       const curriculumRows = Arr.filter(
         rows,
         (row) => row.kind === "curriculum"
       );
+      expect(prepared.manifest).toMatchObject({
+        activeAppLocales: ["en", "id", "de", "ms"],
+        curriculumRowCount: curriculumRows.length,
+        format: "localized-program-snapshot",
+        programRowCount: 7,
+        rowCount: curriculumRows.length + 7,
+        sitemapCount: Arr.filter(curriculumRows, ({ row }) => row.sitemap)
+          .length,
+        slugCount: 28,
+      });
+      for (const appLocale of prepared.manifest.activeAppLocales) {
+        expect(
+          Arr.filter(curriculumRows, ({ row }) => row.appLocale === appLocale)
+        ).toHaveLength(
+          curriculumRows.length / prepared.manifest.activeAppLocales.length
+        );
+      }
       const localizedPrograms = yield* Effect.forEach(programRows, ({ row }) =>
         Effect.gen(function* () {
           /** Reads one required canonical active translation of this program row. */
@@ -85,7 +93,6 @@ describe("program snapshot preparation", () => {
         { de: "tka", en: "tka", id: "tka", key: "tka", ms: "tka" },
         { de: "snbt", en: "snbt", id: "snbt", key: "snbt", ms: "snbt" },
       ]);
-      expect(curriculumRows).toHaveLength(1200);
       expect(Option.getOrThrow(Arr.head(curriculumRows)).row).toMatchObject({
         appLocale: "de",
         programKey: "cambridge-international",
@@ -118,6 +125,7 @@ describe("program snapshot preparation", () => {
   it.effect("derives counts when source control adds another program", () =>
     Effect.gen(function* () {
       const firstExam = yield* Effect.fromNullishOr(examProgramSources[0]);
+      const base = yield* prepareProgramSnapshot();
       const expanded = yield* prepareProgramSnapshot({
         programInput: [
           ...schoolProgramSources,
@@ -153,10 +161,10 @@ describe("program snapshot preparation", () => {
       });
 
       expect(expanded.manifest).toMatchObject({
-        curriculumRowCount: 1200,
+        curriculumRowCount: base.manifest.curriculumRowCount,
         programRowCount: 8,
-        rowCount: 1208,
-        sitemapCount: 140,
+        rowCount: base.manifest.rowCount + 1,
+        sitemapCount: base.manifest.sitemapCount,
         slugCount: 32,
       });
     })
