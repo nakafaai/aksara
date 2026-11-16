@@ -12,19 +12,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "0.42%, from the burette alone, because a pipette has no uncertainty",
+          label: "$$(0.0942 \\pm 0.0006)\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
-          label:
-            "0.66%, adding the 0.24% of the pipette to the 0.42% of the titre",
+          label: "$$(0.0471 \\pm 0.0003)\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
-          label: "0.18%, the difference between the two uncertainties",
+          label: "$$(0.0471 \\pm 0.0002)\\text{ mol dm}^{-3}$$",
         },
-        { correct: false, label: "0.21%, from one burette reading" },
+        {
+          correct: false,
+          label: "$$(0.0471 \\pm 0.0001)\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
     ms: {
@@ -32,15 +33,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "0.42%, daripada buret sahaja, kerana pipet tiada ketakpastian",
+          label: "$$(0.0942 \\pm 0.0006)\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
-          label: "0.66%, menjumlahkan 0.24% pipet dengan 0.42% titer",
+          label: "$$(0.0471 \\pm 0.0003)\\text{ mol dm}^{-3}$$",
         },
-        { correct: false, label: "0.18%, iaitu beza antara dua ketakpastian" },
-        { correct: false, label: "0.21%, daripada satu bacaan buret" },
+        {
+          correct: false,
+          label: "$$(0.0471 \\pm 0.0002)\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$(0.0471 \\pm 0.0001)\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
   },

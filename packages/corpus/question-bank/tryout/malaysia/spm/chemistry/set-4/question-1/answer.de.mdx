@@ -1,22 +1,22 @@
-# Prozentuale Unsicherheiten addieren sich beim Multiplizieren und Dividieren
+# Der Wert aus dem Stoffmengenverhältnis, die Unsicherheit aus beiden Volumina
 
-Anteil der Pipette: <InlineMath math="\tfrac{0{,}06}{25{,}00} \times 100\% = 0{,}24\%" />. Der Titer ist <InlineMath math="24{,}80 - 1{,}25 = 23{,}55\text{ cm}^3" /> aus zwei Ablesungen, also auf <InlineMath math="2 \times 0{,}05 = 0{,}10\text{ cm}^3" /> unsicher: <InlineMath math="\tfrac{0{,}10}{23{,}55} \times 100\% = 0{,}42\%" />.
+Titer: <InlineMath math="24{,}80 - 1{,}25 = 23{,}55\text{ cm}^3" />. Säure: <InlineMath math="0{,}100 \times 0{,}02355 = 2{,}355 \times 10^{-3}" /> mol. **Jede Bariumhydroxid-Einheit setzt zwei Hydroxidionen frei**, braucht also zwei Säuremoleküle: Die Lauge enthielt <InlineMath math="1{,}178 \times 10^{-3}" /> mol in <InlineMath math="0{,}02500\text{ dm}^3" />, also <InlineMath math="0{,}0471\text{ mol dm}^{-3}" />.
 
 <Chart
   title={<>Prozentuale Unsicherheit jeder Messung</>}
   bars="apart"
   categories={["Pipette", "Titer", "Konzentration"]}
   series={[
-    { label: "Prozentuale Unsicherheit (%)", mark: "bar", values: [0.24, 0.42, 0.66] },
+    { label: "Unsicherheit (%)", mark: "bar", values: [0.24, 0.42, 0.66] },
   ]}
-  valueLabel="Prozentuale Unsicherheit (%)"
-  description={<>Pipette <InlineMath math="0{,}24" />%, Titer <InlineMath math="0{,}42" />% und die daraus berechnete Konzentration <InlineMath math="0{,}66" />%.</>}
+  valueLabel="Unsicherheit (%)"
+  description={<>Pipette <InlineMath math="0{,}24\%" />, Titer <InlineMath math="0{,}42\%" /> und Konzentration <InlineMath math="0{,}66\%" />.</>}
 />
 
-Die Konzentration entsteht durch Teilen des einen Volumens durch das andere, und bei Produkten und Quotienten **addieren sich die prozentualen Unsicherheiten**: <InlineMath math="0{,}24\% + 0{,}42\% = 0{,}66\%" />.
+Die Konzentration nutzt beide Volumina, also addieren sich ihre prozentualen Unsicherheiten. Pipette: <InlineMath math="\tfrac{0{,}06}{25{,}00} \times 100\% = 0{,}24\%" />. Titer: zwei Ablesungen, <InlineMath math="\pm 0{,}10\text{ cm}^3" />, also <InlineMath math="\tfrac{0{,}10}{23{,}55} \times 100\% = 0{,}42\%" />. Zusammen <InlineMath math="0{,}66\%" />, und <InlineMath math="0{,}66\% \times 0{,}0471 = 0{,}0003\text{ mol dm}^{-3}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- Jedes Gerät hat eine Unsicherheit, und die <InlineMath math="0{,}24" />% der Pipette gehen ebenfalls ins Ergebnis ein.
-- Unsicherheiten heben sich nie durch Subtraktion auf, die Summe kann also nicht **kleiner** sein als ein Teil.
-- <InlineMath math="0{,}21" />% zählt eine Bürettenablesung, der Titer braucht aber zwei.
+- <InlineMath math="0{,}0942" /> nimmt ein Säuremolekül je Bariumhydroxid an, doch jede Einheit **enthält zwei Hydroxidionen**.
+- <InlineMath math="\pm 0{,}0002" /> nutzt nur die <InlineMath math="0{,}42\%" /> des Titers und lässt die Pipette weg.
+- <InlineMath math="\pm 0{,}0001" /> zieht die Prozente voneinander ab, <InlineMath math="0{,}42 - 0{,}24 = 0{,}18\%" />, doch Unsicherheiten addieren sich immer.

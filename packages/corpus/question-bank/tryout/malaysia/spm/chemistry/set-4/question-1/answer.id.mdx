@@ -1,22 +1,22 @@
-# Persen ketidakpastian bertambah saat nilai dikali atau dibagi
+# Nilainya dari perbandingan mol, ketidakpastiannya dari kedua volume
 
-Bagian pipet: <InlineMath math="\tfrac{0{,}06}{25{,}00} \times 100\% = 0{,}24\%" />. Titernya <InlineMath math="24{,}80 - 1{,}25 = 23{,}55\text{ cm}^3" />, dibangun dari dua pembacaan, jadi ketidakpastiannya <InlineMath math="2 \times 0{,}05 = 0{,}10\text{ cm}^3" />: <InlineMath math="\tfrac{0{,}10}{23{,}55} \times 100\% = 0{,}42\%" />.
+Titran: <InlineMath math="24{,}80 - 1{,}25 = 23{,}55\text{ cm}^3" />. Asam: <InlineMath math="0{,}100 \times 0{,}02355 = 2{,}355 \times 10^{-3}" /> mol. **Tiap satuan barium hidroksida melepas dua ion hidroksida**, jadi butuh dua molekul asam: basanya berisi <InlineMath math="1{,}178 \times 10^{-3}" /> mol dalam <InlineMath math="0{,}02500\text{ dm}^3" />, yaitu <InlineMath math="0{,}0471\text{ mol dm}^{-3}" />.
 
 <Chart
-  title={<>Persen Ketidakpastian Tiap Pengukuran</>}
+  title={<>Persentase Ketidakpastian Tiap Pengukuran</>}
   bars="apart"
-  categories={["Pipet", "Titer", "Konsentrasi"]}
+  categories={["Pipet", "Titran", "Konsentrasi"]}
   series={[
-    { label: "Persen ketidakpastian (%)", mark: "bar", values: [0.24, 0.42, 0.66] },
+    { label: "Ketidakpastian (%)", mark: "bar", values: [0.24, 0.42, 0.66] },
   ]}
-  valueLabel="Persen ketidakpastian (%)"
-  description={<>Pipet <InlineMath math="0{,}24" />%, titer <InlineMath math="0{,}42" />%, dan konsentrasi yang dihitung dari keduanya <InlineMath math="0{,}66" />%.</>}
+  valueLabel="Ketidakpastian (%)"
+  description={<>Pipet <InlineMath math="0{,}24\%" />, titran <InlineMath math="0{,}42\%" />, dan konsentrasi <InlineMath math="0{,}66\%" />.</>}
 />
 
-Konsentrasi didapat dengan membagi satu volume dengan yang lain, dan untuk hasil kali atau hasil bagi **persen ketidakpastian bertambah**: <InlineMath math="0{,}24\% + 0{,}42\% = 0{,}66\%" />.
+Konsentrasi memakai kedua volume, jadi persentase ketidakpastiannya dijumlahkan. Pipet: <InlineMath math="\tfrac{0{,}06}{25{,}00} \times 100\% = 0{,}24\%" />. Titran: dua pembacaan, <InlineMath math="\pm 0{,}10\text{ cm}^3" />, jadi <InlineMath math="\tfrac{0{,}10}{23{,}55} \times 100\% = 0{,}42\%" />. Totalnya <InlineMath math="0{,}66\%" />, dan <InlineMath math="0{,}66\% \times 0{,}0471 = 0{,}0003\text{ mol dm}^{-3}" />.
 
 # Kenapa pilihan lain salah
 
-- Tiap alat punya ketidakpastian, dan <InlineMath math="0{,}24" />% dari pipet juga sampai ke jawaban.
-- Ketidakpastian tidak pernah saling menghapus lewat pengurangan, jadi totalnya tidak bisa **lebih kecil** dari bagian mana pun.
-- <InlineMath math="0{,}21" />% menghitung satu pembacaan buret, padahal titer butuh dua.
+- <InlineMath math="0{,}0942" /> memakai satu molekul asam per barium hidroksida, padahal tiap satuan berisi **dua ion hidroksida**.
+- <InlineMath math="\pm 0{,}0002" /> hanya memakai <InlineMath math="0{,}42\%" /> dari titran dan melewatkan pipet.
+- <InlineMath math="\pm 0{,}0001" /> mengurangkan kedua persentase, <InlineMath math="0{,}42 - 0{,}24 = 0{,}18\%" />, padahal ketidakpastian selalu dijumlahkan.
