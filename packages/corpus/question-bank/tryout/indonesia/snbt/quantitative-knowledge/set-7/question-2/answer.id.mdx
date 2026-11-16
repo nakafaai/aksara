@@ -31,6 +31,42 @@ Jadi <InlineMath math="r=1" /> atau <InlineMath math="r=-5" />. **Kedua nilai it
 
 Perhatikan baris kedua. Mengalikan bilangan negatif dengan <InlineMath math="3" /> membuatnya **lebih kecil**, jadi <InlineMath math="-15<-5" />, artinya <InlineMath math="\alpha<\beta" />. Secara umum <InlineMath math="\alpha-\beta=3\beta-\beta=2\beta" />, sehingga **syarat <InlineMath math="\alpha>\beta" /> memaksa <InlineMath math="\beta" /> positif**. Hanya <InlineMath math="r=1" /> yang lolos, yaitu <InlineMath math="m=3" />, <InlineMath math="\alpha=3" />, dan <InlineMath math="\beta=1" />.
 
+Grafik kedua persamaan memperlihatkan perbedaannya. Untuk <InlineMath math="m=3" />, akar <InlineMath math="\alpha=3" /> ada **di kanan** <InlineMath math="\beta=1" />. Untuk <InlineMath math="m=-21" />, akar <InlineMath math="\alpha=-15" /> justru ada di kiri <InlineMath math="\beta=-5" />, jadi <InlineMath math="\alpha<\beta" />.
+
+<MathVisual
+  title={<>Dua persamaan yang sama-sama memenuhi <InlineMath math="\alpha=3\beta" /></>}
+  description={<>Parabola <InlineMath math="y=x^2-4x+3" /> untuk <InlineMath math="m=3" /> memotong sumbu-<InlineMath math="x" /> di <InlineMath math="1" /> dan <InlineMath math="3" />. Parabola <InlineMath math="y=x^2+20x+75" /> untuk <InlineMath math="m=-21" /> memotongnya di <InlineMath math="-15" /> dan <InlineMath math="-5" />. Pada kasus kedua, akar yang tiga kali akar lainnya ada di sebelah kiri.</>}
+  labels={{
+    kept: <InlineMath math="m=3" />,
+    dropped: <InlineMath math="m=-21" />,
+    a3: <InlineMath math="\alpha=3" />,
+    b1: <InlineMath math="\beta=1" />,
+    a15: <InlineMath math="\alpha=-15" />,
+    b5: <InlineMath math="\beta=-5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -18, max: 6 }, y: { min: -27, max: 10 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "kept", kind: "function", appearance: "answer", formula: "x^2 - 4x + 3", domain: { min: -1.5, max: 5.5 } },
+      { id: "dropped", kind: "function", appearance: "warning", formula: "x^2 + 20x + 75", domain: { min: -17.5, max: -2.5 } },
+      { id: "a3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "b1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "a15", kind: "point", appearance: "warning", at: { x: -15, y: 0 } },
+      { id: "b5", kind: "point", appearance: "warning", at: { x: -5, y: 0 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 5, y: 8 }, placement: "left" },
+      { key: "dropped", objectId: "dropped", at: { x: -10, y: -25 }, placement: "below" },
+      { key: "a3", objectId: "a3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "a15", objectId: "a15", at: { x: -15, y: 0 }, placement: "above-left" },
+      { key: "b5", objectId: "b5", at: { x: -5, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\alpha^2+\beta^2=3^2+1^2=10" />
 
 Pemeriksaan dengan identitas jumlah kuadrat memberi hasil yang sama.

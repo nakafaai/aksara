@@ -20,6 +20,34 @@ Selesaikan <InlineMath math="2+\frac{1}{x+1}=k" />, yaitu <InlineMath math="\fra
 
 Calon itu tidak mungkin <InlineMath math="-1" />, sebab <InlineMath math="\frac{1}{k-2}" /> tidak pernah nol. Calon itu sama dengan <InlineMath math="1" /> ketika <InlineMath math="\frac{1}{k-2}=2" />, yaitu <InlineMath math="k=\frac52" />. Untuk <InlineMath math="k=\frac52" />, satu-satunya calon adalah <InlineMath math="x=1" /> yang dilarang, jadi **<InlineMath math="k=\frac52" /> juga tidak pernah dicapai**. Nilai ini adalah nilai bentuk sederhana di lubang <InlineMath math="x=1" />, yaitu <InlineMath math="2+\frac12=\frac52" />.
 
+Grafik <InlineMath math="f" /> berikut memperlihatkan kedua nilai yang hilang. Garis putus <InlineMath math="y=2" /> adalah asimtot yang tidak pernah disentuh, dan **lubang di <InlineMath math="\left(1,\tfrac52\right)" />** membuat nilai <InlineMath math="\tfrac52" /> juga tidak tercapai.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=2+\tfrac{1}{x+1}" /> dengan lubang di <InlineMath math="x=1" /></>}
+  description={<>Grafik punya dua cabang yang dipisahkan garis putus <InlineMath math="x=-1" />, dan kedua cabang mendekati garis putus <InlineMath math="y=2" /> tanpa menyentuhnya. Titik <InlineMath math="\left(1,\tfrac52\right)" /> ditandai sebagai lubang karena <InlineMath math="x=1" /> tidak termasuk daerah asal.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    asym: <InlineMath math="y=2" />,
+    hole: <InlineMath math="\left(1,\tfrac52\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "asym", kind: "line", appearance: "construction", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }] },
+      { id: "wall", kind: "line", appearance: "construction", through: [{ x: -1, y: 0 }, { x: -1, y: 1 }] },
+      { id: "f", kind: "function", appearance: "primary", formula: "2 + 1/(x + 1)", domain: { min: -5, max: 5 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 1, y: 5 / 2 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: -3, y: 1.5 }, placement: "below" },
+      { key: "asym", objectId: "asym", at: { x: 4.5, y: 2 }, placement: "below" },
+      { key: "hole", objectId: "hole", at: { x: 1, y: 5 / 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Memeriksa lewat persamaan kuadrat
 
 Kalikan silang tanpa menyederhanakan dulu. Untuk <InlineMath math="x\ne\pm1" />, persamaan <InlineMath math="f(x)=k" /> setara dengan persamaan berikut.

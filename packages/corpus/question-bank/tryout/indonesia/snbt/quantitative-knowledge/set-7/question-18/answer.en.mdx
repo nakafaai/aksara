@@ -17,6 +17,17 @@ If the thousands digit is <InlineMath math="4" />, the digit <InlineMath math="4
 \text{total}&: 6+9+24+36=75
 \end{aligned}" />
 
+The chart below compares the four cases. The case with thousands digit <InlineMath math="4" /> **has fewer numbers than the case with <InlineMath math="5" />**, because the digit <InlineMath math="4" /> is already used and can't be the units digit.
+
+<Chart
+  title={<>Even numbers above <InlineMath math="3{,}400" /> by how they start</>}
+  description={<>Numbers starting with <InlineMath math="34" /> number <InlineMath math="6" />, starting with <InlineMath math="35" /> number <InlineMath math="9" />, with thousands digit <InlineMath math="4" /> number <InlineMath math="24" />, and with thousands digit <InlineMath math="5" /> number <InlineMath math="36" />. Together that's <InlineMath math="75" />.</>}
+  categories={["Starts with 34", "Starts with 35", "Thousands 4", "Thousands 5"]}
+  bars="apart"
+  series={[{ label: "How many numbers", mark: "bar", values: [2 * 3, 3 * 3, 2 * 4 * 3, 3 * 4 * 3] }]}
+  valueLabel="How many numbers"
+/>
+
 # Checking with the complement
 
 A second route: first count every even number above <InlineMath math="3{,}000" />, then **throw out the ones below the limit**, that is the ones between <InlineMath math="3{,}000" /> and <InlineMath math="3{,}400" />. Numbers starting with <InlineMath math="3" /> have <InlineMath math="3" /> units choices and <InlineMath math="4\times3=12" /> ways to fill the middle, so there are <InlineMath math="36" />. Adding <InlineMath math="24+36" /> gives <InlineMath math="96" /> in total.

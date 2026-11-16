@@ -38,6 +38,17 @@ Coba hitung ulang dari suku-suku <InlineMath math="P" /> sendiri. Sebuah suku ya
 
 Jumlahnya <InlineMath math="20+10+5+2+1=38" />, sama dengan hasil rumus Legendre.
 
+Grafik berikut memperlihatkan sumbangan faktor <InlineMath math="2" /> dari setiap suku <InlineMath math="P" />. Kebanyakan suku hanya memberi <InlineMath math="1" /> atau <InlineMath math="2" />, tetapi **<InlineMath math="32" /> menyumbang <InlineMath math="5" /> sekaligus**, dan semua batang berjumlah <InlineMath math="38" />.
+
+<Chart
+  title={<>Banyak faktor <InlineMath math="2" /> pada setiap suku dari <InlineMath math="22" /> sampai <InlineMath math="60" /></>}
+  description={<>Suku yang bukan kelipatan <InlineMath math="4" /> memberi <InlineMath math="1" /> faktor <InlineMath math="2" />. Suku <InlineMath math="24" />, <InlineMath math="40" />, dan <InlineMath math="56" /> memberi <InlineMath math="3" />, suku <InlineMath math="48" /> memberi <InlineMath math="4" />, dan suku <InlineMath math="32" /> memberi <InlineMath math="5" />. Jumlah seluruh batang adalah <InlineMath math="38" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 20 }, (_, i) => `${22 + 2 * i}`)}
+  series={[{ label: "Faktor 2 dalam suku", mark: "bar", values: Array.from({ length: 20 }, (_, i) => Math.log2((22 + 2 * i) & -(22 + 2 * i))) }]}
+  valueLabel="Faktor 2"
+/>
+
 # Mengubah ke pangkat delapan
 
 Karena <InlineMath math="8^n=2^{3n}" />, bilangan <InlineMath math="P" /> habis dibagi <InlineMath math="8^n" /> tepat ketika <InlineMath math="3n\le38" />. **Nilai <InlineMath math="n" /> harus bulat, jadi bagian pecahannya dibuang**, bukan dibulatkan ke atas.

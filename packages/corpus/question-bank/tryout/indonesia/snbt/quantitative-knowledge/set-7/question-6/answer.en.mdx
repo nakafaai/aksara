@@ -27,6 +27,17 @@ O\to A \text{ avoiding } B&: 12-(2\times2)=8\\
 A\to T \text{ avoiding } C&: 12-(2\times2)=8
 \end{aligned}" />
 
+The diagram below shows the two parts of each path. The point <InlineMath math="B" /> can only spoil the first part and <InlineMath math="C" /> only the second, so **each part is cleaned on its own** before you multiply.
+
+<Mermaid
+  title={<>The robot's paths split at the required point <InlineMath math="A" /></>}
+  description={<>From <InlineMath math="O" /> to <InlineMath math="A" /> there are <InlineMath math="12" /> paths, and <InlineMath math="4" /> of them pass <InlineMath math="B" />, which leaves <InlineMath math="8" />. From <InlineMath math="A" /> to <InlineMath math="T" /> there are <InlineMath math="12" /> paths, and <InlineMath math="4" /> of them pass <InlineMath math="C" />, which leaves <InlineMath math="8" />. In all there are <InlineMath math="8\times8=64" /> paths.</>}
+  chart={`flowchart LR
+    O["O(0,0,0)"] -->|"12 paths, remove 4 through B"| A["A(1,2,1): 8 ways"]
+    A -->|"12 paths, remove 4 through C"| T["T(3,3,2): 8 ways"]
+    T --> R["8 x 8 = 64"]`}
+/>
+
 # Joining the two parts
 
 Every safe first part can be paired with every safe second part, so use **the multiplication rule**.

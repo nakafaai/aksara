@@ -33,6 +33,39 @@ Jadi, <InlineMath math="t=0" /> atau <InlineMath math="t=2" />. Nilai <InlineMat
 
 Totalnya <InlineMath math="2+3=5" />. Periksa beberapa nilai: <InlineMath math="f(2)=4-4-3=-3" /> lalu <InlineMath math="f(-3)=9-6-3=0" />, dan <InlineMath math="f(1+\sqrt7)=8+2\sqrt7-2-2\sqrt7-3=3" /> lalu <InlineMath math="f(3)=0" />.
 
+Grafik <InlineMath math="f" /> berbentuk W memperlihatkan kelima penyelesaian. Garis <InlineMath math="y=3" /> memotong kedua lengan luar di <InlineMath math="2" /> titik, dan garis <InlineMath math="y=-3" /> **menyentuh puncak tengah di <InlineMath math="x=0" />** serta memotong di <InlineMath math="x=\pm2" />, jadi <InlineMath math="3" /> titik.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=x^2-2|x|-3" /> dan dua garis mendatar</>}
+  description={<>Grafik turun ke titik terendah <InlineMath math="(-1,-4)" /> dan <InlineMath math="(1,-4)" />, dengan puncak kecil di <InlineMath math="(0,-3)" />. Garis <InlineMath math="y=3" /> memotong grafik di <InlineMath math="x=\pm\left(1+\sqrt7\right)" />. Garis <InlineMath math="y=-3" /> bertemu grafik di <InlineMath math="x=-2" />, <InlineMath math="x=0" />, dan <InlineMath math="x=2" />.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    up: <InlineMath math="y=3" />,
+    down: <InlineMath math="y=-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -5, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "up", kind: "segment", appearance: "reference", from: { x: -4.5, y: 3 }, to: { x: 4.5, y: 3 } },
+      { id: "down", kind: "segment", appearance: "reference", from: { x: -4.5, y: -3 }, to: { x: 4.5, y: -3 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "x^2 + 2x - 3", domain: { min: -4.1, max: 0 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x^2 - 2x - 3", domain: { min: 0, max: 4.1 } },
+      { id: "u1", kind: "point", appearance: "answer", at: { x: 1 + Math.sqrt(7), y: 3 } },
+      { id: "u2", kind: "point", appearance: "answer", at: { x: -1 - Math.sqrt(7), y: 3 } },
+      { id: "d1", kind: "point", appearance: "answer", at: { x: 2, y: -3 } },
+      { id: "d2", kind: "point", appearance: "answer", at: { x: -2, y: -3 } },
+      { id: "d0", kind: "point", appearance: "answer", at: { x: 0, y: -3 } },
+    ],
+    labels: [
+      { key: "f", objectId: "right", at: { x: 1, y: -4 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "down", objectId: "down", at: { x: -3.8, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Pilihan yang keliru
 
 - <InlineMath math="2" /> muncul jika hanya <InlineMath math="y=3" /> yang dipakai dan <InlineMath math="y=-3" /> terlupakan.

@@ -24,6 +24,18 @@ Since **the remaining terms are positive**, the sixth power is strictly bigger t
 
 As a check, <InlineMath math="\sqrt[3]{3}\approx1.4422" /> and <InlineMath math="\tfrac{49}{48}\sqrt2\approx1.4437" />. They differ by only about <InlineMath math="0.0014" />, which is why an estimate to <InlineMath math="2" /> decimal places can't settle it.
 
+The chart below zooms into the narrow strip around <InlineMath math="\tfrac98" />. The bar for <InlineMath math="P^6/8" /> and the bar for the first two binomial terms **have exactly the same height**, while the bar for <InlineMath math="Q^6/8" /> is a little taller, because the remaining binomial terms are all positive.
+
+<Chart
+  title={<>Comparing <InlineMath math="\tfrac{P^6}{8}" /> and <InlineMath math="\tfrac{Q^6}{8}" /></>}
+  description={<>The value axis starts at <InlineMath math="1.1" /> so the small gap shows. The value <InlineMath math="\tfrac{P^6}{8}=\tfrac98=1.125" /> equals <InlineMath math="1+\tfrac{6}{48}" />. The value <InlineMath math="\tfrac{Q^6}{8}=\left(\tfrac{49}{48}\right)^6" /> is about <InlineMath math="1.132" />, slightly above it.</>}
+  bars="apart"
+  categories={["P^6 / 8", "1 + 6/48", "Q^6 / 8"]}
+  series={[{ label: "Value", mark: "bar", values: [9 / 8, 1 + 6 / 48, (49 / 48) ** 6] }]}
+  valueRange={{ min: 1.1, max: 1.14 }}
+  valueLabel="Value"
+/>
+
 # The wrong options
 
 - <InlineMath math="P>Q" /> comes from comparing only <InlineMath math="\sqrt[3]{3}>\sqrt2" /> and **ignoring the factor <InlineMath math="\tfrac{49}{48}" />**.

@@ -14,6 +14,19 @@ s_y&=|a|\,s_x\\
 
 Peserta dengan lebih sedikit kesalahan, yaitu <InlineMath math="x" /> lebih kecil, harus mendapat <InlineMath math="y" /> lebih besar. Artinya <InlineMath math="y" /> turun ketika <InlineMath math="x" /> naik, jadi **syarat urutan itu memaksa <InlineMath math="a" /> negatif**: <InlineMath math="a=-\tfrac52" />. Cari <InlineMath math="b" /> dari rata-rata, lalu hitung nilai akhir untuk <InlineMath math="x=26" />.
 
+Grafik berikut membandingkan kedua kemungkinan tanda <InlineMath math="a" />. Kedua garis melewati <InlineMath math="(20,60)" /> dan sama curamnya, tetapi **hanya garis yang menurun** memberi nilai akhir lebih tinggi untuk kesalahan yang lebih sedikit.
+
+<Chart
+  title={<>Nilai akhir terhadap banyak kesalahan untuk kedua tanda <InlineMath math="a" /></>}
+  description={<>Untuk nilai mentah <InlineMath math="12" /> sampai <InlineMath math="28" />, garis <InlineMath math="y=-\tfrac52x+110" /> turun dari <InlineMath math="80" /> ke <InlineMath math="40" />, dan garis <InlineMath math="y=\tfrac52x+10" /> naik dari <InlineMath math="40" /> ke <InlineMath math="80" />. Keduanya bernilai <InlineMath math="60" /> di <InlineMath math="x=20" />. Di <InlineMath math="x=26" />, garis yang menurun bernilai <InlineMath math="45" />.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${12 + 2 * i}`)}
+  series={[
+    { label: "a negatif: y = -2,5x + 110", mark: "line", values: Array.from({ length: 9 }, (_, i) => -2.5 * (12 + 2 * i) + 110) },
+    { label: "a positif: y = 2,5x + 10", mark: "line", values: Array.from({ length: 9 }, (_, i) => 2.5 * (12 + 2 * i) + 10) },
+  ]}
+  valueLabel="Nilai akhir"
+/>
+
 <BlockMath math="\begin{aligned}
 60&=-\tfrac52\cdot20+b\\
 b&=60+50=110\\

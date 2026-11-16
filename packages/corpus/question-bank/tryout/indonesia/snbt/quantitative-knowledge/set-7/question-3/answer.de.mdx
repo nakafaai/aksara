@@ -50,6 +50,17 @@ e_2+2e_3&=18
 
 Die dritte Zeile ist die Differenz der ersten beiden. Also ist <InlineMath math="e_2=18-2e_3" />, eine gerade Zahl minus eine gerade Zahl. Das Ergebnis ist immer gerade, also ist die dritte Aussage **wahr**.
 
+Das Diagramm zeigt, wie viele Schüler genau zwei Aktivitäten belegen, für jede mögliche Anzahl von Schülern, die alle drei belegen. **Jeder Balken ist gerade**, und die Balken enden bei <InlineMath math="e_3=8" />, weil die Schüler mit allen drei Aktivitäten zu den <InlineMath math="8" /> Futsal- und Musikschülern gehören.
+
+<Chart
+  title={<>Der Zusammenhang <InlineMath math="e_2=18-2e_3" /></>}
+  description={<>Für <InlineMath math="e_3=0" /> bis <InlineMath math="8" /> belegen <InlineMath math="18, 16, 14, \ldots, 2" /> Schüler genau zwei Aktivitäten, alles gerade Zahlen. Der Wert <InlineMath math="e_3=9" /> ist unmöglich, weil <InlineMath math="t\le8" /> gilt.</>}
+  bars="apart"
+  categories={Array.from({ length: 9 }, (_, t) => `${t}`)}
+  series={[{ label: "Genau zwei Aktivitäten", mark: "bar", values: Array.from({ length: 9 }, (_, t) => 18 - 2 * t) }]}
+  valueLabel="Anzahl der Schüler"
+/>
+
 # Schüler mit allen drei Angeboten
 
 Aus <InlineMath math="e_2+2e_3=18" /> bekommst du nur <InlineMath math="e_3\le9" />, und diese Schranke ist verlockend. Aber jeder Schüler mit allen drei Angeboten besucht auch Futsal und Musik, also **gehört er zu den acht Schülern in Futsal und Musik**.

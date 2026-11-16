@@ -26,6 +26,38 @@ Ada <InlineMath math="5" /> titik potong, padahal segi empat hanya punya <Inline
 
 Nilai <InlineMath math="-33" /> lebih kecil daripada <InlineMath math="-18" />, jadi **titik <InlineMath math="(3,9)" /> berada di luar jalur antara kedua garis sejajar**. Keempat garis membatasi dua daerah tertutup: trapesium dengan titik sudut <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" />, <InlineMath math="(2,5)" />, dan segitiga kecil <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" />. Segi empat yang dimaksud adalah trapesium itu.
 
+Gambar keempat garis berikut memperlihatkan kedua daerah tertutup. Trapesium di antara dua garis sejajar adalah segi empat yang dicari, sedangkan **segitiga kecil berpuncak <InlineMath math="(3,9)" /> ada di luar jalur sejajar itu**.
+
+<MathVisual
+  title={<>Daerah yang dibatasi keempat garis</>}
+  description={<>Garis <InlineMath math="x-4y=-3" /> dan <InlineMath math="x-4y=-18" /> sejajar. Trapesium dengan titik sudut <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" />, dan <InlineMath math="(2,5)" /> berada di antara keduanya dan luasnya <InlineMath math="22{,}5" />. Segitiga <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" /> berada di luar jalur itu.</>}
+  labels={{
+    trap: <InlineMath math="22{,}5" />,
+    tri: <InlineMath math="(3,9)" />,
+    p11: <InlineMath math="(1,1)" />,
+    p93: <InlineMath math="(9,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "line-sum", kind: "line", appearance: "construction", through: [{ x: 9, y: 3 }, { x: 3, y: 9 }] },
+      { id: "line-low", kind: "line", appearance: "construction", through: [{ x: 1, y: 1 }, { x: 9, y: 3 }] },
+      { id: "line-high", kind: "line", appearance: "construction", through: [{ x: 2, y: 5 }, { x: 6, y: 6 }] },
+      { id: "line-steep", kind: "line", appearance: "construction", through: [{ x: 1, y: 1 }, { x: 3, y: 9 }] },
+      { id: "trap", kind: "polygon", appearance: "answer", vertices: [{ x: 1, y: 1 }, { x: 9, y: 3 }, { x: 6, y: 6 }, { x: 2, y: 5 }] },
+      { id: "tri", kind: "polygon", appearance: "warning", vertices: [{ x: 2, y: 5 }, { x: 6, y: 6 }, { x: 3, y: 9 }] },
+    ],
+    labels: [
+      { key: "trap", objectId: "trap", at: { x: 4.5, y: 3.5 }, placement: "center" },
+      { key: "tri", objectId: "tri", at: { x: 3, y: 9 }, placement: "above-left" },
+      { key: "p11", objectId: "trap", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "p93", objectId: "trap", at: { x: 9, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Luas dengan rumus koordinat
 
 Rumus koordinat (sering disebut rumus tali sepatu) menghitung luas segi banyak dari titik sudutnya. Syaratnya, **titik sudut ditulis berurutan mengelilingi batas daerah**: <InlineMath math="(1,1)\to(9,3)\to(6,6)\to(2,5)" />.

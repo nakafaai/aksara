@@ -38,3 +38,34 @@ Jika kamu hanya meminta umur saat ini positif, kamu mungkin mengambil <InlineMat
 Pernyataan (1) saja dan pernyataan (2) saja masing-masing tidak cukup, karena ada contoh ya dan contoh tidak. **Bersama-sama keduanya cukup**, karena syarat <InlineMath math="C\ge6" /> memaksa jawaban tidak. Pilihan bahwa kedua pernyataan tidak cukup muncul jika syarat tersembunyi itu terlewat.
 
 Jadi, kedua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.
+
+Gambar berikut memetakan umur Cici <InlineMath math="C" /> mendatar dan umur Ani <InlineMath math="A" /> tegak. Kedua pernyataan memaksa <InlineMath math="A=12-C" />, dan syarat <InlineMath math="C\ge6" /> menyisakan **hanya bagian garis yang ada di bawah garis <InlineMath math="A=C" />**, tempat Ani lebih muda.
+
+<MathVisual
+  title={<>Umur Ani dan Cici yang memenuhi kedua pernyataan</>}
+  description={<>Garis <InlineMath math="A=12-C" /> memotong garis <InlineMath math="A=C" /> di <InlineMath math="(6,6)" />. Bagian dengan <InlineMath math="C<6" /> dicoret karena Cici belum lahir <InlineMath math="6" /> tahun lalu. Bagian dengan <InlineMath math="C\ge6" /> seluruhnya ada di bawah atau tepat di garis <InlineMath math="A=C" />. Contohnya titik <InlineMath math="(8,4)" />.</>}
+  labels={{
+    allowed: <InlineMath math="A=12-C,\ C\ge6" />,
+    equal: <InlineMath math="A=C" />,
+    six: <InlineMath math="C=6" />,
+    example: <InlineMath math="(8,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 12.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "six", kind: "line", appearance: "construction", through: [{ x: 6, y: 0 }, { x: 6, y: 1 }] },
+      { id: "equal", kind: "function", appearance: "reference", formula: "x", domain: { min: 0, max: 12.5 } },
+      { id: "banned", kind: "function", appearance: "warning", formula: "12 - x", domain: { min: 0, max: 6 } },
+      { id: "allowed", kind: "function", appearance: "answer", formula: "12 - x", domain: { min: 6, max: 12 } },
+      { id: "example", kind: "point", appearance: "answer", at: { x: 8, y: 4 } },
+    ],
+    labels: [
+      { key: "allowed", objectId: "allowed", at: { x: 10, y: 2 }, placement: "above-right" },
+      { key: "equal", objectId: "equal", at: { x: 11, y: 11 }, placement: "above-left" },
+      { key: "six", objectId: "six", at: { x: 6, y: 11.5 }, placement: "right" },
+      { key: "example", objectId: "example", at: { x: 8, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>

@@ -30,6 +30,20 @@ L_{\text{new}}&=2(4+50+50)=208
 
 The surface area actually shrinks, so the third statement is false.
 
+The chart below puts both example boxes side by side. For the cube, **the new bar is taller**, but for the tall, thin box the new bar is actually shorter. Which way the area changes depends on the shape of the box.
+
+<Chart
+  title={<>Surface area of the box before and after the change</>}
+  description={<>For a cube with edge <InlineMath math="1" />, the area rises from <InlineMath math="6" /> to <InlineMath math="10" />. For a <InlineMath math="1\times1\times100" /> box, the area falls from <InlineMath math="402" /> to <InlineMath math="208" />.</>}
+  categories={["Cube with edge 1", "Box 1 x 1 x 100"]}
+  bars="apart"
+  series={[
+    { label: "Original area", mark: "bar", values: [6, 2 * (1 + 100 + 100)] },
+    { label: "New area", mark: "bar", values: [2 * (4 + 1 / 2 + 1 / 2), 2 * (4 + 50 + 50)] },
+  ]}
+  valueLabel="Surface area"
+/>
+
 # The surface area of the cylinder
 
 The surface area of a closed cylinder is <InlineMath math="2" /> bases plus the curved side, <InlineMath math="2\pi r^2+2\pi rh" />. The bases become <InlineMath math="4" /> times as big, while the curved side stays the same, because <InlineMath math="2\pi(2r)\left(\tfrac12h\right)=2\pi rh" />.

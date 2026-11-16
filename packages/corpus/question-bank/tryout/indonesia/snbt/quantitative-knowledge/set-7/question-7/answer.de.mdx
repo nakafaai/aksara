@@ -25,6 +25,44 @@ y_O&=\frac{4+(-6)}{2}=-1
 
 Der Mittelpunkt ist <InlineMath math="O\left(\tfrac52,-1\right)" />. Er hat den Abstand <InlineMath math="1\text{ cm}" /> von der Geraden <InlineMath math="AC" />, also ist <InlineMath math="AC" /> kein Durchmesser.
 
+Die Abbildung zeigt, wo der Mittelpunkt liegt. Die beiden gestrichelten Linien sind die Mittelsenkrechten der Sehnen <InlineMath math="AC" /> und <InlineMath math="BD" />, und **ihr Schnittpunkt ist der Mittelpunkt <InlineMath math="O" />**, knapp unter der Diagonale <InlineMath math="AC" />.
+
+<MathVisual
+  title={<>Ein Sehnenviereck mit senkrechten Diagonalen</>}
+  description={<>Die Diagonale <InlineMath math="AC" /> verläuft waagrecht von <InlineMath math="A(-3,0)" /> bis <InlineMath math="C(8,0)" />, die Diagonale <InlineMath math="BD" /> senkrecht von <InlineMath math="B(0,4)" /> bis <InlineMath math="D(0,-6)" />, sie schneiden sich in <InlineMath math="P" />. Die Mittelsenkrechten der Sehnen, <InlineMath math="x=\tfrac52" /> und <InlineMath math="y=-1" />, treffen sich im Mittelpunkt <InlineMath math="O\left(\tfrac52,-1\right)" />. Der Radius <InlineMath math="OA" /> ist <InlineMath math="\tfrac{5\sqrt5}{2}" /> lang.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    p: <InlineMath math="P" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 9.5 }, y: { min: -7.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 5 / 2, y: -1 }, radius: Math.sqrt(125) / 2 },
+      { id: "bisector-ac", kind: "line", appearance: "construction", through: [{ x: 5 / 2, y: 0 }, { x: 5 / 2, y: 1 }] },
+      { id: "bisector-bd", kind: "line", appearance: "construction", through: [{ x: 0, y: -1 }, { x: 1, y: -1 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "primary", from: { x: -3, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "diagonal-bd", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 0, y: -6 } },
+      { id: "radius", kind: "segment", appearance: "answer", from: { x: 5 / 2, y: -1 }, to: { x: -3, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-o", kind: "point", appearance: "answer", at: { x: 5 / 2, y: -1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "diagonal-ac", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "c", objectId: "diagonal-ac", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "b", objectId: "diagonal-bd", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "d", objectId: "diagonal-bd", at: { x: 0, y: -6 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "o", objectId: "point-o", at: { x: 5 / 2, y: -1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Den Radius berechnen
 
 Der Radius ist **der Abstand vom Mittelpunkt zu einer beliebigen Ecke**, weil alle Ecken auf dem Kreis liegen. Nimm den Satz des Pythagoras für <InlineMath math="OA" />.

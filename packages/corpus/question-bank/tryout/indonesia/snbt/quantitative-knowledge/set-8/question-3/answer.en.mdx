@@ -34,6 +34,38 @@ x&=1\pm\tfrac{\sqrt2}{2}
 
 Since <InlineMath math="\tfrac{\sqrt2}{2}" /> is less than <InlineMath math="1" />, both solutions lie inside <InlineMath math="0\le x\le2" />. Periodicity copies them to <InlineMath math="x=5\pm\tfrac{\sqrt2}{2}" /> in <InlineMath math="4\le x\le6" />. On <InlineMath math="2\le x\le4" /> and <InlineMath math="6\le x\le8" /> the values of <InlineMath math="f" /> are non-positive, so there are no solutions there. Careful: **a piece's formula only holds on its own piece**. The equation <InlineMath math="(x-4)(x-2)=\tfrac12" /> does have the roots <InlineMath math="x=3\pm\tfrac{\sqrt6}{2}" />, but <InlineMath math="\tfrac{\sqrt6}{2}" /> is more than <InlineMath math="1" />, so both roots fall outside <InlineMath math="2\le x\le4" /> and must be thrown out. That leaves exactly <InlineMath math="4" /> solutions, so the second statement is true.
 
+The graph of <InlineMath math="f" /> below shows the four solutions. The line <InlineMath math="y=\tfrac12" /> only cuts **the hills above the <InlineMath math="x" />-axis**, twice on each hill, while the valleys below the axis never reach it.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f" /> on <InlineMath math="-2\le x\le8" /></>}
+  description={<>The graph alternates between hills and valleys of height <InlineMath math="1" />: hills on <InlineMath math="0\le x\le2" /> and <InlineMath math="4\le x\le6" />, valleys on <InlineMath math="-2\le x\le0" />, <InlineMath math="2\le x\le4" />, and <InlineMath math="6\le x\le8" />. The line <InlineMath math="y=\tfrac12" /> cuts the graph at <InlineMath math="1\pm\tfrac{\sqrt2}{2}" /> and <InlineMath math="5\pm\tfrac{\sqrt2}{2}" />.</>}
+  labels={{
+    level: <InlineMath math="y=\tfrac12" />,
+    f: <InlineMath math="y=f(x)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 8.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2.5, y: 0.5 }, to: { x: 8.5, y: 0.5 } },
+      { id: "p0", kind: "function", appearance: "primary", formula: "x(2 + x)", domain: { min: -2, max: 0 } },
+      { id: "p1", kind: "function", appearance: "primary", formula: "x(2 - x)", domain: { min: 0, max: 2 } },
+      { id: "p2", kind: "function", appearance: "primary", formula: "(x - 4)(x - 2)", domain: { min: 2, max: 4 } },
+      { id: "p3", kind: "function", appearance: "primary", formula: "(x - 4)(6 - x)", domain: { min: 4, max: 6 } },
+      { id: "p4", kind: "function", appearance: "primary", formula: "(x - 8)(x - 6)", domain: { min: 6, max: 8 } },
+      { id: "s1", kind: "point", appearance: "answer", at: { x: 1 - Math.SQRT1_2, y: 0.5 } },
+      { id: "s2", kind: "point", appearance: "answer", at: { x: 1 + Math.SQRT1_2, y: 0.5 } },
+      { id: "s3", kind: "point", appearance: "answer", at: { x: 5 - Math.SQRT1_2, y: 0.5 } },
+      { id: "s4", kind: "point", appearance: "answer", at: { x: 5 + Math.SQRT1_2, y: 0.5 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 7.8, y: 0.5 }, placement: "above" },
+      { key: "f", objectId: "p2", at: { x: 3, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 # The third statement
 
 Check one full period. Both sides repeat every <InlineMath math="4" />, so **checking <InlineMath math="0\le x\le4" /> is enough**.

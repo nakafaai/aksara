@@ -13,6 +13,20 @@ Karena <InlineMath math="2^{12}" /> bersisa <InlineMath math="1" />, **pola sisa
 2^{2026}&=\left(2^{12}\right)^{168}\cdot2^{10}\equiv1\cdot10=10\pmod{13}
 \end{aligned}" />
 
+Grafik berikut memperlihatkan satu putaran pola sisa. Batang terakhir, pangkat <InlineMath math="12" />, kembali ke <InlineMath math="1" />, jadi polanya mengulang. **Dua batang yang ditandai**, pangkat <InlineMath math="10" /> dan <InlineMath math="11" />, adalah posisi <InlineMath math="2^{2026}" /> dan <InlineMath math="2^{2027}" /> di dalam putaran.
+
+<Chart
+  title={<>Sisa <InlineMath math="2^k" /> jika dibagi <InlineMath math="13" />, untuk <InlineMath math="k=1" /> sampai <InlineMath math="12" /></>}
+  description={<>Sisanya berturut-turut <InlineMath math="2, 4, 8, 3, 6, 12, 11, 9, 5, 10, 7, 1" />. Pangkat <InlineMath math="10" /> bersisa <InlineMath math="10" /> dan pangkat <InlineMath math="11" /> bersisa <InlineMath math="7" />. Pangkat <InlineMath math="12" /> bersisa <InlineMath math="1" />, sehingga pola berulang setiap <InlineMath math="12" /> pangkat.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Sisa pangkat lain", mark: "bar", values: Array.from({ length: 12 }, (_, i) => (i + 1 === 10 || i + 1 === 11 ? null : 2 ** (i + 1) % 13)) },
+    { label: "Sisa yang dipakai", mark: "bar", values: Array.from({ length: 12 }, (_, i) => (i + 1 === 10 || i + 1 === 11 ? 2 ** (i + 1) % 13 : null)) },
+  ]}
+  valueLabel="Sisa"
+/>
+
 # Mengubah sebelas menjadi bilangan negatif
 
 Bilangan <InlineMath math="11" /> sama dengan <InlineMath math="13-2" />, jadi <InlineMath math="11\equiv-2\pmod{13}" />. Mengganti bilangan pokok dengan bilangan yang sisanya sama tidak mengubah sisa perpangkatannya. Pangkat <InlineMath math="2027" /> ganjil, dan **pangkat ganjil mempertahankan tanda negatif**.

@@ -23,6 +23,35 @@ Setiap baris memuat <InlineMath math="5" /> titik, dan **setiap pasangan sebaris
 
 Untuk selisih mendatar <InlineMath math="3" /> dan selisih tegak <InlineMath math="4" />, koordinat <InlineMath math="x" /> kedua titik adalah <InlineMath math="\{0,3\}" /> atau <InlineMath math="\{1,4\}" />, koordinat <InlineMath math="y" /> harus <InlineMath math="\{0,4\}" />, dan ruas penghubungnya bisa naik atau turun. Itu memberi <InlineMath math="2\cdot1\cdot2=4" /> pasangan. Selisih mendatar <InlineMath math="4" /> dan tegak <InlineMath math="3" /> juga memberi <InlineMath math="4" /> pasangan.
 
+Gambar kisi berikut memperlihatkan kedelapan pasangan berjarak <InlineMath math="5" />. Setiap ruas menghubungkan dua titik dengan selisih koordinat <InlineMath math="3" /> dan <InlineMath math="4" />, jadi **semua ruasnya menempel di dua sisi kisi yang berseberangan**, karena selisih <InlineMath math="4" /> sudah memakai lebar penuh kisi.
+
+<MathVisual
+  title={<>Delapan pasangan titik berjarak <InlineMath math="5" /> pada kisi <InlineMath math="5\times5" /></>}
+  description={<>Kisi titik bulat dari <InlineMath math="(0,0)" /> sampai <InlineMath math="(4,4)" />. Empat ruas punya selisih mendatar <InlineMath math="3" /> dan tegak <InlineMath math="4" />, misalnya dari <InlineMath math="(0,0)" /> ke <InlineMath math="(3,4)" />. Empat ruas lain punya selisih mendatar <InlineMath math="4" /> dan tegak <InlineMath math="3" />, misalnya dari <InlineMath math="(0,0)" /> ke <InlineMath math="(4,3)" />. Setiap ruas panjangnya <InlineMath math="5" />.</>}
+  labels={{
+    five: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "grid", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "a1", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "a2", kind: "segment", appearance: "answer", from: { x: 1, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "a3", kind: "segment", appearance: "answer", from: { x: 0, y: 4 }, to: { x: 3, y: 0 } },
+      { id: "a4", kind: "segment", appearance: "answer", from: { x: 1, y: 4 }, to: { x: 4, y: 0 } },
+      { id: "b1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "b2", kind: "segment", appearance: "secondary", from: { x: 0, y: 1 }, to: { x: 4, y: 4 } },
+      { id: "b3", kind: "segment", appearance: "secondary", from: { x: 0, y: 3 }, to: { x: 4, y: 0 } },
+      { id: "b4", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "five", objectId: "a1", at: { x: 1.5, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \text{pasangan baik}&=50+50+4+4=108\\
 P&=\frac{108}{300}=\frac{9}{25}

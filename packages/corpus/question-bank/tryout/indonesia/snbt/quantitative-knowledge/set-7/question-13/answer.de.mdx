@@ -18,6 +18,31 @@ Das Loch muss in eine Seitenfläche des Würfels passen, ein Quadrat mit <Inline
 
 Beachte, dass der gestrichene Radius kein negatives Volumen liefert: <InlineMath math="729-225\pi" /> ist noch positiv, weil <InlineMath math="225\pi<225\times3{,}2=720" /> ist. Dieser Fehler **fällt also nur auf, wenn du prüfst, ob das Loch passt**.
 
+Die Würfelfläche zeigt den Grund. Der Kreis mit Radius <InlineMath math="4" /> **passt in das Quadrat <InlineMath math="9" /> mal <InlineMath math="9" />**, der Kreis mit Radius <InlineMath math="5" /> ragt über alle vier Seiten hinaus.
+
+<MathVisual
+  title={<>Die beiden Kandidaten für das Loch auf einer Würfelfläche</>}
+  description={<>Eine Würfelfläche ist ein Quadrat <InlineMath math="9" /> mal <InlineMath math="9" /> mit der Lochachse in der Mitte. Der Kreis mit Radius <InlineMath math="4" /> liegt im Quadrat. Der Kreis mit Radius <InlineMath math="5" /> hat den Durchmesser <InlineMath math="10" /> und stößt durch alle vier Seiten des Quadrats.</>}
+  labels={{
+    fits: <InlineMath math="r=4" />,
+    big: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "face", kind: "polygon", appearance: "reference", vertices: [{ x: -4.5, y: -4.5 }, { x: 4.5, y: -4.5 }, { x: 4.5, y: 4.5 }, { x: -4.5, y: 4.5 }] },
+      { id: "fits", kind: "circle", appearance: "answer", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "big", kind: "circle", appearance: "warning", center: { x: 0, y: 0 }, radius: 5 },
+    ],
+    labels: [
+      { key: "fits", objectId: "fits", at: { x: 0, y: 4 }, placement: "below" },
+      { key: "big", objectId: "big", at: { x: 0, y: -5 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Das Volumen berechnen
 
 Das Volumen ist **das Würfelvolumen minus das Volumen des entfernten Zylinders**. Der Zylinder ist so hoch wie die Würfelkante, <InlineMath math="9\text{ cm}" />.

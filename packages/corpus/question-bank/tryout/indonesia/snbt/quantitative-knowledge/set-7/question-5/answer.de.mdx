@@ -24,6 +24,20 @@ Die Anzahl der Faktoren <InlineMath math="5" /> in <InlineMath math="n!" /> lief
 
 In beiden Zahlen gibt es viel mehr Faktoren <InlineMath math="2" />, also entscheiden die Faktoren <InlineMath math="5" />. Damit ist <InlineMath math="P=8" /> und <InlineMath math="Q=7" />, also <InlineMath math="P>Q" />.
 
+Das Diagramm vergleicht die Faktoren <InlineMath math="2" /> und <InlineMath math="5" /> in beiden Zahlen. Die Balken für den Faktor <InlineMath math="2" /> sind viel höher, also **entscheiden die Balken für den Faktor <InlineMath math="5" />** über die Zahl der Nullen: <InlineMath math="8" /> für <InlineMath math="P" /> und <InlineMath math="7" /> für <InlineMath math="Q" />.
+
+<Chart
+  title={<>Faktoren <InlineMath math="2" /> und <InlineMath math="5" /> in <InlineMath math="25!\times25" /> und <InlineMath math="34!\times36" /></>}
+  description={<>Die Zahl <InlineMath math="26!-25!=25!\times25" /> hat <InlineMath math="8" /> Faktoren <InlineMath math="5" /> und <InlineMath math="22" /> Faktoren <InlineMath math="2" />. Die Zahl <InlineMath math="34!+35!=34!\times36" /> hat <InlineMath math="7" /> Faktoren <InlineMath math="5" /> und <InlineMath math="34" /> Faktoren <InlineMath math="2" />.</>}
+  bars="apart"
+  categories={["26! - 25!", "34! + 35!"]}
+  series={[
+    { label: "Faktoren 5", mark: "bar", values: [5 + 1 + 2, 6 + 1] },
+    { label: "Faktoren 2", mark: "bar", values: [12 + 6 + 3 + 1, 17 + 8 + 4 + 2 + 1 + 2] },
+  ]}
+  valueLabel="Anzahl der Faktoren"
+/>
+
 # Die Falle der schnellen Schätzung
 
 Eine schnelle Schätzung schaut oft nur auf die größte Fakultät. Die Fakultät <InlineMath math="26!" /> endet auf <InlineMath math="5+1=6" /> Nullen und <InlineMath math="35!" /> auf <InlineMath math="7+1=8" /> Nullen, damit sieht es nach <InlineMath math="Q>P" /> aus. Wenn du nur <InlineMath math="P" /> richtig faktorisierst, erhältst du <InlineMath math="8" /> gegen <InlineMath math="8" /> und bist versucht, <InlineMath math="P=Q" /> zu wählen. **Beide Zahlen müssen faktorisiert werden**, und jede hat einen festen Wert, also reichen die Angaben aus.

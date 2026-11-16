@@ -20,6 +20,20 @@ r=-\tfrac12&:\quad -24,\ 12,\ -6,\ 3,\ -\tfrac32,\ \tfrac34,\ -\tfrac38,\ \dots
 
 Check: <InlineMath math="3+12=15" /> and <InlineMath math="12+3=15" />.
 
+The chart below puts both sequences side by side. **The first five bars mirror each other**: the same values show up in reverse order. After that, the sequence with ratio <InlineMath math="-2" /> grows while the one with ratio <InlineMath math="-\tfrac12" /> shrinks, but the seventh bar of both stays negative.
+
+<Chart
+  title={<>The first seven terms for both ratios</>}
+  description={<>For ratio <InlineMath math="-2" />, the terms are <InlineMath math="-\tfrac32, 3, -6, 12, -24, 48, -96" />. For ratio <InlineMath math="-\tfrac12" />, they're <InlineMath math="-24, 12, -6, 3, -\tfrac32, \tfrac34, -\tfrac38" />. Both sequences have <InlineMath math="u_3=-6" /> and <InlineMath math="u_2+u_4=15" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 7 }, (_, i) => `u${i + 1}`)}
+  series={[
+    { label: "Ratio -2", mark: "bar", values: Array.from({ length: 7 }, (_, i) => -6 * (-2) ** (i - 2)) },
+    { label: "Ratio -1/2", mark: "bar", values: Array.from({ length: 7 }, (_, i) => -6 * (-1 / 2) ** (i - 2)) },
+  ]}
+  valueLabel="Value of the term"
+/>
+
 # The first statement
 
 Notice that **the first <InlineMath math="5" /> terms of the two sequences are the same numbers in reverse order**. So their sums must be equal.

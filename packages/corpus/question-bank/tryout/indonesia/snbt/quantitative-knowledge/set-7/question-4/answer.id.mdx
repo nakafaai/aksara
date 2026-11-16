@@ -32,6 +32,38 @@ Sekarang uji <InlineMath math="x=4{,}5" />. Pangkat setengah sulit dihitung lang
 36\times512&=18{.}432<19{.}683
 \end{aligned}" />
 
+Grafik <InlineMath math="y=\left(\tfrac32\right)^x" /> berikut memperlihatkan letak <InlineMath math="x" />. Kurva masih di bawah garis <InlineMath math="y=6" /> di <InlineMath math="x=4" />, tetapi sudah di atasnya di <InlineMath math="x=4{,}5" />, jadi **titik potongnya ada di antara kedua garis putus**.
+
+<MathVisual
+  title={<>Kurva <InlineMath math="y=\left(\tfrac32\right)^x" /> dan garis <InlineMath math="y=6" /></>}
+  description={<>Kurva eksponen naik makin cepat. Di <InlineMath math="x=4" /> nilainya <InlineMath math="\tfrac{81}{16}" />, sekitar <InlineMath math="5{,}06" />, di bawah <InlineMath math="6" />. Di <InlineMath math="x=4{,}5" /> nilainya sekitar <InlineMath math="6{,}2" />, di atas <InlineMath math="6" />. Kurva memotong garis <InlineMath math="y=6" /> di antara kedua nilai itu.</>}
+  labels={{
+    curve: <InlineMath math="y=\left(\tfrac32\right)^x" />,
+    six: <InlineMath math="y=6" />,
+    four: <InlineMath math="x=4" />,
+    half: <InlineMath math="x=4{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 6 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "six", kind: "segment", appearance: "reference", from: { x: 2, y: 6 }, to: { x: 6, y: 6 } },
+      { id: "four", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 81 / 16 } },
+      { id: "half", kind: "segment", appearance: "construction", from: { x: 4.5, y: 0 }, to: { x: 4.5, y: 1.5 ** 4.5 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "1.5^x", domain: { min: 2, max: 6 } },
+      { id: "p4", kind: "point", appearance: "secondary", at: { x: 4, y: 81 / 16 } },
+      { id: "p45", kind: "point", appearance: "secondary", at: { x: 4.5, y: 1.5 ** 4.5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5.8, y: 1.5 ** 5.8 }, placement: "left" },
+      { key: "six", objectId: "six", at: { x: 2.3, y: 6 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 4, y: 1 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: 4.5, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="\left(\tfrac32\right)^9>36" />, artinya <InlineMath math="\left(\tfrac32\right)^{4{,}5}>6" />. Pangkat <InlineMath math="4{,}5" /> sudah melewati <InlineMath math="6" />, sehingga <InlineMath math="x<4{,}5" />. Digabung dengan langkah sebelumnya, <InlineMath math="4<x<4{,}5" />.
 
 Pemeriksaan dengan nilai logaritma yang teliti, <InlineMath math="\log2\approx0{,}3010" /> dan <InlineMath math="\log3\approx0{,}4771" />, memberi <InlineMath math="x=\frac{\log3+\log2}{\log3-\log2}\approx\frac{0{,}7781}{0{,}1761}\approx4{,}42" />, sesuai dengan selang itu.

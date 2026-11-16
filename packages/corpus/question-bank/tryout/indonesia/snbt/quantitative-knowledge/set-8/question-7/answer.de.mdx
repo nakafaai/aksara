@@ -26,6 +26,38 @@ Es gibt <InlineMath math="5" /> Schnittpunkte, aber ein Viereck hat nur <InlineM
 
 Der Wert <InlineMath math="-33" /> ist kleiner als <InlineMath math="-18" />, also **liegt der Punkt <InlineMath math="(3,9)" /> außerhalb des Streifens zwischen den Parallelen**. Die vier Geraden begrenzen zwei geschlossene Gebiete: ein Trapez mit den Ecken <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" />, <InlineMath math="(2,5)" /> und ein kleines Dreieck <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" />. Das gesuchte Viereck ist das Trapez.
 
+Die vier Geraden zeigen beide geschlossenen Bereiche. Das Trapez zwischen den beiden Parallelen ist das gesuchte Viereck, **das kleine Dreieck mit der Spitze <InlineMath math="(3,9)" /> liegt außerhalb dieses Streifens**.
+
+<MathVisual
+  title={<>Die von den vier Geraden begrenzten Bereiche</>}
+  description={<>Die Geraden <InlineMath math="x-4y=-3" /> und <InlineMath math="x-4y=-18" /> sind parallel. Das Trapez mit den Ecken <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" /> und <InlineMath math="(2,5)" /> liegt zwischen ihnen und hat die Fläche <InlineMath math="22{,}5" />. Das Dreieck <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" /> liegt außerhalb des Streifens.</>}
+  labels={{
+    trap: <InlineMath math="22{,}5" />,
+    tri: <InlineMath math="(3,9)" />,
+    p11: <InlineMath math="(1,1)" />,
+    p93: <InlineMath math="(9,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "line-sum", kind: "line", appearance: "construction", through: [{ x: 9, y: 3 }, { x: 3, y: 9 }] },
+      { id: "line-low", kind: "line", appearance: "construction", through: [{ x: 1, y: 1 }, { x: 9, y: 3 }] },
+      { id: "line-high", kind: "line", appearance: "construction", through: [{ x: 2, y: 5 }, { x: 6, y: 6 }] },
+      { id: "line-steep", kind: "line", appearance: "construction", through: [{ x: 1, y: 1 }, { x: 3, y: 9 }] },
+      { id: "trap", kind: "polygon", appearance: "answer", vertices: [{ x: 1, y: 1 }, { x: 9, y: 3 }, { x: 6, y: 6 }, { x: 2, y: 5 }] },
+      { id: "tri", kind: "polygon", appearance: "warning", vertices: [{ x: 2, y: 5 }, { x: 6, y: 6 }, { x: 3, y: 9 }] },
+    ],
+    labels: [
+      { key: "trap", objectId: "trap", at: { x: 4.5, y: 3.5 }, placement: "center" },
+      { key: "tri", objectId: "tri", at: { x: 3, y: 9 }, placement: "above-left" },
+      { key: "p11", objectId: "trap", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "p93", objectId: "trap", at: { x: 9, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Der Flächeninhalt aus den Koordinaten
 
 Die Koordinatenformel, oft Gaußsche Trapezformel oder Schnürsenkelformel genannt, liefert den Flächeninhalt eines Vielecks aus seinen Ecken. Die eine Bedingung lautet: **Die Ecken stehen der Reihe nach entlang des Randes**, also <InlineMath math="(1,1)\to(9,3)\to(6,6)\to(2,5)" />.

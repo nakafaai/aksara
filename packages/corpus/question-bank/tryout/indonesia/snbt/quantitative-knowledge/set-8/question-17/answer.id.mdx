@@ -17,6 +17,40 @@ Garis dari pusat yang tegak lurus tali busur membagi tali busur itu menjadi dua 
 - Jika <InlineMath math="AB=8\text{ cm}" />, maka <InlineMath math="r^2=48+16=64" /> dan luasnya <InlineMath math="64\pi\text{ cm}^2" />.
 - Jika <InlineMath math="AB=2\text{ cm}" />, maka <InlineMath math="r^2=48+1=49" /> dan luasnya <InlineMath math="49\pi\text{ cm}^2" />.
 
+Gambar lingkaran berikut memperlihatkan rantai sudut itu. Sudut <InlineMath math="ACB=150^\circ" /> di busur kecil memaksa <InlineMath math="\angle ADB=30^\circ" /> di busur besar, lalu sudut pusat <InlineMath math="AOB=60^\circ" />, sehingga **segitiga <InlineMath math="AOB" /> sama sisi**.
+
+<MathVisual
+  title={<>Tali busur <InlineMath math="AB" /> dengan sudut keliling <InlineMath math="150^\circ" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="O" /> dengan jari-jari <InlineMath math="8" />. Titik <InlineMath math="C" /> ada di busur kecil <InlineMath math="AB" /> dengan <InlineMath math="\angle ACB=150^\circ" />, dan titik <InlineMath math="D" /> ada di busur besar dengan <InlineMath math="\angle ADB=30^\circ" />. Segitiga <InlineMath math="AOB" /> sama sisi, jadi <InlineMath math="AB=OA=OB=8" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+    r: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9.5, max: 9.5 }, y: { min: -9.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 8 },
+      { id: "center-triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.sqrt(3), y: -4 }, { x: 4 * Math.sqrt(3), y: 4 }] },
+      { id: "inscribed", kind: "polyline", appearance: "primary", vertices: [{ x: 4 * Math.sqrt(3), y: -4 }, { x: 8, y: 0 }, { x: 4 * Math.sqrt(3), y: 4 }] },
+      { id: "far", kind: "polyline", appearance: "construction", vertices: [{ x: 4 * Math.sqrt(3), y: -4 }, { x: -8, y: 0 }, { x: 4 * Math.sqrt(3), y: 4 }] },
+    ],
+    labels: [
+      { key: "a", objectId: "center-triangle", at: { x: 4 * Math.sqrt(3), y: -4 }, placement: "below-right" },
+      { key: "b", objectId: "center-triangle", at: { x: 4 * Math.sqrt(3), y: 4 }, placement: "above-right" },
+      { key: "c", objectId: "inscribed", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "d", objectId: "far", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "o", objectId: "center-triangle", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "r", objectId: "center-triangle", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Luasnya tidak tunggal, jadi pernyataan (2) saja tidak cukup.
 
 # Kesimpulan untuk setiap pilihan

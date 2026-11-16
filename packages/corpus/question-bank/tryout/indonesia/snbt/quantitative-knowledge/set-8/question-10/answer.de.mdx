@@ -23,6 +23,35 @@ Jede Zeile enthält <InlineMath math="5" /> Punkte, und **jedes Paar in derselbe
 
 Bei waagrechter Differenz <InlineMath math="3" /> und senkrechter Differenz <InlineMath math="4" /> sind die <InlineMath math="x" />-Koordinaten der beiden Punkte <InlineMath math="\{0,3\}" /> oder <InlineMath math="\{1,4\}" />, die <InlineMath math="y" />-Koordinaten müssen <InlineMath math="\{0,4\}" /> sein, und die Verbindungsstrecke kann steigen oder fallen. Das ergibt <InlineMath math="2\cdot1\cdot2=4" /> Paare. Waagrechte Differenz <InlineMath math="4" /> und senkrechte Differenz <InlineMath math="3" /> liefern ebenfalls <InlineMath math="4" /> Paare.
 
+Das Gitter zeigt alle acht Paare im Abstand <InlineMath math="5" />. Jede Strecke verbindet zwei Punkte, deren Koordinaten sich um <InlineMath math="3" /> und <InlineMath math="4" /> unterscheiden, also **berührt jede Strecke zwei gegenüberliegende Seiten des Gitters**, weil ein Unterschied von <InlineMath math="4" /> schon die volle Breite nutzt.
+
+<MathVisual
+  title={<>Die acht Punktpaare im Abstand <InlineMath math="5" /> auf dem Gitter <InlineMath math="5\times5" /></>}
+  description={<>Das Gitter ganzzahliger Punkte reicht von <InlineMath math="(0,0)" /> bis <InlineMath math="(4,4)" />. Vier Strecken haben einen waagrechten Unterschied von <InlineMath math="3" /> und einen senkrechten von <InlineMath math="4" />, etwa von <InlineMath math="(0,0)" /> nach <InlineMath math="(3,4)" />. Vier weitere haben einen waagrechten Unterschied von <InlineMath math="4" /> und einen senkrechten von <InlineMath math="3" />, etwa von <InlineMath math="(0,0)" /> nach <InlineMath math="(4,3)" />. Jede Strecke ist <InlineMath math="5" /> lang.</>}
+  labels={{
+    five: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "grid", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "a1", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "a2", kind: "segment", appearance: "answer", from: { x: 1, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "a3", kind: "segment", appearance: "answer", from: { x: 0, y: 4 }, to: { x: 3, y: 0 } },
+      { id: "a4", kind: "segment", appearance: "answer", from: { x: 1, y: 4 }, to: { x: 4, y: 0 } },
+      { id: "b1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "b2", kind: "segment", appearance: "secondary", from: { x: 0, y: 1 }, to: { x: 4, y: 4 } },
+      { id: "b3", kind: "segment", appearance: "secondary", from: { x: 0, y: 3 }, to: { x: 4, y: 0 } },
+      { id: "b4", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "five", objectId: "a1", at: { x: 1.5, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 \text{günstige Paare}&=50+50+4+4=108\\
 P&=\frac{108}{300}=\frac{9}{25}

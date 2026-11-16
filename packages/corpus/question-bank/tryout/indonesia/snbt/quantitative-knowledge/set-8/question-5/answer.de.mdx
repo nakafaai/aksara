@@ -24,6 +24,18 @@ Weil **die restlichen Summanden positiv sind**, ist die sechste Potenz echt grö
 
 Zur Kontrolle: <InlineMath math="\sqrt[3]{3}\approx1{,}4422" /> und <InlineMath math="\tfrac{49}{48}\sqrt2\approx1{,}4437" />. Der Unterschied beträgt nur etwa <InlineMath math="0{,}0014" />, deshalb reicht eine Schätzung mit <InlineMath math="2" /> Nachkommastellen nicht.
 
+Das Diagramm vergrößert den schmalen Streifen um <InlineMath math="\tfrac98" />. Der Balken für <InlineMath math="P^6/8" /> und der Balken für die ersten beiden Binomialglieder **sind genau gleich hoch**, der Balken für <InlineMath math="Q^6/8" /> ist etwas höher, weil die übrigen Binomialglieder alle positiv sind.
+
+<Chart
+  title={<><InlineMath math="\tfrac{P^6}{8}" /> und <InlineMath math="\tfrac{Q^6}{8}" /> vergleichen</>}
+  description={<>Die Werteachse beginnt bei <InlineMath math="1{,}1" />, damit der kleine Abstand sichtbar wird. Der Wert <InlineMath math="\tfrac{P^6}{8}=\tfrac98=1{,}125" /> ist gleich <InlineMath math="1+\tfrac{6}{48}" />. Der Wert <InlineMath math="\tfrac{Q^6}{8}=\left(\tfrac{49}{48}\right)^6" /> liegt bei etwa <InlineMath math="1{,}132" />, knapp darüber.</>}
+  bars="apart"
+  categories={["P^6 / 8", "1 + 6/48", "Q^6 / 8"]}
+  series={[{ label: "Wert", mark: "bar", values: [9 / 8, 1 + 6 / 48, (49 / 48) ** 6] }]}
+  valueRange={{ min: 1.1, max: 1.14 }}
+  valueLabel="Wert"
+/>
+
 # Die falschen Antworten
 
 - <InlineMath math="P>Q" /> entsteht, wenn du nur <InlineMath math="\sqrt[3]{3}>\sqrt2" /> vergleichst und **den Faktor <InlineMath math="\tfrac{49}{48}" /> übersiehst**.

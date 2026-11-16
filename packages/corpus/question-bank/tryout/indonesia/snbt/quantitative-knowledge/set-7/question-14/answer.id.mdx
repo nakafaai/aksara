@@ -33,6 +33,43 @@ Pakai ukuran kelas yang sudah diketahui dan **timbang setiap rata-rata dengan ba
 
 Pemeriksaan dengan jalan lain: jumlah nilai ketiga kelas adalah <InlineMath math="75\times6k=450k" />. Keluarkan kelas A yang jumlah nilainya <InlineMath math="50k" />, maka tersisa <InlineMath math="400k" /> untuk <InlineMath math="5k" /> siswa, yaitu rata-rata <InlineMath math="80" />.
 
+Garis bilangan berikut memperlihatkan hasil itu sebagai titik keseimbangan. Kelas B tiga kali kelas A dan kelas C dua kali kelas A, jadi rata-rata gabungan B dan C **berada di <InlineMath math="80" />**, jarak <InlineMath math="10" /> dari <InlineMath math="70" /> dan <InlineMath math="15" /> dari <InlineMath math="95" />, berbanding terbalik dengan ukuran <InlineMath math="3:2" />.
+
+<MathVisual
+  title={<>Rata-rata kelas dan rata-rata gabungan pada satu garis</>}
+  description={<>Pada garis nilai, rata-rata A ada di <InlineMath math="50" />, gabungan A dan B di <InlineMath math="65" />, rata-rata B di <InlineMath math="70" />, gabungan ketiga kelas di <InlineMath math="75" />, gabungan B dan C di <InlineMath math="80" />, dan rata-rata C di <InlineMath math="95" />. Jarak dari <InlineMath math="80" /> ke <InlineMath math="70" /> dan ke <InlineMath math="95" /> berbanding <InlineMath math="10:15=2:3" />, kebalikan dari ukuran kelas <InlineMath math="3:2" />.</>}
+  labels={{
+    a: <InlineMath math="A:50" />,
+    ab: <InlineMath math="A+B:65" />,
+    b: <InlineMath math="B:70" />,
+    all: <InlineMath math="75" />,
+    bc: <InlineMath math="B+C:80" />,
+    c: <InlineMath math="C:95" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 45, max: 100 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.04 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 47, y: 0 }, to: { x: 98, y: 0 } },
+      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 50, y: 0 } },
+      { id: "mean-ab", kind: "point", appearance: "construction", at: { x: 65, y: 0 } },
+      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 70, y: 0 } },
+      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 75, y: 0 } },
+      { id: "mean-bc", kind: "point", appearance: "answer", at: { x: 80, y: 0 } },
+      { id: "mean-c", kind: "point", appearance: "primary", at: { x: 95, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mean-a", at: { x: 50, y: 0 }, placement: "above" },
+      { key: "ab", objectId: "mean-ab", at: { x: 65, y: 0 }, placement: "below" },
+      { key: "b", objectId: "mean-b", at: { x: 70, y: 0 }, placement: "above" },
+      { key: "all", objectId: "mean-all", at: { x: 75, y: 0 }, placement: "below" },
+      { key: "bc", objectId: "mean-bc", at: { x: 80, y: 0 }, placement: "above" },
+      { key: "c", objectId: "mean-c", at: { x: 95, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Pilihan yang keliru
 
 - <InlineMath math="90" /> muncul jika perbandingan A dan B terbalik menjadi <InlineMath math="3:1" />, sehingga ukuran kelas C ikut salah menjadi <InlineMath math="4k" />.

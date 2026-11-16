@@ -27,6 +27,18 @@ Contohnya, <InlineMath math="n=3" /> memberi <InlineMath math="8" /> dengan sisa
 
 Gabungkan: <InlineMath math="n" /> ganjil dan bersisa <InlineMath math="1" /> atau <InlineMath math="2" /> jika dibagi <InlineMath math="3" />. Pada tabel, kolom dengan sisa oleh <InlineMath math="2" /> sama dengan <InlineMath math="1" /> dan sisa oleh <InlineMath math="3" /> bukan <InlineMath math="0" /> adalah kolom <InlineMath math="1" /> dan kolom <InlineMath math="5" />. **Masih ada dua kemungkinan**, dan keduanya benar-benar terjadi.
 
+Diagram berikut menggabungkan kedua pernyataan. Pernyataan (1) membuang sisa <InlineMath math="0" /> pada pembagian oleh <InlineMath math="3" />, pernyataan (2) membuang bilangan genap, dan **dua sisa pembagian oleh <InlineMath math="6" /> masih tersisa**.
+
+<Mermaid
+  title={<>Sisa pembagian oleh <InlineMath math="6" /> yang lolos kedua pernyataan</>}
+  description={<>Pernyataan (1) menyisakan sisa <InlineMath math="1" /> atau <InlineMath math="2" /> pada pembagian oleh <InlineMath math="3" />. Pernyataan (2) menyisakan bilangan ganjil. Bersama-sama, sisa pembagian oleh <InlineMath math="6" /> bisa <InlineMath math="1" /> atau <InlineMath math="5" />, misalnya <InlineMath math="n=7" /> dan <InlineMath math="n=5" />.</>}
+  chart={`flowchart LR
+    S1["(1): sisa bagi 3 adalah 1 atau 2"] --> K["sisa bagi 6: 1 atau 5"]
+    S2["(2): n ganjil"] --> K
+    K --> X1["n = 7: sisa 1"]
+    K --> X2["n = 5: sisa 5"]`}
+/>
+
 <BlockMath math="\begin{aligned}
 n=7&: \ 7^2+2=51=3\times17,\quad 7^2-1=48=8\times6,\quad \text{sisa oleh } 6 \text{ adalah } 1\\
 n=5&: \ 5^2+2=27=3\times9,\quad 5^2-1=24=8\times3,\quad \text{sisa oleh } 6 \text{ adalah } 5
