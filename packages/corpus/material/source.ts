@@ -12,6 +12,7 @@ import { lessonChemistryChemicalBondMaterial } from "#corpus/material/lesson/che
 import { lessonChemistryChemistryIntroductionMaterial } from "#corpus/material/lesson/chemistry/chemistry-introduction/source";
 import { lessonChemistryGreenChemistryMaterial } from "#corpus/material/lesson/chemistry/green-chemistry/source";
 import { lessonChemistryManufacturedSubstancesMaterial } from "#corpus/material/lesson/chemistry/manufactured-substances/source";
+import { lessonChemistryMoleConceptMaterial } from "#corpus/material/lesson/chemistry/mole-concept/source";
 import { lessonChemistryReactionRateMaterial } from "#corpus/material/lesson/chemistry/reaction-rate/source";
 import { lessonChemistryStructureMatterMaterial } from "#corpus/material/lesson/chemistry/structure-matter/source";
 import { lessonMathematicsAnalyticGeometryMaterial } from "#corpus/material/lesson/mathematics/analytic-geometry/source";
@@ -60,6 +61,7 @@ const materialSourcePrograms = [
   lessonChemistryChemistryIntroductionMaterial,
   lessonChemistryGreenChemistryMaterial,
   lessonChemistryManufacturedSubstancesMaterial,
+  lessonChemistryMoleConceptMaterial,
   lessonChemistryReactionRateMaterial,
   lessonChemistryStructureMatterMaterial,
   lessonMathematicsAnalyticGeometryMaterial,
