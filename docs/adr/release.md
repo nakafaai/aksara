@@ -120,7 +120,9 @@ contains final evidence or a stable failure. The workflow coordinates the
 proof, but the Convex release row remains authoritative state. Concurrent
 requests cannot start duplicate proofs, and an HTTP disconnect cannot cancel or
 restart verification. The publisher polls one-second bounded requests for at
-most ten minutes, then fails with a typed timeout without activating content.
+most thirty minutes, which covers the artifact checks and the one recompute
+action Convex allows ten minutes, then fails with a typed timeout without
+activating content.
 Successful polling clears the workflow identity only after terminal workflow
 cleanup succeeds. Abort first cancels and cleans any active proof coordinator,
 then resumes its existing bounded row deletion.
