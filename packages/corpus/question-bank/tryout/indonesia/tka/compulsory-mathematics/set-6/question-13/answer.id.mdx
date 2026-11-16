@@ -20,6 +20,47 @@ Lima belas pencerminan berarti <InlineMath math="7" /> pasangan lengkap, lalu **
 \text{pencerminan ke-15:}\quad x&=2\cdot4-9=-1
 \end{aligned}" />
 
+Gambar perjalanan titik di sepanjang garis <InlineMath math="y=2" />. **Tujuh pasangan pencerminan menggeser titik <InlineMath math="28" /> satuan ke kiri dalam satu panah**, lalu pencerminan ke-<InlineMath math="15" /> terhadap <InlineMath math="x=4" /> membalikkan <InlineMath math="(9,2)" /> ke <InlineMath math="(-1,2)" />.
+
+<MathVisual
+  title={<>Lima belas pencerminan dirangkum menjadi translasi dan satu cermin</>}
+  description={<>Dua garis cermin tegak <InlineMath math="x=4" /> dan <InlineMath math="x=2" />. Panah dari <InlineMath math="P(37,2)" /> ke <InlineMath math="(9,2)" /> adalah hasil tujuh pasangan pencerminan, masing-masing geseran <InlineMath math="4" /> satuan ke kiri. Panah kedua dari <InlineMath math="9" /> ke <InlineMath math="-1" /> adalah pencerminan terakhir terhadap <InlineMath math="x=4" />, sehingga bayangan akhirnya <InlineMath math="(-1,2)" />.</>}
+  labels={{
+    first: <InlineMath math="x=4" />,
+    second: <InlineMath math="x=2" />,
+    pairs: <><InlineMath math="7" /> pasangan: <InlineMath math="-28" /></>,
+    start: <InlineMath math="P(37,2)" />,
+    middle: <InlineMath math="(9,2)" />,
+    end: <InlineMath math="(-1,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 40 },
+      y: { min: -1.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "reference", from: { x: 4, y: -1 }, to: { x: 4, y: 5 } },
+      { id: "second", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 2, y: 5 } },
+      { id: "pairs", kind: "vector", appearance: "secondary", from: { x: 37, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "last", kind: "vector", appearance: "answer", from: { x: 9, y: 3 }, to: { x: -1, y: 3 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 37, y: 2 } },
+      { id: "middle", kind: "point", appearance: "secondary", at: { x: 9, y: 2 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: -1, y: 2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 5 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 2, y: 5 }, placement: "above-left" },
+      { key: "pairs", objectId: "pairs", at: { x: 23, y: 2 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 37, y: 2 }, placement: "above" },
+      { key: "middle", objectId: "middle", at: { x: 9, y: 2 }, placement: "below" },
+      { key: "end", objectId: "end", at: { x: -1, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Koordinat <InlineMath math="y" /> tetap <InlineMath math="2" /> sepanjang proses, karena semua garis cerminnya tegak.
 
 Jadi, bayangan titik <InlineMath math="P" /> setelah <InlineMath math="15" /> kali pencerminan adalah <InlineMath math="(-1,2)" />.

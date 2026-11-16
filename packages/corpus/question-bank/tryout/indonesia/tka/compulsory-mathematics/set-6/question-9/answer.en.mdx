@@ -4,6 +4,48 @@ The five statements cover the range, a composition, the inverse and the fixed po
 
 <BlockMath math="f(x)=\frac{2x+6}{x-3}=\frac{2(x-3)+12}{x-3}=2+\frac{12}{x-3}" />
 
+Draw <InlineMath math="f" /> in its new form. **The graph approaches the line <InlineMath math="y=2" /> without ever touching it, meets <InlineMath math="y=x" /> at two points, and passes height <InlineMath math="3" /> at <InlineMath math="x=15" />**. Those three facts settle the first, second, and fourth statements.
+
+<MathVisual
+  title={<>Graph of <InlineMath math="f(x)=2+\frac{12}{x-3}" /></>}
+  description={<>The graph has two branches separated by the vertical asymptote <InlineMath math="x=3" /> and approaching the horizontal asymptote <InlineMath math="y=2" />. The line <InlineMath math="y=x" /> meets the right branch at <InlineMath math="(6,\ 6)" /> and the left branch at <InlineMath math="(-1,\ -1)" />. The point <InlineMath math="(15,\ 3)" /> on the right branch shows <InlineMath math="f(15)=3" />, a value that cannot be fed into <InlineMath math="f" /> again.</>}
+  labels={{
+    right: <InlineMath math="y=f(x)" />,
+    mirror: <InlineMath math="y=x" />,
+    "fixed-high": <InlineMath math="(6,\ 6)" />,
+    "fixed-low": <InlineMath math="(-1,\ -1)" />,
+    trap: <InlineMath math="(15,\ 3)" />,
+    level: <InlineMath math="y=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 17 },
+      y: { min: -10, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "2 + 12/(x - 3)", domain: { min: -9.5, max: 2.4 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "2 + 12/(x - 3)", domain: { min: 3.8, max: 16.5 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 3, y: -10 }, to: { x: 3, y: 17 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "2", domain: { min: -9.5, max: 16.5 } },
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -9.5, max: 16.5 } },
+      { id: "fixed-high", kind: "point", appearance: "answer", at: { x: 6, y: 6 } },
+      { id: "fixed-low", kind: "point", appearance: "answer", at: { x: -1, y: -1 } },
+      { id: "trap", kind: "point", appearance: "warning", at: { x: 15, y: 3 } },
+    ],
+    labels: [
+      { key: "right", objectId: "right", at: { x: 5, y: 8 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 14, y: 14 }, placement: "above-left" },
+      { key: "fixed-high", objectId: "fixed-high", at: { x: 6, y: 6 }, placement: "below-right" },
+      { key: "fixed-low", objectId: "fixed-low", at: { x: -1, y: -1 }, placement: "above-left" },
+      { key: "trap", objectId: "trap", at: { x: 15, y: 3 }, placement: "above" },
+      { key: "level", objectId: "level", at: { x: -8, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 The fraction <InlineMath math="\frac{12}{x-3}" /> is never zero, and it can take any value other than zero.
 
 # Statement one

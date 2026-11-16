@@ -14,6 +14,23 @@ After the move, box B holds <InlineMath math="6" /> balls. Two balls drawn one a
 | blue | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 3,\ 1" /> | <InlineMath math="1+3+0=4" /> | <InlineMath math="\tfrac{4}{15}" /> |
 | green | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 2,\ 2" /> | <InlineMath math="1+1+1=3" /> | <InlineMath math="\tfrac{3}{15}" /> |
 
+The tree below combines the three cases. **Each branch is multiplied by the probability of its case first**, so the red case, with probability <InlineMath math="\frac12" />, contributes the most.
+
+<Mermaid
+  title={<>Same-colour probability through three transfer cases</>}
+  description={<>The ball moved is red with probability <InlineMath math="\frac12" />, blue <InlineMath math="\frac14" />, and green <InlineMath math="\frac14" />. Box B then holds red, blue, green in the amounts <InlineMath math="3,2,1" />, <InlineMath math="2,3,1" />, or <InlineMath math="2,2,2" />, with same-colour probabilities <InlineMath math="\frac{4}{15}" />, <InlineMath math="\frac{4}{15}" />, and <InlineMath math="\frac{3}{15}" />. The weighted sum is <InlineMath math="\frac14" />.</>}
+  chart={`flowchart LR
+  A["Ball from A"] -->|"1/2"| R["Red: B = 3, 2, 1"]
+  A -->|"1/4"| U["Blue: B = 2, 3, 1"]
+  A -->|"1/4"| G["Green: B = 2, 2, 2"]
+  R --> R1["Same colour 4/15"]
+  U --> U1["Same colour 4/15"]
+  G --> G1["Same colour 3/15"]
+  R1 --> T["1/2 · 4/15 + 1/4 · 4/15 + 1/4 · 3/15 = 1/4"]
+  U1 --> T
+  G1 --> T`}
+/>
+
 For example, in the red case, three red balls give <InlineMath math="\binom32=3" /> pairs, two blue balls give <InlineMath math="1" /> pair, and a single green ball can't form a pair.
 
 # Combining the three cases

@@ -21,6 +21,40 @@ Pada peringkat pertama, air hanya mengalir keluar. Pada peringkat kedua, pam mem
 | Paras turun, pam mati | <InlineMath math="22" /> liter seminit keluar | <InlineMath math="\frac{1{,}848}{22}=84" /> minit |
 | Paras naik, pam hidup | <InlineMath math="44" /> liter seminit masuk | <InlineMath math="\frac{1{,}848}{44}=42" /> minit |
 
+Lukis isi padu air di atas sempadan kon-silinder terhadap masa. **Garisnya turun <InlineMath math="22" /> liter seminit hingga habis, kemudian naik dengan kadar bersih <InlineMath math="44" /> liter seminit**, dua kali lebih curam, jadi peringkat naik hanya mengambil separuh masa peringkat turun.
+
+<MathVisual
+  title={<>Isi padu air di bahagian silinder mengikut masa</>}
+  description={<>Paksi mendatar ialah masa dalam minit sejak pukul 16:00, dan paksi tegak ialah isi padu air di bahagian silinder di bawah garis had selamat, dalam liter. Garis turun dari <InlineMath math="1{,}848" /> dengan kecerunan <InlineMath math="-22" /> dan mencapai sifar pada minit ke-<InlineMath math="84" />, ketika pam hidup. Selepas itu garis naik dengan kecerunan <InlineMath math="44" /> dan kembali ke <InlineMath math="1{,}848" /> pada minit ke-<InlineMath math="126" />, ketika pam mati.</>}
+  labels={{
+    drain: <InlineMath math="-22" />,
+    fill: <InlineMath math="+44" />,
+    on: <>pam hidup, pukul 17:24</>,
+    off: <>pam mati, pukul 18:06</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 136 },
+      y: { min: -120, max: 2050 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "drain", kind: "function", appearance: "secondary", formula: "1848 - 22x", domain: { min: 0, max: 84 } },
+      { id: "fill", kind: "function", appearance: "primary", formula: "44(x - 84)", domain: { min: 84, max: 126 } },
+      { id: "on", kind: "point", appearance: "warning", at: { x: 84, y: 0 } },
+      { id: "off", kind: "point", appearance: "answer", at: { x: 126, y: 1848 } },
+    ],
+    labels: [
+      { key: "drain", objectId: "drain", at: { x: 42, y: 924 }, placement: "above-right" },
+      { key: "fill", objectId: "fill", at: { x: 105, y: 924 }, placement: "right" },
+      { key: "on", objectId: "on", at: { x: 84, y: 0 }, placement: "below" },
+      { key: "off", objectId: "off", at: { x: 126, y: 1848 }, placement: "left" },
+    ],
+  }}
+/>
+
 Pam hidup <InlineMath math="84" /> minit selepas 4:00 petang, iaitu pada 5:24 petang. Pam mati <InlineMath math="42" /> minit kemudian, iaitu pada 6:06 petang. Paip keluar masih terbuka hingga 8:00 malam, jadi kadar bersih <InlineMath math="44" /> liter seminit memang berlaku sepanjang peringkat kedua.
 
 Jadi, pam mati semula pada 6:06 petang, iaitu pukul 18:06 dalam pilihan jawapan.

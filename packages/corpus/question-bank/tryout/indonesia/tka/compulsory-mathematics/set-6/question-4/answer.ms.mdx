@@ -29,6 +29,38 @@ Dari 6:00 pagi hingga 5:00 petang ada <InlineMath math="11" /> jam. Pam B bekerj
 k&\ge6.5
 \end{aligned}" />
 
+Lukis baki air kolam bagi dua masa mematikan pam A. **Selepas pam A dimatikan, garis menjadi tiga kali lebih landai kerana hanya pam B yang bekerja**. Mematikan A pada pukul 13:00 menjadikan garis mencapai sifar sebelum had pukul 17:00, manakala pukul 12:00 sudah terlambat.
+
+<MathVisual
+  title={<>Baki air kolam bagi dua masa mematikan pam A</>}
+  description={<>Paksi mendatar ialah jam sejak pukul 6:00, dan paksi tegak ialah bahagian kolam yang masih berisi air. Dengan kedua-dua pam, garis turun <InlineMath math="\frac18" /> sejam. Jika A dimatikan selepas <InlineMath math="7" /> jam, baki <InlineMath math="\frac18" /> turun <InlineMath math="\frac{1}{24}" /> sejam dan habis pada jam ke-<InlineMath math="10" />, iaitu pukul 16:00. Jika A dimatikan selepas <InlineMath math="6" /> jam, baki <InlineMath math="\frac14" /> hanya habis pada jam ke-<InlineMath math="12" />, iaitu pukul 18:00. Garis tegak pada jam ke-<InlineMath math="11" /> ialah had pukul 17:00.</>}
+  labels={{
+    deadline: <>had pukul 17:00</>,
+    good: <>A dimatikan pukul 13:00</>,
+    bad: <>A dimatikan pukul 12:00</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 12.8 },
+      y: { min: -0.06, max: 1.08 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "together", kind: "function", appearance: "primary", formula: "1 - x/8", domain: { min: 0, max: 7 } },
+      { id: "good", kind: "function", appearance: "answer", formula: "1/8 - (x - 7)/24", domain: { min: 7, max: 10 } },
+      { id: "bad", kind: "function", appearance: "warning", formula: "1/4 - (x - 6)/24", domain: { min: 6, max: 12 } },
+      { id: "deadline", kind: "segment", appearance: "reference", from: { x: 11, y: 0 }, to: { x: 11, y: 1 } },
+    ],
+    labels: [
+      { key: "deadline", objectId: "deadline", at: { x: 11, y: 1 }, placement: "above" },
+      { key: "good", objectId: "good", at: { x: 8.5, y: 1 / 16 }, placement: "below-left" },
+      { key: "bad", objectId: "bad", at: { x: 9, y: 1 / 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Pam A hanya boleh dimatikan tepat pada jam genap, jadi <InlineMath math="k" /> mesti nombor bulat. Nombor bulat terkecil yang memenuhi <InlineMath math="k\ge6.5" /> ialah <InlineMath math="k=7" />, iaitu pukul 1:00 petang (13.00).
 
 # Semak had dari dua arah

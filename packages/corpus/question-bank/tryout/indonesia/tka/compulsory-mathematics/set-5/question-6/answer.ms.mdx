@@ -24,6 +24,42 @@ Sekarang cari <InlineMath math="x" /> yang memberi <InlineMath math="f(x)=4" />:
 3x-1=4\ &\Rightarrow\ x=\tfrac53,\ \text{tetapi }\tfrac53\not\ge2\ \text{(ditolak)}
 \end{aligned}" />
 
+Lukis kedua-dua cabang <InlineMath math="f" /> bersama garis <InlineMath math="y=11" /> dan <InlineMath math="y=4" />. **Setiap garis mendatar hanya memotong satu cabang**, kerana cabang kiri berada di bawah <InlineMath math="5" /> dan cabang kanan bermula dari <InlineMath math="5" />. Garis <InlineMath math="y=11" /> memotong cabang kanan pada <InlineMath math="x=4" />, kemudian garis <InlineMath math="y=4" /> memotong cabang kiri pada <InlineMath math="x=0" />.
+
+<MathVisual
+  title={<>Membaca <InlineMath math="f^{-1}" /> daripada dua cabang</>}
+  description={<>Cabang kiri <InlineMath math="y=\frac{x}{2}+4" /> bagi <InlineMath math="x<2" /> naik menghampiri <InlineMath math="5" />. Cabang kanan <InlineMath math="y=3x-1" /> bagi <InlineMath math="x\ge2" /> bermula dari <InlineMath math="(2,\ 5)" /> dan naik lebih curam. Garis mendatar <InlineMath math="y=11" /> memotong cabang kanan pada <InlineMath math="(4,\ 11)" />, dan garis mendatar <InlineMath math="y=4" /> memotong cabang kiri pada <InlineMath math="(0,\ 4)" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{x}{2}+4" />,
+    right: <InlineMath math="y=3x-1" />,
+    first: <InlineMath math="(4,\ 11)" />,
+    second: <InlineMath math="(0,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 6.5 },
+      y: { min: -1, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x/2 + 4", domain: { min: -4.5, max: 2 } },
+      { id: "right", kind: "function", appearance: "secondary", formula: "3x - 1", domain: { min: 2, max: 5 } },
+      { id: "eleven", kind: "function", appearance: "reference", formula: "11", domain: { min: -4.5, max: 6 } },
+      { id: "four", kind: "function", appearance: "reference", formula: "4", domain: { min: -4.5, max: 6 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 4, y: 11 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -4, y: 2 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 5, y: 14 }, placement: "left" },
+      { key: "first", objectId: "first", at: { x: 4, y: 11 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: 0, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="f^{-1}(4)=0" />. Semak: <InlineMath math="f(0)=\frac02+4=4" />. Kali ini **cabang kedua pula yang ditolak**, bertentangan dengan langkah pertama.
 
 Jadi, nilai <InlineMath math="f^{-1}\left(f^{-1}(11)\right)" /> ialah <InlineMath math="0" />.

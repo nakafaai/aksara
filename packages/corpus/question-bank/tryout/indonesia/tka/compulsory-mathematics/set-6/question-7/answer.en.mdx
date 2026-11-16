@@ -18,6 +18,40 @@ Solve the inequality <InlineMath math="P(t)>Q(t)" /> by writing everything with 
 t&>7.2
 \end{aligned}" />
 
+Draw both colonies against time. **The curves cross at <InlineMath math="t=7.2" />, between two on-the-hour counts**, so the first count that sees P ahead is at <InlineMath math="t=8" />.
+
+<MathVisual
+  title={<>Colonies P and Q since 05:00</>}
+  description={<>The horizontal axis is hours since 05:00, and the vertical axis is the number of cells. The curve <InlineMath math="P(t)=500\cdot2^{t/2}" /> rises from <InlineMath math="500" />, and the curve <InlineMath math="Q(t)=32{,}000\cdot2^{-t/3}" /> falls from <InlineMath math="32{,}000" />. They meet at <InlineMath math="t=7.2" />, which is 12:12. At the count <InlineMath math="t=8" />, colony P has <InlineMath math="8{,}000" /> cells and lies above Q.</>}
+  labels={{
+    p: <InlineMath math="P(t)" />,
+    q: <InlineMath math="Q(t)" />,
+    cross: <>equal, 12:12</>,
+    count: <>13:00: <InlineMath math="8{,}000" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10.5 },
+      y: { min: -1200, max: 34000 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p", kind: "function", appearance: "primary", formula: "500 * 2^(x/2)", domain: { min: 0, max: 10 } },
+      { id: "q", kind: "function", appearance: "secondary", formula: "32000 * 2^(-x/3)", domain: { min: 0, max: 10 } },
+      { id: "cross", kind: "point", appearance: "warning", at: { x: 7.2, y: 500 * Math.pow(2, 3.6) } },
+      { id: "count", kind: "point", appearance: "answer", at: { x: 8, y: 8000 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 10, y: 16000 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 1, y: 32000 * Math.pow(2, -1 / 3) }, placement: "right" },
+      { key: "cross", objectId: "cross", at: { x: 7.2, y: 500 * Math.pow(2, 3.6) }, placement: "above-left" },
+      { key: "count", objectId: "count", at: { x: 8, y: 8000 }, placement: "right" },
+    ],
+  }}
+/>
+
 Going from the third line to the fourth is allowed because <InlineMath math="2^{x}" /> always increases, so a bigger exponent gives a bigger value. The colonies are equal at exactly <InlineMath math="t=7.2" /> hours, which is 12:12. **There's no count at 12:12**, because counts only happen on the hour. The smallest whole number above <InlineMath math="7.2" /> is <InlineMath math="8" />, so the answer is 13:00.
 
 # Checking two counts

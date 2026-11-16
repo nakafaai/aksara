@@ -25,6 +25,20 @@ Nimm für jede Anzahl von <InlineMath math="2{,}5" />-Liter-Dosen so wenige <Inl
 | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="6\text{ L}" /> | <InlineMath math="\text{Rp}255{.}000" /> |
 | <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="7{,}5\text{ L}" /> | <InlineMath math="\text{Rp}315{.}000" /> |
 
+Vergleiche die vier ausreichenden Kombinationen. **Der niedrigste Balken ist eine große und drei kleine Dosen**, obwohl große Dosen pro Liter billiger sind, weil die anderen Kombinationen zu viel übrige Farbe bezahlen.
+
+<Chart
+  title={<>Kosten jeder ausreichenden Dosenkombination</>}
+  description={<>Sechs kleine Dosen kosten <InlineMath math="270" /> tausend Rupiah, eine große und drei kleine <InlineMath math="240" /> tausend Rupiah, zwei große und eine kleine <InlineMath math="255" /> tausend Rupiah und drei große <InlineMath math="315" /> tausend Rupiah. Die Werteachse beginnt bei <InlineMath math="200" /> tausend Rupiah.</>}
+  bars="apart"
+  categories={["0 groß, 6 klein", "1 groß, 3 klein", "2 groß, 1 klein", "3 groß, 0 klein"]}
+  series={[
+    { label: "Kosten", mark: "bar", values: [270, 240, 255, 315] },
+  ]}
+  valueLabel="Tausend Rupiah"
+  valueRange={{ min: 200, max: 330 }}
+/>
+
 Zwei große Dosen allein enthalten nur <InlineMath math="5" /> Liter, das reicht nicht, also brauchst du noch eine kleine Dose. Die Kosten in der zweiten Zeile sind
 
 <BlockMath math="1\cdot105{.}000+3\cdot45{.}000=105{.}000+135{.}000=240{.}000" />

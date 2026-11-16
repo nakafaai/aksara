@@ -22,6 +22,44 @@ Ambil titik <InlineMath math="(t,t^2)" /> pada <InlineMath math="y=x^2" /> dan l
 X=kt,\quad Y&=kt^2=k\left(\frac{X}{k}\right)^2=\frac{X^2}{k}
 \end{aligned}" />
 
+Lukis parabola asal, parabola sasaran, dan satu imej yang salah. **Ketiga-tiga parabola boleh berbucu sama di <InlineMath math="(3,3)" /> tetapi berbeza kelebarannya**, jadi menyemak bucu sahaja belum cukup. Faktor skala <InlineMath math="-2" /> menghasilkan parabola yang lebih lebar, bukan lebih sempit.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y=x^2" />, sasaran, dan imej berfaktor <InlineMath math="-2" /></>}
+  description={<>Parabola <InlineMath math="y=x^2" /> berbucu di asalan. Parabola sasaran <InlineMath math="y=-2(x-3)^2+3" /> terbuka ke bawah, berbucu di <InlineMath math="(3,3)" />, dan sempit. Imej oleh pembesaran berpusat <InlineMath math="O" /> berfaktor <InlineMath math="-2" /> diikuti translasi <InlineMath math="(3,3)" /> ialah <InlineMath math="y=-\tfrac12(x-3)^2+3" />, berbucu sama tetapi lebih lebar. Titik <InlineMath math="(2,2)" /> ialah pusat pembesaran dalam pernyataan pertama, terletak di antara asalan dan <InlineMath math="(3,3)" /> mengikut faktor <InlineMath math="-\tfrac12" />.</>}
+  labels={{
+    start: <InlineMath math="y=x^2" />,
+    target: <InlineMath math="y=-2(x-3)^2+3" />,
+    wide: <InlineMath math="y=-\tfrac12(x-3)^2+3" />,
+    top: <InlineMath math="(3,3)" />,
+    center: <InlineMath math="(2,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 7.5 },
+      y: { min: -6.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "x^2", domain: { min: -3, max: 3 } },
+      { id: "target", kind: "function", appearance: "primary", formula: "-2(x - 3)^2 + 3", domain: { min: 0.9, max: 5.1 } },
+      { id: "wide", kind: "function", appearance: "warning", formula: "-0.5(x - 3)^2 + 3", domain: { min: -1, max: 7 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "center", kind: "point", appearance: "construction", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: -2.5, y: 6.25 }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 4.5, y: -1.5 }, placement: "right" },
+      { key: "wide", objectId: "wide", at: { x: 6.5, y: -3.125 }, placement: "below-left" },
+      { key: "top", objectId: "top", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 2, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 Pekalinya menjadi <InlineMath math="\frac1k" />, **bukan <InlineMath math="k" />**. Pembesaran dengan pusat lain sama dengan pembesaran berpusat <InlineMath math="O" /> yang diikuti translasi, jadi pekalinya juga <InlineMath math="\frac1k" />. Putaran <InlineMath math="180^\circ" /> sama dengan pembesaran berfaktor <InlineMath math="-1" />, dan translasi tidak mengubah pekali. Dalam gubahan transformasi, faktor-faktornya didarab. Supaya pekalinya <InlineMath math="-2" />, hasil darab faktornya mesti <InlineMath math="-\frac12" />.
 
 Imej titik <InlineMath math="X" /> di bawah pembesaran berpusat <InlineMath math="C" /> dengan faktor <InlineMath math="k" /> ialah <InlineMath math="C+k(X-C)" />. Rumus inilah yang digunakan untuk menjejak verteks.

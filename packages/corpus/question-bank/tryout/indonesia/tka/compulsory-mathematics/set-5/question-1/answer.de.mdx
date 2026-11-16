@@ -23,6 +23,37 @@ Die Bestellung hat <InlineMath math="504" /> Blätter, also <InlineMath math="50
 \text{gesamt}&=151{.}200+120{.}000=271{.}200
 \end{aligned}" />
 
+Zeichne die Druckkosten als Funktion der Blattzahl. **Der Graph fällt genau bei <InlineMath math="500" /> Blatt steil ab**, weil der Preis pro Blatt für alle Blätter gilt. Zählt man die Blätter Modul für Modul, sind es <InlineMath math="504" /> Blatt, rechts von diesem Sprung.
+
+<MathVisual
+  title={<>Druckkosten nach Blattzahl</>}
+  description={<>Die waagerechte Achse ist die Blattzahl, die senkrechte Achse die Druckkosten in tausend Rupiah. Der Graph besteht aus drei Geradenstücken durch den Ursprung: <InlineMath math="0{,}5n" /> bis <InlineMath math="199" /> Blatt, <InlineMath math="0{,}4n" /> von <InlineMath math="200" /> bis <InlineMath math="499" /> Blatt und <InlineMath math="0{,}3n" /> ab <InlineMath math="500" /> Blatt. Der Punkt <InlineMath math="(489,\ 195{,}6)" /> entsteht, wenn man zuerst die Seiten addiert, der Punkt <InlineMath math="(504,\ 151{,}2)" /> ist die richtige Rechnung.</>}
+  labels={{
+    pages: <><InlineMath math="489" /> Blatt, falsch</>,
+    sheets: <><InlineMath math="504" /> Blatt</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 570 },
+      y: { min: -5, max: 215 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "low", kind: "function", appearance: "primary", formula: "0.5x", domain: { min: 0, max: 199 } },
+      { id: "mid", kind: "function", appearance: "primary", formula: "0.4x", domain: { min: 200, max: 499 } },
+      { id: "high", kind: "function", appearance: "primary", formula: "0.3x", domain: { min: 500, max: 560 } },
+      { id: "pages", kind: "point", appearance: "warning", at: { x: 489, y: 195.6 } },
+      { id: "sheets", kind: "point", appearance: "answer", at: { x: 504, y: 151.2 } },
+    ],
+    labels: [
+      { key: "pages", objectId: "pages", at: { x: 489, y: 195.6 }, placement: "above-left" },
+      { key: "sheets", objectId: "sheets", at: { x: 504, y: 151.2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Vergleiche das mit dem Zählen aller Seiten auf einmal: <InlineMath math="\frac{18\cdot27+12\cdot41}{2}=\frac{978}{2}=489" /> Blätter. Diese Zahl liegt in der Stufe <InlineMath math="\text{Rp}400" />. Die <InlineMath math="15" /> zusätzlichen Blätter kommen von den leeren Rückseiten der letzten Blätter, und genau sie heben die Bestellung in die günstigere Stufe.
 
 Die Bestellung kostet also insgesamt <InlineMath math="\text{Rp}271{.}200" />.

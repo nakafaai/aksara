@@ -30,6 +30,50 @@ TM&=\frac{4\sqrt{3}}{2}\cdot\sqrt{3}=6\text{ cm} \\
 V&=\tfrac{1}{3}\cdot s^{2}\cdot TM=\tfrac{1}{3}\cdot48\cdot6=96\text{ cm}^3
 \end{aligned}" />
 
+Zeichne das Dreieck <InlineMath math="TMN" />, das die Höhe der Pyramide mit der Höhe einer Seitenfläche verbindet. **Der Winkel <InlineMath math="60^\circ" /> bei <InlineMath math="N" /> macht <InlineMath math="TN" /> doppelt so lang wie <InlineMath math="MN" /> und <InlineMath math="TM" /> zum <InlineMath math="\sqrt3" />-Fachen von <InlineMath math="MN" />**. Mit <InlineMath math="s=4\sqrt3" /> sind die drei Längen <InlineMath math="2\sqrt3" />, <InlineMath math="4\sqrt3" /> und <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Dreieck <InlineMath math="TMN" /> in der Pyramide</>}
+  description={<>Ein bei <InlineMath math="M" />, dem Mittelpunkt der Grundfläche, rechtwinkliges Dreieck. Die waagerechte Kathete <InlineMath math="MN=2\sqrt3" /> ist die halbe Grundkante, die senkrechte Kathete <InlineMath math="TM=6" /> die Höhe der Pyramide und die Hypotenuse <InlineMath math="TN=4\sqrt3" /> die Höhe einer Seitenfläche. Der Winkel bei <InlineMath math="N" /> beträgt <InlineMath math="60^\circ" />.</>}
+  labels={{
+    t: <InlineMath math="T" />,
+    m: <InlineMath math="M" />,
+    n: <InlineMath math="N" />,
+    height: <InlineMath math="TM=6" />,
+    half: <InlineMath math="MN=2\sqrt3" />,
+    slant: <InlineMath math="TN=4\sqrt3" />,
+    angle: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 2 * Math.sqrt(3), y: 0 }, { x: 0, y: 6 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "half", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(3), y: 0 } },
+      { id: "slant", kind: "segment", appearance: "secondary", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 0, y: 6 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 2 * Math.sqrt(3), y: 0 }, radius: 0.8, startDegrees: 120, sweepDegrees: 60 },
+      { id: "t", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+      { id: "m", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "n", kind: "point", appearance: "primary", at: { x: 2 * Math.sqrt(3), y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "m", objectId: "m", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "n", objectId: "n", at: { x: 2 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      { key: "height", objectId: "height", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "slant", objectId: "slant", at: { x: Math.sqrt(3), y: 3 }, placement: "above-right" },
+      { key: "angle", objectId: "angle", at: { x: 2 * Math.sqrt(3) + 0.8 * Math.cos(5 * Math.PI / 6), y: 0.8 * Math.sin(5 * Math.PI / 6) }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Probe mit dem Satz des Pythagoras im Dreieck <InlineMath math="TMN" />: <InlineMath math="TM^{2}+MN^{2}=36+12=48=TN^{2}" />. **Die drei Längen passen zusammen**.
 
 # Warum die anderen Antworten falsch sind

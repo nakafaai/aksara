@@ -14,6 +14,23 @@ Selepas pemindahan, kotak B mengandungi <InlineMath math="6" /> biji bola. Dua b
 | biru | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 3,\ 1" /> | <InlineMath math="1+3+0=4" /> | <InlineMath math="\tfrac{4}{15}" /> |
 | hijau | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 2,\ 2" /> | <InlineMath math="1+1+1=3" /> | <InlineMath math="\tfrac{3}{15}" /> |
 
+Pohon di bawah menggabungkan ketiga-tiga kes. **Setiap cabang didarab dengan kebarangkalian kesnya dahulu**, jadi kes merah dengan kebarangkalian <InlineMath math="\frac12" /> menyumbang paling banyak.
+
+<Mermaid
+  title={<>Kebarangkalian sama warna melalui tiga kes pemindahan</>}
+  description={<>Bola yang dipindahkan berwarna merah dengan kebarangkalian <InlineMath math="\frac12" />, biru <InlineMath math="\frac14" />, dan hijau <InlineMath math="\frac14" />. Kotak B kemudian berisi merah, biru, hijau sebanyak <InlineMath math="3,2,1" />, <InlineMath math="2,3,1" />, atau <InlineMath math="2,2,2" />, dengan kebarangkalian sama warna <InlineMath math="\frac{4}{15}" />, <InlineMath math="\frac{4}{15}" />, dan <InlineMath math="\frac{3}{15}" />. Jumlah berpemberatnya <InlineMath math="\frac14" />.</>}
+  chart={`flowchart LR
+  A["Bola dari A"] -->|"1/2"| R["Merah: B = 3, 2, 1"]
+  A -->|"1/4"| U["Biru: B = 2, 3, 1"]
+  A -->|"1/4"| G["Hijau: B = 2, 2, 2"]
+  R --> R1["Sama warna 4/15"]
+  U --> U1["Sama warna 4/15"]
+  G --> G1["Sama warna 3/15"]
+  R1 --> T["1/2 · 4/15 + 1/4 · 4/15 + 1/4 · 3/15 = 1/4"]
+  U1 --> T
+  G1 --> T`}
+/>
+
 Contohnya dalam kes merah, tiga biji bola merah memberi <InlineMath math="\binom32=3" /> pasangan, dua biji bola biru memberi <InlineMath math="1" /> pasangan, dan sebiji bola hijau tidak dapat membentuk pasangan.
 
 # Menggabungkan ketiga-tiga kes

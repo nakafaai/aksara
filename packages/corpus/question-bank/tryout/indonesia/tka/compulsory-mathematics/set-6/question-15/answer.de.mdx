@@ -22,6 +22,44 @@ Nimm einen Punkt <InlineMath math="(t,t^2)" /> auf <InlineMath math="y=x^2" /> u
 X=kt,\quad Y&=kt^2=k\left(\frac{X}{k}\right)^2=\frac{X^2}{k}
 \end{aligned}" />
 
+Zeichne die Ausgangsparabel, die Zielparabel und ein falsches Bild. **Alle drei können den Scheitel <InlineMath math="(3,3)" /> teilen und trotzdem verschieden breit sein**, also genügt es nicht, nur den Scheitel zu prüfen. Der Faktor <InlineMath math="-2" /> liefert eine breitere Parabel, keine schmalere.
+
+<MathVisual
+  title={<>Parabel <InlineMath math="y=x^2" />, Ziel und Bild mit Faktor <InlineMath math="-2" /></>}
+  description={<>Die Parabel <InlineMath math="y=x^2" /> hat ihren Scheitel im Ursprung. Die Zielparabel <InlineMath math="y=-2(x-3)^2+3" /> ist nach unten geöffnet, hat den Scheitel <InlineMath math="(3,3)" /> und ist schmal. Das Bild unter der Streckung an <InlineMath math="O" /> mit Faktor <InlineMath math="-2" /> und anschließender Verschiebung um <InlineMath math="(3,3)" /> ist <InlineMath math="y=-\tfrac12(x-3)^2+3" />, mit demselben Scheitel, aber breiter. Der Punkt <InlineMath math="(2,2)" /> ist das Streckzentrum der ersten Aussage, nach dem Faktor <InlineMath math="-\tfrac12" /> zwischen Ursprung und <InlineMath math="(3,3)" /> gelegen.</>}
+  labels={{
+    start: <InlineMath math="y=x^2" />,
+    target: <InlineMath math="y=-2(x-3)^2+3" />,
+    wide: <InlineMath math="y=-\tfrac12(x-3)^2+3" />,
+    top: <InlineMath math="(3,3)" />,
+    center: <InlineMath math="(2,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 7.5 },
+      y: { min: -6.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "function", appearance: "reference", formula: "x^2", domain: { min: -3, max: 3 } },
+      { id: "target", kind: "function", appearance: "primary", formula: "-2(x - 3)^2 + 3", domain: { min: 0.9, max: 5.1 } },
+      { id: "wide", kind: "function", appearance: "warning", formula: "-0.5(x - 3)^2 + 3", domain: { min: -1, max: 7 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "center", kind: "point", appearance: "construction", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: -2.5, y: 6.25 }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 4.5, y: -1.5 }, placement: "right" },
+      { key: "wide", objectId: "wide", at: { x: 6.5, y: -3.125 }, placement: "below-left" },
+      { key: "top", objectId: "top", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 2, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 Der Koeffizient wird <InlineMath math="\frac1k" />, **nicht <InlineMath math="k" />**. Eine Streckung mit einem anderen Zentrum ist eine Streckung mit Zentrum <InlineMath math="O" /> und danach eine Verschiebung, also ist ihr Koeffizient ebenfalls <InlineMath math="\frac1k" />. Eine Drehung um <InlineMath math="180^\circ" /> ist eine Streckung mit Faktor <InlineMath math="-1" />, und eine Verschiebung ändert den Koeffizienten nicht. Bei einer Verkettung multiplizieren sich die Faktoren. Für den Koeffizienten <InlineMath math="-2" /> muss das Produkt der Faktoren <InlineMath math="-\frac12" /> sein.
 
 Das Bild eines Punktes <InlineMath math="X" /> bei einer Streckung mit Zentrum <InlineMath math="C" /> und Faktor <InlineMath math="k" /> ist <InlineMath math="C+k(X-C)" />. Mit dieser Regel verfolgst du den Scheitel.

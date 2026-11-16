@@ -29,6 +29,38 @@ From 06:00 to 17:00 there are <InlineMath math="11" /> hours. Pump B runs for al
 k&\ge6.5
 \end{aligned}" />
 
+Draw the water left in the pool for two times of switching off pump A. **Once pump A stops, the line becomes three times flatter because only pump B is working**. Switching A off at 13:00 makes the line reach zero before the 17:00 deadline, while 12:00 is too late.
+
+<MathVisual
+  title={<>Water left in the pool for two times of switching off pump A</>}
+  description={<>The horizontal axis is hours since 6:00, and the vertical axis is the fraction of the pool still holding water. With both pumps, the line falls <InlineMath math="\frac18" /> per hour. If A stops after <InlineMath math="7" /> hours, the remaining <InlineMath math="\frac18" /> falls <InlineMath math="\frac{1}{24}" /> per hour and is gone at hour <InlineMath math="10" />, which is 16:00. If A stops after <InlineMath math="6" /> hours, the remaining <InlineMath math="\frac14" /> is only gone at hour <InlineMath math="12" />, which is 18:00. The vertical line at hour <InlineMath math="11" /> is the 17:00 deadline.</>}
+  labels={{
+    deadline: <>deadline 17:00</>,
+    good: <>A off at 13:00</>,
+    bad: <>A off at 12:00</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 12.8 },
+      y: { min: -0.06, max: 1.08 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "together", kind: "function", appearance: "primary", formula: "1 - x/8", domain: { min: 0, max: 7 } },
+      { id: "good", kind: "function", appearance: "answer", formula: "1/8 - (x - 7)/24", domain: { min: 7, max: 10 } },
+      { id: "bad", kind: "function", appearance: "warning", formula: "1/4 - (x - 6)/24", domain: { min: 6, max: 12 } },
+      { id: "deadline", kind: "segment", appearance: "reference", from: { x: 11, y: 0 }, to: { x: 11, y: 1 } },
+    ],
+    labels: [
+      { key: "deadline", objectId: "deadline", at: { x: 11, y: 1 }, placement: "above" },
+      { key: "good", objectId: "good", at: { x: 8.5, y: 1 / 16 }, placement: "below-left" },
+      { key: "bad", objectId: "bad", at: { x: 9, y: 1 / 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Pump A can only be switched off exactly on the hour, so <InlineMath math="k" /> has to be a whole number. The smallest whole number with <InlineMath math="k\ge6.5" /> is <InlineMath math="k=7" />, which is 13:00.
 
 # Checking both sides of the limit

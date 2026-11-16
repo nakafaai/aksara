@@ -19,6 +19,21 @@ Bandingkan nilai Bandar P pada setiap bulan dengan <InlineMath math="200\text{ m
 | Mei | <InlineMath math="120" /> | tidak | <InlineMath math="300" /> |
 | Jun | <InlineMath math="40" /> | tidak | <InlineMath math="280" /> |
 
+Lukis semula data dengan garis min Bandar P. **Hanya tiga bar Bandar P yang menembusi garis <InlineMath math="200" />**, iaitu Januari, Februari, dan Mac, manakala bar April tepat menyentuhnya. Bar Bandar Q pada ketiga-tiga bulan itulah yang dipuratakan.
+
+<Chart
+  title={<>Taburan hujan dan min Bandar P</>}
+  description={<>Bar Bandar P dari Januari hingga Jun setinggi <InlineMath math="330" />, <InlineMath math="270" />, <InlineMath math="240" />, <InlineMath math="200" />, <InlineMath math="120" />, dan <InlineMath math="40\text{ mm}" />. Bar Bandar Q setinggi <InlineMath math="250" />, <InlineMath math="230" />, <InlineMath math="180" />, <InlineMath math="320" />, <InlineMath math="300" />, dan <InlineMath math="280\text{ mm}" />. Garis mendatar pada <InlineMath math="200\text{ mm}" /> ialah min Bandar P.</>}
+  bars="apart"
+  categories={["Januari", "Februari", "Mac", "April", "Mei", "Jun"]}
+  series={[
+    { label: "Bandar P", mark: "bar", values: [330, 270, 240, 200, 120, 40] },
+    { label: "Bandar Q", mark: "bar", values: [250, 230, 180, 320, 300, 280] },
+    { label: "Min Bandar P", mark: "line", values: [200, 200, 200, 200, 200, 200] },
+  ]}
+  valueLabel="Taburan hujan (mm)"
+/>
+
 Bulan yang dipilih ialah Januari, Februari dan Mac.
 
 # Min Bandar Q pada bulan terpilih

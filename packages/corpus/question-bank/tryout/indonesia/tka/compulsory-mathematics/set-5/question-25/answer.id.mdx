@@ -21,6 +21,19 @@ Jumlahnya kelipatan <InlineMath math="3" /> kalau kedua sisanya <InlineMath math
 \text{pasangan ganjil, jumlah bukan kelipatan }3&=45-15=30
 \end{aligned}" />
 
+Diagram berikut memperlihatkan bagian yang dibuang. **Hanya pasangan dua nomor ganjil yang bisa gagal di syarat hasil kali**, dan dari <InlineMath math="45" /> pasangan itu, <InlineMath math="15" /> masih lolos lewat syarat jumlah.
+
+<Mermaid
+  title={<>Memilah <InlineMath math="190" /> pasangan kartu</>}
+  description={<>Dari <InlineMath math="190" /> pasangan, <InlineMath math="145" /> punya hasil kali genap dan <InlineMath math="45" /> terdiri atas dua nomor ganjil. Di antara <InlineMath math="45" /> pasangan ganjil, <InlineMath math="15" /> berjumlah kelipatan <InlineMath math="3" /> dan <InlineMath math="30" /> tidak. Hanya <InlineMath math="30" /> pasangan itu yang gagal di kedua syarat, jadi peluangnya <InlineMath math="1-\frac{30}{190}=\frac{16}{19}" />.</>}
+  chart={`flowchart TD
+  S["Semua pasangan: C(20, 2) = 190"] --> E["Hasil kali genap: 145"]
+  S --> O["Dua nomor ganjil: C(10, 2) = 45"]
+  O --> O1["Ganjil, jumlah kelipatan 3: C(3, 2) + 4 · 3 = 15"]
+  O --> O2["Gagal di kedua syarat: 45 − 15 = 30"]
+  O2 --> P["Peluang: 1 − 30/190 = 16/19"]`}
+/>
+
 # Peluang gabungan
 
 <BlockMath math="P=1-\frac{30}{190}=\frac{160}{190}=\frac{16}{19}" />

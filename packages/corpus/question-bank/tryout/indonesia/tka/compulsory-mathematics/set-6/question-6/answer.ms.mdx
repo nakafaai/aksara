@@ -16,6 +16,40 @@ a\cdot b=6, \qquad a\cdot b^{3}&=54 \\
 \frac{a\cdot b^{3}}{a\cdot b}=b^{2}&=\frac{54}{6}=9
 \end{aligned}" />
 
+Lukis <InlineMath math="f" /> selepas dua titik songsang ditukar menjadi <InlineMath math="(1,\ 6)" /> dan <InlineMath math="(3,\ 54)" />. **Titik pada <InlineMath math="x=\tfrac52" /> jatuh di antara <InlineMath math="f(2)=18" /> dan <InlineMath math="f(3)=54" />**, jadi <InlineMath math="18\sqrt3\approx31.2" /> memang munasabah.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x)=2\cdot3^x" /> dan titik-titiknya</>}
+  description={<>Lengkung eksponen <InlineMath math="f(x)=2\cdot3^x" /> bagi <InlineMath math="0\le x\le3.2" /> naik semakin curam. Lengkung itu melalui <InlineMath math="(1,\ 6)" /> dan <InlineMath math="(3,\ 54)" />, iaitu titik <InlineMath math="(6,\ 1)" /> dan <InlineMath math="(54,\ 3)" /> pada graf songsang dengan koordinat ditukar. Titik <InlineMath math="\left(\tfrac52,\ 18\sqrt3\right)" /> berada di antara kedua-duanya.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=2\cdot3^x" />,
+    one: <InlineMath math="(1,\ 6)" />,
+    three: <InlineMath math="(3,\ 54)" />,
+    half: <InlineMath math="\left(\tfrac52,\ 18\sqrt3\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.4, max: 3.6 },
+      y: { min: -4, max: 62 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2 * 3^x", domain: { min: 0, max: 3.2 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: 6 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: 3, y: 54 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 2.5, y: 18 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2, y: 18 }, placement: "below-right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 6 }, placement: "above-left" },
+      { key: "three", objectId: "three", at: { x: 3, y: 54 }, placement: "left" },
+      { key: "half", objectId: "half", at: { x: 2.5, y: 18 * Math.sqrt(3) }, placement: "left" },
+    ],
+  }}
+/>
+
 Persamaan <InlineMath math="b^{2}=9" /> mempunyai dua penyelesaian, <InlineMath math="b=3" /> dan <InlineMath math="b=-3" />. **Syarat <InlineMath math="b>0" /> menolak <InlineMath math="b=-3" />**, jadi <InlineMath math="b=3" /> dan <InlineMath math="a=6\div3=2" />. Fungsinya ialah <InlineMath math="f(x)=2\cdot3^{x}" />.
 
 # Mengira dengan indeks pecahan

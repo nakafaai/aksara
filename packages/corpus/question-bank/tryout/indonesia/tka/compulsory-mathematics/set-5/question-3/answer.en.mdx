@@ -18,6 +18,40 @@ Topping up to <InlineMath math="200" /> sheets is cheaper when <InlineMath math=
 | <InlineMath math="200" /> to <InlineMath math="375" /> | exactly <InlineMath math="n" /> sheets | <InlineMath math="400n" /> |
 | <InlineMath math="376" /> to <InlineMath math="499" /> | <InlineMath math="500" /> sheets | <InlineMath math="150{,}000" /> |
 
+Draw the cheapest cost for every requirement. **The two flat parts are the requirements that become cheaper by adding sheets up to <InlineMath math="200" /> or <InlineMath math="500" />**, and the thin line above them is the cost of ordering exactly <InlineMath math="n" /> sheets. The highest flat part sits at <InlineMath math="150" />.
+
+<MathVisual
+  title={<>Cheapest cost by sheets needed</>}
+  description={<>The horizontal axis is the requirement of <InlineMath math="n" /> sheets, and the vertical axis is the cost in thousands of rupiah. The cheapest cost rises as <InlineMath math="0.5n" /> up to <InlineMath math="n=160" />, stays flat at <InlineMath math="80" /> up to <InlineMath math="n=199" />, rises as <InlineMath math="0.4n" /> up to <InlineMath math="n=375" />, then stays flat at <InlineMath math="150" /> up to <InlineMath math="n=499" />. The thin lines show the cost of ordering exactly <InlineMath math="n" /> sheets over both flat parts, for example <InlineMath math="199.6" /> for <InlineMath math="499" /> sheets.</>}
+  labels={{
+    "flat-low": <InlineMath math="80" />,
+    "flat-high": <InlineMath math="150" />,
+    "exact-high": <>exactly <InlineMath math="n" /> sheets</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 510 },
+      y: { min: -5, max: 210 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "exact-low", kind: "function", appearance: "reference", formula: "0.5x", domain: { min: 160, max: 199 } },
+      { id: "exact-high", kind: "function", appearance: "reference", formula: "0.4x", domain: { min: 375, max: 499 } },
+      { id: "rise-low", kind: "function", appearance: "primary", formula: "0.5x", domain: { min: 1, max: 160 } },
+      { id: "flat-low", kind: "function", appearance: "answer", formula: "80", domain: { min: 160, max: 199 } },
+      { id: "rise-mid", kind: "function", appearance: "primary", formula: "0.4x", domain: { min: 200, max: 375 } },
+      { id: "flat-high", kind: "function", appearance: "answer", formula: "150", domain: { min: 375, max: 499 } },
+    ],
+    labels: [
+      { key: "flat-low", objectId: "flat-low", at: { x: 180, y: 80 }, placement: "below" },
+      { key: "flat-high", objectId: "flat-high", at: { x: 437, y: 150 }, placement: "below" },
+      { key: "exact-high", objectId: "exact-high", at: { x: 499, y: 199.6 }, placement: "left" },
+    ],
+  }}
+/>
+
 Look at <InlineMath math="n=160" /> and <InlineMath math="n=375" />: there the top-up costs **exactly the same**, not less.
 
 # The first statement

@@ -39,6 +39,40 @@ S_{20}&=10\cdot400+90\cdot20=5{.}800 \\
 S_{21}&=10\cdot441+90\cdot21=6{.}300
 \end{aligned}" />
 
+Zeichne das Gesamtguthaben als Funktion der Monatszahl. **Die Kurve berührt die Ziellinie genau im Monat <InlineMath math="20" />**, also liegt dieser Monat noch nicht über dem Ziel. Der erste Punkt über der Linie ist Monat <InlineMath math="21" />.
+
+<MathVisual
+  title={<>Rinas Gesamtersparnis nach Monat</>}
+  description={<>Die waagerechte Achse ist die Anzahl der Monate <InlineMath math="n" />, die senkrechte Achse die Gesamtersparnis in tausend Rupiah. Die Kurve <InlineMath math="S_n=10n^2+90n" /> steigt immer schneller. Die waagerechte Linie bei <InlineMath math="5{.}800" /> ist das Ziel. Die Kurve liegt genau auf der Linie bei <InlineMath math="(20,\ 5{.}800)" /> und schon darüber bei <InlineMath math="(21,\ 6{.}300)" />.</>}
+  labels={{
+    total: <InlineMath math="S_n=10n^2+90n" />,
+    target: <InlineMath math="5{.}800" />,
+    tie: <InlineMath math="(20,\ 5{.}800)" />,
+    pass: <InlineMath math="(21,\ 6{.}300)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 10, max: 24 },
+      y: { min: 2500, max: 7300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "10x^2 + 90x", domain: { min: 12, max: 23 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "5800", domain: { min: 11, max: 23.5 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 20, y: 5800 } },
+      { id: "pass", kind: "point", appearance: "answer", at: { x: 21, y: 6300 } },
+    ],
+    labels: [
+      { key: "total", objectId: "total", at: { x: 14, y: 3220 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 12, y: 5800 }, placement: "above" },
+      { key: "tie", objectId: "tie", at: { x: 20, y: 5800 }, placement: "below-right" },
+      { key: "pass", objectId: "pass", at: { x: 21, y: 6300 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Nach Monat <InlineMath math="20" /> beträgt der Kontostand **genau** <InlineMath math="\text{Rp}5{.}800{.}000" />, also noch nicht mehr. Erst nach Monat <InlineMath math="21" /> liegt er über dem Ziel.
 
 Rinas Kontostand liegt also zum ersten Mal nach der Einzahlung im Monat <InlineMath math="21" /> über <InlineMath math="\text{Rp}5{.}800{.}000" />.

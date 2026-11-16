@@ -39,6 +39,40 @@ S_{20}&=10\cdot400+90\cdot20=5{,}800 \\
 S_{21}&=10\cdot441+90\cdot21=6{,}300
 \end{aligned}" />
 
+Lukis jumlah simpanan sebagai fungsi bilangan bulan. **Lengkungnya menyentuh garis sasaran tepat pada bulan ke-<InlineMath math="20" />**, jadi bulan itu belum melebihi sasaran. Titik pertama di atas garis ialah bulan ke-<InlineMath math="21" />.
+
+<MathVisual
+  title={<>Jumlah simpanan Rina mengikut bulan</>}
+  description={<>Paksi mendatar ialah bilangan bulan <InlineMath math="n" />, dan paksi tegak ialah jumlah simpanan dalam ribu rupiah. Lengkung <InlineMath math="S_n=10n^2+90n" /> naik semakin pantas. Garis mendatar pada <InlineMath math="5{,}800" /> ialah sasaran. Lengkung tepat pada garis di <InlineMath math="(20,\ 5{,}800)" /> dan sudah di atasnya di <InlineMath math="(21,\ 6{,}300)" />.</>}
+  labels={{
+    total: <InlineMath math="S_n=10n^2+90n" />,
+    target: <InlineMath math="5{.}800" />,
+    tie: <InlineMath math="(20,\ 5{.}800)" />,
+    pass: <InlineMath math="(21,\ 6{.}300)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 10, max: 24 },
+      y: { min: 2500, max: 7300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "10x^2 + 90x", domain: { min: 12, max: 23 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "5800", domain: { min: 11, max: 23.5 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 20, y: 5800 } },
+      { id: "pass", kind: "point", appearance: "answer", at: { x: 21, y: 6300 } },
+    ],
+    labels: [
+      { key: "total", objectId: "total", at: { x: 14, y: 3220 }, placement: "above-left" },
+      { key: "target", objectId: "target", at: { x: 12, y: 5800 }, placement: "above" },
+      { key: "tie", objectId: "tie", at: { x: 20, y: 5800 }, placement: "below-right" },
+      { key: "pass", objectId: "pass", at: { x: 21, y: 6300 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Selepas bulan ke-<InlineMath math="20" />, jumlahnya **tepat** <InlineMath math="\text{Rp}5{,}800{,}000" />, belum melebihi. Hanya selepas bulan ke-<InlineMath math="21" /> jumlahnya melepasi sasaran.
 
 Jadi, jumlah simpanan Rina melebihi <InlineMath math="\text{Rp}5{,}800{,}000" /> buat kali pertama selepas simpanan bulan ke-<InlineMath math="21" />.

@@ -27,6 +27,40 @@ Perimeter terbesar berlaku pada lebar terkecil, iaitu <InlineMath math="w=3.5" /
 | <InlineMath math="4" /> | <InlineMath math="15.75" /> | <InlineMath math="39.5" /> |
 | menghampiri <InlineMath math="4.5" /> | menghampiri <InlineMath math="14" /> | menghampiri <InlineMath math="37" /> |
 
+Lukis perimeter sebagai fungsi lebar di seluruh selang pembundaran. **Lengkungnya menurun dari kiri ke kanan**, jadi perimeter terbesar berada di hujung kiri <InlineMath math="w=3.5" />, yang dibenarkan. Hujung kanan <InlineMath math="4.5" /> tidak termasuk.
+
+<MathVisual
+  title={<>Perimeter tanah mengikut lebar sebenar</>}
+  description={<>Paksi mendatar ialah lebar <InlineMath math="w" /> dari <InlineMath math="3.5" /> hingga <InlineMath math="4.5" /> meter, dan paksi tegak ialah perimeter dalam meter. Lengkung <InlineMath math="K(w)=2\left(w+\frac{63}{w}\right)" /> menurun dari <InlineMath math="43" /> pada <InlineMath math="w=3.5" />, melalui <InlineMath math="39.5" /> pada <InlineMath math="w=4" />, menuju <InlineMath math="37" /> pada <InlineMath math="w=4.5" />. Titik kiri termasuk dalam selang, titik kanan tidak.</>}
+  labels={{
+    curve: <InlineMath math="K(w)=2\left(w+\frac{63}{w}\right)" />,
+    best: <InlineMath math="(3{,}5,\ 43)" />,
+    measured: <InlineMath math="(4,\ 39{,}5)" />,
+    edge: <InlineMath math="(4{,}5,\ 37)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 3.3, max: 4.75 },
+      y: { min: 35.5, max: 44.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2(x + 63/x)", domain: { min: 3.5, max: 4.5 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 3.5, y: 43 } },
+      { id: "measured", kind: "point", appearance: "secondary", at: { x: 4, y: 39.5 } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 4.5, y: 37 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4.2, y: 2 * (4.2 + 15) }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 3.5, y: 43 }, placement: "right" },
+      { key: "measured", objectId: "measured", at: { x: 4, y: 39.5 }, placement: "below-left" },
+      { key: "edge", objectId: "edge", at: { x: 4.5, y: 37 }, placement: "left" },
+    ],
+  }}
+/>
+
 Semak baris pertama: <InlineMath math="3.5\cdot18=63" />, dan <InlineMath math="2(3.5+18)=43" />.
 
 Jadi, perimeter terbesar yang mungkin bagi tanah itu ialah <InlineMath math="43\text{ m}" />.

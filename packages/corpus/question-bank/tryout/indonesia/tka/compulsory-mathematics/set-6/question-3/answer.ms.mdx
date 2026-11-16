@@ -9,6 +9,44 @@ Dalam keadaan bacaan, pili P seorang diri sampai ke retakan pada 6:20 pagi (ditu
 \text{masa hingga penuh}&=\frac{1{,}200-560}{32}=20\text{ minit}
 \end{aligned}" />
 
+Lukis isi tangki bagi keadaan bacaan bersama dua perubahan dalam pernyataan pertama dan ketiga. **Selepas pili ditutup, garis hanya turun hingga ketinggian retakan kemudian mendatar**. Jika pili P berhenti pada minit ke-<InlineMath math="25" />, garis tetap naik, cuma lebih landai.
+
+<MathVisual
+  title={<>Isi tangki dalam keadaan bacaan dan dua perubahannya</>}
+  description={<>Paksi mendatar ialah minit sejak pukul 6:00, dan paksi tegak ialah isi dalam liter. Garis utama naik hingga penuh pada minit ke-<InlineMath math="45" />. Dari situ satu garis turun dengan kecerunan <InlineMath math="-8" /> hingga <InlineMath math="480" /> liter pada minit ke-<InlineMath math="135" />, iaitu pukul 8:15, kemudian mendatar. Satu garis landai dari <InlineMath math="(25,\ 560)" /> naik <InlineMath math="8" /> seminit dan mencapai <InlineMath math="1{,}200" /> liter pada minit ke-<InlineMath math="105" />, iaitu pukul 7:45.</>}
+  labels={{
+    drain: <>pili ditutup</>,
+    slow: <>pili P berhenti</>,
+    stop: <InlineMath math="(135,\ 480)" />,
+    late: <InlineMath math="(105,\ 1{.}200)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 158 },
+      y: { min: -40, max: 1300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 25 } },
+      { id: "both", kind: "function", appearance: "primary", formula: "560 + 32(x - 25)", domain: { min: 25, max: 45 } },
+      { id: "drain", kind: "function", appearance: "secondary", formula: "1200 - 8(x - 45)", domain: { min: 45, max: 135 } },
+      { id: "rest", kind: "function", appearance: "secondary", formula: "480", domain: { min: 135, max: 155 } },
+      { id: "slow", kind: "function", appearance: "highlight", formula: "560 + 8(x - 25)", domain: { min: 25, max: 105 } },
+      { id: "stop", kind: "point", appearance: "answer", at: { x: 135, y: 480 } },
+      { id: "late", kind: "point", appearance: "answer", at: { x: 105, y: 1200 } },
+    ],
+    labels: [
+      { key: "drain", objectId: "drain", at: { x: 90, y: 840 }, placement: "above-right" },
+      { key: "slow", objectId: "slow", at: { x: 65, y: 880 }, placement: "above-left" },
+      { key: "stop", objectId: "stop", at: { x: 135, y: 480 }, placement: "below" },
+      { key: "late", objectId: "late", at: { x: 105, y: 1200 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jadi dalam keadaan bacaan, tangki penuh pada pukul 6:45 pagi.
 
 # Pernyataan pertama

@@ -25,6 +25,42 @@ The tiles cover heights from <InlineMath math="0" /> to <InlineMath math="1.2\te
 \text{painted area}&=39.6-0.9-2.2=36.5\text{ m}^2
 \end{aligned}" />
 
+Look at one stretch of wall that holds the door and the window. **The tile line at <InlineMath math="1.2\text{ m}" /> cuts through the door and the window**, so only the parts above that line come off the painted band. The bottom of the window already sits in the tiled zone.
+
+<MathVisual
+  title={<>Parts of the door and window inside the painted band</>}
+  description={<>A stretch of wall <InlineMath math="3\text{ m}" /> high, tiled from the floor to <InlineMath math="1.2\text{ m}" />, with the painted band above. The door, <InlineMath math="1\text{ m}" /> wide and <InlineMath math="2.1\text{ m}" /> high, reaches <InlineMath math="0.9\text{ m}" /> into the painted band. The window, <InlineMath math="2\text{ m}" /> wide from <InlineMath math="0.8" /> to <InlineMath math="2.3\text{ m}" />, reaches <InlineMath math="1.1\text{ m}" /> into the painted band, and its bottom <InlineMath math="0.4\text{ m}" /> lies in the tiled zone. The horizontal positions of the door and window are only illustrative.</>}
+  labels={{
+    tile: <>tiles</>,
+    "door-top": <InlineMath math="0{,}9\text{ m}^2" />,
+    "window-top": <InlineMath math="2{,}2\text{ m}^2" />,
+    "window-low": <><InlineMath math="0.4\text{ m}" /> in tiles</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6.5 },
+      y: { min: -0.4, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tile", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 1.2 }, { x: 0, y: 1.2 }] },
+      { id: "band", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 1.2 }, { x: 6, y: 1.2 }, { x: 6, y: 3 }, { x: 0, y: 3 }] },
+      { id: "door-low", kind: "polygon", appearance: "construction", vertices: [{ x: 0.5, y: 0 }, { x: 1.5, y: 0 }, { x: 1.5, y: 1.2 }, { x: 0.5, y: 1.2 }] },
+      { id: "door-top", kind: "polygon", appearance: "warning", vertices: [{ x: 0.5, y: 1.2 }, { x: 1.5, y: 1.2 }, { x: 1.5, y: 2.1 }, { x: 0.5, y: 2.1 }] },
+      { id: "window-low", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0.8 }, { x: 5, y: 0.8 }, { x: 5, y: 1.2 }, { x: 3, y: 1.2 }] },
+      { id: "window-top", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 1.2 }, { x: 5, y: 1.2 }, { x: 5, y: 2.3 }, { x: 3, y: 2.3 }] },
+    ],
+    labels: [
+      { key: "tile", objectId: "tile", at: { x: 2.25, y: 0.4 }, placement: "center" },
+      { key: "door-top", objectId: "door-top", at: { x: 1, y: 1.65 }, placement: "center" },
+      { key: "window-top", objectId: "window-top", at: { x: 4, y: 1.75 }, placement: "center" },
+      { key: "window-low", objectId: "window-low", at: { x: 5, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Look closely at the window. Its lower edge is at <InlineMath math="0.8\text{ m}" />, below the top of the tiles at <InlineMath math="1.2\text{ m}" />. So the bottom <InlineMath math="0.4\text{ m}" /> of the window lies in the tiled zone and mustn't be subtracted again.
 
 # Paint for two coats

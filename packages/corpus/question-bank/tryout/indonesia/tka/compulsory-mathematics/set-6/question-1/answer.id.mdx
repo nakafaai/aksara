@@ -24,6 +24,37 @@ Air mencapai lubang pukul 06.20, yaitu lima menit sebelum keran Q dibuka. Sekara
 | 06.20 sampai 06.25 | keran P dan kebocoran | <InlineMath math="24-8=16" /> liter per menit | <InlineMath math="80" /> liter | <InlineMath math="560" /> liter |
 | 06.25 sampai 06.30 | keran P, keran Q, dan kebocoran | <InlineMath math="24+16-8=32" /> liter per menit | <InlineMath math="160" /> liter | <InlineMath math="720" /> liter |
 
+Gambar isi tandon terhadap waktu. **Garisnya menekuk dua kali: melandai saat air melewati lubang, lalu menanjak lagi saat keran Q dibuka**. Pada menit ke-<InlineMath math="30" /> isinya <InlineMath math="720" /> liter.
+
+<MathVisual
+  title={<>Isi tandon sejak pukul 06.00</>}
+  description={<>Sumbu mendatar adalah menit sejak pukul 06.00, sumbu tegak adalah isi dalam liter. Garis naik <InlineMath math="24" /> per menit sampai <InlineMath math="480" /> liter di menit ke-<InlineMath math="20" />, naik <InlineMath math="16" /> per menit sampai <InlineMath math="560" /> liter di menit ke-<InlineMath math="25" />, lalu naik <InlineMath math="32" /> per menit sampai penuh di menit ke-<InlineMath math="45" />. Garis mendatar di <InlineMath math="480" /> menandai ketinggian lubang, dan titik <InlineMath math="(30,\ 720)" /> menandai pukul 06.30.</>}
+  labels={{
+    hole: <>lubang, <InlineMath math="480" /> liter</>,
+    now: <InlineMath math="(30,\ 720)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 48 },
+      y: { min: -40, max: 1260 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p-only", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 20 } },
+      { id: "leak", kind: "function", appearance: "primary", formula: "480 + 16(x - 20)", domain: { min: 20, max: 25 } },
+      { id: "both", kind: "function", appearance: "primary", formula: "560 + 32(x - 25)", domain: { min: 25, max: 45 } },
+      { id: "hole", kind: "function", appearance: "reference", formula: "480", domain: { min: 0, max: 47 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 30, y: 720 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 40, y: 480 }, placement: "below" },
+      { key: "now", objectId: "now", at: { x: 30, y: 720 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Bagian tandon yang terisi adalah isi dibagi kapasitas:
 
 <BlockMath math="\frac{720}{1{.}200}=\frac{3}{5}" />
