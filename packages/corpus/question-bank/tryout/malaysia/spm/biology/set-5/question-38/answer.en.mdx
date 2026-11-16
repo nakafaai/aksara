@@ -1,0 +1,24 @@
+# Count every order in which one child out of three can be affected
+
+Each child has a <InlineMath math="\tfrac{1}{4}" /> chance of being affected and <InlineMath math="\tfrac{3}{4}" /> of being unaffected. **Exactly one** affected can happen in three orders: the first, the second or the third child.
+
+<BlockMath math="P(\text{one order})=\tfrac{1}{4}\times\tfrac{3}{4}\times\tfrac{3}{4}=\tfrac{9}{64},\qquad 3\times\tfrac{9}{64}=\tfrac{27}{64}\approx42\%" />
+
+<Chart
+  title={<>Number of Affected Children Out of Three</>}
+  bars="apart"
+  categories={["None", "Exactly one", "Exactly two", "All three"]}
+  series={[
+    { label: "Probability", mark: "bar", values: [42.2, 42.2, 14.1, 1.6] },
+  ]}
+  valueLabel="Probability (%)"
+  description={<>None affected and exactly one affected each have a chance of about <InlineMath math="42\%" />. Exactly two has about <InlineMath math="14\%" />, and all three under <InlineMath math="2\%" />.</>}
+/>
+
+The four outcomes add up to <InlineMath math="1" />: <InlineMath math="\tfrac{27}{64}+\tfrac{27}{64}+\tfrac{9}{64}+\tfrac{1}{64}=1" />. The probability of exactly one affected child is <InlineMath math="\tfrac{27}{64}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac{9}{64}" /> is the chance of **one particular order**, such as only the first child affected, and misses the other two orders.
+- <InlineMath math="\tfrac{37}{64}" /> is the chance of **at least one** affected child, <InlineMath math="1-\left(\tfrac{3}{4}\right)^3" />, which also counts two or three affected.
+- <InlineMath math="\tfrac{1}{4}" /> is the chance for **a single child**, which says nothing about how many of three are affected.

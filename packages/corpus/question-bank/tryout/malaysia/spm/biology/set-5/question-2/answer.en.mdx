@@ -1,0 +1,31 @@
+# Turn every image length into a real size, then compare it with the limit
+
+The scale bar converts image lengths to real ones. Whether a light microscope shows a detail depends on its **resolution**, the smallest gap it can separate, not on how much it magnifies.
+
+<BlockMath math="\text{magnification}=\frac{20\text{ mm}}{1\text{ µm}}=\frac{20\,000\text{ µm}}{1\text{ µm}}=20\,000" />
+
+<BlockMath math="\text{mitochondrion}: \frac{36}{20}=1.8\text{ µm},\qquad \text{cristae gap}: \frac{0.6}{20}=0.03\text{ µm},\qquad \text{ribosome}: \frac{0.5}{20}=0.025\text{ µm}" />
+
+<Chart
+  title={<>Real Size of Each Structure Against the Light Microscope Limit</>}
+  bars="apart"
+  categories={["Mitochondrion length", "Gap between cristae", "Ribosome", "Light microscope limit"]}
+  series={[
+    { label: "Size", mark: "bar", values: [1800, 30, 25, 200] },
+  ]}
+  valueLabel="Size (nm)"
+  description={<>The mitochondrion is <InlineMath math="1800" /> nm long, far above the <InlineMath math="200" /> nm limit. The gap between cristae, <InlineMath math="30" /> nm, and a ribosome, <InlineMath math="25" /> nm, are both well below it.</>}
+/>
+
+- I: <InlineMath math="36\text{ mm}" /> on the image is <InlineMath math="\tfrac{36}{20}=1.8\text{ µm}" />. Statement I is correct.
+- II: <InlineMath math="20\text{ mm}" /> is <InlineMath math="20\,000\text{ µm}" />, so the magnification is <InlineMath math="20\,000" />, not <InlineMath math="2000" />. Statement II is wrong.
+- III: the cristae are only <InlineMath math="0.03\text{ µm}" /> apart, well below the <InlineMath math="0.2\text{ µm}" /> limit. The mitochondrion shows as a dot, but its inside cannot be resolved. Statement III is wrong.
+- IV: a ribosome is <InlineMath math="0.025\text{ µm}" /> across. More magnification only enlarges the blur, because detail closer than the limit is lost. Statement IV is correct.
+
+So statements I and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and IV only accepts <InlineMath math="2000" />, from treating <InlineMath math="20\text{ mm}" /> as **<InlineMath math="2000\text{ µm}" /> instead of <InlineMath math="20" /> <InlineMath math="000\text{ µm}" />**.
+- II and III only rejects both correct statements and **mixes up the size of the mitochondrion with the gap between its cristae**.
+- I, III and IV only accepts III, **although the cristae are far closer than <InlineMath math="0.2\text{ µm}" />**.

@@ -1,0 +1,30 @@
+# Amati pengaruh tiap inhibitor saat substrat membanjir
+
+Inhibitor yang **berbagi sisi aktif** dengan substrat akan kalah saat substrat melimpah, karena molekul substrat memenangkan sebagian besar pertemuan. Inhibitor yang terikat **di tempat lain** mengubah bentuk enzim, jadi substrat tambahan tidak bisa membatalkannya.
+
+<Chart
+  title={<>Laju Reaksi dengan dan tanpa Inhibitor</>}
+  categories={["1 mM", "2 mM", "5 mM", "10 mM", "20 mM", "40 mM"]}
+  series={[
+    { label: "Tanpa inhibitor", mark: "line", values: [20, 33, 56, 71, 83, 91] },
+    { label: "Inhibitor X", mark: "line", values: [10, 18, 36, 53, 71, 83] },
+    { label: "Inhibitor Y", mark: "line", values: [10, 17, 28, 36, 42, 45] },
+  ]}
+  valueLabel="Laju (relatif)"
+  description={<>Tanpa inhibitor lajunya naik sampai <InlineMath math="91" />. Dengan X naik sampai <InlineMath math="83" />, makin mendekati laju tanpa inhibitor saat substrat bertambah. Dengan Y mendatar sekitar <InlineMath math="45" />, kira-kira separuh laju maksimum.</>}
+/>
+
+<BlockMath math="\text{X pada }1\text{ mM}: \frac{10}{20}=50\%\text{ dari normal},\qquad \text{X pada }40\text{ mM}: \frac{83}{91}\approx91\%,\ \text{turun sekitar }9\%" />
+
+- I: pada <InlineMath math="1\text{ mM}" />, X memotong laju separuh, tetapi pada <InlineMath math="40\text{ mM}" /> hanya menurunkannya sekitar <InlineMath math="9\%" />. Pengaruhnya memudar saat substrat bertambah, seperti yang diharapkan dari inhibitor **kompetitif**. Pernyataan I benar.
+- II: Y mendatar sekitar <InlineMath math="45" />, kira-kira separuh dari <InlineMath math="91" />, dan substrat <InlineMath math="40\text{ mM}" /> pun tidak bisa menaikkannya. Pernyataan II benar.
+- III: <InlineMath math="91-83=8" />, dan <InlineMath math="\tfrac{8}{91}\approx9\%" />. Pernyataan III benar.
+- IV: jika Y memakai sisi aktif, substrat tambahan akan mendesaknya keluar seperti pada X. Pengaruh Y tetap, jadi Y terikat di tempat lain dan mengubah bentuk enzim. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak III, biasanya setelah membagi <InlineMath math="8" /> dengan <InlineMath math="83" />, bukan dengan **laju tanpa inhibitor**.
+- II dan III saja menolak I, melewatkan bahwa pengaruh X **menyusut dari separuh menjadi sepersepuluh**.
+- I, II, dan IV saja menaruh Y di sisi aktif, **padahal substrat tidak bisa menyingkirkannya**.

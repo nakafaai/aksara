@@ -1,0 +1,31 @@
+# Work out each tube's dilution, then compare the last tubes that clump
+
+Each tube halves the serum again, so moving **three tubes further** means the serum can be diluted <InlineMath math="2^3" /> times more and still work. That tells us how much more antibody it holds.
+
+<BlockMath math="\text{tube }n: 10\times2^{\,n-1},\qquad \text{tube }6: 10\times2^5=320,\qquad \text{tube }9: 10\times2^8=2560" />
+
+<BlockMath math="\frac{2560}{320}=8" />
+
+<Chart
+  title={<>Antibody Titre in the Two Samples</>}
+  bars="apart"
+  categories={["Day two", "Day sixteen"]}
+  series={[
+    { label: "Titre", mark: "bar", values: [320, 2560] },
+  ]}
+  valueLabel="Greatest dilution that still clumps (one part in)"
+  description={<>On day two the serum still clumps the bacteria at one part in <InlineMath math="320" />. On day sixteen it does so at one part in <InlineMath math="2560" />, eight times as dilute.</>}
+/>
+
+- I: tube <InlineMath math="6" /> holds serum diluted <InlineMath math="320" /> times, so the titre is one part in <InlineMath math="320" />. Statement I is correct.
+- II: the second serum still works when diluted <InlineMath math="8" /> times further, so it holds about <InlineMath math="8" /> times as much antibody. Statement II is correct.
+- III: the antibody rose during the illness because the patient's own plasma cells made it, which is **active** immunity. Statement III is wrong.
+- IV: an antibody has two antigen-binding sites. Bound to two bacteria at once, antibodies link many bacteria into clumps. Statement IV is correct.
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I and IV only rejects II, often after taking three more tubes as **three times as much antibody**, instead of <InlineMath math="2\times2\times2=8" /> times.
+- II and III only rejects the titre and the **two binding sites**, and calls the response passive.
+- I, II and III only accepts III, **although the patient's own cells made the antibody**.

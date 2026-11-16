@@ -1,0 +1,23 @@
+# Treat the muscle as a mixture of two fibre types
+
+Each fibre type keeps its own share of force, so the whole muscle keeps a **weighted average** of <InlineMath math="95\%" /> and <InlineMath math="20\%" />, weighted by how many fibres of each type it has. Let <InlineMath math="s" /> be the share of slow fibres.
+
+<BlockMath math="0.95s+0.20(1-s)=0.65\ \Rightarrow\ 0.75s=0.45\ \Rightarrow\ s=0.60" />
+
+<Chart
+  title={<>Force Kept After Repeated Contractions</>}
+  categories={["0%", "20%", "40%", "60%", "80%", "100%"]}
+  series={[
+    { label: "Force kept", mark: "line", values: [20, 35, 50, 65, 80, 95] },
+  ]}
+  valueLabel="Force kept (%)"
+  description={<>Force kept rises in a straight line from <InlineMath math="20\%" /> with no slow fibres to <InlineMath math="95\%" /> with only slow fibres. A muscle keeping <InlineMath math="65\%" /> sits at <InlineMath math="60\%" /> slow fibres.</>}
+/>
+
+Z's sample is <InlineMath math="60\%" /> slow fibres. The fatigue resistance comes from the slow fibres' mitochondria, myoglobin and capillaries, which keep **aerobic respiration** going, while fast fibres run down as lactic acid builds up.
+
+# Why the other options are wrong
+
+- <InlineMath math="65\%" /> takes the force kept as the share of slow fibres, forgetting that the **fast fibres still keep <InlineMath math="20\%" />**.
+- <InlineMath math="68\%" /> divides <InlineMath math="65" /> by <InlineMath math="95" />, as if the fast fibres **gave no force at all**.
+- <InlineMath math="40\%" /> is the share of **fast fibres**, the right working with the two types swapped.
