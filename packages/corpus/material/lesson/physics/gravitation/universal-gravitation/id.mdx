@@ -1,0 +1,308 @@
+export const metadata = {
+  title: "Hukum Gravitasi Newton dan Hukum Kepler",
+  description:
+    "Pakai hukum gravitasi universal Newton, hitung percepatan gravitasi, terapkan hukum Kepler, dan hitung kelajuan satelit serta kecepatan lepas dengan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Gravitasi",
+};
+
+## Hukum Gravitasi Universal Newton
+
+**Hukum gravitasi universal Newton** menyatakan bahwa gaya gravitasi antara dua benda sebanding dengan hasil kali massa kedua benda dan berbanding terbalik dengan kuadrat jarak antara pusat kedua benda itu:
+
+<BlockMath math="F = \frac{G m_1 m_2}{r^2}" />
+
+Di sini <InlineMath math="G = 6{,}67 \times 10^{-11}\text{ N m}^2\text{ kg}^{-2}" /> adalah **konstanta gravitasi umum**, <InlineMath math="m_1" /> dan <InlineMath math="m_2" /> adalah massa dalam kilogram, dan <InlineMath math="r" /> adalah jarak antarpusat dalam meter. Gaya yang sama menarik apel ke Bumi dan menahan Bulan di orbitnya. Di materi ini, kamu mengubah jarak, naik dari pusat Bumi sampai ke luar angkasa, dan membandingkan orbit satelit sungguhan.
+
+Hukum ini berlaku untuk **semua** benda bermassa, termasuk kamu dan bukumu. Gaya antara dua benda kecil sangat lemah karena <InlineMath math="G" /> sangat kecil. Gravitasi baru terasa kalau paling tidak satu benda sangat besar, seperti planet atau bintang.
+
+## Pengaruh Jarak pada Gaya Gravitasi
+
+Bagian <InlineMath math="r^2" /> di penyebut berarti gaya gravitasi turun cepat saat jarak bertambah. Kalau jarak menjadi **dua kali lipat**, gaya menjadi **seperempatnya**. Geser penggeser jarak dan perhatikan kurva kuadrat terbaliknya.
+
+<MathVisual
+  title={<>Gaya Gravitasi terhadap Jarak</>}
+  description={
+    <>
+      Gaya gravitasi dalam satuan <InlineMath math="F_0" />, yaitu gaya pada
+      jarak <InlineMath math="r = 1" />. Kurvanya{" "}
+      <InlineMath math="F = F_0 / r^2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4.2 }, y: { min: 0, max: 1.3 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "r", min: 1, max: 4, value: 2, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "force", kind: "function", appearance: "primary", formula: "1/x^2", domain: { min: 0.9, max: 4.2 } },
+      { id: "now", kind: "marker", x: "r", y: "1/r^2", appearance: "warning" },
+      { id: "drop", kind: "path", appearance: "reference", points: [{ x: "r", y: "0" }, { x: "r", y: "1/r^2" }] },
+    ],
+    readouts: [
+      { key: "ratio", formula: "1/r^2" },
+    ],
+  }}
+  labels={{
+    r: <>Jarak <InlineMath math="r" /></>,
+    ratio: <><InlineMath math="F / F_0" /></>,
+  }}
+/>
+
+### Contoh Gaya antara Bumi dan Bulan
+
+Massa Bumi <InlineMath math="5{,}97 \times 10^{24}\text{ kg}" />, massa Bulan <InlineMath math="7{,}35 \times 10^{22}\text{ kg}" />, dan jarak antarpusatnya <InlineMath math="3{,}84 \times 10^{8}\text{ m}" />. Hitung **gaya gravitasi antara Bumi dan Bulan**.
+
+<BlockMath math="F = \frac{(6{,}67 \times 10^{-11})(5{,}97 \times 10^{24})(7{,}35 \times 10^{22})}{(3{,}84 \times 10^{8})^2} = 1{,}98 \times 10^{20}\text{ N}" />
+
+Cek orde besarnya: pembilang sekitar <InlineMath math="2{,}9 \times 10^{37}" /> dan penyebut sekitar <InlineMath math="1{,}5 \times 10^{17}" />, jadi hasilnya sekitar <InlineMath math="2 \times 10^{20}" />. Gaya ini sama besar pada Bumi dan pada Bulan, sesuai hukum III Newton.
+
+### Contoh Jarak Menjadi Tiga Kali
+
+Dua benda saling menarik dengan gaya <InlineMath math="36\text{ N}" />. Jarak antarpusatnya dibuat **tiga kali lipat**. Gaya barunya:
+
+<BlockMath math="F' = \frac{36}{3^2} = 4\text{ N}" />
+
+Cek dengan model: pada <InlineMath math="r = 3" />, perbandingan <InlineMath math="F / F_0" /> adalah <InlineMath math="1/9" />, dan <InlineMath math="36 : 9 = 4" />.
+
+## Percepatan Gravitasi di Permukaan dan di Atas Bumi
+
+Gaya gravitasi pada benda bermassa <InlineMath math="m" /> adalah beratnya, <InlineMath math="mg" />. Samakan dengan hukum gravitasi, dan <InlineMath math="m" /> saling menghilangkan:
+
+<BlockMath math="g = \frac{GM}{r^2}" />
+
+Jadi **percepatan gravitasi tidak bergantung pada massa benda yang jatuh**. Di permukaan Bumi, <InlineMath math="r = R = 6{,}37 \times 10^{6}\text{ m}" /> dan <InlineMath math="g = 9{,}81\text{ m/s}^2" />. Model ini menunjukkan perubahan <InlineMath math="g" /> dari pusat Bumi sampai jauh di luar angkasa, dengan menganggap Bumi bola bermassa jenis seragam. Di dalam Bumi, <InlineMath math="g" /> naik secara linear, dan di luar Bumi, <InlineMath math="g" /> turun mengikuti kuadrat terbalik.
+
+<MathVisual
+  title={<>Percepatan Gravitasi dari Pusat Bumi</>}
+  description={
+    <>
+      Sumbu mendatar adalah jarak dari pusat Bumi dalam jari-jari Bumi{" "}
+      <InlineMath math="R" />. Sumbu tegak adalah <InlineMath math="g" /> dalam{" "}
+      <InlineMath math="\text{m/s}^2" />. Puncak{" "}
+      <InlineMath math="9{,}81\text{ m/s}^2" /> berada di permukaan.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0.2, max: 6, value: 2, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "inside", kind: "function", appearance: "secondary", formula: "9.81x", domain: { min: 0, max: 1 } },
+      { id: "outside", kind: "function", appearance: "primary", formula: "9.81/x^2", domain: { min: 1, max: 6 } },
+      { id: "surface", kind: "point", appearance: "answer", at: { x: 1, y: 9.81 } },
+      { id: "now", kind: "marker", x: "h", y: "9.81min(h, 1/h^2)", appearance: "warning" },
+    ],
+    labels: [
+      { key: "surface", objectId: "surface", at: { x: 1, y: 9.81 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "gravity", formula: "9.81min(h, 1/h^2)" },
+    ],
+  }}
+  labels={{
+    h: <>Jarak dari pusat dalam <InlineMath math="R" /></>,
+    surface: <>Permukaan Bumi</>,
+    gravity: <><InlineMath math="g" /> dalam <InlineMath math="\text{m/s}^2" /></>,
+  }}
+/>
+
+Bahwa <InlineMath math="g" /> tidak bergantung pada massa bisa kamu uji sendiri. Di dalam tabung hampa udara, koin dan bulu jatuh bersamaan. Di udara, hambatan udara memperlambat bulu.
+
+<FeatherCoinVacuumLab
+  title={<>Koin dan Bulu di dalam Tabung</>}
+  description={
+    <>
+      Pilih udara atau hampa udara, lalu lepaskan keduanya bersamaan.
+      Bandingkan waktu jatuh masing-masing.
+    </>
+  }
+  labels={{
+    airs: { air: <>Udara</>, vacuum: <>Hampa udara</> },
+    chooseAir: "Pilih isi tabung",
+    coinTime: <>Waktu jatuh koin</>,
+    drop: <>Tinggi jatuh</>,
+    featherTime: <>Waktu jatuh bulu</>,
+    viewLabel: "Koin dan bulu jatuh di dalam tabung kaca",
+  }}
+/>
+
+Stasiun Luar Angkasa Internasional mengorbit sekitar <InlineMath math="400\text{ km}" /> di atas permukaan, yaitu pada <InlineMath math="r = 6{,}77 \times 10^{6}\text{ m}" />:
+
+<BlockMath math="g = \frac{3{,}98 \times 10^{14}}{(6{,}77 \times 10^{6})^2} = 8{,}69\text{ m/s}^2" />
+
+Astronaut di dalamnya masih merasakan hampir <InlineMath math="90\%" /> gravitasi permukaan. Mereka melayang karena mereka dan stasiunnya sama-sama jatuh bebas mengelilingi Bumi, bukan karena gravitasinya hilang.
+
+## Satelit dan Hukum Kepler
+
+Satelit tetap di orbit melingkar karena gaya gravitasi bekerja sebagai **gaya sentripetal**. Samakan <InlineMath math="\dfrac{GMm}{r^2}" /> dengan <InlineMath math="\dfrac{mv^2}{r}" />, dan kelajuan linear satelit adalah:
+
+<BlockMath math="v = \sqrt{\frac{GM}{r}}" />
+
+Satelit yang lebih jauh bergerak lebih lambat dan butuh waktu lebih lama untuk satu kali orbit. Pilih tiga satelit sungguhan di model ini dan bandingkan jari-jari, kelajuan, periode, dan percepatannya.
+
+<SatelliteOrbitCircularLab
+  title={<>Tiga Orbit Satelit Sungguhan</>}
+  description={
+    <>
+      Stasiun luar angkasa, satelit GPS, dan satelit geostasioner digambar
+      sesuai skala. Pilih satu orbit dan baca nilainya.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan sentripetal</>,
+    chooseOrbit: "Pilih orbit",
+    orbits: {
+      station: <>Stasiun Luar Angkasa Internasional</>,
+      gps: <>Satelit GPS</>,
+      geostationary: <>Satelit geostasioner</>,
+    },
+    period: <>Periode orbit</>,
+    radius: <>Jari-jari orbit</>,
+    speed: <>Kelajuan linear</>,
+    viewLabel: "Tiga satelit mengorbit Bumi sesuai skala",
+  }}
+/>
+
+**Hukum III Kepler** menyatakan bahwa kuadrat periode orbit sebanding dengan pangkat tiga jari-jari orbit, <InlineMath math="T^2 \propto r^3" />. Hukum ini diturunkan dari kelajuan satelit: <InlineMath math="T = 2\pi r / v" />, jadi <InlineMath math="T^2 = \dfrac{4\pi^2}{GM} r^3" />. Data planet sungguhan mematuhi hukum ini. Dengan jarak dalam satuan astronomi dan periode dalam tahun Bumi, <InlineMath math="T = r^{3/2}" />.
+
+<ScatterDiagram
+  title={<>Periode Orbit Lima Planet</>}
+  description={
+    <>
+      Jarak rata-rata dari Matahari dalam satuan astronomi terhadap periode
+      orbit dalam tahun, dari Merkurius (jarak <InlineMath math="0{,}387" />, periode{" "}
+      <InlineMath math="0{,}241" />) sampai Jupiter (jarak <InlineMath math="5{,}203" />, periode{" "}
+      <InlineMath math="11{,}86" />).
+    </>
+  }
+  xAxisLabel="Jarak dari Matahari (SA)"
+  yAxisLabel="Periode orbit (tahun)"
+  datasets={[
+    {
+      name: "Planet",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.387, y: 0.241 },
+        { x: 0.723, y: 0.615 },
+        { x: 1, y: 1 },
+        { x: 1.524, y: 1.881 },
+        { x: 5.203, y: 11.86 },
+      ],
+    },
+  ]}
+/>
+
+Hukum I Kepler menyatakan bahwa setiap planet mengorbit Matahari dalam lintasan elips dengan Matahari di salah satu titik fokusnya. Hukum II menyatakan bahwa garis dari Matahari ke planet menyapu luas yang sama dalam waktu yang sama, jadi planet bergerak lebih cepat saat dekat Matahari.
+
+Sekarang pakai hukum ini. Satelit **geostasioner** mengorbit sekali setiap <InlineMath math="24" /> jam, sama dengan rotasi Bumi, jadi satelit itu tampak diam di langit. Cari jari-jari orbitnya.
+
+<MathContainer>
+<BlockMath math="r^3 = \frac{GMT^2}{4\pi^2} = \frac{(3{,}98 \times 10^{14})(86{.}400)^2}{4\pi^2}" />
+<BlockMath math="r = 4{,}22 \times 10^{7}\text{ m}" />
+</MathContainer>
+
+Itu sekitar <InlineMath math="36{.}000\text{ km}" /> di atas permukaan. Cek dengan model orbit: pilih satelit geostasioner dan baca jari-jari yang sama.
+
+## Kecepatan Lepas
+
+**Kecepatan lepas** adalah kecepatan minimum yang dibutuhkan benda di permukaan planet untuk lepas dari tarikan gravitasi planet itu tanpa dorongan tambahan:
+
+<BlockMath math="v_{\text{lepas}} = \sqrt{\frac{2GM}{r}}" />
+
+Kecepatan lepas adalah <InlineMath math="\sqrt{2}" /> kali kelajuan orbit pada jarak yang sama. Di permukaan Bumi, kelajuan orbit <InlineMath math="7{,}91\text{ km/s}" /> dan kecepatan lepas <InlineMath math="11{,}2\text{ km/s}" />. Geser penggeser jarak dan bandingkan kedua kurvanya.
+
+<MathVisual
+  title={<>Kelajuan Orbit dan Kecepatan Lepas</>}
+  description={
+    <>
+      Sumbu mendatar adalah jarak dari pusat Bumi dalam jari-jari Bumi{" "}
+      <InlineMath math="R" />. Sumbu tegak adalah kelajuan dalam{" "}
+      <InlineMath math="\text{km/s}" />. Kurva atas adalah kecepatan lepas,
+      kurva bawah adalah kelajuan orbit.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 7, value: 1, step: 0.1, label: "n" },
+    ],
+    objects: [
+      { id: "orbit", kind: "function", appearance: "primary", formula: "7.906/sqrt(x)", domain: { min: 1, max: 7 } },
+      { id: "escape", kind: "function", appearance: "warning", formula: "7.906sqrt(2)/sqrt(x)", domain: { min: 1, max: 7 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "n", y: "0" }, { x: "n", y: "7.906sqrt(2)/sqrt(n)" }] },
+    ],
+    readouts: [
+      { key: "orbit-speed", formula: "7.906/sqrt(n)" },
+      { key: "escape-speed", formula: "7.906sqrt(2)/sqrt(n)" },
+    ],
+  }}
+  labels={{
+    n: <>Jarak dari pusat dalam <InlineMath math="R" /></>,
+    "orbit-speed": <>Kelajuan orbit dalam <InlineMath math="\text{km/s}" /></>,
+    "escape-speed": <>Kecepatan lepas dalam <InlineMath math="\text{km/s}" /></>,
+  }}
+/>
+
+Planet bermassa kecil punya kecepatan lepas yang kecil. Itulah alasan Bulan hampir tidak punya atmosfer: molekul gas yang panas mudah mencapai kecepatan lepas Bulan dan lepas ke luar angkasa.
+
+## Kesalahan Umum tentang Gravitasi
+
+| Kesalahan | Alasan keliru | Cara mengecek |
+| :--- | :--- | :--- |
+| Jarak dua kali lipat membuat gaya menjadi setengah. | Gaya berbanding terbalik dengan <InlineMath math="r^2" />, jadi gaya menjadi seperempat. | Kuadratkan faktor jaraknya. |
+| <InlineMath math="r" /> adalah ketinggian dari permukaan. | <InlineMath math="r" /> diukur dari pusat Bumi, jadi <InlineMath math="r = R + h" />. | Tambahkan jari-jari Bumi ke ketinggian. |
+| Astronaut melayang karena tidak ada gravitasi di orbit. | <InlineMath math="g" /> di orbit stasiun luar angkasa masih <InlineMath math="8{,}69\text{ m/s}^2" />. Mereka jatuh bebas. | Hitung <InlineMath math="g" /> pada jarak orbit. |
+| Satelit yang lebih berat butuh kelajuan orbit lebih tinggi. | Massa satelit saling menghilangkan dalam <InlineMath math="v = \sqrt{GM/r}" />. | Cek apakah <InlineMath math="m" /> muncul di rumus akhir. |
+
+Kesalahan kedua paling sering muncul di soal hitungan. **Selalu ukur dari pusat**, bukan dari permukaan.
+
+## Latihan Gravitasi
+
+Soal-soal ini dimulai dari perbandingan sederhana dan diakhiri dengan satelit. **Tulis <InlineMath math="r" /> dalam meter** sebelum memasukkan nilai.
+
+1. Gaya gravitasi antara dua benda adalah <InlineMath math="F" />. Jarak antarpusatnya dijadikan setengahnya. Berapa gaya barunya?
+
+2. Massa Mars <InlineMath math="6{,}42 \times 10^{23}\text{ kg}" /> dan jari-jarinya <InlineMath math="3{,}39 \times 10^{6}\text{ m}" />. Hitung percepatan gravitasi di permukaan Mars.
+
+3. Massa Bulan <InlineMath math="7{,}35 \times 10^{22}\text{ kg}" /> dan jari-jarinya <InlineMath math="1{,}74 \times 10^{6}\text{ m}" />. Hitung kecepatan lepas dari permukaan Bulan.
+
+4. Sebuah satelit mengorbit Bumi pada jarak <InlineMath math="2R" /> dari pusat Bumi. Hitung kelajuan linearnya dan periode orbitnya dalam jam.
+
+### Pembahasan
+
+**Pembahasan 1**: Gaya berbanding terbalik dengan <InlineMath math="r^2" />. Kalau <InlineMath math="r" /> menjadi <InlineMath math="\tfrac{1}{2}r" />:
+
+<BlockMath math="F' = \frac{F}{(1/2)^2} = 4F" />
+
+Jarak setengahnya membuat gaya menjadi **empat kali lipat**.
+
+**Pembahasan 2**: Pakai <InlineMath math="g = GM/R^2" />:
+
+<BlockMath math="g = \frac{(6{,}67 \times 10^{-11})(6{,}42 \times 10^{23})}{(3{,}39 \times 10^{6})^2} = 3{,}73\text{ m/s}^2" />
+
+Cek: nilai ini sekitar <InlineMath math="38\%" /> dari <InlineMath math="9{,}81\text{ m/s}^2" />, masuk akal untuk planet yang jauh lebih kecil daripada Bumi.
+
+**Pembahasan 3**: Pakai rumus kecepatan lepas:
+
+<BlockMath math="v = \sqrt{\frac{2(6{,}67 \times 10^{-11})(7{,}35 \times 10^{22})}{1{,}74 \times 10^{6}}} = 2{,}37 \times 10^{3}\text{ m/s}" />
+
+Kecepatan lepas Bulan <InlineMath math="2{,}37\text{ km/s}" />, sekitar seperlima kecepatan lepas Bumi.
+
+**Pembahasan 4**: Pada <InlineMath math="r = 2R" />, kelajuan orbit adalah kelajuan di permukaan dibagi <InlineMath math="\sqrt{2}" />:
+
+<MathContainer>
+<BlockMath math="v = \frac{7{,}91}{\sqrt{2}} = 5{,}59\text{ km/s}" />
+<BlockMath math="T = \frac{2\pi r}{v} = \frac{2\pi (1{,}274 \times 10^{7})}{5{.}590} = 1{,}43 \times 10^{4}\text{ s} = 3{,}98\text{ jam}" />
+</MathContainer>
+
+Cek dengan model kelajuan: pada <InlineMath math="n = 2" />, kelajuan orbit terbaca <InlineMath math="5{,}59\text{ km/s}" />.
