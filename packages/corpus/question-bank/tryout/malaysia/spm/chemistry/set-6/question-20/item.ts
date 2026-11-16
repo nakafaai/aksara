@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3.72\\text{ kg}$$" },
-        { correct: true, label: "$$4.44\\text{ kg}$$" },
-        { correct: false, label: "$$3.80\\text{ kg}$$" },
-        { correct: false, label: "$$4.80\\text{ kg}$$" },
+        { correct: false, label: "$$9.17\\times10^{21}$$, $$0.67\\text{ g}$$" },
+        { correct: true, label: "$$9.17\\times10^{21}$$, $$8.00\\text{ g}$$" },
+        { correct: false, label: "$$2.20\\times10^{20}$$, $$8.00\\text{ g}$$" },
+        { correct: false, label: "$$1.22\\times10^{22}$$, $$8.00\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3.72\\text{ kg}$$" },
-        { correct: true, label: "$$4.44\\text{ kg}$$" },
-        { correct: false, label: "$$3.80\\text{ kg}$$" },
-        { correct: false, label: "$$4.80\\text{ kg}$$" },
+        { correct: false, label: "$$9.17\\times10^{21}$$, $$0.67\\text{ g}$$" },
+        { correct: true, label: "$$9.17\\times10^{21}$$, $$8.00\\text{ g}$$" },
+        { correct: false, label: "$$2.20\\times10^{20}$$, $$8.00\\text{ g}$$" },
+        { correct: false, label: "$$1.22\\times10^{22}$$, $$8.00\\text{ g}$$" },
       ],
     },
   },

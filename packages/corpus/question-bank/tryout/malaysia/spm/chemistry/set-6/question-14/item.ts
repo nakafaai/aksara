@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$112\\text{ g}$$, $$272\\text{ g}$$" },
-        { correct: false, label: "$$28\\text{ g}$$, $$68\\text{ g}$$" },
-        { correct: true, label: "$$56\\text{ g}$$, $$136\\text{ g}$$" },
-        { correct: false, label: "$$74\\text{ g}$$, $$136\\text{ g}$$" },
+        {
+          correct: false,
+          label: "$$4.80\\text{ g dm}^{-3}$$, it falls short of the label",
+        },
+        {
+          correct: false,
+          label: "$$96.0\\text{ g dm}^{-3}$$, it meets the label",
+        },
+        {
+          correct: true,
+          label: "$$48.0\\text{ g dm}^{-3}$$, it falls short of the label",
+        },
+        {
+          correct: false,
+          label: "$$48.0\\text{ g dm}^{-3}$$, it meets the label",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$112\\text{ g}$$, $$272\\text{ g}$$" },
-        { correct: false, label: "$$28\\text{ g}$$, $$68\\text{ g}$$" },
-        { correct: true, label: "$$56\\text{ g}$$, $$136\\text{ g}$$" },
-        { correct: false, label: "$$74\\text{ g}$$, $$136\\text{ g}$$" },
+        {
+          correct: false,
+          label: "$$4.80\\text{ g dm}^{-3}$$, ia tidak mencapai label",
+        },
+        {
+          correct: false,
+          label: "$$96.0\\text{ g dm}^{-3}$$, ia memenuhi label",
+        },
+        {
+          correct: true,
+          label: "$$48.0\\text{ g dm}^{-3}$$, ia tidak mencapai label",
+        },
+        {
+          correct: false,
+          label: "$$48.0\\text{ g dm}^{-3}$$, ia memenuhi label",
+        },
       ],
     },
   },
