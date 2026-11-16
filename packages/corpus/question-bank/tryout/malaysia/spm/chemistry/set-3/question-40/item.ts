@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "5.0 cm³ per dose and at most 20 cm³ a day, and paracetamol is an analgesic" },
-        { correct: false, label: "12.5 cm³ per dose and at most 50 cm³ a day, and paracetamol is an antibiotic that kills bacteria" },
-        { correct: false, label: "2.5 cm³ per dose and at most 10 cm³ a day, and paracetamol is an analgesic" },
-        { correct: true, label: "12.5 cm³ per dose and at most 50 cm³ a day, and paracetamol is an analgesic that relieves pain and fever" },
+        { correct: false, label: "0.150 g of benzoic acid, 455 mg per kg, so the drink is within the limit" },
+        { correct: false, label: "0.127 g of benzoic acid, 1270 mg per kg, so the drink is over the limit" },
+        { correct: false, label: "0.150 g of benzoic acid, 1500 mg per kg, so the drink is over the limit" },
+        { correct: true, label: "0.127 g of benzoic acid, about 385 mg per kg, so the drink is within the limit" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "5.0 cm³ setiap dos dan paling banyak 20 cm³ sehari, dan parasetamol ialah analgesik" },
-        { correct: false, label: "12.5 cm³ setiap dos dan paling banyak 50 cm³ sehari, dan parasetamol ialah antibiotik yang membunuh bakteria" },
-        { correct: false, label: "2.5 cm³ setiap dos dan paling banyak 10 cm³ sehari, dan parasetamol ialah analgesik" },
-        { correct: true, label: "12.5 cm³ setiap dos dan paling banyak 50 cm³ sehari, dan parasetamol ialah analgesik yang melegakan sakit dan demam" },
+        { correct: false, label: "0.150 g asid benzoik, 455 mg per kg, jadi minuman itu dalam had" },
+        { correct: false, label: "0.127 g asid benzoik, 1270 mg per kg, jadi minuman itu melebihi had" },
+        { correct: false, label: "0.150 g asid benzoik, 1500 mg per kg, jadi minuman itu melebihi had" },
+        { correct: true, label: "0.127 g asid benzoik, kira-kira 385 mg per kg, jadi minuman itu dalam had" },
       ],
     },
   },

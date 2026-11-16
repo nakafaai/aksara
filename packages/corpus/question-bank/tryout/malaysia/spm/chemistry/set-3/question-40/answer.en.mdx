@@ -1,22 +1,22 @@
-# Dose from body mass, volume from the label
+# Convert to the substance the limit counts, then scale to a kilogram
 
-One dose is <InlineMath math="15 \times 20 = 300" /> mg. The syrup holds <InlineMath math="120" /> mg in <InlineMath math="5.0\text{ cm}^3" />, so <InlineMath math="300" /> mg is <InlineMath math="\tfrac{300}{120} \times 5.0 = 12.5\text{ cm}^3" />. With **at most four doses** a day, the limit is <InlineMath math="4 \times 12.5 = 50\text{ cm}^3" />.
+Each sodium benzoate unit carries **one benzoate group**, the same as one benzoic acid molecule. <InlineMath math="0.150 \div 144 = 0.00104" /> mol of sodium benzoate counts as <InlineMath math="0.00104 \times 122 = 0.127" /> g of benzoic acid.
 
 <Mermaid
-  title={<>From Body Mass to Syrup Volume</>}
-  description={<><InlineMath math="15\text{ mg}" /> for each of <InlineMath math="20\text{ kg}" /> gives <InlineMath math="300\text{ mg}" /> per dose. At <InlineMath math="120\text{ mg}" /> per <InlineMath math="5.0\text{ cm}^3" /> that is <InlineMath math="12.5\text{ cm}^3" />. Four doses give <InlineMath math="50\text{ cm}^3" /> a day.</>}
+  title={<>From Sodium Benzoate to the Limit</>}
+  description={<><InlineMath math="0.150\text{ g}" /> of sodium benzoate is <InlineMath math="0.00104\text{ mol}" />, which counts as <InlineMath math="0.127\text{ g}" /> of benzoic acid. In <InlineMath math="0.330\text{ kg}" /> that is about <InlineMath math="385\text{ mg}" /> per kg, below <InlineMath math="1000" />.</>}
   chart={`
     flowchart LR
-      A["20 kg × 15 mg per kg"] --> B["300 mg per dose"]
-      B -->|"300 ÷ 120 × 5.0 cm³"| C["12.5 cm³ per dose"]
-      C -->|"× 4 doses"| D["50 cm³ a day"]
+      A["0.150 g C6H5COONa"] --> B["0.00104 mol"]
+      B --> C["0.127 g as C6H5COOH"]
+      C --> D["385 mg per kg, below 1000"]
   `}
 />
 
-Paracetamol is an **analgesic**: it relieves pain and lowers a fever, but it does not kill bacteria. Staying within four doses matters, because too much paracetamol damages the liver.
+The can holds <InlineMath math="0.330" /> kg, so the level is <InlineMath math="127 \div 0.330 \approx 385" /> mg per kg. That is well below <InlineMath math="1000" /> mg per kg, so the drink is within the limit. The preservative slows the growth of yeasts and moulds, which matters in a sweet, acidic drink.
 
 # Why the other options are wrong
 
-- <InlineMath math="5.0\text{ cm}^3" /> gives only <InlineMath math="120" /> mg, the amount in one spoonful, not the <InlineMath math="300" /> mg the child's mass needs.
-- An antibiotic such as penicillin kills bacteria. Paracetamol **only eases the symptoms**.
-- <InlineMath math="2.5\text{ cm}^3" /> halves the label's spoonful again and gives just <InlineMath math="60" /> mg.
+- <InlineMath math="0.150\text{ g}" /> counts the sodium benzoate itself, while the limit is **counted as benzoic acid**.
+- <InlineMath math="1270\text{ mg}" /> per kg divides by <InlineMath math="0.100" /> kg instead of the can's <InlineMath math="0.330" /> kg.
+- <InlineMath math="1500\text{ mg}" /> per kg makes both mistakes: it skips the conversion and uses the wrong mass of drink.

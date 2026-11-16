@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "The average rate from 0 s to 180 s is 0.88 cm³ s⁻¹" },
-        { correct: false, label: "The rate between 60 s and 120 s is higher than in the first 60 s" },
-        { correct: false, label: "The rate falls because the marble chips grow larger as they react" },
-        { correct: true, label: "The average rate in the first 60 s is 1.47 cm³ s⁻¹, higher than between 60 s and 120 s because the acid concentration falls" },
+        { correct: false, label: "The average rate from 0 s to 180 s is 0.88 cm³ s⁻¹, and the marble had a mass of 0.55 g" },
+        { correct: false, label: "The average rate in the first 60 s is 1.47 cm³ s⁻¹, and the marble had a mass of 0.275 g" },
+        { correct: false, label: "The average rate in the first 60 s is 0.73 cm³ s⁻¹, and the marble had a mass of 0.55 g" },
+        { correct: true, label: "The average rate in the first 60 s is 1.47 cm³ s⁻¹, and the marble had a mass of 0.55 g" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Kadar purata dari 0 s hingga 180 s ialah 0.88 cm³ s⁻¹" },
-        { correct: false, label: "Kadar antara 60 s dan 120 s lebih tinggi daripada dalam 60 s pertama" },
-        { correct: false, label: "Kadar menurun kerana ketulan marmar menjadi lebih besar semasa bertindak balas" },
-        { correct: true, label: "Kadar purata dalam 60 s pertama ialah 1.47 cm³ s⁻¹, lebih tinggi daripada antara 60 s dan 120 s kerana kepekatan asid berkurang" },
+        { correct: false, label: "Kadar purata dari 0 s hingga 180 s ialah 0.88 cm³ s⁻¹, dan jisim marmar ialah 0.55 g" },
+        { correct: false, label: "Kadar purata dalam 60 s pertama ialah 1.47 cm³ s⁻¹, dan jisim marmar ialah 0.275 g" },
+        { correct: false, label: "Kadar purata dalam 60 s pertama ialah 0.73 cm³ s⁻¹, dan jisim marmar ialah 0.55 g" },
+        { correct: true, label: "Kadar purata dalam 60 s pertama ialah 1.47 cm³ s⁻¹, dan jisim marmar ialah 0.55 g" },
       ],
     },
   },

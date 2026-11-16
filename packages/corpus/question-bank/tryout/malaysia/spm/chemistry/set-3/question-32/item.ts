@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "The percentage of carbon in the alkenes rises as the chain gets longer" },
-        { correct: false, label: "The percentage of carbon in the alkanes falls as the chain gets longer" },
-        { correct: true, label: "Every alkene has 85.7% carbon by mass because its general formula is $$\\text{C}_n\\text{H}_{2n}$$, so an alkene burns with a sootier flame than the alkane with the same number of carbon atoms" },
-        { correct: false, label: "Methane has the highest percentage of carbon of all the alkanes" },
+        { correct: false, label: "Propene gives more carbon dioxide, because each molecule has more carbon atoms" },
+        { correct: false, label: "Ethene gives more carbon dioxide, because the same mass holds more molecules" },
+        { correct: true, label: "Both give 17.6 g of carbon dioxide, because every alkene has the same 85.7% of carbon by mass" },
+        { correct: false, label: "Both give 8.8 g of carbon dioxide, because each sample holds 0.20 mol of carbon atoms" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Peratus karbon dalam alkena meningkat apabila rantai bertambah panjang" },
-        { correct: false, label: "Peratus karbon dalam alkana menurun apabila rantai bertambah panjang" },
-        { correct: true, label: "Setiap alkena mengandungi 85.7% karbon mengikut jisim kerana formula amnya $$\\text{C}_n\\text{H}_{2n}$$, jadi alkena terbakar dengan nyalaan yang lebih berjelaga berbanding alkana dengan bilangan atom karbon yang sama" },
-        { correct: false, label: "Metana mempunyai peratus karbon paling tinggi antara semua alkana" },
+        { correct: false, label: "Propena menghasilkan lebih banyak karbon dioksida, kerana setiap molekulnya mempunyai lebih banyak atom karbon" },
+        { correct: false, label: "Etena menghasilkan lebih banyak karbon dioksida, kerana jisim yang sama mengandungi lebih banyak molekul" },
+        { correct: true, label: "Kedua-duanya menghasilkan 17.6 g karbon dioksida, kerana setiap alkena mempunyai 85.7% karbon mengikut jisim yang sama" },
+        { correct: false, label: "Kedua-duanya menghasilkan 8.8 g karbon dioksida, kerana setiap sampel mengandungi 0.20 mol atom karbon" },
       ],
     },
   },
