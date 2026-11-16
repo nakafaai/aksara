@@ -12,26 +12,26 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$96.2\\%$$, the blue colour stays the same",
+          label: "$$97.6\\%$$, the blue colour stays the same",
         },
         {
           correct: false,
-          label: "$$86.6\\%$$, the blue colour stays the same",
+          label: "$$87.8\\%$$, the blue colour stays the same",
         },
         {
           correct: false,
-          label: "$$96.2\\%$$, the blue colour fades slightly",
+          label: "$$97.6\\%$$, the blue colour fades slightly",
         },
-        { correct: true, label: "$$86.6\\%$$, the blue colour fades slightly" },
+        { correct: true, label: "$$87.8\\%$$, the blue colour fades slightly" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$96.2\\%$$, warna biru kekal sama" },
-        { correct: false, label: "$$86.6\\%$$, warna biru kekal sama" },
-        { correct: false, label: "$$96.2\\%$$, warna biru pudar sedikit" },
-        { correct: true, label: "$$86.6\\%$$, warna biru pudar sedikit" },
+        { correct: false, label: "$$97.6\\%$$, warna biru kekal sama" },
+        { correct: false, label: "$$87.8\\%$$, warna biru kekal sama" },
+        { correct: false, label: "$$97.6\\%$$, warna biru pudar sedikit" },
+        { correct: true, label: "$$87.8\\%$$, warna biru pudar sedikit" },
       ],
     },
   },
