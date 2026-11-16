@@ -4,6 +4,18 @@ Coret kunci yang **tidak mungkin** membuka pintu gudang.
 - Kunci biru hanya membuka garasi atau kamar (keterangan kedua).
 - Kunci kuning hanya membuka dapur atau garasi (keterangan keempat).
 
+Diagram berikut merangkum alasan setiap kunci gugur untuk pintu gudang. **Hanya kunci hijau yang lolos**.
+
+<Mermaid
+  title={<>Kunci mana yang dapat membuka pintu gudang</>}
+  description={<>Kunci merah dilarang membuka gudang. Kunci biru hanya membuka garasi atau kamar. Kunci kuning hanya membuka dapur atau garasi. Kunci hijau hanya dilarang membuka garasi, jadi kunci hijaulah yang membuka gudang.</>}
+  chart={`flowchart LR
+    G["Pintu gudang"] --> M["Merah: dilarang membuka gudang"]
+    G --> B["Biru: hanya garasi atau kamar"]
+    G --> K["Kuning: hanya dapur atau garasi"]
+    G --> H["Hijau: lolos"]`}
+/>
+
 Tinggal kunci hijau, dan kunci hijau memang boleh membuka gudang karena larangannya hanya untuk garasi.
 
 Keterangan memang tidak memastikan pintu untuk kunci merah dan biru, karena keduanya bisa bertukar antara garasi dan kamar. Namun, pintu gudang tetap pasti dibuka dengan kunci hijau, jadi pilihan *tidak dapat dipastikan* tidak tepat.

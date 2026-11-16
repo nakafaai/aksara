@@ -2,6 +2,18 @@ Die Aussage hat die Form **"p und q"** und ist nur wahr, wenn beide Teile wahr s
 
 <BlockMath math="\sim(p\wedge q)\equiv\,\sim p\vee\sim q" />
 
+Das Diagramm prüft, wann die Verneinung wahr ist. **Ein verfehlter Teil genügt**, damit die Verneinung gilt.
+
+<Mermaid
+  title={<>Wann die Verneinung von „öffnet Montag und schließt Freitag“ wahr ist</>}
+  description={<>Öffnet die Anmeldung nicht am Montag, ist die Verneinung wahr. Öffnet sie am Montag, schließt aber nicht am Freitag, ist sie ebenfalls wahr. Nur wenn sie Montag öffnet und Freitag schließt, ist die Verneinung falsch.</>}
+  chart={`flowchart LR
+    A{"Öffnet am Montag?"} -->|"nein"| N1["Verneinung wahr"]
+    A -->|"ja"| B{"Schließt am Freitag?"}
+    B -->|"nein"| N2["Verneinung wahr"]
+    B -->|"ja"| S["Aussage wahr, Verneinung falsch"]`}
+/>
+
 Mit <InlineMath math="p" /> = Anmeldung öffnet am Montag und <InlineMath math="q" /> = Anmeldung schließt am Freitag lautet die Verneinung: Die Anmeldung öffnet nicht am Montag oder schließt nicht am Freitag.
 
 Die anderen Optionen passen nicht:

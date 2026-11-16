@@ -2,6 +2,18 @@ The statement has the form **"p and q"**, which is true only when both parts are
 
 <BlockMath math="\sim(p\wedge q)\equiv\,\sim p\vee\sim q" />
 
+The diagram below checks when the negation is true. **One failed part is enough** for the negation to hold.
+
+<Mermaid
+  title={<>When the negation of "opens Monday and closes Friday" is true</>}
+  description={<>If registration doesn't open on Monday, the negation is true. If it opens on Monday but doesn't close on Friday, the negation is true too. Only if it opens Monday and closes Friday is the negation false.</>}
+  chart={`flowchart LR
+    A{"Opens on Monday?"} -->|"no"| N1["Negation true"]
+    A -->|"yes"| B{"Closes on Friday?"}
+    B -->|"no"| N2["Negation true"]
+    B -->|"yes"| S["Original true, negation false"]`}
+/>
+
 With <InlineMath math="p" /> = registration opens on Monday and <InlineMath math="q" /> = registration closes on Friday, the negation is that registration does not open on Monday or does not close on Friday.
 
 The other options do not fit:

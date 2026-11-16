@@ -6,6 +6,20 @@ Finde zuerst heraus, welche Klasse **Stand 6 besetzen kann**, und streiche die, 
 - XI-A nicht. Steht XI-A auf <InlineMath math="6" />, steht X-C auf <InlineMath math="5" />, aber X-B braucht eine höhere Nummer als X-C (Regel 3).
 - XI-B nicht. Steht XI-B auf <InlineMath math="6" />, steht X-A auf <InlineMath math="5" /> (Regel 2), aber XI-C braucht eine höhere Nummer als X-A (Regel 6).
 
+Das Diagramm fasst zusammen, warum jeder Kandidat für Stand 6 ausscheidet. **Nur X-B bleibt übrig**.
+
+<Mermaid
+  title={<>Welche Klasse Stand 6 belegen kann</>}
+  description={<>X-C scheidet aus, weil XI-A rechts daneben stehen muss. X-A scheidet aus, weil XI-C eine höhere Nummer braucht. XI-C scheidet aus, weil es nicht am Ende stehen darf. XI-A scheidet aus, weil X-B rechts von X-C stehen muss. XI-B scheidet aus, weil XI-C rechts von X-A stehen muss. Übrig bleibt nur X-B.</>}
+  chart={`flowchart LR
+    S["Stand 6"] --> A["X-C: XI-A muss rechts daneben"]
+    S --> B["X-A: XI-C braucht höhere Nummer"]
+    S --> C["XI-C: nicht am Ende"]
+    S --> D["XI-A: X-B muss rechts von X-C"]
+    S --> E["XI-B: XI-C muss rechts von X-A"]
+    S --> F["X-B: erlaubt"]`}
+/>
+
 Übrig bleibt nur X-B. Die anderen Optionen gelten nur in manchen Anordnungen. So erfüllt X-C, XI-A, X-A, XI-B, XI-C, X-B alle Regeln, setzt X-A aber auf <InlineMath math="3" /> und XI-B auf <InlineMath math="4" />.
 
 Sicher richtig ist also, dass X-B auf Stand 6 steht.

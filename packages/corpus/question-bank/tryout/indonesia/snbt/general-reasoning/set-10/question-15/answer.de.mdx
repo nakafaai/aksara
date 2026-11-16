@@ -6,6 +6,18 @@ Gehe die Regeln **nacheinander** durch, beginnend bei Stand 1.
 - XI-A steht direkt rechts von X-C, also auf <InlineMath math="5" /> (Regel 5).
 - XI-C nimmt Stand 3, der nicht am Rand liegt und eine höhere Nummer hat als X-A.
 
+Das Diagramm zeichnet diese Kette von Platzierungen. **Jeder Schritt lässt nur einen Stand übrig**, bis XI-A auf Stand 5 landet.
+
+<Mermaid
+  title={<>Die Kette der Standplätze, wenn XI-B auf Stand 1 ist</>}
+  description={<>XI-B auf Stand 1 setzt X-A auf Stand 2. Die anderen zehnten Klassen müssen auf <InlineMath math="4" /> und <InlineMath math="6" />, mit X-B auf <InlineMath math="6" />, also ist X-C auf <InlineMath math="4" />. XI-A steht direkt rechts von X-C, auf Stand 5, und XI-C füllt Stand 3.</>}
+  chart={`flowchart LR
+    B["XI-B auf Stand 1"] -->|"Regel 2"| A["X-A auf Stand 2"]
+    A -->|"Regel 1"| X["Andere X-Klassen auf 4 und 6"]
+    X -->|"X-B auf Stand 6"| C["X-C auf Stand 4"]
+    C -->|"Regel 5"| I["XI-A auf Stand 5"]`}
+/>
+
 Die Reihenfolge ist XI-B, X-A, XI-C, X-C, XI-A, X-B, und alle Regeln sind erfüllt.
 
 XI-A steht also auf Stand 5.

@@ -6,6 +6,18 @@ Telusuri aturan **satu per satu** mulai dari stan nomor 1.
 - XI-A tepat di sebelah kanan X-C, yaitu di nomor 5 (aturan 5).
 - XI-C menempati nomor 3, yang tidak di ujung dan bernomor lebih besar daripada X-A.
 
+Diagram berikut menggambar rantai penempatan itu. **Setiap langkah hanya menyisakan satu stan**, sampai XI-A jatuh di nomor 5.
+
+<Mermaid
+  title={<>Rantai penempatan stan saat XI-B di nomor 1</>}
+  description={<>XI-B di nomor 1 membuat X-A di nomor 2. Kelas X lain harus di nomor 4 dan 6, dengan X-B di nomor 6, jadi X-C di nomor 4. XI-A tepat di kanan X-C, yaitu nomor 5, dan XI-C mengisi nomor 3.</>}
+  chart={`flowchart LR
+    B["XI-B di nomor 1"] -->|"aturan 2"| A["X-A di nomor 2"]
+    A -->|"aturan 1"| X["Kelas X lain di nomor 4 dan 6"]
+    X -->|"X-B di nomor 6"| C["X-C di nomor 4"]
+    C -->|"aturan 5"| I["XI-A di nomor 5"]`}
+/>
+
 Susunannya XI-B, X-A, XI-C, X-C, XI-A, X-B, dan semua aturan terpenuhi.
 
 Jadi, stan XI-A berada di nomor 5.

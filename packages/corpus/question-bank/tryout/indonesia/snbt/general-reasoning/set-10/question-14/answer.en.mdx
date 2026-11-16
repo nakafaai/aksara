@@ -6,6 +6,20 @@ First find which class **can take booth 6**, then cross out those that break a r
 - XI-A cannot. If XI-A is at <InlineMath math="6" />, X-C is at <InlineMath math="5" />, but X-B must have a higher number than X-C (rule 3).
 - XI-B cannot. If XI-B is at <InlineMath math="6" />, X-A is at <InlineMath math="5" /> (rule 2), but XI-C must have a higher number than X-A (rule 6).
 
+The diagram below sums up why each candidate for booth 6 drops out. **Only X-B survives**.
+
+<Mermaid
+  title={<>Which class can take booth 6</>}
+  description={<>X-C drops out because XI-A must be to its right. X-A drops out because XI-C needs a higher number. XI-C drops out because it can't be at an end. XI-A drops out because X-B must be right of X-C. XI-B drops out because XI-C must be right of X-A. Only X-B is left.</>}
+  chart={`flowchart LR
+    S["Booth 6"] --> A["X-C: XI-A must be to its right"]
+    S --> B["X-A: XI-C needs a higher number"]
+    S --> C["XI-C: can't be at an end"]
+    S --> D["XI-A: X-B must be right of X-C"]
+    S --> E["XI-B: XI-C must be right of X-A"]
+    S --> F["X-B: allowed"]`}
+/>
+
 Only X-B is left. The other options hold in some arrangements only. For example, X-C, XI-A, X-A, XI-B, XI-C, X-B meets every rule but puts X-A at <InlineMath math="3" /> and XI-B at <InlineMath math="4" />.
 
 So the statement that must be true is that X-B is at booth 6.

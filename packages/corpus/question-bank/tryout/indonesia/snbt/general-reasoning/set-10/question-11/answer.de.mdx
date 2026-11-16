@@ -2,6 +2,18 @@ Ordne jede Aussage als Benar (richtig, sie folgt sicher) oder Salah (falsch, sie
 
 <BlockMath math="\text{Sauberkeitssieg}\Rightarrow\text{Wanderpokal}\Rightarrow\text{darf das Ziel wählen}" />
 
+Das Diagramm zeichnet diese Kette mit dem Zweig der Wandzeitung. **Der Pokal kann auf zwei Wegen kommen**, und Klasse XI-2, die das Ziel nicht wählen darf, hat ihn auf keinem.
+
+<Mermaid
+  title={<>Die Kette von Wanderpokal und Ausflug</>}
+  description={<>Der Sauberkeitssieger und der Sieger der Wandzeitung bekommen beide den Wanderpokal, und wer ihn hat, darf das Ziel wählen. Klasse XI-2 darf nicht wählen, also hat sie keinen Pokal und hat den Sauberkeitswettbewerb nicht gewonnen.</>}
+  chart={`flowchart LR
+    K["Sauberkeitssieger"] --> P["Bekommt den Wanderpokal"]
+    M["Sieger der Wandzeitung"] --> P
+    P --> T["Darf das Ziel wählen"]
+    X["Klasse XI-2 darf nicht wählen"] -.->|"Kontraposition"| N["Kein Pokal, kein Sauberkeitssieg"]`}
+/>
+
 **Aussage 1** ist falsch. Klasse XI-2 darf das Ziel nicht wählen, hat also nach der dritten Angabe sicher keinen Wanderpokal.
 
 **Aussage 2** ist richtig. Ohne Pokal hat Klasse XI-2 auch sicher nicht den Sauberkeitswettbewerb gewonnen.

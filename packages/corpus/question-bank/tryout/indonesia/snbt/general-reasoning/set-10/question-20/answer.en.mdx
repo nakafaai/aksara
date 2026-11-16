@@ -4,6 +4,18 @@ Cross out the keys that **cannot** open the storeroom.
 - The blue key opens only the garage or the bedroom (second fact).
 - The yellow key opens only the kitchen or the garage (fourth fact).
 
+The diagram below sums up why each key drops out for the storeroom. **Only the green key survives**.
+
+<Mermaid
+  title={<>Which key can open the storeroom</>}
+  description={<>The red key may not open the storeroom. The blue key opens only the garage or the bedroom. The yellow key opens only the kitchen or the garage. The green key is only banned from the garage, so it's the green key that opens the storeroom.</>}
+  chart={`flowchart LR
+    G["Storeroom door"] --> M["Red: banned from the storeroom"]
+    G --> B["Blue: only garage or bedroom"]
+    G --> K["Yellow: only kitchen or garage"]
+    G --> H["Green: allowed"]`}
+/>
+
 Only the green key is left, and it may open the storeroom, since its only ban is the garage.
 
 The facts do not settle the doors for the red and blue keys, since those two could swap between garage and bedroom. Still, the storeroom is certainly opened by the green key, so *tidak dapat dipastikan* (cannot be determined) is wrong.

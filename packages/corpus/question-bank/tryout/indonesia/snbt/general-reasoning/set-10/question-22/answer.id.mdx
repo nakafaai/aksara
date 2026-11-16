@@ -8,6 +8,19 @@ Setiap lengan menyumbang dua sisi panjang <InlineMath math="n" /> cm dan satu uj
 
 <BlockMath math="\text{keliling}=4\times(2n+1)=4\times21=84\text{ cm}" />
 
+Grafik berikut menggambar banyak persegi dan keliling gambar ke-<InlineMath math="1" /> sampai ke-<InlineMath math="10" />. **Pada gambar ke-<InlineMath math="10" />, persegi mencapai <InlineMath math="41" /> dan keliling <InlineMath math="84" /> cm**.
+
+<Chart
+  title={<>Banyak persegi dan keliling tanda tambah menurut nomor gambar</>}
+  description={<>Gambar ke-<InlineMath math="n" /> tersusun dari <InlineMath math="4n+1" /> persegi dan berkeliling <InlineMath math="4(2n+1)" /> cm. Untuk <InlineMath math="n=1" />, <InlineMath math="2" />, dan <InlineMath math="10" />, kelilingnya <InlineMath math="12" />, <InlineMath math="20" />, dan <InlineMath math="84" /> cm.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Banyak persegi", mark: "line", values: Array.from({ length: 10 }, (_, i) => 4 * (i + 1) + 1) },
+    { label: "Keliling (cm)", mark: "line", values: Array.from({ length: 10 }, (_, i) => 4 * (2 * (i + 1) + 1)) },
+  ]}
+  valueLabel="Banyak atau cm"
+/>
+
 Periksa dengan gambar ke-1 dan ke-2: <InlineMath math="4\times3=12" /> dan <InlineMath math="4\times5=20" />, sesuai dengan soal.
 
 Jadi, kelilingnya <InlineMath math="84" /> cm.

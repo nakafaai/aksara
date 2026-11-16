@@ -2,6 +2,21 @@ Die beiden Brunnen sprühen gemeinsam bei jedem **kleinsten gemeinsamen Vielfach
 
 <BlockMath math="\text{kgV}(12,18)=36" />
 
+Das Diagramm markiert die Sprühminuten seit 16.00 Uhr. **Beide Balken erscheinen nur in den Minuten <InlineMath math="0" />, <InlineMath math="36" /> und <InlineMath math="72" /> zusammen**, also um 16.00, 16.36 und 17.12 Uhr.
+
+<Chart
+  title={<>Sprühminuten beider Brunnen seit 16.00 Uhr</>}
+  description={<>Brunnen A sprüht bei Vielfachen von <InlineMath math="12" /> Minuten, Brunnen B bei Vielfachen von <InlineMath math="18" /> Minuten. Gemeinsam sprühen sie alle <InlineMath math="36" /> Minuten, dem kleinsten gemeinsamen Vielfachen von <InlineMath math="12" /> und <InlineMath math="18" />.</>}
+  categories={["0", "12", "18", "24", "36", "48", "54", "60", "72"]}
+  series={[
+    { label: "Brunnen A sprüht", mark: "bar", values: [0, 12, 18, 24, 36, 48, 54, 60, 72].map((m) => (m % 12 === 0 ? 1 : 0)) },
+    { label: "Brunnen B sprüht", mark: "bar", values: [0, 12, 18, 24, 36, 48, 54, 60, 72].map((m) => (m % 18 === 0 ? 1 : 0)) },
+  ]}
+  bars="apart"
+  valueLabel="Sprüht (1) oder nicht (0)"
+  valueRange={{ min: 0, max: 1 }}
+/>
+
 Gemeinsam sprühen die Brunnen um 16.00 Uhr (erstes Mal), 16.36 Uhr (zweites Mal) und 17.12 Uhr (drittes Mal).
 
 Zum dritten Mal sprühen sie also um 17.12 Uhr gemeinsam.
