@@ -29,6 +29,20 @@ b &> a
 
 Aussage (2) verrät nur, dass Wulan mehr Pakete B als Pakete A gekauft hat. Dazu passen viele Paare, etwa <InlineMath math="(1, 2)" /> oder <InlineMath math="(5, 9)" />. Aussage (2) allein reicht also nicht.
 
+Das Diagramm vergleicht die Pakete A und B in den beiden Paaren aus Aussage (1). **Nur im ersten Paar ist der Balken B höher als der Balken A**, wie Aussage (2) es verlangt.
+
+<Chart
+  title={<>Die zwei Einkäufe, die genau <InlineMath math="\text{Rp}61{.}000" /> kosten</>}
+  description={<>Das erste Paar hat <InlineMath math="3" /> Pakete A und <InlineMath math="10" /> Pakete B, also <InlineMath math="b>a" />. Das zweite Paar hat <InlineMath math="7" /> Pakete A und <InlineMath math="3" /> Pakete B, also <InlineMath math="b<a" />.</>}
+  bars="apart"
+  categories={["(3, 10)", "(7, 3)"]}
+  series={[
+    { label: "Pakete A", mark: "bar", values: [3, 7] },
+    { label: "Pakete B", mark: "bar", values: [(61 - 7 * 3) / 4, (61 - 7 * 7) / 4] },
+  ]}
+  valueLabel="Pakete"
+/>
+
 Kombiniere jetzt beide. Von den zwei Paaren aus Aussage (1) erfüllt nur <InlineMath math="(3, 10)" /> die Bedingung <InlineMath math="b > a" />. Das Paar <InlineMath math="(7, 3)" /> fällt weg, weil <InlineMath math="3 < 7" /> ist. Probe: <InlineMath math="7 \times 3 + 4 \times 10 = 61" />, und nach dem Tausch kostet es <InlineMath math="7 \times 10 + 4 \times 3 = 82" />, also wirklich mehr. Die Zahl der Pakete A ist sicher <InlineMath math="3" />.
 
 Warum die anderen Antworten falsch sind:

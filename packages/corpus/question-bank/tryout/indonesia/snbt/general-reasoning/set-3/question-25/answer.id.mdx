@@ -14,6 +14,20 @@ Hitung **per hari**, karena penumpang hari Minggu tidak bisa memakai kursi koson
 
 Contohnya Senin: <InlineMath math="3 \times 200 = 600" /> kursi belum cukup untuk <InlineMath math="672" /> orang, sedangkan <InlineMath math="4 \times 200 = 800" /> sudah cukup. Hari Sabtu dan Minggu perlu dicek teliti. Pada Sabtu, <InlineMath math="792 \le 800" />, jadi empat keberangkatan masih cukup. Pada Minggu, <InlineMath math="828 > 800" />, jadi perlu lima.
 
+Grafik berikut membandingkan arah tersibuk dengan kursi yang tersedia per pelabuhan. **Setiap batang kursi adalah kelipatan <InlineMath math="200" /> terkecil yang tidak lebih pendek dari batang penumpangnya**.
+
+<Chart
+  title={<>Penumpang arah tersibuk dan kursi yang disediakan minggu berikutnya</>}
+  description={<>Arah tersibuk dari Senin sampai Minggu memuat <InlineMath math="672" />, <InlineMath math="456" />, <InlineMath math="504" />, <InlineMath math="660" />, <InlineMath math="636" />, <InlineMath math="792" />, dan <InlineMath math="828" /> penumpang. Kursinya <InlineMath math="800" />, <InlineMath math="600" />, <InlineMath math="600" />, <InlineMath math="800" />, <InlineMath math="800" />, <InlineMath math="800" />, dan <InlineMath math="1{.}000" />, yaitu <InlineMath math="4" />, <InlineMath math="3" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="4" />, dan <InlineMath math="5" /> keberangkatan.</>}
+  categories={["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]}
+  bars="apart"
+  series={[
+    { label: "Arah tersibuk", mark: "bar", values: [560, 380, 420, 550, 530, 660, 690].map((v) => (v * 12) / 10) },
+    { label: "Kursi dari keberangkatan per pelabuhan", mark: "bar", values: [560, 380, 420, 550, 530, 660, 690].map((v) => Math.ceil((v * 12) / 10 / 200) * 200) },
+  ]}
+  valueLabel="Banyak orang atau kursi"
+/>
+
 Jumlahkan keberangkatan per pelabuhan, lalu kalikan dua karena ada dua pelabuhan.
 
 <BlockMath math="\begin{aligned}

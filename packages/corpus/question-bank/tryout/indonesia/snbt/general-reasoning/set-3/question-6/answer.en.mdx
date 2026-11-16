@@ -8,6 +8,19 @@ By how much? Let <InlineMath math="p" /> be the number of night-time medications
 
 Night-time medications must drop from <InlineMath math="2{,}000" /> to below about <InlineMath math="1{,}667" />, a fall of more than one-sixth, or about <InlineMath math="16.7\%" />. That one-sixth comes from the top of the fraction: errors fell by exactly one-sixth, from <InlineMath math="18" /> to <InlineMath math="15" />, so the bottom has to fall by more than one-sixth for the fraction to rise.
 
+The chart below draws the night-time error rate with <InlineMath math="15" /> errors for several values of <InlineMath math="p" />. **The line only climbs past <InlineMath math="9" /> once <InlineMath math="p" /> drops below about <InlineMath math="1{,}667" />**.
+
+<Chart
+  title={<>Night-time error rate with <InlineMath math="15" /> errors by the number of medications</>}
+  description={<>The rate is <InlineMath math="15" /> per <InlineMath math="p" />, times <InlineMath math="1{,}000" />. At <InlineMath math="p=2{,}000" />, it's <InlineMath math="7.5" />. At <InlineMath math="p=1{,}500" />, it's <InlineMath math="10" />, above the old rate of <InlineMath math="9" />.</>}
+  categories={["1400", "1500", "1600", "1700", "1800", "1900", "2000"]}
+  series={[
+    { label: "Night rate, April to June", mark: "line", values: [1400, 1500, 1600, 1700, 1800, 1900, 2000].map((p) => (15 / p) * 1000) },
+    { label: "Night rate, January to March", mark: "line", values: [9, 9, 9, 9, 9, 9, 9] },
+  ]}
+  valueLabel="Errors per 1,000 medications"
+/>
+
 Moving the routine 05.00 medicines to 08.00 cuts night-time medications by about a quarter, roughly from <InlineMath math="2{,}000" /> to <InlineMath math="1{,}500" />. Check it:
 
 <BlockMath math="\frac{15}{1{,}500}\cdot 1{,}000=10>9" />

@@ -19,6 +19,17 @@ The table checks all five possibilities at once, so you can see the answer is un
 | Vina | T | T | T | F | F | <InlineMath math="2" /> |
 | Yosef | F | F | F | T | T | <InlineMath math="3" /> |
 
+The chart below counts the false statements for each possible culprit. **Only Vina's bar is exactly <InlineMath math="2" /> high**, as the question requires.
+
+<Chart
+  title={<>Number of false statements by who forgot to return the key</>}
+  description={<>If Joko, Putu, or Yosef forgot, there are <InlineMath math="3" /> false statements. If Rani forgot, only <InlineMath math="1" />. If Vina forgot, exactly <InlineMath math="2" />.</>}
+  bars="apart"
+  categories={["Joko", "Putu", "Rani", "Vina", "Yosef"]}
+  series={[{ label: "Number of false statements", mark: "bar", values: [3, 3, 1, 2, 3] }]}
+  valueLabel="False statements"
+/>
+
 Only the Vina row has exactly two false statements.
 
 Now check each option.

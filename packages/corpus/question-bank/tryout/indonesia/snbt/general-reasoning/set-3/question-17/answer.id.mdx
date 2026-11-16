@@ -34,6 +34,24 @@ Dua baris yang melanggar aturan 7 menaruh Hamid tepat di sebelah Cahya: kursi 8 
 
 <BlockMath math="\begin{aligned} \text{calon} &= 2 \times 2 \times 2 = 8 \\ \text{susunan sah} &= 8 - 2 = 6 \end{aligned}" />
 
+Diagram berikut menggambar pohon cabangnya. **Setiap cabang Asri dan Cahya memberi dua calon**, dan aturan 7 menggugurkan satu calon di dua cabang.
+
+<Mermaid
+  title={<>Pohon cabang susunan duduk yang memenuhi semua aturan</>}
+  description={<>Asri di kursi <InlineMath math="1" /> atau <InlineMath math="5" />. Pada setiap pilihan itu, Cahya di kursi <InlineMath math="3" /> atau <InlineMath math="7" />, dan Fajar punya dua pilihan, jadi ada <InlineMath math="8" /> calon. Cabang Cahya di kursi <InlineMath math="7" /> masing-masing kehilangan satu calon karena aturan 7, sehingga tersisa <InlineMath math="6" /> susunan.</>}
+  chart={`flowchart LR
+    S["Mulai"] --> A1["Asri di kursi 1"]
+    S --> A5["Asri di kursi 5"]
+    A1 --> C13["Cahya di kursi 3: 2 calon, 2 sah"]
+    A1 --> C17["Cahya di kursi 7: 2 calon, 1 sah"]
+    A5 --> C53["Cahya di kursi 3: 2 calon, 2 sah"]
+    A5 --> C57["Cahya di kursi 7: 2 calon, 1 sah"]
+    C13 --> T["Total 6 susunan sah"]
+    C17 --> T
+    C53 --> T
+    C57 --> T`}
+/>
+
 Faktor pertama berasal dari dua pilihan kursi Asri, faktor kedua dari dua pilihan kursi Cahya, dan faktor ketiga dari dua pilihan kursi Fajar. Galuh dan Hamid tidak menambah cabang karena aturan 6 sudah menentukan urutan mereka.
 
 Untuk mengecek, ambil baris terakhir: Bonar <InlineMath math="1" />, Galuh <InlineMath math="2" />, Hamid <InlineMath math="3" />, Elok <InlineMath math="4" />, Asri <InlineMath math="5" />, Fajar <InlineMath math="6" />, Cahya <InlineMath math="7" />, Dimas <InlineMath math="8" />. Asri dan Bonar berhadapan, Dimas bersebelahan dengan Cahya tetapi tidak dengan Asri, Elok di kursi 4 berhadapan dengan Dimas di kursi 8, Fajar di kursi 6 berjarak dua dari Elok, nomor Galuh lebih kecil daripada nomor Hamid, dan Hamid di kursi 3 tidak bersebelahan dengan Cahya di kursi 7. Semua aturan terpenuhi.

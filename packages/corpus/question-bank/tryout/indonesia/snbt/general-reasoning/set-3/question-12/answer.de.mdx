@@ -14,6 +14,20 @@ So sieht die ganze Kette aus.
 
 <BlockMath math="\text{Pumpe aus} \Rightarrow \text{Tank voll} \Rightarrow \text{Schütz offen} \Rightarrow (\text{Ost} \vee \text{West})" />
 
+Das Diagramm zeichnet dieselbe Kette mit dem Zweig aus Regel 4. **Der westliche Zweig ist gekappt, weil das Westfeld gedüngt war**, also können die Pfeile nur beim Ostfeld enden.
+
+<Mermaid
+  title={<>Die Schlusskette zur Bewässerung der letzten Nacht</>}
+  description={<>Die Pumpe war aus, also war der Tank voll. Der Tank war voll, also wurde das Verteilerschütz geöffnet. Das Schütz war offen, also wurde das Ost- oder das Westfeld bewässert. Das Westfeld war gedüngt, also wurde es nicht bewässert, und es bleibt das Ostfeld.</>}
+  chart={`flowchart LR
+    A["Pumpe aus"] -->|"Regel 1"| B["Tank voll"]
+    B -->|"Regel 2"| C["Schütz geöffnet"]
+    C -->|"Regel 3"| D["Ost oder West bewässert"]
+    W["Westfeld schon gedüngt"] -->|"Regel 4"| X["West nicht bewässert"]
+    D --> E["Ostfeld bewässert"]
+    X --> E`}
+/>
+
 Weil Regel 4 das Westfeld ausschließt, bleibt das Ostfeld. Prüf rückwärts: ein voller Tank, ein offenes Schütz, ein bewässertes Ostfeld und ein trockenes Westfeld erfüllen alle vier Regeln zugleich.
 
 Jeder andere Schluss scheitert an genau einem falschen Schritt.

@@ -19,6 +19,21 @@ Das ergibt drei Sitzordnungen. Die Spalten 1 bis 8 sind Stuhlnummern, und jede P
 | II | A | G | C | D | B | F | H | E |
 | III | B | D | C | G | A | E | H | F |
 
+Das Diagramm liest drei Dinge aus der Tabelle ab. **Cahyas Stuhl und der Abstand zwischen Galuh und Fajar ändern sich nie**, Asri dagegen rückt in Sitzordnung III auf Stuhl <InlineMath math="5" />.
+
+<Chart
+  title={<>Drei Werte in den drei Sitzordnungen mit Hamid auf Stuhl 7</>}
+  description={<>Cahya sitzt immer auf Stuhl <InlineMath math="3" />. Asri sitzt auf Stuhl <InlineMath math="1" />, <InlineMath math="1" /> und dann <InlineMath math="5" />. Die Stuhlnummern von Galuh und Fajar liegen immer <InlineMath math="4" /> auseinander, also sitzen sie sich am Tisch mit acht Stühlen gegenüber.</>}
+  bars="apart"
+  categories={["I", "II", "III"]}
+  series={[
+    { label: "Stuhl von Cahya", mark: "bar", values: [3, 3, 3] },
+    { label: "Stuhl von Asri", mark: "bar", values: [1, 1, 5] },
+    { label: "Abstand der Stühle von Galuh und Fajar", mark: "bar", values: [6 - 2, 6 - 2, 8 - 4] },
+  ]}
+  valueLabel="Stuhlnummer oder Abstand"
+/>
+
 Jetzt bewertest du jede Aussage.
 
 - Cahya auf Stuhl 3 ist *Benar*. Cahya sitzt in allen drei Sitzordnungen auf Stuhl 3, weil Hamid Stuhl 7 schon hat.

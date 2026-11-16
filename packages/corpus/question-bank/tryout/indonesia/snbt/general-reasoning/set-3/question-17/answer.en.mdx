@@ -34,6 +34,24 @@ The two rows that break rule 7 put Hamid right next to Cahya: chair 8 next to ch
 
 <BlockMath math="\begin{aligned} \text{candidates} &= 2 \times 2 \times 2 = 8 \\ \text{valid arrangements} &= 8 - 2 = 6 \end{aligned}" />
 
+The diagram below draws the branch tree. **Every Asri and Cahya branch gives two candidates**, and rule 7 knocks out one candidate in two of the branches.
+
+<Mermaid
+  title={<>Branch tree of seating arrangements that meet every rule</>}
+  description={<>Asri is in chair <InlineMath math="1" /> or <InlineMath math="5" />. For each of those, Cahya is in chair <InlineMath math="3" /> or <InlineMath math="7" />, and Fajar has two choices, so there are <InlineMath math="8" /> candidates. Each branch with Cahya in chair <InlineMath math="7" /> loses one candidate to rule 7, leaving <InlineMath math="6" /> arrangements.</>}
+  chart={`flowchart LR
+    S["Start"] --> A1["Asri in chair 1"]
+    S --> A5["Asri in chair 5"]
+    A1 --> C13["Cahya in chair 3: 2 candidates, 2 valid"]
+    A1 --> C17["Cahya in chair 7: 2 candidates, 1 valid"]
+    A5 --> C53["Cahya in chair 3: 2 candidates, 2 valid"]
+    A5 --> C57["Cahya in chair 7: 2 candidates, 1 valid"]
+    C13 --> T["Total 6 valid arrangements"]
+    C17 --> T
+    C53 --> T
+    C57 --> T`}
+/>
+
 The first factor comes from the two choices for Asri's chair, the second from the two choices for Cahya's chair, and the third from the two choices for Fajar's chair. Galuh and Hamid add no branches, because rule 6 already fixes their order.
 
 To check, take the last row: Bonar <InlineMath math="1" />, Galuh <InlineMath math="2" />, Hamid <InlineMath math="3" />, Elok <InlineMath math="4" />, Asri <InlineMath math="5" />, Fajar <InlineMath math="6" />, Cahya <InlineMath math="7" />, Dimas <InlineMath math="8" />. Asri faces Bonar, Dimas sits next to Cahya but not next to Asri, Elok in chair 4 faces Dimas in chair 8, Fajar in chair 6 is two chairs from Elok, Galuh's number is smaller than Hamid's, and Hamid in chair 3 isn't next to Cahya in chair 7. Every rule holds.
