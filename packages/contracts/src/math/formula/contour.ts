@@ -232,6 +232,69 @@ export function contourLines(
   return join(Arr.map(found, ([from, to], index) => ({ from, index, to })));
 }
 
+/** Grid strides from coarse to fine, so a filled region is usually found in a few samples. */
+const FILL_STRIDES = [32, 16, 8, 4, 2, 1] as const;
+
+/**
+ * Whether `contourFill` would draw anything, decided without drawing it. A cell
+ * fills when its four corners are finite and one of them is inside, because an
+ * inside corner and its two crossings already make an outline. The samples are
+ * read coarse to fine and kept, so a visible region costs a few hundred field
+ * reads instead of every cell of the grid.
+ */
+export function contourFilled(
+  field: SampleField,
+  box: SampleBox,
+  cells: number = CONTOUR_CELLS
+): boolean {
+  const dx = (box.x.max - box.x.min) / cells;
+  const dy = (box.y.max - box.y.min) / cells;
+  const read = MutableHashMap.empty<number, number>();
+  /** The field at one grid corner, sampled once and then read from memory. */
+  const value = (column: number, row: number) => {
+    const key = column * (cells + 1) + row;
+    return Option.getOrElse(MutableHashMap.get(read, key), () => {
+      const sample = field(box.x.min + column * dx, box.y.min + row * dy);
+      MutableHashMap.set(read, key, sample);
+      return sample;
+    });
+  };
+  /** Whether the cell lies on the grid and all four of its corners are finite. */
+  const finiteCell = (column: number, row: number) =>
+    column >= 0 &&
+    row >= 0 &&
+    column < cells &&
+    row < cells &&
+    Arr.every(
+      [
+        [column, row],
+        [column + 1, row],
+        [column + 1, row + 1],
+        [column, row + 1],
+      ] as const,
+      ([c, r]) => Number.isFinite(value(c, r))
+    );
+  /** Whether this corner is inside and one finite cell touching it would fill. */
+  const fills = (column: number, row: number) =>
+    value(column, row) >= 0 &&
+    Arr.some(
+      [
+        [column, row],
+        [column - 1, row],
+        [column - 1, row - 1],
+        [column, row - 1],
+      ] as const,
+      ([c, r]) => finiteCell(c, r)
+    );
+  return Arr.some(FILL_STRIDES, (stride) =>
+    Arr.some(Arr.range(0, Math.floor(cells / stride)), (i) =>
+      Arr.some(Arr.range(0, Math.floor(cells / stride)), (j) =>
+        fills(i * stride, j * stride)
+      )
+    )
+  );
+}
+
 /**
  * Shades the part of the frame where a field is at least zero, one shape per
  * cell: the corners inside and the crossings between them, so a cell wholly

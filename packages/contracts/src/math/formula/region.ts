@@ -17,6 +17,7 @@ import {
 } from "#contracts/math/formula/compile";
 import {
   contourFill,
+  contourFilled,
   contourLines,
   type SampleField,
 } from "#contracts/math/formula/contour";
@@ -135,5 +136,24 @@ export function regionGeometry(
       fill: contourFill(field, box),
       kind: "region" as const,
     } satisfies FormulaGeometry;
+  });
+}
+
+/**
+ * Whether the region where every inequality holds shows inside the box. It
+ * answers what `regionGeometry` would fill without tracing the outline, so a
+ * schema check stays cheap; drawing the region is the renderer's work.
+ */
+export function regionFilled(
+  inequalities: readonly [string, ...string[]],
+  box: SampleBox,
+  scope: FormulaScope
+) {
+  return Result.map(Result.all(Arr.map(inequalities, margin)), (margins) => {
+    const fields = Arr.map(margins, (each) => each.field(scope));
+    return contourFilled(
+      (x, y) => Math.min(...Arr.map(fields, (field) => field(x, y))),
+      box
+    );
   });
 }
