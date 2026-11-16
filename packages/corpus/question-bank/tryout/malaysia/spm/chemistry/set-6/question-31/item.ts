@@ -10,36 +10,33 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Butanoic acid, $$75.0\\text{ cm}^3$$" },
+        { correct: false, label: "Butanoic acid, $$450\\text{ cm}^3$$" },
         {
           correct: false,
-          label: "2-methylpropanoic acid, $$100\\text{ cm}^3$$",
+          label: "2-Methylpropanoic acid, $$600\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "2-methylpropanoic acid, $$75.0\\text{ cm}^3$$",
+          label: "2-Methylpropanoic acid, $$450\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "2-methylpropanoic acid, $$37.5\\text{ cm}^3$$",
+          label: "2-Methylpropanoic acid, $$900\\text{ cm}^3$$",
         },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Asid butanoik, $$75.0\\text{ cm}^3$$" },
+        { correct: false, label: "Asid butanoik, $$450\\text{ cm}^3$$" },
         {
           correct: false,
-          label: "Asid 2-metilpropanoik, $$100\\text{ cm}^3$$",
+          label: "Asid 2-metilpropanoik, $$600\\text{ cm}^3$$",
         },
-        {
-          correct: true,
-          label: "Asid 2-metilpropanoik, $$75.0\\text{ cm}^3$$",
-        },
+        { correct: true, label: "Asid 2-metilpropanoik, $$450\\text{ cm}^3$$" },
         {
           correct: false,
-          label: "Asid 2-metilpropanoik, $$37.5\\text{ cm}^3$$",
+          label: "Asid 2-metilpropanoik, $$900\\text{ cm}^3$$",
         },
       ],
     },

@@ -1,26 +1,25 @@
-# Tanur harus memasok kalor lebih banyak daripada yang diserap penguraian, karena sebagian hilang
+# Skalakan metana untuk kalor yang hilang, lalu hitung karbon dioksida dari kedua reaksi
 
-Sepuluh ribu mol karbonat menyerap <InlineMath math="1{,}78\times10^6\text{ kJ}" />. **Itu hanya <InlineMath math="60\%" /> dari kalor yang dilepas metana**, jadi metana harus melepas <InlineMath math="\tfrac{1{,}78}{0{,}60}\times10^6\text{ kJ}" />. <InlineMath math="\Delta H" /> positif berarti produk berada lebih tinggi daripada pereaksi pada diagram tingkat energi.
+Sepuluh ribu mol karbonat menyerap <InlineMath math="1{,}78\times10^6\text{ kJ}" />, hanya <InlineMath math="60\%" /> dari kalor yang dilepas metana, jadi <InlineMath math="3{,}33\times10^3\text{ mol}" /> metana harus dibakar. **Karbon dioksida berasal dari karbonat dan bahan bakar**: <InlineMath math="1{,}00\times10^4\text{ mol}" /> dari penguraian dan <InlineMath math="3{,}33\times10^3\text{ mol}" /> dari metana.
 
 <Chart
-  title={<>Kalor dalam tanur</>}
-  description={<>Penguraian karbonat memerlukan <InlineMath math="1{,}78\times10^6\text{ kJ}" />, sedangkan metana harus melepas <InlineMath math="2{,}97\times10^6\text{ kJ}" />.</>}
+  title={<>Karbon dioksida yang dilepas</>}
+  description={<>Karbonat memberi <InlineMath math="440\text{ kg}" /> dan metana <InlineMath math="147\text{ kg}" />.</>}
   bars="apart"
-  categories={["Kalor untuk penguraian", "Kalor dari metana"]}
+  categories={["Dari karbonat", "Dari metana"]}
   series={[
-    { label: "Kalor", mark: "bar", values: [1.78, 2.97] },
+    { label: "Massa", mark: "bar", values: [440, 147] },
   ]}
-  valueLabel="Kalor (×10⁶ kJ)"
+  valueLabel="Massa (kg)"
 />
 
 <BlockMath math="\begin{aligned}
-Q&=\tfrac{1{,}00\times10^6}{100}\times178=1{,}78\times10^6\text{ kJ}\\
-n(\text{CH}_4)&=\tfrac{1{,}78\times10^6}{0{,}60\times890}=3{,}33\times10^3\text{ mol}\\
-m&=3{,}33\times10^3\times16=5{,}33\times10^4\text{ g}=53{,}3\text{ kg}
+n(\text{CH}_4)&=\tfrac{1{,}00\times10^4\times178}{0{,}60\times890}=3{,}33\times10^3\text{ mol}\Rightarrow53{,}3\text{ kg}\\
+m(\text{CO}_2)&=(1{,}00\times10^4+3{,}33\times10^3)\times44=5{,}87\times10^5\text{ g}=587\text{ kg}
 \end{aligned}" />
 
 # Kenapa pilihan lain salah
 
 - <InlineMath math="32{,}0\text{ kg}" /> menganggap seluruh kalor metana sampai ke karbonat. **Hanya <InlineMath math="60\%" /> yang sampai**.
-- Penguraian menyerap kalor, jadi produknya berenergi lebih tinggi, bukan lebih rendah.
-- <InlineMath math="80{,}0\text{ kg}" /> membagi dengan <InlineMath math="40\%" /> yang hilang, bukan <InlineMath math="60\%" /> yang terpakai.
+- <InlineMath math="440\text{ kg}" /> hanya menghitung karbon dioksida dari karbonat. **Pembakaran metana melepas lebih banyak lagi**.
+- <InlineMath math="147\text{ kg}" /> hanya menghitung karbon dioksida dari bahan bakar, padahal penguraian melepas tiga kali lebih banyak.

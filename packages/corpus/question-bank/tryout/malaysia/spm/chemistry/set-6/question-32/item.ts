@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$40\\text{ cm}^3$$ of propane, $$320\\text{ cm}^3$$ of oxygen",
+          label: "$$40\\text{ cm}^3$$ of propane, $$400\\text{ cm}^3$$ of gas",
         },
         {
           correct: false,
-          label:
-            "$$60\\text{ cm}^3$$ of propane, $$300\\text{ cm}^3$$ of oxygen",
+          label: "$$60\\text{ cm}^3$$ of propane, $$660\\text{ cm}^3$$ of gas",
         },
         {
           correct: false,
-          label:
-            "$$60\\text{ cm}^3$$ of propane, $$500\\text{ cm}^3$$ of oxygen",
+          label: "$$60\\text{ cm}^3$$ of propane, $$120\\text{ cm}^3$$ of gas",
         },
         {
           correct: true,
-          label:
-            "$$60\\text{ cm}^3$$ of propane, $$380\\text{ cm}^3$$ of oxygen",
+          label: "$$60\\text{ cm}^3$$ of propane, $$340\\text{ cm}^3$$ of gas",
         },
       ],
     },
@@ -37,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$40\\text{ cm}^3$$ propana, $$320\\text{ cm}^3$$ oksigen",
+          label: "$$40\\text{ cm}^3$$ propana, $$400\\text{ cm}^3$$ gas",
         },
         {
           correct: false,
-          label: "$$60\\text{ cm}^3$$ propana, $$300\\text{ cm}^3$$ oksigen",
+          label: "$$60\\text{ cm}^3$$ propana, $$660\\text{ cm}^3$$ gas",
         },
         {
           correct: false,
-          label: "$$60\\text{ cm}^3$$ propana, $$500\\text{ cm}^3$$ oksigen",
+          label: "$$60\\text{ cm}^3$$ propana, $$120\\text{ cm}^3$$ gas",
         },
         {
           correct: true,
-          label: "$$60\\text{ cm}^3$$ propana, $$380\\text{ cm}^3$$ oksigen",
+          label: "$$60\\text{ cm}^3$$ propana, $$340\\text{ cm}^3$$ gas",
         },
       ],
     },
