@@ -1,0 +1,28 @@
+# Buang satu spesies dan lihat ke mana spesies lain menyebar
+
+Jika satu spesies menyebar ke tempat baru setelah tetangganya dibuang, tetangga itu **menghalanginya**. Jika tidak ada perubahan, faktor lain yang menentukan batasnya, misalnya kekeringan di tempat tinggi.
+
+<Chart
+  title={<>Tutupan Dua Spesies Teritip di Pantai</>}
+  categories={["0,5 m", "1,0 m", "1,5 m", "2,0 m", "2,5 m"]}
+  series={[
+    { label: "X, Y ada", mark: "line", values: [0, 0, 10, 60, 70] },
+    { label: "X, Y dibuang", mark: "line", values: [50, 60, 70, 70, 70] },
+    { label: "Y, X ada atau dibuang", mark: "line", values: [80, 70, 40, 0, 0] },
+  ]}
+  valueLabel="Tutupan (%)"
+  description={<>Dengan Y ada, X menutupi <InlineMath math="0" />, <InlineMath math="0" />, <InlineMath math="10" />, <InlineMath math="60" />, dan <InlineMath math="70\%" /> dari <InlineMath math="0{,}5" /> sampai <InlineMath math="2{,}5\text{ m}" />. Dengan Y dibuang, X menutupi <InlineMath math="50" /> sampai <InlineMath math="70\%" /> di setiap ketinggian. Y menutupi <InlineMath math="80" />, <InlineMath math="70" />, <InlineMath math="40" />, <InlineMath math="0" />, dan <InlineMath math="0\%" /> entah X dibuang atau tidak.</>}
+/>
+
+- I: dengan Y ada, X tidak ditemukan di bawah <InlineMath math="1{,}5\text{ m}" />. Dengan Y dibuang, X menutupi <InlineMath math="50" /> sampai <InlineMath math="60\%" /> di sana. Y mendesak X keluar dari pantai bawah. Pernyataan I benar.
+- II: Y berhenti di <InlineMath math="2{,}0\text{ m}" /> entah X dibuang atau tidak. Bukan X yang menghalangi Y dari pantai atas, jadi faktor fisik seperti kekeringan yang menentukan. Pernyataan II benar.
+- III: X bisa tumbuh dari <InlineMath math="0{,}5\text{ m}" /> sampai <InlineMath math="2{,}5\text{ m}" />, tetapi dengan Y ada, X hanya ditemukan mulai <InlineMath math="1{,}5\text{ m}" />. Rentang yang mungkin lebih luas daripada rentang sebenarnya. Pernyataan III benar.
+- IV: membuang Y membuat X menyebar ke bawah, yang menunjukkan keduanya **memang bersaing** memperebutkan ruang. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan III saja menolak II, **padahal batas atas Y tidak bergeser saat X dibuang**.
+- II, III, dan IV saja membaca pembuangan itu sebagai bukti tidak ada persaingan, **padahal X baru menyebar setelah Y hilang**.
+- I, II, dan IV saja menolak III, melewatkan bahwa X **tumbuh lebih rendah** begitu dibebaskan.

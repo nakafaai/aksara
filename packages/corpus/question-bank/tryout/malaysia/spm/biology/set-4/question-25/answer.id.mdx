@@ -1,0 +1,29 @@
+# Pakai sudut lengkungan sebagai ukuran auksin, lalu bandingkan total dan bagiannya
+
+Tiap derajat lengkungan mewakili jumlah auksin yang tetap, jadi sudut bisa **dijumlahkan dan dibandingkan** seperti jumlah. Totalnya menunjukkan apakah cahaya merusak auksin, dan blok yang dibelah menunjukkan ke mana auksin pergi.
+
+<Chart
+  title={<>Lengkungan yang Ditimbulkan Tiap Blok Agar</>}
+  bars="apart"
+  categories={["A: gelap, satu blok", "B: cahaya samping, satu blok", "C: cahaya samping, blok sisi terang", "C: cahaya samping, blok sisi teduh", "D: gelap, blok mana pun"]}
+  series={[
+    { label: "Lengkungan (derajat)", mark: "bar", values: [24, 24, 8, 16, 12] },
+  ]}
+  valueLabel="Lengkungan (derajat)"
+  description={<>Blok A dan B masing-masing menimbulkan <InlineMath math="24^\circ" />. Pada C, blok sisi terang menimbulkan <InlineMath math="8^\circ" /> dan blok sisi teduh <InlineMath math="16^\circ" />, totalnya <InlineMath math="24^\circ" />. Pada D, tiap blok menimbulkan <InlineMath math="12^\circ" />.</>}
+/>
+
+<BlockMath math="\text{total}: \text{A}=24,\quad \text{B}=24,\quad \text{C}=8+16=24,\qquad \text{bagian di C}: \frac{16}{8}=2" />
+
+- I: totalnya <InlineMath math="24^\circ" /> dalam gelap, dalam cahaya samping, dan dalam blok yang dibelah di bawah cahaya samping. Cahaya tidak mengurangi jumlah auksin. Pernyataan I benar.
+- II: pada C, separuh teduh menimbulkan <InlineMath math="16^\circ" /> dan separuh terang <InlineMath math="8^\circ" />, dua kali lipat. Cahaya membuat auksin **berpindah ke samping**, ke sisi teduh. Pernyataan II benar.
+- III: auksin tambahan di sisi teduh membuat sel di sana **memanjang lebih cepat**, jadi sisi teduh tumbuh lebih panjang dan pucuk membengkok ke arah cahaya. Pernyataan III salah.
+- IV: jika ujung pucuknya sendiri dibelah kaca, auksin tidak bisa lagi berpindah melintasinya. Tiap separuh mempertahankan bagiannya sendiri, jadi masing-masing menimbulkan separuh total, sekitar <InlineMath math="12^\circ" />, seperti dalam gelap. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak IV, melewatkan bahwa perpindahan ke samping terjadi **di dalam ujung pucuk** dan pembelahan penuh menghalanginya.
+- I, II, dan III saja membalik pengaruh auksin pada pucuk, **yang justru mempercepat pertumbuhan**.
+- II, III, dan IV saja menolak I, **padahal setiap perlakuan mengumpulkan** <InlineMath math="24^\circ" /> auksin yang sama.

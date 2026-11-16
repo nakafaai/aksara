@@ -1,0 +1,31 @@
+# Eine Zersetzergruppe nach der anderen ausschließen und sehen, wie viel langsamer der Abbau wird
+
+Jedes feinere Netz **sperrt eine weitere Gruppe** aus. Der Unterschied zwischen zwei Beuteln ist der Anteil am Abbau, den die Gruppe leistet, die nur in einen der beiden gelangt.
+
+<Chart
+  title={<>Verbliebene Blattmasse in jedem Beutel</>}
+  categories={["Monat 0", "Monat 2", "Monat 4", "Monat 6"]}
+  series={[
+    { label: "Grobes Netz", mark: "line", values: [100, 60, 30, 10] },
+    { label: "Mittleres Netz", mark: "line", values: [100, 75, 50, 30] },
+    { label: "Feines Netz", mark: "line", values: [100, 90, 78, 66] },
+    { label: "Feines Netz mit Fungizid", mark: "line", values: [100, 97, 94, 91] },
+  ]}
+  valueLabel="Verbliebene Blattmasse (%)"
+  description={<>Nach sechs Monaten sind im groben Beutel <InlineMath math="10\,\%" /> übrig, im mittleren <InlineMath math="30\,\%" />, im feinen <InlineMath math="66\,\%" /> und im feinen mit Fungizid <InlineMath math="91\,\%" />.</>}
+/>
+
+<BlockMath math="\text{feines Netz, Mikroorganismen}: 100-66=34\,\%,\qquad \text{nur Bakterien}: 100-91=9\,\%,\qquad \text{Pilze}: 34-9=25\,\%" />
+
+- I: Mit Regenwürmern und Insekten, in den groben Beuteln, bleiben nur <InlineMath math="10\,\%" />, gegenüber <InlineMath math="30\,\%" />, wenn sie ausgesperrt sind. Sie zerreißen die Blätter in kleine Stücke und schaffen so mehr Oberfläche für Mikroorganismen. Aussage I stimmt.
+- II: Das feine Netz lässt nur Pilze und Bakterien hinein, und <InlineMath math="100-66=34\,\%" /> der Masse sind verschwunden. Aussage II stimmt.
+- III: Ohne Pilze gehen nur <InlineMath math="9\,\%" /> verloren, die Pilze stehen also für <InlineMath math="25" /> der <InlineMath math="34" /> Prozentpunkte, etwa drei Viertel. Aussage III stimmt.
+- IV: Auch in den groben Beuteln werden die Reste, die die Tiere hinterlassen, schließlich von Pilzen und Bakterien abgebaut, die die **Nährstoffe** in den Boden zurückgeben. Regenwürmer ersetzen sie nicht. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III und übersieht, dass das Abtöten der Pilze den mikrobiellen Abbau von <InlineMath math="34\,\%" /> auf **nur** <InlineMath math="9\,\%" /> senkt.
+- Nur I und III verwirft II, **obwohl** <InlineMath math="100-66" /> genau <InlineMath math="34" /> ergibt.
+- Nur II, III und IV verwirft die klare Wirkung der großen Tiere und hält Mikroorganismen für unnötig.

@@ -1,0 +1,30 @@
+# A second column works only on the lactose the first one missed
+
+In a column the enzyme converts a **fixed share** of the lactose passing through it. A second column in a row converts that same share again, but only of the lactose that is still left.
+
+<Chart
+  title={<>Lactose Converted at Each Flow Rate</>}
+  categories={["5 cm³/min", "10 cm³/min", "20 cm³/min", "40 cm³/min"]}
+  series={[
+    { label: "Lactose converted (%)", mark: "line", values: [96, 90, 70, 45] },
+    { label: "Required minimum", mark: "line", values: [85, 85, 85, 85] },
+  ]}
+  valueLabel="Lactose converted (%)"
+  description={<>At <InlineMath math="5" />, <InlineMath math="10" />, <InlineMath math="20" /> and <InlineMath math="40\text{ cm}^3" /> per minute, <InlineMath math="96" />, <InlineMath math="90" />, <InlineMath math="70" /> and <InlineMath math="45\%" /> of the lactose is converted. Only <InlineMath math="5" /> and <InlineMath math="10\text{ cm}^3" /> per minute reach the <InlineMath math="85\%" /> minimum.</>}
+/>
+
+<BlockMath math="\text{at }20\text{ cm}^3/\text{min}: \text{left after two columns}=0.30\times0.30=0.09,\qquad \text{converted}=91\%\ \ge85\%" />
+
+<BlockMath math="\text{at }40\text{ cm}^3/\text{min}: \text{left}=0.55\times0.55\approx0.30,\qquad \text{converted}\approx70\%<85\%" />
+
+<BlockMath math="\text{time at }20\text{ cm}^3/\text{min}=\frac{2400}{20}=120\text{ minutes}" />
+
+Two columns at <InlineMath math="20\text{ cm}^3" /> per minute reach <InlineMath math="91\%" />, while doubling up at <InlineMath math="40" /> falls short. One column alone would need <InlineMath math="10\text{ cm}^3" /> per minute and <InlineMath math="240" /> minutes.
+
+So the shortest time is <InlineMath math="120" /> minutes, because the second column converts <InlineMath math="70\%" /> of the lactose left by the first.
+
+# Why the other options are wrong
+
+- <InlineMath math="240" /> minutes forgets the **second column**, which lets the milk run twice as fast.
+- <InlineMath math="60" /> minutes adds the two percentages, **but the second column only sees the** <InlineMath math="55\%" /> left by the first.
+- <InlineMath math="140\%" /> has the right time but impossible reasoning, **since no column can convert lactose that is already gone**.

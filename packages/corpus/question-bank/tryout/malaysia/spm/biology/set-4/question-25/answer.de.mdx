@@ -1,0 +1,29 @@
+# Den Krümmungswinkel als Maß für Auxin nutzen und Summen und Anteile vergleichen
+
+Jedes Grad Krümmung steht für eine feste Menge Auxin, die Winkel lassen sich also wie Mengen **addieren und vergleichen**. Die Summen zeigen, ob Licht Auxin zerstört, die geteilten Blöcke, wohin es wandert.
+
+<Chart
+  title={<>Krümmung durch jeden Agarblock</>}
+  bars="apart"
+  categories={["A: dunkel, ein Block", "B: Seitenlicht, ein Block", "C: Seitenlicht, Block der Lichtseite", "C: Seitenlicht, Block der Schattenseite", "D: dunkel, jeder Block"]}
+  series={[
+    { label: "Krümmung (Grad)", mark: "bar", values: [24, 24, 8, 16, 12] },
+  ]}
+  valueLabel="Krümmung (Grad)"
+  description={<>Die Blöcke A und B verursachen je <InlineMath math="24^\circ" />. In C verursacht der Block der Lichtseite <InlineMath math="8^\circ" /> und der Block der Schattenseite <InlineMath math="16^\circ" />, zusammen <InlineMath math="24^\circ" />. In D verursacht jeder Block <InlineMath math="12^\circ" />.</>}
+/>
+
+<BlockMath math="\text{Summen}: \text{A}=24,\quad \text{B}=24,\quad \text{C}=8+16=24,\qquad \text{Anteil in C}: \frac{16}{8}=2" />
+
+- I: Die Summe beträgt im Dunkeln, im Seitenlicht und im geteilten Block unter Seitenlicht <InlineMath math="24^\circ" />. Licht verringert die Auxinmenge nicht. Aussage I stimmt.
+- II: In C verursacht die Schattenhälfte <InlineMath math="16^\circ" />, die Lichthälfte <InlineMath math="8^\circ" />, doppelt so viel. Licht lässt Auxin **zur Seite wandern**, zur Schattenseite. Aussage II stimmt.
+- III: Das zusätzliche Auxin auf der Schattenseite lässt diese Zellen **schneller strecken**, die Schattenseite wird länger, und der Spross krümmt sich zum Licht. Aussage III ist falsch.
+- IV: Ist die Spitze selbst durch Glas geteilt, kann Auxin nicht mehr hinüberwandern. Jede Hälfte behält ihren Anteil und verursacht die Hälfte der Summe, etwa <InlineMath math="12^\circ" />, wie im Dunkeln. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft IV und übersieht, dass die Seitwärtsbewegung **in der Spitze** stattfindet und eine vollständige Teilung sie blockiert.
+- Nur I, II und III kehrt die Wirkung von Auxin im Spross um, **das das Wachstum beschleunigt**.
+- Nur II, III und IV verwirft I, **obwohl jede Behandlung dieselben** <InlineMath math="24^\circ" /> Auxin sammelt.
