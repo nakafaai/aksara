@@ -15,6 +15,21 @@ Dengan angka itu, stok pada akhir beberapa minggu adalah sebagai berikut (dalam 
 | <InlineMath math="8" /> | <InlineMath math="52" /> | <InlineMath math="62" /> | <InlineMath math="56" /> |
 | <InlineMath math="9" /> | <InlineMath math="36" /> | <InlineMath math="51" /> | <InlineMath math="51" /> |
 
+Grafik berikut menggambar ketiga stok dari minggu ke-<InlineMath math="0" /> sampai ke-<InlineMath math="9" />. **Garis Anggrek dan Bakung bertemu pada minggu ke-<InlineMath math="6" />**, ketika semua gudang masih di atas garis stok aman.
+
+<Chart
+  title={<>Stok ketiga gudang dan stok aman, minggu ke-<InlineMath math="0" /> sampai ke-<InlineMath math="9" /></>}
+  description={<>Stok Anggrek <InlineMath math="180-16w" />, stok Bakung <InlineMath math="150-11w" />, dan stok Cempaka <InlineMath math="96-5w" /> ton pada akhir minggu ke-<InlineMath math="w" />. Anggrek dan Bakung sama-sama <InlineMath math="84" /> ton pada minggu ke-<InlineMath math="6" />, sedangkan Cempaka <InlineMath math="66" /> ton. Garis datar menandai stok aman <InlineMath math="40" /> ton.</>}
+  categories={Array.from({ length: 10 }, (_, i) => `${i}`)}
+  series={[
+    { label: "Anggrek", mark: "line", values: Array.from({ length: 10 }, (_, i) => 180 - 16 * i) },
+    { label: "Bakung", mark: "line", values: Array.from({ length: 10 }, (_, i) => 150 - 11 * i) },
+    { label: "Cempaka", mark: "line", values: Array.from({ length: 10 }, (_, i) => 96 - 5 * i) },
+    { label: "Stok aman 40 ton", mark: "line", values: Array.from({ length: 10 }, () => 40) },
+  ]}
+  valueLabel="Stok (ton)"
+/>
+
 **Pernyataan 1** bernilai Benar. Selisih stok Anggrek dan Bakung mula-mula <InlineMath math="180-150=30\text{ ton}" /> dan menyusut <InlineMath math="16-11=5\text{ ton}" /> setiap minggu, jadi selisihnya habis tepat setelah <InlineMath math="30:5=6" /> minggu. Pada saat itu keduanya <InlineMath math="84\text{ ton}" /> dan Cempaka <InlineMath math="66\text{ ton}" />, semuanya tidak kurang dari <InlineMath math="40" />. Ada juga kejadian kedua, yaitu Bakung dan Cempaka sama-sama <InlineMath math="51\text{ ton}" /> pada minggu ke-<InlineMath math="9" />, tetapi saat itu Anggrek hanya <InlineMath math="36\text{ ton}" />. Satu kejadian yang memenuhi syarat sudah cukup untuk membuat pernyataan ini benar.
 
 **Pernyataan 2** bernilai Salah. Pengalihan itu mengurangi beras keluar Anggrek menjadi <InlineMath math="31" /> dan menambah beras keluar Cempaka menjadi <InlineMath math="22" />:

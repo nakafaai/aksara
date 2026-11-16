@@ -9,6 +9,19 @@ T(v) &= 60 + 2v
 
 Dari rumus itu, nilai yang dibutuhkan adalah <InlineMath math="B(20) = 70" />, <InlineMath math="B(30) = 120" />, <InlineMath math="B(35) = 155" />, <InlineMath math="B(40) = 190" />, dan <InlineMath math="T(30) = 120" />.
 
+Grafik berikut menggambar kedua tagihan. **Garis bertingkat makin curam di setiap batas tingkat dan menyentuh garis tetap tepat di <InlineMath math="30\text{ m}^3" />**, lalu melewatinya.
+
+<Chart
+  title={<>Tagihan bulanan kedua paket menurut pemakaian air</>}
+  description={<>Paket bertingkat naik <InlineMath math="3" />, <InlineMath math="5" />, lalu <InlineMath math="7" /> ribu rupiah per meter kubik, sedangkan paket tetap mulai dari <InlineMath math="60" /> ribu dan naik <InlineMath math="2" /> ribu per meter kubik. Pada <InlineMath math="30\text{ m}^3" />, keduanya <InlineMath math="120" /> ribu. Pada <InlineMath math="40\text{ m}^3" />, bertingkat <InlineMath math="190" /> dan tetap <InlineMath math="140" /> ribu.</>}
+  categories={["0", "5", "10", "15", "20", "25", "30", "35", "40"]}
+  series={[
+    { label: "Paket bertingkat", mark: "line", values: [0, 5, 10, 15, 20, 25, 30, 35, 40].map((v) => (v <= 15 ? 3 * v : v <= 30 ? 45 + 5 * (v - 15) : 120 + 7 * (v - 30))) },
+    { label: "Paket tetap", mark: "line", values: [0, 5, 10, 15, 20, 25, 30, 35, 40].map((v) => 60 + 2 * v) },
+  ]}
+  valueLabel="Tagihan (ribu rupiah)"
+/>
+
 Pernyataan 1: Benar. Tagihan bertingkat untuk <InlineMath math="20\text{ m}^3" /> adalah <InlineMath math="45 + 25 = 70" /> ribu rupiah, jadi rata-ratanya:
 
 <BlockMath math="70{.}000 \div 20 = 3{.}500 < 4{.}000" />

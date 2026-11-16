@@ -13,6 +13,20 @@ Beide Fälle ergeben ein gültiges Dreieck mit verschiedener Basis. Aussage (1) 
 
 **Beide Aussagen zusammen**. Von den zwei Fällen aus Aussage (1) hat nur <InlineMath math="(8, 8, 4)" /> eine Basis, die kürzer als die Schenkel ist. Der Fall <InlineMath math="(6, 6, 8)" /> fällt weg, weil seine Basis länger ist. Die Antwort ist eindeutig, eine Basis von <InlineMath math="4\text{ cm}" />, also reichen beide Aussagen zusammen.
 
+Das Diagramm zeigt die Basis jedes möglichen Dreiecks. **Aussage (1) lässt nur Schenkel von <InlineMath math="6" /> und <InlineMath math="8" /> übrig**, und Aussage (2) schließt Schenkel von <InlineMath math="6" /> aus, weil die Basis länger ist.
+
+<Chart
+  title={<>Basis eines gleichschenkligen Dreiecks mit Umfang <InlineMath math="20\text{ cm}" /> nach Schenkellänge</>}
+  description={<>Bei Schenkeln von <InlineMath math="6" />, <InlineMath math="7" />, <InlineMath math="8" /> und <InlineMath math="9\text{ cm}" /> beträgt die Basis <InlineMath math="8" />, <InlineMath math="6" />, <InlineMath math="4" /> und <InlineMath math="2\text{ cm}" />. Nur das Dreieck mit Schenkeln von <InlineMath math="6\text{ cm}" /> hat eine Basis, die länger ist als die Schenkel.</>}
+  categories={["Schenkel 6 cm", "Schenkel 7 cm", "Schenkel 8 cm", "Schenkel 9 cm"]}
+  bars="apart"
+  series={[
+    { label: "Basis länger als die Schenkel", mark: "bar", values: [20 - 2 * 6, null, null, null] },
+    { label: "Basis kürzer als die Schenkel", mark: "bar", values: [null, 20 - 2 * 7, 20 - 2 * 8, 20 - 2 * 9] },
+  ]}
+  valueLabel="Basislänge (cm)"
+/>
+
 Die anderen Optionen entstehen aus einem übersehenen Fall:
 
 - „Aussage (1) allein reicht“ entsteht, wenn du die Seite mit <InlineMath math="8\text{ cm}" /> sofort als Schenkel nimmst. Dann fehlt der Fall mit <InlineMath math="8\text{ cm}" /> Basis und <InlineMath math="6\text{ cm}" /> Schenkeln, obwohl dieses Dreieck gültig ist.

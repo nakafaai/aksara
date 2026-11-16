@@ -15,6 +15,17 @@ Third, test Citra in turn <InlineMath math="4" />. Dimas lands in turn <InlineMa
 
 Citra in turn <InlineMath math="3" /> and Citra in turn <InlineMath math="4" /> both lead nowhere. Only Citra in turn <InlineMath math="5" /> is left, so Dimas is always in turn <InlineMath math="7" />. This case really happens, for example Fani, Eka, Galih, Hesti, Citra, Bayu, Dimas. There Bayu is in turn <InlineMath math="6" />, an even turn, so condition 6 asks for nothing.
 
+The chart below counts the orders that meet every condition for each of Citra's possible turns. **Every order puts Citra in turn <InlineMath math="5" />**, so Dimas is always in turn <InlineMath math="7" />.
+
+<Chart
+  title={<>Number of valid orders by Citra's turn</>}
+  description={<>With Citra in turn <InlineMath math="3" /> or <InlineMath math="4" />, no order meets every condition. With Citra in turn <InlineMath math="5" />, there are <InlineMath math="10" /> orders, and in all of them Dimas is in turn <InlineMath math="7" />.</>}
+  bars="apart"
+  categories={["3", "4", "5"]}
+  series={[{ label: "Valid orders", mark: "bar", values: [0, 0, 10] }]}
+  valueLabel="Orders"
+/>
+
 The other statements aren't guaranteed. For each one there's an order that meets every condition but makes the statement false.
 
 | Statement | Valid order that breaks it |

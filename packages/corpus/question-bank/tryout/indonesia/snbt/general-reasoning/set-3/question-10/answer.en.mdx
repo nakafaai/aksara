@@ -11,6 +11,20 @@ Check that the rule continues. JNBE rotates to NBEJ, and comparing it with PDGL 
 | PDGL | DGLP | <InlineMath math="+3" /> | GJOS |
 | GJOS | JOSG | <InlineMath math="+4" /> | NSWK |
 
+The chart below records the size of the shift at each step. **The shift grows by one at every step**, and the total up to the fifth group is <InlineMath math="10" />.
+
+<Chart
+  title={<>Size of the letter shift from one group to the next</>}
+  description={<>The shifts are <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, then <InlineMath math="4" /> steps. The total since DIMA becomes <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" />, then <InlineMath math="10" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Shift at that step", mark: "bar", values: [1, 2, 3, 4] },
+    { label: "Total shift since DIMA", mark: "bar", values: [1, 1 + 2, 1 + 2 + 3, 1 + 2 + 3 + 4] },
+  ]}
+  valueLabel="Steps along the alphabet"
+/>
+
 For the fifth group, rotate GJOS to JOSG, then move every letter forward <InlineMath math="4" /> steps: <InlineMath math="\mathrm{J}\to\mathrm{N}" />, <InlineMath math="\mathrm{O}\to\mathrm{S}" />, <InlineMath math="\mathrm{S}\to\mathrm{W}" />, <InlineMath math="\mathrm{G}\to\mathrm{K}" />. The result is NSWK.
 
 Here's a quick check. Four rotations of a four-letter group bring back the original order, and the total shift is <InlineMath math="1+2+3+4=10" />. So the fifth group must be DIMA with every letter moved forward <InlineMath math="10" /> steps: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Same answer, NSWK.

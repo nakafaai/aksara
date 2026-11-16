@@ -21,6 +21,17 @@ Statement 3: Benar (true). Add up each direction over the seven days.
 
 Karang Mas is ahead by <InlineMath math="100" /> passengers. The officer in the text got fooled because Batu Lintang does lead on four days: Tuesday, Wednesday, Thursday, and Saturday. Those leads are small, though: <InlineMath math="40 + 20 + 170 + 20 = 250" />. Karang Mas leads only on Monday and Sunday, but by a lot: <InlineMath math="200 + 150 = 350" />. On Friday the two are equal. Leading on more days doesn't mean leading in the total.
 
+The chart below draws the daily gap between the two directions. **There are more bars below zero, but the two bars above zero are much longer**, so Karang Mas still wins the total.
+
+<Chart
+  title={<>Karang Mas passengers minus Batu Lintang passengers each day</>}
+  description={<>Karang Mas leads by <InlineMath math="200" /> on Monday and <InlineMath math="150" /> on Sunday. Batu Lintang leads by <InlineMath math="40" />, <InlineMath math="20" />, <InlineMath math="170" />, and <InlineMath math="20" /> on Tuesday, Wednesday, Thursday, and Saturday. Friday is level. All the gaps add up to <InlineMath math="350-250=100" /> for Karang Mas.</>}
+  categories={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
+  bars="apart"
+  series={[{ label: "Karang Mas lead over Batu Lintang", mark: "bar", values: [560 - 360, 340 - 380, 400 - 420, 380 - 550, 530 - 530, 640 - 660, 690 - 540] }]}
+  valueLabel="Passenger gap"
+/>
+
 Statement 4: Salah (false). Saturday and Sunday together had <InlineMath math="1{,}300 + 1{,}230 = 2{,}530" /> passengers. The denominator has to be the whole week, <InlineMath math="3{,}440 + 3{,}540 = 6{,}980" />.
 
 <BlockMath math="\frac{2{,}530}{6{,}980} \approx 36.2\% < 40\%" />

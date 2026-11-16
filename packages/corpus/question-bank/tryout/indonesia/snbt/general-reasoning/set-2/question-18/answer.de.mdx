@@ -26,6 +26,20 @@ Die Tabelle zeigt, wessen Satz bei jeder Antwort zu seinem Typ passt.
 | Raka Lügner, Sekar ehrlich, Tegar ehrlich | Passt | Passt | Passt |
 | Raka ehrlich, Sekar Lügnerin, Tegar Lügner | Passt | Passt nicht | Passt nicht |
 
+Das Diagramm zählt die Sätze, die in jeder Option zur Art des Sprechers passen. **Nur eine Option erreicht die Linie bei drei**: Raka lügt, Sekar und Tegar sind ehrlich.
+
+<Chart
+  title={<>Anzahl der Sätze, die in jeder Option zur Art des Sprechers passen</>}
+  description={<>Raka ehrlich, Sekar ehrlich, Tegar Lügner passt bei <InlineMath math="2" /> Sätzen. Raka ehrlich, Sekar Lügnerin, Tegar ehrlich passt bei <InlineMath math="1" />. Raka Lügner, Sekar ehrlich, Tegar Lügner passt bei <InlineMath math="2" />. Raka Lügner, Sekar ehrlich, Tegar ehrlich passt bei <InlineMath math="3" />. Raka ehrlich, Sekar Lügnerin, Tegar Lügner passt bei <InlineMath math="1" />. Die Beschriftungen nennen Raka, Sekar, Tegar mit E für ehrlich und L für Lügner.</>}
+  categories={["E, E, L", "E, L, E", "L, E, L", "L, E, E", "E, L, L"]}
+  bars="apart"
+  series={[
+    { label: "Passende Sätze", mark: "bar", values: [2, 1, 2, 3, 1] },
+    { label: "Alle drei Sätze", mark: "line", values: [3, 3, 3, 3, 3] },
+  ]}
+  valueLabel="Passende Sätze"
+/>
+
 - Raka ehrlich, Sekar ehrlich, Tegar Lügner besteht bei Sekar und Tegar. Die Falle ist, Sekars Satz mit einem ehrlichen Raka durchzurechnen und Rakas eigene Behauptung nie zu prüfen, obwohl nur Tegar lügt.
 - Raka ehrlich, Sekar Lügnerin, Tegar ehrlich ist genau das, was die Verneinung von Sekars Satz liefert. Die Falle ist, dort aufzuhören, obwohl diese Verteilung nur einen Lügner hat.
 - Raka Lügner, Sekar ehrlich, Tegar Lügner vergisst, dass Raka sich selbst mitzählt. Bei zwei Lügnern wäre Rakas Satz wahr, obwohl Raka lügt.

@@ -22,6 +22,20 @@ Now watch the divisor. The question asks for a percentage **of those who passed 
 
 Check it backwards: if <InlineMath math="35\%" /> of <InlineMath math="20" /> people pass, that's <InlineMath math="7" /> people. Together with the <InlineMath math="45" /> from the direct route, that makes <InlineMath math="52" />, which matches <InlineMath math="52\%" /> of <InlineMath math="100" /> participants.
 
+The diagram below traces <InlineMath math="100" /> participants through both stages. **The right divisor is the <InlineMath math="20" /> people who passed through the retake**, not all the participants.
+
+<Mermaid
+  title={<>A hundred participants through two selection stages</>}
+  description={<>Of <InlineMath math="100" /> participants, <InlineMath math="60" /> pass directly and <InlineMath math="40" /> fail. Of those who fail, <InlineMath math="20" /> pass through the retake. In stage 2, <InlineMath math="45" /> from the direct route pass, so <InlineMath math="52-45=7" /> pass from the retake route.</>}
+  chart={`flowchart LR
+    A["100 participants"] --> B["60 pass directly"]
+    A --> C["40 fail stage 1"]
+    C --> D["20 pass the retake"]
+    C --> E["20 drop out"]
+    B --> F["45 pass stage 2"]
+    D --> G["7 pass stage 2"]`}
+/>
+
 The other options come from a wrong divisor or a wrong average:
 
 - <InlineMath math="7\%" /> stops at <InlineMath math="7" /> people out of the original <InlineMath math="100" />. It hasn't been divided by the retake group yet.

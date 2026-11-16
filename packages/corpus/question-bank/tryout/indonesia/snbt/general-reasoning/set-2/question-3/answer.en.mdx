@@ -18,6 +18,20 @@ Third statement: can be concluded. Count per <InlineMath math="100{,}000" /> tri
 
 The 2025 risk is <InlineMath math="1.2" />, just under <InlineMath math="1.25" />. Someone who only sees <InlineMath math="10" /> becoming <InlineMath math="12" /> would think the risk went up.
 
+The chart below compares the risk of a serious-injury crash in both years. **The bar for the latest year falls just below the line at half the earlier risk**, even though the count rose from <InlineMath math="10" /> to <InlineMath math="12" />.
+
+<Chart
+  title={<>Crashes with serious injuries per <InlineMath math="100{,}000" /> trips</>}
+  description={<>In 2024 the risk is <InlineMath math="2.5" />, and in 2025 it's <InlineMath math="1.2" />. The flat line marks half the 2024 risk, <InlineMath math="1.25" />.</>}
+  categories={["2024", "2025"]}
+  bars="apart"
+  series={[
+    { label: "Serious-injury risk per 100,000 trips", mark: "bar", values: [10 / 4, 12 / 10] },
+    { label: "Half the 2024 risk", mark: "line", values: [10 / 4 / 2, 10 / 4 / 2] },
+  ]}
+  valueLabel="Crashes per 100,000 trips"
+/>
+
 Fourth statement: can't be concluded. You can work out the risk in the four corridors, but the table has no data for streets without barriers, so this comparison has nothing to compare against.
 
 So the second and third statements can be concluded, while the first and fourth can't, because they need a comparison group that the table doesn't have.

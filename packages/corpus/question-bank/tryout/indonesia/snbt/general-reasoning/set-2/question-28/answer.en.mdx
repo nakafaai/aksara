@@ -11,6 +11,17 @@ Look at X's pattern over one <InlineMath math="10" />-minute cycle: <InlineMath 
 | <InlineMath math="28" /> | <InlineMath math="1{,}440" /> | <InlineMath math="1{,}400" /> | <InlineMath math="+40" /> |
 | <InlineMath math="30" /> | <InlineMath math="1{,}440" /> | <InlineMath math="1{,}500" /> | <InlineMath math="-60" /> |
 
+The chart below draws the gap between the machines from that table. **The bars swing above and below zero every cycle**, so who's ahead depends on the minute you look at.
+
+<Chart
+  title={<>Gap in sheets between machine X and machine Y at the end of each work spell and each rest</>}
+  description={<>At minutes <InlineMath math="8" />, <InlineMath math="10" />, <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="28" />, and <InlineMath math="30" />, the sheets from X minus the sheets from Y are <InlineMath math="80" />, <InlineMath math="-20" />, <InlineMath math="60" />, <InlineMath math="-40" />, <InlineMath math="40" />, and <InlineMath math="-60" />.</>}
+  bars="apart"
+  categories={["8", "10", "18", "20", "28", "30"]}
+  series={[{ label: "Sheets from X minus sheets from Y", mark: "bar", values: [480 - 400, 480 - 500, 960 - 900, 960 - 1000, 1440 - 1400, 1440 - 1500] }]}
+  valueLabel="Gap in sheets"
+/>
+
 Statement 1 is Salah (false). Y first catches X during X's first rest: X sits at <InlineMath math="480" />, and Y reaches <InlineMath math="480" /> at minute <InlineMath math="480\div50=9.6" />. But once X works again, it gets ahead again. For example, at minute <InlineMath math="13" /> X has printed <InlineMath math="480+3\times60=660" /> sheets, while Y has only <InlineMath math="13\times50=650" />. X's average rate really is <InlineMath math="480\div10=48" /> sheets per minute, less than <InlineMath math="50" />, but that doesn't mean X is behind at every moment.
 
 Statement 2 is Benar (true). Minute <InlineMath math="30" /> is the end of the third cycle, so X has worked <InlineMath math="3\times8=24" /> minutes and printed <InlineMath math="24\times60=1{,}440" /> sheets. Y has printed <InlineMath math="30\times50=1{,}500" /> sheets. The gap is <InlineMath math="1{,}500-1{,}440=60" /> sheets in Y's favour. The quick count <InlineMath math="30\times60=1{,}800" /> is wrong because it pretends X never stops.

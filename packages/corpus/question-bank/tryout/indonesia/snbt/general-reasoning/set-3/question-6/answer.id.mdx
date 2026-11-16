@@ -8,6 +8,19 @@ Seberapa banyak? Misalkan <InlineMath math="p" /> adalah banyak pemberian obat m
 
 Pemberian obat malam hari harus turun dari <InlineMath math="2{.}000" /> menjadi di bawah sekitar <InlineMath math="1{.}667" />, artinya berkurang lebih dari seperenam, atau sekitar <InlineMath math="16{,}7\%" />. Batas seperenam ini datang dari pembilang: banyak kesalahan turun tepat seperenam, dari <InlineMath math="18" /> ke <InlineMath math="15" />, jadi penyebut harus turun lebih dari seperenam agar pecahannya naik.
 
+Grafik berikut menggambar angka kesalahan malam dengan <InlineMath math="15" /> kesalahan untuk beberapa nilai <InlineMath math="p" />. **Garisnya baru naik melewati <InlineMath math="9" /> setelah <InlineMath math="p" /> turun di bawah sekitar <InlineMath math="1{.}667" />**.
+
+<Chart
+  title={<>Angka kesalahan malam dengan <InlineMath math="15" /> kesalahan menurut banyak pemberian obat</>}
+  description={<>Angkanya <InlineMath math="15" /> per <InlineMath math="p" /> dikali <InlineMath math="1{.}000" />. Untuk <InlineMath math="p=2{.}000" />, angkanya <InlineMath math="7{,}5" />. Untuk <InlineMath math="p=1{.}500" />, angkanya <InlineMath math="10" />, di atas angka lama <InlineMath math="9" />.</>}
+  categories={["1400", "1500", "1600", "1700", "1800", "1900", "2000"]}
+  series={[
+    { label: "Angka malam April sampai Juni", mark: "line", values: [1400, 1500, 1600, 1700, 1800, 1900, 2000].map((p) => (15 / p) * 1000) },
+    { label: "Angka malam Januari sampai Maret", mark: "line", values: [9, 9, 9, 9, 9, 9, 9] },
+  ]}
+  valueLabel="Kesalahan per 1.000 pemberian obat"
+/>
+
 Pemindahan obat rutin pukul 05.00 ke pukul 08.00 memotong pemberian obat malam hari sekitar seperempat, kira-kira dari <InlineMath math="2{.}000" /> menjadi <InlineMath math="1{.}500" />. Cek:
 
 <BlockMath math="\frac{15}{1{.}500}\cdot 1{.}000=10>9" />

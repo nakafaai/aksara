@@ -19,6 +19,17 @@ Die Tabelle prüft alle fünf Möglichkeiten auf einmal, damit du siehst, dass d
 | Vina | W | W | W | F | F | <InlineMath math="2" /> |
 | Yosef | F | F | F | W | W | <InlineMath math="3" /> |
 
+Das Diagramm zählt die falschen Aussagen für jeden möglichen Täter. **Nur Vinas Balken ist genau <InlineMath math="2" /> hoch**, wie die Aufgabe es verlangt.
+
+<Chart
+  title={<>Anzahl falscher Aussagen danach, wer den Schlüssel vergessen hat</>}
+  description={<>Hat Joko, Putu oder Yosef ihn vergessen, sind <InlineMath math="3" /> Aussagen falsch. Hat Rani ihn vergessen, nur <InlineMath math="1" />. Hat Vina ihn vergessen, genau <InlineMath math="2" />.</>}
+  bars="apart"
+  categories={["Joko", "Putu", "Rani", "Vina", "Yosef"]}
+  series={[{ label: "Anzahl falscher Aussagen", mark: "bar", values: [3, 3, 1, 2, 3] }]}
+  valueLabel="Falsche Aussagen"
+/>
+
 Nur die Zeile Vina hat genau zwei falsche Aussagen.
 
 Jetzt prüfst du jede Option.

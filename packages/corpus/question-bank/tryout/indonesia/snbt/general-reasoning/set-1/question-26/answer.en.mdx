@@ -13,6 +13,20 @@ Both cases give a valid triangle with a different base. Statement (1) alone isn'
 
 **Both statements together**. Of the two cases from statement (1), only <InlineMath math="(8, 8, 4)" /> has a base shorter than the legs. The case <InlineMath math="(6, 6, 8)" /> is ruled out because its base is longer. There's exactly one answer, a base of <InlineMath math="4\text{ cm}" />, so the two statements together are sufficient.
 
+The chart below draws the base of every possible triangle. **Statement (1) leaves only legs of <InlineMath math="6" /> and <InlineMath math="8" />**, and statement (2) rules out legs of <InlineMath math="6" /> because the base is longer.
+
+<Chart
+  title={<>Base of an isosceles triangle with perimeter <InlineMath math="20\text{ cm}" /> by leg length</>}
+  description={<>For legs of <InlineMath math="6" />, <InlineMath math="7" />, <InlineMath math="8" />, and <InlineMath math="9\text{ cm}" />, the base is <InlineMath math="8" />, <InlineMath math="6" />, <InlineMath math="4" />, and <InlineMath math="2\text{ cm}" />. Only the triangle with <InlineMath math="6\text{ cm}" /> legs has a base longer than its legs.</>}
+  categories={["Legs 6 cm", "Legs 7 cm", "Legs 8 cm", "Legs 9 cm"]}
+  bars="apart"
+  series={[
+    { label: "Base longer than the legs", mark: "bar", values: [20 - 2 * 6, null, null, null] },
+    { label: "Base shorter than the legs", mark: "bar", values: [null, 20 - 2 * 7, 20 - 2 * 8, 20 - 2 * 9] },
+  ]}
+  valueLabel="Base length (cm)"
+/>
+
 The other options come from a missed case:
 
 - "Statement (1) alone is sufficient" comes from taking the <InlineMath math="8\text{ cm}" /> side to be a leg straight away. The case with an <InlineMath math="8\text{ cm}" /> base and <InlineMath math="6\text{ cm}" /> legs gets missed, even though it's a valid triangle.

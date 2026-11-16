@@ -19,6 +19,21 @@ Hasilnya tiga susunan. Kolom 1 sampai 8 adalah nomor kursi, dan setiap orang dit
 | II | A | G | C | D | B | F | H | E |
 | III | B | D | C | G | A | E | H | F |
 
+Grafik berikut membaca tiga hal dari tabel. **Kursi Cahya dan jarak Galuh dengan Fajar tidak pernah berubah**, sedangkan kursi Asri berpindah ke <InlineMath math="5" /> pada susunan III.
+
+<Chart
+  title={<>Tiga ukuran pada ketiga susunan saat Hamid di kursi 7</>}
+  description={<>Cahya selalu di kursi <InlineMath math="3" />. Asri di kursi <InlineMath math="1" />, <InlineMath math="1" />, lalu <InlineMath math="5" />. Nomor kursi Galuh dan Fajar selalu berjarak <InlineMath math="4" />, artinya mereka berhadapan di meja delapan kursi.</>}
+  bars="apart"
+  categories={["I", "II", "III"]}
+  series={[
+    { label: "Kursi Cahya", mark: "bar", values: [3, 3, 3] },
+    { label: "Kursi Asri", mark: "bar", values: [1, 1, 5] },
+    { label: "Jarak nomor kursi Galuh dan Fajar", mark: "bar", values: [6 - 2, 6 - 2, 8 - 4] },
+  ]}
+  valueLabel="Nomor kursi atau jarak"
+/>
+
 Sekarang nilai setiap pernyataan.
 
 - Cahya di kursi 3 bernilai Benar. Cahya duduk di kursi 3 pada ketiga susunan, karena kursi 7 sudah ditempati Hamid.

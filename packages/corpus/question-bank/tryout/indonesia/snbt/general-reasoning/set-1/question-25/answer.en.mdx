@@ -26,6 +26,20 @@ The number of trucks has to be whole, so at least <InlineMath math="8" /> trucks
 
 Check both sides of the boundary. With <InlineMath math="8" /> trucks, the stock becomes <InlineMath math="51+48=99" />, then <InlineMath math="88, 77, 66, 55, 44" /> at the end of the next five weeks. All of them are at least <InlineMath math="40" />. With <InlineMath math="7" /> trucks, the stock becomes <InlineMath math="93" />, then <InlineMath math="82, 71, 60, 49, 38" />. The fifth week drops below <InlineMath math="40" />, so <InlineMath math="7" /> trucks aren't enough.
 
+The chart below follows Bakung's stock for the five weeks after the delivery. **The seven-truck line drops below the safety stock in the last week**, while the eight-truck line stays above it.
+
+<Chart
+  title={<>Bakung's stock after the delivery at the end of week <InlineMath math="9" /></>}
+  description={<>With <InlineMath math="8" /> trucks, the stock is <InlineMath math="99" /> tonnes in week <InlineMath math="9" />, then <InlineMath math="88" />, <InlineMath math="77" />, <InlineMath math="66" />, <InlineMath math="55" />, and <InlineMath math="44" /> tonnes. With <InlineMath math="7" /> trucks, it's <InlineMath math="93" />, then <InlineMath math="82" />, <InlineMath math="71" />, <InlineMath math="60" />, <InlineMath math="49" />, and <InlineMath math="38" /> tonnes. The flat line marks the safety stock of <InlineMath math="40" /> tonnes.</>}
+  categories={["9", "10", "11", "12", "13", "14"]}
+  series={[
+    { label: "With 8 trucks", mark: "line", values: [0, 1, 2, 3, 4, 5].map((j) => 51 + 6 * 8 - 11 * j) },
+    { label: "With 7 trucks", mark: "line", values: [0, 1, 2, 3, 4, 5].map((j) => 51 + 6 * 7 - 11 * j) },
+    { label: "Safety stock 40 tonnes", mark: "line", values: [40, 40, 40, 40, 40, 40] },
+  ]}
+  valueLabel="Stock (tonnes)"
+/>
+
 Some wrong answers come up often:
 
 - <InlineMath math="7" /> trucks comes from rounding <InlineMath math="7.33" /> down. You also get <InlineMath math="7" /> if you forget shrinkage, because then the trucks come in week <InlineMath math="10" /> with <InlineMath math="50" /> tonnes and a drop of only <InlineMath math="10" /> tonnes a week.

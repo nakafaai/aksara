@@ -2,6 +2,18 @@ Hier sortierst du vier Aussagen: Welche sind **durch alle vier Angaben garantier
 
 Verknüpfe dazu die Angaben, die über dieselbe Gruppe von Ständen sprechen. Für eine Aussage, die nicht sicher wahr ist (*tidak pasti benar*), reicht ein Gegenbeispiel: eine Menge von Ständen, die alle vier Angaben erfüllt, die Aussage aber falsch macht.
 
+Das Diagramm verkettet die vier Angaben. **Die Pfeile "alle" laufen nur in eine Richtung**, und die Linie "keiner" trennt die Verkäufer kalter Getränke vom Nordgang.
+
+<Mermaid
+  title={<>Wie die Gruppen von Ständen nach den vier Angaben zusammenhängen</>}
+  description={<>Jeder heute geöffnete Stand hat eine Solarlampe, aber nicht umgekehrt. Manche Stände mit Solarlampe verkaufen kalte Getränke. Kein Verkäufer kalter Getränke steht im Nordgang, und jeder Stand der Händlervereinigung steht im Nordgang.</>}
+  chart={`flowchart LR
+    B["Heute geöffnet"] -->|"alle"| L["Solarlampe"]
+    L -.->|"manche"| M["Verkauft kalte Getränke"]
+    M ---|"keiner gemeinsam"| U["Nordgang"]
+    P["Stände der Händlervereinigung"] -->|"alle"| U`}
+/>
+
 Aussage 1 ist nicht sicher wahr. Angabe 2 garantiert nur, dass irgendein Stand mit Solarlampe kalte Getränke verkauft. Dieser Stand muss heute Abend nicht geöffnet sein, denn Angabe 1 sagt nur, dass jeder geöffnete Stand eine Solarlampe hat, nicht umgekehrt. Die Gruppe mit Solarlampe kann viel größer sein als die Gruppe der heute geöffneten Stände.
 
 Aussage 2 ist sicher wahr. Nimm an, ein Stand der Händlervereinigung würde kalte Getränke verkaufen. Nach Angabe 4 stünde er im Nordgang. Nach Angabe 3 steht kein Stand mit kalten Getränken im Nordgang. Das widerspricht sich, also gibt es so einen Stand nicht.

@@ -27,6 +27,17 @@ The table compares the numbers of paid tickets around that threshold.
 | <InlineMath math="40" /> | <InlineMath math="2" /> | <InlineMath math="42" /> | <InlineMath math="22{,}500" /> | <InlineMath math="900{,}000" /> |
 | <InlineMath math="41" /> | <InlineMath math="2" /> | <InlineMath math="43" /> | <InlineMath math="22{,}500" /> | <InlineMath math="922{,}500" /> |
 
+The chart below draws the cost column from the table. **The cost drops sharply exactly at <InlineMath math="40" /> tickets**, because every ticket moves to the bigger discount tier.
+
+<Chart
+  title={<>Group cost by number of paid tickets</>}
+  description={<>With <InlineMath math="37" />, <InlineMath math="38" />, and <InlineMath math="39" /> paid tickets, the cost is <InlineMath math="\text{Rp}943{,}500" />, <InlineMath math="\text{Rp}969{,}000" />, and <InlineMath math="\text{Rp}994{,}500" />. With <InlineMath math="40" /> tickets, it drops to <InlineMath math="\text{Rp}900{,}000" />, then rises again to <InlineMath math="\text{Rp}922{,}500" /> with <InlineMath math="41" /> tickets.</>}
+  bars="apart"
+  categories={["37", "38", "39", "40", "41"]}
+  series={[{ label: "Cost (rupiah)", mark: "bar", values: [37, 38, 39, 40, 41].map((n) => (n >= 40 ? n * 22500 : n * 25500)) }]}
+  valueLabel="Cost (rupiah)"
+/>
+
 Buying more than <InlineMath math="40" /> paid tickets only adds cost, and buying fewer than <InlineMath math="37" /> doesn't cover everyone. So the lowest cost is <InlineMath math="\text{Rp}900{,}000" />. Check the difference another way. Compared with buying <InlineMath math="37" /> tickets, each of those <InlineMath math="37" /> tickets is now <InlineMath math="3{,}000" /> cheaper, while the three extra tickets add cost.
 
 <BlockMath math="\begin{aligned}

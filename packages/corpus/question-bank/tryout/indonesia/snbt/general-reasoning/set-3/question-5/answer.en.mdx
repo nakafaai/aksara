@@ -7,6 +7,20 @@ The four statements use **different denominators**: per medication given, per nu
 | Night | <InlineMath math="2{,}000" /> | <InlineMath math="18" /> | <InlineMath math="\tfrac{18}{2{,}000}\cdot 1{,}000=9" /> | <InlineMath math="18\div 2=9" /> |
 | Total | <InlineMath math="13{,}200" /> | <InlineMath math="78" /> | | |
 
+The chart below puts both measures side by side. **The afternoon shift is above the morning shift per thousand, yet level with it per nurse**, and the whole-ward bar sits below <InlineMath math="6" />.
+
+<Chart
+  title={<>Two error measures by shift, January to March</>}
+  description={<>Errors per <InlineMath math="1{,}000" /> medications: morning <InlineMath math="5" />, afternoon <InlineMath math="6" />, night <InlineMath math="9" />, and the whole ward about <InlineMath math="5.9" />. Errors per nurse: morning <InlineMath math="6" />, afternoon <InlineMath math="6" />, and night <InlineMath math="9" />.</>}
+  categories={["Morning", "Afternoon", "Night", "Whole ward"]}
+  bars="apart"
+  series={[
+    { label: "Errors per 1,000 medications", mark: "bar", values: [(36 / 7200) * 1000, (24 / 4000) * 1000, (18 / 2000) * 1000, (78 / 13200) * 1000] },
+    { label: "Errors per nurse", mark: "bar", values: [36 / 6, 24 / 4, 18 / 2, null] },
+  ]}
+  valueLabel="Number of errors"
+/>
+
 Statement 1 is true. It has two fractions with different denominators. One-sixth of <InlineMath math="13{,}200" /> is <InlineMath math="2{,}200" />, and the night shift handles only <InlineMath math="2{,}000" /> medications, so that's less than one-sixth. One-fifth of <InlineMath math="78" /> is <InlineMath math="15.6" />, and the night shift accounts for <InlineMath math="18" /> errors, so that's more than one-fifth.
 
 Statement 2 is false. Per nurse, the afternoon and morning shifts both have <InlineMath math="6" /> errors, so the afternoon isn't bigger. The trap is carrying the order of the rates per <InlineMath math="1{,}000" /> medications (afternoon <InlineMath math="6" />, morning <InlineMath math="5" />) over to the per-nurse comparison. The two orders differ because each morning nurse handles <InlineMath math="7{,}200\div 6=1{,}200" /> medications, while each afternoon nurse handles only <InlineMath math="4{,}000\div 4=1{,}000" />.

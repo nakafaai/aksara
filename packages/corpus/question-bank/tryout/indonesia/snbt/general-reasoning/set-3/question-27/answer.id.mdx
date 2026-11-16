@@ -22,6 +22,20 @@ Tiga putaran penuh membawa giliran kembali ke Laras, lalu sisa <InlineMath math=
 
 Cek dengan cara lain. Satu minggu penuh punya <InlineMath math="6" /> hari buka, jadi setiap minggu giliran bergeser <InlineMath math="6" />, sama dengan bergeser <InlineMath math="1" /> orang. Tiga minggu setelah 15 Februari adalah Selasa, 7 Maret, dan giliran sudah bergeser <InlineMath math="3" /> orang, yaitu ke Oka. Esoknya, Rabu 8 Maret, giliran Putri.
 
+Grafik berikut mencatat hari buka dan urutan giliran pada setiap Selasa serta pada 8 Maret. **Setiap minggu giliran maju tepat satu orang**, lalu sehari kemudian maju satu lagi ke Putri.
+
+<Chart
+  title={<>Hari buka dan giliran jaga dari 15 Februari sampai 8 Maret 2028</>}
+  description={<>Sejak 15 Februari, hari bukanya <InlineMath math="0" />, <InlineMath math="6" />, <InlineMath math="12" />, dan <InlineMath math="18" /> pada setiap Selasa, lalu <InlineMath math="19" /> pada 8 Maret. Gilirannya Laras, Made, Nina, Oka, lalu Putri, yaitu urutan <InlineMath math="1" /> sampai <InlineMath math="5" />.</>}
+  categories={["Selasa 15 Feb", "Selasa 22 Feb", "Selasa 29 Feb", "Selasa 7 Mar", "Rabu 8 Mar"]}
+  bars="apart"
+  series={[
+    { label: "Hari buka sejak 15 Februari", mark: "bar", values: [0, 6, 12, 18, 19] },
+    { label: "Urutan giliran (Laras 1 sampai Putri 5)", mark: "bar", values: [0, 6, 12, 18, 19].map((d) => (d % 5) + 1) },
+  ]}
+  valueLabel="Banyak hari atau urutan"
+/>
+
 Setiap pilihan lain berasal dari satu kekeliruan hitung:
 
 - Laras muncul kalau kamu ikut menghitung 15 Februari sebagai satu langkah, sehingga mendapat <InlineMath math="20" /> langkah.

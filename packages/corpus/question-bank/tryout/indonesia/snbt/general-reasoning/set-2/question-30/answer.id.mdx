@@ -26,6 +26,17 @@ Coba <InlineMath math="T=18" />. Syarat sirup meminta <InlineMath math="x\le10" 
 
 Kedua jenis juga sudah paling sedikit <InlineMath math="3" />. Jadi, <InlineMath math="10" /> Parsel Sirup dan <InlineMath math="8" /> Parsel Kue memberi <InlineMath math="18" /> parsel, dan tidak ada susunan yang memberi lebih.
 
+Grafik berikut menghitung total parsel paling banyak untuk setiap banyak Parsel Sirup. **Puncaknya ada pada <InlineMath math="10" /> Parsel Sirup**, tempat kue dan sirup sama-sama hampir habis.
+
+<Chart
+  title={<>Total parsel paling banyak menurut banyak Parsel Sirup</>}
+  description={<>Untuk <InlineMath math="3" /> sampai <InlineMath math="12" /> Parsel Sirup, dengan Parsel Kue sebanyak mungkin, totalnya berturut-turut <InlineMath math="13" />, <InlineMath math="14" />, <InlineMath math="14" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="18" />, <InlineMath math="17" />, dan <InlineMath math="16" /> parsel.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 3}`)}
+  series={[{ label: "Parsel paling banyak", mark: "bar", values: Array.from({ length: 10 }, (_, i) => i + 3 + Math.min(Math.floor((44 - (i + 3)) / 4), 28 - 2 * (i + 3))) }]}
+  valueLabel="Total parsel"
+/>
+
 Pilihan lain muncul dari strategi yang terlalu cepat:
 
 - <InlineMath math="13" /> muncul kalau kamu membuat <InlineMath math="3" /> Parsel Sirup lalu Parsel Kue sebanyak mungkin. Kue hanya cukup untuk <InlineMath math="10" /> Parsel Kue, padahal sirupnya masih banyak tersisa.
