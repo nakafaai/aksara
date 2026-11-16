@@ -10,6 +10,43 @@ Es gibt <InlineMath math="30+x" /> Schüler, die keine Einzelkinder sind, mit in
 \text{alle Schüler}&:\ 40\text{ Schüler},\ \text{Summe }112,\ \text{Mittelwert }2{,}8
 \end{aligned}" />
 
+Zeichne beide Mittelwerte, wenn <InlineMath math="k" /> neue Schüler mit <InlineMath math="3" /> Geschwistern dazukommen. **Beide Kurven nähern sich der Linie bei <InlineMath math="3" /> von entgegengesetzten Seiten**: Der Mittelwert aller Schüler steigt von unten, der Mittelwert der Schüler, die keine Einzelkinder sind, fällt von oben, und keine Kurve erreicht die Linie.
+
+<MathVisual
+  title={<>Zwei Mittelwerte, wenn neue Schüler dazukommen</>}
+  description={<>Die waagerechte Achse ist die Anzahl <InlineMath math="k" /> der neuen Schüler, die senkrechte Achse der Mittelwert der Geschwisterzahl. Die untere Kurve <InlineMath math="\tfrac{112+3k}{40+k}" /> beginnt bei <InlineMath math="2{,}8" /> und steigt gegen <InlineMath math="3" />. Die obere Kurve <InlineMath math="\tfrac{112+3k}{35+k}" /> beginnt bei <InlineMath math="3{,}2" /> und fällt gegen <InlineMath math="3" />. Die Punkte bei <InlineMath math="k=4" /> sind <InlineMath math="\tfrac{124}{44}" /> und <InlineMath math="\tfrac{124}{39}" />.</>}
+  labels={{
+    all: <>alle Schüler</>,
+    rest: <>keine Einzelkinder</>,
+    three: <InlineMath math="3" />,
+    "all-four": <InlineMath math="\tfrac{124}{44}" />,
+    "rest-four": <InlineMath math="\tfrac{124}{39}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: 2.7, max: 3.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "all", kind: "function", appearance: "primary", formula: "(112 + 3*x)/(40 + x)", domain: { min: 0, max: 60 } },
+      { id: "rest", kind: "function", appearance: "secondary", formula: "(112 + 3*x)/(35 + x)", domain: { min: 0, max: 60 } },
+      { id: "three", kind: "function", appearance: "warning", formula: "3", domain: { min: 0, max: 60 } },
+      { id: "all-four", kind: "point", appearance: "answer", at: { x: 4, y: 124 / 44 } },
+      { id: "rest-four", kind: "point", appearance: "answer", at: { x: 4, y: 124 / 39 } },
+    ],
+    labels: [
+      { key: "all", objectId: "all", at: { x: 50, y: 262 / 90 }, placement: "below" },
+      { key: "rest", objectId: "rest", at: { x: 50, y: 262 / 85 }, placement: "above" },
+      { key: "three", objectId: "three", at: { x: 58, y: 3 }, placement: "above" },
+      { key: "all-four", objectId: "all-four", at: { x: 4, y: 124 / 44 }, placement: "below-right" },
+      { key: "rest-four", objectId: "rest-four", at: { x: 4, y: 124 / 39 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Die Zahl <InlineMath math="3" /> **liegt zwischen den beiden Mittelwerten**, und das ist der Schlüssel zu den ersten beiden Aussagen.
 
 # Jede Aussage einzeln prüfen

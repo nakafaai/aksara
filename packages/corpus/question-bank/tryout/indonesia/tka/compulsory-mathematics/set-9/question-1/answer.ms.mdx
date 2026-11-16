@@ -21,6 +21,45 @@ M&=280\left(\tfrac{1}{2}\right)^{3/6}=280\left(\tfrac{1}{2}\right)^{1/2} \\
 &=280\cdot\tfrac{1}{2}\sqrt{2}=140\sqrt{2}\approx197.4\text{ mg}
 \end{aligned}" />
 
+Graf di bawah menunjukkan isi darah sejak pukul 6:00 pagi. **Setiap tablet membuat graf melompat naik <InlineMath math="160" />, kemudian isi darah menyusut semula**. Titik terakhir ialah isi darah <InlineMath math="3" /> jam selepas lompatan ketiga.
+
+<MathVisual
+  title={<>Isi darah dari tablet ke tablet</>}
+  description={<>Paksi mendatar ialah masa dalam jam sejak pukul 6:00 pagi, dan paksi tegak ialah banyak bahan aktif dalam mg. Isi darah melompat ke <InlineMath math="160" /> pada <InlineMath math="t=0" />, ke <InlineMath math="240" /> pada <InlineMath math="t=6" />, dan ke <InlineMath math="280" /> pada <InlineMath math="t=12" />. Pada <InlineMath math="t=15" />, iaitu pukul 9:00 malam, isinya <InlineMath math="140\sqrt{2}\approx197.4" />.</>}
+  labels={{
+    first: <InlineMath math="160" />,
+    second: <InlineMath math="240" />,
+    third: <InlineMath math="280" />,
+    now: <InlineMath math="140\sqrt{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 16 },
+      y: { min: 0, max: 300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "dose-one", kind: "function", appearance: "primary", formula: "160 * 2^(-x/6)", domain: { min: 0, max: 6 } },
+      { id: "dose-two", kind: "function", appearance: "primary", formula: "240 * 2^(-(x - 6)/6)", domain: { min: 6, max: 12 } },
+      { id: "dose-three", kind: "function", appearance: "primary", formula: "280 * 2^(-(x - 12)/6)", domain: { min: 12, max: 15 } },
+      { id: "jump-two", kind: "segment", appearance: "construction", from: { x: 6, y: 80 }, to: { x: 6, y: 240 } },
+      { id: "jump-three", kind: "segment", appearance: "construction", from: { x: 12, y: 120 }, to: { x: 12, y: 280 } },
+      { id: "first", kind: "point", appearance: "secondary", at: { x: 0, y: 160 } },
+      { id: "second", kind: "point", appearance: "secondary", at: { x: 6, y: 240 } },
+      { id: "third", kind: "point", appearance: "secondary", at: { x: 12, y: 280 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 15, y: 140 * Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 0, y: 160 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 6, y: 240 }, placement: "above-right" },
+      { key: "third", objectId: "third", at: { x: 12, y: 280 }, placement: "above-right" },
+      { key: "now", objectId: "now", at: { x: 15, y: 140 * Math.sqrt(2) }, placement: "below" },
+    ],
+  }}
+/>
+
 Cuba semak dengan mengira baki setiap tablet secara berasingan. Tablet pukul 6:00 pagi sudah <InlineMath math="15" /> jam dalam darah, tablet pukul 12:00 tengah hari sudah <InlineMath math="9" /> jam, dan tablet pukul 6:00 petang baru <InlineMath math="3" /> jam.
 
 <BlockMath math="\begin{aligned}

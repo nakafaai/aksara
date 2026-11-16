@@ -14,6 +14,44 @@ t^2+8t&=0 \\
 t(t+8)&=0 \quad\Rightarrow\quad t=0 \;\text{atau}\; t=-8
 \end{aligned}" />
 
+Lukis <InlineMath math="f" /> bersama garis <InlineMath math="y=21" />. **Garis itu memotong parabola dua kali, tetapi hanya potongan pada <InlineMath math="t=0" /> yang berada dalam domain <InlineMath math="t\ge-4" />**.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="f" /> dan garis <InlineMath math="y=21" /></>}
+  description={<>Parabola <InlineMath math="y=t^2+8t+21" /> mempunyai bucu <InlineMath math="(-4,\ 5)" />. Bahagian kanan bucu ialah domain <InlineMath math="f" />, dan bahagian kiri dilukis samar. Garis <InlineMath math="y=21" /> memotong parabola pada <InlineMath math="(-8,\ 21)" /> di luar domain dan pada <InlineMath math="(0,\ 21)" /> di dalamnya.</>}
+  labels={{
+    kept: <InlineMath math="f(t)=t^2+8t+21,\ t\ge-4" />,
+    level: <InlineMath math="21" />,
+    root: <InlineMath math="(0,\ 21)" />,
+    dropped: <InlineMath math="(-8,\ 21)" />,
+    vertex: <InlineMath math="(-4,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -9.5, max: 2 },
+      y: { min: 0, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cut", kind: "function", appearance: "reference", formula: "x^2 + 8*x + 21", domain: { min: -9, max: -4 } },
+      { id: "kept", kind: "function", appearance: "primary", formula: "x^2 + 8*x + 21", domain: { min: -4, max: 1 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "21", domain: { min: -9.5, max: 2 } },
+      { id: "vertex", kind: "point", appearance: "secondary", at: { x: -4, y: 5 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 0, y: 21 } },
+      { id: "dropped", kind: "point", appearance: "warning", at: { x: -8, y: 21 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 1, y: 30 }, placement: "left" },
+      { key: "level", objectId: "level", at: { x: 1.5, y: 21 }, placement: "below" },
+      { key: "root", objectId: "root", at: { x: 0, y: 21 }, placement: "above-left" },
+      { key: "dropped", objectId: "dropped", at: { x: -8, y: 21 }, placement: "above-right" },
+      { key: "vertex", objectId: "vertex", at: { x: -4, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Persamaan kuadratik memberi dua punca, tetapi **domain <InlineMath math="f" /> hanyalah <InlineMath math="t\ge-4" />**. Pada domain itu <InlineMath math="f" /> sentiasa menokok, jadi ia mempunyai songsangan, dan punca <InlineMath math="t=-8" /> ditolak. Jadi <InlineMath math="f^{-1}(21)=0" />, maksudnya <InlineMath math="g(x)" /> mesti bersamaan dengan <InlineMath math="0" />.
 
 # Menyongsangkan fungsi linear

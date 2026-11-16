@@ -11,6 +11,19 @@ Es gibt <InlineMath math="\binom93=84" /> mögliche Komitees. Ordne sie nach der
 | <InlineMath math="2" /> | <InlineMath math="\binom42\binom51=30" /> | <InlineMath math="\frac23" /> | <InlineMath math="20" /> |
 | <InlineMath math="3" /> | <InlineMath math="\binom43=4" /> | <InlineMath math="1" /> | <InlineMath math="4" /> |
 
+Zähle die Paare aus Komitee und einem seiner Mädchen als Sprecherin, also die Anzahl der Komitees mal <InlineMath math="k" />. **Von den <InlineMath math="112" /> Paaren, die zur Information passen, stammen <InlineMath math="60" /> aus Komitees mit genau <InlineMath math="2" /> Mädchen**, also ist die Wahrscheinlichkeit <InlineMath math="\tfrac{60}{112}=\tfrac{15}{28}" />.
+
+<Chart
+  title={<>Paare aus Komitee und Sprecherin</>}
+  description={<>Für Komitees mit <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Mädchen sind die Anzahlen der Paare aus Komitee und Sprecherin <InlineMath math="10\cdot0=0" />, <InlineMath math="40\cdot1=40" />, <InlineMath math="30\cdot2=60" /> und <InlineMath math="4\cdot3=12" />. Zusammen sind das <InlineMath math="112" />.</>}
+  bars="apart"
+  categories={["0 Mädchen", "1 Mädchen", "2 Mädchen", "3 Mädchen"]}
+  series={[
+    { label: "Komitee und Sprecherin", mark: "bar", values: [0, 40, 60, 12] },
+  ]}
+  valueLabel="Anzahl der Paare"
+/>
+
 Die letzte Spalte berücksichtigt schon, **wer zur Sprecherin gewählt wird**, nicht nur, wer im Komitee sitzt.
 
 # Die bedingte Wahrscheinlichkeit

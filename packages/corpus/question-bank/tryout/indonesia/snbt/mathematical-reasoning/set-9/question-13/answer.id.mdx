@@ -27,6 +27,21 @@ x &\ge 540\text{ menit}=9\text{ jam}
 
 Cek: total <InlineMath math="14" /> malam menjadi <InlineMath math="3{.}290+2{.}350+2\times540=6{.}720" /> menit, dan <InlineMath math="6{.}720:14=480" /> menit, tepat <InlineMath math="8" /> jam.
 
+Grafik berikut menaruh keempat belas malam berdampingan. **Batang Sabtu dan Minggu pekan berikutnya harus naik ke <InlineMath math="540" /> menit** untuk menutup kekurangan dari malam-malam lain di bawah garis target.
+
+<Chart
+  title={<>Tidur efektif selama empat belas malam</>}
+  description={<>Pekan pada tabel: <InlineMath math="500" />, <InlineMath math="375" />, <InlineMath math="380" />, <InlineMath math="515" />, <InlineMath math="360" />, <InlineMath math="600" />, dan <InlineMath math="560" /> menit. Pekan berikutnya: <InlineMath math="470" /> menit pada Senin sampai Jumat, lalu <InlineMath math="540" /> menit pada Sabtu dan Minggu. Garis datar menandai target <InlineMath math="480" /> menit. Jumlahnya tepat <InlineMath math="6{.}720" /> menit.</>}
+  categories={["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min", "Sen 2", "Sel 2", "Rab 2", "Kam 2", "Jum 2", "Sab 2", "Min 2"]}
+  bars="apart"
+  series={[
+    { label: "Pekan pada tabel", mark: "bar", values: [500, 375, 380, 515, 360, 600, 560, null, null, null, null, null, null, null] },
+    { label: "Pekan berikutnya", mark: "bar", values: [null, null, null, null, null, null, null, 470, 470, 470, 470, 470, (6720 - 3290 - 2350) / 2, (6720 - 3290 - 2350) / 2] },
+    { label: "Target 480 menit", mark: "line", values: Array.from({ length: 14 }, () => 480) },
+  ]}
+  valueLabel="Tidur efektif (menit)"
+/>
+
 # Pilihan yang keliru
 
 Pilihan lain **lupa salah satu bagian dari total <InlineMath math="14" /> malam**.

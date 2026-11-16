@@ -15,6 +15,20 @@ The balance is multiplied by <InlineMath math="1.1" /> at the end of every year.
 
 The balance is <InlineMath math="\text{Rp}94{,}024{,}000" />.
 
+The chart below compares each year-end balance with the total paid in so far. **The gap between the bars and the line widens every year**, because the old deposits keep growing while new ones are added.
+
+<Chart
+  title={<>Year-end balance and total paid in, years <InlineMath math="1" /> to <InlineMath math="5" /></>}
+  description={<>Each start of year, <InlineMath math="14" /> million rupiah goes in. The balances at the end of years <InlineMath math="1" /> to <InlineMath math="5" /> are <InlineMath math="15.4" />, <InlineMath math="32.34" />, <InlineMath math="50.974" />, <InlineMath math="71.47" />, and <InlineMath math="94.024" /> million rupiah, while the totals paid in are <InlineMath math="14" />, <InlineMath math="28" />, <InlineMath math="42" />, <InlineMath math="56" />, and <InlineMath math="70" /> million rupiah.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Year-end balance (million rupiah)", mark: "bar", values: [14 * 1.1, 14 * (1.1 + 1.21), 14 * (1.1 + 1.21 + 1.331), 14 * (1.1 + 1.21 + 1.331 + 1.464), 14 * (1.1 + 1.21 + 1.331 + 1.464 + 1.611)] },
+    { label: "Total paid in (million rupiah)", mark: "line", values: [14, 28, 42, 56, 70] },
+  ]}
+  valueLabel="Million rupiah"
+/>
+
 # A year by year check
 
 You can also add <InlineMath math="14" /> and then multiply by <InlineMath math="1.1" /> each year, in millions of rupiah.

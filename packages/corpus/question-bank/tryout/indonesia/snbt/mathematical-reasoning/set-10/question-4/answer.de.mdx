@@ -36,6 +36,22 @@ Zeige jetzt, dass <InlineMath math="4" /> Fahrten wirklich reichen. Zwei Lkw dü
 
 Jede Zeile hält beide Grenzen ein, und **jedes Fahrzeug fährt genau einmal**: drei Lkw, zwei Busse, fünf Autos und ein Pick-up.
 
+Das Diagramm zeigt die Ladung jeder der vier Fahrten. **Kein Balken überschreitet seine Grenzlinie**, und die erste Fahrt berührt die Massengrenze genau.
+
+<Chart
+  title={<>Spurlänge und Masse jeder Fahrt im Plan mit vier Fahrten</>}
+  description={<>Die Fahrten eins bis vier belegen <InlineMath math="20" />, <InlineMath math="26" />, <InlineMath math="27" /> und <InlineMath math="12\text{ m}" /> bei Massen von <InlineMath math="30" />, <InlineMath math="22" />, <InlineMath math="22" /> und <InlineMath math="16\text{ Tonnen}" />. Zwei waagerechte Linien markieren die Grenzen von <InlineMath math="40\text{ m}" /> und <InlineMath math="30\text{ Tonnen}" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Spurlänge (m)", mark: "bar", values: [20, 10 + 2 * 5 + 6, 12 + 3 * 5, 12] },
+    { label: "Masse (Tonnen)", mark: "bar", values: [30, 15 + 2 * 2 + 3, 16 + 3 * 2, 16] },
+    { label: "Längengrenze 40 m", mark: "line", values: [40, 40, 40, 40] },
+    { label: "Massengrenze 30 Tonnen", mark: "line", values: [30, 30, 30, 30] },
+  ]}
+  valueLabel="Wert"
+/>
+
 # Häufige falsche Antworten
 
 Beide Antworten **lesen die Ladebedingungen falsch**.

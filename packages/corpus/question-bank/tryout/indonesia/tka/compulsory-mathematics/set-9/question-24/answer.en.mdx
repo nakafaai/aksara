@@ -27,6 +27,20 @@ P(\text{win})&=\frac25\cdot\frac12=\frac15 \\
 F_e&=60\cdot\frac15=12\text{ rounds}
 \end{aligned}" />
 
+The tree below sums up both stages. **Only one path ends in a win**, and its probability is the product of the two branches.
+
+<Mermaid
+  title={<>Probability tree for one round</>}
+  description={<>Of the <InlineMath math="10" /> card pairs, <InlineMath math="4" /> have an even sum, so the even branch has probability <InlineMath math="\tfrac25" />. After that, at least <InlineMath math="2" /> number sides in <InlineMath math="3" /> tosses has probability <InlineMath math="\tfrac12" />. The chance of winning is <InlineMath math="\tfrac15" />, and the expected frequency is <InlineMath math="60\cdot\tfrac15=12" /> rounds.</>}
+  chart={`flowchart TD
+  S["Draw 2 of the 5 cards"] -->|"4/10"| E["Even sum"]
+  S -->|"6/10"| O["Odd sum: lose"]
+  E -->|"1/2"| W["At least 2 number sides: win"]
+  E -->|"1/2"| L["Fewer than 2 number sides: lose"]
+  W --> P["P(win) = 2/5 · 1/2 = 1/5"]
+  P --> F["60 · 1/5 = 12"]`}
+/>
+
 # Why the other options are wrong
 
 - <InlineMath math="15" /> rounds assumes an even total has probability <InlineMath math="\frac12" />: <InlineMath math="60\cdot\frac12\cdot\frac12" />.

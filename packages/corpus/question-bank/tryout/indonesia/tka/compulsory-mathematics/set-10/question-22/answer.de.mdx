@@ -19,6 +19,54 @@ Sortiere die acht Noten: <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88
 
 <BlockMath math="\text{Median}=\frac{70+72}{2}=71=69+2" />
 
+Vergleiche die ursprünglichen Daten mit den Daten in Aussage 3. **Indras Änderung schiebt einen Wert über die Mitte hinaus**, also ändern sich der <InlineMath math="4" />. und <InlineMath math="5" />. Wert von <InlineMath math="68" /> und <InlineMath math="70" /> auf <InlineMath math="70" /> und <InlineMath math="72" />.
+
+<MathVisual
+  title={<>Prüfungsergebnisse vor und nach der Änderung in Aussage 3</>}
+  description={<>Die obere Reihe sind die acht ursprünglichen Ergebnisse <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" /> mit Median <InlineMath math="69" />. Die untere Reihe sind die Ergebnisse, nachdem Indra <InlineMath math="74" /> und Bima <InlineMath math="82" /> hat, also <InlineMath math="56,\ 58,\ 66,\ 70,\ 72,\ 74,\ 82,\ 82" /> mit Median <InlineMath math="71" />. Die beiden mittleren Punkte jeder Reihe sind markiert.</>}
+  labels={{
+    "median-before": <InlineMath math="69" />,
+    "median-after": <InlineMath math="71" />,
+    "before-1": <>ursprünglich</>,
+    "after-1": <>Aussage 3</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 50, max: 92 },
+      y: { min: -1, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before-1", kind: "point", appearance: "secondary", at: { x: 56, y: 2 } },
+      { id: "before-2", kind: "point", appearance: "secondary", at: { x: 58, y: 2 } },
+      { id: "before-3", kind: "point", appearance: "secondary", at: { x: 66, y: 2 } },
+      { id: "before-4", kind: "point", appearance: "primary", at: { x: 68, y: 2 } },
+      { id: "before-5", kind: "point", appearance: "primary", at: { x: 70, y: 2 } },
+      { id: "before-6", kind: "point", appearance: "secondary", at: { x: 72, y: 2 } },
+      { id: "before-7", kind: "point", appearance: "secondary", at: { x: 82, y: 2 } },
+      { id: "before-8", kind: "point", appearance: "secondary", at: { x: 88, y: 2 } },
+      { id: "after-1", kind: "point", appearance: "secondary", at: { x: 56, y: 0 } },
+      { id: "after-2", kind: "point", appearance: "secondary", at: { x: 58, y: 0 } },
+      { id: "after-3", kind: "point", appearance: "secondary", at: { x: 66, y: 0 } },
+      { id: "after-4", kind: "point", appearance: "answer", at: { x: 70, y: 0 } },
+      { id: "after-5", kind: "point", appearance: "answer", at: { x: 72, y: 0 } },
+      { id: "after-6", kind: "point", appearance: "secondary", at: { x: 74, y: 0 } },
+      { id: "after-7", kind: "point", appearance: "secondary", at: { x: 82, y: 0 } },
+      { id: "after-8", kind: "point", appearance: "secondary", at: { x: 82, y: 0.3 } },
+      { id: "median-before", kind: "segment", appearance: "warning", from: { x: 69, y: 1.6 }, to: { x: 69, y: 2.4 } },
+      { id: "median-after", kind: "segment", appearance: "warning", from: { x: 71, y: -0.4 }, to: { x: 71, y: 0.6 } },
+    ],
+    labels: [
+      { key: "median-before", objectId: "median-before", at: { x: 69, y: 2.4 }, placement: "above" },
+      { key: "median-after", objectId: "median-after", at: { x: 71, y: 0.6 }, placement: "above" },
+      { key: "before-1", objectId: "before-1", at: { x: 56, y: 2 }, placement: "above" },
+      { key: "after-1", objectId: "after-1", at: { x: 56, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Der Median steigt um genau <InlineMath math="2" />. **Richtig**.
 
 **Aussage 4**. Ohne Dani bleiben sieben Noten: <InlineMath math="58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />. Der Median ist jetzt der <InlineMath math="4" />. Wert, <InlineMath math="70" />, er steigt also tatsächlich. Aber der Mittelwert ist <InlineMath math="\frac{560-56}{7}=\frac{504}{7}=72" /> und steigt ebenfalls, weil die entfernte Note unter dem Mittelwert liegt. **Falsch**.

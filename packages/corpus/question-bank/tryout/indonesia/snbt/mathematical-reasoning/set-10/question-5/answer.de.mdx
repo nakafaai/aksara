@@ -32,6 +32,20 @@ Rina zahlt **am Anfang die Anzahlung und die Bearbeitungsgebühr**, danach <Inli
 \text{Unterschied} &= 6{.}854{.}000-5{.}760{.}000=1{.}094{.}000
 \end{aligned}" />
 
+Das Diagramm trennt die Zahlungen beider Wege. **Der Kreditkäufer zahlt am Anfang weniger, aber neun Raten machen die Summe viel größer**.
+
+<Chart
+  title={<>Bezahltes Geld bei Barkauf und bei <InlineMath math="9" /> Monaten Kredit</>}
+  description={<>Ein Barkäufer zahlt <InlineMath math="\text{Rp}5{.}760{.}000" /> auf einmal. Ein Kreditkäufer zahlt am Anfang <InlineMath math="\text{Rp}1{.}400{.}000" /> für Anzahlung und Bearbeitungsgebühr, dann <InlineMath math="9" /> Raten mit zusammen <InlineMath math="\text{Rp}5{.}454{.}000" />, insgesamt also <InlineMath math="\text{Rp}6{.}854{.}000" />.</>}
+  categories={["Bar", "Kredit 9 Monate"]}
+  bars="apart"
+  series={[
+    { label: "Am Anfang bezahlt (Rupiah)", mark: "bar", values: [6000000 - 0.04 * 6000000, 1200000 + 200000] },
+    { label: "Summe der Raten (Rupiah)", mark: "bar", values: [0, 9 * 606000] },
+  ]}
+  valueLabel="Geld (Rupiah)"
+/>
+
 # Kontrolle des Rundens
 
 Jeden Monat zahlt Rina <InlineMath math="606{.}000-605{.}333{,}33\ldots=666{,}66\ldots" /> mehr als den genauen Wert. In <InlineMath math="9" /> Monaten ergibt **der Aufschlag durch das Runden** <InlineMath math="9\cdot666{,}66\ldots=6{.}000" />. Das passt, denn <InlineMath math="4{.}800{.}000+648{.}000+6{.}000=5{.}454{.}000" />.

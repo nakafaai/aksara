@@ -29,6 +29,22 @@ The mass would still be fine, but **the lane length runs out**. One failed limit
 &= 1{,}250{,}000
 \end{aligned}" />
 
+The chart below compares the second trip's load without and with the truck in place <InlineMath math="9" />. **The mass bar is still under its line, but the length bar passes <InlineMath math="40\text{ m}" />**, so that truck is held back.
+
+<Chart
+  title={<>Lane length and mass of the second trip without and with truck <InlineMath math="9" /></>}
+  description={<>Five cars and one pickup take <InlineMath math="31\text{ m}" /> and weigh <InlineMath math="13\text{ tonnes}" />. With truck <InlineMath math="9" />, the length becomes <InlineMath math="41\text{ m}" /> and the mass <InlineMath math="28\text{ tonnes}" />. Two flat lines mark the limits of <InlineMath math="40\text{ m}" /> and <InlineMath math="30\text{ tonnes}" />.</>}
+  categories={["Without truck 9", "With truck 9"]}
+  bars="apart"
+  series={[
+    { label: "Lane length (m)", mark: "bar", values: [5 * 5 + 6, 5 * 5 + 6 + 10] },
+    { label: "Mass (tonnes)", mark: "bar", values: [5 * 2 + 3, 5 * 2 + 3 + 15] },
+    { label: "Length limit 40 m", mark: "line", values: [40, 40] },
+    { label: "Mass limit 30 tonnes", mark: "line", values: [30, 30] },
+  ]}
+  valueLabel="Value"
+/>
+
 # Checking with all the fares
 
 Keep loading. The truck in place <InlineMath math="9" /> and the next bus weigh <InlineMath math="15+16=31\text{ tonnes}" />, so the truck leaves alone. Two buses weigh <InlineMath math="16+16=32\text{ tonnes}" />, so **each bus leaves alone**. The queue is cleared in <InlineMath math="5" /> trips, and every vehicle travels exactly once.

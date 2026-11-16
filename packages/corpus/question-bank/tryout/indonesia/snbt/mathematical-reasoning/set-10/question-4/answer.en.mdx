@@ -36,6 +36,22 @@ Now show that <InlineMath math="4" /> trips really are enough. Two trucks may tr
 
 Every row stays within both limits, and **every vehicle travels exactly once**: three trucks, two buses, five cars, and one pickup.
 
+The chart below draws the load of each of the four trips. **No bar passes its limit line**, and the first trip just touches the mass limit.
+
+<Chart
+  title={<>Lane length and mass of each trip in the four-trip plan</>}
+  description={<>Trips one to four use <InlineMath math="20" />, <InlineMath math="26" />, <InlineMath math="27" />, and <InlineMath math="12\text{ m}" />, with masses of <InlineMath math="30" />, <InlineMath math="22" />, <InlineMath math="22" />, and <InlineMath math="16\text{ tonnes}" />. Two flat lines mark the limits of <InlineMath math="40\text{ m}" /> and <InlineMath math="30\text{ tonnes}" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Lane length (m)", mark: "bar", values: [20, 10 + 2 * 5 + 6, 12 + 3 * 5, 12] },
+    { label: "Mass (tonnes)", mark: "bar", values: [30, 15 + 2 * 2 + 3, 16 + 3 * 2, 16] },
+    { label: "Length limit 40 m", mark: "line", values: [40, 40, 40, 40] },
+    { label: "Mass limit 30 tonnes", mark: "line", values: [30, 30, 30, 30] },
+  ]}
+  valueLabel="Value"
+/>
+
 # Common wrong answers
 
 Both of these answers **misread the loading conditions**.

@@ -23,6 +23,21 @@ Die Konzentration ist die Stammlösung A pro Liter mal <InlineMath math="200" />
 
 Kontrolle der Division: <InlineMath math="184\cdot1{.}250=230{.}000" />. Der passende Bereich der fünften Woche reicht von <InlineMath math="1{.}150" /> bis <InlineMath math="1{.}250\text{ ppm}" />, und **beide Grenzen zählen mit**. Die Lösung liegt also genau auf der oberen Grenze und passt noch.
 
+Das Diagramm verfolgt die Konzentration von Montagmorgen bis Mittwochmorgen. **Die Linie steigt jeden Tag und endet am Mittwochmorgen genau auf der Obergrenze**.
+
+<Chart
+  title={<>Konzentration der Lösung an jedem Morgen, Montag bis Mittwoch</>}
+  description={<>Die Konzentration beträgt am Montagmorgen <InlineMath math="1{.}200\text{ ppm}" />, am Dienstagmorgen etwa <InlineMath math="1{.}224\text{ ppm}" /> und am Mittwochmorgen genau <InlineMath math="1{.}250\text{ ppm}" />. Zwei waagerechte Linien markieren die Grenzen <InlineMath math="1{.}150" /> und <InlineMath math="1{.}250\text{ ppm}" />. Die Werteachse beginnt bei <InlineMath math="1{.}100" />.</>}
+  categories={["Montagmorgen", "Dienstagmorgen", "Mittwochmorgen"]}
+  series={[
+    { label: "Konzentration (ppm)", mark: "line", values: [1200, ((1200 - 25) / (200 - 8)) * 200, ((1200 - 50) / (200 - 16)) * 200] },
+    { label: "Untergrenze 1.150", mark: "line", values: [1150, 1150, 1150] },
+    { label: "Obergrenze 1.250", mark: "line", values: [1250, 1250, 1250] },
+  ]}
+  valueRange={{ min: 1100, max: 1300 }}
+  valueLabel="Konzentration (ppm)"
+/>
+
 # Warum die Konzentration steigt
 
 Am ersten Tag sinkt das Wasser um <InlineMath math="\tfrac{8}{200}=4\%" />, die Stammlösung A nur um <InlineMath math="\tfrac{25}{1{.}200}" />, also ungefähr <InlineMath math="2\%" />. **Wasser verschwindet schneller als Nährstoff**, also wird die Lösung stärker. Ein Ergebnis von <InlineMath math="1{.}250\text{ ppm}" />, über den anfänglichen <InlineMath math="1{.}200\text{ ppm}" />, ist also plausibel.

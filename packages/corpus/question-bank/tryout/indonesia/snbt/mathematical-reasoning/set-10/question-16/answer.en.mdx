@@ -25,6 +25,21 @@ x &\ge 13\tfrac{1}{3}
 
 The solution is poured out in whole litres, so at least <InlineMath math="14" /> litres.
 
+The chart below works out the full tank's concentration after some solution is poured out. **The <InlineMath math="13" />-litre bar is still above the upper bound**, and the first bar below it is <InlineMath math="14" /> litres.
+
+<Chart
+  title={<>Full tank concentration by solution poured out</>}
+  description={<>If <InlineMath math="10" /> to <InlineMath math="16" /> litres are poured out and the tank is filled with water, the concentration is <InlineMath math="1{,}275" />, <InlineMath math="1{,}267.5" />, <InlineMath math="1{,}260" />, <InlineMath math="1{,}252.5" />, <InlineMath math="1{,}245" />, <InlineMath math="1{,}237.5" />, and <InlineMath math="1{,}230\text{ ppm}" />. The flat line marks the upper bound of <InlineMath math="1{,}250\text{ ppm}" />. The value axis starts at <InlineMath math="1{,}200" />.</>}
+  bars="apart"
+  categories={["10", "11", "12", "13", "14", "15", "16"]}
+  series={[
+    { label: "Concentration after topping up (ppm)", mark: "bar", values: [10, 11, 12, 13, 14, 15, 16].map((x) => 7.5 * (180 - x)) },
+    { label: "Upper bound 1,250", mark: "line", values: [1250, 1250, 1250, 1250, 1250, 1250, 1250] },
+  ]}
+  valueRange={{ min: 1200, max: 1300 }}
+  valueLabel="Concentration (ppm)"
+/>
+
 # Checking both bounds
 
 With <InlineMath math="x=14" />, the concentration is <InlineMath math="7.5\cdot166=1{,}245\text{ ppm}" />. That's below <InlineMath math="1{,}250" /> and above <InlineMath math="1{,}150" />, so **the solution is suitable**. With <InlineMath math="x=13" />, the concentration is <InlineMath math="7.5\cdot167=1{,}252.5\text{ ppm}" />, still too strong.

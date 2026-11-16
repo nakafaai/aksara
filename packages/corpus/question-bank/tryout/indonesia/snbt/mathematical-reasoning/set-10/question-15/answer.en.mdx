@@ -11,6 +11,21 @@ Find the stock A in each solution, add them up, then divide by the volume of the
 
 The value <InlineMath math="1{,}225\text{ ppm}" /> lies in the range <InlineMath math="1{,}150" /> to <InlineMath math="1{,}250\text{ ppm}" />. The plain average <InlineMath math="\tfrac{1{,}600+1{,}100}{2}=1{,}350" /> is misleading, because **the solution with the bigger volume counts more**. The first statement is true.
 
+The chart below compares the actual mixture with the plain average of the two solutions. **Only the mixture bar lands in the suitable band**, because the <InlineMath math="150" />-litre solution counts more.
+
+<Chart
+  title={<>Concentration of both solutions, their mixture, and their plain average</>}
+  description={<>The <InlineMath math="50" />-litre solution is at <InlineMath math="1{,}600\text{ ppm}" /> and the <InlineMath math="150" />-litre solution at <InlineMath math="1{,}100\text{ ppm}" />. The mixture is at <InlineMath math="1{,}225\text{ ppm}" />, while the plain average of the two is <InlineMath math="1{,}350\text{ ppm}" />. Two flat lines mark the bounds of <InlineMath math="1{,}150" /> and <InlineMath math="1{,}250\text{ ppm}" />.</>}
+  categories={["50-litre solution", "150-litre solution", "Mixture", "Plain average"]}
+  bars="apart"
+  series={[
+    { label: "Concentration (ppm)", mark: "bar", values: [1600, 1100, ((400 + 825) / 200) * 200, (1600 + 1100) / 2] },
+    { label: "Lower bound 1,150", mark: "line", values: [1150, 1150, 1150, 1150] },
+    { label: "Upper bound 1,250", mark: "line", values: [1250, 1250, 1250, 1250] },
+  ]}
+  valueLabel="Concentration (ppm)"
+/>
+
 # The week-one solution
 
 A <InlineMath math="200" />-litre solution at <InlineMath math="600\text{ ppm}" /> holds <InlineMath math="600\text{ ml}" /> of stock A. After one daily change, both the volume and the stock drop.

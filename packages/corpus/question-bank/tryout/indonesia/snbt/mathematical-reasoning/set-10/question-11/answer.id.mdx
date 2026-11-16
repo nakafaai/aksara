@@ -41,4 +41,18 @@ Nilai itu berasal dari <InlineMath math="264" />, <InlineMath math="259{,}6" />,
 
 Pos <InlineMath math="2" /> menerima <InlineMath math="13" /> dus, jadi hanya ada <InlineMath math="1{.}300" /> gelas. Sisa pembulatan di pos ini hanya <InlineMath math="1{.}300-1{.}298=2" /> gelas, jadi **cadangan dari pembulatan di pos <InlineMath math="2" /> hampir habis**. Karena <InlineMath math="1{.}310>1{.}300" />, dugaan keempat salah.
 
+Grafik berikut menguji dugaan kedua dan keempat dengan isi dus sebenarnya. **Di pos <InlineMath math="3" /> isi dus masih menutup kebutuhan baru, tetapi di pos <InlineMath math="2" /> tidak**, karena pembulatan di pos itu hanya menyisakan dua gelas.
+
+<Chart
+  title={<>Isi dus dan kebutuhan gelas baru di pos <InlineMath math="2" /> dan pos <InlineMath math="3" /></>}
+  description={<>Pos <InlineMath math="2" /> menerima <InlineMath math="1{.}300" /> gelas, sedangkan dugaannya memerlukan <InlineMath math="1{.}310" /> gelas. Pos <InlineMath math="3" /> menerima <InlineMath math="2{.}600" /> gelas, sedangkan dugaannya memerlukan <InlineMath math="2{.}580" /> gelas.</>}
+  categories={["Pos 2", "Pos 3"]}
+  bars="apart"
+  series={[
+    { label: "Gelas dalam dus", mark: "bar", values: [1300, 2600] },
+    { label: "Kebutuhan dalam dugaan", mark: "bar", values: [1310, 2 * 1290] },
+  ]}
+  valueLabel="Banyak gelas"
+/>
+
 Jadi, dugaan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.

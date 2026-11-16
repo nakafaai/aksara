@@ -17,6 +17,22 @@ Das Ziel der fünften Woche ist <InlineMath math="1{.}200\text{ ppm}" />, also p
 \text{zuzugebende Stammlösung A} &= 1{.}150-420=730\text{ ml}
 \end{aligned}" />
 
+Das Diagramm berechnet die Konzentration des vollen Tanks für mehrere zugegebene Mengen Stammlösung A. **Der Balken für <InlineMath math="729\text{ ml}" /> liegt noch knapp unter dem passenden Band**, und der Balken für <InlineMath math="730\text{ ml}" /> berührt seine Untergrenze genau.
+
+<Chart
+  title={<>Konzentration des <InlineMath math="200" />-Liter-Tanks nach zugegebener Stammlösung A</>}
+  description={<>Mit <InlineMath math="600" />, <InlineMath math="700" />, <InlineMath math="729" />, <InlineMath math="730" /> und <InlineMath math="800\text{ ml}" /> zugegebener Stammlösung A beträgt die Konzentration <InlineMath math="1{.}020" />, <InlineMath math="1{.}120" />, <InlineMath math="1{.}149" />, <InlineMath math="1{.}150" /> und <InlineMath math="1{.}220\text{ ppm}" />. Zwei waagerechte Linien markieren die Grenzen <InlineMath math="1{.}150" /> und <InlineMath math="1{.}250\text{ ppm}" />. Die Werteachse beginnt bei <InlineMath math="950" />.</>}
+  bars="apart"
+  categories={["600", "700", "729", "730", "800"]}
+  series={[
+    { label: "Konzentration (ppm)", mark: "bar", values: [600, 700, 729, 730, 800].map((a) => ((420 + a) / 200) * 200) },
+    { label: "Untergrenze 1.150", mark: "line", values: [1150, 1150, 1150, 1150, 1150] },
+    { label: "Obergrenze 1.250", mark: "line", values: [1250, 1250, 1250, 1250, 1250] },
+  ]}
+  valueRange={{ min: 950, max: 1300 }}
+  valueLabel="Konzentration (ppm)"
+/>
+
 # Kontrolle
 
 Nach dem Auffüllen enthält der Tank <InlineMath math="420+730=1{.}150\text{ ml}" /> Stammlösung A in <InlineMath math="200" /> Litern, die Konzentration ist also <InlineMath math="\tfrac{1{.}150}{200}\cdot200=1{.}150\text{ ppm}" />. Das liegt **genau auf der unteren Grenze und passt noch**. Mit nur <InlineMath math="729\text{ ml}" /> wären es <InlineMath math="1{.}149\text{ ppm}" />, schon außerhalb des Bereichs.

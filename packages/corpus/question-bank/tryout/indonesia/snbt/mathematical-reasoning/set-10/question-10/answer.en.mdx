@@ -34,6 +34,20 @@ Take the jugs off the van each time it leaves a station.
 
 Station <InlineMath math="4" /> needs <InlineMath math="26" /> jugs, but the van only has <InlineMath math="25" /> left. The question says **all the remaining jugs are unloaded at that station**, so station <InlineMath math="4" /> gets <InlineMath math="25" /> jugs and is <InlineMath math="1" /> jug short.
 
+The chart below compares the jugs on the van when it reaches each station with the jugs that station needs. **Station <InlineMath math="4" /> is the first where the need bar is taller**, so it only gets the remaining <InlineMath math="25" /> jugs.
+
+<Chart
+  title={<>Jugs on the delivery van and each station's need</>}
+  description={<>On reaching stations <InlineMath math="1" /> to <InlineMath math="4" />, the van carries <InlineMath math="80" />, <InlineMath math="66" />, <InlineMath math="52" />, and <InlineMath math="25" /> jugs. The stations need <InlineMath math="14" />, <InlineMath math="14" />, <InlineMath math="27" />, and <InlineMath math="26" /> jugs.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Jugs on the van on arrival", mark: "bar", values: [80, 80 - 14, 80 - 14 - 14, 80 - 14 - 14 - 27] },
+    { label: "Jugs the station needs", mark: "bar", values: [14, 14, 27, 26] },
+  ]}
+  valueLabel="Jugs"
+/>
+
 # Checking
 
 The jugs unloaded add up to <InlineMath math="14+14+27+25=80" />, **exactly the van's starting load**. Station <InlineMath math="5" /> gets no jugs from this van.

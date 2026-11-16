@@ -38,6 +38,19 @@ Satu minggu memberi laba bersih <InlineMath math="-90{.}000+255{.}000+120{.}000+
 
 Pada Senin minggu ketiga, sewa membuat total **turun dari** <InlineMath math="1{.}400{.}000" /> menjadi <InlineMath math="1{.}310{.}000" />, masih di bawah modal. Pada Selasa minggu ketiga, totalnya <InlineMath math="1{.}565{.}000\ge1{.}500{.}000" />.
 
+Grafik berikut mengikuti total laba bersih hari demi hari. **Garisnya turun setiap Senin karena sewa**, dan baru melewati garis modal pada Selasa minggu ketiga.
+
+<Chart
+  title={<>Total laba bersih kantin sejak hari pertama</>}
+  description={<>Total laba bersih pada akhir minggu pertama <InlineMath math="\text{Rp}700{.}000" /> dan pada akhir minggu kedua <InlineMath math="\text{Rp}1{.}400{.}000" />. Pada Senin minggu ketiga totalnya turun menjadi <InlineMath math="\text{Rp}1{.}310{.}000" />, lalu naik menjadi <InlineMath math="\text{Rp}1{.}565{.}000" /> pada Selasa minggu ketiga. Garis datar menandai modal peralatan <InlineMath math="\text{Rp}1{.}500{.}000" />.</>}
+  categories={["Sen 1", "Sel 1", "Rab 1", "Kam 1", "Jum 1", "Sen 2", "Sel 2", "Rab 2", "Kam 2", "Jum 2", "Sen 3", "Sel 3"]}
+  series={[
+    { label: "Laba bersih terkumpul (rupiah)", mark: "line", values: [-90000, 165000, 285000, 505000, 700000, 610000, 865000, 985000, 1205000, 1400000, 1310000, 1565000] },
+    { label: "Modal peralatan", mark: "line", values: Array.from({ length: 12 }, () => 1500000) },
+  ]}
+  valueLabel="Laba bersih terkumpul (rupiah)"
+/>
+
 # Pemeriksaan
 
 Total setiap Jumat adalah kelipatan <InlineMath math="700{.}000" />, sesuai laba bersih satu minggu. Setelah dua minggu totalnya <InlineMath math="1{.}400{.}000" />, jadi modal **pasti kembali pada minggu ketiga**, dan tabel menunjukkan harinya Selasa.

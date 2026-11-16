@@ -28,6 +28,20 @@ Satu dus berisi <InlineMath math="100" /> gelas, dan isinya tidak boleh dibagi k
 \text{total dus} &= 14+13+26+25+24=102
 \end{aligned}" />
 
+Grafik berikut membandingkan gelas rencana setiap pos dengan isi dus utuh yang diterimanya. **Celah setiap pasangan batang kurang dari satu dus**, jadi tidak ada pos yang bisa dikurangi satu dus.
+
+<Chart
+  title={<>Gelas rencana dan isi dus utuh di setiap pos</>}
+  description={<>Gelas rencana pos <InlineMath math="1" /> sampai <InlineMath math="5" /> berturut-turut <InlineMath math="1{.}320" />, <InlineMath math="1{.}298" />, <InlineMath math="2{.}508" />, <InlineMath math="2{.}420" />, dan <InlineMath math="2{.}310" />. Isi dusnya berturut-turut <InlineMath math="1{.}400" />, <InlineMath math="1{.}300" />, <InlineMath math="2{.}600" />, <InlineMath math="2{.}500" />, dan <InlineMath math="2{.}400" /> gelas, yaitu <InlineMath math="102" /> dus.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Gelas rencana", mark: "bar", values: [1.1 * 1200, 1.1 * 1180, 1.1 * 2280, 1.1 * 2200, 1.1 * 2100] },
+    { label: "Gelas dalam dus utuh", mark: "bar", values: [1400, 1300, 2600, 2500, 2400] },
+  ]}
+  valueLabel="Banyak gelas"
+/>
+
 # Pemeriksaan sisa gelas
 
 Banyak dus di setiap pos memang paling sedikit jika sisa gelasnya kurang dari satu dus. Sisanya adalah <InlineMath math="80" />, <InlineMath math="2" />, <InlineMath math="92" />, <InlineMath math="80" />, dan <InlineMath math="90" /> gelas. Semuanya kurang dari <InlineMath math="100" />, jadi **tidak ada pos yang bisa dikurangi satu dus**.

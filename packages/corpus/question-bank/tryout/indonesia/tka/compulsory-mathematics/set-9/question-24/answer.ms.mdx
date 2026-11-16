@@ -27,6 +27,20 @@ P(\text{menang})&=\frac25\cdot\frac12=\frac15 \\
 F_j&=60\cdot\frac15=12\text{ pusingan}
 \end{aligned}" />
 
+Pokok di bawah merumuskan kedua-dua peringkat. **Hanya satu jalan yang berakhir dengan menang**, dan kebarangkaliannya ialah hasil darab kedua-dua cabang.
+
+<Mermaid
+  title={<>Pokok kebarangkalian satu pusingan</>}
+  description={<>Daripada <InlineMath math="10" /> pasangan kad, <InlineMath math="4" /> berjumlah genap, jadi cabang genap berkebarangkalian <InlineMath math="\tfrac25" />. Selepas itu, sekurang-kurangnya <InlineMath math="2" /> angka dalam <InlineMath math="3" /> lambungan berkebarangkalian <InlineMath math="\tfrac12" />. Kebarangkalian menang ialah <InlineMath math="\tfrac15" />, dan kekerapan jangkaannya <InlineMath math="60\cdot\tfrac15=12" /> pusingan.</>}
+  chart={`flowchart TD
+  S["Ambil 2 daripada 5 kad"] -->|"4/10"| E["Jumlah genap"]
+  S -->|"6/10"| O["Jumlah ganjil: kalah"]
+  E -->|"1/2"| W["Sekurang-kurangnya 2 angka: menang"]
+  E -->|"1/2"| L["Kurang daripada 2 angka: kalah"]
+  W --> P["P(menang) = 2/5 · 1/2 = 1/5"]
+  P --> F["60 · 1/5 = 12"]`}
+/>
+
 # Mengapa jawapan lain salah
 
 - <InlineMath math="15" /> pusingan menganggap kebarangkalian jumlah genap ialah <InlineMath math="\frac12" />: <InlineMath math="60\cdot\frac12\cdot\frac12" />.

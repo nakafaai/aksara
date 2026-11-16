@@ -24,6 +24,20 @@ Only full <InlineMath math="250\text{ g}" /> bags are sold, so divide each weigh
 
 That's <InlineMath math="58" /> light bags and <InlineMath math="43" /> dark bags, <InlineMath math="101" /> bags in all. **The light and dark leftovers can't be combined** into one bag, because a bag holds only one roast level.
 
+The chart below compares the coffee left after the taste test with the coffee that actually goes into full bags. **The small gap above each pair of bars is the leftover that isn't sold**, <InlineMath math="220\text{ g}" /> of light and <InlineMath math="100\text{ g}" /> of dark.
+
+<Chart
+  title={<>Roasted coffee after the taste test and coffee in full bags</>}
+  description={<>Light coffee after the taste test weighs <InlineMath math="14{,}720\text{ g}" />, and <InlineMath math="14{,}500\text{ g}" /> of it fills <InlineMath math="58" /> bags. Dark coffee after the taste test weighs <InlineMath math="10{,}850\text{ g}" />, and <InlineMath math="10{,}750\text{ g}" /> of it fills <InlineMath math="43" /> bags.</>}
+  bars="apart"
+  categories={["Light", "Dark"]}
+  series={[
+    { label: "Coffee after the taste test (g)", mark: "bar", values: [0.84 * 18000 - 2 * 200, 0.75 * 15000 - 2 * 200] },
+    { label: "Coffee in full bags (g)", mark: "bar", values: [58 * 250, 43 * 250] },
+  ]}
+  valueLabel="Coffee weight (g)"
+/>
+
 # Revenue minus every cost
 
 Revenue comes from the bags sold. There are three costs: <InlineMath math="33\text{ kg}" /> of green beans, gas for <InlineMath math="4" /> batches, and <InlineMath math="101" /> bags.

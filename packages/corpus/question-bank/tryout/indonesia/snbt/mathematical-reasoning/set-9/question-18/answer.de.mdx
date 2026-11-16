@@ -20,6 +20,20 @@ P läuft am Montag <InlineMath math="14" /> Stunden und am Dienstag <InlineMath 
 
 Die Wartung von P beginnt am Montag um 12.00 und 18.00 Uhr, am Dienstag aber um 08.00, 14.00 und 20.00 Uhr. **Die übernommenen Stunden verschieben die Wartungszeiten** jeden Tag, sie sind also nicht gleich. Die zweite Aussage ist falsch.
 
+Das Diagramm vergleicht die guten Teile beider Maschinen an jedem Tag. **Der Balken von P ist immer höher als der von Q**, sogar am Dienstag und Mittwoch, wenn P nur <InlineMath math="13" /> Stunden läuft.
+
+<Chart
+  title={<>Gute Teile jeder Maschine pro Tag, Montag bis Mittwoch</>}
+  description={<>Maschine P liefert am Montag, Dienstag und Mittwoch <InlineMath math="1{.}596" />, <InlineMath math="1{.}482" /> und <InlineMath math="1{.}482" /> gute Teile. Maschine Q liefert jeden Tag <InlineMath math="1{.}134" /> gute Teile.</>}
+  categories={["Montag", "Dienstag", "Mittwoch"]}
+  bars="apart"
+  series={[
+    { label: "Maschine P", mark: "bar", values: [14 * 114, 13 * 114, 13 * 114] },
+    { label: "Maschine Q", mark: "bar", values: [14 * 81, 14 * 81, 14 * 81] },
+  ]}
+  valueLabel="Gute Teile"
+/>
+
 # Die dritte Aussage über die Tagesleistung
 
 Am wenigsten liefert P an einem Tag mit <InlineMath math="13" /> Betriebsstunden, während Q immer <InlineMath math="14" /> Stunden läuft.

@@ -8,6 +8,49 @@ The order of the vertices isn't fixed, so **any of <InlineMath math="A" />, <Inl
 | <InlineMath math="C" /> | <InlineMath math="A+B-C" /> | <InlineMath math="(-5,1)" /> |
 | <InlineMath math="A" /> | <InlineMath math="B+C-A" /> | <InlineMath math="(11,-1)" /> |
 
+Draw all three parallelograms at once. **The parallelogram with <InlineMath math="D(7,7)" /> has a right angle at <InlineMath math="B" />**, while the other two clearly use different pairs of sides, so their perimeters differ.
+
+<MathVisual
+  title={<>Three possible parallelograms from <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /></>}
+  description={<>The points <InlineMath math="A(1,4)" />, <InlineMath math="B(3,0)" />, and <InlineMath math="C(9,3)" /> are shared by all three parallelograms. The fourth vertex is <InlineMath math="(7,7)" />, <InlineMath math="(-5,1)" />, or <InlineMath math="(11,-1)" />. The parallelogram <InlineMath math="ABCD" /> with <InlineMath math="D(7,7)" /> is a rectangle, and the other two are slanted parallelograms that use <InlineMath math="AC" /> as a side instead of a diagonal.</>}
+  labels={{
+    a: <InlineMath math="A(1,4)" />,
+    b: <InlineMath math="B(3,0)" />,
+    c: <InlineMath math="C(9,3)" />,
+    "d-one": <InlineMath math="(7,7)" />,
+    "d-two": <InlineMath math="(-5,1)" />,
+    "d-three": <InlineMath math="(11,-1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 12 },
+      y: { min: -2, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", appearance: "answer", vertices: [{ x: 1, y: 4 }, { x: 3, y: 0 }, { x: 9, y: 3 }, { x: 7, y: 7 }] },
+      { id: "left", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 4 }, { x: -5, y: 1 }, { x: 3, y: 0 }, { x: 9, y: 3 }] },
+      { id: "right", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 4 }, { x: 3, y: 0 }, { x: 11, y: -1 }, { x: 9, y: 3 }] },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 4 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 9, y: 3 } },
+      { id: "d-one", kind: "point", appearance: "answer", at: { x: 7, y: 7 } },
+      { id: "d-two", kind: "point", appearance: "secondary", at: { x: -5, y: 1 } },
+      { id: "d-three", kind: "point", appearance: "secondary", at: { x: 11, y: -1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: 4 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 9, y: 3 }, placement: "right" },
+      { key: "d-one", objectId: "d-one", at: { x: 7, y: 7 }, placement: "above" },
+      { key: "d-two", objectId: "d-two", at: { x: -5, y: 1 }, placement: "left" },
+      { key: "d-three", objectId: "d-three", at: { x: 11, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Judging each statement
 
 First statement: the three points <InlineMath math="D" /> are different, so there are exactly three possibilities. This statement is **True**.
