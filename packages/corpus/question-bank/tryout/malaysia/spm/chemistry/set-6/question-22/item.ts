@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Cathode $$4.8\\text{ dm}^3$$ of hydrogen, anode $$4.8\\text{ dm}^3$$ of oxygen, the acid becomes slightly more concentrated",
+            "Cathode $$4.8\\text{ dm}^3$$ of hydrogen, anode $$4.8\\text{ dm}^3$$ of oxygen, $$0.509\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "Cathode $$4.8\\text{ dm}^3$$ of hydrogen, anode $$2.4\\text{ dm}^3$$ of oxygen, the acid becomes slightly more concentrated",
+            "Cathode $$4.8\\text{ dm}^3$$ of hydrogen, anode $$2.4\\text{ dm}^3$$ of oxygen, $$0.509\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Cathode $$4.8\\text{ dm}^3$$ of hydrogen, anode $$2.4\\text{ dm}^3$$ of oxygen, the acid's concentration stays the same",
+            "Cathode $$4.8\\text{ dm}^3$$ of hydrogen, anode $$2.4\\text{ dm}^3$$ of oxygen, $$0.500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Cathode $$2.4\\text{ dm}^3$$ of hydrogen, anode $$4.8\\text{ dm}^3$$ of oxygen, the acid becomes slightly more concentrated",
+            "Cathode $$2.4\\text{ dm}^3$$ of hydrogen, anode $$4.8\\text{ dm}^3$$ of oxygen, $$0.509\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Katod $$4.8\\text{ dm}^3$$ hidrogen, anod $$4.8\\text{ dm}^3$$ oksigen, asid menjadi sedikit lebih pekat",
+            "Katod $$4.8\\text{ dm}^3$$ hidrogen, anod $$4.8\\text{ dm}^3$$ oksigen, $$0.509\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "Katod $$4.8\\text{ dm}^3$$ hidrogen, anod $$2.4\\text{ dm}^3$$ oksigen, asid menjadi sedikit lebih pekat",
+            "Katod $$4.8\\text{ dm}^3$$ hidrogen, anod $$2.4\\text{ dm}^3$$ oksigen, $$0.509\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Katod $$4.8\\text{ dm}^3$$ hidrogen, anod $$2.4\\text{ dm}^3$$ oksigen, kepekatan asid kekal sama",
+            "Katod $$4.8\\text{ dm}^3$$ hidrogen, anod $$2.4\\text{ dm}^3$$ oksigen, $$0.500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Katod $$2.4\\text{ dm}^3$$ hidrogen, anod $$4.8\\text{ dm}^3$$ oksigen, asid menjadi sedikit lebih pekat",
+            "Katod $$2.4\\text{ dm}^3$$ hidrogen, anod $$4.8\\text{ dm}^3$$ oksigen, $$0.509\\text{ mol dm}^{-3}$$",
         },
       ],
     },
