@@ -1,24 +1,27 @@
-# Moles of molecules, then atoms per molecule, then particles
+# Moles of molecules, then atoms per molecule
 
-Three steps, each with its own trap: **mass to moles of molecules, molecules to hydrogen atoms, moles to particles**.
+Find the moles of molecules, then multiply by the **atoms in one molecule**:
+
+- Nitrogen, <InlineMath math="\text{N}_2" />: <InlineMath math="2.8 \div 28 = 0.10" /> mol, <InlineMath math="\times 2 = 0.20" /> mol of atoms.
+- Ammonia, <InlineMath math="\text{NH}_3" />: <InlineMath math="3.4 \div 17 = 0.20" /> mol, <InlineMath math="\times 4 = 0.80" /> mol of atoms.
+- Ethanol, <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />: <InlineMath math="4.6 \div 46 = 0.10" /> mol, <InlineMath math="\times 9 = 0.90" /> mol of atoms.
+- Methane, <InlineMath math="\text{CH}_4" />: <InlineMath math="1.6 \div 16 = 0.10" /> mol, <InlineMath math="\times 5 = 0.50" /> mol of atoms.
 
 <Chart
-  title={<>Moles in <InlineMath math="4.5\text{ g}" /> of Water</>}
+  title={<>Moles of Atoms in Each Sample</>}
   bars="apart"
-  categories={["Water molecules", "Hydrogen atoms", "All atoms"]}
+  categories={["Nitrogen", "Ammonia", "Ethanol", "Methane"]}
   series={[
-    { label: "Amount (mol)", mark: "bar", values: [0.25, 0.5, 0.75] },
+    { label: "Moles of atoms (mol)", mark: "bar", values: [0.2, 0.8, 0.9, 0.5] },
   ]}
-  valueLabel="Amount (mol)"
-  description={<><InlineMath math="4.5\text{ g}" /> of water is <InlineMath math="0.25\text{ mol}" /> of molecules, <InlineMath math="0.50\text{ mol}" /> of hydrogen atoms and <InlineMath math="0.75\text{ mol}" /> of atoms in all.</>}
+  valueLabel="Moles of atoms (mol)"
+  description={<>Moles of atoms: nitrogen <InlineMath math="0.20" />, ammonia <InlineMath math="0.80" />, ethanol <InlineMath math="0.90" /> and methane <InlineMath math="0.50\text{ mol}" />.</>}
 />
 
-- Moles of water, <InlineMath math="M_r = 18" />: <InlineMath math="\dfrac{4.5}{18} = 0.25\text{ mol}" />.
-- Each molecule has <InlineMath math="2" /> hydrogen atoms: <InlineMath math="0.25 \times 2 = 0.50\text{ mol}" /> of H atoms.
-- Number of H atoms: <InlineMath math="0.50 \times 6.02 \times 10^{23} = 3.01 \times 10^{23}" />.
+Ethanol wins: <InlineMath math="0.90 \times 6.02 \times 10^{23} = 5.42 \times 10^{23}" /> atoms.
 
 # Why the other options are wrong
 
-- <InlineMath math="1.51 \times 10^{23}" /> is the number of **water molecules**, before counting two hydrogen atoms in each.
-- <InlineMath math="6.02 \times 10^{23}" /> takes the sample as one mole.
-- <InlineMath math="4.52 \times 10^{23}" /> counts all three atoms of each molecule, oxygen included.
+- Nitrogen has the fewest atoms: two per molecule and only <InlineMath math="0.10" /> mol of molecules.
+- Ammonia has <InlineMath math="0.80" /> mol of atoms, **close but below** ethanol's <InlineMath math="0.90" />.
+- Methane gives <InlineMath math="0.50" /> mol of atoms. Its count of <InlineMath math="3.01 \times 10^{23}" /> is right, but it is not the largest.

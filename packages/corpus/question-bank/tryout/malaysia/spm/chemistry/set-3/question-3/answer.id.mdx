@@ -1,19 +1,22 @@
-# Muatan ion menunjukkan berapa elektron yang diterimanya
+# Bobot tiap isotop sesuai kelimpahannya
 
-Muatan <InlineMath math="2-" /> berarti atom **menerima dua elektron**. Jumlah proton tidak pernah berubah, jadi cari dari atom netral.
+Massa atom relatif adalah **rata-rata berbobot kelimpahan** dari massa isotop: <InlineMath math="\tfrac{75.8 \times 35 + 24.2 \times 37}{100} = \tfrac{2653 + 895.4}{100} = 35.5" />. Nilainya dekat <InlineMath math="35" /> karena isotop itu sekitar tiga kali lebih banyak.
 
-<Mermaid
-  title={<>Dari Ion kembali ke Atom</>}
-  description={<>Ion punya dua elektron tambahan, jadi atomnya punya dua elektron lebih sedikit: hitung proton dari atom, lalu tambahkan neutron.</>}
-  chart={"flowchart LR\n  I[Ion Y2-: 18 elektron, 20 neutron] -->|lepaskan 2 elektron yang diterima| A[Atom Y: 16 elektron, jadi 16 proton]\n  A --> N[Nomor massa: 16 + 20 = 36]\n  A --> E[Konfigurasi atom: 2.8.6]\n  I --> F[Konfigurasi ion: 2.8.8]"}
+<Chart
+  title={<>Isotop Unsur X</>}
+  bars="apart"
+  categories={["Massa 35", "Massa 37"]}
+  series={[
+    { label: "Kelimpahan (%)", mark: "bar", values: [75.8, 24.2] },
+  ]}
+  valueLabel="Kelimpahan (%)"
+  description={<>Isotop bermassa <InlineMath math="35" />: <InlineMath math="75.8" />%. Isotop bermassa <InlineMath math="37" />: <InlineMath math="24.2" />%.</>}
 />
 
-- Elektron di atom: <InlineMath math="18 - 2 = 16" />, jadi Y punya <InlineMath math="16" /> proton.
-- Nomor massa: <InlineMath math="16 + 20 = 36" />.
-- Atom Y dengan <InlineMath math="16" /> elektron: <InlineMath math="2.8.6" />. Ionnya, dengan <InlineMath math="18" />, adalah <InlineMath math="2.8.8" />.
+Ion <InlineMath math="^{37}\text{X}^-" /> punya nomor massa <InlineMath math="37" /> dan nomor atom <InlineMath math="17" />, jadi neutronnya <InlineMath math="37 - 17 = 20" />. Muatan <InlineMath math="1-" /> berarti **satu elektron tambahan**: <InlineMath math="17 + 1 = 18" /> elektron.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="38" /> menganggap <InlineMath math="18" /> elektron ion sebagai jumlah proton.
-- <InlineMath math="36" /> dengan <InlineMath math="2.8.8" /> benar untuk nomor massa tapi **memberi konfigurasi ion, bukan atom**.
-- <InlineMath math="34" /> dan <InlineMath math="2.8.4" /> mengurangi dua elektron itu dua kali.
+- <InlineMath math="36.0" /> adalah rata-rata biasa <InlineMath math="35" /> dan <InlineMath math="37" /> yang mengabaikan kelimpahan. Ionnya juga punya <InlineMath math="20" /> neutron, bukan <InlineMath math="18" />.
+- Ion negatif punya elektron lebih banyak dari proton, jadi <InlineMath math="^{37}\text{X}^-" /> punya <InlineMath math="18" /> elektron, bukan <InlineMath math="17" />.
+- <InlineMath math="36.5" /> memberi bobot terlalu besar pada isotop yang lebih berat, dan <InlineMath math="17" /> elektron menggambarkan atom netral.

@@ -1,32 +1,25 @@
-# Präzision ist die Nähe der Messwerte zueinander, Richtigkeit die Nähe zum wahren Wert
+# Präzision ist die Streuung, Richtigkeit der Abstand zum wahren Wert
 
-Beurteile zwei Dinge getrennt: **die Streuung der drei Messwerte jeder Person** (Präzision) und **wie weit ihr Mittelwert von <InlineMath math="0{,}100" /> liegt** (Richtigkeit).
+Präzise Messwerte **liegen eng beieinander**. Richtige Messwerte **liegen nahe am wahren Wert**. Prüf beides für alle vier.
 
 <Chart
-  title={<>Drei Messwerte jeder Person</>}
+  title={<>Drei Titrationswerte von vier Lernenden</>}
   bars="apart"
-  categories={["Messung 1", "Messung 2", "Messung 3"]}
+  categories={["Versuch 1", "Versuch 2", "Versuch 3"]}
   series={[
-    { label: "P", mark: "bar", values: [0.099, 0.1, 0.101] },
-    { label: "Q", mark: "bar", values: [0.11, 0.111, 0.11] },
-    { label: "R", mark: "bar", values: [0.09, 0.105, 0.112] },
-    { label: "S", mark: "bar", values: [0.095, 0.1, 0.106] },
+    { label: "P", mark: "bar", values: [24.1, 24.12, 24.11] },
+    { label: "Q", mark: "bar", values: [25.02, 24.98, 25.0] },
+    { label: "R", mark: "bar", values: [23.5, 26.4, 25.1] },
+    { label: "S", mark: "bar", values: [25.9, 25.91, 25.89] },
   ]}
-  valueLabel="Konzentration (mol dm⁻³)"
-  description={<>Messungen <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" />. P: <InlineMath math="0{,}099" />, <InlineMath math="0{,}100" />, <InlineMath math="0{,}101" />. Q: <InlineMath math="0{,}110" />, <InlineMath math="0{,}111" />, <InlineMath math="0{,}110" />. R: <InlineMath math="0{,}090" />, <InlineMath math="0{,}105" />, <InlineMath math="0{,}112" />. S: <InlineMath math="0{,}095" />, <InlineMath math="0{,}100" />, <InlineMath math="0{,}106" />.</>}
+  valueLabel="Volumen Säure (cm³)"
+  description={<>P: <InlineMath math="24.10" />, <InlineMath math="24.12" /> und 24.11. Q: <InlineMath math="25.02" />, <InlineMath math="24.98" /> und 25.00. R: <InlineMath math="23.50" />, <InlineMath math="26.40" /> und 25.10. S: <InlineMath math="25.90" />, <InlineMath math="25.91" /> und <InlineMath math="<InlineMath math="25.89" />\text{ cm}^3" />.</>}
 />
 
-| Person | Streuung | Mittelwert | Urteil |
-| --- | --- | --- | --- |
-| P | <InlineMath math="0{,}002" /> | <InlineMath math="0{,}100" /> | präzise und richtig |
-| Q | <InlineMath math="0{,}001" /> | <InlineMath math="0{,}110" /> | präzise, nicht richtig |
-| R | <InlineMath math="0{,}022" /> | <InlineMath math="0{,}102" /> | keins von beiden |
-| S | <InlineMath math="0{,}011" /> | <InlineMath math="0{,}100" /> | im Mittel richtig, nicht präzise |
-
-Die Werte von Q stimmen auf <InlineMath math="0{,}001" /> überein, liegen aber alle etwa <InlineMath math="10\,\%" /> zu hoch, ein Hinweis auf einen systematischen Fehler wie eine falsch angesetzte Maßlösung.
+Die Werte von P streuen nur um <InlineMath math="0.02" /> cm³, liegen aber etwa <InlineMath math="0.89" /> cm³ unter <InlineMath math="25.00" />. Die Werte von S streuen um <InlineMath math="0.02" /> cm³ und liegen etwa <InlineMath math="0.90" /> cm³ darüber. Beide sind präzise, aber nicht richtig. Jeder Wert weicht gleich weit in dieselbe Richtung ab, das Kennzeichen eines **systematischen Fehlers**, etwa einer Bürette, die aus falscher Augenhöhe abgelesen wird, oder einer falsch kalibrierten Pipette.
 
 # Warum die anderen Antworten falsch sind
 
-- P ist **präzise und richtig**, also nicht „nicht richtig".
-- R streut stark und sein Mittelwert weicht ab, ist also weder präzise noch richtig.
-- S hat den richtigen Mittelwert, streut aber um <InlineMath math="0{,}011" />, ist also im Mittel richtig, aber nicht präzise.
+- Der Mittelwert von R ist <InlineMath math="25.00" />, aber die Werte streuen über <InlineMath math="2.90" /> cm³. Ein zufällig richtiger Mittelwert macht verstreute Werte nicht präzise.
+- Eine große Spannweite ist das Gegenteil von Präzision.
+- Die Werte von Q streuen nur um <InlineMath math="0.04" /> cm³ um den wahren Wert, Q hat also einen kleinen Zufallsfehler, nicht den größten.

@@ -1,32 +1,25 @@
-# Precision is how close readings are to each other, accuracy how close they are to the truth
+# Precision is the spread, accuracy is the distance from the true value
 
-Judge two things separately: **the spread of each student's three readings** (precision) and **how far their mean sits from <InlineMath math="0.100" />** (accuracy).
+Precise readings **agree closely with each other**. Accurate readings sit **close to the true value**. Check each student for both.
 
 <Chart
-  title={<>Three Readings by Each Student</>}
+  title={<>Three Titration Readings from Four Students</>}
   bars="apart"
-  categories={["Reading 1", "Reading 2", "Reading 3"]}
+  categories={["Trial 1", "Trial 2", "Trial 3"]}
   series={[
-    { label: "P", mark: "bar", values: [0.099, 0.1, 0.101] },
-    { label: "Q", mark: "bar", values: [0.11, 0.111, 0.11] },
-    { label: "R", mark: "bar", values: [0.09, 0.105, 0.112] },
-    { label: "S", mark: "bar", values: [0.095, 0.1, 0.106] },
+    { label: "P", mark: "bar", values: [24.1, 24.12, 24.11] },
+    { label: "Q", mark: "bar", values: [25.02, 24.98, 25.0] },
+    { label: "R", mark: "bar", values: [23.5, 26.4, 25.1] },
+    { label: "S", mark: "bar", values: [25.9, 25.91, 25.89] },
   ]}
-  valueLabel="Concentration (mol dm⁻³)"
-  description={<>Readings <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="3" />. P: <InlineMath math="0.099" />, <InlineMath math="0.100" />, <InlineMath math="0.101" />. Q: <InlineMath math="0.110" />, <InlineMath math="0.111" />, <InlineMath math="0.110" />. R: <InlineMath math="0.090" />, <InlineMath math="0.105" />, <InlineMath math="0.112" />. S: <InlineMath math="0.095" />, <InlineMath math="0.100" />, <InlineMath math="0.106" />.</>}
+  valueLabel="Volume of acid (cm³)"
+  description={<>P: <InlineMath math="24.10" />, <InlineMath math="24.12" /> and <InlineMath math="24.11" />. Q: <InlineMath math="25.02" />, <InlineMath math="24.98" /> and <InlineMath math="25.00" />. R: <InlineMath math="23.50" />, <InlineMath math="26.40" /> and <InlineMath math="25.10" />. S: <InlineMath math="25.90" />, <InlineMath math="25.91" /> and <InlineMath math="25.89\text{ cm}^3" />.</>}
 />
 
-| Student | Spread | Mean | Verdict |
-| --- | --- | --- | --- |
-| P | <InlineMath math="0.002" /> | <InlineMath math="0.100" /> | precise and accurate |
-| Q | <InlineMath math="0.001" /> | <InlineMath math="0.110" /> | precise, not accurate |
-| R | <InlineMath math="0.022" /> | <InlineMath math="0.102" /> | neither |
-| S | <InlineMath math="0.011" /> | <InlineMath math="0.100" /> | accurate on average, not precise |
-
-Q's readings agree within <InlineMath math="0.001" />, but all sit about <InlineMath math="10\%" /> too high, which points to a systematic error such as a wrongly made standard solution.
+P's readings span only <InlineMath math="0.02" /> cm³ but sit about <InlineMath math="0.89" /> cm³ below <InlineMath math="25.00" />. S's span <InlineMath math="0.02" /> cm³ and sit about <InlineMath math="0.90" /> cm³ above it. Both are precise and not accurate. Every reading is off by the same amount in the same direction, which is the mark of a **systematic error**, such as a burette read from the wrong eye level or a wrongly calibrated pipette.
 
 # Why the other options are wrong
 
-- P is **both precise and accurate**, so it is not "not accurate".
-- R scatters widely and its mean is off, so it is neither precise nor accurate.
-- S has the right mean, but its readings spread over <InlineMath math="0.011" />, so it is accurate on average yet not precise.
+- R's mean is <InlineMath math="25.00" />, but the readings spread over <InlineMath math="2.90" /> cm³. A mean that lands on the true value by luck does not make scattered readings precise.
+- A wide range is the opposite of precision.
+- Q's readings spread over only <InlineMath math="0.04" /> cm³ around the true value, so Q has a small random error, not the largest.

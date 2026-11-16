@@ -1,19 +1,22 @@
-# An ion's charge tells you how many electrons it gained
+# Weight each isotope by how common it is
 
-A charge of <InlineMath math="2-" /> means the atom **gained two electrons**. Protons never change, so find them from the neutral atom.
+The relative atomic mass is the **abundance-weighted mean** of the isotope masses: <InlineMath math="\tfrac{75.8 \times 35 + 24.2 \times 37}{100} = \tfrac{2653 + 895.4}{100} = 35.5" />. It sits close to <InlineMath math="35" /> because that isotope is about three times as common.
 
-<Mermaid
-  title={<>From the Ion Back to the Atom</>}
-  description={<>The ion has two extra electrons, so the atom has two fewer: count protons from the atom, then add neutrons.</>}
-  chart={"flowchart LR\n  I[Y2- ion: 18 electrons, 20 neutrons] -->|remove the 2 gained electrons| A[Y atom: 16 electrons, so 16 protons]\n  A --> N[Nucleon number: 16 + 20 = 36]\n  A --> E[Atom arrangement: 2.8.6]\n  I --> F[Ion arrangement: 2.8.8]"}
+<Chart
+  title={<>Isotopes of Element X</>}
+  bars="apart"
+  categories={["Mass 35", "Mass 37"]}
+  series={[
+    { label: "Abundance (%)", mark: "bar", values: [75.8, 24.2] },
+  ]}
+  valueLabel="Abundance (%)"
+  description={<>Isotope of mass <InlineMath math="35" />: <InlineMath math="75.8\%" />. Isotope of mass <InlineMath math="37" />: <InlineMath math="24.2\%" />.</>}
 />
 
-- Electrons in the atom: <InlineMath math="18 - 2 = 16" />, so Y has <InlineMath math="16" /> protons.
-- Nucleon number: <InlineMath math="16 + 20 = 36" />.
-- Atom of Y with <InlineMath math="16" /> electrons: <InlineMath math="2.8.6" />. The ion, with <InlineMath math="18" />, is <InlineMath math="2.8.8" />.
+The ion <InlineMath math="^{37}\text{X}^-" /> has nucleon number <InlineMath math="37" /> and proton number <InlineMath math="17" />, so it has <InlineMath math="37 - 17 = 20" /> neutrons. A charge of <InlineMath math="1-" /> means **one extra electron**: <InlineMath math="17 + 1 = 18" /> electrons.
 
 # Why the other options are wrong
 
-- <InlineMath math="38" /> takes the <InlineMath math="18" /> electrons of the ion as the number of protons.
-- <InlineMath math="36" /> with <InlineMath math="2.8.8" /> gets the nucleon number right but **gives the arrangement of the ion, not the atom**.
-- <InlineMath math="34" /> and <InlineMath math="2.8.4" /> subtract the two electrons twice.
+- <InlineMath math="36.0" /> is the plain average of <InlineMath math="35" /> and <InlineMath math="37" />, which ignores the abundances. The ion also has <InlineMath math="20" /> neutrons, not <InlineMath math="18" />.
+- A negative ion has more electrons than protons, so <InlineMath math="^{37}\text{X}^-" /> has <InlineMath math="18" /> electrons, not <InlineMath math="17" />.
+- <InlineMath math="36.5" /> weights the heavier isotope too much, and <InlineMath math="17" /> electrons describes the neutral atom.

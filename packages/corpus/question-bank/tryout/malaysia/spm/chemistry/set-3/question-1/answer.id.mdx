@@ -1,32 +1,25 @@
-# Presisi adalah kedekatan antarpembacaan, akurasi adalah kedekatan dengan nilai sebenarnya
+# Presisi adalah sebaran, akurasi adalah jarak ke nilai sebenarnya
 
-Nilai dua hal secara terpisah: **sebaran tiga pembacaan tiap siswa** (presisi) dan **jarak rata-ratanya dari <InlineMath math="0{,}100" />** (akurasi).
+Pembacaan yang presisi **saling berdekatan**. Pembacaan yang akurat **dekat dengan nilai sebenarnya**. Periksa keduanya untuk tiap murid.
 
 <Chart
-  title={<>Tiga Pembacaan Tiap Siswa</>}
+  title={<>Tiga Pembacaan Titrasi dari Empat Murid</>}
   bars="apart"
-  categories={["Pembacaan 1", "Pembacaan 2", "Pembacaan 3"]}
+  categories={["Percobaan 1", "Percobaan 2", "Percobaan 3"]}
   series={[
-    { label: "P", mark: "bar", values: [0.099, 0.1, 0.101] },
-    { label: "Q", mark: "bar", values: [0.11, 0.111, 0.11] },
-    { label: "R", mark: "bar", values: [0.09, 0.105, 0.112] },
-    { label: "S", mark: "bar", values: [0.095, 0.1, 0.106] },
+    { label: "P", mark: "bar", values: [24.1, 24.12, 24.11] },
+    { label: "Q", mark: "bar", values: [25.02, 24.98, 25.0] },
+    { label: "R", mark: "bar", values: [23.5, 26.4, 25.1] },
+    { label: "S", mark: "bar", values: [25.9, 25.91, 25.89] },
   ]}
-  valueLabel="Konsentrasi (mol dm⁻³)"
-  description={<>Pembacaan <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. P: <InlineMath math="0{,}099" />, <InlineMath math="0{,}100" />, <InlineMath math="0{,}101" />. Q: <InlineMath math="0{,}110" />, <InlineMath math="0{,}111" />, <InlineMath math="0{,}110" />. R: <InlineMath math="0{,}090" />, <InlineMath math="0{,}105" />, <InlineMath math="0{,}112" />. S: <InlineMath math="0{,}095" />, <InlineMath math="0{,}100" />, <InlineMath math="0{,}106" />.</>}
+  valueLabel="Volume asam (cm³)"
+  description={<>P: <InlineMath math="24.10" />, <InlineMath math="24.12" />, dan 24.11. Q: <InlineMath math="25.02" />, <InlineMath math="24.98" />, dan 25.00. R: <InlineMath math="23.50" />, <InlineMath math="26.40" />, dan 25.10. S: <InlineMath math="25.90" />, <InlineMath math="25.91" />, dan <InlineMath math="<InlineMath math="25.89" />\text{ cm}^3" />.</>}
 />
 
-| Siswa | Sebaran | Rata-rata | Penilaian |
-| --- | --- | --- | --- |
-| P | <InlineMath math="0{,}002" /> | <InlineMath math="0{,}100" /> | presisi dan akurat |
-| Q | <InlineMath math="0{,}001" /> | <InlineMath math="0{,}110" /> | presisi, tidak akurat |
-| R | <InlineMath math="0{,}022" /> | <InlineMath math="0{,}102" /> | tidak keduanya |
-| S | <InlineMath math="0{,}011" /> | <InlineMath math="0{,}100" /> | akurat secara rata-rata, tidak presisi |
-
-Pembacaan Q hanya berselisih <InlineMath math="0{,}001" />, tapi semuanya sekitar <InlineMath math="10\%" /> terlalu tinggi, tanda galat sistematis seperti larutan standar yang dibuat keliru.
+Pembacaan P hanya tersebar <InlineMath math="0.02" /> cm³ tapi sekitar <InlineMath math="0.89" /> cm³ di bawah <InlineMath math="25.00" />. Pembacaan S tersebar <InlineMath math="0.02" /> cm³ dan sekitar <InlineMath math="0.90" /> cm³ di atasnya. Keduanya presisi tapi tidak akurat. Tiap pembacaan meleset dengan jumlah yang sama ke arah yang sama, ciri khas **galat sistematis**, misalnya buret dibaca dari tinggi mata yang salah atau pipet yang salah dikalibrasi.
 
 # Kenapa pilihan lain salah
 
-- P **presisi sekaligus akurat**, jadi bukan "tidak akurat".
-- R menyebar lebar dan rata-ratanya meleset, jadi tidak presisi dan tidak akurat.
-- S rata-ratanya tepat, tapi pembacaannya menyebar <InlineMath math="0{,}011" />, jadi akurat secara rata-rata tapi tidak presisi.
+- Rata-rata R adalah <InlineMath math="25.00" />, tapi pembacaannya tersebar <InlineMath math="2.90" /> cm³. Rata-rata yang kebetulan tepat tidak membuat pembacaan yang tersebar menjadi presisi.
+- Rentang yang lebar adalah kebalikan dari presisi.
+- Pembacaan Q hanya tersebar <InlineMath math="0.04" /> cm³ di sekitar nilai sebenarnya, jadi galat acaknya kecil, bukan terbesar.
