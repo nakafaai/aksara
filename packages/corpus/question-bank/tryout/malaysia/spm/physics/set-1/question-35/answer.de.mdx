@@ -2,6 +2,26 @@
 
 Ein NAND-Gatter liefert <InlineMath math="0" /> nur, wenn beide Eingänge <InlineMath math="1" /> sind. In der letzten Zeile ist <InlineMath math="C=0" />, also <InlineMath math="Q=1" />, egal welchen Wert <InlineMath math="X" /> hat, und **diese Zeile verrät nichts über P**. Nimm die vier Zeilen mit <InlineMath math="C=1" />: Dort gilt <InlineMath math="Q=\overline{X}" />, also ist <InlineMath math="X" /> das Gegenteil von <InlineMath math="Q" />.
 
+Probiere im Labor jedes Gatter für P aus und zähle die Zeilen, die es nachbildet. Nur ein Gatter passt zu allen fünf.
+
+<LogicGateLab
+  title={<>Finde das Gatter P</>}
+  description={<>Gatter P speist zusammen mit dem Eingang <InlineMath math="C" /> ein NAND-Gatter, und die fünf Zeilen stammen aus der Tabelle.</>}
+  labels={{
+    gate: "Gatter P",
+    matches: <>Nachgebildete Zeilen</>,
+    viewLabel: "Ein Logiktrainer",
+  }}
+  gate="AND"
+  rows={[
+    { a: 0, b: 0, c: 1, q: 1 },
+    { a: 0, b: 1, c: 1, q: 0 },
+    { a: 1, b: 0, c: 1, q: 0 },
+    { a: 1, b: 1, c: 1, q: 0 },
+    { a: 1, b: 1, c: 0, q: 1 },
+  ]}
+/>
+
 <BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
 
 Lies die Schaltung rückwärts von <InlineMath math="Q" /> aus. Bei <InlineMath math="C=1" /> kehrt das NAND-Gatter nur um, also ist jeder Wert von <InlineMath math="X" /> das Gegenteil von <InlineMath math="Q" />, und die vier Werte von <InlineMath math="X" /> verraten Gatter P.

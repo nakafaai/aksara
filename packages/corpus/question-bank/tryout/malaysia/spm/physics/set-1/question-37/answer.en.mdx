@@ -2,6 +2,27 @@
 
 There are three linked steps. First, the voltage across the base resistor is the supply voltage **minus the <InlineMath math="0.70\text{ V}" /> between base and emitter**, so the base current comes from <InlineMath math="4.0\text{ V}" />. Second, the collector current is <InlineMath math="100" /> times the base current. Third, the <InlineMath math="9.0\text{ V}" /> supply is shared between the collector resistor and the transistor.
 
+Change the base resistor in the lab. The base current sets the collector current, and the voltage left across the transistor is whatever the collector resistor does not take.
+
+<TransistorBiasLab
+  title={<>Currents in the transistor circuit</>}
+  description={<>A <InlineMath math="100\text{ k}\Omega" /> base resistor on <InlineMath math="4.7\text{ V}" /> and a <InlineMath math="1.0\text{ k}\Omega" /> collector resistor on <InlineMath math="9.0\text{ V}" />.</>}
+  labels={{
+    base: <>Base resistor</>,
+    baseCurrent: <>Base current</>,
+    baseName: "Base resistor",
+    collectorCurrent: <>Collector current</>,
+    collectorEmitter: <>Collector-emitter voltage</>,
+    viewLabel: "An npn transistor circuit",
+  }}
+  base={100}
+  baseSupply={4.7}
+  collector={1}
+  collectorSupply={9}
+  gain={100}
+  threshold={0.7}
+/>
+
 Write each value on the circuit as you find it. The base loop gives <InlineMath math="I_B" />, the transistor multiplies it into <InlineMath math="I_C" />, and the collector loop splits the <InlineMath math="9.0\text{ V}" />.
 
 <MathVisual

@@ -2,6 +2,23 @@
 
 The counter also records background radiation, which does not decay. **Only the sample's count rate halves every half-life**, so subtract the background from both readings first.
 
+Play the lab. Take the background away from both readings first, then count how many halvings take the sample's own rate from <InlineMath math="500" /> to <InlineMath math="125" />.
+
+<HalfLifeCounterLab
+  title={<>Counts from the sample alone</>}
+  description={<>Background <InlineMath math="20\text{ counts min}^{-1}" />, then <InlineMath math="520" /> and, <InlineMath math="12\text{ hours}" /> later, <InlineMath math="145\text{ counts min}^{-1}" />.</>}
+  labels={{
+    end: <>Sample rate after <InlineMath math="12\text{ hours}" /></>,
+    halfLife: <>Half-life</>,
+    start: <>Sample rate at the start</>,
+    viewLabel: "A Geiger-Muller counter and a sample",
+  }}
+  background={20}
+  first={520}
+  later={145}
+  time={12}
+/>
+
 <BlockMath math="\begin{aligned}
 \text{start: }&520-20=500\text{ counts per minute}\\
 \text{after }12\text{ hours: }&145-20=125\text{ counts per minute}\\

@@ -2,6 +2,24 @@
 
 Perbandingan lilitan mengikuti perbandingan tegangan, <InlineMath math="\dfrac{N_p}{N_s}=\dfrac{V_p}{V_s}" />. Untuk arus primer, ingat bahwa trafo tidak ideal: **daya masukan lebih besar dari daya keluaran**, karena sebagian energi hilang sebagai panas.
 
+Jalankan lab. Perbandingan lilitan mengikuti tegangan, tetapi daya masukan harus menutupi daya lampu dan kalor yang hilang di inti dan kumparan.
+
+<TransformerLab
+  title={<>Trafo step-down dengan efisiensi <InlineMath math="80\%" /></>}
+  description={<><InlineMath math="240\text{ V}" /> masuk, <InlineMath math="12\text{ V},\ 24\text{ W}" /> keluar ke lampu.</>}
+  labels={{
+    input: <>Daya masukan</>,
+    lost: <>Hilang sebagai kalor</>,
+    primaryCurrent: <>Arus primer</>,
+    ratio: <>Perbandingan lilitan <InlineMath math="N_p:N_s" /></>,
+    viewLabel: "Trafo step-down menyalakan lampu",
+  }}
+  efficiency={0.8}
+  outputPower={24}
+  primaryVoltage={240}
+  secondaryVoltage={12}
+/>
+
 <BlockMath math="\begin{aligned}
 \frac{N_p}{N_s}&=\frac{240}{12}=\frac{20}{1}\\
 P_p&=\frac{P_s}{0{,}80}=\frac{24}{0{,}80}=30\text{ W}\\

@@ -2,6 +2,26 @@
 
 Der Transistor schaltet ein, wenn die Basisspannung einen Schwellenwert erreicht. Der LDR liegt im unteren Zweig des Teilers, also gilt für die Basisspannung
 
+Dimme im Labor das Licht und ändere dann den festen Widerstand. Ein kleineres <InlineMath math="R" /> gibt dem LDR einen größeren Anteil der Spannung, also erreicht die Basis die Schaltspannung, solange es noch heller ist.
+
+<TransistorSwitchLab
+  title={<>Die automatische Lampe</>}
+  description={<>Ein fester Widerstand über einem LDR stellt die Basisspannung eines <InlineMath math="npn" />-Transistors ein.</>}
+  labels={{
+    base: <>Basisspannung</>,
+    ldr: <>Widerstand des LDR</>,
+    light: <>Helligkeit</>,
+    lightName: "Helligkeit",
+    resistor: <>Fester Widerstand <InlineMath math="R" /></>,
+    resistorName: "Fester Widerstand",
+    switching: <>Schaltet ein unter</>,
+    viewLabel: "Eine Schaltung für eine automatische Lampe",
+  }}
+  resistor={10}
+  supply={6}
+  threshold={0.7}
+/>
+
 <BlockMath math="V_B=\frac{R_{\text{LDR}}}{R+R_{\text{LDR}}}\,V" />
 
 Folge der Kette vom Widerstand bis zur Lampe. Jedes Glied ist ein Schritt des Spannungsteilers und des Transistorschalters.

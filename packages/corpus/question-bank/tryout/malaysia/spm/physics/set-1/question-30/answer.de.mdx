@@ -2,6 +2,25 @@
 
 Die Angabe <InlineMath math="240\text{ V},\ 1000\text{ W}" /> gilt nur bei <InlineMath math="240\text{ V}" />. Bei einer anderen Spannung **bleibt der Widerstand des Heizgeräts gleich**, nicht seine Leistung. Bestimme also den Widerstand aus der Angabe und dann die Leistung bei <InlineMath math="120\text{ V}" />.
 
+Ändere im Labor die Netzspannung. Der Widerstand bleibt gleich, also folgt die Leistung dem Quadrat der Spannung, und die halbe Spannung liefert ein Viertel der Leistung.
+
+<HeaterSupplyLab
+  title={<>Der Heizer an halber Spannung</>}
+  description={<>Ein Heizer mit <InlineMath math="240\text{ V},\ 1000\text{ W}" />, <InlineMath math="2{,}0\text{ Stunden}" /> lang an <InlineMath math="120\text{ V}" /> betrieben.</>}
+  labels={{
+    energy: <>Energie in <InlineMath math="2{,}0\text{ Stunden}" /></>,
+    power: <>Leistung</>,
+    resistance: <>Widerstand</>,
+    supply: <>Netzspannung</>,
+    supplyName: "Netzspannung",
+    viewLabel: "Ein Wasserheizer am Netz",
+  }}
+  hours={2}
+  ratedPower={1000}
+  ratedVoltage={240}
+  supplyVoltage={120}
+/>
+
 <BlockMath math="\begin{aligned}
 R&=\frac{V^2}{P}=\frac{240^2}{1000}=57{,}6\,\Omega\\
 P'&=\frac{120^2}{57{,}6}=250\text{ W}=0{,}25\text{ kW}\\

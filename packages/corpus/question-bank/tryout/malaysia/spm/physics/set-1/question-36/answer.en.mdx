@@ -2,6 +2,26 @@
 
 The transistor switches on when the base voltage reaches a threshold. The LDR is in the lower arm of the divider, so the base voltage is
 
+Dim the light in the lab, then change the fixed resistor. A smaller <InlineMath math="R" /> gives the LDR a bigger share of the voltage, so the base reaches the switching voltage while it is still brighter.
+
+<TransistorSwitchLab
+  title={<>The automatic lamp</>}
+  description={<>A fixed resistor above an LDR sets the base voltage of an <InlineMath math="npn" /> transistor.</>}
+  labels={{
+    base: <>Base voltage</>,
+    ldr: <>LDR resistance</>,
+    light: <>Light level</>,
+    lightName: "Light level",
+    resistor: <>Fixed resistor <InlineMath math="R" /></>,
+    resistorName: "Fixed resistor",
+    switching: <>Switches on below</>,
+    viewLabel: "An automatic lamp circuit",
+  }}
+  resistor={10}
+  supply={6}
+  threshold={0.7}
+/>
+
 <BlockMath math="V_B=\frac{R_{\text{LDR}}}{R+R_{\text{LDR}}}\,V" />
 
 Follow the chain from the resistor to the bulb. Each link is one step of the potential divider and the transistor switch.
