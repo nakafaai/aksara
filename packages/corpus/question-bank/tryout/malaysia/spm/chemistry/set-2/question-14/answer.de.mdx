@@ -1,6 +1,6 @@
-# Eine starke Säure protolysiert vollständig, eine schwache nur teilweise
+# Rechne den pH-Wert zurück in eine Wasserstoffionenkonzentration
 
-Der pH-Wert misst die **Konzentration der Wasserstoffionen**, nicht die Konzentration der Säure. Zwei Säuren gleicher Konzentration können sehr unterschiedlich viel <InlineMath math="\text{H}^+" /> liefern.
+Der pH-Wert ist <InlineMath math="-\log[\text{H}^+]" />, also <InlineMath math="[\text{H}^+] = 10^{-\text{pH}}" />. Jedes protolysierte Ethansäuremolekül liefert **ein Wasserstoffion**, also ist die Wasserstoffionenkonzentration die Konzentration der protolysierten Moleküle.
 
 <Chart
   title={<>pH-Wert zweier Säuren bei zwei Konzentrationen</>}
@@ -11,16 +11,16 @@ Der pH-Wert misst die **Konzentration der Wasserstoffionen**, nicht die Konzentr
     { label: "Ethansäure", mark: "bar", values: [2.87, 3.37] },
   ]}
   valueLabel="pH-Wert"
-  description={<>Bei <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> hat Salzsäure den pH-Wert <InlineMath math="1{,}00" /> und Ethansäure <InlineMath math="2{,}87" />. Bei <InlineMath math="0{,}010\text{ mol dm}^{-3}" /> sind es <InlineMath math="2{,}00" /> und <InlineMath math="3{,}37" />.</>}
+  description={<>pH-Werte. Salzsäure: <InlineMath math="1{,}00" /> bei <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> und <InlineMath math="2{,}00" /> bei <InlineMath math="0{,}010\text{ mol dm}^{-3}" />. Ethansäure: <InlineMath math="2{,}87" /> und <InlineMath math="3{,}37" />.</>}
 />
 
-- Chlorwasserstoff protolysiert vollständig: <InlineMath math="\text{HCl} \rightarrow \text{H}^+ + \text{Cl}^-" />. Bei <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> ist <InlineMath math="[\text{H}^+] = 0{,}100\text{ mol dm}^{-3}" />, der pH-Wert also <InlineMath math="1{,}00" />.
-- Ethansäure protolysiert nur teilweise: <InlineMath math="\text{CH}_3\text{COOH} \rightleftharpoons \text{CH}_3\text{COO}^- + \text{H}^+" />. Ihr pH-Wert von <InlineMath math="2{,}87" /> bedeutet <InlineMath math="[\text{H}^+] \approx 0{,}0013\text{ mol dm}^{-3}" />, also etwa <InlineMath math="1{,}3\,\%" /> der Moleküle.
+- <InlineMath math="[\text{H}^+] = 10^{-2{,}87} = 0{,}00135\text{ mol dm}^{-3}" />.
+- Protolysierter Anteil: <InlineMath math="\dfrac{0{,}00135}{0{,}100} \times 100\,\% = 1{,}35\,\%" />.
 
-Der niedrigere pH-Wert der Salzsäure kommt von ihrer höheren Wasserstoffionenkonzentration.
+Salzsäure gleicher Konzentration hat den pH-Wert <InlineMath math="1{,}00" />, also <InlineMath math="[\text{H}^+] = 0{,}100\text{ mol dm}^{-3}" />: Sie ist vollständig protolysiert. Das ist der Unterschied zwischen starker und schwacher Säure.
 
 # Warum die anderen Antworten falsch sind
 
-- **Nur der Wasserstoff der <InlineMath math="\text{COOH}" />-Gruppe wird abgegeben**, die Zahl der Wasserstoffatome im Molekül sagt also nichts über die Stärke.
-- Das Diagramm vergleicht beide Säuren bei gleicher Konzentration, die Konzentration erklärt den Unterschied also nicht.
-- Ethansäure ist kovalent, gibt in Wasser aber doch einige Wasserstoffionen ab: Sonst läge ihr pH-Wert bei <InlineMath math="7" />.
+- <InlineMath math="2{,}87\,\%" /> **liest den pH-Wert selbst als Prozentwert**.
+- <InlineMath math="13{,}5\,\%" /> teilt durch <InlineMath math="0{,}0100" /> statt durch <InlineMath math="0{,}100" /> und nimmt die Konzentration der verdünnteren Lösung.
+- <InlineMath math="0{,}135\,\%" /> verliert einen Faktor <InlineMath math="10" /> und teilt durch <InlineMath math="1{,}00" /> statt durch <InlineMath math="0{,}100" />.

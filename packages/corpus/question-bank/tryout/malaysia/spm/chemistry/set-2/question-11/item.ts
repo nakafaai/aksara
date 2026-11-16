@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "The powder produces a larger total volume of gas" },
-        { correct: true, label: "The initial rate is higher with the powder because its total surface area is larger, so effective collisions are more frequent" },
-        { correct: false, label: "The powder lowers the activation energy of the reaction" },
-        { correct: false, label: "The chips produce more gas because their reaction lasts longer" },
+        { correct: false, label: "All three experiments give the same final volume, because the mass of calcium carbonate is the same" },
+        { correct: true, label: "Experiment III gives the least gas, because hydrochloric acid is the limiting reactant there" },
+        { correct: false, label: "Experiment I has the highest initial rate, because the chips have the largest surface area" },
+        { correct: false, label: "Experiment III has the highest initial rate, because it uses powder" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Serbuk menghasilkan jumlah isi padu gas yang lebih besar" },
-        { correct: true, label: "Kadar tindak balas awal lebih tinggi dengan serbuk kerana jumlah luas permukaannya lebih besar, jadi frekuensi perlanggaran berkesan lebih tinggi" },
-        { correct: false, label: "Serbuk merendahkan tenaga pengaktifan tindak balas" },
-        { correct: false, label: "Ketulan menghasilkan lebih banyak gas kerana tindak balasnya berlangsung lebih lama" },
+        { correct: false, label: "Ketiga-tiga eksperimen memberi isi padu akhir yang sama, kerana jisim kalsium karbonat sama" },
+        { correct: true, label: "Eksperimen III memberi gas paling sedikit, kerana asid hidroklorik ialah bahan tindak balas pengehad di situ" },
+        { correct: false, label: "Eksperimen I mempunyai kadar awal paling tinggi, kerana ketulan mempunyai luas permukaan paling besar" },
+        { correct: false, label: "Eksperimen III mempunyai kadar awal paling tinggi, kerana ia menggunakan serbuk" },
       ],
     },
   },
