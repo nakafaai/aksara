@@ -1,0 +1,31 @@
+# Count the halvings for each enzyme in its own time units
+
+Heat denatures enzyme molecules one by one, so the active share **halves at a steady rate**. Count how many halving times fit into the heating time.
+
+<BlockMath math="\text{human}: \frac{10\text{ min}}{2\text{ min}}=5\ \text{halvings},\quad \left(\tfrac{1}{2}\right)^5=\tfrac{1}{32}\approx3\%" />
+
+<BlockMath math="\text{hot spring}: \frac{6\text{ h}}{3\text{ h}}=2\ \text{halvings},\quad \left(\tfrac{1}{2}\right)^2=\tfrac{1}{4}=25\%" />
+
+<Chart
+  title={<>Activity Left After Heating at Eighty Degrees</>}
+  categories={["0 min", "2 min", "4 min", "6 min", "8 min", "10 min"]}
+  series={[
+    { label: "Human enzyme", mark: "line", values: [100, 50, 25, 12.5, 6.25, 3.1] },
+    { label: "Hot-spring enzyme", mark: "line", values: [100, 99.2, 98.5, 97.7, 97.0, 96.2] },
+  ]}
+  valueLabel="Activity left (%)"
+  description={<>The human enzyme halves every <InlineMath math="2" /> minutes and keeps about <InlineMath math="3\%" /> after <InlineMath math="10" /> minutes. The hot-spring enzyme still keeps about <InlineMath math="96\%" />.</>}
+/>
+
+- I: five halvings leave <InlineMath math="\tfrac{1}{32}" />, about <InlineMath math="3\%" />. Statement I is correct.
+- II: <InlineMath math="6" /> hours is **two** halving times of <InlineMath math="3" /> hours, so a quarter is left, not half. Statement II is wrong.
+- III: an enzyme's shape is held by bonds within the folded chain. More of these bonds make the active site harder to shake out of shape. Statement III is correct.
+- IV: surviving heat says nothing about speed at <InlineMath math="37\,^\circ\text{C}" />. An enzyme adapted to <InlineMath math="80\,^\circ\text{C}" /> is usually stiff and slow at body temperature. Statement IV is wrong.
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I, II and III only accepts II, **counting <InlineMath math="6" /> hours as one halving instead of two**.
+- III and IV only rejects the **five halvings** in I and accepts IV.
+- I, III and IV only accepts IV, **mixing heat stability with speed at <InlineMath math="37^\circ\text{C}" />**.

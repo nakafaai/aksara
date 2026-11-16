@@ -1,0 +1,26 @@
+# Work out the daughter's genotype first, then her children
+
+A father passes his only X chromosome to **every daughter**. So every daughter of the affected man carries <InlineMath math="X^R" />, and since her mother is unaffected, she is <InlineMath math="X^RX^r" />.
+
+<BlockMath math="X^RY\times X^rX^r\ \Rightarrow\ \text{every daughter }X^RX^r" />
+
+<BlockMath math="X^RX^r\times X^rY:\quad X^RX^r,\ X^rX^r,\ X^RY,\ X^rY\ \Rightarrow\ P(X^RY)=\tfrac{1}{4}" />
+
+<Chart
+  title={<>Chance of Each Kind of First Child for the Daughter</>}
+  bars="apart"
+  categories={["Affected son", "Unaffected son", "Affected daughter", "Unaffected daughter"]}
+  series={[
+    { label: "Chance", mark: "bar", values: [25, 25, 25, 25] },
+  ]}
+  valueLabel="Chance (%)"
+  description={<>Each of the four kinds of child has a chance of <InlineMath math="25\%" />, so an affected son has a chance of one in four.</>}
+/>
+
+The daughter passes <InlineMath math="X^R" /> to half her children, and half her children are sons, so an affected son has a chance of <InlineMath math="\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac{1}{2}" /> is the chance that **a son** is affected, not the chance that the first child is an affected son.
+- <InlineMath math="0" /> assumes sons cannot be affected, mixing up the **father-to-daughter** rule with the mother, who passes an X to sons too.
+- <InlineMath math="\tfrac{1}{8}" /> halves again, as if the daughter were **affected only half the time**, although every daughter of the man carries <InlineMath math="X^R" />.

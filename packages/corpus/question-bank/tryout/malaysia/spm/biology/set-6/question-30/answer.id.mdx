@@ -1,0 +1,29 @@
+# Hitung penyusutan separuh cahaya, lalu hitung berapa kali sampai <InlineMath math="1\%" />
+
+Tiap lapisan air menyerap **bagian yang sama** dari cahaya yang mencapainya, jadi cahaya menyusut separuh untuk tiap langkah kedalaman yang sama. Mencapai <InlineMath math="1\%" /> berarti membagi cahaya dengan <InlineMath math="100" />, yang butuh sekitar <InlineMath math="6{,}64" /> kali penyusutan separuh.
+
+<BlockMath math="6\text{ m}=3\text{ kali}: \left(\tfrac{1}{2}\right)^3=12{,}5\%,\qquad 6{,}64\times2\approx13\text{ m},\qquad 6{,}64\times1\approx6{,}6\text{ m}" />
+
+<Chart
+  title={<>Cahaya yang Mencapai Tiap Kedalaman</>}
+  categories={["0 m", "2 m", "4 m", "6 m", "8 m", "10 m", "12 m", "14 m"]}
+  series={[
+    { label: "Air jernih", mark: "line", values: [100, 50, 25, 12.5, 6.25, 3.1, 1.6, 0.8] },
+    { label: "Air keruh", mark: "line", values: [100, 25, 6.25, 1.6, 0.4, 0.1, null, null] },
+  ]}
+  valueLabel="Cahaya (% permukaan)"
+  description={<>Di air jernih cahaya menyusut separuh tiap <InlineMath math="2" /> m dan turun di bawah <InlineMath math="1\%" /> tepat setelah <InlineMath math="13" /> m. Di air keruh cahaya menyusut separuh tiap meter dan melewati <InlineMath math="1\%" /> di sekitar <InlineMath math="6{,}6" /> m.</>}
+/>
+
+- I: <InlineMath math="6\text{ m}" /> adalah tiga kali penyusutan per <InlineMath math="2\text{ m}" />, menyisakan <InlineMath math="\tfrac{1}{8}" />, yaitu <InlineMath math="12{,}5\%" />. Pernyataan I benar.
+- II: membagi dengan <InlineMath math="100" /> butuh <InlineMath math="6{,}64" /> kali penyusutan separuh, dan dengan <InlineMath math="2\text{ m}" /> tiap kali itu sekitar <InlineMath math="13\text{ m}" />. Pernyataan II benar.
+- III: jika tiap penyusutan separuh hanya butuh <InlineMath math="1\text{ m}" />, <InlineMath math="6{,}64" /> kali yang sama tercapai di sekitar <InlineMath math="6{,}6\text{ m}" />, separuh kedalamannya. Pernyataan III benar.
+- IV: <InlineMath math="2\text{ m}" /> pertama membuang <InlineMath math="50" /> poin persen cahaya, tetapi langkah dari <InlineMath math="12" /> ke <InlineMath math="14\text{ m}" /> membuang kurang dari <InlineMath math="1" />. Cahaya turun dengan **bagian** yang sama, bukan jumlah yang sama. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak III, **padahal memperpendek langkah separuh memperpendek kedalaman separuh**.
+- II dan IV saja menolak I dan **membuat cahaya turun dengan jumlah yang sama**.
+- I, III, dan IV saja menerima IV dan menolak II, **melewatkan <InlineMath math="6{,}64" /> kali penyusutan sampai <InlineMath math="1\%" />**.

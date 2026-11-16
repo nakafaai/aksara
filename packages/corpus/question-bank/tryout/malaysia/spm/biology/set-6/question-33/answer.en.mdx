@@ -1,0 +1,25 @@
+# Follow the heterozygotes, since only they produce new homozygotes
+
+A homozygote that selfs gives only its own kind. An <InlineMath math="Aa" /> plant that selfs gives <InlineMath math="\tfrac{1}{4}AA" />, <InlineMath math="\tfrac{1}{2}Aa" /> and <InlineMath math="\tfrac{1}{4}aa" />, so **each generation halves the heterozygotes** and shares the lost half equally between the two homozygotes.
+
+<BlockMath math="Aa\text{ after four generations}: \left(\tfrac{1}{2}\right)^4=\tfrac{1}{16},\qquad aa: \frac{1-\tfrac{1}{16}}{2}=\frac{15}{32}" />
+
+<Chart
+  title={<>Heterozygous Plants in Each Generation of Selfing</>}
+  bars="apart"
+  categories={["Start", "First", "Second", "Third", "Fourth"]}
+  series={[
+    { label: "Heterozygous", mark: "bar", values: [100, 50, 25, 12.5, 6.25] },
+    { label: "Recessive phenotype", mark: "bar", values: [0, 25, 37.5, 43.75, 46.9] },
+  ]}
+  valueLabel="Share of plants (%)"
+  description={<>Heterozygotes halve each generation, from <InlineMath math="100\%" /> to <InlineMath math="6.25\%" />. Plants with the recessive phenotype rise from <InlineMath math="0" /> to about <InlineMath math="47\%" />.</>}
+/>
+
+After four generations only <InlineMath math="\tfrac{1}{16}" /> of the plants are heterozygous, and <InlineMath math="\tfrac{15}{32}" />, almost half, are <InlineMath math="aa" /> and show the recessive phenotype. This is why selfing quickly produces true-breeding lines.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac{1}{16}" /> and <InlineMath math="\tfrac{1}{4}" /> keeps the recessive share at **the first generation's <InlineMath math="\frac{1}{4}" />**, although every generation adds more <InlineMath math="aa" />.
+- <InlineMath math="\tfrac{1}{8}" /> and <InlineMath math="\tfrac{7}{16}" /> is the result after **three generations**, not four.
+- <InlineMath math="\tfrac{1}{2}" /> and <InlineMath math="\tfrac{1}{4}" /> treats every generation as a fresh <InlineMath math="Aa\times Aa" /> **cross**, ignoring that the homozygotes breed true.

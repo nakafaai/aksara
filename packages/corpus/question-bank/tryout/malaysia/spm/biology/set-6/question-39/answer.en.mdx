@@ -1,0 +1,31 @@
+# Compare each zone with its own threshold
+
+Each antibiotic has its own threshold, because antibiotics **spread through agar at different speeds**. A zone means something only when it is set against the value for that antibiotic.
+
+<BlockMath math="\text{penicillin}: 6<20,\qquad \text{tetracycline}: 24\geq19,\qquad \text{streptomycin}: 15\geq15" />
+
+<BlockMath math="\text{area}\propto\text{diameter}^2:\quad \left(\frac{24}{12}\right)^2=4,\qquad \frac{24^2-6^2}{6^2}=\frac{540}{36}=15" />
+
+<Chart
+  title={<>Clear Zone Around Each Antibiotic Disc</>}
+  bars="apart"
+  categories={["Penicillin", "Tetracycline", "Streptomycin"]}
+  series={[
+    { label: "Zone diameter", mark: "bar", values: [6, 24, 15] },
+  ]}
+  valueLabel="Zone diameter (mm)"
+  description={<>Penicillin gives no clear zone beyond the <InlineMath math="6" /> mm disc. Tetracycline clears <InlineMath math="24" /> mm and streptomycin <InlineMath math="15" /> mm.</>}
+/>
+
+- I: area grows with the square of the diameter, so the whole <InlineMath math="24\text{ mm}" /> zone has <InlineMath math="16" /> times the area of the <InlineMath math="6\text{ mm}" /> disc. Taking away the disc leaves <InlineMath math="15" /> times its area of clear agar. Penicillin, by contrast, clears nothing beyond its disc, so the bacteria resist it. Statement I is correct.
+- II: tetracycline clears <InlineMath math="24\text{ mm}" />, comfortably above its threshold of <InlineMath math="19" />, while streptomycin only just reaches its threshold. Statement II is correct.
+- III: area depends on the square of the diameter, so doubling the diameter gives **four** times the area. Statement III is wrong.
+- IV: a small molecule may spread far through agar without being more effective in the body. That is why each antibiotic has its own threshold. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I, II and III only accepts III, **scaling area with the diameter instead of its square**.
+- II and IV only rejects I, **missing that the disc's own area must be taken away**, and ranks antibiotics by zone width alone.
+- I and IV only rejects II and **ignores the different thresholds**.

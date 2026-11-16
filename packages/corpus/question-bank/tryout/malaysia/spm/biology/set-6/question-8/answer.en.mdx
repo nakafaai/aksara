@@ -1,0 +1,32 @@
+# Split the air per minute into breaths per minute and size of each breath
+
+Air breathed per minute is the **breathing rate times the volume of each breath**, so dividing one by the other gives the rate. Comparing how much each factor grows shows which drives the rise.
+
+<BlockMath math="\text{rate}: \frac{6}{0.50}=12,\quad \frac{9}{0.75}=12,\quad \frac{15}{1.00}=15,\quad \frac{30}{1.50}=20\ \text{breaths/min}" />
+
+<BlockMath math="\text{from }0\%\text{ to }6\%: \text{rate}\times\frac{20}{12}\approx1.7,\qquad \text{depth}\times\frac{1.50}{0.50}=3,\qquad 1.7\times3=5=\frac{30}{6}" />
+
+<Chart
+  title={<>Breathing at Each Level of Inhaled Carbon Dioxide</>}
+  bars="apart"
+  categories={["None added", "Two percent", "Four percent", "Six percent"]}
+  series={[
+    { label: "Breaths per minute", mark: "bar", values: [12, 12, 15, 20] },
+    { label: "Volume of each breath (tenths of a litre)", mark: "bar", values: [5, 7.5, 10, 15] },
+  ]}
+  valueLabel="Value"
+  description={<>Breathing rate rises from <InlineMath math="12" /> to <InlineMath math="20" /> per minute, while the volume of each breath triples from <InlineMath math="5" /> to <InlineMath math="15" /> tenths of a litre.</>}
+/>
+
+- I: the rate goes from <InlineMath math="12" /> to <InlineMath math="20" /> breaths per minute, about <InlineMath math="1.7" /> times, not double. Statement I is wrong.
+- II: each breath grows from <InlineMath math="0.50" /> to <InlineMath math="1.50\text{ L}" />, three times as deep. Statement II is correct.
+- III: carbon dioxide forms carbonic acid in the blood. Chemoreceptors detect the fall in pH, and the medulla oblongata raises the rate and depth of breathing. Statement III is correct.
+- IV: depth rises <InlineMath math="3" /> times and rate only about <InlineMath math="1.7" /> times, so deeper breaths contribute more. Statement IV is correct.
+
+So statements II, III and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and III only accepts I, often after **dividing <InlineMath math="30\text{ L}" /> by <InlineMath math="6\text{ L}" /> and calling it the rate**, and rejects IV.
+- I and IV only rejects II and III, **although both follow from the table and the carbon dioxide reflex**.
+- II and IV only rejects III, **the chemoreceptor route that explains the response**.

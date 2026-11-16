@@ -1,0 +1,29 @@
+# Count halvings of light, then count how many halvings reach <InlineMath math="1\%" />
+
+Each layer of water absorbs **the same fraction** of the light reaching it, so light halves over every equal step of depth. Reaching <InlineMath math="1\%" /> means dividing the light by <InlineMath math="100" />, which takes about <InlineMath math="6.64" /> halvings.
+
+<BlockMath math="6\text{ m}=3\text{ halvings}: \left(\tfrac{1}{2}\right)^3=12.5\%,\qquad 6.64\times2\approx13\text{ m},\qquad 6.64\times1\approx6.6\text{ m}" />
+
+<Chart
+  title={<>Light Reaching Each Depth</>}
+  categories={["0 m", "2 m", "4 m", "6 m", "8 m", "10 m", "12 m", "14 m"]}
+  series={[
+    { label: "Clear water", mark: "line", values: [100, 50, 25, 12.5, 6.25, 3.1, 1.6, 0.8] },
+    { label: "Muddy water", mark: "line", values: [100, 25, 6.25, 1.6, 0.4, 0.1, null, null] },
+  ]}
+  valueLabel="Light (% of surface)"
+  description={<>In clear water light halves every <InlineMath math="2" /> m and falls below <InlineMath math="1\%" /> just past <InlineMath math="13" /> m. In muddy water it halves every metre and passes <InlineMath math="1\%" /> at about <InlineMath math="6.6" /> m.</>}
+/>
+
+- I: <InlineMath math="6\text{ m}" /> is three halvings of <InlineMath math="2\text{ m}" />, leaving <InlineMath math="\tfrac{1}{8}" />, which is <InlineMath math="12.5\%" />. Statement I is correct.
+- II: dividing by <InlineMath math="100" /> takes <InlineMath math="6.64" /> halvings, and at <InlineMath math="2\text{ m}" /> each that is about <InlineMath math="13\text{ m}" />. Statement II is correct.
+- III: if each halving takes only <InlineMath math="1\text{ m}" />, the same <InlineMath math="6.64" /> halvings are reached at about <InlineMath math="6.6\text{ m}" />, half the depth. Statement III is correct.
+- IV: the first <InlineMath math="2\text{ m}" /> remove <InlineMath math="50" /> percentage points of light, but the step from <InlineMath math="12" /> to <InlineMath math="14\text{ m}" /> removes less than <InlineMath math="1" />. Light falls by the same **fraction**, not the same amount. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, **although halving the step halves the depth**.
+- II and IV only rejects I and **has light fall by equal amounts**.
+- I, III and IV only accepts IV and rejects II, **missing the <InlineMath math="6.64" /> halvings to reach <InlineMath math="1\%" />**.
