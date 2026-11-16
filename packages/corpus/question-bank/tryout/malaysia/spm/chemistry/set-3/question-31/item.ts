@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "1.2 dm³ of ethene, which decolourises bromine water" },
-        { correct: false, label: "1.2 dm³ of ethane, which decolourises bromine water" },
-        { correct: false, label: "2.4 dm³ of ethene, which decolourises bromine water" },
-        { correct: false, label: "0.6 dm³ of ethene, which does not react with bromine water" },
+        { correct: true, label: "0.90 dm³ of ethene, which can decolourise up to 6.0 g of bromine" },
+        { correct: false, label: "1.2 dm³ of ethene, which can decolourise up to 8.0 g of bromine" },
+        { correct: false, label: "0.90 dm³ of ethane, which can decolourise up to 6.0 g of bromine" },
+        { correct: false, label: "0.90 dm³ of ethene, which can decolourise up to 3.0 g of bromine" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "1.2 dm³ etena, yang menyahwarnakan air bromin" },
-        { correct: false, label: "1.2 dm³ etana, yang menyahwarnakan air bromin" },
-        { correct: false, label: "2.4 dm³ etena, yang menyahwarnakan air bromin" },
-        { correct: false, label: "0.6 dm³ etena, yang tidak bertindak balas dengan air bromin" },
+        { correct: true, label: "0.90 dm³ etena, yang boleh menyahwarnakan sehingga 6.0 g bromin" },
+        { correct: false, label: "1.2 dm³ etena, yang boleh menyahwarnakan sehingga 8.0 g bromin" },
+        { correct: false, label: "0.90 dm³ etana, yang boleh menyahwarnakan sehingga 6.0 g bromin" },
+        { correct: false, label: "0.90 dm³ etena, yang boleh menyahwarnakan sehingga 3.0 g bromin" },
       ],
     },
   },
