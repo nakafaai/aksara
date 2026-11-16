@@ -9,6 +9,19 @@ The bacteria **double every <InlineMath math="20" /> minutes**, so work out the 
 120\text{ min} &: 19{,}200
 \end{aligned}" />
 
+The chart below draws the number of bacteria at each multiple of <InlineMath math="20" /> minutes. **The line only passes the limit at minute <InlineMath math="120" />**.
+
+<Chart
+  title={<>Bacteria by minutes since the start of the experiment</>}
+  description={<>The bacteria double every <InlineMath math="20" /> minutes from <InlineMath math="300" />. At minute <InlineMath math="100" />, there are <InlineMath math="9{,}600" />, still below <InlineMath math="10{,}000" />. At minute <InlineMath math="120" />, there are <InlineMath math="19{,}200" />.</>}
+  categories={["0", "20", "40", "60", "80", "100", "120"]}
+  series={[
+    { label: "Bacteria", mark: "line", values: [0, 1, 2, 3, 4, 5, 6].map((k) => 300 * 2 ** k) },
+    { label: "Limit of 10,000", mark: "line", values: [10000, 10000, 10000, 10000, 10000, 10000, 10000] },
+  ]}
+  valueLabel="Bacteria"
+/>
+
 At minute <InlineMath math="100" /> there are <InlineMath math="9{,}600" /> bacteria, still fewer than <InlineMath math="10{,}000" />. At minute <InlineMath math="120" /> there are <InlineMath math="19{,}200" />, already more than <InlineMath math="10{,}000" />. Since the count doubles at the end of each <InlineMath math="20" /> minutes, the answer falls on the next multiple.
 
 So at least <InlineMath math="120" /> minutes are needed.

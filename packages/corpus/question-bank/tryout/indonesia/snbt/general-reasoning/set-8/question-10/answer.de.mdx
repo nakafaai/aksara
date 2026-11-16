@@ -2,6 +2,16 @@ Jedes Glied besteht aus **einer Zahl** und **einem Buchstaben**. Ersetze den Buc
 
 Die Zahlen wachsen um <InlineMath math="3, 5, 7" />, aufeinanderfolgende ungerade Zahlen, als Nächstes also um <InlineMath math="9" />: <InlineMath math="17+9=26" />. Der <InlineMath math="26" />. Buchstabe ist Z. Das Muster lässt sich auch als <InlineMath math="n^2+1" /> sehen: <InlineMath math="1^2+1, 2^2+1, 3^2+1, 4^2+1" />, dann <InlineMath math="5^2+1=26" />.
 
+Das Diagramm zeichnet die Zahl in allen fünf Gliedern. **Sie wächst um <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" /> und dann <InlineMath math="9" />**, und das fünfte Glied erreicht <InlineMath math="26" />, den Buchstaben Z.
+
+<Chart
+  title={<>Zahlen in den Gliedern <InlineMath math="1" /> bis <InlineMath math="5" /></>}
+  description={<>Die Zahlen sind <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="10" />, <InlineMath math="17" /> und dann <InlineMath math="26" />, also <InlineMath math="n^2+1" />. Der Buchstabe jedes Glieds steht an derselben Stelle wie seine Zahl, also hat das fünfte Glied Z.</>}
+  categories={["1", "2", "3", "4", "5"]}
+  series={[{ label: "Zahl, gleich der Stelle des Buchstabens", mark: "line", values: [1, 2, 3, 4, 5].map((n) => n * n + 1) }]}
+  valueLabel="Zahl"
+/>
+
 Die anderen Optionen sind falsch: <InlineMath math="25" /> und <InlineMath math="24" /> verzählen sich bei der Zahl, <InlineMath math="27" /> geht über das Muster hinaus, und Y ist nicht der <InlineMath math="26" />. Buchstabe.
 
 Das nächste Glied ist also 26Z.

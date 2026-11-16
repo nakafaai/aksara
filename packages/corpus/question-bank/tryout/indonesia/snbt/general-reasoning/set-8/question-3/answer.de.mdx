@@ -7,6 +7,18 @@ Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Zähle die Perso
 \text{bevorzugten neu} &= 80-56=24
 \end{aligned}" />
 
+Das Diagramm teilt die <InlineMath math="200" /> Teilnehmenden Schritt für Schritt auf. **Die <InlineMath math="70\%" /> gelten nur für den Zweig, der unterscheiden konnte**.
+
+<Mermaid
+  title={<>Aufteilung der <InlineMath math="200" /> Teilnehmenden am Geschmackstest</>}
+  description={<>Von <InlineMath math="200" /> Teilnehmenden konnten <InlineMath math="120" /> nicht unterscheiden und <InlineMath math="80" /> schon. Von diesen <InlineMath math="80" /> mochten <InlineMath math="56" /> das alte und <InlineMath math="24" /> das neue Getränk lieber.</>}
+  chart={`flowchart LR
+    A["200 Teilnehmende"] -->|"60%"| T["120 konnten nicht unterscheiden"]
+    A -->|"40%"| D["80 konnten unterscheiden"]
+    D -->|"70%"| L["56 mochten das alte lieber"]
+    D -->|"30%"| N["24 mochten das neue lieber"]`}
+/>
+
 **Aussage 1** ist richtig. <InlineMath math="80" /> Teilnehmende konnten unterscheiden.
 
 **Aussage 2** ist falsch. <InlineMath math="56" /> Personen bevorzugten das alte Getränk, nicht mehr als <InlineMath math="60" />.

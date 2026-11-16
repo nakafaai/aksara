@@ -4,6 +4,16 @@ Ubah setiap "<InlineMath math="p" /> hanya jika <InlineMath math="q" />" menjadi
 
 Hari ini pintu dibuka pukul 07.15, jadi pintu **tidak** dibuka pukul 07.00. Dengan modus tollens dua kali, tidak semua penumpang sudah naik, lalu kereta **tidak** berangkat tepat waktu.
 
+Diagram berikut menggambar dua langkah modus tollens itu. **Pintu yang terlambat dibuka menjatuhkan kedua mata rantai di depannya**.
+
+<Mermaid
+  title={<>Langkah mundur dari pintu peron yang dibuka pukul 07.15</>}
+  description={<>Pintu peron tidak dibuka pukul 07.00, jadi tidak semua penumpang sudah naik. Tidak semua penumpang sudah naik, jadi kereta tidak berangkat tepat waktu.</>}
+  chart={`flowchart LR
+    P["Pintu peron dibuka 07.15, bukan 07.00"] -->|"modus tollens"| N["Tidak semua penumpang sudah naik"]
+    N -->|"modus tollens"| K["Kereta tidak berangkat tepat waktu"]`}
+/>
+
 Pilihan lain tidak sah:
 
 - Kereta justru tidak berangkat tepat waktu.

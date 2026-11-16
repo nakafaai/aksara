@@ -1,5 +1,16 @@
 Start from the statement with **some** (*sebagian*), because only it guarantees that certain people exist. Some Monday meeting participants are new employees. By the third statement, new employees do **not** work remotely. So some Monday meeting participants do not work remotely.
 
+The diagram below follows the new employees who attend the meeting. **The arrow from "new employee" to "not remote" holds for every new employee**, including those at the meeting.
+
+<Mermaid
+  title={<>Following the new employees who attend the Monday meeting</>}
+  description={<>Some Monday meeting participants are new employees. No new employee works remotely. So some Monday meeting participants don't work remotely.</>}
+  chart={`flowchart LR
+    R["Monday meeting participants"] -.->|"some"| B["New employees"]
+    B -->|"statement 3"| J["Don't work remotely"]
+    J --> S["Some participants don't work remotely"]`}
+/>
+
 The other options are uncertain or false:
 
 - The new employees at the meeting do not work remotely, so not every participant works remotely.

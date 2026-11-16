@@ -12,6 +12,16 @@ Jedes Glied ist das Doppelte des vorigen, abwechselnd minus und plus <InlineMath
 
 <BlockMath math="2\times53+1=107" />
 
+Das Diagramm zeichnet alle sieben Glieder. **Die Linie verdoppelt sich fast bei jedem Schritt**, weil jedes Glied das Doppelte des vorigen ist, minus oder plus <InlineMath math="1" />.
+
+<Chart
+  title={<>Erstes bis siebtes Glied der Folge</>}
+  description={<>Die Glieder sind <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="7" />, <InlineMath math="13" />, <InlineMath math="27" />, <InlineMath math="53" /> und <InlineMath math="107" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[{ label: "Wert des Glieds", mark: "line", values: [2, 2 * 2 - 1, 2 * 3 + 1, 2 * 7 - 1, 2 * 13 + 1, 2 * 27 - 1, 2 * 53 + 1] }]}
+  valueLabel="Wert"
+/>
+
 Ein anderer Weg führt zum selben Ergebnis: Ab dem dritten Glied ist jedes Glied das vorige plus das Doppelte des vorvorigen, zum Beispiel <InlineMath math="13+2\times7=27" /> und <InlineMath math="27+2\times13=53" />. Das nächste Glied ist <InlineMath math="53+2\times27=107" />.
 
 Die nächste Zahl ist also <InlineMath math="107" />.

@@ -1,5 +1,17 @@
 Wähle für jede Reihenfolge Mungkin (möglich) oder Tidak mungkin (unmöglich). Prüfe jede an allen vier Regeln. Ein Verstoß macht eine Reihenfolge **unmöglich**.
 
+Das Diagramm zählt die Regeln, die jede Reihenfolge verletzt. **Eine Reihenfolge mit Balken null ist möglich**.
+
+<Chart
+  title={<>Verletzte Regeln jeder Liedreihenfolge</>}
+  description={<>Reihenfolge <InlineMath math="1" /> und <InlineMath math="2" /> verletzen keine Regel. Reihenfolge <InlineMath math="3" /> verletzt Regel 1, und Reihenfolge <InlineMath math="4" /> verletzt Regel 3.</>}
+  categories={["Reihenfolge 1", "Reihenfolge 2", "Reihenfolge 3", "Reihenfolge 4"]}
+  bars="apart"
+  series={[{ label: "Verletzte Regeln", mark: "bar", values: [0, 0, 1, 1] }]}
+  valueLabel="Regeln"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Reihenfolge 1**: möglich. Die langsamen Lieder S, T und U stehen auf den Plätzen 2, 4 und 6 und damit nicht nebeneinander, P kommt vor Q, T ist Viertes, und R folgt direkt auf S.
 
 **Reihenfolge 2**: möglich. Die langsamen Lieder stehen auf den Plätzen 1, 3 und 5, P kommt vor Q, T ist Fünftes, und R folgt direkt auf S.

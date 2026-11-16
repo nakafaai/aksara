@@ -5,4 +5,18 @@ Vergleiche den **Benzinverbrauch pro Woche** vor und nach dem Austausch.
 
 <BlockMath math="\text{Ersparnis pro Woche}=12-8{,}4=3{,}6\text{ Liter},\qquad 5\times3{,}6=18\text{ Liter}" />
 
+Das Diagramm vergleicht das Benzin beider Motorräder für <InlineMath math="420" /> km pro Woche. **Die Balken unterscheiden sich um <InlineMath math="3{,}6" /> Liter pro Woche und <InlineMath math="18" /> Liter in fünf Wochen**.
+
+<Chart
+  title={<>Benzin für Motorrad Q und den Ersatz bei <InlineMath math="420" /> km pro Woche</>}
+  description={<>Motorrad Q braucht <InlineMath math="12" /> Liter pro Woche, also <InlineMath math="60" /> Liter in fünf Wochen. Der Ersatz mit <InlineMath math="50" /> km pro Liter braucht <InlineMath math="8{,}4" /> Liter pro Woche, also <InlineMath math="42" /> Liter in fünf Wochen.</>}
+  categories={["Eine Woche", "Fünf Wochen"]}
+  bars="apart"
+  series={[
+    { label: "Motorrad Q", mark: "bar", values: [12, 5 * 12] },
+    { label: "Ersatz", mark: "bar", values: [420 / 50, (5 * 420) / 50] },
+  ]}
+  valueLabel="Liter"
+/>
+
 In fünf Wochen lassen sich also <InlineMath math="18" /> Liter Benzin sparen.

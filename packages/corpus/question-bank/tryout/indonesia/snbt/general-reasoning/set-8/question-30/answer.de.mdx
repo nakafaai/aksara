@@ -9,6 +9,19 @@ Die Bakterien **verdoppeln sich alle <InlineMath math="20" /> Minuten**, berechn
 120\text{ min} &: 19{.}200
 \end{aligned}" />
 
+Das Diagramm zeichnet die Zahl der Bakterien bei jedem Vielfachen von <InlineMath math="20" /> Minuten. **Die Linie überschreitet die Grenze erst in Minute <InlineMath math="120" />**.
+
+<Chart
+  title={<>Bakterien nach Minuten seit Versuchsbeginn</>}
+  description={<>Die Bakterien verdoppeln sich alle <InlineMath math="20" /> Minuten, ausgehend von <InlineMath math="300" />. In Minute <InlineMath math="100" /> sind es <InlineMath math="9{.}600" />, noch unter <InlineMath math="10{.}000" />. In Minute <InlineMath math="120" /> sind es <InlineMath math="19{.}200" />.</>}
+  categories={["0", "20", "40", "60", "80", "100", "120"]}
+  series={[
+    { label: "Bakterien", mark: "line", values: [0, 1, 2, 3, 4, 5, 6].map((k) => 300 * 2 ** k) },
+    { label: "Grenze 10.000", mark: "line", values: [10000, 10000, 10000, 10000, 10000, 10000, 10000] },
+  ]}
+  valueLabel="Bakterien"
+/>
+
 Nach <InlineMath math="100" /> Minuten sind es <InlineMath math="9{.}600" /> Bakterien, noch weniger als <InlineMath math="10{.}000" />. Nach <InlineMath math="120" /> Minuten sind es <InlineMath math="19{.}200" />, schon mehr als <InlineMath math="10{.}000" />. Da sich die Zahl jeweils am Ende von <InlineMath math="20" /> Minuten verdoppelt, liegt die Antwort beim nächsten Vielfachen.
 
 Es sind also mindestens <InlineMath math="120" /> Minuten nötig.

@@ -9,6 +9,19 @@ Bakteri bertambah **dua kali lipat setiap <InlineMath math="20" /> menit**, jadi
 120\text{ menit} &: 19{.}200
 \end{aligned}" />
 
+Grafik berikut menggambar banyak bakteri pada setiap kelipatan <InlineMath math="20" /> menit. **Garisnya baru melewati batas pada menit ke-<InlineMath math="120" />**.
+
+<Chart
+  title={<>Banyak bakteri menurut menit sejak awal percobaan</>}
+  description={<>Bakteri berlipat dua setiap <InlineMath math="20" /> menit dari <InlineMath math="300" />. Pada menit ke-<InlineMath math="100" />, banyaknya <InlineMath math="9{.}600" />, masih di bawah <InlineMath math="10{.}000" />. Pada menit ke-<InlineMath math="120" />, banyaknya <InlineMath math="19{.}200" />.</>}
+  categories={["0", "20", "40", "60", "80", "100", "120"]}
+  series={[
+    { label: "Banyak bakteri", mark: "line", values: [0, 1, 2, 3, 4, 5, 6].map((k) => 300 * 2 ** k) },
+    { label: "Batas 10.000", mark: "line", values: [10000, 10000, 10000, 10000, 10000, 10000, 10000] },
+  ]}
+  valueLabel="Banyak bakteri"
+/>
+
 Pada menit ke-<InlineMath math="100" />, banyak bakteri <InlineMath math="9{.}600" />, masih kurang dari <InlineMath math="10{.}000" />. Pada menit ke-<InlineMath math="120" />, banyaknya <InlineMath math="19{.}200" />, sudah lebih dari <InlineMath math="10{.}000" />. Karena bakteri berlipat pada setiap akhir <InlineMath math="20" /> menit, jawabannya diambil pada kelipatan berikutnya.
 
 Jadi, paling sedikit diperlukan <InlineMath math="120" /> menit.

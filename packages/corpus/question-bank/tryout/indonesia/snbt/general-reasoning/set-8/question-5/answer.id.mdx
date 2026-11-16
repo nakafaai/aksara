@@ -2,6 +2,21 @@ Hitung setiap pernyataan langsung dari tabel.
 
 **Pernyataan 1** bernilai Salah. <InlineMath math="\frac{68+72+80+70+83}{5}=\frac{373}{5}=74{,}6" />, kurang dari <InlineMath math="75" />.
 
+Grafik berikut menaruh nilai setiap kelas di samping rata-rata kelima kelas. **Garis rata-ratanya berada di <InlineMath math="74{,}6" />**, sedikit di bawah <InlineMath math="75" />.
+
+<Chart
+  title={<>Nilai rata-rata ujian setiap kelas XII</>}
+  description={<>Nilai rata-rata XII-1 sampai XII-5 adalah <InlineMath math="68" />, <InlineMath math="72" />, <InlineMath math="80" />, <InlineMath math="70" />, dan <InlineMath math="83" />. Rata-rata kelima angka itu <InlineMath math="74{,}6" />, dan selisih tertinggi dengan terendah <InlineMath math="15" />.</>}
+  categories={["XII-1", "XII-2", "XII-3", "XII-4", "XII-5"]}
+  bars="apart"
+  series={[
+    { label: "Nilai rata-rata kelas", mark: "bar", values: [68, 72, 80, 70, 83] },
+    { label: "Rata-rata kelima kelas", mark: "line", values: Array.from({ length: 5 }, () => (68 + 72 + 80 + 70 + 83) / 5) },
+  ]}
+  valueLabel="Nilai"
+  valueRange={{ min: 60, max: 90 }}
+/>
+
 **Pernyataan 2** bernilai Salah. Kelas dengan jam belajar paling sedikit adalah XII-1, dan persentase bimbingan belajarnya justru paling rendah, yaitu <InlineMath math="20\%" />.
 
 **Pernyataan 3** bernilai Benar. <InlineMath math="83-68=15" />.

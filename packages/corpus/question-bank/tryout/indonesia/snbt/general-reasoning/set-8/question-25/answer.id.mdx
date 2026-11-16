@@ -5,4 +5,18 @@ Bandingkan **pemakaian bensin per minggu** sebelum dan sesudah penggantian.
 
 <BlockMath math="\text{hemat per minggu}=12-8{,}4=3{,}6\text{ liter},\qquad 5\times3{,}6=18\text{ liter}" />
 
+Grafik berikut membandingkan bensin kedua motor untuk jarak <InlineMath math="420" /> km per minggu. **Selisih batangnya <InlineMath math="3{,}6" /> liter per minggu dan <InlineMath math="18" /> liter dalam lima minggu**.
+
+<Chart
+  title={<>Bensin motor Q dan motor pengganti untuk <InlineMath math="420" /> km per minggu</>}
+  description={<>Motor Q memakai <InlineMath math="12" /> liter per minggu, atau <InlineMath math="60" /> liter dalam lima minggu. Motor pengganti dengan <InlineMath math="50" /> km per liter memakai <InlineMath math="8{,}4" /> liter per minggu, atau <InlineMath math="42" /> liter dalam lima minggu.</>}
+  categories={["Satu minggu", "Lima minggu"]}
+  bars="apart"
+  series={[
+    { label: "Motor Q", mark: "bar", values: [12, 5 * 12] },
+    { label: "Motor pengganti", mark: "bar", values: [420 / 50, (5 * 420) / 50] },
+  ]}
+  valueLabel="Liter"
+/>
+
 Jadi, selama lima minggu dapat dihemat <InlineMath math="18" /> liter bensin.

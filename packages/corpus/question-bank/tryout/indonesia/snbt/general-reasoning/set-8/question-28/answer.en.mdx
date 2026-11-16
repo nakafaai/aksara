@@ -2,6 +2,17 @@ Mark each statement Benar (true) or Salah (false). First list all the numbers. T
 
 <BlockMath math="18,\ 27,\ 36,\ 45,\ 54,\ 63,\ 72,\ 81,\ 90" />
 
+The chart below divides each number by <InlineMath math="9" />. **Every bar stops exactly on a whole number**, from <InlineMath math="2" /> to <InlineMath math="10" />, so all nine numbers are divisible by <InlineMath math="9" />.
+
+<Chart
+  title={<>The nine two-digit numbers with digit sum <InlineMath math="9" />, divided by <InlineMath math="9" /></>}
+  description={<>The numbers <InlineMath math="18" />, <InlineMath math="27" />, up to <InlineMath math="90" /> divided by <InlineMath math="9" /> give <InlineMath math="2" />, <InlineMath math="3" />, up to <InlineMath math="10" />. There are nine numbers, and the largest is <InlineMath math="90" />.</>}
+  bars="apart"
+  categories={["18", "27", "36", "45", "54", "63", "72", "81", "90"]}
+  series={[{ label: "Quotient by 9", mark: "bar", values: [18, 27, 36, 45, 54, 63, 72, 81, 90].map((n) => n / 9) }]}
+  valueLabel="Quotient"
+/>
+
 **Statement 1** is true. A number is divisible by <InlineMath math="9" /> when its digit sum is, and each of these numbers has a digit sum of exactly <InlineMath math="9" />.
 
 **Statement 2** is false. There are <InlineMath math="9" /> numbers, not <InlineMath math="10" />. The tens digit cannot be <InlineMath math="0" />.

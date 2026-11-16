@@ -6,6 +6,18 @@ Die Implikation <InlineMath math="a\Rightarrow b" /> ist äquivalent zu <InlineM
 
 Die Aussage ist also äquivalent zu "**Rudi macht Überstunden oder isst zu Hause zu Abend**" (*Rudi lembur atau makan malam di rumah*). Mindestens eines von beiden geschieht.
 
+Das Diagramm prüft einen beliebigen Tag von Rudi. **An jedem Tag tritt sicher Überstunden oder Abendessen zu Hause ein**.
+
+<Mermaid
+  title={<>Was „wenn Rudi keine Überstunden macht, isst er zu Hause zu Abend“ bedeutet</>}
+  description={<>Macht Rudi Überstunden, ist der Teil „Überstunden“ schon erfüllt. Macht er keine, isst er zu Hause zu Abend. An jedem Tag macht Rudi also Überstunden oder isst zu Hause.</>}
+  chart={`flowchart LR
+    L{"Macht Rudi Überstunden?"} -->|"ja"| A["Überstunden"]
+    L -->|"nein"| B["Abendessen zu Hause"]
+    A --> C["Überstunden oder Abendessen zu Hause"]
+    B --> C`}
+/>
+
 Die anderen Optionen sind nicht äquivalent:
 
 - "Keine Überstunden und Abendessen zu Hause" ist eine Konjunktion, die beides verlangt.
