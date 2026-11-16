@@ -1,6 +1,5 @@
-import assert from "node:assert/strict";
-
 import type { SourceRange } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import type { StaticStringCandidate } from "#nakafa-content/mdx/static";
 
 const LINE_BOUNDARY_PATTERN = /(?<boundary>\r\n?|\n)/u;
@@ -22,7 +21,7 @@ function javascriptEscape(authored: string, index: number) {
   }
   if (next === "u" && authored[index + 2] === "{") {
     const closing = authored.indexOf("}", index + 3);
-    assert.ok(closing !== -1);
+    expectShape(closing !== -1);
     const codePoint = Number.parseInt(authored.slice(index + 3, closing), 16);
     return {
       characters: String.fromCodePoint(codePoint).length,
@@ -64,16 +63,16 @@ function tokenSourceOffsets(
   }
   const rawParts = raw.split(LINE_BOUNDARY_PATTERN);
   const authoredParts = authored.split(LINE_BOUNDARY_PATTERN);
-  assert.equal(rawParts.length, authoredParts.length);
+  expectShape(rawParts.length === authoredParts.length);
   const offsets: number[] = [];
   let sourceStart = start;
   for (let index = 0; index < rawParts.length; index += 2) {
     const line = rawParts[index];
     const sourceLine = authoredParts[index];
-    assert.ok(line !== undefined && sourceLine !== undefined);
-    assert.ok(sourceLine.endsWith(line));
+    expectShape(line !== undefined && sourceLine !== undefined);
+    expectShape(sourceLine.endsWith(line));
     const prefix = sourceLine.length - line.length;
-    assert.ok(
+    expectShape(
       MDX_CONTINUATION_PREFIX_PATTERN.test(sourceLine.slice(0, prefix))
     );
     const lineStart = sourceStart;
@@ -95,7 +94,7 @@ function tokenSourceOffsets(
   }
   return javascriptOffsets(raw, 0).map((position) => {
     const offset = offsets[position];
-    assert.ok(offset !== undefined);
+    expectShape(offset !== undefined);
     return offset;
   });
 }
@@ -115,12 +114,12 @@ export function renderedStaticStringRange(
       source.slice(contentStart, contentEnd),
       contentStart
     );
-    assert.equal(positions.length, part.text.length);
+    expectShape(positions.length === part.text.length);
     return positions;
   });
   const [first] = candidate.parts;
   const last = candidate.parts.at(-1);
-  assert.ok(first && last);
+  expectShape(first && last);
   return {
     end: { offset: last.range.end.offset - (last.quoted ? 1 : 0) },
     rendered: { offsets, text: candidate.text },
@@ -137,6 +136,6 @@ export function sourceOffsetForStaticMatch(
   const offset = renderedStaticStringRange(candidate, source).rendered.offsets[
     renderedOffset
   ];
-  assert.ok(offset !== undefined);
+  expectShape(offset !== undefined);
   return offset;
 }

@@ -1,6 +1,6 @@
-import assert from "node:assert/strict";
 import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import { unitLength } from "#nakafa-content/math/unit";
+import { expectShape } from "#nakafa-content/mdx/shape";
 
 /** The prefix, number, and suffix of one plain quantity. */
 const QUANTITY_PATTERN =
@@ -101,7 +101,7 @@ function suffixLatex(suffix: string): string | undefined {
     return;
   }
   const groups = UNIT_PATTERN.exec(suffix)?.groups;
-  assert.ok(groups?.unit);
+  expectShape(groups?.unit);
   const power = groups.power ?? "";
   const exponent = power.startsWith("^") ? power.slice(1) : SUPERSCRIPTS[power];
   return `${unitText(groups.unit)}${exponent ? `^${exponent}` : ""}`;
@@ -124,7 +124,7 @@ function tupleLatex(
   const elements: string[] = [];
   for (const element of inner.split(TUPLE_SEPARATOR_PATTERN)) {
     const groups = SIGNED_PATTERN.exec(element)?.groups;
-    assert.ok(groups?.number !== undefined);
+    expectShape(groups?.number !== undefined);
     const number = numberLatex(groups.number, locale, before);
     if (number === undefined) {
       return;
@@ -154,7 +154,7 @@ export function quantityMath(
   if (!groups?.number) {
     return;
   }
-  assert.ok(groups.suffix !== undefined);
+  expectShape(groups.suffix !== undefined);
   const lower = numberLatex(groups.number, locale, before);
   const upper = groups.upper ? numberLatex(groups.upper, locale, before) : "";
   const suffix = suffixLatex(groups.suffix);

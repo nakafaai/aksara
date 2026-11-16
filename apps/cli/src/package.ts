@@ -1,5 +1,4 @@
-import { fileURLToPath } from "node:url";
-import { Array as Arr, Effect, FileSystem, Schema } from "effect";
+import { Array as Arr, Effect, FileSystem, Path, Schema } from "effect";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
@@ -32,13 +31,13 @@ export class CliPackageError extends Schema.TaggedError<
 export const readPackageVersion = Effect.fn("AksaraCli.readPackageVersion")(
   function* (packageUrl: URL) {
     const fileSystem = yield* FileSystem.FileSystem;
-    const source = yield* fileSystem
-      .readFileString(fileURLToPath(packageUrl))
-      .pipe(
-        Effect.mapError(
-          (cause) => new CliPackageError({ cause, reason: "missing" })
-        )
-      );
+    const path = yield* Path.Path;
+    const source = yield* path.fromFileUrl(packageUrl).pipe(
+      Effect.flatMap((file) => fileSystem.readFileString(file)),
+      Effect.mapError(
+        (cause) => new CliPackageError({ cause, reason: "missing" })
+      )
+    );
     return yield* Schema.decodeEffect(PackageMetadataSchema)(source).pipe(
       Effect.mapError(
         (cause) => new CliPackageError({ cause, reason: "invalid" })

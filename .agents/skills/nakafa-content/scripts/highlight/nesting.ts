@@ -1,8 +1,7 @@
-import assert from "node:assert/strict";
-
 import { isAuthoredLesson } from "#nakafa-content/highlight/section";
 import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
 import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 /** Returns whether one node is an authored emphasis marker. */
@@ -52,7 +51,7 @@ export function findHighlightNestingIssues(
   }
 
   const { children } = tree;
-  assert.ok(children);
+  expectShape(children);
   for (const child of children) {
     visit(child, false);
   }

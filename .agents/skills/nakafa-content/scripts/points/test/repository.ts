@@ -1,6 +1,5 @@
-import { dirname, join } from "node:path";
 import { assert } from "@effect/vitest";
-import { Effect, FileSystem, Stream } from "effect";
+import { Effect, FileSystem, Path, Stream } from "effect";
 import { ChildProcess } from "effect/process";
 
 /** Runs Git in one fixture repository and returns its trimmed output. */
@@ -48,9 +47,10 @@ export const writeFiles = Effect.fn("PointsFixture.writeFiles")(function* (
   files: Readonly<Record<string, string>>
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
   for (const [file, source] of Object.entries(files)) {
-    const target = join(root, file);
-    yield* fileSystem.makeDirectory(dirname(target), { recursive: true });
+    const target = path.join(root, file);
+    yield* fileSystem.makeDirectory(path.dirname(target), { recursive: true });
     yield* fileSystem.writeFileString(target, source);
   }
 });

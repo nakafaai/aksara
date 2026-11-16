@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-import { join, relative, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import { Console, Effect, FileSystem } from "effect";
+import { Console, Effect, FileSystem, Path } from "effect";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import {
   changedFiles,
@@ -54,8 +52,9 @@ const loadDocument = Effect.fn("PointsCheck.loadDocument")(function* (
   file: string
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
   const source = yield* fileSystem
-    .readFileString(join(root, file))
+    .readFileString(path.join(root, file))
     .pipe(Effect.mapError(unreadable(file)));
   const document = yield* parseDocument(file, source);
   return { document, source };
@@ -66,13 +65,14 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
   root: string,
   options: CheckOptions
 ) {
+  const path = yield* Path.Path;
   const files = yield* collectFiles(root, options.targets);
   const base = yield* resolveBase(root, options.base);
   const changed = yield* changedFiles(
     root,
     base,
     options.targets.map(
-      (target) => relative(root, resolve(root, target)) || "."
+      (target) => path.relative(root, path.resolve(root, target)) || "."
     )
   );
   const findings: FileFinding[] = [];
@@ -128,10 +128,7 @@ export const runMain = Effect.fn("PointsCheck.runMain")(function* (
   );
 });
 
-const isMain =
-  process.argv[1] &&
-  resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-if (isMain) {
+if (process.argv[1] === import.meta.filename) {
   runMain(process.argv.slice(2), process.cwd()).pipe(
     Effect.andThen((code) =>
       Effect.sync(() => {

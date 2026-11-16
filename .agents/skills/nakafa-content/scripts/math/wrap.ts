@@ -1,8 +1,8 @@
-import assert from "node:assert/strict";
 import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import { findNumbers, PLAIN_NUMBER_SCAN } from "#nakafa-content/math/number";
 import { quantityMath } from "#nakafa-content/math/quantity";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import {
   type VisibleTextRange,
   visibleTextRanges,
@@ -97,8 +97,8 @@ function rangeEdits(
 ): { edits: Edit[]; left: number[] } {
   const start = range.start?.offset;
   const end = range.end?.offset;
-  assert.ok(start !== undefined);
-  assert.ok(end !== undefined);
+  expectShape(start !== undefined);
+  expectShape(end !== undefined);
   const text = range.rendered?.text ?? source.slice(start, end);
   const edits: Edit[] = [];
   const left: number[] = [];

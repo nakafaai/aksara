@@ -121,16 +121,16 @@ const readInstalledManifest = Effect.fn(
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   const manifestFile = path.join(packageRoot, "package.json");
-  const manifest = yield* fileSystem.readFileString(manifestFile, "utf8").pipe(
-    Effect.flatMap((source) =>
-      Effect.try(() => parseInstalledManifest(source))
-    ),
-    Effect.mapError(
-      verificationFailure(
-        `Unable to read the installed manifest ${manifestFile}.`
+  const manifest = yield* fileSystem
+    .readFileString(manifestFile, "utf8")
+    .pipe(
+      Effect.flatMap(parseInstalledManifest),
+      Effect.mapError(
+        verificationFailure(
+          `Unable to read the installed manifest ${manifestFile}.`
+        )
       )
-    )
-  );
+    );
   yield* requireVerification(
     manifest.name === packageName,
     "The packed package name changed"

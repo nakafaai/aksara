@@ -1,4 +1,3 @@
-import { fileURLToPath } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { assert, layer } from "@effect/vitest";
 import { Effect } from "effect";
@@ -276,7 +275,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             console.error = () => undefined;
             process.argv = [
               process.execPath,
-              fileURLToPath(new URL("./check.ts", import.meta.url)),
+              `${import.meta.dirname}/check.ts`,
               "--unknown",
             ];
             process.exitCode = undefined;

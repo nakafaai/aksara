@@ -1,4 +1,3 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
 import {
   isCodeComponentName,
@@ -19,6 +18,7 @@ import {
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
 import { renderedSourceRange } from "#nakafa-content/mdx/rendered";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import { staticStringCandidates } from "#nakafa-content/mdx/static";
 import {
   addRenderedSemicolonsInRange,
@@ -121,7 +121,7 @@ function collectAttributeSemicolons(
   const options = { allowLatexSpacing: name === "math" };
   const value = asEstreeNode(attribute.value);
   if (value?.type === "Literal") {
-    assert.ok(Predicate.isString(value.value));
+    expectShape(Predicate.isString(value.value));
     addRenderedSemicolonsInRange(
       offsets,
       source,
@@ -245,7 +245,7 @@ export function collectStructuredExpressionSemicolons(
     return;
   }
   if (node.type === "SequenceExpression") {
-    assert.ok(Array.isArray(node.expressions));
+    expectShape(Array.isArray(node.expressions));
     collectStructuredValues(node.expressions.at(-1), offsets, source);
     return;
   }

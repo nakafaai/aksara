@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-import { basename, join, relative, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-import { NodeFileSystem, NodeRuntime } from "@effect/platform-node";
-import { Console, Effect, FileSystem, Schema } from "effect";
+import { NodeRuntime, NodeServices } from "@effect/platform-node";
+import { Console, Effect, FileSystem, Path, Schema } from "effect";
 import { reviewTeachingSections } from "#nakafa-content/body/review";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
@@ -32,8 +30,8 @@ export interface LessonFile {
  * Lessons and articles are named `<locale>.mdx`; question-bank files carry a
  * role prefix such as `answer.id.mdx`. Both shapes end in the locale segment.
  */
-export function localeFromFile(file: string): string {
-  const stem = basename(file, ".mdx");
+export function localeFromFile(path: Path.Path, file: string): string {
+  const stem = path.basename(file, ".mdx");
   const separator = stem.lastIndexOf(".");
   return separator === -1 ? stem : stem.slice(separator + 1);
 }
@@ -59,6 +57,7 @@ export const collectLocaleFiles = Effect.fn(
   "LessonVoiceCheck.collectLocaleFiles"
 )(function* (root: string) {
   const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
   const files: LessonFile[] = [];
 
   /** Traverses one lesson directory without following non-directory entries. */
@@ -75,7 +74,7 @@ export const collectLocaleFiles = Effect.fn(
           })
       );
       for (const entry of entries) {
-        const file = join(directory, entry);
+        const file = path.join(directory, entry);
         if (yield* isSymbolicLink(fileSystem, file)) {
           continue;
         }
@@ -83,7 +82,7 @@ export const collectLocaleFiles = Effect.fn(
           yield* visit(file);
           continue;
         }
-        const locale = localeFromFile(file);
+        const locale = localeFromFile(path, file);
         if (isLessonVoiceLocale(locale)) {
           files.push({ file, locale });
         }
@@ -106,6 +105,7 @@ export const collectLessonFiles = Effect.fn(
 export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
   function* (root: string, pedagogyReview = false) {
     const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
     const files = yield* collectLocaleFiles(root);
     if (files.length === 0) {
       return yield* new LessonVoiceCheckError({
@@ -124,7 +124,7 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
               reason: "unreadable-entry",
             })
         );
-        const repositoryPath = relative(root, file);
+        const repositoryPath = path.relative(root, file);
         const tree = yield* Effect.try({
           catch: (cause) =>
             new LessonVoiceCheckError({
@@ -152,9 +152,12 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
         tree,
       })
     );
-    issues.push(...findSiblingRepresentationIssues(root, siblingDocuments));
+    issues.push(
+      ...findSiblingRepresentationIssues(path, root, siblingDocuments)
+    );
     issues.push(
       ...findLessonHighlightIssues(
+        path,
         root,
         siblingDocuments.filter(
           ({ file }) => documentProfile(file) === "lesson"
@@ -270,14 +273,11 @@ export const runMain = Effect.fn("LessonVoiceCheck.runMain")(function* (
         Console.error(error.detail).pipe(Effect.as(2))
       )
     ),
-    NodeFileSystem.layer
+    NodeServices.layer
   );
 });
 
-const isMain =
-  process.argv[1] &&
-  resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-if (isMain) {
+if (process.argv[1] === import.meta.filename) {
   runMain(process.argv.slice(2)).pipe(
     Effect.andThen((code) =>
       Effect.sync(() => {

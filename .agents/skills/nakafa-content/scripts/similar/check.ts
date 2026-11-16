@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-import { resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-import { parseArgs } from "node:util";
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import {
   type SimilarityMatch,
@@ -26,31 +23,57 @@ export class SimilarityCheckError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("SimilarityCheckError", { detail: Schema.String }) {}
 
+const THRESHOLD_OPTION = "--threshold";
+const THRESHOLD_PREFIX = `${THRESHOLD_OPTION}=`;
+
+/** One target directory and the score a pair must reach. */
+const SimilarityOptionsSchema = Schema.Struct({
+  target: Schema.String,
+  threshold: Schema.Finite.pipe(
+    Schema.check(Schema.isGreaterThan(0), Schema.isLessThanOrEqualTo(1))
+  ),
+});
+
+/** The usage failure, with the reason the arguments were refused when there is one. */
+function invalidArguments(reason?: string) {
+  return new SimilarityCheckError({
+    detail: reason === undefined ? USAGE : `${USAGE}\n${reason}`,
+  });
+}
+
 /** Reads one target directory and a threshold between zero and one. */
 const parseOptions = Effect.fn("SimilarityCheck.parseOptions")(function* (
   arguments_: readonly string[]
 ) {
-  const parsed = yield* Effect.try({
-    catch: (cause) =>
-      new SimilarityCheckError({ detail: `${USAGE}\n${String(cause)}` }),
-    try: () =>
-      parseArgs({
-        allowPositionals: true,
-        args: [...arguments_],
-        options: { threshold: { type: "string" } },
-        strict: true,
-      }),
-  });
-  const [target, ...extra] = parsed.positionals;
-  const threshold = Number(parsed.values.threshold ?? DEFAULT_THRESHOLD);
-  if (
-    target === undefined ||
-    extra.length > 0 ||
-    !(threshold > 0 && threshold <= 1)
-  ) {
-    return yield* new SimilarityCheckError({ detail: USAGE });
+  let threshold: string | undefined;
+  const targets: string[] = [];
+  let rest = arguments_;
+  while (Arr.isReadonlyArrayNonEmpty(rest)) {
+    const [argument, ...tail] = rest;
+    rest = tail;
+    if (argument === THRESHOLD_OPTION) {
+      const [value, ...after] = tail;
+      if (value === undefined) {
+        return yield* invalidArguments(`${THRESHOLD_OPTION} requires a score`);
+      }
+      threshold = value;
+      rest = after;
+    } else if (argument.startsWith(THRESHOLD_PREFIX)) {
+      threshold = argument.slice(THRESHOLD_PREFIX.length);
+    } else if (argument.startsWith("-")) {
+      return yield* invalidArguments(`Unknown option: ${argument}`);
+    } else {
+      targets.push(argument);
+    }
   }
-  return { target, threshold };
+  const [target, ...extra] = targets;
+  if (extra.length > 0) {
+    return yield* invalidArguments();
+  }
+  return yield* Schema.decodeUnknownEffect(SimilarityOptionsSchema)({
+    target,
+    threshold: Number(threshold ?? DEFAULT_THRESHOLD),
+  }).pipe(Effect.mapError(() => invalidArguments()));
 });
 
 /** Formats one pair with its combined, written, and number-masked scores. */
@@ -113,10 +136,7 @@ export const runMain = Effect.fn("SimilarityCheck.runMain")(function* (
   );
 });
 
-const isMain =
-  process.argv[1] &&
-  resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-if (isMain) {
+if (process.argv[1] === import.meta.filename) {
   runMain(process.argv.slice(2)).pipe(
     Effect.andThen((code) =>
       Effect.sync(() => {

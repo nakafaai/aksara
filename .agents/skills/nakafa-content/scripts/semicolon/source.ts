@@ -1,6 +1,5 @@
-import assert from "node:assert/strict";
-
 import type { SourceRange } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const ENTITY_TERMINATOR_PATTERN = /&(?:#[0-9]+|#x[0-9a-f]+|[a-z][a-z0-9]+);$/iu;
@@ -30,7 +29,7 @@ export function addRenderedSemicolonsInRange(
 ): void {
   const start = range.start?.offset;
   const end = range.end?.offset;
-  assert.ok(start !== undefined && end !== undefined);
+  expectShape(start !== undefined && end !== undefined);
   const text = range.rendered?.text ?? source.slice(start, end);
   for (const match of text.matchAll(/;/gu)) {
     if (options.allowLatexSpacing) {
@@ -44,7 +43,7 @@ export function addRenderedSemicolonsInRange(
     const offset: number | undefined = range.rendered
       ? range.rendered.offsets[match.index]
       : start + match.index;
-    assert.ok(offset !== undefined);
+    expectShape(offset !== undefined);
     offsets.add(offset);
   }
 }

@@ -1,11 +1,10 @@
-import assert from "node:assert/strict";
 import { Predicate, Schema } from "effect";
-
 import {
   asEstreeNode,
   type EstreeNode,
   estreeRange,
 } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 
 const MAX_STATIC_CANDIDATES = 32;
 
@@ -64,19 +63,19 @@ function concatenateCandidates(
 
 /** Evaluates one template only when every rendered segment is static. */
 function templateCandidates(node: EstreeNode): StaticStringCandidate[] {
-  assert.ok(Array.isArray(node.quasis));
-  assert.ok(Array.isArray(node.expressions));
-  assert.equal(node.quasis.length, node.expressions.length + 1);
+  expectShape(Array.isArray(node.quasis));
+  expectShape(Array.isArray(node.expressions));
+  expectShape(node.quasis.length === node.expressions.length + 1);
   let result = [candidate([])];
   for (const [index, quasiValue] of node.quasis.entries()) {
     const quasi = asEstreeNode(quasiValue);
-    assert.ok(quasi);
+    expectShape(quasi);
     result = concatenateCandidates(result, staticStringCandidates(quasi));
     if (index === node.expressions.length) {
       continue;
     }
     const expression = asEstreeNode(node.expressions[index]);
-    assert.ok(expression);
+    expectShape(expression);
     result = concatenateCandidates(result, staticStringCandidates(expression));
     if (result.length === 0) {
       return [];
@@ -92,7 +91,7 @@ function binaryCandidates(node: EstreeNode): StaticStringCandidate[] {
   }
   const left = asEstreeNode(node.left);
   const right = asEstreeNode(node.right);
-  assert.ok(left && right);
+  expectShape(left && right);
   return concatenateCandidates(
     staticStringCandidates(left),
     staticStringCandidates(right)
@@ -103,7 +102,7 @@ function binaryCandidates(node: EstreeNode): StaticStringCandidate[] {
 function conditionalCandidates(node: EstreeNode): StaticStringCandidate[] {
   const consequent = asEstreeNode(node.consequent);
   const alternate = asEstreeNode(node.alternate);
-  assert.ok(consequent && alternate);
+  expectShape(consequent && alternate);
   return [
     ...staticStringCandidates(consequent),
     ...staticStringCandidates(alternate),
@@ -112,10 +111,10 @@ function conditionalCandidates(node: EstreeNode): StaticStringCandidate[] {
 
 /** Reads static strings nested inside a program body. */
 function programCandidates(node: EstreeNode): StaticStringCandidate[] {
-  assert.ok(Array.isArray(node.body));
+  expectShape(Array.isArray(node.body));
   return node.body.flatMap((statement) => {
     const statementNode = asEstreeNode(statement);
-    assert.ok(statementNode);
+    expectShape(statementNode);
     return staticStringCandidates(statementNode);
   });
 }
@@ -134,16 +133,16 @@ function compositeCandidates(node: EstreeNode): StaticStringCandidate[] {
     node.type === "ChainExpression"
   ) {
     const expression = asEstreeNode(node.expression);
-    assert.ok(expression);
+    expectShape(expression);
     return staticStringCandidates(expression);
   }
   if (node.type === "Program") {
     return programCandidates(node);
   }
   if (node.type === "SequenceExpression") {
-    assert.ok(Array.isArray(node.expressions));
+    expectShape(Array.isArray(node.expressions));
     const last = asEstreeNode(node.expressions.at(-1));
-    assert.ok(last);
+    expectShape(last);
     return staticStringCandidates(last);
   }
   return [];
@@ -154,7 +153,7 @@ export function staticStringCandidates(
   node: EstreeNode
 ): StaticStringCandidate[] {
   if (node.type === "Literal" && Predicate.isString(node.value)) {
-    assert.ok(Predicate.isString(node.raw));
+    expectShape(Predicate.isString(node.raw));
     return [
       candidate([
         {
@@ -211,9 +210,9 @@ export function nestedStaticStringCandidates(
     return direct;
   }
   if (node.type === "SequenceExpression") {
-    assert.ok(Array.isArray(node.expressions));
+    expectShape(Array.isArray(node.expressions));
     const result = asEstreeNode(node.expressions.at(-1));
-    assert.ok(result);
+    expectShape(result);
     return nestedStaticStringCandidates(result);
   }
   const keys = NESTED_STRING_KEYS[node.type] ?? [];
@@ -233,19 +232,19 @@ export function nestedStaticStringCandidates(
 
 /** Proves that every item in one ESTree collection is a static string. */
 function everyStaticStringNode(values: unknown): boolean {
-  assert.ok(Array.isArray(values));
+  expectShape(Array.isArray(values));
   return values.every((value) => {
     const child = asEstreeNode(value);
-    assert.ok(child);
+    expectShape(child);
     return isFullyStaticStringStructure(child);
   });
 }
 
 /** Proves that every segment of one template literal is static. */
 function isFullyStaticTemplate(node: EstreeNode): boolean {
-  assert.ok(Array.isArray(node.quasis));
-  assert.ok(Array.isArray(node.expressions));
-  assert.equal(node.quasis.length, node.expressions.length + 1);
+  expectShape(Array.isArray(node.quasis));
+  expectShape(Array.isArray(node.expressions));
+  expectShape(node.quasis.length === node.expressions.length + 1);
   return (
     everyStaticStringNode(node.quasis) &&
     everyStaticStringNode(node.expressions)
@@ -266,7 +265,7 @@ function isFullyStaticStringStructure(node: EstreeNode): boolean {
   if (node.type === "BinaryExpression") {
     const left = asEstreeNode(node.left);
     const right = asEstreeNode(node.right);
-    assert.ok(left && right);
+    expectShape(left && right);
     return (
       node.operator === "+" &&
       isFullyStaticStringStructure(left) &&
@@ -276,7 +275,7 @@ function isFullyStaticStringStructure(node: EstreeNode): boolean {
   if (node.type === "ConditionalExpression") {
     const consequent = asEstreeNode(node.consequent);
     const alternate = asEstreeNode(node.alternate);
-    assert.ok(consequent && alternate);
+    expectShape(consequent && alternate);
     return (
       isFullyStaticStringStructure(consequent) &&
       isFullyStaticStringStructure(alternate)
@@ -288,18 +287,18 @@ function isFullyStaticStringStructure(node: EstreeNode): boolean {
     node.type === "ChainExpression"
   ) {
     const expression = asEstreeNode(node.expression);
-    assert.ok(expression);
+    expectShape(expression);
     return isFullyStaticStringStructure(expression);
   }
   if (node.type === "Program") {
-    assert.ok(Array.isArray(node.body));
-    assert.ok(node.body.length > 0);
+    expectShape(Array.isArray(node.body));
+    expectShape(node.body.length > 0);
     return everyStaticStringNode(node.body);
   }
   if (node.type === "SequenceExpression") {
-    assert.ok(Array.isArray(node.expressions));
+    expectShape(Array.isArray(node.expressions));
     const last = asEstreeNode(node.expressions.at(-1));
-    assert.ok(last);
+    expectShape(last);
     return isFullyStaticStringStructure(last);
   }
   return false;

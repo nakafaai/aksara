@@ -1,16 +1,14 @@
-import { chmodSync, symlinkSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join, relative } from "node:path";
-import { fileURLToPath } from "node:url";
-import { NodeFileSystem } from "@effect/platform-node";
+import { NodeServices } from "@effect/platform-node";
 import { assert, it } from "@effect/vitest";
 import {
   Array as Arr,
   Effect,
-  type FileSystem,
+  FileSystem,
+  Path,
   Schema,
   type Scope,
 } from "effect";
+import type { PlatformError } from "effect/PlatformError";
 
 import { loggedLines } from "#nakafa-content/points/test/console";
 import {
@@ -20,23 +18,24 @@ import {
   runMain,
 } from "#nakafa-content/voice/check";
 import type { LessonVoiceCheckError } from "#nakafa-content/voice/error";
-import { corpusParts } from "#nakafa-content/voice/test/corpus";
+import { readCorpusParts } from "#nakafa-content/voice/test/corpus";
 import { temporaryRoot } from "#nakafa-content/voice/test/root";
 
 const PASSING_REPORT_PATTERN = /passed for 3 files/u;
 const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
-type TestServices = FileSystem.FileSystem | Scope.Scope;
+type TestServices = FileSystem.FileSystem | Path.Path | Scope.Scope;
+type TestFailure = LessonVoiceCheckError | PlatformError;
 
 /** Registers one scoped filesystem-backed checker test with live services. */
 const checkTest = (
   name: string,
-  self: Effect.Effect<void, LessonVoiceCheckError, TestServices>,
+  self: Effect.Effect<void, TestFailure, TestServices>,
   timeout?: number
 ): void =>
   it.effect(
     name,
-    () => Effect.scoped(Effect.provide(self, NodeFileSystem.layer)),
+    () => Effect.scoped(Effect.provide(self, NodeServices.layer)),
     timeout
   );
 
@@ -47,19 +46,20 @@ const checkTest = (
  * timeout, while a part holds one topic or one try-out section and stays far
  * inside it however many parts the corpus gains.
  */
-const CORPUS = join(process.cwd(), "packages/corpus");
-
-for (const [root, depth, minimum] of [
+const CORPUS = `${process.cwd()}/packages/corpus`;
+const CORPUS_ROOTS = [
   ["material/lesson", 2, 1149],
   ["articles", 0, 21],
   ["pages", 0, 18],
   ["question-bank", 4, 7300],
-] as const) {
-  const parts = corpusParts(join(CORPUS, root), depth);
+] as const;
+const CORPUS_PARTS = await readCorpusParts(CORPUS, CORPUS_ROOTS);
+
+for (const [[root, , minimum], parts] of Arr.zip(CORPUS_ROOTS, CORPUS_PARTS)) {
   checkTest(
     `splits ${root} into parts that hold every document`,
     Effect.gen(function* () {
-      const documents = yield* collectLessonFiles(join(CORPUS, root));
+      const documents = yield* collectLessonFiles(`${CORPUS}/${root}`);
       const held = yield* Effect.forEach(parts, collectLessonFiles);
       assert.ok(documents.length >= minimum);
       assert.strictEqual(Arr.flatten(held).length, documents.length);
@@ -67,7 +67,7 @@ for (const [root, depth, minimum] of [
   );
   for (const part of parts) {
     checkTest(
-      `checks every current document in ${relative(CORPUS, part)}`,
+      `checks every current document in ${part.slice(CORPUS.length + 1)}`,
       Effect.gen(function* () {
         const report = yield* checkLessonRoot(part);
         assert.deepEqual(report.issues, []);
@@ -128,12 +128,13 @@ checkTest(
         "external-link-invalid-placement",
       ],
     ] as const;
+    const path = yield* Path.Path;
     for (const [index, [locale, source, rule]] of samples.entries()) {
       const root = yield* temporaryRoot({
         [`${index}/${locale}.mdx`]: source,
       });
       const rules = (yield* checkLessonRoot(
-        join(root, String(index))
+        path.join(root, String(index))
       )).issues.map((issue) => issue.rule);
       assert.deepEqual(rules, [rule], source);
     }
@@ -143,16 +144,18 @@ checkTest(
 checkTest(
   "collects only supported locale files without following symlinks",
   Effect.gen(function* () {
-    const root = yield* temporaryRoot(
-      {
-        "answer.en.mdx": "Copy the value.",
-        "fr.mdx": "Copiez la valeur.",
-        "id.mdx": "Salin nilai.",
-        "nested/de.mdx": "Kopiere den Wert.",
-        "notes.txt": "notes",
-      },
-      (directory) =>
-        symlinkSync(join(directory, "id.mdx"), join(directory, "linked.mdx"))
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const root = yield* temporaryRoot({
+      "answer.en.mdx": "Copy the value.",
+      "fr.mdx": "Copiez la valeur.",
+      "id.mdx": "Salin nilai.",
+      "nested/de.mdx": "Kopiere den Wert.",
+      "notes.txt": "notes",
+    });
+    yield* fileSystem.symlink(
+      path.join(root, "id.mdx"),
+      path.join(root, "linked.mdx")
     );
     assert.deepEqual(
       (yield* collectLessonFiles(root)).map((file) =>
@@ -166,10 +169,12 @@ checkTest(
 checkTest(
   "typed checker failures carry machine-readable reasons",
   Effect.gen(function* () {
-    const unreadable = yield* temporaryRoot(
-      { "en.mdx": "The value follows from the equation.\n" },
-      (root) => chmodSync(join(root, "en.mdx"), 0o000)
-    );
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const unreadable = yield* temporaryRoot({
+      "en.mdx": "The value follows from the equation.\n",
+    });
+    yield* fileSystem.chmod(path.join(unreadable, "en.mdx"), 0o000);
     const cases: [
       string,
       Effect.Effect<unknown, LessonVoiceCheckError, TestServices>,
@@ -185,7 +190,7 @@ checkTest(
       ["invalid-arguments", runCli(["--format", "xml"])],
       [
         "unreadable-entry",
-        runCli(["--root", join(tmpdir(), "missing-nakafa-lessons")]),
+        runCli(["--root", path.join(unreadable, "missing-nakafa-lessons")]),
       ],
     ];
     for (const [reason, operation] of cases) {
@@ -278,7 +283,7 @@ checkTest(
         console.log = () => undefined;
         process.argv = [
           process.execPath,
-          fileURLToPath(new URL("./check.ts", import.meta.url)),
+          `${import.meta.dirname}/check.ts`,
           "--root",
           root,
         ];

@@ -1,4 +1,3 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
 import { isProtectedLineComponent } from "#nakafa-content/mdx/fields";
 import { MATH_LABEL_KEYS, walkKeyedChildren } from "#nakafa-content/mdx/keys";
@@ -12,6 +11,7 @@ import {
   type SourceRange,
 } from "#nakafa-content/mdx/parse";
 import { directAttributeRange } from "#nakafa-content/mdx/rendered";
+import { expectShape } from "#nakafa-content/mdx/shape";
 
 /**
  * What one scan of learner-visible text looks for: `find` returns the index of
@@ -73,13 +73,13 @@ function rangeOffsets(
 ): number[] {
   const start = range.start?.offset;
   const end = range.end?.offset;
-  assert.ok(start !== undefined);
-  assert.ok(end !== undefined);
+  expectShape(start !== undefined);
+  expectShape(end !== undefined);
   const { rendered } = range;
   const text = rendered?.text ?? source.slice(start, end);
   return scan.find(text).map((index) => {
     const renderedOffset = rendered?.offsets[index];
-    assert.ok(!rendered || renderedOffset !== undefined);
+    expectShape(!rendered || renderedOffset !== undefined);
     return renderedOffset ?? start + index;
   });
 }

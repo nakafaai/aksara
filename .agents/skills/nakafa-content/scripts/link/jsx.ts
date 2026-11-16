@@ -1,6 +1,4 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
-
 import {
   isDestinationAttribute,
   isSrcSetAttribute,
@@ -15,6 +13,7 @@ import {
   type MdxAttribute,
   type MdxNode,
 } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import { isFullyStaticStringExpression } from "#nakafa-content/mdx/static";
 import { isFullyStaticValueExpression } from "#nakafa-content/mdx/value";
 
@@ -26,11 +25,11 @@ function invalidDestinationOffset(
 ): number | undefined {
   const attributeStart = attribute.position?.start?.offset;
   const attributeEnd = attribute.position?.end?.offset;
-  assert.ok(attributeStart !== undefined);
-  assert.ok(attributeEnd !== undefined);
+  expectShape(attributeStart !== undefined);
+  expectShape(attributeEnd !== undefined);
   const expression = attributeEstree(attribute);
   if (attribute.name === undefined) {
-    assert.ok(expression);
+    expectShape(expression);
     return (
       expressionExternalOffset(expression, source, false, componentName) ??
       (isFullyStaticValueExpression(expression) ? undefined : attributeStart)
@@ -78,7 +77,7 @@ export function jsxDestinationOffsets(node: MdxNode, source: string): number[] {
   if (node.type !== "mdxJsxFlowElement" && node.type !== "mdxJsxTextElement") {
     return [];
   }
-  assert.ok(node.attributes);
+  expectShape(node.attributes);
   return node.attributes.flatMap((attribute) => {
     const offset = invalidDestinationOffset(attribute, source, node.name);
     return offset === undefined ? [] : [offset];

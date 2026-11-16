@@ -1,17 +1,16 @@
-import assert from "node:assert/strict";
-
 import { asEstreeNode, type EstreeNode } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import { isFullyStaticStringExpression } from "#nakafa-content/mdx/static";
 
 /** Proves that every child in one static collection is recursively known. */
 function everyStaticValueNode(values: unknown, allowNull = false): boolean {
-  assert.ok(Array.isArray(values));
+  expectShape(Array.isArray(values));
   return values.every((value) => {
     if (value === null) {
       return allowNull;
     }
     const child = asEstreeNode(value);
-    assert.ok(child);
+    expectShape(child);
     return isFullyStaticValueExpression(child);
   });
 }
@@ -32,7 +31,7 @@ export function isFullyStaticValueExpression(node: EstreeNode): boolean {
   }
   if (node.type === "Property") {
     const value = asEstreeNode(node.value);
-    assert.ok(value);
+    expectShape(value);
     return (
       node.computed !== true &&
       node.kind === "init" &&
@@ -42,12 +41,12 @@ export function isFullyStaticValueExpression(node: EstreeNode): boolean {
   }
   if (node.type === "SpreadElement") {
     const argument = asEstreeNode(node.argument);
-    assert.ok(argument);
+    expectShape(argument);
     return isFullyStaticValueExpression(argument);
   }
   if (node.type === "Program") {
-    assert.ok(Array.isArray(node.body));
-    assert.ok(node.body.length > 0);
+    expectShape(Array.isArray(node.body));
+    expectShape(node.body.length > 0);
     return everyStaticValueNode(node.body);
   }
   if (
@@ -56,20 +55,20 @@ export function isFullyStaticValueExpression(node: EstreeNode): boolean {
     node.type === "ChainExpression"
   ) {
     const expression = asEstreeNode(node.expression);
-    assert.ok(expression);
+    expectShape(expression);
     return isFullyStaticValueExpression(expression);
   }
   if (node.type === "SequenceExpression") {
-    assert.ok(Array.isArray(node.expressions));
+    expectShape(Array.isArray(node.expressions));
     const result = asEstreeNode(node.expressions.at(-1));
-    assert.ok(result);
+    expectShape(result);
     return isFullyStaticValueExpression(result);
   }
   if (node.type === "ConditionalExpression") {
     const consequent = asEstreeNode(node.consequent);
     const alternate = asEstreeNode(node.alternate);
-    assert.ok(consequent);
-    assert.ok(alternate);
+    expectShape(consequent);
+    expectShape(alternate);
     return (
       isFullyStaticValueExpression(consequent) &&
       isFullyStaticValueExpression(alternate)

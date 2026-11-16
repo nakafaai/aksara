@@ -1,4 +1,3 @@
-import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Record as Rec, Schema } from "effect";
@@ -22,17 +21,17 @@ const RunnerAnswerSchema = Schema.fromJsonString(
 );
 
 describe("consumer tooling", () => {
-  it("selects exactly one tarball", () => {
-    expect(selectPackedArchive(["readme.txt", "package.tgz"])).toBe(
-      "package.tgz"
-    );
-    expect(() => selectPackedArchive([])).toThrow(
-      "pnpm must produce exactly one tarball"
-    );
-    expect(() => selectPackedArchive(["one.tgz", "two.tgz"])).toThrow(
-      "pnpm must produce exactly one tarball"
-    );
-  });
+  it.effect("selects exactly one tarball", () =>
+    Effect.gen(function* () {
+      expect(yield* selectPackedArchive(["readme.txt", "package.tgz"])).toBe(
+        "package.tgz"
+      );
+      for (const paths of [[], ["one.tgz", "two.tgz"]]) {
+        const error = yield* Effect.flip(selectPackedArchive(paths));
+        expect(error.message).toBe("pnpm must produce exactly one tarball");
+      }
+    })
+  );
 
   it("serializes an isolated pnpm consumer manifest", () => {
     const manifest = Schema.decodeSync(JsonTextSchema)(
@@ -156,24 +155,26 @@ layer(NodeServices.layer)("install runner", (effectIt) => {
   effectIt.effect("resolves each public specifier that the request names", () =>
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
       const consumer = yield* createRunnerConsumer();
       const output = yield* runInstallRunner(consumer, {
-        imports: [pathToFileURL(consumer.entry).href],
+        imports: [(yield* path.toFileUrl(consumer.entry)).href],
         resolutions: [packageName],
       });
       const answer = yield* Schema.decodeEffect(RunnerAnswerSchema)(output);
       const entry = yield* fileSystem.realPath(consumer.entry);
 
       expect(Rec.map(answer.resolved, (url) => url.href)).toEqual({
-        [packageName]: pathToFileURL(entry).href,
+        [packageName]: (yield* path.toFileUrl(entry)).href,
       });
     })
   );
 
   effectIt.effect("names the file whose import fails", () =>
     Effect.gen(function* () {
+      const path = yield* Path.Path;
       const consumer = yield* createRunnerConsumer();
-      const specifier = pathToFileURL(consumer.broken).href;
+      const specifier = (yield* path.toFileUrl(consumer.broken)).href;
       const error = yield* runInstallRunner(consumer, {
         imports: [specifier],
         resolutions: [],

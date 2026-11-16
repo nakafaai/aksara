@@ -1,11 +1,10 @@
-import assert from "node:assert/strict";
-
 import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
 import {
   addressAttributeRanges,
   generalAttributeRanges,
   renderedExpressionRanges,
 } from "#nakafa-content/mdx/ranges";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import {
   addressRules,
   matchRangeRules,
@@ -74,7 +73,7 @@ export function collectAttributeIssues(
     return;
   }
   const selectedAddressRules = addressRules(rules);
-  assert.ok(node.attributes);
+  expectShape(node.attributes);
   for (const attribute of node.attributes) {
     const generalRanges = generalAttributeRanges(attribute, source);
     for (const range of generalRanges) {

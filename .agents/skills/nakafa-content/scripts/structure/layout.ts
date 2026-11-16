@@ -1,5 +1,4 @@
-import { dirname, join } from "node:path";
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, Path } from "effect";
 
 import { StructureScanError } from "#nakafa-content/structure/integrity";
 
@@ -32,6 +31,7 @@ const collectLayout = Effect.fn("ScriptLayout.collectLayout")(function* (
   root: string
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
   const layout: ScriptLayout = { directories: [], files: [] };
 
   /** Traverses one checker directory without following non-directory entries. */
@@ -48,17 +48,17 @@ const collectLayout = Effect.fn("ScriptLayout.collectLayout")(function* (
           })
       );
       for (const entry of entries) {
-        const path = join(directory, entry);
-        if (yield* isSymbolicLink(fileSystem, path)) {
+        const file = path.join(directory, entry);
+        if (yield* isSymbolicLink(fileSystem, file)) {
           continue;
         }
-        if (yield* isDirectory(fileSystem, path)) {
-          layout.directories.push(path);
-          yield* visit(path);
+        if (yield* isDirectory(fileSystem, file)) {
+          layout.directories.push(file);
+          yield* visit(file);
           continue;
         }
         if (entry.endsWith(".ts")) {
-          layout.files.push(path);
+          layout.files.push(file);
         }
       }
     });
@@ -70,14 +70,15 @@ const collectLayout = Effect.fn("ScriptLayout.collectLayout")(function* (
 /** Returns every script path that violates the grouped one-word layout. */
 export const scriptLayoutIssues = Effect.fn("ScriptLayout.scriptLayoutIssues")(
   function* (root: string) {
+    const path = yield* Path.Path;
     const layout = yield* collectLayout(root);
     const issues = layout.directories.filter((directory) => {
-      const name = directory.slice(dirname(directory).length + 1);
+      const name = directory.slice(path.dirname(directory).length + 1);
       return !DIRECTORY_NAME_PATTERN.test(name);
     });
     for (const file of layout.files) {
-      const name = file.slice(dirname(file).length + 1);
-      if (dirname(file) === root || !TYPESCRIPT_NAME_PATTERN.test(name)) {
+      const name = file.slice(path.dirname(file).length + 1);
+      if (path.dirname(file) === root || !TYPESCRIPT_NAME_PATTERN.test(name)) {
         issues.push(file);
       }
     }

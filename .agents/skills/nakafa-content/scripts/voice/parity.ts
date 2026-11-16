@@ -1,5 +1,4 @@
-import { basename, dirname, relative } from "node:path";
-import { Predicate } from "effect";
+import { type Path, Predicate } from "effect";
 
 import {
   type MdxNode,
@@ -220,6 +219,7 @@ function firstMismatchIndex(
 
 /** Builds one actionable locale-parity issue at the first mismatch. */
 function representationIssue(
+  path: Path.Path,
   root: string,
   inventory: LessonSiblingInventory,
   comparison: LessonSiblingInventory
@@ -228,11 +228,11 @@ function representationIssue(
   const found = inventory.tokens[tokenIndex]?.value ?? "end of document";
   const siblingValue =
     comparison.tokens[tokenIndex]?.value ?? "end of document";
-  const siblingLocale = basename(comparison.file, ".mdx");
+  const siblingLocale = path.basename(comparison.file, ".mdx");
   return {
     column: 1,
     excerpt: `Found ${found}. The ${siblingLocale} sibling has ${siblingValue} at the same teaching step.`,
-    file: relative(root, inventory.file),
+    file: path.relative(root, inventory.file),
     line: inventory.tokens[tokenIndex]?.line ?? 1,
     locale: inventory.locale,
     rule: "locale-representation-parity",
@@ -241,6 +241,7 @@ function representationIssue(
 
 /** Compares one lesson directory without forcing a winner in a tied pair. */
 function siblingGroupIssues(
+  path: Path.Path,
   root: string,
   siblings: readonly LessonSiblingDocument[]
 ): LessonVoiceFileIssue[] {
@@ -268,25 +269,26 @@ function siblingGroupIssues(
             : candidate,
         inventory
       );
-    return [representationIssue(root, inventory, comparison)];
+    return [representationIssue(path, root, inventory, comparison)];
   });
 }
 
 /** Finds structural drift inside English, Indonesian, and German sibling sets. */
 export function findSiblingRepresentationIssues(
+  path: Path.Path,
   root: string,
   documents: readonly LessonSiblingDocument[]
 ): LessonVoiceFileIssue[] {
   const groups = groupByKey(documents, (document) => {
-    const stem = basename(document.file, ".mdx");
+    const stem = path.basename(document.file, ".mdx");
     const separator = stem.lastIndexOf(".");
     const role = separator === -1 ? "" : stem.slice(0, separator);
-    return `${dirname(document.file)}/${role}`;
+    return `${path.dirname(document.file)}/${role}`;
   });
   const issues: LessonVoiceFileIssue[] = [];
 
   for (const siblings of groups.values()) {
-    issues.push(...siblingGroupIssues(root, siblings));
+    issues.push(...siblingGroupIssues(path, root, siblings));
   }
 
   return issues.sort((left, right) =>
@@ -298,11 +300,12 @@ export function findSiblingRepresentationIssues(
 
 /** Creates one parsed document only for supported lesson locale filenames. */
 export function lessonSiblingDocument(
+  path: Path.Path,
   file: string,
   source: string,
   tree?: MdxNode
 ): LessonSiblingDocument | undefined {
-  const locale = basename(file, ".mdx");
+  const locale = path.basename(file, ".mdx");
   if (!isLessonVoiceLocale(locale)) {
     return;
   }

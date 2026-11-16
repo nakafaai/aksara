@@ -1,5 +1,4 @@
-import { extname, join } from "node:path";
-import { Effect, FileSystem, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 
 const TEXT_EXTENSIONS = new Set([".md", ".mdx", ".ts"]);
 
@@ -31,6 +30,7 @@ const isDirectory = Effect.fn("StructureIntegrity.isDirectory")(function* (
 const collectTextFiles = Effect.fn("StructureIntegrity.collectTextFiles")(
   function* (root: string) {
     const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
     const files: string[] = [];
 
     /** Traverses one source directory without following non-directory entries. */
@@ -47,16 +47,16 @@ const collectTextFiles = Effect.fn("StructureIntegrity.collectTextFiles")(
             })
         );
         for (const entry of entries) {
-          const path = join(directory, entry);
-          if (yield* isSymbolicLink(fileSystem, path)) {
+          const file = path.join(directory, entry);
+          if (yield* isSymbolicLink(fileSystem, file)) {
             continue;
           }
-          if (yield* isDirectory(fileSystem, path)) {
-            yield* visit(path);
+          if (yield* isDirectory(fileSystem, file)) {
+            yield* visit(file);
             continue;
           }
-          if (TEXT_EXTENSIONS.has(extname(entry))) {
-            files.push(path);
+          if (TEXT_EXTENSIONS.has(path.extname(entry))) {
+            files.push(file);
           }
         }
       });

@@ -1,6 +1,5 @@
-import assert from "node:assert/strict";
-
 import type { SourceRange } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import {
   establishedGermanFormalSentenceOffset,
   GERMAN_FORMAL_ADDRESS_PATTERN,
@@ -99,7 +98,7 @@ export function matchRangeRules(
     }
     const renderedOffset = rendered?.offsets[match.index];
     const issueOffset = renderedOffset ?? start + match.index;
-    assert.ok(!rendered || renderedOffset !== undefined);
+    expectShape(!rendered || renderedOffset !== undefined);
     return [issueAtOffset(source, issueOffset, rule.id)];
   });
 }
@@ -127,8 +126,8 @@ export function matchUnanchoredGermanAddress(
   }
   const start = range.start?.offset;
   const end = range.end?.offset;
-  assert.ok(start !== undefined);
-  assert.ok(end !== undefined);
+  expectShape(start !== undefined);
+  expectShape(end !== undefined);
   const { rendered } = range;
   const original = rendered?.text ?? source.slice(start, end);
   const localQuotationRanges = rendered
@@ -157,6 +156,6 @@ export function matchUnanchoredGermanAddress(
   }
   const renderedOffset = rendered?.offsets[addressOffset];
   const issueOffset = renderedOffset ?? start + addressOffset;
-  assert.ok(!rendered || renderedOffset !== undefined);
+  expectShape(!rendered || renderedOffset !== undefined);
   return [issueAtOffset(source, issueOffset, "german-formal-address")];
 }

@@ -1,4 +1,3 @@
-import { fileURLToPath, pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
@@ -28,10 +27,8 @@ class CliTestCommandError extends Schema.TaggedError<
   stderr: Schema.String,
 }) {}
 
-const packageRoot = fileURLToPath(new URL("../", import.meta.url));
-const distributionRoot = fileURLToPath(
-  new URL("../dist/package/", import.meta.url)
-);
+const packageRoot = `${import.meta.dirname}/..`;
+const distributionRoot = `${packageRoot}/dist/package`;
 const PackResultSchema = Schema.fromJsonString(
   Schema.NonEmptyArray(
     Schema.Struct({
@@ -101,12 +98,15 @@ describe("Aksara CLI package", () => {
       yield* fileSystem.writeFileString(validPath, '{"version":"9.8.7"}');
       yield* fileSystem.writeFileString(invalidPath, '{"version":7}');
 
-      const valid = yield* readPackageVersion(pathToFileURL(validPath));
+      const valid = yield* readPackageVersion(yield* path.toFileUrl(validPath));
       const invalid = yield* readPackageVersion(
-        pathToFileURL(invalidPath)
+        yield* path.toFileUrl(invalidPath)
       ).pipe(Effect.result);
       const missing = yield* readPackageVersion(
-        pathToFileURL(path.join(directory, "missing.json"))
+        yield* path.toFileUrl(path.join(directory, "missing.json"))
+      ).pipe(Effect.result);
+      const remote = yield* readPackageVersion(
+        new URL("https://example.test/package.json")
       ).pipe(Effect.result);
 
       expect(valid).toBe("9.8.7");
@@ -116,6 +116,7 @@ describe("Aksara CLI package", () => {
       expect(Result.isFailure(missing) && missing.failure.reason).toBe(
         "missing"
       );
+      expect(Result.isFailure(remote) && remote.failure.reason).toBe("missing");
     }).pipe(Effect.provide(NodeServices.layer))
   );
 

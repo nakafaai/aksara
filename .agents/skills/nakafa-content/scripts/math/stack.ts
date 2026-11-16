@@ -1,4 +1,3 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import {
@@ -6,6 +5,7 @@ import {
   type MdxNode,
   parseLessonMdx,
 } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 /** Identifies JSX fragments, which add no rendered layout boundary. */
@@ -58,7 +58,7 @@ export function findMathStackIssues(
       const unwrapped = math && previousMath && parent.name !== "MathContainer";
       if (mixedStack || unwrapped) {
         const offset = child.position?.start?.offset;
-        assert.ok(offset !== undefined);
+        expectShape(offset !== undefined);
         issues.push(
           issueAtOffset(
             source,

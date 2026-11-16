@@ -1,4 +1,3 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
 import {
   attributeEstree,
@@ -8,6 +7,7 @@ import {
   type MdxNode,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 
 /** One ESTree node of an authored expression, with the component that owns it. */
 interface ExpressionNode {
@@ -71,7 +71,7 @@ export function inspectDocument(tree: MdxNode): DocumentParts {
     ) {
       return;
     }
-    assert.ok(node.attributes);
+    expectShape(node.attributes);
     // A fragment has no name: the parser gives it `null`, not a string.
     const name = Predicate.isString(node.name) ? node.name : undefined;
     if (name !== undefined) {
