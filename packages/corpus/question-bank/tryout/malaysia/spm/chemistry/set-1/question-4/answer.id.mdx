@@ -7,6 +7,20 @@ n(\text{Mg})&=\frac{2{,}4}{24}=0{,}10\text{ mol}\\
 n(\text{HCl})&=2{,}0\times\frac{50}{1000}=0{,}10\text{ mol}
 \end{aligned}" />
 
+Grafik ini menempatkan setiap jumlah di samping jumlah yang dibutuhkan untuk menghabiskan pereaksi yang satunya.
+
+<Chart
+  title={<>Mol yang tersedia dibanding mol yang dibutuhkan</>}
+  description={<>Magnesium: tersedia <InlineMath math="0{,}10\text{ mol}" />, padahal hanya <InlineMath math="0{,}050\text{ mol}" /> yang dibutuhkan untuk menghabiskan semua asam. Asam klorida: tersedia <InlineMath math="0{,}10\text{ mol}" />, padahal <InlineMath math="0{,}20\text{ mol}" /> dibutuhkan untuk menghabiskan semua magnesium.</>}
+  bars="apart"
+  categories={["Magnesium", "Asam klorida"]}
+  series={[
+    { label: "Tersedia", mark: "bar", values: [2.4 / 24, (2.0 * 50) / 1000] },
+    { label: "Dibutuhkan untuk menghabiskan pereaksi lain", mark: "bar", values: [(2.0 * 50) / 1000 / 2, 2 * (2.4 / 24)] },
+  ]}
+  valueLabel="Jumlah (mol)"
+/>
+
 Magnesium <InlineMath math="0{,}10\text{ mol}" /> butuh <InlineMath math="0{,}20\text{ mol HCl}" />, padahal hanya ada <InlineMath math="0{,}10\text{ mol}" />. Jadi HCl adalah pereaksi pembatas dan sebagian magnesium tersisa.
 
 <BlockMath math="n(\text{H}_2)=\tfrac12\times0{,}10=0{,}050\text{ mol}\ \Rightarrow\ V=0{,}050\times24=1{,}2\text{ dm}^3" />

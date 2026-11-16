@@ -8,6 +8,20 @@ First balance both combustion equations to find **the oxygen needed per mole** o
 5(0.10-x)+4.5x&=0.48\ \Rightarrow\ 0.50-0.5x=0.48\ \Rightarrow\ x=0.040
 \end{aligned}" />
 
+The chart splits the mixture and its oxygen between the two gases. Propene needs half a mole less oxygen per mole, and that difference fixes how much of it there is.
+
+<Chart
+  title={<>Each gas in the mixture and the oxygen it uses</>}
+  description={<>Propane: <InlineMath math="0.060\text{ mol}" />, using <InlineMath math="0.30\text{ mol}" /> of oxygen. Propene: <InlineMath math="0.040\text{ mol}" />, using <InlineMath math="0.18\text{ mol}" /> of oxygen. Together they use <InlineMath math="0.48\text{ mol}" />.</>}
+  bars="apart"
+  categories={["Propane", "Propene"]}
+  series={[
+    { label: "Moles in the mixture", mark: "bar", values: [0.1 - (5 * 0.1 - 0.48) / 0.5, (5 * 0.1 - 0.48) / 0.5] },
+    { label: "Moles of oxygen used", mark: "bar", values: [5 * (0.1 - (5 * 0.1 - 0.48) / 0.5), 4.5 * ((5 * 0.1 - 0.48) / 0.5)] },
+  ]}
+  valueLabel="Amount (mol)"
+/>
+
 Check: <InlineMath math="0.060" /> mol of propane uses <InlineMath math="0.30" /> mol of oxygen and <InlineMath math="0.040" /> mol of propene uses <InlineMath math="0.18" /> mol, a total of <InlineMath math="0.48" /> mol. So the mixture contains <InlineMath math="0.040" /> mol of propene.
 
 # Why the other options are wrong

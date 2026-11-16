@@ -8,6 +8,20 @@ Bei gleicher Temperatur und gleichem Druck verhalten sich Gasvolumina wie die St
 \text{Restgas}&=50+60=110\text{ cm}^3
 \end{aligned}" />
 
+Das Diagramm zeigt jedes Gas vor und nach der Verbrennung. Als Gas bleiben nur der übrige Sauerstoff und das gebildete Kohlenstoffdioxid.
+
+<Chart
+  title={<>Gasvolumen vor und nach der Reaktion</>}
+  description={<>Vorher: <InlineMath math="20\text{ cm}^3" /> Propan und <InlineMath math="150\text{ cm}^3" /> Sauerstoff. Nach dem Abkühlen: kein Propan, <InlineMath math="50\text{ cm}^3" /> Sauerstoff übrig und <InlineMath math="60\text{ cm}^3" /> Kohlenstoffdioxid, zusammen <InlineMath math="110\text{ cm}^3" />. Das Wasser ist flüssig und hat deshalb keinen Balken.</>}
+  bars="apart"
+  categories={["Propan", "Sauerstoff", "Kohlenstoffdioxid"]}
+  series={[
+    { label: "Vorher", mark: "bar", values: [20, 150, 0] },
+    { label: "Nachher", mark: "bar", values: [0, 150 - 5 * 20, 3 * 20] },
+  ]}
+  valueLabel="Volumen (cm³)"
+/>
+
 Es bleiben also insgesamt <InlineMath math="110\text{ cm}^3" /> Gas übrig.
 
 # Warum die anderen Antworten falsch sind

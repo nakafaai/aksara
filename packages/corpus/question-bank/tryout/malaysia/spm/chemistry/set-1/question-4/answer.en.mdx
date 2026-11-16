@@ -7,6 +7,20 @@ n(\text{Mg})&=\frac{2.4}{24}=0.10\text{ mol}\\
 n(\text{HCl})&=2.0\times\frac{50}{1000}=0.10\text{ mol}
 \end{aligned}" />
 
+The chart puts each amount beside what it would take to use up the other reactant completely.
+
+<Chart
+  title={<>Moles present against moles needed</>}
+  description={<>Magnesium: <InlineMath math="0.10\text{ mol}" /> present, while only <InlineMath math="0.050\text{ mol}" /> is needed to use up all the acid. Hydrochloric acid: <InlineMath math="0.10\text{ mol}" /> present, while <InlineMath math="0.20\text{ mol}" /> is needed to use up all the magnesium.</>}
+  bars="apart"
+  categories={["Magnesium", "Hydrochloric acid"]}
+  series={[
+    { label: "Present", mark: "bar", values: [2.4 / 24, (2.0 * 50) / 1000] },
+    { label: "Needed to use up the other reactant", mark: "bar", values: [(2.0 * 50) / 1000 / 2, 2 * (2.4 / 24)] },
+  ]}
+  valueLabel="Amount (mol)"
+/>
+
 <InlineMath math="0.10\text{ mol}" /> of magnesium needs <InlineMath math="0.20\text{ mol}" /> of HCl, but only <InlineMath math="0.10\text{ mol}" /> is present. So HCl is the limiting reactant and some magnesium is left over.
 
 <BlockMath math="n(\text{H}_2)=\tfrac12\times0.10=0.050\text{ mol}\ \Rightarrow\ V=0.050\times24=1.2\text{ dm}^3" />

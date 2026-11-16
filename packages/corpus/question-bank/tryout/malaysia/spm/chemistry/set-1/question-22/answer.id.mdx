@@ -2,6 +2,34 @@
 
 Magnesium punya <InlineMath math="E^\circ" /> lebih negatif, jadi magnesium dioksidasi dan menjadi kutub negatif, sedangkan perak menjadi kutub positif. Di kutub positif, **ion perak menerima elektron dan mengendap** sebagai logam perak, jadi elektroda perak bertambah berat. Setiap ion <InlineMath math="\text{Ag}^+" /> hanya butuh satu elektron.
 
+Letakkan kedua setengah sel pada satu skala <InlineMath math="E^\circ" />. Yang lebih rendah, magnesium, menjadi kutub negatif, dan jarak di antara keduanya adalah tegangan sel.
+
+<MathVisual
+  title={<>Kedua setengah sel pada skala <InlineMath math="E^\circ" /></>}
+  description={<>Magnesium berada di <InlineMath math="-2{,}38\text{ V}" /> dan perak di <InlineMath math="+0{,}80\text{ V}" />. Magnesium lebih rendah, jadi magnesium teroksidasi di kutub negatif, sedangkan ion perak tereduksi di kutub positif. Jaraknya <InlineMath math="0{,}80-(-2{,}38)=3{,}18\text{ V}" />.</>}
+  labels={{
+    magnesium: <InlineMath math="\mathrm{Mg^{2+}/Mg}:\ -2{,}38\text{ V}" />,
+    silver: <InlineMath math="\mathrm{Ag^+/Ag}:\ +0{,}80\text{ V}" />,
+    gap: <InlineMath math="E^\circ_{\text{sel}}=3{,}18\text{ V}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -3, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -2.8 }, to: { x: 0, y: 1.2 } },
+      { id: "magnesium-level", kind: "segment", appearance: "secondary", from: { x: -0.3, y: -2.38 }, to: { x: 0.8, y: -2.38 } },
+      { id: "silver-level", kind: "segment", appearance: "primary", from: { x: -0.3, y: 0.8 }, to: { x: 0.8, y: 0.8 } },
+      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.6, y: -2.38 }, to: { x: 0.6, y: 0.8 } },
+    ],
+    labels: [
+      { key: "magnesium", objectId: "magnesium-level", at: { x: -0.3, y: -2.38 }, placement: "left" },
+      { key: "silver", objectId: "silver-level", at: { x: -0.3, y: 0.8 }, placement: "left" },
+      { key: "gap", objectId: "cell-voltage", at: { x: 0.6, y: -0.79 }, placement: "right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 E^\circ_{\text{sel}}&=0{,}80-(-2{,}38)=3{,}18\text{ V}\\
 n(\text{Ag})&=n(e^-)=0{,}020\text{ mol}\\

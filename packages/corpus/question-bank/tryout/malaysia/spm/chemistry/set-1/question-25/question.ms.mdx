@@ -1,5 +1,46 @@
 Dua sel elektrolisis disambungkan secara bersiri kepada sebuah bateri. Sel pertama mengandungi larutan argentum nitrat dengan elektrod argentum. Sel kedua mengandungi larutan kuprum(II) sulfat dengan elektrod karbon. Selepas beberapa ketika, jisim katod sel pertama bertambah sebanyak <InlineMath math="2.16\text{ g}" />.
 
+Rajah menunjukkan susunan radas.
+
+<MathVisual
+  title={<>Dua sel elektrolisis yang disambung secara bersiri</>}
+  description={<>Sebuah bateri mengalirkan satu arus melalui dua sel secara bergilir. Sel pertama berisi larutan argentum nitrat dengan dua elektrod argentum. Sel kedua berisi larutan kuprum(II) sulfat dengan dua elektrod karbon. Seutas wayar menyambungkan satu elektrod sel pertama kepada satu elektrod sel kedua.</>}
+  labels={{
+    silver: <>Elektrod argentum</>,
+    carbon: <>Elektrod karbon</>,
+    nitrate: <>Larutan argentum nitrat</>,
+    sulfate: <>Larutan kuprum(II) sulfat</>,
+    battery: <>Bateri</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 21 }, y: { min: -1.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "nitrate-solution", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0.5 }, { x: 8, y: 0.5 }, { x: 8, y: 4.5 }, { x: 1, y: 4.5 }] },
+      { id: "sulfate-solution", kind: "polygon", appearance: "primary", vertices: [{ x: 12, y: 0.5 }, { x: 19, y: 0.5 }, { x: 19, y: 4.5 }, { x: 12, y: 4.5 }] },
+      { id: "first-beaker", kind: "polyline", appearance: "reference", vertices: [{ x: 1, y: 6 }, { x: 1, y: 0.5 }, { x: 8, y: 0.5 }, { x: 8, y: 6 }] },
+      { id: "second-beaker", kind: "polyline", appearance: "reference", vertices: [{ x: 12, y: 6 }, { x: 12, y: 0.5 }, { x: 19, y: 0.5 }, { x: 19, y: 6 }] },
+      { id: "silver-left", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 1.5 }, { x: 3.6, y: 1.5 }, { x: 3.6, y: 7 }, { x: 3, y: 7 }] },
+      { id: "silver-right", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 1.5 }, { x: 6.6, y: 1.5 }, { x: 6.6, y: 7 }, { x: 6, y: 7 }] },
+      { id: "carbon-left", kind: "polygon", appearance: "warning", vertices: [{ x: 14, y: 1.5 }, { x: 14.6, y: 1.5 }, { x: 14.6, y: 7 }, { x: 14, y: 7 }] },
+      { id: "carbon-right", kind: "polygon", appearance: "warning", vertices: [{ x: 17, y: 1.5 }, { x: 17.6, y: 1.5 }, { x: 17.6, y: 7 }, { x: 17, y: 7 }] },
+      { id: "battery-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 9.6, y: 9 }, { x: 3.3, y: 9 }, { x: 3.3, y: 7 }] },
+      { id: "link-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 6.3, y: 7 }, { x: 6.3, y: 8 }, { x: 14.3, y: 8 }, { x: 14.3, y: 7 }] },
+      { id: "return-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 10.4, y: 9 }, { x: 17.3, y: 9 }, { x: 17.3, y: 7 }] },
+      { id: "battery-long-plate", kind: "segment", appearance: "highlight", from: { x: 9.6, y: 8.4 }, to: { x: 9.6, y: 9.6 } },
+      { id: "battery-short-plate", kind: "segment", appearance: "highlight", from: { x: 10.4, y: 8.7 }, to: { x: 10.4, y: 9.3 } },
+    ],
+    labels: [
+      { key: "silver", objectId: "silver-left", at: { x: 3, y: 6.5 }, placement: "left" },
+      { key: "carbon", objectId: "carbon-left", at: { x: 14, y: 6.5 }, placement: "left" },
+      { key: "nitrate", objectId: "nitrate-solution", at: { x: 4.5, y: 0.5 }, placement: "below" },
+      { key: "sulfate", objectId: "sulfate-solution", at: { x: 15.5, y: 0.5 }, placement: "below" },
+      { key: "battery", objectId: "battery-long-plate", at: { x: 9.6, y: 9.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jisim atom relatif: <InlineMath math="\text{Cu}=64" />, <InlineMath math="\text{Ag}=108" />. Isi padu molar gas pada keadaan bilik <InlineMath math="=24\text{ dm}^3\text{ mol}^{-1}" />.
 
 Berapakah pertambahan jisim katod sel kedua, dan isi padu gas yang terbebas di anod sel kedua pada keadaan bilik?

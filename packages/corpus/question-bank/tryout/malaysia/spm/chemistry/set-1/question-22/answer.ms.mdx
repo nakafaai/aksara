@@ -2,6 +2,34 @@
 
 Magnesium mempunyai <InlineMath math="E^\circ" /> yang lebih negatif, jadi magnesium dioksidakan dan menjadi terminal negatif, manakala argentum menjadi terminal positif. Di terminal positif, **ion argentum menerima elektron dan terenap** sebagai logam argentum, jadi elektrod argentum bertambah berat. Setiap ion <InlineMath math="\text{Ag}^+" /> hanya memerlukan satu elektron.
 
+Letakkan kedua-dua sel setengah pada satu skala <InlineMath math="E^\circ" />. Yang lebih rendah, magnesium, ialah terminal negatif, dan jarak antara keduanya ialah voltan sel.
+
+<MathVisual
+  title={<>Kedua-dua sel setengah pada skala <InlineMath math="E^\circ" /></>}
+  description={<>Magnesium berada pada <InlineMath math="-2.38\text{ V}" /> dan argentum pada <InlineMath math="+0.80\text{ V}" />. Magnesium lebih rendah, jadi ia dioksidakan di terminal negatif manakala ion argentum diturunkan di terminal positif. Jaraknya <InlineMath math="0.80-(-2.38)=3.18\text{ V}" />.</>}
+  labels={{
+    magnesium: <InlineMath math="\mathrm{Mg^{2+}/Mg}:\ -2.38\text{ V}" />,
+    silver: <InlineMath math="\mathrm{Ag^+/Ag}:\ +0.80\text{ V}" />,
+    gap: <InlineMath math="E^\circ_{\text{sel}}=3.18\text{ V}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -3, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -2.8 }, to: { x: 0, y: 1.2 } },
+      { id: "magnesium-level", kind: "segment", appearance: "secondary", from: { x: -0.3, y: -2.38 }, to: { x: 0.8, y: -2.38 } },
+      { id: "silver-level", kind: "segment", appearance: "primary", from: { x: -0.3, y: 0.8 }, to: { x: 0.8, y: 0.8 } },
+      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.6, y: -2.38 }, to: { x: 0.6, y: 0.8 } },
+    ],
+    labels: [
+      { key: "magnesium", objectId: "magnesium-level", at: { x: -0.3, y: -2.38 }, placement: "left" },
+      { key: "silver", objectId: "silver-level", at: { x: -0.3, y: 0.8 }, placement: "left" },
+      { key: "gap", objectId: "cell-voltage", at: { x: 0.6, y: -0.79 }, placement: "right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 E^\circ_{\text{sel}}&=0.80-(-2.38)=3.18\text{ V}\\
 n(\text{Ag})&=n(e^-)=0.020\text{ mol}\\

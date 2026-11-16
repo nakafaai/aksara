@@ -8,6 +8,33 @@ n(\text{H}_2\text{O})&=1{,}0\times\frac{50}{1000}=0{,}050\text{ mol}\\
 \Delta H&=-\frac{2730}{0{,}050}=-54{.}600\text{ J mol}^{-1}=-54{,}6\text{ kJ mol}^{-1}
 \end{aligned}" />
 
+Pada diagram tingkat energi, produk berada <InlineMath math="54{,}6\text{ kJ}" /> di bawah pereaksi untuk setiap mol air yang terbentuk.
+
+<MathVisual
+  title={<>Diagram tingkat energi penetralan</>}
+  description={<>Tingkat <InlineMath math="\mathrm{H^+} + \mathrm{OH^-}" /> berada di nol. Tingkat <InlineMath math="\mathrm{H_2O}" /> lebih rendah <InlineMath math="54{,}6\text{ kJ}" />, jadi panah dari pereaksi ke produk mengarah ke bawah dan <InlineMath math="\Delta H=-54{,}6\text{ kJ mol}^{-1}" />.</>}
+  labels={{
+    reactants: <InlineMath math="\mathrm{H^+} + \mathrm{OH^-}" />,
+    products: <InlineMath math="\mathrm{H_2O}" />,
+    change: <InlineMath math="\Delta H=-54{,}6\text{ kJ mol}^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 80 }, y: { min: -70, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "reactant-level", kind: "segment", appearance: "primary", from: { x: 10, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "product-level", kind: "segment", appearance: "secondary", from: { x: 10, y: -54.6 }, to: { x: 40, y: -54.6 } },
+      { id: "enthalpy-change", kind: "vector", appearance: "answer", from: { x: 25, y: 0 }, to: { x: 25, y: -54.6 } },
+    ],
+    labels: [
+      { key: "reactants", objectId: "reactant-level", at: { x: 25, y: 0 }, placement: "above" },
+      { key: "products", objectId: "product-level", at: { x: 25, y: -54.6 }, placement: "below" },
+      { key: "change", objectId: "enthalpy-change", at: { x: 25, y: -27.3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Tandanya negatif karena suhu naik, berarti reaksinya eksotermik. Jadi, kalor penetralan adalah <InlineMath math="-54{,}6\text{ kJ mol}^{-1}" />.
 
 # Mengapa pilihan lain salah

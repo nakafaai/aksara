@@ -7,6 +7,20 @@ n(\text{Mg})&=\frac{2{,}4}{24}=0{,}10\text{ mol}\\
 n(\text{HCl})&=2{,}0\times\frac{50}{1000}=0{,}10\text{ mol}
 \end{aligned}" />
 
+Das Diagramm stellt jede Stoffmenge neben die Menge, die nötig wäre, um den anderen Stoff ganz zu verbrauchen.
+
+<Chart
+  title={<>Vorhandene und benötigte Stoffmenge</>}
+  description={<>Magnesium: <InlineMath math="0{,}10\text{ mol}" /> vorhanden, aber nur <InlineMath math="0{,}050\text{ mol}" /> nötig, um die ganze Säure zu verbrauchen. Salzsäure: <InlineMath math="0{,}10\text{ mol}" /> vorhanden, aber <InlineMath math="0{,}20\text{ mol}" /> nötig, um das ganze Magnesium zu verbrauchen.</>}
+  bars="apart"
+  categories={["Magnesium", "Salzsäure"]}
+  series={[
+    { label: "Vorhanden", mark: "bar", values: [2.4 / 24, (2.0 * 50) / 1000] },
+    { label: "Nötig, um den anderen Stoff zu verbrauchen", mark: "bar", values: [(2.0 * 50) / 1000 / 2, 2 * (2.4 / 24)] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
+/>
+
 <InlineMath math="0{,}10\text{ mol}" /> Magnesium bräuchten <InlineMath math="0{,}20\text{ mol}" /> HCl, vorhanden sind aber nur <InlineMath math="0{,}10\text{ mol}" />. HCl ist also der begrenzende Stoff, und ein Teil des Magnesiums bleibt übrig.
 
 <BlockMath math="n(\text{H}_2)=\tfrac12\times0{,}10=0{,}050\text{ mol}\ \Rightarrow\ V=0{,}050\times24=1{,}2\text{ dm}^3" />
