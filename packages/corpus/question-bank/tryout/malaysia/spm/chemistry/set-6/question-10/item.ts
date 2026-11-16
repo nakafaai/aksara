@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sample X $$6.35\\text{ g}$$, sample Y $$6.35\\text{ g}$$, $$1.20\\text{ dm}^3$$",
+            "X $$6.35\\text{ g}$$, Y $$6.35\\text{ g}$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Sample X $$8.13\\text{ g}$$, sample Y $$8.13\\text{ g}$$, $$1.80\\text{ dm}^3$$",
+            "X $$8.13\\text{ g}$$, Y $$8.13\\text{ g}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Sample X $$8.13\\text{ g}$$, sample Y $$6.35\\text{ g}$$, $$2.40\\text{ dm}^3$$",
+            "X $$8.13\\text{ g}$$, Y $$6.35\\text{ g}$$, $$1200\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "Sample X $$8.13\\text{ g}$$, sample Y $$6.35\\text{ g}$$, $$1.20\\text{ dm}^3$$",
+            "X $$8.13\\text{ g}$$, Y $$6.35\\text{ g}$$, $$600\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sampel X $$6.35\\text{ g}$$, sampel Y $$6.35\\text{ g}$$, $$1.20\\text{ dm}^3$$",
+            "X $$6.35\\text{ g}$$, Y $$6.35\\text{ g}$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Sampel X $$8.13\\text{ g}$$, sampel Y $$8.13\\text{ g}$$, $$1.80\\text{ dm}^3$$",
+            "X $$8.13\\text{ g}$$, Y $$8.13\\text{ g}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Sampel X $$8.13\\text{ g}$$, sampel Y $$6.35\\text{ g}$$, $$2.40\\text{ dm}^3$$",
+            "X $$8.13\\text{ g}$$, Y $$6.35\\text{ g}$$, $$1200\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "Sampel X $$8.13\\text{ g}$$, sampel Y $$6.35\\text{ g}$$, $$1.20\\text{ dm}^3$$",
+            "X $$8.13\\text{ g}$$, Y $$6.35\\text{ g}$$, $$600\\text{ cm}^3$$",
         },
       ],
     },
