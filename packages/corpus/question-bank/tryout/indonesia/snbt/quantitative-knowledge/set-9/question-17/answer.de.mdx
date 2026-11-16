@@ -23,6 +23,17 @@ Der Wert von <InlineMath math="M" /> ist unbekannt. Die beiden Situationen unten
 
 Aussage (2) allein reicht nicht.
 
+Das Diagramm verfolgt Aussage (1) Schritt für Schritt. Die <InlineMath math="75\%" /> **beziehen sich auf den zweiten Balken**, die <InlineMath math="120" /> Schüler, die Mathematik bestanden haben, nicht auf alle <InlineMath math="200" /> Schüler.
+
+<Chart
+  title={<>Aussage (1) als zwei Filter</>}
+  description={<>Von den <InlineMath math="200" /> Schülern haben <InlineMath math="60\%" />, also <InlineMath math="120" />, Mathematik bestanden. Von diesen <InlineMath math="120" /> haben <InlineMath math="75\%" />, also <InlineMath math="90" />, auch Physik bestanden, und das sind die, die beide Prüfungen bestanden haben.</>}
+  categories={["Alle Schüler", "Mathematik bestanden", "Beide bestanden"]}
+  bars="apart"
+  series={[{ label: "Anzahl der Schüler", mark: "bar", values: [200, (60 / 100) * 200, (75 / 100) * (60 / 100) * 200] }]}
+  valueLabel="Anzahl der Schüler"
+/>
+
 # Beide Aussagen zusammen
 
 Die beiden Aussagen widersprechen sich nicht: Die erste Situation der Tabelle erfüllt beide. Aber Aussage (1) **reicht schon allein**, also wird Aussage (2) nicht gebraucht. Die Falle entsteht, wenn du <InlineMath math="75\%" /> als Prozent aller Schüler liest. Dann sagt Aussage (1) nur, wie viele jede Prüfung bestanden haben, und du hältst eine Kombination beider Aussagen für nötig.

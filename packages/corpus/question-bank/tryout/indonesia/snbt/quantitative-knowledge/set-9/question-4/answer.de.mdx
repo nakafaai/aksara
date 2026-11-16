@@ -29,6 +29,17 @@ Das Muster passt: eine Neun, eine Acht und eine Zwei, eine Null, dann eine Acht 
 
 **Nullen tragen nichts bei**, also reichen die Ziffern ungleich null.
 
+Das Diagramm trennt, was jeder Teil von <InlineMath math="N" /> beiträgt. **Die achtzehn Neunen** liefern fast alles, die achtzehn Nullen gar nichts.
+
+<Chart
+  title={<>Beitrag jedes Teils von <InlineMath math="N" /> zur Quersumme</>}
+  description={<>Die <InlineMath math="18" /> Neunen tragen <InlineMath math="162" /> bei. Die Acht und die Zwei tragen <InlineMath math="10" /> bei. Die <InlineMath math="18" /> Nullen tragen <InlineMath math="0" /> bei. Die Acht und die Eins am Ende tragen <InlineMath math="9" /> bei. Zusammen sind es <InlineMath math="181" />.</>}
+  categories={["18 Neunen", "Ziffern 8 und 2", "18 Nullen", "Ziffern 8 und 1"]}
+  bars="apart"
+  series={[{ label: "Beitrag zur Quersumme", mark: "bar", values: [18 * 9, 8 + 2, 18 * 0, 8 + 1] }]}
+  valueLabel="Quersumme"
+/>
+
 <BlockMath math="\begin{aligned}
 18\cdot9+8+2+8+1&=162+19\\
 &=181

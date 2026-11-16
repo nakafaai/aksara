@@ -18,4 +18,32 @@ Pernyataan (1) dengan syarat awal memberi <InlineMath math="x>0" />, dan pernyat
 
 Tanpa syarat <InlineMath math="|x|>|y|" />, gabungan kedua pernyataan tidak cukup. Pasangan <InlineMath math="x=-1,\ y=2" /> memenuhi <InlineMath math="x+y=1>0" /> dan <InlineMath math="x^2y=2>0" />, tetapi <InlineMath math="xy=-2" />. Pasangan ini melanggar <InlineMath math="|x|>|y|" />, jadi tidak boleh dipakai. Kalau kamu **lupa syarat awal**, kamu akan memilih bahwa kedua pernyataan tidak cukup.
 
+Gambar berikut menandai pasangan yang memenuhi syarat awal dan kedua pernyataan sekaligus. **Daerah itu seluruhnya ada di kuadran pertama**, jadi <InlineMath math="xy" /> selalu positif. Titik <InlineMath math="(2,-1)" /> hanya memenuhi pernyataan (1), dan titik <InlineMath math="(-2,1)" /> hanya memenuhi pernyataan (2).
+
+<MathVisual
+  title={<>Pasangan yang memenuhi <InlineMath math="|x|>|y|" />, pernyataan (1), dan pernyataan (2)</>}
+  description={<>Daerah yang diarsir dibatasi garis <InlineMath math="y=x" /> dan sumbu-<InlineMath math="x" /> positif, yaitu <InlineMath math="x>y>0" />. Titik <InlineMath math="(2,1)" /> ada di daerah itu. Titik <InlineMath math="(2,-1)" /> memenuhi syarat awal dan pernyataan (1), dan titik <InlineMath math="(-2,1)" /> memenuhi syarat awal dan pernyataan (2), tetapi keduanya punya <InlineMath math="xy<0" />.</>}
+  labels={{
+    yes: <InlineMath math="(2,1)" />,
+    one: <InlineMath math="(2,-1)" />,
+    two: <InlineMath math="(-2,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "both", kind: "region", appearance: "highlight", inequalities: ["x > y", "x > -y", "y > 0", "x < 5"] },
+      { id: "yes", kind: "point", appearance: "answer", at: { x: 2, y: 1 } },
+      { id: "one", kind: "point", appearance: "warning", at: { x: 2, y: -1 } },
+      { id: "two", kind: "point", appearance: "warning", at: { x: -2, y: 1 } },
+    ],
+    labels: [
+      { key: "yes", objectId: "yes", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "one", objectId: "one", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "two", objectId: "two", at: { x: -2, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jadi, kedua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.

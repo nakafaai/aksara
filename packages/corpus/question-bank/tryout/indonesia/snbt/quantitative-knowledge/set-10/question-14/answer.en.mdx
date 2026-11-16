@@ -32,6 +32,36 @@ Solve each equation, then **check that the result meets the condition of its own
 
 The value <InlineMath math="t=36" /> doesn't meet <InlineMath math="17\le t\le 20" />, so you drop it. The value <InlineMath math="t=24" /> meets <InlineMath math="20\le t\le 26" />, so that's the answer.
 
+The graph below shows the <InlineMath math="40" />th percentile as a function of <InlineMath math="t" />. It's flat, rises slowly, rises more steeply, and then goes flat again, and **the line <InlineMath math="y=23.2" /> only cuts it on the steep part**, exactly at <InlineMath math="t=24" />.
+
+<MathVisual
+  title={<>The <InlineMath math="40" />th percentile by the value of <InlineMath math="t" /></>}
+  description={<>For <InlineMath math="t\le17" />, the percentile stays at <InlineMath math="19.4" />. For <InlineMath math="17\le t\le20" />, it's <InlineMath math="0.2t+16" />, rising to <InlineMath math="20" />. For <InlineMath math="20\le t\le26" />, it's <InlineMath math="0.8t+4" />, rising to <InlineMath math="24.8" />. For <InlineMath math="t\ge26" />, it stays at <InlineMath math="24.8" />. The line <InlineMath math="y=23.2" /> cuts the graph at <InlineMath math="t=24" />.</>}
+  labels={{
+    level: <InlineMath math="y=23.2" />,
+    hit: <InlineMath math="t=24" />,
+    p: <InlineMath math="y=P_{40}(t)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 8, max: 40 }, y: { min: 18, max: 26 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 8, y: 23.2 }, to: { x: 40, y: 23.2 } },
+      { id: "q1", kind: "function", appearance: "primary", formula: "19.4", domain: { min: 10, max: 17 } },
+      { id: "q2", kind: "function", appearance: "primary", formula: "0.2x + 16", domain: { min: 17, max: 20 } },
+      { id: "q3", kind: "function", appearance: "primary", formula: "0.8x + 4", domain: { min: 20, max: 26 } },
+      { id: "q4", kind: "function", appearance: "primary", formula: "24.8", domain: { min: 26, max: 40 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 24, y: 23.2 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 12, y: 23.2 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 24, y: 23.2 }, placement: "below-right" },
+      { key: "p", objectId: "q4", at: { x: 33, y: 24.8 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Checking
 
 With <InlineMath math="t=24" />, the sorted data are <InlineMath math="10,14,17,20,24,26,29,33,38,41,45" />. The <InlineMath math="4" />th value is <InlineMath math="20" /> and the <InlineMath math="5" />th value is <InlineMath math="24" />, so <InlineMath math="P_{40}=20+0.8\cdot 4=23.2" />. **It matches**.

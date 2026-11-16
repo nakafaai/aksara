@@ -31,6 +31,32 @@ k=\tfrac{1}{3}&\;\Longrightarrow\;D=9-\tfrac{4}{3}=\tfrac{23}{3}>0
 
 For <InlineMath math="k=3" /> the roots aren't real, so that value goes. Only <InlineMath math="k=\frac{1}{3}" /> is left.
 
+Graphing both candidates shows the difference. The parabola for <InlineMath math="k=3" /> **floats above the <InlineMath math="x" />-axis**, so it has no real roots. The parabola for <InlineMath math="k=\tfrac13" /> crosses the axis at two points, which are <InlineMath math="\alpha" /> and <InlineMath math="\beta" />.
+
+<MathVisual
+  title={<>The parabola <InlineMath math="y=x^2-3x+k" /> for both candidates of <InlineMath math="k" /></>}
+  description={<>The parabola for <InlineMath math="k=3" /> has its lowest point at <InlineMath math="\left(\tfrac32,\tfrac34\right)" />, above the axis. The parabola for <InlineMath math="k=\tfrac13" /> has its lowest point below the axis and crosses it at two positive points.</>}
+  labels={{
+    kept: <InlineMath math="k=\tfrac13" />,
+    dropped: <InlineMath math="k=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -2.5, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "kept", kind: "function", appearance: "answer", formula: "x^2 - 3x + 1/3", domain: { min: -0.9, max: 3.9 } },
+      { id: "dropped", kind: "function", appearance: "warning", formula: "x^2 - 3x + 3", domain: { min: -0.5, max: 3.5 } },
+      { id: "r1", kind: "point", appearance: "answer", at: { x: (3 - Math.sqrt(23 / 3)) / 2, y: 0 } },
+      { id: "r2", kind: "point", appearance: "answer", at: { x: (3 + Math.sqrt(23 / 3)) / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 1.5, y: 1 / 3 - 2.25 }, placement: "below" },
+      { key: "dropped", objectId: "dropped", at: { x: 1.5, y: 0.75 }, placement: "above" },
+    ],
+  }}
+/>
+
 # The sum of the new roots
 
 You can join the two fractions because <InlineMath math="\frac{1}{\alpha}+\frac{1}{\beta}=\frac{\alpha+\beta}{\alpha\beta}" />. So **the new sum is the old sum plus the old sum divided by the old product**.

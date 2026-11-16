@@ -27,6 +27,20 @@ Hanya kasus <InlineMath math="n" /> ganjil yang mungkin, dan pembilangnya <Inlin
 
 <BlockMath math="\frac{99-3}{4}+1=25" />
 
+Grafik berikut memperlihatkan pembilang <InlineMath math="P_n" /> dalam bentuk paling sederhana untuk <InlineMath math="n=2" /> sampai <InlineMath math="13" />. **Pembilang genap muncul tiap empat langkah**, di <InlineMath math="n=3" />, <InlineMath math="7" />, dan <InlineMath math="11" />, yaitu saat <InlineMath math="n+1" /> kelipatan <InlineMath math="4" />.
+
+<Chart
+  title={<>Pembilang <InlineMath math="P_n=\tfrac{n+1}{2n}" /> setelah disederhanakan</>}
+  description={<>Untuk <InlineMath math="n" /> genap, pembilangnya <InlineMath math="n+1" />, selalu ganjil. Untuk <InlineMath math="n" /> ganjil, pembilangnya <InlineMath math="\tfrac{n+1}{2}" />. Pembilang itu genap di <InlineMath math="n=3" />, <InlineMath math="7" />, dan <InlineMath math="11" />, dengan nilai <InlineMath math="2" />, <InlineMath math="4" />, dan <InlineMath math="6" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 2}`)}
+  series={[
+    { label: "Pembilang genap", mark: "bar", values: Array.from({ length: 12 }, (_, i) => ((i + 2) % 4 === 3 ? (i + 3) / 2 : null)) },
+    { label: "Pembilang ganjil", mark: "bar", values: Array.from({ length: 12 }, (_, i) => ((i + 2) % 4 === 3 ? null : (i + 2) % 2 === 0 ? i + 3 : (i + 3) / 2)) },
+  ]}
+  valueLabel="Pembilang"
+/>
+
 # Pemeriksaan dengan beberapa nilai
 
 Hitung beberapa nilai pertama secara langsung.

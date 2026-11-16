@@ -30,6 +30,20 @@ In beiden Fällen **gibt es immer einen ungeraden Exponenten**, nämlich <Inline
 
 Die Zahl <InlineMath math="15" /> ist hier entscheidend. Hätte <InlineMath math="k^2" /> genau <InlineMath math="9" /> Teiler, dann gäbe der Fall <InlineMath math="k=p^4" /> die Antwort „ja“ und der Fall <InlineMath math="k=pq" /> die Antwort „nein“.
 
+Das Diagramm stellt beide Wege nebeneinander. Beide **enden bei einem ungeraden Exponenten** in der Zerlegung von <InlineMath math="k" />, und ein ungerader Exponent schließt aus, dass <InlineMath math="k" /> eine Quadratzahl ist.
+
+<Mermaid
+  title={<>Zwei Wege, die beide mit nein antworten</>}
+  description={<>Aussage (1): <InlineMath math="2k" /> hat eine ungerade Anzahl von Teilern, also ist <InlineMath math="2k" /> eine Quadratzahl, und damit <InlineMath math="k=2j^2" /> mit ungeradem Exponenten von <InlineMath math="2" />. Aussage (2): <InlineMath math="(2e_1+1)(2e_2+1)\cdots=15" />, also <InlineMath math="k=p^7" /> oder <InlineMath math="k=pq^2" />, beide mit einem ungeraden Exponenten. Beide Wege führen dazu, dass <InlineMath math="k" /> keine Quadratzahl ist.</>}
+  chart={`flowchart TD
+    S1["(1) 2k hat ungerade viele Teiler"] --> A1["2k ist Quadratzahl"]
+    A1 --> B1["k = 2 j hoch 2, Exponent von 2 ungerade"]
+    S2["(2) k hoch 2 hat 15 Teiler"] --> A2["k = p hoch 7 oder k = p q hoch 2"]
+    A2 --> B2["ein Exponent 7 oder 1, ungerade"]
+    B1 --> T["k ist keine Quadratzahl"]
+    B2 --> T`}
+/>
+
 # Die falschen Antworten
 
 Jede Aussage reicht für sich allein, also ist **jede Antwort falsch, die eine der beiden Aussagen für nicht ausreichend erklärt**.

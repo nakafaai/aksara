@@ -22,6 +22,35 @@ h &= \frac{r}{4}
 
 Also ist <InlineMath math="P=\tfrac{r}{4}" />, genau gleich <InlineMath math="Q" />.
 
+Der Querschnitt des Zylinders zeigt diesen Vergleich. Der Körper mit Volumen <InlineMath math="\pi r^3" /> drückt das Wasser zu einer dünnen Schicht so breit wie der Zylinder nach oben, und weil der Zylinder **viel breiter als der Körper** ist, ist diese Schicht nur <InlineMath math="\tfrac{r}{4}" /> dick.
+
+<MathVisual
+  title={<>Querschnitt des Zylinders mit dem versunkenen Körper</>}
+  description={<>Der Zylinder hat den Radius <InlineMath math="2r" />, gezeichnet mit <InlineMath math="r=2" />. Darin liegt der Körper: ein Kegel der Höhe <InlineMath math="r" /> auf einer Halbkugel mit Radius <InlineMath math="r" />. Die aufsteigende Wasserschicht, <InlineMath math="\tfrac{r}{4}" /> dick, ist nahe der Oberfläche markiert.</>}
+  labels={{
+    tube: <InlineMath math="2r" />,
+    rise: <InlineMath math="\tfrac{r}{4}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -0.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "wall-left", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: -4, y: 8 } },
+      { id: "wall-right", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 8 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "rise", kind: "polygon", appearance: "answer", vertices: [{ x: -4, y: 6 }, { x: 4, y: 6 }, { x: 4, y: 6.5 }, { x: -4, y: 6.5 }] },
+      { id: "cone", kind: "polygon", appearance: "primary", vertices: [{ x: -2, y: 2 }, { x: 2, y: 2 }, { x: 0, y: 4 }] },
+      { id: "bowl", kind: "arc", appearance: "primary", center: { x: 0, y: 2 }, radius: 2, startDegrees: 180, sweepDegrees: 180 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 7.5 }, to: { x: 4, y: 7.5 } },
+    ],
+    labels: [
+      { key: "tube", objectId: "radius", at: { x: 2, y: 7.5 }, placement: "above" },
+      { key: "rise", objectId: "rise", at: { x: 4, y: 6.25 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Probe mit Zahlen
 
 Nimm <InlineMath math="r=4\text{ cm}" />. Das Volumen des Körpers ist <InlineMath math="\pi\cdot 64=64\pi\text{ cm}^3" />, die Grundfläche des Zylinders <InlineMath math="\pi\cdot 8^2=64\pi\text{ cm}^2" />. Der Anstieg ist <InlineMath math="\tfrac{64\pi}{64\pi}=1\text{ cm}" />, und tatsächlich ist <InlineMath math="\tfrac{4}{4}=1" />. Die Beziehung gilt **für jedes <InlineMath math="r" />**, weil beide Größen proportional zu <InlineMath math="r" /> sind.

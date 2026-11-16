@@ -32,6 +32,36 @@ Selesaikan setiap persamaan, lalu **periksa apakah hasilnya memenuhi syarat kasu
 
 Nilai <InlineMath math="t=36" /> tidak memenuhi <InlineMath math="17\le t\le 20" />, jadi dibuang. Nilai <InlineMath math="t=24" /> memenuhi <InlineMath math="20\le t\le 26" />, jadi inilah jawabannya.
 
+Grafik berikut memperlihatkan persentil ke-<InlineMath math="40" /> sebagai fungsi <InlineMath math="t" />. Grafiknya datar, naik pelan, naik lebih curam, lalu datar lagi, dan **garis <InlineMath math="y=23{,}2" /> hanya memotongnya di bagian curam**, tepat di <InlineMath math="t=24" />.
+
+<MathVisual
+  title={<>Persentil ke-<InlineMath math="40" /> menurut nilai <InlineMath math="t" /></>}
+  description={<>Untuk <InlineMath math="t\le17" />, persentilnya tetap <InlineMath math="19{,}4" />. Untuk <InlineMath math="17\le t\le20" />, persentilnya <InlineMath math="0{,}2t+16" />, naik sampai <InlineMath math="20" />. Untuk <InlineMath math="20\le t\le26" />, persentilnya <InlineMath math="0{,}8t+4" />, naik sampai <InlineMath math="24{,}8" />. Untuk <InlineMath math="t\ge26" />, persentilnya tetap <InlineMath math="24{,}8" />. Garis <InlineMath math="y=23{,}2" /> memotong grafik di <InlineMath math="t=24" />.</>}
+  labels={{
+    level: <InlineMath math="y=23{,}2" />,
+    hit: <InlineMath math="t=24" />,
+    p: <InlineMath math="y=P_{40}(t)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 8, max: 40 }, y: { min: 18, max: 26 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 8, y: 23.2 }, to: { x: 40, y: 23.2 } },
+      { id: "q1", kind: "function", appearance: "primary", formula: "19.4", domain: { min: 10, max: 17 } },
+      { id: "q2", kind: "function", appearance: "primary", formula: "0.2x + 16", domain: { min: 17, max: 20 } },
+      { id: "q3", kind: "function", appearance: "primary", formula: "0.8x + 4", domain: { min: 20, max: 26 } },
+      { id: "q4", kind: "function", appearance: "primary", formula: "24.8", domain: { min: 26, max: 40 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 24, y: 23.2 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 12, y: 23.2 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 24, y: 23.2 }, placement: "below-right" },
+      { key: "p", objectId: "q4", at: { x: 33, y: 24.8 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Pemeriksaan
 
 Dengan <InlineMath math="t=24" />, data terurutnya <InlineMath math="10,14,17,20,24,26,29,33,38,41,45" />. Data ke-<InlineMath math="4" /> adalah <InlineMath math="20" /> dan data ke-<InlineMath math="5" /> adalah <InlineMath math="24" />, jadi <InlineMath math="P_{40}=20+0{,}8\cdot 4=23{,}2" />. **Hasilnya cocok**.

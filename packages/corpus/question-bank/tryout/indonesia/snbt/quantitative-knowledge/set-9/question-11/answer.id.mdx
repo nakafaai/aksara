@@ -35,6 +35,17 @@ Hasil kali terbesar muncul ketika **suku-sukunya sedekat mungkin satu sama lain*
 
 Dengan empat suku, susunan terbaik adalah <InlineMath math="4,5,7,8" /> dengan hasil kali <InlineMath math="1{.}120" />, dan dengan tiga suku <InlineMath math="7,8,9" /> dengan hasil kali <InlineMath math="504" />. **Keduanya lebih kecil**, jadi <InlineMath math="1{.}680" /> memang yang terbesar.
 
+Grafik berikut membandingkan hasil kali terbaik untuk setiap banyak suku. **Batang lima suku paling tinggi**, jadi menambah suku sampai batas lima memang menguntungkan selama suku-sukunya tetap berbeda dan berdekatan.
+
+<Chart
+  title={<>Hasil kali terbesar menurut banyak suku yang berbeda</>}
+  description={<>Dengan tiga suku, yang terbaik <InlineMath math="7, 8, 9" /> dengan hasil kali <InlineMath math="504" />. Dengan empat suku, yang terbaik <InlineMath math="4, 5, 7, 8" /> dengan hasil kali <InlineMath math="1{.}120" />. Dengan lima suku, yang terbaik <InlineMath math="2, 4, 5, 6, 7" /> dengan hasil kali <InlineMath math="1{.}680" />.</>}
+  categories={["Tiga suku", "Empat suku", "Lima suku"]}
+  bars="apart"
+  series={[{ label: "Hasil kali terbaik", mark: "bar", values: [7 * 8 * 9, 4 * 5 * 7 * 8, 2 * 4 * 5 * 6 * 7] }]}
+  valueLabel="Hasil kali"
+/>
+
 # Pilihan yang menjebak
 
 - <InlineMath math="2{.}160" /> membagikan sisa <InlineMath math="4" /> ke empat suku terkecil, sehingga didapat <InlineMath math="3,4,5,6,6" />. Hasil kalinya besar, tetapi **angka <InlineMath math="6" /> muncul dua kali**, jadi melanggar syarat berbeda.

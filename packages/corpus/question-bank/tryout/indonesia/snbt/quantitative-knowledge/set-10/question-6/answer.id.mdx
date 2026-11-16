@@ -20,6 +20,20 @@ Untuk faktor <InlineMath math="2" />, setiap pangkat boleh <InlineMath math="0" 
 
 Ketiga pilihan itu bebas satu sama lain, jadi **aturan perkalian** memberi <InlineMath math="7\cdot 5\cdot 3=105" /> pasangan berurutan <InlineMath math="(a,b)" />. Angka ini masih memuat <InlineMath math="(a,b)" /> dan <InlineMath math="(b,a)" /> sebagai dua pasangan, juga pasangan dengan <InlineMath math="a=b" />.
 
+Grafik berikut membandingkan semua pasangan pangkat dengan pasangan yang pangkat terbesarnya tepat sama dengan pangkat di <InlineMath math="360" />. **Hasil kali ketiga batang yang memenuhi**, <InlineMath math="7\cdot5\cdot3" />, adalah banyak pasangan berurutan.
+
+<Chart
+  title={<>Pasangan pangkat untuk setiap faktor prima <InlineMath math="360" /></>}
+  description={<>Untuk faktor <InlineMath math="2" />, ada <InlineMath math="16" /> pasangan pangkat dan <InlineMath math="7" /> di antaranya berpangkat terbesar <InlineMath math="3" />. Untuk faktor <InlineMath math="3" />, ada <InlineMath math="9" /> pasangan dan <InlineMath math="5" /> memenuhi. Untuk faktor <InlineMath math="5" />, ada <InlineMath math="4" /> pasangan dan <InlineMath math="3" /> memenuhi. Hasil kalinya <InlineMath math="105" />.</>}
+  categories={["Faktor 2", "Faktor 3", "Faktor 5"]}
+  bars="apart"
+  series={[
+    { label: "Semua pasangan pangkat", mark: "bar", values: [4 * 4, 3 * 3, 2 * 2] },
+    { label: "Pangkat terbesar tepat", mark: "bar", values: [4 * 4 - 3 * 3, 3 * 3 - 2 * 2, 2 * 2 - 1] },
+  ]}
+  valueLabel="Banyak pasangan"
+/>
+
 # Syarat urutan pasangan
 
 Pasangan dengan <InlineMath math="a=b" /> hanya mungkin kalau <InlineMath math="\text{KPK}(a,a)=a=360" />, jadi **hanya ada satu pasangan kembar**, yaitu <InlineMath math="(360,360)" />. Sisanya <InlineMath math="104" /> pasangan dengan <InlineMath math="a\ne b" />. Pasangan itu datang berdua-dua, <InlineMath math="(a,b)" /> dan <InlineMath math="(b,a)" />, dan tepat satu dari setiap dua memenuhi <InlineMath math="a<b" />.

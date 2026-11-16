@@ -18,6 +18,39 @@ A central angle equals the arc it faces, so <InlineMath math="\angle BOC=80^\cir
 
 <BlockMath math="\angle OBC=\frac{180^\circ-80^\circ}{2}=50^\circ" />
 
+The circle below shows how the arcs fit together. Arcs <InlineMath math="AB" /> and <InlineMath math="AC" /> are each <InlineMath math="140^\circ" />, so **the arc <InlineMath math="BC" /> at the bottom is only <InlineMath math="80^\circ" />**, and triangle <InlineMath math="OBC" /> is isosceles with a top angle of <InlineMath math="80^\circ" />.
+
+<MathVisual
+  title={<>The tangent at <InlineMath math="A" /> and triangle <InlineMath math="OBC" /></>}
+  description={<>The line <InlineMath math="\ell" /> touches the circle at <InlineMath math="A" />, the top point. The chords <InlineMath math="AB" /> and <InlineMath math="AC" /> are equal and mirror each other in the vertical line through <InlineMath math="O" />. The arc <InlineMath math="BC" /> not containing <InlineMath math="A" /> measures <InlineMath math="80^\circ" />, so <InlineMath math="\angle BOC=80^\circ" /> and <InlineMath math="\angle OBC=50^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    o: <InlineMath math="O" />,
+    tangent: <InlineMath math="\ell" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -6, max: 6.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "tangent", kind: "line", appearance: "construction", through: [{ x: 0, y: 5 }, { x: 1, y: 5 }] },
+      { id: "chord-ab", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
+      { id: "chord-ac", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
+      { id: "obc", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "chord-ab", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "obc", at: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-right" },
+      { key: "c", objectId: "obc", at: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-left" },
+      { key: "o", objectId: "obc", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: 6, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Checking another way
 
 The inscribed angle <InlineMath math="BAC" /> faces arc <InlineMath math="BC" />, so it's <InlineMath math="40^\circ" />. Triangle <InlineMath math="ABC" /> is isosceles with <InlineMath math="AB=AC" />, so <InlineMath math="\angle ABC=\frac{180^\circ-40^\circ}{2}=70^\circ" />. In triangle <InlineMath math="OAB" />, the central angle <InlineMath math="AOB" /> is <InlineMath math="140^\circ" />, so <InlineMath math="\angle OBA=\frac{180^\circ-140^\circ}{2}=20^\circ" />. All three angles of triangle <InlineMath math="ABC" /> are acute, so **<InlineMath math="O" /> lies inside it** and the ray <InlineMath math="BO" /> splits angle <InlineMath math="ABC" />.

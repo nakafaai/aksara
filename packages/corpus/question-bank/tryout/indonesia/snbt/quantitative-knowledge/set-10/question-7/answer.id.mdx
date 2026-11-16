@@ -38,6 +38,37 @@ AD^2 &= AB^2+BD^2-2\cdot AB\cdot BD\cos B \\
 
 Panjang tidak mungkin negatif, jadi <InlineMath math="AD=6\text{ cm}" />.
 
+Gambar segitiga dengan ukuran sebenarnya memperlihatkan hasilnya. Garis bagi <InlineMath math="AD" /> membagi <InlineMath math="BC" /> menjadi <InlineMath math="3" /> dan <InlineMath math="4" />, dan **panjangnya sama dengan <InlineMath math="AB=6" />**, sehingga segitiga <InlineMath math="ABD" /> sama kaki.
+
+<MathVisual
+  title={<>Segitiga <InlineMath math="ABC" /> dan garis bagi <InlineMath math="AD" /></>}
+  description={<>Segitiga dengan <InlineMath math="AB=6" />, <InlineMath math="AC=8" />, dan <InlineMath math="BC=7" />. Garis bagi sudut <InlineMath math="A" /> memotong <InlineMath math="BC" /> di <InlineMath math="D" />, dengan <InlineMath math="BD=3" /> dan <InlineMath math="DC=4" />. Panjang <InlineMath math="AD" /> adalah <InlineMath math="6" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="AD=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }] },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }, to: { x: 3, y: 0 } },
+      { id: "point-d", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }, placement: "above" },
+      { key: "b", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "triangle", at: { x: 7, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ad", objectId: "bisector", at: { x: 9 / 4, y: (3 * Math.sqrt(15)) / 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Pemeriksaan lewat sudut lain
 
 Hitung lagi dari sisi lain. Di segitiga <InlineMath math="ABC" />, kosinus sudut <InlineMath math="C" /> adalah <InlineMath math="\cos C=\dfrac{64+49-36}{2\cdot 8\cdot 7}=\dfrac{11}{16}" />. Di segitiga <InlineMath math="ADC" />, dengan <InlineMath math="AC=8" /> dan <InlineMath math="DC=4" />, kamu dapat hasil yang sama.

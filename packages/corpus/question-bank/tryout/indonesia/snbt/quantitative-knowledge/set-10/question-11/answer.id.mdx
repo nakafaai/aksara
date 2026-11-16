@@ -26,6 +26,36 @@ f(4) &= 3+0+27=30 \\
 f(13) &= 12+18+0=30
 \end{aligned}" />
 
+Grafik <InlineMath math="f" /> berikut memperlihatkan dasar yang datar itu. Kemiringan grafik berubah dari <InlineMath math="-6" /> ke <InlineMath math="-4" />, lalu **menjadi nol di sepanjang <InlineMath math="4\le x\le13" />**, dan baru naik dengan kemiringan <InlineMath math="6" /> setelah <InlineMath math="x=13" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=|x-1|+2|x-4|+3|x-13|" /></>}
+  description={<>Grafik turun dengan kemiringan <InlineMath math="-6" /> sampai <InlineMath math="x=1" />, lalu dengan kemiringan <InlineMath math="-4" /> sampai <InlineMath math="x=4" />. Dari <InlineMath math="x=4" /> sampai <InlineMath math="x=13" /> grafik datar di <InlineMath math="y=30" />. Setelah itu grafik naik dengan kemiringan <InlineMath math="6" />.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    left: <InlineMath math="(4,30)" />,
+    right: <InlineMath math="(13,30)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "p1", kind: "function", appearance: "primary", formula: "48 - 6x", domain: { min: -1, max: 1 } },
+      { id: "p2", kind: "function", appearance: "primary", formula: "46 - 4x", domain: { min: 1, max: 4 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "30", domain: { min: 4, max: 13 } },
+      { id: "p4", kind: "function", appearance: "primary", formula: "6x - 48", domain: { min: 13, max: 16 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: 4, y: 30 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 13, y: 30 } },
+    ],
+    labels: [
+      { key: "f", objectId: "p2", at: { x: 2, y: 38 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: 4, y: 30 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 13, y: 30 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Menjumlahkan bilangan bulat
 
 Bilangan bulat di <InlineMath math="[4,13]" /> adalah <InlineMath math="4,5,\ldots,13" />, ada <InlineMath math="10" /> bilangan. **Kedua ujung ikut dihitung** karena di ujung pun nilainya <InlineMath math="30" />.

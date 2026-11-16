@@ -24,6 +24,38 @@ Jadi <InlineMath math="S" /> terdiri atas **bilangan di antara <InlineMath math=
 
 <BlockMath math="S=\{x\mid -1<x<0\ \text{atau}\ x>1\}" />
 
+Grafik kedua ruas memperlihatkan himpunan itu. Kurva <InlineMath math="y=\tfrac1x" /> ada **di bawah garis <InlineMath math="y=x" />** tepat di dua bagian, antara <InlineMath math="-1" /> dan <InlineMath math="0" /> serta di kanan <InlineMath math="1" />, yang ditandai ruas tebal pada sumbu-<InlineMath math="x" />.
+
+<MathVisual
+  title={<>Kurva <InlineMath math="y=\tfrac1x" /> dan garis <InlineMath math="y=x" /></>}
+  description={<>Kurva dan garis bertemu di <InlineMath math="(-1,-1)" /> dan <InlineMath math="(1,1)" />. Kurva ada di bawah garis untuk <InlineMath math="-1<x<0" /> dan untuk <InlineMath math="x>1" />, dan di atas garis untuk <InlineMath math="x<-1" /> dan <InlineMath math="0<x<1" />. Ruas tebal pada sumbu-<InlineMath math="x" /> menandai himpunan <InlineMath math="S" />.</>}
+  labels={{
+    hyper: <InlineMath math="y=\tfrac1x" />,
+    line: <InlineMath math="y=x" />,
+    m1: <InlineMath math="-1" />,
+    p1: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "left-part", kind: "segment", appearance: "highlight", from: { x: -1, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "right-part", kind: "segment", appearance: "highlight", from: { x: 1, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "hyper", kind: "function", appearance: "primary", formula: "1/x", domain: { min: -4, max: 4 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x", domain: { min: -4, max: 4 } },
+      { id: "m1", kind: "point", appearance: "construction", at: { x: -1, y: -1 } },
+      { id: "p1", kind: "point", appearance: "construction", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "hyper", objectId: "hyper", at: { x: 0.5, y: 2 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 3.5, y: 3.5 }, placement: "left" },
+      { key: "m1", objectId: "m1", at: { x: -1, y: -1 }, placement: "below-right" },
+      { key: "p1", objectId: "p1", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Pernyataan pertama
 
 Bilangan yang kurang dari <InlineMath math="-1" /> tidak ada di <InlineMath math="S" />. Contohnya <InlineMath math="x=-2" />: nilai <InlineMath math="\frac{1}{x}=-\frac{1}{2}" /> justru **lebih besar** daripada <InlineMath math="-2" />. Pernyataan ini **salah**. Jebakannya muncul kalau kamu mengalikan dengan <InlineMath math="x" /> tanpa memperhatikan tanda, sehingga mendapat <InlineMath math="x^2>1" /> yang ikut memuat <InlineMath math="x<-1" />.

@@ -31,6 +31,32 @@ k=\tfrac{1}{3}&\;\Longrightarrow\;D=9-\tfrac{4}{3}=\tfrac{23}{3}>0
 
 Untuk <InlineMath math="k=3" />, akar-akarnya tidak real, jadi nilai itu dibuang. Yang tersisa hanya <InlineMath math="k=\frac{1}{3}" />.
 
+Grafik kedua calon memperlihatkan perbedaannya. Parabola untuk <InlineMath math="k=3" /> **melayang di atas sumbu-<InlineMath math="x" />**, jadi tidak punya akar real. Parabola untuk <InlineMath math="k=\tfrac13" /> memotong sumbu di dua titik, yaitu <InlineMath math="\alpha" /> dan <InlineMath math="\beta" />.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y=x^2-3x+k" /> untuk kedua calon <InlineMath math="k" /></>}
+  description={<>Parabola untuk <InlineMath math="k=3" /> punya titik terendah <InlineMath math="\left(\tfrac32,\tfrac34\right)" />, di atas sumbu. Parabola untuk <InlineMath math="k=\tfrac13" /> punya titik terendah di bawah sumbu dan memotongnya di dua titik positif.</>}
+  labels={{
+    kept: <InlineMath math="k=\tfrac13" />,
+    dropped: <InlineMath math="k=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -2.5, max: 5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "kept", kind: "function", appearance: "answer", formula: "x^2 - 3x + 1/3", domain: { min: -0.9, max: 3.9 } },
+      { id: "dropped", kind: "function", appearance: "warning", formula: "x^2 - 3x + 3", domain: { min: -0.5, max: 3.5 } },
+      { id: "r1", kind: "point", appearance: "answer", at: { x: (3 - Math.sqrt(23 / 3)) / 2, y: 0 } },
+      { id: "r2", kind: "point", appearance: "answer", at: { x: (3 + Math.sqrt(23 / 3)) / 2, y: 0 } },
+    ],
+    labels: [
+      { key: "kept", objectId: "kept", at: { x: 1.5, y: 1 / 3 - 2.25 }, placement: "below" },
+      { key: "dropped", objectId: "dropped", at: { x: 1.5, y: 0.75 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Jumlah akar baru
 
 Kedua pecahan bisa disatukan karena <InlineMath math="\frac{1}{\alpha}+\frac{1}{\beta}=\frac{\alpha+\beta}{\alpha\beta}" />. Jadi **jumlah akar baru sama dengan jumlah akar lama ditambah jumlah akar lama dibagi hasil kalinya**.

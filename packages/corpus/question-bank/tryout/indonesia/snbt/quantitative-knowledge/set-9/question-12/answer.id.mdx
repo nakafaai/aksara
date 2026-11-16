@@ -40,4 +40,37 @@ Jaraknya kurang dari jari-jari, jadi garis itu memotong lingkaran di dua titik, 
 
 Lingkaran menyinggung sumbu <InlineMath math="y" /> jika <InlineMath math="r=|3|=3" />, jadi <InlineMath math="25-c=9" /> dan <InlineMath math="c=16" />. Jarak titik asal ke pusat adalah <InlineMath math="\sqrt{3^2+4^2}=5" />, **lebih besar dari jari-jari** <InlineMath math="3" />. Cara lain: substitusi titik asal ke ruas kiri memberi <InlineMath math="c=16>0" />, tanda bahwa titik itu di luar lingkaran. Pernyataan ini **salah**.
 
+Gambar berikut menaruh ketiga lingkaran dari pernyataan dua, tiga, dan empat dengan pusat yang sama. Lingkaran <InlineMath math="c=9" /> menyinggung sumbu-<InlineMath math="x" /> tetapi **memotong sumbu-<InlineMath math="y" />**, garis <InlineMath math="4x-3y=0" /> memotong lingkaran <InlineMath math="c=0" /> di dua titik, dan lingkaran <InlineMath math="c=16" /> menyinggung sumbu-<InlineMath math="y" /> dengan titik asal di luarnya.
+
+<MathVisual
+  title={<>Lingkaran berpusat <InlineMath math="(3,-4)" /> untuk tiga nilai <InlineMath math="c" /></>}
+  description={<>Ketiga lingkaran berpusat di <InlineMath math="(3,-4)" />. Untuk <InlineMath math="c=9" />, jari-jarinya <InlineMath math="4" />, menyinggung sumbu-<InlineMath math="x" />, dan memotong sumbu-<InlineMath math="y" />. Untuk <InlineMath math="c=0" />, jari-jarinya <InlineMath math="5" /> dan melewati titik asal, dan garis <InlineMath math="4x-3y=0" /> memotongnya di dua titik. Untuk <InlineMath math="c=16" />, jari-jarinya <InlineMath math="3" /> dan menyinggung sumbu-<InlineMath math="y" />.</>}
+  labels={{
+    c9: <InlineMath math="c=9" />,
+    c16: <InlineMath math="c=16" />,
+    c0: <InlineMath math="c=0" />,
+    line: <InlineMath math="4x-3y=0" />,
+    center: <InlineMath math="(3,-4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 10 }, y: { min: -11, max: 3 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "c0", kind: "circle", appearance: "reference", center: { x: 3, y: -4 }, radius: 5 },
+      { id: "c9", kind: "circle", appearance: "primary", center: { x: 3, y: -4 }, radius: 4 },
+      { id: "c16", kind: "circle", appearance: "secondary", center: { x: 3, y: -4 }, radius: 3 },
+      { id: "line", kind: "line", appearance: "warning", through: [{ x: 0, y: 0 }, { x: 3, y: 4 }] },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 8, y: -4 }, placement: "right" },
+      { key: "c9", objectId: "c9", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "c16", objectId: "c16", at: { x: 0, y: -4 }, placement: "left" },
+      { key: "line", objectId: "line", at: { x: -1.5, y: -2 }, placement: "left" },
+      { key: "center", objectId: "center", at: { x: 3, y: -4 }, placement: "below" },
+    ],
+  }}
+/>
+
 Jadi, pernyataan kedua benar, sedangkan pernyataan pertama, ketiga, dan keempat salah.

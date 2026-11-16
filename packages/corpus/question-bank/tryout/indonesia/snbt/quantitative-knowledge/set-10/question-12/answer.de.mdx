@@ -39,6 +39,21 @@ Die Person mit der Note <InlineMath math="7" /> verlässt Klasse B und wechselt 
 
 Der Mittelwert von Klasse A steigt über <InlineMath math="6{,}8" />, und der Mittelwert von Klasse B steigt über <InlineMath math="7{,}25" />. Das ergibt Sinn: Die Note <InlineMath math="7" /> liegt **über dem Mittelwert von Klasse A, aber unter dem Mittelwert von Klasse B**. Ein Wert über dem Mittelwert hebt den Mittelwert, und das Entfernen eines Werts unter dem Mittelwert hebt ihn ebenfalls. Um <InlineMath math="\tfrac{138}{19}>7{,}25" /> sicher zu prüfen, vergleich <InlineMath math="138\cdot 4=552" /> mit <InlineMath math="29\cdot 19=551" />. Diese Aussage ist wahr.
 
+Das Diagramm vergleicht die Mittelwerte beider Klassen vor und nach dem Wechsel der Schülerin mit Note <InlineMath math="7" />. **Beide neuen Balken sind etwas höher** als die alten, weil die <InlineMath math="7" /> über dem Mittelwert von Klasse A, aber unter dem von Klasse B liegt.
+
+<Chart
+  title={<>Mittelwerte der Klassen A und B vor und nach dem Wechsel</>}
+  description={<>Die Werteachse beginnt bei <InlineMath math="6{,}5" />, damit die kleinen Änderungen sichtbar werden. Der Mittelwert von Klasse A steigt von <InlineMath math="6{,}8" /> auf <InlineMath math="\tfrac{109}{16}=6{,}8125" />. Der Mittelwert von Klasse B steigt von <InlineMath math="7{,}25" /> auf <InlineMath math="\tfrac{138}{19}" />, etwa <InlineMath math="7{,}26" />.</>}
+  bars="apart"
+  categories={["A", "B"]}
+  series={[
+    { label: "Mittelwert vorher", mark: "bar", values: [102 / 15, 145 / 20] },
+    { label: "Mittelwert nach dem Wechsel", mark: "bar", values: [109 / 16, 138 / 19] },
+  ]}
+  valueRange={{ min: 6.5, max: 7.5 }}
+  valueLabel="Mittelwert"
+/>
+
 # Die vierte Aussage
 
 Mit der neuen Person hat Klasse A <InlineMath math="16" /> Lernende, ihr Median ist also der Mittelwert aus dem <InlineMath math="8" />. und dem <InlineMath math="9" />. Wert. Prüf **beide Möglichkeiten für die neue Note**.

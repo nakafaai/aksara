@@ -2,6 +2,34 @@ Sebuah benda pejal terdiri atas sebuah kerucut dan sebuah setengah bola yang ala
 
 Berdasarkan informasi yang diberikan, manakah hubungan antara kuantitas <InlineMath math="P" /> dan <InlineMath math="Q" /> berikut yang benar?
 
+<MathVisual
+  title={<>Penampang tabung berisi air dan benda gabungan</>}
+  description={<>Tabung tegak berjari-jari <InlineMath math="2r" /> berisi air. Benda gabungan terdiri atas kerucut setinggi <InlineMath math="r" /> di atas setengah bola berjari-jari <InlineMath math="r" />, dengan alas yang berimpit, dan tenggelam seluruhnya di dalam air.</>}
+  labels={{
+    tube: <InlineMath math="2r" />,
+    radius: <InlineMath math="r" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -0.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "wall-left", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: -4, y: 8 } },
+      { id: "wall-right", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 8 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "water", kind: "segment", appearance: "secondary", from: { x: -4, y: 6.5 }, to: { x: 4, y: 6.5 } },
+      { id: "cone", kind: "polygon", appearance: "primary", vertices: [{ x: -2, y: 2 }, { x: 2, y: 2 }, { x: 0, y: 4 }] },
+      { id: "bowl", kind: "arc", appearance: "primary", center: { x: 0, y: 2 }, radius: 2, startDegrees: 180, sweepDegrees: 180 },
+      { id: "tube-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 7.5 }, to: { x: 4, y: 7.5 } },
+      { id: "solid-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "tube", objectId: "tube-radius", at: { x: 2, y: 7.5 }, placement: "above" },
+      { key: "radius", objectId: "solid-radius", at: { x: 1, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 | <InlineMath math="P" /> | <InlineMath math="Q" /> |
 | :---: | :---: |
 | Kenaikan tinggi permukaan air di dalam tabung | <InlineMath math="\dfrac{r}{4}" /> |

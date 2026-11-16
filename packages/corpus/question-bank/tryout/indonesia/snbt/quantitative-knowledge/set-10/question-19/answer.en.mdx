@@ -34,6 +34,34 @@ The value <InlineMath math="24" /> happens at a point with fractional coordinate
 
 Every one of them breaks a constraint: <InlineMath math="(0,6)" /> and <InlineMath math="(1,5)" /> push <InlineMath math="x+3y" /> above <InlineMath math="14" />, while <InlineMath math="(4,3)" />, <InlineMath math="(8,0)" /> and <InlineMath math="(5,2)" /> push <InlineMath math="2x+y" /> above <InlineMath math="10" />. The point <InlineMath math="(2,4)" /> meets <InlineMath math="2\cdot 2+4=8\le 10" /> and <InlineMath math="2+12=14\le 14" />, with value <InlineMath math="6+16=22" />. So **the whole-number maximum is <InlineMath math="22" />**, not <InlineMath math="23" />. Rounding the corner to <InlineMath math="(3,4)" /> fails too, because <InlineMath math="3+12=15>14" />. This statement is false.
 
+The region <InlineMath math="D" /> below shows both maximum values. The line <InlineMath math="3x+4y=24" /> **only touches the region at one corner**, which has fractional coordinates, while the best whole-number point inside the region is <InlineMath math="(2,4)" />, a little below that line.
+
+<MathVisual
+  title={<>Region <InlineMath math="D" /> and the level line <InlineMath math="3x+4y=24" /></>}
+  description={<>Region <InlineMath math="D" /> has corners <InlineMath math="(0,0)" />, <InlineMath math="(5,0)" />, <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />, and <InlineMath math="\left(0,\tfrac{14}{3}\right)" />. The line <InlineMath math="3x+4y=24" /> touches the region only at the corner <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />. The whole-number point <InlineMath math="(2,4)" /> lies in the region with value <InlineMath math="22" />.</>}
+  labels={{
+    corner: <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />,
+    level: <InlineMath math="3x+4y=24" />,
+    whole: <InlineMath math="(2,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "region", kind: "region", appearance: "highlight", inequalities: ["x >= 0", "y >= 0", "2x + y <= 10", "x + 3y <= 14"] },
+      { id: "level", kind: "line", appearance: "secondary", through: [{ x: 0, y: 6 }, { x: 8, y: 0 }] },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 16 / 5, y: 18 / 5 } },
+      { id: "whole", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 16 / 5, y: 18 / 5 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 7, y: 0.75 }, placement: "above-right" },
+      { key: "whole", objectId: "whole", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # The third statement
 
 The constraint <InlineMath math="2x+y\le 10" /> already makes sure <InlineMath math="2x+y" /> is at most <InlineMath math="10" />. The value <InlineMath math="10" /> is reached along the whole edge from <InlineMath math="(5,0)" /> to <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />, for example at <InlineMath math="(5,0)" /> and at <InlineMath math="(4,2)" />. Because **the function runs parallel to one edge of the region**, the maximum is reached at infinitely many points. This statement is false.

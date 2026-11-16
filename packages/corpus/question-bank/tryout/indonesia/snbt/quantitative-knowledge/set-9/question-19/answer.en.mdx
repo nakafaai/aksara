@@ -29,4 +29,39 @@ x\le0\ \text{or}\ x\ge1&\;\Longrightarrow\;2^x\ge x+1>x\\
 
 The curve always stays above the line <InlineMath math="y=x" />, so they never meet. This statement is **false**.
 
+The graph below draws the curve <InlineMath math="y=2^x" /> with all four kinds of line. The line <InlineMath math="y=2x" /> cuts it at two points, the falling line cuts it exactly once, while the line <InlineMath math="y=x" /> and the line <InlineMath math="y=-1" /> **never touch the curve**.
+
+<MathVisual
+  title={<>The curve <InlineMath math="y=2^x" /> and four lines</>}
+  description={<>The curve <InlineMath math="y=2^x" /> is always positive, always rises, and bends upward. The line <InlineMath math="y=2x" /> cuts it at <InlineMath math="(1,2)" /> and <InlineMath math="(2,4)" />. The line <InlineMath math="y=-x+3" /> cuts it exactly once. The line <InlineMath math="y=x" /> stays below the curve, and the line <InlineMath math="y=-1" /> is below the <InlineMath math="x" />-axis, far from the curve.</>}
+  labels={{
+    curve: <InlineMath math="y=2^x" />,
+    two: <InlineMath math="y=2x" />,
+    same: <InlineMath math="y=x" />,
+    fall: <InlineMath math="y=-x+3" />,
+    flat: <InlineMath math="y=-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3.5 }, y: { min: -2, max: 9 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "flat", kind: "segment", appearance: "construction", from: { x: -3, y: -1 }, to: { x: 3.5, y: -1 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2^x", domain: { min: -3, max: 3.15 } },
+      { id: "two", kind: "function", appearance: "secondary", formula: "2x", domain: { min: -1, max: 3.5 } },
+      { id: "same", kind: "function", appearance: "reference", formula: "x", domain: { min: -2, max: 3.5 } },
+      { id: "fall", kind: "function", appearance: "highlight", formula: "-x + 3", domain: { min: -3, max: 3.5 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3, y: 8 }, placement: "left" },
+      { key: "two", objectId: "two", at: { x: 3.5, y: 7 }, placement: "below" },
+      { key: "same", objectId: "same", at: { x: 3.5, y: 3.5 }, placement: "below" },
+      { key: "fall", objectId: "fall", at: { x: -2.5, y: 5.5 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: -2.5, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 So statements one and three are true, while statements two and four are false.

@@ -34,6 +34,37 @@ f(3)&=2\cdot3+3=9\quad\text{atau}\quad f(3)=-2\cdot3-9=-15\\
 9+(-15)&=-6
 \end{aligned}" />
 
+Grafik kedua fungsi berikut memperlihatkan dua nilai itu. Kedua garis sama-sama memenuhi <InlineMath math="f\big(f(x)\big)=4x+9" />, dan **garis tegak <InlineMath math="x=3" />** memotong keduanya di dua ketinggian berbeda, <InlineMath math="9" /> dan <InlineMath math="-15" />.
+
+<MathVisual
+  title={<>Dua fungsi linear yang memenuhi <InlineMath math="f\big(f(x)\big)=4x+9" /></>}
+  description={<>Garis <InlineMath math="y=2x+3" /> naik dan garis <InlineMath math="y=-2x-9" /> turun. Garis tegak <InlineMath math="x=3" /> memotong garis pertama di <InlineMath math="(3,9)" /> dan garis kedua di <InlineMath math="(3,-15)" />. Jumlah kedua nilai itu <InlineMath math="-6" />.</>}
+  labels={{
+    up: <InlineMath math="f(x)=2x+3" />,
+    down: <InlineMath math="f(x)=-2x-9" />,
+    p9: <InlineMath math="(3,9)" />,
+    p15: <InlineMath math="(3,-15)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -20, max: 14 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "three", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "up", kind: "function", appearance: "primary", formula: "2x + 3", domain: { min: -3, max: 5 } },
+      { id: "down", kind: "function", appearance: "secondary", formula: "-2x - 9", domain: { min: -3, max: 5 } },
+      { id: "p9", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
+      { id: "p15", kind: "point", appearance: "answer", at: { x: 3, y: -15 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: -2, y: -1 }, placement: "above-left" },
+      { key: "down", objectId: "down", at: { x: -2, y: -5 }, placement: "below-left" },
+      { key: "p9", objectId: "p9", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "p15", objectId: "p15", at: { x: 3, y: -15 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Pilihan yang menjebak
 
 - <InlineMath math="9" /> hanya memakai <InlineMath math="a=2" /> dan **kehilangan kasus <InlineMath math="a=-2" />**.

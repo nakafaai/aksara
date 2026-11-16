@@ -26,6 +26,36 @@ f(4) &= 3+0+27=30 \\
 f(13) &= 12+18+0=30
 \end{aligned}" />
 
+Der Graph von <InlineMath math="f" /> zeigt diesen flachen Boden. Die Steigung wechselt von <InlineMath math="-6" /> zu <InlineMath math="-4" />, **wird dann auf <InlineMath math="4\le x\le13" /> null** und steigt erst nach <InlineMath math="x=13" /> mit Steigung <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=|x-1|+2|x-4|+3|x-13|" /></>}
+  description={<>Der Graph fällt mit Steigung <InlineMath math="-6" /> bis <InlineMath math="x=1" />, dann mit Steigung <InlineMath math="-4" /> bis <InlineMath math="x=4" />. Von <InlineMath math="x=4" /> bis <InlineMath math="x=13" /> verläuft er flach bei <InlineMath math="y=30" />. Danach steigt er mit Steigung <InlineMath math="6" />.</>}
+  labels={{
+    f: <InlineMath math="y=f(x)" />,
+    left: <InlineMath math="(4,30)" />,
+    right: <InlineMath math="(13,30)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "p1", kind: "function", appearance: "primary", formula: "48 - 6x", domain: { min: -1, max: 1 } },
+      { id: "p2", kind: "function", appearance: "primary", formula: "46 - 4x", domain: { min: 1, max: 4 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "30", domain: { min: 4, max: 13 } },
+      { id: "p4", kind: "function", appearance: "primary", formula: "6x - 48", domain: { min: 13, max: 16 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: 4, y: 30 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 13, y: 30 } },
+    ],
+    labels: [
+      { key: "f", objectId: "p2", at: { x: 2, y: 38 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: 4, y: 30 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 13, y: 30 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Die ganzen Zahlen addieren
 
 Die ganzen Zahlen in <InlineMath math="[4,13]" /> sind <InlineMath math="4,5,\ldots,13" />, das sind <InlineMath math="10" /> Zahlen. **Beide Enden zählen mit**, weil der Wert dort ebenfalls <InlineMath math="30" /> ist.

@@ -33,6 +33,17 @@ a_n &= 2+3\left(1+2+\cdots+2^{n-2}\right) \\
 
 Cek cepat: rumus ini memberi <InlineMath math="a_1=2" />, <InlineMath math="a_2=5" />, dan <InlineMath math="a_3=11" />, sesuai data.
 
+Grafik sepuluh suku pertama memperlihatkan pertumbuhannya. Setiap batang **kira-kira dua kali batang sebelumnya**, karena selisih antarsuku berlipat dua, sehingga suku ke-<InlineMath math="10" /> saja sudah separuh dari jumlah seluruhnya.
+
+<Chart
+  title={<>Sepuluh suku pertama <InlineMath math="a_n=3\cdot2^{n-1}-1" /></>}
+  description={<>Suku-sukunya <InlineMath math="2, 5, 11, 23, 47, 95, 191, 383, 767, 1{.}535" />. Selisih dua suku berturutan adalah <InlineMath math="3, 6, 12, \ldots" />, berlipat dua setiap langkah. Jumlah kesepuluh suku adalah <InlineMath math="3{.}059" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[{ label: "Nilai suku", mark: "bar", values: Array.from({ length: 10 }, (_, i) => 3 * 2 ** i - 1) }]}
+  valueLabel="Nilai suku"
+/>
+
 # Jumlah sepuluh suku
 
 Setiap suku terdiri atas bagian <InlineMath math="3\cdot 2^{n-1}" /> dan **bagian <InlineMath math="-1" /> yang muncul sepuluh kali**.
