@@ -6,6 +6,20 @@ Hitung setiap pernyataan langsung dari tabel, dan perhatikan angka yang **berdek
 
 **Pernyataan 3** bernilai Salah. Total Maret <InlineMath math="310+82=392" />, sedangkan dua kali total Februari adalah <InlineMath math="2\times(115+85)=400" />. Angka <InlineMath math="392" /> kurang dari <InlineMath math="400" />.
 
+Grafik berikut menaruh angka Maret di samping pembandingnya. **Kucing Maret melewati pembandingnya, tetapi total Maret tidak**, walaupun selisih keduanya tipis.
+
+<Chart
+  title={<>Angka Maret dibandingkan dengan pembanding dari Februari</>}
+  description={<>Kunjungan kucing Maret <InlineMath math="310" />, lebih dari <InlineMath math="2{,}5\times115=287{,}5" />. Total kunjungan Maret <InlineMath math="392" />, kurang dari <InlineMath math="2\times200=400" />.</>}
+  categories={["Kunjungan kucing", "Total kunjungan"]}
+  bars="apart"
+  series={[
+    { label: "Angka Maret", mark: "bar", values: [310, 310 + 82] },
+    { label: "Pembanding dari Februari", mark: "bar", values: [(25 * 115) / 10, 2 * (115 + 85)] },
+  ]}
+  valueLabel="Kunjungan"
+/>
+
 **Pernyataan 4** bernilai Benar. <InlineMath math="140" /> lebih dari <InlineMath math="120" />.
 
 Jadi, pernyataan 1 dan 4 benar, sedangkan pernyataan 2 dan 3 salah.

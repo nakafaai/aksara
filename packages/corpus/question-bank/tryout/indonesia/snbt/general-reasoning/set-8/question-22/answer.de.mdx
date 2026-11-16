@@ -6,4 +6,18 @@ Die sechs Schichten zusammen:
 
 <BlockMath math="1+3+6+10+15+21=56" />
 
+Das Diagramm zeichnet jede Schicht und die laufende Summe von oben. **Die laufende Summe erreicht in der sechsten Schicht <InlineMath math="56" />**.
+
+<Chart
+  title={<>Kugeln pro Schicht und in der ganzen Pyramide</>}
+  description={<>Die Schichten eins bis sechs enthalten <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="10" />, <InlineMath math="15" /> und <InlineMath math="21" /> Kugeln. Die laufenden Summen von oben sind <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="35" /> und <InlineMath math="56" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6"]}
+  series={[
+    { label: "Kugeln in dieser Schicht", mark: "bar", values: [1, 2, 3, 4, 5, 6].map((k) => (k * (k + 1)) / 2) },
+    { label: "Kugeln bis zu dieser Schicht", mark: "bar", values: [1, 2, 3, 4, 5, 6].map((k) => (k * (k + 1) * (k + 2)) / 6) },
+  ]}
+  valueLabel="Kugeln"
+/>
+
 Der Wert <InlineMath math="35" /> gehört zu einer Pyramide mit fünf Schichten, <InlineMath math="84" /> zu einer mit sieben. Die Pyramide mit sechs Schichten enthält also <InlineMath math="56" /> Kugeln.

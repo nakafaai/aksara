@@ -1,5 +1,17 @@
 Mark each statement Benar (true, it must follow from the rule) or Salah (false, it need not follow). "If and only if" works both ways. The lamp is on **exactly** when both conditions hold: it is dark **and** motion is detected. If either condition fails, the lamp is off.
 
+The diagram below checks both conditions one at a time. **Only one path turns the lamp on**: dark and motion.
+
+<Mermaid
+  title={<>When the park lamp is on</>}
+  description={<>If it isn't dark yet, the lamp is off. If it's dark but the sensor detects no motion, the lamp is off too. The lamp is on only when it's dark and there's motion.</>}
+  chart={`flowchart LR
+    G{"Is it dark?"} -->|"not yet"| P1["Lamp off"]
+    G -->|"yes"| S{"Sensor detects motion?"}
+    S -->|"no"| P2["Lamp off"]
+    S -->|"yes"| N["Lamp on"]`}
+/>
+
 **Statement 1** is false. Darkness alone is not enough. Without motion, the lamp stays off.
 
 **Statement 2** is true. The lamp is on only when both conditions hold, so it must be dark.

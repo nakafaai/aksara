@@ -3,6 +3,18 @@ If U is first, the second place **cannot** be a slow song (rule 1). The fast son
 - R cannot be second, because S must come right before R, but first place is U.
 - Q cannot be second, because P must come before Q.
 
+The diagram below sums up why each candidate for second place drops out. **Only P survives**.
+
+<Mermaid
+  title={<>Who can be sung second if U is first</>}
+  description={<>A slow song can't be second because U is slow. R can't be second because S must come right before R. Q can't be second because P must come first. Only P is left.</>}
+  chart={`flowchart LR
+    U["U in first place"] --> L["Slow song second: next to U, out"]
+    U --> R["R second: S not right before it, out"]
+    U --> Q["Q second: P not sung yet, out"]
+    U --> P["P second: allowed"]`}
+/>
+
 So the second place is certainly **P**. The orders meeting every rule are U, P, S, R, T, Q and U, P, T, Q, S, R.
 
 The other options are not certain:

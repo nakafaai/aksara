@@ -6,6 +6,17 @@ Turn the percentages into **numbers of people**, because the <InlineMath math="7
 \text{preferred the new drink} &= 80-56=24
 \end{aligned}" />
 
+The chart below puts each group next to a third of the participants. **The bar for those preferring the old drink is still below the one-third bar**.
+
+<Chart
+  title={<>Taste-test groups compared with a third of the participants</>}
+  description={<>In all, <InlineMath math="120" /> participants couldn't tell the drinks apart, <InlineMath math="56" /> preferred the old drink, and <InlineMath math="24" /> preferred the new one. A third of the <InlineMath math="200" /> participants is about <InlineMath math="67" /> people.</>}
+  categories={["Couldn't tell apart", "Preferred the old drink", "Preferred the new drink", "A third of participants"]}
+  bars="apart"
+  series={[{ label: "Participants", mark: "bar", values: [(60 * 200) / 100, (70 * 80) / 100, 80 - 56, Math.round(200 / 3)] }]}
+  valueLabel="People"
+/>
+
 Those who preferred the old drink are <InlineMath math="\frac{56}{200}=28\%" /> of all participants, and <InlineMath math="28\%" /> is less than a third.
 
 The other options are not supported:

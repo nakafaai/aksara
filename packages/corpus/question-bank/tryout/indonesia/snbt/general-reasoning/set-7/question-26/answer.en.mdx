@@ -6,4 +6,18 @@ Let a pen cost <InlineMath math="p" /> and a pencil <InlineMath math="q" /> rupi
 
 **Statement (2) alone**: not sufficient. <InlineMath math="2p-2q=4{,}000" /> gives only <InlineMath math="p-q=2{,}000" />. Both <InlineMath math="p=5{,}000, q=3{,}000" /> and <InlineMath math="p=6{,}000, q=4{,}000" /> fit.
 
+The chart below draws two price pairs that both fit statement (2). **The two bars always differ by <InlineMath math="2{,}000" />**, but the pen price differs.
+
+<Chart
+  title={<>Two price pairs that fit statement (2)</>}
+  description={<>First pair: a pen at <InlineMath math="5{,}000" /> and a pencil at <InlineMath math="3{,}000" /> rupiah. Second pair: a pen at <InlineMath math="6{,}000" /> and a pencil at <InlineMath math="4{,}000" /> rupiah. Both satisfy <InlineMath math="2p-2q=4{,}000" />.</>}
+  categories={["First pair", "Second pair"]}
+  bars="apart"
+  series={[
+    { label: "Pen price", mark: "bar", values: [5000, 6000] },
+    { label: "Pencil price", mark: "bar", values: [5000 - 2000, 6000 - 2000] },
+  ]}
+  valueLabel="Rupiah"
+/>
+
 So statement (1) alone is sufficient, but statement (2) alone is not.

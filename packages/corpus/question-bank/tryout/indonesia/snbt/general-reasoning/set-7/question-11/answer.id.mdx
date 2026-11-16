@@ -1,5 +1,16 @@
 Sebuah simpulan pasti benar jika berlaku pada **setiap** keadaan yang memenuhi ketiga pernyataan.
 
+Diagram berikut merangkai ketiga pernyataan. **Penari hanya masuk rantai lewat "sebagian"**, jadi hanya penari yang juga pemain gamelan yang pasti berusia <InlineMath math="10" /> tahun ke atas.
+
+<Mermaid
+  title={<>Rantai pernyataan tentang anggota Sanggar Laras</>}
+  description={<>Setiap pemain gamelan dapat membaca notasi kepatihan, dan setiap pembaca notasi itu berusia <InlineMath math="10" /> tahun ke atas. Sebagian penari juga pemain gamelan. Pembaca notasi bisa juga bukan pemain gamelan.</>}
+  chart={`flowchart LR
+    G["Pemain gamelan"] -->|"semua"| N["Dapat membaca notasi kepatihan"]
+    N -->|"semua"| U["Berusia 10 tahun ke atas"]
+    P["Penari"] -.->|"sebagian"| G`}
+/>
+
 **Simpulan 1** bernilai Benar. Setiap pemain gamelan dapat membaca notasi kepatihan, dan tidak ada pembaca notasi yang berusia di bawah <InlineMath math="10" /> tahun. Jadi, tidak ada pemain gamelan yang berusia di bawah <InlineMath math="10" /> tahun.
 
 **Simpulan 2** bernilai Benar. Ada penari yang juga pemain gamelan. Menurut simpulan 1, penari itu berusia <InlineMath math="10" /> tahun atau lebih.

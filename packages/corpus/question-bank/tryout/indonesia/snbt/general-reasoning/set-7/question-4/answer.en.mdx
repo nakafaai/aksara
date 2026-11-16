@@ -1,5 +1,18 @@
 Compare the two columns. Cat visits were about <InlineMath math="115" /> to <InlineMath math="120" /> before the program, then **jumped** to <InlineMath math="310" /> in March and <InlineMath math="280" /> in April. Dog visits, whose service did not change, stayed around <InlineMath math="80" /> to <InlineMath math="90" />. So the jump fits the cat vaccine program best.
 
+The chart below draws both columns of the table. **Only the cat line jumps in March and April**, while the dog line stays flat.
+
+<Chart
+  title={<>Cat and dog visits to the clinic each month</>}
+  description={<>Cat visits are about <InlineMath math="115" /> to <InlineMath math="120" /> in January and February, rise to <InlineMath math="310" /> and <InlineMath math="280" /> in March and April, then fall to about <InlineMath math="140" />. Dog visits stay around <InlineMath math="80" /> to <InlineMath math="90" />.</>}
+  categories={["January", "February", "March", "April", "May", "June"]}
+  series={[
+    { label: "Cat visits", mark: "line", values: [120, 115, 310, 280, 140, 135] },
+    { label: "Dog visits", mark: "line", values: [80, 85, 82, 88, 84, 90] },
+  ]}
+  valueLabel="Visits"
+/>
+
 The other options are not supported:
 
 - Dog visits in March and April, <InlineMath math="82" /> and <InlineMath math="88" />, did not fall compared with other months.

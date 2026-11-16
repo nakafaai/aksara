@@ -1,5 +1,17 @@
 Wähle für jede Einteilung Mungkin (möglich) oder Tidak mungkin (unmöglich). Prüfe jede an allen fünf Regeln. Eine verletzte Regel macht eine Einteilung **unmöglich**.
 
+Das Diagramm zählt die Regeln, die jede Einteilung verletzt. **Eine Einteilung mit Balken null ist möglich**.
+
+<Chart
+  title={<>Verletzte Regeln jeder Einteilung</>}
+  description={<>Einteilung 1 verletzt <InlineMath math="1" /> Regel, nämlich Regel 5. Einteilung 4 verletzt <InlineMath math="2" /> Regeln, nämlich Regel 1 und Regel 3. Einteilung 2 und 3 verletzen keine Regel.</>}
+  categories={["Einteilung 1", "Einteilung 2", "Einteilung 3", "Einteilung 4"]}
+  bars="apart"
+  series={[{ label: "Verletzte Regeln", mark: "bar", values: [1, 0, 0, 2] }]}
+  valueLabel="Regeln"
+  valueRange={{ min: 0, max: 3 }}
+/>
+
 **Einteilung 1**: unmöglich. Citra und Eko sind beide im Süden, das verletzt Regel 5.
 
 **Einteilung 2**: möglich. Ayu ist im Norden und Bima im Süden (Regel 1), Citra ist im Süden (Regel 2), Dani ist nicht im Norden, also greift Regel 3 nicht, Bima ist nicht in der Mitte (Regel 4), und Eko im Norden ist von Citra getrennt (Regel 5).

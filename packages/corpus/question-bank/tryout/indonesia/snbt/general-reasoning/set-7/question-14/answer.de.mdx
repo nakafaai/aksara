@@ -4,6 +4,19 @@ Prüfe, ob Eko am mittleren Posten **sein kann**. Ist Eko in der Mitte:
 - Dani darf nicht in den Norden, sonst müsste Eko nach Regel 3 in den Süden, Eko ist aber in der Mitte. Also ist Dani im Süden.
 - Im Süden sind jetzt Citra und Dani, also müssten Ayu und Bima beide in den Norden. Das verletzt Regel 1.
 
+Das Diagramm zeichnet, was folgt, wenn Eko am mittleren Posten ist. **Die Kette endet mit Ayu und Bima am selben Posten**, was Regel 1 verbietet.
+
+<Mermaid
+  title={<>Was folgt, wenn Eko am mittleren Posten Dienst hat</>}
+  description={<>Ist Eko in der Mitte, muss Citra in den Süden. Dani kann nicht in den Norden, also geht Dani in den Süden. Der Südposten ist voll, also gehen Ayu und Bima beide in den Norden und verletzen Regel 1.</>}
+  chart={`flowchart LR
+    E["Eko am mittleren Posten"] -->|"Regel 2"| C["Citra im Süden"]
+    E -->|"Regel 3"| D["Dani im Süden"]
+    C --> S["Südposten voll"]
+    D --> S
+    S --> X["Ayu und Bima im Norden: verletzt Regel 1"]`}
+/>
+
 Jeder Fall scheitert, Eko ist also **sicher nicht** am mittleren Posten.
 
 Die anderen Optionen sind nicht sicher. Ayu und Dani im Norden, Citra in der Mitte, Bima und Eko im Süden erfüllt alle Regeln, also ist Bima nicht sicher im Norden und Dani nicht sicher im Süden. Bima und Eko im Norden, Ayu in der Mitte, Citra und Dani im Süden geht ebenfalls, also ist Citra nicht sicher in der Mitte und Ayu nicht sicher im Norden.

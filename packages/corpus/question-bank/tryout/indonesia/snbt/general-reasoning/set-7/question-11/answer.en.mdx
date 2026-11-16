@@ -1,5 +1,16 @@
 Mark each conclusion Benar (true, it must follow) or Salah (false, it need not follow). A conclusion must follow when it holds in **every** situation that fits all three statements.
 
+The diagram below chains the three statements. **Dancers only join the chain through "some"**, so only the dancers who also play gamelan are surely <InlineMath math="10" /> or older.
+
+<Mermaid
+  title={<>The chain of statements about Sanggar Laras members</>}
+  description={<>Every gamelan player can read kepatihan notation, and everyone who reads it is <InlineMath math="10" /> or older. Some dancers also play gamelan. Someone who reads the notation may not play gamelan.</>}
+  chart={`flowchart LR
+    G["Gamelan players"] -->|"all"| N["Can read kepatihan notation"]
+    N -->|"all"| U["Aged 10 or older"]
+    P["Dancers"] -.->|"some"| G`}
+/>
+
 **Conclusion 1** is true. Every gamelan player can read kepatihan notation, and no one who reads it is under <InlineMath math="10" />. So no gamelan player is under <InlineMath math="10" />.
 
 **Conclusion 2** is true. Some dancers are also gamelan players. By conclusion 1, those dancers are <InlineMath math="10" /> or older.

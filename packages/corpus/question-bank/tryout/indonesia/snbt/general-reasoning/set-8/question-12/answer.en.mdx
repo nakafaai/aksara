@@ -4,6 +4,16 @@ Turn each "<InlineMath math="p" /> only if <InlineMath math="q" />" into <Inline
 
 Today the gate opened at 07.15, so it was **not** opened at 07.00. Applying modus tollens twice, not all passengers were aboard, and so the train did **not** leave on time.
 
+The diagram below draws the two modus tollens steps. **The late gate knocks down both links in front of it**.
+
+<Mermaid
+  title={<>Working backward from the gate opened at 07.15</>}
+  description={<>The gate wasn't opened at 07.00, so not all passengers were aboard. Not all passengers were aboard, so the train didn't leave on time.</>}
+  chart={`flowchart LR
+    P["Gate opened 07.15, not 07.00"] -->|"modus tollens"| N["Not all passengers aboard"]
+    N -->|"modus tollens"| K["Train didn't leave on time"]`}
+/>
+
 The other options are not valid:
 
 - The train in fact did not leave on time.

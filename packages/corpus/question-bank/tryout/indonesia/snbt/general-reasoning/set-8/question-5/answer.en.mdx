@@ -2,6 +2,21 @@ Mark each statement Benar (true) or Salah (false), computing straight from the t
 
 **Statement 1** is false. <InlineMath math="\frac{68+72+80+70+83}{5}=\frac{373}{5}=74.6" />, less than <InlineMath math="75" />.
 
+The chart below puts each class's score next to the mean of all five. **The mean line sits at <InlineMath math="74.6" />**, just below <InlineMath math="75" />.
+
+<Chart
+  title={<>Average exam score of each grade 12 class</>}
+  description={<>The averages of XII-1 to XII-5 are <InlineMath math="68" />, <InlineMath math="72" />, <InlineMath math="80" />, <InlineMath math="70" />, and <InlineMath math="83" />. Their mean is <InlineMath math="74.6" />, and the highest minus the lowest is <InlineMath math="15" />.</>}
+  categories={["XII-1", "XII-2", "XII-3", "XII-4", "XII-5"]}
+  bars="apart"
+  series={[
+    { label: "Class average score", mark: "bar", values: [68, 72, 80, 70, 83] },
+    { label: "Mean of the five classes", mark: "line", values: Array.from({ length: 5 }, () => (68 + 72 + 80 + 70 + 83) / 5) },
+  ]}
+  valueLabel="Score"
+  valueRange={{ min: 60, max: 90 }}
+/>
+
 **Statement 2** is false. The class with the fewest self-study hours is XII-1, and its tutoring rate is the lowest, <InlineMath math="20\%" />.
 
 **Statement 3** is true. <InlineMath math="83-68=15" />.

@@ -6,4 +6,18 @@ Test each statement on its own, then **both together**.
 
 **Both statements together**: the total is <InlineMath math="8k" /> with <InlineMath math="30<8k<50" />. The possible totals are <InlineMath math="32" />, <InlineMath math="40" />, and <InlineMath math="48" />, so the orange sweets could number <InlineMath math="12" />, <InlineMath math="15" />, or <InlineMath math="18" />. There is still more than one answer.
 
+The chart below draws the three jar contents that fit both statements. **The orange bar takes three different heights**, so there's still no single answer.
+
+<Chart
+  title={<>Jar contents that fit the ratio <InlineMath math="3:5" /> and a total between <InlineMath math="30" /> and <InlineMath math="50" /></>}
+  description={<>For totals of <InlineMath math="32" />, <InlineMath math="40" />, and <InlineMath math="48" />, the orange sweets number <InlineMath math="12" />, <InlineMath math="15" />, and <InlineMath math="18" />, and the grape sweets <InlineMath math="20" />, <InlineMath math="25" />, and <InlineMath math="30" />.</>}
+  bars="apart"
+  categories={["32", "40", "48"]}
+  series={[
+    { label: "Orange sweets", mark: "bar", values: [4, 5, 6].map((k) => 3 * k) },
+    { label: "Grape sweets", mark: "bar", values: [4, 5, 6].map((k) => 5 * k) },
+  ]}
+  valueLabel="Sweets"
+/>
+
 So statements (1) and (2) are not sufficient to answer the question.

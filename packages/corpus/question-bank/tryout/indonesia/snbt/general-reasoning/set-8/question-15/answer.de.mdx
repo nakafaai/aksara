@@ -3,6 +3,18 @@ Ist U Erstes, darf an zweiter Stelle **kein** langsames Lied stehen (Regel 1). A
 - R geht nicht, denn S muss direkt vor R stehen, Platz eins hat aber U.
 - Q geht nicht, denn P muss vor Q kommen.
 
+Das Diagramm fasst zusammen, warum jeder Kandidat für Platz zwei ausscheidet. **Nur P bleibt übrig**.
+
+<Mermaid
+  title={<>Welches Lied als zweites kommen kann, wenn U das erste ist</>}
+  description={<>Ein langsames Lied kann nicht zweites sein, weil U langsam ist. R kann nicht zweites sein, weil S direkt vor R kommen muss. Q kann nicht zweites sein, weil P vorher kommen muss. Übrig bleibt nur P.</>}
+  chart={`flowchart LR
+    U["U auf Platz eins"] --> L["Langsames Lied zweites: neben U, scheidet aus"]
+    U --> R["R zweites: S nicht direkt davor, scheidet aus"]
+    U --> Q["Q zweites: P noch nicht gesungen, scheidet aus"]
+    U --> P["P zweites: erlaubt"]`}
+/>
+
 Platz zwei hat also sicher **P**. Die Reihenfolgen, die alle Regeln erfüllen, sind U, P, S, R, T, Q und U, P, T, Q, S, R.
 
 Die anderen Optionen sind nicht sicher:

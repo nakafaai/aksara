@@ -1,5 +1,17 @@
 Uji setiap urutan terhadap keempat syarat. Satu pelanggaran sudah membuat urutan itu **tidak mungkin**.
 
+Grafik berikut menghitung syarat yang dilanggar setiap urutan. **Urutan dengan batang nol adalah urutan yang mungkin**.
+
+<Chart
+  title={<>Banyak syarat yang dilanggar oleh setiap urutan lagu</>}
+  description={<>Urutan <InlineMath math="1" /> dan urutan <InlineMath math="2" /> tidak melanggar syarat apa pun. Urutan <InlineMath math="3" /> melanggar syarat 1, dan urutan <InlineMath math="4" /> melanggar syarat 3.</>}
+  categories={["Urutan 1", "Urutan 2", "Urutan 3", "Urutan 4"]}
+  bars="apart"
+  series={[{ label: "Syarat yang dilanggar", mark: "bar", values: [0, 0, 1, 1] }]}
+  valueLabel="Banyak syarat"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Urutan 1**: Mungkin. Lagu lambat S, T, dan U berada di urutan 2, 4, dan 6 sehingga tidak berurutan, P sebelum Q, T di urutan keempat, dan R tepat setelah S.
 
 **Urutan 2**: Mungkin. Lagu lambat berada di urutan 1, 3, dan 5, P sebelum Q, T di urutan kelima, dan R tepat setelah S.

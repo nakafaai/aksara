@@ -9,6 +9,21 @@ For each team, **drop the single highest and single lowest score**, then average
 
 The order is C, A, D, then B.
 
+The chart below compares the final score with the plain average. **The plain average ties A and C**, while the rule of dropping the extremes puts C above A.
+
+<Chart
+  title={<>Final score and plain average of each team</>}
+  description={<>The final scores of A, B, C, and D are about <InlineMath math="87.67" />, <InlineMath math="83.33" />, <InlineMath math="88.67" />, and <InlineMath math="86" />. The plain averages of all five scores are <InlineMath math="86.6" />, <InlineMath math="83" />, <InlineMath math="86.6" />, and <InlineMath math="83.4" />.</>}
+  bars="apart"
+  categories={["A", "B", "C", "D"]}
+  series={[
+    { label: "Final score by the rule", mark: "bar", values: [(85 + 88 + 90) / 3, (80 + 84 + 86) / 3, (89 + 89 + 88) / 3, (85 + 87 + 86) / 3] },
+    { label: "Plain average of all five", mark: "bar", values: [(85 + 90 + 78 + 88 + 92) / 5, (95 + 80 + 84 + 86 + 70) / 5, (89 + 89 + 76 + 91 + 88) / 5, (99 + 85 + 87 + 86 + 60) / 5] },
+  ]}
+  valueLabel="Score"
+  valueRange={{ min: 80, max: 90 }}
+/>
+
 Note that the plain average of all five scores gives A and C the same <InlineMath math="86.6" />, and D <InlineMath math="83.4" />. The dropping rule is what separates C from A and lifts D above B.
 
 So first to third place are C, A, D.

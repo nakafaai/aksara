@@ -6,6 +6,18 @@ The implication <InlineMath math="a\Rightarrow b" /> is equivalent to <InlineMat
 
 So the statement is equivalent to "**Rudi works overtime or has dinner at home**" (*Rudi lembur atau makan malam di rumah*). At least one of the two happens.
 
+The diagram below checks any one of Rudi's days. **On any day, overtime or dinner at home is sure to happen**.
+
+<Mermaid
+  title={<>What "if Rudi doesn't work overtime, he has dinner at home" means</>}
+  description={<>If Rudi works overtime, the "overtime" part already happens. If he doesn't, he has dinner at home. So on every day, Rudi works overtime or has dinner at home.</>}
+  chart={`flowchart LR
+    L{"Does Rudi work overtime?"} -->|"yes"| A["Overtime happens"]
+    L -->|"no"| B["Dinner at home"]
+    A --> C["Overtime or dinner at home"]
+    B --> C`}
+/>
+
 The other options are not equivalent:
 
 - "Does not work overtime and has dinner at home" is a conjunction that requires both.

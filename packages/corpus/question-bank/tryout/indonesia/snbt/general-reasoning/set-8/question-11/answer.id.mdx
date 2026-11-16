@@ -1,5 +1,17 @@
 "Jika dan hanya jika" berarti dua arah. Lampu menyala **tepat** ketika kedua syarat terpenuhi: hari gelap **dan** ada gerakan. Jika salah satu syarat tidak terpenuhi, lampu tidak menyala.
 
+Diagram berikut memeriksa kedua syarat satu per satu. **Hanya satu jalur yang menyalakan lampu**, yaitu gelap dan ada gerakan.
+
+<Mermaid
+  title={<>Kapan lampu taman menyala</>}
+  description={<>Jika hari belum gelap, lampu padam. Jika sudah gelap tetapi sensor tidak mendeteksi gerakan, lampu juga padam. Lampu menyala hanya jika hari sudah gelap dan ada gerakan.</>}
+  chart={`flowchart LR
+    G{"Hari sudah gelap?"} -->|"belum"| P1["Lampu padam"]
+    G -->|"sudah"| S{"Sensor mendeteksi gerakan?"}
+    S -->|"tidak"| P2["Lampu padam"]
+    S -->|"ya"| N["Lampu menyala"]`}
+/>
+
 **Pernyataan 1** bernilai Salah. Hari gelap saja belum cukup. Jika tidak ada gerakan, lampu tidak menyala.
 
 **Pernyataan 2** bernilai Benar. Lampu menyala hanya jika kedua syarat terpenuhi, jadi hari pasti sudah gelap.

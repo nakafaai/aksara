@@ -3,6 +3,18 @@ Check the first and second places for song Q.
 - Q **cannot** be first, because P must come before Q (rule 2).
 - If Q is second, P must be first. Places 3 to 6 then hold R, S, T, and U, including all three slow songs. Three slow songs among four adjacent places must put two of them next to each other, which breaks rule 1.
 
+The diagram below draws both possibilities. **Both branches dead-end**, so Q never takes either of the first two places.
+
+<Mermaid
+  title={<>Why Q can't be sung first or second</>}
+  description={<>Q first fails because P must come before it. Q second forces P first, so places 3 to 6 hold all three slow songs in four adjacent places, and two of them must sit side by side.</>}
+  chart={`flowchart LR
+    Q1["Q in first place"] -->|"rule 2"| X1["No room for P before it: out"]
+    Q2["Q in second place"] --> P["P in first place"]
+    P --> T["Three slow songs in places 3 to 6"]
+    T -->|"rule 1"| X2["Two slow songs adjacent: out"]`}
+/>
+
 So Q is **certainly** sung neither first nor second.
 
 The other options are not certain. The order P, S, R, T, Q, U meets every rule, so S is not certainly first and T not certainly third. The order U, P, T, Q, S, R also works, so U is not certainly last and P not certainly first.

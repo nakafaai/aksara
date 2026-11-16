@@ -6,4 +6,18 @@ The six layers together:
 
 <BlockMath math="1+3+6+10+15+21=56" />
 
+The chart below draws each layer and the running total from the top. **The running total reaches <InlineMath math="56" /> at the sixth layer**.
+
+<Chart
+  title={<>Balls per layer and in the whole pyramid</>}
+  description={<>Layers one to six hold <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="10" />, <InlineMath math="15" />, and <InlineMath math="21" /> balls. The running totals from the top are <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="35" />, and <InlineMath math="56" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6"]}
+  series={[
+    { label: "Balls in that layer", mark: "bar", values: [1, 2, 3, 4, 5, 6].map((k) => (k * (k + 1)) / 2) },
+    { label: "Balls down to that layer", mark: "bar", values: [1, 2, 3, 4, 5, 6].map((k) => (k * (k + 1) * (k + 2)) / 6) },
+  ]}
+  valueLabel="Balls"
+/>
+
 The value <InlineMath math="35" /> is a five-layer pyramid, and <InlineMath math="84" /> a seven-layer one. So the six-layer pyramid holds <InlineMath math="56" /> balls.

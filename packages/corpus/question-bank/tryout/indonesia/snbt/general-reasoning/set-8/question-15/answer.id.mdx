@@ -3,6 +3,18 @@ Jika U pertama, urutan kedua **tidak boleh** lagu lambat (syarat 1). Lagu cepat 
 - R tidak mungkin kedua, karena S harus tepat sebelum R, padahal urutan pertama sudah diisi U.
 - Q tidak mungkin kedua, karena P harus lebih dahulu daripada Q.
 
+Diagram berikut merangkum alasan setiap calon pengisi urutan kedua. **Hanya P yang lolos**.
+
+<Mermaid
+  title={<>Siapa yang dapat dinyanyikan kedua jika U pertama</>}
+  description={<>Lagu lambat tidak boleh kedua karena U lambat. R tidak bisa kedua karena S harus tepat sebelum R. Q tidak bisa kedua karena P harus lebih dahulu. Yang tersisa hanya P.</>}
+  chart={`flowchart LR
+    U["U di urutan pertama"] --> L["Lagu lambat kedua: bersebelahan dengan U, gugur"]
+    U --> R["R kedua: S tidak tepat sebelumnya, gugur"]
+    U --> Q["Q kedua: P belum tampil, gugur"]
+    U --> P["P kedua: lolos"]`}
+/>
+
 Jadi, urutan kedua pasti diisi **P**. Urutan yang memenuhi semua syarat adalah U, P, S, R, T, Q dan U, P, T, Q, S, R.
 
 Pilihan lain tidak pasti:

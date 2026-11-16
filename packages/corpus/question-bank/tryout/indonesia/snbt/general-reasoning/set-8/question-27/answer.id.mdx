@@ -6,6 +6,16 @@ Perhatikan bahwa pecahan hari kedua dihitung dari **sisa halaman**, bukan dari s
 \text{hari ketiga} &= 40,\quad \text{sisa } 120-40=80
 \end{aligned}" />
 
+Grafik berikut menggambar sisa halaman setelah setiap hari. **Hari kedua juga mengurangi <InlineMath math="60" /> halaman**, karena sepertiganya diambil dari sisa <InlineMath math="180" />, bukan dari <InlineMath math="240" />.
+
+<Chart
+  title={<>Halaman yang belum dibaca Rina setelah setiap hari</>}
+  description={<>Sisa halamannya <InlineMath math="240" /> di awal, <InlineMath math="180" /> setelah hari pertama, <InlineMath math="120" /> setelah hari kedua, dan <InlineMath math="80" /> setelah hari ketiga.</>}
+  categories={["Awal", "Setelah hari pertama", "Setelah hari kedua", "Setelah hari ketiga"]}
+  series={[{ label: "Halaman belum dibaca", mark: "line", values: [240, 240 - 240 / 4, 180 - 180 / 3, 120 - 40] }]}
+  valueLabel="Halaman"
+/>
+
 Jika pecahan hari kedua dihitung dari seluruh buku, yaitu <InlineMath math="\frac{1}{3}\times240=80" />, sisanya menjadi <InlineMath math="240-60-80-40=60" />. Itu tidak sesuai dengan soal.
 
 Jadi, setelah hari ketiga masih ada <InlineMath math="80" /> halaman yang belum dibaca.

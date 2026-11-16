@@ -1,5 +1,17 @@
 Choose Mungkin (possible) or Tidak mungkin (impossible) for each order. Test each against all four rules. One violation makes an order **impossible**.
 
+The chart below counts the rules each order breaks. **An order with a zero bar is possible**.
+
+<Chart
+  title={<>Rules broken by each song order</>}
+  description={<>Orders <InlineMath math="1" /> and <InlineMath math="2" /> break no rule. Order <InlineMath math="3" /> breaks rule 1, and order <InlineMath math="4" /> breaks rule 3.</>}
+  categories={["Order 1", "Order 2", "Order 3", "Order 4"]}
+  bars="apart"
+  series={[{ label: "Rules broken", mark: "bar", values: [0, 0, 1, 1] }]}
+  valueLabel="Rules"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Order 1**: possible. The slow songs S, T, and U are in places 2, 4, and 6, so none are adjacent, P comes before Q, T is fourth, and R comes right after S.
 
 **Order 2**: possible. The slow songs are in places 1, 3, and 5, P comes before Q, T is fifth, and R comes right after S.

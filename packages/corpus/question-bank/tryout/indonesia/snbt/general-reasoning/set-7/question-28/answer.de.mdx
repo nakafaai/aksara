@@ -4,6 +4,20 @@ Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Die Ungleichung 
 
 Passende ganze Zahlen sind <InlineMath math="-1, 0, 1, 2, 3, 4, 5, 6, 7" />. Die Grenzen <InlineMath math="-2" /> und <InlineMath math="8" /> gehören nicht dazu, weil das Zeichen "kleiner als" lautet.
 
+Das Diagramm zeichnet den Abstand jeder ganzen Zahl zu <InlineMath math="3" />. **Nur die Balken unter der Linie bei <InlineMath math="5" /> erfüllen die Bedingung**, von <InlineMath math="-1" /> bis <InlineMath math="7" />.
+
+<Chart
+  title={<>Werte von <InlineMath math="|x-3|" /> für ganze Zahlen von <InlineMath math="-2" /> bis <InlineMath math="8" /></>}
+  description={<>Für <InlineMath math="x=-2" /> und <InlineMath math="x=8" /> ist der Abstand genau <InlineMath math="5" />, sie erfüllen die Bedingung also nicht. Die neun ganzen Zahlen von <InlineMath math="-1" /> bis <InlineMath math="7" /> liegen weniger als <InlineMath math="5" /> entfernt.</>}
+  bars="apart"
+  categories={["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Abstand zu 3", mark: "bar", values: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8].map((x) => Math.abs(x - 3)) },
+    { label: "Grenze 5", mark: "line", values: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5] },
+  ]}
+  valueLabel="Abstand"
+/>
+
 **Aussage 1** ist falsch. Es sind <InlineMath math="9" /> ganze Zahlen, nicht <InlineMath math="10" />.
 
 **Aussage 2** ist falsch. <InlineMath math="x=-2" /> ergibt <InlineMath math="|{-5}|=5" />, was nicht kleiner als <InlineMath math="5" /> ist. Der kleinste Wert ist <InlineMath math="-1" />.

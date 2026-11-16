@@ -9,3 +9,14 @@ Bagi menjadi **dua kasus** menurut kedua jilid itu, karena keduanya selalu dipil
 <BlockMath math="\binom{5}{3}=10" />
 
 Memilih tepat satu jilid tidak diperbolehkan, jadi kasus itu tidak dihitung. Banyak cara seluruhnya <InlineMath math="5+10=15" />.
+
+Grafik berikut menaruh ketiga kemungkinan berdampingan. **Kasus satu jilid saja bernilai nol**, jadi totalnya <InlineMath math="5+10=15" />.
+
+<Chart
+  title={<>Banyak cara memilih buku menurut kedua jilid</>}
+  description={<>Kedua jilid dipilih memberi <InlineMath math="5" /> cara. Kedua jilid tidak dipilih memberi <InlineMath math="10" /> cara. Memilih tepat satu jilid tidak diperbolehkan, jadi <InlineMath math="0" /> cara.</>}
+  categories={["Kedua jilid dipilih", "Kedua jilid tidak dipilih", "Tepat satu jilid"]}
+  bars="apart"
+  series={[{ label: "Banyak cara", mark: "bar", values: [5, (5 * 4 * 3) / 6, 0] }]}
+  valueLabel="Banyak cara"
+/>

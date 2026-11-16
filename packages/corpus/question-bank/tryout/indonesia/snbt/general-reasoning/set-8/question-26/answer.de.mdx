@@ -6,4 +6,18 @@ Prüfe jede Aussage für sich und dann **beide zusammen**.
 
 **Beide Aussagen zusammen**: Die Gesamtzahl ist <InlineMath math="8k" /> mit <InlineMath math="30<8k<50" />. Möglich sind <InlineMath math="32" />, <InlineMath math="40" /> und <InlineMath math="48" />, also <InlineMath math="12" />, <InlineMath math="15" /> oder <InlineMath math="18" /> Orangenbonbons. Es gibt weiterhin mehr als eine Antwort.
 
+Das Diagramm zeichnet die drei Glasinhalte, die zu beiden Aussagen passen. **Der Orangenbalken hat drei verschiedene Höhen**, also gibt es noch keine eindeutige Antwort.
+
+<Chart
+  title={<>Glasinhalte zum Verhältnis <InlineMath math="3:5" /> mit einer Summe zwischen <InlineMath math="30" /> und <InlineMath math="50" /></>}
+  description={<>Bei den Summen <InlineMath math="32" />, <InlineMath math="40" /> und <InlineMath math="48" /> gibt es <InlineMath math="12" />, <InlineMath math="15" /> und <InlineMath math="18" /> Orangenbonbons sowie <InlineMath math="20" />, <InlineMath math="25" /> und <InlineMath math="30" /> Traubenbonbons.</>}
+  bars="apart"
+  categories={["32", "40", "48"]}
+  series={[
+    { label: "Orangenbonbons", mark: "bar", values: [4, 5, 6].map((k) => 3 * k) },
+    { label: "Traubenbonbons", mark: "bar", values: [4, 5, 6].map((k) => 5 * k) },
+  ]}
+  valueLabel="Bonbons"
+/>
+
 Die Aussagen (1) und (2) reichen also nicht, um die Frage zu beantworten.

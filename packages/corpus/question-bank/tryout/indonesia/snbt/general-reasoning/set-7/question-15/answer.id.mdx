@@ -5,6 +5,18 @@ Jika Ayu di pos tengah, pos tengah **sudah penuh**. Telusuri akibatnya satu per 
 - Dani tidak boleh di pos utara, sebab menurut syarat 3 Eko harus di selatan, padahal Eko di utara. Jadi Dani di pos selatan.
 - Tersisa Bima, dan satu tempat yang kosong ada di pos utara.
 
+Diagram berikut menggambar rantai itu. **Setiap langkah hanya menyisakan satu tempat**, sehingga pembagiannya tunggal.
+
+<Mermaid
+  title={<>Rantai pembagian tugas saat Ayu di pos tengah</>}
+  description={<>Ayu di pos tengah membuat Citra ke selatan. Eko tidak boleh bersama Citra, jadi Eko ke utara. Dani tidak bisa di utara, jadi Dani ke selatan. Tempat tersisa untuk Bima ada di utara.</>}
+  chart={`flowchart LR
+    A["Ayu di pos tengah"] -->|"syarat 2"| C["Citra di selatan"]
+    C -->|"syarat 5"| E["Eko di utara"]
+    E -->|"syarat 3"| D["Dani di selatan"]
+    D --> B["Bima di utara"]`}
+/>
+
 Pembagiannya: Bima dan Eko di utara, Ayu di tengah, Citra dan Dani di selatan. Periksa syarat 1 dan 4: Ayu dan Bima berbeda pos, dan Bima tidak di tengah. Semua syarat terpenuhi.
 
 Pilihan lain bertentangan dengan pembagian satu-satunya itu: Citra dan Dani di selatan, Eko di utara, serta Bima dan Dani berbeda pos.

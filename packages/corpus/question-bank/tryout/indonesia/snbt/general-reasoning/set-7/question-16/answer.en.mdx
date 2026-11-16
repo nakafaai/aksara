@@ -1,5 +1,17 @@
 Choose Mungkin (possible) or Tidak mungkin (impossible) for each assignment. Test each against all five rules. One broken rule makes an assignment **impossible**.
 
+The chart below counts the rules each assignment breaks. **An assignment with a zero bar is possible**.
+
+<Chart
+  title={<>Rules broken by each assignment</>}
+  description={<>Assignment 1 breaks <InlineMath math="1" /> rule, rule 5. Assignment 4 breaks <InlineMath math="2" /> rules, rules 1 and 3. Assignments 2 and 3 break no rule.</>}
+  categories={["Assignment 1", "Assignment 2", "Assignment 3", "Assignment 4"]}
+  bars="apart"
+  series={[{ label: "Rules broken", mark: "bar", values: [1, 0, 0, 2] }]}
+  valueLabel="Rules"
+  valueRange={{ min: 0, max: 3 }}
+/>
+
 **Assignment 1**: impossible. Citra and Eko are both at the south post, which breaks rule 5.
 
 **Assignment 2**: possible. Ayu is north and Bima south (rule 1), Citra is south (rule 2), Dani is not north so rule 3 does not apply, Bima is not in the middle (rule 4), and Eko in the north is apart from Citra (rule 5).

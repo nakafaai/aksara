@@ -1,5 +1,17 @@
 Ordne jede Aussage als Benar (richtig, sie folgt sicher aus der Regel) oder Salah (falsch, sie folgt nicht sicher) ein. "Genau dann, wenn" gilt in beide Richtungen. Die Lampe brennt **genau** dann, wenn beide Bedingungen erfüllt sind: Es ist dunkel **und** eine Bewegung wird erkannt. Fehlt eine Bedingung, bleibt die Lampe aus.
 
+Das Diagramm prüft beide Bedingungen nacheinander. **Nur ein Weg schaltet die Lampe ein**: dunkel und Bewegung.
+
+<Mermaid
+  title={<>Wann die Parklampe leuchtet</>}
+  description={<>Ist es noch nicht dunkel, bleibt die Lampe aus. Ist es dunkel, aber der Sensor erfasst keine Bewegung, bleibt sie auch aus. Die Lampe leuchtet nur, wenn es dunkel ist und eine Bewegung erfasst wird.</>}
+  chart={`flowchart LR
+    G{"Ist es dunkel?"} -->|"noch nicht"| P1["Lampe aus"]
+    G -->|"ja"| S{"Sensor erfasst Bewegung?"}
+    S -->|"nein"| P2["Lampe aus"]
+    S -->|"ja"| N["Lampe an"]`}
+/>
+
 **Aussage 1** ist falsch. Dunkelheit allein genügt nicht. Ohne Bewegung bleibt die Lampe aus.
 
 **Aussage 2** ist richtig. Die Lampe brennt nur, wenn beide Bedingungen erfüllt sind, also ist es sicher dunkel.

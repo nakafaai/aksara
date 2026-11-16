@@ -3,6 +3,18 @@ Prüfe Platz eins und zwei für das Lied Q.
 - Q kann **nicht** zuerst kommen, weil P vor Q gesungen werden muss (Regel 2).
 - Ist Q Zweites, muss P Erstes sein. Die Plätze 3 bis 6 belegen dann R, S, T und U, darunter alle drei langsamen Lieder. Drei langsame Lieder auf vier benachbarten Plätzen stehen zwangsläufig zu zweit nebeneinander, das verletzt Regel 1.
 
+Das Diagramm zeichnet beide Möglichkeiten. **Beide Zweige enden in einer Sackgasse**, also steht Q nie auf einem der ersten beiden Plätze.
+
+<Mermaid
+  title={<>Warum Q nicht als erstes oder zweites Lied gesungen wird</>}
+  description={<>Q als erstes scheitert, weil P davor kommen muss. Q als zweites erzwingt P als erstes, dann liegen alle drei langsamen Lieder auf den vier Plätzen 3 bis 6, und zwei davon müssen nebeneinander liegen.</>}
+  chart={`flowchart LR
+    Q1["Q auf Platz eins"] -->|"Regel 2"| X1["Kein Platz für P davor: scheidet aus"]
+    Q2["Q auf Platz zwei"] --> P["P auf Platz eins"]
+    P --> T["Drei langsame Lieder auf Platz 3 bis 6"]
+    T -->|"Regel 1"| X2["Zwei langsame Lieder nebeneinander: scheidet aus"]`}
+/>
+
 Q wird also **sicher** weder als Erstes noch als Zweites gesungen.
 
 Die anderen Optionen sind nicht sicher. Die Reihenfolge P, S, R, T, Q, U erfüllt alle Regeln, also ist S nicht sicher Erstes und T nicht sicher Drittes. Auch U, P, T, Q, S, R funktioniert, also ist U nicht sicher Letztes und P nicht sicher Erstes.

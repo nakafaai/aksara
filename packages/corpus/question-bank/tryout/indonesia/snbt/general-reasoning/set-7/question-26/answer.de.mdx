@@ -6,4 +6,18 @@ Ein Kuli koste <InlineMath math="p" /> und ein Bleistift <InlineMath math="q" />
 
 **Aussage (2) allein**: reicht nicht. <InlineMath math="2p-2q=4{.}000" /> liefert nur <InlineMath math="p-q=2{.}000" />. Sowohl <InlineMath math="p=5{.}000, q=3{.}000" /> als auch <InlineMath math="p=6{.}000, q=4{.}000" /> passen.
 
+Das Diagramm zeichnet zwei Preispaare, die beide zu Aussage (2) passen. **Die beiden Balken unterscheiden sich immer um <InlineMath math="2{.}000" />**, aber der Preis des Kulis ist verschieden.
+
+<Chart
+  title={<>Zwei Preispaare, die Aussage (2) erfüllen</>}
+  description={<>Erstes Paar: Kuli <InlineMath math="5{.}000" /> und Bleistift <InlineMath math="3{.}000" /> Rupiah. Zweites Paar: Kuli <InlineMath math="6{.}000" /> und Bleistift <InlineMath math="4{.}000" /> Rupiah. Beide erfüllen <InlineMath math="2p-2q=4{.}000" />.</>}
+  categories={["Erstes Paar", "Zweites Paar"]}
+  bars="apart"
+  series={[
+    { label: "Preis eines Kulis", mark: "bar", values: [5000, 6000] },
+    { label: "Preis eines Bleistifts", mark: "bar", values: [5000 - 2000, 6000 - 2000] },
+  ]}
+  valueLabel="Rupiah"
+/>
+
 Aussage (1) allein reicht also, Aussage (2) allein nicht.

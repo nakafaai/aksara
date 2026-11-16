@@ -1,5 +1,16 @@
 Ordne jeden Schluss als Benar (richtig, er folgt sicher) oder Salah (falsch, er folgt nicht sicher) ein. Ein Schluss folgt sicher, wenn er in **jeder** Lage gilt, die alle drei Aussagen erfüllt.
 
+Das Diagramm verkettet die drei Aussagen. **Die Tänzer kommen nur über „manche“ in die Kette**, also sind nur die Tänzer, die auch Gamelan spielen, sicher mindestens <InlineMath math="10" /> Jahre alt.
+
+<Mermaid
+  title={<>Die Kette der Aussagen über die Mitglieder von Sanggar Laras</>}
+  description={<>Jeder Gamelanspieler kann die Kepatihan-Notation lesen, und jeder, der sie lesen kann, ist mindestens <InlineMath math="10" /> Jahre alt. Manche Tänzer spielen auch Gamelan. Wer die Notation liest, muss nicht Gamelan spielen.</>}
+  chart={`flowchart LR
+    G["Gamelanspieler"] -->|"alle"| N["Liest die Kepatihan-Notation"]
+    N -->|"alle"| U["Mindestens 10 Jahre alt"]
+    P["Tänzer"] -.->|"manche"| G`}
+/>
+
 **Schluss 1** ist richtig. Jeder Gamelanspieler kann die Kepatihan-Notation lesen, und niemand, der sie liest, ist jünger als <InlineMath math="10" /> Jahre. Also ist kein Gamelanspieler jünger als <InlineMath math="10" />.
 
 **Schluss 2** ist richtig. Einige Tänzer spielen auch Gamelan. Nach Schluss 1 sind diese Tänzer <InlineMath math="10" /> Jahre oder älter.

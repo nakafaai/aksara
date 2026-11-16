@@ -6,6 +6,17 @@ Rechne die Prozente in **Personen** um, denn die <InlineMath math="70\%" /> bezi
 \text{bevorzugten das neue Getränk} &= 80-56=24
 \end{aligned}" />
 
+Das Diagramm stellt jede Gruppe neben ein Drittel der Teilnehmenden. **Der Balken für das alte Getränk liegt noch unter dem Drittelbalken**.
+
+<Chart
+  title={<>Gruppen des Geschmackstests im Vergleich mit einem Drittel der Teilnehmenden</>}
+  description={<>Insgesamt konnten <InlineMath math="120" /> Teilnehmende die Getränke nicht unterscheiden, <InlineMath math="56" /> mochten das alte Getränk lieber und <InlineMath math="24" /> das neue. Ein Drittel der <InlineMath math="200" /> Teilnehmenden sind etwa <InlineMath math="67" /> Personen.</>}
+  categories={["Konnten nicht unterscheiden", "Mochten das alte lieber", "Mochten das neue lieber", "Ein Drittel der Teilnehmenden"]}
+  bars="apart"
+  series={[{ label: "Teilnehmende", mark: "bar", values: [(60 * 200) / 100, (70 * 80) / 100, 80 - 56, Math.round(200 / 3)] }]}
+  valueLabel="Personen"
+/>
+
 Wer das alte Getränk bevorzugte, macht <InlineMath math="\frac{56}{200}=28\%" /> aller Teilnehmenden aus, und <InlineMath math="28\%" /> ist weniger als ein Drittel.
 
 Die anderen Optionen sind nicht gestützt:

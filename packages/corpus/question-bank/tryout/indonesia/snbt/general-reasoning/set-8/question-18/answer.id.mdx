@@ -9,6 +9,21 @@ Untuk setiap tim, **buang satu nilai tertinggi dan satu nilai terendah**, lalu r
 
 Urutannya C, A, D, lalu B.
 
+Grafik berikut membandingkan nilai akhir dengan rata-rata biasa. **Rata-rata biasa membuat A dan C sama**, sedangkan aturan membuang nilai ekstrem menaruh C di atas A.
+
+<Chart
+  title={<>Nilai akhir dan rata-rata biasa setiap tim</>}
+  description={<>Nilai akhir A, B, C, dan D adalah sekitar <InlineMath math="87{,}67" />, <InlineMath math="83{,}33" />, <InlineMath math="88{,}67" />, dan <InlineMath math="86" />. Rata-rata kelima nilai adalah <InlineMath math="86{,}6" />, <InlineMath math="83" />, <InlineMath math="86{,}6" />, dan <InlineMath math="83{,}4" />.</>}
+  bars="apart"
+  categories={["A", "B", "C", "D"]}
+  series={[
+    { label: "Nilai akhir menurut aturan", mark: "bar", values: [(85 + 88 + 90) / 3, (80 + 84 + 86) / 3, (89 + 89 + 88) / 3, (85 + 87 + 86) / 3] },
+    { label: "Rata-rata kelima nilai", mark: "bar", values: [(85 + 90 + 78 + 88 + 92) / 5, (95 + 80 + 84 + 86 + 70) / 5, (89 + 89 + 76 + 91 + 88) / 5, (99 + 85 + 87 + 86 + 60) / 5] },
+  ]}
+  valueLabel="Nilai"
+  valueRange={{ min: 80, max: 90 }}
+/>
+
 Perhatikan bahwa rata-rata kelima nilai tanpa membuang apa pun memberi A dan C sama-sama <InlineMath math="86{,}6" />, dan D <InlineMath math="83{,}4" />. Aturan pembuangan nilai itulah yang memisahkan C dari A dan menaikkan D di atas B.
 
 Jadi, peringkat pertama sampai ketiga adalah C, A, D.

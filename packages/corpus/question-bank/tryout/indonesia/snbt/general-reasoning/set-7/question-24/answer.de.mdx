@@ -1,5 +1,16 @@
 Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Bestimme die Wochensumme jedes Getränks: Milchkaffee <InlineMath math="200" /> Becher, Schokolade <InlineMath math="150" />, Zitrone <InlineMath math="140" />. Die Einnahmen in Tausend Rupiah sind <InlineMath math="1{.}800" />, <InlineMath math="1{.}050" /> und <InlineMath math="840" />, zusammen <InlineMath math="3{.}690" />.
 
+Das Diagramm stellt die Einnahmen jedes Getränks neben die Hälfte der Summe. **Der Balken für Milchkaffee liegt knapp unter der Hälfte**, obwohl er unter den drei Getränken am höchsten ist.
+
+<Chart
+  title={<>Wocheneinnahmen aus jedem Getränk</>}
+  description={<>Milchkaffee bringt <InlineMath math="1{.}800" />, Schokolade <InlineMath math="1{.}050" /> und Zitrone <InlineMath math="840" /> Tausend Rupiah. Zusammen sind es <InlineMath math="3{.}690" />, die Hälfte davon <InlineMath math="1{.}845" /> Tausend Rupiah.</>}
+  categories={["Milchkaffee", "Schokolade", "Zitrone", "Hälfte der Summe"]}
+  bars="apart"
+  series={[{ label: "Wocheneinnahmen (Tausend Rupiah)", mark: "bar", values: [200 * 9, 150 * 7, 140 * 6, (200 * 9 + 150 * 7 + 140 * 6) / 2] }]}
+  valueLabel="Tausend Rupiah"
+/>
+
 **Aussage 1** ist richtig. Am Mittwoch kamen <InlineMath math="740" /> Tausend herein, am Donnerstag <InlineMath math="730" /> Tausend.
 
 **Aussage 2** ist falsch. <InlineMath math="\frac{1{.}800}{3{.}690}\approx48{,}8\%" />, knapp unter der Hälfte.

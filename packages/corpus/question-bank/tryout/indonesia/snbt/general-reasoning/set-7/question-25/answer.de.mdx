@@ -8,4 +8,18 @@ Der Rest des Ziels muss von Zitrone kommen: <InlineMath math="4{.}000-2{.}850=1{
 
 Becher sind ganze Zahlen, also wird **aufgerundet** auf <InlineMath math="192" />. Probe: <InlineMath math="191" /> Becher ergeben <InlineMath math="2{.}850+1{.}146=3{.}996" /> Tausend, noch zu wenig, <InlineMath math="192" /> Becher ergeben <InlineMath math="2{.}850+1{.}152=4{.}002" /> Tausend.
 
+Das Diagramm zeichnet die Einnahmen für mehrere Zahlen von Zitronenbechern. **Die Einnahmenlinie überschreitet das Ziel erst bei <InlineMath math="192" /> Bechern**.
+
+<Chart
+  title={<>Wocheneinnahmen nach Zahl der Zitronenbecher</>}
+  description={<>Mit <InlineMath math="n" /> Bechern Zitrone betragen die Einnahmen <InlineMath math="2{.}850+6n" /> Tausend Rupiah. Bei <InlineMath math="191" /> Bechern sind es <InlineMath math="3{.}996" />. Bei <InlineMath math="192" /> Bechern sind es <InlineMath math="4{.}002" />, über dem Ziel von <InlineMath math="4{.}000" />.</>}
+  categories={["189", "190", "191", "192", "193"]}
+  series={[
+    { label: "Wocheneinnahmen", mark: "line", values: [189, 190, 191, 192, 193].map((n) => 2850 + 6 * n) },
+    { label: "Ziel", mark: "line", values: [4000, 4000, 4000, 4000, 4000] },
+  ]}
+  valueLabel="Tausend Rupiah"
+  valueRange={{ min: 3980, max: 4010 }}
+/>
+
 Es müssen also mindestens <InlineMath math="192" /> Becher Zitrone verkauft werden.

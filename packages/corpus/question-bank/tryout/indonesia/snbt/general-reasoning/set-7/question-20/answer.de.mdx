@@ -1,5 +1,17 @@
 Verbinde die ersten drei Aussagen zu einer Kette: <InlineMath math="A>B>D>C" />. Die vierte Aussage sagt nur <InlineMath math="E<A" />, **die Stelle von E** kann also irgendwo unter A liegen.
 
+Das Diagramm zeichnet die vier Aussagen als Pfeile „höher als“. **Jeder Pfeil beginnt bei A, direkt oder über ein anderes Gebäude**.
+
+<Mermaid
+  title={<>Höhenbeziehungen der fünf Gebäude</>}
+  description={<>A ist höher als B, B höher als D und D höher als C. A ist auch höher als E, aber wo E im Vergleich zu B, D und C steht, ist offen.</>}
+  chart={`flowchart TD
+    A["Gebäude A"] --> B["Gebäude B"]
+    B --> D["Gebäude D"]
+    D --> C["Gebäude C"]
+    A --> E["Gebäude E, Lage offen"]`}
+/>
+
 A ist höher als B, D, C und auch als E. Gebäude A ist also **sicher** das höchste.
 
 Die anderen Optionen sind nicht sicher, weil E mehrere Stellen einnehmen kann:

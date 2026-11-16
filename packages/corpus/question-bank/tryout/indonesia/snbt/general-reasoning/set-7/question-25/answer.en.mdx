@@ -8,4 +8,18 @@ The rest of the target must come from lemon: <InlineMath math="4{,}000-2{,}850=1
 
 Cups are whole numbers, so **round up** to <InlineMath math="192" />. Check: <InlineMath math="191" /> cups give <InlineMath math="2{,}850+1{,}146=3{,}996" /> thousand, still short, while <InlineMath math="192" /> cups give <InlineMath math="2{,}850+1{,}152=4{,}002" /> thousand.
 
+The chart below draws the revenue for several numbers of lemon cups. **The revenue line only passes the target at <InlineMath math="192" /> cups**.
+
+<Chart
+  title={<>Weekly revenue by number of lemon cups</>}
+  description={<>With <InlineMath math="n" /> cups of lemon, revenue is <InlineMath math="2{,}850+6n" /> thousand rupiah. At <InlineMath math="191" /> cups, it's <InlineMath math="3{,}996" />. At <InlineMath math="192" /> cups, it's <InlineMath math="4{,}002" />, above the <InlineMath math="4{,}000" /> target.</>}
+  categories={["189", "190", "191", "192", "193"]}
+  series={[
+    { label: "Weekly revenue", mark: "line", values: [189, 190, 191, 192, 193].map((n) => 2850 + 6 * n) },
+    { label: "Target", mark: "line", values: [4000, 4000, 4000, 4000, 4000] },
+  ]}
+  valueLabel="Thousand rupiah"
+  valueRange={{ min: 3980, max: 4010 }}
+/>
+
 So at least <InlineMath math="192" /> cups of lemon must be sold.

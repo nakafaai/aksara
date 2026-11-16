@@ -8,6 +8,20 @@ Each diagonal holds <InlineMath math="13" /> tiles. The diagonals cross at the c
 
 <BlockMath math="\text{white tiles}=169-25=144" />
 
+The chart below draws the black and white tiles in all six patterns. **The black tiles only grow by <InlineMath math="4" /> per pattern, while the white tiles grow as <InlineMath math="(2n)^2" />**.
+
+<Chart
+  title={<>Black and white tiles in patterns <InlineMath math="1" /> to <InlineMath math="6" /></>}
+  description={<>The black tiles number <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="17" />, <InlineMath math="21" />, and <InlineMath math="25" />. The white tiles number <InlineMath math="4" />, <InlineMath math="16" />, <InlineMath math="36" />, <InlineMath math="64" />, <InlineMath math="100" />, and <InlineMath math="144" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6"]}
+  series={[
+    { label: "Black tiles", mark: "bar", values: [1, 2, 3, 4, 5, 6].map((n) => 4 * n + 1) },
+    { label: "White tiles", mark: "bar", values: [1, 2, 3, 4, 5, 6].map((n) => (2 * n + 1) * (2 * n + 1) - (4 * n + 1)) },
+  ]}
+  valueLabel="Tiles"
+/>
+
 Check with pattern <InlineMath math="1" />: <InlineMath math="9-(3+3-1)=4" /> white tiles, matching the <InlineMath math="5" /> black tiles in the question. In general <InlineMath math="(2n+1)^2-(4n+1)=4n^2=(2n)^2" />, and for <InlineMath math="n=6" /> this is <InlineMath math="12^2=144" />.
 
 The value <InlineMath math="169" /> is the total number of tiles, not the white ones. So pattern <InlineMath math="6" /> has <InlineMath math="144" /> white tiles.

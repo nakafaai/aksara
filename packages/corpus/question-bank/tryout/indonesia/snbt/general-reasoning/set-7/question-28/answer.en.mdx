@@ -4,6 +4,20 @@ Mark each statement Benar (true) or Salah (false). The inequality <InlineMath ma
 
 The integers that fit are <InlineMath math="-1, 0, 1, 2, 3, 4, 5, 6, 7" />. The endpoints <InlineMath math="-2" /> and <InlineMath math="8" /> are excluded because the sign is "less than".
 
+The chart below draws each integer's distance to <InlineMath math="3" />. **Only the bars below the <InlineMath math="5" /> line qualify**, from <InlineMath math="-1" /> to <InlineMath math="7" />.
+
+<Chart
+  title={<>Values of <InlineMath math="|x-3|" /> for integers from <InlineMath math="-2" /> to <InlineMath math="8" /></>}
+  description={<>For <InlineMath math="x=-2" /> and <InlineMath math="x=8" />, the distance is exactly <InlineMath math="5" />, so they don't qualify. The nine integers from <InlineMath math="-1" /> to <InlineMath math="7" /> are less than <InlineMath math="5" /> away.</>}
+  bars="apart"
+  categories={["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Distance to 3", mark: "bar", values: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8].map((x) => Math.abs(x - 3)) },
+    { label: "Limit of 5", mark: "line", values: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5] },
+  ]}
+  valueLabel="Distance"
+/>
+
 **Statement 1** is false. There are <InlineMath math="9" /> integers, not <InlineMath math="10" />.
 
 **Statement 2** is false. <InlineMath math="x=-2" /> gives <InlineMath math="|{-5}|=5" />, which is not less than <InlineMath math="5" />. The smallest value is <InlineMath math="-1" />.

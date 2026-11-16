@@ -1,5 +1,15 @@
 "Tidak semua peserta membawa senter" menyangkal pernyataan "semua peserta membawa senter". Pernyataan "semua" sudah salah jika **paling sedikit satu** peserta tidak membawa senter. Jadi, pernyataan itu setara dengan "**Ada** peserta kemah yang tidak membawa senter".
 
+Diagram berikut memeriksa kapan pernyataan "tidak semua" benar. **Satu peserta tanpa senter sudah cukup**.
+
+<Mermaid
+  title={<>Kapan "tidak semua peserta kemah membawa senter" bernilai benar</>}
+  description={<>Jika ada paling sedikit satu peserta yang tidak membawa senter, pernyataan "semua membawa senter" gagal, sehingga "tidak semua membawa senter" benar. Jika setiap peserta membawa senter, pernyataan itu salah.</>}
+  chart={`flowchart LR
+    A{"Ada peserta yang tidak membawa senter?"} -->|"ya, paling sedikit satu"| B["Tidak semua membawa senter: benar"]
+    A -->|"tidak ada"| C["Tidak semua membawa senter: salah"]`}
+/>
+
 Pilihan lain tidak setara:
 
 - "Semua peserta tidak membawa senter" jauh lebih kuat. Pernyataan awal tetap benar walaupun hanya satu peserta yang tidak membawa senter.

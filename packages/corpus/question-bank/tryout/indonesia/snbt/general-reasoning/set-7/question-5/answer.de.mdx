@@ -6,6 +6,20 @@ Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein, rechne direkt mi
 
 **Aussage 3** ist falsch. Im März waren es insgesamt <InlineMath math="310+82=392" />, das Doppelte des Februars ist <InlineMath math="2\times(115+85)=400" />. Und <InlineMath math="392" /> ist weniger als <InlineMath math="400" />.
 
+Das Diagramm stellt die Märzwerte neben ihre Vergleichswerte. **Die Katzen im März liegen darüber, die Gesamtzahl im März nicht**, obwohl beide Abstände klein sind.
+
+<Chart
+  title={<>Märzwerte im Vergleich mit den Werten aus dem Februar</>}
+  description={<>Im März kamen <InlineMath math="310" /> Katzen, mehr als <InlineMath math="2{,}5\times115=287{,}5" />. Insgesamt gab es im März <InlineMath math="392" /> Besuche, weniger als <InlineMath math="2\times200=400" />.</>}
+  categories={["Besuche mit Katzen", "Besuche insgesamt"]}
+  bars="apart"
+  series={[
+    { label: "Wert im März", mark: "bar", values: [310, 310 + 82] },
+    { label: "Vergleichswert aus Februar", mark: "bar", values: [(25 * 115) / 10, 2 * (115 + 85)] },
+  ]}
+  valueLabel="Besuche"
+/>
+
 **Aussage 4** ist richtig. <InlineMath math="140" /> ist mehr als <InlineMath math="120" />.
 
 Die Aussagen 1 und 4 sind also richtig, die Aussagen 2 und 3 falsch.
