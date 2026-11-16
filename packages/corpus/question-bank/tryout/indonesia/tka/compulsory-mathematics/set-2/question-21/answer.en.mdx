@@ -26,6 +26,43 @@ Now take the overlap of the two conditions.
 | <InlineMath math="41\le x\le97" /> | no | no | no |
 | <InlineMath math="98\le x\le100" /> | yes | no | yes |
 
+Mark the scores <InlineMath math="0" /> to <InlineMath math="100" /> on three rows. **The bottom row is the overlap: scores that are outliers for B in the middle row and not outliers for A in the top row**.
+
+<MathVisual
+  title={<>Outlier ranges of class A and class B</>}
+  description={<>The top row is for class A: scores <InlineMath math="0" /> to <InlineMath math="16" /> are outliers and scores <InlineMath math="17" /> to <InlineMath math="100" /> are not. The middle row is for class B: scores <InlineMath math="0" /> to <InlineMath math="40" /> and <InlineMath math="98" /> to <InlineMath math="100" /> are outliers, while <InlineMath math="41" /> to <InlineMath math="97" /> are not. The bottom row holds the overlap, <InlineMath math="17\le x\le40" /> and <InlineMath math="98\le x\le100" />.</>}
+  labels={{
+    "a-normal": <>A: not an outlier</>,
+    "b-low": <>B: outlier</>,
+    "answer-low": <InlineMath math="17\le x\le40" />,
+    "answer-high": <InlineMath math="98\le x\le100" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 106 },
+      y: { min: -0.9, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a-normal", kind: "segment", appearance: "primary", from: { x: 17, y: 2 }, to: { x: 100, y: 2 } },
+      { id: "a-low", kind: "segment", appearance: "warning", from: { x: 0, y: 2 }, to: { x: 16, y: 2 } },
+      { id: "b-low", kind: "segment", appearance: "warning", from: { x: 0, y: 1 }, to: { x: 40, y: 1 } },
+      { id: "b-normal", kind: "segment", appearance: "primary", from: { x: 41, y: 1 }, to: { x: 97, y: 1 } },
+      { id: "b-high", kind: "segment", appearance: "warning", from: { x: 98, y: 1 }, to: { x: 100, y: 1 } },
+      { id: "answer-low", kind: "segment", appearance: "answer", from: { x: 17, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "answer-high", kind: "segment", appearance: "answer", from: { x: 98, y: 0 }, to: { x: 100, y: 0 } },
+    ],
+    labels: [
+      { key: "a-normal", objectId: "a-normal", at: { x: 58.5, y: 2 }, placement: "above" },
+      { key: "b-low", objectId: "b-low", at: { x: 20, y: 1 }, placement: "above" },
+      { key: "answer-low", objectId: "answer-low", at: { x: 28.5, y: 0 }, placement: "below" },
+      { key: "answer-high", objectId: "answer-high", at: { x: 99, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Check the edges: <InlineMath math="x=17" /> isn't less than <InlineMath math="17" />, so it's not an outlier for A, while <InlineMath math="17<41" /> makes it an outlier for B. The values <InlineMath math="x=41" /> and <InlineMath math="x=97" /> sit exactly on class B's limits, so they're not outliers for B.
 
 # Why the other options are wrong

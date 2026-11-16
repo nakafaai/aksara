@@ -18,6 +18,43 @@ Die Vielfachen von <InlineMath math="12" /> stecken in der Summe für <InlineMat
 
 <BlockMath math="1{.}300+816-2\cdot432=1{.}252" />
 
+Ein Venn-Diagramm zeigt, warum du zweimal abziehst. **Gewählt werden nur die beiden Sicheln außerhalb der Schnittmenge**. Die Summe der Vielfachen von <InlineMath math="4" /> enthält die linke Sichel und die Schnittmenge, die Summe der Vielfachen von <InlineMath math="6" /> die rechte Sichel und die Schnittmenge, also zählt die Schnittmenge doppelt.
+
+<MathVisual
+  title={<>Summen der Zahlen in jedem Teil des Venn-Diagramms</>}
+  description={<>Der linke Kreis enthält die Vielfachen von <InlineMath math="4" />, der rechte die Vielfachen von <InlineMath math="6" /> von <InlineMath math="1" /> bis <InlineMath math="100" />. Die Schnittmenge enthält die Vielfachen von <InlineMath math="12" /> mit der Summe <InlineMath math="432" /> und wird nicht gewählt. Der Teil nur mit Vielfachen von <InlineMath math="4" /> hat die Summe <InlineMath math="1{.}300-432=868" />, der Teil nur mit Vielfachen von <InlineMath math="6" /> die Summe <InlineMath math="816-432=384" />.</>}
+  labels={{
+    four: <>Vielfache von <InlineMath math="4" /></>,
+    six: <>Vielfache von <InlineMath math="6" /></>,
+    "only-four": <InlineMath math="868" />,
+    "only-six": <InlineMath math="384" />,
+    both: <InlineMath math="432" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 4.5 },
+      y: { min: -3, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "only-four", kind: "region", appearance: "answer", inequalities: ["(x + 1.5)^2 + y^2 <= 6.25", "(x - 1.5)^2 + y^2 >= 6.25"] },
+      { id: "only-six", kind: "region", appearance: "answer", inequalities: ["(x - 1.5)^2 + y^2 <= 6.25", "(x + 1.5)^2 + y^2 >= 6.25"] },
+      { id: "both", kind: "region", appearance: "warning", inequalities: ["(x + 1.5)^2 + y^2 <= 6.25", "(x - 1.5)^2 + y^2 <= 6.25"] },
+      { id: "four", kind: "circle", appearance: "primary", center: { x: -1.5, y: 0 }, radius: 2.5 },
+      { id: "six", kind: "circle", appearance: "secondary", center: { x: 1.5, y: 0 }, radius: 2.5 },
+    ],
+    labels: [
+      { key: "four", objectId: "four", at: { x: -1.5, y: 2.5 }, placement: "above-left" },
+      { key: "six", objectId: "six", at: { x: 1.5, y: 2.5 }, placement: "above-right" },
+      { key: "only-four", objectId: "only-four", at: { x: -2.6, y: 0 }, placement: "center" },
+      { key: "only-six", objectId: "only-six", at: { x: 2.6, y: 0 }, placement: "center" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 Die Summe aller gewählten Zahlen ist also <InlineMath math="1{.}252" />.
 
 # Warum die anderen Antworten falsch sind

@@ -1,3 +1,33 @@
 Sebuah lintasan lari terdiri atas dua bagian lurus yang sejajar, masing-masing sepanjang <InlineMath math="85\text{ m}" />, dan dua tikungan berbentuk setengah lingkaran. Lintasan itu dibagi menjadi beberapa jalur yang lebarnya sama, yaitu <InlineMath math="1{,}25\text{ m}" />. Jalur 1 adalah jalur paling dalam. Pada tikungan, jari-jari tepi dalam jalur 1 adalah <InlineMath math="36\text{ m}" />, dan tepi dalam setiap jalur berikutnya berjarak <InlineMath math="1{,}25\text{ m}" /> lebih jauh dari pusat tikungan.
 
+<MathVisual
+  title={<>Denah tepi dalam jalur 1</>}
+  description={<>Tepi dalam jalur 1 terdiri atas dua ruas lurus sejajar sepanjang <InlineMath math="85\text{ m}" /> dan dua setengah lingkaran berjari-jari <InlineMath math="36\text{ m}" /> di kedua ujungnya. Jalur-jalur berikutnya mengelilingi tepi ini ke arah luar, masing-masing selebar <InlineMath math="1{,}25\text{ m}" />.</>}
+  labels={{
+    straight: <InlineMath math="85\text{ m}" />,
+    radius: <InlineMath math="36\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -45, max: 130 },
+      y: { min: -45, max: 45 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "straight", kind: "segment", appearance: "primary", from: { x: 0, y: 36 }, to: { x: 85, y: 36 } },
+      { id: "lower", kind: "segment", appearance: "primary", from: { x: 0, y: -36 }, to: { x: 85, y: -36 } },
+      { id: "left-bend", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 36, startDegrees: 90, sweepDegrees: 180 },
+      { id: "right-bend", kind: "arc", appearance: "primary", center: { x: 85, y: 0 }, radius: 36, startDegrees: 270, sweepDegrees: 180 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 85, y: 0 }, to: { x: 121, y: 0 } },
+      { id: "center", kind: "point", appearance: "construction", at: { x: 85, y: 0 } },
+    ],
+    labels: [
+      { key: "straight", objectId: "straight", at: { x: 42.5, y: 36 }, placement: "below" },
+      { key: "radius", objectId: "radius", at: { x: 103, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jarak tempuh pelari di suatu jalur diukur sepanjang tepi dalam jalur itu. Gunakan <InlineMath math="\pi=3{,}14" />.

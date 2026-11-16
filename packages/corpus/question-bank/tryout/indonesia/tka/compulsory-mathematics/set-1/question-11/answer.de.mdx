@@ -25,6 +25,51 @@ Der Läufer läuft die ganze erste Gerade, eine halbkreisförmige Kurve mit Radi
 \text{Strecke}&=85+120{,}89+49=254{,}89\text{ m}
 \end{aligned}" />
 
+Zeichne den Innenrand von Bahn 3 mit dem Dreieck <InlineMath math="SPT" /> darin. **Der Weg des Läufers besteht aus der ersten Geraden, einem Halbkreis und dann <InlineMath math="49\text{ m}" /> der zweiten Geraden**. Der Punkt <InlineMath math="36\text{ m}" /> in der Gegenrichtung liegt in der Kurve, nicht auf einer Geraden, und fällt deshalb weg.
+
+<MathVisual
+  title={<>Weg von <InlineMath math="S" /> nach <InlineMath math="T" /> auf Bahn 3</>}
+  description={<>Der Innenrand von Bahn 3 hat Geraden von <InlineMath math="85\text{ m}" /> und Kurven mit Radius <InlineMath math="38{,}5\text{ m}" />, also liegen die beiden Geraden <InlineMath math="77\text{ m}" /> auseinander. Der Läufer startet in <InlineMath math="S" /> am Ende der unteren Geraden, läuft sie entlang, umrundet die rechte Kurve und hält in <InlineMath math="T" /> auf der oberen Geraden, <InlineMath math="49\text{ m}" /> nach dem Kurvenende. Das Dreieck <InlineMath math="SPT" /> ist bei <InlineMath math="P" /> rechtwinklig mit <InlineMath math="PT=77" /> und <InlineMath math="ST=85" />, also <InlineMath math="SP=36" />. Der andere Punkt im Abstand <InlineMath math="85" /> von <InlineMath math="S" /> auf der Linie der oberen Geraden liegt außerhalb der Geraden.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    t: <InlineMath math="T" />,
+    p: <InlineMath math="P" />,
+    chord: <InlineMath math="85" />,
+    across: <InlineMath math="77" />,
+    rejected: <>verworfen</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -50, max: 130 },
+      y: { min: -46, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-straight", kind: "segment", appearance: "answer", from: { x: 0, y: -38.5 }, to: { x: 85, y: -38.5 } },
+      { id: "bend", kind: "arc", appearance: "answer", center: { x: 85, y: 0 }, radius: 38.5, startDegrees: 270, sweepDegrees: 180 },
+      { id: "second-run", kind: "segment", appearance: "answer", from: { x: 85, y: 38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "second-rest", kind: "segment", appearance: "reference", from: { x: 36, y: 38.5 }, to: { x: 0, y: 38.5 } },
+      { id: "other-bend", kind: "arc", appearance: "reference", center: { x: 0, y: 0 }, radius: 38.5, startDegrees: 90, sweepDegrees: 180 },
+      { id: "chord", kind: "segment", appearance: "construction", from: { x: 0, y: -38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 36, y: -38.5 }, to: { x: 36, y: 38.5 } },
+      { id: "s", kind: "point", appearance: "primary", at: { x: 0, y: -38.5 } },
+      { id: "t", kind: "point", appearance: "answer", at: { x: 36, y: 38.5 } },
+      { id: "p", kind: "point", appearance: "construction", at: { x: 36, y: -38.5 } },
+      { id: "rejected", kind: "point", appearance: "warning", at: { x: -36, y: 38.5 } },
+    ],
+    labels: [
+      { key: "s", objectId: "s", at: { x: 0, y: -38.5 }, placement: "below-left" },
+      { key: "t", objectId: "t", at: { x: 36, y: 38.5 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 36, y: -38.5 }, placement: "below" },
+      { key: "chord", objectId: "chord", at: { x: 18, y: 0 }, placement: "left" },
+      { key: "across", objectId: "across", at: { x: 36, y: 19.25 }, placement: "right" },
+      { key: "rejected", objectId: "rejected", at: { x: -36, y: 38.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe zur Lage von <InlineMath math="T" />: Von <InlineMath math="S" /> aus liegt <InlineMath math="T" /> <InlineMath math="36\text{ m}" /> in Laufrichtung und <InlineMath math="77\text{ m}" /> quer über das Feld, und <InlineMath math="36^2+77^2=1{.}296+5{.}929=7{.}225=85^2" />.
 
 # Warum die anderen Antworten falsch sind

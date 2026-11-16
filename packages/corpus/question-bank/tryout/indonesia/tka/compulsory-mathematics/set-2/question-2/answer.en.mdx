@@ -21,6 +21,38 @@ At a price of <InlineMath math="\text{Rp}b" /> per exported kWh, the credit is <
 b&\ge1{,}050
 \end{aligned}" />
 
+Draw the September bill as a function of the export price <InlineMath math="b" />. **The bill drops <InlineMath math="200" /> rupiah each time <InlineMath math="b" /> rises by one rupiah, then stops at the fixed charge**. The corner is the smallest export price asked for.
+
+<MathVisual
+  title={<>September bill by export price</>}
+  description={<>The horizontal axis is the export price <InlineMath math="b" /> in rupiah per kWh, and the vertical axis is the September bill in thousands of rupiah. For <InlineMath math="b\le1{,}050" /> the bill is <InlineMath math="30+210-0.2b" /> thousand rupiah and falls in a straight line. The graph reaches the fixed charge of <InlineMath math="30" /> at <InlineMath math="b=1{,}050" /> and stays flat after that. At the current price <InlineMath math="b=800" />, the bill is <InlineMath math="80" /> thousand rupiah.</>}
+  labels={{
+    corner: <InlineMath math="(1{.}050,\ 30)" />,
+    now: <>now: <InlineMath math="b=800" /></>,
+    fixed: <>fixed charge</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -60, max: 1460 },
+      y: { min: -15, max: 265 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "falling", kind: "function", appearance: "primary", formula: "240 - 0.2x", domain: { min: 0, max: 1050 } },
+      { id: "fixed", kind: "function", appearance: "answer", formula: "30", domain: { min: 1050, max: 1400 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 1050, y: 30 } },
+      { id: "now", kind: "point", appearance: "secondary", at: { x: 800, y: 80 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 1050, y: 30 }, placement: "below" },
+      { key: "now", objectId: "now", at: { x: 800, y: 80 }, placement: "above-right" },
+      { key: "fixed", objectId: "fixed", at: { x: 1300, y: 30 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check <InlineMath math="b=1{,}050" />: the credit is <InlineMath math="200\cdot1{,}050=210{,}000" />, exactly the cost of imports, so the bill is <InlineMath math="\text{Rp}30{,}000" />. At today's price of <InlineMath math="\text{Rp}800" /> the bill is still <InlineMath math="30{,}000+210{,}000-160{,}000=80{,}000" />.
 
 So the smallest value of <InlineMath math="b" /> is <InlineMath math="\text{Rp}1{,}050" /> per kWh.

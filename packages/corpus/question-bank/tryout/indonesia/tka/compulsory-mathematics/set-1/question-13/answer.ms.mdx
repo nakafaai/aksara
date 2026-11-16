@@ -17,6 +17,47 @@ Dalam segi tiga itu, sisi <InlineMath math="6" /> ialah separuh hipotenus <Inlin
 \text{roda kecil}&:\ 180^\circ-2\cdot30^\circ=120^\circ
 \end{aligned}" />
 
+Lukis kedua-dua roda dan talinya, kemudian anjakkan bahagian lurus atas ke arah pusat roda kecil. **Segi tiga yang terbentuk mempunyai hipotenus <InlineMath math="12" /> dan sisi <InlineMath math="6" />**, maka sudut di pusat roda besar ialah <InlineMath math="60^\circ" /> dari garis pusat. Sudut itu menentukan sejauh mana tali melilit setiap roda.
+
+<MathVisual
+  title={<>Tali yang melilit dua roda</>}
+  description={<>Roda besar berjejari <InlineMath math="8" /> berpusat di asalan, dan roda kecil berjejari <InlineMath math="2" /> berpusat <InlineMath math="12" /> unit di sebelah kanannya. Dua bahagian lurus tali masing-masing sepanjang <InlineMath math="6\sqrt3" />. Segi tiga bantu dengan hipotenus <InlineMath math="12" />, sisi <InlineMath math="6" /> pada jejari roda besar, dan sisi <InlineMath math="6\sqrt3" /> selari dengan bahagian lurus, bersudut tegak di hujung sisi <InlineMath math="6" />. Tali melilit lengkok <InlineMath math="240^\circ" /> pada roda besar dan lengkok <InlineMath math="120^\circ" /> pada roda kecil.</>}
+  labels={{
+    "big-arc": <InlineMath math="240^\circ" />,
+    "small-arc": <InlineMath math="120^\circ" />,
+    upper: <InlineMath math="6\sqrt3" />,
+    centers: <InlineMath math="12" />,
+    gap: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 16 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big-wheel", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 8 },
+      { id: "small-wheel", kind: "circle", appearance: "reference", center: { x: 12, y: 0 }, radius: 2 },
+      { id: "big-arc", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 8, startDegrees: 60, sweepDegrees: 240 },
+      { id: "small-arc", kind: "arc", appearance: "answer", center: { x: 12, y: 0 }, radius: 2, startDegrees: 300, sweepDegrees: 120 },
+      { id: "upper", kind: "segment", appearance: "answer", from: { x: 4, y: 4 * Math.sqrt(3) }, to: { x: 13, y: Math.sqrt(3) } },
+      { id: "lower", kind: "segment", appearance: "answer", from: { x: 4, y: -4 * Math.sqrt(3) }, to: { x: 13, y: -Math.sqrt(3) } },
+      { id: "helper", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 * Math.sqrt(3) }, { x: 12, y: 0 }] },
+      { id: "centers", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "big-arc", objectId: "big-arc", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "small-arc", objectId: "small-arc", at: { x: 14, y: 0 }, placement: "right" },
+      { key: "upper", objectId: "upper", at: { x: 8.5, y: 2.5 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "centers", objectId: "centers", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "left" },
+    ],
+  }}
+/>
+
 # Panjang tali sawat
 
 Lengkok ialah bahagian lilitan mengikut sudutnya. **Tambahkan dua bahagian lurus dan dua lengkok**:

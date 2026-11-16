@@ -32,6 +32,18 @@ Cek dengan cara lain, berdasarkan berapa banyak dari Andi dan Budi yang masuk.
 \text{total}&=65+110=175
 \end{aligned}" />
 
+Diagram berikut merangkum cara pengecekan itu. **Setiap panitia masuk tepat satu cabang**, jadi kedua cabang boleh dijumlahkan tanpa ada yang terhitung dua kali.
+
+<Mermaid
+  title={<>Panitia menurut keikutsertaan Andi dan Budi</>}
+  description={<>Setelah Rani dikeluarkan, calonnya <InlineMath math="5" /> laki-laki dan <InlineMath math="5" /> perempuan. Cabang tanpa Andi dan Budi memberi <InlineMath math="70-5=65" /> panitia, karena panitia yang semuanya perempuan dibuang. Cabang dengan tepat satu dari mereka memberi <InlineMath math="2\cdot(56-1)=110" /> panitia, karena panitia yang semuanya laki-laki dibuang. Totalnya <InlineMath math="175" />.</>}
+  chart={`flowchart TD
+  S["Calon: 5 laki-laki + 5 perempuan"] --> N["Tanpa Andi dan Budi: C(8, 4) − C(5, 4) = 65"]
+  S --> O["Tepat satu dari mereka: 2 · (C(8, 3) − C(3, 3)) = 110"]
+  N --> T["Total: 65 + 110 = 175"]
+  O --> T`}
+/>
+
 Pada baris pertama, calon tinggal <InlineMath math="3" /> laki-laki dan <InlineMath math="5" /> perempuan, dan panitia semua perempuan harus dibuang. Pada baris kedua, sudah ada satu laki-laki, jadi tiga anggota lain cukup tidak semuanya laki-laki.
 
 # Kenapa pilihan lain salah

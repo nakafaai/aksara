@@ -15,6 +15,42 @@ d_1&=22-6=16,\qquad d_2=22-14=8 \\
 Mo&=5+\frac{16}{16+8}\cdot5=5+\frac{10}{3}=8\tfrac13\text{ minit}
 \end{aligned}" />
 
+Letakkan kedua-dua anggaran pada histogram. **Mod berada dalam kelas tertinggi dan condong ke kelas jiran yang lebih tinggi**, manakala min ditarik ke kanan oleh panggilan yang panjang. Jarak antara keduanya sedikit lebih daripada <InlineMath math="6" /> minit.
+
+<MathVisual
+  title={<>Mod dan min pada histogram tempoh panggilan</>}
+  description={<>Histogram enam kelas dengan kekerapan <InlineMath math="6" />, <InlineMath math="22" />, <InlineMath math="14" />, <InlineMath math="18" />, <InlineMath math="12" />, dan <InlineMath math="8" />. Dua garis bantu menghubungkan bucu kelas mod dengan kelas jirannya dan bersilang tepat di atas <InlineMath math="Mo=8\tfrac13" /> minit. Garis tegak kedua menandakan min <InlineMath math="14.5" /> minit.</>}
+  labels={{
+    mean: <InlineMath math="\bar x=14.5" />,
+    mode: <InlineMath math="Mo=8\tfrac13" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar-1", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 6 }, { x: 0, y: 6 }] },
+      { id: "bar-2", kind: "polygon", appearance: "reference", vertices: [{ x: 5, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 22 }, { x: 5, y: 22 }] },
+      { id: "bar-3", kind: "polygon", appearance: "reference", vertices: [{ x: 10, y: 0 }, { x: 15, y: 0 }, { x: 15, y: 14 }, { x: 10, y: 14 }] },
+      { id: "bar-4", kind: "polygon", appearance: "reference", vertices: [{ x: 15, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 18 }, { x: 15, y: 18 }] },
+      { id: "bar-5", kind: "polygon", appearance: "reference", vertices: [{ x: 20, y: 0 }, { x: 25, y: 0 }, { x: 25, y: 12 }, { x: 20, y: 12 }] },
+      { id: "bar-6", kind: "polygon", appearance: "reference", vertices: [{ x: 25, y: 0 }, { x: 30, y: 0 }, { x: 30, y: 8 }, { x: 25, y: 8 }] },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 5, y: 6 }, to: { x: 10, y: 22 } },
+      { id: "fall", kind: "segment", appearance: "construction", from: { x: 5, y: 22 }, to: { x: 10, y: 14 } },
+      { id: "mode", kind: "segment", appearance: "answer", from: { x: 25 / 3, y: 0 }, to: { x: 25 / 3, y: 50 / 3 } },
+      { id: "mean", kind: "segment", appearance: "secondary", from: { x: 14.5, y: 0 }, to: { x: 14.5, y: 24 } },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 14.5, y: 24 }, placement: "above" },
+      { key: "mode", objectId: "mode", at: { x: 25 / 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 **Pernyataan pertama.** Panggilan yang sekurang-kurangnya <InlineMath math="20" /> minit ada <InlineMath math="12+8=20" />, tepat suku daripada <InlineMath math="80" />. Anggaran jumlah masanya <InlineMath math="270+220=490" /> minit. Tanda <InlineMath math="40\%" /> daripada jumlah ialah <InlineMath math="0.4\cdot1{,}160=464" /> minit, dan <InlineMath math="490>464" />. Bahagian masanya lebih kurang <InlineMath math="42\%" />, jauh melebihi bahagian bilangannya. Panggilan panjang memang sedikit, tetapi setiap satunya mengambil banyak masa. Pernyataan ini **Betul**.

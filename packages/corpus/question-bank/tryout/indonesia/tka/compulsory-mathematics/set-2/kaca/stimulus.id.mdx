@@ -1,5 +1,35 @@
 Sebuah rumah kaca berdiri di atas lahan berbentuk persegi panjang berukuran <InlineMath math="12\text{ m}\times7\text{ m}" />. Keempat sisi lahan dikelilingi dinding bata tegak setinggi <InlineMath math="1{,}5\text{ m}" />. Di atas dinding dipasang atap berbentuk setengah tabung. Sumbu atap sejajar sisi panjang lahan, panjang atap <InlineMath math="12\text{ m}" />, dan diameter atap sama dengan lebar lahan, yaitu <InlineMath math="7\text{ m}" />. Atap lengkung bertumpu pada kedua dinding panjang. Di atas setiap dinding ujung (dinding selebar <InlineMath math="7\text{ m}" />) terdapat bidang tegak berbentuk setengah lingkaran yang menutup ujung atap.
 
+<MathVisual
+  title={<>Tampak ujung rumah kaca</>}
+  description={<>Dinding bata ujung selebar <InlineMath math="7\text{ m}" /> dan setinggi <InlineMath math="1{,}5\text{ m}" />. Di atasnya berdiri bidang ujung berbentuk setengah lingkaran berdiameter <InlineMath math="7\text{ m}" />, yang juga menjadi penampang atap setengah tabung.</>}
+  labels={{
+    base: <InlineMath math="7\text{ m}" />,
+    wall: <InlineMath math="1{,}5\text{ m}" />,
+    roof: <InlineMath math="d=7\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "brick", kind: "polygon", appearance: "secondary", vertices: [{ x: -3.5, y: 0 }, { x: 3.5, y: 0 }, { x: 3.5, y: 1.5 }, { x: -3.5, y: 1.5 }] },
+      { id: "roof", kind: "arc", appearance: "primary", center: { x: 0, y: 1.5 }, radius: 3.5, startDegrees: 0, sweepDegrees: 180 },
+      { id: "base", kind: "segment", appearance: "construction", from: { x: -3.5, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 3.5, y: 0 }, to: { x: 3.5, y: 1.5 } },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 3.5, y: 0.75 }, placement: "right" },
+      { key: "roof", objectId: "roof", at: { x: 0, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Atap lengkung dan kedua bidang ujung setengah lingkaran ditutup plastik UV, sedangkan dinding bata tidak ditutup plastik. Plastik UV dijual per meter panjang dari gulungan yang lebarnya <InlineMath math="4\text{ m}" />.
 
 Untuk sirkulasi udara, rumah kaca dipasangi kipas. Satu kipas mengalirkan <InlineMath math="1{.}200\text{ m}^3" /> udara per jam.

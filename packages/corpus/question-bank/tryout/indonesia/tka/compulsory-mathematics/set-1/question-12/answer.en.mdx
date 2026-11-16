@@ -6,6 +6,46 @@ If each straight has length <InlineMath math="L" /> and a lane's inner edge has 
 
 **You can judge almost every statement by looking at which part of this formula changes**.
 
+Draw the inner edges of lanes 1 and 8 together. **Along the straights the two edges run parallel, so the difference in length comes only from the bends**, which settles the first statement. The region inside the edge of lane 1 is an <InlineMath math="85\times72" /> rectangle plus two semicircles, which settles the third.
+
+<MathVisual
+  title={<>Inner edges of lanes 1 and 8</>}
+  description={<>An <InlineMath math="85\times72" /> rectangle sits between two semicircles of radius <InlineMath math="r_1=36" />, forming the inner edge of lane 1. The inner edge of lane 8 surrounds it at a constant distance of <InlineMath math="7\cdot1.25=8.75" />, with straights of the same length and bends of radius <InlineMath math="r_8=44.75" />.</>}
+  labels={{
+    long: <InlineMath math="85" />,
+    wide: <InlineMath math="72" />,
+    inner: <InlineMath math="r_1=36" />,
+    outer: <InlineMath math="r_8=44.75" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -55, max: 140 },
+      y: { min: -50, max: 50 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "long", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: -36 }, { x: 85, y: -36 }, { x: 85, y: 36 }, { x: 0, y: 36 }] },
+      { id: "inner-left", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 36, startDegrees: 90, sweepDegrees: 180 },
+      { id: "inner-right", kind: "arc", appearance: "primary", center: { x: 85, y: 0 }, radius: 36, startDegrees: 270, sweepDegrees: 180 },
+      { id: "outer-top", kind: "segment", appearance: "secondary", from: { x: 0, y: 44.75 }, to: { x: 85, y: 44.75 } },
+      { id: "outer-bottom", kind: "segment", appearance: "secondary", from: { x: 0, y: -44.75 }, to: { x: 85, y: -44.75 } },
+      { id: "outer-left", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 44.75, startDegrees: 90, sweepDegrees: 180 },
+      { id: "outer-right", kind: "arc", appearance: "secondary", center: { x: 85, y: 0 }, radius: 44.75, startDegrees: 270, sweepDegrees: 180 },
+      { id: "wide", kind: "segment", appearance: "construction", from: { x: 42.5, y: -36 }, to: { x: 42.5, y: 36 } },
+      { id: "inner", kind: "segment", appearance: "construction", from: { x: 85, y: 0 }, to: { x: 121, y: 0 } },
+      { id: "outer", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -44.75, y: 0 } },
+    ],
+    labels: [
+      { key: "long", objectId: "long", at: { x: 42.5, y: 36 }, placement: "below-right" },
+      { key: "wide", objectId: "wide", at: { x: 42.5, y: 0 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 103, y: 0 }, placement: "above" },
+      { key: "outer", objectId: "outer", at: { x: -22.375, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # The first statement
 
 Lanes 8 and 1 have the same <InlineMath math="L" />, so <InlineMath math="2L" /> cancels when you subtract:

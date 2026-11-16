@@ -27,6 +27,49 @@ L_{ABB'A'}&=32-(2+8+4+6) \\
 &=12\text{ unit persegi}
 \end{aligned}" />
 
+Lukis keempat-empat titik bersama segi empat tepat sempadannya. **Sisi empat <InlineMath math="ABB'A'" /> ialah segi empat tepat <InlineMath math="8\times4" /> setelah empat segi tiga di bucunya dibuang**. Ruas dari <InlineMath math="P" /> ke setiap titik dan imejnya sama panjang dan berserenjang, yang digunakan untuk semakan.
+
+<MathVisual
+  title={<>Sisi empat <InlineMath math="ABB'A'" /> di dalam segi empat tepat sempadan</>}
+  description={<>Titik <InlineMath math="A(4,2)" /> dan <InlineMath math="B(6,4)" /> diputar <InlineMath math="90^\circ" /> pada <InlineMath math="P(1,1)" /> menjadi <InlineMath math="A'(0,4)" /> dan <InlineMath math="B'(-2,6)" />. Sisi empat <InlineMath math="ABB'A'" /> terletak di dalam segi empat tepat dari <InlineMath math="x=-2" /> hingga <InlineMath math="x=6" /> dan dari <InlineMath math="y=2" /> hingga <InlineMath math="y=6" />. Ruas <InlineMath math="PA" /> dan <InlineMath math="PA'" />, serta <InlineMath math="PB" /> dan <InlineMath math="PB'" />, membentuk sudut tegak di <InlineMath math="P" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 7.5 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "box", kind: "polygon", appearance: "reference", vertices: [{ x: -2, y: 2 }, { x: 6, y: 2 }, { x: 6, y: 6 }, { x: -2, y: 6 }] },
+      { id: "quad", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 2 }, { x: 6, y: 4 }, { x: -2, y: 6 }, { x: 0, y: 4 }] },
+      { id: "arm-a", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 4, y: 2 } },
+      { id: "arm-a-image", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 0, y: 4 } },
+      { id: "arm-b", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 6, y: 4 } },
+      { id: "arm-b-image", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: -2, y: 6 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 6, y: 4 } },
+      { id: "a-image", kind: "point", appearance: "secondary", at: { x: 0, y: 4 } },
+      { id: "b-image", kind: "point", appearance: "secondary", at: { x: -2, y: 6 } },
+      { id: "p", kind: "point", appearance: "construction", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 4, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a-image", objectId: "a-image", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "b-image", objectId: "b-image", at: { x: -2, y: 6 }, placement: "above-left" },
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Ada cara pantas untuk menyemak. Segi tiga <InlineMath math="PAA'" /> dan <InlineMath math="PBB'" /> ialah segi tiga bersudut tegak sama kaki di <InlineMath math="P" />, kerana putaran <InlineMath math="90^\circ" /> mengekalkan jarak ke pusat. Segi tiga <InlineMath math="PAB" /> dan imejnya <InlineMath math="PA'B'" /> kongruen, jadi sumbangan kedua-duanya saling membatalkan. Yang tinggal hanyalah beza dua segi tiga bersudut tegak itu.
 
 <BlockMath math="\begin{aligned}

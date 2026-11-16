@@ -11,6 +11,40 @@ n&=80+k,\qquad\text{median position}=\frac{80+k}{2} \\
 k&>24
 \end{aligned}" />
 
+Draw both sides of the inequality as lines against <InlineMath math="k" />. **The median is below <InlineMath math="10" /> minutes exactly when the line of calls under <InlineMath math="10" /> minutes lies above the line of the median position**. The lines cross at <InlineMath math="k=24" />, and the first whole number to the right is <InlineMath math="k=25" />.
+
+<MathVisual
+  title={<>Median position and calls under <InlineMath math="10" /> minutes</>}
+  description={<>The horizontal axis is <InlineMath math="k" />, the number of extra calls. The line <InlineMath math="\frac{80+k}{2}" /> is the median position, and the line <InlineMath math="28+k" /> is the number of calls shorter than <InlineMath math="10" /> minutes. The second line is steeper and crosses the first at <InlineMath math="(24,\ 52)" />. To the right of that point the second line lies above, for example at <InlineMath math="k=25" /> its value is <InlineMath math="53" /> while the median position is <InlineMath math="52.5" />.</>}
+  labels={{
+    half: <>median position <InlineMath math="\frac{80+k}{2}" /></>,
+    short: <>under <InlineMath math="10" /> minutes: <InlineMath math="28+k" /></>,
+    tie: <InlineMath math="(24,\ 52)" />,
+    first: <InlineMath math="k=25" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: 20, max: 75 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "half", kind: "function", appearance: "secondary", formula: "(80 + x)/2", domain: { min: 0, max: 40 } },
+      { id: "short", kind: "function", appearance: "primary", formula: "28 + x", domain: { min: 0, max: 40 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 24, y: 52 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 25, y: 53 } },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 4, y: 42 }, placement: "above" },
+      { key: "short", objectId: "short", at: { x: 36, y: 64 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 24, y: 52 }, placement: "below-right" },
+      { key: "first", objectId: "first", at: { x: 25, y: 53 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Checking the boundary
 
 The inequality is **strict**, so <InlineMath math="k=24" /> doesn't qualify yet. Work out both values near the boundary with the median estimate inside class <InlineMath math="5\le t<10" />. Before that class there are <InlineMath math="6+k" /> calls.

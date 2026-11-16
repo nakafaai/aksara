@@ -5,4 +5,36 @@ Seorang guru merangkum nilai ulangan matematika dua kelas, yaitu kelas A dan kel
 | A | <InlineMath math="31" /> | <InlineMath math="40" /> | <InlineMath math="56" /> | <InlineMath math="70" /> | <InlineMath math="82" /> | <InlineMath math="98" /> |
 | B | <InlineMath math="27" /> | <InlineMath math="50" /> | <InlineMath math="62" /> | <InlineMath math="68" /> | <InlineMath math="76" /> | <InlineMath math="92" /> |
 
+<MathVisual
+  title={<>Diagram kotak-garis nilai kelas A dan kelas B</>}
+  description={<>Dua diagram kotak-garis pada satu skala nilai. Kelas A: minimum <InlineMath math="40" />, <InlineMath math="Q_1=56" />, median <InlineMath math="70" />, <InlineMath math="Q_3=82" />, maksimum <InlineMath math="98" />. Kelas B: minimum <InlineMath math="50" />, <InlineMath math="Q_1=62" />, median <InlineMath math="68" />, <InlineMath math="Q_3=76" />, maksimum <InlineMath math="92" />.</>}
+  labels={{
+    a: <>Kelas A</>,
+    b: <>Kelas B</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 30, max: 102 },
+      y: { min: -0.5, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a-low", kind: "segment", appearance: "primary", from: { x: 40, y: 2.2 }, to: { x: 56, y: 2.2 } },
+      { id: "a-box", kind: "polygon", appearance: "primary", vertices: [{ x: 56, y: 1.9 }, { x: 82, y: 1.9 }, { x: 82, y: 2.5 }, { x: 56, y: 2.5 }] },
+      { id: "a-median", kind: "segment", appearance: "primary", from: { x: 70, y: 1.9 }, to: { x: 70, y: 2.5 } },
+      { id: "a-high", kind: "segment", appearance: "primary", from: { x: 82, y: 2.2 }, to: { x: 98, y: 2.2 } },
+      { id: "b-low", kind: "segment", appearance: "secondary", from: { x: 50, y: 0.7 }, to: { x: 62, y: 0.7 } },
+      { id: "b-box", kind: "polygon", appearance: "secondary", vertices: [{ x: 62, y: 0.4 }, { x: 76, y: 0.4 }, { x: 76, y: 1 }, { x: 62, y: 1 }] },
+      { id: "b-median", kind: "segment", appearance: "secondary", from: { x: 68, y: 0.4 }, to: { x: 68, y: 1 } },
+      { id: "b-high", kind: "segment", appearance: "secondary", from: { x: 76, y: 0.7 }, to: { x: 92, y: 0.7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a-low", at: { x: 40, y: 2.2 }, placement: "left" },
+      { key: "b", objectId: "b-low", at: { x: 50, y: 0.7 }, placement: "left" },
+    ],
+  }}
+/>
+
 Kuartil ditentukan dari data yang sudah diurutkan dari nilai terkecil. Median adalah data yang tepat di tengah. Kuartil bawah adalah median dari data di sebelah kiri median, dan kuartil atas adalah median dari data di sebelah kanan median. Median sendiri tidak diikutkan ke salah satu bagian. Pada kedua kelas, aturan ini membuat <InlineMath math="Q_1" />, median, dan <InlineMath math="Q_3" /> masing-masing tepat sama dengan salah satu nilai siswa.

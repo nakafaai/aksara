@@ -37,6 +37,44 @@ Since <InlineMath math="x=2y" />, you only need <InlineMath math="y>0" />. The n
 | <InlineMath math="-5<k<-1" /> | negative | positive | negative |
 | <InlineMath math="k>-1" /> | positive | positive | positive |
 
+Draw <InlineMath math="y" /> as a function of <InlineMath math="k" />. **The graph lies above the axis exactly for <InlineMath math="k<-5" /> and <InlineMath math="k>-1" />**, with the vertical line <InlineMath math="k=-5" /> as an asymptote. The point at <InlineMath math="k=1" /> still has to be removed, because there the system has no single solution.
+
+<MathVisual
+  title={<>Value of <InlineMath math="y" /> by <InlineMath math="k" /></>}
+  description={<>The curve <InlineMath math="y=\frac{k+1}{k+5}" /> has a vertical asymptote at <InlineMath math="k=-5" /> and meets the horizontal axis at <InlineMath math="k=-1" />. Left of the asymptote the curve is above the axis, between <InlineMath math="k=-5" /> and <InlineMath math="k=-1" /> it is below the axis, and right of <InlineMath math="k=-1" /> it is above the axis again. The point <InlineMath math="\left(1,\ \frac13\right)" /> carries a warning mark because for <InlineMath math="k=1" /> there are infinitely many solutions. The segments on the horizontal axis mark the answer set.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{k+1}{k+5}" />,
+    hole: <InlineMath math="k=1" />,
+    wall: <InlineMath math="k=-5" />,
+    zero: <InlineMath math="k=-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12.5, max: 6.5 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 1)/(x + 5)", domain: { min: -12, max: -5.25 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x + 1)/(x + 5)", domain: { min: -4.75, max: 6 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: -5, y: -6 }, to: { x: -5, y: 6 } },
+      { id: "far-left", kind: "segment", appearance: "answer", from: { x: -12, y: 0 }, to: { x: -5, y: 0 } },
+      { id: "middle", kind: "segment", appearance: "answer", from: { x: -1, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "right", kind: "segment", appearance: "answer", from: { x: 1, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "zero", kind: "point", appearance: "construction", at: { x: -1, y: 0 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 1, y: 1 / 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 6, y: 7 / 11 }, placement: "above-left" },
+      { key: "hole", objectId: "hole", at: { x: 1, y: 1 / 3 }, placement: "above" },
+      { key: "wall", objectId: "wall", at: { x: -5, y: 5 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: -1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 So <InlineMath math="y>0" /> when <InlineMath math="k<-5" /> or <InlineMath math="k>-1" />. Now remember the case <InlineMath math="k=1" />. It sits inside <InlineMath math="k>-1" />, but there the system has infinitely many solutions, not exactly one. So **<InlineMath math="k=1" /> has to be removed**.
 
 Check <InlineMath math="k=-6" />: <InlineMath math="y=\frac{-5}{-1}=5" /> and <InlineMath math="x=10" />. Substituting: <InlineMath math="-3\cdot10+4\cdot5=-10=2(-6)+2" /> and <InlineMath math="2\cdot10-5\cdot5=-5=-6+1" />.

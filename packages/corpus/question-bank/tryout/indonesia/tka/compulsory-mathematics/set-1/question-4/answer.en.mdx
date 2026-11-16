@@ -35,6 +35,43 @@ The formula <InlineMath math="c=2a-60" /> grows as <InlineMath math="a" /> grows
 
 <BlockMath math="b=180-138=42,\qquad c=2\cdot46-60=32" />
 
+Draw <InlineMath math="b" /> and <InlineMath math="c" /> as functions of <InlineMath math="a" /> to see all three conditions at once. There are more A coupons than B coupons **only to the right of the crossing at <InlineMath math="a=45" />**, and there the line of <InlineMath math="c" /> keeps rising. So the first whole number right of the crossing, <InlineMath math="a=46" />, gives the smallest <InlineMath math="c" />.
+
+<MathVisual
+  title={<>Numbers of B and C coupons by number of A coupons</>}
+  description={<>The horizontal axis is <InlineMath math="a" /> from <InlineMath math="31" /> to <InlineMath math="59" />, the range that keeps <InlineMath math="b\ge1" /> and <InlineMath math="c\ge1" />. The line <InlineMath math="b=180-3a" /> falls, the line <InlineMath math="c=2a-60" /> rises, and the reference line <InlineMath math="b=a" /> crosses the line of <InlineMath math="b" /> at <InlineMath math="(45,\ 45)" />. The condition <InlineMath math="a>b" /> holds to the right of that point. The point <InlineMath math="(46,\ 32)" /> on the line of <InlineMath math="c" /> is the smallest allowed value of <InlineMath math="c" />.</>}
+  labels={{
+    b: <InlineMath math="b=180-3a" />,
+    c: <InlineMath math="c=2a-60" />,
+    equal: <InlineMath math="b=a" />,
+    tie: <InlineMath math="a=b=45" />,
+    least: <InlineMath math="(46,\ 32)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 28, max: 62 },
+      y: { min: -4, max: 92 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "b", kind: "function", appearance: "secondary", formula: "180 - 3x", domain: { min: 31, max: 59 } },
+      { id: "c", kind: "function", appearance: "primary", formula: "2x - 60", domain: { min: 31, max: 59 } },
+      { id: "equal", kind: "function", appearance: "reference", formula: "x", domain: { min: 31, max: 59 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 45, y: 45 } },
+      { id: "least", kind: "point", appearance: "answer", at: { x: 46, y: 32 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 35, y: 75 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 55, y: 50 }, placement: "below-right" },
+      { key: "equal", objectId: "equal", at: { x: 58, y: 58 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 45, y: 45 }, placement: "left" },
+      { key: "least", objectId: "least", at: { x: 46, y: 32 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Check it: <InlineMath math="46+42+32=120" /> and <InlineMath math="50\cdot46+30\cdot42+20\cdot32=2{,}300+1{,}260+640=4{,}200" /> thousand rupiah. The condition <InlineMath math="46>42" /> holds too, so **this sale really can happen**.
 
 # Why the other options are wrong

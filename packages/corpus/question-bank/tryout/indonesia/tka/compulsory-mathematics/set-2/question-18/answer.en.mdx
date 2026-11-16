@@ -21,6 +21,43 @@ The <InlineMath math="500\text{ cm}" /> roll gives at most <InlineMath math="\lf
 | <InlineMath math="p\le125" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
 | <InlineMath math="125<p\le150" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="5" /> |
 
+Draw the total number of pieces as a function of the length of one piece <InlineMath math="p" />. **The total drops from <InlineMath math="6" /> to <InlineMath math="5" /> right after <InlineMath math="p=125" />**, so a box <InlineMath math="12\text{ cm}" /> tall still fits and a box <InlineMath math="13\text{ cm}" /> tall does not.
+
+<MathVisual
+  title={<>Total ribbon pieces by the length of one piece</>}
+  description={<>The horizontal axis is the length of one piece <InlineMath math="p" /> in cm, and the vertical axis is the number of pieces from both rolls. For <InlineMath math="100<p\le125" /> the total is <InlineMath math="4+2=6" />, for <InlineMath math="125<p\le150" /> it is <InlineMath math="3+2=5" />, and for <InlineMath math="150<p\le160" /> it is <InlineMath math="3+1=4" />. The point <InlineMath math="p=123" /> for <InlineMath math="t=12" /> is on level <InlineMath math="6" />, while <InlineMath math="p=127" /> for <InlineMath math="t=13" /> is on level <InlineMath math="5" />.</>}
+  labels={{
+    six: <InlineMath math="6" />,
+    five: <InlineMath math="5" />,
+    four: <InlineMath math="4" />,
+    fit: <InlineMath math="t=12,\ p=123" />,
+    over: <InlineMath math="t=13,\ p=127" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 98, max: 162 },
+      y: { min: 2.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "six", kind: "function", appearance: "primary", formula: "6", domain: { min: 101, max: 125 } },
+      { id: "five", kind: "function", appearance: "secondary", formula: "5", domain: { min: 125, max: 150 } },
+      { id: "four", kind: "function", appearance: "secondary", formula: "4", domain: { min: 150, max: 160 } },
+      { id: "fit", kind: "point", appearance: "answer", at: { x: 123, y: 6 } },
+      { id: "over", kind: "point", appearance: "warning", at: { x: 127, y: 5 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 105, y: 6 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 145, y: 5 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 155, y: 4 }, placement: "above" },
+      { key: "fit", objectId: "fit", at: { x: 123, y: 6 }, placement: "above-left" },
+      { key: "over", objectId: "over", at: { x: 127, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Once <InlineMath math="p" /> goes past <InlineMath math="125" />, the long roll gives only <InlineMath math="3" /> pieces and the short one <InlineMath math="2" />, fewer than <InlineMath math="6" />. So the condition is **<InlineMath math="p\le125\text{ cm}" />**.
 
 # The greatest height

@@ -15,6 +15,17 @@ Untuk itu, pilih dulu <InlineMath math="4" /> motif dari <InlineMath math="5" />
 P(\text{tanpa pasangan})&=\frac{80}{210}=\frac{8}{21}
 \end{aligned}" />
 
+Diagram berikut memperlihatkan alurnya. **Semua cara dipecah menjadi dua kelompok yang tidak beririsan**, jadi kelompok yang diminta adalah semua cara dikurangi kelompok tanpa pasangan.
+
+<Mermaid
+  title={<>Menghitung lewat kejadian sebaliknya</>}
+  description={<>Dari <InlineMath math="210" /> cara memilih <InlineMath math="4" /> kaus kaki, sebanyak <InlineMath math="80" /> cara tidak memuat pasangan, yaitu <InlineMath math="5" /> pilihan motif dikali <InlineMath math="16" /> pilihan sisi. Sisanya <InlineMath math="130" /> cara memuat sedikitnya satu pasang, sehingga peluangnya <InlineMath math="\frac{130}{210}=\frac{13}{21}" />.</>}
+  chart={`flowchart TD
+  A["Semua cara: C(10, 4) = 210"] --> B["Tanpa pasangan: C(5, 4) · 2⁴ = 80"]
+  A --> C["Sedikitnya satu pasang: 210 − 80 = 130"]
+  C --> D["Peluang: 130/210 = 13/21"]`}
+/>
+
 # Peluang yang diminta
 
 **Kurangkan dari satu**:

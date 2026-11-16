@@ -32,6 +32,18 @@ Check it another way, by how many of Andi and Budi are in.
 \text{total}&=65+110=175
 \end{aligned}" />
 
+The diagram below sums up that check. **Every committee falls into exactly one branch**, so the two branches can be added without counting anything twice.
+
+<Mermaid
+  title={<>Committees by whether Andi and Budi join</>}
+  description={<>With Rani removed, the candidates are <InlineMath math="5" /> boys and <InlineMath math="5" /> girls. The branch without Andi and Budi gives <InlineMath math="70-5=65" /> committees, since the all-girl committees are removed. The branch with exactly one of them gives <InlineMath math="2\cdot(56-1)=110" /> committees, since the all-boy committee is removed. The total is <InlineMath math="175" />.</>}
+  chart={`flowchart TD
+  S["Candidates: 5 boys + 5 girls"] --> N["Without Andi and Budi: C(8, 4) − C(5, 4) = 65"]
+  S --> O["Exactly one of them: 2 · (C(8, 3) − C(3, 3)) = 110"]
+  N --> T["Total: 65 + 110 = 175"]
+  O --> T`}
+/>
+
 In the first line the candidates are <InlineMath math="3" /> boys and <InlineMath math="5" /> girls, and the all-girl committees have to go. In the second line there's already one boy, so the other three just can't all be boys.
 
 # Why the other options are wrong

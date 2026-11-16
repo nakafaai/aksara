@@ -9,6 +9,20 @@ P(B)&=\frac{r(r-1)}{56}+\frac{8-r}{8}\cdot\frac{r}{7}=\frac{7r}{56}=\frac{r}{8} 
 P(B\mid A)&=\frac{r-1}{7}
 \end{aligned}" />
 
+Pohon kebarangkalian di bawah memuatkan keempat-empat susunan warna. **Kebarangkalian bola kedua merah ialah hasil tambah dua cabang yang berakhir dengan merah**, iaitu <InlineMath math="\frac{r(r-1)+r(8-r)}{56}=\frac{7r}{56}" />.
+
+<Mermaid
+  title={<>Pohon kebarangkalian dua cabutan tanpa pengembalian</>}
+  description={<>Cabutan pertama bercabang ke merah dengan kebarangkalian <InlineMath math="\frac r8" /> dan ke putih dengan kebarangkalian <InlineMath math="\frac{8-r}{8}" />. Selepas merah, bola kedua merah dengan kebarangkalian <InlineMath math="\frac{r-1}{7}" />. Selepas putih, bola kedua merah dengan kebarangkalian <InlineMath math="\frac r7" />. Empat hujung pohon ialah merah-merah, merah-putih, putih-merah, dan putih-putih, setiap satu dengan hasil darab cabangnya sebagai kebarangkalian.</>}
+  chart={`flowchart LR
+  S["Mula"] -->|"r/8"| M1["Pertama merah"]
+  S -->|"(8 − r)/8"| W1["Pertama putih"]
+  M1 -->|"(r − 1)/7"| MM["merah, merah: r(r − 1)/56"]
+  M1 -->|"(8 − r)/7"| MW["merah, putih: r(8 − r)/56"]
+  W1 -->|"r/7"| WM["putih, merah: r(8 − r)/56"]
+  W1 -->|"(7 − r)/7"| WW["putih, putih: (8 − r)(7 − r)/56"]`}
+/>
+
 Hasilnya **<InlineMath math="P(B)" /> sama dengan <InlineMath math="P(A)" />**. Ini munasabah, kerana sebelum apa-apa dilihat, bola kedua sama rawaknya dengan bola pertama.
 
 # Menilai setiap pernyataan

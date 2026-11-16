@@ -18,6 +18,39 @@ A value between two known positions can be anything between those two known valu
 \text{largest B}&=50+6\cdot62+7\cdot68+7\cdot76+6\cdot92=1{,}982,\quad \bar b=\tfrac{1{,}982}{27}\approx73.41
 \end{aligned}" />
 
+Draw the range of possible means for each class. **The two ranges overlap, so the table does not settle which class has the larger mean**. On the other hand, the whole range for class A lies to the right of <InlineMath math="63" />.
+
+<MathVisual
+  title={<>Ranges of possible means for both classes</>}
+  description={<>The upper segment is the range of the mean of class A, from <InlineMath math="\frac{1{,}960}{31}\approx63.23" /> to <InlineMath math="\frac{2{,}334}{31}\approx75.29" />. The lower segment is the range of the mean of class B, from <InlineMath math="\frac{1{,}758}{27}\approx65.11" /> to <InlineMath math="\frac{1{,}982}{27}\approx73.41" />. The range for B lies inside the range for A, and the vertical line at <InlineMath math="63" /> is left of the lower end of the range for A.</>}
+  labels={{
+    a: <>mean of class A</>,
+    b: <>mean of class B</>,
+    line: <InlineMath math="63" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 60, max: 78 },
+      y: { min: 0.2, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 1960 / 31, y: 2 }, to: { x: 2334 / 31, y: 2 } },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 1758 / 27, y: 1 }, to: { x: 1982 / 27, y: 1 } },
+      { id: "a-low", kind: "point", appearance: "answer", at: { x: 1960 / 31, y: 2 } },
+      { id: "b-high", kind: "point", appearance: "warning", at: { x: 1982 / 27, y: 1 } },
+      { id: "line", kind: "segment", appearance: "construction", from: { x: 63, y: 0.5 }, to: { x: 63, y: 2.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2147 / 31, y: 2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1870 / 27, y: 1 }, placement: "below" },
+      { key: "line", objectId: "line", at: { x: 63, y: 0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 In the smallest A data, for example, <InlineMath math="a_1" /> to <InlineMath math="a_7" /> are <InlineMath math="40" /> and <InlineMath math="a_8" /> to <InlineMath math="a_{15}" /> are <InlineMath math="56" />. This still gives <InlineMath math="Q_1=a_8=56" />, median <InlineMath math="a_{16}=70" /> and so on, so it fits the table.
 
 # Judging each statement

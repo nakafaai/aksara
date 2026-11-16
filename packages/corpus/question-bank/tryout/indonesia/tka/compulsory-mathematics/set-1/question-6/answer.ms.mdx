@@ -28,6 +28,43 @@ Jadual ini menyemak beberapa nilai <InlineMath math="k" />:
 | <InlineMath math="0" /> | <InlineMath math="x\ge0" /> | <InlineMath math="-4" /> pada <InlineMath math="x=1" /> | <InlineMath math="-12" /> |
 | <InlineMath math="8" /> | <InlineMath math="x\ge-\frac{8}{3}" /> | <InlineMath math="-4" /> pada <InlineMath math="x=-\frac{5}{3}" /> | <InlineMath math="-4" /> |
 
+Lukis <InlineMath math="f\circ g" /> bagi tiga nilai <InlineMath math="k" /> dalam jadual. **Ketiga-tiga graf ialah lengkung yang sama, cuma dianjak ke kiri atau ke kanan**, dan setiap lengkung bermula di sempadan domainnya. Dasarnya sentiasa menyentuh garis <InlineMath math="y=-4" />, manakala bagi <InlineMath math="k=-6" /> lengkungnya bermula pada <InlineMath math="x=2" /> dan tidak pernah bertemu paksi <InlineMath math="y" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f\circ g" /> bagi tiga nilai <InlineMath math="k" /></>}
+  description={<>Tiga lengkung parabola yang sama bentuk. Bagi <InlineMath math="k=8" /> graf bergerak dari <InlineMath math="x=-\frac{8}{3}" /> hingga <InlineMath math="x=-\frac{2}{3}" />, bagi <InlineMath math="k=0" /> dari <InlineMath math="x=0" /> hingga <InlineMath math="x=2" />, dan bagi <InlineMath math="k=-6" /> dari <InlineMath math="x=2" /> hingga <InlineMath math="x=4" />. Setiap lengkung bermula pada ketinggian <InlineMath math="5" /> di sempadan domainnya, turun menyentuh garis <InlineMath math="y=-4" /> pada <InlineMath math="x=-\frac{5}{3}" />, <InlineMath math="x=1" />, dan <InlineMath math="x=3" />, kemudian naik semula.</>}
+  labels={{
+    low: <InlineMath math="k=-6" />,
+    zero: <InlineMath math="k=0" />,
+    high: <InlineMath math="k=8" />,
+    floor: <InlineMath math="y=-4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 5 },
+      y: { min: -5.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "high", kind: "function", appearance: "secondary", formula: "9x^2 + 30x + 21", domain: { min: -8 / 3, max: -2 / 3 } },
+      { id: "zero", kind: "function", appearance: "primary", formula: "9x^2 - 18x + 5", domain: { min: 0, max: 2 } },
+      { id: "low", kind: "function", appearance: "highlight", formula: "9x^2 - 54x + 77", domain: { min: 2, max: 4 } },
+      { id: "floor", kind: "function", appearance: "answer", formula: "-4", domain: { min: -3.2, max: 4.5 } },
+      { id: "high-start", kind: "point", appearance: "secondary", at: { x: -8 / 3, y: 5 } },
+      { id: "zero-start", kind: "point", appearance: "primary", at: { x: 0, y: 5 } },
+      { id: "low-start", kind: "point", appearance: "highlight", at: { x: 2, y: 5 } },
+    ],
+    labels: [
+      { key: "high", objectId: "high-start", at: { x: -8 / 3, y: 5 }, placement: "left" },
+      { key: "zero", objectId: "zero-start", at: { x: 0, y: 5 }, placement: "above-left" },
+      { key: "low", objectId: "low", at: { x: 4, y: 5 }, placement: "right" },
+      { key: "floor", objectId: "floor", at: { x: 4.5, y: -4 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 # Mengapa pilihan lain tidak pasti
 
 - Domain <InlineMath math="f\circ g" /> ialah <InlineMath math="x\ge-\frac{k}{3}" />, sama dengan <InlineMath math="x\ge0" /> **hanya apabila <InlineMath math="k=0" />**. Untuk <InlineMath math="k=8" />, domainnya <InlineMath math="x\ge-\frac{8}{3}" />.

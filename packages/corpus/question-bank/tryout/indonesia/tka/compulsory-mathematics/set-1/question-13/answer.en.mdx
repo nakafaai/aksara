@@ -17,6 +17,47 @@ In that triangle, the side <InlineMath math="6" /> is half of the hypotenuse <In
 \text{small wheel}&:\ 180^\circ-2\cdot30^\circ=120^\circ
 \end{aligned}" />
 
+Draw both wheels and the belt, then slide the upper straight piece toward the centre of the small wheel. **The triangle that forms has hypotenuse <InlineMath math="12" /> and a side of <InlineMath math="6" />**, so the angle at the centre of the big wheel is <InlineMath math="60^\circ" /> from the line of centres. That angle decides how far the belt wraps around each wheel.
+
+<MathVisual
+  title={<>Belt around two wheels</>}
+  description={<>The big wheel of radius <InlineMath math="8" /> is centred at the origin, and the small wheel of radius <InlineMath math="2" /> is centred <InlineMath math="12" /> units to its right. The two straight pieces of the belt each have length <InlineMath math="6\sqrt3" />. A helper triangle with hypotenuse <InlineMath math="12" />, a side of <InlineMath math="6" /> along a radius of the big wheel, and a side of <InlineMath math="6\sqrt3" /> parallel to the straight piece has its right angle at the end of the side <InlineMath math="6" />. The belt wraps an arc of <InlineMath math="240^\circ" /> on the big wheel and an arc of <InlineMath math="120^\circ" /> on the small wheel.</>}
+  labels={{
+    "big-arc": <InlineMath math="240^\circ" />,
+    "small-arc": <InlineMath math="120^\circ" />,
+    upper: <InlineMath math="6\sqrt3" />,
+    centers: <InlineMath math="12" />,
+    gap: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 16 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big-wheel", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 8 },
+      { id: "small-wheel", kind: "circle", appearance: "reference", center: { x: 12, y: 0 }, radius: 2 },
+      { id: "big-arc", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 8, startDegrees: 60, sweepDegrees: 240 },
+      { id: "small-arc", kind: "arc", appearance: "answer", center: { x: 12, y: 0 }, radius: 2, startDegrees: 300, sweepDegrees: 120 },
+      { id: "upper", kind: "segment", appearance: "answer", from: { x: 4, y: 4 * Math.sqrt(3) }, to: { x: 13, y: Math.sqrt(3) } },
+      { id: "lower", kind: "segment", appearance: "answer", from: { x: 4, y: -4 * Math.sqrt(3) }, to: { x: 13, y: -Math.sqrt(3) } },
+      { id: "helper", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 * Math.sqrt(3) }, { x: 12, y: 0 }] },
+      { id: "centers", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "big-arc", objectId: "big-arc", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "small-arc", objectId: "small-arc", at: { x: 14, y: 0 }, placement: "right" },
+      { key: "upper", objectId: "upper", at: { x: 8.5, y: 2.5 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "centers", objectId: "centers", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "left" },
+    ],
+  }}
+/>
+
 # The length of the belt
 
 An arc is the share of the circumference that matches its angle. **Add the two straight pieces and the two arcs**:

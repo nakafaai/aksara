@@ -18,6 +18,43 @@ Lembar-lembar itu berjajar menutup panjang atap <InlineMath math="12\text{ m}" /
 4\text{ lembar}&:\ 4+3\cdot3{,}5=14{,}5\text{ m}\ge12\text{ m}
 \end{aligned}" />
 
+Bentangkan atap lengkung menjadi persegi panjang supaya lembarannya terlihat berjajar. **Setiap lembar baru hanya menambah <InlineMath math="3{,}5\text{ m}" /> karena tumpang tindih <InlineMath math="0{,}5\text{ m}" />**, jadi tiga lembar berhenti di <InlineMath math="11\text{ m}" /> dan lembar keempat diperlukan.
+
+<MathVisual
+  title={<>Empat lembar plastik pada atap yang dibentangkan</>}
+  description={<>Atap dibentangkan menjadi persegi panjang sepanjang <InlineMath math="12\text{ m}" /> dengan lebar lengkung <InlineMath math="11\text{ m}" />. Empat lembar selebar <InlineMath math="4\text{ m}" /> dan sepanjang <InlineMath math="12\text{ m}" /> dipasang berjajar mulai dari <InlineMath math="0" />, <InlineMath math="3{,}5" />, <InlineMath math="7" />, dan <InlineMath math="10{,}5" />, sehingga setiap pasangan bersebelahan tumpang tindih <InlineMath math="0{,}5\text{ m}" />. Setiap lembar menjulur <InlineMath math="0{,}5\text{ m}" /> di kedua ujung lengkung untuk dijepit.</>}
+  labels={{
+    roof: <InlineMath math="12\text{ m}" />,
+    first: <InlineMath math="1" />,
+    second: <InlineMath math="2" />,
+    third: <InlineMath math="3" />,
+    fourth: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 15.5 },
+      y: { min: -1.5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 12 }, { x: 0, y: 12 }] },
+      { id: "second", kind: "polygon", appearance: "secondary", vertices: [{ x: 3.5, y: 0 }, { x: 7.5, y: 0 }, { x: 7.5, y: 12 }, { x: 3.5, y: 12 }] },
+      { id: "third", kind: "polygon", appearance: "primary", vertices: [{ x: 7, y: 0 }, { x: 11, y: 0 }, { x: 11, y: 12 }, { x: 7, y: 12 }] },
+      { id: "fourth", kind: "polygon", appearance: "secondary", vertices: [{ x: 10.5, y: 0 }, { x: 14.5, y: 0 }, { x: 14.5, y: 12 }, { x: 10.5, y: 12 }] },
+      { id: "roof", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0.5 }, { x: 12, y: 0.5 }, { x: 12, y: 11.5 }, { x: 0, y: 11.5 }] },
+    ],
+    labels: [
+      { key: "roof", objectId: "roof", at: { x: 6, y: 0.5 }, placement: "below" },
+      { key: "first", objectId: "first", at: { x: 1.75, y: 6 }, placement: "center" },
+      { key: "second", objectId: "second", at: { x: 5.5, y: 6 }, placement: "center" },
+      { key: "third", objectId: "third", at: { x: 9, y: 6 }, placement: "center" },
+      { key: "fourth", objectId: "fourth", at: { x: 12.75, y: 6 }, placement: "center" },
+    ],
+  }}
+/>
+
 Tiga lembar masih menyisakan celah, jadi perlu <InlineMath math="4" /> lembar. Panjang gulungan untuk atap adalah <InlineMath math="4\cdot12=48\text{ m}" />.
 
 # Dua bidang ujung

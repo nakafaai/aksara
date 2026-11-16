@@ -22,6 +22,38 @@ The rest of the ride, from km <InlineMath math="8" /> to km <InlineMath math="22
 &=63{,}600
 \end{aligned}" />
 
+The peak-hour fare graph shows this split. **The height of the graph at <InlineMath math="d=8" /> is the shared part**, and the rise of the graph from <InlineMath math="d=8" /> to <InlineMath math="d=22" /> is the remaining part that Eka pays alone.
+
+<MathVisual
+  title={<>Peak-hour fare split at km <InlineMath math="8" /></>}
+  description={<>The horizontal axis is the distance <InlineMath math="d" /> in km, and the vertical axis is the peak-hour fare in tens of thousands of rupiah. The graph is flat at <InlineMath math="1" /> up to <InlineMath math="d=2" />, rises <InlineMath math="0.54" /> per km up to <InlineMath math="d=12" />, then rises <InlineMath math="0.42" /> per km. At <InlineMath math="d=8" /> its height is <InlineMath math="4.24" />, the shared part of <InlineMath math="\text{Rp}42{,}400" />. At <InlineMath math="d=22" /> its height is <InlineMath math="10.6" />. The vertical segment at <InlineMath math="d=22" /> from <InlineMath math="4.24" /> to <InlineMath math="10.6" /> is the remaining part of <InlineMath math="\text{Rp}63{,}600" />.</>}
+  labels={{
+    shared: <>split in two: <InlineMath math="\text{Rp}42{,}400" /></>,
+    eka: <>Eka alone: <InlineMath math="\text{Rp}63{,}600" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 24 },
+      y: { min: -0.5, max: 11.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "door", kind: "function", appearance: "primary", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "1 + 0.54(x - 2)", domain: { min: 2, max: 12 } },
+      { id: "far", kind: "function", appearance: "primary", formula: "6.4 + 0.42(x - 12)", domain: { min: 12, max: 22 } },
+      { id: "shared", kind: "segment", appearance: "secondary", from: { x: 8, y: 0 }, to: { x: 8, y: 4.24 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 8, y: 4.24 }, to: { x: 22, y: 4.24 } },
+      { id: "eka", kind: "segment", appearance: "answer", from: { x: 22, y: 4.24 }, to: { x: 22, y: 10.6 } },
+    ],
+    labels: [
+      { key: "shared", objectId: "shared", at: { x: 8, y: 2.12 }, placement: "left" },
+      { key: "eka", objectId: "eka", at: { x: 22, y: 7.42 }, placement: "left" },
+    ],
+  }}
+/>
+
 Eka pays half of the shared part plus the whole rest:
 
 <BlockMath math="21{,}200+63{,}600=84{,}800" />

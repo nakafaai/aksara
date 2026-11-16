@@ -21,6 +21,43 @@ Gulungan <InlineMath math="500\text{ cm}" /> menghasilkan paling banyak <InlineM
 | <InlineMath math="p\le125" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
 | <InlineMath math="125<p\le150" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="5" /> |
 
+Gambar total potongan sebagai fungsi panjang satu potongan <InlineMath math="p" />. **Total itu turun dari <InlineMath math="6" /> ke <InlineMath math="5" /> tepat setelah <InlineMath math="p=125" />**, jadi kotak setinggi <InlineMath math="12\text{ cm}" /> masih muat dan kotak setinggi <InlineMath math="13\text{ cm}" /> sudah tidak.
+
+<MathVisual
+  title={<>Total potongan pita menurut panjang satu potongan</>}
+  description={<>Sumbu mendatar adalah panjang satu potongan <InlineMath math="p" /> dalam cm, sumbu tegak adalah banyak potongan dari kedua gulungan. Untuk <InlineMath math="100<p\le125" /> totalnya <InlineMath math="4+2=6" />, untuk <InlineMath math="125<p\le150" /> totalnya <InlineMath math="3+2=5" />, dan untuk <InlineMath math="150<p\le160" /> totalnya <InlineMath math="3+1=4" />. Titik <InlineMath math="p=123" /> untuk <InlineMath math="t=12" /> ada di tingkat <InlineMath math="6" />, sedangkan <InlineMath math="p=127" /> untuk <InlineMath math="t=13" /> ada di tingkat <InlineMath math="5" />.</>}
+  labels={{
+    six: <InlineMath math="6" />,
+    five: <InlineMath math="5" />,
+    four: <InlineMath math="4" />,
+    fit: <InlineMath math="t=12,\ p=123" />,
+    over: <InlineMath math="t=13,\ p=127" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 98, max: 162 },
+      y: { min: 2.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "six", kind: "function", appearance: "primary", formula: "6", domain: { min: 101, max: 125 } },
+      { id: "five", kind: "function", appearance: "secondary", formula: "5", domain: { min: 125, max: 150 } },
+      { id: "four", kind: "function", appearance: "secondary", formula: "4", domain: { min: 150, max: 160 } },
+      { id: "fit", kind: "point", appearance: "answer", at: { x: 123, y: 6 } },
+      { id: "over", kind: "point", appearance: "warning", at: { x: 127, y: 5 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 105, y: 6 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 145, y: 5 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 155, y: 4 }, placement: "above" },
+      { key: "fit", objectId: "fit", at: { x: 123, y: 6 }, placement: "above-left" },
+      { key: "over", objectId: "over", at: { x: 127, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Begitu <InlineMath math="p" /> lebih dari <InlineMath math="125" />, gulungan panjang hanya memberi <InlineMath math="3" /> potongan dan gulungan pendek <InlineMath math="2" />, kurang dari <InlineMath math="6" />. Jadi syaratnya **<InlineMath math="p\le125\text{ cm}" />**.
 
 # Tinggi terbesar

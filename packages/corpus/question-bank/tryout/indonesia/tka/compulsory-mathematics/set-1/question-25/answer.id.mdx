@@ -9,6 +9,20 @@ P(B)&=\frac{r(r-1)}{56}+\frac{8-r}{8}\cdot\frac{r}{7}=\frac{7r}{56}=\frac{r}{8} 
 P(B\mid A)&=\frac{r-1}{7}
 \end{aligned}" />
 
+Pohon peluang berikut memuat keempat kemungkinan urutan warna. **Peluang bola kedua merah adalah jumlah dua cabang yang berakhir merah**, yaitu <InlineMath math="\frac{r(r-1)+r(8-r)}{56}=\frac{7r}{56}" />.
+
+<Mermaid
+  title={<>Pohon peluang dua pengambilan tanpa pengembalian</>}
+  description={<>Pengambilan pertama bercabang ke merah dengan peluang <InlineMath math="\frac r8" /> dan putih dengan peluang <InlineMath math="\frac{8-r}{8}" />. Setelah merah, bola kedua merah dengan peluang <InlineMath math="\frac{r-1}{7}" />. Setelah putih, bola kedua merah dengan peluang <InlineMath math="\frac r7" />. Keempat ujung pohon adalah merah-merah, merah-putih, putih-merah, dan putih-putih, masing-masing dengan peluang hasil kali cabangnya.</>}
+  chart={`flowchart LR
+  S["Mulai"] -->|"r/8"| M1["Pertama merah"]
+  S -->|"(8 − r)/8"| W1["Pertama putih"]
+  M1 -->|"(r − 1)/7"| MM["merah, merah: r(r − 1)/56"]
+  M1 -->|"(8 − r)/7"| MW["merah, putih: r(8 − r)/56"]
+  W1 -->|"r/7"| WM["putih, merah: r(8 − r)/56"]
+  W1 -->|"(7 − r)/7"| WW["putih, putih: (8 − r)(7 − r)/56"]`}
+/>
+
 Hasilnya **<InlineMath math="P(B)" /> sama dengan <InlineMath math="P(A)" />**. Masuk akal, karena sebelum apa pun dilihat, bola kedua sama acaknya dengan bola pertama.
 
 # Menilai setiap pernyataan

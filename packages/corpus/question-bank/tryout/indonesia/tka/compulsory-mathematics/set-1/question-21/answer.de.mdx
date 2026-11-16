@@ -11,6 +11,40 @@ n&=80+k,\qquad\text{Position des Medians}=\frac{80+k}{2} \\
 k&>24
 \end{aligned}" />
 
+Zeichne beide Seiten der Ungleichung als Geraden über <InlineMath math="k" />. **Der Median liegt genau dann unter <InlineMath math="10" /> Minuten, wenn die Gerade der Anrufe unter <InlineMath math="10" /> Minuten über der Geraden der Medianposition liegt**. Die Geraden schneiden sich bei <InlineMath math="k=24" />, und die erste ganze Zahl rechts davon ist <InlineMath math="k=25" />.
+
+<MathVisual
+  title={<>Medianposition und Anrufe unter <InlineMath math="10" /> Minuten</>}
+  description={<>Die waagerechte Achse ist <InlineMath math="k" />, die Anzahl zusätzlicher Anrufe. Die Gerade <InlineMath math="\frac{80+k}{2}" /> ist die Position des Medians, die Gerade <InlineMath math="28+k" /> die Anzahl der Anrufe unter <InlineMath math="10" /> Minuten. Die zweite Gerade ist steiler und schneidet die erste in <InlineMath math="(24,\ 52)" />. Rechts davon liegt die zweite Gerade oben, zum Beispiel ist ihr Wert bei <InlineMath math="k=25" /> gleich <InlineMath math="53" />, die Medianposition aber <InlineMath math="52{,}5" />.</>}
+  labels={{
+    half: <>Medianposition <InlineMath math="\frac{80+k}{2}" /></>,
+    short: <>unter <InlineMath math="10" /> Minuten: <InlineMath math="28+k" /></>,
+    tie: <InlineMath math="(24,\ 52)" />,
+    first: <InlineMath math="k=25" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: 20, max: 75 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "half", kind: "function", appearance: "secondary", formula: "(80 + x)/2", domain: { min: 0, max: 40 } },
+      { id: "short", kind: "function", appearance: "primary", formula: "28 + x", domain: { min: 0, max: 40 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 24, y: 52 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 25, y: 53 } },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 4, y: 42 }, placement: "above" },
+      { key: "short", objectId: "short", at: { x: 36, y: 64 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 24, y: 52 }, placement: "below-right" },
+      { key: "first", objectId: "first", at: { x: 25, y: 53 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Die Grenze prüfen
 
 Die Ungleichung ist **streng**, also reicht <InlineMath math="k=24" /> noch nicht. Berechne beide Werte an der Grenze mit der Medianschätzung in der Klasse <InlineMath math="5\le t<10" />. Vor dieser Klasse liegen <InlineMath math="6+k" /> Anrufe.

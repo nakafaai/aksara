@@ -18,6 +18,43 @@ Kepingan-kepingan itu disusun bersebelahan untuk menutup panjang bumbung <Inline
 4\text{ keping}&:\ 4+3\cdot3.5=14.5\text{ m}\ge12\text{ m}
 \end{aligned}" />
 
+Bentangkan bumbung lengkung menjadi segi empat tepat supaya kepingannya kelihatan berjajar. **Setiap keping baharu hanya menambah <InlineMath math="3.5\text{ m}" /> kerana pertindihan <InlineMath math="0.5\text{ m}" />**, jadi tiga keping berhenti pada <InlineMath math="11\text{ m}" /> dan keping keempat diperlukan.
+
+<MathVisual
+  title={<>Empat keping plastik pada bumbung yang dibentangkan</>}
+  description={<>Bumbung dibentangkan menjadi segi empat tepat sepanjang <InlineMath math="12\text{ m}" /> dengan lebar lengkung <InlineMath math="11\text{ m}" />. Empat keping selebar <InlineMath math="4\text{ m}" /> dan sepanjang <InlineMath math="12\text{ m}" /> dipasang berjajar bermula pada <InlineMath math="0" />, <InlineMath math="3.5" />, <InlineMath math="7" />, dan <InlineMath math="10.5" />, maka setiap pasangan bersebelahan bertindih <InlineMath math="0.5\text{ m}" />. Setiap keping terjulur <InlineMath math="0.5\text{ m}" /> di kedua-dua hujung lengkung untuk dikepit.</>}
+  labels={{
+    roof: <InlineMath math="12\text{ m}" />,
+    first: <InlineMath math="1" />,
+    second: <InlineMath math="2" />,
+    third: <InlineMath math="3" />,
+    fourth: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 15.5 },
+      y: { min: -1.5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 12 }, { x: 0, y: 12 }] },
+      { id: "second", kind: "polygon", appearance: "secondary", vertices: [{ x: 3.5, y: 0 }, { x: 7.5, y: 0 }, { x: 7.5, y: 12 }, { x: 3.5, y: 12 }] },
+      { id: "third", kind: "polygon", appearance: "primary", vertices: [{ x: 7, y: 0 }, { x: 11, y: 0 }, { x: 11, y: 12 }, { x: 7, y: 12 }] },
+      { id: "fourth", kind: "polygon", appearance: "secondary", vertices: [{ x: 10.5, y: 0 }, { x: 14.5, y: 0 }, { x: 14.5, y: 12 }, { x: 10.5, y: 12 }] },
+      { id: "roof", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0.5 }, { x: 12, y: 0.5 }, { x: 12, y: 11.5 }, { x: 0, y: 11.5 }] },
+    ],
+    labels: [
+      { key: "roof", objectId: "roof", at: { x: 6, y: 0.5 }, placement: "below" },
+      { key: "first", objectId: "first", at: { x: 1.75, y: 6 }, placement: "center" },
+      { key: "second", objectId: "second", at: { x: 5.5, y: 6 }, placement: "center" },
+      { key: "third", objectId: "third", at: { x: 9, y: 6 }, placement: "center" },
+      { key: "fourth", objectId: "fourth", at: { x: 12.75, y: 6 }, placement: "center" },
+    ],
+  }}
+/>
+
 Tiga keping masih meninggalkan ruang yang terbuka, jadi kamu perlukan <InlineMath math="4" /> keping. Panjang gulungan untuk bumbung ialah <InlineMath math="4\cdot12=48\text{ m}" />.
 
 # Dua bidang hujung

@@ -26,6 +26,43 @@ Sekarang ambil persilangan kedua-dua syarat itu.
 | <InlineMath math="41\le x\le97" /> | tidak | tidak | tidak |
 | <InlineMath math="98\le x\le100" /> | ya | tidak | ya |
 
+Tandakan markah <InlineMath math="0" /> hingga <InlineMath math="100" /> pada tiga baris. **Baris paling bawah ialah persilangan: markah yang menjadi pencilan bagi B pada baris tengah dan bukan pencilan bagi A pada baris atas**.
+
+<MathVisual
+  title={<>Julat pencilan kelas A dan kelas B</>}
+  description={<>Baris atas bagi kelas A: markah <InlineMath math="0" /> hingga <InlineMath math="16" /> ialah pencilan dan markah <InlineMath math="17" /> hingga <InlineMath math="100" /> bukan pencilan. Baris tengah bagi kelas B: markah <InlineMath math="0" /> hingga <InlineMath math="40" /> dan <InlineMath math="98" /> hingga <InlineMath math="100" /> ialah pencilan, manakala <InlineMath math="41" /> hingga <InlineMath math="97" /> bukan. Baris bawah memuatkan persilangannya, <InlineMath math="17\le x\le40" /> dan <InlineMath math="98\le x\le100" />.</>}
+  labels={{
+    "a-normal": <>A: bukan pencilan</>,
+    "b-low": <>B: pencilan</>,
+    "answer-low": <InlineMath math="17\le x\le40" />,
+    "answer-high": <InlineMath math="98\le x\le100" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 106 },
+      y: { min: -0.9, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a-normal", kind: "segment", appearance: "primary", from: { x: 17, y: 2 }, to: { x: 100, y: 2 } },
+      { id: "a-low", kind: "segment", appearance: "warning", from: { x: 0, y: 2 }, to: { x: 16, y: 2 } },
+      { id: "b-low", kind: "segment", appearance: "warning", from: { x: 0, y: 1 }, to: { x: 40, y: 1 } },
+      { id: "b-normal", kind: "segment", appearance: "primary", from: { x: 41, y: 1 }, to: { x: 97, y: 1 } },
+      { id: "b-high", kind: "segment", appearance: "warning", from: { x: 98, y: 1 }, to: { x: 100, y: 1 } },
+      { id: "answer-low", kind: "segment", appearance: "answer", from: { x: 17, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "answer-high", kind: "segment", appearance: "answer", from: { x: 98, y: 0 }, to: { x: 100, y: 0 } },
+    ],
+    labels: [
+      { key: "a-normal", objectId: "a-normal", at: { x: 58.5, y: 2 }, placement: "above" },
+      { key: "b-low", objectId: "b-low", at: { x: 20, y: 1 }, placement: "above" },
+      { key: "answer-low", objectId: "answer-low", at: { x: 28.5, y: 0 }, placement: "below" },
+      { key: "answer-high", objectId: "answer-high", at: { x: 99, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Semak hujung julat: <InlineMath math="x=17" /> tidak kurang daripada <InlineMath math="17" />, jadi ia bukan pencilan bagi A, manakala <InlineMath math="17<41" /> menjadikannya pencilan bagi B. Nilai <InlineMath math="x=41" /> dan <InlineMath math="x=97" /> tepat pada had kelas B, jadi kedua-duanya bukan pencilan bagi B.
 
 # Mengapa pilihan lain salah

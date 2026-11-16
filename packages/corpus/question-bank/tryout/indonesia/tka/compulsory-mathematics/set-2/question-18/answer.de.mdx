@@ -21,6 +21,43 @@ Die <InlineMath math="500\text{ cm}" />-Rolle liefert höchstens <InlineMath mat
 | <InlineMath math="p\le125" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
 | <InlineMath math="125<p\le150" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="5" /> |
 
+Zeichne die Gesamtzahl der Stücke als Funktion der Länge eines Stücks <InlineMath math="p" />. **Die Gesamtzahl fällt direkt nach <InlineMath math="p=125" /> von <InlineMath math="6" /> auf <InlineMath math="5" />**, also passt eine <InlineMath math="12\text{ cm}" /> hohe Schachtel noch und eine <InlineMath math="13\text{ cm}" /> hohe nicht mehr.
+
+<MathVisual
+  title={<>Anzahl der Bandstücke nach Länge eines Stücks</>}
+  description={<>Die waagerechte Achse ist die Länge eines Stücks <InlineMath math="p" /> in cm, die senkrechte Achse die Anzahl der Stücke aus beiden Rollen. Für <InlineMath math="100<p\le125" /> sind es <InlineMath math="4+2=6" />, für <InlineMath math="125<p\le150" /> sind es <InlineMath math="3+2=5" /> und für <InlineMath math="150<p\le160" /> sind es <InlineMath math="3+1=4" />. Der Punkt <InlineMath math="p=123" /> für <InlineMath math="t=12" /> liegt auf Stufe <InlineMath math="6" />, der Punkt <InlineMath math="p=127" /> für <InlineMath math="t=13" /> auf Stufe <InlineMath math="5" />.</>}
+  labels={{
+    six: <InlineMath math="6" />,
+    five: <InlineMath math="5" />,
+    four: <InlineMath math="4" />,
+    fit: <InlineMath math="t=12,\ p=123" />,
+    over: <InlineMath math="t=13,\ p=127" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 98, max: 162 },
+      y: { min: 2.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "six", kind: "function", appearance: "primary", formula: "6", domain: { min: 101, max: 125 } },
+      { id: "five", kind: "function", appearance: "secondary", formula: "5", domain: { min: 125, max: 150 } },
+      { id: "four", kind: "function", appearance: "secondary", formula: "4", domain: { min: 150, max: 160 } },
+      { id: "fit", kind: "point", appearance: "answer", at: { x: 123, y: 6 } },
+      { id: "over", kind: "point", appearance: "warning", at: { x: 127, y: 5 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 105, y: 6 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 145, y: 5 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 155, y: 4 }, placement: "above" },
+      { key: "fit", objectId: "fit", at: { x: 123, y: 6 }, placement: "above-left" },
+      { key: "over", objectId: "over", at: { x: 127, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Sobald <InlineMath math="p" /> größer als <InlineMath math="125" /> ist, liefert die lange Rolle nur noch <InlineMath math="3" /> Stücke und die kurze <InlineMath math="2" />, also weniger als <InlineMath math="6" />. Die Bedingung lautet daher **<InlineMath math="p\le125\text{ cm}" />**.
 
 # Die größte Höhe

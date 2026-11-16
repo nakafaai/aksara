@@ -10,6 +10,22 @@ A power <InlineMath math="B^E" /> equals <InlineMath math="1" /> in only three w
 | exponent zero | <InlineMath math="E=0" /> and <InlineMath math="B\ne0" /> | <InlineMath math="5^0=1" /> |
 | base minus one | <InlineMath math="B=-1" /> and <InlineMath math="E" /> even | <InlineMath math="(-1)^2=1" /> |
 
+The tree below maps the three cases down to every candidate solution. **Each branch has its own condition to check**, and only one candidate drops out.
+
+<Mermaid
+  title={<>Three cases of a power equal to one</>}
+  description={<>Three branches leave <InlineMath math="B^E=1" />. The branch <InlineMath math="B=1" /> gives <InlineMath math="x=2" /> and <InlineMath math="x=5" />, both accepted. The branch <InlineMath math="E=0" /> with <InlineMath math="B\ne0" /> gives <InlineMath math="x=1" />, accepted because <InlineMath math="B=5" />. The branch <InlineMath math="B=-1" /> with an even exponent gives <InlineMath math="x=3" />, accepted, and <InlineMath math="x=4" />, rejected because its exponent is <InlineMath math="3" />.</>}
+  chart={`flowchart TD
+  S["B^E = 1"] --> C1["B = 1"]
+  S --> C2["E = 0 and B ≠ 0"]
+  S --> C3["B = -1 and E even"]
+  C1 --> X2["x = 2: accepted"]
+  C1 --> X5["x = 5: accepted"]
+  C2 --> X1["x = 1, B = 5: accepted"]
+  C3 --> X3["x = 3, E = 2: accepted"]
+  C3 --> X4["x = 4, E = 3: rejected"]`}
+/>
+
 If <InlineMath math="B" /> is positive and not <InlineMath math="1" />, the exponent has to be <InlineMath math="0" />. If <InlineMath math="B" /> is negative, the rule in the question only allows whole-number exponents, and a whole-number power of a negative number other than <InlineMath math="-1" /> never equals <InlineMath math="1" /> unless the exponent is zero. So **the three cases in the table cover everything**.
 
 # Base one

@@ -10,6 +10,43 @@ Ein Betrag ändert seine Form dort, wo sein Inhalt null ist, also bei <InlineMat
 
 Der Graph ist **links waagerecht, fällt in der Mitte und ist rechts wieder waagerecht**. In der Mitte fällt er von <InlineMath math="6" /> auf <InlineMath math="-6" />.
 
+Zeichne den Graphen, denn jede Aussage liest du an seiner Form ab. **Die waagerechten Teile liefern unendlich viele Lösungen, der schräge Teil genau eine für jeden Wert zwischen <InlineMath math="-6" /> und <InlineMath math="6" />**. Den Streifen zwischen <InlineMath math="y=-4" /> und <InlineMath math="y=4" /> berührt nur der schräge Teil, für <InlineMath math="-1\le x\le3" />.
+
+<MathVisual
+  title={<>Graph von <InlineMath math="f(x)=|x-4|-|x+2|" /></>}
+  description={<>Der Graph ist für <InlineMath math="x\le-2" /> waagerecht bei <InlineMath math="y=6" />, fällt entlang <InlineMath math="y=2-2x" /> von <InlineMath math="(-2,\ 6)" /> bis <InlineMath math="(4,\ -6)" /> und ist für <InlineMath math="x\ge4" /> waagerecht bei <InlineMath math="y=-6" />. Die Hilfslinien <InlineMath math="y=4" /> und <InlineMath math="y=-4" /> treffen den schrägen Teil bei <InlineMath math="x=-1" /> und <InlineMath math="x=3" />. Der Punkt <InlineMath math="\left(-\tfrac12,\ 3\right)" /> ist der einzige Punkt mit <InlineMath math="f(x)=3" />.</>}
+  labels={{
+    high: <InlineMath math="y=6" />,
+    low: <InlineMath math="y=-6" />,
+    three: <InlineMath math="\left(-\tfrac12,\ 3\right)" />,
+    band: <InlineMath math="-1\le x\le3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 8.5 },
+      y: { min: -7.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "high", kind: "function", appearance: "primary", formula: "6", domain: { min: -6, max: -2 } },
+      { id: "slope", kind: "function", appearance: "primary", formula: "2 - 2x", domain: { min: -2, max: 4 } },
+      { id: "low", kind: "function", appearance: "primary", formula: "-6", domain: { min: 4, max: 8 } },
+      { id: "top", kind: "segment", appearance: "construction", from: { x: -6, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "bottom", kind: "segment", appearance: "construction", from: { x: -6, y: -4 }, to: { x: 8, y: -4 } },
+      { id: "band", kind: "segment", appearance: "answer", from: { x: -1, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: -0.5, y: 3 } },
+    ],
+    labels: [
+      { key: "high", objectId: "high", at: { x: -4, y: 6 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 6, y: -6 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: -0.5, y: 3 }, placement: "left" },
+      { key: "band", objectId: "band", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Jede Aussage prüfen
 
 1. **Falsch**. Das Maximum ist zwar <InlineMath math="6" />, aber jedes <InlineMath math="x\le-2" /> erreicht es, also unendlich viele Werte von <InlineMath math="x" />.

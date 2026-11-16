@@ -26,6 +26,44 @@ L&=\tfrac12\cdot3\cdot8\cdot\sin60^\circ=6\sqrt3 \\
 t&=\frac{2L}{8}=\frac{12\sqrt3}{8}=\tfrac32\sqrt3
 \end{aligned}" />
 
+Gambar segitiganya dengan sisi <InlineMath math="8" /> mendatar. **Sudut <InlineMath math="60^\circ" /> diapit sisi <InlineMath math="3" /> dan <InlineMath math="8" />**, dan tinggi ke sisi <InlineMath math="8" /> turun dari puncak yang berhadapan dengan sisi itu.
+
+<MathVisual
+  title={<>Segitiga bersisi <InlineMath math="3" />, <InlineMath math="7" />, dan <InlineMath math="8" /></>}
+  description={<>Sisi <InlineMath math="8" /> terletak mendatar. Sisi <InlineMath math="3" /> naik dari ujung kiri dengan sudut <InlineMath math="60^\circ" />, dan sisi <InlineMath math="7" /> menghubungkan ujung atasnya ke ujung kanan sisi <InlineMath math="8" />. Sudut di puncak, yang berhadapan dengan sisi <InlineMath math="8" />, adalah sudut tumpul. Ruas tegak dari puncak ke sisi <InlineMath math="8" /> adalah tinggi <InlineMath math="t=\tfrac32\sqrt3" />.</>}
+  labels={{
+    short: <InlineMath math="3" />,
+    mid: <InlineMath math="7" />,
+    long: <InlineMath math="8" />,
+    angle: <InlineMath math="60^\circ" />,
+    height: <InlineMath math="t=\tfrac32\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 1.5, y: 1.5 * Math.sqrt(3) }] },
+      { id: "short", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1.5, y: 1.5 * Math.sqrt(3) } },
+      { id: "mid", kind: "segment", appearance: "primary", from: { x: 8, y: 0 }, to: { x: 1.5, y: 1.5 * Math.sqrt(3) } },
+      { id: "long", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 1.5, y: 1.5 * Math.sqrt(3) }, to: { x: 1.5, y: 0 } },
+      { id: "angle", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 0.8, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "short", objectId: "short", at: { x: 0.75, y: 0.75 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "mid", objectId: "mid", at: { x: 4.75, y: 0.75 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "long", objectId: "long", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "angle", objectId: "angle", at: { x: 0.8 * Math.cos(Math.PI / 6), y: 0.8 * Math.sin(Math.PI / 6) }, placement: "right" },
+      { key: "height", objectId: "height", at: { x: 1.5, y: 0.75 * Math.sqrt(3) }, placement: "right" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 Pernyataan pertama **Salah**, karena sudut di depan sisi <InlineMath math="8" /> tumpul. Pernyataan kedua **Benar**, karena sudut di depan sisi <InlineMath math="7" /> besarnya <InlineMath math="60^\circ" />. Pernyataan ketiga **Benar**, karena tingginya <InlineMath math="\tfrac32\sqrt3" /> cm.

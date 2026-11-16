@@ -10,6 +10,43 @@ An absolute value changes form where its inside is zero, at <InlineMath math="x=
 
 The graph is **flat on the left, falls in the middle, then is flat again on the right**. In the middle it drops from <InlineMath math="6" /> to <InlineMath math="-6" />.
 
+Draw the graph, because every statement reads off its shape. **The flat parts give infinitely many solutions, while the sloping part gives exactly one for each value between <InlineMath math="-6" /> and <InlineMath math="6" />**. The band between <InlineMath math="y=-4" /> and <InlineMath math="y=4" /> is touched only by the sloping part, for <InlineMath math="-1\le x\le3" />.
+
+<MathVisual
+  title={<>Graph of <InlineMath math="f(x)=|x-4|-|x+2|" /></>}
+  description={<>The graph is flat at <InlineMath math="y=6" /> for <InlineMath math="x\le-2" />, falls along <InlineMath math="y=2-2x" /> from <InlineMath math="(-2,\ 6)" /> to <InlineMath math="(4,\ -6)" />, then stays flat at <InlineMath math="y=-6" /> for <InlineMath math="x\ge4" />. The helper lines <InlineMath math="y=4" /> and <InlineMath math="y=-4" /> meet the sloping part at <InlineMath math="x=-1" /> and <InlineMath math="x=3" />. The point <InlineMath math="\left(-\tfrac12,\ 3\right)" /> is the only point with <InlineMath math="f(x)=3" />.</>}
+  labels={{
+    high: <InlineMath math="y=6" />,
+    low: <InlineMath math="y=-6" />,
+    three: <InlineMath math="\left(-\tfrac12,\ 3\right)" />,
+    band: <InlineMath math="-1\le x\le3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 8.5 },
+      y: { min: -7.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "high", kind: "function", appearance: "primary", formula: "6", domain: { min: -6, max: -2 } },
+      { id: "slope", kind: "function", appearance: "primary", formula: "2 - 2x", domain: { min: -2, max: 4 } },
+      { id: "low", kind: "function", appearance: "primary", formula: "-6", domain: { min: 4, max: 8 } },
+      { id: "top", kind: "segment", appearance: "construction", from: { x: -6, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "bottom", kind: "segment", appearance: "construction", from: { x: -6, y: -4 }, to: { x: 8, y: -4 } },
+      { id: "band", kind: "segment", appearance: "answer", from: { x: -1, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: -0.5, y: 3 } },
+    ],
+    labels: [
+      { key: "high", objectId: "high", at: { x: -4, y: 6 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 6, y: -6 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: -0.5, y: 3 }, placement: "left" },
+      { key: "band", objectId: "band", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Judging each statement
 
 1. **False**. The maximum is indeed <InlineMath math="6" />, but every <InlineMath math="x\le-2" /> reaches it, so infinitely many values of <InlineMath math="x" /> do.

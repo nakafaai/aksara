@@ -25,6 +25,51 @@ A point on the major arc sees <InlineMath math="AB" /> under <InlineMath math="4
 &=6\sqrt{2}\,\pi\text{ cm}
 \end{aligned}" />
 
+Draw the circle with one point <InlineMath math="C" /> used for the check. **The major arc on the same side as the centre <InlineMath math="O" /> holds every point that sees <InlineMath math="AB" /> at an angle of <InlineMath math="45^\circ" />**. The minor arc across line <InlineMath math="AB" /> sees it at <InlineMath math="135^\circ" />.
+
+<MathVisual
+  title={<>Arc of points that see <InlineMath math="AB" /> at <InlineMath math="45^\circ" /></>}
+  description={<>Segment <InlineMath math="AB" /> of length <InlineMath math="8" /> is horizontal. The centre <InlineMath math="O" /> lies <InlineMath math="4" /> units above the midpoint of <InlineMath math="AB" />, so <InlineMath math="\angle AOB=90^\circ" /> and the radius is <InlineMath math="R=4\sqrt2" />. The major arc of <InlineMath math="270^\circ" /> above <InlineMath math="AB" /> is the required path, while the minor arc of <InlineMath math="90^\circ" /> below <InlineMath math="AB" /> is not used. Point <InlineMath math="C" />, at the other end of the diameter from <InlineMath math="A" />, sits directly above <InlineMath math="B" /> with <InlineMath math="BC=8" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    o: <InlineMath math="O" />,
+    major: <InlineMath math="270^\circ" />,
+    radius: <InlineMath math="R=4\sqrt2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -3, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "major", kind: "arc", appearance: "answer", center: { x: 0, y: 4 }, radius: 4 * Math.sqrt(2), startDegrees: 315, sweepDegrees: 270 },
+      { id: "minor", kind: "arc", appearance: "warning", center: { x: 0, y: 4 }, radius: 4 * Math.sqrt(2), startDegrees: 225, sweepDegrees: 90 },
+      { id: "chord", kind: "segment", appearance: "primary", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: -4, y: 0 } },
+      { id: "other-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 4, y: 0 } },
+      { id: "diameter", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 4, y: 8 } },
+      { id: "side", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 8 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: -4, y: 0 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "c", kind: "point", appearance: "secondary", at: { x: 4, y: 8 } },
+      { id: "o", kind: "point", appearance: "construction", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "c", at: { x: 4, y: 8 }, placement: "above-right" },
+      { key: "o", objectId: "o", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "major", objectId: "major", at: { x: -4 * Math.sqrt(2), y: 4 }, placement: "left" },
+      { key: "radius", objectId: "radius", at: { x: -2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Check it with one special point. Take <InlineMath math="C" /> so that <InlineMath math="AC" /> is a diameter. The angle <InlineMath math="ABC" /> stands on a diameter, so it's <InlineMath math="90^\circ" />. With <InlineMath math="\angle ACB=45^\circ" />, triangle <InlineMath math="ABC" /> is a right isosceles triangle, so <InlineMath math="BC=AB=8" /> and <InlineMath math="AC=8\sqrt{2}=2R" />. That matches <InlineMath math="R=4\sqrt{2}" />.
 
 # Why the other options are wrong

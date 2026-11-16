@@ -17,6 +17,47 @@ Pada segitiga itu, sisi <InlineMath math="6" /> setengah dari sisi miring <Inlin
 \text{roda kecil}&:\ 180^\circ-2\cdot30^\circ=120^\circ
 \end{aligned}" />
 
+Gambar kedua roda dan sabuknya, lalu geser ruas lurus atas ke arah pusat roda kecil. **Segitiga yang terbentuk punya sisi miring <InlineMath math="12" /> dan sisi <InlineMath math="6" />**, sehingga sudut di pusat roda besar <InlineMath math="60^\circ" /> dari garis pusat. Sudut itu menentukan seberapa jauh sabuk melilit setiap roda.
+
+<MathVisual
+  title={<>Sabuk yang melilit dua roda</>}
+  description={<>Roda besar berjari-jari <InlineMath math="8" /> berpusat di titik asal, roda kecil berjari-jari <InlineMath math="2" /> berpusat <InlineMath math="12" /> satuan di kanannya. Dua ruas lurus sabuk masing-masing sepanjang <InlineMath math="6\sqrt3" />. Segitiga bantu dengan sisi miring <InlineMath math="12" />, sisi <InlineMath math="6" /> pada jari-jari roda besar, dan sisi <InlineMath math="6\sqrt3" /> sejajar ruas lurus, siku-siku di ujung sisi <InlineMath math="6" />. Sabuk melilit busur <InlineMath math="240^\circ" /> di roda besar dan busur <InlineMath math="120^\circ" /> di roda kecil.</>}
+  labels={{
+    "big-arc": <InlineMath math="240^\circ" />,
+    "small-arc": <InlineMath math="120^\circ" />,
+    upper: <InlineMath math="6\sqrt3" />,
+    centers: <InlineMath math="12" />,
+    gap: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 16 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big-wheel", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 8 },
+      { id: "small-wheel", kind: "circle", appearance: "reference", center: { x: 12, y: 0 }, radius: 2 },
+      { id: "big-arc", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 8, startDegrees: 60, sweepDegrees: 240 },
+      { id: "small-arc", kind: "arc", appearance: "answer", center: { x: 12, y: 0 }, radius: 2, startDegrees: 300, sweepDegrees: 120 },
+      { id: "upper", kind: "segment", appearance: "answer", from: { x: 4, y: 4 * Math.sqrt(3) }, to: { x: 13, y: Math.sqrt(3) } },
+      { id: "lower", kind: "segment", appearance: "answer", from: { x: 4, y: -4 * Math.sqrt(3) }, to: { x: 13, y: -Math.sqrt(3) } },
+      { id: "helper", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 * Math.sqrt(3) }, { x: 12, y: 0 }] },
+      { id: "centers", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "big-arc", objectId: "big-arc", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "small-arc", objectId: "small-arc", at: { x: 14, y: 0 }, placement: "right" },
+      { key: "upper", objectId: "upper", at: { x: 8.5, y: 2.5 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "centers", objectId: "centers", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "left" },
+    ],
+  }}
+/>
+
 # Panjang sabuk
 
 Busur adalah bagian keliling sebesar sudutnya. **Jumlahkan dua ruas lurus dan dua busur**:

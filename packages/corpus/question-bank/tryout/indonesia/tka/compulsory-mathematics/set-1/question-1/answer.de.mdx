@@ -28,6 +28,36 @@ Ist der erste Teil <InlineMath math="a\le2" />, zahlt diese Bestellung trotzdem 
 
 <BlockMath math="\text{Summe}=10{.}000+\left[10{.}000+4{.}500(11{,}4-a-2)\right]=62{.}300-4{.}500a\ge62{.}300-9{.}000=53{.}300" />
 
+Zeichne den Gesamtpreis für jeden Teilungspunkt, dann siehst du das Muster. Der Graph **bleibt waagerecht bei <InlineMath math="\text{Rp}53{.}300" />**, solange beide Teile mindestens <InlineMath math="2\text{ km}" /> lang sind, und steigt an beiden Enden. Kein Teil sinkt bis auf die Linie einer einzigen Buchung.
+
+<MathVisual
+  title={<>Gesamtpreis zweier Buchungen nach Teilungspunkt</>}
+  description={<>Die waagerechte Achse ist die Länge des ersten Teils <InlineMath math="a" /> in km, von <InlineMath math="0" /> bis <InlineMath math="11{,}4" />. Die senkrechte Achse ist der Gesamtpreis in tausend Rupiah. Der Graph fällt von <InlineMath math="62{,}3" /> auf <InlineMath math="53{,}3" /> für <InlineMath math="0\le a\le2" />, bleibt bei <InlineMath math="53{,}3" /> für <InlineMath math="2\le a\le9{,}4" /> und steigt bei <InlineMath math="a=11{,}4" /> wieder auf <InlineMath math="62{,}3" />. Die Bezugslinie bei <InlineMath math="52{,}3" /> ist der Preis einer einzigen Buchung und liegt immer unter dem Graphen.</>}
+  labels={{
+    flat: <InlineMath math="\text{Rp}53{.}300" />,
+    single: <>eine Buchung <InlineMath math="\text{Rp}52{.}300" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 12 },
+      y: { min: 50, max: 64 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "short-first", kind: "function", appearance: "primary", formula: "62.3 - 4.5x", domain: { min: 0, max: 2 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "53.3", domain: { min: 2, max: 9.4 } },
+      { id: "short-second", kind: "function", appearance: "primary", formula: "11 + 4.5x", domain: { min: 9.4, max: 11.4 } },
+      { id: "single", kind: "function", appearance: "reference", formula: "52.3", domain: { min: 0, max: 11.4 } },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 5.7, y: 53.3 }, placement: "above" },
+      { key: "single", objectId: "single", at: { x: 5.7, y: 52.3 }, placement: "below" },
+    ],
+  }}
+/>
+
 **Ein zu kurzer Teil verschenkt freie Strecke**. Zum Beispiel ergibt <InlineMath math="a=1{,}4" /> den Betrag <InlineMath math="\text{Rp}56{.}000" />. Der kleinste Gesamtpreis bleibt <InlineMath math="\text{Rp}53{.}300" />.
 
 Der kleinstmögliche Gesamtpreis ist also <InlineMath math="\text{Rp}53{.}300" />.

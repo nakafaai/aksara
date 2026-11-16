@@ -14,6 +14,45 @@ L_{\text{Dreieck}}&=\tfrac12\cdot6\sqrt{3}\cdot3=9\sqrt{3} \\
 L_{\text{Abschnitt}}&=12\pi-9\sqrt{3}\text{ dm}^2
 \end{aligned}" />
 
+Zeichne den senkrechten Querschnitt des Tanks in Dezimetern. **Der Diesel füllt das Segment unter der Sehne, und der gesuchte Raum ist der Rest des Kreises darüber**. Das Dreieck vom Mittelpunkt zu beiden Sehnenenden liefert den Mittelpunktswinkel <InlineMath math="120^\circ" />.
+
+<MathVisual
+  title={<>Senkrechter Querschnitt des liegenden Tanks</>}
+  description={<>Ein Kreis mit Radius <InlineMath math="6\text{ dm}" />. Die Dieseloberfläche ist eine waagerechte Sehne <InlineMath math="3\text{ dm}" /> unter dem Mittelpunkt, von <InlineMath math="(-3\sqrt3,\ -3)" /> bis <InlineMath math="(3\sqrt3,\ -3)" />. Der Diesel füllt das Segment unter der Sehne, der leere Raum ist der Teil des Kreises darüber. Die beiden Radien zu den Sehnenenden bilden den Mittelpunktswinkel <InlineMath math="120^\circ" />, und das Lot vom Mittelpunkt auf die Sehne ist <InlineMath math="3" /> lang.</>}
+  labels={{
+    empty: <>leerer Raum</>,
+    fuel: <>Diesel</>,
+    angle: <InlineMath math="120^\circ" />,
+    radius: <InlineMath math="6" />,
+    gap: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "empty", kind: "region", appearance: "answer", inequalities: ["x^2 + y^2 <= 36", "y >= -3"] },
+      { id: "fuel", kind: "region", appearance: "secondary", inequalities: ["x^2 + y^2 <= 36", "y <= -3"] },
+      { id: "wall", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: -3 } },
+      { id: "other-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3 * Math.sqrt(3), y: -3 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -3 } },
+      { id: "angle", kind: "point", appearance: "construction", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "empty", objectId: "empty", at: { x: 0, y: 3 }, placement: "center" },
+      { key: "fuel", objectId: "fuel", at: { x: 0, y: -4.5 }, placement: "center" },
+      { key: "angle", objectId: "angle", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "radius", objectId: "radius", at: { x: 1.5 * Math.sqrt(3), y: -1.5 }, placement: "above-right" },
+      { key: "gap", objectId: "gap", at: { x: 0, y: -1.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 Das Dieselvolumen ist die Fläche des Kreisabschnitts mal die Länge des Tanks.
 
 <BlockMath math="V_{\text{Diesel}}=20\,(12\pi-9\sqrt{3})=240\pi-180\sqrt{3}\text{ Liter}" />

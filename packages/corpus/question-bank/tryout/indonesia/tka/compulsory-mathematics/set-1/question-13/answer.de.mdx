@@ -17,6 +17,47 @@ In diesem Dreieck ist die Seite <InlineMath math="6" /> halb so lang wie die Hyp
 \text{kleines Rad}&:\ 180^\circ-2\cdot30^\circ=120^\circ
 \end{aligned}" />
 
+Zeichne beide Räder und den Riemen und verschiebe dann das obere gerade Stück zum Mittelpunkt des kleinen Rads. **Das entstehende Dreieck hat die Hypotenuse <InlineMath math="12" /> und eine Seite <InlineMath math="6" />**, also liegt der Winkel am Mittelpunkt des großen Rads <InlineMath math="60^\circ" /> neben der Mittelpunktslinie. Dieser Winkel entscheidet, wie weit der Riemen jedes Rad umschlingt.
+
+<MathVisual
+  title={<>Riemen um zwei Räder</>}
+  description={<>Das große Rad mit Radius <InlineMath math="8" /> hat seinen Mittelpunkt im Ursprung, das kleine Rad mit Radius <InlineMath math="2" /> hat seinen <InlineMath math="12" /> Einheiten weiter rechts. Die beiden geraden Riemenstücke sind je <InlineMath math="6\sqrt3" /> lang. Ein Hilfsdreieck mit Hypotenuse <InlineMath math="12" />, der Seite <InlineMath math="6" /> auf einem Radius des großen Rads und der Seite <InlineMath math="6\sqrt3" /> parallel zum geraden Stück ist am Ende der Seite <InlineMath math="6" /> rechtwinklig. Der Riemen umschlingt einen Bogen von <InlineMath math="240^\circ" /> am großen Rad und einen Bogen von <InlineMath math="120^\circ" /> am kleinen Rad.</>}
+  labels={{
+    "big-arc": <InlineMath math="240^\circ" />,
+    "small-arc": <InlineMath math="120^\circ" />,
+    upper: <InlineMath math="6\sqrt3" />,
+    centers: <InlineMath math="12" />,
+    gap: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 16 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big-wheel", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 8 },
+      { id: "small-wheel", kind: "circle", appearance: "reference", center: { x: 12, y: 0 }, radius: 2 },
+      { id: "big-arc", kind: "arc", appearance: "answer", center: { x: 0, y: 0 }, radius: 8, startDegrees: 60, sweepDegrees: 240 },
+      { id: "small-arc", kind: "arc", appearance: "answer", center: { x: 12, y: 0 }, radius: 2, startDegrees: 300, sweepDegrees: 120 },
+      { id: "upper", kind: "segment", appearance: "answer", from: { x: 4, y: 4 * Math.sqrt(3) }, to: { x: 13, y: Math.sqrt(3) } },
+      { id: "lower", kind: "segment", appearance: "answer", from: { x: 4, y: -4 * Math.sqrt(3) }, to: { x: 13, y: -Math.sqrt(3) } },
+      { id: "helper", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 * Math.sqrt(3) }, { x: 12, y: 0 }] },
+      { id: "centers", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "big-arc", objectId: "big-arc", at: { x: -8, y: 0 }, placement: "left" },
+      { key: "small-arc", objectId: "small-arc", at: { x: 14, y: 0 }, placement: "right" },
+      { key: "upper", objectId: "upper", at: { x: 8.5, y: 2.5 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "centers", objectId: "centers", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "left" },
+    ],
+  }}
+/>
+
 # Die Länge des Riemens
 
 Ein Bogen ist der Anteil des Umfangs, der zu seinem Winkel passt. **Addiere die zwei geraden Stücke und die zwei Bögen**:

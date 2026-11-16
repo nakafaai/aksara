@@ -9,6 +9,20 @@ P(B)&=\frac{r(r-1)}{56}+\frac{8-r}{8}\cdot\frac{r}{7}=\frac{7r}{56}=\frac{r}{8} 
 P(B\mid A)&=\frac{r-1}{7}
 \end{aligned}" />
 
+Der Wahrscheinlichkeitsbaum unten enthält alle vier Farbfolgen. **Die Wahrscheinlichkeit, dass die zweite Kugel rot ist, ist die Summe der zwei Zweige, die auf Rot enden**, also <InlineMath math="\frac{r(r-1)+r(8-r)}{56}=\frac{7r}{56}" />.
+
+<Mermaid
+  title={<>Wahrscheinlichkeitsbaum zweier Züge ohne Zurücklegen</>}
+  description={<>Der erste Zug verzweigt nach Rot mit Wahrscheinlichkeit <InlineMath math="\frac r8" /> und nach Weiß mit Wahrscheinlichkeit <InlineMath math="\frac{8-r}{8}" />. Nach Rot ist die zweite Kugel mit Wahrscheinlichkeit <InlineMath math="\frac{r-1}{7}" /> rot. Nach Weiß ist sie mit Wahrscheinlichkeit <InlineMath math="\frac r7" /> rot. Die vier Enden des Baums sind rot-rot, rot-weiß, weiß-rot und weiß-weiß, jedes mit dem Produkt seiner Zweige als Wahrscheinlichkeit.</>}
+  chart={`flowchart LR
+  S["Start"] -->|"r/8"| M1["Erste rot"]
+  S -->|"(8 − r)/8"| W1["Erste weiß"]
+  M1 -->|"(r − 1)/7"| MM["rot, rot: r(r − 1)/56"]
+  M1 -->|"(8 − r)/7"| MW["rot, weiß: r(8 − r)/56"]
+  W1 -->|"r/7"| WM["weiß, rot: r(8 − r)/56"]
+  W1 -->|"(7 − r)/7"| WW["weiß, weiß: (8 − r)(7 − r)/56"]`}
+/>
+
 Also ist **<InlineMath math="P(B)" /> gleich <InlineMath math="P(A)" />**. Das passt: Bevor du etwas siehst, ist die zweite Kugel genauso zufällig wie die erste.
 
 # Jede Aussage prüfen

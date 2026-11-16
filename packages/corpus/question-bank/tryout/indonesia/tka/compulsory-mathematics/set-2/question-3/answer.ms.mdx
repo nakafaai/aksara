@@ -19,6 +19,37 @@ mn&=m^n \\
 n&=m^{n-1}
 \end{aligned}" />
 
+Lukis kedua-dua belah syarat <InlineMath math="n=m^{n-1}" /> bagi <InlineMath math="m=2" />, nilai <InlineMath math="m" /> yang menjadikan belah kanan paling kecil. **Kedua-dua graf hanya bertemu pada <InlineMath math="n=2" />**, kemudian <InlineMath math="2^{n-1}" /> melonjak menjauh. Bagi <InlineMath math="m\ge3" /> belah kanan lebih besar lagi, jadi tiada pertemuan baharu.
+
+<MathVisual
+  title={<>Belah kiri <InlineMath math="n" /> dan belah kanan <InlineMath math="2^{n-1}" /></>}
+  description={<>Bagi <InlineMath math="2\le n\le5" />, garis <InlineMath math="n" /> naik satu pada setiap langkah, manakala lengkung <InlineMath math="2^{n-1}" /> berganda dua pada setiap langkah. Kedua-duanya bertemu tepat pada <InlineMath math="(2,\ 2)" />. Pada <InlineMath math="n=3" /> lengkung sudah pada <InlineMath math="4" /> manakala garis pada <InlineMath math="3" />, dan pada <InlineMath math="n=5" /> lengkung pada <InlineMath math="16" /> manakala garis pada <InlineMath math="5" />.</>}
+  labels={{
+    line: <InlineMath math="n" />,
+    power: <InlineMath math="2^{n-1}" />,
+    meet: <InlineMath math="(2,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 1.5, max: 5.5 },
+      y: { min: 0, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "x", domain: { min: 2, max: 5 } },
+      { id: "power", kind: "function", appearance: "secondary", formula: "2^(x - 1)", domain: { min: 2, max: 5 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "power", objectId: "power", at: { x: 5, y: 16 }, placement: "right" },
+      { key: "meet", objectId: "meet", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Sekarang semak setiap nilai <InlineMath math="n" />. Bagi <InlineMath math="n=2" />, syaratnya menjadi <InlineMath math="2=m" />, jadi pasangan <InlineMath math="(2,2)" /> memenuhi. Semak: <InlineMath math="\left(2^2\right)^2=16" /> dan <InlineMath math="2^{\left(2^2\right)}=2^4=16" />.
 
 Bagi <InlineMath math="n\ge3" />, sebelah kanan paling kecil apabila <InlineMath math="m=2" />, iaitu <InlineMath math="2^{n-1}" />. Tetapi <InlineMath math="2^{n-1}" /> sudah lebih besar daripada <InlineMath math="n" />: <InlineMath math="2^2=4>3" />, <InlineMath math="2^3=8>4" />, dan setiap kali <InlineMath math="n" /> bertambah satu, sebelah kiri hanya bertambah <InlineMath math="1" /> manakala <InlineMath math="2^{n-1}" /> menjadi dua kali ganda. Jadi bagi <InlineMath math="n\ge3" /> **tiada pasangan lain**.

@@ -15,6 +15,42 @@ d_1&=22-6=16,\qquad d_2=22-14=8 \\
 Mo&=5+\frac{16}{16+8}\cdot5=5+\frac{10}{3}=8\tfrac13\text{ Minuten}
 \end{aligned}" />
 
+Trage beide Schätzwerte ins Histogramm ein. **Der Modus liegt in der höchsten Klasse und neigt sich zur höheren Nachbarklasse**, während lange Anrufe den Mittelwert nach rechts ziehen. Beide liegen etwas mehr als <InlineMath math="6" /> Minuten auseinander.
+
+<MathVisual
+  title={<>Modus und Mittelwert im Histogramm der Anrufdauer</>}
+  description={<>Ein Histogramm aus sechs Klassen mit den Häufigkeiten <InlineMath math="6" />, <InlineMath math="22" />, <InlineMath math="14" />, <InlineMath math="18" />, <InlineMath math="12" /> und <InlineMath math="8" />. Zwei Hilfslinien verbinden Ecken der Modalklasse mit ihren Nachbarn und schneiden sich genau über <InlineMath math="Mo=8\tfrac13" /> Minuten. Eine zweite senkrechte Linie markiert den Mittelwert von <InlineMath math="14{,}5" /> Minuten.</>}
+  labels={{
+    mean: <InlineMath math="\bar x=14{,}5" />,
+    mode: <InlineMath math="Mo=8\tfrac13" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar-1", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 6 }, { x: 0, y: 6 }] },
+      { id: "bar-2", kind: "polygon", appearance: "reference", vertices: [{ x: 5, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 22 }, { x: 5, y: 22 }] },
+      { id: "bar-3", kind: "polygon", appearance: "reference", vertices: [{ x: 10, y: 0 }, { x: 15, y: 0 }, { x: 15, y: 14 }, { x: 10, y: 14 }] },
+      { id: "bar-4", kind: "polygon", appearance: "reference", vertices: [{ x: 15, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 18 }, { x: 15, y: 18 }] },
+      { id: "bar-5", kind: "polygon", appearance: "reference", vertices: [{ x: 20, y: 0 }, { x: 25, y: 0 }, { x: 25, y: 12 }, { x: 20, y: 12 }] },
+      { id: "bar-6", kind: "polygon", appearance: "reference", vertices: [{ x: 25, y: 0 }, { x: 30, y: 0 }, { x: 30, y: 8 }, { x: 25, y: 8 }] },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 5, y: 6 }, to: { x: 10, y: 22 } },
+      { id: "fall", kind: "segment", appearance: "construction", from: { x: 5, y: 22 }, to: { x: 10, y: 14 } },
+      { id: "mode", kind: "segment", appearance: "answer", from: { x: 25 / 3, y: 0 }, to: { x: 25 / 3, y: 50 / 3 } },
+      { id: "mean", kind: "segment", appearance: "secondary", from: { x: 14.5, y: 0 }, to: { x: 14.5, y: 24 } },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 14.5, y: 24 }, placement: "above" },
+      { key: "mode", objectId: "mode", at: { x: 25 / 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Jede Aussage prüfen
 
 **Erste Aussage.** Es gibt <InlineMath math="12+8=20" /> Anrufe von mindestens <InlineMath math="20" /> Minuten, genau ein Viertel von <InlineMath math="80" />. Ihre geschätzte Gesamtdauer ist <InlineMath math="270+220=490" /> Minuten. Die <InlineMath math="40\%" />-Marke liegt bei <InlineMath math="0{,}4\cdot1{.}160=464" /> Minuten, und <InlineMath math="490>464" />. Ihr Anteil an der Zeit beträgt etwa <InlineMath math="42\%" />, deutlich mehr als ihr Anteil an den Anrufen. Lange Anrufe sind selten, aber jeder dauert lange. Die Aussage ist **Richtig**.

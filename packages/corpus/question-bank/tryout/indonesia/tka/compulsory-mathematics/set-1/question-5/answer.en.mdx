@@ -8,6 +8,42 @@ The slopes are <InlineMath math="-3" />, then <InlineMath math="1" />, then <Inl
 
 Every statement is solved part by part, and **each part's result has to be intersected with that part's own condition**.
 
+Draw <InlineMath math="g" /> once, and every statement reads off the graph. **The solution of <InlineMath math="g(x)\le k" /> is the part of the <InlineMath math="x" />-axis where the graph lies below the line at height <InlineMath math="k" />**. The lowest point <InlineMath math="(-1,\ 4)" /> gives the condition <InlineMath math="k\ge4" />, and the unequal slopes on the left and right make the solution set lopsided.
+
+<MathVisual
+  title={<>Graph of the left side and two bounds <InlineMath math="k" /></>}
+  description={<>The graph of <InlineMath math="g(x)=|x-3|+2\,|x+1|" /> has three straight pieces: slope <InlineMath math="-3" /> for <InlineMath math="x\le-1" />, slope <InlineMath math="1" /> for <InlineMath math="-1\le x\le3" />, and slope <InlineMath math="3" /> for <InlineMath math="x\ge3" />. Its lowest point is <InlineMath math="(-1,\ 4)" />. The horizontal segment at <InlineMath math="k=10" /> meets the graph at <InlineMath math="x=-3" /> and <InlineMath math="x=\frac{11}{3}" />, and the segment at <InlineMath math="k=6" /> meets it at <InlineMath math="x=-\frac{5}{3}" /> and <InlineMath math="x=1" />.</>}
+  labels={{
+    g: <InlineMath math="g(x)" />,
+    ten: <InlineMath math="k=10" />,
+    six: <InlineMath math="k=6" />,
+    low: <InlineMath math="(-1,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 5 },
+      y: { min: -1, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "1 - 3x", domain: { min: -4, max: -1 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "x + 5", domain: { min: -1, max: 3 } },
+      { id: "g", kind: "function", appearance: "primary", formula: "3x - 1", domain: { min: 3, max: 4.5 } },
+      { id: "ten", kind: "segment", appearance: "answer", from: { x: -3, y: 10 }, to: { x: 11 / 3, y: 10 } },
+      { id: "six", kind: "segment", appearance: "secondary", from: { x: -5 / 3, y: 6 }, to: { x: 1, y: 6 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: -1, y: 4 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 4, y: 11 }, placement: "right" },
+      { key: "ten", objectId: "ten", at: { x: 1 / 3, y: 10 }, placement: "above" },
+      { key: "six", objectId: "six", at: { x: -1 / 3, y: 6 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: -1, y: 4 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Statement one
 
 For <InlineMath math="k=10" />:

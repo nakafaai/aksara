@@ -29,6 +29,37 @@ f(t)&=\frac{5\cdot\frac{t+1}{2}}{2\cdot\frac{t+1}{2}+2}=\frac{\frac{5(t+1)}{2}}{
 f(7)&=\frac{35+5}{14+6}=\frac{40}{20}=2
 \end{aligned}" />
 
+Zeichne <InlineMath math="f" /> und die Gerade <InlineMath math="y=2" />. **Der Wert <InlineMath math="f^{-1}(2)" /> ist die waagerechte Koordinate ihres Schnittpunkts**, also die Eingabe, die <InlineMath math="f" /> auf die Ausgabe <InlineMath math="2" /> schickt.
+
+<MathVisual
+  title={<>Die Eingabe mit Ausgabe <InlineMath math="2" /> finden</>}
+  description={<>Die Kurve <InlineMath math="f(t)=\frac{5t+5}{2t+6}" /> steigt für <InlineMath math="-2\le t\le10" /> und nähert sich <InlineMath math="\frac52" />. Die waagerechte Gerade <InlineMath math="y=2" /> schneidet die Kurve genau einmal, im Punkt <InlineMath math="(7,\ 2)" />.</>}
+  labels={{
+    curve: <InlineMath math="f(t)=\frac{5t+5}{2t+6}" />,
+    level: <InlineMath math="y=2" />,
+    hit: <InlineMath math="(7,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 11 },
+      y: { min: -3, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(5x + 5)/(2x + 6)", domain: { min: -2, max: 10 } },
+      { id: "level", kind: "function", appearance: "reference", formula: "2", domain: { min: -2, max: 10 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 7, y: 2 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: 1.25 }, placement: "above-left" },
+      { key: "level", objectId: "level", at: { x: -1, y: 2 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 7, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 **Das Ergebnis passt zur gesuchten Ausgabe**. Der Wert von <InlineMath math="f^{-1}(2)" /> ist also <InlineMath math="7" />.
 
 # Warum die anderen Antworten falsch sind

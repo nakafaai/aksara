@@ -19,6 +19,37 @@ mn&=m^n \\
 n&=m^{n-1}
 \end{aligned}" />
 
+Zeichne beide Seiten der Bedingung <InlineMath math="n=m^{n-1}" /> für <InlineMath math="m=2" />, den Wert von <InlineMath math="m" />, der die rechte Seite am kleinsten macht. **Die beiden Graphen treffen sich nur bei <InlineMath math="n=2" />**, danach enteilt <InlineMath math="2^{n-1}" />. Für <InlineMath math="m\ge3" /> ist die rechte Seite noch größer, also entsteht kein neuer Treffpunkt.
+
+<MathVisual
+  title={<>Linke Seite <InlineMath math="n" /> und rechte Seite <InlineMath math="2^{n-1}" /></>}
+  description={<>Für <InlineMath math="2\le n\le5" /> steigt die Gerade <InlineMath math="n" /> bei jedem Schritt um eins, die Kurve <InlineMath math="2^{n-1}" /> verdoppelt sich bei jedem Schritt. Sie treffen sich genau in <InlineMath math="(2,\ 2)" />. Bei <InlineMath math="n=3" /> ist die Kurve schon bei <InlineMath math="4" />, die Gerade bei <InlineMath math="3" />, und bei <InlineMath math="n=5" /> ist die Kurve bei <InlineMath math="16" />, die Gerade bei <InlineMath math="5" />.</>}
+  labels={{
+    line: <InlineMath math="n" />,
+    power: <InlineMath math="2^{n-1}" />,
+    meet: <InlineMath math="(2,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 1.5, max: 5.5 },
+      y: { min: 0, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "x", domain: { min: 2, max: 5 } },
+      { id: "power", kind: "function", appearance: "secondary", formula: "2^(x - 1)", domain: { min: 2, max: 5 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "power", objectId: "power", at: { x: 5, y: 16 }, placement: "right" },
+      { key: "meet", objectId: "meet", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Prüfe jetzt jeden Wert von <InlineMath math="n" />. Für <InlineMath math="n=2" /> heißt die Bedingung <InlineMath math="2=m" />, also passt das Paar <InlineMath math="(2,2)" />. Probe: <InlineMath math="\left(2^2\right)^2=16" /> und <InlineMath math="2^{\left(2^2\right)}=2^4=16" />.
 
 Für <InlineMath math="n\ge3" /> ist die rechte Seite bei <InlineMath math="m=2" /> am kleinsten, nämlich <InlineMath math="2^{n-1}" />. Aber <InlineMath math="2^{n-1}" /> ist schon größer als <InlineMath math="n" />: <InlineMath math="2^2=4>3" />, <InlineMath math="2^3=8>4" />, und jedes Mal, wenn <InlineMath math="n" /> um eins wächst, wächst die linke Seite nur um <InlineMath math="1" />, während sich <InlineMath math="2^{n-1}" /> verdoppelt. Für <InlineMath math="n\ge3" /> gibt es also **kein weiteres Paar**.

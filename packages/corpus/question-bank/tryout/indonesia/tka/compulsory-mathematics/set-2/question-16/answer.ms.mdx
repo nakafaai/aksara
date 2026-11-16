@@ -10,6 +10,37 @@ V_{\text{bumbung}}&=\tfrac12\cdot\pi r^2\cdot12=\tfrac12\cdot\tfrac{22}{7}\cdot\
 V&=126+231=357\text{ m}^3
 \end{aligned}" />
 
+Keratan rentas hujung menunjukkan kedua-dua bahagian ruang udara. **Segi empat tepat di bawah menjadi kuboid, dan separuh bulatan di atas menjadi separuh silinder**, kedua-duanya sepanjang <InlineMath math="12\text{ m}" />.
+
+<MathVisual
+  title={<>Keratan rentas ruang udara rumah kaca</>}
+  description={<>Keratan rentas hujung terdiri daripada segi empat tepat <InlineMath math="7\times1.5" /> di bawah dan separuh bulatan berjejari <InlineMath math="3.5" /> di atasnya. Sepanjang <InlineMath math="12\text{ m}" />, segi empat tepat menjadi kuboid berisi padu <InlineMath math="126\text{ m}^3" /> dan separuh bulatan menjadi separuh silinder berisi padu <InlineMath math="231\text{ m}^3" />.</>}
+  labels={{
+    box: <InlineMath math="126\text{ m}^3" />,
+    roof: <InlineMath math="231\text{ m}^3" />,
+    radius: <InlineMath math="r=3{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "box", kind: "polygon", appearance: "secondary", vertices: [{ x: -3.5, y: 0 }, { x: 3.5, y: 0 }, { x: 3.5, y: 1.5 }, { x: -3.5, y: 1.5 }] },
+      { id: "roof", kind: "region", appearance: "primary", inequalities: ["x^2 + (y - 1.5)^2 <= 12.25", "y >= 1.5"] },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 1.5 }, to: { x: 3.5, y: 1.5 } },
+    ],
+    labels: [
+      { key: "box", objectId: "box", at: { x: -1.75, y: 0.75 }, placement: "center" },
+      { key: "roof", objectId: "roof", at: { x: 0, y: 3.2 }, placement: "center" },
+      { key: "radius", objectId: "radius", at: { x: 1.75, y: 1.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Udara yang digerakkan sebuah kipas
 
 Aliran udara kipas diberi bagi setiap jam, sedangkan syaratnya bagi setiap <InlineMath math="2" /> minit. Samakan unitnya dahulu. Satu jam ialah <InlineMath math="60" /> minit, jadi **<InlineMath math="2" /> minit ialah <InlineMath math="\frac{1}{30}" /> jam**.

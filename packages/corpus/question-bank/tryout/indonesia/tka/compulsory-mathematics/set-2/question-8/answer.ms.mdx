@@ -18,6 +18,43 @@ Gandaan <InlineMath math="12" /> turut dikira dalam hasil tambah gandaan <Inline
 
 <BlockMath math="1{,}300+816-2\cdot432=1{,}252" />
 
+Gambar rajah Venn menunjukkan sebab penolakan dibuat dua kali. **Yang dipilih hanyalah dua bulan sabit di luar persilangan**. Hasil tambah gandaan <InlineMath math="4" /> memuatkan bulan sabit kiri dan persilangan, hasil tambah gandaan <InlineMath math="6" /> memuatkan bulan sabit kanan dan persilangan, jadi persilangan terkira dua kali.
+
+<MathVisual
+  title={<>Hasil tambah nombor pada setiap bahagian rajah Venn</>}
+  description={<>Bulatan kiri memuatkan gandaan <InlineMath math="4" /> dan bulatan kanan memuatkan gandaan <InlineMath math="6" /> dari <InlineMath math="1" /> hingga <InlineMath math="100" />. Persilangannya memuatkan gandaan <InlineMath math="12" /> dengan hasil tambah <InlineMath math="432" /> dan tidak dipilih. Bahagian gandaan <InlineMath math="4" /> sahaja berjumlah <InlineMath math="1{,}300-432=868" />, dan bahagian gandaan <InlineMath math="6" /> sahaja berjumlah <InlineMath math="816-432=384" />.</>}
+  labels={{
+    four: <>gandaan <InlineMath math="4" /></>,
+    six: <>gandaan <InlineMath math="6" /></>,
+    "only-four": <InlineMath math="868" />,
+    "only-six": <InlineMath math="384" />,
+    both: <InlineMath math="432" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 4.5 },
+      y: { min: -3, max: 3.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "only-four", kind: "region", appearance: "answer", inequalities: ["(x + 1.5)^2 + y^2 <= 6.25", "(x - 1.5)^2 + y^2 >= 6.25"] },
+      { id: "only-six", kind: "region", appearance: "answer", inequalities: ["(x - 1.5)^2 + y^2 <= 6.25", "(x + 1.5)^2 + y^2 >= 6.25"] },
+      { id: "both", kind: "region", appearance: "warning", inequalities: ["(x + 1.5)^2 + y^2 <= 6.25", "(x - 1.5)^2 + y^2 <= 6.25"] },
+      { id: "four", kind: "circle", appearance: "primary", center: { x: -1.5, y: 0 }, radius: 2.5 },
+      { id: "six", kind: "circle", appearance: "secondary", center: { x: 1.5, y: 0 }, radius: 2.5 },
+    ],
+    labels: [
+      { key: "four", objectId: "four", at: { x: -1.5, y: 2.5 }, placement: "above-left" },
+      { key: "six", objectId: "six", at: { x: 1.5, y: 2.5 }, placement: "above-right" },
+      { key: "only-four", objectId: "only-four", at: { x: -2.6, y: 0 }, placement: "center" },
+      { key: "only-six", objectId: "only-six", at: { x: 2.6, y: 0 }, placement: "center" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 Jadi, hasil tambah semua nombor yang dipilih ialah <InlineMath math="1{,}252" />.
 
 # Mengapa pilihan lain salah

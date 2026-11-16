@@ -25,6 +25,47 @@ The step from <InlineMath math="P" /> to <InlineMath math="C" /> is <InlineMath 
 C'&=(2,1)+(-6,0)=(-4,1)
 \end{aligned}" />
 
+Draw the direction from <InlineMath math="P" /> to each point. **Each image arrow is twice as long and points the opposite way**, so <InlineMath math="C'" /> lies across <InlineMath math="P" />, six units to its left.
+
+<MathVisual
+  title={<>Dilation with centre <InlineMath math="P(2,1)" /> and factor <InlineMath math="-2" /></>}
+  description={<>From <InlineMath math="P(2,1)" /> an arrow goes to <InlineMath math="A(4,2)" />, and an arrow twice as long goes the opposite way to <InlineMath math="A'(-2,-1)" />. In the same way, the arrow to <InlineMath math="C(5,1)" />, <InlineMath math="3" /> units to the right, pairs with an arrow <InlineMath math="6" /> units to the left that ends at <InlineMath math="C'(-4,1)" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    a: <InlineMath math="A" />,
+    "a-image": <InlineMath math="A'" />,
+    c: <InlineMath math="C" />,
+    "c-image": <InlineMath math="C'(-4,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 6 },
+      y: { min: -2, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-a", kind: "vector", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: 4, y: 2 } },
+      { id: "to-a-image", kind: "vector", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: -2, y: -1 } },
+      { id: "to-c", kind: "vector", appearance: "primary", from: { x: 2, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "to-c-image", kind: "vector", appearance: "answer", from: { x: 2, y: 1 }, to: { x: -4, y: 1 } },
+      { id: "p", kind: "point", appearance: "construction", at: { x: 2, y: 1 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "a-image", kind: "point", appearance: "secondary", at: { x: -2, y: -1 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 5, y: 1 } },
+      { id: "c-image", kind: "point", appearance: "answer", at: { x: -4, y: 1 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 4, y: 2 }, placement: "above" },
+      { key: "a-image", objectId: "a-image", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "c-image", objectId: "c-image", at: { x: -4, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 So the image of <InlineMath math="C" /> is <InlineMath math="(-4,1)" />.
 
 # Why the other options are wrong

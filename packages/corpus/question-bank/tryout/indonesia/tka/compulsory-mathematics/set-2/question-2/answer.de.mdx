@@ -21,6 +21,38 @@ Bei einem Preis von <InlineMath math="\text{Rp}b" /> pro exportierter kWh beträ
 b&\ge1{.}050
 \end{aligned}" />
 
+Zeichne die Septemberrechnung als Funktion des Exportpreises <InlineMath math="b" />. **Die Rechnung sinkt um <InlineMath math="200" /> Rupiah, wenn <InlineMath math="b" /> um eine Rupiah steigt, und bleibt dann bei der Grundgebühr stehen**. Der Knick ist der gesuchte kleinste Exportpreis.
+
+<MathVisual
+  title={<>Septemberrechnung nach Exportpreis</>}
+  description={<>Die waagerechte Achse ist der Exportpreis <InlineMath math="b" /> in Rupiah pro kWh, die senkrechte Achse die Septemberrechnung in tausend Rupiah. Für <InlineMath math="b\le1{.}050" /> beträgt die Rechnung <InlineMath math="30+210-0{,}2b" /> tausend Rupiah und fällt geradlinig. Der Graph erreicht die Grundgebühr <InlineMath math="30" /> bei <InlineMath math="b=1{.}050" /> und bleibt danach waagerecht. Beim jetzigen Preis <InlineMath math="b=800" /> beträgt die Rechnung <InlineMath math="80" /> tausend Rupiah.</>}
+  labels={{
+    corner: <InlineMath math="(1{.}050,\ 30)" />,
+    now: <>jetzt: <InlineMath math="b=800" /></>,
+    fixed: <>Grundgebühr</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -60, max: 1460 },
+      y: { min: -15, max: 265 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "falling", kind: "function", appearance: "primary", formula: "240 - 0.2x", domain: { min: 0, max: 1050 } },
+      { id: "fixed", kind: "function", appearance: "answer", formula: "30", domain: { min: 1050, max: 1400 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 1050, y: 30 } },
+      { id: "now", kind: "point", appearance: "secondary", at: { x: 800, y: 80 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 1050, y: 30 }, placement: "below" },
+      { key: "now", objectId: "now", at: { x: 800, y: 80 }, placement: "above-right" },
+      { key: "fixed", objectId: "fixed", at: { x: 1300, y: 30 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe mit <InlineMath math="b=1{.}050" />: Die Gutschrift ist <InlineMath math="200\cdot1{.}050=210{.}000" />, genau die Importkosten, also beträgt die Rechnung <InlineMath math="\text{Rp}30{.}000" />. Beim heutigen Preis von <InlineMath math="\text{Rp}800" /> liegt sie noch bei <InlineMath math="30{.}000+210{.}000-160{.}000=80{.}000" />.
 
 Der kleinste Wert von <InlineMath math="b" /> ist also <InlineMath math="\text{Rp}1{.}050" /> pro kWh.

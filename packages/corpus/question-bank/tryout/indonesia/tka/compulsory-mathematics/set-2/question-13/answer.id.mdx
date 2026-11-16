@@ -25,6 +25,47 @@ Langkah dari <InlineMath math="P" /> ke <InlineMath math="C" /> adalah <InlineMa
 C'&=(2,1)+(-6,0)=(-4,1)
 \end{aligned}" />
 
+Gambar arah dari <InlineMath math="P" /> ke setiap titik. **Setiap panah bayangan dua kali lebih panjang dan berbalik arah**, jadi <InlineMath math="C'" /> ada di seberang <InlineMath math="P" />, enam satuan di kirinya.
+
+<MathVisual
+  title={<>Dilatasi dengan pusat <InlineMath math="P(2,1)" /> dan faktor <InlineMath math="-2" /></>}
+  description={<>Dari <InlineMath math="P(2,1)" /> keluar panah ke <InlineMath math="A(4,2)" /> dan panah dua kali lebih panjang ke arah sebaliknya ke <InlineMath math="A'(-2,-1)" />. Dengan cara yang sama, panah ke <InlineMath math="C(5,1)" /> sepanjang <InlineMath math="3" /> ke kanan berpasangan dengan panah sepanjang <InlineMath math="6" /> ke kiri yang berakhir di <InlineMath math="C'(-4,1)" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    a: <InlineMath math="A" />,
+    "a-image": <InlineMath math="A'" />,
+    c: <InlineMath math="C" />,
+    "c-image": <InlineMath math="C'(-4,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 6 },
+      y: { min: -2, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-a", kind: "vector", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: 4, y: 2 } },
+      { id: "to-a-image", kind: "vector", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: -2, y: -1 } },
+      { id: "to-c", kind: "vector", appearance: "primary", from: { x: 2, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "to-c-image", kind: "vector", appearance: "answer", from: { x: 2, y: 1 }, to: { x: -4, y: 1 } },
+      { id: "p", kind: "point", appearance: "construction", at: { x: 2, y: 1 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "a-image", kind: "point", appearance: "secondary", at: { x: -2, y: -1 } },
+      { id: "c", kind: "point", appearance: "primary", at: { x: 5, y: 1 } },
+      { id: "c-image", kind: "point", appearance: "answer", at: { x: -4, y: 1 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 4, y: 2 }, placement: "above" },
+      { key: "a-image", objectId: "a-image", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "c-image", objectId: "c-image", at: { x: -4, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jadi, bayangan titik <InlineMath math="C" /> adalah <InlineMath math="(-4,1)" />.
 
 # Kenapa pilihan lain salah

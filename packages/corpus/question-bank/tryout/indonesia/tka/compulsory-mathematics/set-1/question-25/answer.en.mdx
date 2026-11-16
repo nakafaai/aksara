@@ -9,6 +9,20 @@ P(B)&=\frac{r(r-1)}{56}+\frac{8-r}{8}\cdot\frac{r}{7}=\frac{7r}{56}=\frac{r}{8} 
 P(B\mid A)&=\frac{r-1}{7}
 \end{aligned}" />
 
+The probability tree below holds all four colour orders. **The probability that the second ball is red is the sum of the two branches that end in red**, that is <InlineMath math="\frac{r(r-1)+r(8-r)}{56}=\frac{7r}{56}" />.
+
+<Mermaid
+  title={<>Probability tree of two draws without replacement</>}
+  description={<>The first draw branches to red with probability <InlineMath math="\frac r8" /> and to white with probability <InlineMath math="\frac{8-r}{8}" />. After red, the second ball is red with probability <InlineMath math="\frac{r-1}{7}" />. After white, the second ball is red with probability <InlineMath math="\frac r7" />. The four ends of the tree are red-red, red-white, white-red, and white-white, each with the product of its branches as probability.</>}
+  chart={`flowchart LR
+  S["Start"] -->|"r/8"| M1["First red"]
+  S -->|"(8 − r)/8"| W1["First white"]
+  M1 -->|"(r − 1)/7"| MM["red, red: r(r − 1)/56"]
+  M1 -->|"(8 − r)/7"| MW["red, white: r(8 − r)/56"]
+  W1 -->|"r/7"| WM["white, red: r(8 − r)/56"]
+  W1 -->|"(7 − r)/7"| WW["white, white: (8 − r)(7 − r)/56"]`}
+/>
+
 So **<InlineMath math="P(B)" /> equals <InlineMath math="P(A)" />**. That makes sense: before you see anything, the second ball is just as random as the first.
 
 # Judging each statement

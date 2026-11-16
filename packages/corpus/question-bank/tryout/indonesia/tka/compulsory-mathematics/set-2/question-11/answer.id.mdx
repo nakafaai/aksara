@@ -19,6 +19,44 @@ d+3&=12 \\
 d&=9
 \end{aligned}" />
 
+Gambar kedua posisi Dinda dengan sinar lampu yang melewati kepalanya. **Setiap posisi memberi pasangan segitiga sebangun yang alas besarnya jarak ke tiang ditambah bayangan**. Panah di bawah tanah adalah perpindahan Dinda.
+
+<MathVisual
+  title={<>Bayangan Dinda di dua posisi</>}
+  description={<>Tiang setinggi <InlineMath math="6\text{ m}" /> berdiri di titik asal dengan lampu di puncaknya. Pada posisi pertama Dinda setinggi <InlineMath math="1{,}5\text{ m}" /> berdiri <InlineMath math="6\text{ m}" /> dari tiang dan bayangannya sampai <InlineMath math="8\text{ m}" />. Pada posisi kedua ia berdiri <InlineMath math="9\text{ m}" /> dari tiang dan bayangannya sampai <InlineMath math="12\text{ m}" />. Panah dari <InlineMath math="6" /> ke <InlineMath math="9" /> menunjukkan perpindahan <InlineMath math="3\text{ m}" />.</>}
+  labels={{
+    pole: <InlineMath math="6\text{ m}" />,
+    first: <InlineMath math="2" />,
+    second: <InlineMath math="3" />,
+    walk: <InlineMath math="3\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "ray-first", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 8, y: 0 } },
+      { id: "ray-second", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 12, y: 0 } },
+      { id: "dinda-first", kind: "segment", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 6, y: 1.5 } },
+      { id: "dinda-second", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: 1.5 } },
+      { id: "first", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "second", kind: "segment", appearance: "highlight", from: { x: 9, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "walk", kind: "vector", appearance: "answer", from: { x: 6, y: -0.5 }, to: { x: 9, y: -0.5 } },
+    ],
+    labels: [
+      { key: "pole", objectId: "pole", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "first", objectId: "first", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 10.5, y: 0 }, placement: "above" },
+      { key: "walk", objectId: "walk", at: { x: 7.5, y: -0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Dinda pindah dari <InlineMath math="6" /> m ke <InlineMath math="9" /> m dari tiang, jadi jarak yang ditempuhnya <InlineMath math="9-6=3" /> m.
 
 Jadi, jarak yang ditempuh Dinda adalah <InlineMath math="3" /> m.

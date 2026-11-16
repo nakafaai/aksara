@@ -2,6 +2,18 @@
 
 Lane 1 is made of **two rectangles on the straights and two half rings on the bends**. The lane is <InlineMath math="1.25\text{ m}" /> wide. On the bends, its inner edge has radius <InlineMath math="36\text{ m}" /> and its outer edge, the inner edge of lane 2, has radius <InlineMath math="37.25\text{ m}" />.
 
+Split lane 1 into parts whose areas are easy to find. **The two half-rings at the bends join into one full ring**, so all that is left is two rectangles and one ring.
+
+<Mermaid
+  title={<>Lane 1 split into three parts</>}
+  description={<>Lane 1 splits into two rectangles on the straights, each <InlineMath math="85\times1.25" />, with a combined area of <InlineMath math="212.5\text{ m}^2" />, and two half-rings at the bends that join into one ring of inner radius <InlineMath math="36" /> and outer radius <InlineMath math="37.25" />, with an area of <InlineMath math="287.50625\text{ m}^2" />. Their sum is about <InlineMath math="500.01\text{ m}^2" />.</>}
+  chart={`flowchart TD
+  J["Lane 1"] --> L["2 rectangles: 2 × 85 × 1.25 = 212.5 m²"]
+  J --> T["2 half-rings = 1 ring: 3.14 × (37.25² − 36²) = 287.50625 m²"]
+  L --> S["Area of lane 1: 212.5 + 287.50625 ≈ 500.01 m²"]
+  T --> S`}
+/>
+
 # The area of each piece
 
 **The two half rings make one full ring**, a big circle minus a small one:

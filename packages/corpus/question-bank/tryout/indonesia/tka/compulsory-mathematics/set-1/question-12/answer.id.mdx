@@ -6,6 +6,46 @@ Kalau bagian lurus panjangnya <InlineMath math="L" /> dan jari-jari tepi dalam s
 
 **Hampir semua pernyataan bisa dinilai dengan melihat bagian mana dari rumus ini yang berubah**.
 
+Gambar tepi dalam jalur 1 dan jalur 8 bersama-sama. **Di bagian lurus kedua tepi itu sejajar, jadi selisih keliling hanya datang dari tikungan**, yang dipakai di pernyataan pertama. Daerah di dalam tepi jalur 1 adalah persegi panjang <InlineMath math="85\times72" /> ditambah dua setengah lingkaran, yang dipakai di pernyataan ketiga.
+
+<MathVisual
+  title={<>Tepi dalam jalur 1 dan jalur 8</>}
+  description={<>Persegi panjang <InlineMath math="85\times72" /> diapit dua setengah lingkaran berjari-jari <InlineMath math="r_1=36" />, membentuk tepi dalam jalur 1. Tepi dalam jalur 8 mengelilinginya pada jarak tetap <InlineMath math="7\cdot1{,}25=8{,}75" />, dengan ruas lurus yang sama panjang dan tikungan berjari-jari <InlineMath math="r_8=44{,}75" />.</>}
+  labels={{
+    long: <InlineMath math="85" />,
+    wide: <InlineMath math="72" />,
+    inner: <InlineMath math="r_1=36" />,
+    outer: <InlineMath math="r_8=44{,}75" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -55, max: 140 },
+      y: { min: -50, max: 50 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "long", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: -36 }, { x: 85, y: -36 }, { x: 85, y: 36 }, { x: 0, y: 36 }] },
+      { id: "inner-left", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 36, startDegrees: 90, sweepDegrees: 180 },
+      { id: "inner-right", kind: "arc", appearance: "primary", center: { x: 85, y: 0 }, radius: 36, startDegrees: 270, sweepDegrees: 180 },
+      { id: "outer-top", kind: "segment", appearance: "secondary", from: { x: 0, y: 44.75 }, to: { x: 85, y: 44.75 } },
+      { id: "outer-bottom", kind: "segment", appearance: "secondary", from: { x: 0, y: -44.75 }, to: { x: 85, y: -44.75 } },
+      { id: "outer-left", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 44.75, startDegrees: 90, sweepDegrees: 180 },
+      { id: "outer-right", kind: "arc", appearance: "secondary", center: { x: 85, y: 0 }, radius: 44.75, startDegrees: 270, sweepDegrees: 180 },
+      { id: "wide", kind: "segment", appearance: "construction", from: { x: 42.5, y: -36 }, to: { x: 42.5, y: 36 } },
+      { id: "inner", kind: "segment", appearance: "construction", from: { x: 85, y: 0 }, to: { x: 121, y: 0 } },
+      { id: "outer", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -44.75, y: 0 } },
+    ],
+    labels: [
+      { key: "long", objectId: "long", at: { x: 42.5, y: 36 }, placement: "below-right" },
+      { key: "wide", objectId: "wide", at: { x: 42.5, y: 0 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 103, y: 0 }, placement: "above" },
+      { key: "outer", objectId: "outer", at: { x: -22.375, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 # Pernyataan pertama
 
 Jalur 8 dan jalur 1 punya <InlineMath math="L" /> yang sama, jadi <InlineMath math="2L" /> habis saat dikurangkan:

@@ -26,6 +26,43 @@ Nimm jetzt die Überschneidung beider Bedingungen.
 | <InlineMath math="41\le x\le97" /> | nein | nein | nein |
 | <InlineMath math="98\le x\le100" /> | ja | nein | ja |
 
+Markiere die Punktzahlen <InlineMath math="0" /> bis <InlineMath math="100" /> in drei Zeilen. **Die unterste Zeile ist die Schnittmenge: Werte, die in der mittleren Zeile Ausreißer für B und in der oberen Zeile keine Ausreißer für A sind**.
+
+<MathVisual
+  title={<>Ausreißerbereiche von Klasse A und Klasse B</>}
+  description={<>Die obere Zeile gehört zu Klasse A: die Werte <InlineMath math="0" /> bis <InlineMath math="16" /> sind Ausreißer, die Werte <InlineMath math="17" /> bis <InlineMath math="100" /> nicht. Die mittlere Zeile gehört zu Klasse B: die Werte <InlineMath math="0" /> bis <InlineMath math="40" /> und <InlineMath math="98" /> bis <InlineMath math="100" /> sind Ausreißer, <InlineMath math="41" /> bis <InlineMath math="97" /> nicht. Die untere Zeile enthält die Schnittmenge, <InlineMath math="17\le x\le40" /> und <InlineMath math="98\le x\le100" />.</>}
+  labels={{
+    "a-normal": <>A: kein Ausreißer</>,
+    "b-low": <>B: Ausreißer</>,
+    "answer-low": <InlineMath math="17\le x\le40" />,
+    "answer-high": <InlineMath math="98\le x\le100" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 106 },
+      y: { min: -0.9, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a-normal", kind: "segment", appearance: "primary", from: { x: 17, y: 2 }, to: { x: 100, y: 2 } },
+      { id: "a-low", kind: "segment", appearance: "warning", from: { x: 0, y: 2 }, to: { x: 16, y: 2 } },
+      { id: "b-low", kind: "segment", appearance: "warning", from: { x: 0, y: 1 }, to: { x: 40, y: 1 } },
+      { id: "b-normal", kind: "segment", appearance: "primary", from: { x: 41, y: 1 }, to: { x: 97, y: 1 } },
+      { id: "b-high", kind: "segment", appearance: "warning", from: { x: 98, y: 1 }, to: { x: 100, y: 1 } },
+      { id: "answer-low", kind: "segment", appearance: "answer", from: { x: 17, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "answer-high", kind: "segment", appearance: "answer", from: { x: 98, y: 0 }, to: { x: 100, y: 0 } },
+    ],
+    labels: [
+      { key: "a-normal", objectId: "a-normal", at: { x: 58.5, y: 2 }, placement: "above" },
+      { key: "b-low", objectId: "b-low", at: { x: 20, y: 1 }, placement: "above" },
+      { key: "answer-low", objectId: "answer-low", at: { x: 28.5, y: 0 }, placement: "below" },
+      { key: "answer-high", objectId: "answer-high", at: { x: 99, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Prüfe die Ränder: <InlineMath math="x=17" /> ist nicht kleiner als <InlineMath math="17" />, also kein Ausreißer für A, während <InlineMath math="17<41" /> den Wert zum Ausreißer für B macht. Die Werte <InlineMath math="x=41" /> und <InlineMath math="x=97" /> liegen genau auf den Grenzen von Klasse B und sind deshalb keine Ausreißer für B.
 
 # Warum die anderen Antworten falsch sind

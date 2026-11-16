@@ -25,6 +25,39 @@ For <InlineMath math="x\ge14" /> you're already to the right of the vertex, wher
 
 <BlockMath math="L(14)=14\cdot(48-28)=14\cdot20=280" />
 
+Draw <InlineMath math="L(x)" /> and mark the part that satisfies the wall condition. **The vertex of the parabola is left of the line <InlineMath math="x=14" />, so it lies outside the allowed region**. In the allowed region the graph keeps falling, so its highest point is at its left end.
+
+<MathVisual
+  title={<>Pen area and the wall condition</>}
+  description={<>The parabola <InlineMath math="L(x)=-2(x-12)^2+288" /> for <InlineMath math="0\le x\le24" />. The vertical line <InlineMath math="x=14" /> separates the left part, where the side along the wall is longer than <InlineMath math="20\text{ m}" />, from the right part that satisfies the condition. The vertex <InlineMath math="(12,\ 288)" /> is in the left part, while the highest point of the right part is <InlineMath math="(14,\ 280)" />.</>}
+  labels={{
+    vertex: <InlineMath math="(12,\ 288)" />,
+    best: <InlineMath math="(14,\ 280)" />,
+    limit: <InlineMath math="x=14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 25 },
+      y: { min: -15, max: 320 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "blocked", kind: "function", appearance: "reference", formula: "-2(x - 12)^2 + 288", domain: { min: 0, max: 14 } },
+      { id: "allowed", kind: "function", appearance: "primary", formula: "-2(x - 12)^2 + 288", domain: { min: 14, max: 24 } },
+      { id: "limit", kind: "segment", appearance: "construction", from: { x: 14, y: 0 }, to: { x: 14, y: 300 } },
+      { id: "vertex", kind: "point", appearance: "warning", at: { x: 12, y: 288 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 14, y: 280 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: 12, y: 288 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 14, y: 280 }, placement: "right" },
+      { key: "limit", objectId: "limit", at: { x: 14, y: 300 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Check: the wire used is <InlineMath math="2\cdot14+(20-2)=46\text{ m}" />, and the <InlineMath math="20\text{ m}" /> side fits the wall exactly. For comparison, <InlineMath math="x=15" /> gives <InlineMath math="15\cdot18=270" />, which is smaller.
 
 So the largest area of the pen is <InlineMath math="280\text{ m}^2" />.

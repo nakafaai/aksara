@@ -11,6 +11,40 @@ n&=80+k,\qquad\text{kedudukan median}=\frac{80+k}{2} \\
 k&>24
 \end{aligned}" />
 
+Lukis kedua-dua belah ketaksamaan sebagai garis terhadap <InlineMath math="k" />. **Median kurang daripada <InlineMath math="10" /> minit tepat apabila garis bilangan panggilan di bawah <InlineMath math="10" /> minit berada di atas garis kedudukan median**. Kedua-dua garis bersilang pada <InlineMath math="k=24" />, dan nombor bulat pertama di sebelah kanannya ialah <InlineMath math="k=25" />.
+
+<MathVisual
+  title={<>Kedudukan median dan panggilan di bawah <InlineMath math="10" /> minit</>}
+  description={<>Paksi mendatar ialah <InlineMath math="k" />, bilangan panggilan tambahan. Garis <InlineMath math="\frac{80+k}{2}" /> ialah kedudukan median, dan garis <InlineMath math="28+k" /> ialah bilangan panggilan yang kurang daripada <InlineMath math="10" /> minit. Garis kedua lebih curam dan bersilang dengan garis pertama pada <InlineMath math="(24,\ 52)" />. Di sebelah kanan titik itu garis kedua berada di atas, contohnya pada <InlineMath math="k=25" /> nilainya <InlineMath math="53" />, manakala kedudukan median <InlineMath math="52.5" />.</>}
+  labels={{
+    half: <>kedudukan median <InlineMath math="\frac{80+k}{2}" /></>,
+    short: <>di bawah <InlineMath math="10" /> minit: <InlineMath math="28+k" /></>,
+    tie: <InlineMath math="(24,\ 52)" />,
+    first: <InlineMath math="k=25" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: 20, max: 75 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "half", kind: "function", appearance: "secondary", formula: "(80 + x)/2", domain: { min: 0, max: 40 } },
+      { id: "short", kind: "function", appearance: "primary", formula: "28 + x", domain: { min: 0, max: 40 } },
+      { id: "tie", kind: "point", appearance: "warning", at: { x: 24, y: 52 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 25, y: 53 } },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 4, y: 42 }, placement: "above" },
+      { key: "short", objectId: "short", at: { x: 36, y: 64 }, placement: "above-left" },
+      { key: "tie", objectId: "tie", at: { x: 24, y: 52 }, placement: "below-right" },
+      { key: "first", objectId: "first", at: { x: 25, y: 53 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Menyemak hadnya
 
 Ketaksamaan ini **ketat**, jadi <InlineMath math="k=24" /> belum memenuhi syarat. Kira kedua-dua nilai di sekitar had dengan rumus anggaran median dalam kelas <InlineMath math="5\le t<10" />. Sebelum kelas itu ada <InlineMath math="6+k" /> panggilan.

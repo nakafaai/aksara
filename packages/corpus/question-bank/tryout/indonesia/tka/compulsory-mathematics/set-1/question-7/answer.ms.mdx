@@ -28,6 +28,47 @@ Semak dengan kedudukan kedua-dua kereta pada <InlineMath math="t=0.54" />, iaitu
 
 <BlockMath math="\sqrt{8.4^2+11.2^2}=\sqrt{70.56+125.44}=\sqrt{196}=14" />
 
+Lukis kedudukan kedua-dua kereta pada saat paling dekat. A sudah bergerak <InlineMath math="21.6\text{ km}" /> ke selatan tetapi masih di utara <InlineMath math="O" />, manakala B sudah bergerak <InlineMath math="16.2\text{ km}" /> ke timur dan melepasi <InlineMath math="O" />. **Jarak antara keduanya ialah hipotenus sebuah segi tiga bersudut tegak** dengan sisi <InlineMath math="8.4" /> dan <InlineMath math="11.2" />.
+
+<MathVisual
+  title={<>Kedudukan kedua-dua kereta pada saat paling dekat</>}
+  description={<>Persimpangan <InlineMath math="O" /> di asalan, utara ke atas dan timur ke kanan, unit km. Kereta A bertolak dari <InlineMath math="A_0=(0,\ 30)" /> dan pada <InlineMath math="t=0.54" /> jam sampai di <InlineMath math="A=(0,\ 8.4)" />. Kereta B bertolak dari <InlineMath math="B_0=(-5,\ 0)" /> dan sampai di <InlineMath math="B=(11.2,\ 0)" />. Ruas <InlineMath math="AB" /> ialah hipotenus segi tiga bersudut tegak di <InlineMath math="O" /> dengan panjang <InlineMath math="14\text{ km}" />.</>}
+  labels={{
+    "start-a": <InlineMath math="A_0" />,
+    "start-b": <InlineMath math="B_0" />,
+    "now-a": <InlineMath math="A" />,
+    "now-b": <InlineMath math="B" />,
+    gap: <InlineMath math="14\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 26 },
+      y: { min: -4, max: 33 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "north-south", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 32 } },
+      { id: "west-east", kind: "segment", appearance: "reference", from: { x: -7, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "move-a", kind: "vector", appearance: "secondary", from: { x: 0, y: 30 }, to: { x: 0, y: 8.4 } },
+      { id: "move-b", kind: "vector", appearance: "secondary", from: { x: -5, y: 0 }, to: { x: 11.2, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 8.4 }, to: { x: 11.2, y: 0 } },
+      { id: "start-a", kind: "point", appearance: "primary", at: { x: 0, y: 30 } },
+      { id: "start-b", kind: "point", appearance: "primary", at: { x: -5, y: 0 } },
+      { id: "now-a", kind: "point", appearance: "answer", at: { x: 0, y: 8.4 } },
+      { id: "now-b", kind: "point", appearance: "answer", at: { x: 11.2, y: 0 } },
+    ],
+    labels: [
+      { key: "start-a", objectId: "start-a", at: { x: 0, y: 30 }, placement: "right" },
+      { key: "start-b", objectId: "start-b", at: { x: -5, y: 0 }, placement: "above" },
+      { key: "now-a", objectId: "now-a", at: { x: 0, y: 8.4 }, placement: "left" },
+      { key: "now-b", objectId: "now-b", at: { x: 11.2, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 5.6, y: 4.2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Pada saat itu B sudah melepasi persimpangan, manakala A belum. Jadi saat paling dekat **tidak berlaku ketika salah satu kereta tepat di persimpangan**.
 
 # Mengapa pilihan lain salah

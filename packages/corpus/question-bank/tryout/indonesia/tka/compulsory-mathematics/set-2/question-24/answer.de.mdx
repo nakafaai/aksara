@@ -32,6 +32,18 @@ Prüfe das auf einem zweiten Weg, danach, wie viele von Andi und Budi dabei sind
 \text{gesamt}&=65+110=175
 \end{aligned}" />
 
+Das Diagramm unten fasst diese Probe zusammen. **Jeder Ausschuss fällt in genau einen Zweig**, also kannst du beide Zweige addieren, ohne etwas doppelt zu zählen.
+
+<Mermaid
+  title={<>Ausschüsse danach, ob Andi und Budi dabei sind</>}
+  description={<>Ohne Rani bleiben <InlineMath math="5" /> Jungen und <InlineMath math="5" /> Mädchen als Kandidaten. Der Zweig ohne Andi und Budi liefert <InlineMath math="70-5=65" /> Ausschüsse, weil die Ausschüsse nur aus Mädchen wegfallen. Der Zweig mit genau einem von beiden liefert <InlineMath math="2\cdot(56-1)=110" /> Ausschüsse, weil der Ausschuss nur aus Jungen wegfällt. Zusammen sind es <InlineMath math="175" />.</>}
+  chart={`flowchart TD
+  S["Kandidaten: 5 Jungen + 5 Mädchen"] --> N["Ohne Andi und Budi: C(8, 4) − C(5, 4) = 65"]
+  S --> O["Genau einer von beiden: 2 · (C(8, 3) − C(3, 3)) = 110"]
+  N --> T["Gesamt: 65 + 110 = 175"]
+  O --> T`}
+/>
+
 In der ersten Zeile bleiben <InlineMath math="3" /> Jungen und <InlineMath math="5" /> Mädchen, und die reinen Mädchenausschüsse fallen weg. In der zweiten Zeile ist schon ein Junge dabei, die anderen drei dürfen also nur nicht alle Jungen sein.
 
 # Warum die anderen Antworten falsch sind
