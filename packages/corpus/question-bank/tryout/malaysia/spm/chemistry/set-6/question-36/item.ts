@@ -10,25 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$140\\text{ kJ}$$, $$7.20\\text{ dm}^3$$" },
-        { correct: false, label: "$$140\\text{ kJ}$$, $$1.20\\text{ dm}^3$$" },
-        {
-          correct: false,
-          label: "$$25\\,200\\text{ kJ}$$, $$7.20\\text{ dm}^3$$",
-        },
-        { correct: false, label: "$$280\\text{ kJ}$$, $$14.4\\text{ dm}^3$$" },
+        { correct: true, label: "$$46.7\\text{ s}$$, $$7.20\\text{ dm}^3$$" },
+        { correct: false, label: "$$117\\text{ s}$$, $$7.20\\text{ dm}^3$$" },
+        { correct: false, label: "$$46.7\\text{ s}$$, $$1.20\\text{ dm}^3$$" },
+        { correct: false, label: "$$292\\text{ s}$$, $$7.20\\text{ dm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$140\\text{ kJ}$$, $$7.20\\text{ dm}^3$$" },
-        { correct: false, label: "$$140\\text{ kJ}$$, $$1.20\\text{ dm}^3$$" },
-        {
-          correct: false,
-          label: "$$25\\,200\\text{ kJ}$$, $$7.20\\text{ dm}^3$$",
-        },
-        { correct: false, label: "$$280\\text{ kJ}$$, $$14.4\\text{ dm}^3$$" },
+        { correct: true, label: "$$46.7\\text{ s}$$, $$7.20\\text{ dm}^3$$" },
+        { correct: false, label: "$$117\\text{ s}$$, $$7.20\\text{ dm}^3$$" },
+        { correct: false, label: "$$46.7\\text{ s}$$, $$1.20\\text{ dm}^3$$" },
+        { correct: false, label: "$$292\\text{ s}$$, $$7.20\\text{ dm}^3$$" },
       ],
     },
   },

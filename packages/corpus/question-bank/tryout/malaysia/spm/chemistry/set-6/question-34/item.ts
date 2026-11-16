@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$170\\text{ kJ}$$, $$11.2\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
+            "$$85.0\\text{ kJ}$$, $$11.2\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
         },
         {
           correct: true,
           label:
-            "$$85.0\\text{ kJ}$$, $$11.2\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
+            "$$63.8\\text{ kJ}$$, $$8.40\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
         },
         {
           correct: false,
           label:
-            "$$85.0\\text{ kJ}$$, $$5.6\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
+            "$$63.8\\text{ kJ}$$, $$4.20\\text{ g}$$, the reaction has a high activation energy that the burning magnesium supplies",
         },
         {
           correct: false,
           label:
-            "$$85.0\\text{ kJ}$$, $$11.2\\text{ g}$$, the reaction absorbs heat overall, which the burning magnesium supplies",
+            "$$63.8\\text{ kJ}$$, $$8.40\\text{ g}$$, the reaction absorbs heat overall, which the burning magnesium supplies",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$170\\text{ kJ}$$, $$11.2\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
+            "$$85.0\\text{ kJ}$$, $$11.2\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
         },
         {
           correct: true,
           label:
-            "$$85.0\\text{ kJ}$$, $$11.2\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
+            "$$63.8\\text{ kJ}$$, $$8.40\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
         },
         {
           correct: false,
           label:
-            "$$85.0\\text{ kJ}$$, $$5.6\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
+            "$$63.8\\text{ kJ}$$, $$4.20\\text{ g}$$, tindak balas itu mempunyai tenaga pengaktifan tinggi yang dibekalkan oleh magnesium yang terbakar",
         },
         {
           correct: false,
           label:
-            "$$85.0\\text{ kJ}$$, $$11.2\\text{ g}$$, tindak balas itu menyerap haba secara keseluruhan, yang dibekalkan oleh magnesium yang terbakar",
+            "$$63.8\\text{ kJ}$$, $$8.40\\text{ g}$$, tindak balas itu menyerap haba secara keseluruhan, yang dibekalkan oleh magnesium yang terbakar",
         },
       ],
     },
