@@ -20,6 +20,22 @@ Now check the discount rule for each total. The total <InlineMath math="\text{Rp
 0\text{ cartons}+28\text{ loose}&:\quad 420{,}000-0.05(420{,}000)=399{,}000
 \end{aligned}" />
 
+Compare the total after the promo and the member's bill for the three ways. **Only the first way has a total bar below the line at <InlineMath math="400" /> thousand**, so only that way misses the discount, and its bill is not the smallest.
+
+<Chart
+  title={<>Total and bill for three ways to buy <InlineMath math="28" /> bottles</>}
+  description={<>Two cartons and four loose bottles: total <InlineMath math="396" /> thousand, bill <InlineMath math="396" /> thousand. One carton and sixteen loose bottles: total <InlineMath math="408" /> thousand, bill <InlineMath math="387.6" /> thousand. Twenty-eight loose bottles: total <InlineMath math="420" /> thousand, bill <InlineMath math="399" /> thousand. The horizontal line marks the discount threshold of <InlineMath math="400" /> thousand rupiah.</>}
+  bars="apart"
+  categories={["2 cartons + 4 loose", "1 carton + 16 loose", "28 loose"]}
+  series={[
+    { label: "Total after promo", mark: "bar", values: [396, 408, 420] },
+    { label: "Member's bill", mark: "bar", values: [396, 387.6, 399] },
+    { label: "Discount threshold", mark: "line", values: [400, 400, 400] },
+  ]}
+  valueLabel="Thousand rupiah"
+  valueRange={{ min: 370, max: 430 }}
+/>
+
 The smallest bill comes from <InlineMath math="1" /> carton and <InlineMath math="16" /> loose bottles. Swapping one carton for <InlineMath math="12" /> loose bottles raises the total by only <InlineMath math="\text{Rp}12{,}000" />, but that small rise pushes the total past <InlineMath math="\text{Rp}400{,}000" />, so a discount of <InlineMath math="\text{Rp}20{,}400" /> kicks in.
 
 So the smallest possible bill is <InlineMath math="\text{Rp}387{,}600" />.

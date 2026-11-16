@@ -30,6 +30,41 @@ Intersecting <InlineMath math="x<-2" /> or <InlineMath math="x>3" /> with <Inlin
 
 So <InlineMath math="f(x)" /> is defined for <InlineMath math="x<-2" /> or <InlineMath math="3<x<5" />, with <InlineMath math="x\neq4" />.
 
+Draw the three conditions as rows of a number line. **The bottom row is the overlap of the argument row and the base row, with the single point <InlineMath math="x=4" /> punched out** because the base is <InlineMath math="1" /> there.
+
+<MathVisual
+  title={<>Argument condition, base condition, and their overlap</>}
+  description={<>The top row is the argument condition, <InlineMath math="x<-2" /> or <InlineMath math="x>3" />. The middle row is the positive-base condition, <InlineMath math="x<5" />. The bottom row is the overlap, <InlineMath math="x<-2" /> or <InlineMath math="3<x<5" />, with the point <InlineMath math="x=4" /> marked as removed.</>}
+  labels={{
+    "num-right": <>argument: <InlineMath math="x<-2" /> or <InlineMath math="x>3" /></>,
+    base: <>base: <InlineMath math="x<5" /></>,
+    four: <InlineMath math="x=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7.5, max: 8.5 },
+      y: { min: -0.8, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "num-left", kind: "segment", appearance: "secondary", from: { x: -7, y: 2 }, to: { x: -2, y: 2 } },
+      { id: "num-right", kind: "segment", appearance: "secondary", from: { x: 3, y: 2 }, to: { x: 8, y: 2 } },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: -7, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "ans-left", kind: "segment", appearance: "answer", from: { x: -7, y: 0 }, to: { x: -2, y: 0 } },
+      { id: "ans-mid", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "ans-right", kind: "segment", appearance: "answer", from: { x: 4, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "four", kind: "point", appearance: "warning", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "num-right", objectId: "num-right", at: { x: 5.5, y: 2 }, placement: "above" },
+      { key: "base", objectId: "base", at: { x: -1, y: 1 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 4, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Why the other options are wrong
 
 - <InlineMath math="-2<x<3" /> comes from flipping the sign of the quadratic inequality. The positive part lies outside the roots, not between them.

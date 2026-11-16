@@ -19,6 +19,48 @@ Das Bild <InlineMath math="B'" /> muss zwei Bedingungen erfüllen: Der Mittelpun
 t&=4
 \end{aligned}" />
 
+Zeichne die Spiegelachse mit beiden Punktpaaren. **Die Strecken <InlineMath math="AA'" /> und <InlineMath math="BB'" /> stehen beide senkrecht auf <InlineMath math="g" /> und werden von <InlineMath math="g" /> halbiert**. Das sind die zwei Bedingungen, mit denen <InlineMath math="B'" /> gefunden wird.
+
+<MathVisual
+  title={<>Spiegelachse <InlineMath math="g" /> und zwei Punktpaare</>}
+  description={<>Die Gerade <InlineMath math="g:\ y=\tfrac12x" /> geht durch den Ursprung und <InlineMath math="M(4,2)" />, die Mitte von <InlineMath math="AA'" />. Die Strecke von <InlineMath math="A(5,0)" /> nach <InlineMath math="A'(3,4)" /> steht senkrecht auf <InlineMath math="g" />. Die Strecke von <InlineMath math="B(0,5)" /> nach <InlineMath math="B'(4,-3)" /> steht ebenfalls senkrecht auf <InlineMath math="g" />, und ihre Mitte <InlineMath math="(2,1)" /> liegt auf <InlineMath math="g" />.</>}
+  labels={{
+    g: <InlineMath math="g:\ y=\tfrac12x" />,
+    a: <InlineMath math="A(5,0)" />,
+    "a-image": <InlineMath math="A'(3,4)" />,
+    b: <InlineMath math="B(0,5)" />,
+    "b-image": <InlineMath math="B'(4,-3)" />,
+    m: <InlineMath math="M(4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 7 },
+      y: { min: -4.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "x/2", domain: { min: -1, max: 6.5 } },
+      { id: "aa", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "bb", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 4, y: -3 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 5, y: 0 } },
+      { id: "a-image", kind: "point", appearance: "primary", at: { x: 3, y: 4 } },
+      { id: "m", kind: "point", appearance: "construction", at: { x: 4, y: 2 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 0, y: 5 } },
+      { id: "b-image", kind: "point", appearance: "answer", at: { x: 4, y: -3 } },
+    ],
+    labels: [
+      { key: "g", objectId: "g", at: { x: 6, y: 3 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "a-image", objectId: "a-image", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "b-image", objectId: "b-image", at: { x: 4, y: -3 }, placement: "right" },
+      { key: "m", objectId: "m", at: { x: 4, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="B'=(4,\ 5-8)=(4,-3)" />. Zur Kontrolle: <InlineMath math="|OB'|=\sqrt{16+9}=5=|OB|" />. Das passt, denn eine Spiegelung an einer Geraden durch <InlineMath math="O" /> erhält den Abstand zu <InlineMath math="O" />.
 
 Das Bild von <InlineMath math="B" /> ist also <InlineMath math="(4,-3)" />.

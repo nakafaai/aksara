@@ -14,6 +14,44 @@ Be careful at the boundary points. The input <InlineMath math="x=2" /> belongs t
 | <InlineMath math="6" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="0" /> |
 | <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3" /> |
 
+Draw <InlineMath math="f" /> and mark the points the iteration visits. **After the first step, the outputs cycle through three points <InlineMath math="(-1,\ 0)" />, <InlineMath math="(0,\ 3)" />, and <InlineMath math="(3,\ -1)" />**: each point's output becomes the next point's input.
+
+<MathVisual
+  title={<>Graph of <InlineMath math="f" /> and the cycle of its values</>}
+  description={<>Three straight pieces: <InlineMath math="y=x+1" /> for <InlineMath math="x<0" />, <InlineMath math="y=3-x" /> for <InlineMath math="0\le x<2" />, and <InlineMath math="y=x-4" /> for <InlineMath math="x\ge2" />. The point <InlineMath math="(2,\ -2)" /> is the first step and <InlineMath math="(-2,\ -1)" /> the second. After that the values cycle through <InlineMath math="(-1,\ 0)" />, <InlineMath math="(0,\ 3)" />, and <InlineMath math="(3,\ -1)" />, then return to <InlineMath math="(-1,\ 0)" />.</>}
+  labels={{
+    start: <InlineMath math="(2,\ -2)" />,
+    a: <InlineMath math="(-1,\ 0)" />,
+    b: <InlineMath math="(0,\ 3)" />,
+    c: <InlineMath math="(3,\ -1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 4.5 },
+      y: { min: -3, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -3, max: 0 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "3 - x", domain: { min: 0, max: 2 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "x - 4", domain: { min: 2, max: 4 } },
+      { id: "start", kind: "point", appearance: "warning", at: { x: 2, y: -2 } },
+      { id: "first", kind: "point", appearance: "secondary", at: { x: -2, y: -1 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "b", kind: "point", appearance: "answer", at: { x: 0, y: 3 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 3, y: -1 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 2, y: -2 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 3, y: -1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # The repeating pattern
 
 From <InlineMath math="n=2" /> on, the values cycle through <InlineMath math="-1,\ 0,\ 3,\ -1,\ 0,\ 3,\ \dots" /> with period <InlineMath math="3" />. **The value <InlineMath math="-2" /> shows up only once at the start** and isn't part of the cycle.

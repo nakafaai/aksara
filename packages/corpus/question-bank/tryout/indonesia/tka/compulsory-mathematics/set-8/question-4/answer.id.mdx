@@ -23,6 +23,20 @@ a-c=4&:\quad c=a-4,\ 4a-4=12 \Rightarrow a=4,\ c=0,\ b=9 \\
 c-a=4&:\quad c=a+4,\ 4a+4=12 \Rightarrow a=2,\ c=6,\ b=5
 \end{aligned}" />
 
+Pohon berikut memisahkan kedua tanda selisih. **Cabang kiri gugur karena hasil pembaliknya diawali <InlineMath math="0" />**, jadi hanya bilangan <InlineMath math="256" /> yang memenuhi semua syarat.
+
+<Mermaid
+  title={<>Dua kasus tanda selisih</>}
+  description={<>Dari <InlineMath math="|a-c|=4" /> keluar dua cabang. Cabang <InlineMath math="a-c=4" /> memberi <InlineMath math="490" />, yang pembaliknya <InlineMath math="094" /> bukan bilangan tiga angka. Cabang <InlineMath math="c-a=4" /> memberi <InlineMath math="256" /> dengan pembalik <InlineMath math="652" />, dan hasil kali angka ratusan dan puluhannya <InlineMath math="10" />.</>}
+  chart={`flowchart TD
+  S["|a − c| = 4"] --> K1["a − c = 4"]
+  S --> K2["c − a = 4"]
+  K1 --> N1["490 → 094"]
+  K2 --> N2["256 → 652"]
+  N1 --> R1["ditolak, bukan tiga angka"]
+  N2 --> R2["diterima: 2 × 5 = 10"]`}
+/>
+
 Kasus pertama memberi <InlineMath math="490" />. Kalau urutannya dibalik, hasilnya <InlineMath math="094" />, yaitu <InlineMath math="94" />, dan itu **bukan bilangan tiga angka**. Syarat soal menolak kasus ini. Kasus kedua memberi <InlineMath math="256" /> dengan pembalikan <InlineMath math="652" />.
 
 Cek bilangan <InlineMath math="256" />: <InlineMath math="2+5+6=13" />, <InlineMath math="5=2(2)+1" />, dan <InlineMath math="652-256=396" />. Semua syarat terpenuhi.

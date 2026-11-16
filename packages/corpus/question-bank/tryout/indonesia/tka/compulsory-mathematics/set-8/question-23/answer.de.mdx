@@ -35,3 +35,20 @@ Der geschätzte Median ist zwar <InlineMath math="34" />, aber eine Schätzung i
 Die Zahl <InlineMath math="20" /> stammt aus der Schätzung <InlineMath math="\tfrac12\cdot16+12=20" />, die annimmt, dass sich die Klasse <InlineMath math="40\le t<50" /> genau zur Hälfte aufteilt. **Falsch**.
 
 Die Urteile lauten also Richtig, Falsch, Falsch.
+
+Das Diagramm fasst zusammen, wie die drei Aussagen beurteilt werden. **Jede Aussage wird mit dem extremsten Fall geprüft, der noch zur Tabelle passt**. Eine Aussage, die den Extremfall übersteht, ist sicher, und eine, die scheitert, wird durch ein einziges Beispiel widerlegt.
+
+<Mermaid
+  title={<>Jede Aussage mit einem Extremfall prüfen</>}
+  description={<>Aussage 1 wird geprüft, indem jeder Schüler so nah wie möglich an die obere Grenze seiner Klasse gesetzt wird, und der Mittelwert bleibt trotzdem unter <InlineMath math="40{,}5" />. Aussage 2 wird durch zwanzig Schüler widerlegt, die genau <InlineMath math="30" /> Minuten lesen. Aussage 3 wird durch sechzehn Schüler widerlegt, die genau <InlineMath math="40" /> Minuten lesen.</>}
+  chart={`flowchart TD
+  P1["Aussage 1: Mittelwert sicher unter 41?"] --> C1["Jeder Schüler liegt unter der oberen Grenze seiner Klasse"]
+  C1 --> R1["Mittelwert < 3.240 : 80 = 40,5"]
+  R1 --> V1["Richtig"]
+  P2["Aussage 2: Median sicher über 32?"] --> C2["Beispiel: die 20 Schüler der Klasse 30 bis 40 lesen genau 30 Minuten"]
+  C2 --> R2["Median = 30, nicht über 32"]
+  R2 --> V2["Falsch"]
+  P3["Aussage 3: sicher mindestens 20 Schüler mit 45 Minuten oder mehr?"] --> C3["Beispiel: die 16 Schüler der Klasse 40 bis 50 lesen genau 40 Minuten"]
+  C3 --> R3["nur 6 + 6 = 12 Schüler, weniger als 20"]
+  R3 --> V3["Falsch"]`}
+/>

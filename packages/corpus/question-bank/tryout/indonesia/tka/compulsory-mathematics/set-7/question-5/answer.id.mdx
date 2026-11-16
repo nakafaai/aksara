@@ -34,6 +34,40 @@ Masukkan bentuk umum ke setiap pilihan. Sebuah pernyataan pasti benar hanya kala
 | <InlineMath math="2x+y+3z=13" /> | <InlineMath math="13" /> | selalu |
 | <InlineMath math="x+y+z=8" /> | <InlineMath math="9-z" /> | hanya jika <InlineMath math="z=1" /> |
 
+Gambar nilai keempat bentuk sebagai fungsi <InlineMath math="z" />. **Hanya garis <InlineMath math="2x+y+3z" /> yang mendatar tepat di nilai yang diminta, <InlineMath math="13" />**. Garis <InlineMath math="x-y" /> juga mendatar, tetapi di <InlineMath math="-1" />, bukan <InlineMath math="1" />. Garis lain berubah saat <InlineMath math="z" /> berubah.
+
+<MathVisual
+  title={<>Nilai setiap bentuk pada penyelesaian <InlineMath math="(4-z,\ 5-z,\ z)" /></>}
+  description={<>Untuk <InlineMath math="z=0" />, <InlineMath math="1" />, dan <InlineMath math="2" />, penyelesaiannya <InlineMath math="(4,5,0)" />, <InlineMath math="(3,4,1)" />, dan <InlineMath math="(2,3,2)" />. Nilai <InlineMath math="x-y" /> selalu <InlineMath math="-1" />, nilai <InlineMath math="x+y" /> berturut-turut <InlineMath math="9" />, <InlineMath math="7" />, <InlineMath math="5" />, nilai <InlineMath math="2x+y+3z" /> selalu <InlineMath math="13" />, dan nilai <InlineMath math="x+y+z" /> berturut-turut <InlineMath math="9" />, <InlineMath math="8" />, <InlineMath math="7" />.</>}
+  labels={{
+    diff: <InlineMath math="x-y" />,
+    sum: <InlineMath math="x+y" />,
+    keep: <InlineMath math="2x+y+3z=13" />,
+    all: <InlineMath math="x+y+z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 3.6 },
+      y: { min: -2.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "diff", kind: "function", appearance: "warning", formula: "-1", domain: { min: 0, max: 3 } },
+      { id: "sum", kind: "function", appearance: "secondary", formula: "9 - 2x", domain: { min: 0, max: 3 } },
+      { id: "keep", kind: "function", appearance: "answer", formula: "13", domain: { min: 0, max: 3 } },
+      { id: "all", kind: "function", appearance: "primary", formula: "9 - x", domain: { min: 0, max: 3 } },
+    ],
+    labels: [
+      { key: "diff", objectId: "diff", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "keep", objectId: "keep", at: { x: 1.5, y: 13 }, placement: "above" },
+      { key: "all", objectId: "all", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Baris keempat dihitung seperti ini:
 
 <BlockMath math="2x+y+3z=2(4-z)+(5-z)+3z=8-2z+5-z+3z=13" />

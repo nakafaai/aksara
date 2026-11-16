@@ -22,6 +22,20 @@ Sind alle vier Ziffern verschieden, können benachbarte Ziffern nicht gleich sei
 n(A)&=9\cdot9\cdot8\cdot7=4{.}536
 \end{aligned}" />
 
+Vergleiche die Anzahl der Möglichkeiten an jeder Stelle. **Beide Zählungen stimmen für die ersten zwei Ziffern überein und trennen sich bei der dritten und vierten**, also ist die Wahrscheinlichkeit <InlineMath math="\frac{8\cdot7}{9\cdot9}=\frac{56}{81}" />.
+
+<Chart
+  title={<>Anzahl der Möglichkeiten für jede PIN-Ziffer</>}
+  description={<>Bei einer gültigen PIN hat jede Stelle <InlineMath math="9" /> Möglichkeiten. Bei einer PIN mit lauter verschiedenen Ziffern sind es <InlineMath math="9" />, <InlineMath math="9" />, <InlineMath math="8" /> und <InlineMath math="7" />. Der Unterschied liegt nur bei der dritten und vierten Ziffer.</>}
+  bars="apart"
+  categories={["Erste Ziffer", "Zweite Ziffer", "Dritte Ziffer", "Vierte Ziffer"]}
+  series={[
+    { label: "Gültige PIN", mark: "bar", values: [9, 9, 9, 9] },
+    { label: "Alle Ziffern verschieden", mark: "bar", values: [9, 9, 8, 7] },
+  ]}
+  valueLabel="Möglichkeiten"
+/>
+
 # Die Wahrscheinlichkeit
 
 Teil die beiden Anzahlen und kürz dann Zähler und Nenner durch <InlineMath math="81" />. Das Beispiel <InlineMath math="1213" /> aus der Aufgabe zeigt, dass manche gültigen PINs eine Ziffer wiederholen, also **muss die Wahrscheinlichkeit kleiner als <InlineMath math="1" /> sein**.

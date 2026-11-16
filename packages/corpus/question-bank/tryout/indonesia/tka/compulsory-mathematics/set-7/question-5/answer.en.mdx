@@ -34,6 +34,40 @@ Plug the general solution into each option. A statement is certain only if **the
 | <InlineMath math="2x+y+3z=13" /> | <InlineMath math="13" /> | always |
 | <InlineMath math="x+y+z=8" /> | <InlineMath math="9-z" /> | only if <InlineMath math="z=1" /> |
 
+Draw the value of each expression as a function of <InlineMath math="z" />. **Only the line for <InlineMath math="2x+y+3z" /> stays flat exactly at the required value <InlineMath math="13" />**. The line for <InlineMath math="x-y" /> is flat too, but at <InlineMath math="-1" />, not <InlineMath math="1" />. The other lines change as <InlineMath math="z" /> changes.
+
+<MathVisual
+  title={<>Value of each expression at the solutions <InlineMath math="(4-z,\ 5-z,\ z)" /></>}
+  description={<>For <InlineMath math="z=0" />, <InlineMath math="1" />, and <InlineMath math="2" />, the solutions are <InlineMath math="(4,5,0)" />, <InlineMath math="(3,4,1)" />, and <InlineMath math="(2,3,2)" />. The value of <InlineMath math="x-y" /> is always <InlineMath math="-1" />, <InlineMath math="x+y" /> is <InlineMath math="9" />, <InlineMath math="7" />, <InlineMath math="5" />, <InlineMath math="2x+y+3z" /> is always <InlineMath math="13" />, and <InlineMath math="x+y+z" /> is <InlineMath math="9" />, <InlineMath math="8" />, <InlineMath math="7" />.</>}
+  labels={{
+    diff: <InlineMath math="x-y" />,
+    sum: <InlineMath math="x+y" />,
+    keep: <InlineMath math="2x+y+3z=13" />,
+    all: <InlineMath math="x+y+z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 3.6 },
+      y: { min: -2.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "diff", kind: "function", appearance: "warning", formula: "-1", domain: { min: 0, max: 3 } },
+      { id: "sum", kind: "function", appearance: "secondary", formula: "9 - 2x", domain: { min: 0, max: 3 } },
+      { id: "keep", kind: "function", appearance: "answer", formula: "13", domain: { min: 0, max: 3 } },
+      { id: "all", kind: "function", appearance: "primary", formula: "9 - x", domain: { min: 0, max: 3 } },
+    ],
+    labels: [
+      { key: "diff", objectId: "diff", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "keep", objectId: "keep", at: { x: 1.5, y: 13 }, placement: "above" },
+      { key: "all", objectId: "all", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Here's the fourth row worked out:
 
 <BlockMath math="2x+y+3z=2(4-z)+(5-z)+3z=8-2z+5-z+3z=13" />

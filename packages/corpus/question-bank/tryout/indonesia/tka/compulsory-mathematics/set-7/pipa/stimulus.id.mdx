@@ -7,4 +7,31 @@ Sebuah pabrik membuat pipa besi tuang berbentuk tabung berongga. Penampang setia
 | Panjang satu batang pipa | <InlineMath math="5\text{ m}" /> |
 | Massa jenis besi tuang | <InlineMath math="7\text{ g/cm}^3" /> |
 
+<MathVisual
+  title={<>Penampang pipa</>}
+  description={<>Penampang pipa berupa cincin di antara dua lingkaran sepusat. Lingkaran luar berdiameter <InlineMath math="10\text{ cm}" />, dan dinding pipa setebal <InlineMath math="1\text{ cm}" /> diukur dari lingkaran luar ke lingkaran dalam.</>}
+  labels={{
+    outer: <InlineMath math="10\text{ cm}" />,
+    wall: <InlineMath math="1\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 6.5 },
+      y: { min: -6.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "metal", kind: "region", appearance: "primary", inequalities: ["x^2 + y^2 <= 25", "x^2 + y^2 >= 16"] },
+      { id: "outer", kind: "segment", appearance: "construction", from: { x: -5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "outer", objectId: "outer", at: { x: -2.5, y: 0 }, placement: "above" },
+      { key: "wall", objectId: "wall", at: { x: 0, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Gunakan <InlineMath math="\pi=\frac{22}{7}" /> jika diperlukan.

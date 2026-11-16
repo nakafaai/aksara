@@ -31,6 +31,40 @@ u-10&=18 \\
 u&=28
 \end{aligned}" />
 
+Zeichne die Rechnung vor dem Rabatt als Funktion des Verbrauchs. **Die Linie für eine Rechnung von <InlineMath math="160" /> tausend trifft den Graphen im zweiten Block**, vor dem Knick <InlineMath math="(30,\ 170)" />, also wird der Verbrauch mit dem Tarif von <InlineMath math="5{.}000" /> pro Kubikmeter berechnet.
+
+<MathVisual
+  title={<>Rechnung vor dem Rabatt nach Wasserverbrauch</>}
+  description={<>Die waagerechte Achse ist der Verbrauch in Kubikmetern, die senkrechte Achse die Rechnung in tausend Rupiah. Der Graph beginnt bei <InlineMath math="40" />, steigt um <InlineMath math="3" /> pro Kubikmeter auf <InlineMath math="70" /> bei <InlineMath math="10\text{ m}^3" />, um <InlineMath math="5" /> pro Kubikmeter auf <InlineMath math="170" /> bei <InlineMath math="30\text{ m}^3" /> und dann um <InlineMath math="8" /> pro Kubikmeter. Die waagerechte Linie bei <InlineMath math="160" /> trifft den Graphen in <InlineMath math="(28,\ 160)" />.</>}
+  labels={{
+    bill: <InlineMath math="160" />,
+    use: <InlineMath math="(28,\ 160)" />,
+    edge: <InlineMath math="(30,\ 170)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 36 },
+      y: { min: 25, max: 220 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "40 + 3x", domain: { min: 0, max: 10 } },
+      { id: "second", kind: "function", appearance: "primary", formula: "70 + 5(x - 10)", domain: { min: 10, max: 30 } },
+      { id: "third", kind: "function", appearance: "primary", formula: "170 + 8(x - 30)", domain: { min: 30, max: 35 } },
+      { id: "bill", kind: "function", appearance: "reference", formula: "160", domain: { min: 0, max: 35 } },
+      { id: "use", kind: "point", appearance: "answer", at: { x: 28, y: 160 } },
+      { id: "edge", kind: "point", appearance: "secondary", at: { x: 30, y: 170 } },
+    ],
+    labels: [
+      { key: "bill", objectId: "bill", at: { x: 4, y: 160 }, placement: "above" },
+      { key: "use", objectId: "use", at: { x: 28, y: 160 }, placement: "below-right" },
+      { key: "edge", objectId: "edge", at: { x: 30, y: 170 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Zur Kontrolle: Für <InlineMath math="28\text{ m}^3" /> beträgt die Rechnung <InlineMath math="40{.}000+30{.}000+90{.}000=160{.}000" />, nach Rabatt <InlineMath math="0{,}75\cdot160{.}000=120{.}000" />. **Das ist genau der bezahlte Betrag**.
 
 # Warum die anderen Antworten falsch sind

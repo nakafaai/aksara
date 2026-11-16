@@ -23,6 +23,20 @@ a-c=4&:\quad c=a-4,\ 4a-4=12 \Rightarrow a=4,\ c=0,\ b=9 \\
 c-a=4&:\quad c=a+4,\ 4a+4=12 \Rightarrow a=2,\ c=6,\ b=5
 \end{aligned}" />
 
+The tree below separates the two signs of the difference. **The left branch fails because its reversal starts with <InlineMath math="0" />**, so only <InlineMath math="256" /> meets every condition.
+
+<Mermaid
+  title={<>Two cases for the sign of the difference</>}
+  description={<>Two branches leave <InlineMath math="|a-c|=4" />. The branch <InlineMath math="a-c=4" /> gives <InlineMath math="490" />, whose reversal <InlineMath math="094" /> is not a three-digit number. The branch <InlineMath math="c-a=4" /> gives <InlineMath math="256" /> with reversal <InlineMath math="652" />, and the product of its hundreds and tens digits is <InlineMath math="10" />.</>}
+  chart={`flowchart TD
+  S["|a − c| = 4"] --> K1["a − c = 4"]
+  S --> K2["c − a = 4"]
+  K1 --> N1["490 → 094"]
+  K2 --> N2["256 → 652"]
+  N1 --> R1["rejected, not three digits"]
+  N2 --> R2["accepted: 2 × 5 = 10"]`}
+/>
+
 The first case gives <InlineMath math="490" />. Reversed, it becomes <InlineMath math="094" />, which is just <InlineMath math="94" />, and that's **not a three-digit number**. The question rules this case out. The second case gives <InlineMath math="256" />, whose reversal is <InlineMath math="652" />.
 
 Check <InlineMath math="256" />: <InlineMath math="2+5+6=13" />, <InlineMath math="5=2(2)+1" />, and <InlineMath math="652-256=396" />. Every condition holds.

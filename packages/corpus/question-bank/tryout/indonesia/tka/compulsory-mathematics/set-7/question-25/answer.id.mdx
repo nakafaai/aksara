@@ -22,6 +22,20 @@ Kalau keempat digit berbeda, dua digit yang bersebelahan pasti tidak sama. Jadi 
 n(A)&=9\cdot9\cdot8\cdot7=4{.}536
 \end{aligned}" />
 
+Bandingkan banyak pilihan di setiap posisi digit. **Kedua hitungan sama untuk dua digit pertama, lalu berpisah di digit ketiga dan keempat**, jadi peluangnya <InlineMath math="\frac{8\cdot7}{9\cdot9}=\frac{56}{81}" />.
+
+<Chart
+  title={<>Banyak pilihan untuk setiap digit PIN</>}
+  description={<>Untuk PIN sah, setiap posisi punya <InlineMath math="9" /> pilihan. Untuk PIN dengan digit berbeda semua, pilihannya <InlineMath math="9" />, <InlineMath math="9" />, <InlineMath math="8" />, dan <InlineMath math="7" />. Perbedaan hanya ada di digit ketiga dan keempat.</>}
+  bars="apart"
+  categories={["Digit pertama", "Digit kedua", "Digit ketiga", "Digit keempat"]}
+  series={[
+    { label: "PIN sah", mark: "bar", values: [9, 9, 9, 9] },
+    { label: "Digit berbeda semua", mark: "bar", values: [9, 9, 8, 7] },
+  ]}
+  valueLabel="Banyak pilihan"
+/>
+
 # Peluangnya
 
 Bagi kedua banyaknya, lalu sederhanakan dengan membagi pembilang dan penyebut dengan <InlineMath math="81" />. Contoh di soal, <InlineMath math="1213" />, menunjukkan ada PIN sah yang digitnya berulang, jadi **peluangnya memang harus kurang dari <InlineMath math="1" />**.

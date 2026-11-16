@@ -27,6 +27,23 @@ P(\text{II and RR})&=\frac23\cdot\frac{1}{10}=\frac{2}{30} \\
 P(\text{RR})&=\frac{3}{30}+\frac{2}{30}=\frac{5}{30}
 \end{aligned}" />
 
+The probability tree below shows both paths. **Only two branches end with two reds**, and the bag I branch is heavier even though that bag is picked less often.
+
+<Mermaid
+  title={<>Probability tree for two red balls</>}
+  description={<>The die picks bag I with probability <InlineMath math="\tfrac13" /> and bag II with probability <InlineMath math="\tfrac23" />. From bag I, two reds come out with probability <InlineMath math="\tfrac{3}{10}" />, and from bag II with probability <InlineMath math="\tfrac{1}{10}" />. The bag I path gives <InlineMath math="\tfrac{3}{30}" />, the bag II path gives <InlineMath math="\tfrac{2}{30}" />, so <InlineMath math="P(\text{I}\mid\text{RR})=\tfrac35" />.</>}
+  chart={`flowchart TD
+  S["Roll the die"] -->|"1/3"| A["Bag I"]
+  S -->|"2/3"| B["Bag II"]
+  A -->|"3/10"| AR["Bag I and RR: 3/30"]
+  A -->|"7/10"| AX["not RR"]
+  B -->|"1/10"| BR["Bag II and RR: 2/30"]
+  B -->|"9/10"| BX["not RR"]
+  AR --> T["P(RR) = 5/30"]
+  BR --> T
+  T --> Q["P(I | RR) = 3/5"]`}
+/>
+
 Out of all the two-red outcomes, **the share that went through bag I** is
 
 <BlockMath math="P(\text{I}\mid\text{RR})=\frac{3/30}{5/30}=\frac35" />

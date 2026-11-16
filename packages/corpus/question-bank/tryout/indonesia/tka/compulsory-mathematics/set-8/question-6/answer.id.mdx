@@ -30,6 +30,41 @@ Irisan <InlineMath math="x<-2" /> atau <InlineMath math="x>3" /> dengan <InlineM
 
 Jadi, <InlineMath math="f(x)" /> terdefinisi untuk <InlineMath math="x<-2" /> atau <InlineMath math="3<x<5" />, dengan <InlineMath math="x\neq4" />.
 
+Gambar ketiga syarat sebagai baris garis bilangan. **Baris bawah adalah irisan baris numerus dan baris basis, lalu satu titik <InlineMath math="x=4" /> dilubangi** karena di sana basisnya <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Syarat numerus, syarat basis, dan irisannya</>}
+  description={<>Baris atas adalah syarat numerus, <InlineMath math="x<-2" /> atau <InlineMath math="x>3" />. Baris tengah adalah syarat basis positif, <InlineMath math="x<5" />. Baris bawah adalah irisannya, <InlineMath math="x<-2" /> atau <InlineMath math="3<x<5" />, dengan titik <InlineMath math="x=4" /> ditandai karena dibuang.</>}
+  labels={{
+    "num-right": <>numerus: <InlineMath math="x<-2" /> atau <InlineMath math="x>3" /></>,
+    base: <>basis: <InlineMath math="x<5" /></>,
+    four: <InlineMath math="x=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7.5, max: 8.5 },
+      y: { min: -0.8, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "num-left", kind: "segment", appearance: "secondary", from: { x: -7, y: 2 }, to: { x: -2, y: 2 } },
+      { id: "num-right", kind: "segment", appearance: "secondary", from: { x: 3, y: 2 }, to: { x: 8, y: 2 } },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: -7, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "ans-left", kind: "segment", appearance: "answer", from: { x: -7, y: 0 }, to: { x: -2, y: 0 } },
+      { id: "ans-mid", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "ans-right", kind: "segment", appearance: "answer", from: { x: 4, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "four", kind: "point", appearance: "warning", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "num-right", objectId: "num-right", at: { x: 5.5, y: 2 }, placement: "above" },
+      { key: "base", objectId: "base", at: { x: -1, y: 1 }, placement: "above" },
+      { key: "four", objectId: "four", at: { x: 4, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 # Kenapa pilihan lain salah
 
 - <InlineMath math="-2<x<3" /> muncul kalau tanda pertidaksamaan kuadrat terbalik. Daerah positifnya ada di luar akar, bukan di antara akar.

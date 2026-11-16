@@ -31,6 +31,46 @@ Bei festem <InlineMath math="p+l" /> **wird die Gartenfläche größer, je nähe
 | <InlineMath math="16" /> | <InlineMath math="9" /> | <InlineMath math="144" /> | ja |
 | <InlineMath math="17" /> | <InlineMath math="8" /> | <InlineMath math="136" /> | ja |
 
+Zeichne Gartenfläche und Anbaufläche als Funktionen der Länge <InlineMath math="p" />. **Die Kurve der Anbaufläche liegt immer <InlineMath math="46" /> unter der Kurve der Gartenfläche**, also genügt es, die größte Gartenfläche unter der Linie bei <InlineMath math="150" /> zu finden. Für ganzzahliges <InlineMath math="p" /> ist das bei <InlineMath math="p=16" />.
+
+<MathVisual
+  title={<>Garten- und Anbaufläche nach Gartenlänge</>}
+  description={<>Die waagerechte Achse ist die Länge <InlineMath math="p" /> in Metern, die Breite ist <InlineMath math="25-p" />. Die obere Kurve ist die Gartenfläche <InlineMath math="p(25-p)" />, die untere die Anbaufläche <InlineMath math="p(25-p)-46" />. Die waagerechte Linie bei <InlineMath math="150" /> ist die Grenze der Dorfregel. Der Punkt <InlineMath math="(15,\ 150)" /> liegt genau auf der Grenze und ist nicht erlaubt, der Punkt <InlineMath math="(16,\ 144)" /> liegt darunter, und seine Anbaufläche ist <InlineMath math="(16,\ 98)" />.</>}
+  labels={{
+    garden: <InlineMath math="p(25-p)" />,
+    plant: <InlineMath math="p(25-p)-46" />,
+    limit: <InlineMath math="150" />,
+    edge: <InlineMath math="(15,\ 150)" />,
+    best: <InlineMath math="(16,\ 144)" />,
+    crop: <InlineMath math="(16,\ 98)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 12, max: 23 },
+      y: { min: 40, max: 170 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "garden", kind: "function", appearance: "secondary", formula: "x(25 - x)", domain: { min: 12.5, max: 22 } },
+      { id: "plant", kind: "function", appearance: "primary", formula: "x(25 - x) - 46", domain: { min: 12.5, max: 22 } },
+      { id: "limit", kind: "function", appearance: "reference", formula: "150", domain: { min: 12.5, max: 22.5 } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 15, y: 150 } },
+      { id: "best", kind: "point", appearance: "secondary", at: { x: 16, y: 144 } },
+      { id: "crop", kind: "point", appearance: "answer", at: { x: 16, y: 98 } },
+    ],
+    labels: [
+      { key: "garden", objectId: "garden", at: { x: 20, y: 100 }, placement: "above-right" },
+      { key: "plant", objectId: "plant", at: { x: 20, y: 54 }, placement: "above-right" },
+      { key: "limit", objectId: "limit", at: { x: 21, y: 150 }, placement: "above" },
+      { key: "edge", objectId: "edge", at: { x: 15, y: 150 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 16, y: 144 }, placement: "below-right" },
+      { key: "crop", objectId: "crop", at: { x: 16, y: 98 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Die weiteren Paare haben noch kleinere Flächen. Die größte erlaubte Gartenfläche ist also <InlineMath math="144\text{ m}^2" />, beim Garten <InlineMath math="16\text{ m}\times9\text{ m}" />.
 
 <BlockMath math="A_\text{Anbau}=(16-2)(9-2)=14\cdot7=98\text{ m}^2" />

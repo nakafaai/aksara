@@ -23,6 +23,20 @@ a-c=4&:\quad c=a-4,\ 4a-4=12 \Rightarrow a=4,\ c=0,\ b=9 \\
 c-a=4&:\quad c=a+4,\ 4a+4=12 \Rightarrow a=2,\ c=6,\ b=5
 \end{aligned}" />
 
+Pohon di bawah memisahkan kedua-dua tanda beza. **Cabang kiri gugur kerana hasil songsangnya bermula dengan <InlineMath math="0" />**, jadi hanya nombor <InlineMath math="256" /> yang memenuhi semua syarat.
+
+<Mermaid
+  title={<>Dua kes tanda beza</>}
+  description={<>Daripada <InlineMath math="|a-c|=4" /> keluar dua cabang. Cabang <InlineMath math="a-c=4" /> memberikan <InlineMath math="490" />, yang songsangnya <InlineMath math="094" /> bukan nombor tiga digit. Cabang <InlineMath math="c-a=4" /> memberikan <InlineMath math="256" /> dengan songsang <InlineMath math="652" />, dan hasil darab digit ratus dan digit puluhnya <InlineMath math="10" />.</>}
+  chart={`flowchart TD
+  S["|a − c| = 4"] --> K1["a − c = 4"]
+  S --> K2["c − a = 4"]
+  K1 --> N1["490 → 094"]
+  K2 --> N2["256 → 652"]
+  N1 --> R1["ditolak, bukan tiga digit"]
+  N2 --> R2["diterima: 2 × 5 = 10"]`}
+/>
+
 Kes pertama memberi <InlineMath math="490" />. Apabila diterbalikkan, hasilnya <InlineMath math="094" />, iaitu <InlineMath math="94" />, dan itu **bukan nombor tiga digit**. Syarat soalan menolak kes ini. Kes kedua memberi <InlineMath math="256" /> dengan nombor terbalik <InlineMath math="652" />.
 
 Semak <InlineMath math="256" />: <InlineMath math="2+5+6=13" />, <InlineMath math="5=2(2)+1" />, dan <InlineMath math="652-256=396" />. Semua syarat dipenuhi.

@@ -19,6 +19,43 @@ The mark is <InlineMath math="5" /> metres from the top, so it's <InlineMath mat
 
 <BlockMath math="\text{height of the mark}=\frac{20}{25}\cdot20=16\text{ m}" />
 
+Draw both positions of the ladder. **The paint mark sits <InlineMath math="\tfrac{20}{25}" /> of the ladder's length from its foot**, so its height is <InlineMath math="\tfrac{20}{25}" /> of the height of the ladder's top in that position.
+
+<MathVisual
+  title={<>Ladder before and after slipping</>}
+  description={<>A vertical wall on the left and a horizontal floor below, in metres. Before slipping, the ladder joins <InlineMath math="(7,0)" /> to <InlineMath math="(0,24)" />. After slipping, it joins <InlineMath math="(15,0)" /> to <InlineMath math="(0,20)" />, still <InlineMath math="25" /> long. The paint mark moves from <InlineMath math="(1.4,\ 19.2)" /> to <InlineMath math="(3,\ 16)" />, and the vertical segment below it shows the height <InlineMath math="16" />.</>}
+  labels={{
+    before: <>before</>,
+    after: <>after</>,
+    "mark-after": <InlineMath math="(3,\ 16)" />,
+    "mark-before": <InlineMath math="(1{,}4;\ 19{,}2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 17 },
+      y: { min: -1.5, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 25 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 16.5, y: 0 } },
+      { id: "before", kind: "segment", appearance: "secondary", from: { x: 7, y: 0 }, to: { x: 0, y: 24 } },
+      { id: "after", kind: "segment", appearance: "primary", from: { x: 15, y: 0 }, to: { x: 0, y: 20 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 16 } },
+      { id: "mark-before", kind: "point", appearance: "secondary", at: { x: 1.4, y: 19.2 } },
+      { id: "mark-after", kind: "point", appearance: "answer", at: { x: 3, y: 16 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 3.5, y: 12 }, placement: "left" },
+      { key: "after", objectId: "after", at: { x: 9, y: 8 }, placement: "above-right" },
+      { key: "mark-after", objectId: "mark-after", at: { x: 3, y: 16 }, placement: "right" },
+      { key: "mark-before", objectId: "mark-before", at: { x: 1.4, y: 19.2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 So after the ladder slips, the paint mark is <InlineMath math="16\text{ m}" /> above the floor.
 
 - <InlineMath math="19.2\text{ m}" /> is the height of the mark **before** the ladder slips, <InlineMath math="\tfrac{20}{25}\cdot24" />.

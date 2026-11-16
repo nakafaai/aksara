@@ -23,6 +23,45 @@ Because the students are assumed to be spread evenly, **the number in a piece of
 \text{total}&=3+24+10=37
 \end{aligned}" />
 
+Draw the three classes as bars. **The shaded part is the range <InlineMath math="15\le t<35" />**, and its number of students is proportional to the shaded width in each bar.
+
+<MathVisual
+  title={<>Cutting the histogram at <InlineMath math="t=15" /> and <InlineMath math="t=35" /></>}
+  description={<>The bar for the class <InlineMath math="10\le t<20" /> has height <InlineMath math="6" />, the class <InlineMath math="20\le t<30" /> has height <InlineMath math="24" />, and the class <InlineMath math="30\le t<40" /> has height <InlineMath math="20" />. The cut lines at <InlineMath math="t=15" /> and <InlineMath math="t=35" /> take half of the first bar, which is <InlineMath math="3" /> students, all of the second bar, which is <InlineMath math="24" /> students, and half of the third bar, which is <InlineMath math="10" /> students.</>}
+  labels={{
+    "part-one": <InlineMath math="3" />,
+    "part-two": <InlineMath math="24" />,
+    "part-three": <InlineMath math="10" />,
+    "cut-low": <InlineMath math="t=15" />,
+    "cut-high": <InlineMath math="t=35" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 8, max: 42 },
+      y: { min: 0, max: 28 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "class-one", kind: "polygon", appearance: "reference", vertices: [{ x: 10, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 6 }, { x: 10, y: 6 }] },
+      { id: "class-three", kind: "polygon", appearance: "reference", vertices: [{ x: 30, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 20 }, { x: 30, y: 20 }] },
+      { id: "part-one", kind: "polygon", appearance: "answer", vertices: [{ x: 15, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 6 }, { x: 15, y: 6 }] },
+      { id: "part-two", kind: "polygon", appearance: "answer", vertices: [{ x: 20, y: 0 }, { x: 30, y: 0 }, { x: 30, y: 24 }, { x: 20, y: 24 }] },
+      { id: "part-three", kind: "polygon", appearance: "answer", vertices: [{ x: 30, y: 0 }, { x: 35, y: 0 }, { x: 35, y: 20 }, { x: 30, y: 20 }] },
+      { id: "cut-low", kind: "segment", appearance: "construction", from: { x: 15, y: 0 }, to: { x: 15, y: 26 } },
+      { id: "cut-high", kind: "segment", appearance: "construction", from: { x: 35, y: 0 }, to: { x: 35, y: 26 } },
+    ],
+    labels: [
+      { key: "part-one", objectId: "part-one", at: { x: 17.5, y: 6 }, placement: "above" },
+      { key: "part-two", objectId: "part-two", at: { x: 25, y: 24 }, placement: "above" },
+      { key: "part-three", objectId: "part-three", at: { x: 32.5, y: 20 }, placement: "above" },
+      { key: "cut-low", objectId: "cut-low", at: { x: 15, y: 26 }, placement: "above" },
+      { key: "cut-high", objectId: "cut-high", at: { x: 35, y: 26 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check with cumulative frequencies: the estimate for <InlineMath math="t<35" /> is <InlineMath math="32+10=42" />, and for <InlineMath math="t<15" /> it's <InlineMath math="2+3=5" />. The difference is <InlineMath math="42-5=37" />. It matches.
 
 # Why the other options are wrong

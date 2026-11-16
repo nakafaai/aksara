@@ -27,6 +27,42 @@ t_{\text{back}}&=\frac{12}{16}+1+\frac{8}{16} \\
 &=\tfrac34+1+\tfrac12=2\tfrac14\text{ h}=2\text{ h }15\text{ min}
 \end{aligned}" />
 
+Draw the boat's distance from P against time. **The drifting part still goes down, just less steeply**, because the current keeps carrying the boat toward P. The line reaches zero at hour <InlineMath math="5.25" />.
+
+<MathVisual
+  title={<>Boat's distance from jetty P over time</>}
+  description={<>The horizontal axis is time in hours since departure, and the vertical axis is the distance from P in km. The line rises <InlineMath math="8" /> km per hour to Q at <InlineMath math="24\text{ km}" /> at hour <InlineMath math="3" />. It then falls <InlineMath math="16" /> km per hour to the midpoint, falls <InlineMath math="4" /> km per hour for one hour while the engine is off, and falls <InlineMath math="16" /> km per hour again to P at hour <InlineMath math="5.25" />.</>}
+  labels={{
+    up: <>against the current, <InlineMath math="8\text{ km/h}" /></>,
+    drift: <>drifting, <InlineMath math="4\text{ km/h}" /></>,
+    end: <>back at P, <InlineMath math="5\tfrac14" /> h</>,
+    q: <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.2, max: 5.7 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "up", kind: "function", appearance: "primary", formula: "8x", domain: { min: 0, max: 3 } },
+      { id: "down", kind: "function", appearance: "primary", formula: "24 - 16(x - 3)", domain: { min: 3, max: 3.75 } },
+      { id: "drift", kind: "function", appearance: "warning", formula: "12 - 4(x - 3.75)", domain: { min: 3.75, max: 4.75 } },
+      { id: "home", kind: "function", appearance: "primary", formula: "8 - 16(x - 4.75)", domain: { min: 4.75, max: 5.25 } },
+      { id: "q", kind: "point", appearance: "secondary", at: { x: 3, y: 24 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 5.25, y: 0 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 1.5, y: 12 }, placement: "above-left" },
+      { key: "drift", objectId: "drift", at: { x: 4.25, y: 10 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 5.25, y: 0 }, placement: "above-right" },
+      { key: "q", objectId: "q", at: { x: 3, y: 24 }, placement: "above" },
+    ],
+  }}
+/>
+
 The total time is <InlineMath math="3\text{ h}+2\text{ h }15\text{ min}=5\text{ h }15\text{ min}" />.
 
 As a check, without the breakdown the way back takes <InlineMath math="\tfrac{24}{16}=1.5" /> hours. The breakdown adds <InlineMath math="1" /> hour, but the boat covers <InlineMath math="4\text{ km}" /> by drifting, which saves <InlineMath math="\tfrac4{16}" /> hour, or <InlineMath math="15" /> minutes. That gives <InlineMath math="1.5" /> hours plus <InlineMath math="45" /> minutes, which is <InlineMath math="2" /> hours <InlineMath math="15" /> minutes.
