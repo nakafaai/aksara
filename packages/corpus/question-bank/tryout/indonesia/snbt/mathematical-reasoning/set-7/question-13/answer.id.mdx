@@ -30,6 +30,20 @@ Selama pintu air terbuka, setiap perubahan berkurang <InlineMath math="30\text{ 
 
 Status Awas tercapai pukul 09.00 ditambah <InlineMath math="40" /> menit, yaitu pukul 09.40. Sebagai pemeriksaan, pukul 10.00 tinggi muka air <InlineMath math="260+60=320\text{ cm}" />, dan <InlineMath math="300" /> memang berada di antara <InlineMath math="260" /> dan <InlineMath math="320" />.
 
+Grafik berikut mengikuti tinggi muka air setiap <InlineMath math="20" /> menit. **Garisnya menekuk tepat di <InlineMath math="250\text{ cm}" /> pada pukul 08.40** karena pintu air terbuka, lalu baru menyentuh garis Awas pada pukul 09.40.
+
+<Chart
+  title={<>Tinggi muka air dari pukul 06.00 sampai 10.00</>}
+  description={<>Tinggi muka air naik dari <InlineMath math="140\text{ cm}" /> menjadi <InlineMath math="180" /> pada pukul 07.00, <InlineMath math="210" /> pada pukul 08.00, <InlineMath math="250" /> pada pukul 08.40, <InlineMath math="260" /> pada pukul 09.00, <InlineMath math="300" /> pada pukul 09.40, dan <InlineMath math="320\text{ cm}" /> pada pukul 10.00. Dua garis datar menandai <InlineMath math="250\text{ cm}" /> dan <InlineMath math="300\text{ cm}" />.</>}
+  categories={["06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Tinggi muka air (cm)", mark: "line", values: [140, 140 + 40 / 3, 140 + 80 / 3, 180, 190, 200, 210, 230, 250, 260, 280, 300, 320] },
+    { label: "Pintu air terbuka", mark: "line", values: Array.from({ length: 13 }, () => 250) },
+    { label: "Status Awas", mark: "line", values: Array.from({ length: 13 }, () => 300) },
+  ]}
+  valueLabel="Tinggi muka air (cm)"
+/>
+
 # Pilihan yang keliru
 
 - Pukul 08.40 adalah saat status **Siaga** tercapai di <InlineMath math="250\text{ cm}" />, belum Awas.

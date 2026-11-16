@@ -33,6 +33,17 @@ Bei <InlineMath math="70" /> Bäumen trägt jeder Baum <InlineMath math="200-140
 
 Der Gewinn mit <InlineMath math="70" /> Bäumen ist größer, die dritte Aussage ist also falsch. Wer die Formel <InlineMath math="16{.}000n(94-n)" /> auch für <InlineMath math="30" /> Bäume nutzt, erhält <InlineMath math="30{.}720{.}000" />, und die Aussage scheint wahr.
 
+Das Diagramm berechnet den Gewinn bei <InlineMath math="\text{Rp}8{.}000" /> mit der passenden Formel für jede Baumzahl. **Der Balken für <InlineMath math="70" /> Bäume ist etwas höher als der für <InlineMath math="30" /> Bäume**, obwohl jeder Baum viel weniger trägt.
+
+<Chart
+  title={<>Gewinn des Gartens bei <InlineMath math="\text{Rp}8{.}000" /> pro Kilogramm nach Anzahl der Bäume</>}
+  description={<>Für <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="50" />, <InlineMath math="60" /> und <InlineMath math="70" /> Bäume beträgt der Gewinn <InlineMath math="\text{Rp}25{.}920{.}000" />, <InlineMath math="\text{Rp}34{.}560{.}000" />, <InlineMath math="\text{Rp}35{.}200{.}000" />, <InlineMath math="\text{Rp}32{.}640{.}000" /> und <InlineMath math="\text{Rp}26{.}880{.}000" />.</>}
+  bars="apart"
+  categories={["30", "40", "50", "60", "70"]}
+  series={[{ label: "Gewinn (Rupiah)", mark: "bar", values: [30, 40, 50, 60, 70].map((n) => (n <= 40 ? 864000 * n : 16000 * n * (94 - n))) }]}
+  valueLabel="Gewinn (Rupiah)"
+/>
+
 # Der Ertrag pro Baum bei fünfundsechzig
 
 Bei genau <InlineMath math="65" /> Bäumen beträgt der Ertrag pro Baum <InlineMath math="200-130=70\text{ kg}" />. Das ist nicht weniger als <InlineMath math="70\text{ kg}" />. Die Worte **mindestens fünfundsechzig** schließen <InlineMath math="65" /> selbst ein, die vierte Aussage ist also falsch. Unter <InlineMath math="70\text{ kg}" /> sinkt der Ertrag pro Baum erst ab <InlineMath math="66" /> Bäumen.

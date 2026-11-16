@@ -34,6 +34,19 @@ Banyak tiket harus bulat, jadi **dibulatkan ke atas** menjadi <InlineMath math="
 
 Coba cek kedua sisinya. Setelah <InlineMath math="690" /> tiket, panitia menerima <InlineMath math="56{.}700{.}000+240\cdot180{.}000=99{.}900{.}000" /> rupiah, masih kurang. Setelah <InlineMath math="691" /> tiket, panitia menerima <InlineMath math="56{.}700{.}000+241\cdot180{.}000=100{.}080{.}000" /> rupiah, sudah mencapai biaya produksi.
 
+Grafik berikut mengikuti uang yang diterima panitia seiring tiket terjual. **Garisnya baru melewati garis biaya produksi di antara tiket ke-<InlineMath math="690" /> dan ke-<InlineMath math="691" />**, jauh di dalam tahap normal.
+
+<Chart
+  title={<>Uang yang diterima panitia menurut banyak tiket terjual</>}
+  description={<>Sesudah <InlineMath math="150" />, <InlineMath math="450" />, <InlineMath math="600" />, <InlineMath math="690" />, <InlineMath math="691" />, dan <InlineMath math="1{.}000" /> tiket terjual, panitia menerima berturut-turut <InlineMath math="\text{Rp}16{.}200{.}000" />, <InlineMath math="\text{Rp}56{.}700{.}000" />, <InlineMath math="\text{Rp}83{.}700{.}000" />, <InlineMath math="\text{Rp}99{.}900{.}000" />, <InlineMath math="\text{Rp}100{.}080{.}000" />, dan <InlineMath math="\text{Rp}155{.}700{.}000" />. Garis datar menandai biaya produksi <InlineMath math="\text{Rp}100{.}000{.}000" />.</>}
+  categories={["150 tiket", "450 tiket", "600 tiket", "690 tiket", "691 tiket", "1.000 tiket"]}
+  series={[
+    { label: "Uang diterima panitia", mark: "line", values: [150 * 108000, 150 * 108000 + 300 * 135000, 56700000 + 150 * 180000, 56700000 + 240 * 180000, 56700000 + 241 * 180000, 56700000 + 550 * 180000] },
+    { label: "Biaya produksi", mark: "line", values: [100000000, 100000000, 100000000, 100000000, 100000000, 100000000] },
+  ]}
+  valueLabel="Uang (rupiah)"
+/>
+
 # Jawaban yang sering keliru
 
 Ada beberapa jalan pintas yang menghasilkan angka lain. Kalau bagian **sembilan puluh persen untuk panitia** terlupa, hasilnya <InlineMath math="635" /> tiket, karena <InlineMath math="63{.}000{.}000+185\cdot200{.}000=100{.}000{.}000" />. Kalau <InlineMath math="240\tfrac{5}{9}" /> dibulatkan ke bawah, hasilnya <InlineMath math="690" /> tiket, padahal uangnya belum cukup. Kalau potongan empat tiket ikut dikurangkan dari uang panitia, hasilnya terlalu besar, karena potongan itu ditanggung platform.

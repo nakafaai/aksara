@@ -19,6 +19,19 @@ Damit das Aquarium wieder voll ist, kommen <InlineMath math="24\text{ Liter}" />
 
 Zur Probe: <InlineMath math="41" /> liegt zwischen <InlineMath math="35" /> und <InlineMath math="42{,}5" />, wie es sein muss, wenn du <InlineMath math="96\text{ Liter}" /> mit <InlineMath math="42{,}5\text{ g/L}" /> und <InlineMath math="24\text{ Liter}" /> mit <InlineMath math="35\text{ g/L}" /> mischst. Der Wert liegt über <InlineMath math="36\text{ g/L}" />, für die Fische ist das also nicht mehr sicher.
 
+Das Diagramm verfolgt den Salzgehalt während der Abwesenheit und nach dem Auffüllen. **Der Salzgehalt liegt schon ab dem dritten Tag über der sicheren Grenze**, und das künstliche Meerwasser senkt ihn nur wenig, auf <InlineMath math="41\text{ g/L}" />.
+
+<Chart
+  title={<>Salzgehalt des Aquariums über sechs Tage Verdunstung und nach dem Auffüllen</>}
+  description={<>Das Salz bleibt bei <InlineMath math="4{.}080" /> Gramm, während das Wasser täglich um <InlineMath math="4" /> Liter abnimmt, also steigt der Salzgehalt von <InlineMath math="34" /> auf <InlineMath math="42{,}5\text{ g/L}" /> am sechsten Tag. Nach dem Auffüllen mit künstlichem Meerwasser beträgt er <InlineMath math="41\text{ g/L}" />. Die waagerechte Linie markiert die obere sichere Grenze von <InlineMath math="36\text{ g/L}" />.</>}
+  categories={["Tag 0", "Tag 1", "Tag 2", "Tag 3", "Tag 4", "Tag 5", "Tag 6", "Aufgefüllt"]}
+  series={[
+    { label: "Salzgehalt (g/L)", mark: "line", values: [0, 1, 2, 3, 4, 5, 6].map((d) => 4080 / (120 - 4 * d)).concat([(4080 + 24 * 35) / 120]) },
+    { label: "Obere sichere Grenze", mark: "line", values: Array.from({ length: 8 }, () => 36) },
+  ]}
+  valueLabel="Salzgehalt (g/L)"
+/>
+
 # Die falschen Antworten
 
 - <InlineMath math="34\text{ g/L}" /> entsteht, wenn du annimmst, dass Auffüllen immer den alten Salzgehalt herstellt. Das stimmt nur, **wenn mit Süßwasser aufgefüllt wird**.

@@ -14,6 +14,19 @@ Say the shared profit is <InlineMath math="D" /> million. Ayu gets her <InlineMa
 D &= 144
 \end{aligned}" />
 
+The chart below draws both amounts for several values of the shared profit. **Bima's line is steeper**, so it starts below Ayu's and catches up exactly when the shared profit is <InlineMath math="144" /> million.
+
+<Chart
+  title={<>Ayu's money and Bima's part by shared profit</>}
+  description={<>Ayu's money is <InlineMath math="12+\tfrac{5}{24}D" /> million rupiah and Bima's part is <InlineMath math="\tfrac{7}{24}D" /> million rupiah. For <InlineMath math="D=96" />, they're <InlineMath math="32" /> and <InlineMath math="28" />. For <InlineMath math="D=144" />, both are <InlineMath math="42" />. For <InlineMath math="D=192" />, they're <InlineMath math="52" /> and <InlineMath math="56" />.</>}
+  categories={["96", "120", "144", "168", "192"]}
+  series={[
+    { label: "Ayu's money with salary", mark: "line", values: [96, 120, 144, 168, 192].map((d) => 12 + (5 * d) / 24) },
+    { label: "Bima's part", mark: "line", values: [96, 120, 144, 168, 192].map((d) => (7 * d) / 24) },
+  ]}
+  valueLabel="Money (million rupiah)"
+/>
+
 # Back to the net profit
 
 The shared profit is <InlineMath math="90\%" /> of what's left after the salary. To undo a <InlineMath math="10\%" /> cut, **divide by <InlineMath math="0.9" />, don't multiply by <InlineMath math="1.1" />**. Then add the salary back.

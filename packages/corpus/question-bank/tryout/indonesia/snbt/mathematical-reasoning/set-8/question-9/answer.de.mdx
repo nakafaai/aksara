@@ -28,6 +28,20 @@ Beide Werte, <InlineMath math="45" /> und <InlineMath math="55" />, liegen über
 
 Ausgehend von <InlineMath math="45" /> Bäumen steigt die Ernte auf <InlineMath math="4{.}992\text{ kg}" />, dieser Fall scheidet also aus. Ausgehend von <InlineMath math="55" /> Bäumen sinkt sie auf <InlineMath math="4{.}872\text{ kg}" />. In der letzten Saison waren es also <InlineMath math="55" /> Bäume, in dieser Saison sind es <InlineMath math="58" />.
 
+Das Diagramm zeigt die Gesamternte für mehrere Baumzahlen. **Die Erntelinie schneidet die Linie bei <InlineMath math="4{.}950\text{ kg}" /> zweimal**, bei <InlineMath math="45" /> und <InlineMath math="55" /> Bäumen, und nur ab <InlineMath math="55" /> Bäumen lassen drei zusätzliche Bäume die Ernte sinken.
+
+<Chart
+  title={<>Gesamte Orangenernte nach Anzahl der Bäume</>}
+  description={<>Für <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="48" />, <InlineMath math="50" />, <InlineMath math="55" />, <InlineMath math="58" /> und <InlineMath math="60" /> Bäume beträgt die Gesamternte <InlineMath math="4{.}800" />, <InlineMath math="4{.}950" />, <InlineMath math="4{.}992" />, <InlineMath math="5{.}000" />, <InlineMath math="4{.}950" />, <InlineMath math="4{.}872" /> und <InlineMath math="4{.}800\text{ kg}" />. Die waagerechte Linie markiert die Ernte der letzten Saison, <InlineMath math="4{.}950\text{ kg}" />. Die Werteachse beginnt bei <InlineMath math="4{.}700" />.</>}
+  categories={["40", "45", "48", "50", "55", "58", "60"]}
+  series={[
+    { label: "Gesamternte (kg)", mark: "line", values: [40, 45, 48, 50, 55, 58, 60].map((n) => n * (200 - 2 * n)) },
+    { label: "Ernte der letzten Saison", mark: "line", values: [4950, 4950, 4950, 4950, 4950, 4950, 4950] },
+  ]}
+  valueRange={{ min: 4700, max: 5050 }}
+  valueLabel="Gesamternte (kg)"
+/>
+
 # Der Gewinn dieser Saison
 
 Der Verkaufserlös kommt aus der Ernte dieser Saison, und **die Pflegekosten fallen für alle Bäume dieser Saison an**:

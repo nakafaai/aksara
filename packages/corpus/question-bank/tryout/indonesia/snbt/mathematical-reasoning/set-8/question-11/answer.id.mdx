@@ -33,6 +33,17 @@ Untuk <InlineMath math="70" /> pohon, hasil per pohon <InlineMath math="200-140=
 
 Keuntungan <InlineMath math="70" /> pohon lebih besar, jadi pernyataan ketiga salah. Kalau rumus <InlineMath math="16{.}000n(94-n)" /> dipakai untuk <InlineMath math="30" /> pohon, hasilnya <InlineMath math="30{.}720{.}000" />, dan pernyataan ini akan tampak benar.
 
+Grafik berikut menghitung keuntungan pada harga <InlineMath math="\text{Rp}8{.}000" /> dengan rumus yang sesuai untuk setiap banyak pohon. **Batang <InlineMath math="70" /> pohon sedikit lebih tinggi daripada batang <InlineMath math="30" /> pohon**, walaupun hasil setiap pohonnya jauh lebih kecil.
+
+<Chart
+  title={<>Keuntungan kebun pada harga <InlineMath math="\text{Rp}8{.}000" /> per kilogram menurut banyak pohon</>}
+  description={<>Untuk <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="50" />, <InlineMath math="60" />, dan <InlineMath math="70" /> pohon, keuntungannya <InlineMath math="\text{Rp}25{.}920{.}000" />, <InlineMath math="\text{Rp}34{.}560{.}000" />, <InlineMath math="\text{Rp}35{.}200{.}000" />, <InlineMath math="\text{Rp}32{.}640{.}000" />, dan <InlineMath math="\text{Rp}26{.}880{.}000" />.</>}
+  bars="apart"
+  categories={["30", "40", "50", "60", "70"]}
+  series={[{ label: "Keuntungan (rupiah)", mark: "bar", values: [30, 40, 50, 60, 70].map((n) => (n <= 40 ? 864000 * n : 16000 * n * (94 - n))) }]}
+  valueLabel="Keuntungan (rupiah)"
+/>
+
 # Hasil per pohon di batas enam puluh lima
 
 Dengan tepat <InlineMath math="65" /> pohon, hasil per pohon adalah <InlineMath math="200-130=70\text{ kg}" />. Nilai ini tidak kurang dari <InlineMath math="70\text{ kg}" />. Kata **paling sedikit enam puluh lima** mencakup <InlineMath math="65" /> itu sendiri, jadi pernyataan keempat salah. Hasil per pohon baru kurang dari <InlineMath math="70\text{ kg}" /> mulai <InlineMath math="66" /> pohon.

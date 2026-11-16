@@ -6,6 +6,20 @@ Syarat ABO: pasien golongan B dapat menerima dari donor B dan donor O. Syarat rh
 
 <BlockMath math="8+2+14+2=26" />
 
+Grafik berikut menggambar kantong yang cocok untuk pasien itu. **Dari <InlineMath math="26" /> kantong yang cocok, hanya dua batang kecil yang rhesus negatif**, dengan jumlah <InlineMath math="4" /> kantong.
+
+<Chart
+  title={<>Kantong darah yang dapat diberikan kepada pasien bergolongan <InlineMath math="\mathrm{B}^+" /></>}
+  description={<>Kantong yang cocok berasal dari <InlineMath math="8" /> donor <InlineMath math="\mathrm{B}^+" />, <InlineMath math="2" /> donor <InlineMath math="\mathrm{B}^-" />, <InlineMath math="14" /> donor <InlineMath math="\mathrm{O}^+" />, dan <InlineMath math="2" /> donor <InlineMath math="\mathrm{O}^-" />, sehingga ada <InlineMath math="26" /> kantong. Empat di antaranya rhesus negatif.</>}
+  bars="apart"
+  categories={["B+", "B−", "O+", "O−"]}
+  series={[
+    { label: "Donor rhesus positif", mark: "bar", values: [8, null, 14, null] },
+    { label: "Donor rhesus negatif", mark: "bar", values: [null, 2, null, 2] },
+  ]}
+  valueLabel="Banyak kantong"
+/>
+
 # Peluang bersyarat
 
 Di antara <InlineMath math="26" /> kantong yang cocok, yang berasal dari donor rhesus negatif adalah <InlineMath math="\mathrm{B}^-" /> dan <InlineMath math="\mathrm{O}^-" />, sebanyak <InlineMath math="2+2=4" />. Setiap kantong yang cocok punya kesempatan sama, jadi **pembaginya adalah banyak kantong yang cocok**:

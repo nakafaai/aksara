@@ -28,6 +28,20 @@ Both values, <InlineMath math="45" /> and <InlineMath math="55" />, are above <I
 
 Starting from <InlineMath math="45" /> trees, the harvest rises to <InlineMath math="4{,}992\text{ kg}" />, so that case is out. Starting from <InlineMath math="55" /> trees, it falls to <InlineMath math="4{,}872\text{ kg}" />. So last season there were <InlineMath math="55" /> trees, and this season there are <InlineMath math="58" />.
 
+The chart below draws the total harvest for several numbers of trees. **The harvest line crosses the <InlineMath math="4{,}950\text{ kg}" /> line twice**, at <InlineMath math="45" /> and <InlineMath math="55" /> trees, and only from <InlineMath math="55" /> trees do three extra trees make the harvest fall.
+
+<Chart
+  title={<>Total orange harvest by number of trees</>}
+  description={<>For <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="48" />, <InlineMath math="50" />, <InlineMath math="55" />, <InlineMath math="58" />, and <InlineMath math="60" /> trees, the total harvest is <InlineMath math="4{,}800" />, <InlineMath math="4{,}950" />, <InlineMath math="4{,}992" />, <InlineMath math="5{,}000" />, <InlineMath math="4{,}950" />, <InlineMath math="4{,}872" />, and <InlineMath math="4{,}800\text{ kg}" />. The flat line marks last season's harvest of <InlineMath math="4{,}950\text{ kg}" />. The value axis starts at <InlineMath math="4{,}700" />.</>}
+  categories={["40", "45", "48", "50", "55", "58", "60"]}
+  series={[
+    { label: "Total harvest (kg)", mark: "line", values: [40, 45, 48, 50, 55, 58, 60].map((n) => n * (200 - 2 * n)) },
+    { label: "Last season's harvest", mark: "line", values: [4950, 4950, 4950, 4950, 4950, 4950, 4950] },
+  ]}
+  valueRange={{ min: 4700, max: 5050 }}
+  valueLabel="Total harvest (kg)"
+/>
+
 # This season's profit
 
 Sales come from this season's harvest, and **the care cost covers every tree this season**:

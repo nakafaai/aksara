@@ -21,6 +21,17 @@ The groups <InlineMath math="\mathrm{A}^-" /> and <InlineMath math="\mathrm{AB}^
 
 Check it by counting in order. There are <InlineMath math="2\cdot160=320" /> ordered pairs with the same group, and <InlineMath math="40\cdot39=1{,}560" /> ordered pairs in total. That gives <InlineMath math="\tfrac{320}{1{,}560}=\tfrac{8}{39}" />, the same.
 
+The chart below counts the same-group pairs for each blood group. **Group <InlineMath math="\mathrm{O}^+" /> gives more than half of all such pairs**, while groups with a single donor give none.
+
+<Chart
+  title={<>Number of donor pairs with the same blood group</>}
+  description={<>The pairs are: <InlineMath math="\mathrm{A}^+" /> <InlineMath math="36" />, <InlineMath math="\mathrm{B}^+" /> <InlineMath math="28" />, <InlineMath math="\mathrm{AB}^+" /> <InlineMath math="3" />, <InlineMath math="\mathrm{O}^+" /> <InlineMath math="91" />, <InlineMath math="\mathrm{A}^-" /> <InlineMath math="0" />, <InlineMath math="\mathrm{B}^-" /> <InlineMath math="1" />, <InlineMath math="\mathrm{AB}^-" /> <InlineMath math="0" />, and <InlineMath math="\mathrm{O}^-" /> <InlineMath math="1" />. That's <InlineMath math="160" /> out of <InlineMath math="780" /> pairs.</>}
+  bars="apart"
+  categories={["A+", "B+", "AB+", "O+", "A−", "B−", "AB−", "O−"]}
+  series={[{ label: "Same-group pairs", mark: "bar", values: [9, 8, 3, 14, 1, 2, 1, 2].map((k) => (k * (k - 1)) / 2) }]}
+  valueLabel="Pairs"
+/>
+
 # The wrong options
 
 Each other option uses **the wrong condition or the wrong count**.

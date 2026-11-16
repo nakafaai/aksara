@@ -23,6 +23,19 @@ Am Montag beginnt Stunde <InlineMath math="8" /> nach der zweiten Pause, um 13.0
 
 Stunde <InlineMath math="8" /> beginnt am Montag früher, die erste Aussage ist also **falsch**.
 
+Das Diagramm zeigt den Beginn jeder Stunde in Minuten nach 07.00 Uhr. **Die Montagslinie beginnt höher, steigt aber flacher**, sodass sie bei Stunde <InlineMath math="8" /> schon unter der Dienstagslinie liegt.
+
+<Chart
+  title={<>Beginn jeder Stunde am Montag und Dienstag</>}
+  description={<>Am Montag beginnen die Stunden <InlineMath math="1" /> bis <InlineMath math="9" /> <InlineMath math="40, 80, 120, 160, 215, 255, 295, 365, 405" /> Minuten nach 07.00 Uhr. Am Dienstag beginnen sie <InlineMath math="15, 60, 105, 165, 210, 255, 330, 375, 420" /> Minuten danach. Stunde <InlineMath math="8" /> beginnt am Montag um 13.05 Uhr und am Dienstag um 13.15 Uhr.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+  series={[
+    { label: "Montag", mark: "line", values: [40, 80, 120, 160, 160 + 40 + 15, 255, 295, 295 + 40 + 30, 405] },
+    { label: "Dienstag", mark: "line", values: [15, 60, 105, 105 + 45 + 15, 210, 255, 255 + 45 + 30, 375, 420] },
+  ]}
+  valueLabel="Minuten nach 07.00 Uhr"
+/>
+
 # Die gesamte Unterrichtszeit vergleichen
 
 Die gesamte Unterrichtszeit ist die Zahl der Stunden mal ihre Länge: Freitag <InlineMath math="6\cdot35=210" /> Minuten, Montag <InlineMath math="9\cdot40=360" /> Minuten und Dienstag <InlineMath math="9\cdot45=405" /> Minuten. Die Hälfte der Unterrichtszeit am Montag sind <InlineMath math="180" /> Minuten, die Hälfte am Dienstag <InlineMath math="202{,}5" /> Minuten.

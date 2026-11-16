@@ -31,6 +31,19 @@ e&=18
 
 <InlineMath math="18" /> really lies between <InlineMath math="12" /> and <InlineMath math="24" />, so this case's condition holds.
 
+The chart below draws Budi's share for each place Eko could get in between km <InlineMath math="12" /> and <InlineMath math="24" />. **The later Eko gets in, the bigger Budi's share**, and the line crosses <InlineMath math="\text{Rp}23{,}420" /> exactly at km <InlineMath math="18" />.
+
+<Chart
+  title={<>Budi's morning share by where Eko gets in</>}
+  description={<>If Eko gets in at km <InlineMath math="12" />, <InlineMath math="18" />, and <InlineMath math="24" />, Budi's share is <InlineMath math="\text{Rp}22{,}120" />, <InlineMath math="\text{Rp}23{,}420" />, and <InlineMath math="\text{Rp}24{,}720" />. Budi's share rises by <InlineMath math="\text{Rp}216.67" /> per kilometre. The flat line marks the known share of <InlineMath math="\text{Rp}23{,}420" />.</>}
+  categories={["12", "14", "16", "18", "20", "22", "24"]}
+  series={[
+    { label: "Budi's share (rupiah)", mark: "line", values: [12, 14, 16, 18, 20, 22, 24].map((e) => (1300 * (e - 12)) / 2 + (1300 * (24 - e)) / 3 + 16920) },
+    { label: "Known share", mark: "line", values: [23420, 23420, 23420, 23420, 23420, 23420, 23420] },
+  ]}
+  valueLabel="Budi's share (rupiah)"
+/>
+
 # Checking the answer
 
 Put in <InlineMath math="e=18" />. The section from km <InlineMath math="12" /> to <InlineMath math="18" /> costs <InlineMath math="6\cdot1{,}300=7{,}800" />, split two ways into <InlineMath math="3{,}900" />. The section from km <InlineMath math="18" /> to <InlineMath math="24" /> also costs <InlineMath math="7{,}800" />, split three ways into <InlineMath math="2{,}600" />. Budi's share is <InlineMath math="3{,}900+2{,}600+16{,}920=23{,}420" />, **exactly the given amount**.

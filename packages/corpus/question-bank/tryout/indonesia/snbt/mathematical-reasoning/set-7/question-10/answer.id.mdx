@@ -25,6 +25,21 @@ Kelebihan awal <InlineMath math="41-35=6" />. Ikan aman jika kelebihan itu palin
 
 Setelah penggantian keempat, kelebihannya <InlineMath math="\frac{32}{27}" />, masih lebih dari <InlineMath math="1" /> karena <InlineMath math="32>27" />. **Baru setelah penggantian kelima kelebihannya <InlineMath math="\frac{64}{81}" />, kurang dari <InlineMath math="1" />**.
 
+Grafik berikut menggambar salinitas sesudah setiap penggantian. **Batangnya menyusut makin pelan**, dan baru batang kelima yang turun di bawah garis <InlineMath math="36\text{ g/L}" />.
+
+<Chart
+  title={<>Salinitas akuarium sesudah setiap penggantian <InlineMath math="40" /> liter air</>}
+  description={<>Salinitas mulai <InlineMath math="41\text{ g/L}" />, lalu menjadi <InlineMath math="39" />, sekitar <InlineMath math="37{,}67" />, <InlineMath math="36{,}78" />, <InlineMath math="36{,}19" />, dan <InlineMath math="35{,}79\text{ g/L}" /> sesudah penggantian pertama sampai kelima. Garis datar menandai batas aman atas, <InlineMath math="36\text{ g/L}" />. Sumbu nilai dimulai dari <InlineMath math="34" />.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Salinitas (g/L)", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((k) => 35 + 6 * Math.pow(2 / 3, k)) },
+    { label: "Batas aman atas", mark: "line", values: [36, 36, 36, 36, 36, 36] },
+  ]}
+  valueRange={{ min: 34, max: 42 }}
+  valueLabel="Salinitas (g/L)"
+/>
+
 # Memeriksa batas bawah
 
 Air pengisi bersalinitas tepat <InlineMath math="35" />, jadi kelebihannya selalu positif dan **salinitas tidak pernah turun di bawah <InlineMath math="35\text{ g/L}" />**. Batas bawah <InlineMath math="33\text{ g/L}" /> tidak pernah terlanggar, jadi penggantian kelima memang membuat ikan aman.

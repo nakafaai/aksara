@@ -28,6 +28,19 @@ Das Handy geht um 22.06 Uhr plus <InlineMath math="1" /> Stunde <InlineMath math
 
 Zur Probe zählst du alle Abschnitte zusammen: <InlineMath math="90+40+20+12+18+6+80=266" /> Minuten, und 19.00 Uhr plus <InlineMath math="266" /> Minuten ergibt tatsächlich 23.26 Uhr.
 
+Das Diagramm verfolgt Dimas' Akku alle <InlineMath math="15" /> Minuten. **Die Linie kreuzt die Grenze bei <InlineMath math="20\%" /> dreimal**, und jede Kreuzung ändert ihre Steigung, bis das Handy zwischen 23.15 und 23.30 Uhr ausgeht.
+
+<Chart
+  title={<>Dimas' Akku von 19.00 Uhr bis das Handy ausgeht</>}
+  description={<>Der Akku fällt von <InlineMath math="70\%" /> auf <InlineMath math="40\%" /> um 20.30 Uhr und auf <InlineMath math="15\%" /> um 21.30 Uhr, steigt beim Laden auf <InlineMath math="23\%" /> um 22.00 Uhr und fällt dann wieder bis <InlineMath math="0\%" /> um 23.26 Uhr. Die waagerechte Linie markiert <InlineMath math="20\%" />, die Grenze des Energiesparmodus.</>}
+  categories={["19.00", "19.15", "19.30", "19.45", "20.00", "20.15", "20.30", "20.45", "21.00", "21.15", "21.30", "21.45", "22.00", "22.15", "22.30", "22.45", "23.00", "23.15", "23.30"]}
+  series={[
+    { label: "Dimas' Akku (%)", mark: "line", values: [70, 65, 60, 55, 50, 45, 40, 32.5, 25, 18.75, 15, 20.5, 23, 17.75, 14, 10.25, 6.5, 2.75, 0] },
+    { label: "Grenze Energiesparmodus", mark: "line", values: Array.from({ length: 19 }, () => 20) },
+  ]}
+  valueLabel="Akku (%)"
+/>
+
 # Die falschen Antworten
 
 - 22.30 Uhr entsteht, wenn du **den Energiesparmodus ganz übersiehst**: Der Akku steht dann um 22.00 Uhr bei <InlineMath math="15\%" /> und ist nach <InlineMath math="30" /> Minuten leer.

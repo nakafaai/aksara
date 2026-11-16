@@ -11,6 +11,21 @@ Jumlah harga seluruh tiket adalah:
 
 Rata-ratanya <InlineMath math="\tfrac{173{.}000{.}000}{1{.}000}=173{.}000" /> rupiah, lebih dari <InlineMath math="\text{Rp}170{.}000" />. Pernyataan pertama benar. Hati-hati dengan rata-rata biasa dari tiga harga, <InlineMath math="\tfrac{120{.}000+150{.}000+200{.}000}{3}\approx156{.}667" />. Nilai itu salah karena **tahap normal berisi paling banyak tiket**, jadi harganya harus lebih berpengaruh.
 
+Grafik berikut membandingkan rata-rata berbobot dengan rata-rata biasa ketiga harga. **Hanya rata-rata berbobot yang melewati garis <InlineMath math="\text{Rp}170{.}000" />**, karena tahap normal memuat tiket paling banyak.
+
+<Chart
+  title={<>Rata-rata harga tiket dengan dan tanpa bobot banyak tiket</>}
+  description={<>Rata-rata berbobot seluruh <InlineMath math="1{.}000" /> tiket adalah <InlineMath math="\text{Rp}173{.}000" />. Rata-rata biasa ketiga harga sekitar <InlineMath math="\text{Rp}156{.}667" />. Garis datar menandai <InlineMath math="\text{Rp}170{.}000" />. Sumbu nilai dimulai dari <InlineMath math="\text{Rp}140{.}000" />.</>}
+  categories={["Rata-rata berbobot", "Rata-rata tiga harga"]}
+  bars="apart"
+  series={[
+    { label: "Rata-rata (rupiah)", mark: "bar", values: [(150 * 120000 + 300 * 150000 + 550 * 200000) / 1000, (120000 + 150000 + 200000) / 3] },
+    { label: "Rp170.000", mark: "line", values: [170000, 170000] },
+  ]}
+  valueRange={{ min: 140000, max: 180000 }}
+  valueLabel="Harga rata-rata (rupiah)"
+/>
+
 # Rata-rata tiket awal
 
 Untuk <InlineMath math="450" /> tiket pertama, jumlah harganya <InlineMath math="18{.}000{.}000+45{.}000{.}000=63{.}000{.}000" /> rupiah, sehingga:

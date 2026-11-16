@@ -29,6 +29,20 @@ Total hari Jumat adalah <InlineMath math="22{.}300+32{.}800=55{.}100" /> rupiah.
 
 Coba cek dengan biaya sore seluruhnya, <InlineMath math="60\cdot1{.}300+24{.}000=102{.}000" /> rupiah. Dewi membayar <InlineMath math="5{.}200" />, Citra <InlineMath math="32{.}800" />, dan Pak Andi sisanya: <InlineMath math="5{.}200+15{.}600+12{.}000" /> sampai km <InlineMath math="24" />, lalu <InlineMath math="24\cdot1{.}300=31{.}200" /> sendirian sampai rumah, jadi <InlineMath math="64{.}000" />. Jumlahnya <InlineMath math="5{.}200+32{.}800+64{.}000=102{.}000" />, cocok.
 
+Grafik berikut membandingkan bagian Citra pada setiap bagian jalan, pagi dan sore. **Setiap batang sore lebih tinggi**, karena tanpa Budi biaya yang sama dibagi oleh lebih sedikit orang.
+
+<Chart
+  title={<>Bagian Citra pada setiap bagian jalan, pagi dan sore hari Jumat</>}
+  description={<>Bensin di jalan tol: pagi <InlineMath math="\text{Rp}10{.}400" />, sore <InlineMath math="\text{Rp}15{.}600" />. Tarif tol: pagi <InlineMath math="\text{Rp}8{.}000" />, sore <InlineMath math="\text{Rp}12{.}000" />. Bensin km <InlineMath math="48" /> sampai <InlineMath math="60" />: pagi <InlineMath math="\text{Rp}3{.}900" />, sore <InlineMath math="\text{Rp}5{.}200" />.</>}
+  categories={["Bensin di jalan tol", "Tarif tol", "Bensin km 48 sampai 60"]}
+  bars="apart"
+  series={[
+    { label: "Pagi", mark: "bar", values: [31200 / 3, 24000 / 3, 15600 / 4] },
+    { label: "Sore", mark: "bar", values: [31200 / 2, 24000 / 2, 15600 / 3] },
+  ]}
+  valueLabel="Bagian Citra (rupiah)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain **lupa mengubah satu bagian sore hari**.

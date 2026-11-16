@@ -34,4 +34,19 @@ Steigt Citra Anfang April ein, arbeitet ihr Geld <InlineMath math="9" /> Monate,
 
 Wegen <InlineMath math="9\cdot2=18>17" /> ist <InlineMath math="\frac{9}{17}" /> mehr als die Hälfte. Die vierte Aussage ist **wahr**.
 
+Das Diagramm vergleicht Citras Anteil im tatsächlichen Fall und in beiden Gedankenspielen. **Der zweite Balken fällt unter die Hälftelinie**, während der dritte darüber steigt.
+
+<Chart
+  title={<>Citras Anteil am verteilten Gewinn in drei Fällen</>}
+  description={<>Im tatsächlichen Fall beträgt Citras Anteil <InlineMath math="\tfrac{1}{2}" />, also <InlineMath math="50\%" />. Zieht Ayu nichts ab, beträgt er <InlineMath math="\tfrac{4}{9}" />, etwa <InlineMath math="44{,}4\%" />. Steigt Citra Anfang April ein, beträgt er <InlineMath math="\tfrac{9}{17}" />, etwa <InlineMath math="52{,}9\%" />. Die Werteachse beginnt bei <InlineMath math="40\%" />.</>}
+  categories={["Tatsächlicher Fall", "Ayu zieht nichts ab", "Citra steigt im April ein"]}
+  bars="apart"
+  series={[
+    { label: "Citras Anteil (%)", mark: "bar", values: [(100 * 720) / 1440, (100 * 720) / 1620, (100 * 810) / 1530] },
+    { label: "Hälfte", mark: "line", values: [50, 50, 50] },
+  ]}
+  valueRange={{ min: 40, max: 55 }}
+  valueLabel="Citras Anteil (%)"
+/>
+
 Die erste Aussage ist also wahr, die zweite falsch, die dritte falsch und die vierte wahr.

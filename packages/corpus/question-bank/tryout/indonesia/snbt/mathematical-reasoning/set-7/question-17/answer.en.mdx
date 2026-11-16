@@ -20,6 +20,22 @@ Ten periods of equal length have to fit into that time.
 
 **The period length is the same on all four days**, so it has to meet both limits at once. The tighter limit is Monday's, because its ceremony is longer. The length is a whole number of minutes, so <InlineMath math="t\le39.5" /> means **at most <InlineMath math="39" /> minutes**.
 
+The chart below works out when school ends, in minutes after 07.00, for several period lengths. **The Monday bar already passes the 15.00 line at <InlineMath math="40" /> minutes**, while the Tuesday to Thursday bar is still well below it.
+
+<Chart
+  title={<>School finishing time with <InlineMath math="10" /> periods by period length</>}
+  description={<>For periods of <InlineMath math="38" /> to <InlineMath math="42" /> minutes, Monday ends <InlineMath math="465" />, <InlineMath math="475" />, <InlineMath math="485" />, <InlineMath math="495" />, and <InlineMath math="505" /> minutes after 07.00. Tuesday to Thursday end <InlineMath math="440" />, <InlineMath math="450" />, <InlineMath math="460" />, <InlineMath math="470" />, and <InlineMath math="480" /> minutes after 07.00. The flat line marks <InlineMath math="480" /> minutes, which is 15.00. The value axis starts at <InlineMath math="400" />.</>}
+  bars="apart"
+  categories={["38", "39", "40", "41", "42"]}
+  series={[
+    { label: "Monday", mark: "bar", values: [38, 39, 40, 41, 42].map((t) => 40 + 10 * t + 45) },
+    { label: "Tuesday to Thursday", mark: "bar", values: [38, 39, 40, 41, 42].map((t) => 15 + 10 * t + 45) },
+    { label: "15.00", mark: "line", values: [480, 480, 480, 480, 480] },
+  ]}
+  valueRange={{ min: 400, max: 520 }}
+  valueLabel="Minutes after 07.00"
+/>
+
 # Checking
 
 With <InlineMath math="39" />-minute periods, Monday ends <InlineMath math="40+390+45=475" /> minutes after 07.00, which is 14.55. With <InlineMath math="40" />-minute periods, Monday ends <InlineMath math="40+400+45=485" /> minutes after 07.00, which is 15.05, **<InlineMath math="5" /> minutes too late**. Tuesday to Thursday with <InlineMath math="39" />-minute periods end at 14.30, which is fine.

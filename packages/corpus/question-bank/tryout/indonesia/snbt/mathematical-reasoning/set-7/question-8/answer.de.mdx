@@ -14,6 +14,19 @@ Angenommen, der verteilte Gewinn beträgt <InlineMath math="D" /> Millionen. Ayu
 D &= 144
 \end{aligned}" />
 
+Das Diagramm zeichnet beide Beträge für mehrere Werte des verteilten Gewinns. **Bimas Linie ist steiler**, also beginnt sie unter Ayus Linie und holt sie genau bei einem verteilten Gewinn von <InlineMath math="144" /> Millionen ein.
+
+<Chart
+  title={<>Ayus Geld und Bimas Anteil nach verteiltem Gewinn</>}
+  description={<>Ayus Geld beträgt <InlineMath math="12+\tfrac{5}{24}D" /> Millionen Rupiah, Bimas Anteil <InlineMath math="\tfrac{7}{24}D" /> Millionen Rupiah. Für <InlineMath math="D=96" /> sind es <InlineMath math="32" /> und <InlineMath math="28" />. Für <InlineMath math="D=144" /> sind beide <InlineMath math="42" />. Für <InlineMath math="D=192" /> sind es <InlineMath math="52" /> und <InlineMath math="56" />.</>}
+  categories={["96", "120", "144", "168", "192"]}
+  series={[
+    { label: "Ayus Geld mit Gehalt", mark: "line", values: [96, 120, 144, 168, 192].map((d) => 12 + (5 * d) / 24) },
+    { label: "Bimas Anteil", mark: "line", values: [96, 120, 144, 168, 192].map((d) => (7 * d) / 24) },
+  ]}
+  valueLabel="Geld (Millionen Rupiah)"
+/>
+
 # Zurück zum Nettogewinn
 
 Der verteilte Gewinn ist <InlineMath math="90\%" /> dessen, was nach dem Gehalt übrig bleibt. Um einen Abzug von <InlineMath math="10\%" /> rückgängig zu machen, **teilst du durch <InlineMath math="0{,}9" /> und multiplizierst nicht mit <InlineMath math="1{,}1" />**. Danach kommt das Gehalt wieder dazu.

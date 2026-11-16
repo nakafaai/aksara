@@ -24,6 +24,19 @@ Ab <InlineMath math="310\text{ cm}" /> fällt das Wasser um <InlineMath math="40
 
 Das Wasser erreicht <InlineMath math="300\text{ cm}" /> um 13.15 Uhr und liegt danach darunter. Um 14.00 Uhr steht es bei <InlineMath math="270\text{ cm}" />, noch über <InlineMath math="250\text{ cm}" />, **der Status ist also wirklich Siaga** und nicht Waspada.
 
+Das Diagramm verfolgt den Wasserstand nach dem Gipfel alle <InlineMath math="20" /> Minuten. Die Linie **fällt jede Stunde steiler** und schneidet die Linie bei <InlineMath math="300\text{ cm}" /> zwischen 13.00 und 13.20 Uhr.
+
+<Chart
+  title={<>Wasserstand vom Gipfel um 11.00 Uhr bis 14.00 Uhr</>}
+  description={<>Der Wasserstand fällt von <InlineMath math="340\text{ cm}" /> um 11.00 Uhr auf <InlineMath math="330" /> um 12.00 Uhr, <InlineMath math="310" /> um 13.00 Uhr und <InlineMath math="270\text{ cm}" /> um 14.00 Uhr. Die waagerechte Linie markiert <InlineMath math="300\text{ cm}" />, die Awas-Grenze.</>}
+  categories={["11.00", "11.20", "11.40", "12.00", "12.20", "12.40", "13.00", "13.20", "13.40", "14.00"]}
+  series={[
+    { label: "Wasserstand (cm)", mark: "line", values: [340, 340 - 10 / 3, 340 - 20 / 3, 330, 330 - 20 / 3, 330 - 40 / 3, 310, 310 - 40 / 3, 310 - 80 / 3, 270] },
+    { label: "Status Awas", mark: "line", values: Array.from({ length: 10 }, () => 300) },
+  ]}
+  valueLabel="Wasserstand (cm)"
+/>
+
 # Die falschen Antworten
 
 - 11.20 Uhr entsteht, wenn der Regen schon nach <InlineMath math="1" /> Stunde ankommen soll. Dann nutzt jede Pegelstunde den falschen Regen.

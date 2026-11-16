@@ -33,6 +33,17 @@ For <InlineMath math="70" /> trees, each tree yields <InlineMath math="200-140=6
 
 The profit with <InlineMath math="70" /> trees is larger, so the third statement is false. If you use the formula <InlineMath math="16{,}000n(94-n)" /> for <InlineMath math="30" /> trees, you get <InlineMath math="30{,}720{,}000" />, and the statement looks true.
 
+The chart below works out the profit at <InlineMath math="\text{Rp}8{,}000" /> with the right formula for each number of trees. **The <InlineMath math="70" />-tree bar is a little taller than the <InlineMath math="30" />-tree bar**, even though each tree yields far less.
+
+<Chart
+  title={<>Orchard profit at <InlineMath math="\text{Rp}8{,}000" /> per kilogram by number of trees</>}
+  description={<>For <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="50" />, <InlineMath math="60" />, and <InlineMath math="70" /> trees, the profit is <InlineMath math="\text{Rp}25{,}920{,}000" />, <InlineMath math="\text{Rp}34{,}560{,}000" />, <InlineMath math="\text{Rp}35{,}200{,}000" />, <InlineMath math="\text{Rp}32{,}640{,}000" />, and <InlineMath math="\text{Rp}26{,}880{,}000" />.</>}
+  bars="apart"
+  categories={["30", "40", "50", "60", "70"]}
+  series={[{ label: "Profit (rupiah)", mark: "bar", values: [30, 40, 50, 60, 70].map((n) => (n <= 40 ? 864000 * n : 16000 * n * (94 - n))) }]}
+  valueLabel="Profit (rupiah)"
+/>
+
 # The yield per tree at sixty five
 
 With exactly <InlineMath math="65" /> trees, the yield per tree is <InlineMath math="200-130=70\text{ kg}" />. That isn't less than <InlineMath math="70\text{ kg}" />. The words **at least sixty five** include <InlineMath math="65" /> itself, so the fourth statement is false. The yield per tree only drops below <InlineMath math="70\text{ kg}" /> from <InlineMath math="66" /> trees on.
