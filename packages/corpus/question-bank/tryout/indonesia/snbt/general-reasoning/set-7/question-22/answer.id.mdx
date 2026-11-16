@@ -8,6 +8,20 @@ Setiap diagonal memuat <InlineMath math="13" /> ubin. Kedua diagonal berpotongan
 
 <BlockMath math="\text{ubin putih}=169-25=144" />
 
+Grafik berikut menggambar ubin hitam dan putih pada keenam pola. **Ubin hitam hanya bertambah <InlineMath math="4" /> setiap pola, sedangkan ubin putih tumbuh sebagai <InlineMath math="(2n)^2" />**.
+
+<Chart
+  title={<>Ubin hitam dan ubin putih pada pola ke-<InlineMath math="1" /> sampai ke-<InlineMath math="6" /></>}
+  description={<>Ubin hitamnya <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="17" />, <InlineMath math="21" />, dan <InlineMath math="25" />. Ubin putihnya <InlineMath math="4" />, <InlineMath math="16" />, <InlineMath math="36" />, <InlineMath math="64" />, <InlineMath math="100" />, dan <InlineMath math="144" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6"]}
+  series={[
+    { label: "Ubin hitam", mark: "bar", values: [1, 2, 3, 4, 5, 6].map((n) => 4 * n + 1) },
+    { label: "Ubin putih", mark: "bar", values: [1, 2, 3, 4, 5, 6].map((n) => (2 * n + 1) * (2 * n + 1) - (4 * n + 1)) },
+  ]}
+  valueLabel="Banyak ubin"
+/>
+
 Periksa dengan pola ke-<InlineMath math="1" />: <InlineMath math="9-(3+3-1)=4" /> ubin putih, sesuai dengan <InlineMath math="5" /> ubin hitam pada soal. Pola umumnya <InlineMath math="(2n+1)^2-(4n+1)=4n^2=(2n)^2" />, dan untuk <InlineMath math="n=6" /> hasilnya <InlineMath math="12^2=144" />.
 
 Nilai <InlineMath math="169" /> adalah banyak seluruh ubin, bukan ubin putih. Jadi, pola ke-<InlineMath math="6" /> memiliki <InlineMath math="144" /> ubin putih.

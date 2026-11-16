@@ -5,6 +5,18 @@ If Ayu is at the middle post, the middle is **already full**. Trace the conseque
 - Dani cannot go north, since rule 3 would then put Eko in the south, but Eko is north. So Dani goes south.
 - Bima is left, and the one free place is in the north.
 
+The diagram below draws that chain. **Each step leaves only one place**, so the assignment is unique.
+
+<Mermaid
+  title={<>The chain of assignments when Ayu is at the middle post</>}
+  description={<>With Ayu in the middle, Citra goes south. Eko can't be with Citra, so Eko goes north. Dani can't go north, so Dani goes south. The place left for Bima is in the north.</>}
+  chart={`flowchart LR
+    A["Ayu at the middle post"] -->|"rule 2"| C["Citra south"]
+    C -->|"rule 5"| E["Eko north"]
+    E -->|"rule 3"| D["Dani south"]
+    D --> B["Bima north"]`}
+/>
+
 The assignment: Bima and Eko north, Ayu in the middle, Citra and Dani south. Check rules 1 and 4: Ayu and Bima are at different posts, and Bima is not in the middle. Every rule holds.
 
 The other options contradict this only assignment: Citra and Dani are south, Eko is north, and Bima and Dani are at different posts.

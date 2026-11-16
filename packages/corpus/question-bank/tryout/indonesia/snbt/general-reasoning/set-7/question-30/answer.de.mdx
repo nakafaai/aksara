@@ -9,3 +9,18 @@ Ist die fünfte Note <InlineMath math="x" />:
 <BlockMath math="434+x\ge510\quad\Rightarrow\quad x\ge76" />
 
 Probe: Mit <InlineMath math="x=76" /> ist die Summe <InlineMath math="510" /> und der Durchschnitt genau <InlineMath math="85" />. Rina braucht im fünften Test also mindestens <InlineMath math="76" /> Punkte.
+
+Das Diagramm zeichnet alle sechs Ergebnisse mit dem niedrigsten fünften Ergebnis, das reicht. **Die Balken über der Linie bei <InlineMath math="85" /> gleichen die Balken darunter aus**, also ist der Schnitt genau <InlineMath math="85" />.
+
+<Chart
+  title={<>Rinas sechs Testergebnisse mit einem fünften Ergebnis von <InlineMath math="76" /></>}
+  description={<>Die Ergebnisse sind <InlineMath math="82" />, <InlineMath math="88" />, <InlineMath math="79" />, <InlineMath math="90" />, <InlineMath math="76" /> und <InlineMath math="95" />. Ihre Summe ist <InlineMath math="510" />, der Schnitt also <InlineMath math="85" />.</>}
+  categories={["Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Test 6"]}
+  bars="apart"
+  series={[
+    { label: "Testergebnis", mark: "bar", values: [82, 88, 79, 90, 6 * 85 - (82 + 88 + 79 + 90 + 95), 95] },
+    { label: "Angestrebter Schnitt", mark: "line", values: [85, 85, 85, 85, 85, 85] },
+  ]}
+  valueLabel="Punkte"
+  valueRange={{ min: 60, max: 100 }}
+/>

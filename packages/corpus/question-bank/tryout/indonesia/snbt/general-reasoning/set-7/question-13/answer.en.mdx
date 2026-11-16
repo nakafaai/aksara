@@ -1,5 +1,15 @@
 "Not all campers brought a flashlight" (*Tidak semua ...*) denies "all campers brought a flashlight". That "all" statement already fails if **at least one** camper did not bring one. So the statement is equivalent to "**There is** a camper who did not bring a flashlight" (*Ada peserta kemah yang tidak membawa senter*).
 
+The diagram below checks when the "not all" statement is true. **One camper without a flashlight is already enough**.
+
+<Mermaid
+  title={<>When "not all campers brought a flashlight" is true</>}
+  description={<>If at least one camper didn't bring a flashlight, "all campers brought one" fails, so "not all brought one" is true. If every camper brought one, the statement is false.</>}
+  chart={`flowchart LR
+    A{"Is there a camper without a flashlight?"} -->|"yes, at least one"| B["Not all brought one: true"]
+    A -->|"none"| C["Not all brought one: false"]`}
+/>
+
 The other options are not equivalent:
 
 - "All campers did not bring a flashlight" is much stronger. The original stays true even if only one camper lacks a flashlight.

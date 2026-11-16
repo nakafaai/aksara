@@ -1,5 +1,17 @@
 Gabungkan tiga pernyataan pertama menjadi satu rantai: <InlineMath math="A>B>D>C" />. Pernyataan keempat hanya menyebut <InlineMath math="E<A" />, jadi **posisi E** dapat berada di mana saja di bawah A.
 
+Diagram berikut menggambar keempat pernyataan sebagai panah "lebih tinggi daripada". **Semua panah berawal dari A, langsung atau lewat gedung lain**.
+
+<Mermaid
+  title={<>Hubungan tinggi kelima gedung</>}
+  description={<>A lebih tinggi daripada B, B lebih tinggi daripada D, dan D lebih tinggi daripada C. A juga lebih tinggi daripada E, tetapi letak E terhadap B, D, dan C tidak diketahui.</>}
+  chart={`flowchart TD
+    A["Gedung A"] --> B["Gedung B"]
+    B --> D["Gedung D"]
+    D --> C["Gedung C"]
+    A --> E["Gedung E, letaknya belum pasti"]`}
+/>
+
 A lebih tinggi daripada B, D, C, dan juga E. Jadi, gedung A **pasti** yang paling tinggi.
 
 Pilihan lain tidak pasti, karena E dapat menempati beberapa posisi:

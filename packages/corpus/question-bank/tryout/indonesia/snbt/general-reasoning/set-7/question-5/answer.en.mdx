@@ -6,6 +6,20 @@ Mark each statement Benar (true) or Salah (false), computing straight from the t
 
 **Statement 3** is false. The March total is <InlineMath math="310+82=392" />, while twice the February total is <InlineMath math="2\times(115+85)=400" />. And <InlineMath math="392" /> is less than <InlineMath math="400" />.
 
+The chart below puts the March figures next to their comparisons. **March cats beat their comparison, but the March total doesn't**, though both gaps are small.
+
+<Chart
+  title={<>March figures compared with the comparisons from February</>}
+  description={<>March cat visits are <InlineMath math="310" />, more than <InlineMath math="2.5\times115=287.5" />. Total March visits are <InlineMath math="392" />, less than <InlineMath math="2\times200=400" />.</>}
+  categories={["Cat visits", "Total visits"]}
+  bars="apart"
+  series={[
+    { label: "March figure", mark: "bar", values: [310, 310 + 82] },
+    { label: "Comparison from February", mark: "bar", values: [(25 * 115) / 10, 2 * (115 + 85)] },
+  ]}
+  valueLabel="Visits"
+/>
+
 **Statement 4** is true. <InlineMath math="140" /> is more than <InlineMath math="120" />.
 
 So statements 1 and 4 are true, while statements 2 and 3 are false.

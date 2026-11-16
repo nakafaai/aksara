@@ -4,6 +4,20 @@ Ketidaksamaan <InlineMath math="|x-3|<5" /> berarti **jarak <InlineMath math="x"
 
 Bilangan bulat yang memenuhi adalah <InlineMath math="-1, 0, 1, 2, 3, 4, 5, 6, 7" />. Batas <InlineMath math="-2" /> dan <InlineMath math="8" /> tidak termasuk karena tanda ketidaksamaannya "kurang dari".
 
+Grafik berikut menggambar jarak setiap bilangan bulat ke <InlineMath math="3" />. **Hanya batang di bawah garis <InlineMath math="5" /> yang memenuhi**, yaitu dari <InlineMath math="-1" /> sampai <InlineMath math="7" />.
+
+<Chart
+  title={<>Nilai <InlineMath math="|x-3|" /> untuk bilangan bulat dari <InlineMath math="-2" /> sampai <InlineMath math="8" /></>}
+  description={<>Untuk <InlineMath math="x=-2" /> dan <InlineMath math="x=8" />, jaraknya tepat <InlineMath math="5" />, jadi tidak memenuhi. Sembilan bilangan bulat dari <InlineMath math="-1" /> sampai <InlineMath math="7" /> berjarak kurang dari <InlineMath math="5" />.</>}
+  bars="apart"
+  categories={["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Jarak ke 3", mark: "bar", values: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8].map((x) => Math.abs(x - 3)) },
+    { label: "Batas 5", mark: "line", values: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5] },
+  ]}
+  valueLabel="Jarak"
+/>
+
 **Pernyataan 1** bernilai Salah. Ada <InlineMath math="9" /> bilangan bulat, bukan <InlineMath math="10" />.
 
 **Pernyataan 2** bernilai Salah. <InlineMath math="x=-2" /> memberi <InlineMath math="|{-5}|=5" />, yang tidak kurang dari <InlineMath math="5" />. Nilai terkecilnya <InlineMath math="-1" />.

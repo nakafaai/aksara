@@ -9,3 +9,14 @@ Split into **two cases** by the two volumes, since they are always chosen togeth
 <BlockMath math="\binom{5}{3}=10" />
 
 Choosing exactly one volume is not allowed, so that case is not counted. The total is <InlineMath math="5+10=15" /> ways.
+
+The chart below puts the three possibilities side by side. **The one-volume case is zero**, so the total is <InlineMath math="5+10=15" />.
+
+<Chart
+  title={<>Ways to choose the books by the two volumes</>}
+  description={<>Choosing both volumes gives <InlineMath math="5" /> ways. Choosing neither gives <InlineMath math="10" /> ways. Choosing exactly one volume isn't allowed, so it gives <InlineMath math="0" /> ways.</>}
+  categories={["Both volumes", "Neither volume", "Exactly one volume"]}
+  bars="apart"
+  series={[{ label: "Ways", mark: "bar", values: [5, (5 * 4 * 3) / 6, 0] }]}
+  valueLabel="Ways"
+/>

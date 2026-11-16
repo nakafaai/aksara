@@ -12,4 +12,18 @@ Die Gewichte ergeben zusammen <InlineMath math="48+48+36=132" />. Cicis Anteil:
 
 Probe: Ani und Budi erhalten je <InlineMath math="\frac{48}{132}\times6{,}6=2{,}4" /> Millionen, und <InlineMath math="2{,}4+2{,}4+1{,}8=6{,}6" />.
 
+Das Diagramm vergleicht die richtige Teilung mit einer gleichen Teilung. **Cicis Balken ist am kürzesten**, weil ihr Kapital am kleinsten ist, obwohl sie so lange investiert hat wie Ani.
+
+<Chart
+  title={<>Gewinnanteil jeder Person in Millionen Rupiah</>}
+  description={<>Bei den Gewichten <InlineMath math="48" />, <InlineMath math="48" /> und <InlineMath math="36" /> bekommen Ani und Budi je <InlineMath math="2{,}4" /> Millionen und Cici <InlineMath math="1{,}8" /> Millionen. Bei gleicher Teilung bekäme jede Person <InlineMath math="2{,}2" /> Millionen.</>}
+  bars="apart"
+  categories={["Ani", "Budi", "Cici"]}
+  series={[
+    { label: "Anteil nach Kapital und Zeit", mark: "bar", values: [48, 48, 36].map((w) => (w * 66) / 1320) },
+    { label: "Anteil bei gleicher Teilung", mark: "bar", values: [66 / 30, 66 / 30, 66 / 30] },
+  ]}
+  valueLabel="Millionen Rupiah"
+/>
+
 Bei gleicher Aufteilung bekäme jede Person <InlineMath math="\text{Rp}2{,}2" /> Millionen, und eine Aufteilung nur nach Kapital übersähe, dass Budi nur <InlineMath math="8" /> Monate investierte. Cicis Gewinnanteil beträgt also <InlineMath math="\text{Rp}1{,}8" /> Millionen.

@@ -4,6 +4,19 @@ Test whether Eko **can** serve at the middle post. If Eko is in the middle:
 - Dani cannot be at the north post, since rule 3 would then put Eko in the south, but Eko is in the middle. So Dani is at the south post.
 - The south post now holds Citra and Dani, so Ayu and Bima must both go north. That breaks rule 1.
 
+The diagram below draws what follows if Eko is at the middle post. **The chain ends with Ayu and Bima at the same post**, which rule 1 forbids.
+
+<Mermaid
+  title={<>What follows if Eko serves at the middle post</>}
+  description={<>With Eko in the middle, Citra must go south. Dani can't go north, so Dani goes south. The south post is full, so Ayu and Bima both go north and break rule 1.</>}
+  chart={`flowchart LR
+    E["Eko at the middle post"] -->|"rule 2"| C["Citra at the south post"]
+    E -->|"rule 3"| D["Dani at the south post"]
+    C --> S["South post full"]
+    D --> S
+    S --> X["Ayu and Bima north: breaks rule 1"]`}
+/>
+
 Every case fails, so Eko is **certainly not** at the middle post.
 
 The other options are not certain. Ayu and Dani in the north, Citra in the middle, and Bima and Eko in the south meets every rule, so Bima is not certainly north and Dani not certainly south. Bima and Eko in the north, Ayu in the middle, and Citra and Dani in the south also works, so Citra is not certainly in the middle and Ayu not certainly north.

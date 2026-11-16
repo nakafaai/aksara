@@ -10,6 +10,17 @@ Berechne die Gebühr zuerst **pro Buch**, denn die Obergrenze in Regel 4 gilt pr
 
 Das liegt über der Grenze, also beträgt Pak Hadis Gebühr <InlineMath math="30{.}000" />.
 
+Das Diagramm stellt die Gebühr jedes Buchs nebeneinander. **Der Balken von Pak Hadi wird auf <InlineMath math="30{.}000" /> gekappt**, weil die Obergrenze pro Buch gilt.
+
+<Chart
+  title={<>Gebühren von Nadia und Pak Hadi vor und nach der Obergrenze</>}
+  description={<>Ein Buch von Nadia kostet <InlineMath math="11{.}000" /> Rupiah, ihre zwei Bücher also <InlineMath math="22{.}000" />. Das Buch von Pak Hadi ergibt <InlineMath math="33{.}000" /> Rupiah, die Obergrenze kappt es auf <InlineMath math="30{.}000" />. Zusammen sind es <InlineMath math="52{.}000" /> Rupiah.</>}
+  categories={["Ein Buch von Nadia", "Zwei Bücher von Nadia", "Buch von Pak Hadi ohne Grenze", "Buch von Pak Hadi mit Grenze"]}
+  bars="apart"
+  series={[{ label: "Gebühr (Rupiah)", mark: "bar", values: [5 * 1000 + 3 * 2000, 2 * (5 * 1000 + 3 * 2000), 7 * 1000 + 13 * 2000, Math.min(7 * 1000 + 13 * 2000, 30000)] }]}
+  valueLabel="Rupiah"
+/>
+
 <BlockMath math="22{.}000+30{.}000=52{.}000" />
 
 Der Wert <InlineMath math="\text{Rp}55{.}000" /> entsteht, wenn man die Grenze von <InlineMath math="\text{Rp}30{.}000" /> vergisst. Beide zahlen also zusammen <InlineMath math="\text{Rp}52{.}000" />.

@@ -9,3 +9,18 @@ Jika nilai ulangan kelima <InlineMath math="x" />:
 <BlockMath math="434+x\ge510\quad\Rightarrow\quad x\ge76" />
 
 Periksa: dengan <InlineMath math="x=76" />, jumlahnya <InlineMath math="510" /> dan rata-ratanya tepat <InlineMath math="85" />. Jadi, Rina paling rendah harus memperoleh nilai <InlineMath math="76" /> pada ulangan kelima.
+
+Grafik berikut menggambar keenam nilai dengan nilai kelima paling rendah yang cukup. **Batang di atas garis <InlineMath math="85" /> menutup kekurangan batang di bawahnya**, sehingga rata-ratanya tepat <InlineMath math="85" />.
+
+<Chart
+  title={<>Enam nilai ulangan Rina dengan nilai kelima <InlineMath math="76" /></>}
+  description={<>Nilainya <InlineMath math="82" />, <InlineMath math="88" />, <InlineMath math="79" />, <InlineMath math="90" />, <InlineMath math="76" />, dan <InlineMath math="95" />. Jumlahnya <InlineMath math="510" />, sehingga rata-ratanya <InlineMath math="85" />.</>}
+  categories={["Ulangan 1", "Ulangan 2", "Ulangan 3", "Ulangan 4", "Ulangan 5", "Ulangan 6"]}
+  bars="apart"
+  series={[
+    { label: "Nilai ulangan", mark: "bar", values: [82, 88, 79, 90, 6 * 85 - (82 + 88 + 79 + 90 + 95), 95] },
+    { label: "Rata-rata yang diinginkan", mark: "line", values: [85, 85, 85, 85, 85, 85] },
+  ]}
+  valueLabel="Nilai"
+  valueRange={{ min: 60, max: 100 }}
+/>

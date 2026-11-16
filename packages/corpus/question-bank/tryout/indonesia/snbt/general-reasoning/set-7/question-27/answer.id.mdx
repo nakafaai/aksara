@@ -12,4 +12,18 @@ Jumlah bobotnya <InlineMath math="48+48+36=132" />. Bagian Cici:
 
 Periksa: bagian Ani dan Budi masing-masing <InlineMath math="\frac{48}{132}\times6{,}6=2{,}4" /> juta, dan <InlineMath math="2{,}4+2{,}4+1{,}8=6{,}6" />.
 
+Grafik berikut membandingkan pembagian yang benar dengan pembagian sama rata. **Batang Cici paling pendek**, karena modalnya paling kecil walaupun waktunya sama panjang dengan Ani.
+
+<Chart
+  title={<>Bagian keuntungan setiap orang dalam juta rupiah</>}
+  description={<>Dengan bobot <InlineMath math="48" />, <InlineMath math="48" />, dan <InlineMath math="36" />, Ani dan Budi masing-masing mendapat <InlineMath math="2{,}4" /> juta dan Cici <InlineMath math="1{,}8" /> juta. Jika dibagi sama rata, setiap orang mendapat <InlineMath math="2{,}2" /> juta.</>}
+  bars="apart"
+  categories={["Ani", "Budi", "Cici"]}
+  series={[
+    { label: "Bagian sebanding modal dan waktu", mark: "bar", values: [48, 48, 36].map((w) => (w * 66) / 1320) },
+    { label: "Bagian jika dibagi sama rata", mark: "bar", values: [66 / 30, 66 / 30, 66 / 30] },
+  ]}
+  valueLabel="Juta rupiah"
+/>
+
 Jika keuntungan dibagi sama rata, setiap orang mendapat <InlineMath math="\text{Rp}2{,}2" /> juta, dan pembagian menurut besar modal saja mengabaikan bahwa Budi hanya menanam modal selama <InlineMath math="8" /> bulan. Jadi, bagian keuntungan Cici adalah <InlineMath math="\text{Rp}1{,}8" /> juta.

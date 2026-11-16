@@ -3,6 +3,20 @@ Pisahkan setiap suku menjadi **huruf** dan **angka**, lalu ubah huruf menjadi ur
 - Urutan huruf bertambah <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, jadi berikutnya bertambah <InlineMath math="5" />: <InlineMath math="10+5=15" />, yaitu huruf O.
 - Angkanya selalu dua kali urutan hurufnya: <InlineMath math="2\times1=2" />, <InlineMath math="2\times3=6" />, <InlineMath math="2\times6=12" />, <InlineMath math="2\times10=20" />. Jadi, angka berikutnya <InlineMath math="2\times15=30" />.
 
+Grafik berikut menggambar kedua bagian suku. **Batang bilangan selalu dua kali batang urutan huruf**, dan suku kelima jatuh pada O dan <InlineMath math="30" />.
+
+<Chart
+  title={<>Urutan huruf dan bilangan pada suku ke-<InlineMath math="1" /> sampai ke-<InlineMath math="5" /></>}
+  description={<>Urutan hurufnya <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="10" />, lalu <InlineMath math="15" />, yaitu O. Bilangannya <InlineMath math="2" />, <InlineMath math="6" />, <InlineMath math="12" />, <InlineMath math="20" />, lalu <InlineMath math="30" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Urutan huruf dalam abjad", mark: "bar", values: [1, 3, 6, 10, 10 + 5] },
+    { label: "Bilangan pada suku", mark: "bar", values: [1, 3, 6, 10, 15].map((p) => 2 * p) },
+  ]}
+  valueLabel="Nilai"
+/>
+
 Suku berikutnya adalah O30.
 
 Pilihan lain keliru pada salah satu bagian: N dan M salah menghitung urutan huruf, P terlalu jauh, dan angka <InlineMath math="28" /> tidak sama dengan dua kali urutan huruf O.

@@ -1,5 +1,17 @@
 Join the first three statements into one chain: <InlineMath math="A>B>D>C" />. The fourth statement only says <InlineMath math="E<A" />, so **E's position** can be anywhere below A.
 
+The diagram below draws the four statements as "taller than" arrows. **Every arrow starts from A, directly or through another building**.
+
+<Mermaid
+  title={<>Height relations among the five buildings</>}
+  description={<>A is taller than B, B is taller than D, and D is taller than C. A is also taller than E, but E's place relative to B, D, and C is unknown.</>}
+  chart={`flowchart TD
+    A["Building A"] --> B["Building B"]
+    B --> D["Building D"]
+    D --> C["Building C"]
+    A --> E["Building E, position not fixed"]`}
+/>
+
 A is taller than B, D, C, and E as well. So building A is **certainly** the tallest.
 
 The other options are not certain, because E can take several positions:

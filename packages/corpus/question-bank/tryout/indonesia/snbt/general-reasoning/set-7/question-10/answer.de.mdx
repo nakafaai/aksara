@@ -3,6 +3,20 @@ Zerlege jedes Glied in **einen Buchstaben** und **eine Zahl** und ersetze den Bu
 - Die Buchstabenstellen wachsen um <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, als Nächstes also um <InlineMath math="5" />: <InlineMath math="10+5=15" />, der Buchstabe O.
 - Die Zahl ist immer das Doppelte der Buchstabenstelle: <InlineMath math="2\times1=2" />, <InlineMath math="2\times3=6" />, <InlineMath math="2\times6=12" />, <InlineMath math="2\times10=20" />. Die nächste Zahl ist also <InlineMath math="2\times15=30" />.
 
+Das Diagramm zeichnet beide Teile jedes Glieds. **Der Zahlenbalken ist immer doppelt so hoch wie der Buchstabenbalken**, und das fünfte Glied landet bei O und <InlineMath math="30" />.
+
+<Chart
+  title={<>Buchstabenstellen und Zahlen in den Gliedern <InlineMath math="1" /> bis <InlineMath math="5" /></>}
+  description={<>Die Buchstabenstellen sind <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="10" /> und dann <InlineMath math="15" />, also O. Die Zahlen sind <InlineMath math="2" />, <InlineMath math="6" />, <InlineMath math="12" />, <InlineMath math="20" /> und dann <InlineMath math="30" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Stelle des Buchstabens im Alphabet", mark: "bar", values: [1, 3, 6, 10, 10 + 5] },
+    { label: "Zahl im Glied", mark: "bar", values: [1, 3, 6, 10, 15].map((p) => 2 * p) },
+  ]}
+  valueLabel="Wert"
+/>
+
 Das nächste Glied ist O30.
 
 Die anderen Optionen irren in einem Teil: N und M verzählen sich bei der Buchstabenstelle, P geht zu weit, und <InlineMath math="28" /> ist nicht das Doppelte der Stelle von O.

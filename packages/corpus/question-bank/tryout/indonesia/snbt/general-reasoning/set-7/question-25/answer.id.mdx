@@ -8,4 +8,18 @@ Sisa target yang harus dipenuhi lemon adalah <InlineMath math="4{.}000-2{.}850=1
 
 Banyak gelas harus bilangan bulat, jadi **dibulatkan ke atas** menjadi <InlineMath math="192" />. Periksa: <InlineMath math="191" /> gelas memberi <InlineMath math="2{.}850+1{.}146=3{.}996" /> ribu, masih kurang, sedangkan <InlineMath math="192" /> gelas memberi <InlineMath math="2{.}850+1{.}152=4{.}002" /> ribu.
 
+Grafik berikut menggambar pendapatan untuk beberapa banyak gelas lemon. **Garis pendapatan baru melewati target pada <InlineMath math="192" /> gelas**.
+
+<Chart
+  title={<>Pendapatan seminggu menurut banyak gelas lemon</>}
+  description={<>Dengan <InlineMath math="n" /> gelas lemon, pendapatannya <InlineMath math="2{.}850+6n" /> ribu rupiah. Untuk <InlineMath math="191" /> gelas, pendapatannya <InlineMath math="3{.}996" />. Untuk <InlineMath math="192" /> gelas, pendapatannya <InlineMath math="4{.}002" />, di atas target <InlineMath math="4{.}000" />.</>}
+  categories={["189", "190", "191", "192", "193"]}
+  series={[
+    { label: "Pendapatan seminggu", mark: "line", values: [189, 190, 191, 192, 193].map((n) => 2850 + 6 * n) },
+    { label: "Target", mark: "line", values: [4000, 4000, 4000, 4000, 4000] },
+  ]}
+  valueLabel="Ribu rupiah"
+  valueRange={{ min: 3980, max: 4010 }}
+/>
+
 Jadi, paling sedikit harus terjual <InlineMath math="192" /> gelas lemon.

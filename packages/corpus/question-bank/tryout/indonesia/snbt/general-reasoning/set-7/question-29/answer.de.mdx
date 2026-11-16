@@ -9,3 +9,14 @@ Teile in **zwei Fälle** nach den beiden Bänden, denn sie werden immer zusammen
 <BlockMath math="\binom{5}{3}=10" />
 
 Genau einen Band zu wählen ist nicht erlaubt, dieser Fall zählt also nicht. Insgesamt gibt es <InlineMath math="5+10=15" /> Möglichkeiten.
+
+Das Diagramm stellt die drei Möglichkeiten nebeneinander. **Der Fall mit nur einem Band ist null**, also sind es insgesamt <InlineMath math="5+10=15" />.
+
+<Chart
+  title={<>Möglichkeiten der Buchauswahl nach den beiden Bänden</>}
+  description={<>Beide Bände zu wählen ergibt <InlineMath math="5" /> Möglichkeiten. Keinen der beiden zu wählen ergibt <InlineMath math="10" />. Genau einen Band zu wählen ist nicht erlaubt, also <InlineMath math="0" />.</>}
+  categories={["Beide Bände", "Keiner der Bände", "Genau ein Band"]}
+  bars="apart"
+  series={[{ label: "Möglichkeiten", mark: "bar", values: [5, (5 * 4 * 3) / 6, 0] }]}
+  valueLabel="Möglichkeiten"
+/>
