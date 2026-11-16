@@ -10,7 +10,7 @@ const card = { description: [text("Look closely.")], title: [text("Lab")] };
 
 describe("physiology labs", () => {
   it("checks a microscope with a measured field or a calibrated graticule", () => {
-    const props = assessmentVisuals.MicroscopeLab.props;
+    const { props } = assessmentVisuals.MicroscopeLab;
     const lab = {
       ...card,
       cell: 50,
@@ -44,7 +44,7 @@ describe("physiology labs", () => {
   });
 
   it("checks a nephron with glucose, urea, or both", () => {
-    const props = assessmentVisuals.NephronLab.props;
+    const { props } = assessmentVisuals.NephronLab;
     const lab = {
       ...card,
       filtration: 125,
@@ -71,7 +71,7 @@ describe("physiology labs", () => {
   });
 
   it("checks two respirometers and names every substrate", () => {
-    const props = assessmentVisuals.RespirometerLab.props;
+    const { props } = assessmentVisuals.RespirometerLab;
     const lab = {
       ...card,
       carbonDioxide: 21,
