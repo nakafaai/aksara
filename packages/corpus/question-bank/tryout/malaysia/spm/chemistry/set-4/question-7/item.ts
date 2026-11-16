@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "analysing",
+    cognitiveLevel: "applying",
     contentDomain: "form-4",
     topic: "mole-concept",
   },
