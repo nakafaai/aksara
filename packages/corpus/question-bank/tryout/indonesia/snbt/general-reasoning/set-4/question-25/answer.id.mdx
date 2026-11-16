@@ -10,6 +10,20 @@ Langkah 2. Hitung banyak peserta lulus yang dibutuhkan.
 
 Banyak orang harus bilangan bulat. <InlineMath math="102" /> orang belum cukup karena <InlineMath math="102 : 128 \approx 79{,}7\%" />, masih di bawah <InlineMath math="80\%" />. Jadi, dibutuhkan paling sedikit <InlineMath math="103" /> orang lulus.
 
+Grafik berikut menggambar persentase kelulusan untuk beberapa banyak peserta lulus. **Garis kelulusan baru menyentuh target setelah <InlineMath math="103" /> orang lulus**.
+
+<Chart
+  title={<>Persentase kelulusan Kecamatan R dari <InlineMath math="128" /> peserta ujian</>}
+  description={<>Dengan <InlineMath math="96" /> orang lulus, persentasenya <InlineMath math="75\%" />. Dengan <InlineMath math="102" /> orang, sekitar <InlineMath math="79{,}7\%" />, masih di bawah <InlineMath math="80\%" />. Dengan <InlineMath math="103" /> orang, sekitar <InlineMath math="80{,}5\%" />.</>}
+  categories={["96", "99", "100", "101", "102", "103", "104"]}
+  series={[
+    { label: "Persentase kelulusan", mark: "line", values: [96, 99, 100, 101, 102, 103, 104].map((n) => (n / 128) * 100) },
+    { label: "Target 80%", mark: "line", values: [80, 80, 80, 80, 80, 80, 80] },
+  ]}
+  valueLabel="Kelulusan (%)"
+  valueRange={{ min: 70, max: 85 }}
+/>
+
 Langkah 3. Bandingkan dengan tahun ini, ketika <InlineMath math="96" /> orang lulus.
 
 <BlockMath math="103 - 96 = 7" />

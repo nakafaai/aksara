@@ -20,6 +20,20 @@ Dari suku ke-<InlineMath math="1" /> ke suku ke-<InlineMath math="32" /> ada <In
 
 <BlockMath math="\begin{aligned} 31 &= 3 \times 10 + 1 \\ 2 \times 31 = 62 &= 7 \times 8 + 6 \end{aligned}" />
 
+Grafik berikut melanjutkan kedua aturan sampai suku ke-<InlineMath math="11" />, yang sama dengan suku ke-<InlineMath math="32" />. **Banyak sel berulang setiap tiga suku, sedangkan sel awal maju dua sel dan memutar setiap tujuh suku**.
+
+<Chart
+  title={<>Banyak sel menyala dan sel awal pada suku ke-<InlineMath math="1" /> sampai ke-<InlineMath math="11" /></>}
+  description={<>Banyak sel menyala berulang <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />. Sel awal berjalan <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" />, <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" />, lalu kembali ke <InlineMath math="1" />. Pada suku ke-<InlineMath math="11" />, ada <InlineMath math="2" /> sel menyala mulai dari sel <InlineMath math="7" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]}
+  series={[
+    { label: "Banyak sel menyala", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((n) => ((n - 1) % 3) + 1) },
+    { label: "Sel awal", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((n) => ((2 * (n - 1)) % 7) + 1) },
+  ]}
+  valueLabel="Banyak sel atau nomor sel"
+/>
+
 Baris pertama berarti banyak sel menyala sama seperti setelah <InlineMath math="1" /> langkah, yaitu seperti suku ke-<InlineMath math="2" />: dua sel. Baris kedua berarti sel awal bergeser <InlineMath math="6" /> sel dari sel <InlineMath math="1" />, jadi sel awalnya sel <InlineMath math="7" />.
 
 Dua sel yang dimulai dari sel <InlineMath math="7" /> adalah sel <InlineMath math="7" /> dan sel berikutnya. Karena deretannya melingkar, sel sesudah sel <InlineMath math="7" /> adalah sel <InlineMath math="1" />. Jadi, yang menyala adalah sel paling kanan dan sel paling kiri: ● ○ ○ ○ ○ ○ ●.

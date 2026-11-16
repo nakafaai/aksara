@@ -21,6 +21,21 @@ Untuk mengecek, daftarkan semua urutannya. Gilang dan Hesti selalu di peringkat 
 | V | Nadia | Irfan | Jihan | Lukas | Gilang | Hesti |
 | VI | Nadia | Jihan | Irfan | Lukas | Gilang | Hesti |
 
+Grafik berikut membaca peringkat Irfan dan Lukas dari tabel. **Batang Irfan tidak pernah melewati <InlineMath math="3" />**, dan selalu lebih pendek dari batang Lukas karena Irfan selalu di atas Lukas.
+
+<Chart
+  title={<>Peringkat Irfan dan Lukas pada keenam urutan sah</>}
+  description={<>Irfan berada di peringkat <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="2" />, dan <InlineMath math="3" />. Lukas berada di peringkat <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="4" />.</>}
+  bars="apart"
+  categories={["I", "II", "III", "IV", "V", "VI"]}
+  series={[
+    { label: "Peringkat Irfan", mark: "bar", values: [1, 1, 1, 2, 2, 3] },
+    { label: "Peringkat Lukas", mark: "bar", values: [2, 3, 4, 3, 4, 4] },
+  ]}
+  valueLabel="Peringkat (1 terjauh)"
+  valueRange={{ min: 0, max: 6 }}
+/>
+
 Irfan memang berada di peringkat <InlineMath math="1" />, <InlineMath math="2" />, atau <InlineMath math="3" /> pada keenam urutan. Pernyataan lain hanya benar pada sebagian urutan.
 
 - Irfan yang terjauh salah pada urutan IV, V, dan VI. Langkah tadi hanya menaruh Irfan di atas Lukas, bukan di atas Nadia.

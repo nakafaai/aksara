@@ -4,6 +4,20 @@ First work out the total daily turnover of each group, in millions of rupiah:
 
 <BlockMath math="\begin{aligned} \text{April, users: } & 30 \times 2.0 = 60 \\ \text{April, non-users: } & 90 \times 1.2 = 108 \\ \text{April, total: } & 60 + 108 = 168 \\ \text{July, users: } & 60 \times 1.8 = 108 \\ \text{July, non-users: } & 60 \times 1.0 = 60 \\ \text{July, total: } & 108 + 60 = 168 \end{aligned}" />
 
+The chart below draws the total daily turnover of both groups. **The two groups swap bar heights, but the sum stays at <InlineMath math="168" /> million**.
+
+<Chart
+  title={<>Total daily turnover by group of traders, April and July</>}
+  description={<>In April, users made <InlineMath math="60" /> million and non-users <InlineMath math="108" /> million rupiah. In July, users made <InlineMath math="108" /> million and non-users <InlineMath math="60" /> million rupiah. The total is <InlineMath math="168" /> million in both months.</>}
+  categories={["April", "July"]}
+  bars="apart"
+  series={[
+    { label: "E-wallet users", mark: "bar", values: [30 * 2.0, 60 * 1.8] },
+    { label: "Non-users", mark: "bar", values: [90 * 1.2, 60 * 1.0] },
+  ]}
+  valueLabel="Daily turnover (million rupiah)"
+/>
+
 Statement 1 is false (*Salah*). The April average over all traders is the total divided by the number of traders, <InlineMath math="\frac{168}{120}=1.4" />, so <InlineMath math="\text{Rp}1.4\text{ million}" />. The figure <InlineMath math="\text{Rp}1.6\text{ million}" /> comes from simply averaging <InlineMath math="2.0" /> and <InlineMath math="1.2" />, even though there are three times as many non-users as users.
 
 Statement 2 is false. The April total and the July total are both <InlineMath math="\text{Rp}168\text{ million}" />. Both group averages did fall, but that doesn't mean the total fell, because <InlineMath math="30" /> traders moved from the non-user group into the user group.

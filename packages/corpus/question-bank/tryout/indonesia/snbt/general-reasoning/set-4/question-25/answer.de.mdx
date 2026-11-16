@@ -10,6 +10,20 @@ Schritt 2. Bestimme, wie viele bestehen müssen.
 
 Eine Personenzahl muss ganzzahlig sein. <InlineMath math="102" /> Personen reichen nicht, denn <InlineMath math="102 : 128 \approx 79{,}7\%" /> liegt noch unter <InlineMath math="80\%" />. Es müssen also mindestens <InlineMath math="103" /> Personen bestehen.
 
+Das Diagramm zeichnet die Bestehensquote für mehrere Zahlen Bestandener. **Die Linie erreicht das Ziel erst, wenn <InlineMath math="103" /> Personen bestehen**.
+
+<Chart
+  title={<>Bestehensquote in Bezirk R bei <InlineMath math="128" /> Prüflingen</>}
+  description={<>Mit <InlineMath math="96" /> Bestandenen liegt die Quote bei <InlineMath math="75\%" />. Mit <InlineMath math="102" /> bei etwa <InlineMath math="79{,}7\%" />, noch unter <InlineMath math="80\%" />. Mit <InlineMath math="103" /> bei etwa <InlineMath math="80{,}5\%" />.</>}
+  categories={["96", "99", "100", "101", "102", "103", "104"]}
+  series={[
+    { label: "Bestehensquote", mark: "line", values: [96, 99, 100, 101, 102, 103, 104].map((n) => (n / 128) * 100) },
+    { label: "Ziel 80%", mark: "line", values: [80, 80, 80, 80, 80, 80, 80] },
+  ]}
+  valueLabel="Bestehensquote (%)"
+  valueRange={{ min: 70, max: 85 }}
+/>
+
 Schritt 3. Vergleiche mit diesem Jahr, in dem <InlineMath math="96" /> Personen bestanden haben.
 
 <BlockMath math="103 - 96 = 7" />

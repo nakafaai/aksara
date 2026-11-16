@@ -6,6 +6,20 @@ Langkah 2. Kurangi hari tutup. Karena <InlineMath math="3" /> Agustus hari Senin
 
 <BlockMath math="26 - 4 = 22 \text{ hari buka}" />
 
+Grafik berikut menghitung hari buka per pekan. **Pekan ketiga hanya punya lima hari buka karena libur <InlineMath math="17" /> Agustus**, dan pekan terakhir berhenti pada hari Jumat.
+
+<Chart
+  title={<>Hari buka perpustakaan dari <InlineMath math="3" /> sampai <InlineMath math="28" /> Agustus</>}
+  description={<>Pekan <InlineMath math="3" /> sampai <InlineMath math="8" /> Agustus dan <InlineMath math="10" /> sampai <InlineMath math="15" /> Agustus masing-masing punya <InlineMath math="6" /> hari buka. Pekan <InlineMath math="18" /> sampai <InlineMath math="22" /> Agustus punya <InlineMath math="5" />, begitu juga <InlineMath math="24" /> sampai <InlineMath math="28" /> Agustus. Totalnya <InlineMath math="22" /> hari buka.</>}
+  categories={["3 sampai 8 Agustus", "10 sampai 15 Agustus", "18 sampai 22 Agustus", "24 sampai 28 Agustus"]}
+  bars="apart"
+  series={[
+    { label: "Hari buka pekan itu", mark: "bar", values: [6, 6, 5, 5] },
+    { label: "Hari buka sejak 3 Agustus", mark: "bar", values: [6, 6 + 6, 6 + 6 + 5, 6 + 6 + 5 + 5] },
+  ]}
+  valueLabel="Hari buka"
+/>
+
 Langkah 3. Tentukan orangnya. Ani berjaga pada hari buka ke-<InlineMath math="1" />, jadi orang pada hari buka ke-<InlineMath math="n" /> ditentukan oleh sisa <InlineMath math="n - 1" /> dibagi <InlineMath math="5" />.
 
 <BlockMath math="22 - 1 = 21 = 4 \times 5 + 1" />

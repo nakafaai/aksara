@@ -12,6 +12,18 @@ Aussage 4 lässt sich folgern. Die <InlineMath math="5{,}0" /> in der Tabelle si
 
 <BlockMath math="\begin{aligned} \text{Summe der 24 Felder} &= 24 \times 5{,}0 = 120 \\ \text{Summe der 4 Felder, deren Enten herausgeholt wurden} &= 4 \times 4{,}5 = 18 \\ \text{Mittelwert der 20 Felder ohne Enten von Anfang an} &= \frac{120-18}{20} = \frac{102}{20} = 5{,}1 \end{aligned}" />
 
+Das Diagramm zerlegt die <InlineMath math="5{,}0" /> in zwei Teile. **Sobald die vier ertragsschwachen Felder herausfallen, steigt der Durchschnitt der übrigen**.
+
+<Chart
+  title={<>Durchschnittlicher Reisertrag in der Gruppe ohne Enten bei der Ernte</>}
+  description={<>Die <InlineMath math="24" /> Felder ohne Enten bei der Ernte bringen im Schnitt <InlineMath math="5{,}0" />. Die vier Felder, die ihre Enten verloren, bringen im Schnitt <InlineMath math="4{,}5" />. Ohne sie kommen die <InlineMath math="20" /> Felder, die nie Enten hatten, auf <InlineMath math="5{,}1" />.</>}
+  categories={["Alle 24 Felder", "4 Felder, die ihre Enten verloren", "20 Felder nie mit Enten"]}
+  bars="apart"
+  series={[{ label: "Durchschnittsertrag (Tonnen pro Hektar)", mark: "bar", values: [5.0, 4.5, (24 * 5 - 4 * 4.5) / 20] }]}
+  valueLabel="Tonnen pro Hektar"
+  valueRange={{ min: 4, max: 5.5 }}
+/>
+
 Wegen <InlineMath math="5{,}1 > 5{,}0" /> ist die Aussage sicher wahr. Der Mittelwert steigt, sobald die vier ertragsschwachen Felder herausfallen, und genau das übersiehst du, wenn du die <InlineMath math="5{,}0" /> einfach aus der Tabelle abliest.
 
 Die Aussagen 1 und 4 lassen sich also folgern, die Aussagen 2 und 3 nicht.

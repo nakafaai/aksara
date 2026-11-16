@@ -21,6 +21,21 @@ Zur Kontrolle listest du alle Reihenfolgen auf. Gilang und Hesti belegen immer d
 | V | Nadia | Irfan | Jihan | Lukas | Gilang | Hesti |
 | VI | Nadia | Jihan | Irfan | Lukas | Gilang | Hesti |
 
+Das Diagramm liest die Plätze von Irfan und Lukas aus der Tabelle ab. **Irfans Balken geht nie über <InlineMath math="3" /> hinaus**, und er ist immer kürzer als der von Lukas, weil Irfan immer vor Lukas liegt.
+
+<Chart
+  title={<>Plätze von Irfan und Lukas in den sechs gültigen Reihenfolgen</>}
+  description={<>Irfan liegt auf den Plätzen <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="2" /> und <InlineMath math="3" />. Lukas liegt auf den Plätzen <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="4" />.</>}
+  bars="apart"
+  categories={["I", "II", "III", "IV", "V", "VI"]}
+  series={[
+    { label: "Platz von Irfan", mark: "bar", values: [1, 1, 1, 2, 2, 3] },
+    { label: "Platz von Lukas", mark: "bar", values: [2, 3, 4, 3, 4, 4] },
+  ]}
+  valueLabel="Platz (1 ist der weiteste)"
+  valueRange={{ min: 0, max: 6 }}
+/>
+
 Irfan liegt tatsächlich in allen sechs Reihenfolgen auf Platz 1, 2 oder 3. Die anderen Aussagen gelten nur in manchen Reihenfolgen.
 
 - Irfan springt am weitesten ist in den Reihenfolgen IV, V und VI falsch. Der Schritt eben setzt Irfan nur über Lukas, nicht über Nadia.

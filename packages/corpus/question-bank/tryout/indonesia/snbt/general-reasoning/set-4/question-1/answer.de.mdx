@@ -8,6 +8,18 @@ Enten wurden nur zum Spritzen herausgeholt, also wurden diese vier Felder alle g
 
 <BlockMath math="\begin{aligned} \text{Von Anfang an mit Enten: } & \frac{4}{20} = 20\% \\ \text{Von Anfang an ohne Enten: } & \frac{12-4}{20} = \frac{8}{20} = 40\% \end{aligned}" />
 
+Das Diagramm vergleicht die beiden Gruppen nach ihrem Zustand zu Beginn der Saison. **Der Balken für Felder mit Enten von Anfang an ist nur halb so hoch wie der für Felder ohne Enten**.
+
+<Chart
+  title={<>Anteil gespritzter Felder nach dem Zustand zu Beginn der Saison</>}
+  description={<>Von den <InlineMath math="20" /> Feldern mit Enten von Anfang an wurden <InlineMath math="4" /> gespritzt, also <InlineMath math="20\%" />. Von den <InlineMath math="20" /> Feldern ohne Enten von Anfang an wurden <InlineMath math="8" /> gespritzt, also <InlineMath math="40\%" />.</>}
+  categories={["Enten von Anfang an", "Ohne Enten von Anfang an"]}
+  bars="apart"
+  series={[{ label: "Gespritzte Felder (%)", mark: "bar", values: [(4 / 20) * 100, ((12 - 4) / 20) * 100] }]}
+  valueLabel="Gespritzte Felder (%)"
+  valueRange={{ min: 0, max: 50 }}
+/>
+
 Dabei ist <InlineMath math="20\%" /> die Hälfte von <InlineMath math="40\%" />. Prüf die Summe: <InlineMath math="4+8=12" /> gespritzte Felder, wie in der Tabelle.
 
 Deshalb passen die anderen Optionen nicht:

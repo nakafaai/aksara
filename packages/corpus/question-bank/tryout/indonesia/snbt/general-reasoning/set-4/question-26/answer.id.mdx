@@ -12,6 +12,20 @@ Pernyataan (2) saja. Rina membeli <InlineMath math="8" /> barang, jadi <InlineMa
 
 Total ini harus habis dibagi <InlineMath math="8" />. Coba setiap nilai <InlineMath math="x" /> dari <InlineMath math="1" /> sampai <InlineMath math="7" />: totalnya <InlineMath math="34, 36, 38, 40, 42, 44, 46" />. Hanya <InlineMath math="40" /> yang habis dibagi <InlineMath math="8" />, yaitu saat <InlineMath math="x = 4" />. Jadi, pernyataan (2) saja **sudah cukup**: Rina membeli <InlineMath math="4" /> buku tulis.
 
+Grafik berikut menggambar total untuk setiap banyak buku tulis. **Hanya pada <InlineMath math="x=4" /> batang sisanya bernilai nol**.
+
+<Chart
+  title={<>Total pembayaran dan sisa pembagian oleh <InlineMath math="8" /> jika Rina membeli <InlineMath math="8" /> barang</>}
+  description={<>Untuk <InlineMath math="x=1" /> sampai <InlineMath math="7" /> buku tulis, totalnya <InlineMath math="34" />, <InlineMath math="36" />, <InlineMath math="38" />, <InlineMath math="40" />, <InlineMath math="42" />, <InlineMath math="44" />, dan <InlineMath math="46" /> ribu rupiah. Sisanya jika dibagi <InlineMath math="8" /> adalah <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="0" />, <InlineMath math="2" />, <InlineMath math="4" />, dan <InlineMath math="6" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Total bayar (ribu rupiah)", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7].map((x) => 32 + 2 * x) },
+    { label: "Sisa dibagi 8", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7].map((x) => (32 + 2 * x) % 8) },
+  ]}
+  valueLabel="Ribu rupiah atau sisa"
+/>
+
 Pilihan lain muncul dari langkah yang terhenti.
 
 - Pernyataan (1) saja cukup: berhenti pada pasangan pertama yang ditemukan, padahal ada tiga pasangan.

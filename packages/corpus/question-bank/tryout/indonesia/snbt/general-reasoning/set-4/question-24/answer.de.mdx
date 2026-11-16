@@ -7,6 +7,21 @@ Entscheidend ist hier, **für jede Aussage den richtigen Nenner zu wählen**. Ei
 | R | <InlineMath math="96 : 128 = 75\%" /> | <InlineMath math="96 : 160 = 60\%" /> |
 | S | <InlineMath math="57 : 60 = 95\%" /> | <InlineMath math="57 : 100 = 57\%" /> |
 
+Das Diagramm zeichnet beide Spalten der Tabelle. **Bezirk S hat mit dem ersten Nenner den höchsten Balken, mit dem zweiten aber den niedrigsten**.
+
+<Chart
+  title={<>Anteil Bestandener mit zwei verschiedenen Nennern</>}
+  description={<>Bezogen auf die Prüflinge bestehen in P, Q, R und S <InlineMath math="85\%" />, <InlineMath math="65\%" />, <InlineMath math="75\%" /> und <InlineMath math="95\%" />. Bezogen auf die Angemeldeten sind es <InlineMath math="63{,}75\%" />, <InlineMath math="58{,}5\%" />, <InlineMath math="60\%" /> und <InlineMath math="57\%" />.</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Bestanden durch Prüflinge", mark: "bar", values: [(51 / 60) * 100, (117 / 180) * 100, (96 / 128) * 100, (57 / 60) * 100] },
+    { label: "Bestanden durch Angemeldete", mark: "bar", values: [(51 / 80) * 100, (117 / 200) * 100, (96 / 160) * 100, (57 / 100) * 100] },
+  ]}
+  valueLabel="Prozent"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 Aussage 1 ist Benar (richtig). Insgesamt haben <InlineMath math="321" /> von <InlineMath math="428" /> Prüflingen bestanden, also <InlineMath math="75\%" />. Die <InlineMath math="80\%" /> im Bericht des Amts sind nur der einfache Durchschnitt von vier Prozentsätzen.
 
 Aussage 2 ist Salah (falsch). S hat zwar die höchste Bestehensquote, <InlineMath math="95\%" />, aber geteilt durch die Prüflinge. Gemessen an den Angemeldeten liegt S mit <InlineMath math="57\%" /> sogar am niedrigsten, weil nur <InlineMath math="60\%" /> der Teilnehmenden zur Prüfung zugelassen waren.

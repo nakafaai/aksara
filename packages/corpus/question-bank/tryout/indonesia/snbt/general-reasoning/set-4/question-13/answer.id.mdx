@@ -10,6 +10,18 @@ Langkah kedua, ambil kontrapositifnya, yaitu balik arah panah lalu sangkal kedua
 
 <BlockMath math="(\neg\text{sudah pelatihan} \vee \neg\text{membawa kartu}) \Rightarrow \neg\text{boleh meminjam}" />
 
+Diagram berikut memeriksa seorang mahasiswa langkah demi langkah. **Satu syarat yang gagal sudah cukup untuk sampai ke "tidak boleh meminjam"**, sedangkan lolos kedua syarat belum menjamin pinjaman.
+
+<Mermaid
+  title={<>Pemeriksaan syarat meminjam alat laboratorium</>}
+  description={<>Mahasiswa yang belum mengikuti pelatihan keselamatan tidak boleh meminjam. Mahasiswa yang sudah ikut pelatihan tetapi tidak membawa kartu laboratorium juga tidak boleh meminjam. Mahasiswa yang memenuhi keduanya boleh dipertimbangkan, tetapi tidak dijamin mendapat pinjaman.</>}
+  chart={`flowchart LR
+    A{"Sudah ikut pelatihan keselamatan?"} -->|"belum"| X["Tidak boleh meminjam"]
+    A -->|"sudah"| B{"Membawa kartu laboratorium?"}
+    B -->|"tidak"| Y["Tidak boleh meminjam"]
+    B -->|"ya"| Z["Boleh dipertimbangkan, tidak dijamin"]`}
+/>
+
 Bentuk ini persis pernyataan "jika seorang mahasiswa belum mengikuti pelatihan keselamatan atau tidak membawa kartu laboratorium, ia tidak boleh meminjam alat laboratorium".
 
 Pilihan lain bisa diuji dengan satu keadaan yang membuat nilainya berbeda dari kalimat asli.

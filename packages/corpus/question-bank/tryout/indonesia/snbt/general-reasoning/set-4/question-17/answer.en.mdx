@@ -35,6 +35,17 @@ The table lists every valid schedule.
 
 <BlockMath math="3 + 2 + 2 + 2 = 9" />
 
+The chart below sums up the schedules in each batik case. **Only the case with batik on Monday morning gives three schedules**, because condition 5 knocks out one of its four candidates.
+
+<Chart
+  title={<>Valid schedules by batik's session</>}
+  description={<>Batik on Monday morning gives <InlineMath math="3" /> schedules. Batik on Monday afternoon, Tuesday morning, and Tuesday afternoon gives <InlineMath math="2" /> schedules each. The total is <InlineMath math="9" />.</>}
+  categories={["Monday morning", "Monday afternoon", "Tuesday morning", "Tuesday afternoon"]}
+  bars="apart"
+  series={[{ label: "Valid schedules", mark: "bar", values: [3, 2, 2, 2] }]}
+  valueLabel="Schedules"
+/>
+
 Other totals usually come from one missed step. You get <InlineMath math="5" /> if you only look for batik and gamelan on the same day, which drops cases 2 and 4. You get <InlineMath math="10" /> if you forget condition 5, because case 1 then gains an extra schedule with kuliner on Tuesday morning and wayang on Tuesday afternoon.
 
 So <InlineMath math="9" /> schedules meet every condition.

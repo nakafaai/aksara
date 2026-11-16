@@ -12,6 +12,18 @@ Pernyataan 4 dapat disimpulkan. Angka <InlineMath math="5{,}0" /> di tabel adala
 
 <BlockMath math="\begin{aligned} \text{jumlah hasil 24 petak} &= 24 \times 5{,}0 = 120 \\ \text{jumlah hasil 4 petak yang itiknya ditarik} &= 4 \times 4{,}5 = 18 \\ \text{rata-rata 20 petak sejak awal tanpa itik} &= \frac{120-18}{20} = \frac{102}{20} = 5{,}1 \end{aligned}" />
 
+Grafik berikut memisahkan angka <InlineMath math="5{,}0" /> itu menjadi dua bagian. **Begitu empat petak berhasil rendah dikeluarkan, rata-rata sisanya naik**.
+
+<Chart
+  title={<>Rata-rata hasil gabah pada kelompok tanpa itik saat panen</>}
+  description={<>Rata-rata <InlineMath math="24" /> petak tanpa itik saat panen adalah <InlineMath math="5{,}0" />. Empat petak yang kehilangan itiknya rata-rata <InlineMath math="4{,}5" />. Tanpa keempatnya, <InlineMath math="20" /> petak yang tidak pernah dilepasi itik rata-rata <InlineMath math="5{,}1" />.</>}
+  categories={["Semua 24 petak", "4 petak yang kehilangan itik", "20 petak tanpa itik sejak awal"]}
+  bars="apart"
+  series={[{ label: "Rata-rata hasil (ton per hektare)", mark: "bar", values: [5.0, 4.5, (24 * 5 - 4 * 4.5) / 20] }]}
+  valueLabel="Ton per hektare"
+  valueRange={{ min: 4, max: 5.5 }}
+/>
+
 Karena <InlineMath math="5{,}1 > 5{,}0" />, pernyataan ini pasti benar. Rata-ratanya naik setelah empat petak dengan hasil rendah dikeluarkan, sesuatu yang terlewat jika kamu langsung membaca angka <InlineMath math="5{,}0" /> di tabel.
 
 Jadi, pernyataan 1 dan 4 dapat disimpulkan, sedangkan pernyataan 2 dan 3 tidak dapat disimpulkan.

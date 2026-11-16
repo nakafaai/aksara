@@ -11,6 +11,18 @@ The three rules join into one chain.
 
 <BlockMath math="\text{fluent} \Rightarrow \text{interviewed} \Rightarrow \text{passed test} \Rightarrow \text{not late}" />
 
+The diagram below draws that chain together with fact 3. **Volunteers only join the chain for sure through someone who was interviewed**, so other volunteers are free to sit outside it.
+
+<Mermaid
+  title={<>The chain of facts for the student guide selection</>}
+  description={<>Applicants fluent in English are interviewed, those interviewed passed the history test, and those who passed weren't late with their documents. Some of those interviewed have volunteered at the museum.</>}
+  chart={`flowchart LR
+    F["Fluent in English"] -->|"fact 4"| W["Interviewed"]
+    W -->|"fact 1"| L["Passed history test"]
+    L -->|"fact 2"| T["Not late"]
+    R["Museum volunteer"] -.->|"some, fact 3"| W`}
+/>
+
 Statement 1 must be true. Follow the chain from left to right. Every applicant who speaks English fluently ends up at the last link, not late.
 
 Statement 2 need not be true. The chain only protects volunteers who were interviewed. No fact says every volunteer gets an interview, so there may be a volunteer who wasn't called, and that volunteer is allowed to be late.

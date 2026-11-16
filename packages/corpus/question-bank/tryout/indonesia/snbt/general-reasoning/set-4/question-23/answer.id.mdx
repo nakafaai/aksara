@@ -8,6 +8,18 @@ Langkah 2. Jumlahkan peserta lulus dan peserta ujian, lalu bagi.
 
 <BlockMath math="\frac{51 + 117 + 96 + 57}{60 + 180 + 128 + 60} = \frac{321}{428} = 75{,}0\%" />
 
+Grafik berikut membandingkan persentase kelulusan setiap kecamatan dengan angka gabungan. **Batang gabungan lebih rendah dari rata-rata empat persen**, karena Kecamatan Q yang persentasenya terendah punya peserta ujian paling banyak.
+
+<Chart
+  title={<>Persentase kelulusan peserta ujian menurut kecamatan</>}
+  description={<>Kelulusan di Kecamatan P, Q, R, dan S adalah <InlineMath math="85\%" />, <InlineMath math="65\%" />, <InlineMath math="75\%" />, dan <InlineMath math="95\%" />. Angka gabungannya <InlineMath math="321" /> dari <InlineMath math="428" />, yaitu <InlineMath math="75\%" />, sedangkan rata-rata keempat persen itu <InlineMath math="80\%" />.</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S", "Gabungan", "Rata-rata empat persen"]}
+  series={[{ label: "Kelulusan (%)", mark: "bar", values: [(51 / 60) * 100, (117 / 180) * 100, (96 / 128) * 100, (57 / 60) * 100, (321 / 428) * 100, ((51 / 60 + 117 / 180 + 96 / 128 + 57 / 60) / 4) * 100] }]}
+  valueLabel="Kelulusan (%)"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 Cek: <InlineMath math="75\% \times 428 = 321" />, tepat sama dengan banyak peserta lulus.
 
 Pilihan lain muncul dari pembagi atau cara merata-ratakan yang keliru.

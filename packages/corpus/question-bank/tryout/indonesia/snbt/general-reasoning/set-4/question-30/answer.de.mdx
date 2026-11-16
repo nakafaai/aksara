@@ -18,6 +18,19 @@ Schritt 2. Stell den Ablauf auf. Die Maschine arbeitet in Blöcken von <InlineMa
 
 Die letzten <InlineMath math="70" /> T-Shirts brauchen <InlineMath math="70 : 50 = 1{,}4" /> Stunden, also <InlineMath math="1" /> Stunde <InlineMath math="24" /> Minuten. Der Auftrag ist um 20:24 Uhr fertig. Probe: <InlineMath math="10{,}4" /> Stunden Arbeit plus <InlineMath math="3" /> Stunden Pause ergeben <InlineMath math="13" /> Stunden <InlineMath math="24" /> Minuten nach 07:00 Uhr.
 
+Das Diagramm zeichnet die fertigen T-Shirts über den Tag. **In den drei Ruhestunden bleibt die Linie flach**, und das letzte Stück von <InlineMath math="1" /> Stunde <InlineMath math="24" /> Minuten bringt sie auf <InlineMath math="520" />.
+
+<Chart
+  title={<>Fertige T-Shirts von 07:00 bis 20:24 Uhr</>}
+  description={<>Jeder dreistündige Arbeitsblock bringt <InlineMath math="150" /> T-Shirts, jede Ruhestunde bringt nichts. Nach drei Arbeitsblöcken und drei Pausen sind um 19:00 Uhr <InlineMath math="450" /> T-Shirts fertig. Die letzten <InlineMath math="70" /> sind um 20:24 Uhr fertig.</>}
+  categories={["07:00", "10:00", "11:00", "14:00", "15:00", "18:00", "19:00", "20:24"]}
+  series={[
+    { label: "Fertige T-Shirts", mark: "line", values: [0, 3 * 50, 150, 150 + 3 * 50, 300, 300 + 3 * 50, 450, 450 + 70] },
+    { label: "Auftrag", mark: "line", values: [520, 520, 520, 520, 520, 520, 520, 520] },
+  ]}
+  valueLabel="T-Shirts"
+/>
+
 Die anderen Antworten entstehen durch falsch gezählte Pausen oder Minuten.
 
 - 17:24 Uhr lässt alle Pausen weg.

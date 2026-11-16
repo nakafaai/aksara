@@ -10,6 +10,17 @@ Uji pernyataan tentang sesi kuliner. Andaikan kebalikannya terjadi, yaitu kuline
 
 Batik dan gamelan tidak kebagian tempat, jadi pengandaian tadi mustahil. Artinya, kuliner selalu diadakan pada sesi siang.
 
+Grafik berikut menghitung letak kuliner pada kesembilan jadwal sah. **Semua batang sesi pagi bernilai nol**, jadi kuliner memang selalu jatuh pada sesi siang.
+
+<Chart
+  title={<>Sesi kuliner pada kesembilan jadwal yang memenuhi semua syarat</>}
+  description={<>Kuliner diadakan pada Selasa siang dalam <InlineMath math="2" /> jadwal dan pada Rabu siang dalam <InlineMath math="7" /> jadwal. Tidak ada jadwal sah dengan kuliner pada sesi pagi mana pun atau pada Senin siang.</>}
+  categories={["Senin pagi", "Senin siang", "Selasa pagi", "Selasa siang", "Rabu pagi", "Rabu siang"]}
+  bars="apart"
+  series={[{ label: "Banyak jadwal sah", mark: "bar", values: [0, 0, 0, 2, 0, 7] }]}
+  valueLabel="Banyak jadwal"
+/>
+
 Empat pernyataan lain hanya benar pada sebagian jadwal. Setiap jadwal di bawah ini memenuhi keenam syarat, dan masing-masing membuat satu pernyataan menjadi salah.
 
 | Jadwal | Senin pagi | Senin siang | Selasa pagi | Selasa siang | Rabu pagi | Rabu siang |

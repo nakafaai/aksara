@@ -12,6 +12,20 @@ Statement (2) alone. Rina buys <InlineMath math="8" /> items, so <InlineMath mat
 
 This total must be divisible by <InlineMath math="8" />. Try every <InlineMath math="x" /> from <InlineMath math="1" /> to <InlineMath math="7" />: the totals are <InlineMath math="34, 36, 38, 40, 42, 44, 46" />. Only <InlineMath math="40" /> is divisible by <InlineMath math="8" />, when <InlineMath math="x = 4" />. So statement (2) alone **is already enough**: Rina buys <InlineMath math="4" /> notebooks.
 
+The chart below draws the total for each number of notebooks. **Only at <InlineMath math="x=4" /> is the remainder bar zero**.
+
+<Chart
+  title={<>Total paid and remainder after dividing by <InlineMath math="8" /> when Rina buys <InlineMath math="8" /> items</>}
+  description={<>For <InlineMath math="x=1" /> to <InlineMath math="7" /> notebooks, the totals are <InlineMath math="34" />, <InlineMath math="36" />, <InlineMath math="38" />, <InlineMath math="40" />, <InlineMath math="42" />, <InlineMath math="44" />, and <InlineMath math="46" /> thousand rupiah. The remainders after dividing by <InlineMath math="8" /> are <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="0" />, <InlineMath math="2" />, <InlineMath math="4" />, and <InlineMath math="6" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Total paid (thousand rupiah)", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7].map((x) => 32 + 2 * x) },
+    { label: "Remainder after dividing by 8", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7].map((x) => (32 + 2 * x) % 8) },
+  ]}
+  valueLabel="Thousand rupiah or remainder"
+/>
+
 The other options come from stopping too early.
 
 - Statement (1) alone is enough: this stops at the first pair found, but there are three pairs.

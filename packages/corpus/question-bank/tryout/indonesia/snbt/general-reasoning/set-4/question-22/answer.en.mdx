@@ -10,6 +10,17 @@ Now store Q's price. It also rises to <InlineMath math="140" />, but its discoun
 
 <BlockMath math="\text{Store Q}: \quad 140 - 0.2\times100 = 140-20 = 120" />
 
+The chart below puts the four prices side by side. **Store Q's bar is still far above store P's**, even though both started from the same raised price.
+
+<Chart
+  title={<>The iron's price at both stores with a starting price of <InlineMath math="100" /></>}
+  description={<>The starting price of <InlineMath math="100" /> rises to <InlineMath math="140" />. After the discounts, store P sells at <InlineMath math="84" /> and store Q at <InlineMath math="120" />. The gap is <InlineMath math="36" />, which is <InlineMath math="30\%" /> of <InlineMath math="120" />.</>}
+  categories={["Starting price", "After the rise", "Store P after discount", "Store Q after discount"]}
+  bars="apart"
+  series={[{ label: "Price (starting price = 100)", mark: "bar", values: [100, 140, 140 - (140 * 4) / 10, 140 - (100 * 2) / 10] }]}
+  valueLabel="Price"
+/>
+
 Store Q has to go from <InlineMath math="120" /> down to <InlineMath math="84" />. Compare the gap with store Q's current price:
 
 <BlockMath math="\frac{120-84}{120}\times100\% = \frac{36}{120}\times100\% = 30\%" />

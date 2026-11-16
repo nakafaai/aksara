@@ -9,6 +9,17 @@ The statement about planting time meets both:
 
 With those two facts, the plots without ducks are expected to cross the threshold more often simply because they were planted later. The gap between <InlineMath math="20\%" /> and <InlineMath math="40\%" /> can be explained entirely by planting time, so the data no longer show that the ducks kept the planthoppers down.
 
+The diagram below draws that other explanation. **Planting time drives both things at once**, so the ducks don't have to do anything for the gap to appear.
+
+<Mermaid
+  title={<>Planting time as a third cause</>}
+  description={<>The plots planted earlier are the plots that got ducks. Plots planted later have always crossed the planthopper threshold more often, with or without ducks. So the gap between <InlineMath math="20\%" /> and <InlineMath math="40\%" /> can come from planting time alone.</>}
+  chart={`flowchart LR
+    T["Planting time"] -->|"planted earlier"| I["Plots with ducks"]
+    T -->|"planted later"| W["Cross the planthopper threshold more often"]
+    I -.->|"duck owners' claim"| R["Fewer planthoppers"]`}
+/>
+
 The other options touch the same topic but don't cut that causal link:
 
 - The crop check only shows that planthoppers are a small part of what the ducks eat. A small part of a duck's food can still be a lot of planthoppers, and this statement gives no other cause for the gap between the groups.

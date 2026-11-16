@@ -12,6 +12,18 @@ Ringkasan langkah 1 sampai 4 terlihat seperti ini.
 
 <BlockMath math="\begin{aligned} \neg\text{promo} &\Rightarrow \neg\text{kopi susu} \\ \text{barista masuk} \wedge \neg\text{kopi susu} &\Rightarrow \text{mesin rusak} \\ \text{mesin rusak} &\Rightarrow \text{teknisi dipanggil} \end{aligned}" />
 
+Diagram berikut menggambar langkah mundur itu. **Rantainya berhenti di teknisi dipanggil**, karena aturan 4 tidak memaksa kedai membayar biaya servis.
+
+<Mermaid
+  title={<>Langkah mundur dari papan promo yang tidak dipasang</>}
+  description={<>Papan promo tidak dipasang, jadi kopi susu tidak dijual. Barista utama masuk, jadi mesin espresso rusak. Mesin rusak, jadi teknisi dipanggil. Biaya servis tetap tidak dapat dipastikan.</>}
+  chart={`flowchart LR
+    P["Papan promo tidak dipasang"] -->|"aturan 2"| K["Kopi susu tidak dijual"]
+    K -->|"aturan 1, barista masuk"| M["Mesin espresso rusak"]
+    M -->|"aturan 3"| T["Teknisi dipanggil"]
+    T -.->|"aturan 4 tidak memaksa"| B["Biaya servis belum pasti"]`}
+/>
+
 Untuk mengecek, susun keadaan Kamis itu: barista masuk, mesin rusak, kopi susu tidak dijual, papan promo tidak dipasang, dan teknisi dipanggil. Keempat aturan terpenuhi, **baik kedai membayar biaya servis maupun tidak**. Jadi soal biaya servis memang tidak bisa dipastikan.
 
 Pilihan lain gugur karena satu langkah yang keliru.

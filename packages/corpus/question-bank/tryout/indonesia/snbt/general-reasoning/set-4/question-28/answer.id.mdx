@@ -6,6 +6,19 @@ Laju bersih dalam satu putaran:
 
 Volume pada akhir setiap putaran adalah <InlineMath math="300 + 175k" /> liter, yaitu <InlineMath math="475" />, <InlineMath math="650" />, <InlineMath math="825" />, dan <InlineMath math="1{.}000" /> liter pada menit ke-<InlineMath math="15" />, <InlineMath math="30" />, <InlineMath math="45" />, dan <InlineMath math="60" />.
 
+Grafik berikut menggambar volume air pada setiap titik balik pompa A. **Garisnya naik turun seperti gergaji dan menyentuh kapasitas pada menit ke-<InlineMath math="68" />**, di tengah putaran kelima.
+
+<Chart
+  title={<>Volume air dalam tangki menurut menit</>}
+  description={<>Volume mulai dari <InlineMath math="300" /> liter, naik <InlineMath math="250" /> liter selama pompa A bekerja, lalu turun <InlineMath math="75" /> liter selama pompa A istirahat. Titik tertinggi putaran keempat adalah <InlineMath math="1{.}075" /> liter pada menit ke-<InlineMath math="55" />. Tangki penuh <InlineMath math="1{.}200" /> liter pada menit ke-<InlineMath math="68" />.</>}
+  categories={["0", "10", "15", "25", "30", "40", "45", "55", "60", "68"]}
+  series={[
+    { label: "Volume air", mark: "line", values: [300, 300 + 250, 550 - 75, 475 + 250, 725 - 75, 650 + 250, 900 - 75, 825 + 250, 1075 - 75, 1000 + 8 * 25] },
+    { label: "Kapasitas tangki", mark: "line", values: [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200] },
+  ]}
+  valueLabel="Liter"
+/>
+
 Pernyataan 1 Benar. Volume tertinggi pada putaran keempat dicapai di menit ke-<InlineMath math="55" />, yaitu <InlineMath math="825 + 250 = 1{.}075" /> liter, belum penuh. Mulai menit ke-<InlineMath math="60" />, volume <InlineMath math="1{.}000" /> liter naik <InlineMath math="25" /> liter per menit, jadi kekurangan <InlineMath math="200" /> liter terisi dalam <InlineMath math="200 : 25 = 8" /> menit. Tangki penuh pada menit ke-<InlineMath math="68" />. Kalau kamu hanya menghitung putaran utuh, <InlineMath math="300 + 175k \ge 1{.}200" /> memberi <InlineMath math="k = 6" /> dan menit ke-<InlineMath math="90" />, padahal tangki sudah penuh lebih dulu.
 
 Pernyataan 2 Salah. Selama <InlineMath math="30" /> menit pertama, volume naik dari <InlineMath math="300" /> menjadi <InlineMath math="650" /> liter, yaitu <InlineMath math="350" /> liter. Rata-ratanya <InlineMath math="350 : 30 \approx 11{,}7" /> liter per menit, kurang dari <InlineMath math="12" />.

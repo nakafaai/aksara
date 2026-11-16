@@ -18,6 +18,19 @@ Langkah 2. Susun jadwalnya. Mesin bekerja dalam blok <InlineMath math="3" /> jam
 
 Sisa <InlineMath math="70" /> kaus butuh <InlineMath math="70 : 50 = 1{,}4" /> jam, yaitu <InlineMath math="1" /> jam <InlineMath math="24" /> menit, jadi pesanan selesai pukul 20.24. Cek: <InlineMath math="10{,}4" /> jam kerja ditambah <InlineMath math="3" /> jam istirahat sama dengan <InlineMath math="13" /> jam <InlineMath math="24" /> menit setelah pukul 07.00.
 
+Grafik berikut menggambar kaus yang selesai sepanjang hari. **Garisnya datar pada tiga jam istirahat**, lalu potongan terakhir sepanjang <InlineMath math="1" /> jam <InlineMath math="24" /> menit membawanya ke <InlineMath math="520" />.
+
+<Chart
+  title={<>Kaus selesai dari pukul 07.00 sampai 20.24</>}
+  description={<>Setiap blok kerja tiga jam menambah <InlineMath math="150" /> kaus, dan setiap jam istirahat tidak menambah apa pun. Setelah tiga blok kerja dan tiga istirahat, ada <InlineMath math="450" /> kaus pada pukul 19.00. Sisa <InlineMath math="70" /> kaus selesai pada pukul 20.24.</>}
+  categories={["07.00", "10.00", "11.00", "14.00", "15.00", "18.00", "19.00", "20.24"]}
+  series={[
+    { label: "Kaus selesai", mark: "line", values: [0, 3 * 50, 150, 150 + 3 * 50, 300, 300 + 3 * 50, 450, 450 + 70] },
+    { label: "Pesanan", mark: "line", values: [520, 520, 520, 520, 520, 520, 520, 520] },
+  ]}
+  valueLabel="Kaus"
+/>
+
 Pilihan lain muncul dari hitungan istirahat atau menit yang keliru.
 
 - Pukul 17.24 mengabaikan semua istirahat.

@@ -6,6 +6,20 @@ Step 2. Take away the closed days. Since <InlineMath math="3" /> August is a Mon
 
 <BlockMath math="26 - 4 = 22 \text{ open days}" />
 
+The chart below counts the open days week by week. **The third week has only five open days because of the <InlineMath math="17" /> August holiday**, and the last week stops on Friday.
+
+<Chart
+  title={<>The library's open days from <InlineMath math="3" /> to <InlineMath math="28" /> August</>}
+  description={<>The weeks of <InlineMath math="3" /> to <InlineMath math="8" /> August and <InlineMath math="10" /> to <InlineMath math="15" /> August each have <InlineMath math="6" /> open days. The week of <InlineMath math="18" /> to <InlineMath math="22" /> August has <InlineMath math="5" />, and so does <InlineMath math="24" /> to <InlineMath math="28" /> August. The total is <InlineMath math="22" /> open days.</>}
+  categories={["3 to 8 August", "10 to 15 August", "18 to 22 August", "24 to 28 August"]}
+  bars="apart"
+  series={[
+    { label: "Open days that week", mark: "bar", values: [6, 6, 5, 5] },
+    { label: "Open days since 3 August", mark: "bar", values: [6, 6 + 6, 6 + 6 + 5, 6 + 6 + 5 + 5] },
+  ]}
+  valueLabel="Open days"
+/>
+
 Step 3. Find the person. Ani works on open day <InlineMath math="1" />, so the person on open day <InlineMath math="n" /> is set by the remainder of <InlineMath math="n - 1" /> divided by <InlineMath math="5" />.
 
 <BlockMath math="22 - 1 = 21 = 4 \times 5 + 1" />

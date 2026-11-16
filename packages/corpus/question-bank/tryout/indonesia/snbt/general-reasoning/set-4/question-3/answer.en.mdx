@@ -12,6 +12,18 @@ Statement 4 can be concluded. The <InlineMath math="5.0" /> in the table is the 
 
 <BlockMath math="\begin{aligned} \text{total yield of 24 plots} &= 24 \times 5.0 = 120 \\ \text{total yield of the 4 plots that lost their ducks} &= 4 \times 4.5 = 18 \\ \text{average of the 20 never-duck plots} &= \frac{120-18}{20} = \frac{102}{20} = 5.1 \end{aligned}" />
 
+The chart below splits that <InlineMath math="5.0" /> into two parts. **Once the four low-yield plots are taken out, the average of the rest goes up**.
+
+<Chart
+  title={<>Average rice yield in the group with no ducks at harvest</>}
+  description={<>The <InlineMath math="24" /> plots with no ducks at harvest average <InlineMath math="5.0" />. The four plots that lost their ducks average <InlineMath math="4.5" />. Without them, the <InlineMath math="20" /> plots that never had ducks average <InlineMath math="5.1" />.</>}
+  categories={["All 24 plots", "4 plots that lost their ducks", "20 plots never with ducks"]}
+  bars="apart"
+  series={[{ label: "Average yield (tonnes per hectare)", mark: "bar", values: [5.0, 4.5, (24 * 5 - 4 * 4.5) / 20] }]}
+  valueLabel="Tonnes per hectare"
+  valueRange={{ min: 4, max: 5.5 }}
+/>
+
 Since <InlineMath math="5.1 > 5.0" />, the statement is certainly true. The average goes up once the four low-yield plots are removed, which you'd miss if you just read the <InlineMath math="5.0" /> off the table.
 
 So statements 1 and 4 can be concluded, while statements 2 and 3 can't.

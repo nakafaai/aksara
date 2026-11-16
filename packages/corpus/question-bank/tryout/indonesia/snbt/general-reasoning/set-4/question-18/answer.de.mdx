@@ -12,6 +12,19 @@ Das Wörterbuch liegt sicher in Kiste 3. Der Regenschirm liegt nicht in Kiste 2 
 - Regenschirm in Kiste 1. Für die Wanduhr bleiben Kiste 2 oder Kiste 4. Die Nummern <InlineMath math="2" /> und <InlineMath math="1" /> folgen aufeinander, also verletzt Kiste 2 das Gegenteil des Etiketts von Kiste 4. Kiste 4 macht die Nummer des Wörterbuchs, also <InlineMath math="3" />, kleiner als die Nummer der Wanduhr, also verletzt Kiste 4 das Gegenteil des Etiketts von Kiste 3. Dieser Fall scheitert.
 - Regenschirm in Kiste 4. Kiste 1 darf weder Wörterbuch noch Thermoskanne enthalten, und der Regenschirm liegt schon in Kiste 4, also enthält Kiste 1 die Wanduhr. Die Thermoskanne kommt in Kiste 2.
 
+Das Diagramm zeichnet die beiden Fälle für den Regenschirm. **Der Zweig mit dem Regenschirm in Kiste 1 endet in beiden Richtungen in einer Sackgasse**, also bleibt nur der Zweig mit dem Regenschirm in Kiste 4.
+
+<Mermaid
+  title={<>Zwei Fälle für den Regenschirm, sobald das Wörterbuch in Kiste 3 feststeht</>}
+  description={<>Liegt der Regenschirm in Kiste 1, liegt eine Wanduhr in Kiste 2 direkt neben dem Regenschirm, und eine Wanduhr in Kiste 4 macht die Nummer des Wörterbuchs kleiner. Liegt der Regenschirm in Kiste 4, muss Kiste 1 die Wanduhr und Kiste 2 die Thermoskanne enthalten.</>}
+  chart={`flowchart LR
+    K["Wörterbuch in Kiste 3"] --> A["Regenschirm in Kiste 1"]
+    K --> B["Regenschirm in Kiste 4"]
+    A --> A1["Uhr in Kiste 2: neben dem Regenschirm, scheitert"]
+    A --> A2["Uhr in Kiste 4: Nummer des Wörterbuchs kleiner, scheitert"]
+    B --> B1["Kiste 1 Wanduhr, Kiste 2 Thermoskanne"]`}
+/>
+
 Ergebnis: Kiste 1 Wanduhr, Kiste 2 Thermoskanne, Kiste 3 Wörterbuch, Kiste 4 Regenschirm. Prüf noch einmal, dass alle vier Etiketten wirklich falsch sind. Kiste 1 enthält die Wanduhr, nicht Wörterbuch oder Thermoskanne. Das Wörterbuch liegt in Kiste 3, aber Kiste 2 enthält die Thermoskanne, nicht den Regenschirm. Die Nummer des Wörterbuchs, <InlineMath math="3" />, ist nicht kleiner als die Nummer der Wanduhr, <InlineMath math="1" />. Wanduhr in Kiste 1 und Regenschirm in Kiste 4 haben keine aufeinanderfolgenden Nummern.
 
 Jede andere Option macht genau ein Etikett wahr.
