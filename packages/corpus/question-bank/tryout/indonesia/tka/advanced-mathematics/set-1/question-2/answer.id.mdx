@@ -6,6 +6,18 @@ Determinannya tidak nol, sehingga <InlineMath math="A^{-1}" /> ada. Untuk matrik
 
 <BlockMath math="A^{-1}=\frac{1}{1}\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" />
 
+Diagram berikut membandingkan kedua sisi tempat <InlineMath math="A^{-1}" /> bisa dikalikan. **Hanya perkalian dari kanan yang menempelkan <InlineMath math="A^{-1}" /> langsung pada <InlineMath math="A" />**, sehingga <InlineMath math="AA^{-1}=I" /> hilang.
+
+<Mermaid
+  title={<>Dari mana <InlineMath math="A^{-1}" /> dikalikan</>}
+  description={<>Jalur utama mengalikan <InlineMath math="XA=B" /> dengan <InlineMath math="A^{-1}" /> dari kanan, sehingga <InlineMath math="AA^{-1}" /> menjadi <InlineMath math="I" /> dan tersisa <InlineMath math="X=BA^{-1}" />. Jalur putus-putus mengalikan dari kiri, sehingga <InlineMath math="A^{-1}" /> terpisah dari <InlineMath math="A" /> oleh <InlineMath math="X" /> dan tidak bisa dihapus.</>}
+  chart={`flowchart TD
+  E["X·A = B"] -->|"kalikan A⁻¹ dari kanan"| R["X·A·A⁻¹ = B·A⁻¹"]
+  R --> X["X = B·A⁻¹"]
+  E -.->|"kalikan A⁻¹ dari kiri"| W["A⁻¹·X·A = A⁻¹·B"]
+  W -.-> N["A⁻¹ dan A terpisah oleh X"]`}
+/>
+
 Kalikan kedua ruas <InlineMath math="XA=B" /> dengan <InlineMath math="A^{-1}" /> dari kanan. Karena <InlineMath math="AA^{-1}=I" />, ruas kiri tinggal <InlineMath math="X" />.
 
 <BlockMath math="\begin{aligned}

@@ -2,6 +2,42 @@ Faktorkan pembilang dan penyebut lebih dulu, karena **faktor bersama dan faktor 
 
 <BlockMath math="f(x)=\frac{(x-2)(x+2)}{(x-2)(x+1)}=\frac{x+2}{x+1},\qquad x\ne-1,\ x\ne2" />
 
+Gambar <InlineMath math="f" /> setelah disederhanakan. **Di <InlineMath math="x=2" /> grafiknya hanya berlubang, sedangkan di <InlineMath math="x=-1" /> kedua cabang lari ke arah berlawanan**, jadi limit ada di <InlineMath math="2" /> tetapi tidak ada di <InlineMath math="-1" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=\frac{x+2}{x+1}" /> dengan lubang di <InlineMath math="x=2" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{x+2}{x+1}" /> punya dua cabang di kiri dan kanan garis tegak <InlineMath math="x=-1" />, dan mendekati garis mendatar <InlineMath math="y=1" /> untuk <InlineMath math="x" /> besar. Titik <InlineMath math="\left(2,\ \tfrac43\right)" /> ditandai sebagai lubang karena <InlineMath math="f(2)" /> tidak terdefinisi, dan kurva melewati <InlineMath math="(0,\ 2)" />.</>}
+  labels={{
+    hole: <InlineMath math="\left(2,\ \tfrac43\right)" />,
+    zero: <InlineMath math="(0,\ 2)" />,
+    wall: <InlineMath math="x=-1" />,
+    flat: <InlineMath math="y=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -4, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: -1, y: -4 }, to: { x: -1, y: 7 } },
+      { id: "flat", kind: "function", appearance: "reference", formula: "1", domain: { min: -5, max: 5 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 2)/(x + 1)", domain: { min: -5, max: -1.25 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x + 1)", domain: { min: -0.83, max: 5 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 2, y: 4 / 3 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 2, y: 4 / 3 }, placement: "above" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "wall", objectId: "wall", at: { x: -1, y: 7 }, placement: "left" },
+      { key: "flat", objectId: "flat", at: { x: 4.5, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Penyederhanaan itu sah di semua titik daerah asal, karena di sana <InlineMath math="x-2\ne0" />.
 
 1. Pernyataan <InlineMath math="\lim_{x\to2}f(x)=\frac43" /> benar. Limit hanya memakai nilai di sekitar <InlineMath math="2" />, jadi <InlineMath math="\lim_{x\to2}\frac{x+2}{x+1}=\frac{4}{3}" />.

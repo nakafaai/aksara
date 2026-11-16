@@ -12,6 +12,18 @@ x-3&=2x \\
 x&=-3
 \end{aligned}" />
 
+Diagram berikut memperlihatkan kedua arah. **Jalur maju melewati <InlineMath math="g" /> dulu, lalu <InlineMath math="f" />**, jadi jalur balik membuka <InlineMath math="f" /> dulu, lalu <InlineMath math="g" />.
+
+<Mermaid
+  title={<>Membuka komposisi dari luar ke dalam</>}
+  description={<>Panah tegas adalah jalur maju: <InlineMath math="-3" /> dibawa <InlineMath math="g" /> ke <InlineMath math="2" />, lalu <InlineMath math="f" /> membawa <InlineMath math="2" /> ke <InlineMath math="5" />. Panah putus-putus adalah jalur balik: <InlineMath math="f^{-1}" /> membawa <InlineMath math="5" /> ke <InlineMath math="2" />, lalu <InlineMath math="g^{-1}" /> membawa <InlineMath math="2" /> ke <InlineMath math="-3" />.</>}
+  chart={`flowchart LR
+  X["x = -3"] -->|"g"| G["g(x) = 2"]
+  G -->|"f"| F["f(g(x)) = 5"]
+  F -.->|"f⁻¹"| G
+  G -.->|"g⁻¹"| X`}
+/>
+
 Pemeriksaan: <InlineMath math="g(-3)=\frac{-6}{-3}=2" /> dan <InlineMath math="f(2)=5" />, jadi <InlineMath math="(f\circ g)(-3)=5" />.
 
 Cara lain memakai sifat <InlineMath math="(f\circ g)^{-1}=g^{-1}\circ f^{-1}" />: <InlineMath math="f^{-1}(5)=2" />, lalu <InlineMath math="g^{-1}(2)=-3" />. Urutannya terbalik dari urutan komposisi semula.

@@ -2,6 +2,42 @@ Faktorisiere zuerst Zähler und Nenner, denn **der gemeinsame Faktor und die üb
 
 <BlockMath math="f(x)=\frac{(x-2)(x+2)}{(x-2)(x+1)}=\frac{x+2}{x+1},\qquad x\ne-1,\ x\ne2" />
 
+Zeichne <InlineMath math="f" /> nach dem Kürzen. **Bei <InlineMath math="x=2" /> hat der Graph nur ein Loch, bei <InlineMath math="x=-1" /> laufen die beiden Äste in entgegengesetzte Richtungen**, also existiert der Grenzwert bei <InlineMath math="2" />, aber nicht bei <InlineMath math="-1" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=\frac{x+2}{x+1}" /> mit einem Loch bei <InlineMath math="x=2" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{x+2}{x+1}" /> hat zwei Äste links und rechts der Senkrechten <InlineMath math="x=-1" /> und nähert sich für große <InlineMath math="x" /> der Waagerechten <InlineMath math="y=1" />. Der Punkt <InlineMath math="\left(2,\ \tfrac43\right)" /> ist als Loch markiert, weil <InlineMath math="f(2)" /> nicht definiert ist, und die Kurve geht durch <InlineMath math="(0,\ 2)" />.</>}
+  labels={{
+    hole: <InlineMath math="\left(2,\ \tfrac43\right)" />,
+    zero: <InlineMath math="(0,\ 2)" />,
+    wall: <InlineMath math="x=-1" />,
+    flat: <InlineMath math="y=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -4, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: -1, y: -4 }, to: { x: -1, y: 7 } },
+      { id: "flat", kind: "function", appearance: "reference", formula: "1", domain: { min: -5, max: 5 } },
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + 2)/(x + 1)", domain: { min: -5, max: -1.25 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(x + 2)/(x + 1)", domain: { min: -0.83, max: 5 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 2, y: 4 / 3 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 2, y: 4 / 3 }, placement: "above" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "wall", objectId: "wall", at: { x: -1, y: 7 }, placement: "left" },
+      { key: "flat", objectId: "flat", at: { x: 4.5, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 Das Kürzen ist an jeder Stelle des Definitionsbereichs erlaubt, weil dort <InlineMath math="x-2\ne0" /> gilt.
 
 1. Die Aussage <InlineMath math="\lim_{x\to2}f(x)=\frac43" /> ist richtig. Ein Grenzwert verwendet nur Werte in der Nähe von <InlineMath math="2" />, also <InlineMath math="\lim_{x\to2}\frac{x+2}{x+1}=\frac{4}{3}" />.

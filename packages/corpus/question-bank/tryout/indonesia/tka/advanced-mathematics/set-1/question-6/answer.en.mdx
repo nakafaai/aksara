@@ -20,6 +20,41 @@ The polynomial is <InlineMath math="P(x)=x^4-2x^3-3x^2+4x+4" />. By the remainde
 
 <BlockMath math="P(3)=81-2\cdot27-3\cdot9+4\cdot3+4=81-54-27+12+4=16" />
 
+Draw <InlineMath math="P(x)=(x^2-x-2)^2" />. **The graph touches the <InlineMath math="x" />-axis at both factors <InlineMath math="x=-1" /> and <InlineMath math="x=2" />**, and the remainder on division by <InlineMath math="x-3" /> is the graph's height at <InlineMath math="x=3" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="P(x)" /> and the value <InlineMath math="P(3)" /></>}
+  description={<>The curve <InlineMath math="y=(x^2-x-2)^2" /> never goes below the <InlineMath math="x" />-axis and touches it at <InlineMath math="(-1,\ 0)" /> and <InlineMath math="(2,\ 0)" />. At <InlineMath math="x=3" />, its height is <InlineMath math="16" />.</>}
+  labels={{
+    curve: <InlineMath math="P(x)=(x^2-x-2)^2" />,
+    left: <InlineMath math="x=-1" />,
+    right: <InlineMath math="x=2" />,
+    value: <InlineMath math="(3,\ 16)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 3.6 },
+      y: { min: -2, max: 20 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 - x - 2)^2", domain: { min: -1.8, max: 3.2 } },
+      { id: "left", kind: "point", appearance: "secondary", at: { x: -1, y: 0 } },
+      { id: "right", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 16 } },
+      { id: "value", kind: "point", appearance: "answer", at: { x: 3, y: 16 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0.5, y: Math.pow(2.25, 2) }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "value", objectId: "value", at: { x: 3, y: 16 }, placement: "left" },
+    ],
+  }}
+/>
+
 As a check, divide <InlineMath math="P(x)" /> by <InlineMath math="(x+1)(x-2)=x^2-x-2" />. The quotient is also <InlineMath math="x^2-x-2" />, so <InlineMath math="P(x)=(x^2-x-2)^2" />. In this form, <InlineMath math="P(3)=(9-3-2)^2=4^2=16" />, the same result.
 
 So the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x-3" /> is <InlineMath math="16" />.

@@ -7,6 +7,48 @@ Jede Aussage über die Form des Dreiecks lässt sich an **seinen Seitenvektoren*
 \overrightarrow{AB}\cdot\overrightarrow{AC}&=-2+4-2=0
 \end{aligned}" />
 
+Zeichne das Dreieck in der Ebene, die es enthält. **Die Seiten <InlineMath math="AB" /> und <InlineMath math="AC" /> sind gleich lang und stehen senkrecht aufeinander**, also ist das Dreieck rechtwinklig-gleichschenklig, und <InlineMath math="\overrightarrow{AB}" /> an <InlineMath math="C" /> angesetzt ergänzt es zu einem Parallelogramm.
+
+<MathVisual
+  title={<>Das Dreieck <InlineMath math="ABC" /> und das Parallelogramm <InlineMath math="ABDC" /></>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> ist in der Ebene durch seine drei Punkte gezeichnet. Die Seiten <InlineMath math="AB" /> und <InlineMath math="AC" /> sind jeweils <InlineMath math="3" /> lang und treffen sich bei <InlineMath math="A" /> rechtwinklig, während <InlineMath math="BC=3\sqrt2" /> ist. Der Punkt <InlineMath math="D=C+\overrightarrow{AB}" /> ergänzt das Parallelogramm <InlineMath math="ABDC" />, hier ein Quadrat.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ab: <InlineMath math="3" />,
+    ac: <InlineMath math="3" />,
+    bc: <InlineMath math="3\sqrt2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4 },
+      y: { min: -1, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parallelogram", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }] },
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 3 }] },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "ac", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "bc", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "corner", kind: "polyline", appearance: "answer", vertices: [{ x: 0.4, y: 0 }, { x: 0.4, y: 0.4 }, { x: 0, y: 0.4 }] },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 0, y: 3 }, placement: "above-left" },
+      { key: "d", objectId: "parallelogram", at: { x: 3, y: 3 }, placement: "above-right" },
+      { key: "ab", objectId: "ab", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "ac", objectId: "ac", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "bc", objectId: "bc", at: { x: 1.5, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 1. Die Aussage, dass <InlineMath math="ABC" /> gleichseitig ist, ist falsch. Zwei Seiten sind <InlineMath math="3" /> lang, die dritte aber <InlineMath math="3\sqrt2" />.
 2. Die Aussage <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{BC}=9" /> ist falsch. Der Wert ist <InlineMath math="2(-3)+2\cdot0+1\cdot(-3)=-9" />. Er ist negativ, weil <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="\overrightarrow{BC}" /> hintereinander liegen. Der Winkel zwischen ihnen ist daher der Außenwinkel des Dreiecks bei <InlineMath math="B" />, nämlich <InlineMath math="135^\circ" />.
 3. Die Aussage, dass der Winkel <InlineMath math="BAC" /> ein rechter Winkel ist, ist richtig, weil <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{AC}=0" /> und keiner der Vektoren null ist.

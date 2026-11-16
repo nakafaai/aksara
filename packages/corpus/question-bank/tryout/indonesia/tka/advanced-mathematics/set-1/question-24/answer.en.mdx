@@ -9,6 +9,36 @@ With <InlineMath math="\lim\limits_{x\to0}\frac{\tan ax}{\sin x}=a" /> and <Inli
 
 <BlockMath math="\lim_{x\to0}\frac{\tan3x\cdot\sin2x}{1-\cos2x}=\frac12\cdot3\cdot2=3" />
 
+Draw the function for small <InlineMath math="x" /> on both sides of zero. **Both branches come down to the same point, <InlineMath math="(0,\ 3)" />**, even though the function itself isn't defined at <InlineMath math="x=0" />.
+
+<MathVisual
+  title={<>The graph near <InlineMath math="x=0" /></>}
+  description={<>The curve <InlineMath math="y=\frac{\tan3x\cdot\sin2x}{1-\cos2x}" /> for <InlineMath math="x" /> between about <InlineMath math="-0.32" /> and <InlineMath math="0.32" /> radians, without <InlineMath math="x=0" />. The graph is symmetric, and both branches head to the horizontal line <InlineMath math="y=3" /> at <InlineMath math="x=0" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{\tan3x\cdot\sin2x}{1-\cos2x}" />,
+    target: <InlineMath math="(0,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.35, max: 0.35 },
+      y: { min: 2, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "sin(3*x)/cos(3*x)*sin(2*x)/(1 - cos(2*x))", domain: { min: -0.32, max: -0.005 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "sin(3*x)/cos(3*x)*sin(2*x)/(1 - cos(2*x))", domain: { min: 0.005, max: 0.32 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "3", domain: { min: -0.35, max: 0.35 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -0.2, y: 4.2 }, placement: "above" },
+      { key: "target", objectId: "target", at: { x: 0, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 As a check, for small <InlineMath math="x" /> the numerator is about <InlineMath math="3x\cdot2x=6x^2" /> and the denominator about <InlineMath math="2x^2" />, so the quotient is about <InlineMath math="3" />.
 
 So the limit is <InlineMath math="3" />.

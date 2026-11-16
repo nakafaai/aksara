@@ -5,6 +5,24 @@ A^2&=\begin{pmatrix} 3 & 1 \\ -2 & 1 \end{pmatrix}\begin{pmatrix} 3 & 1 \\ -2 & 
 pA+qI&=\begin{pmatrix} 3p+q & p \\ -2p & p+q \end{pmatrix}
 \end{aligned}" />
 
+Diagram berikut memperlihatkan urutan memakai keempat entri. **Entri di luar diagonal hanya memuat <InlineMath math="p" />**, jadi mulai dari sana, lalu entri diagonal memberi dan memeriksa <InlineMath math="q" />.
+
+<Mermaid
+  title={<>Empat entri, dua bilangan</>}
+  description={<>Entri baris pertama kolom kedua memberi <InlineMath math="p=4" />, dan entri baris kedua kolom pertama memeriksanya. Entri pojok kiri atas lalu memberi <InlineMath math="q=-5" />, dan entri pojok kanan bawah memeriksanya. Hasil kalinya <InlineMath math="pq=-20" />.</>}
+  chart={`flowchart TD
+  M["A² = pA + qI"] --> E12["entri (1,2): 4 = p"]
+  M --> E21["entri (2,1): -8 = -2p"]
+  M --> E11["entri (1,1): 7 = 3p + q"]
+  M --> E22["entri (2,2): -1 = p + q"]
+  E12 --> P["p = 4"]
+  E21 --> P
+  P --> E11
+  E11 --> Q["q = -5"]
+  Q --> E22
+  Q --> R["pq = -20"]`}
+/>
+
 Entri baris pertama kolom kedua langsung memberi <InlineMath math="p=4" />. Entri baris kedua kolom pertama memeriksanya, karena <InlineMath math="-2\cdot4=-8" />. Entri pojok kiri atas memberi <InlineMath math="q" />.
 
 <BlockMath math="3(4)+q=7\ \Rightarrow\ q=-5" />

@@ -5,6 +5,37 @@ The four statements test **rules for <InlineMath math="2\times2" /> matrices**: 
 \det B&=1\cdot0-4\cdot(-3)=12
 \end{aligned}" />
 
+A determinant is an area scale factor. **The matrix <InlineMath math="A" /> turns the unit square into a parallelogram of area <InlineMath math="|\det A|=2" />, and <InlineMath math="3A" /> stretches that parallelogram <InlineMath math="3" /> times in both directions**, so its area becomes <InlineMath math="9\cdot2=18" />.
+
+<MathVisual
+  title={<>The unit square under <InlineMath math="A" /> and <InlineMath math="3A" /></>}
+  description={<>The unit square has area <InlineMath math="1" />. Its image under <InlineMath math="A" /> is the parallelogram with vertices <InlineMath math="(0,0)" />, <InlineMath math="(3,5)" />, <InlineMath math="(1,1)" />, and <InlineMath math="(-2,-4)" />, of area <InlineMath math="2" />. Its image under <InlineMath math="3A" /> has vertices <InlineMath math="(9,15)" />, <InlineMath math="(3,3)" />, and <InlineMath math="(-6,-12)" />, of area <InlineMath math="18" />.</>}
+  labels={{
+    square: <InlineMath math="\text{area }1" />,
+    image: <InlineMath math="A:\ \text{area }2" />,
+    triple: <InlineMath math="3A:\ \text{area }18" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 10 },
+      y: { min: -13, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triple", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 9, y: 15 }, { x: 3, y: 3 }, { x: -6, y: -12 }] },
+      { id: "image", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 5 }, { x: 1, y: 1 }, { x: -2, y: -4 }] },
+      { id: "square", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "triple", objectId: "triple", at: { x: 9, y: 15 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 1. The statement <InlineMath math="\det(3A)=-6" /> is false. Multiplying by <InlineMath math="3" /> only once gives <InlineMath math="3\det A=-6" />. The factor <InlineMath math="3" /> sits in both rows, though, so <InlineMath math="\det(3A)=3^2\det A=9\cdot(-2)=-18" />.
 2. The statement about <InlineMath math="A-B" /> is true, because matrices are subtracted entry by entry.
 3. The statement about <InlineMath math="A^{-1}" /> is false. For the inverse, you swap the entries on the main diagonal, change the sign of the entries on the other diagonal, and divide by <InlineMath math="\det A=-2" />. The statement divides by <InlineMath math="2" /> instead of <InlineMath math="-2" />, so the sign of the determinant is missing.

@@ -7,6 +7,48 @@ Every statement about the shape of the triangle can be judged from **its side ve
 \overrightarrow{AB}\cdot\overrightarrow{AC}&=-2+4-2=0
 \end{aligned}" />
 
+Draw the triangle in the plane that holds it. **Sides <InlineMath math="AB" /> and <InlineMath math="AC" /> are equal and perpendicular**, so the triangle is a right isosceles triangle, and adding <InlineMath math="\overrightarrow{AB}" /> to <InlineMath math="C" /> completes it to a parallelogram.
+
+<MathVisual
+  title={<>Triangle <InlineMath math="ABC" /> and parallelogram <InlineMath math="ABDC" /></>}
+  description={<>Triangle <InlineMath math="ABC" /> is drawn in the plane through its three points. Sides <InlineMath math="AB" /> and <InlineMath math="AC" /> are each <InlineMath math="3" /> and meet at a right angle at <InlineMath math="A" />, while <InlineMath math="BC=3\sqrt2" />. The point <InlineMath math="D=C+\overrightarrow{AB}" /> completes the parallelogram <InlineMath math="ABDC" />, which here is a square.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ab: <InlineMath math="3" />,
+    ac: <InlineMath math="3" />,
+    bc: <InlineMath math="3\sqrt2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4 },
+      y: { min: -1, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parallelogram", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }] },
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 3 }] },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "ac", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "bc", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "corner", kind: "polyline", appearance: "answer", vertices: [{ x: 0.4, y: 0 }, { x: 0.4, y: 0.4 }, { x: 0, y: 0.4 }] },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 0, y: 3 }, placement: "above-left" },
+      { key: "d", objectId: "parallelogram", at: { x: 3, y: 3 }, placement: "above-right" },
+      { key: "ab", objectId: "ab", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "ac", objectId: "ac", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "bc", objectId: "bc", at: { x: 1.5, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 1. The statement that <InlineMath math="ABC" /> is equilateral is false. Two sides are <InlineMath math="3" />, but the third is <InlineMath math="3\sqrt2" />.
 2. The statement <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{BC}=9" /> is false. The value is <InlineMath math="2(-3)+2\cdot0+1\cdot(-3)=-9" />. It is negative because <InlineMath math="\overrightarrow{AB}" /> and <InlineMath math="\overrightarrow{BC}" /> are placed head to tail, so the angle between them is the exterior angle of the triangle at <InlineMath math="B" />, namely <InlineMath math="135^\circ" />.
 3. The statement that angle <InlineMath math="BAC" /> is a right angle is true, because <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{AC}=0" /> and neither vector is zero.
