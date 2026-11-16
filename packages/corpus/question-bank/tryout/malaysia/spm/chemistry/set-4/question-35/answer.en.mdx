@@ -1,0 +1,27 @@
+# Count the oxygen the rocket must carry, then divide
+
+Balance each combustion per mole of fuel and add the oxygen's mass (<InlineMath math="\text{O}_2 = 32" />) to the fuel's:
+
+- Methanol: <InlineMath math="\text{CH}_3\text{OH} + \tfrac{3}{2}\text{O}_2" />, mass <InlineMath math="32 + 48 = 80" />, heat <InlineMath math="726 \div 80 = 9.08\text{ kJ g}^{-1}" />.
+- Ethanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} + 3\text{O}_2" />, mass <InlineMath math="46 + 96 = 142" />, heat <InlineMath math="1376 \div 142 = 9.69\text{ kJ g}^{-1}" />.
+- Octane: <InlineMath math="\text{C}_8\text{H}_{18} + \tfrac{25}{2}\text{O}_2" />, mass <InlineMath math="114 + 400 = 514" />, heat <InlineMath math="5470 \div 514 = 10.6\text{ kJ g}^{-1}" />.
+- Hydrogen: <InlineMath math="\text{H}_2 + \tfrac{1}{2}\text{O}_2" />, mass <InlineMath math="2 + 16 = 18" />, heat <InlineMath math="286 \div 18 = 15.9\text{ kJ g}^{-1}" />.
+
+<Chart
+  title={<>Heat per Gram of Fuel and Oxygen</>}
+  bars="apart"
+  categories={["Methanol", "Ethanol", "Octane", "Hydrogen"]}
+  series={[
+    { label: "Heat released (kJ g⁻¹)", mark: "bar", values: [9.08, 9.69, 10.6, 15.9] },
+  ]}
+  valueLabel="Heat released (kJ g⁻¹)"
+  description={<>Per gram of fuel and oxygen: methanol <InlineMath math="9.08" />, ethanol <InlineMath math="9.69" />, octane <InlineMath math="10.6" /> and hydrogen <InlineMath math="15.9\text{ kJ}" />.</>}
+/>
+
+Hydrogen still wins, but by far less than it seems from the fuel alone: the oxygen is **eight times** the mass of the hydrogen it burns.
+
+# Why the other options are wrong
+
+- <InlineMath math="143\text{ kJ}" /> divides by the hydrogen alone and forgets the <InlineMath math="16" /> g of oxygen each <InlineMath math="2" /> g **of hydrogen needs**.
+- Octane has the largest heat per mole, but it needs <InlineMath math="400" /> g of oxygen per mole, so per gram of fuel and oxygen it comes second.
+- <InlineMath math="8.4\text{ kJ}" /> adds a whole mole of oxygen, <InlineMath math="32" /> g, per mole of hydrogen instead of half a mole.

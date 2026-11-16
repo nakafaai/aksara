@@ -1,0 +1,25 @@
+# Work in kilomoles, then read both ratios off the equation
+
+The ore holds <InlineMath math="1.6 \times 0.80 = 1.28" /> tonnes of iron(III) oxide, <InlineMath math="M_r = 160" />: <InlineMath math="1.28 \times 10^6 \div 160 = 8.0 \times 10^3" /> mol.
+
+<Mermaid
+  title={<>From Ore to Iron</>}
+  description={<><InlineMath math="1.28" /> tonnes of iron(III) oxide is <InlineMath math="8.0" /> kilomoles. It takes <InlineMath math="24" /> kilomoles of carbon monoxide and should give <InlineMath math="16" /> kilomoles of iron, <InlineMath math="0.896" /> tonnes.</>}
+  chart={`
+    flowchart LR
+      N0["1.6 t ore × 80% = 1.28 t Fe2O3"] --> N1["8.0 kmol Fe2O3"]
+      N1 --> N2["× 2: 16 kmol Fe, 0.896 t in theory"]
+      N2 --> N3["0.806 of 0.896: 90%"]
+      N1 --> N4["× 3: 24 kmol CO, 576 m³"]
+  `}
+/>
+
+**Iron**: two per oxide, <InlineMath math="1.6 \times 10^4" /> mol, or <InlineMath math="1.6 \times 10^4 \times 56 = 0.896" /> tonnes in theory. The yield is <InlineMath math="\tfrac{0.806}{0.896} \times 100\% = 90\%" />.
+
+**Carbon monoxide**: three per oxide, <InlineMath math="2.4 \times 10^4" /> mol, or <InlineMath math="2.4 \times 10^4 \times 24 = 5.76 \times 10^5\text{ dm}^3 = 576\text{ m}^3" />. The slag loss happens after reduction, so it does not change the gas used.
+
+# Why the other options are wrong
+
+- <InlineMath math="192\text{ m}^3" /> takes one carbon monoxide per iron(III) oxide, but each oxide gives up three oxygen atoms.
+- <InlineMath math="72\%" /> treats all <InlineMath math="1.6" /> tonnes of ore as iron(III) oxide, which predicts <InlineMath math="1.12" /> tonnes of iron.
+- <InlineMath math="384\text{ m}^3" /> takes one carbon monoxide per iron atom, two per oxide instead of **three**.

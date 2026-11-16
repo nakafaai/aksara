@@ -1,0 +1,24 @@
+# Atom economy reads the equation, yield reads the brewery
+
+**Atom economy** uses only the equation: one glucose, <InlineMath math="180" />, gives two ethanol, <InlineMath math="2 \times 46 = 92" />, so it is <InlineMath math="\tfrac{92}{180} \times 100\% = 51\%" />. The rest leaves as carbon dioxide however well the brewery works.
+
+**Percentage yield** compares the real mass with the predicted one. Glucose: <InlineMath math="900 \div 180 = 5.00" /> kmol, which should give <InlineMath math="10.0" /> kmol of ethanol, <InlineMath math="10.0 \times 46 = 460\text{ kg}" />. The yield is <InlineMath math="\tfrac{368}{460} \times 100\% = 80\%" />.
+
+<Chart
+  title={<>Ethanol from <InlineMath math="900\text{ kg}" /> of Glucose</>}
+  bars="apart"
+  categories={["Predicted by the equation", "Obtained"]}
+  series={[
+    { label: "Ethanol (kg)", mark: "bar", values: [460, 368] },
+  ]}
+  valueLabel="Ethanol (kg)"
+  description={<>Predicted <InlineMath math="460\text{ kg}" />, obtained <InlineMath math="368\text{ kg}" />.</>}
+/>
+
+**Hydration** gives one ethanol per ethene. <InlineMath math="368 \div 46 = 8.00" /> kmol of ethanol needs <InlineMath math="8.00" /> kmol of ethene, <InlineMath math="8.00 \times 28 = 224\text{ kg}" />.
+
+# Why the other options are wrong
+
+- An atom economy of <InlineMath math="100\%" /> mixes it up with yield. Even a perfect fermentation loses the **carbon dioxide's mass**.
+- <InlineMath math="41\%" /> divides the ethanol by the glucose, <InlineMath math="368 \div 900" />, instead of by the ethanol the equation predicts.
+- <InlineMath math="448\text{ kg}" /> takes two ethene per ethanol, copying the fermentation ratio into the hydration equation.
