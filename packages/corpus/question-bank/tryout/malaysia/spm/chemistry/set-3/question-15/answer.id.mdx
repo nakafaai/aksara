@@ -1,23 +1,25 @@
-# Baca titik akhir, lalu pakai perbandingan mol
+# Biarkan volume titrasi menentukan jumlah proton tiap molekul
 
-pH melonjak dari <InlineMath math="1{,}94" /> ke <InlineMath math="12{,}04" /> di sekitar **<InlineMath math="20{,}0\text{ cm}^3" />**, jadi itulah volume yang tepat menetralkan asam.
+Asam: <InlineMath math="1{,}80 \div 90 = 0{,}020" /> mol. Natrium hidroksida: <InlineMath math="0{,}0400 \times 1{,}00 = 0{,}040" /> mol. Tiap molekul asam menetralkan **dua ion hidroksida**, jadi asamnya diprotik, <InlineMath math="\text{H}_2\text{X}" />.
 
-<Chart
-  title={<>pH Selama Titrasi</>}
-  categories={["0", "5", "10", "15", "19", "20", "21", "25"]}
-  series={[
-    { label: "pH", mark: "line", values: [0.4, 0.6, 0.85, 1.2, 1.94, 7.0, 12.04, 12.7] },
-  ]}
-  valueLabel="pH"
-  description={<>pH bernilai <InlineMath math="0{,}40" /> pada <InlineMath math="0\text{ cm}^3" />, <InlineMath math="0{,}60" /> pada <InlineMath math="5" />, <InlineMath math="0{,}85" /> pada <InlineMath math="10" />, <InlineMath math="1{,}20" /> pada <InlineMath math="15" />, <InlineMath math="1{,}94" /> pada <InlineMath math="19" />, <InlineMath math="7{,}00" /> pada <InlineMath math="20" />, <InlineMath math="12{,}04" /> pada <InlineMath math="21" />, dan <InlineMath math="12{,}70" /> pada <InlineMath math="25\text{ cm}^3" />.</>}
+<Mermaid
+  title={<>Kebasaan dari Titrasi</>}
+  description={<><InlineMath math="0{,}020\text{ mol}" /> asam memakai <InlineMath math="0{,}040\text{ mol}" /> hidroksida, dua per molekul. Dengan karbonat, tiap molekul lalu memberi satu karbon dioksida.</>}
+  chart={`
+    flowchart LR
+      N0["1,80 g asam: 0,020 mol"] --> N2["Perbandingan 1 : 2, kebasaan 2"]
+      N1["0,040 mol NaOH"] --> N2
+      N2 --> N3["H₂X + Na₂CO₃ → Na₂X + H₂O + CO₂"]
+      N3 --> N4["0,020 mol CO₂: 480 cm³"]
+  `}
 />
 
-Mol kalium hidroksida adalah <InlineMath math="0{,}50 \times \tfrac{20{,}0}{1000} = 0{,}010" />. Persamaan <InlineMath math="\text{H}_2\text{SO}_4 + 2\text{KOH} \rightarrow \text{K}_2\text{SO}_4 + 2\text{H}_2\text{O}" /> menunjukkan **satu mol asam untuk dua mol basa**, jadi asamnya <InlineMath math="0{,}0050" /> mol.
+Dengan karbonat: <InlineMath math="\text{H}_2\text{X} + \text{Na}_2\text{CO}_3 \rightarrow \text{Na}_2\text{X} + \text{H}_2\text{O} + \text{CO}_2" />. Dua proton melepaskan satu karbon dioksida, jadi tiap molekul asam memberi satu: <InlineMath math="0{,}020" /> mol, atau <InlineMath math="0{,}020 \times 24 = 0{,}48\text{ dm}^3 = 480\text{ cm}^3" />.
 
-Konsentrasinya <InlineMath math="0{,}0050 \div \tfrac{25{,}0}{1000} = 0{,}20\text{ mol dm}^{-3}" />. Dengan <InlineMath math="M_r = 2(1) + 32 + 4(16) = 98" />, nilainya <InlineMath math="0{,}20 \times 98 = 19{,}6\text{ g dm}^{-3}" />.
+**Garam**: titrasi mengganti kedua hidrogen asam dengan natrium, <InlineMath math="\text{H}_2\text{X} + 2\text{NaOH} \rightarrow \text{Na}_2\text{X} + 2\text{H}_2\text{O}" />. Massa garamnya <InlineMath math="90 - 2 + 2 \times 23 = 134" />, jadi tersisa <InlineMath math="0{,}020 \times 134 = 2{,}68" /> g.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="9{,}8\text{ g dm}^{-3}" /> memakai perbandingan terbalik, seolah **dua molekul asam** memakai satu ion hidroksida.
-- <InlineMath math="39{,}2\text{ g dm}^{-3}" /> menganggap reaksinya satu banding satu dan mengabaikan ion hidrogen kedua.
-- <InlineMath math="30{,}6\text{ g dm}^{-3}" /> menukar kedua volume, memakai <InlineMath math="25{,}0\text{ cm}^3" /> untuk basa dan <InlineMath math="20{,}0\text{ cm}^3" /> untuk asam.
+- Kebasaan <InlineMath math="1" /> hanya memakai <InlineMath math="20{,}0\text{ cm}^3" /> basa, **separuh** dari volume titrasi.
+- <InlineMath math="960\text{ cm}^3" /> memberi satu karbon dioksida per proton, padahal satu ion karbonat mengikat dua proton.
+- <InlineMath math="1{,}34\text{ g}" /> membuat satu satuan rumus garam dari dua molekul asam.

@@ -1,22 +1,26 @@
-# Equal masses of alkenes hold equal masses of carbon
+# The salt names the ester and also counts it
 
-Every alkene is <InlineMath math="\text{C}_n\text{H}_{2n}" />, so its carbon fraction is <InlineMath math="\tfrac{12n}{14n} = 85.7\%" /> for every <InlineMath math="n" />: the **flat line** on the chart. Any <InlineMath math="5.6" /> g of alkene holds <InlineMath math="0.857 \times 5.6 = 4.8" /> g of carbon, which is <InlineMath math="0.40" /> mol.
+Test the possible salts: sodium methanoate is <InlineMath math="68" />, sodium ethanoate, <InlineMath math="\text{CH}_3\text{COONa}" />, is <InlineMath math="15 + 44 + 23 = 82" />, and sodium propanoate is <InlineMath math="96" />. So the acid part is **ethanoate**, the other two carbons are the alcohol part, and the ester is ethyl ethanoate, <InlineMath math="\text{CH}_3\text{COOC}_2\text{H}_5" />, <InlineMath math="M_r = 88" />.
 
-<Chart
-  title={<>Carbon by Mass in Two Homologous Series</>}
-  categories={["2", "3", "4"]}
-  series={[
-    { label: "Alkanes", mark: "line", values: [80.0, 81.8, 82.8] },
-    { label: "Alkenes", mark: "line", values: [85.7, 85.7, 85.7] },
-  ]}
-  valueLabel="Carbon by mass (%)"
-  description={<>Alkanes: <InlineMath math="80.0" />, <InlineMath math="81.8" /> and <InlineMath math="82.8\%" /> for two, three and four carbon atoms. Alkenes: <InlineMath math="85.7\%" /> for two, three and four carbon atoms.</>}
+The impurities hold no sodium, so the salt counts only the ester: <InlineMath math="3.69 \div 82 = 0.045" /> mol of salt from <InlineMath math="0.045" /> mol of ester.
+
+<Mermaid
+  title={<>From the Salt Back to the Ester</>}
+  description={<>The salt of mass <InlineMath math="82" /> is sodium ethanoate, <InlineMath math="0.045\text{ mol}" /> of it, so the sample held <InlineMath math="3.96\text{ g}" /> of ethyl ethanoate.</>}
+  chart={`
+    flowchart LR
+      N0["Salt Mr 82: CH₃COONa"] --> N1["Ester: ethyl ethanoate, Mr 88"]
+      N2["3.69 g ÷ 82 = 0.045 mol salt"] --> N3["0.045 mol ester: 3.96 g"]
+      N1 --> N3
+      N3 --> N4["3.96 ÷ 4.4 = 90% pure"]
+      N3 --> N5["0.045 mol ethanol: 2.07 g"]
+  `}
 />
 
-Each carbon atom ends up in one carbon dioxide molecule, so each sample gives <InlineMath math="0.40" /> mol, or <InlineMath math="0.40 \times 44 = 17.6" /> g. Check with molecules: ethene, <InlineMath math="5.6 \div 28 = 0.20" /> mol <InlineMath math="\times 2 = 0.40" />. Propene, <InlineMath math="5.6 \div 42 = 0.133" /> mol <InlineMath math="\times 3 = 0.40" />.
+Ester in the sample: <InlineMath math="0.045 \times 88 = 3.96" /> g, so the purity is <InlineMath math="3.96 \div 4.4 \times 100\% = 90\%" />. Each ester molecule gives one ethanol molecule: <InlineMath math="0.045 \times 46 = 2.07" /> g.
 
 # Why the other options are wrong
 
-- Propene has more carbon atoms per molecule, but **fewer molecules** in the same mass. The two effects cancel exactly.
-- Ethene has more molecules, but fewer carbon atoms in each, so again the totals match.
-- <InlineMath math="8.8\text{ g}" /> counts <InlineMath math="0.20" /> mol of carbon, the moles of ethene molecules, without the two carbon atoms in each.
+- Methyl propanoate would give sodium propanoate, <InlineMath math="M_r = 96" />, **not** <InlineMath math="82" />.
+- <InlineMath math="84\%" /> divides the salt's mass by the sample's, but the salt is a different compound with a different molar mass.
+- <InlineMath math="2.30\text{ g}" /> treats the whole <InlineMath math="4.4" /> g as ester and ignores the impurities.

@@ -1,20 +1,24 @@
-# Wärme je Mol, und warum der Anstieg gleich bleibt
+# Die Plätzchen geben zweimal Wärme ab
 
-Freigesetzte Wärme: <InlineMath math="50 \times 4{,}2 \times 10{,}0 = 2100" /> J, also <InlineMath math="2{,}10" /> kJ. Die Kupfer(II)-Ionen begrenzen: <InlineMath math="0{,}20 \times \tfrac{50}{1000} = 0{,}010" /> mol. Also <InlineMath math="\Delta H = -\tfrac{2{,}10}{0{,}010} = -210\text{ kJ mol}^{-1}" />.
+Natriumhydroxid: <InlineMath math="2{,}0 \div 40 = 0{,}050" /> mol. Die Säure enthält <InlineMath math="0{,}10" /> mol Wasserstoffionen, mehr als genug, also lösen sich **alle <InlineMath math="0{,}050" /> mol** und werden dann neutralisiert.
 
-<Mermaid
-  title={<>Energiediagramm</>}
-  description={<>Die Produkte Zinksulfat und Kupfer liegen je Mol verdrängtes Kupfer <InlineMath math="210\text{ kJ}" /> unter den Edukten.</>}
-  chart={`
-    flowchart TD
-      A["Zn + CuSO4"] -->|"ΔH = −210 kJ mol⁻¹, Wärme wird frei"| B["ZnSO4 + Cu"]
-  `}
+Lösen: <InlineMath math="0{,}050 \times 44{,}5 = 2{,}225" /> kJ. Neutralisieren: <InlineMath math="0{,}050 \times 57{,}3 = 2{,}865" /> kJ.
+
+<Chart
+  title={<>Wärme aus beiden Vorgängen</>}
+  bars="apart"
+  categories={["Lösen", "Neutralisieren", "Summe"]}
+  series={[
+    { label: "Freigesetzte Wärme (kJ)", mark: "bar", values: [2.225, 2.865, 5.09] },
+  ]}
+  valueLabel="Freigesetzte Wärme (kJ)"
+  description={<>Das Lösen gibt <InlineMath math="2{,}225\text{ kJ}" /> und das Neutralisieren <InlineMath math="2{,}865\text{ kJ}" />, zusammen <InlineMath math="5{,}09\text{ kJ}" />.</>}
 />
 
-Mit <InlineMath math="100\text{ cm}^3" /> reagiert die doppelte Stoffmenge und die doppelte Wärme wird frei, aber sie erwärmt jetzt **die doppelte Masse Lösung**. Beide Faktoren heben sich auf, der Anstieg bleibt <InlineMath math="10{,}0^\circ\text{C}" />. Nur eine andere Konzentration würde den Anstieg ändern.
+Gesamtwärme: <InlineMath math="5{,}09" /> kJ, also <InlineMath math="5090" /> J. Anstieg: <InlineMath math="\Delta T = 5090 \div (100 \times 4{,}2) = 12{,}1^\circ\text{C}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- Doppelte Wärme verdoppelt den Anstieg nur bei gleicher Masse, aber **die Masse verdoppelt sich ebenfalls**.
-- <InlineMath math="-105\text{ kJ mol}^{-1}" /> und ein halbierter Anstieg tun beide so, als verdünne das größere Volumen die Lösung, die Konzentration bleibt aber gleich.
-- <InlineMath math="-21{,}0\text{ kJ mol}^{-1}" /> teilt durch <InlineMath math="0{,}10" /> mol und verwechselt die Konzentration mit der Stoffmenge.
+- <InlineMath math="6{,}8^\circ\text{C}" /> zählt nur das Neutralisieren und **vergisst**, dass der Feststoff beim Lösen Wärme abgibt.
+- <InlineMath math="5{,}3^\circ\text{C}" /> zählt nur das Lösen.
+- <InlineMath math="18{,}9^\circ\text{C}" /> neutralisiert alle <InlineMath math="0{,}10" /> mol Säure, doch nur <InlineMath math="0{,}050" /> mol Hydroxid stehen zur Reaktion bereit.

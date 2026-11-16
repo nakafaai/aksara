@@ -1,23 +1,26 @@
-# Three soap ions from every fat molecule
+# Work back from the product, and divide by the yield
 
-The fat is <InlineMath math="8.90 \div 890 = 0.0100" /> mol. The equation gives **three sodium stearate units for every fat molecule**, so <InlineMath math="0.0300" /> mol of soap forms: <InlineMath math="0.0300 \times 306 = 9.18" /> g.
+Aspirin needed: <InlineMath math="1000 \times 300\text{ mg} = 300\,000\text{ mg} = 300" /> g, which is <InlineMath math="300 \div 180 = 1.667" /> mol.
 
-<Chart
-  title={<>Foam Height After Shaking</>}
-  bars="apart"
-  categories={["Soft water", "Hard water"]}
-  series={[
-    { label: "Soap", mark: "bar", values: [6.0, 0.5] },
-    { label: "Detergent", mark: "bar", values: [6.0, 6.0] },
-  ]}
-  valueLabel="Height of foam (cm)"
-  description={<>Soap gives <InlineMath math="6.0\text{ cm}" /> of foam in soft water and <InlineMath math="0.5\text{ cm}" /> in hard water. Detergent gives <InlineMath math="6.0\text{ cm}" /> in both.</>}
+At <InlineMath math="75\%" /> yield, each mole of salicylic acid gives only <InlineMath math="0.75" /> mol of aspirin, so the lab must **start with more**: <InlineMath math="1.667 \div 0.75 = 2.222" /> mol.
+
+<Mermaid
+  title={<>From Tablets Back to Raw Material</>}
+  description={<>The tablets need <InlineMath math="1.667\text{ mol}" /> of aspirin, and at <InlineMath math="75\%" /> yield that takes <InlineMath math="2.222\text{ mol}" /> of salicylic acid.</>}
+  chart={`
+    flowchart LR
+      N0["1000 × 300 mg = 300 g aspirin"] --> N1["300 ÷ 180 = 1.667 mol"]
+      N1 --> N2["÷ 0.75 = 2.222 mol salicylic acid"]
+      N2 --> N3["× 138 = 307 g"]
+  `}
 />
 
-In hard water, the carboxylate head of each stearate ion combines with calcium and magnesium ions to form an **insoluble scum**. The soap is used up making scum, so little foam forms, while a detergent's sulfonate head stays dissolved and keeps foaming.
+Salicylic acid: <InlineMath math="2.222 \times 138 = 307" /> g.
+
+**Anhydride**: <InlineMath math="20\%" /> more moles than the salicylic acid, <InlineMath math="2.222 \times 1.20 = 2.667" /> mol, which is <InlineMath math="2.667 \times 102 = 272" /> g.
 
 # Why the other options are wrong
 
-- <InlineMath math="3.06\text{ g}" /> counts only one soap unit per fat molecule, and soap lathers poorly in hard water.
-- <InlineMath math="9.18\text{ g}" /> is right, but soap lathers **worse** than a detergent in hard water, as the chart shows.
-- <InlineMath math="27.5\text{ g}" /> multiplies by three twice: once for the moles and again for the mass.
+- <InlineMath math="230\text{ g}" /> multiplies by <InlineMath math="0.75" />, which would make **less** aspirin than the tablets need.
+- <InlineMath math="227\text{ g}" /> of anhydride matches the salicylic acid mole for mole and leaves out the <InlineMath math="20\%" /> excess.
+- <InlineMath math="300\text{ g}" /> is the mass of aspirin, not of salicylic acid.

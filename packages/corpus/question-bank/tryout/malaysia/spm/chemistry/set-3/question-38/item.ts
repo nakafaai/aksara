@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "About 14 isoprene units for every cross-link, and the rubber is more elastic because its chains are linked",
+            "Monomer $$\\text{CF}_2$$, $$1000$$ units and $$2000$$ fluorine atoms per chain, and $$760\\text{ g}$$ of fluorine",
         },
         {
           correct: false,
           label:
-            "About 30 isoprene units for every cross-link, and the rubber is more elastic because its chains are linked",
+            "Monomer $$\\text{C}_2\\text{F}_4$$, $$500$$ units and $$1000$$ fluorine atoms per chain, and $$760\\text{ g}$$ of fluorine",
         },
         {
           correct: true,
           label:
-            "About 28 isoprene units for every cross-link, and the cross-links pull the chains back after stretching, so the rubber is more elastic and harder",
+            "Monomer $$\\text{C}_2\\text{F}_4$$, $$500$$ units and $$2000$$ fluorine atoms per chain, and $$760\\text{ g}$$ of fluorine",
         },
         {
           correct: false,
           label:
-            "About 28 isoprene units for every cross-link, and the rubber is softer because sulfur breaks the polymer chains",
+            "Monomer $$\\text{C}_2\\text{F}_4$$, $$500$$ units and $$2000$$ fluorine atoms per chain, and $$380\\text{ g}$$ of fluorine",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kira-kira 14 unit isoprena bagi setiap rangkai silang, dan getah itu lebih kenyal kerana rantainya terangkai",
+            "Monomer $$\\text{CF}_2$$, $$1000$$ unit dan $$2000$$ atom fluorin setiap rantai, dan $$760\\text{ g}$$ fluorin",
         },
         {
           correct: false,
           label:
-            "Kira-kira 30 unit isoprena bagi setiap rangkai silang, dan getah itu lebih kenyal kerana rantainya terangkai",
+            "Monomer $$\\text{C}_2\\text{F}_4$$, $$500$$ unit dan $$1000$$ atom fluorin setiap rantai, dan $$760\\text{ g}$$ fluorin",
         },
         {
           correct: true,
           label:
-            "Kira-kira 28 unit isoprena bagi setiap rangkai silang, dan rangkai silang menarik rantai kembali selepas diregangkan, jadi getah itu lebih kenyal dan lebih keras",
+            "Monomer $$\\text{C}_2\\text{F}_4$$, $$500$$ unit dan $$2000$$ atom fluorin setiap rantai, dan $$760\\text{ g}$$ fluorin",
         },
         {
           correct: false,
           label:
-            "Kira-kira 28 unit isoprena bagi setiap rangkai silang, dan getah itu lebih lembut kerana sulfur memutuskan rantai polimer",
+            "Monomer $$\\text{C}_2\\text{F}_4$$, $$500$$ unit dan $$2000$$ atom fluorin setiap rantai, dan $$380\\text{ g}$$ fluorin",
         },
       ],
     },

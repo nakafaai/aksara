@@ -1,30 +1,25 @@
-# The anode material decides the anode reaction
+# The cathode sets the electrons, the anode decides what they do
 
-Both cathodes receive the same ions, and silver is low in the electrochemical series, so **silver is deposited at both cathodes**: <InlineMath math="\text{Ag}^+ + e^- \rightarrow \text{Ag}" />.
+In both cells, <InlineMath math="1.08 \div 108 = 0.010" /> mol of silver is deposited, and <InlineMath math="\text{Ag}^+ + e^- \rightarrow \text{Ag}" /> takes one electron each: <InlineMath math="0.010" /> mol of electrons.
 
-<ElectrolysisLab
-  title={<>Electrolysis of Silver Nitrate Solution</>}
-  description={<>Cell X uses carbon electrodes and cell Y uses silver electrodes, both in silver nitrate solution.</>}
-  cells={[{ electrode: "carbon", electrolyte: "silver-nitrate" }, { electrode: "silver", electrolyte: "silver-nitrate" }]}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>At the anode</>,
-    atCathode: <>At the cathode</>,
-    battery: "Battery",
-    cathode: "Cathode",
-    cells: [<>Cell X: carbon electrodes</>, <>Cell Y: silver electrodes</>],
-    electrons: <>Electrons passed</>,
-    ph: <>pH of the electrolyte</>,
-    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
-    view: "Two electrolysis cells",
-  }}
+**Cell X**: carbon is inert, and hydroxide ions or water are discharged in place of nitrate ions: <InlineMath math="2\text{H}_2\text{O} \rightarrow \text{O}_2 + 4\text{H}^+ + 4e^-" />. Oxygen: <InlineMath math="0.010 \div 4 = 0.0025" /> mol, or <InlineMath math="60\text{ cm}^3" />. The same reaction leaves <InlineMath math="0.010" /> mol of hydrogen ions in <InlineMath math="0.100\text{ dm}^3" />: <InlineMath math="0.10\text{ mol dm}^{-3}" />, pH <InlineMath math="1" />.
+
+<Mermaid
+  title={<>One Cathode, Two Different Anodes</>}
+  description={<>Both cathodes take <InlineMath math="0.010\text{ mol}" /> of electrons. The carbon anode makes oxygen and hydrogen ions, and the silver anode dissolves.</>}
+  chart={`
+    flowchart LR
+      N0["1.08 g Ag: 0.010 mol e⁻"] --> N1["X anode: 2H₂O → O₂ + 4H⁺ + 4e⁻"]
+      N1 --> N2["0.0025 mol O₂: 60 cm³"]
+      N1 --> N3["0.010 mol H⁺ in 100 cm³: pH 1"]
+      N0 --> N4["Y anode: Ag → Ag⁺ + e⁻, loses 1.08 g"]
+  `}
 />
 
-At the carbon anode in X, hydroxide ions discharge in place of nitrate ions: <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />. Hydrogen ions are left behind, so the solution turns acidic. In Y, the silver anode itself **gives up electrons and dissolves**: <InlineMath math="\text{Ag} \rightarrow \text{Ag}^+ + e^-" />. Each silver ion that leaves at the cathode is replaced at the anode, so the concentration does not change.
+**Cell Y**: the silver anode itself dissolves, <InlineMath math="\text{Ag} \rightarrow \text{Ag}^+ + e^-" />, losing <InlineMath math="1.08" /> g. Every silver ion removed at the cathode is replaced at the anode, so the solution stays at <InlineMath math="0.20\text{ mol dm}^{-3}" />.
 
 # Why the other options are wrong
 
-- Silver forms by **gaining electrons**, so it appears at the cathode, never at the anode. Y's anode dissolves rather than giving oxygen.
-- The solution in X turns acidic, not alkaline, and the cathode in Y grows thicker rather than dissolving.
-- Nitrate ions are not discharged in aqueous solution, and Y's anode wears away rather than growing.
+- <InlineMath math="120\text{ cm}^3" /> gives each oxygen molecule two electrons, but it takes **four**.
+- Discharging water at the anode releases hydrogen ions, so the solution turns acidic, **not alkaline**.
+- In Y the anode is where silver dissolves, so it gets lighter, and the silver ion concentration does not change.

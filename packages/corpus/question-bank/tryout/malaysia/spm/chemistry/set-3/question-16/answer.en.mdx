@@ -1,22 +1,23 @@
-# The amount of acid sets the volume, the hydrogen ions set the speed
+# Undo the dilution after the titration
 
-Each flask holds <InlineMath math="0.10 \times \tfrac{50}{1000} = 0.0050" /> mol of a **monoprotic acid**. With excess magnesium, <InlineMath math="\text{Mg} + 2\text{H}^+ \rightarrow \text{Mg}^{2+} + \text{H}_2" /> gives <InlineMath math="0.0025" /> mol of hydrogen from each, which is <InlineMath math="0.0025 \times 24\,000 = 60\text{ cm}^3" />.
+Nitric acid: <InlineMath math="0.0220 \times 0.200 = 0.00440" /> mol, which reacts one to one with ammonia. So <InlineMath math="25.0\text{ cm}^3" /> of the flask held <InlineMath math="0.00440" /> mol, and the flask is <InlineMath math="0.00440 \div 0.0250 = 0.176\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Hydrogen Given Off by Two Acids</>}
-  categories={["0", "30", "60", "90", "120", "150", "180", "210", "240"]}
-  series={[
-    { label: "Hydrochloric acid", mark: "line", values: [0, 32, 50, 58, 60, 60, 60, 60, 60] },
-    { label: "Ethanoic acid", mark: "line", values: [0, 12, 23, 33, 42, 49, 54, 58, 60] },
-  ]}
-  valueLabel="Volume of hydrogen (cm³)"
-  description={<>Hydrochloric acid reaches <InlineMath math="60\text{ cm}^3" /> by <InlineMath math="120\text{ s}" />. Ethanoic acid gives <InlineMath math="12\text{ cm}^3" /> in the first <InlineMath math="30\text{ s}" /> and reaches <InlineMath math="60\text{ cm}^3" /> only at <InlineMath math="240\text{ s}" />.</>}
+<Mermaid
+  title={<>From the Flask Back to the Bottle</>}
+  description={<>The titration gives <InlineMath math="0.176\text{ mol dm}^{-3}" /> in the flask, and the flask is the cleaner diluted <InlineMath math="25" /> times.</>}
+  chart={`
+    flowchart LR
+      N0["0.00440 mol HNO₃"] --> N1["0.00440 mol NH₃ in 25.0 cm³"]
+      N1 --> N2["Flask: 0.176 mol dm⁻³"]
+      N2 --> N3["Cleaner: × 25 = 4.40 mol dm⁻³"]
+      N3 --> N4["× 17 = 74.8 g dm⁻³"]
+  `}
 />
 
-In the first <InlineMath math="30" /> s hydrochloric acid gives <InlineMath math="32\text{ cm}^3" /> and ethanoic acid <InlineMath math="12\text{ cm}^3" />, so <InlineMath math="32 \div 12 \approx 2.7" /> times as fast. Hydrochloric acid ionises completely, while ethanoic acid **ionises only partly**, so far fewer hydrogen ions meet the magnesium at any moment.
+The flask is **not the cleaner**. <InlineMath math="10.0\text{ cm}^3" /> became <InlineMath math="250\text{ cm}^3" />, a dilution of <InlineMath math="250 \div 10.0 = 25" /> times, so the cleaner is <InlineMath math="0.176 \times 25 = 4.40\text{ mol dm}^{-3}" />. With <InlineMath math="M_r(\text{NH}_3) = 17" />, that is <InlineMath math="4.40 \times 17 = 74.8\text{ g dm}^{-3}" />.
 
 # Why the other options are wrong
 
-- A strong acid reacts faster, but the final volume depends on the moles of acid, which are equal.
-- Ethanoic acid stays slower from start to finish. It reaches <InlineMath math="60\text{ cm}^3" /> only because more molecules ionise as hydrogen ions are used up, **not because it speeds up**.
-- Partial ionisation slows the reaction, but every ethanoic acid molecule ionises in the end, so the volume is still <InlineMath math="60\text{ cm}^3" />.
+- <InlineMath math="0.176\text{ mol dm}^{-3}" /> is the diluted solution in the flask, **not the cleaner** in the bottle.
+- <InlineMath math="0.0440\text{ mol dm}^{-3}" /> takes the moles in the whole flask, <InlineMath math="0.0440" /> mol, as if they were a concentration.
+- <InlineMath math="61.6\text{ g dm}^{-3}" /> multiplies by the mass of nitrogen alone, <InlineMath math="14" />, not by the molar mass of ammonia.

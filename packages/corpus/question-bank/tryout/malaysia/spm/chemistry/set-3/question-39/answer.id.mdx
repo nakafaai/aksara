@@ -1,23 +1,26 @@
-# Tiga ion sabun dari tiap molekul lemak
+# Hitung mundur dari produk, lalu bagi dengan rendemen
 
-Lemaknya <InlineMath math="8{,}90 \div 890 = 0{,}0100" /> mol. Persamaan memberi **tiga unit natrium stearat untuk tiap molekul lemak**, jadi terbentuk <InlineMath math="0{,}0300" /> mol sabun: <InlineMath math="0{,}0300 \times 306 = 9{,}18" /> g.
+Aspirin yang dibutuhkan: <InlineMath math="1000 \times 300\text{ mg} = 300\,000\text{ mg} = 300" /> g, yaitu <InlineMath math="300 \div 180 = 1{,}667" /> mol.
 
-<Chart
-  title={<>Tinggi Busa Setelah Dikocok</>}
-  bars="apart"
-  categories={["Air lunak", "Air sadah"]}
-  series={[
-    { label: "Sabun", mark: "bar", values: [6.0, 0.5] },
-    { label: "Detergen", mark: "bar", values: [6.0, 6.0] },
-  ]}
-  valueLabel="Tinggi busa (cm)"
-  description={<>Sabun memberi busa <InlineMath math="6{,}0" /> cm di air lunak dan <InlineMath math="0{,}5" /> cm di air sadah. Detergen memberi <InlineMath math="6{,}0" /> cm di keduanya.</>}
+Pada rendemen <InlineMath math="75\%" />, tiap mol asam salisilat hanya memberi <InlineMath math="0{,}75" /> mol aspirin, jadi laboratorium harus **mulai dengan lebih banyak**: <InlineMath math="1{,}667 \div 0{,}75 = 2{,}222" /> mol.
+
+<Mermaid
+  title={<>Dari Tablet Kembali ke Bahan Baku</>}
+  description={<>Tabletnya butuh <InlineMath math="1{,}667\text{ mol}" /> aspirin, dan pada rendemen <InlineMath math="75\%" /> itu butuh <InlineMath math="2{,}222\text{ mol}" /> asam salisilat.</>}
+  chart={`
+    flowchart LR
+      N0["1000 × 300 mg = 300 g aspirin"] --> N1["300 ÷ 180 = 1,667 mol"]
+      N1 --> N2["÷ 0,75 = 2,222 mol asam salisilat"]
+      N2 --> N3["× 138 = 307 g"]
+  `}
 />
 
-Di air sadah, kepala karboksilat tiap ion stearat bergabung dengan ion kalsium dan magnesium membentuk **endapan tak larut**. Sabunnya habis membentuk endapan, jadi busanya sedikit, sementara kepala sulfonat detergen tetap larut dan terus berbusa.
+Asam salisilat: <InlineMath math="2{,}222 \times 138 = 307" /> g.
+
+**Anhidrida**: <InlineMath math="20\%" /> lebih banyak mol dari asam salisilat, <InlineMath math="2{,}222 \times 1{,}20 = 2{,}667" /> mol, yaitu <InlineMath math="2{,}667 \times 102 = 272" /> g.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="3{,}06" /> g hanya menghitung satu unit sabun untuk tiap molekul lemak, dan sabun sulit berbusa di air sadah.
-- <InlineMath math="9{,}18" /> g benar, tapi sabun berbusa **lebih buruk** dari detergen di air sadah, seperti terlihat di diagram.
-- <InlineMath math="27{,}5" /> g mengalikan tiga dua kali: sekali untuk mol dan sekali lagi untuk massa.
+- <InlineMath math="230\text{ g}" /> mengalikan dengan <InlineMath math="0{,}75" />, yang menghasilkan aspirin **lebih sedikit** dari kebutuhan tablet.
+- <InlineMath math="227\text{ g}" /> anhidrida menyamakan asam salisilat mol per mol dan melewatkan kelebihan <InlineMath math="20\%" />.
+- <InlineMath math="300\text{ g}" /> adalah massa aspirin, bukan asam salisilat.

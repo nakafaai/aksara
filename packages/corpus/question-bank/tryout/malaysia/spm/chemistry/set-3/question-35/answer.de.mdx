@@ -1,22 +1,26 @@
-# Jede zusätzliche <InlineMath math="\text{C}\text{H}_2" />-Gruppe bringt gleich viel
+# Die Flamme muss mehr Wärme abgeben, als das Wasser aufnimmt
 
-Die Schritte sind <InlineMath math="1367 - 726 = 641" />, <InlineMath math="2021 - 1367 = 654" /> und <InlineMath math="2676 - 2021 = 655\text{ kJ mol}^{-1}" />. Jedes Glied der Reihe hat **eine <InlineMath math="\text{CH}_2" />-Gruppe mehr**, die zu einem weiteren Kohlenstoffdioxid- und einem weiteren Wassermolekül verbrennt, die Wärme wächst also jedes Mal um etwa <InlineMath math="650\text{ kJ mol}^{-1}" />.
+Wärmebedarf des Wassers: <InlineMath math="Q = 2000 \times 4{,}2 \times 75 = 630\,000" /> J, also <InlineMath math="630" /> kJ. Der Anstieg beträgt <InlineMath math="100 - 25 = 75^\circ\text{C}" />.
 
-<Chart
-  title={<>Verbrennungswärme von vier Alkoholen</>}
-  bars="apart"
-  categories={["Methanol", "Ethanol", "Propanol", "Butanol"]}
-  series={[
-    { label: "Freigesetzte Wärme (kJ mol⁻¹)", mark: "bar", values: [726, 1367, 2021, 2676] },
-  ]}
-  valueLabel="Freigesetzte Wärme (kJ mol⁻¹)"
-  description={<>Freigesetzte Wärme je Mol: Methanol <InlineMath math="726" />, Ethanol <InlineMath math="1367" />, Propanol 2021 und Butanol <InlineMath math="2676\text{ kJ}" />.</>}
+Nur <InlineMath math="60\%" /> der Flammenwärme kommen an, also muss das Methan <InlineMath math="630 \div 0{,}60 = 1050" /> kJ freisetzen. **Durch den Wirkungsgrad teilen**, denn die Flamme muss mehr liefern, als das Wasser aufnimmt.
+
+<Mermaid
+  title={<>Vom Wasser zurück zum Gas</>}
+  description={<>Das Wasser braucht <InlineMath math="630\text{ kJ}" />, also muss die Flamme <InlineMath math="1050\text{ kJ}" /> freisetzen, das sind <InlineMath math="1{,}18\text{ mol}" /> Methan.</>}
+  chart={`
+    flowchart LR
+      N0["Wasser: 2000 × 4,2 × 75 = 630 kJ"] --> N1["630 ÷ 0,60 = 1050 kJ freigesetzt"]
+      N1 --> N2["1050 ÷ 890 = 1,18 mol CH₄"]
+      N2 --> N3["1,18 × 24 = 28,3 dm³"]
+  `}
 />
 
-Pentanol: <InlineMath math="2676 + 655 \approx 3330\text{ kJ mol}^{-1}" />. Im Schulversuch erwärmt ein Teil der Wärme Luft, Dose und Klemme statt des Wassers, und etwas Alkohol verbrennt unvollständig. Das Wasser erfasst **weniger Wärme als frei wurde**, der Messwert ist also kleiner.
+Methan: <InlineMath math="1050 \div 890 = 1{,}18" /> mol, also <InlineMath math="1{,}18 \times 24 = 28{,}3\text{ dm}^3" />.
+
+**Kohlenstoffdioxid**: <InlineMath math="\text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O}" /> gibt **ein Kohlenstoffdioxid je Methan**: <InlineMath math="1{,}18 \times 44 = 51{,}9" /> g.
 
 # Warum die anderen Antworten falsch sind
 
-- Pentanol hat ein Kohlenstoff- und zwei Wasserstoffatome mehr als Butanol und setzt mehr Wärme frei, nicht gleich viel.
-- Wärme, die an Dose und Luft verloren geht, fehlt in der Messung am Wasser, der Wert fällt also **kleiner** aus, nicht größer.
-- Die Schritte bleiben nahe <InlineMath math="650\text{ kJ mol}^{-1}" />, der Trend ist also eine Gerade und wächst nicht schneller.
+- <InlineMath math="10{,}2\text{ dm}^3" /> **multipliziert** mit <InlineMath math="0{,}60" />, dann lieferte die Flamme weniger Wärme, als das Wasser aufnimmt.
+- <InlineMath math="17{,}0\text{ dm}^3" /> nimmt an, dass jedes Joule das Wasser erreicht.
+- <InlineMath math="37{,}8\text{ dm}^3" /> erwärmt das Wasser um <InlineMath math="100^\circ\text{C}" /> statt um <InlineMath math="75^\circ\text{C}" />.

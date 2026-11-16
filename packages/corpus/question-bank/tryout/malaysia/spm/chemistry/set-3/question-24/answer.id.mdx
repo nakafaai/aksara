@@ -1,30 +1,25 @@
-# Bahan anode menentukan reaksi di anode
+# Katode menentukan jumlah elektron, anode menentukan akibatnya
 
-Kedua katode menerima ion yang sama, dan perak berada rendah di deret elektrokimia, jadi **perak mengendap di kedua katode**: <InlineMath math="\text{Ag}^+ + e^- \rightarrow \text{Ag}" />.
+Di kedua sel, <InlineMath math="1{,}08 \div 108 = 0{,}010" /> mol perak mengendap, dan <InlineMath math="\text{Ag}^+ + e^- \rightarrow \text{Ag}" /> memakai satu elektron per atom: <InlineMath math="0{,}010" /> mol elektron.
 
-<ElectrolysisLab
-  title={<>Elektrolisis Larutan Perak Nitrat</>}
-  description={<>Sel X memakai elektrode karbon dan sel Y memakai elektrode perak, keduanya dalam larutan perak nitrat.</>}
-  cells={[{ electrode: "carbon", electrolyte: "silver-nitrate" }, { electrode: "silver", electrolyte: "silver-nitrate" }]}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>Di anode</>,
-    atCathode: <>Di katode</>,
-    battery: "Baterai",
-    cathode: "Katode",
-    cells: [<>Sel X: elektrode karbon</>, <>Sel Y: elektrode perak</>],
-    electrons: <>Elektron yang mengalir</>,
-    ph: <>pH elektrolit</>,
-    trends: { falls: <>turun</>, rises: <>naik</>, steady: <>tetap</> },
-    view: "Dua sel elektrolisis",
-  }}
+**Sel X**: karbon inert, dan ion hidroksida atau air dilepaskan menggantikan ion nitrat: <InlineMath math="2\text{H}_2\text{O} \rightarrow \text{O}_2 + 4\text{H}^+ + 4e^-" />. Oksigen: <InlineMath math="0{,}010 \div 4 = 0{,}0025" /> mol, atau <InlineMath math="60\text{ cm}^3" />. Reaksi yang sama meninggalkan <InlineMath math="0{,}010" /> mol ion hidrogen dalam <InlineMath math="0{,}100\text{ dm}^3" />: <InlineMath math="0{,}10\text{ mol dm}^{-3}" />, pH <InlineMath math="1" />.
+
+<Mermaid
+  title={<>Satu Katode, Dua Anode yang Berbeda</>}
+  description={<>Kedua katode menerima <InlineMath math="0{,}010\text{ mol}" /> elektron. Anode karbon menghasilkan oksigen dan ion hidrogen, dan anode perak larut.</>}
+  chart={`
+    flowchart LR
+      N0["1,08 g Ag: 0,010 mol e⁻"] --> N1["Anode X: 2H₂O → O₂ + 4H⁺ + 4e⁻"]
+      N1 --> N2["0,0025 mol O₂: 60 cm³"]
+      N1 --> N3["0,010 mol H⁺ dalam 100 cm³: pH 1"]
+      N0 --> N4["Anode Y: Ag → Ag⁺ + e⁻, hilang 1,08 g"]
+  `}
 />
 
-Di anode karbon pada X, ion hidroksida yang dilepaskan, bukan ion nitrat: <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />. Ion hidrogen tertinggal, jadi larutannya menjadi asam. Di Y, anode perak sendiri **melepas elektron dan larut**: <InlineMath math="\text{Ag} \rightarrow \text{Ag}^+ + e^-" />. Tiap ion perak yang keluar di katode diganti di anode, jadi konsentrasinya tetap.
+**Sel Y**: anode perak sendiri larut, <InlineMath math="\text{Ag} \rightarrow \text{Ag}^+ + e^-" />, kehilangan <InlineMath math="1{,}08" /> g. Tiap ion perak yang diambil di katode diganti di anode, jadi larutannya tetap <InlineMath math="0{,}20\text{ mol dm}^{-3}" />.
 
 # Kenapa pilihan lain salah
 
-- Perak terbentuk dengan **menerima elektron**, jadi muncul di katode, bukan di anode. Anode Y larut dan tidak menghasilkan oksigen.
-- Larutan di X menjadi asam, bukan basa, dan katode Y makin tebal, bukan larut.
-- Ion nitrat tidak dilepaskan dalam larutan berair, dan anode Y terkikis, bukan menebal.
+- <InlineMath math="120\text{ cm}^3" /> memberi tiap molekul oksigen dua elektron, padahal butuh **empat**.
+- Pelepasan air di anode menghasilkan ion hidrogen, jadi larutannya menjadi asam, **bukan basa**.
+- Di Y anode adalah tempat perak larut, jadi anodenya makin ringan, dan konsentrasi ion perak tidak berubah.

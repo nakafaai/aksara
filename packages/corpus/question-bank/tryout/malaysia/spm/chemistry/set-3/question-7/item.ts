@@ -10,19 +10,50 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$60\\text{ cm}^3$$" },
-        { correct: false, label: "$$150\\text{ cm}^3$$" },
-        { correct: false, label: "$$190\\text{ cm}^3$$" },
-        { correct: true, label: "$$110\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label:
+            "$$13.4\\text{ g}$$ of iron, with $$8.0\\text{ g}$$ of iron(III) oxide left over",
+        },
+        {
+          correct: false,
+          label:
+            "$$11.2\\text{ g}$$ of iron, with no iron(III) oxide left over",
+        },
+        {
+          correct: false,
+          label:
+            "$$8.96\\text{ g}$$ of iron, with $$16.0\\text{ g}$$ of iron(III) oxide left over",
+        },
+        {
+          correct: true,
+          label:
+            "$$8.96\\text{ g}$$ of iron, with $$8.0\\text{ g}$$ of iron(III) oxide left over",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$60\\text{ cm}^3$$" },
-        { correct: false, label: "$$150\\text{ cm}^3$$" },
-        { correct: false, label: "$$190\\text{ cm}^3$$" },
-        { correct: true, label: "$$110\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label:
+            "$$13.4\\text{ g}$$ ferum, dengan $$8.0\\text{ g}$$ ferum(III) oksida berbaki",
+        },
+        {
+          correct: false,
+          label: "$$11.2\\text{ g}$$ ferum, tanpa ferum(III) oksida berbaki",
+        },
+        {
+          correct: false,
+          label:
+            "$$8.96\\text{ g}$$ ferum, dengan $$16.0\\text{ g}$$ ferum(III) oksida berbaki",
+        },
+        {
+          correct: true,
+          label:
+            "$$8.96\\text{ g}$$ ferum, dengan $$8.0\\text{ g}$$ ferum(III) oksida berbaki",
+        },
       ],
     },
   },

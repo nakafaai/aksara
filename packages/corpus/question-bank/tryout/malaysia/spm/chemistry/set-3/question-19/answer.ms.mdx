@@ -1,22 +1,24 @@
-# Cari bahan pengehad sebelum menilai kadar
+# Setiap gram yang hilang daripada kelalang ialah karbon dioksida
 
-Marmar itu ialah <InlineMath math="2.0 \div 100 = 0.020" /> mol <InlineMath math="\text{CaCO}_3" />, yang memerlukan <InlineMath math="0.040" /> mol asid. Setiap eksperimen membekalkan <InlineMath math="0.050" /> mol asid, jadi **marmar ialah bahan pengehad dalam keempat-empatnya**. Setiap satu menghasilkan <InlineMath math="0.020" /> mol karbon dioksida, iaitu <InlineMath math="480\text{ cm}^3" /> pada keadaan bilik.
+Dengan kapas di mulut kelalang, hanya **karbon dioksida** yang keluar. Dalam <InlineMath math="20\text{ s}" /> pertama kelalang kehilangan <InlineMath math="0.44" /> g: <InlineMath math="0.44 \div 44 = 0.010" /> mol, iaitu <InlineMath math="0.010 \times 24\,000 = 240\text{ cm}^3" />. Kadar purata: <InlineMath math="240 \div 20 = 12\text{ cm}^3\text{ s}^{-1}" />.
 
-<Chart
-  title={<>Karbon Dioksida dalam Eksperimen I dan III</>}
-  categories={["0", "30", "60", "90", "120", "150", "180", "210", "240"]}
-  series={[
-    { label: "Eksperimen I", mark: "line", values: [0, 250, 390, 455, 480, 480, 480, 480, 480] },
-    { label: "Eksperimen III", mark: "line", values: [0, 140, 250, 330, 390, 430, 458, 474, 480] },
-  ]}
-  valueLabel="Isi padu karbon dioksida (cm³)"
-  description={<>Kedua-dua lengkung berakhir pada <InlineMath math="480\text{ cm}^3" />. Eksperimen I mencapainya menjelang <InlineMath math="120\text{ s}" />, Eksperimen III hanya sekitar <InlineMath math="240\text{ s}" />.</>}
+<Mermaid
+  title={<>Jisim yang Hilang Ialah Karbon Dioksida</>}
+  description={<><InlineMath math="0.44\text{ g}" /> yang hilang dalam <InlineMath math="20\text{ s}" /> pertama ialah <InlineMath math="240\text{ cm}^3" /> karbon dioksida. Jumlah <InlineMath math="0.88\text{ g}" /> ialah <InlineMath math="0.020\text{ mol}" />, daripada jumlah karbonat yang sama.</>}
+  chart={`
+    flowchart LR
+      N0["0.44 g CO₂ dalam 20 s"] --> N1["0.010 mol: 240 cm³"]
+      N1 --> N2["240 ÷ 20 = 12 cm³ s⁻¹"]
+      N3["0.88 g CO₂ kesemuanya: 0.020 mol"] --> N4["0.020 mol MgCO₃: 1.68 g"]
+  `}
 />
 
-Eksperimen III menyebarkan asid yang sama dalam dua kali isi padu, jadi kepekatannya separuh. Zarah berlanggar kurang kerap, dan <InlineMath math="480\text{ cm}^3" /> yang sama mengambil masa lebih lama untuk dikumpulkan.
+Kehilangan berhenti pada <InlineMath math="0.88" /> g, jadi tindak balas sudah tamat: <InlineMath math="0.88 \div 44 = 0.020" /> mol karbon dioksida. Satu mol karbonat menghasilkan satu mol karbon dioksida, jadi <InlineMath math="0.020" /> mol magnesium karbonat, <InlineMath math="0.020 \times 84 = 1.68" /> g, telah ditambah.
+
+**Asid**: setiap karbonat mengambil **dua** molekul asid nitrik, jadi <InlineMath math="0.020" /> mol memerlukan <InlineMath math="0.040" /> mol asid: sekurang-kurangnya <InlineMath math="0.040 \div 2.0 = 0.020\text{ dm}^3 = 20\text{ cm}^3" />. Asid itu berlebihan, jadi isi padu sebenarnya lebih besar.
 
 # Kenapa pilihan lain salah
 
-- Serbuk hanya meningkatkan kadar. Jumlah marmar, dan oleh itu isi padu akhir, **kekal sama**.
-- Suhu lebih tinggi mempercepatkan tindak balas, tetapi tidak boleh menghasilkan lebih banyak gas daripada marmar yang sama.
-- Eksperimen III mempunyai bilangan mol asid yang sama dengan Eksperimen I, dan marmar tetap bahan pengehad, jadi isi padu tidak menjadi separuh.
+- <InlineMath math="0.84\text{ g}" /> dikira daripada <InlineMath math="20\text{ s}" /> pertama sahaja, tetapi karbonat terus bertindak balas sehingga kehilangan **berhenti pada** <InlineMath math="0.88" /> g.
+- <InlineMath math="0.022" /> ialah kadar dalam gram sesaat, <InlineMath math="0.44 \div 20" />, yang ditulis dengan unit yang salah.
+- <InlineMath math="10\text{ cm}^3" /> mengambil satu molekul asid bagi setiap karbonat, tetapi persamaan memerlukan dua.

@@ -1,22 +1,23 @@
-# Die Stoffmenge Säure bestimmt das Volumen, die Wasserstoffionen das Tempo
+# Nach der Titration die Verdünnung rückgängig machen
 
-Jeder Kolben enthält <InlineMath math="0{,}10 \times \tfrac{50}{1000} = 0{,}0050" /> mol einer **einprotonigen Säure**. Mit Magnesium im Überschuss ergibt <InlineMath math="\text{Mg} + 2\text{H}^+ \rightarrow \text{Mg}^{2+} + \text{H}_2" /> aus jeder <InlineMath math="0{,}0025" /> mol Wasserstoff, also <InlineMath math="0{,}0025 \times 24\,000 = 60\text{ cm}^3" />.
+Salpetersäure: <InlineMath math="0{,}0220 \times 0{,}200 = 0{,}00440" /> mol, die eins zu eins mit Ammoniak reagieren. Also enthielten <InlineMath math="25{,}0\text{ cm}^3" /> der Kolbenlösung <InlineMath math="0{,}00440" /> mol, die Kolbenlösung hat <InlineMath math="0{,}00440 \div 0{,}0250 = 0{,}176\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Von zwei Säuren abgegebener Wasserstoff</>}
-  categories={["0", "30", "60", "90", "120", "150", "180", "210", "240"]}
-  series={[
-    { label: "Salzsäure", mark: "line", values: [0, 32, 50, 58, 60, 60, 60, 60, 60] },
-    { label: "Essigsäure", mark: "line", values: [0, 12, 23, 33, 42, 49, 54, 58, 60] },
-  ]}
-  valueLabel="Volumen Wasserstoff (cm³)"
-  description={<>Salzsäure erreicht <InlineMath math="60\text{ cm}^3" /> nach <InlineMath math="120\text{ s}" />. Essigsäure gibt in den ersten <InlineMath math="30\text{ s}" /> <InlineMath math="12\text{ cm}^3" /> ab und erreicht <InlineMath math="60\text{ cm}^3" /> erst nach <InlineMath math="240\text{ s}" />.</>}
+<Mermaid
+  title={<>Vom Kolben zurück zur Flasche</>}
+  description={<>Die Titration ergibt <InlineMath math="0{,}176\text{ mol dm}^{-3}" /> im Kolben, und der Kolben enthält den Reiniger <InlineMath math="25" />-fach verdünnt.</>}
+  chart={`
+    flowchart LR
+      N0["0,00440 mol HNO₃"] --> N1["0,00440 mol NH₃ in 25,0 cm³"]
+      N1 --> N2["Kolben: 0,176 mol dm⁻³"]
+      N2 --> N3["Reiniger: × 25 = 4,40 mol dm⁻³"]
+      N3 --> N4["× 17 = 74,8 g dm⁻³"]
+  `}
 />
 
-In den ersten <InlineMath math="30" /> s liefert Salzsäure <InlineMath math="32\text{ cm}^3" /> und Essigsäure <InlineMath math="12\text{ cm}^3" />, also <InlineMath math="32 \div 12 \approx 2{,}7" />-mal so schnell. Salzsäure ionisiert vollständig, Essigsäure **nur teilweise**, deshalb treffen in jedem Moment viel weniger Wasserstoffionen auf das Magnesium.
+Die Kolbenlösung ist **nicht der Reiniger**. Aus <InlineMath math="10{,}0\text{ cm}^3" /> wurden <InlineMath math="250\text{ cm}^3" />, eine <InlineMath math="250 \div 10{,}0 = 25" />-fache Verdünnung, also hat der Reiniger <InlineMath math="0{,}176 \times 25 = 4{,}40\text{ mol dm}^{-3}" />. Mit <InlineMath math="M_r(\text{NH}_3) = 17" /> sind das <InlineMath math="4{,}40 \times 17 = 74{,}8\text{ g dm}^{-3}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- Eine starke Säure reagiert schneller, aber das Endvolumen hängt von der Stoffmenge Säure ab, und die ist gleich.
-- Essigsäure bleibt von Anfang bis Ende langsamer. Sie erreicht <InlineMath math="60\text{ cm}^3" /> nur, weil weitere Moleküle ionisieren, während Wasserstoffionen verbraucht werden, **nicht weil sie schneller wird**.
-- Teilweise Ionisierung bremst die Reaktion, aber am Ende ionisiert jedes Essigsäuremolekül, das Volumen bleibt also <InlineMath math="60\text{ cm}^3" />.
+- <InlineMath math="0{,}176\text{ mol dm}^{-3}" /> ist die verdünnte Lösung im Kolben, **nicht der Reiniger** in der Flasche.
+- <InlineMath math="0{,}0440\text{ mol dm}^{-3}" /> hält die Stoffmenge im ganzen Kolben, <InlineMath math="0{,}0440" /> mol, für eine Konzentration.
+- <InlineMath math="61{,}6\text{ g dm}^{-3}" /> multipliziert nur mit der Masse des Stickstoffs, <InlineMath math="14" />, statt mit der molaren Masse von Ammoniak.

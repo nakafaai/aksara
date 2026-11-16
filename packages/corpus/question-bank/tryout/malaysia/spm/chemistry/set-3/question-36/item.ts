@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "−50.4 kJ mol⁻¹, and the products have less energy than the reactants",
+            "$$54\\text{ g}$$ of carbon, and $$348\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "+25.2 kJ mol⁻¹, and the products have more energy than the reactants",
+            "$$109\\text{ g}$$ of carbon, and $$240\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "+1.26 kJ mol⁻¹, and the products have more energy than the reactants",
+            "$$109\\text{ g}$$ of carbon, and $$217\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: true,
           label:
-            "+50.4 kJ mol⁻¹, and the products have more energy than the reactants",
+            "$$109\\text{ g}$$ of carbon, and $$457\\text{ dm}^3$$ of carbon dioxide",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "−50.4 kJ mol⁻¹, dan hasil mempunyai tenaga lebih rendah daripada bahan tindak balas",
+            "$$54\\text{ g}$$ karbon, dan $$348\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "+25.2 kJ mol⁻¹, dan hasil mempunyai tenaga lebih tinggi daripada bahan tindak balas",
+            "$$109\\text{ g}$$ karbon, dan $$240\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "+1.26 kJ mol⁻¹, dan hasil mempunyai tenaga lebih tinggi daripada bahan tindak balas",
+            "$$109\\text{ g}$$ karbon, dan $$217\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: true,
           label:
-            "+50.4 kJ mol⁻¹, dan hasil mempunyai tenaga lebih tinggi daripada bahan tindak balas",
+            "$$109\\text{ g}$$ karbon, dan $$457\\text{ dm}^3$$ karbon dioksida",
         },
       ],
     },

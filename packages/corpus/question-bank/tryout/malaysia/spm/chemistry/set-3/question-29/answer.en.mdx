@@ -1,22 +1,26 @@
-# Name from both parents, mass from the limiting reactant
+# Apply both yields, and let the smaller reactant decide
 
-An ester takes the **alkyl part from the alcohol** and the **acid part from the carboxylic acid**: ethanol and propanoic acid give ethyl propanoate, <InlineMath math="\text{C}_2\text{H}_5\text{COOC}_2\text{H}_5" />.
+Propan-1-ol, <InlineMath math="M_r = 60" />: <InlineMath math="12.0 \div 60 = 0.20" /> mol, so each portion is <InlineMath math="0.10" /> mol. The first portion gives <InlineMath math="0.80 \times 0.10 = 0.080" /> mol of propanoic acid.
+
+The ester forms one to one from <InlineMath math="0.080" /> mol of acid and <InlineMath math="0.10" /> mol of alcohol, so the **acid limits it**. Only <InlineMath math="60\%" /> reacts: <InlineMath math="0.60 \times 0.080 = 0.048" /> mol.
 
 <Mermaid
-  title={<>From Ethanol to Ester</>}
-  description={<>Ethanol, <InlineMath math="0.10\text{ mol}" />, reacts with excess propanoic acid to give <InlineMath math="0.10\text{ mol}" /> of ethyl propanoate in theory, which is <InlineMath math="10.2\text{ g}" />. At <InlineMath math="80\%" /> yield, <InlineMath math="8.16\text{ g}" /> is obtained.</>}
+  title={<>One Alcohol, Two Jobs</>}
+  description={<>Each portion is <InlineMath math="0.10\text{ mol}" />. The acid made is <InlineMath math="0.080\text{ mol}" />, so the acid limits the ester, and <InlineMath math="60\%" /> of it gives <InlineMath math="0.048\text{ mol}" />.</>}
   chart={`
     flowchart LR
-      A["Ethanol: 4.6 g, 0.10 mol"] --> B["Ethyl propanoate: 0.10 mol in theory"]
-      B --> C["10.2 g in theory"]
-      C --> D["8.16 g at 80% yield"]
+      N0["12.0 g propan-1-ol: 0.20 mol"] --> N1["Portion 1: 0.10 mol → 0.080 mol acid"]
+      N0 --> N2["Portion 2: 0.10 mol alcohol"]
+      N1 --> N3["Acid limits: 0.080 mol"]
+      N2 --> N3
+      N3 --> N4["60%: 0.048 mol ester × 116 = 5.57 g"]
   `}
 />
 
-Ethanol, <InlineMath math="M_r = 46" />, is the limiting reactant: <InlineMath math="4.6 \div 46 = 0.10" /> mol. The ester has <InlineMath math="M_r = 5(12) + 10(1) + 2(16) = 102" />, so the theoretical mass is <InlineMath math="10.2" /> g and the real mass is <InlineMath math="0.80 \times 10.2 = 8.16" /> g.
+The acid part has three carbons and so does the alcohol part, so the ester is **propyl propanoate**, <InlineMath math="\text{C}_2\text{H}_5\text{COOC}_3\text{H}_7" />, with <InlineMath math="M_r = 116" />: <InlineMath math="0.048 \times 116 = 5.57" /> g.
 
 # Why the other options are wrong
 
-- Methyl propanoate would need methanol, not ethanol.
-- <InlineMath math="10.2\text{ g}" /> is the theoretical mass, before the <InlineMath math="80\%" /> yield is applied.
-- Propyl ethanoate **swaps the two parts**: it would come from propanol and ethanoic acid. It has the same mass, but not the same name.
+- <InlineMath math="6.96\text{ g}" /> uses only the <InlineMath math="60\%" /> yield and forgets that just <InlineMath math="80\%" /> of the first portion became acid.
+- Ethyl propanoate would need ethanol, but **both parts** come from propan-1-ol here.
+- <InlineMath math="9.28\text{ g}" /> turns every mole of acid into ester and forgets the <InlineMath math="60\%" /> yield.

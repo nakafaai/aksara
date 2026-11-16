@@ -1,22 +1,27 @@
-# Atome pro Molekül aus den Produkten zählen
+# Ein Brommolekül je Molekül X gibt die molare Masse
 
-Kohlenstoffdioxid: <InlineMath math="17{,}6 \div 44 = 0{,}40" /> mol, also <InlineMath math="0{,}40" /> mol Kohlenstoffatome. Wasser: <InlineMath math="7{,}2 \div 18 = 0{,}40" /> mol mit <InlineMath math="0{,}80" /> mol Wasserstoffatomen.
+Brom: <InlineMath math="M_r(\text{Br}_2) = 160" />, also <InlineMath math="2{,}0 \div 160 = 0{,}0125" /> mol. Jedes Molekül X nimmt **ein Brommolekül** auf, also waren es <InlineMath math="0{,}0125" /> mol X, und <InlineMath math="M_r = 0{,}70 \div 0{,}0125 = 56" />.
 
-<Chart
-  title={<>Stoffmengen bei der Verbrennung</>}
-  bars="apart"
-  categories={["Verbranntes Q", "Kohlenstoffdioxid", "Wasser", "Wasserstoffatome"]}
-  series={[
-    { label: "Stoffmenge (mol)", mark: "bar", values: [0.1, 0.4, 0.4, 0.8] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
-  description={<><InlineMath math="0{,}10" /> mol Q ergeben <InlineMath math="0{,}40" /> mol Kohlenstoffdioxid und <InlineMath math="0{,}40" /> mol Wasser, die <InlineMath math="0{,}80" /> mol Wasserstoffatome enthalten.</>}
+Eine Doppelbindung macht X zu einem Alken, <InlineMath math="\text{C}_n\text{H}_{2n}" />: <InlineMath math="14n = 56" />, also <InlineMath math="n = 4" />, und X ist <InlineMath math="\text{C}_4\text{H}_8" />.
+
+<Mermaid
+  title={<>Vom Brom zu den Isomeren</>}
+  description={<><InlineMath math="0{,}0125\text{ mol}" /> Brom bedeuten <InlineMath math="0{,}0125\text{ mol}" /> X, also <InlineMath math="M_r = 56" />, und X ist <InlineMath math="\text{C}_4\text{H}_8" /> mit drei Alkenstrukturen.</>}
+  chart={`
+    flowchart LR
+      N0["2,0 g Br₂: 0,0125 mol"] --> N1["0,0125 mol X"]
+      N1 --> N2["Mr = 0,70 ÷ 0,0125 = 56"]
+      N2 --> N3["CₙH₂ₙ: 14n = 56, n = 4"]
+      N3 --> N4["But-1-en, But-2-en, 2-Methylpropen"]
+  `}
 />
 
-Geteilt durch <InlineMath math="0{,}10" /> mol Q hat jedes Molekül <InlineMath math="4" /> Kohlenstoff- und <InlineMath math="8" /> Wasserstoffatome, Q ist also <InlineMath math="\text{C}_4\text{H}_8" />. Das passt zu <InlineMath math="\text{C}_n\text{H}_{2n}" />, den Alkenen, Q hat also eine **Kohlenstoff-Kohlenstoff-Doppelbindung**, die Brom addiert und Bromwasser entfärbt.
+Alkenstrukturen von <InlineMath math="\text{C}_4\text{H}_8" />: die Doppelbindung am Ende einer geraden Kette, **But-1-en**, in ihrer Mitte, **But-2-en**, oder an einer verzweigten Kette, **2-Methylpropen**. Das sind drei.
+
+**Wasserstoff**: Er lagert sich an dieselbe Doppelbindung an wie Brom, **ein Molekül je Molekül X**: <InlineMath math="0{,}0125" /> mol, also <InlineMath math="0{,}0125 \times 24\,000 = 300\text{ cm}^3" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="\text{C}_4\text{H}_{10}" /> ergäbe <InlineMath math="0{,}50" /> mol Wasser, nicht <InlineMath math="0{,}40" />.
-- <InlineMath math="\text{C}_8\text{H}_{16}" /> vergisst, **durch die Stoffmenge von Q zu teilen**: Es ergäbe <InlineMath math="0{,}80" /> mol Kohlenstoffdioxid.
-- <InlineMath math="\text{C}_4\text{H}_8" /> stimmt, aber ein Alken ist ungesättigt.
+- <InlineMath math="150\text{ cm}^3" /> mit <InlineMath math="\text{C}_4\text{H}_8" /> lagert ein Wasserstoffmolekül an zwei Moleküle X an, doch jede Doppelbindung nimmt eines auf.
+- <InlineMath math="\text{C}_8\text{H}_{16}" /> entsteht, wenn man **zwei Brommoleküle** je Molekül X annimmt, was die molare Masse verdoppelt und den Wasserstoff halbiert.
+- Zwei Isomere lassen das verzweigte aus, 2-Methylpropen.

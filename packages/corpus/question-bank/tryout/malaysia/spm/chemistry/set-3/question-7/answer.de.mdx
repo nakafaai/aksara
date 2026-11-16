@@ -1,26 +1,22 @@
-# Gasvolumen reagieren im selben Verhältnis wie Stoffmengen
+# Erst den begrenzenden Stoff, dann die Ausbeute
 
-Bei gleicher Temperatur und gleichem Druck **reagieren Gasvolumen im Verhältnis ihrer Koeffizienten**. Zwei Fallen bleiben: übriger Sauerstoff und das Wasser, das bei Raumtemperatur flüssig ist.
+Aluminium: <InlineMath math="5{,}4 \div 27 = 0{,}20" /> mol. Eisen(III)-oxid: <InlineMath math="24{,}0 \div 160 = 0{,}15" /> mol. Zwei Mol Aluminium brauchen ein Mol Oxid, also brauchen <InlineMath math="0{,}20" /> mol Aluminium nur <InlineMath math="0{,}10" /> mol Oxid: **Das Aluminium geht zuerst aus**.
 
 <Chart
-  title={<>Gasvolumen vorher und nachher</>}
+  title={<>Welcher Stoff zuerst ausgeht</>}
   bars="apart"
-  categories={["Propan", "Sauerstoff", "Kohlenstoffdioxid"]}
+  categories={["Al vorhanden", "Fe₂O₃ vorhanden", "Fe₂O₃ verbraucht", "Fe₂O₃ übrig"]}
   series={[
-    { label: "Vorher", mark: "bar", values: [20, 150, 0] },
-    { label: "Nach dem Abkühlen", mark: "bar", values: [0, 50, 60] },
+    { label: "Stoffmenge (mol)", mark: "bar", values: [0.2, 0.15, 0.1, 0.05] },
   ]}
-  valueLabel="Volumen (cm³)"
-  description={<>Vorher: Propan <InlineMath math="20" /> und Sauerstoff <InlineMath math="150\text{ cm}^3" />. Nach dem Abkühlen: Propan <InlineMath math="0" />, Sauerstoff <InlineMath math="50" /> und Kohlenstoffdioxid <InlineMath math="60\text{ cm}^3" />, das Wasser kondensiert.</>}
+  valueLabel="Stoffmenge (mol)"
+  description={<>Aluminium <InlineMath math="0{,}20\text{ mol}" /> und Eisen(III)-oxid <InlineMath math="0{,}15\text{ mol}" />. Das Aluminium verbraucht <InlineMath math="0{,}10\text{ mol}" /> Oxid und lässt <InlineMath math="0{,}05\text{ mol}" /> übrig.</>}
 />
 
-- Verbrauchter Sauerstoff: <InlineMath math="20 \times 5 = 100\text{ cm}^3" />, also bleiben <InlineMath math="150 - 100 = 50\text{ cm}^3" /> übrig.
-- Gebildetes Kohlenstoffdioxid: <InlineMath math="20 \times 3 = 60\text{ cm}^3" />.
-- Wasser kondensiert zur Flüssigkeit und trägt kein Gasvolumen bei.
-- Gas insgesamt: <InlineMath math="50 + 60 = 110\text{ cm}^3" />.
+Gebildetes Eisen: <InlineMath math="0{,}20" /> mol, <InlineMath math="11{,}2" /> g, davon werden <InlineMath math="80\%" /> gewonnen: <InlineMath math="0{,}80 \times 11{,}2 = 8{,}96" /> g. Übriges Oxid: <InlineMath math="0{,}15 - 0{,}10 = 0{,}05" /> mol, <InlineMath math="0{,}05 \times 160 = 8{,}0" /> g. Die Ausbeute kürzt das gewonnene Eisen, nicht das umgesetzte Oxid.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="60\text{ cm}^3" /> zählt nur das Kohlenstoffdioxid und **vergisst den unverbrauchten Sauerstoff**.
-- <InlineMath math="150\text{ cm}^3" /> behält den anfänglichen Sauerstoff, als hätte nichts reagiert.
-- <InlineMath math="190\text{ cm}^3" /> zählt <InlineMath math="80\text{ cm}^3" /> Wasserdampf, aber Wasser ist bei Raumtemperatur flüssig.
+- <InlineMath math="13{,}4\text{ g}" /> rechnet vom Oxid aus, <InlineMath math="0{,}15" /> mol zu <InlineMath math="0{,}30" /> mol Eisen, obwohl das Oxid **im Überschuss** ist.
+- <InlineMath math="11{,}2\text{ g}" /> ohne übriges Oxid übersieht den Oxidüberschuss und die Ausbeute von <InlineMath math="80\%" />.
+- <InlineMath math="16{,}0\text{ g}" /> übrig rechnet ein Mol Oxid je Mol Aluminium.

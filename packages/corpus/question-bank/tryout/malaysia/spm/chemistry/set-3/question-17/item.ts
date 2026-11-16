@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "5.30 g, 25.0 cm³" },
-        { correct: false, label: "5.30 g, 12.5 cm³" },
-        { correct: false, label: "21.2 g, 25.0 cm³" },
-        { correct: false, label: "2.65 g, 12.5 cm³" },
+        {
+          correct: true,
+          label: "$$1.00\\text{ mol dm}^{-3}$$, and a yield of $$88.9\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$1.56\\text{ mol dm}^{-3}$$, and a yield of $$56.9\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$1.00\\text{ mol dm}^{-3}$$, and a yield of $$100\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$1.25\\text{ mol dm}^{-3}$$, and a yield of $$71.1\\%$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "5.30 g, 25.0 cm³" },
-        { correct: false, label: "5.30 g, 12.5 cm³" },
-        { correct: false, label: "21.2 g, 25.0 cm³" },
-        { correct: false, label: "2.65 g, 12.5 cm³" },
+        {
+          correct: true,
+          label: "$$1.00\\text{ mol dm}^{-3}$$, dan hasil $$88.9\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$1.56\\text{ mol dm}^{-3}$$, dan hasil $$56.9\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$1.00\\text{ mol dm}^{-3}$$, dan hasil $$100\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$1.25\\text{ mol dm}^{-3}$$, dan hasil $$71.1\\%$$",
+        },
       ],
     },
   },

@@ -1,21 +1,25 @@
-# Rate from a chosen interval, mass from the final volume
+# The plateau counts the peroxide, the concentration sets the speed
 
-The first <InlineMath math="60" /> s give <InlineMath math="88\text{ cm}^3" />, an average rate of <InlineMath math="88 \div 60 = 1.47\text{ cm}^3\text{ s}^{-1}" />. The rate then falls as the marble is used up.
+The curve levels off at <InlineMath math="120\text{ cm}^3" />: <InlineMath math="0.120 \div 24 = 0.0050" /> mol of oxygen. **Two moles of peroxide give one mole of oxygen**, so there were <InlineMath math="0.010" /> mol of peroxide in <InlineMath math="0.0500\text{ dm}^3" />: <InlineMath math="0.010 \div 0.0500 = 0.20\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Carbon Dioxide Collected Over Time</>}
-  categories={["0", "30", "60", "90", "120", "150", "180"]}
-  series={[
-    { label: "Volume of carbon dioxide (cm³)", mark: "line", values: [0, 52, 88, 112, 126, 132, 132] },
-  ]}
-  valueLabel="Volume of carbon dioxide (cm³)"
-  description={<>The volume is <InlineMath math="0" /> at <InlineMath math="0\text{ s}" />, <InlineMath math="52" /> at <InlineMath math="30\text{ s}" />, <InlineMath math="88" /> at <InlineMath math="60\text{ s}" />, <InlineMath math="112" /> at <InlineMath math="90\text{ s}" />, <InlineMath math="126" /> at <InlineMath math="120\text{ s}" />, <InlineMath math="132" /> at <InlineMath math="150\text{ s}" /> and <InlineMath math="132\text{ cm}^3" /> at <InlineMath math="180\text{ s}" />.</>}
+<Mermaid
+  title={<>From the Final Volume to the Concentration</>}
+  description={<>The curve levels off at <InlineMath math="120\text{ cm}^3" />, which is <InlineMath math="0.0050\text{ mol}" /> of oxygen from <InlineMath math="0.010\text{ mol}" /> of peroxide.</>}
+  chart={`
+    flowchart LR
+      N0["Plateau 120 cm³"] --> N1["0.0050 mol O₂"]
+      N1 --> N2["0.010 mol H₂O₂"]
+      N2 --> N3["÷ 0.0500 dm³ = 0.20 mol dm⁻³"]
+      N2 --> N4["Diluted: same 0.010 mol, lower concentration"]
+  `}
 />
 
-The graph levels at <InlineMath math="132\text{ cm}^3" /> once **all the marble has reacted**. That is <InlineMath math="132 \div 24\,000 = 0.0055" /> mol of carbon dioxide. In <InlineMath math="\text{CaCO}_3 + 2\text{HCl} \rightarrow \text{CaCl}_2 + \text{H}_2\text{O} + \text{CO}_2" /> one mole of marble gives one mole of gas, so the marble was <InlineMath math="0.0055 \times 100 = 0.55" /> g.
+The repeat uses another <InlineMath math="50.0\text{ cm}^3" /> of the same solution, so it holds the same <InlineMath math="0.010" /> mol and still gives <InlineMath math="120\text{ cm}^3" />. Diluting it to <InlineMath math="100\text{ cm}^3" /> halves the concentration, so particles collide less often and the oxygen comes **more slowly**.
+
+**Early rate**: by <InlineMath math="20\text{ s}" /> the chart shows <InlineMath math="72\text{ cm}^3" />, which is <InlineMath math="0.072 \div 24 = 0.0030" /> mol of oxygen from <InlineMath math="0.0060" /> mol of peroxide. Average rate: <InlineMath math="0.0060 \div 20 = 3.0 \times 10^{-4}\text{ mol s}^{-1}" />.
 
 # Why the other options are wrong
 
-- From <InlineMath math="0" /> s to <InlineMath math="180" /> s the rate is <InlineMath math="132 \div 180 = 0.73\text{ cm}^3\text{ s}^{-1}" />. The value <InlineMath math="0.88" /> divides by <InlineMath math="150" /> s instead.
-- <InlineMath math="0.275\text{ g}" /> halves the moles, as if **two moles of gas** came from each mole of marble.
-- <InlineMath math="0.73\text{ cm}^3\text{ s}^{-1}" /> is the average over the whole <InlineMath math="180" /> s, not over the first <InlineMath math="60" /> s.
+- <InlineMath math="0.10\text{ mol dm}^{-3}" /> takes one mole of peroxide per mole of oxygen instead of two.
+- <InlineMath math="1.5 \times 10^{-4}\text{ mol s}^{-1}" /> is the rate for **oxygen**, not for the peroxide, which is used twice as fast.
+- <InlineMath math="60\text{ cm}^3" /> treats dilution as removing peroxide, but the repeat holds the same <InlineMath math="0.010" /> mol.

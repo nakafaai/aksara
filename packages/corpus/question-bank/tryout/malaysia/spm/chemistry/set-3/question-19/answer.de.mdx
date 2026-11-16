@@ -1,22 +1,24 @@
-# Erst den begrenzenden Stoff finden, dann die Geschwindigkeit beurteilen
+# Jedes Gramm, das der Kolben verliert, ist Kohlenstoffdioxid
 
-Der Marmor sind <InlineMath math="2{,}0 \div 100 = 0{,}020" /> mol <InlineMath math="\text{CaCO}_3" />, die <InlineMath math="0{,}040" /> mol Säure brauchen. Jeder Versuch liefert <InlineMath math="0{,}050" /> mol Säure, also **begrenzt der Marmor in allen vier**. Jeder ergibt <InlineMath math="0{,}020" /> mol Kohlenstoffdioxid, das sind <InlineMath math="480\text{ cm}^3" /> bei Raumbedingungen.
+Mit Watte im Hals entweicht nur **Kohlenstoffdioxid**. In den ersten <InlineMath math="20\text{ s}" /> verliert der Kolben <InlineMath math="0{,}44" /> g: <InlineMath math="0{,}44 \div 44 = 0{,}010" /> mol, also <InlineMath math="0{,}010 \times 24\,000 = 240\text{ cm}^3" />. Mittlere Geschwindigkeit: <InlineMath math="240 \div 20 = 12\text{ cm}^3\text{ s}^{-1}" />.
 
-<Chart
-  title={<>Kohlenstoffdioxid in den Versuchen I und III</>}
-  categories={["0", "30", "60", "90", "120", "150", "180", "210", "240"]}
-  series={[
-    { label: "Versuch I", mark: "line", values: [0, 250, 390, 455, 480, 480, 480, 480, 480] },
-    { label: "Versuch III", mark: "line", values: [0, 140, 250, 330, 390, 430, 458, 474, 480] },
-  ]}
-  valueLabel="Volumen Kohlenstoffdioxid (cm³)"
-  description={<>Beide Kurven enden bei <InlineMath math="480\text{ cm}^3" />. Versuch I erreicht den Wert nach <InlineMath math="120\text{ s}" />, Versuch III erst nach etwa <InlineMath math="240\text{ s}" />.</>}
+<Mermaid
+  title={<>Der Massenverlust ist Kohlenstoffdioxid</>}
+  description={<>Die in den ersten <InlineMath math="20\text{ s}" /> verlorenen <InlineMath math="0{,}44\text{ g}" /> sind <InlineMath math="240\text{ cm}^3" /> Kohlenstoffdioxid. Die gesamten <InlineMath math="0{,}88\text{ g}" /> sind <InlineMath math="0{,}020\text{ mol}" />, aus derselben Menge Carbonat.</>}
+  chart={`
+    flowchart LR
+      N0["0,44 g CO₂ in 20 s"] --> N1["0,010 mol: 240 cm³"]
+      N1 --> N2["240 ÷ 20 = 12 cm³ s⁻¹"]
+      N3["0,88 g CO₂ insgesamt: 0,020 mol"] --> N4["0,020 mol MgCO₃: 1,68 g"]
+  `}
 />
 
-Versuch III verteilt dieselbe Säure auf das doppelte Volumen, ihre Konzentration ist also halb so groß. Teilchen stoßen seltener zusammen, und dieselben <InlineMath math="480\text{ cm}^3" /> brauchen länger.
+Der Verlust bleibt bei <InlineMath math="0{,}88" /> g stehen, die Reaktion ist also vorbei: <InlineMath math="0{,}88 \div 44 = 0{,}020" /> mol Kohlenstoffdioxid. Ein Mol Carbonat gibt ein Mol Kohlenstoffdioxid, also wurden <InlineMath math="0{,}020" /> mol Magnesiumcarbonat zugegeben, <InlineMath math="0{,}020 \times 84 = 1{,}68" /> g.
+
+**Säure**: Jedes Carbonat braucht **zwei** Salpetersäuremoleküle, also brauchen <InlineMath math="0{,}020" /> mol mindestens <InlineMath math="0{,}040" /> mol Säure: <InlineMath math="0{,}040 \div 2{,}0 = 0{,}020\text{ dm}^3 = 20\text{ cm}^3" />. Die Säure war im Überschuss, das echte Volumen war also größer.
 
 # Warum die anderen Antworten falsch sind
 
-- Pulver erhöht nur die Geschwindigkeit. Die Menge Marmor und damit das Endvolumen **bleiben gleich**.
-- Eine höhere Temperatur beschleunigt die Reaktion, aus demselben Marmor entsteht aber nicht mehr Gas.
-- Versuch III hat dieselbe Stoffmenge Säure wie Versuch I, und der Marmor begrenzt ohnehin, das Volumen halbiert sich also nicht.
+- <InlineMath math="0{,}84\text{ g}" /> rechnet nur mit den ersten <InlineMath math="20\text{ s}" />, doch das Carbonat reagiert weiter, bis der Verlust **bei** <InlineMath math="0{,}88" /> g stehen bleibt.
+- <InlineMath math="0{,}022" /> ist die Geschwindigkeit in Gramm je Sekunde, <InlineMath math="0{,}44 \div 20" />, mit der falschen Einheit.
+- <InlineMath math="10\text{ cm}^3" /> rechnet ein Säuremolekül je Carbonat, doch die Gleichung braucht zwei.

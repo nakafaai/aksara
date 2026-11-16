@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "I only" },
-        { correct: false, label: "I and II only" },
-        { correct: false, label: "II and III only" },
-        { correct: true, label: "I, II and III" },
+        {
+          correct: false,
+          label:
+            "$$\\text{MCl}_2$$, $$0.24\\text{ dm}^3$$ of chlorine, and $$0.86\\text{ g}$$ of hydroxide",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{MCl}_3$$, $$0.72\\text{ dm}^3$$ of chlorine, and $$1.03\\text{ g}$$ of hydroxide",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{MCl}_3$$, $$0.36\\text{ dm}^3$$ of chlorine, and $$0.86\\text{ g}$$ of hydroxide",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{MCl}_3$$, $$0.36\\text{ dm}^3$$ of chlorine, and $$1.03\\text{ g}$$ of hydroxide",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "I sahaja" },
-        { correct: false, label: "I dan II sahaja" },
-        { correct: false, label: "II dan III sahaja" },
-        { correct: true, label: "I, II dan III" },
+        {
+          correct: false,
+          label:
+            "$$\\text{MCl}_2$$, $$0.24\\text{ dm}^3$$ klorin, dan $$0.86\\text{ g}$$ hidroksida",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{MCl}_3$$, $$0.72\\text{ dm}^3$$ klorin, dan $$1.03\\text{ g}$$ hidroksida",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{MCl}_3$$, $$0.36\\text{ dm}^3$$ klorin, dan $$0.86\\text{ g}$$ hidroksida",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{MCl}_3$$, $$0.36\\text{ dm}^3$$ klorin, dan $$1.03\\text{ g}$$ hidroksida",
+        },
       ],
     },
   },

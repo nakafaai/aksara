@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "n = 2000, and chlorine makes up 56.8% of the polymer by mass",
+          label:
+            "$$1.51 \\times 10^{22}$$ molecules, $$2.80\\text{ kg}$$ of propene, and $$3600\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
-          label: "n = 2000, and chlorine makes up 35.5% of the polymer by mass",
+          label:
+            "$$1.51 \\times 10^{22}$$ molecules, $$1.58\\text{ kg}$$ of propene, and $$3600\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
-          label: "n = 1000, and chlorine makes up 56.8% of the polymer by mass",
+          label:
+            "$$1.51 \\times 10^{22}$$ molecules, $$2.80\\text{ kg}$$ of propene, and $$1200\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
-          label: "n = 2000, and the polymer decolourises bromine water",
+          label:
+            "$$3.01 \\times 10^{25}$$ molecules, $$2.80\\text{ kg}$$ of propene, and $$4800\\text{ dm}^3$$ of carbon dioxide",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "n = 2000, dan klorin membentuk 56.8% jisim polimer",
+          label:
+            "$$1.51 \\times 10^{22}$$ molekul, $$2.80\\text{ kg}$$ propena, dan $$3600\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
-          label: "n = 2000, dan klorin membentuk 35.5% jisim polimer",
+          label:
+            "$$1.51 \\times 10^{22}$$ molekul, $$1.58\\text{ kg}$$ propena, dan $$3600\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
-          label: "n = 1000, dan klorin membentuk 56.8% jisim polimer",
+          label:
+            "$$1.51 \\times 10^{22}$$ molekul, $$2.80\\text{ kg}$$ propena, dan $$1200\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
-          label: "n = 2000, dan polimer itu menyahwarnakan air bromin",
+          label:
+            "$$3.01 \\times 10^{25}$$ molekul, $$2.80\\text{ kg}$$ propena, dan $$4800\\text{ dm}^3$$ karbon dioksida",
         },
       ],
     },

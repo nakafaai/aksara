@@ -1,26 +1,27 @@
-# Die Hauptkette um je ein Kohlenstoffatom kürzen
+# Zwei Alkoholmoleküle geben ein Wasserstoffmolekül
 
-- **Sechserkette**: Hexan.
-- **Fünferkette mit einer Verzweigung**: am Atom <InlineMath math="2" /> oder <InlineMath math="3" /> ergibt 2-Methylpentan und 3-Methylpentan.
-- **Viererkette mit zwei Verzweigungen**: beide am Atom <InlineMath math="2" /> ergibt 2,2-Dimethylbutan, je eine an den mittleren Atomen 2,3-Dimethylbutan.
+Wasserstoff: <InlineMath math="0{,}120 \div 24 = 0{,}0050" /> mol. Die Gleichung macht **aus zwei Alkoholmolekülen ein Wasserstoffmolekül**, also waren es <InlineMath math="0{,}010" /> mol Alkohol, und <InlineMath math="M_r = 0{,}74 \div 0{,}010 = 74" />.
 
-Eine Dreierkette kann die übrigen drei Atome nicht tragen, ohne eine längere Kette zu bilden, es gibt also **fünf Isomere**.
+Für <InlineMath math="\text{C}_n\text{H}_{2n+1}\text{OH}" /> gilt <InlineMath math="M_r = 12n + 2n + 1 + 17 = 14n + 18" />. Also <InlineMath math="14n + 18 = 74" /> und <InlineMath math="n = 4" />: <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />.
 
-<Chart
-  title={<>Siedepunkte der fünf Isomere</>}
-  bars="apart"
-  categories={["Hexan", "2-Methylpentan", "3-Methylpentan", "2,3-Dimethylbutan", "2,2-Dimethylbutan"]}
-  series={[
-    { label: "Siedepunkt (°C)", mark: "bar", values: [69, 60, 63, 58, 50] },
-  ]}
-  valueLabel="Siedepunkt (°C)"
-  description={<>Siedepunkt: Hexan <InlineMath math="69" />, 2-Methylpentan <InlineMath math="60" />, 3-Methylpentan <InlineMath math="63" />, 2,3-Dimethylbutan <InlineMath math="58" /> und 2,2-Dimethylbutan <InlineMath math="50^\circ\text{C}" />.</>}
+<Mermaid
+  title={<>Vom Wasserstoff zu den Isomeren</>}
+  description={<><InlineMath math="0{,}0050\text{ mol}" /> Wasserstoff stammen aus <InlineMath math="0{,}010\text{ mol}" /> Alkohol, also <InlineMath math="M_r = 74" />, und der Alkohol ist <InlineMath math="\text{C}_4\text{H}_9\text{OH}" /> mit vier Strukturen.</>}
+  chart={`
+    flowchart LR
+      N0["120 cm³ H₂: 0,0050 mol"] --> N1["0,010 mol Alkohol"]
+      N1 --> N2["Mr = 0,74 ÷ 0,010 = 74"]
+      N2 --> N3["14n + 18 = 74, n = 4"]
+      N3 --> N4["Butan-1-ol, Butan-2-ol, 2-Methylpropan-1-ol, 2-Methylpropan-2-ol"]
+  `}
 />
 
-Alle fünf haben dieselbe Masse. Je stärker verzweigt ein Molekül, desto kompakter ist es, es **berührt seine Nachbarn auf kleinerer Fläche** und siedet tiefer. 2,2-Dimethylbutan mit beiden Verzweigungen an einem Atom ist am kompaktesten.
+Vier Kohlenstoffatome bilden **eine gerade oder eine verzweigte Kette**, und die Hydroxygruppe sitzt jeweils am Ende oder innen: Butan-1-ol, Butan-2-ol, 2-Methylpropan-1-ol und 2-Methylpropan-2-ol. Das sind vier.
+
+**Natrium**: Die Gleichung braucht **ein Natriumatom je Alkoholmolekül**, also reagieren <InlineMath math="0{,}010" /> mol Natrium, <InlineMath math="0{,}010 \times 23 = 0{,}23" /> g.
 
 # Warum die anderen Antworten falsch sind
 
-- Vier Isomere übersehen eines der fünf, meist 3-Methylpentan oder 2,3-Dimethylbutan.
-- Hexan, die gerade Kette, hat die größte Kontaktfläche und siedet **am höchsten**, bei <InlineMath math="69^\circ\text{C}" />.
-- Ein sechstes Isomer wie 4-Methylpentan ist 2-Methylpentan, vom falschen Ende nummeriert, und 3-Methylpentan siedet bei <InlineMath math="63^\circ\text{C}" />, nicht am tiefsten.
+- <InlineMath math="\text{C}_3\text{H}_7\text{OH}" /> hat <InlineMath math="M_r = 60" />, was nicht zu den <InlineMath math="74" /> aus den Daten passt.
+- Zwei Isomere zählen nur die **gerade Kette** und übersehen die beiden verzweigten Alkohole.
+- <InlineMath math="0{,}12\text{ g}" /> rechnet ein Natriumatom je Wasserstoffmolekül, doch zwei Natriumatome geben ein Wasserstoffmolekül.

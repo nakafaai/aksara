@@ -1,25 +1,24 @@
-# Das Endvolumen misst nur den reinen Anteil
+# Das Natrium aus Stufe eins speist Stufe zwei
 
-Die Verunreinigungen bilden kein Gas, also **zählt das Kohlenstoffdioxid nur das Calciumcarbonat**. Rechne vom Endvolumen auf dessen Masse zurück und vergleiche mit der Probe.
+<InlineMath math="M_r(\text{NaN}_3) = 23 + 3 \times 14 = 65" />, also sind <InlineMath math="130" /> g genau <InlineMath math="2{,}0" /> mol. **Stufe eins**: Zwei Mol Azid geben drei Mol Stickstoff, also <InlineMath math="3{,}0" /> mol Stickstoff und <InlineMath math="2{,}0" /> mol Natrium.
 
-<Chart
-  title={<>Aufgefangenes Kohlenstoffdioxid</>}
-  categories={["Sekunde 0", "Sekunde 30", "Sekunde 60", "Sekunde 90", "Sekunde 120", "Sekunde 150", "Sekunde 180"]}
-  series={[
-    { label: "Volumen CO₂ (cm³)", mark: "line", values: [0, 420, 700, 860, 930, 960, 960] },
-  ]}
-  valueLabel="Volumen CO₂ (cm³)"
-  description={<>Volumen bei <InlineMath math="0" /> bis <InlineMath math="180\text{ s}" />, alle <InlineMath math="30\text{ s}" />: <InlineMath math="0" />, <InlineMath math="420" />, <InlineMath math="700" />, <InlineMath math="860" />, <InlineMath math="930" />, <InlineMath math="960" /> und <InlineMath math="960\text{ cm}^3" />.</>}
+<Mermaid
+  title={<>Stickstoff aus beiden Stufen</>}
+  description={<>Das Azid liefert <InlineMath math="3{,}0\text{ mol}" /> Stickstoff und <InlineMath math="2{,}0\text{ mol}" /> Natrium, und das Natrium liefert weitere <InlineMath math="0{,}20\text{ mol}" />.</>}
+  chart={`
+    flowchart LR
+      N0["130 g NaN₃: 2,0 mol"] --> N1["Stufe 1: 3,0 mol N₂"]
+      N0 --> N2["2,0 mol Na"]
+      N2 --> N3["Stufe 2: 0,20 mol N₂"]
+      N1 --> N4["Summe 3,2 mol: 76,8 dm³"]
+      N3 --> N4
+  `}
 />
 
-<InlineMath math="\text{CaCO}_3 + 2\text{HCl} \rightarrow \text{CaCl}_2 + \text{H}_2\text{O} + \text{CO}_2" />
-
-- Stoffmenge <InlineMath math="\text{CO}_2" />: <InlineMath math="\dfrac{0{,}960}{24} = 0{,}040\text{ mol}" />.
-- Stoffmenge <InlineMath math="\text{CaCO}_3" /> <InlineMath math="= 0{,}040\text{ mol}" />, Masse <InlineMath math="0{,}040 \times 100 = 4{,}0\text{ g}" />.
-- Reinheit: <InlineMath math="\dfrac{4{,}0}{5{,}0} \times 100\,\% = 80\,\%" />.
+**Stufe zwei**: Zehn Mol Natrium geben ein Mol Stickstoff, also liefern <InlineMath math="2{,}0" /> mol Natrium <InlineMath math="0{,}20" /> mol. Stickstoff insgesamt: <InlineMath math="3{,}0 + 0{,}20 = 3{,}2" /> mol, also <InlineMath math="3{,}2 \times 24 = 76{,}8\text{ dm}^3" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="40\,\%" /> nimmt die <InlineMath math="2" /> vor HCl und **halbiert das Calciumcarbonat**.
-- <InlineMath math="96\,\%" /> liest <InlineMath math="960\text{ cm}^3" /> als Prozentwert, ganz ohne Stoffmengenschritt.
-- <InlineMath math="20\,\%" /> ist der Anteil der Verunreinigungen, <InlineMath math="\dfrac{1{,}0}{5{,}0}" />.
+- <InlineMath math="72{,}0\text{ dm}^3" /> hört nach Stufe eins auf und **übersieht den Stickstoff** aus dem Natrium.
+- <InlineMath math="48{,}0\text{ dm}^3" /> rechnet ein Mol Stickstoff je Mol Azid statt drei je zwei.
+- <InlineMath math="4{,}80\text{ dm}^3" /> zählt nur die zweite Stufe.

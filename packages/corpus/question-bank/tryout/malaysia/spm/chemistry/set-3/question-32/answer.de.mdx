@@ -1,22 +1,26 @@
-# Gleiche Massen Alken enthalten gleiche Massen Kohlenstoff
+# Das Salz benennt den Ester und zählt ihn zugleich
 
-Jedes Alken ist <InlineMath math="\text{C}_n\text{H}_{2n}" />, sein Kohlenstoffanteil also <InlineMath math="\tfrac{12n}{14n} = 85{,}7\%" /> für jedes <InlineMath math="n" />: die **flache Linie** im Diagramm. Beliebige <InlineMath math="5{,}6" /> g Alken enthalten <InlineMath math="0{,}857 \times 5{,}6 = 4{,}8" /> g Kohlenstoff, also <InlineMath math="0{,}40" /> mol.
+Die möglichen Salze prüfen: Natriummethanoat hat <InlineMath math="68" />, Natriumethanoat, <InlineMath math="\text{CH}_3\text{COONa}" />, hat <InlineMath math="15 + 44 + 23 = 82" />, Natriumpropanoat <InlineMath math="96" />. Der Säureteil ist also **Ethanoat**, die übrigen zwei Kohlenstoffatome bilden den Alkoholteil, und der Ester ist Ethylethanoat, <InlineMath math="\text{CH}_3\text{COOC}_2\text{H}_5" />, <InlineMath math="M_r = 88" />.
 
-<Chart
-  title={<>Massenanteil Kohlenstoff in zwei homologen Reihen</>}
-  categories={["2", "3", "4"]}
-  series={[
-    { label: "Alkane", mark: "line", values: [80.0, 81.8, 82.8] },
-    { label: "Alkene", mark: "line", values: [85.7, 85.7, 85.7] },
-  ]}
-  valueLabel="Massenanteil Kohlenstoff (%)"
-  description={<>Alkane: <InlineMath math="80{,}0" />, <InlineMath math="81{,}8" /> und <InlineMath math="82{,}8" />% für zwei, drei und vier Kohlenstoffatome. Alkene: <InlineMath math="85{,}7" />% für zwei, drei und vier Kohlenstoffatome.</>}
+Die Verunreinigungen enthalten kein Natrium, das Salz zählt also nur den Ester: <InlineMath math="3{,}69 \div 82 = 0{,}045" /> mol Salz aus <InlineMath math="0{,}045" /> mol Ester.
+
+<Mermaid
+  title={<>Vom Salz zurück zum Ester</>}
+  description={<>Das Salz der Masse <InlineMath math="82" /> ist Natriumethanoat, <InlineMath math="0{,}045\text{ mol}" /> davon, also enthielt die Probe <InlineMath math="3{,}96\text{ g}" /> Ethylethanoat.</>}
+  chart={`
+    flowchart LR
+      N0["Salz Mr 82: CH₃COONa"] --> N1["Ester: Ethylethanoat, Mr 88"]
+      N2["3,69 g ÷ 82 = 0,045 mol Salz"] --> N3["0,045 mol Ester: 3,96 g"]
+      N1 --> N3
+      N3 --> N4["3,96 ÷ 4,4 = 90% rein"]
+      N3 --> N5["0,045 mol Ethanol: 2,07 g"]
+  `}
 />
 
-Jedes Kohlenstoffatom landet in einem Kohlenstoffdioxidmolekül, jede Probe ergibt also <InlineMath math="0{,}40" /> mol oder <InlineMath math="0{,}40 \times 44 = 17{,}6" /> g. Probe mit Molekülen: Ethen, <InlineMath math="5{,}6 \div 28 = 0{,}20" /> mol <InlineMath math="\times 2 = 0{,}40" />. Propen, <InlineMath math="5{,}6 \div 42 = 0{,}133" /> mol <InlineMath math="\times 3 = 0{,}40" />.
+Ester in der Probe: <InlineMath math="0{,}045 \times 88 = 3{,}96" /> g, die Reinheit beträgt also <InlineMath math="3{,}96 \div 4{,}4 \times 100\% = 90\%" />. Jedes Estermolekül gibt ein Ethanolmolekül: <InlineMath math="0{,}045 \times 46 = 2{,}07" /> g.
 
 # Warum die anderen Antworten falsch sind
 
-- Propen hat mehr Kohlenstoffatome je Molekül, aber **weniger Moleküle** in derselben Masse. Beide Effekte heben sich genau auf.
-- Ethen hat mehr Moleküle, aber weniger Kohlenstoffatome in jedem, die Summen sind also wieder gleich.
-- <InlineMath math="8{,}8" /> g zählt <InlineMath math="0{,}20" /> mol Kohlenstoff, die Stoffmenge der Ethenmoleküle, ohne die zwei Kohlenstoffatome in jedem.
+- Methylpropanoat gäbe Natriumpropanoat, <InlineMath math="M_r = 96" />, **nicht** <InlineMath math="82" />.
+- <InlineMath math="84\%" /> teilt die Masse des Salzes durch die der Probe, doch das Salz ist ein anderer Stoff mit anderer molarer Masse.
+- <InlineMath math="2{,}30\text{ g}" /> nimmt die ganzen <InlineMath math="4{,}4" /> g als Ester und übersieht die Verunreinigungen.

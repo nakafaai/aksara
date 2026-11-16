@@ -1,21 +1,24 @@
-# Das Produkt benennen, dann die Stoffmenge durch zwei Reaktionen tragen
+# Erst die Säure bilden, dann prüfen, welcher Stoff ausgeht
 
-Überschüssiges angesäuertes Kaliumpermanganat unter Rückfluss **oxidiert Ethanol vollständig** zu Ethansäure, X ist also Ethansäure.
+Angesäuertes Permanganat oxidiert Ethanol zu **Ethansäure**, und die violette Farbe verblasst, weil es reduziert wird. Ethanol: <InlineMath math="4{,}6 \div 46 = 0{,}10" /> mol. Bei <InlineMath math="75\%" /> entstehen <InlineMath math="0{,}075" /> mol Säure, <InlineMath math="0{,}075 \times 60 = 4{,}5" /> g.
 
-<Mermaid
-  title={<>Vom Ethanol zum Kohlenstoffdioxid</>}
-  description={<><InlineMath math="0{,}10" /> mol Ethanol ergeben theoretisch <InlineMath math="0{,}10" /> mol Ethansäure. Bei <InlineMath math="75\%" /> Ausbeute sind das <InlineMath math="0{,}075\text{ mol}" /> oder <InlineMath math="4{,}5" /> g, die <InlineMath math="0{,}0375" /> mol Kohlenstoffdioxid freisetzen, also <InlineMath math="0{,}90\text{ dm}^3" />.</>}
-  chart={`
-    flowchart LR
-      A["Ethanol: 0,10 mol"] -->|"oxidieren"| B["Ethansäure: 0,075 mol, 4,5 g"]
-      B -->|"mit CaCO3 reagieren"| C["CO2: 0,0375 mol, 0,90 dm³"]
-  `}
+<InlineMath math="2\text{CH}_3\text{COOH} + \text{CaCO}_3 \rightarrow (\text{CH}_3\text{COO})_2\text{Ca} + \text{H}_2\text{O} + \text{CO}_2" />. Das Carbonat sind <InlineMath math="1{,}0 \div 100 = 0{,}010" /> mol, und es braucht nur <InlineMath math="0{,}020" /> mol Säure.
+
+<Chart
+  title={<>Mehr Säure als Carbonat</>}
+  bars="apart"
+  categories={["Gebildete Säure", "Vom Carbonat benötigt", "Freigesetztes CO₂"]}
+  series={[
+    { label: "Stoffmenge (mol)", mark: "bar", values: [0.075, 0.02, 0.01] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
+  description={<>Gebildete Säure <InlineMath math="0{,}075\text{ mol}" />, vom Carbonat benötigte Säure <InlineMath math="0{,}020\text{ mol}" />, freigesetztes Kohlenstoffdioxid <InlineMath math="0{,}010\text{ mol}" />.</>}
 />
 
-Ethanol: <InlineMath math="4{,}6 \div 46 = 0{,}10" /> mol, theoretisch also <InlineMath math="0{,}10" /> mol Säure und tatsächlich <InlineMath math="0{,}75 \times 0{,}10 = 0{,}075" /> mol: <InlineMath math="0{,}075 \times 60 = 4{,}5" /> g. In <InlineMath math="2\text{CH}_3\text{COOH} + \text{CaCO}_3 \rightarrow (\text{CH}_3\text{COO})_2\text{Ca} + \text{H}_2\text{O} + \text{CO}_2" /> **ergeben zwei Mol Säure ein Mol Gas**: <InlineMath math="0{,}0375" /> mol, also <InlineMath math="0{,}0375 \times 24 = 0{,}90\text{ dm}^3" />.
+Die Säure ist im Überschuss, also **geht das Carbonat zuerst aus**: <InlineMath math="0{,}010" /> mol Kohlenstoffdioxid, <InlineMath math="0{,}010 \times 24 = 0{,}24\text{ dm}^3" />.
 
 # Warum die anderen Antworten falsch sind
 
-- Ethen entsteht durch Dehydratisierung von Ethanol, nicht durch Oxidation, und reagiert nicht mit Calciumcarbonat.
-- <InlineMath math="1{,}8\text{ dm}^3" /> rechnet Säure und Gas eins zu eins, aber Ethansäure liefert **ein Wasserstoffion je Molekül**, und für jedes Kohlenstoffdioxid braucht es zwei.
-- Ethylethanoat entsteht erst, wenn Ethansäure mit weiterem Ethanol und konzentrierter Schwefelsäure reagiert, in einem eigenen Schritt.
+- Ethen entsteht, wenn Ethanol dehydratisiert wird, nicht oxidiert, und es reagiert nicht mit Calciumcarbonat.
+- <InlineMath math="0{,}90\text{ dm}^3" /> rechnet mit der ganzen Säure, doch das Carbonat ist nach <InlineMath math="0{,}010" /> mol **aufgebraucht**.
+- Ethylethanoat braucht Säure und Alkohol, die zusammen erhitzt werden, doch hier macht das Oxidationsmittel aus dem Ethanol Säure.

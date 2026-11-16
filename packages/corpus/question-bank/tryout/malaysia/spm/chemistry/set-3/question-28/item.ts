@@ -12,20 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "4 isomers, and hexane has the lowest boiling point",
+          label:
+            "$$\\text{C}_3\\text{H}_7\\text{OH}$$, two alcohol isomers, and $$0.23\\text{ g}$$ of sodium",
         },
         {
           correct: false,
-          label: "5 isomers, and hexane has the lowest boiling point",
+          label:
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, two alcohol isomers, and $$0.23\\text{ g}$$ of sodium",
         },
         {
           correct: true,
           label:
-            "5 isomers, and 2,2-dimethylbutane has the lowest boiling point",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, four alcohol isomers, and $$0.23\\text{ g}$$ of sodium",
         },
         {
           correct: false,
-          label: "6 isomers, and 3-methylpentane has the lowest boiling point",
+          label:
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, four alcohol isomers, and $$0.12\\text{ g}$$ of sodium",
         },
       ],
     },
@@ -34,21 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "4 isomer, dan heksana mempunyai takat didih paling rendah",
+          label:
+            "$$\\text{C}_3\\text{H}_7\\text{OH}$$, dua isomer alkohol, dan $$0.23\\text{ g}$$ natrium",
         },
         {
           correct: false,
-          label: "5 isomer, dan heksana mempunyai takat didih paling rendah",
+          label:
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, dua isomer alkohol, dan $$0.23\\text{ g}$$ natrium",
         },
         {
           correct: true,
           label:
-            "5 isomer, dan 2,2-dimetilbutana mempunyai takat didih paling rendah",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, empat isomer alkohol, dan $$0.23\\text{ g}$$ natrium",
         },
         {
           correct: false,
           label:
-            "6 isomer, dan 3-metilpentana mempunyai takat didih paling rendah",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, empat isomer alkohol, dan $$0.12\\text{ g}$$ natrium",
         },
       ],
     },

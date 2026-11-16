@@ -1,22 +1,24 @@
-# Voltage is the distance between two metals in the series
+# Three electrons out of each aluminium, four into each oxygen
 
-Each voltage shows how far a metal sits **above copper** in the electrochemical series: magnesium <InlineMath math="2.7" /> V, zinc <InlineMath math="1.1" /> V. Both are above copper, so the gap between them is <InlineMath math="2.7 - 1.1 = 1.6" /> V.
+Aluminium: <InlineMath math="0.90 \div 27 = 0.0333" /> mol. Each atom becomes <InlineMath math="\text{Al}^{3+}" /> and gives **three electrons**: <InlineMath math="0.0333 \times 3 = 0.10" /> mol of electrons through the device.
 
-<Chart
-  title={<>Voltage of Cells with a Copper Electrode</>}
-  bars="apart"
-  categories={["Magnesium", "Zinc", "Iron"]}
-  series={[
-    { label: "Voltage (V)", mark: "bar", values: [2.7, 1.1, 0.8] },
-  ]}
-  valueLabel="Voltage (V)"
-  description={<>Each metal paired with copper gives: magnesium <InlineMath math="2.7" />, zinc <InlineMath math="1.1" /> and iron <InlineMath math="0.8\text{ V}" />. Copper is the positive terminal in every cell.</>}
+<Mermaid
+  title={<>Electrons Out of Aluminium, Into Oxygen</>}
+  description={<><InlineMath math="0.0333\text{ mol}" /> of aluminium gives <InlineMath math="0.10\text{ mol}" /> of electrons, and oxygen takes four per molecule.</>}
+  chart={`
+    flowchart LR
+      N0["0.90 g Al: 0.0333 mol"] --> N1["Al → Al³⁺ + 3e⁻: 0.10 mol e⁻"]
+      N1 --> N2["O₂ + 2H₂O + 4e⁻ → 4OH⁻"]
+      N2 --> N3["0.025 mol O₂: 0.60 dm³"]
+  `}
 />
 
-Magnesium is the more electropositive metal, so it **gives up electrons**: <InlineMath math="\text{Mg} \rightarrow \text{Mg}^{2+} + 2e^-" />. The electrons travel through the wire to zinc, where zinc ions take them: <InlineMath math="\text{Zn}^{2+} + 2e^- \rightarrow \text{Zn}" />. Magnesium atoms leave as ions, so the magnesium electrode loses mass, while zinc metal builds up on the zinc electrode.
+Every electron that leaves the aluminium arrives at the oxygen, and **each oxygen molecule takes four**: <InlineMath math="0.10 \div 4 = 0.025" /> mol of oxygen, or <InlineMath math="0.025 \times 24 = 0.60\text{ dm}^3" />.
+
+**Running time**: <InlineMath math="0.10" /> mol of electrons at <InlineMath math="0.30" /> mol per hour lasts <InlineMath math="0.10 \div 0.30 = \tfrac{1}{3}" /> hour, which is <InlineMath math="20" /> minutes.
 
 # Why the other options are wrong
 
-- <InlineMath math="3.8" /> V adds the two voltages, as if the metals sat on **opposite sides** of copper, and the electrons flow the other way.
-- Zinc is the positive terminal here: it receives electrons and gains mass, so it does not lose any.
-- <InlineMath math="1.9" /> V uses iron's <InlineMath math="0.8" /> V in place of zinc's <InlineMath math="1.1" /> V.
+- <InlineMath math="0.20\text{ dm}^3" /> and about <InlineMath math="7" /> minutes count aluminium atoms, not the **three electrons** each gives.
+- <InlineMath math="1.20\text{ dm}^3" /> gives each oxygen molecule two electrons instead of four.
+- <InlineMath math="2.40\text{ dm}^3" /> gives each oxygen molecule one electron.

@@ -1,22 +1,24 @@
-# Drei Schritte, eine Stoffmenge wird durchgereicht
+# Die Titration liefert das Verhältnis, dann auf den Ansatz hochrechnen
 
-Masse: <InlineMath math="0{,}200 \times \tfrac{250}{1000} = 0{,}0500" /> mol <InlineMath math="\text{Na}_2\text{CO}_3" /> mit <InlineMath math="M_r = 2(23) + 12 + 3(16) = 106" /> sind <InlineMath math="0{,}0500 \times 106 = 5{,}30" /> g.
+Säure in der Titration: <InlineMath math="0{,}0200 \times 1{,}25 = 0{,}0250" /> mol, die <InlineMath math="0{,}0250" /> mol Natriumhydroxid in <InlineMath math="25{,}0\text{ cm}^3" /> neutralisierten. Die Lauge hat also <InlineMath math="0{,}0250 \div 0{,}0250 = 1{,}00\text{ mol dm}^{-3}" />.
 
-<Mermaid
-  title={<>Herstellen, Verdünnen und Titrieren</>}
-  description={<>Der Feststoff wird abgewogen und auf <InlineMath math="250\text{ cm}^3" /> mit <InlineMath math="0{,}200\text{ mol dm}^{-3}" /> aufgefüllt, <InlineMath math="25{,}0\text{ cm}^3" /> davon werden auf <InlineMath math="100\text{ cm}^3" /> verdünnt, und <InlineMath math="25{,}0\text{ cm}^3" /> davon werden mit Säure titriert.</>}
-  chart={`
-    flowchart LR
-      A["Feststoff abwiegen"] --> B["Auf 250 cm³ mit 0,200 mol dm⁻³ auffüllen"]
-      B --> C["25,0 cm³ auf 100 cm³ verdünnen"]
-      C --> D["25,0 cm³ mit 0,100 mol dm⁻³ HCl titrieren"]
-  `}
+Der Ansatz ist **das Vierfache der Titration**: <InlineMath math="100\text{ cm}^3" /> Lauge enthalten <InlineMath math="0{,}100" /> mol, und <InlineMath math="80{,}0\text{ cm}^3" /> Säure ebenfalls genau <InlineMath math="0{,}100" /> mol, also bleibt nichts übrig.
+
+<Chart
+  title={<>Erwartetes und gewonnenes Salz</>}
+  bars="apart"
+  categories={["Erwartet", "Gewonnen"]}
+  series={[
+    { label: "Masse NaCl (g)", mark: "bar", values: [5.85, 5.2] },
+  ]}
+  valueLabel="Masse NaCl (g)"
+  description={<>Erwartet aus <InlineMath math="0{,}100\text{ mol}" />: <InlineMath math="5{,}85\text{ g}" />. Gewonnen: <InlineMath math="5{,}20\text{ g}" />, eine Ausbeute von <InlineMath math="88{,}9\%" />.</>}
 />
 
-Verdünnung: dieselbe Stoffmenge im **vierfachen Volumen**, also <InlineMath math="0{,}200 \div 4 = 0{,}0500\text{ mol dm}^{-3}" />. Der Titrierkolben enthält <InlineMath math="0{,}0500 \times \tfrac{25{,}0}{1000} = 0{,}00125" /> mol Carbonat, das **zwei Mol Säure je Mol** braucht: <InlineMath math="0{,}00250" /> mol. Bei <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> sind das <InlineMath math="0{,}0250\text{ dm}^3" />, also <InlineMath math="25{,}0\text{ cm}^3" />.
+Erwartetes Natriumchlorid: <InlineMath math="0{,}100 \times 58{,}5 = 5{,}85" /> g. Ausbeute: <InlineMath math="5{,}20 \div 5{,}85 \times 100\% = 88{,}9\%" />. Ein Teil des Salzes bleibt in der Lösung zurück, die nach dem Kristallisieren übrig ist.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="12{,}5\text{ cm}^3" /> rechnet eins zu eins und vergisst das **zweite Mol Säure**.
-- <InlineMath math="21{,}2" /> g ist die Masse für einen ganzen Kubikdezimeter Lösung, nicht für <InlineMath math="250\text{ cm}^3" />.
-- <InlineMath math="2{,}65" /> g halbiert die Masse, und <InlineMath math="12{,}5\text{ cm}^3" /> vergisst ebenfalls das Verhältnis zwei zu eins.
+- <InlineMath math="1{,}56\text{ mol dm}^{-3}" /> teilt die Volumina verkehrt herum, als wäre die Lauge **konzentrierter** als die Säure.
+- <InlineMath math="100\%" /> nimmt die Kristalle als volle <InlineMath math="5{,}85" /> g, doch gewonnen wurden nur <InlineMath math="5{,}20" /> g.
+- <InlineMath math="1{,}25\text{ mol dm}^{-3}" /> übernimmt die Konzentration der Säure, obwohl gleiche Stoffmengen aus verschiedenen Volumina kamen.

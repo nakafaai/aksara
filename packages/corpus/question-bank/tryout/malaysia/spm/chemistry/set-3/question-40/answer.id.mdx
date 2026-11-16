@@ -1,22 +1,24 @@
-# Ubah ke zat yang dihitung batasnya, lalu skalakan ke satu kilogram
+# Hitung pengawet sebagai asam benzoat, lalu bandingkan dua kali
 
-Tiap unit natrium benzoat membawa **satu gugus benzoat**, sama seperti satu molekul asam benzoat. <InlineMath math="0{,}150 \div 144 = 0{,}00104" /> mol natrium benzoat dihitung sebagai <InlineMath math="0{,}00104 \times 122 = 0{,}127" /> g asam benzoat.
+Batasnya menghitung **asam benzoat**, jadi ubah garamnya: <InlineMath math="0{,}150 \times \tfrac{122}{144} = 0{,}127" /> g per kaleng, yaitu <InlineMath math="127" /> mg. Kalengnya berisi <InlineMath math="0{,}330" /> kg minuman: <InlineMath math="127 \div 0{,}330 = 385" /> mg per kg.
 
-<Mermaid
-  title={<>Dari Natrium Benzoat ke Batas</>}
-  description={<><InlineMath math="0{,}150\text{ g}" /> natrium benzoat adalah <InlineMath math="0{,}00104" /> mol, yang dihitung sebagai <InlineMath math="0{,}127\text{ g}" /> asam benzoat. Dalam <InlineMath math="0{,}330\text{ kg}" /> itu sekitar <InlineMath math="385\text{ mg}" /> per kg, di bawah <InlineMath math="1000" />.</>}
-  chart={`
-    flowchart LR
-      A["0,150 g C6H5COONa"] --> B["0,00104 mol"]
-      B --> C["0,127 g sebagai C6H5COOH"]
-      C --> D["385 mg per kg, di bawah 1000"]
-  `}
+<Chart
+  title={<>Minuman Dibanding Batas</>}
+  bars="apart"
+  categories={["Minuman ini", "Batas resmi"]}
+  series={[
+    { label: "Asam benzoat (mg per kg)", mark: "bar", values: [385, 1000] },
+  ]}
+  valueLabel="Asam benzoat (mg per kg)"
+  description={<>Minumannya berisi sekitar <InlineMath math="385\text{ mg}" /> asam benzoat per kg, jauh di bawah batas <InlineMath math="1000\text{ mg}" /> per kg.</>}
 />
 
-Kalengnya berisi <InlineMath math="0{,}330" /> kg, jadi kadarnya <InlineMath math="127 \div 0{,}330 \approx 385" /> mg per kg. Nilai ini jauh di bawah <InlineMath math="1000" /> mg per kg, jadi minumannya masih dalam batas. Pengawet ini menghambat pertumbuhan ragi dan kapang, yang penting untuk minuman manis dan asam.
+Itu di bawah <InlineMath math="1000" /> mg per kg, jadi minumannya masih dalam batas. Orang dewasa itu boleh mengonsumsi <InlineMath math="5 \times 60 = 300" /> mg asam benzoat sehari, jadi <InlineMath math="300 \div 127 = 2{,}4" /> kaleng sudah mencapainya.
+
+**Anak**: <InlineMath math="5 \times 20 = 100" /> mg sehari, padahal satu kaleng berisi <InlineMath math="127" /> mg asam benzoat, jadi **satu kaleng sudah melewati** asupan anak itu, meskipun minumannya legal.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="0{,}150\text{ g}" /> menghitung natrium benzoatnya sendiri, padahal batasnya **dihitung sebagai asam benzoat**.
-- <InlineMath math="1270\text{ mg}" /> per kg membagi dengan <InlineMath math="0{,}100" /> kg, bukan <InlineMath math="0{,}330" /> kg isi kaleng.
-- <InlineMath math="1500\text{ mg}" /> per kg melakukan kedua kesalahan: tanpa konversi dan dengan massa minuman yang salah.
+- <InlineMath math="455" /> mg dan <InlineMath math="2{,}0" /> kaleng sama-sama memakai massa **garam**, dan dengan <InlineMath math="150" /> mg dibanding <InlineMath math="100" /> mg anak itu tetap melewati batas, bukan di bawahnya.
+- <InlineMath math="2{,}0" /> kaleng dengan <InlineMath math="385" /> mg mengubah untuk batasnya tetapi memakai <InlineMath math="150" /> mg garam untuk asupan harian.
+- <InlineMath math="127" /> mg adalah jumlah dalam satu kaleng, bukan per kilogram minuman, dan <InlineMath math="127" /> mg yang sama melebihi <InlineMath math="100" /> mg anak itu.

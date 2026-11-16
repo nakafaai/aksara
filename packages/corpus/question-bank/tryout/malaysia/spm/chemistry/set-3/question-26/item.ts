@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Iron(II) ions are reduced, and 50.0 cm³ of bromine water is needed",
+            "$$25.0\\text{ cm}^3$$, bromide ions at $$0.10\\text{ mol dm}^{-3}$$, and $$0.450\\text{ g}$$ of green iron(II) hydroxide",
         },
         {
           correct: false,
           label:
-            "Bromine is the reducing agent, and 25.0 cm³ of bromine water is needed",
+            "$$100\\text{ cm}^3$$, bromide ions at $$0.080\\text{ mol dm}^{-3}$$, and $$0.535\\text{ g}$$ of brown iron(III) hydroxide",
         },
         {
           correct: false,
           label:
-            "Iron(II) ions are oxidised, and 100 cm³ of bromine water is needed",
+            "$$50.0\\text{ cm}^3$$, bromide ions at $$0.033\\text{ mol dm}^{-3}$$, and $$0.535\\text{ g}$$ of brown iron(III) hydroxide",
         },
         {
           correct: true,
           label:
-            "Iron(II) ions are oxidised, and 50.0 cm³ of bromine water is needed",
+            "$$50.0\\text{ cm}^3$$, bromide ions at $$0.067\\text{ mol dm}^{-3}$$, and $$0.535\\text{ g}$$ of brown iron(III) hydroxide",
         },
       ],
     },
@@ -37,21 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Ion ferum(II) diturunkan, dan 50.0 cm³ air bromin diperlukan",
+          label:
+            "$$25.0\\text{ cm}^3$$, ion bromida pada $$0.10\\text{ mol dm}^{-3}$$, dan $$0.450\\text{ g}$$ ferum(II) hidroksida hijau",
         },
         {
           correct: false,
           label:
-            "Bromin ialah agen penurunan, dan 25.0 cm³ air bromin diperlukan",
+            "$$100\\text{ cm}^3$$, ion bromida pada $$0.080\\text{ mol dm}^{-3}$$, dan $$0.535\\text{ g}$$ ferum(III) hidroksida perang",
         },
         {
           correct: false,
-          label: "Ion ferum(II) dioksidakan, dan 100 cm³ air bromin diperlukan",
+          label:
+            "$$50.0\\text{ cm}^3$$, ion bromida pada $$0.033\\text{ mol dm}^{-3}$$, dan $$0.535\\text{ g}$$ ferum(III) hidroksida perang",
         },
         {
           correct: true,
           label:
-            "Ion ferum(II) dioksidakan, dan 50.0 cm³ air bromin diperlukan",
+            "$$50.0\\text{ cm}^3$$, ion bromida pada $$0.067\\text{ mol dm}^{-3}$$, dan $$0.535\\text{ g}$$ ferum(III) hidroksida perang",
         },
       ],
     },

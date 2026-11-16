@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Propene gives more carbon dioxide, because each molecule has more carbon atoms",
+            "Methyl propanoate, $$90\\%$$ pure, giving $$1.44\\text{ g}$$ of methanol",
         },
         {
           correct: false,
           label:
-            "Ethene gives more carbon dioxide, because the same mass holds more molecules",
+            "Ethyl ethanoate, $$84\\%$$ pure, giving $$2.07\\text{ g}$$ of ethanol",
         },
         {
           correct: true,
           label:
-            "Both give 17.6 g of carbon dioxide, because every alkene has the same 85.7% of carbon by mass",
+            "Ethyl ethanoate, $$90\\%$$ pure, giving $$2.07\\text{ g}$$ of ethanol",
         },
         {
           correct: false,
           label:
-            "Both give 8.8 g of carbon dioxide, because each sample holds 0.20 mol of carbon atoms",
+            "Ethyl ethanoate, $$90\\%$$ pure, giving $$2.30\\text{ g}$$ of ethanol",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Propena menghasilkan lebih banyak karbon dioksida, kerana setiap molekulnya mempunyai lebih banyak atom karbon",
+            "Metil propanoat, $$90\\%$$ tulen, menghasilkan $$1.44\\text{ g}$$ metanol",
         },
         {
           correct: false,
           label:
-            "Etena menghasilkan lebih banyak karbon dioksida, kerana jisim yang sama mengandungi lebih banyak molekul",
+            "Etil etanoat, $$84\\%$$ tulen, menghasilkan $$2.07\\text{ g}$$ etanol",
         },
         {
           correct: true,
           label:
-            "Kedua-duanya menghasilkan 17.6 g karbon dioksida, kerana setiap alkena mempunyai 85.7% karbon mengikut jisim yang sama",
+            "Etil etanoat, $$90\\%$$ tulen, menghasilkan $$2.07\\text{ g}$$ etanol",
         },
         {
           correct: false,
           label:
-            "Kedua-duanya menghasilkan 8.8 g karbon dioksida, kerana setiap sampel mengandungi 0.20 mol atom karbon",
+            "Etil etanoat, $$90\\%$$ tulen, menghasilkan $$2.30\\text{ g}$$ etanol",
         },
       ],
     },

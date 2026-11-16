@@ -1,22 +1,24 @@
-# Tegangan adalah jarak dua logam di deret
+# Tiga elektron keluar dari tiap aluminium, empat masuk ke tiap oksigen
 
-Tiap tegangan menunjukkan seberapa jauh logam berada **di atas tembaga** dalam deret elektrokimia: magnesium <InlineMath math="2{,}7" /> V, seng <InlineMath math="1{,}1" /> V. Keduanya di atas tembaga, jadi jarak antarkeduanya <InlineMath math="2{,}7 - 1{,}1 = 1{,}6" /> V.
+Aluminium: <InlineMath math="0{,}90 \div 27 = 0{,}0333" /> mol. Tiap atom menjadi <InlineMath math="\text{Al}^{3+}" /> dan memberi **tiga elektron**: <InlineMath math="0{,}0333 \times 3 = 0{,}10" /> mol elektron melewati alat.
 
-<Chart
-  title={<>Tegangan Sel dengan Elektrode Tembaga</>}
-  bars="apart"
-  categories={["Magnesium", "Seng", "Besi"]}
-  series={[
-    { label: "Tegangan (V)", mark: "bar", values: [2.7, 1.1, 0.8] },
-  ]}
-  valueLabel="Tegangan (V)"
-  description={<>Tiap logam yang dipasangkan dengan tembaga memberi: magnesium <InlineMath math="2{,}7" />, seng <InlineMath math="1{,}1" />, dan besi <InlineMath math="0{,}8" /> V. Tembaga menjadi kutub positif di setiap sel.</>}
+<Mermaid
+  title={<>Elektron Keluar dari Aluminium, Masuk ke Oksigen</>}
+  description={<><InlineMath math="0{,}0333\text{ mol}" /> aluminium memberi <InlineMath math="0{,}10\text{ mol}" /> elektron, dan oksigen mengambil empat per molekul.</>}
+  chart={`
+    flowchart LR
+      N0["0,90 g Al: 0,0333 mol"] --> N1["Al → Al³⁺ + 3e⁻: 0,10 mol e⁻"]
+      N1 --> N2["O₂ + 2H₂O + 4e⁻ → 4OH⁻"]
+      N2 --> N3["0,025 mol O₂: 0,60 dm³"]
+  `}
 />
 
-Magnesium lebih elektropositif, jadi ia **melepas elektron**: <InlineMath math="\text{Mg} \rightarrow \text{Mg}^{2+} + 2e^-" />. Elektron mengalir lewat kawat ke seng, tempat ion seng menerimanya: <InlineMath math="\text{Zn}^{2+} + 2e^- \rightarrow \text{Zn}" />. Atom magnesium keluar sebagai ion, jadi elektrode magnesium berkurang massanya, sementara logam seng mengendap di elektrode seng.
+Tiap elektron yang keluar dari aluminium tiba di oksigen, dan **tiap molekul oksigen mengambil empat**: <InlineMath math="0{,}10 \div 4 = 0{,}025" /> mol oksigen, atau <InlineMath math="0{,}025 \times 24 = 0{,}60\text{ dm}^3" />.
+
+**Lama pemakaian**: <InlineMath math="0{,}10" /> mol elektron dengan <InlineMath math="0{,}30" /> mol per jam bertahan <InlineMath math="0{,}10 \div 0{,}30 = \tfrac{1}{3}" /> jam, yaitu <InlineMath math="20" /> menit.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="3{,}8" /> V menjumlahkan kedua tegangan, seolah kedua logam berada **di sisi berlawanan** dari tembaga, dan elektronnya mengalir ke arah sebaliknya.
-- Seng menjadi kutub positif di sini: ia menerima elektron dan bertambah massa, jadi tidak berkurang.
-- <InlineMath math="1{,}9" /> V memakai <InlineMath math="0{,}8" /> V milik besi, bukan <InlineMath math="1{,}1" /> V milik seng.
+- <InlineMath math="0{,}20\text{ dm}^3" /> dan sekitar <InlineMath math="7" /> menit menghitung atom aluminium, bukan **tiga elektron** yang diberikan tiap atom.
+- <InlineMath math="1{,}20\text{ dm}^3" /> memberi tiap molekul oksigen dua elektron, bukan empat.
+- <InlineMath math="2{,}40\text{ dm}^3" /> memberi tiap molekul oksigen satu elektron.

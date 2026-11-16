@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "2.8 g of nitrogen gas, $$1.20 \\times 10^{23}$$ atoms",
+          label:
+            "$$6.0\\text{ dm}^3$$ of gas leaves, holding $$2.01 \\times 10^{22}$$ ozone molecules",
         },
         {
           correct: false,
-          label: "3.4 g of ammonia, $$4.82 \\times 10^{23}$$ atoms",
+          label:
+            "$$4.8\\text{ dm}^3$$ of gas leaves, holding $$2.01 \\times 10^{22}$$ ozone molecules",
         },
         {
           correct: true,
-          label: "4.6 g of ethanol, $$5.42 \\times 10^{23}$$ atoms",
+          label:
+            "$$5.6\\text{ dm}^3$$ of gas leaves, holding $$2.01 \\times 10^{22}$$ ozone molecules",
         },
         {
           correct: false,
-          label: "1.6 g of methane, $$3.01 \\times 10^{23}$$ atoms",
+          label:
+            "$$5.6\\text{ dm}^3$$ of gas leaves, holding $$3.01 \\times 10^{22}$$ ozone molecules",
         },
       ],
     },
@@ -33,16 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "2.8 g gas nitrogen, $$1.20 \\times 10^{23}$$ atom",
+          label:
+            "$$6.0\\text{ dm}^3$$ gas keluar, mengandungi $$2.01 \\times 10^{22}$$ molekul ozon",
         },
         {
           correct: false,
-          label: "3.4 g ammonia, $$4.82 \\times 10^{23}$$ atom",
+          label:
+            "$$4.8\\text{ dm}^3$$ gas keluar, mengandungi $$2.01 \\times 10^{22}$$ molekul ozon",
         },
-        { correct: true, label: "4.6 g etanol, $$5.42 \\times 10^{23}$$ atom" },
+        {
+          correct: true,
+          label:
+            "$$5.6\\text{ dm}^3$$ gas keluar, mengandungi $$2.01 \\times 10^{22}$$ molekul ozon",
+        },
         {
           correct: false,
-          label: "1.6 g metana, $$3.01 \\times 10^{23}$$ atom",
+          label:
+            "$$5.6\\text{ dm}^3$$ gas keluar, mengandungi $$3.01 \\times 10^{22}$$ molekul ozon",
         },
       ],
     },

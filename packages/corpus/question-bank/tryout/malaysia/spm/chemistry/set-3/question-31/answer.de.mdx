@@ -1,22 +1,25 @@
-# Zweimal eins zu eins, mit der Ausbeute dazwischen
+# Erst das Ethen bilden, dann geht das Brom aus
 
-Heißes Porzellan spaltet aus Ethanol Wasser ab: <InlineMath math="\text{C}_2\text{H}_5\text{OH} \rightarrow \text{C}_2\text{H}_4 + \text{H}_2\text{O}" />. Ethanol sind <InlineMath math="2{,}3 \div 46 = 0{,}050" /> mol, es könnten also <InlineMath math="0{,}050" /> mol Ethen entstehen, und bei **<InlineMath math="75\%" /> Ausbeute** werden <InlineMath math="0{,}0375" /> mol aufgefangen: <InlineMath math="0{,}0375 \times 24 = 0{,}90\text{ dm}^3" />.
+Heißes Porzellan dehydratisiert Ethanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} \rightarrow \text{C}_2\text{H}_4 + \text{H}_2\text{O}" />. Ethanol: <InlineMath math="2{,}3 \div 46 = 0{,}050" /> mol, und bei <InlineMath math="75\%" /> entstehen <InlineMath math="0{,}0375" /> mol Ethen, <InlineMath math="0{,}0375 \times 24 = 0{,}90\text{ dm}^3" />.
 
-<Chart
-  title={<>Stoffmengen entlang des Wegs</>}
-  bars="apart"
-  categories={["Ethanol", "Ethen theoretisch", "Ethen aufgefangen", "Brom verbraucht"]}
-  series={[
-    { label: "Stoffmenge (mol)", mark: "bar", values: [0.05, 0.05, 0.0375, 0.0375] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
-  description={<>Ethanol <InlineMath math="0{,}050\text{ mol}" />, Ethen theoretisch <InlineMath math="0{,}050\text{ mol}" />, Ethen aufgefangen <InlineMath math="0{,}0375" /> mol und Brom verbraucht <InlineMath math="0{,}0375" /> mol.</>}
+Das Bromwasser enthält nur <InlineMath math="0{,}050 \times 0{,}10 = 0{,}0050" /> mol Brom, und **ein Brommolekül lagert sich an ein Ethenmolekül an**.
+
+<Mermaid
+  title={<>Mehr Ethen als Brom</>}
+  description={<><InlineMath math="0{,}0375\text{ mol}" /> Ethen treffen nur auf <InlineMath math="0{,}0050\text{ mol}" /> Brom, also geht das meiste Ethen hindurch.</>}
+  chart={`
+    flowchart LR
+      N0["2,3 g Ethanol: 0,050 mol"] --> N1["75%: 0,0375 mol C₂H₄, 0,90 dm³"]
+      N1 --> N3["Reagiert: 0,0050 mol C₂H₄"]
+      N2["Br₂: 0,0050 mol"] --> N3
+      N3 --> N4["Übrig: 0,0325 mol, 0,78 dm³"]
+  `}
 />
 
-Ethen addiert **ein Brommolekül an seine Doppelbindung**: <InlineMath math="\text{C}_2\text{H}_4 + \text{Br}_2 \rightarrow \text{C}_2\text{H}_4\text{Br}_2" />. Es reagieren also <InlineMath math="0{,}0375" /> mol Brom, mit <InlineMath math="M_r(\text{Br}_2) = 160" /> sind das <InlineMath math="0{,}0375 \times 160 = 6{,}0" /> g.
+Also reagiert alles Brom, die Lösung wird entfärbt, doch <InlineMath math="0{,}0375 - 0{,}0050 = 0{,}0325" /> mol Ethen bleiben übrig: <InlineMath math="0{,}0325 \times 24 = 0{,}78\text{ dm}^3" /> gehen hindurch.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="1{,}2\text{ dm}^3" /> und <InlineMath math="8{,}0" /> g übergehen die Ausbeute von <InlineMath math="75\%" />.
-- Die Dehydratisierung ergibt Ethen, nicht Ethan, und Ethan reagiert nicht mit Bromwasser.
-- <InlineMath math="3{,}0" /> g rechnet mit <InlineMath math="80" />, der Masse eines Bromatoms, obwohl ein **Brommolekül** zwei Atome hat.
+- <InlineMath math="1{,}2\text{ dm}^3" /> übersieht die Ausbeute von <InlineMath math="75\%" />.
+- Das Bromwasser ist nach <InlineMath math="0{,}0050" /> mol **aufgebraucht**, es kann also nicht alle <InlineMath math="0{,}0375" /> mol Ethen aufnehmen.
+- <InlineMath math="0{,}66\text{ dm}^3" /> rechnet zwei Ethenmoleküle je Brommolekül, doch jedes Brommolekül lagert sich an eine Doppelbindung an.

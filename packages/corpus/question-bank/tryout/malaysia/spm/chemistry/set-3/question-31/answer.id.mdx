@@ -1,22 +1,25 @@
-# Satu banding satu, dua kali, dengan rendemen di tengahnya
+# Buat etenanya, lalu biarkan bromin habis
 
-Porselen panas melepas air dari etanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} \rightarrow \text{C}_2\text{H}_4 + \text{H}_2\text{O}" />. Etanolnya <InlineMath math="2{,}3 \div 46 = 0{,}050" /> mol, jadi bisa terbentuk <InlineMath math="0{,}050" /> mol etena, dan dengan **rendemen <InlineMath math="75\%" />** terkumpul <InlineMath math="0{,}0375" /> mol: <InlineMath math="0{,}0375 \times 24 = 0{,}90\text{ dm}^3" />.
+Porselen panas mendehidrasi etanol: <InlineMath math="\text{C}_2\text{H}_5\text{OH} \rightarrow \text{C}_2\text{H}_4 + \text{H}_2\text{O}" />. Etanol: <InlineMath math="2{,}3 \div 46 = 0{,}050" /> mol, dan pada <InlineMath math="75\%" />, terbentuk <InlineMath math="0{,}0375" /> mol etena, <InlineMath math="0{,}0375 \times 24 = 0{,}90\text{ dm}^3" />.
 
-<Chart
-  title={<>Jumlah Mol Sepanjang Jalur</>}
-  bars="apart"
-  categories={["Etanol", "Etena secara teori", "Etena terkumpul", "Brom terpakai"]}
-  series={[
-    { label: "Jumlah (mol)", mark: "bar", values: [0.05, 0.05, 0.0375, 0.0375] },
-  ]}
-  valueLabel="Jumlah (mol)"
-  description={<>Etanol <InlineMath math="0{,}050\text{ mol}" />, etena secara teori <InlineMath math="0{,}050\text{ mol}" />, etena terkumpul <InlineMath math="0{,}0375" /> mol, dan brom terpakai <InlineMath math="0{,}0375" /> mol.</>}
+Air bromin hanya berisi <InlineMath math="0{,}050 \times 0{,}10 = 0{,}0050" /> mol bromin, dan **satu molekul bromin mengadisi satu molekul etena**.
+
+<Mermaid
+  title={<>Etena Lebih Banyak dari Bromin</>}
+  description={<><InlineMath math="0{,}0375\text{ mol}" /> etena hanya bertemu <InlineMath math="0{,}0050\text{ mol}" /> bromin, jadi sebagian besar etena lolos.</>}
+  chart={`
+    flowchart LR
+      N0["2,3 g etanol: 0,050 mol"] --> N1["75%: 0,0375 mol C₂H₄, 0,90 dm³"]
+      N1 --> N3["Bereaksi: 0,0050 mol C₂H₄"]
+      N2["Br₂: 0,0050 mol"] --> N3
+      N3 --> N4["Sisa: 0,0325 mol, 0,78 dm³"]
+  `}
 />
 
-Etena mengadisi **satu molekul brom pada ikatan rangkap duanya**: <InlineMath math="\text{C}_2\text{H}_4 + \text{Br}_2 \rightarrow \text{C}_2\text{H}_4\text{Br}_2" />. Jadi <InlineMath math="0{,}0375" /> mol brom bereaksi, dan dengan <InlineMath math="M_r(\text{Br}_2) = 160" /> nilainya <InlineMath math="0{,}0375 \times 160 = 6{,}0" /> g.
+Jadi semua bromin bereaksi dan larutannya menjadi tak berwarna, tetapi <InlineMath math="0{,}0375 - 0{,}0050 = 0{,}0325" /> mol etena tersisa: <InlineMath math="0{,}0325 \times 24 = 0{,}78\text{ dm}^3" /> lolos.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="1{,}2\text{ dm}^3" /> dan <InlineMath math="8{,}0" /> g mengabaikan rendemen <InlineMath math="75\%" />.
-- Dehidrasi menghasilkan etena, bukan etana, dan etana tidak bereaksi dengan air brom.
-- <InlineMath math="3{,}0" /> g memakai <InlineMath math="80" />, massa satu atom brom, padahal **molekul brom** punya dua atom.
+- <InlineMath math="1{,}2\text{ dm}^3" /> mengabaikan rendemen <InlineMath math="75\%" />.
+- Air bromin **habis** setelah <InlineMath math="0{,}0050" /> mol, jadi tidak bisa menyerap seluruh <InlineMath math="0{,}0375" /> mol etena.
+- <InlineMath math="0{,}66\text{ dm}^3" /> memakai dua molekul etena per molekul bromin, padahal tiap molekul bromin mengadisi satu ikatan rangkap.

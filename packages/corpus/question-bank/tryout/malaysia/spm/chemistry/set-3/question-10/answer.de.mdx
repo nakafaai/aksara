@@ -1,22 +1,25 @@
-# Zwei Natriumatome je Wasserstoffmolekül
+# Eine Formeleinheit Oxid gibt zwei Hydroxidionen
 
-<InlineMath math="2\text{Na} + 2\text{H}_2\text{O} \rightarrow 2\text{NaOH} + \text{H}_2" />. Natrium sind <InlineMath math="0{,}23 \div 23 = 0{,}010" /> mol, es entstehen also <InlineMath math="0{,}0050" /> mol Wasserstoff: <InlineMath math="0{,}0050 \times 24\,000 = 120\text{ cm}^3" />. Die <InlineMath math="0{,}010" /> mol Natriumhydroxid in <InlineMath math="0{,}100\text{ dm}^3" /> ergeben <InlineMath math="[\text{OH}^-] = 0{,}10\text{ mol dm}^{-3}" />, der pOH-Wert ist also <InlineMath math="1" /> und **der pH-Wert <InlineMath math="13" />**.
+Verbrauchte Säure: <InlineMath math="0{,}0200 \times 1{,}00 = 0{,}020" /> mol, also enthielt die Lösung <InlineMath math="0{,}020" /> mol Hydroxidionen. Das Oxid reagiert nach <InlineMath math="\text{M}_2\text{O} + \text{H}_2\text{O} \rightarrow 2\text{MOH}" />, **jede Formeleinheit gibt also zwei** Hydroxidionen: <InlineMath math="0{,}010" /> mol Oxid.
 
-<Chart
-  title={<>Wasserstoff aus <InlineMath math="0{,}23" /> g jedes Metalls</>}
-  bars="apart"
-  categories={["Lithium", "Natrium", "Kalium"]}
-  series={[
-    { label: "Volumen Wasserstoff (cm³)", mark: "bar", values: [394, 120, 71] },
-  ]}
-  valueLabel="Volumen Wasserstoff (cm³)"
-  description={<>Aus <InlineMath math="0{,}23" /> g Metall: Lithium <InlineMath math="394" />, Natrium <InlineMath math="120" /> und Kalium <InlineMath math="71\text{ cm}^3" /> Wasserstoff.</>}
+<Mermaid
+  title={<>Vom Titer zum Metall</>}
+  description={<><InlineMath math="0{,}020\text{ mol}" /> Säure bedeuten <InlineMath math="0{,}020\text{ mol}" /> Hydroxid aus <InlineMath math="0{,}010\text{ mol}" /> Oxid mit der molaren Masse <InlineMath math="62" />.</>}
+  chart={`
+    flowchart LR
+      N0["0,020 mol HCl"] --> N1["0,020 mol OH⁻"]
+      N1 --> N2["0,010 mol M₂O"]
+      N2 --> N3["Mr 62, M = 23: Natrium"]
+      N1 --> N4["[OH⁻] 0,040, pOH 1,40, pH 12,6"]
+  `}
 />
 
-Kalium ist reaktiver, weil sein Außenelektron weiter vom Kern entfernt ist und leichter abgegeben wird. Jedes Kaliumatom ist aber schwerer, <InlineMath math="0{,}23" /> g enthalten also nur <InlineMath math="0{,}23 \div 39 = 0{,}0059" /> mol und liefern etwa <InlineMath math="71\text{ cm}^3" /> Wasserstoff: **schneller, aber weniger Gas**.
+<InlineMath math="M_r = 0{,}62 \div 0{,}010 = 62" />, also <InlineMath math="2M + 16 = 62" /> und <InlineMath math="M = 23" />: Natrium.
+
+In <InlineMath math="0{,}500\text{ dm}^3" /> beträgt das Hydroxid <InlineMath math="0{,}020 \div 0{,}500 = 0{,}040\text{ mol dm}^{-3}" />. <InlineMath math="\text{pOH} = -\log 0{,}040 = 2 - 0{,}60 = 1{,}40" />, also <InlineMath math="\text{pH} = 14 - 1{,}40 = 12{,}6" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="240\text{ cm}^3" /> vergisst, dass **zwei Natriumatome** ein Wasserstoffmolekül bilden.
-- Natriumhydroxid ist eine starke Lauge, die Lösung ist also stark alkalisch, nicht sauer.
-- Die gleiche Masse enthält weniger Kalium- als Natriumatome, Kalium liefert also weniger Wasserstoff, nicht mehr.
+- Lithium ergibt sich, wenn man ein Hydroxidion je Formeleinheit nimmt: <InlineMath math="0{,}020" /> mol Oxid geben <InlineMath math="M_r = 31" /> und <InlineMath math="M = 7{,}5" />, was **die zwei M-Atome** in <InlineMath math="\text{M}_2\text{O}" /> vergisst.
+- pH <InlineMath math="1{,}4" /> ist der pOH-Wert, doch ein Metalloxid gibt eine alkalische Lösung.
+- Kaliumoxid, <InlineMath math="M_r = 94" />, bräuchte für denselben Titer <InlineMath math="0{,}94" /> g.

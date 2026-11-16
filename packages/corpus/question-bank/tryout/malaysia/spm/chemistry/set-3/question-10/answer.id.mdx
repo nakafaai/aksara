@@ -1,22 +1,25 @@
-# Dua atom natrium untuk tiap molekul hidrogen
+# Satu satuan rumus oksida memberi dua ion hidroksida
 
-<InlineMath math="2\text{Na} + 2\text{H}_2\text{O} \rightarrow 2\text{NaOH} + \text{H}_2" />. Natrium <InlineMath math="0{,}23 \div 23 = 0{,}010" /> mol, jadi terbentuk <InlineMath math="0{,}0050" /> mol hidrogen: <InlineMath math="0{,}0050 \times 24\,000 = 120\text{ cm}^3" />. <InlineMath math="0{,}010" /> mol natrium hidroksida dalam <InlineMath math="0{,}100\text{ dm}^3" /> memberi <InlineMath math="[\text{OH}^-] = 0{,}10\text{ mol dm}^{-3}" />, jadi pOH <InlineMath math="1" /> dan **pH <InlineMath math="13" />**.
+Asam yang terpakai: <InlineMath math="0{,}0200 \times 1{,}00 = 0{,}020" /> mol, jadi larutannya berisi <InlineMath math="0{,}020" /> mol ion hidroksida. Oksidanya bereaksi sebagai <InlineMath math="\text{M}_2\text{O} + \text{H}_2\text{O} \rightarrow 2\text{MOH}" />, jadi **tiap satuan rumus memberi dua** ion hidroksida: <InlineMath math="0{,}010" /> mol oksida.
 
-<Chart
-  title={<>Hidrogen dari <InlineMath math="0{,}23" /> g Tiap Logam</>}
-  bars="apart"
-  categories={["Litium", "Natrium", "Kalium"]}
-  series={[
-    { label: "Volume hidrogen (cm³)", mark: "bar", values: [394, 120, 71] },
-  ]}
-  valueLabel="Volume hidrogen (cm³)"
-  description={<>Dari <InlineMath math="0{,}23" /> g logam: litium <InlineMath math="394" />, natrium <InlineMath math="120" />, dan kalium <InlineMath math="71\text{ cm}^3" /> hidrogen.</>}
+<Mermaid
+  title={<>Dari Volume Titrasi ke Logam</>}
+  description={<><InlineMath math="0{,}020\text{ mol}" /> asam berarti <InlineMath math="0{,}020\text{ mol}" /> hidroksida, dari <InlineMath math="0{,}010\text{ mol}" /> oksida dengan massa molar <InlineMath math="62" />.</>}
+  chart={`
+    flowchart LR
+      N0["0,020 mol HCl"] --> N1["0,020 mol OH⁻"]
+      N1 --> N2["0,010 mol M₂O"]
+      N2 --> N3["Mr 62, M = 23: natrium"]
+      N1 --> N4["[OH⁻] 0,040, pOH 1,40, pH 12,6"]
+  `}
 />
 
-Kalium lebih reaktif, karena elektron terluarnya lebih jauh dari inti dan lebih mudah lepas. Tapi tiap atom kalium lebih berat, jadi <InlineMath math="0{,}23" /> g hanya berisi <InlineMath math="0{,}23 \div 39 = 0{,}0059" /> mol dan menghasilkan sekitar <InlineMath math="71\text{ cm}^3" /> hidrogen: **lebih cepat, tapi gasnya lebih sedikit**.
+<InlineMath math="M_r = 0{,}62 \div 0{,}010 = 62" />, jadi <InlineMath math="2M + 16 = 62" /> dan <InlineMath math="M = 23" />: natrium.
+
+Dalam <InlineMath math="0{,}500\text{ dm}^3" />, konsentrasi hidroksida <InlineMath math="0{,}020 \div 0{,}500 = 0{,}040\text{ mol dm}^{-3}" />. <InlineMath math="\text{pOH} = -\log 0{,}040 = 2 - 0{,}60 = 1{,}40" />, jadi <InlineMath math="\text{pH} = 14 - 1{,}40 = 12{,}6" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="240\text{ cm}^3" /> lupa bahwa **dua atom natrium** membentuk satu molekul hidrogen.
-- Natrium hidroksida adalah basa kuat, jadi larutannya sangat basa, bukan asam.
-- Massa yang sama berisi atom kalium lebih sedikit dari atom natrium, jadi kalium menghasilkan hidrogen lebih sedikit, bukan lebih banyak.
+- Litium muncul kalau tiap satuan rumus dianggap memberi satu ion hidroksida: <InlineMath math="0{,}020" /> mol oksida memberi <InlineMath math="M_r = 31" /> dan <InlineMath math="M = 7{,}5" />, yang **melupakan dua atom M** di <InlineMath math="\text{M}_2\text{O}" />.
+- pH <InlineMath math="1{,}4" /> adalah pOH-nya, padahal oksida logam menghasilkan larutan basa.
+- Kalium oksida, <InlineMath math="M_r = 94" />, butuh <InlineMath math="0{,}94" /> g untuk volume titrasi yang sama.

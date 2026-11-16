@@ -13,21 +13,21 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "X is ethene, and it releases 1.8 dm³ of gas with excess calcium carbonate",
+            "X is ethene, and it releases $$0.24\\text{ dm}^3$$ of gas with the calcium carbonate",
         },
         {
           correct: true,
           label:
-            "X is ethanoic acid; 4.5 g of it forms, and it releases 0.90 dm³ of carbon dioxide with excess calcium carbonate",
+            "X is ethanoic acid, $$4.5\\text{ g}$$ of it forms, and it releases $$0.24\\text{ dm}^3$$ of carbon dioxide with the calcium carbonate",
         },
         {
           correct: false,
           label:
-            "X is ethanoic acid; 4.5 g of it forms, and it releases 1.8 dm³ of carbon dioxide with excess calcium carbonate",
+            "X is ethanoic acid, $$4.5\\text{ g}$$ of it forms, and it releases $$0.90\\text{ dm}^3$$ of carbon dioxide with the calcium carbonate",
         },
         {
           correct: false,
-          label: "X is ethyl ethanoate, and 4.5 g of it forms",
+          label: "X is ethyl ethanoate, and $$4.5\\text{ g}$$ of it forms",
         },
       ],
     },
@@ -37,21 +37,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "X ialah etena, dan ia membebaskan 1.8 dm³ gas dengan kalsium karbonat berlebihan",
+            "X ialah etena, dan ia membebaskan $$0.24\\text{ dm}^3$$ gas dengan kalsium karbonat",
         },
         {
           correct: true,
           label:
-            "X ialah asid etanoik; 4.5 g daripadanya terbentuk, dan ia membebaskan 0.90 dm³ karbon dioksida dengan kalsium karbonat berlebihan",
+            "X ialah asid etanoik, $$4.5\\text{ g}$$ daripadanya terbentuk, dan ia membebaskan $$0.24\\text{ dm}^3$$ karbon dioksida dengan kalsium karbonat",
         },
         {
           correct: false,
           label:
-            "X ialah asid etanoik; 4.5 g daripadanya terbentuk, dan ia membebaskan 1.8 dm³ karbon dioksida dengan kalsium karbonat berlebihan",
+            "X ialah asid etanoik, $$4.5\\text{ g}$$ daripadanya terbentuk, dan ia membebaskan $$0.90\\text{ dm}^3$$ karbon dioksida dengan kalsium karbonat",
         },
         {
           correct: false,
-          label: "X ialah etil etanoat, dan 4.5 g daripadanya terbentuk",
+          label:
+            "X ialah etil etanoat, dan $$4.5\\text{ g}$$ daripadanya terbentuk",
         },
       ],
     },

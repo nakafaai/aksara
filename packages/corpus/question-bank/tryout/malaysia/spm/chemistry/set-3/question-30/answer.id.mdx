@@ -1,21 +1,24 @@
-# Sebut produknya, lalu bawa mol melewati dua reaksi
+# Buat asamnya, lalu periksa pereaksi mana yang habis
 
-Kalium permanganat dalam suasana asam berlebih saat direfluks **mengoksidasi etanol sampai tuntas** menjadi asam etanoat, jadi X adalah asam etanoat.
+Manganat(VII) berasam mengoksidasi etanol menjadi **asam etanoat**, dan warna ungu memudar saat manganat tereduksi. Etanol: <InlineMath math="4{,}6 \div 46 = 0{,}10" /> mol. Pada <InlineMath math="75\%" />, terbentuk <InlineMath math="0{,}075" /> mol asam, <InlineMath math="0{,}075 \times 60 = 4{,}5" /> g.
 
-<Mermaid
-  title={<>Dari Etanol ke Karbon Dioksida</>}
-  description={<><InlineMath math="0{,}10" /> mol etanol menghasilkan <InlineMath math="0{,}10" /> mol asam etanoat secara teori. Dengan rendemen <InlineMath math="75\%" /> menjadi <InlineMath math="0{,}075\text{ mol}" />, atau <InlineMath math="4{,}5" /> g, yang melepas <InlineMath math="0{,}0375" /> mol karbon dioksida, atau <InlineMath math="0{,}90\text{ dm}^3" />.</>}
-  chart={`
-    flowchart LR
-      A["Etanol: 0,10 mol"] -->|"oksidasi"| B["Asam etanoat: 0,075 mol, 4,5 g"]
-      B -->|"reaksi dengan CaCO3"| C["CO2: 0,0375 mol, 0,90 dm³"]
-  `}
+<InlineMath math="2\text{CH}_3\text{COOH} + \text{CaCO}_3 \rightarrow (\text{CH}_3\text{COO})_2\text{Ca} + \text{H}_2\text{O} + \text{CO}_2" />. Karbonatnya <InlineMath math="1{,}0 \div 100 = 0{,}010" /> mol, dan hanya butuh <InlineMath math="0{,}020" /> mol asam.
+
+<Chart
+  title={<>Asamnya Jauh Lebih Banyak dari Karbonat</>}
+  bars="apart"
+  categories={["Asam terbentuk", "Asam yang dibutuhkan karbonat", "CO₂ dilepaskan"]}
+  series={[
+    { label: "Jumlah zat (mol)", mark: "bar", values: [0.075, 0.02, 0.01] },
+  ]}
+  valueLabel="Jumlah zat (mol)"
+  description={<>Asam terbentuk <InlineMath math="0{,}075\text{ mol}" />, asam yang dibutuhkan karbonat <InlineMath math="0{,}020\text{ mol}" />, karbon dioksida dilepaskan <InlineMath math="0{,}010\text{ mol}" />.</>}
 />
 
-Etanol: <InlineMath math="4{,}6 \div 46 = 0{,}10" /> mol, yang memberi <InlineMath math="0{,}10" /> mol asam secara teori dan <InlineMath math="0{,}75 \times 0{,}10 = 0{,}075" /> mol nyatanya: <InlineMath math="0{,}075 \times 60 = 4{,}5" /> g. Dalam <InlineMath math="2\text{CH}_3\text{COOH} + \text{CaCO}_3 \rightarrow (\text{CH}_3\text{COO})_2\text{Ca} + \text{H}_2\text{O} + \text{CO}_2" />, **dua mol asam memberi satu mol gas**: <InlineMath math="0{,}0375" /> mol, atau <InlineMath math="0{,}0375 \times 24 = 0{,}90\text{ dm}^3" />.
+Asamnya berlebih, jadi **karbonat habis lebih dulu**: <InlineMath math="0{,}010" /> mol karbon dioksida, <InlineMath math="0{,}010 \times 24 = 0{,}24\text{ dm}^3" />.
 
 # Kenapa pilihan lain salah
 
-- Etena berasal dari dehidrasi etanol, bukan oksidasi, dan tidak bereaksi dengan kalsium karbonat.
-- <InlineMath math="1{,}8\text{ dm}^3" /> menganggap asam dan gas satu banding satu, padahal asam etanoat melepas **satu ion hidrogen per molekul**, dan butuh dua untuk tiap karbon dioksida.
-- Etil etanoat butuh asam etanoat bereaksi dengan etanol tambahan dan asam sulfat pekat, yaitu langkah terpisah.
+- Etena terbentuk kalau etanol didehidrasi, bukan dioksidasi, dan etena tidak bereaksi dengan kalsium karbonat.
+- <InlineMath math="0{,}90\text{ dm}^3" /> dihitung dari semua asam, padahal karbonatnya **habis** setelah <InlineMath math="0{,}010" /> mol.
+- Etil etanoat butuh asam dan alkohol yang dipanaskan bersama, sedangkan di sini oksidator mengubah etanol menjadi asam.

@@ -1,26 +1,27 @@
-# Shorten the main chain one carbon at a time
+# Two alcohol molecules make one hydrogen molecule
 
-- **Six-carbon chain**: hexane.
-- **Five-carbon chain with one branch**: the branch on carbon <InlineMath math="2" /> or carbon <InlineMath math="3" /> gives 2-methylpentane and 3-methylpentane.
-- **Four-carbon chain with two branches**: both on carbon <InlineMath math="2" /> gives 2,2-dimethylbutane, one on each middle carbon gives 2,3-dimethylbutane.
+Hydrogen: <InlineMath math="0.120 \div 24 = 0.0050" /> mol. The equation makes **one hydrogen molecule from two alcohol molecules**, so there were <InlineMath math="0.010" /> mol of alcohol, and <InlineMath math="M_r = 0.74 \div 0.010 = 74" />.
 
-A three-carbon chain cannot hold the remaining three carbons without making a longer chain, so there are **five isomers**.
+For <InlineMath math="\text{C}_n\text{H}_{2n+1}\text{OH}" />, <InlineMath math="M_r = 12n + 2n + 1 + 17 = 14n + 18" />. So <InlineMath math="14n + 18 = 74" /> and <InlineMath math="n = 4" />: <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />.
 
-<Chart
-  title={<>Boiling Points of the Five Isomers</>}
-  bars="apart"
-  categories={["hexane", "2-methylpentane", "3-methylpentane", "2,3-dimethylbutane", "2,2-dimethylbutane"]}
-  series={[
-    { label: "Boiling point (°C)", mark: "bar", values: [69, 60, 63, 58, 50] },
-  ]}
-  valueLabel="Boiling point (°C)"
-  description={<>Boiling point: hexane <InlineMath math="69" />, 2-methylpentane <InlineMath math="60" />, 3-methylpentane <InlineMath math="63" />, 2,3-dimethylbutane <InlineMath math="58" /> and 2,2-dimethylbutane <InlineMath math="50^\circ\text{C}" />.</>}
+<Mermaid
+  title={<>From the Hydrogen to the Isomers</>}
+  description={<><InlineMath math="0.0050\text{ mol}" /> of hydrogen comes from <InlineMath math="0.010\text{ mol}" /> of alcohol, so <InlineMath math="M_r = 74" /> and the alcohol is <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, with four structures.</>}
+  chart={`
+    flowchart LR
+      N0["120 cm³ H₂: 0.0050 mol"] --> N1["0.010 mol alcohol"]
+      N1 --> N2["Mr = 0.74 ÷ 0.010 = 74"]
+      N2 --> N3["14n + 18 = 74, n = 4"]
+      N3 --> N4["Butan-1-ol, butan-2-ol, 2-methylpropan-1-ol, 2-methylpropan-2-ol"]
+  `}
 />
 
-All five have the same mass. The more branched a molecule, the more compact it is, so it **touches its neighbours over a smaller surface** and boils lower. 2,2-dimethylbutane, with both branches on one carbon, is the most compact.
+Four carbon atoms can form a **straight chain or a branched chain**, and the hydroxyl group can sit at the end or inside each one: butan-1-ol, butan-2-ol, 2-methylpropan-1-ol and 2-methylpropan-2-ol. That makes four.
+
+**Sodium**: the equation uses **one sodium atom per alcohol molecule**, so <InlineMath math="0.010" /> mol of sodium reacts, <InlineMath math="0.010 \times 23 = 0.23" /> g.
 
 # Why the other options are wrong
 
-- Four isomers misses one of the five, usually 3-methylpentane or 2,3-dimethylbutane.
-- Hexane, the straight chain, has the largest contact surface and boils **highest**, at <InlineMath math="69^\circ\text{C}" />.
-- A sixth isomer such as 4-methylpentane is 2-methylpentane numbered from the wrong end, and 3-methylpentane boils at <InlineMath math="63^\circ\text{C}" />, not lowest.
+- <InlineMath math="\text{C}_3\text{H}_7\text{OH}" /> has <InlineMath math="M_r = 60" />, which does not fit the <InlineMath math="74" /> the data give.
+- Two isomers count only the **straight chain** and miss the two branched alcohols.
+- <InlineMath math="0.12\text{ g}" /> takes one sodium atom per hydrogen molecule, but two sodium atoms give one hydrogen molecule.

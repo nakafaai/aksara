@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "About 2680 kJ mol⁻¹, because pentanol and butanol release the same heat per mole",
+            "$$10.2\\text{ dm}^3$$, releasing $$18.7\\text{ g}$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "About 3330 kJ mol⁻¹, and an experiment with a copper can gives a larger value because the can absorbs heat",
+            "$$17.0\\text{ dm}^3$$, releasing $$31.1\\text{ g}$$ of carbon dioxide",
         },
         {
           correct: true,
           label:
-            "About 3330 kJ mol⁻¹, and an experiment with a copper can gives a smaller value because heat escapes to the surroundings",
+            "$$28.3\\text{ dm}^3$$, releasing $$51.9\\text{ g}$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "About 4000 kJ mol⁻¹, because the heat of combustion grows faster with each extra carbon atom",
+            "$$37.8\\text{ dm}^3$$, releasing $$69.2\\text{ g}$$ of carbon dioxide",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kira-kira 2680 kJ mol⁻¹, kerana pentanol dan butanol membebaskan haba yang sama per mol",
+            "$$10.2\\text{ dm}^3$$, membebaskan $$18.7\\text{ g}$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "Kira-kira 3330 kJ mol⁻¹, dan eksperimen dengan bekas kuprum memberikan nilai lebih besar kerana bekas menyerap haba",
+            "$$17.0\\text{ dm}^3$$, membebaskan $$31.1\\text{ g}$$ karbon dioksida",
         },
         {
           correct: true,
           label:
-            "Kira-kira 3330 kJ mol⁻¹, dan eksperimen dengan bekas kuprum memberikan nilai lebih kecil kerana haba terbebas ke persekitaran",
+            "$$28.3\\text{ dm}^3$$, membebaskan $$51.9\\text{ g}$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "Kira-kira 4000 kJ mol⁻¹, kerana haba pembakaran bertambah lebih cepat bagi setiap atom karbon tambahan",
+            "$$37.8\\text{ dm}^3$$, membebaskan $$69.2\\text{ g}$$ karbon dioksida",
         },
       ],
     },

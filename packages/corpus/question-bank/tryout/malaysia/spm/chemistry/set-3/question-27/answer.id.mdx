@@ -1,22 +1,27 @@
-# Hitung atom per molekul dari hasil reaksi
+# Satu molekul bromin per molekul X memberi massa molarnya
 
-Karbon dioksida: <InlineMath math="17{,}6 \div 44 = 0{,}40" /> mol, jadi <InlineMath math="0{,}40" /> mol atom karbon. Air: <InlineMath math="7{,}2 \div 18 = 0{,}40" /> mol, yang memuat <InlineMath math="0{,}80" /> mol atom hidrogen.
+Bromin: <InlineMath math="M_r(\text{Br}_2) = 160" />, jadi <InlineMath math="2{,}0 \div 160 = 0{,}0125" /> mol. Tiap molekul X mengikat **satu molekul bromin**, jadi ada <InlineMath math="0{,}0125" /> mol X, dan <InlineMath math="M_r = 0{,}70 \div 0{,}0125 = 56" />.
 
-<Chart
-  title={<>Mol dalam Pembakaran</>}
-  bars="apart"
-  categories={["Q terbakar", "Karbon dioksida", "Air", "Atom hidrogen"]}
-  series={[
-    { label: "Jumlah (mol)", mark: "bar", values: [0.1, 0.4, 0.4, 0.8] },
-  ]}
-  valueLabel="Jumlah (mol)"
-  description={<><InlineMath math="0{,}10" /> mol Q menghasilkan <InlineMath math="0{,}40" /> mol karbon dioksida dan <InlineMath math="0{,}40" /> mol air, yang memuat <InlineMath math="0{,}80\text{ mol}" /> atom hidrogen.</>}
+Satu ikatan rangkap dua membuat X sebuah alkena, <InlineMath math="\text{C}_n\text{H}_{2n}" />: <InlineMath math="14n = 56" />, jadi <InlineMath math="n = 4" /> dan X adalah <InlineMath math="\text{C}_4\text{H}_8" />.
+
+<Mermaid
+  title={<>Dari Bromin ke Isomer</>}
+  description={<><InlineMath math="0{,}0125\text{ mol}" /> bromin berarti <InlineMath math="0{,}0125\text{ mol}" /> X, jadi <InlineMath math="M_r = 56" /> dan X adalah <InlineMath math="\text{C}_4\text{H}_8" />, dengan tiga struktur alkena.</>}
+  chart={`
+    flowchart LR
+      N0["2,0 g Br₂: 0,0125 mol"] --> N1["0,0125 mol X"]
+      N1 --> N2["Mr = 0,70 ÷ 0,0125 = 56"]
+      N2 --> N3["CₙH₂ₙ: 14n = 56, n = 4"]
+      N3 --> N4["But-1-ena, but-2-ena, 2-metilpropena"]
+  `}
 />
 
-Bagi dengan <InlineMath math="0{,}10" /> mol Q: tiap molekul punya <InlineMath math="4" /> atom karbon dan <InlineMath math="8" /> atom hidrogen, jadi Q adalah <InlineMath math="\text{C}_4\text{H}_8" />. Rumus ini cocok dengan <InlineMath math="\text{C}_n\text{H}_{2n}" />, yaitu alkena, jadi ia punya **ikatan rangkap dua karbon-karbon** yang mengadisi brom dan menghilangkan warna air brom.
+Struktur alkena <InlineMath math="\text{C}_4\text{H}_8" />: ikatan rangkap di ujung rantai lurus, **but-1-ena**, di tengahnya, **but-2-ena**, atau pada rantai bercabang, **2-metilpropena**. Jadi ada tiga.
+
+**Hidrogen**: mengadisi ikatan rangkap yang sama dengan bromin, **satu molekul per molekul X**: <InlineMath math="0{,}0125" /> mol, atau <InlineMath math="0{,}0125 \times 24\,000 = 300\text{ cm}^3" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="\text{C}_4\text{H}_{10}" /> akan menghasilkan <InlineMath math="0{,}50" /> mol air, bukan <InlineMath math="0{,}40" />.
-- <InlineMath math="\text{C}_8\text{H}_{16}" /> lupa **membagi dengan mol Q**: rumus ini akan menghasilkan <InlineMath math="0{,}80" /> mol karbon dioksida.
-- <InlineMath math="\text{C}_4\text{H}_8" /> benar, tapi alkena adalah hidrokarbon tak jenuh.
+- <InlineMath math="150\text{ cm}^3" /> dengan <InlineMath math="\text{C}_4\text{H}_8" /> menambah satu molekul hidrogen ke dua molekul X, padahal tiap ikatan rangkap mengikat satu.
+- <InlineMath math="\text{C}_8\text{H}_{16}" /> muncul kalau tiap molekul X dianggap mengikat **dua molekul bromin**, yang menggandakan massa molar dan membagi dua hidrogennya.
+- Dua isomer melewatkan yang bercabang, 2-metilpropena.

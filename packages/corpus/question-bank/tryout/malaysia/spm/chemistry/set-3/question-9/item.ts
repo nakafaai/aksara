@@ -12,20 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Q is magnesium, R is chlorine and T is sodium",
+          label:
+            "R is magnesium, and its oxide needs no sodium hydroxide because it is basic",
         },
         {
           correct: true,
           label:
-            "Q is aluminium, R is chlorine and T is sodium, and the oxide of R dissolves in water to give an acidic solution",
+            "R is aluminium, and its oxide needs $$20\\text{ cm}^3$$ of the sodium hydroxide solution",
         },
         {
           correct: false,
-          label: "Q is aluminium, R is sulfur and T is sodium",
+          label:
+            "R is aluminium, and its oxide needs $$10\\text{ cm}^3$$ of the sodium hydroxide solution",
         },
         {
           correct: false,
-          label: "Q is aluminium, R is chlorine and T is magnesium",
+          label:
+            "R is silicon, and its oxide needs $$20\\text{ cm}^3$$ of the sodium hydroxide solution",
         },
       ],
     },
@@ -34,20 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Q ialah magnesium, R ialah klorin dan T ialah natrium",
+          label:
+            "R ialah magnesium, dan oksidanya tidak memerlukan natrium hidroksida kerana ia bersifat bes",
         },
         {
           correct: true,
           label:
-            "Q ialah aluminium, R ialah klorin dan T ialah natrium, dan oksida R larut dalam air menghasilkan larutan berasid",
+            "R ialah aluminium, dan oksidanya memerlukan $$20\\text{ cm}^3$$ larutan natrium hidroksida itu",
         },
         {
           correct: false,
-          label: "Q ialah aluminium, R ialah sulfur dan T ialah natrium",
+          label:
+            "R ialah aluminium, dan oksidanya memerlukan $$10\\text{ cm}^3$$ larutan natrium hidroksida itu",
         },
         {
           correct: false,
-          label: "Q ialah aluminium, R ialah klorin dan T ialah magnesium",
+          label:
+            "R ialah silikon, dan oksidanya memerlukan $$20\\text{ cm}^3$$ larutan natrium hidroksida itu",
         },
       ],
     },

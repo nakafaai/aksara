@@ -1,25 +1,24 @@
-# The final volume measures only the pure part
+# The sodium from stage one feeds stage two
 
-The impurities make no gas, so **the carbon dioxide counts only the calcium carbonate**. Work back from the final volume to its mass, then compare with the sample.
+<InlineMath math="M_r(\text{NaN}_3) = 23 + 3 \times 14 = 65" />, so <InlineMath math="130" /> g is <InlineMath math="2.0" /> mol. **Stage one**: two moles of azide give three moles of nitrogen, so <InlineMath math="3.0" /> mol of nitrogen and <InlineMath math="2.0" /> mol of sodium.
 
-<Chart
-  title={<>Volume of Carbon Dioxide Collected</>}
-  categories={["Second 0", "Second 30", "Second 60", "Second 90", "Second 120", "Second 150", "Second 180"]}
-  series={[
-    { label: "Volume of CO₂ (cm³)", mark: "line", values: [0, 420, 700, 860, 930, 960, 960] },
-  ]}
-  valueLabel="Volume of CO₂ (cm³)"
-  description={<>Volume at <InlineMath math="0" /> to <InlineMath math="180\text{ s}" />, every <InlineMath math="30\text{ s}" />: <InlineMath math="0" />, <InlineMath math="420" />, <InlineMath math="700" />, <InlineMath math="860" />, <InlineMath math="930" />, <InlineMath math="960" /> and <InlineMath math="960\text{ cm}^3" />.</>}
+<Mermaid
+  title={<>Nitrogen from Both Stages</>}
+  description={<>The azide gives <InlineMath math="3.0\text{ mol}" /> of nitrogen and <InlineMath math="2.0\text{ mol}" /> of sodium, and the sodium gives another <InlineMath math="0.20\text{ mol}" />.</>}
+  chart={`
+    flowchart LR
+      N0["130 g NaN₃: 2.0 mol"] --> N1["Stage 1: 3.0 mol N₂"]
+      N0 --> N2["2.0 mol Na"]
+      N2 --> N3["Stage 2: 0.20 mol N₂"]
+      N1 --> N4["Total 3.2 mol: 76.8 dm³"]
+      N3 --> N4
+  `}
 />
 
-<InlineMath math="\text{CaCO}_3 + 2\text{HCl} \rightarrow \text{CaCl}_2 + \text{H}_2\text{O} + \text{CO}_2" />
-
-- Moles of <InlineMath math="\text{CO}_2" />: <InlineMath math="\dfrac{0.960}{24} = 0.040\text{ mol}" />.
-- Moles of <InlineMath math="\text{CaCO}_3" /> <InlineMath math="= 0.040\text{ mol}" />, mass <InlineMath math="0.040 \times 100 = 4.0\text{ g}" />.
-- Purity: <InlineMath math="\dfrac{4.0}{5.0} \times 100\% = 80\%" />.
+**Stage two**: ten moles of sodium give one mole of nitrogen, so <InlineMath math="2.0" /> mol of sodium gives <InlineMath math="0.20" /> mol. Total nitrogen: <InlineMath math="3.0 + 0.20 = 3.2" /> mol, or <InlineMath math="3.2 \times 24 = 76.8\text{ dm}^3" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="40\%" /> uses the <InlineMath math="2" /> in front of HCl, **halving the calcium carbonate**.
-- <InlineMath math="96\%" /> reads <InlineMath math="960\text{ cm}^3" /> as a percentage of something, with no mole step at all.
-- <InlineMath math="20\%" /> is the percentage of impurities, <InlineMath math="\dfrac{1.0}{5.0}" />.
+- <InlineMath math="72.0\text{ dm}^3" /> stops after stage one and **misses the nitrogen** from the sodium.
+- <InlineMath math="48.0\text{ dm}^3" /> takes one mole of nitrogen per mole of azide instead of three per two.
+- <InlineMath math="4.80\text{ dm}^3" /> counts only the second stage.

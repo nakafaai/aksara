@@ -1,22 +1,25 @@
-# Nur übereinstimmende Werte nehmen, dann das Stoffmengenverhältnis
+# Aus der Differenz wiegen, aufs Aliquot herunterrechnen, dann verdoppeln
 
-Die Grobtitration sucht nur den Endpunkt und geht nie in den Mittelwert ein. Von den vier Läufen stimmen <InlineMath math="24{,}10" />, <InlineMath math="24{,}15" /> und <InlineMath math="24{,}12" /> auf <InlineMath math="0{,}05\text{ cm}^3" /> überein, während <InlineMath math="24{,}60" /> um etwa <InlineMath math="0{,}5\text{ cm}^3" /> übertitriert ist. Der **Mittelwert der übereinstimmenden Werte** ist <InlineMath math="\tfrac{24{,}10 + 24{,}15 + 24{,}12}{3} = 24{,}12\text{ cm}^3" />.
+Im Kolben landet, was **das Wägeglas verlassen hat**: <InlineMath math="18{,}462 - 15{,}812 = 2{,}650" /> g, also <InlineMath math="2{,}650 \div 106 = 0{,}02500" /> mol. In <InlineMath math="250{,}0\text{ cm}^3" /> sind das <InlineMath math="0{,}1000\text{ mol dm}^{-3}" />, und jede Portion von <InlineMath math="25{,}00\text{ cm}^3" /> enthält <InlineMath math="0{,}002500" /> mol, ein Zehntel der Gesamtmenge.
 
-<Chart
-  title={<>Titrationswerte aus fünf Durchgängen</>}
-  bars="apart"
-  categories={["Grob", "Lauf 1", "Lauf 2", "Lauf 3", "Lauf 4"]}
-  series={[
-    { label: "Volumen Säure (cm³)", mark: "bar", values: [25.4, 24.1, 24.15, 24.6, 24.12] },
-  ]}
-  valueLabel="Volumen Säure (cm³)"
-  description={<>Grob <InlineMath math="25{,}40" />, Lauf <InlineMath math="1" /> <InlineMath math="24{,}10" />, Lauf <InlineMath math="2" /> <InlineMath math="24{,}15" />, Lauf <InlineMath math="3" /> <InlineMath math="24{,}60" /> und Lauf <InlineMath math="4" /> <InlineMath math="24{,}12\text{ cm}^3" />.</>}
+Die Gleichung braucht **zwei Mol Säure je Mol Carbonat**, also verbraucht jede Titration <InlineMath math="0{,}005000" /> mol Salzsäure.
+
+<Mermaid
+  title={<>Vom Wägeglas zur Säure</>}
+  description={<>Masse aus der Differenz <InlineMath math="2{,}650\text{ g}" />, Kolben <InlineMath math="0{,}1000\text{ mol dm}^{-3}" />, Aliquot <InlineMath math="0{,}002500\text{ mol}" />, Säure <InlineMath math="0{,}005000\text{ mol}" /> in <InlineMath math="24{,}65\text{ cm}^3" />.</>}
+  chart={`
+    flowchart LR
+      N0["18,462 − 15,812 = 2,650 g"] --> N1["0,02500 mol in 250 cm³"]
+      N1 --> N2["0,002500 mol in 25,00 cm³"]
+      N2 --> N3["0,005000 mol HCl"]
+      N3 --> N4["÷ 0,02465 dm³ = 0,203 mol dm⁻³"]
+  `}
 />
 
-Die Lauge enthält <InlineMath math="0{,}100 \times \tfrac{25{,}0}{1000} = 0{,}00250" /> mol, und <InlineMath math="\text{NaOH} + \text{HCl} \rightarrow \text{NaCl} + \text{H}_2\text{O}" /> ist eins zu eins. Also <InlineMath math="c = 0{,}00250 \div \tfrac{24{,}12}{1000} = 0{,}104\text{ mol dm}^{-3}" />.
+Die Vortitration und Lauf <InlineMath math="2" /> fallen weg. Die Läufe <InlineMath math="1" />, <InlineMath math="3" /> und <InlineMath math="4" /> stimmen auf <InlineMath math="0{,}10\text{ cm}^3" /> überein, ihr Mittel ist <InlineMath math="(24{,}65 + 24{,}60 + 24{,}70) \div 3 = 24{,}65\text{ cm}^3" />. Die Säure hat also <InlineMath math="0{,}005000 \div 0{,}02465 = 0{,}203\text{ mol dm}^{-3}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="0{,}102\text{ mol dm}^{-3}" /> mittelt alle fünf Werte, **die Grobtitration und den übertitrierten Lauf eingeschlossen**.
-- <InlineMath math="0{,}0965\text{ mol dm}^{-3}" /> dreht das Verhältnis um: <InlineMath math="0{,}100 \times 24{,}12 \div 25{,}0" />.
-- <InlineMath math="0{,}0984\text{ mol dm}^{-3}" /> nimmt nur die Grobtitration.
+- <InlineMath math="0{,}101\text{ mol dm}^{-3}" /> rechnet ein Mol Säure je Mol Carbonat, doch das Carbonation nimmt **zwei** Wasserstoffionen auf.
+- <InlineMath math="2{,}03\text{ mol dm}^{-3}" /> steckt alle <InlineMath math="0{,}02500" /> mol in eine Titration, obwohl nur ein Zehntel der Lösung in den Titrierkolben kommt.
+- <InlineMath math="1{,}21\text{ mol dm}^{-3}" /> nimmt die zweite Wägung, <InlineMath math="15{,}812" /> g, als Masse des Feststoffs statt der Differenz.

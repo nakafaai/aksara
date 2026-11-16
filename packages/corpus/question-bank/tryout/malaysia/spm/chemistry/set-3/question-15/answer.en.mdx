@@ -1,23 +1,25 @@
-# Read the end point, then use the mole ratio
+# Let the titre decide how many protons each molecule gives
 
-The pH jumps from <InlineMath math="1.94" /> to <InlineMath math="12.04" /> around **<InlineMath math="20.0\text{ cm}^3" />**, so that is the volume that neutralises the acid exactly.
+Acid: <InlineMath math="1.80 \div 90 = 0.020" /> mol. Sodium hydroxide: <InlineMath math="0.0400 \times 1.00 = 0.040" /> mol. Each acid molecule neutralises **two hydroxide ions**, so the acid is dibasic, <InlineMath math="\text{H}_2\text{X}" />.
 
-<Chart
-  title={<>pH During the Titration</>}
-  categories={["0", "5", "10", "15", "19", "20", "21", "25"]}
-  series={[
-    { label: "pH", mark: "line", values: [0.4, 0.6, 0.85, 1.2, 1.94, 7.0, 12.04, 12.7] },
-  ]}
-  valueLabel="pH"
-  description={<>The pH is <InlineMath math="0.40" /> at <InlineMath math="0\text{ cm}^3" />, <InlineMath math="0.60" /> at <InlineMath math="5" />, <InlineMath math="0.85" /> at <InlineMath math="10" />, <InlineMath math="1.20" /> at <InlineMath math="15" />, <InlineMath math="1.94" /> at <InlineMath math="19" />, <InlineMath math="7.00" /> at <InlineMath math="20" />, <InlineMath math="12.04" /> at <InlineMath math="21" /> and <InlineMath math="12.70" /> at <InlineMath math="25\text{ cm}^3" />.</>}
+<Mermaid
+  title={<>Basicity from the Titration</>}
+  description={<><InlineMath math="0.020\text{ mol}" /> of acid takes <InlineMath math="0.040\text{ mol}" /> of hydroxide, two per molecule. With carbonate, each molecule then gives one carbon dioxide.</>}
+  chart={`
+    flowchart LR
+      N0["1.80 g acid: 0.020 mol"] --> N2["Ratio 1 : 2, basicity 2"]
+      N1["0.040 mol NaOH"] --> N2
+      N2 --> N3["H₂X + Na₂CO₃ → Na₂X + H₂O + CO₂"]
+      N3 --> N4["0.020 mol CO₂: 480 cm³"]
+  `}
 />
 
-Moles of potassium hydroxide are <InlineMath math="0.50 \times \tfrac{20.0}{1000} = 0.010" />. The equation <InlineMath math="\text{H}_2\text{SO}_4 + 2\text{KOH} \rightarrow \text{K}_2\text{SO}_4 + 2\text{H}_2\text{O}" /> shows **one mole of acid for two moles of alkali**, so the acid holds <InlineMath math="0.0050" /> mol.
+With carbonate: <InlineMath math="\text{H}_2\text{X} + \text{Na}_2\text{CO}_3 \rightarrow \text{Na}_2\text{X} + \text{H}_2\text{O} + \text{CO}_2" />. Two protons release one carbon dioxide, so each acid molecule gives one: <InlineMath math="0.020" /> mol, or <InlineMath math="0.020 \times 24 = 0.48\text{ dm}^3 = 480\text{ cm}^3" />.
 
-Its concentration is <InlineMath math="0.0050 \div \tfrac{25.0}{1000} = 0.20\text{ mol dm}^{-3}" />. With <InlineMath math="M_r = 2(1) + 32 + 4(16) = 98" />, that is <InlineMath math="0.20 \times 98 = 19.6\text{ g dm}^{-3}" />.
+**Salt**: the titration replaces both acidic hydrogens with sodium, <InlineMath math="\text{H}_2\text{X} + 2\text{NaOH} \rightarrow \text{Na}_2\text{X} + 2\text{H}_2\text{O}" />. The salt's mass is <InlineMath math="90 - 2 + 2 \times 23 = 134" />, so <InlineMath math="0.020 \times 134 = 2.68" /> g is left.
 
 # Why the other options are wrong
 
-- <InlineMath math="9.8\text{ g dm}^{-3}" /> uses the ratio the wrong way round, as if **two acid molecules** used one hydroxide ion.
-- <InlineMath math="39.2\text{ g dm}^{-3}" /> treats the reaction as one to one and ignores the second hydrogen ion.
-- <InlineMath math="30.6\text{ g dm}^{-3}" /> swaps the two volumes, using <InlineMath math="25.0\text{ cm}^3" /> for the alkali and <InlineMath math="20.0\text{ cm}^3" /> for the acid.
+- Basicity <InlineMath math="1" /> would use only <InlineMath math="20.0\text{ cm}^3" /> of the alkali, **half** the titre.
+- <InlineMath math="960\text{ cm}^3" /> gives one carbon dioxide per proton, but one carbonate ion takes two protons.
+- <InlineMath math="1.34\text{ g}" /> makes one formula unit of salt from two acid molecules.

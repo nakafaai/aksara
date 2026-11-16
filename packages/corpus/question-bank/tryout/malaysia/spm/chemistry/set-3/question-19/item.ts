@@ -13,19 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Experiment III gives the same final volume as Experiment I, but more slowly",
+            "$$12\\text{ cm}^3$$ of carbon dioxide per second, $$1.68\\text{ g}$$ of magnesium carbonate, and at least $$20\\text{ cm}^3$$ of acid",
         },
         {
           correct: false,
-          label: "Experiment II gives a larger final volume than Experiment I",
+          label:
+            "$$12\\text{ cm}^3$$ of carbon dioxide per second, $$0.84\\text{ g}$$ of magnesium carbonate, and at least $$10\\text{ cm}^3$$ of acid",
         },
         {
           correct: false,
-          label: "Experiment IV gives a larger final volume than Experiment I",
+          label:
+            "$$0.022\\text{ cm}^3$$ of carbon dioxide per second, $$1.68\\text{ g}$$ of magnesium carbonate, and at least $$20\\text{ cm}^3$$ of acid",
         },
         {
           correct: false,
-          label: "Experiment III gives half the final volume of Experiment I",
+          label:
+            "$$12\\text{ cm}^3$$ of carbon dioxide per second, $$1.68\\text{ g}$$ of magnesium carbonate, and at least $$10\\text{ cm}^3$$ of acid",
         },
       ],
     },
@@ -35,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Eksperimen III menghasilkan isi padu akhir yang sama dengan Eksperimen I, tetapi lebih perlahan",
+            "$$12\\text{ cm}^3$$ karbon dioksida sesaat, $$1.68\\text{ g}$$ magnesium karbonat, dan sekurang-kurangnya $$20\\text{ cm}^3$$ asid",
         },
         {
           correct: false,
           label:
-            "Eksperimen II menghasilkan isi padu akhir yang lebih besar daripada Eksperimen I",
+            "$$12\\text{ cm}^3$$ karbon dioksida sesaat, $$0.84\\text{ g}$$ magnesium karbonat, dan sekurang-kurangnya $$10\\text{ cm}^3$$ asid",
         },
         {
           correct: false,
           label:
-            "Eksperimen IV menghasilkan isi padu akhir yang lebih besar daripada Eksperimen I",
+            "$$0.022\\text{ cm}^3$$ karbon dioksida sesaat, $$1.68\\text{ g}$$ magnesium karbonat, dan sekurang-kurangnya $$20\\text{ cm}^3$$ asid",
         },
         {
           correct: false,
           label:
-            "Eksperimen III menghasilkan separuh isi padu akhir Eksperimen I",
+            "$$12\\text{ cm}^3$$ karbon dioksida sesaat, $$1.68\\text{ g}$$ magnesium karbonat, dan sekurang-kurangnya $$10\\text{ cm}^3$$ asid",
         },
       ],
     },

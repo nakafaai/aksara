@@ -15,7 +15,7 @@ export const physicsRatings: readonly SetRating[] = [
  * The level rating of each SPM Kimia Paper 1 set, set 1 onward in order.
  * Eight raters rated all 40 items of set 1 alone on 15 Nov 2026, and two
  * raters rated all 40 items of set 2 alone on 16 Nov 2026 (3.41 and 3.60), and
- * two raters rated all 40 items of set 3 alone the same day (3.28 and 3.13), and
+ * two raters rated all 40 items of set 3 alone the same day (4.04 and 3.89), and
  * two raters rated all 40 items of set 4 alone (3.19 and 3.11), and two
  * raters rated all 40 items of set 5 alone (3.43 and 3.64), and two raters
  * rated all 40 items of set 6 alone (3.73 and 3.69), and two raters rated all
@@ -25,7 +25,7 @@ export const physicsRatings: readonly SetRating[] = [
 export const chemistryRatings: readonly SetRating[] = [
   { items: 40, level: 4.14, raters: 8 },
   { items: 40, level: 3.51, raters: 2 },
-  { items: 40, level: 3.21, raters: 2 },
+  { items: 40, level: 3.96, raters: 2 },
   { items: 40, level: 4.24, raters: 2 },
   { items: 40, level: 3.53, raters: 2 },
   { items: 40, level: 3.71, raters: 2 },

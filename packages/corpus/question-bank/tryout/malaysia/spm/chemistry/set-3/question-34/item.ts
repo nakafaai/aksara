@@ -10,51 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "−210 kJ mol⁻¹, and with 100 cm³ of the same solution the rise is still 10.0 °C",
-        },
-        {
-          correct: false,
-          label:
-            "−210 kJ mol⁻¹, and with 100 cm³ of the same solution the rise doubles to 20.0 °C",
-        },
-        {
-          correct: false,
-          label:
-            "−105 kJ mol⁻¹, and with 100 cm³ of the same solution the rise halves to 5.0 °C",
-        },
-        {
-          correct: false,
-          label:
-            "−21.0 kJ mol⁻¹, and with 100 cm³ of the same solution the rise is still 10.0 °C",
-        },
+        { correct: true, label: "$$12.1^\\circ\\text{C}$$" },
+        { correct: false, label: "$$6.8^\\circ\\text{C}$$" },
+        { correct: false, label: "$$5.3^\\circ\\text{C}$$" },
+        { correct: false, label: "$$18.9^\\circ\\text{C}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "−210 kJ mol⁻¹, dan dengan 100 cm³ larutan yang sama kenaikannya tetap 10.0 °C",
-        },
-        {
-          correct: false,
-          label:
-            "−210 kJ mol⁻¹, dan dengan 100 cm³ larutan yang sama kenaikannya berganda kepada 20.0 °C",
-        },
-        {
-          correct: false,
-          label:
-            "−105 kJ mol⁻¹, dan dengan 100 cm³ larutan yang sama kenaikannya separuh, iaitu 5.0 °C",
-        },
-        {
-          correct: false,
-          label:
-            "−21.0 kJ mol⁻¹, dan dengan 100 cm³ larutan yang sama kenaikannya tetap 10.0 °C",
-        },
+        { correct: true, label: "$$12.1^\\circ\\text{C}$$" },
+        { correct: false, label: "$$6.8^\\circ\\text{C}$$" },
+        { correct: false, label: "$$5.3^\\circ\\text{C}$$" },
+        { correct: false, label: "$$18.9^\\circ\\text{C}$$" },
       ],
     },
   },
