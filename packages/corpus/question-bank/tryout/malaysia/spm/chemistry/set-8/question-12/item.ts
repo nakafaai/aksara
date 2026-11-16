@@ -10,37 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$\\text{XY}_4$$, ionic, dissolves in water",
-        },
-        {
-          correct: false,
-          label: "$$\\text{XY}_3$$, covalent, does not dissolve in water",
-        },
-        {
-          correct: true,
-          label: "$$\\text{XY}_4$$, covalent, does not dissolve in water",
-        },
-        {
-          correct: false,
-          label: "$$\\text{XY}_4$$, covalent, dissolves in water",
-        },
+        { correct: false, label: "$$\\text{XY}_4$$, $$960\\text{ cm}^3$$" },
+        { correct: false, label: "$$\\text{XY}_3$$, $$720\\text{ cm}^3$$" },
+        { correct: true, label: "$$\\text{XY}_4$$, $$720\\text{ cm}^3$$" },
+        { correct: false, label: "$$\\text{XY}_4$$, $$240\\text{ cm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{XY}_4$$, ion, larut dalam air" },
-        {
-          correct: false,
-          label: "$$\\text{XY}_3$$, kovalen, tidak larut dalam air",
-        },
-        {
-          correct: true,
-          label: "$$\\text{XY}_4$$, kovalen, tidak larut dalam air",
-        },
-        { correct: false, label: "$$\\text{XY}_4$$, kovalen, larut dalam air" },
+        { correct: false, label: "$$\\text{XY}_4$$, $$960\\text{ cm}^3$$" },
+        { correct: false, label: "$$\\text{XY}_3$$, $$720\\text{ cm}^3$$" },
+        { correct: true, label: "$$\\text{XY}_4$$, $$720\\text{ cm}^3$$" },
+        { correct: false, label: "$$\\text{XY}_4$$, $$240\\text{ cm}^3$$" },
       ],
     },
   },

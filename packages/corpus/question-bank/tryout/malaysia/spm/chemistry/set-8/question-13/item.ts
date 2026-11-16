@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$\\text{X}_2\\text{Y}$$, $$0.20\\text{ mol dm}^{-3}$$",
+          label:
+            "$$\\text{X}_2\\text{Y}$$, $$0.20\\text{ mol dm}^{-3}$$, $$240\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{X}_2\\text{Y}$$, $$0.10\\text{ mol dm}^{-3}$$",
+          label:
+            "$$\\text{X}_2\\text{Y}$$, $$0.16\\text{ mol dm}^{-3}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{XY}$$, $$0.16\\text{ mol dm}^{-3}$$",
+          label:
+            "$$\\text{X}_2\\text{Y}$$, $$0.20\\text{ mol dm}^{-3}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{X}_2\\text{Y}$$, $$0.40\\text{ mol dm}^{-3}$$",
+          label:
+            "$$\\text{X}_2\\text{Y}$$, $$0.10\\text{ mol dm}^{-3}$$, $$240\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$\\text{X}_2\\text{Y}$$, $$0.20\\text{ mol dm}^{-3}$$",
+          label:
+            "$$\\text{X}_2\\text{Y}$$, $$0.20\\text{ mol dm}^{-3}$$, $$240\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{X}_2\\text{Y}$$, $$0.10\\text{ mol dm}^{-3}$$",
+          label:
+            "$$\\text{X}_2\\text{Y}$$, $$0.16\\text{ mol dm}^{-3}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{XY}$$, $$0.16\\text{ mol dm}^{-3}$$",
+          label:
+            "$$\\text{X}_2\\text{Y}$$, $$0.20\\text{ mol dm}^{-3}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{X}_2\\text{Y}$$, $$0.40\\text{ mol dm}^{-3}$$",
+          label:
+            "$$\\text{X}_2\\text{Y}$$, $$0.10\\text{ mol dm}^{-3}$$, $$240\\text{ cm}^3$$",
         },
       ],
     },

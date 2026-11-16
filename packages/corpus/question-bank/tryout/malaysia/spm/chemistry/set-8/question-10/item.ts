@@ -10,25 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$\\text{GeO}_2$$, $$2.10\\text{ g}$$" },
-        { correct: false, label: "$$\\text{GeO}$$, $$1.78\\text{ g}$$" },
-        {
-          correct: false,
-          label: "$$\\text{Ge}_2\\text{O}$$, $$1.62\\text{ g}$$",
-        },
-        { correct: false, label: "$$\\text{GeO}_2$$, $$0.64\\text{ g}$$" },
+        { correct: true, label: "$$0.40\\text{ g}$$, $$6.67\\text{ cm}^3$$" },
+        { correct: false, label: "$$0.40\\text{ g}$$, $$3.33\\text{ cm}^3$$" },
+        { correct: false, label: "$$0.60\\text{ g}$$, $$10.0\\text{ cm}^3$$" },
+        { correct: false, label: "$$0\\text{ g}$$, $$0\\text{ cm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$\\text{GeO}_2$$, $$2.10\\text{ g}$$" },
-        { correct: false, label: "$$\\text{GeO}$$, $$1.78\\text{ g}$$" },
-        {
-          correct: false,
-          label: "$$\\text{Ge}_2\\text{O}$$, $$1.62\\text{ g}$$",
-        },
-        { correct: false, label: "$$\\text{GeO}_2$$, $$0.64\\text{ g}$$" },
+        { correct: true, label: "$$0.40\\text{ g}$$, $$6.67\\text{ cm}^3$$" },
+        { correct: false, label: "$$0.40\\text{ g}$$, $$3.33\\text{ cm}^3$$" },
+        { correct: false, label: "$$0.60\\text{ g}$$, $$10.0\\text{ cm}^3$$" },
+        { correct: false, label: "$$0\\text{ g}$$, $$0\\text{ cm}^3$$" },
       ],
     },
   },

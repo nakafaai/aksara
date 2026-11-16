@@ -13,19 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Water: does not conduct. Methylbenzene: does not conduct. pH $$7.0$$",
+            "Water $$240\\text{ cm}^3$$, methylbenzene $$0\\text{ cm}^3$$, pH $$1.0$$",
         },
         {
           correct: false,
-          label: "Water: conducts. Methylbenzene: conducts. pH $$1.0$$",
+          label:
+            "Water $$120\\text{ cm}^3$$, methylbenzene $$120\\text{ cm}^3$$, pH $$1.0$$",
         },
         {
           correct: false,
-          label: "Water: conducts. Methylbenzene: does not conduct. pH $$2.0$$",
+          label:
+            "Water $$120\\text{ cm}^3$$, methylbenzene $$0\\text{ cm}^3$$, pH $$2.0$$",
         },
         {
           correct: true,
-          label: "Water: conducts. Methylbenzene: does not conduct. pH $$1.0$$",
+          label:
+            "Water $$120\\text{ cm}^3$$, methylbenzene $$0\\text{ cm}^3$$, pH $$1.0$$",
         },
       ],
     },
@@ -35,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Air: tidak mengkonduksikan. Metilbenzena: tidak mengkonduksikan. pH $$7.0$$",
+            "Air $$240\\text{ cm}^3$$, metilbenzena $$0\\text{ cm}^3$$, pH $$1.0$$",
         },
         {
           correct: false,
           label:
-            "Air: mengkonduksikan. Metilbenzena: mengkonduksikan. pH $$1.0$$",
+            "Air $$120\\text{ cm}^3$$, metilbenzena $$120\\text{ cm}^3$$, pH $$1.0$$",
         },
         {
           correct: false,
           label:
-            "Air: mengkonduksikan. Metilbenzena: tidak mengkonduksikan. pH $$2.0$$",
+            "Air $$120\\text{ cm}^3$$, metilbenzena $$0\\text{ cm}^3$$, pH $$2.0$$",
         },
         {
           correct: true,
           label:
-            "Air: mengkonduksikan. Metilbenzena: tidak mengkonduksikan. pH $$1.0$$",
+            "Air $$120\\text{ cm}^3$$, metilbenzena $$0\\text{ cm}^3$$, pH $$1.0$$",
         },
       ],
     },
