@@ -1,5 +1,5 @@
 import { Array as Arr, Effect } from "effect";
-import { parseDocument } from "yaml";
+import { type Document, parseDocument } from "yaml";
 import {
   verifyDispatchGuards,
   verifyTargetChoice,
@@ -13,8 +13,14 @@ import {
 } from "#scripts/workflow/plan";
 import { ensure, requireSeq } from "#scripts/workflow/requirement";
 
-/** The output of the release step that mints the Nakafa deploy app's installation token. */
+/**
+ * The output of the step that mints the Nakafa deploy app's installation token,
+ * after the release or recovery command: the token lasts one hour, and a release
+ * can outlast it, so it is minted where it is used.
+ */
 const NAKAFA_DEPLOY_TOKEN_OUTPUT = "steps.nakafa-deploy.outputs.token";
+/** How the release and recovery commands ask the workflow for Nakafa's deploy. */
+const NAKAFA_DEPLOY_REQUEST = 'export NAKAFA_DEPLOY_OUTPUT="$GITHUB_OUTPUT"';
 
 const CONSUMER_PATTERN =
   /bun run (?:--filter @nakafa\/aksara-contracts )?verify:consumer/u;
@@ -49,6 +55,43 @@ const PARITY_BLOCKERS = [
   ["off main", { ref: "refs/heads/topic" }],
   ["outside the Aksara repository", { repository: "someone/aksara" }],
 ] as const;
+
+/**
+ * Holds one operate step to the Nakafa deploy contract: the release and recovery
+ * commands deploy only from production and ask through their step output, and
+ * the deploy step uses the token minted after them.
+ */
+const verifyNakafaDeploy = Effect.fn("AksaraScripts.verifyNakafaDeploy")(
+  function* (document: Document, base: readonly (number | string)[]) {
+    if (document.getIn([...base, "name"]) === "Deploy Nakafa") {
+      yield* ensure(
+        document.getIn([...base, "env", "GH_TOKEN"]) ===
+          `\${{ ${NAKAFA_DEPLOY_TOKEN_OUTPUT} }}`,
+        "Nakafa's deploy must use the token minted after the release"
+      );
+    }
+    const condition = document.getIn([...base, "if"]);
+    if (
+      document.getIn([...base, "working-directory"]) === undefined ||
+      (condition !== "inputs.operation == 'release'" &&
+        condition !== "inputs.operation == 'recover'")
+    ) {
+      return;
+    }
+    yield* ensure(
+      document.getIn([...base, "env", "NAKAFA_DEPLOY_SURFACE"]) ===
+        `\${{ matrix.target == 'development' && 'none' || 'deployed' }}`,
+      "Release and recovery must deploy Nakafa only from production"
+    );
+    const run = document.getIn([...base, "run"]);
+    yield* ensure(
+      typeof run === "string" &&
+        run.includes(NAKAFA_DEPLOY_REQUEST) &&
+        document.getIn([...base, "env", "NAKAFA_DEPLOY_TOKEN"]) === undefined,
+      "Release and recovery must ask for Nakafa's deploy through their step output"
+    );
+  }
+);
 
 /**
  * Verifies, by evaluating the workflow expressions, that every dispatch starts
@@ -166,6 +209,7 @@ export const verifyPublicationWorkflow = Effect.fn(
   );
   for (let index = 0; index < steps.items.length; index += 1) {
     const base = ["jobs", "operate", "steps", index];
+    yield* verifyNakafaDeploy(document, base);
     const workingDirectory = document.getIn([...base, "working-directory"]);
     if (workingDirectory === undefined) {
       continue;
@@ -194,22 +238,6 @@ export const verifyPublicationWorkflow = Effect.fn(
         document.getIn([...base, "env", `AKSARA_PUBLICATION_${key}`]) ===
           `\${{ ${namespace}[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_${key}' || 'AKSARA_PUBLICATION_${key}'] }}`,
         "Each operation must select credential keys without production value fallbacks"
-      );
-    }
-    const condition = document.getIn([...base, "if"]);
-    if (
-      condition === "inputs.operation == 'release'" ||
-      condition === "inputs.operation == 'recover'"
-    ) {
-      yield* ensure(
-        document.getIn([...base, "env", "NAKAFA_DEPLOY_SURFACE"]) ===
-          `\${{ matrix.target == 'development' && 'none' || 'deployed' }}`,
-        "Release and recovery must deploy Nakafa only from production"
-      );
-      yield* ensure(
-        document.getIn([...base, "env", "NAKAFA_DEPLOY_TOKEN"]) ===
-          `\${{ ${NAKAFA_DEPLOY_TOKEN_OUTPUT} }}`,
-        "Release and recovery must read the deploy app's installation token"
       );
     }
   }

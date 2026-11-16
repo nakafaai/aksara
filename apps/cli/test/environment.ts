@@ -28,7 +28,7 @@ export const makeEnvironmentFixture = Effect.sync(() => {
       "https://www.example.test/api/internal/content/renderer",
     ],
     ["NAKAFA_DEPLOY_SURFACE", "deployed"],
-    ["NAKAFA_DEPLOY_TOKEN", "dispatch-token"],
+    ["NAKAFA_DEPLOY_OUTPUT", "/tmp/aksara-step-output"],
     ["AKSARA_RENDERER_TOKEN", "renderer-token"],
     ["AKSARA_SIGNING_KEY_ID", "production-2026"],
     ["AKSARA_SIGNING_PRIVATE_KEY", privateKeyPem],

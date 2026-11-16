@@ -10,7 +10,7 @@ import {
 } from "@nakafa/aksara-publisher/publication/spec";
 import { recoverContentRelease } from "@nakafa/aksara-publisher/recover";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
-import { Effect } from "effect";
+import { Effect, type FileSystem } from "effect";
 import type { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { readRecoveryEnvironment } from "#cli/environment/read";
@@ -25,7 +25,7 @@ import {
 type RecoverCommand = Effect.Effect<
   PublicationReceipt,
   ProductionError,
-  HttpClient.HttpClient
+  FileSystem.FileSystem | HttpClient.HttpClient
 >;
 
 /** Activates one retained inverse after a fresh deployed-renderer preflight. */

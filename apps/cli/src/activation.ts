@@ -6,7 +6,7 @@ import {
   PublicationActivation,
   PublicationActivationError,
 } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, type Redacted } from "effect";
+import { Effect, FileSystem, type Redacted } from "effect";
 import { HttpClient } from "effect/http";
 import {
   makeAbsentReleaseDispatch,
@@ -38,7 +38,7 @@ const verifyRendererPreflight = Effect.fn("AksaraCli.verifyRendererPreflight")(
   }
 );
 
-/** Captures HTTP for the pre-commit renderer gate and the post-commit release dispatch. */
+/** Captures HTTP for the pre-commit renderer gate and files for the post-commit deploy request. */
 export const makeProductionActivation = Effect.fn(
   "AksaraCli.makeProductionActivation"
 )(function* (settings: {
@@ -47,12 +47,13 @@ export const makeProductionActivation = Effect.fn(
   readonly token: Redacted.Redacted<string>;
 }) {
   const client = yield* HttpClient.HttpClient;
+  const fileSystem = yield* FileSystem.FileSystem;
   const invalidate =
     settings.releaseDispatch.surface === "none"
       ? makeAbsentReleaseDispatch()
       : makeProductionReleaseDispatch({
-          client,
-          token: settings.releaseDispatch.token,
+          fileSystem,
+          output: settings.releaseDispatch.output,
         });
   /** Re-fetches and verifies the deployed renderer immediately before commit. */
   const verify = (bundle: ContentReleaseBundle, preflight: RendererPreflight) =>

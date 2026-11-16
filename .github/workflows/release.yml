@@ -322,20 +322,6 @@ jobs:
             exit 1
           fi
 
-      # A production release or recovery runs Nakafa's deploy workflow. The deploy
-      # app's installation token reaches only that repository's Actions, and it
-      # expires within the hour.
-      - name: Create the Nakafa deploy token
-        id: nakafa-deploy
-        if: matrix.target == 'production' && (inputs.operation == 'release' || inputs.operation == 'recover')
-        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
-        with:
-          client-id: ${{ vars.NAKAFA_DEPLOY_APP_CLIENT_ID }}
-          private-key: ${{ secrets.NAKAFA_DEPLOY_APP_PRIVATE_KEY }}
-          owner: nakafaai
-          repositories: nakafa.com
-          permission-actions: write
-
       # A release keeps its result catalog here, and the next release of the same
       # target proves it against its base's signed count and digest instead of
       # reading every head of the base from Convex (apps/cli/src/production/heads.ts).
@@ -350,6 +336,7 @@ jobs:
             heads-${{ matrix.target }}-
 
       - name: Publish release
+        id: publish
         if: inputs.operation == 'release'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
@@ -357,7 +344,6 @@ jobs:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
           NAKAFA_DEPLOY_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}
-          NAKAFA_DEPLOY_TOKEN: ${{ steps.nakafa-deploy.outputs.token }}
           AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
@@ -376,6 +362,7 @@ jobs:
           if [[ "$REBUILD" == "true" ]]; then
             rebuild_args+=(--rebuild)
           fi
+          export NAKAFA_DEPLOY_OUTPUT="$GITHUB_OUTPUT"
           bun run release -- --release-id "$RELEASE_ID" --recovery-id "$RECOVERY_ID" \
             "${scope_args[@]}" "${rebuild_args[@]}"
 
@@ -408,20 +395,43 @@ jobs:
           --recovery-id "$RECOVERY_ID"
 
       - name: Recover active release
+        id: recover
         if: inputs.operation == 'recover'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
           NAKAFA_DEPLOY_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}
-          NAKAFA_DEPLOY_TOKEN: ${{ steps.nakafa-deploy.outputs.token }}
           AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
-        run: >-
-          bun run recover -- --release-id "$RELEASE_ID"
-          --recovery-id "$RECOVERY_ID"
+        run: |
+          export NAKAFA_DEPLOY_OUTPUT="$GITHUB_OUTPUT"
+          bun run recover -- --release-id "$RELEASE_ID" --recovery-id "$RECOVERY_ID"
+
+      # An activated production release or recovery that changed content asks for
+      # Nakafa's deploy through its step output. The deploy app's installation
+      # token lasts one hour and staging can outlast it, so the token is minted
+      # here, after the command, and used at once. The steps run even when the
+      # command failed after activation, because the activated release still
+      # needs its site.
+      - name: Create the Nakafa deploy token
+        id: nakafa-deploy
+        if: always() && (steps.publish.outputs.deploy == 'true' || steps.recover.outputs.deploy == 'true')
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ vars.NAKAFA_DEPLOY_APP_CLIENT_ID }}
+          private-key: ${{ secrets.NAKAFA_DEPLOY_APP_PRIVATE_KEY }}
+          owner: nakafaai
+          repositories: nakafa.com
+          permission-actions: write
+
+      - name: Deploy Nakafa
+        if: always() && steps.nakafa-deploy.outputs.token != ''
+        env:
+          GH_TOKEN: ${{ steps.nakafa-deploy.outputs.token }}
+        run: gh workflow run deploy.yml --repo nakafaai/nakafa.com --ref main -f stage=prod
 
       - name: Clean unreachable release
         if: inputs.operation == 'cleanup'
