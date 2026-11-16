@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$0.145\\text{ g}$$, $$0.145\\text{ g}$$" },
-        { correct: true, label: "$$1.10\\text{ g}$$, $$0.321\\text{ g}$$" },
-        { correct: false, label: "$$11.0\\text{ g}$$, $$3.21\\text{ g}$$" },
-        { correct: false, label: "$$1.10\\text{ g}$$, $$0.145\\text{ g}$$" },
+        { correct: false, label: "$$0.0447\\text{ g}$$" },
+        { correct: true, label: "$$0.0989\\text{ g}$$" },
+        { correct: false, label: "$$0.321\\text{ g}$$" },
+        { correct: false, label: "$$2.98\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$0.145\\text{ g}$$, $$0.145\\text{ g}$$" },
-        { correct: true, label: "$$1.10\\text{ g}$$, $$0.321\\text{ g}$$" },
-        { correct: false, label: "$$11.0\\text{ g}$$, $$3.21\\text{ g}$$" },
-        { correct: false, label: "$$1.10\\text{ g}$$, $$0.145\\text{ g}$$" },
+        { correct: false, label: "$$0.0447\\text{ g}$$" },
+        { correct: true, label: "$$0.0989\\text{ g}$$" },
+        { correct: false, label: "$$0.321\\text{ g}$$" },
+        { correct: false, label: "$$2.98\\text{ g}$$" },
       ],
     },
   },

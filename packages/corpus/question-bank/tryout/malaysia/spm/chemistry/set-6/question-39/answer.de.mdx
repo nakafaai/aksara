@@ -1,25 +1,25 @@
-# Die Angabe auf die Tube umrechnen und dieselbe Stoffmenge Fluor in jede Verbindung tragen
+# Das nötige Fluor bestimmen, den Beitrag des Phosphats abziehen und den Rest in Natriumfluorid umrechnen
 
-Massenanteile in ppm heißen Milligramm pro Kilogramm, also enthält die Tube <InlineMath math="145\text{ mg}" /> Fluor, <InlineMath math="7{,}63\text{ mmol}" />. **Beide Verbindungen tragen ein Fluoratom je Formeleinheit**, also braucht jede Tube <InlineMath math="7{,}63\text{ mmol}" /> ihrer Verbindung. Die molaren Massen sind sehr verschieden, <InlineMath math="144" /> und <InlineMath math="42" />, also unterscheiden sich die Massen bei gleichem Fluorid.
+Massenanteile in ppm heißen Milligramm pro Kilogramm, also braucht die Tube <InlineMath math="145\text{ mg}" /> Fluor. **Das Phosphat liefert nur seinen Fluoranteil**, <InlineMath math="\tfrac{19}{144}" /> von <InlineMath math="0{,}760\text{ g}" />, <InlineMath math="100\text{ mg}" />. Die übrigen <InlineMath math="44{,}7\text{ mg}" /> Fluor kommen aus Natriumfluorid, das zu <InlineMath math="\tfrac{19}{42}" /> aus Fluor besteht.
 
 <Chart
-  title={<>Massen für dasselbe Fluorid</>}
-  description={<>Jede Tube enthält <InlineMath math="0{,}145\text{ g}" /> Fluor, in <InlineMath math="0{,}321\text{ g}" /> Natriumfluorid oder <InlineMath math="1{,}10\text{ g}" /> Natriummonofluorophosphat.</>}
+  title={<>Fluor in der Tube</>}
+  description={<>Die Tube braucht <InlineMath math="145\text{ mg}" /> Fluor, <InlineMath math="100\text{ mg}" /> aus dem Phosphat und <InlineMath math="44{,}7\text{ mg}" /> aus Natriumfluorid.</>}
   bars="apart"
-  categories={["Fluor", "Natriumfluorid", "Natriummonofluorophosphat"]}
+  categories={["Benötigtes Fluor", "Aus dem Phosphat", "Aus Natriumfluorid"]}
   series={[
-    { label: "Masse", mark: "bar", values: [0.145, 0.321, 1.10] },
+    { label: "Fluor", mark: "bar", values: [145, 100, 44.7] },
   ]}
-  valueLabel="Masse (g)"
+  valueLabel="Fluor (mg)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{F})&=\tfrac{1450\times0{,}100}{1000\times19}=7{,}63\times10^{-3}\text{ mol}\\
-m(\text{Na}_2\text{PO}_3\text{F})&=7{,}63\times10^{-3}\times144=1{,}10\text{ g},\quad m(\text{NaF})=7{,}63\times10^{-3}\times42=0{,}321\text{ g}
+m(\text{F})&=1450\times0{,}100=145\text{ mg},\quad\text{aus Na}_2\text{PO}_3\text{F}:\ 760\times\tfrac{19}{144}=100\text{ mg}\\
+m(\text{NaF})&=(145-100)\times\tfrac{42}{19}=98{,}9\text{ mg}=0{,}0989\text{ g}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="0{,}145\text{ g}" /> ist nur das Fluor. **Jede Verbindung wiegt viel mehr als ihr Fluor**.
-- <InlineMath math="11{,}0\text{ g}" /> und <InlineMath math="3{,}21\text{ g}" /> wenden die Angabe auf ein ganzes Kilogramm statt auf die <InlineMath math="100\text{ g}" />-Tube an.
-- <InlineMath math="0{,}145\text{ g}" /> Natriumfluorid zählt nur sein Fluor und lässt das Natrium weg.
+- <InlineMath math="0{,}0447\text{ g}" /> ist das noch fehlende Fluor, nicht das Natriumfluorid, das es trägt. **Natriumfluorid ist weniger als zur Hälfte Fluor**.
+- <InlineMath math="0{,}321\text{ g}" /> liefert alles Fluor aus Natriumfluorid und übersieht das bereits zugesetzte Phosphat.
+- <InlineMath math="2{,}98\text{ g}" /> liest die Angabe als <InlineMath math="1450\text{ mg}" /> pro <InlineMath math="100\text{ g}" />. **ppm sind Milligramm pro Kilogramm**.
