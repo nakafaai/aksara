@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "analysing",
     contentDomain: "form-4",
-    topic: "chemical-bond",
+    topic: "chemical-bonds",
   },
   versions: {
     en: {
