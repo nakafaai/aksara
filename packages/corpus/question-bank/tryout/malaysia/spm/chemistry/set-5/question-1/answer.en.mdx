@@ -1,0 +1,30 @@
+# The volume's uncertainty, not the mass's, decides what you can claim
+
+The metal's volume is the rise in level, <InlineMath math="31.0-25.0=6.0\text{ cm}^3" />. Each reading can be off by <InlineMath math="0.5\text{ cm}^3" />, so **the rise carries both errors**, <InlineMath math="\pm 1.0\text{ cm}^3" />, which is <InlineMath math="16.7\%" /> of it. The balance adds only <InlineMath math="0.02\%" />.
+
+<Chart
+  title={<>Measured range</>}
+  description={<>The measured density runs from <InlineMath math="7.54\text{ g cm}^{-3}" /> to <InlineMath math="10.56\text{ g cm}^{-3}" />. Iron, copper and silver lie inside it, zinc below it.</>}
+  bars="apart"
+  categories={["Zinc", "Iron", "Copper", "Silver"]}
+  series={[
+    { label: "Density", mark: "bar", values: [7.14, 7.87, 8.96, 10.5] },
+    { label: "Lowest", mark: "line", values: [7.54, 7.54, 7.54, 7.54] },
+    { label: "Highest", mark: "line", values: [10.56, 10.56, 10.56, 10.56] },
+  ]}
+  valueLabel="Density (g cm⁻³)"
+/>
+
+<BlockMath math="\begin{aligned}
+\rho&=\frac{54.32}{6.0}=9.05\text{ g cm}^{-3}\\
+\frac{1.0}{6.0}\times100\%&=16.7\%\\
+9.05\pm16.7\%&\Rightarrow 7.54\text{ to }10.56\text{ g cm}^{-3}
+\end{aligned}" />
+
+So the cylinder cannot tell the three metals apart. A density bottle or a burette would.
+
+# Why the other options are wrong
+
+- <InlineMath math="8.3\%" /> counts one reading of the cylinder, though the rise needs two.
+- Copper alone ignores the uncertainty. **Any density from <InlineMath math="7.54" /> to <InlineMath math="10.56\text{ g cm}^{-3}" /> fits the data**.
+- <InlineMath math="1.75\text{ g cm}^{-3}" /> divides by the final reading, <InlineMath math="31.0\text{ cm}^3" />, which includes the water.

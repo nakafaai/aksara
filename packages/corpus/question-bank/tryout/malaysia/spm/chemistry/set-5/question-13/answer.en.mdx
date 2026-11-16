@@ -1,0 +1,28 @@
+# Every bond joins two atoms, so halve the count per atom
+
+Each carbon in diamond makes four bonds, but **every bond is shared by the two atoms it joins**, so diamond holds two bonds per atom. Graphite's three bonds per atom give one and a half.
+
+<Chart
+  title={<>Bonds per carbon atom</>}
+  description={<>Diamond has <InlineMath math="2" /> bonds per carbon atom, graphite <InlineMath math="1.5" />.</>}
+  bars="apart"
+  categories={["Diamond", "Graphite"]}
+  series={[
+    { label: "Bonds per atom", mark: "bar", values: [2, 1.5] },
+  ]}
+  valueLabel="Bonds per atom"
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{C})&=\tfrac{6.0}{12}=0.50\text{ mol}\\
+\text{diamond}&:\ 0.50\times\tfrac{4}{2}=1.0\text{ mol}=6.02\times10^{23}\\
+\text{graphite}&:\ 0.50\times\tfrac{3}{2}=0.75\text{ mol}=4.52\times10^{23}
+\end{aligned}" />
+
+Graphite's fourth electron is delocalised along the layer and forms no bond between two particular atoms, which is why graphite conducts.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.20\times10^{24}" /> counts every bond twice, once from each atom at its ends.
+- Equal counts ignore that a graphite atom makes three bonds, not four.
+- <InlineMath math="3.01\times10^{23}" /> halves the count twice. **Halve once, for the two ends of each bond**.
