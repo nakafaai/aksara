@@ -1,0 +1,296 @@
+export const metadata = {
+  title: "Paduan Logam Kaca Keramik dan Material Komposit",
+  description:
+    "Jelaskan alasan paduan logam lebih keras, pilih jenis kaca dan keramik sesuai sifatnya, dan kenali material komposit lewat contoh lengkap dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Bahan Buatan dalam Industri",
+};
+
+## Bahan Buatan dan Alasan Sifatnya Berubah
+
+**Bahan buatan** adalah bahan yang dibuat industri untuk mendapatkan sifat yang tidak dimiliki bahan asalnya. Empat kelompok utamanya adalah **paduan logam**, **kaca**, **keramik**, dan **material komposit**. Kuncinya sama untuk semuanya: sifat bahan bergantung pada **susunan partikelnya**. Menambahkan atom lain ke logam membuatnya lebih keras, menambahkan boron oksida ke kaca membuatnya tahan pemanasan mendadak, dan ikatan ion atau kovalen yang kuat membuat keramik tahan suhu tinggi. Di materi ini, kamu menggeser lapisan atom logam, memanaskan tiga jenis kaca, dan memutar kisi keramik.
+
+Bahan-bahan ini ada di sekitarmu. Piring tanah liat adalah keramik, jendela adalah kaca soda-kapur, sendok adalah baja tahan karat, dan tiang gedung adalah beton bertulang.
+
+## Paduan Logam Lebih Keras daripada Logam Murni
+
+**Paduan logam** adalah campuran dua unsur atau lebih yang unsur utamanya logam. Dalam logam murni, semua atom berukuran sama dan tersusun dalam lapisan yang teratur. Saat diberi gaya, lapisan atom mudah **bergeser** satu sama lain. Itulah alasan logam murni lunak, mudah ditarik, dan mudah ditempa.
+
+Dalam paduan logam, atom asing yang ukurannya berbeda **mengganggu susunan teratur** itu. Lapisan atom sulit bergeser, jadi paduannya lebih keras dan lebih kuat. Geser penggeser <InlineMath math="s" /> untuk menggeser lapisan atas. Lalu perbesar atom asingnya dengan penggeser <InlineMath math="f" /> dan lihat lapisan atas terdorong naik saat melewatinya.
+
+<MathVisual
+  title={<>Lapisan Atom dalam Logam Murni dan Paduan Logam</>}
+  description={
+    <>
+      Lingkaran adalah atom. Atom tengah di lapisan bawah adalah atom asing
+      berjari-jari <InlineMath math="f" />. Pada <InlineMath math="f = 0{,}5" />,
+      semua atom sama besar seperti pada logam murni.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 1, value: 0, step: 0.05, label: "s" },
+      { name: "f", min: 0.5, max: 0.8, value: 0.5, step: 0.05, label: "f" },
+    ],
+    objects: [
+      { id: "bottom-1", kind: "circle", appearance: "reference", center: { x: 0.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-2", kind: "circle", appearance: "reference", center: { x: 1.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-3", kind: "circle", appearance: "reference", center: { x: 2.5, y: 0.5 }, radius: 0.5 },
+      { id: "foreign", kind: "parametric", appearance: "warning", x: "3.5 + f cos(t)", y: "0.5 + f sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "bottom-5", kind: "circle", appearance: "reference", center: { x: 4.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-6", kind: "circle", appearance: "reference", center: { x: 5.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-7", kind: "circle", appearance: "reference", center: { x: 6.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-8", kind: "circle", appearance: "reference", center: { x: 7.5, y: 0.5 }, radius: 0.5 },
+      { id: "top-1", kind: "parametric", appearance: "primary", x: "0.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 3)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-2", kind: "parametric", appearance: "primary", x: "1.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 2)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-3", kind: "parametric", appearance: "primary", x: "2.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 1)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-4", kind: "parametric", appearance: "primary", x: "3.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-s^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-5", kind: "parametric", appearance: "primary", x: "4.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 1)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-6", kind: "parametric", appearance: "primary", x: "5.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 2)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-7", kind: "parametric", appearance: "primary", x: "6.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 3)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "lift", formula: "2max(0, f - 0.5)" },
+    ],
+  }}
+  labels={{
+    s: <>Pergeseran lapisan atas <InlineMath math="s" /></>,
+    f: <>Jari-jari atom asing <InlineMath math="f" /></>,
+    lift: <>Tinggi yang harus didaki lapisan atas</>,
+  }}
+/>
+
+Pada <InlineMath math="f = 0{,}5" />, lapisan atas bergeser rata tanpa hambatan. Saat <InlineMath math="f" /> membesar, atom di atas atom asing terangkat. Butuh gaya lebih besar untuk mendorong lapisan melewati rintangan itu, dan itulah arti **paduan logam lebih keras**.
+
+### Komposisi Paduan Logam Umum
+
+Setiap paduan logam dibuat untuk satu tujuan. Grafik ini membandingkan persentase logam utama dengan persentase unsur lain pada paduan yang paling sering ditanyakan.
+
+<Chart
+  title={<>Komposisi Enam Paduan Logam</>}
+  bars="apart"
+  categories={["Perunggu", "Kuningan", "Baja", "Baja tahan karat", "Duralumin", "Pewter"]}
+  series={[
+    { label: "Logam utama (%)", mark: "bar", values: [90, 70, 99, 74, 93, 96] },
+    { label: "Unsur lain (%)", mark: "bar", values: [10, 30, 1, 26, 7, 4] },
+  ]}
+  valueLabel="Persen massa (%)"
+  valueRange={{ min: 0, max: 100 }}
+  description={
+    <>
+      Perunggu: <InlineMath math="90\%" /> tembaga dan{" "}
+      <InlineMath math="10\%" /> timah. Kuningan: <InlineMath math="70\%" />{" "}
+      tembaga dan <InlineMath math="30\%" /> seng. Baja:{" "}
+      <InlineMath math="99\%" /> besi dan <InlineMath math="1\%" /> karbon. Baja
+      tahan karat: <InlineMath math="74\%" /> besi, <InlineMath math="18\%" />{" "}
+      kromium, dan <InlineMath math="8\%" /> nikel. Duralumin:{" "}
+      <InlineMath math="93\%" /> aluminium dengan tembaga, magnesium, dan
+      mangan. Pewter: <InlineMath math="96\%" /> timah dengan tembaga dan
+      antimon.
+    </>
+  }
+/>
+
+| Paduan logam | Sifat yang diperbaiki | Kegunaan |
+| :--- | :--- | :--- |
+| Perunggu | Keras, tahan korosi, mengilap | Medali, monumen |
+| Kuningan | Keras, tidak berkarat | Alat musik, kunci |
+| Baja tahan karat | Tidak berkarat, kuat | Sendok, alat bedah |
+| Duralumin | Ringan dan kuat | Badan pesawat |
+| Pewter | Mengilap, tahan korosi | Suvenir |
+
+Sekarang hitung **massa tiap unsur dalam paduan logam**. Sebuah medali perunggu bermassa <InlineMath math="500\text{ g}" />. Hitung massa tembaga dan timah di dalamnya.
+
+<MathContainer>
+<BlockMath math="m(\mathrm{Cu}) = \frac{90}{100} \times 500 = 450\text{ g}" />
+<BlockMath math="m(\mathrm{Sn}) = \frac{10}{100} \times 500 = 50\text{ g}" />
+</MathContainer>
+
+Cek: <InlineMath math="450 + 50 = 500\text{ g}" />, sama dengan massa medali.
+
+### Karat dan Baja Tahan Karat
+
+Baja biasa mudah berkarat karena besi bereaksi dengan oksigen dan air. Pada baja tahan karat, kromium membentuk lapisan tipis kromium(III) oksida di permukaannya. Lapisan ini **melindungi besi** di bawahnya dari oksigen dan air, jadi baja tahan karat tidak berkarat walaupun dicuci setiap hari.
+
+Contoh ini menunjukkan bahwa unsur tambahan dalam paduan logam tidak hanya menambah kekerasan. Unsur itu juga bisa menambah ketahanan korosi, mengurangi massa, atau mengubah warna logam.
+
+## Jenis Kaca dan Pemuaian Panas
+
+Komponen utama semua kaca adalah **silika**, <InlineMath math="\mathrm{SiO_2}" />. Zat lain ditambahkan untuk mengubah sifatnya:
+
+| Jenis kaca | Komposisi | Sifat utama | Kegunaan |
+| :--- | :--- | :--- | :--- |
+| Kaca silika lebur | Silika saja | Tahan suhu sangat tinggi, bening | Lensa, serat optik |
+| Kaca soda-kapur | Silika, natrium karbonat, kalsium karbonat | Murah, mudah dibentuk, retak bila dipanaskan mendadak | Jendela, botol |
+| Kaca borosilikat | Silika, boron oksida, serta sedikit natrium oksida dan aluminium oksida | Tahan kejut termal | Alat laboratorium, peralatan masak |
+| Kaca timbal | Silika, timbal(II) oksida, dan natrium oksida | Berkilau, indeks bias tinggi | Barang hiasan |
+
+Kaca retak saat dipanaskan mendadak karena bagian yang panas memuai lebih cepat daripada bagian yang dingin. Kaca yang **hanya sedikit memuai** lebih tahan kejut termal. Pertambahan panjang batang kaca adalah <InlineMath math="\Delta L = \alpha L \Delta T" />, dengan <InlineMath math="\alpha" /> koefisien muai panjang. Geser penggeser perubahan suhu dan bandingkan pertambahan panjang batang <InlineMath math="10\text{ cm}" /> untuk ketiga jenis kaca.
+
+<MathVisual
+  title={<>Pertambahan Panjang Batang Kaca <InlineMath math="10\text{ cm}" /></>}
+  description={
+    <>
+      Garis menunjukkan pertambahan panjang dalam mikrometer terhadap
+      perubahan suhu dalam kelvin, memakai <InlineMath math="\alpha" /> kaca
+      soda-kapur <InlineMath math="9 \times 10^{-6}\text{ K}^{-1}" />, kaca
+      borosilikat <InlineMath math="3{,}25 \times 10^{-6}\text{ K}^{-1}" />, dan
+      kaca silika lebur <InlineMath math="0{,}55 \times 10^{-6}\text{ K}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 100, value: 60, step: 5, label: "d" },
+    ],
+    objects: [
+      { id: "soda-lime", kind: "function", appearance: "warning", formula: "0.9x", domain: { min: 0, max: 100 } },
+      { id: "borosilicate", kind: "function", appearance: "primary", formula: "0.325x", domain: { min: 0, max: 100 } },
+      { id: "silica", kind: "function", appearance: "secondary", formula: "0.055x", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "d", y: "0" }, { x: "d", y: "0.9d" }] },
+    ],
+    labels: [
+      { key: "soda-lime", objectId: "soda-lime", at: { x: 100, y: 90 }, placement: "left" },
+      { key: "borosilicate", objectId: "borosilicate", at: { x: 100, y: 32.5 }, placement: "above-left" },
+      { key: "silica", objectId: "silica", at: { x: 100, y: 5.5 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "soda-reading", formula: "0.9d" },
+      { key: "boro-reading", formula: "0.325d" },
+      { key: "silica-reading", formula: "0.055d" },
+    ],
+  }}
+  labels={{
+    d: <>Perubahan suhu <InlineMath math="d" /> dalam K</>,
+    "soda-lime": <>Soda-kapur</>,
+    borosilicate: <>Borosilikat</>,
+    silica: <>Silika lebur</>,
+    "soda-reading": <>Soda-kapur dalam <InlineMath math="\mu\text{m}" /></>,
+    "boro-reading": <>Borosilikat dalam <InlineMath math="\mu\text{m}" /></>,
+    "silica-reading": <>Silika lebur dalam <InlineMath math="\mu\text{m}" /></>,
+  }}
+/>
+
+Sekarang bandingkan **dua jenis kaca**. Batang <InlineMath math="10\text{ cm}" /> dipanaskan sebesar <InlineMath math="80\text{ K}" />. Bandingkan pertambahan panjang kaca soda-kapur dengan kaca borosilikat.
+
+<MathContainer>
+<BlockMath math="\Delta L_{\text{soda}} = (9 \times 10^{-6})(100\text{ mm})(80) = 0{,}072\text{ mm} = 72\ \mu\text{m}" />
+<BlockMath math="\Delta L_{\text{boro}} = (3{,}25 \times 10^{-6})(100\text{ mm})(80) = 0{,}026\text{ mm} = 26\ \mu\text{m}" />
+</MathContainer>
+
+Kaca soda-kapur memuai sekitar <InlineMath math="72 : 26 \approx 2{,}8" /> kali lebih banyak. Tegangan antara bagian panas dan dingin lebih besar, jadi kaca soda-kapur lebih mudah retak. Cek dengan model pada <InlineMath math="d = 80" />.
+
+## Keramik Tahan Suhu Tinggi
+
+**Keramik** adalah padatan anorganik yang dibuat dengan memanaskan bahan nonlogam, seperti tanah liat, pada suhu sangat tinggi. Keramik tradisional seperti gerabah dan batu bata dibuat dari tanah liat. Keramik modern seperti aluminium oksida dan silikon karbida dibuat dari senyawa murni untuk kegunaan khusus, seperti komponen mesin dan isolator listrik.
+
+Kebanyakan keramik tersusun dari ion atau atom yang terikat kuat dalam struktur raksasa. Putar kisi magnesium oksida, keramik modern yang dipakai untuk melapisi tanur. Setiap ion <InlineMath math="\mathrm{Mg^{2+}}" /> dikelilingi enam ion <InlineMath math="\mathrm{O^{2-}}" /> dan ditahan ikatan ion bermuatan dua yang sangat kuat.
+
+<IonLatticeLab
+  title={<>Kisi Magnesium Oksida dalam Keramik</>}
+  description={
+    <>
+      Putar kristalnya dan perhatikan setiap ion dikelilingi enam ion
+      bermuatan berlawanan. Ikatan sekuat ini harus putus sebelum keramik
+      meleleh.
+    </>
+  }
+  crystals={["magnesium-oxide"]}
+  labels={{
+    cells: "Sel satuan per rusuk",
+    choose: "Pilih kristal",
+    count: <>Jumlah ion</>,
+    formula: <>Rumus</>,
+    ions: <>Ion dan jari-jarinya</>,
+    lattice: <>Rusuk sel satuan</>,
+    view: "Kisi kristal magnesium oksida",
+  }}
+/>
+
+Ikatan yang kuat itu memberi keramik titik leleh yang sangat tinggi. Bandingkan dengan logam biasa:
+
+<Chart
+  title={<>Titik Leleh Keramik dan Logam</>}
+  bars="apart"
+  categories={["Aluminium", "Tembaga", "Besi", "Aluminium oksida", "Magnesium oksida"]}
+  series={[
+    { label: "Titik leleh (°C)", mark: "bar", values: [660, 1085, 1538, 2072, 2852] },
+  ]}
+  valueLabel="Titik leleh (°C)"
+  description={
+    <>
+      Logam: aluminium <InlineMath math="660^\circ\text{C}" />, tembaga{" "}
+      <InlineMath math="1{.}085^\circ\text{C}" />, besi{" "}
+      <InlineMath math="1{.}538^\circ\text{C}" />. Keramik: aluminium oksida{" "}
+      <InlineMath math="2{.}072^\circ\text{C}" /> dan magnesium oksida{" "}
+      <InlineMath math="2{.}852^\circ\text{C}" />.
+    </>
+  }
+/>
+
+Keramik juga keras, tahan korosi, dan merupakan isolator panas serta listrik yang baik. Kelemahannya, keramik **getas**: keramik pecah saat dibentur, karena lapisan ion tidak bisa bergeser seperti lapisan atom logam.
+
+## Material Komposit Menggabungkan Kekuatan
+
+**Material komposit** adalah bahan yang tersusun dari dua bahan atau lebih dengan sifat berbeda. Bahan barunya punya sifat yang lebih baik daripada tiap komponennya. Satu komponen biasanya berupa **matriks** yang mengikat komponen kedua, yaitu bahan penguat.
+
+| Material komposit | Komponen | Sifat baru |
+| :--- | :--- | :--- |
+| Beton bertulang | Beton dan batang baja | Tahan tekanan dan tarikan |
+| Serat kaca | Serat kaca dan plastik poliester | Ringan, kuat, dan tidak berkarat |
+| Serat optik | Inti kaca dan selubung kaca berindeks bias lebih rendah | Mengantar cahaya jauh dengan sedikit kehilangan |
+| Kaca fotokromik | Kaca dan perak klorida | Menjadi gelap di cahaya terang |
+| Superkonduktor | Keramik oksida logam | Hambatan nol di bawah suhu tertentu |
+
+Beton saja kuat saat ditekan, tetapi mudah retak saat ditarik. Baja kuat saat ditarik. Kalau batang baja ditanam di dalam beton, komposit itu tahan terhadap **kedua** jenis gaya, jadi beton bertulang dipakai untuk jembatan dan tiang gedung.
+
+## Kesalahan Umum tentang Bahan Buatan
+
+| Kesalahan | Alasan keliru | Cara mengecek |
+| :--- | :--- | :--- |
+| Paduan logam lebih keras karena atom asingnya lebih kuat. | Kekerasan berasal dari susunan yang terganggu, bukan dari atom asing yang lebih kuat. | Jelaskan dengan lapisan atom yang sulit bergeser. |
+| Semua kaca tahan dipanaskan di atas pembakar. | Kaca soda-kapur memuai banyak dan mudah retak. | Bandingkan koefisien muai panjangnya. |
+| Keramik kuat, jadi keramik tidak pecah. | Keramik keras tetapi getas, dan pecah saat dibentur. | Bedakan kekerasan dengan kegetasan. |
+| Beton bertulang adalah paduan logam. | Beton bertulang adalah komposit karena komponennya tidak semuanya logam. | Paduan logam berunsur utama logam dan bercampur pada tingkat atom. |
+
+Kesalahan pertama paling sering muncul di soal uraian. Jawaban yang lengkap menyebut **ukuran atom berbeda**, **susunan terganggu**, dan **lapisan sulit bergeser**.
+
+## Latihan Bahan Buatan dalam Industri
+
+Soal-soal ini bergerak dari perhitungan singkat ke pemilihan bahan. **Hubungkan setiap sifat dengan susunan partikel** di jawabanmu.
+
+1. Rangka pesawat mengandung <InlineMath math="2{,}0\text{ kg}" /> duralumin dengan <InlineMath math="93\%" /> aluminium. Hitung massa aluminium di rangka itu.
+
+2. Jelaskan alasan perunggu lebih keras daripada tembaga murni.
+
+3. Batang kaca silika lebur sepanjang <InlineMath math="10\text{ cm}" /> dipanaskan sebesar <InlineMath math="200\text{ K}" />. Hitung pertambahan panjangnya dan bandingkan dengan kaca soda-kapur.
+
+4. Pilih bahan yang paling cocok untuk pelapis tanur, badan pesawat, dan gelas kimia yang dipanaskan langsung di atas pembakar. Berikan alasan untuk setiap pilihan.
+
+### Pembahasan
+
+**Pembahasan 1**: Massa aluminium adalah <InlineMath math="93\%" /> dari massa duralumin:
+
+<BlockMath math="m(\mathrm{Al}) = \frac{93}{100} \times 2{,}0 = 1{,}86\text{ kg}" />
+
+Cek: sisanya <InlineMath math="2{,}0 - 1{,}86 = 0{,}14\text{ kg}" /> adalah <InlineMath math="7\%" />, yaitu tembaga, magnesium, dan mangan.
+
+**Pembahasan 2**: Pada tembaga murni, semua atom berukuran sama dan tersusun dalam lapisan teratur yang mudah bergeser. Pada perunggu, atom timah yang **ukurannya berbeda** mengganggu susunan itu. Lapisan atom tembaga sulit bergeser, jadi perunggu lebih keras.
+
+**Pembahasan 3**: Pakai <InlineMath math="\Delta L = \alpha L \Delta T" /> dengan <InlineMath math="L = 100\text{ mm}" />:
+
+<MathContainer>
+<BlockMath math="\Delta L_{\text{silika}} = (0{,}55 \times 10^{-6})(100)(200) = 0{,}011\text{ mm} = 11\ \mu\text{m}" />
+<BlockMath math="\Delta L_{\text{soda}} = (9 \times 10^{-6})(100)(200) = 0{,}18\text{ mm} = 180\ \mu\text{m}" />
+</MathContainer>
+
+Kaca soda-kapur memuai sekitar <InlineMath math="16" /> kali lebih banyak, jadi kaca silika lebur jauh lebih tahan kejut termal.
+
+**Pembahasan 4**: Pelapis tanur butuh **keramik** seperti magnesium oksida, karena titik lelehnya <InlineMath math="2{.}852^\circ\text{C}" /> dan keramik adalah isolator panas. Badan pesawat butuh **duralumin**, karena paduan ini ringan tetapi kuat. Gelas kimia yang dipanaskan langsung butuh **kaca borosilikat**, karena koefisien muainya kecil dan kaca ini tahan kejut termal.

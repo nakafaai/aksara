@@ -33,13 +33,13 @@ describe("curriculum route projection", () => {
         ({ materialKey }) => materialKey !== undefined
       );
 
-      expect(routes).toHaveLength(1200);
+      expect(routes).toHaveLength(1204);
       expect(roots).toHaveLength(20);
-      expect(materialRoutes).toHaveLength(472);
+      expect(materialRoutes).toHaveLength(476);
       for (const locale of ["de", "en", "id", "ms"] as const) {
         expect(
           Arr.filter(routes, ({ appLocale }) => appLocale === locale)
-        ).toHaveLength(300);
+        ).toHaveLength(301);
       }
       expect(Arr.filter(routes, ({ sitemap }) => sitemap)).toHaveLength(140);
       expect(

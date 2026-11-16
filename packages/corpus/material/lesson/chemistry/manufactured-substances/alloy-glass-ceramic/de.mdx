@@ -1,0 +1,297 @@
+export const metadata = {
+  title: "Legierungen Glas Keramik und Verbundwerkstoffe",
+  description:
+    "Erkläre, warum Legierungen härter sind, wähle Glas und Keramik nach ihren Eigenschaften aus und erkenne Verbundwerkstoffe, mit Beispielen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Industriell hergestellte Stoffe",
+};
+
+## Hergestellte Werkstoffe und warum sich ihre Eigenschaften ändern
+
+Ein **hergestellter Werkstoff** ist ein Material, das die Industrie produziert, um Eigenschaften zu bekommen, die die Ausgangsstoffe nicht haben. Die vier Hauptgruppen sind **Legierungen**, **Glas**, **Keramik** und **Verbundwerkstoffe**. Für alle gilt derselbe Schlüssel: Die Eigenschaften eines Stoffs hängen davon ab, **wie seine Teilchen angeordnet sind**. Fremdatome machen ein Metall härter, Boroxid macht Glas beständig gegen plötzliches Erhitzen, und starke Ionen- oder Atombindungen machen Keramik hitzebeständig. Hier verschiebst du Schichten von Metallatomen, erhitzt drei Glassorten und drehst ein Keramikgitter.
+
+Diese Werkstoffe sind überall um dich herum. Ein Tonteller ist Keramik, ein Fenster ist Kalk-Natron-Glas, ein Löffel ist Edelstahl, und die Stützen eines Gebäudes sind Stahlbeton.
+
+## Legierungen sind härter als reine Metalle
+
+Eine **Legierung** ist ein Gemisch aus zwei oder mehr Elementen, dessen Hauptbestandteil ein Metall ist. In einem reinen Metall sind alle Atome gleich groß und liegen in regelmäßigen Schichten. Wirkt eine Kraft, **gleiten** die Atomschichten leicht übereinander. Deshalb sind reine Metalle weich, dehnbar und schmiedbar.
+
+In einer Legierung **stören** Fremdatome anderer Größe **diese regelmäßige Anordnung**. Die Atomschichten können kaum gleiten, also ist die Legierung härter und fester. Beweg den Regler <InlineMath math="s" />, um die obere Schicht zu verschieben. Vergrößere dann das Fremdatom mit dem Regler <InlineMath math="f" /> und sieh zu, wie die obere Schicht beim Überqueren angehoben wird.
+
+<MathVisual
+  title={<>Atomschichten in einem reinen Metall und einer Legierung</>}
+  description={
+    <>
+      Die Kreise sind Atome. Das mittlere Atom der unteren Schicht ist ein
+      Fremdatom mit dem Radius <InlineMath math="f" />. Bei{" "}
+      <InlineMath math="f = 0{,}5" /> sind alle Atome gleich groß, wie in einem
+      reinen Metall.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 1, value: 0, step: 0.05, label: "s" },
+      { name: "f", min: 0.5, max: 0.8, value: 0.5, step: 0.05, label: "f" },
+    ],
+    objects: [
+      { id: "bottom-1", kind: "circle", appearance: "reference", center: { x: 0.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-2", kind: "circle", appearance: "reference", center: { x: 1.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-3", kind: "circle", appearance: "reference", center: { x: 2.5, y: 0.5 }, radius: 0.5 },
+      { id: "foreign", kind: "parametric", appearance: "warning", x: "3.5 + f cos(t)", y: "0.5 + f sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "bottom-5", kind: "circle", appearance: "reference", center: { x: 4.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-6", kind: "circle", appearance: "reference", center: { x: 5.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-7", kind: "circle", appearance: "reference", center: { x: 6.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-8", kind: "circle", appearance: "reference", center: { x: 7.5, y: 0.5 }, radius: 0.5 },
+      { id: "top-1", kind: "parametric", appearance: "primary", x: "0.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 3)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-2", kind: "parametric", appearance: "primary", x: "1.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 2)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-3", kind: "parametric", appearance: "primary", x: "2.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 1)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-4", kind: "parametric", appearance: "primary", x: "3.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-s^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-5", kind: "parametric", appearance: "primary", x: "4.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 1)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-6", kind: "parametric", appearance: "primary", x: "5.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 2)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-7", kind: "parametric", appearance: "primary", x: "6.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 3)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "lift", formula: "2max(0, f - 0.5)" },
+    ],
+  }}
+  labels={{
+    s: <>Verschiebung der oberen Schicht <InlineMath math="s" /></>,
+    f: <>Radius des Fremdatoms <InlineMath math="f" /></>,
+    lift: <>Höhe, die die obere Schicht überwinden muss</>,
+  }}
+/>
+
+Bei <InlineMath math="f = 0{,}5" /> gleitet die obere Schicht flach und ungehindert. Wird <InlineMath math="f" /> größer, heben sich die Atome über dem Fremdatom an. Es braucht mehr Kraft, die Schicht über dieses Hindernis zu schieben, und genau das bedeutet: **Die Legierung ist härter**.
+
+### Zusammensetzung üblicher Legierungen
+
+Jede Legierung wird für einen Zweck hergestellt. Das Diagramm vergleicht den Anteil des Hauptmetalls mit dem Anteil der übrigen Elemente bei häufig genannten Legierungen.
+
+<Chart
+  title={<>Zusammensetzung von sechs Legierungen</>}
+  bars="apart"
+  categories={["Bronze", "Messing", "Stahl", "Edelstahl", "Duralumin", "Hartzinn"]}
+  series={[
+    { label: "Hauptmetall (%)", mark: "bar", values: [90, 70, 99, 74, 93, 96] },
+    { label: "Übrige Elemente (%)", mark: "bar", values: [10, 30, 1, 26, 7, 4] },
+  ]}
+  valueLabel="Massenanteil (%)"
+  valueRange={{ min: 0, max: 100 }}
+  description={
+    <>
+      Bronze: <InlineMath math="90\ \%" /> Kupfer und{" "}
+      <InlineMath math="10\ \%" /> Zinn. Messing: <InlineMath math="70\ \%" />{" "}
+      Kupfer und <InlineMath math="30\ \%" /> Zink. Stahl:{" "}
+      <InlineMath math="99\ \%" /> Eisen und <InlineMath math="1\ \%" />{" "}
+      Kohlenstoff. Edelstahl: <InlineMath math="74\ \%" /> Eisen,{" "}
+      <InlineMath math="18\ \%" /> Chrom und <InlineMath math="8\ \%" /> Nickel.
+      Duralumin: <InlineMath math="93\ \%" /> Aluminium mit Kupfer, Magnesium
+      und Mangan. Hartzinn: <InlineMath math="96\ \%" /> Zinn mit Kupfer und
+      Antimon.
+    </>
+  }
+/>
+
+| Legierung | Verbesserte Eigenschaft | Verwendung |
+| :--- | :--- | :--- |
+| Bronze | Hart, korrosionsbeständig, glänzend | Medaillen, Denkmäler |
+| Messing | Hart, rostet nicht | Musikinstrumente, Schlüssel |
+| Edelstahl | Rostet nicht, fest | Löffel, chirurgische Instrumente |
+| Duralumin | Leicht und fest | Flugzeugrümpfe |
+| Hartzinn | Glänzend, korrosionsbeständig | Andenken |
+
+Berechne jetzt **die Masse jedes Elements in einer Legierung**. Eine Bronzemedaille hat eine Masse von <InlineMath math="500\ \text{g}" />. Bestimme die Masse an Kupfer und Zinn.
+
+<MathContainer>
+<BlockMath math="m(\mathrm{Cu}) = \frac{90}{100} \cdot 500 = 450\ \text{g}" />
+<BlockMath math="m(\mathrm{Sn}) = \frac{10}{100} \cdot 500 = 50\ \text{g}" />
+</MathContainer>
+
+Probe: <InlineMath math="450 + 50 = 500\ \text{g}" />, die Masse der Medaille.
+
+### Rost und Edelstahl
+
+Gewöhnlicher Stahl rostet leicht, weil Eisen mit Sauerstoff und Wasser reagiert. In Edelstahl bildet Chrom eine dünne Schicht aus Chrom(III)-oxid an der Oberfläche. Diese Schicht **schützt das Eisen** darunter vor Sauerstoff und Wasser, deshalb rostet Edelstahl nicht, auch wenn er jeden Tag gespült wird.
+
+Das Beispiel zeigt, dass zusätzliche Elemente in einer Legierung mehr bewirken als Härte. Sie können auch vor Korrosion schützen, die Masse verringern oder die Farbe des Metalls ändern.
+
+## Glassorten und Wärmeausdehnung
+
+Der Hauptbestandteil jedes Glases ist **Siliciumdioxid**, <InlineMath math="\mathrm{SiO_2}" />. Weitere Stoffe werden zugesetzt, um die Eigenschaften zu verändern:
+
+| Glassorte | Zusammensetzung | Haupteigenschaft | Verwendung |
+| :--- | :--- | :--- | :--- |
+| Quarzglas | Nur Siliciumdioxid | Hält sehr hohe Temperaturen aus, durchsichtig | Linsen, Glasfasern |
+| Kalk-Natron-Glas | Siliciumdioxid, Natriumcarbonat, Calciumcarbonat | Billig, leicht formbar, springt bei plötzlichem Erhitzen | Fenster, Flaschen |
+| Borosilikatglas | Siliciumdioxid, Boroxid und etwas Natriumoxid und Aluminiumoxid | Temperaturwechselbeständig | Laborgeräte, Kochgeschirr |
+| Bleikristall | Siliciumdioxid, Blei(II)-oxid und Natriumoxid | Funkelt, hohe Brechzahl | Ziergegenstände |
+
+Glas springt beim plötzlichen Erhitzen, weil sich der heiße Teil schneller ausdehnt als der kalte. Glas, das **sich nur wenig ausdehnt**, verträgt Temperaturwechsel besser. Die Verlängerung eines Glasstabs ist <InlineMath math="\Delta L = \alpha L \Delta T" />, wobei <InlineMath math="\alpha" /> der Längenausdehnungskoeffizient ist. Beweg den Regler für die Temperaturänderung und vergleich, wie stark sich ein <InlineMath math="10\ \text{cm}" /> langer Stab aus jeder Glassorte verlängert.
+
+<MathVisual
+  title={<>Verlängerung eines <InlineMath math="10\ \text{cm}" /> langen Glasstabs</>}
+  description={
+    <>
+      Jede Gerade zeigt die Verlängerung in Mikrometern gegen die
+      Temperaturänderung in Kelvin, mit <InlineMath math="\alpha" /> für
+      Kalk-Natron-Glas <InlineMath math="9 \cdot 10^{-6}\ \text{K}^{-1}" />,
+      Borosilikatglas <InlineMath math="3{,}25 \cdot 10^{-6}\ \text{K}^{-1}" />{" "}
+      und Quarzglas <InlineMath math="0{,}55 \cdot 10^{-6}\ \text{K}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 100, value: 60, step: 5, label: "d" },
+    ],
+    objects: [
+      { id: "soda-lime", kind: "function", appearance: "warning", formula: "0.9x", domain: { min: 0, max: 100 } },
+      { id: "borosilicate", kind: "function", appearance: "primary", formula: "0.325x", domain: { min: 0, max: 100 } },
+      { id: "silica", kind: "function", appearance: "secondary", formula: "0.055x", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "d", y: "0" }, { x: "d", y: "0.9d" }] },
+    ],
+    labels: [
+      { key: "soda-lime", objectId: "soda-lime", at: { x: 100, y: 90 }, placement: "left" },
+      { key: "borosilicate", objectId: "borosilicate", at: { x: 100, y: 32.5 }, placement: "above-left" },
+      { key: "silica", objectId: "silica", at: { x: 100, y: 5.5 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "soda-reading", formula: "0.9d" },
+      { key: "boro-reading", formula: "0.325d" },
+      { key: "silica-reading", formula: "0.055d" },
+    ],
+  }}
+  labels={{
+    d: <>Temperaturänderung <InlineMath math="d" /> in K</>,
+    "soda-lime": <>Kalk-Natron-Glas</>,
+    borosilicate: <>Borosilikatglas</>,
+    silica: <>Quarzglas</>,
+    "soda-reading": <>Kalk-Natron-Glas in <InlineMath math="\mu\text{m}" /></>,
+    "boro-reading": <>Borosilikatglas in <InlineMath math="\mu\text{m}" /></>,
+    "silica-reading": <>Quarzglas in <InlineMath math="\mu\text{m}" /></>,
+  }}
+/>
+
+Vergleich jetzt **zwei Glassorten**. Ein <InlineMath math="10\ \text{cm}" /> langer Stab wird um <InlineMath math="80\ \text{K}" /> erwärmt. Vergleich die Verlängerung von Kalk-Natron-Glas und Borosilikatglas.
+
+<MathContainer>
+<BlockMath math="\Delta L_{\text{Kalk-Natron}} = (9 \cdot 10^{-6})(100\ \text{mm})(80) = 0{,}072\ \text{mm} = 72\ \mu\text{m}" />
+<BlockMath math="\Delta L_{\text{Borosilikat}} = (3{,}25 \cdot 10^{-6})(100\ \text{mm})(80) = 0{,}026\ \text{mm} = 26\ \mu\text{m}" />
+</MathContainer>
+
+Kalk-Natron-Glas dehnt sich etwa <InlineMath math="72 : 26 \approx 2{,}8" />-mal so stark aus. Die Spannung zwischen heißem und kaltem Teil ist größer, deshalb springt Kalk-Natron-Glas leichter. Prüf das im Modell bei <InlineMath math="d = 80" />.
+
+## Keramik hält hohe Temperaturen aus
+
+**Keramik** ist ein anorganischer Feststoff, der durch starkes Erhitzen nichtmetallischer Rohstoffe wie Ton entsteht. Traditionelle Keramik wie Töpferware und Ziegel besteht aus Ton. Technische Keramik wie Aluminiumoxid und Siliciumcarbid wird aus reinen Verbindungen für besondere Zwecke hergestellt, etwa für Motorteile und elektrische Isolatoren.
+
+Die meisten Keramiken bestehen aus Ionen oder Atomen, die in einem Riesengitter fest gebunden sind. Dreh das Gitter von Magnesiumoxid, einer technischen Keramik zum Auskleiden von Öfen. Jedes <InlineMath math="\mathrm{Mg^{2+}}" />-Ion ist von sechs <InlineMath math="\mathrm{O^{2-}}" />-Ionen umgeben und wird von sehr starken Ionenbindungen zwischen zweifach geladenen Ionen gehalten.
+
+<IonLatticeLab
+  title={<>Das Gitter von Magnesiumoxid in einer Keramik</>}
+  description={
+    <>
+      Dreh den Kristall und achte darauf, dass jedes Ion von sechs
+      entgegengesetzt geladenen Ionen umgeben ist. So starke Bindungen müssen
+      brechen, bevor die Keramik schmilzt.
+    </>
+  }
+  crystals={["magnesium-oxide"]}
+  labels={{
+    cells: "Elementarzellen pro Kante",
+    choose: "Wähle einen Kristall",
+    count: <>Anzahl der Ionen</>,
+    formula: <>Formel</>,
+    ions: <>Ionen und ihre Radien</>,
+    lattice: <>Kante der Elementarzelle</>,
+    view: "Ionengitter von Magnesiumoxid",
+  }}
+/>
+
+Diese starken Bindungen geben Keramik sehr hohe Schmelztemperaturen. Vergleich sie mit gängigen Metallen:
+
+<Chart
+  title={<>Schmelztemperaturen von Keramik und Metallen</>}
+  bars="apart"
+  categories={["Aluminium", "Kupfer", "Eisen", "Aluminiumoxid", "Magnesiumoxid"]}
+  series={[
+    { label: "Schmelztemperatur (°C)", mark: "bar", values: [660, 1085, 1538, 2072, 2852] },
+  ]}
+  valueLabel="Schmelztemperatur (°C)"
+  description={
+    <>
+      Metalle: Aluminium <InlineMath math="660\ {}^\circ\text{C}" />, Kupfer{" "}
+      <InlineMath math="1085\ {}^\circ\text{C}" />, Eisen{" "}
+      <InlineMath math="1538\ {}^\circ\text{C}" />. Keramik: Aluminiumoxid{" "}
+      <InlineMath math="2072\ {}^\circ\text{C}" /> und Magnesiumoxid{" "}
+      <InlineMath math="2852\ {}^\circ\text{C}" />.
+    </>
+  }
+/>
+
+Keramik ist außerdem hart, korrosionsbeständig und isoliert Wärme und Strom gut. Ihre Schwäche: Sie ist **spröde**. Ein Schlag lässt Keramik zerspringen, weil Ionenschichten nicht so gleiten können wie Schichten von Metallatomen.
+
+## Verbundwerkstoffe vereinen Stärken
+
+Ein **Verbundwerkstoff** besteht aus zwei oder mehr Stoffen mit unterschiedlichen Eigenschaften. Der neue Werkstoff hat bessere Eigenschaften als jeder seiner Bestandteile. Ein Bestandteil ist meist eine **Matrix**, die den zweiten Bestandteil, die Verstärkung, zusammenhält.
+
+| Verbundwerkstoff | Bestandteile | Neue Eigenschaft |
+| :--- | :--- | :--- |
+| Stahlbeton | Beton und Stahlstäbe | Hält Druck und Zug aus |
+| Glasfaserverstärkter Kunststoff | Glasfasern und Polyesterharz | Leicht, fest und rostet nicht |
+| Lichtwellenleiter | Glaskern und Glasmantel mit kleinerer Brechzahl | Leitet Licht weit mit wenig Verlust |
+| Phototropes Glas | Glas und Silberchlorid | Dunkelt in hellem Licht nach |
+| Supraleiter | Keramik aus Metalloxiden | Widerstand null unterhalb einer bestimmten Temperatur |
+
+Beton allein hält Druck gut aus, reißt aber leicht unter Zug. Stahl hält Zug gut aus. Liegen Stahlstäbe im Beton, hält der Verbundwerkstoff **beide** Kräfte aus, deshalb baut man Brücken und Gebäudestützen aus Stahlbeton.
+
+## Typische Fehler bei hergestellten Werkstoffen
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Legierungen sind härter, weil die Fremdatome stärker sind. | Die Härte kommt von der gestörten Anordnung, nicht von stärkeren Fremdatomen. | Erkläre mit Atomschichten, die kaum gleiten können. |
+| Jedes Glas verträgt das Erhitzen über dem Brenner. | Kalk-Natron-Glas dehnt sich stark aus und springt leicht. | Vergleich die Längenausdehnungskoeffizienten. |
+| Keramik ist fest, also zerbricht sie nicht. | Keramik ist hart, aber spröde, und zerspringt bei einem Schlag. | Unterscheide Härte von Sprödigkeit. |
+| Stahlbeton ist eine Legierung. | Stahlbeton ist ein Verbundwerkstoff, weil nicht alle Bestandteile Metalle sind. | Eine Legierung hat ein Metall als Hauptbestandteil und mischt sich auf Atomebene. |
+
+Der erste Fehler kommt bei Erklärungsaufgaben am häufigsten vor. Eine vollständige Antwort nennt **unterschiedlich große Atome**, **eine gestörte Anordnung** und **Schichten, die kaum gleiten**.
+
+## Übungen zu hergestellten Werkstoffen
+
+Die Aufgaben führen von einer kurzen Rechnung zur Werkstoffwahl. **Verknüpfe jede Eigenschaft mit der Anordnung der Teilchen** in deiner Antwort.
+
+1. Ein Flugzeugrahmen enthält <InlineMath math="2{,}0\ \text{kg}" /> Duralumin mit <InlineMath math="93\ \%" /> Aluminium. Berechne die Masse an Aluminium im Rahmen.
+
+2. Erkläre, warum Bronze härter ist als reines Kupfer.
+
+3. Ein <InlineMath math="10\ \text{cm}" /> langer Quarzglasstab wird um <InlineMath math="200\ \text{K}" /> erwärmt. Berechne seine Verlängerung und vergleich sie mit Kalk-Natron-Glas.
+
+4. Wähle den passendsten Werkstoff für eine Ofenauskleidung, einen Flugzeugrumpf und ein Becherglas, das direkt über dem Brenner erhitzt wird. Begründe jede Wahl.
+
+### Lösungen
+
+**Lösung 1**: Die Masse an Aluminium beträgt <InlineMath math="93\ \%" /> der Masse des Duralumins:
+
+<BlockMath math="m(\mathrm{Al}) = \frac{93}{100} \cdot 2{,}0 = 1{,}86\ \text{kg}" />
+
+Probe: Die restlichen <InlineMath math="2{,}0 - 1{,}86 = 0{,}14\ \text{kg}" /> sind <InlineMath math="7\ \%" />, also Kupfer, Magnesium und Mangan.
+
+**Lösung 2**: In reinem Kupfer sind alle Atome gleich groß und liegen in regelmäßigen Schichten, die leicht gleiten. In Bronze stören Zinnatome **anderer Größe** diese Anordnung. Die Schichten der Kupferatome können kaum gleiten, also ist Bronze härter.
+
+**Lösung 3**: Nutze <InlineMath math="\Delta L = \alpha L \Delta T" /> mit <InlineMath math="L = 100\ \text{mm}" />:
+
+<MathContainer>
+<BlockMath math="\Delta L_{\text{Quarz}} = (0{,}55 \cdot 10^{-6})(100)(200) = 0{,}011\ \text{mm} = 11\ \mu\text{m}" />
+<BlockMath math="\Delta L_{\text{Kalk-Natron}} = (9 \cdot 10^{-6})(100)(200) = 0{,}18\ \text{mm} = 180\ \mu\text{m}" />
+</MathContainer>
+
+Kalk-Natron-Glas dehnt sich etwa <InlineMath math="16" />-mal so stark aus, Quarzglas verträgt Temperaturwechsel also viel besser.
+
+**Lösung 4**: Eine Ofenauskleidung braucht **Keramik** wie Magnesiumoxid, weil ihre Schmelztemperatur bei <InlineMath math="2852\ {}^\circ\text{C}" /> liegt und Keramik Wärme isoliert. Ein Flugzeugrumpf braucht **Duralumin**, weil diese Legierung leicht und trotzdem fest ist. Ein direkt erhitztes Becherglas braucht **Borosilikatglas**, weil sein Ausdehnungskoeffizient klein ist und es Temperaturwechsel verträgt.

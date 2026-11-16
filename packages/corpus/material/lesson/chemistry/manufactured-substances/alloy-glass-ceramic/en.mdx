@@ -1,0 +1,296 @@
+export const metadata = {
+  title: "Manufactured Substances in Industry Notes for Form Four",
+  description:
+    "Form 4 Chemistry Chapter 8: explain why alloys are harder, choose glass and ceramics by their properties, and recognise composite materials, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Manufactured Substances in Industry",
+};
+
+## Manufactured Substances and Why Their Properties Change
+
+A **manufactured substance** is a material that industry makes to get properties its raw materials don't have. The four main groups are **alloys**, **glass**, **ceramics** and **composite materials**. In every group, a material's properties depend on **how its particles are arranged**. Adding other atoms to a metal makes it harder, adding boron oxide to glass lets it survive sudden heating, and strong ionic or covalent bonds let ceramics withstand high temperatures. In these notes, you slide layers of metal atoms, heat three kinds of glass, and rotate a ceramic lattice.
+
+These materials are all around you. A clay plate is a ceramic, a window is soda-lime glass, a spoon is stainless steel, and a building's columns are reinforced concrete.
+
+## Alloys Are Harder than Pure Metals
+
+An **alloy** is a mixture of two or more elements in which the main element is a metal. In a pure metal, all the atoms are the same size and sit in orderly layers. When a force is applied, the layers of atoms **slide** over each other easily. That's why pure metals are soft, ductile and malleable.
+
+In an alloy, foreign atoms of a different size **disrupt that orderly arrangement**. The layers of atoms can't slide easily, so the alloy is harder and stronger. Move slider <InlineMath math="s" /> to slide the top layer. Then make the foreign atom bigger with slider <InlineMath math="f" /> and watch the top layer get pushed up as it passes over.
+
+<MathVisual
+  title={<>Layers of Atoms in a Pure Metal and an Alloy</>}
+  description={
+    <>
+      The circles are atoms. The middle atom of the bottom layer is a foreign
+      atom with radius <InlineMath math="f" />. At{" "}
+      <InlineMath math="f = 0.5" />, every atom is the same size, as in a pure
+      metal.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 1, value: 0, step: 0.05, label: "s" },
+      { name: "f", min: 0.5, max: 0.8, value: 0.5, step: 0.05, label: "f" },
+    ],
+    objects: [
+      { id: "bottom-1", kind: "circle", appearance: "reference", center: { x: 0.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-2", kind: "circle", appearance: "reference", center: { x: 1.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-3", kind: "circle", appearance: "reference", center: { x: 2.5, y: 0.5 }, radius: 0.5 },
+      { id: "foreign", kind: "parametric", appearance: "warning", x: "3.5 + f cos(t)", y: "0.5 + f sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "bottom-5", kind: "circle", appearance: "reference", center: { x: 4.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-6", kind: "circle", appearance: "reference", center: { x: 5.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-7", kind: "circle", appearance: "reference", center: { x: 6.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-8", kind: "circle", appearance: "reference", center: { x: 7.5, y: 0.5 }, radius: 0.5 },
+      { id: "top-1", kind: "parametric", appearance: "primary", x: "0.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 3)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-2", kind: "parametric", appearance: "primary", x: "1.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 2)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-3", kind: "parametric", appearance: "primary", x: "2.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 1)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-4", kind: "parametric", appearance: "primary", x: "3.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-s^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-5", kind: "parametric", appearance: "primary", x: "4.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 1)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-6", kind: "parametric", appearance: "primary", x: "5.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 2)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-7", kind: "parametric", appearance: "primary", x: "6.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 3)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "lift", formula: "2max(0, f - 0.5)" },
+    ],
+  }}
+  labels={{
+    s: <>Shift of the top layer <InlineMath math="s" /></>,
+    f: <>Radius of the foreign atom <InlineMath math="f" /></>,
+    lift: <>Height the top layer has to climb</>,
+  }}
+/>
+
+At <InlineMath math="f = 0.5" />, the top layer slides flat with nothing in the way. As <InlineMath math="f" /> grows, the atoms above the foreign atom get lifted. It takes a bigger force to push the layer past that obstacle, and that's what **an alloy being harder** means.
+
+### Composition of Common Alloys
+
+Each alloy is made for a purpose. This chart compares the percentage of the main metal with the percentage of other elements in the alloys you'll be asked about most.
+
+<Chart
+  title={<>Composition of Six Alloys</>}
+  bars="apart"
+  categories={["Bronze", "Brass", "Steel", "Stainless steel", "Duralumin", "Pewter"]}
+  series={[
+    { label: "Main metal (%)", mark: "bar", values: [90, 70, 99, 74, 93, 96] },
+    { label: "Other elements (%)", mark: "bar", values: [10, 30, 1, 26, 7, 4] },
+  ]}
+  valueLabel="Percentage by mass (%)"
+  valueRange={{ min: 0, max: 100 }}
+  description={
+    <>
+      Bronze: <InlineMath math="90\%" /> copper and <InlineMath math="10\%" />{" "}
+      tin. Brass: <InlineMath math="70\%" /> copper and{" "}
+      <InlineMath math="30\%" /> zinc. Steel: <InlineMath math="99\%" /> iron
+      and <InlineMath math="1\%" /> carbon. Stainless steel:{" "}
+      <InlineMath math="74\%" /> iron, <InlineMath math="18\%" /> chromium and{" "}
+      <InlineMath math="8\%" /> nickel. Duralumin: <InlineMath math="93\%" />{" "}
+      aluminium with copper, magnesium and manganese. Pewter:{" "}
+      <InlineMath math="96\%" /> tin with copper and antimony.
+    </>
+  }
+/>
+
+| Alloy | Improved property | Use |
+| :--- | :--- | :--- |
+| Bronze | Hard, resists corrosion, shiny | Medals, monuments |
+| Brass | Hard, doesn't rust | Musical instruments, keys |
+| Stainless steel | Doesn't rust, strong | Spoons, surgical instruments |
+| Duralumin | Light and strong | Aircraft bodies |
+| Pewter | Shiny, resists corrosion | Souvenirs |
+
+Now work out **the mass of each element in an alloy**. A bronze medal has a mass of <InlineMath math="500\text{ g}" />. Find the mass of copper and tin in it.
+
+<MathContainer>
+<BlockMath math="m(\mathrm{Cu}) = \frac{90}{100} \times 500 = 450\text{ g}" />
+<BlockMath math="m(\mathrm{Sn}) = \frac{10}{100} \times 500 = 50\text{ g}" />
+</MathContainer>
+
+Check: <InlineMath math="450 + 50 = 500\text{ g}" />, the mass of the medal.
+
+### Rust and Stainless Steel
+
+Ordinary steel rusts easily because iron reacts with oxygen and water. In stainless steel, chromium forms a thin layer of chromium(III) oxide on the surface. That layer **shields the iron** underneath from oxygen and water, so stainless steel doesn't rust even when it's washed every day.
+
+This example shows that the extra elements in an alloy do more than add hardness. They can also add corrosion resistance, cut the mass, or change the colour of the metal.
+
+## Types of Glass and Thermal Expansion
+
+The main component of every glass is **silica**, <InlineMath math="\mathrm{SiO_2}" />. Other substances are added to change its properties:
+
+| Type of glass | Composition | Main property | Use |
+| :--- | :--- | :--- | :--- |
+| Fused silica glass | Silica only | Withstands very high temperatures, transparent | Lenses, optical fibres |
+| Soda-lime glass | Silica, sodium carbonate, calcium carbonate | Cheap, easy to shape, cracks if heated suddenly | Windows, bottles |
+| Borosilicate glass | Silica, boron oxide and a little sodium oxide and aluminium oxide | Resists thermal shock | Lab apparatus, cookware |
+| Lead crystal glass | Silica, lead(II) oxide and sodium oxide | Sparkles, high refractive index | Decorative items |
+
+Glass cracks when it's heated suddenly because the hot part expands faster than the cold part. Glass that **expands only a little** resists thermal shock better. The extension of a glass rod is <InlineMath math="\Delta L = \alpha L \Delta T" />, where <InlineMath math="\alpha" /> is the linear expansion coefficient. Move the temperature change slider and compare how much a <InlineMath math="10\text{ cm}" /> rod of each glass grows.
+
+<MathVisual
+  title={<>Extension of a Glass Rod <InlineMath math="10\text{ cm}" /> Long</>}
+  description={
+    <>
+      Each line shows the extension in micrometres against the temperature
+      change in kelvin, using <InlineMath math="\alpha" /> for soda-lime glass{" "}
+      <InlineMath math="9 \times 10^{-6}\text{ K}^{-1}" />, borosilicate glass{" "}
+      <InlineMath math="3.25 \times 10^{-6}\text{ K}^{-1}" /> and fused silica
+      glass <InlineMath math="0.55 \times 10^{-6}\text{ K}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 100, value: 60, step: 5, label: "d" },
+    ],
+    objects: [
+      { id: "soda-lime", kind: "function", appearance: "warning", formula: "0.9x", domain: { min: 0, max: 100 } },
+      { id: "borosilicate", kind: "function", appearance: "primary", formula: "0.325x", domain: { min: 0, max: 100 } },
+      { id: "silica", kind: "function", appearance: "secondary", formula: "0.055x", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "d", y: "0" }, { x: "d", y: "0.9d" }] },
+    ],
+    labels: [
+      { key: "soda-lime", objectId: "soda-lime", at: { x: 100, y: 90 }, placement: "left" },
+      { key: "borosilicate", objectId: "borosilicate", at: { x: 100, y: 32.5 }, placement: "above-left" },
+      { key: "silica", objectId: "silica", at: { x: 100, y: 5.5 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "soda-reading", formula: "0.9d" },
+      { key: "boro-reading", formula: "0.325d" },
+      { key: "silica-reading", formula: "0.055d" },
+    ],
+  }}
+  labels={{
+    d: <>Temperature change <InlineMath math="d" /> in K</>,
+    "soda-lime": <>Soda-lime</>,
+    borosilicate: <>Borosilicate</>,
+    silica: <>Fused silica</>,
+    "soda-reading": <>Soda-lime in <InlineMath math="\mu\text{m}" /></>,
+    "boro-reading": <>Borosilicate in <InlineMath math="\mu\text{m}" /></>,
+    "silica-reading": <>Fused silica in <InlineMath math="\mu\text{m}" /></>,
+  }}
+/>
+
+Now compare **two kinds of glass**. A <InlineMath math="10\text{ cm}" /> rod is heated by <InlineMath math="80\text{ K}" />. Compare the extension of soda-lime glass with borosilicate glass.
+
+<MathContainer>
+<BlockMath math="\Delta L_{\text{soda}} = (9 \times 10^{-6})(100\text{ mm})(80) = 0.072\text{ mm} = 72\ \mu\text{m}" />
+<BlockMath math="\Delta L_{\text{boro}} = (3.25 \times 10^{-6})(100\text{ mm})(80) = 0.026\text{ mm} = 26\ \mu\text{m}" />
+</MathContainer>
+
+Soda-lime glass expands about <InlineMath math="72 \div 26 \approx 2.8" /> times as much. The stress between the hot and cold parts is bigger, so soda-lime glass cracks more easily. Check it with the model at <InlineMath math="d = 80" />.
+
+## Ceramics Withstand High Temperatures
+
+A **ceramic** is an inorganic solid made by heating non-metallic materials, such as clay, to very high temperatures. Traditional ceramics such as pottery and bricks are made from clay. Advanced ceramics such as aluminium oxide and silicon carbide are made from pure compounds for special uses, such as engine parts and electrical insulators.
+
+Most ceramics are made of ions or atoms bonded strongly in a giant structure. Rotate the lattice of magnesium oxide, an advanced ceramic used to line furnaces. Each <InlineMath math="\mathrm{Mg^{2+}}" /> ion sits among six <InlineMath math="\mathrm{O^{2-}}" /> ions and is held by very strong ionic bonds between doubly charged ions.
+
+<IonLatticeLab
+  title={<>The Magnesium Oxide Lattice in a Ceramic</>}
+  description={
+    <>
+      Rotate the crystal and notice that each ion sits among six ions of
+      opposite charge. Bonds this strong have to break before the ceramic can
+      melt.
+    </>
+  }
+  crystals={["magnesium-oxide"]}
+  labels={{
+    cells: "Unit cells per edge",
+    choose: "Pick a crystal",
+    count: <>Number of ions</>,
+    formula: <>Formula</>,
+    ions: <>Ions and their radii</>,
+    lattice: <>Unit cell edge</>,
+    view: "Magnesium oxide crystal lattice",
+  }}
+/>
+
+Those strong bonds give ceramics very high melting points. Compare them with common metals:
+
+<Chart
+  title={<>Melting Points of Ceramics and Metals</>}
+  bars="apart"
+  categories={["Aluminium", "Copper", "Iron", "Aluminium oxide", "Magnesium oxide"]}
+  series={[
+    { label: "Melting point (°C)", mark: "bar", values: [660, 1085, 1538, 2072, 2852] },
+  ]}
+  valueLabel="Melting point (°C)"
+  description={
+    <>
+      Metals: aluminium <InlineMath math="660^\circ\text{C}" />, copper{" "}
+      <InlineMath math="1{,}085^\circ\text{C}" />, iron{" "}
+      <InlineMath math="1{,}538^\circ\text{C}" />. Ceramics: aluminium oxide{" "}
+      <InlineMath math="2{,}072^\circ\text{C}" /> and magnesium oxide{" "}
+      <InlineMath math="2{,}852^\circ\text{C}" />.
+    </>
+  }
+/>
+
+Ceramics are also hard, resist corrosion and insulate heat and electricity well. Their weakness is that they're **brittle**: a ceramic shatters when struck, because layers of ions can't slide the way layers of metal atoms do.
+
+## Composite Materials Combine Strengths
+
+A **composite material** is made from two or more materials with different properties. The new material has better properties than each of its components. One component is usually a **matrix** that holds the second component, the reinforcement.
+
+| Composite material | Components | New property |
+| :--- | :--- | :--- |
+| Reinforced concrete | Concrete and steel rods | Withstands compression and tension |
+| Fibreglass | Glass fibres and polyester plastic | Light, strong and doesn't rust |
+| Optical fibre | A glass core and a glass cladding of lower refractive index | Carries light far with little loss |
+| Photochromic glass | Glass and silver chloride | Darkens in bright light |
+| Superconductor | A metal oxide ceramic | Zero resistance below a certain temperature |
+
+Concrete on its own is strong when squeezed but cracks easily when stretched. Steel is strong when stretched. When steel rods are set into concrete, the composite withstands **both** kinds of force, so reinforced concrete is used for bridges and building columns.
+
+## Common Mistakes about Manufactured Substances
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Alloys are harder because the foreign atoms are stronger. | The hardness comes from the disrupted arrangement, not from stronger foreign atoms. | Explain it with layers of atoms that can't slide easily. |
+| Any glass can be heated over a burner. | Soda-lime glass expands a lot and cracks easily. | Compare the linear expansion coefficients. |
+| Ceramics are strong, so they don't break. | Ceramics are hard but brittle, and they shatter when struck. | Separate hardness from brittleness. |
+| Reinforced concrete is an alloy. | Reinforced concrete is a composite, because not all its components are metals. | An alloy has a metal as its main element and mixes at the level of atoms. |
+
+The first mistake is the most common one in structured questions. A complete answer mentions **atoms of different sizes**, **a disrupted arrangement** and **layers that can't slide easily**.
+
+## Practice on Manufactured Substances
+
+These questions move from a short calculation to choosing materials. **Link each property to the arrangement of particles** in your answer.
+
+1. An aircraft frame contains <InlineMath math="2.0\text{ kg}" /> of duralumin with <InlineMath math="93\%" /> aluminium. Find the mass of aluminium in the frame.
+
+2. Explain why bronze is harder than pure copper.
+
+3. A fused silica glass rod <InlineMath math="10\text{ cm}" /> long is heated by <InlineMath math="200\text{ K}" />. Find its extension and compare it with soda-lime glass.
+
+4. Choose the best material for a furnace lining, an aircraft body and a beaker heated directly over a burner. Give a reason for each choice.
+
+### Solutions
+
+**Solution 1**: The mass of aluminium is <InlineMath math="93\%" /> of the mass of duralumin:
+
+<BlockMath math="m(\mathrm{Al}) = \frac{93}{100} \times 2.0 = 1.86\text{ kg}" />
+
+Check: the remaining <InlineMath math="2.0 - 1.86 = 0.14\text{ kg}" /> is <InlineMath math="7\%" />, which is the copper, magnesium and manganese.
+
+**Solution 2**: In pure copper, all the atoms are the same size and sit in orderly layers that slide easily. In bronze, tin atoms of **a different size** disrupt that arrangement. The layers of copper atoms can't slide easily, so bronze is harder.
+
+**Solution 3**: Use <InlineMath math="\Delta L = \alpha L \Delta T" /> with <InlineMath math="L = 100\text{ mm}" />:
+
+<MathContainer>
+<BlockMath math="\Delta L_{\text{silica}} = (0.55 \times 10^{-6})(100)(200) = 0.011\text{ mm} = 11\ \mu\text{m}" />
+<BlockMath math="\Delta L_{\text{soda}} = (9 \times 10^{-6})(100)(200) = 0.18\text{ mm} = 180\ \mu\text{m}" />
+</MathContainer>
+
+Soda-lime glass expands about <InlineMath math="16" /> times as much, so fused silica glass resists thermal shock far better.
+
+**Solution 4**: A furnace lining needs a **ceramic** such as magnesium oxide, because its melting point is <InlineMath math="2{,}852^\circ\text{C}" /> and ceramics insulate heat. An aircraft body needs **duralumin**, because this alloy is light but strong. A beaker heated directly needs **borosilicate glass**, because its expansion coefficient is small and it resists thermal shock.
