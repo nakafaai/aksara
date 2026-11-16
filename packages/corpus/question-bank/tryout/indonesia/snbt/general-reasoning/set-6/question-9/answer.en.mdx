@@ -6,6 +6,18 @@ A good design must show that any difference in milk comes from **the music**, no
 
 Randomly splitting the cows between two similar barns and playing music in only one meets all three.
 
+The diagram below draws that design. **Random assignment and the same period make the two groups alike**, so a difference in milk can only come from the music.
+
+<Mermaid
+  title={<>A design for testing music's effect on dairy cows' milk</>}
+  description={<>The cows are split at random between two similar barns. Music plays in only one barn. The two barns' milk is compared over the same period.</>}
+  chart={`flowchart LR
+    S["All dairy cows"] -->|"split at random"| A["Barn A: music"]
+    S -->|"split at random"| B["Barn B: no music"]
+    A --> C["Compare milk over the same period"]
+    B --> C`}
+/>
+
 The other options are weak:
 
 - Comparing with last year mixes the effect of music with everything else that changed in a year.

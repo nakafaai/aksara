@@ -1,5 +1,19 @@
 Look at two changes that seem to pull in opposite directions. More employees took food more than once, yet **the total taken per employee still fell**, from <InlineMath math="620" /> grams to <InlineMath math="540" /> grams, because that figure already includes second and later servings. So smaller plates reduced the food taken even though some employees went back for more.
 
+The chart below compares the three food measures before and after the plate change. **All three bars drop together**, even though more employees take food more than once.
+
+<Chart
+  title={<>Food per employee at one lunch</>}
+  description={<>With <InlineMath math="28" /> cm plates, employees take <InlineMath math="620" /> grams, throw away <InlineMath math="70" /> grams, and eat <InlineMath math="550" /> grams. With <InlineMath math="23" /> cm plates, the figures are <InlineMath math="540" />, <InlineMath math="40" />, and <InlineMath math="500" /> grams.</>}
+  categories={["Taken", "Wasted", "Eaten"]}
+  bars="apart"
+  series={[
+    { label: "28 cm plates", mark: "bar", values: [620, 70, 620 - 70] },
+    { label: "23 cm plates", mark: "bar", values: [540, 40, 540 - 40] },
+  ]}
+  valueLabel="Grams"
+/>
+
 The other options are not supported:
 
 - Food eaten equals food taken minus waste. Before the change it was <InlineMath math="620-70=550" /> grams, after it <InlineMath math="540-40=500" /> grams. The drop is <InlineMath math="50" /> grams, not <InlineMath math="80" /> grams.

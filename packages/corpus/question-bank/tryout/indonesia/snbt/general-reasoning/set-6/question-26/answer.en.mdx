@@ -2,6 +2,21 @@ A yes or no question is answered when the answer is **always the same** in every
 
 **Statement (1) alone**: not sufficient. Suppose the class has three students. Scores of <InlineMath math="80" />, <InlineMath math="80" />, and <InlineMath math="70" /> satisfy statement (1), with mean <InlineMath math="\frac{230}{3}\approx76.7" />, above <InlineMath math="75" />. Scores of <InlineMath math="76" />, <InlineMath math="76" />, and <InlineMath math="10" /> also satisfy statement (1), but the mean is <InlineMath math="54" />. The answer can be yes or no.
 
+The chart below puts the two sample classes side by side. **One mean is above the limit and the other far below it**, yet both meet statement (1).
+
+<Chart
+  title={<>Two classes that both meet statement (1)</>}
+  description={<>A class scoring <InlineMath math="80" />, <InlineMath math="80" />, and <InlineMath math="70" /> has a mean of about <InlineMath math="76.7" />. A class scoring <InlineMath math="76" />, <InlineMath math="76" />, and <InlineMath math="10" /> has a mean of <InlineMath math="54" />. The limit is <InlineMath math="75" />.</>}
+  categories={["Scores 80, 80, 70", "Scores 76, 76, 10"]}
+  bars="apart"
+  series={[
+    { label: "Class mean", mark: "bar", values: [(80 + 80 + 70) / 3, (76 + 76 + 10) / 3] },
+    { label: "Limit of 75", mark: "bar", values: [75, 75] },
+  ]}
+  valueLabel="Score"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 **Statement (2) alone**: sufficient. If the lowest score is <InlineMath math="80" />, **every** score is at least <InlineMath math="80" />, so the mean is also at least <InlineMath math="80" />. The answer is always yes.
 
 So statement (2) alone is sufficient, but statement (1) alone is not.

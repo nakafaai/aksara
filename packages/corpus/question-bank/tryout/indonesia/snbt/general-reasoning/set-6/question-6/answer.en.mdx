@@ -2,6 +2,20 @@ The pattern to explain is **a jump in week <InlineMath math="5" /> followed by a
 
 A new poster catches attention, so many employees try the stairs. After a few weeks the poster becomes an ordinary sight, and some employees return to their old habit of taking the lift. This explains both the jump and the gradual decline.
 
+The chart below draws all three figures over the eight weeks. **The total line is almost flat**, so the trips that moved to the stairs in week <InlineMath math="5" /> slowly drift back to the lift.
+
+<Chart
+  title={<>Lift trips, stair trips, and all trips per working day</>}
+  description={<>All trips stay at about <InlineMath math="2{,}700" /> per day. In week <InlineMath math="5" />, the lift falls to <InlineMath math="2{,}000" /> and the stairs rise to <InlineMath math="700" />. By week <InlineMath math="8" />, the lift is back up to <InlineMath math="2{,}300" /> and the stairs are down to <InlineMath math="380" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Lift trips", mark: "line", values: [2400, 2350, 2420, 2380, 2000, 2150, 2250, 2300] },
+    { label: "Stair trips", mark: "line", values: [300, 320, 310, 290, 700, 560, 430, 380] },
+    { label: "All trips", mark: "line", values: [2400 + 300, 2350 + 320, 2420 + 310, 2380 + 290, 2000 + 700, 2150 + 560, 2250 + 430, 2300 + 380] },
+  ]}
+  valueLabel="Trips per day"
+/>
+
 The other options do not fit:
 
 - Total trips did not rise, so the number of employees did not rise.

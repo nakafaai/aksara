@@ -1,5 +1,17 @@
 Wähle für jede Reihenfolge Mungkin (möglich) oder Tidak mungkin (unmöglich). Prüfe jede an allen fünf Regeln. Ein Verstoß genügt, und die Reihenfolge ist **unmöglich**.
 
+Das Diagramm zählt die Regeln, die jede Reihenfolge verletzt. **Eine Reihenfolge mit Balken null ist möglich**.
+
+<Chart
+  title={<>Verletzte Regeln jeder Reihenfolge</>}
+  description={<>Reihenfolge 1 verletzt <InlineMath math="1" /> Regel, nämlich Regel 4. Reihenfolge 3 verletzt <InlineMath math="1" /> Regel, nämlich Regel 2. Reihenfolge 2 und 4 verletzen keine Regel.</>}
+  categories={["Reihenfolge 1", "Reihenfolge 2", "Reihenfolge 3", "Reihenfolge 4"]}
+  bars="apart"
+  series={[{ label: "Verletzte Regeln", mark: "bar", values: [1, 0, 1, 0] }]}
+  valueLabel="Regeln"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Reihenfolge 1**: unmöglich. U auf Platz drei folgt direkt auf R auf Platz zwei, das verletzt Regel 4.
 
 **Reihenfolge 2**: möglich. Q folgt direkt auf P, R kommt vor S, T ist Letzte, U auf Platz fünf steht nicht neben R auf Platz drei, und S ist Vierte.

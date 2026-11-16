@@ -5,6 +5,19 @@ If R is second, first work out who can be first.
 - **P** cannot be first, since Q must follow P directly, but second place is R.
 - **Q** cannot be first, since P must come directly before Q.
 
+The diagram below sums up why each candidate for first place drops out. **Only T survives**, since T is allowed to present first.
+
+<Mermaid
+  title={<>Who can present first if R is second</>}
+  description={<>U drops out because it would sit just before R. S drops out because it must come after R. P drops out because Q must follow P directly, but R is second. Q drops out because P must come directly before Q. Only T is left.</>}
+  chart={`flowchart LR
+    R["R in second place"] --> U["U first: just before R, out"]
+    R --> S["S first: before R, out"]
+    R --> P["P first: Q can't be second, out"]
+    R --> Q["Q first: no room for P before it, out"]
+    R --> T["T first: allowed"]`}
+/>
+
 Only **T** remains, so T is certainly first. The orders meeting every rule are T, R, P, Q, S, U, then T, R, S, P, Q, U, and T, R, S, U, P, Q.
 
 The other options are not certain:

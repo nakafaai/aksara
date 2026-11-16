@@ -1,5 +1,16 @@
 Wähle Pasti benar (sicher wahr) oder Tidak pasti benar (nicht sicher wahr). Nutze Regeln für Ungleichungen: **Multiplizieren mit einer positiven Zahl unter <InlineMath math="1" /> verkleinert**, und Teilen durch eine Zahl über <InlineMath math="1" /> verkleinert ebenfalls. Um zu zeigen, dass eine Aussage nicht sicher wahr ist, genügt ein Gegenbeispiel.
 
+Das Diagramm probiert ein Wertepaar aus, <InlineMath math="a=0{,}5" /> und <InlineMath math="b=1{,}2" />. **Der Balken <InlineMath math="a+b" /> erreicht <InlineMath math="2" /> nicht, der Balken <InlineMath math="a:b" /> ist kürzer als <InlineMath math="a" />, der Balken <InlineMath math="a^2" /> ist kürzer als <InlineMath math="a" />, und der Balken <InlineMath math="ab" /> ist kürzer als <InlineMath math="b" />**.
+
+<Chart
+  title={<>Werte mehrerer Ausdrücke für <InlineMath math="a=0{,}5" /> und <InlineMath math="b=1{,}2" /></>}
+  description={<>Für dieses Paar gilt <InlineMath math="a+b=1{,}7" />, <InlineMath math="\tfrac{a}{b}\approx0{,}42" />, <InlineMath math="a^2=0{,}25" /> und <InlineMath math="ab=0{,}6" />.</>}
+  bars="apart"
+  categories={["a", "b", "a + b", "a : b", "a²", "ab"]}
+  series={[{ label: "Wert für a = 0,5 und b = 1,2", mark: "bar", values: [0.5, 1.2, 0.5 + 1.2, 0.5 / 1.2, 0.5 * 0.5, 0.5 * 1.2] }]}
+  valueLabel="Wert"
+/>
+
 **Aussage 1**: nicht sicher wahr. Für <InlineMath math="a=0{,}5" /> und <InlineMath math="b=1{,}2" /> ist <InlineMath math="a+b=1{,}7" />, nicht mehr als <InlineMath math="2" />.
 
 **Aussage 2**: nicht sicher wahr. Da <InlineMath math="b>1" /> und <InlineMath math="a>0" />, ist <InlineMath math="\frac{a}{b}<a" />. Die Aussage ist sogar immer falsch.

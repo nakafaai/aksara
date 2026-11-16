@@ -1,5 +1,19 @@
 Perhatikan dua perubahan yang tampak berlawanan. Lebih banyak karyawan mengambil makanan lebih dari sekali, tetapi **total makanan yang diambil per karyawan tetap turun**, dari <InlineMath math="620" /> gram menjadi <InlineMath math="540" /> gram, karena angka itu sudah mencakup pengambilan kedua dan seterusnya. Jadi, piring kecil mengurangi makanan yang diambil walaupun sebagian karyawan menambah porsi.
 
+Grafik berikut membandingkan ketiga ukuran makanan sebelum dan sesudah piring diganti. **Ketiga batang turun bersamaan**, walaupun lebih banyak karyawan mengambil makanan lebih dari sekali.
+
+<Chart
+  title={<>Makanan per karyawan dalam sekali makan siang</>}
+  description={<>Dengan piring <InlineMath math="28" /> cm, karyawan mengambil <InlineMath math="620" /> gram, membuang <InlineMath math="70" /> gram, dan memakan <InlineMath math="550" /> gram. Dengan piring <InlineMath math="23" /> cm, angkanya <InlineMath math="540" />, <InlineMath math="40" />, dan <InlineMath math="500" /> gram.</>}
+  categories={["Diambil", "Dibuang", "Dimakan"]}
+  bars="apart"
+  series={[
+    { label: "Piring 28 cm", mark: "bar", values: [620, 70, 620 - 70] },
+    { label: "Piring 23 cm", mark: "bar", values: [540, 40, 540 - 40] },
+  ]}
+  valueLabel="Gram"
+/>
+
 Pilihan lain tidak didukung:
 
 - Makanan yang dimakan sama dengan makanan yang diambil dikurangi sisa. Sebelum penggantian <InlineMath math="620-70=550" /> gram, sesudahnya <InlineMath math="540-40=500" /> gram. Turunnya <InlineMath math="50" /> gram, bukan <InlineMath math="80" /> gram.

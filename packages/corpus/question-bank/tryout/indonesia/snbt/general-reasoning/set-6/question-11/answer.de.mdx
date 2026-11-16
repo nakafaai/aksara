@@ -1,5 +1,17 @@
 Ordne jeden Schluss als Benar (richtig, er folgt sicher aus den Regeln) oder Salah (falsch, er folgt nicht sicher) ein. Schreib beide Regeln als Implikationen. "Darf nur dann ins Finale, wenn bei allen Trainings anwesend" heißt **im Finale** <InlineMath math="\Rightarrow" /> **bei allen Trainings anwesend**. Die zweite Regel: **im Finale** <InlineMath math="\Rightarrow" /> **bekommt ein besonderes Trikot**.
 
+Das Diagramm zeichnet beide Regeln als Pfeile. **Beide Pfeile gehen von „im Finale“ aus**, also darf keiner rückwärts gelesen werden.
+
+<Mermaid
+  title={<>Die zwei Regeln des Trainers als Implikationen</>}
+  description={<>Wer im Finale spielt, war sicher bei allen Trainings und bekommt sicher ein besonderes Trikot. Bei allen Trainings zu sein garantiert keinen Platz im Finale, und ein besonderes Trikot garantiert ihn auch nicht.</>}
+  chart={`flowchart LR
+    F["Im Finale"] -->|"Regel 1"| H["Bei allen Trainings anwesend"]
+    F -->|"Regel 2"| K["Bekommt ein besonderes Trikot"]
+    H -.->|"nicht garantiert"| F
+    K -.->|"nicht garantiert"| F`}
+/>
+
 **Schluss 1** ist richtig. Dodi war nicht bei allen Trainings. Nach der Kontraposition der ersten Regel spielt Dodi nicht im Finale.
 
 **Schluss 2** ist falsch. Anwesenheit bei allen Trainings ist eine **notwendige Bedingung**, keine hinreichende. Der Trainer kann Eka trotzdem nicht aufstellen.

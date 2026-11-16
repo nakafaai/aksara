@@ -11,4 +11,18 @@ Each new ring has <InlineMath math="6" /> more tiles than the one before, becaus
 \text{pattern 6} &= 61+30=91
 \end{aligned}" />
 
+The chart below draws the new ring and the total for all six patterns. **Each new ring grows by <InlineMath math="6" /> tiles per pattern**, so the total grows faster and faster.
+
+<Chart
+  title={<>New-ring tiles and total tiles in patterns <InlineMath math="1" /> to <InlineMath math="6" /></>}
+  description={<>The outer rings hold <InlineMath math="1" />, <InlineMath math="6" />, <InlineMath math="12" />, <InlineMath math="18" />, <InlineMath math="24" />, and <InlineMath math="30" /> tiles. The totals are <InlineMath math="1" />, <InlineMath math="7" />, <InlineMath math="19" />, <InlineMath math="37" />, <InlineMath math="61" />, and <InlineMath math="91" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6"]}
+  series={[
+    { label: "Tiles in the outer ring", mark: "bar", values: [1, 6, 12, 18, 24, 30] },
+    { label: "Total tiles", mark: "bar", values: [1, 1 + 6, 7 + 12, 19 + 18, 37 + 24, 61 + 30] },
+  ]}
+  valueLabel="Tiles"
+/>
+
 The value <InlineMath math="61" /> is the count for pattern 5, not pattern 6. So pattern 6 has <InlineMath math="91" /> tiles.

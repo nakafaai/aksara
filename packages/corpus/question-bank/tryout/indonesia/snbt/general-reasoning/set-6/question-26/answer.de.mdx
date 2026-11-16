@@ -2,6 +2,21 @@ Eine Ja-Nein-Frage ist beantwortet, wenn die Antwort in jeder von der Aussage er
 
 **Aussage (1) allein**: reicht nicht. Angenommen, die Klasse hat drei Schüler. Die Noten <InlineMath math="80" />, <InlineMath math="80" /> und <InlineMath math="70" /> erfüllen Aussage (1), der Mittelwert ist <InlineMath math="\frac{230}{3}\approx76{,}7" />, also über <InlineMath math="75" />. Die Noten <InlineMath math="76" />, <InlineMath math="76" /> und <InlineMath math="10" /> erfüllen Aussage (1) ebenfalls, der Mittelwert ist aber <InlineMath math="54" />. Die Antwort kann ja oder nein sein.
 
+Das Diagramm stellt die beiden Beispielklassen nebeneinander. **Ein Mittel liegt über der Grenze, das andere weit darunter**, obwohl beide Aussage (1) erfüllen.
+
+<Chart
+  title={<>Zwei Klassen, die beide Aussage (1) erfüllen</>}
+  description={<>Eine Klasse mit <InlineMath math="80" />, <InlineMath math="80" /> und <InlineMath math="70" /> Punkten hat ein Mittel von etwa <InlineMath math="76{,}7" />. Eine Klasse mit <InlineMath math="76" />, <InlineMath math="76" /> und <InlineMath math="10" /> Punkten hat ein Mittel von <InlineMath math="54" />. Die Grenze liegt bei <InlineMath math="75" />.</>}
+  categories={["Punkte 80, 80, 70", "Punkte 76, 76, 10"]}
+  bars="apart"
+  series={[
+    { label: "Klassenmittel", mark: "bar", values: [(80 + 80 + 70) / 3, (76 + 76 + 10) / 3] },
+    { label: "Grenze 75", mark: "bar", values: [75, 75] },
+  ]}
+  valueLabel="Punkte"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 **Aussage (2) allein**: reicht. Ist die niedrigste Note <InlineMath math="80" />, ist **jede** Note mindestens <InlineMath math="80" />, also auch der Mittelwert mindestens <InlineMath math="80" />. Die Antwort ist immer ja.
 
 Aussage (2) allein reicht also, Aussage (1) allein nicht.

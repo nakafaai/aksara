@@ -11,4 +11,18 @@ Setiap lapis baru menambah <InlineMath math="6" /> ubin lebih banyak daripada la
 \text{pola ke-6} &= 61+30=91
 \end{aligned}" />
 
+Grafik berikut menggambar ubin lapis baru dan totalnya untuk keenam pola. **Lapis baru tumbuh <InlineMath math="6" /> ubin setiap pola**, sehingga totalnya tumbuh makin cepat.
+
+<Chart
+  title={<>Ubin lapis baru dan total ubin pada pola ke-<InlineMath math="1" /> sampai ke-<InlineMath math="6" /></>}
+  description={<>Lapis terluarnya berisi <InlineMath math="1" />, <InlineMath math="6" />, <InlineMath math="12" />, <InlineMath math="18" />, <InlineMath math="24" />, dan <InlineMath math="30" /> ubin. Total ubinnya <InlineMath math="1" />, <InlineMath math="7" />, <InlineMath math="19" />, <InlineMath math="37" />, <InlineMath math="61" />, dan <InlineMath math="91" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6"]}
+  series={[
+    { label: "Ubin di lapis terluar", mark: "bar", values: [1, 6, 12, 18, 24, 30] },
+    { label: "Total ubin", mark: "bar", values: [1, 1 + 6, 7 + 12, 19 + 18, 37 + 24, 61 + 30] },
+  ]}
+  valueLabel="Banyak ubin"
+/>
+
 Nilai <InlineMath math="61" /> adalah banyak ubin pola ke-5, bukan pola ke-6. Jadi, pola ke-6 terdiri atas <InlineMath math="91" /> ubin.

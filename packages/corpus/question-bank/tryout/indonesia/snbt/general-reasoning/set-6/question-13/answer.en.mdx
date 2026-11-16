@@ -2,6 +2,16 @@ The form "<InlineMath math="p" /> only if <InlineMath math="q" />" (*hanya jika*
 
 The statement equivalent to <InlineMath math="p\Rightarrow q" /> is its **contrapositive**, <InlineMath math="\lnot q\Rightarrow\lnot p" />: if the owner is not present, the shop is not open (*Jika pemiliknya tidak hadir, toko itu tidak buka*).
 
+The diagram below draws the statement along with one equivalent form and one that isn't. **The contrapositive flips the direction and negates both parts**, while just flipping the direction isn't equivalent.
+
+<Mermaid
+  title={<>Forms equivalent to "the shop is open only if the owner is present"</>}
+  description={<>The original means if the shop is open, the owner is present. Its contrapositive, if the owner isn't present, the shop isn't open, is equivalent to it. The converse, if the owner is present, the shop is open, isn't equivalent.</>}
+  chart={`flowchart LR
+    A["Shop open, so owner present"] <-->|"equivalent"| K["Owner absent, so shop not open"]
+    A -.->|"not equivalent"| B["Owner present, so shop open"]`}
+/>
+
 The other options are not equivalent:
 
 - "If the owner is present, the shop is open" is the converse, <InlineMath math="q\Rightarrow p" />.

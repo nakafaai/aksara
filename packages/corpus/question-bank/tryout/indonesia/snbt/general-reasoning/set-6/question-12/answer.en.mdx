@@ -3,6 +3,16 @@ Use **two steps** in turn.
 - **Modus tollens**: if the meeting moves to the village hall, chairs must be borrowed from the school. The school's chairs cannot be borrowed, so the meeting does **not** move to the hall.
 - **Disjunctive syllogism**: the meeting moves to the hall or is postponed. The first option is ruled out, so the meeting is **postponed**.
 
+The diagram below draws both steps. **The first step closes one road, and the second takes the road that's left**.
+
+<Mermaid
+  title={<>Two steps to the conclusion about the residents' meeting</>}
+  description={<>The school's chairs can't be borrowed, so the meeting doesn't move to the village hall. The meeting moves or is postponed, and the first option is out, so the meeting is postponed.</>}
+  chart={`flowchart LR
+    K["School chairs can't be borrowed"] -->|"modus tollens"| B["Meeting doesn't move to the hall"]
+    B -->|"disjunctive syllogism"| T["Residents' meeting is postponed"]`}
+/>
+
 The other options are not valid:
 
 - The meeting does not move to the hall, so it is not held there.

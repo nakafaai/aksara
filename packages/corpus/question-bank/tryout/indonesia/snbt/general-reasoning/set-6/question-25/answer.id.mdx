@@ -6,4 +6,18 @@ Hasil panen sekarang <InlineMath math="72+52+84+63=271" /> ton. Karena hanya kel
 
 <BlockMath math="288-271=17\text{ ton}" />
 
+Grafik berikut membandingkan hasil panen sekarang dengan yang dibutuhkan. **Selisih kedua pasang batang sama, yaitu <InlineMath math="17" /> ton**, karena hanya kelompok C yang berubah.
+
+<Chart
+  title={<>Hasil panen sekarang dan yang dibutuhkan untuk <InlineMath math="6{,}4" /> ton per hektare</>}
+  description={<>Kelompok C sekarang memanen <InlineMath math="84" /> ton dan perlu <InlineMath math="101" /> ton. Seluruh kelompok sekarang memanen <InlineMath math="271" /> ton dan perlu <InlineMath math="288" /> ton.</>}
+  categories={["Kelompok C", "Seluruh kelompok"]}
+  bars="apart"
+  series={[
+    { label: "Musim ini", mark: "bar", values: [84, 72 + 52 + 84 + 63] },
+    { label: "Yang dibutuhkan", mark: "bar", values: [84 + 17, (64 * 45) / 10] },
+  ]}
+  valueLabel="Ton"
+/>
+
 Periksa: hasil panen C menjadi <InlineMath math="84+17=101" /> ton, jumlah seluruhnya <InlineMath math="288" /> ton, dan <InlineMath math="\frac{288}{45}=6{,}4" />. Jadi, hasil panen kelompok C harus bertambah <InlineMath math="17" /> ton.

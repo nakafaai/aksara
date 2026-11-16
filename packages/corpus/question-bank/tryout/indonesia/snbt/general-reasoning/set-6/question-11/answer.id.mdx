@@ -1,5 +1,17 @@
 Tulis kedua aturan sebagai implikasi. "Hanya boleh ikut final jika hadir pada semua latihan" berarti **ikut final** <InlineMath math="\Rightarrow" /> **hadir pada semua latihan**. Aturan kedua: **ikut final** <InlineMath math="\Rightarrow" /> **mendapat kaus khusus**.
 
+Diagram berikut menggambar kedua aturan sebagai panah. **Kedua panah keluar dari "bermain di final"**, jadi tidak ada yang boleh dibaca terbalik.
+
+<Mermaid
+  title={<>Dua aturan pelatih sebagai implikasi</>}
+  description={<>Pemain yang bermain di final pasti hadir di setiap latihan dan pasti mendapat kaus khusus. Hadir di setiap latihan tidak menjamin bermain di final, dan mendapat kaus khusus juga tidak menjamin bermain di final.</>}
+  chart={`flowchart LR
+    F["Bermain di final"] -->|"aturan 1"| H["Hadir di setiap latihan"]
+    F -->|"aturan 2"| K["Mendapat kaus khusus"]
+    H -.->|"tidak dijamin"| F
+    K -.->|"tidak dijamin"| F`}
+/>
+
 **Simpulan 1** bernilai Benar. Dodi tidak hadir pada semua latihan. Dengan kontraposisi aturan pertama, Dodi tidak ikut final.
 
 **Simpulan 2** bernilai Salah. Hadir pada semua latihan adalah **syarat perlu**, bukan syarat cukup. Pelatih masih dapat tidak memilih Eka.

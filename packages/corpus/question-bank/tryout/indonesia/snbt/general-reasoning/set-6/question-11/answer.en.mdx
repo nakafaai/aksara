@@ -1,5 +1,17 @@
 Mark each conclusion Benar (true, it must follow from the rules) or Salah (false, it need not follow). Write both rules as implications. "May play in the final only if present at every session" means **plays in the final** <InlineMath math="\Rightarrow" /> **attended every session**. The second rule: **plays in the final** <InlineMath math="\Rightarrow" /> **gets a special shirt**.
 
+The diagram below draws both rules as arrows. **Both arrows start from "plays in the final"**, so neither can be read backwards.
+
+<Mermaid
+  title={<>The coach's two rules as implications</>}
+  description={<>A player in the final surely attended every session and surely gets a special shirt. Attending every session doesn't guarantee a place in the final, and getting a special shirt doesn't either.</>}
+  chart={`flowchart LR
+    F["Plays in the final"] -->|"rule 1"| H["Attended every session"]
+    F -->|"rule 2"| K["Gets a special shirt"]
+    H -.->|"not guaranteed"| F
+    K -.->|"not guaranteed"| F`}
+/>
+
 **Conclusion 1** is true. Dodi did not attend every session. By the contrapositive of the first rule, Dodi does not play in the final.
 
 **Conclusion 2** is false. Attending every session is a **necessary condition**, not a sufficient one. The coach may still leave Eka out.
