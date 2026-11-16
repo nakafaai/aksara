@@ -1,80 +1,53 @@
-Für den neuen Mittelwert der Gruppe B brauchst du **die Anzahl der Mitglieder in Gruppe B** und ihre Punktsumme. Die Aufgabe nennt keine einzige Gruppengröße, also musst du sie bestimmen. Der Plan: Bestimme die Gesamtzahl aus dem Austritt eines Mitglieds, teile sie mit dem gemeinsamen Mittelwert auf die Gruppen A und B auf und berechne dann den neuen Mittelwert der Gruppe B.
+Die Aufgabe nennt die Gruppengrößen gar nicht, und auch die Punktzahl des Mitglieds, das geht, fehlt. Es sind also zwei Dinge zu finden, und **zwei Bedingungen der Aufgabe wählen die Antwort aus**: Die Punktzahlen gehen bis <InlineMath math="100" />, und Gruppe B hatte anfangs mehr als <InlineMath math="5" /> Mitglieder.
 
-# Die ursprüngliche Anzahl
+# Das Verhältnis der Gruppengrößen
 
-Sei <InlineMath math="n" /> die ursprüngliche Anzahl der Mitglieder. **Eine Summe ist Mittelwert mal Anzahl**. Vor dem Austritt ist die Summe <InlineMath math="71n" />. Nachdem das Mitglied mit <InlineMath math="98" /> Punkten ausgetreten ist, haben die übrigen <InlineMath math="n-1" /> Mitglieder den Mittelwert <InlineMath math="68" />.
+Der Gesamtdurchschnitt <InlineMath math="71" /> liegt <InlineMath math="6" /> von Gruppe A und <InlineMath math="9" /> von Gruppe B entfernt. **Die Gruppe, die näher am Gesamtdurchschnitt liegt, hat mehr Mitglieder**, also
 
-<BlockMath math="\begin{aligned}
-71n-98&=68(n-1)\\
-71n-98&=68n-68\\
-3n&=30\\
-n&=10
-\end{aligned}" />
+<BlockMath math="n_A:n_B=9:6=3:2,\qquad n_A=3k,\quad n_B=2k,\quad n=5k." />
 
-# Die Größe der Gruppe B
+# Die Punktzahl des Mitglieds, das geht
 
-Gruppe B habe <InlineMath math="b" /> Mitglieder, Gruppe A also <InlineMath math="10-b" />. Die gemeinsame Summe ist <InlineMath math="71\cdot10=710" />.
+Die Punktzahl sei <InlineMath math="s" />. Eine Summe ist der Durchschnitt mal die Zahl der Mitglieder, also
 
 <BlockMath math="\begin{aligned}
-65(10-b)+80b&=710\\
-650+15b&=710\\
-b&=4
+71\cdot5k-s&=69(5k-1)\\
+355k-s&=345k-69\\
+s&=10k+69.
 \end{aligned}" />
 
-Gruppe B hat also <InlineMath math="4" /> Mitglieder und Gruppe A <InlineMath math="6" />. Das passt zur Verhältnisregel: Der Mittelwert von A liegt <InlineMath math="71-65=6" /> vom gemeinsamen Mittelwert entfernt, der von B <InlineMath math="80-71=9" />, also <InlineMath math="n_A:n_B=9:6=3:2" />. **Die Gruppe, deren Mittelwert näher am gemeinsamen Mittelwert liegt, hat mehr Mitglieder**. Das Verhältnis <InlineMath math="3:2" /> allein liefert aber noch nicht die echten Größen, dafür war der erste Schritt nötig.
+**Die Punktzahl <InlineMath math="s" /> hängt von <InlineMath math="k" /> ab**, also kommen hier beide Bedingungen ins Spiel. Punktzahlen bis <InlineMath math="100" /> geben <InlineMath math="10k+69\le100" />, also <InlineMath math="k\le3" />. Mehr als <InlineMath math="5" /> Mitglieder in Gruppe B geben <InlineMath math="2k>5" />, also <InlineMath math="k\ge3" />.
 
-# Der neue Mittelwert der Gruppe B
+Das Diagramm zeigt die drei Werte von <InlineMath math="k" />, die die Bedingung an die Punktzahl erfüllen. **Alle drei passen zu jedem Durchschnitt der Aufgabe**, und erst die Bedingung an die Größe von Gruppe B lässt <InlineMath math="k=3" /> übrig.
 
-Die ursprüngliche Summe der Gruppe B ist <InlineMath math="80\cdot4=320" />. Das ausgetretene Mitglied kam aus Gruppe B, also **sinken sowohl die Summe als auch die Größe der Gruppe B**.
-
-<BlockMath math="\bar{x}_B=\frac{320-98}{4-1}=\frac{222}{3}=74" />
-
-Der Zahlenstrahl zeigt alle diese Mittelwerte. Der Wegfall der Punktzahl <InlineMath math="98" /> weit rechts **zieht den Mittelwert von Gruppe B von <InlineMath math="80" /> auf <InlineMath math="74" />** und den gemeinsamen Mittelwert von <InlineMath math="71" /> auf <InlineMath math="68" />, während Gruppe A bei <InlineMath math="65" /> bleibt.
-
-<MathVisual
-  title={<>Die Mittelwerte vor und nach dem Austritt eines Mitglieds</>}
-  description={<>Auf der Punktlinie liegt der Mittelwert von Gruppe A bei <InlineMath math="65" />. Der gemeinsame Mittelwert sinkt von <InlineMath math="71" /> auf <InlineMath math="68" />. Der Mittelwert von Gruppe B sinkt von <InlineMath math="80" /> auf <InlineMath math="74" />. Das ausscheidende Mitglied hatte <InlineMath math="98" /> Punkte.</>}
-  labels={{
-    a: <InlineMath math="A:65" />,
-    after: <InlineMath math="68" />,
-    all: <InlineMath math="71" />,
-    newb: <InlineMath math="B:74" />,
-    b: <InlineMath math="80" />,
-    out: <InlineMath math="98" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 60, max: 102 }, y: { min: -2, max: 2 } },
-    view: { kind: "fit", padding: 0.04 },
-    objects: [
-      { id: "scale", kind: "segment", appearance: "reference", from: { x: 62, y: 0 }, to: { x: 100, y: 0 } },
-      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 65, y: 0 } },
-      { id: "mean-after", kind: "point", appearance: "construction", at: { x: 68, y: 0 } },
-      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 71, y: 0 } },
-      { id: "mean-newb", kind: "point", appearance: "answer", at: { x: 74, y: 0 } },
-      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 80, y: 0 } },
-      { id: "out", kind: "point", appearance: "warning", at: { x: 98, y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "mean-a", at: { x: 65, y: 0 }, placement: "above" },
-      { key: "after", objectId: "mean-after", at: { x: 68, y: 0 }, placement: "below" },
-      { key: "all", objectId: "mean-all", at: { x: 71, y: 0 }, placement: "above" },
-      { key: "newb", objectId: "mean-newb", at: { x: 74, y: 0 }, placement: "below" },
-      { key: "b", objectId: "mean-b", at: { x: 80, y: 0 }, placement: "above" },
-      { key: "out", objectId: "out", at: { x: 98, y: 0 }, placement: "above" },
-    ],
-  }}
+<Chart
+  title={<>Mögliche Gruppengrößen und neuer Durchschnitt von Gruppe B</>}
+  description={<>Für <InlineMath math="k=1" />, <InlineMath math="2" /> und <InlineMath math="3" /> hat Gruppe B <InlineMath math="2" />, <InlineMath math="4" /> und <InlineMath math="6" /> Mitglieder, die Punktzahl, die geht, ist <InlineMath math="79" />, <InlineMath math="89" /> und <InlineMath math="99" />, und der neue Durchschnitt von Gruppe B ist <InlineMath math="81" />, <InlineMath math="77" /> und <InlineMath math="76{,}2" />. Nur <InlineMath math="k=3" /> gibt Gruppe B mehr als <InlineMath math="5" /> Mitglieder.</>}
+  bars="apart"
+  categories={["k = 1", "k = 2", "k = 3"]}
+  series={[
+    { label: "Punktzahl, die geht", mark: "bar", values: [1, 2, 3].map((k) => 10 * k + 69) },
+    { label: "Neuer Durchschnitt von Gruppe B", mark: "bar", values: [1, 2, 3].map((k) => (80 * 2 * k - (10 * k + 69)) / (2 * k - 1)) },
+  ]}
+  valueLabel="Punkte"
+  valueRange={{ min: 0, max: 100 }}
 />
+
+# Der neue Durchschnitt von Gruppe B
+
+Mit <InlineMath math="k=3" /> hatte Gruppe B anfangs <InlineMath math="6" /> Mitglieder mit der Summe <InlineMath math="80\cdot6=480" />, und die Punktzahl, die geht, ist <InlineMath math="99" />. **Summe und Größe von Gruppe B werden beide kleiner**:
+
+<BlockMath math="\bar{x}_B=\frac{480-99}{6-1}=\frac{381}{5}=76{,}2." />
 
 # Die Probe
 
-**Gruppe A ändert sich nicht**, ihre Summe ist <InlineMath math="6\cdot65=390" />. Die verbliebenen Mitglieder haben zusammen <InlineMath math="390+222=612" /> Punkte bei <InlineMath math="9" /> Personen, und <InlineMath math="\frac{612}{9}=68" />, wie in der Aufgabe.
+Anfangs gab es <InlineMath math="15" /> Mitglieder mit der Summe <InlineMath math="9\cdot65+480=1065" />, und <InlineMath math="\tfrac{1065}{15}=71" />. Nachdem die <InlineMath math="99" /> geht, ist <InlineMath math="\tfrac{966}{14}=69" />, **passend zum neuen Gesamtdurchschnitt**.
 
 # Die verlockenden falschen Antworten
 
-- <InlineMath math="77" /> nimmt an, dass der Mittelwert der Gruppe B **um genauso viel sinkt wie der gemeinsame Mittelwert**, also um <InlineMath math="3" />.
-- <InlineMath math="55{,}5" /> teilt <InlineMath math="222" /> durch <InlineMath math="4" /> und vergisst, dass Gruppe B nur noch <InlineMath math="3" /> Mitglieder hat.
-- <InlineMath math="62" /> nimmt das Verhältnis <InlineMath math="3:2" /> als echte Größen, gibt Gruppe B also <InlineMath math="2" /> Mitglieder und erhält <InlineMath math="\frac{160-98}{1}=62" />.
-- <InlineMath math="76{,}4" /> dreht das Verhältnis um, gibt Gruppe B also <InlineMath math="6" /> Mitglieder und erhält <InlineMath math="\frac{480-98}{5}=76{,}4" />.
+- <InlineMath math="77" /> nimmt <InlineMath math="k=2" /> und übersieht, dass Gruppe B anfangs mehr als <InlineMath math="5" /> Mitglieder hatte.
+- <InlineMath math="81" /> nimmt <InlineMath math="k=1" />, mit demselben Fehler.
+- <InlineMath math="63{,}5" /> teilt <InlineMath math="381" /> durch <InlineMath math="6" /> und **vergisst, dass Gruppe B nur noch <InlineMath math="5" /> Mitglieder hat**.
+- <InlineMath math="78" /> nimmt an, der Durchschnitt von Gruppe B sinke so stark wie der Gesamtdurchschnitt, also um <InlineMath math="2" />.
 
-Der Mittelwert der Gruppe B nach dem Austritt ist also <InlineMath math="74" />.
+Also ist der Durchschnitt von Gruppe B, nachdem das Mitglied gegangen ist, <InlineMath math="76{,}2" />.

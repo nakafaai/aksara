@@ -1,57 +1,48 @@
-Bilangan <InlineMath math="N" /> punya puluhan angka, jadi tidak mungkin dihitung langsung. Rencananya: jabarkan kuadratnya, tulis setiap bagian sebagai deretan angka, lalu gabungkan bagian-bagian itu dengan memperhatikan **apakah ada pinjaman atau simpanan** antarangka.
-
-# Menjabarkan kuadratnya
-
-Pakai bentuk <InlineMath math="(a-b)^2=a^2-2ab+b^2" /> dengan <InlineMath math="a=10^{20}" /> dan <InlineMath math="b=9" />. **Suku tengah <InlineMath math="-2ab" /> tidak boleh hilang**, karena kuadrat selisih bukan selisih kuadrat.
+Menghitung <InlineMath math="N" /> secara langsung tidak mungkin, jadi jabarkan pangkat tiganya dan perhatikan **di posisi mana setiap suku jatuh**. Dengan <InlineMath math="T=10^{20}" />,
 
 <BlockMath math="\begin{aligned}
-N&=\left(10^{20}\right)^2-2\cdot9\cdot10^{20}+9^2\\
-&=10^{40}-18\cdot10^{20}+81
+N&=(T-9)^3=T^3-27T^2+243T-729\\
+&=\underbrace{(T-27)\,T^2}_{\text{blok kiri}}+\underbrace{243T-729}_{\text{blok kanan}}.
 \end{aligned}" />
 
-# Menulis dua suku pertama
+Blok kiri berakhir dengan <InlineMath math="40" /> angka nol, sedangkan blok kanan kurang dari <InlineMath math="10^{23}" />. Jadi **kedua blok tidak saling bertumpuk**, dan jumlah angka <InlineMath math="N" /> adalah jumlah angka kedua blok.
 
-Keluarkan faktor <InlineMath math="10^{20}" /> dari dua suku pertama: <InlineMath math="10^{40}-18\cdot10^{20}=10^{20}\left(10^{20}-18\right)" />. Bilangan <InlineMath math="10^{20}" /> adalah angka <InlineMath math="1" /> diikuti <InlineMath math="20" /> angka nol. Kalau dikurangi <InlineMath math="18" />, hasilnya punya <InlineMath math="20" /> angka: **<InlineMath math="18" /> angka sembilan, lalu angka delapan dan dua**. Contoh kecilnya <InlineMath math="10^4-18=9982" />, yaitu dua angka sembilan lalu delapan dan dua.
+# Blok kiri
 
-Mengalikan dengan <InlineMath math="10^{20}" /> hanya menambahkan <InlineMath math="20" /> angka nol di belakang. Jadi <InlineMath math="10^{40}-18\cdot10^{20}" /> terdiri atas <InlineMath math="18" /> angka sembilan, angka delapan, angka dua, lalu <InlineMath math="20" /> angka nol.
+<InlineMath math="T-27=10^{20}-27" /> ditulis sebagai <InlineMath math="18" /> angka <InlineMath math="9" /> diikuti <InlineMath math="73" />. Dikali <InlineMath math="T^2" /> **hanya menambah angka nol**, jadi jumlah angkanya
 
-# Menambahkan suku terakhir
+<BlockMath math="9\cdot18+7+3=172." />
 
-Dua angka terakhir bilangan tadi adalah nol, jadi menambah <InlineMath math="81" /> hanya mengganti kedua nol itu menjadi delapan dan satu. **Tidak ada simpanan** ke angka lain. Hasilnya: <InlineMath math="18" /> angka sembilan, angka delapan dan dua, <InlineMath math="18" /> angka nol, lalu angka delapan dan satu.
+# Blok kanan dan peminjaman
 
-Cek pola ini dengan bilangan kecil yang bentuknya sama.
+Di sini ada jebakannya. <InlineMath math="243T" /> berakhir dengan <InlineMath math="20" /> angka nol, jadi mengurangkan <InlineMath math="729" /> **memaksa peminjaman** dari angka <InlineMath math="3" />:
 
-<BlockMath math="\left(10^{3}-9\right)^2=991^2=982081" />
+<BlockMath math="243T-729=242\cdot T+\left(10^{20}-729\right)." />
 
-Polanya cocok: satu angka sembilan, delapan dan dua, satu angka nol, lalu delapan dan satu.
+Bagian <InlineMath math="10^{20}-729" /> adalah <InlineMath math="17" /> angka <InlineMath math="9" /> diikuti <InlineMath math="271" />. Jumlah angka blok kanan
 
-# Menjumlahkan angkanya
+<BlockMath math="(2+4+2)+9\cdot17+(2+7+1)=8+153+10=171." />
 
-**Angka nol tidak menambah apa pun**, jadi cukup jumlahkan angka selain nol.
-
-Grafik berikut memisahkan sumbangan setiap bagian penulisan <InlineMath math="N" />. **Delapan belas angka sembilan** menyumbang hampir semuanya, sedangkan kedelapan belas angka nol tidak menyumbang apa pun.
+Grafik berikut menaruh sumbangan setiap bagian berdampingan. **Batang angka sembilan di kedua blok menyumbang hampir semuanya**, jadi salah hitung satu angka sembilan langsung menggeser hasil sebesar <InlineMath math="9" />.
 
 <Chart
-  title={<>Sumbangan setiap bagian penulisan <InlineMath math="N" /> ke jumlah angkanya</>}
-  description={<>Bagian <InlineMath math="18" /> angka sembilan menyumbang <InlineMath math="162" />. Angka delapan dan dua menyumbang <InlineMath math="10" />. Bagian <InlineMath math="18" /> angka nol menyumbang <InlineMath math="0" />. Angka delapan dan satu di ujung menyumbang <InlineMath math="9" />. Totalnya <InlineMath math="181" />.</>}
-  categories={["18 angka 9", "Angka 8 dan 2", "18 angka 0", "Angka 8 dan 1"]}
+  title={<>Sumbangan setiap bagian pada jumlah angka <InlineMath math="N" /></>}
+  description={<>Blok kiri menyumbang <InlineMath math="162" /> dari delapan belas angka sembilan dan <InlineMath math="10" /> dari angka <InlineMath math="7" /> dan <InlineMath math="3" />. Blok kanan menyumbang <InlineMath math="8" /> dari <InlineMath math="242" />, <InlineMath math="153" /> dari tujuh belas angka sembilan, dan <InlineMath math="10" /> dari <InlineMath math="271" />. Totalnya <InlineMath math="343" />.</>}
   bars="apart"
-  series={[{ label: "Sumbangan ke jumlah angka", mark: "bar", values: [18 * 9, 8 + 2, 18 * 0, 8 + 1] }]}
+  categories={["Sembilan blok kiri", "Ekor 73", "Kepala 242", "Sembilan blok kanan", "Ekor 271"]}
+  series={[{ label: "Sumbangan jumlah angka", mark: "bar", values: [9 * 18, 7 + 3, 2 + 4 + 2, 9 * 17, 2 + 7 + 1] }]}
   valueLabel="Jumlah angka"
 />
 
-<BlockMath math="\begin{aligned}
-18\cdot9+8+2+8+1&=162+19\\
-&=181
-\end{aligned}" />
+# Memeriksa hasilnya
 
-Cek cepat: jumlah angka sebuah bilangan bersisa sama dengan bilangan itu jika dibagi <InlineMath math="9" />. Karena <InlineMath math="10^{20}" /> bersisa <InlineMath math="1" />, bilangan <InlineMath math="N" /> bersisa <InlineMath math="(1-0)^2=1" />, dan <InlineMath math="181" /> juga bersisa <InlineMath math="1" />. Kelima pilihan lolos cek ini, jadi cek ini tidak bisa menggantikan perhitungan di atas.
+Total <InlineMath math="172+171=343" />. **Pemeriksaan cepat memakai sisa pembagian oleh <InlineMath math="9" />**: <InlineMath math="10^{20}-9\equiv1-0=1" />, jadi <InlineMath math="N\equiv1" />, dan memang <InlineMath math="343=9\cdot38+1" />.
 
 # Pilihan yang menjebak
 
-- <InlineMath math="172" /> **lupa menambahkan suku <InlineMath math="81" />** di akhir, jadi hanya menghitung <InlineMath math="162+8+2" />.
-- <InlineMath math="190" /> menganggap <InlineMath math="10^{20}-18" /> punya <InlineMath math="19" /> angka sembilan, padahal dua tempat terakhirnya diisi delapan dan dua.
-- <InlineMath math="343" /> salah tanda, memakai <InlineMath math="10^{40}-18\cdot10^{20}-81" />. Pengurangan itu meminjam dari angka dua, sehingga muncul <InlineMath math="18" /> angka sembilan baru dan jumlahnya membengkak.
-- <InlineMath math="352" /> memakai <InlineMath math="(a-b)^2=a^2-b^2" />, yaitu <InlineMath math="10^{40}-81" />, yang terdiri atas <InlineMath math="38" /> angka sembilan lalu satu dan sembilan.
+- <InlineMath math="163" /> mengurangkan angka-angka <InlineMath math="729" /> dari angka-angka <InlineMath math="243" />, yaitu <InlineMath math="172+9-18" />, **tanpa peminjaman**.
+- <InlineMath math="199" /> menjumlahkan angka <InlineMath math="243" /> dan <InlineMath math="729" />, seolah <InlineMath math="729" /> ditambahkan, yaitu <InlineMath math="172+9+18" />.
+- <InlineMath math="334" /> menghitung hanya <InlineMath math="16" /> angka sembilan pada <InlineMath math="10^{20}-729" />.
+- <InlineMath math="352" /> menghitung <InlineMath math="19" /> angka sembilan pada <InlineMath math="10^{20}-27" />.
 
-Jadi, jumlah semua angka pada penulisan <InlineMath math="N" /> adalah <InlineMath math="181" />.
+Jadi, jumlah semua angka pada penulisan <InlineMath math="N" /> adalah <InlineMath math="343" />.

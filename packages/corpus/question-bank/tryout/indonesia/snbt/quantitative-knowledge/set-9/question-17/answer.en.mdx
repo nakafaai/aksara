@@ -1,41 +1,46 @@
-A statement is sufficient when **the number of students who passed both exams has only one possible value**. The key is the base of each percentage: a percent of all students, or a percent of only some of them.
+The second sentence of the question is the key: **every student passed at least one exam**. So nobody sits outside both circles, and
 
-# Statement one alone
+<BlockMath math="\text{passed Mathematics}+\text{passed Physics}-\text{passed both}=200." />
 
-The number who passed Mathematics is <InlineMath math="60\%\cdot200=120" />. The second percentage **is taken of the students who passed Mathematics**, not of all students. Students who passed Mathematics and also passed Physics are exactly the students who passed both exams.
+Without that sentence, percentage data usually gives only a bound, not an exact value. With it, test whether each statement produces **exactly one** value.
 
-<BlockMath math="75\%\cdot120=\frac{3}{4}\cdot120=90" />
+# Statement (1) alone
 
-There's only one value, so statement (1) alone is sufficient.
+The students who passed Mathematics number <InlineMath math="85\%\times200=170" />, and those who passed Physics <InlineMath math="170-30=140" />. Since nobody failed both,
 
-# Statement two alone
+<BlockMath math="x=170+140-200=110." />
 
-The number who passed Physics is <InlineMath math="70\%\cdot200=140" />, and the number who passed neither is <InlineMath math="15\%\cdot200=30" />. So <InlineMath math="200-30=170" /> students passed at least one exam. If <InlineMath math="M" /> students passed Mathematics, **the inclusion-exclusion principle** gives
+There's only one value, so **statement (1) alone is sufficient**.
 
-<BlockMath math="\text{passed both}=M+140-170=M-30." />
+# Statement (2) alone
 
-The value of <InlineMath math="M" /> is unknown. The two situations below both satisfy statement (2), but they give different answers.
+Let the number who passed only Physics be <InlineMath math="a" />. Those who passed only Mathematics number <InlineMath math="3a" />, and those who passed both
 
-| Situation | Mathematics only | Physics only | Both | Neither | Total |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| <InlineMath math="M=120" /> | <InlineMath math="30" /> | <InlineMath math="50" /> | <InlineMath math="90" /> | <InlineMath math="30" /> | <InlineMath math="200" /> |
-| <InlineMath math="M=100" /> | <InlineMath math="30" /> | <InlineMath math="70" /> | <InlineMath math="70" /> | <InlineMath math="30" /> | <InlineMath math="200" /> |
+<BlockMath math="x=200-a-3a=200-4a." />
 
-Statement (2) alone isn't sufficient.
+The value <InlineMath math="x" /> must be a perfect square above <InlineMath math="100" /> and at most <InlineMath math="200" />, so the candidates are <InlineMath math="121" />, <InlineMath math="144" />, <InlineMath math="169" />, and <InlineMath math="196" />. The condition is that <InlineMath math="200-x" /> is divisible by <InlineMath math="4" />.
 
-The chart below follows statement (1) step by step. The <InlineMath math="75\%" /> **is taken of the second bar**, the <InlineMath math="120" /> students who passed Mathematics, not of all <InlineMath math="200" /> students.
+The chart below tests the four candidates. **Two candidates pass**, <InlineMath math="144" /> with <InlineMath math="a=14" /> and <InlineMath math="196" /> with <InlineMath math="a=1" />, so statement (2) alone isn't sufficient.
 
 <Chart
-  title={<>Statement (1) as two filters</>}
-  description={<>Of the <InlineMath math="200" /> students, <InlineMath math="60\%" />, or <InlineMath math="120" />, passed Mathematics. Of those <InlineMath math="120" />, <InlineMath math="75\%" />, or <InlineMath math="90" />, also passed Physics, and they're the ones who passed both exams.</>}
-  categories={["All students", "Passed Mathematics", "Passed both"]}
+  title={<>Candidates for the number who passed both exams under statement (2)</>}
+  description={<>For the candidates <InlineMath math="121" />, <InlineMath math="144" />, <InlineMath math="169" />, and <InlineMath math="196" />, the remainder <InlineMath math="200-x" /> is <InlineMath math="79" />, <InlineMath math="56" />, <InlineMath math="31" />, and <InlineMath math="4" />. Only <InlineMath math="56" /> and <InlineMath math="4" /> are divisible by <InlineMath math="4" />, so <InlineMath math="144" /> and <InlineMath math="196" /> are both possible.</>}
   bars="apart"
-  series={[{ label: "Number of students", mark: "bar", values: [200, (60 / 100) * 200, (75 / 100) * (60 / 100) * 200] }]}
-  valueLabel="Number of students"
+  categories={["121", "144", "169", "196"]}
+  series={[
+    { label: "Remaining 200 - x", mark: "bar", values: [121, 144, 169, 196].map((x) => 200 - x) },
+    { label: "Remainder on division by 4", mark: "bar", values: [121, 144, 169, 196].map((x) => (200 - x) % 4) },
+  ]}
+  valueLabel="Students or remainder"
 />
 
-# Both statements together
+Both splits are valid: <InlineMath math="42" />, <InlineMath math="14" />, and <InlineMath math="144" /> add up to <InlineMath math="200" />, and so do <InlineMath math="3" />, <InlineMath math="1" />, and <InlineMath math="196" />.
 
-The two statements don't contradict each other: the first situation in the table satisfies both. But statement (1) **is already sufficient on its own**, so statement (2) isn't needed. The trap appears if you read <InlineMath math="75\%" /> as a percent of all students. With that reading, statement (1) only tells you how many passed each exam, and you'd think the two statements must be combined.
+# The tempting wrong options
 
-So statement (1) alone is sufficient to answer the question, but statement (2) alone isn't.
+- Each statement alone being sufficient comes from **stopping at the candidate <InlineMath math="144" />** without checking <InlineMath math="196" />.
+- Neither being sufficient comes from treating statement (1) as only a lower bound <InlineMath math="170+140-200" />, though the sentence "every student passed at least one exam" turns that bound into an exact value.
+- Needing both statements together comes from the same slip, plus guessing that statement (2) picks one of the values.
+- Statement (2) alone being sufficient reverses both tests above.
+
+So statement (1) alone is sufficient to answer the question, but statement (2) alone is not.

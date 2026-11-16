@@ -1,49 +1,75 @@
-Eine Aussage reicht, wenn **die Antwort immer gleich ist**, also immer "ja" oder immer "nein", für jedes Paar <InlineMath math="x,y" />, das sie erfüllt. Vergiss nicht, dass die Bedingung <InlineMath math="|x|>|y|" /> vom Anfang der Aufgabe die ganze Zeit gilt. Genau diese Bedingung entscheidet die Antwort.
+Beide Aussagen scheinen davon zu handeln, wie groß <InlineMath math="x" /> im Vergleich zu <InlineMath math="y" /> ist, gefragt ist aber nach dem **Vorzeichen** von <InlineMath math="x" />. Übersetze also zuerst jede Aussage in Angaben über Vorzeichen.
 
 # Nur Aussage (1)
 
-Zeig zuerst, dass <InlineMath math="x" /> positiv sein muss. Angenommen, <InlineMath math="x\le0" />. Dann ist <InlineMath math="|x|=-x" />, und aus <InlineMath math="|y|<|x|" /> folgt <InlineMath math="y\le|y|<-x" />, also <InlineMath math="x+y<0" />. Das widerspricht Aussage (1). Also **erzwingt Aussage (1) zusammen mit der Anfangsbedingung <InlineMath math="x>0" />**.
+<InlineMath math="\tfrac{x}{y}>1" /> heißt, dass <InlineMath math="\tfrac{x}{y}" /> positiv ist, also **haben <InlineMath math="x" /> und <InlineMath math="y" /> dasselbe Vorzeichen**, und <InlineMath math="\left|\tfrac{x}{y}\right|>1" />, also <InlineMath math="|x|>|y|" />. Das gemeinsame Vorzeichen ist noch offen:
 
-Das Vorzeichen von <InlineMath math="y" /> ist noch frei. Das Paar <InlineMath math="x=2,\ y=1" /> erfüllt alle Bedingungen und liefert <InlineMath math="xy=2>0" />, die Antwort ist ja. Auch das Paar <InlineMath math="x=2,\ y=-1" /> passt, denn <InlineMath math="x+y=1>0" /> und <InlineMath math="|2|>|-1|" />, aber <InlineMath math="xy=-2" />, die Antwort ist nein. Aussage (1) allein reicht nicht.
+- <InlineMath math="x=3" />, <InlineMath math="y=1" /> passt, und <InlineMath math="x>0" />.
+- <InlineMath math="x=-3" />, <InlineMath math="y=-1" /> passt auch, aber <InlineMath math="x<0" />.
+
+Aussage (1) allein reicht also nicht. Die Falle ist, <InlineMath math="\tfrac{x}{y}>1" /> als <InlineMath math="x>y" /> zu lesen, obwohl die Multiplikation mit einem negativen <InlineMath math="y" /> die Ungleichung umdreht.
 
 # Nur Aussage (2)
 
-Für <InlineMath math="x^2y>0" /> darf der Faktor <InlineMath math="x^2" /> nicht null sein, und weil <InlineMath math="x^2" /> positiv ist, **muss <InlineMath math="y" /> positiv sein**. Das Vorzeichen von <InlineMath math="x" /> ist noch frei. Das Paar <InlineMath math="x=2,\ y=1" /> liefert ja. Das Paar <InlineMath math="x=-2,\ y=1" /> erfüllt <InlineMath math="x^2y=4>0" /> und <InlineMath math="|-2|>|1|" />, aber <InlineMath math="xy=-2" />, die Antwort ist nein. Aussage (2) allein reicht nicht.
+Bring alles auf eine Seite:
+
+<BlockMath math="x^2y-y^3=y\left(x^2-y^2\right)>0." />
+
+Diese Aussage **legt das Vorzeichen von <InlineMath math="y" /> fest, nicht das von <InlineMath math="x" />**. Das Paar <InlineMath math="x=2" />, <InlineMath math="y=1" /> passt mit <InlineMath math="x>0" />, und <InlineMath math="x=-2" />, <InlineMath math="y=1" /> passt ebenfalls, weil <InlineMath math="1\cdot(4-1)>0" />, aber <InlineMath math="x<0" />. Aussage (2) allein reicht also nicht.
 
 # Beide Aussagen zusammen
 
-Aussage (1) mit der Anfangsbedingung liefert <InlineMath math="x>0" />, Aussage (2) liefert <InlineMath math="y>0" />. Das Produkt zweier positiver Zahlen ist immer positiv, also gilt <InlineMath math="xy>0" /> für jedes passende Paar. Die Antwort ist **immer ja**, also reichen beide Aussagen zusammen.
+Das Diagramm verbindet die Angaben aus beiden Aussagen. **Aussage (1) liefert, was Aussage (2) aufschließt**, und Aussage (2) liefert dann das Vorzeichen von <InlineMath math="y" />, das Aussage (1) braucht.
 
-# Warum die Anfangsbedingung zählt
+<Mermaid
+  title={<>Die Kette der Vorzeichen aus beiden Aussagen</>}
+  description={<>Aussage (1) liefert <InlineMath math="|x|>|y|" /> und gleiche Vorzeichen von <InlineMath math="x" /> und <InlineMath math="y" />. Aus <InlineMath math="|x|>|y|" /> ist der Faktor <InlineMath math="x^2-y^2" /> positiv, also erzwingt Aussage (2) <InlineMath math="y>0" />. Weil die Vorzeichen gleich sind, gilt <InlineMath math="x>0" />.</>}
+  chart={`flowchart LR
+    A["Aussage 1: x/y größer als 1"] --> B["Betrag von x größer als Betrag von y"]
+    A --> C["x und y haben dasselbe Vorzeichen"]
+    B --> D["Faktor x Quadrat minus y Quadrat positiv"]
+    D -->|"Aussage 2"| E["y positiv"]
+    E --> F["x positiv"]
+    C --> F`}
+/>
 
-Ohne <InlineMath math="|x|>|y|" /> würden auch beide Aussagen zusammen nicht reichen. Das Paar <InlineMath math="x=-1,\ y=2" /> erfüllt <InlineMath math="x+y=1>0" /> und <InlineMath math="x^2y=2>0" />, aber <InlineMath math="xy=-2" />. Dieses Paar verletzt <InlineMath math="|x|>|y|" />, ist also nicht erlaubt. Wenn du **die Anfangsbedingung vergisst**, wählst du die Antwort, dass keine der beiden Aussagen reicht.
-
-Die Abbildung markiert die Paare, die die Ausgangsbedingung und beide Aussagen zugleich erfüllen. **Dieser Bereich liegt ganz im ersten Quadranten**, also ist <InlineMath math="xy" /> immer positiv. Der Punkt <InlineMath math="(2,-1)" /> erfüllt nur Aussage (1), der Punkt <InlineMath math="(-2,1)" /> nur Aussage (2).
+Die <InlineMath math="xy" />-Ebene unten zeigt dasselbe. **Aussage (1) liefert zwei Keile**, und Aussage (2) entfernt den Keil im III. Quadranten, weil dort <InlineMath math="y<0" /> ist, aber <InlineMath math="x^2-y^2>0" />.
 
 <MathVisual
-  title={<>Paare, die <InlineMath math="|x|>|y|" />, Aussage (1) und Aussage (2) erfüllen</>}
-  description={<>Der schraffierte Bereich liegt zwischen der Geraden <InlineMath math="y=x" /> und der positiven <InlineMath math="x" />-Achse, also <InlineMath math="x>y>0" />. Der Punkt <InlineMath math="(2,1)" /> liegt darin. Der Punkt <InlineMath math="(2,-1)" /> erfüllt die Ausgangsbedingung und Aussage (1), der Punkt <InlineMath math="(-2,1)" /> die Ausgangsbedingung und Aussage (2), aber bei beiden ist <InlineMath math="xy<0" />.</>}
+  title={<>Das Gebiet, das Aussage (1) und Aussage (2) erfüllt</>}
+  description={<>Aussage (1) gilt auf zwei Keilen zwischen der <InlineMath math="x" />-Achse und der Geraden <InlineMath math="y=x" />: dem Keil <InlineMath math="0<y<x" /> im I. Quadranten und dem Keil <InlineMath math="x<y<0" /> im III. Quadranten. Aussage (2) gilt nur auf dem Keil im I. Quadranten, wo <InlineMath math="x>0" /> ist.</>}
   labels={{
-    yes: <InlineMath math="(2,1)" />,
-    one: <InlineMath math="(2,-1)" />,
-    two: <InlineMath math="(-2,1)" />,
+    keep: <>bleibt</>,
+    drop: <>fällt weg</>,
+    line: <InlineMath math="y=x" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 5 }, y: { min: -4, max: 4 } },
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "both", kind: "region", appearance: "highlight", inequalities: ["x > y", "x > -y", "y > 0", "x < 5"] },
-      { id: "yes", kind: "point", appearance: "answer", at: { x: 2, y: 1 } },
-      { id: "one", kind: "point", appearance: "warning", at: { x: 2, y: -1 } },
-      { id: "two", kind: "point", appearance: "warning", at: { x: -2, y: 1 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -4 }, to: { x: 0, y: 4 } },
+      { id: "diag", kind: "segment", appearance: "construction", from: { x: -4, y: -4 }, to: { x: 4, y: 4 } },
+      { id: "anti", kind: "segment", appearance: "construction", from: { x: -4, y: 4 }, to: { x: 4, y: -4 } },
+      { id: "keep", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }] },
+      { id: "drop", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: -4, y: 0 }, { x: -4, y: -4 }] },
     ],
     labels: [
-      { key: "yes", objectId: "yes", at: { x: 2, y: 1 }, placement: "above" },
-      { key: "one", objectId: "one", at: { x: 2, y: -1 }, placement: "below" },
-      { key: "two", objectId: "two", at: { x: -2, y: 1 }, placement: "above" },
+      { key: "keep", objectId: "keep", at: { x: 3, y: 1 }, placement: "center" },
+      { key: "drop", objectId: "drop", at: { x: -3, y: -1 }, placement: "center" },
+      { key: "line", objectId: "diag", at: { x: 3.5, y: 3.5 }, placement: "above-left" },
     ],
   }}
 />
 
-Beide Aussagen zusammen reichen also aus, um die Frage zu beantworten, aber keine Aussage allein.
+Die Antwort ist immer „ja“, also reichen beide Aussagen zusammen.
+
+# Die verlockenden falschen Antworten
+
+- Dass Aussage (1) allein reicht, entsteht, wenn du <InlineMath math="\tfrac{x}{y}>1" /> als <InlineMath math="x>y" /> liest und <InlineMath math="x" /> dann für positiv hältst, **ohne zu bedenken, dass <InlineMath math="y" /> negativ sein darf**.
+- Dass Aussage (2) allein reicht, entsteht, wenn du beide Seiten von <InlineMath math="x^2y>y^3" /> durch <InlineMath math="y^2" /> teilst, <InlineMath math="x^2>y^2" /> erhältst und <InlineMath math="x" /> für positiv hältst.
+- Dass jede allein reicht, verbindet beide Fehler.
+- Dass keine reicht, entsteht, wenn du die Aussagen einzeln prüfst, aber nie verbindest.
+
+Also reichen beide Aussagen zusammen, um die Frage zu beantworten, eine allein aber nicht.

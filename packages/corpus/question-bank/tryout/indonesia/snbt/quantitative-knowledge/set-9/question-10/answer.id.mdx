@@ -1,44 +1,41 @@
-Kejadian yang ditanyakan punya dua syarat sekaligus: **tiga lantai berbeda** dan **Ani turun paling dulu**. Rencananya: tentukan ruang sampel yang setiap hasilnya berpeluang sama, hitung hasil yang memenuhi kedua syarat, lalu cek dengan jalan lain.
+Soal ini memuat dua hal yang mudah terlewat: **peluangnya bersyarat**, karena sudah diketahui Ani turun lebih dulu daripada Budi, dan **Cici boleh turun bersamaan** dengan orang lain di lantai tertinggi.
 
-# Ruang sampel
+# Ruang sampel yang baru
 
-Setiap orang memilih satu dari <InlineMath math="8" /> lantai, dan pilihan mereka saling bebas. Hasilnya dicatat berurutan sebagai lantai Ani, lantai Budi, dan lantai Cici. **Hasil yang dicatat berurutan inilah yang berpeluang sama**. Kumpulan lantai tanpa urutan tidak berpeluang sama, karena satu kumpulan bisa muncul dari banyak susunan orang.
+Syarat "lantai Ani lebih rendah daripada lantai Budi" **mengganti ruang sampel**. Pasangan lantai <InlineMath math="(a,b)" /> dengan <InlineMath math="a<b" /> ada <InlineMath math="\binom{8}{2}=28" />, dan Cici bebas memilih <InlineMath math="8" /> lantai, jadi
 
-<BlockMath math="n(S)=8\cdot8\cdot8=512" />
+<BlockMath math="n(\text{syarat})=28\cdot8=224." />
 
-# Hasil yang memenuhi
+# Menghitung kejadiannya
 
-Pilih dulu tiga lantai berbeda, ada <InlineMath math="\binom{8}{3}=56" /> cara. Lift bergerak naik, jadi orang di lantai terendah turun paling dulu. Supaya Ani turun paling dulu, **Ani harus mendapat lantai terendah** dari ketiganya, hanya satu cara. Budi dan Cici mengisi dua lantai sisanya dalam <InlineMath math="2" /> cara.
+Karena <InlineMath math="a<b" />, lantai tertinggi Ani dan Budi adalah <InlineMath math="b" />. Cici turun di lantai tertinggi kalau <InlineMath math="c\ge b" />, jadi untuk Budi di lantai <InlineMath math="b" /> ada <InlineMath math="9-b" /> pilihan untuk Cici, dan ada <InlineMath math="b-1" /> pilihan untuk Ani. **Banyak cara bergantung pada lantai Budi**, sehingga perlu dijumlahkan per kasus:
 
-<BlockMath math="\begin{aligned}
-n(A)&=56\cdot1\cdot2=112\\
-P(A)&=\frac{112}{512}=\frac{7}{32}
-\end{aligned}" />
+<BlockMath math="\sum_{b=2}^{8}(b-1)(9-b)=7+12+15+16+15+12+7=84." />
 
-Grafik berikut menyaring hasil percobaan bertahap. Dari <InlineMath math="512" /> hasil, <InlineMath math="336" /> punya tiga lantai berbeda, dan **tepat sepertiganya** menaruh Ani di lantai terendah.
+Grafik berikut memperlihatkan sumbangan setiap lantai Budi. **Batang tertinggi ada di tengah**, karena Budi di lantai tengah memberi banyak pilihan sekaligus untuk Ani di bawahnya dan Cici di atasnya.
 
 <Chart
-  title={<>Menyaring hasil pemilihan lantai</>}
-  description={<>Semua hasil berurutan ada <InlineMath math="8^3=512" />. Hasil dengan tiga lantai berbeda ada <InlineMath math="8\cdot7\cdot6=336" />. Di antaranya, Ani mendapat lantai terendah pada <InlineMath math="112" /> hasil, sehingga peluangnya <InlineMath math="\tfrac{112}{512}=\tfrac{7}{32}" />.</>}
-  categories={["Semua hasil", "Tiga lantai berbeda", "Ani turun paling dulu"]}
+  title={<>Banyak susunan dengan Cici di lantai tertinggi menurut lantai Budi</>}
+  description={<>Untuk Budi di lantai <InlineMath math="2" /> sampai <InlineMath math="8" />, banyak susunannya <InlineMath math="7" />, <InlineMath math="12" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="15" />, <InlineMath math="12" />, dan <InlineMath math="7" />, yaitu <InlineMath math="(b-1)(9-b)" />. Jumlahnya <InlineMath math="84" /> dari <InlineMath math="224" /> susunan yang memenuhi syarat.</>}
   bars="apart"
-  series={[{ label: "Banyak hasil", mark: "bar", values: [8 ** 3, 8 * 7 * 6, (8 * 7 * 6) / 3] }]}
-  valueLabel="Banyak hasil"
+  categories={["2", "3", "4", "5", "6", "7", "8"]}
+  series={[{ label: "Susunan dengan Cici di lantai tertinggi", mark: "bar", values: [2, 3, 4, 5, 6, 7, 8].map((b) => (b - 1) * (9 - b)) }]}
+  valueLabel="Banyak susunan"
 />
+
+Jadi peluangnya
+
+<BlockMath math="P=\frac{84}{224}=\frac{3}{8}." />
 
 # Memeriksa dengan jalan lain
 
-Peluang ketiga lantai berbeda adalah <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Kalau ketiga lantai sudah berbeda, **setiap orang punya kesempatan yang sama** untuk berada di lantai terendah, jadi peluang Ani yang terendah adalah <InlineMath math="\frac{1}{3}" />.
-
-<BlockMath math="\frac{21}{32}\cdot\frac{1}{3}=\frac{7}{32}" />
-
-Hasilnya sama.
+Pisahkan Cici yang turun sendirian paling akhir, <InlineMath math="c>b" />, dari Cici yang turun bersama Budi, <InlineMath math="c=b" />. **Kasus sendirian** memberi <InlineMath math="\sum(b-1)(8-b)=56" /> susunan, dan kasus bersama Budi memberi <InlineMath math="28" /> susunan, satu untuk setiap pasangan <InlineMath math="(a,b)" />. Totalnya <InlineMath math="56+28=84" />, sama.
 
 # Pilihan yang menjebak
 
-- <InlineMath math="\frac{21}{32}" /> hanya memakai syarat tiga lantai berbeda dan **melupakan syarat Ani turun paling dulu**.
-- <InlineMath math="\frac{1}{3}" /> adalah peluang Ani turun paling dulu jika tiga lantai berbeda sudah pasti. Padahal tiga lantai berbeda adalah bagian dari kejadian, dengan peluang <InlineMath math="\frac{21}{32}" />.
-- <InlineMath math="\frac{35}{128}" /> membolehkan Budi dan Cici turun di lantai yang sama, yaitu menghitung <InlineMath math="7^2+6^2+\dots+1^2=140" /> hasil di mana Ani paling rendah. Ini melanggar syarat tiga lantai berbeda.
-- <InlineMath math="\frac{1}{4}" /> menghitung peluang tiga lantai berbeda sebagai <InlineMath math="\frac{7}{8}\cdot\frac{6}{7}=\frac{3}{4}" />, seolah lantai yang sudah dipilih tidak bisa dipilih lagi. Cici tetap memilih dari <InlineMath math="8" /> lantai, jadi faktor keduanya <InlineMath math="\frac{6}{8}" />.
+- <InlineMath math="\tfrac{1}{4}" /> hanya menghitung Cici yang turun sendirian di lantai tertinggi, <InlineMath math="\tfrac{56}{224}" />, **lupa bahwa Cici boleh turun bersama Budi**.
+- <InlineMath math="\tfrac{1}{3}" /> memakai simetri "setiap orang sama-sama mungkin menjadi yang terakhir", yang mengabaikan kemungkinan lantai yang sama dan syarat tentang Ani dan Budi.
+- <InlineMath math="\tfrac{51}{128}" /> mengabaikan syarat, yaitu menghitung <InlineMath math="c\ge\max(a,b)" /> pada semua <InlineMath math="512" /> susunan.
+- <InlineMath math="\tfrac{9}{16}" /> hanya membandingkan Cici dengan Budi tanpa syarat, <InlineMath math="P(c\ge b)=\tfrac{36}{64}" />.
 
-Jadi, peluang ketiga orang turun di tiga lantai berbeda dan Ani turun paling dulu adalah <InlineMath math="\frac{7}{32}" />.
+Jadi, peluang Cici turun di lantai tertinggi di antara ketiganya adalah <InlineMath math="\tfrac{3}{8}" />.

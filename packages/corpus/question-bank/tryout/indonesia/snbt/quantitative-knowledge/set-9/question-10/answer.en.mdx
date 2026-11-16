@@ -1,44 +1,41 @@
-The event in the question has two conditions at once: **three different floors** and **Ani gets off first**. The plan: pick a sample space whose outcomes are equally likely, count the outcomes that meet both conditions, then check another way.
+This question hides two things that are easy to miss: **the probability is conditional**, since we already know Ani gets off before Budi, and **Cici may get off together** with someone else on the top floor.
 
-# The sample space
+# The new sample space
 
-Each person picks one of <InlineMath math="8" /> floors, and the choices are independent. Record the outcome in order: Ani's floor, Budi's floor, Cici's floor. **These ordered outcomes are the equally likely ones**. Unordered sets of floors aren't equally likely, because one set can come from many different assignments of people.
+The condition "Ani's floor is lower than Budi's" **replaces the sample space**. Floor pairs <InlineMath math="(a,b)" /> with <InlineMath math="a<b" /> number <InlineMath math="\binom{8}{2}=28" />, and Cici freely picks one of <InlineMath math="8" /> floors, so
 
-<BlockMath math="n(S)=8\cdot8\cdot8=512" />
+<BlockMath math="n(\text{condition})=28\cdot8=224." />
 
-# The outcomes that count
+# Counting the event
 
-First choose three different floors, in <InlineMath math="\binom{8}{3}=56" /> ways. The lift only goes up, so the person on the lowest floor gets off first. For Ani to get off first, **Ani must get the lowest of the three floors**, which is one way. Budi and Cici fill the other two floors in <InlineMath math="2" /> ways.
+Since <InlineMath math="a<b" />, the higher of Ani's and Budi's floors is <InlineMath math="b" />. Cici is on the top floor when <InlineMath math="c\ge b" />, so with Budi on floor <InlineMath math="b" /> there are <InlineMath math="9-b" /> choices for Cici and <InlineMath math="b-1" /> choices for Ani. **The count depends on Budi's floor**, so add it up case by case:
 
-<BlockMath math="\begin{aligned}
-n(A)&=56\cdot1\cdot2=112\\
-P(A)&=\frac{112}{512}=\frac{7}{32}
-\end{aligned}" />
+<BlockMath math="\sum_{b=2}^{8}(b-1)(9-b)=7+12+15+16+15+12+7=84." />
 
-The chart below filters the outcomes step by step. Of the <InlineMath math="512" /> outcomes, <InlineMath math="336" /> have three different floors, and **exactly a third of those** put Ani on the lowest floor.
+The chart below shows what each of Budi's floors contributes. **The tallest bar is in the middle**, because Budi on a middle floor leaves plenty of choices both for Ani below and for Cici above.
 
 <Chart
-  title={<>Filtering the floor choices</>}
-  description={<>All ordered outcomes number <InlineMath math="8^3=512" />. Outcomes with three different floors number <InlineMath math="8\cdot7\cdot6=336" />. Of those, Ani has the lowest floor in <InlineMath math="112" />, so the probability is <InlineMath math="\tfrac{112}{512}=\tfrac{7}{32}" />.</>}
-  categories={["All outcomes", "Three different floors", "Ani gets off first"]}
+  title={<>Arrangements with Cici on the top floor by Budi's floor</>}
+  description={<>For Budi on floors <InlineMath math="2" /> to <InlineMath math="8" />, the counts are <InlineMath math="7" />, <InlineMath math="12" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="15" />, <InlineMath math="12" />, and <InlineMath math="7" />, that is <InlineMath math="(b-1)(9-b)" />. They add up to <InlineMath math="84" /> of the <InlineMath math="224" /> arrangements that meet the condition.</>}
   bars="apart"
-  series={[{ label: "Number of outcomes", mark: "bar", values: [8 ** 3, 8 * 7 * 6, (8 * 7 * 6) / 3] }]}
-  valueLabel="Number of outcomes"
+  categories={["2", "3", "4", "5", "6", "7", "8"]}
+  series={[{ label: "Arrangements with Cici on the top floor", mark: "bar", values: [2, 3, 4, 5, 6, 7, 8].map((b) => (b - 1) * (9 - b)) }]}
+  valueLabel="Arrangements"
 />
+
+So the probability is
+
+<BlockMath math="P=\frac{84}{224}=\frac{3}{8}." />
 
 # Checking another way
 
-The probability that all three floors differ is <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Once the three floors differ, **each person is equally likely** to have the lowest one, so the chance that it's Ani is <InlineMath math="\frac{1}{3}" />.
-
-<BlockMath math="\frac{21}{32}\cdot\frac{1}{3}=\frac{7}{32}" />
-
-The result matches.
+Separate Cici getting off alone last, <InlineMath math="c>b" />, from Cici getting off with Budi, <InlineMath math="c=b" />. **The alone case** gives <InlineMath math="\sum(b-1)(8-b)=56" /> arrangements, and the with-Budi case gives <InlineMath math="28" />, one for each pair <InlineMath math="(a,b)" />. The total is <InlineMath math="56+28=84" />, the same.
 
 # The tempting wrong options
 
-- <InlineMath math="\frac{21}{32}" /> uses only the three-different-floors condition and **forgets that Ani must get off first**.
-- <InlineMath math="\frac{1}{3}" /> is the chance that Ani gets off first when three different floors are already certain. But the three different floors are part of the event, with probability <InlineMath math="\frac{21}{32}" />.
-- <InlineMath math="\frac{35}{128}" /> lets Budi and Cici get off on the same floor, counting <InlineMath math="7^2+6^2+\dots+1^2=140" /> outcomes where Ani is lowest. That breaks the three-different-floors condition.
-- <InlineMath math="\frac{1}{4}" /> computes the chance of three different floors as <InlineMath math="\frac{7}{8}\cdot\frac{6}{7}=\frac{3}{4}" />, as if a chosen floor couldn't be chosen again. Cici still picks from <InlineMath math="8" /> floors, so the second factor is <InlineMath math="\frac{6}{8}" />.
+- <InlineMath math="\tfrac{1}{4}" /> counts only Cici getting off alone on the top floor, <InlineMath math="\tfrac{56}{224}" />, **forgetting that Cici may get off with Budi**.
+- <InlineMath math="\tfrac{1}{3}" /> uses the symmetry "each person is equally likely to be last", which ignores shared floors and the condition on Ani and Budi.
+- <InlineMath math="\tfrac{51}{128}" /> ignores the condition, counting <InlineMath math="c\ge\max(a,b)" /> over all <InlineMath math="512" /> arrangements.
+- <InlineMath math="\tfrac{9}{16}" /> only compares Cici with Budi without the condition, <InlineMath math="P(c\ge b)=\tfrac{36}{64}" />.
 
-So the probability that the three get off on three different floors and Ani gets off first is <InlineMath math="\frac{7}{32}" />.
+So the probability that Cici gets off on the highest floor of the three is <InlineMath math="\tfrac{3}{8}" />.

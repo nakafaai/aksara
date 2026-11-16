@@ -1,57 +1,48 @@
-The number <InlineMath math="N" /> has dozens of digits, so you can't multiply it out by hand. The plan: expand the square, write each part as a string of digits, then combine the parts while watching **whether any borrowing or carrying happens** between digits.
-
-# Expanding the square
-
-Use <InlineMath math="(a-b)^2=a^2-2ab+b^2" /> with <InlineMath math="a=10^{20}" /> and <InlineMath math="b=9" />. **The middle term <InlineMath math="-2ab" /> can't disappear**, because the square of a difference isn't the difference of the squares.
+Computing <InlineMath math="N" /> directly is out of reach, so expand the cube and watch **where each term lands**. With <InlineMath math="T=10^{20}" />,
 
 <BlockMath math="\begin{aligned}
-N&=\left(10^{20}\right)^2-2\cdot9\cdot10^{20}+9^2\\
-&=10^{40}-18\cdot10^{20}+81
+N&=(T-9)^3=T^3-27T^2+243T-729\\
+&=\underbrace{(T-27)\,T^2}_{\text{left block}}+\underbrace{243T-729}_{\text{right block}}.
 \end{aligned}" />
 
-# Writing the first two terms
+The left block ends in <InlineMath math="40" /> zeros, while the right block is less than <InlineMath math="10^{23}" />. So **the two blocks don't overlap**, and the digit sum of <InlineMath math="N" /> is the digit sum of both blocks.
 
-Factor <InlineMath math="10^{20}" /> out of the first two terms: <InlineMath math="10^{40}-18\cdot10^{20}=10^{20}\left(10^{20}-18\right)" />. The number <InlineMath math="10^{20}" /> is a <InlineMath math="1" /> followed by <InlineMath math="20" /> zeros. Subtract <InlineMath math="18" /> and you get a <InlineMath math="20" />-digit number: **<InlineMath math="18" /> nines, then an eight and a two**. A small example is <InlineMath math="10^4-18=9982" />, two nines and then an eight and a two.
+# The left block
 
-Multiplying by <InlineMath math="10^{20}" /> just adds <InlineMath math="20" /> zeros at the end. So <InlineMath math="10^{40}-18\cdot10^{20}" /> is <InlineMath math="18" /> nines, an eight, a two, and then <InlineMath math="20" /> zeros.
+<InlineMath math="T-27=10^{20}-27" /> is written as <InlineMath math="18" /> nines followed by <InlineMath math="73" />. Multiplying by <InlineMath math="T^2" /> **only adds zeros**, so its digit sum is
 
-# Adding the last term
+<BlockMath math="9\cdot18+7+3=172." />
 
-The last two digits of that number are zeros, so adding <InlineMath math="81" /> just turns those two zeros into an eight and a one. **Nothing carries** into any other digit. The result is <InlineMath math="18" /> nines, an eight and a two, <InlineMath math="18" /> zeros, then an eight and a one.
+# The right block and the borrow
 
-Check the pattern with a small number of the same shape.
+This is where the trap sits. <InlineMath math="243T" /> ends in <InlineMath math="20" /> zeros, so subtracting <InlineMath math="729" /> **forces a borrow** from the digit <InlineMath math="3" />:
 
-<BlockMath math="\left(10^{3}-9\right)^2=991^2=982081" />
+<BlockMath math="243T-729=242\cdot T+\left(10^{20}-729\right)." />
 
-The pattern fits: one nine, an eight and a two, one zero, then an eight and a one.
+The part <InlineMath math="10^{20}-729" /> is <InlineMath math="17" /> nines followed by <InlineMath math="271" />. The right block's digit sum is
 
-# Adding the digits
+<BlockMath math="(2+4+2)+9\cdot17+(2+7+1)=8+153+10=171." />
 
-**Zeros add nothing**, so you only need the nonzero digits.
-
-The chart below separates what each part of <InlineMath math="N" /> adds. **The eighteen nines** contribute almost everything, while the eighteen zeros add nothing.
+The chart below puts each part's contribution side by side. **The nines in both blocks contribute almost everything**, so miscounting one nine shifts the result by <InlineMath math="9" />.
 
 <Chart
-  title={<>What each part of <InlineMath math="N" /> adds to its digit sum</>}
-  description={<>The <InlineMath math="18" /> nines add <InlineMath math="162" />. The eight and the two add <InlineMath math="10" />. The <InlineMath math="18" /> zeros add <InlineMath math="0" />. The final eight and one add <InlineMath math="9" />. The total is <InlineMath math="181" />.</>}
-  categories={["18 nines", "Digits 8 and 2", "18 zeros", "Digits 8 and 1"]}
+  title={<>Each part's contribution to the digit sum of <InlineMath math="N" /></>}
+  description={<>The left block contributes <InlineMath math="162" /> from eighteen nines and <InlineMath math="10" /> from the digits <InlineMath math="7" /> and <InlineMath math="3" />. The right block contributes <InlineMath math="8" /> from <InlineMath math="242" />, <InlineMath math="153" /> from seventeen nines, and <InlineMath math="10" /> from <InlineMath math="271" />. The total is <InlineMath math="343" />.</>}
   bars="apart"
-  series={[{ label: "Contribution to the digit sum", mark: "bar", values: [18 * 9, 8 + 2, 18 * 0, 8 + 1] }]}
+  categories={["Left-block nines", "Tail 73", "Head 242", "Right-block nines", "Tail 271"]}
+  series={[{ label: "Contribution to the digit sum", mark: "bar", values: [9 * 18, 7 + 3, 2 + 4 + 2, 9 * 17, 2 + 7 + 1] }]}
   valueLabel="Digit sum"
 />
 
-<BlockMath math="\begin{aligned}
-18\cdot9+8+2+8+1&=162+19\\
-&=181
-\end{aligned}" />
+# Checking the result
 
-A quick check: a number and its digit sum leave the same remainder when divided by <InlineMath math="9" />. Since <InlineMath math="10^{20}" /> leaves remainder <InlineMath math="1" />, the number <InlineMath math="N" /> leaves <InlineMath math="(1-0)^2=1" />, and <InlineMath math="181" /> leaves <InlineMath math="1" /> too. All five options pass this check, so it can't replace the work above.
+The total is <InlineMath math="172+171=343" />. **A quick check uses the remainder on division by <InlineMath math="9" />**: <InlineMath math="10^{20}-9\equiv1-0=1" />, so <InlineMath math="N\equiv1" />, and indeed <InlineMath math="343=9\cdot38+1" />.
 
 # The tempting wrong options
 
-- <InlineMath math="172" /> **forgets to add the final <InlineMath math="81" />**, so it only counts <InlineMath math="162+8+2" />.
-- <InlineMath math="190" /> thinks <InlineMath math="10^{20}-18" /> has <InlineMath math="19" /> nines, but its last two places hold the eight and the two.
-- <InlineMath math="343" /> has a sign error and uses <InlineMath math="10^{40}-18\cdot10^{20}-81" />. That subtraction borrows from the two, which creates <InlineMath math="18" /> new nines and inflates the sum.
-- <InlineMath math="352" /> uses <InlineMath math="(a-b)^2=a^2-b^2" />, that is <InlineMath math="10^{40}-81" />, which is <InlineMath math="38" /> nines followed by a one and a nine.
+- <InlineMath math="163" /> subtracts the digits of <InlineMath math="729" /> from the digits of <InlineMath math="243" />, that is <InlineMath math="172+9-18" />, **without the borrow**.
+- <InlineMath math="199" /> adds the digits of <InlineMath math="243" /> and <InlineMath math="729" />, as if <InlineMath math="729" /> were added, that is <InlineMath math="172+9+18" />.
+- <InlineMath math="334" /> counts only <InlineMath math="16" /> nines in <InlineMath math="10^{20}-729" />.
+- <InlineMath math="352" /> counts <InlineMath math="19" /> nines in <InlineMath math="10^{20}-27" />.
 
-So the sum of all the digits of <InlineMath math="N" /> is <InlineMath math="181" />.
+So the sum of all digits of <InlineMath math="N" /> is <InlineMath math="343" />.

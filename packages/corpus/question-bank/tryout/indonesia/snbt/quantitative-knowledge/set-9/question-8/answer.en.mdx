@@ -1,49 +1,75 @@
-A statement is sufficient when **the answer is always the same**, always "yes" or always "no", for every pair <InlineMath math="x,y" /> that satisfies it. Don't forget that the condition <InlineMath math="|x|>|y|" /> from the start of the question holds the whole time. That condition decides the answer.
+Both statements seem to be about how big <InlineMath math="x" /> is compared with <InlineMath math="y" />, yet the question asks about the **sign** of <InlineMath math="x" />. So translate each statement into facts about signs first.
 
-# Statement one alone
+# Statement (1) alone
 
-First, show that <InlineMath math="x" /> must be positive. Suppose <InlineMath math="x\le0" />. Then <InlineMath math="|x|=-x" />, and from <InlineMath math="|y|<|x|" /> you get <InlineMath math="y\le|y|<-x" />, so <InlineMath math="x+y<0" />. That contradicts statement (1). So **statement (1) together with the starting condition forces <InlineMath math="x>0" />**.
+<InlineMath math="\tfrac{x}{y}>1" /> means <InlineMath math="\tfrac{x}{y}" /> is positive, so **<InlineMath math="x" /> and <InlineMath math="y" /> have the same sign**, and <InlineMath math="\left|\tfrac{x}{y}\right|>1" />, so <InlineMath math="|x|>|y|" />. Their shared sign is still unknown:
 
-The sign of <InlineMath math="y" /> is still free. The pair <InlineMath math="x=2,\ y=1" /> meets every condition and gives <InlineMath math="xy=2>0" />, so the answer is yes. The pair <InlineMath math="x=2,\ y=-1" /> also fits, since <InlineMath math="x+y=1>0" /> and <InlineMath math="|2|>|-1|" />, but <InlineMath math="xy=-2" />, so the answer is no. Statement (1) alone isn't sufficient.
+- <InlineMath math="x=3" />, <InlineMath math="y=1" /> fits, and <InlineMath math="x>0" />.
+- <InlineMath math="x=-3" />, <InlineMath math="y=-1" /> also fits, but <InlineMath math="x<0" />.
 
-# Statement two alone
+So statement (1) alone isn't sufficient. The trap is reading <InlineMath math="\tfrac{x}{y}>1" /> as <InlineMath math="x>y" />, though multiplying by a negative <InlineMath math="y" /> flips the inequality.
 
-For <InlineMath math="x^2y>0" />, the factor <InlineMath math="x^2" /> can't be zero, and since <InlineMath math="x^2" /> is positive, **<InlineMath math="y" /> must be positive**. The sign of <InlineMath math="x" /> is still free. The pair <InlineMath math="x=2,\ y=1" /> gives yes. The pair <InlineMath math="x=-2,\ y=1" /> satisfies <InlineMath math="x^2y=4>0" /> and <InlineMath math="|-2|>|1|" />, but <InlineMath math="xy=-2" />, so the answer is no. Statement (2) alone isn't sufficient.
+# Statement (2) alone
+
+Move everything to one side:
+
+<BlockMath math="x^2y-y^3=y\left(x^2-y^2\right)>0." />
+
+This statement **ties down the sign of <InlineMath math="y" />, not the sign of <InlineMath math="x" />**. The pair <InlineMath math="x=2" />, <InlineMath math="y=1" /> fits with <InlineMath math="x>0" />, while <InlineMath math="x=-2" />, <InlineMath math="y=1" /> also fits because <InlineMath math="1\cdot(4-1)>0" />, but <InlineMath math="x<0" />. So statement (2) alone isn't sufficient.
 
 # Both statements together
 
-Statement (1) with the starting condition gives <InlineMath math="x>0" />, and statement (2) gives <InlineMath math="y>0" />. The product of two positive numbers is always positive, so <InlineMath math="xy>0" /> for every pair that fits. The answer is **always yes**, so the two statements together are sufficient.
+The diagram below joins the facts from both statements. **Statement (1) supplies what opens up statement (2)**, and statement (2) then supplies the sign of <InlineMath math="y" /> that statement (1) needs.
 
-# Why the starting condition matters
+<Mermaid
+  title={<>The chain of signs from both statements</>}
+  description={<>Statement (1) gives <InlineMath math="|x|>|y|" /> and that <InlineMath math="x" /> has the same sign as <InlineMath math="y" />. From <InlineMath math="|x|>|y|" />, the factor <InlineMath math="x^2-y^2" /> is positive, so statement (2) forces <InlineMath math="y>0" />. Since the signs match, <InlineMath math="x>0" />.</>}
+  chart={`flowchart LR
+    A["Statement 1: x/y greater than 1"] --> B["Absolute value of x exceeds that of y"]
+    A --> C["x and y have the same sign"]
+    B --> D["Factor x squared minus y squared is positive"]
+    D -->|"statement 2"| E["y is positive"]
+    E --> F["x is positive"]
+    C --> F`}
+/>
 
-Without <InlineMath math="|x|>|y|" />, the two statements together wouldn't be enough. The pair <InlineMath math="x=-1,\ y=2" /> satisfies <InlineMath math="x+y=1>0" /> and <InlineMath math="x^2y=2>0" />, but <InlineMath math="xy=-2" />. This pair breaks <InlineMath math="|x|>|y|" />, so it isn't allowed. If you **forget the starting condition**, you'll pick the option that says neither statement is enough.
-
-The figure below marks the pairs that satisfy the starting condition and both statements at once. **That region lies entirely in the first quadrant**, so <InlineMath math="xy" /> is always positive. The point <InlineMath math="(2,-1)" /> only satisfies statement (1), and the point <InlineMath math="(-2,1)" /> only satisfies statement (2).
+The <InlineMath math="xy" />-plane below shows the same thing. **Statement (1) gives two wedges**, and statement (2) removes the wedge in quadrant III, since there <InlineMath math="y<0" /> while <InlineMath math="x^2-y^2>0" />.
 
 <MathVisual
-  title={<>Pairs that satisfy <InlineMath math="|x|>|y|" />, statement (1), and statement (2)</>}
-  description={<>The shaded region is bounded by the line <InlineMath math="y=x" /> and the positive <InlineMath math="x" />-axis, which means <InlineMath math="x>y>0" />. The point <InlineMath math="(2,1)" /> lies in it. The point <InlineMath math="(2,-1)" /> satisfies the starting condition and statement (1), and the point <InlineMath math="(-2,1)" /> satisfies the starting condition and statement (2), but both have <InlineMath math="xy<0" />.</>}
+  title={<>The region that meets statement (1) and statement (2)</>}
+  description={<>Statement (1) holds on two wedges between the <InlineMath math="x" />-axis and the line <InlineMath math="y=x" />: the wedge <InlineMath math="0<y<x" /> in quadrant I and the wedge <InlineMath math="x<y<0" /> in quadrant III. Statement (2) holds only on the quadrant I wedge, where <InlineMath math="x>0" />.</>}
   labels={{
-    yes: <InlineMath math="(2,1)" />,
-    one: <InlineMath math="(2,-1)" />,
-    two: <InlineMath math="(-2,1)" />,
+    keep: <>kept</>,
+    drop: <>removed</>,
+    line: <InlineMath math="y=x" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 5 }, y: { min: -4, max: 4 } },
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "both", kind: "region", appearance: "highlight", inequalities: ["x > y", "x > -y", "y > 0", "x < 5"] },
-      { id: "yes", kind: "point", appearance: "answer", at: { x: 2, y: 1 } },
-      { id: "one", kind: "point", appearance: "warning", at: { x: 2, y: -1 } },
-      { id: "two", kind: "point", appearance: "warning", at: { x: -2, y: 1 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -4 }, to: { x: 0, y: 4 } },
+      { id: "diag", kind: "segment", appearance: "construction", from: { x: -4, y: -4 }, to: { x: 4, y: 4 } },
+      { id: "anti", kind: "segment", appearance: "construction", from: { x: -4, y: 4 }, to: { x: 4, y: -4 } },
+      { id: "keep", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }] },
+      { id: "drop", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: -4, y: 0 }, { x: -4, y: -4 }] },
     ],
     labels: [
-      { key: "yes", objectId: "yes", at: { x: 2, y: 1 }, placement: "above" },
-      { key: "one", objectId: "one", at: { x: 2, y: -1 }, placement: "below" },
-      { key: "two", objectId: "two", at: { x: -2, y: 1 }, placement: "above" },
+      { key: "keep", objectId: "keep", at: { x: 3, y: 1 }, placement: "center" },
+      { key: "drop", objectId: "drop", at: { x: -3, y: -1 }, placement: "center" },
+      { key: "line", objectId: "diag", at: { x: 3.5, y: 3.5 }, placement: "above-left" },
     ],
   }}
 />
+
+The answer is always "yes", so the two statements together are sufficient.
+
+# The tempting wrong options
+
+- Statement (1) alone being sufficient comes from reading <InlineMath math="\tfrac{x}{y}>1" /> as <InlineMath math="x>y" /> and then taking <InlineMath math="x" /> to be positive, **forgetting that <InlineMath math="y" /> may be negative**.
+- Statement (2) alone being sufficient comes from dividing both sides of <InlineMath math="x^2y>y^3" /> by <InlineMath math="y^2" /> to get <InlineMath math="x^2>y^2" />, then taking <InlineMath math="x" /> to be positive.
+- Each alone being sufficient combines both slips.
+- Neither being sufficient comes from testing the statements one by one but never joining them.
 
 So the two statements together are sufficient to answer the question, but neither statement alone is.

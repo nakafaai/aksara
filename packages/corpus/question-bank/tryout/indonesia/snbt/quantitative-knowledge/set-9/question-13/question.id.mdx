@@ -1,13 +1,12 @@
-Trapesium sama kaki <InlineMath math="ABCD" /> memiliki sisi sejajar <InlineMath math="AB=14\text{ cm}" /> dan <InlineMath math="CD=4\text{ cm}" />, serta diagonal <InlineMath math="AC=15\text{ cm}" />. Keempat titik sudut trapesium itu terletak pada sebuah lingkaran.
+Trapesium <InlineMath math="ABCD" /> memiliki sisi sejajar <InlineMath math="AB=14\text{ cm}" /> dan <InlineMath math="CD=4\text{ cm}" />. Keempat titik sudutnya terletak pada sebuah lingkaran yang berpusat di <InlineMath math="O" /> dan berjari-jari <InlineMath math="\dfrac{65}{8}\text{ cm}" />. Gambar berikut hanya memperlihatkan lingkaran dan sisi <InlineMath math="AB" />.
 
 <MathVisual
-  title={<>Trapesium sama kaki <InlineMath math="ABCD" /> pada lingkaran</>}
-  description={<>Trapesium sama kaki dengan sisi sejajar <InlineMath math="AB=14\text{ cm}" /> di bawah dan <InlineMath math="CD=4\text{ cm}" /> di atas, serta diagonal <InlineMath math="AC=15\text{ cm}" />. Keempat titik sudutnya terletak pada sebuah lingkaran.</>}
+  title={<>Lingkaran dan tali busur <InlineMath math="AB" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="O" /> dengan jari-jari <InlineMath math="\tfrac{65}{8}\text{ cm}" /> dan tali busur <InlineMath math="AB=14\text{ cm}" />. Letak sisi <InlineMath math="CD" /> tidak digambar.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
-    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
   }}
   scene={{
     space: "plane",
@@ -15,16 +14,15 @@ Trapesium sama kaki <InlineMath math="ABCD" /> memiliki sisi sejajar <InlineMath
     view: { kind: "fit", padding: 0.05 },
     objects: [
       { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 33 / 8 }, radius: 65 / 8 },
-      { id: "trap", kind: "polygon", appearance: "primary", vertices: [{ x: -7, y: 0 }, { x: 7, y: 0 }, { x: 2, y: 12 }, { x: -2, y: 12 }] },
-      { id: "diagonal", kind: "segment", appearance: "secondary", from: { x: -7, y: 0 }, to: { x: 2, y: 12 } },
+      { id: "chord", kind: "segment", appearance: "primary", from: { x: -7, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "center", kind: "point", appearance: "construction", at: { x: 0, y: 33 / 8 } },
     ],
     labels: [
-      { key: "a", objectId: "trap", at: { x: -7, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "trap", at: { x: 7, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "trap", at: { x: 2, y: 12 }, placement: "above-right" },
-      { key: "d", objectId: "trap", at: { x: -2, y: 12 }, placement: "above-left" },
+      { key: "a", objectId: "chord", at: { x: -7, y: 0 }, placement: "left" },
+      { key: "b", objectId: "chord", at: { x: 7, y: 0 }, placement: "right" },
+      { key: "o", objectId: "center", at: { x: 0, y: 33 / 8 }, placement: "above" },
     ],
   }}
 />
 
-Jari-jari lingkaran itu adalah ....
+Panjang diagonal <InlineMath math="AC" /> lebih dari <InlineMath math="12\text{ cm}" />. Luas trapesium <InlineMath math="ABCD" /> adalah ....

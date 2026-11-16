@@ -1,44 +1,41 @@
-Das gefragte Ereignis hat zwei Bedingungen zugleich: **drei verschiedene Stockwerke** und **Ani steigt als Erste aus**. Der Plan: Wähle einen Ergebnisraum, dessen Ergebnisse gleich wahrscheinlich sind, zähle die Ergebnisse, die beide Bedingungen erfüllen, und prüf das dann auf einem zweiten Weg.
+In dieser Aufgabe stecken zwei leicht übersehene Dinge: **Die Wahrscheinlichkeit ist bedingt**, weil schon bekannt ist, dass Ani vor Budi aussteigt, und **Cici darf zusammen** mit jemand anderem im obersten Stockwerk aussteigen.
 
-# Der Ergebnisraum
+# Der neue Ergebnisraum
 
-Jede Person wählt eines von <InlineMath math="8" /> Stockwerken, und die Wahlen sind unabhängig. Notiere das Ergebnis geordnet: Anis Stockwerk, Budis Stockwerk, Cicis Stockwerk. **Genau diese geordneten Ergebnisse sind gleich wahrscheinlich**. Ungeordnete Mengen von Stockwerken sind es nicht, weil eine Menge aus vielen verschiedenen Zuordnungen der Personen entstehen kann.
+Die Bedingung „Anis Stockwerk liegt tiefer als Budis“ **ersetzt den Ergebnisraum**. Stockwerkpaare <InlineMath math="(a,b)" /> mit <InlineMath math="a<b" /> gibt es <InlineMath math="\binom{8}{2}=28" />, und Cici wählt frei eines von <InlineMath math="8" /> Stockwerken, also
 
-<BlockMath math="n(S)=8\cdot8\cdot8=512" />
+<BlockMath math="n(\text{Bedingung})=28\cdot8=224." />
 
-# Die günstigen Ergebnisse
+# Das Ereignis zählen
 
-Wähle zuerst drei verschiedene Stockwerke, das geht auf <InlineMath math="\binom{8}{3}=56" /> Arten. Der Aufzug fährt nur nach oben, also steigt die Person im niedrigsten Stockwerk zuerst aus. Damit Ani zuerst aussteigt, **muss Ani das niedrigste der drei Stockwerke bekommen**, dafür gibt es eine Möglichkeit. Budi und Cici verteilen sich auf <InlineMath math="2" /> Arten auf die beiden anderen.
+Wegen <InlineMath math="a<b" /> ist das höhere der Stockwerke von Ani und Budi gleich <InlineMath math="b" />. Cici steigt ganz oben aus, wenn <InlineMath math="c\ge b" />, also gibt es bei Budi im Stockwerk <InlineMath math="b" /> genau <InlineMath math="9-b" /> Möglichkeiten für Cici und <InlineMath math="b-1" /> für Ani. **Die Anzahl hängt von Budis Stockwerk ab**, also summierst du Fall für Fall:
 
-<BlockMath math="\begin{aligned}
-n(A)&=56\cdot1\cdot2=112\\
-P(A)&=\frac{112}{512}=\frac{7}{32}
-\end{aligned}" />
+<BlockMath math="\sum_{b=2}^{8}(b-1)(9-b)=7+12+15+16+15+12+7=84." />
 
-Das Diagramm siebt die Ergebnisse schrittweise. Von den <InlineMath math="512" /> Ergebnissen haben <InlineMath math="336" /> drei verschiedene Stockwerke, und **genau ein Drittel davon** gibt Ani das niedrigste Stockwerk.
+Das Diagramm zeigt, was jedes Stockwerk von Budi beiträgt. **Der höchste Balken liegt in der Mitte**, weil Budi in einem mittleren Stockwerk viele Möglichkeiten für Ani darunter und für Cici darüber lässt.
 
 <Chart
-  title={<>Die Stockwerkwahl aussieben</>}
-  description={<>Alle geordneten Ergebnisse sind <InlineMath math="8^3=512" />. Ergebnisse mit drei verschiedenen Stockwerken gibt es <InlineMath math="8\cdot7\cdot6=336" />. Davon hat Ani bei <InlineMath math="112" /> das niedrigste Stockwerk, also ist die Wahrscheinlichkeit <InlineMath math="\tfrac{112}{512}=\tfrac{7}{32}" />.</>}
-  categories={["Alle Ergebnisse", "Drei verschiedene Stockwerke", "Ani steigt zuerst aus"]}
+  title={<>Anordnungen mit Cici im obersten Stockwerk nach Budis Stockwerk</>}
+  description={<>Für Budi in den Stockwerken <InlineMath math="2" /> bis <InlineMath math="8" /> sind es <InlineMath math="7" />, <InlineMath math="12" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="15" />, <InlineMath math="12" /> und <InlineMath math="7" /> Anordnungen, also <InlineMath math="(b-1)(9-b)" />. Zusammen sind es <InlineMath math="84" /> der <InlineMath math="224" /> Anordnungen, die die Bedingung erfüllen.</>}
   bars="apart"
-  series={[{ label: "Anzahl der Ergebnisse", mark: "bar", values: [8 ** 3, 8 * 7 * 6, (8 * 7 * 6) / 3] }]}
-  valueLabel="Anzahl der Ergebnisse"
+  categories={["2", "3", "4", "5", "6", "7", "8"]}
+  series={[{ label: "Anordnungen mit Cici ganz oben", mark: "bar", values: [2, 3, 4, 5, 6, 7, 8].map((b) => (b - 1) * (9 - b)) }]}
+  valueLabel="Anordnungen"
 />
+
+Die Wahrscheinlichkeit ist also
+
+<BlockMath math="P=\frac{84}{224}=\frac{3}{8}." />
 
 # Probe auf einem zweiten Weg
 
-Die Wahrscheinlichkeit für drei verschiedene Stockwerke ist <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Sind die drei Stockwerke verschieden, hat **jede Person dieselbe Chance** auf das niedrigste, also ist die Chance für Ani <InlineMath math="\frac{1}{3}" />.
-
-<BlockMath math="\frac{21}{32}\cdot\frac{1}{3}=\frac{7}{32}" />
-
-Das Ergebnis stimmt überein.
+Trenne Cici, die allein als Letzte aussteigt, <InlineMath math="c>b" />, von Cici, die mit Budi aussteigt, <InlineMath math="c=b" />. **Der Fall allein** liefert <InlineMath math="\sum(b-1)(8-b)=56" /> Anordnungen, der Fall mit Budi <InlineMath math="28" />, eine für jedes Paar <InlineMath math="(a,b)" />. Zusammen <InlineMath math="56+28=84" />, dasselbe.
 
 # Die verlockenden falschen Antworten
 
-- <InlineMath math="\frac{21}{32}" /> verwendet nur die Bedingung der drei verschiedenen Stockwerke und **vergisst, dass Ani zuerst aussteigen muss**.
-- <InlineMath math="\frac{1}{3}" /> ist die Chance, dass Ani zuerst aussteigt, wenn drei verschiedene Stockwerke schon sicher sind. Die drei verschiedenen Stockwerke gehören aber zum Ereignis und haben die Wahrscheinlichkeit <InlineMath math="\frac{21}{32}" />.
-- <InlineMath math="\frac{35}{128}" /> erlaubt, dass Budi und Cici im selben Stockwerk aussteigen, und zählt <InlineMath math="7^2+6^2+\dots+1^2=140" /> Ergebnisse, in denen Ani am niedrigsten ist. Das verletzt die Bedingung der drei verschiedenen Stockwerke.
-- <InlineMath math="\frac{1}{4}" /> rechnet die Wahrscheinlichkeit für drei verschiedene Stockwerke als <InlineMath math="\frac{7}{8}\cdot\frac{6}{7}=\frac{3}{4}" />, als könnte ein gewähltes Stockwerk nicht noch einmal gewählt werden. Cici wählt weiterhin aus <InlineMath math="8" /> Stockwerken, der zweite Faktor ist also <InlineMath math="\frac{6}{8}" />.
+- <InlineMath math="\tfrac{1}{4}" /> zählt nur Cici, die allein ganz oben aussteigt, <InlineMath math="\tfrac{56}{224}" />, und **vergisst, dass Cici mit Budi aussteigen darf**.
+- <InlineMath math="\tfrac{1}{3}" /> nutzt die Symmetrie „jeder ist gleich wahrscheinlich der Letzte“, die gleiche Stockwerke und die Bedingung an Ani und Budi übersieht.
+- <InlineMath math="\tfrac{51}{128}" /> übersieht die Bedingung und zählt <InlineMath math="c\ge\max(a,b)" /> unter allen <InlineMath math="512" /> Anordnungen.
+- <InlineMath math="\tfrac{9}{16}" /> vergleicht nur Cici mit Budi ohne Bedingung, <InlineMath math="P(c\ge b)=\tfrac{36}{64}" />.
 
-Die Wahrscheinlichkeit, dass die drei in drei verschiedenen Stockwerken aussteigen und Ani als Erste aussteigt, ist also <InlineMath math="\frac{7}{32}" />.
+Also ist die Wahrscheinlichkeit, dass Cici im höchsten der drei Stockwerke aussteigt, <InlineMath math="\tfrac{3}{8}" />.

@@ -1,49 +1,75 @@
-Sebuah pernyataan cukup jika **jawabannya selalu sama**, selalu "ya" atau selalu "tidak", untuk setiap pasangan <InlineMath math="x,y" /> yang memenuhinya. Jangan lupa bahwa syarat <InlineMath math="|x|>|y|" /> di awal soal berlaku sepanjang waktu. Syarat inilah yang menentukan jawabannya.
+Kedua pernyataan tampak berbicara tentang besar <InlineMath math="x" /> dibanding <InlineMath math="y" />, padahal pertanyaannya tentang **tanda** <InlineMath math="x" />. Jadi terjemahkan dulu setiap pernyataan menjadi keterangan tanda.
 
-# Pernyataan pertama saja
+# Pernyataan (1) saja
 
-Pertama, buktikan bahwa <InlineMath math="x" /> pasti positif. Andaikan <InlineMath math="x\le0" />. Maka <InlineMath math="|x|=-x" />, dan dari <InlineMath math="|y|<|x|" /> kamu dapat <InlineMath math="y\le|y|<-x" />, sehingga <InlineMath math="x+y<0" />. Itu bertentangan dengan pernyataan (1). Jadi **pernyataan (1) bersama syarat awal memaksa <InlineMath math="x>0" />**.
+<InlineMath math="\tfrac{x}{y}>1" /> berarti <InlineMath math="\tfrac{x}{y}" /> positif, jadi **<InlineMath math="x" /> dan <InlineMath math="y" /> bertanda sama**, dan <InlineMath math="\left|\tfrac{x}{y}\right|>1" />, jadi <InlineMath math="|x|>|y|" />. Tanda bersamanya belum diketahui:
 
-Tanda <InlineMath math="y" /> masih bebas. Pasangan <InlineMath math="x=2,\ y=1" /> memenuhi semua syarat dan memberi <InlineMath math="xy=2>0" />, jawabannya ya. Pasangan <InlineMath math="x=2,\ y=-1" /> juga memenuhi, karena <InlineMath math="x+y=1>0" /> dan <InlineMath math="|2|>|-1|" />, tetapi <InlineMath math="xy=-2" />, jawabannya tidak. Pernyataan (1) saja tidak cukup.
+- <InlineMath math="x=3" />, <InlineMath math="y=1" /> memenuhi, dan <InlineMath math="x>0" />.
+- <InlineMath math="x=-3" />, <InlineMath math="y=-1" /> juga memenuhi, tetapi <InlineMath math="x<0" />.
 
-# Pernyataan kedua saja
+Jadi pernyataan (1) saja tidak cukup. Jebakannya, <InlineMath math="\tfrac{x}{y}>1" /> sering dibaca sebagai <InlineMath math="x>y" />, padahal mengalikan dengan <InlineMath math="y" /> yang negatif membalik tanda pertidaksamaan.
 
-Agar <InlineMath math="x^2y>0" />, faktor <InlineMath math="x^2" /> tidak boleh nol, dan karena <InlineMath math="x^2" /> positif, **<InlineMath math="y" /> harus positif**. Tanda <InlineMath math="x" /> masih bebas. Pasangan <InlineMath math="x=2,\ y=1" /> memberi jawaban ya. Pasangan <InlineMath math="x=-2,\ y=1" /> memenuhi <InlineMath math="x^2y=4>0" /> dan <InlineMath math="|-2|>|1|" />, tetapi <InlineMath math="xy=-2" />, jawabannya tidak. Pernyataan (2) saja tidak cukup.
+# Pernyataan (2) saja
 
-# Kedua pernyataan bersama
+Pindahkan semua suku ke satu ruas:
 
-Pernyataan (1) dengan syarat awal memberi <InlineMath math="x>0" />, dan pernyataan (2) memberi <InlineMath math="y>0" />. Hasil kali dua bilangan positif selalu positif, jadi <InlineMath math="xy>0" /> untuk setiap pasangan yang memenuhi. Jawabannya **selalu ya**, sehingga kedua pernyataan bersama cukup.
+<BlockMath math="x^2y-y^3=y\left(x^2-y^2\right)>0." />
 
-# Peran syarat awal
+Pernyataan ini **mengikat tanda <InlineMath math="y" />, bukan tanda <InlineMath math="x" />**. Pasangan <InlineMath math="x=2" />, <InlineMath math="y=1" /> memenuhi dengan <InlineMath math="x>0" />, sedangkan <InlineMath math="x=-2" />, <InlineMath math="y=1" /> juga memenuhi karena <InlineMath math="1\cdot(4-1)>0" />, tetapi <InlineMath math="x<0" />. Jadi pernyataan (2) saja tidak cukup.
 
-Tanpa syarat <InlineMath math="|x|>|y|" />, gabungan kedua pernyataan tidak cukup. Pasangan <InlineMath math="x=-1,\ y=2" /> memenuhi <InlineMath math="x+y=1>0" /> dan <InlineMath math="x^2y=2>0" />, tetapi <InlineMath math="xy=-2" />. Pasangan ini melanggar <InlineMath math="|x|>|y|" />, jadi tidak boleh dipakai. Kalau kamu **lupa syarat awal**, kamu akan memilih bahwa kedua pernyataan tidak cukup.
+# Dua pernyataan bersama-sama
 
-Gambar berikut menandai pasangan yang memenuhi syarat awal dan kedua pernyataan sekaligus. **Daerah itu seluruhnya ada di kuadran pertama**, jadi <InlineMath math="xy" /> selalu positif. Titik <InlineMath math="(2,-1)" /> hanya memenuhi pernyataan (1), dan titik <InlineMath math="(-2,1)" /> hanya memenuhi pernyataan (2).
+Diagram berikut menyambung keterangan dari kedua pernyataan. **Pernyataan (1) memberi bahan untuk membuka pernyataan (2)**, lalu pernyataan (2) memberi tanda <InlineMath math="y" /> yang dibutuhkan pernyataan (1).
+
+<Mermaid
+  title={<>Rantai tanda dari kedua pernyataan</>}
+  description={<>Pernyataan (1) memberi <InlineMath math="|x|>|y|" /> dan tanda <InlineMath math="x" /> sama dengan tanda <InlineMath math="y" />. Dari <InlineMath math="|x|>|y|" />, faktor <InlineMath math="x^2-y^2" /> positif, sehingga pernyataan (2) memaksa <InlineMath math="y>0" />. Karena tandanya sama, <InlineMath math="x>0" />.</>}
+  chart={`flowchart LR
+    A["Pernyataan 1: x/y lebih dari 1"] --> B["Nilai mutlak x lebih dari nilai mutlak y"]
+    A --> C["x dan y bertanda sama"]
+    B --> D["Faktor x kuadrat dikurangi y kuadrat positif"]
+    D -->|"pernyataan 2"| E["y positif"]
+    E --> F["x positif"]
+    C --> F`}
+/>
+
+Bidang-<InlineMath math="xy" /> berikut memperlihatkan hal yang sama. **Pernyataan (1) memberi dua daerah baji**, dan pernyataan (2) membuang baji di kuadran III karena di sana <InlineMath math="y<0" /> tetapi <InlineMath math="x^2-y^2>0" />.
 
 <MathVisual
-  title={<>Pasangan yang memenuhi <InlineMath math="|x|>|y|" />, pernyataan (1), dan pernyataan (2)</>}
-  description={<>Daerah yang diarsir dibatasi garis <InlineMath math="y=x" /> dan sumbu-<InlineMath math="x" /> positif, yaitu <InlineMath math="x>y>0" />. Titik <InlineMath math="(2,1)" /> ada di daerah itu. Titik <InlineMath math="(2,-1)" /> memenuhi syarat awal dan pernyataan (1), dan titik <InlineMath math="(-2,1)" /> memenuhi syarat awal dan pernyataan (2), tetapi keduanya punya <InlineMath math="xy<0" />.</>}
+  title={<>Daerah yang memenuhi pernyataan (1) dan pernyataan (2)</>}
+  description={<>Pernyataan (1) berlaku pada dua baji di antara sumbu-<InlineMath math="x" /> dan garis <InlineMath math="y=x" />: baji <InlineMath math="0<y<x" /> di kuadran I dan baji <InlineMath math="x<y<0" /> di kuadran III. Pernyataan (2) hanya dipenuhi baji kuadran I, tempat <InlineMath math="x>0" />.</>}
   labels={{
-    yes: <InlineMath math="(2,1)" />,
-    one: <InlineMath math="(2,-1)" />,
-    two: <InlineMath math="(-2,1)" />,
+    keep: <>tetap</>,
+    drop: <>gugur</>,
+    line: <InlineMath math="y=x" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 5 }, y: { min: -4, max: 4 } },
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "both", kind: "region", appearance: "highlight", inequalities: ["x > y", "x > -y", "y > 0", "x < 5"] },
-      { id: "yes", kind: "point", appearance: "answer", at: { x: 2, y: 1 } },
-      { id: "one", kind: "point", appearance: "warning", at: { x: 2, y: -1 } },
-      { id: "two", kind: "point", appearance: "warning", at: { x: -2, y: 1 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -4 }, to: { x: 0, y: 4 } },
+      { id: "diag", kind: "segment", appearance: "construction", from: { x: -4, y: -4 }, to: { x: 4, y: 4 } },
+      { id: "anti", kind: "segment", appearance: "construction", from: { x: -4, y: 4 }, to: { x: 4, y: -4 } },
+      { id: "keep", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }] },
+      { id: "drop", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: -4, y: 0 }, { x: -4, y: -4 }] },
     ],
     labels: [
-      { key: "yes", objectId: "yes", at: { x: 2, y: 1 }, placement: "above" },
-      { key: "one", objectId: "one", at: { x: 2, y: -1 }, placement: "below" },
-      { key: "two", objectId: "two", at: { x: -2, y: 1 }, placement: "above" },
+      { key: "keep", objectId: "keep", at: { x: 3, y: 1 }, placement: "center" },
+      { key: "drop", objectId: "drop", at: { x: -3, y: -1 }, placement: "center" },
+      { key: "line", objectId: "diag", at: { x: 3.5, y: 3.5 }, placement: "above-left" },
     ],
   }}
 />
 
-Jadi, kedua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.
+Jawabannya selalu "ya", jadi kedua pernyataan bersama-sama cukup.
+
+# Pilihan yang menjebak
+
+- Pernyataan (1) saja cukup muncul dari membaca <InlineMath math="\tfrac{x}{y}>1" /> sebagai <InlineMath math="x>y" /> lalu menganggap <InlineMath math="x" /> pasti positif, **lupa bahwa <InlineMath math="y" /> boleh negatif**.
+- Pernyataan (2) saja cukup muncul dari membagi kedua ruas <InlineMath math="x^2y>y^3" /> dengan <InlineMath math="y^2" /> menjadi <InlineMath math="x^2>y^2" />, lalu menganggap <InlineMath math="x" /> positif.
+- Masing-masing cukup menggabungkan kedua kekeliruan itu.
+- Tidak cukup muncul kalau kedua pernyataan diuji sendiri-sendiri, tetapi tidak pernah disambung.
+
+Jadi, dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.

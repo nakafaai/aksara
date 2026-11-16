@@ -1,80 +1,53 @@
-Untuk rata-rata baru kelompok B, kamu perlu **banyak anggota kelompok B** dan jumlah nilainya. Soal tidak menyebut banyak anggota sama sekali, jadi angka itu harus dicari. Rencananya: cari banyak anggota semua dari peristiwa keluarnya satu anggota, bagi menjadi kelompok A dan B dengan rata-rata gabungan, lalu hitung rata-rata baru kelompok B.
+Soal tidak menyebut banyak anggota sama sekali, dan nilai anggota yang keluar juga tidak disebut. Jadi ada dua hal yang harus dicari, dan **dua syarat di soal yang memilih jawabannya**: nilai paling tinggi <InlineMath math="100" />, dan kelompok B semula lebih dari <InlineMath math="5" /> orang.
 
-# Banyak anggota semula
+# Perbandingan banyak anggota
 
-Misalkan banyak anggota semula <InlineMath math="n" />. **Jumlah nilai sama dengan rata-rata dikali banyak anggota**. Sebelum keluar jumlahnya <InlineMath math="71n" />. Setelah anggota bernilai <InlineMath math="98" /> keluar, sisa <InlineMath math="n-1" /> anggota punya rata-rata <InlineMath math="68" />.
+Rata-rata gabungan <InlineMath math="71" /> berjarak <InlineMath math="6" /> dari kelompok A dan <InlineMath math="9" /> dari kelompok B. **Kelompok yang lebih dekat ke rata-rata gabungan punya anggota lebih banyak**, jadi
 
-<BlockMath math="\begin{aligned}
-71n-98&=68(n-1)\\
-71n-98&=68n-68\\
-3n&=30\\
-n&=10
-\end{aligned}" />
+<BlockMath math="n_A:n_B=9:6=3:2,\qquad n_A=3k,\quad n_B=2k,\quad n=5k." />
 
-# Banyak anggota kelompok B
+# Nilai anggota yang keluar
 
-Misalkan kelompok B punya <InlineMath math="b" /> anggota, jadi kelompok A punya <InlineMath math="10-b" /> anggota. Jumlah nilai gabungan <InlineMath math="71\cdot10=710" />.
+Misalkan nilainya <InlineMath math="s" />. Jumlah nilai sama dengan rata-rata dikali banyak anggota, jadi
 
 <BlockMath math="\begin{aligned}
-65(10-b)+80b&=710\\
-650+15b&=710\\
-b&=4
+71\cdot5k-s&=69(5k-1)\\
+355k-s&=345k-69\\
+s&=10k+69.
 \end{aligned}" />
 
-Jadi kelompok B punya <InlineMath math="4" /> anggota dan kelompok A punya <InlineMath math="6" />. Ini cocok dengan aturan perbandingan: jarak rata-rata A ke gabungan <InlineMath math="71-65=6" /> dan jarak B ke gabungan <InlineMath math="80-71=9" />, sehingga <InlineMath math="n_A:n_B=9:6=3:2" />. **Kelompok yang rata-ratanya lebih dekat ke rata-rata gabungan punya anggota lebih banyak**. Perbandingan <InlineMath math="3:2" /> belum memberi banyak anggota yang sebenarnya, itulah gunanya langkah pertama.
+**Nilai <InlineMath math="s" /> bergantung pada <InlineMath math="k" />**, jadi kedua syarat soal dipakai di sini. Nilai paling tinggi <InlineMath math="100" /> memberi <InlineMath math="10k+69\le100" />, sehingga <InlineMath math="k\le3" />. Kelompok B lebih dari <InlineMath math="5" /> orang memberi <InlineMath math="2k>5" />, sehingga <InlineMath math="k\ge3" />.
+
+Grafik berikut memperlihatkan ketiga calon <InlineMath math="k" /> yang lolos syarat nilai. **Ketiganya cocok dengan semua rata-rata di soal**, dan hanya syarat banyak anggota kelompok B yang menyisakan <InlineMath math="k=3" />.
+
+<Chart
+  title={<>Calon banyak anggota dan rata-rata baru kelompok B</>}
+  description={<>Untuk <InlineMath math="k=1" />, <InlineMath math="2" />, dan <InlineMath math="3" />, kelompok B beranggotakan <InlineMath math="2" />, <InlineMath math="4" />, dan <InlineMath math="6" /> orang, nilai yang keluar <InlineMath math="79" />, <InlineMath math="89" />, dan <InlineMath math="99" />, dan rata-rata baru kelompok B <InlineMath math="81" />, <InlineMath math="77" />, dan <InlineMath math="76{,}2" />. Hanya <InlineMath math="k=3" /> yang membuat kelompok B lebih dari <InlineMath math="5" /> orang.</>}
+  bars="apart"
+  categories={["k = 1", "k = 2", "k = 3"]}
+  series={[
+    { label: "Nilai yang keluar", mark: "bar", values: [1, 2, 3].map((k) => 10 * k + 69) },
+    { label: "Rata-rata baru kelompok B", mark: "bar", values: [1, 2, 3].map((k) => (80 * 2 * k - (10 * k + 69)) / (2 * k - 1)) },
+  ]}
+  valueLabel="Nilai"
+  valueRange={{ min: 0, max: 100 }}
+/>
 
 # Rata-rata baru kelompok B
 
-Jumlah nilai kelompok B semula <InlineMath math="80\cdot4=320" />. Anggota yang keluar berasal dari kelompok B, jadi **jumlah nilai dan banyak anggota kelompok B sama-sama berkurang**.
+Dengan <InlineMath math="k=3" />, kelompok B semula beranggotakan <InlineMath math="6" /> orang dengan jumlah nilai <InlineMath math="80\cdot6=480" />, dan nilai yang keluar <InlineMath math="99" />. **Jumlah nilai dan banyak anggota kelompok B sama-sama berkurang**:
 
-<BlockMath math="\bar{x}_B=\frac{320-98}{4-1}=\frac{222}{3}=74" />
-
-Garis bilangan berikut memperlihatkan semua rata-rata itu. Keluarnya nilai <InlineMath math="98" />, jauh di kanan, **menarik rata-rata kelompok B dari <InlineMath math="80" /> ke <InlineMath math="74" />** dan rata-rata gabungan dari <InlineMath math="71" /> ke <InlineMath math="68" />, sedangkan kelompok A tetap di <InlineMath math="65" />.
-
-<MathVisual
-  title={<>Rata-rata sebelum dan sesudah satu anggota keluar</>}
-  description={<>Pada garis nilai, rata-rata kelompok A ada di <InlineMath math="65" />. Rata-rata gabungan turun dari <InlineMath math="71" /> ke <InlineMath math="68" />. Rata-rata kelompok B turun dari <InlineMath math="80" /> ke <InlineMath math="74" />. Nilai anggota yang keluar adalah <InlineMath math="98" />.</>}
-  labels={{
-    a: <InlineMath math="A:65" />,
-    after: <InlineMath math="68" />,
-    all: <InlineMath math="71" />,
-    newb: <InlineMath math="B:74" />,
-    b: <InlineMath math="80" />,
-    out: <InlineMath math="98" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 60, max: 102 }, y: { min: -2, max: 2 } },
-    view: { kind: "fit", padding: 0.04 },
-    objects: [
-      { id: "scale", kind: "segment", appearance: "reference", from: { x: 62, y: 0 }, to: { x: 100, y: 0 } },
-      { id: "mean-a", kind: "point", appearance: "primary", at: { x: 65, y: 0 } },
-      { id: "mean-after", kind: "point", appearance: "construction", at: { x: 68, y: 0 } },
-      { id: "mean-all", kind: "point", appearance: "construction", at: { x: 71, y: 0 } },
-      { id: "mean-newb", kind: "point", appearance: "answer", at: { x: 74, y: 0 } },
-      { id: "mean-b", kind: "point", appearance: "secondary", at: { x: 80, y: 0 } },
-      { id: "out", kind: "point", appearance: "warning", at: { x: 98, y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "mean-a", at: { x: 65, y: 0 }, placement: "above" },
-      { key: "after", objectId: "mean-after", at: { x: 68, y: 0 }, placement: "below" },
-      { key: "all", objectId: "mean-all", at: { x: 71, y: 0 }, placement: "above" },
-      { key: "newb", objectId: "mean-newb", at: { x: 74, y: 0 }, placement: "below" },
-      { key: "b", objectId: "mean-b", at: { x: 80, y: 0 }, placement: "above" },
-      { key: "out", objectId: "out", at: { x: 98, y: 0 }, placement: "above" },
-    ],
-  }}
-/>
+<BlockMath math="\bar{x}_B=\frac{480-99}{6-1}=\frac{381}{5}=76{,}2." />
 
 # Memeriksa hasilnya
 
-**Kelompok A tidak berubah**, jumlah nilainya <InlineMath math="6\cdot65=390" />. Gabungan yang tersisa punya jumlah <InlineMath math="390+222=612" /> untuk <InlineMath math="9" /> anggota, dan <InlineMath math="\frac{612}{9}=68" />, sesuai soal.
+Semula ada <InlineMath math="15" /> orang dengan jumlah nilai <InlineMath math="9\cdot65+480=1065" />, dan <InlineMath math="\tfrac{1065}{15}=71" />. Setelah nilai <InlineMath math="99" /> keluar, <InlineMath math="\tfrac{966}{14}=69" />, **sesuai rata-rata gabungan yang baru**.
 
 # Pilihan yang menjebak
 
-- <InlineMath math="77" /> menganggap rata-rata kelompok B **turun sama banyak dengan rata-rata gabungan**, yaitu <InlineMath math="3" />.
-- <InlineMath math="55{,}5" /> membagi <InlineMath math="222" /> dengan <InlineMath math="4" />, lupa bahwa kelompok B tinggal <InlineMath math="3" /> anggota.
-- <InlineMath math="62" /> memakai perbandingan <InlineMath math="3:2" /> sebagai banyak anggota, sehingga kelompok B dianggap beranggota <InlineMath math="2" /> dan <InlineMath math="\frac{160-98}{1}=62" />.
-- <InlineMath math="76{,}4" /> membalik perbandingan, sehingga kelompok B dianggap beranggota <InlineMath math="6" /> dan <InlineMath math="\frac{480-98}{5}=76{,}4" />.
+- <InlineMath math="77" /> memakai <InlineMath math="k=2" />, yaitu mengabaikan syarat bahwa kelompok B semula lebih dari <InlineMath math="5" /> orang.
+- <InlineMath math="81" /> memakai <InlineMath math="k=1" />, dengan kesalahan yang sama.
+- <InlineMath math="63{,}5" /> membagi <InlineMath math="381" /> dengan <InlineMath math="6" />, **lupa bahwa kelompok B tinggal <InlineMath math="5" /> orang**.
+- <InlineMath math="78" /> menganggap rata-rata kelompok B turun sama banyak dengan rata-rata gabungan, yaitu <InlineMath math="2" />.
 
-Jadi, rata-rata nilai kelompok B setelah anggota itu keluar adalah <InlineMath math="74" />.
+Jadi, rata-rata nilai kelompok B setelah anggota itu keluar adalah <InlineMath math="76{,}2" />.

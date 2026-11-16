@@ -1,57 +1,48 @@
-Die Zahl <InlineMath math="N" /> hat Dutzende Ziffern, also kannst du sie nicht direkt ausrechnen. Der Plan: Multipliziere das Quadrat aus, schreib jeden Teil als Ziffernfolge und setz die Teile zusammen. Achte dabei darauf, **ob zwischen den Ziffern geborgt oder übertragen wird**.
-
-# Das Quadrat ausmultiplizieren
-
-Verwende <InlineMath math="(a-b)^2=a^2-2ab+b^2" /> mit <InlineMath math="a=10^{20}" /> und <InlineMath math="b=9" />. **Das mittlere Glied <InlineMath math="-2ab" /> darf nicht fehlen**, denn das Quadrat einer Differenz ist nicht die Differenz der Quadrate.
+<InlineMath math="N" /> direkt auszurechnen ist unmöglich, also multiplizierst du die dritte Potenz aus und achtest darauf, **an welcher Stelle jeder Summand landet**. Mit <InlineMath math="T=10^{20}" /> gilt
 
 <BlockMath math="\begin{aligned}
-N&=\left(10^{20}\right)^2-2\cdot9\cdot10^{20}+9^2\\
-&=10^{40}-18\cdot10^{20}+81
+N&=(T-9)^3=T^3-27T^2+243T-729\\
+&=\underbrace{(T-27)\,T^2}_{\text{linker Block}}+\underbrace{243T-729}_{\text{rechter Block}}.
 \end{aligned}" />
 
-# Die ersten beiden Glieder schreiben
+Der linke Block endet auf <InlineMath math="40" /> Nullen, der rechte Block ist kleiner als <InlineMath math="10^{23}" />. **Die beiden Blöcke überlappen sich also nicht**, und die Quersumme von <InlineMath math="N" /> ist die Quersumme beider Blöcke.
 
-Klammere <InlineMath math="10^{20}" /> aus den ersten beiden Gliedern aus: <InlineMath math="10^{40}-18\cdot10^{20}=10^{20}\left(10^{20}-18\right)" />. Die Zahl <InlineMath math="10^{20}" /> ist eine <InlineMath math="1" /> mit <InlineMath math="20" /> Nullen dahinter. Ziehst du <InlineMath math="18" /> ab, entsteht eine Zahl mit <InlineMath math="20" /> Ziffern: **<InlineMath math="18" /> Neunen und danach eine Acht und eine Zwei**. Ein kleines Beispiel ist <InlineMath math="10^4-18=9982" />, also zwei Neunen, dann eine Acht und eine Zwei.
+# Der linke Block
 
-Die Multiplikation mit <InlineMath math="10^{20}" /> hängt nur <InlineMath math="20" /> Nullen an. Also besteht <InlineMath math="10^{40}-18\cdot10^{20}" /> aus <InlineMath math="18" /> Neunen, einer Acht, einer Zwei und dann <InlineMath math="20" /> Nullen.
+<InlineMath math="T-27=10^{20}-27" /> schreibt sich als <InlineMath math="18" /> Neunen, gefolgt von <InlineMath math="73" />. Die Multiplikation mit <InlineMath math="T^2" /> **hängt nur Nullen an**, also ist die Quersumme
 
-# Das letzte Glied addieren
+<BlockMath math="9\cdot18+7+3=172." />
 
-Die letzten beiden Ziffern dieser Zahl sind Nullen, also macht die Addition von <InlineMath math="81" /> nur aus diesen beiden Nullen eine Acht und eine Eins. **Es gibt keinen Übertrag** auf andere Ziffern. Das Ergebnis lautet: <InlineMath math="18" /> Neunen, eine Acht und eine Zwei, <InlineMath math="18" /> Nullen, dann eine Acht und eine Eins.
+# Der rechte Block und das Borgen
 
-Prüf das Muster an einer kleinen Zahl gleicher Bauart.
+Hier steckt die Falle. <InlineMath math="243T" /> endet auf <InlineMath math="20" /> Nullen, also **erzwingt das Abziehen von <InlineMath math="729" /> ein Borgen** von der Ziffer <InlineMath math="3" />:
 
-<BlockMath math="\left(10^{3}-9\right)^2=991^2=982081" />
+<BlockMath math="243T-729=242\cdot T+\left(10^{20}-729\right)." />
 
-Das Muster passt: eine Neun, eine Acht und eine Zwei, eine Null, dann eine Acht und eine Eins.
+Der Teil <InlineMath math="10^{20}-729" /> besteht aus <InlineMath math="17" /> Neunen, gefolgt von <InlineMath math="271" />. Die Quersumme des rechten Blocks ist
 
-# Die Ziffern addieren
+<BlockMath math="(2+4+2)+9\cdot17+(2+7+1)=8+153+10=171." />
 
-**Nullen tragen nichts bei**, also reichen die Ziffern ungleich null.
-
-Das Diagramm trennt, was jeder Teil von <InlineMath math="N" /> beiträgt. **Die achtzehn Neunen** liefern fast alles, die achtzehn Nullen gar nichts.
+Das Diagramm stellt den Beitrag jedes Teils nebeneinander. **Die Neunen in beiden Blöcken liefern fast alles**, also verschiebt eine falsch gezählte Neun das Ergebnis um <InlineMath math="9" />.
 
 <Chart
-  title={<>Beitrag jedes Teils von <InlineMath math="N" /> zur Quersumme</>}
-  description={<>Die <InlineMath math="18" /> Neunen tragen <InlineMath math="162" /> bei. Die Acht und die Zwei tragen <InlineMath math="10" /> bei. Die <InlineMath math="18" /> Nullen tragen <InlineMath math="0" /> bei. Die Acht und die Eins am Ende tragen <InlineMath math="9" /> bei. Zusammen sind es <InlineMath math="181" />.</>}
-  categories={["18 Neunen", "Ziffern 8 und 2", "18 Nullen", "Ziffern 8 und 1"]}
+  title={<>Beitrag jedes Teils zur Quersumme von <InlineMath math="N" /></>}
+  description={<>Der linke Block liefert <InlineMath math="162" /> aus achtzehn Neunen und <InlineMath math="10" /> aus den Ziffern <InlineMath math="7" /> und <InlineMath math="3" />. Der rechte Block liefert <InlineMath math="8" /> aus <InlineMath math="242" />, <InlineMath math="153" /> aus siebzehn Neunen und <InlineMath math="10" /> aus <InlineMath math="271" />. Insgesamt sind es <InlineMath math="343" />.</>}
   bars="apart"
-  series={[{ label: "Beitrag zur Quersumme", mark: "bar", values: [18 * 9, 8 + 2, 18 * 0, 8 + 1] }]}
+  categories={["Neunen links", "Ende 73", "Anfang 242", "Neunen rechts", "Ende 271"]}
+  series={[{ label: "Beitrag zur Quersumme", mark: "bar", values: [9 * 18, 7 + 3, 2 + 4 + 2, 9 * 17, 2 + 7 + 1] }]}
   valueLabel="Quersumme"
 />
 
-<BlockMath math="\begin{aligned}
-18\cdot9+8+2+8+1&=162+19\\
-&=181
-\end{aligned}" />
+# Die Probe
 
-Eine schnelle Probe: Eine Zahl und ihre Quersumme lassen beim Teilen durch <InlineMath math="9" /> denselben Rest. Weil <InlineMath math="10^{20}" /> den Rest <InlineMath math="1" /> lässt, lässt <InlineMath math="N" /> den Rest <InlineMath math="(1-0)^2=1" />, und auch <InlineMath math="181" /> lässt den Rest <InlineMath math="1" />. Alle fünf Antworten bestehen diese Probe, sie ersetzt also die Rechnung oben nicht.
+Insgesamt <InlineMath math="172+171=343" />. **Eine schnelle Probe nutzt den Rest bei Division durch <InlineMath math="9" />**: <InlineMath math="10^{20}-9\equiv1-0=1" />, also <InlineMath math="N\equiv1" />, und tatsächlich ist <InlineMath math="343=9\cdot38+1" />.
 
 # Die verlockenden falschen Antworten
 
-- <InlineMath math="172" /> **vergisst das Glied <InlineMath math="81" />** am Ende und zählt nur <InlineMath math="162+8+2" />.
-- <InlineMath math="190" /> glaubt, <InlineMath math="10^{20}-18" /> habe <InlineMath math="19" /> Neunen, aber die letzten beiden Stellen tragen die Acht und die Zwei.
-- <InlineMath math="343" /> hat einen Vorzeichenfehler und rechnet mit <InlineMath math="10^{40}-18\cdot10^{20}-81" />. Diese Subtraktion borgt bei der Zwei, dadurch entstehen <InlineMath math="18" /> neue Neunen, und die Summe wird viel zu groß.
-- <InlineMath math="352" /> verwendet <InlineMath math="(a-b)^2=a^2-b^2" />, also <InlineMath math="10^{40}-81" />, und das sind <InlineMath math="38" /> Neunen, gefolgt von einer Eins und einer Neun.
+- <InlineMath math="163" /> zieht die Ziffern von <InlineMath math="729" /> von den Ziffern von <InlineMath math="243" /> ab, also <InlineMath math="172+9-18" />, **ohne zu borgen**.
+- <InlineMath math="199" /> addiert die Ziffern von <InlineMath math="243" /> und <InlineMath math="729" />, als würde <InlineMath math="729" /> addiert, also <InlineMath math="172+9+18" />.
+- <InlineMath math="334" /> zählt in <InlineMath math="10^{20}-729" /> nur <InlineMath math="16" /> Neunen.
+- <InlineMath math="352" /> zählt in <InlineMath math="10^{20}-27" /> <InlineMath math="19" /> Neunen.
 
-Die Summe aller Ziffern von <InlineMath math="N" /> ist also <InlineMath math="181" />.
+Also ist die Summe aller Ziffern von <InlineMath math="N" /> gleich <InlineMath math="343" />.
