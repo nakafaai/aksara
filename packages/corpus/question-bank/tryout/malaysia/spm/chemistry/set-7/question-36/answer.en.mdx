@@ -1,0 +1,25 @@
+# Find the heat the water needs, scale it up for the heat that escapes, then turn it into moles of butane
+
+The water needs <InlineMath math="1000\times4.2\times75=315\text{ kJ}" />, warmed through <InlineMath math="75^\circ\text{C}" />, not <InlineMath math="100^\circ\text{C}" />. **That is only <InlineMath math="40\%" /> of what the flame gives out**, so the butane must release <InlineMath math="788\text{ kJ}" />, <InlineMath math="0.274\text{ mol}" /> at <InlineMath math="2877\text{ kJ}" /> per mole.
+
+<Chart
+  title={<>Heat in the stove</>}
+  description={<>The water takes <InlineMath math="315\text{ kJ}" />, while the flame must give out <InlineMath math="788\text{ kJ}" />.</>}
+  bars="apart"
+  categories={["Heat into the water", "Heat from the flame"]}
+  series={[
+    { label: "Heat", mark: "bar", values: [315, 788] },
+  ]}
+  valueLabel="Heat (kJ)"
+/>
+
+<BlockMath math="\begin{aligned}
+Q_{\text{water}}&=1000\times4.2\times75=315\text{ kJ}\Rightarrow Q_{\text{flame}}=\tfrac{315}{0.40}=788\text{ kJ}\\
+m(\text{C}_4\text{H}_{10})&=\tfrac{788}{2877}\times58=15.9\text{ g}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="6.35\text{ g}" /> assumes all the flame's heat reaches the water. **Only <InlineMath math="40\%" /> does**.
+- <InlineMath math="2.54\text{ g}" /> multiplies by <InlineMath math="0.40" /> instead of dividing, as if the losses added heat.
+- <InlineMath math="21.2\text{ g}" /> heats the water through <InlineMath math="100^\circ\text{C}" />. **It starts at <InlineMath math="25^\circ\text{C}" />**.
