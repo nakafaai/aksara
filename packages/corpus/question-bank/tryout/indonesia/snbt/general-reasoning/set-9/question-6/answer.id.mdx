@@ -1,5 +1,19 @@
 Waktu tunggu biasanya naik ketika **lebih banyak pasien** datang pada jam yang sama. Pada rentang 11.00 sampai 12.00, pasien bertambah dari <InlineMath math="5" /> menjadi <InlineMath math="13" /> orang. Dengan antrean daring, pasien bisa memilih sendiri jam kedatangannya, dan sebagian memilih datang menjelang siang. Bertambahnya pasien pada jam itu menjelaskan naiknya waktu tunggu.
 
+Grafik berikut menaruh banyak pasien dan waktu tunggu jam itu berdampingan. **Kedua batang naik bersama**, jadi tambahan pasien menjelaskan tunggu yang lebih lama.
+
+<Chart
+  title={<>Pasien dan waktu tunggu pukul 11.00 sampai 12.00</>}
+  description={<>Pasien pada jam itu naik dari <InlineMath math="5" /> pada Maret menjadi <InlineMath math="13" /> pada Mei. Waktu tunggunya naik dari <InlineMath math="15" /> menjadi <InlineMath math="20" /> menit.</>}
+  categories={["Maret", "Mei"]}
+  bars="apart"
+  series={[
+    { label: "Pasien pukul 11.00 sampai 12.00", mark: "bar", values: [5, 13] },
+    { label: "Waktu tunggu (menit)", mark: "bar", values: [15, 20] },
+  ]}
+  valueLabel="Pasien atau menit"
+/>
+
 Pilihan lain tidak menjelaskan:
 
 - Teks tidak menyebut jam pulang dokter.

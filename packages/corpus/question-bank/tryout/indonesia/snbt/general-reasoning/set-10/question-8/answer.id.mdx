@@ -1,5 +1,15 @@
 Program hanya dapat menaikkan nilai jika program itu **benar-benar dijalankan**. Jika selama lima belas menit itu siswa mengobrol atau mengerjakan tugas lain, program tidak mungkin menjadi penyebab kenaikan nilai. Jadi, simpulan kepala sekolah bergantung pada siswa yang sungguh membaca.
 
+Diagram berikut menggambar rantai yang dibayangkan kepala sekolah. **Mata rantai di tengah, siswa benar-benar membaca, harus benar**.
+
+<Mermaid
+  title={<>Rantai dari program membaca sampai kenaikan nilai</>}
+  description={<>Program mewajibkan lima belas menit membaca sebelum pelajaran pertama. Program itu hanya bisa menaikkan nilai jika siswa benar-benar membaca selama waktu itu, bukan mengobrol atau mengerjakan hal lain.</>}
+  chart={`flowchart LR
+    P["Program membaca 15 menit"] -.->|"harus benar: siswa benar-benar membaca"| B["Siswa membaca buku pilihannya"]
+    B --> N["Nilai tes membaca naik"]`}
+/>
+
 Pilihan lain tidak harus benar:
 
 - Siswa memilih buku sendiri, jadi judulnya tidak perlu sama.

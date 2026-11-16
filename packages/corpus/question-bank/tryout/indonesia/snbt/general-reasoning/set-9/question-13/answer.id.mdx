@@ -1,5 +1,17 @@
 Implikasi <InlineMath math="p\Rightarrow q" /> hanya salah dalam **satu keadaan**: <InlineMath math="p" /> terjadi tetapi <InlineMath math="q" /> tidak terjadi. Karena itu, negasinya adalah <InlineMath math="p\land\lnot q" />.
 
+Diagram berikut menelusuri kapan pernyataan asli salah. **Hanya jalur hujan tetapi jalan tidak tergenang yang berakhir di "salah"**, dan itulah negasinya.
+
+<Mermaid
+  title={<>Kapan "jika hujan, jalan tergenang" bernilai salah</>}
+  description={<>Jika tidak hujan, pernyataan asli tetap benar. Jika hujan dan jalan tergenang, pernyataan asli benar. Pernyataan asli salah hanya jika hujan tetapi jalan tidak tergenang.</>}
+  chart={`flowchart LR
+    H{"Hujan?"} -->|"tidak"| B1["Pernyataan asli benar"]
+    H -->|"ya"| G{"Jalan tergenang?"}
+    G -->|"ya"| B2["Pernyataan asli benar"]
+    G -->|"tidak"| S["Pernyataan asli salah: hujan dan jalan tidak tergenang"]`}
+/>
+
 Dengan <InlineMath math="p" />: hujan dan <InlineMath math="q" />: jalan di depan sekolah tergenang, negasinya adalah "**Hujan dan jalan di depan sekolah tidak tergenang**".
 
 Pilihan lain bukan negasi:

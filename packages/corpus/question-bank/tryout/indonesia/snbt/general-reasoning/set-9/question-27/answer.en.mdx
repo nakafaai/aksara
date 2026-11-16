@@ -8,4 +8,17 @@ From 07.30 the buses approach each other, so the gap shrinks by <InlineMath math
 
 From 07.30, they meet at 09.18. Check: by then A has covered <InlineMath math="40\times2.3=92" /> km and B <InlineMath math="60\times1.8=108" /> km, and <InlineMath math="92+108=200" />.
 
+The chart below draws each bus's distance from Kota Sela. **The two lines meet at 09.18**, <InlineMath math="92" /> km from Kota Sela.
+
+<Chart
+  title={<>Distance of both buses from Kota Sela over time</>}
+  description={<>Bus A leaves Kota Sela at 07.00 and moves <InlineMath math="40" /> km farther away each hour. Bus B leaves Kota Raya, <InlineMath math="200" /> km from Kota Sela, at 07.30 and comes <InlineMath math="60" /> km closer each hour. Both are <InlineMath math="92" /> km from Kota Sela at 09.18.</>}
+  categories={["07.00", "07.30", "08.00", "08.30", "09.00", "09.18"]}
+  series={[
+    { label: "Bus A", mark: "line", values: [0, 0.5, 1, 1.5, 2, 2.3].map((t) => 40 * t) },
+    { label: "Bus B", mark: "line", values: [0, 0.5, 1, 1.5, 2, 2.3].map((t) => (t <= 0.5 ? 200 : 200 - (60 * (10 * t - 5)) / 10)) },
+  ]}
+  valueLabel="Km from Kota Sela"
+/>
+
 09.00 comes from treating both buses as leaving together at 07.00. So the buses meet at 09.18.

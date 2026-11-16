@@ -2,6 +2,21 @@ The two fountains spray together at every **least common multiple** of <InlineMa
 
 <BlockMath math="\text{lcm}(12,18)=36" />
 
+The chart below marks the spray minutes since 16.00. **Both bars appear together only at minutes <InlineMath math="0" />, <InlineMath math="36" />, and <InlineMath math="72" />**, which are 16.00, 16.36, and 17.12.
+
+<Chart
+  title={<>Spray minutes of both fountains since 16.00</>}
+  description={<>Fountain A sprays at multiples of <InlineMath math="12" /> minutes and fountain B at multiples of <InlineMath math="18" /> minutes. They spray together every <InlineMath math="36" /> minutes, the least common multiple of <InlineMath math="12" /> and <InlineMath math="18" />.</>}
+  categories={["0", "12", "18", "24", "36", "48", "54", "60", "72"]}
+  series={[
+    { label: "Fountain A sprays", mark: "bar", values: [0, 12, 18, 24, 36, 48, 54, 60, 72].map((m) => (m % 12 === 0 ? 1 : 0)) },
+    { label: "Fountain B sprays", mark: "bar", values: [0, 12, 18, 24, 36, 48, 54, 60, 72].map((m) => (m % 18 === 0 ? 1 : 0)) },
+  ]}
+  bars="apart"
+  valueLabel="Sprays (1) or not (0)"
+  valueRange={{ min: 0, max: 1 }}
+/>
+
 They spray together at 16.00 (first), 16.36 (second), and 17.12 (third).
 
 So they spray together for the third time at 17.12.

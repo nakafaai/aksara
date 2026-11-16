@@ -1,5 +1,18 @@
 Bandingkan **sebaran pasien** dan **waktu tunggu** pada kedua bulan. Pada Maret, pasien menumpuk di pagi hari (<InlineMath math="40" /> dan <InlineMath math="35" /> orang), lalu sangat sedikit menjelang siang. Pada Mei, banyak pasien setiap jam lebih seimbang, antara <InlineMath math="13" /> dan <InlineMath math="32" /> orang. Waktu tunggu pada jam yang semula paling sibuk turun tajam, misalnya dari <InlineMath math="70" /> menjadi <InlineMath math="30" /> menit pada pukul 08.00 sampai 09.00.
 
+Grafik berikut menggambar sebaran pasien per jam pada kedua bulan. **Garis Mei jauh lebih datar**, jadi pasien tidak lagi menumpuk di pagi hari.
+
+<Chart
+  title={<>Rata-rata pasien per hari menurut jam kedatangan</>}
+  description={<>Pada Maret, pasien per jam adalah <InlineMath math="40" />, <InlineMath math="35" />, <InlineMath math="25" />, <InlineMath math="15" />, dan <InlineMath math="5" />. Pada Mei, angkanya <InlineMath math="30" />, <InlineMath math="32" />, <InlineMath math="30" />, <InlineMath math="25" />, dan <InlineMath math="13" />.</>}
+  categories={["07.00", "08.00", "09.00", "10.00", "11.00"]}
+  series={[
+    { label: "Pasien Maret", mark: "line", values: [40, 35, 25, 15, 5] },
+    { label: "Pasien Mei", mark: "line", values: [30, 32, 30, 25, 13] },
+  ]}
+  valueLabel="Pasien"
+/>
+
 Pilihan lain tidak didukung:
 
 - Banyak pasien per hari hanya naik dari <InlineMath math="120" /> menjadi <InlineMath math="130" />, jauh dari dua kali lipat.

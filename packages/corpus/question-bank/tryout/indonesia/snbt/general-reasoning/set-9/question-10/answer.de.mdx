@@ -6,6 +6,17 @@ Berechne **die Abstände** zwischen aufeinanderfolgenden Weckzeiten:
 05.30\to07.00 &= 90\text{ min}
 \end{aligned}" />
 
+Das Diagramm zeichnet die Abstände zwischen den Weckzeiten. **Jeder Balken ist zehn Minuten höher als der vorige**, also beträgt der nächste Abstand <InlineMath math="100" /> Minuten.
+
+<Chart
+  title={<>Abstände zwischen zwei aufeinanderfolgenden Weckzeiten</>}
+  description={<>Die Abstände sind <InlineMath math="70" />, <InlineMath math="80" /> und <InlineMath math="90" /> Minuten, der nächste dann <InlineMath math="100" /> Minuten, von 07.00 bis 08.40 Uhr.</>}
+  categories={["03.00 bis 04.10", "04.10 bis 05.30", "05.30 bis 07.00", "07.00 bis zum nächsten"]}
+  bars="apart"
+  series={[{ label: "Abstand (Minuten)", mark: "bar", values: [70, 80, 90, 90 + 10] }]}
+  valueLabel="Minuten"
+/>
+
 Der Abstand wächst jedes Mal um <InlineMath math="10" /> Minuten, der nächste beträgt also <InlineMath math="100" /> Minuten, <InlineMath math="1" /> Stunde <InlineMath math="40" /> Minuten. Ab 07.00 Uhr klingelt der Wecker wieder um 08.40 Uhr.
 
 08.30 Uhr entsteht, wenn man den Abstand bei <InlineMath math="90" /> Minuten belässt, und die anderen Optionen folgen dem Muster der Abstände nicht.

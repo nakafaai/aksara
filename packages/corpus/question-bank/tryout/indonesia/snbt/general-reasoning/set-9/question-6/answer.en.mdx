@@ -1,5 +1,19 @@
 Waiting usually rises when **more patients** arrive at the same hour. At 11.00 to 12.00, patients rose from <InlineMath math="5" /> to <InlineMath math="13" />. Online queuing let patients choose their arrival hour, and some chose to come near noon. More patients at that hour explains the longer wait.
 
+The chart below puts that hour's patients and waiting time side by side. **Both bars rise together**, so the extra patients explain the longer wait.
+
+<Chart
+  title={<>Patients and waiting time from 11.00 to 12.00</>}
+  description={<>Patients at that hour rose from <InlineMath math="5" /> in March to <InlineMath math="13" /> in May. The waiting time rose from <InlineMath math="15" /> to <InlineMath math="20" /> minutes.</>}
+  categories={["March", "May"]}
+  bars="apart"
+  series={[
+    { label: "Patients from 11.00 to 12.00", mark: "bar", values: [5, 13] },
+    { label: "Waiting time (minutes)", mark: "bar", values: [15, 20] },
+  ]}
+  valueLabel="Patients or minutes"
+/>
+
 The other options do not explain it:
 
 - The passage does not mention when doctors leave.

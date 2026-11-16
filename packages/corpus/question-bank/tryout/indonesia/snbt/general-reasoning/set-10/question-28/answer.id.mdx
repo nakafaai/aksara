@@ -6,6 +6,17 @@ Hitung diskon **secara bertahap**, karena diskon kedua dihitung dari harga yang 
 \text{harga akhir} &: 120.000-12.000=108.000
 \end{aligned}" />
 
+Grafik berikut menggambar harga setelah setiap diskon. **Diskon kedua lebih kecil dari <InlineMath math="10\%" /> harga awal**, karena dihitung dari <InlineMath math="120" /> ribu.
+
+<Chart
+  title={<>Harga buku setelah setiap diskon</>}
+  description={<>Harga awal <InlineMath math="150" /> ribu rupiah turun menjadi <InlineMath math="120" /> ribu setelah diskon <InlineMath math="20\%" />, lalu menjadi <InlineMath math="108" /> ribu setelah diskon <InlineMath math="10\%" />. Total hematnya <InlineMath math="42" /> ribu, yaitu <InlineMath math="28\%" />.</>}
+  categories={["Harga awal", "Setelah diskon 20%", "Setelah diskon 10%"]}
+  bars="apart"
+  series={[{ label: "Harga (ribu rupiah)", mark: "bar", values: [150, (150 * 8) / 10, 120 - 120 / 10] }]}
+  valueLabel="Ribu rupiah"
+/>
+
 **Pernyataan 1** bernilai Benar, sesuai dengan hitungan di atas.
 
 **Pernyataan 2** bernilai Salah. Total potongan <InlineMath math="150.000-108.000=42.000" />, yaitu <InlineMath math="28\%" /> dari harga awal, bukan <InlineMath math="30\%" />.

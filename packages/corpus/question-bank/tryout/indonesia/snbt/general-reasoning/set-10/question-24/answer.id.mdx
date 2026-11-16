@@ -1,5 +1,16 @@
 Hitung ulang setiap pernyataan dengan angka di tabel, dan perhatikan apakah **bonus malam ikut dihitung**.
 
+Grafik berikut menghitung harga per GB jika bonus malam ikut dihitung. **Batang Super lebih pendek dari batang Pelajar**, jadi Super lebih murah per GB.
+
+<Chart
+  title={<>Harga per GB setiap paket jika bonus malam ikut dihitung</>}
+  description={<>Hemat <InlineMath math="2{.}200" />, Pelajar <InlineMath math="1{.}750" />, Keluarga <InlineMath math="2{.}000" />, dan Super <InlineMath math="1{.}700" /> rupiah per GB. Keluarga tidak punya bonus malam, jadi angkanya tetap.</>}
+  bars="apart"
+  categories={["Hemat", "Pelajar", "Keluarga", "Super"]}
+  series={[{ label: "Harga per GB termasuk bonus (rupiah)", mark: "bar", values: [55000 / (20 + 5), 70000 / (30 + 10), 120000 / 60, 170000 / (80 + 20)] }]}
+  valueLabel="Rupiah per GB"
+/>
+
 **Pernyataan 1** bernilai Salah. Dengan bonus, Paket Pelajar <InlineMath math="70.000\div40=1.750" /> rupiah per GB, sedangkan Paket Super <InlineMath math="170.000\div100=1.700" /> rupiah per GB. Paket Super lebih murah.
 
 **Pernyataan 2** bernilai Benar. Paket Super <InlineMath math="80+20=100" /> GB dan Paket Hemat <InlineMath math="20+5=25" /> GB, dan <InlineMath math="100=4\times25" />.

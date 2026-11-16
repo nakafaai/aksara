@@ -6,6 +6,19 @@ First convert to **sheets per minute**: machine A prints <InlineMath math="1{,}2
 \text{A and B together} &: \frac{900}{30+20}=18\text{ minutes}
 \end{aligned}" />
 
+The chart below draws the sheets already printed. **The line gets steeper after 07.10**, because the two machines print <InlineMath math="50" /> sheets a minute together.
+
+<Chart
+  title={<>Exam sheets printed since 07.00</>}
+  description={<>Machine A alone prints <InlineMath math="300" /> sheets by 07.10. After that, both machines print <InlineMath math="50" /> sheets a minute, so the remaining <InlineMath math="900" /> sheets take <InlineMath math="18" /> minutes, finishing at 07.28.</>}
+  categories={["07.00", "07.10", "07.20", "07.28"]}
+  series={[
+    { label: "Sheets printed", mark: "line", values: [0, 30 * 10, 300 + 50 * 10, 300 + 50 * 18] },
+    { label: "Target of 1,200 sheets", mark: "line", values: [1200, 1200, 1200, 1200] },
+  ]}
+  valueLabel="Sheets"
+/>
+
 Printing ends <InlineMath math="18" /> minutes after 07.10, at 07.28. The answer 07.24 comes from assuming both machines start at 07.00.
 
 So printing finishes at 07.28.

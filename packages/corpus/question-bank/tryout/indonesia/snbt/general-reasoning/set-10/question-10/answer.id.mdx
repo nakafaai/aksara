@@ -2,6 +2,21 @@ Kedua air mancur menyembur bersamaan setiap **kelipatan persekutuan terkecil** d
 
 <BlockMath math="\text{KPK}(12,18)=36" />
 
+Grafik berikut menandai menit-menit semburan sejak pukul 16.00. **Kedua batang muncul bersama hanya pada menit ke-<InlineMath math="0" />, <InlineMath math="36" />, dan <InlineMath math="72" />**, yaitu pukul 16.00, 16.36, dan 17.12.
+
+<Chart
+  title={<>Menit semburan kedua air mancur sejak pukul 16.00</>}
+  description={<>Air mancur A menyembur pada kelipatan <InlineMath math="12" /> menit dan air mancur B pada kelipatan <InlineMath math="18" /> menit. Keduanya bersamaan setiap <InlineMath math="36" /> menit, kelipatan persekutuan terkecil dari <InlineMath math="12" /> dan <InlineMath math="18" />.</>}
+  categories={["0", "12", "18", "24", "36", "48", "54", "60", "72"]}
+  series={[
+    { label: "Air mancur A menyembur", mark: "bar", values: [0, 12, 18, 24, 36, 48, 54, 60, 72].map((m) => (m % 12 === 0 ? 1 : 0)) },
+    { label: "Air mancur B menyembur", mark: "bar", values: [0, 12, 18, 24, 36, 48, 54, 60, 72].map((m) => (m % 18 === 0 ? 1 : 0)) },
+  ]}
+  bars="apart"
+  valueLabel="Menyembur (1) atau tidak (0)"
+  valueRange={{ min: 0, max: 1 }}
+/>
+
 Semburan bersama terjadi pukul 16.00 (pertama), 16.36 (kedua), dan 17.12 (ketiga).
 
 Jadi, keduanya menyembur bersamaan untuk ketiga kalinya pada pukul 17.12.

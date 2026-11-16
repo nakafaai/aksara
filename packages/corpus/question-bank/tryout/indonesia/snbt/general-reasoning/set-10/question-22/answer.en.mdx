@@ -8,6 +8,19 @@ Each arm adds two long sides of <InlineMath math="n" /> cm and one end of <Inlin
 
 <BlockMath math="\text{perimeter}=4\times(2n+1)=4\times21=84\text{ cm}" />
 
+The chart below draws the squares and perimeter of figures <InlineMath math="1" /> to <InlineMath math="10" />. **At figure <InlineMath math="10" />, the squares reach <InlineMath math="41" /> and the perimeter <InlineMath math="84" /> cm**.
+
+<Chart
+  title={<>Squares and perimeter of the plus sign by figure number</>}
+  description={<>Figure <InlineMath math="n" /> has <InlineMath math="4n+1" /> squares and a perimeter of <InlineMath math="4(2n+1)" /> cm. For <InlineMath math="n=1" />, <InlineMath math="2" />, and <InlineMath math="10" />, the perimeter is <InlineMath math="12" />, <InlineMath math="20" />, and <InlineMath math="84" /> cm.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Squares", mark: "line", values: Array.from({ length: 10 }, (_, i) => 4 * (i + 1) + 1) },
+    { label: "Perimeter (cm)", mark: "line", values: Array.from({ length: 10 }, (_, i) => 4 * (2 * (i + 1) + 1)) },
+  ]}
+  valueLabel="Count or cm"
+/>
+
 Check with figures 1 and 2: <InlineMath math="4\times3=12" /> and <InlineMath math="4\times5=20" />, as given.
 
 So the perimeter is <InlineMath math="84" /> cm.

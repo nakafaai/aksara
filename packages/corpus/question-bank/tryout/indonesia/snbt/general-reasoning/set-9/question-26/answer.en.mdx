@@ -8,6 +8,19 @@ Let Dina's score be <InlineMath math="d" /> and Eko's <InlineMath math="e" />. T
 
 <BlockMath math="d+(d-6)=160\quad\Rightarrow\quad 2d=166\quad\Rightarrow\quad d=83" />
 
+The chart below draws the Eko score that fits each statement for several Dina scores. **The two lines meet only at <InlineMath math="d=83" />**.
+
+<Chart
+  title={<>Eko's score under both statements for several Dina scores</>}
+  description={<>Statement (1) gives <InlineMath math="e=160-d" />, and statement (2) gives <InlineMath math="e=d-6" />. Each statement alone fits many Dina scores, but the two lines meet only when Dina has <InlineMath math="83" /> and Eko <InlineMath math="77" />.</>}
+  categories={["78", "80", "82", "83", "84", "86", "88"]}
+  series={[
+    { label: "Eko's score by statement (1)", mark: "line", values: [78, 80, 82, 83, 84, 86, 88].map((d) => 160 - d) },
+    { label: "Eko's score by statement (2)", mark: "line", values: [78, 80, 82, 83, 84, 86, 88].map((d) => d - 6) },
+  ]}
+  valueLabel="Eko's score"
+/>
+
 Dina's score is fixed at <InlineMath math="83" />.
 
 So the two statements together are sufficient, but neither alone is.

@@ -4,6 +4,18 @@ Cari siapa yang **dapat** tinggal di lantai 1.
 - Sita tidak tinggal di lantai 1 (keterangan 5).
 - Rani tinggal lebih tinggi daripada Sita, jadi Rani juga tidak mungkin di lantai 1 (keterangan 2).
 
+Diagram berikut merangkum alasan setiap calon penghuni lantai 1 gugur. **Hanya Umar yang tersisa**.
+
+<Mermaid
+  title={<>Siapa yang dapat tinggal di lantai 1</>}
+  description={<>Tika tidak tinggal di lantai 1 menurut keterangan 3. Sita tidak tinggal di lantai 1 menurut keterangan 5. Rani lebih tinggi daripada Sita, jadi Rani juga tidak di lantai 1. Yang tersisa hanya Umar.</>}
+  chart={`flowchart LR
+    L["Lantai 1"] --> T["Tika: dilarang keterangan 3"]
+    L --> S["Sita: dilarang keterangan 5"]
+    L --> R["Rani: harus di atas Sita"]
+    L --> U["Umar: satu-satunya yang tersisa"]`}
+/>
+
 Satu-satunya yang tersisa adalah Umar, jadi Umar **pasti** tinggal di lantai 1.
 
 Pilihan lain tidak pasti. Susunan Umar lantai 1 berkebun, Sita lantai 2 memotret, Rani lantai 3 memasak, dan Tika lantai 4 melukis memenuhi semua keterangan, sehingga Rani tidak pasti memotret maupun di lantai 4. Susunan Umar lantai 1, Tika lantai 2 memasak, Sita lantai 3 melukis, dan Rani lantai 4 memotret juga memenuhi semua keterangan, sehingga Sita tidak pasti di lantai 2 dan Tika tidak pasti melukis.

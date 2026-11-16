@@ -2,6 +2,18 @@ Mark each statement Benar (true, it must follow) or Salah (false, it need not fo
 
 <BlockMath math="\text{cleanliness winner}\Rightarrow\text{trophy}\Rightarrow\text{may choose the trip}" />
 
+The diagram below draws that chain together with the wall-magazine branch. **The trophy can come by two roads**, and Class XI-2, which may not choose the trip, holds it by neither.
+
+<Mermaid
+  title={<>The chain of the rotating trophy and the study trip</>}
+  description={<>The cleanliness winner and the wall-magazine winner both get the rotating trophy, and a trophy holder may choose the trip. Class XI-2 may not choose, so it doesn't hold the trophy and didn't win the cleanliness contest.</>}
+  chart={`flowchart LR
+    K["Cleanliness winner"] --> P["Gets the rotating trophy"]
+    M["Wall-magazine winner"] --> P
+    P --> T["May choose the trip"]
+    X["Class XI-2 may not choose"] -.->|"contrapositive"| N["No trophy, not the cleanliness winner"]`}
+/>
+
 **Statement 1** is false. Class XI-2 may not choose the trip, so by the third fact it certainly does not hold the trophy.
 
 **Statement 2** is true. Without the trophy, Class XI-2 certainly did not win the cleanliness contest.

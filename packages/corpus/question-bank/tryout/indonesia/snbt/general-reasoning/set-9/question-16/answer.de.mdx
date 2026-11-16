@@ -1,5 +1,17 @@
 Wähle für jede Lage Mungkin (möglich) oder Tidak mungkin (unmöglich). Denk an zwei feste Tatsachen: Umar wohnt im <InlineMath math="1" />. Stock und gärtnert, und die kochende Person wohnt **direkt unter** der malenden.
 
+Das Diagramm zählt die Angaben, die jede Lage verletzt. **Eine Lage mit Balken null ist möglich**.
+
+<Chart
+  title={<>Verletzte Angaben jeder Lage</>}
+  description={<>Lage <InlineMath math="1" /> verletzt Angabe 1, weil die Person, die kocht, nicht im obersten Stockwerk wohnen kann. Lage <InlineMath math="3" /> verletzt Angabe 2. Lage <InlineMath math="2" /> und <InlineMath math="4" /> verletzen keine Angabe.</>}
+  categories={["Lage 1", "Lage 2", "Lage 3", "Lage 4"]}
+  bars="apart"
+  series={[{ label: "Verletzte Angaben", mark: "bar", values: [1, 0, 1, 0] }]}
+  valueLabel="Angaben"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Lage 1**: unmöglich. Die kochende Person muss direkt unter der malenden wohnen, kann also nicht im obersten, dem <InlineMath math="4" />. Stock wohnen.
 
 **Lage 2**: möglich. Umar im <InlineMath math="1" />. Stock gärtnert, Tika im <InlineMath math="2" />. Stock kocht, Sita im <InlineMath math="3" />. Stock malt und Rani im <InlineMath math="4" />. Stock fotografiert, das erfüllt alle Angaben.

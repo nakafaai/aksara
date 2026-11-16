@@ -2,6 +2,18 @@ Pernyataan itu berbentuk **"p dan q"**, yang benar hanya jika kedua bagiannya be
 
 <BlockMath math="\sim(p\wedge q)\equiv\,\sim p\vee\sim q" />
 
+Diagram berikut memeriksa kapan negasi itu benar. **Cukup satu bagian yang gagal**, dan negasi sudah benar.
+
+<Mermaid
+  title={<>Kapan negasi "dibuka Senin dan ditutup Jumat" bernilai benar</>}
+  description={<>Jika pendaftaran tidak dibuka hari Senin, negasinya benar. Jika dibuka hari Senin tetapi tidak ditutup hari Jumat, negasinya juga benar. Hanya jika dibuka Senin dan ditutup Jumat, negasinya salah.</>}
+  chart={`flowchart LR
+    A{"Dibuka hari Senin?"} -->|"tidak"| N1["Negasi benar"]
+    A -->|"ya"| B{"Ditutup hari Jumat?"}
+    B -->|"tidak"| N2["Negasi benar"]
+    B -->|"ya"| S["Pernyataan asli benar, negasi salah"]`}
+/>
+
 Dengan <InlineMath math="p" /> = pendaftaran dibuka hari Senin dan <InlineMath math="q" /> = pendaftaran ditutup hari Jumat, negasinya adalah pendaftaran tidak dibuka hari Senin atau tidak ditutup hari Jumat.
 
 Pilihan lain tidak tepat:

@@ -2,6 +2,18 @@ Gabungkan keterangan menjadi satu rantai, lalu pakai **kontraposisi**.
 
 <BlockMath math="\text{juara kebersihan}\Rightarrow\text{piala bergilir}\Rightarrow\text{boleh memilih tujuan}" />
 
+Diagram berikut menggambar rantai itu beserta cabang majalah dinding. **Piala bisa datang dari dua jalan**, dan kelas XI-2 yang tidak boleh memilih tujuan tidak memegang piala dari jalan mana pun.
+
+<Mermaid
+  title={<>Rantai piala bergilir dan karyawisata</>}
+  description={<>Juara kebersihan dan juara majalah dinding sama-sama mendapat piala bergilir, dan pemegang piala boleh memilih tujuan karyawisata. Kelas XI-2 tidak boleh memilih tujuan, jadi kelas itu tidak memegang piala dan bukan juara kebersihan.</>}
+  chart={`flowchart LR
+    K["Juara kebersihan"] --> P["Mendapat piala bergilir"]
+    M["Juara majalah dinding"] --> P
+    P --> T["Boleh memilih tujuan karyawisata"]
+    X["Kelas XI-2 tidak boleh memilih"] -.->|"kontraposisi"| N["Tidak memegang piala, bukan juara kebersihan"]`}
+/>
+
 **Pernyataan 1** bernilai Salah. Kelas XI-2 tidak boleh memilih tujuan, jadi menurut keterangan ketiga kelas itu pasti tidak mendapat piala bergilir.
 
 **Pernyataan 2** bernilai Benar. Karena tidak mendapat piala bergilir, Kelas XI-2 juga pasti tidak menjuarai lomba kebersihan.

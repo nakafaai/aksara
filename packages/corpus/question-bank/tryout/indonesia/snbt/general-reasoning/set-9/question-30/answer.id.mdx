@@ -6,4 +6,14 @@ Hitung dulu **sisa harga** setelah uang muka, lalu bagi dengan besar cicilan.
 \text{lama cicilan} &= \frac{2{.}700{.}000}{225{.}000}=12
 \end{aligned}" />
 
+Grafik berikut menggambar sisa utang Pak Tono setiap bulan. **Garisnya turun lurus dan tepat menyentuh nol pada bulan ke-<InlineMath math="12" />**.
+
+<Chart
+  title={<>Sisa harga sepeda setelah setiap cicilan</>}
+  description={<>Setelah uang muka <InlineMath math="900{.}000" /> rupiah, sisanya <InlineMath math="2{.}700{.}000" /> rupiah. Setiap bulan sisa itu turun <InlineMath math="225{.}000" /> rupiah, sampai habis setelah <InlineMath math="12" /> bulan.</>}
+  categories={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+  series={[{ label: "Sisa utang (ribu rupiah)", mark: "line", values: Array.from({ length: 13 }, (_, m) => (2700000 - 225000 * m) / 1000) }]}
+  valueLabel="Ribu rupiah"
+/>
+
 Hasil pembagiannya bulat, jadi cicilan terakhir juga tepat <InlineMath math="\text{Rp}225{.}000" />. Jadi, Pak Tono mencicil selama <InlineMath math="12" /> bulan.

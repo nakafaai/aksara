@@ -8,4 +8,17 @@ Ab 07.30 Uhr fahren beide aufeinander zu, der Abstand schrumpft also um <InlineM
 
 Ab 07.30 Uhr begegnen sie sich um 09.18 Uhr. Probe: Bis dahin hat A <InlineMath math="40\times2{,}3=92" /> km und B <InlineMath math="60\times1{,}8=108" /> km zurückgelegt, und <InlineMath math="92+108=200" />.
 
+Das Diagramm zeichnet den Abstand jedes Busses von Kota Sela. **Die beiden Linien treffen sich um 09.18 Uhr**, <InlineMath math="92" /> km von Kota Sela entfernt.
+
+<Chart
+  title={<>Abstand beider Busse von Kota Sela im Zeitverlauf</>}
+  description={<>Bus A fährt um 07.00 Uhr in Kota Sela ab und entfernt sich pro Stunde um <InlineMath math="40" /> km. Bus B fährt um 07.30 Uhr in Kota Raya ab, <InlineMath math="200" /> km von Kota Sela, und nähert sich pro Stunde um <InlineMath math="60" /> km. Um 09.18 Uhr sind beide <InlineMath math="92" /> km von Kota Sela entfernt.</>}
+  categories={["07.00", "07.30", "08.00", "08.30", "09.00", "09.18"]}
+  series={[
+    { label: "Bus A", mark: "line", values: [0, 0.5, 1, 1.5, 2, 2.3].map((t) => 40 * t) },
+    { label: "Bus B", mark: "line", values: [0, 0.5, 1, 1.5, 2, 2.3].map((t) => (t <= 0.5 ? 200 : 200 - (60 * (10 * t - 5)) / 10)) },
+  ]}
+  valueLabel="Km von Kota Sela"
+/>
+
 09.00 Uhr entsteht, wenn man beide Busse gleichzeitig um 07.00 Uhr abfahren lässt. Die Busse begegnen sich also um 09.18 Uhr.

@@ -4,6 +4,18 @@ Streiche die Schlüssel, die den Lagerraum **nicht öffnen können**.
 - Der blaue öffnet nur Garage oder Schlafzimmer (zweite Angabe).
 - Der gelbe öffnet nur Küche oder Garage (vierte Angabe).
 
+Das Diagramm fasst zusammen, warum jeder Schlüssel für den Lagerraum ausscheidet. **Nur der grüne Schlüssel bleibt übrig**.
+
+<Mermaid
+  title={<>Welcher Schlüssel den Lagerraum öffnen kann</>}
+  description={<>Der rote Schlüssel darf den Lagerraum nicht öffnen. Der blaue öffnet nur Garage oder Schlafzimmer. Der gelbe öffnet nur Küche oder Garage. Der grüne ist nur für die Garage ausgeschlossen, also öffnet der grüne Schlüssel den Lagerraum.</>}
+  chart={`flowchart LR
+    G["Tür zum Lagerraum"] --> M["Rot: für den Lagerraum ausgeschlossen"]
+    G --> B["Blau: nur Garage oder Schlafzimmer"]
+    G --> K["Gelb: nur Küche oder Garage"]
+    G --> H["Grün: erlaubt"]`}
+/>
+
 Übrig bleibt der grüne Schlüssel, und er darf den Lagerraum öffnen, denn verboten ist ihm nur die Garage.
 
 Für den roten und den blauen Schlüssel legen die Angaben die Tür nicht fest, denn die beiden können Garage und Schlafzimmer tauschen. Der Lagerraum wird aber sicher mit dem grünen Schlüssel geöffnet, *tidak dapat dipastikan* (nicht bestimmbar) ist also falsch.

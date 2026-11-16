@@ -6,6 +6,19 @@ Rechne zuerst in **Blatt pro Minute** um: Gerät A schafft <InlineMath math="1.2
 \text{A und B zusammen} &: \frac{900}{30+20}=18\text{ Minuten}
 \end{aligned}" />
 
+Das Diagramm zeichnet die schon gedruckten Blätter. **Nach 07.10 Uhr wird die Linie steiler**, weil beide Geräte zusammen <InlineMath math="50" /> Blatt pro Minute drucken.
+
+<Chart
+  title={<>Gedruckte Prüfungsblätter seit 07.00 Uhr</>}
+  description={<>Gerät A druckt allein bis 07.10 Uhr <InlineMath math="300" /> Blatt. Danach drucken beide Geräte <InlineMath math="50" /> Blatt pro Minute, also dauern die restlichen <InlineMath math="900" /> Blatt <InlineMath math="18" /> Minuten, fertig um 07.28 Uhr.</>}
+  categories={["07.00", "07.10", "07.20", "07.28"]}
+  series={[
+    { label: "Gedruckte Blätter", mark: "line", values: [0, 30 * 10, 300 + 50 * 10, 300 + 50 * 18] },
+    { label: "Ziel 1.200 Blatt", mark: "line", values: [1200, 1200, 1200, 1200] },
+  ]}
+  valueLabel="Blatt"
+/>
+
 Der Druck endet <InlineMath math="18" /> Minuten nach 07.10 Uhr, also um 07.28 Uhr. Die Antwort 07.24 Uhr entsteht, wenn man beide Geräte ab 07.00 Uhr laufen lässt.
 
 Der Druck ist also um 07.28 Uhr fertig.

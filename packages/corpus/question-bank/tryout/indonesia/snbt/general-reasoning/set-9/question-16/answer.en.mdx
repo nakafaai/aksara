@@ -1,5 +1,17 @@
 Choose Mungkin (possible) or Tidak mungkin (impossible) for each situation. Remember two settled facts: Umar is on floor 1 gardening, and the cook lives **directly below** the painter.
 
+The chart below counts the facts each situation breaks. **A situation with a zero bar is possible**.
+
+<Chart
+  title={<>Facts broken by each situation</>}
+  description={<>Situation <InlineMath math="1" /> breaks fact 1, because the cook can't be on the top floor. Situation <InlineMath math="3" /> breaks fact 2. Situations <InlineMath math="2" /> and <InlineMath math="4" /> break no fact.</>}
+  categories={["Situation 1", "Situation 2", "Situation 3", "Situation 4"]}
+  bars="apart"
+  series={[{ label: "Facts broken", mark: "bar", values: [1, 0, 1, 0] }]}
+  valueLabel="Facts"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Situation 1**: impossible. The cook must live directly below the painter, so the cook cannot be on floor 4, the top floor.
 
 **Situation 2**: possible. Umar on floor 1 gardening, Tika on floor 2 cooking, Sita on floor 3 painting, and Rani on floor 4 photographing meets every fact.

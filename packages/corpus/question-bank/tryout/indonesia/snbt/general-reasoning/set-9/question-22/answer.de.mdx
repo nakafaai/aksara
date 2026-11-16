@@ -6,4 +6,15 @@ Die Treppe ist <InlineMath math="3" /> Würfel breit, insgesamt also:
 
 <BlockMath math="3\times36=108" />
 
+Das Diagramm zeichnet die Würfel für Treppen mit <InlineMath math="1" /> bis <InlineMath math="8" /> Stufen. **Der zweite Balken ist <InlineMath math="9" />, wie im Beispiel**, und der achte <InlineMath math="108" />.
+
+<Chart
+  title={<>Benötigte Würfel nach Zahl der Stufen</>}
+  description={<>Eine Treppe, <InlineMath math="3" /> Würfel breit, mit <InlineMath math="n" /> Stufen braucht <InlineMath math="3\times\tfrac{n(n+1)}{2}" /> Würfel. Für <InlineMath math="n=1" /> bis <InlineMath math="8" /> sind das <InlineMath math="3" />, <InlineMath math="9" />, <InlineMath math="18" />, <InlineMath math="30" />, <InlineMath math="45" />, <InlineMath math="63" />, <InlineMath math="84" /> und <InlineMath math="108" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[{ label: "Benötigte Würfel", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => (3 * n * (n + 1)) / 2) }]}
+  valueLabel="Würfel"
+/>
+
 Probe mit dem Beispiel: Eine Treppe mit <InlineMath math="2" /> Stufen braucht <InlineMath math="3\times(1+2)=9" /> Würfel, wie angegeben. <InlineMath math="144" /> entsteht, wenn man die Breite mit <InlineMath math="4" /> Würfeln ansetzt. Eine Treppe mit <InlineMath math="8" /> Stufen braucht also <InlineMath math="108" /> Würfel.

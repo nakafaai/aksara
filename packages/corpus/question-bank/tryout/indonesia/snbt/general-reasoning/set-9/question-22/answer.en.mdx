@@ -6,4 +6,15 @@ The staircase is <InlineMath math="3" /> cubes wide, so in total:
 
 <BlockMath math="3\times36=108" />
 
+The chart below draws the cubes for staircases with <InlineMath math="1" /> to <InlineMath math="8" /> steps. **The second bar is <InlineMath math="9" />, matching the example**, and the eighth is <InlineMath math="108" />.
+
+<Chart
+  title={<>Cubes needed by number of steps</>}
+  description={<>A staircase <InlineMath math="3" /> cubes wide with <InlineMath math="n" /> steps needs <InlineMath math="3\times\tfrac{n(n+1)}{2}" /> cubes. For <InlineMath math="n=1" /> to <InlineMath math="8" />, that's <InlineMath math="3" />, <InlineMath math="9" />, <InlineMath math="18" />, <InlineMath math="30" />, <InlineMath math="45" />, <InlineMath math="63" />, <InlineMath math="84" />, and <InlineMath math="108" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[{ label: "Cubes needed", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => (3 * n * (n + 1)) / 2) }]}
+  valueLabel="Cubes"
+/>
+
 Check with the example: a <InlineMath math="2" />-step staircase needs <InlineMath math="3\times(1+2)=9" /> cubes, as given. <InlineMath math="144" /> comes from taking the width as <InlineMath math="4" /> cubes. So an <InlineMath math="8" />-step staircase needs <InlineMath math="108" /> cubes.

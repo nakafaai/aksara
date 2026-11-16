@@ -4,6 +4,20 @@ Berechne für jedes Paket **das Volumengewicht**, nimm das größere Gewicht, ru
 - **Paket 2**: Volumengewicht <InlineMath math="\frac{40\times30\times25}{6{.}000}=5" /> kg, größer als <InlineMath math="1{,}2" /> kg. Kosten <InlineMath math="5\times12{.}000=60{.}000" />.
 - **Paket 3**: Volumengewicht <InlineMath math="\frac{20\times20\times15}{6{.}000}=1" /> kg. Das tatsächliche Gewicht von <InlineMath math="4" /> kg ist größer. Kosten <InlineMath math="4\times8{.}000=32{.}000" />.
 
+Das Diagramm stellt die beiden Gewichte jedes Pakets nebeneinander. **Nur bei Paket 2 ist der Balken des Volumengewichts höher**, also werden für Paket 2 <InlineMath math="5" /> kg berechnet.
+
+<Chart
+  title={<>Tatsächliches Gewicht und Volumengewicht der drei Pakete</>}
+  description={<>Paket 1 wiegt <InlineMath math="2{,}3" /> kg bei einem Volumengewicht von <InlineMath math="1" /> kg. Paket 2 wiegt <InlineMath math="1{,}2" /> kg bei einem Volumengewicht von <InlineMath math="5" /> kg. Paket 3 wiegt <InlineMath math="4" /> kg bei einem Volumengewicht von <InlineMath math="1" /> kg.</>}
+  categories={["Paket 1", "Paket 2", "Paket 3"]}
+  bars="apart"
+  series={[
+    { label: "Tatsächliches Gewicht (kg)", mark: "bar", values: [2.3, 1.2, 4] },
+    { label: "Volumengewicht (kg)", mark: "bar", values: [(30 * 20 * 10) / 6000, (40 * 30 * 25) / 6000, (20 * 20 * 15) / 6000] },
+  ]}
+  valueLabel="Kg"
+/>
+
 <BlockMath math="24{.}000+60{.}000+32{.}000=116{.}000" />
 
 <InlineMath math="\text{Rp}80{.}000" /> entsteht, wenn man das Volumengewicht von Paket 2 übersieht, und <InlineMath math="\text{Rp}110{.}400" />, wenn man Paket 1 nicht aufrundet. Die drei Pakete kosten also zusammen <InlineMath math="\text{Rp}116{.}000" />.

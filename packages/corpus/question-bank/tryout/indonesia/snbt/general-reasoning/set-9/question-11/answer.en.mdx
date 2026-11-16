@@ -3,6 +3,17 @@ Mark each statement Benar (true, it must follow from the facts) or Salah (false,
 - Every poetry entrant performs on Friday. Lina does not perform on Friday, so Lina is **not** a poetry entrant.
 - Every entrant is in exactly one category, poetry or short story. Since she is not in poetry, Lina must be a **short story** entrant.
 
+The diagram below follows Lina through the facts. **Each arrow uses one fact**, and it ends at a script sent before Thursday.
+
+<Mermaid
+  title={<>Following Lina through the facts about the literature contest</>}
+  description={<>Lina doesn't perform on Friday, so she isn't a poetry entrant. Every entrant is in exactly one category, so Lina is a short story entrant. Short story entrants submit before Thursday.</>}
+  chart={`flowchart LR
+    L["Lina doesn't perform on Friday"] -->|"contrapositive of fact 2"| P["Lina isn't in poetry"]
+    P -->|"fact 1"| C["Lina is in short story"]
+    C -->|"fact 3"| N["Lina submits before Thursday"]`}
+/>
+
 **Statement 1** is true, by the reasoning above.
 
 **Statement 2** is false. The facts say Lina does not perform on Friday.

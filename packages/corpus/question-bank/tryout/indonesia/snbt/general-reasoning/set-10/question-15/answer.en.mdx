@@ -6,6 +6,18 @@ Follow the rules **one at a time**, starting from booth 1.
 - XI-A is directly right of X-C, at <InlineMath math="5" /> (rule 5).
 - XI-C takes booth 3, which is not an end and has a higher number than X-A.
 
+The diagram below draws that chain of placements. **Each step leaves only one booth**, until XI-A lands at booth 5.
+
+<Mermaid
+  title={<>The chain of booth placements when XI-B is at booth 1</>}
+  description={<>XI-B at booth 1 puts X-A at booth 2. The other class X booths must be at <InlineMath math="4" /> and <InlineMath math="6" />, with X-B at <InlineMath math="6" />, so X-C is at <InlineMath math="4" />. XI-A is directly right of X-C, at booth 5, and XI-C fills booth 3.</>}
+  chart={`flowchart LR
+    B["XI-B at booth 1"] -->|"rule 2"| A["X-A at booth 2"]
+    A -->|"rule 1"| X["Other class X booths at 4 and 6"]
+    X -->|"X-B at booth 6"| C["X-C at booth 4"]
+    C -->|"rule 5"| I["XI-A at booth 5"]`}
+/>
+
 The order is XI-B, X-A, XI-C, X-C, XI-A, X-B, and every rule holds.
 
 So XI-A is at booth 5.

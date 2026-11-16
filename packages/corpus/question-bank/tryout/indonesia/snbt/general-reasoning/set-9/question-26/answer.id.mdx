@@ -8,6 +8,19 @@ Misalkan nilai Dina <InlineMath math="d" /> dan nilai Eko <InlineMath math="e" /
 
 <BlockMath math="d+(d-6)=160\quad\Rightarrow\quad 2d=166\quad\Rightarrow\quad d=83" />
 
+Grafik berikut menggambar nilai Eko yang cocok dengan setiap pernyataan untuk beberapa nilai Dina. **Kedua garis hanya bertemu di <InlineMath math="d=83" />**.
+
+<Chart
+  title={<>Nilai Eko menurut kedua pernyataan untuk beberapa nilai Dina</>}
+  description={<>Pernyataan (1) memberi <InlineMath math="e=160-d" />, dan pernyataan (2) memberi <InlineMath math="e=d-6" />. Setiap pernyataan sendirian cocok dengan banyak nilai Dina, tetapi kedua garis hanya bertemu saat Dina <InlineMath math="83" /> dan Eko <InlineMath math="77" />.</>}
+  categories={["78", "80", "82", "83", "84", "86", "88"]}
+  series={[
+    { label: "Nilai Eko menurut pernyataan (1)", mark: "line", values: [78, 80, 82, 83, 84, 86, 88].map((d) => 160 - d) },
+    { label: "Nilai Eko menurut pernyataan (2)", mark: "line", values: [78, 80, 82, 83, 84, 86, 88].map((d) => d - 6) },
+  ]}
+  valueLabel="Nilai Eko"
+/>
+
 Nilai Dina dapat ditentukan, yaitu <InlineMath math="83" />.
 
 Jadi, dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.

@@ -8,4 +8,18 @@ The rest of the target must come from Tribun tickets: <InlineMath math="300-170=
 
 Tickets are whole numbers, so **round up** to <InlineMath math="867" />. Check: <InlineMath math="866" /> tickets bring <InlineMath math="129.9" /> million, still short, while <InlineMath math="867" /> bring <InlineMath math="130.05" /> million.
 
+The chart below draws the revenue on day <InlineMath math="3" /> for several numbers of Tribun tickets. **The revenue line only passes the target at <InlineMath math="867" /> tickets**.
+
+<Chart
+  title={<>Revenue on day <InlineMath math="3" /> by number of Tribun tickets</>}
+  description={<>With <InlineMath math="n" /> Tribun tickets, revenue is <InlineMath math="170+0.15n" /> million rupiah. At <InlineMath math="866" /> tickets, it's <InlineMath math="299.9" /> million. At <InlineMath math="867" /> tickets, it's <InlineMath math="300.05" /> million.</>}
+  categories={["865", "866", "867", "868"]}
+  series={[
+    { label: "Day 3 revenue", mark: "line", values: [865, 866, 867, 868].map((n) => 170 + (15 * n) / 100) },
+    { label: "Target", mark: "line", values: [300, 300, 300, 300] },
+  ]}
+  valueLabel="Million rupiah"
+  valueRange={{ min: 299.5, max: 300.5 }}
+/>
+
 So at least <InlineMath math="867" /> Tribun tickets must be sold.

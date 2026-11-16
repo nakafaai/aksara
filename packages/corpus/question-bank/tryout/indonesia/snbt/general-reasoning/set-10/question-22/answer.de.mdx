@@ -8,6 +8,19 @@ Jeder Arm trägt zwei lange Seiten von <InlineMath math="n" /> cm und ein Ende v
 
 <BlockMath math="\text{Umfang}=4\times(2n+1)=4\times21=84\text{ cm}" />
 
+Das Diagramm zeichnet Quadrate und Umfang der Figuren <InlineMath math="1" /> bis <InlineMath math="10" />. **Bei Figur <InlineMath math="10" /> sind es <InlineMath math="41" /> Quadrate und <InlineMath math="84" /> cm Umfang**.
+
+<Chart
+  title={<>Quadrate und Umfang des Pluszeichens nach Figurnummer</>}
+  description={<>Figur <InlineMath math="n" /> hat <InlineMath math="4n+1" /> Quadrate und einen Umfang von <InlineMath math="4(2n+1)" /> cm. Für <InlineMath math="n=1" />, <InlineMath math="2" /> und <InlineMath math="10" /> beträgt der Umfang <InlineMath math="12" />, <InlineMath math="20" /> und <InlineMath math="84" /> cm.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Quadrate", mark: "line", values: Array.from({ length: 10 }, (_, i) => 4 * (i + 1) + 1) },
+    { label: "Umfang (cm)", mark: "line", values: Array.from({ length: 10 }, (_, i) => 4 * (2 * (i + 1) + 1)) },
+  ]}
+  valueLabel="Anzahl oder cm"
+/>
+
 Probe mit den Figuren 1 und 2: <InlineMath math="4\times3=12" /> und <InlineMath math="4\times5=20" />, wie angegeben.
 
 Der Umfang beträgt also <InlineMath math="84" /> cm.

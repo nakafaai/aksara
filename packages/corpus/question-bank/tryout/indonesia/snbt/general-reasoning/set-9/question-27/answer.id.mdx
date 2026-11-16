@@ -8,4 +8,17 @@ Mulai pukul 07.30, kedua bus bergerak saling mendekat, sehingga jarak di antara 
 
 Dari pukul 07.30, keduanya berpapasan pukul 09.18. Periksa: pada saat itu A sudah menempuh <InlineMath math="40\times2{,}3=92" /> km dan B <InlineMath math="60\times1{,}8=108" /> km, dan <InlineMath math="92+108=200" />.
 
+Grafik berikut menggambar jarak setiap bus dari Kota Sela. **Kedua garis bertemu pada pukul 09.18**, di titik <InlineMath math="92" /> km dari Kota Sela.
+
+<Chart
+  title={<>Jarak kedua bus dari Kota Sela menurut waktu</>}
+  description={<>Bus A berangkat dari Kota Sela pukul 07.00 dan menjauh <InlineMath math="40" /> km setiap jam. Bus B berangkat dari Kota Raya, <InlineMath math="200" /> km dari Kota Sela, pukul 07.30 dan mendekat <InlineMath math="60" /> km setiap jam. Keduanya berada <InlineMath math="92" /> km dari Kota Sela pada pukul 09.18.</>}
+  categories={["07.00", "07.30", "08.00", "08.30", "09.00", "09.18"]}
+  series={[
+    { label: "Bus A", mark: "line", values: [0, 0.5, 1, 1.5, 2, 2.3].map((t) => 40 * t) },
+    { label: "Bus B", mark: "line", values: [0, 0.5, 1, 1.5, 2, 2.3].map((t) => (t <= 0.5 ? 200 : 200 - (60 * (10 * t - 5)) / 10)) },
+  ]}
+  valueLabel="Km dari Kota Sela"
+/>
+
 Pukul 09.00 muncul jika kedua bus dianggap berangkat bersamaan pukul 07.00. Jadi, kedua bus berpapasan pukul 09.18.
