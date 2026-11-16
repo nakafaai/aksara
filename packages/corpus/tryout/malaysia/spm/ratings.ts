@@ -15,8 +15,9 @@ export const physicsRatings: readonly SetRating[] = [
  * raters rated all 40 items of set 2 alone on 16 Nov 2026 (3.41 and 3.60), and
  * two raters rated all 40 items of set 3 alone the same day (3.28 and 3.13), and
  * two raters rated all 40 items of set 4 alone (3.19 and 3.11), and two
- * raters rated all 40 items of set 5 alone (3.43 and 3.64). A rewritten set
- * replaces its entry with a rating of its new items.
+ * raters rated all 40 items of set 5 alone (3.43 and 3.64), and two raters
+ * rated all 40 items of set 6 alone (3.73 and 3.69). A rewritten set replaces
+ * its entry with a rating of its new items.
  */
 export const chemistryRatings: readonly SetRating[] = [
   { items: 40, level: 4.14, raters: 8 },
@@ -24,6 +25,7 @@ export const chemistryRatings: readonly SetRating[] = [
   { items: 40, level: 3.21, raters: 2 },
   { items: 40, level: 4.24, raters: 2 },
   { items: 40, level: 3.53, raters: 2 },
+  { items: 40, level: 3.71, raters: 2 },
 ];
 
 /**
