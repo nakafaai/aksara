@@ -11,6 +11,21 @@ Hitung stok A di setiap larutan, jumlahkan, lalu bagi dengan volume campuran.
 
 Nilai <InlineMath math="1{.}225\text{ ppm}" /> berada di rentang <InlineMath math="1{.}150" /> sampai <InlineMath math="1{.}250\text{ ppm}" />. Rata-rata biasa <InlineMath math="\tfrac{1{.}600+1{.}100}{2}=1{.}350" /> menyesatkan, karena **larutan yang volumenya lebih besar lebih berpengaruh**. Pernyataan pertama benar.
 
+Grafik berikut membandingkan campuran sebenarnya dengan rata-rata biasa kedua larutan. **Hanya batang campuran yang jatuh di pita sesuai**, karena larutan <InlineMath math="150" /> liter lebih berbobot.
+
+<Chart
+  title={<>Konsentrasi kedua larutan, campurannya, dan rata-rata biasanya</>}
+  description={<>Larutan <InlineMath math="50" /> liter berkonsentrasi <InlineMath math="1{.}600\text{ ppm}" /> dan larutan <InlineMath math="150" /> liter berkonsentrasi <InlineMath math="1{.}100\text{ ppm}" />. Campurannya <InlineMath math="1{.}225\text{ ppm}" />, sedangkan rata-rata biasa kedua konsentrasi <InlineMath math="1{.}350\text{ ppm}" />. Dua garis datar menandai batas <InlineMath math="1{.}150" /> dan <InlineMath math="1{.}250\text{ ppm}" />.</>}
+  categories={["Larutan 50 liter", "Larutan 150 liter", "Campuran", "Rata-rata biasa"]}
+  bars="apart"
+  series={[
+    { label: "Konsentrasi (ppm)", mark: "bar", values: [1600, 1100, ((400 + 825) / 200) * 200, (1600 + 1100) / 2] },
+    { label: "Batas bawah 1.150", mark: "line", values: [1150, 1150, 1150, 1150] },
+    { label: "Batas atas 1.250", mark: "line", values: [1250, 1250, 1250, 1250] },
+  ]}
+  valueLabel="Konsentrasi (ppm)"
+/>
+
 # Larutan minggu pertama
 
 Larutan <InlineMath math="600\text{ ppm}" /> sebanyak <InlineMath math="200" /> liter berisi <InlineMath math="600\text{ ml}" /> stok A. Setelah satu perubahan harian, volume dan stoknya sama-sama turun.

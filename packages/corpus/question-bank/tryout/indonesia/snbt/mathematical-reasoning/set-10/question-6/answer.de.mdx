@@ -37,6 +37,18 @@ Addiere **alle Zahlungen vom Kauftag bis zum Tag der Ablösung**.
 
 Würde Dodi alle Raten zahlen, wären es <InlineMath math="1{.}400{.}000+12\cdot472{.}000=7{.}064{.}000" />. Die vorzeitige Ablösung spart <InlineMath math="7\cdot72{.}000=504{.}000" /> Zinsen, kostet aber <InlineMath math="84{.}000" /> Strafgebühr. **Die Ersparnis** beträgt <InlineMath math="504{.}000-84{.}000=420{.}000" />, und tatsächlich gilt <InlineMath math="7{.}064{.}000-420{.}000=6{.}644{.}000" />.
 
+Das Diagramm vergleicht die vorzeitige Tilgung mit dem Zahlen aller Raten. **Die vorzeitige Tilgung ist <InlineMath math="\text{Rp}420{.}000" /> billiger**, weil sieben Monate Zinsen wegfallen und die Strafgebühr viel kleiner ist.
+
+<Chart
+  title={<>Dodis Gesamtzahlung mit und ohne vorzeitige Tilgung</>}
+  description={<>Zahlt Dodi alle <InlineMath math="12" /> Raten, beträgt die Summe <InlineMath math="\text{Rp}7{.}064{.}000" />. Mit vorzeitiger Tilgung nach der fünften Rate beträgt sie <InlineMath math="\text{Rp}6{.}644{.}000" />. Die Werteachse beginnt bei <InlineMath math="\text{Rp}6{.}000{.}000" />.</>}
+  categories={["Alle Raten", "Getilgt nach der fünften"]}
+  bars="apart"
+  series={[{ label: "Gesamt bezahltes Geld (Rupiah)", mark: "bar", values: [1400000 + 12 * 472000, 1400000 + 5 * 472000 + 1.03 * (4800000 - 5 * 400000)] }]}
+  valueRange={{ min: 6000000, max: 7200000 }}
+  valueLabel="Geld (Rupiah)"
+/>
+
 # Die falschen Antworten
 
 Jede falsche Antwort **berechnet den Ablösebetrag falsch**.

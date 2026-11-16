@@ -30,4 +30,15 @@ Lkw und Bus **dürfen jetzt zusammen fahren**, und der letzte Bus fährt allein.
 
 Die Warteschlange lautet jetzt: zwei Lkw, sechs kleine Fahrzeuge, zwei Busse und zuletzt der Lkw. Die erste Fahrt sind die zwei Lkw, die zweite die sechs kleinen Fahrzeuge, denn der nächste Bus ergäbe eine Länge von <InlineMath math="31+12=43\text{ m}" />. Danach **passt kein Paar schwerer Fahrzeuge zusammen**: Zwei Busse wiegen <InlineMath math="32\text{ Tonnen}" />, ein Bus mit einem Lkw wiegt <InlineMath math="31\text{ Tonnen}" />. Bus, Bus und Lkw fahren jeweils allein, also braucht die Warteschlange weiterhin <InlineMath math="5" /> Fahrten. Die vierte Aussage ist falsch.
 
+Das Diagramm vergleicht die Anzahl der Fahrten für die ursprüngliche Schlange und jede Änderung. **Nur das fehlende dritte Auto und die Grenze von <InlineMath math="31" /> Tonnen sparen eine Fahrt**, während das Verschieben des Lkw nach hinten nichts ändert.
+
+<Chart
+  title={<>Anzahl der Fahrten für die ursprüngliche Schlange und jede Änderung</>}
+  description={<>Die ursprüngliche Schlange braucht <InlineMath math="5" /> Fahrten. Ohne das dritte Auto sind es <InlineMath math="4" />. Mit einer Massengrenze von <InlineMath math="31" /> Tonnen sind es <InlineMath math="4" />. Mit Lkw <InlineMath math="9" /> ganz hinten sind es weiterhin <InlineMath math="5" />.</>}
+  categories={["Ursprüngliche Schlange", "Drittes Auto fehlt", "Grenze 31 Tonnen", "Lkw 9 hinten"]}
+  bars="apart"
+  series={[{ label: "Fahrten", mark: "bar", values: [5, 4, 4, 5] }]}
+  valueLabel="Fahrten"
+/>
+
 Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.

@@ -26,6 +26,17 @@ Eine Laufzeit von <InlineMath math="13" /> Monaten hat schon <InlineMath math="2
 
 Aufgerundet beträgt die Rate bei <InlineMath math="13" /> Monaten <InlineMath math="490{.}000" />. Die Laufzeit ist länger, aber **der Anstieg der Monatszinsen ist größer** als der Rückgang des Tilgungsanteils. Die zweite Aussage ist falsch.
 
+Das Diagramm zeigt die Rate für jede Laufzeit. Die Balken sinken bis <InlineMath math="12" /> Monate und **springen bei <InlineMath math="13" /> Monaten nach oben**, weil der Monatszins von <InlineMath math="1{,}5\%" /> auf <InlineMath math="2{,}5\%" /> wechselt.
+
+<Chart
+  title={<>Monatliche Rate nach Laufzeit</>}
+  description={<>Die Rate für <InlineMath math="3" /> Monate beträgt <InlineMath math="\text{Rp}1{.}672{.}000" /> und sinkt bis <InlineMath math="\text{Rp}472{.}000" /> bei <InlineMath math="12" /> Monaten. Bei <InlineMath math="13" /> Monaten steigt sie auf <InlineMath math="\text{Rp}490{.}000" /> und sinkt dann wieder bis <InlineMath math="\text{Rp}320{.}000" /> bei <InlineMath math="24" /> Monaten.</>}
+  bars="apart"
+  categories={Array.from({ length: 22 }, (_, i) => `${i + 3}`)}
+  series={[{ label: "Monatliche Rate (Rupiah)", mark: "bar", values: Array.from({ length: 22 }, (_, i) => 1000 * Math.ceil((4800000 / (i + 3) + 4800000 * (i + 3 <= 12 ? 0.015 : 0.025)) / 1000)) }]}
+  valueLabel="Rate (Rupiah)"
+/>
+
 # Das Runden bei neun Monaten
 
 Die Rate bei <InlineMath math="9" /> Monaten ist vor dem Runden <InlineMath math="\tfrac{4{.}800{.}000}{9}+72{.}000=605{.}333{,}33\ldots" /> und wird auf <InlineMath math="606{.}000" /> aufgerundet.

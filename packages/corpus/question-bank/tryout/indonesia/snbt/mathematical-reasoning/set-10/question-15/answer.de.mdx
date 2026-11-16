@@ -11,6 +11,21 @@ Bestimme die Stammlösung A in jeder Lösung, addiere und teile durch das Volume
 
 Der Wert <InlineMath math="1{.}225\text{ ppm}" /> liegt im Bereich von <InlineMath math="1{.}150" /> bis <InlineMath math="1{.}250\text{ ppm}" />. Der einfache Mittelwert <InlineMath math="\tfrac{1{.}600+1{.}100}{2}=1{.}350" /> führt in die Irre, denn **die Lösung mit dem größeren Volumen zählt mehr**. Die erste Aussage ist wahr.
 
+Das Diagramm vergleicht die tatsächliche Mischung mit dem einfachen Mittelwert beider Lösungen. **Nur der Balken der Mischung liegt im passenden Band**, weil die <InlineMath math="150" />-Liter-Lösung stärker zählt.
+
+<Chart
+  title={<>Konzentration beider Lösungen, ihrer Mischung und ihres einfachen Mittelwerts</>}
+  description={<>Die <InlineMath math="50" />-Liter-Lösung hat <InlineMath math="1{.}600\text{ ppm}" />, die <InlineMath math="150" />-Liter-Lösung <InlineMath math="1{.}100\text{ ppm}" />. Die Mischung hat <InlineMath math="1{.}225\text{ ppm}" />, der einfache Mittelwert beider beträgt <InlineMath math="1{.}350\text{ ppm}" />. Zwei waagerechte Linien markieren die Grenzen <InlineMath math="1{.}150" /> und <InlineMath math="1{.}250\text{ ppm}" />.</>}
+  categories={["Lösung 50 Liter", "Lösung 150 Liter", "Mischung", "Einfacher Mittelwert"]}
+  bars="apart"
+  series={[
+    { label: "Konzentration (ppm)", mark: "bar", values: [1600, 1100, ((400 + 825) / 200) * 200, (1600 + 1100) / 2] },
+    { label: "Untergrenze 1.150", mark: "line", values: [1150, 1150, 1150, 1150] },
+    { label: "Obergrenze 1.250", mark: "line", values: [1250, 1250, 1250, 1250] },
+  ]}
+  valueLabel="Konzentration (ppm)"
+/>
+
 # Die Lösung der ersten Woche
 
 <InlineMath math="200" /> Liter Lösung mit <InlineMath math="600\text{ ppm}" /> enthalten <InlineMath math="600\text{ ml}" /> Stammlösung A. Nach einer täglichen Änderung sinken Volumen und Stammlösung beide.

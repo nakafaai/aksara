@@ -18,6 +18,21 @@ Now check the weights around that bound, using the right number of batches. Reme
 
 Each extra kilogram adds <InlineMath math="750\text{ g}" /> and at most one new batch that takes <InlineMath math="200\text{ g}" />. So a bigger weight never gives fewer bags, and anything below <InlineMath math="36\text{ kg}" /> is surely short. The smallest dark weight is <InlineMath math="38\text{ kg}" />.
 
+The chart below counts the dark bags for several green weights. **The <InlineMath math="37\text{ kg}" /> bar is still under the order line** because the thirty-seventh kilogram forces a fourth batch, and the first bar that's enough is <InlineMath math="38\text{ kg}" />.
+
+<Chart
+  title={<>Number of dark bags by green bean weight</>}
+  description={<>Green weights of <InlineMath math="35" />, <InlineMath math="36" />, <InlineMath math="37" />, <InlineMath math="38" />, and <InlineMath math="39\text{ kg}" /> give <InlineMath math="102" />, <InlineMath math="105" />, <InlineMath math="107" />, <InlineMath math="110" />, and <InlineMath math="113" /> dark bags. The flat line marks the order of <InlineMath math="108" /> bags. The value axis starts at <InlineMath math="95" />.</>}
+  bars="apart"
+  categories={["35", "36", "37", "38", "39"]}
+  series={[
+    { label: "Dark bags", mark: "bar", values: [35, 36, 37, 38, 39].map((w) => Math.floor((750 * w - 200 * Math.ceil(w / 12)) / 250)) },
+    { label: "Order of 108 bags", mark: "line", values: [108, 108, 108, 108, 108] },
+  ]}
+  valueRange={{ min: 95, max: 115 }}
+  valueLabel="Bags"
+/>
+
 # Light bags from the leftover beans
 
 The green beans left are <InlineMath math="50-38=12\text{ kg}" />. **That fits in exactly one batch**, so the taste test takes only <InlineMath math="200\text{ g}" />.

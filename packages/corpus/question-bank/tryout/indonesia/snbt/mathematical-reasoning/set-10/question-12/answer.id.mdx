@@ -36,6 +36,17 @@ Banyak relawan di suatu pos adalah gelas wajib dibagi gelas oleh satu relawan, l
 
 Setiap pos mendapat banyak relawan yang sama, jadi banyaknya harus cukup untuk pos yang paling berat. **Pos yang paling berat adalah pos <InlineMath math="1" />**, karena waktunya paling singkat, walaupun gelasnya jauh lebih sedikit daripada pos <InlineMath math="3" />.
 
+Grafik berikut menggambar relawan yang diperlukan setiap pos. **Batang tertinggi justru di pos <InlineMath math="1" />**, karena waktu mengisinya paling singkat, jadi angka itulah yang harus dipakai untuk semua pos.
+
+<Chart
+  title={<>Relawan yang diperlukan setiap pos agar <InlineMath math="40\%" /> gelas rencana sudah terisi</>}
+  description={<>Pos <InlineMath math="1" /> sampai <InlineMath math="5" /> memerlukan berturut-turut <InlineMath math="7" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="5" />, dan <InlineMath math="4" /> relawan.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5"]}
+  series={[{ label: "Relawan yang diperlukan", mark: "bar", values: [[2, 1320], [6, 1298], [10, 2508], [14, 2420], [18, 2310]].map((p) => Math.ceil((0.4 * p[1]) / (4 * (15 + 3 * p[0])))) }]}
+  valueLabel="Banyak relawan"
+/>
+
 # Pemeriksaan di pos pertama
 
 Dengan <InlineMath math="7" /> relawan, pos <InlineMath math="1" /> mengisi <InlineMath math="7\cdot84=588\ge528" /> gelas. Dengan <InlineMath math="6" /> relawan, pos <InlineMath math="1" /> hanya mengisi <InlineMath math="6\cdot84=504<528" /> gelas, jadi **enam relawan belum cukup**. Pos lain memerlukan paling banyak <InlineMath math="6" /> relawan, jadi <InlineMath math="7" /> relawan juga cukup di sana.

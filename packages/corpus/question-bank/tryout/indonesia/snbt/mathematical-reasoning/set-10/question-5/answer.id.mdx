@@ -32,6 +32,20 @@ Rina membayar **uang muka dan biaya administrasi di awal**, lalu <InlineMath mat
 \text{selisih} &= 6{.}854{.}000-5{.}760{.}000=1{.}094{.}000
 \end{aligned}" />
 
+Grafik berikut memisahkan pembayaran kedua cara. **Pembeli kredit membayar lebih sedikit di awal, tetapi sembilan cicilan membuat totalnya jauh lebih besar**.
+
+<Chart
+  title={<>Uang yang dikeluarkan untuk membeli tunai dan dengan kredit <InlineMath math="9" /> bulan</>}
+  description={<>Pembeli tunai membayar <InlineMath math="\text{Rp}5{.}760{.}000" /> sekaligus. Pembeli kredit membayar <InlineMath math="\text{Rp}1{.}400{.}000" /> di awal untuk uang muka dan biaya administrasi, lalu <InlineMath math="9" /> cicilan yang berjumlah <InlineMath math="\text{Rp}5{.}454{.}000" />, sehingga totalnya <InlineMath math="\text{Rp}6{.}854{.}000" />.</>}
+  categories={["Tunai", "Kredit 9 bulan"]}
+  bars="apart"
+  series={[
+    { label: "Dibayar di awal (rupiah)", mark: "bar", values: [6000000 - 0.04 * 6000000, 1200000 + 200000] },
+    { label: "Jumlah cicilan (rupiah)", mark: "bar", values: [0, 9 * 606000] },
+  ]}
+  valueLabel="Uang (rupiah)"
+/>
+
 # Pemeriksaan pembulatan
 
 Setiap bulan Rina membayar <InlineMath math="606{.}000-605{.}333{,}33\ldots=666{,}66\ldots" /> lebih banyak dari nilai pastinya. Dalam <InlineMath math="9" /> bulan, **tambahan karena pembulatan** adalah <InlineMath math="9\cdot666{,}66\ldots=6{.}000" />. Hasil ini cocok, karena <InlineMath math="4{.}800{.}000+648{.}000+6{.}000=5{.}454{.}000" />.

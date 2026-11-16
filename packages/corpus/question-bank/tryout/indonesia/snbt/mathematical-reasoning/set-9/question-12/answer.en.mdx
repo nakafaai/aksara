@@ -23,6 +23,21 @@ d=14 &: (14+4)\times8.488=18\times8.488=152.784\ge150
 
 A deposit of <InlineMath math="13.5" /> million is still short, while <InlineMath math="14" /> million is enough. **A bigger deposit always gives a bigger balance**, so <InlineMath math="14" /> million is the smallest.
 
+The chart below works out the balance at the end of year <InlineMath math="6" /> for deposits in steps of half a million. **The <InlineMath math="13.5" /> million bar is still under the target line**, and the first bar past it is <InlineMath math="14" /> million.
+
+<Chart
+  title={<>Balance at the end of year <InlineMath math="6" /> by yearly deposit</>}
+  description={<>For deposits of <InlineMath math="12" />, <InlineMath math="12.5" />, <InlineMath math="13" />, <InlineMath math="13.5" />, <InlineMath math="14" />, <InlineMath math="14.5" />, and <InlineMath math="15" /> million rupiah, the balance is about <InlineMath math="135.8" />, <InlineMath math="140.1" />, <InlineMath math="144.3" />, <InlineMath math="148.5" />, <InlineMath math="152.8" />, <InlineMath math="157.0" />, and <InlineMath math="161.3" /> million rupiah. The flat line marks the target of <InlineMath math="150" /> million rupiah. The value axis starts at <InlineMath math="130" />.</>}
+  categories={["12", "12.5", "13", "13.5", "14", "14.5", "15"]}
+  bars="apart"
+  series={[
+    { label: "Balance at end of year 6 (million rupiah)", mark: "bar", values: [12, 12.5, 13, 13.5, 14, 14.5, 15].map((d) => (d + 4) * 8.488) },
+    { label: "Target 150 million", mark: "line", values: [150, 150, 150, 150, 150, 150, 150] },
+  ]}
+  valueRange={{ min: 130, max: 165 }}
+  valueLabel="Balance (million rupiah)"
+/>
+
 # The wrong options
 
 Each other option **skips one condition in the rules**.

@@ -22,6 +22,20 @@ B_8 &= 9\times(2{,}144+1{,}949+1{,}772)+16\times(1{,}611+1{,}464+1{,}331+1{,}210
 
 Der Stand in Jahr <InlineMath math="8" /> liegt über <InlineMath math="135" />. **Der Kontostand steigt von Jahr zu Jahr immer**, wegen der neuen Einzahlung und des Wachstums, also liegen auch alle Jahre vor Jahr <InlineMath math="7" /> unter <InlineMath math="135" />.
 
+Das Diagramm zeigt jeden Kontostand am Jahresende mit den Faktoren aus der Tabelle. **Der Balken für Jahr <InlineMath math="7" /> liegt noch knapp unter der Ziellinie**, und der Balken für Jahr <InlineMath math="8" /> überschreitet sie deutlich.
+
+<Chart
+  title={<>Rentenkontostand am Ende jedes Jahres</>}
+  description={<>Die Kontostände am Ende der Jahre <InlineMath math="1" /> bis <InlineMath math="8" /> betragen <InlineMath math="9{,}9" />, <InlineMath math="20{,}79" />, <InlineMath math="32{,}769" />, <InlineMath math="53{,}645" />, <InlineMath math="76{,}614" />, <InlineMath math="101{,}879" />, <InlineMath math="129{,}668" /> und <InlineMath math="160{,}241" /> Millionen Rupiah. Die waagerechte Linie markiert das Ziel von <InlineMath math="135" /> Millionen Rupiah.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Kontostand am Jahresende (Millionen Rupiah)", mark: "bar", values: [9.9, 20.79, 32.769, 53.645, 76.614, 101.879, 129.668, 160.241] },
+    { label: "Ziel 135 Millionen", mark: "line", values: Array.from({ length: 8 }, () => 135) },
+  ]}
+  valueLabel="Kontostand (Millionen Rupiah)"
+/>
+
 # Kontrolle Jahr für Jahr
 
 Zweiter Weg: Addiere jedes Jahr das eingezahlte Geld und multipliziere dann mit <InlineMath math="1{,}1" />. Die Zahlen sind auf zwei Nachkommastellen gerundet.
