@@ -15,6 +15,47 @@ Untuk menentukan jenis sudut terbesar, bandingkan kuasa dua sisi terpanjang deng
 | <InlineMath math="9,10,11" /> | <InlineMath math="10" /> atau <InlineMath math="c" /> | kuasa dua terbesar kurang daripada hasil tambah dua yang lain | tirus |
 | <InlineMath math="12" /> hingga <InlineMath math="15" /> | <InlineMath math="c" /> | <InlineMath math="c^2>136" /> | cakah |
 
+Lukis kuasa dua sisi terpanjang tolak hasil tambah kuasa dua dua sisi lain, bagi setiap <InlineMath math="c" />. **Titik di atas paksi bermakna cakah, pada paksi bermakna tegak, dan di bawah paksi bermakna tirus**. Tujuh titik berada di atas paksi, tiga di kiri dan empat di kanan.
+
+<MathVisual
+  title={<>Ujian jenis sudut terbesar bagi setiap <InlineMath math="c" /></>}
+  description={<>Bagi <InlineMath math="5\le c\le10" />, sisi terpanjang ialah <InlineMath math="10" /> dan bezanya <InlineMath math="64-c^2" />. Bagi <InlineMath math="10\le c\le15" />, sisi terpanjang ialah <InlineMath math="c" /> dan bezanya <InlineMath math="c^2-136" />. Titik bulat bagi <InlineMath math="c=5" />, <InlineMath math="6" />, <InlineMath math="7" /> dan <InlineMath math="c=12" /> hingga <InlineMath math="15" /> berada di atas paksi, titik <InlineMath math="c=8" /> tepat pada paksi, dan titik <InlineMath math="c=9" />, <InlineMath math="10" />, <InlineMath math="11" /> di bawahnya.</>}
+  labels={{
+    short: <InlineMath math="64-c^2" />,
+    long: <InlineMath math="c^2-136" />,
+    right: <InlineMath math="c=8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 4, max: 16 },
+      y: { min: -50, max: 98 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "short", kind: "function", appearance: "primary", formula: "64 - x^2", domain: { min: 5, max: 10 } },
+      { id: "long", kind: "function", appearance: "primary", formula: "x^2 - 136", domain: { min: 10, max: 15 } },
+      { id: "c5", kind: "point", appearance: "warning", at: { x: 5, y: 39 } },
+      { id: "c6", kind: "point", appearance: "warning", at: { x: 6, y: 28 } },
+      { id: "c7", kind: "point", appearance: "warning", at: { x: 7, y: 15 } },
+      { id: "right", kind: "point", appearance: "construction", at: { x: 8, y: 0 } },
+      { id: "c9", kind: "point", appearance: "answer", at: { x: 9, y: -17 } },
+      { id: "c10", kind: "point", appearance: "answer", at: { x: 10, y: -36 } },
+      { id: "c11", kind: "point", appearance: "answer", at: { x: 11, y: -15 } },
+      { id: "c12", kind: "point", appearance: "warning", at: { x: 12, y: 8 } },
+      { id: "c13", kind: "point", appearance: "warning", at: { x: 13, y: 33 } },
+      { id: "c14", kind: "point", appearance: "warning", at: { x: 14, y: 60 } },
+      { id: "c15", kind: "point", appearance: "warning", at: { x: 15, y: 89 } },
+    ],
+    labels: [
+      { key: "short", objectId: "short", at: { x: 6, y: 28 }, placement: "above-right" },
+      { key: "long", objectId: "long", at: { x: 14, y: 60 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 8, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Menilai setiap pernyataan
 
 Pernyataan pertama: nilai <InlineMath math="c" /> yang sah ialah <InlineMath math="5" /> hingga <InlineMath math="15" />, jadi ada <InlineMath math="15-5+1=11" /> nilai. Pernyataan ini **Betul**.

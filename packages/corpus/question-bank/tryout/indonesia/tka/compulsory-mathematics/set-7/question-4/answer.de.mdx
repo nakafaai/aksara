@@ -27,6 +27,42 @@ t_{\text{zurück}}&=\frac{12}{16}+1+\frac{8}{16} \\
 &=\tfrac34+1+\tfrac12=2\tfrac14\text{ h}=2\text{ h }15\text{ min}
 \end{aligned}" />
 
+Zeichne den Abstand des Boots von P über der Zeit. **Der Teil des Treibens fällt trotzdem, nur flacher**, weil die Strömung das Boot weiter Richtung P trägt. Die Linie erreicht null zur Stunde <InlineMath math="5{,}25" />.
+
+<MathVisual
+  title={<>Abstand des Boots vom Steg P über der Zeit</>}
+  description={<>Die waagerechte Achse ist die Zeit in Stunden ab Abfahrt, die senkrechte Achse der Abstand von P in km. Die Linie steigt um <InlineMath math="8" /> km pro Stunde bis Q bei <InlineMath math="24\text{ km}" /> zur Stunde <InlineMath math="3" />. Dann fällt sie um <InlineMath math="16" /> km pro Stunde bis zur Mitte, um <InlineMath math="4" /> km pro Stunde während der Stunde mit ausgeschaltetem Motor und wieder um <InlineMath math="16" /> km pro Stunde bis P zur Stunde <InlineMath math="5{,}25" />.</>}
+  labels={{
+    up: <>gegen die Strömung, <InlineMath math="8\text{ km/h}" /></>,
+    drift: <>Treiben, <InlineMath math="4\text{ km/h}" /></>,
+    end: <>zurück in P, <InlineMath math="5\tfrac14" /> h</>,
+    q: <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.2, max: 5.7 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "up", kind: "function", appearance: "primary", formula: "8x", domain: { min: 0, max: 3 } },
+      { id: "down", kind: "function", appearance: "primary", formula: "24 - 16(x - 3)", domain: { min: 3, max: 3.75 } },
+      { id: "drift", kind: "function", appearance: "warning", formula: "12 - 4(x - 3.75)", domain: { min: 3.75, max: 4.75 } },
+      { id: "home", kind: "function", appearance: "primary", formula: "8 - 16(x - 4.75)", domain: { min: 4.75, max: 5.25 } },
+      { id: "q", kind: "point", appearance: "secondary", at: { x: 3, y: 24 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 5.25, y: 0 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 1.5, y: 12 }, placement: "above-left" },
+      { key: "drift", objectId: "drift", at: { x: 4.25, y: 10 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 5.25, y: 0 }, placement: "above-right" },
+      { key: "q", objectId: "q", at: { x: 3, y: 24 }, placement: "above" },
+    ],
+  }}
+/>
+
 Insgesamt dauert die Fahrt <InlineMath math="3\text{ h}+2\text{ h }15\text{ min}=5\text{ h }15\text{ min}" />.
 
 Zur Kontrolle: Ohne Ausfall dauert die Rückfahrt <InlineMath math="\tfrac{24}{16}=1{,}5" /> Stunden. Der Ausfall kostet <InlineMath math="1" /> Stunde, aber <InlineMath math="4\text{ km}" /> legt das Boot treibend zurück, und das spart <InlineMath math="\tfrac4{16}" /> Stunde, also <InlineMath math="15" /> Minuten. Das ergibt <InlineMath math="1{,}5" /> Stunden plus <InlineMath math="45" /> Minuten, also <InlineMath math="2" /> Stunden <InlineMath math="15" /> Minuten.

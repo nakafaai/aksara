@@ -20,6 +20,22 @@ Prüfe jetzt die Rabattbedingung für jeden Betrag. Der Betrag <InlineMath math=
 0\text{ Kartons}+28\text{ einzeln}&:\quad 420{.}000-0{,}05(420{.}000)=399{.}000
 \end{aligned}" />
 
+Vergleiche Summe nach der Aktion und Rechnung für Mitglieder bei den drei Möglichkeiten. **Nur bei der ersten Möglichkeit liegt der Summenbalken unter der Linie bei <InlineMath math="400" /> tausend**, also bekommt nur sie keinen Rabatt, und ihre Rechnung ist nicht die kleinste.
+
+<Chart
+  title={<>Summe und Rechnung für drei Wege zu <InlineMath math="28" /> Flaschen</>}
+  description={<>Zwei Kartons und vier einzelne Flaschen: Summe <InlineMath math="396" /> tausend, Rechnung <InlineMath math="396" /> tausend. Ein Karton und sechzehn einzelne Flaschen: Summe <InlineMath math="408" /> tausend, Rechnung <InlineMath math="387{,}6" /> tausend. Achtundzwanzig einzelne Flaschen: Summe <InlineMath math="420" /> tausend, Rechnung <InlineMath math="399" /> tausend. Die waagerechte Linie markiert die Rabattgrenze von <InlineMath math="400" /> tausend Rupiah.</>}
+  bars="apart"
+  categories={["2 Kartons + 4 einzeln", "1 Karton + 16 einzeln", "28 einzeln"]}
+  series={[
+    { label: "Summe nach Aktion", mark: "bar", values: [396, 408, 420] },
+    { label: "Rechnung Mitglied", mark: "bar", values: [396, 387.6, 399] },
+    { label: "Rabattgrenze", mark: "line", values: [400, 400, 400] },
+  ]}
+  valueLabel="Tausend Rupiah"
+  valueRange={{ min: 370, max: 430 }}
+/>
+
 Die kleinste Rechnung ergibt sich mit <InlineMath math="1" /> Karton und <InlineMath math="16" /> Einzelflaschen. Wenn du einen Karton gegen <InlineMath math="12" /> Einzelflaschen tauschst, steigt der Betrag nur um <InlineMath math="\text{Rp}12{.}000" />. Dieser kleine Anstieg hebt ihn aber über <InlineMath math="\text{Rp}400{.}000" />, und dann greift ein Rabatt von <InlineMath math="\text{Rp}20{.}400" />.
 
 Die kleinste mögliche Rechnung beträgt also <InlineMath math="\text{Rp}387{.}600" />.

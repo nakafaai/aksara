@@ -9,6 +9,48 @@ Rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="O" /> meng
 &\xrightarrow{\text{cermin }x=3}\bigl(6-(-x),\,-y\bigr)=(x+6,\,-y)
 \end{aligned}" />
 
+Ikuti satu titik melalui <InlineMath math="T" /> dua kali. **Setiap langkah membalik titik terhadap sumbu mendatar dan menggesernya <InlineMath math="6" /> ke kanan**, jadi dua langkah menghapus pembalikan dan meninggalkan geseran <InlineMath math="12" />. Garis <InlineMath math="y=x" /> dibawa ke garis <InlineMath math="y=-x+6" />.
+
+<MathVisual
+  title={<>Transformasi <InlineMath math="T(x,y)=(x+6,\,-y)" /></>}
+  description={<>Titik <InlineMath math="P(1,2)" /> dibawa <InlineMath math="T" /> ke <InlineMath math="(7,-2)" />, lalu ke <InlineMath math="(13,2)" />, tepat <InlineMath math="12" /> satuan di kanan <InlineMath math="P" />. Garis <InlineMath math="y=x" /> dan bayangannya <InlineMath math="y=-x+6" /> digambar bersama garis cermin <InlineMath math="x=3" />.</>}
+  labels={{
+    p: <InlineMath math="P(1,2)" />,
+    once: <InlineMath math="T(P)=(7,-2)" />,
+    twice: <InlineMath math="(13,2)" />,
+    diagonal: <InlineMath math="y=x" />,
+    image: <InlineMath math="y=-x+6" />,
+    mirror: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 15 },
+      y: { min: -4.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "diagonal", kind: "function", appearance: "secondary", formula: "x", domain: { min: -1.5, max: 7.5 } },
+      { id: "image", kind: "function", appearance: "primary", formula: "6 - x", domain: { min: -1.5, max: 10 } },
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 3, y: -4 }, to: { x: 3, y: 7.5 } },
+      { id: "step-one", kind: "vector", appearance: "construction", from: { x: 1, y: 2 }, to: { x: 7, y: -2 } },
+      { id: "step-two", kind: "vector", appearance: "construction", from: { x: 7, y: -2 }, to: { x: 13, y: 2 } },
+      { id: "p", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "once", kind: "point", appearance: "primary", at: { x: 7, y: -2 } },
+      { id: "twice", kind: "point", appearance: "answer", at: { x: 13, y: 2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "once", objectId: "once", at: { x: 7, y: -2 }, placement: "below" },
+      { key: "twice", objectId: "twice", at: { x: 13, y: 2 }, placement: "above" },
+      { key: "diagonal", objectId: "diagonal", at: { x: 7, y: 7 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -1, y: 7 }, placement: "right" },
+      { key: "mirror", objectId: "mirror", at: { x: 3, y: 7.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="T(x,y)=(x+6,\,-y)" />. Dalam kata-kata, **setiap titik dibalik terhadap sumbu mendatar, lalu digeser ke kanan** sejauh <InlineMath math="6" /> satuan.
 
 # Menilai setiap pernyataan

@@ -23,6 +23,37 @@ n^2+17n-1{.}050&=0 \\
 (n-25)(n+42)&=0
 \end{aligned}" />
 
+Zeichne die Sitzzahl der ersten <InlineMath math="n" /> Reihen als Funktion von <InlineMath math="n" />. **Die Kurve trifft die Linie <InlineMath math="1{.}050" /> für positives <InlineMath math="n" /> genau einmal**, bei <InlineMath math="n=25" />. Die negative Lösung der quadratischen Gleichung hat hier keine Bedeutung.
+
+<MathVisual
+  title={<>Sitzzahl nach Anzahl der Reihen</>}
+  description={<>Die waagerechte Achse ist die Anzahl der Reihen <InlineMath math="n" />, die senkrechte Achse die Gesamtzahl der Sitze. Die Kurve <InlineMath math="S_n=n(n+17)" /> steigt vom Ursprung aus immer schneller. Die waagerechte Linie bei <InlineMath math="1{.}050" /> trifft die Kurve in <InlineMath math="(25,\ 1{.}050)" />.</>}
+  labels={{
+    total: <InlineMath math="S_n=n(n+17)" />,
+    target: <InlineMath math="1{.}050" />,
+    hit: <InlineMath math="(25,\ 1{.}050)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: -40, max: 1400 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "x(x + 17)", domain: { min: 0, max: 30 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "1050", domain: { min: 0, max: 30 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 25, y: 1050 } },
+    ],
+    labels: [
+      { key: "total", objectId: "total", at: { x: 15, y: 480 }, placement: "below-right" },
+      { key: "target", objectId: "target", at: { x: 5, y: 1050 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 25, y: 1050 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Die Lösungen sind <InlineMath math="n=25" /> und <InlineMath math="n=-42" />. **Eine Anzahl von Reihen kann nicht negativ sein**, also ist <InlineMath math="n=25" />.
 
 # Die letzte Reihe

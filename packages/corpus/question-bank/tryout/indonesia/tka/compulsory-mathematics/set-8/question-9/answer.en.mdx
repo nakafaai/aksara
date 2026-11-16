@@ -7,6 +7,20 @@ Every statement uses a composition, so first build the full tables of <InlineMat
 | <InlineMath math="(g\circ f)(x)" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="6" /> |
 | <InlineMath math="(f\circ g)(x)" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
 
+Follow each element through <InlineMath math="f" /> and then <InlineMath math="g" />. **The ticks mark the values of <InlineMath math="x" /> that return to themselves, and there are three**, while the output <InlineMath math="2" /> appears twice, so <InlineMath math="g\circ f" /> has no inverse.
+
+<Mermaid
+  title={<>Path of each element through <InlineMath math="g\circ f" /></>}
+  description={<>An arrow diagram from <InlineMath math="x" /> to <InlineMath math="f(x)" /> and then to <InlineMath math="g(f(x))" />. The elements <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="6" /> return to themselves. The elements <InlineMath math="2" /> and <InlineMath math="4" /> both end at <InlineMath math="2" />. No path ends at <InlineMath math="4" />.</>}
+  chart={`flowchart LR
+  X1["x = 1"] -->|f| A1["4"] -->|g| B1["1 ✓"]
+  X2["x = 2"] -->|f| A2["6"] -->|g| B2["2 ✓"]
+  X3["x = 3"] -->|f| A3["2"] -->|g| B3["5"]
+  X4["x = 4"] -->|f| A4["5"] -->|g| B4["2"]
+  X5["x = 5"] -->|f| A5["1"] -->|g| B5["3"]
+  X6["x = 6"] -->|f| A6["3"] -->|g| B6["6 ✓"]`}
+/>
+
 Now you can judge each statement by reading this table, one column at a time.
 
 # Judging each statement

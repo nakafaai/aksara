@@ -30,6 +30,40 @@ n\cdot2{,}5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
 n&<38
 \end{aligned}" />
 
+Gambar taraf intensitas di garis depan sebagai fungsi banyak bedug besar <InlineMath math="n" />. **Kurvanya menyentuh <InlineMath math="90\text{ dB}" /> tepat di <InlineMath math="n=38" />**, dan syaratnya kurang dari <InlineMath math="90" />, jadi bilangan bulat terakhir di bawah garis adalah <InlineMath math="37" />.
+
+<MathVisual
+  title={<>Taraf intensitas di garis depan menurut banyak bedug besar</>}
+  description={<>Sumbu mendatar adalah <InlineMath math="n" />, sumbu tegak adalah taraf intensitas dalam dB, yaitu <InlineMath math="\mathrm{TI}(n)=70+10\log(2{,}5n+5)" />. Kurva naik makin landai. Garis mendatar di <InlineMath math="90\text{ dB}" /> adalah batas. Titik untuk <InlineMath math="n=38" /> tepat di garis, dan titik untuk <InlineMath math="n=37" /> sedikit di bawahnya, sekitar <InlineMath math="89{,}9\text{ dB}" />.</>}
+  labels={{
+    level: <InlineMath math="\mathrm{TI}(n)" />,
+    limit: <InlineMath math="90\text{ dB}" />,
+    best: <InlineMath math="n=37" />,
+    edge: <InlineMath math="n=38" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 24, max: 46 },
+      y: { min: 87.2, max: 91.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "primary", formula: "70 + 10 log_10(2.5x + 5)", domain: { min: 25, max: 45 } },
+      { id: "limit", kind: "function", appearance: "reference", formula: "90", domain: { min: 25, max: 45 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 37, y: 70 + 10 * Math.log10(97.5) } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 38, y: 90 } },
+    ],
+    labels: [
+      { key: "level", objectId: "level", at: { x: 27, y: 70 + 10 * Math.log10(72.5) }, placement: "below-right" },
+      { key: "limit", objectId: "limit", at: { x: 30, y: 90 }, placement: "above" },
+      { key: "best", objectId: "best", at: { x: 37, y: 70 + 10 * Math.log10(97.5) }, placement: "below-left" },
+      { key: "edge", objectId: "edge", at: { x: 38, y: 90 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Karena tandanya **kurang dari**, nilai <InlineMath math="n=38" /> tidak boleh. Dengan <InlineMath math="n=38" />, intensitasnya tepat <InlineMath math="40\cdot2{,}5\cdot10^{-5}=10^{-3}" />, yaitu tepat <InlineMath math="90\text{ dB}" />. Dengan <InlineMath math="n=37" />, intensitasnya <InlineMath math="39\cdot2{,}5\cdot10^{-5}=9{,}75\cdot10^{-4}" />, masih di bawah batas.
 
 # Kenapa pilihan lain salah

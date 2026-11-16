@@ -4,6 +4,64 @@ The question asks for the probability of **three conditions at once**: alternati
 
 Eight different students can be lined up in <InlineMath math="8!=40{,}320" /> ways, and the question says all of these orders are equally likely. An alternating line has **two patterns**: boys in positions <InlineMath math="1,3,5,7" />, or boys in positions <InlineMath math="2,4,6,8" />. In the first pattern, the left end (position <InlineMath math="1" />) belongs to a boy and the right end (position <InlineMath math="8" />) belongs to a girl. The second pattern is the other way round. So in each pattern, **only one end is available to Andi**.
 
+Draw the two patterns as two rows of eight positions. **In each pattern, Andi has only one end, and the only neighbouring position is the one Bela may not take**.
+
+<MathVisual
+  title={<>The two alternating patterns and Andi's position</>}
+  description={<>The top row is the first pattern: boys in positions <InlineMath math="1,3,5,7" />, girls in positions <InlineMath math="2,4,6,8" />, Andi in position <InlineMath math="1" />, and position <InlineMath math="2" /> closed to Bela. The bottom row is the second pattern: girls in positions <InlineMath math="1,3,5,7" />, boys in positions <InlineMath math="2,4,6,8" />, Andi in position <InlineMath math="8" />, and position <InlineMath math="7" /> closed to Bela. Each pattern gives <InlineMath math="108" /> orders.</>}
+  labels={{
+    "andi-one": <>Andi</>,
+    "block-one": <>not Bela</>,
+    "boy-one": <>boy</>,
+    "girl-one": <>girl</>,
+    "count-one": <InlineMath math="1\cdot3\cdot3!\cdot3!=108" />,
+    "andi-two": <>Andi</>,
+    "block-two": <>not Bela</>,
+    "boy-two": <>boy</>,
+    "girl-two": <>girl</>,
+    "count-two": <InlineMath math="108" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 13 },
+      y: { min: -1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "andi-one", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "block-one", kind: "point", appearance: "warning", at: { x: 2, y: 2 } },
+      { id: "boy-one", kind: "point", appearance: "primary", at: { x: 3, y: 2 } },
+      { id: "girl-one", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "boy-one-b", kind: "point", appearance: "primary", at: { x: 5, y: 2 } },
+      { id: "girl-one-b", kind: "point", appearance: "secondary", at: { x: 6, y: 2 } },
+      { id: "boy-one-c", kind: "point", appearance: "primary", at: { x: 7, y: 2 } },
+      { id: "count-one", kind: "point", appearance: "secondary", at: { x: 8, y: 2 } },
+      { id: "girl-two", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "boy-two", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "girl-two-b", kind: "point", appearance: "secondary", at: { x: 3, y: 0 } },
+      { id: "boy-two-b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "girl-two-c", kind: "point", appearance: "secondary", at: { x: 5, y: 0 } },
+      { id: "boy-two-c", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "block-two", kind: "point", appearance: "warning", at: { x: 7, y: 0 } },
+      { id: "andi-two", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "andi-one", objectId: "andi-one", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "block-one", objectId: "block-one", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "boy-one", objectId: "boy-one", at: { x: 3, y: 2 }, placement: "below" },
+      { key: "girl-one", objectId: "girl-one", at: { x: 4, y: 2 }, placement: "below" },
+      { key: "count-one", objectId: "count-one", at: { x: 8, y: 2 }, placement: "right" },
+      { key: "girl-two", objectId: "girl-two", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "boy-two", objectId: "boy-two", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "block-two", objectId: "block-two", at: { x: 7, y: 0 }, placement: "above-left" },
+      { key: "andi-two", objectId: "andi-two", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "count-two", objectId: "andi-two", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Counting the matching orders
 
 Take the first pattern. Andi has to be in position <InlineMath math="1" />, and his only neighbour is in position <InlineMath math="2" />, which is a girl's spot. Bela can't be in position <InlineMath math="2" />, so **Bela picks one of the other three girls' positions**. The other three girls fill the remaining three girls' positions, and the other three boys fill the remaining three boys' positions:

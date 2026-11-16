@@ -15,6 +15,47 @@ To find the type of the largest angle, compare the square of the longest side wi
 | <InlineMath math="9,10,11" /> | <InlineMath math="10" /> or <InlineMath math="c" /> | largest square is less than the sum of the other two | acute |
 | <InlineMath math="12" /> to <InlineMath math="15" /> | <InlineMath math="c" /> | <InlineMath math="c^2>136" /> | obtuse |
 
+Draw the square of the longest side minus the sum of the squares of the other two, for every <InlineMath math="c" />. **A point above the axis means obtuse, on the axis means right, and below the axis means acute**. Seven points lie above the axis, three on the left and four on the right.
+
+<MathVisual
+  title={<>Test of the largest angle for every <InlineMath math="c" /></>}
+  description={<>For <InlineMath math="5\le c\le10" /> the longest side is <InlineMath math="10" /> and the difference is <InlineMath math="64-c^2" />. For <InlineMath math="10\le c\le15" /> the longest side is <InlineMath math="c" /> and the difference is <InlineMath math="c^2-136" />. The whole-number points for <InlineMath math="c=5" />, <InlineMath math="6" />, <InlineMath math="7" /> and <InlineMath math="c=12" /> to <InlineMath math="15" /> lie above the axis, the point <InlineMath math="c=8" /> lies on the axis, and the points <InlineMath math="c=9" />, <InlineMath math="10" />, <InlineMath math="11" /> lie below it.</>}
+  labels={{
+    short: <InlineMath math="64-c^2" />,
+    long: <InlineMath math="c^2-136" />,
+    right: <InlineMath math="c=8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 4, max: 16 },
+      y: { min: -50, max: 98 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "short", kind: "function", appearance: "primary", formula: "64 - x^2", domain: { min: 5, max: 10 } },
+      { id: "long", kind: "function", appearance: "primary", formula: "x^2 - 136", domain: { min: 10, max: 15 } },
+      { id: "c5", kind: "point", appearance: "warning", at: { x: 5, y: 39 } },
+      { id: "c6", kind: "point", appearance: "warning", at: { x: 6, y: 28 } },
+      { id: "c7", kind: "point", appearance: "warning", at: { x: 7, y: 15 } },
+      { id: "right", kind: "point", appearance: "construction", at: { x: 8, y: 0 } },
+      { id: "c9", kind: "point", appearance: "answer", at: { x: 9, y: -17 } },
+      { id: "c10", kind: "point", appearance: "answer", at: { x: 10, y: -36 } },
+      { id: "c11", kind: "point", appearance: "answer", at: { x: 11, y: -15 } },
+      { id: "c12", kind: "point", appearance: "warning", at: { x: 12, y: 8 } },
+      { id: "c13", kind: "point", appearance: "warning", at: { x: 13, y: 33 } },
+      { id: "c14", kind: "point", appearance: "warning", at: { x: 14, y: 60 } },
+      { id: "c15", kind: "point", appearance: "warning", at: { x: 15, y: 89 } },
+    ],
+    labels: [
+      { key: "short", objectId: "short", at: { x: 6, y: 28 }, placement: "above-right" },
+      { key: "long", objectId: "long", at: { x: 14, y: 60 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 8, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Judging each statement
 
 First statement: the allowed values of <InlineMath math="c" /> are <InlineMath math="5" /> to <InlineMath math="15" />, so there are <InlineMath math="15-5+1=11" /> values. This statement is **True**.

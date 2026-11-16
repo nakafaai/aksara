@@ -16,6 +16,64 @@ A\to X\to C&:\ \binom{3}{1}\cdot\binom{3}{1}=3\cdot3=9 \\
 A\to C \text{ tanpa } X&:\ 15-9=6
 \end{aligned}" />
 
+Semak bahagian pertama dengan menulis bilangan laluan pada setiap persimpangan. **Setiap nombor ialah hasil tambah nombor di kiri dan di bawahnya, dan persimpangan <InlineMath math="X" /> diberi <InlineMath math="0" /> kerana ditutup**. Nombor di <InlineMath math="C" /> menjadi <InlineMath math="6" />, sama dengan hasil penolakan.
+
+<MathVisual
+  title={<>Bilangan laluan ke setiap persimpangan hingga <InlineMath math="C" /></>}
+  description={<>Rangkaian jalan dari <InlineMath math="(0,0)" /> hingga <InlineMath math="(6,4)" />. Semua persimpangan di tepi bawah dan tepi kiri bernilai <InlineMath math="1" />. Pada baris <InlineMath math="y=1" />, nilainya <InlineMath math="2" />, kemudian <InlineMath math="0" /> di persimpangan tertutup <InlineMath math="X(2,1)" />, kemudian <InlineMath math="1" /> dan <InlineMath math="2" />. Pada baris <InlineMath math="y=2" />, nilainya <InlineMath math="3" />, <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="6" /> di <InlineMath math="C(4,2)" />.</>}
+  labels={{
+    n11: <InlineMath math="2" />,
+    x: <InlineMath math="0" />,
+    n31: <InlineMath math="1" />,
+    n41: <InlineMath math="2" />,
+    n12: <InlineMath math="3" />,
+    n22: <InlineMath math="3" />,
+    n32: <InlineMath math="4" />,
+    c: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.7, max: 6.7 },
+      y: { min: -0.7, max: 4.7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "street-x0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "street-x1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "street-x2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 4 } },
+      { id: "street-x3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "street-x4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "street-x5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 4 } },
+      { id: "street-x6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "street-y0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "street-y1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "street-y2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 6, y: 2 } },
+      { id: "street-y3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+      { id: "street-y4", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "n11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "x", kind: "point", appearance: "warning", at: { x: 2, y: 1 } },
+      { id: "n31", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "n41", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "n12", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "n22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "n32", kind: "point", appearance: "primary", at: { x: 3, y: 2 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "n11", objectId: "n11", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "n31", objectId: "n31", at: { x: 3, y: 1 }, placement: "above-left" },
+      { key: "n41", objectId: "n41", at: { x: 4, y: 1 }, placement: "above-left" },
+      { key: "n12", objectId: "n12", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "n22", objectId: "n22", at: { x: 2, y: 2 }, placement: "above-left" },
+      { key: "n32", objectId: "n32", at: { x: 3, y: 2 }, placement: "above-left" },
+      { key: "c", objectId: "c", at: { x: 4, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Semak dengan cara lain. Laluan yang mengelakkan <InlineMath math="X" /> merentasi garis <InlineMath math="x=2" /> hanya pada <InlineMath math="y=0" /> atau hanya pada <InlineMath math="y=2" />. Melalui bawah, laluan itu pergi ke <InlineMath math="(3,0)" /> kemudian ke <InlineMath math="C" />, iaitu <InlineMath math="\binom{3}{1}=3" /> laluan. Melalui atas, laluan itu pergi ke <InlineMath math="(1,2)" /> dahulu, iaitu <InlineMath math="\binom{3}{1}=3" /> laluan, kemudian terus ke <InlineMath math="C" />. Jumlahnya <InlineMath math="3+3=6" />, sepadan.
 
 # Dari C ke B dan jumlahnya

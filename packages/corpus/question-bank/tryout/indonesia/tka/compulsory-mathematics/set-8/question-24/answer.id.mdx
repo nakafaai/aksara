@@ -4,6 +4,64 @@ Soal ini meminta peluang **tiga syarat sekaligus**: berselang-seling, Andi di uj
 
 Delapan siswa yang berbeda dapat diurutkan dalam <InlineMath math="8!=40{.}320" /> cara, dan menurut soal semua urutan itu sama mungkin. Barisan berselang-seling punya **dua pola**: putra di posisi <InlineMath math="1,3,5,7" />, atau putra di posisi <InlineMath math="2,4,6,8" />. Pada pola pertama, ujung kiri (posisi <InlineMath math="1" />) milik putra dan ujung kanan (posisi <InlineMath math="8" />) milik putri. Pada pola kedua kebalikannya. Jadi di setiap pola, **hanya satu ujung yang bisa ditempati Andi**.
 
+Gambar kedua pola sebagai dua baris delapan posisi. **Di setiap pola, Andi hanya punya satu ujung, dan tetangga satu-satunya adalah posisi yang tidak boleh ditempati Bela**.
+
+<MathVisual
+  title={<>Dua pola berselang-seling dan posisi Andi</>}
+  description={<>Baris atas adalah pola pertama: putra di posisi <InlineMath math="1,3,5,7" />, putri di posisi <InlineMath math="2,4,6,8" />, Andi di posisi <InlineMath math="1" />, dan posisi <InlineMath math="2" /> tertutup untuk Bela. Baris bawah adalah pola kedua: putri di posisi <InlineMath math="1,3,5,7" />, putra di posisi <InlineMath math="2,4,6,8" />, Andi di posisi <InlineMath math="8" />, dan posisi <InlineMath math="7" /> tertutup untuk Bela. Setiap pola memberi <InlineMath math="108" /> urutan.</>}
+  labels={{
+    "andi-one": <>Andi</>,
+    "block-one": <>bukan Bela</>,
+    "boy-one": <>putra</>,
+    "girl-one": <>putri</>,
+    "count-one": <InlineMath math="1\cdot3\cdot3!\cdot3!=108" />,
+    "andi-two": <>Andi</>,
+    "block-two": <>bukan Bela</>,
+    "boy-two": <>putra</>,
+    "girl-two": <>putri</>,
+    "count-two": <InlineMath math="108" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 13 },
+      y: { min: -1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "andi-one", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "block-one", kind: "point", appearance: "warning", at: { x: 2, y: 2 } },
+      { id: "boy-one", kind: "point", appearance: "primary", at: { x: 3, y: 2 } },
+      { id: "girl-one", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "boy-one-b", kind: "point", appearance: "primary", at: { x: 5, y: 2 } },
+      { id: "girl-one-b", kind: "point", appearance: "secondary", at: { x: 6, y: 2 } },
+      { id: "boy-one-c", kind: "point", appearance: "primary", at: { x: 7, y: 2 } },
+      { id: "count-one", kind: "point", appearance: "secondary", at: { x: 8, y: 2 } },
+      { id: "girl-two", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "boy-two", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "girl-two-b", kind: "point", appearance: "secondary", at: { x: 3, y: 0 } },
+      { id: "boy-two-b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "girl-two-c", kind: "point", appearance: "secondary", at: { x: 5, y: 0 } },
+      { id: "boy-two-c", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "block-two", kind: "point", appearance: "warning", at: { x: 7, y: 0 } },
+      { id: "andi-two", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "andi-one", objectId: "andi-one", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "block-one", objectId: "block-one", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "boy-one", objectId: "boy-one", at: { x: 3, y: 2 }, placement: "below" },
+      { key: "girl-one", objectId: "girl-one", at: { x: 4, y: 2 }, placement: "below" },
+      { key: "count-one", objectId: "count-one", at: { x: 8, y: 2 }, placement: "right" },
+      { key: "girl-two", objectId: "girl-two", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "boy-two", objectId: "boy-two", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "block-two", objectId: "block-two", at: { x: 7, y: 0 }, placement: "above-left" },
+      { key: "andi-two", objectId: "andi-two", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "count-two", objectId: "andi-two", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Menghitung urutan yang cocok
 
 Ambil pola pertama. Andi harus di posisi <InlineMath math="1" />, dan tetangganya satu-satunya ada di posisi <InlineMath math="2" />, tempat seorang putri. Bela tidak boleh di posisi <InlineMath math="2" />, jadi **Bela memilih salah satu dari tiga posisi putri lainnya**. Sisa tiga putri mengisi tiga posisi putri yang tersisa, dan sisa tiga putra mengisi tiga posisi putra yang tersisa:

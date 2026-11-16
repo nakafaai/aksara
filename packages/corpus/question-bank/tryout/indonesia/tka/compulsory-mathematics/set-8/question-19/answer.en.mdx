@@ -31,6 +31,46 @@ With <InlineMath math="p+l" /> fixed, **the garden's area grows as the length an
 | <InlineMath math="16" /> | <InlineMath math="9" /> | <InlineMath math="144" /> | yes |
 | <InlineMath math="17" /> | <InlineMath math="8" /> | <InlineMath math="136" /> | yes |
 
+Draw the garden area and the planted area as functions of the length <InlineMath math="p" />. **The planted-area curve is always <InlineMath math="46" /> below the garden-area curve**, so it is enough to find the largest garden area still below the line at <InlineMath math="150" />. For whole-number <InlineMath math="p" />, that happens at <InlineMath math="p=16" />.
+
+<MathVisual
+  title={<>Garden area and planted area by garden length</>}
+  description={<>The horizontal axis is the length <InlineMath math="p" /> in metres, with width <InlineMath math="25-p" />. The upper curve is the garden area <InlineMath math="p(25-p)" />, and the lower curve is the planted area <InlineMath math="p(25-p)-46" />. The horizontal line at <InlineMath math="150" /> is the village limit. The point <InlineMath math="(15,\ 150)" /> sits exactly on the limit and is not allowed, the point <InlineMath math="(16,\ 144)" /> is below it, and its planted area is <InlineMath math="(16,\ 98)" />.</>}
+  labels={{
+    garden: <InlineMath math="p(25-p)" />,
+    plant: <InlineMath math="p(25-p)-46" />,
+    limit: <InlineMath math="150" />,
+    edge: <InlineMath math="(15,\ 150)" />,
+    best: <InlineMath math="(16,\ 144)" />,
+    crop: <InlineMath math="(16,\ 98)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 12, max: 23 },
+      y: { min: 40, max: 170 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "garden", kind: "function", appearance: "secondary", formula: "x(25 - x)", domain: { min: 12.5, max: 22 } },
+      { id: "plant", kind: "function", appearance: "primary", formula: "x(25 - x) - 46", domain: { min: 12.5, max: 22 } },
+      { id: "limit", kind: "function", appearance: "reference", formula: "150", domain: { min: 12.5, max: 22.5 } },
+      { id: "edge", kind: "point", appearance: "warning", at: { x: 15, y: 150 } },
+      { id: "best", kind: "point", appearance: "secondary", at: { x: 16, y: 144 } },
+      { id: "crop", kind: "point", appearance: "answer", at: { x: 16, y: 98 } },
+    ],
+    labels: [
+      { key: "garden", objectId: "garden", at: { x: 20, y: 100 }, placement: "above-right" },
+      { key: "plant", objectId: "plant", at: { x: 20, y: 54 }, placement: "above-right" },
+      { key: "limit", objectId: "limit", at: { x: 21, y: 150 }, placement: "above" },
+      { key: "edge", objectId: "edge", at: { x: 15, y: 150 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 16, y: 144 }, placement: "below-right" },
+      { key: "crop", objectId: "crop", at: { x: 16, y: 98 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 The pairs after that have even smaller areas, so the largest allowed garden area is <InlineMath math="144\text{ m}^2" />, from a <InlineMath math="16\text{ m}\times9\text{ m}" /> garden.
 
 <BlockMath math="A_\text{plant}=(16-2)(9-2)=14\cdot7=98\text{ m}^2" />

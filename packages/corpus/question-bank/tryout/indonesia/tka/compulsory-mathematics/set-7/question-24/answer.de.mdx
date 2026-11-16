@@ -16,6 +16,64 @@ A\to X\to C&:\ \binom{3}{1}\cdot\binom{3}{1}=3\cdot3=9 \\
 A\to C \text{ ohne } X&:\ 15-9=6
 \end{aligned}" />
 
+Prüfe den ersten Teil, indem du an jede Kreuzung die Anzahl der Wege schreibst. **Jede Zahl ist die Summe der Zahlen links und darunter, und die Kreuzung <InlineMath math="X" /> bekommt <InlineMath math="0" />, weil sie gesperrt ist**. An <InlineMath math="C" /> ergibt sich <InlineMath math="6" />, wie bei der Subtraktion.
+
+<MathVisual
+  title={<>Anzahl der Wege zu jeder Kreuzung bis <InlineMath math="C" /></>}
+  description={<>Ein Straßennetz von <InlineMath math="(0,0)" /> bis <InlineMath math="(6,4)" />. Alle Kreuzungen am unteren und linken Rand haben den Wert <InlineMath math="1" />. In der Reihe <InlineMath math="y=1" /> stehen <InlineMath math="2" />, dann <InlineMath math="0" /> an der gesperrten Kreuzung <InlineMath math="X(2,1)" />, dann <InlineMath math="1" /> und <InlineMath math="2" />. In der Reihe <InlineMath math="y=2" /> stehen <InlineMath math="3" />, <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="6" /> an <InlineMath math="C(4,2)" />.</>}
+  labels={{
+    n11: <InlineMath math="2" />,
+    x: <InlineMath math="0" />,
+    n31: <InlineMath math="1" />,
+    n41: <InlineMath math="2" />,
+    n12: <InlineMath math="3" />,
+    n22: <InlineMath math="3" />,
+    n32: <InlineMath math="4" />,
+    c: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.7, max: 6.7 },
+      y: { min: -0.7, max: 4.7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "street-x0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "street-x1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "street-x2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 4 } },
+      { id: "street-x3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "street-x4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "street-x5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 4 } },
+      { id: "street-x6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "street-y0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "street-y1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "street-y2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 6, y: 2 } },
+      { id: "street-y3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+      { id: "street-y4", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "n11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "x", kind: "point", appearance: "warning", at: { x: 2, y: 1 } },
+      { id: "n31", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "n41", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "n12", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "n22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "n32", kind: "point", appearance: "primary", at: { x: 3, y: 2 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "n11", objectId: "n11", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "n31", objectId: "n31", at: { x: 3, y: 1 }, placement: "above-left" },
+      { key: "n41", objectId: "n41", at: { x: 4, y: 1 }, placement: "above-left" },
+      { key: "n12", objectId: "n12", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "n22", objectId: "n22", at: { x: 2, y: 2 }, placement: "above-left" },
+      { key: "n32", objectId: "n32", at: { x: 3, y: 2 }, placement: "above-left" },
+      { key: "c", objectId: "c", at: { x: 4, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Prüf es anders. Eine Route, die <InlineMath math="X" /> meidet, kreuzt die Gerade <InlineMath math="x=2" /> nur bei <InlineMath math="y=0" /> oder nur bei <InlineMath math="y=2" />. Unten herum geht sie nach <InlineMath math="(3,0)" /> und dann nach <InlineMath math="C" />, das sind <InlineMath math="\binom{3}{1}=3" /> Routen. Oben herum geht sie zuerst nach <InlineMath math="(1,2)" />, das sind <InlineMath math="\binom{3}{1}=3" /> Routen, und dann geradeaus nach <InlineMath math="C" />. Zusammen <InlineMath math="3+3=6" />, passt.
 
 # Von C nach B und die Gesamtzahl

@@ -27,6 +27,42 @@ t_{\text{kembali}}&=\frac{12}{16}+1+\frac{8}{16} \\
 &=\tfrac34+1+\tfrac12=2\tfrac14\text{ jam}=2\text{ jam }15\text{ menit}
 \end{aligned}" />
 
+Gambar jarak perahu dari P terhadap waktu. **Bagian yang hanyut tetap turun, hanya lebih landai**, karena arus terus membawa perahu ke arah P. Garis menyentuh nol pada jam ke-<InlineMath math="5{,}25" />.
+
+<MathVisual
+  title={<>Jarak perahu dari dermaga P menurut waktu</>}
+  description={<>Sumbu mendatar adalah waktu dalam jam sejak berangkat, sumbu tegak adalah jarak dari P dalam km. Garis naik <InlineMath math="8" /> km per jam sampai Q di <InlineMath math="24\text{ km}" /> pada jam ke-<InlineMath math="3" />. Lalu turun <InlineMath math="16" /> km per jam sampai titik tengah, turun <InlineMath math="4" /> km per jam selama satu jam saat mesin mati, dan turun <InlineMath math="16" /> km per jam lagi sampai P pada jam ke-<InlineMath math="5{,}25" />.</>}
+  labels={{
+    up: <>melawan arus, <InlineMath math="8\text{ km/jam}" /></>,
+    drift: <>hanyut, <InlineMath math="4\text{ km/jam}" /></>,
+    end: <>tiba di P, <InlineMath math="5\tfrac14" /> jam</>,
+    q: <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.2, max: 5.7 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "up", kind: "function", appearance: "primary", formula: "8x", domain: { min: 0, max: 3 } },
+      { id: "down", kind: "function", appearance: "primary", formula: "24 - 16(x - 3)", domain: { min: 3, max: 3.75 } },
+      { id: "drift", kind: "function", appearance: "warning", formula: "12 - 4(x - 3.75)", domain: { min: 3.75, max: 4.75 } },
+      { id: "home", kind: "function", appearance: "primary", formula: "8 - 16(x - 4.75)", domain: { min: 4.75, max: 5.25 } },
+      { id: "q", kind: "point", appearance: "secondary", at: { x: 3, y: 24 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 5.25, y: 0 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 1.5, y: 12 }, placement: "above-left" },
+      { key: "drift", objectId: "drift", at: { x: 4.25, y: 10 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 5.25, y: 0 }, placement: "above-right" },
+      { key: "q", objectId: "q", at: { x: 3, y: 24 }, placement: "above" },
+    ],
+  }}
+/>
+
 Waktu totalnya <InlineMath math="3\text{ jam}+2\text{ jam }15\text{ menit}=5\text{ jam }15\text{ menit}" />.
 
 Sebagai pemeriksaan, tanpa mesin mati perjalanan kembali butuh <InlineMath math="\tfrac{24}{16}=1{,}5" /> jam. Mesin mati menambah <InlineMath math="1" /> jam, tetapi <InlineMath math="4\text{ km}" /> sudah ditempuh dengan hanyut, sehingga menghemat <InlineMath math="\tfrac4{16}" /> jam atau <InlineMath math="15" /> menit. Hasilnya <InlineMath math="1{,}5" /> jam ditambah <InlineMath math="45" /> menit, sama dengan <InlineMath math="2" /> jam <InlineMath math="15" /> menit.

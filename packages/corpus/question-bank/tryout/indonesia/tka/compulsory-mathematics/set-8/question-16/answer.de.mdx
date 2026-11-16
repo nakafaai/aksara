@@ -25,6 +25,44 @@ Vergleiche jetzt die Bälle mit der Zelle und nimm den Rest:
 \text{leerer Anteil}&=1-\frac{\pi}{6}\approx1-0{,}524=0{,}476
 \end{aligned}" />
 
+Betrachte eine Zelle von oben und von der Seite. **Von oben nimmt der Kreis der Dose <InlineMath math="\tfrac{\pi}{4}" /> der quadratischen Grundfläche ein, und von der Seite füllen die drei Bälle <InlineMath math="\tfrac23" /> der Dose**. Das Produkt beider Brüche ist <InlineMath math="\tfrac{\pi}{6}" />.
+
+<MathVisual
+  title={<>Eine Zelle von oben und von der Seite</>}
+  description={<>Links die Ansicht von oben: ein Quadrat mit Seite <InlineMath math="2r" /> und darin der Kreis der Dose mit Radius <InlineMath math="r" />. Rechts die Seitenansicht: ein Rechteck von <InlineMath math="2r" /> Breite und <InlineMath math="6r" /> Höhe mit drei Ballkreisen vom Radius <InlineMath math="r" />, die jeweils die Wände und den Nachbarball berühren.</>}
+  labels={{
+    top: <>von oben</>,
+    side: <>von der Seite</>,
+    width: <InlineMath math="2r" />,
+    height: <InlineMath math="6r" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 7.5 },
+      y: { min: -0.8, max: 6.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top-cell", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
+      { id: "top", kind: "circle", appearance: "primary", center: { x: 1, y: 3 }, radius: 1 },
+      { id: "side", kind: "polygon", appearance: "reference", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 4, y: 6 }] },
+      { id: "ball-one", kind: "circle", appearance: "answer", center: { x: 5, y: 1 }, radius: 1 },
+      { id: "ball-two", kind: "circle", appearance: "answer", center: { x: 5, y: 3 }, radius: 1 },
+      { id: "ball-three", kind: "circle", appearance: "answer", center: { x: 5, y: 5 }, radius: 1 },
+      { id: "width", kind: "segment", appearance: "construction", from: { x: 4, y: -0.4 }, to: { x: 6, y: -0.4 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 6.5, y: 0 }, to: { x: 6.5, y: 6 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 1, y: 4 }, placement: "above" },
+      { key: "side", objectId: "side", at: { x: 4, y: 6 }, placement: "above" },
+      { key: "width", objectId: "width", at: { x: 5, y: -0.4 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 6.5, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Probe in zwei Stufen
 
 Rechne es noch einmal in zwei Schritten. Die Dose nimmt <InlineMath math="\frac{6\pi r^3}{24r^3}=\frac{\pi}{4}" /> der Zelle ein, und die Bälle nehmen <InlineMath math="\frac{4\pi r^3}{6\pi r^3}=\frac23" /> der Dose ein. Die Bälle füllen also <InlineMath math="\frac23\cdot\frac{\pi}{4}=\frac{\pi}{6}" /> der Zelle, dasselbe Ergebnis. Der leere Raum in der Dose ist <InlineMath math="\frac13" /> der Dose, also <InlineMath math="\frac13\cdot\frac{\pi}{4}=\frac{\pi}{12}" /> der Zelle. Zusammen mit den Lücken außerhalb der Dose:

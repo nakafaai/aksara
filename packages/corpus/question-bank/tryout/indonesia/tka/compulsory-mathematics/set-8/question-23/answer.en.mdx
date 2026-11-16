@@ -35,3 +35,20 @@ The estimated median is <InlineMath math="34" />, but an estimate isn't a certai
 The number <InlineMath math="20" /> comes from the estimate <InlineMath math="\tfrac12\cdot16+12=20" />, which assumes the class <InlineMath math="40\le t<50" /> splits evenly in half. **False**.
 
 So the verdicts are True, False, False.
+
+This diagram sums up how the three statements are judged. **Each statement is tested with the most extreme case that still fits the table**. A statement that survives the extreme case is certain, and one that fails is broken by a single example.
+
+<Mermaid
+  title={<>Testing each statement with an extreme case</>}
+  description={<>Statement 1 is tested by putting every student as close as possible to the upper boundary of their class, and the mean still stays below <InlineMath math="40.5" />. Statement 2 is broken by twenty students who read exactly <InlineMath math="30" /> minutes. Statement 3 is broken by sixteen students who read exactly <InlineMath math="40" /> minutes.</>}
+  chart={`flowchart TD
+  P1["Statement 1: mean certainly below 41?"] --> C1["Every student is below the upper boundary of their class"]
+  C1 --> R1["mean < 3,240 / 80 = 40.5"]
+  R1 --> V1["True"]
+  P2["Statement 2: median certainly above 32?"] --> C2["Example: the 20 students in class 30 to 40 read exactly 30 minutes"]
+  C2 --> R2["median = 30, not above 32"]
+  R2 --> V2["False"]
+  P3["Statement 3: certainly at least 20 students read 45 minutes or more?"] --> C3["Example: the 16 students in class 40 to 50 read exactly 40 minutes"]
+  C3 --> R3["only 6 + 6 = 12 students, fewer than 20"]
+  R3 --> V3["False"]`}
+/>

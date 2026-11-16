@@ -16,6 +16,42 @@ Kurz vor der <InlineMath math="5" />. Dosis sind seit der ersten Dosis <InlineMa
 &=85\text{ mg}
 \end{aligned}" />
 
+Zeichne die Wirkstoffmenge im Körper über <InlineMath math="48" /> Stunden. **Jede Dosis hebt den Graphen um <InlineMath math="256\text{ mg}" />, danach fällt er in <InlineMath math="12" /> Stunden auf ein Viertel**. Kurz vor der <InlineMath math="5" />. Dosis liegt der Graph bei <InlineMath math="85\text{ mg}" />.
+
+<MathVisual
+  title={<>Wirkstoffmenge im Körper über vier Dosen</>}
+  description={<>Die waagerechte Achse sind Stunden seit der ersten Dosis, die senkrechte Achse die Wirkstoffmenge in mg. Der Graph springt bei den Stunden <InlineMath math="0" />, <InlineMath math="12" />, <InlineMath math="24" /> und <InlineMath math="36" /> um <InlineMath math="256" /> nach oben und halbiert sich zwischen den Dosen alle <InlineMath math="6" /> Stunden. Die Spitze nach der vierten Dosis ist <InlineMath math="340" />, und bei Stunde <InlineMath math="48" /> bleiben <InlineMath math="85" />.</>}
+  labels={{
+    before: <>vor der <InlineMath math="5" />. Dosis: <InlineMath math="85" /></>,
+    peak: <InlineMath math="340" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 51 },
+      y: { min: -12, max: 365 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "256 * 2^(-x/6)", domain: { min: 0, max: 12 } },
+      { id: "second", kind: "function", appearance: "primary", formula: "320 * 2^(-(x - 12)/6)", domain: { min: 12, max: 24 } },
+      { id: "third", kind: "function", appearance: "primary", formula: "336 * 2^(-(x - 24)/6)", domain: { min: 24, max: 36 } },
+      { id: "fourth", kind: "function", appearance: "primary", formula: "340 * 2^(-(x - 36)/6)", domain: { min: 36, max: 48 } },
+      { id: "dose-two", kind: "segment", appearance: "construction", from: { x: 12, y: 64 }, to: { x: 12, y: 320 } },
+      { id: "dose-three", kind: "segment", appearance: "construction", from: { x: 24, y: 80 }, to: { x: 24, y: 336 } },
+      { id: "dose-four", kind: "segment", appearance: "construction", from: { x: 36, y: 84 }, to: { x: 36, y: 340 } },
+      { id: "dose-one", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 256 } },
+      { id: "peak", kind: "point", appearance: "secondary", at: { x: 36, y: 340 } },
+      { id: "before", kind: "point", appearance: "answer", at: { x: 48, y: 85 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 48, y: 85 }, placement: "above" },
+      { key: "peak", objectId: "peak", at: { x: 36, y: 340 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Das ist eine geometrische Reihe mit erstem Glied <InlineMath math="1" /> und Quotient <InlineMath math="4" />. Probe auf anderem Weg: Direkt nach der <InlineMath math="4" />. Dosis enthält der Körper <InlineMath math="256+64+16+4=340\text{ mg}" />, und <InlineMath math="12" /> Stunden später sind davon nur <InlineMath math="\tfrac14\cdot340=85\text{ mg}" /> übrig.
 
 Kurz vor der <InlineMath math="5" />. Dosis sind also <InlineMath math="85\text{ mg}" /> im Körper.
