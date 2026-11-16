@@ -3,7 +3,33 @@ import { materialNode, unitNode } from "#corpus/curriculum/schema";
 /** The KSSM Form 4 Chemistry chapters, in the order of their DSKP. */
 export const kssmForm4ChemistryTopicNodes = [
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-chemistry-introduction-to-chemistry-chemistry-introduction",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.chemistry-introduction"],
+        order: 10,
+      }),
+    ],
     key: "form-4-chemistry-introduction-to-chemistry",
+    materialCard: {
+      de: {
+        description: "Forsche wie ein Chemiker und arbeite sicher im Labor.",
+        title: "Einführung in die Chemie",
+      },
+      en: {
+        description: "Investigate like a chemist and work safely in the lab.",
+        title: "Introduction to Chemistry",
+      },
+      id: {
+        description: "Selidiki seperti ahli kimia dan bekerja aman di lab.",
+        title: "Pengantar Kimia",
+      },
+      ms: {
+        description: "Siasat seperti ahli kimia dan bekerja selamat di makmal.",
+        title: "Pengenalan kepada Kimia",
+      },
+    },
     order: 10,
     translations: {
       de: {
@@ -183,7 +209,33 @@ export const kssmForm4ChemistryTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-chemistry-rate-of-reaction-reaction-rate",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.reaction-rate"],
+        order: 10,
+      }),
+    ],
     key: "form-4-chemistry-rate-of-reaction",
+    materialCard: {
+      de: {
+        description: "Miss, wie schnell Stoffe reagieren, und warum.",
+        title: "Reaktionsgeschwindigkeit",
+      },
+      en: {
+        description: "Measure how fast reactions go, and explain why.",
+        title: "Rate of Reaction",
+      },
+      id: {
+        description: "Ukur seberapa cepat reaksi berjalan dan alasannya.",
+        title: "Laju Reaksi",
+      },
+      ms: {
+        description: "Ukur kelajuan tindak balas dan terangkan sebabnya.",
+        title: "Kadar Tindak Balas",
+      },
+    },
     order: 70,
     translations: {
       de: {

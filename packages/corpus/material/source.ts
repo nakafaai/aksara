@@ -7,7 +7,9 @@ import { lessonBiologyBiodiversityMaterial } from "#corpus/material/lesson/biolo
 import { lessonBiologyClimateChangeMaterial } from "#corpus/material/lesson/biology/climate-change/source";
 import { lessonBiologyVirusRoleMaterial } from "#corpus/material/lesson/biology/virus-role/source";
 import { lessonChemistryBasicChemistryLawsMaterial } from "#corpus/material/lesson/chemistry/basic-chemistry-laws/source";
+import { lessonChemistryChemistryIntroductionMaterial } from "#corpus/material/lesson/chemistry/chemistry-introduction/source";
 import { lessonChemistryGreenChemistryMaterial } from "#corpus/material/lesson/chemistry/green-chemistry/source";
+import { lessonChemistryReactionRateMaterial } from "#corpus/material/lesson/chemistry/reaction-rate/source";
 import { lessonChemistryStructureMatterMaterial } from "#corpus/material/lesson/chemistry/structure-matter/source";
 import { lessonMathematicsAnalyticGeometryMaterial } from "#corpus/material/lesson/mathematics/analytic-geometry/source";
 import { lessonMathematicsCircleMaterial } from "#corpus/material/lesson/mathematics/circle/source";
@@ -47,7 +49,9 @@ const materialSourcePrograms = [
   lessonBiologyClimateChangeMaterial,
   lessonBiologyVirusRoleMaterial,
   lessonChemistryBasicChemistryLawsMaterial,
+  lessonChemistryChemistryIntroductionMaterial,
   lessonChemistryGreenChemistryMaterial,
+  lessonChemistryReactionRateMaterial,
   lessonChemistryStructureMatterMaterial,
   lessonMathematicsAnalyticGeometryMaterial,
   lessonMathematicsCircleArcSectorMaterial,
