@@ -8,4 +8,18 @@ Der Rest des Ziels muss von Tribun-Karten kommen: <InlineMath math="300-170=130"
 
 Karten sind ganze Zahlen, also wird **aufgerundet** auf <InlineMath math="867" />. Probe: <InlineMath math="866" /> Karten bringen <InlineMath math="129{,}9" /> Millionen, noch zu wenig, <InlineMath math="867" /> Karten bringen <InlineMath math="130{,}05" /> Millionen.
 
+Das Diagramm zeichnet die Einnahmen des dritten Tages für mehrere Zahlen von Tribun-Tickets. **Die Einnahmenlinie überschreitet das Ziel erst bei <InlineMath math="867" /> Tickets**.
+
+<Chart
+  title={<>Einnahmen am dritten Tag nach Zahl der Tribun-Tickets</>}
+  description={<>Mit <InlineMath math="n" /> Tribun-Tickets betragen die Einnahmen <InlineMath math="170+0{,}15n" /> Millionen Rupiah. Bei <InlineMath math="866" /> Tickets sind es <InlineMath math="299{,}9" /> Millionen. Bei <InlineMath math="867" /> Tickets sind es <InlineMath math="300{,}05" /> Millionen.</>}
+  categories={["865", "866", "867", "868"]}
+  series={[
+    { label: "Einnahmen am dritten Tag", mark: "line", values: [865, 866, 867, 868].map((n) => 170 + (15 * n) / 100) },
+    { label: "Ziel", mark: "line", values: [300, 300, 300, 300] },
+  ]}
+  valueLabel="Millionen Rupiah"
+  valueRange={{ min: 299.5, max: 300.5 }}
+/>
+
 Es müssen also mindestens <InlineMath math="867" /> Tribun-Karten verkauft werden.

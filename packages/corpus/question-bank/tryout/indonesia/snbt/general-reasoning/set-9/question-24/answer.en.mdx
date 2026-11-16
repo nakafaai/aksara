@@ -5,6 +5,20 @@ Mark each statement Benar (true) or Salah (false). Work out each day's revenue i
 \text{day 2} &= 150\times0.5+380\times0.25+720\times0.15=75+95+108=278
 \end{aligned}" />
 
+The chart below splits both days' revenue by category. **Only Festival drops on day <InlineMath math="2" />**, while VIP and Tribun rise.
+
+<Chart
+  title={<>Revenue of each category on both days in millions of rupiah</>}
+  description={<>On day <InlineMath math="1" />, VIP, Festival, and Tribun brought in <InlineMath math="60" />, <InlineMath math="100" />, and <InlineMath math="90" /> million, a total of <InlineMath math="250" />. On day <InlineMath math="2" />, they brought in <InlineMath math="75" />, <InlineMath math="95" />, and <InlineMath math="108" /> million, a total of <InlineMath math="278" />.</>}
+  bars="apart"
+  categories={["VIP", "Festival", "Tribun"]}
+  series={[
+    { label: "Day 1", mark: "bar", values: [(120 * 50) / 100, (400 * 25) / 100, (600 * 15) / 100] },
+    { label: "Day 2", mark: "bar", values: [(150 * 50) / 100, (380 * 25) / 100, (720 * 15) / 100] },
+  ]}
+  valueLabel="Million rupiah"
+/>
+
 **Statement 1** is true. Day <InlineMath math="1" /> sold <InlineMath math="120+400+600=1{,}120" /> tickets, day <InlineMath math="2" /> <InlineMath math="150+380+720=1{,}250" />.
 
 **Statement 2** is true. VIP revenue rose from <InlineMath math="60" /> to <InlineMath math="75" /> million, and <InlineMath math="\frac{15}{60}=25\%" />.

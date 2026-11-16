@@ -6,4 +6,15 @@ Tangga selebar <InlineMath math="3" /> kubus, jadi seluruhnya:
 
 <BlockMath math="3\times36=108" />
 
+Grafik berikut menggambar banyak kubus untuk tangga dengan <InlineMath math="1" /> sampai <InlineMath math="8" /> anak tangga. **Batang kedua bernilai <InlineMath math="9" /> sesuai contoh soal**, dan batang kedelapan <InlineMath math="108" />.
+
+<Chart
+  title={<>Banyak kubus menurut banyak anak tangga</>}
+  description={<>Tangga selebar <InlineMath math="3" /> kubus dengan <InlineMath math="n" /> anak tangga memerlukan <InlineMath math="3\times\tfrac{n(n+1)}{2}" /> kubus. Untuk <InlineMath math="n=1" /> sampai <InlineMath math="8" />, banyaknya <InlineMath math="3" />, <InlineMath math="9" />, <InlineMath math="18" />, <InlineMath math="30" />, <InlineMath math="45" />, <InlineMath math="63" />, <InlineMath math="84" />, dan <InlineMath math="108" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[{ label: "Kubus yang diperlukan", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => (3 * n * (n + 1)) / 2) }]}
+  valueLabel="Kubus"
+/>
+
 Periksa dengan contoh di soal: tangga <InlineMath math="2" /> anak tangga memerlukan <InlineMath math="3\times(1+2)=9" /> kubus, sesuai. Nilai <InlineMath math="144" /> muncul jika tangganya dianggap selebar <InlineMath math="4" /> kubus. Jadi, tangga dengan <InlineMath math="8" /> anak tangga memerlukan <InlineMath math="108" /> kubus.

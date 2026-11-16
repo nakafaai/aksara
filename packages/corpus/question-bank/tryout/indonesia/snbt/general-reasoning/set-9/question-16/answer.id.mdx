@@ -1,5 +1,17 @@
 Ingat dua hal yang sudah pasti: Umar di lantai 1 dengan hobi berkebun, dan pemasak tinggal **tepat di bawah** pelukis.
 
+Grafik berikut menghitung keterangan yang dilanggar setiap keadaan. **Keadaan dengan batang nol adalah keadaan yang mungkin**.
+
+<Chart
+  title={<>Banyak keterangan yang dilanggar oleh setiap keadaan</>}
+  description={<>Keadaan <InlineMath math="1" /> melanggar keterangan 1, karena pemasak tidak bisa di lantai teratas. Keadaan <InlineMath math="3" /> melanggar keterangan 2. Keadaan <InlineMath math="2" /> dan <InlineMath math="4" /> tidak melanggar keterangan apa pun.</>}
+  categories={["Keadaan 1", "Keadaan 2", "Keadaan 3", "Keadaan 4"]}
+  bars="apart"
+  series={[{ label: "Keterangan yang dilanggar", mark: "bar", values: [1, 0, 1, 0] }]}
+  valueLabel="Banyak keterangan"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Keadaan 1**: Tidak mungkin. Pemasak harus tinggal tepat di bawah pelukis, jadi pemasak tidak mungkin di lantai 4, lantai teratas.
 
 **Keadaan 2**: Mungkin. Susunan Umar lantai 1 berkebun, Tika lantai 2 memasak, Sita lantai 3 melukis, dan Rani lantai 4 memotret memenuhi semua keterangan.

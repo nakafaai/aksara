@@ -4,6 +4,20 @@ Pasangan C dan D selalu berurutan, dengan C tepat sebelum D. Karena D tidak pada
 - C dan D pada Selasa dan Rabu, lalu A pada Senin dan B pada Kamis.
 - C dan D pada Rabu dan Kamis, lalu A pada Senin dan B pada Selasa.
 
+Diagram berikut menggambar ketiga susunan beserta syarat tambahan itu. **Hanya susunan pertama yang tidak menaruh A pada hari Senin**.
+
+<Mermaid
+  title={<>Tiga susunan jadwal dan syarat A tidak pada hari Senin</>}
+  description={<>Pasangan C dan D bisa di Senin dan Selasa, Selasa dan Rabu, atau Rabu dan Kamis. Pada dua susunan terakhir, A jatuh pada hari Senin, jadi keduanya gugur. Yang tersisa menaruh D pada hari Selasa.</>}
+  chart={`flowchart LR
+    S["Pasangan C lalu D"] --> A1["Senin C, Selasa D, Rabu A, Kamis B"]
+    S --> A2["Senin A, Selasa C, Rabu D, Kamis B"]
+    S --> A3["Senin A, Selasa B, Rabu C, Kamis D"]
+    A1 --> OK["A tidak di Senin: sah"]
+    A2 --> X["A di Senin: gugur"]
+    A3 --> X`}
+/>
+
 Jika A tidak pada hari Senin, hanya susunan pertama yang memenuhi. Pada susunan itu, hari Selasa diisi **kegiatan D**.
 
 Jadi, kegiatan yang dilaksanakan pada hari Selasa adalah kegiatan D.

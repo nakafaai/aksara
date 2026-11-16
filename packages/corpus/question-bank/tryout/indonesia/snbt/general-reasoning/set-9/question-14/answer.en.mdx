@@ -4,6 +4,18 @@ Find who **can** live on floor 1.
 - Sita does not live on floor 1 (fact 5).
 - Rani lives higher than Sita, so Rani cannot be on floor 1 either (fact 2).
 
+The diagram below sums up why each candidate for floor 1 drops out. **Only Umar is left**.
+
+<Mermaid
+  title={<>Who can live on floor 1</>}
+  description={<>Tika doesn't live on floor 1, by fact 3. Sita doesn't live on floor 1, by fact 5. Rani lives higher than Sita, so Rani isn't on floor 1 either. Only Umar is left.</>}
+  chart={`flowchart LR
+    L["Floor 1"] --> T["Tika: ruled out by fact 3"]
+    L --> S["Sita: ruled out by fact 5"]
+    L --> R["Rani: must be above Sita"]
+    L --> U["Umar: the only one left"]`}
+/>
+
 Only Umar is left, so Umar **certainly** lives on floor 1.
 
 The other options are not certain. Umar on floor 1 gardening, Sita on floor 2 photographing, Rani on floor 3 cooking, and Tika on floor 4 painting meets every fact, so Rani is neither certainly a photographer nor certainly on floor 4. Umar on floor 1, Tika on floor 2 cooking, Sita on floor 3 painting, and Rani on floor 4 photographing also works, so Sita is not certainly on floor 2 and Tika is not certainly a painter.

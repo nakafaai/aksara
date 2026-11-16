@@ -6,4 +6,14 @@ Bestimme zuerst **den Restbetrag** nach der Anzahlung und teile ihn durch die Ra
 \text{Monate} &= \frac{2{.}700{.}000}{225{.}000}=12
 \end{aligned}" />
 
+Das Diagramm zeichnet den Restbetrag von Pak Tono in jedem Monat. **Die Linie fällt gerade und erreicht genau im Monat <InlineMath math="12" /> null**.
+
+<Chart
+  title={<>Restpreis des Fahrrads nach jeder Rate</>}
+  description={<>Nach der Anzahlung von <InlineMath math="900{.}000" /> Rupiah bleiben <InlineMath math="2{.}700{.}000" /> Rupiah. Jeden Monat sinkt der Rest um <InlineMath math="225{.}000" /> Rupiah, bis er nach <InlineMath math="12" /> Monaten bezahlt ist.</>}
+  categories={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+  series={[{ label: "Restbetrag (Tausend Rupiah)", mark: "line", values: Array.from({ length: 13 }, (_, m) => (2700000 - 225000 * m) / 1000) }]}
+  valueLabel="Tausend Rupiah"
+/>
+
 Die Division geht glatt auf, die letzte Rate beträgt also ebenfalls genau <InlineMath math="\text{Rp}225{.}000" />. Pak Tono zahlt also <InlineMath math="12" /> Monate lang Raten.

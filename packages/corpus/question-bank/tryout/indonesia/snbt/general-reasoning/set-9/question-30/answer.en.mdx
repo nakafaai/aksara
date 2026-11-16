@@ -6,4 +6,14 @@ First find **the remaining price** after the down payment, then divide by the in
 \text{months} &= \frac{2{,}700{,}000}{225{,}000}=12
 \end{aligned}" />
 
+The chart below draws what Pak Tono still owes each month. **The line falls straight and touches zero exactly at month <InlineMath math="12" />**.
+
+<Chart
+  title={<>Remaining bike price after each installment</>}
+  description={<>After the <InlineMath math="900{,}000" />-rupiah down payment, <InlineMath math="2{,}700{,}000" /> rupiah remain. Each month that falls by <InlineMath math="225{,}000" /> rupiah, until it's paid off after <InlineMath math="12" /> months.</>}
+  categories={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+  series={[{ label: "Amount still owed (thousand rupiah)", mark: "line", values: Array.from({ length: 13 }, (_, m) => (2700000 - 225000 * m) / 1000) }]}
+  valueLabel="Thousand rupiah"
+/>
+
 The division comes out whole, so the last installment is also exactly <InlineMath math="\text{Rp}225{,}000" />. So Pak Tono pays in installments for <InlineMath math="12" /> months.

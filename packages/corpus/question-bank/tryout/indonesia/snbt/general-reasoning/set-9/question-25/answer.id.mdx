@@ -8,4 +8,18 @@ Sisa target yang harus dipenuhi tiket Tribun adalah <InlineMath math="300-170=13
 
 Banyak tiket harus bilangan bulat, jadi **dibulatkan ke atas** menjadi <InlineMath math="867" />. Periksa: <InlineMath math="866" /> tiket memberi <InlineMath math="129{,}9" /> juta, masih kurang, sedangkan <InlineMath math="867" /> tiket memberi <InlineMath math="130{,}05" /> juta.
 
+Grafik berikut menggambar pendapatan hari ke-<InlineMath math="3" /> untuk beberapa banyak tiket Tribun. **Garis pendapatan baru melewati target pada <InlineMath math="867" /> tiket**.
+
+<Chart
+  title={<>Pendapatan hari ke-<InlineMath math="3" /> menurut banyak tiket Tribun</>}
+  description={<>Dengan <InlineMath math="n" /> tiket Tribun, pendapatannya <InlineMath math="170+0{,}15n" /> juta rupiah. Untuk <InlineMath math="866" /> tiket, pendapatannya <InlineMath math="299{,}9" /> juta. Untuk <InlineMath math="867" /> tiket, pendapatannya <InlineMath math="300{,}05" /> juta.</>}
+  categories={["865", "866", "867", "868"]}
+  series={[
+    { label: "Pendapatan hari ke-3", mark: "line", values: [865, 866, 867, 868].map((n) => 170 + (15 * n) / 100) },
+    { label: "Target", mark: "line", values: [300, 300, 300, 300] },
+  ]}
+  valueLabel="Juta rupiah"
+  valueRange={{ min: 299.5, max: 300.5 }}
+/>
+
 Jadi, paling sedikit harus terjual <InlineMath math="867" /> tiket Tribun.

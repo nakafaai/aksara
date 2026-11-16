@@ -4,6 +4,20 @@ C and D always come together, with C the day before D. Since D is not on Monday,
 - C and D on Tuesday and Wednesday, then A on Monday and B on Thursday.
 - C and D on Wednesday and Thursday, then A on Monday and B on Tuesday.
 
+The diagram below draws the three arrangements with that extra condition. **Only the first arrangement keeps A off Monday**.
+
+<Mermaid
+  title={<>Three schedules and the condition that A isn't on Monday</>}
+  description={<>The pair C and D can take Monday and Tuesday, Tuesday and Wednesday, or Wednesday and Thursday. In the last two, A falls on Monday, so both drop out. The one left puts D on Tuesday.</>}
+  chart={`flowchart LR
+    S["Pair C then D"] --> A1["Mon C, Tue D, Wed A, Thu B"]
+    S --> A2["Mon A, Tue C, Wed D, Thu B"]
+    S --> A3["Mon A, Tue B, Wed C, Thu D"]
+    A1 --> OK["A not on Monday: valid"]
+    A2 --> X["A on Monday: out"]
+    A3 --> X`}
+/>
+
 If A is not on Monday, only the first arrangement works. In it, Tuesday has **activity D**.
 
 So the activity held on Tuesday is activity D.

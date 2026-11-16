@@ -6,6 +6,17 @@ Work out **the gaps** between consecutive alarms:
 05.30\to07.00 &= 90\text{ min}
 \end{aligned}" />
 
+The chart below draws the gaps between the alarms. **Each bar is ten minutes taller than the one before**, so the next gap is <InlineMath math="100" /> minutes.
+
+<Chart
+  title={<>Gaps between consecutive alarms</>}
+  description={<>The gaps are <InlineMath math="70" />, <InlineMath math="80" />, and <InlineMath math="90" /> minutes, then the next is <InlineMath math="100" /> minutes, from 07.00 to 08.40.</>}
+  categories={["03.00 to 04.10", "04.10 to 05.30", "05.30 to 07.00", "07.00 to the next"]}
+  bars="apart"
+  series={[{ label: "Gap (minutes)", mark: "bar", values: [70, 80, 90, 90 + 10] }]}
+  valueLabel="Minutes"
+/>
+
 The gap grows by <InlineMath math="10" /> minutes each time, so the next gap is <InlineMath math="100" /> minutes, <InlineMath math="1" /> hour <InlineMath math="40" /> minutes. From 07.00, the alarm rings again at 08.40.
 
 08.30 comes from keeping the gap at <InlineMath math="90" /> minutes, and the other options do not follow the pattern of gaps.

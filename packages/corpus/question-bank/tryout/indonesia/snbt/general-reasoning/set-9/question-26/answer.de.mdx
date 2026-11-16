@@ -8,6 +8,19 @@ Dinas Note sei <InlineMath math="d" />, Ekos <InlineMath math="e" />. Es gibt **
 
 <BlockMath math="d+(d-6)=160\quad\Rightarrow\quad 2d=166\quad\Rightarrow\quad d=83" />
 
+Das Diagramm zeichnet Ekos Note, die zu jeder Aussage passt, für mehrere Noten von Dina. **Die beiden Linien treffen sich nur bei <InlineMath math="d=83" />**.
+
+<Chart
+  title={<>Ekos Note nach beiden Aussagen für mehrere Noten von Dina</>}
+  description={<>Aussage (1) ergibt <InlineMath math="e=160-d" />, Aussage (2) ergibt <InlineMath math="e=d-6" />. Jede Aussage allein passt zu vielen Noten von Dina, aber die Linien treffen sich nur, wenn Dina <InlineMath math="83" /> und Eko <InlineMath math="77" /> hat.</>}
+  categories={["78", "80", "82", "83", "84", "86", "88"]}
+  series={[
+    { label: "Ekos Note nach Aussage (1)", mark: "line", values: [78, 80, 82, 83, 84, 86, 88].map((d) => 160 - d) },
+    { label: "Ekos Note nach Aussage (2)", mark: "line", values: [78, 80, 82, 83, 84, 86, 88].map((d) => d - 6) },
+  ]}
+  valueLabel="Ekos Note"
+/>
+
 Dinas Note steht fest, sie beträgt <InlineMath math="83" />.
 
 Beide Aussagen zusammen reichen also, eine allein nicht.

@@ -1,5 +1,18 @@
 Vergleiche **die Verteilung der Patienten** und **die Wartezeiten** in beiden Monaten. Im März häuften sich die Patienten am frühen Morgen (<InlineMath math="40" /> und <InlineMath math="35" />), gegen Mittag kamen nur noch wenige. Im Mai war die Zahl pro Stunde ausgeglichener, zwischen <InlineMath math="13" /> und <InlineMath math="32" />. Die Wartezeit in den zuvor vollsten Stunden sank deutlich, etwa von <InlineMath math="70" /> auf <InlineMath math="30" /> Minuten zwischen 08.00 und 09.00 Uhr.
 
+Das Diagramm zeichnet, wie sich die Patienten in beiden Monaten über die Stunden verteilen. **Die Linie für Mai ist viel flacher**, also drängen sich die Patienten nicht mehr am frühen Morgen.
+
+<Chart
+  title={<>Durchschnittliche Patienten pro Tag nach Ankunftsstunde</>}
+  description={<>Im März kamen pro Stunde <InlineMath math="40" />, <InlineMath math="35" />, <InlineMath math="25" />, <InlineMath math="15" /> und <InlineMath math="5" /> Patienten. Im Mai waren es <InlineMath math="30" />, <InlineMath math="32" />, <InlineMath math="30" />, <InlineMath math="25" /> und <InlineMath math="13" />.</>}
+  categories={["07.00", "08.00", "09.00", "10.00", "11.00"]}
+  series={[
+    { label: "Patienten im März", mark: "line", values: [40, 35, 25, 15, 5] },
+    { label: "Patienten im Mai", mark: "line", values: [30, 32, 30, 25, 13] },
+  ]}
+  valueLabel="Patienten"
+/>
+
 Die anderen Optionen sind nicht gestützt:
 
 - Die Patienten pro Tag stiegen nur von <InlineMath math="120" /> auf <InlineMath math="130" />, weit entfernt vom Doppelten.

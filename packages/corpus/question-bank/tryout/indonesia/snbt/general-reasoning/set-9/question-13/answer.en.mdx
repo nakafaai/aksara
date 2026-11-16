@@ -1,5 +1,17 @@
 An implication <InlineMath math="p\Rightarrow q" /> is false in **one situation only**: <InlineMath math="p" /> happens but <InlineMath math="q" /> does not. So its negation is <InlineMath math="p\land\lnot q" />.
 
+The diagram below traces when the original statement is false. **Only the path with rain but no flooding ends at "false"**, and that's the negation.
+
+<Mermaid
+  title={<>When "if it rains, the road floods" is false</>}
+  description={<>If it doesn't rain, the original stays true. If it rains and the road floods, the original is true. The original is false only when it rains but the road doesn't flood.</>}
+  chart={`flowchart LR
+    H{"Does it rain?"} -->|"no"| B1["Original is true"]
+    H -->|"yes"| G{"Does the road flood?"}
+    G -->|"yes"| B2["Original is true"]
+    G -->|"no"| S["Original is false: rain and no flooding"]`}
+/>
+
 With <InlineMath math="p" />: it rains and <InlineMath math="q" />: the road in front of the school floods, the negation is "**It rains and the road in front of the school does not flood**" (*Hujan dan jalan di depan sekolah tidak tergenang*).
 
 The other options are not the negation:

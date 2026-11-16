@@ -5,6 +5,20 @@ Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Berechne die Ein
 \text{Tag 2} &= 150\times0{,}5+380\times0{,}25+720\times0{,}15=75+95+108=278
 \end{aligned}" />
 
+Das Diagramm teilt die Einnahmen beider Tage nach Kategorie auf. **Nur Festival sinkt am zweiten Tag**, VIP und Tribun steigen.
+
+<Chart
+  title={<>Einnahmen jeder Kategorie an beiden Tagen in Millionen Rupiah</>}
+  description={<>Am ersten Tag brachten VIP, Festival und Tribun <InlineMath math="60" />, <InlineMath math="100" /> und <InlineMath math="90" /> Millionen, zusammen <InlineMath math="250" />. Am zweiten Tag waren es <InlineMath math="75" />, <InlineMath math="95" /> und <InlineMath math="108" /> Millionen, zusammen <InlineMath math="278" />.</>}
+  bars="apart"
+  categories={["VIP", "Festival", "Tribun"]}
+  series={[
+    { label: "Tag 1", mark: "bar", values: [(120 * 50) / 100, (400 * 25) / 100, (600 * 15) / 100] },
+    { label: "Tag 2", mark: "bar", values: [(150 * 50) / 100, (380 * 25) / 100, (720 * 15) / 100] },
+  ]}
+  valueLabel="Millionen Rupiah"
+/>
+
 **Aussage 1** ist richtig. Am <InlineMath math="1" />. Tag wurden <InlineMath math="120+400+600=1{.}120" /> Karten verkauft, am <InlineMath math="2" />. Tag <InlineMath math="150+380+720=1{.}250" />.
 
 **Aussage 2** ist richtig. Die VIP-Einnahmen stiegen von <InlineMath math="60" /> auf <InlineMath math="75" /> Millionen, und <InlineMath math="\frac{15}{60}=25\%" />.

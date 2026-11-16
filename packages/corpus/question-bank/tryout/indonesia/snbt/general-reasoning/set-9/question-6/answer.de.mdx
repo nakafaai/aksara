@@ -1,5 +1,19 @@
 Die Wartezeit steigt meist, wenn **mehr Patienten** zur selben Stunde kommen. Zwischen 11.00 und 12.00 Uhr stieg die Zahl von <InlineMath math="5" /> auf <InlineMath math="13" />. Mit der Online-Warteschlange konnten Patienten ihre Ankunftszeit wählen, und manche wählten die Zeit vor Mittag. Mehr Patienten in dieser Stunde erklären die längere Wartezeit.
 
+Das Diagramm stellt Patienten und Wartezeit dieser Stunde nebeneinander. **Beide Balken steigen gemeinsam**, also erklären die zusätzlichen Patienten die längere Wartezeit.
+
+<Chart
+  title={<>Patienten und Wartezeit von 11.00 bis 12.00 Uhr</>}
+  description={<>Die Patienten in dieser Stunde stiegen von <InlineMath math="5" /> im März auf <InlineMath math="13" /> im Mai. Die Wartezeit stieg von <InlineMath math="15" /> auf <InlineMath math="20" /> Minuten.</>}
+  categories={["März", "Mai"]}
+  bars="apart"
+  series={[
+    { label: "Patienten von 11.00 bis 12.00 Uhr", mark: "bar", values: [5, 13] },
+    { label: "Wartezeit (Minuten)", mark: "bar", values: [15, 20] },
+  ]}
+  valueLabel="Patienten oder Minuten"
+/>
+
 Die anderen Optionen erklären es nicht:
 
 - Der Text nennt nicht, wann die Ärzte gehen.
