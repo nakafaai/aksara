@@ -1,22 +1,23 @@
-# Stock concentration, then a fortyfold dilution, then pOH
+# Count hydroxide ions against hydrogen ions
 
-<InlineMath math="4.0 \div 40 = 0.10" /> mol in <InlineMath math="0.250\text{ dm}^3" /> gives <InlineMath math="0.40\text{ mol dm}^{-3}" />.
+Sodium hydroxide: <InlineMath math="4.0 \div 40 = 0.10" /> mol in <InlineMath math="0.250\text{ dm}^3" />, so <InlineMath math="0.40\text{ mol dm}^{-3}" />. The <InlineMath math="25.0\text{ cm}^3" /> taken holds <InlineMath math="0.40 \times 0.0250 = 0.010" /> mol of hydroxide ions.
 
 <Mermaid
-  title={<>From Solid to Diluted Alkali</>}
-  description={<><InlineMath math="4.0\text{ g}" /> of sodium hydroxide in <InlineMath math="250\text{ cm}^3" /> gives <InlineMath math="0.40\text{ mol dm}^{-3}" />. <InlineMath math="25.0\text{ cm}^3" /> diluted to <InlineMath math="1000\text{ cm}^3" /> gives <InlineMath math="0.010\text{ mol dm}^{-3}" /> of hydroxide ions, pOH <InlineMath math="2" /> and pH <InlineMath math="12" />.</>}
+  title={<>Counting Ions in the Mixture</>}
+  description={<><InlineMath math="0.010\text{ mol}" /> of hydroxide ions meets <InlineMath math="0.010\text{ mol}" /> of hydrogen ions, because each sulfuric acid molecule gives two, so neither is left over.</>}
   chart={`
     flowchart LR
-      N0["4.0 g NaOH: 0.10 mol"] --> N1["in 250 cm³: 0.40 mol dm⁻³"]
-      N1["in 250 cm³: 0.40 mol dm⁻³"] --> N2["25.0 cm³ to 1000 cm³: 0.010 mol dm⁻³"]
-      N2["25.0 cm³ to 1000 cm³: 0.010 mol dm⁻³"] --> N3["pOH 2, pH 12"]
+      N0["4.0 g NaOH in 0.250 dm³: 0.40 mol dm⁻³"] --> N1["25.0 cm³: 0.010 mol OH⁻"]
+      N2["25.0 cm³ of 0.20 mol dm⁻³ H2SO4: 0.0050 mol"] --> N3["2 H⁺ each: 0.010 mol H⁺"]
+      N1 --> N4["H⁺ + OH⁻ → H2O, nothing left over: pH 7"]
+      N3 --> N4
   `}
 />
 
-The pipette carries <InlineMath math="0.40 \times \tfrac{25.0}{1000} = 0.010" /> mol into <InlineMath math="1.000\text{ dm}^3" />, a **fortyfold dilution** to <InlineMath math="0.010\text{ mol dm}^{-3}" />. Sodium hydroxide is a strong alkali, so <InlineMath math="[\text{OH}^-] = 0.010\text{ mol dm}^{-3}" />, <InlineMath math="\text{pOH} = 2" /> and <InlineMath math="\text{pH} = 14 - 2 = 12" />.
+Sulfuric acid: <InlineMath math="0.20 \times 0.0250 = 0.0050" /> mol, and it is **diprotic**, <InlineMath math="\text{H}_2\text{SO}_4 \rightarrow 2\text{H}^+ + \text{SO}_4^{2-}" />, so it gives <InlineMath math="0.010" /> mol of hydrogen ions. They match the hydroxide exactly: <InlineMath math="2\text{NaOH} + \text{H}_2\text{SO}_4 \rightarrow \text{Na}_2\text{SO}_4 + 2\text{H}_2\text{O}" />. The mixture holds only sodium sulfate, a neutral salt, so its pH is <InlineMath math="7" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="0.016" /> divides grams by cubic centimetres, which is not a concentration in <InlineMath math="\text{mol dm}^{-3}" />.
-- pH <InlineMath math="13" /> belongs to <InlineMath math="0.10\text{ mol dm}^{-3}" />, a tenfold dilution, but the volume grows fortyfold.
-- pH <InlineMath math="2" /> is the pOH. An alkali has a pH **above <InlineMath math="7" />**.
+- <InlineMath math="0.016\text{ mol dm}^{-3}" /> divides the mass by the volume, <InlineMath math="4.0 \div 250" />, instead of moles **by cubic decimetres**.
+- pH <InlineMath math="13" /> treats the acid as giving one hydrogen ion per molecule, which leaves <InlineMath math="0.0050" /> mol of hydroxide in <InlineMath math="0.050\text{ dm}^3" />.
+- pH <InlineMath math="1" /> would need the acid in excess, but the ions cancel exactly.

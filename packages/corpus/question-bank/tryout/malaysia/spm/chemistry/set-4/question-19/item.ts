@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "240 cm³ of oxygen forms, and the mass of manganese(IV) oxide decreases as it reacts",
+            "The peroxide is now $$0.16\\text{ mol dm}^{-3}$$, so $$60\\%$$ of it has decomposed in the bottle",
         },
         {
           correct: false,
           label:
-            "120 cm³ of oxygen forms, and the manganese(IV) oxide is used up",
+            "The peroxide is now $$0.32\\text{ mol dm}^{-3}$$, so $$20\\%$$ has decomposed, and less than $$0.50\\text{ g}$$ of manganese(IV) oxide is recovered",
         },
         {
           correct: true,
           label:
-            "120 cm³ of oxygen forms, the 0.50 g of manganese(IV) oxide is recovered unchanged, and twice as much catalyst gives the same volume sooner",
+            "The peroxide is now $$0.32\\text{ mol dm}^{-3}$$, so $$20\\%$$ has decomposed, and all $$0.50\\text{ g}$$ of manganese(IV) oxide is recovered",
         },
         {
           correct: false,
           label:
-            "120 cm³ of oxygen forms, and twice as much catalyst would give 240 cm³",
+            "The peroxide is now $$0.32\\text{ mol dm}^{-3}$$, so $$80\\%$$ has decomposed in the bottle",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "240 cm³ oksigen terbentuk, dan jisim mangan(IV) oksida berkurang semasa bertindak balas",
+            "Peroksida kini $$0.16\\text{ mol dm}^{-3}$$, jadi $$60\\%$$ daripadanya telah terurai dalam botol",
         },
         {
           correct: false,
           label:
-            "120 cm³ oksigen terbentuk, dan mangan(IV) oksida habis digunakan",
+            "Peroksida kini $$0.32\\text{ mol dm}^{-3}$$, jadi $$20\\%$$ telah terurai, dan kurang daripada $$0.50\\text{ g}$$ mangan(IV) oksida diperoleh semula",
         },
         {
           correct: true,
           label:
-            "120 cm³ oksigen terbentuk, 0.50 g mangan(IV) oksida diperoleh semula tanpa berubah, dan dua kali ganda mangkin memberikan isi padu yang sama lebih cepat",
+            "Peroksida kini $$0.32\\text{ mol dm}^{-3}$$, jadi $$20\\%$$ telah terurai, dan kesemua $$0.50\\text{ g}$$ mangan(IV) oksida diperoleh semula",
         },
         {
           correct: false,
           label:
-            "120 cm³ oksigen terbentuk, dan dua kali ganda mangkin akan memberikan 240 cm³",
+            "Peroksida kini $$0.32\\text{ mol dm}^{-3}$$, jadi $$80\\%$$ telah terurai dalam botol",
         },
       ],
     },

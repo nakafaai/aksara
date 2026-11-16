@@ -12,48 +12,36 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "2.4 dm³ of carbon dioxide, absorbed exactly by 4.0 g of sodium hydroxide",
+          label: "$$10.6\\text{ g}$$ of sodium carbonate only",
         },
         {
           correct: false,
-          label:
-            "1.2 dm³ of carbon dioxide, absorbed exactly by 8.0 g of sodium hydroxide",
+          label: "$$7.95\\text{ g}$$ of sodium carbonate only",
         },
         {
           correct: false,
-          label:
-            "2.4 dm³ of carbon dioxide, absorbed exactly by 16.0 g of sodium hydroxide",
+          label: "$$8.40\\text{ g}$$ of sodium hydrogen carbonate only",
         },
         {
           correct: true,
           label:
-            "2.4 dm³ of carbon dioxide, absorbed exactly by 8.0 g of sodium hydroxide to give 10.6 g of sodium carbonate",
+            "$$5.30\\text{ g}$$ of sodium carbonate and $$4.20\\text{ g}$$ of sodium hydrogen carbonate",
         },
       ],
     },
     ms: {
       kind: "choice",
       options: [
+        { correct: false, label: "$$10.6\\text{ g}$$ natrium karbonat sahaja" },
+        { correct: false, label: "$$7.95\\text{ g}$$ natrium karbonat sahaja" },
         {
           correct: false,
-          label:
-            "2.4 dm³ karbon dioksida, diserap tepat oleh 4.0 g natrium hidroksida",
-        },
-        {
-          correct: false,
-          label:
-            "1.2 dm³ karbon dioksida, diserap tepat oleh 8.0 g natrium hidroksida",
-        },
-        {
-          correct: false,
-          label:
-            "2.4 dm³ karbon dioksida, diserap tepat oleh 16.0 g natrium hidroksida",
+          label: "$$8.40\\text{ g}$$ natrium hidrogen karbonat sahaja",
         },
         {
           correct: true,
           label:
-            "2.4 dm³ karbon dioksida, diserap tepat oleh 8.0 g natrium hidroksida menghasilkan 10.6 g natrium karbonat",
+            "$$5.30\\text{ g}$$ natrium karbonat dan $$4.20\\text{ g}$$ natrium hidrogen karbonat",
         },
       ],
     },

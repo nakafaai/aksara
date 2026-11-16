@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "0.016 mol dm⁻³, and the diluted solution has pH 12",
+          label: "$$0.016\\text{ mol dm}^{-3}$$, and the mixture has pH $$7$$",
         },
         {
           correct: false,
-          label: "0.40 mol dm⁻³, and the diluted solution has pH 13",
+          label: "$$0.40\\text{ mol dm}^{-3}$$, and the mixture has pH $$13$$",
         },
         {
           correct: false,
-          label: "0.40 mol dm⁻³, and the diluted solution has pH 2",
+          label: "$$0.40\\text{ mol dm}^{-3}$$, and the mixture has pH $$1$$",
         },
         {
           correct: true,
-          label: "0.40 mol dm⁻³, and the diluted solution has pH 12",
+          label: "$$0.40\\text{ mol dm}^{-3}$$, and the mixture has pH $$7$$",
         },
       ],
     },
@@ -33,19 +33,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "0.016 mol dm⁻³, dan larutan cair mempunyai pH 12",
+          label:
+            "$$0.016\\text{ mol dm}^{-3}$$, dan campuran itu mempunyai pH $$7$$",
         },
         {
           correct: false,
-          label: "0.40 mol dm⁻³, dan larutan cair mempunyai pH 13",
+          label:
+            "$$0.40\\text{ mol dm}^{-3}$$, dan campuran itu mempunyai pH $$13$$",
         },
         {
           correct: false,
-          label: "0.40 mol dm⁻³, dan larutan cair mempunyai pH 2",
+          label:
+            "$$0.40\\text{ mol dm}^{-3}$$, dan campuran itu mempunyai pH $$1$$",
         },
         {
           correct: true,
-          label: "0.40 mol dm⁻³, dan larutan cair mempunyai pH 12",
+          label:
+            "$$0.40\\text{ mol dm}^{-3}$$, dan campuran itu mempunyai pH $$7$$",
         },
       ],
     },

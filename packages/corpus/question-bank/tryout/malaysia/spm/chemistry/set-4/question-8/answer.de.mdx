@@ -1,22 +1,23 @@
-# Konzentration der Stammlösung, dann vierzigfach verdünnen, dann pOH
+# Hydroxidionen gegen Wasserstoffionen zählen
 
-<InlineMath math="4{,}0 \div 40 = 0{,}10" /> mol in <InlineMath math="0{,}250\text{ dm}^3" /> ergeben <InlineMath math="0{,}40\text{ mol dm}^{-3}" />.
+Natriumhydroxid: <InlineMath math="4{,}0 \div 40 = 0{,}10" /> mol in <InlineMath math="0{,}250\text{ dm}^3" />, also <InlineMath math="0{,}40\text{ mol dm}^{-3}" />. Die entnommenen <InlineMath math="25{,}0\text{ cm}^3" /> enthalten <InlineMath math="0{,}40 \times 0{,}0250 = 0{,}010" /> mol Hydroxidionen.
 
 <Mermaid
-  title={<>Vom Feststoff zur verdünnten Lauge</>}
-  description={<><InlineMath math="4{,}0" /> g Natriumhydroxid in <InlineMath math="250\text{ cm}^3" /> ergeben <InlineMath math="0{,}40\text{ mol dm}^{-3}" />. <InlineMath math="25{,}0\text{ cm}^3" /> auf <InlineMath math="1000\text{ cm}^3" /> verdünnt ergeben <InlineMath math="0{,}010\text{ mol dm}^{-3}" /> Hydroxidionen, pOH <InlineMath math="2" /> und pH <InlineMath math="12" />.</>}
+  title={<>Ionen in der Mischung zählen</>}
+  description={<><InlineMath math="0{,}010\text{ mol}" /> Hydroxidionen treffen auf <InlineMath math="0{,}010\text{ mol}" /> Wasserstoffionen, weil jedes Schwefelsäuremolekül zwei liefert, also bleibt nichts übrig.</>}
   chart={`
     flowchart LR
-      N0["4,0 g NaOH: 0,10 mol"] --> N1["in 250 cm³: 0,40 mol dm⁻³"]
-      N1["in 250 cm³: 0,40 mol dm⁻³"] --> N2["25,0 cm³ auf 1000 cm³: 0,010 mol dm⁻³"]
-      N2["25,0 cm³ auf 1000 cm³: 0,010 mol dm⁻³"] --> N3["pOH 2, pH 12"]
+      N0["4,0 g NaOH in 0,250 dm³: 0,40 mol dm⁻³"] --> N1["25,0 cm³: 0,010 mol OH⁻"]
+      N2["25,0 cm³ H2SO4 mit 0,20 mol dm⁻³: 0,0050 mol"] --> N3["je 2 H⁺: 0,010 mol H⁺"]
+      N1 --> N4["H⁺ + OH⁻ → H2O, nichts übrig: pH 7"]
+      N3 --> N4
   `}
 />
 
-Die Pipette bringt <InlineMath math="0{,}40 \times \tfrac{25{,}0}{1000} = 0{,}010" /> mol in <InlineMath math="1{,}000\text{ dm}^3" />, eine **vierzigfache Verdünnung** auf <InlineMath math="0{,}010\text{ mol dm}^{-3}" />. Natronlauge ist eine starke Lauge, also <InlineMath math="[\text{OH}^-] = 0{,}010\text{ mol dm}^{-3}" />, <InlineMath math="\text{pOH} = 2" /> und <InlineMath math="\text{pH} = 14 - 2 = 12" />.
+Schwefelsäure: <InlineMath math="0{,}20 \times 0{,}0250 = 0{,}0050" /> mol, und sie ist **zweiprotonig**, <InlineMath math="\text{H}_2\text{SO}_4 \rightarrow 2\text{H}^+ + \text{SO}_4^{2-}" />, liefert also <InlineMath math="0{,}010" /> mol Wasserstoffionen. Das passt genau zum Hydroxid: <InlineMath math="2\text{NaOH} + \text{H}_2\text{SO}_4 \rightarrow \text{Na}_2\text{SO}_4 + 2\text{H}_2\text{O}" />. Die Mischung enthält nur Natriumsulfat, ein neutrales Salz, also ist der pH-Wert <InlineMath math="7" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="0{,}016" /> teilt Gramm durch Kubikzentimeter, das ist keine Konzentration in <InlineMath math="\text{mol dm}^{-3}" />.
-- pH <InlineMath math="13" /> gehört zu <InlineMath math="0{,}10\text{ mol dm}^{-3}" />, einer zehnfachen Verdünnung, das Volumen wächst aber vierzigfach.
-- pH <InlineMath math="2" /> ist der pOH-Wert. Eine Lauge hat einen pH-Wert **über <InlineMath math="7" />**.
+- <InlineMath math="0{,}016\text{ mol dm}^{-3}" /> teilt die Masse durch das Volumen, <InlineMath math="4{,}0 \div 250" />, statt **Mol durch Kubikdezimeter**.
+- pH <InlineMath math="13" /> nimmt ein Wasserstoffion je Säuremolekül an, sodass <InlineMath math="0{,}0050" /> mol Hydroxid in <InlineMath math="0{,}050\text{ dm}^3" /> übrig blieben.
+- pH <InlineMath math="1" /> bräuchte Säure im Überschuss, doch die Ionen heben sich genau auf.

@@ -1,22 +1,24 @@
-# One amount, two equations
+# Run the two stages in order
 
-<InlineMath math="\text{CaCO}_3 \rightarrow \text{CaO} + \text{CO}_2" />: <InlineMath math="10.0 \div 100 = 0.10" /> mol of calcium carbonate gives <InlineMath math="0.10" /> mol of carbon dioxide, which is <InlineMath math="0.10 \times 24 = 2.4\text{ dm}^3" />.
+<InlineMath math="\text{CaCO}_3 \rightarrow \text{CaO} + \text{CO}_2" />: <InlineMath math="10.0 \div 100 = 0.10" /> mol of carbon dioxide. Sodium hydroxide: <InlineMath math="6.0 \div 40 = 0.15" /> mol.
+
+**Stage 1** takes two hydroxide per carbon dioxide, so <InlineMath math="0.15" /> mol of hydroxide uses <InlineMath math="0.075" /> mol of carbon dioxide and makes <InlineMath math="0.075" /> mol of sodium carbonate. That leaves <InlineMath math="0.025" /> mol of carbon dioxide.
 
 <Mermaid
-  title={<>Carrying One Amount Through Two Reactions</>}
-  description={<><InlineMath math="0.10\text{ mol}" /> of calcium carbonate gives <InlineMath math="0.10\text{ mol}" /> of carbon dioxide, which takes <InlineMath math="0.20\text{ mol}" /> of sodium hydroxide and gives <InlineMath math="0.10\text{ mol}" /> of sodium carbonate.</>}
+  title={<>Where the Carbon Dioxide Goes</>}
+  description={<><InlineMath math="0.075\text{ mol}" /> of carbon dioxide uses up all the sodium hydroxide, and the remaining <InlineMath math="0.025\text{ mol}" /> turns <InlineMath math="0.025" /> mol of the carbonate into <InlineMath math="0.050\text{ mol}" /> of hydrogen carbonate.</>}
   chart={`
     flowchart LR
-      N0["CaCO3: 10.0 g, 0.10 mol"] --> N1["CO2: 0.10 mol, 2.4 dm³"]
-      N1["CO2: 0.10 mol, 2.4 dm³"] --> N2["NaOH: 0.20 mol, 8.0 g"]
-      N2["NaOH: 0.20 mol, 8.0 g"] --> N3["Na2CO3: 0.10 mol, 10.6 g"]
+      N0["0.10 mol CO2, 0.15 mol NaOH"] --> N1["stage 1: 0.075 mol CO2 makes 0.075 mol Na2CO3"]
+      N1 --> N2["stage 2: 0.025 mol CO2 left"]
+      N2 --> N3["0.050 mol Na2CO3 and 0.050 mol NaHCO3"]
   `}
 />
 
-<InlineMath math="2\text{NaOH} + \text{CO}_2 \rightarrow \text{Na}_2\text{CO}_3 + \text{H}_2\text{O}" /> needs **two hydroxide ions for each carbon dioxide molecule**: <InlineMath math="0.20" /> mol of sodium hydroxide, or <InlineMath math="0.20 \times 40 = 8.0" /> g. It gives <InlineMath math="0.10" /> mol of sodium carbonate: <InlineMath math="0.10 \times 106 = 10.6" /> g.
+**Stage 2**: the leftover <InlineMath math="0.025" /> mol turns <InlineMath math="0.025" /> mol of carbonate into <InlineMath math="0.050" /> mol of hydrogen carbonate. Left: <InlineMath math="0.050" /> mol of <InlineMath math="\text{Na}_2\text{CO}_3" />, <InlineMath math="0.050 \times 106 = 5.30" /> g, and <InlineMath math="0.050" /> mol of <InlineMath math="\text{NaHCO}_3" />, <InlineMath math="0.050 \times 84 = 4.20" /> g.
 
 # Why the other options are wrong
 
-- <InlineMath math="4.0\text{ g}" /> treats the absorption as one to one and misses the second hydroxide ion.
-- <InlineMath math="1.2\text{ dm}^3" /> halves the gas, though each calcium carbonate unit gives **one** carbon dioxide molecule.
-- <InlineMath math="16.0\text{ g}" /> doubles the sodium hydroxide twice over.
+- <InlineMath math="10.6\text{ g}" /> turns all the carbon dioxide into carbonate, which would need <InlineMath math="0.20" /> mol of hydroxide.
+- <InlineMath math="7.95\text{ g}" /> stops after stage 1 and forgets the <InlineMath math="0.025" /> mol of carbon dioxide still bubbling in.
+- <InlineMath math="8.40\text{ g}" /> makes only hydrogen carbonate, which needs one hydroxide per carbon dioxide, but there is **more hydroxide than that**.
