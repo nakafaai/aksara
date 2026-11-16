@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Magnesium oxide is held by covalent bonds, which are stronger than ionic bonds" },
-        { correct: true, label: "The oxide ion carries a charge of $$-2$$ and is smaller than the chloride ion, so it attracts the magnesium ion more strongly" },
-        { correct: false, label: "Magnesium chloride has fewer ions in each formula unit, so it has fewer bonds to break" },
-        { correct: false, label: "The magnesium ion in magnesium oxide has a larger charge than the one in magnesium chloride" },
+        { correct: false, label: "I and III only" },
+        { correct: true, label: "I and II only" },
+        { correct: false, label: "II and IV only" },
+        { correct: false, label: "I, II and III only" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Magnesium oksida diikat oleh ikatan kovalen yang lebih kuat daripada ikatan ion" },
-        { correct: true, label: "Ion oksida membawa cas $$-2$$ dan lebih kecil daripada ion klorida, jadi ia menarik ion magnesium dengan lebih kuat" },
-        { correct: false, label: "Magnesium klorida mempunyai lebih sedikit ion dalam setiap unit formula, jadi lebih sedikit ikatan perlu dipecahkan" },
-        { correct: false, label: "Ion magnesium dalam magnesium oksida mempunyai cas yang lebih besar daripada ion magnesium dalam magnesium klorida" },
+        { correct: false, label: "I dan III sahaja" },
+        { correct: true, label: "I dan II sahaja" },
+        { correct: false, label: "II dan IV sahaja" },
+        { correct: false, label: "I, II dan III sahaja" },
       ],
     },
   },
