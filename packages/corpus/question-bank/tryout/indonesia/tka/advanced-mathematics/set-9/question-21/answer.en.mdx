@@ -2,6 +2,34 @@ As <InlineMath math="x\to\infty" />, <InlineMath math="2^x" /> grows without bou
 
 <BlockMath math="\lim_{x\to\infty}\frac{3\cdot2^x+5}{2^x-1}=\lim_{x\to\infty}\frac{3+\frac{5}{2^x}}{1-\frac{1}{2^x}}=\frac{3+0}{1-0}=3" />
 
+Draw the graph of the function as <InlineMath math="x" /> grows. **The curve falls and hugs the line <InlineMath math="y=3" /> ever more closely**, because the terms <InlineMath math="5" /> and <InlineMath math="-1" /> matter less and less next to <InlineMath math="2^x" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="\tfrac{3\cdot2^x+5}{2^x-1}" /> for large <InlineMath math="x" /></>}
+  description={<>The curve <InlineMath math="y=\tfrac{3\cdot2^x+5}{2^x-1}" /> is drawn from <InlineMath math="x=1.5" /> to <InlineMath math="x=10" />. It falls and approaches the horizontal line <InlineMath math="y=3" /> from above without ever crossing it.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{3\cdot2^x+5}{2^x-1}" />,
+    level: <InlineMath math="y=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 10 },
+      y: { min: 0, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "answer", formula: "3", domain: { min: 0, max: 10 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(3*2^x + 5) / (2^x - 1)", domain: { min: 1.5, max: 10 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2, y: 17 / 3 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 9, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 The fractions <InlineMath math="\frac{5}{2^x}" /> and <InlineMath math="\frac{1}{2^x}" /> tend to <InlineMath math="0" /> because their denominators grow without bound. For example, at <InlineMath math="x=10" /> the value is <InlineMath math="\frac{3077}{1023}\approx3.008" />.
 
 So the limit is <InlineMath math="3" />.

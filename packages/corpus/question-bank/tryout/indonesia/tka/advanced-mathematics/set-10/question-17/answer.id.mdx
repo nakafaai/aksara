@@ -1,5 +1,48 @@
 Jari-jarinya adalah jarak pusat ke titik asal, <InlineMath math="r=\sqrt{16+9}=5" />, jadi <InlineMath math="L:\ (x+4)^2+(y-3)^2=25" />, atau <InlineMath math="x^2+y^2+8x-6y=0" />. Untuk titik potong dengan sumbu, **substitusikan koordinat yang nol**.
 
+Gambar lingkaran <InlineMath math="L" /> dan semua titik yang disebut. Setiap pernyataan tinggal dicek dengan melihat **titik mana yang benar-benar terletak pada lingkaran**.
+
+<MathVisual
+  title={<>Lingkaran <InlineMath math="L" /> berpusat <InlineMath math="(-4,3)" /> melalui <InlineMath math="O" /></>}
+  description={<>Lingkaran berpusat <InlineMath math="(-4,3)" /> dengan jari-jari <InlineMath math="5" /> melalui <InlineMath math="O" />, <InlineMath math="(-8,6)" />, <InlineMath math="(0,6)" />, dan <InlineMath math="(-8,0)" />. Ruas dari <InlineMath math="O" /> ke <InlineMath math="(-8,6)" /> melewati pusat, jadi merupakan diameter. Titik <InlineMath math="(0,3)" /> berada di dalam lingkaran, bukan pada lingkaran.</>}
+  labels={{
+    centre: <InlineMath math="(-4,3)" />,
+    o: <InlineMath math="O" />,
+    far: <InlineMath math="(-8,6)" />,
+    ycut: <InlineMath math="(0,6)" />,
+    xcut: <InlineMath math="(-8,0)" />,
+    foot: <InlineMath math="(0,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 2.5 },
+      y: { min: -2.5, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -4, y: 3 }, radius: 5 },
+      { id: "diameter", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -8, y: 6 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -4, y: 3 }, to: { x: 0, y: 3 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: -4, y: 3 } },
+      { id: "o", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "far", kind: "point", appearance: "answer", at: { x: -8, y: 6 } },
+      { id: "ycut", kind: "point", appearance: "secondary", at: { x: 0, y: 6 } },
+      { id: "xcut", kind: "point", appearance: "secondary", at: { x: -8, y: 0 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: -4, y: 3 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "far", objectId: "far", at: { x: -8, y: 6 }, placement: "above-left" },
+      { key: "ycut", objectId: "ycut", at: { x: 0, y: 6 }, placement: "right" },
+      { key: "xcut", objectId: "xcut", at: { x: -8, y: 0 }, placement: "below-left" },
+      { key: "foot", objectId: "foot", at: { x: 0, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. **Salah.** <InlineMath math="r=5" />. Nilai <InlineMath math="7" /> didapat jika <InlineMath math="4" /> dan <InlineMath math="3" /> dijumlahkan, bukan dipakai dalam teorema Pythagoras.
 2. **Salah.** Substitusi <InlineMath math="x=0" /> memberi <InlineMath math="16+(y-3)^2=25" />, jadi <InlineMath math="y=0" /> atau <InlineMath math="y=6" />. Titik potongnya <InlineMath math="(0,0)" /> dan <InlineMath math="(0,6)" />. Titik <InlineMath math="(0,3)" /> hanya proyeksi pusat ke sumbu <InlineMath math="Y" />.
 3. **Benar.** Titik tengah <InlineMath math="O(0,0)" /> dan <InlineMath math="(-8,6)" /> adalah <InlineMath math="(-4,3)" />, yaitu pusat <InlineMath math="L" />. Titik <InlineMath math="(-8,6)" /> juga terletak pada <InlineMath math="L" />, karena <InlineMath math="16+9=25" />. Jadi ruas itu adalah diameter.

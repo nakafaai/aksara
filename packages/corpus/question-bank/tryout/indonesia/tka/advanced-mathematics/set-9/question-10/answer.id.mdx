@@ -1,5 +1,42 @@
 Fungsi ini punya dua aturan: **biaya tetap untuk dua jam pertama**, lalu tambahan <InlineMath math="\text{Rp}6{.}000{,}00" /> per jam setelahnya. Pilih aturan yang sesuai dengan nilai <InlineMath math="t" />.
 
+Gambar biaya sewa terhadap lama sewa. **Grafiknya mendatar selama dua jam pertama, lalu naik lurus**, jadi satu nilai biaya bisa berasal dari banyak lama sewa, dan garis <InlineMath math="45" /> mengenai grafik di <InlineMath math="t=7" />.
+
+<MathVisual
+  title={<>Biaya sewa sepeda menurut lama sewa</>}
+  description={<>Sumbu mendatar adalah lama sewa <InlineMath math="t" /> dalam jam, dan sumbu tegak adalah biaya dalam ribu rupiah. Untuk <InlineMath math="0<t\le2" />, biayanya tetap <InlineMath math="15" />. Setelah itu biaya naik <InlineMath math="6" /> per jam, melewati <InlineMath math="(5,\ 33)" /> dan mencapai garis mendatar <InlineMath math="45" /> di <InlineMath math="(7,\ 45)" />.</>}
+  labels={{
+    flat: <InlineMath math="15" />,
+    rise: <InlineMath math="15+6(t-2)" />,
+    budget: <InlineMath math="45" />,
+    seven: <InlineMath math="(7,\ 45)" />,
+    five: <InlineMath math="(5,\ 33)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 8.5 },
+      y: { min: 0, max: 55 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "flat", kind: "segment", appearance: "primary", from: { x: 0, y: 15 }, to: { x: 2, y: 15 } },
+      { id: "rise", kind: "function", appearance: "primary", formula: "15 + 6*(x - 2)", domain: { min: 2, max: 8 } },
+      { id: "budget", kind: "function", appearance: "construction", formula: "45", domain: { min: 0, max: 8.5 } },
+      { id: "seven", kind: "point", appearance: "answer", at: { x: 7, y: 45 } },
+      { id: "five", kind: "point", appearance: "warning", at: { x: 5, y: 33 } },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 1, y: 15 }, placement: "above" },
+      { key: "rise", objectId: "rise", at: { x: 4, y: 27 }, placement: "above-left" },
+      { key: "budget", objectId: "budget", at: { x: 0.5, y: 45 }, placement: "above" },
+      { key: "seven", objectId: "seven", at: { x: 7, y: 45 }, placement: "above-left" },
+      { key: "five", objectId: "five", at: { x: 5, y: 33 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 1. **Salah.** <InlineMath math="t=5>2" />, jadi <InlineMath math="B(5)=15{.}000+6{.}000\cdot3=33{.}000" />, bukan <InlineMath math="30{.}000" />.
 2. **Benar.** <InlineMath math="1" /> dan <InlineMath math="2" /> sama-sama berada di selang <InlineMath math="0<t\le2" />, jadi <InlineMath math="B(1)=B(2)=15{.}000" />.
 3. **Benar.** Untuk <InlineMath math="t>2" />, syaratnya <InlineMath math="15{.}000+6{.}000(t-2)\le45{.}000" />, yaitu <InlineMath math="t-2\le5" />, sehingga <InlineMath math="t\le7" />. Tepat <InlineMath math="7" /> jam biayanya <InlineMath math="B(7)=45{.}000" />.

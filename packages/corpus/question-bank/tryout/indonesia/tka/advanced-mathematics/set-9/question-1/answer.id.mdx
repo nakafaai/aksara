@@ -4,6 +4,37 @@ Misalkan <InlineMath math="K=\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}" />. U
 
 <BlockMath math="\begin{pmatrix} p \\ q \end{pmatrix}=\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix} 17 \\ 10 \end{pmatrix}=\begin{pmatrix} 17-10 \\ -17+20 \end{pmatrix}=\begin{pmatrix} 7 \\ 3 \end{pmatrix}" />
 
+Setiap baris kode adalah satu garis pada bidang <InlineMath math="(p,q)" />. **Pasangan rahasia adalah satu-satunya titik yang memenuhi kedua garis**, yaitu titik potongnya.
+
+<MathVisual
+  title={<>Kode <InlineMath math="(17,10)" /> sebagai dua garis</>}
+  description={<>Garis <InlineMath math="2p+q=17" /> dan garis <InlineMath math="p+q=10" /> berpotongan di <InlineMath math="(7,\ 3)" />. Karena <InlineMath math="\det K=1\ne0" />, kedua garis tidak sejajar, jadi titik potongnya tunggal.</>}
+  labels={{
+    first: <InlineMath math="2p+q=17" />,
+    second: <InlineMath math="p+q=10" />,
+    meet: <InlineMath math="(7,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 11 },
+      y: { min: -2, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "17 - 2*x", domain: { min: 3, max: 9.5 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "10 - x", domain: { min: 0, max: 11 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 7, y: 3 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 9 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: 9 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 7, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan: <InlineMath math="2\cdot7+3=17" /> dan <InlineMath math="7+3=10" />, sama dengan kode yang diterima.
 
 Jadi, <InlineMath math="(p,q)=(7,3)" />.

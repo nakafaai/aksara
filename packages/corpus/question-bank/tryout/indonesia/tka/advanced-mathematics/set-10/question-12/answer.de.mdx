@@ -7,6 +7,45 @@ Ein rechter Winkel bei <InlineMath math="C" /> heißt, **die Vektoren <InlineMat
 (1-t)(5-t)&=0
 \end{aligned}" />
 
+Der Winkel <InlineMath math="ACB" /> ist genau dann ein rechter, wenn <InlineMath math="C" /> auf der Kugel mit Durchmesser <InlineMath math="AB" /> liegt. Zeichne den Schnitt dieser Kugel mit der Ebene <InlineMath math="z=0" />, die die <InlineMath math="x" />-Achse enthält. **Der Schnittkreis trifft die <InlineMath math="x" />-Achse in zwei Punkten**, also gibt es zwei Werte für <InlineMath math="t" />.
+
+<MathVisual
+  title={<>Die Kugel mit Durchmesser <InlineMath math="AB" /> und die <InlineMath math="x" />-Achse</>}
+  description={<>Der Kugelmittelpunkt ist der Mittelpunkt von <InlineMath math="AB" />, also <InlineMath math="M(3,2,0)" />, und der Radius ist <InlineMath math="2\sqrt2" />. In der Ebene <InlineMath math="z=0" /> entsteht ein Kreis um <InlineMath math="M" />, der <InlineMath math="2" /> von der <InlineMath math="x" />-Achse entfernt liegt, also schneidet er diese Achse bei <InlineMath math="t=1" /> und <InlineMath math="t=5" />.</>}
+  labels={{
+    m: <InlineMath math="M(3,2,0)" />,
+    c1: <InlineMath math="t=1" />,
+    c2: <InlineMath math="t=5" />,
+    r: <InlineMath math="2\sqrt2" />,
+    axis: <InlineMath math="x\text{-Achse}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7 },
+      y: { min: -1.5, max: 5.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -0.5, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "sphere", kind: "circle", appearance: "primary", center: { x: 3, y: 2 }, radius: 2 * Math.sqrt(2) },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 3, y: 2 }, to: { x: 5, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 3, y: 2 }, to: { x: 3, y: 0 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "c1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "c2", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "c1", objectId: "c1", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "c2", objectId: "c2", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "r", objectId: "r", at: { x: 4, y: 1 }, placement: "above-right" },
+      { key: "axis", objectId: "axis", at: { x: 6.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="t=1" /> oder <InlineMath math="t=5" />, und die Summe ist <InlineMath math="6" />.
 
 Probe: Für <InlineMath math="t=1" /> ist <InlineMath math="\overrightarrow{CA}=(0,2,2)" /> und <InlineMath math="\overrightarrow{CB}=(4,2,-2)" />, mit Skalarprodukt <InlineMath math="0+4-4=0" />. Für <InlineMath math="t=5" /> ist <InlineMath math="\overrightarrow{CA}=(-4,2,2)" /> und <InlineMath math="\overrightarrow{CB}=(0,2,-2)" />, ebenfalls <InlineMath math="0+4-4=0" />.

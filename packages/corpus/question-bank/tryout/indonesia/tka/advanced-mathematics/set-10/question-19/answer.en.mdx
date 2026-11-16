@@ -4,6 +4,43 @@ A <InlineMath math="90^\circ" /> anticlockwise rotation sends <InlineMath math="
 
 <BlockMath math="-x'=(y')^2-2y'\ \Leftrightarrow\ x'=-(y')^2+2y'" />
 
+Draw the original parabola and its image. **The upward-opening parabola turns a quarter turn into one that opens to the left**, and every point turns <InlineMath math="90^\circ" /> about <InlineMath math="O" />.
+
+<MathVisual
+  title={<>Rotating the parabola <InlineMath math="y=x^2-2x" /> by <InlineMath math="90^\circ" /></>}
+  description={<>The parabola <InlineMath math="y=x^2-2x" /> opens upwards with vertex <InlineMath math="(1,-1)" />. Its image <InlineMath math="x=-y^2+2y" /> opens to the left with vertex <InlineMath math="(1,1)" />. The segment from <InlineMath math="O" /> to <InlineMath math="(3,3)" /> and the segment from <InlineMath math="O" /> to its image <InlineMath math="(-3,3)" /> form a right angle.</>}
+  labels={{
+    old: <InlineMath math="y=x^2-2x" />,
+    new: <InlineMath math="x=-y^2+2y" />,
+    p: <InlineMath math="(3,3)" />,
+    pimage: <InlineMath math="(-3,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 3.5 },
+      y: { min: -1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "old", kind: "function", appearance: "reference", formula: "x^2 - 2x", domain: { min: -1, max: 3 } },
+      { id: "upper", kind: "function", appearance: "answer", formula: "1 + sqrt(1 - x)", domain: { min: -3, max: 1 } },
+      { id: "lower", kind: "function", appearance: "answer", formula: "1 - sqrt(1 - x)", domain: { min: -3, max: 1 } },
+      { id: "op", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "opimage", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3, y: 3 } },
+      { id: "p", kind: "point", appearance: "reference", at: { x: 3, y: 3 } },
+      { id: "pimage", kind: "point", appearance: "answer", at: { x: -3, y: 3 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 2.5, y: 1.25 }, placement: "right" },
+      { key: "new", objectId: "lower", at: { x: -3, y: -1 }, placement: "above-right" },
+      { key: "p", objectId: "p", at: { x: 3, y: 3 }, placement: "left" },
+      { key: "pimage", objectId: "pimage", at: { x: -3, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check with two points on the parabola: <InlineMath math="(2,0)" /> maps to <InlineMath math="(0,2)" />, and <InlineMath math="-4+4=0" />. The point <InlineMath math="(3,3)" /> maps to <InlineMath math="(-3,3)" />, and <InlineMath math="-9+6=-3" />.
 
 So the image is <InlineMath math="x=-y^2+2y" />, a parabola opening to the left.

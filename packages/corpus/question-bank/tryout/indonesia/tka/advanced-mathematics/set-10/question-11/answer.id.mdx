@@ -5,6 +5,38 @@ Dua vektor tegak lurus tepat ketika **hasil kali skalarnya nol**. Misalkan vekto
 x+3y+2z&=0
 \end{aligned}" />
 
+Lihat bidang yang memuat <InlineMath math="\vec a" /> dan <InlineMath math="\vec b" /> dari samping, sehingga bidang itu tampak sebagai garis. **Vektor yang tegak lurus keduanya mencuat tegak dari bidang itu**, sedangkan kombinasi seperti <InlineMath math="\vec a+\vec b" /> tetap rebah di dalamnya.
+
+<MathVisual
+  title={<>Arah yang tegak lurus bidang <InlineMath math="\vec a" /> dan <InlineMath math="\vec b" /></>}
+  description={<>Bidang yang memuat <InlineMath math="\vec a" /> dan <InlineMath math="\vec b" /> digambar dari samping sebagai garis mendatar. Vektor <InlineMath math="(1,-1,1)" /> berdiri tegak lurus garis itu, sedangkan <InlineMath math="\vec a+\vec b=(3,4,1)" /> terletak di sepanjang garis itu.</>}
+  labels={{
+    plane: <>bidang a dan b, dilihat dari samping</>,
+    n: <InlineMath math="(1,-1,1)" />,
+    sum: <InlineMath math="\vec a+\vec b" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 5.6 },
+      y: { min: -0.6, max: 2.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plane", kind: "segment", appearance: "reference", from: { x: -2.5, y: 0 }, to: { x: 5.6, y: 0 } },
+      { id: "sum", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(26), y: 0 } },
+      { id: "n", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: Math.sqrt(3) } },
+      { id: "corner", kind: "polyline", appearance: "construction", vertices: [{ x: 0.25, y: 0 }, { x: 0.25, y: 0.25 }, { x: 0, y: 0.25 }] },
+    ],
+    labels: [
+      { key: "plane", objectId: "plane", at: { x: -1.5, y: 0 }, placement: "below" },
+      { key: "n", objectId: "n", at: { x: 0, y: Math.sqrt(3) }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 4, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Kalikan persamaan pertama dengan <InlineMath math="2" />, lalu jumlahkan dengan persamaan kedua: <InlineMath math="5x+5y=0" />, jadi <InlineMath math="y=-x" />. Substitusi ke persamaan pertama memberi <InlineMath math="z=2x+y=x" />. Semua vektor yang tegak lurus kedua vektor itu berbentuk <InlineMath math="x(1,-1,1)" />, dan untuk <InlineMath math="x=1" /> diperoleh <InlineMath math="\vec{i}-\vec{j}+\vec{k}" />.
 
 Pemeriksaan: <InlineMath math="(1,-1,1)\cdot\vec{a}=2-1-1=0" /> dan <InlineMath math="(1,-1,1)\cdot\vec{b}=1-3+2=0" />.

@@ -1,5 +1,21 @@
 Dua aturan ordo cukup untuk semua pernyataan. Penjumlahan memerlukan **ordo yang sama persis**. Perkalian <InlineMath math="PQ" /> terdefinisi jika banyak kolom <InlineMath math="P" /> sama dengan banyak baris <InlineMath math="Q" />, dan hasilnya berordo (baris <InlineMath math="P" />) <InlineMath math="\times" /> (kolom <InlineMath math="Q" />). Transpos menukar ordo, jadi <InlineMath math="A^T" /> berordo <InlineMath math="3\times2" /> dan <InlineMath math="B^T" /> berordo <InlineMath math="2\times3" />.
 
+Tulis ordo setiap matriks dan setiap hasil kali. **Angka tengah pada setiap pasangan harus sama**, dan dua angka di luar menjadi ordo hasilnya.
+
+<Mermaid
+  title={<>Ordo setiap jumlah dan hasil kali</>}
+  description={<>Matriks <InlineMath math="A" /> berordo <InlineMath math="2\times3" /> dan <InlineMath math="B" /> berordo <InlineMath math="3\times2" />. Hasil kali <InlineMath math="AB" /> berordo <InlineMath math="2\times2" />, sedangkan <InlineMath math="BA" /> dan <InlineMath math="A^TB^T" /> berordo <InlineMath math="3\times3" />. Jumlah <InlineMath math="A+B" /> tidak terdefinisi karena ordonya berbeda.</>}
+  chart={`flowchart LR
+  A["A: 2×3"] --> AB["AB: (2×3)(3×2) → 2×2"]
+  B["B: 3×2"] --> AB
+  B --> BA["BA: (3×2)(2×3) → 3×3"]
+  A --> BA
+  AT["Aᵀ: 3×2"] --> TT["AᵀBᵀ: (3×2)(2×3) → 3×3"]
+  BT["Bᵀ: 2×3"] --> TT
+  A -.-> S["A + B: tidak terdefinisi, ordo berbeda"]
+  B -.-> S`}
+/>
+
 1. **Salah.** Ordo <InlineMath math="2\times3" /> dan <InlineMath math="3\times2" /> berbeda, jadi <InlineMath math="A+B" /> tidak terdefinisi.
 2. **Benar.** <InlineMath math="(2\times3)(3\times2)" />: kolom <InlineMath math="A" /> dan baris <InlineMath math="B" /> sama-sama <InlineMath math="3" />, dan hasilnya berordo <InlineMath math="2\times2" />.
 3. **Salah.** <InlineMath math="(3\times2)(2\times3)" /> memang terdefinisi, tetapi hasilnya berordo <InlineMath math="3\times3" />.

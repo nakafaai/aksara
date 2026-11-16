@@ -4,6 +4,37 @@ Let <InlineMath math="K=\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}" />. To dec
 
 <BlockMath math="\begin{pmatrix} p \\ q \end{pmatrix}=\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix} 17 \\ 10 \end{pmatrix}=\begin{pmatrix} 17-10 \\ -17+20 \end{pmatrix}=\begin{pmatrix} 7 \\ 3 \end{pmatrix}" />
 
+Each row of the code is a line in the <InlineMath math="(p,q)" /> plane. **The secret pair is the only point on both lines**, which is where they cross.
+
+<MathVisual
+  title={<>The code <InlineMath math="(17,10)" /> as two lines</>}
+  description={<>The line <InlineMath math="2p+q=17" /> and the line <InlineMath math="p+q=10" /> cross at <InlineMath math="(7,\ 3)" />. Since <InlineMath math="\det K=1\ne0" />, the lines aren't parallel, so the crossing point is unique.</>}
+  labels={{
+    first: <InlineMath math="2p+q=17" />,
+    second: <InlineMath math="p+q=10" />,
+    meet: <InlineMath math="(7,\ 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 11 },
+      y: { min: -2, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "17 - 2*x", domain: { min: 3, max: 9.5 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "10 - x", domain: { min: 0, max: 11 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 7, y: 3 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 9 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: 9 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 7, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="2\cdot7+3=17" /> and <InlineMath math="7+3=10" />, matching the code received.
 
 So <InlineMath math="(p,q)=(7,3)" />.

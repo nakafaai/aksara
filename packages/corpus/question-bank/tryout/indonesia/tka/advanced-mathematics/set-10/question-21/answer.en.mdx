@@ -2,6 +2,34 @@ The numerator and denominator both have degree three. With equal degrees, the li
 
 <BlockMath math="\lim_{x\to\infty}\frac{(2x-1)^3}{x^3+4x}=\lim_{x\to\infty}\frac{\left(2-\frac1x\right)^3}{1+\frac{4}{x^2}}=\frac{2^3}{1}=8" />
 
+Draw the graph of the fraction as <InlineMath math="x" /> grows. **The curve rises and hugs the line <InlineMath math="y=8" />**, not <InlineMath math="y=2" />, because the cube also cubes the coefficient <InlineMath math="2" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="\tfrac{(2x-1)^3}{x^3+4x}" /> for large <InlineMath math="x" /></>}
+  description={<>The curve is drawn from <InlineMath math="x=\tfrac12" /> to <InlineMath math="x=40" />. It rises from <InlineMath math="0" /> and approaches the horizontal line <InlineMath math="y=8" /> from below.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{(2x-1)^3}{x^3+4x}" />,
+    level: <InlineMath math="y=8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 40 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "answer", formula: "8", domain: { min: 0, max: 40 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(2x - 1)^3 / (x^3 + 4x)", domain: { min: 0.5, max: 40 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 20, y: 59319 / 8080 }, placement: "below" },
+      { key: "level", objectId: "level", at: { x: 5, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 That line divides top and bottom by <InlineMath math="x^3" />, and <InlineMath math="\frac{(2x-1)^3}{x^3}=\left(2-\frac1x\right)^3" />. For example, at <InlineMath math="x=100" /> the value is about <InlineMath math="7.88" />.
 
 So the limit is <InlineMath math="8" />.

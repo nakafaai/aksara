@@ -6,6 +6,36 @@ Use <InlineMath math="\lim_{x\to0}\frac{\tan6x}{x}=6" /> and <InlineMath math="\
 
 <BlockMath math="\lim_{x\to0}\frac{x\tan6x}{1-\cos3x}=\frac12\cdot6\cdot\left(\frac23\right)^2=\frac12\cdot6\cdot\frac49=\frac43" />
 
+Draw the graph of the fraction near <InlineMath math="x=0" />. **From the left and from the right, the curve drops towards height <InlineMath math="\tfrac43" />**, even though the fraction is undefined at <InlineMath math="x=0" /> itself.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="\tfrac{x\tan6x}{1-\cos3x}" /> near zero</>}
+  description={<>The curve is drawn for <InlineMath math="x" /> between <InlineMath math="-0.2" /> and <InlineMath math="0.2" />, leaving out the area around zero. Its two branches are symmetric and approach the point <InlineMath math="\left(0,\tfrac43\right)" /> on the dashed line <InlineMath math="y=\tfrac43" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{x\tan6x}{1-\cos3x}" />,
+    limit: <InlineMath math="\tfrac43" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.25, max: 0.25 },
+      y: { min: 0, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x*tan(6x) / (1 - cos(3x))", domain: { min: -0.2, max: -0.01 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x*tan(6x) / (1 - cos(3x))", domain: { min: 0.01, max: 0.2 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -0.25, y: 4 / 3 }, to: { x: 0.25, y: 4 / 3 } },
+      { id: "limit", kind: "point", appearance: "answer", at: { x: 0, y: 4 / 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0.15, y: 2.2 }, placement: "left" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: 4 / 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Numerical check: at <InlineMath math="x=0.01" /> the value is about <InlineMath math="1.3350" />, close to <InlineMath math="\frac43\approx1.3333" />.
 
 So the limit is <InlineMath math="\frac43" />.

@@ -1,5 +1,48 @@
 The radius is the distance from the centre to the origin, <InlineMath math="r=\sqrt{16+9}=5" />, so <InlineMath math="L:\ (x+4)^2+(y-3)^2=25" />, or <InlineMath math="x^2+y^2+8x-6y=0" />. To find where it meets an axis, **substitute the coordinate that is zero**.
 
+Draw the circle <InlineMath math="L" /> and every point mentioned. Each statement comes down to **which points really lie on the circle**.
+
+<MathVisual
+  title={<>The circle <InlineMath math="L" /> with centre <InlineMath math="(-4,3)" /> through <InlineMath math="O" /></>}
+  description={<>The circle with centre <InlineMath math="(-4,3)" /> and radius <InlineMath math="5" /> passes through <InlineMath math="O" />, <InlineMath math="(-8,6)" />, <InlineMath math="(0,6)" /> and <InlineMath math="(-8,0)" />. The segment from <InlineMath math="O" /> to <InlineMath math="(-8,6)" /> passes through the centre, so it is a diameter. The point <InlineMath math="(0,3)" /> lies inside the circle, not on it.</>}
+  labels={{
+    centre: <InlineMath math="(-4,3)" />,
+    o: <InlineMath math="O" />,
+    far: <InlineMath math="(-8,6)" />,
+    ycut: <InlineMath math="(0,6)" />,
+    xcut: <InlineMath math="(-8,0)" />,
+    foot: <InlineMath math="(0,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 2.5 },
+      y: { min: -2.5, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -4, y: 3 }, radius: 5 },
+      { id: "diameter", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -8, y: 6 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -4, y: 3 }, to: { x: 0, y: 3 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: -4, y: 3 } },
+      { id: "o", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "far", kind: "point", appearance: "answer", at: { x: -8, y: 6 } },
+      { id: "ycut", kind: "point", appearance: "secondary", at: { x: 0, y: 6 } },
+      { id: "xcut", kind: "point", appearance: "secondary", at: { x: -8, y: 0 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: -4, y: 3 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "far", objectId: "far", at: { x: -8, y: 6 }, placement: "above-left" },
+      { key: "ycut", objectId: "ycut", at: { x: 0, y: 6 }, placement: "right" },
+      { key: "xcut", objectId: "xcut", at: { x: -8, y: 0 }, placement: "below-left" },
+      { key: "foot", objectId: "foot", at: { x: 0, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. **False.** <InlineMath math="r=5" />. The value <InlineMath math="7" /> comes from adding <InlineMath math="4" /> and <InlineMath math="3" /> instead of using Pythagoras.
 2. **False.** Substituting <InlineMath math="x=0" /> gives <InlineMath math="16+(y-3)^2=25" />, so <InlineMath math="y=0" /> or <InlineMath math="y=6" />. The intersection points are <InlineMath math="(0,0)" /> and <InlineMath math="(0,6)" />. The point <InlineMath math="(0,3)" /> is only the projection of the centre onto the <InlineMath math="y" />-axis.
 3. **True.** The midpoint of <InlineMath math="O(0,0)" /> and <InlineMath math="(-8,6)" /> is <InlineMath math="(-4,3)" />, the centre of <InlineMath math="L" />. The point <InlineMath math="(-8,6)" /> also lies on <InlineMath math="L" />, since <InlineMath math="16+9=25" />. So the segment is a diameter.

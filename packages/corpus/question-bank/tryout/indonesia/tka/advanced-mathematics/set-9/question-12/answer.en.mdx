@@ -6,6 +6,40 @@ The projection of <InlineMath math="\vec{a}" /> onto <InlineMath math="\vec{b}" 
 
 <BlockMath math="\operatorname{proj}_{\vec{b}}\vec{a}=\frac{18}{9}(2,-1,2)=(4,-2,4)" />
 
+Draw <InlineMath math="\vec a" /> and <InlineMath math="\vec b" /> in the plane that holds both. **The shadow of <InlineMath math="\vec a" /> on the line of <InlineMath math="\vec b" /> has length <InlineMath math="6" />, twice the length of <InlineMath math="\vec b" />**, so the projection is <InlineMath math="2\vec b" />.
+
+<MathVisual
+  title={<>The projection of <InlineMath math="\vec a" /> onto <InlineMath math="\vec b" /></>}
+  description={<>The vector <InlineMath math="\vec b" /> of length <InlineMath math="3" /> is drawn horizontally, and <InlineMath math="\vec a" /> has length <InlineMath math="\sqrt{41}" />. The projection of <InlineMath math="\vec a" /> onto the line of <InlineMath math="\vec b" /> has length <InlineMath math="6" />, which is <InlineMath math="2\vec b=(4,-2,4)" />. The remainder <InlineMath math="(1,2,0)" />, of length <InlineMath math="\sqrt5" />, is perpendicular to <InlineMath math="\vec b" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    proj: <InlineMath math="2\vec b" />,
+    rest: <InlineMath math="(1,2,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7 },
+      y: { min: -0.8, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "proj", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: Math.sqrt(5) } },
+      { id: "rest", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: Math.sqrt(5) } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: Math.sqrt(5) / 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "proj", objectId: "proj", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "rest", objectId: "rest", at: { x: 6, y: Math.sqrt(5) / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check: the remainder <InlineMath math="\vec{a}-(4,-2,4)=(1,2,0)" /> must be perpendicular to <InlineMath math="\vec{b}" />, and indeed <InlineMath math="2-2+0=0" />.
 
 So the projection is <InlineMath math="(4,-2,4)" />, or <InlineMath math="4\vec{i}-2\vec{j}+4\vec{k}" />.

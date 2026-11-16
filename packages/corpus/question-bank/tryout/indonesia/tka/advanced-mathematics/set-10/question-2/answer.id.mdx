@@ -8,6 +8,17 @@ Kalikan kedua ruas dengan <InlineMath math="(A-2I)^{-1}" /> dari kiri, karena <I
 
 <BlockMath math="X=-(A-2I)^{-1}B=-\begin{pmatrix} -1 & 1 \\ 3 & -2 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}=-\begin{pmatrix} 0 & -1 \\ 1 & 4 \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ -1 & -4 \end{pmatrix}" />
 
+Ikuti urutan langkahnya. **Langkah kedua mengalikan dari kiri**, karena <InlineMath math="X" /> berada di sebelah kanan <InlineMath math="A-2I" />.
+
+<Mermaid
+  title={<>Langkah menyelesaikan <InlineMath math="AX+B=2X" /></>}
+  description={<>Persamaan <InlineMath math="AX+B=2X" /> disusun ulang menjadi <InlineMath math="(A-2I)X=-B" />. Kedua ruas lalu dikalikan dengan <InlineMath math="(A-2I)^{-1}" /> dari kiri, sehingga <InlineMath math="X" /> berbaris <InlineMath math="(0,1)" /> dan <InlineMath math="(-1,-4)" />.</>}
+  chart={`flowchart TD
+  S["AX + B = 2X"] -->|"kumpulkan suku X, tarik X ke kanan"| F["(A − 2I)X = −B"]
+  F -->|"kalikan dengan invers dari kiri"| X["X = −(A − 2I)⁻¹B"]
+  X --> R["X berbaris (0, 1) dan (−1, −4)"]`}
+/>
+
 Pemeriksaan: <InlineMath math="AX=\begin{pmatrix} -1 & 0 \\ -3 & -9 \end{pmatrix}" />, jadi <InlineMath math="AX+B=\begin{pmatrix} 0 & 2 \\ -2 & -8 \end{pmatrix}" />, sama dengan <InlineMath math="2X" />.
 
 Jadi, <InlineMath math="X=\begin{pmatrix} 0 & 1 \\ -1 & -4 \end{pmatrix}" />.

@@ -10,6 +10,43 @@ Der Mittelpunkt ist <InlineMath math="(3,4)" /> und <InlineMath math="r^2=9+16=2
 
 <BlockMath math="(x-3)^2+(y-4)^2=25\ \Leftrightarrow\ x^2+y^2-6x-8y=0" />
 
+Zeichne die drei Pflöcke, die Mittelsenkrechte von <InlineMath math="OP" /> und den Kreis der Laufbahn. **Der Mittelpunkt liegt auf <InlineMath math="x=3" /> in Höhe <InlineMath math="4" />**, also ist er von <InlineMath math="O" />, <InlineMath math="P" /> und <InlineMath math="Q" /> jeweils <InlineMath math="5" /> entfernt.
+
+<MathVisual
+  title={<>Der Kreis der Laufbahn durch drei Pflöcke</>}
+  description={<>Das Dreieck mit den Ecken <InlineMath math="O(0,0)" />, <InlineMath math="P(6,0)" /> und <InlineMath math="Q(3,9)" /> ist mit der Mittelsenkrechten von <InlineMath math="OP" /> gezeichnet, der Geraden <InlineMath math="x=3" />. Der Kreis um <InlineMath math="(3,4)" /> mit Radius <InlineMath math="5" /> geht durch alle drei Ecken.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    centre: <InlineMath math="(3,4)" />,
+    bisector: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 8.5 },
+      y: { min: -1.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "track", kind: "circle", appearance: "answer", center: { x: 3, y: 4 }, radius: 5 },
+      { id: "stakes", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 9 }] },
+      { id: "bisector", kind: "segment", appearance: "construction", from: { x: 3, y: -1.5 }, to: { x: 3, y: 9.5 } },
+      { id: "ro", kind: "segment", appearance: "secondary", from: { x: 3, y: 4 }, to: { x: 0, y: 0 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "o", objectId: "stakes", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "stakes", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "q", objectId: "stakes", at: { x: 3, y: 9 }, placement: "above-right" },
+      { key: "centre", objectId: "centre", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "bisector", objectId: "bisector", at: { x: 3, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="O" /> passt, weil die Konstante null ist, <InlineMath math="P" /> liefert <InlineMath math="36-36=0" />, und <InlineMath math="Q" /> liefert <InlineMath math="9+81-18-72=0" />.
 
 Die Gleichung lautet also <InlineMath math="x^2+y^2-6x-8y=0" />.

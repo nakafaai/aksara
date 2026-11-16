@@ -2,6 +2,45 @@ Die Spalten einer Abbildungsmatrix sind **die Bilder der Einheitsvektoren <Inlin
 
 <BlockMath math="(1,0)\mapsto(-1,0),\qquad (0,1)\mapsto(0,1)\qquad\Rightarrow\qquad \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
 
+Zeichne beide Einheitsvektoren und ihre Bilder bei der Spiegelung an der <InlineMath math="y" />-Achse. **Der Vektor <InlineMath math="(1,0)" /> klappt nach <InlineMath math="(-1,0)" />, während <InlineMath math="(0,1)" /> auf der Spiegelachse liegt und bleibt**, und diese beiden Bilder sind die Spalten der Matrix.
+
+<MathVisual
+  title={<>Spiegelung an der <InlineMath math="y" />-Achse</>}
+  description={<>Die <InlineMath math="y" />-Achse ist die Spiegelachse. Der Vektor <InlineMath math="(1,0)" /> wird auf <InlineMath math="(-1,0)" /> abgebildet, der Vektor <InlineMath math="(0,1)" /> bleibt, wo er ist, und der Punkt <InlineMath math="(3,2)" /> wird auf <InlineMath math="(-3,2)" /> in derselben Höhe abgebildet.</>}
+  labels={{
+    e1: <InlineMath math="(1,0)" />,
+    e1image: <InlineMath math="(-1,0)" />,
+    e2: <InlineMath math="(0,1)" />,
+    p: <InlineMath math="(3,2)" />,
+    pimage: <InlineMath math="(-3,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 4 },
+      y: { min: -1, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "segment", appearance: "reference", from: { x: 0, y: -1 }, to: { x: 0, y: 3 } },
+      { id: "e1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "e1image", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -1, y: 0 } },
+      { id: "e2", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 1 } },
+      { id: "join", kind: "segment", appearance: "construction", from: { x: 3, y: 2 }, to: { x: -3, y: 2 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 3, y: 2 } },
+      { id: "pimage", kind: "point", appearance: "answer", at: { x: -3, y: 2 } },
+    ],
+    labels: [
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "e1image", objectId: "e1image", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "e2", objectId: "e2", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "pimage", objectId: "pimage", at: { x: -3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe: Der Punkt <InlineMath math="(3,2)" /> wird auf <InlineMath math="(-3,2)" /> abgebildet, sein Spiegelbild jenseits der <InlineMath math="y" />-Achse.
 
 Die Matrix ist also <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.

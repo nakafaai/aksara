@@ -6,6 +6,47 @@ The centre <InlineMath math="P" /> satisfies <InlineMath math="A'-P=2(A-P)" />, 
 
 <BlockMath math="P=(2-3,\ 4-4)=(-1,0)" />
 
+Draw both segments and the rays from the centre of dilation. The lines through <InlineMath math="A" /> and <InlineMath math="A'" /> and through <InlineMath math="B" /> and <InlineMath math="B'" />, extended backwards, **meet at the centre**.
+
+<MathVisual
+  title={<>Dilation with centre <InlineMath math="P(-1,0)" /> and factor <InlineMath math="2" /></>}
+  description={<>The segment <InlineMath math="A'B'" /> is parallel to <InlineMath math="AB" /> and twice as long. The line through <InlineMath math="A" /> and <InlineMath math="A'" /> and the line through <InlineMath math="B" /> and <InlineMath math="B'" /> meet at <InlineMath math="P(-1,0)" />, and each image point is twice as far from <InlineMath math="P" /> as its original.</>}
+  labels={{
+    p: <InlineMath math="P(-1,0)" />,
+    a: <InlineMath math="A" />,
+    aimage: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    bimage: <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 7.5 },
+      y: { min: -0.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "raya", kind: "segment", appearance: "construction", from: { x: -1, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "rayb", kind: "segment", appearance: "construction", from: { x: -1, y: 0 }, to: { x: 7, y: 2 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 2 }, to: { x: 3, y: 1 } },
+      { id: "abimage", kind: "segment", appearance: "secondary", from: { x: 3, y: 4 }, to: { x: 7, y: 2 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "aimage", kind: "point", appearance: "secondary", at: { x: 3, y: 4 } },
+      { id: "bimage", kind: "point", appearance: "secondary", at: { x: 7, y: 2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -1, y: 0 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "aimage", objectId: "aimage", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "bimage", objectId: "bimage", at: { x: 7, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check with <InlineMath math="B" />: <InlineMath math="B-P=(4,1)" /> and <InlineMath math="B'-P=(8,2)=2(4,1)" />. The points <InlineMath math="P" />, <InlineMath math="B" /> and <InlineMath math="B'" /> are collinear with distance ratio <InlineMath math="1:2" />.
 
 So <InlineMath math="P(-1,0)" />.

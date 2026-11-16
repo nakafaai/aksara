@@ -1,5 +1,47 @@
 Complete the squares: <InlineMath math="(x-3)^2+(y-1)^2=10" />, so the centre is <InlineMath math="M(3,1)" /> and <InlineMath math="r=\sqrt{10}" />. For a point outside the circle, **the value of the left-hand side at that point equals the square of the tangent length**.
 
+Draw the circle <InlineMath math="L" /> with the point <InlineMath math="P" />, the tangent at the origin, and both points where it meets the <InlineMath math="x" />-axis. Every statement can be checked **straight off this picture**.
+
+<MathVisual
+  title={<>The circle <InlineMath math="(x-3)^2+(y-1)^2=10" /> and the point <InlineMath math="P(8,4)" /></>}
+  description={<>The circle with centre <InlineMath math="M(3,1)" /> and radius <InlineMath math="\sqrt{10}" /> passes through the origin and <InlineMath math="(6,0)" />. The line <InlineMath math="3x+y=0" /> touches the circle at the origin, perpendicular to the radius there. From <InlineMath math="P(8,4)" /> outside the circle, the tangent segment to the point of contact <InlineMath math="T" /> has length <InlineMath math="2\sqrt6" />.</>}
+  labels={{
+    m: <InlineMath math="M(3,1)" />,
+    p: <InlineMath math="P(8,4)" />,
+    t: <InlineMath math="T" />,
+    tangent: <InlineMath math="2\sqrt6" />,
+    line: <InlineMath math="3x+y=0" />,
+    six: <InlineMath math="(6,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 9 },
+      y: { min: -3, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: 1 }, radius: Math.sqrt(10) },
+      { id: "line", kind: "function", appearance: "secondary", formula: "-3*x", domain: { min: -2 / 3, max: 1 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 3, y: 1 }, to: { x: 0, y: 0 } },
+      { id: "mt", kind: "segment", appearance: "construction", from: { x: 3, y: 1 }, to: { x: (76 - 6 * Math.sqrt(15)) / 17, y: (28 - 5 * (76 - 6 * Math.sqrt(15)) / 17) / 3 } },
+      { id: "tangent", kind: "segment", appearance: "answer", from: { x: 8, y: 4 }, to: { x: (76 - 6 * Math.sqrt(15)) / 17, y: (28 - 5 * (76 - 6 * Math.sqrt(15)) / 17) / 3 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 8, y: 4 } },
+      { id: "six", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 8, y: 4 }, placement: "below" },
+      { key: "t", objectId: "tangent", at: { x: (76 - 6 * Math.sqrt(15)) / 17, y: (28 - 5 * (76 - 6 * Math.sqrt(15)) / 17) / 3 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: (212 - 6 * Math.sqrt(15)) / 34, y: (4 + (28 - 5 * (76 - 6 * Math.sqrt(15)) / 17) / 3) / 2 }, placement: "above" },
+      { key: "line", objectId: "line", at: { x: -0.5, y: 1.5 }, placement: "left" },
+      { key: "six", objectId: "six", at: { x: 6, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 1. **True.** <InlineMath math="64+16-48-8=24>0" />, so <InlineMath math="P" /> is outside <InlineMath math="L" />. Alternatively, <InlineMath math="MP^2=25+9=34>10" />.
 2. **False.** The value <InlineMath math="24" /> is the square of the tangent length. The length itself is <InlineMath math="\sqrt{24}=2\sqrt6" />, matching <InlineMath math="\sqrt{MP^2-r^2}=\sqrt{34-10}" />.
 3. **True.** The origin lies on <InlineMath math="L" />, since <InlineMath math="0+0-0-0=0" />. The tangent there is perpendicular to the radius <InlineMath math="\overrightarrow{MO}=(-3,-1)" />, so its equation is <InlineMath math="-3x-y=0" />, that is <InlineMath math="3x+y=0" />.

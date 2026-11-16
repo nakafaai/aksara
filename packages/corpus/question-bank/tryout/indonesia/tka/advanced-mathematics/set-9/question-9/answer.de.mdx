@@ -2,6 +2,37 @@ Fang beim Exponentialteil an. Für jedes reelle <InlineMath math="x" /> ist <Inl
 
 <BlockMath math="2^{x+1}>0\ \Leftrightarrow\ -2^{x+1}<0\ \Leftrightarrow\ 3-2^{x+1}<3" />
 
+Zeichne <InlineMath math="f" /> mit der Geraden <InlineMath math="y=3" />. **Nach links nähert sich die Kurve <InlineMath math="y=3" /> von unten, ohne sie je zu berühren**, und nach rechts fällt sie unbeschränkt.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=3-2^{x+1}" /></>}
+  description={<>Die Kurve geht durch <InlineMath math="(0,\ 1)" />, kommt der Waagerechten <InlineMath math="y=3" /> mit kleiner werdendem <InlineMath math="x" /> immer näher und fällt mit wachsendem <InlineMath math="x" /> immer steiler. Alle Werte von <InlineMath math="f" /> liegen unter der Geraden <InlineMath math="y=3" />.</>}
+  labels={{
+    curve: <InlineMath math="y=3-2^{x+1}" />,
+    ceiling: <InlineMath math="y=3" />,
+    zero: <InlineMath math="(0,\ 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 2.2 },
+      y: { min: -6, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ceiling", kind: "function", appearance: "warning", formula: "3", domain: { min: -7, max: 2.2 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "3 - 2^(x + 1)", domain: { min: -7, max: 2 } },
+      { id: "zero", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1.5, y: 3 - Math.pow(2, 2.5) }, placement: "left" },
+      { key: "ceiling", objectId: "ceiling", at: { x: -6, y: 3 }, placement: "above" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Den Wert <InlineMath math="3" /> erreicht <InlineMath math="f" /> nie, weil <InlineMath math="2^{x+1}" /> nie null ist. Umgekehrt wird jedes <InlineMath math="y<3" /> bei <InlineMath math="x=\log_2(3-y)-1" /> erreicht. Zum Beispiel ist <InlineMath math="f(0)=1" />, <InlineMath math="f(-5)\approx2{,}94" /> und <InlineMath math="f(5)=-61" />.
 
 Die Wertemenge ist also <InlineMath math="\{y\mid y<3,\ y\in\mathbb{R}\}" />.

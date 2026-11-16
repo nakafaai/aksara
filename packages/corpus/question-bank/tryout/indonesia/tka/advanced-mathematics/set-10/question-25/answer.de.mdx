@@ -2,6 +2,45 @@ In der Nähe von <InlineMath math="x=2" /> liefern die beiden Vorschriften **zwe
 
 <BlockMath math="\lim_{x\to2^-}f(x)=2a+1,\qquad \lim_{x\to2^+}f(x)=4-a,\qquad f(2)=4-a" />
 
+Zeichne <InlineMath math="f" /> für <InlineMath math="a=1" /> und für <InlineMath math="a=0" />. **Für <InlineMath math="a=1" /> treffen sich die beiden Teile in <InlineMath math="(2,3)" />**, während der Graph für <InlineMath math="a=0" /> von der Höhe <InlineMath math="1" /> auf <InlineMath math="4" /> springt.
+
+<MathVisual
+  title={<>Die abschnittsweise Funktion für <InlineMath math="a=1" /> und <InlineMath math="a=0" /></>}
+  description={<>Für <InlineMath math="a=1" /> treffen sich die Gerade <InlineMath math="y=x+1" /> links und die Parabel <InlineMath math="y=x^2-1" /> rechts in <InlineMath math="(2,3)" />. Für <InlineMath math="a=0" /> endet die Gerade <InlineMath math="y=1" /> auf Höhe <InlineMath math="1" />, während die Parabel <InlineMath math="y=x^2" /> auf Höhe <InlineMath math="4" /> beginnt.</>}
+  labels={{
+    one: <InlineMath math="a=1" />,
+    zero: <InlineMath math="a=0" />,
+    meet: <InlineMath math="(2,3)" />,
+    low: <InlineMath math="1" />,
+    high: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 3.4 },
+      y: { min: 0, max: 10.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zeroleft", kind: "function", appearance: "reference", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "zero", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 2, max: 3.2 } },
+      { id: "oneleft", kind: "function", appearance: "answer", formula: "x + 1", domain: { min: 0, max: 2 } },
+      { id: "one", kind: "function", appearance: "answer", formula: "x^2 - 1", domain: { min: 2, max: 3.2 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 3.2, y: 3.2 * 3.2 - 1 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "high", objectId: "high", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Der beidseitige Grenzwert existiert genau dann, wenn beide einseitigen gleich sind: <InlineMath math="2a+1=4-a" />, also <InlineMath math="a=1" />.
 
 - **Wahr.** Für <InlineMath math="a=1" /> sind beide einseitigen Grenzwerte <InlineMath math="3" />.

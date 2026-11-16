@@ -2,6 +2,34 @@ Für <InlineMath math="x\to\infty" /> wächst <InlineMath math="2^x" /> über al
 
 <BlockMath math="\lim_{x\to\infty}\frac{3\cdot2^x+5}{2^x-1}=\lim_{x\to\infty}\frac{3+\frac{5}{2^x}}{1-\frac{1}{2^x}}=\frac{3+0}{1-0}=3" />
 
+Zeichne den Graphen der Funktion für wachsendes <InlineMath math="x" />. **Die Kurve fällt und schmiegt sich immer enger an die Gerade <InlineMath math="y=3" />**, weil die Summanden <InlineMath math="5" /> und <InlineMath math="-1" /> neben <InlineMath math="2^x" /> immer weniger ausmachen.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="\tfrac{3\cdot2^x+5}{2^x-1}" /> für großes <InlineMath math="x" /></>}
+  description={<>Die Kurve <InlineMath math="y=\tfrac{3\cdot2^x+5}{2^x-1}" /> ist von <InlineMath math="x=1{,}5" /> bis <InlineMath math="x=10" /> gezeichnet. Sie fällt und nähert sich der waagerechten Geraden <InlineMath math="y=3" /> von oben, ohne sie je zu schneiden.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{3\cdot2^x+5}{2^x-1}" />,
+    level: <InlineMath math="y=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 10 },
+      y: { min: 0, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "answer", formula: "3", domain: { min: 0, max: 10 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(3*2^x + 5) / (2^x - 1)", domain: { min: 1.5, max: 10 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2, y: 17 / 3 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 9, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Die Brüche <InlineMath math="\frac{5}{2^x}" /> und <InlineMath math="\frac{1}{2^x}" /> gehen gegen <InlineMath math="0" />, weil ihr Nenner über alle Grenzen wächst. Bei <InlineMath math="x=10" /> ist der Wert zum Beispiel <InlineMath math="\frac{3077}{1023}\approx3{,}008" />.
 
 Der Grenzwert ist also <InlineMath math="3" />.

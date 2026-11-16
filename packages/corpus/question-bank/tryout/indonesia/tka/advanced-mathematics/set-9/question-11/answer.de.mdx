@@ -6,6 +6,41 @@ Den Flächeninhalt eines Dreiecks bekommst du aus zwei Seitenvektoren mit gemein
 
 <BlockMath math="L=\frac12\sqrt{5\cdot8-2^2}=\frac12\sqrt{36}=3" />
 
+Zeichne das Sonnensegel in seiner Ebene in wahrer Größe. **Die Grundseite <InlineMath math="AB=\sqrt5" /> und die Höhe von <InlineMath math="C" /> auf diese Grundseite ist <InlineMath math="\tfrac{6}{\sqrt5}" />**, also ist der Flächeninhalt <InlineMath math="\tfrac12\cdot\sqrt5\cdot\tfrac{6}{\sqrt5}=3" />.
+
+<MathVisual
+  title={<>Das Sonnensegel <InlineMath math="ABC" /> in seiner Ebene</>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> ist in der Ebene durch seine drei Punkte gezeichnet, mit <InlineMath math="AB=\sqrt5" /> und <InlineMath math="AC=\sqrt8" />. Das Lot von <InlineMath math="C" /> auf die Gerade <InlineMath math="AB" /> hat die Länge <InlineMath math="\tfrac{6}{\sqrt5}" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    base: <InlineMath math="\sqrt5" />,
+    height: <InlineMath math="\tfrac{6}{\sqrt5}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 2.8 },
+      y: { min: -0.5, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sail", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(5), y: 0 }, { x: 2 / Math.sqrt(5), y: 6 / Math.sqrt(5) }] },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(5), y: 0 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 2 / Math.sqrt(5), y: 6 / Math.sqrt(5) }, to: { x: 2 / Math.sqrt(5), y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "sail", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "sail", at: { x: Math.sqrt(5), y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "sail", at: { x: 2 / Math.sqrt(5), y: 6 / Math.sqrt(5) }, placement: "above" },
+      { key: "base", objectId: "base", at: { x: Math.sqrt(5) / 2, y: 0 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 2 / Math.sqrt(5), y: 3 / Math.sqrt(5) }, placement: "right" },
+    ],
+  }}
+/>
+
 Probe mit dem Kreuzprodukt: <InlineMath math="\vec{u}\times\vec{v}=(2,-4,4)" /> hat die Länge <InlineMath math="\sqrt{4+16+16}=6" />, die Hälfte davon ist <InlineMath math="3" />.
 
 Das Sonnensegel ist also <InlineMath math="3" /> Quadratmeter groß.

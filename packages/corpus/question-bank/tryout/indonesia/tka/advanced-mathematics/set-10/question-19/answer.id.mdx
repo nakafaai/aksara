@@ -4,6 +4,43 @@ Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam memetakan <Inlin
 
 <BlockMath math="-x'=(y')^2-2y'\ \Leftrightarrow\ x'=-(y')^2+2y'" />
 
+Gambar parabola semula dan bayangannya. **Parabola yang terbuka ke atas berputar seperempat putaran menjadi parabola yang terbuka ke kiri**, dan setiap titik berputar <InlineMath math="90^\circ" /> mengelilingi <InlineMath math="O" />.
+
+<MathVisual
+  title={<>Rotasi parabola <InlineMath math="y=x^2-2x" /> sejauh <InlineMath math="90^\circ" /></>}
+  description={<>Parabola <InlineMath math="y=x^2-2x" /> terbuka ke atas dengan puncak <InlineMath math="(1,-1)" />. Bayangannya <InlineMath math="x=-y^2+2y" /> terbuka ke kiri dengan puncak <InlineMath math="(1,1)" />. Ruas dari <InlineMath math="O" /> ke <InlineMath math="(3,3)" /> dan ruas dari <InlineMath math="O" /> ke bayangannya <InlineMath math="(-3,3)" /> membentuk sudut siku-siku.</>}
+  labels={{
+    old: <InlineMath math="y=x^2-2x" />,
+    new: <InlineMath math="x=-y^2+2y" />,
+    p: <InlineMath math="(3,3)" />,
+    pimage: <InlineMath math="(-3,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 3.5 },
+      y: { min: -1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "old", kind: "function", appearance: "reference", formula: "x^2 - 2x", domain: { min: -1, max: 3 } },
+      { id: "upper", kind: "function", appearance: "answer", formula: "1 + sqrt(1 - x)", domain: { min: -3, max: 1 } },
+      { id: "lower", kind: "function", appearance: "answer", formula: "1 - sqrt(1 - x)", domain: { min: -3, max: 1 } },
+      { id: "op", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "opimage", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3, y: 3 } },
+      { id: "p", kind: "point", appearance: "reference", at: { x: 3, y: 3 } },
+      { id: "pimage", kind: "point", appearance: "answer", at: { x: -3, y: 3 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 2.5, y: 1.25 }, placement: "right" },
+      { key: "new", objectId: "lower", at: { x: -3, y: -1 }, placement: "above-right" },
+      { key: "p", objectId: "p", at: { x: 3, y: 3 }, placement: "left" },
+      { key: "pimage", objectId: "pimage", at: { x: -3, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan dua titik pada parabola: <InlineMath math="(2,0)" /> dipetakan ke <InlineMath math="(0,2)" />, dan <InlineMath math="-4+4=0" />. Titik <InlineMath math="(3,3)" /> dipetakan ke <InlineMath math="(-3,3)" />, dan <InlineMath math="-9+6=-3" />.
 
 Jadi, bayangannya <InlineMath math="x=-y^2+2y" />, parabola yang terbuka ke kiri.

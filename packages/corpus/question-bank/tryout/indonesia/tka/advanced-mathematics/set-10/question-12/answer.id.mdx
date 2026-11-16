@@ -7,6 +7,45 @@ Sudut <InlineMath math="ACB" /> siku-siku berarti **vektor <InlineMath math="\ov
 (1-t)(5-t)&=0
 \end{aligned}" />
 
+Sudut <InlineMath math="ACB" /> siku-siku tepat ketika <InlineMath math="C" /> terletak pada bola berdiameter <InlineMath math="AB" />. Gambar irisan bola itu dengan bidang <InlineMath math="z=0" />, yang memuat sumbu <InlineMath math="X" />. **Lingkaran irisannya memotong sumbu <InlineMath math="X" /> di dua titik**, jadi ada dua nilai <InlineMath math="t" />.
+
+<MathVisual
+  title={<>Bola berdiameter <InlineMath math="AB" /> dan sumbu <InlineMath math="X" /></>}
+  description={<>Pusat bola adalah titik tengah <InlineMath math="AB" />, yaitu <InlineMath math="M(3,2,0)" />, dan jari-jarinya <InlineMath math="2\sqrt2" />. Pada bidang <InlineMath math="z=0" />, irisannya lingkaran berpusat <InlineMath math="M" /> yang berjarak <InlineMath math="2" /> dari sumbu <InlineMath math="X" />, sehingga memotong sumbu itu di <InlineMath math="t=1" /> dan <InlineMath math="t=5" />.</>}
+  labels={{
+    m: <InlineMath math="M(3,2,0)" />,
+    c1: <InlineMath math="t=1" />,
+    c2: <InlineMath math="t=5" />,
+    r: <InlineMath math="2\sqrt2" />,
+    axis: <InlineMath math="\text{sumbu } X" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7 },
+      y: { min: -1.5, max: 5.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -0.5, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "sphere", kind: "circle", appearance: "primary", center: { x: 3, y: 2 }, radius: 2 * Math.sqrt(2) },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 3, y: 2 }, to: { x: 5, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 3, y: 2 }, to: { x: 3, y: 0 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "c1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "c2", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "c1", objectId: "c1", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "c2", objectId: "c2", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "r", objectId: "r", at: { x: 4, y: 1 }, placement: "above-right" },
+      { key: "axis", objectId: "axis", at: { x: 6.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jadi <InlineMath math="t=1" /> atau <InlineMath math="t=5" />, dan jumlahnya <InlineMath math="6" />.
 
 Pemeriksaan: untuk <InlineMath math="t=1" />, <InlineMath math="\overrightarrow{CA}=(0,2,2)" /> dan <InlineMath math="\overrightarrow{CB}=(4,2,-2)" />, dengan hasil kali skalar <InlineMath math="0+4-4=0" />. Untuk <InlineMath math="t=5" />, <InlineMath math="\overrightarrow{CA}=(-4,2,2)" /> dan <InlineMath math="\overrightarrow{CB}=(0,2,-2)" />, juga <InlineMath math="0+4-4=0" />.

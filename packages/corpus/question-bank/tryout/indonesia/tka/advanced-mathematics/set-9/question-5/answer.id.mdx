@@ -5,6 +5,39 @@ K(0,26)\ge K(14,12)&\ \Leftrightarrow\ 26p\ge1{.}400+12p\ \Leftrightarrow\ p\ge1
 K(0,26)\ge K(20,0)&\ \Leftrightarrow\ 26p\ge2{.}000\ \Leftrightarrow\ p\ge76{,}9\ldots
 \end{aligned}" />
 
+Gambar garis keuntungan untuk <InlineMath math="p=100" />. **Garis itu berimpit dengan sisi kain dari <InlineMath math="(0,\ 26)" /> sampai <InlineMath math="(14,\ 12)" />**, jadi <InlineMath math="(0,\ 26)" /> baru ikut menjadi titik terbaik saat <InlineMath math="p" /> mencapai <InlineMath math="100" />.
+
+<MathVisual
+  title={<>Garis keuntungan saat batik cap untung <InlineMath math="\text{Rp}100{.}000" /></>}
+  description={<>Daerah penyelesaiannya sama seperti sebelumnya. Garis keuntungan <InlineMath math="100x+100y=2{.}600" /> berimpit dengan garis kain <InlineMath math="x+y=26" />, dan menyentuh daerah sepanjang sisi dari <InlineMath math="(0,\ 26)" /> ke <InlineMath math="(14,\ 12)" />. Untuk <InlineMath math="p" /> yang lebih kecil, garis keuntungan lebih curam dan hanya menyentuh <InlineMath math="(14,\ 12)" /> atau <InlineMath math="(20,\ 0)" />.</>}
+  labels={{
+    edge: <InlineMath math="100x+100y=2{.}600" />,
+    top: <InlineMath math="(0,\ 26)" />,
+    corner: <InlineMath math="(14,\ 12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 28 },
+      y: { min: 0, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 14, y: 12 }, { x: 0, y: 26 }] },
+      { id: "level", kind: "function", appearance: "construction", formula: "26 - x", domain: { min: 0, max: 26 } },
+      { id: "edge", kind: "segment", appearance: "answer", from: { x: 0, y: 26 }, to: { x: 14, y: 12 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 0, y: 26 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 14, y: 12 } },
+    ],
+    labels: [
+      { key: "edge", objectId: "edge", at: { x: 7, y: 19 }, placement: "above-right" },
+      { key: "top", objectId: "top", at: { x: 0, y: 26 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 14, y: 12 }, placement: "right" },
+    ],
+  }}
+/>
+
 Kedua syarat harus dipenuhi, jadi <InlineMath math="p\ge100" />. Pada <InlineMath math="p=100" />, rencana <InlineMath math="(0,26)" /> dan <InlineMath math="(14,12)" /> sama-sama memberi <InlineMath math="2{.}600" /> ribu rupiah. Garis keuntungan <InlineMath math="100x+100y" /> sejajar dengan garis kain <InlineMath math="x+y=26" />, sehingga setiap rencana pada ruas itu sama baiknya, dan tidak ada rencana lain yang lebih baik.
 
 Jadi, keuntungan selembar batik cap paling sedikit <InlineMath math="\text{Rp}100{.}000{,}00" />.

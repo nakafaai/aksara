@@ -1,5 +1,39 @@
 Write the three vectors in components: <InlineMath math="\vec{a}=(1,-1,2)" />, <InlineMath math="\vec{b}=(3,1,0)" /> and <InlineMath math="\vec{c}=(1,3,-4)" />. Each statement is **checked directly from the components**.
 
+Draw <InlineMath math="\vec a" /> and <InlineMath math="\vec b" /> in the plane that holds both, then place <InlineMath math="\vec b" /> and <InlineMath math="-2\vec a" /> tip to tail. **The three arrows form a triangle**, so the length of <InlineMath math="\vec c" /> must be less than the sum of the other two sides.
+
+<MathVisual
+  title={<>The vector <InlineMath math="\vec c=\vec b-2\vec a" /> as a side of a triangle</>}
+  description={<>The arrow <InlineMath math="\vec b" /> of length <InlineMath math="\sqrt{10}" /> is followed by the arrow <InlineMath math="-2\vec a" /> of length <InlineMath math="2\sqrt6" />. The arrow from the tail of <InlineMath math="\vec b" /> to the tip of <InlineMath math="-2\vec a" /> is <InlineMath math="\vec c" />, of length <InlineMath math="\sqrt{26}\approx5.10" />, shorter than <InlineMath math="\sqrt{10}+2\sqrt6\approx8.06" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    minus: <InlineMath math="-2\vec a" />,
+    c: <InlineMath math="\vec c=\vec b-2\vec a" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 4 },
+      y: { min: -5.3, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "vector", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2 / Math.sqrt(10), y: Math.sqrt(28 / 5) } },
+      { id: "b", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(10), y: 0 } },
+      { id: "minus", kind: "vector", appearance: "secondary", from: { x: Math.sqrt(10), y: 0 }, to: { x: 6 / Math.sqrt(10), y: -2 * Math.sqrt(28 / 5) } },
+      { id: "c", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 6 / Math.sqrt(10), y: -2 * Math.sqrt(28 / 5) } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1 / Math.sqrt(10), y: Math.sqrt(28 / 5) / 2 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: Math.sqrt(10) / 2, y: 0 }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: 8 / Math.sqrt(10), y: -Math.sqrt(28 / 5) }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 3 / Math.sqrt(10), y: -Math.sqrt(28 / 5) }, placement: "left" },
+    ],
+  }}
+/>
+
 - **False.** <InlineMath math="\vec{a}\cdot\vec{b}=3-1+0=2\neq0" />, so they are not perpendicular.
 - **True.** <InlineMath math="\vec{b}-2\vec{a}=(3-2,\ 1+2,\ 0-4)=(1,3,-4)=\vec{c}" />.
 - **False.** <InlineMath math="\left|\vec{c}\right|=\sqrt{1+9+16}=\sqrt{26}\approx5.10" />, while <InlineMath math="\left|\vec{b}\right|+2\left|\vec{a}\right|=\sqrt{10}+2\sqrt6\approx8.06" />. The length of a difference equals the sum of the lengths only when the two vectors point in opposite directions.

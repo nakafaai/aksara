@@ -2,6 +2,41 @@ Rumus <InlineMath math="(x,y)\mapsto(y,x)" /> hanya berlaku untuk cermin <Inline
 
 <BlockMath math="A(4,1)\ \xrightarrow{\ \text{geser }(0,-1)\ }\ (4,0)\ \xrightarrow{\ y=x\ }\ (0,4)\ \xrightarrow{\ \text{geser }(0,1)\ }\ (0,5)" />
 
+Gambar cermin, titik <InlineMath math="A" />, dan bayangannya. **Ruas dari <InlineMath math="A" /> ke bayangannya tegak lurus cermin dan dibelah dua oleh cermin itu**, jadi kedua titik berjarak sama dari cermin.
+
+<MathVisual
+  title={<>Pencerminan <InlineMath math="A(4,1)" /> terhadap <InlineMath math="y=x+1" /></>}
+  description={<>Ruas dari <InlineMath math="A(4,1)" /> ke <InlineMath math="A'(0,5)" /> memotong garis <InlineMath math="y=x+1" /> tegak lurus di <InlineMath math="(2,3)" />, tepat di tengah ruas itu.</>}
+  labels={{
+    mirror: <InlineMath math="y=x+1" />,
+    a: <InlineMath math="A(4,1)" />,
+    image: <InlineMath math="A'(0,5)" />,
+    mid: <InlineMath math="(2,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5.5 },
+      y: { min: 0, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "secondary", formula: "x+1", domain: { min: -1, max: 5 } },
+      { id: "join", kind: "segment", appearance: "construction", from: { x: 4, y: 1 }, to: { x: 0, y: 5 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 5.5 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "mid", objectId: "mid", at: { x: 2, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
 Pemeriksaan: titik tengah <InlineMath math="A(4,1)" /> dan <InlineMath math="A'(0,5)" /> adalah <InlineMath math="(2,3)" />, yang terletak pada <InlineMath math="y=x+1" />. Vektor <InlineMath math="\overrightarrow{AA'}=(-4,4)" /> tegak lurus arah cermin <InlineMath math="(1,1)" />, karena <InlineMath math="-4+4=0" />.
 
 Jadi, bayangannya <InlineMath math="(0,5)" />.

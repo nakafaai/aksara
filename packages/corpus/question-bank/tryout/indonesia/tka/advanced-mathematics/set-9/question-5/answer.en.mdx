@@ -5,6 +5,39 @@ P(0,26)\ge P(14,12)&\ \Leftrightarrow\ 26p\ge1{,}400+12p\ \Leftrightarrow\ p\ge1
 P(0,26)\ge P(20,0)&\ \Leftrightarrow\ 26p\ge2{,}000\ \Leftrightarrow\ p\ge76.9\ldots
 \end{aligned}" />
 
+Draw the profit line for <InlineMath math="p=100" />. **That line lies along the fabric edge from <InlineMath math="(0,\ 26)" /> to <InlineMath math="(14,\ 12)" />**, so <InlineMath math="(0,\ 26)" /> only joins the best points once <InlineMath math="p" /> reaches <InlineMath math="100" />.
+
+<MathVisual
+  title={<>The profit line when a stamped batik earns <InlineMath math="\text{Rp}100{,}000" /></>}
+  description={<>The feasible region is the same as before. The profit line <InlineMath math="100x+100y=2{,}600" /> lies on the fabric line <InlineMath math="x+y=26" /> and touches the region along the edge from <InlineMath math="(0,\ 26)" /> to <InlineMath math="(14,\ 12)" />. For smaller <InlineMath math="p" />, the profit line is steeper and only touches <InlineMath math="(14,\ 12)" /> or <InlineMath math="(20,\ 0)" />.</>}
+  labels={{
+    edge: <InlineMath math="100x+100y=2{,}600" />,
+    top: <InlineMath math="(0,\ 26)" />,
+    corner: <InlineMath math="(14,\ 12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 28 },
+      y: { min: 0, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 14, y: 12 }, { x: 0, y: 26 }] },
+      { id: "level", kind: "function", appearance: "construction", formula: "26 - x", domain: { min: 0, max: 26 } },
+      { id: "edge", kind: "segment", appearance: "answer", from: { x: 0, y: 26 }, to: { x: 14, y: 12 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 0, y: 26 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 14, y: 12 } },
+    ],
+    labels: [
+      { key: "edge", objectId: "edge", at: { x: 7, y: 19 }, placement: "above-right" },
+      { key: "top", objectId: "top", at: { x: 0, y: 26 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 14, y: 12 }, placement: "right" },
+    ],
+  }}
+/>
+
 Both conditions must hold, so <InlineMath math="p\ge100" />. At <InlineMath math="p=100" />, the plans <InlineMath math="(0,26)" /> and <InlineMath math="(14,12)" /> both give <InlineMath math="2{,}600" /> thousand rupiah. The profit line <InlineMath math="100x+100y" /> is parallel to the fabric line <InlineMath math="x+y=26" />, so every plan on that edge is equally good, and no other plan is better.
 
 So the smallest profit per stamped piece is <InlineMath math="\text{Rp}100{,}000.00" />.

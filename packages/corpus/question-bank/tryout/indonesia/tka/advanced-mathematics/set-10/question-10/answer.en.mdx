@@ -2,6 +2,40 @@ First build **the profit function as the difference of two functions**.
 
 <BlockMath math="P(x)=R(x)-C(x)=90{,}000x-50{,}000x-2{,}000{,}000=40{,}000x-2{,}000{,}000" />
 
+Draw the revenue line and the cost line, with the vertical axis in thousands of rupiah. **Profit is the vertical gap from the cost line up to the revenue line**, and the two lines cross at the break-even point.
+
+<MathVisual
+  title={<>Revenue and cost of the crochet bag business</>}
+  description={<>The cost line <InlineMath math="C(x)" /> starts at <InlineMath math="2" /> million rupiah and rises less steeply than the revenue line <InlineMath math="R(x)" />, which starts at zero. The two lines cross at <InlineMath math="x=50" />. At <InlineMath math="100" /> bags, revenue is <InlineMath math="9" /> million rupiah and cost is <InlineMath math="7" /> million rupiah, so the vertical gap is <InlineMath math="2" /> million rupiah.</>}
+  labels={{
+    r: <InlineMath math="R(x)" />,
+    c: <InlineMath math="C(x)" />,
+    even: <InlineMath math="x=50" />,
+    gap: <InlineMath math="P(100)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 120 },
+      y: { min: 0, max: 11000 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c", kind: "function", appearance: "secondary", formula: "50x + 2000", domain: { min: 0, max: 120 } },
+      { id: "r", kind: "function", appearance: "primary", formula: "90x", domain: { min: 0, max: 120 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 100, y: 7000 }, to: { x: 100, y: 9000 } },
+      { id: "even", kind: "point", appearance: "answer", at: { x: 50, y: 4500 } },
+    ],
+    labels: [
+      { key: "r", objectId: "r", at: { x: 115, y: 10350 }, placement: "left" },
+      { key: "c", objectId: "c", at: { x: 115, y: 7750 }, placement: "below" },
+      { key: "even", objectId: "even", at: { x: 50, y: 4500 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 100, y: 8000 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. **True.** <InlineMath math="P(100)=4{,}000{,}000-2{,}000{,}000=2{,}000{,}000" />.
 2. **True.** Breaking even means <InlineMath math="P(x)=0" />, that is <InlineMath math="40{,}000x=2{,}000{,}000" />, so <InlineMath math="x=50" />.
 3. **False.** <InlineMath math="140{,}000x-2{,}000{,}000" /> adds revenue and variable cost, but the cost must be subtracted.

@@ -6,6 +6,49 @@ Jika <InlineMath math="y=x+1" /> dengan <InlineMath math="x" /> akar persamaan s
 &=y^3-7y^2+12y
 \end{aligned}" />
 
+Gambar kedua kurva. **Kurva baru adalah kurva semula yang digeser <InlineMath math="1" /> satuan ke kanan**, jadi setiap akar ikut bertambah <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Menggeser akar-akar ke kanan sejauh <InlineMath math="1" /></>}
+  description={<>Kurva <InlineMath math="y=x^3-4x^2+x+6" /> memotong sumbu mendatar di <InlineMath math="-1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. Kurva <InlineMath math="y=x^3-7x^2+12x" /> berbentuk sama tetapi bergeser <InlineMath math="1" /> satuan ke kanan, sehingga memotong sumbu di <InlineMath math="0" />, <InlineMath math="3" />, dan <InlineMath math="4" />.</>}
+  labels={{
+    old: <InlineMath math="y=x^3-4x^2+x+6" />,
+    new: <InlineMath math="y=x^3-7x^2+12x" />,
+    a: <InlineMath math="-1" />,
+    b: <InlineMath math="2" />,
+    c: <InlineMath math="3" />,
+    d: <InlineMath math="0" />,
+    e: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 5.5 },
+      y: { min: -7, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "old", kind: "function", appearance: "reference", formula: "x^3 - 4x^2 + x + 6", domain: { min: -1.4, max: 3.8 } },
+      { id: "new", kind: "function", appearance: "answer", formula: "x^3 - 7x^2 + 12x", domain: { min: -0.4, max: 4.8 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: -1, y: 0 } },
+      { id: "b", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "d", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "e", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: -1.2, y: 6 }, placement: "right" },
+      { key: "new", objectId: "new", at: { x: 4.5, y: -4 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "c", at: { x: 3, y: 0 }, placement: "above-left" },
+      { key: "d", objectId: "d", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "e", objectId: "e", at: { x: 4, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan akar-akarnya: <InlineMath math="x^3-4x^2+x+6=(x+1)(x-2)(x-3)" />, jadi akar-akarnya <InlineMath math="-1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. Ditambah <InlineMath math="1" />, menjadi <InlineMath math="0" />, <InlineMath math="3" />, dan <InlineMath math="4" />, dan <InlineMath math="y(y-3)(y-4)=y^3-7y^2+12y" />.
 
 Jadi, persamaannya <InlineMath math="x^3-7x^2+12x=0" />.

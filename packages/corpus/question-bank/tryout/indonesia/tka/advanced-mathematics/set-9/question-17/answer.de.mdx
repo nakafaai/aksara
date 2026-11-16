@@ -1,5 +1,47 @@
 Quadratische Ergänzung liefert <InlineMath math="(x-3)^2+(y-1)^2=10" />, also Mittelpunkt <InlineMath math="M(3,1)" /> und <InlineMath math="r=\sqrt{10}" />. Für einen Punkt außerhalb gilt: **Der Wert der linken Seite in diesem Punkt ist das Quadrat der Tangentenlänge**.
 
+Zeichne den Kreis <InlineMath math="L" /> mit dem Punkt <InlineMath math="P" />, der Tangente im Ursprung und beiden Schnittpunkten mit der <InlineMath math="x" />-Achse. Jede Aussage lässt sich **direkt an diesem Bild** prüfen.
+
+<MathVisual
+  title={<>Der Kreis <InlineMath math="(x-3)^2+(y-1)^2=10" /> und der Punkt <InlineMath math="P(8,4)" /></>}
+  description={<>Der Kreis mit Mittelpunkt <InlineMath math="M(3,1)" /> und Radius <InlineMath math="\sqrt{10}" /> geht durch den Ursprung und durch <InlineMath math="(6,0)" />. Die Gerade <InlineMath math="3x+y=0" /> berührt den Kreis im Ursprung, senkrecht zum Radius dorthin. Von <InlineMath math="P(8,4)" /> außerhalb des Kreises ist die Tangentenstrecke zum Berührpunkt <InlineMath math="T" /> genau <InlineMath math="2\sqrt6" /> lang.</>}
+  labels={{
+    m: <InlineMath math="M(3,1)" />,
+    p: <InlineMath math="P(8,4)" />,
+    t: <InlineMath math="T" />,
+    tangent: <InlineMath math="2\sqrt6" />,
+    line: <InlineMath math="3x+y=0" />,
+    six: <InlineMath math="(6,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 9 },
+      y: { min: -3, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: 1 }, radius: Math.sqrt(10) },
+      { id: "line", kind: "function", appearance: "secondary", formula: "-3*x", domain: { min: -2 / 3, max: 1 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 3, y: 1 }, to: { x: 0, y: 0 } },
+      { id: "mt", kind: "segment", appearance: "construction", from: { x: 3, y: 1 }, to: { x: (76 - 6 * Math.sqrt(15)) / 17, y: (28 - 5 * (76 - 6 * Math.sqrt(15)) / 17) / 3 } },
+      { id: "tangent", kind: "segment", appearance: "answer", from: { x: 8, y: 4 }, to: { x: (76 - 6 * Math.sqrt(15)) / 17, y: (28 - 5 * (76 - 6 * Math.sqrt(15)) / 17) / 3 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 8, y: 4 } },
+      { id: "six", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 8, y: 4 }, placement: "below" },
+      { key: "t", objectId: "tangent", at: { x: (76 - 6 * Math.sqrt(15)) / 17, y: (28 - 5 * (76 - 6 * Math.sqrt(15)) / 17) / 3 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: (212 - 6 * Math.sqrt(15)) / 34, y: (4 + (28 - 5 * (76 - 6 * Math.sqrt(15)) / 17) / 3) / 2 }, placement: "above" },
+      { key: "line", objectId: "line", at: { x: -0.5, y: 1.5 }, placement: "left" },
+      { key: "six", objectId: "six", at: { x: 6, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 1. **Wahr.** <InlineMath math="64+16-48-8=24>0" />, also liegt <InlineMath math="P" /> außerhalb von <InlineMath math="L" />. Anders gerechnet: <InlineMath math="MP^2=25+9=34>10" />.
 2. **Falsch.** Der Wert <InlineMath math="24" /> ist das Quadrat der Tangentenlänge. Die Länge selbst ist <InlineMath math="\sqrt{24}=2\sqrt6" />, passend zu <InlineMath math="\sqrt{MP^2-r^2}=\sqrt{34-10}" />.
 3. **Wahr.** Der Ursprung liegt auf <InlineMath math="L" />, denn <InlineMath math="0+0-0-0=0" />. Die Tangente dort steht senkrecht auf dem Radius <InlineMath math="\overrightarrow{MO}=(-3,-1)" />, ihre Gleichung ist also <InlineMath math="-3x-y=0" />, das heißt <InlineMath math="3x+y=0" />.

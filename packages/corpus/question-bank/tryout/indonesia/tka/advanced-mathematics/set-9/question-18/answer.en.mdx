@@ -4,6 +4,43 @@ A <InlineMath math="90^\circ" /> clockwise rotation is a rotation by <InlineMath
 
 <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} 3 \\ -4 \end{pmatrix}=\begin{pmatrix} -4 \\ -3 \end{pmatrix}" />
 
+Draw <InlineMath math="P" /> and its image on the coordinate plane. **The point turns along the circle of radius <InlineMath math="5" />**, from quadrant IV to quadrant III, and its segment to the origin turns <InlineMath math="90^\circ" /> with it.
+
+<MathVisual
+  title={<>Rotating <InlineMath math="P(3,-4)" /> by <InlineMath math="90^\circ" /> clockwise</>}
+  description={<>The point <InlineMath math="P(3,-4)" /> moves clockwise along an arc of the circle with centre <InlineMath math="O" /> and radius <InlineMath math="5" />, ending at <InlineMath math="P'(-4,-3)" />. The segments <InlineMath math="OP" /> and <InlineMath math="OP'" /> form a right angle.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P(3,-4)" />,
+    image: <InlineMath math="P'(-4,-3)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 5 },
+      y: { min: -6, max: 2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "path", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 5, startDegrees: 180 + Math.atan(3 / 4) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "turn", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 1.2, startDegrees: 180 + Math.atan(3 / 4) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "op", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: -4 } },
+      { id: "oimage", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -4, y: -3 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 3, y: -4 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: -4, y: -3 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -4, y: -3 }, placement: "left" },
+      { key: "turn", objectId: "turn", at: { x: 0, y: -1.2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="P" /> is in quadrant IV. Turning it <InlineMath math="90^\circ" /> clockwise brings it to quadrant III, where both coordinates are negative. Its distance from <InlineMath math="O" /> stays <InlineMath math="5" />.
 
 So the image is <InlineMath math="(-4,-3)" />.

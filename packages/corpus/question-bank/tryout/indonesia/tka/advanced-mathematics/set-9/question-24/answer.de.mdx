@@ -10,6 +10,35 @@ Probe der Faktorisierung: <InlineMath math="(x-2)(ax+3)=ax^2+3x-2ax-6" />, passt
 
 <BlockMath math="\lim_{x\to2}(ax+3)=2a+3=7\ \Rightarrow\ a=2,\quad b=3-4=-1" />
 
+Zeichne <InlineMath math="y=\tfrac{2x^2-x-6}{x-2}" />. **Der Graph ist die Gerade <InlineMath math="y=2x+3" /> mit einem Loch bei <InlineMath math="x=2" />**, und beide Seiten der Geraden streben dort gegen die Höhe <InlineMath math="7" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="\tfrac{2x^2-x-6}{x-2}" /> nahe <InlineMath math="x=2" /></>}
+  description={<>Der Graph ist die Gerade <InlineMath math="y=2x+3" />, bei <InlineMath math="x=2" /> nicht definiert. Von links und von rechts nähern sich die Funktionswerte dem Punkt <InlineMath math="(2,7)" />, also ist der Grenzwert <InlineMath math="7" />.</>}
+  labels={{
+    curve: <InlineMath math="y=2x+3,\ x\neq2" />,
+    hole: <InlineMath math="(2,7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4 },
+      y: { min: 0, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*x + 3", domain: { min: -1, max: 4 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 2, y: 7 } },
+      { id: "hole", kind: "point", appearance: "answer", at: { x: 2, y: 7 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 7 }, placement: "left" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="\frac{2x^2-x-6}{x-2}=\frac{(x-2)(2x+3)}{x-2}=2x+3" />, das bei <InlineMath math="x=2" /> gegen <InlineMath math="7" /> geht.
 
 Also ist <InlineMath math="a+b=2+(-1)=1" />.

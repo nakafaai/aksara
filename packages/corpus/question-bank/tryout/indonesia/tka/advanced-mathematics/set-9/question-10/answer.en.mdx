@@ -1,5 +1,42 @@
 The function has two rules: **a flat fee for the first two hours**, then an extra <InlineMath math="\text{Rp}6{,}000.00" /> per hour after that. Pick the rule that matches the value of <InlineMath math="t" />.
 
+Draw the rental cost against the rental time. **The graph is flat for the first two hours, then rises in a straight line**, so one cost can come from many rental times, and the line at <InlineMath math="45" /> hits the graph at <InlineMath math="t=7" />.
+
+<MathVisual
+  title={<>Bike rental cost by rental time</>}
+  description={<>The horizontal axis is the rental time <InlineMath math="t" /> in hours, and the vertical axis is the cost in thousands of rupiah. For <InlineMath math="0<t\le2" />, the cost stays at <InlineMath math="15" />. After that it rises by <InlineMath math="6" /> per hour, passing <InlineMath math="(5,\ 33)" /> and reaching the horizontal line at <InlineMath math="45" /> at <InlineMath math="(7,\ 45)" />.</>}
+  labels={{
+    flat: <InlineMath math="15" />,
+    rise: <InlineMath math="15+6(t-2)" />,
+    budget: <InlineMath math="45" />,
+    seven: <InlineMath math="(7,\ 45)" />,
+    five: <InlineMath math="(5,\ 33)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 8.5 },
+      y: { min: 0, max: 55 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "flat", kind: "segment", appearance: "primary", from: { x: 0, y: 15 }, to: { x: 2, y: 15 } },
+      { id: "rise", kind: "function", appearance: "primary", formula: "15 + 6*(x - 2)", domain: { min: 2, max: 8 } },
+      { id: "budget", kind: "function", appearance: "construction", formula: "45", domain: { min: 0, max: 8.5 } },
+      { id: "seven", kind: "point", appearance: "answer", at: { x: 7, y: 45 } },
+      { id: "five", kind: "point", appearance: "warning", at: { x: 5, y: 33 } },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 1, y: 15 }, placement: "above" },
+      { key: "rise", objectId: "rise", at: { x: 4, y: 27 }, placement: "above-left" },
+      { key: "budget", objectId: "budget", at: { x: 0.5, y: 45 }, placement: "above" },
+      { key: "seven", objectId: "seven", at: { x: 7, y: 45 }, placement: "above-left" },
+      { key: "five", objectId: "five", at: { x: 5, y: 33 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 1. **False.** <InlineMath math="t=5>2" />, so <InlineMath math="B(5)=15{,}000+6{,}000\cdot3=33{,}000" />, not <InlineMath math="30{,}000" />.
 2. **True.** Both <InlineMath math="1" /> and <InlineMath math="2" /> lie in <InlineMath math="0<t\le2" />, so <InlineMath math="B(1)=B(2)=15{,}000" />.
 3. **True.** For <InlineMath math="t>2" />, the condition is <InlineMath math="15{,}000+6{,}000(t-2)\le45{,}000" />, that is <InlineMath math="t-2\le5" />, so <InlineMath math="t\le7" />. Exactly <InlineMath math="7" /> hours costs <InlineMath math="B(7)=45{,}000" />.

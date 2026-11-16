@@ -6,6 +6,49 @@ Ist <InlineMath math="y=x+1" /> und <InlineMath math="x" /> eine Lösung der urs
 &=y^3-7y^2+12y
 \end{aligned}" />
 
+Zeichne beide Kurven. **Die neue Kurve ist die alte, um <InlineMath math="1" /> nach rechts verschoben**, also wächst jede Nullstelle um <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Die Nullstellen um <InlineMath math="1" /> nach rechts verschieben</>}
+  description={<>Die Kurve <InlineMath math="y=x^3-4x^2+x+6" /> schneidet die waagerechte Achse bei <InlineMath math="-1" />, <InlineMath math="2" /> und <InlineMath math="3" />. Die Kurve <InlineMath math="y=x^3-7x^2+12x" /> hat dieselbe Form, um <InlineMath math="1" /> nach rechts verschoben, und schneidet die Achse daher bei <InlineMath math="0" />, <InlineMath math="3" /> und <InlineMath math="4" />.</>}
+  labels={{
+    old: <InlineMath math="y=x^3-4x^2+x+6" />,
+    new: <InlineMath math="y=x^3-7x^2+12x" />,
+    a: <InlineMath math="-1" />,
+    b: <InlineMath math="2" />,
+    c: <InlineMath math="3" />,
+    d: <InlineMath math="0" />,
+    e: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 5.5 },
+      y: { min: -7, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "old", kind: "function", appearance: "reference", formula: "x^3 - 4x^2 + x + 6", domain: { min: -1.4, max: 3.8 } },
+      { id: "new", kind: "function", appearance: "answer", formula: "x^3 - 7x^2 + 12x", domain: { min: -0.4, max: 4.8 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: -1, y: 0 } },
+      { id: "b", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "d", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "e", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: -1.2, y: 6 }, placement: "right" },
+      { key: "new", objectId: "new", at: { x: 4.5, y: -4 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "c", at: { x: 3, y: 0 }, placement: "above-left" },
+      { key: "d", objectId: "d", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "e", objectId: "e", at: { x: 4, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Probe mit den Nullstellen: <InlineMath math="x^3-4x^2+x+6=(x+1)(x-2)(x-3)" />, die Lösungen sind also <InlineMath math="-1" />, <InlineMath math="2" /> und <InlineMath math="3" />. Plus <InlineMath math="1" /> ergibt <InlineMath math="0" />, <InlineMath math="3" /> und <InlineMath math="4" />, und <InlineMath math="y(y-3)(y-4)=y^3-7y^2+12y" />.
 
 Die Gleichung lautet also <InlineMath math="x^3-7x^2+12x=0" />.

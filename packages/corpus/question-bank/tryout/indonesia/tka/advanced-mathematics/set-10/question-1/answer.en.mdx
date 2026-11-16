@@ -7,6 +7,34 @@ A square matrix has no inverse exactly when **its determinant is zero**. Compute
 
 <BlockMath math="10-2k=0\ \Rightarrow\ k=5" />
 
+Draw the determinant as a function of <InlineMath math="k" />. The matrix loses its inverse **exactly where that line crosses the horizontal axis**.
+
+<MathVisual
+  title={<>The determinant of <InlineMath math="M" /> as a function of <InlineMath math="k" /></>}
+  description={<>The line <InlineMath math="\det M=10-2k" /> drops two units for each one-unit rise in <InlineMath math="k" />. It crosses the horizontal axis only at <InlineMath math="k=5" />, the one value that makes the determinant zero.</>}
+  labels={{
+    det: <InlineMath math="\det M=10-2k" />,
+    root: <InlineMath math="k=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 8 },
+      y: { min: -6, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "det", kind: "function", appearance: "primary", formula: "10 - 2*x", domain: { min: -1, max: 8 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "det", objectId: "det", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: 5, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Check by expanding along the first row: <InlineMath math="1(k-2)-2(0-6)+1(0-3k)=10-2k" />, the same result. For <InlineMath math="k=5" />, the third row is <InlineMath math="3" /> times the first minus the second: <InlineMath math="3(1,2,1)-(0,5,2)=(3,1,1)" />, so the rows are indeed linearly dependent.
 
 So <InlineMath math="k=5" />.

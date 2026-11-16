@@ -2,6 +2,42 @@ Ein Kreis, der zwei parallele Geraden berührt, passt genau dazwischen. **Der Ab
 
 <BlockMath math="2r=7-1=6\ \Rightarrow\ r=3,\qquad y_{\text{Mitte}}=\frac{1+7}{2}=4" />
 
+Zeichne die beiden Bretter und den Querschnitt des Rohrs. **Das Rohr klemmt genau zwischen den beiden Geraden, also ist sein Durchmesser gleich ihrem Abstand**, und sein Mittelpunkt liegt in der Mitte.
+
+<MathVisual
+  title={<>Der Rohrquerschnitt zwischen zwei Brettern</>}
+  description={<>Die Geraden <InlineMath math="y=1" /> und <InlineMath math="y=7" /> haben den Abstand <InlineMath math="6" />. Der Kreis mit Mittelpunkt <InlineMath math="(2,4)" /> und Radius <InlineMath math="3" /> berührt beide Geraden in <InlineMath math="(2,1)" /> und <InlineMath math="(2,7)" />.</>}
+  labels={{
+    low: <InlineMath math="y=1" />,
+    high: <InlineMath math="y=7" />,
+    centre: <InlineMath math="(2,4)" />,
+    r: <InlineMath math="r=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 7 },
+      y: { min: 0, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "low", kind: "function", appearance: "reference", formula: "1", domain: { min: -3, max: 7 } },
+      { id: "high", kind: "function", appearance: "reference", formula: "7", domain: { min: -3, max: 7 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 2, y: 8 } },
+      { id: "pipe", kind: "circle", appearance: "answer", center: { x: 2, y: 4 }, radius: 3 },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 2, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 6, y: 7 }, placement: "below" },
+      { key: "centre", objectId: "centre", at: { x: 2, y: 4 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 3.5, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
 Der Mittelpunkt liegt außerdem auf <InlineMath math="x=2" />, ist also <InlineMath math="(2,4)" />.
 
 <BlockMath math="\begin{aligned}

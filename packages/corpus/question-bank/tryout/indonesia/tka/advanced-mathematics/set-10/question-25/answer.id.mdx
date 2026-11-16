@@ -2,6 +2,45 @@ Di sekitar <InlineMath math="x=2" />, kedua aturan memberi **dua limit sepihak y
 
 <BlockMath math="\lim_{x\to2^-}f(x)=2a+1,\qquad \lim_{x\to2^+}f(x)=4-a,\qquad f(2)=4-a" />
 
+Gambar <InlineMath math="f" /> untuk <InlineMath math="a=1" /> dan untuk <InlineMath math="a=0" />. **Untuk <InlineMath math="a=1" /> kedua potongan bertemu di <InlineMath math="(2,3)" />**, sedangkan untuk <InlineMath math="a=0" /> grafiknya melompat dari ketinggian <InlineMath math="1" /> ke <InlineMath math="4" />.
+
+<MathVisual
+  title={<>Fungsi sepotong-sepotong untuk <InlineMath math="a=1" /> dan <InlineMath math="a=0" /></>}
+  description={<>Untuk <InlineMath math="a=1" />, garis <InlineMath math="y=x+1" /> di kiri dan parabola <InlineMath math="y=x^2-1" /> di kanan bertemu di <InlineMath math="(2,3)" />. Untuk <InlineMath math="a=0" />, garis <InlineMath math="y=1" /> berakhir di ketinggian <InlineMath math="1" />, sedangkan parabola <InlineMath math="y=x^2" /> mulai dari ketinggian <InlineMath math="4" />.</>}
+  labels={{
+    one: <InlineMath math="a=1" />,
+    zero: <InlineMath math="a=0" />,
+    meet: <InlineMath math="(2,3)" />,
+    low: <InlineMath math="1" />,
+    high: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 3.4 },
+      y: { min: 0, max: 10.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zeroleft", kind: "function", appearance: "reference", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "zero", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 2, max: 3.2 } },
+      { id: "oneleft", kind: "function", appearance: "answer", formula: "x + 1", domain: { min: 0, max: 2 } },
+      { id: "one", kind: "function", appearance: "answer", formula: "x^2 - 1", domain: { min: 2, max: 3.2 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 3.2, y: 3.2 * 3.2 - 1 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "high", objectId: "high", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Limit dua arah ada tepat ketika kedua limit sepihak sama: <InlineMath math="2a+1=4-a" />, yaitu <InlineMath math="a=1" />.
 
 - **Benar.** Untuk <InlineMath math="a=1" />, kedua limit sepihak bernilai <InlineMath math="3" />.

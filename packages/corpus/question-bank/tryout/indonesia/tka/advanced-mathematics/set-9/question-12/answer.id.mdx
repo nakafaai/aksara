@@ -6,6 +6,40 @@ Proyeksi vektor <InlineMath math="\vec{a}" /> pada <InlineMath math="\vec{b}" />
 
 <BlockMath math="\operatorname{proj}_{\vec{b}}\vec{a}=\frac{18}{9}(2,-1,2)=(4,-2,4)" />
 
+Gambar <InlineMath math="\vec a" /> dan <InlineMath math="\vec b" /> pada bidang yang memuat keduanya. **Bayangan <InlineMath math="\vec a" /> pada garis <InlineMath math="\vec b" /> panjangnya <InlineMath math="6" />, dua kali panjang <InlineMath math="\vec b" />**, jadi proyeksinya <InlineMath math="2\vec b" />.
+
+<MathVisual
+  title={<>Proyeksi <InlineMath math="\vec a" /> pada <InlineMath math="\vec b" /></>}
+  description={<>Vektor <InlineMath math="\vec b" /> sepanjang <InlineMath math="3" /> digambar mendatar, dan <InlineMath math="\vec a" /> sepanjang <InlineMath math="\sqrt{41}" />. Proyeksi <InlineMath math="\vec a" /> pada garis <InlineMath math="\vec b" /> sepanjang <InlineMath math="6" />, yaitu <InlineMath math="2\vec b=(4,-2,4)" />. Sisa <InlineMath math="(1,2,0)" /> sepanjang <InlineMath math="\sqrt5" /> tegak lurus <InlineMath math="\vec b" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    proj: <InlineMath math="2\vec b" />,
+    rest: <InlineMath math="(1,2,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7 },
+      y: { min: -0.8, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "proj", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: Math.sqrt(5) } },
+      { id: "rest", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: Math.sqrt(5) } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: Math.sqrt(5) / 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "proj", objectId: "proj", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "rest", objectId: "rest", at: { x: 6, y: Math.sqrt(5) / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan: sisa <InlineMath math="\vec{a}-(4,-2,4)=(1,2,0)" /> harus tegak lurus <InlineMath math="\vec{b}" />, dan memang <InlineMath math="2-2+0=0" />.
 
 Jadi, proyeksinya <InlineMath math="(4,-2,4)" />, atau <InlineMath math="4\vec{i}-2\vec{j}+4\vec{k}" />.

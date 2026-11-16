@@ -2,6 +2,41 @@ The rule <InlineMath math="(x,y)\mapsto(y,x)" /> only works for the mirror <Inli
 
 <BlockMath math="A(4,1)\ \xrightarrow{\ \text{shift }(0,-1)\ }\ (4,0)\ \xrightarrow{\ y=x\ }\ (0,4)\ \xrightarrow{\ \text{shift }(0,1)\ }\ (0,5)" />
 
+Draw the mirror, the point <InlineMath math="A" /> and its image. **The segment from <InlineMath math="A" /> to its image is perpendicular to the mirror and cut in half by it**, so both points sit the same distance from the mirror.
+
+<MathVisual
+  title={<>Reflecting <InlineMath math="A(4,1)" /> in <InlineMath math="y=x+1" /></>}
+  description={<>The segment from <InlineMath math="A(4,1)" /> to <InlineMath math="A'(0,5)" /> crosses the line <InlineMath math="y=x+1" /> at right angles at <InlineMath math="(2,3)" />, exactly at the segment's midpoint.</>}
+  labels={{
+    mirror: <InlineMath math="y=x+1" />,
+    a: <InlineMath math="A(4,1)" />,
+    image: <InlineMath math="A'(0,5)" />,
+    mid: <InlineMath math="(2,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5.5 },
+      y: { min: 0, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "secondary", formula: "x+1", domain: { min: -1, max: 5 } },
+      { id: "join", kind: "segment", appearance: "construction", from: { x: 4, y: 1 }, to: { x: 0, y: 5 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 5.5 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "mid", objectId: "mid", at: { x: 2, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
 Check: the midpoint of <InlineMath math="A(4,1)" /> and <InlineMath math="A'(0,5)" /> is <InlineMath math="(2,3)" />, which lies on <InlineMath math="y=x+1" />. The vector <InlineMath math="\overrightarrow{AA'}=(-4,4)" /> is perpendicular to the mirror's direction <InlineMath math="(1,1)" />, since <InlineMath math="-4+4=0" />.
 
 So the image is <InlineMath math="(0,5)" />.

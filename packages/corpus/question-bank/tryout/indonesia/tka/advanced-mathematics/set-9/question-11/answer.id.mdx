@@ -6,6 +6,41 @@ Luas segitiga dapat dihitung dari dua vektor sisi yang berpangkal di titik yang 
 
 <BlockMath math="L=\frac12\sqrt{5\cdot8-2^2}=\frac12\sqrt{36}=3" />
 
+Gambar layar peneduh pada bidangnya dengan ukuran sebenarnya. **Alas <InlineMath math="AB=\sqrt5" /> dan tinggi dari <InlineMath math="C" /> ke alas itu <InlineMath math="\tfrac{6}{\sqrt5}" />**, jadi luasnya <InlineMath math="\tfrac12\cdot\sqrt5\cdot\tfrac{6}{\sqrt5}=3" />.
+
+<MathVisual
+  title={<>Layar peneduh <InlineMath math="ABC" /> pada bidangnya</>}
+  description={<>Segitiga <InlineMath math="ABC" /> digambar pada bidang yang memuat ketiga titiknya, dengan <InlineMath math="AB=\sqrt5" /> dan <InlineMath math="AC=\sqrt8" />. Ruas tegak dari <InlineMath math="C" /> ke garis <InlineMath math="AB" /> panjangnya <InlineMath math="\tfrac{6}{\sqrt5}" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    base: <InlineMath math="\sqrt5" />,
+    height: <InlineMath math="\tfrac{6}{\sqrt5}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 2.8 },
+      y: { min: -0.5, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sail", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(5), y: 0 }, { x: 2 / Math.sqrt(5), y: 6 / Math.sqrt(5) }] },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(5), y: 0 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 2 / Math.sqrt(5), y: 6 / Math.sqrt(5) }, to: { x: 2 / Math.sqrt(5), y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "sail", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "sail", at: { x: Math.sqrt(5), y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "sail", at: { x: 2 / Math.sqrt(5), y: 6 / Math.sqrt(5) }, placement: "above" },
+      { key: "base", objectId: "base", at: { x: Math.sqrt(5) / 2, y: 0 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 2 / Math.sqrt(5), y: 3 / Math.sqrt(5) }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan hasil kali silang: <InlineMath math="\vec{u}\times\vec{v}=(2,-4,4)" />, panjangnya <InlineMath math="\sqrt{4+16+16}=6" />, dan setengahnya <InlineMath math="3" />.
 
 Jadi, luas layar itu <InlineMath math="3" /> meter persegi.
