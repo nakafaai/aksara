@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$9.17\\times10^{21}$$, the copper and silver atoms form ionic bonds with the gold atoms",
+            "$$9.17\\times10^{21}$$ gold atoms, $$2.35\\times10^{21}$$ copper atoms",
         },
         {
           correct: true,
           label:
-            "$$9.17\\times10^{21}$$, atoms of other sizes disrupt the layers of gold atoms so they cannot slide easily",
+            "$$9.17\\times10^{21}$$ gold atoms, $$7.05\\times10^{21}$$ copper atoms",
         },
         {
           correct: false,
           label:
-            "$$2.20\\times10^{20}$$, atoms of other sizes disrupt the layers of gold atoms so they cannot slide easily",
+            "$$2.20\\times10^{20}$$ gold atoms, $$7.05\\times10^{21}$$ copper atoms",
         },
         {
           correct: false,
           label:
-            "$$1.22\\times10^{22}$$, atoms of other sizes disrupt the layers of gold atoms so they cannot slide easily",
+            "$$1.22\\times10^{22}$$ gold atoms, $$7.05\\times10^{21}$$ copper atoms",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$9.17\\times10^{21}$$, atom kuprum dan argentum membentuk ikatan ion dengan atom emas",
+            "$$9.17\\times10^{21}$$ atom emas, $$2.35\\times10^{21}$$ atom kuprum",
         },
         {
           correct: true,
           label:
-            "$$9.17\\times10^{21}$$, atom bersaiz lain mengganggu lapisan atom emas supaya ia tidak mudah menggelongsor",
+            "$$9.17\\times10^{21}$$ atom emas, $$7.05\\times10^{21}$$ atom kuprum",
         },
         {
           correct: false,
           label:
-            "$$2.20\\times10^{20}$$, atom bersaiz lain mengganggu lapisan atom emas supaya ia tidak mudah menggelongsor",
+            "$$2.20\\times10^{20}$$ atom emas, $$7.05\\times10^{21}$$ atom kuprum",
         },
         {
           correct: false,
           label:
-            "$$1.22\\times10^{22}$$, atom bersaiz lain mengganggu lapisan atom emas supaya ia tidak mudah menggelongsor",
+            "$$1.22\\times10^{22}$$ atom emas, $$7.05\\times10^{21}$$ atom kuprum",
         },
       ],
     },

@@ -10,8 +10,8 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$135\\text{ mg}$$, $$45.0\\%$$" },
-        { correct: false, label: "$$540\\text{ mg}$$, $$180\\%$$" },
+        { correct: false, label: "$$108\\text{ mg}$$, $$36.0\\%$$" },
+        { correct: false, label: "$$1080\\text{ mg}$$, $$360\\%$$" },
         { correct: true, label: "$$270\\text{ mg}$$, $$90.0\\%$$" },
         { correct: false, label: "$$270\\text{ mg}$$, $$111\\%$$" },
       ],
@@ -19,8 +19,8 @@ const item: ItemSource = {
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$135\\text{ mg}$$, $$45.0\\%$$" },
-        { correct: false, label: "$$540\\text{ mg}$$, $$180\\%$$" },
+        { correct: false, label: "$$108\\text{ mg}$$, $$36.0\\%$$" },
+        { correct: false, label: "$$1080\\text{ mg}$$, $$360\\%$$" },
         { correct: true, label: "$$270\\text{ mg}$$, $$90.0\\%$$" },
         { correct: false, label: "$$270\\text{ mg}$$, $$111\\%$$" },
       ],
