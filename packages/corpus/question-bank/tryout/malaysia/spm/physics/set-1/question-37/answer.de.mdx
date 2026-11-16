@@ -2,6 +2,27 @@
 
 Es gibt drei verkettete Schritte. Erstens liegt am Basiswiderstand die Versorgungsspannung **minus die <InlineMath math="0{,}70\text{ V}" /> zwischen Basis und Emitter**, der Basisstrom ergibt sich also aus <InlineMath math="4{,}0\text{ V}" />. Zweitens ist der Kollektorstrom <InlineMath math="100" />-mal so groß wie der Basisstrom. Drittens teilt sich die Versorgung von <InlineMath math="9{,}0\text{ V}" /> auf Kollektorwiderstand und Transistor auf.
 
+Ändere im Labor den Basiswiderstand. Der Basisstrom legt den Kollektorstrom fest, und am Transistor bleibt die Spannung, die der Kollektorwiderstand nicht aufnimmt.
+
+<TransistorBiasLab
+  title={<>Ströme in der Transistorschaltung</>}
+  description={<>Ein Basiswiderstand von <InlineMath math="100\text{ k}\Omega" /> an <InlineMath math="4{,}7\text{ V}" /> und ein Kollektorwiderstand von <InlineMath math="1{,}0\text{ k}\Omega" /> an <InlineMath math="9{,}0\text{ V}" />.</>}
+  labels={{
+    base: <>Basiswiderstand</>,
+    baseCurrent: <>Basisstrom</>,
+    baseName: "Basiswiderstand",
+    collectorCurrent: <>Kollektorstrom</>,
+    collectorEmitter: <>Kollektor-Emitter-Spannung</>,
+    viewLabel: "Eine npn-Transistorschaltung",
+  }}
+  base={100}
+  baseSupply={4.7}
+  collector={1}
+  collectorSupply={9}
+  gain={100}
+  threshold={0.7}
+/>
+
 Schreib jeden Wert an die Schaltung, sobald du ihn hast. Die Basismasche liefert <InlineMath math="I_B" />, der Transistor vervielfacht ihn zu <InlineMath math="I_C" />, und die Kollektormasche teilt die <InlineMath math="9{,}0\text{ V}" /> auf.
 
 <MathVisual

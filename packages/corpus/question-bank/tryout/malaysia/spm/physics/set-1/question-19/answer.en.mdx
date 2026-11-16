@@ -2,6 +2,25 @@
 
 Apparent depth is measured from the top surface, but the top surface rises when the oil is poured. So **turn the apparent depth into the height of the image above the bottom**, before and after.
 
+Switch the top layer in the lab. Each layer adds its own apparent depth, its thickness divided by its refractive index, and the image rises by the difference.
+
+<ApparentDepthLab
+  title={<>The coin seen through oil and water</>}
+  description={<><InlineMath math="6.0\text{ cm}" /> of oil on <InlineMath math="12\text{ cm}" /> of water above a coin.</>}
+  labels={{
+    apparent: <>Apparent depth</>,
+    image: <>Image above the floor</>,
+    liquids: { alcohol: <>Alcohol</>, glycerine: <>Glycerine</>, oil: <>Oil</>, water: <>Water</> },
+    real: <>Real depth</>,
+    top: "Top layer",
+    viewLabel: "A coin seen through layers of liquid",
+  }}
+  layers={[
+    { index: 1.5, liquid: "oil", thickness: 6 },
+    { index: 4 / 3, liquid: "water", thickness: 12 },
+  ]}
+/>
+
 Draw both states with every height measured up from the bottom, where the coin stays. Then the shift of the image is a difference of two heights, not of two apparent depths.
 
 <MathVisual

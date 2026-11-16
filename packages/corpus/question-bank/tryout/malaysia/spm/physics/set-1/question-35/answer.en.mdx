@@ -2,6 +2,26 @@
 
 A NAND gate gives <InlineMath math="0" /> only when both of its inputs are <InlineMath math="1" />. The last row has <InlineMath math="C=0" />, so <InlineMath math="Q=1" /> whatever <InlineMath math="X" /> is, and **that row tells you nothing about P**. Use the four rows with <InlineMath math="C=1" />: there <InlineMath math="Q=\overline{X}" />, so <InlineMath math="X" /> is the opposite of <InlineMath math="Q" />.
 
+Try each gate for P in the lab and count the rows it reproduces. Only one gate matches all five.
+
+<LogicGateLab
+  title={<>Find gate P</>}
+  description={<>Gate P feeds a NAND gate with input <InlineMath math="C" />, and the five rows come from the table.</>}
+  labels={{
+    gate: "Gate P",
+    matches: <>Rows reproduced</>,
+    viewLabel: "A logic circuit trainer",
+  }}
+  gate="AND"
+  rows={[
+    { a: 0, b: 0, c: 1, q: 1 },
+    { a: 0, b: 1, c: 1, q: 0 },
+    { a: 1, b: 0, c: 1, q: 0 },
+    { a: 1, b: 1, c: 1, q: 0 },
+    { a: 1, b: 1, c: 0, q: 1 },
+  ]}
+/>
+
 <BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
 
 Read the circuit backwards from <InlineMath math="Q" />. With <InlineMath math="C=1" /> the NAND gate only inverts, so each value of <InlineMath math="X" /> is the opposite of <InlineMath math="Q" />, and the four values of <InlineMath math="X" /> name gate P.

@@ -2,6 +2,25 @@
 
 The label <InlineMath math="240\text{ V},\ 1000\text{ W}" /> applies only at <InlineMath math="240\text{ V}" />. At another voltage, **the resistance of the heater stays fixed**, not its power. So find the resistance from the label, then the power at <InlineMath math="120\text{ V}" />.
 
+Change the supply voltage in the lab. The resistance stays fixed, so the power follows the square of the voltage, and half the voltage gives a quarter of the power.
+
+<HeaterSupplyLab
+  title={<>The heater on half its voltage</>}
+  description={<>A <InlineMath math="240\text{ V},\ 1000\text{ W}" /> heater used on <InlineMath math="120\text{ V}" /> for <InlineMath math="2.0\text{ hours}" />.</>}
+  labels={{
+    energy: <>Energy in <InlineMath math="2.0\text{ hours}" /></>,
+    power: <>Power</>,
+    resistance: <>Resistance</>,
+    supply: <>Supply voltage</>,
+    supplyName: "Supply voltage",
+    viewLabel: "A water heater on a supply",
+  }}
+  hours={2}
+  ratedPower={1000}
+  ratedVoltage={240}
+  supplyVoltage={120}
+/>
+
 <BlockMath math="\begin{aligned}
 R&=\frac{V^2}{P}=\frac{240^2}{1000}=57.6\,\Omega\\
 P'&=\frac{120^2}{57.6}=250\text{ W}=0.25\text{ kW}\\

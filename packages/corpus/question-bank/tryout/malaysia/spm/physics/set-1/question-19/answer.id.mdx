@@ -2,6 +2,25 @@
 
 Kedalaman semu diukur dari permukaan teratas, padahal permukaan teratas ikut naik saat minyak dituang. Jadi, **ubah kedalaman semu menjadi tinggi bayangan di atas dasar**, sebelum dan sesudahnya.
 
+Ganti lapisan atas di lab. Tiap lapisan menambah kedalaman semunya sendiri, yaitu tebal dibagi indeks bias, dan bayangan naik sebesar selisihnya.
+
+<ApparentDepthLab
+  title={<>Koin dilihat melalui minyak dan air</>}
+  description={<><InlineMath math="6{,}0\text{ cm}" /> minyak di atas <InlineMath math="12\text{ cm}" /> air di atas koin.</>}
+  labels={{
+    apparent: <>Kedalaman semu</>,
+    image: <>Bayangan di atas dasar</>,
+    liquids: { alcohol: <>Alkohol</>, glycerine: <>Gliserin</>, oil: <>Minyak</>, water: <>Air</> },
+    real: <>Kedalaman sebenarnya</>,
+    top: "Lapisan atas",
+    viewLabel: "Koin dilihat melalui lapisan cairan",
+  }}
+  layers={[
+    { index: 1.5, liquid: "oil", thickness: 6 },
+    { index: 4 / 3, liquid: "water", thickness: 12 },
+  ]}
+/>
+
 Gambar kedua keadaan dengan tiap ketinggian diukur dari dasar, tempat koin itu tetap berada. Jadi pergeseran bayangan adalah selisih dua ketinggian, bukan selisih dua kedalaman semu.
 
 <MathVisual
