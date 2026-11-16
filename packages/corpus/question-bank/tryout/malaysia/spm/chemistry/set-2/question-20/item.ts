@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Titration, $$90.1\\%$$" },
+        { correct: false, label: "Titration, $$90.2\\%$$" },
+        { correct: false, label: "Precipitation, $$67.7\\%$$" },
         { correct: false, label: "Precipitation, $$111\\%$$" },
-        { correct: false, label: "Reacting lead(II) oxide with sulfuric acid and crystallising, $$90.1\\%$$" },
-        { correct: true, label: "Precipitation, $$90.1\\%$$" },
+        { correct: true, label: "Precipitation, $$90.2\\%$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Pentitratan, $$90.1\\%$$" },
+        { correct: false, label: "Pentitratan, $$90.2\\%$$" },
+        { correct: false, label: "Pemendakan, $$67.7\\%$$" },
         { correct: false, label: "Pemendakan, $$111\\%$$" },
-        { correct: false, label: "Tindak balas plumbum(II) oksida dengan asid sulfurik dan penghabluran, $$90.1\\%$$" },
-        { correct: true, label: "Pemendakan, $$90.1\\%$$" },
+        { correct: true, label: "Pemendakan, $$90.2\\%$$" },
       ],
     },
   },
