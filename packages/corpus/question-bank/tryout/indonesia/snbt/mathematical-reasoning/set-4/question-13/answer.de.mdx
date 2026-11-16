@@ -22,6 +22,21 @@ p^2-87{,}5p+1{.}875 &\le 0\\
 
 Also gilt <InlineMath math="37{,}5\le p\le50" />. Ein Preis von <InlineMath math="37{,}5\text{ Tausend}" /> **ist kein Vielfaches von** <InlineMath math="5\text{ Tausend}" /> und fällt deshalb weg. Erlaubt sind nur <InlineMath math="40" />, <InlineMath math="45" /> und <InlineMath math="50\text{ Tausend}" />.
 
+Das Diagramm berechnet die Ticketeinnahmen für Preise in Vielfachen von <InlineMath math="5" /> Tausend. **Der Balken ganz links, der die Ziellinie noch erreicht, gehört zum Preis von <InlineMath math="40" /> Tausend**, weil der Balken für <InlineMath math="35" /> Tausend schon darunter liegt.
+
+<Chart
+  title={<>Ticketeinnahmen einer Vorstellung nach Ticketpreis</>}
+  description={<>Bei Preisen von <InlineMath math="30" />, <InlineMath math="35" />, <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="50" /> und <InlineMath math="55" /> Tausend Rupiah betragen die Einnahmen <InlineMath math="5{.}520" />, <InlineMath math="5{.}880" />, <InlineMath math="6{.}080" />, <InlineMath math="6{.}120" />, <InlineMath math="6{.}000" /> und <InlineMath math="5{.}720" /> Tausend Rupiah. Die waagerechte Linie markiert das Ziel von <InlineMath math="6{.}000" /> Tausend Rupiah. Die Werteachse beginnt bei <InlineMath math="5{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `${30 + 5 * i}`)}
+  series={[
+    { label: "Ticketeinnahmen (Tausend Rupiah)", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (30 + 5 * i) * (280 - 3.2 * (30 + 5 * i))) },
+    { label: "Ziel 6.000 Tausend", mark: "line", values: Array.from({ length: 6 }, () => 6000) },
+  ]}
+  valueRange={{ min: 5000, max: 6500 }}
+  valueLabel="Einnahmen (Tausend Rupiah)"
+/>
+
 # Die meisten Zuschauer wählen
 
 Die meisten Zuschauer gibt es beim günstigsten dieser Preise, <InlineMath math="\text{Rp}40{.}000" />:

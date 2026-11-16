@@ -34,6 +34,21 @@ Dimas hat die höchste Endnote, aber <InlineMath math="P=62" /> liegt unter <Inl
 
 Bayu hat <InlineMath math="W=65" />. Die Regel verlangt „mindestens <InlineMath math="65" />“, also besteht genau <InlineMath math="65" /> noch. Eka hat von einer Person die Bewertung <InlineMath math="60" /> bekommen, aber die Bedingung gilt für <InlineMath math="W" />, nicht für jede einzelne Bewertung. Ekas <InlineMath math="W" /> beträgt <InlineMath math="82" />, also besteht Eka ebenfalls.
 
+Das Diagramm zeigt die Endnoten aller sechs Bewerber. **Der höchste Balken gehört Dimas, aber er scheidet aus**, also bleiben als beste drei Bayu, Eka und dann Ayu, die Citra wegen der höheren Testnote schlägt.
+
+<Chart
+  title={<>Endnoten der sechs Stipendienbewerber</>}
+  description={<>Die Endnoten sind: Ayu <InlineMath math="82{,}65" />, Bayu <InlineMath math="83{,}35" />, Citra <InlineMath math="82{,}65" />, Dimas <InlineMath math="87{,}95" />, Eka <InlineMath math="83" /> und Fajar <InlineMath math="82{,}5" />. Dimas erfüllt die Bedingungen nicht, weil <InlineMath math="P=62" />. Die Notenachse beginnt bei <InlineMath math="80" />.</>}
+  bars="apart"
+  categories={["Ayu", "Bayu", "Citra", "Dimas", "Eka", "Fajar"]}
+  series={[
+    { label: "Erfüllt die Bedingungen", mark: "bar", values: [0.4 * 86 + 0.25 * 81 + 0.2 * 80 + 0.15 * 80, 0.4 * 90 + 0.25 * 65 + 0.2 * 88 + 0.15 * 90, 0.4 * 78 + 0.25 * 89 + 0.2 * 86 + 0.15 * 80, null, 0.4 * 86 + 0.25 * 82 + 0.2 * 82 + 0.15 * 78, 0.4 * 84 + 0.25 * 82 + 0.2 * 85 + 0.15 * 76] },
+    { label: "Ausgeschieden, Leistung unter 65", mark: "bar", values: [null, null, null, 0.4 * 96 + 0.25 * 89 + 0.2 * 90 + 0.15 * 62, null, null] },
+  ]}
+  valueRange={{ min: 80, max: 89 }}
+  valueLabel="Endnote"
+/>
+
 # Rangfolge und Gleichstand
 
 Die Rangfolge der Zugelassenen lautet: Bayu <InlineMath math="83{,}35" />, Eka <InlineMath math="83" />, dann Ayu und Citra beide mit <InlineMath math="82{,}65" />, und Fajar <InlineMath math="82{,}5" />. Für den dritten Platz **entscheidet bei Gleichstand der Wert** <InlineMath math="T" />: Ayu hat <InlineMath math="86" />, Citra hat <InlineMath math="78" />, also kommt Ayu zuerst.

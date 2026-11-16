@@ -16,6 +16,21 @@ Jadi **satu gulung hanya menghasilkan <InlineMath math="3" /> lembar utuh**, den
 
 Tiga puluh lembar utuh memerlukan <InlineMath math="30:3=10" /> gulung. Dua lembar pendek memerlukan <InlineMath math="2\cdot64=128\text{ cm}" />, dan itu **muat di sisa <InlineMath math="232\text{ cm}" /> salah satu gulung**. Jadi tidak perlu gulung tambahan.
 
+Grafik berikut memperlihatkan isi kesepuluh gulung. **Kedua lembar pendek cukup diambil dari sisa satu gulung**, sehingga tidak perlu gulung kesebelas.
+
+<Chart
+  title={<>Pemakaian kesepuluh gulung wallpaper bermotif</>}
+  description={<>Setiap gulung memberi tiga lembar penuh sepanjang <InlineMath math="768\text{ cm}" /> dan menyisakan <InlineMath math="232\text{ cm}" />. Pada gulung kesepuluh, dua lembar pendek sepanjang <InlineMath math="128\text{ cm}" /> diambil dari sisa itu, sehingga sisanya tinggal <InlineMath math="104\text{ cm}" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Tiga lembar penuh", mark: "bar", values: Array.from({ length: 10 }, () => 3 * 256) },
+    { label: "Dua lembar pendek", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i === 9 ? 2 * 64 : 0)) },
+    { label: "Sisa gulung", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i === 9 ? 1000 - 3 * 256 - 2 * 64 : 1000 - 3 * 256)) },
+  ]}
+  valueLabel="Panjang (cm)"
+/>
+
 # Jawaban yang keliru
 
 Jawaban <InlineMath math="8" /> muncul kalau pembulatan motif terlupa, sehingga satu gulung dianggap menghasilkan <InlineMath math="4" /> lembar. Jawaban <InlineMath math="11" /> muncul kalau pintu diabaikan dan ke-<InlineMath math="32" /> lembar dihitung utuh. Jawaban <InlineMath math="9" /> muncul kalau lembar dihitung dari keliling kamar, yaitu <InlineMath math="29" /> lembar, padahal **lembar tidak boleh melewati sudut**. Jawaban <InlineMath math="7" /> muncul kalau luas dinding dibagi luas satu gulung.

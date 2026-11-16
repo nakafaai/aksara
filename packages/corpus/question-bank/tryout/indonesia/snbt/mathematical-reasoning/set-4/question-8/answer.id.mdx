@@ -41,6 +41,20 @@ Cek dengan <InlineMath math="12" /> kantong dan <InlineMath math="11" /> kantong
 
 Dengan <InlineMath math="12" /> kantong, sisa ikan tepat <InlineMath math="2{.}800" /> ekor, jadi syarat **"paling sedikit" terpenuhi**. Dengan <InlineMath math="11" /> kantong, sisanya hanya <InlineMath math="2{.}450" /> ekor.
 
+Grafik berikut mengikuti banyak ikan dari kedua pilihan itu. **Garis <InlineMath math="12" /> kantong berakhir tepat di garis target**, sedangkan garis <InlineMath math="11" /> kantong sudah jatuh di bawahnya sejak penjualan.
+
+<Chart
+  title={<>Banyak ikan hidup dengan <InlineMath math="12" /> dan <InlineMath math="11" /> kantong benih</>}
+  description={<>Dengan <InlineMath math="12" /> kantong, ikan hidup berturut-turut <InlineMath math="5{.}400" />, <InlineMath math="5{.}100" />, <InlineMath math="4{.}800" />, dan <InlineMath math="4{.}560" /> pada akhir bulan pertama sampai keempat, <InlineMath math="3{.}040" /> sesudah penjualan, lalu <InlineMath math="2{.}880" /> dan <InlineMath math="2{.}800" /> pada akhir bulan kelima dan keenam. Dengan <InlineMath math="11" /> kantong, angkanya <InlineMath math="4{.}950" />, <InlineMath math="4{.}675" />, <InlineMath math="4{.}400" />, <InlineMath math="4{.}180" />, <InlineMath math="2{.}660" />, <InlineMath math="2{.}520" />, dan <InlineMath math="2{.}450" />.</>}
+  categories={["Bulan 1", "Bulan 2", "Bulan 3", "Bulan 4", "Sesudah dijual", "Bulan 5", "Bulan 6"]}
+  series={[
+    { label: "12 kantong", mark: "line", values: [0.9 * 6000, 0.85 * 6000, 0.8 * 6000, 0.76 * 6000, 0.76 * 6000 - 1520, (0.76 * 6000 - 1520) * (72 / 76), (0.76 * 6000 - 1520) * (70 / 76)] },
+    { label: "11 kantong", mark: "line", values: [0.9 * 5500, 0.85 * 5500, 0.8 * 5500, 0.76 * 5500, 0.76 * 5500 - 1520, (0.76 * 5500 - 1520) * (72 / 76), (0.76 * 5500 - 1520) * (70 / 76)] },
+    { label: "Target 2.800 ekor", mark: "line", values: [2800, 2800, 2800, 2800, 2800, 2800, 2800] },
+  ]}
+  valueLabel="Banyak ikan"
+/>
+
 Kesalahan yang sering muncul: memakai <InlineMath math="70\%" /> dari sisa ikan memberi <InlineMath math="15" /> kantong, menganggap banyak ikan yang mati tetap <InlineMath math="6\%" /> dari benih memberi <InlineMath math="13" /> kantong, dan melupakan penjualan memberi <InlineMath math="8" /> kantong.
 
 Jadi, pembudidaya harus menebar paling sedikit <InlineMath math="12" /> kantong benih.

@@ -22,6 +22,21 @@ p^2-87.5p+1{,}875 &\le 0\\
 
 So <InlineMath math="37.5\le p\le50" />. A price of <InlineMath math="37.5\text{ thousand}" /> **isn't a multiple of** <InlineMath math="5\text{ thousand}" />, so it can't be used. The allowed prices are only <InlineMath math="40" />, <InlineMath math="45" /> and <InlineMath math="50\text{ thousand}" />.
 
+The chart below works out the ticket revenue for prices in multiples of <InlineMath math="5" /> thousand. **The leftmost bar that still reaches the target line is the <InlineMath math="40" /> thousand price**, because the <InlineMath math="35" /> thousand bar already falls below it.
+
+<Chart
+  title={<>Ticket revenue for one show by ticket price</>}
+  description={<>At prices of <InlineMath math="30" />, <InlineMath math="35" />, <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="50" />, and <InlineMath math="55" /> thousand rupiah, the revenue is <InlineMath math="5{,}520" />, <InlineMath math="5{,}880" />, <InlineMath math="6{,}080" />, <InlineMath math="6{,}120" />, <InlineMath math="6{,}000" />, and <InlineMath math="5{,}720" /> thousand rupiah. The flat line marks the target of <InlineMath math="6{,}000" /> thousand rupiah. The value axis starts at <InlineMath math="5{,}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `${30 + 5 * i}`)}
+  series={[
+    { label: "Ticket revenue (thousand rupiah)", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (30 + 5 * i) * (280 - 3.2 * (30 + 5 * i))) },
+    { label: "Target 6,000 thousand", mark: "line", values: Array.from({ length: 6 }, () => 6000) },
+  ]}
+  valueRange={{ min: 5000, max: 6500 }}
+  valueLabel="Revenue (thousand rupiah)"
+/>
+
 # Picking the most viewers
 
 The most viewers come from the cheapest of those prices, <InlineMath math="\text{Rp}40{,}000" />:

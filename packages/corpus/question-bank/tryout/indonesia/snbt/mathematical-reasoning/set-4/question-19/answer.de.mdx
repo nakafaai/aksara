@@ -16,6 +16,21 @@ Also **ergibt eine Rolle nur <InlineMath math="3" /> ganze Bahnen**, und es blei
 
 Dreißig ganze Bahnen brauchen <InlineMath math="30:3=10" /> Rollen. Die zwei kurzen Bahnen brauchen <InlineMath math="2\cdot64=128\text{ cm}" />, und das **passt in die <InlineMath math="232\text{ cm}" /> Rest einer Rolle**. Es ist also keine weitere Rolle nötig.
 
+Das Diagramm zeigt, wofür jede der zehn Rollen verwendet wird. **Beide kurzen Bahnen passen in den Rest einer einzigen Rolle**, also braucht es keine elfte Rolle.
+
+<Chart
+  title={<>Verwendung der zehn gemusterten Rollen</>}
+  description={<>Jede Rolle ergibt drei volle Bahnen mit zusammen <InlineMath math="768\text{ cm}" /> und lässt <InlineMath math="232\text{ cm}" /> übrig. Bei der zehnten Rolle werden die zwei kurzen Bahnen mit zusammen <InlineMath math="128\text{ cm}" /> aus diesem Rest geschnitten, sodass nur <InlineMath math="104\text{ cm}" /> bleiben.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Drei volle Bahnen", mark: "bar", values: Array.from({ length: 10 }, () => 3 * 256) },
+    { label: "Zwei kurze Bahnen", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i === 9 ? 2 * 64 : 0)) },
+    { label: "Rest der Rolle", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i === 9 ? 1000 - 3 * 256 - 2 * 64 : 1000 - 3 * 256)) },
+  ]}
+  valueLabel="Länge (cm)"
+/>
+
 # Die verlockenden falschen Antworten
 
 Die Antwort <InlineMath math="8" /> entsteht, wenn du das Aufrunden für das Muster vergisst und eine Rolle scheinbar <InlineMath math="4" /> Bahnen ergibt. Die Antwort <InlineMath math="11" /> entsteht, wenn du die Tür übergehst und alle <InlineMath math="32" /> Bahnen als ganze Bahnen zählst. Die Antwort <InlineMath math="9" /> entsteht, wenn du die Bahnen aus dem Umfang des Zimmers berechnest, also <InlineMath math="29" />, obwohl **Bahnen nicht um eine Ecke laufen dürfen**. Die Antwort <InlineMath math="7" /> entsteht, wenn du die Wandfläche durch die Fläche einer Rolle teilst.

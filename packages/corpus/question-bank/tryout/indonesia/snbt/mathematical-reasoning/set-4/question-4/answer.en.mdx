@@ -26,6 +26,20 @@ Distances count in whole kilometres, so **the excess is rounded down** to <Inlin
 
 From <InlineMath math="7" /> days on, Package B's day charge is already <InlineMath math="0.8\times7\times350{,}000=1{,}960{,}000" />, more than the budget. Package A keeps getting worse because its day charge keeps rising. So **the largest distance comes from Package B** for <InlineMath math="6" /> days, namely <InlineMath math="973\text{ km}" />.
 
+The chart below sums up that table. **Package B's bar keeps rising up to <InlineMath math="6" /> days**, then disappears at <InlineMath math="7" /> days because the day charge alone is already over budget.
+
+<Chart
+  title={<>Furthest distance within budget by rental length</>}
+  description={<>With Package A, the furthest distance is <InlineMath math="733" />, <InlineMath math="733" />, <InlineMath math="626" />, and <InlineMath math="520\text{ km}" /> for <InlineMath math="4" /> to <InlineMath math="7" /> days. With Package B, it's <InlineMath math="766" />, <InlineMath math="916" />, and <InlineMath math="973\text{ km}" /> for <InlineMath math="4" /> to <InlineMath math="6" /> days, while <InlineMath math="7" /> days goes over budget.</>}
+  categories={["4 days", "5 days", "6 days", "7 days"]}
+  bars="apart"
+  series={[
+    { label: "Package A", mark: "bar", values: [Math.floor((1900000 - 4 * 200000) / 1500), Math.floor((1900000 - 0.8 * 5 * 200000) / 1500), Math.floor((1900000 - 0.8 * 6 * 200000) / 1500), Math.floor((1900000 - 0.8 * 7 * 200000) / 1500)] },
+    { label: "Package B", mark: "bar", values: [4 * 150 + Math.floor((1900000 - 4 * 350000) / 3000), 5 * 150 + Math.floor((1900000 - 0.8 * 5 * 350000) / 3000), 6 * 150 + Math.floor((1900000 - 0.8 * 6 * 350000) / 3000), null] },
+  ]}
+  valueLabel="Distance (km)"
+/>
+
 # Checking the budget limit
 
 Check the cost of Package B for <InlineMath math="6" /> days at the answer and one kilometre beyond it:

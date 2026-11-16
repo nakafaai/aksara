@@ -41,6 +41,20 @@ Prüfe <InlineMath math="12" /> Beutel und <InlineMath math="11" /> Beutel:
 
 Mit <InlineMath math="12" /> Beuteln bleiben genau <InlineMath math="2{.}800" /> Fische, also ist die Bedingung **„mindestens“ erfüllt**. Mit <InlineMath math="11" /> Beuteln bleiben nur <InlineMath math="2{.}450" />.
 
+Das Diagramm verfolgt die Anzahl der Fische für beide Möglichkeiten. **Die Linie für <InlineMath math="12" /> Beutel endet genau auf der Ziellinie**, während die Linie für <InlineMath math="11" /> Beutel ab dem Verkauf darunter liegt.
+
+<Chart
+  title={<>Lebende Fische mit <InlineMath math="12" /> und <InlineMath math="11" /> Beuteln Setzlingen</>}
+  description={<>Mit <InlineMath math="12" /> Beuteln leben am Ende der Monate eins bis vier <InlineMath math="5{.}400" />, <InlineMath math="5{.}100" />, <InlineMath math="4{.}800" /> und <InlineMath math="4{.}560" /> Fische, nach dem Verkauf <InlineMath math="3{.}040" />, dann am Ende der Monate fünf und sechs <InlineMath math="2{.}880" /> und <InlineMath math="2{.}800" />. Mit <InlineMath math="11" /> Beuteln sind es <InlineMath math="4{.}950" />, <InlineMath math="4{.}675" />, <InlineMath math="4{.}400" />, <InlineMath math="4{.}180" />, <InlineMath math="2{.}660" />, <InlineMath math="2{.}520" /> und <InlineMath math="2{.}450" />.</>}
+  categories={["Monat 1", "Monat 2", "Monat 3", "Monat 4", "Nach dem Verkauf", "Monat 5", "Monat 6"]}
+  series={[
+    { label: "12 Beutel", mark: "line", values: [0.9 * 6000, 0.85 * 6000, 0.8 * 6000, 0.76 * 6000, 0.76 * 6000 - 1520, (0.76 * 6000 - 1520) * (72 / 76), (0.76 * 6000 - 1520) * (70 / 76)] },
+    { label: "11 Beutel", mark: "line", values: [0.9 * 5500, 0.85 * 5500, 0.8 * 5500, 0.76 * 5500, 0.76 * 5500 - 1520, (0.76 * 5500 - 1520) * (72 / 76), (0.76 * 5500 - 1520) * (70 / 76)] },
+    { label: "Ziel 2.800 Fische", mark: "line", values: [2800, 2800, 2800, 2800, 2800, 2800, 2800] },
+  ]}
+  valueLabel="Fische"
+/>
+
 Typische Fehler: Wer <InlineMath math="70\%" /> der übrigen Fische nimmt, erhält <InlineMath math="15" /> Beutel, wer die toten Fische als feste <InlineMath math="6\%" /> der Setzlinge zählt, erhält <InlineMath math="13" /> Beutel, und wer den Verkauf vergisst, erhält <InlineMath math="8" /> Beutel.
 
 In den Teich müssen also mindestens <InlineMath math="12" /> Beutel Setzlinge.

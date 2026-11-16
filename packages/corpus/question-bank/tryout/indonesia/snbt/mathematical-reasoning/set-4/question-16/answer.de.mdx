@@ -33,6 +33,20 @@ K(55) &= 65\times156-2{.}000=8{.}140\text{ Tausend}
 
 Vergleiche die beiden Bereiche: <InlineMath math="9{.}000\text{ Tausend}" /> bei <InlineMath math="\text{Rp}45{.}000" /> sind mehr als <InlineMath math="8{.}800\text{ Tausend}" /> bei <InlineMath math="\text{Rp}50{.}000" />.
 
+Das Diagramm vergleicht den Gewinn an einem Feiertag mit dem an einem normalen Tag. **Der Gipfel am Feiertag wandert zu <InlineMath math="45" /> Tausend**, dem höchsten Preis, der den Saal noch füllt, während der Gipfel am normalen Tag bei <InlineMath math="40" /> Tausend bleibt.
+
+<Chart
+  title={<>Gewinn der Vorstellung an einem Feiertag und an einem normalen Tag nach Ticketpreis</>}
+  description={<>An einem Feiertag beträgt der Gewinn bei Preisen von <InlineMath math="35" /> bis <InlineMath math="60" /> Tausend der Reihe nach <InlineMath math="7{.}000" />, <InlineMath math="8{.}000" />, <InlineMath math="9{.}000" />, <InlineMath math="8{.}800" />, <InlineMath math="8{.}140" /> und <InlineMath math="7{.}240" /> Tausend Rupiah. An einem normalen Tag sind es <InlineMath math="5{.}560" />, <InlineMath math="5{.}600" />, <InlineMath math="5{.}480" />, <InlineMath math="5{.}200" />, <InlineMath math="4{.}760" /> und <InlineMath math="4{.}160" /> Tausend Rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `${35 + 5 * i}`)}
+  series={[
+    { label: "Feiertag", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (45 + 5 * i) * Math.min(200, 420 - 4.8 * (35 + 5 * i)) - 2000) },
+    { label: "Normaler Tag", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (45 + 5 * i) * Math.min(200, 280 - 3.2 * (35 + 5 * i)) - 2000) },
+  ]}
+  valueLabel="Gewinn (Tausend Rupiah)"
+/>
+
 # Die Falle mit dem Preis vom normalen Tag
 
 Wenn du die Platzgrenze vergisst, bleibt der Gipfel wie am normalen Tag bei <InlineMath math="38{,}75" />, denn **das Vervielfachen der Nachfrage mit** <InlineMath math="1{,}5" /> verschiebt den Gipfel nicht. Das führt zu <InlineMath math="\text{Rp}40{.}000" />. Bei diesem Preis kommen aber nur <InlineMath math="200" /> der <InlineMath math="228" /> Interessierten hinein, und der Gewinn beträgt <InlineMath math="50\times200-2{.}000=8{.}000\text{ Tausend}" />, weniger als bei <InlineMath math="\text{Rp}45{.}000" />.

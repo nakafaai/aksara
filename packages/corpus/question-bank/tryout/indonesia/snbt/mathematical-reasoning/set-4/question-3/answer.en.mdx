@@ -46,6 +46,21 @@ Test <InlineMath math="900\text{ km}" />:
 
 Package B really is the cheapest, so this candidate fits every fact.
 
+The chart below draws the cost of all three packages for a <InlineMath math="5" />-day rental. The bill line crosses Package A's line at <InlineMath math="700\text{ km}" /> and Package B's line at <InlineMath math="900\text{ km}" />, but **only at <InlineMath math="900\text{ km}" /> is the crossing line also the lowest one**.
+
+<Chart
+  title={<>Cost of a <InlineMath math="5" />-day rental by total distance</>}
+  description={<>Package A costs <InlineMath math="800{,}000+1{,}500x" /> rupiah. Package B stays at <InlineMath math="1{,}400{,}000" /> rupiah up to <InlineMath math="750\text{ km}" />, then rises by <InlineMath math="3{,}000" /> rupiah per kilometre. Package C stays at <InlineMath math="2{,}000{,}000" /> rupiah. The flat line marks the bill of <InlineMath math="1{,}850{,}000" /> rupiah.</>}
+  categories={Array.from({ length: 9 }, (_, i) => `${600 + 50 * i}`)}
+  series={[
+    { label: "Package A", mark: "line", values: Array.from({ length: 9 }, (_, i) => 800000 + 1500 * (600 + 50 * i)) },
+    { label: "Package B", mark: "line", values: Array.from({ length: 9 }, (_, i) => 1400000 + 3000 * Math.max(0, 600 + 50 * i - 750)) },
+    { label: "Package C", mark: "line", values: Array.from({ length: 9 }, () => 2000000) },
+    { label: "Mr. Bima's bill", mark: "line", values: Array.from({ length: 9 }, () => 1850000) },
+  ]}
+  valueLabel="Cost (rupiah)"
+/>
+
 # Why the other options are wrong
 
 Each wrong option comes from **one step skipped** in the chain above.

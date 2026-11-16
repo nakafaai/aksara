@@ -26,6 +26,20 @@ Strecken zählen in ganzen Kilometern, also **wird die Mehrstrecke abgerundet** 
 
 Ab <InlineMath math="7" /> Tagen beträgt der Tagesanteil von Paket B schon <InlineMath math="0{,}8\times7\times350{.}000=1{.}960{.}000" />, mehr als das Budget. Paket A wird immer schlechter, weil sein Tagesanteil weiter steigt. **Die größte Strecke liefert also Paket B** mit <InlineMath math="6" /> Tagen, nämlich <InlineMath math="973\text{ km}" />.
 
+Das Diagramm fasst diese Tabelle zusammen. **Der Balken von Paket B steigt bis <InlineMath math="6" /> Tage weiter**, verschwindet dann bei <InlineMath math="7" /> Tagen, weil schon die Tageskosten das Budget übersteigen.
+
+<Chart
+  title={<>Weiteste Strecke im Budget nach Mietdauer</>}
+  description={<>Mit Paket A beträgt die weiteste Strecke <InlineMath math="733" />, <InlineMath math="733" />, <InlineMath math="626" /> und <InlineMath math="520\text{ km}" /> für <InlineMath math="4" /> bis <InlineMath math="7" /> Tage. Mit Paket B sind es <InlineMath math="766" />, <InlineMath math="916" /> und <InlineMath math="973\text{ km}" /> für <InlineMath math="4" /> bis <InlineMath math="6" /> Tage, während <InlineMath math="7" /> Tage das Budget übersteigen.</>}
+  categories={["4 Tage", "5 Tage", "6 Tage", "7 Tage"]}
+  bars="apart"
+  series={[
+    { label: "Paket A", mark: "bar", values: [Math.floor((1900000 - 4 * 200000) / 1500), Math.floor((1900000 - 0.8 * 5 * 200000) / 1500), Math.floor((1900000 - 0.8 * 6 * 200000) / 1500), Math.floor((1900000 - 0.8 * 7 * 200000) / 1500)] },
+    { label: "Paket B", mark: "bar", values: [4 * 150 + Math.floor((1900000 - 4 * 350000) / 3000), 5 * 150 + Math.floor((1900000 - 0.8 * 5 * 350000) / 3000), 6 * 150 + Math.floor((1900000 - 0.8 * 6 * 350000) / 3000), null] },
+  ]}
+  valueLabel="Strecke (km)"
+/>
+
 # Die Budgetgrenze prüfen
 
 Prüfe die Kosten von Paket B für <InlineMath math="6" /> Tage bei der Antwort und einen Kilometer darüber:

@@ -20,6 +20,21 @@ p &\le 37.5
 
 A price of <InlineMath math="40\text{ thousand}" /> only brings <InlineMath math="152" /> viewers, so **the best unrestricted price is ruled out**. The allowed prices are <InlineMath math="35\text{ thousand}" /> or cheaper.
 
+The chart below separates the prices that meet the audience condition from those that don't. **The tallest bar, <InlineMath math="40" /> thousand, is the one that's not allowed**, so the tallest bar among the allowed prices is <InlineMath math="35" /> thousand.
+
+<Chart
+  title={<>Show profit by ticket price and audience condition</>}
+  description={<>At <InlineMath math="25" />, <InlineMath math="30" />, and <InlineMath math="35" /> thousand, there are at least <InlineMath math="160" /> viewers and the profit is <InlineMath math="5{,}000" />, <InlineMath math="5{,}360" />, and <InlineMath math="5{,}560" /> thousand rupiah. At <InlineMath math="40" />, <InlineMath math="45" />, and <InlineMath math="50" /> thousand, there are fewer than <InlineMath math="160" /> viewers, with a profit of <InlineMath math="5{,}600" />, <InlineMath math="5{,}480" />, and <InlineMath math="5{,}200" /> thousand rupiah. The value axis starts at <InlineMath math="4{,}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `${25 + 5 * i}`)}
+  series={[
+    { label: "At least 160 viewers", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (25 + 5 * i <= 35 ? (35 + 5 * i) * Math.min(200, 280 - 3.2 * (25 + 5 * i)) - 2000 : null)) },
+    { label: "Fewer than 160 viewers", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (25 + 5 * i > 35 ? (35 + 5 * i) * Math.min(200, 280 - 3.2 * (25 + 5 * i)) - 2000 : null)) },
+  ]}
+  valueRange={{ min: 4000, max: 6000 }}
+  valueLabel="Profit (thousand rupiah)"
+/>
+
 # The largest profit under the limit
 
 To the left of the peak, profit rises as the price rises. So among the allowed prices, **the highest allowed price gives the largest profit**, namely <InlineMath math="35\text{ thousand}" />:

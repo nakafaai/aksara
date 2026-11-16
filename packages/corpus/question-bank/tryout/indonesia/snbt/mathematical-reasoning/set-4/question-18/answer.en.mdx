@@ -8,6 +8,20 @@ A wall <InlineMath math="410\text{ cm}" /> wide needs <InlineMath math="9" /> st
 
 Two of those <InlineMath math="32" /> strips sit above the door, so **there are <InlineMath math="30" /> full strips and <InlineMath math="2" /> short ones**. A short strip covers <InlineMath math="240-200=40\text{ cm}" />.
 
+The chart below compares each wall's width divided by <InlineMath math="50\text{ cm}" /> with the strips actually hung. **Each wall rounds up on its own**, so the four walls together use <InlineMath math="32" /> strips, not <InlineMath math="29" />.
+
+<Chart
+  title={<>Wallpaper strips for each wall of Rina's room</>}
+  description={<>A <InlineMath math="410\text{ cm}" /> wall needs <InlineMath math="8.2" /> strip widths, rounded up to <InlineMath math="9" /> strips. A <InlineMath math="310\text{ cm}" /> wall needs <InlineMath math="6.2" /> strip widths, rounded up to <InlineMath math="7" /> strips. The total is <InlineMath math="9+7+9+7=32" /> strips.</>}
+  categories={["Wall 410 cm", "Wall 310 cm", "Second wall 410 cm", "Wall 310 cm with door"]}
+  bars="apart"
+  series={[
+    { label: "Width divided by 50 cm", mark: "bar", values: [410 / 50, 310 / 50, 410 / 50, 310 / 50] },
+    { label: "Strips hung", mark: "bar", values: [Math.ceil(410 / 50), Math.ceil(310 / 50), Math.ceil(410 / 50), Math.ceil(310 / 50)] },
+  ]}
+  valueLabel="Strips"
+/>
+
 # The first statement about eight rolls
 
 A plain cut for a full strip is <InlineMath math="240+10=250\text{ cm}" />, so one roll gives <InlineMath math="4" /> strips. Thirty full strips need <InlineMath math="7" /> whole rolls and <InlineMath math="2" /> strips from an eighth roll. A short strip is cut at only <InlineMath math="40+10=50\text{ cm}" />, and **the eighth roll still has <InlineMath math="500\text{ cm}" /> left**, so both fit. The first statement is true.

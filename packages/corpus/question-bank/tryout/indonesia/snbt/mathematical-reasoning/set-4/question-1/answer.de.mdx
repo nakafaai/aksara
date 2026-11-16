@@ -29,6 +29,20 @@ Jetzt berechnest du jedes Paket:
 
 Also ist **Paket B das günstigste Paket**, mit Kosten von <InlineMath math="\text{Rp}1{.}860{.}000" />.
 
+Das Diagramm trennt die Tages- und Streckenkosten jedes Pakets. **Paket B fügt nur wenig Streckenkosten hinzu**, weil sein Kontingent für die ganze Mietzeit gilt, während Paket A jeden Kilometer bezahlt.
+
+<Chart
+  title={<>Aufschlüsselung einer Miete von <InlineMath math="6" /> Tagen für <InlineMath math="960\text{ km}" /></>}
+  description={<>Paket A: Tageskosten <InlineMath math="\text{Rp}960{.}000" /> und Streckenkosten <InlineMath math="\text{Rp}1{.}440{.}000" />. Paket B: Tageskosten <InlineMath math="\text{Rp}1{.}680{.}000" /> und Streckenkosten <InlineMath math="\text{Rp}180{.}000" />. Paket C: Tageskosten <InlineMath math="\text{Rp}2{.}400{.}000" /> ohne Streckenkosten.</>}
+  bars="apart"
+  categories={["A", "B", "C"]}
+  series={[
+    { label: "Tageskosten nach Rabatt", mark: "bar", values: [0.8 * 6 * 200000, 0.8 * 6 * 350000, 0.8 * 6 * 500000] },
+    { label: "Streckenkosten", mark: "bar", values: [960 * 1500, (960 - 900) * 3000, 0] },
+  ]}
+  valueLabel="Kosten (Rupiah)"
+/>
+
 # Die Falle mit dem Tageskontingent prüfen
 
 Vergleiche das mit dem falschen Weg, der die Mehrstrecke Tag für Tag zählt. Am zweiten, fünften und sechsten Tag liegt die Strecke über <InlineMath math="150\text{ km}" />:

@@ -32,6 +32,21 @@ t &\ge 70{,}4
 
 Bewertungen sind ganze Zahlen, also ist **die kleinste passende Bewertung** <InlineMath math="71" />. Sie ist größer als <InlineMath math="58" /> und passt damit zum verwendeten Fall.
 
+Das Diagramm berechnet Gitas Endnote für eine Note des dritten Interviewers von <InlineMath math="65" /> bis <InlineMath math="75" />. Jeder zusätzliche Punkt hebt die Endnote nur um <InlineMath math="0{,}125" />, und **der erste Balken über der Linie bei <InlineMath math="80" /> gehört zu <InlineMath math="71" />**.
+
+<Chart
+  title={<>Gitas Endnote nach der Note des dritten Interviewers</>}
+  description={<>Für eine Note <InlineMath math="t" /> des dritten Interviewers über <InlineMath math="58" /> beträgt Gitas Endnote <InlineMath math="60{,}7+0{,}25\cdot\tfrac{84+t}{2}" />. Bei <InlineMath math="t=70" /> sind es <InlineMath math="79{,}95" />, bei <InlineMath math="t=71" /> sind es <InlineMath math="80{,}075" />. Die waagerechte Linie markiert die Anforderung von <InlineMath math="80" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${65 + i}`)}
+  series={[
+    { label: "Gitas Endnote", mark: "bar", values: Array.from({ length: 11 }, (_, i) => 60.7 + 0.25 * ((84 + 65 + i) / 2)) },
+    { label: "Anforderung 80", mark: "line", values: Array.from({ length: 11 }, () => 80) },
+  ]}
+  valueRange={{ min: 78, max: 81 }}
+  valueLabel="Endnote"
+/>
+
 # Die Grenze prüfen
 
 Prüfe <InlineMath math="t=71" /> und <InlineMath math="t=70" />:

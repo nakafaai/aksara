@@ -20,6 +20,21 @@ p &\le 37{,}5
 
 Ein Preis von <InlineMath math="40\text{ Tausend}" /> bringt nur <InlineMath math="152" /> Zuschauer, also **fällt der beste Preis ohne Bedingung weg**. Erlaubt sind <InlineMath math="35\text{ Tausend}" /> oder weniger.
 
+Das Diagramm trennt die Preise, die die Zuschauerbedingung erfüllen, von den anderen. **Der höchste Balken, <InlineMath math="40" /> Tausend, ist gerade nicht erlaubt**, also ist der höchste Balken unter den erlaubten Preisen <InlineMath math="35" /> Tausend.
+
+<Chart
+  title={<>Gewinn der Vorstellung nach Ticketpreis und Zuschauerbedingung</>}
+  description={<>Bei <InlineMath math="25" />, <InlineMath math="30" /> und <InlineMath math="35" /> Tausend kommen mindestens <InlineMath math="160" /> Zuschauer, und der Gewinn beträgt <InlineMath math="5{.}000" />, <InlineMath math="5{.}360" /> und <InlineMath math="5{.}560" /> Tausend Rupiah. Bei <InlineMath math="40" />, <InlineMath math="45" /> und <InlineMath math="50" /> Tausend kommen weniger als <InlineMath math="160" /> Zuschauer, bei einem Gewinn von <InlineMath math="5{.}600" />, <InlineMath math="5{.}480" /> und <InlineMath math="5{.}200" /> Tausend Rupiah. Die Werteachse beginnt bei <InlineMath math="4{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `${25 + 5 * i}`)}
+  series={[
+    { label: "Mindestens 160 Zuschauer", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (25 + 5 * i <= 35 ? (35 + 5 * i) * Math.min(200, 280 - 3.2 * (25 + 5 * i)) - 2000 : null)) },
+    { label: "Weniger als 160 Zuschauer", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (25 + 5 * i > 35 ? (35 + 5 * i) * Math.min(200, 280 - 3.2 * (25 + 5 * i)) - 2000 : null)) },
+  ]}
+  valueRange={{ min: 4000, max: 6000 }}
+  valueLabel="Gewinn (Tausend Rupiah)"
+/>
+
 # Der größte Gewinn unter der Grenze
 
 Links vom Gipfel steigt der Gewinn, wenn der Preis steigt. Unter den erlaubten Preisen liefert also **der höchste erlaubte Preis den größten Gewinn**, nämlich <InlineMath math="35\text{ Tausend}" />:

@@ -38,6 +38,20 @@ The large batch has a mean weight of <InlineMath math="300\text{ g}" />, so it s
 
 Check it: the two batches weigh <InlineMath math="432+468=900\text{ kg}" />, the same as the whole biomass. Their combined mean is still <InlineMath math="250\text{ g}" />, because <InlineMath math="900{,}000\div3{,}600=250" />. So **sorting doesn't change the weight**. It only moves <InlineMath math="468\text{ kg}" /> to a lower price: <InlineMath math="468\times4{,}000=1{,}872{,}000" />.
 
+The chart below splits the revenue by part of the catch. **The <InlineMath math="432\text{ kg}" /> bar is the same height both ways**, so the whole difference comes from the <InlineMath math="468\text{ kg}" /> part that drops a price class.
+
+<Chart
+  title={<>Revenue without and with sorting, by part of the catch</>}
+  description={<>Without sorting, the <InlineMath math="432\text{ kg}" /> part brings <InlineMath math="\text{Rp}12{,}096{,}000" /> and the <InlineMath math="468\text{ kg}" /> part brings <InlineMath math="\text{Rp}13{,}104{,}000" />. After sorting, the <InlineMath math="432\text{ kg}" /> part still brings <InlineMath math="\text{Rp}12{,}096{,}000" />, while the <InlineMath math="468\text{ kg}" /> part drops to <InlineMath math="\text{Rp}11{,}232{,}000" />.</>}
+  categories={["Not sorted", "Sorted"]}
+  bars="apart"
+  series={[
+    { label: "The 432 kg part", mark: "bar", values: [432 * 28000, 432 * 28000] },
+    { label: "The 468 kg part", mark: "bar", values: [468 * 28000, 468 * 24000] },
+  ]}
+  valueLabel="Revenue (rupiah)"
+/>
+
 # Why the other options are wrong
 
 Each wrong option comes from **a swapped base for the percentage** or a wrong price class.

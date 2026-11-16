@@ -22,6 +22,21 @@ p^2-87{,}5p+1{.}875 &\le 0\\
 
 Jadi <InlineMath math="37{,}5\le p\le50" />. Harga <InlineMath math="37{,}5\text{ ribu}" /> **bukan kelipatan** <InlineMath math="5\text{ ribu}" />, jadi tidak boleh dipakai. Harga yang boleh hanya <InlineMath math="40" />, <InlineMath math="45" />, dan <InlineMath math="50\text{ ribu}" />.
 
+Grafik berikut menghitung pendapatan tiket untuk harga kelipatan <InlineMath math="5" /> ribu. **Batang paling kiri yang masih mencapai garis target adalah harga <InlineMath math="40" /> ribu**, karena batang <InlineMath math="35" /> ribu sudah jatuh di bawahnya.
+
+<Chart
+  title={<>Pendapatan tiket satu pertunjukan menurut harga tiket</>}
+  description={<>Pada harga <InlineMath math="30" />, <InlineMath math="35" />, <InlineMath math="40" />, <InlineMath math="45" />, <InlineMath math="50" />, dan <InlineMath math="55" /> ribu rupiah, pendapatannya berturut-turut <InlineMath math="5{.}520" />, <InlineMath math="5{.}880" />, <InlineMath math="6{.}080" />, <InlineMath math="6{.}120" />, <InlineMath math="6{.}000" />, dan <InlineMath math="5{.}720" /> ribu rupiah. Garis datar menandai target <InlineMath math="6{.}000" /> ribu rupiah. Sumbu nilai dimulai dari <InlineMath math="5{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `${30 + 5 * i}`)}
+  series={[
+    { label: "Pendapatan tiket (ribu rupiah)", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (30 + 5 * i) * (280 - 3.2 * (30 + 5 * i))) },
+    { label: "Target 6.000 ribu", mark: "line", values: Array.from({ length: 6 }, () => 6000) },
+  ]}
+  valueRange={{ min: 5000, max: 6500 }}
+  valueLabel="Pendapatan (ribu rupiah)"
+/>
+
 # Memilih penonton terbanyak
 
 Penonton paling banyak terjadi pada harga paling murah di antara pilihan itu, yaitu <InlineMath math="\text{Rp}40{.}000" />:
