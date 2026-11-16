@@ -1,25 +1,25 @@
-# Turn the coating into a volume, the volume into moles, and the moles into charge
+# Coating to volume, volume to moles, moles to charge, then allow for the charge that is wasted
 
-The layer is a thin slab: area times thickness, with the thickness in centimetres, <InlineMath math="0.00200\text{ cm}" />, to match the density. **Each silver ion needs only one electron**, so the moles of electrons equal the moles of silver. The spoon must be the cathode, where silver ions gain electrons and deposit, while the silver anode dissolves to replace them.
+The layer is area times thickness, with the thickness in centimetres, <InlineMath math="0.00200\text{ cm}" />, to match the density: <InlineMath math="1.008\text{ g}" /> of silver. **Each silver ion takes one electron**, so <InlineMath math="901\text{ C}" /> must deposit on the spoon. **That is only <InlineMath math="90\%" /> of what passes**, so the supply must deliver <InlineMath math="1001\text{ C}" />. The spoon is the cathode, where silver ions gain electrons.
 
 <Chart
-  title={<>Silver deposited at a steady current</>}
-  description={<>At a steady current the silver grows evenly with time, reaching the <InlineMath math="1.008\text{ g}" /> the coating needs after <InlineMath math="60" /> minutes.</>}
-  categories={["0", "15", "30", "45", "60"]}
+  title={<>Charge in the plating</>}
+  description={<>The silver needs <InlineMath math="901\text{ C}" />, and <InlineMath math="1001\text{ C}" /> must pass.</>}
+  bars="apart"
+  categories={["Charge for the silver", "Charge that must pass"]}
   series={[
-    { label: "Silver deposited", mark: "line", values: [0, 0.252, 0.504, 0.756, 1.008] },
+    { label: "Charge", mark: "bar", values: [901, 1001] },
   ]}
-  valueLabel="Silver deposited (g)"
+  valueLabel="Charge (C)"
 />
 
 <BlockMath math="\begin{aligned}
-m&=48.0\times0.00200\times10.5=1.008\text{ g}\Rightarrow n(\text{Ag})=\tfrac{1.008}{108}=9.33\times10^{-3}\text{ mol}\\
-Q&=9.33\times10^{-3}\times96\,500=901\text{ C}\\
-t&=\tfrac{901}{0.250}=3600\text{ s}=60.0\text{ min}
+m&=48.0\times0.00200\times10.5=1.008\text{ g}\Rightarrow Q_{\text{Ag}}=\tfrac{1.008}{108}\times96\,500=901\text{ C}\\
+t&=\tfrac{901}{0.90\times0.250}=4000\text{ s}=66.7\text{ min}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="120" /> minutes gives each silver ion two electrons. **Silver ions carry a single positive charge**.
-- <InlineMath math="6.0" /> minutes converts the thickness wrongly, <InlineMath math="0.0200\text{ mm}" /> as <InlineMath math="0.000200\text{ cm}" />, which makes the layer ten times too thin.
-- At the anode metal dissolves. **The object to be plated is always the cathode**.
+- <InlineMath math="60.0" /> minutes ignores the wasted charge. **Only <InlineMath math="90\%" /> of the current deposits silver**.
+- <InlineMath math="54.0" /> minutes multiplies by <InlineMath math="0.90" /> instead of dividing, as if the waste made plating faster.
+- At the anode metal dissolves. **The object being plated is always the cathode**.

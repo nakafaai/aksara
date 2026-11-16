@@ -12,11 +12,14 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$12.0\\%$$, it falls from $$-1$$ to $$-2$$",
+          label: "$$20.0\\%$$, it falls from $$-1$$ to $$-2$$",
         },
-        { correct: false, label: "$$6.0\\%$$, it rises from $$-1$$ to $$0$$" },
-        { correct: true, label: "$$6.0\\%$$, it falls from $$-1$$ to $$-2$$" },
-        { correct: false, label: "$$6.0\\%$$, it stays at $$-2$$" },
+        { correct: false, label: "$$10.0\\%$$, it rises from $$-1$$ to $$0$$" },
+        { correct: true, label: "$$10.0\\%$$, it falls from $$-1$$ to $$-2$$" },
+        {
+          correct: false,
+          label: "$$1.00\\%$$, it falls from $$-1$$ to $$-2$$",
+        },
       ],
     },
     ms: {
@@ -24,17 +27,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$12.0\\%$$, ia turun daripada $$-1$$ kepada $$-2$$",
+          label: "$$20.0\\%$$, ia turun daripada $$-1$$ kepada $$-2$$",
         },
         {
           correct: false,
-          label: "$$6.0\\%$$, ia naik daripada $$-1$$ kepada $$0$$",
+          label: "$$10.0\\%$$, ia naik daripada $$-1$$ kepada $$0$$",
         },
         {
           correct: true,
-          label: "$$6.0\\%$$, ia turun daripada $$-1$$ kepada $$-2$$",
+          label: "$$10.0\\%$$, ia turun daripada $$-1$$ kepada $$-2$$",
         },
-        { correct: false, label: "$$6.0\\%$$, ia kekal pada $$-2$$" },
+        {
+          correct: false,
+          label: "$$1.00\\%$$, ia turun daripada $$-1$$ kepada $$-2$$",
+        },
       ],
     },
   },
