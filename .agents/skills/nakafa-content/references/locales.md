@@ -65,9 +65,11 @@ not replace the full lesson context.
 - Subject terms follow the Kementerian Pendidikan Malaysia DSKP for KSSM of the
   subject, because Form 4 and Form 5 learners meet those words in their
   textbooks and in SPM.
-- No global Malay humanizer exists. Apply the complete global Humanizer skill
-  for AI-writing patterns, read as review prompts, then read the Malay text
-  aloud by itself as a Malaysian learner would.
+- No Malay humanizer skill exists: skills.sh, `npx skills find malay`, and a
+  GitHub search on 16 November 2026 found only commerce, tax, and Indonesian
+  regional skills. Apply the complete global Humanizer skill for AI-writing
+  patterns, read as review prompts, then run the Malay humanizer pass below and
+  read the Malay text aloud by itself as a Malaysian learner would.
 - Malay is not Indonesian with a few words changed. Write each sentence in
   Malaysian Malay from the verified meaning, never by editing the Indonesian
   sibling. `bun run test:lesson-voice` refuses the forms below that the
@@ -78,7 +80,14 @@ not replace the full lesson context.
 - Write as a warm teacher talking to one Form 4 or Form 5 student: casual,
   close and clear, never formal. Address the learner as `kamu`, the word a
   Malaysian teacher uses with a student in class, and write `buku kamu` for
-  their things. Never `anda`, `awak`, `kau`, `engkau` or `kalian`.
+  their things. Never `anda`, `awak`, `kau`, `engkau`, `kalian` or `korang`.
+- The author rarely speaks of itself. Use inclusive `kita` when teacher and
+  learner really work a step together, and name the subject when only the
+  explanation acts. Never `aku`, `daku` or `patik`: from a teacher to a student
+  they read as rough or archaic. A first person inside a quoted or glossed
+  source keeps the source's own pronoun.
+- Ask with the plain imperative (`Kira ...`, `Cuba lukis ...`, `Semak ...`),
+  never with `Sila`, `Silakan`, `Mohon`, `Dimohon` or `hendaklah`.
 - Carry the reasoning like a story: each step follows from the last, with the
   reason said in plain words. Use everyday Malaysian wording and short
   sentences. Drop stiff openers and connectors such as `Sila`, `hendaklah`,
@@ -90,6 +99,54 @@ not replace the full lesson context.
 - Numbers use a decimal point and a thousands comma: `1,234.5`. Dates put the
   day first with Malay month names (`Mac`, `Ogos`, `Disember`), and the time
   reads `8:15 pagi`, `2:30 petang`.
+
+### Malay humanizer pass
+
+Run this pass on every authored Malay sentence after the global Humanizer
+skill. Each item is a review prompt with its fix; the voice gate refuses the
+forms it can see, and the reader owns the rest.
+
+- Stock AI phrasing. Delete or replace with the concrete fact: `memainkan
+  peranan penting`, `sangat penting`, `idea utama`, `kuncinya ialah`, `berita
+  baiknya`, `pintu masuk ke`, `menjadi asas untuk`, `dalam dunia ...`, `Semoga
+  ini membantu`, `masa depan kelihatan cerah`, `walaupun pelbagai cabaran ...
+  terus berkembang`, `akhirnya, semuanya bergantung`.
+- Frames that hide the fact. State the fact itself instead of `Perlu diingat
+  bahawa`, `Penting untuk difahami bahawa`, `Kita boleh lihat bahawa`,
+  `Kelihatan bahawa`, `Seperti yang kita lihat` or `Jika diperhatikan,`.
+- Lesson choreography. Teach instead of announcing: drop `Mari kita lihat`,
+  `Jom cuba`, `Di sini kita akan membincangkan`, `Bahagian seterusnya`, `Pelajaran
+  ini membincangkan` and `Untuk lebih memahami konsep ini, lihat contoh
+  berikut`. A bare pointer such as `Perhatikan jadual berikut.` says what to
+  look for in the table.
+- Vague help and visibility claims. Replace `membantu kita memahami`,
+  `membolehkan kita`, `memberikan gambaran`, `menjadikan ... lebih jelas`,
+  `mudah dilihat` and `menjadikan corak itu kelihatan` with what the learner
+  now computes, compares or notices, and why.
+- Empty labels and headings. A heading names the task or the result, never
+  `Ringkasan`, `Rumusan`, `Kesimpulan`, `Pengenalan`, `Contoh Mudah`,
+  `Apakah itu ...`, `Memahami ...`, `Aplikasi dalam Kehidupan Seharian` or a
+  heading that only says `penting`, and never ends on `ini`, `itu` or
+  `tersebut`.
+- Stiff written register. Malay textbooks lean on `adalah`, `merupakan`,
+  `iaitu`, `oleh yang demikian`, `justeru`, `dengan ini` and the passive
+  `di-` chain. Keep `ialah` before a noun and `iaitu` before a list, write
+  `ialah` or the verb itself instead of `adalah merupakan`, and start a step
+  with the learner as the actor: `Kira jisimnya` rather than `Jisim hendaklah
+  dikira`. Vary repeated paragraph openers such as `Oleh itu` and
+  `Ini bermakna`.
+- Calques from English and Indonesian. Write `yang` or a new sentence, not a
+  relative `, di mana`; write `di mana` apart only for a place question; write
+  `sering kali`, `apa pun` and `pada asasnya` only when the sentence needs it.
+  Never carry an Indonesian or English image into Malay (`peta` for an image
+  under a transformation, `pembahagian lantai`, `keluarga antiterbitan`,
+  `jambatan antara`, `blok binaan`, `seperti resipi`).
+- Casual, not cringe. `tak`, `nak` and `dah` sit outside lesson prose except in
+  established terms such as `tak terhingga` and `kamiran tak tentu`; slang such
+  as `takde`, `camni`, `giler` and `kitorang` never appears.
+- Read aloud. Each sentence must sound like a Malaysian teacher beside one
+  student: short, warm, exact, with the reason said in plain words and every
+  term in its KSSM form.
 
 ### Words that differ
 

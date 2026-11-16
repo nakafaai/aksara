@@ -8,6 +8,7 @@ export const DEFECT_VOICE_RULES = [
       de: /[\u{2013}\u{2014}]/u,
       en: /[\u{2013}\u{2014}]/u,
       id: /[\u{2013}\u{2014}]/u,
+      ms: /[\u{2013}\u{2014}]/u,
     },
   },
   {
@@ -16,6 +17,7 @@ export const DEFECT_VOICE_RULES = [
       de: /\b(?!(?:acht|alle|das|dem|den|der|des|die|ein|eine|einem|einen|einer|eines|mit|und|von|zwischen)\b)(?<word>[\p{L}]{3,})[ \t]+\k<word>\b/iu,
       en: /\b(?!(?:and|between|eight|from|had|that|the|with)\b)(?<word>[\p{L}]{3,})[ \t]+\k<word>\b/iu,
       id: /\b(?!(?:antara|dan|dari|delapan|dengan|jari|rata)\b)(?<word>[\p{L}]{3,})[ \t]+\k<word>\b/iu,
+      ms: /\b(?!(?:antara|dan|dari|daripada|dengan|jari|rata)\b)(?<word>[\p{L}]{3,})[ \t]+\k<word>\b/iu,
     },
   },
   {
@@ -30,6 +32,7 @@ export const DEFECT_VOICE_RULES = [
       de: /^\s*\d+[.)]\s+(?:\*\*)?(?:Zuerst|Zunächst)\s*[,:]/iu,
       en: /^\s*\d+[.)]\s+(?:\*\*)?First\s*[,:]/iu,
       id: /^\s*\d+[.)]\s+(?:\*\*)?Pertama\s*[,:]/iu,
+      ms: /^\s*\d+[.)]\s+(?:\*\*)?Pertama\s*[,:]/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

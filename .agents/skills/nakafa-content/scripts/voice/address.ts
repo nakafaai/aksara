@@ -100,4 +100,24 @@ export const ADDRESS_VOICE_RULES = [
     patterns: { id: /\b(?:silakan|silahkan|mohon|dimohon)\b/iu },
     protectInlineQuotations: true,
   },
+  {
+    id: "malay-learner-address",
+    inspectLinkLabels: true,
+    patterns: { ms: /\b(?:anda|awak|kau|engkau|kalian|korang)\b/iu },
+    protectInlineQuotations: true,
+  },
+  {
+    id: "malay-author-self-reference",
+    inspectLinkLabels: true,
+    patterns: { ms: /\b(?:aku|daku|patik)\b/iu },
+    protectInlineQuotations: true,
+  },
+  {
+    id: "malay-formal-request",
+    inspectLinkLabels: true,
+    patterns: {
+      ms: /\b(?:sila|silakan|dipersilakan|mohon|dimohon|hendaklah|adalah dikehendaki)\b/iu,
+    },
+    protectInlineQuotations: true,
+  },
 ] satisfies readonly LessonVoiceRule[];

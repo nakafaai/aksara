@@ -130,3 +130,26 @@ it("rejects an empty claim that a term is important", () => {
     []
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "indonesian-dimensional-container-calque":
+      "Vektor itu tinggal dalam bekas n-dimensi.",
+    "indonesian-floor-division-calque":
+      "Gunakan pembahagian lantai untuk 7 dan 2.",
+    "indonesian-mechanical-input-constraint-calque":
+      "Komposisi fungsi ini mengembalikan input asal.",
+    "indonesian-transformation-image-calque": "Kira peta bagi titik A.",
+    "indonesian-unexplained-regularization-calque":
+      "Komponen kecil itu disusutkan.",
+    "indonesian-unit-cancellation-calque": "Unit meter saling habis.",
+    "indonesian-water-ratio-gateway": "Pintu nisbah air menentukan hasil.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

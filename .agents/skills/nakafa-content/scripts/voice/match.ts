@@ -24,6 +24,9 @@ const ADDRESS_RULE_IDS = new Set([
   "indonesian-formal-learner-address",
   "indonesian-formal-request",
   "indonesian-plural-learner-address",
+  "malay-author-self-reference",
+  "malay-formal-request",
+  "malay-learner-address",
 ]);
 const NEWLINE_PATTERN = /[\r\n]/u;
 
