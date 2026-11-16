@@ -187,13 +187,14 @@ export const verifyEdgeContracts = Effect.fn(
         )
       )
     );
-  const manifest = yield* Effect.try({
-    catch: edgeFailure(
-      "manifest",
-      `Edge contract manifest could not be decoded: ${manifestFile}`
-    ),
-    try: () => parseInstalledManifest(manifestSource),
-  });
+  const manifest = yield* parseInstalledManifest(manifestSource).pipe(
+    Effect.mapError(
+      edgeFailure(
+        "manifest",
+        `Edge contract manifest could not be decoded: ${manifestFile}`
+      )
+    )
+  );
   const distRoot = path.resolve(packageRoot, "dist");
   for (const entry of EDGE_CONTRACT_EXPORTS) {
     const descriptor = manifest.exports[`./${entry}`];

@@ -1,10 +1,10 @@
-import assert from "node:assert/strict";
 import {
   isNonProseFieldName,
   isProtectedLineComponent,
   isProtectedNodeType,
 } from "#nakafa-content/mdx/fields";
 import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import { maskProtectedInlineContent } from "#nakafa-content/voice/text";
 
 /** Recognizes an MDX expression that contains comments but renders no value. */
@@ -30,12 +30,12 @@ function collectProtectedRanges(node: MdxNode, ranges: SourceRange[]): void {
     ((node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
       isProtectedLineComponent(node.name));
   if (protectedNode) {
-    assert.ok(node.position);
+    expectShape(node.position);
     ranges.push(node.position);
     return;
   }
   if (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") {
-    assert.ok(node.attributes);
+    expectShape(node.attributes);
     for (const attribute of node.attributes) {
       if (attribute.position && isNonProseFieldName(attribute.name)) {
         ranges.push(attribute.position);

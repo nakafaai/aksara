@@ -1,42 +1,55 @@
-import { parseArgs } from "node:util";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { PointsCheckError } from "#nakafa-content/points/error";
 
 const DEFAULT_BASE = "origin/main";
+const BASE_OPTION = "--base";
+const BASE_PREFIX = `${BASE_OPTION}=`;
 const USAGE = "Usage: points/check.ts <directory or file>... [--base <ref>]";
 
 /** What one run checks and the revision it compares visuals with. */
-export interface CheckOptions {
-  readonly base: string;
-  readonly targets: readonly string[];
+const CheckOptionsSchema = Schema.Struct({
+  base: Schema.String,
+  targets: Schema.NonEmptyArray(Schema.String),
+});
+
+/** What one run checks and the revision it compares visuals with. */
+export type CheckOptions = typeof CheckOptionsSchema.Type;
+
+/** The usage failure, with the reason the arguments were refused when there is one. */
+function invalidArguments(reason?: string) {
+  return new PointsCheckError({
+    detail: reason === undefined ? USAGE : `${USAGE}\n${reason}`,
+    reason: "invalid-arguments",
+  });
 }
 
 /** Reads the target paths and the revision that visuals are compared with. */
 export const parseOptions = Effect.fn("PointsCheck.parseOptions")(function* (
   arguments_: readonly string[]
 ) {
-  const parsed = yield* Effect.try({
-    catch: (cause) =>
-      new PointsCheckError({
-        detail: `${USAGE}\n${String(cause)}`,
-        reason: "invalid-arguments",
-      }),
-    try: () =>
-      parseArgs({
-        allowPositionals: true,
-        args: [...arguments_],
-        options: { base: { type: "string" } },
-        strict: true,
-      }),
-  });
-  if (parsed.positionals.length === 0) {
-    return yield* new PointsCheckError({
-      detail: USAGE,
-      reason: "invalid-arguments",
-    });
+  let base = DEFAULT_BASE;
+  const targets: string[] = [];
+  let rest = arguments_;
+  while (Arr.isReadonlyArrayNonEmpty(rest)) {
+    const [argument, ...tail] = rest;
+    rest = tail;
+    if (argument === BASE_OPTION) {
+      const [value, ...after] = tail;
+      if (value === undefined) {
+        return yield* invalidArguments(`${BASE_OPTION} requires a revision`);
+      }
+      base = value;
+      rest = after;
+    } else if (argument.startsWith(BASE_PREFIX)) {
+      base = argument.slice(BASE_PREFIX.length);
+    } else if (argument.startsWith("-")) {
+      return yield* invalidArguments(`Unknown option: ${argument}`);
+    } else {
+      targets.push(argument);
+    }
   }
-  return {
-    base: parsed.values.base ?? DEFAULT_BASE,
-    targets: parsed.positionals,
-  } satisfies CheckOptions;
+  return yield* Schema.decodeUnknownEffect(CheckOptionsSchema)({
+    base,
+    targets,
+  }).pipe(Effect.mapError(() => invalidArguments()));
 });

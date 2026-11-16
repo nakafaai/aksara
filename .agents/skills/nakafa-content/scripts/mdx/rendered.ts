@@ -1,13 +1,12 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
 import type { PhrasingContent } from "mdast";
-
 import type {
   MdxAttribute,
   MdxNode,
   SourceRange,
 } from "#nakafa-content/mdx/parse";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 
 const ENTITY_PATTERN = /&(?:#[xX][\dA-Fa-f]+|#\d+|[A-Za-z][A-Za-z\d]+);/uy;
 const ESCAPABLE_CHARACTER_PATTERN = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/u;
@@ -29,9 +28,9 @@ function decodeEntity(entity: string): string {
   }
   const paragraph = parseLessonMdx(entity).children?.[0];
   const text = paragraph?.children?.[0];
-  assert.equal(text?.type, "text");
+  expectShape(text?.type === "text");
   const value = text?.value;
-  assert.ok(Predicate.isString(value));
+  expectShape(Predicate.isString(value));
   ENTITY_VALUES.set(entity, value);
   return value;
 }
@@ -91,7 +90,7 @@ function renderedOffsets(
       continue;
     }
     const codePoint = authored.codePointAt(sourceIndex);
-    assert.ok(codePoint !== undefined);
+    expectShape(codePoint !== undefined);
     const sourceCharacter = String.fromCodePoint(codePoint);
     decoded += sourceCharacter;
     offsets.push(
@@ -103,7 +102,7 @@ function renderedOffsets(
     sourceIndex += sourceCharacter.length;
     followsNewline = sourceCharacter === "\n";
   }
-  assert.equal(decoded, rendered);
+  expectShape(decoded === rendered);
   return offsets;
 }
 
@@ -117,8 +116,8 @@ export function renderedSourceRange(
 ): SourceRange {
   let start = range.start?.offset;
   let end = range.end?.offset;
-  assert.ok(start !== undefined);
-  assert.ok(end !== undefined);
+  expectShape(start !== undefined);
+  expectShape(end !== undefined);
   if (
     trimQuotes &&
     ((source[start] === '"' && source[end - 1] === '"') ||
@@ -161,18 +160,18 @@ export function directAttributeRange(
   }
   const start = attribute.position?.start?.offset;
   const end = attribute.position?.end?.offset;
-  assert.ok(start !== undefined);
-  assert.ok(end !== undefined);
+  expectShape(start !== undefined);
+  expectShape(end !== undefined);
   const authored = source.slice(start, end);
   const equals = authored.indexOf("=");
-  assert.notEqual(equals, -1);
+  expectShape(equals !== -1);
   const valueOffset =
     authored.slice(equals + 1).search(NON_WHITESPACE_PATTERN) + equals + 1;
   const quote = authored[valueOffset];
-  assert.ok(quote === '"' || quote === "'");
+  expectShape(quote === '"' || quote === "'");
   const closing = authored.lastIndexOf(quote);
-  assert.ok(valueOffset >= equals + 1);
-  assert.ok(closing > valueOffset);
+  expectShape(valueOffset >= equals + 1);
+  expectShape(closing > valueOffset);
   return renderedSourceRange(
     {
       end: { offset: start + closing },
@@ -202,8 +201,8 @@ export function renderedNodeRange(
     if (current.type === "text" && Predicate.isString(current.value)) {
       const start = current.position?.start?.offset;
       const end = current.position?.end?.offset;
-      assert.ok(start !== undefined);
-      assert.ok(end !== undefined);
+      expectShape(start !== undefined);
+      expectShape(end !== undefined);
       const range = renderedSourceRange(
         { end: { offset: end }, start: { offset: start } },
         current.value,
@@ -226,7 +225,7 @@ export function renderedNodeRange(
     }
     if (current.type === "break") {
       const start = current.position?.start?.offset;
-      assert.ok(start !== undefined);
+      expectShape(start !== undefined);
       parts.push({ offsets: [start], text: " " });
       return;
     }
@@ -237,7 +236,7 @@ export function renderedNodeRange(
       return;
     }
     if (hasChildNodes(current)) {
-      assert.ok(current.children);
+      expectShape(current.children);
       for (const child of current.children) {
         visit(child);
       }

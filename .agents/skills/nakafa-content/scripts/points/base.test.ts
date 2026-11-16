@@ -1,7 +1,6 @@
-import { join } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { assert, layer } from "@effect/vitest";
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, Path } from "effect";
 import {
   changedFiles,
   parseChanges,
@@ -62,9 +61,11 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         assert.strictEqual(unrelated.reason, "unknown-base");
         assert.include(unrelated.detail, "exit code 1");
 
-        const missing = yield* resolveBase(join(root, "missing"), "main").pipe(
-          Effect.flip
-        );
+        const path = yield* Path.Path;
+        const missing = yield* resolveBase(
+          path.join(root, "missing"),
+          "main"
+        ).pipe(Effect.flip);
         assert.strictEqual(missing.reason, "unknown-base");
       })
     );
@@ -134,8 +135,9 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         });
         const base = yield* commitAll(root, "base");
         const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
         for (const folder of ["lessons/new", "other"]) {
-          yield* fileSystem.makeDirectory(join(root, folder), {
+          yield* fileSystem.makeDirectory(path.join(root, folder), {
             recursive: true,
           });
         }

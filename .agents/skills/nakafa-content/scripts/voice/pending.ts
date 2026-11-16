@@ -1,4 +1,3 @@
-import assert from "node:assert/strict";
 import { Array as Arr, Console, Effect, Predicate } from "effect";
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import { findPlainMathText } from "#nakafa-content/math/plain";
@@ -7,6 +6,7 @@ import {
   type MdxNode,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import type { CliOptions } from "#nakafa-content/voice/options";
 import type {
   LessonVoiceFileIssue,
@@ -64,7 +64,7 @@ function findVisualIssues(source: string, tree: MdxNode): LessonVoiceIssue[] {
     }
     if (RETIRED_VISUALS.has(String(node.name))) {
       const start = node.position?.start?.offset;
-      assert.ok(start !== undefined);
+      expectShape(start !== undefined);
       issues.push(issueAtOffset(source, start, "retired-visual"));
     }
     for (const attribute of node.attributes) {
@@ -73,7 +73,7 @@ function findVisualIssues(source: string, tree: MdxNode): LessonVoiceIssue[] {
         VISUAL_TEXT_PROPS.has(String(attribute.name))
       ) {
         const offset = attribute.position?.start?.offset;
-        assert.ok(offset !== undefined);
+        expectShape(offset !== undefined);
         issues.push(issueAtOffset(source, offset, "string-visual-text"));
       }
     }

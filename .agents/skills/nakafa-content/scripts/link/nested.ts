@@ -1,6 +1,4 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
-
 import {
   externalMatch,
   isDestinationAttribute,
@@ -12,6 +10,7 @@ import {
   type EstreeNode,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import {
   isFullyStaticStringExpression,
   nestedStaticStringCandidates,
@@ -72,7 +71,7 @@ function destinationPropertyExternalOffsets(
   if (node.type === "Property") {
     const name = staticFieldName(asEstreeNode(node.key));
     const value = asEstreeNode(node.value);
-    assert.ok(value);
+    expectShape(value);
     if (isDestinationAttribute(name, componentName)) {
       for (const candidate of nestedStaticStringCandidates(value)) {
         const match = externalMatch(
@@ -120,9 +119,9 @@ export function stringExternalOffset(
 /** Returns every ESTree child without interpreting identifiers as content. */
 function estreeChildren(node: EstreeNode): EstreeNode[] {
   if (node.type === "SequenceExpression") {
-    assert.ok(Array.isArray(node.expressions));
+    expectShape(Array.isArray(node.expressions));
     const result = asEstreeNode(node.expressions.at(-1));
-    assert.ok(result);
+    expectShape(result);
     return [result];
   }
   return Object.values(node).flatMap((value) => {
@@ -144,18 +143,18 @@ function nestedJsxAttributeOffset(
   componentName: string | undefined
 ): number | undefined {
   const { start } = attribute;
-  assert.ok(start !== undefined);
+  expectShape(start !== undefined);
   if (attribute.type === "JSXSpreadAttribute") {
     const argument = asEstreeNode(attribute.argument);
-    assert.ok(argument);
+    expectShape(argument);
     return (
       expressionExternalOffset(argument, source, false, componentName) ??
       (isFullyStaticValueExpression(argument) ? undefined : start)
     );
   }
-  assert.equal(attribute.type, "JSXAttribute");
+  expectShape(attribute.type === "JSXAttribute");
   const attributeName = staticFieldName(asEstreeNode(attribute.name));
-  assert.ok(attributeName);
+  expectShape(attributeName);
   if (isProtectedExampleAttribute(componentName, attributeName)) {
     return;
   }
@@ -169,8 +168,8 @@ function nestedJsxAttributeOffset(
     return destinationAttribute ? start : undefined;
   }
   if (value.type === "Literal" && Predicate.isString(value.value)) {
-    assert.ok(value.start !== undefined);
-    assert.ok(value.end !== undefined);
+    expectShape(value.start !== undefined);
+    expectShape(value.end !== undefined);
     return stringExternalOffset(
       value.value,
       source,
@@ -180,9 +179,9 @@ function nestedJsxAttributeOffset(
       srcSetAttribute
     );
   }
-  assert.equal(value.type, "JSXExpressionContainer");
+  expectShape(value.type === "JSXExpressionContainer");
   const expression = asEstreeNode(value.expression);
-  assert.ok(expression);
+  expectShape(expression);
   const externalOffset = expressionExternalOffset(
     expression,
     source,
@@ -205,7 +204,7 @@ function firstNestedJsxExternalOffset(
 ): number | undefined {
   for (const value of values) {
     const node = asEstreeNode(value);
-    assert.ok(node);
+    expectShape(node);
     const offset = nestedJsxExternalOffset(node, source);
     if (offset !== undefined) {
       return offset;
@@ -219,10 +218,10 @@ function nestedJsxAttributesExternalOffset(
   source: string,
   componentName: string | undefined
 ): number | undefined {
-  assert.ok(Array.isArray(openingElement.attributes));
+  expectShape(Array.isArray(openingElement.attributes));
   for (const value of openingElement.attributes) {
     const attribute = asEstreeNode(value);
-    assert.ok(attribute);
+    expectShape(attribute);
     const offset = nestedJsxAttributeOffset(attribute, source, componentName);
     if (offset !== undefined) {
       return offset;
@@ -239,12 +238,12 @@ function nestedJsxExternalOffset(
     return firstNestedJsxExternalOffset(estreeChildren(node), source);
   }
   const openingElement = asEstreeNode(node.openingElement);
-  assert.ok(openingElement);
+  expectShape(openingElement);
   const componentName = staticFieldName(asEstreeNode(openingElement.name));
   if (componentName === "CodeBlock") {
     return;
   }
-  assert.ok(Array.isArray(node.children));
+  expectShape(Array.isArray(node.children));
   return (
     nestedJsxAttributesExternalOffset(openingElement, source, componentName) ??
     firstNestedJsxExternalOffset(node.children, source)

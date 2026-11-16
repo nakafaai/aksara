@@ -1,9 +1,9 @@
-import assert from "node:assert/strict";
 import { createProcessor } from "@mdx-js/mdx";
 import { Effect, Predicate, Schema } from "effect";
 import type { PhrasingContent } from "mdast";
 import remarkGfm from "remark-gfm";
 import type {} from "remark-parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 
 declare module "mdast" {
   interface Data {
@@ -106,8 +106,8 @@ export function walkEstreeDeep(
 
 /** Converts an ESTree offset pair into the shared source range shape. */
 export function estreeRange(node: EstreeNode) {
-  assert.ok(node.start !== undefined);
-  assert.ok(node.end !== undefined);
+  expectShape(node.start !== undefined);
+  expectShape(node.end !== undefined);
   return {
     end: { offset: node.end },
     start: { offset: node.start },
@@ -133,7 +133,7 @@ export function staticFieldName(
   node: EstreeNode | undefined
 ): string | undefined {
   if (node?.type === "Identifier" || node?.type === "JSXIdentifier") {
-    assert.ok(Predicate.isString(node.name));
+    expectShape(Predicate.isString(node.name));
     return node.name;
   }
   return node?.type === "Literal" && Predicate.isString(node.value)
@@ -193,7 +193,7 @@ export function parseLessonMdx(
                     return;
                   }
                   const fragment = this.stack.at(-1);
-                  assert.ok(fragment?.type === "fragment");
+                  expectShape(fragment?.type === "fragment");
                   image.data = {
                     ...image.data,
                     altChildren: fragment.children,

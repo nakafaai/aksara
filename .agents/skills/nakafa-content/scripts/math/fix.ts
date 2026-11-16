@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-import { resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-import { NodeFileSystem, NodeRuntime } from "@effect/platform-node";
-import { Console, Effect, FileSystem } from "effect";
+import { NodeRuntime, NodeServices } from "@effect/platform-node";
+import { Console, Effect, FileSystem, Path } from "effect";
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import { findPlainNumbers } from "#nakafa-content/math/number";
 import { wrapNumbers } from "#nakafa-content/math/wrap";
@@ -97,14 +95,15 @@ const fixFile = Effect.fn("MathFix.fixFile")(function* ({
 });
 
 /** Lists the locale files of one argument: a directory or one MDX file. */
-const filesOf = Effect.fn("MathFix.filesOf")(function* (path: string) {
-  const locale = localeFromFile(path);
-  if (!path.endsWith(".mdx")) {
-    const files = yield* collectLocaleFiles(path);
+const filesOf = Effect.fn("MathFix.filesOf")(function* (target: string) {
+  const path = yield* Path.Path;
+  const locale = localeFromFile(path, target);
+  if (!target.endsWith(".mdx")) {
+    const files = yield* collectLocaleFiles(target);
     return files.filter(({ file }) => documentProfile(file) !== "page");
   }
-  return isLessonVoiceLocale(locale) && documentProfile(path) !== "page"
-    ? [{ file: path, locale }]
+  return isLessonVoiceLocale(locale) && documentProfile(target) !== "page"
+    ? [{ file: target, locale }]
     : [];
 });
 
@@ -148,14 +147,11 @@ export const runMain = Effect.fn("MathFix.runMain")(function* (
         Console.error(error.detail).pipe(Effect.as(2))
       )
     ),
-    NodeFileSystem.layer
+    NodeServices.layer
   );
 });
 
-const isMain =
-  process.argv[1] &&
-  resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-if (isMain) {
+if (process.argv[1] === import.meta.filename) {
   runMain(process.argv.slice(2)).pipe(
     Effect.andThen((code) =>
       Effect.sync(() => {

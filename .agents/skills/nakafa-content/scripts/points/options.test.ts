@@ -14,7 +14,7 @@ describe("points options", () => {
 
   it.effect("reads an explicit base before or after the targets", () =>
     Effect.gen(function* () {
-      const expected = { base: "abc1234", targets: ["lessons"] };
+      const expected = { base: "abc1234", targets: ["lessons"] as const };
 
       assert.deepStrictEqual(
         yield* parseOptions(["--base", "abc1234", "lessons"]),

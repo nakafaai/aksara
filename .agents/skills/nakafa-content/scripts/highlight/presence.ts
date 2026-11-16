@@ -1,4 +1,4 @@
-import { relative } from "node:path";
+import type { Path } from "effect";
 
 import {
   hasMarkedPhrase,
@@ -25,6 +25,7 @@ interface LessonSiblingDocument {
  * learners reading that language, even when a sibling locale marks it.
  */
 export function findLessonHighlightIssues(
+  path: Path.Path,
   root: string,
   documents: readonly LessonSiblingDocument[]
 ): LessonVoiceFileIssue[] {
@@ -39,7 +40,7 @@ export function findLessonHighlightIssues(
     issues.push({
       column: 1,
       excerpt: "Lesson carries no marked phrase",
-      file: relative(root, document.file),
+      file: path.relative(root, document.file),
       line: 1,
       locale: document.locale,
       rule: "lesson-without-highlight",

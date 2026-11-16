@@ -1,6 +1,4 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
-
 import { findAlignedFindings } from "#nakafa-content/math/align";
 import { issueAtOffset, type MathFinding } from "#nakafa-content/math/finding";
 import { findGluedTextGroups } from "#nakafa-content/math/glue";
@@ -19,6 +17,7 @@ import {
   parseLessonMdx,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import { staticStringCandidates } from "#nakafa-content/mdx/static";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
@@ -57,7 +56,7 @@ function findingsInMathValue(value: string): MathFinding[] {
 function recordFindings(text: MathText, offsets: Map<number, string>): void {
   for (const finding of findingsInMathValue(text.text)) {
     const authored = text.offsets[finding.offset];
-    assert.ok(authored !== undefined);
+    expectShape(authored !== undefined);
     offsets.set(authored, finding.rule);
   }
 }
@@ -129,17 +128,17 @@ function directMathText(
   }
   const start = attribute.position?.start?.offset;
   const end = attribute.position?.end?.offset;
-  assert.ok(start !== undefined);
-  assert.ok(end !== undefined);
+  expectShape(start !== undefined);
+  expectShape(end !== undefined);
   const authored = source.slice(start, end);
   const equals = authored.indexOf("=");
-  assert.notEqual(equals, -1);
+  expectShape(equals !== -1);
   const valueIndex =
     authored.slice(equals + 1).search(NON_WHITESPACE_PATTERN) + equals + 1;
   const quote = authored[valueIndex];
-  assert.ok(quote === '"' || quote === "'");
+  expectShape(quote === '"' || quote === "'");
   const closing = authored.lastIndexOf(quote);
-  assert.ok(closing > valueIndex);
+  expectShape(closing > valueIndex);
   return alignEntityOffsets(
     source.slice(start + valueIndex + 1, start + closing),
     attribute.value,
@@ -167,14 +166,14 @@ function collectJsxAttributeFindings(
     attributeValue.type === "JSXExpressionContainer"
       ? asEstreeNode(attributeValue.expression)
       : attributeValue;
-  assert.ok(value !== undefined);
+  expectShape(value !== undefined);
   if (attributeValue.type === "Literal") {
-    assert.ok(Predicate.isString(value.value));
+    expectShape(Predicate.isString(value.value));
     const { start, end } = value;
-    assert.ok(start !== undefined);
-    assert.ok(end !== undefined);
+    expectShape(start !== undefined);
+    expectShape(end !== undefined);
     const quoted = source.slice(start, end);
-    assert.ok(quoted.length >= 2);
+    expectShape(quoted.length >= 2);
     const text = alignEntityOffsets(
       quoted.slice(1, -1),
       value.value,

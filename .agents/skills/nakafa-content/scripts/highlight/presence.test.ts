@@ -1,8 +1,13 @@
 import { assert, it } from "@effect/vitest";
+import { Effect, Path } from "effect";
 
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
+
+/** Runs one synchronous test body with Effect's POSIX path service. */
+const withPath = (body: (path: Path.Path) => void) =>
+  Effect.map(Path.Path, body).pipe(Effect.provide(Path.layer));
 
 const ROOT = "/lesson";
 
@@ -19,166 +24,193 @@ const lesson = (sources: Record<string, string>) =>
     tree: parseLessonMdx(source),
   }));
 
-it("flags every authored locale that carries no highlight", () => {
-  assert.deepEqual(
-    findLessonHighlightIssues(
-      ROOT,
-      lesson({
-        de: authored("## Abschnitt\n\nText."),
-        en: authored("## Section\n\nText."),
-        id: authored("## Bagian\n\nTeks."),
-      })
-    ).map(({ file, line, locale, rule }) => ({ file, line, locale, rule })),
-    [
-      {
-        file: "topic/lesson/de.mdx",
-        line: 1,
-        locale: "de",
-        rule: "lesson-without-highlight",
-      },
-      {
-        file: "topic/lesson/en.mdx",
-        line: 1,
-        locale: "en",
-        rule: "lesson-without-highlight",
-      },
-      {
-        file: "topic/lesson/id.mdx",
-        line: 1,
-        locale: "id",
-        rule: "lesson-without-highlight",
-      },
-    ]
-  );
-});
-
-it("flags only the locale sibling that carries no highlight", () => {
-  assert.deepEqual(
-    findLessonHighlightIssues(
-      ROOT,
-      lesson({
-        de: authored("## Abschnitt\n\nText."),
-        en: authored(
-          "## Section\n\nThe <Highlight>decisive condition</Highlight> decides."
-        ),
-        id: authored("## Bagian\n\nTeks."),
-      })
-    ).map(({ file, locale }) => ({ file, locale })),
-    [
-      { file: "topic/lesson/de.mdx", locale: "de" },
-      { file: "topic/lesson/id.mdx", locale: "id" },
-    ]
-  );
-});
-
-it("accepts a lesson whose locales all carry a highlight", () => {
-  assert.deepEqual(
-    findLessonHighlightIssues(
-      ROOT,
-      lesson({
-        de: authored(
-          "## Abschnitt\n\nDas <Highlight>Kriterium</Highlight> gilt."
-        ),
-        en: authored(
-          "## Section\n\nThe <Highlight>condition</Highlight> decides."
-        ),
-        id: authored(
-          "## Bagian\n\nSyarat <Highlight>tersebut</Highlight> berlaku."
-        ),
-      })
-    ),
-    []
-  );
-});
-
-it("accepts a floor carried by a highlight variant", () => {
-  assert.deepEqual(
-    findLessonHighlightIssues(
-      ROOT,
-      lesson({
-        en: authored(
-          '## Section\n\nThe <Highlight variant="success">met condition</Highlight> holds.'
-        ),
-        id: authored(
-          '## Bagian\n\nSyarat <Highlight variant="warning">tersebut</Highlight> berlaku.'
-        ),
-      })
-    ),
-    []
-  );
-});
-
-it("counts Markdown emphasis and rendered JSX but not marker text inside code", () => {
-  const sources = [
-    "The **denominator** counts every student.",
-    "<Lab labels={{ body: <>The <Highlight>denominator</Highlight> counts every student.</> }} />",
-    "{<Highlight>denominator</Highlight>}",
-  ];
-  for (const body of sources) {
+it.effect("flags every authored locale that carries no highlight", () =>
+  withPath((path) => {
     assert.deepEqual(
-      findLessonHighlightIssues(ROOT, lesson({ en: authored(body) })),
+      findLessonHighlightIssues(
+        path,
+        ROOT,
+        lesson({
+          de: authored("## Abschnitt\n\nText."),
+          en: authored("## Section\n\nText."),
+          id: authored("## Bagian\n\nTeks."),
+        })
+      ).map(({ file, line, locale, rule }) => ({ file, line, locale, rule })),
+      [
+        {
+          file: "topic/lesson/de.mdx",
+          line: 1,
+          locale: "de",
+          rule: "lesson-without-highlight",
+        },
+        {
+          file: "topic/lesson/en.mdx",
+          line: 1,
+          locale: "en",
+          rule: "lesson-without-highlight",
+        },
+        {
+          file: "topic/lesson/id.mdx",
+          line: 1,
+          locale: "id",
+          rule: "lesson-without-highlight",
+        },
+      ]
+    );
+  })
+);
+
+it.effect("flags only the locale sibling that carries no highlight", () =>
+  withPath((path) => {
+    assert.deepEqual(
+      findLessonHighlightIssues(
+        path,
+        ROOT,
+        lesson({
+          de: authored("## Abschnitt\n\nText."),
+          en: authored(
+            "## Section\n\nThe <Highlight>decisive condition</Highlight> decides."
+          ),
+          id: authored("## Bagian\n\nTeks."),
+        })
+      ).map(({ file, locale }) => ({ file, locale })),
+      [
+        { file: "topic/lesson/de.mdx", locale: "de" },
+        { file: "topic/lesson/id.mdx", locale: "id" },
+      ]
+    );
+  })
+);
+
+it.effect("accepts a lesson whose locales all carry a highlight", () =>
+  withPath((path) => {
+    assert.deepEqual(
+      findLessonHighlightIssues(
+        path,
+        ROOT,
+        lesson({
+          de: authored(
+            "## Abschnitt\n\nDas <Highlight>Kriterium</Highlight> gilt."
+          ),
+          en: authored(
+            "## Section\n\nThe <Highlight>condition</Highlight> decides."
+          ),
+          id: authored(
+            "## Bagian\n\nSyarat <Highlight>tersebut</Highlight> berlaku."
+          ),
+        })
+      ),
       []
     );
-  }
-  for (const body of [
-    "`<Highlight>code example</Highlight>`",
-    "```mdx\n<Highlight>code example</Highlight>\n```",
-    '<CodeBlock flag {...properties} data={[{ code: "<Highlight>example</Highlight>" }]} />',
-    '<Lab label="unmarked" body={<>Text</>} />',
-  ]) {
+  })
+);
+
+it.effect("accepts a floor carried by a highlight variant", () =>
+  withPath((path) => {
     assert.deepEqual(
-      findLessonHighlightIssues(ROOT, lesson({ en: authored(body) })).map(
-        ({ rule }) => rule
+      findLessonHighlightIssues(
+        path,
+        ROOT,
+        lesson({
+          en: authored(
+            '## Section\n\nThe <Highlight variant="success">met condition</Highlight> holds.'
+          ),
+          id: authored(
+            '## Bagian\n\nSyarat <Highlight variant="warning">tersebut</Highlight> berlaku.'
+          ),
+        })
       ),
-      ["lesson-without-highlight"]
+      []
     );
-  }
-});
+  })
+);
 
-it("ignores a document that declares no lesson metadata", () => {
-  assert.deepEqual(
-    findLessonHighlightIssues(
-      ROOT,
-      lesson({
-        de: "## Abschnitt\n\nText.",
-        en: "## Section\n\nText.",
-        id: "## Bagian\n\nTeks.",
-      })
-    ),
-    []
-  );
-});
+it.effect(
+  "counts Markdown emphasis and rendered JSX but not marker text inside code",
+  () =>
+    withPath((path) => {
+      const sources = [
+        "The **denominator** counts every student.",
+        "<Lab labels={{ body: <>The <Highlight>denominator</Highlight> counts every student.</> }} />",
+        "{<Highlight>denominator</Highlight>}",
+      ];
+      for (const body of sources) {
+        assert.deepEqual(
+          findLessonHighlightIssues(path, ROOT, lesson({ en: authored(body) })),
+          []
+        );
+      }
+      for (const body of [
+        "`<Highlight>code example</Highlight>`",
+        "```mdx\n<Highlight>code example</Highlight>\n```",
+        '<CodeBlock flag {...properties} data={[{ code: "<Highlight>example</Highlight>" }]} />',
+        '<Lab label="unmarked" body={<>Text</>} />',
+      ]) {
+        assert.deepEqual(
+          findLessonHighlightIssues(
+            path,
+            ROOT,
+            lesson({ en: authored(body) })
+          ).map(({ rule }) => rule),
+          ["lesson-without-highlight"]
+        );
+      }
+    })
+);
 
-it("ignores an empty document set", () => {
-  assert.deepEqual(findLessonHighlightIssues(ROOT, []), []);
-});
+it.effect("ignores a document that declares no lesson metadata", () =>
+  withPath((path) => {
+    assert.deepEqual(
+      findLessonHighlightIssues(
+        path,
+        ROOT,
+        lesson({
+          de: "## Abschnitt\n\nText.",
+          en: "## Section\n\nText.",
+          id: "## Bagian\n\nTeks.",
+        })
+      ),
+      []
+    );
+  })
+);
 
-it("tolerates a sibling document without a parsed tree", () => {
-  assert.deepEqual(
-    findLessonHighlightIssues(ROOT, [
-      {
-        file: `${ROOT}/topic/lesson/en.mdx`,
-        locale: "en",
-        source: "## Section\n\nText.",
-      },
-    ]),
-    []
-  );
-});
+it.effect("ignores an empty document set", () =>
+  withPath((path) => {
+    assert.deepEqual(findLessonHighlightIssues(path, ROOT, []), []);
+  })
+);
 
-it("orders issues across lessons by file", () => {
-  const documents = ["beta", "alpha"].map((topic) => {
-    const source = authored(`## ${topic}\n\nText.`);
-    return {
-      file: `${ROOT}/topic/${topic}/en.mdx`,
-      locale: "en" as const,
-      source,
-      tree: parseLessonMdx(source),
-    };
-  });
+it.effect("tolerates a sibling document without a parsed tree", () =>
+  withPath((path) => {
+    assert.deepEqual(
+      findLessonHighlightIssues(path, ROOT, [
+        {
+          file: `${ROOT}/topic/lesson/en.mdx`,
+          locale: "en",
+          source: "## Section\n\nText.",
+        },
+      ]),
+      []
+    );
+  })
+);
 
-  assert.deepEqual(
-    findLessonHighlightIssues(ROOT, documents).map(({ file }) => file),
-    ["topic/alpha/en.mdx", "topic/beta/en.mdx"]
-  );
-});
+it.effect("orders issues across lessons by file", () =>
+  withPath((path) => {
+    const documents = ["beta", "alpha"].map((topic) => {
+      const source = authored(`## ${topic}\n\nText.`);
+      return {
+        file: `${ROOT}/topic/${topic}/en.mdx`,
+        locale: "en" as const,
+        source,
+        tree: parseLessonMdx(source),
+      };
+    });
+
+    assert.deepEqual(
+      findLessonHighlightIssues(path, ROOT, documents).map(({ file }) => file),
+      ["topic/alpha/en.mdx", "topic/beta/en.mdx"]
+    );
+  })
+);

@@ -1,6 +1,5 @@
-import assert from "node:assert/strict";
-
 import type { MathFinding } from "#nakafa-content/math/finding";
+import { expectShape } from "#nakafa-content/mdx/shape";
 
 const TEXT_GROUP_NAMES = new Set(["text", "mbox", "textrm", "textnormal"]);
 const COMMAND_NAME_SEPARATOR_PATTERN = /\s+/u;
@@ -96,7 +95,7 @@ interface TextGroup {
 /** Reads one character that the caller has already proven is in range. */
 function characterAt(value: string, index: number): string {
   const character = value[index];
-  assert.ok(character !== undefined);
+  expectShape(character !== undefined);
   return character;
 }
 

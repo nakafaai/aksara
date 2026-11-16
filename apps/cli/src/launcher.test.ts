@@ -1,4 +1,3 @@
-import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import {
@@ -193,7 +192,7 @@ describe("CLI launcher", () => {
         const base = {
           cwd: root,
           executable: process.execPath,
-          packageUrl: pathToFileURL(manifest),
+          packageUrl: yield* path.toFileUrl(manifest),
         };
         /** Runs one launcher invocation with captured output. */
         const run = (input: Parameters<typeof makeLauncherProgram>[0]) =>
@@ -213,7 +212,7 @@ describe("CLI launcher", () => {
           yield* run({
             ...base,
             args: ["--version"],
-            packageUrl: pathToFileURL(path.join(root, "missing.json")),
+            packageUrl: yield* path.toFileUrl(path.join(root, "missing.json")),
           })
         ).toBe(1);
 

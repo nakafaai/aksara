@@ -1,4 +1,3 @@
-import { fileURLToPath } from "node:url";
 import { assert, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { capture } from "#nakafa-content/points/test/console";
@@ -16,10 +15,12 @@ it.effect("rejects missing, extra, unknown, and out-of-range arguments", () =>
         runMain(["first", "second"]),
         runMain(["--unknown"]),
         runMain([SET, "--threshold", "2"]),
+        runMain([SET, "--threshold=2"]),
+        runMain([SET, "--threshold"]),
       ])
     );
 
-    assert.deepStrictEqual(result.code, [2, 2, 2, 2]);
+    assert.deepStrictEqual(result.code, [2, 2, 2, 2, 2, 2]);
     assert.isTrue(
       result.error.every((line) => line.startsWith("SimilarityCheckError"))
     );
@@ -79,7 +80,7 @@ it.effect("runs when the module is the process entrypoint", () =>
         console.error = () => undefined;
         process.argv = [
           process.execPath,
-          fileURLToPath(new URL("./check.ts", import.meta.url)),
+          `${import.meta.dirname}/check.ts`,
           "--unknown",
         ];
         process.exitCode = undefined;

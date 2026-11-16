@@ -1,6 +1,4 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
-
 import {
   isProtectedNodeType,
   isProtectedProseComponent,
@@ -8,6 +6,7 @@ import {
 import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import { germanAntecedentState } from "#nakafa-content/voice/address";
 import { collectJsxChildAddressIssues } from "#nakafa-content/voice/child";
 import {
@@ -92,7 +91,7 @@ function collectBlockquoteIssues(
     germanPossessiveAntecedent: false,
     quotationRanges: multilineQuotationRanges(source),
   };
-  assert.ok(node.children);
+  expectShape(node.children);
   for (const child of node.children) {
     issues.push(
       ...matchRangeRules(
@@ -136,7 +135,7 @@ function collectParagraphAddressIssues(
   if (node.type !== "paragraph") {
     return;
   }
-  assert.ok(node.position);
+  expectShape(node.position);
   issues.push(
     ...matchUnanchoredGermanAddress(locale, source, node.position, rules, {
       allowPersonalAddress: !state.germanPersonalAntecedent,
@@ -150,7 +149,7 @@ function collectParagraphAddressIssues(
 /** Reads prose and inline noun tokens without borrowing protected examples. */
 function paragraphText(node: MdxNode): string {
   if (node.type === "inlineCode") {
-    assert.ok(Predicate.isString(node.value));
+    expectShape(Predicate.isString(node.value));
     return INLINE_ANTECEDENT_PATTERN.test(node.value)
       ? `\`${node.value}\``
       : " ";

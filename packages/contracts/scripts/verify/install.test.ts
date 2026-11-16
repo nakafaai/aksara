@@ -1,4 +1,3 @@
-import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { assert, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schema } from "effect";
@@ -23,6 +22,7 @@ const defaultExports = {
 
 const InstallFixtureSchema = Schema.Struct({
   consumerRoot: Schema.String,
+  dist: Schema.URL,
   packageRoot: Schema.String,
 });
 
@@ -61,22 +61,18 @@ const createInstallFixture = Effect.fn("InstallVerificationTest.createFixture")(
         fileSystem.writeFileString(path.join(distRoot, file), "export {};\n"),
       { discard: true }
     );
-    return { consumerRoot, packageRoot } satisfies InstallFixture;
+    const dist = yield* path.toFileUrl(`${distRoot}/`);
+    return { consumerRoot, dist, packageRoot } satisfies InstallFixture;
   }
 );
-
-/** Returns the file URL of one file in the dist directory of an installed package. */
-function distUrl(packageRoot: string, file: string): URL {
-  return pathToFileURL(`${packageRoot}/dist/${file}`);
-}
 
 /** Answers an inspection the way Node does: each public specifier resolves to its target. */
 function defaultAnswers(
   fixture: InstallFixture
 ): Readonly<Record<string, URL>> {
   return {
-    [packageName]: distUrl(fixture.packageRoot, "index.js"),
-    [packageSubpath]: distUrl(fixture.packageRoot, "feature.js"),
+    [packageName]: new URL("index.js", fixture.dist),
+    [packageSubpath]: new URL("feature.js", fixture.dist),
   };
 }
 
@@ -128,6 +124,7 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
   effectIt.effect("imports every Node condition and public export", () =>
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
       const fixture = yield* createInstallFixture();
       const inspect = vi.fn((_inspection: InstallInspection) =>
         Effect.succeed(defaultAnswers(fixture))
@@ -142,12 +139,13 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
       );
 
       const realRoot = yield* fileSystem.realPath(fixture.packageRoot);
+      const realDist = yield* path.toFileUrl(`${realRoot}/dist/`);
       assert.deepStrictEqual(inspect.mock.calls, [
         [
           {
             imports: [
-              distUrl(realRoot, "index.js").href,
-              distUrl(realRoot, "feature.js").href,
+              new URL("index.js", realDist).href,
+              new URL("feature.js", realDist).href,
               packageName,
               packageSubpath,
             ],
@@ -214,8 +212,8 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
       const [changedError, wrongError] = yield* Effect.all([
         verificationFailure(verificationInput(changed)),
         failureWithAnswers(wrong, {
-          [packageName]: distUrl(wrong.packageRoot, "feature.js"),
-          [packageSubpath]: distUrl(wrong.packageRoot, "feature.js"),
+          [packageName]: new URL("feature.js", wrong.dist),
+          [packageSubpath]: new URL("feature.js", wrong.dist),
         }),
       ]);
 
@@ -259,14 +257,14 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
       const errors = yield* Effect.all([
         failureWithAnswers(fixture, {
           [packageName]: new URL("node:fs"),
-          [packageSubpath]: distUrl(fixture.packageRoot, "feature.js"),
+          [packageSubpath]: new URL("feature.js", fixture.dist),
         }),
         failureWithAnswers(fixture, {
-          [packageName]: distUrl(fixture.packageRoot, "missing.js"),
-          [packageSubpath]: distUrl(fixture.packageRoot, "feature.js"),
+          [packageName]: new URL("missing.js", fixture.dist),
+          [packageSubpath]: new URL("feature.js", fixture.dist),
         }),
         failureWithAnswers(fixture, {
-          [packageSubpath]: distUrl(fixture.packageRoot, "feature.js"),
+          [packageSubpath]: new URL("feature.js", fixture.dist),
         }),
       ]);
 

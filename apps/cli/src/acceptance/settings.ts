@@ -1,4 +1,3 @@
-import { fileURLToPath } from "node:url";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -7,7 +6,7 @@ import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/
 import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { TrustedKeySchema } from "@nakafa/aksara-contracts/signature/trusted";
 import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
-import { Config, Effect, FileSystem, Redacted, Schema } from "effect";
+import { Config, Effect, FileSystem, Path, Redacted, Schema } from "effect";
 
 /** Acceptance publication cannot escape its exact isolated source and target. */
 export class AcceptanceEnvironmentError extends Schema.TaggedError<
@@ -68,13 +67,14 @@ export const readAcceptanceSettings = Effect.fn(
   "AksaraCli.readAcceptanceSettings"
 )(function* () {
   const fs = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
   const configuredRoot = yield* Config.NonEmptyString(
     "AKSARA_ACCEPTANCE_SOURCE"
   );
   const { checkoutRoot, executingRoot } = yield* Effect.all({
     checkoutRoot: fs.realPath(configuredRoot),
     executingRoot: fs.realPath(
-      fileURLToPath(new URL("../../../../", import.meta.url))
+      path.resolve(import.meta.dirname, "../../../..")
     ),
   }).pipe(
     Effect.mapError(

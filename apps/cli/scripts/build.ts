@@ -1,8 +1,7 @@
-import { fileURLToPath } from "node:url";
 import { layer as fileSystemLayer } from "@effect/platform-node/NodeFileSystem";
 import { layer as pathLayer } from "@effect/platform-node/NodePath";
 import { runMain } from "@effect/platform-node/NodeRuntime";
-import { Effect, FileSystem, Layer, Record as Rec, Schema } from "effect";
+import { Effect, FileSystem, Layer, Path, Record as Rec, Schema } from "effect";
 import { build } from "esbuild";
 import { generateBundledNotice } from "#scripts/notice";
 
@@ -53,39 +52,36 @@ class CliBuildError extends Schema.TaggedError<
   stage: Schema.Literals(["bundle", "manifest", "notice", "permissions"]),
 }) {}
 
-const packageRoot = fileURLToPath(new URL("../", import.meta.url));
-const manifestPath = fileURLToPath(new URL("../package.json", import.meta.url));
-const licensePath = fileURLToPath(new URL("../LICENSE", import.meta.url));
-const readmePath = fileURLToPath(new URL("../README.md", import.meta.url));
-const outputDirectory = fileURLToPath(new URL("../dist/", import.meta.url));
-const distributionRoot = fileURLToPath(
-  new URL("../dist/package/", import.meta.url)
-);
-const outputFile = fileURLToPath(
-  new URL("../dist/package/dist/main.js", import.meta.url)
-);
-const outputLicense = fileURLToPath(
-  new URL("../dist/package/LICENSE", import.meta.url)
-);
-const outputManifest = fileURLToPath(
-  new URL("../dist/package/package.json", import.meta.url)
-);
-const outputNotice = fileURLToPath(
-  new URL("../dist/package/NOTICE", import.meta.url)
-);
-const outputReadme = fileURLToPath(
-  new URL("../dist/package/README.md", import.meta.url)
-);
-const entryPoint = fileURLToPath(
-  new URL("../src/launcher.ts", import.meta.url)
-);
+/** The files the build reads and writes, resolved from the package root. */
+const buildPaths = Effect.fn("AksaraCliBuild.paths")(function* () {
+  const path = yield* Path.Path;
+  const packageRoot = path.resolve(import.meta.dirname, "..");
+  const outputDirectory = path.join(packageRoot, "dist");
+  const distributionRoot = path.join(outputDirectory, "package");
+  return {
+    distributionRoot,
+    entryPoint: path.join(packageRoot, "src", "launcher.ts"),
+    licensePath: path.join(packageRoot, "LICENSE"),
+    manifestPath: path.join(packageRoot, "package.json"),
+    outputDirectory,
+    outputFile: path.join(distributionRoot, "dist", "main.js"),
+    outputLicense: path.join(distributionRoot, "LICENSE"),
+    outputManifest: path.join(distributionRoot, "package.json"),
+    outputNotice: path.join(distributionRoot, "NOTICE"),
+    outputReadme: path.join(distributionRoot, "README.md"),
+    packageRoot,
+    readmePath: path.join(packageRoot, "README.md"),
+  };
+});
 
 /** Maps one build-boundary failure without leaking arbitrary diagnostics. */
 const buildError = (stage: CliBuildError["stage"]) => (cause: unknown) =>
   new CliBuildError({ cause, stage });
 
 /** Reads the exact source metadata used to stage the public package. */
-const readManifest = Effect.fn("AksaraCliBuild.readManifest")(function* () {
+const readManifest = Effect.fn("AksaraCliBuild.readManifest")(function* (
+  manifestPath: string
+) {
   const fileSystem = yield* FileSystem.FileSystem;
   const source = yield* fileSystem
     .readFileString(manifestPath)
@@ -98,7 +94,21 @@ const readManifest = Effect.fn("AksaraCliBuild.readManifest")(function* () {
 /** Produces one checkout-bound Node launcher for npm consumers. */
 const buildCli = Effect.fn("AksaraCliBuild.build")(function* () {
   const fileSystem = yield* FileSystem.FileSystem;
-  const manifest = yield* readManifest();
+  const {
+    distributionRoot,
+    entryPoint,
+    licensePath,
+    manifestPath,
+    outputDirectory,
+    outputFile,
+    outputLicense,
+    outputManifest,
+    outputNotice,
+    outputReadme,
+    packageRoot,
+    readmePath,
+  } = yield* buildPaths();
+  const manifest = yield* readManifest(manifestPath);
   yield* fileSystem
     .remove(outputDirectory, { force: true, recursive: true })
     .pipe(Effect.mapError(buildError("permissions")));

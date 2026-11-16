@@ -1,6 +1,4 @@
-import assert from "node:assert/strict";
 import { Predicate } from "effect";
-
 import {
   isAddressTextAttribute,
   isGeneralTextAttribute,
@@ -29,6 +27,7 @@ import {
   directAttributeRange,
   renderedSourceRange,
 } from "#nakafa-content/mdx/rendered";
+import { expectShape } from "#nakafa-content/mdx/shape";
 
 import {
   isFullyStaticStringExpression,
@@ -45,7 +44,7 @@ const STATIC_TEXT_NODE_TYPES = new Set([
 /** Removes source quote delimiters from one static string range. */
 function renderedStringRange(node: EstreeNode, source: string): SourceRange {
   const range = estreeRange(node);
-  assert.ok(node.type === "Literal" && Predicate.isString(node.value));
+  expectShape(node.type === "Literal" && Predicate.isString(node.value));
   return renderedSourceRange(range, node.value, source, true);
 }
 
@@ -55,11 +54,11 @@ function collectNestedAttributeRanges(
   source: string
 ): SourceRange[] {
   const opening = asEstreeNode(node.openingElement);
-  assert.ok(opening);
-  assert.ok(Array.isArray(opening.attributes));
+  expectShape(opening);
+  expectShape(Array.isArray(opening.attributes));
   return opening.attributes.flatMap((value) => {
     const attribute = asEstreeNode(value);
-    assert.ok(attribute);
+    expectShape(attribute);
     if (attribute.type === "JSXSpreadAttribute") {
       return collectExpressionValues(
         attribute.argument,
@@ -67,9 +66,9 @@ function collectNestedAttributeRanges(
         includeSpreadAddressField
       );
     }
-    assert.equal(attribute.type, "JSXAttribute");
+    expectShape(attribute.type === "JSXAttribute");
     const attributeName = staticFieldName(asEstreeNode(attribute.name));
-    assert.ok(attributeName);
+    expectShape(attributeName);
     if (!isAddressTextAttribute(attributeName)) {
       return [];
     }
@@ -135,7 +134,7 @@ function collectExpressionRanges(
     );
   }
   if (node.type === "SequenceExpression") {
-    assert.ok(Array.isArray(node.expressions));
+    expectShape(Array.isArray(node.expressions));
     return collectExpressionValues(
       node.expressions.at(-1),
       source,
@@ -205,7 +204,7 @@ export function generalAttributeRanges(
 ): SourceRange[] {
   if (!attribute.name) {
     const estree = attributeEstree(attribute);
-    assert.ok(estree);
+    expectShape(estree);
     return collectExpressionRanges(
       estree,
       source,
@@ -231,7 +230,7 @@ export function addressAttributeRanges(
 ): SourceRange[] {
   if (!attribute.name) {
     const estree = attributeEstree(attribute);
-    assert.ok(estree);
+    expectShape(estree);
     return collectExpressionRanges(estree, source, includeSpreadAddressField);
   }
   const attributeName = attribute.name;

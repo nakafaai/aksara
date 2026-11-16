@@ -1,7 +1,6 @@
-import assert from "node:assert/strict";
-
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
+import { expectShape } from "#nakafa-content/mdx/shape";
 import { unanchoredGermanFormalAddressOffset } from "#nakafa-content/voice/address";
 import type { ProseState } from "#nakafa-content/voice/copy";
 import {
@@ -26,15 +25,15 @@ function allowsUnanchoredAddress(
 ): boolean {
   const linkStart = node.position?.start?.offset;
   const linkEnd = node.position?.end?.offset;
-  assert.ok(linkStart !== undefined);
-  assert.ok(linkEnd !== undefined);
+  expectShape(linkStart !== undefined);
+  expectShape(linkEnd !== undefined);
   const rendered = renderedNodeRange(context, source)?.rendered;
-  assert.ok(rendered);
+  expectShape(rendered);
   const prefix = rendered.text
     .split("")
     .filter((_character, index) => {
       const offset = rendered.offsets[index];
-      assert.ok(offset !== undefined);
+      expectShape(offset !== undefined);
       return offset < linkStart;
     })
     .join("");
@@ -65,7 +64,7 @@ export function collectLinkLabelIssues(
   if (!range) {
     return;
   }
-  assert.ok(context);
+  expectShape(context);
   const allowUnanchoredAddress = allowsUnanchoredAddress(node, context, source);
   issues.push(
     ...matchRangeRules(

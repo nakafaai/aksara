@@ -1,6 +1,6 @@
-import assert from "node:assert/strict";
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { encodeJsonText } from "#contracts/text/json";
+import { ManifestError } from "#scripts/manifest";
 import { encodePrettyJsonText } from "#scripts/text/json";
 
 /**
@@ -85,12 +85,18 @@ export function consumerFailure(
 }
 
 /** Requires package tooling to produce exactly one tarball archive. */
-export function selectPackedArchive(paths: readonly string[]): string {
-  const archives = Arr.filter(paths, (path) => path.endsWith(".tgz"));
-  assert.equal(archives.length, 1, "pnpm must produce exactly one tarball");
-  const [archive] = archives;
-  assert.ok(archive, "The packed archive must be present");
-  return archive;
+export function selectPackedArchive(
+  paths: readonly string[]
+): Effect.Effect<string, ManifestError> {
+  const [archive, ...extra] = Arr.filter(paths, (path) =>
+    path.endsWith(".tgz")
+  );
+  if (archive === undefined || extra.length > 0) {
+    return Effect.fail(
+      new ManifestError({ message: "pnpm must produce exactly one tarball" })
+    );
+  }
+  return Effect.succeed(archive);
 }
 
 /** Serializes the isolated package consumer without inheriting workspace state. */

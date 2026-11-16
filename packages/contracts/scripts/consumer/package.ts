@@ -1,4 +1,3 @@
-import { createRequire } from "node:module";
 import { Effect, FileSystem, Path, Schema } from "effect";
 import { runConsumerCommand } from "#scripts/consumer/command";
 import { consumerEnvironment } from "#scripts/consumer/environment";
@@ -41,13 +40,14 @@ export const stageConsumerPackage = Effect.fn(
     read(packageFile("package.json")),
     read(packageFile("LICENSE")),
   ]);
-  const sourceManifest = yield* Effect.try({
-    catch: failure(
-      "manifest",
-      `Contract package manifest ${packageFile("package.json")} is malformed`
-    ),
-    try: () => parsePackageManifest(sourceManifestSource),
-  });
+  const sourceManifest = yield* parsePackageManifest(sourceManifestSource).pipe(
+    Effect.mapError(
+      failure(
+        "manifest",
+        `Contract package manifest ${packageFile("package.json")} is malformed`
+      )
+    )
+  );
   const temporaryRoot = yield* fileSystem
     .makeTempDirectoryScoped({
       ...(input.temporaryDirectory === undefined
@@ -94,8 +94,18 @@ export const stageConsumerPackage = Effect.fn(
   );
   const effectManifestPath = yield* Effect.try({
     catch: failure("filesystem", "Installed Effect manifest resolution failed"),
-    try: () => createRequire(import.meta.url).resolve("effect/package.json"),
-  });
+    try: () => import.meta.resolve("effect/package.json"),
+  }).pipe(
+    Effect.flatMap((url) =>
+      path
+        .fromFileUrl(new URL(url))
+        .pipe(
+          Effect.mapError(
+            failure("filesystem", "Installed Effect manifest resolution failed")
+          )
+        )
+    )
+  );
   const effectManifestSource = yield* read(effectManifestPath);
   const effectManifest = yield* Schema.decodeEffect(EffectManifest)(
     effectManifestSource,
@@ -108,11 +118,12 @@ export const stageConsumerPackage = Effect.fn(
       )
     )
   );
-  const releaseManifest = yield* Effect.try({
-    catch: failure("manifest", "Release manifest creation failed"),
-    try: () =>
-      createReleaseManifest(sourceManifestSource, effectManifest.version),
-  });
+  const releaseManifest = yield* createReleaseManifest(
+    sourceManifestSource,
+    effectManifest.version
+  ).pipe(
+    Effect.mapError(failure("manifest", "Release manifest creation failed"))
+  );
   yield* Effect.all([
     fileSystem.copyFile(packageFile("LICENSE"), stageFile("LICENSE")),
     fileSystem.copyFile(packageFile("README.md"), stageFile("README.md")),
@@ -138,10 +149,9 @@ export const stageConsumerPackage = Effect.fn(
   const packedArchive = yield* fileSystem.readDirectory(packDirectory).pipe(
     Effect.mapError(failure("filesystem", "Packed archive listing failed")),
     Effect.flatMap((entries) =>
-      Effect.try({
-        catch: failure("manifest", "Packed archive selection failed"),
-        try: () => selectPackedArchive(entries),
-      })
+      selectPackedArchive(entries).pipe(
+        Effect.mapError(failure("manifest", "Packed archive selection failed"))
+      )
     )
   );
   const tarballPath = path.join(packDirectory, packedArchive);
@@ -168,13 +178,14 @@ export const stageConsumerPackage = Effect.fn(
       read(path.join(packedRoot, "LICENSE")),
     ]
   );
-  const packedManifest = yield* Effect.try({
-    catch: failure(
-      "manifest",
-      `Packed package manifest ${path.join(packedRoot, "package.json")} is malformed`
-    ),
-    try: () => parsePackageManifest(packedManifestSource),
-  });
+  const packedManifest = yield* parsePackageManifest(packedManifestSource).pipe(
+    Effect.mapError(
+      failure(
+        "manifest",
+        `Packed package manifest ${path.join(packedRoot, "package.json")} is malformed`
+      )
+    )
+  );
   const effectVersion = yield* validatePackedManifest({
     effectVersion: effectManifest.version,
     packedLicense,
