@@ -27,6 +27,7 @@ export const spmPhysicsTrack = {
     scoring: { kind: "raw" },
     sections: [
       {
+        explanation: "figure",
         interactions: ["choice"],
         items: 40,
         key: "physics",

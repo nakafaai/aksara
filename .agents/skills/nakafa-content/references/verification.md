@@ -53,6 +53,7 @@ bun run lines
 bun run jsdocs
 bun run locales
 bun run points
+bun run explanations
 bun run boundaries
 bun run lint
 bun run typecheck

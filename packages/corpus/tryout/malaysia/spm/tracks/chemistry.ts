@@ -27,6 +27,7 @@ export const spmChemistryTrack = {
     scoring: { kind: "raw" },
     sections: [
       {
+        explanation: "figure",
         interactions: ["choice"],
         items: 40,
         key: "chemistry",

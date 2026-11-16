@@ -174,10 +174,13 @@ paragraph does.
   recognizes it, then add what the solution needs. An explanation may show
   answer state: the answer drawn in the `answer` appearance, a regression line,
   a lab's takeaway or result note.
-- A mathematics or science explanation without a visual fails review unless
-  the reviewer records why no visual helps, such as a one-operation arithmetic
-  item or a definition recalled word for word. A reading, language, or evidence
-  item may use a compact table or a highlighted quotation instead.
+- Every try-out section declares what its explanations show
+  (`explanation` in its track source): `figure` for mathematics and science,
+  where every answer holds at least one catalog figure, and `evidence` for
+  reading and language, where a compact table or a highlighted quotation also
+  serves. `bun run explanations` fails any answer a change adds or edits that
+  shows less than its section asks, and counts the untouched answers still to
+  lift. The gate runs in the policies part of every pull request.
 - A case analysis may use a compact table, and a route, dependency, or
   multi-stage process a diagram. Every representation earns its place by
   making the reasoning easier to reconstruct.

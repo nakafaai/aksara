@@ -27,6 +27,7 @@ export const spmBiologyTrack = {
     scoring: { kind: "raw" },
     sections: [
       {
+        explanation: "figure",
         interactions: ["choice"],
         items: 40,
         key: "biology",

@@ -18,6 +18,7 @@ export const tkaEnglishTrack = {
     scoring: { kind: "raw" },
     sections: [
       {
+        explanation: "evidence",
         interactions: ["choice", "matrix"],
         items: 25,
         key: "english-language",
