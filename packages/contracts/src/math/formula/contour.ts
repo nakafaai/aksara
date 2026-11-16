@@ -250,6 +250,7 @@ export function contourFilled(
   const dx = (box.x.max - box.x.min) / cells;
   const dy = (box.y.max - box.y.min) / cells;
   const read = MutableHashMap.empty<number, number>();
+  /** The field at one grid corner, sampled once and then read from memory. */
   const value = (column: number, row: number) => {
     const key = column * (cells + 1) + row;
     return Option.getOrElse(MutableHashMap.get(read, key), () => {
@@ -258,6 +259,7 @@ export function contourFilled(
       return sample;
     });
   };
+  /** Whether the cell lies on the grid and all four of its corners are finite. */
   const finiteCell = (column: number, row: number) =>
     column >= 0 &&
     row >= 0 &&
@@ -272,6 +274,7 @@ export function contourFilled(
       ] as const,
       ([c, r]) => Number.isFinite(value(c, r))
     );
+  /** Whether this corner is inside and one finite cell touching it would fill. */
   const fills = (column: number, row: number) =>
     value(column, row) >= 0 &&
     Arr.some(

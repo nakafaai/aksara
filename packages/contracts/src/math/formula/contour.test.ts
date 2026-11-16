@@ -106,6 +106,7 @@ describe("contourFilled", () => {
 
   it("reads far fewer samples than the grid when the region is large", () => {
     let reads = 0;
+    /** A disc of radius two that counts every sample it is asked for. */
     const field = (x: number, y: number) => {
       reads += 1;
       return 4 - x * x - y * y;
