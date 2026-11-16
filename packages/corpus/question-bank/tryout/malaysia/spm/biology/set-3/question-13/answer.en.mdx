@@ -1,6 +1,6 @@
-# Read the glucose curve and the insulin curve side by side
+# Read each person's glucose and insulin together
 
-In a healthy person, a rise in blood glucose triggers the **beta cells** to release insulin, which brings glucose back down. Comparing the two people shows where the control fails.
+High blood glucose can come from **too little insulin** or from cells that **respond poorly** to insulin. Only the insulin curve tells the two apart.
 
 <Chart
   title={<>Blood Glucose After the Glucose Drink</>}
@@ -8,21 +8,34 @@ In a healthy person, a rise in blood glucose triggers the **beta cells** to rele
   series={[
     { label: "Person P", mark: "line", values: [4.8, 7.8, 6.5, 5.4, 4.9] },
     { label: "Person Q", mark: "line", values: [7.2, 12.6, 14.8, 13.9, 12.1] },
+    { label: "Person R", mark: "line", values: [6.8, 11.5, 12.8, 11.9, 10.2] },
     { label: "Kidney threshold", mark: "line", values: [10, 10, 10, 10, 10] },
   ]}
   valueLabel="Blood glucose (mmol/L)"
-  description={<>P peaks at <InlineMath math="7.8" /> and returns to <InlineMath math="4.9" />. Q starts at <InlineMath math="7.2" />, peaks at <InlineMath math="14.8" /> and is still <InlineMath math="12.1" /> after <InlineMath math="120" /> minutes. Q stays above the threshold of <InlineMath math="10" /> from minute <InlineMath math="30" /> to minute <InlineMath math="120" />.</>}
+  description={<>P peaks at <InlineMath math="7.8" /> and returns to <InlineMath math="4.9" />. Q reaches <InlineMath math="14.8" /> and R <InlineMath math="12.8" /> at minute <InlineMath math="60" />, both above the threshold of <InlineMath math="10" />.</>}
 />
 
-- I: P's insulin jumps from <InlineMath math="6" /> to <InlineMath math="45" /> units after the drink, but Q's stays between <InlineMath math="2" /> and <InlineMath math="3" /> units. Q's beta cells secrete very little insulin. Statement I is correct.
-- II: Q is above <InlineMath math="10\text{ mmol/L}" /> at minutes <InlineMath math="30" />, <InlineMath math="60" />, <InlineMath math="90" /> and <InlineMath math="120" />, so glucose is in the urine from minute <InlineMath math="30" /> to minute <InlineMath math="120" />, at least <InlineMath math="120-30=90" /> minutes. Statement II is correct.
-- III: glucagon raises blood glucose. P's glucose falls while P's insulin is high, so the fall is caused by **insulin**. Statement III is wrong.
-- IV: Q's problem is a lack of insulin, not cells that ignore it, so injected insulin would help cells take in glucose and the liver store it as glycogen. Statement IV is correct.
+<Chart
+  title={<>Blood Insulin After the Glucose Drink</>}
+  categories={["0 min", "30 min", "60 min", "90 min", "120 min"]}
+  series={[
+    { label: "Person P", mark: "line", values: [6, 45, 30, 15, 8] },
+    { label: "Person Q", mark: "line", values: [2, 3, 3, 2, 2] },
+    { label: "Person R", mark: "line", values: [18, 90, 120, 100, 80] },
+  ]}
+  valueLabel="Blood insulin (units)"
+  description={<>P's insulin rises to <InlineMath math="45" /> and falls. Q's stays at <InlineMath math="2" /> to <InlineMath math="3" />. R's rises to <InlineMath math="120" /> and stays high.</>}
+/>
 
-So statements I, II and IV are correct.
+- I: Q's insulin stays between <InlineMath math="2" /> and <InlineMath math="3" /> units while P's jumps to <InlineMath math="45" />. Q's beta cells secrete very little insulin. Statement I is correct.
+- II: R's insulin rises to <InlineMath math="120" /> units, far above P's, yet R's glucose stays high. R has plenty of insulin, so the cells must be responding poorly to it. Statement II is wrong.
+- III: at minute <InlineMath math="60" />, Q is at <InlineMath math="14.8" /> and R at <InlineMath math="12.8\text{ mmol/L}" />, both above <InlineMath math="10\text{ mmol/L}" />, so both pass glucose in the urine. Statement III is correct.
+- IV: glucagon raises blood glucose. P's glucose falls while P's insulin is high, so the fall comes from **insulin**. Statement IV is wrong.
+
+So statements I and III are correct.
 
 # Why the other options are wrong
 
-- I and II only rejects IV, as if Q's cells could not respond to insulin, **but the data show the insulin itself is missing**.
-- I, II and III only credits glucagon for the fall in P, **although glucagon raises blood glucose**.
-- II and IV only rejects I, missing that **Q's insulin barely changes** after the drink.
+- I, II and III only treats every high glucose curve as a lack of insulin, **although R's insulin is the highest of the three**.
+- I, III and IV only credits glucagon with lowering P's glucose, **but glucagon raises it**.
+- III and IV only rejects I, missing that **Q's insulin barely changes** after the drink.

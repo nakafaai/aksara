@@ -1,22 +1,29 @@
-# Use the feedback loop to see where the fault starts
+# Check each patient against what the feedback loop should do
 
-TSH and thyroxine are linked in a **negative feedback** loop. Reading both levels together shows which gland is at fault.
+In a healthy loop, **high thyroxine pushes TSH down** and low thyroxine lets it rise. A result that breaks this rule shows where the fault lies, and the size of the gland shows whether TSH has been driving it.
 
 <Mermaid
   title={<>Feedback Control of Thyroxine</>}
-  description={<>The pituitary gland secretes TSH, which makes the thyroid gland secrete thyroxine from iodine in the diet. A high thyroxine level slows the secretion of TSH, and a low level speeds it up.</>}
-  chart={"flowchart LR\n  H[Hypothalamus] --> PI[Pituitary gland]\n  PI -- TSH --> TH[Thyroid gland]\n  I[Iodine in diet] --> TH\n  TH -- thyroxine --> B[Body cells]\n  TH -. high thyroxine slows TSH .-> PI"}
+  description={<>The pituitary gland secretes TSH, which makes the thyroid gland grow and secrete thyroxine from iodine. Thyroxine in the blood, from the gland or from tablets, slows the secretion of TSH.</>}
+  chart={"flowchart LR\n  PI[Pituitary gland] -- TSH --> TH[Thyroid gland]\n  I[Iodine in diet] --> TH\n  TB[Thyroxine tablets] --> BL[Thyroxine in blood]\n  TH -- thyroxine --> BL\n  BL -. high thyroxine slows TSH .-> PI"}
 />
 
-- P: thyroxine is low, so the feedback releases the pituitary, and TSH climbs to <InlineMath math="40" />. The pituitary works, but the thyroid cannot make thyroxine. TSH keeps stimulating the thyroid, which swells into a goitre. This fits a **lack of iodine**.
-- Q: thyroxine is low, yet TSH is also low at <InlineMath math="0.2" />. A healthy pituitary would raise TSH, so the fault is in the **pituitary gland**. With little TSH, the thyroid stays small.
-- R: thyroxine is high at <InlineMath math="250" /> and TSH is pushed down. The thyroid is overactive on its own, so the feedback has switched TSH off.
-- S: both values are in the normal range.
+| Patient | Thyroxine | TSH | Fits the loop? | Most likely cause |
+| --- | --- | --- | --- | --- |
+| P | low | high | yes | thyroid cannot make thyroxine, such as a lack of iodine |
+| Q | low | low | no | pituitary gland makes too little TSH |
+| R | high | low | yes | extra thyroxine from outside, gland not stimulated |
+| S | high | low | yes | thyroid gland overactive on its own |
+| T | high | high | no | pituitary keeps secreting TSH despite high thyroxine |
 
-So Q has the faulty pituitary gland, and P most likely lacks iodine.
+- T: thyroxine is high, so TSH should be pushed down, yet it is <InlineMath math="12" />. The pituitary ignores the feedback and keeps stimulating the thyroid, which swells. This fits a **TSH-secreting tumour**.
+- R: thyroxine is high and TSH is suppressed, but the gland is **small**. With little TSH, the gland is neither stimulated nor making the thyroxine, so the thyroxine must come from tablets.
+- S has the same blood results as R, but its gland is swollen, so its own gland is overactive.
+
+So patient T most likely has the pituitary tumour, and patient R most likely takes too many thyroxine tablets.
 
 # Why the other options are wrong
 
-- P and Q swaps the two patients and reads high TSH as a faulty pituitary, **but high TSH is the pituitary responding normally**.
-- R and P takes the low TSH of R as pituitary failure, **although R's thyroxine is high and is what switches TSH off**.
-- Q and R picks the swollen gland of R as iodine lack, **but without iodine thyroxine would be low, not high**.
+- P and S reads P's high TSH as a pituitary fault, **but high TSH with low thyroxine is the loop working normally**, and S's swollen gland makes its own thyroxine.
+- T and S picks the swollen gland for the tablets, **but a gland that is not stimulated by TSH does not swell**.
+- P and R mistakes the normal response of P's pituitary for a tumour.

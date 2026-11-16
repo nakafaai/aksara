@@ -1,22 +1,29 @@
-# Mit dem Regelkreis den Ursprung der Störung finden
+# Jeden Patienten daran messen, was der Regelkreis tun sollte
 
-TSH und Thyroxin hängen in einer **negativen Rückkopplung** zusammen. Erst beide Werte zusammen zeigen, welche Drüse gestört ist.
+In einem gesunden Regelkreis **drückt viel Thyroxin das TSH nach unten**, und wenig Thyroxin lässt es steigen. Ein Ergebnis, das diese Regel bricht, zeigt, wo die Störung liegt, und die Größe der Drüse zeigt, ob TSH sie angetrieben hat.
 
 <Mermaid
   title={<>Rückkopplung bei Thyroxin</>}
-  description={<>Die Hypophyse schüttet TSH aus, das die Schilddrüse anregt, aus Iod der Nahrung Thyroxin zu bilden. Ein hoher Thyroxinspiegel bremst die TSH-Ausschüttung, ein niedriger beschleunigt sie.</>}
-  chart={"flowchart LR\n  H[Hypothalamus] --> PI[Hypophyse]\n  PI -- TSH --> TH[Schilddrüse]\n  I[Iod aus der Nahrung] --> TH\n  TH -- Thyroxin --> B[Körperzellen]\n  TH -. viel Thyroxin bremst TSH .-> PI"}
+  description={<>Die Hypophyse schüttet TSH aus, das die Schilddrüse wachsen und aus Iod Thyroxin bilden lässt. Thyroxin im Blut, aus der Drüse oder aus Tabletten, bremst die TSH-Ausschüttung.</>}
+  chart={"flowchart LR\n  PI[Hypophyse] -- TSH --> TH[Schilddrüse]\n  I[Iod aus der Nahrung] --> TH\n  TB[Thyroxintabletten] --> BL[Thyroxin im Blut]\n  TH -- Thyroxin --> BL\n  BL -. viel Thyroxin bremst TSH .-> PI"}
 />
 
-- P: Thyroxin ist niedrig, die Bremse auf die Hypophyse fällt weg, und TSH steigt auf <InlineMath math="40" />. Die Hypophyse arbeitet, aber die Schilddrüse kann kein Thyroxin bilden. TSH reizt die Schilddrüse weiter, sie schwillt zu einem Kropf an. Das passt zu **Iodmangel**.
-- Q: Thyroxin ist niedrig, doch auch TSH ist mit <InlineMath math="0{,}2" /> niedrig. Eine gesunde Hypophyse würde TSH erhöhen, die Störung liegt also in der **Hypophyse**. Mit wenig TSH bleibt die Schilddrüse klein.
-- R: Thyroxin ist mit <InlineMath math="250" /> hoch und TSH unterdrückt. Die Schilddrüse ist von sich aus überaktiv, die Rückkopplung hat TSH abgeschaltet.
-- S: Beide Werte liegen im Normalbereich.
+| Patient | Thyroxin | TSH | Passt zum Regelkreis? | Wahrscheinlichste Ursache |
+| --- | --- | --- | --- | --- |
+| P | niedrig | hoch | ja | Schilddrüse kann kein Thyroxin bilden, etwa bei Iodmangel |
+| Q | niedrig | niedrig | nein | Hypophyse bildet zu wenig TSH |
+| R | hoch | niedrig | ja | zusätzliches Thyroxin von außen, Drüse nicht angeregt |
+| S | hoch | niedrig | ja | Schilddrüse von sich aus überaktiv |
+| T | hoch | hoch | nein | Hypophyse schüttet trotz viel Thyroxin weiter TSH aus |
 
-Q hat also die gestörte Hypophyse, und P fehlt am wahrscheinlichsten Iod.
+- T: Thyroxin ist hoch, TSH müsste also unterdrückt sein, liegt aber bei <InlineMath math="12" />. Die Hypophyse ignoriert die Rückkopplung und reizt die Schilddrüse weiter, die anschwillt. Das passt zu einem **TSH bildenden Tumor**.
+- R: Thyroxin ist hoch und TSH unterdrückt, aber die Drüse ist **klein**. Mit wenig TSH wird die Drüse weder angeregt noch bildet sie das Thyroxin, es muss also aus Tabletten stammen.
+- S hat dieselben Blutwerte wie R, aber eine geschwollene Drüse, ihre eigene Drüse ist also überaktiv.
+
+Patient T hat also am wahrscheinlichsten den Hypophysentumor, und Patient R nimmt am wahrscheinlichsten zu viele Thyroxintabletten.
 
 # Warum die anderen Antworten falsch sind
 
-- P und Q vertauscht die beiden und hält hohes TSH für eine kranke Hypophyse, **dabei ist hohes TSH die normale Antwort der Hypophyse**.
-- R und P hält das niedrige TSH von R für Hypophysenversagen, **obwohl gerade das hohe Thyroxin von R das TSH abschaltet**.
-- Q und R wählt die geschwollene Drüse von R als Iodmangel, **doch ohne Iod wäre Thyroxin niedrig, nicht hoch**.
+- P und S hält das hohe TSH von P für eine Störung der Hypophyse, **doch hohes TSH bei wenig Thyroxin ist der normal arbeitende Regelkreis**, und die geschwollene Drüse von S bildet ihr Thyroxin selbst.
+- T und S wählt die geschwollene Drüse für die Tabletten, **doch eine Drüse, die TSH nicht anregt, schwillt nicht an**.
+- P und R hält die normale Antwort der Hypophyse von P für einen Tumor.

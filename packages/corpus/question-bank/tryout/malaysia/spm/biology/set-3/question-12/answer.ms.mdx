@@ -1,22 +1,29 @@
-# Gunakan gelung suap balik untuk mengesan punca masalah
+# Semak setiap pesakit dengan apa yang sepatutnya dilakukan oleh gelung suap balik
 
-TSH dan tiroksina dihubungkan oleh gelung **suap balik negatif**. Membaca kedua-dua aras bersama menunjukkan kelenjar mana yang bermasalah.
+Dalam gelung yang sihat, **tiroksina yang tinggi menekan TSH** dan tiroksina yang rendah membiarkannya meningkat. Keputusan yang melanggar peraturan ini menunjukkan di mana masalahnya, dan saiz kelenjar menunjukkan sama ada TSH telah merangsangnya.
 
 <Mermaid
   title={<>Kawalan Suap Balik Tiroksina</>}
-  description={<>Kelenjar pituitari merembeskan TSH, yang merangsang kelenjar tiroid merembeskan tiroksina daripada iodin dalam diet. Aras tiroksina yang tinggi melambatkan rembesan TSH, dan aras yang rendah mempercepatkannya.</>}
-  chart={"flowchart LR\n  H[Hipotalamus] --> PI[Kelenjar pituitari]\n  PI -- TSH --> TH[Kelenjar tiroid]\n  I[Iodin dalam diet] --> TH\n  TH -- tiroksina --> B[Sel badan]\n  TH -. tiroksina tinggi melambatkan TSH .-> PI"}
+  description={<>Kelenjar pituitari merembeskan TSH, yang menyebabkan kelenjar tiroid membesar dan merembeskan tiroksina daripada iodin. Tiroksina dalam darah, sama ada daripada kelenjar atau tablet, melambatkan rembesan TSH.</>}
+  chart={"flowchart LR\n  PI[Kelenjar pituitari] -- TSH --> TH[Kelenjar tiroid]\n  I[Iodin dalam diet] --> TH\n  TB[Tablet tiroksina] --> BL[Tiroksina dalam darah]\n  TH -- tiroksina --> BL\n  BL -. tiroksina tinggi melambatkan TSH .-> PI"}
 />
 
-- P: tiroksina rendah, jadi suap balik membebaskan pituitari, dan TSH meningkat kepada <InlineMath math="40" />. Pituitari berfungsi, tetapi tiroid tidak dapat menghasilkan tiroksina. TSH terus merangsang tiroid, yang membengkak menjadi goiter. Ini sepadan dengan **kekurangan iodin**.
-- Q: tiroksina rendah, tetapi TSH juga rendah pada <InlineMath math="0.2" />. Pituitari yang sihat akan meningkatkan TSH, jadi masalahnya pada **kelenjar pituitari**. Dengan TSH yang sedikit, tiroid kekal kecil.
-- R: tiroksina tinggi pada <InlineMath math="250" /> dan TSH ditekan. Tiroid terlalu aktif dengan sendirinya, jadi suap balik telah mematikan TSH.
-- S: kedua-dua nilai dalam julat normal.
+| Pesakit | Tiroksina | TSH | Sepadan dengan gelung? | Punca paling mungkin |
+| --- | --- | --- | --- | --- |
+| P | rendah | tinggi | ya | tiroid tidak dapat menghasilkan tiroksina, contohnya kekurangan iodin |
+| Q | rendah | rendah | tidak | kelenjar pituitari menghasilkan terlalu sedikit TSH |
+| R | tinggi | rendah | ya | tiroksina tambahan dari luar, kelenjar tidak dirangsang |
+| S | tinggi | rendah | ya | kelenjar tiroid terlalu aktif dengan sendirinya |
+| T | tinggi | tinggi | tidak | pituitari terus merembeskan TSH walaupun tiroksina tinggi |
 
-Jadi Q mempunyai kelenjar pituitari yang bermasalah, dan P paling mungkin kekurangan iodin.
+- T: tiroksina tinggi, jadi TSH sepatutnya ditekan, tetapi nilainya <InlineMath math="12" />. Pituitari mengabaikan suap balik dan terus merangsang tiroid, yang membengkak. Ini sepadan dengan **tumor yang merembeskan TSH**.
+- R: tiroksina tinggi dan TSH ditekan, tetapi kelenjarnya **kecil**. Dengan TSH yang sedikit, kelenjar itu tidak dirangsang dan tidak menghasilkan tiroksina, jadi tiroksina itu mesti datang daripada tablet.
+- S mempunyai keputusan darah yang sama dengan R, tetapi kelenjarnya membengkak, jadi kelenjarnya sendiri terlalu aktif.
+
+Jadi pesakit T paling mungkin mempunyai tumor pituitari, dan pesakit R paling mungkin mengambil terlalu banyak tablet tiroksina.
 
 # Kenapa pilihan lain salah
 
-- P dan Q menukar kedua-dua pesakit dan menganggap TSH tinggi sebagai pituitari yang rosak, **sedangkan TSH tinggi ialah gerak balas normal pituitari**.
-- R dan P menganggap TSH rendah bagi R sebagai kegagalan pituitari, **walhal tiroksina R yang tinggi itulah yang mematikan TSH**.
-- Q dan R memilih kelenjar R yang membengkak sebagai kekurangan iodin, **sedangkan tanpa iodin tiroksina akan rendah, bukan tinggi**.
+- P dan S menganggap TSH tinggi bagi P sebagai masalah pituitari, **sedangkan TSH tinggi dengan tiroksina rendah ialah gelung yang berfungsi normal**, dan kelenjar S yang membengkak menghasilkan tiroksinanya sendiri.
+- T dan S memilih kelenjar yang membengkak untuk tablet, **sedangkan kelenjar yang tidak dirangsang oleh TSH tidak membengkak**.
+- P dan R menyangka gerak balas normal pituitari P sebagai tumor.

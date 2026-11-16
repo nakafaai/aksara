@@ -1,28 +1,28 @@
-# Fragen, wer die Antikörper gebildet hat und was an Tag sechzig übrig ist
+# Schutz durch Gedächtnis von Schutz durch geliehene Antikörper trennen
 
-Abgetötete Bakterien wirken als Antigen, also bildet Gruppe 1 eigene Antikörper und **Gedächtniszellen**. Serum bringt fertige Antikörper anderer Mäuse mit, also bekommt Gruppe 2 Antikörper, aber keine Gedächtniszellen.
+Abgetötete Bakterien bringen die Mäuse dazu, eigene Antikörper und **Gedächtniszellen** zu bilden. Serum liefert fertige Antikörper, die in wenigen Wochen abgebaut werden und kein Gedächtnis hinterlassen. Der Zeitpunkt jeder Injektion entscheidet also, was die Mäuse an Tag <InlineMath math="60" /> schützt.
 
 <Chart
-  title={<>Antikörperspiegel in jeder Gruppe</>}
+  title={<>Antikörperspiegel an Tag <InlineMath math="59" /> und Überleben</>}
   bars="apart"
-  categories={["Gruppe 1", "Gruppe 2", "Gruppe 3"]}
+  categories={["Gruppe 1", "Gruppe 2", "Gruppe 3", "Gruppe 4"]}
   series={[
-    { label: "Tag 10", mark: "bar", values: [40, 60, 0] },
-    { label: "Tag 59", mark: "bar", values: [10, 0, 0] },
+    { label: "Antikörper an Tag 59 (Einheiten)", mark: "bar", values: [10, 0, 55, 0] },
+    { label: "Überlebende Mäuse (%)", mark: "bar", values: [100, 10, 90, 5] },
   ]}
-  valueLabel="Antikörperspiegel (Einheiten)"
-  description={<>Gruppe 1 hat an Tag <InlineMath math="10" /> <InlineMath math="40" /> Einheiten und an Tag <InlineMath math="59" /> noch <InlineMath math="10" />. Gruppe 2 hat an Tag <InlineMath math="10" /> <InlineMath math="60" /> Einheiten und an Tag <InlineMath math="59" /> keine mehr. Gruppe 3 hat an beiden Tagen keine.</>}
+  valueLabel="Wert"
+  description={<>An Tag <InlineMath math="59" /> hat Gruppe 1 <InlineMath math="10" /> Einheiten, Gruppe 2 keine, Gruppe 3 <InlineMath math="55" /> und Gruppe 4 keine. Es überleben <InlineMath math="100" />, <InlineMath math="10" />, <InlineMath math="90" /> und <InlineMath math="5\,\%" />. Gruppe 1 überlebt am besten, obwohl sie viel weniger Antikörper hat als Gruppe 3.</>}
 />
 
-- I: Gruppe 1 hat an Tag <InlineMath math="59" /> nur noch <InlineMath math="10" /> Einheiten, und trotzdem überleben alle Mäuse. Ihre Gedächtniszellen erkennen Bakterium B und starten eine **Sekundärantwort**, die schneller und stärker ist als die erste. Aussage I stimmt.
-- II: Die Antikörper von Gruppe 2 fallen vor Tag <InlineMath math="59" /> von <InlineMath math="60" /> auf <InlineMath math="0" /> Einheiten, und nur <InlineMath math="10\,\%" /> überleben, kaum mehr als die <InlineMath math="5\,\%" /> der Kontrollgruppe. Das ist passive Immunität, und sie hielt weniger als <InlineMath math="60" /> Tage. Aussage II stimmt.
-- III: <InlineMath math="10" /> Einheiten an Tag <InlineMath math="59" /> sind wenig. Das Überleben kommt von den Gedächtniszellen, nicht von diesen restlichen Antikörpern. Aussage III ist falsch.
-- IV: Die Antikörper kamen mit dem Serum. Die Mäuse von Gruppe 2 hatten nie Kontakt mit dem Antigen, ihre eigenen Lymphozyten haben also keine davon gebildet. Aussage IV stimmt.
+- I: Gruppe 1 hat an Tag <InlineMath math="59" /> nur <InlineMath math="10" /> Einheiten, und trotzdem überleben alle Mäuse. Ihre Gedächtniszellen erkennen Bakterium B und starten eine schnelle, starke **Sekundärantwort**. Aussage I stimmt.
+- II: Gruppe 3 bekam ihr Serum erst fünf Tage vor der Infektion, und <InlineMath math="55" /> Einheiten sind noch im Blut. Diese geliehenen Antikörper bekämpfen die Bakterien, also überleben <InlineMath math="90\,\%" />. Aussage II stimmt.
+- III: Gruppe 1 hat <InlineMath math="10" /> und Gruppe 3 <InlineMath math="55" /> Einheiten, Gruppe 1 hat also **weniger** Antikörper und überlebt trotzdem besser. Ihr Vorteil ist das Gedächtnis, nicht der Antikörperspiegel. Aussage III ist falsch.
+- IV: Gruppe 2 hatte an Tag <InlineMath math="10" /> <InlineMath math="60" /> Einheiten, ihr Serum enthielt also Antikörper. Bis Tag <InlineMath math="59" /> waren sie nur abgebaut. Aussage IV ist falsch.
 
-Richtig sind also die Aussagen I, II und IV.
+Richtig sind also die Aussagen I und II.
 
 # Warum die anderen Antworten falsch sind
 
-- Nur I und II verwirft IV, als würde Serum die Mäuse zur Antikörperbildung anregen, **dabei liefert Serum sie nur**.
-- Nur I, II und III rechnet das Überleben dem niedrigen Antikörperspiegel an Tag <InlineMath math="59" /> zu und übersieht die **Gedächtniszellen**.
-- Nur II und IV verwirft I und übersieht, dass Gruppe 1 fast ohne Antikörper überlebt, was nur eine **Sekundärantwort** erklärt.
+- Nur I, II und III liest die Antikörperspiegel verkehrt herum, **denn Gruppe 1 hat weniger Antikörper als Gruppe 3**.
+- Nur I und III verwirft den passiven Schutz von Gruppe 3 und liest die Antikörperspiegel falsch.
+- Nur II und IV verwirft die Gedächtnisantwort und übersieht die <InlineMath math="60" /> Einheiten, die Gruppe 2 an Tag <InlineMath math="10" /> hatte.

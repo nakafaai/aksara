@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "Q and P" },
-        { correct: false, label: "P and Q" },
-        { correct: false, label: "R and P" },
-        { correct: false, label: "Q and R" },
+        { correct: true, label: "T and R" },
+        { correct: false, label: "P and S" },
+        { correct: false, label: "T and S" },
+        { correct: false, label: "P and R" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "Q dan P" },
-        { correct: false, label: "P dan Q" },
-        { correct: false, label: "R dan P" },
-        { correct: false, label: "Q dan R" },
+        { correct: true, label: "T dan R" },
+        { correct: false, label: "P dan S" },
+        { correct: false, label: "T dan S" },
+        { correct: false, label: "P dan R" },
       ],
     },
   },
