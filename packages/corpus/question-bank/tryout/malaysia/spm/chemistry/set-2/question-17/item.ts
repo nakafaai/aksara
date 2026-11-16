@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "Chlorine water and potassium bromide solution" },
-        { correct: false, label: "Bromine water and potassium chloride solution" },
-        { correct: false, label: "Iodine solution and potassium bromide solution" },
-        { correct: false, label: "Iodine solution and potassium chloride solution" },
+        { correct: true, label: "Halogen P water and potassium R solution" },
+        { correct: false, label: "Halogen R water and potassium Q solution" },
+        { correct: false, label: "Halogen Q water and potassium P solution" },
+        { correct: false, label: "Halogen R water and potassium P solution" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "Air klorin dan larutan kalium bromida" },
-        { correct: false, label: "Air bromin dan larutan kalium klorida" },
-        { correct: false, label: "Larutan iodin dan larutan kalium bromida" },
-        { correct: false, label: "Larutan iodin dan larutan kalium klorida" },
+        { correct: true, label: "Air halogen P dan larutan kalium R" },
+        { correct: false, label: "Air halogen R dan larutan kalium Q" },
+        { correct: false, label: "Air halogen Q dan larutan kalium P" },
+        { correct: false, label: "Air halogen R dan larutan kalium P" },
       ],
     },
   },

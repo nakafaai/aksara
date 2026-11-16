@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Add excess lead(II) oxide to dilute sulfuric acid, filter, then heat the filtrate until it is saturated and let it crystallise" },
-        { correct: false, label: "Titrate dilute sulfuric acid with lead(II) hydroxide solution, then evaporate the solution to dryness" },
-        { correct: false, label: "Add lead to dilute sulfuric acid until no more gas is given off, then filter and crystallise" },
-        { correct: true, label: "Mix lead(II) nitrate solution with sodium sulfate solution, filter, rinse the residue with distilled water and dry it between filter papers" },
+        { correct: false, label: "Titrate lead(II) hydroxide with sulfuric acid, using $$20.0\\text{ cm}^3$$ of acid" },
+        { correct: false, label: "Mix lead(II) nitrate and sodium sulfate solutions, using $$10.0\\text{ cm}^3$$ of lead(II) nitrate" },
+        { correct: false, label: "React lead(II) oxide with sulfuric acid and crystallise, using $$20.0\\text{ cm}^3$$ of acid" },
+        { correct: true, label: "Mix lead(II) nitrate and sodium sulfate solutions, using $$20.0\\text{ cm}^3$$ of lead(II) nitrate" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Tambah plumbum(II) oksida berlebihan ke dalam asid sulfurik cair, turas, kemudian panaskan hasil turasan hingga tepu dan biarkan menghablur" },
-        { correct: false, label: "Titratkan asid sulfurik cair dengan larutan plumbum(II) hidroksida, kemudian sejatkan larutan hingga kering" },
-        { correct: false, label: "Tambah plumbum ke dalam asid sulfurik cair sehingga tiada lagi gas terbebas, kemudian turas dan hablurkan" },
-        { correct: true, label: "Campurkan larutan plumbum(II) nitrat dengan larutan natrium sulfat, turas, bilas baki dengan air suling dan keringkan di antara kertas turas" },
+        { correct: false, label: "Titratkan plumbum(II) hidroksida dengan asid sulfurik, menggunakan $$20.0\\text{ cm}^3$$ asid" },
+        { correct: false, label: "Campurkan larutan plumbum(II) nitrat dan natrium sulfat, menggunakan $$10.0\\text{ cm}^3$$ plumbum(II) nitrat" },
+        { correct: false, label: "Tindak balaskan plumbum(II) oksida dengan asid sulfurik dan hablurkan, menggunakan $$20.0\\text{ cm}^3$$ asid" },
+        { correct: true, label: "Campurkan larutan plumbum(II) nitrat dan natrium sulfat, menggunakan $$20.0\\text{ cm}^3$$ plumbum(II) nitrat" },
       ],
     },
   },
