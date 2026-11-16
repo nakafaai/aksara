@@ -10,43 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$32.0\\text{ kg}$$, the products have more energy",
-        },
-        {
-          correct: false,
-          label: "$$53.3\\text{ kg}$$, the products have less energy",
-        },
-        {
-          correct: false,
-          label: "$$80.0\\text{ kg}$$, the products have more energy",
-        },
-        {
-          correct: true,
-          label: "$$53.3\\text{ kg}$$, the products have more energy",
-        },
+        { correct: false, label: "$$32.0\\text{ kg}$$, $$528\\text{ kg}$$" },
+        { correct: false, label: "$$53.3\\text{ kg}$$, $$440\\text{ kg}$$" },
+        { correct: false, label: "$$53.3\\text{ kg}$$, $$147\\text{ kg}$$" },
+        { correct: true, label: "$$53.3\\text{ kg}$$, $$587\\text{ kg}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$32.0\\text{ kg}$$, hasil mempunyai tenaga lebih tinggi",
-        },
-        {
-          correct: false,
-          label: "$$53.3\\text{ kg}$$, hasil mempunyai tenaga lebih rendah",
-        },
-        {
-          correct: false,
-          label: "$$80.0\\text{ kg}$$, hasil mempunyai tenaga lebih tinggi",
-        },
-        {
-          correct: true,
-          label: "$$53.3\\text{ kg}$$, hasil mempunyai tenaga lebih tinggi",
-        },
+        { correct: false, label: "$$32.0\\text{ kg}$$, $$528\\text{ kg}$$" },
+        { correct: false, label: "$$53.3\\text{ kg}$$, $$440\\text{ kg}$$" },
+        { correct: false, label: "$$53.3\\text{ kg}$$, $$147\\text{ kg}$$" },
+        { correct: true, label: "$$53.3\\text{ kg}$$, $$587\\text{ kg}$$" },
       ],
     },
   },
