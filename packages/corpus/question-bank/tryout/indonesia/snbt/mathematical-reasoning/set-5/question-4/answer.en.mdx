@@ -29,6 +29,21 @@ Could the second card be bought later so it also covers day <InlineMath math="48
 &= 580
 \end{aligned}" />
 
+The chart below plots the day number of visits <InlineMath math="11" /> to <InlineMath math="20" />. **The last two bars are already above the day <InlineMath math="47" /> line**, so those two visits can't use the second card any more.
+
+<Chart
+  title={<>Day numbers of visits <InlineMath math="11" /> to <InlineMath math="20" /> and the second card's validity</>}
+  description={<>Visits <InlineMath math="11" /> to <InlineMath math="18" /> fall on days <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="22" />, <InlineMath math="23" />, <InlineMath math="25" />, <InlineMath math="27" />, <InlineMath math="34" />, and <InlineMath math="41" />, so the second card covers them. Visits <InlineMath math="19" /> and <InlineMath math="20" /> fall on days <InlineMath math="48" /> and <InlineMath math="55" />. The flat line marks day <InlineMath math="47" />, the second card's last valid day.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${11 + i}`)}
+  series={[
+    { label: "Covered by the second card", mark: "bar", values: [18, 20, 22, 23, 25, 27, 34, 41, null, null] },
+    { label: "Paid with a day ticket", mark: "bar", values: [null, null, null, null, null, null, null, null, 48, 55] },
+    { label: "Second card valid until day 47", mark: "line", values: Array.from({ length: 10 }, () => 18 + 29) },
+  ]}
+  valueLabel="Day number"
+/>
+
 # Comparing with the other ways
 
 The ways that use a membership or only one card turn out **more expensive than** <InlineMath math="580" />:

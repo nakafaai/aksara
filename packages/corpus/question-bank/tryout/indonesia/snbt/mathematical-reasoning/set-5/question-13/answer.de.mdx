@@ -29,6 +29,17 @@ Ab 00.00 **bringen die Nachtstunden die Geschwindigkeit zurück auf <InlineMath 
 
 Der ganze Download dauert also <InlineMath math="20 + 130 + 4 = 154" /> Minuten, und die Datei ist um 00.04 fertig. Prüfe die Datenmenge: <InlineMath math="6 + 7{,}8 + 1{,}2 = 15\text{ GB}" />, genau die Dateigröße.
 
+Das Diagramm teilt die Datei nach Geschwindigkeit auf. **Der langsame Teil braucht <InlineMath math="130" /> Minuten für <InlineMath math="7{,}8\text{ GB}" />**, während die beiden schnellen Teile nur <InlineMath math="20" /> und <InlineMath math="4" /> Minuten brauchen.
+
+<Chart
+  title={<>Heruntergeladene Daten in jedem Geschwindigkeitsabschnitt</>}
+  description={<>Von 21.30 bis 21.50 Uhr mit <InlineMath math="40" /> Mbps kommen <InlineMath math="6\text{ GB}" /> herunter. Von 21.50 bis 00.00 Uhr mit <InlineMath math="8" /> Mbps kommen <InlineMath math="7{,}8\text{ GB}" /> herunter. Von 00.00 bis 00.04 Uhr mit <InlineMath math="40" /> Mbps kommen <InlineMath math="1{,}2\text{ GB}" /> herunter.</>}
+  categories={["21.30 bis 21.50", "21.50 bis 00.00", "00.00 bis 00.04"]}
+  bars="apart"
+  series={[{ label: "Heruntergeladene Daten (GB)", mark: "bar", values: [6, (130 * 60) / 1000, 15 - 6 - (130 * 60) / 1000] }]}
+  valueLabel="Daten (GB)"
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort **übersieht einen der Geschwindigkeitswechsel**:

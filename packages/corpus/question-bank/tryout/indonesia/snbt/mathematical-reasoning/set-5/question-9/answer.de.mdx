@@ -30,6 +30,21 @@ w = 8 &: 0{,}8 \cdot 8 = 6{,}4 \to 6{,}0\text{ kg} \to \text{Rp}15{.}000
 
 <InlineMath math="8{,}125\text{ kg}" /> reichen, <InlineMath math="8\text{ kg}" /> reichen nicht.
 
+Das Diagramm berechnet den Wert der Abgabe für mehrere Gewichte nasser Pappe. **Die Balken bleiben bis <InlineMath math="8\text{ kg}" /> bei <InlineMath math="\text{Rp}15{.}000" />** und springen genau bei <InlineMath math="8{,}125\text{ kg}" /> über die Ziellinie.
+
+<Chart
+  title={<>Wert nasser Pappe nach Gewicht</>}
+  description={<>Nasse Pappe mit <InlineMath math="7{,}5" />, <InlineMath math="7{,}75" /> und <InlineMath math="8\text{ kg}" /> zählt als <InlineMath math="6{,}0\text{ kg}" /> und ist <InlineMath math="\text{Rp}15{.}000" /> wert. Nasse Pappe mit <InlineMath math="8{,}125" />, <InlineMath math="8{,}25" /> und <InlineMath math="8{,}5\text{ kg}" /> zählt als <InlineMath math="6{,}5\text{ kg}" /> und ist <InlineMath math="\text{Rp}16{.}250" /> wert. Die waagerechte Linie markiert das Ziel von <InlineMath math="\text{Rp}16{.}000" />. Die Werteachse beginnt bei <InlineMath math="\text{Rp}14{.}000" />.</>}
+  categories={["7,5 kg", "7,75 kg", "8 kg", "8,125 kg", "8,25 kg", "8,5 kg"]}
+  bars="apart"
+  series={[
+    { label: "Wert der Abgabe", mark: "bar", values: [7.5, 7.75, 8, 8.125, 8.25, 8.5].map((w) => (Math.floor(0.8 * w * 2) / 2) * 2500) },
+    { label: "Ziel Rp16.000", mark: "line", values: [16000, 16000, 16000, 16000, 16000, 16000] },
+  ]}
+  valueRange={{ min: 14000, max: 17000 }}
+  valueLabel="Wert (Rupiah)"
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort **behandelt das Runden oder den Wasserabzug falsch**:

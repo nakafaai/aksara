@@ -29,6 +29,20 @@ Now price each package:
 
 So **the cheapest package is Package B**, at <InlineMath math="\text{Rp}1{,}860{,}000" />.
 
+The chart below separates each package's day charge and distance charge. **Package B only adds a small distance charge** because its allowance covers the whole rental, while Package A pays for every kilometre.
+
+<Chart
+  title={<>Breakdown of a <InlineMath math="6" />-day rental for <InlineMath math="960\text{ km}" /></>}
+  description={<>Package A: day charge <InlineMath math="\text{Rp}960{,}000" /> and distance charge <InlineMath math="\text{Rp}1{,}440{,}000" />. Package B: day charge <InlineMath math="\text{Rp}1{,}680{,}000" /> and distance charge <InlineMath math="\text{Rp}180{,}000" />. Package C: day charge <InlineMath math="\text{Rp}2{,}400{,}000" /> with no distance charge.</>}
+  bars="apart"
+  categories={["A", "B", "C"]}
+  series={[
+    { label: "Day charge after discount", mark: "bar", values: [0.8 * 6 * 200000, 0.8 * 6 * 350000, 0.8 * 6 * 500000] },
+    { label: "Distance charge", mark: "bar", values: [960 * 1500, (960 - 900) * 3000, 0] },
+  ]}
+  valueLabel="Cost (rupiah)"
+/>
+
 # Checking the daily allowance trap
 
 Compare this with the wrong method, which counts the excess day by day. Days two, five and six go over <InlineMath math="150\text{ km}" />:

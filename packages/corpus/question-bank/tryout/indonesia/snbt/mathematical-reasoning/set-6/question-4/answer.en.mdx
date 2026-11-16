@@ -32,6 +32,19 @@ Run the new schedule, with pump Q from 06:40 to 07:40. At 06:40, pump P has work
 
 The level **reaches the capacity exactly without going over it**, so no water is lost. If pump Q started <InlineMath math="5\text{ minutes}" /> earlier, tap K would only be open for <InlineMath math="135\text{ minutes}" /> by the time pump Q stops, and the peak would be <InlineMath math="13{,}000-50\cdot 135=6{,}250\text{ liters}" />. That's above the capacity.
 
+The chart below follows the water level with pump Q running from 06:40 to 07:40. **The peak touches the capacity line exactly at 07:40** without going over it, then falls once pump Q stops.
+
+<Chart
+  title={<>Water level with pump Q running from 06:40 to 07:40</>}
+  description={<>The level rises slowly to <InlineMath math="3{,}000" /> liters at 06:40, quickly to <InlineMath math="4{,}800" /> liters at 07:00, then to exactly <InlineMath math="6{,}000" /> liters at 07:40. After that it falls by <InlineMath math="50" /> liters per minute. The flat line marks the capacity of <InlineMath math="6{,}000" /> liters.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Water level, new schedule", mark: "line", values: [1000, 2200, 2400, 2600, 2800, 3000, 4800, 5400, 6000, 5000, 4000, 3000, 2000, 1000, 0, 0] },
+    { label: "Capacity 6,000 liters", mark: "line", values: Array.from({ length: 16 }, () => 6000) },
+  ]}
+  valueLabel="Water level (liters)"
+/>
+
 # Why the other options fail
 
 The two options that are too early still lose water, and **the two later options are safe but not the earliest**.

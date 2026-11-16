@@ -36,6 +36,34 @@ Prüfe mit den Strecken der beiden bei Sekunde <InlineMath math="650" />:
 
 Der Unterschied beträgt genau <InlineMath math="400\text{ m}" />, die beiden sind also wirklich am selben Punkt.
 
+Die Abbildung zeigt den Streckenunterschied <InlineMath math="g" /> über der Zeit. Die Linie steigt flach, solange beide laufen, **fällt steil, während Andi trinkt**, und steigt dann wieder, bis sie bei Sekunde <InlineMath math="650" /> die Linie für eine Runde berührt.
+
+<MathVisual
+  title={<>Streckenunterschied zwischen Andi und Bima bis zum ersten Treffen</>}
+  description={<>Der Unterschied steigt von <InlineMath math="0" /> auf <InlineMath math="320" /> m bei Sekunde <InlineMath math="320" />, fällt während Andis Trinkpause auf <InlineMath math="120" /> m bei Sekunde <InlineMath math="370" />, steigt dann wieder und erreicht bei Sekunde <InlineMath math="650" /> den Wert <InlineMath math="400" /> m. Die waagerechte Linie markiert einen Unterschied von einer Runde, <InlineMath math="400" /> m.</>}
+  labels={{
+    lap: <InlineMath math="g=400" />,
+    meet: <InlineMath math="t=650" />,
+    stop: <InlineMath math="t=320" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -40, max: 760 }, y: { min: -40, max: 480 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "lap", kind: "segment", appearance: "reference", from: { x: 0, y: 400 }, to: { x: 720, y: 400 } },
+      { id: "gap", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 320, y: 320 }, { x: 370, y: 120 }, { x: 650, y: 400 }] },
+      { id: "stop", kind: "point", appearance: "warning", at: { x: 320, y: 320 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 650, y: 400 } },
+    ],
+    labels: [
+      { key: "lap", objectId: "lap", at: { x: 120, y: 400 }, placement: "above" },
+      { key: "meet", objectId: "meet", at: { x: 650, y: 400 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 320, y: 320 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Die falschen Antworten
 
 Jede andere Antwort **behandelt die Trinkpause falsch**:

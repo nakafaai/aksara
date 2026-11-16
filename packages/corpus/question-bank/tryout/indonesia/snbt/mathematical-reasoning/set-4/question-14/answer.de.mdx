@@ -6,6 +6,17 @@ Jede Senkung um <InlineMath math="5\text{ Tausend}" /> bringt <InlineMath math="
 
 <BlockMath math="\text{Gewinn}=(p+10)\,n-2{.}000\text{ Tausend}" />
 
+Das Diagramm berechnet den Gewinn der Vorstellung aus dieser Formel für Preise von <InlineMath math="25" /> bis <InlineMath math="85" /> Tausend. Der Gipfel liegt nahe <InlineMath math="40" /> Tausend, **die Balken für <InlineMath math="30" /> und <InlineMath math="50" /> Tausend sind nicht gleich hoch**, und der erste Balken unter null gehört zu <InlineMath math="85" /> Tausend.
+
+<Chart
+  title={<>Gewinn der Vorstellung nach Ticketpreis</>}
+  description={<>Der Gewinn beträgt <InlineMath math="(p+10)n-2{.}000" /> Tausend Rupiah mit <InlineMath math="n=280-3{,}2p" />, höchstens <InlineMath math="200" />. Bei Preisen von <InlineMath math="25" />, <InlineMath math="30" />, <InlineMath math="40" /> und <InlineMath math="50" /> Tausend beträgt er <InlineMath math="5{.}000" />, <InlineMath math="5{.}360" />, <InlineMath math="5{.}600" /> und <InlineMath math="5{.}200" /> Tausend Rupiah. Bei <InlineMath math="80" /> Tausend sind es <InlineMath math="160" /> Tausend Rupiah, bei <InlineMath math="85" /> Tausend ein Verlust von <InlineMath math="1{.}240" /> Tausend Rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 13 }, (_, i) => `${25 + 5 * i}`)}
+  series={[{ label: "Gewinn (Tausend Rupiah)", mark: "bar", values: Array.from({ length: 13 }, (_, i) => (35 + 5 * i) * Math.min(200, Math.max(0, 280 - 3.2 * (25 + 5 * i))) - 2000) }]}
+  valueLabel="Gewinn (Tausend Rupiah)"
+/>
+
 # Die erste Aussage
 
 Vergleiche die Ticketeinnahme bei beiden Preisen:

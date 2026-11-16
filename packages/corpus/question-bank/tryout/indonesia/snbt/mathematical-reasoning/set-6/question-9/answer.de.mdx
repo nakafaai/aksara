@@ -20,6 +20,18 @@ Der letzte Bus A, der es noch schafft, fährt um 21:36 Uhr ab.
 
 Spiel Rinas Fahrt von Anfang an durch. Bus A fährt um 21:36 Uhr ab und ist um 22:01 Uhr an der Halte Pasar. Rina geht hinüber und ist spätestens um 22:05 Uhr bereit, steigt um 22:22 Uhr in Bus B und ist um 22:37 Uhr an der Halte Kampus. Das ist **nicht später als 22:40 Uhr**. Sie wartet <InlineMath math="21\text{ Minuten}" />, mehr als <InlineMath math="15\text{ Minuten}" />, also bekommt sie keinen kostenlosen Umstieg. Gefragt ist aber nur die Zeit, der Fahrpreis ändert die Antwort nicht.
 
+Das Diagramm ordnet Rinas Fahrt von Anfang bis Ende. **Jeder Schritt fügt nach seiner eigenen Regel Zeit hinzu**, und das Ende liegt trotzdem vor der Frist um 22.40 Uhr.
+
+<Mermaid
+  title={<>Rinas Fahrt mit Bus A um 21.36 Uhr und Bus B um 22.22 Uhr</>}
+  description={<>Bus A fährt um 21.36 Uhr ab und erreicht Halte Pasar um 22.01 Uhr. Nach <InlineMath math="4" /> Minuten Fußweg ist Rina um 22.05 Uhr bereit, steigt um 22.22 Uhr in Bus B und erreicht Halte Kampus um 22.37 Uhr, drei Minuten vor der Frist um 22.40 Uhr.</>}
+  chart={`flowchart LR
+    A["Bus A fährt 21.36 ab"] -->|"25 Minuten"| B["Ankunft Halte Pasar 22.01"]
+    B -->|"4 Minuten Fußweg"| C["Bereit zum Einsteigen 22.05"]
+    C -->|"warten"| D["Bus B fährt 22.22 ab"]
+    D -->|"15 Minuten"| E["Ankunft Halte Kampus 22.37"]`}
+/>
+
 # Warum die anderen Antworten nicht passen
 
 Jede falsche Antwort **benutzt eine falsche Regel oder lässt eine Fahrzeit weg**.

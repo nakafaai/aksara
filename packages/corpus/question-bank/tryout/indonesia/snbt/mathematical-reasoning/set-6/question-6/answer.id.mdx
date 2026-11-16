@@ -17,6 +17,20 @@ Menit berbayar sebuah perjalanan adalah durasinya dikurangi <InlineMath math="20
 
 Karena batasnya <InlineMath math="\text{Rp}30{.}000" />, Dita hanya membayar biaya menit <InlineMath math="\text{Rp}30{.}000" /> dari <InlineMath math="65\text{ menit}" /> berbayar.
 
+Grafik berikut menumpuk biaya menit, sebelum batas diterapkan, untuk urutan asli dan urutan dibalik. **Kedua garis berakhir di titik yang sama, <InlineMath math="\text{Rp}32{.}500" />**, jadi batas bulanan memotongnya menjadi <InlineMath math="\text{Rp}30{.}000" /> pada kedua urutan.
+
+<Chart
+  title={<>Biaya menit terkumpul untuk dua urutan perjalanan Dita</>}
+  description={<>Dengan urutan asli, biaya menit terkumpul berturut-turut <InlineMath math="2{.}500, 2{.}500, 11{.}500, 23{.}500, 23{.}500, 29{.}000, 29{.}000, 32{.}500" /> rupiah. Dengan urutan dibalik, berturut-turut <InlineMath math="3{.}500, 3{.}500, 9{.}000, 9{.}000, 21{.}000, 30{.}000, 30{.}000, 32{.}500" /> rupiah. Garis datar menandai batas bulanan <InlineMath math="\text{Rp}30{.}000" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Urutan asli", mark: "line", values: [2500, 2500, 11500, 23500, 23500, 29000, 29000, 32500] },
+    { label: "Urutan dibalik", mark: "line", values: [3500, 3500, 9000, 9000, 21000, 30000, 30000, 32500] },
+    { label: "Batas Rp30.000", mark: "line", values: Array.from({ length: 8 }, () => 30000) },
+  ]}
+  valueLabel="Biaya menit (rupiah)"
+/>
+
 # Pernyataan tentang urutan yang dibalik
 
 Biaya menit bulanan sama dengan <InlineMath math="500" /> kali jumlah menit berbayar, lalu dipotong di <InlineMath math="30{.}000" /> jika lebih. **Jumlah menit berbayar tidak bergantung pada urutan perjalanan**, karena penjumlahan boleh ditukar urutannya. Jadi biayanya tetap <InlineMath math="\text{Rp}30{.}000" />. Urutan hanya mengubah kapan batas tercapai. Jika urutannya dibalik, biaya terkumpul menjadi <InlineMath math="3{.}500" />, <InlineMath math="3{.}500" />, <InlineMath math="9{.}000" />, <InlineMath math="9{.}000" />, <InlineMath math="21{.}000" />, lalu <InlineMath math="30{.}000" /> pada perjalanan ke-<InlineMath math="6" />. Jumlah yang dibayar tetap sama. Pernyataan ini **benar**.

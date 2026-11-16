@@ -6,6 +6,17 @@ Every <InlineMath math="5\text{ thousand}" /> down adds <InlineMath math="16" />
 
 <BlockMath math="\text{profit}=(p+10)\,n-2{,}000\text{ thousand}" />
 
+The chart below works out the show profit from that formula for prices from <InlineMath math="25" /> to <InlineMath math="85" /> thousand. The peak is near <InlineMath math="40" /> thousand, **the <InlineMath math="30" /> and <InlineMath math="50" /> thousand bars aren't the same height**, and the first bar below zero is <InlineMath math="85" /> thousand.
+
+<Chart
+  title={<>Show profit by ticket price</>}
+  description={<>The profit is <InlineMath math="(p+10)n-2{,}000" /> thousand rupiah with <InlineMath math="n=280-3.2p" />, at most <InlineMath math="200" />. At prices of <InlineMath math="25" />, <InlineMath math="30" />, <InlineMath math="40" />, and <InlineMath math="50" /> thousand, the profit is <InlineMath math="5{,}000" />, <InlineMath math="5{,}360" />, <InlineMath math="5{,}600" />, and <InlineMath math="5{,}200" /> thousand rupiah. At <InlineMath math="80" /> thousand it's <InlineMath math="160" /> thousand rupiah, and at <InlineMath math="85" /> thousand it's a loss of <InlineMath math="1{,}240" /> thousand rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 13 }, (_, i) => `${25 + 5 * i}`)}
+  series={[{ label: "Profit (thousand rupiah)", mark: "bar", values: Array.from({ length: 13 }, (_, i) => (35 + 5 * i) * Math.min(200, Math.max(0, 280 - 3.2 * (25 + 5 * i))) - 2000) }]}
+  valueLabel="Profit (thousand rupiah)"
+/>
+
 # The first statement
 
 Compare the ticket revenue at the two prices:

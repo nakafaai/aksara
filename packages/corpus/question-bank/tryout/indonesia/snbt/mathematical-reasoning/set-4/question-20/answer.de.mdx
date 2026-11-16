@@ -12,6 +12,20 @@ Von jeder Rolle bleiben <InlineMath math="232\text{ cm}" />, weniger als ein Zus
 
 Zwei gleich breite Wände bekommen je <InlineMath math="12:2=6" /> Bahnen. Jede Wand wird für sich gezählt, also braucht eine Wand von <InlineMath math="w\text{ cm}" /> Breite <InlineMath math="w:50" /> Bahnen, aufgerundet. Sechs Bahnen decken höchstens <InlineMath math="6\cdot50=300\text{ cm}" />, und **eine Wand von <InlineMath math="301\text{ cm}" /> Breite braucht schon eine siebte Bahn**.
 
+Das Diagramm zählt die Bahnen, die eine Wand bei verschiedenen Breiten braucht. **Die Balken bleiben bis zu einer Breite von <InlineMath math="300\text{ cm}" /> auf der Linie bei <InlineMath math="6" /> Bahnen** und springen ab <InlineMath math="310\text{ cm}" /> auf <InlineMath math="7" />.
+
+<Chart
+  title={<>Benötigte Bahnen für eine Wand nach ihrer Breite</>}
+  description={<>Eine Wand von <InlineMath math="250\text{ cm}" /> Breite braucht <InlineMath math="5" /> Bahnen, eine von <InlineMath math="260" /> bis <InlineMath math="300\text{ cm}" /> braucht <InlineMath math="6" /> Bahnen und eine von <InlineMath math="310" /> bis <InlineMath math="350\text{ cm}" /> braucht <InlineMath math="7" /> Bahnen. Die waagerechte Linie markiert die <InlineMath math="6" /> Bahnen, die für jede Wand verfügbar sind.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${250 + 10 * i}`)}
+  series={[
+    { label: "Benötigte Bahnen pro Wand", mark: "bar", values: Array.from({ length: 11 }, (_, i) => Math.ceil((250 + 10 * i) / 50)) },
+    { label: "Verfügbare Bahnen pro Wand", mark: "line", values: Array.from({ length: 11 }, () => 12 / 2) },
+  ]}
+  valueLabel="Bahnen"
+/>
+
 # Die verlockenden falschen Optionen
 
 Jede andere Option geht mit der Tapete **freier um, als die Regeln erlauben**.

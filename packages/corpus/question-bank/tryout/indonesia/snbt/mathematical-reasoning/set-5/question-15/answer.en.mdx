@@ -12,6 +12,17 @@ Starting at 13.00, only <InlineMath math="5\text{ GB}" /> go fast, and **the res
 
 A difference of <InlineMath math="8{,}000" /> seconds is <InlineMath math="2" /> hours <InlineMath math="13" /> minutes <InlineMath math="20" /> seconds, more than <InlineMath math="2" /> hours. The night download finishes in <InlineMath math="50" /> minutes, long before 06.00. This statement is true.
 
+The chart below compares how long the <InlineMath math="15\text{ GB}" /> file takes from both start times. **The bar for starting at 13.00 is almost four times taller**, because <InlineMath math="10\text{ GB}" /> of it runs slow.
+
+<Chart
+  title={<>Time to download a <InlineMath math="15\text{ GB}" /> file by start time</>}
+  description={<>Starting at 13.00, the download takes <InlineMath math="11{,}000" /> seconds: <InlineMath math="5\text{ GB}" /> fast and <InlineMath math="10\text{ GB}" /> slow. Starting at 00.00, it takes <InlineMath math="3{,}000" /> seconds at full speed. The difference is <InlineMath math="8{,}000" /> seconds.</>}
+  categories={["Start 13.00", "Start 00.00"]}
+  bars="apart"
+  series={[{ label: "Download time (seconds)", mark: "bar", values: [5 * 200 + 10 * 1000, 15 * 200] }]}
+  valueLabel="Download time (seconds)"
+/>
+
 # A big file during the night hours
 
 The night hours last only <InlineMath math="6" /> hours, which is <InlineMath math="21{,}600" /> seconds. In that time you can download **at most <InlineMath math="21{,}600 \div 200 = 108\text{ GB}" />**. A <InlineMath math="120\text{ GB}" /> file needs <InlineMath math="24{,}000" /> seconds, so the last <InlineMath math="12\text{ GB}" /> come after 06.00 and use main quota. This statement is false.

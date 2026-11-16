@@ -12,6 +12,20 @@ Sekarang Pasar Y punya <InlineMath math="40" /> responden muda dan <InlineMath m
 
 <BlockMath math="\begin{aligned} \text{pemilih QRIS di Y} &= 40\cdot 65\%+160\cdot 20\% \\ &= 26+32=58 \\ \text{persentase Y} &= \frac{58}{200}\cdot 100\%=29\% \end{aligned}" />
 
+Grafik berikut menaruh kedua pasar berdampingan untuk setiap kelompok dan untuk keseluruhan dengan campuran usia Pasar X. **Pasar X unggul di kedua kelompok**, jadi dengan bobot yang sama, Pasar X juga unggul pada keseluruhannya.
+
+<Chart
+  title={<>Persentase pemilih QRIS dengan campuran usia yang sama</>}
+  description={<>Kelompok di bawah <InlineMath math="30" /> tahun: Pasar X <InlineMath math="80\%" /> dan Pasar Y <InlineMath math="65\%" />. Kelompok <InlineMath math="30" /> tahun ke atas: Pasar X <InlineMath math="30\%" /> dan Pasar Y <InlineMath math="20\%" />. Dengan <InlineMath math="40" /> responden muda dan <InlineMath math="160" /> responden berusia <InlineMath math="30" /> tahun ke atas di kedua pasar, keseluruhannya Pasar X <InlineMath math="40\%" /> dan Pasar Y <InlineMath math="29\%" />.</>}
+  categories={["Di bawah 30 tahun", "30 tahun ke atas", "Keseluruhan, campuran X"]}
+  bars="apart"
+  series={[
+    { label: "Pasar X", mark: "bar", values: [80, 30, ((40 * 0.8 + 160 * 0.3) / 200) * 100] },
+    { label: "Pasar Y", mark: "bar", values: [65, 20, ((40 * 0.65 + 160 * 0.2) / 200) * 100] },
+  ]}
+  valueLabel="Pemilih QRIS (%)"
+/>
+
 # Perbandingan kedua pasar
 
 <BlockMath math="40\%-29\%=11\%" />

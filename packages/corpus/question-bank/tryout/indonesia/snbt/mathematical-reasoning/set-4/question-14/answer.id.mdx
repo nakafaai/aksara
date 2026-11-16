@@ -6,6 +6,17 @@ Setiap turun <InlineMath math="5\text{ ribu}" /> menambah <InlineMath math="16" 
 
 <BlockMath math="\text{keuntungan}=(p+10)\,n-2{.}000\text{ ribu}" />
 
+Grafik berikut menghitung keuntungan pertunjukan dari rumus itu untuk harga <InlineMath math="25" /> sampai <InlineMath math="85" /> ribu. Puncaknya ada di sekitar <InlineMath math="40" /> ribu, **batang <InlineMath math="30" /> dan <InlineMath math="50" /> ribu tidak sama tinggi**, dan batang pertama yang turun di bawah nol adalah <InlineMath math="85" /> ribu.
+
+<Chart
+  title={<>Keuntungan pertunjukan menurut harga tiket</>}
+  description={<>Keuntungannya <InlineMath math="(p+10)n-2{.}000" /> ribu rupiah dengan <InlineMath math="n=280-3{,}2p" />, paling banyak <InlineMath math="200" />. Pada harga <InlineMath math="25" />, <InlineMath math="30" />, <InlineMath math="40" />, dan <InlineMath math="50" /> ribu, keuntungannya <InlineMath math="5{.}000" />, <InlineMath math="5{.}360" />, <InlineMath math="5{.}600" />, dan <InlineMath math="5{.}200" /> ribu rupiah. Pada <InlineMath math="80" /> ribu keuntungannya <InlineMath math="160" /> ribu rupiah, dan pada <InlineMath math="85" /> ribu rugi <InlineMath math="1{.}240" /> ribu rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 13 }, (_, i) => `${25 + 5 * i}`)}
+  series={[{ label: "Keuntungan (ribu rupiah)", mark: "bar", values: Array.from({ length: 13 }, (_, i) => (35 + 5 * i) * Math.min(200, Math.max(0, 280 - 3.2 * (25 + 5 * i))) - 2000) }]}
+  valueLabel="Keuntungan (ribu rupiah)"
+/>
+
 # Pernyataan pertama
 
 Bandingkan pendapatan tiket pada kedua harga:

@@ -29,6 +29,20 @@ Sekarang hitung biaya setiap paket:
 
 Jadi, **paket termurah adalah Paket B** dengan biaya <InlineMath math="\text{Rp}1{.}860{.}000" />.
 
+Grafik berikut memisahkan biaya hari dan biaya jarak setiap paket. **Paket B hanya menambah biaya jarak kecil** karena jatahnya dihitung untuk seluruh masa sewa, sedangkan Paket A membayar setiap kilometer.
+
+<Chart
+  title={<>Rincian biaya sewa <InlineMath math="6" /> hari untuk jarak <InlineMath math="960\text{ km}" /></>}
+  description={<>Paket A: biaya hari <InlineMath math="\text{Rp}960{.}000" /> dan biaya jarak <InlineMath math="\text{Rp}1{.}440{.}000" />. Paket B: biaya hari <InlineMath math="\text{Rp}1{.}680{.}000" /> dan biaya jarak <InlineMath math="\text{Rp}180{.}000" />. Paket C: biaya hari <InlineMath math="\text{Rp}2{.}400{.}000" /> tanpa biaya jarak.</>}
+  bars="apart"
+  categories={["A", "B", "C"]}
+  series={[
+    { label: "Biaya hari sesudah diskon", mark: "bar", values: [0.8 * 6 * 200000, 0.8 * 6 * 350000, 0.8 * 6 * 500000] },
+    { label: "Biaya jarak", mark: "bar", values: [960 * 1500, (960 - 900) * 3000, 0] },
+  ]}
+  valueLabel="Biaya (rupiah)"
+/>
+
 # Memeriksa jebakan jatah harian
 
 Coba bandingkan dengan cara yang keliru, yaitu menghitung kelebihan setiap hari. Hari kedua, kelima, dan keenam melewati <InlineMath math="150\text{ km}" />:

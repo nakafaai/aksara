@@ -35,6 +35,20 @@ Eine Abhebung muss ein Vielfaches von <InlineMath math="\text{Rp}20{.}000" /> se
 
 <InlineMath math="\text{Rp}80{.}000" /> abzuheben ist nicht erlaubt, also beträgt die größte Abhebung <InlineMath math="\text{Rp}60{.}000" />, und es bleiben <InlineMath math="\text{Rp}29{.}250" />.
 
+Das Diagramm berechnet das Restguthaben für jedes Vielfache von <InlineMath math="\text{Rp}20{.}000" />, das abgehoben werden könnte. **Der Balken für <InlineMath math="\text{Rp}80{.}000" /> fällt unter die Linie des Mindestrests**, also ist die größte erlaubte Abhebung <InlineMath math="\text{Rp}60{.}000" />.
+
+<Chart
+  title={<>Pak Jokos Restguthaben nach Höhe der Abhebung</>}
+  description={<>Von einem Guthaben von <InlineMath math="\text{Rp}89{.}250" /> bleiben nach Abhebungen von <InlineMath math="\text{Rp}20{.}000" />, <InlineMath math="\text{Rp}40{.}000" />, <InlineMath math="\text{Rp}60{.}000" /> und <InlineMath math="\text{Rp}80{.}000" /> noch <InlineMath math="\text{Rp}69{.}250" />, <InlineMath math="\text{Rp}49{.}250" />, <InlineMath math="\text{Rp}29{.}250" /> und <InlineMath math="\text{Rp}9{.}250" />. Die waagerechte Linie markiert den Mindestrest von <InlineMath math="\text{Rp}10{.}000" />.</>}
+  categories={["Abhebung Rp20.000", "Abhebung Rp40.000", "Abhebung Rp60.000", "Abhebung Rp80.000"]}
+  bars="apart"
+  series={[
+    { label: "Restguthaben", mark: "bar", values: [20000, 40000, 60000, 80000].map((x) => 89250 - x) },
+    { label: "Mindestrest", mark: "line", values: [10000, 10000, 10000, 10000] },
+  ]}
+  valueLabel="Guthaben (Rupiah)"
+/>
+
 # Häufige falsche Ergebnisse
 
 Mehrere andere Ergebnisse entstehen aus **einer übersprungenen Regel**:

@@ -18,6 +18,17 @@ Minutengebühren von <InlineMath math="\text{Rp}15{.}000" /> liegen unter der Ob
 
 Zum Beispiel sieben Fahrten von <InlineMath math="20\text{ Minuten}" /> und eine von <InlineMath math="50\text{ Minuten}" />.
 
+Das Diagramm vergleicht die längste Zeit bei beiden Zahlungswegen. **Der Abo-Balken ist viel höher**, weil jede Fahrt <InlineMath math="20" /> freie Minuten mitbringt.
+
+<Chart
+  title={<>Längste Gesamtfahrzeit mit einem Budget von <InlineMath math="\text{Rp}45{.}000" /> für <InlineMath math="8" /> Fahrten</>}
+  description={<>Mit dem Normaltarif beträgt die längste Zeit <InlineMath math="116" /> Minuten. Mit dem Abo sind es <InlineMath math="8\cdot 20+30=190" /> Minuten.</>}
+  categories={["Normaltarif", "Abo"]}
+  bars="apart"
+  series={[{ label: "Längste Gesamtzeit (Minuten)", mark: "bar", values: [(45000 - 8 * 2000) / 250, 8 * 20 + (45000 - 30000) / 500] }]}
+  valueLabel="Zeit (Minuten)"
+/>
+
 # Vergleich der beiden Zahlweisen
 
 Das Abo bringt <InlineMath math="190\text{ Minuten}" />, mehr als die <InlineMath math="116\text{ Minuten}" /> im Normaltarif. Eko **wählt also das Abo**.

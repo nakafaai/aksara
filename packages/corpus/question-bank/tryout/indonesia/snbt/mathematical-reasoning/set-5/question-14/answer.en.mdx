@@ -25,6 +25,20 @@ Carry on from date <InlineMath math="15" />, which is a Tuesday:
 
 The main quota runs out **exactly when the daytime download on date <InlineMath math="17" /> finishes**. So every download on date <InlineMath math="17" /> still runs at <InlineMath math="40\text{ Mbps}" />.
 
+The chart below stacks up the main quota used by the end of each date. **The bar for date <InlineMath math="17" /> touches the <InlineMath math="100\text{ GB}" /> line exactly**, so the first daytime download with no quota falls on the next date.
+
+<Chart
+  title={<>Main quota used by the end of each date</>}
+  description={<>The quota used rises by <InlineMath math="4\text{ GB}" /> on Mondays to Fridays and by <InlineMath math="12\text{ GB}" /> on Saturdays and Sundays. By the end of date <InlineMath math="7" />, <InlineMath math="44\text{ GB}" /> are used, by date <InlineMath math="14" /> <InlineMath math="88\text{ GB}" />, and by date <InlineMath math="17" /> exactly <InlineMath math="100\text{ GB}" />. Night downloads aren't counted.</>}
+  bars="apart"
+  categories={Array.from({ length: 17 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Main quota used", mark: "bar", values: [4, 8, 12, 16, 28, 40, 44, 48, 52, 56, 60, 72, 84, 88, 92, 96, 100] },
+    { label: "Main quota 100 GB", mark: "line", values: Array.from({ length: 17 }, () => 100) },
+  ]}
+  valueLabel="Quota used (GB)"
+/>
+
 # The first slow download
 
 Date <InlineMath math="18" /> is a Friday. Its night download (00.00 to 06.00) still runs at <InlineMath math="40\text{ Mbps}" />. Its daytime download starts with no main quota left, so **that's the first download at <InlineMath math="8\text{ Mbps}" />**.

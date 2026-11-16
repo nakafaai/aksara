@@ -36,6 +36,21 @@ The plastic bottles still bring <InlineMath math="14{,}000" />, so the cans have
 
 A balance of <InlineMath math="108{,}000" /> is less than <InlineMath math="110{,}000" />, while <InlineMath math="113{,}400" /> is enough. The value <InlineMath math="50{,}000" /> is also still below <InlineMath math="60{,}000" />, so the <InlineMath math="10\%" /> fee really applies.
 
+The chart below works out the balance after the third week's deposit for three possible counted can weights. **The <InlineMath math="2.5\text{ kg}" /> bar still falls just short of the line**, so the counted can weight has to be <InlineMath math="3.0\text{ kg}" />.
+
+<Chart
+  title={<>Rina's balance after the third week's deposit by counted can weight</>}
+  description={<>With a counted can weight of <InlineMath math="2.0" />, <InlineMath math="2.5" />, and <InlineMath math="3.0\text{ kg}" />, the balance is <InlineMath math="\text{Rp}102{,}600" />, <InlineMath math="\text{Rp}108{,}000" />, and <InlineMath math="\text{Rp}113{,}400" />. The flat line marks the balance needed, <InlineMath math="\text{Rp}110{,}000" />. The value axis starts at <InlineMath math="\text{Rp}90{,}000" />.</>}
+  categories={["Cans 2.0 kg", "Cans 2.5 kg", "Cans 3.0 kg"]}
+  bars="apart"
+  series={[
+    { label: "Balance after week three", mark: "bar", values: [2, 2.5, 3].map((c) => 68400 + 0.9 * (14000 + 12000 * c)) },
+    { label: "Balance needed", mark: "line", values: [110000, 110000, 110000] },
+  ]}
+  valueRange={{ min: 90000, max: 120000 }}
+  valueLabel="Balance (rupiah)"
+/>
+
 # The extra weight of cans
 
 A counted weight of <InlineMath math="3.0\text{ kg}" /> needs **all the cans on the scale** to weigh at least <InlineMath math="3.0\text{ kg}" />. Rina already brings <InlineMath math="2.3\text{ kg}" />, so she has to add at least <InlineMath math="3.0-2.3=0.7\text{ kg}" />.

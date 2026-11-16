@@ -26,6 +26,19 @@ Air terbuang selama tandon penuh dan debit bersih positif, yaitu dari pukul 06.2
 
 Coba periksa dengan cara lain. Sampai pukul 07.00, pompa memasukkan <InlineMath math="60\cdot 120+80\cdot 60=12{.}000\text{ liter}" /> dan keran K mengeluarkan <InlineMath math="50\cdot 100=5{.}000\text{ liter}" />. Tanpa pipa luapan, isi tandon akan menjadi <InlineMath math="1{.}000+12{.}000-5{.}000=8{.}000\text{ liter}" />, jadi kelebihannya <InlineMath math="8{.}000-6{.}000=2{.}000\text{ liter}" />. Pernyataan ini **benar**.
 
+Grafik berikut membandingkan isi sebenarnya dengan isi yang akan terjadi tanpa pipa luapan. **Celah antara kedua garis pada pukul 07.00 adalah air yang terbuang**, yaitu <InlineMath math="8{.}000-6{.}000=2{.}000" /> liter.
+
+<Chart
+  title={<>Isi tandon dengan dan tanpa pipa luapan, pukul 05.00 sampai 07.00</>}
+  description={<>Kedua garis sama sampai pukul 06.20, saat tandon mencapai <InlineMath math="6{.}000" /> liter. Sesudah itu isi sebenarnya tertahan di <InlineMath math="6{.}000" /> liter, sedangkan isi tanpa pipa luapan naik ke <InlineMath math="7{.}800" /> liter pada pukul 06.40 dan <InlineMath math="8{.}000" /> liter pada pukul 07.00.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00"]}
+  series={[
+    { label: "Isi sebenarnya", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000, 6000] },
+    { label: "Isi tanpa pipa luapan", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000 + 90 * 20, 6000 + 90 * 20 + 10 * 20] },
+  ]}
+  valueLabel="Isi tandon (liter)"
+/>
+
 # Pernyataan tentang keran yang dibuka lebih awal
 
 Jika keran K dibuka sejak pukul 05.00, keran itu bekerja <InlineMath math="20\text{ menit}" /> lebih lama. Air yang keluar bertambah <InlineMath math="50\cdot 20=1{.}000\text{ liter}" />. **Tanpa pipa luapan, isi tertinggi menjadi <InlineMath math="8{.}000-1{.}000=7{.}000\text{ liter}" />**, masih di atas kapasitas. Jadi tetap ada <InlineMath math="1{.}000\text{ liter}" /> air yang terbuang. Pernyataan ini **salah**.

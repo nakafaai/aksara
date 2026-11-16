@@ -26,6 +26,19 @@ Water is lost while the tank is full and the net flow is positive, from 06:20 to
 
 Check it another way. Up to 07:00, the pumps put in <InlineMath math="60\cdot 120+80\cdot 60=12{,}000\text{ liters}" /> and tap K lets out <InlineMath math="50\cdot 100=5{,}000\text{ liters}" />. Without the overflow pipe, the level would reach <InlineMath math="1{,}000+12{,}000-5{,}000=8{,}000\text{ liters}" />, so the extra is <InlineMath math="8{,}000-6{,}000=2{,}000\text{ liters}" />. This statement is **true**.
 
+The chart below compares the actual level with the level there would be without the overflow pipe. **The gap between the two lines at 07:00 is the lost water**, <InlineMath math="8{,}000-6{,}000=2{,}000" /> liters.
+
+<Chart
+  title={<>Water level with and without the overflow pipe, 05:00 to 07:00</>}
+  description={<>The two lines match until 06:20, when the tank reaches <InlineMath math="6{,}000" /> liters. After that the actual level stays at <InlineMath math="6{,}000" /> liters, while the level without the overflow pipe rises to <InlineMath math="7{,}800" /> liters at 06:40 and <InlineMath math="8{,}000" /> liters at 07:00.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00"]}
+  series={[
+    { label: "Actual level", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000, 6000] },
+    { label: "Level without overflow pipe", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000 + 90 * 20, 6000 + 90 * 20 + 10 * 20] },
+  ]}
+  valueLabel="Water level (liters)"
+/>
+
 # The statement about opening the tap earlier
 
 If tap K opens at 05:00, it runs <InlineMath math="20\text{ minutes}" /> longer. That lets out an extra <InlineMath math="50\cdot 20=1{,}000\text{ liters}" />. **Without the overflow pipe, the highest level would be <InlineMath math="8{,}000-1{,}000=7{,}000\text{ liters}" />**, still above the capacity. So <InlineMath math="1{,}000\text{ liters}" /> of water would still be lost. This statement is **false**.

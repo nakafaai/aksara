@@ -17,6 +17,20 @@ Pada paket langganan, menit yang dibayar dalam satu perjalanan adalah durasinya 
 
 Jumlah menit berbayar adalah <InlineMath math="5+18+24+11+7=65" />.
 
+Grafik berikut membagi setiap perjalanan menjadi menit gratis dan menit berbayar. **Perjalanan ke-<InlineMath math="2" />, ke-<InlineMath math="5" />, dan ke-<InlineMath math="7" /> tidak punya batang berbayar sama sekali**, karena semuanya tidak lebih dari <InlineMath math="20" /> menit.
+
+<Chart
+  title={<>Menit gratis dan menit berbayar setiap perjalanan Dita dengan paket langganan</>}
+  description={<>Menit berbayar perjalanan ke-<InlineMath math="1" /> sampai ke-<InlineMath math="8" /> berturut-turut <InlineMath math="5, 0, 18, 24, 0, 11, 0, 7" />, dengan jumlah <InlineMath math="65" /> menit. Setiap perjalanan yang lebih dari <InlineMath math="20" /> menit memakai penuh <InlineMath math="20" /> menit gratisnya.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Menit gratis", mark: "bar", values: [25, 6, 38, 44, 15, 31, 9, 27].map((d) => Math.min(d, 20)) },
+    { label: "Menit berbayar", mark: "bar", values: [25, 6, 38, 44, 15, 31, 9, 27].map((d) => Math.max(0, d - 20)) },
+  ]}
+  valueLabel="Menit"
+/>
+
 # Batas biaya menit
 
 Tanpa batas, biaya menitnya <InlineMath math="65\cdot 500=\text{Rp}32{.}500" />. Angka ini melewati batas bulanan, jadi **Dita hanya membayar biaya menit <InlineMath math="\text{Rp}30{.}000" />**.

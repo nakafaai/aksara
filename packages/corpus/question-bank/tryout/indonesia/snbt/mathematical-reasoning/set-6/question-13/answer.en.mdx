@@ -12,6 +12,20 @@ Now Pasar Y has <InlineMath math="40" /> young respondents and <InlineMath math=
 
 <BlockMath math="\begin{aligned} \text{QRIS users at Y} &= 40\cdot 65\%+160\cdot 20\% \\ &= 26+32=58 \\ \text{Y's percentage} &= \frac{58}{200}\cdot 100\%=29\% \end{aligned}" />
 
+The chart below puts both markets side by side for each group and for the overall share with Pasar X's age mix. **Pasar X leads in both groups**, so with the same weights, Pasar X leads overall too.
+
+<Chart
+  title={<>Share of QRIS users with the same age mix</>}
+  description={<>Under <InlineMath math="30" />: Pasar X <InlineMath math="80\%" /> and Pasar Y <InlineMath math="65\%" />. Aged <InlineMath math="30" /> or over: Pasar X <InlineMath math="30\%" /> and Pasar Y <InlineMath math="20\%" />. With <InlineMath math="40" /> young respondents and <InlineMath math="160" /> respondents aged <InlineMath math="30" /> or over in both markets, the overall shares are Pasar X <InlineMath math="40\%" /> and Pasar Y <InlineMath math="29\%" />.</>}
+  categories={["Under 30", "30 or over", "Overall, X's mix"]}
+  bars="apart"
+  series={[
+    { label: "Pasar X", mark: "bar", values: [80, 30, ((40 * 0.8 + 160 * 0.3) / 200) * 100] },
+    { label: "Pasar Y", mark: "bar", values: [65, 20, ((40 * 0.65 + 160 * 0.2) / 200) * 100] },
+  ]}
+  valueLabel="QRIS users (%)"
+/>
+
 # Comparing the two markets
 
 <BlockMath math="40\%-29\%=11\%" />

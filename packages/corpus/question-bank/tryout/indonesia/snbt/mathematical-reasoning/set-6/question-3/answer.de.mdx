@@ -16,6 +16,16 @@ Nach 07:00 Uhr fließt kein Wasser mehr hinein, und Hahn K gibt <InlineMath math
 
 Der Tank ist um 09:00 Uhr leer. Von 09:00 bis 10:00 Uhr läuft keine Pumpe, also **liefert Hahn K überhaupt kein Wasser**, obwohl er noch offen ist.
 
+Das Diagramm summiert das Wasser, das durch Hahn K fließt. **Die Linie hört genau um 09.00 Uhr auf zu steigen**, wenn der Tank leer ist, und bleibt bis zum Schließen des Hahns bei <InlineMath math="11{.}000" /> Litern.
+
+<Chart
+  title={<>Gesamtes Wasser aus Hahn K seit 05.20 Uhr</>}
+  description={<>Das ausgeflossene Wasser steigt von 05.20 bis 09.00 Uhr alle <InlineMath math="20" /> Minuten um <InlineMath math="1{.}000" /> Liter und erreicht <InlineMath math="11{.}000" /> Liter. Von 09.00 bis 10.00 Uhr fließt nichts mehr, weil der Tank leer ist.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[{ label: "Wasser aus Hahn K", mark: "line", values: Array.from({ length: 16 }, (_, i) => 50 * Math.max(0, Math.min(20 * i, 240) - 20)) }]}
+  valueLabel="Ausgeflossenes Wasser (Liter)"
+/>
+
 # Das Wasser aus dem Hahn
 
 Hahn K **liefert wirklich Wasser von 05:20 bis 09:00 Uhr**, also <InlineMath math="220\text{ Minuten}" /> lang.

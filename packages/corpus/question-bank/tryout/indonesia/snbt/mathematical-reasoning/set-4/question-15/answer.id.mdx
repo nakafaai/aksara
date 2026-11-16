@@ -20,6 +20,21 @@ p &\le 37{,}5
 
 Harga <InlineMath math="40\text{ ribu}" /> hanya mendatangkan <InlineMath math="152" /> penonton, jadi **harga terbaik tanpa syarat itu gugur**. Harga yang boleh adalah <InlineMath math="35\text{ ribu}" /> atau lebih murah.
 
+Grafik berikut memisahkan harga yang memenuhi syarat penonton dari yang tidak. **Batang tertinggi, <InlineMath math="40" /> ribu, justru dilarang**, jadi batang tertinggi di antara harga yang boleh adalah <InlineMath math="35" /> ribu.
+
+<Chart
+  title={<>Keuntungan pertunjukan menurut harga tiket dan syarat penonton</>}
+  description={<>Pada harga <InlineMath math="25" />, <InlineMath math="30" />, dan <InlineMath math="35" /> ribu, penonton paling sedikit <InlineMath math="160" /> orang dan keuntungannya <InlineMath math="5{.}000" />, <InlineMath math="5{.}360" />, dan <InlineMath math="5{.}560" /> ribu rupiah. Pada harga <InlineMath math="40" />, <InlineMath math="45" />, dan <InlineMath math="50" /> ribu, penonton kurang dari <InlineMath math="160" /> orang, dengan keuntungan <InlineMath math="5{.}600" />, <InlineMath math="5{.}480" />, dan <InlineMath math="5{.}200" /> ribu rupiah. Sumbu nilai dimulai dari <InlineMath math="4{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `${25 + 5 * i}`)}
+  series={[
+    { label: "Penonton paling sedikit 160", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (25 + 5 * i <= 35 ? (35 + 5 * i) * Math.min(200, 280 - 3.2 * (25 + 5 * i)) - 2000 : null)) },
+    { label: "Penonton kurang dari 160", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (25 + 5 * i > 35 ? (35 + 5 * i) * Math.min(200, 280 - 3.2 * (25 + 5 * i)) - 2000 : null)) },
+  ]}
+  valueRange={{ min: 4000, max: 6000 }}
+  valueLabel="Keuntungan (ribu rupiah)"
+/>
+
 # Keuntungan terbesar di bawah batas
 
 Di sebelah kiri puncak, keuntungan naik ketika harga naik. Jadi, di antara harga yang boleh, **harga tertinggi yang diizinkan memberi keuntungan terbesar**, yaitu <InlineMath math="35\text{ ribu}" />:

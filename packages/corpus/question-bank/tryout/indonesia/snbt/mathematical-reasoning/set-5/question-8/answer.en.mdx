@@ -36,6 +36,22 @@ P_4 &= 1{,}280 - 12 \cdot 74 = 392 < 400 \\
 
 Cycle five only starts after time is up, so you don't need to check it. The difference also never drops to <InlineMath math="0" />, because every cycle still adds <InlineMath math="320-4 \cdot 74=24" />. So with <InlineMath math="r=74" /> the two **never meet**, while <InlineMath math="r=73" /> still gives a meeting.
 
+The chart below compares the peak difference in each cycle for both break lengths. **Only the fourth peak for <InlineMath math="r=73" /> goes past the <InlineMath math="400" /> line**, while every peak for <InlineMath math="r=74" /> stays below it.
+
+<Chart
+  title={<>Peak distance difference in each cycle for <InlineMath math="r=73" /> and <InlineMath math="r=74" /></>}
+  description={<>For <InlineMath math="r=73" />, the peaks of cycles one to four are <InlineMath math="320" />, <InlineMath math="348" />, <InlineMath math="376" />, and <InlineMath math="404" /> metres. For <InlineMath math="r=74" />, they're <InlineMath math="320" />, <InlineMath math="344" />, <InlineMath math="368" />, and <InlineMath math="392" /> metres. The flat line marks <InlineMath math="400" /> metres. The value axis starts at <InlineMath math="300" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Break of 73 seconds", mark: "bar", values: [0, 1, 2, 3].map((k) => k * (320 - 4 * 73) + 320) },
+    { label: "Break of 74 seconds", mark: "bar", values: [0, 1, 2, 3].map((k) => k * (320 - 4 * 74) + 320) },
+    { label: "One lap", mark: "line", values: [400, 400, 400, 400] },
+  ]}
+  valueRange={{ min: 300, max: 420 }}
+  valueLabel="Peak difference (m)"
+/>
+
 # The wrong options
 
 Each other option **stops checking at the wrong cycle**:

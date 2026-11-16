@@ -32,6 +32,19 @@ Spiel den neuen Plan durch, mit Pumpe Q von 06:40 bis 07:40 Uhr. Um 06:40 Uhr ha
 
 Der Füllstand **erreicht die Kapazität genau, ohne sie zu überschreiten**, also geht kein Wasser verloren. Startet Pumpe Q <InlineMath math="5\text{ Minuten}" /> früher, ist Hahn K bis zum Abschalten von Pumpe Q nur <InlineMath math="135\text{ Minuten}" /> offen, und der Höchstwert liegt bei <InlineMath math="13{.}000-50\cdot 135=6{.}250\text{ Liter}" />. Das ist mehr als die Kapazität.
 
+Das Diagramm verfolgt den Füllstand, wenn Pumpe Q von 06.40 bis 07.40 Uhr läuft. **Der Gipfel berührt die Kapazitätslinie genau um 07.40 Uhr**, ohne darüber zu gehen, und fällt dann, sobald Pumpe Q stoppt.
+
+<Chart
+  title={<>Füllstand mit Pumpe Q von 06.40 bis 07.40 Uhr</>}
+  description={<>Der Füllstand steigt langsam auf <InlineMath math="3{.}000" /> Liter um 06.40 Uhr, schnell auf <InlineMath math="4{.}800" /> Liter um 07.00 Uhr und dann auf genau <InlineMath math="6{.}000" /> Liter um 07.40 Uhr. Danach fällt er um <InlineMath math="50" /> Liter pro Minute. Die waagerechte Linie markiert die Kapazität von <InlineMath math="6{.}000" /> Litern.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Füllstand, neuer Plan", mark: "line", values: [1000, 2200, 2400, 2600, 2800, 3000, 4800, 5400, 6000, 5000, 4000, 3000, 2000, 1000, 0, 0] },
+    { label: "Kapazität 6.000 Liter", mark: "line", values: Array.from({ length: 16 }, () => 6000) },
+  ]}
+  valueLabel="Füllstand (Liter)"
+/>
+
 # Warum die anderen Antworten nicht passen
 
 Die zwei zu frühen Zeiten verlieren noch Wasser, und **die zwei späteren Zeiten sind sicher, aber nicht die frühesten**.

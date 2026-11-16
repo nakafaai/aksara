@@ -36,6 +36,34 @@ Cek dengan jarak tempuh masing-masing pada detik ke-<InlineMath math="650" />:
 
 Selisihnya tepat <InlineMath math="400\text{ m}" />, jadi keduanya memang berada di titik yang sama.
 
+Gambar berikut menggambar selisih jarak <InlineMath math="g" /> terhadap waktu. Garisnya naik landai saat keduanya berlari, **turun curam selama Andi minum**, lalu naik lagi sampai menyentuh garis satu putaran pada detik <InlineMath math="650" />.
+
+<MathVisual
+  title={<>Selisih jarak Andi dan Bima sampai pertemuan pertama</>}
+  description={<>Selisih jarak naik dari <InlineMath math="0" /> menjadi <InlineMath math="320" /> m pada detik <InlineMath math="320" />, turun menjadi <InlineMath math="120" /> m pada detik <InlineMath math="370" /> selama Andi minum, lalu naik lagi dan mencapai <InlineMath math="400" /> m pada detik <InlineMath math="650" />. Garis datar menandai selisih satu putaran, <InlineMath math="400" /> m.</>}
+  labels={{
+    lap: <InlineMath math="g=400" />,
+    meet: <InlineMath math="t=650" />,
+    stop: <InlineMath math="t=320" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -40, max: 760 }, y: { min: -40, max: 480 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "lap", kind: "segment", appearance: "reference", from: { x: 0, y: 400 }, to: { x: 720, y: 400 } },
+      { id: "gap", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 320, y: 320 }, { x: 370, y: 120 }, { x: 650, y: 400 }] },
+      { id: "stop", kind: "point", appearance: "warning", at: { x: 320, y: 320 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 650, y: 400 } },
+    ],
+    labels: [
+      { key: "lap", objectId: "lap", at: { x: 120, y: 400 }, placement: "above" },
+      { key: "meet", objectId: "meet", at: { x: 650, y: 400 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 320, y: 320 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain **salah menangani masa istirahat**:

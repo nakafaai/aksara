@@ -19,6 +19,17 @@ Ein Zuschnitt mit Muster ist <InlineMath math="h+10" />, aufgerundet auf ein Vie
 
 Die beiden Bereiche schließen aneinander an, also **ergeben sie zusammen <InlineMath math="183\le h\le310" />**. Zur Probe: <InlineMath math="h=182" /> liefert einen Zuschnitt von <InlineMath math="192\text{ cm}" />, und <InlineMath math="h=311" /> liefert einen Zuschnitt von <InlineMath math="384\text{ cm}" />.
 
+Das Diagramm prüft Höhen auf beiden Seiten jeder Grenze. **Die Balken stehen von <InlineMath math="h=183" /> bis <InlineMath math="h=310" /> genau bei <InlineMath math="3" />**, während eine Rolle knapp außerhalb dieses Bereichs <InlineMath math="5" /> oder <InlineMath math="2" /> Bahnen ergibt.
+
+<Chart
+  title={<>Bahnen aus einer gemusterten Rolle nach Wandhöhe</>}
+  description={<>Für <InlineMath math="h=182" /> ist der Zuschnitt <InlineMath math="192\text{ cm}" />, und eine Rolle ergibt <InlineMath math="5" /> Bahnen. Für <InlineMath math="h=183" /> und <InlineMath math="246" /> ist er <InlineMath math="256\text{ cm}" />. Für <InlineMath math="h=247" /> und <InlineMath math="310" /> ist er <InlineMath math="320\text{ cm}" />. Diese vier Höhen ergeben <InlineMath math="3" /> Bahnen. Für <InlineMath math="h=311" /> ist der Zuschnitt <InlineMath math="384\text{ cm}" />, und eine Rolle ergibt <InlineMath math="2" /> Bahnen.</>}
+  bars="apart"
+  categories={["182", "183", "246", "247", "310", "311"]}
+  series={[{ label: "Bahnen pro Rolle", mark: "bar", values: [182, 183, 246, 247, 310, 311].map((h) => Math.floor(1000 / (64 * Math.ceil((h + 10) / 64)))) }]}
+  valueLabel="Bahnen pro Rolle"
+/>
+
 # Die verlockenden falschen Optionen
 
 Jede andere Option vergisst **eine Zuschnittregel**.

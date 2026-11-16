@@ -16,6 +16,21 @@ Nach dieser Bedingung allein ist <InlineMath math="n" /> mindestens <InlineMath 
 
 Die Zahl der neuen QRIS-Nutzer, <InlineMath math="0{,}8n=\frac{4n}{5}" />, muss ganzzahlig sein, weil sie Personen zählt. Das klappt nur, wenn **<InlineMath math="n" /> ein Vielfaches von <InlineMath math="5" /> ist**. Bei <InlineMath math="n=86" /> wären es <InlineMath math="68{,}8" /> neue QRIS-Nutzer, und das geht nicht. Das kleinste Vielfache von <InlineMath math="5" />, das mindestens <InlineMath math="86" /> ist, ist <InlineMath math="90" />.
 
+Das Diagramm berechnet den Gesamtanteil von Pasar X für Anzahlen neuer Befragter, die Vielfache von <InlineMath math="5" /> sind. **Der Balken für <InlineMath math="85" /> liegt noch knapp unter der Ziellinie**, und der Balken für <InlineMath math="90" /> geht als erster darüber.
+
+<Chart
+  title={<>Gesamtanteil der QRIS-Nutzer in Pasar X nach Anzahl neuer Befragter</>}
+  description={<>Mit <InlineMath math="75" />, <InlineMath math="80" />, <InlineMath math="85" />, <InlineMath math="90" /> und <InlineMath math="95" /> neuen Befragten beträgt der Anteil etwa <InlineMath math="50{,}9\%" />, <InlineMath math="51{,}4\%" />, <InlineMath math="51{,}9\%" />, <InlineMath math="52{,}4\%" /> und <InlineMath math="52{,}9\%" />. Die waagerechte Linie markiert das Ziel von <InlineMath math="52\%" />. Die Werteachse beginnt bei <InlineMath math="50\%" />.</>}
+  bars="apart"
+  categories={["75", "80", "85", "90", "95"]}
+  series={[
+    { label: "Gesamtanteil Pasar X", mark: "bar", values: [75, 80, 85, 90, 95].map((n) => ((80 + 0.8 * n) / (200 + n)) * 100) },
+    { label: "Ziel 52 %", mark: "line", values: [52, 52, 52, 52, 52] },
+  ]}
+  valueRange={{ min: 50, max: 54 }}
+  valueLabel="QRIS-Nutzer (%)"
+/>
+
 # Kontrolle des Ergebnisses
 
 Vergleiche <InlineMath math="n=90" /> mit dem Vielfachen von <InlineMath math="5" /> direkt davor, <InlineMath math="n=85" />. Um einen Bruch mit <InlineMath math="52\%" /> zu vergleichen, **multiplizierst du über Kreuz und musst nicht dividieren**.

@@ -16,6 +16,21 @@ So **one roll only gives <InlineMath math="3" /> full strips**, with <InlineMath
 
 Thirty full strips need <InlineMath math="30:3=10" /> rolls. The two short strips need <InlineMath math="2\cdot64=128\text{ cm}" />, and that **fits in the <InlineMath math="232\text{ cm}" /> left on one of the rolls**. So no extra roll is needed.
 
+The chart below shows what each of the ten rolls holds. **Both short strips come out of one roll's leftover**, so no eleventh roll is needed.
+
+<Chart
+  title={<>How the ten patterned rolls are used</>}
+  description={<>Each roll gives three full strips totalling <InlineMath math="768\text{ cm}" /> and leaves <InlineMath math="232\text{ cm}" />. On the tenth roll, the two short strips totalling <InlineMath math="128\text{ cm}" /> are cut from that leftover, so only <InlineMath math="104\text{ cm}" /> is left.</>}
+  bars="apart"
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Three full strips", mark: "bar", values: Array.from({ length: 10 }, () => 3 * 256) },
+    { label: "Two short strips", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i === 9 ? 2 * 64 : 0)) },
+    { label: "Roll left over", mark: "bar", values: Array.from({ length: 10 }, (_, i) => (i === 9 ? 1000 - 3 * 256 - 2 * 64 : 1000 - 3 * 256)) },
+  ]}
+  valueLabel="Length (cm)"
+/>
+
 # The tempting wrong answers
 
 The answer <InlineMath math="8" /> comes from forgetting the pattern rounding, so that a roll seems to give <InlineMath math="4" /> strips. The answer <InlineMath math="11" /> comes from ignoring the door and counting all <InlineMath math="32" /> strips as full ones. The answer <InlineMath math="9" /> comes from counting strips from the perimeter of the room, which gives <InlineMath math="29" />, although **strips may not go around a corner**. The answer <InlineMath math="7" /> comes from dividing the wall area by the area of one roll.

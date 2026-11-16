@@ -27,6 +27,19 @@ Beginne mit <InlineMath math="g=0" /> beim Start und notiere <InlineMath math="g
 
 Der Unterschied erreicht nie <InlineMath math="800" />, also musst du nur **jedes Mal finden, wenn <InlineMath math="g" /> die <InlineMath math="400" /> durchläuft**, nach oben oder nach unten.
 
+Das Diagramm verbindet die Werte von <InlineMath math="g" /> aus der Tabelle. **Die Zickzacklinie schneidet die Linie bei <InlineMath math="400" /> fünfmal**: dreimal beim Steigen und zweimal beim Fallen.
+
+<Chart
+  title={<>Streckenunterschied zwischen Andi und Bima bei jedem Wechsel zwischen Laufen und Trinken</>}
+  description={<>Bei den Sekunden <InlineMath math="0, 320, 370, 690, 740, 1{.}060, 1{.}110, 1{.}430, 1{.}480, 1{.}500" /> beträgt der Unterschied <InlineMath math="0, 320, 120, 440, 240, 560, 360, 680, 480, 500" /> Meter. Die waagerechte Linie markiert einen Unterschied von einer Runde, <InlineMath math="400" /> Meter. Die Abstände zwischen den Kategorien auf der Zeitachse sind nicht maßstabsgetreu.</>}
+  categories={["0", "320", "370", "690", "740", "1060", "1110", "1430", "1480", "1500"]}
+  series={[
+    { label: "Streckenunterschied g", mark: "line", values: [0, 320, 120, 440, 240, 560, 360, 680, 480, 500] },
+    { label: "Eine Runde", mark: "line", values: Array.from({ length: 10 }, () => 400) },
+  ]}
+  valueLabel="Unterschied (m)"
+/>
+
 # Jedes Treffen zählen
 
 Ein Treffen passiert **jedes Mal, wenn <InlineMath math="g" /> die <InlineMath math="400" /> durchläuft**, also vergleiche <InlineMath math="g" /> am Anfang und Ende jedes Abschnitts:

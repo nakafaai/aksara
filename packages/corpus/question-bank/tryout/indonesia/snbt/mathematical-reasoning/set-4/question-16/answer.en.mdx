@@ -33,6 +33,20 @@ K(55) &= 65\times156-2{,}000=8{,}140\text{ thousand}
 
 Compare the two regions: <InlineMath math="9{,}000\text{ thousand}" /> at <InlineMath math="\text{Rp}45{,}000" /> beats <InlineMath math="8{,}800\text{ thousand}" /> at <InlineMath math="\text{Rp}50{,}000" />.
 
+The chart below compares the holiday profit with the regular-day profit. **The holiday peak moves to <InlineMath math="45" /> thousand**, the highest price that still fills the studio, while the regular-day peak stays at <InlineMath math="40" /> thousand.
+
+<Chart
+  title={<>Show profit on a holiday and on a regular day by ticket price</>}
+  description={<>On a holiday, the profit at prices from <InlineMath math="35" /> to <InlineMath math="60" /> thousand is <InlineMath math="7{,}000" />, <InlineMath math="8{,}000" />, <InlineMath math="9{,}000" />, <InlineMath math="8{,}800" />, <InlineMath math="8{,}140" />, and <InlineMath math="7{,}240" /> thousand rupiah. On a regular day, it's <InlineMath math="5{,}560" />, <InlineMath math="5{,}600" />, <InlineMath math="5{,}480" />, <InlineMath math="5{,}200" />, <InlineMath math="4{,}760" />, and <InlineMath math="4{,}160" /> thousand rupiah.</>}
+  bars="apart"
+  categories={Array.from({ length: 6 }, (_, i) => `${35 + 5 * i}`)}
+  series={[
+    { label: "Holiday", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (45 + 5 * i) * Math.min(200, 420 - 4.8 * (35 + 5 * i)) - 2000) },
+    { label: "Regular day", mark: "bar", values: Array.from({ length: 6 }, (_, i) => (45 + 5 * i) * Math.min(200, 280 - 3.2 * (35 + 5 * i)) - 2000) },
+  ]}
+  valueLabel="Profit (thousand rupiah)"
+/>
+
 # Checking the regular-day trap
 
 If you forget the seat limit, the peak stays at <InlineMath math="38.75" /> as on a regular day, because **multiplying the demand by** <InlineMath math="1.5" /> doesn't move the peak. That points to <InlineMath math="\text{Rp}40{,}000" />. But at that price only <InlineMath math="200" /> of the <InlineMath math="228" /> interested people can get in, and the profit is <InlineMath math="50\times200-2{,}000=8{,}000\text{ thousand}" />, less than at <InlineMath math="\text{Rp}45{,}000" />.
