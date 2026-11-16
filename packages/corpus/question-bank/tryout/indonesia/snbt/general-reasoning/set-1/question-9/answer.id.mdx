@@ -4,6 +4,18 @@ Ruas yang dipilih karena angkanya paling tinggi dalam satu tahun cenderung punya
 
 Jadi, pola kelemahannya punya dua bagian. Kelompok dipilih karena keadaannya paling ekstrem, lalu perbaikan sesudahnya dianggap akibat tindakan, tanpa pembanding.
 
+Diagram berikut menunjukkan pola penalaran kepala dinas. **Langkah yang hilang adalah kelompok pembanding** yang sama buruknya tetapi tidak diberi tindakan.
+
+<Mermaid
+  title={<>Pola penalaran yang mengandalkan kelompok ekstrem</>}
+  description={<>Kelompok dipilih karena angkanya paling ekstrem pada satu periode. Lalu sebuah tindakan dilakukan, angkanya membaik pada periode berikutnya, dan perbaikan itu seluruhnya dianggap hasil tindakan. Tanpa kelompok pembanding, sebagian perbaikan bisa saja hanya kembalinya angka ke rata-rata.</>}
+  chart={`flowchart LR
+    A["Pilih kelompok dengan angka paling ekstrem"] --> B["Lakukan tindakan"]
+    B --> C["Angka membaik pada periode berikutnya"]
+    C --> D["Perbaikan dianggap hasil tindakan"]
+    E["Kelompok pembanding tanpa tindakan"] -.->|"tidak ada"| D`}
+/>
+
 Argumen rumah sakit punya pola yang sama. Perawat dipilih karena paling sering terlambat bulan lalu, lalu turunnya keterlambatan bulan ini dianggap hasil teguran tertulis. Tanpa perawat pembanding, sebagian penurunan itu bisa saja hanya regresi ke rata-rata.
 
 Sekarang periksa pilihan lain.

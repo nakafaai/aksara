@@ -8,6 +8,19 @@ Misalkan <InlineMath math="a" /> adalah banyak pemberian obat pukul 04.00 sampai
 
 Jadi, data itu menunjukkan perawat lebih sering salah pada jam akhir hanya jika pemberian obat pukul 04.00 sampai 07.00 **kurang dari dua pertiga** seluruh pemberian obat sif malam. Uji dengan membaliknya. Jika pemberian obat jam akhir dua pertiga atau lebih, angka kesalahan jam akhir sama dengan atau lebih rendah daripada jam sebelumnya. Data tidak lagi menunjukkan kelelahan, dan prediksi kepala bidang kehilangan dasarnya. Asumsi yang kebalikannya meruntuhkan argumen adalah asumsi yang diperlukan.
 
+Grafik berikut menghitung angka kesalahan kedua bagian sif malam untuk beberapa nilai <InlineMath math="a" />. **Kedua garis bersilangan di antara <InlineMath math="1{.}200" /> dan <InlineMath math="1{.}500" />**, tepat di dua pertiga dari <InlineMath math="2{.}000" />, sehingga kesimpulan kepala bidang hanya berlaku di sebelah kiri titik silang itu.
+
+<Chart
+  title={<>Kesalahan per <InlineMath math="1{.}000" /> pemberian obat menurut banyak obat pada pukul 04.00 sampai 07.00</>}
+  description={<>Jika <InlineMath math="a" /> obat diberikan pada pukul 04.00 sampai 07.00, angka kesalahannya <InlineMath math="12" /> per <InlineMath math="a" />, sedangkan sebelumnya <InlineMath math="6" /> per <InlineMath math="2{.}000-a" />, keduanya dikali <InlineMath math="1{.}000" />. Untuk <InlineMath math="a=600" />, angkanya sekitar <InlineMath math="20" /> dan <InlineMath math="4{,}3" />. Untuk <InlineMath math="a=1{.}800" />, angkanya sekitar <InlineMath math="6{,}7" /> dan <InlineMath math="30" />.</>}
+  categories={["600", "900", "1200", "1500", "1800"]}
+  series={[
+    { label: "Pukul 04.00 sampai 07.00", mark: "line", values: [600, 900, 1200, 1500, 1800].map((a) => (12 / a) * 1000) },
+    { label: "Pukul 21.00 sampai 04.00", mark: "line", values: [600, 900, 1200, 1500, 1800].map((a) => (6 / (2000 - a)) * 1000) },
+  ]}
+  valueLabel="Kesalahan per 1.000 pemberian obat"
+/>
+
 Pilihan lain gugur karena alasan berikut.
 
 - Batas "kurang dari separuh" memang cukup, tetapi tidak harus. Misalkan jam akhir menangani <InlineMath math="60\%" /> pemberian obat, yaitu <InlineMath math="1{.}200" />. Angka jam akhir <InlineMath math="12:1{.}200" />, atau <InlineMath math="10" /> per <InlineMath math="1{.}000" />, sedangkan jam sebelumnya <InlineMath math="6:800" />, atau <InlineMath math="7{,}5" /> per <InlineMath math="1{.}000" />. Argumen tetap berjalan walaupun lebih dari separuh, jadi syarat ini terlalu ketat.

@@ -21,6 +21,19 @@ Tanggal 1 Desember adalah <InlineMath math="134" /> hari setelah 20 Juli. Sekara
 
 Sisa <InlineMath math="1" /> pada siklus tujuh hari berarti nama hari maju satu langkah dari Senin, yaitu Selasa. Sisa <InlineMath math="4" /> pada siklus lima hari berarti pasaran maju empat langkah dari Pahing: Pon, Wage, Kliwon, Legi. Jadi, 1 Desember jatuh pada Selasa Legi.
 
+Diagram berikut memisahkan kedua siklus itu. **Hari bergeser menurut sisa bagi <InlineMath math="7" />, sedangkan pasaran bergeser menurut sisa bagi <InlineMath math="5" />**.
+
+<Mermaid
+  title={<>Dari Senin Pahing ke tanggal <InlineMath math="1" /> Desember</>}
+  description={<>Tanggal <InlineMath math="1" /> Desember adalah <InlineMath math="134" /> hari setelah <InlineMath math="20" /> Juli. Karena <InlineMath math="134" /> bersisa <InlineMath math="1" /> jika dibagi <InlineMath math="7" />, Senin bergeser menjadi Selasa. Karena <InlineMath math="134" /> bersisa <InlineMath math="4" /> jika dibagi <InlineMath math="5" />, Pahing bergeser empat langkah menjadi Legi.</>}
+  chart={`flowchart LR
+    A["20 Juli: Senin Pahing"] --> B["Selisih 134 hari"]
+    B -->|"sisa bagi 7 adalah 1"| C["Senin maju 1: Selasa"]
+    B -->|"sisa bagi 5 adalah 4"| D["Pahing maju 4: Pon, Wage, Kliwon, Legi"]
+    C --> E["1 Desember: Selasa Legi"]
+    D --> E`}
+/>
+
 Cek dengan jalan lain. Pasangan nama hari dan pasaran yang sama berulang setiap <InlineMath math="7\times5=35" /> hari. Setelah <InlineMath math="3\times35=105" /> hari, yaitu pada 2 November, tanggalnya kembali Senin Pahing. Dari 2 November ke 1 Desember ada <InlineMath math="29" /> hari, dengan <InlineMath math="29=7\times4+1" /> dan <InlineMath math="29=5\times5+4" />. Hasilnya sama: Selasa Legi.
 
 Pilihan lain berasal dari salah hitung yang berbeda:

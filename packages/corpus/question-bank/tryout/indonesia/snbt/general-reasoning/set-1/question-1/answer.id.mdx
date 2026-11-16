@@ -10,6 +10,20 @@ Hitung kenaikan di setiap baris:
 
 Pada padat tebar rendah, kedua kelompok sama-sama naik <InlineMath math="4" /> poin. Pada padat tebar tinggi, petak berkincir naik <InlineMath math="16 - 8 = 8" /> poin lebih sedikit daripada petak tanpa kincir.
 
+Grafik berikut menaruh kenaikan kematian kedua kelompok berdampingan pada setiap padat tebar. **Pada padat rendah kedua batang sama tinggi, sedangkan pada padat tinggi batang tanpa kincir dua kali lebih tinggi**.
+
+<Chart
+  title={<>Kenaikan rata-rata kematian dari siklus lalu ke siklus terakhir</>}
+  description={<>Pada padat tebar rendah, petak berkincir dan petak tanpa kincir sama-sama naik <InlineMath math="4" /> poin persen. Pada padat tebar tinggi, petak berkincir naik <InlineMath math="8" /> poin persen, sedangkan petak tanpa kincir naik <InlineMath math="16" /> poin persen.</>}
+  categories={["Padat tebar rendah", "Padat tebar tinggi"]}
+  bars="apart"
+  series={[
+    { label: "Berkincir", mark: "bar", values: [14 - 10, 30 - 22] },
+    { label: "Tanpa kincir", mark: "bar", values: [14 - 10, 42 - 26] },
+  ]}
+  valueLabel="Kenaikan kematian (poin persen)"
+/>
+
 Lalu, kenapa Pak Rusdi mendapat kenaikan yang sama, <InlineMath math="7" /> poin? Hitung rata-rata gabungan dengan bobot banyak petak:
 
 <BlockMath math="\begin{aligned} \text{Berkincir: } & \frac{5(10) + 15(22)}{20} = 19 \to \frac{5(14) + 15(30)}{20} = 26 \\ \text{Tanpa kincir: } & \frac{15(10) + 5(26)}{20} = 14 \to \frac{15(14) + 5(42)}{20} = 21 \end{aligned}" />

@@ -20,6 +20,19 @@ Step three: work out how much more delay is needed. Once it's running again, the
 
 Twenty-nine days after 1 May at 15.00 is 30 May at 15.00. At that moment the clock shows <InlineMath math="3" /> o'clock, and on a <InlineMath math="12" />-hour face that looks the same as 15.00.
 
+The chart below follows the clock's delay. **The jump in the middle is the three hours the clock stands still**, and the line only reaches one full turn on <InlineMath math="30" /> May.
+
+<Chart
+  title={<>The wall clock's delay since it was set</>}
+  description={<>The delay is <InlineMath math="0" /> minutes on <InlineMath math="1" /> March at 12.00, <InlineMath math="366" /> minutes on <InlineMath math="1" /> May at 12.00, <InlineMath math="546" /> minutes on <InlineMath math="1" /> May at 15.00, and <InlineMath math="720" /> minutes on <InlineMath math="30" /> May at 15.00. The flat line marks <InlineMath math="720" /> minutes, one full turn of a <InlineMath math="12" />-hour face.</>}
+  categories={["1 March 12.00", "1 May 12.00", "1 May 15.00", "30 May 15.00"]}
+  series={[
+    { label: "Delay (minutes)", mark: "line", values: [0, 61 * 6, 61 * 6 + 180, 61 * 6 + 180 + 29 * 6] },
+    { label: "One full turn, 720 minutes", mark: "line", values: [720, 720, 720, 720] },
+  ]}
+  valueLabel="Delay (minutes)"
+/>
+
 Check that this really is the first time: before the battery died the delay was only <InlineMath math="366" /> minutes, and after the stop it was <InlineMath math="546" /> minutes. Neither reaches <InlineMath math="720" />, so there's no earlier moment.
 
 The other options each skip one step:

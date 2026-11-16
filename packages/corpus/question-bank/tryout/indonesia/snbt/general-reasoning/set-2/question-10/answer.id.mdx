@@ -24,6 +24,20 @@ Untuk suku ke-<InlineMath math="7" />, bilangannya <InlineMath math="2 \times 33
 
 Cek dengan cara lain. Kalau huruf tidak diputar, nomornya <InlineMath math="2, 4, 7, 12, 21, 38, 71" />, dan selisih antarsukunya <InlineMath math="2, 3, 5, 9, 17, 33" />, persis bilangan pada barisan. Nomor <InlineMath math="71" /> diputar dua kali: <InlineMath math="71 - 52 = 19" />, yaitu S. Hasilnya sama.
 
+Grafik berikut menaruh kedua bagian setiap suku berdampingan. **Lompatan garis nomor huruf dari satu suku ke suku berikutnya sama dengan batang bilangan suku itu**.
+
+<Chart
+  title={<>Nomor urut huruf tanpa diputar dan bilangan pada suku ke-<InlineMath math="1" /> sampai ke-<InlineMath math="7" /></>}
+  description={<>Tanpa kembali ke A, nomor hurufnya <InlineMath math="2, 4, 7, 12, 21, 38, 71" />. Bilangannya <InlineMath math="2, 3, 5, 9, 17, 33, 65" />. Selisih nomor huruf berturut-turut <InlineMath math="2, 3, 5, 9, 17, 33" />, sama dengan bilangan pada suku sebelumnya.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Nomor huruf tanpa diputar", mark: "line", values: [2, 4, 7, 12, 21, 38, 71] },
+    { label: "Bilangan pada suku", mark: "bar", values: [2, 3, 5, 9, 17, 33, 65] },
+  ]}
+  bars="apart"
+  valueLabel="Nilai"
+/>
+
 Pilihan lain muncul dari kesalahan berikut:
 
 - <InlineMath math="\text{L}33" /> adalah suku ke-<InlineMath math="6" />. Ini terjadi kalau kamu berhenti satu langkah terlalu cepat.

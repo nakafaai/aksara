@@ -14,6 +14,19 @@ Sekarang telusuri rantainya.
 
 Rantai berhenti di sini. Premis 4 hanya bekerja kalau kamu tahu <InlineMath math="f" /> benar atau <InlineMath math="s" /> salah, padahal yang kamu tahu justru <InlineMath math="s" /> benar. Premis 5 hanya bekerja kalau kamu tahu <InlineMath math="p" /> benar atau <InlineMath math="v" /> salah, padahal yang kamu tahu justru <InlineMath math="p" /> salah. Jadi, keikutsertaan di festival dan kedatangan pelatih tamu tetap tidak diketahui.
 
+Diagram berikut menggambar rantai itu bersama premis yang berhenti di tengah jalan. **Rantai yang terbukti berjalan dari <InlineMath math="\neg k" /> sampai <InlineMath math="s" />**, sedangkan festival dan pelatih tamu tetap tidak diketahui.
+
+<Mermaid
+  title={<>Rantai simpulan dari fakta bahwa kostum baru tidak dibuat</>}
+  description={<>Kostum baru tidak dibuat, jadi sponsor baru tidak bergabung menurut premis pertama. Karena itu gedung disewa dengan uang kas menurut premis kedua, sehingga latihan tambahan diadakan setiap Sabtu menurut premis ketiga. Premis keempat dan kelima tidak memberi apa pun, sehingga festival dan pelatih tamu tetap tidak diketahui.</>}
+  chart={`flowchart LR
+    K["Kostum baru tidak dibuat"] -->|"premis 1"| P["Sponsor baru tidak bergabung"]
+    P -->|"premis 2"| G["Gedung disewa dengan uang kas"]
+    G -->|"premis 3"| S["Latihan tambahan setiap Sabtu"]
+    S -.->|"premis 4 tidak berlaku"| F["Festival: tidak diketahui"]
+    P -.->|"premis 5 tidak berlaku"| V["Pelatih tamu: tidak diketahui"]`}
+/>
+
 Simpulan yang memuat <InlineMath math="\neg p" /> dan <InlineMath math="s" /> adalah "sponsor baru tidak bergabung dan latihan tambahan diadakan setiap Sabtu". Kedua bagiannya terbukti.
 
 Pilihan lain masing-masing memuat satu bagian yang tidak terbukti.

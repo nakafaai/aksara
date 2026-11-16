@@ -14,6 +14,20 @@ Rantai lengkapnya terlihat seperti ini.
 
 <BlockMath math="\text{pompa tidak dinyalakan} \Rightarrow \text{tandon penuh} \Rightarrow \text{pintu dibuka} \Rightarrow (\text{timur} \vee \text{barat})" />
 
+Diagram berikut menggambar rantai yang sama beserta cabang dari aturan 4. **Cabang barat terputus karena petak barat sudah dipupuk**, sehingga panah hanya bisa berakhir di petak timur.
+
+<Mermaid
+  title={<>Rantai simpulan tentang pengairan tadi malam</>}
+  description={<>Pompa tidak dinyalakan, jadi tandon penuh. Tandon penuh, jadi pintu air pembagi dibuka. Pintu dibuka, jadi petak timur atau barat diairi. Petak barat sudah dipupuk, jadi tidak diairi, sehingga petak timur yang diairi.</>}
+  chart={`flowchart LR
+    A["Pompa tidak dinyalakan"] -->|"aturan 1"| B["Tandon penuh"]
+    B -->|"aturan 2"| C["Pintu air dibuka"]
+    C -->|"aturan 3"| D["Timur atau barat diairi"]
+    W["Barat sudah dipupuk"] -->|"aturan 4"| X["Barat tidak diairi"]
+    D --> E["Petak timur diairi"]
+    X --> E`}
+/>
+
 Karena barat gugur lewat aturan 4, yang tersisa adalah timur. Cek balik: tandon penuh, pintu dibuka, timur diairi, dan barat tidak diairi memenuhi keempat aturan sekaligus.
 
 Simpulan lain gugur karena satu langkah yang keliru.

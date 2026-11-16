@@ -6,6 +6,20 @@ Sekarang lihat siapa yang bisa berada di atas Mira. Lusi pasti lebih tinggi dari
 
 Uji Sekar dengan andaian. Misalkan Sekar lebih pendek daripada Mira. Niken lebih pendek daripada Sekar (keterangan 3), jadi Niken juga lebih pendek daripada Mira. Bersama Oki, sudah ada tiga anggota di bawah Mira, padahal tempatnya hanya dua. Andaian ini mustahil, jadi **Sekar pasti lebih tinggi daripada Mira**.
 
+Diagram berikut menggambar semua keterangan sebagai panah "lebih tinggi daripada". **Panah putus-putus dari Sekar ke Mira adalah hasil andaian tadi**, karena hanya ada tempat untuk dua anggota di bawah Mira.
+
+<Mermaid
+  title={<>Hubungan tinggi badan dari keempat keterangan</>}
+  description={<>Lusi lebih tinggi daripada Mira dan Kevin. Mira dan Kevin lebih tinggi daripada Oki. Sekar lebih tinggi daripada Niken. Karena Mira urutan keempat, Sekar pasti lebih tinggi daripada Mira.</>}
+  chart={`flowchart TD
+    L["Lusi"] --> M["Mira, urutan keempat"]
+    L --> K["Kevin"]
+    M --> O["Oki"]
+    K --> O
+    S["Sekar"] --> N["Niken"]
+    S -.->|"hasil andaian"| M`}
+/>
+
 Supaya lengkap, bagi semua urutan menjadi dua kasus menurut posisi Niken. Urutan ditulis dari yang paling tinggi.
 
 - Niken lebih tinggi daripada Mira. Tiga anggota teratas adalah Lusi, Sekar, dan Niken. Kevin turun ke bawah Mira, dan karena Kevin lebih tinggi daripada Oki, urutan dua terbawah adalah Kevin lalu Oki. Contohnya: Lusi, Sekar, Niken, Mira, Kevin, Oki.

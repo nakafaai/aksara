@@ -12,6 +12,45 @@ Die halbe Sehne ist eine Kathete dieses rechtwinkligen Dreiecks.
 t&=7\sqrt2
 \end{aligned}" />
 
+Zeichne den Kreis, die Gerade und die Strecke vom Mittelpunkt zur Geraden. **Das Lot vom Mittelpunkt halbiert die Sehne**, also bilden Radius, Abstand <InlineMath math="d" /> und halbe Sehne ein rechtwinkliges Dreieck.
+
+<MathVisual
+  title={<>Die Sehne von <InlineMath math="y=x+1" /> im Kreis <InlineMath math="x^2+y^2=25" /></>}
+  description={<>Der Kreis hat den Mittelpunkt im Ursprung und den Radius <InlineMath math="5" />. Die Gerade <InlineMath math="y=x+1" /> schneidet ihn in <InlineMath math="(-4,\ -3)" /> und <InlineMath math="(3,\ 4)" />. Das Lot vom Mittelpunkt auf die Gerade hat die Länge <InlineMath math="\tfrac{1}{\sqrt2}" /> und trifft die Sehnenmitte, die Strecke vom Mittelpunkt nach <InlineMath math="(3,\ 4)" /> ist der Radius <InlineMath math="5" />.</>}
+  labels={{
+    line: <InlineMath math="y=x+1" />,
+    d: <InlineMath math="d=\tfrac{1}{\sqrt2}" />,
+    r: <InlineMath math="r=5" />,
+    left: <InlineMath math="(-4,\ -3)" />,
+    right: <InlineMath math="(3,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + 1", domain: { min: -6, max: 5 } },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: -4, y: -3 }, to: { x: 3, y: 4 } },
+      { id: "d", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -0.5, y: 0.5 } },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -4, y: -3 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 4.5, y: 5.5 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: -0.25, y: 0.25 }, placement: "left" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 2 }, placement: "below-right" },
+      { key: "left", objectId: "left", at: { x: -4, y: -3 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Zur Kontrolle setzt du <InlineMath math="y=x+1" /> in die Kreisgleichung ein: <InlineMath math="2x^2+2x-24=0" />, also <InlineMath math="x^2+x-12=0" />, und damit <InlineMath math="x=3" /> oder <InlineMath math="x=-4" />. Die Schnittpunkte sind <InlineMath math="(3,4)" /> und <InlineMath math="(-4,-3)" />, ihr Abstand ist <InlineMath math="\sqrt{7^2+7^2}=7\sqrt2" />.
 
 Die Sehne ist also <InlineMath math="7\sqrt2" /> lang.

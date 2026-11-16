@@ -15,6 +15,17 @@ Untuk satu nilai <InlineMath math="r" />, angka satuan dipilih dari <InlineMath 
 | <InlineMath math="8" /> | <InlineMath math="7" /> | <InlineMath math="6" /> | <InlineMath math="42" /> |
 | <InlineMath math="9" /> | <InlineMath math="8" /> | <InlineMath math="7" /> | <InlineMath math="56" /> |
 
+Grafik berikut menggambar kolom terakhir tabel. **Batangnya tumbuh makin cepat**, karena kedua banyak pilihan bertambah satu setiap kali <InlineMath math="r" /> naik.
+
+<Chart
+  title={<>Banyak bilangan yang tersisa menurut angka ratusan</>}
+  description={<>Untuk angka ratusan <InlineMath math="r" />, banyak bilangannya <InlineMath math="(r-1)(r-2)" />. Nilainya <InlineMath math="0" /> untuk <InlineMath math="r=1" /> dan <InlineMath math="r=2" />, lalu <InlineMath math="2" />, <InlineMath math="6" />, <InlineMath math="12" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="42" />, dan <InlineMath math="56" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+  series={[{ label: "Banyak bilangan", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((r) => (r < 3 ? 0 : (r - 1) * (r - 2))) }]}
+  valueLabel="Banyak bilangan"
+/>
+
 Jumlahkan semua kasus.
 
 <BlockMath math="2 + 6 + 12 + 20 + 30 + 42 + 56 = 168" />

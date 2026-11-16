@@ -9,6 +9,38 @@ Cosine equals <InlineMath math="-1" /> when its argument is <InlineMath math="18
 x&=110^\circ+k\cdot180^\circ
 \end{aligned}" />
 
+Draw <InlineMath math="f" /> over the whole interval. **The graph swings between <InlineMath math="-3" /> and <InlineMath math="5" />, and it has only one lowest point in this interval**.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=1+4\cos(2x-40^\circ)" /></>}
+  description={<>The horizontal axis is <InlineMath math="x" /> in degrees from <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" />. The curve peaks at <InlineMath math="5" /> at <InlineMath math="x=20^\circ" /> and reaches its lowest value <InlineMath math="-3" /> at <InlineMath math="x=110^\circ" />, touching the horizontal line at <InlineMath math="-3" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)" />,
+    low: <InlineMath math="(110^\circ,\ -3)" />,
+    floor: <InlineMath math="-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 180 },
+      y: { min: -4, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1 + 4*cos((2*x - 40)*pi/180)", domain: { min: 0, max: 180 } },
+      { id: "floor", kind: "function", appearance: "construction", formula: "-3", domain: { min: 0, max: 180 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 110, y: -3 } },
+      { id: "high", kind: "point", appearance: "secondary", at: { x: 20, y: 5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 20, y: 5 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 110, y: -3 }, placement: "above-right" },
+      { key: "floor", objectId: "floor", at: { x: 5, y: -3 }, placement: "above" },
+    ],
+  }}
+/>
+
 In the interval <InlineMath math="0^\circ\le x\le180^\circ" /> only <InlineMath math="x=110^\circ" /> qualifies.
 
 As a check, <InlineMath math="f(110^\circ)=1+4\cos180^\circ=1-4=-3" />.

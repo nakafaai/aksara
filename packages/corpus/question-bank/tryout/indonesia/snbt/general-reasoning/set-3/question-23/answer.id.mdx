@@ -19,6 +19,18 @@ Sekarang jumlahkan dua batang pada setiap hari, lalu bagi dengan kapasitas hari 
 | Sabtu | <InlineMath math="660+640=1{.}300" /> | <InlineMath math="1{.}600" /> | <InlineMath math="81{,}25\%" /> |
 | Minggu | <InlineMath math="540+690=1{.}230" /> | <InlineMath math="1{.}600" /> | <InlineMath math="\approx 76{,}9\%" /> |
 
+Grafik berikut menggambar kolom keterisian dari tabel. **Batang Jumat paling tinggi**, walaupun Sabtu punya penumpang terbanyak, karena kapasitas Sabtu lebih besar.
+
+<Chart
+  title={<>Persentase keterisian kapal feri setiap hari</>}
+  description={<>Keterisian Senin sampai Jumat sekitar <InlineMath math="76{,}7\%" />, <InlineMath math="60\%" />, <InlineMath math="68{,}3\%" />, <InlineMath math="77{,}5\%" />, dan <InlineMath math="88{,}3\%" /> dengan kapasitas <InlineMath math="1{.}200" />. Sabtu <InlineMath math="81{,}25\%" /> dan Minggu sekitar <InlineMath math="76{,}9\%" /> dengan kapasitas <InlineMath math="1{.}600" />.</>}
+  categories={["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]}
+  bars="apart"
+  series={[{ label: "Keterisian (%)", mark: "bar", values: [(920 / 1200) * 100, (720 / 1200) * 100, (820 / 1200) * 100, (930 / 1200) * 100, (1060 / 1200) * 100, (1300 / 1600) * 100, (1230 / 1600) * 100] }]}
+  valueLabel="Keterisian (%)"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 Keterisian tertinggi ada pada hari Jumat. Coba cek pesaing terdekatnya, Sabtu. Supaya Sabtu menyamai Jumat, Sabtu butuh sekitar <InlineMath math="0{,}883 \times 1{.}600 \approx 1{.}413" /> penumpang. Penumpang Sabtu hanya <InlineMath math="1{.}300" />, jadi Sabtu memang kalah.
 
 Sekarang lihat kenapa pilihan lain menggoda.

@@ -15,6 +15,21 @@ Damit ergeben sich am Ende einiger Wochen diese Bestände (in Tonnen):
 | <InlineMath math="8" /> | <InlineMath math="52" /> | <InlineMath math="62" /> | <InlineMath math="56" /> |
 | <InlineMath math="9" /> | <InlineMath math="36" /> | <InlineMath math="51" /> | <InlineMath math="51" /> |
 
+Das Diagramm zeigt die drei Bestände von Woche <InlineMath math="0" /> bis Woche <InlineMath math="9" />. **Die Linien von Anggrek und Bakung treffen sich in Woche <InlineMath math="6" />**, wenn alle Lager noch über dem Sicherheitsbestand liegen.
+
+<Chart
+  title={<>Bestand der drei Lager und Sicherheitsbestand, Wochen <InlineMath math="0" /> bis <InlineMath math="9" /></>}
+  description={<>Am Ende von Woche <InlineMath math="w" /> hat Anggrek <InlineMath math="180-16w" />, Bakung <InlineMath math="150-11w" /> und Cempaka <InlineMath math="96-5w" /> Tonnen. Anggrek und Bakung haben in Woche <InlineMath math="6" /> beide <InlineMath math="84" /> Tonnen, Cempaka <InlineMath math="66" />. Die waagerechte Linie markiert den Sicherheitsbestand von <InlineMath math="40" /> Tonnen.</>}
+  categories={Array.from({ length: 10 }, (_, i) => `${i}`)}
+  series={[
+    { label: "Anggrek", mark: "line", values: Array.from({ length: 10 }, (_, i) => 180 - 16 * i) },
+    { label: "Bakung", mark: "line", values: Array.from({ length: 10 }, (_, i) => 150 - 11 * i) },
+    { label: "Cempaka", mark: "line", values: Array.from({ length: 10 }, (_, i) => 96 - 5 * i) },
+    { label: "Sicherheitsbestand 40 Tonnen", mark: "line", values: Array.from({ length: 10 }, () => 40) },
+  ]}
+  valueLabel="Bestand (Tonnen)"
+/>
+
 **Aussage 1** ist Benar. Der Abstand zwischen Anggrek und Bakung beginnt bei <InlineMath math="180-150=30" /> Tonnen und schrumpft um <InlineMath math="16-11=5" /> Tonnen pro Woche, also verschwindet er nach genau <InlineMath math="30:5=6" /> Wochen. Dann haben beide <InlineMath math="84" /> Tonnen und Cempaka <InlineMath math="66" />, alle mindestens <InlineMath math="40" />. Es gibt noch einen zweiten Gleichstand: Bakung und Cempaka haben in Woche <InlineMath math="9" /> je <InlineMath math="51" /> Tonnen, aber Anggrek liegt dann nur noch bei <InlineMath math="36" />. Ein Zeitpunkt, der die Bedingung erfüllt, reicht aus, damit die Aussage stimmt.
 
 **Aussage 2** ist Salah. Durch die Übernahme sinkt der Ausgang von Anggrek auf <InlineMath math="31" />, und der Ausgang von Cempaka steigt auf <InlineMath math="22" />:

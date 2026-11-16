@@ -27,6 +27,17 @@ Bau jetzt die Kette ab "Der Roboter läuft nicht im Energiesparmodus" auf.
 
 Also ist "Wenn der Roboter nicht im Energiesparmodus läuft, erreicht das Team die nationale Runde" gültig. Der letzte Schritt klappt nur, weil Prämisse 1 ein "genau dann, wenn" ist. Würde Prämisse 1 nur sagen "Wenn das Team weiterkommt, schafft der Roboter die Strecke in weniger als <InlineMath math="90" /> Sekunden", würde die Kette bei <InlineMath math="W" /> abreißen.
 
+Das Diagramm zeichnet diese Kette mit der Richtung jeder Prämisse. **Der letzte Schritt gilt nur, weil Prämisse 1 in beide Richtungen wirkt**.
+
+<Mermaid
+  title={<>Die Kette vom Verzicht auf den Energiesparmodus bis zur Qualifikation</>}
+  description={<>Ist der Roboter nicht im Energiesparmodus, ist nach der Kontraposition von Prämisse 3 der Ersatzakku eingebaut. Der Ersatzakku lässt den Roboter nach Prämisse 2 in unter <InlineMath math="90" /> Sekunden fertig werden. Weil Prämisse 1 in beide Richtungen gilt, qualifiziert sich das Team, wenn der Roboter unter <InlineMath math="90" /> Sekunden bleibt.</>}
+  chart={`flowchart LR
+    H["Nicht im Energiesparmodus"] -->|"Kontraposition von Prämisse 3"| B["Ersatzakku eingebaut"]
+    B -->|"Prämisse 2"| W["Unter 90 Sekunden fertig"]
+    W <-->|"Prämisse 1, beide Richtungen"| L["Qualifiziert für die Landesrunde"]`}
+/>
+
 Prüf es vom anderen Ende. Die Kontraposition der Schlussfolgerung ist <InlineMath math="\neg L \Rightarrow H" />. Kommt das Team nicht weiter, war der Roboter nicht unter <InlineMath math="90" /> Sekunden (Prämisse 1), also war der Ersatzakku nicht eingebaut (Kontraposition von Prämisse 2), also läuft der Roboter im Energiesparmodus (Prämisse 3). Das gleiche Ergebnis.
 
 Jede der anderen vier Antworten benutzt einen Schritt in der falschen Richtung.

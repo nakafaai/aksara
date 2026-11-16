@@ -8,6 +8,20 @@ Try some example numbers. Say there were <InlineMath math="100" /> houses a hund
 
 Almost every house left really is teak, even though only <InlineMath math="30\%" /> of the houses back then were. This mistake is called **survivorship bias**: drawing a conclusion about everything from the past using only the things that survived, when the feature being studied helps decide what survives.
 
+The chart below compares the houses of a hundred years ago with the ones left in that example. **The bar for other wood almost vanishes**, so the houses left give a slanted picture of the past.
+
+<Chart
+  title={<>Houses by type of wood in the example numbers</>}
+  description={<>A hundred years ago there were <InlineMath math="30" /> teak houses and <InlineMath math="70" /> houses of other wood. Still standing today are <InlineMath math="24" /> teak houses and <InlineMath math="2" /> houses of other wood, so about <InlineMath math="92\%" /> of the houses left are teak.</>}
+  categories={["Teak", "Other wood"]}
+  bars="apart"
+  series={[
+    { label: "A hundred years ago", mark: "bar", values: [30, 70] },
+    { label: "Still standing today", mark: "bar", values: [24, 2] },
+  ]}
+  valueLabel="Houses"
+/>
+
 Now match each option against that pattern.
 
 - The old regional songs follow exactly the same pattern. Only songs that are still sung get looked at. Simple, catchy songs are easier to pass on by word of mouth, while complicated ones get forgotten faster. So the songs left today don't represent all the songs of that time. Same mistake.

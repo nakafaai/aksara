@@ -6,6 +6,20 @@ Statement 1 can be concluded, even though it sounds false. In each row, the pond
 
 That gives <InlineMath math="19\% > 14\%" />. The later-aerated group is higher because <InlineMath math="15" /> of its <InlineMath math="20" /> ponds are high density.
 
+The chart below shows what makes statement 1 odd. **The later-aerated group is never worse in either row, yet its overall average is higher**, because most of its ponds are high density.
+
+<Chart
+  title={<>Average deaths in the earlier cycle by stocking density and overall</>}
+  description={<>At low density, both groups are at <InlineMath math="10\%" />. At high density, the later-aerated group is at <InlineMath math="22\%" /> and the group without aerators at <InlineMath math="26\%" />. Over all ponds, the later-aerated group averages <InlineMath math="19\%" />, while the never-aerated group averages <InlineMath math="14\%" />.</>}
+  categories={["Low density", "High density", "All ponds"]}
+  bars="apart"
+  series={[
+    { label: "Later aerated", mark: "bar", values: [10, 22, (5 * 10 + 15 * 22) / 20] },
+    { label: "Never aerated", mark: "bar", values: [10, 26, (15 * 10 + 5 * 26) / 20] },
+  ]}
+  valueLabel="Deaths in the earlier cycle (%)"
+/>
+
 Statement 2 can't be concluded (*Tidak dapat disimpulkan*), even though it sounds reasonable. If you borrow the <InlineMath math="8" />-point rise of the aerated ponds, you get <InlineMath math="26\% + 8 = 34\%" />. But those five ponds never had aerators. There are no data on them with aerators, and nothing guarantees that the aerators' effect on other ponds carries over to them.
 
 Statement 3 can't be concluded. The dry season did happen in the latest cycle, but every pond went through it. No pond in that cycle escaped the dry season, so there's no comparison group to separate the dry season's effect from anything else that changed between cycles.

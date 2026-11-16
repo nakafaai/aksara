@@ -24,6 +24,19 @@ Check statement (2). Since the scores are different, the gap <InlineMath math="c
 
 There are two possibilities, <InlineMath math="5,\ 6,\ 7" /> and <InlineMath math="4,\ 6,\ 8" />. The top score could be <InlineMath math="7" /> or <InlineMath math="8" />, so statement (2) alone isn't enough.
 
+The diagram below puts both statements side by side. **Statement (1) leaves only one set of scores, while statement (2) leaves two**.
+
+<Mermaid
+  title={<>Sets of scores left by each statement</>}
+  description={<>The three scores are different and add up to <InlineMath math="18" />. With a lowest score of <InlineMath math="5" />, only <InlineMath math="5, 6, 7" /> is possible, so the top score is <InlineMath math="7" />. With a gap under <InlineMath math="5" />, both <InlineMath math="5, 6, 7" /> and <InlineMath math="4, 6, 8" /> are possible.</>}
+  chart={`flowchart LR
+    A["Three different scores adding up to 18"] --> B["Statement 1: lowest is 5"]
+    A --> C["Statement 2: gap under 5"]
+    B --> D["Only 5, 6, 7: top is 7"]
+    C --> E["5, 6, 7: top is 7"]
+    C --> F["4, 6, 8: top is 8"]`}
+/>
+
 The other options come from stopping the check too early:
 
 - "Both statements together are enough" is what you'd pick if you treat <InlineMath math="b+c=13" /> as having many answers and forget that <InlineMath math="5<b<c" /> leaves only <InlineMath math="6" /> and <InlineMath math="7" />.

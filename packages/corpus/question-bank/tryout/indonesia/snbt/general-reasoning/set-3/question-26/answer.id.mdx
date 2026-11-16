@@ -29,6 +29,20 @@ b &> a
 
 Pernyataan (2) hanya memberi tahu bahwa paket B lebih banyak daripada paket A. Banyak pasangan memenuhi syarat ini, misalnya <InlineMath math="(1, 2)" /> atau <InlineMath math="(5, 9)" />, jadi pernyataan (2) saja tidak cukup.
 
+Grafik berikut membandingkan banyak paket A dan B pada kedua pasangan dari pernyataan (1). **Hanya pada pasangan pertama batang B lebih tinggi dari batang A**, seperti yang diminta pernyataan (2).
+
+<Chart
+  title={<>Dua pasangan pembelian yang membayar tepat <InlineMath math="\text{Rp}61{.}000" /></>}
+  description={<>Pasangan pertama berisi <InlineMath math="3" /> paket A dan <InlineMath math="10" /> paket B, sehingga <InlineMath math="b>a" />. Pasangan kedua berisi <InlineMath math="7" /> paket A dan <InlineMath math="3" /> paket B, sehingga <InlineMath math="b<a" />.</>}
+  bars="apart"
+  categories={["(3, 10)", "(7, 3)"]}
+  series={[
+    { label: "Paket A", mark: "bar", values: [3, 7] },
+    { label: "Paket B", mark: "bar", values: [(61 - 7 * 3) / 4, (61 - 7 * 7) / 4] },
+  ]}
+  valueLabel="Banyak paket"
+/>
+
 Sekarang gabungkan. Dari dua pasangan pada pernyataan (1), hanya <InlineMath math="(3, 10)" /> yang memenuhi <InlineMath math="b > a" />. Pasangan <InlineMath math="(7, 3)" /> gugur karena <InlineMath math="3 < 7" />. Cek: <InlineMath math="7 \times 3 + 4 \times 10 = 61" />, dan setelah ditukar harganya <InlineMath math="7 \times 10 + 4 \times 3 = 82" />, memang lebih mahal. Banyak paket A pasti <InlineMath math="3" />.
 
 Kenapa pilihan lain keliru:

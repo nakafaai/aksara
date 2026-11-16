@@ -12,6 +12,18 @@ x-3&=2x \\
 x&=-3
 \end{aligned}" />
 
+The diagram below shows both directions. **The forward path goes through <InlineMath math="g" /> first, then <InlineMath math="f" />**, so the way back undoes <InlineMath math="f" /> first, then <InlineMath math="g" />.
+
+<Mermaid
+  title={<>Undoing the composition from the outside in</>}
+  description={<>The solid arrows are the forward path: <InlineMath math="g" /> takes <InlineMath math="-3" /> to <InlineMath math="2" />, then <InlineMath math="f" /> takes <InlineMath math="2" /> to <InlineMath math="5" />. The dashed arrows are the way back: <InlineMath math="f^{-1}" /> takes <InlineMath math="5" /> to <InlineMath math="2" />, then <InlineMath math="g^{-1}" /> takes <InlineMath math="2" /> to <InlineMath math="-3" />.</>}
+  chart={`flowchart LR
+  X["x = -3"] -->|"g"| G["g(x) = 2"]
+  G -->|"f"| F["f(g(x)) = 5"]
+  F -.->|"f⁻¹"| G
+  G -.->|"g⁻¹"| X`}
+/>
+
 Check: <InlineMath math="g(-3)=\frac{-6}{-3}=2" /> and <InlineMath math="f(2)=5" />, so <InlineMath math="(f\circ g)(-3)=5" />.
 
 Another route uses <InlineMath math="(f\circ g)^{-1}=g^{-1}\circ f^{-1}" />: <InlineMath math="f^{-1}(5)=2" />, then <InlineMath math="g^{-1}(2)=-3" />. The order is the reverse of the original composition.

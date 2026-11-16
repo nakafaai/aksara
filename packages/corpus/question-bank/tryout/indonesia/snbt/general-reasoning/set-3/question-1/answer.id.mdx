@@ -14,6 +14,20 @@ Simpulan pengandaian menguji tepat hal itu. Sebarkan kebun bernaungan seperti ke
 
 Simpulan ini pasti benar karena hanya memakai angka tabel dan pengandaian yang disebut di dalam pilihan itu sendiri. Cek hasilnya: <InlineMath math="940-840=100" />, sama dengan keunggulan di setiap lereng. Masuk akal, karena setelah sebarannya disamakan, keunggulan <InlineMath math="100" /> di tiap lereng terbawa utuh ke rata-rata keseluruhan.
 
+Grafik berikut menaruh semua rata-rata itu berdampingan. **Kebun bernaungan menang di setiap lereng dan pada sebaran yang sama, tetapi kalah pada keseluruhan yang sebenarnya**, karena sebagian besar kebunnya ada di lereng curam.
+
+<Chart
+  title={<>Rata-rata hasil kopi menurut lereng dan secara keseluruhan</>}
+  description={<>Di lereng landai, kebun bernaungan <InlineMath math="1{.}000" /> dan tanpa naungan <InlineMath math="900" /> kilogram per hektare. Di lereng curam, <InlineMath math="700" /> dan <InlineMath math="600" />. Secara keseluruhan, <InlineMath math="760" /> dan <InlineMath math="840" />. Jika sebaran lerengnya sama, kebun bernaungan menjadi <InlineMath math="940" /> dan tanpa naungan tetap <InlineMath math="840" />.</>}
+  categories={["Lereng landai", "Lereng curam", "Keseluruhan", "Jika sebaran sama"]}
+  bars="apart"
+  series={[
+    { label: "Bernaungan", mark: "bar", values: [1000, 700, (10 * 1000 + 40 * 700) / 50, (40 * 1000 + 10 * 700) / 50] },
+    { label: "Tanpa naungan", mark: "bar", values: [900, 600, (40 * 900 + 10 * 600) / 50, (40 * 900 + 10 * 600) / 50] },
+  ]}
+  valueLabel="Kilogram per hektare"
+/>
+
 Pilihan lain gugur karena alasan berikut.
 
 - Pilihan yang menyebut kebun tanpa naungan unggul di kedua lereng membalik isi tabel. Di tiap lereng, justru kebun bernaungan yang unggul. Kesalahannya adalah memindahkan hasil keseluruhan (<InlineMath math="760<840" />) ke setiap kelompok.

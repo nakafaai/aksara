@@ -12,6 +12,17 @@ Now build the chain.
 
 So at least one person is both a nature club member and not allowed to join the rafting trip. A sentence "some <InlineMath math="A" /> are <InlineMath math="B" />" only says someone belongs to both groups, so you can swap the two groups. That gives: some students who may not join the rafting trip are members of the nature club.
 
+The diagram below follows the class X club member through the three premises. **That one guaranteed person is enough** for a conclusion that uses "some".
+
+<Mermaid
+  title={<>The chain from a class X club member to not being allowed to raft</>}
+  description={<>Premise 3 guarantees a nature club member who is a class X student. By premise 2, that student hasn't passed the swimming test. By the contrapositive of premise 1, that student may not join the rafting trip.</>}
+  chart={`flowchart LR
+    A["Club member in class X"] -->|"premise 2"| B["Hasn't passed the swimming test"]
+    B -->|"contrapositive of premise 1"| C["May not join the rafting trip"]
+    C --> D["Some who may not join are club members"]`}
+/>
+
 The other options aren't guaranteed, and each one fails in a situation that still fits all three premises.
 
 - "No club member may join" turns "some" into "all". A club member who isn't in class X may well have passed the swimming test and been allowed to join.

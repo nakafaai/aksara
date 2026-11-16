@@ -8,6 +8,19 @@ Sei <InlineMath math="a" /> die Anzahl der Gaben von 04.00 bis 07.00 Uhr. Die ü
 
 Die Daten zeigen also nur dann häufigere Fehler in den letzten Stunden, wenn die Gaben von 04.00 bis 07.00 Uhr **weniger als zwei Drittel** aller Gaben der Nachtschicht ausmachen. Prüfe das durch Umkehren. Entfallen auf die letzten Stunden zwei Drittel oder mehr, ist ihre Quote gleich hoch wie vorher oder niedriger. Die Daten deuten dann nicht mehr auf Müdigkeit hin, und der Prognose fehlt die Grundlage. Eine Annahme, deren Umkehrung das Argument zerstört, ist die notwendige.
 
+Das Diagramm berechnet die Fehlerquote in beiden Teilen der Nachtschicht für mehrere Werte von <InlineMath math="a" />. **Die beiden Linien kreuzen sich zwischen <InlineMath math="1{.}200" /> und <InlineMath math="1{.}500" />**, genau bei zwei Dritteln von <InlineMath math="2{.}000" />, also gilt der Schluss der Pflegeleitung nur links von diesem Schnittpunkt.
+
+<Chart
+  title={<>Fehler pro <InlineMath math="1{.}000" /> Medikamentengaben nach Zahl der Gaben von 04.00 bis 07.00 Uhr</>}
+  description={<>Werden von 04.00 bis 07.00 Uhr <InlineMath math="a" /> Medikamente gegeben, beträgt die Fehlerquote dort <InlineMath math="12" /> pro <InlineMath math="a" />, davor <InlineMath math="6" /> pro <InlineMath math="2{.}000-a" />, jeweils mal <InlineMath math="1{.}000" />. Bei <InlineMath math="a=600" /> sind es etwa <InlineMath math="20" /> und <InlineMath math="4{,}3" />. Bei <InlineMath math="a=1{.}800" /> etwa <InlineMath math="6{,}7" /> und <InlineMath math="30" />.</>}
+  categories={["600", "900", "1200", "1500", "1800"]}
+  series={[
+    { label: "04.00 bis 07.00 Uhr", mark: "line", values: [600, 900, 1200, 1500, 1800].map((a) => (12 / a) * 1000) },
+    { label: "21.00 bis 04.00 Uhr", mark: "line", values: [600, 900, 1200, 1500, 1800].map((a) => (6 / (2000 - a)) * 1000) },
+  ]}
+  valueLabel="Fehler pro 1.000 Gaben"
+/>
+
 Darum scheitern die anderen Optionen.
 
 - "Weniger als die Hälfte" reicht zwar, ist aber nicht nötig. Angenommen, auf die letzten Stunden entfallen <InlineMath math="60\%" /> der Gaben, also <InlineMath math="1{.}200" />. Ihre Quote ist <InlineMath math="12:1{.}200" />, also <InlineMath math="10" /> pro <InlineMath math="1{.}000" />, die Quote davor <InlineMath math="6:800" />, also <InlineMath math="7{,}5" /> pro <InlineMath math="1{.}000" />. Das Argument funktioniert auch über der Hälfte, also ist diese Bedingung zu streng.

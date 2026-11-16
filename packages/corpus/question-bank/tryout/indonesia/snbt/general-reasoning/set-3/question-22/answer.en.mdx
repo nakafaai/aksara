@@ -19,6 +19,17 @@ N &= 800 \\
 
 Check by tracing it again: <InlineMath math="800" /> seedlings, <InlineMath math="80" /> die so <InlineMath math="720" /> are left, half of them, <InlineMath math="360" />, are moved so <InlineMath math="360" /> remain, then <InlineMath math="480" /> new ones are added. That gives <InlineMath math="360 + 480 = 840" />, which matches the question.
 
+The chart below traces the seedlings from the start to the end of the season with <InlineMath math="N=800" />. **The number moved equals the number left behind**, because half of the <InlineMath math="720" /> go to the orchard.
+
+<Chart
+  title={<>The durian seedlings over two months</>}
+  description={<>The season starts with <InlineMath math="800" /> seedlings. After <InlineMath math="80" /> die, <InlineMath math="720" /> remain. Half of them, <InlineMath math="360" />, are moved and <InlineMath math="360" /> stay. Then <InlineMath math="480" /> new seedlings are added, ending at <InlineMath math="840" />.</>}
+  categories={["Season start", "Alive after month one", "Moved", "Left", "New seedlings", "End of month two"]}
+  bars="apart"
+  series={[{ label: "Seedlings", mark: "bar", values: [800, 800 - 80, 720 / 2, 720 - 360, (800 * 6) / 10, 360 + 480] }]}
+  valueLabel="Seedlings"
+/>
+
 Each of the other options comes from mixing up a base.
 
 - <InlineMath math="378" /> comes from just adding the percentages: <InlineMath math="-10\% - 50\% + 60\% = 0\%" />. You then think the starting number was <InlineMath math="840" />, so the number moved is <InlineMath math="0.5 \times 0.9 \times 840 = 378" />.

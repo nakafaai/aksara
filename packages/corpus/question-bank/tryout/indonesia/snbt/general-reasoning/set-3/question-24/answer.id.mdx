@@ -21,6 +21,17 @@ Pernyataan 3: Benar. Jumlahkan setiap arah selama tujuh hari.
 
 Karang Mas unggul <InlineMath math="100" /> penumpang. Petugas dalam bacaan tertipu karena Batu Lintang memang unggul pada empat hari, yaitu Selasa, Rabu, Kamis, dan Sabtu. Selisihnya kecil: <InlineMath math="40 + 20 + 170 + 20 = 250" />. Karang Mas hanya unggul pada Senin dan Minggu, tetapi selisihnya besar: <InlineMath math="200 + 150 = 350" />. Pada hari Jumat keduanya sama. Jadi, unggul pada lebih banyak hari belum tentu unggul dalam total.
 
+Grafik berikut menggambar selisih harian kedua arah. **Batang di bawah nol lebih banyak, tetapi dua batang di atas nol jauh lebih panjang**, sehingga totalnya tetap dimenangkan Karang Mas.
+
+<Chart
+  title={<>Selisih penumpang Karang Mas dikurangi Batu Lintang setiap hari</>}
+  description={<>Karang Mas unggul <InlineMath math="200" /> pada Senin dan <InlineMath math="150" /> pada Minggu. Batu Lintang unggul <InlineMath math="40" />, <InlineMath math="20" />, <InlineMath math="170" />, dan <InlineMath math="20" /> pada Selasa, Rabu, Kamis, dan Sabtu. Jumat seri. Jumlah semua selisih adalah <InlineMath math="350-250=100" /> untuk Karang Mas.</>}
+  categories={["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]}
+  bars="apart"
+  series={[{ label: "Keunggulan Karang Mas atas Batu Lintang", mark: "bar", values: [560 - 360, 340 - 380, 400 - 420, 380 - 550, 530 - 530, 640 - 660, 690 - 540] }]}
+  valueLabel="Selisih penumpang"
+/>
+
 Pernyataan 4: Salah. Penumpang Sabtu dan Minggu adalah <InlineMath math="1{.}300 + 1{.}230 = 2{.}530" />. Pembaginya harus seluruh penumpang minggu itu, yaitu <InlineMath math="3{.}440 + 3{.}540 = 6{.}980" />.
 
 <BlockMath math="\frac{2{.}530}{6{.}980} \approx 36{,}2\% < 40\%" />

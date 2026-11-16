@@ -22,6 +22,20 @@ Jetzt kommt es auf den Nenner an. Gefragt ist der Anteil **an denen, die über d
 
 Probe rückwärts: <InlineMath math="35\%" /> von <InlineMath math="20" /> Personen sind <InlineMath math="7" /> Personen. Zusammen mit den <InlineMath math="45" /> vom direkten Weg ergibt das <InlineMath math="52" />, passend zu <InlineMath math="52\%" /> von <InlineMath math="100" /> Teilnehmenden.
 
+Das Diagramm verfolgt <InlineMath math="100" /> Teilnehmende durch beide Stufen. **Der richtige Teiler sind die <InlineMath math="20" /> Personen, die über die Wiederholung kamen**, nicht alle Teilnehmenden.
+
+<Mermaid
+  title={<>Hundert Teilnehmende durch zwei Auswahlstufen</>}
+  description={<>Von <InlineMath math="100" /> Teilnehmenden kommen <InlineMath math="60" /> direkt weiter und <InlineMath math="40" /> scheitern. Von diesen kommen <InlineMath math="20" /> über die Wiederholung weiter. In Stufe 2 bestehen <InlineMath math="45" /> aus dem direkten Weg, also <InlineMath math="52-45=7" /> aus dem Wiederholungsweg.</>}
+  chart={`flowchart LR
+    A["100 Teilnehmende"] --> B["60 direkt weiter"]
+    A --> C["40 scheitern in Stufe 1"]
+    C --> D["20 bestehen die Wiederholung"]
+    C --> E["20 scheiden aus"]
+    B --> F["45 bestehen Stufe 2"]
+    D --> G["7 bestehen Stufe 2"]`}
+/>
+
 Die anderen Optionen entstehen durch einen falschen Nenner oder einen falschen Mittelwert:
 
 - <InlineMath math="7\%" /> bleibt bei <InlineMath math="7" /> Personen von den ursprünglichen <InlineMath math="100" /> stehen. Die Zahl ist noch nicht durch die Gruppe der Wiederholung geteilt.

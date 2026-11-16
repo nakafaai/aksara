@@ -12,6 +12,18 @@ x-3&=2x \\
 x&=-3
 \end{aligned}" />
 
+Das Diagramm zeigt beide Richtungen. **Der Hinweg geht zuerst durch <InlineMath math="g" />, dann durch <InlineMath math="f" />**, also macht der Rückweg zuerst <InlineMath math="f" /> rückgängig, dann <InlineMath math="g" />.
+
+<Mermaid
+  title={<>Die Verkettung von außen nach innen auflösen</>}
+  description={<>Die durchgezogenen Pfeile sind der Hinweg: <InlineMath math="g" /> bringt <InlineMath math="-3" /> nach <InlineMath math="2" />, dann bringt <InlineMath math="f" /> die <InlineMath math="2" /> nach <InlineMath math="5" />. Die gestrichelten Pfeile sind der Rückweg: <InlineMath math="f^{-1}" /> bringt <InlineMath math="5" /> nach <InlineMath math="2" />, dann bringt <InlineMath math="g^{-1}" /> die <InlineMath math="2" /> nach <InlineMath math="-3" />.</>}
+  chart={`flowchart LR
+  X["x = -3"] -->|"g"| G["g(x) = 2"]
+  G -->|"f"| F["f(g(x)) = 5"]
+  F -.->|"f⁻¹"| G
+  G -.->|"g⁻¹"| X`}
+/>
+
 Probe: <InlineMath math="g(-3)=\frac{-6}{-3}=2" /> und <InlineMath math="f(2)=5" />, also <InlineMath math="(f\circ g)(-3)=5" />.
 
 Ein anderer Weg nutzt <InlineMath math="(f\circ g)^{-1}=g^{-1}\circ f^{-1}" />: <InlineMath math="f^{-1}(5)=2" />, dann <InlineMath math="g^{-1}(2)=-3" />. Die Reihenfolge ist umgekehrt zur ursprünglichen Verkettung.

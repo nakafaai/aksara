@@ -4,6 +4,18 @@ Der Nenner sind die <InlineMath math="300" /> Besucher des Lesesaals. <InlineMat
 
 Das tiefere Problem ist die Stichprobe. Befragt wurde im Lesesaal, also **konnten nur Leute befragt werden, die schon in die Bibliothek gekommen waren**. Schuldner, die nicht zurückgekehrt sind, können nicht im Lesesaal sitzen, also kann die Umfrage sie nie erfassen. So eine Stichprobe steht nicht für alle Schuldner und kann nicht messen, welcher Anteil von ihnen zurückkam.
 
+Das Diagramm zeigt, wen die Umfrage erfassen kann. **Nur Säumige, die schon zurückgekehrt sind, können im Lesesaal sitzen**, also werden die anderen nie gezählt.
+
+<Mermaid
+  title={<>Wen die Umfrage im Lesesaal erfassen kann</>}
+  description={<>Von den <InlineMath math="1{.}500" /> Säumigen sind manche zurückgekehrt und manche nicht. Nur die Zurückgekehrten trifft man im Lesesaal an, wo sie <InlineMath math="120" /> der <InlineMath math="300" /> Besucher ausmachen. Säumige, die nicht zurückgekehrt sind, kommen nie in die Umfrage.</>}
+  chart={`flowchart LR
+    A["1.500 Mitglieder mit offenen Gebühren"] --> B["Zurückgekehrt"]
+    A --> C["Nicht zurückgekehrt"]
+    B --> D["Im Lesesaal anzutreffen: 120 von 300 Besuchern"]
+    C -.->|"kommen nicht"| E["Nie in der Umfrage"]`}
+/>
+
 Darum scheitern die anderen Optionen.
 
 - Die Größe von <InlineMath math="300" /> ist nicht das Kernproblem. Auch eine Umfrage unter <InlineMath math="3{.}000" /> Besuchern erreicht nur Leute, die schon gekommen sind. Falsch ist, wer befragt wurde, nicht wie viele.

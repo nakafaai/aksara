@@ -8,6 +8,18 @@ Beri nama setiap bagian supaya bentuknya terlihat jelas.
 
 Pernyataan aslinya adalah <InlineMath math="p \Rightarrow (q \wedge r)" />. Pernyataan jika-maka hanya salah dalam satu keadaan: bagian "jika" terjadi, tetapi bagian "maka" tidak terjadi. Jadi **bagian "jika" tetap dipertahankan apa adanya**, termasuk kata "tidak ada" di dalamnya, dan yang disangkal hanya bagian "maka".
 
+Diagram berikut menelusuri kapan pernyataan asli salah. **Hanya satu jalur yang berakhir di "salah"**: <InlineMath math="p" /> terjadi, tetapi <InlineMath math="q" /> dan <InlineMath math="r" /> tidak keduanya terjadi.
+
+<Mermaid
+  title={<>Kapan pernyataan jika-maka dengan dua janji menjadi salah</>}
+  description={<>Jika <InlineMath math="p" /> tidak terjadi, pernyataan asli tetap benar. Jika <InlineMath math="p" /> terjadi dan <InlineMath math="q" /> serta <InlineMath math="r" /> terjadi, pernyataan asli benar. Pernyataan asli salah hanya jika <InlineMath math="p" /> terjadi dan salah satu dari <InlineMath math="q" /> atau <InlineMath math="r" /> gagal.</>}
+  chart={`flowchart LR
+    A{"Tidak ada relawan absen?"} -->|"tidak"| T1["Pernyataan asli benar"]
+    A -->|"ya"| B{"Posko tepat waktu dan semua dapat makan?"}
+    B -->|"ya"| T2["Pernyataan asli benar"]
+    B -->|"tidak: salah satu gagal"| F["Pernyataan asli salah"]`}
+/>
+
 <BlockMath math="\neg\big(p \Rightarrow (q \wedge r)\big) \equiv p \wedge \neg(q \wedge r) \equiv p \wedge (\neg q \vee \neg r)" />
 
 Langkah kedua memakai hukum De Morgan: ingkaran dari "<InlineMath math="q" /> dan <InlineMath math="r" />" adalah "bukan <InlineMath math="q" /> atau bukan <InlineMath math="r" />". Sekarang terjemahkan kembali setiap bagian.

@@ -9,6 +9,34 @@ Bagi pembilang dan penyebut dengan <InlineMath math="x" />.
 
 <BlockMath math="\lim_{x\to\infty}\frac{10}{1-\frac1x}=\frac{10}{1}=10" />
 
+Gambar selisih yang sudah digabung, <InlineMath math="\frac{10x}{x-1}" />, untuk <InlineMath math="x" /> besar. **Kurvanya turun dan merapat ke garis <InlineMath math="y=10" />** tanpa memotongnya.
+
+<MathVisual
+  title={<>Selisih kedua bagian untuk <InlineMath math="x" /> besar</>}
+  description={<>Kurva <InlineMath math="y=\frac{10x}{x-1}" /> untuk <InlineMath math="3\le x\le60" />. Di <InlineMath math="x=3" /> nilainya <InlineMath math="15" />, lalu kurvanya makin dekat ke garis mendatar <InlineMath math="y=10" /> saat <InlineMath math="x" /> membesar.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{10x}{x-1}" />,
+    level: <InlineMath math="y=10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 60 },
+      y: { min: 8, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "10*x/(x - 1)", domain: { min: 3, max: 60 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "10", domain: { min: 0, max: 60 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 5, y: 12.5 }, placement: "above-right" },
+      { key: "level", objectId: "level", at: { x: 50, y: 10 }, placement: "below" },
+    ],
+  }}
+/>
+
 Sebagai pemeriksaan, untuk <InlineMath math="x=1{.}001" /> nilainya <InlineMath math="\frac{10\cdot1{.}001}{1{.}000}=10{,}01" />, dekat dengan <InlineMath math="10" />.
 
 Jadi, nilai limitnya adalah <InlineMath math="10" />.

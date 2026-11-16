@@ -8,6 +8,20 @@ Probier es mit Beispielzahlen. Angenommen, vor hundert Jahren gab es <InlineMath
 
 Fast alle übrigen Häuser sind tatsächlich aus Teak, obwohl damals nur <InlineMath math="30\%" /> der Häuser aus Teak waren. Diesen Fehler nennt man **Survivorship Bias**: Man schließt auf alles aus der Vergangenheit, schaut aber nur auf das, was überdauert hat, obwohl das untersuchte Merkmal mitentscheidet, was überdauert.
 
+Das Diagramm vergleicht die Häuser von vor hundert Jahren mit den übrig gebliebenen im Zahlenbeispiel. **Der Balken für anderes Holz verschwindet fast**, also geben die übrigen Häuser ein schiefes Bild der Vergangenheit.
+
+<Chart
+  title={<>Häuser nach Holzart im Zahlenbeispiel</>}
+  description={<>Vor hundert Jahren gab es <InlineMath math="30" /> Teakhäuser und <InlineMath math="70" /> Häuser aus anderem Holz. Heute stehen noch <InlineMath math="24" /> Teakhäuser und <InlineMath math="2" /> Häuser aus anderem Holz, also sind etwa <InlineMath math="92\%" /> der übrigen Häuser aus Teak.</>}
+  categories={["Teak", "Anderes Holz"]}
+  bars="apart"
+  series={[
+    { label: "Vor hundert Jahren", mark: "bar", values: [30, 70] },
+    { label: "Heute noch stehend", mark: "bar", values: [24, 2] },
+  ]}
+  valueLabel="Häuser"
+/>
+
 Jetzt vergleichst du jede Option mit diesem Muster.
 
 - Die alten Regionallieder folgen genau demselben Muster. Betrachtet werden nur Lieder, die heute noch gesungen werden. Einfache, eingängige Lieder lassen sich mündlich leichter weitergeben, komplizierte geraten schneller in Vergessenheit. Die heute übrigen Lieder stehen also nicht für alle Lieder jener Zeit. Derselbe Fehler.

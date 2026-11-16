@@ -22,6 +22,20 @@ Three full rounds bring the rota back to Laras, and the remaining <InlineMath ma
 
 Check it another way. A full week has <InlineMath math="6" /> open days, so each week the rota moves <InlineMath math="6" /> places, which is the same as moving <InlineMath math="1" /> person. Three weeks after 15 February is Tuesday 7 March, and the rota has moved <InlineMath math="3" /> people, to Oka. The next day, Wednesday 8 March, it's Putri's turn.
 
+The chart below records the open days and the rota position on each Tuesday and on 8 March. **Each week the rota moves exactly one person**, and a day later it moves one more, to Putri.
+
+<Chart
+  title={<>Open days and duty rota from 15 February to 8 March 2028</>}
+  description={<>Since 15 February, the open days are <InlineMath math="0" />, <InlineMath math="6" />, <InlineMath math="12" />, and <InlineMath math="18" /> on each Tuesday, then <InlineMath math="19" /> on 8 March. The rota goes Laras, Made, Nina, Oka, then Putri, which is positions <InlineMath math="1" /> to <InlineMath math="5" />.</>}
+  categories={["Tue 15 Feb", "Tue 22 Feb", "Tue 29 Feb", "Tue 7 Mar", "Wed 8 Mar"]}
+  bars="apart"
+  series={[
+    { label: "Open days since 15 February", mark: "bar", values: [0, 6, 12, 18, 19] },
+    { label: "Position in the rota (Laras 1 to Putri 5)", mark: "bar", values: [0, 6, 12, 18, 19].map((d) => (d % 5) + 1) },
+  ]}
+  valueLabel="Days or position"
+/>
+
 Each other option comes from one counting slip:
 
 - Laras comes from counting 15 February itself as a step, which gives <InlineMath math="20" /> steps.

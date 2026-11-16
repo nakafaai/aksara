@@ -11,6 +11,17 @@ Lihat pola X dalam satu siklus <InlineMath math="10" /> menit: bekerja <InlineMa
 | <InlineMath math="28" /> | <InlineMath math="1{.}440" /> | <InlineMath math="1{.}400" /> | <InlineMath math="+40" /> |
 | <InlineMath math="30" /> | <InlineMath math="1{.}440" /> | <InlineMath math="1{.}500" /> | <InlineMath math="-60" /> |
 
+Grafik berikut menggambar selisih kedua mesin dari tabel itu. **Batangnya naik-turun melewati nol setiap siklus**, jadi siapa yang unggul bergantung pada menit yang dilihat.
+
+<Chart
+  title={<>Selisih lembar mesin X dan mesin Y pada akhir setiap kerja dan setiap istirahat</>}
+  description={<>Pada menit <InlineMath math="8" />, <InlineMath math="10" />, <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="28" />, dan <InlineMath math="30" />, selisih lembar X dikurangi Y berturut-turut <InlineMath math="80" />, <InlineMath math="-20" />, <InlineMath math="60" />, <InlineMath math="-40" />, <InlineMath math="40" />, dan <InlineMath math="-60" />.</>}
+  bars="apart"
+  categories={["8", "10", "18", "20", "28", "30"]}
+  series={[{ label: "Lembar X dikurangi lembar Y", mark: "bar", values: [480 - 400, 480 - 500, 960 - 900, 960 - 1000, 1440 - 1400, 1440 - 1500] }]}
+  valueLabel="Selisih lembar"
+/>
+
 Pernyataan 1 bernilai Salah. Y pertama kali menyusul X saat X sedang jeda pertama: X diam di <InlineMath math="480" />, dan Y mencapai <InlineMath math="480" /> pada menit <InlineMath math="480\div50=9{,}6" />. Namun, setelah X bekerja lagi, X unggul kembali. Contohnya pada menit ke-<InlineMath math="13" />, X sudah mencetak <InlineMath math="480+3\times60=660" /> lembar, sedangkan Y baru <InlineMath math="13\times50=650" /> lembar. Laju rata-rata X memang <InlineMath math="480\div10=48" /> lembar per menit, lebih kecil daripada <InlineMath math="50" />, tetapi itu tidak berarti X tertinggal di setiap saat.
 
 Pernyataan 2 bernilai Benar. Menit ke-<InlineMath math="30" /> adalah akhir siklus ketiga, jadi X sudah bekerja <InlineMath math="3\times8=24" /> menit dan mencetak <InlineMath math="24\times60=1{.}440" /> lembar. Y mencetak <InlineMath math="30\times50=1{.}500" /> lembar. Selisihnya <InlineMath math="1{.}500-1{.}440=60" /> lembar untuk Y. Hitungan cepat <InlineMath math="30\times60=1{.}800" /> salah karena menganggap X tidak pernah berhenti.

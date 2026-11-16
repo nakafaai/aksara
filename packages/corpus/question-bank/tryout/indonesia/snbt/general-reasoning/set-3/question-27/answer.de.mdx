@@ -22,6 +22,20 @@ Drei volle Runden führen zurück zu Laras, und die restlichen <InlineMath math=
 
 Prüf es noch auf einem zweiten Weg. Eine volle Woche hat <InlineMath math="6" /> Öffnungstage, also rückt der Plan pro Woche um <InlineMath math="6" /> Plätze weiter, und das ist dasselbe wie <InlineMath math="1" /> Person. Drei Wochen nach dem 15. Februar ist Dienstag, der 7. März, und der Plan ist um <InlineMath math="3" /> Personen weitergerückt, bis zu Oka. Am nächsten Tag, Mittwoch, dem 8. März, ist Putri dran.
 
+Das Diagramm hält die Öffnungstage und den Platz im Dienstplan an jedem Dienstag und am 8. März fest. **Jede Woche rückt der Dienst genau eine Person weiter**, und einen Tag später noch eine, zu Putri.
+
+<Chart
+  title={<>Öffnungstage und Dienstplan vom 15. Februar bis 8. März 2028</>}
+  description={<>Seit dem 15. Februar sind es an den Dienstagen <InlineMath math="0" />, <InlineMath math="6" />, <InlineMath math="12" /> und <InlineMath math="18" /> Öffnungstage, am 8. März dann <InlineMath math="19" />. Der Dienst geht von Laras über Made, Nina und Oka zu Putri, also Platz <InlineMath math="1" /> bis <InlineMath math="5" />.</>}
+  categories={["Di 15. Feb", "Di 22. Feb", "Di 29. Feb", "Di 7. Mär", "Mi 8. Mär"]}
+  bars="apart"
+  series={[
+    { label: "Öffnungstage seit dem 15. Februar", mark: "bar", values: [0, 6, 12, 18, 19] },
+    { label: "Platz im Dienstplan (Laras 1 bis Putri 5)", mark: "bar", values: [0, 6, 12, 18, 19].map((d) => (d % 5) + 1) },
+  ]}
+  valueLabel="Tage oder Platz"
+/>
+
 Jede andere Antwort entsteht aus einem Zählfehler:
 
 - Laras bekommst du, wenn du den 15. Februar selbst als Schritt mitzählst und so auf <InlineMath math="20" /> Schritte kommst.

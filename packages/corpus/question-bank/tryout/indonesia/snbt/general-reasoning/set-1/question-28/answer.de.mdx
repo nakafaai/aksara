@@ -19,6 +19,19 @@ Das Zeichen <InlineMath math="\min" /> bedeutet den kleineren der beiden Werte. 
 | <InlineMath math="9" /> | <InlineMath math="80" /> | <InlineMath math="72" /> |
 | <InlineMath math="10" /> | <InlineMath math="88" /> | <InlineMath math="72" /> |
 
+Das Diagramm zeigt beide Kosten nach berechneten Stunden. **Die beiden Linien treffen sich zweimal, bei <InlineMath math="4" /> und bei <InlineMath math="8" /> Stunden**, und nach <InlineMath math="8" /> Stunden wird die Linie von Q wegen der Tagesgrenze flach.
+
+<Chart
+  title={<>Kosten von Raum P und Raum Q nach berechneten Stunden</>}
+  description={<>Raum P bleibt bis <InlineMath math="4" /> Stunden bei <InlineMath math="40" /> Tausend Rupiah und steigt dann um <InlineMath math="8" /> Tausend pro Stunde. Raum Q steigt um <InlineMath math="10" /> Tausend pro Stunde, bis er bei <InlineMath math="72" /> Tausend Rupiah gehalten wird. Gleich sind beide bei <InlineMath math="4" /> Stunden mit <InlineMath math="40" /> Tausend und bei <InlineMath math="8" /> Stunden mit <InlineMath math="72" /> Tausend.</>}
+  categories={Array.from({ length: 10 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Raum P", mark: "line", values: Array.from({ length: 10 }, (_, i) => (i + 1 <= 4 ? 40 : 40 + 8 * (i + 1 - 4))) },
+    { label: "Raum Q", mark: "line", values: Array.from({ length: 10 }, (_, i) => Math.min(10 * (i + 1), 72)) },
+  ]}
+  valueLabel="Kosten (Tausend Rupiah)"
+/>
+
 **Aussage 1** ist Benar. Jede Nutzung über <InlineMath math="8" /> Stunden wird mit mindestens <InlineMath math="9" /> Stunden berechnet. Raum P kostet dann mindestens <InlineMath math="40+8\times5=80" /> Tausend und steigt weiter, während Raum Q bei <InlineMath math="72" /> Tausend gedeckelt bleibt. Vergisst du die Obergrenze, scheint Q <InlineMath math="90" /> Tausend oder mehr zu kosten, und du hältst die Aussage fälschlich für falsch.
 
 **Aussage 2** ist Salah. Eine Nutzung von <InlineMath math="5" /> Stunden <InlineMath math="10" /> Minuten wird als <InlineMath math="6" /> Stunden berechnet und kostet <InlineMath math="40+8\times2=56" /> Tausend, also nicht weniger als <InlineMath math="50" /> Tausend. Ohne Aufrunden sieht es nach knapp über <InlineMath math="48" /> Tausend aus, und die Aussage wirkt richtig.

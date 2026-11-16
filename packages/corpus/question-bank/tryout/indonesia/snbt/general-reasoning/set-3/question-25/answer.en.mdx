@@ -14,6 +14,20 @@ Work it out **day by day**, because Sunday's passengers can't use Tuesday's empt
 
 Take Monday as an example: <InlineMath math="3 \times 200 = 600" /> seats aren't enough for <InlineMath math="672" /> people, but <InlineMath math="4 \times 200 = 800" /> are. Check Saturday and Sunday carefully. On Saturday, <InlineMath math="792 \le 800" />, so four departures still work. On Sunday, <InlineMath math="828 > 800" />, so you need five.
 
+The chart below compares the busier direction with the seats available per port. **Each seat bar is the smallest multiple of <InlineMath math="200" /> that isn't shorter than its passenger bar**.
+
+<Chart
+  title={<>Passengers in the busier direction and seats provided next week</>}
+  description={<>From Monday to Sunday, the busier direction carries <InlineMath math="672" />, <InlineMath math="456" />, <InlineMath math="504" />, <InlineMath math="660" />, <InlineMath math="636" />, <InlineMath math="792" />, and <InlineMath math="828" /> passengers. The seats are <InlineMath math="800" />, <InlineMath math="600" />, <InlineMath math="600" />, <InlineMath math="800" />, <InlineMath math="800" />, <InlineMath math="800" />, and <InlineMath math="1{,}000" />, which means <InlineMath math="4" />, <InlineMath math="3" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="4" />, and <InlineMath math="5" /> departures.</>}
+  categories={["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
+  bars="apart"
+  series={[
+    { label: "Busier direction", mark: "bar", values: [560, 380, 420, 550, 530, 660, 690].map((v) => (v * 12) / 10) },
+    { label: "Seats from departures per port", mark: "bar", values: [560, 380, 420, 550, 530, 660, 690].map((v) => Math.ceil((v * 12) / 10 / 200) * 200) },
+  ]}
+  valueLabel="People or seats"
+/>
+
 Add up the departures per port, then double it because there are two ports.
 
 <BlockMath math="\begin{aligned}

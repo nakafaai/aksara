@@ -19,6 +19,21 @@ That gives three arrangements. Columns 1 to 8 are chair numbers, and each person
 | II | A | G | C | D | B | F | H | E |
 | III | B | D | C | G | A | E | H | F |
 
+The chart below reads three things from the table. **Cahya's chair and the gap between Galuh and Fajar never change**, while Asri moves to chair <InlineMath math="5" /> in arrangement III.
+
+<Chart
+  title={<>Three measures in the three arrangements with Hamid in chair 7</>}
+  description={<>Cahya is always in chair <InlineMath math="3" />. Asri is in chair <InlineMath math="1" />, <InlineMath math="1" />, then <InlineMath math="5" />. Galuh's and Fajar's chair numbers are always <InlineMath math="4" /> apart, so they face each other at the eight-chair table.</>}
+  bars="apart"
+  categories={["I", "II", "III"]}
+  series={[
+    { label: "Cahya's chair", mark: "bar", values: [3, 3, 3] },
+    { label: "Asri's chair", mark: "bar", values: [1, 1, 5] },
+    { label: "Gap between Galuh's and Fajar's chairs", mark: "bar", values: [6 - 2, 6 - 2, 8 - 4] },
+  ]}
+  valueLabel="Chair number or gap"
+/>
+
 Now judge each statement.
 
 - Cahya in chair 3 is *Benar*. Cahya sits in chair 3 in all three arrangements, because Hamid already has chair 7.

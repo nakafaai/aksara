@@ -11,6 +11,20 @@ Prüfe, ob die Regel weiterläuft. JNBE wird zu NBEJ rotiert, und der Vergleich 
 | PDGL | DGLP | <InlineMath math="+3" /> | GJOS |
 | GJOS | JOSG | <InlineMath math="+4" /> | NSWK |
 
+Das Diagramm hält fest, wie weit in jedem Schritt verschoben wird. **Die Verschiebung wächst in jedem Schritt um eins**, und bis zur fünften Gruppe sind es insgesamt <InlineMath math="10" />.
+
+<Chart
+  title={<>Größe der Buchstabenverschiebung von einer Gruppe zur nächsten</>}
+  description={<>Verschoben wird um <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und dann <InlineMath math="4" /> Stellen. Die Summe seit DIMA wird <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="6" /> und dann <InlineMath math="10" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Verschiebung in diesem Schritt", mark: "bar", values: [1, 2, 3, 4] },
+    { label: "Gesamtverschiebung seit DIMA", mark: "bar", values: [1, 1 + 2, 1 + 2 + 3, 1 + 2 + 3 + 4] },
+  ]}
+  valueLabel="Stellen im Alphabet"
+/>
+
 Für die fünfte Gruppe rotierst du GJOS zu JOSG und schiebst dann jeden Buchstaben <InlineMath math="4" /> Schritte vor: <InlineMath math="\mathrm{J}\to\mathrm{N}" />, <InlineMath math="\mathrm{O}\to\mathrm{S}" />, <InlineMath math="\mathrm{S}\to\mathrm{W}" />, <InlineMath math="\mathrm{G}\to\mathrm{K}" />. Das ergibt NSWK.
 
 Es gibt eine schnelle Probe. Vier Rotationen einer Gruppe aus vier Buchstaben stellen die ursprüngliche Reihenfolge wieder her, und die gesamte Verschiebung ist <InlineMath math="1+2+3+4=10" />. Die fünfte Gruppe muss also DIMA sein, jeder Buchstabe um <InlineMath math="10" /> Schritte verschoben: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Wieder NSWK.
