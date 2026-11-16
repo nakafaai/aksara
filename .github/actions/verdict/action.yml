@@ -1,0 +1,26 @@
+name: Verdict
+description: >-
+  Posts `gate/test` and `gate` on the gated head once every part status of this
+  run is final. Each job of gate.yml posts its own part statuses before it runs
+  this, so the job that finishes last always finds them all.
+
+runs:
+  using: composite
+  steps:
+    - name: Post the verdict
+      shell: bash
+      run: |
+        post() {
+          gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
+            -f state="$2" -f context="$1" -f target_url="$URL" -f description="$3"
+        }
+        parts='^gate/(policies|typecheck|build|audit|test-voice|test-rest)$'
+        states="$(gh api "repos/$GITHUB_REPOSITORY/commits/$SHA/status?per_page=100" --jq \
+          "[.statuses[] | select(.target_url == \"$URL\" and (.context | test(\"$parts\"))) | {context, state}]")"
+        [ "$(jq 'map(select(.state != "pending")) | length' <<< "$states")" = 6 ] || exit 0
+        test=failure
+        [ "$(jq '[.[] | select(.context | startswith("gate/test-")) | .state] | all(. == "success")' <<< "$states")" = true ] && test=success
+        post gate/test "$test" "Lesson voice and every other suite: $test"
+        all=failure
+        [ "$(jq 'all(.state == "success")' <<< "$states")" = true ] && all=success
+        post gate "$all" "README quality gate: $all"
