@@ -49,7 +49,11 @@ type StageAndVerify = <E, R>(
 >;
 
 const VERIFICATION_POLL_DELAY = Duration.seconds(1);
-const VERIFICATION_TIMEOUT_SECONDS = 10 * 60;
+/**
+ * How long a publication waits for the target's proof. Nakafa first checks the staged artifacts batch by batch, then
+ * recomputes the whole release in one action that Convex allows ten minutes, so the wait covers both with headroom.
+ */
+const VERIFICATION_TIMEOUT_SECONDS = 30 * 60;
 const VERIFICATION_TIMEOUT = Duration.seconds(VERIFICATION_TIMEOUT_SECONDS);
 
 /** Polls one bounded target request after each pending verification response. */

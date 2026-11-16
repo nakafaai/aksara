@@ -183,13 +183,13 @@ describe("candidate verification", () => {
           Effect.forkChild
         );
         yield* Effect.yieldNow;
-        yield* TestClock.adjust("10 minutes");
+        yield* TestClock.adjust("30 minutes");
         const error = yield* Fiber.join(fiber);
 
         expect(error).toMatchObject({
           _tag: "PublicationVerificationTimeoutError",
           releaseId: verificationRelease.manifest.releaseId,
-          timeoutSeconds: 600,
+          timeoutSeconds: 1800,
         });
       })
     );
