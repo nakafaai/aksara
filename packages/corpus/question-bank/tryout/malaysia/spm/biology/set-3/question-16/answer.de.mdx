@@ -1,0 +1,27 @@
+# Langsame Enzyme von zerstörten Enzymen trennen
+
+Die erste Zeile zeigt, wie schnell das Enzym bei dieser Temperatur arbeitet. Die zweite Zeile zeigt, wie viel Enzym danach **noch intakt** ist, denn das Abkühlen stellt jedes Molekül wieder her, das nur verlangsamt war.
+
+<Chart
+  title={<>Enzymaktivität bei jeder Temperatur und nach dem Abkühlen</>}
+  categories={["5 °C", "20 °C", "35 °C", "50 °C", "65 °C"]}
+  series={[
+    { label: "Bei dieser Temperatur gemessen", mark: "line", values: [10, 45, 100, 70, 15] },
+    { label: "10 Minuten gehalten, dann bei 35 °C gemessen", mark: "line", values: [100, 100, 100, 60, 10] },
+  ]}
+  valueLabel="Aktivität (% des Werts bei 35 °C)"
+  description={<>Bei der Temperatur selbst gemessen beträgt die Aktivität <InlineMath math="10" />, <InlineMath math="45" />, <InlineMath math="100" />, <InlineMath math="70" /> und <InlineMath math="15\,\%" />. Nach dem Halten und Abkühlen auf <InlineMath math="35^\circ\text{C}" /> beträgt sie <InlineMath math="100" />, <InlineMath math="100" />, <InlineMath math="100" />, <InlineMath math="60" /> und <InlineMath math="10\,\%" />.</>}
+/>
+
+- I: Bei <InlineMath math="5^\circ\text{C}" /> beträgt die Aktivität nur <InlineMath math="10\,\%" />, nach dem Erwärmen auf <InlineMath math="35^\circ\text{C}" /> aber wieder <InlineMath math="100\,\%" />. Die Moleküle waren durch geringe Bewegungsenergie verlangsamt, nicht denaturiert. Aussage I stimmt.
+- II: Nach <InlineMath math="50^\circ\text{C}" /> kehren nur <InlineMath math="60\,\%" /> zurück, also haben <InlineMath math="100\,\%-60\,\%=40\,\%" /> der Moleküle die Form ihres **aktiven Zentrums** dauerhaft verloren. Aussage II stimmt.
+- III: Nach <InlineMath math="65^\circ\text{C}" /> kehren nur <InlineMath math="10\,\%" /> zurück. Denaturierung ist dauerhaft, das Enzym erholt sich nicht. Aussage III ist falsch.
+- IV: Nach <InlineMath math="20^\circ\text{C}" /> kehren alle <InlineMath math="100\,\%" /> zurück, also ist kein Molekül denaturiert. Der niedrige Wert von <InlineMath math="45\,\%" /> bedeutet nur langsamere Zusammenstöße. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und IV hält die niedrige Aktivität bei <InlineMath math="20^\circ\text{C}" /> für einen Schaden, **doch nach dem Abkühlen kehrt die volle Aktivität zurück**.
+- Nur I, II und III hält Denaturierung für umkehrbar, **obwohl nach** <InlineMath math="65^\circ\text{C}" /> nur <InlineMath math="10\,\%" /> zurückkehren.
+- Nur II und IV verwirft I und hält damit jeden niedrigen Wert für Denaturierung, ohne die **zweite Ergebniszeile** zu beachten.

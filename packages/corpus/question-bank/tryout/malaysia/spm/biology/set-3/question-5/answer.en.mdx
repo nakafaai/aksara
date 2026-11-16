@@ -1,0 +1,30 @@
+# Read the slope for the rate and the plateau for the substrate
+
+The **slope** of each line is the rate. The level where a line flattens shows how much substrate there was, because each milligram of substrate gives one milligram of product here.
+
+<Chart
+  title={<>Product Formed in Tubes X, Y and Z</>}
+  categories={["0 min", "1 min", "2 min", "3 min", "4 min", "5 min", "6 min", "7 min"]}
+  series={[
+    { label: "X: 1 unit enzyme, 10 mg substrate", mark: "line", values: [0, 2, 4, 6, 8, 10, 10, 10] },
+    { label: "Y: 2 units enzyme, 10 mg substrate", mark: "line", values: [0, 4, 8, 10, 10, 10, 10, 10] },
+    { label: "Z: 1 unit enzyme, 20 mg substrate", mark: "line", values: [0, 2, 4, 6, 8, 10, 12, 14] },
+  ]}
+  valueLabel="Product (mg)"
+  description={<>X rises by <InlineMath math="2\text{ mg}" /> each minute and levels at <InlineMath math="10\text{ mg}" /> from minute <InlineMath math="5" />. Y rises by <InlineMath math="4\text{ mg}" /> each minute and levels at <InlineMath math="10\text{ mg}" /> from minute <InlineMath math="3" />. Z rises by <InlineMath math="2\text{ mg}" /> each minute and is still rising at <InlineMath math="14\text{ mg}" /> at minute <InlineMath math="7" />.</>}
+/>
+
+<BlockMath math="\text{X}: \tfrac{10}{2}=5\text{ min},\qquad \text{Y}: \tfrac{10}{4}=2.5\text{ min}" />
+
+- I: X and Y hold the same <InlineMath math="10\text{ mg}" /> of substrate. Twice the enzyme doubles the rate from <InlineMath math="2" /> to <InlineMath math="4\text{ mg}" /> per minute, so the time falls from <InlineMath math="5" /> to <InlineMath math="2.5" /> minutes. Statement I is correct.
+- II: X and Z both rise by <InlineMath math="2\text{ mg}" /> per minute. One unit of enzyme is already working at its limit with <InlineMath math="10\text{ mg}" /> of substrate, so extra substrate does not speed it up. Statement II is wrong.
+- III: the plateau equals the substrate, so Z, with <InlineMath math="20\text{ mg}" /> of substrate, will reach <InlineMath math="20\text{ mg}" /> of product at minute <InlineMath math="10" />. Statement III is correct.
+- IV: Y stops because its substrate is **used up**, at the same <InlineMath math="10\text{ mg}" /> as X. A denatured enzyme would stop below that level. Statement IV is wrong.
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I, II and III only reads the higher final amount in Z as a faster start, **but Z's slope matches X's slope**.
+- I and IV only blames denaturation for the plateau, **although Y stops exactly when the substrate runs out**.
+- III and IV only compares the final amounts of X and Y and misses that Y **gets there twice as fast**.

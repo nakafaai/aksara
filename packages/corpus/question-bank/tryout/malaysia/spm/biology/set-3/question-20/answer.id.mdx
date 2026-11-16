@@ -1,0 +1,30 @@
+# Cari dulu bagian yang kebal, lalu bagian yang divaksin
+
+Orang terinfeksi hanya bisa menulari orang yang **tidak kebal**. Jika pecahan <InlineMath math="p" /> populasi kebal, tiap kasus menimbulkan rata-rata <InlineMath math="5(1-p)" /> kasus baru.
+
+<BlockMath math="5(1-p)<1\quad\Longrightarrow\quad 1-p<\tfrac{1}{5}\quad\Longrightarrow\quad p>0.8" />
+
+Jadi setidaknya <InlineMath math="80\%" /> populasi harus kebal. Vaksin hanya membuat <InlineMath math="90\%" /> penerimanya kebal, jadi pecahan yang divaksin, <InlineMath math="v" />, harus memenuhi:
+
+<BlockMath math="0.9\,v\ge0.8\quad\Longrightarrow\quad v\ge\frac{0.8}{0.9}\approx0.889" />
+
+<Chart
+  title={<>Kasus Baru dari Satu Orang Terinfeksi pada Tiap Tingkat Vaksinasi</>}
+  categories={["0%", "20%", "40%", "60%", "80%", "89%", "100%"]}
+  series={[
+    { label: "Kasus baru per orang terinfeksi", mark: "line", values: [5.0, 4.1, 3.2, 2.3, 1.4, 0.99, 0.5] },
+    { label: "Ambang satu", mark: "line", values: [1, 1, 1, 1, 1, 1, 1] },
+  ]}
+  valueLabel="Rata-rata kasus baru"
+  description={<>Satu orang terinfeksi menimbulkan <InlineMath math="5" /> kasus baru tanpa vaksinasi, turun menjadi <InlineMath math="1.4" /> pada cakupan <InlineMath math="80\%" />, sekitar <InlineMath math="1.0" /> pada <InlineMath math="89\%" />, dan <InlineMath math="0.5" /> pada <InlineMath math="100\%" />. Garisnya memotong satu di sekitar <InlineMath math="89\%" />.</>}
+/>
+
+Grafik menunjukkan rata-rata kasus baru turun saat makin banyak orang divaksin. Nilainya baru di bawah satu saat cakupan melewati sekitar <InlineMath math="89\%" />.
+
+Jadi setidaknya <InlineMath math="89\%" /> populasi harus divaksin.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="80\%" /> adalah bagian yang harus kebal, **tetapi satu dari sepuluh penerima vaksin tetap tidak terlindungi**.
+- <InlineMath math="72\%" /> mengalikan <InlineMath math="0.8\times0.9" /> alih-alih membagi, sehingga **cakupannya malah turun** padahal vaksin yang tidak sempurna butuh cakupan lebih tinggi.
+- <InlineMath math="20\%" /> adalah <InlineMath math="\tfrac{1}{5}" />, bagian yang boleh tetap tidak kebal, **bukan bagian yang harus divaksin**.

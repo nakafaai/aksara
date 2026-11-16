@@ -27,4 +27,5 @@ export const chemistryRatings: readonly SetRating[] = [
 export const biologyRatings: readonly SetRating[] = [
   { items: 40, level: 4.23, raters: 8 },
   { items: 40, level: 3.53, raters: 2 },
+  { items: 40, level: 3.9, raters: 2 },
 ];

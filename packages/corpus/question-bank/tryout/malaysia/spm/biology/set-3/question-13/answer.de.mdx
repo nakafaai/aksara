@@ -1,0 +1,28 @@
+# Glucosekurve und Insulinkurve nebeneinander lesen
+
+Bei einem gesunden Menschen löst steigender Blutzucker in den **Betazellen** die Ausschüttung von Insulin aus, das den Zucker wieder senkt. Der Vergleich beider Personen zeigt, wo die Regelung versagt.
+
+<Chart
+  title={<>Blutzucker nach dem Glucosegetränk</>}
+  categories={["0 min", "30 min", "60 min", "90 min", "120 min"]}
+  series={[
+    { label: "Person P", mark: "line", values: [4.8, 7.8, 6.5, 5.4, 4.9] },
+    { label: "Person Q", mark: "line", values: [7.2, 12.6, 14.8, 13.9, 12.1] },
+    { label: "Nierenschwelle", mark: "line", values: [10, 10, 10, 10, 10] },
+  ]}
+  valueLabel="Blutzucker (mmol/L)"
+  description={<>P erreicht höchstens <InlineMath math="7{,}8" /> und kehrt auf <InlineMath math="4{,}9" /> zurück. Q beginnt bei <InlineMath math="7{,}2" />, erreicht <InlineMath math="14{,}8" /> und liegt nach <InlineMath math="120" /> Minuten noch bei <InlineMath math="12{,}1" />. Q liegt von Minute <InlineMath math="30" /> bis Minute <InlineMath math="120" /> über der Schwelle von <InlineMath math="10" />.</>}
+/>
+
+- I: Das Insulin von P springt nach dem Getränk von <InlineMath math="6" /> auf <InlineMath math="45" /> Einheiten, das von Q bleibt zwischen <InlineMath math="2" /> und <InlineMath math="3" /> Einheiten. Die Betazellen von Q schütten kaum Insulin aus. Aussage I stimmt.
+- II: Q liegt bei den Minuten <InlineMath math="30" />, <InlineMath math="60" />, <InlineMath math="90" /> und <InlineMath math="120" /> über <InlineMath math="10\text{ mmol/L}" />, also ist von Minute <InlineMath math="30" /> bis Minute <InlineMath math="120" /> Glucose im Urin, mindestens <InlineMath math="120-30=90" /> Minuten. Aussage II stimmt.
+- III: Glucagon erhöht den Blutzucker. Der Zucker von P fällt, während das Insulin von P hoch ist, also verursacht **Insulin** den Abfall. Aussage III ist falsch.
+- IV: Q fehlt Insulin, die Zellen ignorieren es nicht. Gespritztes Insulin würde den Zellen helfen, Glucose aufzunehmen, und der Leber, sie als Glykogen zu speichern. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft IV, als könnten die Zellen von Q nicht auf Insulin reagieren, **doch die Daten zeigen, dass das Insulin selbst fehlt**.
+- Nur I, II und III schreibt den Abfall bei P dem Glucagon zu, **obwohl Glucagon den Blutzucker erhöht**.
+- Nur II und IV verwirft I und übersieht, dass sich **das Insulin von Q kaum verändert**.

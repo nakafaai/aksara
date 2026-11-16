@@ -1,0 +1,27 @@
+# Separate slow enzymes from destroyed enzymes
+
+The first row shows how fast the enzyme works at that temperature. The second row shows how much of the enzyme is **still intact** afterwards, because cooling restores every molecule that was only slowed down.
+
+<Chart
+  title={<>Enzyme Activity at Each Temperature and After Cooling</>}
+  categories={["5 °C", "20 °C", "35 °C", "50 °C", "65 °C"]}
+  series={[
+    { label: "Measured at that temperature", mark: "line", values: [10, 45, 100, 70, 15] },
+    { label: "Held 10 minutes, then measured at 35 °C", mark: "line", values: [100, 100, 100, 60, 10] },
+  ]}
+  valueLabel="Activity (% of the value at 35 °C)"
+  description={<>Measured at the temperature itself, the activity is <InlineMath math="10" />, <InlineMath math="45" />, <InlineMath math="100" />, <InlineMath math="70" /> and <InlineMath math="15\%" />. After holding and cooling to <InlineMath math="35^\circ\text{C}" />, it is <InlineMath math="100" />, <InlineMath math="100" />, <InlineMath math="100" />, <InlineMath math="60" /> and <InlineMath math="10\%" />.</>}
+/>
+
+- I: at <InlineMath math="5^\circ\text{C}" /> the activity is only <InlineMath math="10\%" />, but after warming to <InlineMath math="35^\circ\text{C}" /> it is back to <InlineMath math="100\%" />. The molecules were slowed by low kinetic energy, not denatured. Statement I is correct.
+- II: after <InlineMath math="50^\circ\text{C}" /> only <InlineMath math="60\%" /> of the activity returns, so <InlineMath math="100\%-60\%=40\%" /> of the molecules have lost the shape of their **active site** for good. Statement II is correct.
+- III: after <InlineMath math="65^\circ\text{C}" /> only <InlineMath math="10\%" /> returns. Denaturation is permanent, so the enzyme does not recover. Statement III is wrong.
+- IV: after <InlineMath math="20^\circ\text{C}" /> all <InlineMath math="100\%" /> returns, so no molecules are denatured. The low value of <InlineMath math="45\%" /> only means slower collisions. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I, II and IV only reads the low activity at <InlineMath math="20^\circ\text{C}" /> as damage, **but full activity returns after cooling**.
+- I, II and III only treats denaturation as reversible, **although only** <InlineMath math="10\%" /> returns after <InlineMath math="65^\circ\text{C}" />.
+- II and IV only rejects I and so treats every low reading as denaturation, ignoring the **second row of results**.

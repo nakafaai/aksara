@@ -1,0 +1,30 @@
+# Cari bahagian yang imun dahulu, kemudian bahagian yang divaksin
+
+Orang yang dijangkiti hanya boleh menjangkiti orang yang **tidak imun**. Jika pecahan <InlineMath math="p" /> populasi imun, setiap kes menyebabkan purata <InlineMath math="5(1-p)" /> kes baharu.
+
+<BlockMath math="5(1-p)<1\quad\Longrightarrow\quad 1-p<\tfrac{1}{5}\quad\Longrightarrow\quad p>0.8" />
+
+Jadi sekurang-kurangnya <InlineMath math="80\%" /> populasi mesti imun. Vaksin hanya menjadikan <InlineMath math="90\%" /> penerimanya imun, jadi pecahan yang divaksin, <InlineMath math="v" />, mesti memenuhi:
+
+<BlockMath math="0.9\,v\ge0.8\quad\Longrightarrow\quad v\ge\frac{0.8}{0.9}\approx0.889" />
+
+<Chart
+  title={<>Kes Baharu daripada Seorang Individu Dijangkiti pada Setiap Aras Vaksinasi</>}
+  categories={["0%", "20%", "40%", "60%", "80%", "89%", "100%"]}
+  series={[
+    { label: "Kes baharu bagi setiap individu dijangkiti", mark: "line", values: [5.0, 4.1, 3.2, 2.3, 1.4, 0.99, 0.5] },
+    { label: "Ambang satu", mark: "line", values: [1, 1, 1, 1, 1, 1, 1] },
+  ]}
+  valueLabel="Purata kes baharu"
+  description={<>Seorang individu yang dijangkiti menyebabkan <InlineMath math="5" /> kes baharu tanpa vaksinasi, menurun kepada <InlineMath math="1.4" /> pada liputan <InlineMath math="80\%" />, kira-kira <InlineMath math="1.0" /> pada <InlineMath math="89\%" /> dan <InlineMath math="0.5" /> pada <InlineMath math="100\%" />. Garis itu melintasi satu pada kira-kira <InlineMath math="89\%" />.</>}
+/>
+
+Carta menunjukkan purata bilangan kes baharu menurun apabila lebih ramai divaksin. Nilainya jatuh di bawah satu hanya apabila liputan melebihi kira-kira <InlineMath math="89\%" />.
+
+Jadi sekurang-kurangnya <InlineMath math="89\%" /> populasi mesti divaksin.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="80\%" /> ialah bahagian yang mesti imun, **tetapi seorang daripada sepuluh penerima vaksin tetap tidak dilindungi**.
+- <InlineMath math="72\%" /> mendarab <InlineMath math="0.8\times0.9" /> dan bukan membahagi, jadi **liputan menjadi lebih rendah** sedangkan vaksin yang tidak sempurna memerlukan liputan yang lebih tinggi.
+- <InlineMath math="20\%" /> ialah <InlineMath math="\tfrac{1}{5}" />, bahagian yang boleh kekal tidak imun, **bukan bahagian yang mesti divaksin**.

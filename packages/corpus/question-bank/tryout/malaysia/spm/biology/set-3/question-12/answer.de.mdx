@@ -1,0 +1,22 @@
+# Mit dem Regelkreis den Ursprung der Störung finden
+
+TSH und Thyroxin hängen in einer **negativen Rückkopplung** zusammen. Erst beide Werte zusammen zeigen, welche Drüse gestört ist.
+
+<Mermaid
+  title={<>Rückkopplung bei Thyroxin</>}
+  description={<>Die Hypophyse schüttet TSH aus, das die Schilddrüse anregt, aus Iod der Nahrung Thyroxin zu bilden. Ein hoher Thyroxinspiegel bremst die TSH-Ausschüttung, ein niedriger beschleunigt sie.</>}
+  chart={"flowchart LR\n  H[Hypothalamus] --> PI[Hypophyse]\n  PI -- TSH --> TH[Schilddrüse]\n  I[Iod aus der Nahrung] --> TH\n  TH -- Thyroxin --> B[Körperzellen]\n  TH -. viel Thyroxin bremst TSH .-> PI"}
+/>
+
+- P: Thyroxin ist niedrig, die Bremse auf die Hypophyse fällt weg, und TSH steigt auf <InlineMath math="40" />. Die Hypophyse arbeitet, aber die Schilddrüse kann kein Thyroxin bilden. TSH reizt die Schilddrüse weiter, sie schwillt zu einem Kropf an. Das passt zu **Iodmangel**.
+- Q: Thyroxin ist niedrig, doch auch TSH ist mit <InlineMath math="0{,}2" /> niedrig. Eine gesunde Hypophyse würde TSH erhöhen, die Störung liegt also in der **Hypophyse**. Mit wenig TSH bleibt die Schilddrüse klein.
+- R: Thyroxin ist mit <InlineMath math="250" /> hoch und TSH unterdrückt. Die Schilddrüse ist von sich aus überaktiv, die Rückkopplung hat TSH abgeschaltet.
+- S: Beide Werte liegen im Normalbereich.
+
+Q hat also die gestörte Hypophyse, und P fehlt am wahrscheinlichsten Iod.
+
+# Warum die anderen Antworten falsch sind
+
+- P und Q vertauscht die beiden und hält hohes TSH für eine kranke Hypophyse, **dabei ist hohes TSH die normale Antwort der Hypophyse**.
+- R und P hält das niedrige TSH von R für Hypophysenversagen, **obwohl gerade das hohe Thyroxin von R das TSH abschaltet**.
+- Q und R wählt die geschwollene Drüse von R als Iodmangel, **doch ohne Iod wäre Thyroxin niedrig, nicht hoch**.

@@ -1,0 +1,27 @@
+# Jeden Strom in seiner eigenen Richtung verfolgen
+
+Das Blut nimmt unterwegs Sauerstoff auf, seine Sättigung **steigt also in seiner Fließrichtung**. Im Diagramm ist das Blut bei Punkt <InlineMath math="1" /> am reichsten und bei Punkt <InlineMath math="5" /> am ärmsten, es tritt also bei Punkt <InlineMath math="5" /> ein und bei Punkt <InlineMath math="1" /> aus.
+
+<Chart
+  title={<>Sauerstoffsättigung entlang des Kiemenblättchens</>}
+  categories={["Punkt 1", "Punkt 2", "Punkt 3", "Punkt 4", "Punkt 5"]}
+  series={[
+    { label: "Wasser", mark: "line", values: [100, 80, 60, 40, 20] },
+    { label: "Blut", mark: "line", values: [90, 70, 50, 30, 10] },
+  ]}
+  valueLabel="Sauerstoffsättigung (%)"
+  description={<>Das Wasser fällt von <InlineMath math="100\,\%" /> bei Punkt <InlineMath math="1" /> auf <InlineMath math="20\,\%" /> bei Punkt <InlineMath math="5" />. Das Blut fällt von <InlineMath math="90\,\%" /> bei Punkt <InlineMath math="1" /> auf <InlineMath math="10\,\%" /> bei Punkt <InlineMath math="5" />. An jedem Punkt liegt das Wasser <InlineMath math="10" /> Prozentpunkte über dem Blut.</>}
+/>
+
+- I: Wasser tritt bei Punkt <InlineMath math="1" /> ein, Blut bei Punkt <InlineMath math="5" />. Sie fließen **gegeneinander**, im Gegenstrom. Aussage I stimmt.
+- II: Das Blut verlässt das Blättchen bei Punkt <InlineMath math="1" /> mit <InlineMath math="90\,\%" />, das Wasser bei Punkt <InlineMath math="5" /> mit <InlineMath math="20\,\%" />. Aussage II stimmt.
+- III: Im Gleichstrom trifft das frische Wasser am Anfang auf das ärmste Blut, und beide erreichen schnell dieselbe Sättigung. Danach gibt es kein Gefälle mehr, das Blut verlässt das Blättchen also etwa in der Mitte zwischen <InlineMath math="10\,\%" /> und <InlineMath math="100\,\%" />, weit unter <InlineMath math="90\,\%" />. Aussage III stimmt.
+- IV: Bei Punkt <InlineMath math="5" /> liegt Wasser mit <InlineMath math="20\,\%" /> neben Blut mit <InlineMath math="10\,\%" />, ein **Gefälle von** <InlineMath math="10" /> Prozentpunkten treibt die Diffusion also weiter an. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III und übersieht, dass der Gleichstrom **sein Gefälle auf halber Strecke verliert**.
+- Nur I, II und IV nimmt IV an und beurteilt nur das Wasser, statt es **mit dem Blut daneben zu vergleichen**.
+- Nur II, III und IV verwirft I, nimmt IV an und liest die zwei fallenden Linien als zwei Ströme in **derselben Richtung**.

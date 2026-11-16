@@ -1,0 +1,30 @@
+# Erst den immunen Anteil bestimmen, dann den geimpften
+
+Eine infizierte Person kann die Krankheit nur an Menschen weitergeben, die **nicht immun** sind. Ist ein Anteil <InlineMath math="p" /> der Bevölkerung immun, verursacht jeder Fall im Mittel <InlineMath math="5(1-p)" /> neue Fälle.
+
+<BlockMath math="5(1-p)<1\quad\Longrightarrow\quad 1-p<\tfrac{1}{5}\quad\Longrightarrow\quad p>0{,}8" />
+
+Mindestens <InlineMath math="80\,\%" /> der Bevölkerung müssen also immun sein. Der Impfstoff macht nur <InlineMath math="90\,\%" /> der Geimpften immun, also muss der geimpfte Anteil <InlineMath math="v" /> erfüllen:
+
+<BlockMath math="0{,}9\,v\ge0{,}8\quad\Longrightarrow\quad v\ge\frac{0{,}8}{0{,}9}\approx0{,}889" />
+
+<Chart
+  title={<>Neue Fälle pro infizierter Person bei jeder Impfquote</>}
+  categories={["0%", "20%", "40%", "60%", "80%", "89%", "100%"]}
+  series={[
+    { label: "Neue Fälle pro infizierter Person", mark: "line", values: [5.0, 4.1, 3.2, 2.3, 1.4, 0.99, 0.5] },
+    { label: "Schwelle eins", mark: "line", values: [1, 1, 1, 1, 1, 1, 1] },
+  ]}
+  valueLabel="Mittlere neue Fälle"
+  description={<>Eine infizierte Person verursacht ohne Impfung <InlineMath math="5" /> neue Fälle, bei <InlineMath math="80\,\%" /> Impfquote <InlineMath math="1{,}4" />, bei <InlineMath math="89\,\%" /> etwa <InlineMath math="1{,}0" /> und bei <InlineMath math="100\,\%" /> noch <InlineMath math="0{,}5" />. Die Linie schneidet eins bei etwa <InlineMath math="89\,\%" />.</>}
+/>
+
+Das Diagramm zeigt, wie die mittlere Zahl neuer Fälle mit steigender Impfquote sinkt. Unter eins fällt sie erst, wenn die Quote etwa <InlineMath math="89\,\%" /> übersteigt.
+
+Mindestens <InlineMath math="89\,\%" /> der Bevölkerung müssen also geimpft werden.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="80\,\%" /> ist der Anteil, der immun sein muss, **doch jeder zehnte Geimpfte bleibt ungeschützt**.
+- <InlineMath math="72\,\%" /> multipliziert <InlineMath math="0{,}8\cdot0{,}9" />, statt zu teilen, und **senkt so die Quote**, obwohl ein unvollkommener Impfstoff mehr davon braucht.
+- <InlineMath math="20\,\%" /> ist <InlineMath math="\tfrac{1}{5}" />, der Anteil, der nicht immun bleiben darf, **nicht der Anteil, der geimpft werden muss**.

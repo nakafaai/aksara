@@ -1,0 +1,30 @@
+# Baca kemiringan untuk laju dan garis datar untuk substrat
+
+**Kemiringan** tiap garis adalah laju reaksi. Ketinggian saat garis mendatar menunjukkan jumlah substrat, karena di sini tiap miligram substrat menghasilkan satu miligram produk.
+
+<Chart
+  title={<>Produk yang Terbentuk di Tabung X, Y, dan Z</>}
+  categories={["0 mnt", "1 mnt", "2 mnt", "3 mnt", "4 mnt", "5 mnt", "6 mnt", "7 mnt"]}
+  series={[
+    { label: "X: 1 unit enzim, 10 mg substrat", mark: "line", values: [0, 2, 4, 6, 8, 10, 10, 10] },
+    { label: "Y: 2 unit enzim, 10 mg substrat", mark: "line", values: [0, 4, 8, 10, 10, 10, 10, 10] },
+    { label: "Z: 1 unit enzim, 20 mg substrat", mark: "line", values: [0, 2, 4, 6, 8, 10, 12, 14] },
+  ]}
+  valueLabel="Produk (mg)"
+  description={<>X naik <InlineMath math="2\text{ mg}" /> tiap menit dan mendatar di <InlineMath math="10\text{ mg}" /> mulai menit ke-<InlineMath math="5" />. Y naik <InlineMath math="4\text{ mg}" /> tiap menit dan mendatar di <InlineMath math="10\text{ mg}" /> mulai menit ke-<InlineMath math="3" />. Z naik <InlineMath math="2\text{ mg}" /> tiap menit dan masih naik di <InlineMath math="14\text{ mg}" /> pada menit ke-<InlineMath math="7" />.</>}
+/>
+
+<BlockMath math="\text{X}: \tfrac{10}{2}=5\text{ menit},\qquad \text{Y}: \tfrac{10}{4}=2.5\text{ menit}" />
+
+- I: X dan Y berisi substrat yang sama, <InlineMath math="10\text{ mg}" />. Enzim dua kali lipat menggandakan laju dari <InlineMath math="2" /> menjadi <InlineMath math="4\text{ mg}" /> per menit, jadi waktunya turun dari <InlineMath math="5" /> menjadi <InlineMath math="2.5" /> menit. Pernyataan I benar.
+- II: X dan Z sama-sama naik <InlineMath math="2\text{ mg}" /> per menit. Satu unit enzim sudah bekerja di batas maksimumnya dengan <InlineMath math="10\text{ mg}" /> substrat, jadi substrat tambahan tidak mempercepatnya. Pernyataan II salah.
+- III: tinggi garis datar sama dengan jumlah substrat, jadi Z yang berisi <InlineMath math="20\text{ mg}" /> substrat akan mencapai <InlineMath math="20\text{ mg}" /> produk pada menit ke-<InlineMath math="10" />. Pernyataan III benar.
+- IV: Y berhenti karena substratnya **sudah habis**, di ketinggian <InlineMath math="10\text{ mg}" /> yang sama dengan X. Enzim yang terdenaturasi akan berhenti di bawah ketinggian itu. Pernyataan IV salah.
+
+Jadi pernyataan I dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja membaca jumlah akhir Z yang lebih tinggi sebagai awal yang lebih cepat, **padahal kemiringan Z sama dengan X**.
+- I dan IV saja menyalahkan denaturasi untuk garis datar, **padahal Y berhenti tepat saat substrat habis**.
+- III dan IV saja membandingkan jumlah akhir X dan Y lalu melewatkan bahwa Y **sampai dua kali lebih cepat**.

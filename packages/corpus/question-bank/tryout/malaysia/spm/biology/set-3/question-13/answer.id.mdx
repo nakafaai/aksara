@@ -1,0 +1,28 @@
+# Baca kurva glukosa dan kurva insulin berdampingan
+
+Pada orang sehat, kenaikan glukosa darah memicu **sel beta** melepaskan insulin, yang menurunkan glukosa kembali. Membandingkan kedua orang menunjukkan di mana pengaturannya gagal.
+
+<Chart
+  title={<>Glukosa Darah Setelah Minum Larutan Glukosa</>}
+  categories={["0 mnt", "30 mnt", "60 mnt", "90 mnt", "120 mnt"]}
+  series={[
+    { label: "Orang P", mark: "line", values: [4.8, 7.8, 6.5, 5.4, 4.9] },
+    { label: "Orang Q", mark: "line", values: [7.2, 12.6, 14.8, 13.9, 12.1] },
+    { label: "Ambang ginjal", mark: "line", values: [10, 10, 10, 10, 10] },
+  ]}
+  valueLabel="Glukosa darah (mmol/L)"
+  description={<>P memuncak di <InlineMath math="7.8" /> lalu kembali ke <InlineMath math="4.9" />. Q mulai dari <InlineMath math="7.2" />, memuncak di <InlineMath math="14.8" />, dan masih <InlineMath math="12.1" /> setelah <InlineMath math="120" /> menit. Q tetap di atas ambang <InlineMath math="10" /> dari menit ke-<InlineMath math="30" /> sampai menit ke-<InlineMath math="120" />.</>}
+/>
+
+- I: insulin P melonjak dari <InlineMath math="6" /> menjadi <InlineMath math="45" /> unit setelah minum, tetapi insulin Q tetap di antara <InlineMath math="2" /> dan <InlineMath math="3" /> unit. Sel beta Q menyekresikan sangat sedikit insulin. Pernyataan I benar.
+- II: Q berada di atas <InlineMath math="10\text{ mmol/L}" /> pada menit ke-<InlineMath math="30" />, <InlineMath math="60" />, <InlineMath math="90" />, dan <InlineMath math="120" />, jadi glukosa ada di urine dari menit ke-<InlineMath math="30" /> sampai menit ke-<InlineMath math="120" />, setidaknya <InlineMath math="120-30=90" /> menit. Pernyataan II benar.
+- III: glukagon menaikkan glukosa darah. Glukosa P turun saat insulin P tinggi, jadi penurunan itu disebabkan oleh **insulin**. Pernyataan III salah.
+- IV: masalah Q adalah kekurangan insulin, bukan sel yang tidak merespons insulin, jadi suntikan insulin akan membantu sel menyerap glukosa dan hati menyimpannya sebagai glikogen. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak IV, seolah-olah sel Q tidak bisa merespons insulin, **padahal data menunjukkan insulinnya sendiri yang tidak ada**.
+- I, II, dan III saja mengandalkan glukagon untuk penurunan pada P, **padahal glukagon menaikkan glukosa darah**.
+- II dan IV saja menolak I, melewatkan bahwa **insulin Q hampir tidak berubah** setelah minum.
