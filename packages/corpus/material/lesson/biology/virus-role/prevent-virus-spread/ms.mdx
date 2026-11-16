@@ -4,7 +4,7 @@ export const metadata = {
     "Penularan melalui pernafasan, sentuhan, cecair badan, makanan dan air, serta gigitan nyamuk memerlukan kawalan yang berbeza. Vaksinasi dan rawatan antivirus bertindak pada peringkat yang lain.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Virus dan Peranannya",
 };
 
@@ -72,6 +72,28 @@ Ini sebabnya beberapa lapis langkah pencegahan itu penting. Katakan <InlineMath 
 
 Virus denggi merebak terutamanya melalui [gigitan nyamuk Aedes](https://www.cdc.gov/dengue/prevention/index.html), jadi pencegahannya memberi tumpuan kepada mengelakkan gigitan dan mengawal nyamuk di sekitar rumah. Pencegahan virus pernafasan pula menangani zarah yang dilepaskan ke dalam udara yang dikongsi dan pendedahan dalam jarak dekat.
 
+Setiap langkah memutuskan mata rantai yang berbeza. Gabungkan langkah-langkah itu di dataran bandar dan perhatikan wabak mengecil.
+
+<EpidemicSpreadLab
+  title={<>Langkah Pencegahan Mengecilkan Wabak</>}
+  description={<>Tetapkan bahagian orang yang memakai pelitup muka, yang sudah divaksin, dan yang duduk di rumah.</>}
+  measures={["masks", "vaccinated", "distancing"]}
+  labels={{
+    masks: "Orang yang memakai pelitup muka",
+    vaccinated: "Orang yang divaksin",
+    distancing: "Orang yang duduk di rumah",
+    reproduction: <>Setiap kes menjangkiti</>,
+    peak: <>Paling ramai sakit serentak</>,
+    susceptible: <>Masih boleh dijangkiti</>,
+    infected: <>Sedang dijangkiti</>,
+    recovered: <>Sudah pulih</>,
+    immune: <>Imun kerana vaksin</>,
+    viewLabel: "Dataran bandar dengan orang berjalan dan graf wabak",
+  }}
+/>
+
+Tanpa langkah pencegahan, setiap kes menjangkiti <InlineMath math="3" /> orang. Dalam model ini pelitup muka mengurangkan risiko pemakainya sebanyak separuh, jadi jika semua orang memakainya, nombor itu turun kepada <InlineMath math="3 \times 0.5 \times 0.5 = 0.75" />. Apabila nombor itu di bawah <InlineMath math="1" />, setiap kes menjangkiti kurang daripada seorang dan wabak itu padam. Nilai sebenar bergantung pada virus dan produknya, tetapi logiknya tetap sama.
+
 ### Cara Sabun Menanggalkan Kotoran dan Mikrob
 
 Kebersihan tangan menanggalkan kotoran, minyak dan mikrob yang mungkin terlalu kecil untuk dilihat. Molekul sabun mempunyai satu bahagian yang mudah bercampur dengan air dan satu bahagian lagi yang terikat pada minyak. Gosokan melonggarkan bahan itu, dan **bilasan membawanya pergi dari kulit**.
@@ -127,6 +149,25 @@ Rajah di bawah meletakkan setiap langkah pada peringkat yang dipengaruhinya. Pel
     C --> F["Vaksinasi"]
     D --> G["Ubat antivirus"]`}
 />
+
+Vaksin melatih sistem imun untuk menghasilkan antibodi sebelum virus sebenar tiba.
+
+<AntibodyNeutralizeLab
+  title={<>Antibodi Menghalang Virion daripada Melekat</>}
+  description={<>Bandingkan seseorang tanpa antibodi dengan seseorang yang mempunyai antibodi daripada vaksin. Tekan main untuk menghantar virion ke arah sel.</>}
+  mode="vaccine"
+  labels={{
+    choose: "Pilih orang",
+    people: { unvaccinated: <>Tidak divaksin</>, vaccinated: <>Sudah divaksin</> },
+    level: <>Aras antibodi</>,
+    covered: <>Spike yang dilitupi</>,
+    blocked: <>Virion yang dihalang</>,
+    chance: <>Peluang sesebuah virion dihalang</>,
+    viewLabel: "Virion SARS-CoV-2 menghampiri reseptor ACE2 pada permukaan sel, dengan antibodi pada spikenya",
+  }}
+/>
+
+Tanpa antibodi, setiap virion sampai ke reseptor dan melekat. Dengan aras antibodi <InlineMath math="12\text{ nM}" />, kira-kira <InlineMath math="\tfrac{12}{12+1} \approx 92\%" /> spike dilitupi, jadi hampir setiap virion dihalang. Dalam model ini sesebuah virion hanya boleh melekat jika sekurang-kurangnya suku daripada <InlineMath math="24" /> spikenya masih bebas.
 
 ## Laluan Penularan Menentukan Tindakan
 

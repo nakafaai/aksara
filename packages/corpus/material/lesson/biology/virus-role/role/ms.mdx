@@ -5,7 +5,7 @@ export const metadata = {
     "Virus boleh menyebabkan penyakit, mempengaruhi populasi mikrob atau berfungsi sebagai alat bioteknologi, bergantung pada hubungannya dengan perumah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Virus dan Kesannya",
 };
 
@@ -77,6 +77,30 @@ Virus menyebabkan penyakit pada manusia, haiwan dan tumbuhan. Contoh pada manusi
 
 Untuk memahami penyakit yang disebabkan oleh virus, semak **laluan penularan dan tisu yang terjejas**. Virus denggi ditularkan terutamanya melalui gigitan nyamuk Aedes yang dijangkiti. Virus pernafasan boleh merebak apabila seseorang tersedut zarah pernafasan yang dilepaskan oleh orang yang dijangkiti. Virus tumbuhan boleh berpindah melalui serangga pembawa, luka pada tumbuhan atau bahan tanaman yang dijangkiti.
 
+Laluan penularan menentukan langkah yang berkesan. Tukar laluannya, kemudian cuba pelitup muka dan basuhan tangan.
+
+<EpidemicSpreadLab
+  title={<>Laluan Menentukan Langkah yang Berkesan</>}
+  description={<>Pilih sama ada virus merebak melalui udara atau melalui sentuhan, kemudian tetapkan pelitup muka dan basuhan tangan.</>}
+  measures={["masks", "washing"]}
+  routes={["air", "touch"]}
+  labels={{
+    chooseRoute: "Pilih laluan",
+    routes: { air: <>Melalui udara</>, touch: <>Melalui sentuhan</> },
+    masks: "Orang yang memakai pelitup muka",
+    washing: "Orang yang membasuh tangan",
+    reproduction: <>Setiap kes menjangkiti</>,
+    peak: <>Paling ramai sakit serentak</>,
+    susceptible: <>Masih boleh dijangkiti</>,
+    infected: <>Sedang dijangkiti</>,
+    recovered: <>Sudah pulih</>,
+    immune: <>Imun kerana vaksin</>,
+    viewLabel: "Dataran bandar dengan orang berjalan dan graf wabak",
+  }}
+/>
+
+Melalui udara, pelitup muka menurunkan bilangan orang yang dijangkiti oleh setiap kes daripada <InlineMath math="3" /> kepada <InlineMath math="0.75" /> apabila semua orang memakainya, manakala basuhan tangan tidak mengubah apa-apa. Melalui sentuhan, basuhan tangan mengurangkan nombor itu sebanyak separuh kepada <InlineMath math="1.5" />, manakala pelitup muka tidak membawa perbezaan. Jadi kenal pasti laluannya dahulu, kemudian pilih langkahnya.
+
 ### Laluan Penularan Menjadi Panduan Pencegahan
 
 Zarah pernafasan, gigitan nyamuk dan cecair badan tertentu ialah laluan penularan yang berbeza. Untuk memilih langkah pencegahan, kamu perlu tahu **laluan, sel sasaran dan keadaan** yang menyokong penularan, kerana langkah yang menyekat satu laluan masih membiarkan laluan lain terbuka.
@@ -138,6 +162,24 @@ Putar vektor virus ini. Cangkerang proteinnya, iaitu bahagian yang sudah tahu ca
     removed: <>gen penyakit dibuang</>,
   }}
 />
+
+Vaksin ialah satu penggunaan virus yang terkawal. Vaksin yang dibuat daripada virus yang dilemahkan atau dinyahaktifkan, atau daripada sebahagian virus seperti protein spike, melatih badan tanpa menyebabkan penyakit.
+
+<AntibodyNeutralizeLab
+  title={<>Antibodi Bertambah selepas Vaksinasi</>}
+  description={<>Gerakkan hari selepas dos pertama, kemudian tekan main untuk melihat sama ada virion masih boleh melekat.</>}
+  mode="days"
+  labels={{
+    day: "Hari selepas dos",
+    level: <>Aras antibodi</>,
+    covered: <>Spike yang dilitupi</>,
+    blocked: <>Virion yang dihalang</>,
+    chance: <>Peluang sesebuah virion dihalang</>,
+    viewLabel: "Virion SARS-CoV-2 menghampiri reseptor ACE2 pada permukaan sel, dengan antibodi pada spikenya",
+  }}
+/>
+
+Pada minggu pertama hampir tiada antibodi, jadi virion masih boleh melekat. Pada hari <InlineMath math="7" />, model ini memberikan setiap virion peluang kira-kira <InlineMath math="41\%" /> untuk dihalang. Sepanjang minggu kedua arasnya meningkat, dan menjelang kira-kira hari <InlineMath math="14" /> hampir setiap virion dihalang. Sebab itulah perlindungan bermula beberapa lama selepas vaksinasi, bukan pada hari yang sama.
 
 ## Cara Menilai Kesan Virus
 

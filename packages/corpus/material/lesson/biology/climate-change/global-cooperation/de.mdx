@@ -4,7 +4,7 @@ export const metadata = {
     "Klimaschutz braucht gemeinsame Temperaturziele, vergleichbare Daten, internationale Vereinbarungen und überprüfbares Handeln.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Klimawandel",
 };
 
@@ -81,6 +81,25 @@ Ein Temperaturziel wird zum gemeinsamen Maßstab, sobald du es in ein Budget ver
   }}
 />
 
+Temperaturziele zählen für jede Küste. Das Dorf unten zeigt, was jeder Emissionspfad aus dem jüngsten IPCC-Bericht für den Meeresspiegel im Jahr 2100 bedeutet.
+
+<SeaLevelRiseLab
+  title={<>Der Meeresspiegel 2100 hängt vom Pfad ab</>}
+  description={<>Wähl einen Pfad. Das Meer steigt bis zu seinem Medianwert für 2100, verglichen mit dem Mittel von 1995 bis 2014.</>}
+  mode="scenario"
+  labels={{
+    choose: "Pfad wählen",
+    scenarios: { ssp126: <InlineMath math="\text{SSP1-2.6}" />, ssp245: <InlineMath math="\text{SSP2-4.5}" />, ssp585: <InlineMath math="\text{SSP5-8.5}" /> },
+    level: <>Meeresspiegelanstieg bis 2100</>,
+    warming: <>Erwärmung 2081 bis 2100</>,
+    range: <>Wahrscheinlicher Bereich</>,
+    retreat: <>Küstenlinie weicht zurück</>,
+    viewLabel: "Küstendorf an einem flachen Strand mit Pegel",
+  }}
+/>
+
+Bei <InlineMath math="\text{SSP1-2.6}" /> steigt das Meer bis 2100 um etwa <InlineMath math="0{,}44\text{ m}" />, und die Erwärmung bleibt bei etwa <InlineMath math="1{,}8^\circ\text{C}" />. Bei <InlineMath math="\text{SSP5-8.5}" /> sind es etwa <InlineMath math="0{,}77\text{ m}" /> bei etwa <InlineMath math="4{,}4^\circ\text{C}" /> Erwärmung. An diesem Strand verschiebt jeder Meter Anstieg, also <InlineMath math="1\text{ m}" />, die Küstenlinie um <InlineMath math="20\text{ m}" /> landeinwärts. Welcher Pfad eintritt, hängt davon ab, wie stark **alle Länder** gemeinsam senken.
+
 ## Aufgabenteilung in der internationalen Klimapolitik
 
 An globaler Klimazusammenarbeit sind unterschiedliche Institutionen beteiligt, weil eine einzige Gruppe nicht alle Aufgaben erfüllen kann. Manche **bewerten wissenschaftliche Erkenntnisse**, andere verhandeln Vereinbarungen, setzen Programme um oder verfolgen den Fortschritt.
@@ -106,6 +125,25 @@ Nach der Einreichung eines NDC berichten Länder im erweiterten Transparenzrahme
 | Anpassungsunterstützung | Stellt gefährdeten Regionen Finanzierung, Technik oder Kapazitäten bereit | Klimarisiko und verfügbare Mittel zu seiner Begrenzung sind ungleich verteilt |
 
 > Ziele geben die Richtung vor, nationale Pläne beschreiben die vorgesehenen Maßnahmen, Berichte erfassen den Fortschritt und die globale Bestandsaufnahme bewertet das gemeinsame Ergebnis.
+
+Die Senkungen eines einzigen Landes reichen nicht, weil sich <InlineMath math="\mathrm{CO_2}" /> in der ganzen Atmosphäre verteilt. Probier es im Badewannenmodell aus.
+
+<CarbonBudgetLab
+  title={<>Alle Regionen füllen dieselbe Wanne</>}
+  description={<>Emissionen fließen aus dem Hahn hinein, Ozean und Land lassen einen Teil abfließen, und der Wasserstand ist das <InlineMath math="\mathrm{CO_2}" /> in der Luft. Wähl die Regionen, die ihr fossiles <InlineMath math="\mathrm{CO_2}" /> bis 2050 auf null senken.</>}
+  mode="cooperate"
+  labels={{
+    chooseRegions: "Regionen wählen",
+    regions: { china: <>China</>, usa: <>USA</>, india: <>Indien</>, europe: <>EU</>, rest: <>Übrige Welt</> },
+    level: <><InlineMath math="\mathrm{CO_2}" /> im Jahr 2100</>,
+    warming: <>Erwärmung im Jahr 2100</>,
+    emissions: <><InlineMath math="\mathrm{CO_2}" />-Ausstoß 2050 pro Jahr</>,
+    peak: <>Höchster <InlineMath math="\mathrm{CO_2}" />-Wert</>,
+    viewLabel: "Badewanne der Atmosphäre mit Emissionshahn, Senkenabfluss und Kohlendioxidkurve",
+  }}
+/>
+
+Macht keine Region mit, steigt das <InlineMath math="\mathrm{CO_2}" /> in diesem Modell bis 2100 auf etwa <InlineMath math="521\text{ ppm}" />. China allein stößt etwa <InlineMath math="31\%" /> des fossilen <InlineMath math="\mathrm{CO_2}" /> der Welt aus, doch wenn nur China senkt, steigt das <InlineMath math="\mathrm{CO_2}" /> trotzdem auf etwa <InlineMath math="467\text{ ppm}" />. Machen China, die USA, Indien und die EU gemeinsam mit, erreicht <InlineMath math="\mathrm{CO_2}" /> einen Höchstwert von etwa <InlineMath math="445\text{ ppm}" /> und sinkt dann. Machen alle Regionen mit, sinkt es bis 2100 auf etwa <InlineMath math="348\text{ ppm}" />. Die dünne Linie zeigt den Weg ganz ohne Senkungen.
 
 ## Globale Vereinbarungen beeinflussen lokale Entscheidungen
 

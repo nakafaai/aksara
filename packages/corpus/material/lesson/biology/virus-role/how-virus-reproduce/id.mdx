@@ -5,7 +5,7 @@ export const metadata = {
     "Virus memakai sel inang untuk bereplikasi. Pada bakteriofag, siklus litik menghasilkan virion, sedangkan lisogeni mempertahankan genom fag di dalam bakteri.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-04",
+  dateModified: "2026-11-13",
   subject: "Virus dan Peranannya",
 };
 
@@ -65,6 +65,25 @@ Siklus litik dan lisogenik berikut berlaku untuk bakteriofag. Virus hewan dapat 
     ],
   }}
 />
+
+Setiap siklus litik melepaskan banyak virion baru. Di tengah masyarakat, perbanyakan yang sama berlangsung dari orang ke orang.
+
+<EpidemicSpreadLab
+  title={<>Satu Kasus Tumbuh Menjadi Wabah</>}
+  description={<>Orang-orang berjalan di alun-alun kota. Tekan putar untuk melihat satu infeksi menyebar saat tidak ada yang melakukan pencegahan.</>}
+  measures={[]}
+  labels={{
+    reproduction: <>Satu kasus menulari</>,
+    peak: <>Paling banyak sakit bersamaan</>,
+    susceptible: <>Masih rentan</>,
+    infected: <>Sedang tertular</>,
+    recovered: <>Sudah sembuh</>,
+    immune: <>Kebal karena vaksin</>,
+    viewLabel: "Alun-alun kota dengan orang yang berjalan dan grafik wabah",
+  }}
+/>
+
+Dalam model ini, setiap kasus menulari rata-rata <InlineMath math="3" /> orang lain dan tetap menular selama <InlineMath math="7" /> hari. Jumlah kasus melonjak cepat di awal, memuncak saat sekitar <InlineMath math="30\%" /> warga sakit bersamaan, lalu wabah berhenti setelah sekitar <InlineMath math="94\%" /> warga pernah tertular. Virus butuh inang untuk memperbanyak diri, jadi penyebarannya melambat saat orang yang belum kebal tinggal sedikit.
 
 ## Siklus Litik Dimulai dengan Penempelan
 
@@ -154,6 +173,25 @@ Putar bakteriofag ini tepat saat menempel. Serabut ekornya mencengkeram permukaa
     genome: <>genom yang disuntikkan</>,
   }}
 />
+
+Penyalinan genom memanfaatkan pasangan basa. Pada fag DNA, kedua untai membuka, lalu setiap basa mendapat pasangannya: A dengan T, G dengan C.
+
+<DnaHelixLab
+  title={<>Genom Virus Disalin Basa demi Basa</>}
+  description={<>Contoh potongan DNA sepanjang <InlineMath math="27" /> pasangan basa. Geser penyalinannya atau tekan putar, lalu lihat nukleotida baru berpasangan dengan kedua untai lama.</>}
+  copy
+  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  labels={{
+    copy: "Kemajuan penyalinan",
+    length: <>Pasangan basa</>,
+    span: <>Panjang</>,
+    copied: <>Basa baru yang berpasangan</>,
+    turns: <>Putaran heliks</>,
+    viewLabel: "Heliks DNA yang membuka dan disalin",
+  }}
+/>
+
+Setiap untai baru berpasangan dengan satu untai lama, jadi kedua salinan sama persis dengan aslinya. Potongan <InlineMath math="27" /> pasangan basa ini hanya sepanjang <InlineMath math="27 \times 0{,}34\text{ nm} \approx 9{,}2\text{ nm}" />. Genom fag lambda punya <InlineMath math="48{.}502" /> pasangan basa, dan sel inang menyediakan nukleotida serta energi untuk menyalin semuanya.
 
 ## Profag Dapat Bertahan dalam Genom Inang
 

@@ -4,7 +4,7 @@ export const metadata = {
     "Mitigasi mengurangi emisi gas rumah kaca, sedangkan adaptasi mengurangi kerugian akibat perubahan iklim melalui restorasi, perlindungan air, dan penyesuaian pertanian.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Perubahan Iklim",
 };
 
@@ -72,6 +72,25 @@ Contoh mitigasi antara lain meningkatkan efisiensi energi, beralih ke energi ren
 
 Restorasi hutan dan ekosistem dapat menambah penyimpanan karbon sekaligus mendukung keanekaragaman hayati. Hasil setiap proyek dipengaruhi oleh jenis tumbuhan, penggunaan lahan sebelumnya, berapa lama karbon tetap tersimpan, risiko kebakaran, ketersediaan air, serta hak dan mata pencaharian masyarakat setempat. Mitigasi berbasis lahan tetap perlu disertai pengurangan emisi dari bahan bakar fosil.
 
+Mitigasi memangkas emisi atau membuat penyerap karbon menyerap lebih banyak. Model bak mandi berikut menunjukkan keduanya.
+
+<CarbonBudgetLab
+  title={<>Memangkas Emisi dan Menanam Hutan</>}
+  description={<>Geser seberapa besar <InlineMath math="\mathrm{CO_2}" /> fosil dipangkas sampai 2050 dan berapa banyak <InlineMath math="\mathrm{CO_2}" /> yang diserap hutan baru setiap tahun.</>}
+  mode="mitigate"
+  labels={{
+    cut: "Potongan emisi fosil pada 2050",
+    forest: "Serapan hutan baru (Gt per tahun)",
+    level: <><InlineMath math="\mathrm{CO_2}" /> pada 2100</>,
+    warming: <>Pemanasan pada 2100</>,
+    emissions: <><InlineMath math="\mathrm{CO_2}" /> yang dilepas pada 2050 per tahun</>,
+    peak: <><InlineMath math="\mathrm{CO_2}" /> tertinggi</>,
+    viewLabel: "Bak mandi atmosfer dengan keran emisi, saluran penyerapan, dan grafik karbon dioksida",
+  }}
+/>
+
+Memangkas <InlineMath math="\mathrm{CO_2}" /> fosil separuhnya sampai 2050 membuat <InlineMath math="\mathrm{CO_2}" /> dalam model ini memuncak di sekitar <InlineMath math="448\text{ ppm}" />, lalu turun pelan. Memangkasnya sampai nol sambil menumbuhkan hutan yang menyerap sekitar <InlineMath math="4\text{ Gt}" /> <InlineMath math="\mathrm{CO_2}" /> per tahun membuat <InlineMath math="\mathrm{CO_2}" /> turun ke sekitar <InlineMath math="327\text{ ppm}" /> pada 2100 dan pemanasan tertahan di sekitar <InlineMath math="1{,}5^\circ\text{C}" />. Jadi, kedua cara mitigasi saling menguatkan.
+
 ### Pengurangan Sampah dan Emisi Daur Hidup
 
 Mengurangi plastik sekali pakai yang tidak perlu dapat mendukung mitigasi jika menurunkan emisi produksi dan limbah sepanjang daur hidup. Periksa **seluruh daur hidup bahan pengganti** untuk memastikan bahan itu benar-benar mengurangi emisi dan tidak menimbulkan dampak yang lebih besar pada tahap produksi, penggunaan, atau pembuangan.
@@ -91,6 +110,26 @@ Beberapa tindakan memiliki dua fungsi sekaligus. Tentukan **tujuan utama tindaka
 Satu kegiatan bisa memiliki dua manfaat. Menanam kembali mangrove, misalnya, dapat **menyimpan karbon sekaligus melindungi pesisir** dari abrasi dan gelombang. Penyimpanan karbon termasuk mitigasi, sedangkan perlindungan pesisir termasuk adaptasi.
 
 [Perlindungan dan pemulihan ekosistem](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/) dapat membantu mitigasi sekaligus adaptasi. Penyimpanan karbon dapat menekan jumlah karbon dioksida di atmosfer, sedangkan pemulihan lahan basah atau penghijauan kota dapat mengurangi risiko banjir dan panas. Hasil setiap tindakan tetap bergantung pada kondisi ekologi, tata kelola, dan pelaksanaan setempat, sehingga pengurangan emisi fosil masih diperlukan.
+
+Adaptasi mengurangi kerugian meskipun laut tetap naik. Tambahkan tembok laut atau sabuk mangrove, lalu biarkan badai datang.
+
+<SeaLevelRiseLab
+  title={<>Tembok Laut dan Mangrove Menghadapi Badai</>}
+  description={<>Badai mendorong laut <InlineMath math="1\text{ m}" /> lebih tinggi dengan ombak setinggi <InlineMath math="1\text{ m}" />. Geser kenaikan muka laut, lalu pilih pertahanannya.</>}
+  mode="adapt"
+  labels={{
+    rise: "Kenaikan muka laut",
+    choose: "Pilih pertahanan",
+    defences: { wall: <>Tembok laut</>, mangrove: <>Mangrove</> },
+    level: <>Air tertinggi</>,
+    wave: <>Tinggi ombak di pantai</>,
+    flooded: <>Rumah terendam</>,
+    retreat: <>Garis pantai mundur</>,
+    viewLabel: "Desa pesisir di pantai landai dengan papan pasang surut",
+  }}
+/>
+
+Sabuk mangrove selebar <InlineMath math="100\text{ m}" /> memangkas tinggi ombak badai menjadi sekitar separuhnya dalam model ini. Pengukuran di lapangan mencatat ombak berkurang <InlineMath math="13\%" /> sampai <InlineMath math="66\%" /> setelah melewati <InlineMath math="100\text{ m}" /> mangrove. Tembok laut setinggi <InlineMath math="2{,}5\text{ m}" /> menahan air di bawah puncaknya, tetapi jebol begitu air melampauinya. Dengan kenaikan <InlineMath math="0{,}5\text{ m}" />, tembok saja tidak cukup, sedangkan tembok ditambah mangrove masih melindungi semua rumah. Mangrove juga menyimpan karbon, jadi sekaligus membantu mitigasi.
 
 ### Hasil Tindakan Menentukan Pengelompokan
 
