@@ -70,6 +70,35 @@ describe("contourFill", () => {
     assert.closeTo(total, 36 - (5 * 5) / 2 + 0, 1e-6);
   });
 
+  it("shades a whole frame as one rectangle per column", () => {
+    const shapes = contourFill(() => 1, box, 40);
+
+    assert.strictEqual(shapes.length, 40);
+    for (const shape of shapes) {
+      assert.closeTo(area(shape), 36 / 40, 1e-9);
+    }
+  });
+
+  it("keeps a disc at the default grid to a shape per column run and cut cell", () => {
+    const shapes = contourFill((x, y) => 4 - x * x - y * y, box);
+    const total = Arr.reduce(shapes, 0, (sum, shape) => sum + area(shape));
+
+    assert.closeTo(total, Math.PI * 4, 0.01);
+    assert.isBelow(shapes.length, 2000);
+  });
+
+  it("starts a new rectangle where an undefined cell breaks a column", () => {
+    const shapes = contourFill(
+      (_x, y) => (Math.abs(y) < 0.5 ? Number.NaN : 1),
+      box,
+      12
+    );
+    const total = Arr.reduce(shapes, 0, (sum, shape) => sum + area(shape));
+
+    assert.strictEqual(shapes.length, 24);
+    assert.closeTo(total, 36 - 6, 1e-9);
+  });
+
   it("shades nothing where the field is negative or undefined everywhere", () => {
     assert.deepStrictEqual(
       contourFill(() => -1, box),
