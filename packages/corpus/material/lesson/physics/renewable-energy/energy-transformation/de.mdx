@@ -15,6 +15,27 @@ export const metadata = {
 
 Wenn du eine Taschenlampe einschaltest, wird chemische Energie in der Batterie in elektrische Energie umgewandelt und zur Lampe übertragen. Die Lampe erzeugt **das benötigte Licht** und erwärmt zugleich Teile der Taschenlampe und die Umgebung. Auch diese Erwärmung gehört zur Energiebilanz, obwohl du mit der Taschenlampe den Raum beleuchten möchtest.
 
+Tausch die Lampe, und der Energiepfad bleibt gleich, während sich der nutzbare Anteil ändert. Zwei AA-Zellen speichern <InlineMath math="3\text{ V}\times2{,}5\text{ Ah}=27\,000\text{ J}" />, und die Lampe nimmt <InlineMath math="1\text{ W}" /> auf, also hält die Batterie in beiden Fällen <InlineMath math="7{,}5\text{ h}" />. Eine Glühlampe macht etwa <InlineMath math="5\%" /> dieser Leistung zu Licht, eine LED etwa <InlineMath math="40\%" />: achtmal so viel Licht aus derselben Batterie.
+
+<FlashlightEfficiencyLab
+  title={<>Gleiche Batterie, andere Lampen</>}
+  description={<>Eine Taschenlampe nimmt <InlineMath math="1\text{ W}" /> aus zwei AA-Zellen auf. Wähle die Lampe und vergleiche, wie viel der elektrischen Leistung zu Licht und wie viel zu Wärme wird.</>}
+  labels={{
+    battery: <>Energie der Batterie</>,
+    bulbs: {
+      filament: <>Glühlampe</>,
+      led: <>LED</>,
+    },
+    chooseBulb: "Lampe",
+    efficiency: <>Anteil als Licht</>,
+    heat: <>Wärme</>,
+    input: <>Elektrische Leistung</>,
+    light: <>Licht</>,
+    runTime: <>Laufzeit der Batterie</>,
+    viewLabel: "Taschenlampe in einem dunklen Raum leuchtet an eine Wand, ihre Zellen im Schnitt",
+  }}
+/>
+
 ## Umwandlungspfade in Kraftwerken
 
 Das Diagramm zeigt, in welchen Formen verschiedene Quellen Energie bereitstellen und wie Anlagen sie zur Nutzung umwandeln.
@@ -188,3 +209,25 @@ Solarmodule, Windkraftanlagen, Generatoren und Biogasreaktoren wandeln vorhanden
 | Geothermiekraftwerk | Bietet der Standort ausreichend Wärme im Untergrund, Fluide und Strömung für die Stromerzeugung? |
 
 Die Umwandlungskette nennt Quelle, anfängliche Energieform, Ausgangsform, Nutzenergie und Energieabgabe an die Umgebung.
+
+Jetzt vergleichst du ganze Ketten nebeneinander. Im Diagramm gehen in jedes Kraftwerk <InlineMath math="100\text{ J}" />, jede Maschine gibt ihren Anteil weiter, und jeder Verlust biegt nach unten in die Umgebung ab. Mit typischen runden Anteilen liefert ein Solarmodul <InlineMath math="19{,}2\text{ J}" />, eine Windkraftanlage <InlineMath math="40{,}61\text{ J}" />, ein Wasserkraftwerk <InlineMath math="85{,}5\text{ J}" />, ein Biogasmotor <InlineMath math="33{,}25\text{ J}" /> und ein Geothermiekraftwerk <InlineMath math="11{,}4\text{ J}" />. Die verlorenen Joule verschwinden nicht: Zusammen mit dem Strom ergeben sie immer <InlineMath math="100\text{ J}" />.
+
+<EnergyFlowLossLab
+  title={<>Wohin <InlineMath math="100\text{ J}" /> in fünf Kraftwerken gehen</>}
+  description={<>Jedes Band beginnt mit <InlineMath math="100\text{ J}" /> Energie aus der Quelle. Wähle ein Kraftwerk und verfolge, wie seine Maschinen das Band schmaler machen und den Rest an die Umgebung abgeben.</>}
+  labels={{
+    choosePlant: "Kraftwerk",
+    efficiency: <>Gesamtwirkungsgrad</>,
+    input: <>Zugeführte Energie</>,
+    lost: <>An die Umgebung</>,
+    plants: {
+      biogas: <>Biogas</>,
+      geothermal: <>Geothermie</>,
+      hydro: <>Wasser</>,
+      solar: <>Solar</>,
+      wind: <>Wind</>,
+    },
+    useful: <>Abgegebener Strom</>,
+    viewLabel: "Energieflussdiagramm der Umwandlungsstufen und Verluste eines Kraftwerks",
+  }}
+/>

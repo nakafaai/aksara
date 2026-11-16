@@ -15,6 +15,27 @@ export const metadata = {
 
 Apabila kamu menghidupkan lampu suluh, tenaga kimia dalam bateri menjadi tenaga elektrik yang dibekalkan kepada mentol. Mentol itu menghasilkan **cahaya yang kamu perlukan** dan pada masa yang sama memanaskan bahagian lampu suluh serta persekitarannya. Pemanasan itu tetap dikira dalam imbangan tenaga, walaupun tujuan kamu ialah menerangi bilik.
 
+Tukar mentolnya, dan laluan tenaga tetap sama sedangkan bahagian yang berguna berubah. Dua sel AA menyimpan <InlineMath math="3\text{ V}\times2.5\text{ Aj}=27\,000\text{ J}" />, dan mentol menggunakan <InlineMath math="1\text{ W}" />, jadi bateri bertahan <InlineMath math="7.5\text{ j}" /> bagi kedua-dua mentol. Mentol filamen menukarkan kira-kira <InlineMath math="5\%" /> daripada kuasa itu kepada cahaya, manakala LED kira-kira <InlineMath math="40\%" />: lapan kali lebih banyak cahaya daripada bateri yang sama.
+
+<FlashlightEfficiencyLab
+  title={<>Bateri Sama, Mentol Berbeza</>}
+  description={<>Lampu suluh menggunakan <InlineMath math="1\text{ W}" /> daripada dua sel AA. Pilih mentol dan bandingkan bahagian kuasa elektrik yang menjadi cahaya dengan bahagian yang menjadi haba.</>}
+  labels={{
+    battery: <>Tenaga bateri</>,
+    bulbs: {
+      filament: <>Mentol filamen</>,
+      led: <>LED</>,
+    },
+    chooseBulb: "Mentol",
+    efficiency: <>Bahagian yang menjadi cahaya</>,
+    heat: <>Haba</>,
+    input: <>Kuasa elektrik</>,
+    light: <>Cahaya</>,
+    runTime: <>Hayat bateri</>,
+    viewLabel: "Lampu suluh di dalam bilik gelap menyuluh dinding, dengan selnya ditunjukkan dalam keratan",
+  }}
+/>
+
 ## Laluan Penukaran di Stesen Janakuasa
 
 Rajah di bawah menunjukkan bentuk tenaga yang dibekalkan oleh sumber yang berbeza dan cara stesen janakuasa menukarkannya untuk digunakan.
@@ -187,3 +208,25 @@ Panel suria, turbin angin, penjana dan reaktor biogas menukarkan tenaga yang sed
 | Stesen janakuasa geoterma | Adakah tapak itu membekalkan haba bawah tanah, bendalir dan aliran yang cukup untuk menjana kuasa elektrik? |
 
 Laluan penukaran merekodkan sumber, bentuk tenaga awal, bentuk output, tenaga berguna dan tenaga yang dipindahkan ke persekitaran.
+
+Sekarang bandingkan keseluruhan rantaian secara bersebelahan. Dalam carta itu, <InlineMath math="100\text{ J}" /> masuk ke setiap loji, setiap mesin meneruskan bahagiannya, dan setiap kehilangan membelok turun ke persekitaran. Dengan nilai bundar yang lazim, panel suria menghantar <InlineMath math="19.2\text{ J}" />, turbin angin <InlineMath math="40.61\text{ J}" />, loji hidro <InlineMath math="85.5\text{ J}" />, enjin biogas <InlineMath math="33.25\text{ J}" />, dan loji geoterma <InlineMath math="11.4\text{ J}" />. Joule yang hilang itu tidak pernah lenyap: bersama dengan elektrik, jumlahnya sentiasa <InlineMath math="100\text{ J}" />.
+
+<EnergyFlowLossLab
+  title={<>Ke Mana <InlineMath math="100\text{ J}" /> Pergi dalam Lima Loji</>}
+  description={<>Setiap jalur bermula dengan <InlineMath math="100\text{ J}" /> tenaga sumbernya. Pilih satu loji dan ikuti cara mesin-mesinnya menipiskan jalur itu dan menyerahkan bakinya kepada persekitaran.</>}
+  labels={{
+    choosePlant: "Loji jana kuasa",
+    efficiency: <>Kecekapan keseluruhan</>,
+    input: <>Tenaga masuk</>,
+    lost: <>Ke persekitaran</>,
+    plants: {
+      biogas: <>Biogas</>,
+      geothermal: <>Geoterma</>,
+      hydro: <>Hidro</>,
+      solar: <>Suria</>,
+      wind: <>Angin</>,
+    },
+    useful: <>Elektrik keluar</>,
+    viewLabel: "Carta aliran tenaga bagi peringkat penukaran dan kehilangan sebuah loji jana kuasa",
+  }}
+/>
