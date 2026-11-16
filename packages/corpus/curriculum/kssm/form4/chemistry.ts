@@ -160,7 +160,33 @@ export const kssmForm4ChemistryTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-chemistry-chemical-bond-chemical-bond",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.chemical-bond"],
+        order: 10,
+      }),
+    ],
     key: "form-4-chemistry-chemical-bond",
+    materialCard: {
+      de: {
+        description: "Sieh, wie Atome Ionen, Moleküle und Metalle bilden.",
+        title: "Chemische Bindung",
+      },
+      en: {
+        description: "See how atoms form ions, molecules and metals.",
+        title: "Chemical Bond",
+      },
+      id: {
+        description: "Lihat cara atom membentuk ion, molekul, dan logam.",
+        title: "Ikatan Kimia",
+      },
+      ms: {
+        description: "Lihat cara atom membentuk ion, molekul dan logam.",
+        title: "Ikatan Kimia",
+      },
+    },
     order: 50,
     translations: {
       de: { routeSlug: "chemische-bindung", title: "Chemische Bindung" },
@@ -170,7 +196,33 @@ export const kssmForm4ChemistryTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-chemistry-acid-base-and-salt-acid-base-salt",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.acid-base-salt"],
+        order: 10,
+      }),
+    ],
     key: "form-4-chemistry-acid-base-and-salt",
+    materialCard: {
+      de: {
+        description: "Miss den pH-Wert, titriere und stelle Salze her.",
+        title: "Säuren, Basen und Salze",
+      },
+      en: {
+        description: "Measure pH, run titrations and prepare salts.",
+        title: "Acid, Base and Salt",
+      },
+      id: {
+        description: "Ukur pH, lakukan titrasi, dan buat garam.",
+        title: "Asam, Basa, dan Garam",
+      },
+      ms: {
+        description: "Ukur pH, jalankan pentitratan dan sediakan garam.",
+        title: "Asid, Bes dan Garam",
+      },
+    },
     order: 60,
     translations: {
       de: {
