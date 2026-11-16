@@ -16,7 +16,7 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * (nakafa.com#2351), and whose check leaves path names to the repository it
  * judges (nakafa.com#2354).
  */
-export const NAKAFA_COMMIT = "f195acf85144251e3c36dcbdf5ae71a8e8f7ee0c";
+export const NAKAFA_COMMIT = "73c3ba26824327b880ccd48f96da4ea0533ee0ee";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
