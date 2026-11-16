@@ -7,6 +7,7 @@ import {
   PAGE_VOICE_RULES,
 } from "#nakafa-content/voice/rules";
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
+import type { LessonVoiceRule } from "#nakafa-content/voice/types";
 
 /**
  * Rules that check a feature of one language's grammar or spelling that
@@ -99,7 +100,7 @@ const MALAY_SAMPLES = {
 };
 
 it("gives every Indonesian and German voice rule a Malay pattern", () => {
-  const rules = [
+  const rules: readonly LessonVoiceRule[] = [
     ...LESSON_VOICE_RULES,
     ...ARTICLE_VOICE_RULES,
     ...ANSWER_VOICE_RULES,
