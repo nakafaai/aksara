@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.20\\times10^{22}$$ ions, $$6.50\\times10^{23}$$ electrons, and $$\\text{S}^{2-}$$ is larger",
+            "$$3.61\\times10^{22}$$, $$\\text{S}^{2-}<\\text{Cl}^-<\\text{K}^+<\\text{Ca}^{2+}$$",
         },
         {
           correct: true,
           label:
-            "$$3.61\\times10^{22}$$ ions, $$6.50\\times10^{23}$$ electrons, and $$\\text{S}^{2-}$$ is larger",
+            "$$3.61\\times10^{22}$$, $$\\text{Ca}^{2+}<\\text{K}^+<\\text{Cl}^-<\\text{S}^{2-}$$",
         },
         {
           correct: false,
           label:
-            "$$3.61\\times10^{22}$$ ions, $$6.26\\times10^{23}$$ electrons, and $$\\text{S}^{2-}$$ is larger",
+            "$$2.41\\times10^{22}$$, $$\\text{Ca}^{2+}<\\text{K}^+<\\text{Cl}^-<\\text{S}^{2-}$$",
         },
         {
           correct: false,
           label:
-            "$$3.61\\times10^{22}$$ ions, $$6.50\\times10^{23}$$ electrons, and $$\\text{K}^+$$ is larger",
+            "$$1.20\\times10^{22}$$, $$\\text{Ca}^{2+}<\\text{K}^+<\\text{Cl}^-<\\text{S}^{2-}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.20\\times10^{22}$$ ion, $$6.50\\times10^{23}$$ elektron, dan $$\\text{S}^{2-}$$ lebih besar",
+            "$$3.61\\times10^{22}$$, $$\\text{S}^{2-}<\\text{Cl}^-<\\text{K}^+<\\text{Ca}^{2+}$$",
         },
         {
           correct: true,
           label:
-            "$$3.61\\times10^{22}$$ ion, $$6.50\\times10^{23}$$ elektron, dan $$\\text{S}^{2-}$$ lebih besar",
+            "$$3.61\\times10^{22}$$, $$\\text{Ca}^{2+}<\\text{K}^+<\\text{Cl}^-<\\text{S}^{2-}$$",
         },
         {
           correct: false,
           label:
-            "$$3.61\\times10^{22}$$ ion, $$6.26\\times10^{23}$$ elektron, dan $$\\text{S}^{2-}$$ lebih besar",
+            "$$2.41\\times10^{22}$$, $$\\text{Ca}^{2+}<\\text{K}^+<\\text{Cl}^-<\\text{S}^{2-}$$",
         },
         {
           correct: false,
           label:
-            "$$3.61\\times10^{22}$$ ion, $$6.50\\times10^{23}$$ elektron, dan $$\\text{K}^+$$ lebih besar",
+            "$$1.20\\times10^{22}$$, $$\\text{Ca}^{2+}<\\text{K}^+<\\text{Cl}^-<\\text{S}^{2-}$$",
         },
       ],
     },
