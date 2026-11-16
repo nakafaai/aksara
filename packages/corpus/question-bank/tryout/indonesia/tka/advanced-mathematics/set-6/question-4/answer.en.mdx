@@ -21,6 +21,44 @@ P(10,20)&=300+400=700 \\
 P(0,25)&=500
 \end{aligned}" />
 
+Draw the feasible region. **The two limit lines cut it into a quadrilateral**, and the largest profit is at the corner where the fabric and the sewing hours both run out.
+
+<MathVisual
+  title={<>Feasible region for fabric and sewing hours</>}
+  description={<>The horizontal axis is the number of bags, and the vertical axis is the number of wallets. The shaded region lies below the lines <InlineMath math="2x+y=40" /> and <InlineMath math="x+2y=50" />, with corners <InlineMath math="(0,\ 0)" />, <InlineMath math="(20,\ 0)" />, <InlineMath math="(10,\ 20)" />, and <InlineMath math="(0,\ 25)" />. The largest profit is at <InlineMath math="(10,\ 20)" />.</>}
+  labels={{
+    cloth: <InlineMath math="2x+y=40" />,
+    sewing: <InlineMath math="x+2y=50" />,
+    best: <InlineMath math="(10,\ 20)" />,
+    side: <InlineMath math="(20,\ 0)" />,
+    top: <InlineMath math="(0,\ 25)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 52 },
+      y: { min: 0, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 0, y: 25 }] },
+      { id: "cloth", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 20, y: 0 } },
+      { id: "sewing", kind: "segment", appearance: "secondary", from: { x: 0, y: 25 }, to: { x: 50, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 10, y: 20 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 0, y: 25 } },
+    ],
+    labels: [
+      { key: "cloth", objectId: "cloth", at: { x: 3, y: 34 }, placement: "right" },
+      { key: "sewing", objectId: "sewing", at: { x: 40, y: 5 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 10, y: 20 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 20, y: 0 }, placement: "above-right" },
+      { key: "top", objectId: "top", at: { x: 0, y: 25 }, placement: "right" },
+    ],
+  }}
+/>
+
 So the maximum profit is <InlineMath math="\text{Rp}700{,}000.00" />, from <InlineMath math="10" /> bags and <InlineMath math="20" /> wallets.
 
 - <InlineMath math="\text{Rp}600{,}000.00" /> is the profit at <InlineMath math="(20,0)" />, bags only.

@@ -6,6 +6,35 @@ Zerlege jetzt in Standardgrenzwerte.
 
 <BlockMath math="\lim_{x\to0}\frac{-2\sin2x\sin x}{x^2}=-2\cdot\lim_{x\to0}\frac{\sin2x}{x}\cdot\lim_{x\to0}\frac{\sin x}{x}=-2\cdot2\cdot1=-4" />
 
+Zeichne <InlineMath math="k" /> auf beiden Seiten der Null. **Beide Äste laufen zum selben tiefsten Punkt <InlineMath math="(0,\ -4)" />**, obwohl <InlineMath math="k(0)" /> nicht definiert ist.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="k" /> in der Nähe von <InlineMath math="x=0" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{\cos3x-\cos x}{x^2}" /> für <InlineMath math="x" /> zwischen <InlineMath math="-0{,}55" /> und <InlineMath math="0{,}55" /> im Bogenmaß, ohne <InlineMath math="x=0" />. Der Graph ist symmetrisch, und beide Äste laufen auf <InlineMath math="(0,\ -4)" /> zu.</>}
+  labels={{
+    left: <InlineMath math="y=k(x)" />,
+    target: <InlineMath math="(0,\ -4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 0.6 },
+      y: { min: -4.5, max: -2.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(cos(3*x) - cos(x))/x^2", domain: { min: -0.55, max: -0.01 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(cos(3*x) - cos(x))/x^2", domain: { min: 0.01, max: 0.55 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: -4 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -0.4, y: -3.5 }, placement: "above" },
+      { key: "target", objectId: "target", at: { x: 0, y: -4 }, placement: "above" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist <InlineMath math="\cos0{,}03-\cos0{,}01\approx-0{,}0004" />, also <InlineMath math="k(0{,}01)\approx\frac{-0{,}0004}{0{,}0001}=-4" />.
 
 Der Grenzwert ist also <InlineMath math="-4" />.

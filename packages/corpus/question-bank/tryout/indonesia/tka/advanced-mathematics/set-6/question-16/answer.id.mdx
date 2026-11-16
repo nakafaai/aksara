@@ -7,6 +7,41 @@ Pusat lingkaran <InlineMath math="O(0,0)" /> dan <InlineMath math="r=5" />.
 d_{\min}&=|OL|-r=15-5=10
 \end{aligned}" />
 
+Gambar kolam dan lampu. **Titik pagar terdekat terletak pada garis dari pusat ke lampu**, jadi jarak terpendeknya adalah <InlineMath math="15" /> dikurangi jari-jari <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Jarak terpendek dari lampu ke pagar kolam</>}
+  description={<>Pagar kolam adalah lingkaran berpusat di titik asal dengan jari-jari <InlineMath math="5" />. Ruas dari pusat ke lampu <InlineMath math="L(9,12)" /> panjangnya <InlineMath math="15" /> dan memotong pagar di <InlineMath math="(3,4)" />. Bagian dari <InlineMath math="(3,4)" /> ke <InlineMath math="L" /> panjangnya <InlineMath math="10" />.</>}
+  labels={{
+    lamp: <InlineMath math="L(9,12)" />,
+    near: <InlineMath math="(3,4)" />,
+    gap: <InlineMath math="10" />,
+    r: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 11 },
+      y: { min: -6, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pond", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 3, y: 4 }, to: { x: 9, y: 12 } },
+      { id: "lamp", kind: "point", appearance: "primary", at: { x: 9, y: 12 } },
+      { id: "near", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "lamp", objectId: "lamp", at: { x: 9, y: 12 }, placement: "right" },
+      { key: "near", objectId: "near", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 6, y: 8 }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Karena <InlineMath math="15>5" />, lampu memang di luar pagar. Titik pagar terdekat adalah <InlineMath math="\frac{5}{15}(9,12)=(3,4)" />, dan jaraknya ke <InlineMath math="L" /> adalah <InlineMath math="\sqrt{6^2+8^2}=10" />.
 
 Jadi, jarak terpendek dari lampu ke pagar kolam adalah <InlineMath math="10" /> m.

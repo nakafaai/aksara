@@ -4,6 +4,34 @@ Bagi pembilang dan penyebut dengan <InlineMath math="x" />. Karena <InlineMath m
 
 <BlockMath math="\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12" />
 
+Gambar <InlineMath math="q" /> untuk <InlineMath math="x" /> negatif yang makin kecil. **Kurvanya tetap di bawah sumbu <InlineMath math="x" /> dan merapat ke garis <InlineMath math="y=-\tfrac12" />**, karena pembilang positif dan penyebut negatif.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="q" /> untuk <InlineMath math="x" /> negatif</>}
+  description={<>Kurva <InlineMath math="y=\frac{\sqrt{x^2+1}}{2x-3}" /> untuk <InlineMath math="-40\le x\le-1" />. Di <InlineMath math="x=-1" /> nilainya sekitar <InlineMath math="-0{,}28" />, lalu ke arah kiri kurvanya turun dan makin dekat ke garis mendatar <InlineMath math="y=-\tfrac12" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{\sqrt{x^2+1}}{2x-3}" />,
+    level: <InlineMath math="y=-\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -40, max: 0 },
+      y: { min: -0.7, max: 0 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "sqrt(x^2 + 1)/(2*x - 3)", domain: { min: -40, max: -1 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "-0.5", domain: { min: -40, max: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -5, y: -0.4 }, placement: "above" },
+      { key: "level", objectId: "level", at: { x: -35, y: -0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pemeriksaan tanda: untuk <InlineMath math="x" /> negatif, pembilang positif dan penyebut negatif, jadi pecahannya negatif. Contohnya <InlineMath math="q(-100)=\frac{\sqrt{10{.}001}}{-203}\approx-0{,}4926" />.
 
 Jadi, nilai limit tersebut adalah <InlineMath math="-\frac12" />.

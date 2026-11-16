@@ -2,6 +2,38 @@ Eine zentrische Streckung mit Faktor <InlineMath math="k" /> multipliziert jede 
 
 <BlockMath math="A'=k^2\cdot A=(-3)^2\cdot6=9\cdot6=54" />
 
+Zeichne ein Beispieldreieck mit Flächeninhalt <InlineMath math="6" /> und sein Bild. **Jede Seite wird in beide Richtungen <InlineMath math="3" />-mal so lang**, also wird der Flächeninhalt <InlineMath math="9" />-mal so groß, und das Minuszeichen klappt das Dreieck nur auf die andere Seite von <InlineMath math="O" />.
+
+<MathVisual
+  title={<>Ein Dreieck und sein Bild unter der Streckung <InlineMath math="[O,-3]" /></>}
+  description={<>Das Beispieldreieck hat die Ecken <InlineMath math="(1,0)" />, <InlineMath math="(4,0)" /> und <InlineMath math="(1,4)" /> und den Flächeninhalt <InlineMath math="6" />. Sein Bild hat die Ecken <InlineMath math="(-3,0)" />, <InlineMath math="(-12,0)" /> und <InlineMath math="(-3,-12)" />, auf der anderen Seite von <InlineMath math="O" />, mit Grundseite <InlineMath math="9" /> und Höhe <InlineMath math="12" />, also Flächeninhalt <InlineMath math="54" />.</>}
+  labels={{
+    start: <InlineMath math="L=6" />,
+    image: <InlineMath math="L'=54" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 5 },
+      y: { min: -13, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 4, y: 0 }, { x: 1, y: 4 }] },
+      { id: "image", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: -12, y: 0 }, { x: -3, y: -12 }] },
+      { id: "ray", kind: "segment", appearance: "construction", from: { x: 1, y: 4 }, to: { x: -3, y: -12 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 2, y: 1.3 }, placement: "center" },
+      { key: "image", objectId: "image", at: { x: -6, y: -4 }, placement: "center" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Das negative Vorzeichen des Faktors legt das Bild nur auf die andere Seite des Zentrums und dreht es um. Der Flächeninhalt bleibt positiv. Als Matrix ist die Streckung <InlineMath math="\begin{pmatrix} -3 & 0 \\ 0 & -3 \end{pmatrix}" /> mit Determinante <InlineMath math="9" />, und Flächeninhalte werden mit dem Betrag der Determinante multipliziert.
 
 Das Bilddreieck hat also den Flächeninhalt <InlineMath math="54" /> Flächeneinheiten.

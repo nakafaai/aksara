@@ -4,6 +4,34 @@ Teile Zähler und Nenner durch <InlineMath math="x" />. Weil <InlineMath math="x
 
 <BlockMath math="\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12" />
 
+Zeichne <InlineMath math="q" /> für immer kleinere negative <InlineMath math="x" />. **Die Kurve bleibt unter der <InlineMath math="x" />-Achse und schmiegt sich an die Gerade <InlineMath math="y=-\tfrac12" />**, weil der Zähler positiv und der Nenner negativ ist.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="q" /> für negative <InlineMath math="x" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{\sqrt{x^2+1}}{2x-3}" /> für <InlineMath math="-40\le x\le-1" />. Bei <InlineMath math="x=-1" /> ist ihr Wert etwa <InlineMath math="-0{,}28" />, nach links fällt sie und kommt der waagerechten Geraden <InlineMath math="y=-\tfrac12" /> immer näher.</>}
+  labels={{
+    curve: <InlineMath math="y=\frac{\sqrt{x^2+1}}{2x-3}" />,
+    level: <InlineMath math="y=-\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -40, max: 0 },
+      y: { min: -0.7, max: 0 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "sqrt(x^2 + 1)/(2*x - 3)", domain: { min: -40, max: -1 } },
+      { id: "level", kind: "function", appearance: "answer", formula: "-0.5", domain: { min: -40, max: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -5, y: -0.4 }, placement: "above" },
+      { key: "level", objectId: "level", at: { x: -35, y: -0.5 }, placement: "below" },
+    ],
+  }}
+/>
+
 Vorzeichenprobe: Für negatives <InlineMath math="x" /> ist der Zähler positiv und der Nenner negativ, der Bruch also negativ. Zum Beispiel ist <InlineMath math="q(-100)=\frac{\sqrt{10{.}001}}{-203}\approx-0{,}4926" />.
 
 Der Grenzwert ist also <InlineMath math="-\frac12" />.

@@ -2,6 +2,39 @@ Die beiden Funktionen prüfen zwei verschiedene Dinge: <InlineMath math="f" /> p
 
 Für <InlineMath math="x\ne3" /> ist <InlineMath math="f(x)=\frac{(x-3)(x+3)}{x-3}=x+3" />. Die Funktion <InlineMath math="g" /> hat für <InlineMath math="x>3" /> den Wert <InlineMath math="1" /> und für <InlineMath math="x<3" /> den Wert <InlineMath math="-1" />, weil <InlineMath math="|x-3|" /> entweder <InlineMath math="x-3" /> oder <InlineMath math="-(x-3)" /> ist.
 
+Zeichne <InlineMath math="g" /> zusammen mit dem Produkt <InlineMath math="(x-3)g(x)" />. **Der Graph von <InlineMath math="g" /> springt bei <InlineMath math="x=3" /> von <InlineMath math="-1" /> auf <InlineMath math="1" />, während das Produkt ein V ist, das auf null herunterkommt**.
+
+<MathVisual
+  title={<>Die Graphen von <InlineMath math="g" /> und <InlineMath math="(x-3)g(x)" /></>}
+  description={<>Die Funktion <InlineMath math="g" /> hat links der Geraden <InlineMath math="x=3" /> den Wert <InlineMath math="-1" /> und rechts davon <InlineMath math="1" />, also unterscheiden sich ihr links- und rechtsseitiger Grenzwert. Das Produkt <InlineMath math="(x-3)g(x)=|x-3|" /> ist ein V, dessen Spitze von beiden Seiten auf <InlineMath math="(3,\ 0)" /> zuläuft.</>}
+  labels={{
+    up: <InlineMath math="g=1" />,
+    down: <InlineMath math="g=-1" />,
+    vee: <InlineMath math="(x-3)\,g(x)=|x-3|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6 },
+      y: { min: -1.6, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "down", kind: "segment", appearance: "primary", from: { x: 0, y: -1 }, to: { x: 2.95, y: -1 } },
+      { id: "up", kind: "segment", appearance: "primary", from: { x: 3.05, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "vee-left", kind: "function", appearance: "answer", formula: "3 - x", domain: { min: 0, max: 3 } },
+      { id: "vee", kind: "function", appearance: "answer", formula: "x - 3", domain: { min: 3, max: 6 } },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 3, y: -1.5 }, to: { x: 3, y: 3.2 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 5.5, y: 1 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 0.5, y: -1 }, placement: "above" },
+      { key: "vee", objectId: "vee", at: { x: 5.5, y: 2.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="\lim_{x\to3}f(x)=6" /> ist richtig, denn in der Nähe von <InlineMath math="3" /> gilt <InlineMath math="f(x)=x+3\to6" />.
 2. Die Aussage, dass <InlineMath math="f" /> bei <InlineMath math="x=3" /> stetig ist, ist falsch. Der Grenzwert ist <InlineMath math="6" />, aber <InlineMath math="f(3)=2" />. Für Stetigkeit müssten beide übereinstimmen.
 3. Die Aussage <InlineMath math="\lim_{x\to3^+}g(x)=1" /> ist richtig, weil <InlineMath math="g" /> für <InlineMath math="x>3" /> konstant <InlineMath math="1" /> ist.

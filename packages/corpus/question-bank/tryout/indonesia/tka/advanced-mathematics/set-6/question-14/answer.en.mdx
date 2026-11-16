@@ -9,6 +9,35 @@ The radius is <InlineMath math="3" />, so <InlineMath math="r^2=9" />.
 
 <BlockMath math="5-c=9\ \Rightarrow\ c=-4" />
 
+Draw the circle with <InlineMath math="c=-4" />. **Its centre <InlineMath math="(-2,1)" /> doesn't depend on <InlineMath math="c" />, only the radius does**, and <InlineMath math="c=-4" /> gives a radius of exactly <InlineMath math="3" />.
+
+<MathVisual
+  title={<>The circle <InlineMath math="(x+2)^2+(y-1)^2=9" /></>}
+  description={<>The circle has centre <InlineMath math="(-2,1)" /> and radius <InlineMath math="3" />, which is <InlineMath math="r^2=5-c" /> with <InlineMath math="c=-4" />.</>}
+  labels={{
+    centre: <InlineMath math="(-2,1)" />,
+    r: <InlineMath math="r=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 2 },
+      y: { min: -3, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -2, y: 1 }, radius: 3 },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: -2, y: 1 }, to: { x: 1, y: 1 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: -2, y: 1 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: -2, y: 1 }, placement: "below" },
+      { key: "r", objectId: "r", at: { x: -0.5, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="x^2+y^2+4x-2y-4=0" /> becomes <InlineMath math="(x+2)^2+(y-1)^2=9" />, a circle with centre <InlineMath math="(-2,1)" /> and radius <InlineMath math="3" />.
 
 So <InlineMath math="c=-4" />.

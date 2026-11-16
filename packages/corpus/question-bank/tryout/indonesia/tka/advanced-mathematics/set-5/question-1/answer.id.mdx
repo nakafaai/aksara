@@ -6,6 +6,19 @@ Determinan hasil kali sama dengan hasil kali determinan, jadi setiap faktor bisa
 
 <BlockMath math="\det\left(2A^{-1}B^T\right)=2^2\cdot\frac{1}{\det A}\cdot\det B=4\cdot\frac13\cdot(-2)=-\frac83" />
 
+Diagram berikut memperlihatkan sumbangan setiap faktor. **Setiap bagian <InlineMath math="2A^{-1}B^T" /> mengalikan determinan dengan bilangannya sendiri**, lalu semuanya dikalikan berurutan.
+
+<Mermaid
+  title={<>Sumbangan setiap faktor pada determinan</>}
+  description={<>Faktor skalar <InlineMath math="2" /> mengalikan determinan dengan <InlineMath math="2^2=4" />. Invers <InlineMath math="A^{-1}" /> mengalikannya dengan <InlineMath math="\tfrac13" />, dan transpos <InlineMath math="B^T" /> mengalikannya dengan <InlineMath math="\det B=-2" />. Hasil akhirnya <InlineMath math="-\tfrac83" />.</>}
+  chart={`flowchart LR
+  K["skalar 2: × 2² = 4"] --> P1["4"]
+  I["A⁻¹: × 1/3"] --> P2["4 · 1/3 = 4/3"]
+  T["Bᵀ: × (-2)"] --> P3["4/3 · (-2) = -8/3"]
+  P1 --> P2
+  P2 --> P3`}
+/>
+
 Faktor <InlineMath math="2" /> dikuadratkan karena ia mengalikan kedua baris matriks.
 
 Jadi, <InlineMath math="\det\left(2A^{-1}B^T\right)=-\frac83" />.

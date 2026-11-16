@@ -23,6 +23,47 @@ K(10,40)&=120+400=520 \\
 K(0,40)&=400
 \end{aligned}" />
 
+Gambar daerah penyelesaiannya. **Ketiga batas memotong daerah itu menjadi segi lima**, dan keuntungan terbesar ada di pojok tempat batas penggorengan dan batas minyak bertemu.
+
+<MathVisual
+  title={<>Daerah penyelesaian penggorengan, minyak, dan kemasan</>}
+  description={<>Sumbu mendatar adalah kilogram keripik singkong, dan sumbu tegak adalah kilogram keripik pisang. Daerah yang diarsir berada di bawah garis <InlineMath math="x+y=50" />, garis <InlineMath math="2x+y=80" />, dan garis <InlineMath math="y=40" />, dengan titik pojok <InlineMath math="(0,\ 0)" />, <InlineMath math="(40,\ 0)" />, <InlineMath math="(30,\ 20)" />, <InlineMath math="(10,\ 40)" />, dan <InlineMath math="(0,\ 40)" />. Keuntungan terbesar ada di <InlineMath math="(30,\ 20)" />.</>}
+  labels={{
+    fryer: <InlineMath math="x+y=50" />,
+    oil: <InlineMath math="2x+y=80" />,
+    pack: <InlineMath math="y=40" />,
+    best: <InlineMath math="(30,\ 20)" />,
+    corner: <InlineMath math="(10,\ 40)" />,
+    side: <InlineMath math="(40,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 55 },
+      y: { min: 0, max: 82 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 30, y: 20 }, { x: 10, y: 40 }, { x: 0, y: 40 }] },
+      { id: "fryer", kind: "segment", appearance: "primary", from: { x: 0, y: 50 }, to: { x: 50, y: 0 } },
+      { id: "oil", kind: "segment", appearance: "secondary", from: { x: 0, y: 80 }, to: { x: 40, y: 0 } },
+      { id: "pack", kind: "segment", appearance: "reference", from: { x: 0, y: 40 }, to: { x: 55, y: 40 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 30, y: 20 } },
+      { id: "corner", kind: "point", appearance: "reference", at: { x: 10, y: 40 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+    ],
+    labels: [
+      { key: "fryer", objectId: "fryer", at: { x: 45, y: 5 }, placement: "above-right" },
+      { key: "oil", objectId: "oil", at: { x: 5, y: 70 }, placement: "right" },
+      { key: "pack", objectId: "pack", at: { x: 50, y: 40 }, placement: "above" },
+      { key: "best", objectId: "best", at: { x: 30, y: 20 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 10, y: 40 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 40, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Jadi, keuntungan maksimumnya <InlineMath math="\text{Rp}560{.}000{,}00" />, dengan memproduksi <InlineMath math="30" /> kg keripik singkong dan <InlineMath math="20" /> kg keripik pisang.
 
 - <InlineMath math="\text{Rp}520{.}000{,}00" /> adalah keuntungan di titik pojok <InlineMath math="(10,40)" />.

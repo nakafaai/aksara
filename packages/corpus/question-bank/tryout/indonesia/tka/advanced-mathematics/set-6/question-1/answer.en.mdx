@@ -5,6 +5,22 @@ A^{-1}&=\frac11\begin{pmatrix} 2 & -1 \\ -3 & 2 \end{pmatrix}=\begin{pmatrix} 2 
 A+A^{-1}&=\begin{pmatrix} 2+2 & 1-1 \\ 3-3 & 2+2 \end{pmatrix}=\begin{pmatrix} 4 & 0 \\ 0 & 4 \end{pmatrix}=4I
 \end{aligned}" />
 
+The diagram below adds <InlineMath math="A" /> and <InlineMath math="A^{-1}" /> entry by entry. **The off-diagonal entries cancel, and both diagonal entries are equal**, so the result is a multiple of <InlineMath math="I" />.
+
+<Mermaid
+  title={<>Adding <InlineMath math="A" /> and <InlineMath math="A^{-1}" /> entry by entry</>}
+  description={<>Both diagonal entries give <InlineMath math="2+2=4" />. The top-right entry gives <InlineMath math="1+(-1)=0" />, and the bottom-left entry gives <InlineMath math="3+(-3)=0" />. So <InlineMath math="A+A^{-1}=4I" />.</>}
+  chart={`flowchart TD
+  S["A + A⁻¹"] --> E11["entry (1,1): 2 + 2 = 4"]
+  S --> E12["entry (1,2): 1 + (-1) = 0"]
+  S --> E21["entry (2,1): 3 + (-3) = 0"]
+  S --> E22["entry (2,2): 2 + 2 = 4"]
+  E11 --> R["4I"]
+  E12 --> R
+  E21 --> R
+  E22 --> R`}
+/>
+
 The off-diagonal entries cancel and both diagonal entries are <InlineMath math="4" />, so the result really is a multiple of <InlineMath math="I" />. Check: <InlineMath math="AA^{-1}=\begin{pmatrix} 4-3 & -2+2 \\ 6-6 & -3+4 \end{pmatrix}=I" />.
 
 So <InlineMath math="k=4" />.

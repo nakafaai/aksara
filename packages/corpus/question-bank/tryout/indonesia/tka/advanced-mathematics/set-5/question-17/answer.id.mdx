@@ -5,6 +5,44 @@ Ubah persamaan ke bentuk baku agar pusat dan jari-jari **sebagai fungsi <InlineM
 (x-a)^2+(y-a)^2&=a^2
 \end{aligned}" />
 
+Gambar beberapa anggota keluarga <InlineMath math="L_a" />. **Setiap lingkaran berpusat di garis <InlineMath math="y=x" /> dan menyentuh kedua sumbu**, sedangkan titik asal selalu berada di luar lingkaran itu.
+
+<MathVisual
+  title={<>Beberapa lingkaran <InlineMath math="L_a" /></>}
+  description={<>Lingkaran <InlineMath math="L_1" /> berpusat di <InlineMath math="(1,1)" /> dengan jari-jari <InlineMath math="1" />, <InlineMath math="L_2" /> berpusat di <InlineMath math="(2,2)" /> dengan jari-jari <InlineMath math="2" />, dan <InlineMath math="L_{-1}" /> berpusat di <InlineMath math="(-1,-1)" /> dengan jari-jari <InlineMath math="1" />. Ketiganya menyinggung sumbu <InlineMath math="X" /> dan sumbu <InlineMath math="Y" />. Titik <InlineMath math="(2,0)" /> adalah titik singgung <InlineMath math="L_2" /> dengan sumbu <InlineMath math="X" />, dan titik asal tidak terletak pada <InlineMath math="L_1" />.</>}
+  labels={{
+    diagonal: <InlineMath math="y=x" />,
+    one: <InlineMath math="L_1" />,
+    two: <InlineMath math="L_2" />,
+    minus: <InlineMath math="L_{-1}" />,
+    touch: <InlineMath math="(2,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 5 },
+      y: { min: -3, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "diagonal", kind: "function", appearance: "construction", formula: "x", domain: { min: -3, max: 5 } },
+      { id: "one", kind: "circle", appearance: "secondary", center: { x: 1, y: 1 }, radius: 1 },
+      { id: "two", kind: "circle", appearance: "primary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "minus", kind: "circle", appearance: "reference", center: { x: -1, y: -1 }, radius: 1 },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "origin", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "diagonal", objectId: "diagonal", at: { x: 4.5, y: 4.5 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "minus", objectId: "minus", at: { x: -2, y: -1 }, placement: "left" },
+      { key: "touch", objectId: "touch", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Setiap lingkaran <InlineMath math="L_a" /> berpusat di <InlineMath math="(a,a)" /> dengan jari-jari <InlineMath math="|a|" />.
 
 1. Pernyataan bahwa <InlineMath math="L_a" /> hanya menyinggung sumbu <InlineMath math="X" /> salah. Jarak pusat <InlineMath math="(a,a)" /> ke sumbu <InlineMath math="X" /> adalah <InlineMath math="|a|" /> dan ke sumbu <InlineMath math="Y" /> juga <InlineMath math="|a|" />. Keduanya sama dengan jari-jari, jadi lingkaran menyinggung kedua sumbu.

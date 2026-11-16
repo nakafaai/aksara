@@ -13,6 +13,38 @@ Also ist <InlineMath math="f(x)=2x-3" />. Probe: <InlineMath math="f(f(x))=2(2x-
 
 <BlockMath math="2x-3=5\ \Rightarrow\ x=4" />
 
+Zeichne <InlineMath math="f" /> und <InlineMath math="f\circ f" />. **Die Gerade <InlineMath math="f\circ f" /> ist doppelt so steil wie <InlineMath math="f" />**, weil die Steigung <InlineMath math="2" /> zweimal angewendet wird. Die Waagerechte <InlineMath math="y=5" /> trifft <InlineMath math="f" /> bei <InlineMath math="x=4" />.
+
+<MathVisual
+  title={<>Die Geraden <InlineMath math="f" /> und <InlineMath math="f\circ f" /></>}
+  description={<>Die Gerade <InlineMath math="y=2x-3" /> ist <InlineMath math="f" />, die Gerade <InlineMath math="y=4x-9" /> ist <InlineMath math="f\circ f" />. Die waagerechte Hilfslinie von <InlineMath math="y=5" /> trifft die Gerade <InlineMath math="f" /> in <InlineMath math="(4,\ 5)" />, also gilt <InlineMath math="f^{-1}(5)=4" />.</>}
+  labels={{
+    f: <InlineMath math="y=2x-3" />,
+    ff: <InlineMath math="y=4x-9" />,
+    hit: <InlineMath math="(4,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6 },
+      y: { min: -4, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "f", kind: "function", appearance: "primary", formula: "2*x - 3", domain: { min: 0, max: 6 } },
+      { id: "ff", kind: "function", appearance: "secondary", formula: "4*x - 9", domain: { min: 1.5, max: 4.75 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 5 }, to: { x: 4, y: 5 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 4, y: 5 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5.5, y: 8 }, placement: "below-right" },
+      { key: "ff", objectId: "ff", at: { x: 4.5, y: 9 }, placement: "left" },
+      { key: "hit", objectId: "hit", at: { x: 4, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Also ist <InlineMath math="f^{-1}(5)=4" />.
 
 - <InlineMath math="7" /> ist <InlineMath math="f(5)" />, nicht <InlineMath math="f^{-1}(5)" />.

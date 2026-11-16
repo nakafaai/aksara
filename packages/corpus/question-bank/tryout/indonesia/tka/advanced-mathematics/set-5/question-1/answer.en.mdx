@@ -6,6 +6,19 @@ The determinant of a product is the product of the determinants, so each factor 
 
 <BlockMath math="\det\left(2A^{-1}B^T\right)=2^2\cdot\frac{1}{\det A}\cdot\det B=4\cdot\frac13\cdot(-2)=-\frac83" />
 
+The diagram below shows what each factor contributes. **Each part of <InlineMath math="2A^{-1}B^T" /> multiplies the determinant by its own number**, and then they're all multiplied in turn.
+
+<Mermaid
+  title={<>What each factor contributes to the determinant</>}
+  description={<>The scalar <InlineMath math="2" /> multiplies the determinant by <InlineMath math="2^2=4" />. The inverse <InlineMath math="A^{-1}" /> multiplies it by <InlineMath math="\tfrac13" />, and the transpose <InlineMath math="B^T" /> multiplies it by <InlineMath math="\det B=-2" />. The final result is <InlineMath math="-\tfrac83" />.</>}
+  chart={`flowchart LR
+  K["scalar 2: × 2² = 4"] --> P1["4"]
+  I["A⁻¹: × 1/3"] --> P2["4 · 1/3 = 4/3"]
+  T["Bᵀ: × (-2)"] --> P3["4/3 · (-2) = -8/3"]
+  P1 --> P2
+  P2 --> P3`}
+/>
+
 The factor <InlineMath math="2" /> is squared because it multiplies both rows of the matrix.
 
 So <InlineMath math="\det\left(2A^{-1}B^T\right)=-\frac83" />.

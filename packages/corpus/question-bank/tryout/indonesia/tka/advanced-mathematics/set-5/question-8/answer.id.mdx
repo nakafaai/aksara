@@ -6,6 +6,17 @@ x+3&=2x-4 \\
 x&=7
 \end{aligned}" />
 
+Diagram berikut memperlihatkan jalur <InlineMath math="g\circ f" /> untuk <InlineMath math="x=7" />. **Yang masuk ke <InlineMath math="g" /> adalah <InlineMath math="f(7)=13" />, bukan <InlineMath math="7" />**, jadi <InlineMath math="g^{-1}(2)" /> berhenti di <InlineMath math="13" />.
+
+<Mermaid
+  title={<>Jalur <InlineMath math="g\circ f" /> dan langkah balik <InlineMath math="g^{-1}" /></>}
+  description={<>Bilangan <InlineMath math="7" /> dibawa <InlineMath math="f" /> ke <InlineMath math="13" />, lalu <InlineMath math="g" /> membawa <InlineMath math="13" /> ke <InlineMath math="2" />. Panah putus-putus <InlineMath math="g^{-1}" /> hanya membatalkan langkah <InlineMath math="g" />, dari <InlineMath math="2" /> kembali ke <InlineMath math="13" />.</>}
+  chart={`flowchart LR
+  X["x = 7"] -->|"f"| U["f(7) = 13"]
+  U -->|"g"| G["g(13) = 2"]
+  G -.->|"g⁻¹"| U`}
+/>
+
 Artinya <InlineMath math="g\big(f(7)\big)=2" />. Masukan bagi <InlineMath math="g" /> adalah <InlineMath math="f(7)=2\cdot7-1=13" />, jadi <InlineMath math="g(13)=2" />, dan karena <InlineMath math="g" /> punya invers, <InlineMath math="g^{-1}(2)=13" />.
 
 Pemeriksaan dengan rumus lengkap: misalkan <InlineMath math="u=2x-1" />, maka <InlineMath math="x=\frac{u+1}{2}" /> dan <InlineMath math="g(u)=\frac{\frac{u+1}{2}+3}{\frac{u+1}{2}-2}=\frac{u+7}{u-3}" />. Memang <InlineMath math="g(13)=\frac{20}{10}=2" />.

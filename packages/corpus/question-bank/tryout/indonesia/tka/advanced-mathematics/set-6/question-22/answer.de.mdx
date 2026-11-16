@@ -8,6 +8,35 @@ Jetzt haben beide Faktoren klare Grenzwerte: <InlineMath math="\lim_{x\to0}\frac
 
 <BlockMath math="\lim_{x\to0}\frac{x\sin3x}{\sqrt{4+x^2}-2}=3\cdot4=12" />
 
+Zeichne die Funktion nach dem Erweitern mit dem konjugierten Term. **Für <InlineMath math="x\ne0" /> stimmt der Graph mit <InlineMath math="\frac{\sin3x}{x}\left(\sqrt{4+x^2}+2\right)" /> überein**, und beide Äste steigen nach <InlineMath math="(0,\ 12)" />.
+
+<MathVisual
+  title={<>Der Graph in der Nähe von <InlineMath math="x=0" /></>}
+  description={<>Die Kurve für <InlineMath math="x" /> zwischen <InlineMath math="-0{,}9" /> und <InlineMath math="0{,}9" /> im Bogenmaß, ohne <InlineMath math="x=0" />. Der Graph ist symmetrisch, und sein Hochpunkt läuft auf <InlineMath math="(0,\ 12)" /> zu.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{x\sin3x}{\sqrt{4+x^2}-2}" />,
+    target: <InlineMath math="(0,\ 12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 1 },
+      y: { min: 0, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "sin(3*x)*(sqrt(4 + x^2) + 2)/x", domain: { min: -0.9, max: -0.01 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "sin(3*x)*(sqrt(4 + x^2) + 2)/x", domain: { min: 0.01, max: 0.9 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 12 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 0.5, y: 2 * Math.sin(1.5) * (Math.sqrt(4.25) + 2) }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Bruch etwa <InlineMath math="11{,}998" />.
 
 Der Grenzwert ist also <InlineMath math="12" />.

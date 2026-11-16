@@ -1,5 +1,35 @@
 Beachte, dass **die zweite Zeile von <InlineMath math="M" /> das Doppelte der ersten ist**. Diese Beobachtung erklärt drei der vier Aussagen auf einmal.
 
+Sieh dir an, was <InlineMath math="M" /> mit dem Einheitsquadrat macht. **Seine beiden Spalten, <InlineMath math="(1,2)" /> und <InlineMath math="(2,4)" />, zeigen in dieselbe Richtung**, also wird das Quadrat zu einer Strecke mit Flächeninhalt null plattgedrückt, und eine solche Abbildung lässt sich nicht umkehren.
+
+<MathVisual
+  title={<>Das Einheitsquadrat unter <InlineMath math="M" /></>}
+  description={<><InlineMath math="M" /> bringt das Einheitsquadrat auf die Strecke von <InlineMath math="(0,0)" /> nach <InlineMath math="(3,6)" />, weil die Spalten <InlineMath math="(1,2)" /> und <InlineMath math="(2,4)" /> auf derselben Geraden <InlineMath math="y=2x" /> liegen. Das Bild hat den Flächeninhalt <InlineMath math="0" />, passend zu <InlineMath math="\det M=0" />.</>}
+  labels={{
+    square: <InlineMath math="\text{Fläche }1" />,
+    line: <InlineMath math="\text{Fläche }0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "line", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 6 } },
+      { id: "first", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "second", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 0.5 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 3, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="\det M=0" /> ist richtig: <InlineMath math="1\cdot4-2\cdot2=0" />. Zeilen, die Vielfache voneinander sind, ergeben immer die Determinante null.
 2. Die Aussage, dass <InlineMath math="M" /> symmetrisch ist, ist richtig. Beide Einträge außerhalb der Diagonale sind <InlineMath math="2" />, Transponieren ändert <InlineMath math="M" /> also nicht.
 3. Die Aussage, dass <InlineMath math="M" /> eine Inverse hat, ist falsch. Die Formel für die Inverse teilt durch <InlineMath math="\det M" />, und Division durch null ist nicht definiert.

@@ -2,6 +2,39 @@ These two functions test two different things: <InlineMath math="f" /> tests **t
 
 For <InlineMath math="x\ne3" />, <InlineMath math="f(x)=\frac{(x-3)(x+3)}{x-3}=x+3" />. The function <InlineMath math="g" /> equals <InlineMath math="1" /> when <InlineMath math="x>3" /> and <InlineMath math="-1" /> when <InlineMath math="x<3" />, because <InlineMath math="|x-3|" /> is either <InlineMath math="x-3" /> or <InlineMath math="-(x-3)" />.
 
+Draw <InlineMath math="g" /> with the product <InlineMath math="(x-3)g(x)" />. **The graph of <InlineMath math="g" /> jumps from <InlineMath math="-1" /> to <InlineMath math="1" /> at <InlineMath math="x=3" />, while the product is a V that comes down to zero**.
+
+<MathVisual
+  title={<>The graphs of <InlineMath math="g" /> and <InlineMath math="(x-3)g(x)" /></>}
+  description={<>The function <InlineMath math="g" /> equals <InlineMath math="-1" /> to the left of the line <InlineMath math="x=3" /> and <InlineMath math="1" /> to its right, so its left and right limits differ. The product <InlineMath math="(x-3)g(x)=|x-3|" /> is a V shape whose tip heads to <InlineMath math="(3,\ 0)" /> from both sides.</>}
+  labels={{
+    up: <InlineMath math="g=1" />,
+    down: <InlineMath math="g=-1" />,
+    vee: <InlineMath math="(x-3)\,g(x)=|x-3|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6 },
+      y: { min: -1.6, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "down", kind: "segment", appearance: "primary", from: { x: 0, y: -1 }, to: { x: 2.95, y: -1 } },
+      { id: "up", kind: "segment", appearance: "primary", from: { x: 3.05, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "vee-left", kind: "function", appearance: "answer", formula: "3 - x", domain: { min: 0, max: 3 } },
+      { id: "vee", kind: "function", appearance: "answer", formula: "x - 3", domain: { min: 3, max: 6 } },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 3, y: -1.5 }, to: { x: 3, y: 3.2 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 5.5, y: 1 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 0.5, y: -1 }, placement: "above" },
+      { key: "vee", objectId: "vee", at: { x: 5.5, y: 2.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. The statement <InlineMath math="\lim_{x\to3}f(x)=6" /> is true, because near <InlineMath math="3" /> we have <InlineMath math="f(x)=x+3\to6" />.
 2. The statement that <InlineMath math="f" /> is continuous at <InlineMath math="x=3" /> is false. The limit is <InlineMath math="6" />, but <InlineMath math="f(3)=2" />. Continuity needs the two to agree.
 3. The statement <InlineMath math="\lim_{x\to3^+}g(x)=1" /> is true, because <InlineMath math="g" /> stays <InlineMath math="1" /> for <InlineMath math="x>3" />.

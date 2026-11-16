@@ -6,6 +6,46 @@ y&=(x-2)^2-3 \\
 x-2&=\sqrt{y+3}
 \end{aligned}" />
 
+Draw <InlineMath math="f" /> on <InlineMath math="x\ge2" /> and its mirror image in <InlineMath math="y=x" />. **The vertex <InlineMath math="(2,\ -3)" /> mirrors to <InlineMath math="(-3,\ 2)" />**, so the graph of the inverse only starts at <InlineMath math="x=-3" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f" /> on <InlineMath math="x\ge2" /> and its inverse</>}
+  description={<>The curve <InlineMath math="f" /> is the right half of the parabola <InlineMath math="y=x^2-4x+1" />, starting at the vertex <InlineMath math="(2,\ -3)" />. The curve <InlineMath math="f^{-1}=2+\sqrt{x+3}" /> is its mirror image in <InlineMath math="y=x" />, starting at <InlineMath math="(-3,\ 2)" /> and passing through <InlineMath math="(6,\ 5)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inverse: <InlineMath math="f^{-1}" />,
+    mirror: <InlineMath math="y=x" />,
+    vertex: <InlineMath math="(2,\ -3)" />,
+    start: <InlineMath math="(-3,\ 2)" />,
+    six: <InlineMath math="(6,\ 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -4, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -4, max: 8 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 1", domain: { min: 2, max: 5.3 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "2 + sqrt(x + 3)", domain: { min: -3, max: 8 } },
+      { id: "vertex", kind: "point", appearance: "primary", at: { x: 2, y: -3 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: -3, y: 2 } },
+      { id: "six", kind: "point", appearance: "answer", at: { x: 6, y: 5 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5, y: 6 }, placement: "left" },
+      { key: "inverse", objectId: "inverse", at: { x: 7.5, y: 2 + Math.sqrt(10.5) }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 7.5, y: 7.5 }, placement: "right" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -3 }, placement: "right" },
+      { key: "start", objectId: "start", at: { x: -3, y: 2 }, placement: "above" },
+      { key: "six", objectId: "six", at: { x: 6, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 The positive root is the right one, because <InlineMath math="x\ge2" /> makes <InlineMath math="x-2\ge0" />. So <InlineMath math="f^{-1}(x)=2+\sqrt{x+3}" />, which needs <InlineMath math="x+3\ge0" />.
 
 1. The statement about the formula for <InlineMath math="f^{-1}" /> is true.

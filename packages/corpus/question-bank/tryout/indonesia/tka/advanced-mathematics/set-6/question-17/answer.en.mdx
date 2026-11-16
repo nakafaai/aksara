@@ -2,6 +2,45 @@ The circle has centre <InlineMath math="O(0,0)" /> and <InlineMath math="r=5" />
 
 <BlockMath math="|OP|^2=1^2+7^2=50" />
 
+Draw the circle, the point <InlineMath math="P" />, and both tangents. **Each tangent is perpendicular to the radius at its point of contact**, and the two tangent segments from <InlineMath math="P" /> are equal, both <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Two tangents from <InlineMath math="P(1,7)" /></>}
+  description={<>The circle has its centre at the origin and radius <InlineMath math="5" />, and <InlineMath math="P(1,7)" /> lies outside it. The tangents from <InlineMath math="P" /> touch the circle at <InlineMath math="(4,3)" /> and <InlineMath math="(-3,4)" />, each <InlineMath math="5" /> from <InlineMath math="P" />. The vertical line <InlineMath math="x=1" /> cuts the circle at two points, so it isn't a tangent.</>}
+  labels={{
+    p: <InlineMath math="P(1,7)" />,
+    right: <InlineMath math="(4,3)" />,
+    left: <InlineMath math="(-3,4)" />,
+    cut: <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 6.5 },
+      y: { min: -6, max: 8.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "tangent-right", kind: "segment", appearance: "primary", from: { x: 1, y: 7 }, to: { x: 4, y: 3 } },
+      { id: "tangent-left", kind: "segment", appearance: "primary", from: { x: 1, y: 7 }, to: { x: -3, y: 4 } },
+      { id: "radius-right", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "radius-left", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3, y: 4 } },
+      { id: "cut", kind: "segment", appearance: "warning", from: { x: 1, y: -6 }, to: { x: 1, y: 6 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 1, y: 7 } },
+      { id: "right", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "left", kind: "point", appearance: "answer", at: { x: -3, y: 4 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 7 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: -3, y: 4 }, placement: "left" },
+      { key: "cut", objectId: "cut", at: { x: 1, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. The statement about the tangent length is true. The radius to the point of tangency is perpendicular to the tangent, so the length is <InlineMath math="\sqrt{|OP|^2-r^2}=\sqrt{50-25}=5" />.
 2. The statement that <InlineMath math="P" /> lies inside the circle is false, because <InlineMath math="|OP|^2=50>25" />. Tangents from a point exist only when the point is outside.
 3. The statement that <InlineMath math="x=1" /> is a tangent is false. Its distance from the centre is <InlineMath math="1<5" />, so it cuts the circle in two points.

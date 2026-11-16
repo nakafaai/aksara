@@ -6,6 +6,39 @@ x^2+4x+4+y^2-10y+25-4&=0 \\
 x^2+y^2+4x-10y+25&=0
 \end{aligned}" />
 
+Gambar lingkaran yang menyentuh sumbu <InlineMath math="Y" />. **Jari-jari ke titik singgung tegak lurus sumbu <InlineMath math="Y" />**, jadi panjangnya sama dengan jarak pusat ke sumbu itu, yaitu <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Lingkaran berpusat <InlineMath math="(-2,5)" /> yang menyinggung sumbu <InlineMath math="Y" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="(-2,5)" /> dengan jari-jari <InlineMath math="2" /> menyentuh sumbu <InlineMath math="Y" /> tepat di <InlineMath math="(0,5)" />. Jari-jari dari pusat ke titik itu mendatar.</>}
+  labels={{
+    centre: <InlineMath math="(-2,5)" />,
+    touch: <InlineMath math="(0,5)" />,
+    r: <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 1.5 },
+      y: { min: 2, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 0, y: 8 } },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -2, y: 5 }, radius: 2 },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: -2, y: 5 }, to: { x: 0, y: 5 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: -2, y: 5 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: -2, y: 5 }, placement: "below" },
+      { key: "touch", objectId: "touch", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: -1, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan: substitusi <InlineMath math="x=0" /> memberi <InlineMath math="y^2-10y+25=(y-5)^2=0" />, yang hanya punya satu penyelesaian, <InlineMath math="y=5" />. Jadi lingkaran itu memang menyentuh sumbu <InlineMath math="Y" /> di satu titik, <InlineMath math="(0,5)" />.
 
 Jadi, persamaan lingkarannya <InlineMath math="x^2+y^2+4x-10y+25=0" />.

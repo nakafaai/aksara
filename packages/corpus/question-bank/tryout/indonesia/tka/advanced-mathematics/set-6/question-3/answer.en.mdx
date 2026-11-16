@@ -1,5 +1,35 @@
 Notice that **the second row of <InlineMath math="M" /> is twice the first row**. That observation explains three of the four statements at once.
 
+See what <InlineMath math="M" /> does to the unit square. **Its two columns, <InlineMath math="(1,2)" /> and <InlineMath math="(2,4)" />, point the same way**, so the square is flattened into a segment of area zero, and a transformation like this can't be undone.
+
+<MathVisual
+  title={<>The unit square under <InlineMath math="M" /></>}
+  description={<><InlineMath math="M" /> takes the unit square to the segment from <InlineMath math="(0,0)" /> to <InlineMath math="(3,6)" />, because the columns <InlineMath math="(1,2)" /> and <InlineMath math="(2,4)" /> lie on the same line, <InlineMath math="y=2x" />. The image has area <InlineMath math="0" />, matching <InlineMath math="\det M=0" />.</>}
+  labels={{
+    square: <InlineMath math="\text{area }1" />,
+    line: <InlineMath math="\text{area }0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "line", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 6 } },
+      { id: "first", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "second", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 0.5 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 3, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. The statement <InlineMath math="\det M=0" /> is true: <InlineMath math="1\cdot4-2\cdot2=0" />. Rows that are multiples of each other always give determinant zero.
 2. The statement that <InlineMath math="M" /> is symmetric is true. Both off-diagonal entries are <InlineMath math="2" />, so transposing does not change <InlineMath math="M" />.
 3. The statement that <InlineMath math="M" /> has an inverse is false. The inverse formula divides by <InlineMath math="\det M" />, and division by zero is undefined.

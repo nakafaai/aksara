@@ -21,6 +21,44 @@ G(10,20)&=300+400=700 \\
 G(0,25)&=500
 \end{aligned}" />
 
+Zeichne den zulässigen Bereich. **Die beiden Grenzgeraden schneiden ihn zu einem Viereck zu**, und der größte Gewinn liegt in der Ecke, an der Stoff und Nähstunden gleichzeitig aufgebraucht sind.
+
+<MathVisual
+  title={<>Zulässiger Bereich für Stoff und Nähstunden</>}
+  description={<>Die waagerechte Achse ist die Anzahl der Taschen, die senkrechte die Anzahl der Geldbörsen. Der schraffierte Bereich liegt unter den Geraden <InlineMath math="2x+y=40" /> und <InlineMath math="x+2y=50" />, mit den Ecken <InlineMath math="(0,\ 0)" />, <InlineMath math="(20,\ 0)" />, <InlineMath math="(10,\ 20)" /> und <InlineMath math="(0,\ 25)" />. Der größte Gewinn liegt bei <InlineMath math="(10,\ 20)" />.</>}
+  labels={{
+    cloth: <InlineMath math="2x+y=40" />,
+    sewing: <InlineMath math="x+2y=50" />,
+    best: <InlineMath math="(10,\ 20)" />,
+    side: <InlineMath math="(20,\ 0)" />,
+    top: <InlineMath math="(0,\ 25)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 52 },
+      y: { min: 0, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 0, y: 25 }] },
+      { id: "cloth", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 20, y: 0 } },
+      { id: "sewing", kind: "segment", appearance: "secondary", from: { x: 0, y: 25 }, to: { x: 50, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 10, y: 20 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 0, y: 25 } },
+    ],
+    labels: [
+      { key: "cloth", objectId: "cloth", at: { x: 3, y: 34 }, placement: "right" },
+      { key: "sewing", objectId: "sewing", at: { x: 40, y: 5 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 10, y: 20 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 20, y: 0 }, placement: "above-right" },
+      { key: "top", objectId: "top", at: { x: 0, y: 25 }, placement: "right" },
+    ],
+  }}
+/>
+
 Der größte Gewinn ist also <InlineMath math="\text{Rp}700{.}000{,}00" />, mit <InlineMath math="10" /> Taschen und <InlineMath math="20" /> Geldbörsen.
 
 - <InlineMath math="\text{Rp}600{.}000{,}00" /> ist der Gewinn bei <InlineMath math="(20,0)" />, nur Taschen.

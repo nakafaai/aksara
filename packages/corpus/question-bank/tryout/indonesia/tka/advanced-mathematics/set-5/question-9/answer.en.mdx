@@ -8,6 +8,40 @@ f_{\text{min}}&=1-2(1)=-1 \\
 \text{period}&=\frac{360^\circ}{3}=120^\circ
 \end{aligned}" />
 
+Draw <InlineMath math="f" /> over two periods. **The peaks are <InlineMath math="3" /> high, and two neighbouring peaks are <InlineMath math="120^\circ" /> apart**.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=1-2\sin3x" /></>}
+  description={<>The horizontal axis is <InlineMath math="x" /> in degrees from <InlineMath math="0^\circ" /> to <InlineMath math="240^\circ" />. The curve swings between <InlineMath math="-1" /> and <InlineMath math="3" />, with peaks at <InlineMath math="(90^\circ,\ 3)" /> and <InlineMath math="(210^\circ,\ 3)" />, one period of <InlineMath math="120^\circ" /> apart.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=1-2\sin3x" />,
+    first: <InlineMath math="(90^\circ,\ 3)" />,
+    second: <InlineMath math="(210^\circ,\ 3)" />,
+    period: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 240 },
+      y: { min: -1.5, max: 4.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1 - 2*sin(3*x*pi/180)", domain: { min: 0, max: 240 } },
+      { id: "period", kind: "segment", appearance: "construction", from: { x: 90, y: 3.6 }, to: { x: 210, y: 3.6 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 90, y: 3 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: 210, y: 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 30, y: -1 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 90, y: 3 }, placement: "below-left" },
+      { key: "second", objectId: "second", at: { x: 210, y: 3 }, placement: "below-right" },
+      { key: "period", objectId: "period", at: { x: 150, y: 3.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 Example: <InlineMath math="f(90^\circ)=1-2\sin270^\circ=1+2=3" />, and <InlineMath math="f(210^\circ)=1-2\sin630^\circ=3" /> too, exactly one period later.
 
 So the maximum of <InlineMath math="f" /> is <InlineMath math="3" /> and its period is <InlineMath math="120^\circ" />.

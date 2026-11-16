@@ -2,6 +2,38 @@ Titik <InlineMath math="(2,7)" /> pada grafik <InlineMath math="f" /> berarti <I
 
 Secara geometri, grafik <InlineMath math="f^{-1}" /> adalah pencerminan grafik <InlineMath math="f" /> terhadap garis <InlineMath math="y=x" />, dan pencerminan itu menukar kedua koordinat setiap titik.
 
+Gambar titik itu dan cerminnya. **Pencerminan terhadap <InlineMath math="y=x" /> menukar kedua koordinat**, jadi titik <InlineMath math="(2,7)" /> pada <InlineMath math="f" /> pindah ke <InlineMath math="(7,2)" /> pada <InlineMath math="f^{-1}" />.
+
+<MathVisual
+  title={<>Titik pada <InlineMath math="f" /> dan cerminnya pada <InlineMath math="f^{-1}" /></>}
+  description={<>Titik <InlineMath math="(2,7)" /> dan <InlineMath math="(7,2)" /> terletak di kedua sisi garis <InlineMath math="y=x" />. Ruas yang menghubungkan keduanya tegak lurus garis itu, dan titik tengahnya <InlineMath math="(4{,}5;\ 4{,}5)" /> terletak pada garis itu.</>}
+  labels={{
+    mirror: <InlineMath math="y=x" />,
+    on: <InlineMath math="(2,7)\text{ pada }f" />,
+    image: <InlineMath math="(7,2)\text{ pada }f^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 9 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: 0, max: 9 } },
+      { id: "join", kind: "segment", appearance: "reference", from: { x: 2, y: 7 }, to: { x: 7, y: 2 } },
+      { id: "on", kind: "point", appearance: "primary", at: { x: 2, y: 7 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 7, y: 2 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 8.5, y: 8.5 }, placement: "below-right" },
+      { key: "on", objectId: "on", at: { x: 2, y: 7 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 7, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Jadi, titik yang pasti terletak pada grafik <InlineMath math="f^{-1}" /> adalah <InlineMath math="(7,2)" />.
 
 - <InlineMath math="(-2,7)" /> adalah pencerminan terhadap sumbu <InlineMath math="Y" />, bukan terhadap <InlineMath math="y=x" />.

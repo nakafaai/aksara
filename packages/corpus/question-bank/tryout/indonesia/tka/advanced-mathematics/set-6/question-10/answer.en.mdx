@@ -11,6 +11,43 @@ In a composition, **the function written on the right acts first**: <InlineMath 
 x-2=1\ \text{or}\ x-2=-1&\ \Rightarrow\ x=3\ \text{or}\ x=1
 \end{aligned}" />
 
+Draw both compositions. **Their graphs differ, so composition isn't commutative**, and <InlineMath math="g\circ f" /> crosses the <InlineMath math="x" />-axis at exactly two points.
+
+<MathVisual
+  title={<>The graphs of <InlineMath math="g\circ f" /> and <InlineMath math="f\circ g" /></>}
+  description={<>The curve <InlineMath math="g\circ f" /> is <InlineMath math="y=|x-2|^2-1=(x-2)^2-1" />, which crosses the <InlineMath math="x" />-axis at <InlineMath math="(1,\ 0)" /> and <InlineMath math="(3,\ 0)" />. The curve <InlineMath math="f\circ g" /> is <InlineMath math="y=|x^2-3|" />, which equals <InlineMath math="2" /> at <InlineMath math="x=1" />, not <InlineMath math="0" />.</>}
+  labels={{
+    gf: <InlineMath math="g\circ f" />,
+    fg: <InlineMath math="f\circ g" />,
+    one: <InlineMath math="(1,\ 0)" />,
+    three: <InlineMath math="(3,\ 0)" />,
+    gap: <InlineMath math="(1,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -2, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "gf", kind: "function", appearance: "primary", formula: "(x - 2)^2 - 1", domain: { min: -0.6, max: 4.6 } },
+      { id: "fg", kind: "function", appearance: "secondary", formula: "sqrt((x^2 - 3)^2)", domain: { min: -1, max: 3.1 } },
+      { id: "one", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "three", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "gap", kind: "point", appearance: "warning", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "gf", objectId: "gf", at: { x: 4.5, y: 5.25 }, placement: "left" },
+      { key: "fg", objectId: "fg", at: { x: 3, y: 6 }, placement: "left" },
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "three", objectId: "three", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "gap", objectId: "gap", at: { x: 1, y: 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 The case <InlineMath math="|x-2|=-1" /> is impossible, because an absolute value is never negative. So there are exactly two solutions.
 
 So the statements about <InlineMath math="(g\circ f)(5)" /> and the two solutions are true, and the statements about <InlineMath math="(f\circ g)(1)" /> and the equality of the compositions are false.

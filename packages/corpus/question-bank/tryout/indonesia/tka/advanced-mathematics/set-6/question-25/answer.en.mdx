@@ -2,6 +2,37 @@ To see how <InlineMath math="h" /> behaves near <InlineMath math="0" />, **remov
 
 <BlockMath math="h(x)=\frac{(x+4)-4}{x\left(\sqrt{x+4}+2\right)}=\frac{1}{\sqrt{x+4}+2},\qquad x\ne0" />
 
+Draw <InlineMath math="h" /> after simplifying. **Its graph is a curve falling slowly towards <InlineMath math="0" />, with one hole at <InlineMath math="x=0" />**, and its left end at <InlineMath math="\left(-4,\ \tfrac12\right)" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="h" /> with a hole at <InlineMath math="x=0" /></>}
+  description={<>The curve <InlineMath math="y=\frac{1}{\sqrt{x+4}+2}" /> for <InlineMath math="-4\le x\le12" />. It starts at <InlineMath math="\left(-4,\ \tfrac12\right)" />, falls slowly, and gets closer and closer to the <InlineMath math="x" />-axis. The point <InlineMath math="\left(0,\ \tfrac14\right)" /> is marked as a hole, because <InlineMath math="h(0)" /> isn't defined even though the limit is <InlineMath math="\tfrac14" />.</>}
+  labels={{
+    curve: <InlineMath math="y=h(x)" />,
+    hole: <InlineMath math="\left(0,\ \tfrac14\right)" />,
+    start: <InlineMath math="\left(-4,\ \tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 12 },
+      y: { min: 0, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1/(sqrt(x + 4) + 2)", domain: { min: -4, max: 12 } },
+      { id: "hole", kind: "point", appearance: "warning", at: { x: 0, y: 0.25 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: -4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10, y: 1 / (Math.sqrt(14) + 2) }, placement: "above" },
+      { key: "hole", objectId: "hole", at: { x: 0, y: 0.25 }, placement: "above-right" },
+      { key: "start", objectId: "start", at: { x: -4, y: 0.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. The statement <InlineMath math="\lim_{x\to0}h(x)=\frac14" /> is true: <InlineMath math="\frac{1}{\sqrt4+2}=\frac14" />.
 2. The statement <InlineMath math="h(0)=\frac14" /> is false. <InlineMath math="h(0)" /> is undefined, because <InlineMath math="x=0" /> is not in the domain. The limit exists, but the function value does not.
 3. The statement <InlineMath math="\lim_{x\to\infty}h(x)=1" /> is false. The denominator <InlineMath math="\sqrt{x+4}+2" /> grows without bound, so <InlineMath math="h(x)\to0" />.

@@ -8,6 +8,40 @@ f_{\text{min}}&=1-2(1)=-1 \\
 \text{periode}&=\frac{360^\circ}{3}=120^\circ
 \end{aligned}" />
 
+Gambar <InlineMath math="f" /> untuk dua periode. **Puncaknya setinggi <InlineMath math="3" />, dan dua puncak berurutan berjarak <InlineMath math="120^\circ" />**.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=1-2\sin3x" /></>}
+  description={<>Sumbu mendatar adalah <InlineMath math="x" /> dalam derajat dari <InlineMath math="0^\circ" /> sampai <InlineMath math="240^\circ" />. Kurva berayun antara <InlineMath math="-1" /> dan <InlineMath math="3" />, dengan puncak di <InlineMath math="(90^\circ,\ 3)" /> dan <InlineMath math="(210^\circ,\ 3)" />, berjarak satu periode <InlineMath math="120^\circ" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x)=1-2\sin3x" />,
+    first: <InlineMath math="(90^\circ,\ 3)" />,
+    second: <InlineMath math="(210^\circ,\ 3)" />,
+    period: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 240 },
+      y: { min: -1.5, max: 4.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1 - 2*sin(3*x*pi/180)", domain: { min: 0, max: 240 } },
+      { id: "period", kind: "segment", appearance: "construction", from: { x: 90, y: 3.6 }, to: { x: 210, y: 3.6 } },
+      { id: "first", kind: "point", appearance: "answer", at: { x: 90, y: 3 } },
+      { id: "second", kind: "point", appearance: "answer", at: { x: 210, y: 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 30, y: -1 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 90, y: 3 }, placement: "below-left" },
+      { key: "second", objectId: "second", at: { x: 210, y: 3 }, placement: "below-right" },
+      { key: "period", objectId: "period", at: { x: 150, y: 3.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 Contoh: <InlineMath math="f(90^\circ)=1-2\sin270^\circ=1+2=3" />, dan <InlineMath math="f(210^\circ)=1-2\sin630^\circ=3" /> juga, tepat satu periode kemudian.
 
 Jadi, nilai maksimum <InlineMath math="f" /> adalah <InlineMath math="3" /> dan periodenya <InlineMath math="120^\circ" />.

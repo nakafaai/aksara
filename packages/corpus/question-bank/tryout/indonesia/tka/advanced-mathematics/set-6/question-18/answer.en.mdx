@@ -2,6 +2,38 @@ A dilation with factor <InlineMath math="k" /> multiplies every length by <Inlin
 
 <BlockMath math="A'=k^2\cdot A=(-3)^2\cdot6=9\cdot6=54" />
 
+Draw one example triangle of area <InlineMath math="6" /> and its image. **Every side becomes <InlineMath math="3" /> times longer in both directions**, so the area becomes <InlineMath math="9" /> times larger, and the minus sign only flips it to the other side of <InlineMath math="O" />.
+
+<MathVisual
+  title={<>A triangle and its image under the dilation <InlineMath math="[O,-3]" /></>}
+  description={<>The example triangle has vertices <InlineMath math="(1,0)" />, <InlineMath math="(4,0)" />, and <InlineMath math="(1,4)" />, with area <InlineMath math="6" />. Its image has vertices <InlineMath math="(-3,0)" />, <InlineMath math="(-12,0)" />, and <InlineMath math="(-3,-12)" />, on the other side of <InlineMath math="O" />, with base <InlineMath math="9" /> and height <InlineMath math="12" />, so its area is <InlineMath math="54" />.</>}
+  labels={{
+    start: <InlineMath math="L=6" />,
+    image: <InlineMath math="L'=54" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 5 },
+      y: { min: -13, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 4, y: 0 }, { x: 1, y: 4 }] },
+      { id: "image", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: -12, y: 0 }, { x: -3, y: -12 }] },
+      { id: "ray", kind: "segment", appearance: "construction", from: { x: 1, y: 4 }, to: { x: -3, y: -12 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 2, y: 1.3 }, placement: "center" },
+      { key: "image", objectId: "image", at: { x: -6, y: -4 }, placement: "center" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 The negative sign of the factor only puts the image on the other side of the centre, turned around. The area stays positive. In matrix form the dilation is <InlineMath math="\begin{pmatrix} -3 & 0 \\ 0 & -3 \end{pmatrix}" /> with determinant <InlineMath math="9" />, and areas are multiplied by the absolute value of the determinant.
 
 So the image triangle has area <InlineMath math="54" /> square units.

@@ -5,6 +5,37 @@ Vektor yang searah <InlineMath math="\vec{a}" /> dengan panjang tertentu dibuat 
 \vec{c}&=12\cdot\frac{\vec{a}}{|\vec{a}|}=\frac{12}{3}\left(2\vec{i}-\vec{j}+2\vec{k}\right)=8\vec{i}-4\vec{j}+8\vec{k}
 \end{aligned}" />
 
+Bandingkan panjang ketiga vektor yang searah. **Vektor satuan berpanjang <InlineMath math="1" />, <InlineMath math="\vec a" /> berpanjang <InlineMath math="3" />, dan <InlineMath math="\vec c" /> harus berpanjang <InlineMath math="12" />**, jadi <InlineMath math="\vec c" /> adalah <InlineMath math="4" /> kali <InlineMath math="\vec a" />.
+
+<MathVisual
+  title={<>Tiga vektor searah dengan panjang berbeda</>}
+  description={<>Ketiga panah menunjuk ke arah yang sama, yaitu arah <InlineMath math="\vec a" />. Panjangnya <InlineMath math="1" />, <InlineMath math="3" />, dan <InlineMath math="12" />, sehingga <InlineMath math="\vec c=12\cdot\tfrac{\vec a}{3}=4\vec a" />.</>}
+  labels={{
+    unit: <InlineMath math="\frac{\vec a}{|\vec a|}:\ 1" />,
+    a: <InlineMath math="\vec a:\ 3" />,
+    c: <InlineMath math="\vec c=4\vec a:\ 12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 13 },
+      y: { min: -0.5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "vector", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 1, y: 2.4 } },
+      { id: "a", kind: "vector", appearance: "secondary", from: { x: 0, y: 1.4 }, to: { x: 3, y: 1.4 } },
+      { id: "c", kind: "vector", appearance: "answer", from: { x: 0, y: 0.4 }, to: { x: 12, y: 0.4 } },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: 1, y: 2.4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 3, y: 1.4 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 6, y: 0.4 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan: <InlineMath math="|\vec{c}|=\sqrt{64+16+64}=\sqrt{144}=12" />, dan <InlineMath math="\vec{c}=4\vec{a}" /> dengan pengali positif, jadi arahnya sama.
 
 Jadi, <InlineMath math="\vec{c}=8\vec{i}-4\vec{j}+8\vec{k}" />.

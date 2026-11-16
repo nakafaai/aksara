@@ -13,6 +13,43 @@ So <InlineMath math="P(x)=3x^2-x+3" />, and the remainder on division by <Inline
 
 <BlockMath math="P(-1)=3+1+3=7" />
 
+Draw <InlineMath math="P" /> with its values at whole numbers. **The height difference between neighbouring points is <InlineMath math="6x+2" />**: from <InlineMath math="x=0" /> to <InlineMath math="1" /> it rises <InlineMath math="2" />, from <InlineMath math="1" /> to <InlineMath math="2" /> it rises <InlineMath math="8" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="P(x)=3x^2-x+3" /></>}
+  description={<>The curve passes through <InlineMath math="(-1,\ 7)" />, <InlineMath math="(0,\ 3)" />, <InlineMath math="(1,\ 5)" />, and <InlineMath math="(2,\ 13)" />. The point <InlineMath math="(2,\ 13)" /> matches the remainder on division by <InlineMath math="x-2" />, and the graph's height at <InlineMath math="x=-1" /> is the remainder on division by <InlineMath math="x+1" />.</>}
+  labels={{
+    curve: <InlineMath math="P(x)=3x^2-x+3" />,
+    minus: <InlineMath math="(-1,\ 7)" />,
+    zero: <InlineMath math="(0,\ 3)" />,
+    one: <InlineMath math="(1,\ 5)" />,
+    two: <InlineMath math="(2,\ 13)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 2.5 },
+      y: { min: 0, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "3*x^2 - x + 3", domain: { min: -1.4, max: 2.3 } },
+      { id: "minus", kind: "point", appearance: "answer", at: { x: -1, y: 7 } },
+      { id: "zero", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: 5 } },
+      { id: "two", kind: "point", appearance: "secondary", at: { x: 2, y: 13 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.2, y: 3 * 4.84 - 2.2 + 3 }, placement: "left" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: 7 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 3 }, placement: "below" },
+      { key: "one", objectId: "one", at: { x: 1, y: 5 }, placement: "below-right" },
+      { key: "two", objectId: "two", at: { x: 2, y: 13 }, placement: "right" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="P(0)=3" />, <InlineMath math="P(1)=5" />, and <InlineMath math="P(1)-P(0)=2" />, which equals <InlineMath math="6\cdot0+2" />. Then <InlineMath math="P(2)=13" /> and <InlineMath math="P(2)-P(1)=8=6\cdot1+2" />.
 
 So the remainder is <InlineMath math="7" />.

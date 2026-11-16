@@ -2,6 +2,39 @@ Dua fungsi ini menguji dua hal yang berbeda: <InlineMath math="f" /> menguji **p
 
 Untuk <InlineMath math="x\ne3" />, <InlineMath math="f(x)=\frac{(x-3)(x+3)}{x-3}=x+3" />. Fungsi <InlineMath math="g" /> bernilai <InlineMath math="1" /> jika <InlineMath math="x>3" /> dan <InlineMath math="-1" /> jika <InlineMath math="x<3" />, karena <InlineMath math="|x-3|" /> sama dengan <InlineMath math="x-3" /> atau <InlineMath math="-(x-3)" />.
 
+Gambar <InlineMath math="g" /> bersama hasil kali <InlineMath math="(x-3)g(x)" />. **Grafik <InlineMath math="g" /> melompat dari <InlineMath math="-1" /> ke <InlineMath math="1" /> di <InlineMath math="x=3" />, sedangkan hasil kalinya berbentuk V yang menyentuh nol**.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="g" /> dan <InlineMath math="(x-3)g(x)" /></>}
+  description={<>Fungsi <InlineMath math="g" /> bernilai <InlineMath math="-1" /> di kiri garis <InlineMath math="x=3" /> dan <InlineMath math="1" /> di kanannya, jadi limit kiri dan kanannya berbeda. Hasil kali <InlineMath math="(x-3)g(x)=|x-3|" /> berbentuk huruf V yang ujungnya menuju <InlineMath math="(3,\ 0)" /> dari kedua sisi.</>}
+  labels={{
+    up: <InlineMath math="g=1" />,
+    down: <InlineMath math="g=-1" />,
+    vee: <InlineMath math="(x-3)\,g(x)=|x-3|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6 },
+      y: { min: -1.6, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "down", kind: "segment", appearance: "primary", from: { x: 0, y: -1 }, to: { x: 2.95, y: -1 } },
+      { id: "up", kind: "segment", appearance: "primary", from: { x: 3.05, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "vee-left", kind: "function", appearance: "answer", formula: "3 - x", domain: { min: 0, max: 3 } },
+      { id: "vee", kind: "function", appearance: "answer", formula: "x - 3", domain: { min: 3, max: 6 } },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 3, y: -1.5 }, to: { x: 3, y: 3.2 } },
+    ],
+    labels: [
+      { key: "up", objectId: "up", at: { x: 5.5, y: 1 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 0.5, y: -1 }, placement: "above" },
+      { key: "vee", objectId: "vee", at: { x: 5.5, y: 2.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. Pernyataan <InlineMath math="\lim_{x\to3}f(x)=6" /> benar, karena di sekitar <InlineMath math="3" /> berlaku <InlineMath math="f(x)=x+3\to6" />.
 2. Pernyataan bahwa <InlineMath math="f" /> kontinu di <InlineMath math="x=3" /> salah. Limitnya <InlineMath math="6" />, tetapi <InlineMath math="f(3)=2" />. Kekontinuan menuntut keduanya sama.
 3. Pernyataan <InlineMath math="\lim_{x\to3^+}g(x)=1" /> benar, karena untuk <InlineMath math="x>3" /> nilai <InlineMath math="g" /> tetap <InlineMath math="1" />.

@@ -9,6 +9,41 @@ Zieh die zweite Gleichung von der ersten ab. Die Terme <InlineMath math="|\vec{p
 
 <BlockMath math="4\,\vec{p}\cdot\vec{q}=49-9=40\ \Rightarrow\ \vec{p}\cdot\vec{q}=10" />
 
+Zeichne das Parallelogramm aus <InlineMath math="\vec p" /> und <InlineMath math="\vec q" />. **Seine beiden Diagonalen sind <InlineMath math="\vec p+\vec q" /> und <InlineMath math="\vec p-\vec q" />**, und die Differenz ihrer Längenquadrate ist <InlineMath math="4\,\vec p\cdot\vec q" />.
+
+<MathVisual
+  title={<>Das Parallelogramm und seine beiden Diagonalen</>}
+  description={<>Ein passendes Beispiel: <InlineMath math="\vec p=(2\sqrt5,0)" /> und <InlineMath math="\vec q=(\sqrt5,2)" />. Die lange Diagonale vom Anfang zur gegenüberliegenden Ecke ist <InlineMath math="\vec p+\vec q" /> mit Länge <InlineMath math="7" />, die kurze Diagonale von der Spitze von <InlineMath math="\vec q" /> zur Spitze von <InlineMath math="\vec p" /> ist <InlineMath math="\vec p-\vec q" /> mit Länge <InlineMath math="3" />.</>}
+  labels={{
+    p: <InlineMath math="\vec p" />,
+    q: <InlineMath math="\vec q" />,
+    sum: <InlineMath math="|\vec p+\vec q|=7" />,
+    diff: <InlineMath math="|\vec p-\vec q|=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7.5 },
+      y: { min: -0.5, max: 2.8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "shape", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 3 * Math.sqrt(5), y: 2 }, { x: Math.sqrt(5), y: 2 }] },
+      { id: "p", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(5), y: 0 } },
+      { id: "q", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(5), y: 2 } },
+      { id: "sum", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(5), y: 2 } },
+      { id: "diff", kind: "segment", appearance: "answer", from: { x: Math.sqrt(5), y: 2 }, to: { x: 2 * Math.sqrt(5), y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "q", objectId: "q", at: { x: Math.sqrt(5) / 2, y: 1 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 3 * Math.sqrt(5), y: 2 }, placement: "above-left" },
+      { key: "diff", objectId: "diff", at: { x: 1.5 * Math.sqrt(5), y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Ein passendes Beispiel: <InlineMath math="\vec{p}=(5,0)" /> und <InlineMath math="\vec{q}=(2,0)" /> ergeben <InlineMath math="|\vec{p}+\vec{q}|=7" />, <InlineMath math="|\vec{p}-\vec{q}|=3" /> und <InlineMath math="\vec{p}\cdot\vec{q}=10" />.
 
 Also ist <InlineMath math="\vec{p}\cdot\vec{q}=10" />.

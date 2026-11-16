@@ -10,6 +10,40 @@ Sekarang pembilang dan penyebut sama-sama berderajat dua. Bagi setiap suku denga
 
 <BlockMath math="\lim_{x\to\infty}\frac{6x^2+2}{3x^2+1}=\lim_{x\to\infty}\frac{6+\frac{2}{x^2}}{3+\frac{1}{x^2}}=\frac63=2" />
 
+Gambar pembilang yang sudah dijabarkan bersama penyebutnya. **Kurva pembilang selalu tepat dua kali tinggi kurva penyebut**, jadi hasil baginya bernilai <InlineMath math="2" /> di setiap <InlineMath math="x" />, termasuk untuk <InlineMath math="x" /> yang sangat besar.
+
+<MathVisual
+  title={<>Pembilang <InlineMath math="6x^2+2" /> dan penyebut <InlineMath math="3x^2+1" /></>}
+  description={<>Kedua parabola punya bentuk yang sama, tetapi tinggi pembilang selalu dua kali tinggi penyebut. Contohnya di <InlineMath math="x=1" />, tingginya <InlineMath math="8" /> dan <InlineMath math="4" />, dan di <InlineMath math="x=0" />, tingginya <InlineMath math="2" /> dan <InlineMath math="1" />.</>}
+  labels={{
+    top: <InlineMath math="6x^2+2" />,
+    bottom: <InlineMath math="3x^2+1" />,
+    "top-one": <InlineMath math="(1,\ 8)" />,
+    "bottom-one": <InlineMath math="(1,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 2 },
+      y: { min: 0, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top", kind: "function", appearance: "primary", formula: "6*x^2 + 2", domain: { min: -2, max: 2 } },
+      { id: "bottom", kind: "function", appearance: "secondary", formula: "3*x^2 + 1", domain: { min: -2, max: 2 } },
+      { id: "top-one", kind: "point", appearance: "answer", at: { x: 1, y: 8 } },
+      { id: "bottom-one", kind: "point", appearance: "answer", at: { x: 1, y: 4 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 2, y: 26 }, placement: "left" },
+      { key: "bottom", objectId: "bottom", at: { x: 2, y: 13 }, placement: "left" },
+      { key: "top-one", objectId: "top-one", at: { x: 1, y: 8 }, placement: "left" },
+      { key: "bottom-one", objectId: "bottom-one", at: { x: 1, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 Bahkan <InlineMath math="\frac{6x^2+2}{3x^2+1}=2" /> untuk setiap <InlineMath math="x" />, karena pembilangnya tepat dua kali penyebut.
 
 Jadi, nilai limit tersebut adalah <InlineMath math="2" />.

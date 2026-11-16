@@ -9,6 +9,38 @@ The angle between two vectors lies between <InlineMath math="0^\circ" /> and <In
 
 <BlockMath math="A=|\vec{a}||\vec{b}|\sin\theta=3\cdot3\cdot\frac{\sqrt{65}}{9}=\sqrt{65}" />
 
+Draw the parallelogram in the plane that holds <InlineMath math="\vec a" /> and <InlineMath math="\vec b" />. **Its base is <InlineMath math="|\vec a|=3" />, and its height is the part of <InlineMath math="\vec b" /> perpendicular to the base**, which is <InlineMath math="3\sin\theta" />.
+
+<MathVisual
+  title={<>Parallelogram <InlineMath math="OPRQ" /> and its height</>}
+  description={<>The side <InlineMath math="\vec a" /> of length <InlineMath math="3" /> is drawn horizontally, and the side <InlineMath math="\vec b" /> of length <InlineMath math="3" /> makes an angle <InlineMath math="\theta" /> with <InlineMath math="\cos\theta=\tfrac49" />. The parallelogram's height is <InlineMath math="\tfrac{\sqrt{65}}{3}" />, so its area is <InlineMath math="3\cdot\tfrac{\sqrt{65}}{3}=\sqrt{65}" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    height: <InlineMath math="3\sin\theta=\tfrac{\sqrt{65}}{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 4.8 },
+      y: { min: -0.5, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "shape", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3 + 4 / 3, y: Math.sqrt(65) / 3 }, { x: 4 / 3, y: Math.sqrt(65) / 3 }] },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4 / 3, y: Math.sqrt(65) / 3 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 4 / 3, y: Math.sqrt(65) / 3 }, to: { x: 4 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 2 / 3, y: Math.sqrt(65) / 6 }, placement: "left" },
+      { key: "height", objectId: "height", at: { x: 4 / 3, y: Math.sqrt(65) / 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 The same result without the angle: <InlineMath math="A=\sqrt{|\vec{a}|^2|\vec{b}|^2-(\vec{a}\cdot\vec{b})^2}=\sqrt{81-16}=\sqrt{65}" />.
 
 So the area of <InlineMath math="OPRQ" /> is <InlineMath math="\sqrt{65}" /> square units.

@@ -8,6 +8,35 @@ Sekarang kedua faktor punya limit yang jelas: <InlineMath math="\lim_{x\to0}\fra
 
 <BlockMath math="\lim_{x\to0}\frac{x\sin3x}{\sqrt{4+x^2}-2}=3\cdot4=12" />
 
+Gambar fungsi itu setelah dikalikan bentuk sekawan. **Untuk <InlineMath math="x\ne0" />, grafiknya sama dengan <InlineMath math="\frac{\sin3x}{x}\left(\sqrt{4+x^2}+2\right)" />**, dan kedua cabangnya naik ke <InlineMath math="(0,\ 12)" />.
+
+<MathVisual
+  title={<>Grafik di sekitar <InlineMath math="x=0" /></>}
+  description={<>Kurva untuk <InlineMath math="x" /> antara <InlineMath math="-0{,}9" /> dan <InlineMath math="0{,}9" /> radian, tanpa <InlineMath math="x=0" />. Grafiknya simetris dan puncaknya menuju <InlineMath math="(0,\ 12)" />.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{x\sin3x}{\sqrt{4+x^2}-2}" />,
+    target: <InlineMath math="(0,\ 12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 1 },
+      y: { min: 0, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "sin(3*x)*(sqrt(4 + x^2) + 2)/x", domain: { min: -0.9, max: -0.01 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "sin(3*x)*(sqrt(4 + x^2) + 2)/x", domain: { min: 0.01, max: 0.9 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 12 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 0.5, y: 2 * Math.sin(1.5) * (Math.sqrt(4.25) + 2) }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilai pecahan itu sekitar <InlineMath math="11{,}998" />.
 
 Jadi, nilai limitnya <InlineMath math="12" />.

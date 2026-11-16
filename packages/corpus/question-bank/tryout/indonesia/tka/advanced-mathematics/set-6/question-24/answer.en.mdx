@@ -4,6 +4,35 @@ Use the identity <InlineMath math="1-\cos x=2\sin^2\frac x2" /> so that the basi
 
 <BlockMath math="\lim_{x\to0}\frac{1-\cos x}{x^2}=\lim_{x\to0}\frac{2\sin^2\frac x2}{x^2}=2\left(\lim_{x\to0}\frac{\sin\frac x2}{x}\right)^2=2\cdot\left(\frac12\right)^2=\frac12" />
 
+Draw the <InlineMath math="x\ne0" /> part of <InlineMath math="f" />. **Both branches rise to height <InlineMath math="\tfrac12" /> at <InlineMath math="x=0" />**, so the point that fills the hole is <InlineMath math="\left(0,\ \tfrac12\right)" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="\frac{1-\cos x}{x^2}" /> and the point that makes <InlineMath math="f" /> continuous</>}
+  description={<>The curve for <InlineMath math="x" /> between <InlineMath math="-3" /> and <InlineMath math="3" /> radians, without <InlineMath math="x=0" />. It is symmetric and its peak heads to <InlineMath math="\left(0,\ \tfrac12\right)" />. Choosing <InlineMath math="k=\tfrac12" /> fills that point.</>}
+  labels={{
+    left: <InlineMath math="y=\frac{1-\cos x}{x^2}" />,
+    target: <InlineMath math="\left(0,\ \tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: 0, max: 0.65 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(1 - cos(x))/x^2", domain: { min: -3, max: -0.05 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(1 - cos(x))/x^2", domain: { min: 0.05, max: 3 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 0.5 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 2, y: (1 - Math.cos(2)) / 4 }, placement: "above-right" },
+      { key: "target", objectId: "target", at: { x: 0, y: 0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
 Numerical check: for <InlineMath math="x=0.1" />, <InlineMath math="\frac{1-\cos0.1}{0.01}\approx0.4996" />.
 
 So <InlineMath math="k=\frac12" />.

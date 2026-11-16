@@ -2,6 +2,38 @@ Der Punkt <InlineMath math="(2,7)" /> auf dem Graphen von <InlineMath math="f" /
 
 Geometrisch ist der Graph von <InlineMath math="f^{-1}" /> das Spiegelbild des Graphen von <InlineMath math="f" /> an der Geraden <InlineMath math="y=x" />, und diese Spiegelung vertauscht die beiden Koordinaten jedes Punktes.
 
+Zeichne den Punkt und sein Spiegelbild. **Die Spiegelung an <InlineMath math="y=x" /> vertauscht die beiden Koordinaten**, also wandert der Punkt <InlineMath math="(2,7)" /> auf <InlineMath math="f" /> nach <InlineMath math="(7,2)" /> auf <InlineMath math="f^{-1}" />.
+
+<MathVisual
+  title={<>Ein Punkt auf <InlineMath math="f" /> und sein Spiegelbild auf <InlineMath math="f^{-1}" /></>}
+  description={<>Die Punkte <InlineMath math="(2,7)" /> und <InlineMath math="(7,2)" /> liegen auf beiden Seiten der Geraden <InlineMath math="y=x" />. Ihre Verbindungsstrecke steht senkrecht auf dieser Geraden, und ihr Mittelpunkt <InlineMath math="(4{,}5;\ 4{,}5)" /> liegt auf ihr.</>}
+  labels={{
+    mirror: <InlineMath math="y=x" />,
+    on: <InlineMath math="(2,7)\text{ auf }f" />,
+    image: <InlineMath math="(7,2)\text{ auf }f^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 9 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: 0, max: 9 } },
+      { id: "join", kind: "segment", appearance: "reference", from: { x: 2, y: 7 }, to: { x: 7, y: 2 } },
+      { id: "on", kind: "point", appearance: "primary", at: { x: 2, y: 7 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 7, y: 2 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 8.5, y: 8.5 }, placement: "below-right" },
+      { key: "on", objectId: "on", at: { x: 2, y: 7 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 7, y: 2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Der Punkt, der sicher auf dem Graphen von <InlineMath math="f^{-1}" /> liegt, ist also <InlineMath math="(7,2)" />.
 
 - <InlineMath math="(-2,7)" /> ist die Spiegelung an der <InlineMath math="y" />-Achse, nicht an <InlineMath math="y=x" />.

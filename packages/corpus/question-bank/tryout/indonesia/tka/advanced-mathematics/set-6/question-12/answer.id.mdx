@@ -9,6 +9,38 @@ Sudut antara dua vektor berada di antara <InlineMath math="0^\circ" /> dan <Inli
 
 <BlockMath math="L=|\vec{a}||\vec{b}|\sin\theta=3\cdot3\cdot\frac{\sqrt{65}}{9}=\sqrt{65}" />
 
+Gambar jajargenjang pada bidang yang memuat <InlineMath math="\vec a" /> dan <InlineMath math="\vec b" />. **Alasnya <InlineMath math="|\vec a|=3" />, dan tingginya adalah bagian <InlineMath math="\vec b" /> yang tegak lurus alas**, yaitu <InlineMath math="3\sin\theta" />.
+
+<MathVisual
+  title={<>Jajargenjang <InlineMath math="OPRQ" /> dan tingginya</>}
+  description={<>Sisi <InlineMath math="\vec a" /> sepanjang <InlineMath math="3" /> digambar mendatar, dan sisi <InlineMath math="\vec b" /> sepanjang <InlineMath math="3" /> membentuk sudut <InlineMath math="\theta" /> dengan <InlineMath math="\cos\theta=\tfrac49" />. Tinggi jajargenjang <InlineMath math="\tfrac{\sqrt{65}}{3}" />, jadi luasnya <InlineMath math="3\cdot\tfrac{\sqrt{65}}{3}=\sqrt{65}" />.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    b: <InlineMath math="\vec b" />,
+    height: <InlineMath math="3\sin\theta=\tfrac{\sqrt{65}}{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 4.8 },
+      y: { min: -0.5, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "shape", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3 + 4 / 3, y: Math.sqrt(65) / 3 }, { x: 4 / 3, y: Math.sqrt(65) / 3 }] },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4 / 3, y: Math.sqrt(65) / 3 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 4 / 3, y: Math.sqrt(65) / 3 }, to: { x: 4 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 2 / 3, y: Math.sqrt(65) / 6 }, placement: "left" },
+      { key: "height", objectId: "height", at: { x: 4 / 3, y: Math.sqrt(65) / 6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Bentuk yang sama tanpa sudut: <InlineMath math="L=\sqrt{|\vec{a}|^2|\vec{b}|^2-(\vec{a}\cdot\vec{b})^2}=\sqrt{81-16}=\sqrt{65}" />.
 
 Jadi, luas jajargenjang <InlineMath math="OPRQ" /> adalah <InlineMath math="\sqrt{65}" /> satuan luas.

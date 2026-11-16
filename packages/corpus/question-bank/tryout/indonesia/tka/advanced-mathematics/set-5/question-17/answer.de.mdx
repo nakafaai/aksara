@@ -5,6 +5,44 @@ Bring die Gleichung auf Normalform, damit Mittelpunkt und Radius **als Funktion 
 (x-a)^2+(y-a)^2&=a^2
 \end{aligned}" />
 
+Zeichne einige Mitglieder der Familie <InlineMath math="L_a" />. **Jeder Kreis hat seinen Mittelpunkt auf der Geraden <InlineMath math="y=x" /> und berührt beide Achsen**, während der Ursprung immer außerhalb des Kreises liegt.
+
+<MathVisual
+  title={<>Einige Kreise <InlineMath math="L_a" /></>}
+  description={<>Der Kreis <InlineMath math="L_1" /> hat den Mittelpunkt <InlineMath math="(1,1)" /> und den Radius <InlineMath math="1" />, <InlineMath math="L_2" /> den Mittelpunkt <InlineMath math="(2,2)" /> und den Radius <InlineMath math="2" />, <InlineMath math="L_{-1}" /> den Mittelpunkt <InlineMath math="(-1,-1)" /> und den Radius <InlineMath math="1" />. Alle drei berühren die <InlineMath math="X" />-Achse und die <InlineMath math="Y" />-Achse. Der Punkt <InlineMath math="(2,0)" /> ist der Berührpunkt von <InlineMath math="L_2" /> mit der <InlineMath math="X" />-Achse, und der Ursprung liegt nicht auf <InlineMath math="L_1" />.</>}
+  labels={{
+    diagonal: <InlineMath math="y=x" />,
+    one: <InlineMath math="L_1" />,
+    two: <InlineMath math="L_2" />,
+    minus: <InlineMath math="L_{-1}" />,
+    touch: <InlineMath math="(2,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 5 },
+      y: { min: -3, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "diagonal", kind: "function", appearance: "construction", formula: "x", domain: { min: -3, max: 5 } },
+      { id: "one", kind: "circle", appearance: "secondary", center: { x: 1, y: 1 }, radius: 1 },
+      { id: "two", kind: "circle", appearance: "primary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "minus", kind: "circle", appearance: "reference", center: { x: -1, y: -1 }, radius: 1 },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "origin", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "diagonal", objectId: "diagonal", at: { x: 4.5, y: 4.5 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "minus", objectId: "minus", at: { x: -2, y: -1 }, placement: "left" },
+      { key: "touch", objectId: "touch", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Jeder Kreis <InlineMath math="L_a" /> hat den Mittelpunkt <InlineMath math="(a,a)" /> und den Radius <InlineMath math="|a|" />.
 
 1. Die Aussage, dass <InlineMath math="L_a" /> nur die <InlineMath math="x" />-Achse berührt, ist falsch. Der Mittelpunkt <InlineMath math="(a,a)" /> hat von der <InlineMath math="x" />-Achse den Abstand <InlineMath math="|a|" /> und von der <InlineMath math="y" />-Achse ebenfalls <InlineMath math="|a|" />. Beide sind gleich dem Radius, der Kreis berührt also beide Achsen.
