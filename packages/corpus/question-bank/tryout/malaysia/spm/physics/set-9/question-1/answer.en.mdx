@@ -1,0 +1,25 @@
+# Average the catches, then let the square root halve the uncertainty
+
+The five distances add to <InlineMath math="100.0" /> cm, so the mean is <InlineMath math="20.0" /> cm, and half the range is <InlineMath math="(21.0 - 18.5) \div 2 = 1.25" /> cm, a fraction of <InlineMath math="6.25\%" />. The time is <InlineMath math="t = \sqrt{2 \times 0.200 \div 9.8} = 0.202" /> s.
+
+<Mermaid
+  title={<>From Catches to a Timed Reaction</>}
+  description={<>The mean distance and its half range give a fractional uncertainty, which the square root in the formula halves before it is applied to the time.</>}
+  chart={`
+    flowchart LR
+      N0["Mean d = 100.0 ÷ 5 = 20.0 cm"] --> N1["Half range = (21.0 − 18.5) ÷ 2 = 1.25 cm"]
+      N1 --> N2["Fraction in d = 1.25 ÷ 20.0 = 6.25%"]
+      N0 --> N3["t = √(2 × 0.200 ÷ 9.8) = 0.202 s"]
+      N2 --> N4["Square root halves it: 3.1%"]
+      N3 --> N5["0.031 × 0.202 = 0.006 s"]
+      N4 --> N5
+  `}
+/>
+
+Because <InlineMath math="t" /> goes as the **square root** of <InlineMath math="d" />, its fractional uncertainty is half that of <InlineMath math="d" />: <InlineMath math="3.1\%" /> of <InlineMath math="0.202" /> s is <InlineMath math="0.006" /> s.
+
+# Why the other options are wrong
+
+- <InlineMath math="\pm 0.013\text{ s}" /> carries the whole <InlineMath math="6.25\%" /> into the time, forgetting that the **square root halves** it.
+- <InlineMath math="0.143\text{ s}" /> leaves the **<InlineMath math="2" />** out of <InlineMath math="2d" />.
+- <InlineMath math="\pm 0.025\text{ s}" /> uses the **whole range** and does not halve it for the square root.

@@ -1,0 +1,24 @@
+# Ofset terbatal, tetapi setiap senggatan bernilai lebih daripada satu kelvin
+
+Di antara ais dan stim termometer bergerak <InlineMath math="98 - 3 = 95" /> senggatan bagi <InlineMath math="100" /> K sebenar, jadi setiap senggatan ialah <InlineMath math="100 \div 95" /> K. Kenaikan <InlineMath math="33" /> senggatan ialah kenaikan sebenar <InlineMath math="33 \times 100 \div 95 = 34.7" /> K. Ofset <InlineMath math="3^\circ" /> **terbatal** dalam beza.
+
+<Mermaid
+  title={<>Membetulkan Skala Sebelum Menggunakannya</>}
+  description={<>Ofset terbatal dalam beza, tetapi jarak senggatan tidak: setiap senggatan bernilai lebih daripada satu kelvin.</>}
+  chart={`
+    flowchart LR
+      N0["Skala: 98 − 3 = 95 senggatan bagi 100 K"] --> N1["Satu senggatan = 100 ÷ 95 K"]
+      N1 --> N3["Kenaikan sebenar = 33 × 100 ÷ 95 = 34.7 K"]
+      N2["Kenaikan bacaan: 55 − 22 = 33 senggatan"] --> N3
+      N3 --> N5["c = 60 000 ÷ (0.40 × 34.7) = 4.3 × 10³"]
+      N4["Haba = 200 × 300 = 60 000 J"] --> N5
+  `}
+/>
+
+Pemanas memberi <InlineMath math="200 \times 300 = 60\,000" /> J, jadi <InlineMath math="c = 60\,000 \div (0.40 \times 34.7) = 4.3 \times 10^3\text{ J kg}^{-1}\text{ K}^{-1}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="33.0\text{ K}" /> menerima bacaan begitu sahaja, tetapi setiap senggatan **lebih daripada satu kelvin**.
+- <InlineMath math="31.4\text{ K}" /> menskala kenaikan **secara terbalik**, mendarab dengan <InlineMath math="95 \div 100" />.
+- <InlineMath math="30.0\text{ K}" /> menolak ofset <InlineMath math="3^\circ" /> daripada kenaikan, tetapi ofset **terbatal** dalam beza.

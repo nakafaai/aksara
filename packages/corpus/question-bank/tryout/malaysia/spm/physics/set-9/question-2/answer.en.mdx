@@ -1,0 +1,24 @@
+# The offset cancels, but each division is worth more than a kelvin
+
+Between ice and steam the thermometer moves <InlineMath math="98 - 3 = 95" /> divisions for a true <InlineMath math="100" /> K, so each division is <InlineMath math="100 \div 95" /> K. A rise of <InlineMath math="33" /> divisions is a true rise of <InlineMath math="33 \times 100 \div 95 = 34.7" /> K. The <InlineMath math="3^\circ" /> offset **cancels** in the difference.
+
+<Mermaid
+  title={<>Correcting the Scale Before Using It</>}
+  description={<>The offset cancels in a difference, but the spacing of the scale does not: each division is worth more than one kelvin.</>}
+  chart={`
+    flowchart LR
+      N0["Scale: 98 − 3 = 95 divisions for 100 K"] --> N1["One division = 100 ÷ 95 K"]
+      N1 --> N3["True rise = 33 × 100 ÷ 95 = 34.7 K"]
+      N2["Reading rise: 55 − 22 = 33 divisions"] --> N3
+      N3 --> N5["c = 60 000 ÷ (0.40 × 34.7) = 4.3 × 10³"]
+      N4["Heat = 200 × 300 = 60 000 J"] --> N5
+  `}
+/>
+
+The heater gives <InlineMath math="200 \times 300 = 60\,000" /> J, so <InlineMath math="c = 60\,000 \div (0.40 \times 34.7) = 4.3 \times 10^3\text{ J kg}^{-1}\text{ K}^{-1}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="33.0\text{ K}" /> takes the readings at face value, but each division is **more than a kelvin**.
+- <InlineMath math="31.4\text{ K}" /> scales the rise the **wrong way**, multiplying by <InlineMath math="95 \div 100" />.
+- <InlineMath math="30.0\text{ K}" /> takes the <InlineMath math="3^\circ" /> offset off the rise, but an offset **cancels** in a difference.

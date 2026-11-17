@@ -1,0 +1,24 @@
+# Die Gasgesetze verbinden, Temperaturen in Kelvin
+
+Für eine feste Gasmenge bleibt <InlineMath math="pV \div T" /> gleich. Bei <InlineMath math="50" /> kPa und <InlineMath math="250" /> K ist <InlineMath math="V = 5{,}0 \times (100 \div 50) \times (250 \div 300) = 8{,}3" /> L. Der kleinere Druck verdoppelt das Volumen, doch die **Kälte** nimmt ein Sechstel wieder weg.
+
+<Mermaid
+  title={<>Der Druck fällt, die Temperatur aber auch</>}
+  description={<>Halber Druck würde das Volumen verdoppeln, doch die kalte Luft schrumpft es wieder, der Ballon muss also in dünnere Luft steigen, bevor er platzt.</>}
+  chart={`
+    flowchart LR
+      N0["Kelvin: 300 K, 250 K, 240 K"] --> N1["pV ÷ T bleibt gleich: 100 × 5,0 ÷ 300"]
+      N1 --> N2["Bei 50 kPa, 250 K: V = 5,0 × (100 ÷ 50) × (250 ÷ 300)"]
+      N2 --> N3["V = 8,3 L"]
+      N1 --> N4["Platzen: V = 10 L bei 240 K"]
+      N4 --> N5["p = 100 × 5,0 × 240 ÷ (300 × 10) = 40 kPa"]
+  `}
+/>
+
+Beim Platzen sind <InlineMath math="V = 10" /> L und <InlineMath math="T = 240" /> K, also <InlineMath math="p = 100 \times 5{,}0 \times 240 \div (300 \times 10) = 40" /> kPa.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="10\text{ L}" /> und <InlineMath math="50\text{ kPa}" /> nehmen nur das Gesetz von Boyle und übersehen die **kältere** Luft.
+- <InlineMath math="42\text{ kPa}" /> behält beim Platzen <InlineMath math="250" /> K, doch dort hat die Luft <InlineMath math="240" /> K.
+- <InlineMath math="12\text{ L}" /> und <InlineMath math="63\text{ kPa}" /> **drehen** das Temperaturverhältnis **um**, als würde Abkühlen ein Gas ausdehnen.

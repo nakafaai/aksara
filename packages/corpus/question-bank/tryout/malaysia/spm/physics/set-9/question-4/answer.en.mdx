@@ -1,0 +1,26 @@
+# Split the relative speed with momentum, then follow the boat
+
+Momentum stays zero, so the person moves back at <InlineMath math="u" /> and the boat forwards at <InlineMath math="v" /> with <InlineMath math="60u = 120v" />. Their speeds **relative to each other** add to <InlineMath math="3.0" /> m/s, so <InlineMath math="u = 2.0" /> m/s and <InlineMath math="v = 1.0" /> m/s.
+
+<Mermaid
+  title={<>Sharing a Relative Speed</>}
+  description={<>The jump speed is measured from the moving boat, so it is split between person and boat in the ratio set by momentum.</>}
+  chart={`
+    flowchart LR
+      N0["Momentum: 60u = 120v, so u = 2v"] --> N2["v = 1.0 m/s, u = 2.0 m/s"]
+      N1["Relative speed: u + v = 3.0"] --> N2
+      N2 --> N3["Glide: 1.0² ÷ (2 × 0.25) = 2.0 m"]
+      N2 --> N4["Person: ½ × 60 × 2.0² = 120 J"]
+      N2 --> N5["Boat: ½ × 120 × 1.0² = 60 J"]
+      N4 --> N6["Total 180 J"]
+      N5 --> N6
+  `}
+/>
+
+The boat glides <InlineMath math="1.0^2 \div (2 \times 0.25) = 2.0" /> m. The jump gave <InlineMath math="\tfrac{1}{2} \times 60 \times 2.0^2 + \tfrac{1}{2} \times 120 \times 1.0^2 = 120 + 60 = 180" /> J.
+
+# Why the other options are wrong
+
+- <InlineMath math="4.5\text{ m}" /> and <InlineMath math="405\text{ J}" /> take the <InlineMath math="3.0" /> m/s as the person’s speed over the water, but it is measured **from the boat**.
+- <InlineMath math="120\text{ J}" /> counts only the person, but the boat’s **motion** also came from the jump.
+- <InlineMath math="4.0\text{ m}" /> uses <InlineMath math="v^2 \div a" />, leaving out the **half**.

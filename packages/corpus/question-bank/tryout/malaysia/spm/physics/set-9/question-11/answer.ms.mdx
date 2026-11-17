@@ -1,0 +1,24 @@
+# Gabungkan hukum gas, dengan suhu dalam kelvin
+
+Bagi jisim gas tetap <InlineMath math="pV \div T" /> tidak berubah. Pada <InlineMath math="50" /> kPa dan <InlineMath math="250" /> K, <InlineMath math="V = 5.0 \times (100 \div 50) \times (250 \div 300) = 8.3" /> L. Tekanan yang lebih rendah menggandakan isi padu, tetapi **kesejukan** mengurangkannya satu per enam.
+
+<Mermaid
+  title={<>Tekanan Berkurang, tetapi Suhu Juga</>}
+  description={<>Separuh tekanan akan menggandakan isi padu, tetapi udara sejuk mengecutkannya semula, jadi belon mesti naik ke udara yang lebih nipis sebelum pecah.</>}
+  chart={`
+    flowchart LR
+      N0["Kelvin: 300 K, 250 K, 240 K"] --> N1["pV ÷ T tetap: 100 × 5.0 ÷ 300"]
+      N1 --> N2["Pada 50 kPa, 250 K: V = 5.0 × (100 ÷ 50) × (250 ÷ 300)"]
+      N2 --> N3["V = 8.3 L"]
+      N1 --> N4["Pecah: V = 10 L pada 240 K"]
+      N4 --> N5["p = 100 × 5.0 × 240 ÷ (300 × 10) = 40 kPa"]
+  `}
+/>
+
+Ketika pecah, <InlineMath math="V = 10" /> L dan <InlineMath math="T = 240" /> K, jadi <InlineMath math="p = 100 \times 5.0 \times 240 \div (300 \times 10) = 40" /> kPa.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="10\text{ L}" /> dan <InlineMath math="50\text{ kPa}" /> hanya menggunakan hukum Boyle, mengabaikan udara yang **lebih sejuk**.
+- <InlineMath math="42\text{ kPa}" /> mengekalkan <InlineMath math="250" /> K untuk saat pecah, tetapi udara di situ <InlineMath math="240" /> K.
+- <InlineMath math="12\text{ L}" /> dan <InlineMath math="63\text{ kPa}" /> **menterbalikkan** nisbah suhu, seolah-olah penyejukan mengembangkan gas.

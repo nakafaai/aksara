@@ -1,0 +1,24 @@
+# Bekerja dalam rangka kereta api Q bagi kedua-dua kes
+
+Bertembung dari hadapan, kereta api menghampiri pada <InlineMath math="45" /> m/s dan mesti meliputi <InlineMath math="120 + 180 = 300" /> m di antaranya, yang mengambil <InlineMath math="300 \div 45 = 6.7" /> s.
+
+<Mermaid
+  title={<>Gerakan Relatif dalam Kedua-dua Arah</>}
+  description={<>Apabila bertemu, kereta api menghampiri pada jumlah lajunya. Apabila memotong, hanya bezanya yang dikira, dan brek menghabiskannya sebelum P meliputi kedua-dua panjang.</>}
+  chart={`
+    flowchart LR
+      N0["Berselisih: laju menghampiri 25 + 20 = 45 m/s"] --> N1["Meliputi kedua-dua panjang: 300 ÷ 45 = 6.7 s"]
+      N2["Memotong: laju relatif 5 m/s"] --> N3["Laju relatif berkurang 0.10 m/s²"]
+      N3 --> N4["Kemaraan berhenti selepas 5 ÷ 0.10 = 50 s"]
+      N4 --> N5["Kemaraan terbesar = 5² ÷ (2 × 0.10) = 125 m"]
+      N5 --> N6["Perlu 300 m untuk melepasi, jadi ia tertinggal"]
+  `}
+/>
+
+Semasa memotong, P mendekati Q pada hanya <InlineMath math="5" /> m/s, dan brek mengurangkannya sebanyak <InlineMath math="0.10" /> m/s setiap saat. Kemaraan berhenti selepas <InlineMath math="50" /> s, apabila P telah maju <InlineMath math="5^2 \div (2 \times 0.10) = 125" /> m di sepanjang Q. P memerlukan <InlineMath math="300" /> m untuk melepasi Q, jadi ia **tidak pernah melepasi** dan kemudian tertinggal semula.
+
+# Mengapa pilihan lain salah
+
+- Melepasi sepenuhnya selepas <InlineMath math="60" /> s mengabaikan **brek**, yang menamatkan kemaraan jauh sebelum <InlineMath math="300" /> m.
+- <InlineMath math="60\text{ s}" /> bagi pertembungan menggunakan **beza** laju, tetapi kereta api yang bergerak ke arah satu sama lain menghampiri pada jumlahnya.
+- <InlineMath math="250\text{ m}" /> menggunakan <InlineMath math="v^2 \div a" />, meninggalkan **separuh** dalam <InlineMath math="v^2 = 2as" />.

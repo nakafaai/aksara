@@ -1,0 +1,24 @@
+# Den Anstieg je Stopp finden, dann die Spitze prüfen, nicht den Aufbau
+
+Jeder Stopp gibt den Scheiben <InlineMath math="0{,}80 \times \tfrac{1}{2} \times 1500 \times 30^2 = 5{,}4 \times 10^5" /> J, ein Anstieg um <InlineMath math="5{,}4 \times 10^5 \div (16 \times 450) = 75" /> K. Zwischen den Stopps behalten sie <InlineMath math="60\%" /> davon, jeder Stopp hinterlässt also bleibende <InlineMath math="45" /> K.
+
+<Mermaid
+  title={<>Die Spitze kommt am Ende jedes Stopps</>}
+  description={<>Jeder Stopp heizt auf, doch nur ein Teil bleibt für den nächsten. Die Grenze wird am Ende eines Stopps erreicht, wenn der volle Anstieg auf dem Aufgestauten sitzt.</>}
+  chart={`
+    flowchart LR
+      N0["Ekin = ½ × 1500 × 30² = 6,75 × 10⁵ J"] --> N1["Scheiben bekommen 80%: 5,4 × 10⁵ J"]
+      N1 --> N2["Anstieg = 5,4 × 10⁵ ÷ (16 × 450) = 75 K"]
+      N2 --> N3["Zwischen den Stopps bleiben 60%: +45 K je Stopp"]
+      N3 --> N4["Spitze im Stopp k: 30 + 45(k − 1) + 75"]
+      N4 --> N5["Spitze ≤ 500 gibt k ≤ 9,8, also 9 Stopps"]
+  `}
+/>
+
+Am **heißesten** ist es am Ende eines Stopps, wenn dessen volle <InlineMath math="75" /> K auf dem Aufbau sitzen: <InlineMath math="30 + 45(k - 1) + 75 \le 500" /> ergibt <InlineMath math="k \le 9{,}8" />. Der zehnte Stopp würde die Grenze überschreiten, also <InlineMath math="9" /> Stopps.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="94\text{ K}" /> steckt die **ganze** Bewegungsenergie in die Scheiben, nicht <InlineMath math="80\%" />.
+- <InlineMath math="6" /> Stopps übersieht das **Abkühlen** zwischen den Stopps.
+- <InlineMath math="10" /> Stopps prüft nur die bleibenden <InlineMath math="45" /> K, doch während eines Stopps sind die Scheiben **weitere** <InlineMath math="30" /> K heißer.

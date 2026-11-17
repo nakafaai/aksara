@@ -1,0 +1,26 @@
+# Letakkan kedua-dua batu pada jam yang sama
+
+Ukur masa dari jatuhan pertama. Batu pertama telah jatuh <InlineMath math="5t^2" />, dan batu kedua <InlineMath math="15(t - 1) + 5(t - 1)^2" />. Menyamakannya meninggalkan <InlineMath math="5t = 10" />, jadi kedua-duanya bertemu pada <InlineMath math="t = 2.0" /> s, <InlineMath math="5 \times 2.0^2 = 20" /> m di bawah jambatan.
+
+<Mermaid
+  title={<>Dua Batu pada Satu Jam</>}
+  description={<>Mengukur kedua-dua batu dari saat batu pertama dijatuhkan menjadikan pertemuan satu persamaan dan pendaratan dua masa yang berasingan.</>}
+  chart={`
+    flowchart LR
+      N0["Batu pertama: s = 5t²"] --> N2["Sama: 0 = 5t − 10, t = 2.0 s"]
+      N1["Batu kedua: s = 15(t − 1) + 5(t − 1)²"] --> N2
+      N2 --> N3["Bertemu pada 5 × 2.0² = 20 m"]
+      N0 --> N4["Pertama sampai pada √(45 ÷ 5) = 3.0 s"]
+      N1 --> N5["Kedua: 45 = 15τ + 5τ², τ = 1.85 s, sampai pada 2.85 s"]
+      N4 --> N6["0.15 s lebih awal"]
+      N5 --> N6
+  `}
+/>
+
+Batu pertama sampai pada <InlineMath math="\sqrt{45 \div 5} = 3.0" /> s. Batu kedua menyelesaikan <InlineMath math="45 = 15\tau + 5\tau^2" />, jadi <InlineMath math="\tau = 1.85" /> s selepas lontarannya, pada <InlineMath math="2.85" /> s. Ia sampai hanya <InlineMath math="0.15" /> s **lebih awal**, kerana batu pertama sentiasa memecut.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1.0\text{ s}" /> lebih awal mengekalkan jarak masa lontaran, tetapi batu kedua **memintas** dan mendahului dengan jauh lebih sedikit.
+- Sampai serentak memerlukan titik pertemuan di **permukaan air**, tetapi kedua-duanya bertemu <InlineMath math="25" /> m di atasnya.
+- <InlineMath math="5.0\text{ m}" /> ialah kedudukan batu pertama ketika batu kedua **dilontar**, bukan tempat kedua-duanya bertemu.

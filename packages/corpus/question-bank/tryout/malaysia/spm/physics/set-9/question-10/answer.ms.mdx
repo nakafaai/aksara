@@ -1,0 +1,24 @@
+# Cari kenaikan setiap hentian, kemudian semak puncaknya, bukan pengumpulannya
+
+Setiap hentian memberi cakera <InlineMath math="0.80 \times \tfrac{1}{2} \times 1500 \times 30^2 = 5.4 \times 10^5" /> J, kenaikan <InlineMath math="5.4 \times 10^5 \div (16 \times 450) = 75" /> K. Di antara hentian cakera menyimpan <InlineMath math="60\%" /> daripadanya, jadi setiap hentian meninggalkan <InlineMath math="45" /> K yang kekal.
+
+<Mermaid
+  title={<>Puncak Berlaku pada Akhir Setiap Hentian</>}
+  description={<>Setiap hentian menambah suhu, tetapi hanya sebahagian kekal untuk hentian berikutnya. Had dicapai pada akhir sesuatu hentian, apabila kenaikan penuh berada di atas suhu yang telah terkumpul.</>}
+  chart={`
+    flowchart LR
+      N0["TK = ½ × 1500 × 30² = 6.75 × 10⁵ J"] --> N1["Cakera mendapat 80%: 5.4 × 10⁵ J"]
+      N1 --> N2["Kenaikan = 5.4 × 10⁵ ÷ (16 × 450) = 75 K"]
+      N2 --> N3["Kekal 60% antara hentian: +45 K setiap kali"]
+      N3 --> N4["Puncak semasa hentian k: 30 + 45(k − 1) + 75"]
+      N4 --> N5["Puncak ≤ 500 memberi k ≤ 9.8, jadi 9 hentian"]
+  `}
+/>
+
+Saat **paling panas** ialah akhir sesuatu hentian, apabila <InlineMath math="75" /> K penuhnya berada di atas suhu terkumpul: <InlineMath math="30 + 45(k - 1) + 75 \le 500" /> memberi <InlineMath math="k \le 9.8" />. Hentian kesepuluh akan melepasi had, jadi <InlineMath math="9" /> hentian.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="94\text{ K}" /> memasukkan **seluruh** tenaga kinetik ke dalam cakera, bukan <InlineMath math="80\%" />.
+- <InlineMath math="6" /> hentian mengabaikan **penyejukan** di antara hentian.
+- <InlineMath math="10" /> hentian hanya menyemak <InlineMath math="45" /> K yang kekal, tetapi semasa hentian cakera <InlineMath math="30" /> K **lebih panas lagi**.

@@ -1,0 +1,24 @@
+# In beiden Fällen im Bezugssystem von Zug Q rechnen
+
+Bei der Begegnung nähern sich die Züge mit <InlineMath math="45" /> m/s und müssen zusammen <InlineMath math="120 + 180 = 300" /> m zurücklegen, das dauert <InlineMath math="300 \div 45 = 6{,}7" /> s.
+
+<Mermaid
+  title={<>Relativbewegung in beide Richtungen</>}
+  description={<>Bei der Begegnung nähern sich die Züge mit der Summe ihrer Geschwindigkeiten. Beim Überholen zählt nur die Differenz, und das Bremsen zehrt sie auf, bevor P beide Zuglängen schafft.</>}
+  chart={`
+    flowchart LR
+      N0["Begegnung: Annäherung mit 25 + 20 = 45 m/s"] --> N1["Beide Längen: 300 ÷ 45 = 6,7 s"]
+      N2["Überholen: Relativgeschwindigkeit 5 m/s"] --> N3["Sie sinkt um 0,10 m/s²"]
+      N3 --> N4["Der Vorsprung wächst nur 5 ÷ 0,10 = 50 s"]
+      N4 --> N5["Größter Gewinn = 5² ÷ (2 × 0,10) = 125 m"]
+      N5 --> N6["Nötig wären 300 m, also fällt P zurück"]
+  `}
+/>
+
+Beim Überholen holt P nur mit <InlineMath math="5" /> m/s auf, und das Bremsen nimmt davon jede Sekunde <InlineMath math="0{,}10" /> m/s weg. Nach <InlineMath math="50" /> s hört der Gewinn auf, P ist dann <InlineMath math="5^2 \div (2 \times 0{,}10) = 125" /> m an Q entlanggekommen. Zum Vorbeikommen bräuchte P <InlineMath math="300" /> m, es **kommt also nie vorbei** und fällt danach zurück.
+
+# Warum die anderen Antworten falsch sind
+
+- Nach <InlineMath math="60" /> s ganz vorbei übersieht das **Bremsen**, das den Gewinn lange vor <InlineMath math="300" /> m beendet.
+- <InlineMath math="60\text{ s}" /> bei der Begegnung nimmt die **Differenz** der Geschwindigkeiten, doch aufeinander zufahrende Züge nähern sich mit der Summe.
+- <InlineMath math="250\text{ m}" /> nimmt <InlineMath math="v^2 \div a" /> und lässt das **Halbe** aus <InlineMath math="v^2 = 2as" /> weg.

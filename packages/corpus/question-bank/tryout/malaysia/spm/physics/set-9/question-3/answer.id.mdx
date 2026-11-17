@@ -1,0 +1,24 @@
+# Bekerja dalam kerangka kereta Q untuk kedua kasus
+
+Berpapasan dari depan, kedua kereta mendekat dengan <InlineMath math="45" /> m/s dan harus menempuh <InlineMath math="120 + 180 = 300" /> m di antaranya, yang butuh <InlineMath math="300 \div 45 = 6{,}7" /> s.
+
+<Mermaid
+  title={<>Gerak Relatif ke Dua Arah</>}
+  description={<>Saat berpapasan, kereta mendekat dengan jumlah kelajuannya. Saat menyalip, hanya selisihnya yang dihitung, dan pengereman menghabiskannya sebelum P menempuh kedua panjang.</>}
+  chart={`
+    flowchart LR
+      N0["Berpapasan: kelajuan mendekat 25 + 20 = 45 m/s"] --> N1["Menempuh kedua panjang: 300 ÷ 45 = 6,7 s"]
+      N2["Menyalip: kelajuan relatif 5 m/s"] --> N3["Kelajuan relatif turun 0,10 m/s²"]
+      N3 --> N4["Kemajuan berhenti setelah 5 ÷ 0,10 = 50 s"]
+      N4 --> N5["Kemajuan terbesar = 5² ÷ (2 × 0,10) = 125 m"]
+      N5 --> N6["Butuh 300 m untuk lewat, jadi tertinggal"]
+  `}
+/>
+
+Saat menyalip, P mendekati Q hanya <InlineMath math="5" /> m/s, dan pengereman memangkasnya <InlineMath math="0{,}10" /> m/s tiap detik. Kemajuan berhenti setelah <InlineMath math="50" /> s, saat P sudah maju <InlineMath math="5^2 \div (2 \times 0{,}10) = 125" /> m sepanjang Q. P butuh <InlineMath math="300" /> m untuk melewati Q, jadi ia **tidak pernah lewat** lalu tertinggal lagi.
+
+# Kenapa pilihan lain salah
+
+- Lewat sepenuhnya setelah <InlineMath math="60" /> s mengabaikan **pengereman**, yang menghentikan kemajuan jauh sebelum <InlineMath math="300" /> m.
+- <InlineMath math="60\text{ s}" /> untuk papasan memakai **selisih** kelajuan, padahal kereta yang saling mendekat bertemu dengan jumlahnya.
+- <InlineMath math="250\text{ m}" /> memakai <InlineMath math="v^2 \div a" />, menghilangkan **setengah** pada <InlineMath math="v^2 = 2as" />.

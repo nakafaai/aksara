@@ -1,0 +1,24 @@
+# Pergeseran hilang, tetapi tiap bagian bernilai lebih dari satu kelvin
+
+Di antara es dan uap termometer bergerak <InlineMath math="98 - 3 = 95" /> bagian untuk <InlineMath math="100" /> K sebenarnya, jadi tiap bagian bernilai <InlineMath math="100 \div 95" /> K. Kenaikan <InlineMath math="33" /> bagian adalah kenaikan sebenarnya <InlineMath math="33 \times 100 \div 95 = 34{,}7" /> K. Pergeseran <InlineMath math="3^\circ" /> **hilang** dalam selisih.
+
+<Mermaid
+  title={<>Mengoreksi Skala Sebelum Dipakai</>}
+  description={<>Pergeseran hilang dalam selisih, tetapi jarak skala tidak: tiap bagian bernilai lebih dari satu kelvin.</>}
+  chart={`
+    flowchart LR
+      N0["Skala: 98 − 3 = 95 bagian untuk 100 K"] --> N1["Satu bagian = 100 ÷ 95 K"]
+      N1 --> N3["Kenaikan sebenarnya = 33 × 100 ÷ 95 = 34,7 K"]
+      N2["Kenaikan bacaan: 55 − 22 = 33 bagian"] --> N3
+      N3 --> N5["c = 60 000 ÷ (0,40 × 34,7) = 4,3 × 10³"]
+      N4["Kalor = 200 × 300 = 60 000 J"] --> N5
+  `}
+/>
+
+Pemanas memberi <InlineMath math="200 \times 300 = 60\,000" /> J, jadi <InlineMath math="c = 60\,000 \div (0{,}40 \times 34{,}7) = 4{,}3 \times 10^3\text{ J kg}^{-1}\text{ K}^{-1}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="33{,}0\text{ K}" /> menerima bacaan apa adanya, padahal tiap bagian **lebih dari satu kelvin**.
+- <InlineMath math="31{,}4\text{ K}" /> menskalakan kenaikan **terbalik**, mengalikan dengan <InlineMath math="95 \div 100" />.
+- <InlineMath math="30{,}0\text{ K}" /> mengurangkan pergeseran <InlineMath math="3^\circ" /> dari kenaikan, padahal pergeseran **hilang** dalam selisih.

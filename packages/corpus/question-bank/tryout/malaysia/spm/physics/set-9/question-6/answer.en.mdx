@@ -1,0 +1,26 @@
+# Put both stones on the same clock
+
+Measure time from the first drop. The first stone has fallen <InlineMath math="5t^2" />, and the second <InlineMath math="15(t - 1) + 5(t - 1)^2" />. Setting them equal leaves <InlineMath math="5t = 10" />, so they meet at <InlineMath math="t = 2.0" /> s, <InlineMath math="5 \times 2.0^2 = 20" /> m below the bridge.
+
+<Mermaid
+  title={<>Two Stones on One Clock</>}
+  description={<>Measuring both stones from the moment the first is dropped turns the meeting into one equation and the landings into two separate times.</>}
+  chart={`
+    flowchart LR
+      N0["First stone: s = 5t²"] --> N2["Equal: 0 = 5t − 10, t = 2.0 s"]
+      N1["Second stone: s = 15(t − 1) + 5(t − 1)²"] --> N2
+      N2 --> N3["Meet at 5 × 2.0² = 20 m"]
+      N0 --> N4["First lands at √(45 ÷ 5) = 3.0 s"]
+      N1 --> N5["Second: 45 = 15τ + 5τ², τ = 1.85 s, lands at 2.85 s"]
+      N4 --> N6["0.15 s earlier"]
+      N5 --> N6
+  `}
+/>
+
+The first stone lands at <InlineMath math="\sqrt{45 \div 5} = 3.0" /> s. The second solves <InlineMath math="45 = 15\tau + 5\tau^2" />, so <InlineMath math="\tau = 1.85" /> s after its throw, at <InlineMath math="2.85" /> s. It arrives only <InlineMath math="0.15" /> s **earlier**, because the first stone has been speeding up all the time.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.0\text{ s}" /> earlier keeps the gap of the throw, but the second stone **overtakes** and stays ahead by much less.
+- Landing together would need the meeting point at the **water**, but they meet <InlineMath math="25" /> m above it.
+- <InlineMath math="5.0\text{ m}" /> is where the first stone is when the second is **thrown**, not where they meet.

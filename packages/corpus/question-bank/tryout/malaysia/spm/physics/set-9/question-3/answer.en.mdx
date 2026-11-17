@@ -1,0 +1,24 @@
+# Work in the frame of train Q for both cases
+
+Meeting head on, the trains close at <InlineMath math="45" /> m/s and must cover <InlineMath math="120 + 180 = 300" /> m between them, which takes <InlineMath math="300 \div 45 = 6.7" /> s.
+
+<Mermaid
+  title={<>Relative Motion in Both Directions</>}
+  description={<>Meeting, the trains close at the sum of their speeds. Overtaking, only the difference counts, and braking uses it up before P has covered both lengths.</>}
+  chart={`
+    flowchart LR
+      N0["Passing: closing speed 25 + 20 = 45 m/s"] --> N1["Cover both lengths: 300 ÷ 45 = 6.7 s"]
+      N2["Overtaking: relative speed 5 m/s"] --> N3["Relative speed falls at 0.10 m/s²"]
+      N3 --> N4["Gain stops after 5 ÷ 0.10 = 50 s"]
+      N4 --> N5["Greatest gain = 5² ÷ (2 × 0.10) = 125 m"]
+      N5 --> N6["Needs 300 m to get past, so it falls back"]
+  `}
+/>
+
+Overtaking, P gains on Q at only <InlineMath math="5" /> m/s, and braking cuts that by <InlineMath math="0.10" /> m/s every second. The gain stops after <InlineMath math="50" /> s, when P has moved <InlineMath math="5^2 \div (2 \times 0.10) = 125" /> m along Q. P needs <InlineMath math="300" /> m to clear Q, so it **never gets past** and then drops back.
+
+# Why the other options are wrong
+
+- Fully past after <InlineMath math="60" /> s ignores the **braking**, which ends the gain long before <InlineMath math="300" /> m.
+- <InlineMath math="60\text{ s}" /> for the meeting uses the **difference** of the speeds, but trains moving towards each other close at the sum.
+- <InlineMath math="250\text{ m}" /> uses <InlineMath math="v^2 \div a" />, leaving out the **half** in <InlineMath math="v^2 = 2as" />.

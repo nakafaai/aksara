@@ -1,0 +1,24 @@
+# Find the rise per stop, then check the peak, not the build-up
+
+Each stop gives the discs <InlineMath math="0.80 \times \tfrac{1}{2} \times 1500 \times 30^2 = 5.4 \times 10^5" /> J, a rise of <InlineMath math="5.4 \times 10^5 \div (16 \times 450) = 75" /> K. Between stops they keep <InlineMath math="60\%" /> of it, so each stop leaves a lasting <InlineMath math="45" /> K.
+
+<Mermaid
+  title={<>The Peak Comes at the End of Each Stop</>}
+  description={<>Each stop heats the discs, but only part of the rise stays for the next stop. The limit is reached at the end of a stop, when the full rise sits on top of what has built up.</>}
+  chart={`
+    flowchart LR
+      N0["KE = ½ × 1500 × 30² = 6.75 × 10⁵ J"] --> N1["Discs get 80%: 5.4 × 10⁵ J"]
+      N1 --> N2["Rise = 5.4 × 10⁵ ÷ (16 × 450) = 75 K"]
+      N2 --> N3["Keeps 60% between stops: +45 K each"]
+      N3 --> N4["Peak during stop k: 30 + 45(k − 1) + 75"]
+      N4 --> N5["Peak ≤ 500 gives k ≤ 9.8, so 9 stops"]
+  `}
+/>
+
+The **hottest** moment is the end of a stop, when its full <InlineMath math="75" /> K sits on top of the build-up: <InlineMath math="30 + 45(k - 1) + 75 \le 500" /> gives <InlineMath math="k \le 9.8" />. The tenth stop would pass the limit, so <InlineMath math="9" /> stops.
+
+# Why the other options are wrong
+
+- <InlineMath math="94\text{ K}" /> puts **all** the kinetic energy into the discs, not <InlineMath math="80\%" />.
+- <InlineMath math="6" /> stops ignores the **cooling** between stops.
+- <InlineMath math="10" /> stops checks only the lasting <InlineMath math="45" /> K, but during a stop the discs are a **further** <InlineMath math="30" /> K hotter.

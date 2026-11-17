@@ -1,0 +1,24 @@
+# Cari kenaikan tiap pengereman, lalu periksa puncaknya, bukan tumpukannya
+
+Tiap pengereman memberi cakram <InlineMath math="0{,}80 \times \tfrac{1}{2} \times 1500 \times 30^2 = 5{,}4 \times 10^5" /> J, kenaikan <InlineMath math="5{,}4 \times 10^5 \div (16 \times 450) = 75" /> K. Di antara pengereman cakram menyimpan <InlineMath math="60\%" /> darinya, jadi tiap pengereman meninggalkan <InlineMath math="45" /> K yang menetap.
+
+<Mermaid
+  title={<>Puncak Terjadi di Akhir Tiap Pengereman</>}
+  description={<>Tiap pengereman menaikkan suhu, tetapi hanya sebagian tersisa untuk berikutnya. Batas tercapai di akhir pengereman, saat kenaikan penuh berada di atas suhu yang sudah menumpuk.</>}
+  chart={`
+    flowchart LR
+      N0["EK = ½ × 1500 × 30² = 6,75 × 10⁵ J"] --> N1["Cakram mendapat 80%: 5,4 × 10⁵ J"]
+      N1 --> N2["Kenaikan = 5,4 × 10⁵ ÷ (16 × 450) = 75 K"]
+      N2 --> N3["Tersisa 60% antar-henti: +45 K tiap kali"]
+      N3 --> N4["Puncak saat henti ke-k: 30 + 45(k − 1) + 75"]
+      N4 --> N5["Puncak ≤ 500 memberi k ≤ 9,8, jadi 9 kali"]
+  `}
+/>
+
+Saat **terpanas** adalah akhir pengereman, ketika <InlineMath math="75" /> K penuhnya berada di atas tumpukan: <InlineMath math="30 + 45(k - 1) + 75 \le 500" /> memberi <InlineMath math="k \le 9{,}8" />. Pengereman kesepuluh akan melewati batas, jadi <InlineMath math="9" /> kali.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="94\text{ K}" /> memasukkan **seluruh** energi kinetik ke cakram, bukan <InlineMath math="80\%" />.
+- <InlineMath math="6" /> kali mengabaikan **pendinginan** di antara pengereman.
+- <InlineMath math="10" /> kali hanya memeriksa <InlineMath math="45" /> K yang menetap, padahal saat mengerem cakram <InlineMath math="30" /> K **lebih panas lagi**.

@@ -1,0 +1,25 @@
+# Puratakan tangkapan, kemudian biarkan punca kuasa dua membahagi dua ketidakpastian
+
+Lima jarak itu berjumlah <InlineMath math="100.0" /> cm, jadi minnya <InlineMath math="20.0" /> cm, dan separuh julat ialah <InlineMath math="(21.0 - 18.5) \div 2 = 1.25" /> cm, pecahan <InlineMath math="6.25\%" />. Masanya <InlineMath math="t = \sqrt{2 \times 0.200 \div 9.8} = 0.202" /> s.
+
+<Mermaid
+  title={<>Daripada Tangkapan kepada Masa Tindak Balas</>}
+  description={<>Jarak min dan separuh julatnya memberi ketidakpastian pecahan, yang dibahagi dua oleh punca kuasa dua dalam rumus sebelum digunakan pada masa.</>}
+  chart={`
+    flowchart LR
+      N0["d min = 100.0 ÷ 5 = 20.0 cm"] --> N1["Separuh julat = (21.0 − 18.5) ÷ 2 = 1.25 cm"]
+      N1 --> N2["Pecahan dalam d = 1.25 ÷ 20.0 = 6.25%"]
+      N0 --> N3["t = √(2 × 0.200 ÷ 9.8) = 0.202 s"]
+      N2 --> N4["Punca kuasa dua membahagi dua: 3.1%"]
+      N3 --> N5["0.031 × 0.202 = 0.006 s"]
+      N4 --> N5
+  `}
+/>
+
+Oleh sebab <InlineMath math="t" /> berkadar dengan **punca kuasa dua** <InlineMath math="d" />, ketidakpastian pecahannya separuh daripada <InlineMath math="d" />: <InlineMath math="3.1\%" /> daripada <InlineMath math="0.202" /> s ialah <InlineMath math="0.006" /> s.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\pm 0.013\text{ s}" /> membawa seluruh <InlineMath math="6.25\%" /> ke dalam masa, terlupa bahawa **punca kuasa dua membahagi dua** ketidakpastian itu.
+- <InlineMath math="0.143\text{ s}" /> meninggalkan **<InlineMath math="2" />** dalam <InlineMath math="2d" />.
+- <InlineMath math="\pm 0.025\text{ s}" /> menggunakan **seluruh julat** dan tidak membahagi duanya untuk punca kuasa dua.

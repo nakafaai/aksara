@@ -1,0 +1,25 @@
+# Die Fänge mitteln, dann halbiert die Wurzel die Unsicherheit
+
+Die fünf Strecken ergeben zusammen <InlineMath math="100{,}0" /> cm, der Mittelwert ist also <InlineMath math="20{,}0" /> cm, die halbe Spannweite <InlineMath math="(21{,}0 - 18{,}5) \div 2 = 1{,}25" /> cm, ein Anteil von <InlineMath math="6{,}25\%" />. Die Zeit ist <InlineMath math="t = \sqrt{2 \times 0{,}200 \div 9{,}8} = 0{,}202" /> s.
+
+<Mermaid
+  title={<>Vom Fangen zur Reaktionszeit</>}
+  description={<>Mittlere Strecke und halbe Spannweite geben eine relative Unsicherheit, die die Wurzel in der Formel halbiert, bevor sie auf die Zeit angewendet wird.</>}
+  chart={`
+    flowchart LR
+      N0["Mittleres d = 100,0 ÷ 5 = 20,0 cm"] --> N1["Halbe Spannweite = (21,0 − 18,5) ÷ 2 = 1,25 cm"]
+      N1 --> N2["Anteil in d = 1,25 ÷ 20,0 = 6,25%"]
+      N0 --> N3["t = √(2 × 0,200 ÷ 9,8) = 0,202 s"]
+      N2 --> N4["Die Wurzel halbiert ihn: 3,1%"]
+      N3 --> N5["0,031 × 0,202 = 0,006 s"]
+      N4 --> N5
+  `}
+/>
+
+Weil <InlineMath math="t" /> mit der **Wurzel** aus <InlineMath math="d" /> geht, ist seine relative Unsicherheit halb so groß wie die von <InlineMath math="d" />: <InlineMath math="3{,}1\%" /> von <InlineMath math="0{,}202" /> s sind <InlineMath math="0{,}006" /> s.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\pm 0{,}013\text{ s}" /> überträgt die vollen <InlineMath math="6{,}25\%" /> auf die Zeit und vergisst, dass die **Wurzel sie halbiert**.
+- <InlineMath math="0{,}143\text{ s}" /> lässt die **<InlineMath math="2" />** in <InlineMath math="2d" /> weg.
+- <InlineMath math="\pm 0{,}025\text{ s}" /> nimmt die **ganze Spannweite** und halbiert sie nicht für die Wurzel.

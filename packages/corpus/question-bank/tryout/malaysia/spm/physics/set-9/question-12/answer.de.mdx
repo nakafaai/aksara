@@ -1,0 +1,24 @@
+# Die vom Dampf fortgetragene Wärme gegen Abkühlen und Gefrieren aufrechnen
+
+Das ganze Wasser auf <InlineMath math="0^\circ\text{C}" /> abzukühlen braucht <InlineMath math="4200 \times 0{,}100 \times 20 = 8400" /> J. Verdampfen <InlineMath math="x" /> kg, gefriert nur der **Rest**, also <InlineMath math="2{,}5 \times 10^6 x = 8400 + 3{,}34 \times 10^5 (0{,}100 - x)" />.
+
+<Mermaid
+  title={<>Der Dampf bezahlt Abkühlen und Gefrieren</>}
+  description={<>Jedes Gramm, das als Dampf geht, nimmt seine Verdampfungswärme aus dem zurückbleibenden Wasser, kühlt es erst und lässt es dann gefrieren, die verdampfte Masse steht also auf beiden Seiten der Bilanz.</>}
+  chart={`
+    flowchart LR
+      N0["0,100 kg um 20 K abkühlen: 4200 × 0,100 × 20 = 8400 J"] --> N3["Bilanz: 2,5 × 10⁶ x = 8400 + 3,34 × 10⁵ (0,100 − x)"]
+      N1["x kg verdampfen: Sie tragen 2,5 × 10⁶ x J fort"] --> N3
+      N2["Der Rest, 0,100 − x, gefriert: 3,34 × 10⁵ (0,100 − x) J"] --> N3
+      N3 --> N4["x = 41 800 ÷ 2,834 × 10⁶ = 0,015 kg"]
+      N4 --> N5["Eis = 100 − 15 = 85 g"]
+  `}
+/>
+
+Das ergibt <InlineMath math="x = 41\,800 \div 2{,}834 \times 10^6 = 0{,}015" /> kg. Etwa <InlineMath math="15" /> g verdampfen also, und <InlineMath math="85" /> g bleiben als Eis zurück.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="88\text{ g}" /> lässt die Wärme weg, die das Wasser zuerst auf <InlineMath math="0^\circ\text{C}" /> **abkühlt**.
+- <InlineMath math="83\text{ g}" /> lässt alle <InlineMath math="100" /> g gefrieren, doch das **verdampfte** Wasser gefriert nie.
+- Kein Eis hört bei <InlineMath math="0^\circ\text{C}" /> auf, doch die Pumpe lässt das Wasser weiter **verdampfen**, bis der Rest gefroren ist.
