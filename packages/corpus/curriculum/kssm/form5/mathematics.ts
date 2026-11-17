@@ -148,6 +148,12 @@ export const kssmForm5MathematicsTopicNodes = [
         materialKeys: ["lesson.mathematics.trigonometry"],
         order: 10,
       }),
+      materialNode({
+        key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions-function-modeling",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.function-modeling"],
+        order: 20,
+      }),
     ],
     key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions",
     materialCard: {
