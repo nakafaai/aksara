@@ -1,0 +1,373 @@
+export const metadata = {
+  title: "Metabolism and Enzymes Notes for Form Four Biology",
+  description:
+    "Form 4 Biology Chapter 5: anabolism and catabolism, enzyme properties, the lock and key hypothesis, how temperature, pH and concentration change the rate.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Metabolism and Enzymes",
+};
+
+## Enzymes Speed Up Metabolism
+
+**Metabolism** is every chemical reaction that happens in the cells of an organism. Almost every one of those reactions is catalysed by an **enzyme**, a protein that acts as a **biological catalyst**. An enzyme speeds up a reaction by **lowering the activation energy**, the minimum energy needed before the substrate can turn into products. The enzyme is unchanged at the end, so the same molecule can be used again and again.
+
+The graph below compares two pathways for the same reaction. Move slider <InlineMath math="a" /> to lower the hump of the enzyme pathway, and watch the substrate level and the product level stay where they are.
+
+<MathVisual
+  title={<>Activation Energy with and without an Enzyme</>}
+  description={
+    <>
+      The horizontal axis is reaction progress and the vertical axis is energy
+      in relative units. The substrate starts at <InlineMath math="40" /> and
+      the products end at <InlineMath math="10" />. Without an enzyme, the
+      activation energy is <InlineMath math="60" /> units.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 50, value: 20, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "plain-rise", kind: "function", appearance: "secondary", formula: "40 + 30(1 - cos(pi x/5))", domain: { min: 0, max: 5 } },
+      { id: "plain-fall", kind: "function", appearance: "secondary", formula: "10 + 45(1 + cos(pi (x - 5)/5))", domain: { min: 5, max: 10 } },
+      { id: "enzyme-rise", kind: "function", appearance: "primary", formula: "40 + (a/2)(1 - cos(pi x/5))", domain: { min: 0, max: 5 } },
+      { id: "enzyme-fall", kind: "function", appearance: "primary", formula: "10 + ((30 + a)/2)(1 + cos(pi (x - 5)/5))", domain: { min: 5, max: 10 } },
+    ],
+    labels: [
+      { key: "plain-rise", objectId: "plain-rise", at: { x: 5, y: 100 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "enzyme-energy", formula: "a" },
+      { key: "saving", formula: "60 - a" },
+      { key: "released", formula: "40 - 10" },
+    ],
+  }}
+  labels={{
+    a: <>Activation energy with the enzyme <InlineMath math="a" /></>,
+    "plain-rise": <>Without an enzyme</>,
+    "enzyme-energy": <>Activation energy with the enzyme</>,
+    saving: <>Activation energy saved</>,
+    released: <>Energy released</>,
+  }}
+/>
+
+The energy released stays at <InlineMath math="30" /> units wherever you put the slider. An enzyme only changes **how fast** a reaction happens. It doesn't change how much energy is released or which products form.
+
+## Anabolism Builds and Catabolism Breaks Down
+
+Metabolism comes in two kinds. **Anabolism** builds complex molecules from simple ones and needs energy. **Catabolism** breaks complex molecules down into simple ones and releases energy. In a cell both run at the same time: energy from catabolism drives anabolism.
+
+| Feature | Anabolism | Catabolism |
+| :--- | :--- | :--- |
+| Molecules | Simple to complex | Complex to simple |
+| Energy | Needed | Released |
+| Examples | Protein synthesis from amino acids, photosynthesis | Cellular respiration, starch digestion |
+
+Try to classify this reaction. Maltase in the small intestine hydrolyses maltose:
+
+<BlockMath math="\text{maltose} + \mathrm{H_2O} \xrightarrow{\text{maltase}} \text{glucose} + \text{glucose}" />
+
+One disaccharide molecule becomes two monosaccharide molecules, so the reaction is **catabolism**. Check the direction: when the liver joins glucose into glycogen, the molecule gets bigger and energy is needed, so that is anabolism.
+
+## Enzyme Properties and Names
+
+Most enzymes are named by adding the ending **-ase** to the name of their substrate. Sucrase hydrolyses sucrose, lipase hydrolyses lipids, protease hydrolyses proteins and maltase hydrolyses maltose. A few enzymes discovered early keep their old names, such as pepsin, trypsin and rennin.
+
+Enzymes share some properties you'll need to remember:
+
+- Enzymes are **proteins** made by ribosomes.
+- Enzymes are **specific**: one enzyme acts on one kind of substrate only.
+- Enzymes are needed in **small amounts** because they are unchanged and can be reused.
+- Enzymes speed up a reaction but don't change the amount of product.
+- Many enzyme reactions are reversible.
+- Enzymes are affected by temperature, pH, inhibitors and cofactors. A **cofactor** is an inorganic ion such as a magnesium ion, while a **coenzyme** is an organic molecule, many of them made from vitamins.
+
+**Intracellular** enzymes are made and work inside the cell, such as the respiration enzymes in mitochondria. **Extracellular** enzymes are made inside the cell but secreted to work outside it, such as salivary amylase and pepsin. An extracellular enzyme passes through several organelles on its way out:
+
+<Mermaid
+  title={<>The Secretion Pathway of an Extracellular Enzyme</>}
+  description={<>The enzyme is made on ribosomes, carried through the rough endoplasmic reticulum and the Golgi apparatus, then released by exocytosis.</>}
+  chart={`flowchart LR
+  A["DNA in the nucleus"] --> B["mRNA to a ribosome"]
+  B --> C["Protein in the rough endoplasmic reticulum"]
+  C --> D["Transport vesicle"]
+  D --> E["Golgi apparatus"]
+  E --> F["Secretory vesicle"]
+  F --> G["Exocytosis"]`}
+/>
+
+Ribosomes on the **rough endoplasmic reticulum** make the enzyme, the Golgi apparatus modifies and packages it, and a secretory vesicle fuses with the plasma membrane to release the enzyme outside the cell.
+
+## The Lock and Key Hypothesis
+
+Every enzyme has an **active site**, a small region whose shape is complementary to the shape of its substrate. In the **lock and key hypothesis**, the substrate is the key and the active site is the lock. Only a substrate with the matching shape fits into the active site, and that is why enzymes are specific.
+
+Enzyme action happens in three steps. The substrate binds to the active site and forms an **enzyme-substrate complex**. Inside the complex, the substrate turns into products. The products are then released, and the enzyme returns to its original shape, ready for the next substrate.
+
+<BlockMath math="\text{E} + \text{S} \rightarrow \text{ES} \rightarrow \text{E} + \text{P}" />
+
+Newer research shows the active site isn't as rigid as a lock. In the **induced fit model**, the active site changes shape slightly when the substrate binds, so it holds the substrate more tightly. Both models agree on one point: if the shape of the active site is damaged, the substrate can no longer bind.
+
+## Temperature and pH Change the Rate
+
+As temperature rises, enzyme and substrate molecules move faster and collide more often, so the rate increases. The rate is highest at the **optimum temperature**, about <InlineMath math="37^\circ\text{C}" /> for most human enzymes. Above it, the bonds that hold the active site in shape start to break. The enzyme is **denatured**: the shape of the active site changes for good and the substrate can't bind any more.
+
+This graph models a human enzyme with an optimum of <InlineMath math="37^\circ\text{C}" />. Move the temperature slider and compare the slope on the left of the peak with the slope on the right.
+
+<MathVisual
+  title={<>Rate of an Enzyme Reaction against Temperature</>}
+  description={
+    <>
+      Relative rate as a percentage. Below{" "}
+      <InlineMath math="37^\circ\text{C}" /> the rate is{" "}
+      <InlineMath math="100e^{-((T - 37)/12)^2}" />, and above it{" "}
+      <InlineMath math="100e^{-((T - 37)/6)^2}" />, so the rate falls more
+      steeply after the optimum.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 60, value: 27, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "rise", kind: "function", appearance: "primary", formula: "100exp(-((x - 37)/12)^2)", domain: { min: 0, max: 37 } },
+      { id: "fall", kind: "function", appearance: "primary", formula: "100exp(-((x - 37)/6)^2)", domain: { min: 37, max: 60 } },
+      { id: "optimum", kind: "point", appearance: "highlight", at: { x: 37, y: 100 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "c", y: "100exp(-(min(c - 37, 0)/12)^2 - (max(c - 37, 0)/6)^2)" },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum", at: { x: 37, y: 100 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "rate", formula: "100exp(-(min(c - 37, 0)/12)^2 - (max(c - 37, 0)/6)^2)" },
+    ],
+  }}
+  labels={{
+    c: <>Temperature in <InlineMath math="^\circ\text{C}" /></>,
+    optimum: <>Optimum temperature, <InlineMath math="37^\circ\text{C}" /></>,
+    rate: <>Relative rate in <InlineMath math="\%" /></>,
+  }}
+/>
+
+At <InlineMath math="27^\circ\text{C}" /> the model gives about <InlineMath math="50\%" />, but at <InlineMath math="50^\circ\text{C}" /> the rate is close to zero. At low temperature the enzyme is only **inactive**, not denatured, so it works again once it's warmed to the optimum.
+
+pH changes the charges on the active site. Every enzyme has its own **optimum pH**, which matches the place where it works. Pepsin works in the acidic stomach, salivary amylase in the nearly neutral mouth, and trypsin in the slightly alkaline small intestine.
+
+<MathVisual
+  title={<>Three Digestive Enzymes and Their Optimum pH</>}
+  description={
+    <>
+      A model of relative activity as a percentage. Pepsin peaks at pH{" "}
+      <InlineMath math="2" />, salivary amylase at pH <InlineMath math="7" />{" "}
+      and trypsin at pH <InlineMath math="8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 125 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 14, value: 7, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "pepsin", kind: "function", appearance: "warning", formula: "100exp(-((x - 2)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "amylase", kind: "function", appearance: "primary", formula: "100exp(-((x - 7)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "trypsin", kind: "function", appearance: "secondary", formula: "100exp(-((x - 8)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "p", y: "0" }, { x: "p", y: "110" }] },
+    ],
+    labels: [
+      { key: "pepsin", objectId: "pepsin", at: { x: 2, y: 100 }, placement: "above" },
+      { key: "amylase", objectId: "amylase", at: { x: 7, y: 100 }, placement: "above-left" },
+      { key: "trypsin", objectId: "trypsin", at: { x: 8, y: 100 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "pepsin-reading", formula: "100exp(-((p - 2)/1.2)^2)" },
+      { key: "amylase-reading", formula: "100exp(-((p - 7)/1.2)^2)" },
+      { key: "trypsin-reading", formula: "100exp(-((p - 8)/1.2)^2)" },
+    ],
+  }}
+  labels={{
+    p: <>pH of the solution</>,
+    pepsin: <>Pepsin</>,
+    amylase: <>Salivary amylase</>,
+    trypsin: <>Trypsin</>,
+    "pepsin-reading": <>Pepsin in <InlineMath math="\%" /></>,
+    "amylase-reading": <>Salivary amylase in <InlineMath math="\%" /></>,
+    "trypsin-reading": <>Trypsin in <InlineMath math="\%" /></>,
+  }}
+/>
+
+Put the slider at pH <InlineMath math="7" />. Pepsin is almost inactive there, so pepsin that reaches the small intestine stops digesting protein and trypsin takes over that job.
+
+Now analyse a set of amylase results. Starch solution is mixed with amylase at four temperatures. Every minute, a drop of the mixture is tested with iodine solution until the blue-black colour no longer appears. The recorded times are <InlineMath math="240\text{ s}" /> at <InlineMath math="20^\circ\text{C}" />, <InlineMath math="120\text{ s}" /> at <InlineMath math="30^\circ\text{C}" />, <InlineMath math="60\text{ s}" /> at <InlineMath math="40^\circ\text{C}" /> and <InlineMath math="300\text{ s}" /> at <InlineMath math="50^\circ\text{C}" />. The rate of reaction is the reciprocal of the time:
+
+<MathContainer>
+<BlockMath math="\text{rate} = \frac{1}{t}" />
+<BlockMath math="\frac{1}{240} = 0.0042\text{ s}^{-1},\quad \frac{1}{120} = 0.0083\text{ s}^{-1}" />
+<BlockMath math="\frac{1}{60} = 0.0167\text{ s}^{-1},\quad \frac{1}{300} = 0.0033\text{ s}^{-1}" />
+</MathContainer>
+
+<Chart
+  title={<>Rate of Starch Hydrolysis at Four Temperatures</>}
+  description={
+    <>
+      Each bar is <InlineMath math="1000/t" />, where <InlineMath math="t" /> is
+      the time until the iodine test is no longer blue-black.
+    </>
+  }
+  bars="apart"
+  categories={["20 °C", "30 °C", "40 °C", "50 °C"]}
+  series={[
+    { label: "Rate in units of 1000/t", mark: "bar", values: [240, 120, 60, 300].map((time) => 1000 / time) },
+  ]}
+  valueLabel="Rate in units of 1000/t"
+/>
+
+The rate is highest at <InlineMath math="40^\circ\text{C}" />, so the optimum temperature lies near <InlineMath math="40^\circ\text{C}" />. Check the logic: the rate at <InlineMath math="50^\circ\text{C}" /> is lower than at <InlineMath math="20^\circ\text{C}" />, because part of the amylase is already denatured.
+
+## Substrate Concentration and Enzyme Concentration
+
+As substrate concentration rises, more active sites are filled and the rate increases. Eventually every active site is busy all the time. At that point the rate reaches its **maximum rate**, and adding more substrate no longer raises it. Now **enzyme concentration** becomes the limiting factor: adding enzyme gives more active sites, so the maximum rate goes up.
+
+This model uses the rate <InlineMath math="r = \dfrac{20ks}{2 + s}" />, where <InlineMath math="s" /> is the substrate concentration and <InlineMath math="k" /> is the relative enzyme concentration. The dashed curve is the one for <InlineMath math="k = 1" />.
+
+<MathVisual
+  title={<>Rate against Substrate Concentration</>}
+  description={
+    <>
+      The curve <InlineMath math="r = 20ks/(2 + s)" />. The rate levels off at{" "}
+      <InlineMath math="20k" /> because the active sites are saturated, and the
+      maximum rate doubles when <InlineMath math="k" /> doubles.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 65 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 3, value: 2, step: 0.5, label: "k" },
+      { name: "s", min: 0, max: 20, value: 2, step: 0.5, label: "s" },
+    ],
+    objects: [
+      { id: "base", kind: "function", appearance: "construction", formula: "20x/(2 + x)", domain: { min: 0, max: 20 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "20k x/(2 + x)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "s", y: "20k s/(2 + s)" },
+    ],
+    readouts: [
+      { key: "rate", formula: "20k s/(2 + s)" },
+      { key: "maximum", formula: "20k" },
+    ],
+  }}
+  labels={{
+    k: <>Relative enzyme concentration <InlineMath math="k" /></>,
+    s: <>Substrate concentration <InlineMath math="s" /></>,
+    rate: <>Rate of reaction <InlineMath math="r" /></>,
+    maximum: <>Maximum rate</>,
+  }}
+/>
+
+A classic experiment uses **catalase** in potato. Catalase breaks down hydrogen peroxide, a toxic by-product of metabolism, into water and oxygen:
+
+<BlockMath math="2\mathrm{H_2O_2} \xrightarrow{\text{catalase}} 2\mathrm{H_2O} + \mathrm{O_2}" />
+
+Two flasks hold the same volume of hydrogen peroxide. One gets potato cubes and the other grated potato of the same mass. Grating exposes more cells, so more catalase comes into contact with the substrate.
+
+<GasRateLab
+  title={<>Oxygen from Potato Cubes and Grated Potato</>}
+  description={
+    <>
+      Two conical flasks are connected to gas syringes. Each flask holds{" "}
+      <InlineMath math="0.008" /> mol of hydrogen peroxide, so each can give
+      off <InlineMath math="0.004" /> mol of oxygen.
+    </>
+  }
+  runs={[
+    { amount: 0.004, solid: "chips" },
+    { amount: 0.004, solid: "powder" },
+  ]}
+  showCurves
+  labels={{
+    final: <>final amount of oxygen</>,
+    runs: [<>Potato cubes</>, <>Grated potato</>],
+    solids: { chips: <>cubes</>, granules: <>slices</>, powder: <>grated</> },
+    time: "Time",
+    view: "Oxygen collected from two flasks",
+  }}
+/>
+
+Work out the initial rates from the syringe readings. In the first <InlineMath math="20\text{ s}" />, the grated flask collects <InlineMath math="40\text{ cm}^3" /> of oxygen and the cube flask <InlineMath math="16\text{ cm}^3" />. The mean initial rate is volume divided by time:
+
+<MathContainer>
+<BlockMath math="\text{grated: } \frac{40\text{ cm}^3}{20\text{ s}} = 2.0\text{ cm}^3\text{ s}^{-1}" />
+<BlockMath math="\text{cubes: } \frac{16\text{ cm}^3}{20\text{ s}} = 0.8\text{ cm}^3\text{ s}^{-1}" />
+</MathContainer>
+
+The grated potato gives an initial rate <InlineMath math="2.5" /> times higher. Check the final volume: <InlineMath math="0.004" /> mol of oxygen at room temperature takes up <InlineMath math="0.004 \times 24{,}000 = 96\text{ cm}^3" /> in both syringes. More enzyme **speeds up the reaction, but the amount of product stays the same**, because the amount of hydrogen peroxide is the same.
+
+## Enzymes in Industry and Everyday Life
+
+Enzymes are now made on a large scale, mostly from microorganisms. Each use depends on the substrate the enzyme breaks down.
+
+| Field | Enzyme | Use |
+| :--- | :--- | :--- |
+| Detergents | Protease, lipase, amylase | Remove protein, fat and starch stains from fabric |
+| Cheese making | Rennin (chymosin) | Clots milk protein |
+| Milk processing | Lactase | Makes lactose-free milk |
+| Fruit juice | Pectinase | Breaks down cell wall pectin so juice is more plentiful and clearer |
+| Bread | Amylase | Breaks down flour starch and controls bread texture |
+| Textiles | Amylase | Removes starch from yarn without damaging the fabric |
+
+Biological detergents work best in warm water, because **water that's too hot denatures their enzymes**. Lactose-free milk lets people who don't make enough lactase drink milk without a stomach ache.
+
+## Common Mistakes about Enzymes
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Enzymes die at high temperature. | Enzymes aren't alive. They are denatured because the shape of the active site changes. | Use the word denatured and mention the active site. |
+| Low temperature denatures enzymes. | Low temperature only makes enzymes inactive. | Warm them back to the optimum and the rate recovers. |
+| Enzymes get used up in the reaction. | Enzymes are unchanged and can be reused. | The final volume of product depends on the substrate, not the enzyme. |
+| Every enzyme has an optimum pH of <InlineMath math="7" />. | The optimum pH matches where the enzyme works. | Pepsin in the stomach, pH <InlineMath math="2" />. |
+| Enzymes increase the amount of product. | Enzymes only speed up the reaction. | Compare where the two gas curves level off. |
+
+The first mistake turns up most often in exam answers. Write **"the enzyme is denatured, its active site changes shape"**, not "the enzyme dies".
+
+## Enzyme Practice
+
+These questions start with naming and end with analysing the rate model. **Give a reason based on the active site** in every answer.
+
+1. Name the enzymes that hydrolyse sucrose, lipids and proteins. State whether these reactions are anabolism or catabolism.
+
+2. One tube of amylase is kept at <InlineMath math="5^\circ\text{C}" /> and another is boiled at <InlineMath math="100^\circ\text{C}" />. Both are then placed in a <InlineMath math="37^\circ\text{C}" /> water bath with starch solution. Predict what happens and explain.
+
+3. Use the pH model in these notes. Calculate the relative activity of trypsin at pH <InlineMath math="7" />, and explain why pepsin doesn't digest protein in the small intestine.
+
+4. Use the model <InlineMath math="r = \dfrac{20ks}{2 + s}" />. Calculate <InlineMath math="r" /> for <InlineMath math="k = 1,\ s = 2" />, for <InlineMath math="k = 2,\ s = 2" /> and for <InlineMath math="k = 1,\ s = 18" />. Explain why raising the substrate from <InlineMath math="s = 2" /> to <InlineMath math="s = 18" /> doesn't make the rate nine times bigger.
+
+### Solutions
+
+**Solution 1**: Add the ending -ase to the substrate name: **sucrase**, **lipase** and **protease**. All three break large molecules into small ones, so they are all **catabolism**.
+
+**Solution 2**: The cold tube digests the starch, because amylase is only inactive at <InlineMath math="5^\circ\text{C}" /> and its active site is still intact. The boiled tube doesn't digest the starch, because **the amylase is denatured** and its active site has changed shape for good. The iodine test on the second tube stays blue-black.
+
+**Solution 3**: Substitute pH <InlineMath math="7" /> into the trypsin model:
+
+<BlockMath math="100e^{-((7 - 8)/1.2)^2} = 100e^{-0.694} \approx 50\%" />
+
+For pepsin at pH <InlineMath math="8" />, the exponent is <InlineMath math="-((8 - 2)/1.2)^2 = -25" />, so its activity is close to zero. In the alkaline small intestine **the charges on pepsin's active site change**, so the substrate doesn't bind.
+
+**Solution 4**: Substitute each pair of values:
+
+<MathContainer>
+<BlockMath math="k = 1,\ s = 2: \quad r = \frac{20(1)(2)}{2 + 2} = 10" />
+<BlockMath math="k = 2,\ s = 2: \quad r = \frac{20(2)(2)}{2 + 2} = 20" />
+<BlockMath math="k = 1,\ s = 18: \quad r = \frac{20(1)(18)}{2 + 18} = 18" />
+</MathContainer>
+
+Doubling the enzyme doubles the rate. Raising the substrate ninefold only lifts the rate from <InlineMath math="10" /> to <InlineMath math="18" />, because almost **all the active sites are already saturated**. The rate can't go above <InlineMath math="20k = 20" />.
