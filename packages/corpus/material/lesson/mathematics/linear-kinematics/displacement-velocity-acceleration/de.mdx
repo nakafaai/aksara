@@ -1,0 +1,297 @@
+export const metadata = {
+  title: "Kinematik geradliniger Bewegung für Form Fünf",
+  description:
+    "Notizen zu KSSM Zusatzmathematik Form 5 Kapitel 8: Leite den Ort ab, um Geschwindigkeit und Beschleunigung zu erhalten, integriere die Beschleunigung zurück und unterscheide Ortsänderung von zurückgelegter Strecke.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Kinematik geradliniger Bewegung",
+};
+
+## Ableiten nach unten und Integrieren nach oben
+
+Für ein Teilchen, das sich auf einer Geraden bewegt, hängen **Ort** <InlineMath math="s" />, **Geschwindigkeit** <InlineMath math="v" /> und **Beschleunigung** <InlineMath math="a" /> über die Analysis zusammen:
+
+<BlockMath math="v = \frac{ds}{dt}, \qquad a = \frac{dv}{dt} = \frac{d^2s}{dt^2}" />
+
+Ableiten führt von <InlineMath math="s" /> über <InlineMath math="v" /> zu <InlineMath math="a" />, Integrieren führt den umgekehrten Weg, <InlineMath math="v = \int a\,dt" /> und <InlineMath math="s = \int v\,dt" />. Das Teilchen ist **kurz in Ruhe**, wenn <InlineMath math="v = 0" /> gilt, und **kehrt** in diesem Moment meist **um**. Die zurückgelegte Strecke addiert alle Teile des Wegs, der Ort dagegen ist nur die Endlage gemessen vom Ursprung.
+
+In diesen Notizen lässt du die Zeit laufen und beobachtest die Steigung des Ort-Zeit-Graphen, verfolgst ein Teilchen, das umkehrt, vergleichst Ort und Strecke und baust die Geschwindigkeit aus der Beschleunigung auf.
+
+## Der Ort und seine Steigung
+
+Ein Teilchen bewegt sich auf einer Geraden, sein Ort ist <InlineMath math="s = t^3 - 6t^2 + 9t" /> Meter vom festen Punkt <InlineMath math="O" />, mit <InlineMath math="t" /> in Sekunden. Leite einmal für die Geschwindigkeit und noch einmal für die Beschleunigung ab:
+
+<MathContainer>
+<BlockMath math="v = \frac{ds}{dt} = 3t^2 - 12t + 9 = 3(t - 1)(t - 3)" />
+<BlockMath math="a = \frac{dv}{dt} = 6t - 12" />
+</MathContainer>
+
+Die Geschwindigkeit ist **die Steigung des Ort-Zeit-Graphen**. Verschiebe unten die Zeit. Die Tangente wird bei <InlineMath math="t = 1" /> und <InlineMath math="t = 3" /> waagerecht, wenn das Teilchen kurz in Ruhe ist.
+
+<MathVisual
+  title={<>Der Ort-Zeit-Graph und seine Tangente</>}
+  description={
+    <>
+      Ort <InlineMath math="s = t^3 - 6t^2 + 9t" />. Die Steigung der Tangente ist
+      die Geschwindigkeit. Die Tangente ist waagerecht bei{" "}
+      <InlineMath math="t = 1" /> mit <InlineMath math="s = 4" /> und bei{" "}
+      <InlineMath math="t = 3" /> mit <InlineMath math="s = 0" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4.5 }, y: { min: -2, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 4.5, value: 2, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "displacement", kind: "function", appearance: "primary", formula: "x^3 - 6*x^2 + 9*x", domain: { min: 0, max: 4.5 } },
+      { id: "tangent", kind: "path", points: [{ x: "p - 0.6", y: "p^3 - 6*p^2 + 9*p - 0.6*(3*p^2 - 12*p + 9)" }, { x: "p + 0.6", y: "p^3 - 6*p^2 + 9*p + 0.6*(3*p^2 - 12*p + 9)" }], appearance: "warning" },
+      { id: "now", kind: "marker", x: "p", y: "p^3 - 6*p^2 + 9*p", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "displacement-now", formula: "p^3 - 6*p^2 + 9*p" },
+      { key: "velocity-now", formula: "3*p^2 - 12*p + 9" },
+      { key: "acceleration-now", formula: "6*p - 12" },
+    ],
+  }}
+  labels={{
+    p: <>Zeit <InlineMath math="t" /> in Sekunden</>,
+    "displacement-now": <>Ort <InlineMath math="s" /> in <InlineMath math="\text{m}" /></>,
+    "velocity-now": <>Geschwindigkeit <InlineMath math="v" /> in <InlineMath math="\text{m s}^{-1}" /></>,
+    "acceleration-now": <>Beschleunigung <InlineMath math="a" /> in <InlineMath math="\text{m s}^{-2}" /></>,
+  }}
+/>
+
+Das Teilchen ist in Ruhe, wenn <InlineMath math="3(t - 1)(t - 3) = 0" /> gilt, also bei <InlineMath math="t = 1" /> und <InlineMath math="t = 3" />. Seine Lagen sind dann <InlineMath math="s(1) = 1 - 6 + 9 = 4\text{ m}" /> und <InlineMath math="s(3) = 27 - 54 + 27 = 0\text{ m}" />, zurück bei <InlineMath math="O" />.
+
+## Geschwindigkeit und Beschleunigung
+
+Der Geschwindigkeit-Zeit-Graph zeigt **die Bewegungsrichtung**. Eine positive Geschwindigkeit bedeutet Bewegung nach rechts, eine negative Bewegung nach links. Der Beschleunigung-Zeit-Graph zeigt, ob die Geschwindigkeit gerade zu- oder abnimmt.
+
+<MathVisual
+  title={<>Der Geschwindigkeit-Zeit-Graph</>}
+  description={
+    <>
+      Die Geschwindigkeit <InlineMath math="v = 3t^2 - 12t + 9" /> ist zwischen{" "}
+      <InlineMath math="t = 1" /> und <InlineMath math="t = 3" /> negativ, das
+      Teilchen bewegt sich in dieser Zeit also nach links. Die negativste
+      Geschwindigkeit ist <InlineMath math="-3\text{ m s}^{-1}" /> bei{" "}
+      <InlineMath math="t = 2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4.5 }, y: { min: -4, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 4.5, value: 2, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "velocity", kind: "function", appearance: "secondary", formula: "3*x^2 - 12*x + 9", domain: { min: 0, max: 4.5 } },
+      { id: "first-rest", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "second-rest", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "now", kind: "marker", x: "p", y: "3*p^2 - 12*p + 9", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "velocity-now", formula: "3*p^2 - 12*p + 9" },
+    ],
+  }}
+  labels={{
+    p: <>Zeit <InlineMath math="t" /> in Sekunden</>,
+    "velocity-now": <>Geschwindigkeit <InlineMath math="v" /> in <InlineMath math="\text{m s}^{-1}" /></>,
+  }}
+/>
+
+<MathVisual
+  title={<>Der Beschleunigung-Zeit-Graph</>}
+  description={
+    <>
+      Die Beschleunigung <InlineMath math="a = 6t - 12" /> ist null bei{" "}
+      <InlineMath math="t = 2" />, wenn die Geschwindigkeit ihr Minimum erreicht.
+      Nach <InlineMath math="t = 2" /> ist die Beschleunigung positiv, und die
+      Geschwindigkeit nimmt zu.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4.5 }, y: { min: -13, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 4.5, value: 1, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "acceleration", kind: "function", appearance: "construction", formula: "6*x - 12", domain: { min: 0, max: 4.5 } },
+      { id: "now", kind: "marker", x: "p", y: "6*p - 12", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "acceleration-now", formula: "6*p - 12" },
+    ],
+  }}
+  labels={{
+    p: <>Zeit <InlineMath math="t" /> in Sekunden</>,
+    "acceleration-now": <>Beschleunigung <InlineMath math="a" /> in <InlineMath math="\text{m s}^{-2}" /></>,
+  }}
+/>
+
+Die kleinste Geschwindigkeit findest du über <InlineMath math="\dfrac{dv}{dt} = a = 0" />: <InlineMath math="6t - 12 = 0" /> ergibt <InlineMath math="t = 2" />, und <InlineMath math="v(2) = 12 - 24 + 9 = -3\text{ m s}^{-1}" />.
+
+## Ort im Vergleich zur Strecke
+
+Verfolge das Teilchen auf der Geraden. Es läuft nach rechts bis <InlineMath math="s = 4" />, kehrt nach <InlineMath math="O" /> zurück und läuft dann wieder nach rechts. **Die zurückgelegte Strecke** zählt jeden Teil des Wegs positiv, deshalb unterscheidet sie sich vom Ort, sobald das Teilchen umkehrt.
+
+<MathVisual
+  title={<>Ein Teilchen, das umkehrt</>}
+  description={
+    <>
+      Die Lage des Teilchens auf der Geraden nach <InlineMath math="t" /> Sekunden.
+      Bei <InlineMath math="t = 4" /> ist sein Ort <InlineMath math="4\text{ m}" />,
+      die zurückgelegte Strecke aber <InlineMath math="12\text{ m}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 4.5, value: 4, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "track", kind: "segment", from: { x: -1, y: 0 }, to: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "turning", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "particle", kind: "marker", x: "p^3 - 6*p^2 + 9*p", y: "0", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "displacement-now", formula: "p^3 - 6*p^2 + 9*p" },
+      { key: "distance-now", formula: "abs((min(p, 1))^3 - 6*(min(p, 1))^2 + 9*(min(p, 1))) + abs((min(max(p, 1), 3))^3 - 6*(min(max(p, 1), 3))^2 + 9*(min(max(p, 1), 3)) - 4) + abs((max(p, 3))^3 - 6*(max(p, 3))^2 + 9*(max(p, 3)))" },
+    ],
+  }}
+  labels={{
+    p: <>Zeit <InlineMath math="t" /> in Sekunden</>,
+    "displacement-now": <>Ort relativ zu <InlineMath math="O" /> in <InlineMath math="\text{m}" /></>,
+    "distance-now": <>Zurückgelegte Strecke in <InlineMath math="\text{m}" /></>,
+  }}
+/>
+
+Um die Strecke in den ersten <InlineMath math="4" /> Sekunden zu bestimmen, **teilst du den Weg an jedem Ruhepunkt**:
+
+<MathContainer>
+<BlockMath math="0 \le t \le 1: \quad |s(1) - s(0)| = |4 - 0| = 4" />
+<BlockMath math="1 \le t \le 3: \quad |s(3) - s(1)| = |0 - 4| = 4" />
+<BlockMath math="3 \le t \le 4: \quad |s(4) - s(3)| = |4 - 0| = 4" />
+<BlockMath math="\text{Strecke} = 4 + 4 + 4 = 12\text{ m}" />
+</MathContainer>
+
+Der Ort bei <InlineMath math="t = 4" /> ist nur <InlineMath math="s(4) = 64 - 96 + 36 = 4\text{ m}" />, weil der Weg nach links einen Teil des Wegs nach rechts aufhebt.
+
+## Von der Beschleunigung zu Geschwindigkeit und Ort
+
+Ist die Beschleunigung gegeben, integrierst du für die Geschwindigkeit und dann noch einmal für den Ort. Jede Integration liefert eine Konstante, die durch **die Anfangsbedingungen** festgelegt wird.
+
+Ein Teilchen hat die Beschleunigung <InlineMath math="a = 4 - 2t" /> und die Anfangsgeschwindigkeit <InlineMath math="3\text{ m s}^{-1}" />, es startet bei <InlineMath math="O" />:
+
+<MathContainer>
+<BlockMath math="v = \int (4 - 2t)\,dt = 4t - t^2 + c, \quad v(0) = 3 \Rightarrow c = 3" />
+<BlockMath math="v = 3 + 4t - t^2" />
+<BlockMath math="s = \int (3 + 4t - t^2)\,dt = 3t + 2t^2 - \frac{t^3}{3}, \quad s(0) = 0" />
+</MathContainer>
+
+Die größte Geschwindigkeit tritt bei <InlineMath math="a = 0" /> auf, also bei <InlineMath math="t = 2" />, mit <InlineMath math="v = 3 + 8 - 4 = 7\text{ m s}^{-1}" />. Ändere unten die Anfangsgeschwindigkeit <InlineMath math="u" /> und sieh, wann das Teilchen anhält.
+
+<MathVisual
+  title={<>Geschwindigkeit aus der Beschleunigung bei veränderlicher Anfangsgeschwindigkeit</>}
+  description={
+    <>
+      Die Geschwindigkeit <InlineMath math="v = u + 4t - t^2" /> zur
+      Beschleunigung <InlineMath math="a = 4 - 2t" />. Das Teilchen hält bei{" "}
+      <InlineMath math="t = 2 + \sqrt{4 + u}" />. Für <InlineMath math="u = 3" />{" "}
+      hält es bei <InlineMath math="t = 4{,}65" /> Sekunden.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -10, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 6, value: 3, step: 0.5, label: "c" },
+    ],
+    objects: [
+      { id: "velocity", kind: "function", appearance: "primary", formula: "c + 4*x - x^2", domain: { min: 0, max: 7 } },
+      { id: "peak", kind: "marker", x: "2", y: "c + 4", appearance: "construction" },
+      { id: "rest", kind: "marker", x: "2 + sqrt(4 + c)", y: "0", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "rest-time", formula: "2 + sqrt(4 + c)" },
+      { key: "top-speed", formula: "c + 4" },
+    ],
+  }}
+  labels={{
+    c: <>Anfangsgeschwindigkeit <InlineMath math="u" /> in <InlineMath math="\text{m s}^{-1}" /></>,
+    "rest-time": <>Zeitpunkt des Anhaltens in Sekunden</>,
+    "top-speed": <>Größte Geschwindigkeit in <InlineMath math="\text{m s}^{-1}" /></>,
+  }}
+/>
+
+Prüfe den Startwert: <InlineMath math="3 + 4t - t^2 = 0" /> ergibt <InlineMath math="t^2 - 4t - 3 = 0" />, also <InlineMath math="t = 2 + \sqrt{7} = 4{,}65" /> Sekunden. Der Ort bei <InlineMath math="t = 3" /> ist <InlineMath math="9 + 18 - 9 = 18\text{ m}" />.
+
+## Häufige Fehler in der Kinematik
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| Strecke und Ort gleichsetzen. | Wegstücke in entgegengesetzter Richtung heben sich im Ort auf. | Bestimme die Ruhezeitpunkte und teile den Weg. |
+| Die Integrationskonstante vergessen. | Anfangsgeschwindigkeit oder Anfangsort fehlen im Ergebnis. | Setze <InlineMath math="t = 0" /> ein und vergleiche mit der Anfangsbedingung. |
+| Annehmen, das Teilchen sei bei <InlineMath math="O" />, wenn <InlineMath math="v = 0" /> ist. | <InlineMath math="v = 0" /> heißt Ruhe, nicht Ursprung. | Berechne <InlineMath math="s" /> zu diesem Zeitpunkt. |
+| Eine negative Beschleunigung als Abbremsen deuten. | Das Teilchen wird schneller, wenn <InlineMath math="v" /> und <InlineMath math="a" /> dasselbe Vorzeichen haben. | Vergleiche die Vorzeichen von <InlineMath math="v" /> und <InlineMath math="a" />. |
+| Eine negative Wurzel als Zeit nehmen. | Die Zeit ist in diesen Aufgaben nicht negativ. | Verwirf jeden Wert mit <InlineMath math="t < 0" />. |
+
+Der erste Fehler kommt am häufigsten vor. **Jedes Mal, wenn das Teilchen anhält**, beginnt in der Streckenrechnung ein neuer Abschnitt.
+
+## Übungen zur Kinematik geradliniger Bewegung
+
+Schreib <InlineMath math="s" />, <InlineMath math="v" /> und <InlineMath math="a" /> nebeneinander, damit **klar ist, ob du ableitest oder integrierst**.
+
+1. Ein Teilchen bewegt sich mit dem Ort <InlineMath math="s = 2t^3 - 9t^2 + 12t" /> Meter. Bestimme Zeitpunkte und Lagen, in denen es kurz in Ruhe ist, und den Zeitpunkt, an dem seine Beschleunigung null ist.
+
+2. Die Geschwindigkeit eines Teilchens ist <InlineMath math="v = 8 - 2t" /> Meter pro Sekunde, und es startet bei <InlineMath math="O" />. Bestimme den Ort bei <InlineMath math="t = 6" /> und die in den ersten <InlineMath math="6" /> Sekunden zurückgelegte Strecke.
+
+3. Die Beschleunigung eines Teilchens ist <InlineMath math="a = 6t - 4" />, die Anfangsgeschwindigkeit <InlineMath math="-2\text{ m s}^{-1}" />. Bestimme die Geschwindigkeit bei <InlineMath math="t = 2" />.
+
+4. Der Ort eines Teilchens ist <InlineMath math="s = t^2 - 5t + 6" /> Meter. Bestimme die Zeitpunkte, an denen es <InlineMath math="O" /> passiert, und seine Geschwindigkeit zu diesen Zeitpunkten.
+
+### Lösungen
+
+**Lösung 1**: Leite ab:
+
+<MathContainer>
+<BlockMath math="v = 6t^2 - 18t + 12 = 6(t - 1)(t - 2)" />
+<BlockMath math="a = 12t - 18" />
+</MathContainer>
+
+Das Teilchen ruht bei <InlineMath math="t = 1" /> mit <InlineMath math="s = 2 - 9 + 12 = 5\text{ m}" /> und bei <InlineMath math="t = 2" /> mit <InlineMath math="s = 16 - 36 + 24 = 4\text{ m}" />. Die Beschleunigung ist null bei <InlineMath math="t = 1{,}5" /> Sekunden.
+
+**Lösung 2**: Integriere mit <InlineMath math="s(0) = 0" />:
+
+<MathContainer>
+<BlockMath math="s = 8t - t^2" />
+<BlockMath math="s(6) = 48 - 36 = 12\text{ m}" />
+</MathContainer>
+
+Das Teilchen hält bei <InlineMath math="t = 4" /> mit <InlineMath math="s(4) = 16\text{ m}" />. Die Strecke beträgt <InlineMath math="16 + |12 - 16| = 20\text{ m}" />.
+
+**Lösung 3**: Integriere und nutze <InlineMath math="v(0) = -2" />:
+
+<MathContainer>
+<BlockMath math="v = 3t^2 - 4t - 2" />
+<BlockMath math="v(2) = 12 - 8 - 2 = 2\text{ m s}^{-1}" />
+</MathContainer>
+
+**Lösung 4**: Das Teilchen ist bei <InlineMath math="O" />, wenn <InlineMath math="s = 0" /> gilt:
+
+<MathContainer>
+<BlockMath math="t^2 - 5t + 6 = (t - 2)(t - 3) = 0" />
+<BlockMath math="v = 2t - 5, \quad v(2) = -1\text{ m s}^{-1}, \quad v(3) = 1\text{ m s}^{-1}" />
+</MathContainer>
+
+Bei <InlineMath math="t = 2" /> passiert das Teilchen <InlineMath math="O" /> **nach links**, bei <InlineMath math="t = 3" /> passiert es <InlineMath math="O" /> wieder nach rechts.
