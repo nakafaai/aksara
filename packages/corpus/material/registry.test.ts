@@ -41,7 +41,7 @@ function rejectRegistry(input: unknown) {
 
 layer(NodeServices.layer)("material registry", (it) => {
   it.effect(
-    "projects every authored locale body onto its checked-in source path",
+    "projects every authored body onto its source path and every lesson into every locale",
     () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
@@ -64,17 +64,15 @@ layer(NodeServices.layer)("material registry", (it) => {
           Order.String
         );
 
-        expect(
-          HashSet.size(
-            HashSet.fromIterable(
-              Arr.map(entries, ({ route }) => route.materialKey)
-            )
+        const lessonCount = HashSet.size(
+          HashSet.fromIterable(
+            Arr.map(entries, ({ route }) => route.contentKey)
           )
-        ).toBe(42);
+        );
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             Arr.filter(entries, ({ route }) => route.appLocale === locale)
-          ).toHaveLength(389);
+          ).toHaveLength(lessonCount);
         }
         expect(projectedPaths).toEqual(authoredPaths);
 
