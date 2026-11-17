@@ -154,6 +154,12 @@ export const kssmForm4ChemistryFoundationNodes = [
         materialKeys: ["lesson.chemistry.structure-matter"],
         order: 10,
       }),
+      materialNode({
+        key: "form-4-chemistry-the-periodic-table-of-elements-periodic-groups",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.periodic-groups"],
+        order: 20,
+      }),
     ],
     key: "form-4-chemistry-the-periodic-table-of-elements",
     materialCard: {
