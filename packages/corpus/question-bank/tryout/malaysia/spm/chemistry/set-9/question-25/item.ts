@@ -10,19 +10,47 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.762\\text{ g}$$, $$+5$$ to $$0$$" },
-        { correct: false, label: "$$0.254\\text{ g}$$, $$+5$$ to $$0$$" },
-        { correct: false, label: "$$0.762\\text{ g}$$, $$+7$$ to $$0$$" },
-        { correct: false, label: "$$0.381\\text{ g}$$, $$+5$$ to $$0$$" },
+        {
+          correct: true,
+          label: "$$0.762\\text{ g}$$, $$0.830\\text{ g}$$, $$+5$$ to $$0$$",
+        },
+        {
+          correct: false,
+          label: "$$0.254\\text{ g}$$, $$0.166\\text{ g}$$, $$+5$$ to $$0$$",
+        },
+        {
+          correct: false,
+          label: "$$0.762\\text{ g}$$, $$0.830\\text{ g}$$, $$+7$$ to $$0$$",
+        },
+        {
+          correct: false,
+          label: "$$0.762\\text{ g}$$, $$0.166\\text{ g}$$, $$+5$$ to $$0$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.762\\text{ g}$$, $$+5$$ kepada $$0$$" },
-        { correct: false, label: "$$0.254\\text{ g}$$, $$+5$$ kepada $$0$$" },
-        { correct: false, label: "$$0.762\\text{ g}$$, $$+7$$ kepada $$0$$" },
-        { correct: false, label: "$$0.381\\text{ g}$$, $$+5$$ kepada $$0$$" },
+        {
+          correct: true,
+          label:
+            "$$0.762\\text{ g}$$, $$0.830\\text{ g}$$, $$+5$$ kepada $$0$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.254\\text{ g}$$, $$0.166\\text{ g}$$, $$+5$$ kepada $$0$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.762\\text{ g}$$, $$0.830\\text{ g}$$, $$+7$$ kepada $$0$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.762\\text{ g}$$, $$0.166\\text{ g}$$, $$+5$$ kepada $$0$$",
+        },
       ],
     },
   },
