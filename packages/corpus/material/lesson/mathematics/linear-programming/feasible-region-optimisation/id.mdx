@@ -1,0 +1,295 @@
+export const metadata = {
+  title: "Catatan Program Linear Tingkatan Lima",
+  description:
+    "Catatan Matematika Tambahan KSSM Tingkatan 5 Bab 7: susun pertidaksamaan dari kendala, arsir daerah penyelesaian, dan cari nilai maksimum atau minimum fungsi objektif di titik pojok daerah itu.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Program Linear",
+};
+
+## Nilai Terbaik Ada di Titik Pojok
+
+**Program linear** mencari nilai maksimum atau minimum dari sebuah **fungsi objektif** <InlineMath math="k = ax + by" /> saat <InlineMath math="x" /> dan <InlineMath math="y" /> dibatasi beberapa pertidaksamaan linear yang disebut **kendala**. Kendala-kendala itu membentuk **daerah penyelesaian**, yaitu semua titik yang memenuhi setiap kendala. Nilai terbaik fungsi objektif selalu terjadi di **titik pojok** daerah itu, jadi kamu cukup menguji titik pojoknya.
+
+Langkahnya:
+
+1. Tulis setiap kendala sebagai pertidaksamaan dalam <InlineMath math="x" /> dan <InlineMath math="y" />.
+2. Gambar garis batas dan arsir daerah penyelesaian.
+3. Cari koordinat setiap titik pojok.
+4. Hitung fungsi objektif di setiap titik pojok, atau geser garis objektif sampai titik terakhir yang disentuhnya.
+
+Di catatan ini kamu menguji satu titik terhadap pertidaksamaan, menyusun daerah penyelesaian sebuah toko kue, menggeser garis keuntungan, dan melihat bagaimana harga mengubah pilihan terbaik. Harga dalam catatan ini memakai ringgit Malaysia (RM).
+
+## Satu Pertidaksamaan Mengarsir Setengah Bidang
+
+Pertidaksamaan <InlineMath math="x + 3y \le 120" /> ditunjukkan oleh garis batas <InlineMath math="x + 3y = 120" /> dan semua titik di satu sisinya. Garis putus-putus dipakai untuk <InlineMath math="<" /> atau <InlineMath math=">" />, dan garis penuh untuk <InlineMath math="\le" /> atau <InlineMath math="\ge" />. Untuk memilih sisi yang benar, **uji satu titik yang tidak terletak pada garis**, biasanya titik asal. Geser titik uji di bawah dan bandingkan nilai <InlineMath math="x + 3y" /> dengan <InlineMath math="120" />.
+
+<MathVisual
+  title={<>Setengah Bidang untuk <InlineMath math="x + 3y \le 120" /></>}
+  description={
+    <>
+      Daerah yang diarsir memenuhi <InlineMath math="x + 3y \le 120" />. Titik
+      asal memberi <InlineMath math="0 \le 120" />, jadi sisi yang memuat titik
+      asal yang diarsir.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 130 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 130, value: 20, step: 1, label: "p" },
+      { name: "q", min: 0, max: 50, value: 10, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "half-plane", kind: "region", appearance: "primary", inequalities: ["x + 3y <= 120"] },
+      { id: "test", kind: "marker", x: "p", y: "q", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "left-side", formula: "p + 3*q" },
+    ],
+  }}
+  labels={{
+    p: <>Koordinat-<InlineMath math="x" /> titik uji</>,
+    q: <>Koordinat-<InlineMath math="y" /> titik uji</>,
+    "left-side": <>Nilai <InlineMath math="x + 3y" /> di titik uji</>,
+  }}
+/>
+
+Titik dengan bacaan <InlineMath math="120" /> atau kurang berada di daerah yang diarsir. Misalnya <InlineMath math="(20, 10)" /> memberi <InlineMath math="50 \le 120" />, jadi titik itu memenuhi pertidaksamaan.
+
+## Susun Daerah Penyelesaian dari Situasi
+
+Sebuah toko membuat <InlineMath math="x" /> kue cokelat dan <InlineMath math="y" /> kue keju setiap hari. Kendalanya:
+
+- Oven bisa memanggang paling banyak <InlineMath math="60" /> kue sehari.
+- Menghias satu kue cokelat butuh <InlineMath math="1" /> menit dan satu kue keju <InlineMath math="3" /> menit, dengan waktu menghias paling banyak <InlineMath math="120" /> menit.
+- Banyak kue tidak boleh negatif.
+
+Tulis setiap kendala sebagai pertidaksamaan:
+
+<MathContainer>
+<BlockMath math="x + y \le 60" />
+<BlockMath math="x + 3y \le 120" />
+<BlockMath math="x \ge 0, \quad y \ge 0" />
+</MathContainer>
+
+Daerah penyelesaian adalah daerah yang **memenuhi keempat pertidaksamaan sekaligus**. Titik pojoknya <InlineMath math="(0, 0)" />, <InlineMath math="(60, 0)" />, <InlineMath math="(0, 40)" />, dan titik potong kedua garis batas.
+
+<MathVisual
+  title={<>Daerah Penyelesaian Toko Kue</>}
+  description={
+    <>
+      Daerah yang memenuhi <InlineMath math="x + y \le 60" />,{" "}
+      <InlineMath math="x + 3y \le 120" />, <InlineMath math="x \ge 0" />, dan{" "}
+      <InlineMath math="y \ge 0" />. Titik pojoknya{" "}
+      <InlineMath math="(0, 0)" />, <InlineMath math="(60, 0)" />,{" "}
+      <InlineMath math="(30, 30)" />, dan <InlineMath math="(0, 40)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 70 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["x + y <= 60", "x + 3y <= 120", "x >= 0", "y >= 0"] },
+      { id: "corner-origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "corner-right", kind: "point", at: { x: 60, y: 0 }, appearance: "reference" },
+      { id: "corner-meet", kind: "point", at: { x: 30, y: 30 }, appearance: "answer" },
+      { id: "corner-top", kind: "point", at: { x: 0, y: 40 }, appearance: "reference" },
+    ],
+  }}
+/>
+
+Titik pojok perpotongan didapat dengan menyelesaikan kedua persamaan batas bersama-sama:
+
+<MathContainer>
+<BlockMath math="x + 3y = 120, \quad x + y = 60" />
+<BlockMath math="2y = 60 \quad \Rightarrow \quad y = 30, \quad x = 30" />
+</MathContainer>
+
+## Geser Garis Objektif
+
+Toko itu untung RM5 untuk setiap kue cokelat dan RM8 untuk setiap kue keju, jadi fungsi objektifnya <InlineMath math="k = 5x + 8y" />. Untuk setiap nilai <InlineMath math="k" />, persamaan <InlineMath math="5x + 8y = k" /> berupa garis. Semua garis ini sejajar. Naikkan <InlineMath math="k" /> sampai garis hampir keluar dari daerah penyelesaian.
+
+<MathVisual
+  title={<>Garis Keuntungan <InlineMath math="5x + 8y = k" /></>}
+  description={
+    <>
+      Garis keuntungan bergeser keluar saat <InlineMath math="k" /> bertambah.
+      Titik terakhir di daerah penyelesaian yang disentuhnya adalah{" "}
+      <InlineMath math="(30, 30)" />, pada <InlineMath math="k = 390" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 70 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 40, max: 480, value: 200, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["x + y <= 60", "x + 3y <= 120", "x >= 0", "y >= 0"] },
+      { id: "profit-line", kind: "function", appearance: "warning", formula: "(k - 5*x)/8", domain: { min: 0, max: 70 } },
+      { id: "best", kind: "point", at: { x: 30, y: 30 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "profit", formula: "k" },
+    ],
+  }}
+  labels={{
+    k: <>Keuntungan <InlineMath math="k" /> dalam RM</>,
+    profit: <>Keuntungan pada garis dalam RM</>,
+  }}
+/>
+
+Cek dengan menghitung fungsi objektif di setiap titik pojok:
+
+| Titik pojok | <InlineMath math="k = 5x + 8y" /> |
+| :--- | :--- |
+| <InlineMath math="(0, 0)" /> | <InlineMath math="0" /> |
+| <InlineMath math="(60, 0)" /> | <InlineMath math="300" /> |
+| <InlineMath math="(30, 30)" /> | <InlineMath math="390" /> |
+| <InlineMath math="(0, 40)" /> | <InlineMath math="320" /> |
+
+Keuntungan maksimumnya **RM390**, saat toko membuat <InlineMath math="30" /> kue cokelat dan <InlineMath math="30" /> kue keju.
+
+## Soal Biaya Minimum
+
+Program linear juga mencari nilai minimum. Seorang peternak mencampur dua jenis pakan ayam. Satu kilogram pakan <InlineMath math="P" /> memberi <InlineMath math="2" /> unit protein dan <InlineMath math="1" /> unit vitamin, sedangkan satu kilogram pakan <InlineMath math="Q" /> memberi <InlineMath math="1" /> unit protein dan <InlineMath math="2" /> unit vitamin. Campurannya butuh paling sedikit <InlineMath math="8" /> unit protein dan <InlineMath math="7" /> unit vitamin. Pakan <InlineMath math="P" /> seharga RM3 per kilogram dan <InlineMath math="Q" /> RM4 per kilogram.
+
+<MathContainer>
+<BlockMath math="2x + y \ge 8, \quad x + 2y \ge 7, \quad x \ge 0, \quad y \ge 0" />
+<BlockMath math="C = 3x + 4y" />
+</MathContainer>
+
+Daerah ini **tidak terbatas** ke arah atas, jadi biaya maksimum tidak ada. Biaya minimum ada di titik pojok yang paling dekat dengan titik asal searah garis biaya. Turunkan <InlineMath math="C" /> sampai garis biaya hampir keluar dari daerah.
+
+<MathVisual
+  title={<>Garis Biaya <InlineMath math="3x + 4y = C" /></>}
+  description={
+    <>
+      Daerah <InlineMath math="2x + y \ge 8" /> dan{" "}
+      <InlineMath math="x + 2y \ge 7" /> dengan titik pojok{" "}
+      <InlineMath math="(0, 8)" />, <InlineMath math="(3, 2)" />, dan{" "}
+      <InlineMath math="(7, 0)" />. Garis biaya terakhir yang menyentuh daerah
+      melalui <InlineMath math="(3, 2)" />, pada <InlineMath math="C = 17" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 8, max: 40, value: 26, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["2x + y >= 8", "x + 2y >= 7", "x >= 0", "y >= 0"] },
+      { id: "cost-line", kind: "function", appearance: "warning", formula: "(c - 3*x)/4", domain: { min: 0, max: 10 } },
+      { id: "corner-top", kind: "point", at: { x: 0, y: 8 }, appearance: "reference" },
+      { id: "corner-best", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "corner-right", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+    ],
+    readouts: [
+      { key: "cost", formula: "c" },
+    ],
+  }}
+  labels={{
+    c: <>Biaya <InlineMath math="C" /> dalam RM</>,
+    cost: <>Biaya pada garis dalam RM</>,
+  }}
+/>
+
+Biaya di titik pojok adalah <InlineMath math="C(0, 8) = 32" />, <InlineMath math="C(3, 2) = 9 + 8 = 17" />, dan <InlineMath math="C(7, 0) = 21" />. Biaya minimumnya RM17, dengan <InlineMath math="3\text{ kg}" /> pakan <InlineMath math="P" /> dan <InlineMath math="2\text{ kg}" /> pakan <InlineMath math="Q" />.
+
+## Harga Mengubah Titik Pojok Terbaik
+
+Titik pojok terbaik **bergantung pada koefisien fungsi objektif**. Pada soal toko kue, misalkan untung satu kue cokelat <InlineMath math="a" /> ringgit, sedangkan untung kue keju tetap RM8. Nilai <InlineMath math="k = ax + 8y" /> di tiga titik pojok adalah <InlineMath math="60a" />, <InlineMath math="30a + 240" />, dan <InlineMath math="320" />. Ubah <InlineMath math="a" /> dan lihat garis mana yang paling tinggi.
+
+<MathVisual
+  title={<>Keuntungan di Setiap Titik Pojok terhadap Untung Kue Cokelat</>}
+  description={
+    <>
+      Garis paling tinggi menunjukkan titik pojok terbaik. Titik{" "}
+      <InlineMath math="(0, 40)" /> terbaik saat{" "}
+      <InlineMath math="a < \tfrac{8}{3}" />, titik{" "}
+      <InlineMath math="(30, 30)" /> saat <InlineMath math="\tfrac{8}{3} < a < 8" />,
+      dan titik <InlineMath math="(60, 0)" /> saat <InlineMath math="a > 8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 850 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 14, value: 5, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "right-corner", kind: "function", appearance: "secondary", formula: "60*x", domain: { min: 0, max: 14 } },
+      { id: "meet-corner", kind: "function", appearance: "primary", formula: "30*x + 240", domain: { min: 0, max: 14 } },
+      { id: "top-corner", kind: "function", appearance: "construction", formula: "320", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "a", y: "max(60*a, 30*a + 240, 320)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "at-right", formula: "60*a" },
+      { key: "at-meet", formula: "30*a + 240" },
+      { key: "at-top", formula: "320" },
+    ],
+  }}
+  labels={{
+    a: <>Untung satu kue cokelat <InlineMath math="a" /> dalam RM</>,
+    "at-right": <>Keuntungan di <InlineMath math="(60, 0)" /></>,
+    "at-meet": <>Keuntungan di <InlineMath math="(30, 30)" /></>,
+    "at-top": <>Keuntungan di <InlineMath math="(0, 40)" /></>,
+  }}
+/>
+
+Di <InlineMath math="a = 8" />, titik <InlineMath math="(60, 0)" /> dan <InlineMath math="(30, 30)" /> memberi keuntungan yang sama, <InlineMath math="480" />. Saat itu garis keuntungan sejajar dengan batas <InlineMath math="x + y = 60" />, dan setiap titik di sisi itu memberi keuntungan maksimum.
+
+## Kesalahan Umum dalam Program Linear
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Menulis <InlineMath math="\ge" /> untuk "paling banyak". | "Paling banyak" berarti tidak lebih dari, yaitu <InlineMath math="\le" />. | Uji nilai yang besar: nilai itu harus melanggar kendala. |
+| Mengarsir sisi yang salah. | Sisi yang diarsir harus memenuhi pertidaksamaan. | Substitusikan titik asal atau titik lain ke pertidaksamaan. |
+| Menguji titik di tengah daerah sebagai jawaban. | Nilai terbaik fungsi linear ada di titik pojok. | Daftar semua titik pojok dan hitung masing-masing. |
+| Mencari maksimum di daerah tidak terbatas. | Nilainya bisa bertambah tanpa batas. | Cek apakah daerahnya tertutup ke semua arah. |
+| Memberi jawaban pecahan untuk banyak barang. | Banyak kue harus bilangan bulat. | Uji titik bilangan bulat terdekat yang masih di dalam daerah. |
+
+Kesalahan pertama paling sering terjadi. **Terjemahkan setiap frasa dengan teliti**: "paling banyak" berarti <InlineMath math="\le" />, dan "paling sedikit" berarti <InlineMath math="\ge" />.
+
+## Latihan Program Linear
+
+Sketsa daerah penyelesaian untuk setiap soal supaya **semua titik pojok terlihat** sebelum menghitung fungsi objektif.
+
+1. Sebuah pabrik membuat <InlineMath math="x" /> kursi dan <InlineMath math="y" /> meja. Satu kursi butuh <InlineMath math="2" /> jam dan satu meja <InlineMath math="4" /> jam, dengan waktu kerja paling banyak <InlineMath math="80" /> jam. Tulis pertidaksamaan untuk kendala ini dalam bentuk paling sederhana.
+
+2. Daerah penyelesaian ditentukan oleh <InlineMath math="x + y \le 10" />, <InlineMath math="2x + y \le 14" />, <InlineMath math="x \ge 0" />, dan <InlineMath math="y \ge 0" />. Cari nilai maksimum <InlineMath math="k = 3x + 2y" />.
+
+3. Cari nilai minimum <InlineMath math="C = 2x + 5y" /> dengan kendala <InlineMath math="x + y \ge 6" />, <InlineMath math="x + 3y \ge 12" />, <InlineMath math="x \ge 0" />, dan <InlineMath math="y \ge 0" />.
+
+4. Pada soal toko kue, untung satu kue cokelat naik menjadi RM10. Cari banyak kue yang memberi keuntungan maksimum dan nilai keuntungan itu.
+
+### Pembahasan
+
+**Pembahasan 1**: Total waktu kerjanya <InlineMath math="2x + 4y" /> jam, dan "paling banyak" memberi <InlineMath math="\le" />:
+
+<BlockMath math="2x + 4y \le 80 \quad \Rightarrow \quad x + 2y \le 40" />
+
+**Pembahasan 2**: Titik pojok perpotongan didapat dari <InlineMath math="x + y = 10" /> dan <InlineMath math="2x + y = 14" />, yaitu <InlineMath math="x = 4" /> dan <InlineMath math="y = 6" />. Hitung di setiap titik pojok:
+
+<BlockMath math="k(0, 0) = 0, \quad k(7, 0) = 21, \quad k(4, 6) = 24, \quad k(0, 10) = 20" />
+
+Nilai maksimumnya <InlineMath math="24" /> di <InlineMath math="(4, 6)" />.
+
+**Pembahasan 3**: Titik pojok perpotongan dari <InlineMath math="x + y = 6" /> dan <InlineMath math="x + 3y = 12" /> adalah <InlineMath math="(3, 3)" />. Titik pojok lainnya <InlineMath math="(12, 0)" /> dan <InlineMath math="(0, 6)" />:
+
+<BlockMath math="C(12, 0) = 24, \quad C(3, 3) = 21, \quad C(0, 6) = 30" />
+
+Nilai minimumnya <InlineMath math="21" /> di <InlineMath math="(3, 3)" />.
+
+**Pembahasan 4**: Fungsi objektifnya sekarang <InlineMath math="k = 10x + 8y" />:
+
+<BlockMath math="k(60, 0) = 600, \quad k(30, 30) = 540, \quad k(0, 40) = 320" />
+
+Keuntungan maksimumnya **RM600** saat toko membuat <InlineMath math="60" /> kue cokelat saja. Ini sesuai dengan gambar terakhir, karena <InlineMath math="a = 10" /> lebih besar dari <InlineMath math="8" />.

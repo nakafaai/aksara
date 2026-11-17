@@ -1,0 +1,295 @@
+export const metadata = {
+  title: "Nota Pengaturcaraan Linear Tingkatan Lima",
+  description:
+    "Nota Matematik Tambahan Tingkatan 5 Bab 7: bina ketaksamaan daripada kekangan, lorek rantau tersaur, dan cari nilai maksimum atau minimum fungsi objektif pada bucu rantau.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Pengaturcaraan Linear",
+};
+
+## Nilai Terbaik Berada pada Bucu
+
+**Pengaturcaraan linear** mencari nilai maksimum atau minimum bagi satu **fungsi objektif** <InlineMath math="k = ax + by" /> apabila <InlineMath math="x" /> dan <InlineMath math="y" /> terikat oleh beberapa ketaksamaan linear yang dipanggil **kekangan**. Kekangan membentuk **rantau tersaur**, iaitu semua titik yang memenuhi setiap kekangan. Nilai terbaik fungsi objektif sentiasa berlaku pada **bucu** rantau itu, jadi kamu hanya perlu menguji bucu.
+
+Langkahnya ialah:
+
+1. Tulis setiap kekangan sebagai ketaksamaan dalam <InlineMath math="x" /> dan <InlineMath math="y" />.
+2. Lukis garis sempadan dan lorek rantau tersaur.
+3. Cari koordinat setiap bucu.
+4. Nilaikan fungsi objektif pada setiap bucu, atau gerakkan garis objektif sehingga titik terakhir yang disentuhnya.
+
+Dalam nota ini kamu uji satu titik terhadap ketaksamaan, bina rantau tersaur sebuah kedai kek, gerakkan garis keuntungan, dan lihat bagaimana harga mengubah pilihan terbaik.
+
+## Satu Ketaksamaan Melorek Separuh Satah
+
+Ketaksamaan <InlineMath math="x + 3y \le 120" /> diwakili oleh garis sempadan <InlineMath math="x + 3y = 120" /> dan semua titik pada satu belahnya. Garis bertitik digunakan bagi <InlineMath math="<" /> atau <InlineMath math=">" />, dan garis padu bagi <InlineMath math="\le" /> atau <InlineMath math="\ge" />. Untuk memilih belah yang betul, **uji satu titik yang tidak terletak pada garis**, biasanya asalan. Gerakkan titik uji di bawah dan bandingkan nilai <InlineMath math="x + 3y" /> dengan <InlineMath math="120" />.
+
+<MathVisual
+  title={<>Separuh Satah bagi <InlineMath math="x + 3y \le 120" /></>}
+  description={
+    <>
+      Rantau berlorek memenuhi <InlineMath math="x + 3y \le 120" />. Asalan
+      memberi <InlineMath math="0 \le 120" />, jadi belah yang mengandungi asalan
+      dilorek.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 130 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 130, value: 20, step: 1, label: "p" },
+      { name: "q", min: 0, max: 50, value: 10, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "half-plane", kind: "region", appearance: "primary", inequalities: ["x + 3y <= 120"] },
+      { id: "test", kind: "marker", x: "p", y: "q", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "left-side", formula: "p + 3*q" },
+    ],
+  }}
+  labels={{
+    p: <>Koordinat-<InlineMath math="x" /> titik uji</>,
+    q: <>Koordinat-<InlineMath math="y" /> titik uji</>,
+    "left-side": <>Nilai <InlineMath math="x + 3y" /> pada titik uji</>,
+  }}
+/>
+
+Titik dengan bacaan <InlineMath math="120" /> atau kurang berada dalam rantau berlorek. Contohnya <InlineMath math="(20, 10)" /> memberi <InlineMath math="50 \le 120" />, jadi titik itu memenuhi ketaksamaan.
+
+## Bina Rantau Tersaur daripada Situasi
+
+Sebuah kedai membuat <InlineMath math="x" /> biji kek coklat dan <InlineMath math="y" /> biji kek keju sehari. Kekangannya ialah:
+
+- Ketuhar boleh membakar paling banyak <InlineMath math="60" /> biji kek sehari.
+- Menghias sebiji kek coklat mengambil <InlineMath math="1" /> minit dan sebiji kek keju <InlineMath math="3" /> minit, dengan masa menghias paling banyak <InlineMath math="120" /> minit.
+- Bilangan kek tidak boleh negatif.
+
+Tulis setiap kekangan sebagai ketaksamaan:
+
+<MathContainer>
+<BlockMath math="x + y \le 60" />
+<BlockMath math="x + 3y \le 120" />
+<BlockMath math="x \ge 0, \quad y \ge 0" />
+</MathContainer>
+
+Rantau tersaur ialah kawasan yang **memenuhi keempat-empat ketaksamaan serentak**. Bucunya ialah <InlineMath math="(0, 0)" />, <InlineMath math="(60, 0)" />, <InlineMath math="(0, 40)" /> dan titik persilangan dua garis sempadan.
+
+<MathVisual
+  title={<>Rantau Tersaur Kedai Kek</>}
+  description={
+    <>
+      Rantau yang memenuhi <InlineMath math="x + y \le 60" />,{" "}
+      <InlineMath math="x + 3y \le 120" />, <InlineMath math="x \ge 0" /> dan{" "}
+      <InlineMath math="y \ge 0" />. Bucunya ialah <InlineMath math="(0, 0)" />,{" "}
+      <InlineMath math="(60, 0)" />, <InlineMath math="(30, 30)" /> dan{" "}
+      <InlineMath math="(0, 40)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 70 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["x + y <= 60", "x + 3y <= 120", "x >= 0", "y >= 0"] },
+      { id: "corner-origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "corner-right", kind: "point", at: { x: 60, y: 0 }, appearance: "reference" },
+      { id: "corner-meet", kind: "point", at: { x: 30, y: 30 }, appearance: "answer" },
+      { id: "corner-top", kind: "point", at: { x: 0, y: 40 }, appearance: "reference" },
+    ],
+  }}
+/>
+
+Bucu persilangan didapati dengan menyelesaikan dua persamaan sempadan secara serentak:
+
+<MathContainer>
+<BlockMath math="x + 3y = 120, \quad x + y = 60" />
+<BlockMath math="2y = 60 \quad \Rightarrow \quad y = 30, \quad x = 30" />
+</MathContainer>
+
+## Gerakkan Garis Objektif
+
+Kedai itu untung RM5 bagi setiap kek coklat dan RM8 bagi setiap kek keju, jadi fungsi objektifnya ialah <InlineMath math="k = 5x + 8y" />. Bagi setiap nilai <InlineMath math="k" />, persamaan <InlineMath math="5x + 8y = k" /> ialah satu garis. Semua garis ini selari. Naikkan <InlineMath math="k" /> sehingga garis hampir meninggalkan rantau tersaur.
+
+<MathVisual
+  title={<>Garis Keuntungan <InlineMath math="5x + 8y = k" /></>}
+  description={
+    <>
+      Garis keuntungan bergerak keluar apabila <InlineMath math="k" /> bertambah.
+      Titik terakhir dalam rantau tersaur yang disentuhnya ialah{" "}
+      <InlineMath math="(30, 30)" />, pada <InlineMath math="k = 390" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 70 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 40, max: 480, value: 200, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["x + y <= 60", "x + 3y <= 120", "x >= 0", "y >= 0"] },
+      { id: "profit-line", kind: "function", appearance: "warning", formula: "(k - 5*x)/8", domain: { min: 0, max: 70 } },
+      { id: "best", kind: "point", at: { x: 30, y: 30 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "profit", formula: "k" },
+    ],
+  }}
+  labels={{
+    k: <>Keuntungan <InlineMath math="k" /> dalam RM</>,
+    profit: <>Keuntungan pada garis dalam RM</>,
+  }}
+/>
+
+Semak dengan menilai fungsi objektif pada setiap bucu:
+
+| Bucu | <InlineMath math="k = 5x + 8y" /> |
+| :--- | :--- |
+| <InlineMath math="(0, 0)" /> | <InlineMath math="0" /> |
+| <InlineMath math="(60, 0)" /> | <InlineMath math="300" /> |
+| <InlineMath math="(30, 30)" /> | <InlineMath math="390" /> |
+| <InlineMath math="(0, 40)" /> | <InlineMath math="320" /> |
+
+Keuntungan maksimum ialah **RM390**, apabila kedai membuat <InlineMath math="30" /> biji kek coklat dan <InlineMath math="30" /> biji kek keju.
+
+## Masalah Kos Minimum
+
+Pengaturcaraan linear juga mencari nilai minimum. Seorang penternak mencampurkan dua jenis makanan ayam. Sekilogram makanan <InlineMath math="P" /> memberi <InlineMath math="2" /> unit protein dan <InlineMath math="1" /> unit vitamin, manakala sekilogram makanan <InlineMath math="Q" /> memberi <InlineMath math="1" /> unit protein dan <InlineMath math="2" /> unit vitamin. Campuran itu memerlukan sekurang-kurangnya <InlineMath math="8" /> unit protein dan <InlineMath math="7" /> unit vitamin. Makanan <InlineMath math="P" /> berharga RM3 sekilogram dan <InlineMath math="Q" /> RM4 sekilogram.
+
+<MathContainer>
+<BlockMath math="2x + y \ge 8, \quad x + 2y \ge 7, \quad x \ge 0, \quad y \ge 0" />
+<BlockMath math="C = 3x + 4y" />
+</MathContainer>
+
+Rantau ini **tidak terbatas** di sebelah atas, jadi kos maksimum tidak wujud. Kos minimum berada pada bucu yang paling dekat dengan asalan dalam arah garis kos. Turunkan <InlineMath math="C" /> sehingga garis kos hampir meninggalkan rantau.
+
+<MathVisual
+  title={<>Garis Kos <InlineMath math="3x + 4y = C" /></>}
+  description={
+    <>
+      Rantau <InlineMath math="2x + y \ge 8" /> dan{" "}
+      <InlineMath math="x + 2y \ge 7" /> dengan bucu{" "}
+      <InlineMath math="(0, 8)" />, <InlineMath math="(3, 2)" /> dan{" "}
+      <InlineMath math="(7, 0)" />. Garis kos terakhir yang menyentuh rantau
+      melalui <InlineMath math="(3, 2)" />, pada <InlineMath math="C = 17" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 8, max: 40, value: 26, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["2x + y >= 8", "x + 2y >= 7", "x >= 0", "y >= 0"] },
+      { id: "cost-line", kind: "function", appearance: "warning", formula: "(c - 3*x)/4", domain: { min: 0, max: 10 } },
+      { id: "corner-top", kind: "point", at: { x: 0, y: 8 }, appearance: "reference" },
+      { id: "corner-best", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "corner-right", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+    ],
+    readouts: [
+      { key: "cost", formula: "c" },
+    ],
+  }}
+  labels={{
+    c: <>Kos <InlineMath math="C" /> dalam RM</>,
+    cost: <>Kos pada garis dalam RM</>,
+  }}
+/>
+
+Nilai kos pada bucu ialah <InlineMath math="C(0, 8) = 32" />, <InlineMath math="C(3, 2) = 9 + 8 = 17" /> dan <InlineMath math="C(7, 0) = 21" />. Kos minimum ialah RM17, dengan <InlineMath math="3\text{ kg}" /> makanan <InlineMath math="P" /> dan <InlineMath math="2\text{ kg}" /> makanan <InlineMath math="Q" />.
+
+## Harga Mengubah Bucu Terbaik
+
+Bucu terbaik **bergantung pada pekali fungsi objektif**. Dalam masalah kedai kek, katakan untung sebiji kek coklat ialah <InlineMath math="a" /> ringgit, manakala untung kek keju kekal RM8. Nilai <InlineMath math="k = ax + 8y" /> pada tiga bucu ialah <InlineMath math="60a" />, <InlineMath math="30a + 240" /> dan <InlineMath math="320" />. Ubah <InlineMath math="a" /> dan perhatikan garis mana yang paling tinggi.
+
+<MathVisual
+  title={<>Keuntungan pada Setiap Bucu melawan Untung Kek Coklat</>}
+  description={
+    <>
+      Garis paling tinggi menunjukkan bucu terbaik. Bucu{" "}
+      <InlineMath math="(0, 40)" /> terbaik apabila{" "}
+      <InlineMath math="a < \tfrac{8}{3}" />, bucu <InlineMath math="(30, 30)" />{" "}
+      terbaik apabila <InlineMath math="\tfrac{8}{3} < a < 8" />, dan bucu{" "}
+      <InlineMath math="(60, 0)" /> terbaik apabila <InlineMath math="a > 8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 850 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 14, value: 5, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "right-corner", kind: "function", appearance: "secondary", formula: "60*x", domain: { min: 0, max: 14 } },
+      { id: "meet-corner", kind: "function", appearance: "primary", formula: "30*x + 240", domain: { min: 0, max: 14 } },
+      { id: "top-corner", kind: "function", appearance: "construction", formula: "320", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "a", y: "max(60*a, 30*a + 240, 320)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "at-right", formula: "60*a" },
+      { key: "at-meet", formula: "30*a + 240" },
+      { key: "at-top", formula: "320" },
+    ],
+  }}
+  labels={{
+    a: <>Untung sebiji kek coklat <InlineMath math="a" /> dalam RM</>,
+    "at-right": <>Keuntungan pada <InlineMath math="(60, 0)" /></>,
+    "at-meet": <>Keuntungan pada <InlineMath math="(30, 30)" /></>,
+    "at-top": <>Keuntungan pada <InlineMath math="(0, 40)" /></>,
+  }}
+/>
+
+Pada <InlineMath math="a = 8" />, bucu <InlineMath math="(60, 0)" /> dan <InlineMath math="(30, 30)" /> memberi keuntungan yang sama, <InlineMath math="480" />. Pada saat itu garis keuntungan selari dengan sempadan <InlineMath math="x + y = 60" />, dan setiap titik pada sisi itu memberi keuntungan maksimum.
+
+## Kesilapan Lazim dalam Pengaturcaraan Linear
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Menulis <InlineMath math="\ge" /> bagi "paling banyak". | "Paling banyak" bermaksud tidak melebihi, iaitu <InlineMath math="\le" />. | Uji nilai yang besar: ia mesti melanggar kekangan. |
+| Melorek belah yang salah. | Belah yang dilorek mesti memenuhi ketaksamaan. | Gantikan asalan atau titik lain ke dalam ketaksamaan. |
+| Menguji titik di tengah rantau sebagai jawapan. | Nilai terbaik fungsi linear berada pada bucu. | Senaraikan semua bucu dan nilaikan setiap satu. |
+| Mencari maksimum dalam rantau tidak terbatas. | Nilai boleh bertambah tanpa had. | Semak sama ada rantau ditutup di semua arah. |
+| Memberi jawapan pecahan bagi bilangan barang. | Bilangan kek mesti nombor bulat. | Uji titik integer terdekat yang masih dalam rantau. |
+
+Kesilapan pertama paling kerap berlaku. **Terjemah setiap frasa dengan teliti**: "paling banyak" ialah <InlineMath math="\le" />, dan "sekurang-kurangnya" ialah <InlineMath math="\ge" />.
+
+## Latihan Pengaturcaraan Linear
+
+Lakar rantau tersaur bagi setiap soalan supaya **semua bucu dapat dilihat** sebelum menilai fungsi objektif.
+
+1. Sebuah kilang membuat <InlineMath math="x" /> buah kerusi dan <InlineMath math="y" /> buah meja. Sebuah kerusi memerlukan <InlineMath math="2" /> jam dan sebuah meja <InlineMath math="4" /> jam, dengan masa kerja paling banyak <InlineMath math="80" /> jam. Tulis ketaksamaan bagi kekangan ini dalam bentuk paling ringkas.
+
+2. Rantau tersaur ditakrifkan oleh <InlineMath math="x + y \le 10" />, <InlineMath math="2x + y \le 14" />, <InlineMath math="x \ge 0" /> dan <InlineMath math="y \ge 0" />. Cari nilai maksimum <InlineMath math="k = 3x + 2y" />.
+
+3. Cari nilai minimum <InlineMath math="C = 2x + 5y" /> dengan kekangan <InlineMath math="x + y \ge 6" />, <InlineMath math="x + 3y \ge 12" />, <InlineMath math="x \ge 0" /> dan <InlineMath math="y \ge 0" />.
+
+4. Dalam masalah kedai kek, untung sebiji kek coklat naik kepada RM10. Cari bilangan kek yang memberi keuntungan maksimum dan nilai keuntungan itu.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Jumlah masa kerja ialah <InlineMath math="2x + 4y" /> jam, dan "paling banyak" memberi <InlineMath math="\le" />:
+
+<BlockMath math="2x + 4y \le 80 \quad \Rightarrow \quad x + 2y \le 40" />
+
+**Penyelesaian 2**: Bucu persilangan diselesaikan daripada <InlineMath math="x + y = 10" /> dan <InlineMath math="2x + y = 14" />, iaitu <InlineMath math="x = 4" /> dan <InlineMath math="y = 6" />. Nilaikan pada setiap bucu:
+
+<BlockMath math="k(0, 0) = 0, \quad k(7, 0) = 21, \quad k(4, 6) = 24, \quad k(0, 10) = 20" />
+
+Nilai maksimum ialah <InlineMath math="24" /> pada <InlineMath math="(4, 6)" />.
+
+**Penyelesaian 3**: Bucu persilangan daripada <InlineMath math="x + y = 6" /> dan <InlineMath math="x + 3y = 12" /> ialah <InlineMath math="(3, 3)" />. Bucu lain ialah <InlineMath math="(12, 0)" /> dan <InlineMath math="(0, 6)" />:
+
+<BlockMath math="C(12, 0) = 24, \quad C(3, 3) = 21, \quad C(0, 6) = 30" />
+
+Nilai minimum ialah <InlineMath math="21" /> pada <InlineMath math="(3, 3)" />.
+
+**Penyelesaian 4**: Fungsi objektif kini <InlineMath math="k = 10x + 8y" />:
+
+<BlockMath math="k(60, 0) = 600, \quad k(30, 30) = 540, \quad k(0, 40) = 320" />
+
+Keuntungan maksimum ialah RM600 apabila kedai membuat <InlineMath math="60" /> biji kek coklat sahaja. Ini sepadan dengan rajah terakhir, kerana <InlineMath math="a = 10" /> lebih besar daripada <InlineMath math="8" />.
