@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$5.7\\text{ m s}^{-2}$$ and $$16\\text{ m s}^{-1}$$",
+          label:
+            "$$5.7\\text{ m s}^{-2}$$, $$16\\text{ m s}^{-1}$$ and $$17\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$4.0\\text{ m s}^{-2}$$ and $$19\\text{ m s}^{-1}$$",
+          label:
+            "$$4.0\\text{ m s}^{-2}$$, $$19\\text{ m s}^{-1}$$ and $$20\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$5.7\\text{ m s}^{-2}$$ and $$15\\text{ m s}^{-1}$$",
+          label:
+            "$$5.7\\text{ m s}^{-2}$$, $$15\\text{ m s}^{-1}$$ and $$17\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$5.7\\text{ m s}^{-2}$$ and $$21\\text{ m s}^{-1}$$",
+          label:
+            "$$5.7\\text{ m s}^{-2}$$, $$16\\text{ m s}^{-1}$$ and $$24\\text{ m s}^{-1}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$5.7\\text{ m s}^{-2}$$ dan $$16\\text{ m s}^{-1}$$",
+          label:
+            "$$5.7\\text{ m s}^{-2}$$, $$16\\text{ m s}^{-1}$$ dan $$17\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$4.0\\text{ m s}^{-2}$$ dan $$19\\text{ m s}^{-1}$$",
+          label:
+            "$$4.0\\text{ m s}^{-2}$$, $$19\\text{ m s}^{-1}$$ dan $$20\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$5.7\\text{ m s}^{-2}$$ dan $$15\\text{ m s}^{-1}$$",
+          label:
+            "$$5.7\\text{ m s}^{-2}$$, $$15\\text{ m s}^{-1}$$ dan $$17\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$5.7\\text{ m s}^{-2}$$ dan $$21\\text{ m s}^{-1}$$",
+          label:
+            "$$5.7\\text{ m s}^{-2}$$, $$16\\text{ m s}^{-1}$$ dan $$24\\text{ m s}^{-1}$$",
         },
       ],
     },

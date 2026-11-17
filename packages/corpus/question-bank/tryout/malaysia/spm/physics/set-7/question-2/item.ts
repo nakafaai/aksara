@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$n=-2.5$$ and $$32\\text{ s}$$" },
-        { correct: false, label: "$$n=-2$$ and $$51\\text{ s}$$" },
-        { correct: false, label: "$$n=-2.5$$ and $$45\\text{ s}$$" },
-        { correct: false, label: "$$n=-3$$ and $$20\\text{ s}$$" },
+        {
+          correct: true,
+          label: "$$n=-2.5$$, $$32\\text{ s}$$ and $$3.9\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$n=-2$$, $$51\\text{ s}$$ and $$4.6\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$n=-2.5$$, $$32\\text{ s}$$ and $$1.0\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$n=-3$$, $$20\\text{ s}$$ and $$3.5\\text{ mm}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$n=-2.5$$ dan $$32\\text{ s}$$" },
-        { correct: false, label: "$$n=-2$$ dan $$51\\text{ s}$$" },
-        { correct: false, label: "$$n=-2.5$$ dan $$45\\text{ s}$$" },
-        { correct: false, label: "$$n=-3$$ dan $$20\\text{ s}$$" },
+        {
+          correct: true,
+          label: "$$n=-2.5$$, $$32\\text{ s}$$ dan $$3.9\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$n=-2$$, $$51\\text{ s}$$ dan $$4.6\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$n=-2.5$$, $$32\\text{ s}$$ dan $$1.0\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$n=-3$$, $$20\\text{ s}$$ dan $$3.5\\text{ mm}$$",
+        },
       ],
     },
   },

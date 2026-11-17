@@ -13,21 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.8\\times10^{8}\\text{ m}$$ and $$2.8\\times10^{-3}\\text{ m s}^{-2}$$",
+            "$$3.8\\times10^{8}\\text{ m}$$, $$2.8\\times10^{-3}\\text{ m s}^{-2}$$ and $$0.020\\text{ m s}^{-2}$$",
         },
         {
           correct: false,
           label:
-            "$$1.9\\times10^{8}\\text{ m}$$ and $$1.1\\times10^{-2}\\text{ m s}^{-2}$$",
+            "$$3.5\\times10^{8}\\text{ m}$$, $$0.18\\text{ m s}^{-2}$$ and $$4.0\\text{ m s}^{-2}$$",
         },
         {
           correct: true,
           label:
-            "$$3.5\\times10^{8}\\text{ m}$$ and $$3.4\\times10^{-3}\\text{ m s}^{-2}$$",
+            "$$3.5\\times10^{8}\\text{ m}$$, $$3.4\\times10^{-3}\\text{ m s}^{-2}$$ and $$1.6\\text{ m s}^{-2}$$",
         },
         {
           correct: false,
-          label: "$$3.5\\times10^{8}\\text{ m}$$ and $$0.18\\text{ m s}^{-2}$$",
+          label:
+            "$$3.5\\times10^{8}\\text{ m}$$, $$3.4\\times10^{-3}\\text{ m s}^{-2}$$ and $$0.074\\text{ m s}^{-2}$$",
         },
       ],
     },
@@ -37,21 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.8\\times10^{8}\\text{ m}$$ dan $$2.8\\times10^{-3}\\text{ m s}^{-2}$$",
+            "$$3.8\\times10^{8}\\text{ m}$$, $$2.8\\times10^{-3}\\text{ m s}^{-2}$$ dan $$0.020\\text{ m s}^{-2}$$",
         },
         {
           correct: false,
           label:
-            "$$1.9\\times10^{8}\\text{ m}$$ dan $$1.1\\times10^{-2}\\text{ m s}^{-2}$$",
+            "$$3.5\\times10^{8}\\text{ m}$$, $$0.18\\text{ m s}^{-2}$$ dan $$4.0\\text{ m s}^{-2}$$",
         },
         {
           correct: true,
           label:
-            "$$3.5\\times10^{8}\\text{ m}$$ dan $$3.4\\times10^{-3}\\text{ m s}^{-2}$$",
+            "$$3.5\\times10^{8}\\text{ m}$$, $$3.4\\times10^{-3}\\text{ m s}^{-2}$$ dan $$1.6\\text{ m s}^{-2}$$",
         },
         {
           correct: false,
-          label: "$$3.5\\times10^{8}\\text{ m}$$ dan $$0.18\\text{ m s}^{-2}$$",
+          label:
+            "$$3.5\\times10^{8}\\text{ m}$$, $$3.4\\times10^{-3}\\text{ m s}^{-2}$$ dan $$0.074\\text{ m s}^{-2}$$",
         },
       ],
     },
