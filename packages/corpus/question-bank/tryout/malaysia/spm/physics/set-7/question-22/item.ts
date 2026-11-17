@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.17\\text{ m}$$, $$10\\text{ N}$$ and $$50\\text{ N}$$",
+          label:
+            "$$0.17\\text{ m}$$, $$10\\text{ N}$$, $$50\\text{ N}$$ and $$2.5\\text{ J}$$",
         },
         {
           correct: false,
-          label: "$$0.17\\text{ m}$$, $$12\\text{ N}$$ and $$25\\text{ N}$$",
+          label:
+            "$$0.17\\text{ m}$$, $$12\\text{ N}$$, $$25\\text{ N}$$ and $$0.63\\text{ J}$$",
         },
         {
           correct: false,
-          label: "$$0.040\\text{ m}$$, $$12\\text{ N}$$ and $$42\\text{ N}$$",
+          label:
+            "$$0.040\\text{ m}$$, $$12\\text{ N}$$, $$42\\text{ N}$$ and $$1.7\\text{ J}$$",
         },
         {
           correct: true,
-          label: "$$0.17\\text{ m}$$, $$12\\text{ N}$$ and $$63\\text{ N}$$",
+          label:
+            "$$0.17\\text{ m}$$, $$12\\text{ N}$$, $$63\\text{ N}$$ and $$3.9\\text{ J}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.17\\text{ m}$$, $$10\\text{ N}$$ dan $$50\\text{ N}$$",
+          label:
+            "$$0.17\\text{ m}$$, $$10\\text{ N}$$, $$50\\text{ N}$$ dan $$2.5\\text{ J}$$",
         },
         {
           correct: false,
-          label: "$$0.17\\text{ m}$$, $$12\\text{ N}$$ dan $$25\\text{ N}$$",
+          label:
+            "$$0.17\\text{ m}$$, $$12\\text{ N}$$, $$25\\text{ N}$$ dan $$0.63\\text{ J}$$",
         },
         {
           correct: false,
-          label: "$$0.040\\text{ m}$$, $$12\\text{ N}$$ dan $$42\\text{ N}$$",
+          label:
+            "$$0.040\\text{ m}$$, $$12\\text{ N}$$, $$42\\text{ N}$$ dan $$1.7\\text{ J}$$",
         },
         {
           correct: true,
-          label: "$$0.17\\text{ m}$$, $$12\\text{ N}$$ dan $$63\\text{ N}$$",
+          label:
+            "$$0.17\\text{ m}$$, $$12\\text{ N}$$, $$63\\text{ N}$$ dan $$3.9\\text{ J}$$",
         },
       ],
     },

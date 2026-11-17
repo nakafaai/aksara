@@ -12,20 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$39\\text{ °C}$$, $$0.68\\text{ s}$$ and no change",
-        },
-        {
-          correct: false,
-          label: "$$20\\text{ °C}$$, $$0.70\\text{ s}$$ and no change",
-        },
-        {
-          correct: true,
-          label: "$$20\\text{ °C}$$, $$0.68\\text{ s}$$ and no change",
+          label:
+            "$$39\\text{ °C}$$, $$0.68\\text{ s}$$, no change and $$50\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$ and $$6\\text{ m s}^{-1}$$ higher",
+            "$$20\\text{ °C}$$, $$0.70\\text{ s}$$, no change and $$50\\text{ m}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$, no change and $$51\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$, $$6\\text{ m s}^{-1}$$ higher and $$51\\text{ m}$$",
         },
       ],
     },
@@ -34,20 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$39\\text{ °C}$$, $$0.68\\text{ s}$$ dan tiada perubahan",
-        },
-        {
-          correct: false,
-          label: "$$20\\text{ °C}$$, $$0.70\\text{ s}$$ dan tiada perubahan",
-        },
-        {
-          correct: true,
-          label: "$$20\\text{ °C}$$, $$0.68\\text{ s}$$ dan tiada perubahan",
+          label:
+            "$$39\\text{ °C}$$, $$0.68\\text{ s}$$, tiada perubahan dan $$50\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$ dan $$6\\text{ m s}^{-1}$$ lebih tinggi",
+            "$$20\\text{ °C}$$, $$0.70\\text{ s}$$, tiada perubahan dan $$50\\text{ m}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$, tiada perubahan dan $$51\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$, $$6\\text{ m s}^{-1}$$ lebih tinggi dan $$51\\text{ m}$$",
         },
       ],
     },
