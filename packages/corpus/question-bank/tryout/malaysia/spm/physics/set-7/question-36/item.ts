@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$23\\,\\mu\\text{A}$$, $$1.9\\text{ V}$$ and $$225\\text{ k}\\Omega$$",
+            "$$23\\,\\mu\\text{A}$$, $$1.9\\text{ V}$$, $$225\\text{ k}\\Omega$$ and $$4.8\\text{ mW}$$",
         },
         {
           correct: false,
           label:
-            "$$20\\,\\mu\\text{A}$$, $$3.6\\text{ V}$$ and $$200\\text{ k}\\Omega$$",
+            "$$20\\,\\mu\\text{A}$$, $$3.6\\text{ V}$$, $$200\\text{ k}\\Omega$$ and $$4.8\\text{ mW}$$",
         },
         {
           correct: false,
           label:
-            "$$20\\,\\mu\\text{A}$$, $$6.0\\text{ V}$$ and $$1.3\\text{ k}\\Omega$$",
+            "$$20\\,\\mu\\text{A}$$, $$6.0\\text{ V}$$, $$1.3\\text{ k}\\Omega$$ and $$24\\text{ mW}$$",
         },
         {
           correct: true,
           label:
-            "$$20\\,\\mu\\text{A}$$, $$2.4\\text{ V}$$ and $$200\\text{ k}\\Omega$$",
+            "$$20\\,\\mu\\text{A}$$, $$2.4\\text{ V}$$, $$200\\text{ k}\\Omega$$ and $$4.8\\text{ mW}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$23\\,\\mu\\text{A}$$, $$1.9\\text{ V}$$ dan $$225\\text{ k}\\Omega$$",
+            "$$23\\,\\mu\\text{A}$$, $$1.9\\text{ V}$$, $$225\\text{ k}\\Omega$$ dan $$4.8\\text{ mW}$$",
         },
         {
           correct: false,
           label:
-            "$$20\\,\\mu\\text{A}$$, $$3.6\\text{ V}$$ dan $$200\\text{ k}\\Omega$$",
+            "$$20\\,\\mu\\text{A}$$, $$3.6\\text{ V}$$, $$200\\text{ k}\\Omega$$ dan $$4.8\\text{ mW}$$",
         },
         {
           correct: false,
           label:
-            "$$20\\,\\mu\\text{A}$$, $$6.0\\text{ V}$$ dan $$1.3\\text{ k}\\Omega$$",
+            "$$20\\,\\mu\\text{A}$$, $$6.0\\text{ V}$$, $$1.3\\text{ k}\\Omega$$ dan $$24\\text{ mW}$$",
         },
         {
           correct: true,
           label:
-            "$$20\\,\\mu\\text{A}$$, $$2.4\\text{ V}$$ dan $$200\\text{ k}\\Omega$$",
+            "$$20\\,\\mu\\text{A}$$, $$2.4\\text{ V}$$, $$200\\text{ k}\\Omega$$ dan $$4.8\\text{ mW}$$",
         },
       ],
     },

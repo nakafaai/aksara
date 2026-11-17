@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$576\\text{ W}$$, $$960\\text{ W}$$ and $$27\\,\\Omega$$",
+          label:
+            "$$576\\text{ W}$$, $$960\\text{ W}$$, $$27\\,\\Omega$$ and $$3.1\\text{ kW}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$576\\text{ W}$$ and $$27\\,\\Omega$$",
+          label:
+            "$$576\\text{ W}$$, $$576\\text{ W}$$, $$27\\,\\Omega$$ and $$3.1\\text{ kW}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$960\\text{ W}$$ and $$18\\,\\Omega$$",
+          label:
+            "$$576\\text{ W}$$, $$960\\text{ W}$$, $$18\\,\\Omega$$ and $$4.1\\text{ kW}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$1.4\\text{ kW}$$ and $$27\\,\\Omega$$",
+          label:
+            "$$576\\text{ W}$$, $$1.4\\text{ kW}$$, $$27\\,\\Omega$$ and $$3.1\\text{ kW}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$576\\text{ W}$$, $$960\\text{ W}$$ dan $$27\\,\\Omega$$",
+          label:
+            "$$576\\text{ W}$$, $$960\\text{ W}$$, $$27\\,\\Omega$$ dan $$3.1\\text{ kW}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$576\\text{ W}$$ dan $$27\\,\\Omega$$",
+          label:
+            "$$576\\text{ W}$$, $$576\\text{ W}$$, $$27\\,\\Omega$$ dan $$3.1\\text{ kW}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$960\\text{ W}$$ dan $$18\\,\\Omega$$",
+          label:
+            "$$576\\text{ W}$$, $$960\\text{ W}$$, $$18\\,\\Omega$$ dan $$4.1\\text{ kW}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$1.4\\text{ kW}$$ dan $$27\\,\\Omega$$",
+          label:
+            "$$576\\text{ W}$$, $$1.4\\text{ kW}$$, $$27\\,\\Omega$$ dan $$3.1\\text{ kW}$$",
         },
       ],
     },

@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ and $$3.1\\,\\Omega$$",
+          label:
+            "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$, $$3.1\\,\\Omega$$ and $$12.0\\text{ V}$$",
         },
         {
           correct: false,
-          label: "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$ and $$0\\,\\Omega$$",
+          label:
+            "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$, $$0\\,\\Omega$$ and $$10.3\\text{ V}$$",
         },
         {
           correct: false,
-          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ and $$3.1\\,\\Omega$$",
+          label:
+            "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$, $$3.1\\,\\Omega$$ and $$11.2\\text{ V}$$",
         },
         {
           correct: true,
-          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ and $$2.1\\,\\Omega$$",
+          label:
+            "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$, $$2.1\\,\\Omega$$ and $$11.1\\text{ V}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ dan $$3.1\\,\\Omega$$",
+          label:
+            "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$, $$3.1\\,\\Omega$$ dan $$12.0\\text{ V}$$",
         },
         {
           correct: false,
-          label: "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$ dan $$0\\,\\Omega$$",
+          label:
+            "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$, $$0\\,\\Omega$$ dan $$10.3\\text{ V}$$",
         },
         {
           correct: false,
-          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ dan $$3.1\\,\\Omega$$",
+          label:
+            "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$, $$3.1\\,\\Omega$$ dan $$11.2\\text{ V}$$",
         },
         {
           correct: true,
-          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ dan $$2.1\\,\\Omega$$",
+          label:
+            "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$, $$2.1\\,\\Omega$$ dan $$11.1\\text{ V}$$",
         },
       ],
     },

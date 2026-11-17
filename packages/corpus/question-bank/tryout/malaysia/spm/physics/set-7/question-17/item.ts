@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.26\\text{ m}$$, $$38\\text{ m s}^{-1}$$ and $$45°$$",
+          label:
+            "$$0.26\\text{ m}$$, $$38\\text{ m s}^{-1}$$, $$45°$$ and $$0.063\\text{ s}$$",
         },
         {
           correct: true,
-          label: "$$0.53\\text{ m}$$, $$75\\text{ m s}^{-1}$$ and $$22.5°$$",
+          label:
+            "$$0.53\\text{ m}$$, $$75\\text{ m s}^{-1}$$, $$22.5°$$ and $$0.031\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$0.53\\text{ m}$$, $$38\\text{ m s}^{-1}$$ and $$22.5°$$",
+          label:
+            "$$0.53\\text{ m}$$, $$38\\text{ m s}^{-1}$$, $$22.5°$$ and $$0.063\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$0.53\\text{ m}$$, $$12\\text{ m s}^{-1}$$ and $$22.5°$$",
+          label:
+            "$$0.53\\text{ m}$$, $$12\\text{ m s}^{-1}$$, $$22.5°$$ and $$0.031\\text{ s}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.26\\text{ m}$$, $$38\\text{ m s}^{-1}$$ dan $$45°$$",
+          label:
+            "$$0.26\\text{ m}$$, $$38\\text{ m s}^{-1}$$, $$45°$$ dan $$0.063\\text{ s}$$",
         },
         {
           correct: true,
-          label: "$$0.53\\text{ m}$$, $$75\\text{ m s}^{-1}$$ dan $$22.5°$$",
+          label:
+            "$$0.53\\text{ m}$$, $$75\\text{ m s}^{-1}$$, $$22.5°$$ dan $$0.031\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$0.53\\text{ m}$$, $$38\\text{ m s}^{-1}$$ dan $$22.5°$$",
+          label:
+            "$$0.53\\text{ m}$$, $$38\\text{ m s}^{-1}$$, $$22.5°$$ dan $$0.063\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$0.53\\text{ m}$$, $$12\\text{ m s}^{-1}$$ dan $$22.5°$$",
+          label:
+            "$$0.53\\text{ m}$$, $$12\\text{ m s}^{-1}$$, $$22.5°$$ dan $$0.031\\text{ s}$$",
         },
       ],
     },

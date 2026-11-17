@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$4.0\\text{ m s}^{-1}$$, $$6.0\\text{ s}$$ and $$0.86\\text{ s}$$",
+            "$$4.0\\text{ m s}^{-1}$$, $$6.0\\text{ s}$$, $$0.86\\text{ s}$$ and $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ m s}^{-1}$$, $$1.2\\text{ s}$$ and $$0.86\\text{ s}$$",
+            "$$4.0\\text{ m s}^{-1}$$, $$1.2\\text{ s}$$, $$0.86\\text{ s}$$ and $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$10\\text{ m s}^{-1}$$, $$3.0\\text{ s}$$ and $$0.46\\text{ s}$$",
+            "$$10\\text{ m s}^{-1}$$, $$3.0\\text{ s}$$, $$0.46\\text{ s}$$ and $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ m s}^{-1}$$, $$6.0\\text{ s}$$ and $$1.7\\text{ s}$$",
+            "$$4.0\\text{ m s}^{-1}$$, $$6.0\\text{ s}$$, $$1.7\\text{ s}$$ and $$9.0\\text{ m s}^{-1}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$4.0\\text{ m s}^{-1}$$, $$6.0\\text{ s}$$ dan $$0.86\\text{ s}$$",
+            "$$4.0\\text{ m s}^{-1}$$, $$6.0\\text{ s}$$, $$0.86\\text{ s}$$ dan $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ m s}^{-1}$$, $$1.2\\text{ s}$$ dan $$0.86\\text{ s}$$",
+            "$$4.0\\text{ m s}^{-1}$$, $$1.2\\text{ s}$$, $$0.86\\text{ s}$$ dan $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$10\\text{ m s}^{-1}$$, $$3.0\\text{ s}$$ dan $$0.46\\text{ s}$$",
+            "$$10\\text{ m s}^{-1}$$, $$3.0\\text{ s}$$, $$0.46\\text{ s}$$ dan $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ m s}^{-1}$$, $$6.0\\text{ s}$$ dan $$1.7\\text{ s}$$",
+            "$$4.0\\text{ m s}^{-1}$$, $$6.0\\text{ s}$$, $$1.7\\text{ s}$$ dan $$9.0\\text{ m s}^{-1}$$",
         },
       ],
     },

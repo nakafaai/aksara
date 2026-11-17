@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ and $$\\times1.32$$",
+          label:
+            "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$, $$\\times1.32$$ and $$5.7\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$ and $$\\times1.41$$",
+          label:
+            "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$, $$\\times1.41$$ and $$6.4\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ and $$\\times2.0$$",
+          label:
+            "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$, $$\\times2.0$$ and $$5.7\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$n=-3$$, $$20\\text{ g s}^{-1}$$ and $$\\times1.26$$",
+          label:
+            "$$n=-3$$, $$20\\text{ g s}^{-1}$$, $$\\times1.26$$ and $$5.1\\text{ s}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ dan $$\\times1.32$$",
+          label:
+            "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$, $$\\times1.32$$ dan $$5.7\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$ dan $$\\times1.41$$",
+          label:
+            "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$, $$\\times1.41$$ dan $$6.4\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ dan $$\\times2.0$$",
+          label:
+            "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$, $$\\times2.0$$ dan $$5.7\\text{ s}$$",
         },
         {
           correct: false,
-          label: "$$n=-3$$, $$20\\text{ g s}^{-1}$$ dan $$\\times1.26$$",
+          label:
+            "$$n=-3$$, $$20\\text{ g s}^{-1}$$, $$\\times1.26$$ dan $$5.1\\text{ s}$$",
         },
       ],
     },
