@@ -1,11 +1,4 @@
-import {
-  Array as Arr,
-  Effect,
-  Option,
-  Predicate,
-  Record,
-  Schema,
-} from "effect";
+import { Array as Arr, Effect, Option, Record, Schema } from "effect";
 import { parse } from "yaml";
 import { ensure, WorkflowError } from "#scripts/workflow/requirement";
 
@@ -36,17 +29,20 @@ const OperateStepsSchema = Schema.Struct({
 
 /** The variables the content operations own; turbo's strict mode drops any its task does not name. */
 const OPERATION_VARIABLE = /^(?:AKSARA|NAKAFA)_[A-Z0-9_]+$/u;
-const EXPORTED_VARIABLE = /^export ([A-Z][A-Z0-9_]*)=/gmu;
-const TURBO_TASK = /\bbun run ([a-z][a-z-]*)\b/u;
+const EXPORTED_VARIABLE = /^export (?<name>[A-Z][A-Z0-9_]*)=/gmu;
+const TURBO_TASK = /\bbun run (?<task>[a-z][a-z-]*)\b/u;
 
 /** The operation variables one step gives its command: its env keys and the names its script exports. */
 function stepVariables(
   environment: Readonly<Record<string, unknown>>,
   run: string
 ) {
-  const exported = Arr.filter(
-    Arr.map([...run.matchAll(EXPORTED_VARIABLE)], (match) => match[1]),
-    Predicate.isNotUndefined
+  const exported = Arr.getSomes(
+    Arr.map([...run.matchAll(EXPORTED_VARIABLE)], (match) =>
+      Option.flatMap(Option.fromNullishOr(match.groups), (groups) =>
+        Record.get(groups, "name")
+      )
+    )
   );
   return Arr.dedupe(
     Arr.filter([...Record.keys(environment), ...exported], (name) =>
@@ -83,8 +79,8 @@ export const verifyTurboEnvironment = Effect.fn(
   for (const step of workflow.jobs.operate.steps) {
     const run = step.run ?? "";
     const task = Option.flatMap(
-      Option.fromNullishOr(TURBO_TASK.exec(run)),
-      (match) => Option.fromNullishOr(match[1])
+      Option.fromNullishOr(TURBO_TASK.exec(run)?.groups),
+      (groups) => Record.get(groups, "task")
     );
     const declared = Option.flatMap(task, (name) =>
       Record.get(config.tasks, name)

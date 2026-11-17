@@ -1,4 +1,5 @@
 import { layer } from "@effect/vitest";
+import { Array as Arr } from "effect";
 import { expectRefusal } from "#scripts/workflow/test/failure";
 import {
   sourceEffectTestsOf,
@@ -55,22 +56,23 @@ layer(workflowSourcesLayer)("turbo environment", (it) => {
   it.effect("checks only the steps that run a turbo task", () =>
     expectRefusal(
       verifyTurboEnvironment(
-        [
-          "jobs:",
-          "  operate:",
-          "    steps:",
-          "      - uses: actions/checkout@v6",
-          "      - run: bun run missing",
-          "      - run: bun run other",
-          "        env:",
-          "          NAKAFA_OTHER: x",
-          "      - run: |",
-          "          export NAKAFA_ONLY=1",
-          "          bun run release",
-        ].join("\n"),
-        JSON.stringify({
-          tasks: { other: { passThroughEnv: ["NAKAFA_OTHER"] }, release: {} },
-        })
+        Arr.join(
+          [
+            "jobs:",
+            "  operate:",
+            "    steps:",
+            "      - uses: actions/checkout@v6",
+            "      - run: bun run missing",
+            "      - run: bun run other",
+            "        env:",
+            "          NAKAFA_OTHER: x",
+            "      - run: |",
+            "          export NAKAFA_ONLY=1",
+            "          bun run release",
+          ],
+          "\n"
+        ),
+        '{"tasks":{"other":{"passThroughEnv":["NAKAFA_OTHER"]},"release":{}}}'
       ),
       'The turbo task "release" must declare NAKAFA_ONLY'
     )
