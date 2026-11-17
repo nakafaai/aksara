@@ -1,9 +1,35 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Biology chapters on how a plant responds, reproduces and adapts, Bab 5 to Bab 7. */
 export const kssmForm5BiologyLifeNodes = [
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-biology-response-in-plants-plant-response",
+        level: "lesson",
+        materialKeys: ["lesson.biology.plant-response"],
+        order: 10,
+      }),
+    ],
     key: "form-5-biology-response-in-plants",
+    materialCard: {
+      de: {
+        description: "Unterscheide Tropismen und Nastien, erkläre Auxin.",
+        title: "Reaktionen der Pflanzen",
+      },
+      en: {
+        description: "Tell tropisms from nastic responses and explain auxin.",
+        title: "Response in Plants",
+      },
+      id: {
+        description: "Bedakan tropisme dan nasti, lalu pahami auksin.",
+        title: "Respons pada Tumbuhan",
+      },
+      ms: {
+        description: "Bezakan tropisme dengan nasti dan fahami auksin.",
+        title: "Gerak Balas dalam Tumbuhan",
+      },
+    },
     order: 50,
     translations: {
       de: {
@@ -22,7 +48,33 @@ export const kssmForm5BiologyLifeNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-biology-sexual-reproduction-in-flowering-plants-plant-reproduction",
+        level: "lesson",
+        materialKeys: ["lesson.biology.plant-reproduction"],
+        order: 10,
+      }),
+    ],
     key: "form-5-biology-sexual-reproduction-in-flowering-plants",
+    materialCard: {
+      de: {
+        description: "Verfolge Bestäubung und doppelte Befruchtung.",
+        title: "Geschlechtliche Fortpflanzung der Blütenpflanzen",
+      },
+      en: {
+        description: "Follow pollination and double fertilisation.",
+        title: "Sexual Reproduction in Flowering Plants",
+      },
+      id: {
+        description: "Ikuti penyerbukan dan pembuahan ganda.",
+        title: "Reproduksi Seksual pada Tumbuhan Berbunga",
+      },
+      ms: {
+        description: "Ikuti pendebungaan dan persenyawaan ganda.",
+        title: "Pembiakan Seks dalam Tumbuhan Berbunga",
+      },
+    },
     order: 60,
     translations: {
       de: {
