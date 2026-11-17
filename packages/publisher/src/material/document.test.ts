@@ -1,4 +1,6 @@
+import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
+import { inspectHistoricalContentSource } from "@nakafa/aksara-compiler/inspect";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import {
   Array as Arr,
@@ -19,6 +21,7 @@ import {
   MaterialTestFixtures,
   materialTestLayer,
 } from "#test/material/spec";
+import { authoredCheckoutRoot, metadataExport } from "#test/metadata";
 
 /** Requires the reviewed English material registry fixture. */
 const requireEnglishEntry = Effect.fn(
@@ -172,6 +175,37 @@ layer(materialTestLayer)("material document", (it) => {
           _tag: "MaterialMetadataError",
           sourcePath: entry.sourcePath,
         });
+      })
+  );
+});
+
+layer(NodeServices.layer)("authored material metadata", (it) => {
+  it.effect(
+    "decodes every registry material's metadata, publication dates included",
+    () =>
+      Effect.gen(function* () {
+        const checkoutRoot = yield* authoredCheckoutRoot;
+        const entries = yield* decodeMaterialRegistry();
+        const rejected = yield* Effect.forEach(
+          entries,
+          (entry) =>
+            Effect.gen(function* () {
+              const source = yield* loadMaterialDocument(checkoutRoot, entry);
+              const { metadata } = yield* inspectHistoricalContentSource({
+                contentKey: source.route.contentKey,
+                rawMdx: metadataExport(source.rawMdx),
+              });
+              return yield* makeMaterialProjection(source, metadata).pipe(
+                Effect.as(Option.none<string>()),
+                Effect.catchTag("MaterialMetadataError", ({ sourcePath }) =>
+                  Effect.succeedSome(sourcePath)
+                )
+              );
+            }),
+          { concurrency: 16 }
+        );
+
+        expect(Arr.getSomes(rejected)).toEqual([]);
       })
   );
 });

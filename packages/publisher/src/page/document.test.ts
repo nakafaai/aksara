@@ -1,5 +1,8 @@
+import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Array as Arr, Effect, Path } from "effect";
+import { inspectHistoricalContentSource } from "@nakafa/aksara-compiler/inspect";
+import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
+import { Array as Arr, Effect, Option, Path } from "effect";
 import {
   compilePageDocument,
   inspectPageDocument,
@@ -7,6 +10,7 @@ import {
   makePageProjectionFromSource,
 } from "#publisher/page/document";
 import { testFileLayer } from "#test/files";
+import { authoredCheckoutRoot, metadataExport } from "#test/metadata";
 import {
   fixedPageEntry,
   fixedPageSource,
@@ -114,5 +118,36 @@ layer(pageTestLayer)("page document", (it) => {
           "sha256:072d948d6bb73dce3f33f9c3face32bcb7a64f439fb83b5cb9cf9c61b0e8678b"
         );
       }).pipe(Effect.provide(Path.layer))
+  );
+});
+
+layer(NodeServices.layer)("authored page metadata", (it) => {
+  it.effect(
+    "decodes every registry page's metadata, publication dates included",
+    () =>
+      Effect.gen(function* () {
+        const checkoutRoot = yield* authoredCheckoutRoot;
+        const entries = yield* decodePageRegistry();
+        const rejected = yield* Effect.forEach(
+          entries,
+          (entry) =>
+            Effect.gen(function* () {
+              const source = yield* loadPageDocument(checkoutRoot, entry);
+              const { metadata } = yield* inspectHistoricalContentSource({
+                contentKey: source.route.contentKey,
+                rawMdx: metadataExport(source.rawMdx),
+              });
+              return yield* makePageProjectionFromSource(source, metadata).pipe(
+                Effect.as(Option.none<string>()),
+                Effect.catchTag("PageMetadataError", ({ sourcePath }) =>
+                  Effect.succeedSome(sourcePath)
+                )
+              );
+            }),
+          { concurrency: 16 }
+        );
+
+        expect(Arr.getSomes(rejected)).toEqual([]);
+      })
   );
 });
