@@ -1,0 +1,375 @@
+export const metadata = {
+  title: "Metabolisme Enzim dan Faktor yang Memengaruhinya",
+  description:
+    "Bedakan anabolisme dan katabolisme, jelaskan sifat enzim dan teori gembok dan kunci, lalu hitung pengaruh suhu, pH, dan konsentrasi pada laju reaksi enzim.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Metabolisme dan Enzim",
+};
+
+## Enzim Mempercepat Metabolisme
+
+**Metabolisme** adalah seluruh reaksi kimia yang terjadi di dalam sel makhluk hidup. Hampir setiap reaksi itu dikatalisis oleh **enzim**, yaitu protein yang bekerja sebagai **biokatalisator**. Enzim mempercepat reaksi dengan **menurunkan energi aktivasi**, yaitu energi minimum yang harus tersedia sebelum substrat berubah menjadi produk. Enzim tidak berubah di akhir reaksi, jadi molekul yang sama bisa dipakai berulang kali.
+
+Grafik di bawah membandingkan dua jalur untuk reaksi yang sama. Geser penggeser <InlineMath math="a" /> untuk menurunkan puncak jalur berenzim, lalu perhatikan bahwa tingkat energi substrat dan produk tidak bergeser.
+
+<MathVisual
+  title={<>Energi Aktivasi dengan dan tanpa Enzim</>}
+  description={
+    <>
+      Sumbu mendatar adalah kemajuan reaksi dan sumbu tegak adalah energi
+      dalam satuan relatif. Substrat mulai di <InlineMath math="40" /> dan
+      produk berakhir di <InlineMath math="10" />. Tanpa enzim, energi
+      aktivasinya <InlineMath math="60" /> satuan.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 50, value: 20, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "plain-rise", kind: "function", appearance: "secondary", formula: "40 + 30(1 - cos(pi x/5))", domain: { min: 0, max: 5 } },
+      { id: "plain-fall", kind: "function", appearance: "secondary", formula: "10 + 45(1 + cos(pi (x - 5)/5))", domain: { min: 5, max: 10 } },
+      { id: "enzyme-rise", kind: "function", appearance: "primary", formula: "40 + (a/2)(1 - cos(pi x/5))", domain: { min: 0, max: 5 } },
+      { id: "enzyme-fall", kind: "function", appearance: "primary", formula: "10 + ((30 + a)/2)(1 + cos(pi (x - 5)/5))", domain: { min: 5, max: 10 } },
+    ],
+    labels: [
+      { key: "plain-rise", objectId: "plain-rise", at: { x: 5, y: 100 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "enzyme-energy", formula: "a" },
+      { key: "saving", formula: "60 - a" },
+      { key: "released", formula: "40 - 10" },
+    ],
+  }}
+  labels={{
+    a: <>Energi aktivasi berenzim <InlineMath math="a" /></>,
+    "plain-rise": <>Tanpa enzim</>,
+    "enzyme-energy": <>Energi aktivasi dengan enzim</>,
+    saving: <>Energi aktivasi yang dihemat</>,
+    released: <>Energi yang dilepaskan</>,
+  }}
+/>
+
+Energi yang dilepaskan tetap <InlineMath math="30" /> satuan di mana pun kamu menaruh penggeser. Enzim hanya mengubah **seberapa cepat** reaksi berlangsung, bukan jumlah energi yang dilepaskan dan bukan jenis produknya.
+
+## Anabolisme Menyusun dan Katabolisme Menguraikan
+
+Metabolisme terbagi menjadi dua jenis. **Anabolisme** menyusun molekul kompleks dari molekul sederhana dan memerlukan energi. **Katabolisme** menguraikan molekul kompleks menjadi molekul sederhana dan melepaskan energi. Di dalam sel keduanya berjalan bersamaan: energi dari katabolisme dipakai untuk menjalankan anabolisme.
+
+| Ciri | Anabolisme | Katabolisme |
+| :--- | :--- | :--- |
+| Molekul | Sederhana menjadi kompleks | Kompleks menjadi sederhana |
+| Energi | Diperlukan | Dilepaskan |
+| Contoh | Sintesis protein dari asam amino, fotosintesis | Respirasi sel, pencernaan amilum |
+
+Coba tentukan jenis reaksi ini. Maltase di usus halus menghidrolisis maltosa:
+
+<BlockMath math="\text{maltosa} + \mathrm{H_2O} \xrightarrow{\text{maltase}} \text{glukosa} + \text{glukosa}" />
+
+Satu molekul disakarida menjadi dua molekul monosakarida, jadi reaksi ini termasuk **katabolisme**. Cek arahnya: kalau hati menggabungkan glukosa menjadi glikogen, molekulnya makin besar dan butuh energi, jadi itu anabolisme.
+
+## Sifat dan Penamaan Enzim
+
+Sebagian besar enzim diberi nama dengan menambahkan akhiran **-ase** pada nama substratnya. Sukrase menghidrolisis sukrosa, lipase menghidrolisis lipid, protease menghidrolisis protein, dan maltase menghidrolisis maltosa. Beberapa enzim yang ditemukan lebih awal masih memakai nama lama, misalnya pepsin, tripsin, dan renin.
+
+Enzim punya beberapa sifat yang perlu kamu ingat:
+
+- Enzim adalah **protein** yang disintesis oleh ribosom.
+- Enzim **spesifik**: satu enzim hanya bekerja pada satu jenis substrat.
+- Enzim dibutuhkan dalam **jumlah sedikit** karena tidak berubah dan bisa dipakai lagi.
+- Enzim mempercepat reaksi tetapi tidak mengubah jumlah produk.
+- Banyak reaksi enzim bersifat bolak-balik.
+- Enzim dipengaruhi suhu, pH, inhibitor, dan kofaktor. **Kofaktor** adalah ion anorganik seperti ion magnesium, sedangkan **koenzim** adalah molekul organik yang kebanyakan berasal dari vitamin.
+
+Enzim **intraseluler** disintesis dan bekerja di dalam sel, misalnya enzim respirasi di mitokondria. Enzim **ekstraseluler** disintesis di dalam sel tetapi disekresikan keluar untuk bekerja, misalnya amilase ludah dan pepsin. Enzim ekstraseluler melewati beberapa organel sebelum keluar sel:
+
+<Mermaid
+  title={<>Jalur Sekresi Enzim Ekstraseluler</>}
+  description={<>Enzim disintesis di ribosom, diangkut melalui retikulum endoplasma kasar dan badan Golgi, lalu dilepaskan dengan eksositosis.</>}
+  chart={`flowchart LR
+  A["DNA di nukleus"] --> B["mRNA ke ribosom"]
+  B --> C["Protein di retikulum endoplasma kasar"]
+  C --> D["Vesikel transpor"]
+  D --> E["Badan Golgi"]
+  E --> F["Vesikel sekretori"]
+  F --> G["Eksositosis"]`}
+/>
+
+Ribosom pada **retikulum endoplasma kasar** menyintesis enzim, badan Golgi memodifikasi dan mengemasnya, lalu vesikel sekretori menyatu dengan membran plasma untuk melepaskan enzim ke luar sel.
+
+## Teori Gembok dan Kunci
+
+Setiap enzim punya **sisi aktif**, yaitu bagian kecil yang bentuknya komplementer dengan bentuk substrat. Menurut **teori gembok dan kunci**, substrat adalah kunci dan sisi aktif adalah gemboknya. Hanya substrat yang bentuknya cocok bisa masuk ke sisi aktif, dan itulah alasan enzim bersifat spesifik.
+
+Kerja enzim berlangsung dalam tiga langkah. Substrat menempel pada sisi aktif dan membentuk **kompleks enzim-substrat**. Di dalam kompleks itu substrat berubah menjadi produk. Produk lalu lepas, dan enzim kembali ke bentuk semula, siap menerima substrat berikutnya.
+
+<BlockMath math="\text{E} + \text{S} \rightarrow \text{ES} \rightarrow \text{E} + \text{P}" />
+
+Penelitian yang lebih baru menunjukkan sisi aktif tidak sekaku gembok. Dalam **teori kecocokan terinduksi**, sisi aktif sedikit berubah bentuk saat substrat menempel, sehingga substrat dipegang lebih erat. Kedua teori sepakat pada satu hal: kalau bentuk sisi aktif rusak, substrat tidak bisa menempel lagi.
+
+## Suhu dan pH Mengubah Laju
+
+Saat suhu naik, molekul enzim dan substrat bergerak lebih cepat dan makin sering bertumbukan, jadi laju reaksi meningkat. Laju paling tinggi pada **suhu optimum**, sekitar <InlineMath math="37^\circ\text{C}" /> untuk kebanyakan enzim manusia. Di atas suhu itu, ikatan yang menjaga bentuk sisi aktif mulai putus. Enzim **terdenaturasi**: bentuk sisi aktifnya berubah permanen dan substrat tidak bisa menempel lagi.
+
+Grafik ini adalah model enzim manusia dengan suhu optimum <InlineMath math="37^\circ\text{C}" />. Geser penggeser suhu dan bandingkan kemiringan di kiri dan di kanan puncak.
+
+<MathVisual
+  title={<>Laju Reaksi Enzim terhadap Suhu</>}
+  description={
+    <>
+      Laju relatif dalam persen. Di bawah{" "}
+      <InlineMath math="37^\circ\text{C}" /> lajunya{" "}
+      <InlineMath math="100e^{-((T - 37)/12)^2}" />, dan di atasnya{" "}
+      <InlineMath math="100e^{-((T - 37)/6)^2}" />, jadi laju turun lebih
+      curam setelah suhu optimum.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 60, value: 27, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "rise", kind: "function", appearance: "primary", formula: "100exp(-((x - 37)/12)^2)", domain: { min: 0, max: 37 } },
+      { id: "fall", kind: "function", appearance: "primary", formula: "100exp(-((x - 37)/6)^2)", domain: { min: 37, max: 60 } },
+      { id: "optimum", kind: "point", appearance: "highlight", at: { x: 37, y: 100 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "c", y: "100exp(-(min(c - 37, 0)/12)^2 - (max(c - 37, 0)/6)^2)" },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum", at: { x: 37, y: 100 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "rate", formula: "100exp(-(min(c - 37, 0)/12)^2 - (max(c - 37, 0)/6)^2)" },
+    ],
+  }}
+  labels={{
+    c: <>Suhu dalam <InlineMath math="^\circ\text{C}" /></>,
+    optimum: <>Suhu optimum, <InlineMath math="37^\circ\text{C}" /></>,
+    rate: <>Laju relatif dalam <InlineMath math="\%" /></>,
+  }}
+/>
+
+Pada <InlineMath math="27^\circ\text{C}" /> model memberi sekitar <InlineMath math="50\%" />, tetapi pada <InlineMath math="50^\circ\text{C}" /> lajunya hampir nol. Pada suhu rendah enzim hanya **tidak aktif**, bukan terdenaturasi, jadi enzim bekerja lagi setelah dihangatkan ke suhu optimum.
+
+pH mengubah muatan pada sisi aktif. Setiap enzim punya **pH optimum** sendiri, yang sesuai dengan tempat enzim itu bekerja. Pepsin bekerja di lambung yang asam, amilase ludah di mulut yang hampir netral, dan tripsin di usus halus yang sedikit basa.
+
+<MathVisual
+  title={<>Tiga Enzim Pencernaan dan pH Optimumnya</>}
+  description={
+    <>
+      Model aktivitas relatif dalam persen. Pepsin memuncak pada pH{" "}
+      <InlineMath math="2" />, amilase ludah pada pH <InlineMath math="7" />,
+      dan tripsin pada pH <InlineMath math="8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 125 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 14, value: 7, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "pepsin", kind: "function", appearance: "warning", formula: "100exp(-((x - 2)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "amylase", kind: "function", appearance: "primary", formula: "100exp(-((x - 7)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "trypsin", kind: "function", appearance: "secondary", formula: "100exp(-((x - 8)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "p", y: "0" }, { x: "p", y: "110" }] },
+    ],
+    labels: [
+      { key: "pepsin", objectId: "pepsin", at: { x: 2, y: 100 }, placement: "above" },
+      { key: "amylase", objectId: "amylase", at: { x: 7, y: 100 }, placement: "above-left" },
+      { key: "trypsin", objectId: "trypsin", at: { x: 8, y: 100 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "pepsin-reading", formula: "100exp(-((p - 2)/1.2)^2)" },
+      { key: "amylase-reading", formula: "100exp(-((p - 7)/1.2)^2)" },
+      { key: "trypsin-reading", formula: "100exp(-((p - 8)/1.2)^2)" },
+    ],
+  }}
+  labels={{
+    p: <>pH larutan</>,
+    pepsin: <>Pepsin</>,
+    amylase: <>Amilase ludah</>,
+    trypsin: <>Tripsin</>,
+    "pepsin-reading": <>Pepsin dalam <InlineMath math="\%" /></>,
+    "amylase-reading": <>Amilase ludah dalam <InlineMath math="\%" /></>,
+    "trypsin-reading": <>Tripsin dalam <InlineMath math="\%" /></>,
+  }}
+/>
+
+Taruh penggeser di pH <InlineMath math="7" />. Pepsin hampir tidak aktif di sana, jadi pepsin yang masuk ke usus halus berhenti mencerna protein dan tripsin mengambil alih tugas itu.
+
+Sekarang coba analisis data percobaan amilase. Larutan amilum dicampur amilase pada empat suhu. Setiap menit, setetes campuran diuji dengan larutan iodin sampai warna biru kehitaman tidak muncul lagi. Waktu yang tercatat adalah <InlineMath math="240\text{ s}" /> pada <InlineMath math="20^\circ\text{C}" />, <InlineMath math="120\text{ s}" /> pada <InlineMath math="30^\circ\text{C}" />, <InlineMath math="60\text{ s}" /> pada <InlineMath math="40^\circ\text{C}" />, dan <InlineMath math="300\text{ s}" /> pada <InlineMath math="50^\circ\text{C}" />. Laju reaksi adalah kebalikan dari waktu:
+
+<MathContainer>
+<BlockMath math="\text{laju} = \frac{1}{t}" />
+<BlockMath math="\frac{1}{240} = 0{,}0042\text{ s}^{-1},\quad \frac{1}{120} = 0{,}0083\text{ s}^{-1}" />
+<BlockMath math="\frac{1}{60} = 0{,}0167\text{ s}^{-1},\quad \frac{1}{300} = 0{,}0033\text{ s}^{-1}" />
+</MathContainer>
+
+<Chart
+  title={<>Laju Hidrolisis Amilum pada Empat Suhu</>}
+  description={
+    <>
+      Setiap batang adalah <InlineMath math="1000/t" />, dengan{" "}
+      <InlineMath math="t" /> waktu sampai uji iodin tidak lagi berwarna biru
+      kehitaman.
+    </>
+  }
+  bars="apart"
+  categories={["20 °C", "30 °C", "40 °C", "50 °C"]}
+  series={[
+    { label: "Laju dalam satuan 1000/t", mark: "bar", values: [240, 120, 60, 300].map((time) => 1000 / time) },
+  ]}
+  valueLabel="Laju dalam satuan 1000/t"
+/>
+
+Laju paling tinggi pada <InlineMath math="40^\circ\text{C}" />, jadi suhu optimumnya berada di sekitar <InlineMath math="40^\circ\text{C}" />. Cek logikanya: laju pada <InlineMath math="50^\circ\text{C}" /> lebih rendah daripada pada <InlineMath math="20^\circ\text{C}" />, karena sebagian amilase sudah terdenaturasi.
+
+## Konsentrasi Substrat dan Konsentrasi Enzim
+
+Saat konsentrasi substrat bertambah, makin banyak sisi aktif yang terisi dan laju meningkat. Akhirnya semua sisi aktif sibuk sepanjang waktu. Pada titik itu laju mencapai **laju maksimum**, dan menambah substrat tidak lagi menaikkan laju. Sekarang **konsentrasi enzim** menjadi faktor pembatas: menambah enzim memberi lebih banyak sisi aktif, jadi laju maksimum naik.
+
+Model ini memakai laju <InlineMath math="r = \dfrac{20ks}{2 + s}" />, dengan <InlineMath math="s" /> konsentrasi substrat dan <InlineMath math="k" /> konsentrasi enzim relatif. Kurva putus-putus adalah kurva untuk <InlineMath math="k = 1" />.
+
+<MathVisual
+  title={<>Laju terhadap Konsentrasi Substrat</>}
+  description={
+    <>
+      Kurva <InlineMath math="r = 20ks/(2 + s)" />. Laju mendatar di{" "}
+      <InlineMath math="20k" /> karena sisi aktif sudah jenuh, dan laju
+      maksimum menjadi dua kali lipat saat <InlineMath math="k" /> dua kali
+      lipat.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 65 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 3, value: 2, step: 0.5, label: "k" },
+      { name: "s", min: 0, max: 20, value: 2, step: 0.5, label: "s" },
+    ],
+    objects: [
+      { id: "base", kind: "function", appearance: "construction", formula: "20x/(2 + x)", domain: { min: 0, max: 20 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "20k x/(2 + x)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "s", y: "20k s/(2 + s)" },
+    ],
+    readouts: [
+      { key: "rate", formula: "20k s/(2 + s)" },
+      { key: "maximum", formula: "20k" },
+    ],
+  }}
+  labels={{
+    k: <>Konsentrasi enzim relatif <InlineMath math="k" /></>,
+    s: <>Konsentrasi substrat <InlineMath math="s" /></>,
+    rate: <>Laju reaksi <InlineMath math="r" /></>,
+    maximum: <>Laju maksimum</>,
+  }}
+/>
+
+Percobaan klasik memakai **katalase** di dalam kentang. Katalase menguraikan hidrogen peroksida, hasil samping metabolisme yang beracun, menjadi air dan oksigen:
+
+<BlockMath math="2\mathrm{H_2O_2} \xrightarrow{\text{katalase}} 2\mathrm{H_2O} + \mathrm{O_2}" />
+
+Dua labu berisi volume hidrogen peroksida yang sama. Satu diberi potongan kentang berbentuk kubus dan satu lagi kentang parut dengan massa sama. Memarut membuka lebih banyak sel, jadi lebih banyak katalase bersentuhan dengan substrat.
+
+<GasRateLab
+  title={<>Oksigen dari Kubus Kentang dan Kentang Parut</>}
+  description={
+    <>
+      Dua labu Erlenmeyer dihubungkan ke alat suntik gas. Setiap labu berisi{" "}
+      <InlineMath math="0{,}008" /> mol hidrogen peroksida, jadi masing-masing
+      bisa menghasilkan <InlineMath math="0{,}004" /> mol oksigen.
+    </>
+  }
+  runs={[
+    { amount: 0.004, solid: "chips" },
+    { amount: 0.004, solid: "powder" },
+  ]}
+  showCurves
+  labels={{
+    final: <>jumlah akhir oksigen</>,
+    runs: [<>Kubus kentang</>, <>Kentang parut</>],
+    solids: { chips: <>kubus</>, granules: <>irisan</>, powder: <>parutan</> },
+    time: "Waktu",
+    view: "Pengumpulan oksigen dari dua labu",
+  }}
+/>
+
+Hitung laju awal dari pembacaan alat suntik. Dalam <InlineMath math="20\text{ s}" /> pertama, labu kentang parut mengumpulkan <InlineMath math="40\text{ cm}^3" /> oksigen dan labu kubus <InlineMath math="16\text{ cm}^3" />. Laju rata-rata awal adalah volume dibagi waktu:
+
+<MathContainer>
+<BlockMath math="\text{parutan: } \frac{40\text{ cm}^3}{20\text{ s}} = 2{,}0\text{ cm}^3\text{ s}^{-1}" />
+<BlockMath math="\text{kubus: } \frac{16\text{ cm}^3}{20\text{ s}} = 0{,}8\text{ cm}^3\text{ s}^{-1}" />
+</MathContainer>
+
+Kentang parut memberi laju awal <InlineMath math="2{,}5" /> kali lebih tinggi. Cek volume akhirnya: <InlineMath math="0{,}004" /> mol oksigen pada suhu kamar menempati <InlineMath math="0{,}004 \times 24{.}000 = 96\text{ cm}^3" /> di kedua alat suntik. Lebih banyak enzim **mempercepat reaksi, tetapi jumlah produk tetap** karena jumlah hidrogen peroksidanya sama.
+
+## Enzim dalam Industri dan Kehidupan Kita
+
+Enzim sekarang diproduksi dalam skala besar, kebanyakan dari mikroorganisme. Kegunaannya bergantung pada substrat yang diuraikan tiap enzim.
+
+| Bidang | Enzim | Kegunaan |
+| :--- | :--- | :--- |
+| Deterjen | Protease, lipase, amilase | Mengangkat noda protein, lemak, dan amilum pada kain |
+| Pembuatan keju | Renin (kimosin) | Menggumpalkan protein susu |
+| Pengolahan susu | Laktase | Menghasilkan susu bebas laktosa |
+| Jus buah | Pektinase | Menguraikan pektin dinding sel agar jus lebih banyak dan jernih |
+| Roti | Amilase | Menguraikan amilum tepung dan mengatur tekstur roti |
+| Tekstil | Amilase | Menghilangkan amilum pada benang tanpa merusak kain |
+
+Deterjen biologis bekerja paling baik di air hangat, karena **air yang terlalu panas mendenaturasi enzimnya**. Susu bebas laktosa membuat orang yang tidak cukup menghasilkan laktase bisa minum susu tanpa sakit perut.
+
+## Kesalahan Umum tentang Enzim
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Enzim mati pada suhu tinggi. | Enzim bukan makhluk hidup. Enzim terdenaturasi karena bentuk sisi aktifnya berubah. | Pakai kata terdenaturasi dan sebut sisi aktif. |
+| Suhu rendah mendenaturasi enzim. | Suhu rendah hanya membuat enzim tidak aktif. | Hangatkan lagi ke suhu optimum dan lajunya pulih. |
+| Enzim habis terpakai dalam reaksi. | Enzim tidak berubah dan bisa dipakai lagi. | Volume produk akhir bergantung pada substrat, bukan enzim. |
+| Semua enzim punya pH optimum <InlineMath math="7" />. | pH optimum sesuai dengan tempat enzim bekerja. | Pepsin di lambung, pH <InlineMath math="2" />. |
+| Enzim menambah jumlah produk. | Enzim hanya mempercepat reaksi. | Bandingkan tingkat mendatar kedua kurva gas. |
+
+Kesalahan pertama paling sering muncul di jawaban ujian. Tulis **"enzim terdenaturasi, sisi aktifnya berubah bentuk"**, bukan "enzim mati".
+
+## Latihan Enzim
+
+Soal ini dimulai dari penamaan dan berakhir dengan analisis model laju. **Tulis alasan berdasarkan sisi aktif** di setiap jawaban.
+
+1. Sebutkan enzim yang menghidrolisis sukrosa, lipid, dan protein. Tentukan apakah reaksi ini anabolisme atau katabolisme.
+
+2. Satu tabung amilase disimpan pada <InlineMath math="5^\circ\text{C}" /> dan satu lagi direbus pada <InlineMath math="100^\circ\text{C}" />. Keduanya lalu ditaruh di penangas air <InlineMath math="37^\circ\text{C}" /> bersama larutan amilum. Ramalkan hasilnya dan jelaskan.
+
+3. Pakai model pH di materi ini. Hitung aktivitas relatif tripsin pada pH <InlineMath math="7" />, lalu jelaskan mengapa pepsin tidak mencerna protein di usus halus.
+
+4. Pakai model <InlineMath math="r = \dfrac{20ks}{2 + s}" />. Hitung <InlineMath math="r" /> untuk <InlineMath math="k = 1,\ s = 2" />, untuk <InlineMath math="k = 2,\ s = 2" />, dan untuk <InlineMath math="k = 1,\ s = 18" />. Jelaskan mengapa menaikkan substrat dari <InlineMath math="s = 2" /> ke <InlineMath math="s = 18" /> tidak membuat laju sembilan kali lebih besar.
+
+### Pembahasan
+
+**Pembahasan 1**: Tambahkan akhiran -ase pada nama substrat: **sukrase**, **lipase**, dan **protease**. Ketiganya menguraikan molekul besar menjadi molekul kecil, jadi semuanya **katabolisme**.
+
+**Pembahasan 2**: Tabung yang disimpan dingin mencerna amilum, karena amilase hanya tidak aktif pada <InlineMath math="5^\circ\text{C}" /> dan sisi aktifnya masih utuh. Tabung yang direbus tidak mencerna amilum, karena **amilase sudah terdenaturasi** dan sisi aktifnya berubah bentuk secara permanen. Uji iodin pada tabung kedua tetap biru kehitaman.
+
+**Pembahasan 3**: Substitusikan pH <InlineMath math="7" /> ke model tripsin:
+
+<BlockMath math="100e^{-((7 - 8)/1{,}2)^2} = 100e^{-0{,}694} \approx 50\%" />
+
+Untuk pepsin pada pH <InlineMath math="8" />, eksponennya <InlineMath math="-((8 - 2)/1{,}2)^2 = -25" />, jadi aktivitasnya hampir nol. Di usus halus yang basa, **muatan pada sisi aktif pepsin berubah**, jadi substrat tidak bisa menempel.
+
+**Pembahasan 4**: Substitusikan setiap pasangan nilai:
+
+<MathContainer>
+<BlockMath math="k = 1,\ s = 2: \quad r = \frac{20(1)(2)}{2 + 2} = 10" />
+<BlockMath math="k = 2,\ s = 2: \quad r = \frac{20(2)(2)}{2 + 2} = 20" />
+<BlockMath math="k = 1,\ s = 18: \quad r = \frac{20(1)(18)}{2 + 18} = 18" />
+</MathContainer>
+
+Menggandakan enzim menggandakan laju. Menaikkan substrat sembilan kali lipat hanya menaikkan laju dari <InlineMath math="10" /> ke <InlineMath math="18" />, karena hampir **semua sisi aktif sudah jenuh**. Laju tidak bisa melebihi <InlineMath math="20k = 20" />.

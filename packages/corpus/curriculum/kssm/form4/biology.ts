@@ -169,7 +169,33 @@ export const kssmForm4BiologyTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-metabolism-and-enzymes-metabolism-enzyme",
+        level: "lesson",
+        materialKeys: ["lesson.biology.metabolism-enzyme"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-metabolism-and-enzymes",
+    materialCard: {
+      de: {
+        description: "Erkläre, wie Enzyme den Stoffwechsel beschleunigen.",
+        title: "Stoffwechsel und Enzyme",
+      },
+      en: {
+        description: "Explain metabolism and how enzymes speed up reactions.",
+        title: "Metabolism and Enzymes",
+      },
+      id: {
+        description: "Jelaskan metabolisme dan cara enzim mempercepat reaksi.",
+        title: "Metabolisme dan Enzim",
+      },
+      ms: {
+        description: "Terangkan metabolisme dan cara enzim bertindak.",
+        title: "Metabolisme dan Enzim",
+      },
+    },
     order: 50,
     translations: {
       de: {
@@ -191,7 +217,33 @@ export const kssmForm4BiologyTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-cell-division-cell-division",
+        level: "lesson",
+        materialKeys: ["lesson.biology.cell-division"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-cell-division",
+    materialCard: {
+      de: {
+        description: "Vergleiche Mitose und Meiose im Zellzyklus.",
+        title: "Zellteilung",
+      },
+      en: {
+        description: "Compare mitosis and meiosis and follow the cell cycle.",
+        title: "Cell Division",
+      },
+      id: {
+        description: "Bandingkan mitosis dan meiosis serta ikuti siklus sel.",
+        title: "Pembelahan Sel",
+      },
+      ms: {
+        description: "Bandingkan mitosis dan meiosis serta ikuti kitar sel.",
+        title: "Pembahagian Sel",
+      },
+    },
     order: 60,
     translations: {
       de: { routeSlug: "zellteilung", title: "Zellteilung" },

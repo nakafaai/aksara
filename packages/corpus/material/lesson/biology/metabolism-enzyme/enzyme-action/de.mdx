@@ -1,0 +1,376 @@
+export const metadata = {
+  title: "Stoffwechsel und Enzyme mit Einflussfaktoren",
+  description:
+    "Unterscheide Anabolismus und Katabolismus, erkläre Enzyme und das Schlüssel-Schloss-Prinzip und berechne, wie Temperatur, pH und Konzentration wirken.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Stoffwechsel und Enzyme",
+};
+
+## Enzyme beschleunigen den Stoffwechsel
+
+**Stoffwechsel** ist die Gesamtheit aller chemischen Reaktionen in den Zellen eines Lebewesens. Fast jede dieser Reaktionen wird von einem **Enzym** katalysiert, einem Protein, das als **Biokatalysator** arbeitet. Ein Enzym beschleunigt eine Reaktion, indem es die **Aktivierungsenergie senkt**, also die Mindestenergie, die nötig ist, bevor das Substrat zu Produkten wird. Das Enzym ist am Ende unverändert, deshalb kann dasselbe Molekül immer wieder arbeiten.
+
+Das Diagramm unten vergleicht zwei Wege derselben Reaktion. Verschiebe den Regler <InlineMath math="a" />, um den Berg des Enzymwegs abzusenken, und achte darauf, dass die Energie des Substrats und die der Produkte gleich bleiben.
+
+<MathVisual
+  title={<>Aktivierungsenergie mit und ohne Enzym</>}
+  description={
+    <>
+      Die waagerechte Achse ist der Reaktionsverlauf, die senkrechte Achse die
+      Energie in relativen Einheiten. Das Substrat startet bei{" "}
+      <InlineMath math="40" />, die Produkte enden bei <InlineMath math="10" />.
+      Ohne Enzym beträgt die Aktivierungsenergie <InlineMath math="60" />{" "}
+      Einheiten.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 50, value: 20, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "plain-rise", kind: "function", appearance: "secondary", formula: "40 + 30(1 - cos(pi x/5))", domain: { min: 0, max: 5 } },
+      { id: "plain-fall", kind: "function", appearance: "secondary", formula: "10 + 45(1 + cos(pi (x - 5)/5))", domain: { min: 5, max: 10 } },
+      { id: "enzyme-rise", kind: "function", appearance: "primary", formula: "40 + (a/2)(1 - cos(pi x/5))", domain: { min: 0, max: 5 } },
+      { id: "enzyme-fall", kind: "function", appearance: "primary", formula: "10 + ((30 + a)/2)(1 + cos(pi (x - 5)/5))", domain: { min: 5, max: 10 } },
+    ],
+    labels: [
+      { key: "plain-rise", objectId: "plain-rise", at: { x: 5, y: 100 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "enzyme-energy", formula: "a" },
+      { key: "saving", formula: "60 - a" },
+      { key: "released", formula: "40 - 10" },
+    ],
+  }}
+  labels={{
+    a: <>Aktivierungsenergie mit Enzym <InlineMath math="a" /></>,
+    "plain-rise": <>Ohne Enzym</>,
+    "enzyme-energy": <>Aktivierungsenergie mit Enzym</>,
+    saving: <>Eingesparte Aktivierungsenergie</>,
+    released: <>Freigesetzte Energie</>,
+  }}
+/>
+
+Die freigesetzte Energie bleibt bei <InlineMath math="30" /> Einheiten, egal wo du den Regler hinstellst. Ein Enzym ändert nur, **wie schnell** eine Reaktion abläuft, nicht wie viel Energie frei wird und nicht, welche Produkte entstehen.
+
+## Anabolismus baut auf und Katabolismus baut ab
+
+Der Stoffwechsel hat zwei Seiten. **Anabolismus** baut aus einfachen Molekülen komplexe Moleküle auf und braucht dafür Energie. **Katabolismus** baut komplexe Moleküle zu einfachen ab und setzt Energie frei. In der Zelle laufen beide gleichzeitig: Die Energie aus dem Katabolismus treibt den Anabolismus an.
+
+| Merkmal | Anabolismus | Katabolismus |
+| :--- | :--- | :--- |
+| Moleküle | Einfach zu komplex | Komplex zu einfach |
+| Energie | Wird gebraucht | Wird frei |
+| Beispiele | Proteinsynthese aus Aminosäuren, Fotosynthese | Zellatmung, Stärkeverdauung |
+
+Ordne diese Reaktion ein. Maltase im Dünndarm hydrolysiert Maltose:
+
+<BlockMath math="\text{Maltose} + \mathrm{H_2O} \xrightarrow{\text{Maltase}} \text{Glucose} + \text{Glucose}" />
+
+Aus einem Disaccharid werden zwei Monosaccharide, also ist die Reaktion **Katabolismus**. Prüf die Richtung: Wenn die Leber Glucose zu Glykogen verknüpft, wird das Molekül größer und braucht Energie, das ist Anabolismus.
+
+## Eigenschaften und Namen von Enzymen
+
+Die meisten Enzyme heißen wie ihr Substrat mit der Endung **-ase**. Saccharase spaltet Saccharose, Lipase spaltet Lipide, Protease spaltet Proteine und Maltase spaltet Maltose. Einige früh entdeckte Enzyme tragen noch alte Namen, etwa Pepsin, Trypsin und Labferment.
+
+Diese Eigenschaften von Enzymen solltest du dir merken:
+
+- Enzyme sind **Proteine**, die an Ribosomen hergestellt werden.
+- Enzyme sind **spezifisch**: Ein Enzym wirkt nur auf eine Art von Substrat.
+- Enzyme werden nur in **kleinen Mengen** gebraucht, weil sie unverändert bleiben und wiederverwendet werden.
+- Enzyme beschleunigen eine Reaktion, ändern aber die Produktmenge nicht.
+- Viele Enzymreaktionen sind umkehrbar.
+- Enzyme werden von Temperatur, pH, Hemmstoffen und Cofaktoren beeinflusst. Ein **Cofaktor** ist ein anorganisches Ion wie ein Magnesiumion, ein **Coenzym** ist ein organisches Molekül, das oft aus Vitaminen entsteht.
+
+**Intrazelluläre** Enzyme werden in der Zelle gebildet und arbeiten dort, etwa die Atmungsenzyme in den Mitochondrien. **Extrazelluläre** Enzyme werden in der Zelle gebildet, aber ausgeschieden und arbeiten außerhalb, etwa Speichelamylase und Pepsin. Auf dem Weg nach draußen durchläuft ein extrazelluläres Enzym mehrere Organellen:
+
+<Mermaid
+  title={<>Der Sekretionsweg eines extrazellulären Enzyms</>}
+  description={<>Das Enzym entsteht an Ribosomen, wandert durch das raue endoplasmatische Retikulum und den Golgi-Apparat und wird durch Exozytose abgegeben.</>}
+  chart={`flowchart LR
+  A["DNA im Zellkern"] --> B["mRNA zum Ribosom"]
+  B --> C["Protein im rauen ER"]
+  C --> D["Transportvesikel"]
+  D --> E["Golgi-Apparat"]
+  E --> F["Sekretvesikel"]
+  F --> G["Exozytose"]`}
+/>
+
+Ribosomen am **rauen endoplasmatischen Retikulum** (raues ER) bilden das Enzym, der Golgi-Apparat verändert und verpackt es, und ein Sekretvesikel verschmilzt mit der Zellmembran und gibt das Enzym nach außen ab.
+
+## Schlüssel und Schloss am Enzym
+
+Jedes Enzym hat ein **aktives Zentrum**, eine kleine Region, deren Form zur Form des Substrats passt. Nach dem **Schlüssel-Schloss-Prinzip** ist das Substrat der Schlüssel und das aktive Zentrum das Schloss. Nur ein Substrat mit passender Form gelangt ins aktive Zentrum, und deshalb sind Enzyme spezifisch.
+
+Die Enzymwirkung läuft in drei Schritten ab. Das Substrat bindet an das aktive Zentrum und bildet einen **Enzym-Substrat-Komplex**. Im Komplex wird das Substrat zu Produkten umgesetzt. Dann lösen sich die Produkte, und das Enzym kehrt in seine ursprüngliche Form zurück, bereit für das nächste Substrat.
+
+<BlockMath math="\text{E} + \text{S} \rightarrow \text{ES} \rightarrow \text{E} + \text{P}" />
+
+Neuere Forschung zeigt, dass das aktive Zentrum nicht so starr ist wie ein Schloss. Im **Modell der induzierten Passform** ändert das aktive Zentrum seine Form leicht, wenn das Substrat bindet, und hält es dadurch fester. Beide Modelle sind sich in einem Punkt einig: Wird die Form des aktiven Zentrums zerstört, kann das Substrat nicht mehr binden.
+
+## Temperatur und pH verändern die Geschwindigkeit
+
+Steigt die Temperatur, bewegen sich Enzym- und Substratmoleküle schneller und stoßen häufiger zusammen, also steigt die Reaktionsgeschwindigkeit. Am höchsten ist sie beim **Temperaturoptimum**, bei den meisten menschlichen Enzymen etwa <InlineMath math="37^\circ\text{C}" />. Darüber brechen die Bindungen, die das aktive Zentrum in Form halten. Das Enzym wird **denaturiert**: Die Form des aktiven Zentrums ändert sich dauerhaft, und das Substrat kann nicht mehr binden.
+
+Dieses Diagramm modelliert ein menschliches Enzym mit dem Optimum <InlineMath math="37^\circ\text{C}" />. Verschiebe den Temperaturregler und vergleiche den Anstieg links vom Gipfel mit dem Abfall rechts davon.
+
+<MathVisual
+  title={<>Geschwindigkeit einer Enzymreaktion und Temperatur</>}
+  description={
+    <>
+      Relative Geschwindigkeit in Prozent. Unter{" "}
+      <InlineMath math="37^\circ\text{C}" /> gilt{" "}
+      <InlineMath math="100e^{-((T - 37)/12)^2}" />, darüber{" "}
+      <InlineMath math="100e^{-((T - 37)/6)^2}" />, deshalb fällt die Kurve
+      nach dem Optimum steiler ab.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 60, value: 27, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "rise", kind: "function", appearance: "primary", formula: "100exp(-((x - 37)/12)^2)", domain: { min: 0, max: 37 } },
+      { id: "fall", kind: "function", appearance: "primary", formula: "100exp(-((x - 37)/6)^2)", domain: { min: 37, max: 60 } },
+      { id: "optimum", kind: "point", appearance: "highlight", at: { x: 37, y: 100 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "c", y: "100exp(-(min(c - 37, 0)/12)^2 - (max(c - 37, 0)/6)^2)" },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum", at: { x: 37, y: 100 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "rate", formula: "100exp(-(min(c - 37, 0)/12)^2 - (max(c - 37, 0)/6)^2)" },
+    ],
+  }}
+  labels={{
+    c: <>Temperatur in <InlineMath math="^\circ\text{C}" /></>,
+    optimum: <>Temperaturoptimum, <InlineMath math="37^\circ\text{C}" /></>,
+    rate: <>Relative Geschwindigkeit in <InlineMath math="\%" /></>,
+  }}
+/>
+
+Bei <InlineMath math="27^\circ\text{C}" /> liefert das Modell etwa <InlineMath math="50\%" />, bei <InlineMath math="50^\circ\text{C}" /> ist die Geschwindigkeit fast null. Bei niedriger Temperatur ist das Enzym nur **inaktiv**, nicht denaturiert, also arbeitet es wieder, sobald du es auf das Optimum erwärmst.
+
+Der pH-Wert verändert die Ladungen im aktiven Zentrum. Jedes Enzym hat sein eigenes **pH-Optimum**, das zu seinem Wirkort passt. Pepsin arbeitet im sauren Magen, Speichelamylase im fast neutralen Mund und Trypsin im leicht basischen Dünndarm.
+
+<MathVisual
+  title={<>Drei Verdauungsenzyme und ihr pH-Optimum</>}
+  description={
+    <>
+      Ein Modell der relativen Aktivität in Prozent. Pepsin hat sein Maximum
+      bei pH <InlineMath math="2" />, Speichelamylase bei pH{" "}
+      <InlineMath math="7" /> und Trypsin bei pH <InlineMath math="8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 125 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 14, value: 7, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "pepsin", kind: "function", appearance: "warning", formula: "100exp(-((x - 2)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "amylase", kind: "function", appearance: "primary", formula: "100exp(-((x - 7)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "trypsin", kind: "function", appearance: "secondary", formula: "100exp(-((x - 8)/1.2)^2)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "p", y: "0" }, { x: "p", y: "110" }] },
+    ],
+    labels: [
+      { key: "pepsin", objectId: "pepsin", at: { x: 2, y: 100 }, placement: "above" },
+      { key: "amylase", objectId: "amylase", at: { x: 7, y: 100 }, placement: "above-left" },
+      { key: "trypsin", objectId: "trypsin", at: { x: 8, y: 100 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "pepsin-reading", formula: "100exp(-((p - 2)/1.2)^2)" },
+      { key: "amylase-reading", formula: "100exp(-((p - 7)/1.2)^2)" },
+      { key: "trypsin-reading", formula: "100exp(-((p - 8)/1.2)^2)" },
+    ],
+  }}
+  labels={{
+    p: <>pH der Lösung</>,
+    pepsin: <>Pepsin</>,
+    amylase: <>Speichelamylase</>,
+    trypsin: <>Trypsin</>,
+    "pepsin-reading": <>Pepsin in <InlineMath math="\%" /></>,
+    "amylase-reading": <>Speichelamylase in <InlineMath math="\%" /></>,
+    "trypsin-reading": <>Trypsin in <InlineMath math="\%" /></>,
+  }}
+/>
+
+Stell den Regler auf pH <InlineMath math="7" />. Pepsin ist dort fast inaktiv, deshalb hört Pepsin im Dünndarm auf, Protein zu verdauen, und Trypsin übernimmt diese Aufgabe.
+
+Werte jetzt eine Messreihe mit Amylase aus. Stärkelösung wird bei vier Temperaturen mit Amylase gemischt. Jede Minute wird ein Tropfen der Mischung mit Iodlösung getestet, bis keine blauschwarze Färbung mehr auftritt. Die gemessenen Zeiten sind <InlineMath math="240\text{ s}" /> bei <InlineMath math="20^\circ\text{C}" />, <InlineMath math="120\text{ s}" /> bei <InlineMath math="30^\circ\text{C}" />, <InlineMath math="60\text{ s}" /> bei <InlineMath math="40^\circ\text{C}" /> und <InlineMath math="300\text{ s}" /> bei <InlineMath math="50^\circ\text{C}" />. Die Reaktionsgeschwindigkeit ist der Kehrwert der Zeit:
+
+<MathContainer>
+<BlockMath math="\text{Geschwindigkeit} = \frac{1}{t}" />
+<BlockMath math="\frac{1}{240} = 0{,}0042\text{ s}^{-1},\quad \frac{1}{120} = 0{,}0083\text{ s}^{-1}" />
+<BlockMath math="\frac{1}{60} = 0{,}0167\text{ s}^{-1},\quad \frac{1}{300} = 0{,}0033\text{ s}^{-1}" />
+</MathContainer>
+
+<Chart
+  title={<>Geschwindigkeit des Stärkeabbaus bei vier Temperaturen</>}
+  description={
+    <>
+      Jeder Balken ist <InlineMath math="1000/t" />, wobei{" "}
+      <InlineMath math="t" /> die Zeit ist, bis der Iodtest nicht mehr
+      blauschwarz ist.
+    </>
+  }
+  bars="apart"
+  categories={["20 °C", "30 °C", "40 °C", "50 °C"]}
+  series={[
+    { label: "Geschwindigkeit in Einheiten 1000/t", mark: "bar", values: [240, 120, 60, 300].map((time) => 1000 / time) },
+  ]}
+  valueLabel="Geschwindigkeit in Einheiten 1000/t"
+/>
+
+Die Geschwindigkeit ist bei <InlineMath math="40^\circ\text{C}" /> am höchsten, also liegt das Temperaturoptimum nahe <InlineMath math="40^\circ\text{C}" />. Prüf die Logik: Bei <InlineMath math="50^\circ\text{C}" /> ist die Geschwindigkeit kleiner als bei <InlineMath math="20^\circ\text{C}" />, weil ein Teil der Amylase schon denaturiert ist.
+
+## Substratkonzentration und Enzymkonzentration
+
+Steigt die Substratkonzentration, werden mehr aktive Zentren besetzt und die Geschwindigkeit nimmt zu. Irgendwann ist jedes aktive Zentrum ständig beschäftigt. Dann erreicht die Reaktion ihre **Maximalgeschwindigkeit**, und mehr Substrat erhöht sie nicht weiter. Jetzt begrenzt die **Enzymkonzentration**: Mehr Enzym bedeutet mehr aktive Zentren, also steigt die Maximalgeschwindigkeit.
+
+Dieses Modell nutzt die Geschwindigkeit <InlineMath math="r = \dfrac{20ks}{2 + s}" />, wobei <InlineMath math="s" /> die Substratkonzentration und <InlineMath math="k" /> die relative Enzymkonzentration ist. Die gestrichelte Kurve gehört zu <InlineMath math="k = 1" />.
+
+<MathVisual
+  title={<>Geschwindigkeit und Substratkonzentration</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="r = 20ks/(2 + s)" />. Die Geschwindigkeit
+      flacht bei <InlineMath math="20k" /> ab, weil die aktiven Zentren
+      gesättigt sind, und die Maximalgeschwindigkeit verdoppelt sich, wenn sich{" "}
+      <InlineMath math="k" /> verdoppelt.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 65 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 3, value: 2, step: 0.5, label: "k" },
+      { name: "s", min: 0, max: 20, value: 2, step: 0.5, label: "s" },
+    ],
+    objects: [
+      { id: "base", kind: "function", appearance: "construction", formula: "20x/(2 + x)", domain: { min: 0, max: 20 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "20k x/(2 + x)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "s", y: "20k s/(2 + s)" },
+    ],
+    readouts: [
+      { key: "rate", formula: "20k s/(2 + s)" },
+      { key: "maximum", formula: "20k" },
+    ],
+  }}
+  labels={{
+    k: <>Relative Enzymkonzentration <InlineMath math="k" /></>,
+    s: <>Substratkonzentration <InlineMath math="s" /></>,
+    rate: <>Reaktionsgeschwindigkeit <InlineMath math="r" /></>,
+    maximum: <>Maximalgeschwindigkeit</>,
+  }}
+/>
+
+Ein klassischer Versuch nutzt die **Katalase** der Kartoffel. Katalase spaltet Wasserstoffperoxid, ein giftiges Nebenprodukt des Stoffwechsels, in Wasser und Sauerstoff:
+
+<BlockMath math="2\mathrm{H_2O_2} \xrightarrow{\text{Katalase}} 2\mathrm{H_2O} + \mathrm{O_2}" />
+
+Zwei Kolben enthalten gleich viel Wasserstoffperoxid. In den einen kommen Kartoffelwürfel, in den anderen geriebene Kartoffel mit derselben Masse. Das Reiben öffnet mehr Zellen, deshalb kommt mehr Katalase mit dem Substrat in Kontakt.
+
+<GasRateLab
+  title={<>Sauerstoff aus Kartoffelwürfeln und geriebener Kartoffel</>}
+  description={
+    <>
+      Zwei Erlenmeyerkolben sind mit Gasspritzen verbunden. Jeder Kolben
+      enthält <InlineMath math="0{,}008" /> mol Wasserstoffperoxid, also kann
+      jeder <InlineMath math="0{,}004" /> mol Sauerstoff liefern.
+    </>
+  }
+  runs={[
+    { amount: 0.004, solid: "chips" },
+    { amount: 0.004, solid: "powder" },
+  ]}
+  showCurves
+  labels={{
+    final: <>Endmenge Sauerstoff</>,
+    runs: [<>Kartoffelwürfel</>, <>Geriebene Kartoffel</>],
+    solids: { chips: <>Würfel</>, granules: <>Scheiben</>, powder: <>gerieben</> },
+    time: "Zeit",
+    view: "Gesammelter Sauerstoff aus zwei Kolben",
+  }}
+/>
+
+Berechne die Anfangsgeschwindigkeiten aus den Spritzenwerten. In den ersten <InlineMath math="20\text{ s}" /> sammelt der Kolben mit geriebener Kartoffel <InlineMath math="40\text{ cm}^3" /> Sauerstoff, der Kolben mit Würfeln <InlineMath math="16\text{ cm}^3" />. Die mittlere Anfangsgeschwindigkeit ist Volumen durch Zeit:
+
+<MathContainer>
+<BlockMath math="\text{gerieben: } \frac{40\text{ cm}^3}{20\text{ s}} = 2{,}0\text{ cm}^3\text{ s}^{-1}" />
+<BlockMath math="\text{Würfel: } \frac{16\text{ cm}^3}{20\text{ s}} = 0{,}8\text{ cm}^3\text{ s}^{-1}" />
+</MathContainer>
+
+Die geriebene Kartoffel liefert eine <InlineMath math="2{,}5" />-mal höhere Anfangsgeschwindigkeit. Prüf das Endvolumen: <InlineMath math="0{,}004" /> mol Sauerstoff nehmen bei Raumtemperatur <InlineMath math="0{,}004 \times 24{.}000 = 96\text{ cm}^3" /> ein, in beiden Spritzen. Mehr Enzym **beschleunigt die Reaktion, aber die Produktmenge bleibt gleich**, weil gleich viel Wasserstoffperoxid vorhanden ist.
+
+## Enzyme in Industrie und Alltag
+
+Enzyme werden heute in großen Mengen hergestellt, meist mit Mikroorganismen. Wofür ein Enzym taugt, hängt davon ab, welches Substrat es spaltet.
+
+| Bereich | Enzym | Nutzen |
+| :--- | :--- | :--- |
+| Waschmittel | Protease, Lipase, Amylase | Entfernen Protein-, Fett- und Stärkeflecken aus Stoff |
+| Käseherstellung | Labferment (Chymosin) | Bringt Milcheiweiß zum Gerinnen |
+| Milchverarbeitung | Lactase | Stellt laktosefreie Milch her |
+| Fruchtsaft | Pektinase | Spaltet Pektin der Zellwand, damit mehr und klarerer Saft entsteht |
+| Brot | Amylase | Spaltet Mehlstärke und steuert die Krume |
+| Textilien | Amylase | Entfernt Stärke vom Garn, ohne den Stoff zu schädigen |
+
+Biologische Waschmittel wirken am besten in warmem Wasser, weil **zu heißes Wasser ihre Enzyme denaturiert**. Laktosefreie Milch erlaubt Menschen, die zu wenig Lactase bilden, Milch ohne Bauchschmerzen zu trinken.
+
+## Typische Fehler bei Enzymen
+
+| Fehler | Warum falsch | So prüfst du es |
+| :--- | :--- | :--- |
+| Enzyme sterben bei hoher Temperatur. | Enzyme leben nicht. Sie werden denaturiert, weil sich die Form des aktiven Zentrums ändert. | Schreib denaturiert und nenne das aktive Zentrum. |
+| Kälte denaturiert Enzyme. | Kälte macht Enzyme nur inaktiv. | Erwärme auf das Optimum, und die Geschwindigkeit kehrt zurück. |
+| Enzyme werden bei der Reaktion verbraucht. | Enzyme bleiben unverändert und arbeiten erneut. | Das Endvolumen des Produkts hängt vom Substrat ab, nicht vom Enzym. |
+| Jedes Enzym hat ein pH-Optimum von <InlineMath math="7" />. | Das pH-Optimum passt zum Wirkort. | Pepsin im Magen, pH <InlineMath math="2" />. |
+| Enzyme erhöhen die Produktmenge. | Enzyme beschleunigen nur die Reaktion. | Vergleiche, wo die beiden Gaskurven abflachen. |
+
+Der erste Fehler taucht in Prüfungsantworten am häufigsten auf. Schreib **"das Enzym ist denaturiert, sein aktives Zentrum hat die Form verändert"**, nicht "das Enzym stirbt".
+
+## Übungen zu Enzymen
+
+Die Aufgaben beginnen mit Namen und enden mit dem Geschwindigkeitsmodell. Begründe jede Antwort **mit dem aktiven Zentrum**.
+
+1. Nenne die Enzyme, die Saccharose, Lipide und Proteine spalten. Gib an, ob diese Reaktionen Anabolismus oder Katabolismus sind.
+
+2. Ein Röhrchen Amylase wird bei <InlineMath math="5^\circ\text{C}" /> aufbewahrt, ein zweites bei <InlineMath math="100^\circ\text{C}" /> gekocht. Danach kommen beide mit Stärkelösung in ein Wasserbad von <InlineMath math="37^\circ\text{C}" />. Sag voraus, was passiert, und erkläre es.
+
+3. Nutze das pH-Modell aus diesem Text. Berechne die relative Aktivität von Trypsin bei pH <InlineMath math="7" />, und erkläre, warum Pepsin im Dünndarm kein Protein verdaut.
+
+4. Nutze das Modell <InlineMath math="r = \dfrac{20ks}{2 + s}" />. Berechne <InlineMath math="r" /> für <InlineMath math="k = 1,\ s = 2" />, für <InlineMath math="k = 2,\ s = 2" /> und für <InlineMath math="k = 1,\ s = 18" />. Erkläre, warum die Geschwindigkeit nicht neunmal so groß wird, wenn das Substrat von <InlineMath math="s = 2" /> auf <InlineMath math="s = 18" /> steigt.
+
+### Lösungen
+
+**Lösung 1**: Häng die Endung -ase an den Substratnamen: **Saccharase**, **Lipase** und **Protease**. Alle drei spalten große Moleküle in kleine, also sind alle drei Reaktionen **Katabolismus**.
+
+**Lösung 2**: Das kalt gelagerte Röhrchen verdaut die Stärke, weil die Amylase bei <InlineMath math="5^\circ\text{C}" /> nur inaktiv war und ihr aktives Zentrum intakt ist. Das gekochte Röhrchen verdaut die Stärke nicht, weil **die Amylase denaturiert ist** und ihr aktives Zentrum dauerhaft verformt wurde. Der Iodtest im zweiten Röhrchen bleibt blauschwarz.
+
+**Lösung 3**: Setz pH <InlineMath math="7" /> in das Trypsinmodell ein:
+
+<BlockMath math="100e^{-((7 - 8)/1{,}2)^2} = 100e^{-0{,}694} \approx 50\%" />
+
+Für Pepsin bei pH <InlineMath math="8" /> ist der Exponent <InlineMath math="-((8 - 2)/1{,}2)^2 = -25" />, also ist die Aktivität fast null. Im basischen Dünndarm **ändern sich die Ladungen im aktiven Zentrum des Pepsins**, und das Substrat bindet nicht.
+
+**Lösung 4**: Setz jedes Wertepaar ein:
+
+<MathContainer>
+<BlockMath math="k = 1,\ s = 2: \quad r = \frac{20(1)(2)}{2 + 2} = 10" />
+<BlockMath math="k = 2,\ s = 2: \quad r = \frac{20(2)(2)}{2 + 2} = 20" />
+<BlockMath math="k = 1,\ s = 18: \quad r = \frac{20(1)(18)}{2 + 18} = 18" />
+</MathContainer>
+
+Doppelt so viel Enzym verdoppelt die Geschwindigkeit. Neunmal so viel Substrat hebt sie nur von <InlineMath math="10" /> auf <InlineMath math="18" />, weil fast **alle aktiven Zentren schon gesättigt sind**. Die Geschwindigkeit kann <InlineMath math="20k = 20" /> nicht überschreiten.
