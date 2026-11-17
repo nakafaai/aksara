@@ -1,0 +1,283 @@
+export const metadata = {
+  title: "Nota Sebatian Karbon Tingkatan Lima",
+  description:
+    "Nota Kimia Tingkatan 5 Bab 2: kenal pasti siri homolog, terangkan tindak balas alkana, alkena, alkohol dan asid karboksilik, dan namakan isomer.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Sebatian Karbon",
+};
+
+## Sebatian Karbon dan Siri Homolog
+
+**Sebatian karbon** ialah sebatian yang mengandungi karbon. Sebatian organik berasal daripada benda hidup, dan **hidrokarbon** ialah sebatian organik yang mengandungi karbon dan hidrogen sahaja. Sebatian karbon disusun dalam **siri homolog**, iaitu keluarga sebatian dengan formula am yang sama, kumpulan berfungsi yang sama, dan beza <InlineMath math="\mathrm{CH_2}" /> antara ahli berturutan. Alkana mempunyai formula am <InlineMath math="\mathrm{C_nH_{2n+2}}" />. Dalam nota ini kamu putar model molekul, bandingkan alkana dengan alkena, kenal pasti isomer, dan kira jisim molar setiap siri.
+
+| Siri homolog | Formula am | Kumpulan berfungsi | Contoh |
+| :--- | :--- | :--- | :--- |
+| Alkana | <InlineMath math="\mathrm{C_nH_{2n+2}}" /> | Ikatan tunggal <InlineMath math="\mathrm{C{-}C}" /> | Etana, <InlineMath math="\mathrm{C_2H_6}" /> |
+| Alkena | <InlineMath math="\mathrm{C_nH_{2n}}" /> | Ikatan ganda dua <InlineMath math="\mathrm{C{=}C}" /> | Etena, <InlineMath math="\mathrm{C_2H_4}" /> |
+| Alkuna | <InlineMath math="\mathrm{C_nH_{2n-2}}" /> | Ikatan ganda tiga | Etuna, <InlineMath math="\mathrm{C_2H_2}" /> |
+| Alkohol | <InlineMath math="\mathrm{C_nH_{2n+1}OH}" /> | Hidroksil, <InlineMath math="\mathrm{-OH}" /> | Etanol, <InlineMath math="\mathrm{C_2H_5OH}" /> |
+| Asid karboksilik | <InlineMath math="\mathrm{C_nH_{2n+1}COOH}" /> | Karboksil, <InlineMath math="\mathrm{-COOH}" /> | Asid etanoik, <InlineMath math="\mathrm{CH_3COOH}" /> |
+| Ester | <InlineMath math="\mathrm{C_nH_{2n+1}COOC_mH_{2m+1}}" /> | Karboksilat, <InlineMath math="\mathrm{-COO-}" /> | Etil etanoat |
+
+Pilih alkana dalam model di bawah. Setiap ahli berbeza satu kumpulan <InlineMath math="\mathrm{CH_2}" /> daripada ahli sebelumnya, dan setiap atom karbon membentuk empat ikatan tunggal.
+
+<MoleculeShapeLab
+  title={<>Ahli Siri Homolog Alkana</>}
+  description={
+    <>
+      Metana, etana, propana dan heksana. Semua ikatan antara atom karbon ialah
+      ikatan tunggal, jadi alkana ialah hidrokarbon tepu.
+    </>
+  }
+  molecules={[
+    { id: "methane", name: "metana" },
+    { id: "ethane", name: "etana" },
+    { id: "propane", name: "propana" },
+    { id: "hexane", name: "heksana" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Molekul alkana",
+  }}
+/>
+
+Jisim molar setiap siri bertambah <InlineMath math="14\text{ g mol}^{-1}" /> bagi setiap atom karbon, kerana itulah jisim satu kumpulan <InlineMath math="\mathrm{CH_2}" />. Ubah bilangan atom karbon di bawah dan bandingkan tiga siri.
+
+<MathVisual
+  title={<>Jisim Molar Alkana, Alkena dan Alkuna</>}
+  description={
+    <>
+      Alkana <InlineMath math="14n + 2" />, alkena <InlineMath math="14n" /> dan
+      alkuna <InlineMath math="14n - 2" />, dalam{" "}
+      <InlineMath math="\text{g mol}^{-1}" />. Bagi <InlineMath math="n = 6" />,
+      heksana berjisim molar <InlineMath math="86" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 10 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 10, value: 6, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "alkane", kind: "function", appearance: "primary", formula: "14x + 2", domain: { min: 1, max: 10 } },
+      { id: "alkene", kind: "function", appearance: "secondary", formula: "14x", domain: { min: 2, max: 10 } },
+      { id: "alkane-now", kind: "marker", x: "n", y: "14n + 2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "alkane-mass", formula: "14n + 2" },
+      { key: "alkene-mass", formula: "14n" },
+      { key: "alkyne-mass", formula: "14n - 2" },
+    ],
+  }}
+  labels={{
+    n: <>Bilangan atom karbon <InlineMath math="n" /></>,
+    "alkane-mass": <>Jisim molar alkana</>,
+    "alkene-mass": <>Jisim molar alkena</>,
+    "alkyne-mass": <>Jisim molar alkuna</>,
+  }}
+/>
+
+Sifat fizik berubah secara beransur-ansur dalam satu siri. Apabila molekul semakin besar, daya tarikan antara molekul semakin kuat, jadi **takat didih meningkat**.
+
+<Chart
+  title={<>Takat Didih Enam Alkana Pertama</>}
+  bars="apart"
+  categories={["Metana", "Etana", "Propana", "Butana", "Pentana", "Heksana"]}
+  series={[
+    {
+      label: "Takat didih",
+      mark: "bar",
+      values: [-162, -89, -42, -1, 36, 69],
+    },
+  ]}
+  valueLabel="°C"
+  valueRange={{ min: -180, max: 80 }}
+  description={
+    <>
+      Takat didih pada tekanan atmosfera. Metana hingga butana ialah gas pada
+      suhu bilik, manakala pentana dan heksana ialah cecair.
+    </>
+  }
+/>
+
+## Alkana dan Alkena Bertindak Balas dengan Cara Berbeza
+
+Kedua-dua alkana dan alkena terbakar dalam oksigen berlebihan menghasilkan karbon dioksida dan air. Alkena terbakar dengan **nyalaan yang lebih berjelaga**, kerana peratusan karbon mengikut jisimnya lebih tinggi.
+
+Cuba satu contoh. Bandingkan peratusan karbon mengikut jisim dalam etena dan etana. Jisim atom relatif C ialah <InlineMath math="12" /> dan H ialah <InlineMath math="1" />.
+
+<MathContainer>
+<BlockMath math="\mathrm{C_2H_4}: \frac{2 \times 12}{28} \times 100\% = 85.7\%" />
+<BlockMath math="\mathrm{C_2H_6}: \frac{2 \times 12}{30} \times 100\% = 80.0\%" />
+</MathContainer>
+
+Semak: etena mempunyai dua atom hidrogen kurang bagi bilangan karbon yang sama, jadi peratusan karbonnya memang lebih tinggi, dan lebih banyak karbon tidak terbakar sebagai jelaga.
+
+Alkana hanya mengalami **tindak balas penukargantian** dengan halogen di bawah cahaya ultraungu, kerana semua ikatannya tunggal. Alkena pula ialah hidrokarbon **tak tepu**, dan ikatan ganda dua <InlineMath math="\mathrm{C{=}C}" /> membolehkan **tindak balas penambahan**:
+
+| Tindak balas penambahan | Bahan dan keadaan | Hasil daripada etena |
+| :--- | :--- | :--- |
+| Penghidrogenan | Hidrogen, mangkin nikel, <InlineMath math="180^\circ\text{C}" /> | Etana |
+| Penghalogenan | Air bromin | 1,2-dibromoetana, warna perang hilang |
+| Penghidratan | Stim, asid fosforik, <InlineMath math="300^\circ\text{C}" />, <InlineMath math="60\text{ atm}" /> | Etanol |
+| Pengoksidaan | Kalium manganat(VII) berasid | Etana-1,2-diol, warna ungu hilang |
+
+Bandingkan heksena dengan hasil penambahannya dalam model di bawah. Ikatan ganda dua terbuka, dan setiap atom bromin melekat pada satu atom karbon.
+
+<MoleculeShapeLab
+  title={<>Hidrokarbon Tak Tepu dan Tindak Balas Penambahan</>}
+  description={
+    <>
+      Etena, propena dan etuna mempunyai ikatan ganda. Heksena bertindak balas
+      dengan bromin menjadi dibromoheksana, dan ikatan ganda duanya hilang.
+    </>
+  }
+  molecules={[
+    { id: "ethene", name: "etena" },
+    { id: "propene", name: "propena" },
+    { id: "ethyne", name: "etuna" },
+    { id: "hexene", name: "heksena" },
+    { id: "dibromohexane", name: "dibromoheksana" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Molekul hidrokarbon tak tepu",
+  }}
+/>
+
+Air bromin memberi **ujian ringkas** untuk membezakan alkana dengan alkena. Alkena menyahwarnakan air bromin perang dengan serta-merta, tetapi alkana tidak.
+
+## Alkohol dan Asid Karboksilik Membentuk Ester
+
+**Alkohol** mempunyai kumpulan hidroksil, <InlineMath math="\mathrm{-OH}" />. Etanol dihasilkan melalui **penapaian** glukosa oleh yis atau melalui penghidratan etena. Alkohol terbakar dengan nyalaan biru yang bersih, dioksidakan oleh kalium dikromat(VI) berasid kepada asid karboksilik, dan dinyahhidratkan oleh serpihan porselin panas kepada alkena.
+
+<MoleculeShapeLab
+  title={<>Ahli Siri Homolog Alkohol</>}
+  description={
+    <>
+      Metanol, etanol dan propanol. Setiap molekul mempunyai satu kumpulan
+      hidroksil yang terikat pada atom karbon.
+    </>
+  }
+  molecules={[
+    { id: "methanol", name: "metanol" },
+    { id: "ethanol", name: "etanol" },
+    { id: "propanol", name: "propanol" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Molekul alkohol",
+  }}
+/>
+
+**Asid karboksilik**, seperti asid etanoik dalam cuka, ialah asid lemah. Asid ini bertindak balas dengan logam, bes dan karbonat seperti asid lain. Asid karboksilik juga bertindak balas dengan alkohol, dengan asid sulfurik pekat sebagai mangkin, untuk menghasilkan **ester** yang berbau wangi. Proses ini dipanggil **pengesteran**:
+
+<BlockMath math="\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} \rightleftharpoons \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}" />
+
+Nama ester datang daripada alkohol dahulu, kemudian asid. Etanol dan asid etanoik menghasilkan **etil etanoat**.
+
+## Isomer dan Cara Menamakannya
+
+**Isomer** ialah sebatian dengan formula molekul yang sama tetapi formula struktur berbeza. Heksana, <InlineMath math="\mathrm{C_6H_{14}}" />, mempunyai lima isomer. Rantai yang lebih bercabang menjadikan molekul lebih padat, jadi daya antara molekul lebih lemah dan takat didih lebih rendah.
+
+<MoleculeShapeLab
+  title={<>Lima Isomer Heksana</>}
+  description={
+    <>
+      Kelima-lima molekul mempunyai formula <InlineMath math="\mathrm{C_6H_{14}}" />{" "}
+      dan jisim molekul relatif <InlineMath math="86" />, tetapi atom karbonnya
+      disusun dalam rantai dan cabang yang berbeza.
+    </>
+  }
+  molecules={[
+    { id: "hexane", name: "heksana" },
+    { id: "methylpentane-2", name: "2-metilpentana" },
+    { id: "methylpentane-3", name: "3-metilpentana" },
+    { id: "dimethylbutane-22", name: "2,2-dimetilbutana" },
+    { id: "dimethylbutane-23", name: "2,3-dimetilbutana" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Isomer heksana",
+  }}
+/>
+
+Untuk menamakan isomer, **cari rantai karbon terpanjang** dahulu, kemudian nomborkan rantai itu dari hujung yang memberi nombor terkecil kepada cabang. Bagi 2-metilpentana, rantai terpanjang mempunyai lima atom karbon, jadi namanya berakhir dengan pentana, dan kumpulan metil terletak pada karbon kedua.
+
+Cuba satu pengiraan. Hitung jisim karbon dioksida yang terhasil apabila <InlineMath math="8.6\text{ g}" /> heksana terbakar lengkap. Jisim molar heksana <InlineMath math="86\text{ g mol}^{-1}" /> dan karbon dioksida <InlineMath math="44\text{ g mol}^{-1}" />.
+
+<MathContainer>
+<BlockMath math="2\mathrm{C_6H_{14}} + 19\mathrm{O_2} \rightarrow 12\mathrm{CO_2} + 14\mathrm{H_2O}" />
+<BlockMath math="n(\mathrm{C_6H_{14}}) = \frac{8.6}{86} = 0.10\text{ mol} \Rightarrow n(\mathrm{CO_2}) = 6 \times 0.10 = 0.60\text{ mol}" />
+<BlockMath math="m(\mathrm{CO_2}) = 0.60 \times 44 = 26.4\text{ g}" />
+</MathContainer>
+
+Semak dengan atom karbon: setiap molekul heksana mempunyai enam atom karbon, dan setiap atom karbon menjadi satu molekul karbon dioksida, jadi nisbah mol mesti <InlineMath math="1 : 6" />.
+
+## Kesilapan Lazim tentang Sebatian Karbon
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Alkana bertindak balas dengan air bromin. | Alkana tepu dan tidak mengalami tindak balas penambahan, jadi warna perang kekal. | Hanya ikatan <InlineMath math="\mathrm{C{=}C}" /> yang menyahwarnakan air bromin. |
+| Isomer mempunyai sifat fizik yang sama. | Formula struktur berbeza mengubah daya antara molekul, jadi takat didih berbeza. | Bandingkan heksana dengan 2,2-dimetilbutana. |
+| Nama ester bermula dengan asid. | Bahagian pertama nama datang daripada alkohol, contohnya etil daripada etanol. | Etanol dan asid etanoik memberi etil etanoat. |
+| Rantai terpanjang ialah rantai yang dilukis lurus. | Rantai terpanjang boleh membengkok melalui cabang. | Kira atom karbon pada setiap laluan dari hujung ke hujung. |
+| Etanol dioksidakan menjadi etena. | Pengoksidaan menghasilkan asid etanoik. Etena terhasil melalui penyahhidratan. | Tanya sama ada oksigen ditambah atau air dibuang. |
+
+Kesilapan pertama paling kerap muncul. Ingat ujian ini: **air bromin perang hilang warna hanya dengan alkena**.
+
+## Latihan Sebatian Karbon
+
+Soalan ini bergerak daripada formula am kepada tindak balas dan isomer. **Tulis formula struktur** apabila soalan melibatkan isomer atau kumpulan berfungsi.
+
+1. Tulis formula molekul alkana dengan lapan atom karbon dan hitung jisim molarnya.
+
+2. Huraikan satu ujian kimia untuk membezakan heksana dengan heksena.
+
+3. Namakan ester yang terhasil daripada propanol dan asid etanoik, dan tulis persamaan tindak balasnya.
+
+4. Lukis dan namakan semua isomer butana, <InlineMath math="\mathrm{C_4H_{10}}" />.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Gunakan formula am <InlineMath math="\mathrm{C_nH_{2n+2}}" /> dengan <InlineMath math="n = 8" />:
+
+<MathContainer>
+<BlockMath math="\mathrm{C_8H_{18}}" />
+<BlockMath math="M = 8 \times 12 + 18 \times 1 = 114\text{ g mol}^{-1}" />
+</MathContainer>
+
+Semak dengan rumus <InlineMath math="14n + 2" />: <InlineMath math="14 \times 8 + 2 = 114" />. Sama.
+
+**Penyelesaian 2**: Tambah beberapa titis **air bromin** kepada setiap cecair dan goncang. **Heksena menyahwarnakan** air bromin perang kerana ikatan ganda dua mengalami tindak balas penambahan. Heksana **tidak mengubah** warna perang itu, kerana semua ikatannya tunggal.
+
+**Penyelesaian 3**: Bahagian alkohol, propil, datang dahulu, dan bahagian asid, etanoat, kemudian. Ester itu ialah **propil etanoat**:
+
+<BlockMath math="\mathrm{CH_3COOH} + \mathrm{C_3H_7OH} \rightleftharpoons \mathrm{CH_3COOC_3H_7} + \mathrm{H_2O}" />
+
+Semak atom: kiri <InlineMath math="\mathrm{C_5H_{12}O_3}" />, kanan <InlineMath math="\mathrm{C_5H_{10}O_2} + \mathrm{H_2O} = \mathrm{C_5H_{12}O_3}" />. Seimbang.
+
+**Penyelesaian 4**: Butana mempunyai **dua isomer**. Isomer pertama ialah rantai lurus empat atom karbon, **butana**. Isomer kedua ialah rantai tiga atom karbon dengan satu kumpulan metil pada karbon kedua, **2-metilpropana**. Semak: kedua-duanya <InlineMath math="\mathrm{C_4H_{10}}" />, dan tiada susunan lain kerana metil pada karbon pertama hanya memanjangkan rantai semula.

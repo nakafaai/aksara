@@ -39,7 +39,33 @@ export const kssmForm5ChemistryTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-chemistry-carbon-compound-carbon-compound",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.carbon-compound"],
+        order: 10,
+      }),
+    ],
     key: "form-5-chemistry-carbon-compound",
+    materialCard: {
+      de: {
+        description: "Erkenne homologe Reihen, Reaktionen und Isomere.",
+        title: "Kohlenstoffverbindungen",
+      },
+      en: {
+        description: "Identify homologous series, reactions and isomers.",
+        title: "Carbon Compound",
+      },
+      id: {
+        description: "Kenali deret homolog, reaksinya, dan isomer.",
+        title: "Senyawa Karbon",
+      },
+      ms: {
+        description: "Kenal pasti siri homolog, tindak balas dan isomer.",
+        title: "Sebatian Karbon",
+      },
+    },
     order: 20,
     translations: {
       de: {
