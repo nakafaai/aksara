@@ -1,0 +1,26 @@
+# Write every drag as a multiple of the weight, using the terminal speed
+
+At terminal speed the drag equals the weight, <InlineMath math="k \times 50^2 = mg" />. At half that speed the drag is a **quarter** of the weight, so the net force is three quarters of the weight and <InlineMath math="a = 7.5\text{ m s}^{-2}" />.
+
+<Mermaid
+  title={<>Drag Measured Against the Weight</>}
+  description={<>At terminal speed the drag equals the weight, so every other drag can be written as a fraction or a multiple of the weight.</>}
+  chart={`
+    flowchart LR
+      N0["Terminal: k × 50² = mg"] --> N1["At 25 m s⁻¹: drag = mg × (25 ÷ 50)² = mg ÷ 4"]
+      N1 --> N2["a = g − g ÷ 4 = 7.5 m s⁻²"]
+      N2 --> N3["Parachute: drag = 25 × mg at 50 m s⁻¹"]
+      N3 --> N4["Net upward: 25mg − mg = 24mg"]
+      N4 --> N5["Deceleration = 24g = 240 m s⁻²"]
+  `}
+/>
+
+When the parachute opens at <InlineMath math="50" /> m/s the drag jumps to <InlineMath math="25mg" />. The net force is <InlineMath math="25mg - mg = 24mg" /> upwards, a deceleration of <InlineMath math="240\text{ m s}^{-2}" />, which is why parachutes open **gradually**.
+
+**The new terminal speed**: with <InlineMath math="k" /> twenty-five times larger, the drag equals the weight when <InlineMath math="v^2" /> is twenty-five times smaller, so <InlineMath math="v = 50 \div \sqrt{25} = 10" /> m/s, **a fifth** of the speed without the parachute.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.0\text{ m s}^{-1}" /> divides the speed by twenty-five, but the drag goes as the **speed squared**.
+- <InlineMath math="250\text{ m s}^{-2}" /> leaves out the **weight**, which still pulls down after the parachute opens.
+- Still <InlineMath math="50\text{ m s}^{-1}" /> ignores that a larger <InlineMath math="k" /> balances the weight at a **lower speed**.

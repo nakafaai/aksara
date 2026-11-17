@@ -1,0 +1,27 @@
+# Ein Nebenwiderstand parallel nimmt den zusätzlichen Strom, ein Vorwiderstand in Reihe die zusätzliche Spannung
+
+Bei Vollausschlag liegen an der Spule <InlineMath math="2{,}0 \times 10^{-3} \times 50 = 0{,}10" /> V. Für <InlineMath math="1{,}0" /> A muss ein Widerstand **parallel** die übrigen <InlineMath math="0{,}998" /> A bei derselben Spannung führen: <InlineMath math="0{,}10 \div 0{,}998 = 0{,}10\,\Omega" />.
+
+<Mermaid
+  title={<>Ein Umweg für den Strom, eine Bremse für die Spannung</>}
+  description={<>Beim Strommesser trägt ein kleiner Widerstand neben der Spule fast den ganzen Strom. Beim Spannungsmesser nimmt ein großer Widerstand in Reihe mit der Spule fast die ganze Spannung.</>}
+  chart={`
+    flowchart LR
+      N0["Vollausschlag: 2,0 mA × 50 Ω = 0,10 V an der Spule"] --> N1["Strommesser: Nebenwiderstand führt 1,0 − 0,002 = 0,998 A"]
+      N1 --> N2["Nebenwiderstand = 0,10 ÷ 0,998 = 0,10 Ω, parallel"]
+      N0 --> N3["Spannungsmesser: gesamt = 10 ÷ 0,002 = 5000 Ω"]
+      N3 --> N4["Vorwiderstand = 5000 − 50 = 4950 Ω"]
+  `}
+/>
+
+Für <InlineMath math="10" /> V braucht das ganze Messgerät <InlineMath math="10 \div 2{,}0 \times 10^{-3} = 5000\,\Omega" />, ein Widerstand von <InlineMath math="5000 - 50 = 4950\,\Omega" /> kommt also **in Reihe**, weil die Spule den Rest stellt.
+
+**Der Spannungsmesser im Einsatz**: Das ganze Gerät hat <InlineMath math="5000\,\Omega" />, an einem <InlineMath math="5{,}0\text{ k}\Omega" />-Widerstand wird das Paar also <InlineMath math="2{,}5\text{ k}\Omega" />. Die Spannung teilt sich dann zu <InlineMath math="10 \times 2{,}5 \div 7{,}5 = 3{,}3" /> V, nicht zu den <InlineMath math="5{,}0" /> V ohne Messgerät, weil das Gerät **selbst Strom zieht**.
+
+**Ein besseres Voltmeter**: Um <InlineMath math="4{,}95" /> V anzuzeigen, müssen Messgerät und Widerstand zusammen <InlineMath math="4{,}95" /> der <InlineMath math="10" /> V bekommen, ihr Gesamtwiderstand <InlineMath math="R_p" /> erfüllt also <InlineMath math="R_p \div (5000 + R_p) = 0{,}495" />, das gibt <InlineMath math="R_p = 4901\,\Omega" />. Dann ist <InlineMath math="1 \div R_V = 1 \div 4901 - 1 \div 5000" />, also <InlineMath math="R_V = 2{,}5 \times 10^5\,\Omega" />, und Vollausschlag bei <InlineMath math="10" /> V verlangt <InlineMath math="10 \div 2{,}5 \times 10^5 = 40\ \mu\text{A}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="5{,}0\text{ V}" /> und <InlineMath math="2{,}0\text{ mA}" /> lassen das Voltmeter keinen Strom ziehen, doch bei <InlineMath math="5000\,\Omega" /> **teilt es den Strom** mit dem Widerstand.
+- <InlineMath math="20\ \mu\text{A}" /> macht das Messgerät hundertmal so groß wie den Widerstand, **mehr** als eine Anzeige von <InlineMath math="4{,}95" /> V verlangt.
+- <InlineMath math="2{,}5\text{ V}" /> teilt die Spannung durch die ganzen <InlineMath math="10\text{ k}\Omega" /> statt durch die **neue Summe** von <InlineMath math="7{,}5\text{ k}\Omega" />.

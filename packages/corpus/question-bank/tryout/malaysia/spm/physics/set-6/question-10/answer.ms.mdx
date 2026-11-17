@@ -1,0 +1,23 @@
+# Kira input, ambil pembaziran, kemudian bahagian penyejuk menentukan kedua-dua aliran
+
+Pada kecekapan <InlineMath math="25\%" /> enjin mengambil <InlineMath math="80" /> kW, jadi ia membazirkan <InlineMath math="60" /> kW, dan air penyejuk membawa <InlineMath math="0.40 \times 60 = 24" /> kW, **bukan seluruh input**.
+
+<Mermaid
+  title={<>Mengikuti Tenaga yang Dibazirkan</>}
+  description={<>Kecekapan memberi kuasa input, input tolak output dibazirkan, dan bahagian air penyejuk daripada pembaziran menentukan kedua-dua aliran.</>}
+  chart={`
+    flowchart LR
+      N0["Input: 20 ÷ 0.25 = 80 kW"] --> N1["Dibazirkan: 80 − 20 = 60 kW"]
+      N1 --> N2["Penyejuk: 0.40 × 60 = 24 kW"]
+      N2 --> N3["Air: 24 000 ÷ (4200 × 12) = 0.48 kg s⁻¹"]
+      N2 --> N4["Udara: 24 000 ÷ (1000 × 8.0) = 3.0 kg s⁻¹"]
+  `}
+/>
+
+Dengan kenaikan <InlineMath math="12" /> darjah, air mesti mengalir pada <InlineMath math="24\,000 \div (4200 \times 12) = 0.48" /> kg/s. <InlineMath math="24" /> kW yang sama memanaskan udara sebanyak <InlineMath math="8.0" /> darjah, jadi <InlineMath math="3.0" /> kg udara mesti melalui setiap saat, jisim yang jauh lebih besar kerana udara menyimpan **kurang haba per kilogram**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0.63\text{ kg s}^{-1}" /> mengambil bahagian penyejuk daripada **seluruh input**, bukan daripada pembaziran.
+- <InlineMath math="1.2\text{ kg s}^{-1}" /> menghantar **semua** pembaziran ke dalam air penyejuk dan bukan empat puluh peratus.
+- <InlineMath math="0.12\text{ kg s}^{-1}" /> mengambil pembaziran sebagai tiga suku **output** dan bukan input.

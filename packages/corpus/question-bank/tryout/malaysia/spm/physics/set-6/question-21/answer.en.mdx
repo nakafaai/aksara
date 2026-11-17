@@ -1,0 +1,24 @@
+# Balance the components for the wind, then notice what is left when the string goes
+
+The string pulls <InlineMath math="9.19" /> N sideways and <InlineMath math="7.71" /> N down, and the weight adds <InlineMath math="2.0" /> N down. In balance the wind must supply <InlineMath math="9.19" /> N sideways and <InlineMath math="9.71" /> N up: <InlineMath math="\sqrt{9.19^2 + 9.71^2} = 13" /> N at <InlineMath math="\tan^{-1}(9.71 \div 9.19) = 47^\circ" /> above the horizontal.
+
+<Mermaid
+  title={<>Three Forces in Balance, Then One Removed</>}
+  description={<>In balance the wind’s force cancels the weight and the tension together. When the string goes, the wind and the weight are left, and their sum is just the missing tension reversed.</>}
+  chart={`
+    flowchart LR
+      N0["String: 12 × 0.766 = 9.19 N sideways, 12 × 0.643 = 7.71 N down"] --> N2["Wind: 9.19 N sideways, 7.71 + 2.0 = 9.71 N up"]
+      N1["Weight: 2.0 N down"] --> N2
+      N2 --> N3["Wind = √(9.19² + 9.71²) = 13 N at 47° above the horizontal"]
+      N0 --> N4["String snaps: net force = 12 N, the tension reversed"]
+      N4 --> N5["a = 12 ÷ 0.20 = 60 m s⁻²"]
+  `}
+/>
+
+When the string snaps, the wind and the weight still add to exactly **the tension reversed**, <InlineMath math="12" /> N, so the kite accelerates at <InlineMath math="12 \div 0.20 = 60\text{ m s}^{-2}" /> away from the holder.
+
+# Why the other options are wrong
+
+- <InlineMath math="67\text{ m s}^{-2}" /> divides the wind’s force alone by the mass, forgetting the **weight** still acts.
+- <InlineMath math="14\text{ N}" /> at <InlineMath math="40^\circ" /> adds the weight straight onto the tension, but forces add as **vectors**.
+- <InlineMath math="9.2\text{ N}" /> keeps only the horizontal parts and ignores the **vertical balance**.

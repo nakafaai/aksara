@@ -1,0 +1,22 @@
+# Kira baris daripada jadual kebenaran, kemudian tulis semula litar untuk get TAKDAN
+
+Pemanas hidup dalam **empat baris** dengan <InlineMath math="F = 1" />, dan dalam satu baris lagi dengan <InlineMath math="T = W = 1" /> tetapi <InlineMath math="F = 0" />: <InlineMath math="5" /> daripada <InlineMath math="8" /> gabungan.
+
+<Chart
+  title={<>Pemanas bagi Setiap Gabungan</>}
+  bars="apart"
+  categories={["000", "001", "010", "011", "100", "101", "110", "111"]}
+  series={[
+    { label: "Pemanas H", mark: "bar", values: [0, 1, 0, 1, 0, 1, 1, 1] },
+  ]}
+  valueLabel="Output"
+  description={<>Input ditulis mengikut susunan T, W, F. Pemanas hidup dalam empat baris dengan penggera fros hidup, dan dalam satu baris lagi, apabila sejuk dengan tingkap tertutup.</>}
+/>
+
+Menurut petua De Morgan, <InlineMath math="H = \overline{\overline{T \cdot W} \cdot \overline{F}}" />. Satu get TAKDAN membina <InlineMath math="\overline{T \cdot W}" />, get kedua dengan kedua-dua input disambung membina <InlineMath math="\overline{F}" />, dan get TAKDAN ketiga menggabungkannya. Jadi **tiga** get sudah cukup.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="5" /> get menukar setiap DAN dan ATAU kepada versi TAKDAN secara berasingan, tetapi penyongsang di antaranya **terbatal**.
+- <InlineMath math="4" /> gabungan hanya mengira baris fros dan terlepas baris **sejuk dan tertutup**.
+- <InlineMath math="2" /> get meninggalkan get yang **menyongsangkan** <InlineMath math="F" />.

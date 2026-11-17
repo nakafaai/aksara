@@ -1,0 +1,24 @@
+# Power and resistance give the induced current, then the voltages give the turns ratio
+
+The heating power in the base is <InlineMath math="I^2R" />, so <InlineMath math="I = \sqrt{2000 \div 0.010} = 447" /> A, about <InlineMath math="450" /> A, driven by an induced voltage of only <InlineMath math="447 \times 0.010 = 4.47" /> V.
+
+<Mermaid
+  title={<>A Transformer with a Pan as Its Secondary</>}
+  description={<>The heating power and the resistance of the pan base fix the current and the voltage induced in it. The turns ratio then follows from the two voltages.</>}
+  chart={`
+    flowchart LR
+      N0["P = I²R: I = √(2000 ÷ 0.010) = 447 A"] --> N1["Induced e.m.f.: 447 × 0.010 = 4.47 V"]
+      N1 --> N2["Turns ratio = 230 ÷ 4.47 = 51"]
+      N2 --> N3["One-turn secondary: coil has 51 turns"]
+  `}
+/>
+
+For an ideal transformer the voltages are in the ratio of the turns. The base is **one turn**, so the coil has <InlineMath math="230 \div 4.47 = 51" /> turns. On the mains side the current is only <InlineMath math="2000 \div 230 = 8.7" /> A.
+
+**Fewer turns**: with <InlineMath math="41" /> turns the pan’s voltage rises to <InlineMath math="230 \div 41 = 5.6" /> V, and the power goes as the **square** of that voltage: <InlineMath math="5.6^2 \div 0.010 = 3.1" /> kW.
+
+# Why the other options are wrong
+
+- One turn treats the coil like the pan base, but a coil on <InlineMath math="230" /> V must **step the voltage down**.
+- <InlineMath math="1.6\text{ kW}" /> lowers the power with the turns, but fewer primary turns give the pan **more** voltage.
+- <InlineMath math="2.5\text{ kW}" /> scales the power with the voltage, but power at a fixed resistance goes as the **square** of the voltage.

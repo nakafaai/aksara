@@ -1,0 +1,24 @@
+# Heat per gram gives the mass, the efficiency gives the electrical power, and each half-life halves it
+
+The source gives <InlineMath math="2240" /> W of heat at <InlineMath math="0.56" /> W per gram, so it holds <InlineMath math="2240 \div 0.56 = 4000" /> g, or <InlineMath math="4.0" /> kg. Its electrical power at launch is <InlineMath math="0.060 \times 2240 = 134" /> W.
+
+<Chart
+  title={<>The Power Halves With the Plutonium</>}
+  bars="apart"
+  categories={["Launch", "88 years", "176 years"]}
+  series={[
+    { label: "Electrical power (W)", mark: "bar", values: [134, 67, 34] },
+  ]}
+  valueLabel="Electrical power (W)"
+  description={<>The heat comes from decay, so it halves every eighty-eight years along with the plutonium, and the electrical power, a fixed fraction of the heat, halves with it.</>}
+/>
+
+After <InlineMath math="176" /> years, **two half-lives**, only a quarter of the plutonium is left, so the heat and the electrical power are a quarter of their launch values: <InlineMath math="134 \div 4 = 34" /> W.
+
+**Enough for the end of the mission**: <InlineMath math="40" /> W of electrical power at <InlineMath math="6.0\%" /> needs <InlineMath math="40 \div 0.060 = 667" /> W of heat after two half-lives, so <InlineMath math="4 \times 667 = 2670" /> W at launch. At <InlineMath math="0.56" /> W per gram that is <InlineMath math="2670 \div 0.56 = 4.8 \times 10^3" /> g, about <InlineMath math="4.8" /> kg.
+
+# Why the other options are wrong
+
+- <InlineMath math="67\text{ W}" /> and <InlineMath math="2.4\text{ kg}" /> halve only once, but <InlineMath math="176" /> years is **two** half-lives.
+- <InlineMath math="560\text{ W}" /> and <InlineMath math="0.29\text{ kg}" /> leave out the <InlineMath math="6.0\%" /> **efficiency**, treating heat as electrical power.
+- <InlineMath math="1.2\text{ kg}" /> sizes the source for <InlineMath math="40" /> W at launch, forgetting that it **decays** for <InlineMath math="176" /> years.

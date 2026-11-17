@@ -1,0 +1,27 @@
+# Bandingkan kerja yang dimasukkan dengan kerja berguna, kemudian bina semula tolakan bagi landasan yang lebih panjang
+
+Tolakan melakukan <InlineMath math="300 \times 4.0 = 1200" /> J, tetapi mengangkat peti hanya memerlukan <InlineMath math="784" /> J. Baki <InlineMath math="416" /> J digunakan melawan geseran sepanjang <InlineMath math="4.0" /> m, jadi geseran ialah <InlineMath math="104" /> N, walaupun lajunya **seragam**.
+
+<Mermaid
+  title={<>Kerja Masuk, Kerja Berguna Keluar, Bakinya Geseran</>}
+  description={<>Tolakan melakukan lebih banyak kerja daripada yang diperlukan untuk mengangkat peti. Bezanya digunakan melawan geseran sepanjang landasan, dan landasan yang lebih panjang memerlukan bahagian berat yang lebih kecil.</>}
+  chart={`
+    flowchart LR
+      N0["Kerja masuk: 300 × 4.0 = 1200 J"] --> N2["Melawan geseran: 1200 − 784 = 416 J"]
+      N1["Berguna: 80 × 9.8 × 1.0 = 784 J"] --> N2
+      N2 --> N3["Geseran: 416 ÷ 4.0 = 104 N"]
+      N1 --> N4["Landasan lebih panjang: bahagian berat 784 ÷ 5.0 = 157 N"]
+      N3 --> N5["Tolakan: 157 + 104 = 261 N"]
+      N4 --> N5
+  `}
+/>
+
+Pada landasan <InlineMath math="5.0" /> m, bahagian berat di sepanjang cerun ialah <InlineMath math="784 \div 5.0 = 157" /> N. Dengan geseran yang sama tolakan mesti <InlineMath math="157 + 104 = 261" /> N, **kurang** daripada sebelumnya tetapi tidak berkadar.
+
+**Tergelincir turun**: komponen berat di sepanjang landasan, <InlineMath math="784 \div 4.0 = 196" /> N, mengatasi geseran <InlineMath math="104" /> N, jadi peti memang menggelongsor. Daripada <InlineMath math="784" /> J yang hilang, geseran mengambil <InlineMath math="104 \times 4.0 = 416" /> J, berbaki <InlineMath math="368" /> J, jadi <InlineMath math="v = \sqrt{2 \times 368 \div 80} = 3.0" /> m/s.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="157\text{ N}" /> dan <InlineMath math="4.4\text{ m s}^{-1}" /> mengelirukan laju seragam dengan tiada geseran, tetapi seragam bermaksud daya-daya **seimbang**.
+- <InlineMath math="457\text{ N}" /> menganggap seluruh tolakan sebagai geseran, terlupa tolakan juga **mengangkat peti**.
+- <InlineMath math="240\text{ N}" /> menskala seluruh tolakan dengan empat per lima, tetapi hanya **komponen berat** yang berubah dengan panjang landasan.

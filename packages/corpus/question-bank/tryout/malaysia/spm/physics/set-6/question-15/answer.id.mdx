@@ -1,0 +1,23 @@
+# Jeda menambahkan pergeseran fasenya sendiri, jadi salinan terbalik tidak lagi berlawanan
+
+Periode dengung <InlineMath math="5{,}0" /> ms, jadi jeda <InlineMath math="1{,}0" /> ms adalah **seperlima periode**, pergeseran fase <InlineMath math="72^\circ" />. Bersama pembalikan <InlineMath math="180^\circ" />, salinan itu berbeda <InlineMath math="108^\circ" /> dari dengungnya.
+
+<Mermaid
+  title={<>Jeda Kecil Merusak Peniadaan</>}
+  description={<>Pembalikan saja akan membuat gelombang tepat berlawanan. Jeda menambahkan pergeseran fasenya sendiri, jadi kedua gelombang tidak lagi berlawanan dan jumlahnya bahkan bisa lebih besar dari dengungnya.</>}
+  chart={`
+    flowchart LR
+      N0["Periode: 1 ÷ 200 = 5,0 ms"] --> N1["Jeda: 1,0 ÷ 5,0 = seperlima periode = 72°"]
+      N1 --> N2["Terbalik dan tertunda: 180° − 72° = 108° berbeda"]
+      N2 --> N3["Amplitudo: 2A cos 54° = 1,18A"]
+      N3 --> N4["Lebih keras dari dengung saja"]
+  `}
+/>
+
+Kedua gelombang menjumlah menjadi <InlineMath math="2A\cos 54^\circ = 1{,}18A" />, jadi dengung **lebih keras dari sebelumnya**, sekitar <InlineMath math="1{,}2" /> kali amplitudonya. Peniadaan butuh jeda yang jauh lebih singkat dari periode.
+
+# Kenapa pilihan lain salah
+
+- Salinan terbalik yang tepat hanya meniadakan bila tiba **serempak**, dan jeda membuatnya tidak serempak.
+- Seperlima amplitudo menganggap pecahan jeda sebagai **besar** hasil, padahal hasilnya berasal dari beda fase.
+- <InlineMath math="1{,}6" /> kali hanya memakai jeda dan lupa **pembalikan**, yang menambah <InlineMath math="180^\circ" />.

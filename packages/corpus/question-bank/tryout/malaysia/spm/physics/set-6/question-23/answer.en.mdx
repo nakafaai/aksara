@@ -1,0 +1,27 @@
+# Compare the work put in with the useful work, then rebuild the push for the longer ramp
+
+The push does <InlineMath math="300 \times 4.0 = 1200" /> J, but lifting the crate needs only <InlineMath math="784" /> J. The other <InlineMath math="416" /> J goes against friction over <InlineMath math="4.0" /> m, so the friction is <InlineMath math="104" /> N, even though the speed is **steady**.
+
+<Mermaid
+  title={<>Work In, Useful Work Out, the Rest Is Friction</>}
+  description={<>The push does more work than lifting the crate needs. The difference is spent against friction along the ramp, and a longer ramp needs a smaller share of the weight.</>}
+  chart={`
+    flowchart LR
+      N0["Work in: 300 × 4.0 = 1200 J"] --> N2["Against friction: 1200 − 784 = 416 J"]
+      N1["Useful: 80 × 9.8 × 1.0 = 784 J"] --> N2
+      N2 --> N3["Friction: 416 ÷ 4.0 = 104 N"]
+      N1 --> N4["Longer ramp: weight share 784 ÷ 5.0 = 157 N"]
+      N3 --> N5["Push: 157 + 104 = 261 N"]
+      N4 --> N5
+  `}
+/>
+
+On a <InlineMath math="5.0" /> m ramp, the share of the weight along the slope is <InlineMath math="784 \div 5.0 = 157" /> N. With the same friction the push must be <InlineMath math="157 + 104 = 261" /> N, **less** than before but not in proportion.
+
+**Slipping back down**: the weight’s share along the ramp, <InlineMath math="784 \div 4.0 = 196" /> N, beats the friction of <InlineMath math="104" /> N, so the crate does slide. Of the <InlineMath math="784" /> J it loses, friction takes <InlineMath math="104 \times 4.0 = 416" /> J, leaving <InlineMath math="368" /> J, so <InlineMath math="v = \sqrt{2 \times 368 \div 80} = 3.0" /> m/s.
+
+# Why the other options are wrong
+
+- <InlineMath math="157\text{ N}" /> and <InlineMath math="4.4\text{ m s}^{-1}" /> confuse a steady speed with no friction, but steady means the forces **balance**.
+- <InlineMath math="457\text{ N}" /> takes the whole push as friction, forgetting the push also **lifts the crate**.
+- <InlineMath math="240\text{ N}" /> scales the whole push by four fifths, but only the **weight share** changes with the ramp’s length.

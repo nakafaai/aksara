@@ -1,0 +1,25 @@
+# Weigh Jupiter with Io, then use the same GM twice
+
+With Io’s period in seconds, <InlineMath math="1.53 \times 10^5" /> s, the orbit law gives <InlineMath math="GM = 4\pi^2 r^3 \div T^2 = 1.25 \times 10^{17}\text{ m}^3\text{ s}^{-2}" />. At the cloud tops, <InlineMath math="g = GM \div r^2 = 1.25 \times 10^{17} \div 4.9 \times 10^{15} = 26" /> N/kg.
+
+<Mermaid
+  title={<>One Moon Weighs the Planet</>}
+  description={<>Io’s orbit gives GM once. The same GM gives the field at the cloud tops and the radius of an orbit that keeps pace with Jupiter’s spin.</>}
+  chart={`
+    flowchart LR
+      N0["Io: T = 1.77 × 86 400 = 1.53 × 10⁵ s"] --> N1["GM = 4π²r³ ÷ T² = 1.25 × 10¹⁷"]
+      N1 --> N2["g = GM ÷ (7.0 × 10⁷)² = 26 N/kg"]
+      N3["Spin: T = 9.9 × 3600 = 3.56 × 10⁴ s"] --> N4["r³ = GM × T² ÷ 4π² = 4.0 × 10²⁴"]
+      N1 --> N4
+      N4 --> N5["r = 1.59 × 10⁸ m from the centre"]
+      N5 --> N6["Height = 1.59 × 10⁸ − 7.0 × 10⁷ = 8.9 × 10⁷ m"]
+  `}
+/>
+
+A satellite that stays above one point must go round once every <InlineMath math="9.9" /> hours, <InlineMath math="3.56 \times 10^4" /> s. Then <InlineMath math="r^3 = GM T^2 \div 4\pi^2 = 4.0 \times 10^{24}" />, so <InlineMath math="r = 1.59 \times 10^8" /> m. That is a radius, measured **from the centre**, so the height above the cloud tops is <InlineMath math="1.59 \times 10^8 - 7.0 \times 10^7 = 8.9 \times 10^7" /> m.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.6 \times 10^8\text{ m}" /> is the orbit’s radius, measured from Jupiter’s **centre**, not its height.
+- <InlineMath math="6.4\text{ N kg}^{-1}" /> uses <InlineMath math="\pi^2" /> in place of <InlineMath math="4\pi^2" />, losing a **factor of four** in GM.
+- <InlineMath math="2.2 \times 10^8\text{ m}" /> uses a **24-hour** day, but the satellite must keep pace with Jupiter’s own spin.

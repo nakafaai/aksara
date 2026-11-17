@@ -1,0 +1,25 @@
+# Timbang Musytari dengan Io, kemudian gunakan GM yang sama dua kali
+
+Dengan tempoh Io dalam saat, <InlineMath math="1.53 \times 10^5" /> s, hukum orbit memberi <InlineMath math="GM = 4\pi^2 r^3 \div T^2 = 1.25 \times 10^{17}\text{ m}^3\text{ s}^{-2}" />. Di puncak awan, <InlineMath math="g = GM \div r^2 = 1.25 \times 10^{17} \div 4.9 \times 10^{15} = 26" /> N/kg.
+
+<Mermaid
+  title={<>Satu Bulan Menimbang Planet</>}
+  description={<>Orbit Io memberi GM sekali. GM yang sama memberi medan di puncak awan dan jejari orbit yang seiring dengan putaran Musytari.</>}
+  chart={`
+    flowchart LR
+      N0["Io: T = 1.77 × 86 400 = 1.53 × 10⁵ s"] --> N1["GM = 4π²r³ ÷ T² = 1.25 × 10¹⁷"]
+      N1 --> N2["g = GM ÷ (7.0 × 10⁷)² = 26 N/kg"]
+      N3["Putaran: T = 9.9 × 3600 = 3.56 × 10⁴ s"] --> N4["r³ = GM × T² ÷ 4π² = 4.0 × 10²⁴"]
+      N1 --> N4
+      N4 --> N5["r = 1.59 × 10⁸ m dari pusat"]
+      N5 --> N6["Tinggi = 1.59 × 10⁸ − 7.0 × 10⁷ = 8.9 × 10⁷ m"]
+  `}
+/>
+
+Satelit yang kekal di atas satu titik mesti mengelilingi sekali setiap <InlineMath math="9.9" /> jam, <InlineMath math="3.56 \times 10^4" /> s. Maka <InlineMath math="r^3 = GM T^2 \div 4\pi^2 = 4.0 \times 10^{24}" />, jadi <InlineMath math="r = 1.59 \times 10^8" /> m. Itu jejari, diukur **dari pusat**, jadi ketinggian di atas puncak awan ialah <InlineMath math="1.59 \times 10^8 - 7.0 \times 10^7 = 8.9 \times 10^7" /> m.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1.6 \times 10^8\text{ m}" /> ialah jejari orbit, diukur dari **pusat** Musytari, bukan ketinggiannya.
+- <InlineMath math="6.4\text{ N kg}^{-1}" /> menggunakan <InlineMath math="\pi^2" /> dan bukan <InlineMath math="4\pi^2" />, kehilangan **faktor empat** dalam GM.
+- <InlineMath math="2.2 \times 10^8\text{ m}" /> menggunakan sehari **<InlineMath math="24" /> jam**, tetapi satelit mesti seiring dengan putaran Musytari sendiri.

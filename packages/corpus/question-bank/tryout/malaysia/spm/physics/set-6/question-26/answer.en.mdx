@@ -1,0 +1,25 @@
+# Only the pressure difference holds the cup, and it shrinks where the air is thinner
+
+The cup’s area is <InlineMath math="\pi \times 0.030^2 = 2.83 \times 10^{-3}" /> square metres. At sea level the **difference** is <InlineMath math="80" /> kPa, a force of <InlineMath math="226" /> N, enough to hold <InlineMath math="226 \div 9.8 = 23" /> kg.
+
+<Mermaid
+  title={<>The Air Outside Does the Holding</>}
+  description={<>Only the difference between the air pressure outside and inside presses the cup against the ceiling. Higher up there is less air outside, so the hook holds less.</>}
+  chart={`
+    flowchart LR
+      N0["Area: π × 0.030² = 2.83 × 10⁻³ m²"] --> N1["Sea level: (100 − 20) kPa × 2.83 × 10⁻³ = 226 N"]
+      N1 --> N2["Mass: 226 ÷ 9.8 = 23 kg"]
+      N0 --> N3["Mountain: (70 − 20) kPa × 2.83 × 10⁻³ = 141 N"]
+      N3 --> N4["Mass: 141 ÷ 9.8 = 14 kg"]
+  `}
+/>
+
+In the hut the air outside presses with only <InlineMath math="70" /> kPa, while the air inside is still at <InlineMath math="20" /> kPa. The difference falls to <InlineMath math="50" /> kPa, a force of <InlineMath math="141" /> N, so the hook holds only <InlineMath math="14" /> kg.
+
+**The lowest pressure for the bag**: a <InlineMath math="10" /> kg bag weighs <InlineMath math="98" /> N, which needs a pressure difference of <InlineMath math="98 \div 2.83 \times 10^{-3} = 35" /> kPa across the cup. The air inside stays at <InlineMath math="20" /> kPa, so the air outside must be at least <InlineMath math="20 + 35 = 55" /> kPa.
+
+# Why the other options are wrong
+
+- <InlineMath math="23\text{ kg}" /> keeps the sea-level hold, but the thinner air outside pushes the cup on **less hard**.
+- <InlineMath math="20\text{ kg}" /> and <InlineMath math="35\text{ kPa}" /> ignore the <InlineMath math="20" /> kPa of **air left inside** the cup.
+- <InlineMath math="35\text{ kPa}" /> is the pressure **difference**, not the pressure outside.

@@ -1,0 +1,25 @@
+# Bei konstanter Temperatur ist die mittlere Heizleistung gleich dem Wärmeverlust
+
+Um die Temperatur zu halten, muss die Heizung die entweichenden <InlineMath math="600" /> W ersetzen, sie läuft also <InlineMath math="600 \div 1500 = 40\%" /> der Zeit. Ihre **Nennleistung spielt keine Rolle**: Jeden Tag liefert sie <InlineMath math="0{,}60 \times 24 = 14{,}4" /> kWh, die RM <InlineMath math="7{,}20" /> kosten.
+
+<Mermaid
+  title={<>Die Heizung ersetzt nur, was entweicht</>}
+  description={<>Bei konstanter Temperatur liefert die Heizung genau die verlorene Wärme, ihre mittlere Leistung ist also die Verlustrate, egal welche Nennleistung sie hat. Weniger Verlust senkt die Rechnung im selben Verhältnis.</>}
+  chart={`
+    flowchart LR
+      N0["Mittlere Heizleistung = Verlust = 600 W"] --> N1["An für 600 ÷ 1500 = 40% der Zeit"]
+      N0 --> N2["Pro Tag: 0,60 × 24 = 14,4 kWh, RM 7,20"]
+      N2 --> N4["Ersparnis: 4,8 kWh pro Tag × 30 × RM 0,50 = RM 72"]
+      N3["Gedämmt: Verlust ein Drittel kleiner, 400 W"] --> N4
+  `}
+/>
+
+Die Dämmung senkt den Verlust um ein Drittel auf <InlineMath math="400" /> W, die Heizung spart also <InlineMath math="0{,}20 \times 24 = 4{,}8" /> kWh am Tag, <InlineMath math="4{,}8 \times 30 \times 0{,}50 = 72" /> Ringgit im Monat.
+
+**Eine Wärmepumpe dazu**: Der gedämmte Raum braucht weiter <InlineMath math="400" /> W Wärme, doch die Pumpe zieht nur ein Drittel davon, die Tagesrechnung fällt also von RM <InlineMath math="4{,}80" /> auf RM <InlineMath math="1{,}60" />. Das spart weitere RM <InlineMath math="3{,}20 \times 30 = 96" /> im Monat.
+
+# Warum die anderen Antworten falsch sind
+
+- RM <InlineMath math="12" /> und RM <InlineMath math="240" /> lassen die Heizung **ununterbrochen** laufen und übersehen den Thermostat.
+- RM <InlineMath math="7{,}20" /> und RM <InlineMath math="144" /> lassen die **Dämmung** weg.
+- RM <InlineMath math="48" /> spart nur ein Drittel der Rechnung, doch die Pumpe senkt sie **auf** ein Drittel.

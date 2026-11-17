@@ -1,0 +1,23 @@
+# Strom aus Leistung durch Spannung, dann die aufgenommene Energie teilen, nicht die gespeicherte
+
+Das Ladegerät zieht <InlineMath math="7200 \div 240 = 30" /> A. Von <InlineMath math="20\%" /> auf <InlineMath math="80\%" /> kommen <InlineMath math="0{,}60 \times 60 = 36" /> kWh in die Batterie.
+
+<Mermaid
+  title={<>Von der Steckdose zur Batterie</>}
+  description={<>Ladeleistung und Netzspannung geben den Strom. Nur neun Zehntel des Aufgenommenen erreichen die Batterie, das Ladegerät muss also mehr Energie aufnehmen, als die Batterie gewinnt.</>}
+  chart={`
+    flowchart LR
+      N1["Batterie gewinnt 0,60 × 60 = 36 kWh"] --> N2["Aus dem Netz: 36 ÷ 0,90 = 40 kWh"]
+      N2 --> N3["t = 40 ÷ 7,2 = 5,6 h"]
+  `}
+/>
+
+Nur neun Zehntel erreichen die Batterie, das Gerät muss also <InlineMath math="36 \div 0{,}90 = 40" /> kWh aufnehmen, was <InlineMath math="40 \div 7{,}2 = 5{,}6" /> h dauert. Die Verluste machen das Laden **langsamer**, nicht schneller.
+
+**Die Kosten des Fahrens**: <InlineMath math="15" /> kWh im Akku heißen <InlineMath math="15 \div 0{,}90 = 16{,}7" /> kWh aus dem Netz, weil das Ladegerät **ein Zehntel verliert**. Bei RM <InlineMath math="0{,}50" /> pro Kilowattstunde sind das RM <InlineMath math="8{,}33" /> pro <InlineMath math="100" /> km.
+
+# Warum die anderen Antworten falsch sind
+
+- Etwa <InlineMath math="5{,}0\text{ h}" /> und RM <InlineMath math="7{,}50" /> übersehen die beim Laden **verlorene Wärme**.
+- RM <InlineMath math="7{,}50" /> mit <InlineMath math="5{,}6\text{ h}" /> denkt beim Zeitbedarf an den Verlust, vergisst aber, dass das Netz ihn auch für die **Kosten** liefern muss.
+- Etwa <InlineMath math="4{,}5\text{ h}" /> und RM <InlineMath math="6{,}75" /> multiplizieren mit dem Wirkungsgrad, als würden Verluste Energie **sparen**.

@@ -1,0 +1,27 @@
+# Pirau selari mengambil arus tambahan, dan perintang bersiri mengambil voltan tambahan
+
+Pada skala penuh gegelung mempunyai <InlineMath math="2.0 \times 10^{-3} \times 50 = 0.10" /> V merentasinya. Bagi <InlineMath math="1.0" /> A, perintang **selari** mesti membawa baki <InlineMath math="0.998" /> A pada voltan yang sama: <InlineMath math="0.10 \div 0.998 = 0.10\,\Omega" />.
+
+<Mermaid
+  title={<>Pintasan untuk Arus, Penahan untuk Voltan</>}
+  description={<>Bagi ammeter, perintang kecil di sebelah gegelung membawa hampir semua arus. Bagi voltmeter, perintang besar sebaris dengan gegelung mengambil hampir semua voltan.</>}
+  chart={`
+    flowchart LR
+      N0["Skala penuh: 2.0 mA × 50 Ω = 0.10 V merentasi gegelung"] --> N1["Ammeter: pirau membawa 1.0 − 0.002 = 0.998 A"]
+      N1 --> N2["Pirau = 0.10 ÷ 0.998 = 0.10 Ω, selari"]
+      N0 --> N3["Voltmeter: jumlah = 10 ÷ 0.002 = 5000 Ω"]
+      N3 --> N4["Perintang bersiri = 5000 − 50 = 4950 Ω"]
+  `}
+/>
+
+Bagi <InlineMath math="10" /> V, seluruh meter mesti mempunyai <InlineMath math="10 \div 2.0 \times 10^{-3} = 5000\,\Omega" />, jadi perintang <InlineMath math="5000 - 50 = 4950\,\Omega" /> disambung **bersiri**, kerana gegelung membekalkan bakinya.
+
+**Voltmeter digunakan**: seluruh meter ialah <InlineMath math="5000\,\Omega" />, jadi merentasi perintang <InlineMath math="5.0\text{ k}\Omega" /> pasangan itu menjadi <InlineMath math="2.5\text{ k}\Omega" />. Bekalan kemudian terbahagi sebagai <InlineMath math="10 \times 2.5 \div 7.5 = 3.3" /> V, bukan <InlineMath math="5.0" /> V merentasi perintang sebelum meter ditambah, kerana meter **menarik arus sendiri**.
+
+**Voltmeter yang lebih baik**: untuk membaca <InlineMath math="4.95" /> V, meter dan perintang bersama-sama mesti mengambil <InlineMath math="4.95" /> daripada <InlineMath math="10" /> V, jadi rintangan gabungan <InlineMath math="R_p" /> mematuhi <InlineMath math="R_p \div (5000 + R_p) = 0.495" />, memberi <InlineMath math="R_p = 4901\,\Omega" />. Maka <InlineMath math="1 \div R_V = 1 \div 4901 - 1 \div 5000" />, jadi <InlineMath math="R_V = 2.5 \times 10^5\,\Omega" />, dan skala penuh pada <InlineMath math="10" /> V memerlukan <InlineMath math="10 \div 2.5 \times 10^5 = 40\ \mu\text{A}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="5.0\text{ V}" /> dan <InlineMath math="2.0\text{ mA}" /> menganggap voltmeter tidak mengambil arus, tetapi pada <InlineMath math="5000\,\Omega" /> ia **berkongsi arus** dengan perintang.
+- <InlineMath math="20\ \mu\text{A}" /> menjadikan meter seratus kali perintang, yang **lebih** daripada keperluan bacaan <InlineMath math="4.95" /> V.
+- <InlineMath math="2.5\text{ V}" /> membahagi bekalan dengan seluruh <InlineMath math="10\text{ k}\Omega" /> dan bukan dengan **jumlah baharu** <InlineMath math="7.5\text{ k}\Omega" />.

@@ -1,0 +1,27 @@
+# Setiap cermin membentuk satu imej, dan dua imej daripada imej bertindih di sudut
+
+Cermin pertama membentuk imej <InlineMath math="60" /> cm dari lampu dan cermin kedua imej <InlineMath math="80" /> cm darinya. Setiap imej ini juga dipantulkan dalam cermin yang lain, dan bagi cermin bersudut tegak kedua-duanya jatuh di **titik yang sama**, jadi terdapat <InlineMath math="360^\circ \div 90^\circ - 1 = 3" /> imej.
+
+<Mermaid
+  title={<>Imej daripada Imej</>}
+  description={<>Setiap cermin membentuk satu imej. Setiap imej itu kemudian dipantulkan dalam cermin yang lain, dan bagi cermin bersudut tegak kedua-duanya jatuh di tempat yang sama, iaitu imej sudut.</>}
+  chart={`
+    flowchart LR
+      N0["Cermin 1: imej 30 cm di belakang, 60 cm dari lampu"] --> N2["Setiap imej dipantulkan dalam cermin lain: satu imej dikongsi"]
+      N1["Cermin 2: imej 40 cm di belakang, 80 cm dari lampu"] --> N2
+      N2 --> N3["Bilangan: 360° ÷ 90° − 1 = 3 imej"]
+      N2 --> N4["Imej sudut: 2 × √(30² + 40²) = 100 cm dari lampu"]
+  `}
+/>
+
+Imej yang dikongsi terletak bertentangan pepenjuru dengan lampu melalui sudut. Lampu berada <InlineMath math="\sqrt{30^2 + 40^2} = 50" /> cm dari sudut, jadi imej ini <InlineMath math="100" /> cm jauhnya, yang **paling jauh** antara ketiga-tiganya.
+
+**Selepas lampu dialihkan**: ia kini <InlineMath math="20" /> cm dari cermin pertama dan masih <InlineMath math="40" /> cm dari cermin kedua, jadi ia <InlineMath math="\sqrt{20^2 + 40^2} = 44.7" /> cm dari sudut dan imej sudut berada <InlineMath math="89" /> cm jauhnya, **dua kali jarak ke sudut**.
+
+**Lintasan melalui kedua-dua cermin**: cahaya yang dipantulkan sekali oleh setiap cermin seolah-olah datang terus dari imej sudut. Dengan sudut sebagai asalan, imej itu berada di <InlineMath math="(-20, -40)" /> cm dan mata di <InlineMath math="(30, 40)" /> cm, jadi lintasannya <InlineMath math="\sqrt{50^2 + 80^2} = 94" /> cm, **lebih panjang** daripada jarak imej dari lampu kerana mata berada di tempat lain.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="80\text{ cm}" /> dan <InlineMath math="81\text{ cm}" /> menggunakan imej dalam **cermin kedua** sahaja, yang hanya memerlukan satu pantulan.
+- <InlineMath math="89\text{ cm}" /> dua kali menganggap lintasan berakhir di lampu, tetapi mata berada di **kedudukan asal** lampu.
+- <InlineMath math="45\text{ cm}" /> dan <InlineMath math="47\text{ cm}" /> ialah jarak ke **sudut**, separuh daripada jarak sebenar.

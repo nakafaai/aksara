@@ -1,0 +1,25 @@
+# At a steady temperature the heater’s average power equals the heat loss
+
+To keep the temperature steady the heater must replace the <InlineMath math="600" /> W that leaks out, so it runs <InlineMath math="600 \div 1500 = 40\%" /> of the time. Its **rating does not matter**: each day it delivers <InlineMath math="0.60 \times 24 = 14.4" /> kWh, which costs RM <InlineMath math="7.20" />.
+
+<Mermaid
+  title={<>The Heater Only Replaces What Leaks Out</>}
+  description={<>At a steady temperature the heater supplies exactly the heat lost, so its average power is the loss rate, whatever its rating. Cutting the loss cuts the bill in the same proportion.</>}
+  chart={`
+    flowchart LR
+      N0["Average heater power = loss = 600 W"] --> N1["On for 600 ÷ 1500 = 40% of the time"]
+      N0 --> N2["Per day: 0.60 × 24 = 14.4 kWh, RM 7.20"]
+      N2 --> N4["Saving: 4.8 kWh a day × 30 × RM 0.50 = RM 72"]
+      N3["Insulated: loss a third smaller, 400 W"] --> N4
+  `}
+/>
+
+Insulation cuts the loss by a third, to <InlineMath math="400" /> W, so the heater saves <InlineMath math="0.20 \times 24 = 4.8" /> kWh a day, and <InlineMath math="4.8 \times 30 \times 0.50 = 72" /> ringgit a month.
+
+**Adding a heat pump**: the insulated room still needs <InlineMath math="400" /> W of heat, but the pump draws only a third of that, so the daily bill falls from RM <InlineMath math="4.80" /> to RM <InlineMath math="1.60" />. That saves a further RM <InlineMath math="3.20 \times 30 = 96" /> a month.
+
+# Why the other options are wrong
+
+- RM <InlineMath math="12" /> and RM <InlineMath math="240" /> run the heater **non-stop**, ignoring the thermostat.
+- RM <InlineMath math="7.20" /> and RM <InlineMath math="144" /> leave out the **insulation**.
+- RM <InlineMath math="48" /> saves only a third of the bill, but the pump cuts it **to** a third.
