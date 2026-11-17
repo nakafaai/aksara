@@ -1,0 +1,31 @@
+# Measure how much two species share, then see what changes when one is removed
+
+Species that share a habitat compete less if they **use it in different ways**. The overlap of two species is the share they have in common in each zone, which is **the smaller of their two shares**, added over the zones. Removing a species is a test: if another moves into the space it leaves, the second was **held back** from part of what it could use.
+
+<BlockMath math="\min(70,10)+\min(20,70)+\min(10,20)=10+20+10=40\%,\qquad A: 20\%\to50\%\ \text{without B}" />
+
+<Chart
+  title={<>Share of Feeding Time in Each Zone of the Tree</>}
+  bars="apart"
+  categories={["A", "B", "C"]}
+  series={[
+    { label: "Top", mark: "bar", values: [70, 10, 5] },
+    { label: "Middle", mark: "bar", values: [20, 70, 15] },
+    { label: "Bottom", mark: "bar", values: [10, 20, 80] },
+  ]}
+  valueLabel="Feeding time (%)"
+  description={<>Species A feeds <InlineMath math="70\%" /> of the time at the top, B <InlineMath math="70\%" /> in the middle and C <InlineMath math="80\%" /> at the bottom.</>}
+/>
+
+- I: A and B have <InlineMath math="10\%" /> in common at the top, <InlineMath math="20\%" /> in the middle and <InlineMath math="10\%" /> at the bottom, <InlineMath math="40\%" /> in all, so most of their feeding does not overlap. Statement I is correct.
+- II: C spends <InlineMath math="15\%" /> of its feeding time in the middle zone and A spends <InlineMath math="20\%" />, so C spends less, not more. Statement II is wrong.
+- III: without B, A's share in the middle zone rises from <InlineMath math="20\%" /> to <InlineMath math="50\%" />. B's presence must normally push A out of that zone. Statement III is correct.
+- IV: A can clearly feed in the middle zone, as it does when B is gone, so with B present it uses less of the tree than it could. Statement IV is correct.
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- I and III only rejects IV, **although A's use of the tree widens once B is gone**.
+- II, III and IV only rejects I and accepts II, **misreading <InlineMath math="15\%" /> as more than <InlineMath math="20\%" />**.
+- I, II, III and IV accepts II, **although C feeds less in the middle zone than A**.

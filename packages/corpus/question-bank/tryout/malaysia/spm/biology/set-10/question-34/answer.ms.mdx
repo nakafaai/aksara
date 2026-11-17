@@ -1,0 +1,31 @@
+# Ukur berapa banyak dua spesies berkongsi, kemudian lihat apa yang berubah apabila satu dikeluarkan
+
+Spesies yang berkongsi habitat kurang bersaing jika **menggunakannya dengan cara yang berbeza**. Pertindihan dua spesies ialah bahagian yang dikongsi dalam setiap zon, iaitu **bahagian yang lebih kecil antara keduanya**, dijumlahkan bagi semua zon. Mengeluarkan satu spesies ialah ujian: jika spesies lain berpindah ke ruang yang ditinggalkannya, spesies kedua itu **dihalang** daripada sebahagian ruang yang boleh digunakannya.
+
+<BlockMath math="\min(70,10)+\min(20,70)+\min(10,20)=10+20+10=40\%,\qquad A: 20\%\to50\%\ \text{tanpa B}" />
+
+<Chart
+  title={<>Bahagian Masa Makan dalam Setiap Zon Pokok</>}
+  bars="apart"
+  categories={["A", "B", "C"]}
+  series={[
+    { label: "Atas", mark: "bar", values: [70, 10, 5] },
+    { label: "Tengah", mark: "bar", values: [20, 70, 15] },
+    { label: "Bawah", mark: "bar", values: [10, 20, 80] },
+  ]}
+  valueLabel="Masa makan (%)"
+  description={<>Spesies A makan <InlineMath math="70\%" /> masanya di atas, B <InlineMath math="70\%" /> di tengah dan C <InlineMath math="80\%" /> di bawah.</>}
+/>
+
+- I: A dan B berkongsi <InlineMath math="10\%" /> di atas, <InlineMath math="20\%" /> di tengah dan <InlineMath math="10\%" /> di bawah, <InlineMath math="40\%" /> kesemuanya, jadi sebahagian besar pemakanan mereka tidak bertindih. Pernyataan I betul.
+- II: C menghabiskan <InlineMath math="15\%" /> masa makannya di zon tengah dan A <InlineMath math="20\%" />, jadi C menghabiskan kurang masa, bukan lebih. Pernyataan II salah.
+- III: tanpa B, bahagian A di zon tengah meningkat dari <InlineMath math="20\%" /> ke <InlineMath math="50\%" />. Kehadiran B mesti biasanya menolak A keluar dari zon itu. Pernyataan III betul.
+- IV: A jelas boleh makan di zon tengah, seperti yang berlaku apabila B tiada, jadi dengan kehadiran B ia menggunakan kurang bahagian pokok daripada yang mampu. Pernyataan IV betul.
+
+Jadi pernyataan I, III dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I dan III sahaja menolak IV, **walhal penggunaan pokok oleh A meluas apabila B tiada**.
+- II, III dan IV sahaja menolak I dan menerima II, **tersalah membaca <InlineMath math="15\%" /> sebagai lebih daripada <InlineMath math="20\%" />**.
+- I, II, III dan IV menerima II, **walhal C kurang makan di zon tengah berbanding A**.

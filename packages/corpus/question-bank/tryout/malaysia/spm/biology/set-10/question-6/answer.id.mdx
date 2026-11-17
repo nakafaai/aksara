@@ -1,0 +1,29 @@
+# Bagi telomer yang masih boleh hilang dengan kehilangan per pembelahan
+
+Sel hanya boleh kehilangan telomer sampai batas, jadi **sisa pembelahan** adalah panjang di atas batas dibagi kehilangan tiap kali. Telomer adalah DNA tambahan tanpa gen, itulah sebabnya bisa terkikis tanpa bahaya sampai habis.
+
+<BlockMath math="\frac{10\,000-5000}{50}=100,\qquad \frac{7000-5000}{50}=40,\qquad \frac{2^{100}}{2^{40}}=2^{60}=\left(2^{10}\right)^6\approx10^{18}" />
+
+<Chart
+  title={<>Sisa Pembelahan sebelum Telomer Mencapai Batas</>}
+  bars="apart"
+  categories={["Sel kulit bayi", "Sel kulit lansia 70 tahun"]}
+  series={[
+    { label: "Sisa pembelahan", mark: "bar", values: [100, 40] },
+  ]}
+  valueLabel="Sisa pembelahan"
+  description={<>Dengan <InlineMath math="50" /> pasang basa hilang tiap pembelahan dan batas <InlineMath math="5000" />, sel bayi punya <InlineMath math="100" /> pembelahan tersisa dan sel lansia <InlineMath math="70" /> tahun <InlineMath math="40" />.</>}
+/>
+
+- I: sel bayi punya <InlineMath math="5000" /> pasang basa di atas batas, cukup untuk <InlineMath math="100" /> pembelahan, sedangkan sel yang lebih tua hanya cukup untuk <InlineMath math="40" />. Tiap pembelahan menggandakan sel, jadi sel bayi bisa menghasilkan <InlineMath math="2^{100}" /> sel dan sel tua <InlineMath math="2^{40}" />, rasio <InlineMath math="2^{60}\approx10^{18}" />. Pernyataan I benar.
+- II: sel orang tua hanya punya <InlineMath math="2000" /> pasang basa cadangan, dan <InlineMath math="2000" /> dibagi <InlineMath math="50" /> adalah <InlineMath math="40" /> pembelahan. Pernyataan II benar.
+- III: telomerase membangun ulang telomer setelah tiap pembelahan, jadi sel tidak pernah mencapai batas dan bisa membelah terus-menerus, seperti tumor. Pernyataan III benar.
+- IV: telomer tidak berisi gen, jadi pemendekannya tidak membuang gen. Tiap sel tubuh tetap membawa set gen lengkap sampai batas menghentikan pembelahannya. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan III saja menolak II, **padahal <InlineMath math="2000" /> dibagi <InlineMath math="50" /> adalah <InlineMath math="40" />**.
+- II, III, dan IV saja menolak I dan **menjumlahkan pembelahan alih-alih menggandakan sel di tiap pembelahan**.
+- I, II, III, dan IV menerima IV, **padahal DNA yang memendek tidak membawa gen**.

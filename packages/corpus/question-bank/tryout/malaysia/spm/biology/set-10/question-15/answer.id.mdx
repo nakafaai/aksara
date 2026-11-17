@@ -1,0 +1,29 @@
+# Hitung dari mana pasangan laki-laki dan perempuan bisa berasal
+
+Laki-laki dan perempuan tidak mungkin kembar identik, karena kembar identik berbagi setiap gen, termasuk kromosom seks. Jadi pasangan laki-laki dan perempuan berasal **hanya dari kembar fraternal**, dan bagi mereka jenis kelamin tiap bayi ditentukan terpisah seperti lemparan koin.
+
+<BlockMath math="P(\text{laki-laki dan perempuan})=\tfrac12\times\tfrac12+\tfrac12\times\tfrac12=\tfrac12,\qquad \tfrac12\times12=6,\qquad 4+12=16\ \text{pasangan}" />
+
+<Chart
+  title={<>Pasangan Kembar per Seribu Kelahiran</>}
+  bars="apart"
+  categories={["Identik", "Fraternal, jenis kelamin sama", "Fraternal, laki-laki dan perempuan"]}
+  series={[
+    { label: "Pasangan kembar", mark: "bar", values: [4, 6, 6] },
+  ]}
+  valueLabel="Pasangan kembar per 1000 kelahiran"
+  description={<>Dari <InlineMath math="16" /> pasangan kembar per <InlineMath math="1000" /> kelahiran, <InlineMath math="4" /> identik, <InlineMath math="6" /> fraternal berjenis kelamin sama, dan <InlineMath math="6" /> fraternal laki-laki dan perempuan.</>}
+/>
+
+- I: satu zigot yang membelah secara mitosis memberi sel dengan gen yang identik, jadi kedua embrio punya gen dan kromosom seks yang sama. Pernyataan I benar.
+- II: dua ovum dan dua sperma membentuk dua zigot terpisah, masing-masing dengan campuran alel orang tua sendiri, sama seperti saudara kandung yang lahir pada waktu berbeda. Pernyataan II benar.
+- III: separuh dari <InlineMath math="12" /> pasangan fraternal, yaitu <InlineMath math="6" />, adalah laki-laki dan perempuan, dan tidak satu pun dari <InlineMath math="4" /> pasangan identik bisa begitu. Itu <InlineMath math="6" /> dari tiap <InlineMath math="16" /> pasangan kembar. Pernyataan III benar.
+- IV: jenis kelamin tiap kembar fraternal ditentukan spermanya sendiri, jadi laki-laki dan perempuan muncul pada separuh pasangan fraternal. Berbagi rahim tidak mengubah gen. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak III, **hitungan yang hanya memakai pasangan fraternal**.
+- II, III, dan IV saja menolak I dan **memberi kembar fraternal jenis kelamin bersama yang tidak mereka miliki**.
+- I, III, dan IV saja menerima IV dan menolak II, **padahal dua zigot membawa campuran alel yang berbeda**.

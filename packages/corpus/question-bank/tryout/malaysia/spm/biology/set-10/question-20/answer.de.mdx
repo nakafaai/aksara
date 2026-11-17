@@ -1,0 +1,29 @@
+# Die Wahrscheinlichkeiten von beiden Eltern multiplizieren und dann nach mindestens einem Geschwister fragen
+
+Ein Geschwister passt nur voll, wenn es **von der Mutter und vom Vater denselben Gencluster** erhielt. Jedes ist eine Chance von <InlineMath math="\tfrac12" />, beides zusammen also <InlineMath math="\tfrac14" />. Für „mindestens eines“ bestimmt man die Chance, dass **keines** passt, und zieht sie von <InlineMath math="1" /> ab.
+
+<BlockMath math="\tfrac12\cdot\tfrac12=\tfrac14,\qquad 1-\left(\tfrac34\right)^3=1-\tfrac{27}{64}=\tfrac{37}{64}\approx0{,}58" />
+
+<Chart
+  title={<>Nach fünf Jahren noch funktionierende Nierentransplantate</>}
+  bars="apart"
+  categories={["Eineiiger Zwilling", "Voll passendes Geschwister", "Nicht verwandter Spender"]}
+  series={[
+    { label: "Funktionierende Transplantate", mark: "bar", values: [95, 90, 75] },
+  ]}
+  valueLabel="Funktionierende Transplantate (%)"
+  description={<>Nach fünf Jahren funktionieren noch <InlineMath math="95\%" /> der Nieren von eineiigen Zwillingen, <InlineMath math="90\%" /> von voll passenden Geschwistern und <InlineMath math="75\%" /> von nicht verwandten Spendern.</>}
+/>
+
+- I: Der Cluster eines Elternteils passt mit <InlineMath math="\tfrac12" />, eine volle Übereinstimmung braucht aber die Cluster beider Eltern, die Chance ist also <InlineMath math="\tfrac14" />. Aussage I ist falsch.
+- II: Jedes Geschwister passt mit <InlineMath math="\tfrac34" /> nicht, alle drei passen mit <InlineMath math="\tfrac{27}{64}" /> nicht, und mindestens eines passt mit <InlineMath math="\tfrac{37}{64}" />, etwa <InlineMath math="58\%" />. Aussage II stimmt.
+- III: Ein eineiiger Zwilling hat dieselben Gene, die Oberflächenproteine der Niere sind also gleich. Die Lymphozyten erkennen sie als eigen und greifen nicht an, und <InlineMath math="95\%" /> dieser Transplantate funktionieren noch. Aussage III stimmt.
+- IV: Immunsuppressiva schwächen die Lymphozyten, damit sie die Niere nicht abstoßen, schwächen aber auch die Abwehr gegen Erreger, Infektionen werden also wahrscheinlicher. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III akzeptiert I und **zählt die Übereinstimmung nur eines Elternteils**.
+- Nur III und IV verwirft II und **lässt Mittel, die die Abwehr schwächen, vor Infektionen schützen**.
+- Nur I, II und IV verwirft III und akzeptiert I und IV und **übersieht, warum die Niere des Zwillings nicht angegriffen wird**.

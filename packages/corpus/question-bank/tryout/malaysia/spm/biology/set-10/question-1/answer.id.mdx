@@ -1,0 +1,30 @@
+# Cari rata-rata tanpa anomali, lalu bandingkan tiap perubahan dengan sebaran bacaan
+
+Bacaan yang jauh dari dua ulangan lainnya adalah **anomali** dan dikeluarkan. Selisih antar rata-rata baru meyakinkan bila **besar dibanding sebaran** ulangan. Uji lima konsentrasi menunjukkan nilai teruji terbaik, **bukan optimum yang tepat** di antaranya.
+
+<BlockMath math="\bar{x}_0=10{,}4,\ \bar{x}_1=12{,}3,\ \bar{x}_2=\frac{14{,}0+14{,}4}{2}=14{,}2,\qquad 12{,}3-10{,}4=14{,}2-12{,}3=1{,}9" />
+
+<BlockMath math="\frac{14{,}0+8{,}1+14{,}4}{3}\approx12{,}2<12{,}3,\qquad 15{,}4-15{,}0=0{,}4,\qquad 15{,}2-14{,}0=1{,}2" />
+
+<Chart
+  title={<>Rata-rata Tinggi Kecambah pada Tiap Konsentrasi Pupuk</>}
+  categories={["0 g/L", "1 g/L", "2 g/L", "3 g/L", "4 g/L"]}
+  series={[
+    { label: "Rata-rata tinggi", mark: "line", values: [10.4, 12.3, 14.2, 15.2, 14.0] },
+  ]}
+  valueLabel="Rata-rata tinggi (cm)"
+  description={<>Tanpa bacaan anomali, rata-rata tinggi naik dari <InlineMath math="10{,}4" /> cm tanpa pupuk ke <InlineMath math="15{,}2" /> cm pada <InlineMath math="3" /> g per liter, lalu turun ke <InlineMath math="14{,}0" /> cm pada <InlineMath math="4" /> g per liter.</>}
+/>
+
+- I: kedua langkah menaikkan rata-rata sebesar <InlineMath math="1{,}9\text{ cm}" />, dari <InlineMath math="10{,}4" /> ke <InlineMath math="12{,}3" /> dan dari <InlineMath math="12{,}3" /> ke <InlineMath math="14{,}2\text{ cm}" />. Pernyataan I benar.
+- II: bila <InlineMath math="8{,}1\text{ cm}" /> ikut dihitung, rata-rata pada <InlineMath math="2\text{ g}" /> per liter sekitar <InlineMath math="12{,}2\text{ cm}" />, di bawah <InlineMath math="12{,}3\text{ cm}" /> pada <InlineMath math="1\text{ g}" /> per liter, penurunan palsu. Pernyataan II benar.
+- III: <InlineMath math="3\text{ g}" /> per liter hanya nilai terbaik di antara yang diuji. Rata-rata turun pada <InlineMath math="4" />, jadi optimum sebenarnya bisa di mana saja antara <InlineMath math="2" /> dan <InlineMath math="4\text{ g}" /> per liter, dan hanya lebih banyak konsentrasi di rentang itu yang bisa menemukannya. Pernyataan III salah.
+- IV: ulangan pada <InlineMath math="3\text{ g}" /> per liter berkisar dari <InlineMath math="15{,}0" /> sampai <InlineMath math="15{,}4\text{ cm}" />, sebaran <InlineMath math="0{,}4\text{ cm}" />, sementara rata-rata turun <InlineMath math="1{,}2\text{ cm}" />, tiga kali lipat. Penurunan seperti itu kecil kemungkinannya berasal dari sebaran acak saja. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak IV, **perbandingan penurunan dengan sebaran ulangan**.
+- II, III, dan IV saja menolak I dan menerima III, **menganggap nilai teruji terbaik sebagai optimum yang tepat**.
+- I, III, dan IV saja menolak II, **padahal anomali menarik rata-rata ke bawah rata-rata <InlineMath math="1\text{ g}" /> per liter**.

@@ -1,0 +1,29 @@
+# Count where boy and girl pairs can come from
+
+A boy and a girl cannot be identical twins, because identical twins share every gene, the sex chromosomes included. So boy and girl pairs come **only from fraternal twins**, and for those each baby's sex is a separate coin toss.
+
+<BlockMath math="P(\text{boy and girl})=\tfrac12\times\tfrac12+\tfrac12\times\tfrac12=\tfrac12,\qquad \tfrac12\times12=6,\qquad 4+12=16\ \text{pairs}" />
+
+<Chart
+  title={<>Twin Pairs per Thousand Births</>}
+  bars="apart"
+  categories={["Identical", "Fraternal, same sex", "Fraternal, boy and girl"]}
+  series={[
+    { label: "Twin pairs", mark: "bar", values: [4, 6, 6] },
+  ]}
+  valueLabel="Twin pairs per 1000 births"
+  description={<>Of <InlineMath math="16" /> twin pairs per <InlineMath math="1000" /> births, <InlineMath math="4" /> are identical, <InlineMath math="6" /> are fraternal of the same sex and <InlineMath math="6" /> are fraternal with a boy and a girl.</>}
+/>
+
+- I: one zygote divided by mitosis gives cells with identical genes, so the two embryos have the same genes and the same sex chromosomes. Statement I is correct.
+- II: two ova and two sperm make two separate zygotes, each with its own mix of the parents' alleles, just like brothers and sisters born at different times. Statement II is correct.
+- III: half of the <InlineMath math="12" /> fraternal pairs, <InlineMath math="6" />, are a boy and a girl, and none of the <InlineMath math="4" /> identical pairs can be. That is <InlineMath math="6" /> of every <InlineMath math="16" /> twin pairs. Statement III is correct.
+- IV: each fraternal twin's sex is set by its own sperm, so a boy and a girl happen in half of fraternal pairs. Sharing a uterus does not change the genes. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, **the count that uses only the fraternal pairs**.
+- II, III and IV only rejects I and **gives fraternal twins a shared sex they do not have**.
+- I, III and IV only accepts IV and rejects II, **although two zygotes carry different allele mixes**.

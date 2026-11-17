@@ -1,0 +1,32 @@
+# Find the amino acid in shortest supply, then mix the two proteins
+
+Divide what each protein gives by what is needed. The **smallest ratio** sets how much of that protein the body can use, like the shortest stave of a barrel. Mixing equal amounts averages the two proteins, so one can cover the other's shortage.
+
+<BlockMath math="\text{rice}: \frac{36}{45}=0.80,\ \frac{40}{25}=1.60,\qquad \text{beans}: \frac{70}{45}\approx1.56,\ \frac{13}{25}=0.52" />
+
+<BlockMath math="\text{mix}: \frac{36+70}{2}=53\ \text{lysine},\qquad \frac{40+13}{2}=26.5\ \text{methionine}" />
+
+<Chart
+  title={<>Lysine and Methionine as a Share of Need</>}
+  bars="apart"
+  categories={["Rice", "Beans", "Rice and beans"]}
+  series={[
+    { label: "Lysine", mark: "bar", values: [80, 156, 118] },
+    { label: "Methionine", mark: "bar", values: [160, 52, 106] },
+  ]}
+  valueLabel="Share of need (%)"
+  description={<>Rice gives <InlineMath math="80\%" /> of the lysine needed and <InlineMath math="160\%" /> of the methionine. Beans give <InlineMath math="156\%" /> and <InlineMath math="52\%" />. The mixture gives <InlineMath math="118\%" /> and <InlineMath math="106\%" />.</>}
+/>
+
+- I: rice gives <InlineMath math="36" /> of the <InlineMath math="45\text{ mg}" /> of lysine needed, <InlineMath math="80\%" />, while its methionine is in surplus. Lysine limits it to about <InlineMath math="80\%" />. Statement I is correct.
+- II: beans give only <InlineMath math="13" /> of the <InlineMath math="25\text{ mg}" /> of methionine needed, <InlineMath math="52\%" />, so methionine limits them to <InlineMath math="52\%" />. Statement II is correct.
+- III: the mixture gives <InlineMath math="53\text{ mg}" /> of lysine against <InlineMath math="45" /> needed and <InlineMath math="26.5\text{ mg}" /> of methionine against <InlineMath math="25" />, so both are covered. Statement III is correct.
+- IV: the body has no store for spare amino acids. The liver breaks down the excess, removes the nitrogen as urea and uses the rest for energy, so each meal must supply its own balance. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, **the point of eating the two proteins together**.
+- II, III and IV only rejects I and **invents a protein store, when excess amino acids are deaminated**.
+- I, III and IV only accepts IV and rejects II, **although <InlineMath math="13" /> out of <InlineMath math="25" /> is only <InlineMath math="52\%" />**.

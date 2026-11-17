@@ -1,0 +1,31 @@
+# Messen, wie viel zwei Arten teilen, und dann sehen, was sich ohne eine von ihnen ändert
+
+Arten, die einen Lebensraum teilen, konkurrieren weniger, wenn sie **ihn verschieden nutzen**. Die Überlappung zweier Arten ist der gemeinsame Anteil in jeder Zone, also **der kleinere ihrer beiden Anteile**, über alle Zonen summiert. Das Entfernen einer Art ist ein Test: Rückt eine andere in den frei gewordenen Raum, wurde sie von einem Teil dessen **ferngehalten**, was sie nutzen könnte.
+
+<BlockMath math="\min(70,10)+\min(20,70)+\min(10,20)=10+20+10=40\%,\qquad A: 20\%\to50\%\ \text{ohne B}" />
+
+<Chart
+  title={<>Anteil der Fresszeit in jeder Zone des Baumes</>}
+  bars="apart"
+  categories={["A", "B", "C"]}
+  series={[
+    { label: "Oben", mark: "bar", values: [70, 10, 5] },
+    { label: "Mitte", mark: "bar", values: [20, 70, 15] },
+    { label: "Unten", mark: "bar", values: [10, 20, 80] },
+  ]}
+  valueLabel="Fresszeit (%)"
+  description={<>Art A frisst <InlineMath math="70\%" /> der Zeit oben, B <InlineMath math="70\%" /> in der Mitte und C <InlineMath math="80\%" /> unten.</>}
+/>
+
+- I: A und B teilen oben <InlineMath math="10\%" />, in der Mitte <InlineMath math="20\%" /> und unten <InlineMath math="10\%" />, zusammen <InlineMath math="40\%" />, der größte Teil ihrer Nahrungssuche überlappt also nicht. Aussage I stimmt.
+- II: C verbringt <InlineMath math="15\%" /> ihrer Fresszeit in der mittleren Zone, A <InlineMath math="20\%" />, C also weniger, nicht mehr. Aussage II ist falsch.
+- III: Ohne B steigt As Anteil in der mittleren Zone von <InlineMath math="20\%" /> auf <InlineMath math="50\%" />. Die Anwesenheit von B muss A normalerweise aus dieser Zone verdrängen. Aussage III stimmt.
+- IV: A kann offensichtlich in der mittleren Zone fressen, wie ohne B, mit B nutzt A also weniger vom Baum, als es könnte. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und III verwirft IV, **obwohl sich As Nutzung des Baumes ohne B erweitert**.
+- Nur II, III und IV verwirft I und akzeptiert II und **liest <InlineMath math="15\%" /> als mehr als <InlineMath math="20\%" />**.
+- I, II, III und IV akzeptiert II, **obwohl C in der mittleren Zone weniger frisst als A**.
