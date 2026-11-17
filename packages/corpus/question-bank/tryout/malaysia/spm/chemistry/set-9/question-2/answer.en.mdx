@@ -1,0 +1,25 @@
+# Use the heavy isotope's mass, count the neutrons, then let the scarcer sodium decide the gas and the alkali
+
+**Deuterium has a nucleon number of <InlineMath math="2" />, so heavy water has <InlineMath math="M_r=20" />, not <InlineMath math="18" />**: the sample is <InlineMath math="0.180\text{ mol}" />, with <InlineMath math="10" /> neutrons per molecule, <InlineMath math="1.08\times10^{24}" />. The sodium is <InlineMath math="0.100\text{ mol}" />, **so the sodium runs out first**, giving <InlineMath math="0.0500\text{ mol}" /> of deuterium, <InlineMath math="1.20\text{ dm}^3" />, and <InlineMath math="0.100\text{ mol}" /> of <InlineMath math="\text{NaOD}" />. That takes <InlineMath math="0.100\text{ mol}" /> of acid, <InlineMath math="200\text{ cm}^3" />.
+
+<Chart
+  title={<>Amounts that meet</>}
+  description={<>The <InlineMath math="0.180\text{ mol}" /> of heavy water meets only <InlineMath math="0.100\text{ mol}" /> of sodium, which gives <InlineMath math="0.0500\text{ mol}" /> of deuterium.</>}
+  bars="apart"
+  categories={["Heavy water", "Sodium", "Deuterium formed"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [0.180, 0.100, 0.0500] },
+  ]}
+  valueLabel="Amount (mol)"
+/>
+
+<BlockMath math="\begin{aligned}
+N_n&=10\times\tfrac{3.60}{20}\times6.02\times10^{23}=1.08\times10^{24},\quad n(\text{Na})=0.100<n(\text{D}_2\text{O})=0.180\\
+V(\text{D}_2)&=\tfrac{0.100}{2}\times24=1.20\text{ dm}^3,\quad V(\text{HCl})=\tfrac{0.100}{0.500}=0.200\text{ dm}^3
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="8.67\times10^{23}" /> counts only the oxygen's neutrons. **Each deuterium atom adds one more**.
+- <InlineMath math="1.20\times10^{24}" /> uses <InlineMath math="M_r=18" />, the mass of ordinary water.
+- <InlineMath math="2.16\text{ dm}^3" /> and <InlineMath math="360\text{ cm}^3" /> let all the heavy water react, but the sodium runs out first.

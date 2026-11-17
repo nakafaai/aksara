@@ -1,0 +1,25 @@
+# Find the heat per mole the lamp actually delivers, compare it with the data book, then use the delivered value to size the fuel
+
+The water gains <InlineMath math="200\times4.2\times25.0=21.0\text{ kJ}" /> from <InlineMath math="0.920\div46=0.0200\text{ mol}" />, **so the lamp delivers <InlineMath math="1050\text{ kJ}" /> per mole**, a measured heat of combustion of <InlineMath math="-1050\text{ kJ mol}^{-1}" />. The full value is <InlineMath math="1370\text{ kJ}" />, so <InlineMath math="320\div1370=23.4\%" /> is lost. Heating <InlineMath math="1.00\text{ kg}" /> by <InlineMath math="75^\circ\text{C}" /> needs <InlineMath math="1000\times4.2\times75=315\text{ kJ}" />, **and the lamp delivers only <InlineMath math="1050\text{ kJ}" /> per mole**, so <InlineMath math="0.300\text{ mol}" />, <InlineMath math="13.8\text{ g}" />.
+
+<Chart
+  title={<>Heat per mole of ethanol</>}
+  description={<>The lamp delivers <InlineMath math="1050\text{ kJ}" /> of the <InlineMath math="1370\text{ kJ}" /> in the data book.</>}
+  bars="apart"
+  categories={["Measured", "Data book"]}
+  series={[
+    { label: "Heat", mark: "bar", values: [1050, 1370] },
+  ]}
+  valueLabel="Heat (kJ)"
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta H&=-\tfrac{21.0}{0.0200}=-1050\text{ kJ mol}^{-1},\quad \text{lost}=\tfrac{1370-1050}{1370}=23.4\%\\
+m&=\tfrac{1000\times4.2\times75\div1000}{1050}\times46=13.8\text{ g}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="30.5\%" /> divides the loss by the measured value, and <InlineMath math="10.6\text{ g}" /> uses the data book value. **The lamp delivers only <InlineMath math="1050\text{ kJ}" /> per mole**.
+- <InlineMath math="76.6\%" /> is the share that reaches the water, not the share lost.
+- <InlineMath math="-21.0\text{ kJ mol}^{-1}" /> forgets to divide by the moles of ethanol burned, and so needs far too much ethanol.

@@ -1,0 +1,25 @@
+# Cari kalor per mol yang benar-benar dipasok pelita, bandingkan dengan buku data, lalu pakai nilai yang dipasok untuk menentukan bahan bakar
+
+Air menerima <InlineMath math="200\times4{,}2\times25{,}0=21{,}0\text{ kJ}" /> dari <InlineMath math="0{,}920\div46=0{,}0200\text{ mol}" />, **jadi pelita memasok <InlineMath math="1050\text{ kJ}" /> per mol**, kalor pembakaran terukur <InlineMath math="-1050\text{ kJ mol}^{-1}" />. Nilai penuhnya <InlineMath math="1370\text{ kJ}" />, jadi <InlineMath math="320\div1370=23{,}4\%" /> hilang. Memanaskan <InlineMath math="1{,}00\text{ kg}" /> sebesar <InlineMath math="75^\circ\text{C}" /> perlu <InlineMath math="1000\times4{,}2\times75=315\text{ kJ}" />, **dan pelita hanya memasok <InlineMath math="1050\text{ kJ}" /> per mol**, jadi <InlineMath math="0{,}300\text{ mol}" />, <InlineMath math="13{,}8\text{ g}" />.
+
+<Chart
+  title={<>Kalor per mol etanol</>}
+  description={<>Pelita memasok <InlineMath math="1050\text{ kJ}" /> dari <InlineMath math="1370\text{ kJ}" /> di buku data.</>}
+  bars="apart"
+  categories={["Terukur", "Buku data"]}
+  series={[
+    { label: "Kalor", mark: "bar", values: [1050, 1370] },
+  ]}
+  valueLabel="Kalor (kJ)"
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta H&=-\tfrac{21{,}0}{0{,}0200}=-1050\text{ kJ mol}^{-1},\quad \text{lost}=\tfrac{1370-1050}{1370}=23{,}4\%\\
+m&=\tfrac{1000\times4{,}2\times75\div1000}{1050}\times46=13{,}8\text{ g}
+\end{aligned}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="30{,}5\%" /> membagi yang hilang dengan nilai terukur, dan <InlineMath math="10{,}6\text{ g}" /> memakai nilai buku data. **Pelita hanya memasok <InlineMath math="1050\text{ kJ}" /> per mol**.
+- <InlineMath math="76{,}6\%" /> adalah bagian yang sampai ke air, bukan bagian yang hilang.
+- <InlineMath math="-21{,}0\text{ kJ mol}^{-1}" /> lupa membagi dengan mol etanol yang terbakar, sehingga butuh etanol terlalu banyak.

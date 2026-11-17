@@ -1,0 +1,26 @@
+# Stelle das Thiosulfat an einer bekannten Iodmenge ein und miss damit das Iod, das das Vitamin C nicht verbraucht hat
+
+Kaliumiodat hat <InlineMath math="M_r=214" />, also ist die Probe <InlineMath math="5{,}00\times10^{-4}\text{ mol}" />, und **jedes Iodat gibt drei Iodmoleküle**, <InlineMath math="1{,}50\times10^{-3}\text{ mol}" />. Jedes Iod nimmt zwei Thiosulfat, <InlineMath math="3{,}00\times10^{-3}\text{ mol}" /> in <InlineMath math="0{,}0300\text{ dm}^3" />, also ist das Thiosulfat <InlineMath math="0{,}100\text{ mol dm}^{-3}" />. Im Tablettenversuch kommen dieselben <InlineMath math="1{,}50\times10^{-3}\text{ mol}" /> Iod hinzu. Die Rücktitration braucht <InlineMath math="0{,}0120\times0{,}100=1{,}20\times10^{-3}\text{ mol}" /> Thiosulfat, also **blieben <InlineMath math="6{,}00\times10^{-4}\text{ mol}" /> Iod übrig**. Die Ascorbinsäure nahm den Rest, <InlineMath math="9{,}00\times10^{-4}\text{ mol}" />, <InlineMath math="9{,}00\times10^{-4}\times176=0{,}158\text{ g}" />, <InlineMath math="31{,}7\%" /> der Tablette.
+
+<Chart
+  title={<>Wohin das Iod geht</>}
+  description={<>Von den <InlineMath math="1{,}50\text{ mmol}" /> zugegebenem Iod verbraucht die Ascorbinsäure <InlineMath math="0{,}90\text{ mmol}" />, und <InlineMath math="0{,}60\text{ mmol}" /> bleiben für die Rücktitration.</>}
+  bars="apart"
+  categories={["Zugegebenes Iod", "Von Ascorbinsäure verbraucht", "Übrig"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [1.50, 0.90, 0.60] },
+  ]}
+  valueLabel="Stoffmenge (mmol)"
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{I}_2)&=3\times\tfrac{0{,}107}{214}=1{,}50\times10^{-3},\quad c=\tfrac{2\times1{,}50\times10^{-3}}{0{,}0300}=0{,}100\text{ mol dm}^{-3}\\
+n'(\text{I}_2)&=\tfrac{1}{2}\times0{,}0120\times0{,}100=6{,}00\times10^{-4}\text{ mol}\\
+m(\text{C}_6\text{H}_8\text{O}_6)&=(1{,}50-0{,}60)\times10^{-3}\times176=0{,}158\text{ g}
+\end{aligned}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}0500\text{ mol dm}^{-3}" /> liest Thiosulfat und Iod als eins zu eins. **Jedes Iod nimmt zwei Thiosulfationen**.
+- <InlineMath math="0{,}106\text{ g}" /> hält das übrige Iod für das von der Ascorbinsäure verbrauchte. **Die Rücktitration misst, was nicht verbraucht wurde**.
+- <InlineMath math="0{,}264\text{ g}" /> lässt die Ascorbinsäure alles zugegebene Iod nehmen und übergeht die Rücktitration mit <InlineMath math="12{,}0\text{ cm}^3" />.

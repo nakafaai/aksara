@@ -1,0 +1,25 @@
+# Bestimme die Wärme je Mol, die die Lampe wirklich liefert, vergleiche mit dem Tabellenwert und bemiss den Brennstoff mit dem gelieferten Wert
+
+Das Wasser nimmt <InlineMath math="200\times4{,}2\times25{,}0=21{,}0\text{ kJ}" /> aus <InlineMath math="0{,}920\div46=0{,}0200\text{ mol}" /> auf, **also liefert die Lampe <InlineMath math="1050\text{ kJ}" /> je Mol**, eine gemessene Verbrennungsenthalpie von <InlineMath math="-1050\text{ kJ mol}^{-1}" />. Der volle Wert ist <InlineMath math="1370\text{ kJ}" />, also gehen <InlineMath math="320\div1370=23{,}4\%" /> verloren. <InlineMath math="1{,}00\text{ kg}" /> um <InlineMath math="75^\circ\text{C}" /> zu erwärmen braucht <InlineMath math="1000\times4{,}2\times75=315\text{ kJ}" />, **und die Lampe liefert nur <InlineMath math="1050\text{ kJ}" /> je Mol**, also <InlineMath math="0{,}300\text{ mol}" />, <InlineMath math="13{,}8\text{ g}" />.
+
+<Chart
+  title={<>Wärme je Mol Ethanol</>}
+  description={<>Die Lampe liefert <InlineMath math="1050\text{ kJ}" /> der <InlineMath math="1370\text{ kJ}" /> des Tabellenwerts.</>}
+  bars="apart"
+  categories={["Gemessen", "Tabellenwert"]}
+  series={[
+    { label: "Wärme", mark: "bar", values: [1050, 1370] },
+  ]}
+  valueLabel="Wärme (kJ)"
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta H&=-\tfrac{21{,}0}{0{,}0200}=-1050\text{ kJ mol}^{-1},\quad \text{lost}=\tfrac{1370-1050}{1370}=23{,}4\%\\
+m&=\tfrac{1000\times4{,}2\times75\div1000}{1050}\times46=13{,}8\text{ g}
+\end{aligned}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="30{,}5\%" /> teilt den Verlust durch den Messwert, und <InlineMath math="10{,}6\text{ g}" /> nimmt den Tabellenwert. **Die Lampe liefert nur <InlineMath math="1050\text{ kJ}" /> je Mol**.
+- <InlineMath math="76{,}6\%" /> ist der Anteil, der das Wasser erreicht, nicht der verlorene.
+- <InlineMath math="-21{,}0\text{ kJ mol}^{-1}" /> vergisst, durch die verbrannten Mol Ethanol zu teilen, und braucht daher viel zu viel Ethanol.
