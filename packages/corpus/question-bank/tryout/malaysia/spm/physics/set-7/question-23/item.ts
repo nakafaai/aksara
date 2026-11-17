@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$50\\text{ N}$$ and $$80\\text{ N}$$" },
-        { correct: false, label: "$$40\\text{ N}$$ and $$100\\text{ N}$$" },
-        { correct: true, label: "$$67\\text{ N}$$ and $$60\\text{ N}$$" },
-        { correct: false, label: "$$67\\text{ N}$$ and $$100\\text{ N}$$" },
+        {
+          correct: false,
+          label: "$$67\\text{ N}$$, $$53\\text{ N}$$ and $$60\\text{ N}$$",
+        },
+        {
+          correct: false,
+          label: "$$50\\text{ N}$$, $$30\\text{ N}$$ and $$60\\text{ N}$$",
+        },
+        {
+          correct: true,
+          label: "$$67\\text{ N}$$, $$53\\text{ N}$$ and $$34\\text{ N}$$",
+        },
+        {
+          correct: false,
+          label: "$$67\\text{ N}$$, $$53\\text{ N}$$ and $$45\\text{ N}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$50\\text{ N}$$ dan $$80\\text{ N}$$" },
-        { correct: false, label: "$$40\\text{ N}$$ dan $$100\\text{ N}$$" },
-        { correct: true, label: "$$67\\text{ N}$$ dan $$60\\text{ N}$$" },
-        { correct: false, label: "$$67\\text{ N}$$ dan $$100\\text{ N}$$" },
+        {
+          correct: false,
+          label: "$$67\\text{ N}$$, $$53\\text{ N}$$ dan $$60\\text{ N}$$",
+        },
+        {
+          correct: false,
+          label: "$$50\\text{ N}$$, $$30\\text{ N}$$ dan $$60\\text{ N}$$",
+        },
+        {
+          correct: true,
+          label: "$$67\\text{ N}$$, $$53\\text{ N}$$ dan $$34\\text{ N}$$",
+        },
+        {
+          correct: false,
+          label: "$$67\\text{ N}$$, $$53\\text{ N}$$ dan $$45\\text{ N}$$",
+        },
       ],
     },
   },

@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "applying",
+    cognitiveLevel: "analysing",
     contentDomain: "form-5",
     topic: "pressure",
   },
@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$2.0\\times10^{5}\\text{ Pa}$$ and $$1.0\\times10^{5}\\text{ N}$$",
+            "$$1.5\\times10^{5}\\text{ N}$$, $$19\\text{ kN}$$ and $$14\\text{ m}$$",
         },
         {
           correct: true,
           label:
-            "$$3.0\\times10^{5}\\text{ Pa}$$ and $$1.0\\times10^{5}\\text{ N}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ and $$24\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$3.0\\times10^{5}\\text{ Pa}$$ and $$1.5\\times10^{5}\\text{ N}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ and $$34\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$3.0\\times10^{5}\\text{ Pa}$$ and $$6.0\\times10^{5}\\text{ N}$$",
+            "$$2.0\\times10^{5}\\text{ N}$$, $$25\\text{ kN}$$ and $$12\\text{ m}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$2.0\\times10^{5}\\text{ Pa}$$ dan $$1.0\\times10^{5}\\text{ N}$$",
+            "$$1.5\\times10^{5}\\text{ N}$$, $$19\\text{ kN}$$ dan $$14\\text{ m}$$",
         },
         {
           correct: true,
           label:
-            "$$3.0\\times10^{5}\\text{ Pa}$$ dan $$1.0\\times10^{5}\\text{ N}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ dan $$24\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$3.0\\times10^{5}\\text{ Pa}$$ dan $$1.5\\times10^{5}\\text{ N}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ dan $$34\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$3.0\\times10^{5}\\text{ Pa}$$ dan $$6.0\\times10^{5}\\text{ N}$$",
+            "$$2.0\\times10^{5}\\text{ N}$$, $$25\\text{ kN}$$ dan $$12\\text{ m}$$",
         },
       ],
     },

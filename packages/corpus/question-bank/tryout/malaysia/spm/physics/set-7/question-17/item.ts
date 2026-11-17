@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.26\\text{ m}$$ and $$38\\text{ m s}^{-1}$$",
+          label: "$$0.26\\text{ m}$$, $$38\\text{ m s}^{-1}$$ and $$45°$$",
         },
         {
           correct: true,
-          label: "$$0.53\\text{ m}$$ and $$75\\text{ m s}^{-1}$$",
+          label: "$$0.53\\text{ m}$$, $$75\\text{ m s}^{-1}$$ and $$22.5°$$",
         },
         {
           correct: false,
-          label: "$$0.53\\text{ m}$$ and $$38\\text{ m s}^{-1}$$",
+          label: "$$0.53\\text{ m}$$, $$38\\text{ m s}^{-1}$$ and $$22.5°$$",
         },
         {
           correct: false,
-          label: "$$0.53\\text{ m}$$ and $$12\\text{ m s}^{-1}$$",
+          label: "$$0.53\\text{ m}$$, $$12\\text{ m s}^{-1}$$ and $$22.5°$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.26\\text{ m}$$ dan $$38\\text{ m s}^{-1}$$",
+          label: "$$0.26\\text{ m}$$, $$38\\text{ m s}^{-1}$$ dan $$45°$$",
         },
         {
           correct: true,
-          label: "$$0.53\\text{ m}$$ dan $$75\\text{ m s}^{-1}$$",
+          label: "$$0.53\\text{ m}$$, $$75\\text{ m s}^{-1}$$ dan $$22.5°$$",
         },
         {
           correct: false,
-          label: "$$0.53\\text{ m}$$ dan $$38\\text{ m s}^{-1}$$",
+          label: "$$0.53\\text{ m}$$, $$38\\text{ m s}^{-1}$$ dan $$22.5°$$",
         },
         {
           correct: false,
-          label: "$$0.53\\text{ m}$$ dan $$12\\text{ m s}^{-1}$$",
+          label: "$$0.53\\text{ m}$$, $$12\\text{ m s}^{-1}$$ dan $$22.5°$$",
         },
       ],
     },

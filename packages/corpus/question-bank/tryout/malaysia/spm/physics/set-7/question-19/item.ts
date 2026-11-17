@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$76\\text{ cm}$$ and $$10°$$" },
-        { correct: false, label: "$$84\\text{ cm}$$ and $$0.025°$$" },
-        { correct: true, label: "$$84\\text{ cm}$$ and $$10°$$" },
-        { correct: false, label: "$$84\\text{ cm}$$ and $$0.50°$$" },
+        {
+          correct: false,
+          label: "$$76\\text{ cm}$$, $$10°$$ and $$7.0\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$84\\text{ cm}$$, $$0.025°$$ and $$0.35\\text{ mm}$$",
+        },
+        {
+          correct: true,
+          label: "$$84\\text{ cm}$$, $$10°$$ and $$7.0\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$84\\text{ cm}$$, $$10°$$ and $$0.40\\text{ m}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$76\\text{ cm}$$ dan $$10°$$" },
-        { correct: false, label: "$$84\\text{ cm}$$ dan $$0.025°$$" },
-        { correct: true, label: "$$84\\text{ cm}$$ dan $$10°$$" },
-        { correct: false, label: "$$84\\text{ cm}$$ dan $$0.50°$$" },
+        {
+          correct: false,
+          label: "$$76\\text{ cm}$$, $$10°$$ dan $$7.0\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$84\\text{ cm}$$, $$0.025°$$ dan $$0.35\\text{ mm}$$",
+        },
+        {
+          correct: true,
+          label: "$$84\\text{ cm}$$, $$10°$$ dan $$7.0\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$84\\text{ cm}$$, $$10°$$ dan $$0.40\\text{ m}$$",
+        },
       ],
     },
   },

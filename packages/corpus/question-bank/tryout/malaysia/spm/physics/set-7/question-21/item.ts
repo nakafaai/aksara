@@ -12,21 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$12\\text{ kN}$$ and $$0\\text{ m s}^{-2}$$",
+          label:
+            "$$12\\text{ kN}$$, $$0\\text{ m s}^{-2}$$ and $$2.0\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
           label:
-            "$$9.2\\text{ kN}$$ and $$4.2\\times10^{-3}\\text{ m s}^{-2}$$",
+            "$$9.2\\text{ kN}$$, $$4.2\\times10^{-3}\\text{ m s}^{-2}$$ and $$2.2\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$9.2\\text{ kN}$$ and $$2.3\\times10^{-2}\\text{ m s}^{-2}$$",
+            "$$9.2\\text{ kN}$$, $$2.3\\times10^{-2}\\text{ m s}^{-2}$$ and $$2.2\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$9.2\\text{ kN}$$ and $$4.2\\text{ m s}^{-2}$$",
+          label:
+            "$$9.2\\text{ kN}$$, $$4.2\\times10^{-3}\\text{ m s}^{-2}$$ and $$2.5\\text{ m s}^{-1}$$",
         },
       ],
     },
@@ -35,21 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$12\\text{ kN}$$ dan $$0\\text{ m s}^{-2}$$",
+          label:
+            "$$12\\text{ kN}$$, $$0\\text{ m s}^{-2}$$ dan $$2.0\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
           label:
-            "$$9.2\\text{ kN}$$ dan $$4.2\\times10^{-3}\\text{ m s}^{-2}$$",
+            "$$9.2\\text{ kN}$$, $$4.2\\times10^{-3}\\text{ m s}^{-2}$$ dan $$2.2\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$9.2\\text{ kN}$$ dan $$2.3\\times10^{-2}\\text{ m s}^{-2}$$",
+            "$$9.2\\text{ kN}$$, $$2.3\\times10^{-2}\\text{ m s}^{-2}$$ dan $$2.2\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$9.2\\text{ kN}$$ dan $$4.2\\text{ m s}^{-2}$$",
+          label:
+            "$$9.2\\text{ kN}$$, $$4.2\\times10^{-3}\\text{ m s}^{-2}$$ dan $$2.5\\text{ m s}^{-1}$$",
         },
       ],
     },
