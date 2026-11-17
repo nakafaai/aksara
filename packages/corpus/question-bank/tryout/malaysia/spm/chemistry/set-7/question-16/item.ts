@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "P $$300\\text{ cm}^3$$, Q $$150\\text{ cm}^3$$, and P reacts faster",
+            "$$480\\text{ cm}^3$$ each, no magnesium left, P reacts faster",
         },
         {
           correct: false,
           label:
-            "P $$300\\text{ cm}^3$$, Q $$300\\text{ cm}^3$$, and both react at the same rate",
+            "P $$300\\text{ cm}^3$$, Q $$150\\text{ cm}^3$$, $$0.18\\text{ g}$$ left in each, P reacts faster",
         },
         {
           correct: true,
           label:
-            "P $$120\\text{ cm}^3$$, Q $$120\\text{ cm}^3$$, and P reacts faster",
+            "$$300\\text{ cm}^3$$ each, $$0.18\\text{ g}$$ left in each, P reacts faster",
         },
         {
           correct: false,
           label:
-            "P $$120\\text{ cm}^3$$, Q $$120\\text{ cm}^3$$, and both react at the same rate",
+            "$$300\\text{ cm}^3$$ each, $$0.18\\text{ g}$$ left in each, both react at the same rate",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "P $$300\\text{ cm}^3$$, Q $$150\\text{ cm}^3$$, dan P bertindak balas lebih cepat",
+            "$$480\\text{ cm}^3$$ setiap satu, tiada magnesium tinggal, P bertindak balas lebih cepat",
         },
         {
           correct: false,
           label:
-            "P $$300\\text{ cm}^3$$, Q $$300\\text{ cm}^3$$, dan kedua-duanya bertindak balas pada kadar yang sama",
+            "P $$300\\text{ cm}^3$$, Q $$150\\text{ cm}^3$$, $$0.18\\text{ g}$$ tinggal dalam setiap satu, P bertindak balas lebih cepat",
         },
         {
           correct: true,
           label:
-            "P $$120\\text{ cm}^3$$, Q $$120\\text{ cm}^3$$, dan P bertindak balas lebih cepat",
+            "$$300\\text{ cm}^3$$ setiap satu, $$0.18\\text{ g}$$ tinggal dalam setiap satu, P bertindak balas lebih cepat",
         },
         {
           correct: false,
           label:
-            "P $$120\\text{ cm}^3$$, Q $$120\\text{ cm}^3$$, dan kedua-duanya bertindak balas pada kadar yang sama",
+            "$$300\\text{ cm}^3$$ setiap satu, $$0.18\\text{ g}$$ tinggal dalam setiap satu, kedua-duanya bertindak balas pada kadar yang sama",
         },
       ],
     },

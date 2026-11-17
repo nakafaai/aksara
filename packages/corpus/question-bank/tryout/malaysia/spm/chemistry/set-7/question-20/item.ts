@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$1.74\\text{ g cm}^{-3}$$, $$40.0\\%$$" },
-        { correct: true, label: "$$1.74\\text{ g cm}^{-3}$$, $$58.6\\%$$" },
-        { correct: false, label: "$$1.52\\text{ g cm}^{-3}$$, $$40.0\\%$$" },
-        { correct: false, label: "$$1.74\\text{ g cm}^{-3}$$, $$41.4\\%$$" },
+        { correct: false, label: "$$1.74\\text{ g cm}^{-3}$$, $$58.6\\%$$" },
+        { correct: true, label: "$$1.68\\text{ g cm}^{-3}$$, $$60.7\\%$$" },
+        { correct: false, label: "$$1.68\\text{ g cm}^{-3}$$, $$40.0\\%$$" },
+        { correct: false, label: "$$1.61\\text{ g cm}^{-3}$$, $$55.3\\%$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$1.74\\text{ g cm}^{-3}$$, $$40.0\\%$$" },
-        { correct: true, label: "$$1.74\\text{ g cm}^{-3}$$, $$58.6\\%$$" },
-        { correct: false, label: "$$1.52\\text{ g cm}^{-3}$$, $$40.0\\%$$" },
-        { correct: false, label: "$$1.74\\text{ g cm}^{-3}$$, $$41.4\\%$$" },
+        { correct: false, label: "$$1.74\\text{ g cm}^{-3}$$, $$58.6\\%$$" },
+        { correct: true, label: "$$1.68\\text{ g cm}^{-3}$$, $$60.7\\%$$" },
+        { correct: false, label: "$$1.68\\text{ g cm}^{-3}$$, $$40.0\\%$$" },
+        { correct: false, label: "$$1.61\\text{ g cm}^{-3}$$, $$55.3\\%$$" },
       ],
     },
   },

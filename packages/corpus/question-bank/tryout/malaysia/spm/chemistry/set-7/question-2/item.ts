@@ -10,43 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$216\\text{ cm}^3$$, $$1.20\\times10^{22}$$ atoms",
-        },
-        {
-          correct: false,
-          label: "$$240\\text{ cm}^3$$, $$1.20\\times10^{22}$$ atoms",
-        },
-        {
-          correct: false,
-          label: "$$216\\text{ cm}^3$$, $$5.42\\times10^{21}$$ atoms",
-        },
-        {
-          correct: false,
-          label: "$$264\\text{ cm}^3$$, $$1.20\\times10^{22}$$ atoms",
-        },
+        { correct: true, label: "$$216\\text{ cm}^3$$, $$216\\text{ cm}^3$$" },
+        { correct: false, label: "$$216\\text{ cm}^3$$, $$168\\text{ cm}^3$$" },
+        { correct: false, label: "$$240\\text{ cm}^3$$, $$216\\text{ cm}^3$$" },
+        { correct: false, label: "$$216\\text{ cm}^3$$, $$240\\text{ cm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$216\\text{ cm}^3$$, $$1.20\\times10^{22}$$ atom",
-        },
-        {
-          correct: false,
-          label: "$$240\\text{ cm}^3$$, $$1.20\\times10^{22}$$ atom",
-        },
-        {
-          correct: false,
-          label: "$$216\\text{ cm}^3$$, $$5.42\\times10^{21}$$ atom",
-        },
-        {
-          correct: false,
-          label: "$$264\\text{ cm}^3$$, $$1.20\\times10^{22}$$ atom",
-        },
+        { correct: true, label: "$$216\\text{ cm}^3$$, $$216\\text{ cm}^3$$" },
+        { correct: false, label: "$$216\\text{ cm}^3$$, $$168\\text{ cm}^3$$" },
+        { correct: false, label: "$$240\\text{ cm}^3$$, $$216\\text{ cm}^3$$" },
+        { correct: false, label: "$$216\\text{ cm}^3$$, $$240\\text{ cm}^3$$" },
       ],
     },
   },

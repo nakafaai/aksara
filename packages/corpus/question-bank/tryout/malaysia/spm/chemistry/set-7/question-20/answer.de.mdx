@@ -1,25 +1,25 @@
-# In einem Kubikzentimeter rechnen: Die Volumenanteile geben die Massen, die Massen den Prozentsatz
+# Mittle die Dichten nach dem Volumen, wobei die Luft Volumen, aber keine Masse beiträgt, dann vergleiche die Massen
 
-Ein Kubikzentimeter Verbundstoff enthält <InlineMath math="0{,}40\text{ cm}^3" /> Glas, <InlineMath math="1{,}02\text{ g}" />, und <InlineMath math="0{,}60\text{ cm}^3" /> Polyester, <InlineMath math="0{,}72\text{ g}" />, wiegt also <InlineMath math="1{,}74\text{ g}" />. **Das Glas ist dichter, also ist sein Massenanteil größer als sein Volumenanteil**. Die steifen, festen Fasern mit dem leichten, zähen Polyester zu verbinden, gibt einen festen Rumpf geringer Dichte.
+Nimm <InlineMath math="1\text{ cm}^3" /> Verbundstoff: <InlineMath math="0{,}40\text{ cm}^3" /> Glas wiegen <InlineMath math="1{,}02\text{ g}" /> und <InlineMath math="0{,}55\text{ cm}^3" /> Polyester <InlineMath math="0{,}66\text{ g}" />. **Die <InlineMath math="0{,}05\text{ cm}^3" /> Luft füllen Raum, tragen aber keine Masse bei**, also ist die Dichte <InlineMath math="1{,}68\text{ g cm}^{-3}" />. Das Glas macht <InlineMath math="1{,}02\div1{,}68=60{,}7\%" /> der Masse aus, mehr als seinen Volumenanteil, weil es der dichtere Stoff ist.
 
 <Chart
-  title={<>Masse in einem Kubikzentimeter Verbundstoff</>}
-  description={<>Die <InlineMath math="1{,}74\text{ g}" /> sind <InlineMath math="1{,}02\text{ g}" /> Glasfaser und <InlineMath math="0{,}72\text{ g}" /> Polyester.</>}
+  title={<>Masse in einem Kubikzentimeter</>}
+  description={<>Ein Kubikzentimeter enthält <InlineMath math="1{,}02\text{ g}" /> Glas, <InlineMath math="0{,}66\text{ g}" /> Polyester und masselose Luft.</>}
   bars="apart"
-  categories={["Glasfaser", "Polyester"]}
+  categories={["Glasfaser", "Polyester", "Luft"]}
   series={[
-    { label: "Masse", mark: "bar", values: [1.02, 0.72] },
+    { label: "Masse", mark: "bar", values: [1.02, 0.66, 0] },
   ]}
   valueLabel="Masse (g)"
 />
 
 <BlockMath math="\begin{aligned}
-\rho&=0{,}40\times2{,}55+0{,}60\times1{,}20=1{,}02+0{,}72=1{,}74\text{ g cm}^{-3}\\
-\tfrac{1{,}02}{1{,}74}\times100&=58{,}6\%
+\rho&=0{,}40\times2{,}55+0{,}55\times1{,}20+0{,}05\times0=1{,}68\text{ g cm}^{-3}\\
+\%_{\text{glass}}&=\tfrac{1{,}02}{1{,}68}\times100=60{,}7\%
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="40{,}0\%" /> ist der Volumenanteil des Glases, nicht der Massenanteil. **Das dichtere Glas trägt mehr Masse**.
-- <InlineMath math="1{,}52\text{ g cm}^{-3}" /> nimmt die <InlineMath math="40\%" /> als Massenanteil, und der Prozentsatz wiederholt den Fehler.
-- <InlineMath math="41{,}4\%" /> ist der Massenanteil des Polyesters, nicht des Glases.
+- <InlineMath math="1{,}74\text{ g cm}^{-3}" /> gibt dem Polyester <InlineMath math="60\%" /> des Volumens. **Fünf Prozent sind Luft**.
+- <InlineMath math="40{,}0\%" /> ist der Volumenanteil des Glases, doch das dichtere Glas hat einen größeren Massenanteil.
+- <InlineMath math="1{,}61\text{ g cm}^{-3}" /> zieht die Luft vom Glas statt vom Polyester ab.

@@ -12,22 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "$$13.6\\text{ cm}^3$$, by adding the acid slowly to the water",
+          label: "$$13.6\\text{ cm}^3$$, $$62.5\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$13.6\\text{ cm}^3$$, by adding the water slowly to the acid",
+          label: "$$13.6\\text{ cm}^3$$, $$31.3\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$25.0\\text{ cm}^3$$, by adding the acid slowly to the water",
+          label: "$$13.3\\text{ cm}^3$$, $$62.5\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$6.8\\text{ cm}^3$$, by adding the acid slowly to the water",
+          label: "$$25.0\\text{ cm}^3$$, $$62.5\\text{ cm}^3$$",
         },
       ],
     },
@@ -36,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "$$13.6\\text{ cm}^3$$, dengan menambah asid perlahan-lahan ke dalam air",
+          label: "$$13.6\\text{ cm}^3$$, $$62.5\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$13.6\\text{ cm}^3$$, dengan menambah air perlahan-lahan ke dalam asid",
+          label: "$$13.6\\text{ cm}^3$$, $$31.3\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$25.0\\text{ cm}^3$$, dengan menambah asid perlahan-lahan ke dalam air",
+          label: "$$13.3\\text{ cm}^3$$, $$62.5\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$6.8\\text{ cm}^3$$, dengan menambah asid perlahan-lahan ke dalam air",
+          label: "$$25.0\\text{ cm}^3$$, $$62.5\\text{ cm}^3$$",
         },
       ],
     },
