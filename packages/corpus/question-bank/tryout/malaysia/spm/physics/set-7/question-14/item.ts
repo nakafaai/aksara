@@ -12,20 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$1.0\\text{ m}$$, $$0.67\\text{ m}$$ and $$330\\text{ Hz}$$",
+          label: "$$880\\text{ Hz}$$, $$2.3\\text{ m}$$ and $$1.1\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$2.0\\text{ m}$$, $$1.3\\text{ m}$$ and $$660\\text{ Hz}$$",
+          label: "$$880\\text{ Hz}$$, $$1.5\\text{ m}$$ and $$0.75\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$1.0\\text{ m}$$, $$1.5\\text{ m}$$ and $$1320\\text{ Hz}$$",
+          label: "$$880\\text{ Hz}$$, $$2.3\\text{ m}$$ and $$2.3\\text{ m}$$",
         },
         {
           correct: false,
-          label:
-            "$$0.50\\text{ m}$$, $$0.33\\text{ m}$$ and $$165\\text{ Hz}$$",
+          label: "$$55\\text{ Hz}$$, $$2.3\\text{ m}$$ and $$1.1\\text{ m}$$",
         },
       ],
     },
@@ -34,20 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$1.0\\text{ m}$$, $$0.67\\text{ m}$$ dan $$330\\text{ Hz}$$",
+          label: "$$880\\text{ Hz}$$, $$2.3\\text{ m}$$ dan $$1.1\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$2.0\\text{ m}$$, $$1.3\\text{ m}$$ dan $$660\\text{ Hz}$$",
+          label: "$$880\\text{ Hz}$$, $$1.5\\text{ m}$$ dan $$0.75\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$1.0\\text{ m}$$, $$1.5\\text{ m}$$ dan $$1320\\text{ Hz}$$",
+          label: "$$880\\text{ Hz}$$, $$2.3\\text{ m}$$ dan $$2.3\\text{ m}$$",
         },
         {
           correct: false,
-          label:
-            "$$0.50\\text{ m}$$, $$0.33\\text{ m}$$ dan $$165\\text{ Hz}$$",
+          label: "$$55\\text{ Hz}$$, $$2.3\\text{ m}$$ dan $$1.1\\text{ m}$$",
         },
       ],
     },

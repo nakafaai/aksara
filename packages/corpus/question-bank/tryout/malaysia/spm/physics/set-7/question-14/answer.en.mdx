@@ -1,30 +1,26 @@
-# Find the wavelength, then the spacing, then take half of it
+# Get the wavelength from the pattern, scale the pattern with distance, then shift it by half
 
-The wavelength comes from <InlineMath math="v=f\lambda" />. The formula gives <InlineMath math="x" />, the spacing **between neighbouring quiet points**. The centre line is loud, so the first quiet point lies **halfway** to the next loud line, at <InlineMath math="\tfrac12x" />. A higher frequency means a shorter wavelength, so everything moves closer to the centre.
+The measured spacing gives the **wavelength**, and <InlineMath math="v=f\lambda" /> gives the frequency. On a line farther away the whole pattern spreads in proportion to <InlineMath math="D" />. Driving the loudspeakers in antiphase **swaps loud and quiet**: the centre line becomes quiet, so the nearest loud point is **half a spacing** from it.
 
 <Chart
-  title={<>Distance from the Centre Line to the First Quiet Point</>}
+  title={<>Spacing of the Quiet Points on Each Line</>}
   bars="apart"
-  categories={["660 Hz", "990 Hz"]}
+  categories={["Line at 8.0 m", "Line at 12 m"]}
   series={[
-    { label: "First quiet point", mark: "bar", values: [1.0, 0.67] },
+    { label: "Spacing", mark: "bar", values: [1.5, 2.25] },
   ]}
-  valueLabel="Distance (m)"
-  description={<>The first quiet point is half a fringe spacing from the centre line: <InlineMath math="1.0\text{ m}" /> at <InlineMath math="660\text{ Hz}" /> and about <InlineMath math="0.67\text{ m}" /> at <InlineMath math="990\text{ Hz}" />, since the spacing shrinks as the wavelength shrinks.</>}
+  valueLabel="Spacing (m)"
+  description={<>The quiet points are <InlineMath math="1.5\text{ m}" /> apart on the line at <InlineMath math="8.0\text{ m}" /> and <InlineMath math="2.25\text{ m}" /> apart on the line at <InlineMath math="12\text{ m}" />: the pattern spreads in proportion to the distance.</>}
 />
 
-<BlockMath math="\lambda=\frac{330}{660}=0.50\text{ m},\qquad x=\frac{\lambda D}{a}=\frac{0.50\times8.0}{2.0}=2.0\text{ m},\qquad \tfrac12x=1.0\text{ m}" />
+<BlockMath math="\lambda=\frac{ax}{D}=\frac{2.0\times1.5}{8.0}=0.375\text{ m},\qquad f=\frac{330}{0.375}=880\text{ Hz}" />
 
-<BlockMath math="\lambda'=\frac{330}{990}=0.33\text{ m},\qquad x'=\frac{0.33\times8.0}{2.0}\approx1.3\text{ m},\qquad \tfrac12x'\approx0.67\text{ m}" />
+<BlockMath math="x'=\frac{\lambda D'}{a}=\frac{0.375\times12}{2.0}=2.25\text{ m},\qquad \tfrac12x'\approx1.1\text{ m}" />
 
-At <InlineMath math="660\text{ Hz}" /> the quiet points are <InlineMath math="2.0\text{ m}" /> apart, so the first is <InlineMath math="1.0\text{ m}" /> from the centre line. At <InlineMath math="990\text{ Hz}" /> the spacing falls to about <InlineMath math="1.3\text{ m}" /> and the first quiet point is about <InlineMath math="0.67\text{ m}" /> from the centre.
-
-<BlockMath math="\tfrac12x=2.0\text{ m}\Rightarrow x=4.0\text{ m},\qquad \lambda=\frac{ax}{D}=\frac{2.0\times4.0}{8.0}=1.0\text{ m},\qquad f=\frac{330}{1.0}=330\text{ Hz}" />
-
-To push the first quiet point out to <InlineMath math="2.0\text{ m}" />, the quiet points must be <InlineMath math="4.0\text{ m}" /> apart, which needs a <InlineMath math="1.0\text{ m}" /> wavelength, a <InlineMath math="330\text{ Hz}" /> signal.
+The signal is <InlineMath math="880\text{ Hz}" />. At <InlineMath math="12\text{ m}" /> the quiet points are about <InlineMath math="2.3\text{ m}" /> apart, and after the swap the nearest loud point lies about <InlineMath math="1.1\text{ m}" /> from the now-quiet centre line.
 
 # Why the other options are wrong
 
-- <InlineMath math="2.0\text{ m}" /> is the **spacing between quiet points**, but the centre line is loud, so the first quiet point is only half that distance away.
-- <InlineMath math="1.5\text{ m}" /> makes the **spacing grow with frequency**, but a higher frequency gives a shorter wavelength and a smaller spacing.
-- <InlineMath math="0.50\text{ m}" /> takes the **wavelength itself** as the distance on the line, without scaling it by <InlineMath math="D/a" />.
+- <InlineMath math="1.5\text{ m}" /> keeps the **spacing the same at every distance**, but it grows in proportion to <InlineMath math="D" />.
+- <InlineMath math="2.3\text{ m}" /> for the loud point puts it **a whole spacing** from the centre, but swapping the phase moves the pattern by only half a spacing.
+- <InlineMath math="55\text{ Hz}" /> turns the formula **upside down**, <InlineMath math="\lambda=\dfrac{xD}{a}" />, giving a wavelength of <InlineMath math="6.0\text{ m}" />.

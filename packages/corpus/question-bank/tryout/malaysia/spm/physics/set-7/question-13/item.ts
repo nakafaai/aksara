@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$340\\text{ m s}^{-1}$$, $$0.46\\text{ s}$$ and $$17\\text{ m}$$",
+            "$$354\\text{ m s}^{-1}$$, $$39\\text{ °C}$$ and $$0.68\\text{ s}$$",
         },
         {
           correct: false,
           label:
-            "$$170\\text{ m s}^{-1}$$, $$0.48\\text{ s}$$ and $$8.5\\text{ m}$$",
+            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ and $$0.34\\text{ s}$$",
         },
         {
           correct: true,
           label:
-            "$$330\\text{ m s}^{-1}$$, $$0.48\\text{ s}$$ and $$17\\text{ m}$$",
+            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ and $$0.68\\text{ s}$$",
         },
         {
           correct: false,
           label:
-            "$$330\\text{ m s}^{-1}$$, $$0.24\\text{ s}$$ and $$33\\text{ m}$$",
+            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ and $$0.70\\text{ s}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$340\\text{ m s}^{-1}$$, $$0.46\\text{ s}$$ dan $$17\\text{ m}$$",
+            "$$354\\text{ m s}^{-1}$$, $$39\\text{ °C}$$ dan $$0.68\\text{ s}$$",
         },
         {
           correct: false,
           label:
-            "$$170\\text{ m s}^{-1}$$, $$0.48\\text{ s}$$ dan $$8.5\\text{ m}$$",
+            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ dan $$0.34\\text{ s}$$",
         },
         {
           correct: true,
           label:
-            "$$330\\text{ m s}^{-1}$$, $$0.48\\text{ s}$$ dan $$17\\text{ m}$$",
+            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ dan $$0.68\\text{ s}$$",
         },
         {
           correct: false,
           label:
-            "$$330\\text{ m s}^{-1}$$, $$0.24\\text{ s}$$ dan $$33\\text{ m}$$",
+            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ dan $$0.70\\text{ s}$$",
         },
       ],
     },

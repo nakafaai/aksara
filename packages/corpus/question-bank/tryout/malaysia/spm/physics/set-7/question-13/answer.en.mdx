@@ -1,30 +1,26 @@
-# Count the gaps, not the claps, and let the sound go there and back
+# Count the gaps, send the sound there and back, then let temperature set the new speed
 
-From clap <InlineMath math="1" /> to clap <InlineMath math="31" /> there are **<InlineMath math="30" /> gaps**, not <InlineMath math="31" />. In each gap the sound of one clap travels **to the wall and back**, a path of <InlineMath math="100\text{ m}" />. That gives the speed of sound, and the same speed fixes the new interval for a <InlineMath math="160\text{ m}" /> round trip.
+From clap <InlineMath math="1" /> to clap <InlineMath math="31" /> there are **<InlineMath math="30" /> gaps**. In each gap one clap's sound travels **to the wall and back**. That gives the speed of sound, the formula turns the speed into a temperature, and the midday temperature gives the new speed for a longer round trip.
 
 <Chart
-  title={<>Clap Interval Needed at Each Distance from the Wall</>}
+  title={<>Speed of Sound at Each Air Temperature</>}
   bars="apart"
-  categories={["50 m", "80 m"]}
+  categories={["20 °C (morning)", "35 °C (midday)"]}
   series={[
-    { label: "Interval", mark: "bar", values: [0.3, 0.48] },
+    { label: "Speed", mark: "bar", values: [343, 352] },
   ]}
-  valueLabel="Interval (s)"
-  description={<>At <InlineMath math="50\text{ m}" /> the echo returns after <InlineMath math="0.30\text{ s}" />, and at <InlineMath math="80\text{ m}" /> after about <InlineMath math="0.48\text{ s}" />, the time for sound to travel there and back.</>}
+  valueLabel="Speed (m/s)"
+  description={<>The morning measurement gives <InlineMath math="343\text{ m s}^{-1}" />, which the formula matches at <InlineMath math="20" /> °C. At <InlineMath math="35" /> °C sound travels at <InlineMath math="352\text{ m s}^{-1}" />.</>}
 />
 
-<BlockMath math="t=\frac{9.0}{30}=0.30\text{ s},\qquad v=\frac{2(50)}{0.30}\approx333\approx330\text{ m s}^{-1}" />
+<BlockMath math="t=\frac{8.75}{30}=0.292\text{ s},\qquad v=\frac{2(50)}{0.292}\approx343\text{ m s}^{-1},\qquad \theta=\frac{343-331}{0.6}=20\text{ °C}" />
 
-<BlockMath math="t'=\frac{2(80)}{333}\approx0.48\text{ s}" />
+<BlockMath math="v'=331+0.6(35)=352\text{ m s}^{-1},\qquad t'=\frac{2(120)}{352}\approx0.68\text{ s}" />
 
-Each gap lasts <InlineMath math="0.30\text{ s}" />, in which sound covers <InlineMath math="100\text{ m}" />, so <InlineMath math="v\approx330\text{ m s}^{-1}" />. At <InlineMath math="80\text{ m}" /> the round trip is <InlineMath math="160\text{ m}" />, which takes about <InlineMath math="0.48\text{ s}" />.
-
-<BlockMath math="d_{\min}=\frac{v\,t}{2}=\frac{330\times0.10}{2}\approx17\text{ m}" />
-
-In <InlineMath math="0.10\text{ s}" /> sound covers <InlineMath math="33\text{ m}" />, which must be the trip there and back, so the wall must be at least about <InlineMath math="17\text{ m}" /> away.
+The morning air is at <InlineMath math="20" /> °C, where sound travels at <InlineMath math="343\text{ m s}^{-1}" />. At midday sound is faster, <InlineMath math="352\text{ m s}^{-1}" />, so the <InlineMath math="240\text{ m}" /> round trip takes about <InlineMath math="0.68\text{ s}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="340\text{ m s}^{-1}" /> divides <InlineMath math="9.0\text{ s}" /> by **<InlineMath math="31" /> claps instead of <InlineMath math="30" /> gaps**, making each interval too short.
-- <InlineMath math="170\text{ m s}^{-1}" /> uses only the **one-way distance** to the wall, forgetting that the echo must come back.
-- <InlineMath math="0.24\text{ s}" /> and <InlineMath math="33\text{ m}" /> take the sound's path at the new position as **one way only**.
+- <InlineMath math="354\text{ m s}^{-1}" /> divides by **<InlineMath math="31" /> claps instead of <InlineMath math="30" /> gaps**, which also gives an impossible morning temperature of <InlineMath math="39" /> °C.
+- <InlineMath math="0.34\text{ s}" /> uses only the **one-way distance** of <InlineMath math="120\text{ m}" /> at midday.
+- <InlineMath math="0.70\text{ s}" /> keeps the **morning speed** at midday, forgetting that sound is faster in warmer air.

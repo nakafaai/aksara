@@ -1,30 +1,26 @@
-# Kira sela, bukan tepukan, dan biarkan bunyi pergi dan balik
+# Kira sela, hantar bunyi pergi dan balik, kemudian biarkan suhu menentukan laju baharu
 
-Dari tepukan <InlineMath math="1" /> hingga tepukan <InlineMath math="31" /> terdapat **<InlineMath math="30" /> sela**, bukan <InlineMath math="31" />. Dalam setiap sela, bunyi satu tepukan bergerak **ke dinding dan kembali**, lintasan sejauh <InlineMath math="100\text{ m}" />. Itu memberi laju bunyi, dan laju yang sama menentukan sela baharu bagi perjalanan pergi balik <InlineMath math="160\text{ m}" />.
+Dari tepukan <InlineMath math="1" /> hingga tepukan <InlineMath math="31" /> terdapat **<InlineMath math="30" /> sela**. Dalam setiap sela, bunyi satu tepukan bergerak **ke dinding dan kembali**. Itu memberi laju bunyi, rumus menukar laju kepada suhu, dan suhu tengah hari memberi laju baharu bagi perjalanan pergi balik yang lebih jauh.
 
 <Chart
-  title={<>Sela Tepukan yang Diperlukan pada Setiap Jarak dari Dinding</>}
+  title={<>Laju Bunyi pada Setiap Suhu Udara</>}
   bars="apart"
-  categories={["50 m", "80 m"]}
+  categories={["20 °C (pagi)", "35 °C (tengah hari)"]}
   series={[
-    { label: "Sela", mark: "bar", values: [0.3, 0.48] },
+    { label: "Laju", mark: "bar", values: [343, 352] },
   ]}
-  valueLabel="Sela (s)"
-  description={<>Pada <InlineMath math="50\text{ m}" /> gema kembali selepas <InlineMath math="0.30\text{ s}" />, dan pada <InlineMath math="80\text{ m}" /> selepas kira-kira <InlineMath math="0.48\text{ s}" />, iaitu masa bunyi pergi dan balik.</>}
+  valueLabel="Laju (m/s)"
+  description={<>Pengukuran pagi memberi <InlineMath math="343\text{ m s}^{-1}" />, yang sepadan dengan rumus pada <InlineMath math="20" /> °C. Pada <InlineMath math="35" /> °C bunyi bergerak pada <InlineMath math="352\text{ m s}^{-1}" />.</>}
 />
 
-<BlockMath math="t=\frac{9.0}{30}=0.30\text{ s},\qquad v=\frac{2(50)}{0.30}\approx333\approx330\text{ m s}^{-1}" />
+<BlockMath math="t=\frac{8.75}{30}=0.292\text{ s},\qquad v=\frac{2(50)}{0.292}\approx343\text{ m s}^{-1},\qquad \theta=\frac{343-331}{0.6}=20\text{ °C}" />
 
-<BlockMath math="t'=\frac{2(80)}{333}\approx0.48\text{ s}" />
+<BlockMath math="v'=331+0.6(35)=352\text{ m s}^{-1},\qquad t'=\frac{2(120)}{352}\approx0.68\text{ s}" />
 
-Setiap sela mengambil masa <InlineMath math="0.30\text{ s}" />, dan dalam masa itu bunyi melalui <InlineMath math="100\text{ m}" />, jadi <InlineMath math="v\approx330\text{ m s}^{-1}" />. Pada <InlineMath math="80\text{ m}" /> perjalanan pergi balik ialah <InlineMath math="160\text{ m}" />, yang mengambil masa kira-kira <InlineMath math="0.48\text{ s}" />.
-
-<BlockMath math="d_{\min}=\frac{v\,t}{2}=\frac{330\times0.10}{2}\approx17\text{ m}" />
-
-Dalam <InlineMath math="0.10\text{ s}" /> bunyi melalui <InlineMath math="33\text{ m}" />, iaitu perjalanan pergi dan balik, jadi dinding mesti sekurang-kurangnya kira-kira <InlineMath math="17\text{ m}" /> jauhnya.
+Udara pagi berada pada <InlineMath math="20" /> °C, apabila bunyi bergerak pada <InlineMath math="343\text{ m s}^{-1}" />. Pada tengah hari bunyi lebih laju, <InlineMath math="352\text{ m s}^{-1}" />, jadi perjalanan pergi balik <InlineMath math="240\text{ m}" /> mengambil masa kira-kira <InlineMath math="0.68\text{ s}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="340\text{ m s}^{-1}" /> membahagi <InlineMath math="9.0\text{ s}" /> dengan **<InlineMath math="31" /> tepukan dan bukan <InlineMath math="30" /> sela**, menjadikan setiap sela terlalu pendek.
-- <InlineMath math="170\text{ m s}^{-1}" /> hanya menggunakan **jarak sehala** ke dinding, lupa bahawa gema mesti kembali.
-- <InlineMath math="0.24\text{ s}" /> dan <InlineMath math="33\text{ m}" /> mengambil lintasan bunyi pada kedudukan baharu sebagai **sehala sahaja**.
+- <InlineMath math="354\text{ m s}^{-1}" /> membahagi dengan **<InlineMath math="31" /> tepukan dan bukan <InlineMath math="30" /> sela**, yang juga memberi suhu pagi yang mustahil, <InlineMath math="39" /> °C.
+- <InlineMath math="0.34\text{ s}" /> hanya menggunakan **jarak sehala** <InlineMath math="120\text{ m}" /> pada tengah hari.
+- <InlineMath math="0.70\text{ s}" /> mengekalkan **laju waktu pagi** pada tengah hari, lupa bahawa bunyi lebih laju dalam udara yang lebih panas.

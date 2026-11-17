@@ -1,30 +1,26 @@
-# Die Lücken zählen, nicht das Klatschen, und den Schall hin und zurück laufen lassen
+# Lücken zählen, den Schall hin und zurück schicken und dann die Temperatur die neue Geschwindigkeit bestimmen lassen
 
-Von Klatscher <InlineMath math="1" /> bis Klatscher <InlineMath math="31" /> liegen **<InlineMath math="30" /> Lücken**, nicht <InlineMath math="31" />. In jeder Lücke läuft der Schall eines Klatschers **zur Wand und zurück**, also <InlineMath math="100\text{ m}" />. Das ergibt die Schallgeschwindigkeit, und dieselbe Geschwindigkeit legt den neuen Abstand für einen Hin- und Rückweg von <InlineMath math="160\text{ m}" /> fest.
+Von Klatscher <InlineMath math="1" /> bis Klatscher <InlineMath math="31" /> liegen **<InlineMath math="30" /> Lücken**. In jeder läuft der Schall eines Klatschers **zur Wand und zurück**. Das ergibt die Schallgeschwindigkeit, die Formel macht daraus eine Temperatur, und die Mittagstemperatur liefert die neue Geschwindigkeit für einen längeren Hin- und Rückweg.
 
 <Chart
-  title={<>Nötiger Klatschabstand bei jeder Entfernung zur Wand</>}
+  title={<>Schallgeschwindigkeit bei jeder Lufttemperatur</>}
   bars="apart"
-  categories={["50 m", "80 m"]}
+  categories={["20 °C (morgens)", "35 °C (mittags)"]}
   series={[
-    { label: "Abstand", mark: "bar", values: [0.3, 0.48] },
+    { label: "Geschwindigkeit", mark: "bar", values: [343, 352] },
   ]}
-  valueLabel="Abstand (s)"
-  description={<>Bei <InlineMath math="50\text{ m}" /> kommt das Echo nach <InlineMath math="0{,}30\text{ s}" /> zurück, bei <InlineMath math="80\text{ m}" /> nach etwa <InlineMath math="0{,}48\text{ s}" />, der Zeit für Hin- und Rückweg des Schalls.</>}
+  valueLabel="Geschwindigkeit (m/s)"
+  description={<>Die Messung am Morgen ergibt <InlineMath math="343\text{ m s}^{-1}" />, was die Formel bei <InlineMath math="20" /> °C liefert. Bei <InlineMath math="35" /> °C läuft der Schall mit <InlineMath math="352\text{ m s}^{-1}" />.</>}
 />
 
-<BlockMath math="t=\frac{9{,}0}{30}=0{,}30\text{ s},\qquad v=\frac{2(50)}{0{,}30}\approx333\approx330\text{ m s}^{-1}" />
+<BlockMath math="t=\frac{8{,}75}{30}=0{,}292\text{ s},\qquad v=\frac{2(50)}{0{,}292}\approx343\text{ m s}^{-1},\qquad \theta=\frac{343-331}{0{,}6}=20\text{ °C}" />
 
-<BlockMath math="t'=\frac{2(80)}{333}\approx0{,}48\text{ s}" />
+<BlockMath math="v'=331+0{,}6(35)=352\text{ m s}^{-1},\qquad t'=\frac{2(120)}{352}\approx0{,}68\text{ s}" />
 
-Jede Lücke dauert <InlineMath math="0{,}30\text{ s}" />, in denen der Schall <InlineMath math="100\text{ m}" /> zurücklegt, also <InlineMath math="v\approx330\text{ m s}^{-1}" />. Bei <InlineMath math="80\text{ m}" /> beträgt der Hin- und Rückweg <InlineMath math="160\text{ m}" />, das dauert etwa <InlineMath math="0{,}48\text{ s}" />.
-
-<BlockMath math="d_{\min}=\frac{v\,t}{2}=\frac{330\cdot0{,}10}{2}\approx17\text{ m}" />
-
-In <InlineMath math="0{,}10\text{ s}" /> legt der Schall <InlineMath math="33\text{ m}" /> zurück, Hin- und Rückweg zusammen, die Wand muss also mindestens etwa <InlineMath math="17\text{ m}" /> entfernt sein.
+Die Morgenluft hat <InlineMath math="20" /> °C, bei denen der Schall <InlineMath math="343\text{ m s}^{-1}" /> schnell ist. Mittags ist er mit <InlineMath math="352\text{ m s}^{-1}" /> schneller, die <InlineMath math="240\text{ m}" /> hin und zurück dauern also etwa <InlineMath math="0{,}68\text{ s}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="340\text{ m s}^{-1}" /> teilt <InlineMath math="9{,}0\text{ s}" /> durch **<InlineMath math="31" /> Klatscher statt <InlineMath math="30" /> Lücken** und macht jeden Abstand zu kurz.
-- <InlineMath math="170\text{ m s}^{-1}" /> nimmt nur den **einfachen Weg** zur Wand und vergisst, dass das Echo zurückkommen muss.
-- <InlineMath math="0{,}24\text{ s}" /> und <InlineMath math="33\text{ m}" /> nehmen den Schallweg an der neuen Stelle **nur einfach**.
+- <InlineMath math="354\text{ m s}^{-1}" /> teilt durch **<InlineMath math="31" /> Klatscher statt <InlineMath math="30" /> Lücken** und ergibt eine unmögliche Morgentemperatur von <InlineMath math="39" /> °C.
+- <InlineMath math="0{,}34\text{ s}" /> nimmt mittags nur den **einfachen Weg** von <InlineMath math="120\text{ m}" />.
+- <InlineMath math="0{,}70\text{ s}" /> behält mittags die **Geschwindigkeit vom Morgen** und vergisst, dass Schall in wärmerer Luft schneller ist.

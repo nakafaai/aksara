@@ -1,30 +1,26 @@
-# Erst die Wellenlänge, dann den Streifenabstand, dann die Hälfte davon
+# Die Wellenlänge aus dem Muster holen, das Muster mit der Entfernung skalieren und dann um die Hälfte verschieben
 
-Die Wellenlänge folgt aus <InlineMath math="v=f\lambda" />. Die Formel liefert <InlineMath math="x" />, den Abstand **zwischen benachbarten leisen Punkten**. Die Mittellinie ist laut, also liegt der erste leise Punkt **auf halbem Weg** zur nächsten lauten Linie, bei <InlineMath math="\tfrac12x" />. Höhere Frequenz bedeutet kürzere Wellenlänge, alles rückt näher zur Mitte.
+Der gemessene Abstand liefert die **Wellenlänge**, <InlineMath math="v=f\lambda" /> die Frequenz. Auf einer weiter entfernten Linie weitet sich das ganze Muster proportional zu <InlineMath math="D" />. Gegenphasig betriebene Lautsprecher **vertauschen laut und leise**: Die Mittellinie wird leise, der nächste laute Punkt liegt **einen halben Abstand** daneben.
 
 <Chart
-  title={<>Abstand von der Mittellinie zum ersten leisen Punkt</>}
+  title={<>Abstand der leisen Punkte auf jeder Linie</>}
   bars="apart"
-  categories={["660 Hz", "990 Hz"]}
+  categories={["Linie bei 8,0 m", "Linie bei 12 m"]}
   series={[
-    { label: "Erster leiser Punkt", mark: "bar", values: [1.0, 0.67] },
+    { label: "Abstand", mark: "bar", values: [1.5, 2.25] },
   ]}
   valueLabel="Abstand (m)"
-  description={<>Der erste leise Punkt liegt einen halben Streifenabstand neben der Mittellinie: <InlineMath math="1{,}0\text{ m}" /> bei <InlineMath math="660\text{ Hz}" /> und etwa <InlineMath math="0{,}67\text{ m}" /> bei <InlineMath math="990\text{ Hz}" />, weil der Abstand mit der Wellenlänge schrumpft.</>}
+  description={<>Die leisen Punkte liegen auf der Linie bei <InlineMath math="8{,}0\text{ m}" /> <InlineMath math="1{,}5\text{ m}" /> und bei <InlineMath math="12\text{ m}" /> <InlineMath math="2{,}25\text{ m}" /> auseinander: Das Muster weitet sich proportional zur Entfernung.</>}
 />
 
-<BlockMath math="\lambda=\frac{330}{660}=0{,}50\text{ m},\qquad x=\frac{\lambda D}{a}=\frac{0{,}50\cdot8{,}0}{2{,}0}=2{,}0\text{ m},\qquad \tfrac12x=1{,}0\text{ m}" />
+<BlockMath math="\lambda=\frac{ax}{D}=\frac{2{,}0\cdot1{,}5}{8{,}0}=0{,}375\text{ m},\qquad f=\frac{330}{0{,}375}=880\text{ Hz}" />
 
-<BlockMath math="\lambda'=\frac{330}{990}=0{,}33\text{ m},\qquad x'=\frac{0{,}33\cdot8{,}0}{2{,}0}\approx1{,}3\text{ m},\qquad \tfrac12x'\approx0{,}67\text{ m}" />
+<BlockMath math="x'=\frac{\lambda D'}{a}=\frac{0{,}375\cdot12}{2{,}0}=2{,}25\text{ m},\qquad \tfrac12x'\approx1{,}1\text{ m}" />
 
-Bei <InlineMath math="660\text{ Hz}" /> liegen die leisen Punkte <InlineMath math="2{,}0\text{ m}" /> auseinander, der erste also <InlineMath math="1{,}0\text{ m}" /> neben der Mittellinie. Bei <InlineMath math="990\text{ Hz}" /> sinkt der Abstand auf etwa <InlineMath math="1{,}3\text{ m}" />, und der erste leise Punkt liegt etwa <InlineMath math="0{,}67\text{ m}" /> neben der Mitte.
-
-<BlockMath math="\tfrac12x=2{,}0\text{ m}\Rightarrow x=4{,}0\text{ m},\qquad \lambda=\frac{ax}{D}=\frac{2{,}0\cdot4{,}0}{8{,}0}=1{,}0\text{ m},\qquad f=\frac{330}{1{,}0}=330\text{ Hz}" />
-
-Damit der erste leise Punkt bei <InlineMath math="2{,}0\text{ m}" /> liegt, müssen die leisen Punkte <InlineMath math="4{,}0\text{ m}" /> auseinander liegen, das braucht <InlineMath math="1{,}0\text{ m}" /> Wellenlänge, ein Signal von <InlineMath math="330\text{ Hz}" />.
+Das Signal hat <InlineMath math="880\text{ Hz}" />. Bei <InlineMath math="12\text{ m}" /> liegen die leisen Punkte etwa <InlineMath math="2{,}3\text{ m}" /> auseinander, und nach dem Vertauschen liegt der nächste laute Punkt etwa <InlineMath math="1{,}1\text{ m}" /> neben der nun leisen Mittellinie.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="2{,}0\text{ m}" /> ist der **Abstand zwischen leisen Punkten**, doch die Mittellinie ist laut, also liegt der erste leise Punkt nur halb so weit entfernt.
-- <InlineMath math="1{,}5\text{ m}" /> lässt den **Abstand mit der Frequenz wachsen**, doch höhere Frequenz gibt kürzere Wellenlänge und kleineren Abstand.
-- <InlineMath math="0{,}50\text{ m}" /> nimmt die **Wellenlänge selbst** als Strecke auf der Linie, ohne sie mit <InlineMath math="D/a" /> zu skalieren.
+- <InlineMath math="1{,}5\text{ m}" /> hält den **Abstand bei jeder Entfernung gleich**, doch er wächst proportional zu <InlineMath math="D" />.
+- <InlineMath math="2{,}3\text{ m}" /> für den lauten Punkt legt ihn **einen ganzen Abstand** neben die Mitte, doch der Phasentausch verschiebt das Muster nur um einen halben.
+- <InlineMath math="55\text{ Hz}" /> **stellt die Formel auf den Kopf**, <InlineMath math="\lambda=\dfrac{xD}{a}" />, und erhält <InlineMath math="6{,}0\text{ m}" /> Wellenlänge.

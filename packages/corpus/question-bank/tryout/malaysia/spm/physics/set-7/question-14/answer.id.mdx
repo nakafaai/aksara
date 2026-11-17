@@ -1,30 +1,26 @@
-# Temukan panjang gelombang, lalu jarak polanya, lalu ambil setengahnya
+# Dapatkan panjang gelombang dari pola, skalakan pola dengan jarak, lalu geser setengah
 
-Panjang gelombang didapat dari <InlineMath math="v=f\lambda" />. Rumusnya memberi <InlineMath math="x" />, jarak **antara titik senyap yang bersebelahan**. Garis tengah terdengar keras, jadi titik senyap pertama ada **di tengah jalan** menuju garis keras berikutnya, pada <InlineMath math="\tfrac12x" />. Frekuensi lebih tinggi berarti panjang gelombang lebih pendek, jadi semuanya bergeser lebih dekat ke tengah.
+Jarak yang diukur memberi **panjang gelombang**, dan <InlineMath math="v=f\lambda" /> memberi frekuensi. Pada garis yang lebih jauh, seluruh pola melebar sebanding dengan <InlineMath math="D" />. Menggerakkan pengeras suara berlawanan fase **menukar keras dan senyap**: garis tengah menjadi senyap, jadi titik keras terdekat berada **setengah jarak** darinya.
 
 <Chart
-  title={<>Jarak dari Garis Tengah ke Titik Senyap Pertama</>}
+  title={<>Jarak Titik Senyap pada Tiap Garis</>}
   bars="apart"
-  categories={["660 Hz", "990 Hz"]}
+  categories={["Garis pada 8,0 m", "Garis pada 12 m"]}
   series={[
-    { label: "Titik senyap pertama", mark: "bar", values: [1.0, 0.67] },
+    { label: "Jarak", mark: "bar", values: [1.5, 2.25] },
   ]}
   valueLabel="Jarak (m)"
-  description={<>Titik senyap pertama berada setengah jarak pola dari garis tengah: <InlineMath math="1{,}0\text{ m}" /> pada <InlineMath math="660\text{ Hz}" /> dan sekitar <InlineMath math="0{,}67\text{ m}" /> pada <InlineMath math="990\text{ Hz}" />, karena jarak pola mengecil saat panjang gelombang mengecil.</>}
+  description={<>Titik senyap berjarak <InlineMath math="1{,}5\text{ m}" /> pada garis <InlineMath math="8{,}0\text{ m}" /> dan <InlineMath math="2{,}25\text{ m}" /> pada garis <InlineMath math="12\text{ m}" />: polanya melebar sebanding dengan jaraknya.</>}
 />
 
-<BlockMath math="\lambda=\frac{330}{660}=0{,}50\text{ m},\qquad x=\frac{\lambda D}{a}=\frac{0{,}50\times8{,}0}{2{,}0}=2{,}0\text{ m},\qquad \tfrac12x=1{,}0\text{ m}" />
+<BlockMath math="\lambda=\frac{ax}{D}=\frac{2{,}0\times1{,}5}{8{,}0}=0{,}375\text{ m},\qquad f=\frac{330}{0{,}375}=880\text{ Hz}" />
 
-<BlockMath math="\lambda'=\frac{330}{990}=0{,}33\text{ m},\qquad x'=\frac{0{,}33\times8{,}0}{2{,}0}\approx1{,}3\text{ m},\qquad \tfrac12x'\approx0{,}67\text{ m}" />
+<BlockMath math="x'=\frac{\lambda D'}{a}=\frac{0{,}375\times12}{2{,}0}=2{,}25\text{ m},\qquad \tfrac12x'\approx1{,}1\text{ m}" />
 
-Pada <InlineMath math="660\text{ Hz}" /> titik senyap berjarak <InlineMath math="2{,}0\text{ m}" />, jadi yang pertama ada <InlineMath math="1{,}0\text{ m}" /> dari garis tengah. Pada <InlineMath math="990\text{ Hz}" /> jaraknya turun menjadi sekitar <InlineMath math="1{,}3\text{ m}" /> dan titik senyap pertama ada sekitar <InlineMath math="0{,}67\text{ m}" /> dari tengah.
-
-<BlockMath math="\tfrac12x=2{,}0\text{ m}\Rightarrow x=4{,}0\text{ m},\qquad \lambda=\frac{ax}{D}=\frac{2{,}0\times4{,}0}{8{,}0}=1{,}0\text{ m},\qquad f=\frac{330}{1{,}0}=330\text{ Hz}" />
-
-Untuk menggeser titik senyap pertama ke <InlineMath math="2{,}0\text{ m}" />, titik senyap harus berjarak <InlineMath math="4{,}0\text{ m}" />, yang butuh panjang gelombang <InlineMath math="1{,}0\text{ m}" />, yaitu sinyal <InlineMath math="330\text{ Hz}" />.
+Sinyalnya <InlineMath math="880\text{ Hz}" />. Pada <InlineMath math="12\text{ m}" /> titik senyap berjarak sekitar <InlineMath math="2{,}3\text{ m}" />, dan setelah ditukar titik keras terdekat berada sekitar <InlineMath math="1{,}1\text{ m}" /> dari garis tengah yang kini senyap.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="2{,}0\text{ m}" /> adalah **jarak antar titik senyap**, padahal garis tengah keras, jadi titik senyap pertama hanya setengah jarak itu.
-- <InlineMath math="1{,}5\text{ m}" /> membuat **jaraknya bertambah dengan frekuensi**, padahal frekuensi lebih tinggi memberi panjang gelombang dan jarak yang lebih kecil.
-- <InlineMath math="0{,}50\text{ m}" /> mengambil **panjang gelombang itu sendiri** sebagai jarak pada garis, tanpa mengalikannya dengan <InlineMath math="D/a" />.
+- <InlineMath math="1{,}5\text{ m}" /> mempertahankan **jarak yang sama di setiap jarak**, padahal jaraknya bertambah sebanding dengan <InlineMath math="D" />.
+- <InlineMath math="2{,}3\text{ m}" /> untuk titik keras menaruhnya **satu jarak penuh** dari tengah, padahal penukaran fase hanya menggeser pola setengah jarak.
+- <InlineMath math="55\text{ Hz}" /> **membalik rumusnya**, <InlineMath math="\lambda=\dfrac{xD}{a}" />, memberi panjang gelombang <InlineMath math="6{,}0\text{ m}" />.
