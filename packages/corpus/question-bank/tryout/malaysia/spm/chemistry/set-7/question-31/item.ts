@@ -10,36 +10,48 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Pentane, $$5.33\\text{ g}$$, pH $$1.0$$" },
+        {
+          correct: false,
+          label: "Pentane, $$5.33\\text{ g}$$, $$25.0\\text{ cm}^3$$",
+        },
         {
           correct: true,
-          label: "2,2-Dimethylpropane, $$5.33\\text{ g}$$, pH $$1.0$$",
+          label:
+            "2,2-Dimethylpropane, $$5.33\\text{ g}$$, $$25.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "2,2-Dimethylpropane, $$5.33\\text{ g}$$, pH $$0.70$$",
+          label:
+            "2,2-Dimethylpropane, $$5.33\\text{ g}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "2,2-Dimethylpropane, $$3.55\\text{ g}$$, pH $$1.0$$",
+          label:
+            "2,2-Dimethylpropane, $$3.55\\text{ g}$$, $$25.0\\text{ cm}^3$$",
         },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Pentana, $$5.33\\text{ g}$$, pH $$1.0$$" },
+        {
+          correct: false,
+          label: "Pentana, $$5.33\\text{ g}$$, $$25.0\\text{ cm}^3$$",
+        },
         {
           correct: true,
-          label: "2,2-Dimetilpropana, $$5.33\\text{ g}$$, pH $$1.0$$",
+          label:
+            "2,2-Dimetilpropana, $$5.33\\text{ g}$$, $$25.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "2,2-Dimetilpropana, $$5.33\\text{ g}$$, pH $$0.70$$",
+          label:
+            "2,2-Dimetilpropana, $$5.33\\text{ g}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "2,2-Dimetilpropana, $$3.55\\text{ g}$$, pH $$1.0$$",
+          label:
+            "2,2-Dimetilpropana, $$3.55\\text{ g}$$, $$25.0\\text{ cm}^3$$",
         },
       ],
     },

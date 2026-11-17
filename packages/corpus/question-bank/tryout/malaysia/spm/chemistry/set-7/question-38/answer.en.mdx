@@ -1,25 +1,25 @@
-# Each unit loses a water molecule as it joins, so more acid goes in than polymer comes out
+# Count repeating units, add back the water each one lost, then burn each unit by its balanced equation
 
-One kilogram of PLA is <InlineMath math="13.9\text{ mol}" /> of <InlineMath math="\text{C}_3\text{H}_4\text{O}_2" /> units. **Each unit came from one lactic acid molecule, <InlineMath math="90" /> per mole, that lost a water molecule**, so <InlineMath math="1.25\text{ kg}" /> of acid is needed. Each unit holds three carbon atoms, so composting releases three carbon dioxide molecules per unit. The ester links in PLA can be broken by water and microbes, which is why it is biodegradable.
+The repeating unit has <InlineMath math="M_r=72" />, so the batch is <InlineMath math="1000\div72=13.9\text{ mol}" /> of units. **Each unit came from one lactic acid that lost a water molecule**, so the acid needed is <InlineMath math="13.9\times90=1.25\text{ kg}" />. Composting follows <InlineMath math="\text{C}_3\text{H}_4\text{O}_2+3\text{O}_2\rightarrow3\text{CO}_2+2\text{H}_2\text{O}" />, **three carbon dioxide and three oxygen per unit**: <InlineMath math="41.7\text{ mol}" /> of carbon dioxide, <InlineMath math="1.83\text{ kg}" />, and <InlineMath math="41.7\text{ mol}" /> of oxygen, <InlineMath math="1000\text{ dm}^3=1.00\text{ m}^3" />.
 
 <Chart
-  title={<>Mass at each stage</>}
-  description={<>The process uses <InlineMath math="1.25\text{ kg}" /> of lactic acid to make <InlineMath math="1.00\text{ kg}" /> of PLA, which composts to <InlineMath math="1.83\text{ kg}" /> of carbon dioxide.</>}
+  title={<>Amounts for the batch</>}
+  description={<>The <InlineMath math="13.9\text{ mol}" /> of units gives <InlineMath math="41.7\text{ mol}" /> of carbon dioxide and uses <InlineMath math="41.7\text{ mol}" /> of oxygen.</>}
   bars="apart"
-  categories={["Lactic acid needed", "PLA made", "Carbon dioxide on composting"]}
+  categories={["Repeating units", "Carbon dioxide", "Oxygen used"]}
   series={[
-    { label: "Mass", mark: "bar", values: [1.25, 1.00, 1.83] },
+    { label: "Amount", mark: "bar", values: [13.9, 41.7, 41.7] },
   ]}
-  valueLabel="Mass (kg)"
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n_{\text{units}}&=\tfrac{1000}{72}=13.9\text{ mol}\Rightarrow m(\text{C}_3\text{H}_6\text{O}_3)=13.9\times90=1.25\times10^3\text{ g}\\
-m(\text{CO}_2)&=3\times13.9\times44=1.83\times10^3\text{ g}
+n&=\tfrac{1000}{72}=13.9\text{ mol},\quad m(\text{C}_3\text{H}_6\text{O}_3)=13.9\times90=1.25\times10^3\text{ g}\\
+m(\text{CO}_2)&=3\times13.9\times44=1.83\times10^3\text{ g},\quad V(\text{O}_2)=3\times13.9\times24=1000\text{ dm}^3
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="1.00\text{ kg}" /> of acid ignores the water lost. **Each unit is lighter than the acid it came from**.
-- <InlineMath math="0.611\text{ kg}" /> gives one carbon dioxide per unit. **Each unit holds three carbon atoms**.
-- <InlineMath math="0.80\text{ kg}" /> scales the wrong way, as if the polymer were heavier than the acid.
+- <InlineMath math="1.00\text{ kg}" /> of lactic acid forgets the water lost. **Each unit is lighter than the acid that made it**.
+- <InlineMath math="0.611\text{ kg}" /> and <InlineMath math="0.333\text{ m}^3" /> give one carbon dioxide per unit, but each unit has three carbon atoms.
+- <InlineMath math="0.80\text{ kg}" /> subtracts the water instead of adding it back, but the acid is heavier than the polymer it makes.

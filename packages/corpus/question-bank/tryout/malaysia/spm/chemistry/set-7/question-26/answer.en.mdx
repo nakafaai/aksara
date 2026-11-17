@@ -1,25 +1,25 @@
-# Turn hours into seconds, keep only the useful charge, and give each copper ion two electrons
+# Take only the useful charge, give each copper ion two electrons, then remove that copper from the solution because the anode adds none back
 
-In <InlineMath math="24.0" /> hours, <InlineMath math="86\,400\text{ s}" />, the cell passes <InlineMath math="4.32\times10^7\text{ C}" />, <InlineMath math="448\text{ mol}" /> of electrons. **Only <InlineMath math="85\%" /> of them deposit copper**, and each copper(II) ion takes two, so <InlineMath math="190\text{ mol}" /> of copper forms.
+The charge is <InlineMath math="500\times24.0\times3600=4.32\times10^7\text{ C}" />, and **only <InlineMath math="85\%" /> of it deposits copper**, <InlineMath math="3.67\times10^7\text{ C}" />, <InlineMath math="380\text{ mol}" /> of electrons. <InlineMath math="\text{Cu}^{2+}+2e^-\rightarrow\text{Cu}" /> gives <InlineMath math="190\text{ mol}" /> of copper, <InlineMath math="190\times64=12.2\text{ kg}" />. **An inert anode gives no copper back**, so the <InlineMath math="4000\text{ mol}" /> of copper(II) ions falls to <InlineMath math="3810\text{ mol}" />, <InlineMath math="0.762\text{ mol dm}^{-3}" />.
 
 <Chart
-  title={<>Copper from one day of current</>}
-  description={<>The charge could deposit <InlineMath math="14.3\text{ kg}" />, but only <InlineMath math="12.2\text{ kg}" /> forms.</>}
+  title={<>Copper in the cell</>}
+  description={<>Of the <InlineMath math="4000\text{ mol}" /> of copper(II) ions, <InlineMath math="190\text{ mol}" /> is deposited and <InlineMath math="3810\text{ mol}" /> is left.</>}
   bars="apart"
-  categories={["Copper at full efficiency", "Copper produced"]}
+  categories={["Copper ions at the start", "Copper deposited", "Copper ions left"]}
   series={[
-    { label: "Mass", mark: "bar", values: [14.3, 12.2] },
+    { label: "Amount", mark: "bar", values: [4000, 190, 3810] },
   ]}
-  valueLabel="Mass (kg)"
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n(e^-)&=\tfrac{500\times24.0\times3600}{96\,500}=448\text{ mol}\\
-m(\text{Cu})&=0.85\times\tfrac{448}{2}\times64=1.22\times10^4\text{ g}=12.2\text{ kg}
+n(\text{Cu})&=\tfrac{0.85\times500\times86\,400}{2\times96\,500}=190\text{ mol},\quad m=190\times64=12.2\text{ kg}\\
+[\text{Cu}^{2+}]&=\tfrac{0.800\times5000-190}{5000}=0.762\text{ mol dm}^{-3}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="14.3\text{ kg}" /> counts all the charge. **Only <InlineMath math="85\%" /> deposits copper**.
-- <InlineMath math="24.4\text{ kg}" /> gives each copper ion one electron. **Copper(II) ions take two**.
-- <InlineMath math="16.8\text{ kg}" /> divides by <InlineMath math="0.85" /> instead of multiplying, as if the waste added copper.
+- <InlineMath math="14.3\text{ kg}" /> uses all the charge. **Only <InlineMath math="85\%" /> of it deposits copper**.
+- <InlineMath math="24.4\text{ kg}" /> gives each copper ion one electron, but a copper(II) ion needs two.
+- <InlineMath math="0.800\text{ mol dm}^{-3}" /> treats the anode as copper that dissolves to replace the ions, but this anode is inert.

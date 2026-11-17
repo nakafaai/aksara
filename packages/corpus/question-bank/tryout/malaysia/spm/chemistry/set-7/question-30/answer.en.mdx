@@ -1,25 +1,25 @@
-# Turn each volume into a mass with its own density, then count the carbon atoms in each fuel
+# Weigh each fuel from its volume and density, burn each by its own equation, then scale the oxygen up to air
 
-The litre holds <InlineMath math="100\text{ cm}^3" /> of ethanol, <InlineMath math="79\text{ g}" />, and <InlineMath math="900\text{ cm}^3" /> of octane, <InlineMath math="630\text{ g}" />. **Each fuel brings its own carbon**: ethanol <InlineMath math="1.72\text{ mol}" /> with two carbon atoms each, and octane <InlineMath math="5.53\text{ mol}" /> with eight. Every carbon atom becomes one carbon dioxide molecule.
+The litre holds <InlineMath math="100\times0.79=79\text{ g}" /> of ethanol, <InlineMath math="1.72\text{ mol}" />, and <InlineMath math="900\times0.70=630\text{ g}" /> of octane, <InlineMath math="5.53\text{ mol}" />. **Each burns by its own equation**: <InlineMath math="\text{C}_2\text{H}_5\text{OH}+3\text{O}_2\rightarrow2\text{CO}_2+3\text{H}_2\text{O}" /> and <InlineMath math="2\text{C}_8\text{H}_{18}+25\text{O}_2\rightarrow16\text{CO}_2+18\text{H}_2\text{O}" />. The carbon dioxide is <InlineMath math="3.43+44.2=47.6\text{ mol}" />, <InlineMath math="2.10\text{ kg}" />. The oxygen is <InlineMath math="5.15+69.1=74.2\text{ mol}" />, <InlineMath math="1781\text{ dm}^3" />, **and air is only <InlineMath math="21\%" /> oxygen**, so <InlineMath math="1781\div0.21=8.48\text{ m}^3" /> of air is needed.
 
 <Chart
   title={<>Carbon dioxide from each fuel</>}
-  description={<>Ethanol gives <InlineMath math="0.151\text{ kg}" /> and octane <InlineMath math="1.95\text{ kg}" />.</>}
+  description={<>Ethanol gives <InlineMath math="3.43\text{ mol}" /> and octane <InlineMath math="44.2\text{ mol}" /> of carbon dioxide.</>}
   bars="apart"
   categories={["From ethanol", "From octane"]}
   series={[
-    { label: "Mass", mark: "bar", values: [0.151, 1.95] },
+    { label: "Amount", mark: "bar", values: [3.43, 44.2] },
   ]}
-  valueLabel="Mass (kg)"
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{CO}_2)&=2\times\tfrac{100\times0.79}{46}+8\times\tfrac{900\times0.70}{114}=3.43+44.2=47.6\text{ mol}\\
-m&=47.6\times44=2.10\times10^3\text{ g}=2.10\text{ kg}
+n(\text{CO}_2)&=2\times\tfrac{79}{46}+8\times\tfrac{630}{114}=47.6\text{ mol},\quad m=47.6\times44=2.10\times10^3\text{ g}\\
+V_{\text{air}}&=\tfrac{(3\times1.72+12.5\times5.53)\times24}{0.21}=8.48\times10^3\text{ dm}^3
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="2.16\text{ kg}" /> burns the whole litre as octane. **A tenth of the volume is ethanol, with its own density and carbon count**.
-- <InlineMath math="1.95\text{ kg}" /> counts only the octane and leaves out the carbon dioxide from the ethanol.
-- <InlineMath math="1.05\text{ kg}" /> gives one carbon dioxide for every two carbon atoms.
+- <InlineMath math="2.16\text{ kg}" /> and <InlineMath math="8.77\text{ m}^3" /> treat the whole litre as octane. **A tenth of it is ethanol**.
+- <InlineMath math="1.78\text{ m}^3" /> is the volume of oxygen, but the burning draws it from air that is only <InlineMath math="21\%" /> oxygen.
+- <InlineMath math="0.374\text{ m}^3" /> multiplies the oxygen by <InlineMath math="0.21" /> instead of dividing by it.

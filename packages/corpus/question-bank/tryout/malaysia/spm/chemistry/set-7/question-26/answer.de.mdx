@@ -1,25 +1,25 @@
-# Stunden in Sekunden umrechnen, nur die nutzbare Ladung behalten und jedem Kupferion zwei Elektronen geben
+# Nimm nur die nutzbare Ladung, gib jedem Kupferion zwei Elektronen und ziehe dieses Kupfer von der Lösung ab, weil die Anode keines nachliefert
 
-In <InlineMath math="24{,}0" /> Stunden, <InlineMath math="86{.}400\text{ s}" />, fließen <InlineMath math="4{,}32\times10^7\text{ C}" />, <InlineMath math="448\text{ mol}" /> Elektronen. **Nur <InlineMath math="85\%" /> davon scheiden Kupfer ab**, und jedes Kupfer(II)-Ion braucht zwei, also entstehen <InlineMath math="190\text{ mol}" /> Kupfer.
+Die Ladung ist <InlineMath math="500\times24{,}0\times3600=4{,}32\times10^7\text{ C}" />, und **nur <InlineMath math="85\%" /> davon scheiden Kupfer ab**, <InlineMath math="3{,}67\times10^7\text{ C}" />, <InlineMath math="380\text{ mol}" /> Elektronen. <InlineMath math="\text{Cu}^{2+}+2e^-\rightarrow\text{Cu}" /> gibt <InlineMath math="190\text{ mol}" /> Kupfer, <InlineMath math="190\times64=12{,}2\text{ kg}" />. **Eine inerte Anode liefert kein Kupfer nach**, also fallen die <InlineMath math="4000\text{ mol}" /> Kupfer(II)-Ionen auf <InlineMath math="3810\text{ mol}" />, <InlineMath math="0{,}762\text{ mol dm}^{-3}" />.
 
 <Chart
-  title={<>Kupfer aus einem Tag Strom</>}
-  description={<>Die Ladung könnte <InlineMath math="14{,}3\text{ kg}" /> abscheiden, es entstehen aber nur <InlineMath math="12{,}2\text{ kg}" />.</>}
+  title={<>Kupfer in der Zelle</>}
+  description={<>Von den <InlineMath math="4000\text{ mol}" /> Kupfer(II)-Ionen werden <InlineMath math="190\text{ mol}" /> abgeschieden, und <InlineMath math="3810\text{ mol}" /> bleiben.</>}
   bars="apart"
-  categories={["Kupfer bei voller Ausbeute", "Erzeugtes Kupfer"]}
+  categories={["Kupferionen am Anfang", "Abgeschiedenes Kupfer", "Übrige Kupferionen"]}
   series={[
-    { label: "Masse", mark: "bar", values: [14.3, 12.2] },
+    { label: "Stoffmenge", mark: "bar", values: [4000, 190, 3810] },
   ]}
-  valueLabel="Masse (kg)"
+  valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n(e^-)&=\tfrac{500\times24{,}0\times3600}{96{.}500}=448\text{ mol}\\
-m(\text{Cu})&=0{,}85\times\tfrac{448}{2}\times64=1{,}22\times10^4\text{ g}=12{,}2\text{ kg}
+n(\text{Cu})&=\tfrac{0{,}85\times500\times86{.}400}{2\times96{.}500}=190\text{ mol},\quad m=190\times64=12{,}2\text{ kg}\\
+[\text{Cu}^{2+}]&=\tfrac{0{,}800\times5000-190}{5000}=0{,}762\text{ mol dm}^{-3}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="14{,}3\text{ kg}" /> zählt die ganze Ladung. **Nur <InlineMath math="85\%" /> scheiden Kupfer ab**.
-- <InlineMath math="24{,}4\text{ kg}" /> gibt jedem Kupferion ein Elektron. **Kupfer(II)-Ionen brauchen zwei**.
-- <InlineMath math="16{,}8\text{ kg}" /> teilt durch <InlineMath math="0{,}85" />, statt zu multiplizieren, als brächte der Verlust Kupfer.
+- <InlineMath math="14{,}3\text{ kg}" /> nutzt die ganze Ladung. **Nur <InlineMath math="85\%" /> davon scheiden Kupfer ab**.
+- <InlineMath math="24{,}4\text{ kg}" /> gibt jedem Kupferion ein Elektron, doch ein Kupfer(II)-Ion braucht zwei.
+- <InlineMath math="0{,}800\text{ mol dm}^{-3}" /> hält die Anode für Kupfer, das sich auflöst und die Ionen ersetzt, doch diese Anode ist inert.

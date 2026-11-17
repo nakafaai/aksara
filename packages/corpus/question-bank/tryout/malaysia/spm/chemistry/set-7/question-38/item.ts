@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.00\\text{ kg}$$ of lactic acid, $$1.83\\text{ kg}$$ of carbon dioxide",
+            "$$1.00\\text{ kg}$$, $$1.83\\text{ kg}$$, $$1.00\\text{ m}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.25\\text{ kg}$$ of lactic acid, $$0.611\\text{ kg}$$ of carbon dioxide",
+            "$$1.25\\text{ kg}$$, $$0.611\\text{ kg}$$, $$0.333\\text{ m}^3$$",
         },
         {
           correct: false,
           label:
-            "$$0.80\\text{ kg}$$ of lactic acid, $$1.83\\text{ kg}$$ of carbon dioxide",
+            "$$0.80\\text{ kg}$$, $$1.83\\text{ kg}$$, $$1.00\\text{ m}^3$$",
         },
         {
           correct: true,
           label:
-            "$$1.25\\text{ kg}$$ of lactic acid, $$1.83\\text{ kg}$$ of carbon dioxide",
+            "$$1.25\\text{ kg}$$, $$1.83\\text{ kg}$$, $$1.00\\text{ m}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.00\\text{ kg}$$ asid laktik, $$1.83\\text{ kg}$$ karbon dioksida",
+            "$$1.00\\text{ kg}$$, $$1.83\\text{ kg}$$, $$1.00\\text{ m}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.25\\text{ kg}$$ asid laktik, $$0.611\\text{ kg}$$ karbon dioksida",
+            "$$1.25\\text{ kg}$$, $$0.611\\text{ kg}$$, $$0.333\\text{ m}^3$$",
         },
         {
           correct: false,
           label:
-            "$$0.80\\text{ kg}$$ asid laktik, $$1.83\\text{ kg}$$ karbon dioksida",
+            "$$0.80\\text{ kg}$$, $$1.83\\text{ kg}$$, $$1.00\\text{ m}^3$$",
         },
         {
           correct: true,
           label:
-            "$$1.25\\text{ kg}$$ asid laktik, $$1.83\\text{ kg}$$ karbon dioksida",
+            "$$1.25\\text{ kg}$$, $$1.83\\text{ kg}$$, $$1.00\\text{ m}^3$$",
         },
       ],
     },
