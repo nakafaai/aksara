@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$1.81\\times10^{23}$$ electrons, $$3.60\\text{ g}$$",
+          label:
+            "$$1.81\\times10^{23}$$ electrons, $$3.60\\text{ dm}^3$$, $$3.60\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$6.02\\times10^{22}$$ electrons, $$2.40\\text{ g}$$",
+          label:
+            "$$6.02\\times10^{22}$$ electrons, $$1.20\\text{ dm}^3$$, $$1.20\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.81\\times10^{23}$$ electrons, $$7.20\\text{ g}$$",
+          label:
+            "$$1.81\\times10^{23}$$ electrons, $$3.60\\text{ dm}^3$$, $$7.20\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.81\\times10^{23}$$ electrons, $$2.40\\text{ g}$$",
+          label:
+            "$$1.81\\times10^{23}$$ electrons, $$7.20\\text{ dm}^3$$, $$7.20\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$1.81\\times10^{23}$$ elektron, $$3.60\\text{ g}$$",
+          label:
+            "$$1.81\\times10^{23}$$ elektron, $$3.60\\text{ dm}^3$$, $$3.60\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$6.02\\times10^{22}$$ elektron, $$2.40\\text{ g}$$",
+          label:
+            "$$6.02\\times10^{22}$$ elektron, $$1.20\\text{ dm}^3$$, $$1.20\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.81\\times10^{23}$$ elektron, $$7.20\\text{ g}$$",
+          label:
+            "$$1.81\\times10^{23}$$ elektron, $$3.60\\text{ dm}^3$$, $$7.20\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.81\\times10^{23}$$ elektron, $$2.40\\text{ g}$$",
+          label:
+            "$$1.81\\times10^{23}$$ elektron, $$7.20\\text{ dm}^3$$, $$7.20\\text{ g}$$",
         },
       ],
     },

@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$692\\text{ cm}^3$$, $$1.74\\times10^{22}$$ molecules, $$7.23\\text{ cm}^3$$",
+            "$$692\\text{ cm}^3$$, $$7.23\\text{ cm}^3$$, $$2.51\\times10^{23}$$ atoms",
         },
         {
           correct: false,
           label:
-            "$$1384\\text{ cm}^3$$, $$3.47\\times10^{22}$$ molecules, $$3.61\\text{ cm}^3$$",
+            "$$1384\\text{ cm}^3$$, $$3.61\\text{ cm}^3$$, $$2.51\\times10^{23}$$ atoms",
         },
         {
           correct: false,
           label:
-            "$$692\\text{ cm}^3$$, $$2.51\\times10^{19}$$ molecules, $$7.23\\text{ cm}^3$$",
+            "$$692\\text{ cm}^3$$, $$7.23\\text{ cm}^3$$, $$1.25\\times10^{23}$$ atoms",
         },
         {
           correct: false,
           label:
-            "$$857\\text{ cm}^3$$, $$2.15\\times10^{22}$$ molecules, $$5.83\\text{ cm}^3$$",
+            "$$857\\text{ cm}^3$$, $$5.83\\text{ cm}^3$$, $$2.51\\times10^{23}$$ atoms",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$692\\text{ cm}^3$$, $$1.74\\times10^{22}$$ molekul, $$7.23\\text{ cm}^3$$",
+            "$$692\\text{ cm}^3$$, $$7.23\\text{ cm}^3$$, $$2.51\\times10^{23}$$ atom",
         },
         {
           correct: false,
           label:
-            "$$1384\\text{ cm}^3$$, $$3.47\\times10^{22}$$ molekul, $$3.61\\text{ cm}^3$$",
+            "$$1384\\text{ cm}^3$$, $$3.61\\text{ cm}^3$$, $$2.51\\times10^{23}$$ atom",
         },
         {
           correct: false,
           label:
-            "$$692\\text{ cm}^3$$, $$2.51\\times10^{19}$$ molekul, $$7.23\\text{ cm}^3$$",
+            "$$692\\text{ cm}^3$$, $$7.23\\text{ cm}^3$$, $$1.25\\times10^{23}$$ atom",
         },
         {
           correct: false,
           label:
-            "$$857\\text{ cm}^3$$, $$2.15\\times10^{22}$$ molekul, $$5.83\\text{ cm}^3$$",
+            "$$857\\text{ cm}^3$$, $$5.83\\text{ cm}^3$$, $$2.51\\times10^{23}$$ atom",
         },
       ],
     },

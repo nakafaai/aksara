@@ -13,21 +13,21 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.61\\times10^{23}$$ electrons, $$1.20\\times10^{23}$$ dative bonds",
-        },
-        {
-          correct: false,
-          label: "$$7.22\\times10^{23}$$ electrons, $$0$$ dative bonds",
+            "$$5.35\\text{ g}$$, $$0\\text{ cm}^3$$, $$6.02\\times10^{22}$$ dative bonds",
         },
         {
           correct: false,
           label:
-            "$$7.22\\times10^{23}$$ electrons, $$4.82\\times10^{23}$$ dative bonds",
+            "$$4.01\\text{ g}$$, $$600\\text{ cm}^3$$, $$1.81\\times10^{23}$$ dative bonds",
+        },
+        {
+          correct: false,
+          label: "$$4.01\\text{ g}$$, $$600\\text{ cm}^3$$, $$0$$ dative bonds",
         },
         {
           correct: true,
           label:
-            "$$7.22\\times10^{23}$$ electrons, $$1.20\\times10^{23}$$ dative bonds",
+            "$$4.01\\text{ g}$$, $$600\\text{ cm}^3$$, $$4.52\\times10^{22}$$ dative bonds",
         },
       ],
     },
@@ -37,21 +37,21 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.61\\times10^{23}$$ elektron, $$1.20\\times10^{23}$$ ikatan datif",
-        },
-        {
-          correct: false,
-          label: "$$7.22\\times10^{23}$$ elektron, $$0$$ ikatan datif",
+            "$$5.35\\text{ g}$$, $$0\\text{ cm}^3$$, $$6.02\\times10^{22}$$ ikatan datif",
         },
         {
           correct: false,
           label:
-            "$$7.22\\times10^{23}$$ elektron, $$4.82\\times10^{23}$$ ikatan datif",
+            "$$4.01\\text{ g}$$, $$600\\text{ cm}^3$$, $$1.81\\times10^{23}$$ ikatan datif",
+        },
+        {
+          correct: false,
+          label: "$$4.01\\text{ g}$$, $$600\\text{ cm}^3$$, $$0$$ ikatan datif",
         },
         {
           correct: true,
           label:
-            "$$7.22\\times10^{23}$$ elektron, $$1.20\\times10^{23}$$ ikatan datif",
+            "$$4.01\\text{ g}$$, $$600\\text{ cm}^3$$, $$4.52\\times10^{22}$$ ikatan datif",
         },
       ],
     },
