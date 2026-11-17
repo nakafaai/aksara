@@ -12,20 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{M}^{+} + \\text{I}^- \\rightarrow \\text{MI}$$",
+          label: "$$0.00750\\text{ mol}$$, $$37.5\\%$$, $$180\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{M}^{2+} + 2\\text{I}^- \\rightarrow \\text{MI}_2$$",
+          label: "$$0.0175\\text{ mol}$$, $$87.5\\%$$, $$840\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$\\text{M}^{3+} + 3\\text{I}^- \\rightarrow \\text{MI}_3$$",
+          label: "$$0.0175\\text{ mol}$$, $$87.5\\%$$, $$420\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$2\\text{M}^{3+} + 3\\text{I}^- \\rightarrow \\text{M}_2\\text{I}_3$$",
+          label: "$$0.0175\\text{ mol}$$, $$27.8\\%$$, $$420\\text{ cm}^3$$",
         },
       ],
     },
@@ -34,20 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{M}^{+} + \\text{I}^- \\rightarrow \\text{MI}$$",
+          label: "$$0.00750\\text{ mol}$$, $$37.5\\%$$, $$180\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{M}^{2+} + 2\\text{I}^- \\rightarrow \\text{MI}_2$$",
+          label: "$$0.0175\\text{ mol}$$, $$87.5\\%$$, $$840\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$\\text{M}^{3+} + 3\\text{I}^- \\rightarrow \\text{MI}_3$$",
+          label: "$$0.0175\\text{ mol}$$, $$87.5\\%$$, $$420\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$2\\text{M}^{3+} + 3\\text{I}^- \\rightarrow \\text{M}_2\\text{I}_3$$",
+          label: "$$0.0175\\text{ mol}$$, $$27.8\\%$$, $$420\\text{ cm}^3$$",
         },
       ],
     },

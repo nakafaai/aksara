@@ -1,25 +1,26 @@
-# Average the concordant titres, then use the <InlineMath math="2" /> : <InlineMath math="1" /> ratio
+# Follow the chloride through the dilution into the portion, then let the excess silver tell the thiocyanate how much to take
 
-Three linked steps: read the titres, **average only the concordant ones**, then turn moles of alkali into moles of a diprotic acid.
+The salt is <InlineMath math="5.85\div58.5=0.100\text{ mol}" /> in <InlineMath math="0.250\text{ dm}^3" />, <InlineMath math="0.400\text{ mol dm}^{-3}" />, and **diluting <InlineMath math="25.0\text{ cm}^3" /> to <InlineMath math="100\text{ cm}^3" /> divides it by four**, <InlineMath math="0.100\text{ mol dm}^{-3}" />. The portion holds <InlineMath math="0.0200\times0.100=0.00200\text{ mol}" /> of chloride, which precipitates <InlineMath math="0.00200\times143.5=0.287\text{ g}" />. The silver added is <InlineMath math="0.0500\times0.0500=0.00250\text{ mol}" />, so **<InlineMath math="0.000500\text{ mol}" /> is left over**, which needs <InlineMath math="0.000500\div0.0400=0.0125\text{ dm}^3" />, <InlineMath math="12.5\text{ cm}^3" /> of thiocyanate.
 
 <Chart
-  title={<>Titre of Each Titration</>}
+  title={<>Silver in the flask</>}
+  description={<>Of the <InlineMath math="2.50\text{ mmol}" /> of silver added, the chloride takes <InlineMath math="2.00\text{ mmol}" /> and the thiocyanate the <InlineMath math="0.50\text{ mmol}" /> left.</>}
   bars="apart"
-  categories={["Rough", "Titration 2", "Titration 3", "Titration 4"]}
+  categories={["Silver added", "Taken by chloride", "Left for thiocyanate"]}
   series={[
-    { label: "Titre (cm³)", mark: "bar", values: [24.6, 24.2, 24.25, 24.3] },
+    { label: "Amount", mark: "bar", values: [2.50, 2.00, 0.50] },
   ]}
-  valueLabel="Titre (cm³)"
-  description={<>Titres: <InlineMath math="24.60" /> (rough), <InlineMath math="24.20" />, <InlineMath math="24.25" /> and <InlineMath math="24.30\text{ cm}^3" />.</>}
+  valueLabel="Amount (mmol)"
 />
 
-- Titres: <InlineMath math="24.60" /> (rough), <InlineMath math="24.20" />, <InlineMath math="24.25" /> and <InlineMath math="24.30\text{ cm}^3" />. The last three agree within <InlineMath math="0.10\text{ cm}^3" />, so the average titre is <InlineMath math="\dfrac{24.20 + 24.25 + 24.30}{3} = 24.25\text{ cm}^3" />.
-- Moles of NaOH: <InlineMath math="0.100 \times \dfrac{25.0}{1000} = 0.00250\text{ mol}" />.
-- <InlineMath math="\text{H}_2\text{SO}_4 + 2\text{NaOH} \rightarrow \text{Na}_2\text{SO}_4 + 2\text{H}_2\text{O}" />, so moles of acid <InlineMath math="= \dfrac{0.00250}{2} = 0.00125\text{ mol}" />.
-- Concentration: <InlineMath math="\dfrac{0.00125}{24.25/1000} = 0.0515\text{ mol dm}^{-3}" />.
+<BlockMath math="\begin{aligned}
+c&=\tfrac{5.85\div58.5}{0.250}\times\tfrac{25.0}{100}=0.100\text{ mol dm}^{-3}\\
+m(\text{AgCl})&=0.0200\times0.100\times143.5=0.287\text{ g}\\
+V(\text{SCN}^-)&=\tfrac{0.00250-0.00200}{0.0400}=0.0125\text{ dm}^3=12.5\text{ cm}^3
+\end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="0.103\text{ mol dm}^{-3}" /> uses a <InlineMath math="1 : 1" /> ratio, **as if sulfuric acid gave one hydrogen ion**.
-- <InlineMath math="0.206\text{ mol dm}^{-3}" /> applies the <InlineMath math="2" /> the wrong way, doubling the moles of acid.
-- <InlineMath math="0.0258\text{ mol dm}^{-3}" /> halves the moles twice.
+- <InlineMath math="0.400\text{ mol dm}^{-3}" /> skips the dilution, so the portion seems to hold <InlineMath math="0.00800\text{ mol}" /> of chloride, more than the silver can take.
+- <InlineMath math="62.5\text{ cm}^3" /> titrates all the silver added, but **the chloride has already taken <InlineMath math="0.00200\text{ mol}" /> of it**.
+- <InlineMath math="0.117\text{ g}" /> weighs the precipitate as sodium chloride, but it is silver chloride, <InlineMath math="M_r=143.5" />.

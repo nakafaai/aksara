@@ -1,26 +1,26 @@
-# Rumus empiris dari pembakaran, massa molar dari uapnya
+# Nitrat menetapkan oksida dan kedua gas, dan basa habis, jadi ia hanya menyerap sebagian tiap gas
 
-Data pembakaran memberi **perbandingan atom**, dan volume uap memberi **berapa unit itu dalam satu molekul**. Oksigen dalam P dicari dari selisih, karena pembakaran juga memakai oksigen dari udara.
-
-- Karbon: <InlineMath math="0{,}44 \times \dfrac{12}{44} = 0{,}12\text{ g}" />. Hidrogen: <InlineMath math="0{,}18 \times \dfrac{2}{18} = 0{,}02\text{ g}" />. Oksigen: <InlineMath math="0{,}30 - 0{,}12 - 0{,}02 = 0{,}16\text{ g}" />.
+Nitratnya <InlineMath math="3{,}75\div187{,}5=0{,}0200\text{ mol}" />, yang menyisakan <InlineMath math="0{,}0200\times79{,}5=1{,}59\text{ g}" /> oksida dan memberi <InlineMath math="0{,}0400\text{ mol}" /> nitrogen dioksida dan <InlineMath math="0{,}0100\text{ mol}" /> oksigen, <InlineMath math="0{,}0500\text{ mol}" />, <InlineMath math="1{,}20\text{ dm}^3" />. Basanya <InlineMath math="0{,}0250\text{ mol}" />, **kurang dari <InlineMath math="0{,}0400\text{ mol}" /> yang dibutuhkan nitrogen dioksida**, jadi menyerap <InlineMath math="0{,}0250\text{ mol}" /> nitrogen dioksida dan **seperempatnya oksigen**, <InlineMath math="0{,}00625\text{ mol}" />. Yang lolos <InlineMath math="0{,}0150" /> dan <InlineMath math="0{,}00375\text{ mol}" />, <InlineMath math="0{,}01875\times24=0{,}450\text{ dm}^3" />.
 
 <Chart
-  title={<>Massa Tiap Unsur dalam Sampel</>}
+  title={<>Gas melewati basa</>}
+  description={<>Dari <InlineMath math="1{,}20\text{ dm}^3" /> gas, basa menyerap <InlineMath math="0{,}750\text{ dm}^3" /> dan <InlineMath math="0{,}450\text{ dm}^3" /> lolos.</>}
   bars="apart"
-  categories={["Karbon", "Hidrogen", "Oksigen"]}
+  categories={["Gas dilepas", "Terserap", "Lolos"]}
   series={[
-    { label: "Massa (g)", mark: "bar", values: [0.12, 0.02, 0.16] },
+    { label: "Volume", mark: "bar", values: [1.20, 0.750, 0.450] },
   ]}
-  valueLabel="Massa (g)"
-  description={<>Sampel <InlineMath math="0{,}30\text{ g}" /> berisi <InlineMath math="0{,}12\text{ g}" /> karbon, <InlineMath math="0{,}02\text{ g}" /> hidrogen, dan <InlineMath math="0{,}16\text{ g}" /> oksigen.</>}
+  valueLabel="Volume (dm³)"
 />
 
-- Mol: C <InlineMath math="0{,}01" />, H <InlineMath math="0{,}02" />, O <InlineMath math="0{,}01" />, jadi rumus empirisnya <InlineMath math="\text{CH}_2\text{O}" />, massa <InlineMath math="30" />.
-- Uap: <InlineMath math="\dfrac{0{,}120}{24} = 0{,}0050\text{ mol}" />, jadi <InlineMath math="M_r = \dfrac{0{,}30}{0{,}0050} = 60" />.
-- <InlineMath math="\dfrac{60}{30} = 2" />, jadi rumus molekulnya <InlineMath math="\text{C}_2\text{H}_4\text{O}_2" />.
+<BlockMath math="\begin{aligned}
+n&=\tfrac{3{,}75}{187{,}5}=0{,}0200\ \Rightarrow\ m(\text{CuO})=1{,}59\text{ g},\quad V=0{,}0500\times24=1{,}20\text{ dm}^3\\
+n(\text{NaOH})&=0{,}0250<0{,}0400\\
+V'&=\big((0{,}0400-0{,}0250)+(0{,}0100-0{,}00625)\big)\times24=0{,}450\text{ dm}^3
+\end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="\text{CH}_2\text{O}" /> adalah rumus empiris: **berhenti sebelum memakai volume uap**.
-- <InlineMath math="\text{C}_2\text{H}_2\text{O}_2" /> menghitung satu atom hidrogen per molekul air, bukan dua.
-- <InlineMath math="\text{C}_3\text{H}_6\text{O}_3" /> mengambil tiga unit empiris tanpa memeriksa massa molar: <InlineMath math="M_r" />-nya <InlineMath math="90" />, padahal uapnya memberi <InlineMath math="60" />.
+- <InlineMath math="0{,}960\text{ dm}^3" /> dan <InlineMath math="0{,}360\text{ dm}^3" /> meninggalkan oksigen, padahal persamaannya memberi satu oksigen untuk tiap empat nitrogen dioksida.
+- <InlineMath math="0{,}600\text{ dm}^3" /> membiarkan semua oksigen lolos, padahal **basa mengambil satu oksigen bersama tiap empat nitrogen dioksida yang diserapnya**.
+- <InlineMath math="0\text{ dm}^3" /> menganggap basa menyerap semuanya, padahal <InlineMath math="0{,}0250\text{ mol}" /> basa kurang dari <InlineMath math="0{,}0400\text{ mol}" /> nitrogen dioksida.

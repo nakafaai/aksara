@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$11\\%$$" },
-        { correct: false, label: "$$10\\%$$" },
-        { correct: false, label: "$$21\\%$$" },
-        { correct: false, label: "$$5.5\\%$$" },
+        {
+          correct: true,
+          label: "$$12.0\\%$$, $$1.08\\times10^{22}$$, $$100\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$9.0\\%$$, $$1.44\\times10^{22}$$, $$100\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$12.0\\%$$, $$1.10\\times10^{22}$$, $$95.0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$12.0\\%$$, $$1.08\\times10^{22}$$, $$300\\text{ cm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$11\\%$$" },
-        { correct: false, label: "$$10\\%$$" },
-        { correct: false, label: "$$21\\%$$" },
-        { correct: false, label: "$$5.5\\%$$" },
+        {
+          correct: true,
+          label: "$$12.0\\%$$, $$1.08\\times10^{22}$$, $$100\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$9.0\\%$$, $$1.44\\times10^{22}$$, $$100\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$12.0\\%$$, $$1.10\\times10^{22}$$, $$95.0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$12.0\\%$$, $$1.08\\times10^{22}$$, $$300\\text{ cm}^3$$",
+        },
       ],
     },
   },

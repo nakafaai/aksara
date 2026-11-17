@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "I and II only" },
-        { correct: false, label: "II and III only" },
-        { correct: true, label: "I and IV only" },
-        { correct: false, label: "I, III and IV only" },
+        {
+          correct: false,
+          label:
+            "$$0.0100\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$200\\text{ cm}^3$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$100\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$150\\text{ cm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "I dan II sahaja" },
-        { correct: false, label: "II dan III sahaja" },
-        { correct: true, label: "I dan IV sahaja" },
-        { correct: false, label: "I, III dan IV sahaja" },
+        {
+          correct: false,
+          label:
+            "$$0.0100\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$200\\text{ cm}^3$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$100\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$150\\text{ cm}^3$$",
+        },
       ],
     },
   },

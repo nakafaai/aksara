@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "I and III only" },
-        { correct: false, label: "I, II and IV only" },
-        { correct: false, label: "III and IV only" },
-        { correct: true, label: "II and III only" },
+        {
+          correct: false,
+          label: "$$25.0\\%$$, $$6.77\\times10^{22}$$, $$13.5\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$75.0\\%$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$75.0\\%$$, $$2.26\\times10^{22}$$, $$9.53\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label: "$$75.0\\%$$, $$2.26\\times10^{22}$$, $$13.5\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "I dan III sahaja" },
-        { correct: false, label: "I, II dan IV sahaja" },
-        { correct: false, label: "III dan IV sahaja" },
-        { correct: true, label: "II dan III sahaja" },
+        {
+          correct: false,
+          label: "$$25.0\\%$$, $$6.77\\times10^{22}$$, $$13.5\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$75.0\\%$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$75.0\\%$$, $$2.26\\times10^{22}$$, $$9.53\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label: "$$75.0\\%$$, $$2.26\\times10^{22}$$, $$13.5\\text{ g}$$",
+        },
       ],
     },
   },
