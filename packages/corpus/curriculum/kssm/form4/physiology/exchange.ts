@@ -1,4 +1,4 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on how the body takes in and moves materials: respiration, nutrition and transport, chapters 8 to 10 of the DSKP. */
 export const kssmForm4PhysiologyExchangeNodes = [
@@ -47,7 +47,33 @@ export const kssmForm4PhysiologyExchangeNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-transport-in-humans-and-animals-circulatory-system",
+        level: "lesson",
+        materialKeys: ["lesson.biology.circulatory-system"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-transport-in-humans-and-animals",
+    materialCard: {
+      de: {
+        description: "Erkläre Herzzyklus, Blut und Blutdruck.",
+        title: "Stofftransport bei Mensch und Tier",
+      },
+      en: {
+        description: "Explain the cardiac cycle, blood and blood pressure.",
+        title: "Transport in Humans and Animals",
+      },
+      id: {
+        description: "Jelaskan siklus jantung, darah, dan tekanan darah.",
+        title: "Sistem Transportasi pada Manusia dan Hewan",
+      },
+      ms: {
+        description: "Terangkan kitar jantung, darah dan tekanan darah.",
+        title: "Pengangkutan dalam Manusia dan Haiwan",
+      },
+    },
     order: 100,
     translations: {
       de: {
