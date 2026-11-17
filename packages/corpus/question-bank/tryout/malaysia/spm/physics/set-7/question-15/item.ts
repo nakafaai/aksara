@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "I, II, III and IV" },
-        { correct: true, label: "I, II and III only" },
-        { correct: false, label: "I and III only" },
-        { correct: false, label: "II, III and IV only" },
+        {
+          correct: false,
+          label: "$$3.0\\text{ m}$$, $$5$$ per second and $$33\\text{ s}$$",
+        },
+        {
+          correct: true,
+          label: "$$1.5\\text{ m}$$, $$10$$ per second and $$17\\text{ s}$$",
+        },
+        {
+          correct: false,
+          label: "$$1.5\\text{ m}$$, $$23$$ per second and $$17\\text{ s}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.75\\text{ m}$$, $$20$$ per second and $$8.3\\text{ s}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "I, II, III dan IV" },
-        { correct: true, label: "I, II dan III sahaja" },
-        { correct: false, label: "I dan III sahaja" },
-        { correct: false, label: "II, III dan IV sahaja" },
+        {
+          correct: false,
+          label: "$$3.0\\text{ m}$$, $$5$$ kali sesaat dan $$33\\text{ s}$$",
+        },
+        {
+          correct: true,
+          label: "$$1.5\\text{ m}$$, $$10$$ kali sesaat dan $$17\\text{ s}$$",
+        },
+        {
+          correct: false,
+          label: "$$1.5\\text{ m}$$, $$23$$ kali sesaat dan $$17\\text{ s}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.75\\text{ m}$$, $$20$$ kali sesaat dan $$8.3\\text{ s}$$",
+        },
       ],
     },
   },

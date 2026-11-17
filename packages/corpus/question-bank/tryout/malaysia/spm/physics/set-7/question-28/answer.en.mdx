@@ -20,12 +20,12 @@ The current depends on the **whole circuit**, including the battery's own <Inlin
 
 The battery now delivers about <InlineMath math="1.1\text{ A}" />. The <InlineMath math="6.0\,\Omega" /> resistor dissipates about <InlineMath math="7.1\text{ W}" />, more than three times the <InlineMath math="2.0\text{ W}" /> it took before, and the terminal voltage rises to about <InlineMath math="10.9\text{ V}" />.
 
-<BlockMath math="\frac{P_{\text{out}}}{P_{\text{total}}}=\frac{IV}{IE}=\frac{10.9}{12}\approx91\%" />
+<BlockMath math="I^2(6.0)\le5.0\Rightarrow I\le0.913\text{ A},\qquad R_{\text{total}}\ge\frac{12}{0.913}\approx13.1\,\Omega,\qquad R_{\text{extra}}\ge13.1-11=2.1\,\Omega" />
 
-The same current flows through the battery and the outside resistors, so the share delivered outside is the terminal voltage over the emf: about <InlineMath math="91\%" />, up from <InlineMath math="86\%" /> before the failure.
+At <InlineMath math="7.1\text{ W}" /> the <InlineMath math="6.0\,\Omega" /> resistor is overloaded. Keeping it at <InlineMath math="5.0\text{ W}" /> limits the current to about <InlineMath math="0.91\text{ A}" />, so the whole circuit, battery included, needs at least <InlineMath math="13.1\,\Omega" />: about <InlineMath math="2.1\,\Omega" /> more than the <InlineMath math="11\,\Omega" /> already there.
 
 # Why the other options are wrong
 
-- <InlineMath math="1.2\text{ A}" /> and <InlineMath math="100\%" /> **ignore the internal resistance**, as if no energy were lost inside the battery.
-- <InlineMath math="1.7\text{ A}" />, <InlineMath math="2.0\text{ W}" /> and <InlineMath math="86\%" /> describe the circuit **before the failure**.
-- <InlineMath math="20\text{ W}" /> puts the **whole terminal voltage** across the <InlineMath math="6.0\,\Omega" /> resistor, forgetting the <InlineMath math="4.0\,\Omega" /> resistor in series with it.
+- <InlineMath math="1.2\text{ A}" />, <InlineMath math="8.6\text{ W}" /> and <InlineMath math="3.1\,\Omega" /> **ignore the internal resistance** throughout, as if the battery's terminals always gave the full emf.
+- <InlineMath math="1.7\text{ A}" />, <InlineMath math="2.0\text{ W}" /> and <InlineMath math="0\,\Omega" /> describe the circuit **before the failure**, when the resistor was well within its rating.
+- <InlineMath math="3.1\,\Omega" /> with the right current and power **forgets the battery's own <InlineMath math="1.0\,\Omega" />** when working out how much resistance is already in the circuit.

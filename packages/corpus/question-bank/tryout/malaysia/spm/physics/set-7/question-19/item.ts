@@ -12,11 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.50°$$, $$+0.25\\text{ D}$$ and $$8.0°$$",
+          label:
+            "$$0.50°$$, $$+0.25\\text{ D}$$ and $$6.5\\text{ mm}$$ away from the objective",
         },
-        { correct: false, label: "$$0.50°$$, $$+25\\text{ D}$$ and $$12.5°$$" },
-        { correct: true, label: "$$0.50°$$, $$+25\\text{ D}$$ and $$8.0°$$" },
-        { correct: false, label: "$$0.50°$$, $$+5.0\\text{ D}$$ and $$8.0°$$" },
+        {
+          correct: false,
+          label: "$$0.50°$$, $$+25\\text{ D}$$ and no movement",
+        },
+        {
+          correct: true,
+          label:
+            "$$0.50°$$, $$+25\\text{ D}$$ and $$6.5\\text{ mm}$$ away from the objective",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.50°$$, $$+25\\text{ D}$$ and $$6.5\\text{ mm}$$ towards the objective",
+        },
       ],
     },
     ms: {
@@ -24,11 +36,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.50°$$, $$+0.25\\text{ D}$$ dan $$8.0°$$",
+          label:
+            "$$0.50°$$, $$+0.25\\text{ D}$$ dan $$6.5\\text{ mm}$$ menjauhi kanta objek",
         },
-        { correct: false, label: "$$0.50°$$, $$+25\\text{ D}$$ dan $$12.5°$$" },
-        { correct: true, label: "$$0.50°$$, $$+25\\text{ D}$$ dan $$8.0°$$" },
-        { correct: false, label: "$$0.50°$$, $$+5.0\\text{ D}$$ dan $$8.0°$$" },
+        {
+          correct: false,
+          label: "$$0.50°$$, $$+25\\text{ D}$$ dan tidak perlu digerakkan",
+        },
+        {
+          correct: true,
+          label:
+            "$$0.50°$$, $$+25\\text{ D}$$ dan $$6.5\\text{ mm}$$ menjauhi kanta objek",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.50°$$, $$+25\\text{ D}$$ dan $$6.5\\text{ mm}$$ mendekati kanta objek",
+        },
       ],
     },
   },

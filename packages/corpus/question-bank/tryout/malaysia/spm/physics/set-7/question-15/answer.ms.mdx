@@ -1,26 +1,26 @@
-# Hitung setiap panjang gelombang dan masa, kemudian bandingkan dengan bukit
+# Gelombang pantulan dan gelombang terus berinterferens, jadi corak pudar ditentukan oleh panjang gelombang
 
-Gelombang melentur di sekeliling halangan paling banyak apabila panjang gelombangnya **hampir sama saiz dengan halangan**. Setiap pernyataan memerlukan nombornya sendiri daripada <InlineMath math="v=f\lambda" /> atau <InlineMath math="t=\dfrac sv" />, kemudian satu perbandingan.
+Di mana gelombang pantulan bertemu gelombang terus secara **tidak sefasa**, kedua-duanya saling membatalkan dan isyarat pudar. Titik-titik ini berulang setiap **separuh panjang gelombang** di sepanjang jalan. Laju kereta menukar jarak itu kepada kadar, dan stesen dengan panjang gelombang yang jauh lebih panjang menjarakkan titik pudarnya jauh lebih jauh.
 
 <Chart
-  title={<>Panjang Gelombang Setiap Isyarat Radio Berbanding Bukit</>}
+  title={<>Masa antara Pudar bagi Setiap Stesen pada <InlineMath math="15\text{ m/s}" /></>}
   bars="apart"
-  categories={["AM 600 kHz", "FM 100 MHz", "Lebar bukit"]}
+  categories={["FM 100 MHz", "AM 600 kHz"]}
   series={[
-    { label: "Panjang", mark: "bar", values: [500, 3.0, 500] },
+    { label: "Masa antara pudar", mark: "bar", values: [0.1, 16.7] },
   ]}
-  valueLabel="Panjang (m)"
-  description={<>Panjang gelombang AM <InlineMath math="500\text{ m}" /> hampir sama dengan lebar bukit, jadi ia membelau dengan kuat di sekelilingnya, manakala panjang gelombang FM <InlineMath math="3.0\text{ m}" /> sangat kecil berbanding dan hampir tidak melentur.</>}
+  valueLabel="Masa (s)"
+  description={<>Titik pudar FM terpisah <InlineMath math="1.5\text{ m}" />, jadi kereta bertemu satu setiap <InlineMath math="0.10\text{ s}" />. Titik pudar AM terpisah <InlineMath math="250\text{ m}" />, kira-kira <InlineMath math="17\text{ s}" /> pemanduan.</>}
 />
 
-<BlockMath math="\lambda_{AM}=\frac{3.0\times10^{8}}{6.0\times10^{5}}=500\text{ m},\qquad \lambda_{FM}=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m}=\frac{500}{167}" />
+<BlockMath math="\lambda_{FM}=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m},\qquad d=\tfrac12\lambda=1.5\text{ m},\qquad \frac{15}{1.5}=10\text{ kali pudar sesaat}" />
 
-<BlockMath math="t=\frac{3.0\times10^{4}}{3.0\times10^{8}}=1.0\times10^{-4}\text{ s},\qquad N=ft=60,\qquad \lambda_{50}=\frac{3.0\times10^{8}}{5.0\times10^{7}}=6.0\text{ m}" />
+<BlockMath math="\lambda_{AM}=\frac{3.0\times10^{8}}{6.0\times10^{5}}=500\text{ m},\qquad d'=250\text{ m},\qquad t=\frac{250}{15}\approx17\text{ s}" />
 
-Pernyataan I, II dan III betul: gelombang AM sepadan dengan bukit, gelombang FM ialah <InlineMath math="\tfrac{1}{167}" /> daripadanya, dan dalam <InlineMath math="0.1\text{ ms}" /> yang diambil isyarat untuk merentasi <InlineMath math="30\text{ km}" />, pemancar melengkapkan <InlineMath math="60" /> kitaran. Pernyataan IV betul tentang <InlineMath math="6.0\text{ m}" /> tetapi **kesimpulannya salah**: <InlineMath math="6.0\text{ m}" /> masih kurang daripada satu perlapan puluh bukit, jauh berbeza daripada gelombang AM <InlineMath math="500\text{ m}" />.
+Titik pudar FM terpisah <InlineMath math="1.5\text{ m}" />, jadi pada <InlineMath math="15\text{ m s}^{-1}" /> kereta melalui sepuluh setiap saat, satu getaran yang pantas. Pada AM titik pudar terpisah <InlineMath math="250\text{ m}" />, jadi pudar hanya berlaku kira-kira setiap <InlineMath math="17\text{ s}" />.
 
 # Kenapa pilihan lain salah
 
-- **I, II, III dan IV** menerima pernyataan IV, tetapi menggandakan panjang gelombang yang sangat kecil masih menjadikannya kecil berbanding bukit.
-- **I dan III sahaja** menolak pernyataan II, walaupun <InlineMath math="3.0\text{ m}" /> jauh kurang daripada <InlineMath math="5\text{ m}" />, iaitu satu perseratus bukit.
-- **II, III dan IV sahaja** menolak pernyataan I, walaupun panjang gelombang AM tepat sama dengan lebar bukit.
+- <InlineMath math="3.0\text{ m}" /> mengambil **satu panjang gelombang penuh** sebagai jarak, tetapi pudar berulang setiap separuh panjang gelombang.
+- <InlineMath math="23" /> kali sesaat **mendarab** laju dengan jarak dan bukan membahagi, yang memberi jarak kuasa dua per masa, bukan kadar.
+- <InlineMath math="0.75\text{ m}" /> mengambil **satu perempat panjang gelombang**, iaitu jarak dari titik pudar ke titik kuat terdekat, sebagai jarak antara pudar.

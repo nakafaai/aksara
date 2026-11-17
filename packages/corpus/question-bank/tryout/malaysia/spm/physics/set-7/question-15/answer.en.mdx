@@ -1,26 +1,26 @@
-# Work out each wavelength and time, then compare with the hill
+# Reflected and direct waves interfere, so the fading pattern is set by the wavelength
 
-Waves bend around an obstacle most when their wavelength is **similar in size to the obstacle**. Each statement needs its own number from <InlineMath math="v=f\lambda" /> or <InlineMath math="t=\dfrac sv" />, and then a comparison.
+Where the reflected wave meets the direct wave **out of step**, they cancel and the signal fades. These points repeat every **half wavelength** along the road. The car's speed turns that spacing into a rate, and a station with a much longer wavelength spreads its fades much farther apart.
 
 <Chart
-  title={<>Wavelength of Each Radio Signal Compared with the Hill</>}
+  title={<>Time Between Fades for Each Station at <InlineMath math="15\text{ m/s}" /></>}
   bars="apart"
-  categories={["AM 600 kHz", "FM 100 MHz", "Hill width"]}
+  categories={["FM 100 MHz", "AM 600 kHz"]}
   series={[
-    { label: "Length", mark: "bar", values: [500, 3.0, 500] },
+    { label: "Time between fades", mark: "bar", values: [0.1, 16.7] },
   ]}
-  valueLabel="Length (m)"
-  description={<>The AM wavelength of <InlineMath math="500\text{ m}" /> is about the width of the hill, so it diffracts strongly around it, while the FM wavelength of <InlineMath math="3.0\text{ m}" /> is tiny by comparison and hardly bends.</>}
+  valueLabel="Time (s)"
+  description={<>The FM fades are <InlineMath math="1.5\text{ m}" /> apart, so the car meets one every <InlineMath math="0.10\text{ s}" />. The AM fades are <InlineMath math="250\text{ m}" /> apart, about <InlineMath math="17\text{ s}" /> of driving.</>}
 />
 
-<BlockMath math="\lambda_{AM}=\frac{3.0\times10^{8}}{6.0\times10^{5}}=500\text{ m},\qquad \lambda_{FM}=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m}=\frac{500}{167}" />
+<BlockMath math="\lambda_{FM}=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m},\qquad d=\tfrac12\lambda=1.5\text{ m},\qquad \frac{15}{1.5}=10\text{ fades per second}" />
 
-<BlockMath math="t=\frac{3.0\times10^{4}}{3.0\times10^{8}}=1.0\times10^{-4}\text{ s},\qquad N=ft=60,\qquad \lambda_{50}=\frac{3.0\times10^{8}}{5.0\times10^{7}}=6.0\text{ m}" />
+<BlockMath math="\lambda_{AM}=\frac{3.0\times10^{8}}{6.0\times10^{5}}=500\text{ m},\qquad d'=250\text{ m},\qquad t=\frac{250}{15}\approx17\text{ s}" />
 
-Statements I, II and III are correct: the AM wave matches the hill, the FM wave is <InlineMath math="\tfrac{1}{167}" /> of it, and in the <InlineMath math="0.1\text{ ms}" /> the signal takes to cross <InlineMath math="30\text{ km}" /> the transmitter completes <InlineMath math="60" /> cycles. Statement IV gets the <InlineMath math="6.0\text{ m}" /> right but the **conclusion wrong**: <InlineMath math="6.0\text{ m}" /> is still less than an eightieth of the hill, nothing like the <InlineMath math="500\text{ m}" /> AM wave.
+The FM fades are <InlineMath math="1.5\text{ m}" /> apart, so at <InlineMath math="15\text{ m s}^{-1}" /> the car passes ten every second, a rapid flutter. On AM the fades are <InlineMath math="250\text{ m}" /> apart, so a fade comes only about every <InlineMath math="17\text{ s}" />.
 
 # Why the other options are wrong
 
-- **I, II, III and IV** accepts statement IV, but doubling a tiny wavelength still leaves it tiny compared with the hill.
-- **I and III only** rejects statement II, although <InlineMath math="3.0\text{ m}" /> is far less than <InlineMath math="5\text{ m}" />, a hundredth of the hill.
-- **II, III and IV only** rejects statement I, although the AM wavelength is exactly the hill's width.
+- <InlineMath math="3.0\text{ m}" /> takes a **whole wavelength** as the spacing, but the fades repeat every half wavelength.
+- <InlineMath math="23" /> per second **multiplies** the speed by the spacing instead of dividing, which gives a distance squared over time, not a rate.
+- <InlineMath math="0.75\text{ m}" /> takes a **quarter wavelength**, the distance from a fade to the nearest strong point, as the spacing between fades.

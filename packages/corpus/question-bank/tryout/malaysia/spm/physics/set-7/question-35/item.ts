@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$1.3\\times10^{7}\\text{ m s}^{-1}$$, $$3.8\\text{ ns}$$ and $$19\\text{ ns}$$",
+          label: "$$3.8\\text{ ns}$$, $$19\\text{ ns}$$ and $$9.4\\text{ ns}$$",
         },
         {
           correct: false,
-          label:
-            "$$9.4\\times10^{6}\\text{ m s}^{-1}$$, $$11\\text{ ns}$$ and $$32\\text{ ns}$$",
+          label: "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$ and $$5.6\\text{ ns}$$",
         },
         {
           correct: false,
-          label:
-            "$$1.3\\times10^{7}\\text{ m s}^{-1}$$, $$7.5\\text{ ns}$$ and $$15\\text{ ns}$$",
+          label: "$$11\\text{ ns}$$, $$32\\text{ ns}$$ and $$16\\text{ ns}$$",
         },
         {
           correct: true,
-          label:
-            "$$1.3\\times10^{7}\\text{ m s}^{-1}$$, $$7.5\\text{ ns}$$ and $$23\\text{ ns}$$",
+          label: "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$ and $$11\\text{ ns}$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$1.3\\times10^{7}\\text{ m s}^{-1}$$, $$3.8\\text{ ns}$$ dan $$19\\text{ ns}$$",
+          label: "$$3.8\\text{ ns}$$, $$19\\text{ ns}$$ dan $$9.4\\text{ ns}$$",
         },
         {
           correct: false,
-          label:
-            "$$9.4\\times10^{6}\\text{ m s}^{-1}$$, $$11\\text{ ns}$$ dan $$32\\text{ ns}$$",
+          label: "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$ dan $$5.6\\text{ ns}$$",
         },
         {
           correct: false,
-          label:
-            "$$1.3\\times10^{7}\\text{ m s}^{-1}$$, $$7.5\\text{ ns}$$ dan $$15\\text{ ns}$$",
+          label: "$$11\\text{ ns}$$, $$32\\text{ ns}$$ dan $$16\\text{ ns}$$",
         },
         {
           correct: true,
-          label:
-            "$$1.3\\times10^{7}\\text{ m s}^{-1}$$, $$7.5\\text{ ns}$$ dan $$23\\text{ ns}$$",
+          label: "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$ dan $$11\\text{ ns}$$",
         },
       ],
     },

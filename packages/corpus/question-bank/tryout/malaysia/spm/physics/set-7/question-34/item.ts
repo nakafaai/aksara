@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$46\\text{ W}$$, $$0.24\\text{ A}$$ and $$61\\text{ W}$$",
+          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ and $$17:1$$",
         },
         {
           correct: false,
-          label: "$$72\\text{ W}$$, $$0.30\\text{ A}$$ and $$72\\text{ W}$$",
+          label: "$$72\\text{ W}$$, $$72\\text{ W}$$ and $$20:1$$",
         },
         {
           correct: false,
-          label: "$$46\\text{ W}$$, $$0.19\\text{ A}$$ and $$61\\text{ W}$$",
+          label: "$$46\\text{ W}$$, $$76\\text{ W}$$ and $$17:1$$",
         },
         {
           correct: false,
-          label: "$$46\\text{ W}$$, $$0.24\\text{ A}$$ and $$76\\text{ W}$$",
+          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ and $$22:1$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$46\\text{ W}$$, $$0.24\\text{ A}$$ dan $$61\\text{ W}$$",
+          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ dan $$17:1$$",
         },
         {
           correct: false,
-          label: "$$72\\text{ W}$$, $$0.30\\text{ A}$$ dan $$72\\text{ W}$$",
+          label: "$$72\\text{ W}$$, $$72\\text{ W}$$ dan $$20:1$$",
         },
         {
           correct: false,
-          label: "$$46\\text{ W}$$, $$0.19\\text{ A}$$ dan $$61\\text{ W}$$",
+          label: "$$46\\text{ W}$$, $$76\\text{ W}$$ dan $$17:1$$",
         },
         {
           correct: false,
-          label: "$$46\\text{ W}$$, $$0.24\\text{ A}$$ dan $$76\\text{ W}$$",
+          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ dan $$22:1$$",
         },
       ],
     },

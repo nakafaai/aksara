@@ -1,26 +1,26 @@
-# Jede Wellenlänge und Zeit bestimmen und dann mit dem Hügel vergleichen
+# Reflektierte und direkte Wellen überlagern sich, das Muster der Einbrüche folgt also der Wellenlänge
 
-Wellen werden um ein Hindernis am stärksten gebeugt, wenn ihre Wellenlänge **etwa so groß wie das Hindernis** ist. Jede Aussage braucht ihre eigene Zahl aus <InlineMath math="v=f\lambda" /> oder <InlineMath math="t=\dfrac sv" /> und dann einen Vergleich.
+Wo die reflektierte Welle **gegenphasig** auf die direkte trifft, löschen sie sich aus, und das Signal bricht ein. Diese Stellen wiederholen sich entlang der Straße alle **halbe Wellenlänge**. Die Geschwindigkeit des Autos macht aus diesem Abstand eine Rate, und ein Sender mit viel längerer Wellenlänge zieht seine Einbrüche viel weiter auseinander.
 
 <Chart
-  title={<>Wellenlänge jedes Radiosignals im Vergleich zum Hügel</>}
+  title={<>Zeit zwischen Signaleinbrüchen für jeden Sender bei <InlineMath math="15\text{ m/s}" /></>}
   bars="apart"
-  categories={["AM 600 kHz", "UKW 100 MHz", "Breite des Hügels"]}
+  categories={["UKW 100 MHz", "AM 600 kHz"]}
   series={[
-    { label: "Länge", mark: "bar", values: [500, 3.0, 500] },
+    { label: "Zeit zwischen Einbrüchen", mark: "bar", values: [0.1, 16.7] },
   ]}
-  valueLabel="Länge (m)"
-  description={<>Die AM-Wellenlänge von <InlineMath math="500\text{ m}" /> entspricht etwa der Breite des Hügels und wird stark um ihn gebeugt, die UKW-Wellenlänge von <InlineMath math="3{,}0\text{ m}" /> ist dagegen winzig und wird kaum gebeugt.</>}
+  valueLabel="Zeit (s)"
+  description={<>Die UKW-Einbrüche liegen <InlineMath math="1{,}5\text{ m}" /> auseinander, das Auto trifft alle <InlineMath math="0{,}10\text{ s}" /> einen. Die AM-Einbrüche liegen <InlineMath math="250\text{ m}" /> auseinander, etwa <InlineMath math="17\text{ s}" /> Fahrt.</>}
 />
 
-<BlockMath math="\lambda_{AM}=\frac{3{,}0\cdot10^{8}}{6{,}0\cdot10^{5}}=500\text{ m},\qquad \lambda_{UKW}=\frac{3{,}0\cdot10^{8}}{1{,}0\cdot10^{8}}=3{,}0\text{ m}=\frac{500}{167}" />
+<BlockMath math="\lambda_{UKW}=\frac{3{,}0\cdot10^{8}}{1{,}0\cdot10^{8}}=3{,}0\text{ m},\qquad d=\tfrac12\lambda=1{,}5\text{ m},\qquad \frac{15}{1{,}5}=10\text{ Einbrüche pro Sekunde}" />
 
-<BlockMath math="t=\frac{3{,}0\cdot10^{4}}{3{,}0\cdot10^{8}}=1{,}0\cdot10^{-4}\text{ s},\qquad N=ft=60,\qquad \lambda_{50}=\frac{3{,}0\cdot10^{8}}{5{,}0\cdot10^{7}}=6{,}0\text{ m}" />
+<BlockMath math="\lambda_{AM}=\frac{3{,}0\cdot10^{8}}{6{,}0\cdot10^{5}}=500\text{ m},\qquad d'=250\text{ m},\qquad t=\frac{250}{15}\approx17\text{ s}" />
 
-Die Aussagen I, II und III stimmen: Die AM-Welle passt zum Hügel, die UKW-Welle ist <InlineMath math="\tfrac{1}{167}" /> davon, und in den <InlineMath math="0{,}1\text{ ms}" />, die das Signal für <InlineMath math="30\text{ km}" /> braucht, schwingt der Sender <InlineMath math="60" />-mal. Aussage IV hat die <InlineMath math="6{,}0\text{ m}" /> richtig, aber **den Schluss falsch**: <InlineMath math="6{,}0\text{ m}" /> sind noch weniger als ein Achtzigstel des Hügels, weit entfernt von der <InlineMath math="500\text{ m}" /> langen AM-Welle.
+Die UKW-Einbrüche liegen <InlineMath math="1{,}5\text{ m}" /> auseinander, bei <InlineMath math="15\text{ m s}^{-1}" /> fährt das Auto also zehnmal pro Sekunde durch einen, ein schnelles Flattern. Bei AM liegen sie <InlineMath math="250\text{ m}" /> auseinander, ein Einbruch kommt nur etwa alle <InlineMath math="17\text{ s}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- **I, II, III und IV** akzeptiert Aussage IV, doch eine winzige Wellenlänge zu verdoppeln, lässt sie neben dem Hügel winzig.
-- **Nur I und III** verwirft Aussage II, obwohl <InlineMath math="3{,}0\text{ m}" /> weit unter <InlineMath math="5\text{ m}" /> liegen, einem Hundertstel des Hügels.
-- **Nur II, III und IV** verwirft Aussage I, obwohl die AM-Wellenlänge genau der Breite des Hügels entspricht.
+- <InlineMath math="3{,}0\text{ m}" /> nimmt eine **ganze Wellenlänge** als Abstand, doch die Einbrüche wiederholen sich alle halbe Wellenlänge.
+- <InlineMath math="23" /> pro Sekunde **multipliziert** Geschwindigkeit und Abstand, statt zu teilen, und erhält eine Fläche pro Zeit, keine Rate.
+- <InlineMath math="0{,}75\text{ m}" /> nimmt eine **Viertelwellenlänge**, den Abstand vom Einbruch zur nächsten starken Stelle, als Abstand zwischen Einbrüchen.
