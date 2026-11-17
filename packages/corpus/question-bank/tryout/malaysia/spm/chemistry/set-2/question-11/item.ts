@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$240\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$15\\text{ s}$$",
+          label:
+            "$$240\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$15\\text{ s}$$",
+          label:
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$120\\text{ cm}^3$$, $$240\\text{ cm}^3$$, $$15\\text{ s}$$",
+          label:
+            "$$120\\text{ cm}^3$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$30\\text{ s}$$",
+          label:
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$75.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$240\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$15\\text{ s}$$",
+          label:
+            "$$240\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$15\\text{ s}$$",
+          label:
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$120\\text{ cm}^3$$, $$240\\text{ cm}^3$$, $$15\\text{ s}$$",
+          label:
+            "$$120\\text{ cm}^3$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$30\\text{ s}$$",
+          label:
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$75.0\\text{ cm}^3$$",
         },
       ],
     },

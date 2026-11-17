@@ -1,34 +1,25 @@
-# Concentration decides which ion discharges at the anode
+# The chlorine runs out, so it frees only part of the bromine, and every bromide it removes is replaced by a chloride
 
-At an inert anode, hydroxide ions are discharged before chloride ions, **unless the chloride ions are much more concentrated**. The same current flows through both cells in series.
+The chlorine is <InlineMath math="\tfrac{120}{24\,000}=0.00500\text{ mol}" /> and the bromide <InlineMath math="0.0150\text{ mol}" />, so **the chlorine runs out**, freeing <InlineMath math="0.00500\times160=0.800\text{ g}" /> of bromine. That bromine frees as much iodine, <InlineMath math="0.00500\times254=1.27\text{ g}" />. The water layer keeps <InlineMath math="0.00500\text{ mol}" /> of bromide and gains <InlineMath math="0.0100\text{ mol}" /> of chloride, and **silver nitrate precipitates both**, <InlineMath math="0.0150\text{ mol}" />, <InlineMath math="150\text{ cm}^3" />.
 
-<ElectrolysisLab
-  title={<>Two Cells in Series</>}
-  description={<>Cell I holds dilute and cell II concentrated sodium chloride solution, each with carbon electrodes, on one battery.</>}
-  cells={[{ electrode: "carbon", electrolyte: "sodium-chloride-dilute" }, { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" }]}
-  electrons={0.04}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>At the anode</>,
-    atCathode: <>At the cathode</>,
-    battery: "Battery",
-    cathode: "Cathode",
-    cells: [<>Cell I: dilute sodium chloride, carbon electrodes</>, <>Cell II: concentrated sodium chloride, carbon electrodes</>],
-    electrons: <>Electrons passed</>,
-    ph: <>pH of the electrolyte</>,
-    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
-    view: "Two electrolysis cells in series with carbon electrodes in dilute and concentrated sodium chloride solution",
-  }}
+<Chart
+  title={<>Halide ions in the water layer</>}
+  description={<>The water layer holds <InlineMath math="0.0100\text{ mol}" /> of chloride and <InlineMath math="0.00500\text{ mol}" /> of bromide.</>}
+  bars="apart"
+  categories={["Chloride", "Bromide"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [0.0100, 0.00500] },
+  ]}
+  valueLabel="Amount (mol)"
 />
 
-- Cell I, dilute: hydroxide ions are discharged, <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />, so oxygen forms.
-- Cell II, concentrated: chloride ions are discharged, <InlineMath math="2\text{Cl}^- \rightarrow \text{Cl}_2 + 2e^-" />, so chlorine forms.
-- In cell II, <InlineMath math="2" /> mol of electrons give <InlineMath math="1" /> mol of <InlineMath math="\text{Cl}_2" />, so <InlineMath math="0.04" /> mol of electrons give <InlineMath math="0.02" /> mol.
-- Volume of chlorine: <InlineMath math="0.02 \times 24 = 0.48\text{ dm}^3" />.
+<BlockMath math="\begin{aligned}
+n(\text{Cl}_2)&=0.00500<\tfrac{0.0150}{2}\ \Rightarrow\ m(\text{Br}_2)=0.00500\times160=0.800\text{ g},\quad m(\text{I}_2)=0.00500\times254=1.27\text{ g}\\
+V(\text{AgNO}_3)&=\tfrac{0.0100+0.00500}{0.100}=0.150\text{ dm}^3=150\text{ cm}^3
+\end{aligned}" />
 
 # Why the other options are wrong
 
-- Chlorine in cell I and oxygen in cell II swaps the two cells, **as if dilution favoured chloride ions**.
-- <InlineMath math="0.96\text{ dm}^3" /> takes one mole of chlorine for every mole of electrons, forgetting that each <InlineMath math="\text{Cl}_2" /> needs two.
-- Chlorine at both anodes ignores the concentration effect in the dilute cell.
+- <InlineMath math="50.0\text{ cm}^3" /> counts only the bromide left, but **the chloride formed precipitates with silver too**, so the halide total stays <InlineMath math="0.0150\text{ mol}" />.
+- <InlineMath math="1.20\text{ g}" /> and <InlineMath math="1.91\text{ g}" /> let the bromide decide, but <InlineMath math="0.00500\text{ mol}" /> of chlorine frees only <InlineMath math="0.00500\text{ mol}" /> of bromine.
+- <InlineMath math="0.635\text{ g}" /> weighs the iodine as atoms, but it forms as <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.

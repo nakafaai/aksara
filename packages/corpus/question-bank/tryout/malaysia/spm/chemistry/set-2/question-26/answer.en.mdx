@@ -1,41 +1,25 @@
-# The same electrons, two different anodes
+# The zinc lost counts the electrons, which add zinc ions on one side and remove copper(II) ions on the other
 
-In series, both cells pass the same <InlineMath math="0.10\text{ mol}" /> of electrons. The cathodes behave alike, but the anodes do not: a copper anode dissolves and replaces every copper(II) ion it loses, while **a carbon anode only discharges hydroxide ions**.
+The zinc lost is <InlineMath math="0.0100\text{ mol}" />, and **each zinc atom gives two electrons**, <InlineMath math="0.0200\times6.02\times10^{23}=1.20\times10^{22}" />. **The zinc ions rise** from <InlineMath math="0.0500" /> to <InlineMath math="0.0600\text{ mol}" />, <InlineMath math="0.600\text{ mol dm}^{-3}" />. The same electrons plate <InlineMath math="0.0100\text{ mol}" /> of copper, so <InlineMath math="0.0400\text{ mol}" /> of copper(II) ions is left. A portion holds a tenth, <InlineMath math="0.00400\text{ mol}" />, and **each takes two hydroxide ions**, <InlineMath math="0.00800\div0.100=0.0800\text{ dm}^3=80.0\text{ cm}^3" />.
 
-Run both cells in the lab and compare the two solutions.
-
-<ElectrolysisLab
-  title={<>Both cells after <InlineMath math="0.10\text{ mol}" /> of electrons</>}
-  description={<>In P the copper anode dissolves as fast as copper deposits, so the solution stays blue. In Q copper deposits while oxygen forms, so the copper(II) ions run out.</>}
-  cells={[
-    { electrode: "copper", electrolyte: "copper-sulfate" },
-    { electrode: "carbon", electrolyte: "copper-sulfate" },
+<Chart
+  title={<>Ions after the reaction</>}
+  description={<>The zinc side ends with <InlineMath math="0.0600\text{ mol}" /> of zinc ions and the copper side with <InlineMath math="0.0400\text{ mol}" /> of copper(II) ions.</>}
+  bars="apart"
+  categories={["Zinc ions", "Copper(II) ions"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [0.0600, 0.0400] },
   ]}
-  electrons={0.1}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>At the anode</>,
-    atCathode: <>At the cathode</>,
-    battery: "Battery",
-    cathode: "Cathode",
-    cells: [<>Cell P: copper electrodes</>, <>Cell Q: carbon electrodes</>],
-    electrons: <>Electrons passed</>,
-    ph: <>pH of the electrolyte</>,
-    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
-    view: "Two electrolysis cells of copper(II) sulfate in series",
-  }}
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{Cu})&=\frac{0.10}{2}=0.050\text{ mol}\Rightarrow m=0.050\times64=3.2\text{ g}\\
-n(\text{Cu}^{2+})\text{ in Q}&=0.50\times\frac{100}{1000}=0.050\text{ mol}
+n(\text{Zn})&=\tfrac{0.650}{65}=0.0100\ \Rightarrow\ N(e^-)=1.20\times10^{22},\quad c(\text{Zn}^{2+})=\tfrac{0.0500+0.0100}{0.100}=0.600\text{ mol dm}^{-3}\\
+V(\text{NaOH})&=\tfrac{2\times(0.0500-0.0100)\div10}{0.100}=0.0800\text{ dm}^3=80.0\text{ cm}^3
 \end{aligned}" />
-
-The <InlineMath math="0.050\text{ mol}" /> of copper deposited in Q is every copper(II) ion it held, and nothing replaces them, so the blue colour disappears. So the anode of P loses <InlineMath math="3.2\text{ g}" />, and the solution in Q turns colourless as oxygen forms at its anode.
 
 # Why the other options are wrong
 
-- The blue fading in P swaps the cells: in P the copper anode keeps the copper(II) ions at the same level.
-- <InlineMath math="6.4\text{ g}" /> takes the <InlineMath math="0.10\text{ mol}" /> of electrons as moles of copper. **Each copper(II) ion needs two electrons**.
-- Q staying blue treats the carbon anode like the copper one, though nothing in Q replaces the copper(II) ions that leave the solution.
+- <InlineMath math="0.400\text{ mol dm}^{-3}" /> lowers the zinc ions, but **the zinc electrode dissolves into its own solution**.
+- <InlineMath math="6.02\times10^{21}" /> counts one electron per zinc atom, but each zinc atom gives two.
+- <InlineMath math="40.0\text{ cm}^3" /> gives one hydroxide per copper(II) ion, but copper(II) hydroxide needs two.

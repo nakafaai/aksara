@@ -1,50 +1,25 @@
-# Letakkan setiap logam pada satu skala berbanding kuprum
+# Ion kuprum(II) habis dahulu, jadi hanya zink berbaki yang bertemu asid, dan sepersepuluh daripada asid yang ditinggalkannya dititratkan
 
-Kuprum ialah terminal positif dalam tiga sel, jadi P, Q dan R berada di bawah kuprum dalam siri elektrokimia, sebanyak <InlineMath math="2.70" />, <InlineMath math="0.40" /> dan <InlineMath math="1.10\text{ V}" />. Dalam sel terakhir, S ialah terminal positif, jadi **S berada di atas kuprum**, sebanyak <InlineMath math="0.46\text{ V}" />. Voltan paling tinggi datang daripada dua logam yang paling jauh pada skala itu.
+Zink ialah <InlineMath math="0.0200\text{ mol}" /> dan ion kuprum(II) <InlineMath math="0.0100\text{ mol}" />, jadi **ion kuprum(II) yang habis**. Pepejal itu ialah <InlineMath math="0.640\text{ g}" /> kuprum ditambah <InlineMath math="0.650\text{ g}" /> zink berbaki, <InlineMath math="1.29\text{ g}" />. **Hanya <InlineMath math="0.0100\text{ mol}" /> zink itu yang sampai kepada asid**, <InlineMath math="240\text{ cm}^3" /> hidrogen, menggunakan <InlineMath math="0.0200\text{ mol}" /> daripada <InlineMath math="0.0500\text{ mol}" /> asid. Satu bahagian mengandungi sepersepuluh daripada <InlineMath math="0.0300\text{ mol}" /> yang berbaki, <InlineMath math="0.00300\div0.100=0.0300\text{ dm}^3=30.0\text{ cm}^3" />.
 
-Pada satu skala dengan kuprum pada sifar, P ialah logam paling rendah dan S satu-satunya logam di atas kuprum.
-
-<MathVisual
-  title={<>Empat logam pada satu skala dengan kuprum pada sifar</>}
-  description={<>P berada pada <InlineMath math="-2.70\text{ V}" />, R pada <InlineMath math="-1.10\text{ V}" />, Q pada <InlineMath math="-0.40\text{ V}" />, kuprum pada sifar dan S pada <InlineMath math="+0.46\text{ V}" />. Anak panah dari P ke S merentasi <InlineMath math="3.16\text{ V}" />, jurang yang paling besar.</>}
-  labels={{
-    p: <InlineMath math="\mathrm{P}:\ -2.70\text{ V}" />,
-    r: <InlineMath math="\mathrm{R}:\ -1.10\text{ V}" />,
-    q: <InlineMath math="\mathrm{Q}:\ -0.40\text{ V}" />,
-    cu: <InlineMath math="\mathrm{Cu}:\ 0" />,
-    s: <InlineMath math="\mathrm{S}:\ +0.46\text{ V}" />,
-    gap: <InlineMath math="E_{\text{sel}}=3.16\text{ V}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3.2, max: 1.2 } },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 1 } },
-      { id: "point-p", kind: "point", appearance: "secondary", at: { x: 0, y: -2.7 } },
-      { id: "point-r", kind: "point", appearance: "construction", at: { x: 0, y: -1.1 } },
-      { id: "point-q", kind: "point", appearance: "construction", at: { x: 0, y: -0.4 } },
-      { id: "point-cu", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "point-s", kind: "point", appearance: "primary", at: { x: 0, y: 0.46 } },
-      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.8, y: -2.7 }, to: { x: 0.8, y: 0.46 } },
-    ],
-    labels: [
-      { key: "p", objectId: "point-p", at: { x: 0, y: -2.7 }, placement: "left" },
-      { key: "r", objectId: "point-r", at: { x: 0, y: -1.1 }, placement: "left" },
-      { key: "q", objectId: "point-q", at: { x: 0, y: -0.4 }, placement: "left" },
-      { key: "cu", objectId: "point-cu", at: { x: 0, y: 0 }, placement: "right" },
-      { key: "s", objectId: "point-s", at: { x: 0, y: 0.46 }, placement: "left" },
-      { key: "gap", objectId: "cell-voltage", at: { x: 0.8, y: -1.12 }, placement: "right" },
-    ],
-  }}
+<Chart
+  title={<>Zink dalam serbuk</>}
+  description={<>Ion kuprum(II) menggunakan <InlineMath math="0.0100\text{ mol}" /> zink dan asid <InlineMath math="0.0100\text{ mol}" /> lagi.</>}
+  bars="apart"
+  categories={["Digunakan oleh ion kuprum(II)", "Digunakan oleh asid"]}
+  series={[
+    { label: "Bilangan mol", mark: "bar", values: [0.0100, 0.0100] },
+  ]}
+  valueLabel="Bilangan mol (mol)"
 />
 
-<BlockMath math="E_{\text{sel}}=0.46-(-2.70)=3.16\text{ V}" />
-
-P lebih rendah dalam siri, jadi P melepaskan elektron dan menjadi terminal negatif. Jadi P dan S menghasilkan <InlineMath math="3.16\text{ V}" />, dengan P sebagai terminal negatif.
+<BlockMath math="\begin{aligned}
+n(\text{Cu}^{2+})&=0.0100<n(\text{Zn})=0.0200\ \Rightarrow\ m=0.640+0.650=1.29\text{ g},\quad V(\text{H}_2)=240\text{ cm}^3\\
+V(\text{NaOH})&=\tfrac{(0.0500-2\times0.0100)\div10}{0.100}=0.0300\text{ dm}^3=30.0\text{ cm}^3
+\end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="2.24\text{ V}" /> menolak <InlineMath math="0.46" /> daripada <InlineMath math="2.70" />, seolah-olah S juga di bawah kuprum. **Lajur terminal meletakkan S di sebelah lain kuprum**.
-- <InlineMath math="3.16\text{ V}" /> dengan S sebagai terminal negatif menterbalikkan peranan: logam yang lebih rendah dalam siri, P, yang melepaskan elektron.
-- P dan Q pada <InlineMath math="2.30\text{ V}" /> membaca sel S seolah-olah kuprum juga terminal positifnya, jadi Q kelihatan lebih jauh daripada P berbanding S.
+- <InlineMath math="480\text{ cm}^3" /> dan <InlineMath math="10.0\text{ cm}^3" /> membiarkan semua zink sampai kepada asid, walhal **separuh daripadanya digunakan oleh ion kuprum(II)**.
+- <InlineMath math="1.28\text{ g}" /> membiarkan zink yang menentukan, walhal hanya <InlineMath math="0.0100\text{ mol}" /> ion kuprum(II) yang ada, jadi zink berbaki.
+- <InlineMath math="0.640\text{ g}" /> hanya menimbang kuprum, walhal zink berbaki turut dituras bersamanya.

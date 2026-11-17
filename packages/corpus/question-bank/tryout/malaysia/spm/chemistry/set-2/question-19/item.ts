@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$11.1\\text{ g}$$ of calcium chloride, $$\\text{CaCl}_2$$",
+          label:
+            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$6.12\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$7.4\\text{ g}$$ of calcium chloride, $$\\text{CaCl}_2$$",
+          label:
+            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.06\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$2.8\\text{ g}$$ of potassium hydroxide, $$\\text{KOH}$$",
+          label:
+            "$$0.840\\text{ dm}^3$$, $$3.12\\text{ dm}^3$$, $$3.06\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$2.0\\text{ g}$$ of magnesium oxide, $$\\text{MgO}$$",
+          label:
+            "$$0.360\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.06\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$11.1\\text{ g}$$ kalsium klorida, $$\\text{CaCl}_2$$",
+          label:
+            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$6.12\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$7.4\\text{ g}$$ kalsium klorida, $$\\text{CaCl}_2$$",
+          label:
+            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.06\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$2.8\\text{ g}$$ kalium hidroksida, $$\\text{KOH}$$",
+          label:
+            "$$0.840\\text{ dm}^3$$, $$3.12\\text{ dm}^3$$, $$3.06\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$2.0\\text{ g}$$ magnesium oksida, $$\\text{MgO}$$",
+          label:
+            "$$0.360\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.06\\text{ g}$$",
         },
       ],
     },

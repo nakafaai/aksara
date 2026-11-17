@@ -1,28 +1,25 @@
-# Ausbeute und Atomökonomie messen zwei verschiedene Verluste
+# Verfolge das Schwefelatom durch jeden Schritt und kürze es nur bei dem Schritt auf neunzig Prozent, der nicht vollständig abläuft
 
-Die Ausbeute sagt dir, wie viel des möglichen Ethanols die Charge wirklich geliefert hat, also bestimmt sie, wie viel Glucose du brauchst. Die Atomökonomie folgt allein aus der Gleichung. **Selbst bei perfekter Ausbeute trägt das Kohlenstoffdioxid einen Teil jedes Glucosemoleküls davon**.
-
-<BlockMath math="\begin{aligned}
-n(\text{C}_2\text{H}_5\text{OH})&=\frac{46{.}000}{46}=1000\text{ mol}\ \Rightarrow\ n(\text{C}_6\text{H}_{12}\text{O}_6)=500\text{ mol}\\
-m(\text{Glucose})&=\frac{500\times180}{0{,}80}=112{.}500\text{ g}=112{,}5\text{ kg}\\
-\text{Atomökonomie}&=\frac{2(46)}{180}\times100\%=\frac{92}{180}\times100\%=51{,}1\%
-\end{aligned}" />
+Der Schwefel sind <InlineMath math="\tfrac{3{,}20}{32}=0{,}100\text{ mol}" />, und **die Verbrennung ist vollständig**, also <InlineMath math="0{,}100\text{ mol}" /> Schwefeldioxid, <InlineMath math="2{,}40\text{ dm}^3" />. **Nur die Umsetzung bleibt bei <InlineMath math="90{,}0\%" />**, <InlineMath math="0{,}0900\text{ mol}" /> Schwefeltrioxid, und jedes gibt eine Schwefelsäure, <InlineMath math="0{,}0900\times98=8{,}82\text{ g}" />. In <InlineMath math="0{,}500\text{ dm}^3" /> sind das <InlineMath math="0{,}0900\div0{,}500=0{,}180\text{ mol dm}^{-3}" />.
 
 <Chart
-  title={<>Wohin die Masse von einem Mol Glucose geht</>}
-  description={<>Ein Mol Glucose, <InlineMath math="180\text{ g}" />, wird zu <InlineMath math="92\text{ g}" /> Ethanol und <InlineMath math="88\text{ g}" /> Kohlenstoffdioxid. Nur das Ethanol ist das gewünschte Produkt.</>}
+  title={<>Schwefel entlang des Wegs</>}
+  description={<>Die <InlineMath math="0{,}100\text{ mol}" /> Schwefeldioxid geben <InlineMath math="0{,}0900\text{ mol}" /> Schwefeltrioxid und <InlineMath math="0{,}0900\text{ mol}" /> Säure.</>}
   bars="apart"
-  categories={["Glucose", "Ethanol", "Kohlenstoffdioxid"]}
+  categories={["Schwefeldioxid", "Schwefeltrioxid", "Schwefelsäure"]}
   series={[
-    { label: "Masse", mark: "bar", values: [180, 92, 88] },
+    { label: "Stoffmenge", mark: "bar", values: [0.100, 0.0900, 0.0900] },
   ]}
-  valueLabel="Masse aus einem Mol Glucose (g)"
+  valueLabel="Stoffmenge (mol)"
 />
 
-Die Charge verbraucht also <InlineMath math="112{,}5\text{ kg}" /> Glucose, und die Atomökonomie beträgt <InlineMath math="51{,}1\%" />, egal wie hoch die Ausbeute ist.
+<BlockMath math="\begin{aligned}
+n(\text{SO}_2)&=\tfrac{3{,}20}{32}=0{,}100\ \Rightarrow\ V=2{,}40\text{ dm}^3\\
+m(\text{H}_2\text{SO}_4)&=0{,}900\times0{,}100\times98=8{,}82\text{ g},\quad c=\tfrac{0{,}0900}{0{,}500}=0{,}180\text{ mol dm}^{-3}
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="90\text{ kg}" /> ist die Glucose für volle Ausbeute. Bei <InlineMath math="80\%" /> braucht die Fabrik mehr, <InlineMath math="90\div0{,}80" />.
-- <InlineMath math="225\text{ kg}" /> rechnet mit einer Glucose pro Ethanol und übersieht die <InlineMath math="2" /> vor <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />. Eine Glucose liefert zwei Ethanolmoleküle.
-- <InlineMath math="100\%" /> zählt das Kohlenstoffdioxid als gewünschtes Produkt. **Nur das Ethanol zählt**, also geht fast die Hälfte der Masse schon laut Gleichung verloren.
+- <InlineMath math="9{,}80\text{ g}" /> setzt alles Schwefeldioxid um, doch **nur <InlineMath math="90{,}0\%" /> davon werden Schwefeltrioxid**.
+- <InlineMath math="0{,}0900\text{ mol dm}^{-3}" /> teilt durch einen Kubikdezimeter, doch die Säure füllt nur <InlineMath math="500\text{ cm}^3" />.
+- <InlineMath math="2{,}16\text{ dm}^3" /> wendet die <InlineMath math="90{,}0\%" /> auf die Verbrennung an, doch die Verbrennung ist vollständig.

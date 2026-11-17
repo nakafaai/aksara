@@ -1,19 +1,26 @@
-# Bestimme das begrenzende Edukt vor der Ausbeute
+# Das Gas zählt nur das Carbonat, die Rücktitration zählt alle verbrauchte Säure, und die Differenz gehört dem Hydroxid
 
-Ein schwerlösliches Salz entsteht durch **Fällung aus zwei löslichen Salzen** und wird dann filtriert, gespült und getrocknet. Die Ausbeute muss am zuerst verbrauchten Edukt gemessen werden.
+Das Kohlenstoffdioxid sind <InlineMath math="0{,}00500\text{ mol}" />, also sind es <InlineMath math="0{,}00500\times84=0{,}420\text{ g}" /> Carbonat, das <InlineMath math="0{,}0100\text{ mol}" /> Säure verbraucht. Eine Portion hat <InlineMath math="0{,}000500\text{ mol}" /> Säure, also **hat die ganze Lösung das Zehnfache**, <InlineMath math="0{,}00500\text{ mol}" />, und <InlineMath math="0{,}0250-0{,}00500=0{,}0200\text{ mol}" /> wurden verbraucht. **Die anderen <InlineMath math="0{,}0100\text{ mol}" /> gingen an das Hydroxid**, zwei je Einheit, <InlineMath math="0{,}00500\times58=0{,}290\text{ g}" />. Jedes Magnesium endet in einem Magnesiumchlorid, <InlineMath math="0{,}0100\times95=0{,}950\text{ g}" />.
 
-<Mermaid
-  title={<>Welcher Stoff den Niederschlag begrenzt</>}
-  description={<>Die Sulfationen sind zuerst verbraucht, sie bestimmen also die Masse an Blei(II)-sulfat, und die Ausbeute vergleicht die trockene Masse mit dieser Grenze.</>}
-  chart={"flowchart LR\n  A[Pb2+: 0,0100 mol] --> C[Mischen]\n  B[SO4 2-: 0,00750 mol, zuerst verbraucht] --> C\n  C --> D[Höchstens 0,00750 mol PbSO4, 2,27 g]\n  D --> E[2,05 g erhalten, Ausbeute 90,2 %]"}
+<Chart
+  title={<>Säure im Kolben</>}
+  description={<>Carbonat und Hydroxid verbrauchen je <InlineMath math="0{,}0100\text{ mol}" /> der Säure, und <InlineMath math="0{,}00500\text{ mol}" /> bleiben.</>}
+  bars="apart"
+  categories={["Vom Carbonat verbraucht", "Vom Hydroxid verbraucht", "Übrige Säure"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [0.0100, 0.0100, 0.00500] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
 />
 
-- Stoffmenge <InlineMath math="\text{Pb}^{2+}" />: <InlineMath math="0{,}500 \times \dfrac{20{,}0}{1000} = 0{,}0100\text{ mol}" />. Stoffmenge <InlineMath math="\text{SO}_4^{2-}" />: <InlineMath math="0{,}500 \times \dfrac{15{,}0}{1000} = 0{,}00750\text{ mol}" />.
-- Blei- und Sulfationen reagieren <InlineMath math="1 : 1" />, also ist das Sulfat zuerst verbraucht: höchstens <InlineMath math="0{,}00750 \times 303 = 2{,}27\text{ g}" /> Blei(II)-sulfat.
-- Ausbeute: <InlineMath math="\dfrac{2{,}05}{2{,}27} \times 100\,\% = 90{,}2\,\%" />.
+<BlockMath math="\begin{aligned}
+n(\text{MgCO}_3)&=\tfrac{120}{24{.}000}=0{,}00500\ \Rightarrow\ m=0{,}420\text{ g}\\
+n(\text{HCl})_{\text{used}}&=0{,}0250-10\times0{,}000500=0{,}0200\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0{,}0200-0{,}0100}{2}\times58=0{,}290\text{ g}\\
+m(\text{MgCl}_2)&=(0{,}00500+0{,}00500)\times95=0{,}950\text{ g}
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- Titration liefert **lösliche** Natrium-, Kalium- und Ammoniumsalze, kein schwerlösliches.
-- <InlineMath math="67{,}7\,\%" /> hält die Blei(II)-Ionen für begrenzend, <InlineMath math="\dfrac{2{,}05}{3{,}03}" />, obwohl es mehr davon gibt als Sulfationen.
-- <InlineMath math="111\,\%" /> teilt die erwartete durch die erhaltene Masse. Eine Ausbeute über <InlineMath math="100\,\%" /> ist unmöglich.
+- <InlineMath math="0{,}840\text{ g}" /> gibt alle verbrauchte Säure dem Carbonat, doch **das Gas zeigt nur <InlineMath math="0{,}00500\text{ mol}" /> Carbonat**.
+- <InlineMath math="0{,}580\text{ g}" /> lässt jede Hydroxideinheit eine Säure nehmen, doch sie nimmt zwei.
+- <InlineMath math="0{,}475\text{ g}" /> zählt nur das Chlorid aus dem Carbonat, doch auch das Hydroxid gibt Magnesiumchlorid.

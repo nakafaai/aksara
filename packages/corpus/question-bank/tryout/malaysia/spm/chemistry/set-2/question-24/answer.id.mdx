@@ -1,34 +1,25 @@
-# Konsentrasi menentukan ion yang dilepas di anode
+# Klorin habis, jadi hanya membebaskan sebagian bromin, dan tiap bromida yang disingkirkannya diganti satu klorida
 
-Di anode inert, ion hidroksida dilepas lebih dulu daripada ion klorida, **kecuali ion kloridanya jauh lebih pekat**. Arus yang sama mengalir lewat kedua sel seri.
+Klorinnya <InlineMath math="\tfrac{120}{24{.}000}=0{,}00500\text{ mol}" /> dan bromidanya <InlineMath math="0{,}0150\text{ mol}" />, jadi **klorin yang habis**, membebaskan <InlineMath math="0{,}00500\times160=0{,}800\text{ g}" /> bromin. Bromin itu membebaskan iodin sebanyak itu, <InlineMath math="0{,}00500\times254=1{,}27\text{ g}" />. Lapisan air menyimpan <InlineMath math="0{,}00500\text{ mol}" /> bromida dan menerima <InlineMath math="0{,}0100\text{ mol}" /> klorida, dan **perak nitrat mengendapkan keduanya**, <InlineMath math="0{,}0150\text{ mol}" />, <InlineMath math="150\text{ cm}^3" />.
 
-<ElectrolysisLab
-  title={<>Dua Sel Seri</>}
-  description={<>Sel I berisi larutan natrium klorida encer dan sel II larutan pekat, masing-masing dengan elektrode karbon, pada satu baterai.</>}
-  cells={[{ electrode: "carbon", electrolyte: "sodium-chloride-dilute" }, { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" }]}
-  electrons={0.04}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>Di anode</>,
-    atCathode: <>Di katode</>,
-    battery: "Baterai",
-    cathode: "Katode",
-    cells: [<>Sel I: natrium klorida encer, elektrode karbon</>, <>Sel II: natrium klorida pekat, elektrode karbon</>],
-    electrons: <>Elektron yang mengalir</>,
-    ph: <>pH elektrolit</>,
-    trends: { falls: <>turun</>, rises: <>naik</>, steady: <>tetap</> },
-    view: "Dua sel elektrolisis seri dengan elektrode karbon dalam larutan natrium klorida encer dan pekat",
-  }}
+<Chart
+  title={<>Ion halida dalam lapisan air</>}
+  description={<>Lapisan air memuat <InlineMath math="0{,}0100\text{ mol}" /> klorida dan <InlineMath math="0{,}00500\text{ mol}" /> bromida.</>}
+  bars="apart"
+  categories={["Klorida", "Bromida"]}
+  series={[
+    { label: "Jumlah zat", mark: "bar", values: [0.0100, 0.00500] },
+  ]}
+  valueLabel="Jumlah zat (mol)"
 />
 
-- Sel I, encer: ion hidroksida dilepas, <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />, jadi terbentuk oksigen.
-- Sel II, pekat: ion klorida dilepas, <InlineMath math="2\text{Cl}^- \rightarrow \text{Cl}_2 + 2e^-" />, jadi terbentuk klorin.
-- Di sel II, <InlineMath math="2" /> mol elektron menghasilkan <InlineMath math="1" /> mol <InlineMath math="\text{Cl}_2" />, jadi <InlineMath math="0{,}04" /> mol elektron menghasilkan <InlineMath math="0{,}02" /> mol.
-- Volume klorin: <InlineMath math="0{,}02 \times 24 = 0{,}48\text{ dm}^3" />.
+<BlockMath math="\begin{aligned}
+n(\text{Cl}_2)&=0{,}00500<\tfrac{0{,}0150}{2}\ \Rightarrow\ m(\text{Br}_2)=0{,}00500\times160=0{,}800\text{ g},\quad m(\text{I}_2)=0{,}00500\times254=1{,}27\text{ g}\\
+V(\text{AgNO}_3)&=\tfrac{0{,}0100+0{,}00500}{0{,}100}=0{,}150\text{ dm}^3=150\text{ cm}^3
+\end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- Klorin di sel I dan oksigen di sel II menukar kedua sel, **seakan-akan pengenceran menguntungkan ion klorida**.
-- <InlineMath math="0{,}96\text{ dm}^3" /> menganggap satu mol klorin untuk tiap mol elektron, lupa bahwa tiap <InlineMath math="\text{Cl}_2" /> butuh dua.
-- Klorin di kedua anode mengabaikan pengaruh konsentrasi di sel yang encer.
+- <InlineMath math="50{,}0\text{ cm}^3" /> hanya menghitung bromida sisa, padahal **klorida yang terbentuk juga mengendap dengan perak**, jadi total halida tetap <InlineMath math="0{,}0150\text{ mol}" />.
+- <InlineMath math="1{,}20\text{ g}" /> dan <InlineMath math="1{,}91\text{ g}" /> membiarkan bromida yang menentukan, padahal <InlineMath math="0{,}00500\text{ mol}" /> klorin hanya membebaskan <InlineMath math="0{,}00500\text{ mol}" /> bromin.
+- <InlineMath math="0{,}635\text{ g}" /> menimbang iodin sebagai atom, padahal iodin terbentuk sebagai <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.

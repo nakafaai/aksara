@@ -1,49 +1,25 @@
-# Equal masses are not equal moles
+# The carbon dioxide counts the carbon atoms, which with the mass fixes n, and the formula then balances water and oxygen
 
-Both molecules have six carbon atoms, but hex-1-ene has two fewer hydrogen atoms, so it is lighter, <InlineMath math="84" /> against <InlineMath math="86" />. **A gram of hex-1-ene holds more molecules, and so more carbon**. That extra carbon shows up twice: as soot when air is short, and as more carbon dioxide when the oxygen is plentiful.
-
-Turn the two chains, then compare the products the chart works out for one gram of each.
-
-<MoleculeShapeLab
-  title={<>Hexane and hex-1-ene</>}
-  description={<>Both chains have six carbon atoms. Hex-1-ene has a double bond at the end of the chain and two hydrogen atoms fewer.</>}
-  molecules={[
-    { id: "hexane", name: "hexane" },
-    { id: "hexene", name: "hex-1-ene" },
-  ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Hexane and hex-1-ene",
-  }}
-/>
+The carbon dioxide is <InlineMath math="0.0800\text{ mol}" />, so <InlineMath math="n\times\tfrac{1.48}{14n+18}=0.0800" />, which gives <InlineMath math="1.48n=1.12n+1.44" />, <InlineMath math="n=4" />, <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, <InlineMath math="0.0200\text{ mol}" />. **Its ten hydrogen atoms make five water molecules**, <InlineMath math="0.100\times18=1.80\text{ g}" />. Balancing, <InlineMath math="\text{C}_4\text{H}_9\text{OH}+6\text{O}_2\rightarrow4\text{CO}_2+5\text{H}_2\text{O}" />, and **the alcohol's own oxygen atom lowers the oxygen needed**, <InlineMath math="0.120\times24=2.88\text{ dm}^3" />.
 
 <Chart
-  title={<>Products from <InlineMath math="1.00\text{ g}" /> of each fuel</>}
-  description={<>Hex-1-ene gives <InlineMath math="3.14\text{ g}" /> of carbon dioxide against <InlineMath math="3.07\text{ g}" /> from hexane, and <InlineMath math="1.29\text{ g}" /> of water against <InlineMath math="1.47\text{ g}" />.</>}
+  title={<>Products and oxygen</>}
+  description={<>The <InlineMath math="0.0200\text{ mol}" /> of alcohol gives <InlineMath math="0.0800\text{ mol}" /> of carbon dioxide and <InlineMath math="0.100\text{ mol}" /> of water, using <InlineMath math="0.120\text{ mol}" /> of oxygen.</>}
   bars="apart"
-  categories={["Hexane", "Hex-1-ene"]}
+  categories={["Carbon dioxide", "Water", "Oxygen"]}
   series={[
-    { label: "Carbon dioxide", mark: "bar", values: [3.07, 3.14] },
-    { label: "Water", mark: "bar", values: [1.47, 1.29] },
+    { label: "Amount", mark: "bar", values: [0.0800, 0.100, 0.120] },
   ]}
-  valueLabel="Mass (g)"
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\text{C}_6\text{H}_{14}:\ n&=\frac{1.00}{86}=0.0116\text{ mol},\ m(\text{CO}_2)=6\times0.0116\times44=3.07\text{ g}\\
-\text{C}_6\text{H}_{12}:\ n&=\frac{1.00}{84}=0.0119\text{ mol},\ m(\text{CO}_2)=6\times0.0119\times44=3.14\text{ g}\\
-\%\,\text{C}&=\frac{72}{86}\times100\%=83.7\%\ \text{against}\ \frac{72}{84}\times100\%=85.7\%
+\tfrac{1.48n}{14n+18}&=\tfrac{1.92}{24}\ \Rightarrow\ n=4,\quad n(\text{C}_4\text{H}_9\text{OH})=0.0200\\
+m(\text{H}_2\text{O})&=5\times0.0200\times18=1.80\text{ g},\quad V(\text{O}_2)=6\times0.0200\times24=2.88\text{ dm}^3
 \end{aligned}" />
-
-So hex-1-ene gives more carbon dioxide because more of its mass is carbon.
 
 # Why the other options are wrong
 
-- The double bond holds no extra hydrogen. Hex-1-ene has fewer hydrogen atoms, so it forms less water, <InlineMath math="1.29\text{ g}" /> against <InlineMath math="1.47\text{ g}" />.
-- Six carbon atoms per molecule would give equal carbon dioxide only for equal moles. **Equal masses of the two fuels contain different numbers of molecules**.
-- Hexane's extra atoms are hydrogen, which forms water, not carbon dioxide. Per gram it carries less carbon.
+- <InlineMath math="3.12\text{ dm}^3" /> ignores the oxygen atom already in the alcohol, so it needs <InlineMath math="6\tfrac{1}{2}" /> oxygen molecules instead of <InlineMath math="6" />.
+- <InlineMath math="1.44\text{ g}" /> gives one water per carbon atom, but **the water comes from the ten hydrogen atoms**.
+- <InlineMath math="3.60\text{ g}" /> gives one water per hydrogen atom, but each water molecule holds two.

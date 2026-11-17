@@ -1,34 +1,25 @@
-# Die Konzentration entscheidet, welches Ion an der Anode entladen wird
+# Das Chlor geht aus, setzt also nur einen Teil des Broms frei, und jedes entfernte Bromid wird durch ein Chlorid ersetzt
 
-An einer inerten Anode werden Hydroxidionen vor Chloridionen entladen, **außer die Chloridionen sind viel konzentrierter**. Durch beide Zellen in Reihe fließt derselbe Strom.
+Das Chlor sind <InlineMath math="\tfrac{120}{24{.}000}=0{,}00500\text{ mol}" /> und das Bromid <InlineMath math="0{,}0150\text{ mol}" />, also **geht das Chlor aus** und setzt <InlineMath math="0{,}00500\times160=0{,}800\text{ g}" /> Brom frei. Dieses Brom setzt ebenso viel Iod frei, <InlineMath math="0{,}00500\times254=1{,}27\text{ g}" />. Die Wasserschicht behält <InlineMath math="0{,}00500\text{ mol}" /> Bromid und gewinnt <InlineMath math="0{,}0100\text{ mol}" /> Chlorid, und **Silbernitrat fällt beide**, <InlineMath math="0{,}0150\text{ mol}" />, <InlineMath math="150\text{ cm}^3" />.
 
-<ElectrolysisLab
-  title={<>Zwei Zellen in Reihe</>}
-  description={<>Zelle I enthält verdünnte, Zelle II konzentrierte Natriumchloridlösung, jeweils mit Kohleelektroden, an einer Batterie.</>}
-  cells={[{ electrode: "carbon", electrolyte: "sodium-chloride-dilute" }, { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" }]}
-  electrons={0.04}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>An der Anode</>,
-    atCathode: <>An der Kathode</>,
-    battery: "Batterie",
-    cathode: "Kathode",
-    cells: [<>Zelle I: verdünnte Natriumchloridlösung, Kohleelektroden</>, <>Zelle II: konzentrierte Natriumchloridlösung, Kohleelektroden</>],
-    electrons: <>Geflossene Elektronen</>,
-    ph: <>pH-Wert des Elektrolyten</>,
-    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
-    view: "Zwei Elektrolysezellen in Reihe mit Kohleelektroden in verdünnter und konzentrierter Natriumchloridlösung",
-  }}
+<Chart
+  title={<>Halogenidionen in der Wasserschicht</>}
+  description={<>Die Wasserschicht enthält <InlineMath math="0{,}0100\text{ mol}" /> Chlorid und <InlineMath math="0{,}00500\text{ mol}" /> Bromid.</>}
+  bars="apart"
+  categories={["Chlorid", "Bromid"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [0.0100, 0.00500] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
 />
 
-- Zelle I, verdünnt: Hydroxidionen werden entladen, <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />, es entsteht Sauerstoff.
-- Zelle II, konzentriert: Chloridionen werden entladen, <InlineMath math="2\text{Cl}^- \rightarrow \text{Cl}_2 + 2e^-" />, es entsteht Chlor.
-- In Zelle II liefern <InlineMath math="2" /> mol Elektronen <InlineMath math="1" /> mol <InlineMath math="\text{Cl}_2" />, also liefern <InlineMath math="0{,}04" /> mol Elektronen <InlineMath math="0{,}02" /> mol.
-- Volumen Chlor: <InlineMath math="0{,}02 \times 24 = 0{,}48\text{ dm}^3" />.
+<BlockMath math="\begin{aligned}
+n(\text{Cl}_2)&=0{,}00500<\tfrac{0{,}0150}{2}\ \Rightarrow\ m(\text{Br}_2)=0{,}00500\times160=0{,}800\text{ g},\quad m(\text{I}_2)=0{,}00500\times254=1{,}27\text{ g}\\
+V(\text{AgNO}_3)&=\tfrac{0{,}0100+0{,}00500}{0{,}100}=0{,}150\text{ dm}^3=150\text{ cm}^3
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- Chlor in Zelle I und Sauerstoff in Zelle II vertauscht die Zellen, **als ob Verdünnen die Chloridionen begünstigen würde**.
-- <InlineMath math="0{,}96\text{ dm}^3" /> rechnet ein Mol Chlor pro Mol Elektronen und vergisst, dass jedes <InlineMath math="\text{Cl}_2" /> zwei braucht.
-- Chlor an beiden Anoden übersieht den Einfluss der Konzentration in der verdünnten Zelle.
+- <InlineMath math="50{,}0\text{ cm}^3" /> zählt nur das übrige Bromid, doch **das gebildete Chlorid fällt ebenfalls mit Silber**, also bleibt die Halogenidmenge <InlineMath math="0{,}0150\text{ mol}" />.
+- <InlineMath math="1{,}20\text{ g}" /> und <InlineMath math="1{,}91\text{ g}" /> lassen das Bromid entscheiden, doch <InlineMath math="0{,}00500\text{ mol}" /> Chlor setzen nur <InlineMath math="0{,}00500\text{ mol}" /> Brom frei.
+- <InlineMath math="0{,}635\text{ g}" /> wiegt das Iod als Atome, doch es entsteht als <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.

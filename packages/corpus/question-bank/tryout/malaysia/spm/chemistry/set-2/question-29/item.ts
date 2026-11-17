@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$3$$" },
-        { correct: false, label: "$$2$$" },
-        { correct: false, label: "$$5$$" },
-        { correct: false, label: "$$4$$" },
+        {
+          correct: true,
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, $$10.8\\text{ g}$$, $$4.80\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_2\\text{H}_4$$, $$18.8\\text{ g}$$, $$4.80\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, $$6.80\\text{ g}$$, $$4.80\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, $$10.8\\text{ g}$$, $$1.20\\text{ dm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$3$$" },
-        { correct: false, label: "$$2$$" },
-        { correct: false, label: "$$5$$" },
-        { correct: false, label: "$$4$$" },
+        {
+          correct: true,
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, $$10.8\\text{ g}$$, $$4.80\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_2\\text{H}_4$$, $$18.8\\text{ g}$$, $$4.80\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, $$6.80\\text{ g}$$, $$4.80\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_4\\text{H}_8$$, $$10.8\\text{ g}$$, $$1.20\\text{ dm}^3$$",
+        },
       ],
     },
   },

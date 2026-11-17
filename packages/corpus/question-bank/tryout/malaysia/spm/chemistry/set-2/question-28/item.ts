@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "1-bromopropane, $$65.0\\%$$" },
-        { correct: false, label: "1,3-dibromopropane, $$79.2\\%$$" },
-        { correct: false, label: "1,2-dibromopropane, $$39.6\\%$$" },
-        { correct: true, label: "1,2-dibromopropane, $$79.2\\%$$" },
+        {
+          correct: false,
+          label:
+            "$$4.40\\text{ g}$$, $$3.00\\text{ g}$$, $$3.01\\times10^{22}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$6.16\\text{ g}$$, $$1.80\\text{ g}$$, $$4.21\\times10^{22}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$3.08\\text{ g}$$, $$3.00\\text{ g}$$, $$2.11\\times10^{22}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$3.08\\text{ g}$$, $$3.90\\text{ g}$$, $$2.11\\times10^{22}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "1-bromopropana, $$65.0\\%$$" },
-        { correct: false, label: "1,3-dibromopropana, $$79.2\\%$$" },
-        { correct: false, label: "1,2-dibromopropana, $$39.6\\%$$" },
-        { correct: true, label: "1,2-dibromopropana, $$79.2\\%$$" },
+        {
+          correct: false,
+          label:
+            "$$4.40\\text{ g}$$, $$3.00\\text{ g}$$, $$3.01\\times10^{22}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$6.16\\text{ g}$$, $$1.80\\text{ g}$$, $$4.21\\times10^{22}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$3.08\\text{ g}$$, $$3.00\\text{ g}$$, $$2.11\\times10^{22}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$3.08\\text{ g}$$, $$3.90\\text{ g}$$, $$2.11\\times10^{22}$$",
+        },
       ],
     },
   },

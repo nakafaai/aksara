@@ -1,19 +1,26 @@
-# Cari bahan pengehad sebelum peratus hasil
+# Gas hanya mengira karbonat, pentitratan balik mengira semua asid yang digunakan, dan bezanya milik hidroksida
 
-Garam tak terlarutkan disediakan melalui **pemendakan daripada dua garam terlarutkan**, kemudian dituras, dibilas dan dikeringkan. Peratus hasil mesti diukur berbanding bahan yang habis dahulu.
+Karbon dioksida ialah <InlineMath math="0.00500\text{ mol}" />, jadi karbonat ialah <InlineMath math="0.00500\times84=0.420\text{ g}" /> dan menggunakan <InlineMath math="0.0100\text{ mol}" /> asid. Satu bahagian mempunyai <InlineMath math="0.000500\text{ mol}" /> asid, jadi **kesemua larutan mempunyai sepuluh kali ganda**, <InlineMath math="0.00500\text{ mol}" />, dan <InlineMath math="0.0250-0.00500=0.0200\text{ mol}" /> telah digunakan. **<InlineMath math="0.0100\text{ mol}" /> lagi digunakan oleh hidroksida**, dua bagi setiap unit, <InlineMath math="0.00500\times58=0.290\text{ g}" />. Setiap magnesium berakhir dalam satu magnesium klorida, <InlineMath math="0.0100\times95=0.950\text{ g}" />.
 
-<Mermaid
-  title={<>Bahan Mana yang Mengehadkan Mendakan</>}
-  description={<>Ion sulfat habis dahulu, jadi ia menentukan jisim plumbum(II) sulfat, dan peratus hasil membandingkan jisim kering dengan had itu.</>}
-  chart={"flowchart LR\n  A[Pb2+: 0.0100 mol] --> C[Campur]\n  B[SO4 2-: 0.00750 mol, habis dahulu] --> C\n  C --> D[Paling banyak 0.00750 mol PbSO4, 2.27 g]\n  D --> E[2.05 g diperoleh, hasil 90.2%]"}
+<Chart
+  title={<>Asid dalam kelalang</>}
+  description={<>Karbonat dan hidroksida masing-masing menggunakan <InlineMath math="0.0100\text{ mol}" /> asid, dan <InlineMath math="0.00500\text{ mol}" /> berbaki.</>}
+  bars="apart"
+  categories={["Digunakan oleh karbonat", "Digunakan oleh hidroksida", "Asid berbaki"]}
+  series={[
+    { label: "Bilangan mol", mark: "bar", values: [0.0100, 0.0100, 0.00500] },
+  ]}
+  valueLabel="Bilangan mol (mol)"
 />
 
-- Mol <InlineMath math="\text{Pb}^{2+}" />: <InlineMath math="0.500 \times \dfrac{20.0}{1000} = 0.0100\text{ mol}" />. Mol <InlineMath math="\text{SO}_4^{2-}" />: <InlineMath math="0.500 \times \dfrac{15.0}{1000} = 0.00750\text{ mol}" />.
-- Kedua-duanya bertindak balas <InlineMath math="1 : 1" />, jadi sulfat habis dahulu: paling banyak <InlineMath math="0.00750 \times 303 = 2.27\text{ g}" /> plumbum(II) sulfat.
-- Peratus hasil: <InlineMath math="\dfrac{2.05}{2.27} \times 100\% = 90.2\%" />.
+<BlockMath math="\begin{aligned}
+n(\text{MgCO}_3)&=\tfrac{120}{24\,000}=0.00500\ \Rightarrow\ m=0.420\text{ g}\\
+n(\text{HCl})_{\text{used}}&=0.0250-10\times0.000500=0.0200\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0.0200-0.0100}{2}\times58=0.290\text{ g}\\
+m(\text{MgCl}_2)&=(0.00500+0.00500)\times95=0.950\text{ g}
+\end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- Pentitratan menghasilkan garam natrium, kalium dan ammonium yang **terlarutkan**, bukan garam tak terlarutkan.
-- <InlineMath math="67.7\%" /> menganggap ion plumbum(II) sebagai pengehad, <InlineMath math="\dfrac{2.05}{3.03}" />, walaupun bilangannya lebih banyak daripada ion sulfat.
-- <InlineMath math="111\%" /> membahagikan jisim dijangka dengan jisim sebenar. Peratus hasil melebihi <InlineMath math="100\%" /> adalah mustahil.
+- <InlineMath math="0.840\text{ g}" /> memberi semua asid yang digunakan kepada karbonat, walhal **gas hanya menunjukkan <InlineMath math="0.00500\text{ mol}" /> karbonat**.
+- <InlineMath math="0.580\text{ g}" /> membiarkan setiap unit hidroksida mengambil satu asid, walhal ia mengambil dua.
+- <InlineMath math="0.475\text{ g}" /> hanya mengira klorida daripada karbonat, walhal hidroksida juga memberi magnesium klorida.

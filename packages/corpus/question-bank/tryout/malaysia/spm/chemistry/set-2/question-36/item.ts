@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$20^\\circ\\text{C}$$" },
-        { correct: false, label: "$$40^\\circ\\text{C}$$" },
-        { correct: false, label: "$$10^\\circ\\text{C}$$" },
-        { correct: true, label: "$$5^\\circ\\text{C}$$" },
+        {
+          correct: false,
+          label:
+            "$$3.59\\text{ g}$$, $$3.90^\\circ\\text{C}$$, $$0\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.87\\text{ g}$$, $$6.24^\\circ\\text{C}$$, $$0.0500\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.87\\text{ g}$$, $$3.12^\\circ\\text{C}$$, $$0.100\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$2.87\\text{ g}$$, $$3.12^\\circ\\text{C}$$, $$0.0500\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$20^\\circ\\text{C}$$" },
-        { correct: false, label: "$$40^\\circ\\text{C}$$" },
-        { correct: false, label: "$$10^\\circ\\text{C}$$" },
-        { correct: true, label: "$$5^\\circ\\text{C}$$" },
+        {
+          correct: false,
+          label:
+            "$$3.59\\text{ g}$$, $$3.90^\\circ\\text{C}$$, $$0\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.87\\text{ g}$$, $$6.24^\\circ\\text{C}$$, $$0.0500\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.87\\text{ g}$$, $$3.12^\\circ\\text{C}$$, $$0.100\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$2.87\\text{ g}$$, $$3.12^\\circ\\text{C}$$, $$0.0500\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
   },

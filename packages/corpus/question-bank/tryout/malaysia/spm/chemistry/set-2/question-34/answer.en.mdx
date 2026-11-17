@@ -1,48 +1,25 @@
-# The water cools, so the dissolving takes heat in
+# The water's heat over the moles burned gives the measured value, and the accepted value shows how much heat was lost
 
-The heat that breaks up the solid comes out of the water, so the temperature falls. **Taking heat in makes the change endothermic, so its sign is positive**. Work out the heat from the temperature fall, then share it over the moles dissolved.
+The water absorbs <InlineMath math="250\times4.2\times15.0=15\,750\text{ J}" />, <InlineMath math="15.8\text{ kJ}" />. The ethanol is <InlineMath math="\tfrac{0.690}{46}=0.0150\text{ mol}" />, so **per mole** the experiment gives <InlineMath math="15.75\div0.0150=1050" />, <InlineMath math="\Delta H=-1050\text{ kJ mol}^{-1}" />. Burning <InlineMath math="0.0150\text{ mol}" /> really releases <InlineMath math="0.0150\times1370=20.55\text{ kJ}" />, so **only <InlineMath math="\tfrac{1050}{1370}\times100=76.6\%" /> reaches the water**.
 
-<BlockMath math="\begin{aligned}
-\Delta\theta&=28.0-24.6=3.4^\circ\text{C}\\
-Q&=50\times4.2\times3.4=714\text{ J}=0.714\text{ kJ}\\
-n(\text{NH}_4\text{NO}_3)&=\frac{2.0}{80}=0.025\text{ mol}\\
-\Delta H&=+\frac{0.714}{0.025}=+28.6\text{ kJ mol}^{-1}
-\end{aligned}" />
-
-On the energy level diagram, the dissolved ions sit above the solid and water by that amount, because they now hold the heat the water lost.
-
-<MathVisual
-  title={<>Energy level diagram for dissolving ammonium nitrate</>}
-  description={<>The products, the dissolved ions, sit higher than the reactants, the solid and water. The arrow points up and shows <InlineMath math="+28.6\text{ kJ mol}^{-1}" />.</>}
-  labels={{
-    energy: <>Energy</>,
-    reactants: <InlineMath math="\text{NH}_4\text{NO}_3(s)+\text{H}_2\text{O}(l)" />,
-    products: <InlineMath math="\text{NH}_4^+(aq)+\text{NO}_3^-(aq)" />,
-    change: <InlineMath math="\Delta H=+28.6\text{ kJ mol}^{-1}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -0.6, max: 2.2 } },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "axis", kind: "vector", appearance: "reference", from: { x: -0.5, y: -0.4 }, to: { x: -0.5, y: 2 } },
-      { id: "reactant-level", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
-      { id: "product-level", kind: "segment", appearance: "primary", from: { x: 2.8, y: 1.4 }, to: { x: 5, y: 1.4 } },
-      { id: "enthalpy", kind: "vector", appearance: "answer", from: { x: 2.5, y: 0 }, to: { x: 2.5, y: 1.4 } },
-    ],
-    labels: [
-      { key: "energy", objectId: "axis", at: { x: -0.5, y: 2 }, placement: "above" },
-      { key: "reactants", objectId: "reactant-level", at: { x: 1.1, y: 0 }, placement: "below" },
-      { key: "products", objectId: "product-level", at: { x: 3.9, y: 1.4 }, placement: "above" },
-      { key: "change", objectId: "enthalpy", at: { x: 2.5, y: 0.7 }, placement: "right" },
-    ],
-  }}
+<Chart
+  title={<>Heat of combustion</>}
+  description={<>The experiment gives <InlineMath math="1050\text{ kJ mol}^{-1}" /> against the accepted <InlineMath math="1370\text{ kJ mol}^{-1}" />.</>}
+  bars="apart"
+  categories={["Measured", "Accepted"]}
+  series={[
+    { label: "Heat released", mark: "bar", values: [1050, 1370] },
+  ]}
+  valueLabel="Heat released (kJ per mol)"
 />
 
-So the heat change is <InlineMath math="+28.6\text{ kJ mol}^{-1}" />, with the products above the reactants.
+<BlockMath math="\begin{aligned}
+Q&=250\times4.2\times15.0=15\,750\text{ J},\quad \Delta H=-\tfrac{15.75}{0.690\div46}=-1050\text{ kJ mol}^{-1}\\
+\text{share}&=\tfrac{1050}{1370}\times100=76.6\%
+\end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="-28.6\text{ kJ mol}^{-1}" /> reads the fall in temperature as heat given out. The water lost heat to the dissolving, so the reaction gained it.
-- <InlineMath math="+0.714\text{ kJ mol}^{-1}" /> is the heat for <InlineMath math="2.0\text{ g}" />, not for one mole. **Divide by <InlineMath math="0.025\text{ mol}" /> to get the value per mole**.
-- A positive <InlineMath math="\Delta H" /> with the reactants on top contradicts itself. Above the products would mean energy was released.
+- <InlineMath math="130\%" /> divides the accepted value by the measured one, but more heat cannot reach the water than the burning releases.
+- <InlineMath math="-22.8" /> gives the heat per gram, but **a heat of combustion is per mole of fuel**.
+- <InlineMath math="23.4\%" /> is the share lost to the surroundings, not the share that reaches the water.

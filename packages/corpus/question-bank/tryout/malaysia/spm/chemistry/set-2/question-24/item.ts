@@ -12,19 +12,22 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Cell I: chlorine. Cell II: oxygen, $$0.24\\text{ dm}^3$$",
+          label:
+            "$$0.800\\text{ g}$$, $$1.27\\text{ g}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "Cell I: oxygen. Cell II: chlorine, $$0.96\\text{ dm}^3$$",
+          label: "$$1.20\\text{ g}$$, $$1.91\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "Cell I: chlorine. Cell II: chlorine, $$0.48\\text{ dm}^3$$",
+          label:
+            "$$0.800\\text{ g}$$, $$0.635\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "Cell I: oxygen. Cell II: chlorine, $$0.48\\text{ dm}^3$$",
+          label:
+            "$$0.800\\text{ g}$$, $$1.27\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +36,22 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Sel I: klorin. Sel II: oksigen, $$0.24\\text{ dm}^3$$",
+          label:
+            "$$0.800\\text{ g}$$, $$1.27\\text{ g}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "Sel I: oksigen. Sel II: klorin, $$0.96\\text{ dm}^3$$",
+          label: "$$1.20\\text{ g}$$, $$1.91\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "Sel I: klorin. Sel II: klorin, $$0.48\\text{ dm}^3$$",
+          label:
+            "$$0.800\\text{ g}$$, $$0.635\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "Sel I: oksigen. Sel II: klorin, $$0.48\\text{ dm}^3$$",
+          label:
+            "$$0.800\\text{ g}$$, $$1.27\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
       ],
     },

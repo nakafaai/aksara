@@ -12,18 +12,24 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "I and III. Mn changes by $$5$$, and each Cr changes by $$3$$",
-        },
-        {
-          correct: false,
-          label: "I and III. Mn changes by $$5$$, and each Cr changes by $$6$$",
+          label:
+            "$$120\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$, $$0.0500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "I, II and III. Mn changes by $$5$$, Fe in II by $$2$$, and each Cr by $$3$$",
+            "$$240\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$, $$0.0500\\text{ mol dm}^{-3}$$",
         },
-        { correct: false, label: "II only. Fe changes by $$2$$" },
+        {
+          correct: false,
+          label:
+            "$$120\\text{ cm}^3$$, $$25.0\\text{ cm}^3$$, $$0.0500\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$120\\text{ cm}^3$$, $$75.0\\text{ cm}^3$$, $$0.100\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
     ms: {
@@ -32,19 +38,23 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "I dan III. Mn berubah sebanyak $$5$$, dan setiap Cr berubah sebanyak $$3$$",
+            "$$120\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$, $$0.0500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "I dan III. Mn berubah sebanyak $$5$$, dan setiap Cr berubah sebanyak $$6$$",
+            "$$240\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$, $$0.0500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "I, II dan III. Mn berubah sebanyak $$5$$, Fe dalam II sebanyak $$2$$, dan setiap Cr sebanyak $$3$$",
+            "$$120\\text{ cm}^3$$, $$25.0\\text{ cm}^3$$, $$0.0500\\text{ mol dm}^{-3}$$",
         },
-        { correct: false, label: "II sahaja. Fe berubah sebanyak $$2$$" },
+        {
+          correct: false,
+          label:
+            "$$120\\text{ cm}^3$$, $$75.0\\text{ cm}^3$$, $$0.100\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
   },

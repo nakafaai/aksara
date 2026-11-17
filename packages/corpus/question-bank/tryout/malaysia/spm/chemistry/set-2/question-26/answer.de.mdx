@@ -1,41 +1,25 @@
-# Dieselben Elektronen, zwei verschiedene Anoden
+# Das verlorene Zink zählt die Elektronen, die auf der einen Seite Zinkionen hinzufügen und auf der anderen Kupfer(II)-Ionen entfernen
 
-In Reihe fließen durch beide Zellen dieselben <InlineMath math="0{,}10\text{ mol}" /> Elektronen. Die Kathoden verhalten sich gleich, die Anoden nicht: Eine Kupferanode geht in Lösung und ersetzt jedes Kupfer(II)-Ion, das verloren geht, während **eine Kohleanode nur Hydroxidionen entlädt**.
+Das verlorene Zink sind <InlineMath math="0{,}0100\text{ mol}" />, und **jedes Zinkatom gibt zwei Elektronen ab**, <InlineMath math="0{,}0200\times6{,}02\times10^{23}=1{,}20\times10^{22}" />. **Die Zinkionen steigen** von <InlineMath math="0{,}0500" /> auf <InlineMath math="0{,}0600\text{ mol}" />, <InlineMath math="0{,}600\text{ mol dm}^{-3}" />. Dieselben Elektronen scheiden <InlineMath math="0{,}0100\text{ mol}" /> Kupfer ab, also bleiben <InlineMath math="0{,}0400\text{ mol}" /> Kupfer(II)-Ionen. Eine Portion enthält ein Zehntel, <InlineMath math="0{,}00400\text{ mol}" />, und **jedes nimmt zwei Hydroxidionen**, <InlineMath math="0{,}00800\div0{,}100=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3" />.
 
-Lass beide Zellen im Labor laufen und vergleich die beiden Lösungen.
-
-<ElectrolysisLab
-  title={<>Beide Zellen nach <InlineMath math="0{,}10\text{ mol}" /> Elektronen</>}
-  description={<>In P löst sich die Kupferanode so schnell auf, wie sich Kupfer abscheidet, also bleibt die Lösung blau. In Q scheidet sich Kupfer ab, während Sauerstoff entsteht, also gehen die Kupfer(II)-Ionen aus.</>}
-  cells={[
-    { electrode: "copper", electrolyte: "copper-sulfate" },
-    { electrode: "carbon", electrolyte: "copper-sulfate" },
+<Chart
+  title={<>Ionen nach der Reaktion</>}
+  description={<>Die Zinkseite endet mit <InlineMath math="0{,}0600\text{ mol}" /> Zinkionen und die Kupferseite mit <InlineMath math="0{,}0400\text{ mol}" /> Kupfer(II)-Ionen.</>}
+  bars="apart"
+  categories={["Zinkionen", "Kupfer(II)-Ionen"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [0.0600, 0.0400] },
   ]}
-  electrons={0.1}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>An der Anode</>,
-    atCathode: <>An der Kathode</>,
-    battery: "Batterie",
-    cathode: "Kathode",
-    cells: [<>Zelle P: Kupferelektroden</>, <>Zelle Q: Kohleelektroden</>],
-    electrons: <>Geflossene Elektronen</>,
-    ph: <>pH-Wert des Elektrolyten</>,
-    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
-    view: "Zwei Elektrolysezellen mit Kupfer(II)-sulfat in Reihe",
-  }}
+  valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{Cu})&=\frac{0{,}10}{2}=0{,}050\text{ mol}\Rightarrow m=0{,}050\times64=3{,}2\text{ g}\\
-n(\text{Cu}^{2+})\text{ in Q}&=0{,}50\times\frac{100}{1000}=0{,}050\text{ mol}
+n(\text{Zn})&=\tfrac{0{,}650}{65}=0{,}0100\ \Rightarrow\ N(e^-)=1{,}20\times10^{22},\quad c(\text{Zn}^{2+})=\tfrac{0{,}0500+0{,}0100}{0{,}100}=0{,}600\text{ mol dm}^{-3}\\
+V(\text{NaOH})&=\tfrac{2\times(0{,}0500-0{,}0100)\div10}{0{,}100}=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3
 \end{aligned}" />
-
-Die <InlineMath math="0{,}050\text{ mol}" /> Kupfer, die sich in Q abscheiden, sind alle Kupfer(II)-Ionen der Lösung, und nichts ersetzt sie, also verschwindet das Blau. Die Anode von P verliert also <InlineMath math="3{,}2\text{ g}" />, und die Lösung in Q wird farblos, während an ihrer Anode Sauerstoff entsteht.
 
 # Warum die anderen Antworten falsch sind
 
-- Das verblassende Blau in P vertauscht die Zellen: In P hält die Kupferanode die Menge der Kupfer(II)-Ionen gleich.
-- <InlineMath math="6{,}4\text{ g}" /> nimmt die <InlineMath math="0{,}10\text{ mol}" /> Elektronen als Stoffmenge Kupfer. **Jedes Kupfer(II)-Ion braucht zwei Elektronen**.
-- Q bleibt blau behandelt die Kohleanode wie die Kupferanode, obwohl in Q nichts die Kupfer(II)-Ionen ersetzt, die die Lösung verlassen.
+- <InlineMath math="0{,}400\text{ mol dm}^{-3}" /> senkt die Zinkionen, doch **die Zinkelektrode löst sich in ihre eigene Lösung**.
+- <InlineMath math="6{,}02\times10^{21}" /> zählt ein Elektron je Zinkatom, doch jedes Zinkatom gibt zwei ab.
+- <InlineMath math="40{,}0\text{ cm}^3" /> gibt ein Hydroxid je Kupfer(II)-Ion, doch Kupfer(II)-hydroxid braucht zwei.

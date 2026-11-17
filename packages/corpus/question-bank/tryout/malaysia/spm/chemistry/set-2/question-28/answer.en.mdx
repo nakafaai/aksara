@@ -1,38 +1,25 @@
-# Name each compound in turn, then count the bromine
+# The ethanol limits, the yield cuts what actually reacts, and only that amount of acid is used
 
-X is propan-1-ol. Over hot porcelain it loses a water molecule, and the double bond forms between the end carbon and its neighbour, so Y is propene. **Bromine adds across that double bond**, one bromine atom to each of its two carbon atoms.
+The acid is <InlineMath math="\tfrac{6.00}{60}=0.100\text{ mol}" /> and the ethanol <InlineMath math="\tfrac{2.30}{46}=0.0500\text{ mol}" />, so **the ethanol limits**. At <InlineMath math="70.0\%" />, <InlineMath math="0.0350\text{ mol}" /> reacts, giving <InlineMath math="0.0350\times88=3.08\text{ g}" /> of ester and <InlineMath math="0.0350\times6.02\times10^{23}=2.11\times10^{22}" /> water molecules. **Only <InlineMath math="0.0350\text{ mol}" /> of acid is used**, so <InlineMath math="0.0650\times60=3.90\text{ g}" /> is left.
 
-Turn both molecules in the lab: the double bond of propene sits between carbon <InlineMath math="1" /> and carbon <InlineMath math="2" />, exactly where the hydroxyl group and a hydrogen atom left.
-
-<MoleculeShapeLab
-  title={<>From propan-1-ol to propene</>}
-  description={<>Propan-1-ol has its hydroxyl group on carbon <InlineMath math="1" />. Propene has its double bond between carbon <InlineMath math="1" /> and carbon <InlineMath math="2" />, where the bromine atoms add.</>}
-  molecules={[
-    { id: "propanol", name: "propan-1-ol" },
-    { id: "propene", name: "propene" },
+<Chart
+  title={<>Ethanoic acid</>}
+  description={<>The reaction uses <InlineMath math="0.0350\text{ mol}" /> of the acid and leaves <InlineMath math="0.0650\text{ mol}" />.</>}
+  bars="apart"
+  categories={["Acid that reacts", "Acid left"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [0.0350, 0.0650] },
   ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Propan-1-ol and propene",
-  }}
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\text{CH}_3\text{CH}_2\text{CH}_2\text{OH}&\rightarrow\text{CH}_3\text{CH{=}CH}_2+\text{H}_2\text{O}\\
-\text{CH}_3\text{CH{=}CH}_2+\text{Br}_2&\rightarrow\text{CH}_3\text{CHBrCH}_2\text{Br}\\
-M_r(\text{C}_3\text{H}_6\text{Br}_2)&=3(12)+6(1)+2(80)=202\\
-\%\,\text{Br}&=\frac{160}{202}\times100\%=79.2\%
+n&=0.700\times\tfrac{2.30}{46}=0.0350\ \Rightarrow\ m(\text{ester})=0.0350\times88=3.08\text{ g}\\
+m(\text{CH}_3\text{COOH})&=(0.100-0.0350)\times60=3.90\text{ g},\quad N(\text{H}_2\text{O})=0.0350\times6.02\times10^{23}=2.11\times10^{22}
 \end{aligned}" />
-
-So Z is 1,2-dibromopropane, with <InlineMath math="79.2\%" /> bromine by mass.
 
 # Why the other options are wrong
 
-- 1-bromopropane at <InlineMath math="65.0\%" /> treats step 2 as substitution, swapping one hydrogen for one bromine. **An alkene takes the whole bromine molecule by addition**.
-- 1,3-dibromopropane puts the bromine on both end carbons, but the two atoms add to the two carbon atoms of the double bond, carbon <InlineMath math="1" /> and carbon <InlineMath math="2" />.
-- <InlineMath math="39.6\%" /> counts only one bromine atom, <InlineMath math="\tfrac{80}{202}" />, in a product that holds two.
+- <InlineMath math="4.40\text{ g}" /> lets all the ethanol react, but **the yield is only <InlineMath math="70.0\%" />**.
+- <InlineMath math="6.16\text{ g}" /> lets the acid limit, but <InlineMath math="0.0500\text{ mol}" /> of ethanol is less than <InlineMath math="0.100\text{ mol}" /> of acid.
+- <InlineMath math="3.00\text{ g}" /> removes acid for all the ethanol, but only the <InlineMath math="0.0350\text{ mol}" /> that reacts uses acid.

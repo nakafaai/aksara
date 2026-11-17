@@ -1,41 +1,25 @@
-# Elektron yang sama, dua anod yang berbeza
+# Zink yang hilang mengira elektron, yang menambah ion zink pada satu bahagian dan menyingkirkan ion kuprum(II) pada bahagian lain
 
-Dalam litar bersiri, kedua-dua sel mengalirkan <InlineMath math="0.10\text{ mol}" /> elektron yang sama. Katodnya bertindak sama, tetapi anodnya tidak: anod kuprum melarut dan menggantikan setiap ion kuprum(II) yang hilang, manakala **anod karbon hanya menyahcas ion hidroksida**.
+Zink yang hilang ialah <InlineMath math="0.0100\text{ mol}" />, dan **setiap atom zink memberi dua elektron**, <InlineMath math="0.0200\times6.02\times10^{23}=1.20\times10^{22}" />. **Ion zink bertambah** daripada <InlineMath math="0.0500" /> kepada <InlineMath math="0.0600\text{ mol}" />, <InlineMath math="0.600\text{ mol dm}^{-3}" />. Elektron yang sama menyadurkan <InlineMath math="0.0100\text{ mol}" /> kuprum, jadi <InlineMath math="0.0400\text{ mol}" /> ion kuprum(II) berbaki. Satu bahagian mengandungi sepersepuluh, <InlineMath math="0.00400\text{ mol}" />, dan **setiap satu mengambil dua ion hidroksida**, <InlineMath math="0.00800\div0.100=0.0800\text{ dm}^3=80.0\text{ cm}^3" />.
 
-Jalankan kedua-dua sel dalam makmal dan bandingkan kedua-dua larutan.
-
-<ElectrolysisLab
-  title={<>Kedua-dua sel selepas <InlineMath math="0.10\text{ mol}" /> elektron</>}
-  description={<>Dalam P anod kuprum melarut sepantas kuprum terenap, jadi larutan kekal biru. Dalam Q kuprum terenap manakala oksigen terbentuk, jadi ion kuprum(II) habis.</>}
-  cells={[
-    { electrode: "copper", electrolyte: "copper-sulfate" },
-    { electrode: "carbon", electrolyte: "copper-sulfate" },
+<Chart
+  title={<>Ion selepas tindak balas</>}
+  description={<>Bahagian zink berakhir dengan <InlineMath math="0.0600\text{ mol}" /> ion zink dan bahagian kuprum dengan <InlineMath math="0.0400\text{ mol}" /> ion kuprum(II).</>}
+  bars="apart"
+  categories={["Ion zink", "Ion kuprum(II)"]}
+  series={[
+    { label: "Bilangan mol", mark: "bar", values: [0.0600, 0.0400] },
   ]}
-  electrons={0.1}
-  showProducts
-  labels={{
-    anode: "Anod",
-    atAnode: <>Di anod</>,
-    atCathode: <>Di katod</>,
-    battery: "Bateri",
-    cathode: "Katod",
-    cells: [<>Sel P: elektrod kuprum</>, <>Sel Q: elektrod karbon</>],
-    electrons: <>Elektron yang mengalir</>,
-    ph: <>pH elektrolit</>,
-    trends: { falls: <>berkurang</>, rises: <>bertambah</>, steady: <>tidak berubah</> },
-    view: "Dua sel elektrolisis kuprum(II) sulfat yang disambung secara bersiri",
-  }}
+  valueLabel="Bilangan mol (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{Cu})&=\frac{0.10}{2}=0.050\text{ mol}\Rightarrow m=0.050\times64=3.2\text{ g}\\
-n(\text{Cu}^{2+})\text{ dalam Q}&=0.50\times\frac{100}{1000}=0.050\text{ mol}
+n(\text{Zn})&=\tfrac{0.650}{65}=0.0100\ \Rightarrow\ N(e^-)=1.20\times10^{22},\quad c(\text{Zn}^{2+})=\tfrac{0.0500+0.0100}{0.100}=0.600\text{ mol dm}^{-3}\\
+V(\text{NaOH})&=\tfrac{2\times(0.0500-0.0100)\div10}{0.100}=0.0800\text{ dm}^3=80.0\text{ cm}^3
 \end{aligned}" />
-
-<InlineMath math="0.050\text{ mol}" /> kuprum yang terenap dalam Q ialah semua ion kuprum(II) yang ada, dan tiada yang menggantikannya, jadi warna biru hilang. Jadi anod P berkurang <InlineMath math="3.2\text{ g}" />, dan larutan dalam Q menjadi tidak berwarna apabila oksigen terbentuk di anodnya.
 
 # Kenapa pilihan lain salah
 
-- Warna biru yang pudar dalam P menukar sel: dalam P anod kuprum mengekalkan kuantiti ion kuprum(II).
-- <InlineMath math="6.4\text{ g}" /> menganggap <InlineMath math="0.10\text{ mol}" /> elektron sebagai bilangan mol kuprum. **Setiap ion kuprum(II) memerlukan dua elektron**.
-- Q yang kekal biru menganggap anod karbon sama seperti anod kuprum, sedangkan tiada apa-apa dalam Q yang menggantikan ion kuprum(II) yang keluar dari larutan.
+- <InlineMath math="0.400\text{ mol dm}^{-3}" /> mengurangkan ion zink, walhal **elektrod zink melarut ke dalam larutannya sendiri**.
+- <InlineMath math="6.02\times10^{21}" /> mengira satu elektron bagi setiap atom zink, walhal setiap atom zink memberi dua.
+- <InlineMath math="40.0\text{ cm}^3" /> memberi satu hidroksida bagi setiap ion kuprum(II), walhal kuprum(II) hidroksida memerlukan dua.

@@ -1,34 +1,25 @@
-# Satu jembatan, dua atom belerang, dua unit terikat
+# Hitung satuan berulangnya, lalu ikuti tiap atom: dua karbon ke karbon dioksida, satu hidrogen ke hidrogen klorida, dan dua ke air
 
-Ubah belerang menjadi jembatan dulu, lalu hitung unit yang disentuh jembatan itu. **Setiap jembatan memakai dua atom belerang tetapi mengikat dua unit**, satu di tiap rantai, jadi jumlah unit terikat sama dengan jumlah atom belerang.
-
-<Mermaid
-  title={<>Jembatan belerang di antara dua rantai</>}
-  description={<>Dua atom belerang menghubungkan satu unit di rantai atas dengan satu unit di rantai bawah. Satu jembatan mengikat dua unit.</>}
-  chart={"flowchart LR\n  A1[\"unit isoprena\"] --- A2[\"unit terikat\"] --- A3[\"unit isoprena\"]\n  B1[\"unit isoprena\"] --- B2[\"unit terikat\"] --- B3[\"unit isoprena\"]\n  A2 --- S1((S)) --- S2((S)) --- B2"}
-/>
-
-<BlockMath math="\begin{aligned}
-n(\text{C}_5\text{H}_8)&=\frac{68}{68}=1{,}0\text{ mol},\quad n(\text{S})=\frac{3{,}2}{32}=0{,}10\text{ mol}\\
-n(\text{ikatan silang})&=\frac{0{,}10}{2}=0{,}050\text{ mol}\\
-n(\text{unit terikat})&=2\times0{,}050=0{,}10\text{ mol}\ \Rightarrow\ \frac{0{,}10}{1{,}0}\times100\%=10\%
-\end{aligned}" />
+Tiap satuan punya <InlineMath math="M_r=62{,}5" />, jadi ada <InlineMath math="0{,}100\text{ mol}" /> satuan. **Tiap satuan memuat dua atom karbon**, <InlineMath math="0{,}200\text{ mol}" /> karbon dioksida, <InlineMath math="4{,}80\text{ dm}^3" />. **Klorinnya mengambil satu hidrogen sebagai hidrogen klorida**, <InlineMath math="0{,}100\text{ mol}" />, jadi satu porsi memuat <InlineMath math="0{,}0100\text{ mol}" />, <InlineMath math="100\text{ cm}^3" /> basa. Dua hidrogen lainnya membentuk satu air, <InlineMath math="0{,}100\times18=1{,}80\text{ g}" />.
 
 <Chart
-  title={<>Jumlah zat dalam karet tervulkanisasi</>}
-  description={<>Karet itu berisi <InlineMath math="1{,}0\text{ mol}" /> unit isoprena. Sebanyak <InlineMath math="0{,}10\text{ mol}" /> atom belerang membentuk <InlineMath math="0{,}050\text{ mol}" /> jembatan, yang mengikat <InlineMath math="0{,}10\text{ mol}" /> unit.</>}
+  title={<>Hasil dari polimer</>}
+  description={<><InlineMath math="0{,}100\text{ mol}" /> satuan memberi <InlineMath math="0{,}200\text{ mol}" /> karbon dioksida, <InlineMath math="0{,}100\text{ mol}" /> air, dan <InlineMath math="0{,}100\text{ mol}" /> hidrogen klorida.</>}
   bars="apart"
-  categories={["Unit isoprena", "Atom belerang", "Ikatan silang", "Unit terikat"]}
+  categories={["Karbon dioksida", "Air", "Hidrogen klorida"]}
   series={[
-    { label: "Jumlah zat", mark: "bar", values: [1.0, 0.10, 0.050, 0.10] },
+    { label: "Jumlah zat", mark: "bar", values: [0.200, 0.100, 0.100] },
   ]}
   valueLabel="Jumlah zat (mol)"
 />
 
-Jadi <InlineMath math="10\%" /> unit membawa ikatan silang. Jembatan itu menahan rantai di tempatnya, jadi karet yang diregangkan kembali ke bentuknya serta lebih keras dan kuat dari karet alam.
+<BlockMath math="\begin{aligned}
+n(\text{unit})&=\tfrac{6{,}25}{62{,}5}=0{,}100\ \Rightarrow\ V(\text{CO}_2)=0{,}200\times24=4{,}80\text{ dm}^3\\
+V(\text{NaOH})&=\tfrac{0{,}100\div10}{0{,}100}=0{,}100\text{ dm}^3=100\text{ cm}^3,\quad m(\text{H}_2\text{O})=0{,}100\times18=1{,}80\text{ g}
+\end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="5\%" /> menghitung satu unit untuk tiap jembatan dan lupa bahwa tiap jembatan punya dua ujung, satu di tiap rantai.
-- <InlineMath math="20\%" /> menganggap tiap atom belerang sebagai jembatan berujung dua. **Satu jembatan butuh sepasang atom belerang**, jadi jumlahnya hanya separuh.
-- Ikatan silang membuat karet lebih keras, bukan lebih lunak, dan sebagian besar ikatan rangkapnya masih ada. Persentasenya benar, tetapi efeknya terbalik.
+- <InlineMath math="2{,}40\text{ dm}^3" /> memberi satu karbon dioksida per satuan, padahal tiap satuan memuat dua atom karbon.
+- <InlineMath math="300\text{ cm}^3" /> mengubah ketiga atom hidrogen menjadi hidrogen klorida, padahal **tiap satuan hanya punya satu atom klorin untuk mengambil hidrogen**.
+- <InlineMath math="2{,}70\text{ g}" /> mengubah ketiga atom hidrogen menjadi air, padahal satu di antaranya keluar sebagai hidrogen klorida.

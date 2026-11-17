@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hydrogen telluride boils highest of the three heavier hydrides because its covalent bonds are the strongest",
+            "$$0.600\\text{ g}$$, $$240\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Water boils at $$100^\\circ\\text{C}$$ because its molecules are the heaviest of the four",
+            "$$0.500\\text{ g}$$, $$120\\text{ cm}^3$$, $$40.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "Without hydrogen bonds, water would be expected to boil below $$-60^\\circ\\text{C}$$, because the boiling point falls with molecular size from $$\\text{H}_2\\text{Te}$$ to $$\\text{H}_2\\text{S}$$",
+            "$$0.500\\text{ g}$$, $$240\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Water boils at $$100^\\circ\\text{C}$$ because its $$\\text{O-H}$$ covalent bonds break as it boils",
+            "$$0.500\\text{ g}$$, $$240\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hidrogen telurida mendidih paling tinggi antara tiga hidrida yang lebih berat kerana ikatan kovalennya paling kuat",
+            "$$0.600\\text{ g}$$, $$240\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Air mendidih pada $$100^\\circ\\text{C}$$ kerana molekulnya paling berat antara keempat-empatnya",
+            "$$0.500\\text{ g}$$, $$120\\text{ cm}^3$$, $$40.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "Tanpa ikatan hidrogen, air dijangka mendidih di bawah $$-60^\\circ\\text{C}$$, kerana takat didih menurun dengan saiz molekul daripada $$\\text{H}_2\\text{Te}$$ kepada $$\\text{H}_2\\text{S}$$",
+            "$$0.500\\text{ g}$$, $$240\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Air mendidih pada $$100^\\circ\\text{C}$$ kerana ikatan kovalen $$\\text{O-H}$$ terputus apabila ia mendidih",
+            "$$0.500\\text{ g}$$, $$240\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$",
         },
       ],
     },
