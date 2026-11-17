@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Rubidium, $$25.0\\text{ cm}^3$$" },
-        { correct: false, label: "Potassium, $$100\\text{ cm}^3$$" },
-        { correct: true, label: "Potassium, $$50.0\\text{ cm}^3$$" },
-        { correct: false, label: "Sodium, $$50.0\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "Rubidium, $$5.00\\text{ cm}^3$$, $$0.435\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "Potassium, $$20.0\\text{ cm}^3$$, $$0.870\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label: "Potassium, $$10.0\\text{ cm}^3$$, $$0.870\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "Potassium, $$10.0\\text{ cm}^3$$, $$0.0870\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Rubidium, $$25.0\\text{ cm}^3$$" },
-        { correct: false, label: "Kalium, $$100\\text{ cm}^3$$" },
-        { correct: true, label: "Kalium, $$50.0\\text{ cm}^3$$" },
-        { correct: false, label: "Natrium, $$50.0\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "Rubidium, $$5.00\\text{ cm}^3$$, $$0.435\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "Kalium, $$20.0\\text{ cm}^3$$, $$0.870\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label: "Kalium, $$10.0\\text{ cm}^3$$, $$0.870\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "Kalium, $$10.0\\text{ cm}^3$$, $$0.0870\\text{ g}$$",
+        },
       ],
     },
   },
