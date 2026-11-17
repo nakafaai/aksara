@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Predicate, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
@@ -15,8 +15,20 @@ import {
   unitNode,
 } from "#corpus/curriculum/schema";
 import { singaporeMoeCurriculum } from "#corpus/curriculum/singapore-moe/source";
+import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
 import { unitedStatesCurriculum } from "#corpus/curriculum/united-states/source";
 import { importCorpusModules } from "#corpus/test/imports";
+
+/** Collects every curriculum node key inside one exported registry value. */
+function exportedNodeKeys(value: unknown): string[] {
+  if (Arr.isArray(value)) {
+    return Arr.flatMap(value, exportedNodeKeys);
+  }
+  if (!(Predicate.isObject(value) && Predicate.isString(value.key))) {
+    return [];
+  }
+  return [value.key, ...exportedNodeKeys(value.children)];
+}
 
 /** Builds complete localized translations for one real curriculum node shape. */
 function translations(prefix: string) {
@@ -158,20 +170,43 @@ describe("curriculum schema", () => {
     })
   );
 
-  it.effect("loads every authored curriculum registry module", () =>
-    Effect.gen(function* () {
-      const files = yield* importCorpusModules("curriculum/**/*.ts", [
-        "curriculum/context.ts",
-        "curriculum/material.ts",
-        "curriculum/node.ts",
-        "curriculum/ownership.ts",
-        "curriculum/projection.ts",
-        "curriculum/route.ts",
-        "curriculum/schema.ts",
-        "curriculum/source.ts",
-      ]);
+  it.effect(
+    "registers every node each curriculum registry module exports",
+    () =>
+      Effect.gen(function* () {
+        const modules = yield* importCorpusModules("curriculum/**/*.ts", [
+          "curriculum/context.ts",
+          "curriculum/material.ts",
+          "curriculum/node.ts",
+          "curriculum/ownership.ts",
+          "curriculum/projection.ts",
+          "curriculum/route.ts",
+          "curriculum/schema.ts",
+          "curriculum/source.ts",
+        ]);
 
-      expect(files).toHaveLength(40);
-    }).pipe(Effect.provide(NodeServices.layer))
+        const curricula = yield* decodeCurriculumCatalog();
+        const registered = new Set(
+          Arr.flatMap(curricula, ({ tree }) => exportedNodeKeys(tree))
+        );
+        const nodeModules = Arr.filter(
+          Arr.map(modules, ({ exports, file }) => ({
+            file,
+            keys: exportedNodeKeys(
+              Predicate.isObject(exports) ? Object.values(exports) : []
+            ),
+          })),
+          ({ keys }) => keys.length > 0
+        );
+        const unregistered = Arr.flatMap(nodeModules, ({ file, keys }) =>
+          Arr.map(
+            Arr.filter(keys, (key) => !registered.has(key)),
+            (key) => `${file}: ${key}`
+          )
+        );
+
+        expect(unregistered).toEqual([]);
+        expect(modules.length - nodeModules.length).toBe(curricula.length);
+      }).pipe(Effect.provide(NodeServices.layer))
   );
 });
