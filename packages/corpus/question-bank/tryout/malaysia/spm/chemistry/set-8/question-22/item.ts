@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$1.08\\text{ g}$$, pH $$7.0$$" },
-        { correct: false, label: "$$0.54\\text{ g}$$, pH $$1.3$$" },
-        { correct: false, label: "$$1.08\\text{ g}$$, pH $$0.70$$" },
-        { correct: true, label: "$$1.08\\text{ g}$$, pH $$1.0$$" },
+        { correct: false, label: "$$22.3$$ days, $$0.464\\text{ g}$$" },
+        { correct: false, label: "$$44.7$$ days, $$0.232\\text{ g}$$" },
+        { correct: false, label: "$$89.4$$ days, $$0.464\\text{ g}$$" },
+        { correct: true, label: "$$44.7$$ days, $$0.464\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$1.08\\text{ g}$$, pH $$7.0$$" },
-        { correct: false, label: "$$0.54\\text{ g}$$, pH $$1.3$$" },
-        { correct: false, label: "$$1.08\\text{ g}$$, pH $$0.70$$" },
-        { correct: true, label: "$$1.08\\text{ g}$$, pH $$1.0$$" },
+        { correct: false, label: "$$22.3$$ hari, $$0.464\\text{ g}$$" },
+        { correct: false, label: "$$44.7$$ hari, $$0.232\\text{ g}$$" },
+        { correct: false, label: "$$89.4$$ hari, $$0.464\\text{ g}$$" },
+        { correct: true, label: "$$44.7$$ hari, $$0.464\\text{ g}$$" },
       ],
     },
   },

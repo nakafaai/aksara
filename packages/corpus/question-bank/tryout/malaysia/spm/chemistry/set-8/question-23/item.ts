@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$1.28\\text{ g}$$, $$100\\%$$" },
-        { correct: true, label: "$$1.28\\text{ g}$$, $$40\\%$$" },
-        { correct: false, label: "$$1.60\\text{ g}$$, $$40\\%$$" },
-        { correct: false, label: "$$1.28\\text{ g}$$, $$20\\%$$" },
+        { correct: false, label: "$$1.28\\text{ g}$$, $$40\\%$$" },
+        { correct: true, label: "$$1.36\\text{ g}$$, $$30\\%$$" },
+        { correct: false, label: "$$1.36\\text{ g}$$, $$100\\%$$" },
+        { correct: false, label: "$$1.20\\text{ g}$$, $$30\\%$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$1.28\\text{ g}$$, $$100\\%$$" },
-        { correct: true, label: "$$1.28\\text{ g}$$, $$40\\%$$" },
-        { correct: false, label: "$$1.60\\text{ g}$$, $$40\\%$$" },
-        { correct: false, label: "$$1.28\\text{ g}$$, $$20\\%$$" },
+        { correct: false, label: "$$1.28\\text{ g}$$, $$40\\%$$" },
+        { correct: true, label: "$$1.36\\text{ g}$$, $$30\\%$$" },
+        { correct: false, label: "$$1.36\\text{ g}$$, $$100\\%$$" },
+        { correct: false, label: "$$1.20\\text{ g}$$, $$30\\%$$" },
       ],
     },
   },

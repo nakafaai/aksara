@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.08\\text{ cm}^3\\text{ s}^{-1}$$, $$0.088\\text{ g}$$",
+          label:
+            "II $$300\\text{ cm}^3$$, slower. III $$600\\text{ cm}^3$$, faster",
         },
         {
           correct: true,
-          label: "$$0.83\\text{ cm}^3\\text{ s}^{-1}$$, $$0.088\\text{ g}$$",
+          label:
+            "II $$600\\text{ cm}^3$$, slower. III $$1200\\text{ cm}^3$$, faster",
         },
         {
           correct: false,
-          label: "$$0.83\\text{ cm}^3\\text{ s}^{-1}$$, $$0.176\\text{ g}$$",
+          label:
+            "II $$600\\text{ cm}^3$$, as fast. III $$1200\\text{ cm}^3$$, as fast",
         },
         {
           correct: false,
-          label: "$$0.59\\text{ cm}^3\\text{ s}^{-1}$$, $$0.088\\text{ g}$$",
+          label:
+            "II $$600\\text{ cm}^3$$, slower. III $$600\\text{ cm}^3$$, faster",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.08\\text{ cm}^3\\text{ s}^{-1}$$, $$0.088\\text{ g}$$",
+          label:
+            "II $$300\\text{ cm}^3$$, lebih perlahan. III $$600\\text{ cm}^3$$, lebih cepat",
         },
         {
           correct: true,
-          label: "$$0.83\\text{ cm}^3\\text{ s}^{-1}$$, $$0.088\\text{ g}$$",
+          label:
+            "II $$600\\text{ cm}^3$$, lebih perlahan. III $$1200\\text{ cm}^3$$, lebih cepat",
         },
         {
           correct: false,
-          label: "$$0.83\\text{ cm}^3\\text{ s}^{-1}$$, $$0.176\\text{ g}$$",
+          label:
+            "II $$600\\text{ cm}^3$$, sama cepat. III $$1200\\text{ cm}^3$$, sama cepat",
         },
         {
           correct: false,
-          label: "$$0.59\\text{ cm}^3\\text{ s}^{-1}$$, $$0.088\\text{ g}$$",
+          label:
+            "II $$600\\text{ cm}^3$$, lebih perlahan. III $$600\\text{ cm}^3$$, lebih cepat",
         },
       ],
     },

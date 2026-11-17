@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$0.25\\text{ mol dm}^{-3}$$, pH $$0.60$$" },
-        { correct: false, label: "$$1.0\\text{ mol dm}^{-3}$$, pH $$0$$" },
-        { correct: true, label: "$$0.50\\text{ mol dm}^{-3}$$, pH $$0.30$$" },
-        { correct: false, label: "$$0.010\\text{ mol dm}^{-3}$$, pH $$2.0$$" },
+        { correct: false, label: "$$2.5\\text{ mol dm}^{-3}$$, pH $$0.60$$" },
+        { correct: false, label: "$$0.50\\text{ mol dm}^{-3}$$, pH $$0.30$$" },
+        { correct: true, label: "$$5.0\\text{ mol dm}^{-3}$$, pH $$0.30$$" },
+        { correct: false, label: "$$5.0\\text{ mol dm}^{-3}$$, pH $$-0.70$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$0.25\\text{ mol dm}^{-3}$$, pH $$0.60$$" },
-        { correct: false, label: "$$1.0\\text{ mol dm}^{-3}$$, pH $$0$$" },
-        { correct: true, label: "$$0.50\\text{ mol dm}^{-3}$$, pH $$0.30$$" },
-        { correct: false, label: "$$0.010\\text{ mol dm}^{-3}$$, pH $$2.0$$" },
+        { correct: false, label: "$$2.5\\text{ mol dm}^{-3}$$, pH $$0.60$$" },
+        { correct: false, label: "$$0.50\\text{ mol dm}^{-3}$$, pH $$0.30$$" },
+        { correct: true, label: "$$5.0\\text{ mol dm}^{-3}$$, pH $$0.30$$" },
+        { correct: false, label: "$$5.0\\text{ mol dm}^{-3}$$, pH $$-0.70$$" },
       ],
     },
   },
