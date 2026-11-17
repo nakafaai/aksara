@@ -13,21 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$0.15\\text{ m}$$ deeper and $$5.8\\times10^{5}\\text{ kg}$$",
+            "$$0.15\\text{ m}$$ deeper, $$5.8\\times10^{5}\\text{ kg}$$ and $$1.8\\times10^{5}\\text{ kg}$$",
         },
         {
           correct: false,
           label:
-            "$$0.15\\text{ m}$$ shallower and $$5.8\\times10^{5}\\text{ kg}$$",
+            "$$0.15\\text{ m}$$ shallower, $$5.8\\times10^{5}\\text{ kg}$$ and $$0\\text{ kg}$$",
         },
         {
           correct: false,
           label:
-            "$$0.15\\text{ m}$$ deeper and $$6.0\\times10^{5}\\text{ kg}$$",
+            "$$0.15\\text{ m}$$ deeper, $$6.0\\times10^{5}\\text{ kg}$$ and $$1.8\\times10^{5}\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "$$4.9\\text{ m}$$ deeper and $$5.8\\times10^{5}\\text{ kg}$$",
+          label:
+            "$$0.15\\text{ m}$$ deeper, $$5.8\\times10^{5}\\text{ kg}$$ and $$1.9\\times10^{5}\\text{ kg}$$",
         },
       ],
     },
@@ -37,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$0.15\\text{ m}$$ lebih dalam dan $$5.8\\times10^{5}\\text{ kg}$$",
+            "$$0.15\\text{ m}$$ lebih dalam, $$5.8\\times10^{5}\\text{ kg}$$ dan $$1.8\\times10^{5}\\text{ kg}$$",
         },
         {
           correct: false,
           label:
-            "$$0.15\\text{ m}$$ lebih cetek dan $$5.8\\times10^{5}\\text{ kg}$$",
+            "$$0.15\\text{ m}$$ lebih cetek, $$5.8\\times10^{5}\\text{ kg}$$ dan $$0\\text{ kg}$$",
         },
         {
           correct: false,
           label:
-            "$$0.15\\text{ m}$$ lebih dalam dan $$6.0\\times10^{5}\\text{ kg}$$",
+            "$$0.15\\text{ m}$$ lebih dalam, $$6.0\\times10^{5}\\text{ kg}$$ dan $$1.8\\times10^{5}\\text{ kg}$$",
         },
         {
           correct: false,
           label:
-            "$$4.9\\text{ m}$$ lebih dalam dan $$5.8\\times10^{5}\\text{ kg}$$",
+            "$$0.15\\text{ m}$$ lebih dalam, $$5.8\\times10^{5}\\text{ kg}$$ dan $$1.9\\times10^{5}\\text{ kg}$$",
         },
       ],
     },

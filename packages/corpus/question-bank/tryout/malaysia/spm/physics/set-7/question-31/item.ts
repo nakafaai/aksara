@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.40\\,\\Omega$$ and $$4.2\\text{ A}$$" },
-        { correct: false, label: "$$0.40\\,\\Omega$$ and $$3.5\\text{ A}$$" },
-        { correct: false, label: "$$0.20\\,\\Omega$$ and $$7.7\\text{ A}$$" },
-        { correct: false, label: "$$0.40\\,\\Omega$$ and $$3.0\\text{ A}$$" },
+        {
+          correct: true,
+          label: "$$0.40\\,\\Omega$$, $$4.2\\text{ A}$$ and $$3.3\\,\\Omega$$",
+        },
+        {
+          correct: false,
+          label: "$$0.40\\,\\Omega$$, $$3.5\\text{ A}$$ and $$3.3\\,\\Omega$$",
+        },
+        {
+          correct: false,
+          label: "$$0.20\\,\\Omega$$, $$7.7\\text{ A}$$ and $$7.5\\,\\Omega$$",
+        },
+        {
+          correct: false,
+          label: "$$0.40\\,\\Omega$$, $$3.0\\text{ A}$$ and $$3.3\\,\\Omega$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.40\\,\\Omega$$ dan $$4.2\\text{ A}$$" },
-        { correct: false, label: "$$0.40\\,\\Omega$$ dan $$3.5\\text{ A}$$" },
-        { correct: false, label: "$$0.20\\,\\Omega$$ dan $$7.7\\text{ A}$$" },
-        { correct: false, label: "$$0.40\\,\\Omega$$ dan $$3.0\\text{ A}$$" },
+        {
+          correct: true,
+          label: "$$0.40\\,\\Omega$$, $$4.2\\text{ A}$$ dan $$3.3\\,\\Omega$$",
+        },
+        {
+          correct: false,
+          label: "$$0.40\\,\\Omega$$, $$3.5\\text{ A}$$ dan $$3.3\\,\\Omega$$",
+        },
+        {
+          correct: false,
+          label: "$$0.20\\,\\Omega$$, $$7.7\\text{ A}$$ dan $$7.5\\,\\Omega$$",
+        },
+        {
+          correct: false,
+          label: "$$0.40\\,\\Omega$$, $$3.0\\text{ A}$$ dan $$3.3\\,\\Omega$$",
+        },
       ],
     },
   },

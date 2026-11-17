@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2.0\\text{ A}$$ and $$2.7\\text{ W}$$" },
-        { correct: false, label: "$$1.2\\text{ A}$$ and $$24\\text{ W}$$" },
-        { correct: false, label: "$$1.2\\text{ A}$$ and $$2.7\\text{ W}$$" },
-        { correct: true, label: "$$1.2\\text{ A}$$ and $$8.6\\text{ W}$$" },
+        {
+          correct: false,
+          label: "$$2.0\\text{ A}$$, $$2.7\\text{ W}$$ and $$16\\text{ W}$$",
+        },
+        {
+          correct: false,
+          label: "$$1.2\\text{ A}$$, $$24\\text{ W}$$ and $$5.8\\text{ W}$$",
+        },
+        {
+          correct: false,
+          label: "$$1.2\\text{ A}$$, $$2.7\\text{ W}$$ and $$5.8\\text{ W}$$",
+        },
+        {
+          correct: true,
+          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ and $$5.8\\text{ W}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2.0\\text{ A}$$ dan $$2.7\\text{ W}$$" },
-        { correct: false, label: "$$1.2\\text{ A}$$ dan $$24\\text{ W}$$" },
-        { correct: false, label: "$$1.2\\text{ A}$$ dan $$2.7\\text{ W}$$" },
-        { correct: true, label: "$$1.2\\text{ A}$$ dan $$8.6\\text{ W}$$" },
+        {
+          correct: false,
+          label: "$$2.0\\text{ A}$$, $$2.7\\text{ W}$$ dan $$16\\text{ W}$$",
+        },
+        {
+          correct: false,
+          label: "$$1.2\\text{ A}$$, $$24\\text{ W}$$ dan $$5.8\\text{ W}$$",
+        },
+        {
+          correct: false,
+          label: "$$1.2\\text{ A}$$, $$2.7\\text{ W}$$ dan $$5.8\\text{ W}$$",
+        },
+        {
+          correct: true,
+          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ dan $$5.8\\text{ W}$$",
+        },
       ],
     },
   },

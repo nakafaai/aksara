@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2.6\\times10^{5}\\text{ Pa}$$ and floor $$6$$",
+          label: "$$2.6\\times10^{5}\\text{ Pa}$$, floor $$6$$ and floor $$5$$",
         },
         {
           correct: false,
-          label: "$$1.6\\times10^{5}\\text{ Pa}$$ and floor $$7$$",
+          label: "$$1.6\\times10^{5}\\text{ Pa}$$, floor $$7$$ and floor $$6$$",
         },
         {
           correct: false,
-          label: "$$9.0\\times10^{4}\\text{ Pa}$$ and floor $$6$$",
+          label: "$$9.0\\times10^{4}\\text{ Pa}$$, floor $$6$$ and floor $$5$$",
         },
         {
           correct: true,
-          label: "$$1.6\\times10^{5}\\text{ Pa}$$ and floor $$6$$",
+          label: "$$1.6\\times10^{5}\\text{ Pa}$$, floor $$6$$ and floor $$5$$",
         },
       ],
     },
@@ -33,19 +33,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2.6\\times10^{5}\\text{ Pa}$$ dan tingkat $$6$$",
+          label:
+            "$$2.6\\times10^{5}\\text{ Pa}$$, tingkat $$6$$ dan tingkat $$5$$",
         },
         {
           correct: false,
-          label: "$$1.6\\times10^{5}\\text{ Pa}$$ dan tingkat $$7$$",
+          label:
+            "$$1.6\\times10^{5}\\text{ Pa}$$, tingkat $$7$$ dan tingkat $$6$$",
         },
         {
           correct: false,
-          label: "$$9.0\\times10^{4}\\text{ Pa}$$ dan tingkat $$6$$",
+          label:
+            "$$9.0\\times10^{4}\\text{ Pa}$$, tingkat $$6$$ dan tingkat $$5$$",
         },
         {
           correct: true,
-          label: "$$1.6\\times10^{5}\\text{ Pa}$$ dan tingkat $$6$$",
+          label:
+            "$$1.6\\times10^{5}\\text{ Pa}$$, tingkat $$6$$ dan tingkat $$5$$",
         },
       ],
     },
