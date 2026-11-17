@@ -1,0 +1,31 @@
+# Track the mass of haemoglobin, then the volume it is spread through
+
+Whole blood carries plasma and red cells together, so a donation removes haemoglobin **in proportion to the volume** given. Plasma comes back within days, but red cells take weeks. Once the volume is restored, the remaining haemoglobin is **spread through more fluid**.
+
+<BlockMath math="450\text{ mL}\times\frac{15\text{ g}}{100\text{ mL}}=67.5\text{ g},\qquad 67.5\times3.4\approx230\text{ mg},\qquad \frac{67.5}{1.5}=45\text{ days}" />
+
+<BlockMath math="\frac{750-67.5}{5000}\times100\approx13.7\text{ g per }100\text{ mL}" />
+
+<Chart
+  title={<>Haemoglobin in the Donor's Blood</>}
+  bars="apart"
+  categories={["Before donating", "Just after donating", "After volume is restored"]}
+  series={[
+    { label: "Haemoglobin", mark: "bar", values: [15, 15, 13.7] },
+  ]}
+  valueLabel="Haemoglobin (g per 100 mL)"
+  description={<>The donor starts at <InlineMath math="15" /> g per <InlineMath math="100" /> mL. Just after donating it is still <InlineMath math="15" />, because whole blood was removed, but it falls to about <InlineMath math="13.7" /> once plasma restores the volume.</>}
+/>
+
+- I: <InlineMath math="450\text{ mL}" /> at <InlineMath math="15\text{ g}" /> per <InlineMath math="100\text{ mL}" /> is <InlineMath math="67.5\text{ g}" />, about <InlineMath math="68\text{ g}" />. Statement I is correct.
+- II: <InlineMath math="67.5\text{ g}" /> times <InlineMath math="3.4\text{ mg}" /> per gram is about <InlineMath math="230\text{ mg}" /> of iron. Statement II is correct.
+- III: <InlineMath math="67.5\text{ g}" /> at <InlineMath math="1.5\text{ g}" /> a day takes <InlineMath math="45" /> days. Statement III is correct.
+- IV: the body held <InlineMath math="750\text{ g}" /> and now holds <InlineMath math="682.5\text{ g}" />. Spread through <InlineMath math="5.0\text{ L}" /> again, that is about <InlineMath math="13.7\text{ g}" /> per <InlineMath math="100\text{ mL}" />, not <InlineMath math="15" />, until the marrow catches up. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and III only rejects II, **although <InlineMath math="67.5\times3.4" /> is about <InlineMath math="230" />**.
+- II, III and IV only rejects I and **forgets that refilling the volume dilutes what remains**.
+- I, II, III and IV accepts IV, **although the haemoglobin mass is still <InlineMath math="67.5\text{ g}" /> short**.

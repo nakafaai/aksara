@@ -1,0 +1,29 @@
+# Das noch verlierbare Telomer durch den Verlust pro Teilung teilen
+
+Eine Zelle darf Telomer nur bis zur Grenze verlieren, die **verbleibenden Teilungen** sind also die Länge über der Grenze geteilt durch den Verlust pro Teilung. Telomere sind zusätzliche DNA ohne Gene, deshalb können sie ohne Schaden abgenutzt werden, bis sie aufgebraucht sind.
+
+<BlockMath math="\frac{10\,000-5000}{50}=100,\qquad \frac{7000-5000}{50}=40,\qquad \frac{2^{100}}{2^{40}}=2^{60}=\left(2^{10}\right)^6\approx10^{18}" />
+
+<Chart
+  title={<>Verbleibende Teilungen bis zur Telomergrenze</>}
+  bars="apart"
+  categories={["Hautzelle Neugeborenes", "Hautzelle 70-Jährige"]}
+  series={[
+    { label: "Verbleibende Teilungen", mark: "bar", values: [100, 40] },
+  ]}
+  valueLabel="Verbleibende Teilungen"
+  description={<>Bei <InlineMath math="50" /> Basenpaaren Verlust pro Teilung und einer Grenze von <InlineMath math="5000" /> hat die Zelle des Neugeborenen noch <InlineMath math="100" /> Teilungen, die der <InlineMath math="70" />-Jährigen <InlineMath math="40" />.</>}
+/>
+
+- I: Die Zelle des Neugeborenen hat <InlineMath math="5000" /> Basenpaare über der Grenze, Platz für <InlineMath math="100" /> Teilungen, die ältere Zelle nur für <InlineMath math="40" />. Jede Teilung verdoppelt die Zellen, die Zelle des Neugeborenen könnte also <InlineMath math="2^{100}" /> Zellen liefern, die ältere <InlineMath math="2^{40}" />, ein Verhältnis von <InlineMath math="2^{60}\approx10^{18}" />. Aussage I stimmt.
+- II: Die Zelle der älteren Person hat nur <InlineMath math="2000" /> Basenpaare übrig, <InlineMath math="2000" /> geteilt durch <InlineMath math="50" /> sind <InlineMath math="40" /> Teilungen. Aussage II stimmt.
+- III: Telomerase baut die Telomere nach jeder Teilung wieder auf, die Zelle erreicht die Grenze also nie und kann sich immer weiter teilen, wie ein Tumor. Aussage III stimmt.
+- IV: Telomere tragen keine Gene, ihre Verkürzung entfernt also keine Gene. Jede Körperzelle trägt den vollständigen Satz, bis die Grenze ihre Teilung stoppt. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und III verwirft II, **obwohl <InlineMath math="2000" /> geteilt durch <InlineMath math="50" /> gleich <InlineMath math="40" /> ist**.
+- Nur II, III und IV verwirft I und **zählt Teilungen zusammen, statt die Zellen bei jeder zu verdoppeln**.
+- I, II, III und IV akzeptiert IV, **obwohl die verkürzte DNA keine Gene trägt**.

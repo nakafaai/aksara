@@ -1,0 +1,30 @@
+# Find the means without the anomaly, then compare each change with the scatter of the readings
+
+A reading far from the other two replicates is **anomalous** and is left out. A difference between means is convincing only if it is **large compared with the scatter** of the replicates. A test of five concentrations shows the best tested value, **not the exact optimum** between them.
+
+<BlockMath math="\bar{x}_0=10.4,\ \bar{x}_1=12.3,\ \bar{x}_2=\frac{14.0+14.4}{2}=14.2,\qquad 12.3-10.4=14.2-12.3=1.9" />
+
+<BlockMath math="\frac{14.0+8.1+14.4}{3}\approx12.2<12.3,\qquad 15.4-15.0=0.4,\qquad 15.2-14.0=1.2" />
+
+<Chart
+  title={<>Mean Seedling Height at Each Fertiliser Concentration</>}
+  categories={["0 g/L", "1 g/L", "2 g/L", "3 g/L", "4 g/L"]}
+  series={[
+    { label: "Mean height", mark: "line", values: [10.4, 12.3, 14.2, 15.2, 14.0] },
+  ]}
+  valueLabel="Mean height (cm)"
+  description={<>Leaving out the anomalous reading, the mean height rises from <InlineMath math="10.4" /> cm without fertiliser to <InlineMath math="15.2" /> cm at <InlineMath math="3" /> g per litre, then falls to <InlineMath math="14.0" /> cm at <InlineMath math="4" /> g per litre.</>}
+/>
+
+- I: both steps raise the mean by <InlineMath math="1.9\text{ cm}" />, from <InlineMath math="10.4" /> to <InlineMath math="12.3" /> and from <InlineMath math="12.3" /> to <InlineMath math="14.2\text{ cm}" />. Statement I is correct.
+- II: with <InlineMath math="8.1\text{ cm}" /> included, the mean at <InlineMath math="2\text{ g}" /> per litre would be about <InlineMath math="12.2\text{ cm}" />, below the <InlineMath math="12.3\text{ cm}" /> at <InlineMath math="1\text{ g}" /> per litre, a false dip. Statement II is correct.
+- III: <InlineMath math="3\text{ g}" /> per litre is only the best of the values tested. The mean falls at <InlineMath math="4" />, so the true optimum could lie anywhere between <InlineMath math="2" /> and <InlineMath math="4\text{ g}" /> per litre, and only more concentrations in that range can find it. Statement III is wrong.
+- IV: the replicates at <InlineMath math="3\text{ g}" /> per litre range from <InlineMath math="15.0" /> to <InlineMath math="15.4\text{ cm}" />, a spread of <InlineMath math="0.4\text{ cm}" />, while the mean falls by <InlineMath math="1.2\text{ cm}" />, three times as much. Such a fall is unlikely to come from random scatter alone. Statement IV is correct.
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects IV, **the comparison of the fall with the scatter of the replicates**.
+- II, III and IV only rejects I and accepts III, **treating the best tested value as the exact optimum**.
+- I, III and IV only rejects II, **although the anomaly drags the mean below that of <InlineMath math="1\text{ g}" /> per litre**.

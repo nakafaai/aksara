@@ -1,0 +1,32 @@
+# Die knappste Aminosäure finden und dann beide Proteine mischen
+
+Man teilt, was jedes Protein liefert, durch den Bedarf. Das **kleinste Verhältnis** bestimmt, wie viel des Proteins der Körper nutzen kann, wie die kürzeste Daube eines Fasses. Gleiche Mengen zu mischen mittelt beide Proteine, das eine kann also den Mangel des anderen ausgleichen.
+
+<BlockMath math="\text{Reis}: \frac{36}{45}=0{,}80,\ \frac{40}{25}=1{,}60,\qquad \text{Bohnen}: \frac{70}{45}\approx1{,}56,\ \frac{13}{25}=0{,}52" />
+
+<BlockMath math="\text{Mischung}: \frac{36+70}{2}=53\ \text{Lysin},\qquad \frac{40+13}{2}=26{,}5\ \text{Methionin}" />
+
+<Chart
+  title={<>Lysin und Methionin als Anteil des Bedarfs</>}
+  bars="apart"
+  categories={["Reis", "Bohnen", "Reis und Bohnen"]}
+  series={[
+    { label: "Lysin", mark: "bar", values: [80, 156, 118] },
+    { label: "Methionin", mark: "bar", values: [160, 52, 106] },
+  ]}
+  valueLabel="Anteil des Bedarfs (%)"
+  description={<>Reis liefert <InlineMath math="80\%" /> des Lysinbedarfs und <InlineMath math="160\%" /> des Methioninbedarfs. Bohnen liefern <InlineMath math="156\%" /> und <InlineMath math="52\%" />. Die Mischung liefert <InlineMath math="118\%" /> und <InlineMath math="106\%" />.</>}
+/>
+
+- I: Reis liefert <InlineMath math="36" /> der benötigten <InlineMath math="45\text{ mg}" /> Lysin, <InlineMath math="80\%" />, sein Methionin ist im Überschuss. Lysin begrenzt ihn auf etwa <InlineMath math="80\%" />. Aussage I stimmt.
+- II: Bohnen liefern nur <InlineMath math="13" /> der benötigten <InlineMath math="25\text{ mg}" /> Methionin, <InlineMath math="52\%" />, Methionin begrenzt sie also auf <InlineMath math="52\%" />. Aussage II stimmt.
+- III: Die Mischung liefert <InlineMath math="53\text{ mg}" /> Lysin bei <InlineMath math="45" /> Bedarf und <InlineMath math="26{,}5\text{ mg}" /> Methionin bei <InlineMath math="25" />, beide sind also gedeckt. Aussage III stimmt.
+- IV: Der Körper hat keinen Speicher für überschüssige Aminosäuren. Die Leber baut den Überschuss ab, scheidet den Stickstoff als Harnstoff aus und nutzt den Rest zur Energiegewinnung, jede Mahlzeit muss also ihr eigenes Gleichgewicht liefern. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III, **den Sinn, beide Proteine zusammen zu essen**.
+- Nur II, III und IV verwirft I und **erfindet einen Proteinspeicher, obwohl überschüssige Aminosäuren desaminiert werden**.
+- Nur I, III und IV akzeptiert IV und verwirft II, **obwohl <InlineMath math="13" /> von <InlineMath math="25" /> nur <InlineMath math="52\%" /> sind**.

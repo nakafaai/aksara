@@ -1,0 +1,29 @@
+# Divide the telomere still to lose by the loss per division
+
+A cell may lose telomere only down to the limit, so the **divisions left** are the length above the limit divided by the loss each time. Telomeres are extra DNA without genes, which is why they can be worn down without harm until they run out.
+
+<BlockMath math="\frac{10\,000-5000}{50}=100,\qquad \frac{7000-5000}{50}=40,\qquad \frac{2^{100}}{2^{40}}=2^{60}=\left(2^{10}\right)^6\approx10^{18}" />
+
+<Chart
+  title={<>Divisions Left Before the Telomeres Reach the Limit</>}
+  bars="apart"
+  categories={["Newborn skin cell", "70-year-old skin cell"]}
+  series={[
+    { label: "Divisions left", mark: "bar", values: [100, 40] },
+  ]}
+  valueLabel="Divisions left"
+  description={<>With <InlineMath math="50" /> base pairs lost per division and a limit of <InlineMath math="5000" />, the newborn's cell has <InlineMath math="100" /> divisions left and the <InlineMath math="70" />-year-old's cell <InlineMath math="40" />.</>}
+/>
+
+- I: the newborn's cell has <InlineMath math="5000" /> base pairs above the limit, room for <InlineMath math="100" /> divisions, while the older cell has room for <InlineMath math="40" />. Each division doubles the cells, so the newborn's cell could give <InlineMath math="2^{100}" /> cells and the older one <InlineMath math="2^{40}" />, a ratio of <InlineMath math="2^{60}\approx10^{18}" />. Statement I is correct.
+- II: the older person's cell has only <InlineMath math="2000" /> base pairs to spare, and <InlineMath math="2000" /> divided by <InlineMath math="50" /> is <InlineMath math="40" /> divisions. Statement II is correct.
+- III: telomerase rebuilds the telomeres after each division, so the cell never reaches the limit and can divide again and again, as a tumour does. Statement III is correct.
+- IV: telomeres hold no genes, so shortening them removes no genes. Every body cell still carries the full set until the limit stops it dividing. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and III only rejects II, **although <InlineMath math="2000" /> divided by <InlineMath math="50" /> is <InlineMath math="40" />**.
+- II, III and IV only rejects I and **adds divisions instead of doubling the cells at each one**.
+- I, II, III and IV accepts IV, **although the shortened DNA carries no genes**.

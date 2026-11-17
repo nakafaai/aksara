@@ -1,0 +1,30 @@
+# Die Mittelwerte ohne Ausreißer bestimmen und jede Änderung mit der Streuung der Werte vergleichen
+
+Ein Wert, der weit von den beiden anderen Wiederholungen abweicht, ist ein **Ausreißer** und bleibt unberücksichtigt. Ein Unterschied zwischen Mittelwerten überzeugt nur, wenn er **groß gegenüber der Streuung** der Wiederholungen ist. Ein Versuch mit fünf Konzentrationen zeigt den besten getesteten Wert, **nicht das genaue Optimum** dazwischen.
+
+<BlockMath math="\bar{x}_0=10{,}4,\ \bar{x}_1=12{,}3,\ \bar{x}_2=\frac{14{,}0+14{,}4}{2}=14{,}2,\qquad 12{,}3-10{,}4=14{,}2-12{,}3=1{,}9" />
+
+<BlockMath math="\frac{14{,}0+8{,}1+14{,}4}{3}\approx12{,}2<12{,}3,\qquad 15{,}4-15{,}0=0{,}4,\qquad 15{,}2-14{,}0=1{,}2" />
+
+<Chart
+  title={<>Mittlere Keimlingshöhe bei jeder Düngerkonzentration</>}
+  categories={["0 g/L", "1 g/L", "2 g/L", "3 g/L", "4 g/L"]}
+  series={[
+    { label: "Mittlere Höhe", mark: "line", values: [10.4, 12.3, 14.2, 15.2, 14.0] },
+  ]}
+  valueLabel="Mittlere Höhe (cm)"
+  description={<>Ohne den Ausreißer steigt die mittlere Höhe von <InlineMath math="10{,}4" /> cm ohne Dünger auf <InlineMath math="15{,}2" /> cm bei <InlineMath math="3" /> g pro Liter und fällt dann auf <InlineMath math="14{,}0" /> cm bei <InlineMath math="4" /> g pro Liter.</>}
+/>
+
+- I: Beide Schritte heben den Mittelwert um <InlineMath math="1{,}9\text{ cm}" />, von <InlineMath math="10{,}4" /> auf <InlineMath math="12{,}3" /> und von <InlineMath math="12{,}3" /> auf <InlineMath math="14{,}2\text{ cm}" />. Aussage I stimmt.
+- II: Mit <InlineMath math="8{,}1\text{ cm}" /> läge der Mittelwert bei <InlineMath math="2\text{ g}" /> pro Liter bei etwa <InlineMath math="12{,}2\text{ cm}" />, unter den <InlineMath math="12{,}3\text{ cm}" /> bei <InlineMath math="1\text{ g}" /> pro Liter, ein scheinbarer Einbruch. Aussage II stimmt.
+- III: <InlineMath math="3\text{ g}" /> pro Liter ist nur der beste getestete Wert. Bei <InlineMath math="4" /> fällt der Mittelwert, das wahre Optimum kann also irgendwo zwischen <InlineMath math="2" /> und <InlineMath math="4\text{ g}" /> pro Liter liegen, und nur weitere Konzentrationen in diesem Bereich können es finden. Aussage III ist falsch.
+- IV: Die Wiederholungen bei <InlineMath math="3\text{ g}" /> pro Liter reichen von <InlineMath math="15{,}0" /> bis <InlineMath math="15{,}4\text{ cm}" />, eine Streuung von <InlineMath math="0{,}4\text{ cm}" />, der Mittelwert fällt aber um <InlineMath math="1{,}2\text{ cm}" />, dreimal so viel. Ein solcher Rückgang kommt kaum allein aus zufälliger Streuung. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft IV, **den Vergleich des Rückgangs mit der Streuung der Wiederholungen**.
+- Nur II, III und IV verwirft I und akzeptiert III und **hält den besten getesteten Wert für das genaue Optimum**.
+- Nur I, III und IV verwirft II, **obwohl der Ausreißer den Mittelwert unter den von <InlineMath math="1\text{ g}" /> pro Liter zieht**.

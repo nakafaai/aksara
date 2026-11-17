@@ -1,0 +1,29 @@
+# Multiply the chances from each parent, then ask about at least one sibling
+
+A sibling matches fully only if they got the **same cluster from the mother and the same from the father**. Each is a <InlineMath math="\tfrac12" /> chance, so both together are <InlineMath math="\tfrac14" />. For "at least one", find the chance that **none** match and take it from <InlineMath math="1" />.
+
+<BlockMath math="\tfrac12\times\tfrac12=\tfrac14,\qquad 1-\left(\tfrac34\right)^3=1-\tfrac{27}{64}=\tfrac{37}{64}\approx0.58" />
+
+<Chart
+  title={<>Kidney Grafts Still Working after Five Years</>}
+  bars="apart"
+  categories={["Identical twin", "Fully matched sibling", "Unrelated donor"]}
+  series={[
+    { label: "Grafts working", mark: "bar", values: [95, 90, 75] },
+  ]}
+  valueLabel="Grafts working (%)"
+  description={<>After five years <InlineMath math="95\%" /> of kidneys from identical twins still work, <InlineMath math="90\%" /> from fully matched siblings and <InlineMath math="75\%" /> from unrelated donors.</>}
+/>
+
+- I: matching the cluster from one parent is a <InlineMath math="\tfrac12" /> chance, but a full match needs the clusters from both parents, so the chance is <InlineMath math="\tfrac14" />. Statement I is wrong.
+- II: each sibling fails to match with chance <InlineMath math="\tfrac34" />, so all three fail with chance <InlineMath math="\tfrac{27}{64}" />, and at least one matches with chance <InlineMath math="\tfrac{37}{64}" />, about <InlineMath math="58\%" />. Statement II is correct.
+- III: an identical twin has the same genes, so the surface proteins on the kidney are the same. The patient's lymphocytes see them as self and do not attack, and <InlineMath math="95\%" /> of these grafts still work. Statement III is correct.
+- IV: immunosuppressant drugs weaken the lymphocytes so they do not reject the kidney, but this also weakens the defence against pathogens, so infections become more likely. Statement IV is wrong.
+
+So statements II and III are correct.
+
+# Why the other options are wrong
+
+- I, II and III only accepts I, **counting the match from only one parent**.
+- III and IV only rejects II and **lets drugs that weaken immunity protect against infection**.
+- I, II and IV only rejects III and accepts I and IV, **missing why a twin's kidney is not attacked**.

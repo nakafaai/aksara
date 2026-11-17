@@ -1,0 +1,29 @@
+# Kalikan peluang dari tiap orang tua, lalu tanyakan soal paling sedikit satu saudara
+
+Saudara kandung cocok penuh hanya jika mendapat **kelompok yang sama dari ibu dan yang sama dari ayah**. Masing-masing berpeluang <InlineMath math="\tfrac12" />, jadi keduanya bersama <InlineMath math="\tfrac14" />. Untuk "paling sedikit satu", cari peluang **tidak ada satu pun** yang cocok lalu kurangkan dari <InlineMath math="1" />.
+
+<BlockMath math="\tfrac12\times\tfrac12=\tfrac14,\qquad 1-\left(\tfrac34\right)^3=1-\tfrac{27}{64}=\tfrac{37}{64}\approx0{,}58" />
+
+<Chart
+  title={<>Cangkok Ginjal yang Masih Berfungsi setelah Lima Tahun</>}
+  bars="apart"
+  categories={["Kembar identik", "Saudara kandung yang cocok penuh", "Donor tanpa hubungan"]}
+  series={[
+    { label: "Cangkok berfungsi", mark: "bar", values: [95, 90, 75] },
+  ]}
+  valueLabel="Cangkok berfungsi (%)"
+  description={<>Setelah lima tahun <InlineMath math="95\%" /> ginjal dari kembar identik masih berfungsi, <InlineMath math="90\%" /> dari saudara kandung yang cocok penuh, dan <InlineMath math="75\%" /> dari donor tanpa hubungan.</>}
+/>
+
+- I: cocok kelompok dari satu orang tua berpeluang <InlineMath math="\tfrac12" />, tetapi kecocokan penuh butuh kelompok dari kedua orang tua, jadi peluangnya <InlineMath math="\tfrac14" />. Pernyataan I salah.
+- II: tiap saudara gagal cocok dengan peluang <InlineMath math="\tfrac34" />, jadi ketiganya gagal dengan peluang <InlineMath math="\tfrac{27}{64}" />, dan paling sedikit satu cocok dengan peluang <InlineMath math="\tfrac{37}{64}" />, sekitar <InlineMath math="58\%" />. Pernyataan II benar.
+- III: kembar identik punya gen yang sama, jadi protein permukaan pada ginjalnya sama. Limfosit pasien menganggapnya diri sendiri dan tidak menyerang, dan <InlineMath math="95\%" /> cangkok ini masih berfungsi. Pernyataan III benar.
+- IV: obat imunosupresan melemahkan limfosit agar tidak menolak ginjal, tetapi ini juga melemahkan pertahanan terhadap patogen, jadi infeksi makin mudah terjadi. Pernyataan IV salah.
+
+Jadi pernyataan II dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja menerima I, **menghitung kecocokan dari satu orang tua saja**.
+- III dan IV saja menolak II dan **membiarkan obat yang melemahkan kekebalan melindungi dari infeksi**.
+- I, II, dan IV saja menolak III dan menerima I dan IV, **melewatkan alasan ginjal kembar tidak diserang**.
