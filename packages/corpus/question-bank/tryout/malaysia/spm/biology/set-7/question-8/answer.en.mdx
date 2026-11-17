@@ -1,0 +1,52 @@
+# Time the cycle from one prophase to the next, then follow the DNA through it
+
+The cells were released at **the start of the S phase**, not at the start of a cycle. So the first <InlineMath math="10" /> hours cover only S and <InlineMath math="\text{G}_2" />, and one full cycle is the gap between two prophases.
+
+## The length of each phase
+
+<BlockMath math="\begin{aligned}
+\text{S}+\text{G}_2 &= 10\ \Rightarrow\ \text{G}_2=10-7=3\text{ h} \\
+\text{mitosis and cytokinesis} &= 11-10=1\text{ h} \\
+\text{one cycle} &= 32-10=22\text{ h} \\
+\text{G}_1 &= 22-7-3-1=11\text{ h}
+\end{aligned}" />
+
+## The timetable after the first division
+
+The daughter cells start <InlineMath math="\text{G}_1" /> at <InlineMath math="11" /> hours, so **each later phase starts where the one before ends**.
+
+<BlockMath math="\text{G}_1:\ 11\text{ to }22\text{ h},\qquad \text{S}:\ 22\text{ to }29\text{ h},\qquad \text{G}_2:\ 29\text{ to }32\text{ h}" />
+
+## DNA in the culture
+
+Call the DNA of one cell at time <InlineMath math="0" /> one unit. **A cell doubles its DNA in S and shares it between two cells at cytokinesis**.
+
+- At <InlineMath math="9" /> hours, the single cell is in <InlineMath math="\text{G}_2" /> and holds <InlineMath math="2" /> units.
+- From <InlineMath math="11" /> hours, there are <InlineMath math="2" /> cells with <InlineMath math="1" /> unit each.
+- At <InlineMath math="30" /> hours, both cells have finished the second S phase and are in <InlineMath math="\text{G}_2" />, so the culture holds <InlineMath math="2\times2=4" /> units for each cell present at time <InlineMath math="0" />.
+
+<Chart
+  title={<>DNA in the Culture After the Release</>}
+  categories={["0 h", "7 h", "11 h", "15 h", "22 h", "29 h", "30 h"]}
+  series={[
+    { label: "Cells", mark: "line", values: [1, 1, 2, 2, 2, 2, 2] },
+    { label: "DNA in all cells", mark: "line", values: [1, 2, 2, 2, 2, 4, 4] },
+  ]}
+  valueLabel="Amount for each cell at time 0"
+  description={<>The DNA doubles during the first S phase, from <InlineMath math="0" /> to <InlineMath math="7" /> hours. At <InlineMath math="11" /> hours the cell divides, so there are <InlineMath math="2" /> cells with the same total DNA. The second S phase, from <InlineMath math="22" /> to <InlineMath math="29" /> hours, doubles the total again to <InlineMath math="4" /> units, which still holds at <InlineMath math="30" /> hours.</>}
+/>
+
+## Judging each statement
+
+- I: <InlineMath math="\text{G}_1" /> lasts <InlineMath math="22-7-3-1=11" /> hours. Statement I is correct.
+- II: at <InlineMath math="30" /> hours the culture holds <InlineMath math="4" /> units against <InlineMath math="1" /> unit at time <InlineMath math="0" />. Statement II is correct.
+- III: at <InlineMath math="15" /> hours the two daughter cells are in <InlineMath math="\text{G}_1" />. They go on until they reach the start of S at <InlineMath math="22" /> hours and are held there, **before copying their DNA**. Each holds <InlineMath math="1" /> unit, half of the <InlineMath math="2" /> units at <InlineMath math="9" /> hours, and there are <InlineMath math="2" /> cells for every cell at time <InlineMath math="0" />. Statement III is correct.
+- IV: the <InlineMath math="32" /> hours start in the middle of a cycle, so they **include an extra S and <InlineMath math="\text{G}_2" />**. One cycle lasts <InlineMath math="22" /> hours. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- III and IV only takes the cycle as the <InlineMath math="32" /> hours from release to the second prophase, **forgetting that the release was at the start of S**. That stretches <InlineMath math="\text{G}_1" /> to <InlineMath math="21" /> hours, puts the second S at <InlineMath math="32" /> hours, and leaves only <InlineMath math="2" /> units of DNA at <InlineMath math="30" /> hours.
+- II and III only works out <InlineMath math="\text{G}_1" /> as <InlineMath math="22-7-3=12" /> hours, **leaving out the hour of mitosis and cytokinesis**. Statements II and III still hold, but statement I seems wrong.
+- I and II only thinks a cell held at the start of S has already copied its DNA, as at <InlineMath math="9" /> hours. **The chemical stops the cell before any DNA is copied**, so it holds half that amount.

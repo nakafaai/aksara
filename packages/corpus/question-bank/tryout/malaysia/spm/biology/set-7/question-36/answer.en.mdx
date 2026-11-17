@@ -1,0 +1,56 @@
+# The bacteria keep dividing while the phages are being built
+
+A clear patch counts **one infected bacterium or one free phage**, never both. So the count only jumps when infected bacteria burst and let out their new phages.
+
+<Chart
+  title={<>Clear Patches After Infection</>}
+  categories={["0 min", "10 min", "20 min", "30 min", "40 min", "50 min"]}
+  series={[
+    { label: "Clear patches", mark: "line", values: [2, 2, 2, 2, 150, 200] },
+  ]}
+  valueLabel="Patches per cm³ (hundred thousands)"
+  description={<>The count stays at <InlineMath math="2.0\times10^5" /> per <InlineMath math="\text{cm}^3" /> from <InlineMath math="0" /> to <InlineMath math="30" /> minutes, jumps to <InlineMath math="1.5\times10^7" /> at <InlineMath math="40" /> minutes and levels off at <InlineMath math="2.0\times10^7" /> at <InlineMath math="50" /> minutes.</>}
+/>
+
+Start with the number of phages each bacterium releases. Every phage infected a different bacterium, so <InlineMath math="2.0\times10^5" /> bacteria were infected. When they have all burst, the count levels off at <InlineMath math="2.0\times10^7" />:
+
+<BlockMath math="\frac{2.0\times10^7}{2.0\times10^5}=100\text{ phages per bacterium}" />
+
+Next, find the share of bacteria infected in the second round. While the first phages were being built, the uninfected bacteria went on dividing. In <InlineMath math="40" /> minutes they divide <InlineMath math="\tfrac{40}{20}=2" /> times:
+
+<BlockMath math="\begin{aligned}
+\text{uninfected at 40 min} &\approx 1.0\times10^8\times2^2 = 4.0\times10^8 \\
+\text{share infected} &= \frac{2.0\times10^7}{4.0\times10^8} = 0.05 = 5\%
+\end{aligned}" />
+
+Then compare the phages and the bacteria after the second burst. The <InlineMath math="4.0\times10^8-2.0\times10^7=3.8\times10^8" /> bacteria left uninfected divide twice more by <InlineMath math="80" /> minutes, while each newly infected bacterium releases <InlineMath math="100" /> phages:
+
+<BlockMath math="\begin{aligned}
+\text{uninfected at 80 min} &= 3.8\times10^8\times2^2 \approx 1.5\times10^9 \\
+\text{phages released} &= 2.0\times10^7\times100 = 2.0\times10^9
+\end{aligned}" />
+
+<Chart
+  title={<>Phages Released and Bacteria Left</>}
+  bars="apart"
+  categories={["At 40 min", "At 80 min"]}
+  series={[
+    { label: "Phages released", mark: "bar", values: [2, 200] },
+    { label: "Uninfected bacteria", mark: "bar", values: [40, 152] },
+  ]}
+  valueLabel="Number per cm³ (ten millions)"
+  description={<>At <InlineMath math="40" /> minutes, <InlineMath math="2.0\times10^7" /> phages meet <InlineMath math="4.0\times10^8" /> uninfected bacteria. At <InlineMath math="80" /> minutes, <InlineMath math="2.0\times10^9" /> phages are released, more than the <InlineMath math="1.5\times10^9" /> uninfected bacteria left.</>}
+/>
+
+- I: the burst size is <InlineMath math="100" />. The <InlineMath math="1.0\times10^8" /> bacteria include the many that were **never infected**, so they are not the right divisor. Statement I is correct.
+- II: the first-round phages meet the bacteria **after two divisions**, so <InlineMath math="2.0\times10^7" /> of <InlineMath math="4.0\times10^8" /> are infected, which is <InlineMath math="5\%" />. Statement II is correct.
+- III: a virus has no cytoplasm, no ribosomes and no metabolism of its own, so it can't divide. New phages are **assembled from parts made by the host** inside the flat stretch of the curve. Statement III is wrong.
+- IV: <InlineMath math="2.0\times10^9" /> phages against about <InlineMath math="1.5\times10^9" /> bacteria, so the phages outnumber them. Statement IV is correct.
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I and IV only rejects II by dividing by the <InlineMath math="1.0\times10^8" /> bacteria at the start, which gives <InlineMath math="20\%" />, **forgetting that they doubled twice in** <InlineMath math="40" /> **minutes**.
+- I, II, III and IV accepts III, giving the phage a **cell's way of reproducing**, although a virus can't divide.
+- II and IV only rejects I by dividing <InlineMath math="2.0\times10^7" /> by all <InlineMath math="1.0\times10^8" /> bacteria, **most of which were never infected**, and gets <InlineMath math="0.2" />.

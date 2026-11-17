@@ -1,0 +1,62 @@
+# Build the match chance locus by locus, turn it into a count of people, then a count into a chance for Y
+
+A person's DNA is the same in every cell, so the true source of the stain must match it at **every locus**. A single mismatch rules a person out. A full match only puts a person on the list of people who could have left it, so the real question is how long that list is.
+
+Compare each suspect with the stain, locus by locus. Z differs at all four loci. X matches loci <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="4" /> but has <InlineMath math="21" /> instead of <InlineMath math="20" /> at locus <InlineMath math="3" />. Y matches at all four.
+
+Now find how common the stain's pair is at each locus. At locus <InlineMath math="2" /> the stain has two copies of allele <InlineMath math="8" />, so use <InlineMath math="p\times p" />. At the other three loci it has two different alleles, so use <InlineMath math="2\times p\times q" />:
+
+<BlockMath math="\begin{aligned}
+\text{locus }1 &: \quad 2\times0.10\times0.25 = 0.05 \\
+\text{locus }2 &: \quad 0.20\times0.20 = 0.04 \\
+\text{locus }3 &: \quad 2\times0.50\times0.20 = 0.20 \\
+\text{locus }4 &: \quad 2\times0.10\times0.10 = 0.02
+\end{aligned}" />
+
+<Chart
+  title={<>Unrelated People Sharing the Stain's Pair</>}
+  bars="apart"
+  categories={["Locus 1", "Locus 2", "Locus 3", "Locus 4"]}
+  series={[
+    { label: "Fraction", mark: "bar", values: [2 * 0.1 * 0.25, 0.2 * 0.2, 2 * 0.5 * 0.2, 2 * 0.1 * 0.1] },
+  ]}
+  valueLabel="Fraction of unrelated people"
+  description={<>The fraction of unrelated people who share the stain's pair of alleles is <InlineMath math="0.05" /> at locus <InlineMath math="1" />, <InlineMath math="0.04" /> at locus <InlineMath math="2" />, <InlineMath math="0.20" /> at locus <InlineMath math="3" /> and <InlineMath math="0.02" /> at locus <InlineMath math="4" />. Locus <InlineMath math="4" /> is the rarest pair, and locus <InlineMath math="3" /> the most common.</>}
+/>
+
+The four loci are on different chromosomes, so they are inherited independently, and the fractions multiply. Then carry that chance into the rules for the count and for Y:
+
+<BlockMath math="\begin{aligned}
+P(\text{match at all four}) &= 0.05\times0.04\times0.20\times0.02 = 0.000008 = \tfrac{1}{125\,000} \\
+\text{other people matching} &= 1\,000\,000\times\tfrac{1}{125\,000} = 8 \\
+P(\text{Y left the stain}) &= \tfrac{1}{1+8} = \tfrac{1}{9}\approx11\%
+\end{aligned}" />
+
+- I: Y is the only suspect who matches at all four loci. X fails at locus <InlineMath math="3" />, and since the source must match everywhere, **one mismatch excludes** X. Statement I is correct.
+- II: about <InlineMath math="8" /> unrelated people besides the source share the profile. Statement II is correct.
+- III: the chance that one person matches is still <InlineMath math="\tfrac{1}{125\,000}" />, but the town has only a tenth of the people, so far fewer others are expected to match:
+
+<BlockMath math="100\,000\times\tfrac{1}{125\,000}=0.8,\qquad P(\text{Y left the stain})=\tfrac{1}{1+0.8}=\tfrac{5}{9}\approx56\%" />
+
+That is about <InlineMath math="\tfrac{5}{9}" />, five times <InlineMath math="\tfrac{1}{9}" />. Statement III is wrong.
+
+- IV: with DNA as the only evidence, Y is one of about <InlineMath math="9" /> people in the city who match, so the chance is about <InlineMath math="\tfrac{1}{9}" />. The tiny <InlineMath math="\tfrac{1}{125\,000}" /> is the chance that **one random person** matches, not the chance that a matching person is innocent. Statement IV is correct.
+
+<Chart
+  title={<>Chance That Suspect Y Left the Stain</>}
+  bars="apart"
+  categories={["City", "Town"]}
+  series={[
+    { label: "DNA only", mark: "bar", values: [1 / (1 + 1000000 / 125000), 1 / (1 + 100000 / 125000)] },
+  ]}
+  valueLabel="Probability"
+  description={<>In the city of <InlineMath math="1\,000\,000" /> people, about <InlineMath math="8" /> others match, so the chance that Y left the stain is <InlineMath math="\tfrac{1}{9}" />. In a town of <InlineMath math="100\,000" /> people, only about <InlineMath math="0.8" /> others match, so the chance rises to <InlineMath math="\tfrac{5}{9}" />.</>}
+/>
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects IV, reading <InlineMath math="\tfrac{1}{125\,000}" /> as the chance that Y is innocent, **although about** <InlineMath math="8" /> **other people in the city match too**.
+- I, II, III and IV accepts III, keeping <InlineMath math="\tfrac{1}{9}" /> because the chance that one person matches has not changed, **but the number of other people who match falls with the number of people**, to about <InlineMath math="0.8" /> in the town, so Y's chance rises to <InlineMath math="\tfrac{5}{9}" />.
+- II and IV only rejects I, treating X's match at three loci as close enough, **although the source must match at every locus**.

@@ -1,0 +1,44 @@
+# Cari apa yang habis lebih dulu untuk tiap tumbuhan, airnya atau bulannya
+
+Tiap tumbuhan berhenti karena salah satu dari dua alasan: <InlineMath math="15\text{ kg}" /> airnya habis, atau <InlineMath math="30" /> harinya selesai. Jadi cari dulu **air yang dipakai tiap tumbuhan per gram karbon dioksida**, lalu periksa batas mana yang dicapai tiap tumbuhan.
+
+<BlockMath math="\text{kaktus: }\frac{75}{1{,}5}=50\text{ g},\qquad \text{semak: }\frac{2000}{4{,}0}=500\text{ g},\qquad \frac{50}{500}=\frac{1}{10}" />
+
+Pernyataan I benar. Kaktus membuka stomanya pada malam yang sejuk dan lembap, saat uap air berdifusi keluar dari daun lebih lambat, sementara karbon dioksida tetap berdifusi masuk.
+
+Sekarang periksa batasnya. Air itu cukup untuk tiap tumbuhan selama:
+
+<BlockMath math="\text{semak: }\frac{15\,000}{2000}=7{,}5\text{ hari},\qquad \text{kaktus: }\frac{15\,000}{75}=200\text{ hari}" />
+
+Semak kehabisan air sesudah <InlineMath math="7{,}5" /> hari, tetapi kaktus masih punya air saat bulan itu berakhir. Jadi **hanya semak yang dibatasi air**, dan kaktus dibatasi oleh <InlineMath math="30" /> hari itu:
+
+<BlockMath math="\text{semak: }7{,}5\times4{,}0=30\text{ g},\qquad \text{kaktus: }30\times1{,}5=45\text{ g karbon dioksida}" />
+
+- II: kaktus memfiksasi <InlineMath math="\tfrac{45}{30}=1{,}5" /> kali lipat, bukan sepuluh kali. Sepuluh kali lipat butuh kaktus memakai seluruh <InlineMath math="15\text{ kg}" />, yaitu <InlineMath math="\tfrac{15\,000}{50}=300\text{ g}" />, padahal ia hanya memakai <InlineMath math="30\times75=2250\text{ g}" /> air dalam sebulan. Pernyataan II salah.
+- III: ubah tiap massa karbon dioksida menjadi glukosa:
+
+<BlockMath math="\text{kaktus: }45\times\frac{180}{264}\approx30{,}7\text{ g},\qquad \text{semak: }30\times\frac{180}{264}\approx20{,}5\text{ g},\qquad \frac{30{,}7}{20{,}5}=1{,}5" />
+
+Pernyataan III benar.
+
+- IV: dengan <InlineMath math="30\text{ kg}" />, air semak cukup untuk <InlineMath math="\tfrac{30\,000}{2000}=15" /> hari, jadi ia memfiksasi <InlineMath math="15\times4{,}0=60\text{ g}" />. Kaktus tidak pernah kekurangan air, jadi tetap memfiksasi <InlineMath math="45\text{ g}" />. Sekarang semak memfiksasi lebih banyak. Pernyataan IV benar.
+
+<Chart
+  title={<>Karbon Dioksida yang Difiksasi dalam Bulan Kering</>}
+  bars="apart"
+  categories={["Kaktus", "Semak"]}
+  series={[
+    { label: "Air 15 kg", mark: "bar", values: [30 * 1.5, (15000 / 2000) * 4] },
+    { label: "Air 30 kg", mark: "bar", values: [30 * 1.5, (30000 / 2000) * 4] },
+  ]}
+  valueLabel="Karbon dioksida per meter persegi (g)"
+  description={<>Dengan <InlineMath math="15\text{ kg}" /> air, kaktus memfiksasi <InlineMath math="45\text{ g}" /> karbon dioksida dan semak <InlineMath math="30\text{ g}" />. Dengan <InlineMath math="30\text{ kg}" />, kaktus tetap memfiksasi <InlineMath math="45\text{ g}" /> karena bulannya habis lebih dulu, sedangkan semak memfiksasi <InlineMath math="60\text{ g}" />.</>}
+/>
+
+Jadi pernyataan I, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menganggap kaktus juga dibatasi air, sehingga ia memfiksasi <InlineMath math="300\text{ g}" /> dan membuat sekitar <InlineMath math="205\text{ g}" /> glukosa. **Dengan <InlineMath math="75\text{ g}" /> sehari, kaktus hanya memakai <InlineMath math="2250\text{ g}" /> air dalam <InlineMath math="30" /> hari**, jadi bulannya, bukan airnya, yang menghentikannya di <InlineMath math="45\text{ g}" />.
+- III dan IV saja membandingkan kehilangan air harian, <InlineMath math="\tfrac{75}{2000}" />, **tanpa membagi masing-masing dengan karbon dioksida yang difiksasi**, sehingga terlewat <InlineMath math="50\text{ g}" /> lawan <InlineMath math="500\text{ g}" /> per gram.
+- I dan III saja menggandakan total kedua tumbuhan saat airnya digandakan, sehingga kaktus mendapat <InlineMath math="90\text{ g}" /> lawan <InlineMath math="60\text{ g}" />. **Air tambahan hanya menolong tumbuhan yang kehabisan air**, jadi kaktus tetap di <InlineMath math="45\text{ g}" />.

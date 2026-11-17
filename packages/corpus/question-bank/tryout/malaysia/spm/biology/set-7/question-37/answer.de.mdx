@@ -1,0 +1,49 @@
+# Ein Baby ist erst nach einer früheren Rh-positiven Geburt gefährdet
+
+Zwei Dinge entscheiden über das Risiko: Das Baby muss **Rh-positiv** sein, und die Mutter muss **schon Anti-D haben**, was erst nach der Geburt eines Rh-positiven Babys der Fall ist. Fang also mit dem Genotyp des Vaters an und folge dann der Reihenfolge der Geburten.
+
+Der Vater ist Rh-positiv, aber seine Mutter ist <InlineMath math="dd" /> und hat ihm ein <InlineMath math="d" /> vererbt. Er ist also <InlineMath math="Dd" />, und mit der Mutter <InlineMath math="dd" /> gilt für jedes Kind:
+
+<BlockMath math="P(\text{Rh-positiv})=P(Dd)=\tfrac{1}{2},\qquad P(\text{Rh-negativ})=P(dd)=\tfrac{1}{2}" />
+
+<Mermaid
+  title={<>Warum jedes Kind eine halbe Chance hat</>}
+  description={<>Die Mutter des Vaters ist Rh-negativ, dd, also ist der Vater Dd. Die Mutter ist dd. Jedes Kind ist mit je einer halben Wahrscheinlichkeit Dd, Rh-positiv, oder dd, Rh-negativ, egal wie die älteren Geschwister sind.</>}
+  chart={"flowchart TD\n  GM[\"Mutter des Vaters: dd\"] --> F[\"Vater: Dd\"]\n  F --> C[\"Jedes Kind: Dd oder dd, je 1/2\"]\n  M[\"Mutter: dd\"] --> C"}
+/>
+
+**Das zweite Kind.** Das erste Kind ist nie gefährdet, weil die Mutter noch kein Anti-D hat. Das zweite Kind ist nur gefährdet, wenn das erste Rh-positiv war und das zweite auch Rh-positiv ist:
+
+<BlockMath math="P(\text{zweites gefährdet})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />
+
+**Drei Kinder.** Ein Kind ist gefährdet, wenn es Rh-positiv ist und ein älteres Geschwister Rh-positiv war. **Kein Kind ist gefährdet** also genau dann, wenn höchstens eines der drei Rh-positiv ist. Schreib alle <InlineMath math="2^3=8" /> gleich wahrscheinlichen Reihenfolgen auf, mit <InlineMath math="+" /> für Rh-positiv:
+
+| Reihenfolge der drei Kinder | Gefährdete Kinder |
+| --- | --- |
+| <InlineMath math="-\;-\;-" /> | keines |
+| <InlineMath math="+\;-\;-" />, <InlineMath math="-\;+\;-" />, <InlineMath math="-\;-\;+" /> | keines |
+| <InlineMath math="+\;+\;-" /> | das zweite |
+| <InlineMath math="+\;-\;+" />, <InlineMath math="-\;+\;+" /> | das dritte |
+| <InlineMath math="+\;+\;+" /> | das zweite und das dritte |
+
+<BlockMath math="P(\text{mindestens eines gefährdet})=1-\tfrac{1+3}{8}=\tfrac{4}{8}=\tfrac{1}{2}" />
+
+<Chart
+  title={<>Rh-positive Kinder unter den ersten drei</>}
+  bars="apart"
+  categories={["Keines", "Eines", "Zwei", "Drei"]}
+  series={[
+    { label: "Kein Kind gefährdet", mark: "bar", values: [1, 3, 0, 0] },
+    { label: "Mindestens eines gefährdet", mark: "bar", values: [0, 0, 3, 1] },
+  ]}
+  valueLabel="Anzahl der Fälle von 8"
+  description={<>Von <InlineMath math="8" /> Fällen ist einmal kein Kind Rh-positiv und <InlineMath math="3" />-mal genau eines, dann ist kein Kind gefährdet. Zwei Rh-positive Kinder kommen <InlineMath math="3" />-mal vor und drei einmal, dann ist mindestens ein Kind gefährdet: <InlineMath math="4" /> von <InlineMath math="8" />.</>}
+/>
+
+Die Wahrscheinlichkeit, dass das zweite Kind gefährdet ist, beträgt also <InlineMath math="\tfrac{1}{4}" />, und die Wahrscheinlichkeit, dass mindestens eines der ersten drei Kinder gefährdet ist, <InlineMath math="\tfrac{1}{2}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\tfrac{1}{2}" /> und <InlineMath math="\tfrac{7}{8}" /> hält **jedes Rh-positive Baby für gefährdet** und vergisst, dass die Mutter Anti-D erst nach einer früheren Rh-positiven Geburt bildet.
+- <InlineMath math="\tfrac{1}{4}" /> und <InlineMath math="\tfrac{5}{8}" /> addiert die Wahrscheinlichkeit für das zweite Kind, <InlineMath math="\tfrac{1}{4}" />, und für das dritte, <InlineMath math="\tfrac{3}{8}" />, und **zählt die Reihenfolge** <InlineMath math="+\;+\;+" /> **doppelt**.
+- <InlineMath math="\tfrac{1}{4}" /> und <InlineMath math="\tfrac{3}{8}" /> berechnet nur, dass **das dritte Kind** gefährdet ist, <InlineMath math="\tfrac{1}{2}\times\tfrac{3}{4}" />, und lässt das zweite Kind weg.

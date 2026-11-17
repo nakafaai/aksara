@@ -1,0 +1,49 @@
+# Take the microorganisms' heat out of flask P before turning any heat into glucose
+
+Flask P warms for two reasons: the peas respire, and so do the microorganisms on them. Flask Q, with dead peas and no microorganisms, shows **what happens with neither**, and flask R, with dead peas and live microorganisms, shows **the microorganisms alone**.
+
+## Splitting the daily rises
+
+**The rise in R minus the rise in Q is the microorganisms' share**, and what is left in P belongs to the peas.
+
+<BlockMath math="\begin{aligned}
+\text{flask P each day} &: \ 2,\ 3,\ 4\ ^\circ\text{C}\ \ (\text{total }9) \\
+\text{microorganisms, R}-\text{Q} &: \ 0,\ 1,\ 2\ ^\circ\text{C}\ \ (\text{total }3) \\
+\text{peas} &: \ 2,\ 2,\ 2\ ^\circ\text{C}\ \ (\text{total }6)
+\end{aligned}" />
+
+## Turning the heat of the peas into glucose
+
+<BlockMath math="\begin{aligned}
+\text{heat from the peas} &: \ 250\times3.2\times6=4800\text{ J}=4.8\text{ kJ} \\
+\text{glucose} &: \ \tfrac{4.8}{16}=0.30\text{ g} \\
+\text{flask P alone} &: \ 250\times3.2\times9=7200\text{ J}\ \Rightarrow\ \tfrac{7.2}{16}=0.45\text{ g}
+\end{aligned}" />
+
+<Chart
+  title={<>Daily Temperature Rise in Flask P and Where It Comes From</>}
+  bars="apart"
+  categories={["Day 1", "Day 2", "Day 3"]}
+  series={[
+    { label: "Peas", mark: "bar", values: [2, 2, 2] },
+    { label: "Microorganisms", mark: "bar", values: [0, 1, 2] },
+    { label: "Flask P", mark: "line", values: [2, 3, 4] },
+  ]}
+  valueLabel="Temperature rise (°C)"
+  description={<>Flask P rises by <InlineMath math="2" />, <InlineMath math="3" /> and <InlineMath math="4^\circ\text{C}" /> on days <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="3" />. The peas give a steady <InlineMath math="2^\circ\text{C}" /> each day, and the microorganisms give <InlineMath math="0" />, <InlineMath math="1" /> and <InlineMath math="2^\circ\text{C}" />, so all of the speed-up comes from the microorganisms.</>}
+/>
+
+## Judging each statement
+
+- I: the peas account for <InlineMath math="6^\circ\text{C}" />, which is <InlineMath math="4.8\text{ kJ}" /> and <InlineMath math="0.30\text{ g}" /> of glucose. Statement I is correct.
+- II: the microorganisms give <InlineMath math="3" /> of the <InlineMath math="9^\circ\text{C}" />, one third, and their daily share goes <InlineMath math="0" />, <InlineMath math="\tfrac{1}{3}" />, <InlineMath math="\tfrac{1}{2}" />. Statement II is correct.
+- III: flask P alone gives <InlineMath math="0.45\text{ g}" /> against the true <InlineMath math="0.30\text{ g}" />, an extra <InlineMath math="0.15\text{ g}" />. As a share of the true value, **that is <InlineMath math="\tfrac{0.15}{0.30}=50\%" /> too high**, not <InlineMath math="33\%" />. Statement III is wrong.
+- IV: the peas warm the flask by <InlineMath math="2^\circ\text{C}" /> on both day <InlineMath math="1" /> and day <InlineMath math="3" />, so their rate stays the same. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I, II and IV only reads flask P's daily rises, <InlineMath math="2" /> and <InlineMath math="4^\circ\text{C}" />, as the peas' own heat, **forgetting to take each day's microorganism share out**.
+- I, II and III only divides the extra <InlineMath math="0.15\text{ g}" /> by the wrong value, <InlineMath math="0.45" />, which gives <InlineMath math="33\%" />. **An overestimate is a share of the true value**, <InlineMath math="0.30\text{ g}" />.
+- II and IV only turns all of flask P's <InlineMath math="9^\circ\text{C}" /> into glucose, <InlineMath math="0.45\text{ g}" />, and reads its daily rises as the peas' heat, **ignoring the microorganisms that flask R measures**.

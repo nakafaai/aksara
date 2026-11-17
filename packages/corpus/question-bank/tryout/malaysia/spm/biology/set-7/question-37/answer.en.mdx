@@ -1,0 +1,49 @@
+# A baby is at risk only after an earlier Rh-positive birth
+
+Two things decide the risk: the baby must be **Rh-positive**, and the mother must **already have anti-D**, which happens only after she has given birth to an Rh-positive baby. So start with the father's genotype, then follow the order of the births.
+
+The father is Rh-positive, but his mother is <InlineMath math="dd" /> and gave him a <InlineMath math="d" />. So he is <InlineMath math="Dd" />, and with the <InlineMath math="dd" /> mother each child is:
+
+<BlockMath math="P(\text{Rh-positive})=P(Dd)=\tfrac{1}{2},\qquad P(\text{Rh-negative})=P(dd)=\tfrac{1}{2}" />
+
+<Mermaid
+  title={<>Why Each Child Has an Even Chance</>}
+  description={<>The father's mother is Rh-negative, dd, so the father is Dd. The mother is dd. Each child is Dd, Rh-positive, or dd, Rh-negative, with a chance of one half each, whatever the earlier children were.</>}
+  chart={"flowchart TD\n  GM[\"Father's mother: dd\"] --> F[\"Father: Dd\"]\n  F --> C[\"Each child: Dd or dd, 1/2 each\"]\n  M[\"Mother: dd\"] --> C"}
+/>
+
+**The second child.** The first child is never at risk, because the mother has no anti-D yet. The second child is at risk only if the first was Rh-positive and the second is Rh-positive too:
+
+<BlockMath math="P(\text{second at risk})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />
+
+**Three children.** A child is at risk when it is Rh-positive and some earlier child was Rh-positive. So **no child is at risk** exactly when at most one of the three is Rh-positive. List all <InlineMath math="2^3=8" /> equally likely orders, writing <InlineMath math="+" /> for Rh-positive:
+
+| Order of the three children | Children at risk |
+| --- | --- |
+| <InlineMath math="-\;-\;-" /> | none |
+| <InlineMath math="+\;-\;-" />, <InlineMath math="-\;+\;-" />, <InlineMath math="-\;-\;+" /> | none |
+| <InlineMath math="+\;+\;-" /> | the second |
+| <InlineMath math="+\;-\;+" />, <InlineMath math="-\;+\;+" /> | the third |
+| <InlineMath math="+\;+\;+" /> | the second and the third |
+
+<BlockMath math="P(\text{at least one at risk})=1-\tfrac{1+3}{8}=\tfrac{4}{8}=\tfrac{1}{2}" />
+
+<Chart
+  title={<>Rh-Positive Children Among the First Three</>}
+  bars="apart"
+  categories={["None", "One", "Two", "Three"]}
+  series={[
+    { label: "No child at risk", mark: "bar", values: [1, 3, 0, 0] },
+    { label: "At least one at risk", mark: "bar", values: [0, 0, 3, 1] },
+  ]}
+  valueLabel="Chance in eighths"
+  description={<>Out of <InlineMath math="8" />, the three children include no Rh-positive child once and exactly one Rh-positive child <InlineMath math="3" /> times, and then no child is at risk. Two Rh-positive children come <InlineMath math="3" /> times and three come once, and then at least one child is at risk: <InlineMath math="4" /> out of <InlineMath math="8" />.</>}
+/>
+
+So the probability that the second child is at risk is <InlineMath math="\tfrac{1}{4}" />, and the probability that at least one of the first three children is at risk is <InlineMath math="\tfrac{1}{2}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac{1}{2}" /> and <InlineMath math="\tfrac{7}{8}" /> treats **every Rh-positive baby as at risk**, forgetting that the mother makes anti-D only after an earlier Rh-positive birth.
+- <InlineMath math="\tfrac{1}{4}" /> and <InlineMath math="\tfrac{5}{8}" /> adds the chance for the second child, <InlineMath math="\tfrac{1}{4}" />, and for the third, <InlineMath math="\tfrac{3}{8}" />, **counting the order** <InlineMath math="+\;+\;+" /> **twice**.
+- <InlineMath math="\tfrac{1}{4}" /> and <InlineMath math="\tfrac{3}{8}" /> works out only the chance that **the third child** is at risk, <InlineMath math="\tfrac{1}{2}\times\tfrac{3}{4}" />, and leaves out the second child.

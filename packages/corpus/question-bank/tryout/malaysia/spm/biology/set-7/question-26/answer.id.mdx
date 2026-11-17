@@ -1,0 +1,29 @@
+# Ubah hidup setiap bunga menjadi hari kalender, lalu periksa kedua ujung tandan
+
+Bunga <InlineMath math="k" /> mekar pada hari <InlineMath math="k" />, jadi pada hari <InlineMath math="d" /> bunga itu berada di hari ke-<InlineMath math="(d-k+1)" /> hidupnya. Ini memberi setiap bunga dua rentang kalender:
+
+<BlockMath math="\text{bunga }k\text{ melepaskan serbuk sari pada hari }k\text{ dan }k+1,\qquad \text{kepala putiknya reseptif pada hari }k+2\text{ dan }k+3" />
+
+- I: bunga <InlineMath math="10" /> layu pada hari kelimanya, yaitu hari <InlineMath math="14" />, jadi tandan punya bunga terbuka dari hari <InlineMath math="1" /> sampai hari <InlineMath math="13" />, yaitu <InlineMath math="13" /> hari. Serbuk sari dilepaskan dari hari <InlineMath math="1" /> (bunga <InlineMath math="1" />) sampai hari <InlineMath math="11" /> (bunga <InlineMath math="10" />). Kepala putik reseptif dari hari <InlineMath math="3" /> (bunga <InlineMath math="1" />) sampai hari <InlineMath math="13" /> (bunga <InlineMath math="10" />). Keduanya terjadi pada hari <InlineMath math="3" /> sampai <InlineMath math="11" />, yaitu <InlineMath math="11-3+1=9" /> hari. Pernyataan I benar.
+- II: bunga <InlineMath math="1" /> melepaskan serbuk sari pada hari <InlineMath math="1" /> dan <InlineMath math="2" />, sebelum ada kepala putik di tandan itu yang reseptif. Bunga <InlineMath math="10" /> reseptif pada hari <InlineMath math="12" /> dan <InlineMath math="13" />, setelah serbuk sari terakhir di tandan itu, yaitu pada hari <InlineMath math="11" />. **Rute lebah tidak berpengaruh di sini**, karena bunga yang bersangkutan memang tidak terbuka bersamaan. Pernyataan II benar.
+- III: saat bergerak turun, lebah mengambil serbuk sari di atas lalu sampai ke bunga reseptif di bawah. Bunga <InlineMath math="k" /> mendapat serbuk sari dari tandannya sendiri kalau ada bunga di atasnya yang melepaskan serbuk sari pada hari <InlineMath math="k+2" />, yaitu bunga <InlineMath math="k+1" /> atau <InlineMath math="k+2" />. Ini berlaku sampai bunga <InlineMath math="9" />, tetapi bunga <InlineMath math="10" /> tidak punya bunga di atasnya, dan II sudah menunjukkan bunga itu tidak bisa mendapat serbuk sari dari tandannya sendiri. Pernyataan III salah.
+- IV: kalau bunga baru mekar setiap <InlineMath math="3" /> hari, bunga mekar pada hari <InlineMath math="1, 4, 7, \ldots" />. Pada hari <InlineMath math="4" />, bunga <InlineMath math="1" /> reseptif dan bunga <InlineMath math="2" /> melepaskan serbuk sari. Pada hari <InlineMath math="5" />, bunga <InlineMath math="1" /> sudah layu. Pada hari <InlineMath math="6" />, bunga <InlineMath math="2" /> reseptif tetapi bunga <InlineMath math="3" /> belum mekar. Tumpang tindih baru muncul lagi pada hari <InlineMath math="7" />, lalu hari <InlineMath math="10" />, tidak pernah dua hari berturut-turut. Pernyataan IV benar.
+
+<Chart
+  title={<>Jumlah Bunga di Setiap Keadaan pada Tandan Sepuluh Bunga</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]}
+  series={[
+    { label: "Melepaskan serbuk sari", mark: "line", values: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0] },
+    { label: "Reseptif", mark: "line", values: [0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0] },
+  ]}
+  valueLabel="Jumlah bunga"
+  description={<>Hari ditunjukkan di sumbu bawah. Serbuk sari dilepaskan dari hari <InlineMath math="1" /> sampai hari <InlineMath math="11" />, dan kepala putik reseptif ada dari hari <InlineMath math="3" /> sampai hari <InlineMath math="13" />. Kedua garis berada di atas nol bersamaan hanya dari hari <InlineMath math="3" /> sampai hari <InlineMath math="11" />, yaitu <InlineMath math="9" /> hari. Pada hari <InlineMath math="12" /> dan <InlineMath math="13" />, hanya bunga <InlineMath math="10" /> yang reseptif dan tidak ada bunga yang melepaskan serbuk sari.</>}
+/>
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak IV, mungkin karena menghitung hari <InlineMath math="4" /> dan <InlineMath math="5" /> bersama-sama. **Pada hari <InlineMath math="5" /> bunga <InlineMath math="1" /> sudah layu**, jadi setiap tumpang tindih hanya berlangsung sehari.
+- I, II, III, dan IV melupakan puncak tandan. **Bunga <InlineMath math="10" /> tidak punya bunga di atasnya**, jadi meskipun lebah bergerak turun, bunga itu hanya bisa menerima serbuk sari dari tumbuhan lain.
+- II dan IV saja salah menghitung hari di I, misalnya menganggap tumpang tindih berlangsung dari hari <InlineMath math="3" /> sampai <InlineMath math="12" />. **Serbuk sari terakhir dilepaskan pada hari <InlineMath math="11" />**, hari kedua bunga <InlineMath math="10" />.

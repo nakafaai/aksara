@@ -1,0 +1,58 @@
+# Tukar pertumbuhan buah dan karbon dioksidanya kepada sukrosa, sukrosa kepada sap, dan sap kepada laju
+
+Buah memerlukan sukrosa untuk dua perkara: jisim kering yang dibinanya dan sukrosa yang direspirasinya. Mula dengan jisim kering, dalam <InlineMath math="10" /> hari itu, iaitu <InlineMath math="240" /> jam:
+
+<BlockMath math="\text{untuk jisim kering} = \frac{1250-398}{240}\text{ g sejam} = \frac{852}{240} = 3.55\text{ g sejam}" />
+
+Kebuk itu memberi respirasi sebagai karbon dioksida, bukan sebagai sukrosa, jadi tukarkan dengan nisbah jisim <InlineMath math="342:528" />:
+
+<BlockMath math="\begin{aligned}
+\text{sukrosa direspirasi} &= 35.2\times\tfrac{342}{528} = 22.8\text{ g sehari} = \tfrac{22.8}{24} = 0.95\text{ g sejam} \\
+\text{jumlah sukrosa} &= 3.55+0.95 = 4.5\text{ g sejam}
+\end{aligned}" />
+
+Sap membawa <InlineMath math="15\text{ g}" /> dalam <InlineMath math="100\text{ cm}^3" />, iaitu <InlineMath math="0.15\text{ g}" /> dalam setiap <InlineMath math="\text{cm}^3" />. Semua tiub tapis bersama-sama memberi luas yang dilalui oleh sap itu:
+
+<BlockMath math="\begin{aligned}
+\text{isi padu sap} &= \tfrac{4.5\text{ g sejam}}{0.15\text{ g per cm}^3} = 30\text{ cm}^3\text{ sejam} \\
+\text{luas} &= 20\,000\times1.5\times10^{-5} = 0.30\text{ cm}^2 \\
+\text{laju} &= \tfrac{30\text{ cm}^3\text{ sejam}}{0.30\text{ cm}^2} = 100\text{ cm sejam}
+\end{aligned}" />
+
+<Chart
+  title={<>Sukrosa yang Masuk ke dalam Buah Setiap Jam</>}
+  bars="apart"
+  categories={["Untuk jisim kering", "Untuk respirasi", "Jumlah"]}
+  series={[
+    { label: "Sukrosa", mark: "bar", values: [852 / 240, (35.2 * 342) / 528 / 24, 852 / 240 + (35.2 * 342) / 528 / 24] },
+  ]}
+  valueLabel="Gram sejam"
+  description={<>Buah itu menerima <InlineMath math="3.55\text{ g}" /> sukrosa sejam untuk jisim keringnya dan <InlineMath math="0.95\text{ g}" /> untuk respirasi, iaitu <InlineMath math="4.5\text{ g}" /> semuanya. Pada <InlineMath math="0.15\text{ g}" /> setiap <InlineMath math="\text{cm}^3" />, jumlah itu ialah <InlineMath math="30\text{ cm}^3" /> sap sejam.</>}
+/>
+
+- I: <InlineMath math="30\text{ cm}^3" /> sap sejam melalui <InlineMath math="0.30\text{ cm}^2" /> bergerak pada kadar <InlineMath math="100\text{ cm}" /> sejam. Pernyataan I betul.
+
+Bagi II hingga IV, kekalkan laju sebagai **isi padu sap sejam dibahagi dengan jumlah luas tiub**, dan ubah satu perkara pada satu masa.
+
+- II: buah itu masih memerlukan <InlineMath math="30\text{ cm}^3" /> sap sejam, tetapi separuh tiub hanya memberi <InlineMath math="0.15\text{ cm}^2" />, jadi laju menjadi dua kali ganda, <InlineMath math="200\text{ cm}" /> sejam. Pernyataan II betul.
+- III: luas bulatan bertambah mengikut kuasa dua diameternya, jadi diameter dua kali ganda memberi luas <InlineMath math="2^2=4" /> kali ganda. <InlineMath math="30\text{ cm}^3" /> sejam yang sama kemudian bergerak pada kadar <InlineMath math="\tfrac{100}{4}=25\text{ cm}" /> sejam, bukan <InlineMath math="50\text{ cm}" />. Pernyataan III salah.
+- IV: sukrosa dua kali lebih banyak dalam setiap <InlineMath math="\text{cm}^3" /> bermakna **separuh** isi padu sap sudah membawa <InlineMath math="4.5\text{ g}" /> yang sama, jadi sap bergerak pada separuh laju, <InlineMath math="50\text{ cm}" /> sejam. Pernyataan IV salah.
+
+<Chart
+  title={<>Laju Sap dalam Setiap Keadaan</>}
+  bars="apart"
+  categories={["Seperti diukur", "Separuh tiub", "Dua kali lebar", "Dua kali gula"]}
+  series={[
+    { label: "Laju", mark: "bar", values: [30 / 0.3, 30 / 0.15, 30 / (0.3 * 4), 15 / 0.3] },
+  ]}
+  valueLabel="Laju sap (cm sejam)"
+  description={<>Seperti yang diukur, sap bergerak pada kadar <InlineMath math="100\text{ cm}" /> sejam. Dengan separuh tiub, sap akan bergerak pada kadar <InlineMath math="200\text{ cm}" /> sejam, dengan tiub dua kali lebar pada kadar <InlineMath math="25\text{ cm}" /> sejam, dan dengan sukrosa dua kali lebih banyak dalam sap pada kadar <InlineMath math="50\text{ cm}" /> sejam.</>}
+/>
+
+Jadi pernyataan I dan II betul.
+
+# Kenapa pilihan lain salah
+
+- II sahaja menolak I kerana menambah <InlineMath math="35.2\text{ g}" /> karbon dioksida seolah-olah ia sukrosa, <InlineMath math="\tfrac{852+352}{240}\approx5.0\text{ g}" /> sejam, yang memberi kira-kira <InlineMath math="111\text{ cm}" /> sejam, **sedangkan respirasi <InlineMath math="342\text{ g}" /> sukrosa membebaskan <InlineMath math="528\text{ g}" /> karbon dioksida**, jadi buah itu hanya merespirasi <InlineMath math="22.8\text{ g}" /> sukrosa sehari.
+- I, II dan IV sahaja menerima IV, menganggap laju **meningkat bersama kepekatan**, walhal sap yang lebih pekat memerlukan isi padu yang lebih kecil untuk membawa sukrosa yang sama.
+- I, II dan III sahaja menerima III, menganggap luas menjadi dua kali ganda apabila diameter menjadi dua kali ganda, **sedangkan luas bertambah mengikut kuasa dua diameter**, iaitu empat kali ganda, jadi laju turun kepada satu perempat.

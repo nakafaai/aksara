@@ -1,0 +1,29 @@
+# Turn each flower's life into calendar days, then check the two ends of the spike
+
+Flower <InlineMath math="k" /> opens on day <InlineMath math="k" />, so on day <InlineMath math="d" /> it's on day <InlineMath math="d-k+1" /> of its life. That gives each flower two calendar windows:
+
+<BlockMath math="\text{flower }k\text{ releases pollen on days }k\text{ and }k+1,\qquad \text{its stigma is receptive on days }k+2\text{ and }k+3" />
+
+- I: flower <InlineMath math="10" /> withers on its fifth day, day <InlineMath math="14" />, so the spike has open flowers from day <InlineMath math="1" /> to day <InlineMath math="13" />, which is <InlineMath math="13" /> days. Pollen is released from day <InlineMath math="1" /> (flower <InlineMath math="1" />) to day <InlineMath math="11" /> (flower <InlineMath math="10" />). A stigma is receptive from day <InlineMath math="3" /> (flower <InlineMath math="1" />) to day <InlineMath math="13" /> (flower <InlineMath math="10" />). Both happen on days <InlineMath math="3" /> to <InlineMath math="11" />, which is <InlineMath math="11-3+1=9" /> days. Statement I is correct.
+- II: flower <InlineMath math="1" /> releases pollen on days <InlineMath math="1" /> and <InlineMath math="2" />, before any stigma on the spike is receptive. Flower <InlineMath math="10" /> is receptive on days <InlineMath math="12" /> and <InlineMath math="13" />, after the last pollen on the spike, on day <InlineMath math="11" />. **The bees' route doesn't matter here**, because the right flowers simply aren't open at the same time. Statement II is correct.
+- III: moving down, a bee picks up pollen at the top and then reaches the receptive flowers lower down. Flower <InlineMath math="k" /> gets pollen from its own spike if a flower above it is releasing pollen on day <InlineMath math="k+2" />, namely flower <InlineMath math="k+1" /> or <InlineMath math="k+2" />. That works up to flower <InlineMath math="9" />, but flower <InlineMath math="10" /> has no flower above it, and II already showed it can't get pollen from its own spike. Statement III is wrong.
+- IV: with a new flower every <InlineMath math="3" /> days, flowers open on days <InlineMath math="1, 4, 7, \ldots" />. On day <InlineMath math="4" />, flower <InlineMath math="1" /> is receptive and flower <InlineMath math="2" /> releases pollen. On day <InlineMath math="5" />, flower <InlineMath math="1" /> has withered. On day <InlineMath math="6" />, flower <InlineMath math="2" /> is receptive but flower <InlineMath math="3" /> hasn't opened. The overlap comes back only on day <InlineMath math="7" />, then day <InlineMath math="10" />, never two days running. Statement IV is correct.
+
+<Chart
+  title={<>Flowers in Each State on a Spike of Ten</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]}
+  series={[
+    { label: "Releasing pollen", mark: "line", values: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0] },
+    { label: "Receptive", mark: "line", values: [0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0] },
+  ]}
+  valueLabel="Number of flowers"
+  description={<>The days run along the bottom. Pollen is released from day <InlineMath math="1" /> to day <InlineMath math="11" />, and receptive stigmas are present from day <InlineMath math="3" /> to day <InlineMath math="13" />. Both lines are above zero together only from day <InlineMath math="3" /> to day <InlineMath math="11" />, which is <InlineMath math="9" /> days. On days <InlineMath math="12" /> and <InlineMath math="13" />, only flower <InlineMath math="10" /> is receptive and no flower releases pollen.</>}
+/>
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects IV, perhaps by counting days <InlineMath math="4" /> and <InlineMath math="5" /> together. **On day <InlineMath math="5" /> flower <InlineMath math="1" /> has already withered**, so the overlap lasts one day each time.
+- I, II, III and IV forgets the top of the spike. **Flower <InlineMath math="10" /> has no flower above it**, so even bees moving downwards can bring it pollen only from other plants.
+- II and IV only miscounts the days in I, for example taking the overlap as days <InlineMath math="3" /> to <InlineMath math="12" />. **The last pollen is released on day <InlineMath math="11" />**, the second day of flower <InlineMath math="10" />.

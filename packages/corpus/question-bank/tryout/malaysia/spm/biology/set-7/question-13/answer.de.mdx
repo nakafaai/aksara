@@ -1,0 +1,51 @@
+# Der Klon verdoppelt sich erst nach seiner Wartezeit und hört immer bei derselben Größe auf
+
+Die Wartezeit vor der Teilung kostet Tage, bringt aber **keine Verdopplung**. Alle <InlineMath math="12" /> Stunden Teilung verdoppeln den Klon, ein Tag Teilung sind also zwei Verdopplungen.
+
+## Der erste Kontakt
+
+<BlockMath math="\begin{aligned}
+\text{bis zum Nachweis} &: \ \tfrac{20\,480}{20}=1024=2^{10}\ \Rightarrow\ 10\text{ Verdopplungen}=5\text{ Tage} \\
+\text{Antikörper nachweisbar} &: \ 2+5=\text{Tag }7 \\
+\text{Antigen beseitigt} &: \ \text{Tag }9,\ \text{nach }4\text{ weiteren Verdopplungen: }20\,480\times2^4=327\,680\text{ Zellen} \\
+\text{Gedächtniszellen} &: \ \tfrac{327\,680}{512}=640
+\end{aligned}" />
+
+## Der zweite Kontakt
+
+Die <InlineMath math="640" /> Gedächtniszellen warten <InlineMath math="1" /> Tag und verdoppeln sich dann.
+
+<BlockMath math="\begin{aligned}
+\text{bis zum Nachweis} &: \ \tfrac{20\,480}{640}=32=2^5\ \Rightarrow\ 5\text{ Verdopplungen}=2{,}5\text{ Tage} \\
+\text{Antikörper nachweisbar} &: \ 1+2{,}5=\text{Tag }3{,}5 \\
+\text{Antigen beseitigt} &: \ \text{Tag }5{,}5,\ \text{wieder }20\,480\times2^4=327\,680\text{ Zellen}
+\end{aligned}" />
+
+**Jeder Klon wird bei <InlineMath math="20\,480" /> Zellen nachgewiesen und teilt sich danach genau <InlineMath math="2" /> Tage lang**, er endet also immer bei <InlineMath math="327\,680" /> Zellen, egal womit er begann. Ein größerer Start erreicht das nur früher.
+
+<Chart
+  title={<>Wann Antikörper auftreten und wann das Antigen beseitigt ist</>}
+  bars="apart"
+  categories={["Erster Kontakt", "Zweiter Kontakt"]}
+  series={[
+    { label: "Antikörper erstmals nachweisbar", mark: "bar", values: [7, 3.5] },
+    { label: "Antigen beseitigt", mark: "bar", values: [9, 5.5] },
+  ]}
+  valueLabel="Tage nach dem Eindringen"
+  description={<>Beim ersten Kontakt sind Antikörper an Tag <InlineMath math="7" /> nachweisbar, und das Antigen ist an Tag <InlineMath math="9" /> beseitigt. Beim zweiten Kontakt geschieht das an Tag <InlineMath math="3{,}5" /> und Tag <InlineMath math="5{,}5" />, <InlineMath math="3{,}5" /> Tage früher. Beide Klone haben beim Beseitigen <InlineMath math="327\,680" /> Zellen.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: Nachweis an Tag <InlineMath math="7" /> und <InlineMath math="327\,680" /> Zellen beim Beseitigen. Aussage I stimmt.
+- II: Der erste Kontakt hinterlässt <InlineMath math="\tfrac{327\,680}{512}=640" /> Gedächtniszellen, nicht <InlineMath math="10\,240" />. Aussage II ist falsch.
+- III: Auch die Gedächtniszellen warten <InlineMath math="1" /> Tag, bevor sie sich teilen. Antikörper erscheinen also an Tag <InlineMath math="3{,}5" />, nicht an Tag <InlineMath math="2{,}5" />. Aussage III ist falsch.
+- IV: **Beide Klone haben beim Beseitigen <InlineMath math="327\,680" /> Zellen**, und das Beseitigen fällt auf Tag <InlineMath math="5{,}5" /> statt Tag <InlineMath math="9" />, <InlineMath math="3{,}5" /> Tage früher. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II lässt den Klon auch in den <InlineMath math="2" /> Wartetagen verdoppeln **und zählt so <InlineMath math="18" /> Verdopplungen in <InlineMath math="9" /> Tagen statt <InlineMath math="14" />**. Der Klon erreicht dann <InlineMath math="20\times2^{18}" /> Zellen, was <InlineMath math="10\,240" /> Gedächtniszellen ergibt und die anderen drei Aussagen verdirbt.
+- Nur I und III lässt den Wartetag beim zweiten Kontakt weg, **als würden Gedächtniszellen sofort teilen**. Das ergibt Nachweis an Tag <InlineMath math="2{,}5" /> und Beseitigung an Tag <InlineMath math="4{,}5" />, also <InlineMath math="4{,}5" /> Tage früher statt <InlineMath math="3{,}5" />.
+- Nur I erwartet, dass ein Klon, der mit <InlineMath math="32" />-mal so vielen Zellen startet, <InlineMath math="32" />-mal so groß endet. **Der Nachweis erfolgt immer bei derselben Größe**, und danach teilt sich der Klon dieselben <InlineMath math="2" /> Tage, also enden beide Klone gleich groß.

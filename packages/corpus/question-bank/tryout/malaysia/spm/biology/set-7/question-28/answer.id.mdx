@@ -1,0 +1,41 @@
+# Hitung di cawan yang andal, lalu mulai hitungan penggandaan hanya sesudah tiap fase lag
+
+Mulai dari hitungannya. Hanya cawan dari pengenceran <InlineMath math="10" /> kali yang punya **antara <InlineMath math="30" /> dan <InlineMath math="300" /> koloni**. <InlineMath math="125" /> koloninya tumbuh dari <InlineMath math="0{,}1\text{ cm}^3" />, jadi skalakan ke <InlineMath math="1\text{ cm}^3" />, lalu batalkan pengencerannya untuk kembali ke <InlineMath math="1\text{ g}" /> nasi:
+
+<BlockMath math="125\times\frac{1}{0{,}1}\times10=1{,}25\times10^{4}\text{ bakteri per g}" />
+
+Pernyataan I benar.
+
+Berikutnya, cari berapa kali bakteri harus berlipat dua. Nasi harus mencapai <InlineMath math="1{,}0\times10^{6}" /> per gram:
+
+<BlockMath math="\frac{1{,}0\times10^{6}}{1{,}25\times10^{4}}=80,\qquad 2^{6}=64<80<2^{7}=128" />
+
+Jadi batas itu tercapai sesudah lebih dari <InlineMath math="6" /> penggandaan, tetapi tidak lebih dari <InlineMath math="7" />.
+
+- II: penggandaan baru mulai pukul 13.00, sesudah fase lag satu jam. Enam penggandaan butuh <InlineMath math="3" /> jam, sampai pukul 16.00, saat nasi berisi <InlineMath math="1{,}25\times10^{4}\times64=8{,}0\times10^{5}" /> per gram, masih kurang. Penggandaan ketujuh selesai pukul 16.30 dengan <InlineMath math="1{,}6\times10^{6}" />. Jadi batas itu tercapai sesudah pukul 16.00, tetapi tidak lewat dari pukul 16.30. Pernyataan II benar.
+- III: bawa hitungannya sampai pukul 14.00. Satu jam penggandaan berarti <InlineMath math="2" /> kali penggandaan, jadi nasi masuk kulkas dengan <InlineMath math="1{,}25\times10^{4}\times4=5{,}0\times10^{4}" /> per gram, dan jumlah itu tetap sampai pukul 18.00. Sesudah dihangatkan lagi, bakteri menunggu sampai pukul 19.00 sebelum membelah. Lalu:
+
+<BlockMath math="\frac{1{,}0\times10^{6}}{5{,}0\times10^{4}}=20,\qquad 2^{4}=16<20<2^{5}=32" />
+
+Itu sesudah <InlineMath math="4" /> penggandaan, pukul 21.00, tetapi tidak lewat dari <InlineMath math="5" /> penggandaan, pukul 21.30. Rentang pukul 20.00 sampai 20.30 muncul kalau fase lag kedua dilupakan. Pernyataan III salah.
+
+- IV: bakteri yang separuhnya butuh pertumbuhan <InlineMath math="160" /> kali, bukan <InlineMath math="80" /> kali, dan <InlineMath math="2^{7}=128<160<2^{8}=256" />. Memotong jumlah awal menjadi separuh menambah tepat satu penggandaan, jadi setiap waktu dalam rantai itu bergeser <InlineMath math="30" /> menit lebih lambat. Pernyataan IV benar.
+
+<Chart
+  title={<>Bakteri dalam Nasi di Meja Prasmanan</>}
+  categories={["12.00", "12.30", "13.00", "13.30", "14.00", "14.30", "15.00", "15.30", "16.00", "16.30"]}
+  series={[
+    { label: "Bakteri", mark: "line", values: [12.5, 12.5, 12.5, 12.5 * 2, 12.5 * 4, 12.5 * 8, 12.5 * 16, 12.5 * 32, 12.5 * 64, 12.5 * 128] },
+    { label: "Batas muntah", mark: "line", values: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000] },
+  ]}
+  valueLabel="Bakteri per g (ribu)"
+  description={<>Jumlahnya tetap <InlineMath math="12{,}5" /> ribu per gram sampai pukul 13.00, lalu berlipat dua tiap setengah jam. Pukul 16.00 jumlahnya <InlineMath math="800" /> ribu, di bawah batas muntah <InlineMath math="1000" /> ribu, dan pukul 16.30 menjadi <InlineMath math="1600" /> ribu, di atasnya.</>}
+/>
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, III, dan IV membiarkan bakteri berlipat dua sejak pukul 18.00, begitu nasi kembali ke meja prasmanan, sehingga rentangnya pukul 20.00 sampai 20.30. **Bakteri yang dihangatkan lagi menunggu satu jam lagi sebelum membelah**, jadi rentangnya pukul 21.00 sampai 21.30.
+- I dan IV saja memulai penggandaan pukul 12.00 tanpa fase lag pertama, sehingga batas itu tercapai sesudah pukul 15.00, bukan 16.00. **Bakteri tidak membelah pada jam pertama**, dan itu menggeser setiap waktu sesudahnya satu jam.
+- II dan IV saja menghitung cawan dari pengenceran <InlineMath math="100" /> kali, <InlineMath math="14\times10\times100=1{,}4\times10^{4}" /> per gram. **Cawan itu punya kurang dari <InlineMath math="30" /> koloni**, terlalu sedikit untuk hitungan yang andal.

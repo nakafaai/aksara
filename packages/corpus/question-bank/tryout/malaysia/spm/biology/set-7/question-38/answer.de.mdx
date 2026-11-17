@@ -1,0 +1,51 @@
+# Führe eine laufende Summe des zugegebenen Stickstoffs und zähle nur die Gaben vor jeder Messung
+
+Die Nitrifikation läuft in zwei Schritten ab, und **jeder Schritt hat seine eigenen Bakterien**. Leg zuerst den Weg fest, denn er erklärt die Reihenfolge der Spitzen.
+
+<Mermaid
+  title={<>Zwei Schritte der Nitrifikation im Becken</>}
+  description={<>Nitrosomonas wandelt Ammonium in Nitrit um. Nitrobacter wandelt danach Nitrit in Nitrat um. Beide brauchen Sauerstoff, und beide starten als winzige Populationen auf dem Kies.</>}
+  chart={"flowchart LR\n  A[Ammonium] -->|Nitrosomonas| B[Nitrit]\n  B -->|Nitrobacter| C[Nitrat]"}
+/>
+
+Jede Messung findet kurz vor der Gabe dieses Tages statt. An Tag <InlineMath math="d" /> sind also nur die Gaben der Tage <InlineMath math="1" /> bis <InlineMath math="d-1" /> im Wasser:
+
+<BlockMath math="\text{zugegeben vor der Messung an Tag }d=2\times(d-1)\text{ mg pro dm}^3" />
+
+Das ergibt <InlineMath math="8" />, <InlineMath math="18" />, <InlineMath math="28" />, <InlineMath math="38" />, <InlineMath math="48" /> und <InlineMath math="58" /> an den Tagen <InlineMath math="5" /> bis <InlineMath math="30" />, und jede Spalte der Tabelle ergibt genau diese Summe. Es kommt kein Stickstoff hinzu, und keiner geht verloren.
+
+<Chart
+  title={<>Stickstoff im neuen Aquarium</>}
+  categories={["Tag 0", "Tag 5", "Tag 10", "Tag 15", "Tag 20", "Tag 25", "Tag 30"]}
+  series={[
+    { label: "Ammonium", mark: "line", values: [0, 8, 15, 6, 1, 0.5, 0.5] },
+    { label: "Nitrit", mark: "line", values: [0, 0, 2.5, 15, 8, 0.5, 0.5] },
+    { label: "Nitrat", mark: "line", values: [0, 0, 0.5, 7, 29, 47, 57] },
+    { label: "Summe zugegeben", mark: "line", values: [0, 2 * 4, 2 * 9, 2 * 14, 2 * 19, 2 * 24, 2 * 29] },
+  ]}
+  valueLabel="Stickstoff (mg pro dm³)"
+  description={<>Ammonium erreicht an Tag <InlineMath math="10" /> mit <InlineMath math="15" /> seine Spitze, Nitrit an Tag <InlineMath math="15" /> mit <InlineMath math="15" />, und Nitrat steigt bis Tag <InlineMath math="30" /> auf <InlineMath math="57" />. Die vor jeder Messung zugegebene Summe wächst alle fünf Tage um <InlineMath math="10" /> bis auf <InlineMath math="58" />, und die drei Formen ergeben immer genau diese Summe.</>}
+/>
+
+- I: Ammonium hat seine Spitze an Tag <InlineMath math="10" />, Nitrit an Tag <InlineMath math="15" />, fünf Tage später. Zwischen den Messungen an Tag <InlineMath math="15" /> und Tag <InlineMath math="20" /> kommen die Gaben der Tage <InlineMath math="15" /> bis <InlineMath math="19" /> dazu, <InlineMath math="5\times2=10\text{ mg}" />. Nitrat entsteht nur aus Nitrit, und die Summen zeigen, dass nichts verloren geht, also ist der Anstieg des Nitrats der Stickstoff, der von Nitrit zu Nitrat wurde:
+
+<BlockMath math="29-7=22\text{ mg},\qquad \frac{22}{10}=2{,}2" />
+
+Der Rückgang des Nitrits, <InlineMath math="15-8=7" />, ist viel kleiner, weil *Nitrosomonas* aus Ammonium laufend neues Nitrit bildete, während das inzwischen zahlreiche *Nitrobacter* es verbrauchte. Aussage I stimmt.
+
+- II: An Tag <InlineMath math="30" /> sind <InlineMath math="29" /> Gaben im Wasser, also <InlineMath math="58\text{ mg}" />, und <InlineMath math="57" /> davon sind Nitrat:
+
+<BlockMath math="\frac{57}{58}\times100\,\%\approx98\,\%" />
+
+Aussage II stimmt.
+
+- III: Zwischen den Messungen an Tag <InlineMath math="25" /> und Tag <InlineMath math="30" /> kommen die Gaben der Tage <InlineMath math="25" /> bis <InlineMath math="29" /> hinzu, <InlineMath math="5\times2=10\text{ mg}" />. Ammonium und Nitrit bleiben bei <InlineMath math="0{,}5" />, und Nitrat steigt um <InlineMath math="57-47=10" />. **Jedes zugegebene Milligramm wurde zu Nitrat**, die Bakterien schaffen also jetzt mindestens <InlineMath math="2\text{ mg}" /> am Tag, und Fische, die dieselben <InlineMath math="2\text{ mg}" /> am Tag abgeben, würden kein Ammonium anstauen. Aussage III stimmt.
+- IV: <InlineMath math="\tfrac{57}{15}=3{,}8" />, der Vergleich selbst stimmt also. Der höchste Ammoniumwert ist aber nur der Rest zu einem Zeitpunkt. Bis Tag <InlineMath math="30" /> wurden <InlineMath math="58\text{ mg}" /> zugegeben, und genau <InlineMath math="58\text{ mg}" /> werden gefunden, also kam kein Stickstoff aus der Luft. Aussage IV ist falsch.
+
+Also stimmen die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- I und III teilt durch <InlineMath math="30\times2=60" /> und kommt auf <InlineMath math="95\,\%" />. **Die Gabe von Tag <InlineMath math="30" /> kommt erst nach der Messung**, also waren nur <InlineMath math="58\text{ mg}" /> zugegeben.
+- II und III verwirft I, weil es den Rückgang des Nitrits, <InlineMath math="15-8=7\text{ mg}" />, für das umgewandelte Nitrit hält. **Gleichzeitig entstand neues Nitrit aus Ammonium**, also ist die Umwandlung der Anstieg des Nitrats, <InlineMath math="22\text{ mg}" />.
+- I, II, III und IV vergleicht das Nitrat mit einem einzelnen Ammoniumwert. **Der richtige Vergleich ist mit den zugegebenen <InlineMath math="58\text{ mg}" />**, und der gefundene Stickstoff stimmt genau damit überein.

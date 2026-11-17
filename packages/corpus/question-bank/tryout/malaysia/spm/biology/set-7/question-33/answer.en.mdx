@@ -1,0 +1,39 @@
+# A tortoiseshell cat needs two different X chromosomes, so follow each X to its parent
+
+Only a cat with **both <InlineMath math="X^{O}" /> and <InlineMath math="X^{o}" />** can be tortoiseshell. A normal male has one X, so he can't be. Keep that in mind for every statement.
+
+- I: cross <InlineMath math="1" /> is <InlineMath math="X^{O}X^{o}\times X^{O}Y" />. Every daughter gets <InlineMath math="X^{O}" /> from her father, and <InlineMath math="X^{O}" /> or <InlineMath math="X^{o}" /> from her mother. So half the daughters are orange, <InlineMath math="X^{O}X^{O}" />, and half are tortoiseshell, <InlineMath math="X^{O}X^{o}" />. Every son gets his only X from his mother, so he's orange or black. Statement I is correct.
+- II: the black mother is <InlineMath math="X^{o}X^{o}" />, so she can give only <InlineMath math="X^{o}" />. The kitten's <InlineMath math="X^{O}" /> must come from the father, and its Y can only come from the father too. So one sperm carried <InlineMath math="X^{O}" /> and Y together. X and Y are a homologous pair, and homologous chromosomes separate in meiosis I. If they had failed to separate in meiosis II instead, a sperm would get two copies of the same chromosome, XX or YY. Statement II is correct.
+- III: a kitten from cross <InlineMath math="1" /> is tortoiseshell only if it's female and gets <InlineMath math="X^{o}" /> from its mother:
+
+<BlockMath math="P(\text{tortoiseshell})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4},\qquad P(\text{both of the first two})=\tfrac{1}{4}\times\tfrac{1}{4}=\tfrac{1}{16}" />
+
+Statement III is wrong.
+
+- IV: carry the daughters from I. A female kitten from cross <InlineMath math="1" /> is orange, <InlineMath math="X^{O}X^{O}" />, or tortoiseshell, <InlineMath math="X^{O}X^{o}" />, each with a chance of <InlineMath math="\tfrac{1}{2}" />. Each kind of mother gives a different chance with a black male, <InlineMath math="X^{o}Y" />:
+  - An orange mother gives every kitten <InlineMath math="X^{O}" />. Her daughters also get <InlineMath math="X^{o}" /> from the father and are tortoiseshell, but every son is orange, so <InlineMath math="P(\text{orange})=\tfrac{1}{2}" />.
+  - A tortoiseshell mother has daughters that get <InlineMath math="X^{o}" /> from the father, so they're never orange. Only a son who gets <InlineMath math="X^{O}" /> is orange, so <InlineMath math="P(\text{orange})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />.
+
+<BlockMath math="P(\text{orange})=\tfrac{1}{2}\times\tfrac{1}{2}+\tfrac{1}{2}\times\tfrac{1}{4}=\tfrac{2}{8}+\tfrac{1}{8}=\tfrac{3}{8}" />
+
+Statement IV is correct.
+
+<Chart
+  title={<>Kittens Expected From the First and the Next Cross</>}
+  bars="apart"
+  categories={["Orange female", "Tortoiseshell female", "Black female", "Orange male", "Black male"]}
+  series={[
+    { label: "Cross 1", mark: "bar", values: [2, 2, 0, 2, 2] },
+    { label: "Daughter × black male", mark: "bar", values: [0, 2 + 1, 1, 2 + 1, 1] },
+  ]}
+  valueLabel="Chance in eighths"
+  description={<>In cross <InlineMath math="1" />, a kitten is an orange female, a tortoiseshell female, an orange male or a black male, each with a chance of two eighths. When a random daughter is mated with a black male, a kitten is a tortoiseshell female or an orange male with a chance of three eighths each, and a black female or a black male with one eighth each, so three eighths of the kittens are orange.</>}
+/>
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I and II only treats the daughter as surely tortoiseshell, which gives <InlineMath math="\tfrac{1}{4}" />. **Half the daughters of cross <InlineMath math="1" /> are orange**, and an orange mother gives an orange son every time, which lifts the chance to <InlineMath math="\tfrac{3}{8}" />.
+- II and IV only thinks a male kitten could be tortoiseshell in cross <InlineMath math="1" />. **A son has only one X chromosome, from his mother**, so he's either orange or black.
+- I, II, III and IV uses <InlineMath math="\tfrac{1}{2}" /> as the chance that a kitten is tortoiseshell, which is the chance among daughters only. **A kitten must first be female**, so the chance is <InlineMath math="\tfrac{1}{4}" /> each and <InlineMath math="\tfrac{1}{16}" /> for two in a row.

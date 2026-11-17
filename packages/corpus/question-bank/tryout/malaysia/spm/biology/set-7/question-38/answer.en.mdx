@@ -1,0 +1,51 @@
+# Keep a running total of the nitrogen you put in, counting only the additions made before each reading
+
+Nitrification runs in two steps, and **each step has its own bacteria**. Lay out the path first, because it explains the order of the peaks.
+
+<Mermaid
+  title={<>Two Steps of Nitrification in the Tank</>}
+  description={<>Nitrosomonas turns ammonium into nitrite. Nitrobacter then turns nitrite into nitrate. Both need oxygen, and both start as tiny populations on the gravel.</>}
+  chart={"flowchart LR\n  A[Ammonium] -->|Nitrosomonas| B[Nitrite]\n  B -->|Nitrobacter| C[Nitrate]"}
+/>
+
+Each reading is taken just before that day's dose, so on day <InlineMath math="d" /> only the doses of days <InlineMath math="1" /> to <InlineMath math="d-1" /> are in the water:
+
+<BlockMath math="\text{added before the reading on day }d=2\times(d-1)\text{ mg per dm}^3" />
+
+That gives <InlineMath math="8" />, <InlineMath math="18" />, <InlineMath math="28" />, <InlineMath math="38" />, <InlineMath math="48" /> and <InlineMath math="58" /> on days <InlineMath math="5" /> to <InlineMath math="30" />, and every column of the table adds up to exactly that. No nitrogen is gained or lost.
+
+<Chart
+  title={<>Nitrogen in the New Aquarium</>}
+  categories={["Day 0", "Day 5", "Day 10", "Day 15", "Day 20", "Day 25", "Day 30"]}
+  series={[
+    { label: "Ammonium", mark: "line", values: [0, 8, 15, 6, 1, 0.5, 0.5] },
+    { label: "Nitrite", mark: "line", values: [0, 0, 2.5, 15, 8, 0.5, 0.5] },
+    { label: "Nitrate", mark: "line", values: [0, 0, 0.5, 7, 29, 47, 57] },
+    { label: "Total added", mark: "line", values: [0, 2 * 4, 2 * 9, 2 * 14, 2 * 19, 2 * 24, 2 * 29] },
+  ]}
+  valueLabel="Nitrogen (mg per dm³)"
+  description={<>Ammonium peaks at <InlineMath math="15" /> on day <InlineMath math="10" />, nitrite peaks at <InlineMath math="15" /> on day <InlineMath math="15" />, and nitrate climbs to <InlineMath math="57" /> by day <InlineMath math="30" />. The total added before each reading rises by <InlineMath math="10" /> every five days to <InlineMath math="58" />, and the three forms always add up to it.</>}
+/>
+
+- I: ammonium peaks on day <InlineMath math="10" /> and nitrite on day <InlineMath math="15" />, five days later. Between the readings on day <InlineMath math="15" /> and day <InlineMath math="20" />, the doses of days <InlineMath math="15" /> to <InlineMath math="19" /> go in, <InlineMath math="5\times2=10\text{ mg}" />. Nitrate is made only from nitrite, and the totals show none is lost, so the rise in nitrate is the nitrogen turned from nitrite into nitrate:
+
+<BlockMath math="29-7=22\text{ mg},\qquad \frac{22}{10}=2.2" />
+
+The fall in nitrite, <InlineMath math="15-8=7" />, is much smaller, because *Nitrosomonas* kept making new nitrite from ammonium while *Nitrobacter*, now plentiful, used it up. Statement I is correct.
+
+- II: on day <InlineMath math="30" />, <InlineMath math="29" /> doses are in the water, <InlineMath math="58\text{ mg}" />, and <InlineMath math="57" /> of them are nitrate:
+
+<BlockMath math="\frac{57}{58}\times100\%\approx98\%" />
+
+Statement II is correct.
+
+- III: between the readings on day <InlineMath math="25" /> and day <InlineMath math="30" />, the doses of days <InlineMath math="25" /> to <InlineMath math="29" /> go in, <InlineMath math="5\times2=10\text{ mg}" />. Ammonium and nitrite both stay at <InlineMath math="0.5" />, and nitrate rises by <InlineMath math="57-47=10" />. **Every milligram added became nitrate**, so the bacteria now handle at least <InlineMath math="2\text{ mg}" /> a day, and fish adding the same <InlineMath math="2\text{ mg}" /> a day wouldn't make ammonium build up. Statement III is correct.
+- IV: <InlineMath math="\tfrac{57}{15}=3.8" />, so the comparison itself is true. But the highest ammonium reading is only what was left at one moment. By day <InlineMath math="30" />, <InlineMath math="58\text{ mg}" /> had been added and exactly <InlineMath math="58\text{ mg}" /> is found, so no nitrogen came from the air. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and III only divides by <InlineMath math="30\times2=60" /> and gets <InlineMath math="95\%" />. **The day-<InlineMath math="30" /> dose goes in after the reading**, so only <InlineMath math="58\text{ mg}" /> had been added.
+- II and III only rejects I by taking the fall in nitrite, <InlineMath math="15-8=7\text{ mg}" />, as the nitrite turned into nitrate. **Nitrite was being made from ammonium at the same time**, so the conversion is the rise in nitrate, <InlineMath math="22\text{ mg}" />.
+- I, II, III and IV compares the nitrate with one ammonium reading. **The right comparison is with the <InlineMath math="58\text{ mg}" /> added**, and the nitrogen found matches it exactly.

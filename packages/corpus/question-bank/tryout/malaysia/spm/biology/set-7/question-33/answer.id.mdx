@@ -1,0 +1,39 @@
+# Kucing tortoiseshell butuh dua kromosom X yang berbeda, jadi telusuri setiap X ke induknya
+
+Hanya kucing yang punya **<InlineMath math="X^{O}" /> sekaligus <InlineMath math="X^{o}" />** yang bisa tortoiseshell. Kucing jantan normal hanya punya satu X, jadi tidak bisa. Ingat ini untuk setiap pernyataan.
+
+- I: persilangan <InlineMath math="1" /> adalah <InlineMath math="X^{O}X^{o}\times X^{O}Y" />. Setiap anak betina mendapat <InlineMath math="X^{O}" /> dari ayahnya, dan <InlineMath math="X^{O}" /> atau <InlineMath math="X^{o}" /> dari ibunya. Jadi separuh anak betina berwarna oranye, <InlineMath math="X^{O}X^{O}" />, dan separuh lagi tortoiseshell, <InlineMath math="X^{O}X^{o}" />. Setiap anak jantan mendapat satu-satunya X dari ibunya, jadi warnanya oranye atau hitam. Pernyataan I benar.
+- II: ibu yang hitam adalah <InlineMath math="X^{o}X^{o}" />, jadi ia hanya bisa memberi <InlineMath math="X^{o}" />. <InlineMath math="X^{O}" /> milik anak kucing itu pasti dari ayah, dan kromosom Y-nya juga hanya bisa dari ayah. Jadi satu sperma membawa <InlineMath math="X^{O}" /> dan Y sekaligus. X dan Y adalah pasangan homolog, dan kromosom homolog berpisah pada meiosis I. Kalau gagal berpisah terjadi pada meiosis II, sperma akan mendapat dua salinan kromosom yang sama, yaitu XX atau YY. Pernyataan II benar.
+- III: anak kucing dari persilangan <InlineMath math="1" /> hanya tortoiseshell kalau ia betina dan mendapat <InlineMath math="X^{o}" /> dari ibunya:
+
+<BlockMath math="P(\text{tortoiseshell})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4},\qquad P(\text{dua anak pertama keduanya})=\tfrac{1}{4}\times\tfrac{1}{4}=\tfrac{1}{16}" />
+
+Pernyataan III salah.
+
+- IV: bawa anak betina dari I. Seekor anak kucing betina dari persilangan <InlineMath math="1" /> berwarna oranye, <InlineMath math="X^{O}X^{O}" />, atau tortoiseshell, <InlineMath math="X^{O}X^{o}" />, masing-masing dengan peluang <InlineMath math="\tfrac{1}{2}" />. Tiap jenis induk betina memberi peluang yang berbeda dengan jantan hitam, <InlineMath math="X^{o}Y" />:
+  - Induk oranye memberi <InlineMath math="X^{O}" /> ke setiap anak. Anak betinanya juga mendapat <InlineMath math="X^{o}" /> dari ayah dan menjadi tortoiseshell, tetapi setiap anak jantan oranye, jadi <InlineMath math="P(\text{oranye})=\tfrac{1}{2}" />.
+  - Anak betina dari induk tortoiseshell mendapat <InlineMath math="X^{o}" /> dari ayah, jadi tidak pernah oranye. Hanya anak jantan yang mendapat <InlineMath math="X^{O}" /> yang oranye, jadi <InlineMath math="P(\text{oranye})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />.
+
+<BlockMath math="P(\text{oranye})=\tfrac{1}{2}\times\tfrac{1}{2}+\tfrac{1}{2}\times\tfrac{1}{4}=\tfrac{2}{8}+\tfrac{1}{8}=\tfrac{3}{8}" />
+
+Pernyataan IV benar.
+
+<Chart
+  title={<>Anak Kucing yang Diharapkan dari Persilangan Pertama dan Persilangan Berikutnya</>}
+  bars="apart"
+  categories={["Betina oranye", "Betina tortoiseshell", "Betina hitam", "Jantan oranye", "Jantan hitam"]}
+  series={[
+    { label: "Persilangan 1", mark: "bar", values: [2, 2, 0, 2, 2] },
+    { label: "Anak betina × jantan hitam", mark: "bar", values: [0, 2 + 1, 1, 2 + 1, 1] },
+  ]}
+  valueLabel="Peluang dalam perdelapan"
+  description={<>Pada persilangan <InlineMath math="1" />, seekor anak kucing adalah betina oranye, betina tortoiseshell, jantan oranye, atau jantan hitam, masing-masing dengan peluang dua perdelapan. Saat anak betina yang dipilih acak disilangkan dengan jantan hitam, anaknya adalah betina tortoiseshell atau jantan oranye dengan peluang tiga perdelapan masing-masing, dan betina hitam atau jantan hitam dengan satu perdelapan masing-masing, jadi tiga perdelapan anak kucing berwarna oranye.</>}
+/>
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menganggap anak betina itu pasti tortoiseshell, sehingga mendapat <InlineMath math="\tfrac{1}{4}" />. **Separuh anak betina persilangan <InlineMath math="1" /> berwarna oranye**, dan induk oranye selalu memberi anak jantan oranye, jadi peluangnya naik menjadi <InlineMath math="\tfrac{3}{8}" />.
+- II dan IV saja mengira anak kucing jantan bisa tortoiseshell pada persilangan <InlineMath math="1" />. **Anak jantan hanya punya satu kromosom X, dari ibunya**, jadi warnanya oranye atau hitam.
+- I, II, III, dan IV memakai <InlineMath math="\tfrac{1}{2}" /> sebagai peluang seekor anak kucing tortoiseshell, padahal itu peluang di antara anak betina saja. **Anak kucing itu harus betina dulu**, jadi peluangnya <InlineMath math="\tfrac{1}{4}" /> per ekor dan <InlineMath math="\tfrac{1}{16}" /> untuk dua berturut-turut.

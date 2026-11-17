@@ -1,0 +1,39 @@
+# Eine Schildpattkatze braucht zwei verschiedene X-Chromosomen, also verfolge jedes X zu seinem Elternteil
+
+Nur eine Katze mit **<InlineMath math="X^{O}" /> und <InlineMath math="X^{o}" /> zugleich** kann schildpattfarben sein. Ein normaler Kater hat nur ein X, also geht das bei ihm nicht. Behalte das bei jeder Aussage im Kopf.
+
+- I: Kreuzung <InlineMath math="1" /> ist <InlineMath math="X^{O}X^{o}\times X^{O}Y" />. Jede Tochter bekommt <InlineMath math="X^{O}" /> vom Vater und <InlineMath math="X^{O}" /> oder <InlineMath math="X^{o}" /> von der Mutter. Die Hälfte der Töchter ist also orange, <InlineMath math="X^{O}X^{O}" />, die andere Hälfte schildpattfarben, <InlineMath math="X^{O}X^{o}" />. Jeder Sohn bekommt sein einziges X von der Mutter, also ist er orange oder schwarz. Aussage I stimmt.
+- II: Die schwarze Mutter ist <InlineMath math="X^{o}X^{o}" />, sie kann also nur <InlineMath math="X^{o}" /> weitergeben. Das <InlineMath math="X^{O}" /> des Katers muss vom Vater kommen, und sein Y kann ebenfalls nur vom Vater stammen. Ein Spermium trug also <InlineMath math="X^{O}" /> und Y zusammen. X und Y sind ein homologes Paar, und homologe Chromosomen trennen sich in der Meiose I. Wäre die Trennung erst in der Meiose II ausgeblieben, hätte ein Spermium zwei Kopien desselben Chromosoms bekommen, XX oder YY. Aussage II stimmt.
+- III: Ein Kätzchen aus Kreuzung <InlineMath math="1" /> ist nur dann schildpattfarben, wenn es weiblich ist und von der Mutter <InlineMath math="X^{o}" /> bekommt:
+
+<BlockMath math="P(\text{Schildpatt})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4},\qquad P(\text{beide ersten Kätzchen})=\tfrac{1}{4}\times\tfrac{1}{4}=\tfrac{1}{16}" />
+
+Aussage III ist falsch.
+
+- IV: Nimm die Töchter aus I mit. Eine Tochter aus Kreuzung <InlineMath math="1" /> ist orange, <InlineMath math="X^{O}X^{O}" />, oder schildpattfarben, <InlineMath math="X^{O}X^{o}" />, mit je <InlineMath math="\tfrac{1}{2}" /> Wahrscheinlichkeit. Mit einem schwarzen Kater, <InlineMath math="X^{o}Y" />, ergibt jede Sorte Mutter eine andere Wahrscheinlichkeit:
+  - Eine orange Mutter gibt jedem Kätzchen <InlineMath math="X^{O}" />. Ihre Töchter bekommen vom Vater zusätzlich <InlineMath math="X^{o}" /> und sind schildpattfarben, aber jeder Sohn ist orange, also <InlineMath math="P(\text{orange})=\tfrac{1}{2}" />.
+  - Bei einer Schildpattmutter bekommen die Töchter vom Vater <InlineMath math="X^{o}" /> und sind nie orange. Orange ist nur ein Sohn mit <InlineMath math="X^{O}" />, also <InlineMath math="P(\text{orange})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />.
+
+<BlockMath math="P(\text{orange})=\tfrac{1}{2}\times\tfrac{1}{2}+\tfrac{1}{2}\times\tfrac{1}{4}=\tfrac{2}{8}+\tfrac{1}{8}=\tfrac{3}{8}" />
+
+Aussage IV stimmt.
+
+<Chart
+  title={<>Erwartete Kätzchen aus der ersten und der nächsten Kreuzung</>}
+  bars="apart"
+  categories={["Orange Katze", "Schildpattkatze", "Schwarze Katze", "Oranger Kater", "Schwarzer Kater"]}
+  series={[
+    { label: "Kreuzung 1", mark: "bar", values: [2, 2, 0, 2, 2] },
+    { label: "Tochter × schwarzer Kater", mark: "bar", values: [0, 2 + 1, 1, 2 + 1, 1] },
+  ]}
+  valueLabel="Wahrscheinlichkeit in Achteln"
+  description={<>In Kreuzung <InlineMath math="1" /> ist ein Kätzchen mit je zwei Achteln Wahrscheinlichkeit eine orange Katze, eine Schildpattkatze, ein oranger Kater oder ein schwarzer Kater. Paart man eine zufällig gewählte Tochter mit einem schwarzen Kater, ist ein Kätzchen mit je drei Achteln eine Schildpattkatze oder ein oranger Kater und mit je einem Achtel eine schwarze Katze oder ein schwarzer Kater. Drei Achtel der Kätzchen sind also orange.</>}
+/>
+
+Also stimmen die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- I und II hält die Tochter sicher für schildpattfarben und kommt so auf <InlineMath math="\tfrac{1}{4}" />. **Die Hälfte der Töchter aus Kreuzung <InlineMath math="1" /> ist orange**, und eine orange Mutter bekommt immer orange Söhne, was die Wahrscheinlichkeit auf <InlineMath math="\tfrac{3}{8}" /> hebt.
+- II und IV glaubt, ein Kater könnte in Kreuzung <InlineMath math="1" /> schildpattfarben sein. **Ein Sohn hat nur ein X-Chromosom, das von der Mutter**, also ist er orange oder schwarz.
+- I, II, III und IV nimmt <InlineMath math="\tfrac{1}{2}" /> als Wahrscheinlichkeit für ein Schildpatt-Kätzchen, und das ist die Wahrscheinlichkeit nur unter den Töchtern. **Das Kätzchen muss erst einmal weiblich sein**, also gilt <InlineMath math="\tfrac{1}{4}" /> pro Kätzchen und <InlineMath math="\tfrac{1}{16}" /> für zwei hintereinander.

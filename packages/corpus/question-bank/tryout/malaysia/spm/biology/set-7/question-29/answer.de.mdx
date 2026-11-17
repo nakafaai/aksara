@@ -1,0 +1,41 @@
+# Trag in jeder Generation zwei Zahlen weiter, die Raupen und die Wespen
+
+Die Wespen einer Generation bestimmen, wie viele Raupen der nächsten parasitiert werden, und die entkommenen Raupen bestimmen die Größe der übernächsten. Jeder Schritt braucht also beide Zahlen aus dem Schritt davor:
+
+<BlockMath math="\begin{aligned}
+\text{parasitiert} &= \text{der kleinere Wert von } 4\times\text{Wespen davor und der Zahl der Raupen} \\
+\text{nächste Raupen} &= 5\times(\text{Raupen}-\text{parasitiert}) \\
+\text{schlüpfende Wespen} &= \text{parasitiert}
+\end{aligned}" />
+
+| Generation | Raupen | Parasitiert | Entkommen | Schlüpfende Wespen |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="200" /> | <InlineMath math="0{,}40\times200=80" /> | <InlineMath math="120" /> | <InlineMath math="80" /> |
+| <InlineMath math="2" /> | <InlineMath math="5\times120=600" /> | <InlineMath math="4\times80=320" /> | <InlineMath math="280" /> | <InlineMath math="320" /> |
+| <InlineMath math="3" /> | <InlineMath math="5\times280=1400" /> | <InlineMath math="4\times320=1280" /> | <InlineMath math="120" /> | <InlineMath math="1280" /> |
+| <InlineMath math="4" /> | <InlineMath math="5\times120=600" /> | alle <InlineMath math="600" />, da <InlineMath math="4\times1280=5120" /> | <InlineMath math="0" /> | <InlineMath math="600" /> |
+| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+- I: Generation <InlineMath math="3" /> hat <InlineMath math="1400" /> Raupen. Aussage I stimmt.
+- II: Eine Generation ersetzt sich genau, wenn <InlineMath math="(1-p)\times5=1" /> gilt, also wenn ein Anteil <InlineMath math="p=80\,\%" /> parasitiert ist. In Generation <InlineMath math="2" /> sind nur <InlineMath math="\tfrac{320}{600}\approx53\,\%" /> parasitiert, also steigen die Raupen noch auf <InlineMath math="1400" />. In Generation <InlineMath math="3" /> sind es <InlineMath math="\tfrac{1280}{1400}\approx91\,\%" />, mehr als <InlineMath math="80\,\%" />, also fällt die Zahl zum ersten Mal, auf <InlineMath math="600" />. Aussage II stimmt.
+- III: Die <InlineMath math="1280" /> Wespen aus Generation <InlineMath math="3" /> tragen <InlineMath math="5120" /> Eier, doch Generation <InlineMath math="4" /> hat nur <InlineMath math="600" /> Raupen. **Aus jeder Raupe schlüpft höchstens eine Wespe**, also schlüpfen nur <InlineMath math="600" /> Wespen, weniger als <InlineMath math="1280" />. Aussage III ist falsch.
+- IV: Jede Raupe der Generation <InlineMath math="4" /> ist parasitiert, keine entkommt zur Fortpflanzung, und Generation <InlineMath math="5" /> hat <InlineMath math="5\times0=0" />. Aussage IV stimmt.
+
+<Chart
+  title={<>Raupen und Wespen in jeder Generation</>}
+  categories={["Generation 1", "Generation 2", "Generation 3", "Generation 4", "Generation 5"]}
+  series={[
+    { label: "Raupen", mark: "line", values: [200, 5 * (200 - 80), 5 * (600 - 320), 5 * (1400 - 1280), 0] },
+    { label: "Wespen", mark: "line", values: [80, 4 * 80, 4 * 320, 600, 0] },
+  ]}
+  valueLabel="Anzahl pro Palme"
+  description={<>Die Raupen steigen von <InlineMath math="200" /> auf <InlineMath math="600" /> und <InlineMath math="1400" /> und fallen dann auf <InlineMath math="600" /> und <InlineMath math="0" />. Die Wespen steigen von <InlineMath math="80" /> auf <InlineMath math="320" /> und <InlineMath math="1280" /> und fallen dann auf <InlineMath math="600" />, weil Generation <InlineMath math="4" /> nur <InlineMath math="600" /> Wirte hat, und auf <InlineMath math="0" />.</>}
+/>
+
+Also stimmen die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur III lässt den parasitierten Anteil in jeder Generation bei <InlineMath math="40\,\%" />, sodass die Raupen auf <InlineMath math="1800" /> und mehr wachsen. **Auch die Wespen vermehren sich**, und jede parasitiert <InlineMath math="4" /> Raupen der nächsten Generation.
+- Nur I, II, III und IV zählt in Generation <InlineMath math="4" /> eine Wespe pro Ei, <InlineMath math="5120" />. **Es gibt nur <InlineMath math="600" /> Raupen, die die Eier aufnehmen**, also schlüpfen nur <InlineMath math="600" /> Wespen.
+- Nur I und II überträgt den parasitierten Anteil, <InlineMath math="91\,\%" />, auf Generation <InlineMath math="4" />, sodass einige Raupen entkommen und Generation <InlineMath math="5" /> nicht leer ist. **Die Zahl der Wespen, nicht ihr Anteil, bestimmt die Parasitierung**, und <InlineMath math="1280" /> Wespen parasitieren alle <InlineMath math="600" /> Raupen.

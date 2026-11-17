@@ -1,0 +1,58 @@
+# Cari bagian tiap gamet dari uji silang sebelum tanaman diserbuki sendiri
+
+Induk tak berwarna dan keriput adalah <InlineMath math="ccss" />, jadi induk ini hanya memberi gamet <InlineMath math="cs" />. Karena itu, tiap biji menunjukkan dengan tepat **gamet mana yang berasal dari tanaman heterozigot**. Mulai dari jumlahnya:
+
+<BlockMath math="380+26+22+372=800\text{ biji}" />
+
+Kalau gen-gennya berpisah secara bebas, keempat jenis gamet akan sama banyak, dan tiap kelas berisi <InlineMath math="\tfrac{800}{4}=200" /> biji.
+
+<Chart
+  title={<>Biji Terhitung Dibandingkan Pemisahan Bebas</>}
+  bars="apart"
+  categories={["Berwarna, penuh", "Berwarna, keriput", "Tak berwarna, penuh", "Tak berwarna, keriput"]}
+  series={[
+    { label: "Terhitung", mark: "bar", values: [380, 26, 22, 372] },
+    { label: "Harapan jika bebas", mark: "bar", values: [200, 200, 200, 200] },
+  ]}
+  valueLabel="Jumlah biji"
+  description={<>Hasil hitungannya <InlineMath math="380" />, <InlineMath math="26" />, <InlineMath math="22" />, dan <InlineMath math="372" />. Pemisahan bebas akan memberi <InlineMath math="200" /> di tiap kelas. Berwarna penuh dan tak berwarna keriput jauh di atas <InlineMath math="200" />, sedangkan dua kelas lainnya jauh di bawahnya.</>}
+/>
+
+Dua kelas sangat besar dan dua kelas sangat kecil, jadi alel-alelnya kebanyakan ikut bersama: gennya **tertaut**. Kelas besar menunjukkan kromosom yang memang dimiliki tanaman itu, dan kelas kecil adalah kombinasi baru hasil pindah silang. Ubah hitungan itu menjadi bagian gamet:
+
+<BlockMath math="\begin{aligned}
+\text{kombinasi baru} &= \tfrac{26+22}{800}\times100\% = 6\% \\
+Cs\text{ dan }cS &= \tfrac{6\%}{2} = 3\%\text{ masing-masing} \\
+CS\text{ dan }cs &= \tfrac{100\%-6\%}{2} = 47\%\text{ masing-masing}
+\end{aligned}" />
+
+Biji tak berwarna keriput hasil penyerbukan sendiri butuh serbuk sari <InlineMath math="cs" /> **dan** sel telur <InlineMath math="cs" />, dan soal menyatakan keduanya terbentuk dengan cara yang sama:
+
+<BlockMath math="\begin{aligned}
+P(ccss) &= 0{,}47\times0{,}47 = 0{,}2209 \\
+\text{harapan jumlah biji} &= 0{,}2209\times2000 \approx 442
+\end{aligned}" />
+
+<Chart
+  title={<>Biji Tak Berwarna Keriput dari 2000 Biji</>}
+  bars="apart"
+  categories={["Tertaut, sesuai data", "Jika bebas"]}
+  series={[
+    { label: "Harapan jumlah biji", mark: "bar", values: [442, 125] },
+  ]}
+  valueLabel="Jumlah biji"
+  description={<>Karena <InlineMath math="47\%" /> dari tiap jenis gamet membawa <InlineMath math="cs" />, sekitar <InlineMath math="442" /> dari <InlineMath math="2000" /> biji tak berwarna dan keriput. Pemisahan bebas, dengan perbandingan <InlineMath math="9:3:3:1" />, hanya memberi <InlineMath math="\tfrac{1}{16}\times2000=125" />.</>}
+/>
+
+- I: biji yang paling banyak adalah berwarna dengan penuh dan tak berwarna dengan keriput, jadi tanaman itu punya <InlineMath math="C" /> bersama <InlineMath math="S" /> pada satu kromosom dan <InlineMath math="c" /> bersama <InlineMath math="s" /> pada kromosom lainnya. Susunan di pernyataan itu adalah susunan hasil **pindah silang**, yang hanya muncul pada <InlineMath math="6\%" /> gamet. Pernyataan I salah.
+- II: gennya tertaut, dan <InlineMath math="6\%" /> gamet membawa kombinasi baru. Pernyataan II benar.
+- III: <InlineMath math="0{,}47^2\times2000\approx442" />, yaitu sekitar <InlineMath math="440" />. Pernyataan III benar.
+- IV: tanaman <InlineMath math="ccss" /> punya **alel yang sama pada kedua homolog**. Pertukaran potongan di antara keduanya tetap memberi <InlineMath math="cs" /> setiap kali, jadi pindah silang di tanaman ini tidak menghasilkan apa pun yang baru. Pernyataan IV salah.
+
+Jadi pernyataan II dan III benar.
+
+# Mengapa pilihan lain salah
+
+- II saja menolak III karena memakai <InlineMath math="\tfrac{1}{16}\times2000=125" />, **perbandingan yang hanya berlaku untuk gen pada kromosom berbeda**.
+- II, III, dan IV saja menerima IV, lupa bahwa pindah silang pada tanaman yang **homozigot untuk kedua gen** tidak bisa mengubah gametnya.
+- I dan II saja membaca susunan alel dari kelas yang **paling sedikit**. Cara ini juga menjadikan <InlineMath math="cs" /> gamet langka sebesar <InlineMath math="3\%" />, sehingga hanya memberi sekitar <InlineMath math="0{,}03^2\times2000\approx2" /> biji tak berwarna keriput, jadi III ikut ditolak.

@@ -1,0 +1,41 @@
+# Ubah setiap bacaan menjadi total segmen sebelum kamu melacak kalium
+
+Tabel memberi satuan per gram, padahal kulit batang dan kayu punya massa berbeda. Jadi **kalikan dulu setiap bacaan dengan massa kering jaringannya** untuk mendapat total di setiap jaringan:
+
+| Segmen | Kulit batang (satuan) | Kayu (satuan) | Seluruh segmen (satuan) |
+| --- | --- | --- | --- |
+| P | <InlineMath math="60\times0{,}5=30" /> | <InlineMath math="96\times1{,}5=144" /> | <InlineMath math="174" /> |
+| Q | <InlineMath math="12\times0{,}5=6" /> | <InlineMath math="120\times1{,}5=180" /> | <InlineMath math="186" /> |
+| R | <InlineMath math="0" /> | <InlineMath math="180" /> | <InlineMath math="180" /> |
+| S | <InlineMath math="0" /> | <InlineMath math="180" /> | <InlineMath math="180" /> |
+| T | <InlineMath math="96\times0{,}5=48" /> | <InlineMath math="84\times1{,}5=126" /> | <InlineMath math="174" /> |
+
+- I: di bagian berlilin, kayu membawa <InlineMath math="180" /> satuan di setiap segmen, sementara kulit batang R dan S tidak membawa apa pun, jadi kalium naik lewat kayu, yaitu di xilem. Pernyataan I benar.
+- II: di T, bacaan kulit batang lebih tinggi per gram, <InlineMath math="96" /> dibanding <InlineMath math="84" />, tetapi kulit batang hanya menyimpan <InlineMath math="48" /> satuan dibanding <InlineMath math="126" /> satuan di kayu. Pernyataan II salah.
+- III: R dan S menunjukkan apa yang dikirim xilem ketika tidak ada yang bisa keluar ke samping, yaitu <InlineMath math="180" /> satuan per segmen. P menerima <InlineMath math="180" /> yang sama, tetapi kayunya hanya menyimpan <InlineMath math="144" />, jadi sisanya keluar dari xilem ke samping:
+
+<BlockMath math="180-144=36\text{ satuan}" />
+
+Kalium yang keluar dari xilem P hanya bisa masuk ke kulit batang P, jadi seluruh <InlineMath math="36" /> satuan masuk ke sana. Kulit batang itu sekarang hanya menyimpan <InlineMath math="30" />, jadi <InlineMath math="36-30=6" /> satuan terus turun lewat floem keluar dari P, dan itulah tepat <InlineMath math="6" /> satuan di kulit batang Q. Itu juga sebabnya total P adalah <InlineMath math="180-6=174" /> dan total Q adalah <InlineMath math="180+6=186" />. Pernyataan III benar.
+
+- IV: kulit batang Q tidak mungkin mengambil kalium dari kayunya sendiri, karena kertas berlilin menghalangi jalur ke samping. Kalium di kulit batang hanya bergerak ke bawah, jadi kalium itu datang dari kulit batang di atasnya, yaitu P. Pernyataan IV benar.
+
+<Chart
+  title={<>Kalium Radioaktif di Setiap Segmen</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S", "T"]}
+  series={[
+    { label: "Kulit batang", mark: "bar", values: [60 * 0.5, 12 * 0.5, 0, 0, 96 * 0.5] },
+    { label: "Kayu", mark: "bar", values: [96 * 1.5, 120 * 1.5, 120 * 1.5, 120 * 1.5, 84 * 1.5] },
+  ]}
+  valueLabel="Radioaktivitas per segmen (satuan)"
+  description={<>Kayu Q, R, dan S menyimpan <InlineMath math="180" /> satuan, dan kulit batangnya hampir kosong. Di P, kayu hanya menyimpan <InlineMath math="144" /> satuan dan kulit batang <InlineMath math="30" />. Di T, kulit batang menyimpan <InlineMath math="48" /> satuan dan kayu <InlineMath math="126" />, jadi kayu tetap menyimpan lebih banyak.</>}
+/>
+
+Jadi pernyataan I, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan IV saja menganggap aliran ke samping di P hanya sebanyak isi kulit batang P, <InlineMath math="30" /> satuan, atau sebesar penurunan per gram, <InlineMath math="120-96=24" />. **Xilem P kehilangan <InlineMath math="180-144=36" /> satuan**, dan <InlineMath math="6" /> di antaranya sudah turun ke kulit batang Q.
+- I, II, III, dan IV membandingkan T per gram, <InlineMath math="96" /> dibanding <InlineMath math="84" />. **Massa kayu tiga kali massa kulit batang**, jadi kayu menyimpan <InlineMath math="126" /> satuan dibanding <InlineMath math="48" />.
+- I dan III saja menganggap kalium di kulit batang Q datang ke samping dari kayu Q sendiri. **Kertas berlilin menghalangi gerakan ke samping di Q**, jadi kalium itu hanya bisa turun lewat floem dari P.

@@ -1,0 +1,62 @@
+# Bau die Trefferwahrscheinlichkeit Locus für Locus auf, mach daraus eine Zahl von Menschen und daraus eine Wahrscheinlichkeit für Y
+
+Die DNA eines Menschen ist in jeder Zelle gleich, die echte Quelle der Blutspur muss also an **jedem Locus** übereinstimmen. Eine einzige Abweichung schließt jemanden aus. Eine volle Übereinstimmung setzt jemanden nur auf die Liste der Menschen, die die Spur hinterlassen haben könnten. Die eigentliche Frage ist also, wie lang diese Liste ist.
+
+Vergleiche jeden Verdächtigen Locus für Locus mit der Spur. Z weicht an allen vier Loci ab. X stimmt an den Loci <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="4" /> überein, hat aber an Locus <InlineMath math="3" /> die <InlineMath math="21" /> statt der <InlineMath math="20" />. Y stimmt an allen vier überein.
+
+Bestimm jetzt, wie häufig das Allelpaar der Spur an jedem Locus ist. An Locus <InlineMath math="2" /> hat die Spur zwei Kopien von Allel <InlineMath math="8" />, also nimmst du <InlineMath math="p\times p" />. An den anderen drei Loci hat sie zwei verschiedene Allele, also nimmst du <InlineMath math="2\times p\times q" />:
+
+<BlockMath math="\begin{aligned}
+\text{Locus }1 &: \quad 2\times0{,}10\times0{,}25 = 0{,}05 \\
+\text{Locus }2 &: \quad 0{,}20\times0{,}20 = 0{,}04 \\
+\text{Locus }3 &: \quad 2\times0{,}50\times0{,}20 = 0{,}20 \\
+\text{Locus }4 &: \quad 2\times0{,}10\times0{,}10 = 0{,}02
+\end{aligned}" />
+
+<Chart
+  title={<>Nicht Verwandte mit dem Allelpaar der Spur</>}
+  bars="apart"
+  categories={["Locus 1", "Locus 2", "Locus 3", "Locus 4"]}
+  series={[
+    { label: "Anteil", mark: "bar", values: [2 * 0.1 * 0.25, 0.2 * 0.2, 2 * 0.5 * 0.2, 2 * 0.1 * 0.1] },
+  ]}
+  valueLabel="Anteil der nicht Verwandten"
+  description={<>Der Anteil der nicht verwandten Menschen mit demselben Allelpaar wie die Spur beträgt <InlineMath math="0{,}05" /> an Locus <InlineMath math="1" />, <InlineMath math="0{,}04" /> an Locus <InlineMath math="2" />, <InlineMath math="0{,}20" /> an Locus <InlineMath math="3" /> und <InlineMath math="0{,}02" /> an Locus <InlineMath math="4" />. Das Paar an Locus <InlineMath math="4" /> ist am seltensten, das an Locus <InlineMath math="3" /> am häufigsten.</>}
+/>
+
+Die vier Loci liegen auf verschiedenen Chromosomen, werden also unabhängig vererbt, und die Anteile multiplizieren sich. Trag diese Wahrscheinlichkeit dann in die Regeln für die Zahl der Treffer und für Y:
+
+<BlockMath math="\begin{aligned}
+P(\text{Treffer an allen vier}) &= 0{,}05\times0{,}04\times0{,}20\times0{,}02 = 0{,}000008 = \tfrac{1}{125{.}000} \\
+\text{weitere Treffer} &= 1{.}000{.}000\times\tfrac{1}{125{.}000} = 8 \\
+P(\text{Y hinterließ die Spur}) &= \tfrac{1}{1+8} = \tfrac{1}{9}\approx11\,\%
+\end{aligned}" />
+
+- I: Y ist der einzige Verdächtige, der an allen vier Loci übereinstimmt. X scheitert an Locus <InlineMath math="3" />, und weil die Quelle überall übereinstimmen muss, **schließt eine Abweichung** X aus. Aussage I stimmt.
+- II: Etwa <InlineMath math="8" /> nicht verwandte Menschen außer der Quelle haben das Profil. Aussage II stimmt.
+- III: Die Wahrscheinlichkeit, dass ein Mensch übereinstimmt, bleibt <InlineMath math="\tfrac{1}{125{.}000}" />, aber die Kleinstadt hat nur ein Zehntel der Einwohner, also erwartest du viel weniger weitere Treffer:
+
+<BlockMath math="100{.}000\times\tfrac{1}{125{.}000}=0{,}8,\qquad P(\text{Y hinterließ die Spur})=\tfrac{1}{1+0{,}8}=\tfrac{5}{9}\approx56\,\%" />
+
+Das sind etwa <InlineMath math="\tfrac{5}{9}" />, das Fünffache von <InlineMath math="\tfrac{1}{9}" />. Aussage III ist falsch.
+
+- IV: Ist die DNA der einzige Beweis, ist Y einer von etwa <InlineMath math="9" /> Menschen in der Stadt mit diesem Profil, die Wahrscheinlichkeit liegt also bei etwa <InlineMath math="\tfrac{1}{9}" />. Die winzige <InlineMath math="\tfrac{1}{125{.}000}" /> ist die Wahrscheinlichkeit, dass **ein zufälliger Mensch** übereinstimmt, nicht die Wahrscheinlichkeit, dass ein Treffer unschuldig ist. Aussage IV stimmt.
+
+<Chart
+  title={<>Wahrscheinlichkeit, dass Y die Spur hinterließ</>}
+  bars="apart"
+  categories={["Großstadt", "Kleinstadt"]}
+  series={[
+    { label: "Nur DNA", mark: "bar", values: [1 / (1 + 1000000 / 125000), 1 / (1 + 100000 / 125000)] },
+  ]}
+  valueLabel="Wahrscheinlichkeit"
+  description={<>In der Stadt mit <InlineMath math="1{.}000{.}000" /> Einwohnern stimmen etwa <InlineMath math="8" /> weitere Menschen überein, also hinterließ Y die Spur mit der Wahrscheinlichkeit <InlineMath math="\tfrac{1}{9}" />. In einer Kleinstadt mit <InlineMath math="100{.}000" /> Einwohnern stimmen nur etwa <InlineMath math="0{,}8" /> weitere überein, und die Wahrscheinlichkeit steigt auf <InlineMath math="\tfrac{5}{9}" />.</>}
+/>
+
+Also stimmen die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- I und II verwirft IV und liest <InlineMath math="\tfrac{1}{125{.}000}" /> als Wahrscheinlichkeit, dass Y unschuldig ist, **obwohl etwa** <InlineMath math="8" /> **weitere Menschen in der Stadt ebenfalls übereinstimmen**.
+- I, II, III und IV nimmt III dazu und behält <InlineMath math="\tfrac{1}{9}" />, weil sich die Trefferwahrscheinlichkeit eines Menschen nicht geändert hat, **doch die Zahl der weiteren Treffer sinkt mit der Einwohnerzahl**, in der Kleinstadt auf etwa <InlineMath math="0{,}8" />, und die Wahrscheinlichkeit für Y steigt auf <InlineMath math="\tfrac{5}{9}" />.
+- II und IV verwirft I und hält die Übereinstimmung von X an drei Loci für nah genug, **obwohl die Quelle an jedem Locus übereinstimmen muss**.

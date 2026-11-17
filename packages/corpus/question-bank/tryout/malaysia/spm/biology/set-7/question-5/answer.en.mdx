@@ -1,0 +1,50 @@
+# Sort every base into DNA or RNA with the bases only one of them has
+
+The extract holds two nucleic acids, and three of the bases are shared. The way in is through what belongs to one acid only: **deoxyribose and thymine are found only in DNA**, ribose and uracil only in RNA.
+
+## The DNA
+
+Each nucleotide has one sugar, so the DNA has <InlineMath math="1000\text{ nmol}" /> of nucleotides, that is <InlineMath math="500\text{ nmol}" /> of base pairs. In a double strand **every adenine pairs with a thymine** and every guanine with a cytosine.
+
+<BlockMath math="\begin{aligned}
+\text{A}=\text{T} &= 280\text{ nmol} \\
+\text{G}=\text{C} &= \tfrac{1000-280-280}{2}=220\text{ nmol} \\
+\text{A and T pairs} &: \ \tfrac{280}{500}=56\%\ \text{of the base pairs}
+\end{aligned}" />
+
+## The RNA
+
+The RNA has <InlineMath math="3000\text{ nmol}" /> of nucleotides. Adenine and guanine were measured for the whole mixture, so **take away the DNA's share first**. A single strand has no pairing rule, so cytosine is whatever is left.
+
+<BlockMath math="\begin{aligned}
+\text{A} &= 1000-280=720\text{ nmol} \\
+\text{G} &= 1260-220=1040\text{ nmol} \\
+\text{C} &= 3000-720-1040-750=490\text{ nmol}
+\end{aligned}" />
+
+<Chart
+  title={<>Bases of the DNA and of the RNA</>}
+  bars="apart"
+  categories={["Adenine", "Guanine", "Cytosine", "Thymine", "Uracil"]}
+  series={[
+    { label: "DNA", mark: "bar", values: [280, 220, 220, 280, 0] },
+    { label: "RNA", mark: "bar", values: [720, 1040, 490, 0, 750] },
+  ]}
+  valueLabel="Amount (nmol)"
+  description={<>The DNA holds <InlineMath math="280" /> adenine, <InlineMath math="220" /> guanine, <InlineMath math="220" /> cytosine and <InlineMath math="280" /> thymine, in <InlineMath math="\text{nmol}" />. The RNA holds <InlineMath math="720" /> adenine, <InlineMath math="1040" /> guanine, <InlineMath math="490" /> cytosine and <InlineMath math="750" /> uracil. Each acid's bases add up to its sugar.</>}
+/>
+
+## Judging each statement
+
+- I: the DNA has <InlineMath math="220\text{ nmol}" /> of guanine and the RNA the other <InlineMath math="1040\text{ nmol}" />. Statement I is correct.
+- II: the RNA has <InlineMath math="720\text{ nmol}" /> of adenine, **less than its** <InlineMath math="750\text{ nmol}" /> **of uracil**. Statement II is wrong.
+- III: <InlineMath math="280" /> of the <InlineMath math="500\text{ nmol}" /> of base pairs are adenine and thymine pairs, which is <InlineMath math="56\%" />. Statement III is correct.
+- IV: the RNA has <InlineMath math="490\text{ nmol}" /> of cytosine. Statement IV is correct.
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and III only gives all <InlineMath math="1000\text{ nmol}" /> of adenine to the RNA. That makes adenine beat uracil and leaves only <InlineMath math="3000-1000-1040-750=210\text{ nmol}" /> of cytosine, **forgetting that the DNA holds** <InlineMath math="280\text{ nmol}" /> **of the adenine**.
+- I and IV only divides the <InlineMath math="280" /> adenine and thymine pairs by the <InlineMath math="1000\text{ nmol}" /> of nucleotides, giving <InlineMath math="28\%" />, **mixing up nucleotides and base pairs**.
+- I, II, III and IV works out the cytosine correctly but judges statement II by setting the total adenine beside the uracil, **without separating the DNA's adenine**.

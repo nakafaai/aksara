@@ -1,0 +1,50 @@
+# Read each allele's fragments, find the untested mother through her children, then split child Z's future by his genotype
+
+Start with the cutting sites. A cut at <InlineMath math="200" /> and at <InlineMath math="380\text{ bp}" /> splits the <InlineMath math="500\text{ bp}" /> copy of <InlineMath math="\text{Hb}^A" /> into three pieces. In <InlineMath math="\text{Hb}^S" />, only the cut at <InlineMath math="200\text{ bp}" /> is left:
+
+<BlockMath math="\begin{aligned}
+\text{Hb}^A &: \quad 200,\quad 380-200=180,\quad 500-380=120\text{ bp} \\
+\text{Hb}^S &: \quad 200,\quad 500-200=300\text{ bp}
+\end{aligned}" />
+
+So a <InlineMath math="300\text{ bp}" /> band marks <InlineMath math="\text{Hb}^S" />, the <InlineMath math="180" /> and <InlineMath math="120\text{ bp}" /> bands mark <InlineMath math="\text{Hb}^A" />, and the <InlineMath math="200\text{ bp}" /> band comes from **both** alleles. The father shows all four bands, so he is <InlineMath math="\text{Hb}^A\text{Hb}^S" />.
+
+- I: child X shows only <InlineMath math="300" /> and <InlineMath math="200\text{ bp}" />, the pieces of <InlineMath math="\text{Hb}^S" />, so X is <InlineMath math="\text{Hb}^S\text{Hb}^S" /> and has sickle-cell anaemia. Now find the mother through her children. X got one <InlineMath math="\text{Hb}^S" /> from each parent, so the mother has an <InlineMath math="\text{Hb}^S" />. Child Y shows only the pieces of <InlineMath math="\text{Hb}^A" />, so Y is <InlineMath math="\text{Hb}^A\text{Hb}^A" /> and got an <InlineMath math="\text{Hb}^A" /> from the mother too. She must be <InlineMath math="\text{Hb}^A\text{Hb}^S" />. Statement I is correct.
+- II: the site at <InlineMath math="200\text{ bp}" /> is in both alleles, so every copy should be cut there. A lone <InlineMath math="500\text{ bp}" /> band means even this shared site wasn't cut, so the enzyme failed. A person with sickle-cell anaemia would still show <InlineMath math="300" /> and <InlineMath math="200\text{ bp}" />. Statement II is correct.
+- III: carry the mother's genotype from I. Both parents are carriers, so a child of theirs is <InlineMath math="\text{Hb}^A\text{Hb}^A" />, <InlineMath math="\text{Hb}^A\text{Hb}^S" /> or <InlineMath math="\text{Hb}^S\text{Hb}^S" /> in the ratio <InlineMath math="1:2:1" />. But Z doesn't have the disease, so <InlineMath math="\text{Hb}^S\text{Hb}^S" /> is ruled out, and only the first two remain:
+
+<BlockMath math="P(\text{Z is a carrier, with four bands})=\frac{2}{1+2}=\frac{2}{3}" />
+
+Statement III is correct.
+
+<Chart
+  title={<>Genotypes of a Child of Two Carriers</>}
+  bars="apart"
+  categories={["HbAHbA", "HbAHbS", "HbSHbS"]}
+  series={[
+    { label: "Any child", mark: "bar", values: [1 / 4, 2 / 4, 1 / 4] },
+    { label: "Child Z", mark: "bar", values: [1 / 3, 2 / 3, 0] },
+  ]}
+  valueLabel="Probability"
+  description={<>For any child of two carriers, the three genotypes come in the ratio <InlineMath math="1:2:1" />. For child Z, who doesn't have the disease, the <InlineMath math="\text{Hb}^S\text{Hb}^S" /> bar drops to zero and the other two share the whole chance, so a carrier with four bands has probability <InlineMath math="\tfrac{2}{3}" />.</>}
+/>
+
+- IV: the woman shows only the <InlineMath math="\text{Hb}^S" /> pieces, so she is <InlineMath math="\text{Hb}^S\text{Hb}^S" /> and passes <InlineMath math="\text{Hb}^S" /> to every child. Whether a child is ill now depends on Z alone, and **both children share Z's one genotype**, so split by that genotype first:
+
+<Mermaid
+  title={<>Two Children of Child Z</>}
+  description={<>Child Z is a carrier with probability two thirds. Then each child is ill with probability one half, and one or both of the two children are ill with probability three quarters. Z has two normal alleles with probability one third, and then every child is a carrier and none is ill.</>}
+  chart={"flowchart LR\n  Z[\"Child Z, no disease\"] -->|2/3| C[\"Z is HbAHbS\"]\n  Z -->|1/3| N[\"Z is HbAHbA\"]\n  C --> P[\"Each child 1/2 ill, one or both ill: 3/4\"]\n  N --> Q[\"Every child HbAHbS, none ill\"]"}
+/>
+
+<BlockMath math="P(\text{at least one ill})=\tfrac{2}{3}\times\left(1-\tfrac{1}{2}\times\tfrac{1}{2}\right)+\tfrac{1}{3}\times0=\tfrac{2}{3}\times\tfrac{3}{4}=\tfrac{1}{2}" />
+
+That is <InlineMath math="\tfrac{1}{2}" />, not <InlineMath math="\tfrac{5}{9}" />. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only uses <InlineMath math="\tfrac{1}{2}" /> for child Z, the chance for a child you know nothing about. **Z is known not to have the disease**, so <InlineMath math="\text{Hb}^S\text{Hb}^S" /> drops out and the chance becomes <InlineMath math="\tfrac{2}{3}" />.
+- I and III only reads a lone <InlineMath math="500\text{ bp}" /> band as two copies of <InlineMath math="\text{Hb}^S" />. **The site at <InlineMath math="200\text{ bp}" /> is cut in both alleles**, so an uncut copy shows the enzyme failed.
+- I, II, III and IV gives each child a separate chance of <InlineMath math="\tfrac{2}{3}\times\tfrac{1}{2}=\tfrac{1}{3}" /> and works out <InlineMath math="1-\left(\tfrac{2}{3}\right)^2=\tfrac{5}{9}" />, as if the two children were independent. **Both children have the same father, Z**, so if he has no <InlineMath math="\text{Hb}^S" />, neither child can be ill, and the chance is <InlineMath math="\tfrac{1}{2}" />.

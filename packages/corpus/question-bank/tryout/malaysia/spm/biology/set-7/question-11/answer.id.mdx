@@ -1,0 +1,56 @@
+# Ikuti air melewati kolon yang sudah penuh, karena separuh dari setiap minuman tambahan juga terbuang
+
+Yang dicari adalah **air bersih yang didapat tubuh dari saluran cerna**: air yang dimakan dan diminum dikurangi air yang hilang lewat feses. Sebelum infeksi, nilainya
+
+<BlockMath math="2{,}0 - 0{,}1 = 1{,}9\text{ dm}^3 \text{ per hari}" />
+
+Getah pencernaan tidak dihitung sebagai tambahan air. Tubuh mengeluarkannya lalu mengambilnya lagi, tetapi hanya kalau saluran cerna menyerapnya kembali. Jadi hitung dulu berapa banyak cairan yang benar-benar melewati saluran cerna.
+
+<BlockMath math="2{,}0 + 1{,}5 + 2{,}0 + 0{,}5 + 1{,}5 + 1{,}5 = 9{,}0\text{ dm}^3 \text{ per hari}" />
+
+Usus halus yang rusak hanya menyerap separuhnya, jadi **separuh sisanya sampai ke kolon**:
+
+<BlockMath math="0{,}50 \times 9{,}0 = 4{,}5\text{ dm}^3" />
+
+Kolon ingin menyerap semuanya kecuali <InlineMath math="0{,}1\text{ dm}^3" />, yaitu <InlineMath math="4{,}4\text{ dm}^3" />. Tetapi kolon hanya bisa menyerap **paling banyak** <InlineMath math="4{,}0\text{ dm}^3" />, jadi kolon sudah bekerja di batasnya.
+
+<BlockMath math="\text{air di feses} = 4{,}5 - 4{,}0 = 0{,}5\text{ dm}^3" />
+
+<Mermaid
+  title={<>Air di Saluran Cerna yang Terinfeksi Setiap Hari</>}
+  description={<>Cairan yang masuk ke saluran cerna, <InlineMath math="9{,}0\text{ dm}^3" />, hanya diserap separuh oleh usus halus yang rusak, jadi <InlineMath math="4{,}5\text{ dm}^3" /> sampai ke kolon. Kolon menyerap batas maksimumnya, <InlineMath math="4{,}0\text{ dm}^3" />, dan <InlineMath math="0{,}5\text{ dm}^3" /> keluar lewat feses.</>}
+  chart={"flowchart LR\n  G[Cairan masuk 9,0] --> S[Usus halus menyerap 4,5]\n  G --> C[Kolon menerima 4,5]\n  C --> A[Kolon menyerap batas maksimum 4,0]\n  C --> F[Feses 0,5]"}
+/>
+
+Sekarang tambahan air bersihnya <InlineMath math="2{,}0 - 0{,}5 = 1{,}5\text{ dm}^3" />, kurang <InlineMath math="0{,}4\text{ dm}^3" /> dari <InlineMath math="1{,}9\text{ dm}^3" /> sebelumnya.
+
+Gampang tergoda untuk minum <InlineMath math="0{,}4\text{ dm}^3" /> lagi saja. Tetapi **minuman tambahan itu melewati saluran cerna yang sama rusaknya**. Dari volume tambahan <InlineMath math="V" />, usus halus hanya menyerap separuh. Separuh lainnya sampai ke kolon yang sudah menyerap batas maksimumnya, jadi seluruh separuh itu berakhir di feses.
+
+<BlockMath math="\begin{aligned}
+\text{feses} &= 0{,}5 + 0{,}50V \\
+\text{air bersih} &= (2{,}0 + V) - (0{,}5 + 0{,}50V) = 1{,}5 + 0{,}50V \\
+1{,}5 + 0{,}50V &= 1{,}9 \\
+V &= \frac{0{,}4}{0{,}50} = 0{,}8\text{ dm}^3
+\end{aligned}" />
+
+<Chart
+  title={<>Air Harian di Saluran Cerna yang Terinfeksi</>}
+  bars="apart"
+  categories={["Masuk saluran", "Sampai ke kolon", "Diserap kolon", "Di feses"]}
+  series={[
+    { label: "Tanpa minuman tambahan", mark: "bar", values: [9.0, 4.5, 4.0, 0.5] },
+    { label: "Dengan minuman tambahan", mark: "bar", values: [9.8, 4.9, 4.0, 0.9] },
+  ]}
+  valueLabel="Air per hari (liter)"
+  description={<>Tanpa minuman tambahan, <InlineMath math="9{,}0\text{ dm}^3" /> masuk, <InlineMath math="4{,}5\text{ dm}^3" /> sampai ke kolon, kolon menyerap <InlineMath math="4{,}0\text{ dm}^3" /> dan <InlineMath math="0{,}5\text{ dm}^3" /> hilang. Dengan tambahan <InlineMath math="0{,}8\text{ dm}^3" />, <InlineMath math="9{,}8\text{ dm}^3" /> masuk, <InlineMath math="4{,}9\text{ dm}^3" /> sampai ke kolon, kolon tetap hanya menyerap <InlineMath math="4{,}0\text{ dm}^3" />, dan <InlineMath math="0{,}9\text{ dm}^3" /> hilang.</>}
+/>
+
+Cek: dengan tambahan <InlineMath math="0{,}8\text{ dm}^3" />, orang itu memasukkan <InlineMath math="2{,}8\text{ dm}^3" /> dan kehilangan <InlineMath math="0{,}9\text{ dm}^3" />, jadi air bersihnya <InlineMath math="2{,}8 - 0{,}9 = 1{,}9\text{ dm}^3" />, sama seperti sebelumnya.
+
+Jadi orang itu harus minum tambahan <InlineMath math="0{,}8\text{ dm}^3" /> air per hari.
+
+# Mengapa pilihan lain salah
+
+- Tanpa air tambahan hanya menghitung <InlineMath math="2{,}0\text{ dm}^3" /> makanan dan minuman sebagai cairan di saluran cerna, sehingga kolon seolah hanya menerima <InlineMath math="1{,}0\text{ dm}^3" />, **padahal** <InlineMath math="7{,}0\text{ dm}^3" /> **getah pencernaan juga melewati saluran itu**.
+- <InlineMath math="0{,}4\text{ dm}^3" /> mengganti kekurangan itu satu banding satu, **lupa bahwa separuh minuman tambahan juga terbuang** lewat kolon yang sudah penuh.
+- <InlineMath math="1{,}0\text{ dm}^3" /> menganggap seluruh <InlineMath math="0{,}5\text{ dm}^3" /> air di feses sebagai kekurangan, **padahal** <InlineMath math="0{,}1\text{ dm}^3" /> **memang sudah hilang sebelum infeksi**.

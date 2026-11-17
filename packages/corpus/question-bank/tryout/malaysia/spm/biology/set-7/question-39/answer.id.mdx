@@ -1,0 +1,62 @@
+# Susun peluang cocok lokus demi lokus, ubah jadi jumlah orang, lalu ubah jumlah itu jadi peluang untuk Y
+
+DNA seseorang sama di setiap sel, jadi sumber noda darah yang sebenarnya harus cocok di **setiap lokus**. Satu ketidakcocokan sudah menyingkirkan seseorang. Kecocokan penuh hanya memasukkan seseorang ke daftar orang yang mungkin meninggalkannya, jadi pertanyaan sebenarnya adalah seberapa panjang daftar itu.
+
+Bandingkan tiap tersangka dengan noda darah, lokus demi lokus. Z berbeda di keempat lokus. X cocok di lokus <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="4" />, tetapi punya <InlineMath math="21" />, bukan <InlineMath math="20" />, di lokus <InlineMath math="3" />. Y cocok di keempatnya.
+
+Sekarang cari seberapa umum pasangan alel noda darah itu di tiap lokus. Di lokus <InlineMath math="2" />, noda darah punya dua salinan alel <InlineMath math="8" />, jadi pakai <InlineMath math="p\times p" />. Di tiga lokus lainnya, noda darah punya dua alel berbeda, jadi pakai <InlineMath math="2\times p\times q" />:
+
+<BlockMath math="\begin{aligned}
+\text{lokus }1 &: \quad 2\times0{,}10\times0{,}25 = 0{,}05 \\
+\text{lokus }2 &: \quad 0{,}20\times0{,}20 = 0{,}04 \\
+\text{lokus }3 &: \quad 2\times0{,}50\times0{,}20 = 0{,}20 \\
+\text{lokus }4 &: \quad 2\times0{,}10\times0{,}10 = 0{,}02
+\end{aligned}" />
+
+<Chart
+  title={<>Orang yang Punya Pasangan Alel Noda Darah</>}
+  bars="apart"
+  categories={["Lokus 1", "Lokus 2", "Lokus 3", "Lokus 4"]}
+  series={[
+    { label: "Fraksi", mark: "bar", values: [2 * 0.1 * 0.25, 0.2 * 0.2, 2 * 0.5 * 0.2, 2 * 0.1 * 0.1] },
+  ]}
+  valueLabel="Fraksi orang tak berkerabat"
+  description={<>Fraksi orang tak berkerabat yang punya pasangan alel yang sama dengan noda darah adalah <InlineMath math="0{,}05" /> di lokus <InlineMath math="1" />, <InlineMath math="0{,}04" /> di lokus <InlineMath math="2" />, <InlineMath math="0{,}20" /> di lokus <InlineMath math="3" />, dan <InlineMath math="0{,}02" /> di lokus <InlineMath math="4" />. Pasangan di lokus <InlineMath math="4" /> paling langka, dan pasangan di lokus <InlineMath math="3" /> paling umum.</>}
+/>
+
+Keempat lokus ada di kromosom yang berbeda, jadi diwariskan secara bebas, dan fraksinya dikalikan. Lalu bawa peluang itu ke aturan untuk jumlah orang dan untuk Y:
+
+<BlockMath math="\begin{aligned}
+P(\text{cocok di keempatnya}) &= 0{,}05\times0{,}04\times0{,}20\times0{,}02 = 0{,}000008 = \tfrac{1}{125{.}000} \\
+\text{orang lain yang cocok} &= 1{.}000{.}000\times\tfrac{1}{125{.}000} = 8 \\
+P(\text{Y meninggalkan noda}) &= \tfrac{1}{1+8} = \tfrac{1}{9}\approx11\%
+\end{aligned}" />
+
+- I: Y satu-satunya tersangka yang cocok di keempat lokus. X gagal di lokus <InlineMath math="3" />, dan karena sumbernya harus cocok di mana-mana, **satu ketidakcocokan sudah menyingkirkan** X. Pernyataan I benar.
+- II: sekitar <InlineMath math="8" /> orang tak berkerabat selain sumbernya punya profil itu. Pernyataan II benar.
+- III: peluang satu orang cocok tetap <InlineMath math="\tfrac{1}{125{.}000}" />, tetapi kota kecil itu hanya punya sepersepuluh penduduknya, jadi jauh lebih sedikit orang lain yang diperkirakan cocok:
+
+<BlockMath math="100{.}000\times\tfrac{1}{125{.}000}=0{,}8,\qquad P(\text{Y meninggalkan noda})=\tfrac{1}{1+0{,}8}=\tfrac{5}{9}\approx56\%" />
+
+Hasilnya sekitar <InlineMath math="\tfrac{5}{9}" />, lima kali <InlineMath math="\tfrac{1}{9}" />. Pernyataan III salah.
+
+- IV: dengan DNA sebagai satu-satunya bukti, Y adalah salah satu dari sekitar <InlineMath math="9" /> orang di kota itu yang cocok, jadi peluangnya sekitar <InlineMath math="\tfrac{1}{9}" />. Angka <InlineMath math="\tfrac{1}{125{.}000}" /> yang sangat kecil itu adalah peluang **satu orang acak** cocok, bukan peluang orang yang cocok itu tidak bersalah. Pernyataan IV benar.
+
+<Chart
+  title={<>Peluang Tersangka Y Meninggalkan Noda Darah</>}
+  bars="apart"
+  categories={["Kota besar", "Kota kecil"]}
+  series={[
+    { label: "Hanya DNA", mark: "bar", values: [1 / (1 + 1000000 / 125000), 1 / (1 + 100000 / 125000)] },
+  ]}
+  valueLabel="Peluang"
+  description={<>Di kota berpenduduk <InlineMath math="1{.}000{.}000" /> orang, sekitar <InlineMath math="8" /> orang lain cocok, jadi peluang Y meninggalkan noda darah adalah <InlineMath math="\tfrac{1}{9}" />. Di kota kecil berpenduduk <InlineMath math="100{.}000" /> orang, hanya sekitar <InlineMath math="0{,}8" /> orang lain yang cocok, jadi peluangnya naik menjadi <InlineMath math="\tfrac{5}{9}" />.</>}
+/>
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak IV karena membaca <InlineMath math="\tfrac{1}{125{.}000}" /> sebagai peluang Y tidak bersalah, **padahal sekitar** <InlineMath math="8" /> **orang lain di kota itu juga cocok**.
+- I, II, III, dan IV menerima III karena tetap memakai <InlineMath math="\tfrac{1}{9}" /> dengan alasan peluang satu orang cocok tidak berubah, **padahal jumlah orang lain yang cocok ikut turun bersama jumlah penduduk**, menjadi sekitar <InlineMath math="0{,}8" /> di kota kecil itu, sehingga peluang Y naik menjadi <InlineMath math="\tfrac{5}{9}" />.
+- II dan IV saja menolak I karena menganggap kecocokan X di tiga lokus sudah cukup dekat, **padahal sumbernya harus cocok di setiap lokus**.

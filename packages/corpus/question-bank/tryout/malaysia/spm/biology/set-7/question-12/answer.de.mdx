@@ -1,0 +1,48 @@
+# Finde die Stelle, an der die Sättigung springt, und vergleiche dann mit der Mischung in der rechten Kammer beide Kreisläufe
+
+Lies die Tabelle zuerst in der Richtung, in der das Blut fließt. Die Sättigung bleibt von den Hohlvenen bis in den rechten Vorhof bei <InlineMath math="70\,\%" /> und **springt dann in der rechten Kammer auf** <InlineMath math="84\,\%" />. Sauerstoffreiches Blut muss also in die rechte Kammer gelangen, und der einzige zusätzliche Weg hinein ist das Loch. Auf der linken Seite bleibt die Sättigung von der Lungenvene bis zur Aorta bei <InlineMath math="98\,\%" />, dort kommt also kein anderes Blut dazu.
+
+<Chart
+  title={<>Sättigung entlang des Kreislaufs des Kindes</>}
+  categories={["Hohlvenen", "R. Vorhof", "R. Kammer", "Lungenarterie", "Lungenvene", "L. Vorhof", "L. Kammer", "Aorta"]}
+  series={[{ label: "Sättigung", mark: "line", values: [70, 70, 84, 84, 98, 98, 98, 98] }]}
+  valueLabel="Sättigung des Hämoglobins (%)"
+  description={<>Die Sättigung beträgt <InlineMath math="70\,\%" /> in den Hohlvenen und im rechten Vorhof, steigt in der rechten Kammer und der Lungenarterie auf <InlineMath math="84\,\%" /> und liegt von der Lungenvene bis zur Aorta bei <InlineMath math="98\,\%" />.</>}
+/>
+
+- III: Der Anstieg in der rechten Kammer und das Fehlen eines Abfalls in der linken Kammer zeigen, dass Blut **von der linken in die rechte Kammer** fließt. Die Drücke passen dazu: Die linke Kammer erreicht <InlineMath math="14{,}0\text{ kPa}" />, die rechte nur <InlineMath math="4{,}0\text{ kPa}" />, und Blut fließt vom hohen zum niedrigen Druck. Aussage III ist falsch.
+- I: Die rechte Kammer mischt zwei Ströme. Nenne den Blutstrom, der aus dem Körper zurückkommt, <InlineMath math="Q_s" /> (er kommt mit <InlineMath math="70\,\%" /> an) und den Strom durch das Loch <InlineMath math="S" /> (er kommt mit <InlineMath math="98\,\%" /> an). Die Mischung verlässt die Kammer mit <InlineMath math="84\,\%" />.
+
+<BlockMath math="\begin{aligned}
+70Q_s + 98S &= 84(Q_s + S) \\
+14S &= 14Q_s \\
+S &= Q_s
+\end{aligned}" />
+
+Alles, was die rechte Kammer pumpt, geht in die Lunge, also fließt durch die Lunge
+
+<BlockMath math="Q_p = Q_s + S = 2Q_s" />
+
+Man ist versucht zu sagen, dass im doppelten Kreislauf Lunge und Körper immer denselben Strom bekommen. Das stimmt aber nur bei einer intakten Scheidewand. Hier **fließt das zusätzliche Blut ein zweites Mal durch die Lunge**, ohne den Körper zu erreichen. Aussage I ist richtig.
+
+- II: Das gesamte Blut aus der Lunge kehrt über den linken Vorhof in die linke Kammer zurück, also pumpt die linke Kammer <InlineMath math="Q_p" />. Die Aorta führt nur den Teil, der in den Körper geht, <InlineMath math="Q_s" />.
+
+<BlockMath math="Q_s = 3{,}0\text{ dm}^3/\text{min} \;\Rightarrow\; Q_p = 2 \times 3{,}0 = 6{,}0\text{ dm}^3/\text{min}" />
+
+Die linke Kammer pumpt also <InlineMath math="6{,}0\text{ dm}^3" /> pro Minute: <InlineMath math="3{,}0" /> in die Aorta und <InlineMath math="3{,}0" /> zurück durch das Loch. Aussage II ist richtig.
+
+<Mermaid
+  title={<>Blutstrom pro Minute durch das Herz des Kindes</>}
+  description={<>Aus dem Körper kommen pro Minute <InlineMath math="3{,}0\text{ dm}^3" /> zur rechten Seite zurück. Die linke Kammer schickt <InlineMath math="3{,}0\text{ dm}^3" /> durch das Loch, also schickt die rechte Kammer <InlineMath math="6{,}0\text{ dm}^3" /> in die Lunge. Die linke Kammer erhält <InlineMath math="6{,}0\text{ dm}^3" /> und pumpt <InlineMath math="3{,}0\text{ dm}^3" /> in die Aorta.</>}
+  chart={"flowchart LR\n  B[Körper] -->|3,0 mit 70%| RV[Rechte Kammer]\n  RV -->|6,0 mit 84%| L[Lunge]\n  L -->|6,0 mit 98%| LV[Linke Kammer]\n  LV -->|3,0 durch das Loch| RV\n  LV -->|3,0 mit 98%| B"}
+/>
+
+- IV: In der Aorta und in der Lungenvene liegt die Sättigung bei <InlineMath math="98\,\%" />, und die Hämoglobinkonzentration ist überall gleich, also **tragen je** <InlineMath math="100\text{ cm}^3" /> **gleich viel Sauerstoff**. Kein Blut von der rechten Seite erreicht die linke, denn durch das Loch fließt Blut nur von links nach rechts. Aussage IV ist falsch.
+
+Also sind die Aussagen I und II richtig.
+
+# Warum die anderen Antworten falsch sind
+
+- I und IV nimmt eine Mischung auf der falschen Seite an, **doch die linke Seite bleibt** von der Lungenvene bis zur Aorta bei <InlineMath math="98\,\%" />.
+- II und III lässt Blut von rechts nach links fließen, **obwohl die Sättigung in der rechten Kammer steigt** und dort der niedrigere Druck herrscht.
+- I, II und III hat beide Ströme richtig, schickt das Blut aber trotzdem von rechts nach links, **gegen den höheren Druck in der linken Kammer**.

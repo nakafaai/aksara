@@ -1,0 +1,41 @@
+# Zähle auf der verlässlichen Platte und starte die Verdopplungsuhr erst nach jeder Lag-Phase
+
+Fang mit der Zählung an. Nur die Platte der <InlineMath math="10" />-fachen Verdünnung hat **zwischen <InlineMath math="30" /> und <InlineMath math="300" /> Kolonien**. Ihre <InlineMath math="125" /> Kolonien wuchsen aus <InlineMath math="0{,}1\text{ cm}^3" />, also rechnest du auf <InlineMath math="1\text{ cm}^3" /> hoch und machst dann die Verdünnung rückgängig, um wieder bei <InlineMath math="1\text{ g}" /> Reis zu landen:
+
+<BlockMath math="125\times\frac{1}{0{,}1}\times10=1{,}25\times10^{4}\text{ Bakterien pro g}" />
+
+Aussage I stimmt.
+
+Dann bestimmst du, wie viele Verdopplungen nötig sind. Der Reis muss <InlineMath math="1{,}0\times10^{6}" /> pro Gramm erreichen:
+
+<BlockMath math="\frac{1{,}0\times10^{6}}{1{,}25\times10^{4}}=80,\qquad 2^{6}=64<80<2^{7}=128" />
+
+Die Grenze wird also nach mehr als <InlineMath math="6" />, aber höchstens <InlineMath math="7" /> Verdopplungen erreicht.
+
+- II: Die Verdopplung beginnt erst um 13:00 Uhr, nach der einstündigen Lag-Phase. Sechs Verdopplungen dauern <InlineMath math="3" /> Stunden, bis 16:00 Uhr, dann enthält der Reis <InlineMath math="1{,}25\times10^{4}\times64=8{,}0\times10^{5}" /> pro Gramm, noch zu wenig. Die siebte endet um 16:30 Uhr mit <InlineMath math="1{,}6\times10^{6}" />. Die Grenze wird also nach 16:00 Uhr, aber spätestens um 16:30 Uhr erreicht. Aussage II stimmt.
+- III: Trag die Zählung bis 14:00 Uhr weiter. Eine Stunde Verdopplung sind <InlineMath math="2" /> Verdopplungen, der Reis kommt also mit <InlineMath math="1{,}25\times10^{4}\times4=5{,}0\times10^{4}" /> pro Gramm in den Kühlschrank und hat um 18:00 Uhr immer noch so viele. Nach dem Aufwärmen warten die Bakterien bis 19:00 Uhr, bevor sie sich teilen. Dann:
+
+<BlockMath math="\frac{1{,}0\times10^{6}}{5{,}0\times10^{4}}=20,\qquad 2^{4}=16<20<2^{5}=32" />
+
+Das ist nach <InlineMath math="4" /> Verdopplungen, um 21:00 Uhr, aber spätestens nach <InlineMath math="5" />, um 21:30 Uhr. Das Fenster von 20:00 bis 20:30 Uhr entsteht, wenn du die zweite Lag-Phase weglässt. Aussage III ist falsch.
+
+- IV: Halb so viele Bakterien müssen um das <InlineMath math="160" />-Fache statt um das <InlineMath math="80" />-Fache wachsen, und <InlineMath math="2^{7}=128<160<2^{8}=256" />. Die Halbierung kostet genau eine Verdopplung mehr, also verschiebt sich jeder Zeitpunkt der Kette um <InlineMath math="30" /> Minuten nach hinten. Aussage IV stimmt.
+
+<Chart
+  title={<>Bakterien im Reis auf dem Büfett</>}
+  categories={["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"]}
+  series={[
+    { label: "Bakterien", mark: "line", values: [12.5, 12.5, 12.5, 12.5 * 2, 12.5 * 4, 12.5 * 8, 12.5 * 16, 12.5 * 32, 12.5 * 64, 12.5 * 128] },
+    { label: "Erbrechensgrenze", mark: "line", values: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000] },
+  ]}
+  valueLabel="Bakterien pro g (Tausend)"
+  description={<>Die Zahl bleibt bis 13:00 Uhr bei <InlineMath math="12{,}5" /> Tausend pro Gramm und verdoppelt sich dann jede halbe Stunde. Um 16:00 Uhr sind es <InlineMath math="800" /> Tausend, unter der Erbrechensgrenze von <InlineMath math="1000" /> Tausend, um 16:30 Uhr <InlineMath math="1600" /> Tausend, darüber.</>}
+/>
+
+Also stimmen die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II, III und IV lässt die Bakterien ab 18:00 Uhr verdoppeln, sobald der Reis wieder auf dem Büfett steht, und kommt so auf das Fenster von 20:00 bis 20:30 Uhr. **Aufgewärmte Bakterien warten noch einmal eine Stunde, bevor sie sich teilen**, also liegt das Fenster bei 21:00 bis 21:30 Uhr.
+- Nur I und IV lässt die Verdopplung um 12:00 Uhr beginnen und überspringt die erste Lag-Phase, sodass die Grenze schon nach 15:00 Uhr statt nach 16:00 Uhr erreicht wird. **In der ersten Stunde teilen sich die Bakterien nicht**, und das verschiebt jeden späteren Zeitpunkt um eine Stunde.
+- Nur II und IV zählt die Platte der <InlineMath math="100" />-fachen Verdünnung, <InlineMath math="14\times10\times100=1{,}4\times10^{4}" /> pro Gramm. **Diese Platte hat weniger als <InlineMath math="30" /> Kolonien**, zu wenige für eine verlässliche Zählung.

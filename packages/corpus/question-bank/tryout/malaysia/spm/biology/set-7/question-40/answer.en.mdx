@@ -1,0 +1,58 @@
+# Turn the fruit's growth and its carbon dioxide into sucrose, the sucrose into sap, and the sap into a speed
+
+The fruit needs sucrose for two things: the dry mass it builds and the sucrose it respires. First the dry mass, over the <InlineMath math="10" /> days, which are <InlineMath math="240" /> hours:
+
+<BlockMath math="\text{for dry mass} = \frac{1250-398}{240}\text{ g per hour} = \frac{852}{240} = 3.55\text{ g per hour}" />
+
+The chamber gives the respiration as carbon dioxide, not as sucrose, so convert it with the mass ratio <InlineMath math="342:528" />:
+
+<BlockMath math="\begin{aligned}
+\text{sucrose respired} &= 35.2\times\tfrac{342}{528} = 22.8\text{ g per day} = \tfrac{22.8}{24} = 0.95\text{ g per hour} \\
+\text{total sucrose} &= 3.55+0.95 = 4.5\text{ g per hour}
+\end{aligned}" />
+
+The sap carries <InlineMath math="15\text{ g}" /> in <InlineMath math="100\text{ cm}^3" />, which is <InlineMath math="0.15\text{ g}" /> in each <InlineMath math="\text{cm}^3" />. The sieve tubes together give the area the sap flows through:
+
+<BlockMath math="\begin{aligned}
+\text{volume of sap} &= \tfrac{4.5\text{ g per hour}}{0.15\text{ g per cm}^3} = 30\text{ cm}^3\text{ per hour} \\
+\text{area} &= 20\,000\times1.5\times10^{-5} = 0.30\text{ cm}^2 \\
+\text{speed} &= \tfrac{30\text{ cm}^3\text{ per hour}}{0.30\text{ cm}^2} = 100\text{ cm per hour}
+\end{aligned}" />
+
+<Chart
+  title={<>Sucrose Carried into the Fruit Each Hour</>}
+  bars="apart"
+  categories={["For dry mass", "For respiration", "Total"]}
+  series={[
+    { label: "Sucrose", mark: "bar", values: [852 / 240, (35.2 * 342) / 528 / 24, 852 / 240 + (35.2 * 342) / 528 / 24] },
+  ]}
+  valueLabel="Grams per hour"
+  description={<>The fruit takes in <InlineMath math="3.55\text{ g}" /> of sucrose an hour for its dry mass and <InlineMath math="0.95\text{ g}" /> for respiration, <InlineMath math="4.5\text{ g}" /> in all. At <InlineMath math="0.15\text{ g}" /> per <InlineMath math="\text{cm}^3" />, that is <InlineMath math="30\text{ cm}^3" /> of sap an hour.</>}
+/>
+
+- I: <InlineMath math="30\text{ cm}^3" /> of sap an hour through <InlineMath math="0.30\text{ cm}^2" /> moves at <InlineMath math="100\text{ cm}" /> per hour. Statement I is correct.
+
+For II to IV, keep the speed as **volume of sap per hour divided by the total area of the tubes**, and change one thing at a time.
+
+- II: the fruit still needs <InlineMath math="30\text{ cm}^3" /> of sap an hour, but half the tubes give only <InlineMath math="0.15\text{ cm}^2" />, so the speed doubles to <InlineMath math="200\text{ cm}" /> per hour. Statement II is correct.
+- III: the area of a circle grows with the square of its diameter, so twice the diameter gives <InlineMath math="2^2=4" /> times the area. The same <InlineMath math="30\text{ cm}^3" /> an hour then moves at <InlineMath math="\tfrac{100}{4}=25\text{ cm}" /> per hour, not <InlineMath math="50\text{ cm}" />. Statement III is wrong.
+- IV: twice the sucrose in each <InlineMath math="\text{cm}^3" /> means **half** the volume of sap carries the same <InlineMath math="4.5\text{ g}" />, so the sap would move at half the speed, <InlineMath math="50\text{ cm}" /> per hour. Statement IV is wrong.
+
+<Chart
+  title={<>Speed of the Sap in Each Case</>}
+  bars="apart"
+  categories={["As measured", "Half the tubes", "Twice as wide", "Twice the sugar"]}
+  series={[
+    { label: "Speed", mark: "bar", values: [30 / 0.3, 30 / 0.15, 30 / (0.3 * 4), 15 / 0.3] },
+  ]}
+  valueLabel="Speed of sap (cm per hour)"
+  description={<>As measured, the sap moves at <InlineMath math="100\text{ cm}" /> per hour. With half the tubes it would move at <InlineMath math="200\text{ cm}" /> per hour, with tubes twice as wide at <InlineMath math="25\text{ cm}" /> per hour, and with twice the sucrose in the sap at <InlineMath math="50\text{ cm}" /> per hour.</>}
+/>
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- II only rejects I by adding the <InlineMath math="35.2\text{ g}" /> of carbon dioxide as if it were sucrose, <InlineMath math="\tfrac{852+352}{240}\approx5.0\text{ g}" /> an hour, which gives about <InlineMath math="111\text{ cm}" /> per hour, **but respiring <InlineMath math="342\text{ g}" /> of sucrose gives off <InlineMath math="528\text{ g}" /> of carbon dioxide**, so the fruit respired only <InlineMath math="22.8\text{ g}" /> of sucrose a day.
+- I, II and IV only accepts IV, making the speed **rise with concentration**, although a richer sap needs a smaller volume to carry the same sucrose.
+- I, II and III only accepts III, letting the area double when the diameter doubles, **although the area grows with the square of the diameter**, four times, so the speed falls to a quarter.

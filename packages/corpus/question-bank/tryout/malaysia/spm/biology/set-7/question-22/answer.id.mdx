@@ -1,0 +1,50 @@
+# Keluarkan nitrogen bawaan bibit, biarkan isotop membagi tambahannya, lalu bawa hasil itu ke langkah berikutnya
+
+Tiap bibit sudah mengandung <InlineMath math="10\text{ mg}" /> nitrogen sebelum percobaan, dengan <InlineMath math="0{,}4\%" /> <InlineMath math="^{15}\text{N}" />. Jadi keluarkan dulu nitrogen ini dari angka akhir tanaman kelompok A supaya kamu dapat nitrogen yang **bertambah**:
+
+<BlockMath math="\begin{aligned}
+\text{nitrogen bertambah} &= 60-10 = 50\text{ mg} \\
+^{15}\text{N bertambah} &= 60\times0{,}029-10\times0{,}004 = 1{,}74-0{,}04 = 1{,}70\text{ mg} \\
+^{15}\text{N dalam tambahan} &= \tfrac{1{,}70}{50} = 3{,}4\%
+\end{aligned}" />
+
+Tambahan itu adalah campuran: bagian <InlineMath math="f" /> berasal dari serangga, dengan <InlineMath math="6{,}4\%" />, dan sisanya dari gambut, dengan <InlineMath math="0{,}4\%" />:
+
+<BlockMath math="0{,}4(1-f)+6{,}4f=3{,}4\quad\Rightarrow\quad 6{,}0f=3{,}0\quad\Rightarrow\quad f=0{,}5" />
+
+Jadi serangga memberi <InlineMath math="0{,}5\times50=25\text{ mg}" /> dan **gambut memberi <InlineMath math="25\text{ mg}" /> sisanya**. Tanaman kelompok B bertambah <InlineMath math="30-10=20\text{ mg}" />, tetap dengan <InlineMath math="0{,}4\%" />, jadi semuanya berasal dari gambut.
+
+- I: bawa <InlineMath math="25\text{ mg}" /> itu ke serangganya sendiri. Tiap tanaman diberi <InlineMath math="0{,}50\text{ g}" /> serangga, dan sepersepuluhnya adalah nitrogen:
+
+<BlockMath math="0{,}50\text{ g}\times10\%=0{,}050\text{ g}=50\text{ mg},\qquad \frac{25}{50}=50\%" />
+
+Tanaman itu menyerap separuh nitrogen serangga. Sisanya tertinggal di sisa yang tidak tercerna, seperti kerangka luar yang keras. Pernyataan I benar.
+
+- II: tanaman kelompok B mengambil <InlineMath math="20\text{ mg}" /> dari gambut, dan tanaman kelompok A mengambil <InlineMath math="25\text{ mg}" />. Kenaikannya <InlineMath math="\tfrac{25-20}{20}=25\%" /> dari nilai kelompok B. Tanaman yang diberi serangga tumbuh dengan akar dan daun yang lebih besar, jadi ia juga menyerap lebih banyak dari gambut. Pernyataan II benar.
+- III: <InlineMath math="(60-10)-(30-10)=30\text{ mg}" /> menganggap kedua kelompok mengambil nitrogen yang sama dari gambut. Isotop menunjukkan bahwa itu tidak benar, dan serangga hanya memberi <InlineMath math="25\text{ mg}" />. Pernyataan III salah.
+- IV: sekarang bawa kedua hasil tadi, yaitu separuh nitrogen serangga terserap dan <InlineMath math="25\text{ mg}" /> dari gambut. Dengan <InlineMath math="1{,}0\text{ g}" /> serangga, tanaman diberi <InlineMath math="100\text{ mg}" /> nitrogen serangga dan menyerap separuhnya:
+
+<BlockMath math="\frac{50\times0{,}064+25\times0{,}004}{50+25}=\frac{3{,}2+0{,}1}{75}=4{,}4\%" />
+
+Hasilnya <InlineMath math="4{,}4\%" />, bukan <InlineMath math="5{,}2\%" />. Pernyataan IV salah.
+
+<Chart
+  title={<>Asal Nitrogen Tiap Tanaman</>}
+  bars="apart"
+  categories={["Kelompok B", "Kelompok A", "Diberi 1,0 g"]}
+  series={[
+    { label: "Di bibit", mark: "bar", values: [10, 10, 10] },
+    { label: "Dari gambut", mark: "bar", values: [30 - 10, 60 - 10 - 0.5 * 50, 60 - 10 - 0.5 * 50] },
+    { label: "Dari serangga", mark: "bar", values: [0, 0.5 * 50, 0.5 * 100] },
+  ]}
+  valueLabel="Nitrogen per tanaman (mg)"
+  description={<>Tiap tanaman mulai dengan <InlineMath math="10\text{ mg}" /> nitrogennya sendiri. Tanaman kelompok B lalu mengambil <InlineMath math="20\text{ mg}" /> dari gambut. Tanaman kelompok A mengambil <InlineMath math="25\text{ mg}" /> dari gambut dan <InlineMath math="25\text{ mg}" /> dari serangga. Tanaman yang diberi <InlineMath math="1{,}0\text{ g}" /> serangga akan mengambil <InlineMath math="25\text{ mg}" /> dari gambut dan <InlineMath math="50\text{ mg}" /> dari serangga.</>}
+/>
+
+Jadi pernyataan I dan II benar.
+
+# Mengapa pilihan lain salah
+
+- III saja mengurangkan kelompok B dari kelompok A dan menganggap seluruh <InlineMath math="30\text{ mg}" /> berasal dari serangga. Itu membuat serapannya <InlineMath math="\tfrac{30}{50}=60\%" /> dari nitrogen serangga dan pasokan gambut sama di kedua kelompok, **padahal kelompok A juga mengambil <InlineMath math="5\text{ mg}" /> lebih banyak dari gambut**, seperti yang ditunjukkan isotop.
+- I, II, dan IV saja menerima IV karena menganggap tanaman menyerap seluruh <InlineMath math="100\text{ mg}" /> nitrogen serangga, sehingga hasilnya <InlineMath math="\tfrac{6{,}4+0{,}1}{125}=5{,}2\%" />, **padahal tanaman hanya menyerap separuh nitrogen serangga**, seperti yang ditunjukkan pernyataan I.
+- I saja menolak II karena membiarkan <InlineMath math="10\text{ mg}" /> nitrogen bawaan bibit masuk ke bagian gambut, <InlineMath math="60-25=35\text{ mg}" /> dibanding <InlineMath math="30\text{ mg}" />, kenaikan sekitar <InlineMath math="17\%" /> saja, **padahal <InlineMath math="10\text{ mg}" /> itu sudah ada di tiap bibit sebelum percobaan dimulai**, jadi tidak berasal dari sumber mana pun.

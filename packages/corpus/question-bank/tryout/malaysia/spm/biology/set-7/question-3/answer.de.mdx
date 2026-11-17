@@ -1,0 +1,56 @@
+# Membran geht mit der Fläche, Flüssigkeit mit dem Volumen
+
+Jedes sekretorische Vesikel, das verschmilzt, fügt seine ganze Oberfläche der Plasmamembran hinzu. Die Endocytose muss **dieselbe Fläche** zurückholen, doch die Flüssigkeit, die ein Vesikel mitnimmt, hängt von seinem **Volumen** ab. Die Fläche wächst mit <InlineMath math="d^2" />, das Volumen mit <InlineMath math="d^3" />, also ändern sich beide nicht gleich.
+
+## Membran aus der Exocytose
+
+<BlockMath math="\begin{aligned}
+\text{ein sekretorisches Vesikel} &: \ 3{,}14\times1{,}0^2=3{,}14\,\mu\text{m}^2 \\
+\text{pro Minute} &: \ 10\times3{,}14=31{,}4\,\mu\text{m}^2 \\
+\text{in 10 Minuten} &: \ 10\times31{,}4=314\,\mu\text{m}^2,\quad \tfrac{314}{785}=0{,}40=40\%
+\end{aligned}" />
+
+## Umhüllte Vesikel zum Zurückholen
+
+Ein umhülltes Vesikel hat **ein Hundertstel der Fläche**, weil sein Durchmesser ein Zehntel beträgt und die Fläche mit dem Quadrat geht.
+
+<BlockMath math="\begin{aligned}
+\text{ein umhülltes Vesikel} &: \ 3{,}14\times0{,}10^2=0{,}0314\,\mu\text{m}^2 \\
+\text{pro Minute} &: \ \tfrac{31{,}4}{0{,}0314}=1000 \\
+\text{bei } d=0{,}05\,\mu\text{m} &: \ 3{,}14\times0{,}05^2=0{,}00785\,\mu\text{m}^2,\quad \tfrac{31{,}4}{0{,}00785}=4000
+\end{aligned}" />
+
+## Bewegte Flüssigkeit pro Minute
+
+<BlockMath math="\begin{aligned}
+\text{durch Sekretion abgegeben} &: \ 10\times\tfrac{3{,}14\times1{,}0^3}{6}\approx5{,}23\,\mu\text{m}^3 \\
+\text{von umhüllten Vesikeln aufgenommen} &: \ 1000\times\tfrac{3{,}14\times0{,}10^3}{6}\approx0{,}523\,\mu\text{m}^3
+\end{aligned}" />
+
+Die umhüllten Vesikel holen dieselbe Membran zurück, aber nur **ein Zehntel des Volumens**.
+
+<Chart
+  title={<>Fläche der Plasmamembran während der Sekretion</>}
+  categories={["0 min", "2 min", "4 min", "6 min", "8 min", "10 min"]}
+  series={[
+    { label: "Ohne Endocytose", mark: "line", values: [785, 847.8, 910.6, 973.4, 1036.2, 1099] },
+    { label: "1000 umhüllte Vesikel pro Minute", mark: "line", values: [785, 785, 785, 785, 785, 785] },
+  ]}
+  valueLabel="Fläche der Plasmamembran (µm²)"
+  description={<>Ohne Endocytose gewinnt die Membran <InlineMath math="31{,}4\,\mu\text{m}^2" /> pro Minute und wächst in <InlineMath math="10" /> Minuten von <InlineMath math="785" /> auf <InlineMath math="1099\,\mu\text{m}^2" />, also um <InlineMath math="40\%" />. Mit <InlineMath math="1000" /> umhüllten Vesikeln pro Minute bleibt sie bei <InlineMath math="785\,\mu\text{m}^2" />.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: Die Membran gewinnt <InlineMath math="314\,\mu\text{m}^2" />, das sind <InlineMath math="40\%" /> von <InlineMath math="785\,\mu\text{m}^2" />. Aussage I stimmt.
+- II: <InlineMath math="1000" /> umhüllte Vesikel pro Minute holen die hinzugekommenen <InlineMath math="31{,}4\,\mu\text{m}^2" /> zurück. Aussage II stimmt.
+- III: **Gleiche Fläche heißt nicht gleiches Volumen**. Die umhüllten Vesikel nehmen <InlineMath math="0{,}523\,\mu\text{m}^3" /> pro Minute auf, ein Zehntel der abgegebenen <InlineMath math="5{,}23\,\mu\text{m}^3" />. Aussage III ist falsch.
+- IV: Der halbe Durchmesser viertelt die Fläche, also braucht die Zelle <InlineMath math="4000" /> Vesikel pro Minute, nicht <InlineMath math="2000" />. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III nimmt an, dass Vesikel mit gleicher Membranfläche auch gleich viel Volumen tragen, doch **das Volumen schrumpft schneller als die Fläche**, wenn die Vesikel kleiner werden.
+- Nur I und IV skaliert die Zahl der Vesikel mit dem Durchmesser statt mit seinem Quadrat. Das gibt <InlineMath math="10\times10=100" /> umhüllte Vesikel pro Minute und doppelt so viele bei halber Größe, **weil vergessen wird, dass die Fläche mit** <InlineMath math="d^2" /> **geht**.
+- Nur I, II und IV nutzt in Aussage II das richtige Flächenverhältnis, **verdoppelt in Aussage IV beim halben Durchmesser aber nur die Zahl**.

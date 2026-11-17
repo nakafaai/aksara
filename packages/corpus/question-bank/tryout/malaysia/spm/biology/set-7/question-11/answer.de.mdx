@@ -1,0 +1,56 @@
+# Verfolge das Wasser durch einen vollen Dickdarm, denn die Hälfte jedes zusätzlichen Getränks geht auch verloren
+
+Gesucht ist der **Nettogewinn an Wasser aus dem Darm**: gegessenes und getrunkenes Wasser minus das Wasser, das mit dem Kot verloren geht. Vor der Infektion sind das
+
+<BlockMath math="2{,}0 - 0{,}1 = 1{,}9\text{ dm}^3 \text{ pro Tag}" />
+
+Die Verdauungssäfte zählen nicht als Gewinn. Der Körper gibt sie ab und holt sie zurück, aber nur, wenn der Darm sie wieder aufnimmt. Rechne also zuerst aus, wie viel Flüssigkeit wirklich durch den Darm läuft.
+
+<BlockMath math="2{,}0 + 1{,}5 + 2{,}0 + 0{,}5 + 1{,}5 + 1{,}5 = 9{,}0\text{ dm}^3 \text{ pro Tag}" />
+
+Der geschädigte Dünndarm nimmt nur die Hälfte davon auf, also **erreicht die andere Hälfte den Dickdarm**:
+
+<BlockMath math="0{,}50 \times 9{,}0 = 4{,}5\text{ dm}^3" />
+
+Der Dickdarm würde alles bis auf <InlineMath math="0{,}1\text{ dm}^3" /> aufnehmen, also <InlineMath math="4{,}4\text{ dm}^3" />. Er schafft aber **höchstens** <InlineMath math="4{,}0\text{ dm}^3" />, er arbeitet also schon an seiner Grenze.
+
+<BlockMath math="\text{Wasser im Kot} = 4{,}5 - 4{,}0 = 0{,}5\text{ dm}^3" />
+
+<Mermaid
+  title={<>Wasser im infizierten Darm an einem Tag</>}
+  description={<>Von den <InlineMath math="9{,}0\text{ dm}^3" />, die in den Darm gelangen, nimmt der geschädigte Dünndarm nur die Hälfte auf, also erreichen <InlineMath math="4{,}5\text{ dm}^3" /> den Dickdarm. Der Dickdarm nimmt sein Maximum von <InlineMath math="4{,}0\text{ dm}^3" /> auf, und <InlineMath math="0{,}5\text{ dm}^3" /> verlassen den Körper mit dem Kot.</>}
+  chart={"flowchart LR\n  G[Zufluss 9,0] --> S[Dünndarm nimmt 4,5 auf]\n  G --> C[Dickdarm erhält 4,5]\n  C --> A[Dickdarm nimmt sein Maximum 4,0 auf]\n  C --> F[Kot 0,5]"}
+/>
+
+Jetzt beträgt der Nettogewinn <InlineMath math="2{,}0 - 0{,}5 = 1{,}5\text{ dm}^3" />, also <InlineMath math="0{,}4\text{ dm}^3" /> weniger als die <InlineMath math="1{,}9\text{ dm}^3" /> vorher.
+
+Naheliegend wäre, einfach <InlineMath math="0{,}4\text{ dm}^3" /> mehr zu trinken. Aber **das zusätzliche Getränk läuft durch denselben geschädigten Darm**. Von einer zusätzlichen Menge <InlineMath math="V" /> nimmt der Dünndarm nur die Hälfte auf. Die andere Hälfte erreicht einen Dickdarm, der schon sein Maximum aufnimmt, also landet diese ganze Hälfte im Kot.
+
+<BlockMath math="\begin{aligned}
+\text{Kot} &= 0{,}5 + 0{,}50V \\
+\text{Nettogewinn} &= (2{,}0 + V) - (0{,}5 + 0{,}50V) = 1{,}5 + 0{,}50V \\
+1{,}5 + 0{,}50V &= 1{,}9 \\
+V &= \frac{0{,}4}{0{,}50} = 0{,}8\text{ dm}^3
+\end{aligned}" />
+
+<Chart
+  title={<>Wasser pro Tag im infizierten Darm</>}
+  bars="apart"
+  categories={["Zufluss", "Erreicht Dickdarm", "Dickdarm nimmt auf", "Im Kot"]}
+  series={[
+    { label: "Ohne Zusatzgetränk", mark: "bar", values: [9.0, 4.5, 4.0, 0.5] },
+    { label: "Mit Zusatzgetränk", mark: "bar", values: [9.8, 4.9, 4.0, 0.9] },
+  ]}
+  valueLabel="Wasser pro Tag (Liter)"
+  description={<>Ohne Zusatzgetränk fließen <InlineMath math="9{,}0\text{ dm}^3" /> zu, <InlineMath math="4{,}5\text{ dm}^3" /> erreichen den Dickdarm, er nimmt <InlineMath math="4{,}0\text{ dm}^3" /> auf und <InlineMath math="0{,}5\text{ dm}^3" /> gehen verloren. Mit <InlineMath math="0{,}8\text{ dm}^3" /> mehr fließen <InlineMath math="9{,}8\text{ dm}^3" /> zu, <InlineMath math="4{,}9\text{ dm}^3" /> erreichen den Dickdarm, er nimmt weiterhin nur <InlineMath math="4{,}0\text{ dm}^3" /> auf, und <InlineMath math="0{,}9\text{ dm}^3" /> gehen verloren.</>}
+/>
+
+Probe: Mit <InlineMath math="0{,}8\text{ dm}^3" /> mehr nimmt die Person <InlineMath math="2{,}8\text{ dm}^3" /> auf und verliert <InlineMath math="0{,}9\text{ dm}^3" />, also ist der Nettogewinn <InlineMath math="2{,}8 - 0{,}9 = 1{,}9\text{ dm}^3" />, genau wie vorher.
+
+Die Person muss also täglich <InlineMath math="0{,}8\text{ dm}^3" /> Wasser zusätzlich trinken.
+
+# Warum die anderen Antworten falsch sind
+
+- Kein zusätzliches Wasser zählt nur die <InlineMath math="2{,}0\text{ dm}^3" /> aus Essen und Trinken als Flüssigkeit im Darm, sodass der Dickdarm scheinbar nur <InlineMath math="1{,}0\text{ dm}^3" /> erhält, **doch auch die** <InlineMath math="7{,}0\text{ dm}^3" /> **Verdauungssäfte laufen durch den Darm**.
+- <InlineMath math="0{,}4\text{ dm}^3" /> ersetzt das Defizit eins zu eins und **vergisst, dass auch die Hälfte des Zusatzgetränks** über den vollen Dickdarm verloren geht.
+- <InlineMath math="1{,}0\text{ dm}^3" /> rechnet die gesamten <InlineMath math="0{,}5\text{ dm}^3" /> Wasser im Kot als Defizit, **doch** <InlineMath math="0{,}1\text{ dm}^3" /> **gingen schon vor der Infektion verloren**.

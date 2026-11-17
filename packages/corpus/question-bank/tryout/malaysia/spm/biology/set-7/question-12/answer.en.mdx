@@ -1,0 +1,48 @@
+# Find where the saturation jumps, then use the mixing in the right ventricle to compare the two circulations
+
+Start by walking along the table in the order blood flows. The saturation stays at <InlineMath math="70\%" /> from the venae cavae into the right atrium, then **jumps to** <InlineMath math="84\%" /> **in the right ventricle**. Oxygen-rich blood must be entering the right ventricle, and the only extra way in is the hole. On the left side, the saturation stays at <InlineMath math="98\%" /> all the way from the pulmonary vein to the aorta, so nothing joins it there.
+
+<Chart
+  title={<>Saturation Along the Child's Circulation</>}
+  categories={["Venae cavae", "R atrium", "R ventricle", "Pulm. artery", "Pulm. vein", "L atrium", "L ventricle", "Aorta"]}
+  series={[{ label: "Saturation", mark: "line", values: [70, 70, 84, 84, 98, 98, 98, 98] }]}
+  valueLabel="Haemoglobin saturation (%)"
+  description={<>The saturation is <InlineMath math="70\%" /> in the venae cavae and right atrium, rises to <InlineMath math="84\%" /> in the right ventricle and pulmonary artery, and is <InlineMath math="98\%" /> from the pulmonary vein to the aorta.</>}
+/>
+
+- III: the rise in the right ventricle, and no fall in the left ventricle, show that blood goes **from the left ventricle into the right ventricle**. The pressures agree: the left ventricle reaches <InlineMath math="14.0\text{ kPa}" /> and the right only <InlineMath math="4.0\text{ kPa}" />, and blood flows from high pressure to low. Statement III is wrong.
+- I: the right ventricle mixes two streams. Call the blood flow returning from the body <InlineMath math="Q_s" /> (it arrives at <InlineMath math="70\%" />) and the flow through the hole <InlineMath math="S" /> (it arrives at <InlineMath math="98\%" />). The mixture leaves at <InlineMath math="84\%" />.
+
+<BlockMath math="\begin{aligned}
+70Q_s + 98S &= 84(Q_s + S) \\
+14S &= 14Q_s \\
+S &= Q_s
+\end{aligned}" />
+
+Everything the right ventricle pumps goes to the lungs, so the flow through the lungs is
+
+<BlockMath math="Q_p = Q_s + S = 2Q_s" />
+
+It's tempting to say that in a double circulation the lungs and the body must carry the same flow. That's only true when the septum is whole. Here **the extra blood goes round the lungs a second time** without visiting the body. Statement I is correct.
+
+- II: all the blood from the lungs returns through the left atrium to the left ventricle, so the left ventricle pumps <InlineMath math="Q_p" />. The aorta carries only the part that goes to the body, <InlineMath math="Q_s" />.
+
+<BlockMath math="Q_s = 3.0\text{ dm}^3/\text{min} \;\Rightarrow\; Q_p = 2 \times 3.0 = 6.0\text{ dm}^3/\text{min}" />
+
+So the left ventricle pumps <InlineMath math="6.0\text{ dm}^3" /> a minute: <InlineMath math="3.0" /> into the aorta and <InlineMath math="3.0" /> back through the hole. Statement II is correct.
+
+<Mermaid
+  title={<>Blood Flow per Minute Through the Child's Heart</>}
+  description={<>The body returns <InlineMath math="3.0\text{ dm}^3" /> a minute to the right side. The left ventricle sends <InlineMath math="3.0\text{ dm}^3" /> through the hole, so the right ventricle sends <InlineMath math="6.0\text{ dm}^3" /> to the lungs. The left ventricle receives <InlineMath math="6.0\text{ dm}^3" /> and pumps <InlineMath math="3.0\text{ dm}^3" /> into the aorta.</>}
+  chart={"flowchart LR\n  B[Body] -->|3.0 at 70%| RV[Right ventricle]\n  RV -->|6.0 at 84%| L[Lungs]\n  L -->|6.0 at 98%| LV[Left ventricle]\n  LV -->|3.0 through hole| RV\n  LV -->|3.0 at 98%| B"}
+/>
+
+- IV: the aorta and the pulmonary vein both hold blood at <InlineMath math="98\%" />, and the haemoglobin concentration is the same everywhere, so **each** <InlineMath math="100\text{ cm}^3" /> **carries the same oxygen**. No blood from the right side reaches the left side, because the hole only lets blood go from left to right. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I and IV only accepts the mixing on the wrong side, **but the left side stays at** <InlineMath math="98\%" /> from the pulmonary vein to the aorta.
+- II and III only lets blood cross from right to left, **although the saturation rises in the right ventricle** and its pressure is the lower one.
+- I, II and III only gets both flows right but still sends blood from right to left, **against the higher pressure in the left ventricle**.

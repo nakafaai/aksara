@@ -1,0 +1,41 @@
+# Bawa dua angka maju tiap generasi, ulat dan tawonnya
+
+Tawon dari satu generasi menentukan berapa ulat generasi berikutnya yang terparasit, dan ulat yang lolos menentukan ukuran generasi sesudahnya. Jadi tiap langkah butuh kedua angka dari langkah sebelumnya:
+
+<BlockMath math="\begin{aligned}
+\text{terparasit} &= \text{yang lebih kecil antara } 4\times\text{tawon sebelumnya dan jumlah ulat} \\
+\text{ulat berikutnya} &= 5\times(\text{ulat}-\text{terparasit}) \\
+\text{tawon yang keluar} &= \text{terparasit}
+\end{aligned}" />
+
+| Generasi | Ulat | Terparasit | Lolos | Tawon yang keluar |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="200" /> | <InlineMath math="0{,}40\times200=80" /> | <InlineMath math="120" /> | <InlineMath math="80" /> |
+| <InlineMath math="2" /> | <InlineMath math="5\times120=600" /> | <InlineMath math="4\times80=320" /> | <InlineMath math="280" /> | <InlineMath math="320" /> |
+| <InlineMath math="3" /> | <InlineMath math="5\times280=1400" /> | <InlineMath math="4\times320=1280" /> | <InlineMath math="120" /> | <InlineMath math="1280" /> |
+| <InlineMath math="4" /> | <InlineMath math="5\times120=600" /> | semua <InlineMath math="600" />, karena <InlineMath math="4\times1280=5120" /> | <InlineMath math="0" /> | <InlineMath math="600" /> |
+| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+- I: generasi <InlineMath math="3" /> punya <InlineMath math="1400" /> ulat. Pernyataan I benar.
+- II: satu generasi tergantikan tepat ketika <InlineMath math="(1-p)\times5=1" />, yaitu ketika bagian <InlineMath math="p=80\%" /> terparasit. Generasi <InlineMath math="2" /> hanya terparasit <InlineMath math="\tfrac{320}{600}\approx53\%" />, jadi ulatnya masih naik ke <InlineMath math="1400" />. Generasi <InlineMath math="3" /> terparasit <InlineMath math="\tfrac{1280}{1400}\approx91\%" />, melewati <InlineMath math="80\%" />, jadi jumlahnya turun untuk pertama kali, menjadi <InlineMath math="600" />. Pernyataan II benar.
+- III: <InlineMath math="1280" /> tawon dari generasi <InlineMath math="3" /> membawa <InlineMath math="5120" /> telur, tetapi generasi <InlineMath math="4" /> hanya punya <InlineMath math="600" /> ulat. **Tiap ulat menghasilkan paling banyak satu tawon**, jadi hanya <InlineMath math="600" /> tawon yang keluar, lebih sedikit dari <InlineMath math="1280" />. Pernyataan III salah.
+- IV: semua ulat generasi <InlineMath math="4" /> terparasit, jadi tidak ada yang lolos untuk berkembang biak, dan generasi <InlineMath math="5" /> punya <InlineMath math="5\times0=0" />. Pernyataan IV benar.
+
+<Chart
+  title={<>Ulat dan Tawon di Tiap Generasi</>}
+  categories={["Generasi 1", "Generasi 2", "Generasi 3", "Generasi 4", "Generasi 5"]}
+  series={[
+    { label: "Ulat", mark: "line", values: [200, 5 * (200 - 80), 5 * (600 - 320), 5 * (1400 - 1280), 0] },
+    { label: "Tawon", mark: "line", values: [80, 4 * 80, 4 * 320, 600, 0] },
+  ]}
+  valueLabel="Jumlah per pohon sawit"
+  description={<>Ulat naik dari <InlineMath math="200" /> ke <InlineMath math="600" /> dan <InlineMath math="1400" />, lalu turun ke <InlineMath math="600" /> dan <InlineMath math="0" />. Tawon naik dari <InlineMath math="80" /> ke <InlineMath math="320" /> dan <InlineMath math="1280" />, lalu turun ke <InlineMath math="600" />, karena generasi <InlineMath math="4" /> hanya punya <InlineMath math="600" /> inang, dan ke <InlineMath math="0" />.</>}
+/>
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- III saja mempertahankan bagian terparasit di <InlineMath math="40\%" /> pada setiap generasi, sehingga ulat tumbuh menjadi <InlineMath math="1800" /> dan seterusnya. **Tawonnya juga bertambah**, dan tiap tawon memarasit <InlineMath math="4" /> ulat generasi berikutnya.
+- I, II, III, dan IV menghitung satu tawon untuk setiap telur, <InlineMath math="5120" />, di generasi <InlineMath math="4" />. **Hanya ada <InlineMath math="600" /> ulat untuk menampung telurnya**, jadi hanya <InlineMath math="600" /> tawon yang keluar.
+- I dan II saja membawa bagian terparasit, <InlineMath math="91\%" />, ke generasi <InlineMath math="4" />, sehingga sebagian ulat lolos dan generasi <InlineMath math="5" /> tidak kosong. **Jumlah tawon, bukan bagiannya, yang menentukan parasitisme**, dan <InlineMath math="1280" /> tawon memarasit seluruh <InlineMath math="600" /> ulat.

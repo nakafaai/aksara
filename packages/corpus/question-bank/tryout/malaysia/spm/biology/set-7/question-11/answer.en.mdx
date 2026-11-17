@@ -1,0 +1,56 @@
+# Follow the water through a full colon, because half of every extra drink is lost too
+
+The target is the **net water the body gains from the gut**: water eaten and drunk minus water lost in the faeces. Before the infection that's
+
+<BlockMath math="2.0 - 0.1 = 1.9\text{ dm}^3 \text{ a day}" />
+
+The digestive juices don't count as a gain. The body secretes them and takes them back, but only if the gut absorbs them again. So first find out how much fluid really runs through the gut.
+
+<BlockMath math="2.0 + 1.5 + 2.0 + 0.5 + 1.5 + 1.5 = 9.0\text{ dm}^3 \text{ a day}" />
+
+The damaged small intestine absorbs only half of this, so **half reaches the colon**:
+
+<BlockMath math="0.50 \times 9.0 = 4.5\text{ dm}^3" />
+
+The colon would like to absorb all but <InlineMath math="0.1\text{ dm}^3" />, which is <InlineMath math="4.4\text{ dm}^3" />. But it can absorb **at most** <InlineMath math="4.0\text{ dm}^3" />, so it's working at its limit.
+
+<BlockMath math="\text{water in faeces} = 4.5 - 4.0 = 0.5\text{ dm}^3" />
+
+<Mermaid
+  title={<>Water Through the Infected Gut Each Day</>}
+  description={<>Fluid entering the gut, <InlineMath math="9.0\text{ dm}^3" />, is halved by the damaged small intestine, so <InlineMath math="4.5\text{ dm}^3" /> reaches the colon. The colon absorbs its maximum of <InlineMath math="4.0\text{ dm}^3" />, and <InlineMath math="0.5\text{ dm}^3" /> leaves in the faeces.</>}
+  chart={"flowchart LR\n  G[Gut input 9.0] --> S[Small intestine absorbs 4.5]\n  G --> C[Colon receives 4.5]\n  C --> A[Colon absorbs its maximum 4.0]\n  C --> F[Faeces 0.5]"}
+/>
+
+Now the net gain is <InlineMath math="2.0 - 0.5 = 1.5\text{ dm}^3" />, which is <InlineMath math="0.4\text{ dm}^3" /> short of the <InlineMath math="1.9\text{ dm}^3" /> before.
+
+It's tempting to drink just <InlineMath math="0.4\text{ dm}^3" /> more. But **the extra drink goes through the same damaged gut**. Of an extra volume <InlineMath math="V" />, the small intestine absorbs only half. The other half reaches a colon that is already absorbing its maximum, so all of that half ends up in the faeces.
+
+<BlockMath math="\begin{aligned}
+\text{faeces} &= 0.5 + 0.50V \\
+\text{net gain} &= (2.0 + V) - (0.5 + 0.50V) = 1.5 + 0.50V \\
+1.5 + 0.50V &= 1.9 \\
+V &= \frac{0.4}{0.50} = 0.8\text{ dm}^3
+\end{aligned}" />
+
+<Chart
+  title={<>Daily Water in the Infected Gut</>}
+  bars="apart"
+  categories={["Enters gut", "Reaches colon", "Colon absorbs", "In faeces"]}
+  series={[
+    { label: "No extra drink", mark: "bar", values: [9.0, 4.5, 4.0, 0.5] },
+    { label: "With extra drink", mark: "bar", values: [9.8, 4.9, 4.0, 0.9] },
+  ]}
+  valueLabel="Water per day (litres)"
+  description={<>With no extra drink, <InlineMath math="9.0\text{ dm}^3" /> enters, <InlineMath math="4.5\text{ dm}^3" /> reaches the colon, the colon absorbs <InlineMath math="4.0\text{ dm}^3" /> and <InlineMath math="0.5\text{ dm}^3" /> is lost. With <InlineMath math="0.8\text{ dm}^3" /> extra, <InlineMath math="9.8\text{ dm}^3" /> enters, <InlineMath math="4.9\text{ dm}^3" /> reaches the colon, the colon still absorbs only <InlineMath math="4.0\text{ dm}^3" />, and <InlineMath math="0.9\text{ dm}^3" /> is lost.</>}
+/>
+
+Check: with <InlineMath math="0.8\text{ dm}^3" /> extra, the person takes in <InlineMath math="2.8\text{ dm}^3" /> and loses <InlineMath math="0.9\text{ dm}^3" />, so the net gain is <InlineMath math="2.8 - 0.9 = 1.9\text{ dm}^3" />, the same as before.
+
+So the person must drink an extra <InlineMath math="0.8\text{ dm}^3" /> of water a day.
+
+# Why the other options are wrong
+
+- No extra water counts only the <InlineMath math="2.0\text{ dm}^3" /> of food and drink as the gut's fluid, so the colon seems to get just <InlineMath math="1.0\text{ dm}^3" />, **but the** <InlineMath math="7.0\text{ dm}^3" /> **of digestive juices also pass through the gut**.
+- <InlineMath math="0.4\text{ dm}^3" /> replaces the shortfall one for one, **forgetting that half of the extra drink is also lost** through the full colon.
+- <InlineMath math="1.0\text{ dm}^3" /> treats all <InlineMath math="0.5\text{ dm}^3" /> of faecal water as the shortfall, **but** <InlineMath math="0.1\text{ dm}^3" /> **was lost before the infection too**.

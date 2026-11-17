@@ -1,0 +1,50 @@
+# Baca fragmen tiap alel, temukan genotipe ibu yang tidak diuji lewat anak-anaknya, lalu bagi masa depan anak Z menurut genotipenya
+
+Mulai dari situs pemotongan. Potongan di <InlineMath math="200" /> dan di <InlineMath math="380\text{ bp}" /> membagi salinan <InlineMath math="\text{Hb}^A" /> sepanjang <InlineMath math="500\text{ bp}" /> menjadi tiga potong. Pada <InlineMath math="\text{Hb}^S" />, hanya potongan di <InlineMath math="200\text{ bp}" /> yang tersisa:
+
+<BlockMath math="\begin{aligned}
+\text{Hb}^A &: \quad 200,\quad 380-200=180,\quad 500-380=120\text{ bp} \\
+\text{Hb}^S &: \quad 200,\quad 500-200=300\text{ bp}
+\end{aligned}" />
+
+Jadi pita <InlineMath math="300\text{ bp}" /> menandai <InlineMath math="\text{Hb}^S" />, pita <InlineMath math="180" /> dan <InlineMath math="120\text{ bp}" /> menandai <InlineMath math="\text{Hb}^A" />, dan pita <InlineMath math="200\text{ bp}" /> berasal dari **kedua** alel. Ayah menunjukkan keempat pita, jadi ia <InlineMath math="\text{Hb}^A\text{Hb}^S" />.
+
+- I: anak X hanya menunjukkan <InlineMath math="300" /> dan <InlineMath math="200\text{ bp}" />, potongan dari <InlineMath math="\text{Hb}^S" />, jadi X adalah <InlineMath math="\text{Hb}^S\text{Hb}^S" /> dan menderita anemia sel sabit. Sekarang temukan genotipe ibu lewat anak-anaknya. X mendapat satu <InlineMath math="\text{Hb}^S" /> dari tiap orang tua, jadi ibu punya <InlineMath math="\text{Hb}^S" />. Anak Y hanya menunjukkan potongan <InlineMath math="\text{Hb}^A" />, jadi Y adalah <InlineMath math="\text{Hb}^A\text{Hb}^A" /> dan juga mendapat <InlineMath math="\text{Hb}^A" /> dari ibu. Ibu pasti <InlineMath math="\text{Hb}^A\text{Hb}^S" />. Pernyataan I benar.
+- II: situs di <InlineMath math="200\text{ bp}" /> ada di kedua alel, jadi setiap salinan seharusnya terpotong di sana. Pita <InlineMath math="500\text{ bp}" /> tunggal berarti situs bersama ini pun tidak terpotong, jadi enzimnya gagal. Orang dengan anemia sel sabit tetap menunjukkan <InlineMath math="300" /> dan <InlineMath math="200\text{ bp}" />. Pernyataan II benar.
+- III: bawa genotipe ibu dari I. Kedua orang tua pembawa, jadi anak mereka adalah <InlineMath math="\text{Hb}^A\text{Hb}^A" />, <InlineMath math="\text{Hb}^A\text{Hb}^S" />, atau <InlineMath math="\text{Hb}^S\text{Hb}^S" /> dengan rasio <InlineMath math="1:2:1" />. Tetapi Z tidak menderita penyakit itu, jadi <InlineMath math="\text{Hb}^S\text{Hb}^S" /> tersingkir, dan hanya dua yang pertama tersisa:
+
+<BlockMath math="P(\text{Z pembawa, dengan empat pita})=\frac{2}{1+2}=\frac{2}{3}" />
+
+Pernyataan III benar.
+
+<Chart
+  title={<>Genotipe Anak dari Dua Pembawa</>}
+  bars="apart"
+  categories={["HbAHbA", "HbAHbS", "HbSHbS"]}
+  series={[
+    { label: "Anak mana pun", mark: "bar", values: [1 / 4, 2 / 4, 1 / 4] },
+    { label: "Anak Z", mark: "bar", values: [1 / 3, 2 / 3, 0] },
+  ]}
+  valueLabel="Peluang"
+  description={<>Untuk anak mana pun dari dua pembawa, ketiga genotipe muncul dengan rasio <InlineMath math="1:2:1" />. Untuk anak Z, yang tidak menderita penyakit itu, batang <InlineMath math="\text{Hb}^S\text{Hb}^S" /> turun ke nol dan dua lainnya berbagi seluruh peluang, jadi pembawa dengan empat pita punya peluang <InlineMath math="\tfrac{2}{3}" />.</>}
+/>
+
+- IV: perempuan itu hanya menunjukkan potongan <InlineMath math="\text{Hb}^S" />, jadi ia <InlineMath math="\text{Hb}^S\text{Hb}^S" /> dan mewariskan <InlineMath math="\text{Hb}^S" /> ke setiap anak. Sakit atau tidaknya seorang anak sekarang hanya bergantung pada Z, dan **kedua anak berbagi satu genotipe Z yang sama**, jadi bagi dulu menurut genotipe itu:
+
+<Mermaid
+  title={<>Dua Anak dari Anak Z</>}
+  description={<>Anak Z adalah pembawa dengan peluang dua pertiga. Dalam kasus itu, tiap anak sakit dengan peluang separuh, dan satu atau kedua anak sakit dengan peluang tiga perempat. Z punya dua alel normal dengan peluang sepertiga, dan dalam kasus itu setiap anak adalah pembawa dan tidak ada yang sakit.</>}
+  chart={"flowchart LR\n  Z[\"Anak Z, tidak sakit\"] -->|2/3| C[\"Z adalah HbAHbS\"]\n  Z -->|1/3| N[\"Z adalah HbAHbA\"]\n  C --> P[\"Tiap anak 1/2 sakit, satu atau dua sakit: 3/4\"]\n  N --> Q[\"Setiap anak HbAHbS, tidak ada yang sakit\"]"}
+/>
+
+<BlockMath math="P(\text{minimal satu sakit})=\tfrac{2}{3}\times\left(1-\tfrac{1}{2}\times\tfrac{1}{2}\right)+\tfrac{1}{3}\times0=\tfrac{2}{3}\times\tfrac{3}{4}=\tfrac{1}{2}" />
+
+Hasilnya <InlineMath math="\tfrac{1}{2}" />, bukan <InlineMath math="\tfrac{5}{9}" />. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja memakai <InlineMath math="\tfrac{1}{2}" /> untuk anak Z, yaitu peluang untuk anak yang sama sekali belum diketahui apa-apa. **Z diketahui tidak menderita penyakit itu**, jadi <InlineMath math="\text{Hb}^S\text{Hb}^S" /> tersingkir dan peluangnya menjadi <InlineMath math="\tfrac{2}{3}" />.
+- I dan III saja membaca pita <InlineMath math="500\text{ bp}" /> tunggal sebagai dua salinan <InlineMath math="\text{Hb}^S" />. **Situs di <InlineMath math="200\text{ bp}" /> terpotong pada kedua alel**, jadi salinan yang tidak terpotong menunjukkan enzimnya gagal.
+- I, II, III, dan IV memberi tiap anak peluang terpisah <InlineMath math="\tfrac{2}{3}\times\tfrac{1}{2}=\tfrac{1}{3}" /> lalu menghitung <InlineMath math="1-\left(\tfrac{2}{3}\right)^2=\tfrac{5}{9}" />, seolah-olah kedua anak itu saling bebas. **Kedua anak punya ayah yang sama, yaitu Z**, jadi kalau ia tidak punya <InlineMath math="\text{Hb}^S" />, tidak ada anak yang bisa sakit, dan peluangnya <InlineMath math="\tfrac{1}{2}" />.

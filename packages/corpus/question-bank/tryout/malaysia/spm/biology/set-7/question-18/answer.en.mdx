@@ -1,0 +1,68 @@
+# Turn the times into pressures, then let the beat interval set the speed for everything after
+
+The cuff falls by <InlineMath math="3\text{ mmHg}" /> each second, so **every time on the stopwatch is a cuff pressure**. The gap between taps is the time between heartbeats, and it decides how fast the cuff may fall.
+
+## The three pressures
+
+<BlockMath math="\begin{aligned}
+\text{systolic} &= 180-3\times14=138\text{ mmHg} \\
+\text{diastolic} &= 180-3\times30=90\text{ mmHg} \\
+\text{mean arterial pressure} &= 90+\tfrac{138-90}{3}=90+16=106\text{ mmHg}
+\end{aligned}" />
+
+## The beat interval and the fastest accurate speed
+
+<BlockMath math="\begin{aligned}
+\text{time between beats} &: \ \tfrac{30.0-14.0}{20}=0.8\text{ s} \\
+\text{fastest accurate fall} &: \ \tfrac{2\text{ mmHg}}{0.8\text{ s}}=2.5\text{ mmHg per second}
+\end{aligned}" />
+
+The nurse's <InlineMath math="3\text{ mmHg}" /> per second drops <InlineMath math="3\times0.8=2.4\text{ mmHg}" /> between beats, **which is too fast for an accurate reading**.
+
+## Using that speed
+
+The automatic monitor finds the largest pulse when the cuff reaches the mean arterial pressure. In the repeat, the taps run from the systolic to the diastolic pressure, <InlineMath math="2\text{ mmHg}" /> apart, with **a tap at both ends**.
+
+<BlockMath math="\begin{aligned}
+\text{largest pulse} &: \ \tfrac{180-106}{2.5}=\tfrac{74}{2.5}=29.6\text{ s} \\
+\text{taps in the repeat} &: \ \tfrac{138-90}{2}=24\text{ gaps}\ \Rightarrow\ 24+1=25\text{ taps}
+\end{aligned}" />
+
+<Chart
+  title={<>Cuff Pressure at the Fastest Accurate Speed</>}
+  categories={["0 s", "16.8 s", "29.6 s", "36 s"]}
+  series={[{ label: "Cuff pressure", mark: "line", values: [180, 138, 106, 90] }]}
+  valueLabel="Cuff pressure (mmHg)"
+  description={<>Falling at <InlineMath math="2.5\text{ mmHg}" /> per second, the cuff reaches the systolic pressure of <InlineMath math="138" /> at <InlineMath math="16.8\text{ s}" />, the mean arterial pressure of <InlineMath math="106" /> at <InlineMath math="29.6\text{ s}" />, and the diastolic pressure of <InlineMath math="90\text{ mmHg}" /> at <InlineMath math="36\text{ s}" />.</>}
+/>
+
+## If the diastolic pressure fell by six
+
+<BlockMath math="84+\tfrac{138-84}{3}=84+18=102\text{ mmHg}" />
+
+<Chart
+  title={<>Blood Pressures Now and With a Lower Diastolic Pressure</>}
+  bars="apart"
+  categories={["Systolic", "Mean arterial", "Diastolic"]}
+  series={[
+    { label: "Now", mark: "bar", values: [138, 106, 90] },
+    { label: "Diastolic 6 lower", mark: "bar", values: [138, 102, 84] },
+  ]}
+  valueLabel="Pressure (mmHg)"
+  description={<>Now the pressures are <InlineMath math="138" />, <InlineMath math="106" /> and <InlineMath math="90\text{ mmHg}" />. If the diastolic pressure falls by <InlineMath math="6" /> to <InlineMath math="84" />, the mean falls only by <InlineMath math="4" /> to <InlineMath math="102\text{ mmHg}" />, because a third of the wider gap is added back.</>}
+/>
+
+## Judging each statement
+
+- I: the systolic pressure is <InlineMath math="138" />, below <InlineMath math="140" />, but the diastolic pressure is <InlineMath math="90" />, which meets the limit. Statement I is correct.
+- II: the largest pulse comes at <InlineMath math="29.6\text{ s}" />, not <InlineMath math="26.4\text{ s}" />, because the mean arterial pressure is <InlineMath math="106\text{ mmHg}" />. Statement II is wrong.
+- III: one beat every <InlineMath math="0.8\text{ s}" /> allows at most <InlineMath math="2.5\text{ mmHg}" /> per second, and at that speed the taps fall at <InlineMath math="138" />, <InlineMath math="136" />, and so on down to <InlineMath math="90" />: <InlineMath math="25" /> taps. Statement III is correct.
+- IV: with the diastolic pressure at <InlineMath math="84" /> and the systolic at <InlineMath math="138" />, the reading is no longer high. But the mean falls from <InlineMath math="106" /> to <InlineMath math="102" />, **only <InlineMath math="4\text{ mmHg}" />**. Statement IV is wrong.
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I, II and III only takes the plain average, <InlineMath math="\tfrac{138+90}{2}=114" />, so the largest pulse seems to come at <InlineMath math="\tfrac{180-114}{2.5}=26.4\text{ s}" />. **The mean adds one third of the difference to the diastolic pressure**, because the heart spends longer in diastole.
+- I, III and IV only lets the mean fall by the full <InlineMath math="6\text{ mmHg}" />, **forgetting that a lower diastolic pressure widens the gap, and a third of that is added back**.
+- I only divides the <InlineMath math="48\text{ mmHg}" /> between the systolic and diastolic pressures by <InlineMath math="2\text{ mmHg}" /> and counts <InlineMath math="24" /> taps. **That counts the gaps**, and with a tap at both ends there is one more tap than gaps, just as the nurse's <InlineMath math="21" /> taps had <InlineMath math="20" /> gaps.

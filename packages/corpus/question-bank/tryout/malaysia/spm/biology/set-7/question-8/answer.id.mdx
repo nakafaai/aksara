@@ -1,0 +1,52 @@
+# Ukur siklus dari satu profase ke profase berikutnya, lalu ikuti DNA sepanjang siklus
+
+Sel dilepas pada **awal fase S**, bukan pada awal siklus. Jadi <InlineMath math="10" /> jam pertama hanya mencakup S dan <InlineMath math="\text{G}_2" />, dan satu siklus penuh adalah selang antara dua profase.
+
+## Lama tiap fase
+
+<BlockMath math="\begin{aligned}
+\text{S}+\text{G}_2 &= 10\ \Rightarrow\ \text{G}_2=10-7=3\text{ jam} \\
+\text{mitosis dan sitokinesis} &= 11-10=1\text{ jam} \\
+\text{satu siklus} &= 32-10=22\text{ jam} \\
+\text{G}_1 &= 22-7-3-1=11\text{ jam}
+\end{aligned}" />
+
+## Jadwal setelah pembelahan pertama
+
+Sel anak memulai <InlineMath math="\text{G}_1" /> pada jam ke-<InlineMath math="11" />, jadi **tiap fase berikutnya mulai saat fase sebelumnya selesai**.
+
+<BlockMath math="\text{G}_1:\ 11\text{ sampai }22\text{ jam},\qquad \text{S}:\ 22\text{ sampai }29\text{ jam},\qquad \text{G}_2:\ 29\text{ sampai }32\text{ jam}" />
+
+## DNA di dalam kultur
+
+Anggap DNA satu sel pada waktu <InlineMath math="0" /> sebagai satu satuan. **Sel menggandakan DNA-nya di fase S dan membaginya ke dua sel saat sitokinesis**.
+
+- Pada jam ke-<InlineMath math="9" />, sel tunggal itu ada di <InlineMath math="\text{G}_2" /> dan menyimpan <InlineMath math="2" /> satuan.
+- Mulai jam ke-<InlineMath math="11" />, ada <InlineMath math="2" /> sel dengan <InlineMath math="1" /> satuan masing-masing.
+- Pada jam ke-<InlineMath math="30" />, kedua sel sudah menyelesaikan fase S kedua dan ada di <InlineMath math="\text{G}_2" />, jadi kultur menyimpan <InlineMath math="2\times2=4" /> satuan untuk tiap sel yang ada pada waktu <InlineMath math="0" />.
+
+<Chart
+  title={<>DNA di Dalam Kultur Setelah Dilepas</>}
+  categories={["0 jam", "7 jam", "11 jam", "15 jam", "22 jam", "29 jam", "30 jam"]}
+  series={[
+    { label: "Sel", mark: "line", values: [1, 1, 2, 2, 2, 2, 2] },
+    { label: "DNA di semua sel", mark: "line", values: [1, 2, 2, 2, 2, 4, 4] },
+  ]}
+  valueLabel="Jumlah per sel pada waktu 0"
+  description={<>DNA berlipat dua selama fase S pertama, dari jam ke-<InlineMath math="0" /> sampai ke-<InlineMath math="7" />. Pada jam ke-<InlineMath math="11" /> sel membelah, jadi ada <InlineMath math="2" /> sel dengan total DNA yang sama. Fase S kedua, dari jam ke-<InlineMath math="22" /> sampai ke-<InlineMath math="29" />, menggandakan total itu lagi menjadi <InlineMath math="4" /> satuan, yang masih bertahan pada jam ke-<InlineMath math="30" />.</>}
+/>
+
+## Menilai tiap pernyataan
+
+- I: <InlineMath math="\text{G}_1" /> berlangsung <InlineMath math="22-7-3-1=11" /> jam. Pernyataan I benar.
+- II: pada jam ke-<InlineMath math="30" /> kultur menyimpan <InlineMath math="4" /> satuan dibanding <InlineMath math="1" /> satuan pada waktu <InlineMath math="0" />. Pernyataan II benar.
+- III: pada jam ke-<InlineMath math="15" /> kedua sel anak ada di <InlineMath math="\text{G}_1" />. Mereka terus berjalan sampai tiba di awal S pada jam ke-<InlineMath math="22" /> dan ditahan di sana, **sebelum menyalin DNA-nya**. Tiap sel menyimpan <InlineMath math="1" /> satuan, setengah dari <InlineMath math="2" /> satuan pada jam ke-<InlineMath math="9" />, dan ada <InlineMath math="2" /> sel untuk tiap sel pada waktu <InlineMath math="0" />. Pernyataan III benar.
+- IV: <InlineMath math="32" /> jam itu dimulai di tengah siklus, jadi **memuat satu S dan <InlineMath math="\text{G}_2" /> tambahan**. Satu siklus berlangsung <InlineMath math="22" /> jam. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- III dan IV saja menganggap siklus sebagai <InlineMath math="32" /> jam dari saat dilepas sampai profase kedua, **lupa bahwa sel dilepas di awal S**. Akibatnya <InlineMath math="\text{G}_1" /> memanjang menjadi <InlineMath math="21" /> jam, fase S kedua jatuh pada jam ke-<InlineMath math="32" />, dan DNA pada jam ke-<InlineMath math="30" /> hanya <InlineMath math="2" /> satuan.
+- II dan III saja menghitung <InlineMath math="\text{G}_1" /> sebagai <InlineMath math="22-7-3=12" /> jam, **melewatkan satu jam mitosis dan sitokinesis**. Pernyataan II dan III tetap benar, tetapi pernyataan I tampak salah.
+- I dan II saja mengira sel yang ditahan di awal S sudah menyalin DNA-nya, seperti pada jam ke-<InlineMath math="9" />. **Zat kimia itu menahan sel sebelum DNA disalin**, jadi sel itu hanya menyimpan setengah jumlah tersebut.

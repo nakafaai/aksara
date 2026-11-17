@@ -1,0 +1,44 @@
+# Finde für jede Pflanze heraus, was zuerst ausgeht, das Wasser oder der Monat
+
+Jede Pflanze hört aus einem von zwei Gründen auf: Ihre <InlineMath math="15\text{ kg}" /> Wasser sind verbraucht, oder die <InlineMath math="30" /> Tage sind vorbei. Bestimme also zuerst **das Wasser, das jede Pflanze pro Gramm Kohlenstoffdioxid verbraucht**, und prüfe dann, welche Grenze sie erreicht.
+
+<BlockMath math="\text{Kaktus: }\frac{75}{1{,}5}=50\text{ g},\qquad \text{Strauch: }\frac{2000}{4{,}0}=500\text{ g},\qquad \frac{50}{500}=\frac{1}{10}" />
+
+Aussage I stimmt. Der Kaktus öffnet seine Stomata in der kühlen, feuchten Nacht, wenn Wasserdampf langsamer aus dem Blatt diffundiert, während Kohlenstoffdioxid weiter hineindiffundiert.
+
+Jetzt prüf die Grenzen. Das Wasser reicht für jede Pflanze:
+
+<BlockMath math="\text{Strauch: }\frac{15\,000}{2000}=7{,}5\text{ Tage},\qquad \text{Kaktus: }\frac{15\,000}{75}=200\text{ Tage}" />
+
+Der Strauch hat nach <InlineMath math="7{,}5" /> Tagen kein Wasser mehr, der Kaktus hat am Monatsende noch welches. **Nur der Strauch ist also durch das Wasser begrenzt**, der Kaktus durch die <InlineMath math="30" /> Tage:
+
+<BlockMath math="\text{Strauch: }7{,}5\times4{,}0=30\text{ g},\qquad \text{Kaktus: }30\times1{,}5=45\text{ g Kohlenstoffdioxid}" />
+
+- II: Der Kaktus bindet das <InlineMath math="\tfrac{45}{30}=1{,}5" />-Fache, nicht das Zehnfache. Für das Zehnfache müsste er alle <InlineMath math="15\text{ kg}" /> verbrauchen, also <InlineMath math="\tfrac{15\,000}{50}=300\text{ g}" /> binden, doch im Monat verbraucht er nur <InlineMath math="30\times75=2250\text{ g}" /> Wasser. Aussage II ist falsch.
+- III: Rechne jede Masse Kohlenstoffdioxid in Glucose um:
+
+<BlockMath math="\text{Kaktus: }45\times\frac{180}{264}\approx30{,}7\text{ g},\qquad \text{Strauch: }30\times\frac{180}{264}\approx20{,}5\text{ g},\qquad \frac{30{,}7}{20{,}5}=1{,}5" />
+
+Aussage III stimmt.
+
+- IV: Mit <InlineMath math="30\text{ kg}" /> reicht das Wasser des Strauchs <InlineMath math="\tfrac{30\,000}{2000}=15" /> Tage, also bindet er <InlineMath math="15\times4{,}0=60\text{ g}" />. Dem Kaktus fehlte nie Wasser, er bindet weiter <InlineMath math="45\text{ g}" />. Jetzt bindet der Strauch mehr. Aussage IV stimmt.
+
+<Chart
+  title={<>Gebundenes Kohlenstoffdioxid im trockenen Monat</>}
+  bars="apart"
+  categories={["Kaktus", "Strauch"]}
+  series={[
+    { label: "15 kg Wasser", mark: "bar", values: [30 * 1.5, (15000 / 2000) * 4] },
+    { label: "30 kg Wasser", mark: "bar", values: [30 * 1.5, (30000 / 2000) * 4] },
+  ]}
+  valueLabel="Kohlenstoffdioxid pro Quadratmeter (g)"
+  description={<>Mit <InlineMath math="15\text{ kg}" /> Wasser bindet der Kaktus <InlineMath math="45\text{ g}" /> Kohlenstoffdioxid und der Strauch <InlineMath math="30\text{ g}" />. Mit <InlineMath math="30\text{ kg}" /> bindet der Kaktus weiter <InlineMath math="45\text{ g}" />, weil der Monat zuerst endet, der Strauch dagegen <InlineMath math="60\text{ g}" />.</>}
+/>
+
+Also stimmen die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II hält auch den Kaktus für wasserbegrenzt, sodass er <InlineMath math="300\text{ g}" /> bindet und etwa <InlineMath math="205\text{ g}" /> Glucose bildet. **Mit <InlineMath math="75\text{ g}" /> pro Tag verbraucht der Kaktus in <InlineMath math="30" /> Tagen nur <InlineMath math="2250\text{ g}" /> Wasser**, also stoppt ihn der Monat, nicht das Wasser, bei <InlineMath math="45\text{ g}" />.
+- Nur III und IV vergleicht die täglichen Wasserverluste, <InlineMath math="\tfrac{75}{2000}" />, **ohne jeden durch das gebundene Kohlenstoffdioxid zu teilen**, und übersieht so <InlineMath math="50\text{ g}" /> gegen <InlineMath math="500\text{ g}" /> pro Gramm.
+- Nur I und III verdoppelt bei doppeltem Wasser die Summen beider Pflanzen und gibt dem Kaktus <InlineMath math="90\text{ g}" /> gegen <InlineMath math="60\text{ g}" />. **Mehr Wasser hilft nur der Pflanze, der es ausging**, der Kaktus bleibt bei <InlineMath math="45\text{ g}" />.

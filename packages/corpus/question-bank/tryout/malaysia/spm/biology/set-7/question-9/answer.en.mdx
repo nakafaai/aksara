@@ -1,0 +1,46 @@
+# Split the dive at the moment each store changes hands
+
+The muscles live on myoglobin until it runs out, then go short of oxygen until the blood flow opens again at minute <InlineMath math="16" />. **From minute <InlineMath math="16" /> the blood feeds the muscles as well as the organs**, so it drains faster.
+
+## How long each store lasts
+
+<BlockMath math="\begin{aligned}
+\text{myoglobin} &: \ \tfrac{10\text{ L}}{1.0\text{ L/min}}=10\text{ min} \\
+\text{blood left at minute }16 &: \ 20-0.5\times16=12\text{ L} \\
+\text{blood after minute }16 &: \ \tfrac{12\text{ L}}{0.5+1.0\text{ L/min}}=8\text{ min, so it runs out at minute }24
+\end{aligned}" />
+
+## Lactic acid formed in the muscles
+
+In a dive of <InlineMath math="22" /> minutes, the muscles lack oxygen only **between minute <InlineMath math="10" /> and minute <InlineMath math="16" />**. After that the blood supplies them, and at minute <InlineMath math="22" /> the blood still holds <InlineMath math="12-1.5\times6=3\text{ L}" />.
+
+<BlockMath math="\begin{aligned}
+\text{with the flow opened} &: \ (16-10)\times1.0=6\text{ L lacked}\ \Rightarrow\ 6\times20=120\text{ g} \\
+\text{with the flow kept closed} &: \ (22-10)\times1.0=12\text{ L lacked}\ \Rightarrow\ 12\times20=240\text{ g}
+\end{aligned}" />
+
+<Chart
+  title={<>Oxygen Left in Each Store During the Dive</>}
+  categories={["0 min", "10 min", "16 min", "22 min", "24 min"]}
+  series={[
+    { label: "Blood", mark: "line", values: [20, 15, 12, 3, 0] },
+    { label: "Myoglobin", mark: "line", values: [10, 0, 0, 0, 0] },
+  ]}
+  valueLabel="Oxygen left (L)"
+  description={<>Myoglobin falls from <InlineMath math="10" /> to <InlineMath math="0\text{ L}" /> by minute <InlineMath math="10" />. The blood falls slowly, to <InlineMath math="12\text{ L}" /> at minute <InlineMath math="16" />, then faster once the muscles draw on it too, to <InlineMath math="3\text{ L}" /> at minute <InlineMath math="22" /> and <InlineMath math="0" /> at minute <InlineMath math="24" />.</>}
+/>
+
+## Judging each statement
+
+- I: the blood lasts until minute <InlineMath math="16+8=24" />. Statement I is correct.
+- II: the muscles lack <InlineMath math="6\text{ L}" />, not <InlineMath math="12\text{ L}" />, so they form <InlineMath math="120\text{ g}" />. Statement II is wrong.
+- III: with the flow kept closed they would lack <InlineMath math="12\text{ L}" /> and form <InlineMath math="240\text{ g}" />, which is <InlineMath math="\tfrac{240}{120}=2" /> times as much. Statement III is correct.
+- IV: blood flows through the muscles again from minute <InlineMath math="16" />, while the dive lasts until minute <InlineMath math="22" />. **The lactic acid formed from minute <InlineMath math="10" /> is carried away in that blood** before the seal surfaces. Statement IV is correct.
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- II only treats the muscles as cut off for the whole dive, **missing that the blood flow opens at minute <InlineMath math="16" />**. It then finds <InlineMath math="240\text{ g}" /> of lactic acid, no difference for statement III, blood lasting <InlineMath math="\tfrac{20}{0.5}=40" /> minutes, and no lactic acid in the blood during the dive.
+- I and III only expects all the lactic acid to stay in the muscles until the seal surfaces. That holds for a dive with the flow closed, **not for one where blood reaches the muscles from minute <InlineMath math="16" />**.
+- III and IV only divides the whole blood store by the combined use from the start, <InlineMath math="\tfrac{20}{1.5}\approx13" /> minutes, **forgetting that the muscles draw on the blood only from minute <InlineMath math="16" />**.

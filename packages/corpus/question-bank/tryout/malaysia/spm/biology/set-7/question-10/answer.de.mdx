@@ -1,0 +1,65 @@
+# Gleich viel Sauerstoff aus dem Atemgas heißt nicht gleich viel Energie, denn der RQ ändert den Ertrag
+
+Jede Ablesung umfasst <InlineMath math="30\text{ s}" />. Der Abfall bei einem Atemzug ist das Atemzugvolumen, und **das Atemminutenvolumen ist das Atemzugvolumen mal die Zahl der Atemzüge**. Das langsame Absinken des Pegels am Ende jedes Ausatmens ist der aufgenommene Sauerstoff, weil der Natronkalk das zurückgeatmete Kohlenstoffdioxid entfernt.
+
+## Ventilation und Sauerstoffaufnahme
+
+<BlockMath math="\begin{aligned}
+\text{in Ruhe} &: \ 6\times0{,}5=3\text{ dm}^3,\quad \text{Sauerstoff }6{,}00-5{,}85=0{,}15\text{ dm}^3\quad(\text{pro }30\text{ s}) \\
+\text{nach Belastung} &: \ 10\times1{,}5=15\text{ dm}^3,\quad \text{Sauerstoff }6{,}00-5{,}25=0{,}75\text{ dm}^3\quad(\text{pro }30\text{ s}) \\
+\text{Sauerstoff pro dm}^3\text{ Atemgas} &: \ \tfrac{0{,}15}{3}=0{,}05,\qquad \tfrac{0{,}75}{15}=0{,}05
+\end{aligned}" />
+
+## Energie aus dem Sauerstoff
+
+Jetzt kommt die zweite Tabelle ins Spiel. Der RQ legt fest, **wie viel Energie jeder <InlineMath math="\text{dm}^3" /> Sauerstoff liefert**: <InlineMath math="20{,}1\text{ kJ}" /> in Ruhe und <InlineMath math="21{,}1\text{ kJ}" /> direkt nach der Belastung.
+
+<BlockMath math="\begin{aligned}
+\text{nach Belastung, pro Minute} &: \ 2\times0{,}75=1{,}50\text{ dm}^3\text{ Sauerstoff},\quad 1{,}50\times21{,}1=31{,}65\text{ kJ} \\
+\text{pro dm}^3\text{ Atemgas, in Ruhe} &: \ 0{,}05\times20{,}1=1{,}005\text{ kJ} \\
+\text{pro dm}^3\text{ Atemgas, nach Belastung} &: \ 0{,}05\times21{,}1=1{,}055\text{ kJ}
+\end{aligned}" />
+
+<Chart
+  title={<>Energie aus dem eingeatmeten Gas</>}
+  bars="apart"
+  categories={["In Ruhe", "Nach Belastung"]}
+  series={[{ label: "Energie (kJ)", mark: "bar", values: [1.005, 1.055] }]}
+  valueLabel="Energie pro dm³ Atemgas (kJ)"
+  description={<>Jeder eingeatmete <InlineMath math="\text{dm}^3" /> gibt in beiden Zuständen <InlineMath math="0{,}05\text{ dm}^3" /> Sauerstoff ab, setzt aber in Ruhe <InlineMath math="1{,}005\text{ kJ}" /> und nach der Belastung <InlineMath math="1{,}055\text{ kJ}" /> frei, weil der RQ von <InlineMath math="0{,}80" /> auf <InlineMath math="1{,}00" /> steigt.</>}
+/>
+
+## Wie lange die Kammer volle Atemzüge erlaubt
+
+Ein voller Atemzug nimmt <InlineMath math="1{,}5\text{ dm}^3" /> unter den Pegel am Ende des Ausatmens. **Das Ende des Einatmens bleibt also nur bei <InlineMath math="1{,}00\text{ dm}^3" /> oder mehr, solange das Ende des Ausatmens bei <InlineMath math="1{,}00+1{,}5=2{,}50\text{ dm}^3" /> oder mehr bleibt**.
+
+<BlockMath math="\begin{aligned}
+\text{erlaubter Abfall} &: \ 6{,}00-2{,}50=3{,}50\text{ dm}^3 \\
+\text{Zeit} &: \ \tfrac{3{,}50}{0{,}75}\times30\text{ s}=140\text{ s}
+\end{aligned}" />
+
+<Chart
+  title={<>Kammervolumen direkt nach der Belastung</>}
+  categories={["0 s", "30 s", "60 s", "90 s", "120 s", "140 s"]}
+  series={[
+    { label: "Ende Ausatmen", mark: "line", values: [6.0, 5.25, 4.5, 3.75, 3.0, 2.5] },
+    { label: "Ende Einatmen", mark: "line", values: [4.5, 3.75, 3.0, 2.25, 1.5, 1.0] },
+  ]}
+  valueLabel="Kammervolumen (dm³)"
+  description={<>Der Pegel am Ende des Ausatmens sinkt alle <InlineMath math="30\text{ s}" /> um <InlineMath math="0{,}75\text{ dm}^3" />, und der Pegel am Ende des Einatmens liegt stets <InlineMath math="1{,}5\text{ dm}^3" /> tiefer. Das Ende des Einatmens erreicht die Grenze von <InlineMath math="1{,}00\text{ dm}^3" /> nach <InlineMath math="140\text{ s}" />.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: Die Ventilation steigt von <InlineMath math="3" /> auf <InlineMath math="15\text{ dm}^3" /> pro <InlineMath math="30\text{ s}" />, also auf das Fünffache, und jeder <InlineMath math="\text{dm}^3" /> gibt in beiden Zuständen <InlineMath math="0{,}05\text{ dm}^3" /> Sauerstoff ab. Aussage I stimmt.
+- II: <InlineMath math="1{,}50\text{ dm}^3" /> Sauerstoff pro Minute zu je <InlineMath math="21{,}1\text{ kJ}" /> ergeben <InlineMath math="31{,}65\text{ kJ}" /> pro Minute. Aussage II stimmt.
+- III: <InlineMath math="1{,}005\text{ kJ}" /> gilt nur in Ruhe. Direkt nach der Belastung **liefert derselbe Sauerstoff <InlineMath math="1{,}055\text{ kJ}" />**, weil der RQ höher ist. Aussage III ist falsch.
+- IV: Volle Atemzüge reichen <InlineMath math="140\text{ s}" />, nicht <InlineMath math="280\text{ s}" />. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III sieht dieselben <InlineMath math="0{,}05\text{ dm}^3" /> Sauerstoff pro <InlineMath math="\text{dm}^3" /> und nimmt dieselbe Energie an, **ohne zu beachten, dass die Energie aus jedem <InlineMath math="\text{dm}^3" /> Sauerstoff vom RQ abhängt**.
+- Nur I und IV liest den Abfall von <InlineMath math="0{,}75\text{ dm}^3" /> in <InlineMath math="30\text{ s}" /> **so, als gälte er pro Minute**. Dann wären es nur <InlineMath math="0{,}75\times21{,}1\approx15{,}8\text{ kJ}" /> pro Minute, und die Kammer schiene <InlineMath math="\tfrac{3{,}50}{0{,}75}" /> Minuten zu reichen, also <InlineMath math="280\text{ s}" />.
+- Nur II vergleicht den Sauerstoff pro Atemzug, <InlineMath math="\tfrac{0{,}15}{6}=0{,}025" /> gegen <InlineMath math="\tfrac{0{,}75}{10}=0{,}075\text{ dm}^3" />, und verwirft deshalb Aussage I. Aussage I fragt nach **jedem eingeatmeten <InlineMath math="\text{dm}^3" />**, und die tieferen Atemzüge enthalten dreimal so viel Gas.

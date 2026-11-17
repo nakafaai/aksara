@@ -1,0 +1,58 @@
+# Mach aus dem Wachstum der Frucht und ihrem Kohlenstoffdioxid Saccharose, aus der Saccharose Saft und aus dem Saft eine Geschwindigkeit
+
+Die Frucht braucht Saccharose für zwei Dinge: die Trockenmasse, die sie aufbaut, und die Saccharose, die sie veratmet. Zuerst die Trockenmasse über die <InlineMath math="10" /> Tage, also <InlineMath math="240" /> Stunden:
+
+<BlockMath math="\text{für Trockenmasse} = \frac{1250-398}{240}\text{ g pro Stunde} = \frac{852}{240} = 3{,}55\text{ g pro Stunde}" />
+
+Die Kammer gibt die Atmung als Kohlenstoffdioxid an, nicht als Saccharose. Rechne sie deshalb mit dem Massenverhältnis <InlineMath math="342:528" /> um:
+
+<BlockMath math="\begin{aligned}
+\text{veratmete Saccharose} &= 35{,}2\times\tfrac{342}{528} = 22{,}8\text{ g pro Tag} = \tfrac{22{,}8}{24} = 0{,}95\text{ g pro Stunde} \\
+\text{Saccharose insgesamt} &= 3{,}55+0{,}95 = 4{,}5\text{ g pro Stunde}
+\end{aligned}" />
+
+Der Saft trägt <InlineMath math="15\text{ g}" /> in <InlineMath math="100\text{ cm}^3" />, also <InlineMath math="0{,}15\text{ g}" /> in jedem <InlineMath math="\text{cm}^3" />. Alle Siebröhren zusammen ergeben die Fläche, durch die der Saft fließt:
+
+<BlockMath math="\begin{aligned}
+\text{Saftvolumen} &= \tfrac{4{,}5\text{ g pro Stunde}}{0{,}15\text{ g pro cm}^3} = 30\text{ cm}^3\text{ pro Stunde} \\
+\text{Fläche} &= 20{.}000\times1{,}5\times10^{-5} = 0{,}30\text{ cm}^2 \\
+\text{Geschwindigkeit} &= \tfrac{30\text{ cm}^3\text{ pro Stunde}}{0{,}30\text{ cm}^2} = 100\text{ cm pro Stunde}
+\end{aligned}" />
+
+<Chart
+  title={<>Saccharose, die stündlich in die Frucht gelangt</>}
+  bars="apart"
+  categories={["Für Trockenmasse", "Für Atmung", "Insgesamt"]}
+  series={[
+    { label: "Saccharose", mark: "bar", values: [852 / 240, (35.2 * 342) / 528 / 24, 852 / 240 + (35.2 * 342) / 528 / 24] },
+  ]}
+  valueLabel="Gramm pro Stunde"
+  description={<>Die Frucht nimmt pro Stunde <InlineMath math="3{,}55\text{ g}" /> Saccharose für ihre Trockenmasse und <InlineMath math="0{,}95\text{ g}" /> für die Atmung auf, zusammen <InlineMath math="4{,}5\text{ g}" />. Bei <InlineMath math="0{,}15\text{ g}" /> pro <InlineMath math="\text{cm}^3" /> sind das <InlineMath math="30\text{ cm}^3" /> Saft pro Stunde.</>}
+/>
+
+- I: <InlineMath math="30\text{ cm}^3" /> Saft pro Stunde durch <InlineMath math="0{,}30\text{ cm}^2" /> bewegen sich mit <InlineMath math="100\text{ cm}" /> pro Stunde. Aussage I stimmt.
+
+Für II bis IV behältst du die Geschwindigkeit als **Saftvolumen pro Stunde geteilt durch die Gesamtfläche der Röhren** und änderst jeweils nur eine Sache.
+
+- II: Die Frucht braucht weiter <InlineMath math="30\text{ cm}^3" /> Saft pro Stunde, aber die Hälfte der Röhren bietet nur <InlineMath math="0{,}15\text{ cm}^2" />. Die Geschwindigkeit verdoppelt sich also auf <InlineMath math="200\text{ cm}" /> pro Stunde. Aussage II stimmt.
+- III: Die Fläche eines Kreises wächst mit dem Quadrat seines Durchmessers, doppelter Durchmesser ergibt also <InlineMath math="2^2=4" />-mal so viel Fläche. Dieselben <InlineMath math="30\text{ cm}^3" /> pro Stunde fließen dann mit <InlineMath math="\tfrac{100}{4}=25\text{ cm}" /> pro Stunde, nicht mit <InlineMath math="50\text{ cm}" />. Aussage III ist falsch.
+- IV: Doppelt so viel Saccharose in jedem <InlineMath math="\text{cm}^3" /> heißt, dass schon das **halbe** Saftvolumen dieselben <InlineMath math="4{,}5\text{ g}" /> trägt. Der Saft würde also nur halb so schnell fließen, <InlineMath math="50\text{ cm}" /> pro Stunde. Aussage IV ist falsch.
+
+<Chart
+  title={<>Geschwindigkeit des Safts in jedem Fall</>}
+  bars="apart"
+  categories={["Gemessen", "Halbe Röhrenzahl", "Doppelt so weit", "Doppelter Zucker"]}
+  series={[
+    { label: "Geschwindigkeit", mark: "bar", values: [30 / 0.3, 30 / 0.15, 30 / (0.3 * 4), 15 / 0.3] },
+  ]}
+  valueLabel="Geschwindigkeit des Safts (cm pro Stunde)"
+  description={<>Gemessen fließt der Saft mit <InlineMath math="100\text{ cm}" /> pro Stunde. Mit der Hälfte der Röhren flösse er mit <InlineMath math="200\text{ cm}" /> pro Stunde, mit doppelt so weiten Röhren mit <InlineMath math="25\text{ cm}" /> pro Stunde und mit doppelt so viel Saccharose im Saft mit <InlineMath math="50\text{ cm}" /> pro Stunde.</>}
+/>
+
+Also stimmen die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II lehnt I ab, weil es die <InlineMath math="35{,}2\text{ g}" /> Kohlenstoffdioxid so addiert, als wären sie Saccharose, <InlineMath math="\tfrac{852+352}{240}\approx5{,}0\text{ g}" /> pro Stunde. Das ergibt etwa <InlineMath math="111\text{ cm}" /> pro Stunde, **doch das Veratmen von <InlineMath math="342\text{ g}" /> Saccharose setzt <InlineMath math="528\text{ g}" /> Kohlenstoffdioxid frei**, die Frucht veratmete also nur <InlineMath math="22{,}8\text{ g}" /> Saccharose am Tag.
+- Nur I, II und IV nimmt IV an und lässt die Geschwindigkeit **mit der Konzentration steigen**, obwohl ein reicherer Saft weniger Volumen braucht, um dieselbe Saccharose zu tragen.
+- Nur I, II und III nimmt III an und lässt die Fläche sich verdoppeln, wenn sich der Durchmesser verdoppelt, **obwohl die Fläche mit dem Quadrat des Durchmessers wächst**, also auf das Vierfache, und die Geschwindigkeit auf ein Viertel fällt.

@@ -1,0 +1,56 @@
+# Bakteria terus membahagi semasa faj sedang dipasang
+
+Satu kawasan jernih mewakili **satu bakteria terjangkit atau satu zarah faj bebas**, bukan kedua-duanya. Jadi bilangan hanya melonjak apabila bakteria terjangkit pecah dan membebaskan faj baharu.
+
+<Chart
+  title={<>Kawasan Jernih Selepas Jangkitan</>}
+  categories={["0 min", "10 min", "20 min", "30 min", "40 min", "50 min"]}
+  series={[
+    { label: "Kawasan jernih", mark: "line", values: [2, 2, 2, 2, 150, 200] },
+  ]}
+  valueLabel="Kawasan per cm³ (ratus ribu)"
+  description={<>Bilangan kekal <InlineMath math="2.0\times10^5" /> per <InlineMath math="\text{cm}^3" /> dari minit ke-<InlineMath math="0" /> hingga minit ke-<InlineMath math="30" />, melonjak kepada <InlineMath math="1.5\times10^7" /> pada minit ke-<InlineMath math="40" /> dan mendatar pada <InlineMath math="2.0\times10^7" /> pada minit ke-<InlineMath math="50" />.</>}
+/>
+
+Mula dengan bilangan faj yang dibebaskan oleh setiap bakteria. Setiap faj menjangkiti bakteria yang berlainan, jadi <InlineMath math="2.0\times10^5" /> bakteria terjangkit. Apabila semuanya sudah pecah, bilangan mendatar pada <InlineMath math="2.0\times10^7" />:
+
+<BlockMath math="\frac{2.0\times10^7}{2.0\times10^5}=100\text{ faj setiap bakteria}" />
+
+Seterusnya, cari bahagian bakteria yang dijangkiti dalam pusingan kedua. Semasa faj pertama sedang dipasang, bakteria yang tidak terjangkit terus membahagi. Dalam <InlineMath math="40" /> minit, bakteria itu membahagi <InlineMath math="\tfrac{40}{20}=2" /> kali:
+
+<BlockMath math="\begin{aligned}
+\text{tidak terjangkit pada minit ke-40} &\approx 1.0\times10^8\times2^2 = 4.0\times10^8 \\
+\text{bahagian yang terjangkit} &= \frac{2.0\times10^7}{4.0\times10^8} = 0.05 = 5\%
+\end{aligned}" />
+
+Kemudian bandingkan faj dengan bakteria selepas pecah kali kedua. Sebanyak <InlineMath math="4.0\times10^8-2.0\times10^7=3.8\times10^8" /> bakteria yang masih tidak terjangkit membahagi dua kali lagi sebelum minit ke-<InlineMath math="80" />, manakala setiap bakteria yang baru dijangkiti membebaskan <InlineMath math="100" /> faj:
+
+<BlockMath math="\begin{aligned}
+\text{tidak terjangkit pada minit ke-80} &= 3.8\times10^8\times2^2 \approx 1.5\times10^9 \\
+\text{faj yang dibebaskan} &= 2.0\times10^7\times100 = 2.0\times10^9
+\end{aligned}" />
+
+<Chart
+  title={<>Faj yang Dibebaskan dan Bakteria yang Tinggal</>}
+  bars="apart"
+  categories={["Minit ke-40", "Minit ke-80"]}
+  series={[
+    { label: "Faj dibebaskan", mark: "bar", values: [2, 200] },
+    { label: "Bakteria tidak terjangkit", mark: "bar", values: [40, 152] },
+  ]}
+  valueLabel="Bilangan per cm³ (puluh juta)"
+  description={<>Pada minit ke-<InlineMath math="40" />, <InlineMath math="2.0\times10^7" /> faj bertemu <InlineMath math="4.0\times10^8" /> bakteria tidak terjangkit. Pada minit ke-<InlineMath math="80" />, <InlineMath math="2.0\times10^9" /> faj dibebaskan, lebih banyak daripada <InlineMath math="1.5\times10^9" /> bakteria tidak terjangkit yang tinggal.</>}
+/>
+
+- I: setiap bakteria membebaskan <InlineMath math="100" /> faj. <InlineMath math="1.0\times10^8" /> bakteria itu termasuk banyak bakteria yang **tidak pernah dijangkiti**, jadi nilai itu bukan pembahagi yang betul. Pernyataan I betul.
+- II: faj pusingan pertama bertemu bakteria **selepas dua kali pembahagian**, jadi <InlineMath math="2.0\times10^7" /> daripada <InlineMath math="4.0\times10^8" /> terjangkit, iaitu <InlineMath math="5\%" />. Pernyataan II betul.
+- III: virus tiada sitoplasma, tiada ribosom dan tiada metabolisme sendiri, jadi virus tidak boleh membahagi. Faj baharu **dipasang daripada komponen yang dibuat oleh perumah** semasa bahagian lengkung yang mendatar. Pernyataan III salah.
+- IV: <InlineMath math="2.0\times10^9" /> faj berbanding kira-kira <InlineMath math="1.5\times10^9" /> bakteria, jadi faj lebih banyak. Pernyataan IV betul.
+
+Jadi pernyataan I, II dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I dan IV sahaja menolak II kerana membahagi dengan <InlineMath math="1.0\times10^8" /> bakteria pada permulaan, lalu mendapat <InlineMath math="20\%" />, **terlupa bahawa bakteria itu sudah berganda dua kali dalam** <InlineMath math="40" /> **minit**.
+- I, II, III dan IV menerima III, memberi faj **cara pembiakan sel**, walhal virus tidak boleh membahagi.
+- II dan IV sahaja menolak I kerana membahagi <InlineMath math="2.0\times10^7" /> dengan semua <InlineMath math="1.0\times10^8" /> bakteria, **yang kebanyakannya tidak pernah dijangkiti**, lalu mendapat <InlineMath math="0.2" />.

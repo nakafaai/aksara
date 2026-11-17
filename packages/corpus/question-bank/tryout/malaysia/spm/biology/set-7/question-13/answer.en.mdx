@@ -1,0 +1,51 @@
+# The clone doubles only after its waiting time, and it always stops at the same size
+
+The waiting time before the cells divide adds days but **no doublings**. Every <InlineMath math="12" /> hours of dividing doubles the clone, so one day of dividing is two doublings.
+
+## The first exposure
+
+<BlockMath math="\begin{aligned}
+\text{to detection} &: \ \tfrac{20\,480}{20}=1024=2^{10}\ \Rightarrow\ 10\text{ doublings}=5\text{ days} \\
+\text{antibody detected} &: \ 2+5=\text{day }7 \\
+\text{antigen cleared} &: \ \text{day }9,\ \text{after }4\text{ more doublings: }20\,480\times2^4=327\,680\text{ cells} \\
+\text{memory cells} &: \ \tfrac{327\,680}{512}=640
+\end{aligned}" />
+
+## The second exposure
+
+The <InlineMath math="640" /> memory cells wait <InlineMath math="1" /> day and then double.
+
+<BlockMath math="\begin{aligned}
+\text{to detection} &: \ \tfrac{20\,480}{640}=32=2^5\ \Rightarrow\ 5\text{ doublings}=2.5\text{ days} \\
+\text{antibody detected} &: \ 1+2.5=\text{day }3.5 \\
+\text{antigen cleared} &: \ \text{day }5.5,\ \text{again }20\,480\times2^4=327\,680\text{ cells}
+\end{aligned}" />
+
+**Every clone is detected at <InlineMath math="20\,480" /> cells and then divides for exactly <InlineMath math="2" /> days**, so it always stops at <InlineMath math="327\,680" /> cells, whatever it started with. A larger start only gets there sooner.
+
+<Chart
+  title={<>When Antibody Appears and When the Antigen Is Cleared</>}
+  bars="apart"
+  categories={["First exposure", "Second exposure"]}
+  series={[
+    { label: "Antibody first detected", mark: "bar", values: [7, 3.5] },
+    { label: "Antigen cleared", mark: "bar", values: [9, 5.5] },
+  ]}
+  valueLabel="Days after the antigen enters"
+  description={<>In the first exposure, antibody is detected on day <InlineMath math="7" /> and the antigen is cleared on day <InlineMath math="9" />. In the second exposure, these are day <InlineMath math="3.5" /> and day <InlineMath math="5.5" />, <InlineMath math="3.5" /> days sooner. Both clones hold <InlineMath math="327\,680" /> cells when the antigen is cleared.</>}
+/>
+
+## Judging each statement
+
+- I: detection on day <InlineMath math="7" /> and <InlineMath math="327\,680" /> cells at clearance. Statement I is correct.
+- II: the first exposure leaves <InlineMath math="\tfrac{327\,680}{512}=640" /> memory cells, not <InlineMath math="10\,240" />. Statement II is wrong.
+- III: the memory cells still wait <InlineMath math="1" /> day before dividing, so antibody appears on day <InlineMath math="3.5" />, not day <InlineMath math="2.5" />. Statement III is wrong.
+- IV: **both clones hold <InlineMath math="327\,680" /> cells at clearance**, and clearance comes on day <InlineMath math="5.5" /> instead of day <InlineMath math="9" />, <InlineMath math="3.5" /> days sooner. Statement IV is correct.
+
+So statements I and IV are correct.
+
+# Why the other options are wrong
+
+- II only lets the clone double through the <InlineMath math="2" /> waiting days as well, **counting <InlineMath math="18" /> doublings over <InlineMath math="9" /> days instead of <InlineMath math="14" />**. The clone then reaches <InlineMath math="20\times2^{18}" /> cells, which leaves <InlineMath math="10\,240" /> memory cells and wrecks the other three statements.
+- I and III only drops the <InlineMath math="1" />-day wait in the second exposure, **as if memory cells divided at once**. That gives detection on day <InlineMath math="2.5" /> and clearance on day <InlineMath math="4.5" />, which is <InlineMath math="4.5" /> days sooner, not <InlineMath math="3.5" />.
+- I only expects a clone that starts with <InlineMath math="32" /> times as many cells to end <InlineMath math="32" /> times larger. **Detection always happens at the same size**, and the clone divides for the same <InlineMath math="2" /> days after it, so both clones end equal.

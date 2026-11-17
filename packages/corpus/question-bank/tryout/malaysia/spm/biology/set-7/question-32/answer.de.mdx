@@ -1,0 +1,58 @@
+# Hol dir die Anteile der Gameten aus der Testkreuzung, bevor du die Pflanze selbst bestäubst
+
+Die Elternpflanze mit farblosen, runzeligen Samen ist <InlineMath math="ccss" /> und bildet deshalb nur <InlineMath math="cs" />-Gameten. Jeder Same zeigt also genau, **welcher Gamet von der heterozygoten Pflanze stammt**. Fang mit der Summe an:
+
+<BlockMath math="380+26+22+372=800\text{ Samen}" />
+
+Würden die Gene unabhängig verteilt, wären alle vier Gametensorten gleich häufig, und jede Klasse hätte <InlineMath math="\tfrac{800}{4}=200" /> Samen.
+
+<Chart
+  title={<>Gezählte Samen im Vergleich zur unabhängigen Verteilung</>}
+  bars="apart"
+  categories={["Farbig, voll", "Farbig, runzelig", "Farblos, voll", "Farblos, runzelig"]}
+  series={[
+    { label: "Gezählt", mark: "bar", values: [380, 26, 22, 372] },
+    { label: "Erwartet bei Unabhängigkeit", mark: "bar", values: [200, 200, 200, 200] },
+  ]}
+  valueLabel="Anzahl der Samen"
+  description={<>Gezählt wurden <InlineMath math="380" />, <InlineMath math="26" />, <InlineMath math="22" /> und <InlineMath math="372" />. Bei unabhängiger Verteilung wären es in jeder Klasse <InlineMath math="200" />. Farbig voll und farblos runzelig liegen weit darüber, die beiden anderen Klassen weit darunter.</>}
+/>
+
+Zwei Klassen sind riesig und zwei winzig, die Allele werden also meist gemeinsam weitergegeben: Die Gene sind **gekoppelt**. Die großen Klassen zeigen die Chromosomen, die die Pflanze schon hatte, die kleinen sind neue Kombinationen durch Crossing-over. Rechne die Zahlen in Gametenanteile um:
+
+<BlockMath math="\begin{aligned}
+\text{neue Kombinationen} &= \tfrac{26+22}{800}\times100\% = 6\% \\
+Cs\text{ und }cS &= \tfrac{6\%}{2} = 3\%\text{ je} \\
+CS\text{ und }cs &= \tfrac{100\%-6\%}{2} = 47\%\text{ je}
+\end{aligned}" />
+
+Ein farbloser, runzeliger Same aus Selbstbestäubung braucht ein <InlineMath math="cs" />-Pollenkorn **und** eine <InlineMath math="cs" />-Eizelle, und laut Aufgabe entstehen beide auf dieselbe Weise:
+
+<BlockMath math="\begin{aligned}
+P(ccss) &= 0{,}47\times0{,}47 = 0{,}2209 \\
+\text{erwartete Samen} &= 0{,}2209\times2000 \approx 442
+\end{aligned}" />
+
+<Chart
+  title={<>Farblose, runzelige Samen von 2000</>}
+  bars="apart"
+  categories={["Gekoppelt, wie gemessen", "Bei Unabhängigkeit"]}
+  series={[
+    { label: "Erwartete Samen", mark: "bar", values: [442, 125] },
+  ]}
+  valueLabel="Anzahl der Samen"
+  description={<>Weil <InlineMath math="47\%" /> jeder Gametensorte <InlineMath math="cs" /> tragen, sind etwa <InlineMath math="442" /> von <InlineMath math="2000" /> Samen farblos und runzelig. Unabhängige Verteilung mit dem Verhältnis <InlineMath math="9:3:3:1" /> ergäbe nur <InlineMath math="\tfrac{1}{16}\times2000=125" />.</>}
+/>
+
+- I: Am häufigsten sind farbig mit voll und farblos mit runzelig, also trägt die Pflanze <InlineMath math="C" /> mit <InlineMath math="S" /> auf einem Chromosom und <InlineMath math="c" /> mit <InlineMath math="s" /> auf dem anderen. Die Anordnung in der Aussage entsteht erst durch **Crossing-over** und taucht nur in <InlineMath math="6\%" /> der Gameten auf. Aussage I ist falsch.
+- II: Die Gene sind gekoppelt, und <InlineMath math="6\%" /> der Gameten tragen eine neue Kombination. Aussage II stimmt.
+- III: <InlineMath math="0{,}47^2\times2000\approx442" />, also etwa <InlineMath math="440" />. Aussage III stimmt.
+- IV: Die Pflanze <InlineMath math="ccss" /> trägt auf **beiden Homologen dieselben Allele**. Ein Stückaustausch zwischen ihnen ergibt immer wieder <InlineMath math="cs" />, Crossing-over bringt dort also nichts Neues hervor. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II lehnt III ab, weil mit <InlineMath math="\tfrac{1}{16}\times2000=125" /> gerechnet wird, **einem Verhältnis, das nur für Gene auf verschiedenen Chromosomen gilt**.
+- Nur II, III und IV nimmt IV an und übersieht, dass Crossing-over in einer Pflanze, die **für beide Gene homozygot** ist, ihre Gameten nicht verändern kann.
+- Nur I und II liest die Anordnung aus den **seltensten** Klassen ab. Dann wäre auch <InlineMath math="cs" /> ein seltener Gamet mit <InlineMath math="3\%" />, und es gäbe nur etwa <InlineMath math="0{,}03^2\times2000\approx2" /> farblose, runzelige Samen, also wird III ebenfalls abgelehnt.

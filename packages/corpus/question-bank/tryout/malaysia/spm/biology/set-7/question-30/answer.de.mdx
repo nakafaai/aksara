@@ -1,0 +1,43 @@
+# Rechne jeden Fluss in Tonnen Kohlenstoff um, bevor du addierst oder vergleichst
+
+Die Tabelle ist in Kohlenstoff, die Diesel-Einsparung aber in Kohlenstoffdioxid. Die erste Aufgabe ist also, **die <InlineMath math="11" /> Tonnen Kohlenstoffdioxid in Kohlenstoff umzurechnen**:
+
+<BlockMath math="11\times\frac{12}{44}=3\text{ t Kohlenstoff Einsparung pro Jahr}" />
+
+- I: Neue Pflanzenmasse ist Fotosynthese minus die eigene Zellatmung der Pflanzen, <InlineMath math="34-18=16\text{ t}" /> bei der Ölpalme und <InlineMath math="30-18=12\text{ t}" /> beim Wald. Zieh jetzt alles andere ab, was den Hektar verlässt:
+
+<BlockMath math="\text{Wald: }12-11-0-0=+1\text{ t},\qquad \text{Ölpalme: }16-12-12-4=-12\text{ t}" />
+
+Die Ölpalme wächst schneller, und trotzdem verliert ihr Hektar Kohlenstoff. Aussage I stimmt.
+
+- II: Der Ölpalmen-Hektar verliert <InlineMath math="12\text{ t}" /> Kohlenstoff im Jahr, also <InlineMath math="12\times\tfrac{44}{12}=44\text{ t}" /> Kohlenstoffdioxid. Aussage II stimmt.
+- III: Alle <InlineMath math="12\text{ t}" />, die der Hektar verliert, gelangen in die Luft, der geerntete Kohlenstoff eingeschlossen. Der Biodiesel lässt <InlineMath math="3\text{ t}" /> fossilen Kohlenstoff im Boden. Unterm Strich gibt der Hektar also immer noch ab:
+
+<BlockMath math="12-3=9\text{ t Kohlenstoff}=33\text{ t Kohlenstoffdioxid pro Jahr}" />
+
+Wer <InlineMath math="12-11=1" /> rechnet, mischt Kohlenstoff und Kohlenstoffdioxid. Aussage III ist falsch.
+
+- IV: Auf Mineralboden fällt der Torf-Fluss weg, der Kohlenstoff des Hektars bleibt also gleich, <InlineMath math="16-12-4=0" />, und es wächst nur der fossile Kohlenstoff, den der Biodiesel im Boden lässt, <InlineMath math="3\text{ t}" /> im Jahr:
+
+<BlockMath math="\frac{200\text{ t}}{3\text{ t pro Jahr}}\approx67\text{ Jahre},\qquad 2\times25=50\text{ Jahre},\qquad 3\times25=75\text{ Jahre}" />
+
+Der dritte Umtrieb reicht von Jahr <InlineMath math="50" /> bis Jahr <InlineMath math="75" />, und Jahr <InlineMath math="67" /> liegt darin. Aussage IV stimmt.
+
+<Chart
+  title={<>Jährlich aus der Luft entnommener Kohlenstoff</>}
+  bars="apart"
+  categories={["Torfsumpfwald", "Ölpalme, entwässerter Torf", "Ölpalme, Mineralboden"]}
+  series={[
+    { label: "Netto-Entnahme", mark: "bar", values: [30 - 18 - 11, 34 - 18 - 12 - 12 - 4 + 11 * 12 / 44, 34 - 18 - 12 - 4 + 11 * 12 / 44] },
+  ]}
+  valueLabel="Kohlenstoff (t pro Hektar und Jahr)"
+  description={<>Mit dem fossilen Diesel, den der Biodiesel ersetzt, entnimmt der Wald der Luft <InlineMath math="1\text{ t}" /> Kohlenstoff im Jahr. Ölpalmen auf entwässertem Torf geben <InlineMath math="9\text{ t}" /> ab, hier als minus <InlineMath math="9" /> gezeigt. Ölpalmen auf Mineralboden entnehmen <InlineMath math="3\text{ t}" />, viel zu wenig, um <InlineMath math="200\text{ t}" /> in einem oder zwei Umtrieben zurückzuzahlen.</>}
+/>
+
+Also stimmen die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- I, II und III zieht <InlineMath math="11" /> Tonnen Kohlenstoffdioxid von <InlineMath math="12" /> Tonnen Kohlenstoff ab. **Die Diesel-Einsparung beträgt nur <InlineMath math="3\text{ t}" /> Kohlenstoff**, also gibt der Hektar weiter <InlineMath math="9\text{ t}" /> im Jahr ab, und auf Mineralboden dauert die Rückzahlung etwa <InlineMath math="67" /> Jahre, nicht <InlineMath math="\tfrac{200}{11}\approx18" />.
+- I und IV rechnet in die falsche Richtung um, <InlineMath math="12\times\tfrac{12}{44}\approx3{,}3\text{ t}" />. **Kohlenstoffdioxid ist schwerer als der Kohlenstoff darin**, also ergeben <InlineMath math="12\text{ t}" /> Kohlenstoff <InlineMath math="44\text{ t}" /> Kohlenstoffdioxid.
+- I und II summiert die Einsparung in Kohlenstoffdioxid über zwei Umtriebe, <InlineMath math="50\times11=550" />, und vergleicht sie mit <InlineMath math="200" /> Tonnen Kohlenstoff. **Beide Seiten müssen in Kohlenstoff sein**: <InlineMath math="50\times3=150\text{ t}" />, immer noch weniger als <InlineMath math="200\text{ t}" />.

@@ -1,0 +1,56 @@
+# Die Bakterien teilen sich weiter, während die Phagen gebaut werden
+
+Ein klarer Fleck zählt **ein infiziertes Bakterium oder einen freien Phagen**, nie beides. Die Zahl springt also erst, wenn infizierte Bakterien platzen und ihre neuen Phagen freisetzen.
+
+<Chart
+  title={<>Klare Flecken nach der Infektion</>}
+  categories={["0 min", "10 min", "20 min", "30 min", "40 min", "50 min"]}
+  series={[
+    { label: "Klare Flecken", mark: "line", values: [2, 2, 2, 2, 150, 200] },
+  ]}
+  valueLabel="Flecken pro cm³ (Hunderttausende)"
+  description={<>Die Zahl bleibt von <InlineMath math="0" /> bis <InlineMath math="30" /> Minuten bei <InlineMath math="2{,}0\times10^5" /> pro <InlineMath math="\text{cm}^3" />, springt bei <InlineMath math="40" /> Minuten auf <InlineMath math="1{,}5\times10^7" /> und bleibt bei <InlineMath math="50" /> Minuten bei <InlineMath math="2{,}0\times10^7" /> stehen.</>}
+/>
+
+Fang mit der Zahl der Phagen an, die jedes Bakterium freisetzt. Jeder Phage hat ein anderes Bakterium infiziert, also waren <InlineMath math="2{,}0\times10^5" /> Bakterien infiziert. Wenn alle geplatzt sind, bleibt die Zahl bei <InlineMath math="2{,}0\times10^7" /> stehen:
+
+<BlockMath math="\frac{2{,}0\times10^7}{2{,}0\times10^5}=100\text{ Phagen pro Bakterium}" />
+
+Bestimme dann den Anteil der Bakterien, die in der zweiten Runde infiziert werden. Während die ersten Phagen gebaut wurden, haben sich die nicht infizierten Bakterien weiter geteilt. In <InlineMath math="40" /> Minuten teilen sie sich <InlineMath math="\tfrac{40}{20}=2" />-mal:
+
+<BlockMath math="\begin{aligned}
+\text{nicht infiziert nach 40 min} &\approx 1{,}0\times10^8\times2^2 = 4{,}0\times10^8 \\
+\text{infizierter Anteil} &= \frac{2{,}0\times10^7}{4{,}0\times10^8} = 0{,}05 = 5\%
+\end{aligned}" />
+
+Vergleich zum Schluss Phagen und Bakterien nach dem zweiten Platzen. Die <InlineMath math="4{,}0\times10^8-2{,}0\times10^7=3{,}8\times10^8" /> noch nicht infizierten Bakterien teilen sich bis <InlineMath math="80" /> Minuten noch zweimal, während jedes neu infizierte Bakterium <InlineMath math="100" /> Phagen freisetzt:
+
+<BlockMath math="\begin{aligned}
+\text{nicht infiziert nach 80 min} &= 3{,}8\times10^8\times2^2 \approx 1{,}5\times10^9 \\
+\text{freigesetzte Phagen} &= 2{,}0\times10^7\times100 = 2{,}0\times10^9
+\end{aligned}" />
+
+<Chart
+  title={<>Freigesetzte Phagen und übrige Bakterien</>}
+  bars="apart"
+  categories={["Nach 40 min", "Nach 80 min"]}
+  series={[
+    { label: "Freigesetzte Phagen", mark: "bar", values: [2, 200] },
+    { label: "Nicht infizierte Bakterien", mark: "bar", values: [40, 152] },
+  ]}
+  valueLabel="Anzahl pro cm³ (zehn Millionen)"
+  description={<>Nach <InlineMath math="40" /> Minuten treffen <InlineMath math="2{,}0\times10^7" /> Phagen auf <InlineMath math="4{,}0\times10^8" /> nicht infizierte Bakterien. Nach <InlineMath math="80" /> Minuten werden <InlineMath math="2{,}0\times10^9" /> Phagen frei, mehr als die <InlineMath math="1{,}5\times10^9" /> übrigen nicht infizierten Bakterien.</>}
+/>
+
+- I: Jedes Bakterium setzt <InlineMath math="100" /> Phagen frei. Die <InlineMath math="1{,}0\times10^8" /> Bakterien schließen viele ein, die **nie infiziert** wurden, sie sind also nicht der richtige Teiler. Aussage I stimmt.
+- II: Die Phagen der ersten Runde treffen auf die Bakterien **nach zwei Teilungen**, infiziert werden also <InlineMath math="2{,}0\times10^7" /> von <InlineMath math="4{,}0\times10^8" />, das sind <InlineMath math="5\%" />. Aussage II stimmt.
+- III: Ein Virus hat kein Cytoplasma, keine Ribosomen und keinen eigenen Stoffwechsel, es kann sich also nicht teilen. Neue Phagen werden während des flachen Kurvenstücks **aus Teilen zusammengesetzt, die der Wirt herstellt**. Aussage III ist falsch.
+- IV: <InlineMath math="2{,}0\times10^9" /> Phagen gegen etwa <InlineMath math="1{,}5\times10^9" /> Bakterien, die Phagen sind also in der Überzahl. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und IV lehnt II ab, weil durch die <InlineMath math="1{,}0\times10^8" /> Bakterien vom Anfang geteilt wird. Das ergibt <InlineMath math="20\%" /> und **übersieht, dass sie sich in** <InlineMath math="40" /> **Minuten zweimal verdoppelt haben**.
+- Nur I, II, III und IV nimmt III an und gibt dem Phagen **die Vermehrung einer Zelle**, obwohl sich ein Virus nicht teilen kann.
+- Nur II und IV lehnt I ab, weil <InlineMath math="2{,}0\times10^7" /> durch alle <InlineMath math="1{,}0\times10^8" /> Bakterien geteilt wird, **von denen die meisten nie infiziert wurden**, und kommt auf <InlineMath math="0{,}2" />.

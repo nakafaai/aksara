@@ -1,0 +1,59 @@
+# Later caps follow the nuclei, and the first cap counts the store in the stalk as one more nucleus
+
+The nucleus sends out substances that direct how a cap is built. A stalk cut from its nucleus still holds some of them, but **it cannot make more**. So find two rules in the table: one for the caps after the first, and one for the first cap.
+
+## Later caps follow the share of C nuclei
+
+Compare each later score with **the share of the nuclei that come from C**.
+
+<BlockMath math="\text{R}: \tfrac{1}{3}\approx33,\qquad \text{S}: \tfrac{1}{2}=50,\qquad \text{T}: \tfrac{2}{3}\approx67,\qquad \text{Q}: \tfrac{1}{1}=100" />
+
+U has a stalk of C but the same bases as S, and its later caps also score <InlineMath math="50" />. So **after the first cap, the stalk no longer matters**. Stalk P has no nucleus at all and grows no second cap.
+
+## The first cap counts the store in the stalk
+
+A tempting idea is that the stalk always supplies a fixed third of the first cap. It fits S and U, but not the other rows:
+
+<BlockMath math="\text{R}: \tfrac{2}{3}\times33\approx22\neq25,\qquad \text{Q}: \tfrac{2}{3}\times100\approx67\neq50" />
+
+What fits every row is to **count the store in the stalk as one more nucleus of the stalk's own species**, for the first cap only.
+
+<BlockMath math="\begin{aligned}
+\text{P} &: \ \tfrac{0}{1}=0,\qquad \text{Q}: \ \tfrac{1}{2}=50,\qquad \text{R}: \ \tfrac{1}{4}=25 \\
+\text{S} &: \ \tfrac{1}{3}\approx33,\qquad \text{T}: \ \tfrac{2}{4}=50,\qquad \text{U}: \ \tfrac{1+1}{3}\approx67
+\end{aligned}" />
+
+## Applying both rules
+
+<BlockMath math="\begin{aligned}
+\text{II, stalk M on 1 M and 3 C} &: \ \text{first cap }\tfrac{3}{5}=60 \\
+\text{III, stalk C on 2 M and 2 C} &: \ \text{first cap }\tfrac{2+1}{5}=60,\quad \text{later caps }\tfrac{2}{4}=50 \\
+\text{IV, any stalk on 3 M and 1 C} &: \ \text{later caps }\tfrac{1}{4}=25
+\end{aligned}" />
+
+<Chart
+  title={<>First and Later Cap Scores</>}
+  bars="apart"
+  categories={["Q", "R", "S", "T", "U", "III"]}
+  series={[
+    { label: "First cap", mark: "bar", values: [50, 25, 33, 50, 67, 60] },
+    { label: "Later caps", mark: "bar", values: [100, 33, 50, 67, 50, 50] },
+  ]}
+  valueLabel="Cap score"
+  description={<>For grafts Q to U, the first cap matches the share of C when the stalk's store counts as one more nucleus, and the later caps match the share of C nuclei alone. The last pair is the prediction for statement III: <InlineMath math="60" /> for the first cap and <InlineMath math="50" /> after it.</>}
+/>
+
+## Judging each statement
+
+- I: stalk P grows one M cap without a nucleus and then none, and in every graft the stalk's effect is gone after the first cap. The store was made under the nucleus of M and one cap uses it up. Statement I is correct.
+- II: the first cap counts <InlineMath math="3" /> C units out of <InlineMath math="5" />, so it scores <InlineMath math="60" />, **not <InlineMath math="75" />**. Statement II is wrong.
+- III: the first cap scores <InlineMath math="60" /> and the later caps <InlineMath math="50" />. Statement III is correct.
+- IV: later caps depend on the nuclei alone, <InlineMath math="1" /> C nucleus out of <InlineMath math="4" />, whatever the stalk. Statement IV is correct.
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and IV only forgets the store in the stalk when it judges a first cap. The first cap in II then scores <InlineMath math="75" /> and the first cap in III only <InlineMath math="50" />, **as if the stalk carried nothing**, although rows Q to U show the first cap differs from the later ones.
+- I and IV only gives the stalk a fixed third of every first cap, which fits only S and U. It predicts <InlineMath math="50" /> in II and about <InlineMath math="67" /> in III, **although rows Q and R rule that rule out**.
+- I and III only extends the later scores by a fixed step of about <InlineMath math="17" /> for each base, so it expects about <InlineMath math="16" /> for <InlineMath math="3" /> M and <InlineMath math="1" /> C bases, **instead of the share of C nuclei, <InlineMath math="\tfrac{1}{4}" />**.

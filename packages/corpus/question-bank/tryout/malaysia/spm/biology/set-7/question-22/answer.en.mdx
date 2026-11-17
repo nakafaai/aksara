@@ -1,0 +1,50 @@
+# Take out the seedling's own nitrogen, let the isotope split the gain, then carry the split forward
+
+Every seedling already held <InlineMath math="10\text{ mg}" /> of nitrogen before the experiment, at <InlineMath math="0.4\%" /> of <InlineMath math="^{15}\text{N}" />. So first take it out of the group A plant's final figures, to get what the plant **gained**:
+
+<BlockMath math="\begin{aligned}
+\text{nitrogen gained} &= 60-10 = 50\text{ mg} \\
+^{15}\text{N gained} &= 60\times0.029-10\times0.004 = 1.74-0.04 = 1.70\text{ mg} \\
+^{15}\text{N in the gain} &= \tfrac{1.70}{50} = 3.4\%
+\end{aligned}" />
+
+The gain is a mixture: a share <InlineMath math="f" /> came from the insects, at <InlineMath math="6.4\%" />, and the rest from the peat, at <InlineMath math="0.4\%" />:
+
+<BlockMath math="0.4(1-f)+6.4f=3.4\quad\Rightarrow\quad 6.0f=3.0\quad\Rightarrow\quad f=0.5" />
+
+So the insects gave <InlineMath math="0.5\times50=25\text{ mg}" /> and **the peat gave the other <InlineMath math="25\text{ mg}" />**. A group B plant gained <InlineMath math="30-10=20\text{ mg}" />, still at <InlineMath math="0.4\%" />, so all of it came from the peat.
+
+- I: carry the <InlineMath math="25\text{ mg}" /> over to the insects themselves. Each plant was given <InlineMath math="0.50\text{ g}" /> of insects, and a tenth of that is nitrogen:
+
+<BlockMath math="0.50\text{ g}\times10\%=0.050\text{ g}=50\text{ mg},\qquad \frac{25}{50}=50\%" />
+
+The plant took up half of the insect nitrogen. The rest stayed in the undigested remains, such as the hard outer skeletons. Statement I is correct.
+
+- II: a group B plant took <InlineMath math="20\text{ mg}" /> from the peat, and a group A plant took <InlineMath math="25\text{ mg}" />. The rise is <InlineMath math="\tfrac{25-20}{20}=25\%" /> of the group B value. A plant fed with insects grows bigger roots and leaves, so it also draws more from the peat. Statement II is correct.
+- III: <InlineMath math="(60-10)-(30-10)=30\text{ mg}" /> assumes that both groups took the same nitrogen from the peat. The isotope shows they did not, and the insects gave only <InlineMath math="25\text{ mg}" />. Statement III is wrong.
+- IV: now carry both results, half of the insect nitrogen and <InlineMath math="25\text{ mg}" /> from the peat. With <InlineMath math="1.0\text{ g}" /> of insects the plant is given <InlineMath math="100\text{ mg}" /> of insect nitrogen and takes up half of it:
+
+<BlockMath math="\frac{50\times0.064+25\times0.004}{50+25}=\frac{3.2+0.1}{75}=4.4\%" />
+
+That is <InlineMath math="4.4\%" />, not <InlineMath math="5.2\%" />. Statement IV is wrong.
+
+<Chart
+  title={<>Where Each Plant's Nitrogen Came From</>}
+  bars="apart"
+  categories={["Group B", "Group A", "Given 1.0 g"]}
+  series={[
+    { label: "In seedling", mark: "bar", values: [10, 10, 10] },
+    { label: "From peat", mark: "bar", values: [30 - 10, 60 - 10 - 0.5 * 50, 60 - 10 - 0.5 * 50] },
+    { label: "From insects", mark: "bar", values: [0, 0.5 * 50, 0.5 * 100] },
+  ]}
+  valueLabel="Nitrogen per plant (mg)"
+  description={<>Every plant started with <InlineMath math="10\text{ mg}" /> of nitrogen of its own. A group B plant then took <InlineMath math="20\text{ mg}" /> from the peat. A group A plant took <InlineMath math="25\text{ mg}" /> from the peat and <InlineMath math="25\text{ mg}" /> from the insects. A plant given <InlineMath math="1.0\text{ g}" /> of insects would take <InlineMath math="25\text{ mg}" /> from the peat and <InlineMath math="50\text{ mg}" /> from the insects.</>}
+/>
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- III only subtracts group B from group A and credits all <InlineMath math="30\text{ mg}" /> to the insects. That makes the uptake <InlineMath math="\tfrac{30}{50}=60\%" /> of the insect nitrogen and the peat supply equal in both groups, **but group A also took <InlineMath math="5\text{ mg}" /> more from the peat**, which the isotope reveals.
+- I, II and IV only accepts IV by letting the plant take up all <InlineMath math="100\text{ mg}" /> of insect nitrogen, which gives <InlineMath math="\tfrac{6.4+0.1}{125}=5.2\%" />, **but the plant takes up only half of the insect nitrogen**, as statement I shows.
+- I only rejects II by leaving the seedling's own <InlineMath math="10\text{ mg}" /> in the peat share, <InlineMath math="60-25=35\text{ mg}" /> against <InlineMath math="30\text{ mg}" />, a rise of only about <InlineMath math="17\%" />, **but that <InlineMath math="10\text{ mg}" /> was in every seedling before the experiment began**, so it came from neither source.

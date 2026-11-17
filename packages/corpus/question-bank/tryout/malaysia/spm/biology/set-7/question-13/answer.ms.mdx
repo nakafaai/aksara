@@ -1,0 +1,51 @@
+# Klon hanya berganda selepas masa menunggunya, dan sentiasa berhenti pada saiz yang sama
+
+Masa menunggu sebelum sel membahagi menambah hari tetapi **tidak menambah penggandaan**. Setiap <InlineMath math="12" /> jam membahagi menggandakan klon, jadi satu hari membahagi ialah dua penggandaan.
+
+## Pendedahan pertama
+
+<BlockMath math="\begin{aligned}
+\text{hingga dikesan} &: \ \tfrac{20\,480}{20}=1024=2^{10}\ \Rightarrow\ 10\text{ penggandaan}=5\text{ hari} \\
+\text{antibodi dikesan} &: \ 2+5=\text{hari ke-}7 \\
+\text{antigen disingkirkan} &: \ \text{hari ke-}9,\ \text{selepas }4\text{ penggandaan lagi: }20\,480\times2^4=327\,680\text{ sel} \\
+\text{sel memori} &: \ \tfrac{327\,680}{512}=640
+\end{aligned}" />
+
+## Pendedahan kedua
+
+Sebanyak <InlineMath math="640" /> sel memori menunggu <InlineMath math="1" /> hari, kemudian berganda.
+
+<BlockMath math="\begin{aligned}
+\text{hingga dikesan} &: \ \tfrac{20\,480}{640}=32=2^5\ \Rightarrow\ 5\text{ penggandaan}=2.5\text{ hari} \\
+\text{antibodi dikesan} &: \ 1+2.5=\text{hari ke-}3.5 \\
+\text{antigen disingkirkan} &: \ \text{hari ke-}5.5,\ \text{sekali lagi }20\,480\times2^4=327\,680\text{ sel}
+\end{aligned}" />
+
+**Setiap klon dikesan pada <InlineMath math="20\,480" /> sel dan kemudian membahagi tepat <InlineMath math="2" /> hari**, jadi klon sentiasa berhenti pada <InlineMath math="327\,680" /> sel, walau berapa pun bilangan permulaannya. Permulaan yang lebih besar hanya sampai lebih awal.
+
+<Chart
+  title={<>Bila Antibodi Muncul dan Bila Antigen Disingkirkan</>}
+  bars="apart"
+  categories={["Pendedahan pertama", "Pendedahan kedua"]}
+  series={[
+    { label: "Antibodi mula dikesan", mark: "bar", values: [7, 3.5] },
+    { label: "Antigen disingkirkan", mark: "bar", values: [9, 5.5] },
+  ]}
+  valueLabel="Hari selepas antigen masuk"
+  description={<>Dalam pendedahan pertama, antibodi dikesan pada hari ke-<InlineMath math="7" /> dan antigen disingkirkan pada hari ke-<InlineMath math="9" />. Dalam pendedahan kedua, kedua-duanya berlaku pada hari ke-<InlineMath math="3.5" /> dan hari ke-<InlineMath math="5.5" />, <InlineMath math="3.5" /> hari lebih awal. Kedua-dua klon mempunyai <InlineMath math="327\,680" /> sel apabila antigen disingkirkan.</>}
+/>
+
+## Menilai setiap pernyataan
+
+- I: dikesan pada hari ke-<InlineMath math="7" /> dan <InlineMath math="327\,680" /> sel semasa penyingkiran. Pernyataan I betul.
+- II: pendedahan pertama meninggalkan <InlineMath math="\tfrac{327\,680}{512}=640" /> sel memori, bukan <InlineMath math="10\,240" />. Pernyataan II salah.
+- III: sel memori masih menunggu <InlineMath math="1" /> hari sebelum membahagi, jadi antibodi muncul pada hari ke-<InlineMath math="3.5" />, bukan hari ke-<InlineMath math="2.5" />. Pernyataan III salah.
+- IV: **kedua-dua klon mempunyai <InlineMath math="327\,680" /> sel semasa penyingkiran**, dan penyingkiran berlaku pada hari ke-<InlineMath math="5.5" /> dan bukannya hari ke-<InlineMath math="9" />, <InlineMath math="3.5" /> hari lebih awal. Pernyataan IV betul.
+
+Jadi pernyataan I dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- II sahaja membiarkan klon berganda sepanjang <InlineMath math="2" /> hari menunggu juga, **mengira <InlineMath math="18" /> penggandaan dalam <InlineMath math="9" /> hari dan bukannya <InlineMath math="14" />**. Klon lalu mencapai <InlineMath math="20\times2^{18}" /> sel, yang meninggalkan <InlineMath math="10\,240" /> sel memori dan merosakkan tiga pernyataan yang lain.
+- I dan III sahaja membuang masa menunggu <InlineMath math="1" /> hari dalam pendedahan kedua, **seolah-olah sel memori terus membahagi**. Cara itu memberi pengesanan pada hari ke-<InlineMath math="2.5" /> dan penyingkiran pada hari ke-<InlineMath math="4.5" />, iaitu <InlineMath math="4.5" /> hari lebih awal, bukan <InlineMath math="3.5" />.
+- I sahaja menjangka klon yang bermula dengan <InlineMath math="32" /> kali ganda sel akan berakhir <InlineMath math="32" /> kali ganda lebih besar. **Pengesanan sentiasa berlaku pada saiz yang sama**, dan klon membahagi selama <InlineMath math="2" /> hari yang sama selepas itu, jadi kedua-dua klon berakhir sama besar.
