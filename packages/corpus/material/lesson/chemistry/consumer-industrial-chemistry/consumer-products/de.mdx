@@ -1,0 +1,260 @@
+export const metadata = {
+  title: "Chemie in Alltagsprodukten und der Industrie",
+  description:
+    "Erklär Öle und Fette, Verseifung und die Waschwirkung von Seife, Lebensmittelzusatzstoffe, Arzneimittel und Nanotechnologie, mit Molekülmodellen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Verbraucher- und Industriechemie",
+};
+
+## Chemie hinter Alltagsprodukten
+
+Die **Verbraucher- und Industriechemie** erklärt die Stoffe, die du täglich benutzt: Speiseöl, Seife, Lebensmittel, Arzneimittel und Nanomaterialien. Öle und Fette sind **Ester** aus Glycerin und Fettsäuren. Seife entsteht, wenn ein Öl oder Fett von einer Lauge gespalten wird, eine Reaktion namens **Verseifung**. Nanomaterialien sind <InlineMath math="1" /> bis <InlineMath math="100\ \text{nm}" /> groß, und ihre Eigenschaften ändern sich, weil ihre Oberfläche im Vergleich zum Volumen riesig ist. Hier vergleichst du gesättigte und ungesättigte Moleküle, berechnest die Masse von Seife, siehst, was hartes Wasser bewirkt, und änderst die Größe eines Nanoteilchens.
+
+## Öle und Fette
+
+Tierische **Fette** enthalten überwiegend **gesättigte** Fettsäuren und sind bei Raumtemperatur fest. Pflanzliche **Öle** enthalten überwiegend **ungesättigte** Fettsäuren, also Ketten mit Doppelbindungen <InlineMath math="\mathrm{C{=}C}" />, und sind flüssig. Eine Doppelbindung knickt die Kette, die Moleküle lagern sich nicht dicht zusammen, und die Schmelztemperatur ist niedriger.
+
+Vergleich unten gesättigte und ungesättigte Ketten. Hexan und Hexen stehen für Abschnitte gesättigter und ungesättigter Fettsäureketten.
+
+<MoleculeShapeLab
+  title={<>Gesättigte und ungesättigte Ketten</>}
+  description={
+    <>
+      Ethan und Hexan haben nur Einfachbindungen. Ethen und Hexen haben eine
+      Doppelbindung, wie die Fettsäureketten in Pflanzenöl.
+    </>
+  }
+  molecules={[
+    { id: "ethane", name: "Ethan" },
+    { id: "ethene", name: "Ethen" },
+    { id: "hexane", name: "Hexan" },
+    { id: "hexene", name: "Hexen" },
+  ]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Formel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel</>,
+    view: "Gesättigte und ungesättigte Moleküle",
+  }}
+/>
+
+Pflanzenöl wird durch **Fetthärtung** zu **Margarine**. Dabei leitet man Wasserstoff mit einem Nickel-Katalysator bei etwa <InlineMath math="200\ ^\circ\text{C}" /> durch heißes Öl, und Wasserstoff addiert sich an die Doppelbindungen. Das Öl wird gesättigter und zu einem weichen Feststoff. Sieh dir unten dieselbe Reaktion am Ethen an: An jede Doppelbindung addiert sich ein Wasserstoffmolekül.
+
+<ReactionBalanceLab
+  title={<>Hydrierung einer Doppelbindung</>}
+  description={
+    <>
+      Ethen reagiert mit Wasserstoff zu Ethan. Die Fetthärtung läuft an jeder
+      Doppelbindung der Fettsäureketten genauso ab.
+    </>
+  }
+  reactions={[
+    { id: "ethene-hydrogenation", name: "Hydrierung von Ethen", tab: <>Hydrierung</> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Reaktion wählen",
+    equation: <>Gleichung</>,
+    mass: <>Masse</>,
+    molecules: <>Moleküle</>,
+    products: <>Produkte</>,
+    progress: "Fortschritt der Reaktion",
+    reactants: <>Ausgangsstoffe</>,
+    view: "Modell der Hydrierung von Ethen",
+  }}
+/>
+
+## Seife und Tenside in hartem Wasser
+
+Die **Verseifung** ist die Spaltung eines Fetts oder Öls durch heiße Natronlauge. Aus einem Molekül Glycerintristearat entstehen drei Moleküle Seife, Natriumstearat, und ein Molekül Glycerin:
+
+<BlockMath math="\mathrm{C_{57}H_{110}O_6} + 3\mathrm{NaOH} \rightarrow 3\mathrm{C_{17}H_{35}COONa} + \mathrm{C_3H_5(OH)_3}" />
+
+Probier ein Beispiel. Berechne die Masse an Seife und die nötige Masse an Natriumhydroxid für <InlineMath math="89\ \text{g}" /> Glycerintristearat. Seine molare Masse ist <InlineMath math="890\ \text{g/mol}" />, die von Natriumstearat <InlineMath math="306\ \text{g/mol}" /> und die von Natriumhydroxid <InlineMath math="40\ \text{g/mol}" />.
+
+<MathContainer>
+<BlockMath math="n(\text{Fett}) = \frac{89}{890} = 0{,}10\ \text{mol}" />
+<BlockMath math="m(\text{Seife}) = 3 \cdot 0{,}10 \cdot 306 = 91{,}8\ \text{g}" />
+<BlockMath math="m(\mathrm{NaOH}) = 3 \cdot 0{,}10 \cdot 40 = 12\ \text{g}" />
+</MathContainer>
+
+Prüf es am Graphen unten: Bei <InlineMath math="89\ \text{g}" /> Fett zeigt er etwa <InlineMath math="91{,}8\ \text{g}" /> Seife. Die Seife ist etwas schwerer als das Fett, weil Natrium- und Sauerstoffatome aus der Lauge in sie eingebaut werden.
+
+<MathVisual
+  title={<>Masse von Seife und Natriumhydroxid gegen die Masse des Fetts</>}
+  description={
+    <>
+      Bei Glycerintristearat ist die Masse der Seife{" "}
+      <InlineMath math="\dfrac{918}{890}m" /> und die des Natriumhydroxids{" "}
+      <InlineMath math="\dfrac{120}{890}m" />, mit der Fettmasse{" "}
+      <InlineMath math="m" /> in Gramm.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 900 }, y: { min: 0, max: 950 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 900, value: 89, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "soap", kind: "function", appearance: "primary", formula: "918x/890", domain: { min: 0, max: 900 } },
+      { id: "alkali", kind: "function", appearance: "secondary", formula: "120x/890", domain: { min: 0, max: 900 } },
+      { id: "now", kind: "marker", x: "m", y: "918m/890", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "soap-mass", formula: "918m/890" },
+      { key: "alkali-mass", formula: "120m/890" },
+    ],
+  }}
+  labels={{
+    m: <>Masse des Fetts in <InlineMath math="\text{g}" /></>,
+    "soap-mass": <>Masse der Seife in <InlineMath math="\text{g}" /></>,
+    "alkali-mass": <>Masse an Natriumhydroxid in <InlineMath math="\text{g}" /></>,
+  }}
+/>
+
+Ein Seifenanion hat einen negativ geladenen, **hydrophilen Kopf**, der sich in Wasser löst, und einen **hydrophoben Schwanz** aus Kohlenwasserstoff, der sich in Fett löst. Die Schwänze dringen in den fettigen Schmutz ein, die Köpfe bleiben im Wasser, und beim Reiben löst sich der Schmutz als kleine Tröpfchen, umgeben von Seifenanionen, den **Mizellen**. Die negativ geladenen Mizellen stoßen sich ab, also setzt sich der Schmutz nicht wieder fest.
+
+In **hartem Wasser** reagieren Calcium- und Magnesiumionen mit Seifenanionen zu **Kalkseife**, einem unlöslichen Niederschlag. Diese Seife ist verloren, bevor sie waschen kann. **Synthetische Tenside** bilden keine Kalkseife, weil ihre Calciumsalze wasserlöslich sind. Ändere unten die Konzentration der Calciumionen und sieh, wie viel Seife verloren geht.
+
+<MathVisual
+  title={<>Verlorene Seife gegen die Konzentration der Calciumionen</>}
+  description={
+    <>
+      Jedes <InlineMath math="\mathrm{Ca^{2+}}" />-Ion bindet zwei
+      Stearat-Ionen, also gehen <InlineMath math="2 \cdot 306 \cdot c" />{" "}
+      Milligramm Natriumstearat pro Liter verloren, mit <InlineMath math="c" /> in{" "}
+      <InlineMath math="\text{mmol/L}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 5, value: 2, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "wasted", kind: "function", appearance: "primary", formula: "0.612x", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "c", y: "0.612c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "soap-lost", formula: "0.612c" },
+    ],
+  }}
+  labels={{
+    c: <>Konzentration an <InlineMath math="\mathrm{Ca^{2+}}" /> in <InlineMath math="\text{mmol/L}" /></>,
+    "soap-lost": <>Verlorene Seife in <InlineMath math="\text{g/L}" /></>,
+  }}
+/>
+
+Prüf einen Wert: Wasser mit <InlineMath math="2{,}0\ \text{mmol/L}" /> Calciumionen vernichtet <InlineMath math="2 \cdot 2{,}0 \cdot 306 = 1224\ \text{mg}" />, also <InlineMath math="1{,}22\ \text{g}" /> Seife pro Liter.
+
+## Lebensmittelzusatzstoffe und Arzneimittel
+
+**Lebensmittelzusatzstoffe** werden zugesetzt, um Lebensmittel haltbar zu machen oder Geschmack, Aussehen oder Konsistenz zu verbessern. Jede Art hat eine bestimmte Aufgabe:
+
+| Art | Aufgabe | Beispiel |
+| :--- | :--- | :--- |
+| Konservierungsstoff | Bremst das Wachstum von Mikroorganismen | Natriumbenzoat |
+| Antioxidationsmittel | Verhindert, dass Fette oxidieren und ranzig werden | Ascorbinsäure |
+| Geschmacksverstärker | Verstärkt den Geschmack | Mononatriumglutamat |
+| Stabilisator und Verdickungsmittel | Erhält die Konsistenz und dickt an | Gelatine, Stärke |
+| Farbstoff | Färbt oder stellt die Farbe wieder her | Tartrazin |
+
+Moderne **Arzneimittel** setzt man nach ihrer Aufgabe ein. **Schmerzmittel** wie Paracetamol lindern Schmerzen. **Antibiotika** wie Penicillin töten Bakterien, und man muss die **ganze Packung** zu Ende nehmen, damit keine widerstandsfähigeren Bakterien überleben. Gegen Viren helfen Antibiotika nicht. Zu den **Kosmetika** gehören Pflegeprodukte, dekorative Kosmetik und Duftstoffe, und jedes Produkt sollte so verwendet werden, wie es auf dem Etikett steht.
+
+## Nanotechnologie und grüne Technologie
+
+Die **Nanotechnologie** nutzt Stoffe im Bereich von <InlineMath math="1" /> bis <InlineMath math="100\ \text{nm}" />. Je kleiner die Teilchen, desto größer ihr Verhältnis von Oberfläche zu Volumen. Für einen Würfel mit der Kantenlänge <InlineMath math="L" /> gilt:
+
+<BlockMath math="\frac{\text{Oberfläche}}{\text{Volumen}} = \frac{6L^2}{L^3} = \frac{6}{L}" />
+
+Ändere unten die Größe des Würfels. Schrumpft die Kante von <InlineMath math="100\ \text{nm}" /> auf <InlineMath math="10\ \text{nm}" />, wird das Verhältnis zehnmal so groß. Mehr Atome liegen an der Oberfläche, also reagieren Nanomaterialien schneller und sind bessere Katalysatoren.
+
+<MathVisual
+  title={<>Verhältnis von Oberfläche zu Volumen gegen die Teilchengröße</>}
+  description={
+    <>
+      Für einen Würfel mit der Kante <InlineMath math="L" /> in Nanometern ist das
+      Verhältnis <InlineMath math="\dfrac{6}{L}\ \text{nm}^{-1}" />. Bei{" "}
+      <InlineMath math="L = 10\ \text{nm}" /> beträgt es{" "}
+      <InlineMath math="0{,}6\ \text{nm}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 100 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 1, max: 100, value: 10, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "ratio", kind: "function", appearance: "primary", formula: "6/x", domain: { min: 1, max: 100 } },
+      { id: "now", kind: "marker", x: "a", y: "6/a", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "surface", formula: "6/a" },
+    ],
+  }}
+  labels={{
+    a: <>Kantenlänge <InlineMath math="L" /> in <InlineMath math="\text{nm}" /></>,
+    surface: <>Verhältnis von Oberfläche zu Volumen in <InlineMath math="\text{nm}^{-1}" /></>,
+  }}
+/>
+
+Ein Nanomaterial ist **Graphen**, eine nur ein Atom dicke Kohlenstoffschicht, die sehr fest ist und Strom gut leitet. Nanotechnologie steckt in Sonnenschutzmitteln, wasserabweisenden Beschichtungen, Batterien und in der Medizin. Die **grüne Technologie** entwickelt Produkte und Verfahren, die Verschmutzung verringern, Energie sparen und erneuerbare Rohstoffe nutzen, etwa Abwasserreinigung und Solarstrom.
+
+## Typische Fehler bei der Verbraucherchemie
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Pflanzenöl ist gesättigter als tierisches Fett. | Pflanzenöl hat mehr Doppelbindungen, ist also ungesättigter. | Öl ist bei Raumtemperatur flüssig, Fett fest. |
+| Verseifung ist eine Veresterung. | Die Verseifung spaltet einen Ester mit Lauge. Die Veresterung bildet einen Ester. | Schau, ob der Ester Ausgangsstoff oder Produkt ist. |
+| Seife und Tenside waschen in hartem Wasser gleich gut. | Seife bildet mit Calcium- und Magnesiumionen Kalkseife, Tenside nicht. | Achte auf einen weißen Niederschlag in hartem Wasser. |
+| Antibiotika kann man absetzen, sobald man sich gesund fühlt. | Überlebende Bakterien können widerstandsfähiger sein und sich wieder vermehren. | Nimm die ganze Packung bis zum Ende. |
+| Kleinere Teilchen haben ein kleineres Verhältnis von Oberfläche zu Volumen. | Das Verhältnis <InlineMath math="\tfrac{6}{L}" /> wächst, wenn <InlineMath math="L" /> schrumpft. | Rechne das Verhältnis bei <InlineMath math="100\ \text{nm}" /> und <InlineMath math="10\ \text{nm}" />. |
+
+Der dritte Fehler kommt am häufigsten vor. Merk dir den Grund: **Kalkseife entsteht aus Seife und Calciumionen, also eignen sich Tenside besser für hartes Wasser**.
+
+## Übungen zur Chemie im Alltag und in der Industrie
+
+Die Aufgaben gehen von Öl und Seife zur Nanotechnologie. **Stell zuerst die Reaktionsgleichung auf**, wenn nach einer Masse gefragt ist.
+
+1. Erklär, warum Pflanzenöl für Margarine gehärtet wird.
+
+2. Erklär, warum synthetische Tenside in hartem Wasser besser waschen als Seife.
+
+3. Berechne die Masse an Seife, die aus <InlineMath math="445\ \text{g}" /> Glycerintristearat entsteht.
+
+4. Vergleich das Verhältnis von Oberfläche zu Volumen eines Würfels mit <InlineMath math="20\ \text{nm}" /> Kantenlänge mit dem eines Würfels mit <InlineMath math="2\ \mu\text{m}" /> Kantenlänge.
+
+### Lösungen
+
+**Lösung 1**: Pflanzenöl ist flüssig, weil seine Ketten **ungesättigt** sind. Bei der Fetthärtung mit Nickel-Katalysator addiert sich Wasserstoff an die Doppelbindungen, die Ketten werden **gesättigter** und gerader. Die Moleküle lagern sich dichter, die Schmelztemperatur steigt, und das Öl wird zu einem weichen, streichfähigen Feststoff, der Margarine.
+
+**Lösung 2**: In hartem Wasser reagieren Calcium- und Magnesiumionen mit Seifenanionen zu unlöslicher **Kalkseife**, also geht Seife verloren und hinterlässt einen Belag. Die Calcium- und Magnesiumsalze synthetischer Tenside sind **wasserlöslich**, also entsteht kein Niederschlag, und die Tenside waschen weiter.
+
+**Lösung 3**: Berechne die Stoffmenge des Fetts und verwende das Verhältnis <InlineMath math="1 : 3" />:
+
+<MathContainer>
+<BlockMath math="n(\text{Fett}) = \frac{445}{890} = 0{,}50\ \text{mol}" />
+<BlockMath math="m(\text{Seife}) = 3 \cdot 0{,}50 \cdot 306 = 459\ \text{g}" />
+</MathContainer>
+
+Prüf es am Seifengraphen: <InlineMath math="\tfrac{918}{890} \cdot 445 = 459\ \text{g}" />. Das stimmt.
+
+**Lösung 4**: Rechne zuerst beide Kantenlängen in Nanometer um, <InlineMath math="2\ \mu\text{m} = 2000\ \text{nm}" />:
+
+<MathContainer>
+<BlockMath math="\frac{6}{20} = 0{,}3\ \text{nm}^{-1}" />
+<BlockMath math="\frac{6}{2000} = 0{,}003\ \text{nm}^{-1}" />
+</MathContainer>
+
+Das Verhältnis des Nanowürfels ist **hundertmal so groß**. Prüf es: Seine Kante ist hundertmal kleiner, und das Verhältnis <InlineMath math="\tfrac{6}{L}" /> ist umgekehrt proportional zu <InlineMath math="L" />.
