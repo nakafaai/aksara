@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$x=5$$, $$x=5$$" },
-        { correct: true, label: "$$x=5.8$$, $$x=5$$" },
-        { correct: false, label: "$$x=5.8$$, $$x=5.5$$" },
-        { correct: false, label: "$$x=5.3$$, $$x=5$$" },
+        {
+          correct: false,
+          label:
+            "$$24.60\\text{ cm}^3$$, $$0.197\\text{ mol dm}^{-3}$$, $$1.97\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$24.25\\text{ cm}^3$$, $$0.194\\text{ mol dm}^{-3}$$, $$1.94\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$24.25\\text{ cm}^3$$, $$0.0970\\text{ mol dm}^{-3}$$, $$0.970\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$24.37\\text{ cm}^3$$, $$0.195\\text{ mol dm}^{-3}$$, $$1.95\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$x=5$$, $$x=5$$" },
-        { correct: true, label: "$$x=5.8$$, $$x=5$$" },
-        { correct: false, label: "$$x=5.8$$, $$x=5.5$$" },
-        { correct: false, label: "$$x=5.3$$, $$x=5$$" },
+        {
+          correct: false,
+          label:
+            "$$24.60\\text{ cm}^3$$, $$0.197\\text{ mol dm}^{-3}$$, $$1.97\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$24.25\\text{ cm}^3$$, $$0.194\\text{ mol dm}^{-3}$$, $$1.94\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$24.25\\text{ cm}^3$$, $$0.0970\\text{ mol dm}^{-3}$$, $$0.970\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$24.37\\text{ cm}^3$$, $$0.195\\text{ mol dm}^{-3}$$, $$1.95\\text{ g}$$",
+        },
       ],
     },
   },

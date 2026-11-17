@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$8.67\\times10^{23}$$ neutrons, $$4.32\\text{ dm}^3$$, $$2.88\\text{ g}$$",
+            "$$8.67\\times10^{23}$$ neutrons, $$1.20\\text{ dm}^3$$, $$200\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.20\\times10^{24}$$ neutrons, $$4.80\\text{ dm}^3$$, $$3.20\\text{ g}$$",
+            "$$1.20\\times10^{24}$$ neutrons, $$1.20\\text{ dm}^3$$, $$200\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.08\\times10^{24}$$ neutrons, $$2.16\\text{ dm}^3$$, $$5.76\\text{ g}$$",
+            "$$1.08\\times10^{24}$$ neutrons, $$2.16\\text{ dm}^3$$, $$360\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$1.08\\times10^{24}$$ neutrons, $$4.32\\text{ dm}^3$$, $$2.88\\text{ g}$$",
+            "$$1.08\\times10^{24}$$ neutrons, $$1.20\\text{ dm}^3$$, $$200\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$8.67\\times10^{23}$$ neutron, $$4.32\\text{ dm}^3$$, $$2.88\\text{ g}$$",
+            "$$8.67\\times10^{23}$$ neutron, $$1.20\\text{ dm}^3$$, $$200\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.20\\times10^{24}$$ neutron, $$4.80\\text{ dm}^3$$, $$3.20\\text{ g}$$",
+            "$$1.20\\times10^{24}$$ neutron, $$1.20\\text{ dm}^3$$, $$200\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.08\\times10^{24}$$ neutron, $$2.16\\text{ dm}^3$$, $$5.76\\text{ g}$$",
+            "$$1.08\\times10^{24}$$ neutron, $$2.16\\text{ dm}^3$$, $$360\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$1.08\\times10^{24}$$ neutron, $$4.32\\text{ dm}^3$$, $$2.88\\text{ g}$$",
+            "$$1.08\\times10^{24}$$ neutron, $$1.20\\text{ dm}^3$$, $$200\\text{ cm}^3$$",
         },
       ],
     },

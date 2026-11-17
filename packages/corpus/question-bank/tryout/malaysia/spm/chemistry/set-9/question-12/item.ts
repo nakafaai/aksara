@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{XY}$$, $$1.20\\text{ g}$$, $$4825\\text{ C}$$",
+          label:
+            "$$2.40\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$4.00\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$\\text{XY}_2$$, $$1.20\\text{ g}$$, $$4825\\text{ C}$$",
+          label:
+            "$$1.20\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$2.00\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$\\text{XY}_2$$, $$1.20\\text{ g}$$, $$9650\\text{ C}$$",
+          label:
+            "$$1.20\\text{ g}$$, $$1.20\\text{ dm}^3$$, $$2.00\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$\\text{XY}_2$$, $$2.40\\text{ g}$$, $$9650\\text{ C}$$",
+          label:
+            "$$1.20\\text{ g}$$, $$1.20\\text{ dm}^3$$, $$1.20\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{XY}$$, $$1.20\\text{ g}$$, $$4825\\text{ C}$$",
+          label:
+            "$$2.40\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$4.00\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$\\text{XY}_2$$, $$1.20\\text{ g}$$, $$4825\\text{ C}$$",
+          label:
+            "$$1.20\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$2.00\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$\\text{XY}_2$$, $$1.20\\text{ g}$$, $$9650\\text{ C}$$",
+          label:
+            "$$1.20\\text{ g}$$, $$1.20\\text{ dm}^3$$, $$2.00\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$\\text{XY}_2$$, $$2.40\\text{ g}$$, $$9650\\text{ C}$$",
+          label:
+            "$$1.20\\text{ g}$$, $$1.20\\text{ dm}^3$$, $$1.20\\text{ g}$$",
         },
       ],
     },
