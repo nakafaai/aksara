@@ -1,0 +1,320 @@
+export const metadata = {
+  title: "Materi Kesetimbangan Kimia Kelas Sebelas",
+  description:
+    "Kurikulum Merdeka Kimia Kelas 11, Kesetimbangan Kimia: reaksi bolak-balik dan kesetimbangan dinamis, tetapan kesetimbangan Kc dan Kp, menghitung konsentrasi setimbang, kuosien reaksi, dan asas Le Chatelier pada proses Haber-Bosch.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Kesetimbangan Kimia",
+};
+
+## Reaksi Dua Arah Menuju Kesetimbangan Dinamis
+
+Banyak reaksi tidak berhenti saat pereaksi habis, karena produknya juga bereaksi kembali menjadi pereaksi. Reaksi seperti ini disebut **reaksi bolak-balik** dan ditulis dengan panah ganda:
+
+<BlockMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" />
+
+Mula-mula hanya ada <InlineMath math="\mathrm{A}" />, jadi reaksi maju berlangsung cepat. Makin banyak <InlineMath math="\mathrm{B}" /> terbentuk, makin cepat pula reaksi baliknya. Akhirnya laju maju sama dengan laju balik. Keadaan ini disebut **kesetimbangan dinamis**: kedua reaksi tetap berjalan, tetapi konsentrasi setiap zat tidak berubah lagi.
+
+Ubah tetapan laju maju dan laju balik di bawah. Konsentrasi <InlineMath math="\mathrm{A}" /> turun, konsentrasi <InlineMath math="\mathrm{B}" /> naik, lalu keduanya mendatar pada nilai setimbang yang umumnya tidak sama besar.
+
+<MathVisual
+  title={<>Konsentrasi Menuju Kesetimbangan</>}
+  description={
+    <>
+      Reaksi <InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /> dimulai
+      dari <InlineMath math="[\mathrm{A}] = 1\text{ M}" />. Dengan tetapan laju maju{" "}
+      <InlineMath math="0{,}6" /> dan balik <InlineMath math="0{,}2" />, konsentrasi
+      setimbangnya <InlineMath math="[\mathrm{A}] = 0{,}25\text{ M}" /> dan{" "}
+      <InlineMath math="[\mathrm{B}] = 0{,}75\text{ M}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "reactant", kind: "function", appearance: "secondary", formula: "b/(a + b) + (a/(a + b))*exp(-(a + b)*x)", domain: { min: 0, max: 10 } },
+      { id: "product", kind: "function", appearance: "primary", formula: "(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "reactant-end", formula: "b/(a + b)" },
+      { key: "product-end", formula: "a/(a + b)" },
+      { key: "constant", formula: "a/b" },
+    ],
+  }}
+  labels={{
+    a: <>Tetapan laju maju <InlineMath math="k_1" /></>,
+    b: <>Tetapan laju balik <InlineMath math="k_2" /></>,
+    "reactant-end": <><InlineMath math="[\mathrm{A}]" /> setimbang dalam <InlineMath math="\text{M}" /></>,
+    "product-end": <><InlineMath math="[\mathrm{B}]" /> setimbang dalam <InlineMath math="\text{M}" /></>,
+    constant: <>Tetapan kesetimbangan <InlineMath math="K = \dfrac{k_1}{k_2}" /></>,
+  }}
+/>
+
+Grafik laju menunjukkan hal yang sama dari sisi lain. Laju maju <InlineMath math="k_1[\mathrm{A}]" /> turun, laju balik <InlineMath math="k_2[\mathrm{B}]" /> naik, dan **kesetimbangan tercapai saat kedua laju sama**.
+
+<MathVisual
+  title={<>Laju Maju dan Laju Balik</>}
+  description={
+    <>
+      Kedua laju bertemu pada <InlineMath math="0{,}15\text{ M s}^{-1}" /> untuk{" "}
+      <InlineMath math="k_1 = 0{,}6" /> dan <InlineMath math="k_2 = 0{,}2" />. Setelah itu
+      keduanya tetap sama, sehingga konsentrasi tidak berubah.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "forward", kind: "function", appearance: "primary", formula: "a*(b/(a + b) + (a/(a + b))*exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+      { id: "reverse", kind: "function", appearance: "secondary", formula: "b*(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "equal-rate", formula: "a*b/(a + b)" },
+    ],
+  }}
+  labels={{
+    a: <>Tetapan laju maju <InlineMath math="k_1" /></>,
+    b: <>Tetapan laju balik <InlineMath math="k_2" /></>,
+    "equal-rate": <>Laju saat setimbang dalam <InlineMath math="\text{M s}^{-1}" /></>,
+  }}
+/>
+
+## Tetapan Kesetimbangan
+
+Untuk reaksi umum <InlineMath math="a\mathrm{A} + b\mathrm{B} \rightleftharpoons c\mathrm{C} + d\mathrm{D}" />, perbandingan konsentrasi saat setimbang selalu bernilai tetap pada suhu tertentu. Nilai ini disebut **tetapan kesetimbangan konsentrasi**:
+
+<BlockMath math="K_c = \frac{[\mathrm{C}]^c\,[\mathrm{D}]^d}{[\mathrm{A}]^a\,[\mathrm{B}]^b}" />
+
+Setiap konsentrasi dipangkatkan dengan koefisiennya. Zat padat dan cairan murni tidak ditulis, karena konsentrasinya tetap. Untuk reaksi gas, tekanan parsial dapat dipakai sebagai ganti konsentrasi, dan hubungannya adalah:
+
+<BlockMath math="K_p = K_c\,(RT)^{\Delta n}, \qquad R = 0{,}0821\ \text{L atm mol}^{-1}\,\text{K}^{-1}" />
+
+Di sini <InlineMath math="\Delta n" /> adalah jumlah mol gas produk dikurangi jumlah mol gas pereaksi.
+
+Contoh: untuk <InlineMath math="\mathrm{N_2}(g) + 3\mathrm{H_2}(g) \rightleftharpoons 2\mathrm{NH_3}(g)" />, rumusnya <InlineMath math="K_c = \dfrac{[\mathrm{NH_3}]^2}{[\mathrm{N_2}][\mathrm{H_2}]^3}" />. Untuk <InlineMath math="\mathrm{CaCO_3}(s) \rightleftharpoons \mathrm{CaO}(s) + \mathrm{CO_2}(g)" />, hanya gasnya yang tersisa, jadi <InlineMath math="K_c = [\mathrm{CO_2}]" />.
+
+Misalkan <InlineMath math="\mathrm{N_2O_4}(g) \rightleftharpoons 2\mathrm{NO_2}(g)" /> memiliki <InlineMath math="K_c = 4{,}0 \times 10^{-3}" /> pada <InlineMath math="298\text{ K}" />. Karena <InlineMath math="\Delta n = 2 - 1 = 1" />:
+
+<BlockMath math="K_p = 4{,}0 \times 10^{-3} \times (0{,}0821 \times 298)^1 = 0{,}098" />
+
+## Menghitung Konsentrasi Setimbang
+
+Konsentrasi setimbang dihitung dengan **tabel mula-mula, bereaksi, setimbang**. Misalkan <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{I_2}" /> dimasukkan ke wadah <InlineMath math="1\text{ L}" />, dan <InlineMath math="K_c = 64" /> untuk <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" />.
+
+| Zat | <InlineMath math="\mathrm{H_2}" /> | <InlineMath math="\mathrm{I_2}" /> | <InlineMath math="\mathrm{HI}" /> |
+| :--- | :--- | :--- | :--- |
+| Mula-mula | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| Bereaksi | <InlineMath math="-x" /> | <InlineMath math="-x" /> | <InlineMath math="+2x" /> |
+| Setimbang | <InlineMath math="1 - x" /> | <InlineMath math="1 - x" /> | <InlineMath math="2x" /> |
+
+Masukkan ke rumus tetapan, lalu tarik akar kedua ruas:
+
+<MathContainer>
+<BlockMath math="\frac{(2x)^2}{(1 - x)^2} = 64 \quad\Rightarrow\quad \frac{2x}{1 - x} = 8" />
+<BlockMath math="2x = 8 - 8x \quad\Rightarrow\quad x = 0{,}8" />
+</MathContainer>
+
+Jadi saat setimbang <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0{,}2\text{ M}" /> dan <InlineMath math="[\mathrm{HI}] = 1{,}6\text{ M}" />. Periksa: <InlineMath math="\dfrac{1{,}6^2}{0{,}2 \times 0{,}2} = 64" />.
+
+<Chart
+  title={<>Konsentrasi Mula-Mula dan Setimbang</>}
+  bars="apart"
+  categories={["Hidrogen", "Iodin", "Hidrogen iodida"]}
+  series={[
+    { label: "Mula-mula (M)", mark: "bar", values: [1, 1, 0] },
+    { label: "Setimbang (M)", mark: "bar", values: [0.2, 0.2, 1.6] },
+  ]}
+  valueLabel="Konsentrasi (M)"
+  valueRange={{ min: 0, max: 1.8 }}
+  description={
+    <>
+      Setiap <InlineMath math="0{,}8\text{ M}" /> hidrogen dan iodin yang bereaksi
+      menghasilkan <InlineMath math="1{,}6\text{ M}" /> hidrogen iodida, sesuai koefisien{" "}
+      <InlineMath math="1 : 1 : 2" />.
+    </>
+  }
+/>
+
+## Kuosien Reaksi Menentukan Arah
+
+Sebelum setimbang, perbandingan yang sama dengan rumus <InlineMath math="K_c" /> disebut **kuosien reaksi** <InlineMath math="Q" />. Membandingkan <InlineMath math="Q" /> dengan <InlineMath math="K" /> memberi tahu arah reaksi:
+
+| Keadaan | Artinya | Arah pergeseran |
+| :--- | :--- | :--- |
+| <InlineMath math="Q < K" /> | produk masih terlalu sedikit | ke kanan, ke arah produk |
+| <InlineMath math="Q = K" /> | sudah setimbang | tidak bergeser |
+| <InlineMath math="Q > K" /> | produk terlalu banyak | ke kiri, ke arah pereaksi |
+
+Pada sistem <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /> dengan <InlineMath math="K_c = 64" />, ambil campuran <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0{,}5\text{ M}" />. Geser konsentrasi <InlineMath math="\mathrm{HI}" /> di bawah dan lihat kapan <InlineMath math="Q" /> menyentuh garis <InlineMath math="K" />.
+
+<MathVisual
+  title={<>Kuosien Reaksi terhadap Konsentrasi Hidrogen Iodida</>}
+  description={
+    <>
+      Dengan <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0{,}5\text{ M}" />,{" "}
+      <InlineMath math="Q = 4[\mathrm{HI}]^2" />. Untuk{" "}
+      <InlineMath math="[\mathrm{HI}] = 2\text{ M}" />, <InlineMath math="Q = 16" />{" "}
+      lebih kecil dari <InlineMath math="64" />, jadi reaksi bergeser ke kanan.
+      Campuran ini setimbang saat <InlineMath math="[\mathrm{HI}] = 4\text{ M}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 6, value: 2, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "quotient", kind: "function", appearance: "primary", formula: "4*x^2", domain: { min: 0, max: 6 } },
+      { id: "constant", kind: "function", appearance: "reference", formula: "64", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "d", y: "4*d^2", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "quotient-value", formula: "4*d^2" },
+    ],
+  }}
+  labels={{
+    d: <>Konsentrasi <InlineMath math="[\mathrm{HI}]" /> dalam <InlineMath math="\text{M}" /></>,
+    "quotient-value": <>Kuosien reaksi <InlineMath math="Q" /></>,
+  }}
+/>
+
+## Asas Le Chatelier
+
+**Asas Le Chatelier** menyatakan bahwa jika sistem setimbang diganggu, sistem akan bergeser untuk mengurangi gangguan itu. Ada tiga gangguan utama:
+
+- **Konsentrasi**: menambah pereaksi menggeser kesetimbangan ke kanan, sedangkan menambah produk menggesernya ke kiri. Nilai <InlineMath math="K" /> tidak berubah.
+- **Tekanan atau volume**: menaikkan tekanan dengan memperkecil volume menggeser kesetimbangan ke sisi dengan mol gas lebih sedikit.
+- **Suhu**: menaikkan suhu menggeser kesetimbangan ke arah reaksi endoterm. Hanya gangguan suhu yang mengubah nilai <InlineMath math="K" />.
+
+Katalis tidak menggeser kesetimbangan. Katalis mempercepat reaksi maju dan balik sama besar, sehingga kesetimbangan hanya tercapai lebih cepat.
+
+Pengaruh tekanan tampak pada <InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" />. Jika <InlineMath math="\alpha" /> adalah derajat disosiasi, maka <InlineMath math="K_p = \dfrac{4\alpha^2 P}{1 - \alpha^2}" />, sehingga <InlineMath math="\alpha = \sqrt{\dfrac{K_p}{K_p + 4P}}" />. Naikkan tekanan total di bawah: derajat disosiasi turun, karena sistem bergeser ke sisi kiri yang hanya punya satu mol gas.
+
+<MathVisual
+  title={<>Derajat Disosiasi terhadap Tekanan Total</>}
+  description={
+    <>
+      Untuk <InlineMath math="K_p = 0{,}15" />, derajat disosiasi turun dari sekitar{" "}
+      <InlineMath math="52\%" /> pada <InlineMath math="0{,}1\text{ atm}" /> menjadi{" "}
+      <InlineMath math="19\%" /> pada <InlineMath math="1\text{ atm}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.05, max: 1, value: 0.15, step: 0.01, label: "c" },
+      { name: "p", min: 0.1, max: 5, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "dissociation", kind: "function", appearance: "primary", formula: "sqrt(c/(c + 4*x))", domain: { min: 0.05, max: 5 } },
+      { id: "now", kind: "marker", x: "p", y: "sqrt(c/(c + 4*p))", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "percent", formula: "100*sqrt(c/(c + 4*p))" },
+    ],
+  }}
+  labels={{
+    c: <>Tetapan <InlineMath math="K_p" /> dalam <InlineMath math="\text{atm}" /></>,
+    p: <>Tekanan total <InlineMath math="P" /> dalam <InlineMath math="\text{atm}" /></>,
+    percent: <>Derajat disosiasi dalam persen</>,
+  }}
+/>
+
+Pengaruh suhu mengikuti tanda perubahan entalpi <InlineMath math="\Delta H" />. Untuk reaksi eksoterm, <InlineMath math="K" /> turun saat suhu naik. Untuk reaksi endoterm, <InlineMath math="K" /> naik. Grafik berikut memakai persamaan van 't Hoff untuk reaksi dengan <InlineMath math="K = 1" /> pada <InlineMath math="298\text{ K}" />.
+
+<MathVisual
+  title={<>Logaritma Tetapan Kesetimbangan terhadap Suhu</>}
+  description={
+    <>
+      Dengan <InlineMath math="\Delta H = -92\text{ kJ}" />, seperti sintesis amonia,{" "}
+      <InlineMath math="\log K" /> turun tajam saat suhu naik. Ubah tanda{" "}
+      <InlineMath math="\Delta H" /> menjadi positif, dan arahnya berbalik.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 250, max: 800 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -100, max: 100, value: -92, step: 1, label: "h" },
+      { name: "s", min: 250, max: 800, value: 700, step: 10, label: "s" },
+    ],
+    objects: [
+      { id: "log-constant", kind: "function", appearance: "primary", formula: "-52.2*h*(1/x - 1/298)", domain: { min: 250, max: 800 } },
+      { id: "now", kind: "marker", x: "s", y: "-52.2*h*(1/s - 1/298)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "log-value", formula: "-52.2*h*(1/s - 1/298)" },
+    ],
+  }}
+  labels={{
+    h: <>Perubahan entalpi <InlineMath math="\Delta H" /> dalam <InlineMath math="\text{kJ}" /></>,
+    s: <>Suhu <InlineMath math="T" /> dalam <InlineMath math="\text{K}" /></>,
+    "log-value": <>Nilai <InlineMath math="\log K" /></>,
+  }}
+/>
+
+Proses Haber-Bosch, <InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /> dengan <InlineMath math="\Delta H = -92{,}2\text{ kJ}" />, memakai semua asas ini. Tekanan tinggi menggeser kesetimbangan ke kanan, karena empat mol gas menjadi dua mol. Suhu rendah juga menguntungkan produk, tetapi reaksinya terlalu lambat. Karena itu industri memakai katalis besi pada suhu sedang <InlineMath math="400" /> sampai <InlineMath math="500^\circ\text{C}" />, dan amonia terus diambil agar kesetimbangan terus bergeser ke kanan.
+
+## Kesalahan Umum dalam Kesetimbangan Kimia
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| :--- | :--- | :--- |
+| Menganggap konsentrasi pereaksi dan produk sama saat setimbang. | Yang sama adalah lajunya, bukan konsentrasinya. | Lihat grafik konsentrasi yang mendatar pada nilai berbeda. |
+| Menulis zat padat atau cairan murni dalam <InlineMath math="K_c" />. | Konsentrasinya tetap, jadi sudah masuk ke dalam nilai <InlineMath math="K" />. | Tulis hanya zat dengan fase <InlineMath math="(g)" /> atau <InlineMath math="(aq)" />. |
+| Menganggap <InlineMath math="K" /> berubah saat konsentrasi ditambah. | Konsentrasi hanya menggeser posisi kesetimbangan. | Nilai <InlineMath math="K" /> hanya berubah karena suhu. |
+| Menyangka katalis menambah hasil reaksi. | Katalis mempercepat reaksi maju dan balik sama besar. | Katalis tidak muncul dalam rumus <InlineMath math="K" />. |
+| Lupa memangkatkan konsentrasi dengan koefisien. | Rumus <InlineMath math="K_c" /> memakai koefisien sebagai pangkat. | Bandingkan pangkat dengan koefisien persamaan setara. |
+
+Kesalahan pertama paling sering terjadi. **Kesetimbangan berarti laju sama**, sedangkan konsentrasinya hanya berhenti berubah.
+
+## Latihan Kesetimbangan Kimia
+
+Tulis persamaan setara dan fase setiap zat lebih dulu agar **rumus tetapan tidak salah tulis**.
+
+1. Tulis rumus <InlineMath math="K_c" /> dan <InlineMath math="K_p" /> untuk <InlineMath math="2\mathrm{SO_2}(g) + \mathrm{O_2}(g) \rightleftharpoons 2\mathrm{SO_3}(g)" />, lalu tentukan <InlineMath math="\Delta n" />.
+
+2. Untuk <InlineMath math="\mathrm{A} + \mathrm{B} \rightleftharpoons \mathrm{C} + \mathrm{D}" /> dengan <InlineMath math="K_c = 4" />, sebanyak <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{A}" /> dan <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{B}" /> dimasukkan ke wadah <InlineMath math="1\text{ L}" />. Hitung konsentrasi setimbang semua zat.
+
+3. Untuk <InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /> dengan <InlineMath math="K_c = 0{,}5" />, sebuah campuran berisi <InlineMath math="1\text{ M}" /> setiap zat. Tentukan arah reaksi.
+
+4. Jelaskan pengaruh menaikkan suhu, menaikkan tekanan, dan menambah katalis pada hasil amonia dalam proses Haber-Bosch.
+
+### Pembahasan
+
+**Pembahasan 1**: Setiap konsentrasi dipangkatkan dengan koefisiennya:
+
+<BlockMath math="K_c = \frac{[\mathrm{SO_3}]^2}{[\mathrm{SO_2}]^2[\mathrm{O_2}]}, \qquad K_p = \frac{P_{\mathrm{SO_3}}^2}{P_{\mathrm{SO_2}}^2\,P_{\mathrm{O_2}}}" />
+
+Jumlah mol gas berubah dari tiga menjadi dua, jadi <InlineMath math="\Delta n = 2 - 3 = -1" />.
+
+**Pembahasan 2**: Dengan tabel mula-mula, bereaksi, setimbang, <InlineMath math="[\mathrm{C}] = [\mathrm{D}] = x" /> dan <InlineMath math="[\mathrm{A}] = [\mathrm{B}] = 1 - x" />:
+
+<MathContainer>
+<BlockMath math="\frac{x^2}{(1 - x)^2} = 4 \quad\Rightarrow\quad \frac{x}{1 - x} = 2" />
+<BlockMath math="x = \frac{2}{3} \approx 0{,}67" />
+</MathContainer>
+
+Jadi **<InlineMath math="[\mathrm{C}] = [\mathrm{D}] = 0{,}67\text{ M}" />** dan <InlineMath math="[\mathrm{A}] = [\mathrm{B}] = 0{,}33\text{ M}" />.
+
+**Pembahasan 3**: Hitung kuosien reaksinya:
+
+<BlockMath math="Q = \frac{1^2}{1 \times 1^3} = 1" />
+
+Karena <InlineMath math="Q > K_c" />, produk terlalu banyak, jadi **reaksi bergeser ke kiri**.
+
+**Pembahasan 4**: Reaksinya eksoterm dan mengurangi jumlah mol gas dari empat menjadi dua. Menaikkan suhu menggeser kesetimbangan ke kiri dan **menurunkan hasil amonia**, karena <InlineMath math="K" /> mengecil. Menaikkan tekanan menggeser kesetimbangan ke kanan dan menambah hasil. Katalis tidak mengubah hasil, tetapi membuat kesetimbangan lebih cepat tercapai.

@@ -1,0 +1,321 @@
+export const metadata = {
+  title: "Nota Keseimbangan Kimia Kelas Sebelas",
+  description:
+    "Kurikulum Merdeka Kimia Kelas 11, Keseimbangan Kimia: tindak balas berbalik dan keseimbangan dinamik, pemalar keseimbangan Kc dan Kp, mengira kepekatan keseimbangan, hasil bahagi tindak balas, dan prinsip Le Chatelier dalam proses Haber-Bosch.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Keseimbangan Kimia",
+};
+
+## Tindak Balas Berbalik Mencapai Keseimbangan Dinamik
+
+Banyak tindak balas tidak berhenti apabila bahan tindak balas habis, kerana hasilnya juga bertindak balas semula menjadi bahan tindak balas. Tindak balas seperti ini dipanggil **tindak balas berbalik** dan ditulis dengan anak panah berganda:
+
+<BlockMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" />
+
+Pada mulanya hanya ada <InlineMath math="\mathrm{A}" />, jadi tindak balas ke hadapan berlaku dengan cepat. Semakin banyak <InlineMath math="\mathrm{B}" /> terbentuk, semakin cepat tindak balas songsangnya. Akhirnya kadar ke hadapan sama dengan kadar songsang. Keadaan ini dipanggil **keseimbangan dinamik**: kedua-dua tindak balas terus berlaku, tetapi kepekatan setiap bahan tidak berubah lagi.
+
+Ubah pemalar kadar ke hadapan dan songsang di bawah. Kepekatan <InlineMath math="\mathrm{A}" /> turun, kepekatan <InlineMath math="\mathrm{B}" /> naik, kemudian kedua-duanya mendatar pada nilai keseimbangan yang biasanya tidak sama.
+
+<MathVisual
+  title={<>Kepekatan Menuju Keseimbangan</>}
+  description={
+    <>
+      Tindak balas <InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /> bermula
+      daripada <InlineMath math="[\mathrm{A}] = 1\text{ M}" />. Dengan pemalar kadar ke
+      hadapan <InlineMath math="0.6" /> dan songsang <InlineMath math="0.2" />, kepekatan
+      keseimbangannya <InlineMath math="[\mathrm{A}] = 0.25\text{ M}" /> dan{" "}
+      <InlineMath math="[\mathrm{B}] = 0.75\text{ M}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "reactant", kind: "function", appearance: "secondary", formula: "b/(a + b) + (a/(a + b))*exp(-(a + b)*x)", domain: { min: 0, max: 10 } },
+      { id: "product", kind: "function", appearance: "primary", formula: "(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "reactant-end", formula: "b/(a + b)" },
+      { key: "product-end", formula: "a/(a + b)" },
+      { key: "constant", formula: "a/b" },
+    ],
+  }}
+  labels={{
+    a: <>Pemalar kadar ke hadapan <InlineMath math="k_1" /></>,
+    b: <>Pemalar kadar songsang <InlineMath math="k_2" /></>,
+    "reactant-end": <><InlineMath math="[\mathrm{A}]" /> keseimbangan dalam <InlineMath math="\text{M}" /></>,
+    "product-end": <><InlineMath math="[\mathrm{B}]" /> keseimbangan dalam <InlineMath math="\text{M}" /></>,
+    constant: <>Pemalar keseimbangan <InlineMath math="K = \dfrac{k_1}{k_2}" /></>,
+  }}
+/>
+
+Graf kadar menunjukkan perkara yang sama dari sudut lain. Kadar ke hadapan <InlineMath math="k_1[\mathrm{A}]" /> turun, kadar songsang <InlineMath math="k_2[\mathrm{B}]" /> naik, dan **keseimbangan tercapai apabila kedua-dua kadar sama**.
+
+<MathVisual
+  title={<>Kadar ke Hadapan dan Kadar Songsang</>}
+  description={
+    <>
+      Kedua-dua kadar bertemu pada <InlineMath math="0.15\text{ M s}^{-1}" /> untuk{" "}
+      <InlineMath math="k_1 = 0.6" /> dan <InlineMath math="k_2 = 0.2" />. Selepas itu
+      kedua-duanya kekal sama, jadi kepekatan tidak berubah.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "forward", kind: "function", appearance: "primary", formula: "a*(b/(a + b) + (a/(a + b))*exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+      { id: "reverse", kind: "function", appearance: "secondary", formula: "b*(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "equal-rate", formula: "a*b/(a + b)" },
+    ],
+  }}
+  labels={{
+    a: <>Pemalar kadar ke hadapan <InlineMath math="k_1" /></>,
+    b: <>Pemalar kadar songsang <InlineMath math="k_2" /></>,
+    "equal-rate": <>Kadar semasa keseimbangan dalam <InlineMath math="\text{M s}^{-1}" /></>,
+  }}
+/>
+
+## Pemalar Keseimbangan
+
+Bagi tindak balas umum <InlineMath math="a\mathrm{A} + b\mathrm{B} \rightleftharpoons c\mathrm{C} + d\mathrm{D}" />, nisbah kepekatan semasa keseimbangan sentiasa mempunyai nilai yang sama pada suhu tertentu. Nilai ini dipanggil **pemalar keseimbangan kepekatan**:
+
+<BlockMath math="K_c = \frac{[\mathrm{C}]^c\,[\mathrm{D}]^d}{[\mathrm{A}]^a\,[\mathrm{B}]^b}" />
+
+Setiap kepekatan dikuasakan dengan pekalinya. Pepejal dan cecair tulen tidak ditulis, kerana kepekatannya tetap. Bagi tindak balas gas, tekanan separa boleh digunakan sebagai ganti kepekatan, dan hubungannya ialah:
+
+<BlockMath math="K_p = K_c\,(RT)^{\Delta n}, \qquad R = 0.0821\ \text{L atm mol}^{-1}\,\text{K}^{-1}" />
+
+Di sini <InlineMath math="\Delta n" /> ialah bilangan mol gas hasil tolak bilangan mol gas bahan tindak balas.
+
+Contoh: bagi <InlineMath math="\mathrm{N_2}(g) + 3\mathrm{H_2}(g) \rightleftharpoons 2\mathrm{NH_3}(g)" />, ungkapannya <InlineMath math="K_c = \dfrac{[\mathrm{NH_3}]^2}{[\mathrm{N_2}][\mathrm{H_2}]^3}" />. Bagi <InlineMath math="\mathrm{CaCO_3}(s) \rightleftharpoons \mathrm{CaO}(s) + \mathrm{CO_2}(g)" />, hanya gas yang tinggal, jadi <InlineMath math="K_c = [\mathrm{CO_2}]" />.
+
+Katakan <InlineMath math="\mathrm{N_2O_4}(g) \rightleftharpoons 2\mathrm{NO_2}(g)" /> mempunyai <InlineMath math="K_c = 4.0 \times 10^{-3}" /> pada <InlineMath math="298\text{ K}" />. Oleh sebab <InlineMath math="\Delta n = 2 - 1 = 1" />:
+
+<BlockMath math="K_p = 4.0 \times 10^{-3} \times (0.0821 \times 298)^1 = 0.098" />
+
+## Mengira Kepekatan Keseimbangan
+
+Kepekatan keseimbangan dikira dengan **jadual awal, perubahan, keseimbangan**. Katakan <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{I_2}" /> dimasukkan ke dalam bekas <InlineMath math="1\text{ L}" />, dan <InlineMath math="K_c = 64" /> bagi <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" />.
+
+| Bahan | <InlineMath math="\mathrm{H_2}" /> | <InlineMath math="\mathrm{I_2}" /> | <InlineMath math="\mathrm{HI}" /> |
+| :--- | :--- | :--- | :--- |
+| Awal | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| Perubahan | <InlineMath math="-x" /> | <InlineMath math="-x" /> | <InlineMath math="+2x" /> |
+| Keseimbangan | <InlineMath math="1 - x" /> | <InlineMath math="1 - x" /> | <InlineMath math="2x" /> |
+
+Masukkan ke dalam ungkapan pemalar, kemudian ambil punca kuasa dua kedua-dua belah:
+
+<MathContainer>
+<BlockMath math="\frac{(2x)^2}{(1 - x)^2} = 64 \quad\Rightarrow\quad \frac{2x}{1 - x} = 8" />
+<BlockMath math="2x = 8 - 8x \quad\Rightarrow\quad x = 0.8" />
+</MathContainer>
+
+Jadi semasa keseimbangan <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0.2\text{ M}" /> dan <InlineMath math="[\mathrm{HI}] = 1.6\text{ M}" />. Semak: <InlineMath math="\dfrac{1.6^2}{0.2 \times 0.2} = 64" />.
+
+<Chart
+  title={<>Kepekatan Awal dan Keseimbangan</>}
+  bars="apart"
+  categories={["Hidrogen", "Iodin", "Hidrogen iodida"]}
+  series={[
+    { label: "Awal (M)", mark: "bar", values: [1, 1, 0] },
+    { label: "Keseimbangan (M)", mark: "bar", values: [0.2, 0.2, 1.6] },
+  ]}
+  valueLabel="Kepekatan (M)"
+  valueRange={{ min: 0, max: 1.8 }}
+  description={
+    <>
+      Setiap <InlineMath math="0.8\text{ M}" /> hidrogen dan iodin yang bertindak balas
+      menghasilkan <InlineMath math="1.6\text{ M}" /> hidrogen iodida, sepadan dengan
+      pekali <InlineMath math="1 : 1 : 2" />.
+    </>
+  }
+/>
+
+## Hasil Bahagi Tindak Balas Menentukan Arah
+
+Sebelum keseimbangan, nisbah yang sama dengan ungkapan <InlineMath math="K_c" /> dipanggil **hasil bahagi tindak balas** <InlineMath math="Q" />. Membandingkan <InlineMath math="Q" /> dengan <InlineMath math="K" /> memberitahu arah tindak balas:
+
+| Keadaan | Maksudnya | Arah anjakan |
+| :--- | :--- | :--- |
+| <InlineMath math="Q < K" /> | hasil masih terlalu sedikit | ke kanan, ke arah hasil |
+| <InlineMath math="Q = K" /> | sudah seimbang | tiada anjakan |
+| <InlineMath math="Q > K" /> | hasil terlalu banyak | ke kiri, ke arah bahan tindak balas |
+
+Dalam sistem <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /> dengan <InlineMath math="K_c = 64" />, ambil campuran <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0.5\text{ M}" />. Gerakkan kepekatan <InlineMath math="\mathrm{HI}" /> di bawah dan lihat bila <InlineMath math="Q" /> menyentuh garis <InlineMath math="K" />.
+
+<MathVisual
+  title={<>Hasil Bahagi Tindak Balas melawan Kepekatan Hidrogen Iodida</>}
+  description={
+    <>
+      Dengan <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0.5\text{ M}" />,{" "}
+      <InlineMath math="Q = 4[\mathrm{HI}]^2" />. Bagi{" "}
+      <InlineMath math="[\mathrm{HI}] = 2\text{ M}" />, <InlineMath math="Q = 16" />{" "}
+      lebih kecil daripada <InlineMath math="64" />, jadi tindak balas beranjak ke
+      kanan. Campuran ini seimbang apabila{" "}
+      <InlineMath math="[\mathrm{HI}] = 4\text{ M}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 6, value: 2, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "quotient", kind: "function", appearance: "primary", formula: "4*x^2", domain: { min: 0, max: 6 } },
+      { id: "constant", kind: "function", appearance: "reference", formula: "64", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "d", y: "4*d^2", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "quotient-value", formula: "4*d^2" },
+    ],
+  }}
+  labels={{
+    d: <>Kepekatan <InlineMath math="[\mathrm{HI}]" /> dalam <InlineMath math="\text{M}" /></>,
+    "quotient-value": <>Hasil bahagi tindak balas <InlineMath math="Q" /></>,
+  }}
+/>
+
+## Prinsip Le Chatelier
+
+**Prinsip Le Chatelier** menyatakan bahawa apabila sistem dalam keseimbangan diganggu, sistem itu akan beranjak untuk mengurangkan gangguan tersebut. Terdapat tiga gangguan utama:
+
+- **Kepekatan**: menambah bahan tindak balas menganjakkan keseimbangan ke kanan, manakala menambah hasil menganjakkannya ke kiri. Nilai <InlineMath math="K" /> tidak berubah.
+- **Tekanan atau isi padu**: menaikkan tekanan dengan mengecilkan isi padu menganjakkan keseimbangan ke sebelah yang mempunyai mol gas lebih sedikit.
+- **Suhu**: menaikkan suhu menganjakkan keseimbangan ke arah tindak balas endotermik. Hanya perubahan suhu yang mengubah nilai <InlineMath math="K" />.
+
+Mangkin tidak menganjakkan keseimbangan. Mangkin mempercepat tindak balas ke hadapan dan songsang sama banyak, jadi keseimbangan hanya tercapai lebih cepat.
+
+Kesan tekanan dapat dilihat pada <InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" />. Jika <InlineMath math="\alpha" /> ialah darjah penceraian, maka <InlineMath math="K_p = \dfrac{4\alpha^2 P}{1 - \alpha^2}" />, jadi <InlineMath math="\alpha = \sqrt{\dfrac{K_p}{K_p + 4P}}" />. Naikkan tekanan jumlah di bawah: darjah penceraian turun, kerana sistem beranjak ke sebelah kiri yang hanya mempunyai satu mol gas.
+
+<MathVisual
+  title={<>Darjah Penceraian melawan Tekanan Jumlah</>}
+  description={
+    <>
+      Bagi <InlineMath math="K_p = 0.15" />, darjah penceraian turun daripada
+      kira-kira <InlineMath math="52\%" /> pada <InlineMath math="0.1\text{ atm}" />{" "}
+      kepada <InlineMath math="19\%" /> pada <InlineMath math="1\text{ atm}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.05, max: 1, value: 0.15, step: 0.01, label: "c" },
+      { name: "p", min: 0.1, max: 5, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "dissociation", kind: "function", appearance: "primary", formula: "sqrt(c/(c + 4*x))", domain: { min: 0.05, max: 5 } },
+      { id: "now", kind: "marker", x: "p", y: "sqrt(c/(c + 4*p))", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "percent", formula: "100*sqrt(c/(c + 4*p))" },
+    ],
+  }}
+  labels={{
+    c: <>Pemalar <InlineMath math="K_p" /> dalam <InlineMath math="\text{atm}" /></>,
+    p: <>Tekanan jumlah <InlineMath math="P" /> dalam <InlineMath math="\text{atm}" /></>,
+    percent: <>Darjah penceraian dalam peratus</>,
+  }}
+/>
+
+Kesan suhu bergantung pada tanda perubahan entalpi <InlineMath math="\Delta H" />. Bagi tindak balas eksotermik, <InlineMath math="K" /> turun apabila suhu naik. Bagi tindak balas endotermik, <InlineMath math="K" /> naik. Graf berikut menggunakan persamaan van 't Hoff bagi tindak balas dengan <InlineMath math="K = 1" /> pada <InlineMath math="298\text{ K}" />.
+
+<MathVisual
+  title={<>Logaritma Pemalar Keseimbangan melawan Suhu</>}
+  description={
+    <>
+      Dengan <InlineMath math="\Delta H = -92\text{ kJ}" />, seperti sintesis ammonia,{" "}
+      <InlineMath math="\log K" /> turun dengan curam apabila suhu naik. Jadikan{" "}
+      <InlineMath math="\Delta H" /> positif dan arahnya berbalik.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 250, max: 800 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -100, max: 100, value: -92, step: 1, label: "h" },
+      { name: "s", min: 250, max: 800, value: 700, step: 10, label: "s" },
+    ],
+    objects: [
+      { id: "log-constant", kind: "function", appearance: "primary", formula: "-52.2*h*(1/x - 1/298)", domain: { min: 250, max: 800 } },
+      { id: "now", kind: "marker", x: "s", y: "-52.2*h*(1/s - 1/298)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "log-value", formula: "-52.2*h*(1/s - 1/298)" },
+    ],
+  }}
+  labels={{
+    h: <>Perubahan entalpi <InlineMath math="\Delta H" /> dalam <InlineMath math="\text{kJ}" /></>,
+    s: <>Suhu <InlineMath math="T" /> dalam <InlineMath math="\text{K}" /></>,
+    "log-value": <>Nilai <InlineMath math="\log K" /></>,
+  }}
+/>
+
+Proses Haber-Bosch, <InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /> dengan <InlineMath math="\Delta H = -92.2\text{ kJ}" />, menggunakan semua prinsip ini. Tekanan tinggi menganjakkan keseimbangan ke kanan, kerana empat mol gas menjadi dua mol. Suhu rendah juga memihak kepada hasil, tetapi tindak balasnya terlalu perlahan. Oleh itu industri menggunakan mangkin besi pada suhu sederhana <InlineMath math="400" /> hingga <InlineMath math="500^\circ\text{C}" />, dan ammonia terus dikeluarkan supaya keseimbangan terus beranjak ke kanan.
+
+## Kesilapan Lazim dalam Keseimbangan Kimia
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| :--- | :--- | :--- |
+| Menganggap kepekatan bahan tindak balas dan hasil sama semasa keseimbangan. | Yang sama ialah kadarnya, bukan kepekatannya. | Lihat graf kepekatan yang mendatar pada nilai berbeza. |
+| Menulis pepejal atau cecair tulen dalam <InlineMath math="K_c" />. | Kepekatannya tetap, jadi sudah termasuk dalam nilai <InlineMath math="K" />. | Tulis hanya bahan dalam fasa <InlineMath math="(g)" /> atau <InlineMath math="(aq)" />. |
+| Menganggap <InlineMath math="K" /> berubah apabila kepekatan ditambah. | Kepekatan hanya menganjakkan kedudukan keseimbangan. | Nilai <InlineMath math="K" /> hanya berubah kerana suhu. |
+| Menyangka mangkin menambah hasil tindak balas. | Mangkin mempercepat tindak balas ke hadapan dan songsang sama banyak. | Mangkin tidak muncul dalam ungkapan <InlineMath math="K" />. |
+| Lupa menguasakan kepekatan dengan pekali. | Ungkapan <InlineMath math="K_c" /> menggunakan pekali sebagai kuasa. | Bandingkan setiap kuasa dengan pekali dalam persamaan seimbang. |
+
+Kesilapan pertama paling kerap berlaku. **Keseimbangan bermaksud kadar yang sama**, manakala kepekatan hanya berhenti berubah.
+
+## Latihan Keseimbangan Kimia
+
+Tulis persamaan seimbang dan fasa setiap bahan dahulu supaya **ungkapan pemalar tidak tersalah tulis**.
+
+1. Tulis ungkapan <InlineMath math="K_c" /> dan <InlineMath math="K_p" /> bagi <InlineMath math="2\mathrm{SO_2}(g) + \mathrm{O_2}(g) \rightleftharpoons 2\mathrm{SO_3}(g)" />, kemudian tentukan <InlineMath math="\Delta n" />.
+
+2. Bagi <InlineMath math="\mathrm{A} + \mathrm{B} \rightleftharpoons \mathrm{C} + \mathrm{D}" /> dengan <InlineMath math="K_c = 4" />, sebanyak <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{A}" /> dan <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{B}" /> dimasukkan ke dalam bekas <InlineMath math="1\text{ L}" />. Kira kepekatan keseimbangan semua bahan.
+
+3. Bagi <InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /> dengan <InlineMath math="K_c = 0.5" />, satu campuran mengandungi <InlineMath math="1\text{ M}" /> setiap bahan. Tentukan arah tindak balas.
+
+4. Terangkan kesan menaikkan suhu, menaikkan tekanan dan menambah mangkin terhadap hasil ammonia dalam proses Haber-Bosch.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Kuasakan setiap kepekatan dengan pekalinya:
+
+<BlockMath math="K_c = \frac{[\mathrm{SO_3}]^2}{[\mathrm{SO_2}]^2[\mathrm{O_2}]}, \qquad K_p = \frac{P_{\mathrm{SO_3}}^2}{P_{\mathrm{SO_2}}^2\,P_{\mathrm{O_2}}}" />
+
+Bilangan mol gas berubah daripada tiga kepada dua, jadi <InlineMath math="\Delta n = 2 - 3 = -1" />.
+
+**Penyelesaian 2**: Daripada jadual awal, perubahan, keseimbangan, <InlineMath math="[\mathrm{C}] = [\mathrm{D}] = x" /> dan <InlineMath math="[\mathrm{A}] = [\mathrm{B}] = 1 - x" />:
+
+<MathContainer>
+<BlockMath math="\frac{x^2}{(1 - x)^2} = 4 \quad\Rightarrow\quad \frac{x}{1 - x} = 2" />
+<BlockMath math="x = \frac{2}{3} \approx 0.67" />
+</MathContainer>
+
+Jadi **<InlineMath math="[\mathrm{C}] = [\mathrm{D}] = 0.67\text{ M}" />** dan <InlineMath math="[\mathrm{A}] = [\mathrm{B}] = 0.33\text{ M}" />.
+
+**Penyelesaian 3**: Kira hasil bahagi tindak balas:
+
+<BlockMath math="Q = \frac{1^2}{1 \times 1^3} = 1" />
+
+Oleh sebab <InlineMath math="Q > K_c" />, hasil terlalu banyak, jadi **tindak balas beranjak ke kiri**.
+
+**Penyelesaian 4**: Tindak balas ini eksotermik dan mengurangkan mol gas daripada empat kepada dua. Menaikkan suhu menganjakkan keseimbangan ke kiri dan **mengurangkan hasil ammonia**, kerana <InlineMath math="K" /> mengecil. Menaikkan tekanan menganjakkan keseimbangan ke kanan dan menambah hasil. Mangkin tidak mengubah hasil, tetapi keseimbangan tercapai lebih cepat.
