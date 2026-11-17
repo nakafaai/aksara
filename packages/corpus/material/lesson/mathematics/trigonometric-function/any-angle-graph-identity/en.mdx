@@ -1,0 +1,310 @@
+export const metadata = {
+  title: "Trigonometric Functions Notes for Form Five",
+  description:
+    "KSSM Additional Mathematics Form 5 Chapter 6 notes: find the six trigonometric functions of any angle, sketch the sine, cosine and tangent graphs, use the basic identities and the compound and double angle formulas, and solve trigonometric equations.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Trigonometric Functions",
+};
+
+## The Unit Circle Gives Every Value
+
+For any angle <InlineMath math="\theta" /> measured from the positive <InlineMath math="x" />-axis, the point on the **unit circle** is <InlineMath math="(\cos\theta, \sin\theta)" />. From these two values you get all six trigonometric functions:
+
+<MathContainer>
+<BlockMath math="\tan\theta = \frac{\sin\theta}{\cos\theta}, \qquad \sec\theta = \frac{1}{\cos\theta}" />
+<BlockMath math="\operatorname{cosec}\theta = \frac{1}{\sin\theta}, \qquad \cot\theta = \frac{1}{\tan\theta}" />
+</MathContainer>
+
+Positive angles are measured **anticlockwise** and negative angles **clockwise**. The sign of each function depends on the quadrant, and its size equals the value for the **reference angle**, the acute angle between the radius and the <InlineMath math="x" />-axis.
+
+In these notes you turn the radius of the unit circle, change the amplitude and period of a sine graph, solve an equation with a graph, and check a compound angle formula.
+
+## Any Angle on the Unit Circle
+
+Turn the angle <InlineMath math="\theta" /> below, including negative angles and angles beyond <InlineMath math="360^\circ" />. The <InlineMath math="x" />-coordinate of the point is <InlineMath math="\cos\theta" /> and the <InlineMath math="y" />-coordinate is <InlineMath math="\sin\theta" />.
+
+<MathVisual
+  title={<>An Angle on the Unit Circle</>}
+  description={
+    <>
+      The point <InlineMath math="(\cos\theta, \sin\theta)" /> on the unit circle.
+      For <InlineMath math="\theta = 210^\circ" />, the point is in the third
+      quadrant with <InlineMath math="\sin 210^\circ = -0.5" /> and{" "}
+      <InlineMath math="\cos 210^\circ = -0.866" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: -360, max: 360, value: 210, step: 5, label: "p" },
+    ],
+    objects: [
+      { id: "unit-circle", kind: "implicit", appearance: "reference", equation: "x^2 + y^2 = 1" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(p*pi/180)", y: "sin(p*pi/180)" }, { x: "cos(p*pi/180)", y: "0" }], appearance: "primary" },
+      { id: "on-circle", kind: "marker", x: "cos(p*pi/180)", y: "sin(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(p*pi/180)" },
+      { key: "cosine", formula: "cos(p*pi/180)" },
+      { key: "tangent", formula: "tan(p*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Angle <InlineMath math="\theta" /> in degrees</>,
+    sine: <>Value of <InlineMath math="\sin\theta" /></>,
+    cosine: <>Value of <InlineMath math="\cos\theta" /></>,
+    tangent: <>Value of <InlineMath math="\tan\theta" /></>,
+  }}
+/>
+
+The signs in each quadrant follow the order **all, sin, tan, cos**: all are positive in the first quadrant, only sin in the second, only tan in the third, and only cos in the fourth.
+
+| Angle | Quadrant | Reference angle | Value |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="210^\circ" /> | Third | <InlineMath math="30^\circ" /> | <InlineMath math="\sin 210^\circ = -\sin 30^\circ = -\tfrac{1}{2}" /> |
+| <InlineMath math="300^\circ" /> | Fourth | <InlineMath math="60^\circ" /> | <InlineMath math="\cos 300^\circ = \cos 60^\circ = \tfrac{1}{2}" /> |
+| <InlineMath math="135^\circ" /> | Second | <InlineMath math="45^\circ" /> | <InlineMath math="\tan 135^\circ = -\tan 45^\circ = -1" /> |
+| <InlineMath math="-150^\circ" /> | Third | <InlineMath math="30^\circ" /> | <InlineMath math="\cos(-150^\circ) = -\cos 30^\circ = -\tfrac{\sqrt{3}}{2}" /> |
+
+A reciprocal function has the sign of its original function. For example, <InlineMath math="\operatorname{cosec} 330^\circ = \dfrac{1}{\sin 330^\circ} = \dfrac{1}{-\tfrac{1}{2}} = -2" />. Angles can also be written in radians: <InlineMath math="225^\circ = \dfrac{225}{180}\pi = \dfrac{5\pi}{4}" /> radians.
+
+## The Sine and Cosine Graphs
+
+The graph of <InlineMath math="y = a\sin bx + c" /> is a wave. The **amplitude** <InlineMath math="|a|" /> is half the height of the wave, the **period** <InlineMath math="\dfrac{360^\circ}{b}" /> is the length of one cycle, and <InlineMath math="c" /> shifts the graph up or down. Change the three constants below.
+
+<MathVisual
+  title={<>The Graph of <InlineMath math="y = a\sin bx + c" /></>}
+  description={
+    <>
+      For <InlineMath math="y = 3\sin 2x + 1" />, the amplitude is{" "}
+      <InlineMath math="3" />, the period is <InlineMath math="180^\circ" />, the
+      maximum is <InlineMath math="4" /> and the minimum is{" "}
+      <InlineMath math="-2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 360 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.5, max: 4, value: 3, step: 0.5, label: "a" },
+      { name: "b", min: 0.5, max: 4, value: 2, step: 0.5, label: "b" },
+      { name: "c", min: -2, max: 2, value: 1, step: 0.5, label: "c" },
+    ],
+    objects: [
+      { id: "wave", kind: "function", appearance: "primary", formula: "a*sin(b*x*pi/180) + c", domain: { min: 0, max: 360 } },
+      { id: "basic-sine", kind: "function", appearance: "reference", formula: "sin(x*pi/180)", domain: { min: 0, max: 360 } },
+    ],
+    readouts: [
+      { key: "amplitude", formula: "a" },
+      { key: "period", formula: "360/b" },
+      { key: "maximum", formula: "a + c" },
+      { key: "minimum", formula: "c - a" },
+    ],
+  }}
+  labels={{
+    a: <>Constant <InlineMath math="a" /></>,
+    b: <>Constant <InlineMath math="b" /></>,
+    c: <>Constant <InlineMath math="c" /></>,
+    amplitude: <>Amplitude</>,
+    period: <>Period in degrees</>,
+    maximum: <>Maximum value</>,
+    minimum: <>Minimum value</>,
+  }}
+/>
+
+The graph of <InlineMath math="y = \cos x" /> has the same shape as <InlineMath math="y = \sin x" />, shifted <InlineMath math="90^\circ" /> to the left. For an absolute value graph such as <InlineMath math="y = |3\sin x|" />, **the part below the <InlineMath math="x" />-axis is reflected upwards**, so its period becomes <InlineMath math="180^\circ" />.
+
+## The Tangent Graph
+
+The graph of <InlineMath math="y = \tan x" /> has no amplitude. It has **asymptotes** at <InlineMath math="x = 90^\circ" /> and <InlineMath math="x = 270^\circ" />, where <InlineMath math="\cos x = 0" />, and its period is <InlineMath math="180^\circ" />.
+
+<MathVisual
+  title={<>The Graph of <InlineMath math="y = \tan x" /> from <InlineMath math="0^\circ" /> to <InlineMath math="360^\circ" /></>}
+  description={
+    <>
+      The tangent graph rises from left to right in each cycle and repeats every{" "}
+      <InlineMath math="180^\circ" />. It crosses the <InlineMath math="x" />-axis
+      at <InlineMath math="0^\circ" />, <InlineMath math="180^\circ" /> and{" "}
+      <InlineMath math="360^\circ" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 360 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "first-branch", kind: "function", appearance: "primary", formula: "tan(x*pi/180)", domain: { min: 0, max: 80 } },
+      { id: "second-branch", kind: "function", appearance: "primary", formula: "tan(x*pi/180)", domain: { min: 100, max: 260 } },
+      { id: "third-branch", kind: "function", appearance: "primary", formula: "tan(x*pi/180)", domain: { min: 280, max: 360 } },
+      { id: "first-asymptote", kind: "line", through: [{ x: 90, y: -6 }, { x: 90, y: 6 }], appearance: "reference" },
+      { id: "second-asymptote", kind: "line", through: [{ x: 270, y: -6 }, { x: 270, y: 6 }], appearance: "reference" },
+    ],
+  }}
+/>
+
+## Basic Identities and Angle Formulas
+
+Pythagoras' theorem on the unit circle gives the **basic identity** <InlineMath math="\sin^2\theta + \cos^2\theta = 1" />. Divide it by <InlineMath math="\cos^2\theta" /> or <InlineMath math="\sin^2\theta" /> to get two more identities:
+
+<MathContainer>
+<BlockMath math="1 + \tan^2\theta = \sec^2\theta" />
+<BlockMath math="1 + \cot^2\theta = \operatorname{cosec}^2\theta" />
+</MathContainer>
+
+For example, <InlineMath math="(1 - \cos^2 x)(1 + \cot^2 x) = \sin^2 x \cdot \operatorname{cosec}^2 x = 1" />.
+
+The **compound angle formulas** and **double angle formulas** are:
+
+<MathContainer>
+<BlockMath math="\sin(A \pm B) = \sin A\cos B \pm \cos A\sin B" />
+<BlockMath math="\cos(A \pm B) = \cos A\cos B \mp \sin A\sin B" />
+<BlockMath math="\sin 2A = 2\sin A\cos A, \qquad \cos 2A = \cos^2 A - \sin^2 A" />
+</MathContainer>
+
+The compound angle formula shows that <InlineMath math="\sin x + \cos x = \sqrt{2}\sin(x + 45^\circ)" />, because <InlineMath math="\sqrt{2}\sin(x + 45^\circ) = \sqrt{2}\left(\sin x \cdot \tfrac{1}{\sqrt{2}} + \cos x \cdot \tfrac{1}{\sqrt{2}}\right)" />. Move <InlineMath math="x" /> and check that the two graphs always overlap.
+
+<MathVisual
+  title={<><InlineMath math="\sin x + \cos x" /> and <InlineMath math="\sqrt{2}\sin(x + 45^\circ)" /></>}
+  description={
+    <>
+      The two graphs overlap because they are the same function. The maximum{" "}
+      <InlineMath math="\sqrt{2} \approx 1.414" /> happens at{" "}
+      <InlineMath math="x = 45^\circ" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 360 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 360, value: 45, step: 5, label: "p" },
+    ],
+    objects: [
+      { id: "sum", kind: "function", appearance: "primary", formula: "sin(x*pi/180) + cos(x*pi/180)", domain: { min: 0, max: 360 } },
+      { id: "compound", kind: "function", appearance: "secondary", formula: "sqrt(2)*sin((x + 45)*pi/180)", domain: { min: 0, max: 360 } },
+      { id: "now", kind: "marker", x: "p", y: "sin(p*pi/180) + cos(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "sum-value", formula: "sin(p*pi/180) + cos(p*pi/180)" },
+      { key: "compound-value", formula: "sqrt(2)*sin((p + 45)*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Angle <InlineMath math="x" /> in degrees</>,
+    "sum-value": <>Value of <InlineMath math="\sin x + \cos x" /></>,
+    "compound-value": <>Value of <InlineMath math="\sqrt{2}\sin(x + 45^\circ)" /></>,
+  }}
+/>
+
+Two examples that use these formulas:
+
+<MathContainer>
+<BlockMath math="\sin 75^\circ = \sin(45^\circ + 30^\circ) = \frac{\sqrt{2}}{2}\cdot\frac{\sqrt{3}}{2} + \frac{\sqrt{2}}{2}\cdot\frac{1}{2} = \frac{\sqrt{6} + \sqrt{2}}{4}" />
+<BlockMath math="\sin A = \tfrac{3}{5},\ A \text{ acute}: \quad \cos A = \tfrac{4}{5}, \quad \sin 2A = \tfrac{24}{25}, \quad \cos 2A = \tfrac{16}{25} - \tfrac{9}{25} = \tfrac{7}{25}" />
+</MathContainer>
+
+## Solve Trigonometric Equations
+
+An equation such as <InlineMath math="2\sin x = 1" /> has more than one solution in the range <InlineMath math="0^\circ \le x \le 360^\circ" />. On a graph, the solutions are **the intersection points** of <InlineMath math="y = 2\sin x" /> with the horizontal line <InlineMath math="y = k" />. Change <InlineMath math="k" /> and watch the two solutions move.
+
+<MathVisual
+  title={<>Solutions of <InlineMath math="2\sin x = k" /> from <InlineMath math="0^\circ" /> to <InlineMath math="360^\circ" /></>}
+  description={
+    <>
+      The line <InlineMath math="y = k" /> cuts <InlineMath math="y = 2\sin x" />{" "}
+      at two points for <InlineMath math="0 \le k < 2" />. For{" "}
+      <InlineMath math="k = 1" />, the solutions are{" "}
+      <InlineMath math="x = 30^\circ" /> and <InlineMath math="x = 150^\circ" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 360 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0, max: 2, value: 1, step: 0.1, label: "k" },
+    ],
+    objects: [
+      { id: "wave", kind: "function", appearance: "primary", formula: "2*sin(x*pi/180)", domain: { min: 0, max: 360 } },
+      { id: "level", kind: "function", appearance: "secondary", formula: "k", domain: { min: 0, max: 360 } },
+      { id: "first-root", kind: "marker", x: "asin(k/2)*180/pi", y: "k", appearance: "answer" },
+      { id: "second-root", kind: "marker", x: "180 - asin(k/2)*180/pi", y: "k", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "first-solution", formula: "asin(k/2)*180/pi" },
+      { key: "second-solution", formula: "180 - asin(k/2)*180/pi" },
+    ],
+  }}
+  labels={{
+    k: <>Value of <InlineMath math="k" /></>,
+    "first-solution": <>First solution in degrees</>,
+    "second-solution": <>Second solution in degrees</>,
+  }}
+/>
+
+A quadratic equation in <InlineMath math="\sin x" /> is solved by factorising. Solve <InlineMath math="2\sin^2 x - \sin x - 1 = 0" /> for <InlineMath math="0^\circ \le x \le 360^\circ" />:
+
+<MathContainer>
+<BlockMath math="(2\sin x + 1)(\sin x - 1) = 0" />
+<BlockMath math="\sin x = 1 \quad \Rightarrow \quad x = 90^\circ" />
+<BlockMath math="\sin x = -\tfrac{1}{2} \quad \Rightarrow \quad x = 210^\circ, \ 330^\circ" />
+</MathContainer>
+
+The sine is negative in the third and fourth quadrants, so the reference angle <InlineMath math="30^\circ" /> gives <InlineMath math="180^\circ + 30^\circ" /> and <InlineMath math="360^\circ - 30^\circ" />.
+
+## Common Mistakes with Trigonometric Functions
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| Giving only one solution of <InlineMath math="\sin x = \tfrac{1}{2}" />. | The sine is positive in two quadrants. | Sketch the graph and count the intersection points. |
+| Writing <InlineMath math="\sin 2A = 2\sin A" />. | The double angle formula is <InlineMath math="2\sin A\cos A" />. | Test <InlineMath math="A = 90^\circ" />: <InlineMath math="\sin 180^\circ = 0" />, not <InlineMath math="2" />. |
+| Taking the period of <InlineMath math="y = \sin 2x" /> as <InlineMath math="720^\circ" />. | The constant <InlineMath math="b = 2" /> shortens the period to <InlineMath math="\tfrac{360^\circ}{2}" />. | Count the cycles in <InlineMath math="360^\circ" />. |
+| Giving <InlineMath math="\cos 120^\circ" /> a positive sign. | The cosine is negative in the second quadrant. | Remember the order all, sin, tan, cos. |
+| The calculator is in the wrong mode. | Degrees and radians give different values. | Check that <InlineMath math="\sin 90^\circ = 1" /> before you start. |
+
+The first mistake is the most common. **After you find the reference angle**, decide every quadrant that gives the right sign.
+
+## Trigonometric Functions Practice
+
+Sketch the unit circle or the graph for each question so that **the sign and the number of solutions are clear**.
+
+1. Find the exact values of <InlineMath math="\cos 240^\circ" />, <InlineMath math="\tan 300^\circ" /> and <InlineMath math="\operatorname{cosec} 150^\circ" />.
+
+2. State the amplitude, period, maximum value and minimum value of <InlineMath math="y = 2\cos 3x - 1" />.
+
+3. Given <InlineMath math="\tan A = \tfrac{5}{12}" /> with <InlineMath math="A" /> in the third quadrant, find <InlineMath math="\sin A" />, <InlineMath math="\cos A" /> and <InlineMath math="\sin 2A" />.
+
+4. Solve <InlineMath math="\cos 2x = \cos x" /> for <InlineMath math="0^\circ \le x \le 360^\circ" />.
+
+### Solutions
+
+**Solution 1**: Use the reference angle and the sign of the quadrant:
+
+<MathContainer>
+<BlockMath math="\cos 240^\circ = -\cos 60^\circ = -\tfrac{1}{2}" />
+<BlockMath math="\tan 300^\circ = -\tan 60^\circ = -\sqrt{3}" />
+<BlockMath math="\operatorname{cosec} 150^\circ = \frac{1}{\sin 150^\circ} = \frac{1}{\tfrac{1}{2}} = 2" />
+</MathContainer>
+
+**Solution 2**: Compare with <InlineMath math="y = a\cos bx + c" />, with <InlineMath math="a = 2" />, <InlineMath math="b = 3" /> and <InlineMath math="c = -1" />. The amplitude is <InlineMath math="2" />, the period is <InlineMath math="\tfrac{360^\circ}{3} = 120^\circ" />, the maximum is <InlineMath math="2 - 1 = 1" /> and the minimum is <InlineMath math="-2 - 1 = -3" />.
+
+**Solution 3**: The reference triangle has sides <InlineMath math="5" />, <InlineMath math="12" /> and <InlineMath math="13" />. In the third quadrant, the sine and cosine are **both negative**:
+
+<MathContainer>
+<BlockMath math="\sin A = -\tfrac{5}{13}, \qquad \cos A = -\tfrac{12}{13}" />
+<BlockMath math="\sin 2A = 2\left(-\tfrac{5}{13}\right)\left(-\tfrac{12}{13}\right) = \tfrac{120}{169}" />
+</MathContainer>
+
+**Solution 4**: Change <InlineMath math="\cos 2x" /> to <InlineMath math="2\cos^2 x - 1" />:
+
+<MathContainer>
+<BlockMath math="2\cos^2 x - \cos x - 1 = 0 \quad \Rightarrow \quad (2\cos x + 1)(\cos x - 1) = 0" />
+<BlockMath math="\cos x = 1 \quad \Rightarrow \quad x = 0^\circ, 360^\circ" />
+<BlockMath math="\cos x = -\tfrac{1}{2} \quad \Rightarrow \quad x = 120^\circ, 240^\circ" />
+</MathContainer>
+
+Check <InlineMath math="x = 120^\circ" />: <InlineMath math="\cos 240^\circ = -\tfrac{1}{2} = \cos 120^\circ" />.

@@ -1,0 +1,310 @@
+export const metadata = {
+  title: "Catatan Fungsi Trigonometri Tingkatan Lima",
+  description:
+    "Catatan Matematika Tambahan KSSM Tingkatan 5 Bab 6: cari nilai enam fungsi trigonometri untuk sudut apa pun, gambar grafik sinus, kosinus, dan tangen, pakai identitas dasar serta rumus sudut rangkap dan sudut ganda, dan selesaikan persamaan trigonometri.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Fungsi Trigonometri",
+};
+
+## Lingkaran Satuan Memberi Semua Nilai
+
+Untuk sudut <InlineMath math="\theta" /> apa pun yang diukur dari sumbu-<InlineMath math="x" /> positif, titik pada **lingkaran satuan** adalah <InlineMath math="(\cos\theta, \sin\theta)" />. Dari dua nilai ini kamu mendapat keenam fungsi trigonometri:
+
+<MathContainer>
+<BlockMath math="\tan\theta = \frac{\sin\theta}{\cos\theta}, \qquad \sec\theta = \frac{1}{\cos\theta}" />
+<BlockMath math="\operatorname{cosec}\theta = \frac{1}{\sin\theta}, \qquad \cot\theta = \frac{1}{\tan\theta}" />
+</MathContainer>
+
+Sudut positif diukur **berlawanan arah jarum jam** dan sudut negatif **searah jarum jam**. Tanda setiap fungsi bergantung pada kuadran, dan besarnya sama dengan nilai untuk **sudut acuan**, yaitu sudut lancip antara jari-jari dan sumbu-<InlineMath math="x" />.
+
+Di catatan ini kamu memutar jari-jari lingkaran satuan, mengubah amplitudo dan periode grafik sinus, menyelesaikan persamaan dengan grafik, dan mengecek rumus sudut rangkap.
+
+## Sudut Apa Pun pada Lingkaran Satuan
+
+Putar sudut <InlineMath math="\theta" /> di bawah, termasuk sudut negatif dan sudut lebih dari <InlineMath math="360^\circ" />. Koordinat-<InlineMath math="x" /> titiknya adalah <InlineMath math="\cos\theta" /> dan koordinat-<InlineMath math="y" /> adalah <InlineMath math="\sin\theta" />.
+
+<MathVisual
+  title={<>Sudut pada Lingkaran Satuan</>}
+  description={
+    <>
+      Titik <InlineMath math="(\cos\theta, \sin\theta)" /> pada lingkaran satuan.
+      Untuk <InlineMath math="\theta = 210^\circ" />, titik berada di kuadran
+      ketiga dengan <InlineMath math="\sin 210^\circ = -0{,}5" /> dan{" "}
+      <InlineMath math="\cos 210^\circ = -0{,}866" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: -360, max: 360, value: 210, step: 5, label: "p" },
+    ],
+    objects: [
+      { id: "unit-circle", kind: "implicit", appearance: "reference", equation: "x^2 + y^2 = 1" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(p*pi/180)", y: "sin(p*pi/180)" }, { x: "cos(p*pi/180)", y: "0" }], appearance: "primary" },
+      { id: "on-circle", kind: "marker", x: "cos(p*pi/180)", y: "sin(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(p*pi/180)" },
+      { key: "cosine", formula: "cos(p*pi/180)" },
+      { key: "tangent", formula: "tan(p*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Sudut <InlineMath math="\theta" /> dalam derajat</>,
+    sine: <>Nilai <InlineMath math="\sin\theta" /></>,
+    cosine: <>Nilai <InlineMath math="\cos\theta" /></>,
+    tangent: <>Nilai <InlineMath math="\tan\theta" /></>,
+  }}
+/>
+
+Tanda di setiap kuadran mengikuti urutan **semua, sin, tan, cos**: semua positif di kuadran pertama, hanya sin di kuadran kedua, hanya tan di kuadran ketiga, dan hanya cos di kuadran keempat.
+
+| Sudut | Kuadran | Sudut acuan | Nilai |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="210^\circ" /> | Ketiga | <InlineMath math="30^\circ" /> | <InlineMath math="\sin 210^\circ = -\sin 30^\circ = -\tfrac{1}{2}" /> |
+| <InlineMath math="300^\circ" /> | Keempat | <InlineMath math="60^\circ" /> | <InlineMath math="\cos 300^\circ = \cos 60^\circ = \tfrac{1}{2}" /> |
+| <InlineMath math="135^\circ" /> | Kedua | <InlineMath math="45^\circ" /> | <InlineMath math="\tan 135^\circ = -\tan 45^\circ = -1" /> |
+| <InlineMath math="-150^\circ" /> | Ketiga | <InlineMath math="30^\circ" /> | <InlineMath math="\cos(-150^\circ) = -\cos 30^\circ = -\tfrac{\sqrt{3}}{2}" /> |
+
+Fungsi kebalikan mengikuti tanda fungsi asalnya. Misalnya <InlineMath math="\operatorname{cosec} 330^\circ = \dfrac{1}{\sin 330^\circ} = \dfrac{1}{-\tfrac{1}{2}} = -2" />. Sudut juga bisa ditulis dalam radian: <InlineMath math="225^\circ = \dfrac{225}{180}\pi = \dfrac{5\pi}{4}" /> radian.
+
+## Grafik Sinus dan Kosinus
+
+Grafik <InlineMath math="y = a\sin bx + c" /> berupa gelombang. **Amplitudo** <InlineMath math="|a|" /> adalah setengah tinggi gelombang, **periode** <InlineMath math="\dfrac{360^\circ}{b}" /> adalah panjang satu siklus, dan <InlineMath math="c" /> menggeser grafik ke atas atau ke bawah. Ubah ketiga konstanta di bawah.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="y = a\sin bx + c" /></>}
+  description={
+    <>
+      Untuk <InlineMath math="y = 3\sin 2x + 1" />, amplitudonya{" "}
+      <InlineMath math="3" />, periodenya <InlineMath math="180^\circ" />, nilai
+      maksimumnya <InlineMath math="4" />, dan nilai minimumnya{" "}
+      <InlineMath math="-2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 360 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.5, max: 4, value: 3, step: 0.5, label: "a" },
+      { name: "b", min: 0.5, max: 4, value: 2, step: 0.5, label: "b" },
+      { name: "c", min: -2, max: 2, value: 1, step: 0.5, label: "c" },
+    ],
+    objects: [
+      { id: "wave", kind: "function", appearance: "primary", formula: "a*sin(b*x*pi/180) + c", domain: { min: 0, max: 360 } },
+      { id: "basic-sine", kind: "function", appearance: "reference", formula: "sin(x*pi/180)", domain: { min: 0, max: 360 } },
+    ],
+    readouts: [
+      { key: "amplitude", formula: "a" },
+      { key: "period", formula: "360/b" },
+      { key: "maximum", formula: "a + c" },
+      { key: "minimum", formula: "c - a" },
+    ],
+  }}
+  labels={{
+    a: <>Konstanta <InlineMath math="a" /></>,
+    b: <>Konstanta <InlineMath math="b" /></>,
+    c: <>Konstanta <InlineMath math="c" /></>,
+    amplitude: <>Amplitudo</>,
+    period: <>Periode dalam derajat</>,
+    maximum: <>Nilai maksimum</>,
+    minimum: <>Nilai minimum</>,
+  }}
+/>
+
+Grafik <InlineMath math="y = \cos x" /> punya bentuk yang sama dengan <InlineMath math="y = \sin x" />, tetapi bergeser <InlineMath math="90^\circ" /> ke kiri. Untuk grafik nilai mutlak seperti <InlineMath math="y = |3\sin x|" />, **bagian di bawah sumbu-<InlineMath math="x" /> dicerminkan ke atas**, jadi periodenya menjadi <InlineMath math="180^\circ" />.
+
+## Grafik Tangen
+
+Grafik <InlineMath math="y = \tan x" /> tidak punya amplitudo. Grafik ini punya **asimtot** di <InlineMath math="x = 90^\circ" /> dan <InlineMath math="x = 270^\circ" />, yaitu saat <InlineMath math="\cos x = 0" />, dan periodenya <InlineMath math="180^\circ" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="y = \tan x" /> dari <InlineMath math="0^\circ" /> sampai <InlineMath math="360^\circ" /></>}
+  description={
+    <>
+      Grafik tangen naik dari kiri ke kanan di setiap siklus dan berulang setiap{" "}
+      <InlineMath math="180^\circ" />. Grafik memotong sumbu-
+      <InlineMath math="x" /> di <InlineMath math="0^\circ" />,{" "}
+      <InlineMath math="180^\circ" />, dan <InlineMath math="360^\circ" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 360 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "first-branch", kind: "function", appearance: "primary", formula: "tan(x*pi/180)", domain: { min: 0, max: 80 } },
+      { id: "second-branch", kind: "function", appearance: "primary", formula: "tan(x*pi/180)", domain: { min: 100, max: 260 } },
+      { id: "third-branch", kind: "function", appearance: "primary", formula: "tan(x*pi/180)", domain: { min: 280, max: 360 } },
+      { id: "first-asymptote", kind: "line", through: [{ x: 90, y: -6 }, { x: 90, y: 6 }], appearance: "reference" },
+      { id: "second-asymptote", kind: "line", through: [{ x: 270, y: -6 }, { x: 270, y: 6 }], appearance: "reference" },
+    ],
+  }}
+/>
+
+## Identitas Dasar dan Rumus Sudut
+
+Teorema Pythagoras pada lingkaran satuan memberi **identitas dasar** <InlineMath math="\sin^2\theta + \cos^2\theta = 1" />. Bagi identitas ini dengan <InlineMath math="\cos^2\theta" /> atau <InlineMath math="\sin^2\theta" /> untuk mendapat dua identitas lagi:
+
+<MathContainer>
+<BlockMath math="1 + \tan^2\theta = \sec^2\theta" />
+<BlockMath math="1 + \cot^2\theta = \operatorname{cosec}^2\theta" />
+</MathContainer>
+
+Misalnya, <InlineMath math="(1 - \cos^2 x)(1 + \cot^2 x) = \sin^2 x \cdot \operatorname{cosec}^2 x = 1" />.
+
+**Rumus jumlah dan selisih sudut** serta **rumus sudut ganda** adalah:
+
+<MathContainer>
+<BlockMath math="\sin(A \pm B) = \sin A\cos B \pm \cos A\sin B" />
+<BlockMath math="\cos(A \pm B) = \cos A\cos B \mp \sin A\sin B" />
+<BlockMath math="\sin 2A = 2\sin A\cos A, \qquad \cos 2A = \cos^2 A - \sin^2 A" />
+</MathContainer>
+
+Rumus jumlah sudut menunjukkan bahwa <InlineMath math="\sin x + \cos x = \sqrt{2}\sin(x + 45^\circ)" />, karena <InlineMath math="\sqrt{2}\sin(x + 45^\circ) = \sqrt{2}\left(\sin x \cdot \tfrac{1}{\sqrt{2}} + \cos x \cdot \tfrac{1}{\sqrt{2}}\right)" />. Geser <InlineMath math="x" /> dan cek bahwa kedua grafik selalu berimpit.
+
+<MathVisual
+  title={<><InlineMath math="\sin x + \cos x" /> dan <InlineMath math="\sqrt{2}\sin(x + 45^\circ)" /></>}
+  description={
+    <>
+      Kedua grafik berimpit karena keduanya fungsi yang sama. Nilai maksimum{" "}
+      <InlineMath math="\sqrt{2} \approx 1{,}414" /> terjadi di{" "}
+      <InlineMath math="x = 45^\circ" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 360 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 360, value: 45, step: 5, label: "p" },
+    ],
+    objects: [
+      { id: "sum", kind: "function", appearance: "primary", formula: "sin(x*pi/180) + cos(x*pi/180)", domain: { min: 0, max: 360 } },
+      { id: "compound", kind: "function", appearance: "secondary", formula: "sqrt(2)*sin((x + 45)*pi/180)", domain: { min: 0, max: 360 } },
+      { id: "now", kind: "marker", x: "p", y: "sin(p*pi/180) + cos(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "sum-value", formula: "sin(p*pi/180) + cos(p*pi/180)" },
+      { key: "compound-value", formula: "sqrt(2)*sin((p + 45)*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Sudut <InlineMath math="x" /> dalam derajat</>,
+    "sum-value": <>Nilai <InlineMath math="\sin x + \cos x" /></>,
+    "compound-value": <>Nilai <InlineMath math="\sqrt{2}\sin(x + 45^\circ)" /></>,
+  }}
+/>
+
+Dua contoh yang memakai rumus ini:
+
+<MathContainer>
+<BlockMath math="\sin 75^\circ = \sin(45^\circ + 30^\circ) = \frac{\sqrt{2}}{2}\cdot\frac{\sqrt{3}}{2} + \frac{\sqrt{2}}{2}\cdot\frac{1}{2} = \frac{\sqrt{6} + \sqrt{2}}{4}" />
+<BlockMath math="\sin A = \tfrac{3}{5},\ A \text{ lancip}: \quad \cos A = \tfrac{4}{5}, \quad \sin 2A = \tfrac{24}{25}, \quad \cos 2A = \tfrac{16}{25} - \tfrac{9}{25} = \tfrac{7}{25}" />
+</MathContainer>
+
+## Selesaikan Persamaan Trigonometri
+
+Persamaan seperti <InlineMath math="2\sin x = 1" /> punya lebih dari satu penyelesaian dalam selang <InlineMath math="0^\circ \le x \le 360^\circ" />. Secara grafik, penyelesaiannya adalah **titik potong** <InlineMath math="y = 2\sin x" /> dengan garis mendatar <InlineMath math="y = k" />. Ubah <InlineMath math="k" /> dan lihat kedua penyelesaian bergerak.
+
+<MathVisual
+  title={<>Penyelesaian <InlineMath math="2\sin x = k" /> dari <InlineMath math="0^\circ" /> sampai <InlineMath math="360^\circ" /></>}
+  description={
+    <>
+      Garis <InlineMath math="y = k" /> memotong <InlineMath math="y = 2\sin x" />{" "}
+      di dua titik untuk <InlineMath math="0 \le k < 2" />. Untuk{" "}
+      <InlineMath math="k = 1" />, penyelesaiannya{" "}
+      <InlineMath math="x = 30^\circ" /> dan <InlineMath math="x = 150^\circ" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 360 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0, max: 2, value: 1, step: 0.1, label: "k" },
+    ],
+    objects: [
+      { id: "wave", kind: "function", appearance: "primary", formula: "2*sin(x*pi/180)", domain: { min: 0, max: 360 } },
+      { id: "level", kind: "function", appearance: "secondary", formula: "k", domain: { min: 0, max: 360 } },
+      { id: "first-root", kind: "marker", x: "asin(k/2)*180/pi", y: "k", appearance: "answer" },
+      { id: "second-root", kind: "marker", x: "180 - asin(k/2)*180/pi", y: "k", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "first-solution", formula: "asin(k/2)*180/pi" },
+      { key: "second-solution", formula: "180 - asin(k/2)*180/pi" },
+    ],
+  }}
+  labels={{
+    k: <>Nilai <InlineMath math="k" /></>,
+    "first-solution": <>Penyelesaian pertama dalam derajat</>,
+    "second-solution": <>Penyelesaian kedua dalam derajat</>,
+  }}
+/>
+
+Persamaan kuadrat dalam <InlineMath math="\sin x" /> diselesaikan dengan pemfaktoran. Selesaikan <InlineMath math="2\sin^2 x - \sin x - 1 = 0" /> untuk <InlineMath math="0^\circ \le x \le 360^\circ" />:
+
+<MathContainer>
+<BlockMath math="(2\sin x + 1)(\sin x - 1) = 0" />
+<BlockMath math="\sin x = 1 \quad \Rightarrow \quad x = 90^\circ" />
+<BlockMath math="\sin x = -\tfrac{1}{2} \quad \Rightarrow \quad x = 210^\circ, \ 330^\circ" />
+</MathContainer>
+
+Sinus negatif di kuadran ketiga dan keempat, jadi sudut acuan <InlineMath math="30^\circ" /> memberi <InlineMath math="180^\circ + 30^\circ" /> dan <InlineMath math="360^\circ - 30^\circ" />.
+
+## Kesalahan Umum dalam Fungsi Trigonometri
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Hanya memberi satu penyelesaian untuk <InlineMath math="\sin x = \tfrac{1}{2}" />. | Sinus positif di dua kuadran. | Sketsa grafik dan hitung titik potongnya. |
+| Menulis <InlineMath math="\sin 2A = 2\sin A" />. | Rumus sudut ganda adalah <InlineMath math="2\sin A\cos A" />. | Uji <InlineMath math="A = 90^\circ" />: <InlineMath math="\sin 180^\circ = 0" />, bukan <InlineMath math="2" />. |
+| Menganggap periode <InlineMath math="y = \sin 2x" /> adalah <InlineMath math="720^\circ" />. | Konstanta <InlineMath math="b = 2" /> memendekkan periode menjadi <InlineMath math="\tfrac{360^\circ}{2}" />. | Hitung banyak siklus dalam <InlineMath math="360^\circ" />. |
+| Memberi tanda positif untuk <InlineMath math="\cos 120^\circ" />. | Kosinus negatif di kuadran kedua. | Ingat urutan semua, sin, tan, cos. |
+| Kalkulator dalam mode yang salah. | Derajat dan radian memberi nilai berbeda. | Cek <InlineMath math="\sin 90^\circ = 1" /> sebelum mulai. |
+
+Kesalahan pertama paling sering terjadi. **Setelah mendapat sudut acuan**, tentukan semua kuadran yang memberi tanda yang benar.
+
+## Latihan Fungsi Trigonometri
+
+Sketsa lingkaran satuan atau grafik untuk setiap soal supaya **tanda dan banyak penyelesaiannya jelas**.
+
+1. Cari nilai eksak <InlineMath math="\cos 240^\circ" />, <InlineMath math="\tan 300^\circ" />, dan <InlineMath math="\operatorname{cosec} 150^\circ" />.
+
+2. Tentukan amplitudo, periode, nilai maksimum, dan nilai minimum <InlineMath math="y = 2\cos 3x - 1" />.
+
+3. Diketahui <InlineMath math="\tan A = \tfrac{5}{12}" /> dengan <InlineMath math="A" /> di kuadran ketiga. Cari <InlineMath math="\sin A" />, <InlineMath math="\cos A" />, dan <InlineMath math="\sin 2A" />.
+
+4. Selesaikan <InlineMath math="\cos 2x = \cos x" /> untuk <InlineMath math="0^\circ \le x \le 360^\circ" />.
+
+### Pembahasan
+
+**Pembahasan 1**: Pakai sudut acuan dan tanda kuadran:
+
+<MathContainer>
+<BlockMath math="\cos 240^\circ = -\cos 60^\circ = -\tfrac{1}{2}" />
+<BlockMath math="\tan 300^\circ = -\tan 60^\circ = -\sqrt{3}" />
+<BlockMath math="\operatorname{cosec} 150^\circ = \frac{1}{\sin 150^\circ} = \frac{1}{\tfrac{1}{2}} = 2" />
+</MathContainer>
+
+**Pembahasan 2**: Bandingkan dengan <InlineMath math="y = a\cos bx + c" />, dengan <InlineMath math="a = 2" />, <InlineMath math="b = 3" />, dan <InlineMath math="c = -1" />. Amplitudonya <InlineMath math="2" />, periodenya <InlineMath math="\tfrac{360^\circ}{3} = 120^\circ" />, nilai maksimumnya <InlineMath math="2 - 1 = 1" />, dan nilai minimumnya <InlineMath math="-2 - 1 = -3" />.
+
+**Pembahasan 3**: Segitiga acuannya bersisi <InlineMath math="5" />, <InlineMath math="12" />, dan <InlineMath math="13" />. Di kuadran ketiga, sinus dan kosinus **sama-sama negatif**:
+
+<MathContainer>
+<BlockMath math="\sin A = -\tfrac{5}{13}, \qquad \cos A = -\tfrac{12}{13}" />
+<BlockMath math="\sin 2A = 2\left(-\tfrac{5}{13}\right)\left(-\tfrac{12}{13}\right) = \tfrac{120}{169}" />
+</MathContainer>
+
+**Pembahasan 4**: Ubah <InlineMath math="\cos 2x" /> menjadi <InlineMath math="2\cos^2 x - 1" />:
+
+<MathContainer>
+<BlockMath math="2\cos^2 x - \cos x - 1 = 0 \quad \Rightarrow \quad (2\cos x + 1)(\cos x - 1) = 0" />
+<BlockMath math="\cos x = 1 \quad \Rightarrow \quad x = 0^\circ, 360^\circ" />
+<BlockMath math="\cos x = -\tfrac{1}{2} \quad \Rightarrow \quad x = 120^\circ, 240^\circ" />
+</MathContainer>
+
+Cek <InlineMath math="x = 120^\circ" />: <InlineMath math="\cos 240^\circ = -\tfrac{1}{2} = \cos 120^\circ" />.
