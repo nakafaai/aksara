@@ -29,7 +29,10 @@ import {
 // acceptance release must hold them.
 const materialKeys = [
   "material/lesson/biology/biodiversity/bacteria",
+  "material/lesson/chemistry/carbon-compound/homologous-series",
+  "material/lesson/chemistry/redox-equilibrium/redox-cell",
   "material/lesson/chemistry/structure-matter/atom-shell",
+  "material/lesson/chemistry/thermochemistry/heat-of-reaction",
   "material/lesson/mathematics/analytic-geometry/hyperbola",
   "material/lesson/mathematics/exponential-logarithm/exponential-growth",
   "material/lesson/mathematics/function-composition-inverse-function/function-concept",
@@ -37,7 +40,13 @@ const materialKeys = [
   "material/lesson/mathematics/trigonometry/right-triangle-naming",
   "material/lesson/mathematics/trigonometry/trigonometric-comparison-three-primary",
   "material/lesson/mathematics/trigonometry/trigonometry-concept",
+  "material/lesson/physics/electricity/current-resistance",
+  "material/lesson/physics/electromagnetism/induction-transformer",
+  "material/lesson/physics/electronics/diode-transistor",
   "material/lesson/physics/kinematics/parabolic-movement",
+  "material/lesson/physics/nuclear-physics/radioactive-decay",
+  "material/lesson/physics/pressure/fluid-pressure",
+  "material/lesson/physics/quantum-physics/photoelectric-effect",
 ];
 const articleKeys = [
   "articles/politics/merah-putih-cabinet-analysis",
