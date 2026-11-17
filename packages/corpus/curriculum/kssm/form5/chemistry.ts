@@ -1,9 +1,35 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Chemistry chapters, in the order of their DSKP. */
 export const kssmForm5ChemistryTopicNodes = [
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-chemistry-redox-equilibrium-redox-equilibrium",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.redox-equilibrium"],
+        order: 10,
+      }),
+    ],
     key: "form-5-chemistry-redox-equilibrium",
+    materialCard: {
+      de: {
+        description: "Bestimme Oxidationszahlen, baue Zellen, elektrolysiere.",
+        title: "Redoxgleichgewicht",
+      },
+      en: {
+        description: "Find oxidation numbers, build cells and electrolyse.",
+        title: "Redox Equilibrium",
+      },
+      id: {
+        description: "Hitung bilangan oksidasi dan rakit sel elektrokimia.",
+        title: "Kesetimbangan Redoks",
+      },
+      ms: {
+        description: "Kira nombor pengoksidaan dan bina sel elektrokimia.",
+        title: "Keseimbangan Redoks",
+      },
+    },
     order: 10,
     translations: {
       de: { routeSlug: "redoxgleichgewicht", title: "Redoxgleichgewicht" },

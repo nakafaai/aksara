@@ -1,0 +1,322 @@
+export const metadata = {
+  title: "Nota Keseimbangan Redoks Tingkatan Lima",
+  description:
+    "Nota Kimia Tingkatan 5 Bab 1: tentukan nombor pengoksidaan, kira voltan sel kimia, dan ramal hasil elektrolisis dengan contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Keseimbangan Redoks",
+};
+
+## Redoks ialah Pemindahan Elektron
+
+**Tindak balas redoks** ialah tindak balas yang berlaku **pengoksidaan dan penurunan serentak**. Pengoksidaan ialah **kehilangan elektron**, dan penurunan ialah **penerimaan elektron**. Elektron yang dilepaskan oleh satu bahan mesti diterima oleh bahan lain, jadi kedua-dua proses tidak pernah berlaku seorang diri. Voltan sel kimia dikira dengan <InlineMath math="E^\circ_{\text{sel}} = E^\circ_{\text{terminal positif}} - E^\circ_{\text{terminal negatif}}" />. Dalam nota ini kamu bina sel kimia, bandingkan voltannya, dan jalankan elektrolisis untuk melihat hasil di setiap elektrod.
+
+Masukkan kepingan zink ke dalam larutan kuprum(II) sulfat. Zink melarut, dan kuprum perang terenap pada kepingan itu:
+
+<BlockMath math="\mathrm{Zn(s)} + \mathrm{Cu^{2+}(aq)} \rightarrow \mathrm{Zn^{2+}(aq)} + \mathrm{Cu(s)}" />
+
+Pecahkan persamaan itu kepada dua **setengah persamaan**. Atom zink kehilangan dua elektron, jadi zink **dioksidakan**. Ion kuprum(II) menerima dua elektron itu, jadi ion kuprum(II) **diturunkan**:
+
+<MathContainer>
+<BlockMath math="\mathrm{Zn} \rightarrow \mathrm{Zn^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{Cu^{2+}} + 2e^- \rightarrow \mathrm{Cu}" />
+</MathContainer>
+
+Bahan yang menerima elektron dipanggil **agen pengoksidaan**, kerana ia mengoksidakan bahan lain. Di sini agen pengoksidaan ialah ion kuprum(II), dan **agen penurunan** ialah zink. Ingat pasangan ini: agen pengoksidaan sendiri diturunkan.
+
+## Nombor Pengoksidaan Menunjukkan Siapa Dioksidakan
+
+**Nombor pengoksidaan** ialah cas yang dimiliki atom jika semua ikatannya dianggap ion. Unsur bebas bernombor pengoksidaan <InlineMath math="0" />, oksigen dalam kebanyakan sebatian <InlineMath math="-2" />, hidrogen <InlineMath math="+1" />, dan jumlah nombor pengoksidaan dalam sebatian neutral ialah <InlineMath math="0" />. Atom yang nombor pengoksidaannya **bertambah** dioksidakan, dan atom yang nombor pengoksidaannya **berkurang** diturunkan.
+
+Cuba satu contoh. Tentukan bahan yang dioksidakan dan diturunkan dalam tindak balas besi(III) oksida dengan karbon monoksida dalam relau bagas:
+
+<BlockMath math="\mathrm{Fe_2O_3} + 3\mathrm{CO} \rightarrow 2\mathrm{Fe} + 3\mathrm{CO_2}" />
+
+Kira nombor pengoksidaan besi dan karbon pada kedua-dua belah. Biarkan nombor pengoksidaan yang belum diketahui sebagai <InlineMath math="x" />:
+
+<MathContainer>
+<BlockMath math="\mathrm{Fe_2O_3}: 2x + 3(-2) = 0 \Rightarrow x = +3" />
+<BlockMath math="\mathrm{CO}: x + (-2) = 0 \Rightarrow x = +2" />
+<BlockMath math="\mathrm{CO_2}: x + 2(-2) = 0 \Rightarrow x = +4" />
+</MathContainer>
+
+Besi berubah daripada <InlineMath math="+3" /> kepada <InlineMath math="0" />, jadi besi(III) oksida **diturunkan**. Karbon berubah daripada <InlineMath math="+2" /> kepada <InlineMath math="+4" />, jadi karbon monoksida **dioksidakan** dan bertindak sebagai agen penurunan. Semak dengan elektron: dua atom besi menerima <InlineMath math="2 \times 3 = 6" /> elektron, dan tiga atom karbon melepaskan <InlineMath math="3 \times 2 = 6" /> elektron. Bilangannya sama.
+
+## Keupayaan Elektrod Piawai Menyusun Logam
+
+**Keupayaan elektrod piawai**, <InlineMath math="E^\circ" />, mengukur kecenderungan sesuatu spesies menerima elektron, berbanding elektrod hidrogen piawai pada <InlineMath math="0.00\text{ V}" />. Nilai <InlineMath math="E^\circ" /> yang **lebih negatif** bermaksud logam itu lebih mudah melepaskan elektron, jadi logam itu agen penurunan yang lebih kuat. Senarai logam mengikut nilai ini dipanggil **siri elektrokimia**.
+
+<Chart
+  title={<>Keupayaan Elektrod Piawai Lima Logam</>}
+  bars="apart"
+  categories={["Magnesium", "Zink", "Besi", "Kuprum", "Argentum"]}
+  series={[
+    {
+      label: "Keupayaan elektrod piawai",
+      mark: "bar",
+      values: [-2.38, -0.76, -0.44, 0.34, 0.8],
+    },
+  ]}
+  valueLabel="E° (V)"
+  valueRange={{ min: -2.5, max: 1 }}
+  description={
+    <>
+      Nilai pada <InlineMath math="25^\circ\text{C}" /> untuk{" "}
+      <InlineMath math="\mathrm{M^{n+}(aq)} + ne^- \rightleftharpoons \mathrm{M(s)}" />.
+      Magnesium <InlineMath math="-2.38\text{ V}" />, zink{" "}
+      <InlineMath math="-0.76\text{ V}" />, besi <InlineMath math="-0.44\text{ V}" />,
+      kuprum <InlineMath math="+0.34\text{ V}" />, argentum{" "}
+      <InlineMath math="+0.80\text{ V}" />.
+    </>
+  }
+/>
+
+Siri ini meramal **tindak balas penyesaran**. Logam yang lebih elektropositif menyesarkan logam yang kurang elektropositif daripada larutan garamnya. Zink menyesarkan kuprum, tetapi kuprum tidak menyesarkan zink, kerana ion zink tidak boleh menerima elektron daripada kuprum yang nilai <InlineMath math="E^\circ" />nya lebih positif.
+
+## Sel Kimia Menukar Tenaga Kimia kepada Tenaga Elektrik
+
+**Sel kimia**, atau sel volta, memisahkan dua setengah tindak balas supaya elektron terpaksa mengalir melalui wayar. Setiap logam dicelup dalam larutan ionnya sendiri, dan **titian garam** melengkapkan litar dengan membenarkan ion bergerak. Logam yang nilai <InlineMath math="E^\circ" />nya lebih negatif menjadi **terminal negatif**, tempat pengoksidaan berlaku. Pilih logam lain dalam sel di bawah dan baca voltmeter.
+
+<ChemicalCellLab
+  title={<>Sel Kimia Zink dan Kuprum</>}
+  description={
+    <>
+      Zink dalam larutan zink sulfat dan kuprum dalam larutan kuprum(II)
+      sulfat, disambung oleh titian garam. Zink melarut di terminal negatif dan
+      kuprum terenap di terminal positif.
+    </>
+  }
+  metals={["zinc", "copper"]}
+  electrons={0.02}
+  showProducts
+  labels={{
+    atNegative: <>Di terminal negatif</>,
+    atPositive: <>Di terminal positif</>,
+    electrons: <>Elektron yang mengalir</>,
+    halfCells: <>Sel setengah</>,
+    view: "Sel kimia zink dan kuprum dengan titian garam",
+    voltage: <>Voltan sel</>,
+    voltmeter: "V",
+  }}
+/>
+
+Voltan sel dikira daripada beza nilai <InlineMath math="E^\circ" /> kedua-dua logam:
+
+<BlockMath math="E^\circ_{\text{sel}} = E^\circ_{\text{terminal positif}} - E^\circ_{\text{terminal negatif}} = 0.34 - (-0.76) = 1.10\text{ V}" />
+
+Sekarang gantikan zink dengan magnesium. Ramal terminal negatif dan voltan sel, kemudian semak dengan voltmeter di bawah.
+
+Magnesium mempunyai <InlineMath math="E^\circ = -2.38\text{ V}" />, lebih negatif daripada kuprum, jadi magnesium menjadi terminal negatif:
+
+<MathContainer>
+<BlockMath math="\mathrm{Mg} \rightarrow \mathrm{Mg^{2+}} + 2e^-" />
+<BlockMath math="E^\circ_{\text{sel}} = 0.34 - (-2.38) = 2.72\text{ V}" />
+</MathContainer>
+
+<ChemicalCellLab
+  title={<>Sel Kimia Magnesium dan Kuprum</>}
+  description={
+    <>
+      Magnesium dalam larutan magnesium sulfat dan kuprum dalam larutan
+      kuprum(II) sulfat. Ramal bacaan voltmeter sebelum kamu menunjukkan hasil.
+    </>
+  }
+  metals={["magnesium", "copper"]}
+  labels={{
+    atNegative: <>Di terminal negatif</>,
+    atPositive: <>Di terminal positif</>,
+    electrons: <>Elektron yang mengalir</>,
+    halfCells: <>Sel setengah</>,
+    view: "Sel kimia magnesium dan kuprum dengan titian garam",
+    voltage: <>Voltan sel</>,
+    voltmeter: "V",
+  }}
+/>
+
+Semak: semakin jauh dua logam dalam siri elektrokimia, semakin besar voltannya. Jarak magnesium ke kuprum ialah <InlineMath math="2.72\text{ V}" />, lebih besar daripada jarak zink ke kuprum, <InlineMath math="1.10\text{ V}" />. Voltan positif juga menunjukkan tindak balas itu berlaku dengan sendiri.
+
+## Elektrolisis Memaksa Tindak Balas Redoks
+
+**Elektrolisis** ialah penguraian elektrolit oleh arus elektrik. Bateri menolak elektron ke **katod**, tempat kation diturunkan, dan menarik elektron dari **anod**, tempat anion dioksidakan. Dalam larutan akueus, ion daripada air juga bersaing untuk dinyahcas. Tiga faktor menentukan ion yang dipilih: **kedudukan ion dalam siri elektrokimia**, **kepekatan ion**, dan **jenis elektrod**.
+
+Bandingkan dua sel natrium klorida dengan elektrod karbon. Dalam larutan cair, ion hidroksida dinyahcas di anod dan gas oksigen terbebas. Dalam larutan pekat, ion klorida yang banyak dinyahcas, jadi gas klorin terbebas. Di katod kedua-dua sel, ion hidrogen dinyahcas kerana ion natrium terletak jauh lebih tinggi dalam siri elektrokimia.
+
+<ElectrolysisLab
+  title={<>Natrium Klorida Cair dan Pekat</>}
+  description={
+    <>
+      Dua sel bersiri dengan elektrod karbon. Hasil di anod berubah apabila
+      kepekatan ion klorida bertambah, manakala katod kedua-dua sel membebaskan
+      hidrogen.
+    </>
+  }
+  cells={[
+    { electrode: "carbon", electrolyte: "sodium-chloride-dilute" },
+    { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anod",
+    atAnode: <>Di anod</>,
+    atCathode: <>Di katod</>,
+    battery: "Bateri",
+    cathode: "Katod",
+    cells: [<>Sel P: natrium klorida cair</>, <>Sel Q: natrium klorida pekat</>],
+    electrons: <>Elektron yang mengalir</>,
+    ph: <>pH elektrolit</>,
+    trends: { falls: <>berkurang</>, rises: <>bertambah</>, steady: <>tidak berubah</> },
+    view: "Dua sel elektrolisis natrium klorida yang disambung secara bersiri",
+  }}
+/>
+
+Jenis elektrod pula mengubah hasil di anod. Dengan anod karbon, larutan kuprum(II) sulfat membebaskan oksigen dan warna birunya pudar. Dengan anod kuprum, **anod itu sendiri melarut** sebagai ion kuprum(II), jadi warna biru kekal. Prinsip inilah yang digunakan untuk menulenkan kuprum dan menyadur logam.
+
+<ElectrolysisLab
+  title={<>Kuprum(II) Sulfat dengan Anod Kuprum dan Anod Karbon</>}
+  description={
+    <>
+      Dalam sel P, anod kuprum melarut sepantas kuprum terenap di katod. Dalam
+      sel Q, anod karbon membebaskan oksigen dan ion kuprum(II) berkurang.
+    </>
+  }
+  cells={[
+    { electrode: "copper", electrolyte: "copper-sulfate" },
+    { electrode: "carbon", electrolyte: "copper-sulfate" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anod",
+    atAnode: <>Di anod</>,
+    atCathode: <>Di katod</>,
+    battery: "Bateri",
+    cathode: "Katod",
+    cells: [<>Sel P: elektrod kuprum</>, <>Sel Q: elektrod karbon</>],
+    electrons: <>Elektron yang mengalir</>,
+    ph: <>pH elektrolit</>,
+    trends: { falls: <>berkurang</>, rises: <>bertambah</>, steady: <>tidak berubah</> },
+    view: "Dua sel elektrolisis kuprum(II) sulfat yang disambung secara bersiri",
+  }}
+/>
+
+Elektrolisis juga boleh dikira. Sebanyak <InlineMath math="0.10\text{ mol}" /> elektron mengalir melalui sel kuprum(II) sulfat dan sel argentum nitrat yang disambung bersiri. Hitung jisim logam yang terenap pada setiap katod. Jisim atom relatif kuprum ialah <InlineMath math="64" /> dan argentum <InlineMath math="108" />.
+
+**Tulis setengah persamaan dulu**, kerana nisbah mol elektron kepada logam datang daripadanya:
+
+<MathContainer>
+<BlockMath math="\mathrm{Cu^{2+}} + 2e^- \rightarrow \mathrm{Cu}: \quad n(\mathrm{Cu}) = \frac{0.10}{2} = 0.050\text{ mol}, \quad m = 0.050 \times 64 = 3.2\text{ g}" />
+<BlockMath math="\mathrm{Ag^+} + e^- \rightarrow \mathrm{Ag}: \quad n(\mathrm{Ag}) = 0.10\text{ mol}, \quad m = 0.10 \times 108 = 10.8\text{ g}" />
+</MathContainer>
+
+Gerakkan gelangsar bilangan mol elektron dan bandingkan dua garis jisim. Garis argentum lebih curam kerana setiap ion argentum memerlukan satu elektron sahaja.
+
+<MathVisual
+  title={<>Jisim Kuprum dan Argentum Melawan Mol Elektron</>}
+  description={
+    <>
+      Jisim kuprum ialah <InlineMath math="m = 32n" /> dan jisim argentum ialah{" "}
+      <InlineMath math="m = 108n" />, dengan <InlineMath math="n" /> bilangan mol
+      elektron. Pada <InlineMath math="n = 0.10" />, kuprum{" "}
+      <InlineMath math="3.2\text{ g}" /> dan argentum <InlineMath math="10.8\text{ g}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 0, max: 0.5, value: 0.1, step: 0.01, label: "n" },
+    ],
+    objects: [
+      { id: "copper", kind: "function", appearance: "primary", formula: "32x", domain: { min: 0, max: 0.5 } },
+      { id: "silver", kind: "function", appearance: "secondary", formula: "108x", domain: { min: 0, max: 0.5 } },
+      { id: "copper-now", kind: "marker", x: "n", y: "32n", appearance: "warning" },
+      { id: "silver-now", kind: "marker", x: "n", y: "108n", appearance: "answer" },
+    ],
+    labels: [
+      { key: "copper", objectId: "copper", at: { x: 0.5, y: 16 }, placement: "above-left" },
+      { key: "silver", objectId: "silver", at: { x: 0.45, y: 48.6 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "copper-mass", formula: "32n" },
+      { key: "silver-mass", formula: "108n" },
+    ],
+  }}
+  labels={{
+    n: <>Mol elektron <InlineMath math="n" /></>,
+    copper: <>Kuprum</>,
+    silver: <>Argentum</>,
+    "copper-mass": <>Jisim kuprum dalam <InlineMath math="\text{g}" /></>,
+    "silver-mass": <>Jisim argentum dalam <InlineMath math="\text{g}" /></>,
+  }}
+/>
+
+Semak: nisbah jisim argentum kepada kuprum ialah <InlineMath math="10.8 \div 3.2 \approx 3.4" />, sama dengan <InlineMath math="108 \div 32" /> pada setiap nilai <InlineMath math="n" />.
+
+## Pengekstrakan Logam dan Pengaratan Besi
+
+Logam yang kurang elektropositif daripada karbon diekstrak dengan **penurunan oleh karbon**. Besi diekstrak dalam relau bagas, dengan karbon monoksida menurunkan besi(III) oksida seperti contoh tadi. Logam yang lebih elektropositif daripada karbon, seperti aluminium, tidak boleh diturunkan oleh karbon, jadi aluminium diekstrak melalui **elektrolisis aluminium oksida lebur**.
+
+**Pengaratan** ialah pengoksidaan besi oleh oksigen dan air. Pada titisan air di atas permukaan besi, besi di tengah titisan dioksidakan dan oksigen di tepi titisan diturunkan:
+
+<MathContainer>
+<BlockMath math="\mathrm{Fe} \rightarrow \mathrm{Fe^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{O_2} + 2\mathrm{H_2O} + 4e^- \rightarrow 4\mathrm{OH^-}" />
+</MathContainer>
+
+Ion besi(II) dan ion hidroksida membentuk besi(II) hidroksida, yang dioksidakan lagi menjadi karat, <InlineMath math="\mathrm{Fe_2O_3 \cdot xH_2O}" />. Besi boleh dilindungi dengan mengikatnya pada logam yang **lebih elektropositif**, seperti zink atau magnesium. Logam itu dioksidakan dahulu, jadi besi tidak berkarat. Kaedah ini dipanggil **perlindungan korban**, dan digunakan pada badan kapal dan paip bawah tanah.
+
+## Kesilapan Lazim tentang Redoks
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Agen pengoksidaan ialah bahan yang dioksidakan. | Agen pengoksidaan menerima elektron, jadi ia sendiri diturunkan. | Cari bahan yang nombor pengoksidaannya berkurang. |
+| Dalam sel kimia, kuprum menjadi terminal negatif kerana kuprum terenap. | Terminal negatif ialah tempat elektron dilepaskan, iaitu logam yang nilai <InlineMath math="E^\circ" />nya lebih negatif. | Bandingkan nilai <InlineMath math="E^\circ" /> kedua-dua logam. |
+| Voltan sel ialah hasil tambah dua nilai <InlineMath math="E^\circ" />. | Voltan ialah beza, <InlineMath math="E^\circ_{\text{positif}} - E^\circ_{\text{negatif}}" />. | Sel zink dan kuprum mesti memberi <InlineMath math="1.10\text{ V}" />. |
+| Elektrolisis natrium klorida akueus menghasilkan natrium di katod. | Ion hidrogen lebih mudah diturunkan daripada ion natrium. | Lihat kedudukan natrium dalam siri elektrokimia. |
+| Sel bersiri menerima mol logam yang sama. | Sel bersiri menerima **mol elektron** yang sama, dan nisbah mol logam bergantung pada cas ion. | Tulis setengah persamaan setiap katod. |
+
+Kesilapan pertama paling kerap muncul dalam soalan objektif. Ingat ayat ini: **agen pengoksidaan diturunkan, agen penurunan dioksidakan**.
+
+## Latihan Keseimbangan Redoks
+
+Soalan ini bergerak daripada nombor pengoksidaan kepada sel kimia dan elektrolisis. **Tulis setengah persamaan** pada setiap soalan supaya pemindahan elektron jelas.
+
+1. Hitung nombor pengoksidaan mangan dalam kalium manganat(VII), <InlineMath math="\mathrm{KMnO_4}" />.
+
+2. Satu sel kimia dibina daripada besi dalam larutan besi(II) sulfat dan kuprum dalam larutan kuprum(II) sulfat. Nyatakan terminal negatif dan hitung voltan sel.
+
+3. Larutan natrium klorida pekat dielektrolisis dengan elektrod karbon. Namakan hasil di anod dan di katod, dan terangkan pilihan ion di anod.
+
+4. Seketul zink diikat pada badan kapal besi. Terangkan sebab besi itu tidak berkarat walaupun catnya tercalar.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Kalium bernombor pengoksidaan <InlineMath math="+1" /> dan setiap oksigen <InlineMath math="-2" />. Jumlahnya dalam sebatian neutral ialah <InlineMath math="0" />:
+
+<BlockMath math="(+1) + x + 4(-2) = 0 \Rightarrow x = +7" />
+
+Semak dengan nama sebatian: angka Roman dalam kalium manganat(VII) memang <InlineMath math="+7" />.
+
+**Penyelesaian 2**: Besi mempunyai <InlineMath math="E^\circ = -0.44\text{ V}" />, lebih negatif daripada kuprum, jadi **besi menjadi terminal negatif** dan dioksidakan:
+
+<BlockMath math="E^\circ_{\text{sel}} = 0.34 - (-0.44) = 0.78\text{ V}" />
+
+Semak dengan siri elektrokimia: besi terletak antara zink dan kuprum, jadi voltannya mesti kurang daripada <InlineMath math="1.10\text{ V}" />. Memang <InlineMath math="0.78\text{ V}" /> lebih kecil.
+
+**Penyelesaian 3**: Di anod terbebas **gas klorin**, dan di katod terbebas **gas hidrogen**:
+
+<MathContainer>
+<BlockMath math="2\mathrm{Cl^-} \rightarrow \mathrm{Cl_2} + 2e^-" />
+<BlockMath math="2\mathrm{H^+} + 2e^- \rightarrow \mathrm{H_2}" />
+</MathContainer>
+
+Ion hidroksida biasanya lebih mudah dinyahcas, tetapi dalam larutan pekat kepekatan ion klorida jauh lebih tinggi, jadi ion klorida yang dipilih. Di katod, ion hidrogen dipilih kerana ion natrium jauh lebih sukar diturunkan.
+
+**Penyelesaian 4**: Zink lebih elektropositif daripada besi, <InlineMath math="-0.76\text{ V}" /> berbanding <InlineMath math="-0.44\text{ V}" />. Apabila air dan oksigen sampai ke logam, **zink yang dioksidakan dahulu** dan melepaskan elektron kepada besi:
+
+<BlockMath math="\mathrm{Zn} \rightarrow \mathrm{Zn^{2+}} + 2e^-" />
+
+Elektron itu menurunkan oksigen pada permukaan besi, jadi besi tidak kehilangan elektron dan tidak membentuk ion besi(II). Zink itu semakin habis, jadi ketulan zink perlu diganti dari semasa ke semasa.
