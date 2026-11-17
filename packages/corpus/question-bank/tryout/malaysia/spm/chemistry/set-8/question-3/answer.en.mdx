@@ -1,0 +1,25 @@
+# Find which gases are present at each temperature, then use the molar volume for that temperature
+
+Butane is <InlineMath math="2.90\div58=0.0500\text{ mol}" /> and oxygen <InlineMath math="9.60\div24=0.400\text{ mol}" />. <InlineMath math="2\text{C}_4\text{H}_{10}+13\text{O}_2\rightarrow8\text{CO}_2+10\text{H}_2\text{O}" /> uses <InlineMath math="0.325\text{ mol}" /> of oxygen, so <InlineMath math="0.075\text{ mol}" /> is left, with <InlineMath math="0.200\text{ mol}" /> of carbon dioxide and <InlineMath math="0.250\text{ mol}" /> of steam. **At <InlineMath math="100^\circ\text{C}" /> all <InlineMath math="0.525\text{ mol}" /> are gas, and one mole fills <InlineMath math="30.6\text{ dm}^3" />**, so the gas is <InlineMath math="16.1\text{ dm}^3" />. **At room conditions the steam condenses**, leaving <InlineMath math="0.275\text{ mol}" /> of carbon dioxide and oxygen, <InlineMath math="6.60\text{ dm}^3" />.
+
+<Chart
+  title={<>Gases in the hot mixture</>}
+  description={<>Carbon dioxide is <InlineMath math="0.200\text{ mol}" />, steam <InlineMath math="0.250\text{ mol}" /> and leftover oxygen <InlineMath math="0.075\text{ mol}" />.</>}
+  bars="apart"
+  categories={["Carbon dioxide", "Steam", "Oxygen left over"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [0.200, 0.250, 0.075] },
+  ]}
+  valueLabel="Amount (mol)"
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{O}_2)_{\text{left}}&=0.400-6.5(0.0500)=0.075\text{ mol},\quad n_{\text{gas}}=0.200+0.250+0.075=0.525\text{ mol}\\
+V_{100^\circ\text{C}}&=0.525\times30.6=16.1\text{ dm}^3,\quad V_{\text{room}}=(0.200+0.075)\times24=6.60\text{ dm}^3
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="12.6\text{ dm}^3" /> uses <InlineMath math="24\text{ dm}^3" />, the molar volume at room conditions, for the hot gases. **At <InlineMath math="100^\circ\text{C}" /> one mole fills <InlineMath math="30.6\text{ dm}^3" />**.
+- <InlineMath math="12.6\text{ dm}^3" /> after cooling still counts the water as a gas, but it condenses to a liquid at room conditions.
+- <InlineMath math="13.8\text{ dm}^3" /> and <InlineMath math="4.80\text{ dm}^3" /> forget the leftover oxygen. <InlineMath math="0.400\text{ mol}" /> is supplied but only <InlineMath math="0.325\text{ mol}" /> reacts.
