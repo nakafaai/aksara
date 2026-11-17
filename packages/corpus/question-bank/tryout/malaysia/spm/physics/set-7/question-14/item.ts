@@ -10,19 +10,45 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$1.0\\text{ m}$$ and $$0.67\\text{ m}$$" },
-        { correct: false, label: "$$2.0\\text{ m}$$ and $$1.3\\text{ m}$$" },
-        { correct: false, label: "$$1.0\\text{ m}$$ and $$1.5\\text{ m}$$" },
-        { correct: false, label: "$$0.50\\text{ m}$$ and $$0.33\\text{ m}$$" },
+        {
+          correct: true,
+          label: "$$1.0\\text{ m}$$, $$0.67\\text{ m}$$ and $$330\\text{ Hz}$$",
+        },
+        {
+          correct: false,
+          label: "$$2.0\\text{ m}$$, $$1.3\\text{ m}$$ and $$660\\text{ Hz}$$",
+        },
+        {
+          correct: false,
+          label: "$$1.0\\text{ m}$$, $$1.5\\text{ m}$$ and $$1320\\text{ Hz}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.50\\text{ m}$$, $$0.33\\text{ m}$$ and $$165\\text{ Hz}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$1.0\\text{ m}$$ dan $$0.67\\text{ m}$$" },
-        { correct: false, label: "$$2.0\\text{ m}$$ dan $$1.3\\text{ m}$$" },
-        { correct: false, label: "$$1.0\\text{ m}$$ dan $$1.5\\text{ m}$$" },
-        { correct: false, label: "$$0.50\\text{ m}$$ dan $$0.33\\text{ m}$$" },
+        {
+          correct: true,
+          label: "$$1.0\\text{ m}$$, $$0.67\\text{ m}$$ dan $$330\\text{ Hz}$$",
+        },
+        {
+          correct: false,
+          label: "$$2.0\\text{ m}$$, $$1.3\\text{ m}$$ dan $$660\\text{ Hz}$$",
+        },
+        {
+          correct: false,
+          label: "$$1.0\\text{ m}$$, $$1.5\\text{ m}$$ dan $$1320\\text{ Hz}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.50\\text{ m}$$, $$0.33\\text{ m}$$ dan $$165\\text{ Hz}$$",
+        },
       ],
     },
   },

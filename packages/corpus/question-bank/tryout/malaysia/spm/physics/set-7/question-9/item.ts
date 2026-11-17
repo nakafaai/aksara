@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$ and $$3.0\\text{ h}$$",
+          label:
+            "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$, $$3.0\\text{ h}$$ and $$3.0\\text{ km s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$ and $$12\\text{ h}$$",
+          label:
+            "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$, $$12\\text{ h}$$ and $$0.75\\text{ km s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$1.2\\times10^{3}\\text{ kg m}^{-3}$$ and $$4.2\\text{ h}$$",
+          label:
+            "$$1.2\\times10^{3}\\text{ kg m}^{-3}$$, $$4.2\\text{ h}$$ and $$2.1\\text{ km s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$ and $$4.2\\text{ h}$$",
+          label:
+            "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$, $$4.2\\text{ h}$$ and $$2.1\\text{ km s}^{-1}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$ dan $$3.0\\text{ j}$$",
+          label:
+            "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$, $$3.0\\text{ h}$$ dan $$3.0\\text{ km s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$ dan $$12\\text{ j}$$",
+          label:
+            "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$, $$12\\text{ h}$$ dan $$0.75\\text{ km s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$1.2\\times10^{3}\\text{ kg m}^{-3}$$ dan $$4.2\\text{ j}$$",
+          label:
+            "$$1.2\\times10^{3}\\text{ kg m}^{-3}$$, $$4.2\\text{ h}$$ dan $$2.1\\text{ km s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$ dan $$4.2\\text{ j}$$",
+          label:
+            "$$4.8\\times10^{3}\\text{ kg m}^{-3}$$, $$4.2\\text{ h}$$ dan $$2.1\\text{ km s}^{-1}$$",
         },
       ],
     },
