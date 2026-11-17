@@ -1,0 +1,334 @@
+export const metadata = {
+  title: "Koordinatengeometrie für Form Vier",
+  description:
+    "Notizen zu KSSM Zusatzmathematik Form 4 Kapitel 7: Finde den Teilungspunkt einer Strecke, nutze die Steigungen paralleler und senkrechter Geraden, berechne Vielecksflächen und stelle die Gleichung einer Ortslinie auf.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Koordinatengeometrie",
+};
+
+## Vier Werkzeuge im Koordinatensystem
+
+Koordinatengeometrie löst Aufgaben über Figuren mit Zahlen. Dieses Kapitel gibt dir vier Werkzeuge:
+
+1. **Teilungspunkt**: Der Punkt, der die Strecke <InlineMath math="AB" /> im Verhältnis <InlineMath math="m : n" /> teilt, ist <InlineMath math="\left(\dfrac{nx_1 + mx_2}{m + n}, \dfrac{ny_1 + my_2}{m + n}\right)" />.
+2. **Parallele und senkrechte Geraden**: Parallele Geraden haben gleiche Steigungen, <InlineMath math="m_1 = m_2" />, senkrechte Geraden erfüllen <InlineMath math="m_1 m_2 = -1" />.
+3. **Fläche eines Vielecks**: Ordne die Eckpunkte der Reihe nach und nutze die Gaußsche Trapezformel.
+4. **Ortslinie**: Schreib die Regel, der der bewegte Punkt <InlineMath math="P(x, y)" /> folgt, mit Abständen und vereinfache sie zu einer Gleichung.
+
+In diesen Notizen schiebst du einen Punkt entlang einer Strecke, drehst eine Gerade, bis sie senkrecht steht, ziehst an der Ecke eines Dreiecks und verfolgst einen Punkt, der sich nach einer Abstandsregel bewegt.
+
+## Der Teilungspunkt einer Strecke
+
+Der Punkt <InlineMath math="P" /> teilt die Strecke <InlineMath math="AB" /> im Verhältnis <InlineMath math="m : n" />, wenn <InlineMath math="AP : PB = m : n" /> gilt. Für <InlineMath math="A(x_1, y_1)" /> und <InlineMath math="B(x_2, y_2)" />:
+
+<BlockMath math="P = \left(\frac{nx_1 + mx_2}{m + n}, \frac{ny_1 + my_2}{m + n}\right)" />
+
+In der Formel gehört <InlineMath math="n" /> zu den Koordinaten von <InlineMath math="A" /> und <InlineMath math="m" /> zu den Koordinaten von <InlineMath math="B" />. **Der größere Teil des Verhältnisses zieht <InlineMath math="P" /> zu dem Punkt, der von ihm weit entfernt ist**. Ändere <InlineMath math="m" /> und <InlineMath math="n" /> unten für <InlineMath math="A(-2, 1)" /> und <InlineMath math="B(6, 5)" />.
+
+<MathVisual
+  title={<>Der Punkt, der <InlineMath math="AB" /> teilt</>}
+  description={
+    <>
+      Der Punkt <InlineMath math="P" /> teilt <InlineMath math="AB" /> im
+      Verhältnis <InlineMath math="m : n" />. Bei <InlineMath math="3 : 1" />{" "}
+      liegt <InlineMath math="P" /> bei <InlineMath math="(4, 4)" />, drei
+      Viertel des Wegs von <InlineMath math="A" /> nach <InlineMath math="B" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "m", min: 1, max: 5, value: 3, step: 1, label: "m" },
+      { name: "n", min: 1, max: 5, value: 1, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "segment", kind: "segment", from: { x: -2, y: 1 }, to: { x: 6, y: 5 }, appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: -2, y: 1 }, appearance: "reference" },
+      { id: "end", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "divider", kind: "marker", x: "(-2*n + 6*m)/(m + n)", y: "(n + 5*m)/(m + n)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "divider-x", formula: "(-2*n + 6*m)/(m + n)" },
+      { key: "divider-y", formula: "(n + 5*m)/(m + n)" },
+    ],
+  }}
+  labels={{
+    m: <>Teil <InlineMath math="m" /> für <InlineMath math="AP" /></>,
+    n: <>Teil <InlineMath math="n" /> für <InlineMath math="PB" /></>,
+    "divider-x": <><InlineMath math="x" />-Koordinate von <InlineMath math="P" /></>,
+    "divider-y": <><InlineMath math="y" />-Koordinate von <InlineMath math="P" /></>,
+  }}
+/>
+
+Prüfe den Startwert mit der Formel, <InlineMath math="m = 3" /> und <InlineMath math="n = 1" />:
+
+<BlockMath math="P = \left(\frac{1 \cdot (-2) + 3 \cdot 6}{3 + 1}, \frac{1 \cdot 1 + 3 \cdot 5}{3 + 1}\right) = \left(\frac{16}{4}, \frac{16}{4}\right) = (4, 4)" />
+
+Bei <InlineMath math="m = n" /> wird die Formel zum Mittelpunkt <InlineMath math="\left(\dfrac{x_1 + x_2}{2}, \dfrac{y_1 + y_2}{2}\right)" />. Für diese Strecke ist der Mittelpunkt <InlineMath math="(2, 3)" />.
+
+## Parallele und senkrechte Geraden
+
+Zwei Geraden sind **parallel**, wenn ihre Steigungen gleich sind. Zwei Geraden stehen **senkrecht** aufeinander, wenn das Produkt ihrer Steigungen <InlineMath math="-1" /> ist, die eine Steigung also der negative Kehrwert der anderen. Die feste Gerade unten ist <InlineMath math="y = 2x + 1" />. Dreh die zweite Gerade durch <InlineMath math="(4, 4)" />, indem du ihre Steigung <InlineMath math="k" /> änderst.
+
+<MathVisual
+  title={<>Eine Gerade durch <InlineMath math="(4, 4)" /> und die Gerade <InlineMath math="y = 2x + 1" /></>}
+  description={
+    <>
+      Die zweite Gerade ist parallel zu <InlineMath math="y = 2x + 1" /> bei{" "}
+      <InlineMath math="k = 2" /> und senkrecht bei{" "}
+      <InlineMath math="k = -\tfrac{1}{2}" />, weil das Produkt der Steigungen
+      dann <InlineMath math="-1" /> ist.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -4, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -3, max: 3, value: 1, step: 0.25, label: "k" },
+    ],
+    objects: [
+      { id: "given", kind: "function", appearance: "secondary", formula: "2*x + 1", domain: { min: -2, max: 5.5 } },
+      { id: "turning", kind: "function", appearance: "primary", formula: "k*(x - 4) + 4", domain: { min: -2, max: 8 } },
+      { id: "pivot", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "product", formula: "2*k" },
+    ],
+  }}
+  labels={{
+    k: <>Steigung der zweiten Geraden, <InlineMath math="k" /></>,
+    product: <>Produkt der Steigungen <InlineMath math="2k" /></>,
+  }}
+/>
+
+Bestimme die Gleichung der Geraden durch <InlineMath math="(4, 4)" />, die senkrecht auf <InlineMath math="y = 2x + 1" /> steht. Ihre Steigung ist <InlineMath math="-\dfrac{1}{2}" />, denn <InlineMath math="2 \cdot \left(-\dfrac{1}{2}\right) = -1" />:
+
+<MathContainer>
+<BlockMath math="y - 4 = -\frac{1}{2}(x - 4)" />
+<BlockMath math="y = -\frac{1}{2}x + 6" />
+</MathContainer>
+
+Probe: Bei <InlineMath math="x = 4" /> ist <InlineMath math="y = -2 + 6 = 4" />, die Gerade geht also durch den gegebenen Punkt.
+
+## Die Fläche eines Vielecks
+
+Für ein Vieleck mit den Eckpunkten <InlineMath math="(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)" />, der Reihe nach im oder gegen den Uhrzeigersinn geordnet, gilt:
+
+<BlockMath math="\text{Fläche} = \frac{1}{2}\left|(x_1y_2 + x_2y_3 + \cdots + x_ny_1) - (y_1x_2 + y_2x_3 + \cdots + y_nx_1)\right|" />
+
+Das ist die **Gaußsche Trapezformel**, auch Schnürsenkelformel genannt, weil sich die Kreuzprodukte wie ein Schnürsenkel verschränken. Wiederhole den ersten Eckpunkt am Ende der Liste, damit kein Paar fehlt. Zieh den Eckpunkt <InlineMath math="C" /> des Dreiecks unten. Die Fläche wird null, wenn <InlineMath math="C" /> auf der Geraden <InlineMath math="AB" /> liegt, denn drei Punkte auf einer Geraden bilden kein Dreieck.
+
+<MathVisual
+  title={<>Die Fläche eines Dreiecks mit beweglicher Ecke</>}
+  description={
+    <>
+      Das Dreieck <InlineMath math="A(1, 1)" />, <InlineMath math="B(7, 2)" /> und{" "}
+      <InlineMath math="C(p, q)" />. Die Trapezformel ergibt die Fläche{" "}
+      <InlineMath math="\tfrac{1}{2}\left|6q - p - 5\right|" />. Für{" "}
+      <InlineMath math="C(4, 6)" /> beträgt sie <InlineMath math="13{,}5" />{" "}
+      Flächeneinheiten.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 8, value: 4, step: 0.5, label: "p" },
+      { name: "q", min: 0, max: 8, value: 6, step: 0.5, label: "q" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "1", y: "1" }, { x: "7", y: "2" }, { x: "p", y: "q" }], appearance: "primary" },
+      { id: "first-vertex", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "second-vertex", kind: "point", at: { x: 7, y: 2 }, appearance: "reference" },
+      { id: "moving-vertex", kind: "marker", x: "p", y: "q", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "abs(6*q - p - 5)/2" },
+    ],
+  }}
+  labels={{
+    p: <><InlineMath math="x" />-Koordinate von <InlineMath math="C" /></>,
+    q: <><InlineMath math="y" />-Koordinate von <InlineMath math="C" /></>,
+    area: <>Fläche in Flächeneinheiten</>,
+  }}
+/>
+
+Wende dieselbe Formel auf das Viereck mit den Eckpunkten <InlineMath math="(1, 1)" />, <InlineMath math="(7, 2)" />, <InlineMath math="(6, 6)" /> und <InlineMath math="(2, 5)" /> an, gegen den Uhrzeigersinn:
+
+<MathContainer>
+<BlockMath math="x_1y_2 + x_2y_3 + x_3y_4 + x_4y_1 = 1 \cdot 2 + 7 \cdot 6 + 6 \cdot 5 + 2 \cdot 1 = 76" />
+<BlockMath math="y_1x_2 + y_2x_3 + y_3x_4 + y_4x_1 = 1 \cdot 7 + 2 \cdot 6 + 6 \cdot 2 + 5 \cdot 1 = 36" />
+<BlockMath math="\text{Fläche} = \frac{1}{2}\left|76 - 36\right| = 20 \text{ FE}" />
+</MathContainer>
+
+Stehen die Eckpunkte nicht der Reihe nach, zum Beispiel mit vertauschtem dritten und vierten Punkt, liefert die Formel einen falschen Wert, weil sich die Seiten des Vielecks kreuzen.
+
+## Die Gleichung einer Ortslinie
+
+Eine **Ortslinie** ist die Bahn eines Punkts <InlineMath math="P(x, y)" />, der sich nach einer Regel bewegt. Um ihre Gleichung zu finden, schreibst du die Regel mit der Abstandsformel <InlineMath math="\sqrt{(x - x_1)^2 + (y - y_1)^2}" />, quadrierst, um die Wurzeln loszuwerden, und vereinfachst.
+
+### Gleicher Abstand von zwei Punkten
+
+Der Punkt <InlineMath math="P" /> bewegt sich so, dass <InlineMath math="PA = PB" /> gilt, für <InlineMath math="A(1, 2)" /> und <InlineMath math="B(5, 6)" />:
+
+<MathContainer>
+<BlockMath math="(x - 1)^2 + (y - 2)^2 = (x - 5)^2 + (y - 6)^2" />
+<BlockMath math="-2x + 1 - 4y + 4 = -10x + 25 - 12y + 36" />
+<BlockMath math="8x + 8y = 56 \quad \Rightarrow \quad y = 7 - x" />
+</MathContainer>
+
+Diese Ortslinie ist die **Mittelsenkrechte** von <InlineMath math="AB" />. Schieb <InlineMath math="P" /> entlang der Geraden und vergleiche die beiden Abstände.
+
+<MathVisual
+  title={<>Die Ortslinie gleichen Abstands von <InlineMath math="A" /> und <InlineMath math="B" /></>}
+  description={
+    <>
+      Der Punkt <InlineMath math="P(p, 7 - p)" /> auf der Geraden{" "}
+      <InlineMath math="y = 7 - x" />. Die Abstände <InlineMath math="PA" /> und{" "}
+      <InlineMath math="PB" /> sind immer gleich, und die Gerade steht senkrecht
+      auf <InlineMath math="AB" /> durch den Mittelpunkt{" "}
+      <InlineMath math="(3, 4)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: -1, max: 7, value: 1, step: 0.25, label: "p" },
+    ],
+    objects: [
+      { id: "locus", kind: "function", appearance: "primary", formula: "7 - x", domain: { min: -1, max: 8 } },
+      { id: "chord", kind: "segment", from: { x: 1, y: 2 }, to: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "links", kind: "path", points: [{ x: "1", y: "2" }, { x: "p", y: "7 - p" }, { x: "5", y: "6" }], appearance: "construction" },
+      { id: "first-fixed", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second-fixed", kind: "point", at: { x: 5, y: 6 }, appearance: "secondary" },
+      { id: "moving", kind: "marker", x: "p", y: "7 - p", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "to-first", formula: "sqrt((p - 1)^2 + (5 - p)^2)" },
+      { key: "to-second", formula: "sqrt((p - 5)^2 + (1 - p)^2)" },
+    ],
+  }}
+  labels={{
+    p: <><InlineMath math="x" />-Koordinate von <InlineMath math="P" /></>,
+    "to-first": <>Abstand <InlineMath math="PA" /></>,
+    "to-second": <>Abstand <InlineMath math="PB" /></>,
+  }}
+/>
+
+### Ein festes Abstandsverhältnis
+
+Jetzt bewegt sich <InlineMath math="P" /> so, dass <InlineMath math="PA : PB = 2 : 1" /> gilt, für <InlineMath math="A(0, 0)" /> und <InlineMath math="B(6, 0)" />. Die Regel <InlineMath math="PA = 2PB" /> ergibt:
+
+<MathContainer>
+<BlockMath math="x^2 + y^2 = 4\left[(x - 6)^2 + y^2\right]" />
+<BlockMath math="3x^2 + 3y^2 - 48x + 144 = 0" />
+<BlockMath math="x^2 + y^2 - 16x + 48 = 0 \quad \Rightarrow \quad (x - 8)^2 + y^2 = 16" />
+</MathContainer>
+
+Diese Ortslinie ist ein Kreis mit dem Mittelpunkt <InlineMath math="(8, 0)" /> und dem Radius <InlineMath math="4" />. Schieb <InlineMath math="P" /> um den Kreis. Die Werte von <InlineMath math="PA" /> und <InlineMath math="PB" /> ändern sich, aber **ihr Verhältnis bleibt** <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Die Ortslinie mit <InlineMath math="PA : PB = 2 : 1" /></>}
+  description={
+    <>
+      Der Punkt <InlineMath math="P" /> auf dem Kreis{" "}
+      <InlineMath math="(x - 8)^2 + y^2 = 16" />. In jeder Lage ist{" "}
+      <InlineMath math="PA" /> doppelt so groß wie <InlineMath math="PB" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 6.28, value: 2, step: 0.02, label: "s" },
+    ],
+    objects: [
+      { id: "locus", kind: "implicit", appearance: "primary", equation: "(x - 8)^2 + y^2 = 16" },
+      { id: "links", kind: "path", points: [{ x: "0", y: "0" }, { x: "8 + 4*cos(s)", y: "4*sin(s)" }, { x: "6", y: "0" }], appearance: "construction" },
+      { id: "first-fixed", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "second-fixed", kind: "point", at: { x: 6, y: 0 }, appearance: "secondary" },
+      { id: "moving", kind: "marker", x: "8 + 4*cos(s)", y: "4*sin(s)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "to-first", formula: "sqrt((8 + 4*cos(s))^2 + (4*sin(s))^2)" },
+      { key: "to-second", formula: "sqrt((2 + 4*cos(s))^2 + (4*sin(s))^2)" },
+      { key: "ratio", formula: "sqrt((8 + 4*cos(s))^2 + (4*sin(s))^2)/sqrt((2 + 4*cos(s))^2 + (4*sin(s))^2)" },
+    ],
+  }}
+  labels={{
+    s: <>Winkel der Lage von <InlineMath math="P" /> im Bogenmaß</>,
+    "to-first": <>Abstand <InlineMath math="PA" /></>,
+    "to-second": <>Abstand <InlineMath math="PB" /></>,
+    ratio: <>Verhältnis <InlineMath math="PA : PB" /></>,
+  }}
+/>
+
+Prüfe einen Punkt: <InlineMath math="(4, 0)" /> liegt auf dem Kreis, mit <InlineMath math="PA = 4" /> und <InlineMath math="PB = 2" />. Das Verhältnis ist <InlineMath math="2 : 1" />.
+
+## Häufige Fehler in der Koordinatengeometrie
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| In der Teilungsformel <InlineMath math="m" /> mit den Koordinaten von <InlineMath math="A" /> multiplizieren. | Der Teil <InlineMath math="m" /> gehört zu den Koordinaten von <InlineMath math="B" />. | <InlineMath math="P" /> muss näher an dem Punkt mit dem kleineren Teil liegen. |
+| Senkrechte Steigungen nur mit umgekehrtem Vorzeichen nehmen, etwa <InlineMath math="2" /> und <InlineMath math="-2" />. | Die senkrechte Steigung ist der negative Kehrwert, <InlineMath math="-\dfrac{1}{2}" />. | Multipliziere beide Steigungen und prüfe, ob <InlineMath math="-1" /> herauskommt. |
+| Die Eckpunkte eines Vielecks in der Trapezformel beliebig ordnen. | Ungeordnete Eckpunkte ergeben ein Vieleck mit sich kreuzenden Seiten. | Skizziere die Eckpunkte zuerst und folge einer Richtung. |
+| Den Betrag in der Flächenformel vergessen. | Eine Reihenfolge im Uhrzeigersinn liefert einen negativen Wert. | Eine Fläche ist immer positiv. |
+| Bei einer Ortslinie mit Verhältnis nicht beide Seiten quadrieren. | Das Verhältnis <InlineMath math="2 : 1" /> wird nach dem Quadrieren zum Faktor <InlineMath math="4" />. | Schreib <InlineMath math="PA^2 = 4PB^2" />, bevor du ausmultiplizierst. |
+
+Der erste Fehler kommt am häufigsten vor. **Die Teile des Verhältnisses werden über Kreuz multipliziert**: <InlineMath math="n" /> mit <InlineMath math="A" />, <InlineMath math="m" /> mit <InlineMath math="B" />.
+
+## Übungen zur Koordinatengeometrie
+
+Skizziere jede Aufgabe zuerst im Koordinatensystem, damit **du das Ergebnis mit dem Auge prüfen kannst**.
+
+1. Der Punkt <InlineMath math="R" /> teilt die Strecke von <InlineMath math="C(1, 7)" /> nach <InlineMath math="D(9, -1)" /> im Verhältnis <InlineMath math="1 : 3" />. Bestimme die Koordinaten von <InlineMath math="R" />.
+
+2. Zeige, dass die Geraden <InlineMath math="3x - 2y = 6" /> und <InlineMath math="2x + 3y = 12" /> senkrecht aufeinander stehen. Bestimme dann die Gleichung der Geraden, die parallel zu <InlineMath math="3x - 2y = 6" /> durch <InlineMath math="(0, 5)" /> verläuft.
+
+3. Berechne die Fläche des Dreiecks mit den Eckpunkten <InlineMath math="(2, 1)" />, <InlineMath math="(8, 3)" /> und <InlineMath math="(4, 7)" />.
+
+4. Der Punkt <InlineMath math="P" /> bewegt sich so, dass sein Abstand von <InlineMath math="A(2, 3)" /> immer <InlineMath math="5" /> Einheiten beträgt. Bestimme die Gleichung der Ortslinie von <InlineMath math="P" />.
+
+### Lösungen
+
+**Lösung 1**: Hier ist <InlineMath math="m = 1" /> und <InlineMath math="n = 3" />:
+
+<BlockMath math="R = \left(\frac{3 \cdot 1 + 1 \cdot 9}{4}, \frac{3 \cdot 7 + 1 \cdot (-1)}{4}\right) = \left(\frac{12}{4}, \frac{20}{4}\right) = (3, 5)" />
+
+Probe: <InlineMath math="R" /> liegt näher an <InlineMath math="C" />, denn <InlineMath math="CR" /> ist nur ein Viertel von <InlineMath math="CD" />.
+
+**Lösung 2**: Schreib jede Gerade in der Form <InlineMath math="y = mx + c" />:
+
+<MathContainer>
+<BlockMath math="3x - 2y = 6 \quad \Rightarrow \quad y = \frac{3}{2}x - 3, \quad m_1 = \frac{3}{2}" />
+<BlockMath math="2x + 3y = 12 \quad \Rightarrow \quad y = -\frac{2}{3}x + 4, \quad m_2 = -\frac{2}{3}" />
+<BlockMath math="m_1 m_2 = \frac{3}{2} \cdot \left(-\frac{2}{3}\right) = -1" />
+</MathContainer>
+
+Die Geraden stehen also senkrecht aufeinander. Die parallele Gerade hat die Steigung <InlineMath math="\dfrac{3}{2}" /> und den <InlineMath math="y" />-Achsenabschnitt <InlineMath math="5" />, ihre Gleichung ist also <InlineMath math="y = \dfrac{3}{2}x + 5" />.
+
+**Lösung 3**: Nutze die Trapezformel:
+
+<MathContainer>
+<BlockMath math="2 \cdot 3 + 8 \cdot 7 + 4 \cdot 1 = 66" />
+<BlockMath math="1 \cdot 8 + 3 \cdot 4 + 7 \cdot 2 = 34" />
+<BlockMath math="\text{Fläche} = \frac{1}{2}\left|66 - 34\right| = 16 \text{ FE}" />
+</MathContainer>
+
+**Lösung 4**: Die Regel <InlineMath math="PA = 5" /> ergibt:
+
+<MathContainer>
+<BlockMath math="\sqrt{(x - 2)^2 + (y - 3)^2} = 5" />
+<BlockMath math="(x - 2)^2 + (y - 3)^2 = 25" />
+<BlockMath math="x^2 + y^2 - 4x - 6y - 12 = 0" />
+</MathContainer>
+
+Diese Ortslinie ist **ein Kreis** mit dem Mittelpunkt <InlineMath math="(2, 3)" /> und dem Radius <InlineMath math="5" />. Probe mit dem Punkt <InlineMath math="(7, 3)" />: <InlineMath math="49 + 9 - 28 - 18 - 12 = 0" />.

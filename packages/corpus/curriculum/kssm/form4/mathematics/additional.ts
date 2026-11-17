@@ -184,7 +184,33 @@ export const kssmForm4AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-additional-mathematics-coordinate-geometry-coordinate-geometry",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.coordinate-geometry"],
+        order: 10,
+      }),
+    ],
     key: "form-4-additional-mathematics-coordinate-geometry",
+    materialCard: {
+      de: {
+        description: "Teile Strecken, berechne Flächen, finde Ortslinien.",
+        title: "Koordinatengeometrie",
+      },
+      en: {
+        description: "Divide segments, find areas and build loci.",
+        title: "Coordinate Geometry",
+      },
+      id: {
+        description: "Bagi ruas garis, hitung luas, dan susun lokus.",
+        title: "Geometri Koordinat",
+      },
+      ms: {
+        description: "Bahagi tembereng, kira luas dan bina lokus.",
+        title: "Geometri Koordinat",
+      },
+    },
     order: 70,
     translations: {
       de: { routeSlug: "koordinatengeometrie", title: "Koordinatengeometrie" },

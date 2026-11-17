@@ -1,0 +1,333 @@
+export const metadata = {
+  title: "Coordinate Geometry Notes for Form Four",
+  description:
+    "KSSM Additional Mathematics Form 4 Chapter 7 notes: find the point that divides a line segment, use the gradients of parallel and perpendicular lines, work out the area of a polygon, and build the equation of a locus.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Coordinate Geometry",
+};
+
+## Four Tools on the Cartesian Plane
+
+Coordinate geometry solves problems about shapes with numbers. This chapter gives you four tools:
+
+1. **Divisor of a line segment**: the point that divides <InlineMath math="AB" /> in the ratio <InlineMath math="m : n" /> is <InlineMath math="\left(\dfrac{nx_1 + mx_2}{m + n}, \dfrac{ny_1 + my_2}{m + n}\right)" />.
+2. **Parallel and perpendicular lines**: parallel lines have equal gradients, <InlineMath math="m_1 = m_2" />, and perpendicular lines satisfy <InlineMath math="m_1 m_2 = -1" />.
+3. **Area of a polygon**: list the vertices in order, then use the shoelace formula.
+4. **Locus**: write the rule that the moving point <InlineMath math="P(x, y)" /> obeys as distances, then simplify it into an equation.
+
+In these notes you slide a point along a line segment, turn a line until it is perpendicular, drag the vertex of a triangle, and trace a point that moves by a distance rule.
+
+## Divisor of a Line Segment
+
+The point <InlineMath math="P" /> divides the segment <InlineMath math="AB" /> in the ratio <InlineMath math="m : n" /> if <InlineMath math="AP : PB = m : n" />. For <InlineMath math="A(x_1, y_1)" /> and <InlineMath math="B(x_2, y_2)" />:
+
+<BlockMath math="P = \left(\frac{nx_1 + mx_2}{m + n}, \frac{ny_1 + my_2}{m + n}\right)" />
+
+Notice that <InlineMath math="n" /> multiplies the coordinates of <InlineMath math="A" /> and <InlineMath math="m" /> multiplies the coordinates of <InlineMath math="B" />. **The larger part of the ratio pulls <InlineMath math="P" /> towards the point far from it**. Change <InlineMath math="m" /> and <InlineMath math="n" /> below for <InlineMath math="A(-2, 1)" /> and <InlineMath math="B(6, 5)" />.
+
+<MathVisual
+  title={<>The Point That Divides <InlineMath math="AB" /></>}
+  description={
+    <>
+      The point <InlineMath math="P" /> divides <InlineMath math="AB" /> in the
+      ratio <InlineMath math="m : n" />. For <InlineMath math="3 : 1" />,{" "}
+      <InlineMath math="P" /> is at <InlineMath math="(4, 4)" />, three quarters
+      of the way from <InlineMath math="A" /> to <InlineMath math="B" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "m", min: 1, max: 5, value: 3, step: 1, label: "m" },
+      { name: "n", min: 1, max: 5, value: 1, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "segment", kind: "segment", from: { x: -2, y: 1 }, to: { x: 6, y: 5 }, appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: -2, y: 1 }, appearance: "reference" },
+      { id: "end", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "divider", kind: "marker", x: "(-2*n + 6*m)/(m + n)", y: "(n + 5*m)/(m + n)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "divider-x", formula: "(-2*n + 6*m)/(m + n)" },
+      { key: "divider-y", formula: "(n + 5*m)/(m + n)" },
+    ],
+  }}
+  labels={{
+    m: <>Part <InlineMath math="m" /> for <InlineMath math="AP" /></>,
+    n: <>Part <InlineMath math="n" /> for <InlineMath math="PB" /></>,
+    "divider-x": <>The <InlineMath math="x" />-coordinate of <InlineMath math="P" /></>,
+    "divider-y": <>The <InlineMath math="y" />-coordinate of <InlineMath math="P" /></>,
+  }}
+/>
+
+Check the starting reading with the formula, <InlineMath math="m = 3" /> and <InlineMath math="n = 1" />:
+
+<BlockMath math="P = \left(\frac{1(-2) + 3(6)}{3 + 1}, \frac{1(1) + 3(5)}{3 + 1}\right) = \left(\frac{16}{4}, \frac{16}{4}\right) = (4, 4)" />
+
+When <InlineMath math="m = n" />, the formula becomes the midpoint <InlineMath math="\left(\dfrac{x_1 + x_2}{2}, \dfrac{y_1 + y_2}{2}\right)" />. For this segment, the midpoint is <InlineMath math="(2, 3)" />.
+
+## Parallel and Perpendicular Lines
+
+Two lines are **parallel** if their gradients are equal. Two lines are **perpendicular** if the product of their gradients is <InlineMath math="-1" />, so one gradient is the negative reciprocal of the other. The fixed line below is <InlineMath math="y = 2x + 1" />. Turn the second line through <InlineMath math="(4, 4)" /> by changing its gradient <InlineMath math="k" />.
+
+<MathVisual
+  title={<>A Line through <InlineMath math="(4, 4)" /> and the Line <InlineMath math="y = 2x + 1" /></>}
+  description={
+    <>
+      The second line is parallel to <InlineMath math="y = 2x + 1" /> when{" "}
+      <InlineMath math="k = 2" />, and perpendicular when{" "}
+      <InlineMath math="k = -\tfrac{1}{2}" />, because the product of the
+      gradients becomes <InlineMath math="-1" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -4, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -3, max: 3, value: 1, step: 0.25, label: "k" },
+    ],
+    objects: [
+      { id: "given", kind: "function", appearance: "secondary", formula: "2*x + 1", domain: { min: -2, max: 5.5 } },
+      { id: "turning", kind: "function", appearance: "primary", formula: "k*(x - 4) + 4", domain: { min: -2, max: 8 } },
+      { id: "pivot", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "product", formula: "2*k" },
+    ],
+  }}
+  labels={{
+    k: <>Gradient of the second line, <InlineMath math="k" /></>,
+    product: <>Product of the gradients <InlineMath math="2k" /></>,
+  }}
+/>
+
+Find the equation of the line through <InlineMath math="(4, 4)" /> that is perpendicular to <InlineMath math="y = 2x + 1" />. Its gradient is <InlineMath math="-\dfrac{1}{2}" />, because <InlineMath math="2 \times \left(-\dfrac{1}{2}\right) = -1" />:
+
+<MathContainer>
+<BlockMath math="y - 4 = -\frac{1}{2}(x - 4)" />
+<BlockMath math="y = -\frac{1}{2}x + 6" />
+</MathContainer>
+
+Check: at <InlineMath math="x = 4" />, <InlineMath math="y = -2 + 6 = 4" />, so the line passes through the given point.
+
+## Area of a Polygon
+
+For a polygon with vertices <InlineMath math="(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)" /> listed in order, either clockwise or anticlockwise, the area is:
+
+<BlockMath math="\text{Area} = \frac{1}{2}\left|(x_1y_2 + x_2y_3 + \cdots + x_ny_1) - (y_1x_2 + y_2x_3 + \cdots + y_nx_1)\right|" />
+
+This is the **shoelace formula**, because the cross multiplications lace together like a shoelace. Repeat the first vertex at the end of the list so that no pair is missed. Drag the vertex <InlineMath math="C" /> of the triangle below. The area reading becomes zero when <InlineMath math="C" /> lies on the line <InlineMath math="AB" />, because three collinear points do not form a triangle.
+
+<MathVisual
+  title={<>Area of a Triangle with a Moving Vertex</>}
+  description={
+    <>
+      The triangle <InlineMath math="A(1, 1)" />, <InlineMath math="B(7, 2)" />{" "}
+      and <InlineMath math="C(p, q)" />. The shoelace formula gives the area{" "}
+      <InlineMath math="\tfrac{1}{2}\left|6q - p - 5\right|" />. For{" "}
+      <InlineMath math="C(4, 6)" />, the area is <InlineMath math="13.5" /> square
+      units.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 8, value: 4, step: 0.5, label: "p" },
+      { name: "q", min: 0, max: 8, value: 6, step: 0.5, label: "q" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "1", y: "1" }, { x: "7", y: "2" }, { x: "p", y: "q" }], appearance: "primary" },
+      { id: "first-vertex", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "second-vertex", kind: "point", at: { x: 7, y: 2 }, appearance: "reference" },
+      { id: "moving-vertex", kind: "marker", x: "p", y: "q", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "abs(6*q - p - 5)/2" },
+    ],
+  }}
+  labels={{
+    p: <>The <InlineMath math="x" />-coordinate of <InlineMath math="C" /></>,
+    q: <>The <InlineMath math="y" />-coordinate of <InlineMath math="C" /></>,
+    area: <>Area in square units</>,
+  }}
+/>
+
+Use the same formula on the quadrilateral with vertices <InlineMath math="(1, 1)" />, <InlineMath math="(7, 2)" />, <InlineMath math="(6, 6)" /> and <InlineMath math="(2, 5)" />, taken anticlockwise:
+
+<MathContainer>
+<BlockMath math="x_1y_2 + x_2y_3 + x_3y_4 + x_4y_1 = 1(2) + 7(6) + 6(5) + 2(1) = 76" />
+<BlockMath math="y_1x_2 + y_2x_3 + y_3x_4 + y_4x_1 = 1(7) + 2(6) + 6(2) + 5(1) = 36" />
+<BlockMath math="\text{Area} = \frac{1}{2}\left|76 - 36\right| = 20 \text{ units}^2" />
+</MathContainer>
+
+If the vertices are not in order, for example with the third and fourth swapped, the formula gives a wrong value, because the sides of the polygon cross.
+
+## The Equation of a Locus
+
+A **locus** is the path of a point <InlineMath math="P(x, y)" /> that moves by one rule. To find its equation, write the rule with the distance formula <InlineMath math="\sqrt{(x - x_1)^2 + (y - y_1)^2}" />, square to remove the square roots, then simplify.
+
+### A Point Equidistant from Two Points
+
+The point <InlineMath math="P" /> moves so that <InlineMath math="PA = PB" />, for <InlineMath math="A(1, 2)" /> and <InlineMath math="B(5, 6)" />:
+
+<MathContainer>
+<BlockMath math="(x - 1)^2 + (y - 2)^2 = (x - 5)^2 + (y - 6)^2" />
+<BlockMath math="-2x + 1 - 4y + 4 = -10x + 25 - 12y + 36" />
+<BlockMath math="8x + 8y = 56 \quad \Rightarrow \quad y = 7 - x" />
+</MathContainer>
+
+This locus is the **perpendicular bisector** of <InlineMath math="AB" />. Move <InlineMath math="P" /> along the line and compare the two distances.
+
+<MathVisual
+  title={<>The Locus of Points Equidistant from <InlineMath math="A" /> and <InlineMath math="B" /></>}
+  description={
+    <>
+      The point <InlineMath math="P(p, 7 - p)" /> on the line{" "}
+      <InlineMath math="y = 7 - x" />. The distances <InlineMath math="PA" /> and{" "}
+      <InlineMath math="PB" /> are always equal, and the line is perpendicular
+      to <InlineMath math="AB" /> through the midpoint <InlineMath math="(3, 4)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: -1, max: 7, value: 1, step: 0.25, label: "p" },
+    ],
+    objects: [
+      { id: "locus", kind: "function", appearance: "primary", formula: "7 - x", domain: { min: -1, max: 8 } },
+      { id: "chord", kind: "segment", from: { x: 1, y: 2 }, to: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "links", kind: "path", points: [{ x: "1", y: "2" }, { x: "p", y: "7 - p" }, { x: "5", y: "6" }], appearance: "construction" },
+      { id: "first-fixed", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second-fixed", kind: "point", at: { x: 5, y: 6 }, appearance: "secondary" },
+      { id: "moving", kind: "marker", x: "p", y: "7 - p", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "to-first", formula: "sqrt((p - 1)^2 + (5 - p)^2)" },
+      { key: "to-second", formula: "sqrt((p - 5)^2 + (1 - p)^2)" },
+    ],
+  }}
+  labels={{
+    p: <>The <InlineMath math="x" />-coordinate of <InlineMath math="P" /></>,
+    "to-first": <>Distance <InlineMath math="PA" /></>,
+    "to-second": <>Distance <InlineMath math="PB" /></>,
+  }}
+/>
+
+### A Point with a Fixed Ratio of Distances
+
+Now the point <InlineMath math="P" /> moves so that <InlineMath math="PA : PB = 2 : 1" />, for <InlineMath math="A(0, 0)" /> and <InlineMath math="B(6, 0)" />. The rule <InlineMath math="PA = 2PB" /> gives:
+
+<MathContainer>
+<BlockMath math="x^2 + y^2 = 4\left[(x - 6)^2 + y^2\right]" />
+<BlockMath math="3x^2 + 3y^2 - 48x + 144 = 0" />
+<BlockMath math="x^2 + y^2 - 16x + 48 = 0 \quad \Rightarrow \quad (x - 8)^2 + y^2 = 16" />
+</MathContainer>
+
+This locus is a circle with centre <InlineMath math="(8, 0)" /> and radius <InlineMath math="4" />. Move <InlineMath math="P" /> round the circle. The values of <InlineMath math="PA" /> and <InlineMath math="PB" /> change, but **their ratio stays** <InlineMath math="2" />.
+
+<MathVisual
+  title={<>The Locus with Ratio <InlineMath math="PA : PB = 2 : 1" /></>}
+  description={
+    <>
+      The point <InlineMath math="P" /> on the circle{" "}
+      <InlineMath math="(x - 8)^2 + y^2 = 16" />. In every position,{" "}
+      <InlineMath math="PA" /> is twice <InlineMath math="PB" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 6.28, value: 2, step: 0.02, label: "s" },
+    ],
+    objects: [
+      { id: "locus", kind: "implicit", appearance: "primary", equation: "(x - 8)^2 + y^2 = 16" },
+      { id: "links", kind: "path", points: [{ x: "0", y: "0" }, { x: "8 + 4*cos(s)", y: "4*sin(s)" }, { x: "6", y: "0" }], appearance: "construction" },
+      { id: "first-fixed", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "second-fixed", kind: "point", at: { x: 6, y: 0 }, appearance: "secondary" },
+      { id: "moving", kind: "marker", x: "8 + 4*cos(s)", y: "4*sin(s)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "to-first", formula: "sqrt((8 + 4*cos(s))^2 + (4*sin(s))^2)" },
+      { key: "to-second", formula: "sqrt((2 + 4*cos(s))^2 + (4*sin(s))^2)" },
+      { key: "ratio", formula: "sqrt((8 + 4*cos(s))^2 + (4*sin(s))^2)/sqrt((2 + 4*cos(s))^2 + (4*sin(s))^2)" },
+    ],
+  }}
+  labels={{
+    s: <>Angle of the position of <InlineMath math="P" /> in radians</>,
+    "to-first": <>Distance <InlineMath math="PA" /></>,
+    "to-second": <>Distance <InlineMath math="PB" /></>,
+    ratio: <>Ratio <InlineMath math="PA : PB" /></>,
+  }}
+/>
+
+Check one point: <InlineMath math="(4, 0)" /> lies on the circle, with <InlineMath math="PA = 4" /> and <InlineMath math="PB = 2" />. The ratio is <InlineMath math="2 : 1" />.
+
+## Common Mistakes in Coordinate Geometry
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| Multiplying <InlineMath math="m" /> by the coordinates of <InlineMath math="A" /> in the divisor formula. | The part <InlineMath math="m" /> must multiply the coordinates of <InlineMath math="B" />. | The point <InlineMath math="P" /> must be nearer the point with the smaller part. |
+| Treating perpendicular gradients as equal and opposite, such as <InlineMath math="2" /> and <InlineMath math="-2" />. | The perpendicular gradient is the negative reciprocal, <InlineMath math="-\dfrac{1}{2}" />. | Multiply the two gradients and make sure the product is <InlineMath math="-1" />. |
+| Listing the vertices of a polygon in a random order in the shoelace formula. | Vertices out of order form a polygon whose sides cross. | Sketch the vertices first and follow one direction. |
+| Forgetting the absolute value in the area formula. | A clockwise order gives a negative value. | An area is always positive. |
+| Not squaring both sides in a ratio locus question. | The ratio <InlineMath math="2 : 1" /> becomes a factor of <InlineMath math="4" /> after squaring. | Write <InlineMath math="PA^2 = 4PB^2" /> before expanding. |
+
+The first mistake is the most common. **The parts of the ratio multiply crosswise**: <InlineMath math="n" /> with <InlineMath math="A" />, <InlineMath math="m" /> with <InlineMath math="B" />.
+
+## Coordinate Geometry Practice
+
+Sketch each question on the Cartesian plane first so that **you can check the answer by eye**.
+
+1. The point <InlineMath math="R" /> divides the line segment joining <InlineMath math="C(1, 7)" /> and <InlineMath math="D(9, -1)" /> in the ratio <InlineMath math="1 : 3" />. Find the coordinates of <InlineMath math="R" />.
+
+2. Show that the lines <InlineMath math="3x - 2y = 6" /> and <InlineMath math="2x + 3y = 12" /> are perpendicular. Then find the equation of the line parallel to <InlineMath math="3x - 2y = 6" /> that passes through <InlineMath math="(0, 5)" />.
+
+3. Work out the area of the triangle with vertices <InlineMath math="(2, 1)" />, <InlineMath math="(8, 3)" /> and <InlineMath math="(4, 7)" />.
+
+4. The point <InlineMath math="P" /> moves so that its distance from <InlineMath math="A(2, 3)" /> is always <InlineMath math="5" /> units. Find the equation of the locus of <InlineMath math="P" />.
+
+### Solutions
+
+**Solution 1**: Here <InlineMath math="m = 1" /> and <InlineMath math="n = 3" />:
+
+<BlockMath math="R = \left(\frac{3(1) + 1(9)}{4}, \frac{3(7) + 1(-1)}{4}\right) = \left(\frac{12}{4}, \frac{20}{4}\right) = (3, 5)" />
+
+Check: <InlineMath math="R" /> is nearer <InlineMath math="C" />, because <InlineMath math="CR" /> is only a quarter of <InlineMath math="CD" />.
+
+**Solution 2**: Write each line in the form <InlineMath math="y = mx + c" />:
+
+<MathContainer>
+<BlockMath math="3x - 2y = 6 \quad \Rightarrow \quad y = \frac{3}{2}x - 3, \quad m_1 = \frac{3}{2}" />
+<BlockMath math="2x + 3y = 12 \quad \Rightarrow \quad y = -\frac{2}{3}x + 4, \quad m_2 = -\frac{2}{3}" />
+<BlockMath math="m_1 m_2 = \frac{3}{2} \times \left(-\frac{2}{3}\right) = -1" />
+</MathContainer>
+
+So the two lines are perpendicular. The parallel line has gradient <InlineMath math="\dfrac{3}{2}" /> and <InlineMath math="y" />-intercept <InlineMath math="5" />, so its equation is <InlineMath math="y = \dfrac{3}{2}x + 5" />.
+
+**Solution 3**: Use the shoelace formula:
+
+<MathContainer>
+<BlockMath math="2(3) + 8(7) + 4(1) = 66" />
+<BlockMath math="1(8) + 3(4) + 7(2) = 34" />
+<BlockMath math="\text{Area} = \frac{1}{2}\left|66 - 34\right| = 16 \text{ units}^2" />
+</MathContainer>
+
+**Solution 4**: The rule <InlineMath math="PA = 5" /> gives:
+
+<MathContainer>
+<BlockMath math="\sqrt{(x - 2)^2 + (y - 3)^2} = 5" />
+<BlockMath math="(x - 2)^2 + (y - 3)^2 = 25" />
+<BlockMath math="x^2 + y^2 - 4x - 6y - 12 = 0" />
+</MathContainer>
+
+This locus is **a circle** with centre <InlineMath math="(2, 3)" /> and radius <InlineMath math="5" />. Check with the point <InlineMath math="(7, 3)" />: <InlineMath math="49 + 9 - 28 - 18 - 12 = 0" />.

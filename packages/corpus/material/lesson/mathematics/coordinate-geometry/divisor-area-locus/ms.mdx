@@ -1,0 +1,334 @@
+export const metadata = {
+  title: "Nota Geometri Koordinat Tingkatan Empat",
+  description:
+    "Nota Matematik Tambahan Tingkatan 4 Bab 7: cari titik pembahagi tembereng garis, guna kecerunan garis selari dan serenjang, kira luas poligon, dan bina persamaan lokus.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Geometri Koordinat",
+};
+
+## Empat Alat dalam Satah Cartes
+
+Geometri koordinat menyelesaikan masalah bentuk dengan nombor. Bab ini memberi kamu empat alat:
+
+1. **Titik pembahagi**: titik yang membahagi tembereng <InlineMath math="AB" /> dalam nisbah <InlineMath math="m : n" /> ialah <InlineMath math="\left(\dfrac{nx_1 + mx_2}{m + n}, \dfrac{ny_1 + my_2}{m + n}\right)" />.
+2. **Garis selari dan serenjang**: garis selari mempunyai kecerunan yang sama, <InlineMath math="m_1 = m_2" />, dan garis serenjang memenuhi <InlineMath math="m_1 m_2 = -1" />.
+3. **Luas poligon**: susun bucu mengikut tertib, kemudian guna formula tali kasut.
+4. **Lokus**: tulis syarat pergerakan titik <InlineMath math="P(x, y)" /> dalam bentuk jarak, kemudian permudahkan menjadi persamaan.
+
+Dalam nota ini kamu gerakkan titik pada tembereng garis, putar garis sehingga serenjang, seret bucu segi tiga, dan jejaki titik yang bergerak mengikut syarat jarak.
+
+## Titik Pembahagi Tembereng Garis
+
+Titik <InlineMath math="P" /> membahagi tembereng <InlineMath math="AB" /> dalam nisbah <InlineMath math="m : n" /> jika <InlineMath math="AP : PB = m : n" />. Bagi <InlineMath math="A(x_1, y_1)" /> dan <InlineMath math="B(x_2, y_2)" />:
+
+<BlockMath math="P = \left(\frac{nx_1 + mx_2}{m + n}, \frac{ny_1 + my_2}{m + n}\right)" />
+
+Perhatikan bahawa <InlineMath math="n" /> didarab dengan koordinat <InlineMath math="A" /> dan <InlineMath math="m" /> dengan koordinat <InlineMath math="B" />. **Bahagian nisbah yang lebih besar menarik <InlineMath math="P" /> ke arah titik yang jauh daripadanya**. Ubah <InlineMath math="m" /> dan <InlineMath math="n" /> di bawah bagi <InlineMath math="A(-2, 1)" /> dan <InlineMath math="B(6, 5)" />.
+
+<MathVisual
+  title={<>Titik yang Membahagi Tembereng <InlineMath math="AB" /></>}
+  description={
+    <>
+      Titik <InlineMath math="P" /> membahagi <InlineMath math="AB" /> dalam
+      nisbah <InlineMath math="m : n" />. Bagi <InlineMath math="3 : 1" />,{" "}
+      <InlineMath math="P" /> berada di <InlineMath math="(4, 4)" />, tiga
+      perempat perjalanan dari <InlineMath math="A" /> ke{" "}
+      <InlineMath math="B" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "m", min: 1, max: 5, value: 3, step: 1, label: "m" },
+      { name: "n", min: 1, max: 5, value: 1, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "segment", kind: "segment", from: { x: -2, y: 1 }, to: { x: 6, y: 5 }, appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: -2, y: 1 }, appearance: "reference" },
+      { id: "end", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "divider", kind: "marker", x: "(-2*n + 6*m)/(m + n)", y: "(n + 5*m)/(m + n)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "divider-x", formula: "(-2*n + 6*m)/(m + n)" },
+      { key: "divider-y", formula: "(n + 5*m)/(m + n)" },
+    ],
+  }}
+  labels={{
+    m: <>Bahagian <InlineMath math="m" /> bagi <InlineMath math="AP" /></>,
+    n: <>Bahagian <InlineMath math="n" /> bagi <InlineMath math="PB" /></>,
+    "divider-x": <>Koordinat-<InlineMath math="x" /> titik <InlineMath math="P" /></>,
+    "divider-y": <>Koordinat-<InlineMath math="y" /> titik <InlineMath math="P" /></>,
+  }}
+/>
+
+Semak bacaan permulaan dengan formula, <InlineMath math="m = 3" /> dan <InlineMath math="n = 1" />:
+
+<BlockMath math="P = \left(\frac{1(-2) + 3(6)}{3 + 1}, \frac{1(1) + 3(5)}{3 + 1}\right) = \left(\frac{16}{4}, \frac{16}{4}\right) = (4, 4)" />
+
+Apabila <InlineMath math="m = n" />, formula menjadi titik tengah <InlineMath math="\left(\dfrac{x_1 + x_2}{2}, \dfrac{y_1 + y_2}{2}\right)" />. Bagi tembereng ini, titik tengahnya <InlineMath math="(2, 3)" />.
+
+## Garis Selari dan Garis Serenjang
+
+Dua garis **selari** jika kecerunannya sama. Dua garis **serenjang** jika hasil darab kecerunannya <InlineMath math="-1" />, iaitu satu kecerunan ialah salingan negatif bagi yang satu lagi. Garis tetap di bawah ialah <InlineMath math="y = 2x + 1" />. Putar garis kedua yang melalui <InlineMath math="(4, 4)" /> dengan mengubah kecerunannya <InlineMath math="k" />.
+
+<MathVisual
+  title={<>Garis melalui <InlineMath math="(4, 4)" /> dan Garis <InlineMath math="y = 2x + 1" /></>}
+  description={
+    <>
+      Garis kedua selari dengan <InlineMath math="y = 2x + 1" /> apabila{" "}
+      <InlineMath math="k = 2" />, dan serenjang apabila{" "}
+      <InlineMath math="k = -\tfrac{1}{2}" />, kerana hasil darab kecerunan
+      menjadi <InlineMath math="-1" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -4, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -3, max: 3, value: 1, step: 0.25, label: "k" },
+    ],
+    objects: [
+      { id: "given", kind: "function", appearance: "secondary", formula: "2*x + 1", domain: { min: -2, max: 5.5 } },
+      { id: "turning", kind: "function", appearance: "primary", formula: "k*(x - 4) + 4", domain: { min: -2, max: 8 } },
+      { id: "pivot", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "product", formula: "2*k" },
+    ],
+  }}
+  labels={{
+    k: <>Kecerunan garis kedua, <InlineMath math="k" /></>,
+    product: <>Hasil darab kecerunan <InlineMath math="2k" /></>,
+  }}
+/>
+
+Cari persamaan garis yang melalui <InlineMath math="(4, 4)" /> dan serenjang dengan <InlineMath math="y = 2x + 1" />. Kecerunannya ialah <InlineMath math="-\dfrac{1}{2}" />, kerana <InlineMath math="2 \times \left(-\dfrac{1}{2}\right) = -1" />:
+
+<MathContainer>
+<BlockMath math="y - 4 = -\frac{1}{2}(x - 4)" />
+<BlockMath math="y = -\frac{1}{2}x + 6" />
+</MathContainer>
+
+Semak: pada <InlineMath math="x = 4" />, <InlineMath math="y = -2 + 6 = 4" />, jadi garis melalui titik yang diberi.
+
+## Luas Poligon
+
+Bagi poligon dengan bucu <InlineMath math="(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)" /> yang disusun mengikut tertib, sama ada ikut atau lawan arah jam, luasnya ialah:
+
+<BlockMath math="\text{Luas} = \frac{1}{2}\left|(x_1y_2 + x_2y_3 + \cdots + x_ny_1) - (y_1x_2 + y_2x_3 + \cdots + y_nx_1)\right|" />
+
+Kaedah ini dipanggil **formula tali kasut**, kerana pendaraban bersilang seperti tali kasut. Ulang bucu pertama di hujung senarai supaya tiada pasangan tertinggal. Seret bucu <InlineMath math="C" /> segi tiga di bawah. Bacaan luas menjadi sifar apabila <InlineMath math="C" /> berada pada garis <InlineMath math="AB" />, kerana tiga titik segaris tidak membentuk segi tiga.
+
+<MathVisual
+  title={<>Luas Segi Tiga dengan Bucu Bergerak</>}
+  description={
+    <>
+      Segi tiga <InlineMath math="A(1, 1)" />, <InlineMath math="B(7, 2)" /> dan{" "}
+      <InlineMath math="C(p, q)" />. Formula tali kasut memberi luas{" "}
+      <InlineMath math="\tfrac{1}{2}\left|6q - p - 5\right|" />. Bagi{" "}
+      <InlineMath math="C(4, 6)" />, luasnya <InlineMath math="13.5" /> unit
+      persegi.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 8, value: 4, step: 0.5, label: "p" },
+      { name: "q", min: 0, max: 8, value: 6, step: 0.5, label: "q" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "1", y: "1" }, { x: "7", y: "2" }, { x: "p", y: "q" }], appearance: "primary" },
+      { id: "first-vertex", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "second-vertex", kind: "point", at: { x: 7, y: 2 }, appearance: "reference" },
+      { id: "moving-vertex", kind: "marker", x: "p", y: "q", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "abs(6*q - p - 5)/2" },
+    ],
+  }}
+  labels={{
+    p: <>Koordinat-<InlineMath math="x" /> bucu <InlineMath math="C" /></>,
+    q: <>Koordinat-<InlineMath math="y" /> bucu <InlineMath math="C" /></>,
+    area: <>Luas dalam unit persegi</>,
+  }}
+/>
+
+Gunakan formula yang sama pada sisi empat dengan bucu <InlineMath math="(1, 1)" />, <InlineMath math="(7, 2)" />, <InlineMath math="(6, 6)" /> dan <InlineMath math="(2, 5)" />, mengikut lawan arah jam:
+
+<MathContainer>
+<BlockMath math="x_1y_2 + x_2y_3 + x_3y_4 + x_4y_1 = 1(2) + 7(6) + 6(5) + 2(1) = 76" />
+<BlockMath math="y_1x_2 + y_2x_3 + y_3x_4 + y_4x_1 = 1(7) + 2(6) + 6(2) + 5(1) = 36" />
+<BlockMath math="\text{Luas} = \frac{1}{2}\left|76 - 36\right| = 20 \text{ unit}^2" />
+</MathContainer>
+
+Jika bucu tidak disusun mengikut tertib, contohnya bucu ketiga dan keempat ditukar, formula memberi nilai yang salah kerana sisi poligon bersilang.
+
+## Persamaan Lokus
+
+**Lokus** ialah lintasan titik <InlineMath math="P(x, y)" /> yang bergerak mengikut satu syarat. Untuk mencari persamaannya, tulis syarat itu dengan formula jarak <InlineMath math="\sqrt{(x - x_1)^2 + (y - y_1)^2}" />, kuasa duakan untuk membuang punca kuasa dua, kemudian permudahkan.
+
+### Titik yang Sama Jarak dari Dua Titik
+
+Titik <InlineMath math="P" /> bergerak dengan keadaan <InlineMath math="PA = PB" />, bagi <InlineMath math="A(1, 2)" /> dan <InlineMath math="B(5, 6)" />:
+
+<MathContainer>
+<BlockMath math="(x - 1)^2 + (y - 2)^2 = (x - 5)^2 + (y - 6)^2" />
+<BlockMath math="-2x + 1 - 4y + 4 = -10x + 25 - 12y + 36" />
+<BlockMath math="8x + 8y = 56 \quad \Rightarrow \quad y = 7 - x" />
+</MathContainer>
+
+Lokus ini ialah **pembahagi dua sama serenjang** bagi <InlineMath math="AB" />. Gerakkan <InlineMath math="P" /> di sepanjang garis itu dan bandingkan dua jarak.
+
+<MathVisual
+  title={<>Lokus Titik yang Sama Jarak dari <InlineMath math="A" /> dan <InlineMath math="B" /></>}
+  description={
+    <>
+      Titik <InlineMath math="P(p, 7 - p)" /> pada garis{" "}
+      <InlineMath math="y = 7 - x" />. Jarak <InlineMath math="PA" /> dan{" "}
+      <InlineMath math="PB" /> sentiasa sama, dan garis ini serenjang dengan{" "}
+      <InlineMath math="AB" /> melalui titik tengah <InlineMath math="(3, 4)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: -1, max: 7, value: 1, step: 0.25, label: "p" },
+    ],
+    objects: [
+      { id: "locus", kind: "function", appearance: "primary", formula: "7 - x", domain: { min: -1, max: 8 } },
+      { id: "chord", kind: "segment", from: { x: 1, y: 2 }, to: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "links", kind: "path", points: [{ x: "1", y: "2" }, { x: "p", y: "7 - p" }, { x: "5", y: "6" }], appearance: "construction" },
+      { id: "first-fixed", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second-fixed", kind: "point", at: { x: 5, y: 6 }, appearance: "secondary" },
+      { id: "moving", kind: "marker", x: "p", y: "7 - p", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "to-first", formula: "sqrt((p - 1)^2 + (5 - p)^2)" },
+      { key: "to-second", formula: "sqrt((p - 5)^2 + (1 - p)^2)" },
+    ],
+  }}
+  labels={{
+    p: <>Koordinat-<InlineMath math="x" /> titik <InlineMath math="P" /></>,
+    "to-first": <>Jarak <InlineMath math="PA" /></>,
+    "to-second": <>Jarak <InlineMath math="PB" /></>,
+  }}
+/>
+
+### Titik dengan Nisbah Jarak Tetap
+
+Kini titik <InlineMath math="P" /> bergerak dengan keadaan <InlineMath math="PA : PB = 2 : 1" />, bagi <InlineMath math="A(0, 0)" /> dan <InlineMath math="B(6, 0)" />. Syarat <InlineMath math="PA = 2PB" /> memberi:
+
+<MathContainer>
+<BlockMath math="x^2 + y^2 = 4\left[(x - 6)^2 + y^2\right]" />
+<BlockMath math="3x^2 + 3y^2 - 48x + 144 = 0" />
+<BlockMath math="x^2 + y^2 - 16x + 48 = 0 \quad \Rightarrow \quad (x - 8)^2 + y^2 = 16" />
+</MathContainer>
+
+Lokus ini ialah bulatan berpusat <InlineMath math="(8, 0)" /> dengan jejari <InlineMath math="4" />. Gerakkan <InlineMath math="P" /> mengelilingi bulatan. Nilai <InlineMath math="PA" /> dan <InlineMath math="PB" /> berubah, tetapi **nisbahnya kekal** <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Lokus dengan Nisbah <InlineMath math="PA : PB = 2 : 1" /></>}
+  description={
+    <>
+      Titik <InlineMath math="P" /> pada bulatan{" "}
+      <InlineMath math="(x - 8)^2 + y^2 = 16" />. Bagi setiap kedudukan,{" "}
+      <InlineMath math="PA" /> sentiasa dua kali <InlineMath math="PB" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 6.28, value: 2, step: 0.02, label: "s" },
+    ],
+    objects: [
+      { id: "locus", kind: "implicit", appearance: "primary", equation: "(x - 8)^2 + y^2 = 16" },
+      { id: "links", kind: "path", points: [{ x: "0", y: "0" }, { x: "8 + 4*cos(s)", y: "4*sin(s)" }, { x: "6", y: "0" }], appearance: "construction" },
+      { id: "first-fixed", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "second-fixed", kind: "point", at: { x: 6, y: 0 }, appearance: "secondary" },
+      { id: "moving", kind: "marker", x: "8 + 4*cos(s)", y: "4*sin(s)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "to-first", formula: "sqrt((8 + 4*cos(s))^2 + (4*sin(s))^2)" },
+      { key: "to-second", formula: "sqrt((2 + 4*cos(s))^2 + (4*sin(s))^2)" },
+      { key: "ratio", formula: "sqrt((8 + 4*cos(s))^2 + (4*sin(s))^2)/sqrt((2 + 4*cos(s))^2 + (4*sin(s))^2)" },
+    ],
+  }}
+  labels={{
+    s: <>Sudut kedudukan <InlineMath math="P" /> dalam radian</>,
+    "to-first": <>Jarak <InlineMath math="PA" /></>,
+    "to-second": <>Jarak <InlineMath math="PB" /></>,
+    ratio: <>Nisbah <InlineMath math="PA : PB" /></>,
+  }}
+/>
+
+Semak satu titik: <InlineMath math="(4, 0)" /> berada pada bulatan, dengan <InlineMath math="PA = 4" /> dan <InlineMath math="PB = 2" />. Nisbahnya <InlineMath math="2 : 1" />.
+
+## Kesilapan Lazim dalam Geometri Koordinat
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Mendarab <InlineMath math="m" /> dengan koordinat <InlineMath math="A" /> dalam formula titik pembahagi. | Bahagian <InlineMath math="m" /> mesti didarab dengan koordinat <InlineMath math="B" />. | Titik <InlineMath math="P" /> mesti lebih dekat dengan titik yang bahagiannya lebih kecil. |
+| Menganggap garis serenjang mempunyai kecerunan negatif yang sama, seperti <InlineMath math="2" /> dan <InlineMath math="-2" />. | Kecerunan serenjang ialah salingan negatif, <InlineMath math="-\dfrac{1}{2}" />. | Darab dua kecerunan dan pastikan hasilnya <InlineMath math="-1" />. |
+| Menyusun bucu poligon secara rawak dalam formula tali kasut. | Bucu yang tidak berturutan membentuk poligon yang bersilang. | Lakar bucu dulu dan ikut satu arah. |
+| Lupa nilai mutlak dalam formula luas. | Susunan ikut arah jam memberi nilai negatif. | Luas sentiasa positif. |
+| Tidak mengkuasaduakan kedua-dua belah dalam soalan lokus nisbah. | Nisbah <InlineMath math="2 : 1" /> menjadi faktor <InlineMath math="4" /> selepas dikuasaduakan. | Tulis <InlineMath math="PA^2 = 4PB^2" /> sebelum mengembangkan. |
+
+Kesilapan pertama paling kerap berlaku. **Bahagian nisbah didarab bersilang**: <InlineMath math="n" /> dengan <InlineMath math="A" />, <InlineMath math="m" /> dengan <InlineMath math="B" />.
+
+## Latihan Geometri Koordinat
+
+Lakar setiap soalan pada satah Cartes dulu supaya **jawapan dapat disemak dengan mata**.
+
+1. Titik <InlineMath math="R" /> membahagi tembereng garis yang menyambungkan <InlineMath math="C(1, 7)" /> dan <InlineMath math="D(9, -1)" /> dalam nisbah <InlineMath math="1 : 3" />. Cari koordinat <InlineMath math="R" />.
+
+2. Tunjukkan bahawa garis <InlineMath math="3x - 2y = 6" /> dan <InlineMath math="2x + 3y = 12" /> serenjang. Kemudian cari persamaan garis yang selari dengan <InlineMath math="3x - 2y = 6" /> dan melalui <InlineMath math="(0, 5)" />.
+
+3. Hitung luas segi tiga dengan bucu <InlineMath math="(2, 1)" />, <InlineMath math="(8, 3)" /> dan <InlineMath math="(4, 7)" />.
+
+4. Titik <InlineMath math="P" /> bergerak dengan keadaan jaraknya dari <InlineMath math="A(2, 3)" /> sentiasa <InlineMath math="5" /> unit. Cari persamaan lokus <InlineMath math="P" />.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Di sini <InlineMath math="m = 1" /> dan <InlineMath math="n = 3" />:
+
+<BlockMath math="R = \left(\frac{3(1) + 1(9)}{4}, \frac{3(7) + 1(-1)}{4}\right) = \left(\frac{12}{4}, \frac{20}{4}\right) = (3, 5)" />
+
+Semak: <InlineMath math="R" /> lebih dekat dengan <InlineMath math="C" />, kerana <InlineMath math="CR" /> hanya satu perempat daripada <InlineMath math="CD" />.
+
+**Penyelesaian 2**: Tulis setiap garis dalam bentuk <InlineMath math="y = mx + c" />:
+
+<MathContainer>
+<BlockMath math="3x - 2y = 6 \quad \Rightarrow \quad y = \frac{3}{2}x - 3, \quad m_1 = \frac{3}{2}" />
+<BlockMath math="2x + 3y = 12 \quad \Rightarrow \quad y = -\frac{2}{3}x + 4, \quad m_2 = -\frac{2}{3}" />
+<BlockMath math="m_1 m_2 = \frac{3}{2} \times \left(-\frac{2}{3}\right) = -1" />
+</MathContainer>
+
+Jadi dua garis itu serenjang. Garis selari mempunyai kecerunan <InlineMath math="\dfrac{3}{2}" /> dan pintasan-<InlineMath math="y" /> <InlineMath math="5" />, jadi persamaannya <InlineMath math="y = \dfrac{3}{2}x + 5" />.
+
+**Penyelesaian 3**: Gunakan formula tali kasut:
+
+<MathContainer>
+<BlockMath math="2(3) + 8(7) + 4(1) = 66" />
+<BlockMath math="1(8) + 3(4) + 7(2) = 34" />
+<BlockMath math="\text{Luas} = \frac{1}{2}\left|66 - 34\right| = 16 \text{ unit}^2" />
+</MathContainer>
+
+**Penyelesaian 4**: Syarat <InlineMath math="PA = 5" /> memberi:
+
+<MathContainer>
+<BlockMath math="\sqrt{(x - 2)^2 + (y - 3)^2} = 5" />
+<BlockMath math="(x - 2)^2 + (y - 3)^2 = 25" />
+<BlockMath math="x^2 + y^2 - 4x - 6y - 12 = 0" />
+</MathContainer>
+
+Lokus ini ialah bulatan berpusat <InlineMath math="(2, 3)" /> dengan jejari <InlineMath math="5" />. Semak dengan titik <InlineMath math="(7, 3)" />: <InlineMath math="49 + 9 - 28 - 18 - 12 = 0" />.
