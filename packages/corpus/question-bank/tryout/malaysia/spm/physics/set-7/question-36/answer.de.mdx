@@ -1,0 +1,21 @@
+# Der kleine Basisstrom legt den großen Kollektorstrom fest
+
+Im Basiszweig teilt sich die Versorgung zwischen Basiswiderstand und **Basis-Emitter-Strecke**, am Basiswiderstand liegen also <InlineMath math="6{,}0-0{,}70" /> Volt. Der Kollektorstrom ist <InlineMath math="150" />-mal so groß wie der Basisstrom. Er erzeugt einen Spannungsabfall am Kollektorwiderstand, und der Transistor bekommt **den Rest** der Versorgung.
+
+<Mermaid
+  title={<>Spannungen in der Transistorschaltung</>}
+  description={<>Von der Versorgung fallen im Basiszweig <InlineMath math="5{,}3\text{ V}" /> am Basiswiderstand und <InlineMath math="0{,}70\text{ V}" /> an der Basis-Emitter-Strecke ab. Im Kollektorzweig fallen <InlineMath math="3{,}6\text{ V}" /> am Widerstand ab, <InlineMath math="2{,}4\text{ V}" /> bleiben am Transistor.</>}
+  chart={"flowchart TD\n  S[\"Versorgung 6,0 V\"] --> RB[\"Basiswiderstand 265 kΩ: 5,3 V\"]\n  RB --> BE[\"Basis-Emitter: 0,70 V\"]\n  S --> RC[\"Kollektorwiderstand 1,2 kΩ: 3,6 V\"]\n  RC --> CE[\"Kollektor-Emitter: 2,4 V\"]"}
+/>
+
+<BlockMath math="I_B=\frac{6{,}0-0{,}70}{265\cdot10^{3}}=2{,}0\cdot10^{-5}\text{ A}=20\,\mu\text{A},\qquad I_C=150\cdot20\,\mu\text{A}=3{,}0\text{ mA}" />
+
+<BlockMath math="V_{R_C}=3{,}0\cdot10^{-3}\cdot1{,}2\cdot10^{3}=3{,}6\text{ V},\qquad V_{CE}=6{,}0-3{,}6=2{,}4\text{ V}" />
+
+Ein Basisstrom von <InlineMath math="20\,\mu\text{A}" /> steuert einen Kollektorstrom von <InlineMath math="3{,}0\text{ mA}" />. Der Kollektorwiderstand nimmt <InlineMath math="3{,}6\text{ V}" />, und <InlineMath math="2{,}4\text{ V}" /> bleiben zwischen Kollektor und Emitter.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="23\,\mu\text{A}" /> legt die **ganzen <InlineMath math="6{,}0\text{ V}" />** an den Basiswiderstand und übersieht die <InlineMath math="0{,}70\text{ V}" /> an der Strecke.
+- <InlineMath math="3{,}6\text{ V}" /> ist die Spannung am **Kollektorwiderstand**, nicht am Transistor.
+- <InlineMath math="6{,}0\text{ V}" /> setzt den Kollektorstrom **gleich dem Basisstrom**, sodass am Widerstand fast nichts abfiele.

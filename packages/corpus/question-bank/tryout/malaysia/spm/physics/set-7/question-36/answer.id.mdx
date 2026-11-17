@@ -1,0 +1,21 @@
+# Arus basis yang kecil menentukan arus kolektor yang besar
+
+Pada jalur basis, tegangan sumber terbagi antara resistor basis dan **sambungan basis-emitor**, jadi resistor basis mendapat <InlineMath math="6{,}0-0{,}70" /> volt. Arus kolektor adalah <InlineMath math="150" /> kali arus basis. Arus itu menimbulkan penurunan tegangan pada resistor kolektor, dan transistor mendapat **sisa** tegangan sumber.
+
+<Mermaid
+  title={<>Tegangan di Sekitar Rangkaian Transistor</>}
+  description={<>Dari sumber, jalur basis turun <InlineMath math="5{,}3\text{ V}" /> pada resistor basis dan <InlineMath math="0{,}70\text{ V}" /> pada sambungan basis-emitor. Jalur kolektor turun <InlineMath math="3{,}6\text{ V}" /> pada resistornya, menyisakan <InlineMath math="2{,}4\text{ V}" /> pada transistor.</>}
+  chart={"flowchart TD\n  S[\"Sumber 6,0 V\"] --> RB[\"Resistor basis 265 kΩ: 5,3 V\"]\n  RB --> BE[\"Basis-emitor: 0,70 V\"]\n  S --> RC[\"Resistor kolektor 1,2 kΩ: 3,6 V\"]\n  RC --> CE[\"Kolektor-emitor: 2,4 V\"]"}
+/>
+
+<BlockMath math="I_B=\frac{6{,}0-0{,}70}{265\times10^{3}}=2{,}0\times10^{-5}\text{ A}=20\,\mu\text{A},\qquad I_C=150\times20\,\mu\text{A}=3{,}0\text{ mA}" />
+
+<BlockMath math="V_{R_C}=3{,}0\times10^{-3}\times1{,}2\times10^{3}=3{,}6\text{ V},\qquad V_{CE}=6{,}0-3{,}6=2{,}4\text{ V}" />
+
+Arus basis <InlineMath math="20\,\mu\text{A}" /> mengendalikan arus kolektor <InlineMath math="3{,}0\text{ mA}" />. Resistor kolektor mengambil <InlineMath math="3{,}6\text{ V}" />, menyisakan <InlineMath math="2{,}4\text{ V}" /> antara kolektor dan emitor.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="23\,\mu\text{A}" /> menaruh **seluruh <InlineMath math="6{,}0\text{ V}" />** pada resistor basis, mengabaikan <InlineMath math="0{,}70\text{ V}" /> pada sambungan.
+- <InlineMath math="3{,}6\text{ V}" /> adalah tegangan pada **resistor kolektor**, bukan pada transistor.
+- <InlineMath math="6{,}0\text{ V}" /> menganggap arus kolektor **sama dengan arus basis**, jadi resistor hampir tidak menurunkan tegangan.

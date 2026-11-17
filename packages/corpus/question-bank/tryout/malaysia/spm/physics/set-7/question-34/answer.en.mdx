@@ -1,0 +1,26 @@
+# The cables share the secondary voltage, and the primary pays for everything
+
+The <InlineMath math="12\text{ V}" /> drives current through the cables and the heater **in series**, so the current depends on their total resistance. The heater receives only its own <InlineMath math="I^2R" />. An ideal transformer takes from the mains **exactly the power the secondary delivers**, including the power wasted in the cables.
+
+<Chart
+  title={<>Where the Transformer's Output Power Goes</>}
+  bars="apart"
+  categories={["Heater", "Cables"]}
+  series={[
+    { label: "Power", mark: "bar", values: [46.1, 11.5] },
+  ]}
+  valueLabel="Power (W)"
+  description={<>Of <InlineMath math="57.6\text{ W}" /> from the secondary, about <InlineMath math="46\text{ W}" /> heats the heater and about <InlineMath math="11.5\text{ W}" /> is lost in the cables.</>}
+/>
+
+<BlockMath math="I_s=\frac{12}{2.0+0.50}=4.8\text{ A},\qquad P_{\text{heater}}=4.8^2\times2.0\approx46\text{ W}" />
+
+<BlockMath math="P_s=12\times4.8=57.6\text{ W},\qquad I_p=\frac{57.6}{240}=0.24\text{ A}" />
+
+The secondary current is <InlineMath math="4.8\text{ A}" />. The heater gives about <InlineMath math="46\text{ W}" />, and the cables waste about <InlineMath math="11.5\text{ W}" />. The primary supplies the total <InlineMath math="57.6\text{ W}" />, so it carries <InlineMath math="0.24\text{ A}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="72\text{ W}" /> with <InlineMath math="0.30\text{ A}" /> **ignores the cables**, putting the full <InlineMath math="12\text{ V}" /> across the heater.
+- <InlineMath math="0.19\text{ A}" /> supplies only the **heater's power** from the primary, forgetting the power lost in the cables.
+- <InlineMath math="58\text{ W}" /> is the **whole secondary output**, not the share that reaches the heater.

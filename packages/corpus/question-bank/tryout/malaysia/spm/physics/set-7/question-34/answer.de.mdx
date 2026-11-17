@@ -1,0 +1,26 @@
+# Die Leitungen teilen sich die Sekundärspannung, und die Primärseite bezahlt alles
+
+Die <InlineMath math="12\text{ V}" /> treiben den Strom durch Leitungen und Heizgerät **in Reihe**, der Strom hängt also vom Gesamtwiderstand ab. Das Heizgerät bekommt nur sein eigenes <InlineMath math="I^2R" />. Ein idealer Transformator nimmt dem Netz **genau die Leistung, die die Sekundärseite abgibt**, einschließlich der in den Leitungen verlorenen.
+
+<Chart
+  title={<>Wohin die Ausgangsleistung des Transformators geht</>}
+  bars="apart"
+  categories={["Heizgerät", "Leitungen"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [46.1, 11.5] },
+  ]}
+  valueLabel="Leistung (W)"
+  description={<>Von <InlineMath math="57{,}6\text{ W}" /> aus der Sekundärspule heizen etwa <InlineMath math="46\text{ W}" /> das Gerät, etwa <InlineMath math="11{,}5\text{ W}" /> gehen in den Leitungen verloren.</>}
+/>
+
+<BlockMath math="I_s=\frac{12}{2{,}0+0{,}50}=4{,}8\text{ A},\qquad P_{\text{Heiz}}=4{,}8^2\cdot2{,}0\approx46\text{ W}" />
+
+<BlockMath math="P_s=12\cdot4{,}8=57{,}6\text{ W},\qquad I_p=\frac{57{,}6}{240}=0{,}24\text{ A}" />
+
+Der Sekundärstrom beträgt <InlineMath math="4{,}8\text{ A}" />. Das Heizgerät gibt etwa <InlineMath math="46\text{ W}" /> ab, die Leitungen verschwenden etwa <InlineMath math="11{,}5\text{ W}" />. Die Primärseite liefert die gesamten <InlineMath math="57{,}6\text{ W}" /> und führt daher <InlineMath math="0{,}24\text{ A}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="72\text{ W}" /> mit <InlineMath math="0{,}30\text{ A}" /> **übersieht die Leitungen** und legt die vollen <InlineMath math="12\text{ V}" /> an das Heizgerät.
+- <InlineMath math="0{,}19\text{ A}" /> deckt primärseitig nur die **Leistung des Heizgeräts** und vergisst den Leitungsverlust.
+- <InlineMath math="58\text{ W}" /> ist die **ganze Sekundärleistung**, nicht der Anteil, der das Heizgerät erreicht.

@@ -1,0 +1,21 @@
+# Arus tapak yang kecil menentukan arus pengumpul yang besar
+
+Dalam laluan tapak, bekalan dikongsi antara perintang tapak dengan **simpang tapak-pemancar**, jadi voltan merentasi perintang tapak ialah <InlineMath math="6.0-0.70" /> volt. Arus pengumpul ialah <InlineMath math="150" /> kali arus tapak. Arus itu menghasilkan susutan voltan merentasi perintang pengumpul, dan transistor mendapat **baki** voltan bekalan.
+
+<Mermaid
+  title={<>Voltan di Sekitar Litar Transistor</>}
+  description={<>Dari bekalan, laluan tapak menyusut <InlineMath math="5.3\text{ V}" /> merentasi perintang tapak dan <InlineMath math="0.70\text{ V}" /> merentasi simpang tapak-pemancar. Laluan pengumpul menyusut <InlineMath math="3.6\text{ V}" /> merentasi perintangnya, meninggalkan <InlineMath math="2.4\text{ V}" /> merentasi transistor.</>}
+  chart={"flowchart TD\n  S[\"Bekalan 6.0 V\"] --> RB[\"Perintang tapak 265 kΩ: 5.3 V\"]\n  RB --> BE[\"Tapak-pemancar: 0.70 V\"]\n  S --> RC[\"Perintang pengumpul 1.2 kΩ: 3.6 V\"]\n  RC --> CE[\"Pengumpul-pemancar: 2.4 V\"]"}
+/>
+
+<BlockMath math="I_B=\frac{6.0-0.70}{265\times10^{3}}=2.0\times10^{-5}\text{ A}=20\,\mu\text{A},\qquad I_C=150\times20\,\mu\text{A}=3.0\text{ mA}" />
+
+<BlockMath math="V_{R_C}=3.0\times10^{-3}\times1.2\times10^{3}=3.6\text{ V},\qquad V_{CE}=6.0-3.6=2.4\text{ V}" />
+
+Arus tapak <InlineMath math="20\,\mu\text{A}" /> mengawal arus pengumpul <InlineMath math="3.0\text{ mA}" />. Perintang pengumpul mengambil <InlineMath math="3.6\text{ V}" />, meninggalkan <InlineMath math="2.4\text{ V}" /> antara pengumpul dengan pemancar.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="23\,\mu\text{A}" /> meletakkan **seluruh <InlineMath math="6.0\text{ V}" />** merentasi perintang tapak, mengabaikan <InlineMath math="0.70\text{ V}" /> merentasi simpang.
+- <InlineMath math="3.6\text{ V}" /> ialah voltan merentasi **perintang pengumpul**, bukan merentasi transistor.
+- <InlineMath math="6.0\text{ V}" /> menganggap arus pengumpul **sama dengan arus tapak**, jadi perintang hampir tidak menyusutkan voltan.

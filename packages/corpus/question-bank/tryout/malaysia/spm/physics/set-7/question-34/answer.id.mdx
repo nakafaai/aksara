@@ -1,0 +1,26 @@
+# Kabel ikut menanggung tegangan sekunder, dan primer membayar semuanya
+
+Tegangan <InlineMath math="12\text{ V}" /> mendorong arus lewat kabel dan pemanas **secara seri**, jadi arusnya bergantung pada hambatan totalnya. Pemanas hanya menerima <InlineMath math="I^2R" /> miliknya. Transformator ideal mengambil dari jaringan **tepat daya yang diberikan sekunder**, termasuk daya yang terbuang di kabel.
+
+<Chart
+  title={<>Ke Mana Daya Keluaran Transformator Pergi</>}
+  bars="apart"
+  categories={["Pemanas", "Kabel"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [46.1, 11.5] },
+  ]}
+  valueLabel="Daya (W)"
+  description={<>Dari <InlineMath math="57{,}6\text{ W}" /> dari kumparan sekunder, sekitar <InlineMath math="46\text{ W}" /> memanaskan pemanas dan sekitar <InlineMath math="11{,}5\text{ W}" /> hilang di kabel.</>}
+/>
+
+<BlockMath math="I_s=\frac{12}{2{,}0+0{,}50}=4{,}8\text{ A},\qquad P_{\text{pemanas}}=4{,}8^2\times2{,}0\approx46\text{ W}" />
+
+<BlockMath math="P_s=12\times4{,}8=57{,}6\text{ W},\qquad I_p=\frac{57{,}6}{240}=0{,}24\text{ A}" />
+
+Arus sekunder <InlineMath math="4{,}8\text{ A}" />. Pemanas memberi sekitar <InlineMath math="46\text{ W}" />, dan kabel membuang sekitar <InlineMath math="11{,}5\text{ W}" />. Primer memberi total <InlineMath math="57{,}6\text{ W}" />, jadi membawa <InlineMath math="0{,}24\text{ A}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="72\text{ W}" /> dengan <InlineMath math="0{,}30\text{ A}" /> **mengabaikan kabel**, menaruh <InlineMath math="12\text{ V}" /> penuh pada pemanas.
+- <InlineMath math="0{,}19\text{ A}" /> hanya memasok **daya pemanas** dari primer, lupa daya yang hilang di kabel.
+- <InlineMath math="58\text{ W}" /> adalah **seluruh keluaran sekunder**, bukan bagian yang sampai ke pemanas.

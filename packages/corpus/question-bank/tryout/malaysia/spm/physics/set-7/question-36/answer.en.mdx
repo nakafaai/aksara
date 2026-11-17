@@ -1,0 +1,21 @@
+# The small base current sets the large collector current
+
+In the base path the supply is shared between the base resistor and the **base-emitter junction**, so the base resistor has <InlineMath math="6.0-0.70" /> volts across it. The collector current is <InlineMath math="150" /> times the base current. That current makes a voltage drop across the collector resistor, and the transistor gets **what is left** of the supply.
+
+<Mermaid
+  title={<>Voltages Around the Transistor Circuit</>}
+  description={<>From the supply, the base path drops <InlineMath math="5.3\text{ V}" /> across the base resistor and <InlineMath math="0.70\text{ V}" /> across the base-emitter junction. The collector path drops <InlineMath math="3.6\text{ V}" /> across its resistor, leaving <InlineMath math="2.4\text{ V}" /> across the transistor.</>}
+  chart={"flowchart TD\n  S[\"6.0 V supply\"] --> RB[\"Base resistor 265 kΩ: 5.3 V\"]\n  RB --> BE[\"Base-emitter: 0.70 V\"]\n  S --> RC[\"Collector resistor 1.2 kΩ: 3.6 V\"]\n  RC --> CE[\"Collector-emitter: 2.4 V\"]"}
+/>
+
+<BlockMath math="I_B=\frac{6.0-0.70}{265\times10^{3}}=2.0\times10^{-5}\text{ A}=20\,\mu\text{A},\qquad I_C=150\times20\,\mu\text{A}=3.0\text{ mA}" />
+
+<BlockMath math="V_{R_C}=3.0\times10^{-3}\times1.2\times10^{3}=3.6\text{ V},\qquad V_{CE}=6.0-3.6=2.4\text{ V}" />
+
+A base current of <InlineMath math="20\,\mu\text{A}" /> controls a collector current of <InlineMath math="3.0\text{ mA}" />. The collector resistor takes <InlineMath math="3.6\text{ V}" />, leaving <InlineMath math="2.4\text{ V}" /> between the collector and the emitter.
+
+# Why the other options are wrong
+
+- <InlineMath math="23\,\mu\text{A}" /> puts the **whole <InlineMath math="6.0\text{ V}" />** across the base resistor, ignoring the <InlineMath math="0.70\text{ V}" /> across the junction.
+- <InlineMath math="3.6\text{ V}" /> is the voltage across the **collector resistor**, not across the transistor.
+- <InlineMath math="6.0\text{ V}" /> treats the collector current as **equal to the base current**, so the resistor would drop almost nothing.
