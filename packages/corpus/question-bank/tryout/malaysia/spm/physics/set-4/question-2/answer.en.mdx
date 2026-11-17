@@ -1,0 +1,25 @@
+# Count the oscillations, not the numbers spoken
+
+The count starts at "one" with no oscillation done, so "twenty" marks only **nineteen oscillations**. The period is <InlineMath math="36.0 \div 19 = 1.89" /> s.
+
+<Mermaid
+  title={<>Counting Oscillations Correctly</>}
+  description={<>Saying "one" at the release means the count of twenty marks only nineteen complete oscillations.</>}
+  chart={`
+    flowchart LR
+      N0["Count 1 at release, 20 at the end"] --> N1["19 oscillations in 36.0 s"]
+      N1 --> N2["T = 36.0 ÷ 19 = 1.89 s"]
+      N2 --> N3["g = 4π² × 0.900 ÷ 1.89² = 9.9 m s⁻²"]
+      N3 --> N4["l = 9.9 × 2.00² ÷ 4π² = 1.00 m"]
+  `}
+/>
+
+Then <InlineMath math="g = \dfrac{4\pi^2 l}{T^2} = \dfrac{4\pi^2 \times 0.900}{1.89^2} = 9.9\text{ m s}^{-2}" />. For <InlineMath math="T = 2.00" /> s, <InlineMath math="l = \dfrac{gT^2}{4\pi^2} = \dfrac{9.9 \times 4.00}{39.5} = 1.00" /> m, because the length goes as the square of the period.
+
+**How far g can be off**: two presses can together shift the timing by up to <InlineMath math="0.20" /> s in <InlineMath math="36.0" /> s, which is <InlineMath math="0.56\%" /> of the period. Since <InlineMath math="g" /> goes as <InlineMath math="1 \div T^2" />, that error **doubles** in <InlineMath math="g" />: about <InlineMath math="1.1\%" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="11.0\text{ m s}^{-2}" /> divides by twenty, counting the spoken "one" as a **completed** oscillation.
+- <InlineMath math="0.56\%" /> is the error in the period, but <InlineMath math="g" /> depends on the period squared, which doubles it.
+- <InlineMath math="0.28\%" /> counts only one press, but starting and stopping can each be off.

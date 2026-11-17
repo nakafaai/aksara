@@ -1,0 +1,25 @@
+# Ubah panjang gelombang menjadi cepat rambat, lalu uji kedua perlintasan
+
+Frekuensi tetap <InlineMath math="12" /> Hz, jadi cepat rambatnya <InlineMath math="18" /> dan <InlineMath math="12" /> cm/s. Saat masuk, <InlineMath math="\sin r = \sin 30^\circ \times 12 \div 18 = 0{,}33" />, jadi <InlineMath math="r = 19^\circ" />, membelok **mendekati** garis normal.
+
+<Mermaid
+  title={<>Cepat Rambat Dulu, Lalu Kedua Batas</>}
+  description={<>Gelombang lebih lambat di air dangkal, jadi membelok mendekati garis normal saat masuk. Saat keluar membelok menjauhi normal, dan pada sudut yang cukup besar sama sekali tidak bisa keluar.</>}
+  chart={`
+    flowchart LR
+      N0["Dalam: v = 12 × 1,5 = 18 cm s⁻¹"] --> N2["Masuk: sin r = sin 30° × 12 ÷ 18 = 0,33"]
+      N1["Dangkal: v = 12 × 1,0 = 12 cm s⁻¹"] --> N2
+      N2 --> N3["r = 19°"]
+      N0 --> N4["Keluar pada 45°: sin r = 0,71 × 18 ÷ 12 = 1,06"]
+      N1 --> N4
+      N4 --> N5["Lebih dari 1: dipantulkan seluruhnya"]
+  `}
+/>
+
+Saat keluar, perbandingannya terbalik: <InlineMath math="\sin r = \sin 45^\circ \times 18 \div 12 = 1{,}06" />. Tidak ada sudut dengan sinus di atas satu, jadi gelombang tidak bisa melintas dan dipantulkan seluruhnya kembali ke air dangkal.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="49^\circ" /> membalik perbandingan cepat rambat, membelokkan gelombang **menjauhi** normal saat melambat.
+- <InlineMath math="28^\circ" /> memakai perbandingan masuk untuk arah keluar, padahal saat meninggalkan air yang lambat gelombang menjadi cepat dan membelok menjauhi normal.
+- <InlineMath math="30^\circ" /> yang tetap mengabaikan perubahan cepat rambat, yang justru membelokkan gelombang.

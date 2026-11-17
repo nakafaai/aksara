@@ -1,0 +1,26 @@
+# Find the planet's g, then scale the height and the time with the same take-off speed
+
+<InlineMath math="g" /> goes as <InlineMath math="M \div R^2" />, so the planet's is <InlineMath math="0.10 \div 0.50^2 = 0.40" /> of the Earth's, the radius counting **squared**.
+
+<Mermaid
+  title={<>Same Take-Off, Weaker Gravity</>}
+  description={<>The planet’s gravity is <InlineMath math="0.4" /> of the Earth’s. With the same take-off speed, the height and the time both grow by <InlineMath math="1 \div 0.4 = 2.5" />.</>}
+  chart={`
+    flowchart LR
+      N0["g ratio = 0.10 ÷ 0.50² = 0.40"] --> N2["Height = u² ÷ 2g: × 2.5"]
+      N1["Same take-off speed u"] --> N2
+      N2 --> N3["0.50 × 2.5 = 1.25 m"]
+      N0 --> N4["Time = 2u ÷ g: × 2.5"]
+      N1 --> N4
+  `}
+/>
+
+The same take-off speed <InlineMath math="u" /> reaches <InlineMath math="h = u^2 \div 2g" />, so the height grows <InlineMath math="2.5" /> times, to <InlineMath math="1.25" /> m. The time up and down, <InlineMath math="2u \div g" />, also grows <InlineMath math="2.5" /> times.
+
+**A low orbit**: <InlineMath math="v = \sqrt{gR}" /> becomes <InlineMath math="\sqrt{0.40 \times 0.50} = 0.45" /> of the Earth's, <InlineMath math="3.5\text{ km s}^{-1}" />. The planet's radius is <InlineMath math="3.2 \times 10^6" /> m, so one lap takes <InlineMath math="2\pi \times 3.2 \times 10^6 \div 3530 = 5.7 \times 10^3" /> s, about <InlineMath math="95" /> minutes.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.5\text{ m}" /> and <InlineMath math="134" /> minutes take <InlineMath math="g" /> as <InlineMath math="M \div R" />, forgetting that the radius counts **squared**.
+- <InlineMath math="42" /> minutes keeps the Earth's orbital speed of <InlineMath math="7.9\text{ km s}^{-1}" /> for the smaller planet.
+- <InlineMath math="190" /> minutes uses the Earth's radius for the lap, but the planet is half as wide.

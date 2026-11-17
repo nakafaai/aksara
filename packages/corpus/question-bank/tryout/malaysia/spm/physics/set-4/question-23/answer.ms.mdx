@@ -1,0 +1,24 @@
+# Batalkan arus dengan sebahagian halaju bot, kemudian menyeberang dengan bakinya
+
+Komponen ke hulu mesti membatalkan arus: <InlineMath math="2.5\sin\theta = 1.5" />, jadi <InlineMath math="\sin\theta = 0.60" /> dan <InlineMath math="\theta = 37^\circ" />. Laju bot ialah **hipotenus**, jadi sudut datang daripada sinus, bukan tangen.
+
+<Mermaid
+  title={<>Membatalkan Arus</>}
+  description={<>Komponen halaju bot ke hulu mesti membatalkan arus dengan tepat, dan hanya bakinya yang membawanya menyeberang.</>}
+  chart={`
+    flowchart LR
+      N0["Komponen ke hulu 2.5 sin θ = 1.5"] --> N1["sin θ = 0.60, θ = 37°"]
+      N1 --> N2["Komponen merentas 2.5 kos 37° = 2.0 m s⁻¹"]
+      N2 --> N3["t = 80 ÷ 2.0 = 40 s"]
+  `}
+/>
+
+Baki merentas sungai ialah <InlineMath math="2.5\cos 37^\circ = 2.0" /> m/s, jadi penyeberangan mengambil masa <InlineMath math="80 \div 2.0 = 40" /> s.
+
+**Penyeberangan terpantas**: menghala lurus merentas menggunakan seluruh <InlineMath math="2.5" /> m/s untuk menyeberang, <InlineMath math="80 \div 2.5 = 32" /> s, tetapi arus membawa bot <InlineMath math="1.5 \times 32 = 48" /> m ke hilir dalam masa itu. Laluan terpantas bukan laluan terpendek.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="31^\circ" /> menggunakan <InlineMath math="\tan\theta = 1.5 \div 2.5" />, menganggap laju bot sebagai salah satu sisi yang lebih pendek dan bukan **hipotenus**.
+- Mendarat tepat bertentangan memerlukan sebahagian laju digunakan melawan arus, jadi ia tidak boleh juga menjadi penyeberangan terpantas.
+- <InlineMath math="60\text{ m}" /> membiarkan arus bertindak selama <InlineMath math="40" /> s, tetapi penyeberangan terpantas hanya <InlineMath math="32" /> s.

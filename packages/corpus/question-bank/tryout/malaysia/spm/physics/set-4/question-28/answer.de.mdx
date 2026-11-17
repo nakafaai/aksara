@@ -1,0 +1,24 @@
+# Den Strom aus den Nennwerten der Lampe festlegen, dann die EMK aufteilen
+
+Bei Nennbetrieb nimmt die Lampe <InlineMath math="24 \div 12 = 2{,}0" /> A auf und hat <InlineMath math="12 \div 2{,}0 = 6{,}0\,\Omega" />. Der ganze Kreis muss dann <InlineMath math="18 \div 2{,}0 = 9{,}0\,\Omega" /> haben, einschließlich des eigenen <InlineMath math="1{,}0\,\Omega" /> der Batterie, der Regelwiderstand also <InlineMath math="9{,}0 - 6{,}0 - 1{,}0 = 2{,}0\,\Omega" />.
+
+<Chart
+  title={<>Wohin die <InlineMath math="36\text{ W}" /> der Batterie gehen</>}
+  bars="apart"
+  categories={["Lampe", "Regelwiderstand", "In der Batterie"]}
+  series={[
+    { label: "Leistung (W)", mark: "bar", values: [24, 8, 4] },
+  ]}
+  valueLabel="Leistung (W)"
+  description={<>Bei <InlineMath math="2{,}0\text{ A}" /> erzeugt die Batterie <InlineMath math="36\text{ W}" />. Die Lampe nimmt <InlineMath math="24\text{ W}" />, der Regelwiderstand <InlineMath math="8\text{ W}" /> und die Batterie selbst <InlineMath math="4\text{ W}" />.</>}
+/>
+
+Die Batterie erzeugt <InlineMath math="EI = 18 \times 2{,}0 = 36" /> W, die Lampe erhält <InlineMath math="24" /> W davon: <InlineMath math="24 \div 36 = 67\%" />. Der Rest heizt den Regelwiderstand und die Batterie **selbst**.
+
+**Regelwiderstand kurzgeschlossen**: Es bleiben nur die <InlineMath math="6{,}0\,\Omega" /> der Lampe und das <InlineMath math="1{,}0\,\Omega" /> der Batterie, also <InlineMath math="I = 18 \div 7{,}0 = 2{,}57" /> A, und die Lampe nimmt <InlineMath math="2{,}57^2 \times 6{,}0 = 40" /> W auf, weit über ihrer Nennleistung, vermutlich genug, um sie durchbrennen zu lassen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3{,}0\,\Omega" /> und <InlineMath math="54\text{ W}" /> vergessen den **Innenwiderstand** der Batterie, der den Strom auch nach dem Kurzschluss begrenzt.
+- <InlineMath math="75\%" /> zählt nur den Verlust im Regelwiderstand und vergisst die <InlineMath math="4" /> W in der Batterie.
+- Die Nennwerte legen die Leistung der Lampe nicht fest: Mit weniger Widerstand im Kreis steigt der Strom und mit ihm die Leistung.

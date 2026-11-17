@@ -1,0 +1,24 @@
+# Count the can with the water, balance the heat, then run it backwards
+
+Per degree the copper gives <InlineMath math="0.50 \times 390 = 195" /> J, while the water and **the can** take <InlineMath math="0.40 \times 4200 + 0.40 \times 900 = 2040" /> J.
+
+<Chart
+  title={<>Heat Needed per Degree</>}
+  bars="apart"
+  categories={["Copper", "Water", "Aluminium can"]}
+  series={[
+    { label: "Heat per degree (J/°C)", mark: "bar", values: [195, 1680, 360] },
+  ]}
+  valueLabel="Heat per degree (J/°C)"
+  description={<>The water and the can together need <InlineMath math="2040\text{ J}" /> for each degree, more than ten times the copper’s <InlineMath math="195\text{ J}" />, so the copper must cool much further than the water warms.</>}
+/>
+
+Balancing, <InlineMath math="195(200 - T) = 2040(T - 25)" />, so <InlineMath math="T = 90\,000 \div 2235 = 40^\circ\text{C}" />. For the water to reach <InlineMath math="100^\circ\text{C}" />, the copper must give <InlineMath math="2040 \times 75 = 153\,000" /> J while cooling to <InlineMath math="100^\circ\text{C}" />: <InlineMath math="T_0 = 100 + 153\,000 \div 195 = 885^\circ\text{C}" />.
+
+**Boiling some away**: copper cooling from <InlineMath math="1000" /> to <InlineMath math="100^\circ\text{C}" /> gives <InlineMath math="195 \times 900 = 175\,500" /> J. The water and the can take <InlineMath math="153\,000" /> J to reach <InlineMath math="100^\circ\text{C}" />, leaving <InlineMath math="22\,500" /> J to boil <InlineMath math="22\,500 \div 2.26 \times 10^6 = 0.010" /> kg, about <InlineMath math="10" /> g.
+
+# Why the other options are wrong
+
+- <InlineMath math="43^\circ\text{C}" />, <InlineMath math="746^\circ\text{C}" /> and <InlineMath math="22\text{ g}" /> leave out the **aluminium can**, which also has to be heated.
+- <InlineMath math="19\text{ g}" /> lets the copper cool all the way to <InlineMath math="0^\circ\text{C}" />, but it stops at <InlineMath math="100^\circ\text{C}" /> with the boiling water.
+- <InlineMath math="78\text{ g}" /> spends all the copper's heat on boiling and forgets to warm the water and the can first.

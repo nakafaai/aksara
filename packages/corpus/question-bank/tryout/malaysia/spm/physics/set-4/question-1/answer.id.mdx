@@ -1,0 +1,25 @@
+# Koreksi kedua pembacaan, lalu hitung luas sampai massa
+
+Kesalahan nol positif **dikurangkan** dari setiap pembacaan: <InlineMath math="3{,}46 - 0{,}04 = 3{,}42" /> cm dan <InlineMath math="2{,}86 - 0{,}04 = 2{,}82" /> cm.
+
+<Mermaid
+  title={<>Dari Dua Pembacaan ke Massa</>}
+  description={<>Kedua pembacaan dikurangi kesalahan nol. Tebal dinding tidak bergantung padanya, tetapi luas dinding bergantung, karena berasal dari kuadrat diameter.</>}
+  chart={`
+    flowchart LR
+      N0["Pembacaan 3,46 dan 2,86 cm"] --> N1["Koreksi: 3,42 dan 2,82 cm"]
+      N1 --> N2["Luas = π/4 (3,42² − 2,82²) = 2,94 cm²"]
+      N2 --> N3["V = 2,94 × 50,0 = 147 cm³"]
+      N3 --> N4["m = 147 × 2,70 = 397 g"]
+  `}
+/>
+
+Luas dinding <InlineMath math="\tfrac{\pi}{4}(3{,}42^2 - 2{,}82^2) = 2{,}94\text{ cm}^2" />, jadi volumenya <InlineMath math="2{,}94 \times 50{,}0 = 147\text{ cm}^3" /> dan massanya <InlineMath math="147 \times 2{,}70 = 397" /> g.
+
+Kesalahan nol saling meniadakan pada tebal dinding, <InlineMath math="D - d" />, tetapi tidak pada <InlineMath math="D^2 - d^2 = (D - d)(D + d)" />. Dengan pembacaan mentah, luasnya <InlineMath math="2{,}98\text{ cm}^2" /> dan massanya <InlineMath math="402" /> g, sekitar <InlineMath math="1{,}3\%" /> terlalu besar.
+
+# Kenapa pilihan lain salah
+
+- Kesalahan itu **tidak saling meniadakan**, karena luas bergantung pada <InlineMath math="D + d" />, yang memuat dua kali kesalahan nol.
+- <InlineMath math="402\text{ g}" /> adalah massa tanpa koreksi, jadi tidak mungkin hasil dari kesalahan yang saling meniadakan.
+- <InlineMath math="1590\text{ g}" /> memakai diameter sebagai jari-jari, sehingga luasnya empat kali terlalu besar.

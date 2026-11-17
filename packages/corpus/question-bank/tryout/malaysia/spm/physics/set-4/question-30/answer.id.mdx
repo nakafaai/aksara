@@ -1,0 +1,25 @@
+# Ubah label menjadi energi, lalu bagi dengan daya yang sampai ke baterai
+
+Label itu adalah **muatan**: <InlineMath math="4{,}0" /> A h adalah <InlineMath math="4{,}0 \times 3600 = 14\,400" /> C. Pada <InlineMath math="3{,}85" /> V itu menyimpan <InlineMath math="14\,400 \times 3{,}85 = 55\,400" /> J, sekitar <InlineMath math="55" /> kJ.
+
+<Mermaid
+  title={<>Muatan Kali Tegangan, Lalu Energi Dibagi Daya</>}
+  description={<>Label memberi muatan, bukan energi. Mengalikan dengan tegangan memberi energi, dan daya pengisian yang berguna menentukan waktunya.</>}
+  chart={`
+    flowchart LR
+      N0["Muatan 4,0 A h = 4,0 × 3600 = 14 400 C"] --> N1["Energi 14 400 × 3,85 = 55 kJ"]
+      N1 --> N4["t = 55 440 ÷ 15,3 = 3600 s ≈ 1,0 jam"]
+      N2["Pengisi 9,0 × 2,0 = 18 W"] --> N3["Masuk baterai 0,85 × 18 = 15,3 W"]
+      N3 --> N4
+  `}
+/>
+
+Pengisi daya menarik <InlineMath math="9{,}0 \times 2{,}0 = 18" /> W, dan <InlineMath math="0{,}85 \times 18 = 15{,}3" /> W sampai ke baterai. Pengisian penuh memakan <InlineMath math="55\,400 \div 15{,}3 = 3600" /> s, sekitar <InlineMath math="1{,}0" /> jam. Arus baterai sendiri bukan <InlineMath math="2{,}0" /> A, karena tegangannya diubah saat masuk.
+
+**Kalor di pengisi daya**: selama <InlineMath math="3620" /> s pengisi daya mengambil <InlineMath math="18 \times 3620 = 65\,200" /> J, dan <InlineMath math="15\%" /> yang tidak diteruskannya menjadi kalor: <InlineMath math="0{,}15 \times 65\,200 = 9{,}8" /> kJ. <InlineMath math="15\%" /> itu bagian dari yang **masuk**, bukan dari yang disimpan baterai.
+
+# Kenapa pilihan lain salah
+
+- Sekitar <InlineMath math="2{,}0\text{ jam}" /> membagi <InlineMath math="4000" /> mA h dengan <InlineMath math="2{,}0" /> A, padahal arus pengisi pada <InlineMath math="9{,}0" /> V, bukan pada **tegangan baterai**.
+- <InlineMath math="8{,}3\text{ kJ}" /> mengambil <InlineMath math="15\%" /> dari energi tersimpan, padahal kerugian adalah bagian dari energi yang masuk.
+- Sekitar <InlineMath math="0{,}73\text{ jam}" /> membagi daya pengisi dengan <InlineMath math="0{,}85" />, seolah kerugian menambah daya, bukan menguranginya.

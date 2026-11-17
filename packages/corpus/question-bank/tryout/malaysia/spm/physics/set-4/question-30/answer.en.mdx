@@ -1,0 +1,25 @@
+# Turn the label into energy, then divide by the power that reaches the battery
+
+The label is a **charge**: <InlineMath math="4.0" /> A h is <InlineMath math="4.0 \times 3600 = 14\,400" /> C. At <InlineMath math="3.85" /> V that stores <InlineMath math="14\,400 \times 3.85 = 55\,400" /> J, about <InlineMath math="55" /> kJ.
+
+<Mermaid
+  title={<>Charge Times Voltage, Then Energy Over Power</>}
+  description={<>The label gives charge, not energy. Multiplying by the voltage gives the energy, and the useful charging power sets the time.</>}
+  chart={`
+    flowchart LR
+      N0["Charge 4.0 A h = 4.0 × 3600 = 14 400 C"] --> N1["Energy 14 400 × 3.85 = 55 kJ"]
+      N1 --> N4["t = 55 440 ÷ 15.3 = 3600 s ≈ 1.0 h"]
+      N2["Charger 9.0 × 2.0 = 18 W"] --> N3["Into battery 0.85 × 18 = 15.3 W"]
+      N3 --> N4
+  `}
+/>
+
+The charger draws <InlineMath math="9.0 \times 2.0 = 18" /> W, of which <InlineMath math="0.85 \times 18 = 15.3" /> W reaches the battery. A full charge takes <InlineMath math="55\,400 \div 15.3 = 3600" /> s, about <InlineMath math="1.0" /> h. The battery's own current is not <InlineMath math="2.0" /> A, because the voltage is changed on the way in.
+
+**Heat in the charger**: over the <InlineMath math="3620" /> s the charger takes <InlineMath math="18 \times 3620 = 65\,200" /> J, and the <InlineMath math="15\%" /> it does not pass on is heat: <InlineMath math="0.15 \times 65\,200 = 9.8" /> kJ. The <InlineMath math="15\%" /> is a share of what goes **in**, not of what the battery stores.
+
+# Why the other options are wrong
+
+- About <InlineMath math="2.0\text{ h}" /> divides <InlineMath math="4000" /> mA h by <InlineMath math="2.0" /> A, but the charger's current is at <InlineMath math="9.0" /> V, not at the **battery's voltage**.
+- <InlineMath math="8.3\text{ kJ}" /> takes <InlineMath math="15\%" /> of the stored energy, but the loss is a share of the energy that goes in.
+- About <InlineMath math="0.73\text{ h}" /> divides the charger's power by <InlineMath math="0.85" />, as if the losses added power instead of taking it away.

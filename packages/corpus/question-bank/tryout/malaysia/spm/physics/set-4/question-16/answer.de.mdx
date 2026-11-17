@@ -1,0 +1,23 @@
+# Die drei Sekunden enthalten Fall und Schall, also die Fallzeit bestimmen
+
+Fällt der Stein <InlineMath math="t" /> Sekunden, ist die Tiefe <InlineMath math="d = 5t^2" />, und der **Schall läuft dieselbe Tiefe zurück** in den übrigen <InlineMath math="3{,}0 - t" /> Sekunden: <InlineMath math="5t^2 = 340(3{,}0 - t)" />.
+
+<Mermaid
+  title={<>Die drei Sekunden aufteilen</>}
+  description={<>Die <InlineMath math="3{,}0\text{ s}" /> sind der Fall plus der Schall auf dem Rückweg. Dieselbe Tiefe verbindet beides.</>}
+  chart={`
+    flowchart LR
+      N0["Fall: d = 5t²"] --> N2["5t² + 340t − 1020 = 0"]
+      N1["Schall hinauf: d = 340(3,0 − t)"] --> N2
+      N2 --> N3["t = 2,88 s, d = 41 m"]
+      N3 --> N4["v = 10 × 2,88 = 29 m s⁻¹"]
+  `}
+/>
+
+Das ist <InlineMath math="5t^2 + 340t - 1020 = 0" /> mit <InlineMath math="t = 2{,}88" /> s, also <InlineMath math="d = 5 \times 2{,}88^2 = 41" /> m. Der Stein trifft das Wasser mit <InlineMath math="10 \times 2{,}88 = 29" /> m/s.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="45\text{ m}" /> lässt den Stein die vollen <InlineMath math="3{,}0" /> s fallen und vergisst die **Laufzeit des Schalls**.
+- <InlineMath math="30\text{ m s}^{-1}" /> bei richtiger Tiefe nimmt für die Geschwindigkeit trotzdem <InlineMath math="3{,}0" /> s Fallzeit.
+- <InlineMath math="14\text{ m s}^{-1}" /> ist die mittlere Geschwindigkeit beim Fallen, nicht die am Boden.

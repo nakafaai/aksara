@@ -1,0 +1,23 @@
+# Cari energinya, bagi pada batas golongan, lalu ulangi untuk energi yang lebih kecil
+
+Unit itu memakai <InlineMath math="2{,}0 \times 8 \times 30 = 480" /> kWh. <InlineMath math="200" /> kWh pertama berharga <InlineMath math="200 \times 0{,}50 = 100" /> ringgit dan <InlineMath math="280" /> sisanya <InlineMath math="280 \times 0{,}60 = 168" />, jadi tagihannya RM <InlineMath math="268" />.
+
+<Chart
+  title={<>Tagihan dalam Dua Golongan</>}
+  bars="apart"
+  categories={["Sekarang, 480 kWh", "Inverter, 312 kWh"]}
+  series={[
+    { label: "200 kWh pertama", mark: "bar", values: [100, 100] },
+    { label: "Di atas 200 kWh", mark: "bar", values: [168, 67.2] },
+  ]}
+  valueLabel="Biaya (RM)"
+  description={<>Kedua unit membayar penuh RM <InlineMath math="100" /> untuk golongan pertama. Penghematan hanya datang dari golongan kedua yang lebih mahal.</>}
+/>
+
+Model inverter memakai <InlineMath math="0{,}65 \times 480 = 312" /> kWh: RM <InlineMath math="100" /> ditambah <InlineMath math="112 \times 0{,}60 = 67{,}2" />, yaitu RM <InlineMath math="167{,}2" />. Penghematannya sekitar RM <InlineMath math="101" />, seluruhnya dari **golongan yang lebih mahal**.
+
+# Kenapa pilihan lain salah
+
+- RM <InlineMath math="240" /> menagih setiap kWh dengan tarif murah dan mengabaikan **golongan kedua**.
+- RM <InlineMath math="288" /> menagih setiap kWh dengan tarif mahal, sehingga <InlineMath math="200" /> kWh pertama terlalu mahal.
+- RM <InlineMath math="94" /> mengambil <InlineMath math="35\%" /> dari tagihan, padahal seluruh energi yang dihemat jatuh di golongan mahal, jadi hematnya lebih besar.

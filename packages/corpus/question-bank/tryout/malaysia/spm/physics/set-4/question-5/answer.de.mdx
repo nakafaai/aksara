@@ -1,0 +1,25 @@
+# Beide Anhaltewege addieren, dann Kraft und Zeit bestimmen
+
+Gegenüber dem Boden legt der Fahrer den Weg der Knautschzone **plus** die Gurtdehnung zurück, <InlineMath math="0{,}40 + 0{,}20 = 0{,}60" /> m, während er von <InlineMath math="15" /> m/s zur Ruhe kommt.
+
+<Mermaid
+  title={<>Wie weit der Fahrer beim Anhalten kommt</>}
+  description={<>Der Fahrer bewegt sich mit dem sich faltenden Auto nach vorn und dann in den sich dehnenden Gurt, der Anhalteweg ist also die Summe aus beidem.</>}
+  chart={`
+    flowchart LR
+      N0["Knautschzone 0,40 m + Gurt 0,20 m = 0,60 m"] --> N1["a = 15² ÷ (2 × 0,60) = 188 m s⁻²"]
+      N1 --> N2["F = 70 × 188 = 1,3 × 10⁴ N"]
+      N0 --> N4["t = 0,60 ÷ 7,5 = 0,080 s"]
+      N3["Mittlere Geschwindigkeit 7,5 m s⁻¹"] --> N4
+  `}
+/>
+
+Die Verzögerung ist <InlineMath math="15^2 \div (2 \times 0{,}60) = 188\text{ m s}^{-2}" />, der Gurt zieht also mit <InlineMath math="70 \times 188 = 1{,}3 \times 10^4" /> N. Die mittlere Geschwindigkeit ist <InlineMath math="7{,}5" /> m/s, das Anhalten dauert also <InlineMath math="0{,}60 \div 7{,}5 = 0{,}080" /> s.
+
+**Ohne Gurt**: Der Fahrer erreicht das Armaturenbrett noch mit <InlineMath math="15" /> m/s und kommt auf <InlineMath math="0{,}050" /> m zum Stehen: <InlineMath math="a = 15^2 \div (2 \times 0{,}050) = 2250\text{ m s}^{-2}" />, eine Kraft von <InlineMath math="70 \times 2250 = 1{,}6 \times 10^5" /> N. Das ist das <InlineMath math="0{,}60 \div 0{,}050 = 12" />-Fache der Gurtkraft, denn dieselbe kinetische Energie wird auf einem Zwölftel des Weges abgebaut.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3{,}9 \times 10^4\text{ N}" /> nimmt nur die <InlineMath math="0{,}20" /> m des Gurts und vergisst, dass sich der Fahrer mit dem **zerknautschenden Auto** bewegt.
+- <InlineMath math="1{,}3" />-mal lässt das Armaturenbrett den Fahrer auch über die Knautschstrecke bremsen, doch ohne Gurt trifft er es noch mit voller Geschwindigkeit.
+- <InlineMath math="2{,}6 \times 10^4\text{ N}" /> teilt den Weg für die Zeit durch die Anfangsgeschwindigkeit, doch der Fahrer wird langsamer, seine mittlere Geschwindigkeit ist nur die Hälfte.

@@ -1,0 +1,25 @@
+# Tentukan di mana tegangan harus naik, lalu tentukan resistor untuk titik peralihan
+
+Saat ruangan menghangat, hambatan termistor turun dan bagiannya dari <InlineMath math="5{,}0" /> V ikut turun. Masukan harus **naik**, jadi harus diambil pada resistor tetap, dengan termistor di atas.
+
+<Mermaid
+  title={<>Merancang Pembagi Tegangan</>}
+  description={<>Masukan harus naik saat ruangan menghangat, jadi harus diambil pada komponen yang bagian tegangannya bertambah: resistor tetap, dengan termistor di atasnya.</>}
+  chart={`
+    flowchart LR
+      N0["Hambatan termistor turun saat panas"] --> N1["Resistor tetap di bawah: bagiannya naik"]
+      N1 --> N2["Beralih pada 2,5 V: dua bagian sama"]
+      N2 --> N3["Resistor tetap = termistor pada 45 °C = 4,0 kΩ"]
+      N3 --> N4["Pada 25 °C: 5,0 × 4,0 ÷ (10 + 4,0) = 1,4 V"]
+  `}
+/>
+
+Masukan mencapai <InlineMath math="2{,}5" /> V saat kedua hambatan sama, jadi resistor tetap harus sama dengan termistor pada <InlineMath math="45^\circ\text{C}" />: <InlineMath math="4{,}0\text{ k}\Omega" />. Pada <InlineMath math="25^\circ\text{C}" /> masukannya <InlineMath math="5{,}0 \times 4{,}0 \div (10 + 4{,}0) = 1{,}4" /> V, jauh di bawah titik picu.
+
+**Resistor lebih besar, lalu ambang baru**: dengan resistor tetap <InlineMath math="8{,}0\text{ k}\Omega" />, masukan mencapai <InlineMath math="2{,}5" /> V saat termistor juga <InlineMath math="8{,}0\text{ k}\Omega" />, pada <InlineMath math="30^\circ\text{C}" />, terlalu awal. Pada <InlineMath math="45^\circ\text{C}" /> masukannya kini <InlineMath math="5{,}0 \times 8{,}0 \div (4{,}0 + 8{,}0) = 3{,}3" /> V, jadi ambang harus dinaikkan ke <InlineMath math="3{,}3" /> V.
+
+# Kenapa pilihan lain salah
+
+- Dengan termistor di bawah masukan **turun** saat ruangan menghangat, jadi alarm hanya berbunyi saat dingin.
+- Resistor tetap yang lebih besar mengambil bagian tegangan lebih besar, jadi titik picu tercapai lebih awal, pada suhu lebih rendah, dan <InlineMath math="1{,}7\text{ V}" /> adalah bagian termistor, bukan masukan.
+- <InlineMath math="10\text{ k}\Omega" /> sama dengan termistor pada <InlineMath math="25^\circ\text{C}" />, jadi alarm berbunyi pada suhu ruang.

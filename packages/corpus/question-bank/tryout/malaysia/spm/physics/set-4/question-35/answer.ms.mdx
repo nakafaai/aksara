@@ -1,0 +1,25 @@
+# Tentukan di mana voltan mesti naik, kemudian tentukan saiz perintang bagi titik pensuisan
+
+Apabila bilik panas, rintangan termistor berkurang dan bahagiannya daripada <InlineMath math="5.0" /> V berkurang. Input mesti **naik**, jadi ia mesti diambil merentasi perintang tetap, dengan termistor di atas.
+
+<Mermaid
+  title={<>Mereka Bentuk Pembahagi Keupayaan</>}
+  description={<>Input mesti naik apabila bilik panas, jadi ia mesti diambil merentasi komponen yang bahagian voltannya bertambah: perintang tetap, dengan termistor di atasnya.</>}
+  chart={`
+    flowchart LR
+      N0["Rintangan termistor berkurang apabila panas"] --> N1["Perintang tetap di bawah: bahagiannya bertambah"]
+      N1 --> N2["Tukar pada 2.5 V: dua separuh sama"]
+      N2 --> N3["Perintang tetap = termistor pada 45 °C = 4.0 kΩ"]
+      N3 --> N4["Pada 25 °C: 5.0 × 4.0 ÷ (10 + 4.0) = 1.4 V"]
+  `}
+/>
+
+Input mencapai <InlineMath math="2.5" /> V apabila kedua-dua rintangan sama, jadi perintang tetap mesti menyamai termistor pada <InlineMath math="45^\circ\text{C}" />: <InlineMath math="4.0\text{ k}\Omega" />. Pada <InlineMath math="25^\circ\text{C}" /> inputnya <InlineMath math="5.0 \times 4.0 \div (10 + 4.0) = 1.4" /> V, jauh di bawah titik pencetus.
+
+**Perintang lebih besar, kemudian ambang baharu**: dengan perintang tetap <InlineMath math="8.0\text{ k}\Omega" />, input mencapai <InlineMath math="2.5" /> V apabila termistor juga <InlineMath math="8.0\text{ k}\Omega" />, pada <InlineMath math="30^\circ\text{C}" />, terlalu awal. Pada <InlineMath math="45^\circ\text{C}" /> input kini <InlineMath math="5.0 \times 8.0 \div (4.0 + 8.0) = 3.3" /> V, jadi ambang mesti dinaikkan kepada <InlineMath math="3.3" /> V.
+
+# Mengapa pilihan lain salah
+
+- Dengan termistor di bawah, input **berkurang** apabila bilik panas, jadi penggera hanya berbunyi apabila sejuk.
+- Perintang tetap yang lebih besar mengambil bahagian voltan yang lebih besar, jadi titik pencetus dicapai lebih awal, pada suhu yang lebih rendah, dan <InlineMath math="1.7\text{ V}" /> ialah bahagian termistor, bukan input.
+- <InlineMath math="10\text{ k}\Omega" /> menyamai termistor pada <InlineMath math="25^\circ\text{C}" />, jadi penggera berbunyi pada suhu bilik.

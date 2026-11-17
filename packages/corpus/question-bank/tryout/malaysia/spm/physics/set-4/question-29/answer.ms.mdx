@@ -1,0 +1,23 @@
+# Cari tenaga, bahagikan pada jalur, kemudian ulang bagi tenaga yang lebih kecil
+
+Unit itu menggunakan <InlineMath math="2.0 \times 8 \times 30 = 480" /> kWh. <InlineMath math="200" /> kWh pertama berharga <InlineMath math="200 \times 0.50 = 100" /> ringgit dan <InlineMath math="280" /> yang lain berharga <InlineMath math="280 \times 0.60 = 168" />, jadi bilnya RM <InlineMath math="268" />.
+
+<Chart
+  title={<>Bil dalam Dua Jalur</>}
+  bars="apart"
+  categories={["Sekarang, 480 kWh", "Penyongsang, 312 kWh"]}
+  series={[
+    { label: "200 kWh pertama", mark: "bar", values: [100, 100] },
+    { label: "Melebihi 200 kWh", mark: "bar", values: [168, 67.2] },
+  ]}
+  valueLabel="Kos (RM)"
+  description={<>Kedua-dua unit membayar penuh RM <InlineMath math="100" /> bagi jalur pertama. Penjimatan hanya datang daripada jalur kedua yang lebih mahal.</>}
+/>
+
+Model penyongsang menggunakan <InlineMath math="0.65 \times 480 = 312" /> kWh: RM <InlineMath math="100" /> ditambah <InlineMath math="112 \times 0.60 = 67.2" />, iaitu RM <InlineMath math="167.2" />. Ia menjimatkan kira-kira RM <InlineMath math="101" />, semuanya daripada **jalur yang lebih mahal**.
+
+# Mengapa pilihan lain salah
+
+- RM <InlineMath math="240" /> mengenakan setiap kWh pada kadar murah dan mengabaikan **jalur kedua**.
+- RM <InlineMath math="288" /> mengenakan setiap kWh pada kadar mahal, yang terlebih caj bagi <InlineMath math="200" /> kWh pertama.
+- RM <InlineMath math="94" /> mengambil <InlineMath math="35\%" /> daripada bil, tetapi tenaga yang dijimatkan semuanya jatuh dalam jalur yang lebih mahal, jadi penjimatannya lebih besar.

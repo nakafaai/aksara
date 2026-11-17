@@ -1,0 +1,24 @@
+# Compare the useful power with the input, then use the waste to find the coil
+
+The motor gives <InlineMath math="mgv = 2.0 \times 10 \times 0.50 = 10" /> W and takes <InlineMath math="12 \times 1.25 = 15" /> W, so it is <InlineMath math="67\%" /> efficient. The other <InlineMath math="5.0" /> W heats the coil: <InlineMath math="5.0 = 1.25^2 R" />, so <InlineMath math="R = 3.2\,\Omega" />.
+
+<Mermaid
+  title={<>From the Lift to the Coil Resistance</>}
+  description={<>The waste reveals the coil’s resistance. A stalled motor makes no back e.m.f., so only that resistance limits the current.</>}
+  chart={`
+    flowchart LR
+      N0["Output mgv = 2.0 × 10 × 0.50 = 10 W"] --> N2["Efficiency 10 ÷ 15 = 67%"]
+      N1["Input 12 × 1.25 = 15 W"] --> N2
+      N0 --> N3["Waste 5.0 W = I²R: R = 3.2 Ω"]
+      N1 --> N3
+      N3 --> N4["Stalled: I = 12 ÷ 3.2 = 3.75 A"]
+  `}
+/>
+
+The coil is not <InlineMath math="12 \div 1.25 = 9.6\,\Omega" />, because a turning motor makes a **back electromotive force** that opposes the supply. Stalled, there is no back e.m.f., so the current is <InlineMath math="12 \div 3.2 = 3.75" /> A, three times the working current, which is why a jammed motor overheats.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.25\text{ A}" /> when stalled takes the coil as <InlineMath math="9.6\,\Omega" />, ignoring the **back electromotive force** that held the current down while the motor turned.
+- <InlineMath math="33\%" /> is the fraction wasted, not the fraction put to use.
+- A stalled motor is still connected across <InlineMath math="12" /> V, so current still flows through its coil.

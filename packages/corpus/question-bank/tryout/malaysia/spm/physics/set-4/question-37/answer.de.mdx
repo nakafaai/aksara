@@ -1,0 +1,25 @@
+# Die Diode nimmt die halbe Zeit weg, nicht die halbe Spannung
+
+Eine ideale Diode lässt jede zweite Halbwelle durch und sperrt die andere ganz. In den durchgelassenen Halbwellen liegt an der Lampe **genau dieselbe Spannung** wie vorher, die mittlere Leistung halbiert sich also auf <InlineMath math="12" /> W.
+
+<Mermaid
+  title={<>Halbe Perioden, halbe Leistung</>}
+  description={<>Die Diode sperrt jede zweite Halbwelle. In den durchgelassenen Halbwellen erhält die Lampe genau so viel wie vorher.</>}
+  chart={`
+    flowchart LR
+      N0["Diode lässt jede zweite Halbwelle durch"] --> N1["In diesen Halbwellen: Leistung wie vorher"]
+      N1 --> N2["Mittlere Leistung ½ × 24 = 12 W"]
+      N2 --> N3["Für 24 W wieder: Leistung × 2"]
+      N3 --> N4["Leistung ∝ V²: Spannung × √2 = 17 V"]
+  `}
+/>
+
+Für wieder <InlineMath math="24" /> W muss sich die Leistung in den leitenden Halbwellen verdoppeln. Die Leistung geht mit dem Quadrat der Spannung, die Spannung muss also um <InlineMath math="\sqrt{2}" /> steigen: <InlineMath math="12 \times \sqrt{2} = 17" /> V effektiv.
+
+**Der Spitzenstrom**: Die Lampe hat <InlineMath math="12^2 \div 24 = 6{,}0\,\Omega" />. Eine Versorgung mit <InlineMath math="17" /> V effektiv erreicht im Scheitel <InlineMath math="17 \times \sqrt{2} = 24" /> V, der Strom also <InlineMath math="24 \div 6{,}0 = 4{,}0" /> A, gegenüber <InlineMath math="2{,}8" /> A vor der Diode.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6{,}0\text{ W}" /> halbiert die Spannung, doch die Diode lässt die Spannung jeder durchgelassenen Halbwelle **unverändert**.
+- <InlineMath math="24\text{ V}" /> verdoppelt die Spannung, um die Leistung zu verdoppeln, doch doppelte Spannung gäbe die vierfache Leistung.
+- Die Diode ist nicht wirkungslos: Sie sperrt jede zweite Halbwelle, die Lampe kann ihre vollen <InlineMath math="24" /> W also nicht halten.

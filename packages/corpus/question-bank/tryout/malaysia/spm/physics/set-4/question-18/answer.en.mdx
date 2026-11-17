@@ -1,0 +1,24 @@
+# Refocus with the lens equation, then size the image with the magnification
+
+The hill is focused with the sensor at <InlineMath math="v = f = 50" /> mm. For the person, <InlineMath math="\tfrac{1}{v} = \tfrac{1}{50} - \tfrac{1}{1000}" />, so <InlineMath math="v = 52.6" /> mm: the lens moves <InlineMath math="2.6" /> mm **away from** the sensor.
+
+<Mermaid
+  title={<>Focusing and Framing with One Lens</>}
+  description={<>A distant hill focuses at <InlineMath math="f" />. Nearer objects focus farther from the lens, and fitting a tall person needs a small enough magnification.</>}
+  chart={`
+    flowchart LR
+      N0["Hill: v = f = 50 mm"] --> N2["Lens moves out 2.6 mm"]
+      N1["Person at 1.0 m: v = 52.6 mm"] --> N2
+      N3["Need m = 24 ÷ 1700 = 0.0141"] --> N4["u = f(1 + 1/m) = 3.6 m"]
+  `}
+/>
+
+To fit, <InlineMath math="m = v \div u" /> may be at most <InlineMath math="24 \div 1700 = 0.0141" />. With <InlineMath math="v = mu" /> in the lens equation, <InlineMath math="u = f\left(1 + \tfrac{1}{m}\right) = 50 \times 71.8 = 3590" /> mm, so the person must stand at least <InlineMath math="3.6" /> m away.
+
+**The lens at that distance**: with the person at <InlineMath math="3590" /> mm, <InlineMath math="v = mu = 0.0141 \times 3590 = 50.7" /> mm. The lens sits only <InlineMath math="0.7" /> mm out from its distant-hill position, much closer to <InlineMath math="f" /> than for the person at <InlineMath math="1.0" /> m.
+
+# Why the other options are wrong
+
+- <InlineMath math="3.5\text{ m}" /> and <InlineMath math="50.0\text{ mm}" /> take the image as forming exactly at <InlineMath math="f" />, but a subject at a finite distance focuses **beyond** <InlineMath math="f" />.
+- A nearer object needs a larger image distance, so the lens moves away from the sensor, not towards it, and never comes closer than <InlineMath math="f" />.
+- <InlineMath math="71\text{ m}" /> scales the first distance by <InlineMath math="1700 \div 24" />, and <InlineMath math="52.6\text{ mm}" /> keeps the lens where it was for the person at <InlineMath math="1.0" /> m.

@@ -1,0 +1,24 @@
+# Nutzleistung mit der Aufnahme vergleichen, dann aus dem Verlust die Spule bestimmen
+
+Der Motor gibt <InlineMath math="mgv = 2{,}0 \times 10 \times 0{,}50 = 10" /> W ab und nimmt <InlineMath math="12 \times 1{,}25 = 15" /> W auf, der Wirkungsgrad ist also <InlineMath math="67\%" />. Die übrigen <InlineMath math="5{,}0" /> W heizen die Spule: <InlineMath math="5{,}0 = 1{,}25^2 R" />, also <InlineMath math="R = 3{,}2\,\Omega" />.
+
+<Mermaid
+  title={<>Vom Heben zum Spulenwiderstand</>}
+  description={<>Der Verlust verrät den Widerstand der Spule. Ein blockierter Motor erzeugt keine Gegen-EMK, nur dieser Widerstand begrenzt dann den Strom.</>}
+  chart={`
+    flowchart LR
+      N0["Nutzleistung mgv = 2,0 × 10 × 0,50 = 10 W"] --> N2["Wirkungsgrad 10 ÷ 15 = 67%"]
+      N1["Aufnahme 12 × 1,25 = 15 W"] --> N2
+      N0 --> N3["Verlust 5,0 W = I²R: R = 3,2 Ω"]
+      N1 --> N3
+      N3 --> N4["Blockiert: I = 12 ÷ 3,2 = 3,75 A"]
+  `}
+/>
+
+Die Spule hat nicht <InlineMath math="12 \div 1{,}25 = 9{,}6\,\Omega" />, denn ein drehender Motor erzeugt eine **Gegen-EMK**, die der Versorgung entgegenwirkt. Blockiert fehlt sie, der Strom ist also <InlineMath math="12 \div 3{,}2 = 3{,}75" /> A, dreimal der Betriebsstrom, darum überhitzt ein blockierter Motor.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}25\text{ A}" /> im Stillstand nimmt die Spule mit <InlineMath math="9{,}6\,\Omega" /> an und übersieht die **Gegen-EMK**, die den Strom beim Drehen klein hielt.
+- <InlineMath math="33\%" /> ist der verlorene Anteil, nicht der genutzte.
+- Ein blockierter Motor liegt weiter an <InlineMath math="12" /> V, durch seine Spule fließt also weiter Strom.

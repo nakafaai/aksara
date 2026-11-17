@@ -1,0 +1,25 @@
+# Decide where the voltage must rise, then size the resistor for the switching point
+
+As the room warms, the thermistor's resistance falls and its share of the <InlineMath math="5.0" /> V falls. The input must **rise**, so it must be taken across the fixed resistor, with the thermistor at the top.
+
+<Mermaid
+  title={<>Designing the Potential Divider</>}
+  description={<>The input must rise as the room warms, so it must be taken across the component whose share of the voltage grows: the fixed resistor, with the thermistor above it.</>}
+  chart={`
+    flowchart LR
+      N0["Thermistor resistance falls when hot"] --> N1["Fixed resistor at the bottom: its share rises"]
+      N1 --> N2["Switch at 2.5 V: equal halves"]
+      N2 --> N3["Fixed = thermistor at 45 °C = 4.0 kΩ"]
+      N3 --> N4["At 25 °C: 5.0 × 4.0 ÷ (10 + 4.0) = 1.4 V"]
+  `}
+/>
+
+The input reaches <InlineMath math="2.5" /> V when the two resistances are equal, so the fixed resistor must match the thermistor at <InlineMath math="45^\circ\text{C}" />: <InlineMath math="4.0\text{ k}\Omega" />. At <InlineMath math="25^\circ\text{C}" /> the input is <InlineMath math="5.0 \times 4.0 \div (10 + 4.0) = 1.4" /> V, well below the trigger.
+
+**A larger resistor, then a new threshold**: with <InlineMath math="8.0\text{ k}\Omega" /> fixed, the input reaches <InlineMath math="2.5" /> V when the thermistor is also <InlineMath math="8.0\text{ k}\Omega" />, at <InlineMath math="30^\circ\text{C}" />, too early. At <InlineMath math="45^\circ\text{C}" /> the input would now be <InlineMath math="5.0 \times 8.0 \div (4.0 + 8.0) = 3.3" /> V, so the threshold must be raised to <InlineMath math="3.3" /> V.
+
+# Why the other options are wrong
+
+- With the thermistor at the bottom the input **falls** as the room warms, so the alarm would sound only when it is cold.
+- A larger fixed resistor takes a larger share of the voltage, so the trigger is reached sooner, at a lower temperature, and <InlineMath math="1.7\text{ V}" /> is the thermistor's share, not the input's.
+- <InlineMath math="10\text{ k}\Omega" /> matches the thermistor at <InlineMath math="25^\circ\text{C}" />, so the alarm would sound at room temperature.

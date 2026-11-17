@@ -1,0 +1,24 @@
+# Tetapkan arus dari nilai nominal lampu, lalu bagi GGL-nya
+
+Pada nilai nominalnya lampu mengambil <InlineMath math="24 \div 12 = 2{,}0" /> A dan berhambatan <InlineMath math="12 \div 2{,}0 = 6{,}0\,\Omega" />. Seluruh rangkaian harus <InlineMath math="18 \div 2{,}0 = 9{,}0\,\Omega" />, termasuk <InlineMath math="1{,}0\,\Omega" /> milik baterai sendiri, jadi reostatnya <InlineMath math="9{,}0 - 6{,}0 - 1{,}0 = 2{,}0\,\Omega" />.
+
+<Chart
+  title={<>Ke Mana <InlineMath math="36\text{ W}" /> Baterai Pergi</>}
+  bars="apart"
+  categories={["Lampu", "Reostat", "Di dalam baterai"]}
+  series={[
+    { label: "Daya (W)", mark: "bar", values: [24, 8, 4] },
+  ]}
+  valueLabel="Daya (W)"
+  description={<>Pada <InlineMath math="2{,}0\text{ A}" /> baterai menghasilkan <InlineMath math="36\text{ W}" />. Lampu mengambil <InlineMath math="24\text{ W}" />, reostat <InlineMath math="8\text{ W}" /> dan baterai sendiri <InlineMath math="4\text{ W}" />.</>}
+/>
+
+Baterai menghasilkan <InlineMath math="EI = 18 \times 2{,}0 = 36" /> W, dan lampu mendapat <InlineMath math="24" /> W darinya: <InlineMath math="24 \div 36 = 67\%" />. Sisanya memanaskan reostat dan baterai **itu sendiri**.
+
+**Reostat dihubung singkat**: hanya <InlineMath math="6{,}0\,\Omega" /> lampu dan <InlineMath math="1{,}0\,\Omega" /> baterai yang tersisa, jadi <InlineMath math="I = 18 \div 7{,}0 = 2{,}57" /> A dan lampu mengambil <InlineMath math="2{,}57^2 \times 6{,}0 = 40" /> W, jauh di atas nilai nominalnya, kemungkinan cukup untuk memutusnya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="3{,}0\,\Omega" /> dan <InlineMath math="54\text{ W}" /> melupakan **hambatan dalam** baterai, yang tetap membatasi arus saat reostat dihubung singkat.
+- <InlineMath math="75\%" /> hanya menghitung kerugian reostat dan melupakan <InlineMath math="4" /> W yang terbuang di dalam baterai.
+- Nilai nominal lampu tidak menetapkan dayanya: dengan hambatan rangkaian yang lebih kecil arus naik, begitu juga dayanya.

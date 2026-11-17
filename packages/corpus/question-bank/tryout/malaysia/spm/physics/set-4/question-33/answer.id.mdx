@@ -1,0 +1,25 @@
+# Biarkan sekring membatasi masukan, hitung efisiensinya, lalu hitung lampu utuh
+
+Sekring mengizinkan paling besar <InlineMath math="240 \times 1{,}0 = 240" /> W ke primer, dan hanya <InlineMath math="80\%" /> darinya, <InlineMath math="192" /> W, sampai ke lampu. Itu adalah <InlineMath math="192 \div 36 = 5{,}3" /> lampu, jadi **lima lampu utuh**: lampu keenam butuh <InlineMath math="216 \div 0{,}80 = 270" /> W masuk, melebihi batas sekring.
+
+<Mermaid
+  title={<>Dari Sekring ke Jumlah Lampu</>}
+  description={<>Sekring membatasi daya yang masuk. Hanya <InlineMath math="80\%" /> darinya keluar ke lampu.</>}
+  chart={`
+    flowchart LR
+      N0["Sekring: masukan paling besar 240 × 1,0 = 240 W"] --> N1["Keluaran paling besar 0,80 × 240 = 192 W"]
+      N1 --> N2["192 ÷ 36 = 5,3: lima lampu"]
+      N2 --> N3["Lima lampu: 180 W pada 12 V"]
+      N3 --> N4["Arus sekunder 180 ÷ 12 = 15 A"]
+  `}
+/>
+
+Lima lampu mengambil <InlineMath math="180" /> W pada <InlineMath math="12" /> V, jadi sekunder memberi <InlineMath math="180 \div 12 = 15" /> A sementara primer hanya dialiri <InlineMath math="180 \div 0{,}80 \div 240 = 0{,}94" /> A.
+
+**Energi terbuang**: lima lampu mengambil <InlineMath math="180" /> W, jadi primer mengambil <InlineMath math="180 \div 0{,}80 = 225" /> W dan <InlineMath math="45" /> W hilang. Dalam sejam itu <InlineMath math="45 \times 3600 = 1{,}62 \times 10^5" /> J. Kerugian adalah bagian dari yang **benar-benar** diambil trafo, bukan batas maksimum sekring.
+
+# Kenapa pilihan lain salah
+
+- Enam lampu menganggap trafo ideal, padahal hanya <InlineMath math="80\%" /> masukan yang sampai ke sekunder, jadi lampu keenam **memutus sekring**.
+- <InlineMath math="173\text{ kJ}" /> mengambil <InlineMath math="20\%" /> dari seluruh <InlineMath math="240" /> W yang diizinkan sekring, padahal lima lampu menarik lebih sedikit.
+- <InlineMath math="130\text{ kJ}" /> mengambil <InlineMath math="20\%" /> dari keluaran, padahal efisiensi adalah bagian dari masukan.

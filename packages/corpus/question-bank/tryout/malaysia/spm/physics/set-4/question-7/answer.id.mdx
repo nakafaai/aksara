@@ -1,0 +1,22 @@
+# Bagi perjalanan menjadi tiga tahap, lalu cari kecepatan yang cocok dengan waktu baru
+
+Mempercepat memakan <InlineMath math="40" /> s sejauh <InlineMath math="400" /> m, dan memperlambat <InlineMath math="20" /> s sejauh <InlineMath math="200" /> m. Sisa <InlineMath math="1400" /> m pada <InlineMath math="20" /> m/s memakan <InlineMath math="70" /> s, jadi perjalanan memakan <InlineMath math="130" /> s.
+
+<Chart
+  title={<>Kelajuan terhadap Waktu Antarstasiun</>}
+  categories={["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110", "120", "130"]}
+  series={[
+    { label: "Sekarang", mark: "line", values: [0.0, 5.0, 10.0, 15.0, 20.0, 20, 20, 20, 20, 20, 20, 20.0, 10.0, 0] },
+    { label: "Jadwal baru", mark: "line", values: [0.0, 5.0, 10.0, 15.0, 20.0, 23.7, 23.7, 23.7, 23.7, 23.7, 20.0, 10.0, 0.0, 0] },
+  ]}
+  valueLabel="Kelajuan (m/s)"
+  description={<>Kedua perjalanan menempuh <InlineMath math="2{,}0\text{ km}" />, yaitu luas di bawah tiap garis. Jadwal yang lebih cepat naik lebih tinggi dan berhenti pada <InlineMath math="120\text{ s}" />. Waktu dalam detik.</>}
+/>
+
+Untuk kecepatan puncak <InlineMath math="v" />, kedua lereng menempuh <InlineMath math="v^2 + \tfrac{1}{2}v^2" /> meter dalam <InlineMath math="3v" /> detik, jadi <InlineMath math="1{,}5v^2 + v(120 - 3v) = 2000" />, yaitu **persamaan kuadrat**: <InlineMath math="1{,}5v^2 - 120v + 2000 = 0" />. Akar yang lebih kecil adalah <InlineMath math="v = 23{,}7" /> m/s. Akar yang lebih besar butuh waktu di lereng lebih lama dari seluruh <InlineMath math="120" /> s.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="21{,}7\text{ m s}^{-1}" /> menskalakan kecepatan dengan <InlineMath math="130 \div 120" />, padahal **lereng ikut memanjang** saat kecepatan puncak naik.
+- <InlineMath math="100\text{ s}" /> dan <InlineMath math="16{,}7\text{ m s}^{-1}" /> menganggap seluruh perjalanan berkecepatan tetap, tanpa waktu mempercepat atau memperlambat.
+- <InlineMath math="160\text{ s}" /> menambahkan seluruh <InlineMath math="60" /> s lereng ke <InlineMath math="2000 \div 20" />, seolah lereng tidak menempuh jarak.

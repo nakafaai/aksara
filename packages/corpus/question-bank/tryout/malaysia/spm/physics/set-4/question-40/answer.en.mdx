@@ -1,0 +1,24 @@
+# The photon energy sets the speed, the photon count sets the current
+
+Each photon gives one electron <InlineMath math="3.0" /> eV, and <InlineMath math="2.0" /> eV is spent escaping, so the fastest electrons leave with <InlineMath math="1.0" /> eV.
+
+<Mermaid
+  title={<>Energy per Electron, Then Electrons per Second</>}
+  description={<>The photon energy sets how fast each electron can leave. The power and the yield set how many leave each second.</>}
+  chart={`
+    flowchart LR
+      N1["Photon energy 3.0 × 1.6 × 10⁻¹⁹ = 4.8 × 10⁻¹⁹ J"] --> N2["Photons 0.10 ÷ 4.8 × 10⁻¹⁹ = 2.1 × 10¹⁷ per s"]
+      N2 --> N3["Electrons 10%: 2.1 × 10¹⁶ per s"]
+      N3 --> N4["I = 2.1 × 10¹⁶ × 1.6 × 10⁻¹⁹ = 3.3 mA"]
+  `}
+/>
+
+Each photon carries <InlineMath math="4.8 \times 10^{-19}" /> J, so <InlineMath math="0.10" /> W is <InlineMath math="2.1 \times 10^{17}" /> photons each second. Only **one in ten** frees an electron, so <InlineMath math="2.1 \times 10^{16}" /> electrons leave each second, a current of <InlineMath math="2.1 \times 10^{16} \times 1.6 \times 10^{-19} = 3.3 \times 10^{-3}" /> A.
+
+**Photons of twice the energy**: each electron now leaves with up to <InlineMath math="6.0 - 2.0 = 4.0" /> eV. But the same <InlineMath math="0.10" /> W now buys only half as many photons, <InlineMath math="1.0 \times 10^{17}" /> each second, so the current **halves** to about <InlineMath math="1.7" /> mA.
+
+# Why the other options are wrong
+
+- <InlineMath math="33\text{ mA}" /> lets every photon free an electron, but only <InlineMath math="10\%" /> do.
+- An unchanged current forgets that at the same power, photons of twice the energy come only **half as often**.
+- <InlineMath math="2.0\text{ eV}" /> doubles the kinetic energy, but the work function is paid in full before any energy is left over.

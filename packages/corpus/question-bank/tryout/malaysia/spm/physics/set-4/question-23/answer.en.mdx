@@ -1,0 +1,24 @@
+# Cancel the current with part of the boat's velocity, then cross with the rest
+
+The upstream component must cancel the current: <InlineMath math="2.5\sin\theta = 1.5" />, so <InlineMath math="\sin\theta = 0.60" /> and <InlineMath math="\theta = 37^\circ" />. The boat's speed is the **hypotenuse**, so the angle comes from the sine, not the tangent.
+
+<Mermaid
+  title={<>Cancelling the Current</>}
+  description={<>The boat’s upstream part of its velocity must cancel the current exactly, and only what is left carries it across.</>}
+  chart={`
+    flowchart LR
+      N0["Upstream part 2.5 sin θ = 1.5"] --> N1["sin θ = 0.60, θ = 37°"]
+      N1 --> N2["Across part 2.5 cos 37° = 2.0 m s⁻¹"]
+      N2 --> N3["t = 80 ÷ 2.0 = 40 s"]
+  `}
+/>
+
+What is left across the river is <InlineMath math="2.5\cos 37^\circ = 2.0" /> m/s, so the crossing takes <InlineMath math="80 \div 2.0 = 40" /> s.
+
+**The quickest crossing**: heading straight across uses the whole <InlineMath math="2.5" /> m/s for crossing, <InlineMath math="80 \div 2.5 = 32" /> s, but the current carries the boat <InlineMath math="1.5 \times 32 = 48" /> m downstream meanwhile. The quickest path is not the shortest one.
+
+# Why the other options are wrong
+
+- <InlineMath math="31^\circ" /> uses <InlineMath math="\tan\theta = 1.5 \div 2.5" />, treating the boat's speed as one of the shorter sides instead of the **hypotenuse**.
+- Landing straight opposite needs part of the speed spent on the current, so it cannot also be the quickest crossing.
+- <InlineMath math="60\text{ m}" /> lets the current act for <InlineMath math="40" /> s, but the quickest crossing lasts only <InlineMath math="32" /> s.

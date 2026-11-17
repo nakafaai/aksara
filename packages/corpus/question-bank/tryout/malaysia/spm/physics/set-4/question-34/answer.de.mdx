@@ -1,0 +1,27 @@
+# Schnelleres Schneiden verdoppelt den Strom, doch der Stoß ist auch kürzer
+
+Nach dem Induktionsgesetz hängt die EMK von der **Geschwindigkeit der Flussänderung** ab. Dieselbe Änderung in der halben Zeit verdoppelt die EMK, der Strom steigt also auf <InlineMath math="4{,}0" /> mA.
+
+<Mermaid
+  title={<>Schnellere Änderung, gleiche Gesamtänderung</>}
+  description={<>Dieselbe Flussänderung geschieht in der halben Zeit. Der Strom verdoppelt sich, die Leistung vervierfacht sich, und der Stoß dauert halb so lange.</>}
+  chart={`
+    flowchart LR
+      N0["Gleiche Flussänderung in halber Zeit"] --> N1["Induzierte EMK verdoppelt"]
+      N1 --> N2["Strom 2 × 2,0 = 4,0 mA"]
+      N2 --> N3["Leistung I²R: vierfach"]
+      N0 --> N4["Zeit halbiert"]
+      N3 --> N5["Energie 4 × ½ = 2-fach"]
+      N4 --> N5
+  `}
+/>
+
+Die elektrische Leistung <InlineMath math="I^2R" /> wird viermal so groß, dauert aber nur halb so lange, die erzeugte Energie ist also <InlineMath math="4 \times \tfrac{1}{2} = 2" />-mal so groß. Nach der Lenzschen Regel bremst die Spule den Magneten stärker, die schiebende Person verrichtet also die doppelte Arbeit dagegen, und daher stammt die zusätzliche Energie.
+
+**Eine größere Spule**: Doppelte Windungszahl verdoppelt die EMK noch einmal, auf das Vierfache, doch der doppelte Widerstand halbiert den Strom zurück auf <InlineMath math="4{,}0" /> mA. Die Leistung <InlineMath math="I^2R" /> ist <InlineMath math="4 \times 2 = 8" />-mal so groß, für die halbe Zeit: die vierfache Energie.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="8{,}0\text{ mA}" /> vergisst, dass die neue Spule den **doppelten Widerstand** hat, der den Strom halbiert.
+- Wieder die doppelte Energie sieht nur den Strom, doch der größere Widerstand nimmt beim selben Strom die doppelte Leistung auf.
+- Die vierfache Energie beim ersten schnellen Stoß multipliziert die Leistung, vergisst aber, dass er nur halb so lange dauert.

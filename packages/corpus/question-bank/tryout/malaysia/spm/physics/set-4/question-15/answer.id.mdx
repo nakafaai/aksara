@@ -1,0 +1,24 @@
+# Cari panjang gelombangnya, lalu perkecil sampai seukuran detail
+
+Di jaringan <InlineMath math="\lambda = v \div f = 1540 \div 2{,}0 \times 10^6 = 7{,}7 \times 10^{-4}" /> m, atau <InlineMath math="0{,}77" /> mm, terlalu kasar untuk struktur <InlineMath math="0{,}30" /> mm.
+
+<Mermaid
+  title={<>Detail Lebih Halus Butuh Panjang Gelombang Lebih Pendek</>}
+  description={<>Pada cepat rambat yang tetap di jaringan, panjang gelombang yang lebih pendek berarti frekuensi yang lebih tinggi.</>}
+  chart={`
+    flowchart LR
+      N0["λ = 1540 ÷ 2,0 × 10⁶ = 0,77 mm"] --> N1["Perlu λ ≤ 0,30 mm"]
+      N1 --> N2["f = 1540 ÷ 0,30 × 10⁻³"]
+      N2 --> N3["f ≥ 5,1 MHz"]
+  `}
+/>
+
+Panjang gelombang harus turun ke <InlineMath math="0{,}30" /> mm, dan pada cepat rambat tetap itu butuh **frekuensi yang lebih tinggi**: <InlineMath math="f = 1540 \div 0{,}30 \times 10^{-3} = 5{,}1 \times 10^6" /> Hz, paling sedikit <InlineMath math="5{,}1" /> MHz.
+
+**Harga frekuensi yang lebih tinggi**: pada <InlineMath math="5{,}1" /> MHz jarak paruh menyusut menjadi <InlineMath math="2{,}0 \times 2{,}0 \div 5{,}1 = 0{,}78" /> cm. Gema menempuh <InlineMath math="3{,}0" /> cm masuk dan <InlineMath math="3{,}0" /> cm kembali, <InlineMath math="6{,}0" /> cm, yaitu <InlineMath math="7{,}7" /> kali paruh: <InlineMath math="1 \div 2^{7{,}7} \approx 1 \div 210" />, sekitar <InlineMath math="0{,}5\%" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0{,}17\text{ mm}" /> memakai cepat rambat bunyi di **udara**, padahal gelombangnya merambat lewat jaringan.
+- Sekitar <InlineMath math="7\%" /> hanya menghitung perjalanan masuk, padahal gema juga harus **kembali keluar** lewat jaringan yang sama.
+- Sekitar <InlineMath math="12\%" /> memakai jarak paruh berkas <InlineMath math="2{,}0" /> MHz, padahal frekuensi yang lebih tinggi diserap lebih cepat.

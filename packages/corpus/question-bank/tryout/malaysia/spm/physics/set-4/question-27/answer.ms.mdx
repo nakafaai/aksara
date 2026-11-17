@@ -1,0 +1,23 @@
+# Kira hanya udara di atas simpanan, kemudian kembangkan ke tekanan pada kedalaman
+
+Hanya tekanan di atas simpanan boleh digunakan: <InlineMath math="12" /> L pada <InlineMath math="20 - 5.0 = 15" /> MPa. Pada <InlineMath math="100" /> kPa udara itu akan memenuhi <InlineMath math="12 \times 15 \div 0.10 = 1800" /> L.
+
+<Mermaid
+  title={<>Udara yang Boleh Digunakan pada Kedalaman Penyelam</>}
+  description={<>Hanya udara di atas simpanan boleh digunakan, dan pada kedalaman setiap nafas dimampatkan ke tekanan sekeliling, jadi ia menggunakan lebih banyak udara tersimpan.</>}
+  chart={`
+    flowchart LR
+      N0["Boleh digunakan: 12 L × (20 − 5.0) MPa"] --> N1["= 1800 L pada 100 kPa"]
+      N1 --> N3["Isi padu di situ 1800 × 100 ÷ 306 = 588 L"]
+      N2["Pada 20 m: p = 100 + 1030 × 10 × 20 = 306 kPa"] --> N3
+      N3 --> N4["588 ÷ 20 = 29 min"]
+  `}
+/>
+
+Pada <InlineMath math="20" /> m tekanan sekeliling ialah <InlineMath math="100 + 1030 \times 10 \times 20 \div 1000 = 306" /> kPa, jadi udara yang boleh digunakan hanya memenuhi <InlineMath math="1800 \times 100 \div 306 = 588" /> L di situ. Pada <InlineMath math="20" /> L seminit, ia bertahan <InlineMath math="29" /> minit, kerana **setiap nafas pada kedalaman** mengandungi tiga kali lebih banyak udara.
+
+# Mengapa pilihan lain salah
+
+- Kira-kira <InlineMath math="90" /> minit bernafas pada **tekanan permukaan**, tetapi pada <InlineMath math="20" /> m setiap nafas dimampatkan ke <InlineMath math="306" /> kPa.
+- Kira-kira <InlineMath math="39" /> minit menggunakan seluruh <InlineMath math="20" /> MPa dan terlupa simpanan yang mesti ditinggalkan.
+- Kira-kira <InlineMath math="120" /> minit terlupa kedua-dua simpanan dan kedalaman.

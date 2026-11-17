@@ -1,0 +1,27 @@
+# Faster cutting doubles the current, but the push is also shorter
+
+By Faraday's law the e.m.f. depends on the **rate of change of flux**. The same change in half the time doubles the e.m.f., so the current doubles to <InlineMath math="4.0" /> mA.
+
+<Mermaid
+  title={<>Faster Change, Same Total Change</>}
+  description={<>The same change of flux happens in half the time. The current doubles, the power goes up four times, and the push lasts half as long.</>}
+  chart={`
+    flowchart LR
+      N0["Same flux change in half the time"] --> N1["Induced e.m.f. doubles"]
+      N1 --> N2["Current 2 × 2.0 = 4.0 mA"]
+      N2 --> N3["Power I²R: four times"]
+      N0 --> N4["Time halves"]
+      N3 --> N5["Energy 4 × ½ = 2 times"]
+      N4 --> N5
+  `}
+/>
+
+The electrical power <InlineMath math="I^2R" /> becomes four times as large, but it lasts only half as long, so the energy produced is <InlineMath math="4 \times \tfrac{1}{2} = 2" /> times as large. By Lenz's law the coil opposes the magnet harder, so the person pushing does twice the work against it, and that work is where the extra energy comes from.
+
+**A bigger coil**: twice the turns doubles the e.m.f. again, so it is four times the first, but twice the resistance halves the current back to <InlineMath math="4.0" /> mA. The power <InlineMath math="I^2R" /> is <InlineMath math="4 \times 2 = 8" /> times the first, for half the time: <InlineMath math="4" /> times the energy.
+
+# Why the other options are wrong
+
+- <InlineMath math="8.0\text{ mA}" /> forgets that the new coil has **twice the resistance**, which halves the current.
+- Twice the energy again treats the current as the whole story, but the larger resistance at the same current takes twice the power.
+- Four times the energy for the first faster push multiplies the power but forgets the push lasts only half as long.

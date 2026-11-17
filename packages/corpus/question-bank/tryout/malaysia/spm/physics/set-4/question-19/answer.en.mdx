@@ -1,0 +1,25 @@
+# Get n from the pool, then reverse the effect for a view out of the water
+
+From above, <InlineMath math="n = 2.0 \div 1.5 = 1.33" />. Looking the other way, out of the water, the effect is **reversed**: distances in the air look <InlineMath math="1.33" /> times larger.
+
+<Mermaid
+  title={<>Looking In, Then Looking Out</>}
+  description={<>From above, things in the water look nearer. From below, things in the air look farther away, so the bird’s height is stretched by the same factor.</>}
+  chart={`
+    flowchart LR
+      N0["n = 2.0 ÷ 1.5 = 1.33"] --> N1["From below, heights in air look × 1.33"]
+      N1 --> N2["Bird: 3.0 × 1.33 = 4.0 m above the surface"]
+      N2 --> N3["Diver is 2.0 m below the surface"]
+      N3 --> N4["Bird appears 2.0 + 4.0 = 6.0 m above the diver"]
+  `}
+/>
+
+The bird looks <InlineMath math="3.0 \times 1.33 = 4.0" /> m above the surface. The diver is <InlineMath math="2.0" /> m of water below the surface, seen at its true length from inside the water, so the bird appears <InlineMath math="2.0 + 4.0 = 6.0" /> m above the diver.
+
+**The dive**: every metre the bird falls looks like <InlineMath math="1.33" /> m to the diver, so its image approaches at <InlineMath math="2.0 \times 1.33 = 2.7" /> m/s, faster than the bird really moves.
+
+# Why the other options are wrong
+
+- <InlineMath math="5.0\text{ m}" /> and <InlineMath math="2.0\text{ m s}^{-1}" /> ignore the **refraction** at the surface.
+- <InlineMath math="4.25\text{ m}" /> and <InlineMath math="1.5\text{ m s}^{-1}" /> divide by <InlineMath math="1.33" />, as for looking into the water, but here the diver looks out of it.
+- <InlineMath math="4.0\text{ m}" /> is the bird's apparent height above the surface and leaves out the <InlineMath math="2.0" /> m of water above the diver.

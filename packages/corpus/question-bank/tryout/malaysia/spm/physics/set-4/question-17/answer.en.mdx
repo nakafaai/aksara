@@ -1,0 +1,25 @@
+# Find the critical angle in each surrounding, then test the ray against it
+
+In air <InlineMath math="\sin c = 1 \div 2.42" />, so <InlineMath math="c = 24^\circ" />, and the <InlineMath math="30^\circ" /> ray is totally reflected. That is why a diamond sparkles.
+
+<Mermaid
+  title={<>The Critical Angle Depends on the Outside Medium</>}
+  description={<>In air the <InlineMath math="30^\circ" /> ray is beyond the critical angle. Water raises the critical angle above <InlineMath math="30^\circ" />, so the same ray now escapes.</>}
+  chart={`
+    flowchart LR
+      N0["In air: sin c = 1 ÷ 2.42, c = 24°"] --> N1["30° > 24°: totally reflected"]
+      N2["In water: sin c = 1.33 ÷ 2.42, c = 33°"] --> N3["30° < 33°: the ray escapes"]
+      N3 --> N4["sin θ = 2.42 × sin 30° ÷ 1.33 = 0.91"]
+      N4 --> N5["θ = 66°"]
+  `}
+/>
+
+Under water the critical angle depends on **both** refractive indices: <InlineMath math="\sin c = 1.33 \div 2.42" />, so <InlineMath math="c = 33^\circ" />. Now <InlineMath math="30^\circ" /> is below it and the ray escapes: <InlineMath math="\sin \theta = 2.42 \times \sin 30^\circ \div 1.33 = 0.91" />, so it leaves at <InlineMath math="66^\circ" />.
+
+**The water surface**: with parallel surfaces the ray meets the water surface at the same <InlineMath math="66^\circ" />. Water's critical angle is <InlineMath math="\sin^{-1}(1 \div 1.33) = 49^\circ" />, so the ray is totally reflected there. Through parallel layers, <InlineMath math="n \sin\theta" /> stays <InlineMath math="2.42 \times \sin 30^\circ = 1.21" />, more than one, so the ray can never reach the air.
+
+# Why the other options are wrong
+
+- Water raises the critical angle of the diamond face to <InlineMath math="33^\circ" />, so the <InlineMath math="30^\circ" /> ray **does leave** the diamond.
+- Escaping into the air ignores the water surface, where <InlineMath math="66^\circ" /> is beyond water's critical angle of <InlineMath math="49^\circ" />.
+- <InlineMath math="16^\circ" /> turns the ratio of the refractive indices upside down, bending the ray towards the normal.

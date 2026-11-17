@@ -1,0 +1,25 @@
+# Den Grenzwinkel in jeder Umgebung bestimmen, dann den Strahl daran prüfen
+
+In Luft ist <InlineMath math="\sin c = 1 \div 2{,}42" />, also <InlineMath math="c = 24^\circ" />, und der <InlineMath math="30^\circ" />-Strahl wird totalreflektiert. Deshalb funkelt ein Diamant.
+
+<Mermaid
+  title={<>Der Grenzwinkel hängt vom äußeren Medium ab</>}
+  description={<>In Luft liegt der <InlineMath math="30^\circ" />-Strahl jenseits des Grenzwinkels. Wasser hebt den Grenzwinkel über <InlineMath math="30^\circ" />, derselbe Strahl kommt nun heraus.</>}
+  chart={`
+    flowchart LR
+      N0["In Luft: sin c = 1 ÷ 2,42, c = 24°"] --> N1["30° > 24°: Totalreflexion"]
+      N2["In Wasser: sin c = 1,33 ÷ 2,42, c = 33°"] --> N3["30° < 33°: der Strahl tritt aus"]
+      N3 --> N4["sin θ = 2,42 × sin 30° ÷ 1,33 = 0,91"]
+      N4 --> N5["θ = 66°"]
+  `}
+/>
+
+Unter Wasser hängt der Grenzwinkel von **beiden** Brechzahlen ab: <InlineMath math="\sin c = 1{,}33 \div 2{,}42" />, also <InlineMath math="c = 33^\circ" />. Jetzt liegt <InlineMath math="30^\circ" /> darunter und der Strahl tritt aus: <InlineMath math="\sin \theta = 2{,}42 \times \sin 30^\circ \div 1{,}33 = 0{,}91" />, er verlässt den Diamanten unter <InlineMath math="66^\circ" />.
+
+**Die Wasseroberfläche**: Bei parallelen Flächen trifft der Strahl die Wasseroberfläche unter denselben <InlineMath math="66^\circ" />. Der Grenzwinkel von Wasser ist <InlineMath math="\sin^{-1}(1 \div 1{,}33) = 49^\circ" />, der Strahl wird dort also totalreflektiert. Durch parallele Schichten bleibt <InlineMath math="n \sin\theta" /> bei <InlineMath math="2{,}42 \times \sin 30^\circ = 1{,}21" />, größer als eins, der Strahl erreicht die Luft also nie.
+
+# Warum die anderen Antworten falsch sind
+
+- Wasser hebt den Grenzwinkel der Diamantfläche auf <InlineMath math="33^\circ" />, der <InlineMath math="30^\circ" />-Strahl **verlässt** den Diamanten also.
+- Der Austritt in die Luft übersieht die Wasseroberfläche, an der <InlineMath math="66^\circ" /> jenseits des Grenzwinkels von Wasser, <InlineMath math="49^\circ" />, liegen.
+- <InlineMath math="16^\circ" /> dreht das Verhältnis der Brechzahlen um und bricht den Strahl zum Lot hin.
