@@ -1,11 +1,15 @@
+import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Array as Arr, Effect, Path } from "effect";
+import { inspectHistoricalContentSource } from "@nakafa/aksara-compiler/inspect";
+import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
+import { Array as Arr, Effect, Option, Path } from "effect";
 import {
   loadArticleDocument,
   makeArticleProjectionFromSource,
 } from "#publisher/article/document";
 import { ArticleTestFixtures, articleTestLayer } from "#test/article";
 import { testFileLayer } from "#test/files";
+import { authoredCheckoutRoot, metadataExport } from "#test/metadata";
 
 /** Requires the reviewed English article registry fixture. */
 const articleDocumentFixture = Effect.fn(
@@ -137,6 +141,40 @@ layer(articleTestLayer)("article document", (it) => {
 
         expect(official.official).toBe(true);
         expect(independent.official).toBe(false);
+      })
+  );
+});
+
+layer(NodeServices.layer)("authored article metadata", (it) => {
+  it.effect(
+    "decodes every registry article's metadata, publication dates included",
+    () =>
+      Effect.gen(function* () {
+        const checkoutRoot = yield* authoredCheckoutRoot;
+        const entries = yield* decodeArticleRegistry();
+        const rejected = yield* Effect.forEach(
+          entries,
+          (entry) =>
+            Effect.gen(function* () {
+              const source = yield* loadArticleDocument(checkoutRoot, entry);
+              const { metadata } = yield* inspectHistoricalContentSource({
+                contentKey: source.route.contentKey,
+                rawMdx: metadataExport(source.rawMdx),
+              });
+              return yield* makeArticleProjectionFromSource(
+                source,
+                metadata
+              ).pipe(
+                Effect.as(Option.none<string>()),
+                Effect.catchTag("ArticleMetadataError", ({ sourcePath }) =>
+                  Effect.succeedSome(sourcePath)
+                )
+              );
+            }),
+          { concurrency: 16 }
+        );
+
+        expect(Arr.getSomes(rejected)).toEqual([]);
       })
   );
 });
