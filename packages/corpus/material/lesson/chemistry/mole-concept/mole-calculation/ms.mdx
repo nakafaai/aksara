@@ -1,0 +1,329 @@
+export const metadata = {
+  title: "Nota Konsep Mol Tingkatan Empat",
+  description:
+    "Nota Kimia Tingkatan 4 Bab 3: kira bilangan mol daripada jisim, zarah dan isi padu gas, tentukan formula empirik, dan guna persamaan kimia dengan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Konsep Mol, Formula dan Persamaan Kimia",
+};
+
+## Maksud Satu Mol
+
+**Mol** ialah unit bagi kuantiti bahan. Satu mol bahan mengandungi **<InlineMath math="6.02 \times 10^{23}" /> zarah**, iaitu **pemalar Avogadro**, <InlineMath math="N_A" />. Zarah itu boleh jadi atom, molekul atau ion. Tiga formula menghubungkan bilangan mol dengan perkara yang boleh kamu ukur:
+
+<MathContainer>
+<BlockMath math="n = \frac{N}{N_A}" />
+<BlockMath math="n = \frac{m}{M}" />
+<BlockMath math="n = \frac{V}{V_m}" />
+</MathContainer>
+
+Di sini <InlineMath math="N" /> ialah bilangan zarah, <InlineMath math="m" /> ialah jisim dalam gram, <InlineMath math="M" /> ialah jisim molar dalam <InlineMath math="\text{g mol}^{-1}" />, dan <InlineMath math="V_m" /> ialah isi padu molar gas. Dalam model di sini, kamu menimbang atom dalam spektrometer jisim, memutar molekul untuk membaca jisimnya, dan menukar mol kepada jisim serta isi padu.
+
+Zarah terlalu kecil untuk dikira satu demi satu, tetapi jisim boleh ditimbang di makmal. Jadi ahli kimia menimbang bahan dulu, kemudian menukar jisim kepada mol.
+
+## Jisim Atom Relatif dan Jisim Molekul Relatif
+
+**Jisim atom relatif**, <InlineMath math="A_r" />, ialah jisim purata satu atom unsur berbanding <InlineMath math="\tfrac{1}{12}" /> jisim satu atom karbon-12. Nilainya ialah purata berwajaran bagi semua isotop unsur itu. Klorin, misalnya, terdiri daripada kira-kira <InlineMath math="75\%" /> klorin-35 dan <InlineMath math="25\%" /> klorin-37:
+
+<BlockMath math="A_r(\mathrm{Cl}) = \frac{75 \times 35 + 25 \times 37}{100} = 35.5" />
+
+Spektrometer jisim mengukur nilai ini. Ion yang lebih berat membelok kurang dalam medan magnet, dan tinggi setiap puncak memberi kelimpahan isotop. Pilih unsur dalam model dan bandingkan purata dengan jisim setiap isotop.
+
+<MassSpectrometerLab
+  title={<>Spektrometer Jisim Menimbang Isotop</>}
+  description={
+    <>
+      Pilih unsur. Setiap isotop membelok pada lintasan sendiri, dan purata
+      berwajaran kelimpahan memberi jisim atom relatif.
+    </>
+  }
+  samples={["chlorine", "magnesium", "boron", "copper"]}
+  labels={{
+    average: <>Jisim atom relatif purata</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jejari lintasan</>,
+    ratio: <>Nisbah jejari</>,
+    south: "S",
+    view: "Spektrometer jisim",
+  }}
+/>
+
+**Jisim molekul relatif**, <InlineMath math="M_r" />, ialah hasil tambah jisim atom relatif semua atom dalam satu molekul. Bagi air, <InlineMath math="M_r(\mathrm{H_2O}) = 2(1) + 16 = 18" />. Bagi sebatian ion, jumlah yang sama dipanggil jisim formula relatif. Putar molekul dalam model ini dan semak <InlineMath math="M_r" /> yang dipaparkan.
+
+<MoleculeShapeLab
+  title={<>Jisim Molekul Relatif Lima Molekul</>}
+  description={
+    <>
+      Pilih molekul dan kira atomnya. Jumlah jisim atom relatif ialah jisim
+      molekul relatif.
+    </>
+  }
+  molecules={[
+    { id: "water", name: "air" },
+    { id: "carbon-dioxide", name: "karbon dioksida" },
+    { id: "ammonia", name: "ammonia" },
+    { id: "methane", name: "metana" },
+    { id: "ethanol", name: "etanol" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Molekul dan jisimnya",
+  }}
+/>
+
+## Jisim Molar dan Bilangan Zarah
+
+**Jisim molar**, <InlineMath math="M" />, ialah jisim satu mol bahan. Nilainya dalam gram sama dengan <InlineMath math="A_r" /> atau <InlineMath math="M_r" />. Jadi satu mol air berjisim <InlineMath math="18\text{ g}" />, satu mol karbon <InlineMath math="12\text{ g}" />, dan satu mol karbon dioksida <InlineMath math="44\text{ g}" />, tetapi ketiga-tiganya mengandungi bilangan zarah yang sama.
+
+Gerakkan gelangsar bilangan mol. Tiga garis menunjukkan jisim karbon, air dan karbon dioksida. Kecerunan setiap garis ialah jisim molarnya.
+
+<MathVisual
+  title={<>Jisim Melawan Bilangan Mol</>}
+  description={
+    <>
+      Garis <InlineMath math="m = nM" /> untuk karbon (<InlineMath math="M = 12" />),
+      air (<InlineMath math="M = 18" />) dan karbon dioksida (
+      <InlineMath math="M = 44" />). Paksi mengufuk ialah mol, paksi menegak
+      ialah jisim dalam gram.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 2.2 }, y: { min: 0, max: 92 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 2, value: 0.5, step: 0.05, label: "n" },
+    ],
+    objects: [
+      { id: "carbon", kind: "function", appearance: "secondary", formula: "12x", domain: { min: 0, max: 2 } },
+      { id: "water", kind: "function", appearance: "primary", formula: "18x", domain: { min: 0, max: 2 } },
+      { id: "carbon-dioxide", kind: "function", appearance: "warning", formula: "44x", domain: { min: 0, max: 2 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "n", y: "0" }, { x: "n", y: "44n" }] },
+    ],
+    labels: [
+      { key: "carbon", objectId: "carbon", at: { x: 2, y: 24 }, placement: "below-left" },
+      { key: "water", objectId: "water", at: { x: 2, y: 36 }, placement: "left" },
+      { key: "carbon-dioxide", objectId: "carbon-dioxide", at: { x: 2, y: 88 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "carbon-mass", formula: "12n" },
+      { key: "water-mass", formula: "18n" },
+      { key: "dioxide-mass", formula: "44n" },
+      { key: "particles", formula: "6.02n" },
+    ],
+  }}
+  labels={{
+    n: <>Bilangan mol <InlineMath math="n" /></>,
+    carbon: <InlineMath math="\mathrm{C}" />,
+    water: <InlineMath math="\mathrm{H_2O}" />,
+    "carbon-dioxide": <InlineMath math="\mathrm{CO_2}" />,
+    "carbon-mass": <>Jisim karbon dalam g</>,
+    "water-mass": <>Jisim air dalam g</>,
+    "dioxide-mass": <>Jisim karbon dioksida dalam g</>,
+    particles: <>Bilangan zarah dalam <InlineMath math="10^{23}" /></>,
+  }}
+/>
+
+### Contoh Mol daripada Jisim
+
+Hitung **bilangan mol dan bilangan molekul** dalam <InlineMath math="9.0\text{ g}" /> air.
+
+<MathContainer>
+<BlockMath math="n = \frac{m}{M} = \frac{9.0}{18} = 0.50\text{ mol}" />
+<BlockMath math="N = nN_A = 0.50 \times 6.02 \times 10^{23} = 3.01 \times 10^{23}" />
+</MathContainer>
+
+Setiap molekul air mempunyai tiga atom, jadi bilangan atom ialah <InlineMath math="3 \times 3.01 \times 10^{23} = 9.03 \times 10^{23}" />. Semak dengan model: pada <InlineMath math="n = 0.5" />, jisim air dibaca <InlineMath math="9\text{ g}" />.
+
+### Contoh Jisim daripada Bilangan Zarah
+
+Berapakah jisim <InlineMath math="1.204 \times 10^{24}" /> atom magnesium? Tukar zarah kepada mol dulu, kemudian **mol kepada jisim**:
+
+<MathContainer>
+<BlockMath math="n = \frac{1.204 \times 10^{24}}{6.02 \times 10^{23}} = 2.0\text{ mol}" />
+<BlockMath math="m = nM = 2.0 \times 24 = 48\text{ g}" />
+</MathContainer>
+
+Semak: <InlineMath math="48\text{ g}" /> ialah dua kali jisim molar magnesium, padan dengan dua mol.
+
+## Isi Padu Molar Gas
+
+Pada suhu dan tekanan yang sama, satu mol **mana-mana gas** menempati isi padu yang sama. Isi padu ini dipanggil **isi padu molar**: <InlineMath math="24\text{ dm}^3\text{ mol}^{-1}" /> pada keadaan bilik dan <InlineMath math="22.4\text{ dm}^3\text{ mol}^{-1}" /> pada suhu dan tekanan piawai (STP). Gerakkan gelangsar dan bandingkan dua garis.
+
+<MathVisual
+  title={<>Isi Padu Gas Melawan Bilangan Mol</>}
+  description={
+    <>
+      Garis atas ialah <InlineMath math="V = 24n" /> pada keadaan bilik, garis
+      bawah ialah <InlineMath math="V = 22.4n" /> pada STP, dengan{" "}
+      <InlineMath math="V" /> dalam <InlineMath math="\text{dm}^3" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 2.2 }, y: { min: 0, max: 52 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 2, value: 0.25, step: 0.05, label: "n" },
+    ],
+    objects: [
+      { id: "room", kind: "function", appearance: "primary", formula: "24x", domain: { min: 0, max: 2 } },
+      { id: "standard", kind: "function", appearance: "secondary", formula: "22.4x", domain: { min: 0, max: 2 } },
+      { id: "now", kind: "marker", x: "n", y: "24n", appearance: "warning" },
+    ],
+    labels: [
+      { key: "room", objectId: "room", at: { x: 2, y: 48 }, placement: "left" },
+      { key: "standard", objectId: "standard", at: { x: 2, y: 44.8 }, placement: "below-left" },
+    ],
+    readouts: [
+      { key: "room-volume", formula: "24n" },
+      { key: "standard-volume", formula: "22.4n" },
+    ],
+  }}
+  labels={{
+    n: <>Bilangan mol <InlineMath math="n" /></>,
+    room: <>Keadaan bilik</>,
+    standard: <>STP</>,
+    "room-volume": <>Isi padu pada keadaan bilik dalam <InlineMath math="\text{dm}^3" /></>,
+    "standard-volume": <>Isi padu pada STP dalam <InlineMath math="\text{dm}^3" /></>,
+  }}
+/>
+
+Sekarang gunakan isi padu molar. Sebanyak <InlineMath math="0.25" /> mol karbon dioksida pada keadaan bilik menempati:
+
+<BlockMath math="V = nV_m = 0.25 \times 24 = 6.0\text{ dm}^3" />
+
+Jisimnya pula <InlineMath math="0.25 \times 44 = 11\text{ g}" />. Semak dengan model pada <InlineMath math="n = 0.25" />.
+
+## Formula Empirik dan Formula Molekul
+
+**Formula empirik** menunjukkan nisbah teringkas bilangan atom setiap unsur dalam sebatian. **Formula molekul** menunjukkan bilangan sebenar atom dalam satu molekul. Glukosa mempunyai formula molekul <InlineMath math="\mathrm{C_6H_{12}O_6}" /> dan formula empirik <InlineMath math="\mathrm{CH_2O}" />.
+
+Formula empirik ditentukan daripada jisim setiap unsur. Dalam satu eksperimen, <InlineMath math="2.4\text{ g}" /> pita magnesium dibakar dan menghasilkan <InlineMath math="4.0\text{ g}" /> magnesium oksida. Jisim oksigen yang bergabung ialah <InlineMath math="4.0 - 2.4 = 1.6\text{ g}" />. Susun pengiraan dalam jadual:
+
+| Unsur | Magnesium | Oksigen |
+| :--- | :--- | :--- |
+| Jisim (g) | <InlineMath math="2.4" /> | <InlineMath math="1.6" /> |
+| Bilangan mol | <InlineMath math="2.4 \div 24 = 0.10" /> | <InlineMath math="1.6 \div 16 = 0.10" /> |
+| Nisbah teringkas | <InlineMath math="1" /> | <InlineMath math="1" /> |
+
+Nisbahnya satu kepada satu, jadi formula empiriknya <InlineMath math="\mathrm{MgO}" />. Semak: jisim formula <InlineMath math="24 + 16 = 40" />, dan <InlineMath math="0.10 \times 40 = 4.0\text{ g}" />, sama dengan jisim oksida yang ditimbang.
+
+## Persamaan Kimia dan Nisbah Mol
+
+Persamaan kimia yang seimbang memberi **nisbah mol** bahan tindak balas dan hasil tindak balas. Pekali di hadapan setiap formula ialah bilangan mol, bukan jisim. Pilih tindak balas dalam model ini dan kira molekul di kedua-dua belah persamaan.
+
+<ReactionBalanceLab
+  title={<>Molekul di Kedua-dua Belah Persamaan</>}
+  description={
+    <>
+      Pilih tindak balas dan mainkan animasi. Bilangan setiap jenis atom sama
+      di kiri dan kanan, dan pekali memberi nisbah mol.
+    </>
+  }
+  reactions={[
+    { id: "methane-combustion", name: "Pembakaran metana", tab: <>Metana</> },
+    { id: "ammonia-synthesis", name: "Penghasilan ammonia", tab: <>Ammonia</> },
+    { id: "water-synthesis", name: "Pembentukan air", tab: <>Air</> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atom setiap unsur</>,
+    choose: "Pilih tindak balas",
+    equation: <>Persamaan seimbang</>,
+    mass: <>Jumlah jisim</>,
+    molecules: <>Bilangan molekul</>,
+    products: <>Hasil tindak balas</>,
+    progress: "Kemajuan tindak balas",
+    reactants: <>Bahan tindak balas</>,
+    view: "Molekul dalam tindak balas",
+  }}
+/>
+
+### Contoh Jisim Hasil Tindak Balas
+
+Hitung **jisim karbon dioksida** yang terhasil apabila <InlineMath math="8.0\text{ g}" /> metana terbakar lengkap.
+
+<BlockMath math="\mathrm{CH_4} + 2\mathrm{O_2} \rightarrow \mathrm{CO_2} + 2\mathrm{H_2O}" />
+
+Ikut tiga langkah: jisim kepada mol, nisbah mol, kemudian mol kepada jisim.
+
+<MathContainer>
+<BlockMath math="n(\mathrm{CH_4}) = \frac{8.0}{16} = 0.50\text{ mol}" />
+<BlockMath math="n(\mathrm{CO_2}) = n(\mathrm{CH_4}) = 0.50\text{ mol}" />
+<BlockMath math="m(\mathrm{CO_2}) = 0.50 \times 44 = 22\text{ g}" />
+</MathContainer>
+
+Semak dengan hukum keabadian jisim: oksigen yang digunakan ialah <InlineMath math="1.0 \times 32 = 32\text{ g}" /> dan air yang terhasil <InlineMath math="1.0 \times 18 = 18\text{ g}" />. Jisim bahan <InlineMath math="8 + 32 = 40\text{ g}" /> sama dengan jisim hasil <InlineMath math="22 + 18 = 40\text{ g}" />.
+
+### Contoh Isi Padu Gas daripada Persamaan
+
+Sebanyak <InlineMath math="0.10" /> mol nitrogen bertindak balas lengkap dengan hidrogen. Hitung **isi padu ammonia** pada keadaan bilik.
+
+<MathContainer>
+<BlockMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightarrow 2\mathrm{NH_3}" />
+<BlockMath math="n(\mathrm{NH_3}) = 2 \times 0.10 = 0.20\text{ mol}" />
+<BlockMath math="V = 0.20 \times 24 = 4.8\text{ dm}^3" />
+</MathContainer>
+
+Semak nisbah: satu molekul nitrogen menghasilkan dua molekul ammonia, seperti yang ditunjukkan oleh model tindak balas.
+
+## Kesilapan Lazim tentang Konsep Mol
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Satu mol air dan satu mol karbon dioksida sama jisimnya. | Bilangan zarahnya sama, tetapi jisim molarnya berbeza. | Bandingkan <InlineMath math="M" />, bukan <InlineMath math="n" />. |
+| Menggunakan pekali persamaan sebagai nisbah jisim. | Pekali ialah nisbah mol. | Tukar jisim kepada mol sebelum menggunakan nisbah. |
+| Menggunakan <InlineMath math="24\text{ dm}^3" /> untuk pepejal atau cecair. | Isi padu molar hanya untuk gas. | Semak keadaan jirim bahan itu. |
+| Bilangan atom sama dengan bilangan molekul. | Satu molekul boleh mengandungi beberapa atom. | Darab dengan bilangan atom dalam formula. |
+
+Kesilapan kedua paling kerap dalam soalan stoikiometri. **Sentiasa melalui mol**: jisim kepada mol, nisbah mol, kemudian mol kepada kuantiti yang diminta.
+
+## Latihan Konsep Mol
+
+Soalan ini bermula dengan satu penukaran dan berakhir dengan formula serta persamaan. Gunakan <InlineMath math="A_r" />: H <InlineMath math="1" />, C <InlineMath math="12" />, N <InlineMath math="14" />, O <InlineMath math="16" />, Ca <InlineMath math="40" />, Zn <InlineMath math="65" />. **Tulis unit setiap langkah**.
+
+1. Hitung bilangan atom dalam <InlineMath math="0.20" /> mol ammonia, <InlineMath math="\mathrm{NH_3}" />.
+
+2. Hitung bilangan mol dalam <InlineMath math="25\text{ g}" /> kalsium karbonat, <InlineMath math="\mathrm{CaCO_3}" />.
+
+3. Satu sebatian mengandungi <InlineMath math="40.0\%" /> karbon, <InlineMath math="6.7\%" /> hidrogen dan <InlineMath math="53.3\%" /> oksigen mengikut jisim. Jisim molekul relatifnya ialah <InlineMath math="180" />. Tentukan formula empirik dan formula molekulnya.
+
+4. Sebanyak <InlineMath math="6.5\text{ g}" /> zink bertindak balas dengan asid hidroklorik berlebihan. Hitung isi padu gas hidrogen pada keadaan bilik.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Setiap molekul <InlineMath math="\mathrm{NH_3}" /> mengandungi empat atom.
+
+<BlockMath math="N = 0.20 \times 4 \times 6.02 \times 10^{23} = 4.82 \times 10^{23}" />
+
+**Penyelesaian 2**: Kira jisim formula relatif dulu, <InlineMath math="40 + 12 + 3(16) = 100" />.
+
+<BlockMath math="n = \frac{25}{100} = 0.25\text{ mol}" />
+
+**Penyelesaian 3**: Anggap <InlineMath math="100\text{ g}" /> sebatian, jadi peratus menjadi gram.
+
+| Unsur | C | H | O |
+| :--- | :--- | :--- | :--- |
+| Bilangan mol | <InlineMath math="40.0 \div 12 = 3.33" /> | <InlineMath math="6.7 \div 1 = 6.7" /> | <InlineMath math="53.3 \div 16 = 3.33" /> |
+| Nisbah teringkas | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+
+Formula empiriknya <InlineMath math="\mathrm{CH_2O}" /> dengan jisim formula <InlineMath math="30" />. Oleh sebab <InlineMath math="180 \div 30 = 6" />, formula molekulnya <InlineMath math="\mathrm{C_6H_{12}O_6}" />, iaitu glukosa.
+
+**Penyelesaian 4**: Tulis persamaan, kemudian ikut nisbah mol <InlineMath math="1 : 1" /> antara zink dengan hidrogen.
+
+<MathContainer>
+<BlockMath math="\mathrm{Zn} + 2\mathrm{HCl} \rightarrow \mathrm{ZnCl_2} + \mathrm{H_2}" />
+<BlockMath math="n(\mathrm{Zn}) = \frac{6.5}{65} = 0.10\text{ mol} = n(\mathrm{H_2})" />
+<BlockMath math="V = 0.10 \times 24 = 2.4\text{ dm}^3" />
+</MathContainer>
+
+Asid berlebihan, jadi **zink menentukan jumlah gas**.

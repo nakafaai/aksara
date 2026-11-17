@@ -95,10 +95,16 @@ export const kssmForm4ChemistryFoundationNodes = [
   unitNode({
     children: [
       materialNode({
+        key: "form-4-chemistry-the-mole-concept-chemical-formula-and-equation-mole-concept",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.mole-concept"],
+        order: 10,
+      }),
+      materialNode({
         key: "form-4-chemistry-the-mole-concept-chemical-formula-and-equation-basic-chemistry-laws",
         level: "lesson",
         materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
-        order: 10,
+        order: 20,
       }),
     ],
     key: "form-4-chemistry-the-mole-concept-chemical-formula-and-equation",
