@@ -16,8 +16,12 @@ The NOT gate gives <InlineMath math="1" /> when the belt is **unfastened**. The 
 
 With the ignition off, the buzzer never sounds. With it on, the buzzer sounds in every case except belt fastened and door shut, which is <InlineMath math="3" /> of the <InlineMath math="8" /> combinations. When everything is <InlineMath math="0" />, the OR gate still outputs <InlineMath math="1" />, because the belt is unfastened, but the AND gate blocks it.
 
+<BlockMath math="B'=I\cdot\overline F\cdot D:\qquad (I,F,D)=(1,0,1)\text{ only}" />
+
+With an AND gate the buzzer would need the ignition on, the belt unfastened **and** the door open together, which happens in just <InlineMath math="1" /> of the <InlineMath math="8" /> combinations.
+
 # Why the other options are wrong
 
 - <InlineMath math="0" /> for the OR gate takes the **buzzer's output** for the OR gate's, but the ignition only enters at the AND gate.
-- <InlineMath math="6" /> counts every combination where the **OR output is <InlineMath math="1" />**, forgetting that the AND gate also needs the ignition on.
+- <InlineMath math="6" /> and <InlineMath math="2" /> count the combinations where the **gate before the final AND** gives <InlineMath math="1" />, forgetting that the final AND gate also needs the ignition on.
 - <InlineMath math="2" /> **ignores the door input**, counting only the cases with the belt unfastened and the ignition on.

@@ -16,8 +16,12 @@ Gerbang NOT memberi <InlineMath math="1" /> saat sabuk **tidak dipasang**. Gerba
 
 Saat kunci kontak mati, bel tidak pernah berbunyi. Saat menyala, bel berbunyi di setiap keadaan kecuali sabuk terpasang dan pintu tertutup, yaitu <InlineMath math="3" /> dari <InlineMath math="8" /> kombinasi. Saat semuanya <InlineMath math="0" />, gerbang OR tetap mengeluarkan <InlineMath math="1" />, karena sabuk tidak dipasang, tetapi gerbang AND menahannya.
 
+<BlockMath math="B'=I\cdot\overline F\cdot D:\qquad (I,F,D)=(1,0,1)\text{ saja}" />
+
+Dengan gerbang AND, bel butuh kunci kontak menyala, sabuk tidak dipasang, **dan** pintu terbuka sekaligus, yang terjadi hanya pada <InlineMath math="1" /> dari <InlineMath math="8" /> kombinasi.
+
 # Mengapa pilihan lain salah
 
 - <InlineMath math="0" /> untuk gerbang OR mengambil **keluaran bel** sebagai keluaran gerbang OR, padahal kunci kontak baru masuk di gerbang AND.
-- <InlineMath math="6" /> menghitung tiap kombinasi dengan **keluaran OR bernilai <InlineMath math="1" />**, lupa bahwa gerbang AND juga butuh kunci kontak menyala.
+- <InlineMath math="6" /> dan <InlineMath math="2" /> menghitung kombinasi saat **gerbang sebelum AND terakhir** memberi <InlineMath math="1" />, lupa bahwa gerbang AND terakhir juga butuh kunci kontak menyala.
 - <InlineMath math="2" /> **mengabaikan input pintu**, hanya menghitung keadaan sabuk tidak dipasang dan kunci kontak menyala.

@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$5.0\\text{ kW}$$ and $$200\\text{ W}$$" },
-        { correct: true, label: "$$5.0\\text{ kW}$$ and $$8.0\\text{ W}$$" },
-        { correct: false, label: "$$100\\text{ W}$$ and $$4.0\\text{ W}$$" },
-        { correct: false, label: "$$2.5\\text{ kW}$$ and $$4.0\\text{ W}$$" },
+        {
+          correct: false,
+          label: "$$5.0\\text{ kW}$$, $$200\\text{ W}$$ and $$900\\text{ V}$$",
+        },
+        {
+          correct: true,
+          label: "$$5.0\\text{ kW}$$, $$8.0\\text{ W}$$ and $$900\\text{ V}$$",
+        },
+        {
+          correct: false,
+          label: "$$100\\text{ W}$$, $$4.0\\text{ W}$$ and $$900\\text{ V}$$",
+        },
+        {
+          correct: false,
+          label: "$$2.5\\text{ kW}$$, $$4.0\\text{ W}$$ and $$950\\text{ V}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$5.0\\text{ kW}$$ dan $$200\\text{ W}$$" },
-        { correct: true, label: "$$5.0\\text{ kW}$$ dan $$8.0\\text{ W}$$" },
-        { correct: false, label: "$$100\\text{ W}$$ dan $$4.0\\text{ W}$$" },
-        { correct: false, label: "$$2.5\\text{ kW}$$ dan $$4.0\\text{ W}$$" },
+        {
+          correct: false,
+          label: "$$5.0\\text{ kW}$$, $$200\\text{ W}$$ dan $$900\\text{ V}$$",
+        },
+        {
+          correct: true,
+          label: "$$5.0\\text{ kW}$$, $$8.0\\text{ W}$$ dan $$900\\text{ V}$$",
+        },
+        {
+          correct: false,
+          label: "$$100\\text{ W}$$, $$4.0\\text{ W}$$ dan $$900\\text{ V}$$",
+        },
+        {
+          correct: false,
+          label: "$$2.5\\text{ kW}$$, $$4.0\\text{ W}$$ dan $$950\\text{ V}$$",
+        },
       ],
     },
   },

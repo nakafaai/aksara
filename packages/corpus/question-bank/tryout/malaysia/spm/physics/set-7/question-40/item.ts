@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$7.8\\times10^{-19}\\text{ J}$$ and $$340\\text{ nm}$$",
+          label:
+            "$$7.8\\times10^{-19}\\text{ J}$$, $$340\\text{ nm}$$ and $$6.4\\times10^{18}\\text{ s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$7.8\\times10^{-19}\\text{ J}$$ and $$190\\text{ nm}$$",
+          label:
+            "$$7.8\\times10^{-19}\\text{ J}$$, $$190\\text{ nm}$$ and $$6.4\\times10^{18}\\text{ s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$5.8\\times10^{-19}\\text{ J}$$ and $$340\\text{ nm}$$",
+          label:
+            "$$5.8\\times10^{-19}\\text{ J}$$, $$340\\text{ nm}$$ and $$8.6\\times10^{18}\\text{ s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$7.8\\times10^{-19}\\text{ J}$$ and $$254\\text{ nm}$$",
+          label:
+            "$$7.8\\times10^{-19}\\text{ J}$$, $$254\\text{ nm}$$ and $$6.4\\times10^{18}\\text{ s}^{-1}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$7.8\\times10^{-19}\\text{ J}$$ dan $$340\\text{ nm}$$",
+          label:
+            "$$7.8\\times10^{-19}\\text{ J}$$, $$340\\text{ nm}$$ dan $$6.4\\times10^{18}\\text{ s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$7.8\\times10^{-19}\\text{ J}$$ dan $$190\\text{ nm}$$",
+          label:
+            "$$7.8\\times10^{-19}\\text{ J}$$, $$190\\text{ nm}$$ dan $$6.4\\times10^{18}\\text{ s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$5.8\\times10^{-19}\\text{ J}$$ dan $$340\\text{ nm}$$",
+          label:
+            "$$5.8\\times10^{-19}\\text{ J}$$, $$340\\text{ nm}$$ dan $$8.6\\times10^{18}\\text{ s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$7.8\\times10^{-19}\\text{ J}$$ dan $$254\\text{ nm}$$",
+          label:
+            "$$7.8\\times10^{-19}\\text{ J}$$, $$254\\text{ nm}$$ dan $$6.4\\times10^{18}\\text{ s}^{-1}$$",
         },
       ],
     },

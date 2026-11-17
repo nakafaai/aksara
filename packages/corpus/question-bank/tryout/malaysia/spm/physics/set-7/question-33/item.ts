@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.010\\text{ N}$$ and $$1.0\\text{ m s}^{-2}$$",
+          label:
+            "$$0.010\\text{ N}$$, $$1.0\\text{ m s}^{-2}$$ and $$0.0020\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$1.0\\text{ N}$$ and $$100\\text{ m s}^{-2}$$",
+          label:
+            "$$1.0\\text{ N}$$, $$100\\text{ m s}^{-2}$$ and $$0.20\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$0.50\\text{ N}$$ and $$0.050\\text{ m s}^{-2}$$",
+          label:
+            "$$0.50\\text{ N}$$, $$0.050\\text{ m s}^{-2}$$ and $$1.0\\times10^{-4}\\text{ mm}$$",
         },
         {
           correct: true,
-          label: "$$0.50\\text{ N}$$ and $$50\\text{ m s}^{-2}$$",
+          label:
+            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ and $$0.10\\text{ mm}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.010\\text{ N}$$ dan $$1.0\\text{ m s}^{-2}$$",
+          label:
+            "$$0.010\\text{ N}$$, $$1.0\\text{ m s}^{-2}$$ dan $$0.0020\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$1.0\\text{ N}$$ dan $$100\\text{ m s}^{-2}$$",
+          label:
+            "$$1.0\\text{ N}$$, $$100\\text{ m s}^{-2}$$ dan $$0.20\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$0.50\\text{ N}$$ dan $$0.050\\text{ m s}^{-2}$$",
+          label:
+            "$$0.50\\text{ N}$$, $$0.050\\text{ m s}^{-2}$$ dan $$1.0\\times10^{-4}\\text{ mm}$$",
         },
         {
           correct: true,
-          label: "$$0.50\\text{ N}$$ dan $$50\\text{ m s}^{-2}$$",
+          label:
+            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ dan $$0.10\\text{ mm}$$",
         },
       ],
     },

@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$23\\,\\mu\\text{A}$$ and $$1.9\\text{ V}$$",
+          label:
+            "$$23\\,\\mu\\text{A}$$, $$1.9\\text{ V}$$ and $$225\\text{ k}\\Omega$$",
         },
         {
           correct: false,
-          label: "$$20\\,\\mu\\text{A}$$ and $$3.6\\text{ V}$$",
+          label:
+            "$$20\\,\\mu\\text{A}$$, $$3.6\\text{ V}$$ and $$200\\text{ k}\\Omega$$",
         },
         {
           correct: false,
-          label: "$$20\\,\\mu\\text{A}$$ and $$6.0\\text{ V}$$",
+          label:
+            "$$20\\,\\mu\\text{A}$$, $$6.0\\text{ V}$$ and $$1.3\\text{ k}\\Omega$$",
         },
         {
           correct: true,
-          label: "$$20\\,\\mu\\text{A}$$ and $$2.4\\text{ V}$$",
+          label:
+            "$$20\\,\\mu\\text{A}$$, $$2.4\\text{ V}$$ and $$200\\text{ k}\\Omega$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$23\\,\\mu\\text{A}$$ dan $$1.9\\text{ V}$$",
+          label:
+            "$$23\\,\\mu\\text{A}$$, $$1.9\\text{ V}$$ dan $$225\\text{ k}\\Omega$$",
         },
         {
           correct: false,
-          label: "$$20\\,\\mu\\text{A}$$ dan $$3.6\\text{ V}$$",
+          label:
+            "$$20\\,\\mu\\text{A}$$, $$3.6\\text{ V}$$ dan $$200\\text{ k}\\Omega$$",
         },
         {
           correct: false,
-          label: "$$20\\,\\mu\\text{A}$$ dan $$6.0\\text{ V}$$",
+          label:
+            "$$20\\,\\mu\\text{A}$$, $$6.0\\text{ V}$$ dan $$1.3\\text{ k}\\Omega$$",
         },
         {
           correct: true,
-          label: "$$20\\,\\mu\\text{A}$$ dan $$2.4\\text{ V}$$",
+          label:
+            "$$20\\,\\mu\\text{A}$$, $$2.4\\text{ V}$$ dan $$200\\text{ k}\\Omega$$",
         },
       ],
     },

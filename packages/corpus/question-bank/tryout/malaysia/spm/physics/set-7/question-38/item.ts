@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "beta and $$6.0\\text{ h}$$" },
-        { correct: true, label: "gamma and $$6.0\\text{ h}$$" },
-        { correct: false, label: "gamma and $$6.8\\text{ h}$$" },
-        { correct: false, label: "gamma and $$2.3\\text{ h}$$" },
+        {
+          correct: false,
+          label: "beta, $$6.0\\text{ h}$$ and $$30\\text{ h}$$",
+        },
+        {
+          correct: true,
+          label: "gamma, $$6.0\\text{ h}$$ and $$30\\text{ h}$$",
+        },
+        {
+          correct: false,
+          label: "gamma, $$6.8\\text{ h}$$ and $$26\\text{ h}$$",
+        },
+        {
+          correct: false,
+          label: "gamma, $$6.0\\text{ h}$$ and $$23\\text{ h}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "beta dan $$6.0\\text{ j}$$" },
-        { correct: true, label: "gama dan $$6.0\\text{ j}$$" },
-        { correct: false, label: "gama dan $$6.8\\text{ j}$$" },
-        { correct: false, label: "gama dan $$2.3\\text{ j}$$" },
+        {
+          correct: false,
+          label: "beta, $$6.0\\text{ j}$$ dan $$30\\text{ j}$$",
+        },
+        {
+          correct: true,
+          label: "gama, $$6.0\\text{ j}$$ dan $$30\\text{ j}$$",
+        },
+        {
+          correct: false,
+          label: "gama, $$6.8\\text{ j}$$ dan $$26\\text{ j}$$",
+        },
+        {
+          correct: false,
+          label: "gama, $$6.0\\text{ j}$$ dan $$23\\text{ j}$$",
+        },
       ],
     },
   },
