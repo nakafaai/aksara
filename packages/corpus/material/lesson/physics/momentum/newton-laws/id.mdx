@@ -1,0 +1,302 @@
+export const metadata = {
+  title: "Hukum Newton Momentum dan Impuls",
+  description:
+    "Jelaskan kelembaman, pakai hukum kekekalan momentum, F = ma, impuls dan gaya impulsif, serta berat lewat contoh lengkap, kesalahan umum, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Gaya dan Gerak I",
+};
+
+## Gaya Mengubah Gerak
+
+**Momentum** adalah hasil kali massa dan kecepatan, <InlineMath math="p = mv" />, dalam <InlineMath math="\text{kg m/s}" />. **Gaya** adalah laju perubahan momentum, jadi untuk massa tetap, <InlineMath math="F = ma" />. **Impuls** adalah perubahan momentum yang dihasilkan gaya selama selang waktu tertentu:
+
+<MathContainer>
+<BlockMath math="p = mv" />
+<BlockMath math="F = ma" />
+<BlockMath math="F\Delta t = mv - mu" />
+</MathContainer>
+
+Di sini <InlineMath math="u" /> adalah kecepatan awal dan <InlineMath math="v" /> adalah kecepatan akhir. Di model-model berikut, kamu menyeimbangkan gaya dalam tarik tambang, menabrakkan dua troli, mendorong massa berbeda dengan gaya yang sama, dan memperpanjang waktu tumbukan.
+
+Tiga hukum gerak Newton menata gagasan ini. Hukum pertama menjelaskan benda tanpa gaya resultan. Hukum kedua menghubungkan gaya dengan percepatan. Hukum ketiga menyatakan setiap gaya aksi punya gaya reaksi yang sama besar dan berlawanan arah.
+
+## Kelembaman dan Hukum Pertama Newton
+
+**Kelembaman** atau inersia adalah kecenderungan benda untuk mempertahankan keadaan geraknya. **Hukum I Newton** menyatakan bahwa benda tetap diam atau terus bergerak dengan kecepatan tetap kecuali ada gaya resultan yang bekerja padanya. Benda yang **massanya lebih besar punya kelembaman lebih besar**, jadi lebih sulit digerakkan atau dihentikan.
+
+Dalam tarik tambang, setiap regu menarik dengan suatu gaya. Kalau kedua gaya sama, gaya resultannya nol dan tali tetap di tempat. Tambah atau kurangi penarik di satu sisi dan perhatikan pita bergerak ke arah gaya resultan.
+
+<TugOfWarForceLab
+  title={<>Gaya Seimbang dan Tidak Seimbang dalam Tarik Tambang</>}
+  description={
+    <>
+      Setiap penarik menarik dengan <InlineMath math="300\text{ N}" />. Ubah
+      jumlah penarik di setiap regu dan bandingkan gaya resultannya.
+    </>
+  }
+  left={4}
+  right={4}
+  pull={300}
+  labels={{
+    left: <>Gaya regu kiri</>,
+    leftCount: <>Penarik kiri</>,
+    leftName: "Regu kiri",
+    net: <>Gaya resultan</>,
+    right: <>Gaya regu kanan</>,
+    rightCount: <>Penarik kanan</>,
+    rightName: "Regu kanan",
+    viewLabel: "Tarik tambang saat senja",
+  }}
+/>
+
+Kelembaman menjelaskan pentingnya sabuk pengaman. Saat mobil berhenti mendadak, tubuh penumpang cenderung terus bergerak ke depan. Sabuk pengaman memberi gaya yang menghentikan tubuh bersama mobil.
+
+## Momentum dan Hukum Kekekalannya
+
+**Hukum kekekalan momentum** menyatakan bahwa jumlah momentum sebelum tumbukan atau ledakan sama dengan jumlah momentum sesudahnya, selama tidak ada gaya luar yang bekerja:
+
+<BlockMath math="m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2" />
+
+Pada **tumbukan tidak lenting sama sekali**, kedua benda menempel dan bergerak bersama sesudah tumbukan. Grafik berikut menunjukkan troli A bermassa <InlineMath math="1\text{ kg}" /> yang bergerak dengan <InlineMath math="2\text{ m/s}" /> menabrak troli B yang diam. Ubah massa troli B dan lihat kecepatan bersama berubah, sementara momentum total tetap.
+
+<MathVisual
+  title={<>Kecepatan Dua Troli pada Tumbukan Tidak Lenting</>}
+  description={
+    <>
+      Kecepatan terhadap waktu dalam detik. Tumbukan terjadi pada{" "}
+      <InlineMath math="t = 2\text{ s}" />. Massa troli B adalah{" "}
+      <InlineMath math="m" /> kali massa troli A.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -0.3, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0.5, max: 3, value: 1, step: 0.1, label: "m" },
+    ],
+    objects: [
+      { id: "trolley-b", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "2", y: "0" }, { x: "2", y: "2/(1 + m)" }, { x: "5", y: "2/(1 + m)" }] },
+      { id: "trolley-a", kind: "path", appearance: "primary", points: [{ x: "0", y: "2" }, { x: "2", y: "2" }, { x: "2", y: "2/(1 + m)" }, { x: "5", y: "2/(1 + m)" }] },
+    ],
+    labels: [
+      { key: "trolley-a", objectId: "trolley-a", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "trolley-b", objectId: "trolley-b", at: { x: 1, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "common", formula: "2/(1 + m)" },
+      { key: "before", formula: "1 * 2" },
+      { key: "after", formula: "(1 + m) * 2/(1 + m)" },
+    ],
+  }}
+  labels={{
+    m: <>Massa troli B dalam kg</>,
+    "trolley-a": <>Troli A</>,
+    "trolley-b": <>Troli B</>,
+    common: <>Kecepatan bersama dalam <InlineMath math="\text{m/s}" /></>,
+    before: <>Momentum total sebelum</>,
+    after: <>Momentum total sesudah</>,
+  }}
+/>
+
+### Contoh Tumbukan Dua Mobil
+
+Mobil bermassa <InlineMath math="1{.}200\text{ kg}" /> yang melaju <InlineMath math="15\text{ m/s}" /> menabrak mobil diam bermassa <InlineMath math="800\text{ kg}" />, dan keduanya bergerak bersama. Cari **kecepatan bersamanya**.
+
+<MathContainer>
+<BlockMath math="(1{.}200)(15) + (800)(0) = (1{.}200 + 800)v" />
+<BlockMath math="v = \frac{18{.}000}{2{.}000} = 9{,}0\text{ m/s}" />
+</MathContainer>
+
+Cek: momentum sesudahnya <InlineMath math="2{.}000 \times 9{,}0 = 18{.}000\text{ kg m/s}" />, sama dengan sebelumnya.
+
+### Contoh Tolakan Senapan
+
+Pada **ledakan**, momentum total sebelumnya nol. Senapan bermassa <InlineMath math="4{,}0\text{ kg}" /> menembakkan peluru bermassa <InlineMath math="0{,}010\text{ kg}" /> dengan <InlineMath math="400\text{ m/s}" />. Cari kecepatan tolakan senapan.
+
+<MathContainer>
+<BlockMath math="0 = (0{,}010)(400) + (4{,}0)v" />
+<BlockMath math="v = -\frac{4{,}0}{4{,}0} = -1{,}0\text{ m/s}" />
+</MathContainer>
+
+Tanda negatif berarti senapan bergerak ke belakang. Cek: <InlineMath math="4{,}0 + (-4{,}0) = 0" />, jadi momentum total tetap nol.
+
+## Gaya dan Hukum Kedua Newton
+
+**Hukum II Newton** menyatakan bahwa laju perubahan momentum sebanding dengan gaya resultan. Untuk massa tetap, hukum ini menjadi <InlineMath math="F = ma" />. Satu newton adalah gaya yang memberi percepatan <InlineMath math="1\text{ m/s}^2" /> pada massa <InlineMath math="1\text{ kg}" />. Geser penggeser massa dan lihat garis percepatan makin landai.
+
+<MathVisual
+  title={<>Percepatan terhadap Gaya Resultan</>}
+  description={
+    <>
+      Garis <InlineMath math="a = F/m" />. Sumbu mendatar adalah gaya dalam N,
+      sumbu tegak adalah percepatan dalam <InlineMath math="\text{m/s}^2" />.
+      Massa yang lebih besar memberi garis yang lebih landai.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 5, value: 2, step: 0.5, label: "m" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "x/m", domain: { min: 0, max: 10 } },
+      { id: "sample", kind: "marker", x: "6", y: "6/m", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "acceleration", formula: "6/m" },
+    ],
+  }}
+  labels={{
+    m: <>Massa <InlineMath math="m" /> dalam kg</>,
+    acceleration: <>Percepatan pada <InlineMath math="F = 6\text{ N}" /></>,
+  }}
+/>
+
+Gesekan adalah gaya yang melawan gerak. Saat mobil mengerem, gesekan antara ban dan jalan memberi gaya resultan ke belakang, jadi mobil mengalami perlambatan. Pilih permukaan jalan di model ini dan bandingkan perlambatan serta jarak pengeremannya.
+
+<BrakingSurfaceLab
+  title={<>Mengerem di Permukaan Berbeda</>}
+  description={
+    <>
+      Mobil berkecepatan <InlineMath math="20\text{ m/s}" /> mengunci rodanya di
+      garis putih. Gesekan yang lebih kecil memberi perlambatan yang lebih
+      kecil.
+    </>
+  }
+  labels={{
+    brakingDistance: <>Jarak pengereman</>,
+    brakingTime: <>Waktu pengereman</>,
+    chooseSurface: "Pilih permukaan jalan",
+    deceleration: <>Perlambatan</>,
+    friction: <>Koefisien gesekan</>,
+    surfaces: { dry: "Kering", wet: "Basah", gravel: "Kerikil", snow: "Salju", ice: "Es" },
+    viewLabel: "Mobil mengerem di jalan",
+  }}
+/>
+
+### Contoh Gaya untuk Mempercepat Mobil
+
+Mobil bermassa <InlineMath math="1{.}500\text{ kg}" /> dipercepat dari diam sampai <InlineMath math="20\text{ m/s}" /> dalam <InlineMath math="8{,}0\text{ s}" />. Hitung **gaya resultan** pada mobil itu.
+
+<MathContainer>
+<BlockMath math="a = \frac{v - u}{t} = \frac{20 - 0}{8{,}0} = 2{,}5\text{ m/s}^2" />
+<BlockMath math="F = ma = (1{.}500)(2{,}5) = 3{.}750\text{ N}" />
+</MathContainer>
+
+Cek dengan impuls: <InlineMath math="F\Delta t = 3{.}750 \times 8{,}0 = 30{.}000\text{ N s}" />, sama dengan perubahan momentum <InlineMath math="1{.}500 \times 20" />.
+
+### Contoh Berat di Bumi dan Bulan
+
+**Berat** adalah gaya gravitasi pada benda, <InlineMath math="w = mg" />. Massa tidak berubah di mana pun, tetapi berat bergantung pada <InlineMath math="g" />. Untuk siswa bermassa <InlineMath math="60\text{ kg}" />:
+
+<MathContainer>
+<BlockMath math="w_{\text{Bumi}} = (60)(9{,}81) = 589\text{ N}" />
+<BlockMath math="w_{\text{Bulan}} = (60)(1{,}62) = 97\text{ N}" />
+</MathContainer>
+
+Massanya tetap <InlineMath math="60\text{ kg}" /> di kedua tempat, jadi kelembamannya juga sama.
+
+## Impuls dan Gaya Impulsif
+
+**Gaya impulsif** adalah gaya besar yang bekerja dalam waktu singkat, misalnya saat tumbukan. Dari <InlineMath math="F\Delta t = mv - mu" />, perubahan momentum yang sama bisa berasal dari gaya kecil dalam waktu lama atau gaya besar dalam waktu singkat. Luas di bawah grafik gaya terhadap waktu adalah impuls.
+
+Model ini menunjukkan beberapa tumbukan dengan impuls yang sama, <InlineMath math="2\text{ N s}" />. Perpanjang waktu tumbukan dan lihat puncak gaya turun, sementara luas di bawah kurva tetap.
+
+<MathVisual
+  title={<>Impuls Sama dengan Waktu Tumbukan Berbeda</>}
+  description={
+    <>
+      Gaya <InlineMath math="F = \dfrac{\pi}{c}\sin\!\left(\dfrac{\pi t}{c}\right)" />{" "}
+      untuk waktu tumbukan <InlineMath math="c" /> dalam detik. Luas di bawah
+      kurva selalu <InlineMath math="2\text{ N s}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.2 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.5, max: 3, value: 1, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "force", kind: "parametric", appearance: "primary", x: "c t", y: "(pi/c) sin(pi t)", parameter: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "pi/c" },
+      { key: "impulse", formula: "2" },
+    ],
+  }}
+  labels={{
+    c: <>Waktu tumbukan <InlineMath math="c" /></>,
+    peak: <>Gaya maksimum dalam N</>,
+    impulse: <>Impuls dalam N s</>,
+  }}
+/>
+
+Itulah prinsip fitur keselamatan mobil. **Kantong udara** dan **zona remuk** memperpanjang waktu tumbukan, jadi gaya impulsif pada penumpang berkurang. Pemain kriket menarik tangannya ke belakang saat menangkap bola karena alasan yang sama.
+
+Sekarang hitung satu gaya impulsif. Pemain sepak bola menendang bola bermassa <InlineMath math="0{,}45\text{ kg}" /> dari diam sampai <InlineMath math="30\text{ m/s}" />, dengan waktu kontak <InlineMath math="0{,}015\text{ s}" />:
+
+<MathContainer>
+<BlockMath math="F\Delta t = (0{,}45)(30) - 0 = 13{,}5\text{ N s}" />
+<BlockMath math="F = \frac{13{,}5}{0{,}015} = 900\text{ N}" />
+</MathContainer>
+
+Gaya sebesar <InlineMath math="900\text{ N}" /> itu hanya bekerja selama satu setengah perseratus detik. Cek satuannya: <InlineMath math="\text{N s} : \text{s} = \text{N}" />.
+
+## Kesalahan Umum tentang Gaya dan Gerak
+
+| Kesalahan | Alasan keliru | Cara mengecek |
+| :--- | :--- | :--- |
+| Benda yang bergerak pasti punya gaya resultan. | Benda berkecepatan tetap tidak punya gaya resultan, sesuai hukum I. | Tanyakan apakah kecepatannya berubah. |
+| Momentum tidak punya arah. | Momentum adalah besaran vektor, jadi arah berlawanan diberi tanda negatif. | Tentukan satu arah positif sebelum menghitung. |
+| Massa dan berat adalah besaran yang sama. | Massa dalam kg dan tetap. Berat adalah gaya dalam N dan bergantung pada <InlineMath math="g" />. | Cek satuan jawabanmu. |
+| Kantong udara mengurangi perubahan momentum. | Perubahan momentumnya sama. Kantong udara memperpanjang waktu, jadi gayanya berkurang. | Pakai <InlineMath math="F = \Delta p / \Delta t" />. |
+
+Kesalahan keempat paling sering muncul di soal fitur keselamatan. **Impuls sama, waktu lebih lama, gaya lebih kecil**.
+
+## Latihan Gaya dan Gerak
+
+Soal-soal ini bergerak dari momentum ke gaya impulsif. **Tentukan arah positif** dulu di setiap soal.
+
+1. Hitung momentum bola tenis bermassa <InlineMath math="0{,}060\text{ kg}" /> yang bergerak dengan <InlineMath math="50\text{ m/s}" />.
+
+2. Troli bermassa <InlineMath math="2{,}0\text{ kg}" /> yang bergerak dengan <InlineMath math="3{,}0\text{ m/s}" /> menabrak troli diam bermassa <InlineMath math="1{,}0\text{ kg}" />, lalu keduanya menempel. Hitung kecepatan bersamanya.
+
+3. Gaya dorong <InlineMath math="12\text{ N}" /> bekerja pada kotak bermassa <InlineMath math="4{,}0\text{ kg}" />. Gaya gesekannya <InlineMath math="4{,}0\text{ N}" />. Hitung percepatan kotak.
+
+4. Telur bermassa <InlineMath math="0{,}060\text{ kg}" /> jatuh dan menumbuk lantai dengan <InlineMath math="5{,}0\text{ m/s}" />. Telur berhenti dalam <InlineMath math="0{,}002\text{ s}" /> di lantai keras atau <InlineMath math="0{,}10\text{ s}" /> di bantal. Bandingkan gaya impulsif pada kedua kasus.
+
+### Pembahasan
+
+**Pembahasan 1**: Pakai <InlineMath math="p = mv" />:
+
+<BlockMath math="p = (0{,}060)(50) = 3{,}0\text{ kg m/s}" />
+
+**Pembahasan 2**: Momentum total sebelum sama dengan sesudah:
+
+<MathContainer>
+<BlockMath math="(2{,}0)(3{,}0) + 0 = (2{,}0 + 1{,}0)v" />
+<BlockMath math="v = \frac{6{,}0}{3{,}0} = 2{,}0\text{ m/s}" />
+</MathContainer>
+
+**Pembahasan 3**: Cari **gaya resultan** dulu, lalu percepatannya:
+
+<MathContainer>
+<BlockMath math="F = 12 - 4{,}0 = 8{,}0\text{ N}" />
+<BlockMath math="a = \frac{F}{m} = \frac{8{,}0}{4{,}0} = 2{,}0\text{ m/s}^2" />
+</MathContainer>
+
+**Pembahasan 4**: Perubahan momentumnya sama pada kedua kasus, <InlineMath math="(0{,}060)(5{,}0) = 0{,}30\text{ kg m/s}" />.
+
+<MathContainer>
+<BlockMath math="F_{\text{lantai}} = \frac{0{,}30}{0{,}002} = 150\text{ N}" />
+<BlockMath math="F_{\text{bantal}} = \frac{0{,}30}{0{,}10} = 3{,}0\text{ N}" />
+</MathContainer>
+
+Bantal membuat waktu tumbukan <InlineMath math="50" /> kali lebih lama, jadi gaya impulsifnya <InlineMath math="50" /> kali lebih kecil. Itulah alasan telur pecah di lantai tetapi selamat di bantal.

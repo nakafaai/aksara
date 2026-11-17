@@ -1,0 +1,301 @@
+export const metadata = {
+  title: "Momentum and Newton Laws Notes for Form Four",
+  description:
+    "Form 4 Physics Chapter 2: explain inertia, use the conservation of momentum, F = ma, impulse and impulsive force, and weight, with worked examples.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Force and Motion I",
+};
+
+## Force Changes Motion
+
+**Momentum** is the product of mass and velocity, <InlineMath math="p = mv" />, in <InlineMath math="\text{kg m s}^{-1}" />. **Force** is the rate of change of momentum, so for a constant mass, <InlineMath math="F = ma" />. **Impulse** is the change in momentum that a force produces over a period of time:
+
+<MathContainer>
+<BlockMath math="p = mv" />
+<BlockMath math="F = ma" />
+<BlockMath math="Ft = mv - mu" />
+</MathContainer>
+
+Here <InlineMath math="u" /> is the initial velocity and <InlineMath math="v" /> is the final velocity. In the models here, you balance forces in a tug of war, crash two trolleys, push different masses with the same force, and stretch out the time of an impact.
+
+Newton's three laws of motion organise these ideas. The first law describes a body with no resultant force. The second links force to acceleration. The third says every action force has a reaction force of equal size in the opposite direction.
+
+## Inertia and the First Law of Motion
+
+**Inertia** is a body's tendency to resist any change in its state of motion. **Newton's first law of motion** says that a body stays at rest or keeps moving at constant velocity unless a resultant force acts on it. A body with **more mass has more inertia**, so it's harder to start or stop.
+
+In a tug of war, each team pulls with a force. If the two forces are equal, the resultant force is zero and the rope stays put. Add or remove pullers on one side and watch the ribbon move towards the resultant force.
+
+<TugOfWarForceLab
+  title={<>Balanced and Unbalanced Forces in a Tug of War</>}
+  description={
+    <>
+      Each puller pulls with <InlineMath math="300\text{ N}" />. Change the
+      number of pullers on each team and compare the resultant force.
+    </>
+  }
+  left={4}
+  right={4}
+  pull={300}
+  labels={{
+    left: <>Left team's force</>,
+    leftCount: <>Pullers on the left</>,
+    leftName: "Left team",
+    net: <>Resultant force</>,
+    right: <>Right team's force</>,
+    rightCount: <>Pullers on the right</>,
+    rightName: "Right team",
+    viewLabel: "A tug of war at sunset",
+  }}
+/>
+
+Inertia explains why seat belts matter. When a car stops suddenly, a passenger's body tends to keep moving forwards. The seat belt supplies the force that stops the body along with the car.
+
+## Momentum and Its Conservation
+
+The **principle of conservation of momentum** says that the total momentum before a collision or explosion equals the total momentum after it, as long as no external force acts:
+
+<BlockMath math="m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2" />
+
+In an **inelastic collision**, the two bodies stick together and move as one afterwards. The graph below shows trolley A, mass <InlineMath math="1\text{ kg}" />, moving at <InlineMath math="2\text{ m s}^{-1}" /> and hitting trolley B at rest. Change trolley B's mass and watch the common velocity change while the total momentum stays the same.
+
+<MathVisual
+  title={<>Velocities of Two Trolleys in an Inelastic Collision</>}
+  description={
+    <>
+      Velocity against time in seconds. The collision happens at{" "}
+      <InlineMath math="t = 2\text{ s}" />. Trolley B has{" "}
+      <InlineMath math="m" /> times the mass of trolley A.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -0.3, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0.5, max: 3, value: 1, step: 0.1, label: "m" },
+    ],
+    objects: [
+      { id: "trolley-b", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "2", y: "0" }, { x: "2", y: "2/(1 + m)" }, { x: "5", y: "2/(1 + m)" }] },
+      { id: "trolley-a", kind: "path", appearance: "primary", points: [{ x: "0", y: "2" }, { x: "2", y: "2" }, { x: "2", y: "2/(1 + m)" }, { x: "5", y: "2/(1 + m)" }] },
+    ],
+    labels: [
+      { key: "trolley-a", objectId: "trolley-a", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "trolley-b", objectId: "trolley-b", at: { x: 1, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "common", formula: "2/(1 + m)" },
+      { key: "before", formula: "1 * 2" },
+      { key: "after", formula: "(1 + m) * 2/(1 + m)" },
+    ],
+  }}
+  labels={{
+    m: <>Mass of trolley B in kg</>,
+    "trolley-a": <>Trolley A</>,
+    "trolley-b": <>Trolley B</>,
+    common: <>Common velocity in <InlineMath math="\text{m s}^{-1}" /></>,
+    before: <>Total momentum before</>,
+    after: <>Total momentum after</>,
+  }}
+/>
+
+### Example Two Cars Colliding
+
+A <InlineMath math="1{,}200\text{ kg}" /> car moving at <InlineMath math="15\text{ m s}^{-1}" /> hits a stationary <InlineMath math="800\text{ kg}" /> car, and the two move off together. Find **the common velocity**.
+
+<MathContainer>
+<BlockMath math="(1{,}200)(15) + (800)(0) = (1{,}200 + 800)v" />
+<BlockMath math="v = \frac{18{,}000}{2{,}000} = 9.0\text{ m s}^{-1}" />
+</MathContainer>
+
+Check: the momentum after is <InlineMath math="2{,}000 \times 9.0 = 18{,}000\text{ kg m s}^{-1}" />, the same as before.
+
+### Example Recoil of a Rifle
+
+In an **explosion**, the total momentum before is zero. A <InlineMath math="4.0\text{ kg}" /> rifle fires a <InlineMath math="0.010\text{ kg}" /> bullet at <InlineMath math="400\text{ m s}^{-1}" />. Find the rifle's recoil velocity.
+
+<MathContainer>
+<BlockMath math="0 = (0.010)(400) + (4.0)v" />
+<BlockMath math="v = -\frac{4.0}{4.0} = -1.0\text{ m s}^{-1}" />
+</MathContainer>
+
+The negative sign means the rifle moves backwards. Check: <InlineMath math="4.0 + (-4.0) = 0" />, so the total momentum stays zero.
+
+## Force and the Second Law of Motion
+
+**Newton's second law of motion** says that the rate of change of momentum is directly proportional to the resultant force. For a constant mass, it becomes <InlineMath math="F = ma" />. One newton is the force that gives a <InlineMath math="1\text{ kg}" /> mass an acceleration of <InlineMath math="1\text{ m s}^{-2}" />. Move the mass slider and watch the acceleration line get flatter.
+
+<MathVisual
+  title={<>Acceleration against Resultant Force</>}
+  description={
+    <>
+      The line <InlineMath math="a = F/m" />. The horizontal axis is force in N,
+      the vertical axis acceleration in <InlineMath math="\text{m s}^{-2}" />.
+      A larger mass gives a flatter line.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 5, value: 2, step: 0.5, label: "m" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "x/m", domain: { min: 0, max: 10 } },
+      { id: "sample", kind: "marker", x: "6", y: "6/m", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "acceleration", formula: "6/m" },
+    ],
+  }}
+  labels={{
+    m: <>Mass <InlineMath math="m" /> in kg</>,
+    acceleration: <>Acceleration at <InlineMath math="F = 6\text{ N}" /></>,
+  }}
+/>
+
+Friction is a force that opposes motion. When a car brakes, friction between the tyres and the road gives a backward resultant force, so the car decelerates. Pick a road surface in this model and compare the deceleration and braking distance.
+
+<BrakingSurfaceLab
+  title={<>Braking on Different Surfaces</>}
+  description={
+    <>
+      A car at <InlineMath math="20\text{ m s}^{-1}" /> locks its wheels at the
+      white line. Less friction gives a smaller deceleration.
+    </>
+  }
+  labels={{
+    brakingDistance: <>Braking distance</>,
+    brakingTime: <>Braking time</>,
+    chooseSurface: "Pick a road surface",
+    deceleration: <>Deceleration</>,
+    friction: <>Coefficient of friction</>,
+    surfaces: { dry: "Dry", wet: "Wet", gravel: "Gravel", snow: "Snow", ice: "Ice" },
+    viewLabel: "A car braking on a road",
+  }}
+/>
+
+### Example Force to Accelerate a Car
+
+A <InlineMath math="1{,}500\text{ kg}" /> car accelerates from rest to <InlineMath math="20\text{ m s}^{-1}" /> in <InlineMath math="8.0\text{ s}" />. Find **the resultant force** on the car.
+
+<MathContainer>
+<BlockMath math="a = \frac{v - u}{t} = \frac{20 - 0}{8.0} = 2.5\text{ m s}^{-2}" />
+<BlockMath math="F = ma = (1{,}500)(2.5) = 3{,}750\text{ N}" />
+</MathContainer>
+
+Check with impulse: <InlineMath math="Ft = 3{,}750 \times 8.0 = 30{,}000\text{ N s}" />, equal to the change in momentum <InlineMath math="1{,}500 \times 20" />.
+
+### Example Weight on the Earth and the Moon
+
+**Weight** is the gravitational force on a body, <InlineMath math="W = mg" />. Mass doesn't change from place to place, but weight depends on <InlineMath math="g" />. For a student of mass <InlineMath math="60\text{ kg}" />:
+
+<MathContainer>
+<BlockMath math="W_{\text{Earth}} = (60)(9.81) = 589\text{ N}" />
+<BlockMath math="W_{\text{Moon}} = (60)(1.62) = 97\text{ N}" />
+</MathContainer>
+
+The mass stays <InlineMath math="60\text{ kg}" /> in both places, so the inertia is the same too.
+
+## Impulse and Impulsive Force
+
+An **impulsive force** is a large force that acts for a short time, for example in a collision. From <InlineMath math="Ft = mv - mu" />, the same change in momentum can come from a small force over a long time or a large force over a short time. The area under a force-time graph is the impulse.
+
+This model shows several impacts with the same impulse, <InlineMath math="2\text{ N s}" />. Lengthen the impact time and watch the peak force drop while the area under the curve stays the same.
+
+<MathVisual
+  title={<>The Same Impulse with Different Impact Times</>}
+  description={
+    <>
+      The force <InlineMath math="F = \dfrac{\pi}{c}\sin\!\left(\dfrac{\pi t}{c}\right)" />{" "}
+      for an impact time <InlineMath math="c" /> in seconds. The area under the
+      curve is always <InlineMath math="2\text{ N s}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.2 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.5, max: 3, value: 1, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "force", kind: "parametric", appearance: "primary", x: "c t", y: "(pi/c) sin(pi t)", parameter: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "pi/c" },
+      { key: "impulse", formula: "2" },
+    ],
+  }}
+  labels={{
+    c: <>Impact time <InlineMath math="c" /></>,
+    peak: <>Maximum force in N</>,
+    impulse: <>Impulse in N s</>,
+  }}
+/>
+
+That's the principle behind a car's safety features. **Airbags** and **crumple zones** lengthen the impact time, so the impulsive force on the passengers drops. A cricketer pulls their hands back when catching a ball for the same reason.
+
+Now work out an impulsive force. A footballer kicks a <InlineMath math="0.45\text{ kg}" /> ball from rest to <InlineMath math="30\text{ m s}^{-1}" />, with a contact time of <InlineMath math="0.015\text{ s}" />:
+
+<MathContainer>
+<BlockMath math="Ft = (0.45)(30) - 0 = 13.5\text{ N s}" />
+<BlockMath math="F = \frac{13.5}{0.015} = 900\text{ N}" />
+</MathContainer>
+
+A force of <InlineMath math="900\text{ N}" /> acts for just one and a half hundredths of a second. Check the units: <InlineMath math="\text{N s} \div \text{s} = \text{N}" />.
+
+## Common Mistakes about Force and Motion
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| A moving body must have a resultant force. | A body at constant velocity has no resultant force, by the first law. | Ask whether the velocity changes. |
+| Momentum has no direction. | Momentum is a vector, so the opposite direction gets a negative sign. | Choose one direction as positive before you calculate. |
+| Mass and weight are the same quantity. | Mass is in kg and fixed. Weight is a force in N and depends on <InlineMath math="g" />. | Check the unit of your answer. |
+| Airbags reduce the change in momentum. | The change in momentum is the same. Airbags lengthen the time, so the force drops. | Use <InlineMath math="F = \Delta p / t" />. |
+
+The fourth mistake is the most common one in safety-feature questions. **Same impulse, longer time, smaller force**.
+
+## Practice on Force and Motion
+
+These questions move from momentum to impulsive force. **Choose a positive direction** first in every question.
+
+1. Calculate the momentum of a <InlineMath math="0.060\text{ kg}" /> tennis ball moving at <InlineMath math="50\text{ m s}^{-1}" />.
+
+2. A <InlineMath math="2.0\text{ kg}" /> trolley moving at <InlineMath math="3.0\text{ m s}^{-1}" /> hits a stationary <InlineMath math="1.0\text{ kg}" /> trolley, and they stick together. Calculate the common velocity.
+
+3. A pushing force of <InlineMath math="12\text{ N}" /> acts on a <InlineMath math="4.0\text{ kg}" /> box. Friction is <InlineMath math="4.0\text{ N}" />. Calculate the box's acceleration.
+
+4. A <InlineMath math="0.060\text{ kg}" /> egg falls and hits the floor at <InlineMath math="5.0\text{ m s}^{-1}" />. It stops in <InlineMath math="0.002\text{ s}" /> on a hard floor or in <InlineMath math="0.10\text{ s}" /> on a cushion. Compare the impulsive force in the two cases.
+
+### Solutions
+
+**Solution 1**: Use <InlineMath math="p = mv" />:
+
+<BlockMath math="p = (0.060)(50) = 3.0\text{ kg m s}^{-1}" />
+
+**Solution 2**: The total momentum before equals the total after:
+
+<MathContainer>
+<BlockMath math="(2.0)(3.0) + 0 = (2.0 + 1.0)v" />
+<BlockMath math="v = \frac{6.0}{3.0} = 2.0\text{ m s}^{-1}" />
+</MathContainer>
+
+**Solution 3**: Find **the resultant force** first, then the acceleration:
+
+<MathContainer>
+<BlockMath math="F = 12 - 4.0 = 8.0\text{ N}" />
+<BlockMath math="a = \frac{F}{m} = \frac{8.0}{4.0} = 2.0\text{ m s}^{-2}" />
+</MathContainer>
+
+**Solution 4**: The change in momentum is the same in both cases, <InlineMath math="(0.060)(5.0) = 0.30\text{ kg m s}^{-1}" />.
+
+<MathContainer>
+<BlockMath math="F_{\text{floor}} = \frac{0.30}{0.002} = 150\text{ N}" />
+<BlockMath math="F_{\text{cushion}} = \frac{0.30}{0.10} = 3.0\text{ N}" />
+</MathContainer>
+
+The cushion makes the impact time <InlineMath math="50" /> times longer, so the impulsive force is <InlineMath math="50" /> times smaller. That's why the egg breaks on the floor but survives on the cushion.

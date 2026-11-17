@@ -46,6 +46,12 @@ export const kssmForm4PhysicsTopicNodes = [
         materialKeys: ["lesson.physics.kinematics"],
         order: 10,
       }),
+      materialNode({
+        key: "form-4-physics-force-and-motion-i-momentum",
+        level: "lesson",
+        materialKeys: ["lesson.physics.momentum"],
+        order: 20,
+      }),
     ],
     key: "form-4-physics-force-and-motion-i",
     materialCard: {
