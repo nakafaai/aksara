@@ -96,7 +96,33 @@ export const kssmForm5BiologyLifeNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-biology-adaptations-of-plants-in-different-habitats-plant-adaptation",
+        level: "lesson",
+        materialKeys: ["lesson.biology.plant-adaptation"],
+        order: 10,
+      }),
+    ],
     key: "form-5-biology-adaptations-of-plants-in-different-habitats",
+    materialCard: {
+      de: {
+        description: "Vergleiche Pflanzen in Wasser, Salzsumpf und Wüste.",
+        title: "Angepasstheit der Pflanzen",
+      },
+      en: {
+        description: "Compare plants of water, salty swamps and deserts.",
+        title: "Plant Adaptations",
+      },
+      id: {
+        description: "Bandingkan tumbuhan air, hutan bakau, dan gurun.",
+        title: "Adaptasi Tumbuhan",
+      },
+      ms: {
+        description: "Bandingkan tumbuhan air, paya bakau dan gurun.",
+        title: "Penyesuaian Tumbuhan",
+      },
+    },
     order: 70,
     translations: {
       de: {
