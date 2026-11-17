@@ -234,19 +234,19 @@ Beza tekanan antara bawah dengan atas sayap ialah <InlineMath math="\Delta P = \
       <InlineMath math="\rho = 1.2\text{ kg m}^{-3}" />. Pada{" "}
       <InlineMath math="v = 70\text{ m s}^{-1}" />, beza tekanan ialah{" "}
       <InlineMath math="780\text{ Pa}" />.
-      Paksi menegak dilukis pada skala <InlineMath math="1 : 30" />.
+      Paksi mendatar bermula pada <InlineMath math="60\text{ m s}^{-1}" />, dan paksi menegak dilukis pada skala <InlineMath math="1 : 90" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 60, max: 90 }, y: { min: 0, max: 93.333333 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 31 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "s", min: 60, max: 90, value: 70, step: 1, label: "s" },
     ],
     objects: [
-      { id: "lift", kind: "function", appearance: "primary", formula: "(0.6*(x^2 - 3600))/30", domain: { min: 60, max: 90 } },
-      { id: "now", kind: "marker", x: "s", y: "(0.6*(s^2 - 3600))/30", appearance: "warning" },
+      { id: "lift", kind: "function", appearance: "primary", formula: "0.6*((x + 60)^2 - 3600)/90", domain: { min: 0, max: 30 } },
+      { id: "now", kind: "marker", x: "s - 60", y: "0.6*(s^2 - 3600)/90", appearance: "warning" },
     ],
     readouts: [
       { key: "difference", formula: "0.6*(s^2 - 3600)" },

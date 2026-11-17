@@ -201,20 +201,20 @@ Jede Spaltung setzt mehrere Neutronen frei, die weitere Kerne spalten können. D
       Spaltungen. Bei <InlineMath math="k = 1" /> bleibt es bei einer, und bei{" "}
       <InlineMath math="k = 2" /> hat die Generation <InlineMath math="10" />{" "}
       schon <InlineMath math="1024" /> Spaltungen.
-      Die senkrechte Achse ist im Maßstab <InlineMath math="1 : 100" /> gezeichnet.
+      Die senkrechte Achse ist im Maßstab <InlineMath math="1 : 10" /> gezeichnet.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 12 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "k", min: 1, max: 2, value: 1.5, step: 0.05, label: "k" },
       { name: "g", min: 0, max: 10, value: 10, step: 1, label: "g" },
     ],
     objects: [
-      { id: "chain", kind: "function", appearance: "primary", formula: "(k^x)/100", domain: { min: 0, max: 10 } },
-      { id: "now", kind: "marker", x: "g", y: "(k^g)/100", appearance: "warning" },
+      { id: "chain", kind: "function", appearance: "primary", formula: "(k^x)/10", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "g", y: "(k^g)/10", appearance: "warning" },
     ],
     readouts: [
       { key: "fissions", formula: "k^g" },

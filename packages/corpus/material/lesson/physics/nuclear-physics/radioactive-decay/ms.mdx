@@ -201,20 +201,20 @@ Setiap pembelahan membebaskan beberapa neutron yang boleh membelah nukleus lain.
       <InlineMath math="k^g" />. Pada <InlineMath math="k = 1" /> bilangannya
       kekal satu, dan pada <InlineMath math="k = 2" /> generasi ke-
       <InlineMath math="10" /> mempunyai <InlineMath math="1024" /> pembelahan.
-      Paksi menegak dilukis pada skala <InlineMath math="1 : 100" />.
+      Paksi menegak dilukis pada skala <InlineMath math="1 : 10" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 12 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "k", min: 1, max: 2, value: 1.5, step: 0.05, label: "k" },
       { name: "g", min: 0, max: 10, value: 10, step: 1, label: "g" },
     ],
     objects: [
-      { id: "chain", kind: "function", appearance: "primary", formula: "(k^x)/100", domain: { min: 0, max: 10 } },
-      { id: "now", kind: "marker", x: "g", y: "(k^g)/100", appearance: "warning" },
+      { id: "chain", kind: "function", appearance: "primary", formula: "(k^x)/10", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "g", y: "(k^g)/10", appearance: "warning" },
     ],
     readouts: [
       { key: "fissions", formula: "k^g" },

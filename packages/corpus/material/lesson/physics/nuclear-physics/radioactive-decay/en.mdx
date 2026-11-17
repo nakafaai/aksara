@@ -201,20 +201,20 @@ Each fission releases several neutrons that can split other nuclei. This is a **
       <InlineMath math="k^g" />. At <InlineMath math="k = 1" /> it stays at one,
       and at <InlineMath math="k = 2" /> generation <InlineMath math="10" /> has{" "}
       <InlineMath math="1024" /> fissions.
-      The vertical axis is drawn at a scale of <InlineMath math="1 : 100" />.
+      The vertical axis is drawn at a scale of <InlineMath math="1 : 10" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 12 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "k", min: 1, max: 2, value: 1.5, step: 0.05, label: "k" },
       { name: "g", min: 0, max: 10, value: 10, step: 1, label: "g" },
     ],
     objects: [
-      { id: "chain", kind: "function", appearance: "primary", formula: "(k^x)/100", domain: { min: 0, max: 10 } },
-      { id: "now", kind: "marker", x: "g", y: "(k^g)/100", appearance: "warning" },
+      { id: "chain", kind: "function", appearance: "primary", formula: "(k^x)/10", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "g", y: "(k^g)/10", appearance: "warning" },
     ],
     readouts: [
       { key: "fissions", formula: "k^g" },
