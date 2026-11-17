@@ -1,0 +1,24 @@
+# Halve only the source’s share, then add the background back
+
+The source alone gives <InlineMath math="820 - 20 = 800" /> counts per minute. A reading of <InlineMath math="45" /> means <InlineMath math="25" /> from the source, which is <InlineMath math="800 \div 25 = 32 = 2^5" />, so <InlineMath math="5.0" /> cm of lead.
+
+<Chart
+  title={<>Lead Halves the Gamma, Not the Background</>}
+  categories={["0 cm", "1 cm", "2 cm", "3 cm", "4 cm", "5 cm"]}
+  series={[
+    { label: "Counter reading", mark: "line", values: [820, 420, 220, 120, 70, 45] },
+    { label: "From the source alone", mark: "line", values: [800, 400, 200, 100, 50, 25] },
+  ]}
+  valueLabel="Counts per minute"
+  description={<>Each centimetre of lead halves the counts from the source, while the background adds the same twenty counts on top whatever the lead.</>}
+/>
+
+With <InlineMath math="3.0" /> cm the source gives <InlineMath math="800 \div 8 = 100" />, and the counter still picks up the <InlineMath math="20" /> background, reading <InlineMath math="120" /> counts per minute. The lead **cannot stop the background**.
+
+**Lead and decay together**: <InlineMath math="10.6" /> years is two half-lives, so the source itself gives <InlineMath math="800 \div 4 = 200" /> counts per minute. Two centimetres of lead halve that twice more, to <InlineMath math="50" />, and the counter adds the background: <InlineMath math="50 + 20 = 70" /> counts per minute.
+
+# Why the other options are wrong
+
+- <InlineMath math="4.2\text{ cm}" /> and <InlineMath math="51" /> halve the raw readings, but the **background** neither passes through the lead nor decays.
+- <InlineMath math="50" /> counts per minute is the source alone, forgetting the counter still **adds the background**.
+- <InlineMath math="220" /> counts per minute allows for the lead but forgets that the source **decays** in <InlineMath math="10.6" /> years.

@@ -1,0 +1,25 @@
+# In series both the electromotive forces and the internal resistances add, in parallel only the resistance is shared
+
+In series the cells give <InlineMath math="4.5" /> V with <InlineMath math="1.5\,\Omega" /> inside, so <InlineMath math="I = 4.5 \div 3.5 = 1.29" /> A and the lamp takes <InlineMath math="1.29^2 \times 2.0 = 3.3" /> W.
+
+<Mermaid
+  title={<>Series Adds Everything, Parallel Shares the Resistance</>}
+  description={<>In series both the electromotive forces and the internal resistances add. In parallel the electromotive force stays that of one cell, while the internal resistance drops to a third.</>}
+  chart={`
+    flowchart LR
+      N0["Series: 4.5 V, internal 1.5 Ω"] --> N1["I = 4.5 ÷ (1.5 + 2.0) = 1.29 A"]
+      N1 --> N2["P = 1.29² × 2.0 = 3.3 W"]
+      N3["Parallel: 1.5 V, internal 0.50 ÷ 3 = 0.17 Ω"] --> N4["I = 1.5 ÷ (0.17 + 2.0) = 0.69 A"]
+      N4 --> N5["P = 0.69² × 2.0 = 0.96 W"]
+  `}
+/>
+
+In parallel the electromotive force stays <InlineMath math="1.5" /> V but the internal resistance **drops to a third**, <InlineMath math="0.17\,\Omega" />. Then <InlineMath math="I = 1.5 \div 2.17 = 0.69" /> A and the lamp takes <InlineMath math="0.96" /> W.
+
+**The mixed arrangement**: the parallel pair acts as one cell of <InlineMath math="1.5" /> V with <InlineMath math="0.25\,\Omega" /> inside. In series with the third cell that makes <InlineMath math="3.0" /> V and <InlineMath math="0.75\,\Omega" />, so <InlineMath math="I = 3.0 \div 2.75 = 1.09" /> A and <InlineMath math="P = I^2 R = 2.4" /> W, between the other two.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.1\text{ W}" /> and <InlineMath math="4.5\text{ W}" /> leave out the **internal resistance** of the cells.
+- <InlineMath math="0.37\text{ W}" /> and <InlineMath math="1.5\text{ W}" /> add internal resistances in parallel too, but parallel paths **share** the current.
+- <InlineMath math="2.0\text{ W}" /> gives the parallel pair a full <InlineMath math="0.50\,\Omega" />, but two equal paths **halve** it.

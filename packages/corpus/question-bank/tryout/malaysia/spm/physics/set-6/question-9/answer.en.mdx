@@ -1,0 +1,26 @@
+# Compare kinetic energy with the depth of the potential well, per kilogram
+
+Per kilogram the surface sits <InlineMath math="GM \div R = 2.82 \times 10^6" /> J deep, so escape needs <InlineMath math="\tfrac{1}{2}v^2 = 2.82 \times 10^6" />, <InlineMath math="v = 2.4" /> km/s.
+
+<Mermaid
+  title={<>Energy per Kilogram Decides Escape and Height</>}
+  description={<>Working per kilogram, the probe escapes if its kinetic energy beats the depth of the Moon’s potential well. If not, it climbs to where the remaining potential energy matches what it has left.</>}
+  chart={`
+    flowchart LR
+      N0["GM ÷ R = 4.90 × 10¹² ÷ 1.74 × 10⁶ = 2.82 × 10⁶ J kg⁻¹"] --> N1["Escape: ½v² = 2.82 × 10⁶, v = 2.4 km s⁻¹"]
+      N0 --> N2["Probe: ½ × 2000² = 2.0 × 10⁶ J kg⁻¹, too little"]
+      N2 --> N3["At the top: GM ÷ r = 2.82 × 10⁶ − 2.0 × 10⁶ = 0.82 × 10⁶"]
+      N3 --> N4["r = 4.90 × 10¹² ÷ 0.82 × 10⁶ = 6.0 × 10⁶ m"]
+      N4 --> N5["Height = 6.0 × 10⁶ − 1.74 × 10⁶ = 4300 km"]
+  `}
+/>
+
+At <InlineMath math="2.0" /> km/s the probe has only <InlineMath math="2.0 \times 10^6" /> J per kilogram, so it stops where <InlineMath math="GM \div r = 0.82 \times 10^6" />, at <InlineMath math="r = 6.0 \times 10^6" /> m, about <InlineMath math="4300" /> km up. Gravity **weakens as it climbs**, so it rises far higher than a constant <InlineMath math="g" /> would allow.
+
+**Passing <InlineMath math="2000\text{ km}" />**: there <InlineMath math="r = 3.74 \times 10^6" /> m and <InlineMath math="GM \div r = 1.31 \times 10^6" /> J per kilogram, so the probe has climbed <InlineMath math="2.82 \times 10^6 - 1.31 \times 10^6 = 1.51 \times 10^6" /> J per kilogram up the well. What is left is <InlineMath math="\tfrac{1}{2}v^2 = 0.49 \times 10^6" />, so <InlineMath math="v = 1.0" /> km/s, **half** its launch speed.
+
+# Why the other options are wrong
+
+- About <InlineMath math="1200\text{ km}" /> uses the surface value of <InlineMath math="g" /> all the way up, but the field **falls with distance**.
+- <InlineMath math="0.70\text{ km s}^{-1}" /> drops the **half** in the kinetic energy.
+- About <InlineMath math="6000\text{ km}" /> is the distance from the Moon’s **centre**, not the height above the surface.

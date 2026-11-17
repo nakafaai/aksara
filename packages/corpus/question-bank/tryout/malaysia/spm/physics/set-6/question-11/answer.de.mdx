@@ -1,0 +1,27 @@
+# Die Klammer spürt nur den Überdruck, und das Druckgesetz braucht Kelvin
+
+Die Deckelfläche ist <InlineMath math="5{,}0 \times 10^{-3}" /> Quadratmeter, <InlineMath math="150" /> N bedeuten also einen **Überdruck** von <InlineMath math="30" /> kPa gegenüber der Außenluft, innen absolut <InlineMath math="130" /> kPa.
+
+<Mermaid
+  title={<>Von der Klammerkraft zur Temperatur</>}
+  description={<>Die Klammer spürt nur den Unterschied zwischen Innen- und Außendruck. Der Außendruck dazu gibt den Druck der Luft, das Gesetz von Amontons in Kelvin die Temperatur.</>}
+  chart={`
+    flowchart LR
+      N0["Fläche: 50 cm² = 5,0 × 10⁻³ m²"] --> N1["Überdruck: 150 ÷ 5,0 × 10⁻³ = 30 kPa"]
+      N1 --> N2["Innen: 100 + 30 = 130 kPa"]
+      N2 --> N3["T = 300 × 130 ÷ 100 = 390 K"]
+      N3 --> N4["390 − 273 = 117 °C"]
+  `}
+/>
+
+Bei konstantem Volumen bleibt <InlineMath math="p \div T" /> in Kelvin gleich: <InlineMath math="T = 300 \times 130 \div 100 = 390" /> K, das sind <InlineMath math="117^\circ\text{C}" />.
+
+**Der größere Deckel**: Dieselben <InlineMath math="150" /> N auf <InlineMath math="1{,}0 \times 10^{-2}" /> Quadratmetern sind nur <InlineMath math="15" /> kPa Überdruck, die Luft muss also nur <InlineMath math="115" /> kPa erreichen, bei <InlineMath math="300 \times 1{,}15 = 345" /> K, das sind <InlineMath math="72^\circ\text{C}" />. **Ein größerer Deckel gibt früher nach**.
+
+**Das wieder verschlossene Glas kühlt ab**: Die Luft wird bei <InlineMath math="100" /> kPa und <InlineMath math="345" /> K eingeschlossen, bei <InlineMath math="300" /> K hat sie also <InlineMath math="100 \times 300 \div 345 = 87" /> kPa. Die Außenluft überwiegt um <InlineMath math="13" /> kPa auf <InlineMath math="0{,}010\text{ m}^2" />, eine Nettokraft nach innen von etwa <InlineMath math="130" /> N, **weniger** als die Grenze der Klammer, weil das Glas nur von <InlineMath math="72^\circ\text{C}" /> abkühlte.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="150\text{ N}" /> setzt den Druck nach innen gleich der Grenze der Klammer, doch er hängt davon ab, wie weit das Glas **abkühlt**.
+- <InlineMath math="345^\circ\text{C}" /> vergisst, **aus Kelvin zurückzurechnen**.
+- <InlineMath math="65\text{ N}" /> nimmt die Fläche des **kleineren Deckels**.

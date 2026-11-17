@@ -1,0 +1,25 @@
+# Zuerst den Zerfall herausnehmen, dann gibt die Verdünnung das Volumen
+
+In <InlineMath math="15" /> Stunden, einer Halbwertszeit, ist die ganze Dosis auf <InlineMath math="4000" /> Impulse pro Sekunde gefallen, **wo auch immer sie ist**. Im Blut verteilt gibt sie <InlineMath math="0{,}80" /> pro Kubikzentimeter, das Blut füllt also <InlineMath math="4000 \div 0{,}80 = 5000" /> Kubikzentimeter, <InlineMath math="5{,}0" /> Liter.
+
+<Mermaid
+  title={<>Zerfall und Verdünnung zusammen</>}
+  description={<>Bis zur Probe ist der Tracer zerfallen und hat sich im Blut verteilt. Zieht man zuerst den Zerfall heraus, bleibt nur die Verdünnung, und die gibt das Volumen.</>}
+  chart={`
+    flowchart LR
+      N0["Nach 15 h, eine Halbwertszeit: ganze Dosis gibt 8000 ÷ 2 = 4000 Impulse pro Sekunde"] --> N2["Volumen = 4000 ÷ 0,80 = 5000 cm³ = 5,0 L"]
+      N1["Jeder cm³ Blut gibt 0,80"] --> N2
+      N1 --> N4["Probe: 0,80 ÷ 4 = 0,20 Impulse pro Sekunde"]
+      N3["30 h später: zwei weitere Halbwertszeiten"] --> N4
+  `}
+/>
+
+Dreißig Stunden später sind zwei weitere Halbwertszeiten vergangen, eine Probe gibt dann ein Viertel: <InlineMath math="0{,}80 \div 4 = 0{,}20" /> Impulse pro Sekunde.
+
+**Wenn etwas Natrium verschwunden wäre**: Nur <InlineMath math="0{,}90 \times 4000 = 3600" /> Impulse pro Sekunde wären im Blut verteilt, dieselben <InlineMath math="0{,}80" /> pro Kubikzentimeter hießen also <InlineMath math="3600 \div 0{,}80 = 4500" /> Kubikzentimeter, <InlineMath math="4{,}5" /> Liter. Wer das Leck übersieht, **überschätzt** das Volumen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="10\text{ L}" /> vergleicht die Dosis vor dem Zerfall mit dem Blut danach und übersieht die verstrichene **Halbwertszeit**.
+- <InlineMath math="2{,}5\text{ L}" /> lässt die Dosis in fünfzehn Stunden **zweimal** zerfallen.
+- <InlineMath math="5{,}5\text{ L}" /> addiert ein Zehntel, doch verlorener Tracer lässt **weniger** übrig, das sich bei denselben Werten verteilt.

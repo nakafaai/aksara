@@ -1,0 +1,27 @@
+# The clip feels only the excess pressure, and the pressure law needs kelvin
+
+The lid area is <InlineMath math="5.0 \times 10^{-3}" /> square metres, so <InlineMath math="150" /> N means an **excess** of <InlineMath math="30" /> kPa over the air outside, an absolute pressure of <InlineMath math="130" /> kPa inside.
+
+<Mermaid
+  title={<>From the Clip Force to the Temperature</>}
+  description={<>The clip feels only the difference between the pressures inside and outside. Adding the outside pressure gives the air’s pressure, and the pressure law in kelvin gives the temperature.</>}
+  chart={`
+    flowchart LR
+      N0["Area: 50 cm² = 5.0 × 10⁻³ m²"] --> N1["Excess: 150 ÷ 5.0 × 10⁻³ = 30 kPa"]
+      N1 --> N2["Inside: 100 + 30 = 130 kPa"]
+      N2 --> N3["T = 300 × 130 ÷ 100 = 390 K"]
+      N3 --> N4["390 − 273 = 117 °C"]
+  `}
+/>
+
+At constant volume <InlineMath math="p \div T" /> stays fixed in kelvin: <InlineMath math="T = 300 \times 130 \div 100 = 390" /> K, which is <InlineMath math="117^\circ\text{C}" />.
+
+**The bigger lid**: the same <InlineMath math="150" /> N spread over <InlineMath math="1.0 \times 10^{-2}" /> square metres is only <InlineMath math="15" /> kPa of excess, so the air need reach only <InlineMath math="115" /> kPa, at <InlineMath math="300 \times 1.15 = 345" /> K, which is <InlineMath math="72^\circ\text{C}" />. A **bigger lid gives way sooner**.
+
+**Cooling the resealed jar**: the air is shut in at <InlineMath math="100" /> kPa and <InlineMath math="345" /> K, so at <InlineMath math="300" /> K it is at <InlineMath math="100 \times 300 \div 345 = 87" /> kPa. The outside air wins by <InlineMath math="13" /> kPa over <InlineMath math="0.010\text{ m}^2" />, a net inward force of about <InlineMath math="130" /> N, **less** than the clip’s limit because the jar only cooled back from <InlineMath math="72^\circ\text{C}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="150\text{ N}" /> assumes the inward push matches the clip’s limit, but it is set by how far the jar **cools**.
+- <InlineMath math="345^\circ\text{C}" /> forgets to convert **back from kelvin**.
+- <InlineMath math="65\text{ N}" /> uses the area of the **smaller lid**.

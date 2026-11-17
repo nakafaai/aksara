@@ -1,0 +1,22 @@
+# Count the rows from the truth table, then rewrite the circuit for NAND gates
+
+The heater is on in the **four rows** where <InlineMath math="F = 1" />, and in one more row where <InlineMath math="T = W = 1" /> but <InlineMath math="F = 0" />: <InlineMath math="5" /> of the <InlineMath math="8" /> combinations.
+
+<Chart
+  title={<>The Heater for Every Combination</>}
+  bars="apart"
+  categories={["000", "001", "010", "011", "100", "101", "110", "111"]}
+  series={[
+    { label: "Heater H", mark: "bar", values: [0, 1, 0, 1, 0, 1, 1, 1] },
+  ]}
+  valueLabel="Output"
+  description={<>Inputs are written in the order T, W, F. The heater is on in the four rows with the frost alarm on, and in one more row, when it is cold with the window shut.</>}
+/>
+
+By De Morgan’s rule, <InlineMath math="H = \overline{\overline{T \cdot W} \cdot \overline{F}}" />. One NAND gate makes <InlineMath math="\overline{T \cdot W}" />, a second with both inputs joined makes <InlineMath math="\overline{F}" />, and a third NAND combines them. So **three** gates are enough.
+
+# Why the other options are wrong
+
+- <InlineMath math="5" /> gates swaps each AND and OR for its NAND version separately, but the inverters between them **cancel**.
+- <InlineMath math="4" /> combinations counts only the frost rows and misses the **cold, shut** row.
+- <InlineMath math="2" /> gates leaves out the gate that **inverts** <InlineMath math="F" />.

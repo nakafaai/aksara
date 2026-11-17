@@ -1,0 +1,22 @@
+# Hitung barisnya dari tabel kebenaran, lalu tulis ulang rangkaian untuk gerbang NAND
+
+Pemanas menyala di **empat baris** dengan <InlineMath math="F = 1" />, dan di satu baris lagi dengan <InlineMath math="T = W = 1" /> tetapi <InlineMath math="F = 0" />: <InlineMath math="5" /> dari <InlineMath math="8" /> kombinasi.
+
+<Chart
+  title={<>Pemanas untuk Tiap Kombinasi</>}
+  bars="apart"
+  categories={["000", "001", "010", "011", "100", "101", "110", "111"]}
+  series={[
+    { label: "Pemanas H", mark: "bar", values: [0, 1, 0, 1, 0, 1, 1, 1] },
+  ]}
+  valueLabel="Keluaran"
+  description={<>Masukan ditulis berurutan T, W, F. Pemanas menyala di empat baris dengan alarm beku menyala, dan di satu baris lagi, saat dingin dengan jendela tertutup.</>}
+/>
+
+Menurut hukum De Morgan, <InlineMath math="H = \overline{\overline{T \cdot W} \cdot \overline{F}}" />. Satu gerbang NAND membuat <InlineMath math="\overline{T \cdot W}" />, gerbang kedua dengan kedua masukan disatukan membuat <InlineMath math="\overline{F}" />, dan NAND ketiga menggabungkannya. Jadi **tiga** gerbang cukup.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="5" /> gerbang menukar tiap AND dan OR ke versi NAND-nya secara terpisah, padahal pembalik di antaranya **saling meniadakan**.
+- <InlineMath math="4" /> kombinasi hanya menghitung baris beku dan melewatkan baris **dingin dan tertutup**.
+- <InlineMath math="2" /> gerbang melupakan gerbang yang **membalik** <InlineMath math="F" />.

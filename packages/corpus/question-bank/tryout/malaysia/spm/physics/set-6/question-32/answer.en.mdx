@@ -1,0 +1,27 @@
+# Add up the length of wire in the field, then use the force on a wire and Newton’s second law
+
+In a radial field every piece of wire is at right angles to the field, and the forces all point **along the axis**, so they add. The wire in the field is <InlineMath math="100 \times 2\pi \times 0.020 = 12.6" /> m long, and <InlineMath math="F = BIL = 0.50 \times 0.20 \times 12.6 = 1.3" /> N.
+
+<Mermaid
+  title={<>Every Bit of Wire Is Pushed the Same Way</>}
+  description={<>In a radial field the force on each short piece of wire points along the axis, so the forces on all the turns add up. The total length of wire is the number of turns times the circumference.</>}
+  chart={`
+    flowchart LR
+      N0["One turn: 2π × 0.020 = 0.126 m"] --> N1["All turns: 100 × 0.126 = 12.6 m"]
+      N1 --> N2["F = BIL = 0.50 × 0.20 × 12.6 = 1.3 N"]
+      N2 --> N4["a = 1.26 ÷ 0.010 = 130 m s⁻²"]
+      N3["Mass: 10 g = 0.010 kg"] --> N4
+  `}
+/>
+
+With the mass in kilograms, <InlineMath math="a = 1.26 \div 0.010 = 130\text{ m s}^{-2}" />, about thirteen times <InlineMath math="g" />, which lets the cone follow rapid changes in the current.
+
+**Holding the cone out**: the rim pushes back with <InlineMath math="2000 \times 0.0010 = 2.0" /> N at <InlineMath math="1.0" /> mm, so the coil must give <InlineMath math="2.0" /> N, which needs <InlineMath math="I = 2.0 \div (0.50 \times 12.6) = 0.32" /> A, using the **same length of wire**.
+
+**Switching on suddenly**: the <InlineMath math="1.26" /> N force would hold the cone at <InlineMath math="1.26 \div 2000 = 0.63" /> mm, but the cone arrives there moving and overshoots. With no damping the work done by the force equals the rim’s stored energy at the far point, <InlineMath math="Fx = \tfrac{1}{2}kx^2" />, so <InlineMath math="x = 2F \div k = 1.3" /> mm, **twice** the resting push.
+
+# Why the other options are wrong
+
+- <InlineMath math="32\text{ A}" /> and <InlineMath math="0.013\text{ mm}" /> count the wire of **one turn**, not all one hundred.
+- <InlineMath math="0.16\text{ A}" /> takes the rim’s force as <InlineMath math="1.0" /> N, slipping the **millimetre** to a different power of ten.
+- <InlineMath math="0.63\text{ mm}" /> is where the cone would **rest**, not how far it swings.

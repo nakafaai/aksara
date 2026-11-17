@@ -1,0 +1,24 @@
+# Daya dan hambatan memberi arus induksi, lalu tegangan memberi perbandingan lilitan
+
+Daya pemanasan di dasar adalah <InlineMath math="I^2R" />, jadi <InlineMath math="I = \sqrt{2000 \div 0{,}010} = 447" /> A, sekitar <InlineMath math="450" /> A, didorong tegangan induksi hanya <InlineMath math="447 \times 0{,}010 = 4{,}47" /> V.
+
+<Mermaid
+  title={<>Transformator dengan Panci sebagai Sekundernya</>}
+  description={<>Daya pemanasan dan hambatan dasar panci menentukan arus dan tegangan yang diinduksi di dalamnya. Perbandingan lilitan lalu didapat dari kedua tegangan.</>}
+  chart={`
+    flowchart LR
+      N0["P = I²R: I = √(2000 ÷ 0,010) = 447 A"] --> N1["GGL induksi: 447 × 0,010 = 4,47 V"]
+      N1 --> N2["Perbandingan lilitan = 230 ÷ 4,47 = 51"]
+      N2 --> N3["Sekunder satu lilitan: kumparan punya 51 lilitan"]
+  `}
+/>
+
+Untuk transformator ideal tegangan sebanding jumlah lilitan. Dasar panci adalah **satu lilitan**, jadi kumparan punya <InlineMath math="230 \div 4{,}47 = 51" /> lilitan. Di sisi jala-jala arusnya hanya <InlineMath math="2000 \div 230 = 8{,}7" /> A.
+
+**Lilitan lebih sedikit**: dengan <InlineMath math="41" /> lilitan tegangan panci naik menjadi <InlineMath math="230 \div 41 = 5{,}6" /> V, dan daya sebanding **kuadrat** tegangan itu: <InlineMath math="5{,}6^2 \div 0{,}010 = 3{,}1" /> kW.
+
+# Kenapa pilihan lain salah
+
+- Satu lilitan menganggap kumparan seperti dasar panci, padahal kumparan pada <InlineMath math="230" /> V harus **menurunkan tegangan**.
+- <InlineMath math="1{,}6\text{ kW}" /> menurunkan daya bersama lilitan, padahal lilitan primer lebih sedikit memberi panci **lebih banyak** tegangan.
+- <InlineMath math="2{,}5\text{ kW}" /> menskalakan daya dengan tegangan, padahal daya pada hambatan tetap sebanding **kuadrat** tegangan.

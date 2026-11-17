@@ -1,0 +1,24 @@
+# Leistung und Widerstand geben den induzierten Strom, dann die Spannungen das Windungsverhältnis
+
+Die Heizleistung im Boden ist <InlineMath math="I^2R" />, also <InlineMath math="I = \sqrt{2000 \div 0{,}010} = 447" /> A, etwa <InlineMath math="450" /> A, getrieben von nur <InlineMath math="447 \times 0{,}010 = 4{,}47" /> V induzierter Spannung.
+
+<Mermaid
+  title={<>Ein Transformator mit einer Pfanne als Sekundärseite</>}
+  description={<>Heizleistung und Widerstand des Pfannenbodens legen den induzierten Strom und die Spannung fest. Das Windungsverhältnis folgt dann aus den beiden Spannungen.</>}
+  chart={`
+    flowchart LR
+      N0["P = I²R: I = √(2000 ÷ 0,010) = 447 A"] --> N1["Induzierte Spannung: 447 × 0,010 = 4,47 V"]
+      N1 --> N2["Windungsverhältnis = 230 ÷ 4,47 = 51"]
+      N2 --> N3["Einwindige Sekundärseite: Spule hat 51 Windungen"]
+  `}
+/>
+
+Beim idealen Transformator verhalten sich die Spannungen wie die Windungszahlen. Der Boden ist **eine Windung**, die Spule hat also <InlineMath math="230 \div 4{,}47 = 51" /> Windungen. Auf der Netzseite fließen nur <InlineMath math="2000 \div 230 = 8{,}7" /> A.
+
+**Weniger Windungen**: Mit <InlineMath math="41" /> Windungen steigt die Spannung der Pfanne auf <InlineMath math="230 \div 41 = 5{,}6" /> V, und die Leistung geht mit dem **Quadrat** dieser Spannung: <InlineMath math="5{,}6^2 \div 0{,}010 = 3{,}1" /> kW.
+
+# Warum die anderen Antworten falsch sind
+
+- Eine Windung behandelt die Spule wie den Pfannenboden, doch an <InlineMath math="230" /> V muss sie die **Spannung heruntersetzen**.
+- <InlineMath math="1{,}6\text{ kW}" /> senkt die Leistung mit den Windungen, doch weniger Primärwindungen geben der Pfanne **mehr** Spannung.
+- <InlineMath math="2{,}5\text{ kW}" /> skaliert die Leistung mit der Spannung, doch bei festem Widerstand geht sie mit dem **Quadrat**.

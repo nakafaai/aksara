@@ -1,0 +1,25 @@
+# In Reihe addieren sich Urspannungen und Innenwiderstände, parallel teilen sie nur den Widerstand
+
+In Reihe geben die Zellen <InlineMath math="4{,}5" /> V mit <InlineMath math="1{,}5\,\Omega" /> innen, also <InlineMath math="I = 4{,}5 \div 3{,}5 = 1{,}29" /> A, und die Lampe nimmt <InlineMath math="1{,}29^2 \times 2{,}0 = 3{,}3" /> W auf.
+
+<Mermaid
+  title={<>In Reihe addiert sich alles, parallel teilen sie den Widerstand</>}
+  description={<>In Reihe addieren sich Urspannungen und Innenwiderstände. Parallel bleibt die Urspannung die einer Zelle, der Innenwiderstand sinkt auf ein Drittel.</>}
+  chart={`
+    flowchart LR
+      N0["Reihe: 4,5 V, innen 1,5 Ω"] --> N1["I = 4,5 ÷ (1,5 + 2,0) = 1,29 A"]
+      N1 --> N2["P = 1,29² × 2,0 = 3,3 W"]
+      N3["Parallel: 1,5 V, innen 0,50 ÷ 3 = 0,17 Ω"] --> N4["I = 1,5 ÷ (0,17 + 2,0) = 0,69 A"]
+      N4 --> N5["P = 0,69² × 2,0 = 0,96 W"]
+  `}
+/>
+
+Parallel bleibt die Urspannung <InlineMath math="1{,}5" /> V, der Innenwiderstand **sinkt auf ein Drittel**, <InlineMath math="0{,}17\,\Omega" />. Dann ist <InlineMath math="I = 1{,}5 \div 2{,}17 = 0{,}69" /> A, und die Lampe nimmt <InlineMath math="0{,}96" /> W auf.
+
+**Die gemischte Schaltung**: Das parallele Paar wirkt wie eine Zelle von <InlineMath math="1{,}5" /> V mit <InlineMath math="0{,}25\,\Omega" /> innen. In Reihe mit der dritten Zelle ergibt das <InlineMath math="3{,}0" /> V und <InlineMath math="0{,}75\,\Omega" />, also <InlineMath math="I = 3{,}0 \div 2{,}75 = 1{,}09" /> A und <InlineMath math="P = I^2 R = 2{,}4" /> W, zwischen den beiden anderen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}1\text{ W}" /> und <InlineMath math="4{,}5\text{ W}" /> lassen den **Innenwiderstand** der Zellen weg.
+- <InlineMath math="0{,}37\text{ W}" /> und <InlineMath math="1{,}5\text{ W}" /> addieren die Innenwiderstände auch parallel, doch parallele Wege **teilen** den Strom.
+- <InlineMath math="2{,}0\text{ W}" /> gibt dem parallelen Paar volle <InlineMath math="0{,}50\,\Omega" />, doch zwei gleiche Wege **halbieren** ihn.

@@ -1,0 +1,25 @@
+# Secara seri GGL dan hambatan dalam dijumlahkan, secara paralel hanya hambatannya yang terbagi
+
+Secara seri sel-sel memberi <InlineMath math="4{,}5" /> V dengan <InlineMath math="1{,}5\,\Omega" /> di dalam, jadi <InlineMath math="I = 4{,}5 \div 3{,}5 = 1{,}29" /> A dan lampu memakai <InlineMath math="1{,}29^2 \times 2{,}0 = 3{,}3" /> W.
+
+<Mermaid
+  title={<>Seri Menjumlahkan Semuanya, Paralel Membagi Hambatan</>}
+  description={<>Secara seri GGL dan hambatan dalam sama-sama dijumlahkan. Secara paralel GGL tetap seperti satu sel, sedangkan hambatan dalam turun menjadi sepertiga.</>}
+  chart={`
+    flowchart LR
+      N0["Seri: 4,5 V, dalam 1,5 Ω"] --> N1["I = 4,5 ÷ (1,5 + 2,0) = 1,29 A"]
+      N1 --> N2["P = 1,29² × 2,0 = 3,3 W"]
+      N3["Paralel: 1,5 V, dalam 0,50 ÷ 3 = 0,17 Ω"] --> N4["I = 1,5 ÷ (0,17 + 2,0) = 0,69 A"]
+      N4 --> N5["P = 0,69² × 2,0 = 0,96 W"]
+  `}
+/>
+
+Secara paralel GGL tetap <InlineMath math="1{,}5" /> V tetapi hambatan dalam **turun menjadi sepertiga**, <InlineMath math="0{,}17\,\Omega" />. Maka <InlineMath math="I = 1{,}5 \div 2{,}17 = 0{,}69" /> A dan lampu memakai <InlineMath math="0{,}96" /> W.
+
+**Susunan campuran**: pasangan paralel bertindak sebagai satu sel <InlineMath math="1{,}5" /> V dengan <InlineMath math="0{,}25\,\Omega" /> di dalam. Diseri dengan sel ketiga menjadi <InlineMath math="3{,}0" /> V dan <InlineMath math="0{,}75\,\Omega" />, jadi <InlineMath math="I = 3{,}0 \div 2{,}75 = 1{,}09" /> A dan <InlineMath math="P = I^2 R = 2{,}4" /> W, di antara dua susunan lainnya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}1\text{ W}" /> dan <InlineMath math="4{,}5\text{ W}" /> melupakan **hambatan dalam** sel.
+- <InlineMath math="0{,}37\text{ W}" /> dan <InlineMath math="1{,}5\text{ W}" /> menjumlahkan hambatan dalam pada paralel juga, padahal jalur paralel **berbagi** arus.
+- <InlineMath math="2{,}0\text{ W}" /> memberi pasangan paralel <InlineMath math="0{,}50\,\Omega" /> penuh, padahal dua jalur sama **membaginya dua**.

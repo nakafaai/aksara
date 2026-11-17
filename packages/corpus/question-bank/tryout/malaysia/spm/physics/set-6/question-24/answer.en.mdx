@@ -1,0 +1,27 @@
+# Turn the mercury column into pascals, take off the blood column, and turn back
+
+A column of mercury <InlineMath math="0.120" /> m high presses <InlineMath math="13\,600 \times 9.8 \times 0.120 = 16.0" /> kPa. With the arm raised, the cuff sits at the top of a <InlineMath math="0.40" /> m column of blood, which takes away <InlineMath math="1050 \times 9.8 \times 0.40 = 4.1" /> kPa.
+
+<Mermaid
+  title={<>Change Units, Subtract the Blood Column, Change Back</>}
+  description={<>The mercury column turns the reading into pascals. Raising the arm puts a column of blood between the heart and the cuff, which lowers the pressure there.</>}
+  chart={`
+    flowchart LR
+      N0["120 mmHg = 13 600 × 9.8 × 0.120 = 16.0 kPa"] --> N1["Blood column: 1050 × 9.8 × 0.40 = 4.1 kPa"]
+      N1 --> N2["At the raised cuff: 16.0 − 4.1 = 11.9 kPa"]
+      N2 --> N3["In mercury: 11 900 ÷ (13 600 × 9.8) = 0.089 m"]
+      N3 --> N4["Reading: 89 mmHg"]
+  `}
+/>
+
+The cuff now feels <InlineMath math="11.9" /> kPa, which a mercury column balances at <InlineMath math="11\,900 \div (13\,600 \times 9.8) = 0.089" /> m, a reading of <InlineMath math="89" /> mmHg. That is why the cuff must be **at heart level**.
+
+**A reading of <InlineMath math="100\text{ mmHg}" />**: the reading must fall by <InlineMath math="20" /> mmHg, which is <InlineMath math="13\,600 \times 9.8 \times 0.020 = 2.67" /> kPa. A column of blood gives that over <InlineMath math="2670 \div (1050 \times 9.8) = 0.26" /> m, so the cuff must be <InlineMath math="0.26" /> m **above** the heart.
+
+**The force on the wall**: <InlineMath math="89" /> mmHg is a mercury column of <InlineMath math="0.089" /> m, so the pressure is <InlineMath math="0.089 \times 13\,600 \times 9.8 = 1.19 \times 10^4" /> Pa. On <InlineMath math="2.0 \times 10^{-4}\text{ m}^2" /> that gives <InlineMath math="F = pA = 2.4" /> N.
+
+# Why the other options are wrong
+
+- <InlineMath math="151\text{ mmHg}" /> adds the blood column, but the raised cuff is **above** the heart, where the pressure is lower.
+- <InlineMath math="0.018\text{ N}" /> multiplies the reading in mmHg by the area, without first turning it into **pascals**.
+- <InlineMath math="120\text{ mmHg}" /> ignores that the cuff reads the pressure **where it sits**.

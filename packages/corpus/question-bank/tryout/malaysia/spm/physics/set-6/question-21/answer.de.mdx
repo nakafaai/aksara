@@ -1,0 +1,24 @@
+# Die Komponenten für den Wind ausgleichen, dann sehen, was übrig bleibt, wenn die Schnur reißt
+
+Die Schnur zieht <InlineMath math="9{,}19" /> N seitwärts und <InlineMath math="7{,}71" /> N abwärts, das Gewicht fügt <InlineMath math="2{,}0" /> N abwärts hinzu. Im Gleichgewicht muss der Wind <InlineMath math="9{,}19" /> N seitwärts und <InlineMath math="9{,}71" /> N aufwärts liefern: <InlineMath math="\sqrt{9{,}19^2 + 9{,}71^2} = 13" /> N unter <InlineMath math="\tan^{-1}(9{,}71 \div 9{,}19) = 47^\circ" /> über der Waagerechten.
+
+<Mermaid
+  title={<>Drei Kräfte im Gleichgewicht, dann fällt eine weg</>}
+  description={<>Im Gleichgewicht hebt die Windkraft Gewicht und Zugkraft zusammen auf. Reißt die Schnur, bleiben Wind und Gewicht, und ihre Summe ist genau die fehlende Zugkraft, umgekehrt.</>}
+  chart={`
+    flowchart LR
+      N0["Schnur: 12 × 0,766 = 9,19 N seitwärts, 12 × 0,643 = 7,71 N abwärts"] --> N2["Wind: 9,19 N seitwärts, 7,71 + 2,0 = 9,71 N aufwärts"]
+      N1["Gewicht: 2,0 N abwärts"] --> N2
+      N2 --> N3["Wind = √(9,19² + 9,71²) = 13 N unter 47° über der Waagerechten"]
+      N0 --> N4["Schnur reißt: Nettokraft = 12 N, die umgekehrte Zugkraft"]
+      N4 --> N5["a = 12 ÷ 0,20 = 60 m s⁻²"]
+  `}
+/>
+
+Reißt die Schnur, addieren sich Wind und Gewicht weiter genau zur **umgekehrten Zugkraft**, <InlineMath math="12" /> N, der Drachen beschleunigt also mit <InlineMath math="12 \div 0{,}20 = 60\text{ m s}^{-2}" /> vom Halter weg.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="67\text{ m s}^{-2}" /> teilt nur die Windkraft durch die Masse und vergisst das weiter wirkende **Gewicht**.
+- <InlineMath math="14\text{ N}" /> unter <InlineMath math="40^\circ" /> legt das Gewicht direkt auf die Zugkraft, doch Kräfte addieren sich als **Vektoren**.
+- <InlineMath math="9{,}2\text{ N}" /> nimmt nur die waagerechten Anteile und übersieht das **senkrechte Gleichgewicht**.

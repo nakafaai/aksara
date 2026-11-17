@@ -1,0 +1,26 @@
+# Count the intervals, use free fall from rest, then double the timing error
+
+The first splash is counted as "one", so <InlineMath math="101" /> splashes mark only **one hundred intervals**, each <InlineMath math="0.400" /> s. Each drop falls <InlineMath math="0.80" /> m from rest in that time, so <InlineMath math="0.80 = \tfrac{1}{2}g \times 0.400^2" /> and <InlineMath math="g = 10.0\text{ m s}^{-2}" />.
+
+<Mermaid
+  title={<>From Counted Splashes to g</>}
+  description={<>One hundred and one splashes mark one hundred falls. Each fall starts from rest and lasts one interval, and the timing error doubles in g because g goes as one over time squared.</>}
+  chart={`
+    flowchart LR
+      N0["101 splashes = 100 intervals"] --> N1["t = 40.0 ÷ 100 = 0.400 s"]
+      N1 --> N2["0.80 = ½ g × 0.400²"]
+      N2 --> N3["g = 1.60 ÷ 0.160 = 10.0 m s⁻²"]
+      N3 --> N4["Two presses: 0.20 s in 40.0 s = 0.5%"]
+      N4 --> N5["g goes as 1/t²: 1% of 10.0 = 0.1 m s⁻²"]
+  `}
+/>
+
+The two presses can together be off by <InlineMath math="0.20" /> s in <InlineMath math="40.0" /> s, which is <InlineMath math="0.5\%" />. Because <InlineMath math="g" /> goes as <InlineMath math="1 \div t^2" />, the error **doubles** to <InlineMath math="1\%" />, about <InlineMath math="0.1\text{ m s}^{-2}" />.
+
+**Counting fewer splashes**: twenty-one splashes are only <InlineMath math="20" /> intervals, timed as <InlineMath math="8.0" /> s. The same <InlineMath math="0.20" /> s is then <InlineMath math="2.5\%" /> of the time and <InlineMath math="5\%" /> of <InlineMath math="g" />, about <InlineMath math="0.5\text{ m s}^{-2}" />, which is why **timing many intervals** pays.
+
+# Why the other options are wrong
+
+- Still <InlineMath math="0.1" /> treats the press error as fixed in size for <InlineMath math="g" />, but it is a **fixed time** spread over a shorter total.
+- <InlineMath math="0.05" /> and <InlineMath math="0.25" /> keep the fractional error of the time, but squaring the time **doubles** it.
+- <InlineMath math="0.5" /> then <InlineMath math="0.1" /> swaps the two cases, but the **longer timing** gives the smaller error.
