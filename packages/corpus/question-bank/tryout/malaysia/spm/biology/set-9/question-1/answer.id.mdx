@@ -1,0 +1,29 @@
+# Bandingkan tiap selisih dengan besar ketidakpastian
+
+Ketidakpastian adalah jumlah **mutlak** yang sama apa pun yang diukur, jadi jauh lebih berarti untuk volume kecil. Selisih dua hasil hanya bermakna jika lebih besar dari gabungan ketidakpastian kedua bacaan.
+
+<BlockMath math="\frac{0{,}5}{5{,}0}=10\%,\qquad \frac{0{,}5}{50{,}0}=1\%,\qquad \frac{0{,}05}{5{,}0}=1\%,\qquad \pm0{,}5\pm0{,}5\Rightarrow\text{sampai }1{,}0\text{ cm}^3" />
+
+<Chart
+  title={<>Persentase Ketidakpastian Tiap Bacaan</>}
+  bars="apart"
+  categories={["Lima sentimeter kubik, gelas ukur", "Lima puluh sentimeter kubik, gelas ukur", "Lima sentimeter kubik, buret"]}
+  series={[
+    { label: "Ketidakpastian", mark: "bar", values: [10, 1, 1] },
+  ]}
+  valueLabel="Ketidakpastian (%)"
+  description={<>Ketidakpastian <InlineMath math="0{,}5\text{ cm}^3" /> yang sama adalah <InlineMath math="10\%" /> dari bacaan <InlineMath math="5\text{ cm}^3" /> tetapi hanya <InlineMath math="1\%" /> dari <InlineMath math="50\text{ cm}^3" />. Buret yang membaca <InlineMath math="5\text{ cm}^3" /> sampai <InlineMath math="0{,}05\text{ cm}^3" /> juga memberi <InlineMath math="1\%" />.</>}
+/>
+
+- I: <InlineMath math="0{,}5" /> dari <InlineMath math="5{,}0" /> adalah <InlineMath math="10\%" />, dan <InlineMath math="0{,}5" /> dari <InlineMath math="50{,}0" /> adalah <InlineMath math="1\%" />. Pernyataan I benar.
+- II: buret yang dibaca sampai <InlineMath math="0{,}05\text{ cm}^3" /> memberi <InlineMath math="\tfrac{0{,}05}{5{,}0}=1\%" /> untuk <InlineMath math="5\text{ cm}^3" /> yang sama. Pernyataan II benar.
+- III: merata-ratakan ulangan meniadakan bacaan yang menyebar ke atas dan ke bawah, tetapi skala yang selalu <InlineMath math="0{,}3\text{ cm}^3" /> terlalu tinggi menggeser semua bacaan ke arah yang sama. Pernyataan III benar.
+- IV: tiap bacaan bisa meleset <InlineMath math="0{,}5\text{ cm}^3" />, jadi dua bacaan bisa berbeda sampai <InlineMath math="1{,}0\text{ cm}^3" /> hanya karena kebetulan. Selisih <InlineMath math="0{,}5" /> lebih kecil dari itu, jadi tidak menunjukkan pengaruh yang jelas. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak III, **padahal rata-rata tidak bisa membuang galat yang selalu searah**.
+- II dan IV saja menolak I dan **memercayai selisih yang lebih kecil dari gabungan ketidakpastian**.
+- I, III, dan IV saja menerima IV dan menolak II, **padahal skala yang lebih halus mengecilkan ketidakpastian**.

@@ -1,0 +1,24 @@
+# Coret pasangan yang tidak mungkin punya anak bergolongan O
+
+Anak bergolongan O harus menerima <InlineMath math="I^O" /> dari **kedua** orang tua. Orang tua bergolongan AB tidak membawa <InlineMath math="I^O" />, jadi pasangan <InlineMath math="2" /> tidak mungkin punya anak bergolongan O. Begitu bayi terpilah, genotipenya mengikuti, lalu peluangnya.
+
+<BlockMath math="I^AI^O\times I^BI^O\to\tfrac14\,AB,\ \tfrac14\,A,\ \tfrac14\,B,\ \tfrac14\,O,\qquad \left(\tfrac34\right)^4=\tfrac{81}{256}\approx0{,}32" />
+
+<Mermaid
+  title={<>Anak yang Mungkin Dimiliki Tiap Pasangan</>}
+  description={<>Hanya pasangan <InlineMath math="1" /> yang bisa punya anak bergolongan O, jadi bayi X milik mereka dan bayi Y milik pasangan <InlineMath math="2" />.</>}
+  chart={"flowchart TB\n  C1[\"Pasangan 1: ibu A (IᴬIᴼ), ayah B (IᴮIᴼ)\"] --> K1[\"Anak: AB, A, B, atau O, masing-masing 1/4\"]\n  C2[\"Pasangan 2: ibu AB (IᴬIᴮ), ayah O (IᴼIᴼ)\"] --> K2[\"Anak: A atau B, masing-masing 1/2\"]\n  K1 --> X[Bayi X, golongan O]\n  K2 --> Y[Bayi Y, golongan A]"}
+/>
+
+- I: ibu pada pasangan <InlineMath math="2" /> adalah <InlineMath math="I^AI^B" /> dan tidak punya <InlineMath math="I^O" /> untuk diwariskan, jadi tidak bisa punya anak bergolongan O. Bayi X pasti milik pasangan <InlineMath math="1" />. Pernyataan I benar.
+- II: bayi X adalah <InlineMath math="I^OI^O" />, jadi tiap orang tua pasangan <InlineMath math="1" /> memberi satu <InlineMath math="I^O" />. Ibu harus <InlineMath math="I^AI^O" /> dan ayah <InlineMath math="I^BI^O" />. Pernyataan II benar.
+- III: anak pasangan <InlineMath math="2" /> mendapat <InlineMath math="I^A" /> atau <InlineMath math="I^B" /> dari ibu dan <InlineMath math="I^O" /> dari ayah, jadi mereka <InlineMath math="I^AI^O" /> atau <InlineMath math="I^BI^O" />, golongan A atau B. Anak bergolongan AB butuh <InlineMath math="I^B" /> atau <InlineMath math="I^A" /> dari ayah, yang tidak punya keduanya. Pernyataan III salah.
+- IV: tiap anak pasangan <InlineMath math="1" /> berpeluang <InlineMath math="\tfrac34" /> untuk tidak bergolongan O, dan empat anak yang saling bebas memberi <InlineMath math="\left(\tfrac34\right)^4\approx32\%" />. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak IV, **peluang yang didapat dengan mengalikan empat kelahiran yang saling bebas**.
+- I, II, dan III saja menerima III, **padahal ayah bergolongan O tidak bisa memberi alel kodominan kedua**.
+- II, III, dan IV saja menolak I, **padahal hanya pasangan <InlineMath math="1" /> yang bisa punya bayi bergolongan O**.

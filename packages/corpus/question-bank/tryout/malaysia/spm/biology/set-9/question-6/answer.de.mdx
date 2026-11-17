@@ -1,0 +1,29 @@
+# Verdopplungen zählen und dann in Zeit umrechnen
+
+Jede Verdopplung multipliziert die Zellen mit <InlineMath math="2" />, zehn Verdopplungen also etwa mit <InlineMath math="1000" />. Ein Tumor wächst **den größten Teil seines Lebens unbemerkt**, weil die frühen Verdopplungen nur wenige Zellen hinzufügen.
+
+<BlockMath math="2^{30}\approx10^9,\qquad 30\cdot60=1800\text{ Tage}\approx4{,}9\text{ Jahre},\qquad 2^{10}\approx1000" />
+
+<Chart
+  title={<>Tumorzellen nach jeder Zahl von Verdopplungen</>}
+  bars="apart"
+  categories={["Zehn", "Zwanzig", "Dreißig", "Vierzig"]}
+  series={[
+    { label: "Zellen", mark: "bar", values: [3, 6, 9, 12] },
+  ]}
+  valueLabel="Zellen (Zehnerpotenz)"
+  description={<>Zehn Verdopplungen ergeben tausend Zellen, zwanzig eine Million, dreißig eine Milliarde, die Größe, die ein Arzt zuerst findet, und vierzig eine Billion.</>}
+/>
+
+- I: <InlineMath math="2^{30}\approx10^9" />, die Zellzahl eines gerade auffindbaren Tumors. Aussage I stimmt.
+- II: <InlineMath math="30" /> Verdopplungen zu je <InlineMath math="60" /> Tagen dauern <InlineMath math="1800" /> Tage, etwa <InlineMath math="5" /> Jahre. Aussage II stimmt.
+- III: Zehn Verdopplungen multiplizieren die Zellen mit <InlineMath math="2^{10}\approx1000" />, nicht mit zehn. Ein bei <InlineMath math="1\text{ cm}^3" /> gefundener Tumor erreichte etwa <InlineMath math="1" /> Liter. Aussage III ist falsch.
+- IV: Normale Zellen teilen sich nur auf Signal und hören auf Befehl auf. Mutationen in Genen, die den Zellzyklus steuern, entfernen diese Bremsen, die Mitose läuft also ungebremst weiter. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft IV, **den Verlust der Zellzykluskontrolle hinter jedem Tumor**.
+- Nur II, III und IV verwirft I und akzeptiert III und **multipliziert mit <InlineMath math="10" /> statt mit <InlineMath math="2" /> hoch <InlineMath math="10" />**.
+- Nur I, III und IV akzeptiert III und verwirft II, obwohl <InlineMath math="30\cdot60" /> Tage **etwa <InlineMath math="5" /> Jahre sind**.

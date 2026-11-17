@@ -1,0 +1,29 @@
+# Jeden Unterschied mit der Größe der Unsicherheit vergleichen
+
+Eine Unsicherheit ist derselbe **absolute** Betrag, was auch gemessen wird, und wiegt daher bei kleinen Volumina viel schwerer. Ein Unterschied zweier Ergebnisse ist nur bedeutsam, wenn er größer ist als die Unsicherheiten beider Ablesungen zusammen.
+
+<BlockMath math="\frac{0{,}5}{5{,}0}=10\,\%,\qquad \frac{0{,}5}{50{,}0}=1\,\%,\qquad \frac{0{,}05}{5{,}0}=1\,\%,\qquad \pm0{,}5\pm0{,}5\Rightarrow\text{bis }1{,}0\text{ cm}^3" />
+
+<Chart
+  title={<>Prozentuale Unsicherheit jeder Ablesung</>}
+  bars="apart"
+  categories={["Fünf Kubikzentimeter, Messzylinder", "Fünfzig Kubikzentimeter, Messzylinder", "Fünf Kubikzentimeter, Bürette"]}
+  series={[
+    { label: "Unsicherheit", mark: "bar", values: [10, 1, 1] },
+  ]}
+  valueLabel="Unsicherheit (%)"
+  description={<>Dieselbe Unsicherheit von <InlineMath math="0{,}5\text{ cm}^3" /> sind <InlineMath math="10\,\%" /> einer Ablesung von <InlineMath math="5\text{ cm}^3" />, aber nur <InlineMath math="1\,\%" /> von <InlineMath math="50\text{ cm}^3" />. Eine Bürette, die <InlineMath math="5\text{ cm}^3" /> auf <InlineMath math="0{,}05\text{ cm}^3" /> genau abliest, ergibt ebenfalls <InlineMath math="1\,\%" />.</>}
+/>
+
+- I: <InlineMath math="0{,}5" /> von <InlineMath math="5{,}0" /> sind <InlineMath math="10\,\%" />, <InlineMath math="0{,}5" /> von <InlineMath math="50{,}0" /> sind <InlineMath math="1\,\%" />. Aussage I stimmt.
+- II: Eine Bürette mit Ablesung auf <InlineMath math="0{,}05\text{ cm}^3" /> ergibt für dieselben <InlineMath math="5\text{ cm}^3" /> <InlineMath math="\tfrac{0{,}05}{5{,}0}=1\,\%" />. Aussage II stimmt.
+- III: Mitteln über Wiederholungen hebt Ablesungen auf, die nach oben und unten streuen, eine Skala, die stets <InlineMath math="0{,}3\text{ cm}^3" /> zu hoch anzeigt, verschiebt aber jede Ablesung gleich. Aussage III stimmt.
+- IV: Jede Ablesung kann um <InlineMath math="0{,}5\text{ cm}^3" /> abweichen, zwei Ablesungen können sich also allein zufällig um bis zu <InlineMath math="1{,}0\text{ cm}^3" /> unterscheiden. Ein Unterschied von <InlineMath math="0{,}5" /> ist kleiner und zeigt keine klare Wirkung. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III, **obwohl Mitteln einen stets gleich gerichteten Fehler nicht beseitigt**.
+- Nur II und IV verwirft I und **vertraut einem Unterschied unterhalb der gemeinsamen Unsicherheit**.
+- Nur I, III und IV akzeptiert IV und verwirft II, **obwohl eine feinere Skala die Unsicherheit verkleinert**.

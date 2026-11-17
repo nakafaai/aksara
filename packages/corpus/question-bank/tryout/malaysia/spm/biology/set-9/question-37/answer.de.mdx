@@ -1,0 +1,29 @@
+# Den erhaltenen Anteil einmal pro Generation multiplizieren
+
+Der erhaltene Anteil wirkt jedes Mal auf den Rest, nach <InlineMath math="t" /> Generationen bleibt also <InlineMath math="\left(1-\dfrac{1}{2N}\right)^t" /> der Vielfalt. Zehnmal <InlineMath math="5\%" /> abzuziehen ergäbe fälschlich <InlineMath math="50\%" />, weil jeder Verlust von einem **kleineren Rest** genommen wird.
+
+<BlockMath math="N=10:\ 0{,}95^{10}\approx0{,}60,\qquad N=50:\ 0{,}99^{10}\approx0{,}90" />
+
+<Chart
+  title={<>Erhaltene genetische Vielfalt über zwanzig Generationen</>}
+  categories={["0", "5", "10", "15", "20"]}
+  series={[
+    { label: "10 Zuchttiere", mark: "line", values: [100, 77, 60, 46, 36] },
+    { label: "50 Zuchttiere", mark: "line", values: [100, 95, 90, 86, 82] },
+  ]}
+  valueLabel="Erhaltene genetische Vielfalt (%)"
+  description={<>Mit <InlineMath math="10" /> Zuchttieren fällt die Vielfalt nach <InlineMath math="10" /> Generationen auf <InlineMath math="60\%" /> und nach <InlineMath math="20" /> auf <InlineMath math="36\%" />. Mit <InlineMath math="50" /> fällt sie nur auf <InlineMath math="90\%" /> und <InlineMath math="82\%" />.</>}
+/>
+
+- I: <InlineMath math="1-\tfrac{1}{20}=0{,}95" /> pro Generation, und <InlineMath math="0{,}95^{10}\approx0{,}60" />, es bleiben also etwa <InlineMath math="60\%" />. Aussage I stimmt.
+- II: <InlineMath math="1-\tfrac{1}{100}=0{,}99" /> pro Generation, und <InlineMath math="0{,}99^{10}\approx0{,}90" />, ein Verlust von etwa <InlineMath math="10\%" />. Aussage II stimmt.
+- III: Die Regel gilt nur, wenn keine Tiere von außen hinzukommen. Ein Korridor lässt Hirsche aus dem großen Gebiet Allele bringen, die das kleine verloren hat. Aussage III stimmt.
+- IV: Bei geringer Vielfalt sind die Tiere einander ähnlicher und öfter ingezüchtet, schädliche rezessive Allele zeigen sich häufiger, und eine neue Krankheit kann alle treffen. Gleichbleibende Zahlen verhindern das nicht. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III, **den Korridor, der die Bedingung der Regel aufhebt, dass niemand hinzukommt**.
+- Nur II und IV verwirft I und **hält den Verlust an Vielfalt für harmlos**.
+- Nur I, III und IV akzeptiert IV und verwirft II, **obwohl <InlineMath math="0{,}99^{10}" /> etwa <InlineMath math="90\%" /> übrig lässt**.

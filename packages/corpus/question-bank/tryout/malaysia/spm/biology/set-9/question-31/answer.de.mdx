@@ -1,0 +1,24 @@
+# Das Paar ausschließen, das kein Kind der Gruppe 0 haben kann
+
+Ein Kind der Gruppe 0 muss <InlineMath math="I^O" /> von **beiden** Eltern erhalten. Ein Elternteil mit Gruppe AB trägt kein <InlineMath math="I^O" />, Paar <InlineMath math="2" /> kann also nie ein Kind der Gruppe 0 haben. Sind die Babys zugeordnet, folgen die Genotypen und dann die Wahrscheinlichkeiten.
+
+<BlockMath math="I^AI^O\times I^BI^O\to\tfrac14\,AB,\ \tfrac14\,A,\ \tfrac14\,B,\ \tfrac14\,0,\qquad \left(\tfrac34\right)^4=\tfrac{81}{256}\approx0{,}32" />
+
+<Mermaid
+  title={<>Kinder, die jedes Paar haben kann</>}
+  description={<>Nur Paar <InlineMath math="1" /> kann ein Kind der Gruppe 0 haben, Baby X gehört also zu ihm und Baby Y zu Paar <InlineMath math="2" />.</>}
+  chart={"flowchart TB\n  C1[\"Paar 1: Mutter A (IᴬIᴼ), Vater B (IᴮIᴼ)\"] --> K1[\"Kinder: AB, A, B oder 0, je 1/4\"]\n  C2[\"Paar 2: Mutter AB (IᴬIᴮ), Vater 0 (IᴼIᴼ)\"] --> K2[\"Kinder: A oder B, je 1/2\"]\n  K1 --> X[Baby X, Gruppe 0]\n  K2 --> Y[Baby Y, Gruppe A]"}
+/>
+
+- I: Die Mutter von Paar <InlineMath math="2" /> ist <InlineMath math="I^AI^B" /> und hat kein <InlineMath math="I^O" /> zu vererben, sie kann also kein Kind der Gruppe 0 haben. Baby X muss zu Paar <InlineMath math="1" /> gehören. Aussage I stimmt.
+- II: Baby X ist <InlineMath math="I^OI^O" />, jeder Elternteil von Paar <InlineMath math="1" /> gab also ein <InlineMath math="I^O" />. Die Mutter muss <InlineMath math="I^AI^O" /> sein, der Vater <InlineMath math="I^BI^O" />. Aussage II stimmt.
+- III: Die Kinder von Paar <InlineMath math="2" /> erhalten <InlineMath math="I^A" /> oder <InlineMath math="I^B" /> von der Mutter und <InlineMath math="I^O" /> vom Vater, sie sind also <InlineMath math="I^AI^O" /> oder <InlineMath math="I^BI^O" />, Gruppe A oder B. Ein Kind der Gruppe AB bräuchte <InlineMath math="I^B" /> oder <InlineMath math="I^A" /> vom Vater, der keines hat. Aussage III ist falsch.
+- IV: Jedes Kind von Paar <InlineMath math="1" /> hat zu <InlineMath math="\tfrac34" /> nicht Gruppe 0, vier unabhängige Kinder ergeben <InlineMath math="\left(\tfrac34\right)^4\approx32\%" />. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft IV, **die Wahrscheinlichkeit aus dem Produkt von vier unabhängigen Geburten**.
+- Nur I, II und III akzeptiert III, **obwohl der Vater mit Gruppe 0 kein zweites kodominantes Allel geben kann**.
+- Nur II, III und IV verwirft I, **obwohl nur Paar <InlineMath math="1" /> ein Baby der Gruppe 0 haben kann**.

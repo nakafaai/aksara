@@ -1,0 +1,26 @@
+# The catch can never be more than the yearly increase
+
+A population stays the same size only if the fish removed each year are no more than the **births minus deaths** that year. So the safe catch at any size is the increase at that size, and the largest safe catch is where the increase peaks.
+
+<Chart
+  title={<>Yearly Increase of the Fish Population at Each Size</>}
+  categories={["1000", "3000", "5000", "7000", "9000", "10000"]}
+  series={[
+    { label: "Yearly increase", mark: "line", values: [900, 2100, 2500, 2100, 900, 0] },
+  ]}
+  valueLabel="Fish added per year"
+  description={<>The yearly increase rises from <InlineMath math="900" /> at <InlineMath math="1000" /> fish to a peak of <InlineMath math="2500" /> at <InlineMath math="5000" /> fish, then falls back to <InlineMath math="900" /> at <InlineMath math="9000" /> and to <InlineMath math="0" /> at <InlineMath math="10\,000" />.</>}
+/>
+
+- I: the increase peaks at <InlineMath math="2500" /> when there are <InlineMath math="5000" /> fish, half of the <InlineMath math="10\,000" /> the lake supports. Statement I is correct.
+- II: at <InlineMath math="5000" /> fish the population adds <InlineMath math="2500" /> a year, so catching up to <InlineMath math="2500" /> leaves the numbers steady. Statement II is correct.
+- III: at <InlineMath math="9000" /> fish the population adds only <InlineMath math="900" /> a year. Catching <InlineMath math="2100" /> removes <InlineMath math="1200" /> more than are added, so the stock keeps falling. Statement III is wrong.
+- IV: at <InlineMath math="10\,000" /> the increase is <InlineMath math="0" />. Competition for food and space has raised deaths or cut births until they match. Statement IV is correct.
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I and IV only rejects II, **the catch that exactly matches the peak increase**.
+- II and III only rejects I and IV, **missing where the increase peaks and why it stops at <InlineMath math="10\,000" />**.
+- I, II, III and IV accepts III, **although <InlineMath math="2100" /> is more than the <InlineMath math="900" /> added at that size**.

@@ -1,0 +1,29 @@
+# Darabkan bahagian yang kekal, sekali bagi setiap generasi
+
+Bahagian yang kekal dikenakan pada baki setiap kali, jadi selepas <InlineMath math="t" /> generasi kepelbagaian yang kekal ialah <InlineMath math="\left(1-\dfrac{1}{2N}\right)^t" />. Menolak <InlineMath math="5\%" /> sepuluh kali akan memberi <InlineMath math="50\%" /> secara salah, kerana setiap kehilangan diambil daripada **baki yang lebih kecil**.
+
+<BlockMath math="N=10:\ 0.95^{10}\approx0.60,\qquad N=50:\ 0.99^{10}\approx0.90" />
+
+<Chart
+  title={<>Kepelbagaian Genetik yang Kekal selama Dua Puluh Generasi</>}
+  categories={["0", "5", "10", "15", "20"]}
+  series={[
+    { label: "10 haiwan pembiak", mark: "line", values: [100, 77, 60, 46, 36] },
+    { label: "50 haiwan pembiak", mark: "line", values: [100, 95, 90, 86, 82] },
+  ]}
+  valueLabel="Kepelbagaian genetik kekal (%)"
+  description={<>Dengan <InlineMath math="10" /> haiwan pembiak kepelbagaian menurun ke <InlineMath math="60\%" /> selepas <InlineMath math="10" /> generasi dan <InlineMath math="36\%" /> selepas <InlineMath math="20" />. Dengan <InlineMath math="50" /> ia hanya menurun ke <InlineMath math="90\%" /> dan <InlineMath math="82\%" />.</>}
+/>
+
+- I: <InlineMath math="1-\tfrac{1}{20}=0.95" /> setiap generasi, dan <InlineMath math="0.95^{10}\approx0.60" />, jadi kira-kira <InlineMath math="60\%" /> kekal. Pernyataan I betul.
+- II: <InlineMath math="1-\tfrac{1}{100}=0.99" /> setiap generasi, dan <InlineMath math="0.99^{10}\approx0.90" />, kehilangan kira-kira <InlineMath math="10\%" />. Pernyataan II betul.
+- III: peraturan itu hanya berlaku apabila tiada haiwan masuk dari luar. Koridor membolehkan rusa dari kawasan besar membawa alel yang telah hilang dari kawasan kecil. Pernyataan III betul.
+- IV: dengan kepelbagaian yang sedikit, haiwan lebih serupa dan lebih kerap terbiak dalam, jadi alel resesif yang berbahaya lebih kerap terzahir dan penyakit baharu boleh menyerang semuanya. Bilangan yang tetap tidak menghalangnya. Pernyataan IV salah.
+
+Jadi pernyataan I, II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- I dan II sahaja menolak III, **iaitu koridor yang memecahkan syarat peraturan bahawa tiada pendatang**.
+- II dan IV sahaja menolak I dan **menganggap kehilangan kepelbagaian tidak berbahaya**.
+- I, III dan IV sahaja menerima IV dan menolak II, **walhal <InlineMath math="0.99^{10}" /> meninggalkan kira-kira <InlineMath math="90\%" />**.

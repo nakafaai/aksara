@@ -1,0 +1,26 @@
+# Tangkapan tidak boleh melebihi pertambahan tahunan
+
+Populasi tetap sama besar hanya jika ikan yang diambil tiap tahun tidak melebihi **kelahiran dikurangi kematian** tahun itu. Jadi tangkapan aman pada ukuran berapa pun adalah pertambahan pada ukuran itu, dan tangkapan aman terbesar ada di puncak pertambahan.
+
+<Chart
+  title={<>Pertambahan Tahunan Populasi Ikan pada Tiap Ukuran</>}
+  categories={["1000", "3000", "5000", "7000", "9000", "10000"]}
+  series={[
+    { label: "Pertambahan tahunan", mark: "line", values: [900, 2100, 2500, 2100, 900, 0] },
+  ]}
+  valueLabel="Ikan bertambah per tahun"
+  description={<>Pertambahan tahunan naik dari <InlineMath math="900" /> pada <InlineMath math="1000" /> ekor ke puncak <InlineMath math="2500" /> pada <InlineMath math="5000" /> ekor, lalu turun lagi ke <InlineMath math="900" /> pada <InlineMath math="9000" /> dan ke <InlineMath math="0" /> pada <InlineMath math="10\,000" />.</>}
+/>
+
+- I: pertambahan memuncak di <InlineMath math="2500" /> saat ada <InlineMath math="5000" /> ekor, separuh dari <InlineMath math="10\,000" /> yang bisa ditampung danau. Pernyataan I benar.
+- II: pada <InlineMath math="5000" /> ekor populasi bertambah <InlineMath math="2500" /> per tahun, jadi menangkap sampai <InlineMath math="2500" /> membuat jumlahnya tetap. Pernyataan II benar.
+- III: pada <InlineMath math="9000" /> ekor populasi hanya bertambah <InlineMath math="900" /> per tahun. Menangkap <InlineMath math="2100" /> mengambil <InlineMath math="1200" /> lebih banyak dari yang bertambah, jadi stok terus turun. Pernyataan III salah.
+- IV: pada <InlineMath math="10\,000" /> pertambahannya <InlineMath math="0" />. Persaingan makanan dan ruang telah menaikkan kematian atau menurunkan kelahiran sampai seimbang. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan IV saja menolak II, **tangkapan yang persis menyamai puncak pertambahan**.
+- II dan III saja menolak I dan IV, **melewatkan di mana pertambahan memuncak dan mengapa berhenti di <InlineMath math="10\,000" />**.
+- I, II, III, dan IV menerima III, **padahal <InlineMath math="2100" /> lebih besar dari <InlineMath math="900" /> yang bertambah pada ukuran itu**.
