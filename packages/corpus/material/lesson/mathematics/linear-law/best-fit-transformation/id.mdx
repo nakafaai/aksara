@@ -1,0 +1,351 @@
+export const metadata = {
+  title: "Catatan Hukum Linear Tingkatan Empat",
+  description:
+    "Catatan Matematika Tambahan KSSM Tingkatan 4 Bab 6: gambar garis lurus paling cocok, ubah hubungan nonlinear ke bentuk Y = mX + c, dan cari konstanta dari gradien dan titik potong.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Hukum Linear",
+};
+
+## Ubah Kurva Menjadi Garis Lurus
+
+**Hukum linear** adalah cara mengubah hubungan nonlinear antara dua variabel menjadi bentuk garis lurus <InlineMath math="Y = mX + c" />. Kamu memilih <InlineMath math="Y" /> dan <InlineMath math="X" /> dari <InlineMath math="x" /> dan <InlineMath math="y" /> sehingga titik data terletak pada satu garis lurus. Lalu gradien <InlineMath math="m" /> dan titik potong sumbu-<InlineMath math="Y" /> <InlineMath math="c" /> memberi konstanta dalam hubungan aslinya. Garis lurus mudah digambar, dibaca, dan diperpanjang, sedangkan kurva sulit dinilai dengan mata.
+
+Di catatan ini kamu mengatur garis paling cocok sampai galatnya paling kecil, meluruskan kurva kuadrat dan eksponensial, dan mencari percepatan gravitasi dari data bandul.
+
+## Garis Lurus Paling Cocok
+
+Data percobaan jarang terletak tepat pada satu garis. **Garis lurus paling cocok** adalah garis yang paling dekat dengan semua titik. Saat menggambarnya dengan tangan, pastikan:
+
+1. Banyak titik di atas garis kira-kira sama dengan banyak titik di bawah garis.
+2. Garis melewati sebanyak mungkin titik, atau sangat dekat dengannya.
+3. Garis melewati **titik rata-rata** <InlineMath math="(\bar{x}, \bar{y})" />, yaitu rata-rata semua nilai <InlineMath math="x" /> dan rata-rata semua nilai <InlineMath math="y" />.
+
+Tabel ini memberi enam hasil pengukuran dari satu percobaan:
+
+| <InlineMath math="x" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="y" /> | <InlineMath math="3{,}2" /> | <InlineMath math="4{,}8" /> | <InlineMath math="7{,}1" /> | <InlineMath math="9{,}0" /> | <InlineMath math="10{,}8" /> | <InlineMath math="13{,}1" /> |
+
+Atur gradien dan titik potong garis di bawah. Bacaan **jumlah kuadrat galat** menjumlahkan kuadrat jarak tegak dari setiap titik ke garis. Garis paling cocok membuat jumlah ini sekecil mungkin.
+
+<MathVisual
+  title={<>Atur Garis Paling Cocok</>}
+  description={
+    <>
+      Enam titik data dan garis <InlineMath math="y = mx + c" />. Jumlah kuadrat
+      galat paling kecil, sekitar <InlineMath math="0{,}13" />, saat{" "}
+      <InlineMath math="m \approx 1{,}98" /> dan <InlineMath math="c \approx 1{,}06" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1.5, max: 2.5, value: 1.6, step: 0.02, label: "m" },
+      { name: "c", min: -1, max: 2, value: 2, step: 0.02, label: "c" },
+    ],
+    objects: [
+      { id: "fit", kind: "function", appearance: "primary", formula: "m*x + c", domain: { min: 0, max: 5.5 } },
+      { id: "reading-1", kind: "point", at: { x: 1, y: 3.2 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 2, y: 4.8 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 3, y: 7.1 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 4, y: 9 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 5, y: 10.8 }, appearance: "secondary" },
+      { id: "reading-6", kind: "point", at: { x: 6, y: 13.1 }, appearance: "secondary" },
+      { id: "mean-point", kind: "point", at: { x: 3.5, y: 8 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "squared-error", formula: "(3.2 - m - c)^2 + (4.8 - 2*m - c)^2 + (7.1 - 3*m - c)^2 + (9 - 4*m - c)^2 + (10.8 - 5*m - c)^2 + (13.1 - 6*m - c)^2" },
+      { key: "estimate", formula: "4.5*m + c" },
+    ],
+  }}
+  labels={{
+    m: <>Gradien <InlineMath math="m" /></>,
+    c: <>Titik potong sumbu-<InlineMath math="y" />, <InlineMath math="c" /></>,
+    "squared-error": <>Jumlah kuadrat galat</>,
+    estimate: <>Taksiran <InlineMath math="y" /> saat <InlineMath math="x = 4{,}5" /></>,
+  }}
+/>
+
+Titik rata-ratanya <InlineMath math="\bar{x} = 3{,}5" /> dan <InlineMath math="\bar{y} = \dfrac{48}{6} = 8{,}0" />. Garis terbaik melewati <InlineMath math="(3{,}5;\ 8{,}0)" /> dengan gradien sekitar <InlineMath math="1{,}98" />, jadi persamaannya <InlineMath math="y = 1{,}98x + 1{,}06" />. Dari garis ini, taksiran <InlineMath math="y" /> saat <InlineMath math="x = 4{,}5" /> adalah <InlineMath math="1{,}98(4{,}5) + 1{,}06 \approx 10{,}0" />.
+
+## Luruskan Hubungan Nonlinear
+
+Saat grafik <InlineMath math="y" /> terhadap <InlineMath math="x" /> berbentuk kurva, susun ulang persamaannya menjadi **bentuk garis lurus** <InlineMath math="Y = mX + c" />. Variabel <InlineMath math="X" /> dan <InlineMath math="Y" /> hanya boleh memuat <InlineMath math="x" /> dan <InlineMath math="y" />, sedangkan <InlineMath math="m" /> dan <InlineMath math="c" /> hanya boleh memuat konstanta.
+
+| Hubungan asli | Bentuk linear | <InlineMath math="Y" /> | <InlineMath math="X" /> | <InlineMath math="m" /> | <InlineMath math="c" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="y = ax^2 + bx" /> | <InlineMath math="\dfrac{y}{x} = ax + b" /> | <InlineMath math="\dfrac{y}{x}" /> | <InlineMath math="x" /> | <InlineMath math="a" /> | <InlineMath math="b" /> |
+| <InlineMath math="y = \dfrac{a}{x} + b" /> | <InlineMath math="y = a\left(\dfrac{1}{x}\right) + b" /> | <InlineMath math="y" /> | <InlineMath math="\dfrac{1}{x}" /> | <InlineMath math="a" /> | <InlineMath math="b" /> |
+| <InlineMath math="y = ab^x" /> | <InlineMath math="\log_{10} y = (\log_{10} b)x + \log_{10} a" /> | <InlineMath math="\log_{10} y" /> | <InlineMath math="x" /> | <InlineMath math="\log_{10} b" /> | <InlineMath math="\log_{10} a" /> |
+| <InlineMath math="y = ax^n" /> | <InlineMath math="\log_{10} y = n\log_{10} x + \log_{10} a" /> | <InlineMath math="\log_{10} y" /> | <InlineMath math="\log_{10} x" /> | <InlineMath math="n" /> | <InlineMath math="\log_{10} a" /> |
+
+### Kurva Kuadrat
+
+Data ini mengikuti hubungan <InlineMath math="y = ax^2 + bx" />:
+
+| <InlineMath math="x" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="y" /> | <InlineMath math="3{,}0" /> | <InlineMath math="8{,}4" /> | <InlineMath math="16{,}2" /> | <InlineMath math="26{,}4" /> | <InlineMath math="39{,}0" /> |
+
+Coba cocokkan kurva <InlineMath math="y = ax^2 + bx" /> dengan titik-titik ini. Menebak dua konstanta sekaligus pada kurva itu sulit, karena mengubah <InlineMath math="a" /> atau <InlineMath math="b" /> sama-sama mengubah lengkungan kurva.
+
+<MathVisual
+  title={<>Kurva Kuadrat melalui Data</>}
+  description={
+    <>
+      Lima titik data dan kurva <InlineMath math="y = ax^2 + bx" />. Kurva
+      melewati semua titik saat <InlineMath math="a = 1{,}2" /> dan{" "}
+      <InlineMath math="b = 1{,}8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.8, max: 1.6, value: 1, step: 0.1, label: "a" },
+      { name: "b", min: 1, max: 2.6, value: 2.4, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "a*x^2 + b*x", domain: { min: 0, max: 5 } },
+      { id: "reading-1", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 2, y: 8.4 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 3, y: 16.2 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 4, y: 26.4 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 5, y: 39 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "at-five", formula: "25*a + 5*b" },
+    ],
+  }}
+  labels={{
+    a: <>Konstanta <InlineMath math="a" /></>,
+    b: <>Konstanta <InlineMath math="b" /></>,
+    "at-five": <>Nilai kurva di <InlineMath math="x = 5" /></>,
+  }}
+/>
+
+Sekarang bagi setiap <InlineMath math="y" /> dengan <InlineMath math="x" />. Nilai <InlineMath math="\dfrac{y}{x}" /> adalah <InlineMath math="3{,}0" />, <InlineMath math="4{,}2" />, <InlineMath math="5{,}4" />, <InlineMath math="6{,}6" />, dan <InlineMath math="7{,}8" />. Gambar <InlineMath math="\dfrac{y}{x}" /> terhadap <InlineMath math="x" />, dan titik-titiknya menjadi **satu garis lurus**. Garis ini memberi <InlineMath math="a" /> sebagai gradien dan <InlineMath math="b" /> sebagai titik potong, langsung dari grafik.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="\dfrac{y}{x}" /> terhadap <InlineMath math="x" /> Menjadi Garis Lurus</>}
+  description={
+    <>
+      Titik <InlineMath math="\left(x, \dfrac{y}{x}\right)" /> dan garis{" "}
+      <InlineMath math="\dfrac{y}{x} = ax + b" />. Gradien{" "}
+      <InlineMath math="1{,}2" /> memberi <InlineMath math="a" />, dan titik potong{" "}
+      <InlineMath math="1{,}8" /> memberi <InlineMath math="b" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.8, max: 1.6, value: 1, step: 0.1, label: "a" },
+      { name: "b", min: 1, max: 2.6, value: 2.4, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "a*x + b", domain: { min: 0, max: 5.5 } },
+      { id: "reading-1", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 2, y: 4.2 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 3, y: 5.4 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 4, y: 6.6 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 5, y: 7.8 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "gradient", formula: "a" },
+      { key: "intercept", formula: "b" },
+    ],
+  }}
+  labels={{
+    a: <>Konstanta <InlineMath math="a" /></>,
+    b: <>Konstanta <InlineMath math="b" /></>,
+    gradient: <>Gradien garis</>,
+    intercept: <>Titik potong sumbu-<InlineMath math="Y" /></>,
+  }}
+/>
+
+Hitung gradien dari dua titik pada garis, <InlineMath math="(2;\ 4{,}2)" /> dan <InlineMath math="(5;\ 7{,}8)" />:
+
+<MathContainer>
+<BlockMath math="m = \frac{7{,}8 - 4{,}2}{5 - 2} = 1{,}2 = a" />
+<BlockMath math="c = 4{,}2 - 1{,}2(2) = 1{,}8 = b" />
+<BlockMath math="y = 1{,}2x^2 + 1{,}8x" />
+</MathContainer>
+
+Cek dengan data <InlineMath math="x = 5" />: <InlineMath math="1{,}2(25) + 1{,}8(5) = 39{,}0" />, sama dengan tabel.
+
+### Kurva Eksponensial
+
+Banyak bakteri <InlineMath math="y" /> dalam satu kultur setelah <InlineMath math="x" /> jam mengikuti <InlineMath math="y = ab^x" />:
+
+| <InlineMath math="x" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="y" /> | <InlineMath math="50{,}0" /> | <InlineMath math="75{,}0" /> | <InlineMath math="112{,}5" /> | <InlineMath math="168{,}8" /> | <InlineMath math="253{,}1" /> | <InlineMath math="379{,}7" /> |
+| <InlineMath math="\log_{10} y" /> | <InlineMath math="1{,}699" /> | <InlineMath math="1{,}875" /> | <InlineMath math="2{,}051" /> | <InlineMath math="2{,}227" /> | <InlineMath math="2{,}403" /> | <InlineMath math="2{,}579" /> |
+
+Ambil logaritma kedua ruas: <InlineMath math="\log_{10} y = (\log_{10} b)x + \log_{10} a" />. Grafik <InlineMath math="\log_{10} y" /> terhadap <InlineMath math="x" /> berupa garis lurus. Atur <InlineMath math="a" /> dan <InlineMath math="b" /> sampai garis melewati semua titik.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="\log_{10} y" /> terhadap <InlineMath math="x" /> untuk Pertumbuhan Bakteri</>}
+  description={
+    <>
+      Garis <InlineMath math="\log_{10} y = (\log_{10} b)x + \log_{10} a" />.
+      Garis melewati semua titik saat <InlineMath math="a = 50" /> dan{" "}
+      <InlineMath math="b = 1{,}5" />, dengan gradien <InlineMath math="0{,}176" /> dan
+      titik potong <InlineMath math="1{,}699" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 1, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 20, max: 80, value: 30, step: 1, label: "a" },
+      { name: "b", min: 1.1, max: 2, value: 1.8, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "log(a) + x*log(b)", domain: { min: 0, max: 5.5 } },
+      { id: "reading-0", kind: "point", at: { x: 0, y: 1.699 }, appearance: "secondary" },
+      { id: "reading-1", kind: "point", at: { x: 1, y: 1.875 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 2, y: 2.051 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 3, y: 2.227 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 4, y: 2.403 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 5, y: 2.579 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "gradient", formula: "log(b)" },
+      { key: "intercept", formula: "log(a)" },
+    ],
+  }}
+  labels={{
+    a: <>Banyak awal <InlineMath math="a" /></>,
+    b: <>Faktor pertumbuhan <InlineMath math="b" /></>,
+    gradient: <>Gradien <InlineMath math="\log_{10} b" /></>,
+    intercept: <>Titik potong <InlineMath math="\log_{10} a" /></>,
+  }}
+/>
+
+Dari titik <InlineMath math="(0;\ 1{,}699)" /> dan <InlineMath math="(5;\ 2{,}579)" />, gradiennya <InlineMath math="\dfrac{2{,}579 - 1{,}699}{5} = 0{,}176" />. **Titik potong dan gradien adalah logaritma**, jadi kamu perlu mencari antilognya:
+
+<MathContainer>
+<BlockMath math="\log_{10} b = 0{,}176 \quad \Rightarrow \quad b = 10^{0{,}176} = 1{,}50" />
+<BlockMath math="\log_{10} a = 1{,}699 \quad \Rightarrow \quad a = 10^{1{,}699} = 50{,}0" />
+</MathContainer>
+
+Jadi <InlineMath math="y = 50(1{,}5)^x" />. Banyak bakteri bertambah <InlineMath math="50\%" /> setiap jam.
+
+## Cari Gravitasi dari Bandul
+
+Periode bandul sederhana adalah <InlineMath math="T = 2\pi\sqrt{\dfrac{l}{g}}" />. Kuadratkan kedua ruas sehingga <InlineMath math="T^2 = \dfrac{4\pi^2}{g}\,l" />, yaitu bentuk <InlineMath math="Y = mX" /> dengan <InlineMath math="Y = T^2" />, <InlineMath math="X = l" />, dan gradien <InlineMath math="\dfrac{4\pi^2}{g}" />. Seorang siswa mencatat:
+
+| <InlineMath math="l\ (\text{m})" /> | <InlineMath math="0{,}2" /> | <InlineMath math="0{,}4" /> | <InlineMath math="0{,}6" /> | <InlineMath math="0{,}8" /> | <InlineMath math="1{,}0" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="T^2\ (\text{s}^2)" /> | <InlineMath math="0{,}80" /> | <InlineMath math="1{,}61" /> | <InlineMath math="2{,}41" /> | <InlineMath math="3{,}22" /> | <InlineMath math="4{,}02" /> |
+
+Ubah nilai <InlineMath math="g" /> sampai garis melewati titik data. Bacaan gradien menunjukkan <InlineMath math="\dfrac{4\pi^2}{g}" /> untuk nilai itu.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="T^2" /> terhadap <InlineMath math="l" /> untuk Bandul Sederhana</>}
+  description={
+    <>
+      Garis <InlineMath math="T^2 = \dfrac{4\pi^2}{g}\,l" /> dan lima data. Garis
+      melewati semua titik saat{" "}
+      <InlineMath math="g \approx 9{,}81\text{ m s}^{-2}" />, dengan gradien{" "}
+      <InlineMath math="4{,}02\text{ s}^2\text{ m}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 8, max: 12, value: 8.5, step: 0.01, label: "g" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "4*pi^2/g*x", domain: { min: 0, max: 1.1 } },
+      { id: "reading-1", kind: "point", at: { x: 0.2, y: 0.8 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 0.4, y: 1.61 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 0.6, y: 2.41 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 0.8, y: 3.22 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 1, y: 4.02 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "gradient", formula: "4*pi^2/g" },
+    ],
+  }}
+  labels={{
+    g: <>Percepatan gravitasi <InlineMath math="g" /> dalam <InlineMath math="\text{m s}^{-2}" /></>,
+    gradient: <>Gradien <InlineMath math="\dfrac{4\pi^2}{g}" /></>,
+  }}
+/>
+
+Hitung gradien dari titik <InlineMath math="(0{,}2;\ 0{,}80)" /> dan <InlineMath math="(1{,}0;\ 4{,}02)" />:
+
+<MathContainer>
+<BlockMath math="m = \frac{4{,}02 - 0{,}80}{1{,}0 - 0{,}2} = 4{,}025\text{ s}^2\text{ m}^{-1}" />
+<BlockMath math="g = \frac{4\pi^2}{m} = \frac{39{,}48}{4{,}025} = 9{,}81\text{ m s}^{-2}" />
+</MathContainer>
+
+Grafik ini **melewati titik asal** karena <InlineMath math="c = 0" />. Kalau garis yang kamu gambar tidak melewati titik asal, mungkin ada galat sistematis, misalnya panjang bandul diukur tanpa jari-jari beban.
+
+## Kesalahan Umum dalam Hukum Linear
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Menghitung gradien dari titik <InlineMath math="(x, y)" /> asli. | Gradien harus dihitung pada sumbu <InlineMath math="X" /> dan <InlineMath math="Y" /> yang sudah diubah. | Tulis koordinat titik sebagai <InlineMath math="(X, Y)" /> dulu. |
+| Mengambil titik potong <InlineMath math="1{,}699" /> sebagai nilai <InlineMath math="a" />. | Titik potongnya <InlineMath math="\log_{10} a" />, bukan <InlineMath math="a" />. | Cari antilognya: <InlineMath math="a = 10^{1{,}699}" />. |
+| Menggambar garis hanya melalui titik pertama dan titik terakhir. | Garis paling cocok menyeimbangkan semua titik. | Pastikan garis melewati titik rata-rata. |
+| Menggambar <InlineMath math="\log_{10} y" /> terhadap <InlineMath math="\log_{10} x" /> untuk <InlineMath math="y = ab^x" />. | Variabel <InlineMath math="x" /> adalah pangkat, jadi sumbu mendatar tetap <InlineMath math="x" />. | Ambil log kedua ruas dan lihat suku yang muncul. |
+| Membaca titik potong pada sumbu yang tidak dimulai dari nol. | Titik potong sumbu-<InlineMath math="Y" /> adalah nilai <InlineMath math="Y" /> saat <InlineMath math="X = 0" />. | Hitung <InlineMath math="c" /> dengan <InlineMath math="c = Y - mX" />. |
+
+Kesalahan kedua paling sering muncul pada soal logaritma. **Setiap konstanta yang muncul di dalam log** perlu dicari antilognya sebelum ditulis dalam jawaban.
+
+## Latihan Hukum Linear
+
+Tulis bentuk <InlineMath math="Y = mX + c" /> dulu, lalu **cocokkan <InlineMath math="m" /> dan <InlineMath math="c" /> dengan konstanta aslinya**.
+
+1. Grafik <InlineMath math="\dfrac{y}{x}" /> terhadap <InlineMath math="x" /> adalah garis lurus yang melalui <InlineMath math="(1, 5)" /> dan <InlineMath math="(3, 9)" />. Nyatakan <InlineMath math="y" /> dalam <InlineMath math="x" />.
+
+2. Variabel <InlineMath math="x" /> dan <InlineMath math="y" /> dihubungkan oleh <InlineMath math="y = \dfrac{a}{x} + b" />. Grafik <InlineMath math="y" /> terhadap <InlineMath math="\dfrac{1}{x}" /> punya gradien <InlineMath math="4" /> dan melalui <InlineMath math="(0{,}5;\ 5)" />. Cari <InlineMath math="a" />, <InlineMath math="b" />, dan nilai <InlineMath math="y" /> saat <InlineMath math="x = 2" />.
+
+3. Untuk <InlineMath math="y = ab^x" />, grafik <InlineMath math="\log_{10} y" /> terhadap <InlineMath math="x" /> punya gradien <InlineMath math="0{,}301" /> dan titik potong <InlineMath math="0{,}477" />. Cari <InlineMath math="a" /> dan <InlineMath math="b" />.
+
+4. Pada percobaan bandul lain, grafik <InlineMath math="T^2" /> terhadap <InlineMath math="l" /> punya gradien <InlineMath math="4{,}0\text{ s}^2\text{ m}^{-1}" />. Hitung <InlineMath math="g" />.
+
+### Pembahasan
+
+**Pembahasan 1**: Di sini <InlineMath math="Y = \dfrac{y}{x}" /> dan <InlineMath math="X = x" />:
+
+<MathContainer>
+<BlockMath math="m = \frac{9 - 5}{3 - 1} = 2, \quad c = 5 - 2(1) = 3" />
+<BlockMath math="\frac{y}{x} = 2x + 3 \quad \Rightarrow \quad y = 2x^2 + 3x" />
+</MathContainer>
+
+Cek dengan titik kedua: di <InlineMath math="x = 3" />, <InlineMath math="\dfrac{y}{x} = 2(3) + 3 = 9" />.
+
+**Pembahasan 2**: Gradiennya <InlineMath math="a" />, jadi <InlineMath math="a = 4" />. Titik potong <InlineMath math="b" /> dicari dari titik yang diberikan:
+
+<MathContainer>
+<BlockMath math="5 = 4(0{,}5) + b \quad \Rightarrow \quad b = 3" />
+<BlockMath math="y = \frac{4}{x} + 3, \quad x = 2: \quad y = 2 + 3 = 5" />
+</MathContainer>
+
+**Pembahasan 3**: Gradiennya <InlineMath math="\log_{10} b" /> dan titik potongnya <InlineMath math="\log_{10} a" />:
+
+<MathContainer>
+<BlockMath math="b = 10^{0{,}301} = 2{,}00, \quad a = 10^{0{,}477} = 3{,}00" />
+<BlockMath math="y = 3(2)^x" />
+</MathContainer>
+
+Cek: di <InlineMath math="x = 0" />, <InlineMath math="\log_{10} 3 = 0{,}477" />, sama dengan titik potong.
+
+**Pembahasan 4**: Gradiennya <InlineMath math="\dfrac{4\pi^2}{g}" />, jadi:
+
+<BlockMath math="g = \frac{4\pi^2}{4{,}0} = \frac{39{,}48}{4{,}0} = 9{,}87\text{ m s}^{-2}" />
+
+Nilai ini dekat dengan <InlineMath math="9{,}81\text{ m s}^{-2}" />. Selisih kecil seperti ini **wajar dalam percobaan di sekolah**.

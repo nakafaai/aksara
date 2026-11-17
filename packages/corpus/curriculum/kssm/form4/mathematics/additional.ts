@@ -174,7 +174,33 @@ export const kssmForm4AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-additional-mathematics-linear-law-linear-law",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.linear-law"],
+        order: 10,
+      }),
+    ],
     key: "form-4-additional-mathematics-linear-law",
+    materialCard: {
+      de: {
+        description: "Zeichne Ausgleichsgeraden und linearisiere Kurven.",
+        title: "Linearisierung",
+      },
+      en: {
+        description: "Draw best-fit lines and straighten curves.",
+        title: "Linear Law",
+      },
+      id: {
+        description: "Gambar garis paling cocok dan luruskan kurva.",
+        title: "Hukum Linear",
+      },
+      ms: {
+        description: "Lukis garis penyuaian terbaik dan luruskan lengkung.",
+        title: "Hukum Linear",
+      },
+    },
     order: 60,
     translations: {
       de: { routeSlug: "linearisierung", title: "Linearisierung" },
