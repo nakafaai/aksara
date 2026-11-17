@@ -15,6 +15,7 @@ import { lessonChemistryChemistryIntroductionMaterial } from "#corpus/material/l
 import { lessonChemistryGreenChemistryMaterial } from "#corpus/material/lesson/chemistry/green-chemistry/source";
 import { lessonChemistryManufacturedSubstancesMaterial } from "#corpus/material/lesson/chemistry/manufactured-substances/source";
 import { lessonChemistryMoleConceptMaterial } from "#corpus/material/lesson/chemistry/mole-concept/source";
+import { lessonChemistryPeriodicGroupsMaterial } from "#corpus/material/lesson/chemistry/periodic-groups/source";
 import { lessonChemistryReactionRateMaterial } from "#corpus/material/lesson/chemistry/reaction-rate/source";
 import { lessonChemistryRedoxEquilibriumMaterial } from "#corpus/material/lesson/chemistry/redox-equilibrium/source";
 import { lessonChemistryStructureMatterMaterial } from "#corpus/material/lesson/chemistry/structure-matter/source";
@@ -75,6 +76,7 @@ const materialSourcePrograms = [
   lessonChemistryGreenChemistryMaterial,
   lessonChemistryManufacturedSubstancesMaterial,
   lessonChemistryMoleConceptMaterial,
+  lessonChemistryPeriodicGroupsMaterial,
   lessonChemistryReactionRateMaterial,
   lessonChemistryRedoxEquilibriumMaterial,
   lessonChemistryStructureMatterMaterial,

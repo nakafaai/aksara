@@ -1,0 +1,217 @@
+export const metadata = {
+  title: "Group Properties in the Periodic Table for Form Four",
+  description:
+    "Form 4 Chemistry Chapter 4: explain noble gases, alkali metals and halogens, the trends across Period 3 and the features of transition elements, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "The Periodic Table of Elements",
+};
+
+## Groups Decide Chemical Properties
+
+Elements in **the same group** have **the same number of valence electrons**, so their chemical properties are alike. Group 1 elements have one valence electron and lose it easily, Group 17 elements have seven and readily gain one more, and Group 18 elements are already stable. Going down a group, the number of shells grows and the atoms get bigger. In the models here, you drop alkali metals into water, compare real melting and boiling points, and rotate halogen molecules.
+
+The two most important group trends run in opposite directions. **The reactivity of alkali metals increases** down Group 1, because the valence electron is further from the nucleus and easier to lose. **The reactivity of halogens decreases** down Group 17, because the electron to be gained sits further from the nucleus's pull.
+
+## The Unreactive Noble Gases
+
+Noble gases such as helium, neon and argon have **a stable duplet or octet electron arrangement**, so they don't gain, lose or share electrons. They exist as single atoms and are **chemically inert**. Going down the group, the atoms get bigger, the van der Waals forces between them get stronger, and the boiling point rises.
+
+<ScatterDiagram
+  title={<>Boiling Points of the Noble Gases</>}
+  description={
+    <>
+      Boiling point against proton number, from helium{" "}
+      <InlineMath math="-269^\circ\text{C}" /> to xenon{" "}
+      <InlineMath math="-108^\circ\text{C}" />.
+    </>
+  }
+  xAxisLabel="Proton number"
+  yAxisLabel="Boiling point (°C)"
+  datasets={[
+    {
+      name: "Noble gases",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: -269 },
+        { x: 10, y: -246 },
+        { x: 18, y: -186 },
+        { x: 36, y: -153 },
+        { x: 54, y: -108 },
+      ],
+    },
+  ]}
+/>
+
+Their inertness decides their uses. Light, non-flammable helium fills weather balloons. Argon fills light bulbs so the hot filament doesn't oxidise. Neon glows red-orange in advertising lights when a current flows through it.
+
+## The Reactive Alkali Metals
+
+Lithium, sodium and potassium are **alkali metals**. They're soft, have a low density and a low melting point, and the melting point **falls** down the group. All alkali metals react with water to give an alkaline solution and hydrogen gas:
+
+<BlockMath math="2\mathrm{Na(s)} + 2\mathrm{H_2O(l)} \rightarrow 2\mathrm{NaOH(aq)} + \mathrm{H_2(g)}" />
+
+Drop each metal into water containing phenolphthalein. The solution turns pink because an alkali forms, and the reaction gets more vigorous from lithium to potassium.
+
+<AlkaliWaterLab
+  title={<>Alkali Metals in Water</>}
+  description={
+    <>
+      A beaker of water with a few drops of phenolphthalein. Pick a metal and
+      compare how vigorously it reacts.
+    </>
+  }
+  metals={["lithium", "sodium", "potassium"]}
+  labels={{
+    choose: "Pick a metal",
+    density: <>Density</>,
+    equation: <>Reaction equation</>,
+    ionization: <>First ionisation energy</>,
+    melting: <>Melting point</>,
+    radius: <>Atomic radius</>,
+    view: "An alkali metal reacting with water",
+  }}
+/>
+
+Alkali metals also burn in oxygen to form oxides, for example <InlineMath math="4\mathrm{Na} + \mathrm{O_2} \rightarrow 2\mathrm{Na_2O}" />, and react with chlorine to form chloride salts. Because they're so reactive, alkali metals are stored in paraffin oil so they can't react with moist air.
+
+### Example Predicting Rubidium
+
+Rubidium sits below potassium in Group 1. Predict **its reactivity with water** and write the equation.
+
+Rubidium has more shells, so its valence electron is further from the nucleus and easier to lose. It reacts more vigorously than potassium:
+
+<BlockMath math="2\mathrm{Rb(s)} + 2\mathrm{H_2O(l)} \rightarrow 2\mathrm{RbOH(aq)} + \mathrm{H_2(g)}" />
+
+Check the shape of the equation against sodium's: every Group 1 metal forms a hydroxide <InlineMath math="\mathrm{MOH}" /> and hydrogen gas in the same ratio.
+
+### Example Volume of Hydrogen
+
+A <InlineMath math="2.3\text{ g}" /> piece of sodium reacts completely with water. Find **the volume of hydrogen** at room conditions. The relative atomic mass of Na is <InlineMath math="23" />.
+
+<MathContainer>
+<BlockMath math="n(\mathrm{Na}) = \frac{2.3}{23} = 0.10\text{ mol}" />
+<BlockMath math="n(\mathrm{H_2}) = \frac{0.10}{2} = 0.050\text{ mol}" />
+<BlockMath math="V = 0.050 \times 24 = 1.2\text{ dm}^3" />
+</MathContainer>
+
+The <InlineMath math="2 : 1" /> ratio comes from the balanced equation. Check: two moles of sodium give one mole of hydrogen, so half the number of moles.
+
+## Halogens as Diatomic Molecules
+
+Fluorine, chlorine, bromine and iodine are **halogens**. They exist as **diatomic molecules**, such as <InlineMath math="\mathrm{Cl_2}" />, held together by van der Waals forces. Going down the group, the molecules get bigger, so the melting and boiling points rise. That's why fluorine and chlorine are gases, bromine is a liquid and iodine is a solid at room temperature.
+
+<Chart
+  title={<>Melting and Boiling Points of the Halogens</>}
+  bars="apart"
+  categories={["Fluorine", "Chlorine", "Bromine", "Iodine"]}
+  series={[
+    { label: "Melting point (°C)", mark: "bar", values: [-220, -101, -7, 114] },
+    { label: "Boiling point (°C)", mark: "bar", values: [-188, -34, 59, 184] },
+  ]}
+  valueLabel="Temperature (°C)"
+  description={
+    <>
+      Melting and boiling points: fluorine <InlineMath math="-220" /> and{" "}
+      <InlineMath math="-188^\circ\text{C}" />, chlorine{" "}
+      <InlineMath math="-101" /> and <InlineMath math="-34^\circ\text{C}" />,
+      bromine <InlineMath math="-7" /> and <InlineMath math="59^\circ\text{C}" />,
+      iodine <InlineMath math="114" /> and <InlineMath math="184^\circ\text{C}" />.
+    </>
+  }
+/>
+
+Halogens react with hydrogen to form hydrogen halides. Rotate the chlorine and hydrogen chloride molecules in this model and compare their single bonds.
+
+<MoleculeShapeLab
+  title={<>Chlorine and Hydrogen Chloride</>}
+  description={
+    <>
+      A chlorine molecule is made of two chlorine atoms. Hydrogen chloride
+      forms when chlorine reacts with hydrogen.
+    </>
+  }
+  molecules={[
+    { id: "chlorine", name: "chlorine" },
+    { id: "hydrogen-chloride", name: "hydrogen chloride" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Pick a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "A halogen molecule and a hydrogen halide",
+  }}
+/>
+
+Chlorine reacts with water to form hydrochloric acid and hypochlorous acid, <InlineMath math="\mathrm{Cl_2} + \mathrm{H_2O} \rightarrow \mathrm{HCl} + \mathrm{HOCl}" />, and with sodium hydroxide solution to form sodium hypochlorite, a bleach. **Reactivity decreases** from fluorine to iodine because a bigger atom pulls an extra electron in less strongly.
+
+## Elements across a Period and Transition Elements
+
+Across Period <InlineMath math="3" /> from sodium to chlorine, the number of protons grows but the number of shells stays the same. The nucleus pulls harder on the valence electrons, so **the atomic radius decreases** and electronegativity increases. The elements change from metals to a metalloid to non-metals.
+
+<Chart
+  title={<>Atomic Radii of Period <InlineMath math="3" /> Elements</>}
+  bars="apart"
+  categories={["Na", "Mg", "Al", "Si", "P", "S", "Cl"]}
+  series={[
+    { label: "Atomic radius (pm)", mark: "bar", values: [186, 160, 143, 117, 110, 104, 99] },
+  ]}
+  valueLabel="Atomic radius (pm)"
+  description={
+    <>
+      The atomic radius falls from sodium <InlineMath math="186\text{ pm}" /> to
+      chlorine <InlineMath math="99\text{ pm}" />.
+    </>
+  }
+/>
+
+The oxides of Period <InlineMath math="3" /> change too: sodium oxide and magnesium oxide are **basic**, aluminium oxide is **amphoteric** because it reacts with both acids and alkalis, and the oxides of silicon, phosphorus and sulfur are **acidic**.
+
+**Transition elements** sit between Group 2 and Group 13. They share four special features: they form coloured ions or compounds, have more than one oxidation number, act as catalysts, and form complex ions. For example, copper(II) sulfate solution is blue, iron(II) ions are pale green and iron(III) ions are yellowish-brown, while iron is the catalyst in the Haber process.
+
+## Common Mistakes about Group Properties
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Halogen reactivity increases down the group, just like the alkali metals. | Halogens gain electrons. A bigger atom pulls an electron in more weakly. | Ask whether the element gains or loses electrons. |
+| Noble gases don't react because their outer shell is empty. | Their outer shell is full with a duplet or octet. | Write argon's electron arrangement, <InlineMath math="2.8.8" />. |
+| Atomic radius increases across a period because there are more electrons. | The number of shells stays the same and the nuclear pull grows, so the radius shrinks. | Compare the number of shells, not the number of electrons. |
+| Aluminium oxide is a basic oxide. | Aluminium oxide is amphoteric and reacts with both acids and alkalis. | Test its reaction with both. |
+
+The first mistake is the most common one in group comparison questions. **Metals lose, halogens gain**, so their reactivity trends run in opposite directions.
+
+## Practice on Group Properties
+
+These questions move from equations to explaining trends. Use <InlineMath math="A_r" /> K <InlineMath math="39" />. **Link every trend to atomic size**.
+
+1. Write a balanced equation for the reaction of potassium with chlorine.
+
+2. Explain why fluorine is more reactive than iodine.
+
+3. A <InlineMath math="0.78\text{ g}" /> piece of potassium reacts completely with water. Calculate the volume of hydrogen gas at room conditions.
+
+4. Which oxide of Period <InlineMath math="3" /> reacts with both hydrochloric acid and sodium hydroxide solution? State the nature of that oxide.
+
+### Solutions
+
+**Solution 1**: Potassium forms <InlineMath math="\mathrm{K^+}" /> ions and chlorine forms <InlineMath math="\mathrm{Cl^-}" /> ions, so the salt is <InlineMath math="\mathrm{KCl}" />:
+
+<BlockMath math="2\mathrm{K} + \mathrm{Cl_2} \rightarrow 2\mathrm{KCl}" />
+
+Check: two potassium atoms and two chlorine atoms on each side.
+
+**Solution 2**: The fluorine atom is the smallest, so the electron it gains sits **closest to the nucleus** and is pulled in most strongly. The iodine atom has more shells, so the nucleus pulls an extra electron in more weakly and iodine is less reactive.
+
+**Solution 3**: Follow the <InlineMath math="2 : 1" /> mole ratio between potassium and hydrogen:
+
+<MathContainer>
+<BlockMath math="n(\mathrm{K}) = \frac{0.78}{39} = 0.020\text{ mol}" />
+<BlockMath math="n(\mathrm{H_2}) = \frac{0.020}{2} = 0.010\text{ mol}" />
+<BlockMath math="V = 0.010 \times 24 = 0.24\text{ dm}^3" />
+</MathContainer>
+
+**Solution 4**: Aluminium oxide, <InlineMath math="\mathrm{Al_2O_3}" />, reacts with both, so it's **amphoteric**. Sodium and magnesium oxides react only with acids, while the non-metal oxides react only with alkalis.
