@@ -336,17 +336,16 @@ a comma. A bare colon (`9:25`) stays a ratio, an English or Malay `19.25`
 stays a decimal, and a time inside a JSX expression prop is a manual read
 item. Both rules became blocking on 15 November 2026 with zero occurrences.
 
-Three pending rules carry owner requirements that the corpus does not meet
-yet: `plain-math-text` (D37, [mathematics rules](math.md)) finds Unicode sub-
-and superscripts, math symbols and arrows, Greek letters, element formulas with
-a count that does not start with 0, the diatomic gases, and simple equations
+`plain-math-text` (D37, [mathematics rules](math.md)) blocks Unicode sub- and
+superscripts, math symbols and arrows, Greek letters, element formulas with a
+count that does not start with 0, the diatomic gases, and simple equations
 between numbers and one-letter variables in the text a learner reads, headings
-and component text props included, with math components, code, links, and
-metadata kept out; and `string-visual-text` (D39) finds a title, description,
-labels, facts, or legend prop written as a string instead of JSX. The gate prints each
-rule's count, its fix, and every occurrence on each run and fails on none yet.
-The change that clears a rule's last occurrence adds it to the blocking set,
-with no allowlist.
+and component text props included, with math components, code, links,
+metadata, and public pages kept out. `string-visual-text` (D39) blocks a title,
+description, labels, facts, or legend prop written as a string instead of JSX.
+Both began as rules that reported without failing, and each became blocking in
+the change that cleared its last occurrence: `plain-math-text` on 17 November
+2026, with no allowlist.
 
 The address rules are authored-voice rules, not raw pronoun bans. They run on
 lessons, worked answers, and articles, because Nakafa never writes formally on

@@ -9,7 +9,6 @@ import { findDocumentIssues } from "#nakafa-content/voice/document";
 import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 import { type CliOptions, parseArguments } from "#nakafa-content/voice/options";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
-import { findPendingIssues, printPending } from "#nakafa-content/voice/pending";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 import { documentProfile } from "#nakafa-content/voice/profile";
 import {
@@ -164,18 +163,9 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
         )
       )
     );
-    const pending = documents.flatMap(
-      ({ locale, repositoryPath, source, tree }) =>
-        findPendingIssues(source, tree).map((issue) => ({
-          file: repositoryPath,
-          locale,
-          ...issue,
-        }))
-    );
     const report: LessonVoiceReport = {
       fileCount: files.length,
       issues,
-      ...(pending.length > 0 ? { pending } : {}),
       ...(pedagogyReview
         ? {
             pedagogy: documents
@@ -237,8 +227,7 @@ const printReport = Effect.fn("LessonVoiceCheck.printReport")(function* (
       yield* Console.error(line);
     }
   }
-  const { pedagogy, pending } = report;
-  yield* printPending(options.format, pending);
+  const { pedagogy } = report;
   if (options.format === "text" && pedagogy) {
     for (const section of pedagogy) {
       if (section.signals.length > 0) {
