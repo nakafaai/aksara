@@ -12,23 +12,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$0.010\\text{ N}$$, $$1.0\\text{ m s}^{-2}$$ and $$63\\text{ ms}$$",
+          label: "$$0.50\\text{ N}$$, $$2.5\\text{ mm}$$ and $$1.6\\text{ V}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ N}$$, $$400\\text{ m s}^{-2}$$ and $$3.2\\text{ ms}$$",
+            "$$0.50\\text{ N}$$, $$0.25\\text{ mm}$$ and $$1.6\\text{ V}$$",
         },
         {
           correct: false,
-          label:
-            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ and $$0.080\\text{ ms}$$",
+          label: "$$1.0\\text{ N}$$, $$5.0\\text{ mm}$$ and $$0.64\\text{ V}$$",
         },
         {
           correct: true,
-          label:
-            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ and $$8.9\\text{ ms}$$",
+          label: "$$0.50\\text{ N}$$, $$2.5\\text{ mm}$$ and $$1.3\\text{ V}$$",
         },
       ],
     },
@@ -37,23 +34,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$0.010\\text{ N}$$, $$1.0\\text{ m s}^{-2}$$ dan $$63\\text{ ms}$$",
+          label: "$$0.50\\text{ N}$$, $$2.5\\text{ mm}$$ dan $$1.6\\text{ V}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ N}$$, $$400\\text{ m s}^{-2}$$ dan $$3.2\\text{ ms}$$",
+            "$$0.50\\text{ N}$$, $$0.25\\text{ mm}$$ dan $$1.6\\text{ V}$$",
         },
         {
           correct: false,
-          label:
-            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ dan $$0.080\\text{ ms}$$",
+          label: "$$1.0\\text{ N}$$, $$5.0\\text{ mm}$$ dan $$0.64\\text{ V}$$",
         },
         {
           correct: true,
-          label:
-            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ dan $$8.9\\text{ ms}$$",
+          label: "$$0.50\\text{ N}$$, $$2.5\\text{ mm}$$ dan $$1.3\\text{ V}$$",
         },
       ],
     },

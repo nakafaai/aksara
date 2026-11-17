@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$5.0\\text{ kW}$$, $$200\\text{ W}$$ and $$3.75:1$$",
+          label: "$$5.0\\text{ kW}$$, $$200\\text{ W}$$ and $$90\\%$$",
         },
         {
           correct: true,
-          label: "$$5.0\\text{ kW}$$, $$8.0\\text{ W}$$ and $$3.75:1$$",
+          label: "$$5.0\\text{ kW}$$, $$8.0\\text{ W}$$ and $$90\\%$$",
         },
         {
           correct: false,
-          label: "$$100\\text{ W}$$, $$4.0\\text{ W}$$ and $$3.75:1$$",
+          label: "$$100\\text{ W}$$, $$4.0\\text{ W}$$ and $$99.8\\%$$",
         },
         {
           correct: false,
-          label: "$$5.0\\text{ kW}$$, $$8.0\\text{ W}$$ and $$4.2:1$$",
+          label: "$$2.5\\text{ kW}$$, $$4.0\\text{ W}$$ and $$95\\%$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$5.0\\text{ kW}$$, $$200\\text{ W}$$ dan $$3.75:1$$",
+          label: "$$5.0\\text{ kW}$$, $$200\\text{ W}$$ dan $$90\\%$$",
         },
         {
           correct: true,
-          label: "$$5.0\\text{ kW}$$, $$8.0\\text{ W}$$ dan $$3.75:1$$",
+          label: "$$5.0\\text{ kW}$$, $$8.0\\text{ W}$$ dan $$90\\%$$",
         },
         {
           correct: false,
-          label: "$$100\\text{ W}$$, $$4.0\\text{ W}$$ dan $$3.75:1$$",
+          label: "$$100\\text{ W}$$, $$4.0\\text{ W}$$ dan $$99.8\\%$$",
         },
         {
           correct: false,
-          label: "$$5.0\\text{ kW}$$, $$8.0\\text{ W}$$ dan $$4.2:1$$",
+          label: "$$2.5\\text{ kW}$$, $$4.0\\text{ W}$$ dan $$95\\%$$",
         },
       ],
     },

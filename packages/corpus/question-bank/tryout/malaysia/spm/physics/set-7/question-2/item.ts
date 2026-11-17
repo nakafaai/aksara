@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ and $$3.9\\text{ mm}$$",
+          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ and $$\\times1.32$$",
         },
         {
           correct: false,
-          label: "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$ and $$4.6\\text{ mm}$$",
+          label: "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$ and $$\\times1.41$$",
         },
         {
           correct: false,
-          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ and $$1.0\\text{ mm}$$",
+          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ and $$\\times2.0$$",
         },
         {
           correct: false,
-          label: "$$n=-3$$, $$20\\text{ g s}^{-1}$$ and $$3.5\\text{ mm}$$",
+          label: "$$n=-3$$, $$20\\text{ g s}^{-1}$$ and $$\\times1.26$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ dan $$3.9\\text{ mm}$$",
+          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ dan $$\\times1.32$$",
         },
         {
           correct: false,
-          label: "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$ dan $$4.6\\text{ mm}$$",
+          label: "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$ dan $$\\times1.41$$",
         },
         {
           correct: false,
-          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ dan $$1.0\\text{ mm}$$",
+          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ dan $$\\times2.0$$",
         },
         {
           correct: false,
-          label: "$$n=-3$$, $$20\\text{ g s}^{-1}$$ dan $$3.5\\text{ mm}$$",
+          label: "$$n=-3$$, $$20\\text{ g s}^{-1}$$ dan $$\\times1.26$$",
         },
       ],
     },
