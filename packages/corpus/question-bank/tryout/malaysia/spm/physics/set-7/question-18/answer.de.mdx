@@ -1,0 +1,26 @@
+# Parallele Schichten geben <InlineMath math="n\sin\theta" /> unverändert weiter
+
+An jeder Grenze gilt <InlineMath math="n_1\sin\theta_1=n_2\sin\theta_2" />. Bei parallelen Flächen ist der Austrittswinkel aus dem Wasser der Eintrittswinkel ins Glas, also ist <InlineMath math="n\sin\theta" /> **in jeder Schicht gleich**, und das Wasser fällt heraus: Der Winkel im Glas hängt nur von Luft und Glas ab. Der Grenzwinkel an der Grenze Glas-Wasser braucht **beide** Indizes, denn der Strahl würde vom Glas ins Wasser treten, nicht in Luft.
+
+<Chart
+  title={<>Winkel des Strahls und Grenzwinkel</>}
+  bars="apart"
+  categories={["In Luft", "In Wasser", "In Glas", "Grenzwinkel Glas zu Wasser"]}
+  series={[
+    { label: "Winkel", mark: "bar", values: [50, 35, 31, 62] },
+  ]}
+  valueLabel="Winkel (°)"
+  description={<>Der Strahl wird von <InlineMath math="50°" /> in Luft auf <InlineMath math="35°" /> in Wasser und <InlineMath math="31°" /> in Glas gebrochen. Der Grenzwinkel von Glas zu Wasser beträgt <InlineMath math="62°" />, weit mehr als jeder Winkel, den ein Strahl aus der Luft im Glas erreichen kann.</>}
+/>
+
+<BlockMath math="1{,}00\sin50°=1{,}33\sin\theta_w=1{,}50\sin\theta_g\Rightarrow \sin\theta_g=\frac{0{,}766}{1{,}50}=0{,}511,\qquad \theta_g\approx31°" />
+
+<BlockMath math="\sin c=\frac{1{,}33}{1{,}50}=0{,}887\Rightarrow c\approx62°" />
+
+Im Wasser verläuft der Strahl unter etwa <InlineMath math="35°" />, im Glas unter etwa <InlineMath math="31°" />, genau als gäbe es das Wasser nicht. Der Grenzwinkel von Glas zu Wasser beträgt etwa <InlineMath math="62°" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="35°" /> ist der Winkel **im Wasser**, nicht im Glas.
+- <InlineMath math="42°" /> ist der Grenzwinkel von **Glas zu Luft**, <InlineMath math="\sin c=1/1{,}50" />, doch hier grenzt das Glas an Wasser.
+- <InlineMath math="49°" /> ist der Grenzwinkel von **Wasser zu Luft**, <InlineMath math="\sin c=1/1{,}33" />.

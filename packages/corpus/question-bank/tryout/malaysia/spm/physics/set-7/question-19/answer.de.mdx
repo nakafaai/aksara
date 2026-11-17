@@ -1,0 +1,26 @@
+# Brechkräfte in Brennweiten umrechnen und dann jeder Linse ihre Aufgabe geben
+
+Die Brechkraft einer Linse ist <InlineMath math="P=\dfrac1f" /> mit <InlineMath math="f" /> in Metern. Die **schwächere Linse mit der langen Brennweite ist das Objektiv**, die stärkere das Okular. Bei Normaleinstellung liegen die Linsen <InlineMath math="f_o+f_e" /> auseinander, und die Winkelvergrößerung <InlineMath math="\dfrac{f_o}{f_e}" /> multipliziert den Winkel des Mondes.
+
+<Chart
+  title={<>Winkel des Mondes mit bloßem Auge und durch das Fernrohr</>}
+  bars="apart"
+  categories={["Bloßes Auge", "Durch das Fernrohr"]}
+  series={[
+    { label: "Winkel", mark: "bar", values: [0.5, 10] },
+  ]}
+  valueLabel="Winkel (°)"
+  description={<>Der Mond füllt mit bloßem Auge <InlineMath math="0{,}50°" /> und durch das Fernrohr <InlineMath math="10°" />, zwanzigmal mehr, das Verhältnis der Brennweiten <InlineMath math="80\text{ cm}" /> und <InlineMath math="4{,}0\text{ cm}" />.</>}
+/>
+
+<BlockMath math="f_o=\frac{1}{1{,}25}=0{,}80\text{ m}=80\text{ cm},\qquad f_e=\frac{1}{25}=0{,}040\text{ m}=4{,}0\text{ cm}" />
+
+<BlockMath math="L=80+4{,}0=84\text{ cm},\qquad M=\frac{80}{4{,}0}=20,\qquad \theta=20\cdot0{,}50°=10°" />
+
+Die Linsen liegen <InlineMath math="84\text{ cm}" /> auseinander. Das Fernrohr vergrößert Winkel <InlineMath math="20" />-fach, der Mond füllt also <InlineMath math="10°" /> statt <InlineMath math="0{,}50°" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="76\text{ cm}" /> **subtrahiert die Brennweiten**, doch bei Normaleinstellung treffen sich die Brennpunkte zwischen den Linsen, die Längen addieren sich.
+- <InlineMath math="0{,}025°" /> **teilt** durch die Vergrößerung, als wären Okular und Objektiv vertauscht.
+- <InlineMath math="0{,}50°" /> nimmt an, ein Fernrohr bringe das Bild nur näher, **ohne den Winkel zu vergrößern**, doch genau die Winkelvergrößerung ist sein Zweck.
