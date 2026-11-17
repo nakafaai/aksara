@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "decreases by $$0.020\\text{ g}$$, $$2.41\\times10^{22}$$ electrons",
+            "increases by $$1.92\\text{ g}$$, $$1.20\\times10^{22}$$ electrons, $$0.100\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "increases by $$1.28\\text{ g}$$, $$2.41\\times10^{22}$$ electrons",
+            "increases by $$2.16\\text{ g}$$, $$1.20\\times10^{22}$$ electrons, $$0.100\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "decreases by $$0.020\\text{ g}$$, $$1.20\\times10^{22}$$ electrons",
+            "increases by $$1.92\\text{ g}$$, $$2.41\\times10^{22}$$ electrons, $$0.200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "decreases by $$1.30\\text{ g}$$, $$2.41\\times10^{22}$$ electrons",
+            "increases by $$1.92\\text{ g}$$, $$1.20\\times10^{22}$$ electrons, $$0.200\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "berkurang sebanyak $$0.020\\text{ g}$$, $$2.41\\times10^{22}$$ elektron",
+            "bertambah sebanyak $$1.92\\text{ g}$$, $$1.20\\times10^{22}$$ elektron, $$0.100\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "bertambah sebanyak $$1.28\\text{ g}$$, $$2.41\\times10^{22}$$ elektron",
+            "bertambah sebanyak $$2.16\\text{ g}$$, $$1.20\\times10^{22}$$ elektron, $$0.100\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "berkurang sebanyak $$0.020\\text{ g}$$, $$1.20\\times10^{22}$$ elektron",
+            "bertambah sebanyak $$1.92\\text{ g}$$, $$2.41\\times10^{22}$$ elektron, $$0.200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "berkurang sebanyak $$1.30\\text{ g}$$, $$2.41\\times10^{22}$$ elektron",
+            "bertambah sebanyak $$1.92\\text{ g}$$, $$1.20\\times10^{22}$$ elektron, $$0.200\\text{ mol dm}^{-3}$$",
         },
       ],
     },

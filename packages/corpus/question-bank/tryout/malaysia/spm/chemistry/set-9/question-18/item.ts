@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$0.50\\text{ g}$$",
+            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$240\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$240\\text{ cm}^3$$, $$3.0\\text{ cm}^3\\text{ s}^{-1}$$, $$0\\text{ g}$$",
+            "$$240\\text{ cm}^3$$, $$3.0\\text{ cm}^3\\text{ s}^{-1}$$, $$240\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$240\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$0.50\\text{ g}$$",
+            "$$240\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$120\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$240\\text{ cm}^3$$, $$3.0\\text{ cm}^3\\text{ s}^{-1}$$, $$0.50\\text{ g}$$",
+            "$$240\\text{ cm}^3$$, $$3.0\\text{ cm}^3\\text{ s}^{-1}$$, $$120\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$0.50\\text{ g}$$",
+            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$240\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$240\\text{ cm}^3$$, $$3.0\\text{ cm}^3\\text{ s}^{-1}$$, $$0\\text{ g}$$",
+            "$$240\\text{ cm}^3$$, $$3.0\\text{ cm}^3\\text{ s}^{-1}$$, $$240\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$240\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$0.50\\text{ g}$$",
+            "$$240\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$120\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$240\\text{ cm}^3$$, $$3.0\\text{ cm}^3\\text{ s}^{-1}$$, $$0.50\\text{ g}$$",
+            "$$240\\text{ cm}^3$$, $$3.0\\text{ cm}^3\\text{ s}^{-1}$$, $$120\\text{ cm}^3$$",
         },
       ],
     },
