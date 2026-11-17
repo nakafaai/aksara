@@ -1,0 +1,29 @@
+# Work through the gates in order, then read the outputs as a binary number
+
+<InlineMath math="N_1" /> has both inputs at <InlineMath math="1" />, so it gives <InlineMath math="0" />. <InlineMath math="N_2" /> and <InlineMath math="N_3" /> each see a <InlineMath math="0" />, so both give <InlineMath math="1" />.
+
+<Mermaid
+  title={<>Following the Signals Gate by Gate</>}
+  description={<>Each NAND gate gives <InlineMath math="0" /> only when both its inputs are <InlineMath math="1" />. The four NAND gates together make an exclusive OR.</>}
+  chart={`
+    flowchart LR
+      N0["A = 1, B = 1"] --> N1["N1 = NAND(1, 1) = 0"]
+      N1 --> N2["N2 = NAND(1, 0) = 1"]
+      N1 --> N3["N3 = NAND(1, 0) = 1"]
+      N2 --> N4["S = N4 = NAND(1, 1) = 0"]
+      N3 --> N4
+      N1 --> N5["C = NOT 0 = 1"]
+      N4 --> N6["C S = 10: two"]
+      N5 --> N6
+  `}
+/>
+
+<InlineMath math="N_4" /> then has two <InlineMath math="1" />s and gives <InlineMath math="S = 0" />, while the NOT gate turns <InlineMath math="N_1" />'s <InlineMath math="0" /> into <InlineMath math="C = 1" />. Read as <InlineMath math="CS = 10" />, the circuit shows two: it is a **half adder**, and <InlineMath math="1 + 1 = 2" />.
+
+**The second half adder**: it adds <InlineMath math="S = 0" /> and the third input <InlineMath math="1" />, giving sum <InlineMath math="1" /> and carry <InlineMath math="0" />. The OR gate combines carries <InlineMath math="1" /> and <InlineMath math="0" /> into <InlineMath math="1" />. The outputs read <InlineMath math="11" /> in binary, which is three: <InlineMath math="1 + 1 + 1 = 3" />.
+
+# Why the other options are wrong
+
+- Two is the first half adder alone, before the **third input** is added.
+- One drops the first half adder's carry, but the OR gate passes it on to the final carry.
+- Eleven reads the binary digits <InlineMath math="11" /> as a decimal number, but in binary they mean three.

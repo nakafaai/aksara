@@ -1,0 +1,24 @@
+# Find the wavelength, then shrink it to the size of the detail
+
+In tissue <InlineMath math="\lambda = v \div f = 1540 \div 2.0 \times 10^6 = 7.7 \times 10^{-4}" /> m, or <InlineMath math="0.77" /> mm, too coarse for a <InlineMath math="0.30" /> mm structure.
+
+<Mermaid
+  title={<>Finer Detail Needs a Shorter Wavelength</>}
+  description={<>At a fixed speed in tissue, a shorter wavelength means a higher frequency.</>}
+  chart={`
+    flowchart LR
+      N0["λ = 1540 ÷ 2.0 × 10⁶ = 0.77 mm"] --> N1["Need λ ≤ 0.30 mm"]
+      N1 --> N2["f = 1540 ÷ 0.30 × 10⁻³"]
+      N2 --> N3["f ≥ 5.1 MHz"]
+  `}
+/>
+
+The wavelength must come down to <InlineMath math="0.30" /> mm, and at a fixed speed that needs a **higher frequency**: <InlineMath math="f = 1540 \div 0.30 \times 10^{-3} = 5.1 \times 10^6" /> Hz, at least <InlineMath math="5.1" /> MHz.
+
+**The price of the higher frequency**: at <InlineMath math="5.1" /> MHz the halving distance shrinks to <InlineMath math="2.0 \times 2.0 \div 5.1 = 0.78" /> cm. The echo travels <InlineMath math="3.0" /> cm in and <InlineMath math="3.0" /> cm back, <InlineMath math="6.0" /> cm, which is <InlineMath math="7.7" /> halvings: <InlineMath math="1 \div 2^{7.7} \approx 1 \div 210" />, about <InlineMath math="0.5\%" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.17\text{ mm}" /> uses the speed of sound in **air**, but the waves travel through tissue.
+- About <InlineMath math="7\%" /> counts only the trip in, but the echo must also travel **back out** through the same tissue.
+- About <InlineMath math="12\%" /> keeps the halving distance of the <InlineMath math="2.0" /> MHz beam, but a higher frequency is absorbed faster.

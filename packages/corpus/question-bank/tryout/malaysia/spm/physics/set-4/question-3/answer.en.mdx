@@ -1,0 +1,24 @@
+# Check the speed limit before solving for the meeting
+
+Without a limit, <InlineMath math="t^2 = 12t" /> gives <InlineMath math="t = 12" /> s, but by then car A would be doing <InlineMath math="24" /> m/s. It **reaches its limit** after <InlineMath math="20 \div 2.0 = 10" /> s, having covered <InlineMath math="\tfrac{1}{2} \times 2.0 \times 10^2 = 100" /> m, while car B is at <InlineMath math="120" /> m.
+
+<Chart
+  title={<>Distance of Each Car from the Start</>}
+  categories={["0", "2", "4", "6", "8", "10", "12", "14"]}
+  series={[
+    { label: "Car A", mark: "line", values: [0, 4, 16, 36, 64, 100, 140, 180] },
+    { label: "Car B", mark: "line", values: [0, 24, 48, 72, 96, 120, 144, 168] },
+  ]}
+  valueLabel="Distance (m)"
+  description={<>Car A curves up until <InlineMath math="10\text{ s}" />, then rises in a straight line at <InlineMath math="20\text{ m s}^{-1}" />. It is still behind at <InlineMath math="12\text{ s}" /> and ahead at <InlineMath math="14\text{ s}" />. Time is in seconds.</>}
+/>
+
+From then on car A gains <InlineMath math="20 - 12 = 8" /> m/s, so the <InlineMath math="20" /> m gap closes in <InlineMath math="2.5" /> s. They draw level after <InlineMath math="12.5" /> s, at <InlineMath math="12 \times 12.5 = 150" /> m.
+
+**Braking afterwards**: car A draws level at its capped <InlineMath math="20" /> m/s, not <InlineMath math="24" />. Stopping in <InlineMath math="150" /> m needs <InlineMath math="a = 20^2 \div (2 \times 150) = 1.3\text{ m s}^{-2}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="12.0\text{ s}" /> and <InlineMath math="1.9\text{ m s}^{-2}" /> keep car A accelerating past its **top speed**, to <InlineMath math="24" /> m/s.
+- <InlineMath math="2.7\text{ m s}^{-2}" /> leaves the <InlineMath math="2" /> out of <InlineMath math="v^2 = 2as" />.
+- <InlineMath math="10.0\text{ s}" /> is when car A reaches its top speed, still <InlineMath math="20" /> m behind.

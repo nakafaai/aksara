@@ -1,0 +1,24 @@
+# Mit der Linsengleichung neu scharfstellen, dann die Bildgröße über den Maßstab bestimmen
+
+Der Hügel ist scharf bei <InlineMath math="v = f = 50" /> mm. Für die Person gilt <InlineMath math="\tfrac{1}{v} = \tfrac{1}{50} - \tfrac{1}{1000}" />, also <InlineMath math="v = 52{,}6" /> mm: Die Linse fährt <InlineMath math="2{,}6" /> mm **vom Sensor weg**.
+
+<Mermaid
+  title={<>Scharfstellen und Ausschnitt mit einer Linse</>}
+  description={<>Ein ferner Hügel wird bei <InlineMath math="f" /> scharf. Nähere Gegenstände werden weiter hinter der Linse scharf, und eine große Person passt nur bei genügend kleinem Maßstab.</>}
+  chart={`
+    flowchart LR
+      N0["Hügel: v = f = 50 mm"] --> N2["Linse fährt 2,6 mm heraus"]
+      N1["Person bei 1,0 m: v = 52,6 mm"] --> N2
+      N3["Nötig m = 24 ÷ 1700 = 0,0141"] --> N4["u = f(1 + 1/m) = 3,6 m"]
+  `}
+/>
+
+Damit es passt, darf <InlineMath math="m = v \div u" /> höchstens <InlineMath math="24 \div 1700 = 0{,}0141" /> sein. Mit <InlineMath math="v = mu" /> in der Linsengleichung wird <InlineMath math="u = f\left(1 + \tfrac{1}{m}\right) = 50 \times 71{,}8 = 3590" /> mm, die Person muss also mindestens <InlineMath math="3{,}6" /> m entfernt stehen.
+
+**Die Linse bei diesem Abstand**: Mit der Person bei <InlineMath math="3590" /> mm gilt <InlineMath math="v = mu = 0{,}0141 \times 3590 = 50{,}7" /> mm. Die Linse steht nur <InlineMath math="0{,}7" /> mm vor ihrer Stellung für den fernen Hügel, viel näher an <InlineMath math="f" /> als für die Person bei <InlineMath math="1{,}0" /> m.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3{,}5\text{ m}" /> und <InlineMath math="50{,}0\text{ mm}" /> lassen das Bild genau bei <InlineMath math="f" /> entstehen, doch ein Motiv in endlicher Entfernung wird **hinter** <InlineMath math="f" /> scharf.
+- Ein näherer Gegenstand braucht eine größere Bildweite, die Linse fährt also vom Sensor weg, nicht hin, und nie näher als <InlineMath math="f" />.
+- <InlineMath math="71\text{ m}" /> skaliert den ersten Abstand mit <InlineMath math="1700 \div 24" />, und <InlineMath math="52{,}6\text{ mm}" /> lässt die Linse dort, wo sie für die Person bei <InlineMath math="1{,}0" /> m stand.

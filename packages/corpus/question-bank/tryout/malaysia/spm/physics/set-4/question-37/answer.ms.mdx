@@ -1,0 +1,25 @@
+# Diod membuang separuh masa, bukan separuh voltan
+
+Diod unggul melalukan satu separuh kitar daripada setiap dua dan menyekat yang lain sepenuhnya. Pada separuh kitar yang dilalukan, lampu menerima **voltan yang sama** seperti sebelumnya, jadi kuasa purata menjadi separuh, <InlineMath math="12" /> W.
+
+<Mermaid
+  title={<>Separuh Kitar, Separuh Kuasa</>}
+  description={<>Diod menyekat setiap separuh kitar yang berselang. Pada separuh kitar yang dilalukan, lampu menerima kuasa yang sama seperti sebelumnya.</>}
+  chart={`
+    flowchart LR
+      N0["Diod melalukan satu daripada dua separuh kitar"] --> N1["Pada separuh itu: kuasa seperti sebelumnya"]
+      N1 --> N2["Kuasa purata ½ × 24 = 12 W"]
+      N2 --> N3["Untuk 24 W semula: kuasa × 2"]
+      N3 --> N4["Kuasa ∝ V²: voltan × √2 = 17 V"]
+  `}
+/>
+
+Untuk mendapatkan <InlineMath math="24" /> W semula, kuasa semasa separuh kitar yang mengalirkan arus mesti berganda. Kuasa berkadar dengan kuasa dua voltan, jadi voltan mesti naik sebanyak <InlineMath math="\sqrt{2}" />: <InlineMath math="12 \times \sqrt{2} = 17" /> V p.m.k.d.
+
+**Arus puncak**: lampu berintangan <InlineMath math="12^2 \div 24 = 6.0\,\Omega" />. Bekalan <InlineMath math="17" /> V p.m.k.d. memuncak pada <InlineMath math="17 \times \sqrt{2} = 24" /> V, jadi arus memuncak pada <InlineMath math="24 \div 6.0 = 4.0" /> A, berbanding <InlineMath math="2.8" /> A sebelum diod ditambah.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="6.0\text{ W}" /> menyeparuhkan voltan, tetapi diod membiarkan voltan setiap separuh kitar yang dilalukan **tidak berubah**.
+- <InlineMath math="24\text{ V}" /> menggandakan voltan untuk menggandakan kuasa, tetapi menggandakan voltan akan menjadikan kuasa empat kali ganda.
+- Diod itu bukan tidak wujud: ia menyekat setiap separuh kitar yang berselang, jadi lampu tidak dapat mengekalkan <InlineMath math="24" /> W penuh.

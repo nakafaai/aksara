@@ -1,0 +1,25 @@
+# Jumlahkan dua jarak berhenti, lalu cari gaya dan waktunya
+
+Terhadap tanah pengemudi menempuh jarak zona remuk **ditambah** regangan sabuk, <InlineMath math="0{,}40 + 0{,}20 = 0{,}60" /> m, sambil melambat dari <InlineMath math="15" /> m/s sampai diam.
+
+<Mermaid
+  title={<>Jarak yang Ditempuh Pengemudi Saat Berhenti</>}
+  description={<>Pengemudi bergerak maju bersama mobil yang melipat lalu ke sabuk yang meregang, jadi jarak berhentinya adalah jumlah keduanya.</>}
+  chart={`
+    flowchart LR
+      N0["Zona remuk 0,40 m + sabuk 0,20 m = 0,60 m"] --> N1["a = 15² ÷ (2 × 0,60) = 188 m s⁻²"]
+      N1 --> N2["F = 70 × 188 = 1,3 × 10⁴ N"]
+      N0 --> N4["t = 0,60 ÷ 7,5 = 0,080 s"]
+      N3["Kelajuan rata-rata 7,5 m s⁻¹"] --> N4
+  `}
+/>
+
+Perlambatannya <InlineMath math="15^2 \div (2 \times 0{,}60) = 188\text{ m s}^{-2}" />, jadi sabuk menarik dengan <InlineMath math="70 \times 188 = 1{,}3 \times 10^4" /> N. Kelajuan rata-ratanya <InlineMath math="7{,}5" /> m/s, jadi pengereman memakan <InlineMath math="0{,}60 \div 7{,}5 = 0{,}080" /> s.
+
+**Tanpa sabuk**: pengemudi mencapai dasbor masih pada <InlineMath math="15" /> m/s dan berhenti dalam <InlineMath math="0{,}050" /> m: <InlineMath math="a = 15^2 \div (2 \times 0{,}050) = 2250\text{ m s}^{-2}" />, gaya <InlineMath math="70 \times 2250 = 1{,}6 \times 10^5" /> N. Itu <InlineMath math="0{,}60 \div 0{,}050 = 12" /> kali gaya sabuk, karena energi kinetik yang sama dihilangkan dalam seperdua belas jaraknya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="3{,}9 \times 10^4\text{ N}" /> hanya memakai <InlineMath math="0{,}20" /> m sabuk dan lupa pengemudi juga bergerak bersama **mobil yang remuk**.
+- <InlineMath math="1{,}3" /> kali membiarkan dasbor menghentikan pengemudi sepanjang jarak remuk juga, padahal pengemudi tanpa sabuk mencapainya masih pada kecepatan penuh.
+- <InlineMath math="2{,}6 \times 10^4\text{ N}" /> membagi jarak dengan kelajuan awal untuk waktunya, padahal pengemudi melambat, jadi kelajuan rata-ratanya separuhnya.

@@ -1,0 +1,24 @@
+# Die Dose zum Wasser zählen, die Wärme bilanzieren, dann rückwärts rechnen
+
+Pro Grad gibt das Kupfer <InlineMath math="0{,}50 \times 390 = 195" /> J ab, Wasser und **Dose** nehmen <InlineMath math="0{,}40 \times 4200 + 0{,}40 \times 900 = 2040" /> J auf.
+
+<Chart
+  title={<>Wärme pro Grad</>}
+  bars="apart"
+  categories={["Kupfer", "Wasser", "Aluminiumdose"]}
+  series={[
+    { label: "Wärme pro Grad (J/°C)", mark: "bar", values: [195, 1680, 360] },
+  ]}
+  valueLabel="Wärme pro Grad (J/°C)"
+  description={<>Wasser und Dose brauchen zusammen <InlineMath math="2040\text{ J}" /> pro Grad, mehr als das Zehnfache der <InlineMath math="195\text{ J}" /> des Kupfers, das Kupfer muss also viel stärker abkühlen, als das Wasser sich erwärmt.</>}
+/>
+
+Aus <InlineMath math="195(200 - T) = 2040(T - 25)" /> folgt <InlineMath math="T = 90\,000 \div 2235 = 40^\circ\text{C}" />. Damit das Wasser <InlineMath math="100^\circ\text{C}" /> erreicht, muss das Kupfer beim Abkühlen auf <InlineMath math="100^\circ\text{C}" /> genau <InlineMath math="2040 \times 75 = 153\,000" /> J abgeben: <InlineMath math="T_0 = 100 + 153\,000 \div 195 = 885^\circ\text{C}" />.
+
+**Etwas verdampfen**: Kupfer, das von <InlineMath math="1000" /> auf <InlineMath math="100^\circ\text{C}" /> abkühlt, gibt <InlineMath math="195 \times 900 = 175\,500" /> J ab. Wasser und Dose brauchen <InlineMath math="153\,000" /> J bis <InlineMath math="100^\circ\text{C}" />, es bleiben <InlineMath math="22\,500" /> J, die <InlineMath math="22\,500 \div 2{,}26 \times 10^6 = 0{,}010" /> kg verdampfen, etwa <InlineMath math="10" /> g.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="43^\circ\text{C}" />, <InlineMath math="746^\circ\text{C}" /> und <InlineMath math="22\text{ g}" /> lassen die **Aluminiumdose** weg, die ebenfalls erwärmt werden muss.
+- <InlineMath math="19\text{ g}" /> lässt das Kupfer bis <InlineMath math="0^\circ\text{C}" /> abkühlen, doch es bleibt mit dem siedenden Wasser bei <InlineMath math="100^\circ\text{C}" />.
+- <InlineMath math="78\text{ g}" /> steckt die ganze Wärme des Kupfers ins Verdampfen und vergisst, zuerst Wasser und Dose zu erwärmen.

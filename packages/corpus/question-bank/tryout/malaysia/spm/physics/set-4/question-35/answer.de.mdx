@@ -1,0 +1,25 @@
+# Festlegen, wo die Spannung steigen muss, dann den Widerstand für den Schaltpunkt wählen
+
+Wird der Raum warm, sinkt der Widerstand des Thermistors und damit sein Anteil an den <InlineMath math="5{,}0" /> V. Der Eingang muss **steigen**, also am Festwiderstand abgegriffen werden, mit dem Thermistor oben.
+
+<Mermaid
+  title={<>Den Spannungsteiler entwerfen</>}
+  description={<>Der Eingang muss steigen, wenn der Raum warm wird, er muss also am Bauteil abgegriffen werden, dessen Spannungsanteil wächst: dem Festwiderstand, mit dem Thermistor darüber.</>}
+  chart={`
+    flowchart LR
+      N0["Thermistorwiderstand sinkt bei Wärme"] --> N1["Festwiderstand unten: sein Anteil steigt"]
+      N1 --> N2["Schalten bei 2,5 V: zwei gleiche Hälften"]
+      N2 --> N3["Fest = Thermistor bei 45 °C = 4,0 kΩ"]
+      N3 --> N4["Bei 25 °C: 5,0 × 4,0 ÷ (10 + 4,0) = 1,4 V"]
+  `}
+/>
+
+Der Eingang erreicht <InlineMath math="2{,}5" /> V, wenn beide Widerstände gleich sind, der Festwiderstand muss also dem Thermistor bei <InlineMath math="45^\circ\text{C}" /> entsprechen: <InlineMath math="4{,}0\text{ k}\Omega" />. Bei <InlineMath math="25^\circ\text{C}" /> liegt der Eingang bei <InlineMath math="5{,}0 \times 4{,}0 \div (10 + 4{,}0) = 1{,}4" /> V, weit unter der Schwelle.
+
+**Ein größerer Widerstand, dann eine neue Schwelle**: Mit <InlineMath math="8{,}0\text{ k}\Omega" /> Festwiderstand erreicht der Eingang <InlineMath math="2{,}5" /> V, sobald auch der Thermistor <InlineMath math="8{,}0\text{ k}\Omega" /> hat, bei <InlineMath math="30^\circ\text{C}" />, zu früh. Bei <InlineMath math="45^\circ\text{C}" /> läge der Eingang jetzt bei <InlineMath math="5{,}0 \times 8{,}0 \div (4{,}0 + 8{,}0) = 3{,}3" /> V, die Schwelle muss also auf <InlineMath math="3{,}3" /> V steigen.
+
+# Warum die anderen Antworten falsch sind
+
+- Mit dem Thermistor unten **sinkt** der Eingang bei Wärme, der Alarm käme also nur bei Kälte.
+- Ein größerer Festwiderstand nimmt einen größeren Spannungsanteil, die Schwelle wird also früher erreicht, bei niedrigerer Temperatur, und <InlineMath math="1{,}7\text{ V}" /> ist der Anteil des Thermistors, nicht der des Eingangs.
+- <InlineMath math="10\text{ k}\Omega" /> entspricht dem Thermistor bei <InlineMath math="25^\circ\text{C}" />, der Alarm käme also schon bei Zimmertemperatur.

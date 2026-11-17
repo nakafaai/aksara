@@ -1,0 +1,24 @@
+# Hapus arus dengan sebagian kecepatan perahu, lalu menyeberang dengan sisanya
+
+Komponen ke hulu harus menghapus arus: <InlineMath math="2{,}5\sin\theta = 1{,}5" />, jadi <InlineMath math="\sin\theta = 0{,}60" /> dan <InlineMath math="\theta = 37^\circ" />. Kecepatan perahu adalah **sisi miring**, jadi sudutnya dari sinus, bukan tangen.
+
+<Mermaid
+  title={<>Menghapus Arus</>}
+  description={<>Komponen kecepatan perahu ke hulu harus tepat menghapus arus, dan hanya sisanya yang membawanya menyeberang.</>}
+  chart={`
+    flowchart LR
+      N0["Komponen ke hulu 2,5 sin θ = 1,5"] --> N1["sin θ = 0,60, θ = 37°"]
+      N1 --> N2["Komponen menyeberang 2,5 cos 37° = 2,0 m s⁻¹"]
+      N2 --> N3["t = 80 ÷ 2,0 = 40 s"]
+  `}
+/>
+
+Sisa yang menyeberangi sungai <InlineMath math="2{,}5\cos 37^\circ = 2{,}0" /> m/s, jadi penyeberangan memakan <InlineMath math="80 \div 2{,}0 = 40" /> s.
+
+**Penyeberangan tercepat**: mengarah lurus menyeberang memakai seluruh <InlineMath math="2{,}5" /> m/s untuk menyeberang, <InlineMath math="80 \div 2{,}5 = 32" /> s, tetapi arus membawa perahu <InlineMath math="1{,}5 \times 32 = 48" /> m ke hilir selama itu. Jalur tercepat bukan jalur terpendek.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="31^\circ" /> memakai <InlineMath math="\tan\theta = 1{,}5 \div 2{,}5" />, menganggap kecepatan perahu sebagai sisi pendek, bukan **sisi miring**.
+- Mendarat tepat di seberang butuh sebagian kecepatan untuk melawan arus, jadi tidak mungkin sekaligus menjadi penyeberangan tercepat.
+- <InlineMath math="60\text{ m}" /> membiarkan arus bekerja selama <InlineMath math="40" /> s, padahal penyeberangan tercepat hanya <InlineMath math="32" /> s.

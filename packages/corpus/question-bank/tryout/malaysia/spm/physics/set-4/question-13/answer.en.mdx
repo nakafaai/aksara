@@ -1,0 +1,25 @@
+# Turn wavelengths into speeds, then test both crossings
+
+The frequency stays <InlineMath math="12" /> Hz, so the speeds are <InlineMath math="18" /> and <InlineMath math="12" /> cm/s. Going in, <InlineMath math="\sin r = \sin 30^\circ \times 12 \div 18 = 0.33" />, so <InlineMath math="r = 19^\circ" />, bent **towards** the normal.
+
+<Mermaid
+  title={<>Speeds First, Then Both Boundaries</>}
+  description={<>The waves are slower in the shallow water, so they bend towards the normal going in. Coming back out they bend away, and at a large enough angle they cannot leave at all.</>}
+  chart={`
+    flowchart LR
+      N0["Deep: v = 12 × 1.5 = 18 cm s⁻¹"] --> N2["In: sin r = sin 30° × 12 ÷ 18 = 0.33"]
+      N1["Shallow: v = 12 × 1.0 = 12 cm s⁻¹"] --> N2
+      N2 --> N3["r = 19°"]
+      N0 --> N4["Out at 45°: sin r = 0.71 × 18 ÷ 12 = 1.06"]
+      N1 --> N4
+      N4 --> N5["Above 1: totally reflected"]
+  `}
+/>
+
+Coming back out, the ratio turns over: <InlineMath math="\sin r = \sin 45^\circ \times 18 \div 12 = 1.06" />. No angle has a sine above one, so the wave cannot cross and is totally reflected back into the shallow water.
+
+# Why the other options are wrong
+
+- <InlineMath math="49^\circ" /> turns the speed ratio upside down, bending the wave **away** from the normal as it slows down.
+- <InlineMath math="28^\circ" /> keeps the inward ratio for the way out, but leaving the slow water the wave speeds up and bends away from the normal.
+- An unchanged <InlineMath math="30^\circ" /> ignores the change of speed, which is what bends the wave.

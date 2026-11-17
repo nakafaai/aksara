@@ -1,0 +1,23 @@
+# Count only the air above the reserve, then expand it to the pressure at depth
+
+Only the pressure above the reserve can be used: <InlineMath math="12" /> L at <InlineMath math="20 - 5.0 = 15" /> MPa. At <InlineMath math="100" /> kPa that air would fill <InlineMath math="12 \times 15 \div 0.10 = 1800" /> L.
+
+<Mermaid
+  title={<>Usable Air, Measured at the Diver’s Depth</>}
+  description={<>Only the air above the reserve is usable, and at depth each breath is squeezed to the surrounding pressure, so it uses more of the stored air.</>}
+  chart={`
+    flowchart LR
+      N0["Usable: 12 L × (20 − 5.0) MPa"] --> N1["= 1800 L at 100 kPa"]
+      N1 --> N3["Volume there 1800 × 100 ÷ 306 = 588 L"]
+      N2["At 20 m: p = 100 + 1030 × 10 × 20 = 306 kPa"] --> N3
+      N3 --> N4["588 ÷ 20 = 29 min"]
+  `}
+/>
+
+At <InlineMath math="20" /> m the surrounding pressure is <InlineMath math="100 + 1030 \times 10 \times 20 \div 1000 = 306" /> kPa, so the usable air fills only <InlineMath math="1800 \times 100 \div 306 = 588" /> L there. At <InlineMath math="20" /> L a minute it lasts <InlineMath math="29" /> minutes, because **each breath at depth** holds three times as much air.
+
+# Why the other options are wrong
+
+- About <InlineMath math="90" /> minutes breathes the air at **surface pressure**, but at <InlineMath math="20" /> m each breath is squeezed to <InlineMath math="306" /> kPa.
+- About <InlineMath math="39" /> minutes uses the whole <InlineMath math="20" /> MPa and forgets the reserve that must be left.
+- About <InlineMath math="120" /> minutes forgets both the reserve and the depth.

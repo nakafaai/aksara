@@ -1,0 +1,24 @@
+# Fix the current from the lamp's rating, then share out the e.m.f.
+
+At its rating the lamp takes <InlineMath math="24 \div 12 = 2.0" /> A and has <InlineMath math="12 \div 2.0 = 6.0\,\Omega" />. The whole circuit must then be <InlineMath math="18 \div 2.0 = 9.0\,\Omega" />, which includes the battery's own <InlineMath math="1.0\,\Omega" />, so the rheostat is <InlineMath math="9.0 - 6.0 - 1.0 = 2.0\,\Omega" />.
+
+<Chart
+  title={<>Where the Battery’s <InlineMath math="36\text{ W}" /> Goes</>}
+  bars="apart"
+  categories={["Lamp", "Rheostat", "Inside the battery"]}
+  series={[
+    { label: "Power (W)", mark: "bar", values: [24, 8, 4] },
+  ]}
+  valueLabel="Power (W)"
+  description={<>At <InlineMath math="2.0\text{ A}" /> the battery produces <InlineMath math="36\text{ W}" />. The lamp takes <InlineMath math="24\text{ W}" />, the rheostat <InlineMath math="8\text{ W}" /> and the battery itself <InlineMath math="4\text{ W}" />.</>}
+/>
+
+The battery produces <InlineMath math="EI = 18 \times 2.0 = 36" /> W, and the lamp gets <InlineMath math="24" /> W of it: <InlineMath math="24 \div 36 = 67\%" />. The rest heats the rheostat and the battery **itself**.
+
+**Rheostat shorted**: only the lamp's <InlineMath math="6.0\,\Omega" /> and the battery's <InlineMath math="1.0\,\Omega" /> remain, so <InlineMath math="I = 18 \div 7.0 = 2.57" /> A and the lamp takes <InlineMath math="2.57^2 \times 6.0 = 40" /> W, well above its rating, likely enough to burn it out.
+
+# Why the other options are wrong
+
+- <InlineMath math="3.0\,\Omega" /> and <InlineMath math="54\text{ W}" /> forget the battery's **internal resistance**, which still limits the current once the rheostat is shorted.
+- <InlineMath math="75\%" /> counts only the rheostat's loss and forgets the <InlineMath math="4" /> W wasted inside the battery.
+- The lamp's rating does not fix its power: with less resistance in the circuit the current rises, and so does the power.

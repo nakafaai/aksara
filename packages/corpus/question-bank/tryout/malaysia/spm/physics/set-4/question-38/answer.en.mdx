@@ -1,0 +1,25 @@
+# Put the sample on the same footing as the living value, then count halvings
+
+Remove the background first: <InlineMath math="16 - 1.0 = 15" /> counts per minute. The living value is **per gram**, so divide by the mass: <InlineMath math="15 \div 4.0 = 3.75" /> counts per minute per gram.
+
+<Mermaid
+  title={<>Correct, Scale per Gram, Then Count Halvings</>}
+  description={<>The living value is per gram and already free of background, so the sample must be treated the same way before comparing.</>}
+  chart={`
+    flowchart LR
+      N0["Sample 16 − 1.0 = 15 counts per minute"] --> N1["Per gram 15 ÷ 4.0 = 3.75"]
+      N1 --> N2["Fraction left 3.75 ÷ 15 = 1/4"]
+      N2 --> N3["Two half-lives"]
+      N3 --> N4["2 × 5730 = 11 460 years"]
+  `}
+/>
+
+The sample keeps <InlineMath math="3.75 \div 15 = \tfrac{1}{4}" /> of the living activity, which is two halvings. The campfire is <InlineMath math="2 \times 5730 = 11\,460" /> years old.
+
+**The second fire**: <InlineMath math="4.75 - 1.0 = 3.75" /> counts per minute over <InlineMath math="4.0" /> g is <InlineMath math="0.94" /> per gram, a sixteenth of the living value: four half-lives, <InlineMath math="22\,920" /> years. It was lit <InlineMath math="22\,920 - 11\,460 = 11\,460" /> years before the first fire.
+
+# Why the other options are wrong
+
+- About <InlineMath math="10\,900" /> years forgets to remove the **background**, which matters more and more as the count gets smaller.
+- About <InlineMath math="22\,900" /> years counts four half-lives for a quarter, but a quarter is two halvings.
+- About <InlineMath math="22\,920" /> years earlier is the second fire's whole age, not how much older it is than the first.

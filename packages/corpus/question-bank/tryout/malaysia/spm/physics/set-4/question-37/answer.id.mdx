@@ -1,0 +1,25 @@
+# Dioda membuang separuh waktu, bukan separuh tegangan
+
+Dioda ideal meloloskan satu setengah siklus dari tiap dua dan memblokir yang lain sepenuhnya. Pada setengah siklus yang diloloskan, lampu menerima **tegangan yang sama persis** seperti sebelumnya, jadi daya rata-ratanya menjadi separuh, <InlineMath math="12" /> W.
+
+<Mermaid
+  title={<>Setengah Siklus, Setengah Daya</>}
+  description={<>Dioda memblokir setiap setengah siklus yang berselang. Pada setengah siklus yang diloloskan, lampu menerima daya yang sama seperti sebelumnya.</>}
+  chart={`
+    flowchart LR
+      N0["Dioda meloloskan satu dari dua setengah siklus"] --> N1["Pada setengah itu: daya seperti sebelumnya"]
+      N1 --> N2["Daya rata-rata ½ × 24 = 12 W"]
+      N2 --> N3["Untuk 24 W lagi: daya × 2"]
+      N3 --> N4["Daya ∝ V²: tegangan × √2 = 17 V"]
+  `}
+/>
+
+Untuk mendapatkan <InlineMath math="24" /> W lagi, daya selama setengah siklus yang menghantar harus berlipat dua. Daya sebanding kuadrat tegangan, jadi tegangan harus naik <InlineMath math="\sqrt{2}" /> kali: <InlineMath math="12 \times \sqrt{2} = 17" /> V efektif.
+
+**Arus puncak**: lampu berhambatan <InlineMath math="12^2 \div 24 = 6{,}0\,\Omega" />. Sumber <InlineMath math="17" /> V efektif memuncak pada <InlineMath math="17 \times \sqrt{2} = 24" /> V, jadi arus memuncak pada <InlineMath math="24 \div 6{,}0 = 4{,}0" /> A, dibanding <InlineMath math="2{,}8" /> A sebelum dioda dipasang.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="6{,}0\text{ W}" /> membagi dua tegangannya, padahal dioda membiarkan tegangan tiap setengah siklus yang lolos **tidak berubah**.
+- <InlineMath math="24\text{ V}" /> menggandakan tegangan untuk menggandakan daya, padahal tegangan dua kali lipat membuat daya empat kali lipat.
+- Dioda itu tidak tak terlihat: ia memblokir setiap setengah siklus yang berselang, jadi lampu tidak bisa mempertahankan <InlineMath math="24" /> W penuh.

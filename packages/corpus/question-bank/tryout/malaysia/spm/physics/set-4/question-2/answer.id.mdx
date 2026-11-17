@@ -1,0 +1,25 @@
+# Hitung ayunannya, bukan angka yang diucapkan
+
+Hitungan dimulai dari "satu" tanpa ada ayunan yang selesai, jadi "dua puluh" hanya menandai **sembilan belas ayunan**. Periodenya <InlineMath math="36{,}0 \div 19 = 1{,}89" /> s.
+
+<Mermaid
+  title={<>Menghitung Ayunan dengan Benar</>}
+  description={<>Menyebut "satu" saat dilepas berarti hitungan dua puluh hanya menandai sembilan belas ayunan penuh.</>}
+  chart={`
+    flowchart LR
+      N0["Hitungan 1 saat dilepas, 20 di akhir"] --> N1["19 ayunan dalam 36,0 s"]
+      N1 --> N2["T = 36,0 ÷ 19 = 1,89 s"]
+      N2 --> N3["g = 4π² × 0,900 ÷ 1,89² = 9,9 m s⁻²"]
+      N3 --> N4["l = 9,9 × 2,00² ÷ 4π² = 1,00 m"]
+  `}
+/>
+
+Maka <InlineMath math="g = \dfrac{4\pi^2 l}{T^2} = \dfrac{4\pi^2 \times 0{,}900}{1{,}89^2} = 9{,}9\text{ m s}^{-2}" />. Untuk <InlineMath math="T = 2{,}00" /> s, <InlineMath math="l = \dfrac{gT^2}{4\pi^2} = \dfrac{9{,}9 \times 4{,}00}{39{,}5} = 1{,}00" /> m, karena panjang sebanding kuadrat periode.
+
+**Seberapa jauh g bisa meleset**: dua tekanan bersama bisa menggeser waktu sampai <InlineMath math="0{,}20" /> s dalam <InlineMath math="36{,}0" /> s, yaitu <InlineMath math="0{,}56\%" /> dari periode. Karena <InlineMath math="g" /> sebanding <InlineMath math="1 \div T^2" />, kesalahan itu **berlipat dua** pada <InlineMath math="g" />: sekitar <InlineMath math="1{,}1\%" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="11{,}0\text{ m s}^{-2}" /> membagi dengan dua puluh, menganggap "satu" yang diucapkan sebagai ayunan yang **sudah selesai**.
+- <InlineMath math="0{,}56\%" /> adalah kesalahan periode, padahal <InlineMath math="g" /> bergantung pada kuadrat periode, yang menggandakannya.
+- <InlineMath math="0{,}28\%" /> hanya menghitung satu tekanan, padahal memulai dan menghentikan masing-masing bisa meleset.

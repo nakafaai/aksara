@@ -1,0 +1,25 @@
+# Das Etikett in Energie umrechnen, dann durch die beim Akku ankommende Leistung teilen
+
+Das Etikett nennt eine **Ladung**: <InlineMath math="4{,}0" /> A h sind <InlineMath math="4{,}0 \times 3600 = 14\,400" /> C. Bei <InlineMath math="3{,}85" /> V speichert das <InlineMath math="14\,400 \times 3{,}85 = 55\,400" /> J, etwa <InlineMath math="55" /> kJ.
+
+<Mermaid
+  title={<>Ladung mal Spannung, dann Energie durch Leistung</>}
+  description={<>Das Etikett nennt eine Ladung, keine Energie. Mal die Spannung ergibt die Energie, und die nutzbare Ladeleistung bestimmt die Zeit.</>}
+  chart={`
+    flowchart LR
+      N0["Ladung 4,0 A h = 4,0 × 3600 = 14 400 C"] --> N1["Energie 14 400 × 3,85 = 55 kJ"]
+      N1 --> N4["t = 55 440 ÷ 15,3 = 3600 s ≈ 1,0 h"]
+      N2["Ladegerät 9,0 × 2,0 = 18 W"] --> N3["In den Akku 0,85 × 18 = 15,3 W"]
+      N3 --> N4
+  `}
+/>
+
+Das Ladegerät nimmt <InlineMath math="9{,}0 \times 2{,}0 = 18" /> W auf, davon erreichen <InlineMath math="0{,}85 \times 18 = 15{,}3" /> W den Akku. Eine volle Ladung dauert <InlineMath math="55\,400 \div 15{,}3 = 3600" /> s, etwa <InlineMath math="1{,}0" /> h. Der Strom des Akkus selbst ist nicht <InlineMath math="2{,}0" /> A, weil die Spannung unterwegs umgesetzt wird.
+
+**Wärme im Ladegerät**: In den <InlineMath math="3620" /> s nimmt das Ladegerät <InlineMath math="18 \times 3620 = 65\,200" /> J auf, und die <InlineMath math="15\%" />, die es nicht weitergibt, werden Wärme: <InlineMath math="0{,}15 \times 65\,200 = 9{,}8" /> kJ. Die <InlineMath math="15\%" /> beziehen sich auf das, was **hineingeht**, nicht auf das, was der Akku speichert.
+
+# Warum die anderen Antworten falsch sind
+
+- Etwa <InlineMath math="2{,}0\text{ h}" /> teilt <InlineMath math="4000" /> mA h durch <InlineMath math="2{,}0" /> A, doch dieser Strom fließt bei <InlineMath math="9{,}0" /> V, nicht bei der **Akkuspannung**.
+- <InlineMath math="8{,}3\text{ kJ}" /> nimmt <InlineMath math="15\%" /> der gespeicherten Energie, doch der Verlust ist ein Anteil der aufgenommenen Energie.
+- Etwa <InlineMath math="0{,}73\text{ h}" /> teilt die Ladeleistung durch <InlineMath math="0{,}85" />, als fügten die Verluste Leistung hinzu, statt sie abzuziehen.

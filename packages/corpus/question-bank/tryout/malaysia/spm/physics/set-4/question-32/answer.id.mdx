@@ -1,0 +1,24 @@
+# Bandingkan daya berguna dengan masukan, lalu pakai pemborosan untuk mencari kumparan
+
+Motor memberi <InlineMath math="mgv = 2{,}0 \times 10 \times 0{,}50 = 10" /> W dan mengambil <InlineMath math="12 \times 1{,}25 = 15" /> W, jadi efisiensinya <InlineMath math="67\%" />. <InlineMath math="5{,}0" /> W sisanya memanaskan kumparan: <InlineMath math="5{,}0 = 1{,}25^2 R" />, jadi <InlineMath math="R = 3{,}2\,\Omega" />.
+
+<Mermaid
+  title={<>Dari Angkatan ke Hambatan Kumparan</>}
+  description={<>Pemborosan mengungkap hambatan kumparan. Motor yang macet tidak menghasilkan GGL balik, jadi hanya hambatan itu yang membatasi arus.</>}
+  chart={`
+    flowchart LR
+      N0["Keluaran mgv = 2,0 × 10 × 0,50 = 10 W"] --> N2["Efisiensi 10 ÷ 15 = 67%"]
+      N1["Masukan 12 × 1,25 = 15 W"] --> N2
+      N0 --> N3["Terbuang 5,0 W = I²R: R = 3,2 Ω"]
+      N1 --> N3
+      N3 --> N4["Macet: I = 12 ÷ 3,2 = 3,75 A"]
+  `}
+/>
+
+Kumparannya bukan <InlineMath math="12 \div 1{,}25 = 9{,}6\,\Omega" />, karena motor yang berputar menghasilkan **GGL balik** yang melawan sumber. Saat macet, tidak ada GGL balik, jadi arusnya <InlineMath math="12 \div 3{,}2 = 3{,}75" /> A, tiga kali arus kerjanya, karena itu motor yang macet jadi terlalu panas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}25\text{ A}" /> saat macet menganggap kumparan <InlineMath math="9{,}6\,\Omega" />, mengabaikan **GGL balik** yang menahan arus selama motor berputar.
+- <InlineMath math="33\%" /> adalah bagian yang terbuang, bukan bagian yang dipakai.
+- Motor yang macet tetap terhubung ke <InlineMath math="12" /> V, jadi arus tetap mengalir lewat kumparannya.

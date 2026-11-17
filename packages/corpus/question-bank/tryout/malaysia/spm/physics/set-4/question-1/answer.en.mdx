@@ -1,0 +1,25 @@
+# Correct both readings, then work through the area to the mass
+
+A positive zero error is **subtracted** from every reading: <InlineMath math="3.46 - 0.04 = 3.42" /> cm and <InlineMath math="2.86 - 0.04 = 2.82" /> cm.
+
+<Mermaid
+  title={<>From Two Readings to the Mass</>}
+  description={<>Both readings lose the zero error. The wall thickness does not depend on it, but the area of the wall does, because it comes from the squares of the diameters.</>}
+  chart={`
+    flowchart LR
+      N0["Readings 3.46 and 2.86 cm"] --> N1["Correct: 3.42 and 2.82 cm"]
+      N1 --> N2["Area = π/4 (3.42² − 2.82²) = 2.94 cm²"]
+      N2 --> N3["V = 2.94 × 50.0 = 147 cm³"]
+      N3 --> N4["m = 147 × 2.70 = 397 g"]
+  `}
+/>
+
+The wall area is <InlineMath math="\tfrac{\pi}{4}(3.42^2 - 2.82^2) = 2.94\text{ cm}^2" />, so the volume is <InlineMath math="2.94 \times 50.0 = 147\text{ cm}^3" /> and the mass <InlineMath math="147 \times 2.70 = 397" /> g.
+
+The zero error cancels in the wall thickness, <InlineMath math="D - d" />, but not in <InlineMath math="D^2 - d^2 = (D - d)(D + d)" />. With the raw readings the area is <InlineMath math="2.98\text{ cm}^2" /> and the mass <InlineMath math="402" /> g, about <InlineMath math="1.3\%" /> too large.
+
+# Why the other options are wrong
+
+- The error does **not cancel**, because the area depends on <InlineMath math="D + d" />, which keeps twice the zero error.
+- <InlineMath math="402\text{ g}" /> is the uncorrected mass, so it cannot be the result of a cancelling error.
+- <InlineMath math="1590\text{ g}" /> uses the diameters as radii, which makes the area four times too large.

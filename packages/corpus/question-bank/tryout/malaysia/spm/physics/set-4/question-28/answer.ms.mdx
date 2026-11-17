@@ -1,0 +1,24 @@
+# Tetapkan arus daripada kadar lampu, kemudian bahagikan d.g.e.
+
+Pada kadarnya lampu mengambil <InlineMath math="24 \div 12 = 2.0" /> A dan berintangan <InlineMath math="12 \div 2.0 = 6.0\,\Omega" />. Seluruh litar mesti <InlineMath math="18 \div 2.0 = 9.0\,\Omega" />, termasuk <InlineMath math="1.0\,\Omega" /> bateri sendiri, jadi reostat ialah <InlineMath math="9.0 - 6.0 - 1.0 = 2.0\,\Omega" />.
+
+<Chart
+  title={<>Ke Mana Perginya <InlineMath math="36\text{ W}" /> Bateri</>}
+  bars="apart"
+  categories={["Lampu", "Reostat", "Di dalam bateri"]}
+  series={[
+    { label: "Kuasa (W)", mark: "bar", values: [24, 8, 4] },
+  ]}
+  valueLabel="Kuasa (W)"
+  description={<>Pada <InlineMath math="2.0\text{ A}" /> bateri menghasilkan <InlineMath math="36\text{ W}" />. Lampu mengambil <InlineMath math="24\text{ W}" />, reostat <InlineMath math="8\text{ W}" /> dan bateri sendiri <InlineMath math="4\text{ W}" />.</>}
+/>
+
+Bateri menghasilkan <InlineMath math="EI = 18 \times 2.0 = 36" /> W, dan lampu mendapat <InlineMath math="24" /> W daripadanya: <InlineMath math="24 \div 36 = 67\%" />. Bakinya memanaskan reostat dan bateri **itu sendiri**.
+
+**Reostat dilitar pintas**: hanya <InlineMath math="6.0\,\Omega" /> lampu dan <InlineMath math="1.0\,\Omega" /> bateri yang tinggal, jadi <InlineMath math="I = 18 \div 7.0 = 2.57" /> A dan lampu mengambil <InlineMath math="2.57^2 \times 6.0 = 40" /> W, jauh melebihi kadarnya, mungkin cukup untuk memutuskannya.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="3.0\,\Omega" /> dan <InlineMath math="54\text{ W}" /> terlupa **rintangan dalam** bateri, yang masih mengehadkan arus apabila reostat dilitar pintas.
+- <InlineMath math="75\%" /> hanya mengira kehilangan reostat dan terlupa <InlineMath math="4" /> W yang dibazirkan di dalam bateri.
+- Kadar lampu tidak menetapkan kuasanya: dengan rintangan yang kurang dalam litar arus bertambah, dan begitu juga kuasa.

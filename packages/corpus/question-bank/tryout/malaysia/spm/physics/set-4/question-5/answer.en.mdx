@@ -1,0 +1,25 @@
+# Add the two stopping distances, then find the force and the time
+
+Relative to the ground the driver travels the crumple distance **plus** the belt stretch, <InlineMath math="0.40 + 0.20 = 0.60" /> m, while slowing from <InlineMath math="15" /> m/s to rest.
+
+<Mermaid
+  title={<>How Far the Driver Travels While Stopping</>}
+  description={<>The driver moves forward with the folding car and then into the stretching belt, so the stopping distance is the sum of the two.</>}
+  chart={`
+    flowchart LR
+      N0["Crumple 0.40 m + belt 0.20 m = 0.60 m"] --> N1["a = 15² ÷ (2 × 0.60) = 188 m s⁻²"]
+      N1 --> N2["F = 70 × 188 = 1.3 × 10⁴ N"]
+      N0 --> N4["t = 0.60 ÷ 7.5 = 0.080 s"]
+      N3["Average speed 7.5 m s⁻¹"] --> N4
+  `}
+/>
+
+The deceleration is <InlineMath math="15^2 \div (2 \times 0.60) = 188\text{ m s}^{-2}" />, so the belt pulls with <InlineMath math="70 \times 188 = 1.3 \times 10^4" /> N. The average speed is <InlineMath math="7.5" /> m/s, so the stop takes <InlineMath math="0.60 \div 7.5 = 0.080" /> s.
+
+**Without the belt**: the driver reaches the dashboard still at <InlineMath math="15" /> m/s and stops within <InlineMath math="0.050" /> m: <InlineMath math="a = 15^2 \div (2 \times 0.050) = 2250\text{ m s}^{-2}" />, a force of <InlineMath math="70 \times 2250 = 1.6 \times 10^5" /> N. That is <InlineMath math="0.60 \div 0.050 = 12" /> times the belt's force, because the same kinetic energy is removed over a twelfth of the distance.
+
+# Why the other options are wrong
+
+- <InlineMath math="3.9 \times 10^4\text{ N}" /> uses only the belt's <InlineMath math="0.20" /> m and forgets the driver also moves with the **crumpling car**.
+- <InlineMath math="1.3" /> times lets the dashboard stop the driver over the crumple distance too, but the unbelted driver reaches it still at full speed.
+- <InlineMath math="2.6 \times 10^4\text{ N}" /> divides the distance by the starting speed for the time, but the driver slows down, so the average speed is half of that.

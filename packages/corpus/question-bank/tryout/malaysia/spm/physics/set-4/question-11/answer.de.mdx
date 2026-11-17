@@ -1,0 +1,23 @@
+# Beide Änderungen der Reihe nach, dann innen mit außen vergleichen
+
+Kühlen bei festem Volumen folgt der **Kelvin**-Temperatur: Von <InlineMath math="300" /> K auf <InlineMath math="250" /> K fällt der Druck auf <InlineMath math="100 \times 250 \div 300 = 83" /> kPa, die Flasche würde eingedrückt.
+
+<Mermaid
+  title={<>Erst kühlen, dann drücken</>}
+  description={<>Kühlen bei festem Volumen senkt den Druck. Drücken bei fester Temperatur hebt ihn wieder, über den Außendruck hinaus.</>}
+  chart={`
+    flowchart LR
+      N0["300 K → 250 K bei 2,0 L"] --> N1["p = 100 × 250 ÷ 300 = 83 kPa"]
+      N1 --> N2["2,0 L → 1,5 L bei 250 K"]
+      N2 --> N3["p = 83 × 2,0 ÷ 1,5 = 111 kPa"]
+      N3 --> N4["Netto (111 − 100) kPa × 4,0 cm² = 4,4 N nach außen"]
+  `}
+/>
+
+Drücken bei fester Temperatur folgt dem Gesetz von Boyle: <InlineMath math="83 \times 2{,}0 \div 1{,}5 = 111" /> kPa. Innen herrschen jetzt <InlineMath math="11" /> kPa mehr als außen, der Deckel spürt also <InlineMath math="11 \times 10^3 \times 4{,}0 \times 10^{-4} = 4{,}4" /> N nach außen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="83\text{ kPa}" /> hört nach dem Kühlen auf und vergisst, dass die Flasche danach **zusammengedrückt** wird.
+- <InlineMath math="133\text{ kPa}" /> drückt die Luft zusammen, überspringt aber das Kühlen, das den Druck zuerst senkte.
+- <InlineMath math="44\text{ N}" /> rechnet die Deckelfläche falsch um: <InlineMath math="4{,}0\text{ cm}^2" /> sind <InlineMath math="4{,}0 \times 10^{-4}\text{ m}^2" />.

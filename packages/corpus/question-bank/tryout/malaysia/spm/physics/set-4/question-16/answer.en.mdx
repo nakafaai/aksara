@@ -1,0 +1,23 @@
+# The three seconds hold the fall and the sound, so solve for the fall time
+
+If the stone falls for <InlineMath math="t" /> seconds, the depth is <InlineMath math="d = 5t^2" />, and the **sound comes back up** the same depth in the remaining <InlineMath math="3.0 - t" /> seconds: <InlineMath math="5t^2 = 340(3.0 - t)" />.
+
+<Mermaid
+  title={<>Splitting the Three Seconds</>}
+  description={<>The <InlineMath math="3.0\text{ s}" /> is the fall plus the sound coming back up. The same depth links the two.</>}
+  chart={`
+    flowchart LR
+      N0["Fall: d = 5t²"] --> N2["5t² + 340t − 1020 = 0"]
+      N1["Sound up: d = 340(3.0 − t)"] --> N2
+      N2 --> N3["t = 2.88 s, d = 41 m"]
+      N3 --> N4["v = 10 × 2.88 = 29 m s⁻¹"]
+  `}
+/>
+
+That is <InlineMath math="5t^2 + 340t - 1020 = 0" />, with <InlineMath math="t = 2.88" /> s, so <InlineMath math="d = 5 \times 2.88^2 = 41" /> m. The stone hits the water at <InlineMath math="10 \times 2.88 = 29" /> m/s.
+
+# Why the other options are wrong
+
+- <InlineMath math="45\text{ m}" /> lets the stone fall for the full <InlineMath math="3.0" /> s, forgetting the **sound's travel time**.
+- <InlineMath math="30\text{ m s}^{-1}" /> with the right depth still uses <InlineMath math="3.0" /> s of falling for the speed.
+- <InlineMath math="14\text{ m s}^{-1}" /> is the average speed during the fall, not the speed at the bottom.

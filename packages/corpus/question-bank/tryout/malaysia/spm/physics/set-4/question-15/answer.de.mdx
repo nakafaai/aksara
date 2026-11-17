@@ -1,0 +1,24 @@
+# Die Wellenlänge bestimmen, dann auf die Größe des Details verkleinern
+
+Im Gewebe ist <InlineMath math="\lambda = v \div f = 1540 \div 2{,}0 \times 10^6 = 7{,}7 \times 10^{-4}" /> m, also <InlineMath math="0{,}77" /> mm, zu grob für eine Struktur von <InlineMath math="0{,}30" /> mm.
+
+<Mermaid
+  title={<>Feinere Details brauchen eine kürzere Wellenlänge</>}
+  description={<>Bei fester Geschwindigkeit im Gewebe bedeutet eine kürzere Wellenlänge eine höhere Frequenz.</>}
+  chart={`
+    flowchart LR
+      N0["λ = 1540 ÷ 2,0 × 10⁶ = 0,77 mm"] --> N1["Nötig λ ≤ 0,30 mm"]
+      N1 --> N2["f = 1540 ÷ 0,30 × 10⁻³"]
+      N2 --> N3["f ≥ 5,1 MHz"]
+  `}
+/>
+
+Die Wellenlänge muss auf <InlineMath math="0{,}30" /> mm sinken, und bei fester Geschwindigkeit braucht das eine **höhere Frequenz**: <InlineMath math="f = 1540 \div 0{,}30 \times 10^{-3} = 5{,}1 \times 10^6" /> Hz, mindestens <InlineMath math="5{,}1" /> MHz.
+
+**Der Preis der höheren Frequenz**: Bei <InlineMath math="5{,}1" /> MHz schrumpft die Halbierungsstrecke auf <InlineMath math="2{,}0 \times 2{,}0 \div 5{,}1 = 0{,}78" /> cm. Das Echo läuft <InlineMath math="3{,}0" /> cm hin und <InlineMath math="3{,}0" /> cm zurück, <InlineMath math="6{,}0" /> cm, das sind <InlineMath math="7{,}7" /> Halbierungen: <InlineMath math="1 \div 2^{7{,}7} \approx 1 \div 210" />, etwa <InlineMath math="0{,}5\%" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}17\text{ mm}" /> nimmt die Schallgeschwindigkeit in **Luft**, doch die Wellen laufen durch Gewebe.
+- Etwa <InlineMath math="7\%" /> zählt nur den Hinweg, doch das Echo muss durch dasselbe Gewebe auch **wieder heraus**.
+- Etwa <InlineMath math="12\%" /> behält die Halbierungsstrecke des <InlineMath math="2{,}0" />-MHz-Strahls, doch eine höhere Frequenz wird schneller geschwächt.

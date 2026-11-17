@@ -1,0 +1,24 @@
+# Bandingkan kuasa berguna dengan input, kemudian gunakan pembaziran untuk mencari gegelung
+
+Motor memberi <InlineMath math="mgv = 2.0 \times 10 \times 0.50 = 10" /> W dan mengambil <InlineMath math="12 \times 1.25 = 15" /> W, jadi kecekapannya <InlineMath math="67\%" />. <InlineMath math="5.0" /> W yang lain memanaskan gegelung: <InlineMath math="5.0 = 1.25^2 R" />, jadi <InlineMath math="R = 3.2\,\Omega" />.
+
+<Mermaid
+  title={<>Daripada Angkatan kepada Rintangan Gegelung</>}
+  description={<>Pembaziran mendedahkan rintangan gegelung. Motor yang tersekat tidak menghasilkan d.g.e. balik, jadi hanya rintangan itu yang mengehadkan arus.</>}
+  chart={`
+    flowchart LR
+      N0["Output mgv = 2.0 × 10 × 0.50 = 10 W"] --> N2["Kecekapan 10 ÷ 15 = 67%"]
+      N1["Input 12 × 1.25 = 15 W"] --> N2
+      N0 --> N3["Bazir 5.0 W = I²R: R = 3.2 Ω"]
+      N1 --> N3
+      N3 --> N4["Tersekat: I = 12 ÷ 3.2 = 3.75 A"]
+  `}
+/>
+
+Gegelung bukan <InlineMath math="12 \div 1.25 = 9.6\,\Omega" />, kerana motor yang berputar menghasilkan **d.g.e. balik** yang menentang bekalan. Apabila tersekat, tiada d.g.e. balik, jadi arusnya <InlineMath math="12 \div 3.2 = 3.75" /> A, tiga kali arus semasa bekerja, sebab itu motor yang tersekat menjadi terlalu panas.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1.25\text{ A}" /> apabila tersekat menganggap gegelung <InlineMath math="9.6\,\Omega" />, mengabaikan **d.g.e. balik** yang menahan arus semasa motor berputar.
+- <InlineMath math="33\%" /> ialah pecahan yang dibazirkan, bukan pecahan yang digunakan.
+- Motor yang tersekat masih disambung merentasi <InlineMath math="12" /> V, jadi arus masih mengalir melalui gegelungnya.

@@ -1,0 +1,25 @@
+# Let the fuse cap the input, take the efficiency, then count whole lamps
+
+The fuse allows at most <InlineMath math="240 \times 1.0 = 240" /> W into the primary, and only <InlineMath math="80\%" /> of it, <InlineMath math="192" /> W, reaches the lamps. That is <InlineMath math="192 \div 36 = 5.3" /> lamps, so **five whole lamps**: a sixth would need <InlineMath math="216 \div 0.80 = 270" /> W in, more than the fuse allows.
+
+<Mermaid
+  title={<>From the Fuse to the Number of Lamps</>}
+  description={<>The fuse limits the power going in. Only <InlineMath math="80\%" /> of that comes out to the lamps.</>}
+  chart={`
+    flowchart LR
+      N0["Fuse: input at most 240 × 1.0 = 240 W"] --> N1["Output at most 0.80 × 240 = 192 W"]
+      N1 --> N2["192 ÷ 36 = 5.3: five lamps"]
+      N2 --> N3["Five lamps: 180 W at 12 V"]
+      N3 --> N4["Secondary current 180 ÷ 12 = 15 A"]
+  `}
+/>
+
+Five lamps take <InlineMath math="180" /> W at <InlineMath math="12" /> V, so the secondary supplies <InlineMath math="180 \div 12 = 15" /> A while the primary carries only <InlineMath math="180 \div 0.80 \div 240 = 0.94" /> A.
+
+**Energy wasted**: five lamps take <InlineMath math="180" /> W, so the primary takes <InlineMath math="180 \div 0.80 = 225" /> W and <InlineMath math="45" /> W is lost. In an hour that is <InlineMath math="45 \times 3600 = 1.62 \times 10^5" /> J. The loss is a share of what the transformer **actually** takes, not of the most the fuse allows.
+
+# Why the other options are wrong
+
+- Six lamps treat the transformer as ideal, but only <InlineMath math="80\%" /> of the input reaches the secondary, so a sixth lamp **blows the fuse**.
+- <InlineMath math="173\text{ kJ}" /> takes <InlineMath math="20\%" /> of the full <InlineMath math="240" /> W the fuse allows, but five lamps draw less than that.
+- <InlineMath math="130\text{ kJ}" /> takes <InlineMath math="20\%" /> of the output, but the efficiency is a share of the input.

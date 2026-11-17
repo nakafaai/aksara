@@ -1,0 +1,23 @@
+# Ambil dua perubahan mengikut urutan, kemudian bandingkan dalam dengan luar
+
+Penyejukan pada isi padu tetap mengikut suhu **kelvin**: daripada <InlineMath math="300" /> K kepada <InlineMath math="250" /> K tekanan turun kepada <InlineMath math="100 \times 250 \div 300 = 83" /> kPa, dan botol akan ditolak ke dalam.
+
+<Mermaid
+  title={<>Sejukkan Dahulu, Kemudian Picit</>}
+  description={<>Penyejukan pada isi padu tetap menurunkan tekanan. Memicit pada suhu tetap menaikkannya semula, melebihi tekanan luar.</>}
+  chart={`
+    flowchart LR
+      N0["300 K → 250 K pada 2.0 L"] --> N1["p = 100 × 250 ÷ 300 = 83 kPa"]
+      N1 --> N2["2.0 L → 1.5 L pada 250 K"]
+      N2 --> N3["p = 83 × 2.0 ÷ 1.5 = 111 kPa"]
+      N3 --> N4["Bersih (111 − 100) kPa × 4.0 cm² = 4.4 N ke luar"]
+  `}
+/>
+
+Memicit pada suhu tetap mengikut hukum Boyle: <InlineMath math="83 \times 2.0 \div 1.5 = 111" /> kPa. Tekanan dalam kini melebihi tekanan luar sebanyak <InlineMath math="11" /> kPa, jadi penutup menerima <InlineMath math="11 \times 10^3 \times 4.0 \times 10^{-4} = 4.4" /> N ke luar.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="83\text{ kPa}" /> berhenti selepas penyejukan dan terlupa botol itu kemudian **dipicit**.
+- <InlineMath math="133\text{ kPa}" /> memicit udara tetapi melangkau penyejukan, yang terlebih dahulu menurunkan tekanan.
+- <InlineMath math="44\text{ N}" /> menukar luas penutup dengan salah: <InlineMath math="4.0\text{ cm}^2" /> ialah <InlineMath math="4.0 \times 10^{-4}\text{ m}^2" />.

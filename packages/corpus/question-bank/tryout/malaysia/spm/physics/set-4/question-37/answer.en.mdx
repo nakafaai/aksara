@@ -1,0 +1,25 @@
+# The diode removes half the time, not half the voltage
+
+An ideal diode lets through one half cycle in every two and blocks the other completely. During the half cycles it passes, the lamp sees **exactly the same voltage** as before, so the average power halves to <InlineMath math="12" /> W.
+
+<Mermaid
+  title={<>Half the Cycles, Half the Power</>}
+  description={<>The diode blocks every other half cycle. In the half cycles that pass, the lamp gets just what it did before.</>}
+  chart={`
+    flowchart LR
+      N0["Diode passes one half cycle in two"] --> N1["During those halves: power as before"]
+      N1 --> N2["Average power ½ × 24 = 12 W"]
+      N2 --> N3["To get 24 W back: power × 2"]
+      N3 --> N4["Power ∝ V²: voltage × √2 = 17 V"]
+  `}
+/>
+
+To get <InlineMath math="24" /> W back, the power during the conducting halves must double. Power goes as the voltage squared, so the voltage must rise by <InlineMath math="\sqrt{2}" />: <InlineMath math="12 \times \sqrt{2} = 17" /> V r.m.s.
+
+**The peak current**: the lamp has <InlineMath math="12^2 \div 24 = 6.0\,\Omega" />. A <InlineMath math="17" /> V r.m.s. supply peaks at <InlineMath math="17 \times \sqrt{2} = 24" /> V, so the current peaks at <InlineMath math="24 \div 6.0 = 4.0" /> A, against <InlineMath math="2.8" /> A before the diode was added.
+
+# Why the other options are wrong
+
+- <InlineMath math="6.0\text{ W}" /> halves the voltage, but the diode leaves the voltage of each passing half cycle **unchanged**.
+- <InlineMath math="24\text{ V}" /> doubles the voltage to double the power, but doubling the voltage would make the power four times as large.
+- The diode is not invisible: it blocks every other half cycle, so the lamp cannot keep its full <InlineMath math="24" /> W.

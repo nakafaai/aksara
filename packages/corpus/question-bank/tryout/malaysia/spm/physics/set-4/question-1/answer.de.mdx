@@ -1,0 +1,25 @@
+# Beide Ablesungen korrigieren, dann über die Fläche zur Masse
+
+Ein positiver Nullpunktfehler wird von jeder Ablesung **abgezogen**: <InlineMath math="3{,}46 - 0{,}04 = 3{,}42" /> cm und <InlineMath math="2{,}86 - 0{,}04 = 2{,}82" /> cm.
+
+<Mermaid
+  title={<>Von zwei Ablesungen zur Masse</>}
+  description={<>Beide Ablesungen verlieren den Nullpunktfehler. Die Wanddicke hängt nicht davon ab, die Wandfläche aber schon, denn sie kommt aus den Quadraten der Durchmesser.</>}
+  chart={`
+    flowchart LR
+      N0["Ablesungen 3,46 und 2,86 cm"] --> N1["Korrigiert: 3,42 und 2,82 cm"]
+      N1 --> N2["Fläche = π/4 (3,42² − 2,82²) = 2,94 cm²"]
+      N2 --> N3["V = 2,94 × 50,0 = 147 cm³"]
+      N3 --> N4["m = 147 × 2,70 = 397 g"]
+  `}
+/>
+
+Die Wandfläche ist <InlineMath math="\tfrac{\pi}{4}(3{,}42^2 - 2{,}82^2) = 2{,}94\text{ cm}^2" />, das Volumen also <InlineMath math="2{,}94 \times 50{,}0 = 147\text{ cm}^3" /> und die Masse <InlineMath math="147 \times 2{,}70 = 397" /> g.
+
+Der Nullpunktfehler hebt sich in der Wanddicke <InlineMath math="D - d" /> auf, aber nicht in <InlineMath math="D^2 - d^2 = (D - d)(D + d)" />. Mit den Rohwerten ist die Fläche <InlineMath math="2{,}98\text{ cm}^2" /> und die Masse <InlineMath math="402" /> g, etwa <InlineMath math="1{,}3\%" /> zu groß.
+
+# Warum die anderen Antworten falsch sind
+
+- Der Fehler hebt sich **nicht auf**, denn die Fläche hängt von <InlineMath math="D + d" /> ab, das den doppelten Nullpunktfehler behält.
+- <InlineMath math="402\text{ g}" /> ist die unkorrigierte Masse, sie kann also nicht aus einem sich aufhebenden Fehler stammen.
+- <InlineMath math="1590\text{ g}" /> nimmt die Durchmesser als Radien, die Fläche wird viermal zu groß.

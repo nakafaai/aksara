@@ -1,0 +1,25 @@
+# Wellenlängen in Geschwindigkeiten umrechnen, dann beide Übergänge prüfen
+
+Die Frequenz bleibt <InlineMath math="12" /> Hz, die Geschwindigkeiten sind also <InlineMath math="18" /> und <InlineMath math="12" /> cm/s. Hinein gilt <InlineMath math="\sin r = \sin 30^\circ \times 12 \div 18 = 0{,}33" />, also <InlineMath math="r = 19^\circ" />, **zum Lot hin** gebrochen.
+
+<Mermaid
+  title={<>Erst die Geschwindigkeiten, dann beide Grenzen</>}
+  description={<>Im flachen Wasser sind die Wellen langsamer, sie knicken beim Eintritt zum Lot hin. Beim Austritt knicken sie vom Lot weg, und bei genügend großem Winkel kommen sie gar nicht mehr hinaus.</>}
+  chart={`
+    flowchart LR
+      N0["Tief: v = 12 × 1,5 = 18 cm s⁻¹"] --> N2["Hinein: sin r = sin 30° × 12 ÷ 18 = 0,33"]
+      N1["Flach: v = 12 × 1,0 = 12 cm s⁻¹"] --> N2
+      N2 --> N3["r = 19°"]
+      N0 --> N4["Hinaus bei 45°: sin r = 0,71 × 18 ÷ 12 = 1,06"]
+      N1 --> N4
+      N4 --> N5["Über 1: Totalreflexion"]
+  `}
+/>
+
+Zurück dreht sich das Verhältnis um: <InlineMath math="\sin r = \sin 45^\circ \times 18 \div 12 = 1{,}06" />. Kein Winkel hat einen Sinus über eins, die Welle kann also nicht hinüber und wird vollständig ins flache Wasser zurückgeworfen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="49^\circ" /> dreht das Geschwindigkeitsverhältnis um und bricht die Welle beim Langsamerwerden **vom Lot weg**.
+- <InlineMath math="28^\circ" /> nimmt für den Rückweg das Verhältnis des Hinwegs, doch beim Verlassen des langsamen Wassers wird die Welle schneller und bricht vom Lot weg.
+- Unveränderte <InlineMath math="30^\circ" /> übersehen die Änderung der Geschwindigkeit, die die Welle ja bricht.

@@ -1,0 +1,23 @@
+# Hitung hanya udara di atas cadangan, lalu kembangkan ke tekanan di kedalaman
+
+Hanya tekanan di atas cadangan yang bisa dipakai: <InlineMath math="12" /> L pada <InlineMath math="20 - 5{,}0 = 15" /> MPa. Pada <InlineMath math="100" /> kPa udara itu akan mengisi <InlineMath math="12 \times 15 \div 0{,}10 = 1800" /> L.
+
+<Mermaid
+  title={<>Udara yang Bisa Dipakai pada Kedalaman Penyelam</>}
+  description={<>Hanya udara di atas cadangan yang bisa dipakai, dan di kedalaman tiap napas dimampatkan ke tekanan sekitar, jadi memakai lebih banyak udara tersimpan.</>}
+  chart={`
+    flowchart LR
+      N0["Bisa dipakai: 12 L × (20 − 5,0) MPa"] --> N1["= 1800 L pada 100 kPa"]
+      N1 --> N3["Volume di sana 1800 × 100 ÷ 306 = 588 L"]
+      N2["Di 20 m: p = 100 + 1030 × 10 × 20 = 306 kPa"] --> N3
+      N3 --> N4["588 ÷ 20 = 29 menit"]
+  `}
+/>
+
+Di <InlineMath math="20" /> m tekanan sekitar <InlineMath math="100 + 1030 \times 10 \times 20 \div 1000 = 306" /> kPa, jadi udara yang bisa dipakai hanya mengisi <InlineMath math="1800 \times 100 \div 306 = 588" /> L di sana. Pada <InlineMath math="20" /> L per menit, udara itu bertahan <InlineMath math="29" /> menit, karena **tiap napas di kedalaman** memuat tiga kali lebih banyak udara.
+
+# Kenapa pilihan lain salah
+
+- Sekitar <InlineMath math="90" /> menit bernapas pada **tekanan permukaan**, padahal di <InlineMath math="20" /> m tiap napas dimampatkan ke <InlineMath math="306" /> kPa.
+- Sekitar <InlineMath math="39" /> menit memakai seluruh <InlineMath math="20" /> MPa dan melupakan cadangan yang harus tersisa.
+- Sekitar <InlineMath math="120" /> menit melupakan cadangan dan kedalaman sekaligus.

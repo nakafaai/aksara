@@ -1,0 +1,23 @@
+# Take the two changes in order, then compare the inside with the outside
+
+Cooling at fixed volume follows the **kelvin** temperature: from <InlineMath math="300" /> K to <InlineMath math="250" /> K the pressure falls to <InlineMath math="100 \times 250 \div 300 = 83" /> kPa, and the bottle would be pushed inwards.
+
+<Mermaid
+  title={<>Cool First, Then Squeeze</>}
+  description={<>Cooling at fixed volume lowers the pressure. Squeezing at fixed temperature raises it again, past the outside pressure.</>}
+  chart={`
+    flowchart LR
+      N0["300 K → 250 K at 2.0 L"] --> N1["p = 100 × 250 ÷ 300 = 83 kPa"]
+      N1 --> N2["2.0 L → 1.5 L at 250 K"]
+      N2 --> N3["p = 83 × 2.0 ÷ 1.5 = 111 kPa"]
+      N3 --> N4["Net (111 − 100) kPa × 4.0 cm² = 4.4 N outwards"]
+  `}
+/>
+
+Squeezing at fixed temperature follows Boyle's law: <InlineMath math="83 \times 2.0 \div 1.5 = 111" /> kPa. The inside now beats the outside by <InlineMath math="11" /> kPa, so the cap feels <InlineMath math="11 \times 10^3 \times 4.0 \times 10^{-4} = 4.4" /> N outwards.
+
+# Why the other options are wrong
+
+- <InlineMath math="83\text{ kPa}" /> stops after the cooling and forgets the bottle is then **squeezed**.
+- <InlineMath math="133\text{ kPa}" /> squeezes the air but skips the cooling, which first lowered the pressure.
+- <InlineMath math="44\text{ N}" /> converts the cap's area wrongly: <InlineMath math="4.0\text{ cm}^2" /> is <InlineMath math="4.0 \times 10^{-4}\text{ m}^2" />.

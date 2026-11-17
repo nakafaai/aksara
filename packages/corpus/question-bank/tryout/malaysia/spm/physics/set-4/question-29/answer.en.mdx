@@ -1,0 +1,23 @@
+# Find the energy, split it at the band, then repeat for the smaller energy
+
+The unit uses <InlineMath math="2.0 \times 8 \times 30 = 480" /> kWh. The first <InlineMath math="200" /> kWh cost <InlineMath math="200 \times 0.50 = 100" /> ringgit and the other <InlineMath math="280" /> cost <InlineMath math="280 \times 0.60 = 168" />, so the bill is RM <InlineMath math="268" />.
+
+<Chart
+  title={<>The Bill in Two Bands</>}
+  bars="apart"
+  categories={["Now, 480 kWh", "Inverter, 312 kWh"]}
+  series={[
+    { label: "First 200 kWh", mark: "bar", values: [100, 100] },
+    { label: "Above 200 kWh", mark: "bar", values: [168, 67.2] },
+  ]}
+  valueLabel="Cost (RM)"
+  description={<>Both units pay the full RM <InlineMath math="100" /> for the first band. The saving comes only from the dearer second band.</>}
+/>
+
+The inverter uses <InlineMath math="0.65 \times 480 = 312" /> kWh: RM <InlineMath math="100" /> plus <InlineMath math="112 \times 0.60 = 67.2" />, which is RM <InlineMath math="167.2" />. It saves about RM <InlineMath math="101" />, all of it from the **dearer band**.
+
+# Why the other options are wrong
+
+- RM <InlineMath math="240" /> charges every kWh at the cheaper rate and ignores the **second band**.
+- RM <InlineMath math="288" /> charges every kWh at the dearer rate, which overcharges the first <InlineMath math="200" /> kWh.
+- RM <InlineMath math="94" /> takes <InlineMath math="35\%" /> of the bill, but the energy saved all falls in the dearer band, so it saves more.

@@ -1,0 +1,26 @@
+# g des Planeten bestimmen, dann Höhe und Zeit bei gleichem Absprung skalieren
+
+<InlineMath math="g" /> geht mit <InlineMath math="M \div R^2" />, auf dem Planeten also <InlineMath math="0{,}10 \div 0{,}50^2 = 0{,}40" /> des Erdwerts, der Radius zählt **im Quadrat**.
+
+<Mermaid
+  title={<>Gleicher Absprung, schwächere Schwerkraft</>}
+  description={<>Die Schwerkraft des Planeten ist <InlineMath math="0{,}4" /> der Erdschwere. Bei gleicher Absprunggeschwindigkeit wachsen Höhe und Zeit beide um <InlineMath math="1 \div 0{,}4 = 2{,}5" />.</>}
+  chart={`
+    flowchart LR
+      N0["g-Verhältnis = 0,10 ÷ 0,50² = 0,40"] --> N2["Höhe = u² ÷ 2g: × 2,5"]
+      N1["Gleiche Absprunggeschwindigkeit u"] --> N2
+      N2 --> N3["0,50 × 2,5 = 1,25 m"]
+      N0 --> N4["Zeit = 2u ÷ g: × 2,5"]
+      N1 --> N4
+  `}
+/>
+
+Dieselbe Absprunggeschwindigkeit <InlineMath math="u" /> erreicht <InlineMath math="h = u^2 \div 2g" />, die Höhe wächst also auf das <InlineMath math="2{,}5" />-Fache, <InlineMath math="1{,}25" /> m. Auch die Zeit auf und ab, <InlineMath math="2u \div g" />, wächst auf das <InlineMath math="2{,}5" />-Fache.
+
+**Eine niedrige Bahn**: <InlineMath math="v = \sqrt{gR}" /> wird <InlineMath math="\sqrt{0{,}40 \times 0{,}50} = 0{,}45" /> des Erdwerts, <InlineMath math="3{,}5\text{ km s}^{-1}" />. Der Planetenradius ist <InlineMath math="3{,}2 \times 10^6" /> m, eine Runde dauert also <InlineMath math="2\pi \times 3{,}2 \times 10^6 \div 3530 = 5{,}7 \times 10^3" /> s, etwa <InlineMath math="95" /> Minuten.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}5\text{ m}" /> und <InlineMath math="134" /> Minuten nehmen <InlineMath math="g" /> als <InlineMath math="M \div R" /> und vergessen, dass der Radius **im Quadrat** zählt.
+- <InlineMath math="42" /> Minuten behalten die Bahngeschwindigkeit der Erde, <InlineMath math="7{,}9\text{ km s}^{-1}" />, für den kleineren Planeten.
+- <InlineMath math="190" /> Minuten nehmen für die Runde den Erdradius, doch der Planet ist halb so breit.

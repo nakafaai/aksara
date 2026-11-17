@@ -1,0 +1,23 @@
+# One fission, every nucleus, the useful share, then the time
+
+One fission releases <InlineMath math="0.20 \times 1.66 \times 10^{-27} \times (3.0 \times 10^8)^2 = 3.0 \times 10^{-11}" /> J. One kilogram holds <InlineMath math="1000 \div 235 \times 6.02 \times 10^{23} = 2.56 \times 10^{24}" /> nuclei, so it releases <InlineMath math="7.7 \times 10^{13}" /> J.
+
+<Mermaid
+  title={<>From One Fission to One Kilogram to Hours</>}
+  description={<>Find the energy of one fission, scale up to every nucleus in the kilogram, keep the useful <InlineMath math="30\%" />, and divide by the electrical power.</>}
+  chart={`
+    flowchart LR
+      N0["One fission: 0.20 × 1.66 × 10⁻²⁷ × (3.0 × 10⁸)² = 3.0 × 10⁻¹¹ J"] --> N2["Total 7.7 × 10¹³ J"]
+      N1["Nuclei: 1000 ÷ 235 × 6.02 × 10²³ = 2.56 × 10²⁴"] --> N2
+      N2 --> N3["Electrical 0.30 × 7.7 × 10¹³ = 2.3 × 10¹³ J"]
+      N3 --> N4["t = 2.3 × 10¹³ ÷ 1.0 × 10⁹ = 2.3 × 10⁴ s ≈ 6.4 h"]
+  `}
+/>
+
+Only <InlineMath math="30\%" />, <InlineMath math="2.3 \times 10^{13}" /> J, becomes **electrical energy**. At <InlineMath math="1.0 \times 10^9" /> W that lasts <InlineMath math="2.3 \times 10^4" /> s, about <InlineMath math="6.4" /> hours.
+
+# Why the other options are wrong
+
+- About <InlineMath math="21" /> hours turns all the fission energy into electricity, ignoring the <InlineMath math="30\%" /> **efficiency**.
+- About <InlineMath math="71" /> hours divides by the efficiency, as if the losses added energy instead of wasting it.
+- About <InlineMath math="1500" /> hours counts a kilogram as <InlineMath math="1000" /> moles, forgetting a mole of uranium-235 has a mass of <InlineMath math="235" /> g.

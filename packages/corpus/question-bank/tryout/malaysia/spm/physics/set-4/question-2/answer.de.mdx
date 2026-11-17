@@ -1,0 +1,25 @@
+# Die Schwingungen zählen, nicht die gesprochenen Zahlen
+
+Die Zählung beginnt bei "eins" ohne abgeschlossene Schwingung, "zwanzig" markiert also nur **neunzehn Schwingungen**. Die Periode ist <InlineMath math="36{,}0 \div 19 = 1{,}89" /> s.
+
+<Mermaid
+  title={<>Schwingungen richtig zählen</>}
+  description={<>Wer beim Loslassen "eins" sagt, hat bei "zwanzig" erst neunzehn volle Schwingungen.</>}
+  chart={`
+    flowchart LR
+      N0["Eins beim Loslassen, zwanzig am Ende"] --> N1["19 Schwingungen in 36,0 s"]
+      N1 --> N2["T = 36,0 ÷ 19 = 1,89 s"]
+      N2 --> N3["g = 4π² × 0,900 ÷ 1,89² = 9,9 m s⁻²"]
+      N3 --> N4["l = 9,9 × 2,00² ÷ 4π² = 1,00 m"]
+  `}
+/>
+
+Dann ist <InlineMath math="g = \dfrac{4\pi^2 l}{T^2} = \dfrac{4\pi^2 \times 0{,}900}{1{,}89^2} = 9{,}9\text{ m s}^{-2}" />. Für <InlineMath math="T = 2{,}00" /> s gilt <InlineMath math="l = \dfrac{gT^2}{4\pi^2} = \dfrac{9{,}9 \times 4{,}00}{39{,}5} = 1{,}00" /> m, denn die Länge geht mit dem Quadrat der Periode.
+
+**Wie weit g danebenliegen kann**: Zwei Tastendrücke können die Zeit zusammen um bis zu <InlineMath math="0{,}20" /> s in <InlineMath math="36{,}0" /> s verschieben, das sind <InlineMath math="0{,}56\%" /> der Periode. Da <InlineMath math="g" /> mit <InlineMath math="1 \div T^2" /> geht, **verdoppelt** sich dieser Fehler in <InlineMath math="g" />: etwa <InlineMath math="1{,}1\%" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="11{,}0\text{ m s}^{-2}" /> teilt durch zwanzig und zählt das gesprochene "eins" als **abgeschlossene** Schwingung.
+- <InlineMath math="0{,}56\%" /> ist der Fehler der Periode, doch <InlineMath math="g" /> hängt vom Quadrat der Periode ab, was ihn verdoppelt.
+- <InlineMath math="0{,}28\%" /> zählt nur einen Tastendruck, doch Start und Stopp können beide danebenliegen.

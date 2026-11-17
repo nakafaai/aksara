@@ -1,0 +1,22 @@
+# Die Fahrt in drei Abschnitte teilen, dann die Geschwindigkeit für die neue Zeit bestimmen
+
+Das Anfahren dauert <InlineMath math="40" /> s über <InlineMath math="400" /> m, das Bremsen <InlineMath math="20" /> s über <InlineMath math="200" /> m. Die übrigen <InlineMath math="1400" /> m mit <InlineMath math="20" /> m/s dauern <InlineMath math="70" /> s, die Fahrt also <InlineMath math="130" /> s.
+
+<Chart
+  title={<>Geschwindigkeit über der Zeit zwischen den Bahnhöfen</>}
+  categories={["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110", "120", "130"]}
+  series={[
+    { label: "Jetzt", mark: "line", values: [0.0, 5.0, 10.0, 15.0, 20.0, 20, 20, 20, 20, 20, 20, 20.0, 10.0, 0] },
+    { label: "Neuer Fahrplan", mark: "line", values: [0.0, 5.0, 10.0, 15.0, 20.0, 23.7, 23.7, 23.7, 23.7, 23.7, 20.0, 10.0, 0.0, 0] },
+  ]}
+  valueLabel="Geschwindigkeit (m/s)"
+  description={<>Beide Fahrten legen <InlineMath math="2{,}0\text{ km}" /> zurück, die Fläche unter jeder Linie. Der schnellere Fahrplan steigt höher und hält bei <InlineMath math="120\text{ s}" />. Zeit in Sekunden.</>}
+/>
+
+Bei einer Höchstgeschwindigkeit <InlineMath math="v" /> legen die beiden Rampen <InlineMath math="v^2 + \tfrac{1}{2}v^2" /> Meter in <InlineMath math="3v" /> Sekunden zurück, also <InlineMath math="1{,}5v^2 + v(120 - 3v) = 2000" />, eine **quadratische Gleichung**: <InlineMath math="1{,}5v^2 - 120v + 2000 = 0" />. Ihre kleinere Lösung ist <InlineMath math="v = 23{,}7" /> m/s. Die größere bräuchte für die Rampen mehr Zeit als die ganzen <InlineMath math="120" /> s.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="21{,}7\text{ m s}^{-1}" /> skaliert die Geschwindigkeit mit <InlineMath math="130 \div 120" />, doch mit steigender Höchstgeschwindigkeit **werden die Rampen länger**.
+- <InlineMath math="100\text{ s}" /> und <InlineMath math="16{,}7\text{ m s}^{-1}" /> behandeln die ganze Fahrt als gleichförmig, ohne Zeit zum Anfahren oder Bremsen.
+- <InlineMath math="160\text{ s}" /> addiert die vollen <InlineMath math="60" /> s der Rampen zu <InlineMath math="2000 \div 20" />, als legten die Rampen keinen Weg zurück.

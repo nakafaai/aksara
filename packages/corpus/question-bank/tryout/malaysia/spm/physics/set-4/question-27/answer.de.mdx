@@ -1,0 +1,23 @@
+# Nur die Luft über der Reserve zählen, dann auf den Druck in der Tiefe umrechnen
+
+Nutzbar ist nur der Druck über der Reserve: <InlineMath math="12" /> L bei <InlineMath math="20 - 5{,}0 = 15" /> MPa. Bei <InlineMath math="100" /> kPa füllte diese Luft <InlineMath math="12 \times 15 \div 0{,}10 = 1800" /> L.
+
+<Mermaid
+  title={<>Nutzbare Luft in der Tiefe des Tauchers</>}
+  description={<>Nutzbar ist nur die Luft über der Reserve, und in der Tiefe wird jeder Atemzug auf den Umgebungsdruck verdichtet, verbraucht also mehr gespeicherte Luft.</>}
+  chart={`
+    flowchart LR
+      N0["Nutzbar: 12 L × (20 − 5,0) MPa"] --> N1["= 1800 L bei 100 kPa"]
+      N1 --> N3["Volumen dort 1800 × 100 ÷ 306 = 588 L"]
+      N2["Bei 20 m: p = 100 + 1030 × 10 × 20 = 306 kPa"] --> N3
+      N3 --> N4["588 ÷ 20 = 29 min"]
+  `}
+/>
+
+In <InlineMath math="20" /> m beträgt der Umgebungsdruck <InlineMath math="100 + 1030 \times 10 \times 20 \div 1000 = 306" /> kPa, die nutzbare Luft füllt dort also nur <InlineMath math="1800 \times 100 \div 306 = 588" /> L. Bei <InlineMath math="20" /> L pro Minute reicht sie <InlineMath math="29" /> Minuten, denn **jeder Atemzug in der Tiefe** enthält dreimal so viel Luft.
+
+# Warum die anderen Antworten falsch sind
+
+- Etwa <InlineMath math="90" /> Minuten atmet beim **Oberflächendruck**, doch in <InlineMath math="20" /> m wird jeder Atemzug auf <InlineMath math="306" /> kPa verdichtet.
+- Etwa <InlineMath math="39" /> Minuten nimmt die ganzen <InlineMath math="20" /> MPa und vergisst die Reserve, die bleiben muss.
+- Etwa <InlineMath math="120" /> Minuten vergisst Reserve und Tiefe zugleich.

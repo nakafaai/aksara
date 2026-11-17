@@ -1,0 +1,25 @@
+# Turn the gap into a difference of travel times, then find the P wave's own time
+
+Over a distance <InlineMath math="d" />, the S waves take <InlineMath math="d \div 4.5" /> and the P waves <InlineMath math="d \div 8.0" />. The gap is the **difference of the travel times**: <InlineMath math="d\left(\tfrac{1}{4.5} - \tfrac{1}{8.0}\right) = 20" />, so <InlineMath math="d = 206" /> km.
+
+<Mermaid
+  title={<>From the Arrival Gap to the Distance</>}
+  description={<>Each kilometre costs the S waves more time than the P waves. The <InlineMath math="20\text{ s}" /> gap is that difference added up over the whole distance.</>}
+  chart={`
+    flowchart LR
+      N0["P: 1 ÷ 8.0 = 0.125 s per km"] --> N2["Gap 0.0972 s per km"]
+      N1["S: 1 ÷ 4.5 = 0.222 s per km"] --> N2
+      N2 --> N3["d = 20 ÷ 0.0972 = 206 km"]
+      N3 --> N4["P travel time 206 ÷ 8.0 = 25.7 s"]
+  `}
+/>
+
+The P waves needed <InlineMath math="206 \div 8.0 = 25.7" /> s to arrive, so the earthquake happened <InlineMath math="25.7" /> s before the P waves reached the station.
+
+**Tsunami warning**: the tsunami needs <InlineMath math="206\,000 \div 200 = 1030" /> s from the earthquake. The P waves arrived <InlineMath math="25.7" /> s after the earthquake, so the warning is <InlineMath math="1030 - 25.7 = 1004" /> s, about <InlineMath math="16.7" /> minutes.
+
+# Why the other options are wrong
+
+- <InlineMath math="70\text{ km}" /> multiplies the gap by the **difference of the speeds**, but the gap comes from the difference of the travel times.
+- <InlineMath math="16.4" /> minutes counts from the S waves, but the P waves arrive first and give the earlier warning.
+- <InlineMath math="17.2" /> minutes is the tsunami's whole travel time, but the warning only starts when the P waves arrive.

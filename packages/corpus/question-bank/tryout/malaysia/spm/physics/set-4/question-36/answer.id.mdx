@@ -1,0 +1,29 @@
+# Ikuti gerbang secara berurutan, lalu baca keluarannya sebagai bilangan biner
+
+<InlineMath math="N_1" /> menerima kedua masukan <InlineMath math="1" />, jadi memberi <InlineMath math="0" />. <InlineMath math="N_2" /> dan <InlineMath math="N_3" /> masing-masing menerima <InlineMath math="0" />, jadi keduanya memberi <InlineMath math="1" />.
+
+<Mermaid
+  title={<>Mengikuti Sinyal Gerbang demi Gerbang</>}
+  description={<>Tiap gerbang NAND memberi <InlineMath math="0" /> hanya saat kedua masukannya <InlineMath math="1" />. Empat gerbang NAND bersama membentuk OR eksklusif.</>}
+  chart={`
+    flowchart LR
+      N0["A = 1, B = 1"] --> N1["N1 = NAND(1, 1) = 0"]
+      N1 --> N2["N2 = NAND(1, 0) = 1"]
+      N1 --> N3["N3 = NAND(1, 0) = 1"]
+      N2 --> N4["S = N4 = NAND(1, 1) = 0"]
+      N3 --> N4
+      N1 --> N5["C = NOT 0 = 1"]
+      N4 --> N6["C S = 10: dua"]
+      N5 --> N6
+  `}
+/>
+
+<InlineMath math="N_4" /> lalu menerima dua <InlineMath math="1" /> dan memberi <InlineMath math="S = 0" />, sementara gerbang NOT mengubah <InlineMath math="0" /> dari <InlineMath math="N_1" /> menjadi <InlineMath math="C = 1" />. Dibaca sebagai <InlineMath math="CS = 10" />, rangkaian itu menunjukkan dua: itu adalah **penjumlah setengah**, dan <InlineMath math="1 + 1 = 2" />.
+
+**Penjumlah setengah kedua**: menjumlahkan <InlineMath math="S = 0" /> dan masukan ketiga <InlineMath math="1" />, memberi jumlah <InlineMath math="1" /> dan bawaan <InlineMath math="0" />. Gerbang OR menggabungkan bawaan <InlineMath math="1" /> dan <InlineMath math="0" /> menjadi <InlineMath math="1" />. Keluarannya dibaca <InlineMath math="11" /> dalam biner, yaitu tiga: <InlineMath math="1 + 1 + 1 = 3" />.
+
+# Kenapa pilihan lain salah
+
+- Dua adalah penjumlah setengah pertama saja, sebelum **masukan ketiga** ditambahkan.
+- Satu membuang bawaan penjumlah setengah pertama, padahal gerbang OR meneruskannya ke bawaan akhir.
+- Sebelas membaca digit biner <InlineMath math="11" /> sebagai bilangan desimal, padahal dalam biner artinya tiga.
