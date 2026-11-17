@@ -1,0 +1,295 @@
+export const metadata = {
+  title: "Gelombang Resonansi dan Interferensi",
+  description:
+    "Pakai v = fλ, jelaskan redaman dan resonansi, pemantulan, pembiasan, difraksi, interferensi, serta spektrum gelombang elektromagnetik lewat latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Gelombang",
+};
+
+## Gelombang Memindahkan Energi
+
+**Gelombang** adalah gangguan yang memindahkan energi dari satu tempat ke tempat lain tanpa memindahkan materi. Cepat rambat gelombang bergantung pada frekuensi dan panjang gelombangnya:
+
+<BlockMath math="v = f\lambda" />
+
+Di sini <InlineMath math="v" /> adalah cepat rambat dalam <InlineMath math="\text{m/s}" />, <InlineMath math="f" /> adalah frekuensi dalam hertz, dan <InlineMath math="\lambda" /> adalah panjang gelombang dalam meter. Frekuensi terhubung dengan periode lewat <InlineMath math="f = 1/T" />. Di model-model berikut, kamu menggerakkan gelombang, meredam getaran, mencari resonansi, dan membentuk pola interferensi.
+
+Ada dua jenis gelombang. Pada **gelombang transversal**, partikel medium bergetar tegak lurus terhadap arah rambat, seperti gelombang air dan cahaya. Pada **gelombang longitudinal**, partikel bergetar searah dengan arah rambat, seperti gelombang bunyi yang membentuk rapatan dan regangan.
+
+## Ciri Utama Suatu Gelombang
+
+Gelombang berikut adalah <InlineMath math="y = a\sin\!\big(2\pi(x/\lambda - fs)\big)" />, dengan <InlineMath math="s" /> waktu dalam detik. **Amplitudo** <InlineMath math="a" /> adalah simpangan maksimum dari posisi setimbang. **Panjang gelombang** <InlineMath math="\lambda" /> adalah jarak antara dua puncak yang berdekatan. Geser penggeser waktu dan lihat puncak bergerak sejauh <InlineMath math="f\lambda" /> setiap detik.
+
+<MathVisual
+  title={<>Gelombang Transversal yang Merambat</>}
+  description={
+    <>
+      Ubah amplitudo <InlineMath math="a" />, panjang gelombang{" "}
+      <InlineMath math="\lambda" />, dan frekuensi <InlineMath math="f" />, lalu
+      geser waktu <InlineMath math="s" />. Cepat rambat terbaca di bawah sebagai{" "}
+      <InlineMath math="f\lambda" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.5, max: 2.5, value: 1.5, step: 0.1, label: "a" },
+      { name: "l", min: 2, max: 6, value: 4, step: 0.5, label: "l" },
+      { name: "f", min: 0.5, max: 2, value: 1, step: 0.25, label: "f" },
+      { name: "s", min: 0, max: 2, value: 0, step: 0.05, label: "s" },
+    ],
+    objects: [
+      { id: "wave", kind: "function", appearance: "primary", formula: "a sin(2pi(x/l - f s))", domain: { min: 0, max: 12 } },
+      { id: "crest", kind: "marker", x: "l/4 + l(f s - floor(f s))", y: "a", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "speed", formula: "f l" },
+      { key: "period", formula: "1/f" },
+    ],
+  }}
+  labels={{
+    a: <>Amplitudo <InlineMath math="a" /></>,
+    l: <>Panjang gelombang <InlineMath math="\lambda" /></>,
+    f: <>Frekuensi <InlineMath math="f" /></>,
+    s: <>Waktu <InlineMath math="s" /></>,
+    speed: <>Cepat rambat <InlineMath math="v = f\lambda" /></>,
+    period: <>Periode <InlineMath math="T" /></>,
+  }}
+/>
+
+### Contoh Cepat Rambat Gelombang Air
+
+Gelombang air di tangki riak berfrekuensi <InlineMath math="5\text{ Hz}" />, dan jarak antara **dua puncak berdekatan** adalah <InlineMath math="3\text{ cm}" />. Hitung cepat rambatnya.
+
+<BlockMath math="v = f\lambda = (5)(0{,}03) = 0{,}15\text{ m/s}" />
+
+Cek: dalam <InlineMath math="1" /> detik, lima puncak melewati satu titik, masing-masing <InlineMath math="3\text{ cm}" /> di belakang puncak sebelumnya, jadi gelombang bergerak <InlineMath math="15\text{ cm}" />.
+
+### Contoh Periode dari Frekuensi
+
+Gelombang bunyi berfrekuensi <InlineMath math="440\text{ Hz}" /> merambat dengan <InlineMath math="330\text{ m/s}" /> di udara. Cari **periode** dan panjang gelombangnya.
+
+<MathContainer>
+<BlockMath math="T = \frac{1}{f} = \frac{1}{440} = 2{,}27 \times 10^{-3}\text{ s}" />
+<BlockMath math="\lambda = \frac{v}{f} = \frac{330}{440} = 0{,}75\text{ m}" />
+</MathContainer>
+
+Cek: <InlineMath math="f\lambda = 440 \times 0{,}75 = 330\text{ m/s}" />.
+
+## Redaman dan Resonansi
+
+**Redaman** adalah berkurangnya amplitudo getaran karena energi hilang ke lingkungan, misalnya lewat gesekan dan hambatan udara. Frekuensinya tetap, tetapi amplitudonya mengecil. Geser penggeser redaman dan lihat selubung getarannya turun lebih cepat.
+
+<MathVisual
+  title={<>Getaran yang Teredam</>}
+  description={
+    <>
+      Simpangan <InlineMath math="y = 2e^{-bx}\cos(2\pi x)" /> terhadap waktu{" "}
+      <InlineMath math="x" /> dalam detik. Konstanta redaman{" "}
+      <InlineMath math="b" /> menentukan seberapa cepat amplitudo turun.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "oscillation", kind: "function", appearance: "primary", formula: "2exp(-b x)cos(2pi x)", domain: { min: 0, max: 10 } },
+      { id: "envelope-top", kind: "function", appearance: "construction", formula: "2exp(-b x)", domain: { min: 0, max: 10 } },
+      { id: "envelope-bottom", kind: "function", appearance: "construction", formula: "-2exp(-b x)", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "remaining", formula: "2exp(-5b)" },
+    ],
+  }}
+  labels={{
+    b: <>Redaman <InlineMath math="b" /></>,
+    remaining: <>Amplitudo setelah <InlineMath math="5" /> detik</>,
+  }}
+/>
+
+Setiap sistem yang bergetar punya **frekuensi alami**. **Resonansi** terjadi saat gaya luar menggetarkan sistem dengan frekuensi yang sama dengan frekuensi alaminya. Pada saat itu, sistem menyerap energi paling efisien dan amplitudonya mencapai maksimum. Kurva berikut memplot amplitudo terhadap perbandingan frekuensi paksa dengan frekuensi alami.
+
+<MathVisual
+  title={<>Kurva Resonansi</>}
+  description={
+    <>
+      Amplitudo relatif terhadap perbandingan frekuensi{" "}
+      <InlineMath math="r = f / f_0" />. Rasio redaman{" "}
+      <InlineMath math="\zeta" /> yang kecil memberi puncak yang tinggi dan
+      tajam di <InlineMath math="r = 1" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.7, value: 0.2, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "response", kind: "function", appearance: "primary", formula: "1/sqrt((1 - x^2)^2 + (2d x)^2)", domain: { min: 0, max: 3 } },
+      { id: "natural", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 5.5 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "1/(2d)" },
+    ],
+  }}
+  labels={{
+    d: <>Rasio redaman <InlineMath math="\zeta" /></>,
+    peak: <>Amplitudo pada <InlineMath math="r = 1" /></>,
+  }}
+/>
+
+Bandul Barton menunjukkan gagasan yang sama: bandul yang panjangnya sama dengan bandul penggerak berayun dengan amplitudo terbesar. Periode bandul sederhana hanya bergantung pada panjang talinya, bukan massa bebannya. Bandingkan tiga beban di model ini.
+
+<PendulumPeriodLab
+  title={<>Periode Tiga Bandul yang Sama Panjang</>}
+  description={
+    <>
+      Beban kayu, kuningan, dan timbal digantung pada tali yang sama panjang.
+      Ketiganya punya frekuensi alami yang sama.
+    </>
+  }
+  labels={{
+    check: <>Cek dengan rumus</>,
+    gravity: <>Percepatan gravitasi</>,
+    length: "Panjang tali",
+    masses: <>Massa beban</>,
+    period: <>Periode ayunan</>,
+    viewLabel: "Tiga bandul berayun bersama",
+  }}
+/>
+
+## Gelombang Bertemu Penghalang dan Medium Baru
+
+Gelombang berubah saat bertemu penghalang atau medium baru. Tabel ini membandingkan tiga peristiwa itu berdasarkan apa yang berubah dan apa yang tetap:
+
+| Peristiwa | Terjadi saat | Tetap | Berubah |
+| :--- | :--- | :--- | :--- |
+| Pemantulan | Gelombang mengenai penghalang lalu berbalik | Frekuensi, panjang gelombang, cepat rambat | Arah |
+| Pembiasan | Gelombang masuk ke medium dengan cepat rambat berbeda | Frekuensi | Cepat rambat, panjang gelombang, arah |
+| Difraksi | Gelombang melewati celah atau tepi penghalang | Frekuensi, panjang gelombang, cepat rambat | Bentuk muka gelombang |
+
+Pada pemantulan, **sudut datang sama dengan sudut pantul**. Saat gelombang air dibiaskan, gelombang melambat di bagian dangkal, jadi panjang gelombangnya mengecil dan arahnya membelok mendekati garis normal. Difraksi paling jelas saat lebar celah kira-kira sama dengan panjang gelombang. Itulah alasan kamu bisa mendengar orang bicara dari balik pintu: panjang gelombang bunyi mendekati lebar pintu.
+
+## Interferensi Gelombang
+
+**Interferensi** adalah perpaduan dua gelombang koheren. Saat puncak bertemu puncak, terjadi **interferensi konstruktif** dan amplitudonya bertambah. Saat puncak bertemu lembah, terjadi **interferensi destruktif** dan gelombang saling meniadakan. Untuk dua sumber yang berjarak <InlineMath math="a" />, jarak antara dua pita terang berdekatan pada layar sejauh <InlineMath math="D" /> adalah:
+
+<BlockMath math="x = \frac{\lambda D}{a}" />
+
+Model ini menunjukkan intensitas cahaya pada layar <InlineMath math="2\text{ m}" /> dari celah ganda berjarak <InlineMath math="0{,}5\text{ mm}" />. Ubah panjang gelombangnya dan lihat jarak pita berubah.
+
+<MathVisual
+  title={<>Pola Interferensi Celah Ganda Young</>}
+  description={
+    <>
+      Intensitas relatif terhadap posisi <InlineMath math="y" /> pada layar
+      dalam milimeter. Intensitasnya{" "}
+      <InlineMath math="\cos^2(\pi a y / \lambda D)" />, dengan{" "}
+      <InlineMath math="a = 0{,}5\text{ mm}" /> dan{" "}
+      <InlineMath math="D = 2\text{ m}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: 0, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 400, max: 700, value: 600, step: 10, label: "w" },
+    ],
+    objects: [
+      { id: "intensity", kind: "function", appearance: "primary", formula: "cos(pi x / (4w/1000))^2", domain: { min: -6, max: 6 } },
+    ],
+    readouts: [
+      { key: "spacing", formula: "4w/1000" },
+    ],
+  }}
+  labels={{
+    w: <>Panjang gelombang dalam nm</>,
+    spacing: <>Jarak pita <InlineMath math="x" /> dalam mm</>,
+  }}
+/>
+
+Pada <InlineMath math="600\text{ nm}" />, jarak pitanya <InlineMath math="(600 \times 10^{-9})(2) / (0{,}5 \times 10^{-3}) = 2{,}4\text{ mm}" />. Cahaya merah yang panjang gelombangnya lebih panjang memberi pita yang lebih renggang daripada cahaya biru.
+
+## Gelombang Elektromagnetik
+
+**Gelombang elektromagnetik** adalah gelombang transversal yang terdiri dari medan listrik dan medan magnet yang berosilasi saling tegak lurus. Gelombang ini tidak butuh medium dan merambat dengan <InlineMath math="3{,}0 \times 10^{8}\text{ m/s}" /> di ruang hampa. Spektrum elektromagnetik diurutkan berdasarkan panjang gelombang:
+
+<Chart
+  title={<>Panjang Gelombang Khas dalam Spektrum Elektromagnetik</>}
+  bars="apart"
+  categories={["Radio", "Gelombang mikro", "Inframerah", "Cahaya tampak", "Ultraviolet", "Sinar-X", "Sinar gamma"]}
+  series={[
+    { label: "Eksponen panjang gelombang (log₁₀ m)", mark: "bar", values: [0, -2, -5, Math.log10(5e-7), -7, -10, -12] },
+  ]}
+  valueLabel="log₁₀ panjang gelombang (m)"
+  description={
+    <>
+      Nilai khas: radio <InlineMath math="1\text{ m}" />, gelombang mikro{" "}
+      <InlineMath math="1\text{ cm}" />, inframerah{" "}
+      <InlineMath math="10\ \mu\text{m}" />, cahaya tampak{" "}
+      <InlineMath math="500\text{ nm}" />, ultraviolet{" "}
+      <InlineMath math="100\text{ nm}" />, sinar-X{" "}
+      <InlineMath math="0{,}1\text{ nm}" />, dan sinar gamma{" "}
+      <InlineMath math="1\text{ pm}" />.
+    </>
+  }
+/>
+
+Makin pendek panjang gelombangnya, makin tinggi frekuensi dan energinya. Itulah alasan sinar-X dan sinar gamma bisa merusak sel hidup, sedangkan gelombang radio aman dipakai untuk siaran.
+
+## Kesalahan Umum tentang Gelombang
+
+| Kesalahan | Alasan keliru | Cara mengecek |
+| :--- | :--- | :--- |
+| Gelombang memindahkan materi. | Partikel hanya bergetar di sekitar posisi asalnya. Yang berpindah adalah energi. | Bayangkan pelampung di atas ombak: pelampung naik turun, tidak hanyut bersama ombak. |
+| Panjang gelombang adalah jarak puncak ke lembah. | Itu setengah panjang gelombang. | Ukur dari puncak ke puncak berikutnya. |
+| Frekuensi berubah saat pembiasan. | Frekuensi ditentukan sumbernya, jadi tetap. | Cepat rambat dan panjang gelombang berubah bersama. |
+| Redaman mengubah frekuensi getaran. | Redaman hanya mengurangi amplitudo. | Hitung jumlah getaran dalam waktu yang sama. |
+
+Kesalahan ketiga paling sering muncul di soal pembiasan. **Frekuensinya tetap**, jadi kalau cepat rambat turun, panjang gelombang juga turun.
+
+## Latihan Gelombang
+
+Soal-soal ini bergerak dari <InlineMath math="v = f\lambda" /> ke interferensi. **Ubah sentimeter dan milimeter ke meter** sebelum menghitung.
+
+1. Sebuah gelombang berperiode <InlineMath math="0{,}2\text{ s}" /> dan berpanjang gelombang <InlineMath math="1{,}5\text{ m}" />. Hitung cepat rambatnya.
+
+2. Gelombang air bergerak dari bagian dalam ke bagian dangkal. Cepat rambatnya turun dari <InlineMath math="0{,}30\text{ m/s}" /> menjadi <InlineMath math="0{,}20\text{ m/s}" />. Panjang gelombang di bagian dalam <InlineMath math="6\text{ cm}" />. Hitung panjang gelombang di bagian dangkal.
+
+3. Pada percobaan celah ganda, <InlineMath math="a = 0{,}4\text{ mm}" />, <InlineMath math="D = 1{,}6\text{ m}" />, dan jarak antara dua pita terang berdekatan <InlineMath math="2{,}2\text{ mm}" />. Hitung panjang gelombang cahayanya.
+
+4. Jelaskan mengapa jembatan bisa bergoyang dengan amplitudo sangat besar saat sekelompok tentara berbaris serempak di atasnya dengan irama tertentu.
+
+### Pembahasan
+
+**Pembahasan 1**: Cari frekuensinya dulu, lalu cepat rambatnya:
+
+<MathContainer>
+<BlockMath math="f = \frac{1}{T} = \frac{1}{0{,}2} = 5\text{ Hz}" />
+<BlockMath math="v = f\lambda = (5)(1{,}5) = 7{,}5\text{ m/s}" />
+</MathContainer>
+
+**Pembahasan 2**: Frekuensi tidak berubah saat pembiasan. Di bagian dalam:
+
+<BlockMath math="f = \frac{v}{\lambda} = \frac{0{,}30}{0{,}06} = 5\text{ Hz}" />
+
+Di bagian dangkal, <InlineMath math="\lambda = 0{,}20 / 5 = 0{,}04\text{ m} = 4\text{ cm}" />. Cek: perbandingan cepat rambat <InlineMath math="0{,}20 / 0{,}30" /> sama dengan perbandingan panjang gelombang <InlineMath math="4 / 6" />.
+
+**Pembahasan 3**: Susun ulang <InlineMath math="x = \lambda D / a" />:
+
+<BlockMath math="\lambda = \frac{ax}{D} = \frac{(0{,}4 \times 10^{-3})(2{,}2 \times 10^{-3})}{1{,}6} = 5{,}5 \times 10^{-7}\text{ m}" />
+
+Itu <InlineMath math="550\text{ nm}" />, cahaya hijau, nilai yang masuk akal untuk cahaya tampak.
+
+**Pembahasan 4**: Jembatan punya frekuensi alami. Kalau frekuensi hentakan kaki tentara **sama dengan frekuensi alami jembatan**, terjadi resonansi. Jembatan terus menyerap energi pada frekuensi yang paling efisien, jadi amplitudo getarannya bertambah sampai bisa merusak strukturnya. Itulah alasan tentara diperintahkan berjalan tidak serempak saat menyeberangi jembatan.

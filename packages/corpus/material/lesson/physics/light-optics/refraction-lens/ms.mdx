@@ -1,0 +1,306 @@
+export const metadata = {
+  title: "Nota Cahaya dan Optik Tingkatan Empat",
+  description:
+    "Nota Fizik Tingkatan 4 Bab 6: guna Hukum Snell, cari sudut genting untuk pantulan dalam penuh, lukis rajah sinar kanta dan selesaikan formula kanta.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Cahaya dan Optik",
+};
+
+## Pembiasan Cahaya dan Hukum Snell
+
+**Pembiasan cahaya** ialah perubahan arah cahaya apabila cahaya merambat dari satu medium ke medium lain yang berbeza ketumpatan optiknya. **Hukum Snell** menyatakan nisbah sinus sudut tuju kepada sinus sudut biasan ialah pemalar, iaitu **indeks biasan** medium:
+
+<BlockMath math="n = \frac{\sin i}{\sin r} = \frac{c}{v}" />
+
+Di sini <InlineMath math="i" /> ialah sudut tuju dan <InlineMath math="r" /> ialah sudut biasan, kedua-duanya diukur dari garis normal. <InlineMath math="c = 3.0 \times 10^{8}\text{ m s}^{-1}" /> ialah laju cahaya dalam vakum dan <InlineMath math="v" /> ialah laju cahaya dalam medium. Dalam model di sini, kamu mengubah sudut sinar, memerangkap cahaya dengan pantulan dalam penuh, dan menggerakkan objek di hadapan kanta.
+
+Cahaya membengkok **ke arah normal** apabila masuk ke medium yang lebih tumpat secara optik, kerana cahaya bergerak lebih perlahan di situ. Gerakkan gelangsar sudut tuju dan indeks biasan, kemudian bandingkan sudut biasan.
+
+<MathVisual
+  title={<>Sinar Cahaya dari Udara ke Kaca</>}
+  description={
+    <>
+      Sinar tuju datang dari atas pada sudut <InlineMath math="i" /> dan
+      terbias ke dalam medium berindeks <InlineMath math="n" />. Garis tegak
+      ialah normal.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 0, max: 80, value: 40, step: 1, label: "i" },
+      { name: "n", min: 1, max: 2.5, value: 1.5, step: 0.05, label: "n" },
+    ],
+    objects: [
+      { id: "boundary", kind: "segment", appearance: "reference", from: { x: -4.5, y: 0 }, to: { x: 4.5, y: 0 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0, y: -4.5 }, to: { x: 0, y: 4.5 } },
+      { id: "incident", kind: "path", appearance: "warning", points: [{ x: "-4sin(i pi/180)", y: "4cos(i pi/180)" }, { x: "0", y: "0" }] },
+      { id: "refracted", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4sin(i pi/180)/n", y: "-4sqrt(1 - (sin(i pi/180)/n)^2)" }] },
+    ],
+    labels: [
+      { key: "air", objectId: "boundary", at: { x: -3.5, y: 0 }, placement: "above" },
+      { key: "glass", objectId: "boundary", at: { x: 3.5, y: 0 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "angle", formula: "asin(sin(i pi/180)/n) 180/pi" },
+      { key: "speed", formula: "3/n" },
+    ],
+  }}
+  labels={{
+    i: <>Sudut tuju <InlineMath math="i" /> dalam darjah</>,
+    n: <>Indeks biasan <InlineMath math="n" /></>,
+    air: <>Udara</>,
+    glass: <>Medium tumpat</>,
+    angle: <>Sudut biasan <InlineMath math="r" /> dalam darjah</>,
+    speed: <>Laju cahaya dalam <InlineMath math="10^{8}\text{ m s}^{-1}" /></>,
+  }}
+/>
+
+### Contoh Menggunakan Hukum Snell
+
+Sinar cahaya masuk ke dalam kaca berindeks biasan <InlineMath math="1.5" /> pada sudut tuju <InlineMath math="40^\circ" />. Hitung **sudut biasan**.
+
+<MathContainer>
+<BlockMath math="\sin r = \frac{\sin 40^\circ}{1.5} = \frac{0.643}{1.5} = 0.429" />
+<BlockMath math="r = 25.4^\circ" />
+</MathContainer>
+
+Semak dengan model: pada <InlineMath math="i = 40" /> dan <InlineMath math="n = 1.5" />, sudut biasan dibaca <InlineMath math="25.4^\circ" />. Sudut ini lebih kecil daripada sudut tuju, jadi sinar membengkok ke arah normal.
+
+### Contoh Dalam Nyata dan Dalam Ketara
+
+Kolam kelihatan lebih cetek daripada dalam sebenarnya kerana cahaya dari dasar membengkok menjauhi normal apabila keluar dari air. Hubungannya ialah <InlineMath math="n = \dfrac{\text{dalam nyata}}{\text{dalam ketara}}" />. Bagi kolam sedalam <InlineMath math="2.0\text{ m}" /> dengan <InlineMath math="n = 1.33" />:
+
+<BlockMath math="\text{dalam ketara} = \frac{2.0}{1.33} = 1.5\text{ m}" />
+
+Kolam itu kelihatan **setengah meter lebih cetek**. Semak: <InlineMath math="1.5 \times 1.33 = 2.0" />.
+
+## Pantulan Dalam Penuh
+
+Apabila cahaya bergerak dari medium tumpat ke medium kurang tumpat, sudut biasan lebih besar daripada sudut tuju. Pada **sudut genting** <InlineMath math="c" />, sudut biasan mencapai <InlineMath math="90^\circ" />. Jika sudut tuju melebihi sudut genting, semua cahaya dipantulkan semula ke dalam medium tumpat. Fenomena ini dipanggil **pantulan dalam penuh**:
+
+<BlockMath math="\sin c = \frac{1}{n}" />
+
+Bagi kaca dengan <InlineMath math="n = 1.5" />, sudut genting ialah <InlineMath math="41.8^\circ" />. Gerakkan sudut tuju melepasi nilai itu dan perhatikan sinar biasan menyusur permukaan, kemudian hanya sinar pantulan yang tinggal.
+
+<MathVisual
+  title={<>Dari Kaca ke Udara melepasi Sudut Genting</>}
+  description={
+    <>
+      Sinar datang dari bawah di dalam kaca berindeks{" "}
+      <InlineMath math="1.5" />. Sinar biru terbias ke udara, sinar hijau toska
+      dipantulkan semula ke dalam kaca.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 0, max: 80, value: 30, step: 1, label: "i" },
+    ],
+    objects: [
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: -4.5, y: 0 }, to: { x: 4.5, y: 0 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0, y: -4.5 }, to: { x: 0, y: 4.5 } },
+      { id: "incident", kind: "path", appearance: "warning", points: [{ x: "-4sin(i pi/180)", y: "-4cos(i pi/180)" }, { x: "0", y: "0" }] },
+      { id: "reflected", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "4sin(i pi/180)", y: "-4cos(i pi/180)" }] },
+      { id: "refracted", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4min(1, 1.5sin(i pi/180))", y: "4sqrt(1 - min(1, 1.5sin(i pi/180))^2)" }] },
+    ],
+    labels: [
+      { key: "air", objectId: "surface", at: { x: -3.5, y: 0 }, placement: "above" },
+      { key: "glass", objectId: "surface", at: { x: -3.5, y: 0 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "critical", formula: "asin(1/1.5) 180/pi" },
+      { key: "out", formula: "asin(min(1, 1.5sin(i pi/180))) 180/pi" },
+    ],
+  }}
+  labels={{
+    i: <>Sudut tuju <InlineMath math="i" /> dalam darjah</>,
+    air: <>Udara</>,
+    glass: <>Kaca</>,
+    critical: <>Sudut genting <InlineMath math="c" /></>,
+    out: <>Sudut biasan dalam udara</>,
+  }}
+/>
+
+Bahan dengan indeks biasan tinggi mempunyai sudut genting yang kecil, jadi cahaya lebih mudah terperangkap. Itulah sebab berlian berkilau: cahaya dipantulkan berkali-kali di dalamnya sebelum keluar.
+
+<Chart
+  title={<>Sudut Genting Tiga Bahan</>}
+  bars="apart"
+  categories={["Air", "Kaca", "Berlian"]}
+  series={[
+    {
+      label: "Sudut genting (°)",
+      mark: "bar",
+      values: [(Math.asin(1 / 1.33) * 180) / Math.PI, (Math.asin(1 / 1.5) * 180) / Math.PI, (Math.asin(1 / 2.42) * 180) / Math.PI],
+    },
+  ]}
+  valueLabel="Sudut genting (°)"
+  description={
+    <>
+      Dikira daripada <InlineMath math="\sin c = 1/n" />: air{" "}
+      <InlineMath math="n = 1.33" /> memberi <InlineMath math="48.8^\circ" />,
+      kaca <InlineMath math="n = 1.5" /> memberi <InlineMath math="41.8^\circ" />{" "}
+      dan berlian <InlineMath math="n = 2.42" /> memberi{" "}
+      <InlineMath math="24.4^\circ" />.
+    </>
+  }
+/>
+
+**Gentian optik** menggunakan pantulan dalam penuh untuk membawa cahaya sejauh beribu kilometer. Teras kaca dikelilingi salutan yang indeks biasannya lebih rendah, jadi cahaya yang terkena dinding pada sudut melebihi sudut genting kekal di dalam teras.
+
+## Kanta dan Pembentukan Imej
+
+**Kanta cembung** menumpukan sinar selari ke satu titik di belakang kanta, iaitu **titik fokus** <InlineMath math="F" />. Jarak dari pusat optik ke titik fokus ialah **panjang fokus** <InlineMath math="f" />. Kedudukan imej diberi oleh **formula kanta**:
+
+<BlockMath math="\frac{1}{f} = \frac{1}{u} + \frac{1}{v}, \qquad m = \frac{v}{u}" />
+
+<InlineMath math="u" /> ialah jarak objek, <InlineMath math="v" /> ialah jarak imej dan <InlineMath math="m" /> ialah pembesaran linear. Bagi imej nyata, <InlineMath math="v" /> positif. Rajah sinar di bawah menggunakan kanta cembung dengan <InlineMath math="f = 2" /> unit. Gerakkan objek dan perhatikan imej songsang yang nyata berubah saiz.
+
+<MathVisual
+  title={<>Rajah Sinar Kanta Cembung</>}
+  description={
+    <>
+      Objek setinggi <InlineMath math="1" /> unit berada pada jarak{" "}
+      <InlineMath math="u" /> di kiri kanta. Satu sinar selari paksi terbias
+      melalui <InlineMath math="F" />, dan satu sinar melalui pusat optik tanpa
+      membengkok. Imej terbentuk di persilangan kedua-dua sinar.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 11 }, y: { min: -4.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.04 },
+    parameters: [
+      { name: "o", min: 2.5, max: 8, value: 6, step: 0.1, label: "o" },
+    ],
+    objects: [
+      { id: "lens", kind: "segment", appearance: "reference", from: { x: 0, y: -4 }, to: { x: 0, y: 2 } },
+      { id: "focus-near", kind: "point", appearance: "construction", at: { x: -2, y: 0 } },
+      { id: "focus-far", kind: "point", appearance: "construction", at: { x: 2, y: 0 } },
+      { id: "object", kind: "path", appearance: "warning", points: [{ x: "-o", y: "0" }, { x: "-o", y: "1" }] },
+      { id: "image", kind: "path", appearance: "answer", points: [{ x: "2o/(o - 2)", y: "0" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+      { id: "parallel-ray", kind: "path", appearance: "primary", points: [{ x: "-o", y: "1" }, { x: "0", y: "1" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+      { id: "centre-ray", kind: "path", appearance: "secondary", points: [{ x: "-o", y: "1" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+    ],
+    labels: [
+      { key: "focus", objectId: "focus-far", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "distance", formula: "2o/(o - 2)" },
+      { key: "magnification", formula: "2/(o - 2)" },
+    ],
+  }}
+  labels={{
+    o: <>Jarak objek <InlineMath math="u" /></>,
+    focus: <InlineMath math="F" />,
+    distance: <>Jarak imej <InlineMath math="v" /></>,
+    magnification: <>Pembesaran <InlineMath math="m" /></>,
+  }}
+/>
+
+Apabila objek berada lebih jauh daripada <InlineMath math="2f" />, imej nyata, songsang dan **lebih kecil**, seperti dalam kamera. Apabila objek berada di antara <InlineMath math="f" /> dan <InlineMath math="2f" />, imej nyata, songsang dan **lebih besar**, seperti dalam projektor. Jika objek lebih dekat daripada <InlineMath math="f" />, sinar tidak bersilang di belakang kanta dan imej menjadi maya, tegak serta diperbesar. Itulah prinsip kanta pembesar.
+
+### Contoh Formula Kanta
+
+Objek diletakkan <InlineMath math="15\text{ cm}" /> di hadapan kanta cembung berpanjang fokus <InlineMath math="10\text{ cm}" />. Cari **jarak imej dan pembesaran**.
+
+<MathContainer>
+<BlockMath math="\frac{1}{v} = \frac{1}{10} - \frac{1}{15} = \frac{1}{30}" />
+<BlockMath math="v = 30\text{ cm}, \qquad m = \frac{30}{15} = 2" />
+</MathContainer>
+
+Imej nyata, songsang dan dua kali lebih besar. Semak dengan model: <InlineMath math="u = 1.5f" /> dalam model ialah <InlineMath math="o = 3" />, dan model memberi <InlineMath math="v = 6 = 3f" />, sama dengan <InlineMath math="30\text{ cm} = 3 \times 10\text{ cm}" />.
+
+### Contoh Menentukan Panjang Fokus daripada Graf
+
+Dalam eksperimen kanta, graf <InlineMath math="1/v" /> melawan <InlineMath math="1/u" /> ialah garis lurus dengan kecerunan <InlineMath math="-1" />. Pintasan pada kedua-dua paksi sama dengan <InlineMath math="1/f" />, iaitu **kuasa kanta** <InlineMath math="P" /> dalam diopter jika jarak dalam meter.
+
+<MathVisual
+  title={<>Graf Formula Kanta</>}
+  description={
+    <>
+      Garis <InlineMath math="1/v = P - 1/u" />, dengan jarak dalam meter.
+      Gerakkan kuasa kanta <InlineMath math="P" /> dan perhatikan kedua-dua
+      pintasan bergerak bersama.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 4, max: 10, value: 5, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "lens-line", kind: "function", appearance: "primary", formula: "p - x", domain: { min: 0, max: 10 } },
+      { id: "intercept-y", kind: "marker", x: "0", y: "p", appearance: "answer" },
+      { id: "intercept-x", kind: "marker", x: "p", y: "0", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "focal", formula: "100/p" },
+    ],
+  }}
+  labels={{
+    p: <>Kuasa kanta <InlineMath math="P" /> dalam D</>,
+    focal: <>Panjang fokus dalam cm</>,
+  }}
+/>
+
+Jika pintasan ialah <InlineMath math="5\text{ m}^{-1}" />, panjang fokus ialah <InlineMath math="1/5 = 0.20\text{ m}" />, iaitu <InlineMath math="20\text{ cm}" />. Kanta cekung pula mempunyai panjang fokus dan kuasa yang negatif.
+
+## Kesilapan Lazim tentang Cahaya dan Optik
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Sudut tuju diukur dari permukaan. | Sudut tuju dan sudut biasan diukur dari normal. | Lukis normal dulu, kemudian ukur sudut. |
+| Pantulan dalam penuh berlaku apabila cahaya masuk ke kaca. | Pantulan dalam penuh hanya berlaku dari medium tumpat ke medium kurang tumpat. | Semak arah cahaya: dari indeks tinggi ke indeks rendah. |
+| Imej kanta cembung sentiasa songsang. | Jika <InlineMath math="u < f" />, imej maya dan tegak. | Bandingkan <InlineMath math="u" /> dengan <InlineMath math="f" /> dulu. |
+| Menggunakan sentimeter untuk kuasa kanta. | Kuasa kanta <InlineMath math="P = 1/f" /> mesti dengan <InlineMath math="f" /> dalam meter. | Tukar <InlineMath math="f" /> kepada meter sebelum membahagi. |
+
+Kesilapan pertama paling kerap dalam soalan Hukum Snell. **Normal ialah garis rujukan** bagi setiap sudut dalam pembiasan dan pantulan.
+
+## Latihan Cahaya dan Optik
+
+Soalan ini bergerak daripada Hukum Snell kepada kanta. **Lukis rajah ringkas** sebelum mengira.
+
+1. Laju cahaya dalam sejenis plastik ialah <InlineMath math="2.0 \times 10^{8}\text{ m s}^{-1}" />. Hitung indeks biasan plastik itu.
+
+2. Hitung sudut genting bagi air dengan indeks biasan <InlineMath math="1.33" />, dan terangkan apa yang berlaku kepada sinar dari dalam air yang terkena permukaan pada sudut <InlineMath math="60^\circ" />.
+
+3. Objek diletakkan <InlineMath math="30\text{ cm}" /> dari kanta cembung berpanjang fokus <InlineMath math="20\text{ cm}" />. Hitung jarak imej dan pembesaran, dan nyatakan ciri imej.
+
+4. Hitung kuasa kanta cembung berpanjang fokus <InlineMath math="25\text{ cm}" />.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Gunakan <InlineMath math="n = c/v" />:
+
+<BlockMath math="n = \frac{3.0 \times 10^{8}}{2.0 \times 10^{8}} = 1.5" />
+
+**Penyelesaian 2**: Sudut genting diberi oleh <InlineMath math="\sin c = 1/n" />:
+
+<BlockMath math="c = \sin^{-1}\!\left(\frac{1}{1.33}\right) = 48.8^\circ" />
+
+Sudut <InlineMath math="60^\circ" /> lebih besar daripada <InlineMath math="48.8^\circ" />, jadi sinar itu mengalami **pantulan dalam penuh** dan tiada cahaya keluar ke udara.
+
+**Penyelesaian 3**: Gunakan formula kanta:
+
+<MathContainer>
+<BlockMath math="\frac{1}{v} = \frac{1}{20} - \frac{1}{30} = \frac{1}{60}" />
+<BlockMath math="v = 60\text{ cm}, \qquad m = \frac{60}{30} = 2" />
+</MathContainer>
+
+Objek berada di antara <InlineMath math="f" /> dan <InlineMath math="2f" />, jadi imej nyata, songsang dan diperbesar dua kali.
+
+**Penyelesaian 4**: Tukar panjang fokus kepada meter, <InlineMath math="f = 0.25\text{ m}" />:
+
+<BlockMath math="P = \frac{1}{0.25} = 4\text{ D}" />
+
+Kuasa positif menunjukkan kanta cembung.

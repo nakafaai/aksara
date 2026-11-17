@@ -1,0 +1,294 @@
+export const metadata = {
+  title: "Waves Notes for Form Four Physics",
+  description:
+    "Form 4 Physics Chapter 5: use v = fλ, explain damping and resonance, reflection, refraction, diffraction, interference and the electromagnetic spectrum.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Waves",
+};
+
+## Waves Transfer Energy
+
+A **wave** is a disturbance that carries energy from one place to another without carrying matter along. The speed of a wave depends on its frequency and wavelength:
+
+<BlockMath math="v = f\lambda" />
+
+Here <InlineMath math="v" /> is the speed in <InlineMath math="\text{m s}^{-1}" />, <InlineMath math="f" /> is the frequency in hertz, and <InlineMath math="\lambda" /> is the wavelength in metres. Frequency links to period through <InlineMath math="f = 1/T" />. In the models here, you set a wave moving, damp an oscillation, find resonance and build an interference pattern.
+
+There are two kinds of wave. In a **transverse wave**, the particles of the medium vibrate at right angles to the direction the wave travels, as in water waves and light. In a **longitudinal wave**, the particles vibrate parallel to the direction of travel, as in sound waves, which form compressions and rarefactions.
+
+## The Main Features of a Wave
+
+The wave below is <InlineMath math="y = a\sin\!\big(2\pi(x/\lambda - fs)\big)" />, with <InlineMath math="s" /> the time in seconds. The **amplitude** <InlineMath math="a" /> is the maximum displacement from the equilibrium position. The **wavelength** <InlineMath math="\lambda" /> is the distance between two neighbouring crests. Move the time slider and watch a crest travel <InlineMath math="f\lambda" /> every second.
+
+<MathVisual
+  title={<>A Travelling Transverse Wave</>}
+  description={
+    <>
+      Change the amplitude <InlineMath math="a" />, wavelength{" "}
+      <InlineMath math="\lambda" /> and frequency <InlineMath math="f" />, then
+      move the time <InlineMath math="s" />. The panel below shows the wave speed as{" "}
+      <InlineMath math="f\lambda" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.5, max: 2.5, value: 1.5, step: 0.1, label: "a" },
+      { name: "l", min: 2, max: 6, value: 4, step: 0.5, label: "l" },
+      { name: "f", min: 0.5, max: 2, value: 1, step: 0.25, label: "f" },
+      { name: "s", min: 0, max: 2, value: 0, step: 0.05, label: "s" },
+    ],
+    objects: [
+      { id: "wave", kind: "function", appearance: "primary", formula: "a sin(2pi(x/l - f s))", domain: { min: 0, max: 12 } },
+      { id: "crest", kind: "marker", x: "l/4 + l(f s - floor(f s))", y: "a", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "speed", formula: "f l" },
+      { key: "period", formula: "1/f" },
+    ],
+  }}
+  labels={{
+    a: <>Amplitude <InlineMath math="a" /></>,
+    l: <>Wavelength <InlineMath math="\lambda" /></>,
+    f: <>Frequency <InlineMath math="f" /></>,
+    s: <>Time <InlineMath math="s" /></>,
+    speed: <>Wave speed <InlineMath math="v = f\lambda" /></>,
+    period: <>Period <InlineMath math="T" /></>,
+  }}
+/>
+
+### Example Speed of a Water Wave
+
+A water wave in a ripple tank has a frequency of <InlineMath math="5\text{ Hz}" />, and the distance between **two neighbouring crests** is <InlineMath math="3\text{ cm}" />. Find the wave speed.
+
+<BlockMath math="v = f\lambda = (5)(0.03) = 0.15\text{ m s}^{-1}" />
+
+Check: in <InlineMath math="1" /> second, five crests pass a point, each <InlineMath math="3\text{ cm}" /> behind the last, so the wave moves <InlineMath math="15\text{ cm}" />.
+
+### Example Period from Frequency
+
+A sound wave of frequency <InlineMath math="440\text{ Hz}" /> travels at <InlineMath math="330\text{ m s}^{-1}" /> in air. Find its **period** and wavelength.
+
+<MathContainer>
+<BlockMath math="T = \frac{1}{f} = \frac{1}{440} = 2.27 \times 10^{-3}\text{ s}" />
+<BlockMath math="\lambda = \frac{v}{f} = \frac{330}{440} = 0.75\text{ m}" />
+</MathContainer>
+
+Check: <InlineMath math="f\lambda = 440 \times 0.75 = 330\text{ m s}^{-1}" />.
+
+## Damping and Resonance
+
+**Damping** is the drop in an oscillation's amplitude as energy is lost to the surroundings, for example through friction and air resistance. The frequency stays the same, but the amplitude shrinks. Move the damping slider and watch the envelope of the oscillation fall faster.
+
+<MathVisual
+  title={<>A Damped Oscillation</>}
+  description={
+    <>
+      Displacement <InlineMath math="y = 2e^{-bx}\cos(2\pi x)" /> against time{" "}
+      <InlineMath math="x" /> in seconds. The damping constant{" "}
+      <InlineMath math="b" /> sets how quickly the amplitude falls.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "oscillation", kind: "function", appearance: "primary", formula: "2exp(-b x)cos(2pi x)", domain: { min: 0, max: 10 } },
+      { id: "envelope-top", kind: "function", appearance: "construction", formula: "2exp(-b x)", domain: { min: 0, max: 10 } },
+      { id: "envelope-bottom", kind: "function", appearance: "construction", formula: "-2exp(-b x)", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "remaining", formula: "2exp(-5b)" },
+    ],
+  }}
+  labels={{
+    b: <>Damping <InlineMath math="b" /></>,
+    remaining: <>Amplitude after <InlineMath math="5" /> seconds</>,
+  }}
+/>
+
+Every vibrating system has a **natural frequency**. **Resonance** happens when an outside force drives the system at a frequency equal to its natural frequency. The system then takes in energy most efficiently and its amplitude reaches a maximum. The curve below plots amplitude against the ratio of the driving frequency to the natural frequency.
+
+<MathVisual
+  title={<>The Resonance Curve</>}
+  description={
+    <>
+      Relative amplitude against the frequency ratio{" "}
+      <InlineMath math="r = f / f_0" />. A small damping ratio{" "}
+      <InlineMath math="\zeta" /> gives a tall, sharp peak at{" "}
+      <InlineMath math="r = 1" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.7, value: 0.2, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "response", kind: "function", appearance: "primary", formula: "1/sqrt((1 - x^2)^2 + (2d x)^2)", domain: { min: 0, max: 3 } },
+      { id: "natural", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 5.5 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "1/(2d)" },
+    ],
+  }}
+  labels={{
+    d: <>Damping ratio <InlineMath math="\zeta" /></>,
+    peak: <>Amplitude at <InlineMath math="r = 1" /></>,
+  }}
+/>
+
+Barton's pendulums show the same idea: the pendulum whose length equals the driver pendulum's swings with the biggest amplitude. The period of a simple pendulum depends only on its length, not on the mass of the bob. Compare the three bobs in this model.
+
+<PendulumPeriodLab
+  title={<>Periods of Three Pendulums of Equal Length</>}
+  description={
+    <>
+      A wooden, a brass and a lead bob hang on strings of the same length. All
+      three have the same natural frequency.
+    </>
+  }
+  labels={{
+    check: <>Check against the formula</>,
+    gravity: <>Gravitational acceleration</>,
+    length: "String length",
+    masses: <>Bob masses</>,
+    period: <>Period of oscillation</>,
+    viewLabel: "Three pendulums swinging together",
+  }}
+/>
+
+## Waves Meeting Obstacles and New Media
+
+Waves change when they meet an obstacle or a new medium. This table compares the three effects by what changes and what stays the same:
+
+| Effect | Happens when | Stays the same | Changes |
+| :--- | :--- | :--- | :--- |
+| Reflection | A wave hits an obstacle and bounces back | Frequency, wavelength, speed | Direction |
+| Refraction | A wave enters a medium where its speed differs | Frequency | Speed, wavelength, direction |
+| Diffraction | A wave passes through a gap or round an edge | Frequency, wavelength, speed | Shape of the wavefront |
+
+In reflection, **the angle of incidence equals the angle of reflection**. When water waves refract, they slow down in shallow water, so their wavelength shrinks and they bend towards the normal. Diffraction is strongest when the gap is about the same size as the wavelength. That's why you can hear someone talking round a doorway: the wavelength of sound is close to the width of the door.
+
+## Interference of Waves
+
+**Interference** is the superposition of two coherent waves. Where a crest meets a crest, there's **constructive interference** and the amplitude grows. Where a crest meets a trough, there's **destructive interference** and the waves cancel. For two sources a distance <InlineMath math="a" /> apart, the distance between two neighbouring bright fringes at a distance <InlineMath math="D" /> is:
+
+<BlockMath math="x = \frac{\lambda D}{a}" />
+
+This model shows the light intensity on a screen <InlineMath math="2\text{ m}" /> from a double slit with a separation of <InlineMath math="0.5\text{ mm}" />. Change the wavelength and watch the fringe spacing change.
+
+<MathVisual
+  title={<>Young's Double-Slit Interference Pattern</>}
+  description={
+    <>
+      Relative intensity against position <InlineMath math="y" /> on the screen
+      in millimetres. The intensity is{" "}
+      <InlineMath math="\cos^2(\pi a y / \lambda D)" />, with{" "}
+      <InlineMath math="a = 0.5\text{ mm}" /> and <InlineMath math="D = 2\text{ m}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: 0, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 400, max: 700, value: 600, step: 10, label: "w" },
+    ],
+    objects: [
+      { id: "intensity", kind: "function", appearance: "primary", formula: "cos(pi x / (4w/1000))^2", domain: { min: -6, max: 6 } },
+    ],
+    readouts: [
+      { key: "spacing", formula: "4w/1000" },
+    ],
+  }}
+  labels={{
+    w: <>Wavelength in nm</>,
+    spacing: <>Fringe spacing <InlineMath math="x" /> in mm</>,
+  }}
+/>
+
+At <InlineMath math="600\text{ nm}" />, the fringe spacing is <InlineMath math="(600 \times 10^{-9})(2) / (0.5 \times 10^{-3}) = 2.4\text{ mm}" />. Red light, with its longer wavelength, gives wider fringes than blue light.
+
+## Electromagnetic Waves
+
+**Electromagnetic waves** are transverse waves made of an electric field and a magnetic field oscillating at right angles to each other. They need no medium and travel at <InlineMath math="3.0 \times 10^{8}\text{ m s}^{-1}" /> in a vacuum. The electromagnetic spectrum is ordered by wavelength:
+
+<Chart
+  title={<>Typical Wavelengths in the Electromagnetic Spectrum</>}
+  bars="apart"
+  categories={["Radio", "Microwaves", "Infrared", "Visible light", "Ultraviolet", "X-rays", "Gamma rays"]}
+  series={[
+    { label: "Wavelength exponent (log₁₀ m)", mark: "bar", values: [0, -2, -5, Math.log10(5e-7), -7, -10, -12] },
+  ]}
+  valueLabel="log₁₀ wavelength (m)"
+  description={
+    <>
+      Typical values: radio <InlineMath math="1\text{ m}" />, microwaves{" "}
+      <InlineMath math="1\text{ cm}" />, infrared{" "}
+      <InlineMath math="10\ \mu\text{m}" />, visible light{" "}
+      <InlineMath math="500\text{ nm}" />, ultraviolet{" "}
+      <InlineMath math="100\text{ nm}" />, X-rays{" "}
+      <InlineMath math="0.1\text{ nm}" /> and gamma rays{" "}
+      <InlineMath math="1\text{ pm}" />.
+    </>
+  }
+/>
+
+The shorter the wavelength, the higher the frequency and energy of the wave. That's why X-rays and gamma rays can damage living cells, while radio waves are safe to use for broadcasting.
+
+## Common Mistakes about Waves
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Waves carry matter. | Particles only vibrate about their original position. What travels is energy. | Picture a float on the waves: it bobs up and down but doesn't drift with them. |
+| Wavelength is the distance from crest to trough. | That's half a wavelength. | Measure from one crest to the next. |
+| Frequency changes during refraction. | The source sets the frequency, so it stays the same. | Speed and wavelength change together. |
+| Damping changes the frequency of an oscillation. | Damping only reduces the amplitude. | Count the oscillations in the same time. |
+
+The third mistake is the most common one in refraction questions. **The frequency is fixed**, so if the speed drops, the wavelength drops too.
+
+## Practice on Waves
+
+These questions move from <InlineMath math="v = f\lambda" /> to interference. **Convert centimetres and millimetres to metres** before you calculate.
+
+1. A wave has a period of <InlineMath math="0.2\text{ s}" /> and a wavelength of <InlineMath math="1.5\text{ m}" />. Calculate its speed.
+
+2. A water wave moves from deep to shallow water. Its speed drops from <InlineMath math="0.30\text{ m s}^{-1}" /> to <InlineMath math="0.20\text{ m s}^{-1}" />. The wavelength in deep water is <InlineMath math="6\text{ cm}" />. Calculate the wavelength in shallow water.
+
+3. In a double-slit experiment, <InlineMath math="a = 0.4\text{ mm}" />, <InlineMath math="D = 1.6\text{ m}" /> and the distance between two neighbouring bright fringes is <InlineMath math="2.2\text{ mm}" />. Calculate the wavelength of the light.
+
+4. Explain why a bridge can sway with a very large amplitude when a group of soldiers marches across it in step at a certain rhythm.
+
+### Solutions
+
+**Solution 1**: Find the frequency first, then the speed:
+
+<MathContainer>
+<BlockMath math="f = \frac{1}{T} = \frac{1}{0.2} = 5\text{ Hz}" />
+<BlockMath math="v = f\lambda = (5)(1.5) = 7.5\text{ m s}^{-1}" />
+</MathContainer>
+
+**Solution 2**: The frequency doesn't change during refraction. In deep water:
+
+<BlockMath math="f = \frac{v}{\lambda} = \frac{0.30}{0.06} = 5\text{ Hz}" />
+
+In shallow water, <InlineMath math="\lambda = 0.20 / 5 = 0.04\text{ m} = 4\text{ cm}" />. Check: the speed ratio <InlineMath math="0.20 / 0.30" /> equals the wavelength ratio <InlineMath math="4 / 6" />.
+
+**Solution 3**: Rearrange <InlineMath math="x = \lambda D / a" />:
+
+<BlockMath math="\lambda = \frac{ax}{D} = \frac{(0.4 \times 10^{-3})(2.2 \times 10^{-3})}{1.6} = 5.5 \times 10^{-7}\text{ m}" />
+
+That's <InlineMath math="550\text{ nm}" />, green light, a sensible value for visible light.
+
+**Solution 4**: The bridge has a natural frequency. If the frequency of the soldiers' steps **equals the bridge's natural frequency**, resonance happens. The bridge keeps taking in energy at the most efficient frequency, so its amplitude grows until it can damage the structure. That's why soldiers are ordered to break step when they cross a bridge.

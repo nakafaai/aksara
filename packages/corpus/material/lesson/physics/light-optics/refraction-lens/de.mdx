@@ -1,0 +1,306 @@
+export const metadata = {
+  title: "Lichtbrechung Totalreflexion und Linsen",
+  description:
+    "Wende das Brechungsgesetz an, bestimme den Grenzwinkel der Totalreflexion, zeichne Strahlengänge an Linsen und löse die Linsengleichung mit Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Licht und Optik",
+};
+
+## Lichtbrechung und das Brechungsgesetz
+
+**Lichtbrechung** ist die Richtungsänderung des Lichts beim Übergang in ein Medium mit anderer optischer Dichte. Das **Brechungsgesetz von Snellius** besagt, dass das Verhältnis aus dem Sinus des Einfallswinkels und dem Sinus des Brechungswinkels konstant ist, nämlich die **Brechzahl** des Mediums:
+
+<BlockMath math="n = \frac{\sin \alpha}{\sin \beta} = \frac{c}{v}" />
+
+Dabei ist <InlineMath math="\alpha" /> der Einfallswinkel und <InlineMath math="\beta" /> der Brechungswinkel, beide zum Lot gemessen. <InlineMath math="c = 3{,}0 \cdot 10^{8}\ \text{m/s}" /> ist die Lichtgeschwindigkeit im Vakuum und <InlineMath math="v" /> die im Medium. In den Modellen hier änderst du den Winkel eines Strahls, fängst Licht durch Totalreflexion ein und verschiebst einen Gegenstand vor einer Linse.
+
+Licht wird **zum Lot hin** gebrochen, wenn es in ein optisch dichteres Medium eintritt, weil es dort langsamer ist. Beweg die Regler für Einfallswinkel und Brechzahl und vergleich den Brechungswinkel.
+
+<MathVisual
+  title={<>Ein Lichtstrahl von Luft in Glas</>}
+  description={
+    <>
+      Der einfallende Strahl kommt von oben unter dem Winkel{" "}
+      <InlineMath math="\alpha" /> und wird in ein Medium mit der Brechzahl{" "}
+      <InlineMath math="n" /> gebrochen. Die senkrechte Linie ist das Lot.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 0, max: 80, value: 40, step: 1, label: "i" },
+      { name: "n", min: 1, max: 2.5, value: 1.5, step: 0.05, label: "n" },
+    ],
+    objects: [
+      { id: "boundary", kind: "segment", appearance: "reference", from: { x: -4.5, y: 0 }, to: { x: 4.5, y: 0 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0, y: -4.5 }, to: { x: 0, y: 4.5 } },
+      { id: "incident", kind: "path", appearance: "warning", points: [{ x: "-4sin(i pi/180)", y: "4cos(i pi/180)" }, { x: "0", y: "0" }] },
+      { id: "refracted", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4sin(i pi/180)/n", y: "-4sqrt(1 - (sin(i pi/180)/n)^2)" }] },
+    ],
+    labels: [
+      { key: "air", objectId: "boundary", at: { x: -3.5, y: 0 }, placement: "above" },
+      { key: "glass", objectId: "boundary", at: { x: 3.5, y: 0 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "angle", formula: "asin(sin(i pi/180)/n) 180/pi" },
+      { key: "speed", formula: "3/n" },
+    ],
+  }}
+  labels={{
+    i: <>Einfallswinkel <InlineMath math="\alpha" /> in Grad</>,
+    n: <>Brechzahl <InlineMath math="n" /></>,
+    air: <>Luft</>,
+    glass: <>Dichteres Medium</>,
+    angle: <>Brechungswinkel <InlineMath math="\beta" /> in Grad</>,
+    speed: <>Lichtgeschwindigkeit in <InlineMath math="10^{8}\ \text{m/s}" /></>,
+  }}
+/>
+
+### Beispiel Brechungswinkel berechnen
+
+Ein Lichtstrahl trifft unter dem Einfallswinkel <InlineMath math="40^\circ" /> auf Glas mit der Brechzahl <InlineMath math="1{,}5" />. Berechne **den Brechungswinkel**.
+
+<MathContainer>
+<BlockMath math="\sin \beta = \frac{\sin 40^\circ}{1{,}5} = \frac{0{,}643}{1{,}5} = 0{,}429" />
+<BlockMath math="\beta = 25{,}4^\circ" />
+</MathContainer>
+
+Prüf das im Modell: Bei <InlineMath math="\alpha = 40^\circ" /> und <InlineMath math="n = 1{,}5" /> liest du einen Brechungswinkel von <InlineMath math="25{,}4^\circ" /> ab. Er ist kleiner als der Einfallswinkel, der Strahl wird also zum Lot hin gebrochen.
+
+### Beispiel wahre und scheinbare Tiefe
+
+Ein Becken wirkt flacher, als es ist, weil Licht vom Boden beim Austritt aus dem Wasser vom Lot weg gebrochen wird. Es gilt <InlineMath math="n = \dfrac{\text{wahre Tiefe}}{\text{scheinbare Tiefe}}" />. Für ein <InlineMath math="2{,}0\ \text{m}" /> tiefes Becken mit <InlineMath math="n = 1{,}33" />:
+
+<BlockMath math="\text{scheinbare Tiefe} = \frac{2{,}0}{1{,}33} = 1{,}5\ \text{m}" />
+
+Das Becken wirkt **einen halben Meter flacher**. Probe: <InlineMath math="1{,}5 \cdot 1{,}33 = 2{,}0" />.
+
+## Totalreflexion
+
+Geht Licht von einem dichteren in ein dünneres Medium über, ist der Brechungswinkel größer als der Einfallswinkel. Beim **Grenzwinkel** <InlineMath math="\alpha_G" /> erreicht der Brechungswinkel <InlineMath math="90^\circ" />. Ist der Einfallswinkel größer als der Grenzwinkel, wird das gesamte Licht ins dichtere Medium zurückgeworfen. Das nennt man **Totalreflexion**:
+
+<BlockMath math="\sin \alpha_G = \frac{1}{n}" />
+
+Für Glas mit <InlineMath math="n = 1{,}5" /> beträgt der Grenzwinkel <InlineMath math="41{,}8^\circ" />. Vergrößere den Einfallswinkel über diesen Wert hinaus und sieh zu, wie der gebrochene Strahl an der Oberfläche entlangstreift, bis nur der reflektierte Strahl übrig bleibt.
+
+<MathVisual
+  title={<>Von Glas in Luft über den Grenzwinkel hinaus</>}
+  description={
+    <>
+      Der Strahl kommt von unten im Glas mit der Brechzahl{" "}
+      <InlineMath math="1{,}5" />. Der blaue Strahl wird in die Luft gebrochen,
+      der türkisfarbene zurück ins Glas reflektiert.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 0, max: 80, value: 30, step: 1, label: "i" },
+    ],
+    objects: [
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: -4.5, y: 0 }, to: { x: 4.5, y: 0 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0, y: -4.5 }, to: { x: 0, y: 4.5 } },
+      { id: "incident", kind: "path", appearance: "warning", points: [{ x: "-4sin(i pi/180)", y: "-4cos(i pi/180)" }, { x: "0", y: "0" }] },
+      { id: "reflected", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "4sin(i pi/180)", y: "-4cos(i pi/180)" }] },
+      { id: "refracted", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4min(1, 1.5sin(i pi/180))", y: "4sqrt(1 - min(1, 1.5sin(i pi/180))^2)" }] },
+    ],
+    labels: [
+      { key: "air", objectId: "surface", at: { x: -3.5, y: 0 }, placement: "above" },
+      { key: "glass", objectId: "surface", at: { x: -3.5, y: 0 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "critical", formula: "asin(1/1.5) 180/pi" },
+      { key: "out", formula: "asin(min(1, 1.5sin(i pi/180))) 180/pi" },
+    ],
+  }}
+  labels={{
+    i: <>Einfallswinkel <InlineMath math="\alpha" /> in Grad</>,
+    air: <>Luft</>,
+    glass: <>Glas</>,
+    critical: <>Grenzwinkel <InlineMath math="\alpha_G" /></>,
+    out: <>Brechungswinkel in Luft</>,
+  }}
+/>
+
+Ein Stoff mit großer Brechzahl hat einen kleinen Grenzwinkel, Licht wird darin also leichter eingefangen. Deshalb funkeln Diamanten: Licht wird darin viele Male reflektiert, bevor es austritt.
+
+<Chart
+  title={<>Grenzwinkel dreier Stoffe</>}
+  bars="apart"
+  categories={["Wasser", "Glas", "Diamant"]}
+  series={[
+    {
+      label: "Grenzwinkel (°)",
+      mark: "bar",
+      values: [(Math.asin(1 / 1.33) * 180) / Math.PI, (Math.asin(1 / 1.5) * 180) / Math.PI, (Math.asin(1 / 2.42) * 180) / Math.PI],
+    },
+  ]}
+  valueLabel="Grenzwinkel (°)"
+  description={
+    <>
+      Berechnet aus <InlineMath math="\sin \alpha_G = 1/n" />: Wasser mit{" "}
+      <InlineMath math="n = 1{,}33" /> ergibt <InlineMath math="48{,}8^\circ" />,
+      Glas mit <InlineMath math="n = 1{,}5" /> ergibt{" "}
+      <InlineMath math="41{,}8^\circ" /> und Diamant mit{" "}
+      <InlineMath math="n = 2{,}42" /> ergibt <InlineMath math="24{,}4^\circ" />.
+    </>
+  }
+/>
+
+Ein **Lichtwellenleiter** nutzt die Totalreflexion, um Licht über Tausende Kilometer zu leiten. Ein Glaskern ist von einem Mantel mit kleinerer Brechzahl umgeben, deshalb bleibt Licht, das die Wand über dem Grenzwinkel trifft, im Kern.
+
+## Linsen und Bildentstehung
+
+Eine **Sammellinse** vereinigt parallele Strahlen in einem Punkt hinter der Linse, dem **Brennpunkt** <InlineMath math="F" />. Der Abstand von der Linsenmitte zum Brennpunkt ist die **Brennweite** <InlineMath math="f" />. Die **Linsengleichung** liefert die Bildweite:
+
+<BlockMath math="\frac{1}{f} = \frac{1}{g} + \frac{1}{b}, \qquad \beta = \frac{b}{g}" />
+
+<InlineMath math="g" /> ist die Gegenstandsweite, <InlineMath math="b" /> die Bildweite und <InlineMath math="\beta" /> der Abbildungsmaßstab. Für ein reelles Bild ist <InlineMath math="b" /> positiv. Der Strahlengang unten nutzt eine Sammellinse mit <InlineMath math="f = 2" /> Einheiten. Verschieb den Gegenstand und sieh zu, wie das reelle, umgekehrte Bild seine Größe ändert.
+
+<MathVisual
+  title={<>Strahlengang an einer Sammellinse</>}
+  description={
+    <>
+      Ein Gegenstand der Höhe <InlineMath math="1" /> Einheit steht im Abstand{" "}
+      <InlineMath math="g" /> links der Linse. Ein achsenparalleler Strahl wird
+      durch <InlineMath math="F" /> gebrochen, ein Mittelpunktstrahl geht
+      ungebrochen durch. Das Bild entsteht, wo sich beide Strahlen schneiden.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 11 }, y: { min: -4.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.04 },
+    parameters: [
+      { name: "o", min: 2.5, max: 8, value: 6, step: 0.1, label: "o" },
+    ],
+    objects: [
+      { id: "lens", kind: "segment", appearance: "reference", from: { x: 0, y: -4 }, to: { x: 0, y: 2 } },
+      { id: "focus-near", kind: "point", appearance: "construction", at: { x: -2, y: 0 } },
+      { id: "focus-far", kind: "point", appearance: "construction", at: { x: 2, y: 0 } },
+      { id: "object", kind: "path", appearance: "warning", points: [{ x: "-o", y: "0" }, { x: "-o", y: "1" }] },
+      { id: "image", kind: "path", appearance: "answer", points: [{ x: "2o/(o - 2)", y: "0" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+      { id: "parallel-ray", kind: "path", appearance: "primary", points: [{ x: "-o", y: "1" }, { x: "0", y: "1" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+      { id: "centre-ray", kind: "path", appearance: "secondary", points: [{ x: "-o", y: "1" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+    ],
+    labels: [
+      { key: "focus", objectId: "focus-far", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "distance", formula: "2o/(o - 2)" },
+      { key: "magnification", formula: "2/(o - 2)" },
+    ],
+  }}
+  labels={{
+    o: <>Gegenstandsweite <InlineMath math="g" /></>,
+    focus: <InlineMath math="F" />,
+    distance: <>Bildweite <InlineMath math="b" /></>,
+    magnification: <>Abbildungsmaßstab <InlineMath math="\beta" /></>,
+  }}
+/>
+
+Liegt der Gegenstand weiter als <InlineMath math="2f" /> entfernt, ist das Bild reell, umgekehrt und **verkleinert**, wie in einer Kamera. Liegt er zwischen <InlineMath math="f" /> und <InlineMath math="2f" />, ist das Bild reell, umgekehrt und **vergrößert**, wie in einem Projektor. Ist der Gegenstand näher als <InlineMath math="f" />, schneiden sich die Strahlen hinter der Linse nicht, und das Bild wird virtuell, aufrecht und vergrößert. So funktioniert eine Lupe.
+
+### Beispiel Linsengleichung
+
+Ein Gegenstand steht <InlineMath math="15\ \text{cm}" /> vor einer Sammellinse mit der Brennweite <InlineMath math="10\ \text{cm}" />. Bestimme **Bildweite und Abbildungsmaßstab**.
+
+<MathContainer>
+<BlockMath math="\frac{1}{b} = \frac{1}{10} - \frac{1}{15} = \frac{1}{30}" />
+<BlockMath math="b = 30\ \text{cm}, \qquad \beta = \frac{30}{15} = 2" />
+</MathContainer>
+
+Das Bild ist reell, umgekehrt und doppelt so groß. Prüf das im Modell: <InlineMath math="g = 1{,}5f" /> entspricht im Modell <InlineMath math="o = 3" />, und das Modell liefert <InlineMath math="b = 6 = 3f" />, passend zu <InlineMath math="30\ \text{cm} = 3 \cdot 10\ \text{cm}" />.
+
+### Beispiel Brennweite aus einem Diagramm
+
+Bei einem Linsenversuch ist der Graph von <InlineMath math="1/b" /> gegen <InlineMath math="1/g" /> eine Gerade mit der Steigung <InlineMath math="-1" />. Ihr Achsenabschnitt auf beiden Achsen ist <InlineMath math="1/f" />, also **die Brechkraft** <InlineMath math="D" /> in Dioptrien, wenn die Weiten in Metern stehen.
+
+<MathVisual
+  title={<>Graph der Linsengleichung</>}
+  description={
+    <>
+      Die Gerade <InlineMath math="1/b = D - 1/g" />, mit Weiten in Metern.
+      Beweg die Brechkraft <InlineMath math="D" /> und sieh, wie beide
+      Achsenabschnitte gemeinsam wandern.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 4, max: 10, value: 5, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "lens-line", kind: "function", appearance: "primary", formula: "p - x", domain: { min: 0, max: 10 } },
+      { id: "intercept-y", kind: "marker", x: "0", y: "p", appearance: "answer" },
+      { id: "intercept-x", kind: "marker", x: "p", y: "0", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "focal", formula: "100/p" },
+    ],
+  }}
+  labels={{
+    p: <>Brechkraft <InlineMath math="D" /> in dpt</>,
+    focal: <>Brennweite in cm</>,
+  }}
+/>
+
+Liegt der Achsenabschnitt bei <InlineMath math="5\ \text{m}^{-1}" />, beträgt die Brennweite <InlineMath math="1/5 = 0{,}20\ \text{m}" />, also <InlineMath math="20\ \text{cm}" />. Eine Zerstreuungslinse hat eine negative Brennweite und eine negative Brechkraft.
+
+## Typische Fehler bei Licht und Optik
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Der Einfallswinkel wird zur Oberfläche gemessen. | Einfalls- und Brechungswinkel werden zum Lot gemessen. | Zeichne zuerst das Lot, dann miss den Winkel. |
+| Totalreflexion tritt auf, wenn Licht in Glas eintritt. | Sie tritt nur beim Übergang vom dichteren ins dünnere Medium auf. | Prüf die Richtung: von großer zu kleiner Brechzahl. |
+| Eine Sammellinse liefert immer ein umgekehrtes Bild. | Bei <InlineMath math="g < f" /> ist das Bild virtuell und aufrecht. | Vergleich zuerst <InlineMath math="g" /> mit <InlineMath math="f" />. |
+| Die Brechkraft in Zentimetern berechnen. | Die Brechkraft <InlineMath math="D = 1/f" /> braucht <InlineMath math="f" /> in Metern. | Rechne <InlineMath math="f" /> vor dem Teilen in Meter um. |
+
+Der erste Fehler kommt bei Aufgaben zum Brechungsgesetz am häufigsten vor. **Das Lot ist die Bezugslinie** für jeden Winkel bei Brechung und Reflexion.
+
+## Übungen zu Licht und Optik
+
+Die Aufgaben führen vom Brechungsgesetz zu den Linsen. **Fertige eine kurze Skizze an**, bevor du rechnest.
+
+1. In einem Kunststoff beträgt die Lichtgeschwindigkeit <InlineMath math="2{,}0 \cdot 10^{8}\ \text{m/s}" />. Berechne die Brechzahl des Kunststoffs.
+
+2. Berechne den Grenzwinkel für Wasser mit der Brechzahl <InlineMath math="1{,}33" /> und erkläre, was mit einem Strahl im Wasser passiert, der unter <InlineMath math="60^\circ" /> auf die Oberfläche trifft.
+
+3. Ein Gegenstand steht <InlineMath math="30\ \text{cm}" /> vor einer Sammellinse mit der Brennweite <InlineMath math="20\ \text{cm}" />. Berechne Bildweite und Abbildungsmaßstab und beschreibe das Bild.
+
+4. Berechne die Brechkraft einer Sammellinse mit der Brennweite <InlineMath math="25\ \text{cm}" />.
+
+### Lösungen
+
+**Lösung 1**: Nutze <InlineMath math="n = c/v" />:
+
+<BlockMath math="n = \frac{3{,}0 \cdot 10^{8}}{2{,}0 \cdot 10^{8}} = 1{,}5" />
+
+**Lösung 2**: Der Grenzwinkel folgt aus <InlineMath math="\sin \alpha_G = 1/n" />:
+
+<BlockMath math="\alpha_G = \sin^{-1}\!\left(\frac{1}{1{,}33}\right) = 48{,}8^\circ" />
+
+Der Winkel <InlineMath math="60^\circ" /> ist größer als <InlineMath math="48{,}8^\circ" />, also erfährt der Strahl **Totalreflexion**, und kein Licht tritt in die Luft aus.
+
+**Lösung 3**: Nutze die Linsengleichung:
+
+<MathContainer>
+<BlockMath math="\frac{1}{b} = \frac{1}{20} - \frac{1}{30} = \frac{1}{60}" />
+<BlockMath math="b = 60\ \text{cm}, \qquad \beta = \frac{60}{30} = 2" />
+</MathContainer>
+
+Der Gegenstand liegt zwischen <InlineMath math="f" /> und <InlineMath math="2f" />, also ist das Bild reell, umgekehrt und doppelt vergrößert.
+
+**Lösung 4**: Rechne die Brennweite in Meter um, <InlineMath math="f = 0{,}25\ \text{m}" />:
+
+<BlockMath math="D = \frac{1}{0{,}25} = 4\ \text{dpt}" />
+
+Eine positive Brechkraft zeigt eine Sammellinse an.
