@@ -1,0 +1,274 @@
+export const metadata = {
+  title: "Fisika Kuantum dan Efek Fotolistrik",
+  description:
+    "Hitung energi foton dengan E = hf, jelaskan efek fotolistrik dengan persamaan Einstein, dan hitung panjang gelombang de Broglie lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Fisika Kuantum",
+};
+
+## Cahaya Datang dalam Paket Energi
+
+**Teori kuantum** menyatakan bahwa energi cahaya tidak mengalir terus-menerus, tetapi datang dalam paket kecil yang disebut **foton**. Energi satu foton hanya bergantung pada frekuensinya:
+
+<BlockMath math="E = hf = \frac{hc}{\lambda}" />
+
+Di sini <InlineMath math="h = 6{,}63 \times 10^{-34}\ \text{J s}" /> adalah konstanta Planck, <InlineMath math="f" /> frekuensi, dan <InlineMath math="\lambda" /> panjang gelombang cahaya. Di sini kamu melihat atom hidrogen memancarkan garis spektrum, mengubah frekuensi cahaya untuk melepaskan elektron dari logam, dan menghitung panjang gelombang partikel yang bergerak.
+
+Cahaya biru membawa energi per foton lebih besar daripada cahaya merah, karena panjang gelombangnya lebih pendek. Geser penggeser panjang gelombang di bawah dan baca energi foton dalam elektronvolt, dengan <InlineMath math="1\ \text{eV} = 1{,}60 \times 10^{-19}\ \text{J}" />.
+
+<MathVisual
+  title={<>Energi Foton terhadap Panjang Gelombang</>}
+  description={
+    <>
+      Energi foton dalam eV adalah{" "}
+      <InlineMath math="E = \dfrac{hc}{\lambda e} \approx \dfrac{1243}{\lambda}" />,
+      dengan <InlineMath math="\lambda" /> dalam nanometer. Cahaya hijau{" "}
+      <InlineMath math="500\ \text{nm}" /> membawa sekitar{" "}
+      <InlineMath math="2{,}49\ \text{eV}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 300, max: 800 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "w", min: 300, max: 800, value: 500, step: 10, label: "w" },
+    ],
+    objects: [
+      { id: "photon", kind: "function", appearance: "primary", formula: "6.63*3*100/(1.6*x)", domain: { min: 300, max: 800 } },
+      { id: "now", kind: "marker", x: "w", y: "6.63*3*100/(1.6*w)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "energy", formula: "6.63*3*100/(1.6*w)" },
+    ],
+  }}
+  labels={{
+    w: <>Panjang gelombang <InlineMath math="\lambda" /> dalam <InlineMath math="\text{nm}" /></>,
+    energy: <>Energi foton dalam <InlineMath math="\text{eV}" /></>,
+  }}
+/>
+
+Coba satu contoh. Hitung energi foton cahaya hijau dengan panjang gelombang <InlineMath math="500\ \text{nm}" />.
+
+**Ubah nanometer ke meter dulu**, lalu pakai <InlineMath math="E = \dfrac{hc}{\lambda}" />:
+
+<MathContainer>
+<BlockMath math="\lambda = 500 \times 10^{-9} = 5{,}00 \times 10^{-7}\ \text{m}" />
+<BlockMath math="E = \frac{6{,}63 \times 10^{-34} \times 3{,}00 \times 10^8}{5{,}00 \times 10^{-7}} = 3{,}98 \times 10^{-19}\ \text{J}" />
+<BlockMath math="E = \frac{3{,}98 \times 10^{-19}}{1{,}60 \times 10^{-19}} = 2{,}49\ \text{eV}" />
+</MathContainer>
+
+Cek dengan grafik di atas: pada <InlineMath math="500\ \text{nm}" />, angka energi fotonnya juga sekitar <InlineMath math="2{,}49\ \text{eV}" />.
+
+## Atom Memancarkan Foton pada Energi Tertentu
+
+Elektron dalam atom hanya bisa berada pada **tingkat energi tertentu**. Saat elektron turun dari tingkat tinggi ke tingkat rendah, atom memancarkan satu foton yang energinya **sama dengan selisih energi** kedua tingkat itu. Karena tingkat energinya tetap, cahaya yang dipancarkan hanya punya panjang gelombang tertentu, dan kita melihat **spektrum garis**, bukan pelangi yang utuh.
+
+Pilih transisi elektron dalam atom hidrogen di bawah dan baca panjang gelombang, energi, serta frekuensi fotonnya.
+
+<BohrEmissionLab
+  title={<>Garis Spektrum Atom Hidrogen</>}
+  description={
+    <>
+      Elektron turun ke tingkat <InlineMath math="n = 2" /> dari tingkat{" "}
+      <InlineMath math="3" />, <InlineMath math="4" />, atau <InlineMath math="5" />.
+      Setiap transisi memancarkan satu foton cahaya tampak dengan warna berbeda.
+    </>
+  }
+  falls={[
+    { from: 3, to: 2 },
+    { from: 4, to: 2 },
+    { from: 5, to: 2 },
+  ]}
+  labels={{
+    choose: "Transisi elektron",
+    energy: <>Energi foton</>,
+    frequency: <>Frekuensi</>,
+    transition: <>Transisi</>,
+    view: "Model atom hidrogen Bohr yang memancarkan foton",
+    wavelength: <>Panjang gelombang</>,
+  }}
+/>
+
+Transisi <InlineMath math="3 \rightarrow 2" /> memberi garis merah sekitar <InlineMath math="656\ \text{nm}" />, sedangkan <InlineMath math="5 \rightarrow 2" /> memberi garis ungu sekitar <InlineMath math="434\ \text{nm}" />. Lompatan yang lebih besar melepas foton berenergi lebih tinggi, jadi panjang gelombangnya lebih pendek.
+
+## Efek Fotolistrik dan Frekuensi Ambang
+
+**Efek fotolistrik** adalah terlepasnya elektron dari permukaan logam saat logam itu disinari cahaya. Elektron yang terlepas disebut **fotoelektron**. Eksperimen menunjukkan tiga hal yang tidak bisa dijelaskan teori gelombang:
+
+| Pengamatan | Artinya |
+| :--- | :--- |
+| Tidak ada elektron yang lepas di bawah **frekuensi ambang**, <InlineMath math="f_0" />, seterang apa pun cahayanya. | Satu foton harus cukup berenergi untuk melepas satu elektron. |
+| Di atas <InlineMath math="f_0" />, elektron langsung terlepas. | Energi berpindah dalam satu paket, tidak dikumpulkan sedikit demi sedikit. |
+| Energi kinetik maksimum elektron bergantung pada frekuensi, bukan intensitas. | Intensitas hanya menambah jumlah foton. Energi setiap foton tidak berubah. |
+
+Energi minimum untuk melepas satu elektron disebut **fungsi kerja**, <InlineMath math="W" />. Untuk natrium, <InlineMath math="W = 2{,}28\ \text{eV}" />, dan untuk seng <InlineMath math="W = 4{,}3\ \text{eV}" />. Frekuensi ambangnya <InlineMath math="f_0 = \dfrac{W}{h}" />.
+
+## Persamaan Fotolistrik Einstein
+
+Einstein menjelaskan efek fotolistrik dengan **kekekalan energi** untuk satu foton dan satu elektron. Energi foton dipakai untuk membayar fungsi kerja, dan sisanya menjadi energi kinetik maksimum elektron:
+
+<BlockMath math="hf = W + E_{k,\text{maks}}" />
+
+Ubah frekuensi cahaya dan fungsi kerja logam di bawah. Garisnya memotong sumbu mendatar pada frekuensi ambang, dan gradiennya adalah konstanta Planck.
+
+<MathVisual
+  title={<>Energi Kinetik Maksimum Fotoelektron terhadap Frekuensi</>}
+  description={
+    <>
+      <InlineMath math="E_{k,\text{maks}} = hf - W" />, dalam eV, dengan{" "}
+      <InlineMath math="f" /> dalam satuan <InlineMath math="10^{14}\ \text{Hz}" />.
+      Di bawah frekuensi ambang, nilai <InlineMath math="hf - W" /> negatif dan
+      tidak ada elektron yang lepas.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "f", min: 0, max: 16, value: 7.5, step: 0.1, label: "f" },
+      { name: "w", min: 1.5, max: 5, value: 2.28, step: 0.01, label: "w" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "0.414x - w", domain: { min: 0, max: 16 } },
+      { id: "now", kind: "marker", x: "f", y: "0.414f - w", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "kinetic", formula: "0.414f - w" },
+      { key: "threshold", formula: "w/0.414" },
+    ],
+  }}
+  labels={{
+    f: <>Frekuensi <InlineMath math="f" /> dalam <InlineMath math="10^{14}\ \text{Hz}" /></>,
+    w: <>Fungsi kerja <InlineMath math="W" /> dalam <InlineMath math="\text{eV}" /></>,
+    kinetic: <><InlineMath math="hf - W" /> dalam <InlineMath math="\text{eV}" /></>,
+    threshold: <>Frekuensi ambang dalam <InlineMath math="10^{14}\ \text{Hz}" /></>,
+  }}
+/>
+
+Cahaya ungu <InlineMath math="400\ \text{nm}" /> menyinari natrium. Hitung energi kinetik maksimum fotoelektron dan frekuensi ambang natrium.
+
+<MathContainer>
+<BlockMath math="hf = \frac{6{,}63 \times 10^{-34} \times 3{,}00 \times 10^8}{4{,}00 \times 10^{-7}} = 4{,}97 \times 10^{-19}\ \text{J} = 3{,}11\ \text{eV}" />
+<BlockMath math="E_{k,\text{maks}} = 3{,}11 - 2{,}28 = 0{,}83\ \text{eV}" />
+<BlockMath math="f_0 = \frac{2{,}28 \times 1{,}60 \times 10^{-19}}{6{,}63 \times 10^{-34}} = 5{,}50 \times 10^{14}\ \text{Hz}" />
+</MathContainer>
+
+Cek: frekuensi cahaya ungu adalah <InlineMath math="\dfrac{3{,}00 \times 10^8}{4{,}00 \times 10^{-7}} = 7{,}50 \times 10^{14}\ \text{Hz}" />, lebih tinggi daripada <InlineMath math="f_0" />, jadi elektron memang terlepas. Pada <InlineMath math="f = 7{,}5" /> dan <InlineMath math="W = 2{,}28" />, grafik di atas juga memberi sekitar <InlineMath math="0{,}83\ \text{eV}" />.
+
+Efek fotolistrik dipakai dalam **sel fotovoltaik** pada panel surya, sensor cahaya pintu otomatis, dan kamera digital.
+
+## Partikel Juga Bersifat Gelombang
+
+Jika cahaya yang dianggap gelombang bisa bertingkah seperti partikel, partikel juga bisa bertingkah seperti gelombang. Inilah **dualisme gelombang-partikel**. De Broglie mengusulkan bahwa setiap partikel bermomentum <InlineMath math="p = mv" /> memiliki panjang gelombang:
+
+<BlockMath math="\lambda = \frac{h}{p} = \frac{h}{mv}" />
+
+Elektron dalam tabung sinar katode dibelokkan medan listrik seperti partikel bermuatan. Namun berkas elektron yang sama juga menghasilkan pola difraksi saat melewati kristal, bukti sifat gelombangnya. Lihat elektron dibelokkan dalam tabung di bawah.
+
+<CathodeRayLab
+  title={<>Berkas Elektron dalam Tabung Sinar Katode</>}
+  description={
+    <>
+      Elektron dipercepat menuju anode dan melewati dua pelat bermuatan. Medan
+      listrik membelokkan berkas itu, jadi elektron memiliki muatan dan massa
+      seperti partikel.
+    </>
+  }
+  labels={{
+    anode: <>Tegangan anode</>,
+    field: <>Medan listrik di antara pelat</>,
+    plates: "Pelat pembelok",
+    spot: <>Posisi titik pada layar</>,
+    view: "Tabung sinar katode dengan berkas elektron dan pelat pembelok",
+  }}
+/>
+
+Geser penggeser kelajuan elektron di bawah. Makin cepat elektron, makin besar momentumnya dan makin pendek panjang gelombangnya.
+
+<MathVisual
+  title={<>Panjang Gelombang de Broglie Elektron terhadap Kelajuan</>}
+  description={
+    <>
+      <InlineMath math="\lambda = \dfrac{h}{m_e v} \approx \dfrac{0{,}728}{v}\ \text{nm}" />,
+      dengan <InlineMath math="v" /> dalam satuan <InlineMath math="10^6\ \text{m/s}" />.
+      Pada <InlineMath math="v = 2{,}0 \times 10^6\ \text{m/s}" />,{" "}
+      <InlineMath math="\lambda \approx 0{,}364\ \text{nm}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5 }, y: { min: 0, max: 1.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 0.5, max: 5, value: 2, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "wavelength", kind: "function", appearance: "primary", formula: "0.728/x", domain: { min: 0.5, max: 5 } },
+      { id: "now", kind: "marker", x: "s", y: "0.728/s", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "length", formula: "0.728/s" },
+    ],
+  }}
+  labels={{
+    s: <>Kelajuan elektron <InlineMath math="v" /> dalam <InlineMath math="10^6\ \text{m/s}" /></>,
+    length: <>Panjang gelombang dalam <InlineMath math="\text{nm}" /></>,
+  }}
+/>
+
+Hitung contoh itu. Elektron bermassa <InlineMath math="9{,}11 \times 10^{-31}\ \text{kg}" /> bergerak dengan kelajuan <InlineMath math="2{,}0 \times 10^6\ \text{m/s}" />:
+
+<BlockMath math="\lambda = \frac{6{,}63 \times 10^{-34}}{9{,}11 \times 10^{-31} \times 2{,}0 \times 10^6} = 3{,}64 \times 10^{-10}\ \text{m} = 0{,}364\ \text{nm}" />
+
+Cek: panjang gelombang itu sebanding dengan jarak antaratom dalam kristal, sekitar <InlineMath math="0{,}1" /> sampai <InlineMath math="0{,}5\ \text{nm}" />. Itulah sebabnya kristal bisa mendifraksikan elektron, dan mikroskop elektron bisa melihat detail yang jauh lebih halus daripada mikroskop cahaya.
+
+## Kesalahan Umum tentang Fisika Kuantum
+
+| Kesalahan | Alasan keliru | Cara cek |
+| :--- | :--- | :--- |
+| Cahaya yang lebih terang melepas elektron yang lebih cepat. | Intensitas menambah jumlah foton. Energi setiap foton bergantung pada frekuensi. | Ubah intensitasnya, dan <InlineMath math="E_{k,\text{maks}}" /> tetap. |
+| Cahaya merah yang sangat terang tetap bisa melepas elektron dari seng. | Jika <InlineMath math="hf" /> lebih kecil daripada <InlineMath math="W" />, tidak ada foton yang cukup berenergi. | Bandingkan energi foton dengan fungsi kerja. |
+| Panjang gelombang yang lebih panjang berarti energi foton lebih besar. | <InlineMath math="E = \dfrac{hc}{\lambda}" />, jadi energi berbanding terbalik dengan panjang gelombang. | Cahaya biru lebih berenergi daripada cahaya merah. |
+| Panjang gelombang dalam nanometer langsung dimasukkan ke <InlineMath math="E = \dfrac{hc}{\lambda}" />. | Rumusnya butuh meter agar hasilnya joule. | Kalikan dengan <InlineMath math="10^{-9}" /> dulu. |
+| Hanya cahaya yang bersifat gelombang. | Elektron juga terdifraksi, jadi partikel juga punya panjang gelombang. | Hitung <InlineMath math="\lambda = \dfrac{h}{mv}" /> untuk partikel itu. |
+
+Kesalahan pertama paling sering muncul. Ingat pembagian tugas ini: **frekuensi menentukan energi setiap foton, intensitas menentukan jumlah foton**.
+
+## Latihan Fisika Kuantum
+
+Soal-soal ini bergerak dari energi foton ke efek fotolistrik dan panjang gelombang de Broglie. **Ubah semua satuan ke SI** sebelum memakai konstanta Planck.
+
+1. Sebuah laser <InlineMath math="1{,}0\ \text{mW}" /> memancarkan cahaya merah <InlineMath math="650\ \text{nm}" />. Hitung jumlah foton yang dipancarkan setiap detik.
+
+2. Fungsi kerja seng <InlineMath math="4{,}3\ \text{eV}" />. Apakah cahaya hijau <InlineMath math="500\ \text{nm}" /> bisa melepas elektron dari seng? Berikan alasannya.
+
+3. Cahaya di atas frekuensi ambang menyinari sebuah logam. Intensitasnya digandakan tanpa mengubah frekuensi. Jelaskan pengaruhnya pada jumlah fotoelektron dan energi kinetik maksimumnya.
+
+4. Elektron dan proton bergerak dengan kelajuan yang sama. Hitung perbandingan panjang gelombang de Broglie elektron terhadap proton, dengan <InlineMath math="m_p = 1836\,m_e" />.
+
+### Pembahasan
+
+**Pembahasan 1**: Hitung energi satu foton, lalu bagi daya dengan energi itu:
+
+<MathContainer>
+<BlockMath math="E = \frac{6{,}63 \times 10^{-34} \times 3{,}00 \times 10^8}{6{,}50 \times 10^{-7}} = 3{,}06 \times 10^{-19}\ \text{J}" />
+<BlockMath math="N = \frac{1{,}0 \times 10^{-3}}{3{,}06 \times 10^{-19}} = 3{,}27 \times 10^{15}\ \text{foton/s}" />
+</MathContainer>
+
+Cek: <InlineMath math="3{,}27 \times 10^{15} \times 3{,}06 \times 10^{-19} = 1{,}0 \times 10^{-3}\ \text{J}" /> setiap detik, sama dengan daya laser.
+
+**Pembahasan 2**: Energi foton <InlineMath math="500\ \text{nm}" /> adalah <InlineMath math="2{,}49\ \text{eV}" />, seperti pada contoh tadi. Nilai itu **lebih kecil daripada** fungsi kerja seng, <InlineMath math="4{,}3\ \text{eV}" />, jadi **tidak ada elektron yang lepas**, seterang apa pun cahayanya. Satu foton tidak cukup berenergi, dan elektron tidak bisa mengumpulkan energi dari beberapa foton.
+
+**Pembahasan 3**: Intensitas yang digandakan berarti **jumlah foton berlipat dua**, jadi **jumlah fotoelektron juga berlipat dua** dan arus fotolistrik bertambah. Frekuensinya tetap, jadi energi setiap foton sama dan **energi kinetik maksimumnya tetap**:
+
+<BlockMath math="E_{k,\text{maks}} = hf - W" />
+
+**Pembahasan 4**: Kelajuannya sama, jadi panjang gelombang berbanding terbalik dengan massa:
+
+<BlockMath math="\frac{\lambda_e}{\lambda_p} = \frac{h / (m_e v)}{h / (m_p v)} = \frac{m_p}{m_e} = 1836" />
+
+Panjang gelombang elektron <InlineMath math="1836" /> kali lebih panjang. Cek: partikel yang lebih ringan dengan kelajuan sama memiliki momentum lebih kecil, jadi panjang gelombangnya lebih panjang.
