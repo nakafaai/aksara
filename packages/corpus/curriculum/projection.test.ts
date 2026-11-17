@@ -93,11 +93,11 @@ describe("curriculum node projection", () => {
           materialNodes,
           ({ materialKeys }) => materialKeys
         );
-        const materialKeys = HashSet.fromIterable(
+        const knownKeys = HashSet.fromIterable(
           Arr.map(materials, ({ key }) => key)
         );
         expect(
-          Arr.every(allMaterialKeys, (key) => HashSet.has(materialKeys, key))
+          Arr.every(allMaterialKeys, (key) => HashSet.has(knownKeys, key))
         ).toBe(true);
         expect(Option.getOrThrow(Arr.head(nodes))).toMatchObject({
           curriculumKey: "cambridge-international",
