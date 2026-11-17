@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$240\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$4.0\\text{ cm}^3\\text{ s}^{-1}$$",
+          label: "$$240\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$15\\text{ s}$$",
         },
         {
           correct: true,
-          label:
-            "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$4.0\\text{ cm}^3\\text{ s}^{-1}$$",
+          label: "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$15\\text{ s}$$",
         },
         {
           correct: false,
-          label:
-            "$$120\\text{ cm}^3$$, $$240\\text{ cm}^3$$, $$8.0\\text{ cm}^3\\text{ s}^{-1}$$",
+          label: "$$120\\text{ cm}^3$$, $$240\\text{ cm}^3$$, $$15\\text{ s}$$",
         },
         {
           correct: false,
-          label:
-            "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$2.0\\text{ cm}^3\\text{ s}^{-1}$$",
+          label: "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$30\\text{ s}$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$240\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$4.0\\text{ cm}^3\\text{ s}^{-1}$$",
+          label: "$$240\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$15\\text{ s}$$",
         },
         {
           correct: true,
-          label:
-            "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$4.0\\text{ cm}^3\\text{ s}^{-1}$$",
+          label: "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$15\\text{ s}$$",
         },
         {
           correct: false,
-          label:
-            "$$120\\text{ cm}^3$$, $$240\\text{ cm}^3$$, $$8.0\\text{ cm}^3\\text{ s}^{-1}$$",
+          label: "$$120\\text{ cm}^3$$, $$240\\text{ cm}^3$$, $$15\\text{ s}$$",
         },
         {
           correct: false,
-          label:
-            "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$2.0\\text{ cm}^3\\text{ s}^{-1}$$",
+          label: "$$120\\text{ cm}^3$$, $$120\\text{ cm}^3$$, $$30\\text{ s}$$",
         },
       ],
     },

@@ -1,26 +1,25 @@
-# Find what runs out in each experiment before reading any volume, then divide by that experiment's own time
+# Find what runs out in each run for the volumes, then multiply the two speed-ups for the time
 
-In Experiment I the magnesium is <InlineMath math="0.240\div24=0.0100\text{ mol}" /> and the acid <InlineMath math="0.0100\text{ mol}" />, but **each magnesium takes two acid**, so the acid runs out, giving <InlineMath math="0.00500\text{ mol}" /> of hydrogen, <InlineMath math="120\text{ cm}^3" />. In Experiment II the magnesium is <InlineMath math="0.00500\text{ mol}" /> and the acid <InlineMath math="0.0200\text{ mol}" />, more than enough, so **now the magnesium runs out**, again <InlineMath math="0.00500\text{ mol}" />, <InlineMath math="120\text{ cm}^3" />. That forms in <InlineMath math="30\text{ s}" />, <InlineMath math="120\div30=4.0\text{ cm}^3\text{ s}^{-1}" />.
+In Experiment I the magnesium is <InlineMath math="0.0100\text{ mol}" /> and the acid <InlineMath math="0.0100\text{ mol}" />, but **each magnesium takes two acid**, so the acid runs out, <InlineMath math="0.00500\text{ mol}" /> of hydrogen, <InlineMath math="120\text{ cm}^3" />. In Experiment II the magnesium is <InlineMath math="0.00500\text{ mol}" /> and the acid <InlineMath math="0.0200\text{ mol}" />, so **now the magnesium runs out**, again <InlineMath math="120\text{ cm}^3" />. Doubling the concentration doubles the rate and the extra <InlineMath math="10^\circ\text{C}" /> doubles it again, **four times as fast**, so <InlineMath math="60\div4=15\text{ s}" />.
 
 <Chart
-  title={<>Final volume of hydrogen</>}
-  description={<>Both experiments stop at <InlineMath math="120\text{ cm}^3" />, the first when the acid runs out and the second when the magnesium does.</>}
+  title={<>Time taken</>}
+  description={<>Experiment I takes <InlineMath math="60\text{ s}" /> and Experiment II, four times as fast, <InlineMath math="15\text{ s}" />.</>}
   bars="apart"
   categories={["Experiment I", "Experiment II"]}
   series={[
-    { label: "Volume", mark: "bar", values: [120, 120] },
+    { label: "Time", mark: "bar", values: [60, 15] },
   ]}
-  valueLabel="Volume (cm³)"
+  valueLabel="Time (s)"
 />
 
 <BlockMath math="\begin{aligned}
-V_{\text{I}}&=\tfrac{1}{2}\times0.0100\times24\,000=120\text{ cm}^3\\
-V_{\text{II}}&=0.00500\times24\,000=120\text{ cm}^3\\
-\bar r&=\tfrac{120}{30}=4.0\text{ cm}^3\text{ s}^{-1}
+V_{\text{I}}&=\tfrac{1}{2}\times0.0100\times24\,000=120\text{ cm}^3,\quad V_{\text{II}}=0.00500\times24\,000=120\text{ cm}^3\\
+t_{\text{II}}&=\tfrac{60}{2\times2}=15\text{ s}
 \end{aligned}" />
 
 # Why the other options are wrong
 
 - <InlineMath math="240\text{ cm}^3" /> lets all the magnesium in Experiment I react, but <InlineMath math="0.0100\text{ mol}" /> of acid dissolves only half of it.
 - <InlineMath math="240\text{ cm}^3" /> in Experiment II lets the acid decide, but **only <InlineMath math="0.00500\text{ mol}" /> of magnesium is there**.
-- <InlineMath math="2.0\text{ cm}^3\text{ s}^{-1}" /> divides by the first experiment's <InlineMath math="60\text{ s}" />, but Experiment II took <InlineMath math="30\text{ s}" />.
+- <InlineMath math="30\text{ s}" /> counts only the concentration, but the higher temperature doubles the rate as well.
