@@ -1,0 +1,67 @@
+# Turn the transpiration rate into grams of water, then into heat carried away
+
+Transpiration cools a leaf because water needs heat to evaporate, and it takes that heat from the leaf. To compare it with the <InlineMath math="600\text{ J}" /> the leaf absorbs, convert the rate step by step: **millimoles to grams, then grams to joules**.
+
+## Statement I
+
+<BlockMath math="\begin{aligned}
+\text{water lost by P} &= 5.0\times18 = 90\text{ mg} = 0.090\text{ g per m}^2\text{ per second}\\
+\text{heat removed} &= 0.090\times2400 = 216\text{ J per m}^2\text{ per second}\\
+\text{share of the energy absorbed} &= \frac{216}{600} = 0.36 = 36\%
+\end{aligned}" />
+
+<InlineMath math="36\%" /> is **more than a third**, which is about <InlineMath math="33\%" />. Statement I is correct.
+
+## Statement II
+
+Use leaf Q's own heat balance. At <InlineMath math="39^\circ\text{C}" /> its transpiration removes <InlineMath math="0.5\times18 = 9\text{ mg} = 0.009\text{ g}" />, which is <InlineMath math="0.009\times2400 = 21.6\text{ J}" /> per second, so the **other losses** carry away the rest. Cooling the leaf by <InlineMath math="3^\circ\text{C}" /> cuts those other losses, and transpiration must make up the gap:
+
+<BlockMath math="\begin{aligned}
+\text{other losses at }39^\circ\text{C} &= 600-21.6 = 578.4\text{ J}\\
+\text{other losses at }36^\circ\text{C} &= 578.4-3\times32.4 = 481.2\text{ J}\\
+\text{transpiration needed} &= 600-481.2 = 118.8\text{ J}\\
+\text{water} &= \frac{118.8}{2400} = 0.0495\text{ g} = 49.5\text{ mg}\\
+\text{rate} &= \frac{49.5}{18} = 2.75\text{ mmol per m}^2\text{ per second}
+\end{aligned}" />
+
+<Chart
+  title={<>Transpiration Needed to Hold Each Leaf Temperature</>}
+  categories={["33 °C", "36 °C", "39 °C"]}
+  series={[{ label: "Transpiration needed", mark: "line", values: [5, 2.75, 0.5] }]}
+  valueLabel="Transpiration (mmol per m² per second)"
+  description={<>Holding a leaf at <InlineMath math="39^\circ\text{C}" /> needs <InlineMath math="0.5\text{ mmol}" />, at <InlineMath math="36^\circ\text{C}" /> it needs <InlineMath math="2.75\text{ mmol}" />, and at <InlineMath math="33^\circ\text{C}" /> it needs <InlineMath math="5.0\text{ mmol}" /> per square metre per second, the rate of leaf P.</>}
+/>
+
+As a check, the same rule gives leaf P's other losses at <InlineMath math="33^\circ\text{C}" /> as <InlineMath math="578.4-6\times32.4 = 384\text{ J}" />, and <InlineMath math="600-384 = 216\text{ J}" /> is exactly what its transpiration removes. The new rate is <InlineMath math="\tfrac{2.75}{0.5} = 5.5" /> times the present one, more than five times. Statement II is correct.
+
+## Statement III
+
+Leaf Q transpires <InlineMath math="0.5" /> instead of <InlineMath math="5.0\text{ mmol}" />, so with the same steps:
+
+<BlockMath math="0.5\times18 = 9\text{ mg} = 0.009\text{ g},\qquad 0.009\times2400 = 21.6\text{ J per m}^2\text{ per second}" />
+
+<Chart
+  title={<>Energy In and Heat Removed by Transpiration</>}
+  bars="apart"
+  categories={["Leaf P, stomata open", "Leaf Q, stomata almost closed"]}
+  series={[
+    { label: "Energy absorbed", mark: "bar", values: [600, 600] },
+    { label: "Removed by transpiration", mark: "bar", values: [216, 21.6] },
+  ]}
+  valueLabel="Energy (J per m² per second)"
+  description={<>Both leaves absorb <InlineMath math="600\text{ J}" /> per square metre per second. Transpiration removes <InlineMath math="216\text{ J}" /> from leaf P but only <InlineMath math="21.6\text{ J}" /> from leaf Q, one tenth as much.</>}
+/>
+
+Both leaves take in the same energy, but leaf Q gets rid of <InlineMath math="216-21.6\approx194\text{ J}" /> less of it by transpiration each second. The extra energy **warms the leaf** until it is hot enough to lose the rest in other ways, so leaf Q is <InlineMath math="39-33=6^\circ\text{C}" /> warmer. Statement III is correct.
+
+## Statement IV
+
+Open stomata let water vapour out, but the rate of transpiration also depends on the air outside. In very humid, still air, the water vapour outside the stomata is barely less concentrated than inside the leaf, so **water evaporates much more slowly** even with the stomata open. Less evaporation removes less heat, so leaf P would warm up above <InlineMath math="33^\circ\text{C}" />. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- III only **reads millimoles as milligrams**, so leaf P seems to lose <InlineMath math="5\text{ mg}" /> per second, which removes only <InlineMath math="12\text{ J}" />, and leaf Q at <InlineMath math="36^\circ\text{C}" /> seems to need <InlineMath math="49.5" /> instead of <InlineMath math="2.75" />. The tenfold ratio in III survives this slip, but I and II do not.
+- I, II, III and IV links cooling to **open stomata alone**. The cooling comes from evaporation, and humid, still air slows evaporation even when the stomata are fully open.
+- I and III only **splits the gap in half from zero**: half of leaf P's rate is <InlineMath math="2.5\text{ mmol}" />, exactly five times leaf Q's rate, not more. Leaf Q already transpires <InlineMath math="0.5\text{ mmol}" />, so halfway between the two leaves is <InlineMath math="0.5+\tfrac{5.0-0.5}{2} = 2.75\text{ mmol}" />.

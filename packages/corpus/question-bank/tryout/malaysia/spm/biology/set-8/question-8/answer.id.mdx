@@ -1,0 +1,50 @@
+# Kromosom J adalah satu kromosom tetapi membawa dua set gen, jadi hitung salinan gen, bukan kromosom
+
+Kunci sel pria ini adalah **J terhitung sebagai satu kromosom tetapi membawa gen kromosom <InlineMath math="14" /> sekaligus <InlineMath math="21" />**. Jadi untuk setiap jenis sperma, tentukan dua hal: berapa kromosom yang dimilikinya, dan berapa salinan gen <InlineMath math="14" /> dan <InlineMath math="21" /> yang didapat zigot setelah sel telur menambahkan satu <InlineMath math="14" /> normal dan satu <InlineMath math="21" /> normal.
+
+Setiap sperma mendapat <InlineMath math="21" /> kromosom lain, separuh dari <InlineMath math="42" /> kromosom lain milik pria itu, ditambah apa yang diterimanya dari kelompok tiga itu:
+
+| Sperma | Kromosom di sperma | Salinan gen <InlineMath math="14" /> di zigot | Salinan gen <InlineMath math="21" /> di zigot | Zigot |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="14" /> dan <InlineMath math="21" /> | <InlineMath math="23" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | normal, <InlineMath math="46" /> kromosom |
+| J saja | <InlineMath math="22" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | pembawa sehat, <InlineMath math="45" /> kromosom |
+| J dan <InlineMath math="14" /> | <InlineMath math="23" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | gugur |
+| <InlineMath math="21" /> saja | <InlineMath math="22" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | gugur |
+| J dan <InlineMath math="21" /> | <InlineMath math="23" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | sindrom Down, <InlineMath math="46" /> kromosom |
+| <InlineMath math="14" /> saja | <InlineMath math="22" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | gugur |
+
+<Mermaid
+  title={<>Hasil Setiap Jenis Sperma</>}
+  description={<>Sperma dengan kromosom <InlineMath math="14" /> dan <InlineMath math="21" /> menghasilkan zigot normal dengan <InlineMath math="46" /> kromosom, dan sperma dengan J saja menghasilkan pembawa sehat dengan <InlineMath math="45" /> kromosom. Sperma dengan J dan <InlineMath math="21" /> punya <InlineMath math="23" /> kromosom dan menghasilkan sindrom Down dengan <InlineMath math="46" /> kromosom. Sperma dengan J dan <InlineMath math="14" /> juga punya <InlineMath math="23" /> kromosom tetapi memberi tiga salinan gen <InlineMath math="14" />, sedangkan sperma dengan <InlineMath math="21" /> saja atau <InlineMath math="14" /> saja menyisakan satu salinan suatu set gen, jadi ketiga zigot itu gugur.</>}
+  chart={"flowchart LR\n  A[14 dan 21, 23 kromosom] --> A1[Normal, 46]\n  B[J saja, 22 kromosom] --> B1[Pembawa sehat, 45]\n  C[J dan 21, 23 kromosom] --> C1[Sindrom Down, 46]\n  D[J dan 14, 23 kromosom] --> D1[Tiga salinan 14, gugur]\n  E[21 saja, 22 kromosom] --> E1[Satu salinan 14, gugur]\n  F[14 saja, 22 kromosom] --> F1[Satu salinan 21, gugur]"}
+/>
+
+Sekarang ikuti <InlineMath math="1000" /> sperma itu sampai kelahiran:
+
+<BlockMath math="\begin{aligned}
+\text{gugur} &= 70+60+30 = 160\\
+\text{lahir} &= 400+400+40 = 840\\
+\text{sindrom Down di antara yang lahir} &= \frac{40}{840} = \frac{1}{21}
+\end{aligned}" />
+
+<Chart
+  title={<>Zigot dari <InlineMath math="1000" /> Sperma</>}
+  bars="apart"
+  categories={["Normal", "Pembawa sehat", "Sindrom Down", "Gugur"]}
+  series={[{ label: "Zigot", mark: "bar", values: [400, 400, 40, 160] }]}
+  valueLabel="Jumlah zigot"
+  description={<>Dari <InlineMath math="1000" /> zigot, <InlineMath math="400" /> normal, <InlineMath math="400" /> pembawa sehat, <InlineMath math="40" /> mengalami sindrom Down, dan <InlineMath math="160" /> gugur di awal kehamilan. Jadi <InlineMath math="840" /> bayi lahir, dan <InlineMath math="40" /> di antaranya mengalami sindrom Down.</>}
+/>
+
+- I: sperma dengan J dan <InlineMath math="14" /> punya <InlineMath math="23" /> kromosom, jumlah yang normal, tetapi zigotnya mendapat tiga salinan gen <InlineMath math="14" /> dan gugur. Pernyataan I benar.
+- II: <InlineMath math="40" /> dari <InlineMath math="840" /> bayi yang lahir hidup adalah <InlineMath math="1" /> dari <InlineMath math="21" />. Pernyataan II benar.
+- III: sperma dengan J dan <InlineMath math="21" /> punya <InlineMath math="23" /> kromosom, dan sel telur menambah <InlineMath math="23" />, jadi bayinya punya <InlineMath math="46" /> kromosom. Bayi itu tetap punya tiga salinan gen <InlineMath math="21" />, karena satu salinan menempel di J. Pernyataan III salah.
+- IV: sperma dengan J saja punya <InlineMath math="22" /> kromosom tetapi semua gen <InlineMath math="14" /> dan <InlineMath math="21" />, jadi sperma itu menghasilkan pembawa sehat seperti ayahnya. Pernyataan IV salah.
+
+Jadi pernyataan I dan II benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja menganggap sindrom Down berarti <InlineMath math="47" /> kromosom. **Di sini salinan ketiga gen <InlineMath math="21" /> menumpang di J**, jadi bayinya punya <InlineMath math="46" /> kromosom.
+- I saja membagi <InlineMath math="40" /> dengan seluruh <InlineMath math="1000" /> zigot dan mendapat <InlineMath math="1" /> dari <InlineMath math="25" />. **<InlineMath math="160" /> zigot yang gugur tidak pernah lahir**, jadi bagian di antara bayi adalah <InlineMath math="\tfrac{40}{840}" />.
+- I dan IV saja membaca setiap sperma dengan <InlineMath math="22" /> kromosom sebagai kekurangan gen. **Sperma dengan J saja punya semua gen**, jadi zigotnya tidak gugur. Kalau dihitung gugur, kelahiran tinggal <InlineMath math="440" /> dan sindrom Down jadi <InlineMath math="1" /> dari <InlineMath math="11" />.

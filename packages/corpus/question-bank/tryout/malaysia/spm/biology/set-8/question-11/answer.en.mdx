@@ -1,0 +1,42 @@
+# The more juice it takes to clear the DCPIP, the less vitamin C the juice holds
+
+Everything starts from the standard. It took <InlineMath math="0.60\text{ cm}^3" /> of a solution with <InlineMath math="1.0\text{ mg}" /> per <InlineMath math="\text{cm}^3" /> to clear the DCPIP, so <InlineMath math="1.0\text{ cm}^3" /> of DCPIP always needs a fixed mass of vitamin C:
+
+<BlockMath math="0.60\times1.0 = 0.60\text{ mg of vitamin C}" />
+
+Every other liquid delivered that same <InlineMath math="0.60\text{ mg}" /> in the volume it took. So its concentration is <InlineMath math="0.60\text{ mg}" /> **divided by** its volume, and a larger volume means a weaker juice:
+
+<BlockMath math="\begin{aligned}
+\text{fresh orange} &= \frac{0.60}{1.20} = 0.50\text{ mg cm}^{-3}\\
+\text{boiled orange} &= \frac{0.60}{2.00} = 0.30\text{ mg cm}^{-3}\\
+\text{carton drink} &= \frac{0.60}{1.80} \approx 0.333\text{ mg cm}^{-3}\\
+\text{diluted guava} &= \frac{0.60}{1.50} = 0.40\text{ mg cm}^{-3}
+\end{aligned}" />
+
+The guava was diluted <InlineMath math="5" /> times before the test, so the juice itself is <InlineMath math="5" /> times stronger than the tube showed:
+
+<BlockMath math="0.40\times5 = 2.0\text{ mg cm}^{-3}" />
+
+Now put each one per <InlineMath math="100\text{ cm}^3" />, the unit on the label.
+
+<Chart
+  title={<>Vitamin C in Each Drink</>}
+  bars="apart"
+  categories={["Fresh orange", "Boiled orange", "Carton drink", "Guava"]}
+  series={[{ label: "Vitamin C", mark: "bar", values: [50, 30, 33.3, 200] }]}
+  valueLabel="Vitamin C (mg per 100 cm³)"
+  description={<>Fresh orange juice holds <InlineMath math="50\text{ mg}" /> per <InlineMath math="100\text{ cm}^3" /> and boiled orange juice <InlineMath math="30\text{ mg}" />. The carton drink holds about <InlineMath math="33.3\text{ mg}" />, below its label's <InlineMath math="40\text{ mg}" />. Undiluted guava juice holds <InlineMath math="200\text{ mg}" />, four times the fresh orange juice.</>}
+/>
+
+- I: boiling took the orange juice from <InlineMath math="0.50" /> to <InlineMath math="0.30\text{ mg cm}^{-3}" />. The loss as a share of what was there **before** boiling is <InlineMath math="\tfrac{0.50-0.30}{0.50}\times100\% = 40\%" />. Vitamin C is destroyed by heat. Statement I is correct.
+- II: the carton holds <InlineMath math="0.333\times100 \approx 33.3\text{ mg}" /> per <InlineMath math="100\text{ cm}^3" />, less than the <InlineMath math="40\text{ mg}" /> on its label. Statement II is wrong.
+- III: <InlineMath math="\tfrac{65}{0.50} = 130\text{ cm}^3" /> of fresh juice, and <InlineMath math="\tfrac{65}{0.30} \approx 217\text{ cm}^3" /> of boiled juice. Statement III is correct.
+- IV: the tube showed <InlineMath math="0.40\text{ mg cm}^{-3}" /> for guava, but that was the diluted juice. Fresh guava juice holds <InlineMath math="2.0\text{ mg cm}^{-3}" />, **four times** the <InlineMath math="0.50\text{ mg cm}^{-3}" /> of fresh orange juice. Statement IV is wrong.
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I, III and IV only reads the guava tube as the guava juice itself, **forgetting the fivefold dilution**, so <InlineMath math="0.40" /> looks smaller than orange's <InlineMath math="0.50\text{ mg cm}^{-3}" />.
+- I, II and III only **multiplies by the volume instead of dividing**, <InlineMath math="0.60\times1.80 = 1.08\text{ mg cm}^{-3}" />, which makes the carton look like <InlineMath math="108\text{ mg}" /> per <InlineMath math="100\text{ cm}^3" />.
+- III only works out the boiling loss on the **wrong base**, <InlineMath math="\tfrac{2.00-1.20}{1.20}\approx67\%" />, by comparing the volumes against the fresh juice's volume instead of comparing the concentrations.

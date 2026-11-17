@@ -1,0 +1,62 @@
+# Jedes Polkörperchen steht für eine abgeschlossene Reifeteilung, und das zweite braucht ein Spermium
+
+Eine Oozyte hält in der Meiose zweimal an. Eine **primäre Oozyte** wartet in der Meiose I bis zum LH-Anstieg. Dann beendet sie die Meiose I, gibt das erste Polkörperchen ab und wird zur **sekundären Oozyte**, die in der Meiose II erneut anhält. Die Meiose II endet, mit dem zweiten Polkörperchen, **erst wenn ein Spermium eindringt**. Die Polkörperchen zeigen also, wie weit jede Eizelle gekommen ist.
+
+<Mermaid
+  title={<>Von der Oozyte zum Achtzeller</>}
+  description={<>Eine primäre Oozyte mit <InlineMath math="46" /> Chromosomen beendet nach dem LH-Anstieg oder nach hCG die Meiose I und wird zur sekundären Oozyte mit <InlineMath math="23" /> Chromosomen aus je zwei Chromatiden, dazu ein erstes Polkörperchen. Die Meiose II beendet sie mit dem zweiten Polkörperchen erst, wenn ein Spermium eingedrungen ist. Die Zygote mit <InlineMath math="46" /> Chromosomen teilt sich dann durch Mitose in <InlineMath math="2" />, <InlineMath math="4" /> und <InlineMath math="8" /> Zellen.</>}
+  chart={"flowchart TD\n  P[Primäre Oozyte, 46 Chromosomen] -- hCG wirkt wie der LH-Anstieg --> S[Sekundäre Oozyte, 23 Chromosomen aus 2 Chromatiden, erstes Polkörperchen]\n  S -- erst nach Eindringen eines Spermiums --> F[Meiose II endet, zweites Polkörperchen]\n  F --> Z[Zygote, 46 Chromosomen]\n  Z -- Mitose --> T[2 Zellen]\n  T -- Mitose --> Q[4 Zellen]\n  Q -- Mitose --> E[8 Zellen, je 46 Chromosomen]"}
+/>
+
+Zuerst die Zeit. Von Tag <InlineMath math="12" /> um 21 Uhr bis Tag <InlineMath math="14" /> um 9 Uhr ist ein ganzer Tag plus ein halber Tag, <InlineMath math="24+12 = 36" /> Stunden. Der Eisprung folgt etwa <InlineMath math="36" /> bis <InlineMath math="40" /> Stunden nach dem LH-Anstieg, die Eizellen werden also **kurz vor dem Platzen der Follikel** entnommen.
+
+Jetzt sortierst du die <InlineMath math="12" /> Eizellen an Tag <InlineMath math="15" />. Die <InlineMath math="2" /> Eizellen ohne Polkörperchen haben die Meiose I nie beendet, sie sind also noch primäre Oozyten. Die <InlineMath math="10" /> mit erstem Polkörperchen sind sekundäre Oozyten. Davon wurden die <InlineMath math="8" /> mit zwei Vorkernen von einem Spermium erreicht und gaben ein zweites Polkörperchen ab, die anderen <InlineMath math="2" /> warten noch in der Meiose II.
+
+<BlockMath math="\begin{aligned}
+\text{erste Polkörperchen} &= 10\\
+\text{zweite Polkörperchen} &= 8\\
+\text{zusammen} &= 10+8 = 18
+\end{aligned}" />
+
+<Chart
+  title={<>Polkörperchen an Tag <InlineMath math="15" /></>}
+  bars="apart"
+  categories={["8 befruchtete Eizellen", "2 unbefruchtete sekundäre Oozyten", "2 primäre Oozyten"]}
+  series={[{ label: "Polkörperchen", mark: "bar", values: [16, 2, 0] }]}
+  valueLabel="Anzahl der Polkörperchen"
+  description={<>Die <InlineMath math="8" /> befruchteten Eizellen tragen je <InlineMath math="2" /> Polkörperchen, zusammen <InlineMath math="16" />. Die <InlineMath math="2" /> unbefruchteten sekundären Oozyten tragen nur ihr erstes Polkörperchen, zusammen <InlineMath math="2" />, und die <InlineMath math="2" /> primären Oozyten keines. Das ergibt <InlineMath math="18" />.</>}
+/>
+
+Als Nächstes die Chromatiden. Eine sekundäre Oozyte hat nur die Meiose I beendet, die die Chromosomenpaare trennt, nicht die Schwesterchromatiden. Jedes ihrer <InlineMath math="23" /> Chromosomen hat also **noch zwei Chromatiden**:
+
+<BlockMath math="23\times2 = 46\text{ Chromatiden pro Oozyte}, \qquad 46\times10 = 460\text{ Chromatiden}" />
+
+Zum Schluss der zweite Zyklus. Bestimme den Anteil bei jedem Schritt des ersten Zyklus und zähl dabei nur die Eizellen, die diesen Schritt überhaupt machen konnten. Nur die <InlineMath math="10" /> sekundären Oozyten, die Eizellen mit erstem Polkörperchen, waren reif genug für die Befruchtung, und nur die <InlineMath math="8" /> Zygoten konnten sich weiter teilen:
+
+<BlockMath math="\begin{aligned}
+\text{befruchtete reife Eizellen} &= \tfrac{8}{10} = 0{,}8\\
+\text{Zygoten im Achtzellstadium} &= \tfrac{6}{8} = 0{,}75\\
+\text{zweiter Zyklus}: \quad 18\cdot0{,}8 &= 14{,}4\text{ Zygoten}, \quad 14{,}4\cdot0{,}75 = 10{,}8\text{ Embryonen}
+\end{aligned}" />
+
+<Chart
+  title={<>Erwartete Eizellen und Embryonen im zweiten Zyklus</>}
+  bars="apart"
+  categories={["Entnommen", "Reif", "Befruchtet", "Achtzellstadium"]}
+  series={[{ label: "Zweiter Zyklus", mark: "bar", values: [20, 18, 14.4, 10.8] }]}
+  valueLabel="Erwartete Anzahl"
+  description={<>Von den <InlineMath math="20" /> Eizellen des zweiten Zyklus sind <InlineMath math="18" /> reif. Mit den Raten des ersten Zyklus werden etwa <InlineMath math="14{,}4" /> befruchtet, und etwa <InlineMath math="10{,}8" /> erreichen das Achtzellstadium.</>}
+/>
+
+- I: hCG wirkt auf die Follikel wie LH, und die Eizellen werden <InlineMath math="36" /> Stunden später entnommen, vor dem Eisprung. Aussage I stimmt.
+- II: <InlineMath math="10" /> erste und <InlineMath math="8" /> zweite Polkörperchen ergeben <InlineMath math="18" />. Aussage II stimmt.
+- III: Die <InlineMath math="10" /> sekundären Oozyten enthalten <InlineMath math="460" /> Chromatiden, nicht <InlineMath math="230" />. Aussage III ist falsch.
+- IV: Erwartet werden etwa <InlineMath math="10{,}8" /> Embryonen, mehr als <InlineMath math="10" />. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- I, II, III und IV zählt in der sekundären Oozyte **eine Chromatide pro Chromosom**, <InlineMath math="23\cdot10 = 230" />, und vergisst, dass die Meiose II, die die Schwesterchromatiden trennt, noch nicht stattgefunden hat.
+- Nur I und IV gibt **allen <InlineMath math="10" /> sekundären Oozyten ein zweites Polkörperchen**, <InlineMath math="10\cdot2 = 20" />, als ob die Meiose II ohne Spermium enden würde.
+- Nur I und II nimmt **alle <InlineMath math="12" /> entnommenen Eizellen als Basis**, als könnten die <InlineMath math="2" /> primären Oozyten befruchtet werden. Dann ergeben <InlineMath math="\tfrac{6}{12}" /> der <InlineMath math="20" /> Eizellen nur <InlineMath math="10" /> Embryonen, und das ist nicht mehr als <InlineMath math="10" />.

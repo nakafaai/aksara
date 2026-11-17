@@ -1,0 +1,44 @@
+# Beurteile ein Mutagen nach Mutanten pro überlebender Zelle, nicht nach der Zahl der Kolonien
+
+Eine hohe Dosis erzeugt in jeder Zelle mehr Mutationen, tötet aber auch die meisten Zellen. Die Koloniezahl vermischt beide Wirkungen. Um Dosen zu vergleichen, teilst du die Kolonien durch die Zahl der Zellen, die **überlebt haben**.
+
+## Mutanten pro überlebender Zelle
+
+Jede Probe beginnt mit <InlineMath math="1{,}0\cdot10^{9}" /> Zellen, die Überlebenden sind also diese Zahl mal dem Prozentsatz. Mit der Häufigkeit pro <InlineMath math="10^{8}" /> Überlebende bleiben die Zahlen klein:
+
+<BlockMath math="\begin{aligned}
+0\text{ J m}^{-2}:&\quad \frac{20}{1{,}0\cdot10^{9}} = 2\text{ pro }10^{8}\\
+20\text{ J m}^{-2}:&\quad \frac{120}{6{,}0\cdot10^{8}} = 20\text{ pro }10^{8}\\
+40\text{ J m}^{-2}:&\quad \frac{180}{3{,}0\cdot10^{8}} = 60\text{ pro }10^{8}\\
+60\text{ J m}^{-2}:&\quad \frac{120}{1{,}0\cdot10^{8}} = 120\text{ pro }10^{8}\\
+80\text{ J m}^{-2}:&\quad \frac{40}{2{,}0\cdot10^{7}} = 200\text{ pro }10^{8}
+\end{aligned}" />
+
+<Chart
+  title={<>Kolonien und Mutationshäufigkeit bei jeder UV-Dosis</>}
+  bars="apart"
+  categories={["0 J/m²", "20 J/m²", "40 J/m²", "60 J/m²", "80 J/m²"]}
+  series={[
+    { label: "Resistente Kolonien", mark: "bar", values: [20, 120, 180, 120, 40] },
+    { label: "Pro 100 Mio. Überlebende", mark: "line", values: [2, 20, 60, 120, 200] },
+  ]}
+  valueLabel="Anzahl"
+  description={<>Die Kolonien erreichen bei <InlineMath math="40\text{ J m}^{-2}" /> ihr Maximum von <InlineMath math="180" /> und fallen dann auf <InlineMath math="40" />. Die resistenten Mutanten pro <InlineMath math="10^{8}" /> überlebende Zellen steigen bei jeder Dosis: <InlineMath math="2" />, <InlineMath math="20" />, <InlineMath math="60" />, <InlineMath math="120" /> und <InlineMath math="200" />.</>}
+/>
+
+Die Kolonien **steigen und fallen wieder**, die Häufigkeit aber **steigt immer weiter**. Weniger Kolonien bei hohen Dosen heißt nur, dass weniger Zellen am Leben sind.
+
+## Die vier Aussagen
+
+- I: <InlineMath math="\tfrac{120}{2} = 60" />. Bei <InlineMath math="60\text{ J m}^{-2}" /> ist die Häufigkeit <InlineMath math="60" />-mal so hoch wie ohne UV-Licht. Aussage I stimmt.
+- II: Die meisten Kolonien kommen von <InlineMath math="40\text{ J m}^{-2}" />, aber deren Häufigkeit, <InlineMath math="60" /> pro <InlineMath math="10^{8}" />, liegt unter der bei <InlineMath math="60" /> und <InlineMath math="80\text{ J m}^{-2}" />. **Die höchste Dosis** wirkt am stärksten mutagen. Aussage II ist falsch.
+- III: Vor der Behandlung waren schon <InlineMath math="2" /> von je <InlineMath math="10^{8}" /> Zellen resistent. UV tötet sie genauso oft wie andere Zellen, also sind unter <InlineMath math="6{,}0\cdot10^{8}" /> Überlebenden <InlineMath math="2\cdot6 = 12" /> alte Mutanten, nicht <InlineMath math="20" />. Aussage III ist falsch.
+- IV: <InlineMath math="200" /> pro <InlineMath math="10^{8}" /> ist <InlineMath math="\tfrac{200}{10^{8}} = \tfrac{1}{500\,000}" />. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und IV nimmt **die Zahl der Kolonien als Stärke des Mutagens**. Bei hohen Dosen sterben die meisten Zellen, also kann eine kleinere Zahl trotzdem ein größerer Anteil der Überlebenden sein.
+- Nur I, III und IV zieht **die Koloniezahl der unbehandelten Probe unverändert ab**. Diese <InlineMath math="20" /> Mutanten stammen aus <InlineMath math="1{,}0\cdot10^{9}" /> Zellen, bei <InlineMath math="20\text{ J m}^{-2}" /> überleben aber nur <InlineMath math="6{,}0\cdot10^{8}" />, also sind dort nur <InlineMath math="12" /> alte Mutanten zu erwarten.
+- Nur IV **teilt die Koloniezahlen direkt**, <InlineMath math="\tfrac{120}{20} = 6" />, und verwirft so I. Dabei übersiehst du, dass die behandelte Probe zehnmal weniger überlebende Zellen zum Ausplattieren hatte.

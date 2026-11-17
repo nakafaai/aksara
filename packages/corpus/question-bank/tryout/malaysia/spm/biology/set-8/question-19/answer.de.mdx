@@ -1,0 +1,53 @@
+# Lies jedes Medikament daran ab, was Pupille und Linse nicht mehr tun, und vergleiche das Licht mit der richtigen normalen Pupille
+
+Ohne Tropfen funktionieren beide Reaktionen. Im hellen Licht ist die Pupille klein, beim nahen Gegenstand wird sie **noch etwas enger**, und die Linse wird von <InlineMath math="3{,}6" /> auf <InlineMath math="4{,}0\text{ mm}" /> dicker. Jedes Medikament verhindert einige dieser Änderungen, und jede fehlende Änderung zeigt auf einen Muskel, der sich nicht mehr zusammenziehen kann.
+
+## Aussage I
+
+Das Licht folgt der Fläche der Pupille, und die Fläche wächst mit dem **Quadrat** des Durchmessers. Mit Medikament X ist die Pupille bei beiden Abständen <InlineMath math="7{,}5\text{ mm}" /> weit, aber die normale Pupille, mit der du vergleichst, ist bei jedem Abstand anders:
+
+<BlockMath math="\begin{aligned}
+\text{Blick auf 6 m:}\quad \left(\frac{3{,}0}{7{,}5}\right)^2 &= 0{,}4^2 = 0{,}16 = 16\%\\
+\text{Blick auf 25 cm:}\quad \left(\frac{2{,}4}{7{,}5}\right)^2 &= 0{,}32^2 \approx 0{,}102 \approx 10\%
+\end{aligned}" />
+
+<Chart
+  title={<>Pupillenfläche ohne Tropfen und mit Medikament X</>}
+  bars="apart"
+  categories={["Blick auf 6 m", "Blick auf 25 cm"]}
+  series={[
+    { label: "Ohne Tropfen", mark: "bar", values: [7.07, 4.52] },
+    { label: "Medikament X", mark: "bar", values: [44.18, 44.18] },
+  ]}
+  valueLabel="Fläche der Pupille (mm²)"
+  description={<>Ohne Tropfen ist die Pupillenfläche beim fernen Gegenstand <InlineMath math="7{,}07\text{ mm}^2" /> und beim nahen <InlineMath math="4{,}52\text{ mm}^2" />. Mit Medikament X bleibt sie bei beiden <InlineMath math="44{,}18\text{ mm}^2" />, der Abstand ist beim nahen Gegenstand also größer.</>}
+/>
+
+Der Nahreflex verengt die Pupille normalerweise auf <InlineMath math="2{,}4\text{ mm}" />, und Medikament X verhindert auch das, also braucht der nahe Gegenstand die dunklere Brille. Beide Grenzen stimmen. Aussage I stimmt.
+
+## Aussagen II und III
+
+Vergleiche jedes Medikament mit den Zeilen ohne Tropfen.
+
+<Mermaid
+  title={<>Was jedes Medikament blockiert</>}
+  description={<>Mit Medikament X bleibt die Pupille weit und die Linse dünn, also sind der Ringmuskel der Iris und der Ziliarmuskel blockiert. Mit Medikament Y wird die Pupille normal enger, aber die Linse bleibt dünn, also ist nur der Ziliarmuskel blockiert. Mit Medikament Z bleibt die Pupille weit, aber die Linse wird beim nahen Gegenstand noch dicker, also ist nur der Ringmuskel der Iris blockiert.</>}
+  chart={"flowchart TD\n  X[Medikament X] --> XP[Pupille bleibt 7,5 mm]\n  X --> XL[Linse bleibt 3,6 mm]\n  XP --> XB[Ringmuskel und Ziliarmuskel blockiert]\n  XL --> XB\n  Y[Medikament Y] --> YP[Pupille wird normal enger]\n  Y --> YL[Linse bleibt 3,6 mm]\n  YP --> YB[Nur Ziliarmuskel blockiert]\n  YL --> YB\n  Z[Medikament Z] --> ZP[Pupille bleibt 7,5 mm]\n  Z --> ZL[Linse wird 4,0 mm dick]\n  ZP --> ZB[Nur Ringmuskel blockiert]\n  ZL --> ZB"}
+/>
+
+- Die Pupille wird enger, wenn sich der **Ringmuskel der Iris** zusammenzieht. Mit den Medikamenten X und Z bleibt sie im hellen Licht bei <InlineMath math="7{,}5\text{ mm}" />, also blockieren sie den Ringmuskel.
+- Die Linse wird für einen nahen Gegenstand dicker, wenn sich der **Ziliarmuskel** zusammenzieht und die Zonulafasern locker werden. Mit den Medikamenten X und Y bleibt sie bei <InlineMath math="3{,}6\text{ mm}" />, also blockieren sie den Ziliarmuskel. Mit Medikament Z erreicht sie noch <InlineMath math="4{,}0\text{ mm}" />.
+
+Aussage II passt zu allen drei Medikamenten, sie stimmt also. Der radiale Muskel weitet die Pupille, wenn er sich zusammenzieht. Würde Medikament Z oder X ihn blockieren, wäre die Pupille klein, nicht <InlineMath math="7{,}5\text{ mm}" />. Aussage III ist falsch.
+
+## Aussage IV
+
+Mit Medikament Z wird die Linse beim nahen Gegenstand noch von <InlineMath math="3{,}6" /> auf <InlineMath math="4{,}0\text{ mm}" /> dicker, genau wie ohne Tropfen, der nahe Gegenstand wird also scharf gestellt. Iris und Ziliarkörper arbeiten getrennt, und **eine weite Pupille hindert die Linse nicht daran, ihre Form zu ändern**. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II vergleicht Medikament X bei **beiden Abständen mit der Pupille für den fernen Gegenstand**, hält dieselbe <InlineMath math="16\%" />-Brille auch für den nahen Gegenstand für genug und verwirft I. Ohne Tropfen ist die Pupille beim nahen Gegenstand kleiner, die Grenze liegt dort also bei etwa <InlineMath math="10\%" />.
+- Nur I und III vertauscht die Aufgaben der Irismuskeln, **als würde der radiale Muskel die Pupille verengen**, dabei weitet er sie.
+- Nur I, II und IV verknüpft die **weite Pupille mit der Linse**, doch die eigene Zeile von Medikament Z zeigt, dass die Linse noch auf <InlineMath math="4{,}0\text{ mm}" /> dicker wird.

@@ -1,0 +1,58 @@
+# Tanaman hanya galur murni jika homozigot untuk kedua gen, dan tanaman tinggi masih bisa menyembunyikan alel kerdil
+
+Pada dominansi tidak lengkap, warna yang kamu lihat langsung menunjukkan genotipe warnanya: merah berarti <InlineMath math="RR" />, merah muda berarti <InlineMath math="RW" />, putih berarti <InlineMath math="WW" />. Tinggi batang berbeda. Tanaman tinggi bisa <InlineMath math="TT" /> atau <InlineMath math="Tt" />, jadi **fenotipenya tidak menunjukkan genotipenya**. Ingat perbedaan ini untuk setiap pernyataan.
+
+## Pernyataan I
+
+Kelompokkan jumlahnya menurut tinggi dan menurut warna:
+
+<BlockMath math="\begin{aligned}
+\text{tinggi: } & 148:304:151\approx1:2:1, \qquad \text{kerdil: } 49:98:50\approx1:2:1\\
+\text{merah: } & 148:49\approx3:1,\qquad \text{merah muda: } 304:98\approx3:1,\qquad \text{putih: } 151:50\approx3:1
+\end{aligned}" />
+
+Rasio warna **tidak bergantung pada tinggi**, dan rasio tinggi **tidak bergantung pada warna**. Ke-<InlineMath math="800" /> tanaman mengikuti <InlineMath math="3:6:3:1:2:1" />, yaitu <InlineMath math="(1:2:1)\times(3:1)" />. Pernyataan I benar.
+
+## Pernyataan II
+
+Tanaman menghasilkan keturunan yang semuanya sama dengannya hanya jika tanaman itu **homozigot untuk kedua gen**. Tanaman merah muda selalu <InlineMath math="RW" />, jadi tidak pernah galur murni. Semua tanaman kerdil adalah <InlineMath math="tt" />, jadi tanaman merah kerdil dan putih kerdil galur murni. Di antara tanaman tinggi, <InlineMath math="TT:Tt=1:2" />, jadi hanya sepertiga tanaman merah tinggi dan putih tinggi yang galur murni:
+
+<BlockMath math="\begin{aligned}
+\text{merah kerdil} + \text{putih kerdil} &= 49+50 = 99\\
+\tfrac{1}{3}\times(\text{merah tinggi} + \text{putih tinggi}) &= \tfrac{1}{3}\times(148+151) \approx 100\\
+\text{total} &\approx 199 \approx 200
+\end{aligned}" />
+
+Ini cocok dengan genotipe <InlineMath math="RRTT" />, <InlineMath math="WWTT" />, <InlineMath math="RRtt" />, dan <InlineMath math="WWtt" />, masing-masing <InlineMath math="\tfrac{1}{16}" /> dari tanaman, jadi <InlineMath math="\tfrac{4}{16}\times800=200" />. Pernyataan II benar.
+
+<Chart
+  title={<>Tanaman Generasi Kedua yang Galur Murni</>}
+  bars="apart"
+  categories={["Merah, tinggi", "Merah muda, tinggi", "Putih, tinggi", "Merah, kerdil", "Merah muda, kerdil", "Putih, kerdil"]}
+  series={[
+    { label: "Semua tanaman", mark: "bar", values: [148, 304, 151, 49, 98, 50] },
+    { label: "Galur murni", mark: "bar", values: [49, 0, 50, 49, 0, 50] },
+  ]}
+  valueLabel="Jumlah tanaman"
+  description={<>Semua tanaman merah kerdil dan putih kerdil galur murni, <InlineMath math="49" /> dan <InlineMath math="50" />. Hanya sekitar sepertiga tanaman merah tinggi dan putih tinggi yang galur murni, sekitar <InlineMath math="49" /> dan <InlineMath math="50" />, dan tidak ada tanaman merah muda yang galur murni. Totalnya sekitar <InlineMath math="200" /> tanaman galur murni.</>}
+/>
+
+## Pernyataan III
+
+Tanaman generasi pertama adalah <InlineMath math="RWTt" /> dan tanaman putih kerdil adalah <InlineMath math="WWtt" />. Setiap keturunan menerima <InlineMath math="W" /> dari induk putih, jadi keturunannya <InlineMath math="RW" /> (merah muda) atau <InlineMath math="WW" /> (putih), **tidak pernah merah**. Keturunannya merah muda tinggi, merah muda kerdil, putih tinggi, dan putih kerdil dengan rasio <InlineMath math="1:1:1:1" />. Pernyataan III salah.
+
+## Pernyataan IV
+
+Di antara tanaman merah tinggi, sepertiga adalah <InlineMath math="RRTT" /> dan dua pertiga adalah <InlineMath math="RRTt" />. Hanya tanaman <InlineMath math="RRTt" /> yang menghasilkan keturunan kerdil, yaitu seperempat keturunannya:
+
+<BlockMath math="P(\text{kerdil}) = \tfrac{1}{3}\times0+\tfrac{2}{3}\times\tfrac{1}{4} = \tfrac{1}{6}" />
+
+Hasilnya **seperenam, bukan seperempat**. Pernyataan IV salah.
+
+Jadi pernyataan I dan II benar.
+
+# Mengapa pilihan lain salah
+
+- I saja menganggap **setiap tanaman merah, putih, atau kerdil sebagai galur murni**, karena warna atau tingginya tampak murni: <InlineMath math="148+151+49+50\approx400" />. Ini lupa bahwa dua pertiga tanaman merah tinggi dan putih tinggi adalah <InlineMath math="Tt" />.
+- I, II, dan IV saja menganggap **setiap tanaman merah tinggi sebagai <InlineMath math="RRTt" />**, jadi mengharapkan rasio <InlineMath math="3:1" /> saat diserbuki sendiri. Sepertiganya adalah <InlineMath math="RRTT" /> dan tidak menghasilkan keturunan kerdil.
+- I, II, dan III saja membaca persilangan dengan tanaman putih kerdil seperti uji silang dengan dominansi penuh, yang memberi empat kelas sama banyak, **lupa bahwa induk putih hanya bisa memberi <InlineMath math="W" />**, jadi tidak ada keturunan yang merah.

@@ -1,0 +1,58 @@
+# Verfolge das Allel in jeder Linie der Familie nach unten, mit halber Wahrscheinlichkeit in jeder Generation
+
+Schreib <InlineMath math="A" /> für das normale Allel und <InlineMath math="a" /> für das Thalassämie-Allel. Das einzige <InlineMath math="a" /> der Familie beginnt bei Großvater G. Alle Eingeheirateten sind <InlineMath math="AA" />, also kann das Allel Ahmad oder Aminah **nur über die Weitergabe von G** erreichen, mit der Wahrscheinlichkeit <InlineMath math="\tfrac{1}{2}" /> bei jedem Schritt.
+
+## Aussage I
+
+G ist <InlineMath math="Aa" /> und H ist <InlineMath math="AA" />, also ist S mit der Wahrscheinlichkeit <InlineMath math="\tfrac{1}{2}" /> <InlineMath math="Aa" />. Wenn S <InlineMath math="Aa" /> ist, gibt er <InlineMath math="a" /> mit der Wahrscheinlichkeit <InlineMath math="\tfrac{1}{2}" /> an Ahmad weiter, weil W nur <InlineMath math="A" /> geben kann:
+
+<BlockMath math="P(\text{Ahmad ist }Aa) = \tfrac{1}{2}\cdot\tfrac{1}{2} = \tfrac{1}{4}" />
+
+**Dieselben zwei Schritte** führen von G über T zu Aminah, also ist auch ihre Wahrscheinlichkeit <InlineMath math="\tfrac{1}{4}" />. Aussage I stimmt.
+
+<Mermaid
+  title={<>Wie das Allel jede Cousine und jeden Cousin erreichen kann</>}
+  description={<>Vom Überträger G aus ist jedes seiner Kinder S und T mit Wahrscheinlichkeit ein halb Überträger. Jedes der beiden Enkelkinder, Ahmad über S und Aminah über T, ist dann mit Wahrscheinlichkeit ein Viertel Überträger. Ein Kind ist nur krank, wenn beide Überträger sind und beide das Allel weitergeben, also ein Viertel mal ein Viertel mal ein Viertel, ein Vierundsechzigstel.</>}
+  chart={`flowchart TD
+  G["G: Aa"] --> S["S: Aa mit 1/2"]
+  G --> T["T: Aa mit 1/2"]
+  S --> A["Ahmad: Aa mit 1/2 x 1/2 = 1/4"]
+  T --> B["Aminah: Aa mit 1/2 x 1/2 = 1/4"]
+  A --> C["Kind aa: 1/4 x 1/4 x 1/4 = 1/64"]
+  B --> C`}
+/>
+
+## Aussage II
+
+Ein Kind ist nur dann <InlineMath math="aa" />, wenn **beide** Eltern Überträger sind und das Kind dann von jedem ein <InlineMath math="a" /> bekommt, was mit der Wahrscheinlichkeit <InlineMath math="\tfrac{1}{4}" /> passiert. Die Wahrscheinlichkeiten der beiden laufen über verschiedene Eltern, S und T, also multiplizierst du sie:
+
+<BlockMath math="P(\text{Kind } aa) = \tfrac{1}{4}\cdot\tfrac{1}{4}\cdot\tfrac{1}{4} = \tfrac{1}{64}" />
+
+Aussage II stimmt.
+
+## Aussage III
+
+Jetzt ist die Frau mit der Wahrscheinlichkeit <InlineMath math="\tfrac{1}{20}" /> Überträgerin statt mit <InlineMath math="\tfrac{1}{4}" />:
+
+<BlockMath math="\begin{aligned}
+P(\text{Kind } aa) &= \tfrac{1}{4}\cdot\tfrac{1}{20}\cdot\tfrac{1}{4} = \tfrac{1}{320}\\
+\frac{1/320}{1/64} &= \frac{64}{320} = \frac{1}{5}
+\end{aligned}" />
+
+Aussage III stimmt. Eine Ehe unter Cousin und Cousine erhöht das Risiko, weil beide **dasselbe Allel von einem gemeinsamen Großelternteil** tragen können.
+
+## Aussage IV
+
+Ist Ahmad Überträger, wird seine Wahrscheinlichkeit <InlineMath math="1" />. **Aminahs Wahrscheinlichkeit ändert sich nicht**: Ihr Allel kommt über T, und Ahmads Ergebnis sagt nichts darüber, was T von G bekommen oder an Aminah weitergegeben hat. Sie bleibt bei <InlineMath math="\tfrac{1}{4}" />:
+
+<BlockMath math="P(\text{Kind } aa) = 1\cdot\tfrac{1}{4}\cdot\tfrac{1}{4} = \tfrac{1}{16}" />
+
+Die Wahrscheinlichkeit steigt auf <InlineMath math="\tfrac{1}{16}" />, nicht auf <InlineMath math="\tfrac{1}{4}" />. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II nimmt **<InlineMath math="\tfrac{1}{20}" /> als Wahrscheinlichkeit, dass die nicht verwandte Frau das Allel weitergibt**. Eine Überträgerin gibt es nur in der Hälfte der Fälle weiter, also ist ihre Wahrscheinlichkeit <InlineMath math="\tfrac{1}{40}" />, und das Risiko ist <InlineMath math="\tfrac{1}{8}\cdot\tfrac{1}{40}=\tfrac{1}{320}" />, nicht <InlineMath math="\tfrac{1}{160}" />.
+- Nur I **lässt das letzte <InlineMath math="\tfrac{1}{4}" /> weg**, mit dem zwei Überträger ein krankes Kind bekommen. So kommst du auf <InlineMath math="\tfrac{1}{16}" /> für die Verwandten und <InlineMath math="\tfrac{1}{80}" /> für die fremde Frau und verwirfst II und III.
+- I, II, III und IV nimmt an, dass **Aminah das Allel tragen muss, wenn Ahmad es trägt**, weil beide Linien bei G beginnen. Jedes Kind von G hat das Allel unabhängig bekommen, also bleibt Aminahs Wahrscheinlichkeit nach Ahmads Test bei <InlineMath math="\tfrac{1}{4}" />.

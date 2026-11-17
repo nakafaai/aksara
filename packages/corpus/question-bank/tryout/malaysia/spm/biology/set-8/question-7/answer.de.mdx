@@ -1,0 +1,40 @@
+# Die Maltose im Röhrchen ist nur, was die Amylase gebildet und die Maltase noch nicht weggenommen hat, also rechnest du die schon zu Glucose gewordene Maltose wieder dazu
+
+Jedes Röhrchen zeigt, was nach <InlineMath math="10" /> Minuten **übrig** ist, nicht, was jedes Enzym geleistet hat. Rechne zu den beiden Raten zurück:
+
+- Jede Maltose, die die Maltase spaltet, ergibt **zwei** Glucose, also gilt gespaltene Maltose <InlineMath math="= \tfrac{\text{Glucose}}{2}" />.
+- Die Amylase hat die noch vorhandene Maltose gebildet **plus** die schon gespaltene.
+
+<BlockMath math="\begin{aligned}
+\text{P}: \quad \text{Maltase} = \tfrac{4}{2} = 2, &\quad \text{Amylase} = 6+2 = 8\\
+\text{Q}: \quad \text{Maltase} = \tfrac{4}{2} = 2, &\quad \text{Amylase} = 14+2 = 16\\
+\text{R}: \quad \text{Maltase} = \tfrac{8}{2} = 4, &\quad \text{Amylase} = 4+4 = 8\\
+\text{S}: \quad \text{Maltase} = \tfrac{8}{2} = 4, &\quad \text{Amylase} = 12+4 = 16
+\end{aligned}" />
+
+Alle Werte sind mmol Maltose in <InlineMath math="10" /> Minuten.
+
+<Chart
+  title={<>Gebildete und gespaltene Maltose in <InlineMath math="10" /> Minuten</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Von Amylase gebildet (mmol)", mark: "bar", values: [8, 16, 8, 16] },
+    { label: "Von Maltase gespalten (mmol)", mark: "bar", values: [2, 2, 4, 4] },
+  ]}
+  valueLabel="Maltose (mmol in 10 min)"
+  description={<>Die Amylase bildet mit <InlineMath math="1" /> Einheit <InlineMath math="8" /> mmol Maltose und mit <InlineMath math="2" /> Einheiten <InlineMath math="16" />, unabhängig von der Maltase. Die Maltase spaltet mit <InlineMath math="1" /> Einheit <InlineMath math="2" /> mmol und mit <InlineMath math="2" /> Einheiten <InlineMath math="4" />, unabhängig von der vorhandenen Maltose.</>}
+/>
+
+- I: Die Maltase spaltet in R <InlineMath math="4" /> mmol gegen <InlineMath math="2" /> in P, also doppelt so schnell. Aussage I stimmt.
+- II: Die Amylase bildet in P wie in R <InlineMath math="8" /> mmol. In R ist nur weniger Maltose **übrig**, weil mehr davon schon zu Glucose geworden ist. Aussage II stimmt.
+- III: Röhrchen Q enthält <InlineMath math="14" /> mmol Maltose gegen <InlineMath math="6" /> in P, trotzdem spaltet die Maltase nur <InlineMath math="2" /> mmol. Mehr Substrat hilft nicht, also sind ihre aktiven Zentren schon alle besetzt. Nur mehr Maltase, in R, hebt die Rate. Die Maltase wird durch **ihre eigene Menge** begrenzt, nicht durch die Maltose. Aussage III ist falsch.
+- IV: In S bildet die Amylase <InlineMath math="16" /> und die Maltase spaltet <InlineMath math="4" />, also ist die Amylase <InlineMath math="\tfrac{16}{4} = 4" />-mal so schnell, nicht doppelt. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III deutet die unveränderte Glucose in Q als Mangel an Maltose, **obwohl Q mehr als doppelt so viel Maltose hat und trotzdem keine zusätzliche Glucose**, was zeigt, dass die Maltase gesättigt ist.
+- Nur I, II und IV nimmt die <InlineMath math="8" /> mmol Glucose in S als <InlineMath math="8" /> mmol gespaltene Maltose, **vergisst, dass jede Maltose zwei Glucose ergibt**, und kommt so auf <InlineMath math="\tfrac{16}{8} = 2" />.
+- Nur I vergleicht die übrige Maltose in P und R, <InlineMath math="6" /> gegen <InlineMath math="4" />, und schließt, dass mehr Maltase die Amylase bremst. **Die Maltose, die die Maltase schon zu Glucose gemacht hat, muss wieder dazugerechnet werden**, bevor du die Amylase beurteilst.

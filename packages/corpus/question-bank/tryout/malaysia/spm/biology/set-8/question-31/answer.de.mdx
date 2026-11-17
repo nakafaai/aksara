@@ -1,0 +1,42 @@
+# Gib jeder Hälfte der Pflanzung ihr eigenes Alter und rechne dann die gespeicherte Biomasse in Kohlenstoffdioxid um
+
+Du musst zwei Mengen **Kohlenstoffdioxid** gleichsetzen: was die Fabrik in <InlineMath math="10" /> Jahren ausstößt und was die ganze Pflanzung bis Ende des Jahres <InlineMath math="10" /> gespeichert hat. Die beiden Hälften werden im Abstand von <InlineMath math="5" /> Jahren gepflanzt, also sind sie Ende des Jahres <InlineMath math="10" /> **nicht gleich alt**.
+
+## Die Fabrik
+
+Über die ganzen <InlineMath math="10" /> Jahre, **nicht nur ein Jahr**:
+
+<BlockMath math="18\,480\cdot10=184\,800\text{ Tonnen Kohlenstoffdioxid}" />
+
+## Ein mittlerer Hektar der Pflanzung
+
+Ende des Jahres <InlineMath math="10" /> ist die erste Hälfte <InlineMath math="10" /> Jahre alt und die zweite erst <InlineMath math="5" />. Lies beide Werte aus der Tabelle ab und **mittle über die ganze Fläche**:
+
+<BlockMath math="\begin{aligned}
+\text{mittlere Trockenbiomasse} &= \frac{120+48}{2} = 84\text{ Tonnen pro Hektar}\\
+\text{Kohlenstoff} &= 84\cdot\tfrac{1}{2} = 42\text{ Tonnen pro Hektar}\\
+\text{gespeichertes Kohlenstoffdioxid} &= 42\cdot\tfrac{44}{12} = 154\text{ Tonnen pro Hektar}
+\end{aligned}" />
+
+<Chart
+  title={<>Gespeichertes Kohlenstoffdioxid pro Hektar</>}
+  bars="apart"
+  categories={["Erste Hälfte, 10 Jahre alt", "Zweite Hälfte, 5 Jahre alt", "Ganze Fläche, Mittel"]}
+  series={[{ label: "Gespeichertes Kohlenstoffdioxid", mark: "bar", values: [220, 88, 154] }]}
+  valueLabel="Gespeichert pro Hektar (Tonnen)"
+  description={<>Ein Hektar, der <InlineMath math="10" /> Jahre zuvor gepflanzt wurde, speichert <InlineMath math="220" /> Tonnen Kohlenstoffdioxid, ein Hektar von vor <InlineMath math="5" /> Jahren nur <InlineMath math="88" />. Bei je halber Fläche speichert die Pflanzung im Mittel <InlineMath math="154" /> Tonnen pro Hektar.</>}
+/>
+
+Die zweite Hälfte hatte nur halb so viel Zeit, speichert aber deutlich weniger als die Hälfte, <InlineMath math="88" /> gegen <InlineMath math="220" /> Tonnen, weil junge Mangroven anfangs langsam wachsen.
+
+## Die Fläche
+
+<BlockMath math="\text{Fläche}=\frac{184\,800}{154}=1200\text{ Hektar}" />
+
+Prüfe die Einheiten: Tonnen geteilt durch Tonnen pro Hektar ergibt Hektar. Es müssen also **<InlineMath math="1200" /> Hektar** gepflanzt werden, <InlineMath math="600" /> im Jahr <InlineMath math="1" /> und <InlineMath math="600" /> im Jahr <InlineMath math="6" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="840" /> Hektar behandelt **die ganze Fläche als von Anfang an bepflanzt**, sodass jeder Hektar <InlineMath math="220" /> Tonnen speichert: <InlineMath math="184\,800:220=840" />. Die Hälfte der Fläche ist erst <InlineMath math="5" /> Jahre gewachsen.
+- <InlineMath math="4400" /> Hektar hört beim Kohlenstoff auf und **vergleicht <InlineMath math="42" /> Tonnen Kohlenstoff mit Tonnen Kohlenstoffdioxid**: <InlineMath math="184\,800:42=4400" />. Der gespeicherte Kohlenstoff muss auch mit <InlineMath math="\tfrac{44}{12}" /> hochgerechnet werden.
+- <InlineMath math="600" /> Hektar hält **die ganze Trockenbiomasse für Kohlenstoff**: <InlineMath math="84\cdot\tfrac{44}{12}=308" /> Tonnen pro Hektar, und <InlineMath math="184\,800:308=600" />. Nur die Hälfte der Biomasse ist Kohlenstoff.

@@ -1,0 +1,46 @@
+# Tukarkan setiap kiraan kepada sel hidup dalam kultur, dengan pencairannya sendiri, sebelum membandingkannya
+
+Kedua-dua kiraan menggunakan **pencairan yang berbeza**, jadi nombor mentah pada slaid tidak boleh dibandingkan. Tukarkan setiap satu kepada sel hidup per <InlineMath math="\text{cm}^3" /> kultur dahulu. Hanya sel yang tidak berwarna yang hidup.
+
+## Isi padu yang dikira
+
+<BlockMath math="5\times(0.2\times0.2\times0.1) = 5\times0.004 = 0.02\text{ mm}^3" />
+
+## Sel hidup dalam setiap kiraan
+
+Campuran pertama ialah <InlineMath math="1.0" /> dalam <InlineMath math="1.0+3.0=4.0\text{ cm}^3" />, iaitu dicairkan <InlineMath math="4" /> kali. Campuran kedua ialah <InlineMath math="1.0" /> dalam <InlineMath math="1.0+7.0=8.0\text{ cm}^3" />, iaitu dicairkan <InlineMath math="8" /> kali.
+
+<BlockMath math="\begin{aligned}
+\text{kiraan pertama:}\quad \frac{100}{0.02}\times1000\times4 &= 2.0\times10^{7}\text{ per cm}^3\\
+\text{kiraan kedua:}\quad \frac{200}{0.02}\times1000\times8 &= 8.0\times10^{7}\text{ per cm}^3
+\end{aligned}" />
+
+Sel biru memberikan <InlineMath math="\tfrac{64}{0.02}\times1000\times4 = 1.28\times10^{7}" /> dan <InlineMath math="\tfrac{32}{0.02}\times1000\times8 = 1.28\times10^{7}" /> per <InlineMath math="\text{cm}^3" />, **sama pada kedua-dua kali**, jadi tiada sel yang mati dalam <InlineMath math="6" /> jam itu.
+
+<Chart
+  title={<>Sel Yis dalam Kultur</>}
+  bars="apart"
+  categories={["Kiraan pertama", "Kiraan kedua"]}
+  series={[
+    { label: "Sel hidup", mark: "bar", values: [2, 8] },
+    { label: "Sel mati", mark: "bar", values: [1.28, 1.28] },
+  ]}
+  valueLabel="Sel (× 10⁷ per cm³)"
+  description={<>Sel hidup meningkat daripada <InlineMath math="2.0\times10^{7}" /> kepada <InlineMath math="8.0\times10^{7}" /> per sentimeter padu dalam <InlineMath math="6" /> jam, iaitu empat kali ganda. Sel mati kekal pada <InlineMath math="1.28\times10^{7}" /> per sentimeter padu.</>}
+/>
+
+## Masa penggandaan
+
+<BlockMath math="\frac{8.0\times10^{7}}{2.0\times10^{7}} = 4 = 2^2" />
+
+Peningkatan empat kali ganda ialah **dua kali penggandaan**, dan kedua-duanya mengambil masa <InlineMath math="6" /> jam:
+
+<BlockMath math="\text{masa penggandaan} = \frac{6\text{ jam}}{2} = 3\text{ jam}" />
+
+Jadi masa penggandaan ialah **<InlineMath math="3" /> jam**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="6" /> jam membandingkan kiraan pada slaid secara terus, <InlineMath math="\tfrac{200}{100} = 2" />, **seolah-olah kedua-dua sampel mempunyai pencairan yang sama**, jadi pilihan ini nampak satu penggandaan dalam <InlineMath math="6" /> jam. Sampel kedua dicairkan dua kali lebih banyak.
+- <InlineMath math="1.5" /> jam **membahagikan masa dengan peningkatan empat kali ganda**, <InlineMath math="\tfrac{6}{4}" />, dan bukan dengan bilangan penggandaan, iaitu <InlineMath math="2" />.
+- <InlineMath math="4" /> jam **turut mengira sel biru**. Semua sel meningkat daripada <InlineMath math="3.28\times10^{7}" /> kepada <InlineMath math="9.28\times10^{7}" />, kira-kira <InlineMath math="2.83" /> kali ganda, iaitu <InlineMath math="2^{1.5}" />, atau <InlineMath math="1.5" /> penggandaan dalam <InlineMath math="6" /> jam. Sel mati tidak membahagi, jadi sel itu menyembunyikan sebahagian pertumbuhan.

@@ -1,0 +1,51 @@
+# Setiap kumpulan menyembunyikan bahagian yang berlainan dalam bajet karbohidrat, jadi gabungkan semuanya
+
+Jisim kering daun berubah kerana tiga sebab serentak: fotosintesis menambah karbohidrat, respirasi menggunakan sebahagian daripadanya, dan floem mengangkut sebahagian keluar. Kedua-dua separuh daun bermula dengan jisim kering yang sama bagi setiap unit luas, jadi perubahan dari pukul 6:00 pagi hingga 2:00 petang hanya menunjukkan apa yang berlaku dalam <InlineMath math="8" /> jam itu. Setiap kumpulan membuang satu daripada tiga proses itu:
+
+<Chart
+  title={<>Perubahan Jisim Kering Setiap Kumpulan dalam Lapan Jam</>}
+  bars="apart"
+  categories={["A, tanpa rawatan", "B, floem dimatikan", "C, floem dimatikan, gelap"]}
+  series={[{ label: "Perubahan jisim kering", mark: "bar", values: [48, 96, -24] }]}
+  valueLabel="Perubahan jisim kering (mg per dm²)"
+  description={<>Daun tanpa rawatan bertambah <InlineMath math="48\text{ mg}" /> bagi setiap <InlineMath math="\text{dm}^2" />. Daun yang floemnya dimatikan bertambah <InlineMath math="96\text{ mg}" /> dalam cahaya dan berkurang <InlineMath math="24\text{ mg}" /> dalam gelap.</>}
+/>
+
+- Kumpulan C tidak menghasilkan apa-apa dan tidak mengeksport apa-apa, jadi kehilangannya ialah **respirasi sahaja**: <InlineMath math="\tfrac{24}{8}=3\text{ mg}" /> bagi setiap <InlineMath math="\text{dm}^2" /> sejam.
+- Kumpulan B tidak mengeksport, jadi pertambahannya ialah fotosintesis tolak respirasi.
+- Kumpulan A juga mengeksport, jadi pertambahannya ialah fotosintesis tolak respirasi tolak eksport.
+
+## Fotosintesis kasar
+
+Pertambahan kumpulan B menyembunyikan karbohidrat yang digunakan oleh respirasi pada masa yang sama, jadi **tambahkan semula respirasi** itu:
+
+<BlockMath math="\begin{aligned}
+\text{fotosintesis kasar} &= \frac{96+24}{8} = 15\text{ mg karbohidrat per dm}^2\text{ sejam}\\
+\text{karbon dioksida diikat} &= 15\times\frac{264}{180} = 22\text{ mg per dm}^2\text{ sejam}
+\end{aligned}" />
+
+## Eksport daripada daun tanpa rawatan
+
+Kumpulan A dan B berfotosintesis dan berespirasi pada kadar yang sama, jadi satu-satunya perbezaan antara kedua-duanya ialah **karbohidrat yang diangkut keluar oleh floem**:
+
+<BlockMath math="\begin{aligned}
+\text{eksport} &= \frac{96-48}{8} = 6\text{ mg per dm}^2\text{ sejam}\\
+\text{bahagian daripada fotosintesis kasar} &= \frac{6}{15}\times100\% = 40\%
+\end{aligned}" />
+
+<Chart
+  title={<>Ke Mana Karbohidrat yang Dihasilkan Setiap Jam Pergi</>}
+  bars="apart"
+  categories={["Dihasilkan oleh fotosintesis", "Digunakan dalam respirasi", "Dieksport melalui floem", "Disimpan dalam daun"]}
+  series={[{ label: "Karbohidrat", mark: "bar", values: [(96 + 24) / 8, 24 / 8, (96 - 48) / 8, 48 / 8] }]}
+  valueLabel="Karbohidrat (mg per dm² sejam)"
+  description={<>Setiap jam, satu desimeter persegi daun tanpa rawatan menghasilkan <InlineMath math="15\text{ mg}" /> karbohidrat. Daun itu menggunakan <InlineMath math="3\text{ mg}" /> dalam respirasi, mengeksport <InlineMath math="6\text{ mg}" /> dan menyimpan <InlineMath math="6\text{ mg}" />, dan <InlineMath math="3+6+6=15" />.</>}
+/>
+
+Tiga bahagian itu bertambah semula kepada <InlineMath math="15\text{ mg}" /> yang dihasilkan, dan ini menyemak bajet itu. Daun mengikat karbon dioksida pada kadar <InlineMath math="22\text{ mg}" /> bagi setiap <InlineMath math="\text{dm}^2" /> sejam, dan daun tanpa rawatan mengeksport <InlineMath math="40\%" /> daripada karbohidrat yang dihasilkannya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="17.6\text{ mg}" /> dan <InlineMath math="50\%" /> mengambil pertambahan kumpulan B, <InlineMath math="\tfrac{96}{8}=12\text{ mg}" />, sebagai kadar kasar, **terlupa akan respirasi** yang diukur oleh kumpulan C.
+- <InlineMath math="13.2\text{ mg}" /> dan <InlineMath math="67\%" /> mengira kadar daripada kumpulan A tanpa rawatan, <InlineMath math="\tfrac{48+24}{8}=9\text{ mg}" />, **terlupa bahawa kumpulan A juga mengeksport** gula.
+- <InlineMath math="22\text{ mg}" /> dan <InlineMath math="50\%" /> betul tentang kadar, tetapi membahagikan eksport dengan pertambahan bersih kumpulan B, <InlineMath math="12\text{ mg}" />, **bukan dengan kadar kasar**.

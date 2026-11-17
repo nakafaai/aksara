@@ -1,0 +1,42 @@
+# Give each half of the planting its own age, then turn the stored biomass into carbon dioxide
+
+You need to match two amounts of **carbon dioxide**: what the factory releases in <InlineMath math="10" /> years, and what the whole planting has stored by the end of year <InlineMath math="10" />. The two halves are planted <InlineMath math="5" /> years apart, so at the end of year <InlineMath math="10" /> they are **not the same age**.
+
+## The factory
+
+Over the whole <InlineMath math="10" /> years, **not just one year**:
+
+<BlockMath math="18\,480\times10=184\,800\text{ tonnes of carbon dioxide}" />
+
+## The mean hectare of the planting
+
+At the end of year <InlineMath math="10" />, the first half is <InlineMath math="10" /> years old and the second half only <InlineMath math="5" />. Read each from the table, then **average over the whole area**:
+
+<BlockMath math="\begin{aligned}
+\text{mean dry biomass} &= \frac{120+48}{2} = 84\text{ tonnes per hectare}\\
+\text{carbon} &= 84\times\tfrac{1}{2} = 42\text{ tonnes per hectare}\\
+\text{carbon dioxide stored} &= 42\times\tfrac{44}{12} = 154\text{ tonnes per hectare}
+\end{aligned}" />
+
+<Chart
+  title={<>Carbon Dioxide Stored per Hectare</>}
+  bars="apart"
+  categories={["First half, 10 years old", "Second half, 5 years old", "Whole area, average"]}
+  series={[{ label: "Carbon dioxide stored", mark: "bar", values: [220, 88, 154] }]}
+  valueLabel="Stored per hectare (tonnes)"
+  description={<>A hectare planted <InlineMath math="10" /> years earlier stores <InlineMath math="220" /> tonnes of carbon dioxide, and a hectare planted <InlineMath math="5" /> years earlier only <InlineMath math="88" />. With half the area of each, the planting stores <InlineMath math="154" /> tonnes per hectare on average.</>}
+/>
+
+The second half has had only half the time but stores much less than half as much, <InlineMath math="88" /> against <InlineMath math="220" /> tonnes, because young mangroves grow slowly at first.
+
+## The area
+
+<BlockMath math="\text{area}=\frac{184\,800}{154}=1200\text{ hectares}" />
+
+Check the units: tonnes divided by tonnes per hectare gives hectares. So **<InlineMath math="1200" /> hectares** must be planted, <InlineMath math="600" /> in year <InlineMath math="1" /> and <InlineMath math="600" /> in year <InlineMath math="6" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="840" /> hectares treats **the whole area as planted at the start**, so every hectare stores <InlineMath math="220" /> tonnes: <InlineMath math="184\,800\div220=840" />. Half of the area has grown for only <InlineMath math="5" /> years.
+- <InlineMath math="4400" /> hectares stops at carbon and **compares <InlineMath math="42" /> tonnes of carbon with tonnes of carbon dioxide**: <InlineMath math="184\,800\div42=4400" />. The stored carbon must be scaled up by <InlineMath math="\tfrac{44}{12}" /> too.
+- <InlineMath math="600" /> hectares treats **all of the dry biomass as carbon**: <InlineMath math="84\times\tfrac{44}{12}=308" /> tonnes per hectare, and <InlineMath math="184\,800\div308=600" />. Only half of the biomass is carbon.

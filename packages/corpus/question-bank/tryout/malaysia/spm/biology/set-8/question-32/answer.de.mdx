@@ -1,0 +1,58 @@
+# Eine Pflanze ist nur reinerbig, wenn sie für beide Gene homozygot ist, und eine hohe Pflanze kann ein Zwergallel verbergen
+
+Bei unvollständiger Dominanz verrät die Farbe den Farbgenotyp: Rot ist <InlineMath math="RR" />, Rosa ist <InlineMath math="RW" />, Weiß ist <InlineMath math="WW" />. Bei der Wuchshöhe ist das anders. Eine hohe Pflanze kann <InlineMath math="TT" /> oder <InlineMath math="Tt" /> sein, **der Phänotyp zeigt den Genotyp also nicht**. Behalte diesen Unterschied bei jeder Aussage im Kopf.
+
+## Aussage I
+
+Ordne die Zahlen nach Höhe und nach Farbe:
+
+<BlockMath math="\begin{aligned}
+\text{hoch: } & 148:304:151\approx1:2:1, \qquad \text{zwergig: } 49:98:50\approx1:2:1\\
+\text{rot: } & 148:49\approx3:1,\qquad \text{rosa: } 304:98\approx3:1,\qquad \text{weiß: } 151:50\approx3:1
+\end{aligned}" />
+
+Das Farbverhältnis **hängt nicht von der Höhe ab**, und das Höhenverhältnis **nicht von der Farbe**. Die <InlineMath math="800" /> Pflanzen folgen <InlineMath math="3:6:3:1:2:1" />, also <InlineMath math="(1:2:1)\cdot(3:1)" />. Aussage I stimmt.
+
+## Aussage II
+
+Eine Pflanze bekommt nur dann lauter gleiche Nachkommen, wenn sie **für beide Gene homozygot** ist. Rosa Pflanzen sind immer <InlineMath math="RW" /> und nie reinerbig. Jede Zwergpflanze ist <InlineMath math="tt" />, also sind rote und weiße Zwergpflanzen reinerbig. Unter den hohen Pflanzen gilt <InlineMath math="TT:Tt=1:2" />, also ist nur ein Drittel der roten und weißen hohen Pflanzen reinerbig:
+
+<BlockMath math="\begin{aligned}
+\text{rot zwergig} + \text{weiß zwergig} &= 49+50 = 99\\
+\tfrac{1}{3}\cdot(\text{rot hoch} + \text{weiß hoch}) &= \tfrac{1}{3}\cdot(148+151) \approx 100\\
+\text{zusammen} &\approx 199 \approx 200
+\end{aligned}" />
+
+Das passt zu den Genotypen <InlineMath math="RRTT" />, <InlineMath math="WWTT" />, <InlineMath math="RRtt" /> und <InlineMath math="WWtt" />, je <InlineMath math="\tfrac{1}{16}" /> der Pflanzen, also <InlineMath math="\tfrac{4}{16}\cdot800=200" />. Aussage II stimmt.
+
+<Chart
+  title={<>Reinerbige Pflanzen der zweiten Generation</>}
+  bars="apart"
+  categories={["Rot, hoch", "Rosa, hoch", "Weiß, hoch", "Rot, zwergig", "Rosa, zwergig", "Weiß, zwergig"]}
+  series={[
+    { label: "Alle Pflanzen", mark: "bar", values: [148, 304, 151, 49, 98, 50] },
+    { label: "Reinerbig", mark: "bar", values: [49, 0, 50, 49, 0, 50] },
+  ]}
+  valueLabel="Anzahl der Pflanzen"
+  description={<>Alle roten und weißen Zwergpflanzen sind reinerbig, <InlineMath math="49" /> und <InlineMath math="50" />. Von den roten und weißen hohen Pflanzen ist nur etwa ein Drittel reinerbig, etwa <InlineMath math="49" /> und <InlineMath math="50" />, und keine rosa Pflanze. Zusammen sind etwa <InlineMath math="200" /> Pflanzen reinerbig.</>}
+/>
+
+## Aussage III
+
+Die Pflanze der ersten Generation ist <InlineMath math="RWTt" />, die weiße Zwergpflanze <InlineMath math="WWtt" />. Jeder Nachkomme erhält vom weißen Elternteil ein <InlineMath math="W" />, ist also <InlineMath math="RW" /> (rosa) oder <InlineMath math="WW" /> (weiß), aber **nie rot**. Die Nachkommen sind rosa hoch, rosa zwergig, weiß hoch und weiß zwergig im Verhältnis <InlineMath math="1:1:1:1" />. Aussage III ist falsch.
+
+## Aussage IV
+
+Unter den roten hohen Pflanzen ist ein Drittel <InlineMath math="RRTT" /> und zwei Drittel sind <InlineMath math="RRTt" />. Nur die <InlineMath math="RRTt" />-Pflanzen bekommen Zwergnachkommen, und zwar ein Viertel ihrer Nachkommen:
+
+<BlockMath math="P(\text{zwergig}) = \tfrac{1}{3}\cdot0+\tfrac{2}{3}\cdot\tfrac{1}{4} = \tfrac{1}{6}" />
+
+Das ist **ein Sechstel, kein Viertel**. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I hält **jede rote, weiße oder zwergige Pflanze für reinerbig**, weil ihre Farbe oder Höhe rein aussieht: <InlineMath math="148+151+49+50\approx400" />. Dabei vergisst du, dass zwei Drittel der roten und weißen hohen Pflanzen <InlineMath math="Tt" /> sind.
+- Nur I, II und IV hält **jede rote hohe Pflanze für <InlineMath math="RRTt" />** und erwartet deshalb beim Selbsten <InlineMath math="3:1" />. Ein Drittel von ihnen ist <InlineMath math="RRTT" /> und bekommt keine Zwergnachkommen.
+- Nur I, II und III liest die Kreuzung mit der weißen Zwergpflanze wie eine Testkreuzung bei vollständiger Dominanz mit vier gleich großen Klassen und **vergisst, dass der weiße Elternteil nur <InlineMath math="W" /> weitergeben kann**, sodass kein Nachkomme rot ist.

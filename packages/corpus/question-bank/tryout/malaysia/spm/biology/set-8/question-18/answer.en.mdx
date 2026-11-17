@@ -1,0 +1,65 @@
+# Mass lost is volume times concentration, and the protein that matters is what the liver cannot replace
+
+Every statement needs the **mass carried out per day**, not just the concentration. Convert the volume to <InlineMath math="\text{dm}^3" /> first, since the concentrations are per <InlineMath math="\text{dm}^3" />:
+
+<BlockMath math="\begin{aligned}
+\text{fat lost, diet P} &= 1.5\times24 = 36\text{ g per day}\\
+\text{fat lost, diets Q and R} &= 0.8\times3 = 2.4\text{ g per day}\\
+\text{protein lost, diet P} &= 1.5\times30 = 45\text{ g per day}\\
+\text{protein lost, diets Q and R} &= 0.8\times30 = 24\text{ g per day}
+\end{aligned}" />
+
+## Statement I
+
+<BlockMath math="\frac{36}{80}\times100\% = 45\%,\qquad \frac{36-2.4}{36}\times100\% \approx 93\%" />
+
+The drain removes <InlineMath math="45\%" /> of the fat eaten on diet P, and diet R cuts the daily fat loss by about <InlineMath math="93\%" />. **Both parts hold**, and even without the <InlineMath math="2.4\text{ g}" /> that drains on a fat-free diet the share is <InlineMath math="\tfrac{33.6}{80}=42\%" />. Statement I is correct.
+
+## Statement II
+
+The drain is not the whole story, because the liver puts <InlineMath math="15\text{ g}" /> back every day. What lowers the plasma protein is the **net** loss:
+
+<BlockMath math="\begin{aligned}
+\text{net loss, diet P} &= 45-15 = 30\text{ g per day}\\
+\text{net loss, diet R} &= 24-15 = 9\text{ g per day}
+\end{aligned}" />
+
+A fall from <InlineMath math="70" /> to <InlineMath math="60\text{ g per dm}^3" /> in <InlineMath math="3.0\text{ dm}^3" /> of plasma means losing
+
+<BlockMath math="(70-60)\times3.0 = 30\text{ g of plasma protein}" />
+
+<BlockMath math="\text{time on diet P} = \frac{30}{30} = 1\text{ day},\qquad \text{time on diet R} = \frac{30}{9} \approx 3.3\text{ days}" />
+
+<Chart
+  title={<>Plasma Protein on Diets P and R</>}
+  categories={["Day 0", "Day 1", "Day 2", "Day 3", "Day 4"]}
+  series={[
+    { label: "Diet P", mark: "line", values: [70, 60, 50, 40, 30] },
+    { label: "Diet R", mark: "line", values: [70, 67, 64, 61, 58] },
+  ]}
+  valueLabel="Plasma protein (g per dm³)"
+  description={<>On diet P the plasma protein falls by <InlineMath math="10\text{ g per dm}^3" /> a day and reaches <InlineMath math="60" /> after one day. On diet R it falls by only <InlineMath math="3\text{ g per dm}^3" /> a day and passes <InlineMath math="60" /> between day <InlineMath math="3" /> and day <InlineMath math="4" />.</>}
+/>
+
+Diet R takes about <InlineMath math="3.3" /> days, which is more than <InlineMath math="3" /> days and <InlineMath math="3.3" /> times as long as diet P. Statement II is correct.
+
+## Statements III and IV
+
+Now read diet Q as the control. With no fat at all in the food, <InlineMath math="800\text{ cm}^3" /> of lymph still drains each day, carrying protein. That is the tissue fluid of the other organs, and of the gut between meals, returning to the blood. Diet R gives **exactly** the same volume and fat as diet Q, so its <InlineMath math="80\text{ g}" /> of medium-chain fat adds nothing to the lymph.
+
+<Mermaid
+  title={<>Two Routes Out of a Villus</>}
+  description={<>Long-chain fat is packed into chylomicrons, enters the lacteals and travels in lymph up the thoracic duct, which here leaks into the drain. Medium-chain fat passes into the blood capillaries of the villus and goes to the liver in the hepatic portal vein, so it never reaches the drain. Tissue fluid from other organs also joins the thoracic duct.</>}
+  chart={"flowchart LR\n  L[Long-chain fat] --> C[Chylomicrons]\n  C --> LA[Lacteal]\n  LA --> TD[Thoracic duct]\n  TF[Tissue fluid of other organs] --> TD\n  TD --> D[Drain]\n  M[Medium-chain fat] --> BC[Blood capillary of villus]\n  BC --> HP[Hepatic portal vein to liver]"}
+/>
+
+- III: on diet R the drain still removes <InlineMath math="24\text{ g}" /> of plasma protein a day, the very loss that statement II follows. Statement III is wrong.
+- IV: diet R matches the fat-free diet in both volume and fat, so the medium-chain fat does not enter the lacteals. It passes into the blood capillaries of the villi instead. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I only **leaves out the liver's <InlineMath math="15\text{ g}" /> a day**. Then diet R loses <InlineMath math="24\text{ g}" /> a day and takes <InlineMath math="\tfrac{30}{24}=1.25" /> days, and diet P takes <InlineMath math="\tfrac{30}{45}\approx0.67" /> days, only <InlineMath math="1.9" /> times shorter, so II looks wrong.
+- I, II and IV only applies the rule that **all absorbed fat enters the lacteals**, without checking diet R against the control, diet Q, which shows that medium-chain fat adds nothing to the lymph.
+- I, II and III only treats the thoracic duct as carrying **only lymph from the intestine**, but tissue fluid from most of the body drains into it too, and it still carries <InlineMath math="24\text{ g}" /> of protein a day on diet R.

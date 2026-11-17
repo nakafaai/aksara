@@ -1,0 +1,67 @@
+# Rechne die Transpirationsrate in Gramm Wasser um und dann in abgeführte Wärme
+
+Transpiration kühlt ein Blatt, weil Wasser zum Verdunsten Wärme braucht und diese Wärme dem Blatt entzieht. Um sie mit den <InlineMath math="600\text{ J}" /> zu vergleichen, die das Blatt aufnimmt, rechnest du Schritt für Schritt um: **Millimol in Gramm, dann Gramm in Joule**.
+
+## Aussage I
+
+<BlockMath math="\begin{aligned}
+\text{Wasserverlust von P} &= 5{,}0\cdot18 = 90\text{ mg} = 0{,}090\text{ g pro m}^2\text{ und Sekunde}\\
+\text{abgeführte Wärme} &= 0{,}090\cdot2400 = 216\text{ J pro m}^2\text{ und Sekunde}\\
+\text{Anteil an der aufgenommenen Energie} &= \frac{216}{600} = 0{,}36 = 36\,\%
+\end{aligned}" />
+
+<InlineMath math="36\,\%" /> ist **mehr als ein Drittel**, also mehr als etwa <InlineMath math="33\,\%" />. Aussage I stimmt.
+
+## Aussage II
+
+Nutze die Wärmebilanz von Blatt Q selbst. Bei <InlineMath math="39^\circ\text{C}" /> führt seine Transpiration <InlineMath math="0{,}5\cdot18 = 9\text{ mg} = 0{,}009\text{ g}" /> ab, also <InlineMath math="0{,}009\cdot2400 = 21{,}6\text{ J}" /> pro Sekunde, und die **übrigen Wärmeverluste** tragen den Rest. Kühlst du das Blatt um <InlineMath math="3^\circ\text{C}" />, sinken diese übrigen Verluste, und die Transpiration muss die Lücke füllen:
+
+<BlockMath math="\begin{aligned}
+\text{übrige Verluste bei }39^\circ\text{C} &= 600-21{,}6 = 578{,}4\text{ J}\\
+\text{übrige Verluste bei }36^\circ\text{C} &= 578{,}4-3\cdot32{,}4 = 481{,}2\text{ J}\\
+\text{nötige Transpiration} &= 600-481{,}2 = 118{,}8\text{ J}\\
+\text{Wasser} &= \frac{118{,}8}{2400} = 0{,}0495\text{ g} = 49{,}5\text{ mg}\\
+\text{Rate} &= \frac{49{,}5}{18} = 2{,}75\text{ mmol pro m}^2\text{ und Sekunde}
+\end{aligned}" />
+
+<Chart
+  title={<>Nötige Transpiration für jede Blatttemperatur</>}
+  categories={["33 °C", "36 °C", "39 °C"]}
+  series={[{ label: "Nötige Transpiration", mark: "line", values: [5, 2.75, 0.5] }]}
+  valueLabel="Transpiration (mmol pro m² und Sekunde)"
+  description={<>Um ein Blatt bei <InlineMath math="39^\circ\text{C}" /> zu halten, braucht es <InlineMath math="0{,}5\text{ mmol}" />, bei <InlineMath math="36^\circ\text{C}" /> sind es <InlineMath math="2{,}75\text{ mmol}" /> und bei <InlineMath math="33^\circ\text{C}" /> sind es <InlineMath math="5{,}0\text{ mmol}" /> pro Quadratmeter und Sekunde, die Rate von Blatt P.</>}
+/>
+
+Zur Probe ergibt dieselbe Regel für Blatt P bei <InlineMath math="33^\circ\text{C}" /> übrige Verluste von <InlineMath math="578{,}4-6\cdot32{,}4 = 384\text{ J}" />, und <InlineMath math="600-384 = 216\text{ J}" /> ist genau das, was seine Transpiration abführt. Die neue Rate ist <InlineMath math="\tfrac{2{,}75}{0{,}5} = 5{,}5" />-mal so hoch wie jetzt, also mehr als fünfmal. Aussage II stimmt.
+
+## Aussage III
+
+Blatt Q transpiriert <InlineMath math="0{,}5" /> statt <InlineMath math="5{,}0\text{ mmol}" />, also mit denselben Schritten:
+
+<BlockMath math="0{,}5\cdot18 = 9\text{ mg} = 0{,}009\text{ g},\qquad 0{,}009\cdot2400 = 21{,}6\text{ J pro m}^2\text{ und Sekunde}" />
+
+<Chart
+  title={<>Aufgenommene Energie und durch Transpiration abgeführte Wärme</>}
+  bars="apart"
+  categories={["Blatt P, Stomata offen", "Blatt Q, Stomata fast zu"]}
+  series={[
+    { label: "Aufgenommene Energie", mark: "bar", values: [600, 600] },
+    { label: "Durch Transpiration abgeführt", mark: "bar", values: [216, 21.6] },
+  ]}
+  valueLabel="Energie (J pro m² und Sekunde)"
+  description={<>Beide Blätter nehmen <InlineMath math="600\text{ J}" /> pro Quadratmeter und Sekunde auf. Die Transpiration führt bei Blatt P <InlineMath math="216\text{ J}" /> ab, bei Blatt Q nur <InlineMath math="21{,}6\text{ J}" />, ein Zehntel davon.</>}
+/>
+
+Beide Blätter nehmen dieselbe Energie auf, aber Blatt Q wird durch Transpiration pro Sekunde <InlineMath math="216-21{,}6\approx194\text{ J}" /> weniger los. Diese zusätzliche Energie **erwärmt das Blatt**, bis es heiß genug ist, den Rest auf anderen Wegen abzugeben, also ist Blatt Q <InlineMath math="39-33=6^\circ\text{C}" /> wärmer. Aussage III stimmt.
+
+## Aussage IV
+
+Offene Stomata lassen Wasserdampf hinaus, aber die Transpirationsrate hängt auch von der Luft draußen ab. In sehr feuchter, ruhiger Luft ist draußen fast so viel Wasserdampf wie im Blatt, also **verdunstet das Wasser viel langsamer**, auch bei offenen Stomata. Weniger Verdunstung führt weniger Wärme ab, also würde Blatt P wärmer als <InlineMath math="33^\circ\text{C}" /> werden. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur III **liest Millimol als Milligramm**, sodass Blatt P scheinbar <InlineMath math="5\text{ mg}" /> pro Sekunde verliert, was nur <InlineMath math="12\text{ J}" /> abführt, und Blatt Q bei <InlineMath math="36^\circ\text{C}" /> scheinbar <InlineMath math="49{,}5" /> statt <InlineMath math="2{,}75" /> braucht. Das Zehnfache in III übersteht diesen Fehler, I und II nicht.
+- I, II, III und IV knüpft die Kühlung **allein an offene Stomata**. Die Kühlung kommt vom Verdunsten, und feuchte, ruhige Luft bremst das Verdunsten auch bei weit offenen Stomata.
+- Nur I und III **halbiert die Lücke von null aus**: Die halbe Rate von Blatt P sind <InlineMath math="2{,}5\text{ mmol}" />, genau das Fünffache der Rate von Blatt Q, nicht mehr. Blatt Q transpiriert aber schon <InlineMath math="0{,}5\text{ mmol}" />, die Mitte zwischen beiden Blättern liegt also bei <InlineMath math="0{,}5+\tfrac{5{,}0-0{,}5}{2} = 2{,}75\text{ mmol}" />.

@@ -1,0 +1,56 @@
+# Ein später Start verschiebt die Kurve, aber nicht die Gesamtmenge, also vergleiche Raten und Zucker pro Gramm
+
+Das Paraffin hält Luft fern, die Hefe atmet also anaerob, und das Gas ist Kohlenstoffdioxid aus der Gärung. Röhrchen T liefert kein Gas, das Gas stammt also von den Enzymen lebender Hefe, nicht vom Zucker allein.
+
+Fang mit den Röhrchen P und Q an. Nimm die Rate **nach dem langsamen Start**, von Minute <InlineMath math="20" /> bis Minute <InlineMath math="40" />, und rechne den Rückstand bei Minute <InlineMath math="40" /> in Zeit um:
+
+<BlockMath math="\begin{aligned}
+\text{Röhrchen P}: \quad \tfrac{14{,}0-7{,}0}{20} &= 0{,}35\text{ cm}^3\text{ pro Minute}\\
+\text{Röhrchen Q}: \quad \tfrac{12{,}6-5{,}6}{20} &= 0{,}35\text{ cm}^3\text{ pro Minute}\\
+\text{Rückstand}: \quad 14{,}0-12{,}6 = 1{,}4\text{ cm}^3, \qquad \tfrac{1{,}4}{0{,}35} &= 4\text{ Minuten}
+\end{aligned}" />
+
+<Chart
+  title={<>Von der Hefe freigesetztes Gas in den Röhrchen P bis S</>}
+  categories={["10 min", "20 min", "30 min", "40 min"]}
+  series={[
+    { label: "P Glucose", mark: "line", values: [3.5, 7, 10.5, 14] },
+    { label: "Q Saccharose", mark: "line", values: [2.1, 5.6, 9.1, 12.6] },
+    { label: "R Saccharose und Invertase", mark: "line", values: [3.4, 6.8, 10.2, 13.6] },
+    { label: "S Lactose", mark: "line", values: [0, 0, 0, 0] },
+  ]}
+  valueLabel="Aufgefangenes Gas (cm³)"
+  description={<>Die Röhrchen P und Q laufen nach Minute <InlineMath math="20" /> parallel mit <InlineMath math="0{,}35\text{ cm}^3" /> pro Minute, und Röhrchen Q liegt immer <InlineMath math="1{,}4\text{ cm}^3" /> zurück, das sind <InlineMath math="4" /> Minuten Gas. Röhrchen R mit zugesetzter Invertase startet fast gleichauf mit Röhrchen P, mit <InlineMath math="3{,}4\text{ cm}^3" /> nach <InlineMath math="10" /> Minuten. Lactose liefert gar kein Gas.</>}
+/>
+
+Röhrchen R enthält dieselbe Saccharose mit zusätzlicher Invertase. Sein Gas bei Minute <InlineMath math="10" /> beträgt <InlineMath math="3{,}4\text{ cm}^3" />, fast die <InlineMath math="3{,}5\text{ cm}^3" /> der Glucose. Sobald die Saccharose **schnell hydrolysiert** wird, verschwindet die Verzögerung also. Die Verzögerung in Röhrchen Q kommt deshalb von der Hydrolyse der Saccharose durch die Hefe selbst, während die Gärung von Glucose und Fructose so schnell läuft wie bei Glucose.
+
+Jetzt zu den Endmengen. Beide Röhrchen enthalten <InlineMath math="0{,}5\text{ g}" /> Zucker, aber ein Saccharosemolekül liefert zwei Hexosen, und jede Hexose liefert zwei Moleküle Kohlenstoffdioxid:
+
+<BlockMath math="\begin{aligned}
+\mathrm{C_{12}H_{22}O_{11}} + \mathrm{H_2O} &\rightarrow \mathrm{C_6H_{12}O_6}\ (\text{Glucose}) + \mathrm{C_6H_{12}O_6}\ (\text{Fructose})\\
+\mathrm{C_6H_{12}O_6} &\rightarrow 2\mathrm{C_2H_5OH} + 2\mathrm{CO_2}\\
+\text{Röhrchen P}: \quad \tfrac{0{,}5}{180}\times2 &\approx 0{,}0056\text{ mol Kohlenstoffdioxid}\\
+\text{Röhrchen Q}: \quad \tfrac{0{,}5}{342}\times4 &\approx 0{,}0058\text{ mol Kohlenstoffdioxid}
+\end{aligned}" />
+
+Weil bei der Hydrolyse Wasser eingebaut wird, **enthält dieselbe Masse Saccharose etwa** <InlineMath math="\tfrac{4\times180}{2\times342} = \tfrac{720}{684} \approx 1{,}05" />-mal so viel vergärbaren Zucker wie Glucose.
+
+<Mermaid
+  title={<>Welche Zucker die Hefe vergären kann</>}
+  description={<>Invertase hydrolysiert Saccharose zu Glucose und Fructose, und die Hefe vergärt beide zu Ethanol und Kohlenstoffdioxid. Hefe hat keine Lactase, deshalb bleibt Lactose ganz. Kochen mit verdünnter Salzsäure und anschließendes Neutralisieren hydrolysiert Lactose zu Glucose und Galactose, und die Hefe vergärt die Glucose.</>}
+  chart={"flowchart LR\n  S[Saccharose] -->|Invertase| GF[Glucose und Fructose]\n  GF --> E[Ethanol und Kohlenstoffdioxid]\n  L[Lactose] -.->|Hefe hat keine Lactase| X[Kein Gas]\n  L -->|mit Säure gekocht, dann neutralisiert| GG[Glucose und Galactose]\n  GG -->|Glucose vergoren| E"}
+/>
+
+- I: Beide Röhrchen setzen von Minute <InlineMath math="20" /> bis Minute <InlineMath math="40" /> <InlineMath math="0{,}35\text{ cm}^3" /> pro Minute frei, und der Rückstand von <InlineMath math="1{,}4\text{ cm}^3" /> ist das Gas, das Röhrchen P in <InlineMath math="4" /> Minuten freisetzt. Aussage I stimmt.
+- II: <InlineMath math="0{,}5\text{ g}" /> Saccharose sind nur <InlineMath math="\tfrac{0{,}5}{342} \approx 0{,}0015\text{ mol}" />, etwa die Hälfte der <InlineMath math="\tfrac{0{,}5}{180} \approx 0{,}0028\text{ mol}" /> Glucose. Jede Saccharose wird aber in **zwei** Hexosen gespalten, also vergärt Röhrchen Q etwa <InlineMath math="0{,}0029\text{ mol}" /> Hexose und liefert am Ende etwa <InlineMath math="0{,}0058" /> gegen <InlineMath math="0{,}0056\text{ mol}" /> Kohlenstoffdioxid, etwas mehr Gas als Röhrchen P, nicht die Hälfte. Aussage II ist falsch.
+- III: Mit zusätzlicher Invertase setzt Saccharose von Anfang an fast so schnell Gas frei wie Glucose. In Röhrchen Q begrenzt am Anfang also die Hydrolyse der Saccharose, nicht die Gärung der Hexosen. Aussage III stimmt.
+- IV: Lactose ist Glucose, die an Galactose gebunden ist. Kochen mit verdünnter Säure spaltet diese Bindung, wie beim Nachweis nichtreduzierender Zucker, und das Neutralisieren schützt die Enzyme der Hefe. Das Problem der Hefe ist **die Lactose selbst, nicht die Glucose**, sie vergärt also die entstandene Glucose und setzt Gas frei. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und III hält Lactose auch nach der Säurehydrolyse für unbrauchbar und **verwechselt die fehlende Lactase mit fehlenden Gärungsenzymen**.
+- I, II, III und IV nimmt II an, weil es Saccharosemoleküle mit Glucosemolekülen vergleicht, etwa halb so viele, und **vergisst, dass jedes Saccharosemolekül in zwei Hexosen gespalten wird**.
+- Nur III und IV vergleicht die Summen bei Minute <InlineMath math="40" />, also <InlineMath math="12{,}6" /> gegen <InlineMath math="14{,}0\text{ cm}^3" />, als würde Saccharose <InlineMath math="10\%" /> langsamer vergoren, **statt der Raten nach Minute <InlineMath math="20" />**.

@@ -1,0 +1,44 @@
+# Das Becherglas fasst das Neunfache des Schlauchs, also zählt jedes Gramm, das hinausgeht, im Schlauch neunmal stärker
+
+Die Tabelle gibt dir nur das Becherglas. Um den Schlauch zu beurteilen, verfolgst du die **Glucosemasse**: Was den Schlauch verlässt, landet im Becherglas. Das Becherglas fasst <InlineMath math="180\text{ cm}^3" />, der Schlauch nur <InlineMath math="20\text{ cm}^3" />, also bedeutet ein kleiner Anstieg im Becherglas einen großen Abfall im Schlauch.
+
+Fang beim Schlauch in Minute <InlineMath math="0" /> an: <InlineMath math="2{,}0\text{ g}" /> in <InlineMath math="20\text{ cm}^3" /> sind <InlineMath math="10\text{ g pro }100\text{ cm}^3" />. Zeigt das Becherglas <InlineMath math="c" /> Gramm pro <InlineMath math="100\text{ cm}^3" />, dann gilt
+
+<BlockMath math="\begin{aligned}
+\text{Glucose im Becherglas} &= c\cdot\frac{180}{100} = 1{,}8c\text{ g}\\
+\text{Glucose, die im Schlauch bleibt} &= 2{,}0-1{,}8c\text{ g}\\
+\text{Konzentration im Schlauch} &= \frac{2{,}0-1{,}8c}{20}\cdot100 = 10-9c\text{ g pro }100\text{ cm}^3
+\end{aligned}" />
+
+<Chart
+  title={<>Glucosekonzentration innerhalb und außerhalb des Schlauchs</>}
+  categories={["0 min", "10 min", "20 min", "40 min", "80 min"]}
+  series={[
+    { label: "Im Schlauch", mark: "line", values: [10, 6.4, 4.24, 2.17, 1.18] },
+    { label: "Becherglas", mark: "line", values: [0, 0.4, 0.64, 0.87, 0.98] },
+  ]}
+  valueLabel="Glucose (g pro 100 cm³)"
+  description={<>Im Schlauch, berechnet als <InlineMath math="10-9c" />, fällt die Konzentration von <InlineMath math="10" /> auf <InlineMath math="6{,}4" />, <InlineMath math="4{,}24" />, <InlineMath math="2{,}17" /> und <InlineMath math="1{,}18\text{ g pro }100\text{ cm}^3" />. Im Becherglas steigt sie von <InlineMath math="0" /> auf <InlineMath math="0{,}98" />. Beide Linien nähern sich <InlineMath math="1{,}0\text{ g pro }100\text{ cm}^3" />, und der Abstand zwischen ihnen, das Konzentrationsgefälle, schrumpft schnell.</>}
+/>
+
+- I: In Minute <InlineMath math="20" /> gilt <InlineMath math="10-9\cdot0{,}64 = 10-5{,}76 = 4{,}24\text{ g pro }100\text{ cm}^3" />. Aussage I stimmt.
+- II: Bis Minute <InlineMath math="10" /> enthält das Becherglas <InlineMath math="1{,}8\cdot0{,}40 = 0{,}72\text{ g}" />, also gehen <InlineMath math="\tfrac{0{,}72}{10} = 0{,}072\text{ g}" /> pro Minute hinaus. Du brauchst hier das **Volumen des Becherglases**, weil die Tabelle eine Konzentration angibt, keine Masse. Aussage II stimmt.
+- III: <InlineMath math="2{,}0\text{ g}" /> verteilt auf <InlineMath math="200\text{ cm}^3" /> ergeben tatsächlich auf beiden Seiten <InlineMath math="1{,}0\text{ g pro }100\text{ cm}^3" />. Die Moleküle bewegen sich aber weiter und wandern weiter in beide Richtungen durch den Schlauch. Nur die **Nettobewegung** hört auf, weil in jede Richtung gleich viele wandern. Aussage III ist falsch.
+- IV: Das Gefälle ist die Konzentration im Schlauch minus die im Becherglas.
+
+<BlockMath math="\begin{aligned}
+\text{Gefälle in Minute 0} &= 10-0 = 10\\
+\text{Gefälle in Minute 10} &= (10-9\cdot0{,}40)-0{,}40 = 6{,}4-0{,}40 = 6{,}0 = 60\,\%\text{ von }10\\
+\text{Rate von Minute 10 bis 20} &= \frac{1{,}8\cdot(0{,}64-0{,}40)}{10} = \frac{0{,}432}{10} = 0{,}0432\text{ g pro Minute}\\
+\frac{0{,}0432}{0{,}072} &= 0{,}60 = 60\,\%
+\end{aligned}" />
+
+Die Rate fällt im gleichen Verhältnis wie das Gefälle, genau wie es die Diffusion vorhersagt. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II behandelt Schlauch und Becherglas, als hätten sie dasselbe Volumen, und kommt so in Minute <InlineMath math="20" /> auf <InlineMath math="10-0{,}64 = 9{,}36" /> im Schlauch und in Minute <InlineMath math="10" /> auf ein Gefälle von <InlineMath math="9{,}2" />. **Der Schlauch ist neunmal kleiner**, also sinkt seine Konzentration neunmal schneller.
+- Nur I, II, III und IV glaubt, im Gleichgewicht wandere kein Glucosemolekül mehr durch den Schlauch, **obwohl nur die Nettobewegung aufhört**.
+- Nur I und IV liest den Anstieg von <InlineMath math="0{,}40" /> im Becherglas als <InlineMath math="0{,}04\text{ g}" /> pro Minute und **vergisst, die Konzentration mit dem Volumen des Becherglases zu multiplizieren**.

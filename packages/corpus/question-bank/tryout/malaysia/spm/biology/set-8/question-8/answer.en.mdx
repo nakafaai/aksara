@@ -1,0 +1,50 @@
+# Chromosome J is one chromosome but carries two sets of genes, so count gene copies, not chromosomes
+
+The trick of this man's cells is that **J counts as one chromosome but carries the genes of both <InlineMath math="14" /> and <InlineMath math="21" />**. So for each kind of sperm, work out two things: how many chromosomes it has, and how many copies of the genes of <InlineMath math="14" /> and <InlineMath math="21" /> the zygote gets once the egg adds one normal <InlineMath math="14" /> and one normal <InlineMath math="21" />.
+
+Every sperm gets <InlineMath math="21" /> other chromosomes, half of the man's <InlineMath math="42" /> others, plus what it receives from the group of three:
+
+| Sperm | Chromosomes in sperm | Copies of genes of <InlineMath math="14" /> in zygote | Copies of genes of <InlineMath math="21" /> in zygote | Zygote |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="14" /> and <InlineMath math="21" /> | <InlineMath math="23" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | normal, <InlineMath math="46" /> chromosomes |
+| J only | <InlineMath math="22" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | healthy carrier, <InlineMath math="45" /> chromosomes |
+| J and <InlineMath math="14" /> | <InlineMath math="23" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | lost |
+| <InlineMath math="21" /> only | <InlineMath math="22" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | lost |
+| J and <InlineMath math="21" /> | <InlineMath math="23" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | Down syndrome, <InlineMath math="46" /> chromosomes |
+| <InlineMath math="14" /> only | <InlineMath math="22" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | lost |
+
+<Mermaid
+  title={<>What Each Kind of Sperm Gives</>}
+  description={<>A sperm with chromosomes <InlineMath math="14" /> and <InlineMath math="21" /> gives a normal zygote with <InlineMath math="46" /> chromosomes, and a sperm with J only gives a healthy carrier with <InlineMath math="45" />. A sperm with J and <InlineMath math="21" /> has <InlineMath math="23" /> chromosomes and gives Down syndrome with <InlineMath math="46" /> chromosomes. A sperm with J and <InlineMath math="14" /> also has <InlineMath math="23" /> chromosomes but gives three copies of the genes of <InlineMath math="14" />, and the sperm with <InlineMath math="21" /> only or <InlineMath math="14" /> only leave one copy of a set of genes, so those three zygotes are lost.</>}
+  chart={"flowchart LR\n  A[14 and 21, 23 chromosomes] --> A1[Normal, 46]\n  B[J only, 22 chromosomes] --> B1[Healthy carrier, 45]\n  C[J and 21, 23 chromosomes] --> C1[Down syndrome, 46]\n  D[J and 14, 23 chromosomes] --> D1[Three copies of 14, lost]\n  E[21 only, 22 chromosomes] --> E1[One copy of 14, lost]\n  F[14 only, 22 chromosomes] --> F1[One copy of 21, lost]"}
+/>
+
+Now follow the <InlineMath math="1000" /> sperm to birth:
+
+<BlockMath math="\begin{aligned}
+\text{lost} &= 70+60+30 = 160\\
+\text{born} &= 400+400+40 = 840\\
+\text{Down syndrome among the born} &= \frac{40}{840} = \frac{1}{21}
+\end{aligned}" />
+
+<Chart
+  title={<>Zygotes From <InlineMath math="1000" /> Sperm</>}
+  bars="apart"
+  categories={["Normal", "Healthy carrier", "Down syndrome", "Lost"]}
+  series={[{ label: "Zygotes", mark: "bar", values: [400, 400, 40, 160] }]}
+  valueLabel="Number of zygotes"
+  description={<>Of <InlineMath math="1000" /> zygotes, <InlineMath math="400" /> are normal, <InlineMath math="400" /> are healthy carriers, <InlineMath math="40" /> have Down syndrome and <InlineMath math="160" /> are lost early in pregnancy. So <InlineMath math="840" /> babies are born, and <InlineMath math="40" /> of them have Down syndrome.</>}
+/>
+
+- I: the sperm with J and <InlineMath math="14" /> has <InlineMath math="23" /> chromosomes, the normal number, yet the zygote gets three copies of the genes of <InlineMath math="14" /> and is lost. Statement I is correct.
+- II: <InlineMath math="40" /> of the <InlineMath math="840" /> babies born alive is <InlineMath math="1" /> in <InlineMath math="21" />. Statement II is correct.
+- III: the sperm with J and <InlineMath math="21" /> has <InlineMath math="23" /> chromosomes, and the egg adds <InlineMath math="23" />, so the baby has <InlineMath math="46" /> chromosomes. It still has three copies of the genes of <InlineMath math="21" />, because one copy sits on J. Statement III is wrong.
+- IV: the sperm with J only has <InlineMath math="22" /> chromosomes but all the genes of <InlineMath math="14" /> and <InlineMath math="21" />, so it gives a healthy carrier like its father. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I, II and III only takes Down syndrome to mean <InlineMath math="47" /> chromosomes. **Here the third copy of the genes of <InlineMath math="21" /> rides on J**, so the baby has <InlineMath math="46" />.
+- I only divides the <InlineMath math="40" /> by all <InlineMath math="1000" /> zygotes and gets <InlineMath math="1" /> in <InlineMath math="25" />. **The <InlineMath math="160" /> lost zygotes are never born**, so the share among babies is <InlineMath math="\tfrac{40}{840}" />.
+- I and IV only reads every sperm with <InlineMath math="22" /> chromosomes as missing genes. **The sperm with J only has every gene**, so it is not lost, and counting it as lost also leaves only <InlineMath math="440" /> births and <InlineMath math="1" /> in <InlineMath math="11" /> with Down syndrome.

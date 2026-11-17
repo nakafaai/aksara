@@ -1,0 +1,65 @@
+# Tanaman kerdil yang tumbuh saat diberi giberelin kekurangan hormon itu, dan yang tidak tumbuh tidak bisa merespons
+
+Menambahkan hormon bisa membedakan dua jenis tanaman pendek. Kalau tanaman itu **menghasilkan terlalu sedikit giberelin**, satu dosis menggantikan kekurangannya dan batangnya cepat memanjang. Kalau tanaman itu **tidak bisa merespons** giberelin, hormon tambahan tidak mengubah apa pun.
+
+<Chart
+  title={<>Tinggi Batang setelah Asam Giberelat</>}
+  categories={["0 µg", "0,1 µg", "1 µg", "10 µg"]}
+  series={[
+    { label: "Tinggi", mark: "line", values: [40, 41, 42, 44] },
+    { label: "Kerdil D1", mark: "line", values: [10, 18, 32, 41] },
+    { label: "Kerdil D2", mark: "line", values: [11, 11, 12, 11] },
+  ]}
+  valueLabel="Tinggi (cm)"
+  description={<>Varietas tinggi hanya naik dari <InlineMath math="40" /> menjadi <InlineMath math="44\text{ cm}" />. D1 naik dari <InlineMath math="10" /> menjadi <InlineMath math="41\text{ cm}" />, hampir setinggi varietas tinggi. D2 tetap di antara <InlineMath math="11" /> dan <InlineMath math="12\text{ cm}" /> pada setiap dosis.</>}
+/>
+
+Garis varietas tinggi yang datar bisa membuat giberelin tampak tidak berguna baginya. Uji kedua menjawab hal ini:
+
+<Chart
+  title={<>Varietas Tinggi dengan Penghambat Giberelin</>}
+  bars="apart"
+  categories={["Tanpa perlakuan", "Penghambat", "Penghambat dan 1 µg"]}
+  series={[{ label: "Tinggi (cm)", mark: "bar", values: [40, 12, 39] }]}
+  valueLabel="Tinggi (cm)"
+  description={<>Tanaman tinggi tanpa perlakuan mencapai <InlineMath math="40\text{ cm}" />. Dengan zat kimia yang menghentikan pembuatan giberelin, tingginya hanya <InlineMath math="12\text{ cm}" />. Tambahan <InlineMath math="1\,\mu\text{g}" /> asam giberelat mengembalikannya ke <InlineMath math="39\text{ cm}" />.</>}
+/>
+
+Tanpa giberelinnya sendiri, tanaman tinggi jadi sependek tanaman kerdil, dan hormon tambahan memulihkannya. Jadi tanaman tinggi **sudah membuat cukup giberelin** untuk tumbuh penuh, itulah sebabnya sedikit tambahan hampir tidak berpengaruh.
+
+## Persilangan dua tanaman kerdil
+
+Uji dosis sekarang menentukan genotipe tiap tanaman kerdil. D1 tumbuh dengan asam giberelat, jadi reseptornya berfungsi dan kerusakannya ada pada pembuatan hormon: D1 adalah <InlineMath math="aaBB" />. D2 tidak berubah meski diberi <InlineMath math="10\,\mu\text{g}" />, jadi reseptornya rusak: D2 adalah <InlineMath math="AAbb" />. <InlineMath math="F_1" /> keduanya adalah <InlineMath math="AaBb" />, yang membuat giberelin dan meresponsnya, jadi tanaman <InlineMath math="F_1" /> tinggi.
+
+Penyerbukan sendiri <InlineMath math="AaBb" /> memberi empat kelas <InlineMath math="A\_B\_" />, <InlineMath math="aaB\_" />, <InlineMath math="A\_bb" />, dan <InlineMath math="aabb" /> dengan rasio <InlineMath math="9:3:3:1" />. Tanaman kerdil tumbuh tinggi saat diberi asam giberelat hanya kalau **reseptornya berfungsi**, jadi ia harus punya paling sedikit satu <InlineMath math="B" /> dan hanya kekurangan hormon:
+
+| Kelas <InlineMath math="F_2" /> | Pecahan | Membuat giberelin | Merespons giberelin | Tanaman |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="A\_B\_" /> | <InlineMath math="\tfrac{9}{16}" /> | ya | ya | tinggi |
+| <InlineMath math="aaB\_" /> | <InlineMath math="\tfrac{3}{16}" /> | tidak | ya | kerdil, tumbuh tinggi dengan asam giberelat |
+| <InlineMath math="A\_bb" /> | <InlineMath math="\tfrac{3}{16}" /> | ya | tidak | kerdil, tidak merespons |
+| <InlineMath math="aabb" /> | <InlineMath math="\tfrac{1}{16}" /> | tidak | tidak | kerdil, tidak merespons |
+
+<Chart
+  title={<>Tanaman <InlineMath math="F_2" /> dari Persilangan D1 dengan D2</>}
+  bars="apart"
+  categories={["Tinggi", "Kerdil, tumbuh dengan asam giberelat", "Kerdil, tidak merespons"]}
+  series={[{ label: "Tanaman dari 16", mark: "bar", values: [9, 3, 3 + 1] }]}
+  valueLabel="Tanaman dari 16"
+  description={<>Dari tiap <InlineMath math="16" /> tanaman <InlineMath math="F_2" />, <InlineMath math="9" /> tinggi, <InlineMath math="3" /> kerdil yang tumbuh tinggi dengan asam giberelat, dan <InlineMath math="4" /> kerdil yang tidak merespons, yaitu tanaman <InlineMath math="A\_bb" /> dan <InlineMath math="aabb" />.</>}
+/>
+
+Tanaman <InlineMath math="aabb" /> juga kekurangan giberelin, tetapi hormon tambahan tidak bisa menolongnya karena ia **tidak punya reseptor yang berfungsi**.
+
+- I: D2 tetap sekitar <InlineMath math="11\text{ cm}" /> walau diberi <InlineMath math="10\,\mu\text{g}" />. Tanaman yang kekurangan giberelin akan tumbuh saat diberi hormon itu, jadi D2 **tidak bisa merespons** hormonnya. Pernyataan I salah.
+- II: D1 tumbuh dari <InlineMath math="10" /> menjadi <InlineMath math="41\text{ cm}" /> seiring naiknya dosis, jadi D1 merespons dengan baik dan pendek hanya karena terlalu sedikit membuat giberelin. Pernyataan II benar.
+- III: uji penghambat menunjukkan batang tanaman tinggi menyusut menjadi <InlineMath math="12\text{ cm}" /> tanpa giberelin, jadi hormon itu penting. Respons yang kecil hanya berarti pasokannya sendiri sudah cukup. Pernyataan III salah.
+- IV: hanya tanaman kerdil <InlineMath math="aaB\_" /> yang merespons, yaitu <InlineMath math="\tfrac{3}{16}" /> dari <InlineMath math="F_2" />. Pernyataan IV benar.
+
+Jadi pernyataan II dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan IV saja menganggap **semua tanaman kerdil kekurangan giberelin**, padahal D2 tidak berubah meski diberi dosis besar.
+- II, III, dan IV saja membaca garis datar varietas tinggi sebagai tanda giberelin tidak berperan dan **mengabaikan uji penghambat**.
+- II saja menghitung tanaman <InlineMath math="aabb" /> sebagai kerdil yang merespons karena kekurangan giberelin, lalu mendapat <InlineMath math="\tfrac{4}{16}=\tfrac{1}{4}" />, **lupa bahwa tanaman itu tidak punya reseptor yang berfungsi**.

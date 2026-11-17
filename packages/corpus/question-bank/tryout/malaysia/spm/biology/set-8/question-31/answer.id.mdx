@@ -1,0 +1,42 @@
+# Beri setiap separuh tanaman umurnya sendiri, lalu ubah biomassa yang tersimpan menjadi karbon dioksida
+
+Kamu perlu menyamakan dua jumlah **karbon dioksida**: yang dilepas pabrik dalam <InlineMath math="10" /> tahun, dan yang sudah disimpan seluruh tanaman pada akhir tahun ke-<InlineMath math="10" />. Kedua separuh lahan ditanam berselang <InlineMath math="5" /> tahun, jadi pada akhir tahun ke-<InlineMath math="10" /> umurnya **tidak sama**.
+
+## Pabrik
+
+Selama <InlineMath math="10" /> tahun penuh, **bukan setahun saja**:
+
+<BlockMath math="18\,480\times10=184\,800\text{ ton karbon dioksida}" />
+
+## Rata-rata satu hektar tanaman
+
+Pada akhir tahun ke-<InlineMath math="10" />, separuh pertama berumur <InlineMath math="10" /> tahun dan separuh kedua baru <InlineMath math="5" /> tahun. Baca nilai masing-masing dari tabel, lalu **rata-ratakan untuk seluruh lahan**:
+
+<BlockMath math="\begin{aligned}
+\text{biomassa kering rata-rata} &= \frac{120+48}{2} = 84\text{ ton per hektar}\\
+\text{karbon} &= 84\times\tfrac{1}{2} = 42\text{ ton per hektar}\\
+\text{karbon dioksida tersimpan} &= 42\times\tfrac{44}{12} = 154\text{ ton per hektar}
+\end{aligned}" />
+
+<Chart
+  title={<>Karbon Dioksida Tersimpan per Hektar</>}
+  bars="apart"
+  categories={["Separuh pertama, umur 10 tahun", "Separuh kedua, umur 5 tahun", "Seluruh lahan, rata-rata"]}
+  series={[{ label: "Karbon dioksida tersimpan", mark: "bar", values: [220, 88, 154] }]}
+  valueLabel="Tersimpan per hektar (ton)"
+  description={<>Satu hektar yang ditanam <InlineMath math="10" /> tahun sebelumnya menyimpan <InlineMath math="220" /> ton karbon dioksida, sedangkan satu hektar yang ditanam <InlineMath math="5" /> tahun sebelumnya hanya <InlineMath math="88" /> ton. Dengan separuh lahan untuk masing-masing, tanaman itu menyimpan rata-rata <InlineMath math="154" /> ton per hektar.</>}
+/>
+
+Separuh kedua hanya mendapat setengah waktunya, tetapi menyimpan jauh kurang dari setengahnya, <InlineMath math="88" /> dibanding <InlineMath math="220" /> ton, karena bakau muda tumbuh lambat pada awalnya.
+
+## Luas lahan
+
+<BlockMath math="\text{luas}=\frac{184\,800}{154}=1200\text{ hektar}" />
+
+Cek satuannya: ton dibagi ton per hektar menghasilkan hektar. Jadi **<InlineMath math="1200" /> hektar** harus ditanam, <InlineMath math="600" /> pada tahun ke-<InlineMath math="1" /> dan <InlineMath math="600" /> pada tahun ke-<InlineMath math="6" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="840" /> hektar menganggap **seluruh lahan ditanam sejak awal**, sehingga tiap hektar menyimpan <InlineMath math="220" /> ton: <InlineMath math="184\,800\div220=840" />. Padahal separuh lahan baru tumbuh <InlineMath math="5" /> tahun.
+- <InlineMath math="4400" /> hektar berhenti di karbon dan **membandingkan <InlineMath math="42" /> ton karbon dengan ton karbon dioksida**: <InlineMath math="184\,800\div42=4400" />. Karbon yang tersimpan juga harus dikali <InlineMath math="\tfrac{44}{12}" />.
+- <InlineMath math="600" /> hektar menganggap **seluruh biomassa kering sebagai karbon**: <InlineMath math="84\times\tfrac{44}{12}=308" /> ton per hektar, dan <InlineMath math="184\,800\div308=600" />. Hanya setengah biomassa yang berupa karbon.

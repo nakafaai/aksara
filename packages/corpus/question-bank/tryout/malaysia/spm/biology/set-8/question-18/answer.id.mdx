@@ -1,0 +1,65 @@
+# Massa yang hilang adalah volume kali konsentrasi, dan protein yang penting adalah bagian yang tidak bisa diganti hati
+
+Setiap pernyataan butuh **massa yang terbawa keluar per hari**, bukan konsentrasinya saja. Ubah dulu volumenya ke <InlineMath math="\text{dm}^3" />, karena konsentrasinya per <InlineMath math="\text{dm}^3" />:
+
+<BlockMath math="\begin{aligned}
+\text{lemak hilang, diet P} &= 1{,}5\times24 = 36\text{ g per hari}\\
+\text{lemak hilang, diet Q dan R} &= 0{,}8\times3 = 2{,}4\text{ g per hari}\\
+\text{protein hilang, diet P} &= 1{,}5\times30 = 45\text{ g per hari}\\
+\text{protein hilang, diet Q dan R} &= 0{,}8\times30 = 24\text{ g per hari}
+\end{aligned}" />
+
+## Pernyataan I
+
+<BlockMath math="\frac{36}{80}\times100\% = 45\%,\qquad \frac{36-2{,}4}{36}\times100\% \approx 93\%" />
+
+Selang mengeluarkan <InlineMath math="45\%" /> lemak yang dimakan pada diet P, dan diet R memangkas kehilangan lemak harian sekitar <InlineMath math="93\%" />. **Kedua bagiannya benar**, dan bahkan tanpa <InlineMath math="2{,}4\text{ g}" /> yang keluar pada diet tanpa lemak, bagiannya <InlineMath math="\tfrac{33{,}6}{80}=42\%" />. Pernyataan I benar.
+
+## Pernyataan II
+
+Selang bukan satu-satunya faktor, karena hati mengembalikan <InlineMath math="15\text{ g}" /> setiap hari. Yang menurunkan protein plasma adalah kehilangan **bersih**:
+
+<BlockMath math="\begin{aligned}
+\text{kehilangan bersih, diet P} &= 45-15 = 30\text{ g per hari}\\
+\text{kehilangan bersih, diet R} &= 24-15 = 9\text{ g per hari}
+\end{aligned}" />
+
+Turun dari <InlineMath math="70" /> ke <InlineMath math="60\text{ g per dm}^3" /> dalam <InlineMath math="3{,}0\text{ dm}^3" /> plasma berarti kehilangan
+
+<BlockMath math="(70-60)\times3{,}0 = 30\text{ g protein plasma}" />
+
+<BlockMath math="\text{waktu pada diet P} = \frac{30}{30} = 1\text{ hari},\qquad \text{waktu pada diet R} = \frac{30}{9} \approx 3{,}3\text{ hari}" />
+
+<Chart
+  title={<>Protein Plasma pada Diet P dan R</>}
+  categories={["Hari 0", "Hari 1", "Hari 2", "Hari 3", "Hari 4"]}
+  series={[
+    { label: "Diet P", mark: "line", values: [70, 60, 50, 40, 30] },
+    { label: "Diet R", mark: "line", values: [70, 67, 64, 61, 58] },
+  ]}
+  valueLabel="Protein plasma (g per dm³)"
+  description={<>Pada diet P, protein plasma turun <InlineMath math="10\text{ g per dm}^3" /> per hari dan mencapai <InlineMath math="60" /> setelah satu hari. Pada diet R, protein plasma hanya turun <InlineMath math="3\text{ g per dm}^3" /> per hari dan melewati <InlineMath math="60" /> antara hari <InlineMath math="3" /> dan hari <InlineMath math="4" />.</>}
+/>
+
+Diet R butuh sekitar <InlineMath math="3{,}3" /> hari, lebih dari <InlineMath math="3" /> hari dan <InlineMath math="3{,}3" /> kali lebih lama daripada diet P. Pernyataan II benar.
+
+## Pernyataan III dan IV
+
+Sekarang baca diet Q sebagai kontrol. Tanpa lemak sama sekali dalam makanan, <InlineMath math="800\text{ cm}^3" /> limfa tetap keluar setiap hari sambil membawa protein. Itu cairan jaringan dari organ lain, dan dari usus di antara waktu makan, yang kembali ke darah. Diet R memberi volume dan lemak yang **persis** sama dengan diet Q, jadi <InlineMath math="80\text{ g}" /> lemak rantai sedangnya tidak menambah apa pun ke limfa.
+
+<Mermaid
+  title={<>Dua Jalur Keluar dari Vili</>}
+  description={<>Lemak rantai panjang dikemas menjadi kilomikron, masuk ke lakteal, dan terbawa limfa naik ke duktus toraksikus, yang di sini bocor ke selang. Lemak rantai sedang masuk ke kapiler darah vili dan dibawa ke hati lewat vena porta hepatika, jadi tidak pernah sampai ke selang. Cairan jaringan dari organ lain juga masuk ke duktus toraksikus.</>}
+  chart={"flowchart LR\n  L[Lemak rantai panjang] --> C[Kilomikron]\n  C --> LA[Lakteal]\n  LA --> TD[Duktus toraksikus]\n  TF[Cairan jaringan organ lain] --> TD\n  TD --> D[Selang]\n  M[Lemak rantai sedang] --> BC[Kapiler darah vili]\n  BC --> HP[Vena porta hepatika ke hati]"}
+/>
+
+- III: pada diet R, selang tetap mengeluarkan <InlineMath math="24\text{ g}" /> protein plasma per hari, yaitu kehilangan yang dihitung di pernyataan II. Pernyataan III salah.
+- IV: diet R sama dengan diet tanpa lemak dalam volume dan lemaknya, jadi lemak rantai sedang tidak masuk ke lakteal. Lemak itu masuk ke kapiler darah vili. Pernyataan IV salah.
+
+Jadi pernyataan I dan II benar.
+
+# Mengapa pilihan lain salah
+
+- I saja **melupakan <InlineMath math="15\text{ g}" /> per hari dari hati**. Akibatnya diet R kehilangan <InlineMath math="24\text{ g}" /> per hari dan butuh <InlineMath math="\tfrac{30}{24}=1{,}25" /> hari, sedangkan diet P butuh <InlineMath math="\tfrac{30}{45}\approx0{,}67" /> hari, hanya <InlineMath math="1{,}9" /> kali lebih singkat, sehingga II tampak salah.
+- I, II, dan IV saja memakai aturan bahwa **semua lemak yang diserap masuk ke lakteal**, tanpa membandingkan diet R dengan kontrolnya, diet Q, yang menunjukkan bahwa lemak rantai sedang tidak menambah apa pun ke limfa.
+- I, II, dan III saja menganggap duktus toraksikus **hanya membawa limfa dari usus**, padahal cairan jaringan dari sebagian besar tubuh juga mengalir ke dalamnya, dan duktus itu masih membawa <InlineMath math="24\text{ g}" /> protein per hari pada diet R.

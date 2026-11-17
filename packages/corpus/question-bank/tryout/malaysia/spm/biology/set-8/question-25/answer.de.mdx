@@ -1,0 +1,65 @@
+# Ein Zwerg, der mit Gibberellin wächst, hat zu wenig davon, und einer, der nicht wächst, kann nicht reagieren
+
+Ein zugegebenes Hormon trennt zwei Arten kleiner Pflanzen. Bildet die Pflanze **zu wenig Gibberellin**, ersetzt eine Gabe das Fehlende und der Stängel schießt in die Höhe. Kann die Pflanze **nicht auf Gibberellin reagieren**, ändert zusätzliches Hormon nichts.
+
+<Chart
+  title={<>Stängelhöhe nach Gibberellinsäure</>}
+  categories={["0 µg", "0,1 µg", "1 µg", "10 µg"]}
+  series={[
+    { label: "Hochwüchsig", mark: "line", values: [40, 41, 42, 44] },
+    { label: "Zwerg D1", mark: "line", values: [10, 18, 32, 41] },
+    { label: "Zwerg D2", mark: "line", values: [11, 11, 12, 11] },
+  ]}
+  valueLabel="Höhe (cm)"
+  description={<>Die hochwüchsige Sorte steigt nur von <InlineMath math="40" /> auf <InlineMath math="44\text{ cm}" />. D1 klettert von <InlineMath math="10" /> auf <InlineMath math="41\text{ cm}" />, fast so hoch wie die hochwüchsige Sorte. D2 bleibt bei jeder Dosis zwischen <InlineMath math="11" /> und <InlineMath math="12\text{ cm}" />.</>}
+/>
+
+Die flache Linie der hochwüchsigen Sorte könnte so aussehen, als bringe ihr Gibberellin nichts. Der zweite Versuch klärt das:
+
+<Chart
+  title={<>Hochwüchsige Sorte mit Gibberellin-Hemmstoff</>}
+  bars="apart"
+  categories={["Unbehandelt", "Hemmstoff", "Hemmstoff und 1 µg"]}
+  series={[{ label: "Höhe (cm)", mark: "bar", values: [40, 12, 39] }]}
+  valueLabel="Höhe (cm)"
+  description={<>Unbehandelte hochwüchsige Pflanzen erreichen <InlineMath math="40\text{ cm}" />. Mit dem Stoff, der die Gibberellinbildung stoppt, erreichen sie nur <InlineMath math="12\text{ cm}" />. Eine Gabe von <InlineMath math="1\,\mu\text{g}" /> Gibberellinsäure bringt sie zurück auf <InlineMath math="39\text{ cm}" />.</>}
+/>
+
+Ohne eigenes Gibberellin ist die hochwüchsige Pflanze so klein wie ein Zwerg, und das zugegebene Hormon stellt sie wieder her. Die hochwüchsige Pflanze **bildet also schon genug Gibberellin**, um voll zu wachsen, deshalb bringt ein wenig mehr kaum etwas.
+
+## Die Kreuzung der beiden Zwerge
+
+Der Dosisversuch legt jetzt den Genotyp jedes Zwergs fest. D1 wächst mit Gibberellinsäure, ihr Rezeptor funktioniert also, und der Fehler liegt in der Bildung des Hormons: D1 ist <InlineMath math="aaBB" />. D2 bleibt selbst bei <InlineMath math="10\,\mu\text{g}" /> klein, ihr Rezeptor ist also defekt: D2 ist <InlineMath math="AAbb" />. Die <InlineMath math="F_1" /> ist <InlineMath math="AaBb" />, bildet Gibberellin und reagiert darauf, ist also hochwüchsig.
+
+Selbstbestäubung von <InlineMath math="AaBb" /> ergibt die vier Klassen <InlineMath math="A\_B\_" />, <InlineMath math="aaB\_" />, <InlineMath math="A\_bb" /> und <InlineMath math="aabb" /> im Verhältnis <InlineMath math="9:3:3:1" />. Ein Zwerg wächst nach einer Gabe Gibberellinsäure nur dann hoch, wenn **sein Rezeptor funktioniert**, er braucht also mindestens ein <InlineMath math="B" /> und darf nur das Hormon nicht bilden:
+
+| Klasse der <InlineMath math="F_2" /> | Anteil | Bildet Gibberellin | Reagiert auf Gibberellin | Pflanze |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="A\_B\_" /> | <InlineMath math="\tfrac{9}{16}" /> | ja | ja | hochwüchsig |
+| <InlineMath math="aaB\_" /> | <InlineMath math="\tfrac{3}{16}" /> | nein | ja | Zwerg, wächst mit Gibberellinsäure hoch |
+| <InlineMath math="A\_bb" /> | <InlineMath math="\tfrac{3}{16}" /> | ja | nein | Zwerg, keine Reaktion |
+| <InlineMath math="aabb" /> | <InlineMath math="\tfrac{1}{16}" /> | nein | nein | Zwerg, keine Reaktion |
+
+<Chart
+  title={<><InlineMath math="F_2" /> aus der Kreuzung von D1 mit D2</>}
+  bars="apart"
+  categories={["Hochwüchsig", "Zwerg, wächst mit Gibberellinsäure", "Zwerg, keine Reaktion"]}
+  series={[{ label: "Pflanzen von 16", mark: "bar", values: [9, 3, 3 + 1] }]}
+  valueLabel="Pflanzen von 16"
+  description={<>Von je <InlineMath math="16" /> Pflanzen der <InlineMath math="F_2" /> sind <InlineMath math="9" /> hochwüchsig, <InlineMath math="3" /> Zwerge, die mit Gibberellinsäure hoch wachsen, und <InlineMath math="4" /> Zwerge ohne Reaktion, nämlich die Pflanzen <InlineMath math="A\_bb" /> und <InlineMath math="aabb" />.</>}
+/>
+
+Auch der Pflanze <InlineMath math="aabb" /> fehlt Gibberellin, doch zugegebenes Hormon hilft ihr nicht, weil sie **keinen funktionierenden Rezeptor** hat.
+
+- I: D2 bleibt selbst mit <InlineMath math="10\,\mu\text{g}" /> bei etwa <InlineMath math="11\text{ cm}" />. Eine Pflanze mit Gibberellinmangel würde nach einer Gabe wachsen, also **kann D2 nicht auf das Hormon reagieren**. Aussage I ist falsch.
+- II: D1 wächst mit steigender Dosis von <InlineMath math="10" /> auf <InlineMath math="41\text{ cm}" />, reagiert also gut und war nur klein, weil sie zu wenig bildet. Aussage II stimmt.
+- III: Der Versuch mit dem Hemmstoff zeigt, dass der hochwüchsige Stängel ohne Gibberellin auf <InlineMath math="12\text{ cm}" /> schrumpft, das Hormon ist also unverzichtbar. Die kleine Reaktion bedeutet nur, dass der eigene Vorrat schon reicht. Aussage III ist falsch.
+- IV: Nur die Zwerge <InlineMath math="aaB\_" /> reagieren, also <InlineMath math="\tfrac{3}{16}" /> der <InlineMath math="F_2" />. Aussage IV stimmt.
+
+Richtig sind also die Aussagen II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und IV nimmt an, **jedem Zwerg fehle Gibberellin**, obwohl D2 selbst auf eine große Dosis nicht reagiert.
+- Nur II, III und IV liest die flache Linie der hochwüchsigen Sorte als fehlende Rolle des Gibberellins und **übergeht den Versuch mit dem Hemmstoff**.
+- Nur II zählt die Pflanzen <InlineMath math="aabb" /> zu den reagierenden Zwergen, weil ihnen Gibberellin fehlt, und erhält <InlineMath math="\tfrac{4}{16}=\tfrac{1}{4}" />. Dabei **fehlt ihnen der funktionierende Rezeptor**.

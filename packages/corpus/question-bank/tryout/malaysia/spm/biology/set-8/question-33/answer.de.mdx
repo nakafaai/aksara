@@ -1,0 +1,57 @@
+# Prüf jeden Erbgang an jeder Person und beurteile jede Aussage nur unter dem Erbgang, den sie nennt
+
+Ein Stammbaum beweist einen Erbgang nur, wenn die anderen irgendwo scheitern. Probier also jeden der drei Erbgänge an jeder Person aus. Eine Aussage, die mit "wenn" beginnt, beurteilst du dann **nur unter diesem Erbgang**.
+
+## Welche Erbgänge zur Familie passen
+
+| Erbgang | Frau M, krank | Mann F, gesund | Söhne S und T, krank | Tochter D, gesund | Passt? |
+| --- | --- | --- | --- | --- | --- |
+| autosomal-rezessiv | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | ja |
+| autosomal-dominant | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | ja |
+| X-chromosomal-rezessiv | <InlineMath math="X^aX^a" /> | <InlineMath math="X^AY" /> | <InlineMath math="X^aY" /> | <InlineMath math="X^AX^a" /> | ja |
+
+Alle drei Erbgänge passen. Unter den Kindern sind nur Söhne krank, was **nach** X-chromosomaler Vererbung **aussieht**, aber ein autosomal-rezessives Merkmal liefert dieselben Kinder, wenn Mann F zufällig Überträger ist. Drei Kinder reichen nicht, um das auszuschließen. Aussage I stimmt.
+
+## Aussage II
+
+In beiden rezessiven Erbgängen hat Frau M zwei Kopien des rezessiven Allels und muss eine an Tochter D weitergeben. Tochter D ist gesund, ihr anderes Allel ist also normal: <InlineMath math="Aa" /> oder <InlineMath math="X^AX^a" />. Sie ist in beiden Fällen **sicher Überträgerin**. Aussage II stimmt.
+
+## Aussage III
+
+Bei X-chromosomaler Vererbung ist Tochter D <InlineMath math="X^AX^a" /> und der gesunde Ehemann H <InlineMath math="X^AY" />:
+
+<Mermaid
+  title={<>Kinder von Tochter D und Ehemann H bei X-chromosomaler Vererbung</>}
+  description={<>Eine Überträgerin und ein gesunder Vater haben vier gleich wahrscheinliche Arten von Kindern: eine Tochter ohne das Allel, eine Tochter als Überträgerin, einen gesunden Sohn und einen kranken Sohn, jeweils ein Viertel.</>}
+  chart={`flowchart TD
+  D4["Tochter D: XA Xa"] --> A["Tochter XA XA: 1/4, gesund"]
+  H6["Ehemann H: XA Y"] --> A
+  D4 --> B["Tochter XA Xa: 1/4, Überträgerin"]
+  H6 --> B
+  D4 --> C["Sohn XA Y: 1/4, gesund"]
+  H6 --> C
+  D4 --> E["Sohn Xa Y: 1/4, krank"]
+  H6 --> E`}
+/>
+
+Das Kind muss **ein Junge sein und <InlineMath math="X^a" /> von der Mutter bekommen**:
+
+<BlockMath math="P(\text{kranker Junge}) = P(\text{Junge})\cdot P(X^a\text{ von der Mutter}) = \tfrac{1}{2}\cdot\tfrac{1}{2} = \tfrac{1}{4}" />
+
+Aussage III stimmt.
+
+## Aussage IV
+
+Bei autosomal-dominanter Vererbung ist jeder mit einem <InlineMath math="A" />-Allel krank. Tochter D und Ehemann H sind beide gesund, also beide <InlineMath math="aa" />, und **keines ihrer Kinder kann krank sein**:
+
+<BlockMath math="P(\text{krankes Kind}) = 0" />
+
+Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II und III hält **"nur Söhne sind krank" für einen Beweis der X-chromosomalen Vererbung**. Der autosomal-rezessive Erbgang mit Mann F als Überträger passt ebenfalls zu jeder Person, also kann der Stammbaum nicht zwischen beiden entscheiden.
+- I, II, III und IV gibt Tochter D **ein verstecktes dominantes Allel von ihrer Mutter**. Ein dominantes Allel zeigt sich immer, eine gesunde Tochter kann es also nicht tragen.
+- Nur I und II rechnet die Wahrscheinlichkeit **nur unter den Jungen**, <InlineMath math="\tfrac{1}{2}" />, und verwirft deshalb III. Gefragt ist nach dem ersten Kind, das auch ein Mädchen sein kann, also gehört <InlineMath math="P(\text{Junge})=\tfrac{1}{2}" /> mit hinein.

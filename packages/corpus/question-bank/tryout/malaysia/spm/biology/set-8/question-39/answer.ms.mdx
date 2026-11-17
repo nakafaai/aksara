@@ -1,0 +1,40 @@
+# Letakkan X dahulu, senaraikan setiap susunan serpihan Y, dan pilih yang memberikan hasil potongan berganda
+
+Setiap saiz serpihan memberitahu satu jarak antara dua potongan atau antara satu potongan dan satu hujung. Kamu perlu mencari **susunan** jarak itu, dan hanya potongan dengan kedua-dua enzim yang dapat menentukannya.
+
+## Letakkan potongan oleh X
+
+Enzim X memotong sekali dan memberikan <InlineMath math="3\text{ kb}" /> dan <InlineMath math="7\text{ kb}" />. Prob meletakkan hujung L pada serpihan <InlineMath math="3\text{ kb}" />, jadi **X memotong <InlineMath math="3\text{ kb}" /> dari hujung L**.
+
+## Senaraikan peta Y yang mungkin
+
+Enzim Y memotong dua kali dan membahagi <InlineMath math="10\text{ kb}" /> kepada serpihan <InlineMath math="5" />, <InlineMath math="3" /> dan <InlineMath math="2\text{ kb}" />, dalam susunan yang tidak diketahui. Setiap susunan memberikan dua tapak Y. Tambahkan potongan X pada <InlineMath math="3\text{ kb}" /> dan baca serpihan potongan berganda:
+
+| Susunan serpihan Y dari L | Tapak Y (kb dari L) | Semua potongan dengan X pada <InlineMath math="3" /> | Potongan berganda (kb) |
+| --- | --- | --- | --- |
+| <InlineMath math="2, 3, 5" /> | <InlineMath math="2, 5" /> | <InlineMath math="2, 3, 5" /> | <InlineMath math="2, 1, 2, 5" /> |
+| <InlineMath math="2, 5, 3" /> | <InlineMath math="2, 7" /> | <InlineMath math="2, 3, 7" /> | <InlineMath math="2, 1, 4, 3" /> |
+| <InlineMath math="3, 2, 5" /> | <InlineMath math="3, 5" /> | Y memotong di tempat X memotong | tidak dibenarkan |
+| <InlineMath math="3, 5, 2" /> | <InlineMath math="3, 8" /> | Y memotong di tempat X memotong | tidak dibenarkan |
+| <InlineMath math="5, 2, 3" /> | <InlineMath math="5, 7" /> | <InlineMath math="3, 5, 7" /> | <InlineMath math="3, 2, 2, 3" /> |
+| <InlineMath math="5, 3, 2" /> | <InlineMath math="5, 8" /> | <InlineMath math="3, 5, 8" /> | <InlineMath math="3, 2, 3, 2" /> |
+
+Hanya tapak Y pada <InlineMath math="2" /> dan <InlineMath math="5\text{ kb}" /> memberikan <InlineMath math="5" />, <InlineMath math="2" />, <InlineMath math="2" /> dan <InlineMath math="1\text{ kb}" /> yang diperhatikan. Semak jumlahnya: <InlineMath math="2+1+2+5=10\text{ kb}" />.
+
+<Mermaid
+  title={<>Peta Pembatasan DNA Itu</>}
+  description={<>Dari hujung L, enzim Y memotong pada <InlineMath math="2\text{ kb}" />, enzim X pada <InlineMath math="3\text{ kb}" /> dan enzim Y sekali lagi pada <InlineMath math="5\text{ kb}" />, dan hujung R berada pada <InlineMath math="10\text{ kb}" />. Jaraknya ialah <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="5\text{ kb}" />. X sahaja memberikan <InlineMath math="3" /> dan <InlineMath math="7\text{ kb}" />, dan Y sahaja memberikan <InlineMath math="2" />, <InlineMath math="3" /> dan <InlineMath math="5\text{ kb}" />.</>}
+  chart={`flowchart LR
+  L["Hujung L, 0 kb"] -- "2 kb" --> Y1["Tapak Y, 2 kb"]
+  Y1 -- "1 kb" --> X["Tapak X, 3 kb"]
+  X -- "2 kb" --> Y2["Tapak Y, 5 kb"]
+  Y2 -- "5 kb" --> R["Hujung R, 10 kb"]`}
+/>
+
+Jadi enzim Y memotong **<InlineMath math="2\text{ kb}" /> dan <InlineMath math="5\text{ kb}" /> dari hujung L**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="5" /> dan <InlineMath math="8\text{ kb}" /> **menyusun serpihan Y mengikut susunan dalam jadual**, <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />. Dengan X pada <InlineMath math="3\text{ kb}" />, peta itu memberikan <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="3" /> dan <InlineMath math="2\text{ kb}" />, bukan potongan berganda yang diperhatikan. Peta itu ialah peta sebenar yang dibaca dari hujung R.
+- <InlineMath math="2" /> dan <InlineMath math="7\text{ kb}" /> **hanya menyemak bahawa serpihan <InlineMath math="1\text{ kb}" /> wujud**. Potongan bergandanya ialah <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="4" /> dan <InlineMath math="3\text{ kb}" />, tanpa serpihan <InlineMath math="5\text{ kb}" />.
+- <InlineMath math="5" /> dan <InlineMath math="7\text{ kb}" /> **hanya menyemak bahawa dua serpihan <InlineMath math="2\text{ kb}" /> wujud**. Potongan bergandanya ialah <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="2" /> dan <InlineMath math="3\text{ kb}" />, tanpa serpihan <InlineMath math="1" /> atau <InlineMath math="5\text{ kb}" />.

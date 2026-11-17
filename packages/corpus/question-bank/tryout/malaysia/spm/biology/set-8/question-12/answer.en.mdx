@@ -1,0 +1,57 @@
+# The times are running totals, so subtract first, then work out each speed and carry it forward
+
+The last column is not the time spent in each stretch. It is the time since the SA node fired, a **running total**. So the time spent in a stretch is its end time minus the end time of the stretch before it. Only then can you divide length by time.
+
+<BlockMath math="\begin{aligned}
+\text{atrial wall} &: 50-0 = 50\text{ ms}, & \tfrac{50\text{ mm}}{50\text{ ms}} &= 1.0\text{ m s}^{-1}\\
+\text{AV node} &: 150-50 = 100\text{ ms}, & \tfrac{5\text{ mm}}{100\text{ ms}} &= 0.05\text{ m s}^{-1}\\
+\text{bundle of His and Purkinje fibres} &: 180-150 = 30\text{ ms}, & \tfrac{120\text{ mm}}{30\text{ ms}} &= 4.0\text{ m s}^{-1}\\
+\text{ventricle muscle} &: 210-180 = 30\text{ ms}, & \tfrac{12\text{ mm}}{30\text{ ms}} &= 0.4\text{ m s}^{-1}
+\end{aligned}" />
+
+One millimetre per millisecond is one metre per second, which keeps the units simple.
+
+<Chart
+  title={<>Speed of the Impulse in Each Stretch</>}
+  bars="apart"
+  categories={["Atrial wall", "AV node", "Purkinje fibres", "Ventricle muscle"]}
+  series={[{ label: "Speed", mark: "bar", values: [1, 0.05, 4, 0.4] }]}
+  valueLabel="Speed (m/s)"
+  description={<>The impulse moves at <InlineMath math="1.0\text{ m/s}" /> across the atrial wall, only <InlineMath math="0.05\text{ m/s}" /> through the AV node, <InlineMath math="4.0\text{ m/s}" /> in the bundle of His and Purkinje fibres, and <InlineMath math="0.4\text{ m/s}" /> through the ventricle muscle.</>}
+/>
+
+The slow AV node holds the impulse back for <InlineMath math="100\text{ ms}" />, so the atria finish contracting before the ventricles start. The fast Purkinje fibres then spread it over the ventricles almost at once, so they contract together from the apex upwards.
+
+- I: <InlineMath math="\tfrac{0.05}{1.0} = \tfrac{1}{20}" />. Statement I is correct.
+- II: <InlineMath math="\tfrac{4.0}{0.05} = 80" />, not <InlineMath math="20" />. Statement II is wrong.
+- III: the new path starts where the Purkinje fibres start now, at the end of the AV node, so only the <InlineMath math="30\text{ ms}" /> of the bundle of His and Purkinje fibres is replaced:
+
+<BlockMath math="\begin{aligned}
+\text{through muscle} &: \frac{120\text{ mm}}{0.4\text{ m s}^{-1}} = 300\text{ ms}\\
+\text{extra delay} &: 300-30 = 270\text{ ms} = 0.27\text{ s}
+\end{aligned}" />
+
+That is more than <InlineMath math="0.2\text{ s}" /> later. Statement III is correct.
+
+- IV: halving the speed in the AV node doubles **only that stretch**, from <InlineMath math="100" /> to <InlineMath math="200\text{ ms}" />. At <InlineMath math="150" /> beats per minute, the SA node fires every <InlineMath math="\tfrac{60}{150} = 0.4\text{ s}" />:
+
+<BlockMath math="\begin{aligned}
+\text{outer surface reached} &: 50+200+30+30 = 310\text{ ms}\\
+\text{next firing of the SA node} &: 400\text{ ms}
+\end{aligned}" />
+
+The impulse reaches the outer surface <InlineMath math="90\text{ ms}" /> before the next firing. Statement IV is wrong.
+
+<Mermaid
+  title={<>Time Spent in Each Stretch, Normal and With the Drug</>}
+  description={<>Normally the impulse spends <InlineMath math="50\text{ ms}" /> in the atrial wall, <InlineMath math="100\text{ ms}" /> in the AV node, <InlineMath math="30\text{ ms}" /> in the bundle of His and Purkinje fibres and <InlineMath math="30\text{ ms}" /> in the ventricle muscle, <InlineMath math="210\text{ ms}" /> in all. The drug doubles only the AV node's <InlineMath math="100\text{ ms}" /> to <InlineMath math="200\text{ ms}" />, so the outer surface is reached at <InlineMath math="310\text{ ms}" />, still before the next firing at <InlineMath math="400\text{ ms}" />.</>}
+  chart={"flowchart LR\n  SA[SA node fires, 0 ms] -- 50 ms --> AV[AV node]\n  AV -- 100 ms, or 200 ms with the drug --> H[Bundle of His]\n  H -- 30 ms --> I[Inner surface at apex]\n  I -- 30 ms --> O[Outer surface, 210 ms, or 310 ms with the drug]\n  O --> N[Next firing at 150 per minute, 400 ms]"}
+/>
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- II and III only uses the **running totals as the time in each stretch**. Then the AV node seems to take <InlineMath math="150\text{ ms}" />, its speed is <InlineMath math="\tfrac{5}{150}\approx0.033\text{ m s}^{-1}" />, one thirtieth of the atrial speed, and the Purkinje fibres at <InlineMath math="\tfrac{120}{180}\approx0.67\text{ m s}^{-1}" /> look exactly <InlineMath math="20" /> times as fast.
+- I, III and IV only doubles the **whole** <InlineMath math="210\text{ ms}" /> to <InlineMath math="420\text{ ms}" />, as if every stretch slowed down, so the impulse seems to arrive after the next firing at <InlineMath math="400\text{ ms}" />.
+- I only compares the <InlineMath math="300\text{ ms}" /> through muscle with the whole <InlineMath math="180\text{ ms}" /> from the SA node to the inner surface, a delay of only <InlineMath math="120\text{ ms}" />. **The new path replaces only the <InlineMath math="30\text{ ms}" /> stretch**, and the first <InlineMath math="150\text{ ms}" /> stay as they are.

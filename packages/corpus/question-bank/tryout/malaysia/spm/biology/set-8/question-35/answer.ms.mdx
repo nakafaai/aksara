@@ -1,0 +1,51 @@
+# Jejaki bilangan sel yang membawa gen, kerana peratus menyembunyikan perubahan jumlah sel
+
+Jadual memberikan jumlah limfosit T dan **peratus** yang membawa gen normal. Yang penting bagi kanak-kanak itu ialah **bilangan** sel yang membawa gen per <InlineMath math="\mu\text{L}" />, iaitu jumlah sel didarab dengan peratusnya. Hitung nilai ini dahulu bagi setiap bulan.
+
+## Limfosit T yang membawa gen per mikroliter
+
+<BlockMath math="\begin{aligned}
+\text{X:}\quad & 400\times0.32=128,\quad 320\times0.20=64,\quad 200\times0.08=16,\quad 100\times0.04=4\\
+\text{Y:}\quad & 300\times0.15=45,\quad 900\times0.40=360,\quad 1500\times0.60=900,\quad 1600\times0.62=992
+\end{aligned}" />
+
+<Chart
+  title={<>Limfosit T yang Membawa Gen dalam Setiap Kanak-kanak</>}
+  categories={["Bulan 0", "Bulan 6", "Bulan 12", "Bulan 24", "Bulan 36"]}
+  series={[
+    { label: "Kanak-kanak X", mark: "line", values: [0, 128, 64, 16, 4] },
+    { label: "Kanak-kanak Y", mark: "line", values: [0, 45, 360, 900, 992] },
+  ]}
+  valueLabel="Sel per µL"
+  description={<>Dalam kanak-kanak X, sel yang membawa gen turun daripada <InlineMath math="128" /> per mikroliter pada bulan ke-<InlineMath math="6" /> kepada <InlineMath math="64" />, <InlineMath math="16" /> dan <InlineMath math="4" />. Dalam kanak-kanak Y, sel itu naik daripada <InlineMath math="45" /> kepada <InlineMath math="360" />, <InlineMath math="900" /> dan <InlineMath math="992" /> lalu mendatar.</>}
+/>
+
+## Pernyataan I
+
+Semak pengurangan separuh dalam setiap selang bagi kanak-kanak X:
+
+<BlockMath math="\begin{aligned}
+\text{bulan 6 hingga 12 (satu langkah 6 bulan):}\quad & 128\to64 = \tfrac{1}{2}\\
+\text{bulan 12 hingga 24 (dua langkah):}\quad & 64\to16 = \tfrac{1}{4} = \left(\tfrac{1}{2}\right)^{2}\\
+\text{bulan 24 hingga 36 (dua langkah):}\quad & 16\to4 = \tfrac{1}{4} = \left(\tfrac{1}{2}\right)^{2}
+\end{aligned}" />
+
+Bilangannya **berkurang separuh setiap <InlineMath math="6" /> bulan**. Dua lagi pengurangan separuh membawanya daripada <InlineMath math="4" /> pada bulan ke-<InlineMath math="36" /> kepada <InlineMath math="2" /> pada bulan ke-<InlineMath math="42" /> dan <InlineMath math="1" /> pada bulan ke-<InlineMath math="48" />. Pernyataan I betul.
+
+## Pernyataan II
+
+Peratus dalam kanak-kanak Y meningkat <InlineMath math="\tfrac{60}{15}=4" /> kali, tetapi jumlah sel juga meningkat <InlineMath math="\tfrac{1500}{300}=5" /> kali, jadi **bilangannya meningkat <InlineMath math="4\times5=20" /> kali**: <InlineMath math="\tfrac{900}{45}=20" />. Pernyataan II salah.
+
+## Pernyataan III dan IV
+
+Virus itu memasukkan gen normal **ke dalam kromosom**, jadi gen itu disalin bersama kromosom dan diwariskan kepada kedua-dua sel anak pada setiap pembahagian. Gen itu tidak hilang. Sel yang dirawat bagi kanak-kanak X ialah limfosit T matang, yang hidup untuk masa yang terhad dan tidak boleh terus menghasilkan sel baharu jenisnya sendiri selama-lamanya. Apabila sel itu mati, sel yang membawa gen berkurang separuh setiap <InlineMath math="6" /> bulan. Pernyataan III salah.
+
+Sel yang dirawat bagi kanak-kanak Y ialah sel stem dalam sumsum tulang. Sel stem terus membahagi dan terus menghasilkan limfosit T baharu yang membawa gen itu, jadi bilangannya naik kepada kira-kira <InlineMath math="1000" /> per <InlineMath math="\mu\text{L}" /> dan kekal di situ selepas satu infusi sahaja. Kanak-kanak X tiada sumber sebegitu dan memerlukan infusi berulang. Pernyataan IV betul.
+
+Jadi pernyataan I dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- II dan IV sahaja **membaca peratus seolah-olah peratus itu bilangan sel**. Dalam kanak-kanak X, peratus turun <InlineMath math="8" /> kali dalam <InlineMath math="30" /> bulan, yang kelihatan lebih perlahan daripada separuh setiap <InlineMath math="6" /> bulan, dan dalam kanak-kanak Y peratus hanya naik <InlineMath math="4" /> kali. Apabila didarab dengan jumlah sel yang berubah, X berkurang separuh setiap <InlineMath math="6" /> bulan dan Y naik <InlineMath math="20" /> kali.
+- I, III dan IV sahaja menyangka **gen yang disisipkan hilang apabila sel membahagi**. Gen di dalam kromosom direplikasi bersama kromosom, jadi penurunan dalam kanak-kanak X berpunca daripada sel yang dirawat mati, bukan sel kehilangan gen.
+- I sahaja terlepas pandang bahawa **sel stem memperbaharui dirinya**, lalu menjangka kanak-kanak Y juga memerlukan lebih banyak infusi. Aras kira-kira <InlineMath math="1000" /> per <InlineMath math="\mu\text{L}" /> dari bulan ke-<InlineMath math="24" /> hingga bulan ke-<InlineMath math="36" /> menunjukkan sumber sel baharu yang membawa gen secara berterusan.

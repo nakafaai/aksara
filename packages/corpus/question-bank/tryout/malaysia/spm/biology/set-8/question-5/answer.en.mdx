@@ -1,0 +1,57 @@
+# Osmosis counts dissolved particles, so glycogen hardly counts, but the same units set free as glucose would pull in a flood of water
+
+The effect of a solute on osmosis depends on **how many separate particles** are dissolved. So first find how many glycogen molecules carry the <InlineMath math="0.40\text{ mol}" /> of units:
+
+<BlockMath math="\begin{aligned}
+\text{glycogen molecules} &= \frac{0.40}{40\,000} = 0.000\,010\text{ mol per dm}^3 = 0.01\text{ mmol per dm}^3\\
+\frac{\text{glucose in plasma}}{\text{glycogen}} &= \frac{5}{0.01} = 500
+\end{aligned}" />
+
+So the glycogen adds only <InlineMath math="0.000\,01\text{ mol}" /> to the <InlineMath math="0.30\text{ mol}" /> already dissolved, and the cell water stays isotonic with plasma. Now hydrolyse it. Every unit becomes a separate glucose molecule, so <InlineMath math="1\text{ dm}^3" /> of cell water suddenly holds
+
+<BlockMath math="0.30+0.40 = 0.70\text{ mol of dissolved particles}" />
+
+No particles leave, so the cell takes in water until those <InlineMath math="0.70\text{ mol}" /> are diluted back to the plasma value of <InlineMath math="0.30\text{ mol}" /> per <InlineMath math="\text{dm}^3" />:
+
+<BlockMath math="\begin{aligned}
+\text{cell water needed} &= \frac{0.70}{0.30} \approx 2.33\text{ dm}^3\\
+\text{water taken in} &= 2.33-1 \approx 1.33\text{ dm}^3
+\end{aligned}" />
+
+<Chart
+  title={<>Dissolved Particles in the Cell Water</>}
+  bars="apart"
+  categories={["Blood plasma", "Units as glycogen", "Units as glucose"]}
+  series={[{ label: "Particles (mol per dm³)", mark: "bar", values: [0.3, 0.30001, 0.7] }]}
+  valueLabel="Particles (mol per dm³)"
+  description={<>Blood plasma holds <InlineMath math="0.30\text{ mol}" /> of dissolved particles per <InlineMath math="\text{dm}^3" />. With the units stored as glycogen, the cell water holds almost exactly the same. With the units set free as glucose, it holds <InlineMath math="0.70\text{ mol}" /> until water comes in.</>}
+/>
+
+<Chart
+  title={<>Cell Water Needed to Be Isotonic Again</>}
+  bars="apart"
+  categories={["Before hydrolysis", "After hydrolysis"]}
+  series={[{ label: "Cell water (dm³)", mark: "bar", values: [1, 2.33] }]}
+  valueLabel="Cell water (dm³)"
+  description={<>To bring <InlineMath math="0.70\text{ mol}" /> of particles back to <InlineMath math="0.30\text{ mol}" /> per <InlineMath math="\text{dm}^3" />, each <InlineMath math="1\text{ dm}^3" /> of cell water must grow to about <InlineMath math="2.33\text{ dm}^3" />, so the cell takes in about <InlineMath math="1.33\text{ dm}^3" />.</>}
+/>
+
+- I: the cell takes in about <InlineMath math="1.33\text{ dm}^3" /> of water for every <InlineMath math="\text{dm}^3" /> it holds, more than doubling its water. The hydrolysis itself uses only <InlineMath math="0.40\times18 = 7.2\text{ g}" /> of water, which hardly changes this. Statement I is correct.
+- II: as glycogen, the units add only <InlineMath math="0.000\,01\text{ mol}" /> per <InlineMath math="\text{dm}^3" />, far less than <InlineMath math="0.30" />. Statement II is wrong.
+- III: <InlineMath math="0.01\text{ mmol}" /> per <InlineMath math="\text{dm}^3" />, and <InlineMath math="5\div0.01 = 500" />. Statement III is correct.
+- IV: hydrolysis puts back the water that condensation removed, one molecule for each unit. Each unit then weighs <InlineMath math="180" />, not <InlineMath math="162" />:
+
+<BlockMath math="\begin{aligned}
+\text{glycogen}: \quad 0.40\times162 &= 64.8\text{ g}\\
+\text{glucose formed}: \quad 0.40\times180 &= 72\text{ g}
+\end{aligned}" />
+
+So <InlineMath math="72\text{ g}" /> of glucose forms, not <InlineMath math="64.8\text{ g}" />. Statement IV is wrong.
+
+So statements I and III are correct. That is why glycogen suits storage: it packs a huge amount of glucose into very few particles, so the cell can hold it without swelling.
+
+# Why the other options are wrong
+
+- II and III only counts every glucose unit in glycogen as a dissolved particle. Then the glycogen already adds <InlineMath math="0.40\text{ mol}" />, and hydrolysis seems to change nothing. **A glycogen molecule of <InlineMath math="40\,000" /> units counts as one particle**, so the units only start to count once they are set free.
+- I, III and IV only takes the mass of glycogen, <InlineMath math="0.40\times162" />, as the mass of glucose, **forgetting that hydrolysis adds one water molecule to every unit**.
+- III only dilutes only the new glucose to <InlineMath math="0.30\text{ mol}" /> per <InlineMath math="\text{dm}^3" />, <InlineMath math="\tfrac{0.40}{0.30}\approx1.33\text{ dm}^3" /> in all, so the cell seems to take in only <InlineMath math="0.33\text{ dm}^3" />. **The <InlineMath math="0.30\text{ mol}" /> of particles already there must be diluted too**.

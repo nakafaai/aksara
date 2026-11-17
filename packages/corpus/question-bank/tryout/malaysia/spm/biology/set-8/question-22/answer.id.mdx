@@ -1,0 +1,51 @@
+# Tiap kelompok menyembunyikan bagian berbeda dari anggaran karbohidrat, jadi gabungkan semuanya
+
+Massa kering daun berubah karena tiga hal sekaligus: fotosintesis menambah karbohidrat, respirasi memakai sebagian, dan floem mengangkut sebagian keluar. Kedua belahan satu daun mulai dengan massa kering per luas yang sama, jadi perubahan dari pukul 06.00 sampai 14.00 hanya menunjukkan apa yang terjadi dalam <InlineMath math="8" /> jam itu. Tiap kelompok menghilangkan satu dari tiga proses itu:
+
+<Chart
+  title={<>Perubahan Massa Kering Tiap Kelompok dalam Delapan Jam</>}
+  bars="apart"
+  categories={["A, tanpa perlakuan", "B, floem dimatikan", "C, floem dimatikan, gelap"]}
+  series={[{ label: "Perubahan massa kering", mark: "bar", values: [48, 96, -24] }]}
+  valueLabel="Perubahan massa kering (mg per dm²)"
+  description={<>Daun tanpa perlakuan bertambah <InlineMath math="48\text{ mg}" /> per <InlineMath math="\text{dm}^2" />. Daun yang floemnya dimatikan bertambah <InlineMath math="96\text{ mg}" /> dalam terang dan berkurang <InlineMath math="24\text{ mg}" /> dalam gelap.</>}
+/>
+
+- Kelompok C tidak membuat apa-apa dan tidak mengekspor apa-apa, jadi kehilangannya adalah **respirasi saja**: <InlineMath math="\tfrac{24}{8}=3\text{ mg}" /> per <InlineMath math="\text{dm}^2" /> per jam.
+- Kelompok B tidak mengekspor, jadi pertambahannya adalah fotosintesis dikurangi respirasi.
+- Kelompok A juga mengekspor, jadi pertambahannya adalah fotosintesis dikurangi respirasi dan ekspor.
+
+## Fotosintesis kotor
+
+Pertambahan kelompok B menyembunyikan karbohidrat yang dibakar respirasi pada saat yang sama, jadi **tambahkan kembali respirasinya**:
+
+<BlockMath math="\begin{aligned}
+\text{fotosintesis kotor} &= \frac{96+24}{8} = 15\text{ mg karbohidrat per dm}^2\text{ per jam}\\
+\text{karbon dioksida yang difiksasi} &= 15\times\frac{264}{180} = 22\text{ mg per dm}^2\text{ per jam}
+\end{aligned}" />
+
+## Ekspor dari daun tanpa perlakuan
+
+Kelompok A dan B berfotosintesis dan berespirasi dengan laju yang sama, jadi satu-satunya beda di antara keduanya adalah **karbohidrat yang diangkut keluar oleh floem**:
+
+<BlockMath math="\begin{aligned}
+\text{ekspor} &= \frac{96-48}{8} = 6\text{ mg per dm}^2\text{ per jam}\\
+\text{bagian dari fotosintesis kotor} &= \frac{6}{15}\times100\% = 40\%
+\end{aligned}" />
+
+<Chart
+  title={<>Ke Mana Karbohidrat yang Dibuat Tiap Jam Pergi</>}
+  bars="apart"
+  categories={["Dibuat oleh fotosintesis", "Dipakai respirasi", "Diekspor lewat floem", "Disimpan di daun"]}
+  series={[{ label: "Karbohidrat", mark: "bar", values: [(96 + 24) / 8, 24 / 8, (96 - 48) / 8, 48 / 8] }]}
+  valueLabel="Karbohidrat (mg per dm² per jam)"
+  description={<>Tiap jam, satu desimeter persegi daun tanpa perlakuan membuat <InlineMath math="15\text{ mg}" /> karbohidrat. Daun itu memakai <InlineMath math="3\text{ mg}" /> untuk respirasi, mengekspor <InlineMath math="6\text{ mg}" />, dan menyimpan <InlineMath math="6\text{ mg}" />, dan <InlineMath math="3+6+6=15" />.</>}
+/>
+
+Ketiga bagian itu kembali berjumlah <InlineMath math="15\text{ mg}" /> yang dibuat, jadi anggarannya cocok. Daun memfiksasi karbon dioksida dengan laju <InlineMath math="22\text{ mg}" /> per <InlineMath math="\text{dm}^2" /> per jam, dan daun tanpa perlakuan mengekspor <InlineMath math="40\%" /> karbohidrat yang dibuatnya.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="17{,}6\text{ mg}" /> dan <InlineMath math="50\%" /> memakai pertambahan kelompok B, <InlineMath math="\tfrac{96}{8}=12\text{ mg}" />, sebagai laju kotor, **lupa respirasi** yang diukur kelompok C.
+- <InlineMath math="13{,}2\text{ mg}" /> dan <InlineMath math="67\%" /> menghitung laju dari kelompok A tanpa perlakuan, <InlineMath math="\tfrac{48+24}{8}=9\text{ mg}" />, **lupa bahwa kelompok A juga mengekspor** gula.
+- <InlineMath math="22\text{ mg}" /> dan <InlineMath math="50\%" /> benar soal laju, tetapi membagi ekspor dengan pertambahan bersih kelompok B, <InlineMath math="12\text{ mg}" />, **bukan dengan laju kotor**.

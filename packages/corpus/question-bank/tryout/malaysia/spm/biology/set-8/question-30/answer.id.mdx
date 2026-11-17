@@ -1,0 +1,58 @@
+# Tiap kelompok pohon menaikkan lumpur dengan lajunya sendiri, jadi jumlahkan tahapnya satu per satu
+
+Tiap tahap suksesi ini berlangsung sampai lumpur mencapai batas bawah rentang kelompok berikutnya. Laju kenaikannya berubah di tiap tahap, jadi **hitung waktu tiap tahap dengan lajunya sendiri** lalu jumlahkan.
+
+## Tanpa perubahan muka laut
+
+<BlockMath math="\begin{aligned}
+\textit{Avicennia}\text{ dan }\textit{Sonneratia}: \frac{60-30}{1{,}5} &= 20\text{ tahun}\\
+\textit{Rhizophora}: \frac{120-60}{1{,}0} &= 60\text{ tahun, jadi }\textit{Bruguiera}\text{ datang di tahun ke-}20+60=80\\
+\textit{Bruguiera}: \frac{180-120}{0{,}5} &= 120\text{ tahun, jadi hutan darat datang di tahun ke-}80+120=200
+\end{aligned}" />
+
+<Chart
+  title={<>Lama Tiap Kelompok Pohon Menempati Petak Itu</>}
+  bars="apart"
+  categories={["Avicennia dan Sonneratia", "Rhizophora", "Bruguiera"]}
+  series={[{ label: "Tahun", mark: "bar", values: [(60 - 30) / 1.5, (120 - 60) / 1.0, (180 - 120) / 0.5] }]}
+  valueLabel="Tahun"
+  description={<>Pohon perintis menempati petak itu selama <InlineMath math="20" /> tahun, <em>Rhizophora</em> selama <InlineMath math="60" /> tahun, dan <em>Bruguiera</em> selama <InlineMath math="120" /> tahun. Penangkap lumpur tercepat tinggal paling singkat.</>}
+/>
+
+Pohon perintis menangkap lumpur paling cepat, jadi mereka **mengangkat lumpur keluar dari rentangnya sendiri paling awal** dan menempati petak itu paling singkat.
+
+## Saat muka laut naik
+
+Kalau surut rata-rata naik <InlineMath math="0{,}5\text{ cm}" /> per tahun, tinggi lumpur di atasnya naik <InlineMath math="0{,}5\text{ cm}" /> per tahun lebih lambat di setiap tahap:
+
+<BlockMath math="\begin{aligned}
+\text{perintis: } 1{,}5-0{,}5 = 1{,}0\text{ cm per tahun}, &\quad \frac{60-30}{1{,}0} = 30\text{ tahun}\\
+\textit{Rhizophora}: 1{,}0-0{,}5 = 0{,}5\text{ cm per tahun}, &\quad \frac{120-60}{0{,}5} = 120\text{ tahun, jadi }\textit{Bruguiera}\text{ datang di tahun ke-}150\\
+\textit{Bruguiera}: 0{,}5-0{,}5 = 0\text{ cm per tahun}, &\quad \text{lumpur tetap di }120\text{ cm}
+\end{aligned}" />
+
+<Chart
+  title={<>Tinggi Permukaan Lumpur di Petak Itu</>}
+  categories={["Tahun 0", "Tahun 25", "Tahun 50", "Tahun 75", "Tahun 100", "Tahun 125", "Tahun 150", "Tahun 175", "Tahun 200"]}
+  series={[
+    { label: "Muka laut tetap", mark: "line", values: [30, 60 + 5 * 1.0, 60 + 30 * 1.0, 60 + 55 * 1.0, 120 + 20 * 0.5, 120 + 45 * 0.5, 120 + 70 * 0.5, 120 + 95 * 0.5, 120 + 120 * 0.5] },
+    { label: "Muka laut naik", mark: "line", values: [30, 30 + 25 * 1.0, 60 + 20 * 0.5, 60 + 45 * 0.5, 60 + 70 * 0.5, 60 + 95 * 0.5, 120, 120, 120] },
+  ]}
+  valueLabel="Tinggi di atas surut rata-rata (cm)"
+  description={<>Dengan muka laut tetap, lumpur naik ke <InlineMath math="60\text{ cm}" /> di tahun ke-<InlineMath math="20" />, <InlineMath math="120\text{ cm}" /> di tahun ke-<InlineMath math="80" />, dan <InlineMath math="180\text{ cm}" /> di tahun ke-<InlineMath math="200" />. Saat muka laut naik, lumpur baru mencapai <InlineMath math="120\text{ cm}" /> di tahun ke-<InlineMath math="150" /> lalu tetap datar.</>}
+/>
+
+Di bawah *Bruguiera*, lumpur sekarang naik tepat secepat laut, jadi lumpur **tidak pernah melewati <InlineMath math="120\text{ cm}" />** dan petak itu tidak pernah mencapai <InlineMath math="180\text{ cm}" /> untuk hutan darat.
+
+- I: <InlineMath math="30\text{ cm}" /> dengan <InlineMath math="1{,}5\text{ cm}" /> per tahun butuh <InlineMath math="20" /> tahun. Pernyataan I benar.
+- II: <InlineMath math="20+60=80" /> tahun. Pernyataan II benar.
+- III: <InlineMath math="30+120=150" /> tahun sampai *Bruguiera*, lalu tidak naik lagi. Pernyataan III benar.
+- IV: pohon perintis tinggal <InlineMath math="20" /> tahun, paling singkat di antara ketiganya, justru karena mereka menaikkan lumpur paling cepat. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I saja memakai laju perintis, <InlineMath math="1{,}5\text{ cm}" /> per tahun, untuk seluruh kenaikan, **mengabaikan bahwa tiap kelompok menaikkan lumpur dengan lajunya sendiri**. Hasilnya <InlineMath math="\tfrac{120-30}{1{,}5}=60" /> tahun untuk II dan <InlineMath math="\tfrac{120-30}{1{,}0}=90" /> tahun untuk III.
+- I, II, dan IV saja mengira penangkap lumpur tercepat tinggal paling lama, **padahal penangkapan yang cepat mengangkat lumpur keluar dari rentangnya paling awal**.
+- I dan II saja mengurangkan kenaikan muka laut dari laju perintis saja, mendapat <InlineMath math="30+60=90" /> tahun, dan **lupa bahwa kenaikan itu memperlambat setiap tahap**.

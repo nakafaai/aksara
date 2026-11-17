@@ -1,0 +1,65 @@
+# Pokok kerdil yang tumbuh apabila diberi giberelin kekurangan hormon itu, dan yang tidak tumbuh tidak dapat bergerak balas
+
+Menambah hormon dapat membezakan dua jenis pokok rendah. Jika pokok itu **menghasilkan terlalu sedikit giberelin**, satu dos akan menggantikan yang kurang dan batangnya cepat memanjang. Jika pokok itu **tidak dapat bergerak balas** terhadap giberelin, hormon tambahan tidak mengubah apa-apa.
+
+<Chart
+  title={<>Ketinggian Batang selepas Asid Giberelik</>}
+  categories={["0 µg", "0.1 µg", "1 µg", "10 µg"]}
+  series={[
+    { label: "Tinggi", mark: "line", values: [40, 41, 42, 44] },
+    { label: "Kerdil D1", mark: "line", values: [10, 18, 32, 41] },
+    { label: "Kerdil D2", mark: "line", values: [11, 11, 12, 11] },
+  ]}
+  valueLabel="Ketinggian (cm)"
+  description={<>Varieti tinggi hanya naik daripada <InlineMath math="40" /> kepada <InlineMath math="44\text{ cm}" />. D1 naik daripada <InlineMath math="10" /> kepada <InlineMath math="41\text{ cm}" />, hampir setinggi varieti tinggi. D2 kekal antara <InlineMath math="11" /> dan <InlineMath math="12\text{ cm}" /> pada setiap dos.</>}
+/>
+
+Garis varieti tinggi yang mendatar boleh membuat giberelin kelihatan tidak berguna baginya. Ujian kedua menjawab persoalan ini:
+
+<Chart
+  title={<>Varieti Tinggi dengan Penghalang Giberelin</>}
+  bars="apart"
+  categories={["Tidak dirawat", "Penghalang", "Penghalang dan 1 µg"]}
+  series={[{ label: "Ketinggian (cm)", mark: "bar", values: [40, 12, 39] }]}
+  valueLabel="Ketinggian (cm)"
+  description={<>Pokok tinggi yang tidak dirawat mencapai <InlineMath math="40\text{ cm}" />. Dengan bahan kimia yang menghalang penghasilan giberelin, pokok itu hanya mencapai <InlineMath math="12\text{ cm}" />. Penambahan <InlineMath math="1\,\mu\text{g}" /> asid giberelik mengembalikannya kepada <InlineMath math="39\text{ cm}" />.</>}
+/>
+
+Tanpa giberelinnya sendiri, pokok tinggi menjadi serendah pokok kerdil, dan hormon tambahan memulihkannya. Jadi pokok tinggi **sudah menghasilkan giberelin yang mencukupi** untuk tumbuh sepenuhnya, dan sebab itulah sedikit tambahan hampir tidak memberi kesan.
+
+## Kacukan antara dua pokok kerdil
+
+Ujian dos kini menentukan genotip setiap pokok kerdil. D1 tumbuh dengan asid giberelik, jadi reseptornya berfungsi dan kerosakannya terletak pada penghasilan hormon: D1 ialah <InlineMath math="aaBB" />. D2 tidak berubah walaupun diberi <InlineMath math="10\,\mu\text{g}" />, jadi reseptornya rosak: D2 ialah <InlineMath math="AAbb" />. <InlineMath math="F_1" /> kedua-duanya ialah <InlineMath math="AaBb" />, yang menghasilkan giberelin dan bergerak balas terhadapnya, jadi pokok <InlineMath math="F_1" /> tinggi.
+
+Pendebungaan sendiri <InlineMath math="AaBb" /> memberi empat kelas <InlineMath math="A\_B\_" />, <InlineMath math="aaB\_" />, <InlineMath math="A\_bb" /> dan <InlineMath math="aabb" /> dalam nisbah <InlineMath math="9:3:3:1" />. Pokok kerdil tumbuh tinggi apabila diberi asid giberelik hanya jika **reseptornya berfungsi**, jadi pokok itu mesti mempunyai sekurang-kurangnya satu <InlineMath math="B" /> dan hanya kekurangan hormon:
+
+| Kelas <InlineMath math="F_2" /> | Pecahan | Menghasilkan giberelin | Bergerak balas terhadap giberelin | Pokok |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="A\_B\_" /> | <InlineMath math="\tfrac{9}{16}" /> | ya | ya | tinggi |
+| <InlineMath math="aaB\_" /> | <InlineMath math="\tfrac{3}{16}" /> | tidak | ya | kerdil, tumbuh tinggi dengan asid giberelik |
+| <InlineMath math="A\_bb" /> | <InlineMath math="\tfrac{3}{16}" /> | ya | tidak | kerdil, tiada gerak balas |
+| <InlineMath math="aabb" /> | <InlineMath math="\tfrac{1}{16}" /> | tidak | tidak | kerdil, tiada gerak balas |
+
+<Chart
+  title={<>Pokok <InlineMath math="F_2" /> daripada Kacukan D1 dengan D2</>}
+  bars="apart"
+  categories={["Tinggi", "Kerdil, tumbuh dengan asid giberelik", "Kerdil, tiada gerak balas"]}
+  series={[{ label: "Pokok daripada 16", mark: "bar", values: [9, 3, 3 + 1] }]}
+  valueLabel="Pokok daripada 16"
+  description={<>Daripada setiap <InlineMath math="16" /> pokok <InlineMath math="F_2" />, <InlineMath math="9" /> tinggi, <InlineMath math="3" /> kerdil yang tumbuh tinggi dengan asid giberelik, dan <InlineMath math="4" /> kerdil yang tidak bergerak balas, iaitu pokok <InlineMath math="A\_bb" /> dan <InlineMath math="aabb" />.</>}
+/>
+
+Pokok <InlineMath math="aabb" /> juga kekurangan giberelin, tetapi hormon tambahan tidak dapat membantunya kerana pokok itu **tiada reseptor yang berfungsi**.
+
+- I: D2 kekal sekitar <InlineMath math="11\text{ cm}" /> walaupun diberi <InlineMath math="10\,\mu\text{g}" />. Pokok yang kekurangan giberelin akan tumbuh apabila diberi hormon itu, jadi D2 **tidak dapat bergerak balas** terhadap hormon tersebut. Pernyataan I salah.
+- II: D1 tumbuh daripada <InlineMath math="10" /> kepada <InlineMath math="41\text{ cm}" /> apabila dos meningkat, jadi D1 bergerak balas dengan baik dan rendah hanya kerana menghasilkan terlalu sedikit giberelin. Pernyataan II betul.
+- III: ujian penghalang menunjukkan batang pokok tinggi menyusut kepada <InlineMath math="12\text{ cm}" /> tanpa giberelin, jadi hormon itu penting. Gerak balas yang kecil hanya bermakna bekalannya sendiri sudah mencukupi. Pernyataan III salah.
+- IV: hanya pokok kerdil <InlineMath math="aaB\_" /> yang bergerak balas, iaitu <InlineMath math="\tfrac{3}{16}" /> daripada <InlineMath math="F_2" />. Pernyataan IV betul.
+
+Jadi pernyataan II dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I, II dan IV sahaja menganggap **setiap pokok kerdil kekurangan giberelin**, walhal D2 tidak berubah walaupun diberi dos yang besar.
+- II, III dan IV sahaja membaca garis mendatar varieti tinggi sebagai tanda giberelin tidak berperanan dan **mengabaikan ujian penghalang**.
+- II sahaja mengira pokok <InlineMath math="aabb" /> sebagai pokok kerdil yang bergerak balas kerana kekurangan giberelin, lalu mendapat <InlineMath math="\tfrac{4}{16}=\tfrac{1}{4}" />, **terlupa bahawa pokok itu tiada reseptor yang berfungsi**.

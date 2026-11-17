@@ -1,0 +1,57 @@
+# Waktunya adalah total berjalan, jadi kurangkan dulu, lalu hitung tiap kecepatan dan bawa hasilnya ke langkah berikutnya
+
+Kolom terakhir bukan waktu yang dihabiskan di tiap bagian. Kolom itu adalah waktu sejak nodus SA melepaskan impuls, sebuah **total berjalan**. Jadi waktu di suatu bagian adalah waktu ujungnya dikurangi waktu ujung bagian sebelumnya. Baru setelah itu kamu bisa membagi panjang dengan waktu.
+
+<BlockMath math="\begin{aligned}
+\text{dinding atrium} &: 50-0 = 50\text{ ms}, & \tfrac{50\text{ mm}}{50\text{ ms}} &= 1{,}0\text{ m s}^{-1}\\
+\text{nodus AV} &: 150-50 = 100\text{ ms}, & \tfrac{5\text{ mm}}{100\text{ ms}} &= 0{,}05\text{ m s}^{-1}\\
+\text{berkas His dan serabut Purkinje} &: 180-150 = 30\text{ ms}, & \tfrac{120\text{ mm}}{30\text{ ms}} &= 4{,}0\text{ m s}^{-1}\\
+\text{otot ventrikel} &: 210-180 = 30\text{ ms}, & \tfrac{12\text{ mm}}{30\text{ ms}} &= 0{,}4\text{ m s}^{-1}
+\end{aligned}" />
+
+Satu milimeter per milidetik sama dengan satu meter per detik, jadi satuannya tetap sederhana.
+
+<Chart
+  title={<>Kecepatan Impuls di Tiap Bagian</>}
+  bars="apart"
+  categories={["Dinding atrium", "Nodus AV", "Serabut Purkinje", "Otot ventrikel"]}
+  series={[{ label: "Kecepatan", mark: "bar", values: [1, 0.05, 4, 0.4] }]}
+  valueLabel="Kecepatan (m/s)"
+  description={<>Impuls bergerak <InlineMath math="1{,}0\text{ m/s}" /> melintasi dinding atrium, hanya <InlineMath math="0{,}05\text{ m/s}" /> lewat nodus AV, <InlineMath math="4{,}0\text{ m/s}" /> di berkas His dan serabut Purkinje, dan <InlineMath math="0{,}4\text{ m/s}" /> lewat otot ventrikel.</>}
+/>
+
+Nodus AV yang lambat menahan impuls selama <InlineMath math="100\text{ ms}" />, sehingga atrium selesai berkontraksi sebelum ventrikel mulai. Serabut Purkinje yang cepat lalu menyebarkan impuls ke seluruh ventrikel hampir seketika, sehingga ventrikel berkontraksi bersamaan dari apeks ke atas.
+
+- I: <InlineMath math="\tfrac{0{,}05}{1{,}0} = \tfrac{1}{20}" />. Pernyataan I benar.
+- II: <InlineMath math="\tfrac{4{,}0}{0{,}05} = 80" />, bukan <InlineMath math="20" />. Pernyataan II salah.
+- III: jalur baru dimulai di tempat serabut Purkinje dimulai sekarang, yaitu di ujung nodus AV, jadi yang digantikan hanya <InlineMath math="30\text{ ms}" /> milik berkas His dan serabut Purkinje:
+
+<BlockMath math="\begin{aligned}
+\text{lewat otot} &: \frac{120\text{ mm}}{0{,}4\text{ m s}^{-1}} = 300\text{ ms}\\
+\text{tambahan keterlambatan} &: 300-30 = 270\text{ ms} = 0{,}27\text{ s}
+\end{aligned}" />
+
+Itu lebih dari <InlineMath math="0{,}2\text{ s}" /> lebih lambat. Pernyataan III benar.
+
+- IV: memperlambat impuls menjadi separuh di nodus AV melipatgandakan **bagian itu saja**, dari <InlineMath math="100" /> menjadi <InlineMath math="200\text{ ms}" />. Pada <InlineMath math="150" /> denyut per menit, nodus SA melepaskan impuls setiap <InlineMath math="\tfrac{60}{150} = 0{,}4\text{ s}" />:
+
+<BlockMath math="\begin{aligned}
+\text{sampai di permukaan luar} &: 50+200+30+30 = 310\text{ ms}\\
+\text{pelepasan nodus SA berikutnya} &: 400\text{ ms}
+\end{aligned}" />
+
+Impuls sampai di permukaan luar <InlineMath math="90\text{ ms}" /> sebelum pelepasan berikutnya. Pernyataan IV salah.
+
+<Mermaid
+  title={<>Waktu di Tiap Bagian, Normal dan dengan Obat</>}
+  description={<>Normalnya impuls menghabiskan <InlineMath math="50\text{ ms}" /> di dinding atrium, <InlineMath math="100\text{ ms}" /> di nodus AV, <InlineMath math="30\text{ ms}" /> di berkas His dan serabut Purkinje, dan <InlineMath math="30\text{ ms}" /> di otot ventrikel, total <InlineMath math="210\text{ ms}" />. Obat itu hanya melipatgandakan <InlineMath math="100\text{ ms}" /> nodus AV menjadi <InlineMath math="200\text{ ms}" />, jadi permukaan luar tercapai pada <InlineMath math="310\text{ ms}" />, masih sebelum pelepasan berikutnya pada <InlineMath math="400\text{ ms}" />.</>}
+  chart={"flowchart LR\n  SA[Nodus SA melepas impuls, 0 ms] -- 50 ms --> AV[Nodus AV]\n  AV -- 100 ms, atau 200 ms dengan obat --> H[Berkas His]\n  H -- 30 ms --> I[Permukaan dalam di apeks]\n  I -- 30 ms --> O[Permukaan luar, 210 ms, atau 310 ms dengan obat]\n  O --> N[Pelepasan berikutnya pada 150 per menit, 400 ms]"}
+/>
+
+Jadi pernyataan I dan III benar.
+
+# Mengapa pilihan lain salah
+
+- II dan III saja memakai **total berjalan sebagai waktu di tiap bagian**. Nodus AV lalu seolah butuh <InlineMath math="150\text{ ms}" />, kecepatannya <InlineMath math="\tfrac{5}{150}\approx0{,}033\text{ m s}^{-1}" />, sepertiga puluh kecepatan atrium, dan serabut Purkinje dengan <InlineMath math="\tfrac{120}{180}\approx0{,}67\text{ m s}^{-1}" /> tampak tepat <InlineMath math="20" /> kali lebih cepat.
+- I, III, dan IV saja melipatgandakan **seluruh** <InlineMath math="210\text{ ms}" /> menjadi <InlineMath math="420\text{ ms}" />, seolah setiap bagian melambat, sehingga impuls tampak tiba setelah pelepasan berikutnya pada <InlineMath math="400\text{ ms}" />.
+- I saja membandingkan <InlineMath math="300\text{ ms}" /> lewat otot dengan seluruh <InlineMath math="180\text{ ms}" /> dari nodus SA ke permukaan dalam, sehingga keterlambatannya hanya <InlineMath math="120\text{ ms}" />. **Jalur baru hanya menggantikan bagian <InlineMath math="30\text{ ms}" /> itu**, dan <InlineMath math="150\text{ ms}" /> pertama tetap seperti semula.

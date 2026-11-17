@@ -1,0 +1,58 @@
+# Setiap kumpulan pokok menaikkan lumpur pada kadarnya sendiri, jadi tambahkan peringkat satu demi satu
+
+Setiap peringkat sesaran ini berlanjutan sehingga lumpur mencapai bahagian bawah julat kumpulan seterusnya. Kadar kenaikan berubah pada setiap peringkat, jadi **kira masa setiap peringkat dengan kadarnya sendiri** dan tambahkan masa itu.
+
+## Tanpa perubahan aras laut
+
+<BlockMath math="\begin{aligned}
+\textit{Avicennia}\text{ dan }\textit{Sonneratia}: \frac{60-30}{1.5} &= 20\text{ tahun}\\
+\textit{Rhizophora}: \frac{120-60}{1.0} &= 60\text{ tahun, jadi }\textit{Bruguiera}\text{ tiba pada tahun ke-}20+60=80\\
+\textit{Bruguiera}: \frac{180-120}{0.5} &= 120\text{ tahun, jadi hutan darat tiba pada tahun ke-}80+120=200
+\end{aligned}" />
+
+<Chart
+  title={<>Tahun Setiap Kumpulan Pokok Menduduki Kawasan Itu</>}
+  bars="apart"
+  categories={["Avicennia dan Sonneratia", "Rhizophora", "Bruguiera"]}
+  series={[{ label: "Tahun", mark: "bar", values: [(60 - 30) / 1.5, (120 - 60) / 1.0, (180 - 120) / 0.5] }]}
+  valueLabel="Tahun"
+  description={<>Pokok perintis menduduki kawasan itu selama <InlineMath math="20" /> tahun, <em>Rhizophora</em> selama <InlineMath math="60" /> tahun dan <em>Bruguiera</em> selama <InlineMath math="120" /> tahun. Pemerangkap kelodak yang paling cepat tinggal paling sekejap.</>}
+/>
+
+Pokok perintis memerangkap kelodak paling cepat, jadi pokok itu **menaikkan lumpur keluar dari julatnya sendiri paling awal** dan menduduki kawasan itu paling sekejap.
+
+## Apabila aras laut naik
+
+Jika paras purata air surut naik <InlineMath math="0.5\text{ cm}" /> setahun, ketinggian lumpur di atasnya naik <InlineMath math="0.5\text{ cm}" /> setahun lebih perlahan dalam setiap peringkat:
+
+<BlockMath math="\begin{aligned}
+\text{perintis: } 1.5-0.5 = 1.0\text{ cm setahun}, &\quad \frac{60-30}{1.0} = 30\text{ tahun}\\
+\textit{Rhizophora}: 1.0-0.5 = 0.5\text{ cm setahun}, &\quad \frac{120-60}{0.5} = 120\text{ tahun, jadi }\textit{Bruguiera}\text{ tiba pada tahun ke-}150\\
+\textit{Bruguiera}: 0.5-0.5 = 0\text{ cm setahun}, &\quad \text{lumpur kekal pada }120\text{ cm}
+\end{aligned}" />
+
+<Chart
+  title={<>Ketinggian Permukaan Lumpur di Kawasan Itu</>}
+  categories={["Tahun 0", "Tahun 25", "Tahun 50", "Tahun 75", "Tahun 100", "Tahun 125", "Tahun 150", "Tahun 175", "Tahun 200"]}
+  series={[
+    { label: "Aras laut tetap", mark: "line", values: [30, 60 + 5 * 1.0, 60 + 30 * 1.0, 60 + 55 * 1.0, 120 + 20 * 0.5, 120 + 45 * 0.5, 120 + 70 * 0.5, 120 + 95 * 0.5, 120 + 120 * 0.5] },
+    { label: "Aras laut naik", mark: "line", values: [30, 30 + 25 * 1.0, 60 + 20 * 0.5, 60 + 45 * 0.5, 60 + 70 * 0.5, 60 + 95 * 0.5, 120, 120, 120] },
+  ]}
+  valueLabel="Ketinggian di atas paras purata air surut (cm)"
+  description={<>Dengan aras laut yang tetap, lumpur naik ke <InlineMath math="60\text{ cm}" /> pada tahun ke-<InlineMath math="20" />, <InlineMath math="120\text{ cm}" /> pada tahun ke-<InlineMath math="80" /> dan <InlineMath math="180\text{ cm}" /> pada tahun ke-<InlineMath math="200" />. Apabila aras laut naik, lumpur hanya mencapai <InlineMath math="120\text{ cm}" /> pada tahun ke-<InlineMath math="150" /> dan kemudian kekal mendatar.</>}
+/>
+
+Di bawah *Bruguiera*, lumpur kini naik tepat sepantas laut, jadi lumpur **tidak pernah melepasi <InlineMath math="120\text{ cm}" />** dan kawasan itu tidak pernah mencapai <InlineMath math="180\text{ cm}" /> bagi hutan darat.
+
+- I: <InlineMath math="30\text{ cm}" /> pada kadar <InlineMath math="1.5\text{ cm}" /> setahun mengambil masa <InlineMath math="20" /> tahun. Pernyataan I betul.
+- II: <InlineMath math="20+60=80" /> tahun. Pernyataan II betul.
+- III: <InlineMath math="30+120=150" /> tahun hingga *Bruguiera*, kemudian tiada kenaikan lagi. Pernyataan III betul.
+- IV: pokok perintis tinggal <InlineMath math="20" /> tahun, paling singkat antara ketiga-tiganya, tepat kerana pokok itu menaikkan lumpur paling cepat. Pernyataan IV salah.
+
+Jadi pernyataan I, II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- I sahaja mengekalkan kadar perintis, <InlineMath math="1.5\text{ cm}" /> setahun, untuk seluruh kenaikan, **tanpa mengambil kira bahawa setiap kumpulan menaikkan lumpur pada kadarnya sendiri**. Pilihan ini mendapat <InlineMath math="\tfrac{120-30}{1.5}=60" /> tahun bagi II dan <InlineMath math="\tfrac{120-30}{1.0}=90" /> tahun bagi III.
+- I, II dan IV sahaja menyangka pemerangkap kelodak yang paling cepat tinggal paling lama, **walhal pemerangkapan yang cepat menaikkan lumpur keluar dari julatnya paling awal**.
+- I dan II sahaja menolak kenaikan aras laut daripada kadar perintis sahaja, mendapat <InlineMath math="30+60=90" /> tahun, dan **terlupa bahawa kenaikan itu memperlahankan setiap peringkat**.

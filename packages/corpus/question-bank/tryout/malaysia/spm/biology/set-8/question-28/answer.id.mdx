@@ -1,0 +1,49 @@
+# Telur yang tidak menetas hilang dari generasi berikutnya, dan itulah yang membuat Wolbachia menyebar
+
+Hanya induk betina yang mewariskan *Wolbachia*, tetapi jantan tetap berpengaruh. Betina tanpa *Wolbachia* yang kawin dengan jantan pembawa bertelur yang **tidak menetas**, jadi telurnya hilang dari generasi berikutnya. Betina pembawa tidak kehilangan telur sama sekali. Jadi bagian pembawa di antara telur yang menetas naik melebihi bagian pembawa di antara induk betina.
+
+## Generasi pertama
+
+Saat separuh jantan dan separuh betina membawa *Wolbachia*, daftar setiap jenis perkawinan dan bagian seluruh telur yang dihasilkannya:
+
+| Perkawinan | Bagian telur | Telur menetas | Keturunan membawa *Wolbachia* |
+| --- | --- | --- | --- |
+| betina pembawa, jantan apa saja | <InlineMath math="\tfrac{1}{2}" /> | ya | ya |
+| betina bukan pembawa, jantan pembawa | <InlineMath math="\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" /> | tidak | tidak ada yang menetas |
+| betina bukan pembawa, jantan bukan pembawa | <InlineMath math="\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" /> | ya | tidak |
+
+Hanya telur yang menetas yang membentuk generasi berikutnya, jadi **bagi dengan telur yang menetas**, bukan dengan semua telur yang diletakkan:
+
+<BlockMath math="\text{bagian pembawa }Wolbachia=\frac{\tfrac{1}{2}}{\tfrac{1}{2}+\tfrac{1}{4}}=\frac{2}{3}" />
+
+## Generasi kedua
+
+Sekarang <InlineMath math="\tfrac{2}{3}" /> jantan dan betina membawanya. Ulangi aturan yang sama dengan bagian yang baru:
+
+<BlockMath math="\text{bagian pembawa }Wolbachia=\frac{\tfrac{2}{3}}{\tfrac{2}{3}+\left(\tfrac{1}{3}\right)^2}=\frac{\tfrac{6}{9}}{\tfrac{7}{9}}=\frac{6}{7}\approx86\%" />
+
+<Chart
+  title={<>Bagian Nyamuk Pembawa Wolbachia Setelah Pelepasan Berhenti</>}
+  categories={["Saat pelepasan", "Generasi 1", "Generasi 2", "Generasi 3"]}
+  series={[
+    { label: "Pembawa", mark: "line", values: [50, 100 * (2 / 3), 100 * (6 / 7), 100 * (42 / 43)] },
+    { label: "Kenaikan sama tiap generasi", mark: "line", values: [50, 100 * (2 / 3), 100 * (5 / 6), 100] },
+  ]}
+  valueLabel="Nyamuk pembawa Wolbachia (%)"
+  description={<>Bagiannya naik dari <InlineMath math="50\%" /> ke <InlineMath math="\tfrac{2}{3}" />, lalu ke <InlineMath math="\tfrac{6}{7}" />, sekitar <InlineMath math="86\%" />, lalu ke sekitar <InlineMath math="98\%" />. Menambahkan kenaikan yang sama tiap kali hanya memberi <InlineMath math="\tfrac{5}{6}" />, sekitar <InlineMath math="83\%" />, di generasi ke-<InlineMath math="2" />.</>}
+/>
+
+Kenaikannya makin cepat, karena makin banyak pembawa, makin sedikit betina bukan pembawa yang mendapat pasangan bukan pembawa.
+
+- I: generasi pertama berisi <InlineMath math="\tfrac{2}{3}" /> pembawa. Pernyataan I benar.
+- II: jantan pembawa membuat seperempat dari semua telur tidak menetas, semuanya dari induk bukan pembawa, dan itulah **yang mendorong bagian pembawa naik**. Pernyataan II salah.
+- III: generasi kedua berisi <InlineMath math="\tfrac{6}{7}" />, sekitar <InlineMath math="86\%" />. Pernyataan III benar.
+- IV: kalau hanya jantan pembawa yang dilepas, semua pembawa adalah jantan dan tidak bisa mewariskan apa pun, jadi *Wolbachia* tidak bisa menyebar. Tiap betina yang kawin dengannya bertelur yang tidak menetas, jadi lebih sedikit telur yang menetas. Pernyataan IV benar.
+
+Jadi pernyataan I, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- II saja menganggap jantan tidak berpengaruh, sehingga bagian pembawa tetap <InlineMath math="50\%" />, **lupa bahwa telur betina bukan pembawa yang kawin dengan jantan pembawa tidak pernah menetas**.
+- I dan IV saja menambahkan kenaikan yang sama, sekitar <InlineMath math="17" /> poin persen, sekali lagi dan mendapat <InlineMath math="\tfrac{5}{6}" />, **bukan menerapkan aturan penetasan pada bagian yang baru**.
+- I dan III saja menolak IV, seolah-olah jantan pembawa yang dilepas sendirian bisa menyebarkan bakteri itu, **padahal hanya induk betina yang mewariskannya**.

@@ -1,0 +1,45 @@
+# Dua hal berubah antara kelompok P dan S, jadi pecah selisihnya dengan membandingkan kelompok yang hanya berbeda dalam satu hal
+
+Kelompok yang ukurannya berbeda tidak bisa dibandingkan lewat totalnya, jadi ubah dulu setiap total menjadi **skor rata-rata per siswa**:
+
+<BlockMath math="\begin{aligned}
+\text{P}: \quad \tfrac{456}{12} &= 38\\
+\text{Q}: \quad \tfrac{340}{10} &= 34\\
+\text{R}: \quad \tfrac{248}{8} &= 31\\
+\text{S}: \quad \tfrac{270}{10} &= 27
+\end{aligned}" />
+
+Dua variabel bercampur dalam rancangan ini: minuman yang **benar-benar diminum** dan minuman yang **diberitahukan** kepada siswa. Untuk melihat pengaruh satu variabel, tahan variabel lainnya tetap.
+
+<BlockMath math="\begin{aligned}
+\text{glukosa, diberi tahu glukosa}: \quad \text{P}-\text{Q} &= 38-34 = 4\\
+\text{glukosa, diberi tahu pemanis}: \quad \text{R}-\text{S} &= 31-27 = 4\\
+\text{diberi tahu glukosa, minum glukosa}: \quad \text{P}-\text{R} &= 38-31 = 7\\
+\text{diberi tahu glukosa, minum pemanis}: \quad \text{Q}-\text{S} &= 34-27 = 7\\
+\text{P}-\text{S} &= 38-27 = 11 = 4+7
+\end{aligned}" />
+
+<Chart
+  title={<>Skor Rata-rata Tes Ingatan Tiap Kelompok</>}
+  bars="apart"
+  categories={["Diberi tahu glukosa", "Diberi tahu pemanis"]}
+  series={[
+    { label: "Minum glukosa", mark: "bar", values: [38, 31] },
+    { label: "Minum pemanis", mark: "bar", values: [34, 27] },
+  ]}
+  valueLabel="Skor rata-rata (dari 50)"
+  description={<>Siswa yang diberi tahu glukosa mendapat <InlineMath math="38" /> setelah glukosa dan <InlineMath math="34" /> setelah pemanis. Siswa yang diberi tahu pemanis mendapat <InlineMath math="31" /> setelah glukosa dan <InlineMath math="27" /> setelah pemanis. Di dalam setiap pasangan, glukosa menambah <InlineMath math="4" /> poin, dan diberi tahu glukosa menambah <InlineMath math="7" /> poin pada kedua minuman.</>}
+/>
+
+- I: glukosa menambah <InlineMath math="4" /> poin di kedua pasangan. Selisih P dan S adalah <InlineMath math="11" /> poin, dan setengahnya <InlineMath math="5{,}5" />, jadi <InlineMath math="4" /> kurang dari setengah. Pernyataan I benar.
+- II: kelompok P minum glukosa **dan** diberi tahu glukosa, sedangkan kelompok S minum pemanis **dan** diberi tahu pemanis. Dua variabel berubah sekaligus, dan <InlineMath math="7" /> dari <InlineMath math="11" /> poin itu berasal dari apa yang diberitahukan kepada siswa. Pernyataan II salah.
+- III: kelompok R hanya berisi <InlineMath math="8" /> siswa, jadi totalnya kecil. Rata-ratanya, <InlineMath math="31" />, lebih tinggi daripada rata-rata kelompok S, <InlineMath math="27" />. Di sini pun glukosa menaikkan skor. Pernyataan III salah.
+- IV: <InlineMath math="\text{P}-\text{R} = 7" /> untuk siswa yang minum glukosa dan <InlineMath math="\text{Q}-\text{S} = 7" /> untuk siswa yang minum pemanis. Pernyataan IV benar.
+
+Jadi pernyataan I dan IV benar, dan hasilnya memang mendukung hipotesis: glukosa menaikkan skor rata-rata sebesar <InlineMath math="4" /> poin, apa pun yang dipercaya siswa.
+
+# Mengapa pilihan lain salah
+
+- II dan IV saja menganggap kelompok P dan S sebagai uji yang adil karena keduanya diberi tahu yang benar, lalu memberikan seluruh <InlineMath math="11" /> poin kepada glukosa. **Diberi tahu glukosa adalah variabel kedua yang juga berbeda antara P dan S**.
+- I saja mencari pengaruh diberi tahu glukosa dari kelompok P dan Q, sehingga mendapat <InlineMath math="4" />. **P dan Q diberi tahu hal yang sama dan hanya berbeda minumannya**, jadi selisih itu adalah pengaruh glukosa.
+- I, III, dan IV saja membandingkan total kelompok R dan S, <InlineMath math="248" /> lawan <InlineMath math="270" />, **tanpa membaginya dengan jumlah siswa yang berbeda**.

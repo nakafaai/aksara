@@ -1,0 +1,57 @@
+# Test every pattern of inheritance against every person, then judge each statement only under the patterns it names
+
+A family tree proves a pattern only when the other patterns fail somewhere. So try each of the three patterns on every person. A statement that starts with "if" is then judged **only under that pattern**.
+
+## Which patterns fit the family
+
+| Pattern | Woman M, affected | Man F, unaffected | Sons S and T, affected | Daughter D, unaffected | Fits? |
+| --- | --- | --- | --- | --- | --- |
+| Autosomal recessive | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | yes |
+| Autosomal dominant | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | yes |
+| X-linked recessive | <InlineMath math="X^aX^a" /> | <InlineMath math="X^AY" /> | <InlineMath math="X^aY" /> | <InlineMath math="X^AX^a" /> | yes |
+
+All three patterns fit. Only sons are affected among the children, which **looks like** X-linkage, but an autosomal recessive condition gives the same children if man F happens to be a carrier. Three children are too few to rule that out. Statement I is correct.
+
+## Statement II
+
+Under both recessive patterns, woman M has two copies of the recessive allele, so she must pass one to daughter D. Daughter D is unaffected, so her other allele is normal: <InlineMath math="Aa" /> or <InlineMath math="X^AX^a" />. She is **certainly a carrier** either way. Statement II is correct.
+
+## Statement III
+
+Under X-linkage, daughter D is <InlineMath math="X^AX^a" /> and husband H, unaffected, is <InlineMath math="X^AY" />:
+
+<Mermaid
+  title={<>Children of Daughter D and Husband H Under X-Linkage</>}
+  description={<>A carrier mother and an unaffected father have four equally likely kinds of children: a non-carrier daughter, a carrier daughter, an unaffected son and an affected son, each one quarter of the children.</>}
+  chart={`flowchart TD
+  D4["Daughter D: XA Xa"] --> A["Daughter XA XA: 1/4, unaffected"]
+  H6["Husband H: XA Y"] --> A
+  D4 --> B["Daughter XA Xa: 1/4, carrier"]
+  H6 --> B
+  D4 --> C["Son XA Y: 1/4, unaffected"]
+  H6 --> C
+  D4 --> E["Son Xa Y: 1/4, affected"]
+  H6 --> E`}
+/>
+
+The child must be **a boy and receive <InlineMath math="X^a" /> from the mother**:
+
+<BlockMath math="P(\text{affected boy}) = P(\text{boy})\times P(X^a\text{ from the mother}) = \tfrac{1}{2}\times\tfrac{1}{2} = \tfrac{1}{4}" />
+
+Statement III is correct.
+
+## Statement IV
+
+Under autosomal dominance, every person with an <InlineMath math="A" /> allele is affected. Daughter D and husband H are both unaffected, so both are <InlineMath math="aa" />, and **none of their children can be affected**:
+
+<BlockMath math="P(\text{affected child}) = 0" />
+
+Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- II and III only takes **"only sons are affected" as proof of X-linkage**. The autosomal recessive pattern with man F as a carrier fits every person too, so the tree cannot decide between them.
+- I, II, III and IV gives daughter D **a hidden dominant allele from her mother**. A dominant allele always shows, so an unaffected daughter cannot carry it.
+- I and II only finds the chance **among boys only**, <InlineMath math="\tfrac{1}{2}" />, and so rejects III. The statement asks about the first child, who may be a girl, so the chance must include <InlineMath math="P(\text{boy})=\tfrac{1}{2}" />.

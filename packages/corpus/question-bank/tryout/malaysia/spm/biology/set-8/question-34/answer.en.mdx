@@ -1,0 +1,44 @@
+# Judge a mutagen by mutants per surviving cell, not by the number of colonies
+
+A high dose makes more mutations in each cell, but it also kills most of the cells. The colony count mixes both effects. To compare doses, divide the colonies by the number of cells that **survived**.
+
+## Mutants per surviving cell
+
+Each sample starts with <InlineMath math="1.0\times10^{9}" /> cells, so the survivors are that number times the percentage. Writing the frequency per <InlineMath math="10^{8}" /> survivors keeps the numbers small:
+
+<BlockMath math="\begin{aligned}
+0\text{ J m}^{-2}:&\quad \frac{20}{1.0\times10^{9}} = 2\text{ per }10^{8}\\
+20\text{ J m}^{-2}:&\quad \frac{120}{6.0\times10^{8}} = 20\text{ per }10^{8}\\
+40\text{ J m}^{-2}:&\quad \frac{180}{3.0\times10^{8}} = 60\text{ per }10^{8}\\
+60\text{ J m}^{-2}:&\quad \frac{120}{1.0\times10^{8}} = 120\text{ per }10^{8}\\
+80\text{ J m}^{-2}:&\quad \frac{40}{2.0\times10^{7}} = 200\text{ per }10^{8}
+\end{aligned}" />
+
+<Chart
+  title={<>Colonies and Mutation Frequency at Each UV Dose</>}
+  bars="apart"
+  categories={["0 J/m²", "20 J/m²", "40 J/m²", "60 J/m²", "80 J/m²"]}
+  series={[
+    { label: "Resistant colonies", mark: "bar", values: [20, 120, 180, 120, 40] },
+    { label: "Per 100 million survivors", mark: "line", values: [2, 20, 60, 120, 200] },
+  ]}
+  valueLabel="Number"
+  description={<>The colonies peak at <InlineMath math="180" /> at <InlineMath math="40\text{ J m}^{-2}" /> and then fall to <InlineMath math="40" />. The resistant mutants per <InlineMath math="10^{8}" /> surviving cells rise at every dose: <InlineMath math="2" />, <InlineMath math="20" />, <InlineMath math="60" />, <InlineMath math="120" /> and <InlineMath math="200" />.</>}
+/>
+
+The colonies **peak and then fall**, but the frequency **keeps rising**. Fewer colonies at high doses only means fewer cells are left alive.
+
+## The four statements
+
+- I: <InlineMath math="\tfrac{120}{2} = 60" />. At <InlineMath math="60\text{ J m}^{-2}" /> the frequency is <InlineMath math="60" /> times the frequency without UV light. Statement I is correct.
+- II: the most colonies come from <InlineMath math="40\text{ J m}^{-2}" />, but its frequency, <InlineMath math="60" /> per <InlineMath math="10^{8}" />, is lower than at <InlineMath math="60" /> and <InlineMath math="80\text{ J m}^{-2}" />. **The highest dose** causes mutations most strongly. Statement II is wrong.
+- III: before the treatment, <InlineMath math="2" /> cells in every <InlineMath math="10^{8}" /> were already resistant. UV kills them as often as other cells, so among <InlineMath math="6.0\times10^{8}" /> survivors the old mutants number <InlineMath math="2\times6 = 12" />, not <InlineMath math="20" />. Statement III is wrong.
+- IV: <InlineMath math="200" /> per <InlineMath math="10^{8}" /> is <InlineMath math="\tfrac{200}{10^{8}} = \tfrac{1}{500\,000}" />. Statement IV is correct.
+
+So statements I and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and IV only takes **the number of colonies as the strength of the mutagen**. At high doses most cells die, so a smaller count can still be a larger share of the survivors.
+- I, III and IV only subtracts the **colony count of the untreated sample as it is**. Those <InlineMath math="20" /> mutants came from <InlineMath math="1.0\times10^{9}" /> cells, but only <InlineMath math="6.0\times10^{8}" /> cells survive <InlineMath math="20\text{ J m}^{-2}" />, so only <InlineMath math="12" /> old mutants are expected there.
+- IV only **divides colony counts directly**, <InlineMath math="\tfrac{120}{20} = 6" />, and so rejects I. That ignores that the treated sample had ten times fewer survivors to plate.

@@ -1,0 +1,50 @@
+# Hitung hanya aktivitas yang benar-benar dimiliki Z di duodenum, lalu bulatkan ke atas menjadi kapsul utuh
+
+Aturannya menghitung aktivitas **pada pH duodenum**, bukan <InlineMath math="25\,000" /> unit yang tertulis untuk pH <InlineMath math="8" />. Jadi hitung kebutuhan makanan, aktivitas nyata satu kapsul, baru kemudian bagi.
+
+**Langkah 1: kebutuhan makanan**.
+
+<BlockMath math="36\text{ g}\times2000\text{ unit per g} = 72\,000\text{ unit}" />
+
+**Langkah 2: aktivitas satu kapsul bersalut**. Salutnya tetap tertutup pada pH <InlineMath math="2" />, jadi asam tidak pernah menyentuh Z, dan seluruh Z sampai di duodenum. Di sana, pada pH <InlineMath math="6" />, Z bekerja hanya <InlineMath math="40\%" /> dari aktivitasnya pada pH <InlineMath math="8" />:
+
+<BlockMath math="25\,000\times0{,}40 = 10\,000\text{ unit per kapsul bersalut}" />
+
+**Langkah 3: kapsul bersalut utuh**.
+
+<BlockMath math="\frac{72\,000}{10\,000} = 7{,}2" />
+
+Tujuh kapsul hanya memberi <InlineMath math="70\,000" /> unit, kurang dari <InlineMath math="72\,000" />, dan tidak ada yang bisa menelan <InlineMath math="0{,}2" /> kapsul. Jadi pasien butuh <InlineMath math="8" /> kapsul.
+
+<Chart
+  title={<>Kapsul Bersalut Dibanding Kebutuhan Makanan</>}
+  bars="apart"
+  categories={["7 kapsul", "8 kapsul", "Dibutuhkan"]}
+  series={[{ label: "Aktivitas di duodenum", mark: "bar", values: [70000, 80000, 72000] }]}
+  valueLabel="Unit aktivitas"
+  description={<>Pada pH <InlineMath math="6" />, setiap kapsul bersalut memberi <InlineMath math="10\,000" /> unit, jadi <InlineMath math="7" /> kapsul memberi <InlineMath math="70\,000" /> unit, di bawah <InlineMath math="72\,000" /> unit yang dibutuhkan <InlineMath math="36\text{ g}" /> lemak, sedangkan <InlineMath math="8" /> kapsul memberi <InlineMath math="80\,000" /> unit, cukup.</>}
+/>
+
+**Langkah 4: kapsul biasa**. Kapsul biasa terbuka di lambung, dan uji itu menunjukkan bahwa satu jam pada pH <InlineMath math="2" /> hanya menyisakan <InlineMath math="5\%" /> aktivitas, **bahkan setelah dikembalikan ke pH <InlineMath math="8" />**. Sisanya sudah terdenaturasi permanen. Z yang selamat lalu bekerja <InlineMath math="40\%" /> di duodenum:
+
+<BlockMath math="\begin{aligned}
+25\,000\times0{,}05\times0{,}40 &= 500\text{ unit per kapsul biasa}\\
+\frac{72\,000}{500} &= 144\text{ kapsul biasa}
+\end{aligned}" />
+
+<Chart
+  title={<>Aktivitas Satu Kapsul di Duodenum</>}
+  bars="apart"
+  categories={["Label pada pH 8", "Kapsul bersalut", "Kapsul biasa"]}
+  series={[{ label: "Unit aktivitas", mark: "bar", values: [25000, 10000, 500] }]}
+  valueLabel="Unit aktivitas"
+  description={<>Kapsul berlabel <InlineMath math="25\,000" /> unit pada pH <InlineMath math="8" />. Kapsul bersalut memberi <InlineMath math="10\,000" /> unit di duodenum pasien pada pH <InlineMath math="6" />. Kapsul biasa hanya memberi <InlineMath math="500" /> unit, karena asam merusak <InlineMath math="95\%" /> Z-nya sebelum duodenum memperlambat sisanya.</>}
+/>
+
+Jadi makanan itu butuh <InlineMath math="8" /> kapsul bersalut atau <InlineMath math="144" /> kapsul biasa. Salut melindungi Z, tetapi duodenum yang sedikit asam tetap memangkas lebih dari separuh aktivitasnya.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="3" /> kapsul bersalut atau <InlineMath math="58" /> kapsul biasa membagi dengan aktivitas pada pH <InlineMath math="8" />, <InlineMath math="\tfrac{72\,000}{25\,000} = 2{,}88" />. **Aturannya menghitung aktivitas pada pH duodenum, yaitu pH <InlineMath math="6" />**, yang hanya <InlineMath math="40\%" /> darinya.
+- <InlineMath math="8" /> kapsul bersalut atau <InlineMath math="8" /> kapsul biasa menganggap asam hanya menghentikan Z sementara. **Uji itu menunjukkan Z yang disimpan pada pH <InlineMath math="2" /> tetap mati walau dikembalikan ke pH <InlineMath math="8" />**: hanya <InlineMath math="5\%" /> yang selamat.
+- <InlineMath math="7" /> kapsul bersalut membulatkan <InlineMath math="7{,}2" /> ke bawah. **Tujuh kapsul memberi <InlineMath math="70\,000" /> unit, kurang dari <InlineMath math="72\,000" /> yang dibutuhkan**, jadi jumlahnya harus dibulatkan ke atas.

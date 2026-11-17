@@ -1,0 +1,48 @@
+# Die Markierungen zeigen, welche Pflanze an den Leitbahnen der Limette hängt, und der Stickstoff im Blatt bestimmt, wie lange ihr Aufbau dauert
+
+Zwei Markierungen unterscheiden die Leitbahnen. Radioaktiver Kohlenstoff aus einem Blatt wandert als Zucker im **Phloem**, der rote Farbstoff wandert mit dem Wasser im **Xylem**. Verfolge also jede Markierung, um zu sehen, was jede Pflanze auf den Ästen dem Limettenbaum entnimmt.
+
+<Mermaid
+  title={<>Was jede Pflanze dem Limettenbaum entnimmt</>}
+  description={<>Das Xylem des Limettenbaums bringt Wasser, Mineralsalze und den Farbstoff in die Mistel. Sein Phloemzucker erreicht weder die Mistel noch den Farn. Die Mistel bildet ihren Zucker selbst, und der Farn nimmt dem Baum nichts: Seine Wurzeln fangen Regenwasser und verrottende Blätter auf.</>}
+  chart={"flowchart LR\n  X[Xylem der Limette: Wasser und Mineralsalze] --> M[Mistel, Halbparasit]\n  P[Phloem der Limette: Zucker] -. kein Übergang .-> M\n  R[Regenwasser und Falllaub] --> F[Nestfarn, Epiphyt]\n  M -- bildet ihren Zucker selbst --> M"}
+/>
+
+Der Mistletoe, *Dendrophthoe pentandra*, ist eine tropische Mistel, der Bird's nest fern, *Asplenium nidus*, heißt auf Deutsch Nestfarn.
+
+- Versuch <InlineMath math="2" />: Der Farbstoff erreicht die Mistel, aber nicht den Farn, also **hängt nur die Mistel am Xylem**.
+- Versuch <InlineMath math="1" />: Der markierte Zucker der Limette erreicht keine der beiden Pflanzen, also zapft keine das Phloem an.
+- Versuch <InlineMath math="3" />: Die Mistel bindet ihr Kohlenstoffdioxid selbst. Sie ist ein Halbparasit, der Fotosynthese betreibt, der Farn dagegen ein Epiphyt, der den Baum nur nutzt, um ans Licht zu kommen.
+
+## Stickstoff für neue Blätter
+
+Der Stickstoff, den ein Blatt pro Tag erhält, ist das transpirierte Wasser mal dem Stickstoff in jedem <InlineMath math="\text{dm}^3" /> Xylemsaft. Die Zeit, bis genug für einen neuen Quadratmeter Blatt beisammen ist, ist der Stickstoff dieses Blatts geteilt durch diese Tagesmenge. Die beiden Blätter **enthalten unterschiedlich viel Stickstoff**, also rechnest du jedes einzeln:
+
+<BlockMath math="\begin{aligned}
+\text{Mistel: } 3{,}0\times70 &= 210\text{ mg pro Tag}, & \frac{2{.}100\text{ mg}}{210\text{ mg pro Tag}} &= 10\text{ Tage}\\
+\text{Limette: } 1{,}0\times70 &= 70\text{ mg pro Tag}, & \frac{1{.}400\text{ mg}}{70\text{ mg pro Tag}} &= 20\text{ Tage}
+\end{aligned}" />
+
+<Chart
+  title={<>Tage bis zum Stickstoff für einen neuen Quadratmeter Blatt</>}
+  bars="apart"
+  categories={["Limettenblatt", "Mistelblatt", "Mistel mit so wenig Stickstoff wie die Limette"]}
+  series={[{ label: "Tage", mark: "bar", values: [1400 / (1.0 * 70), 2100 / (3.0 * 70), 1400 / (3.0 * 70)] }]}
+  valueLabel="Tage"
+  description={<>Das Limettenblatt braucht <InlineMath math="20" /> Tage, das Mistelblatt <InlineMath math="10" /> Tage. Nur ein Mistelblatt mit den <InlineMath math="1{,}4\text{ g pro m}^2" /> des Limettenblatts bräuchte etwa <InlineMath math="7" /> Tage.</>}
+/>
+
+Die Mistel transpiriert dreimal so schnell, braucht aber pro Quadratmeter Blatt anderthalbmal so viel Stickstoff, ist also nur doppelt so schnell: <InlineMath math="\tfrac{10}{20}=\tfrac{1}{2}" />.
+
+- I: Der Farbstoff zeigt eine Verbindung zum Xylem, und die Versuche <InlineMath math="1" /> und <InlineMath math="3" /> zeigen, dass kein Zucker von der Limette zur Mistel gelangt. Aussage I stimmt.
+- II: <InlineMath math="10" /> Tage gegenüber <InlineMath math="20" /> Tagen sind die halbe Zeit. Aussage II stimmt.
+- III: Kein Farbstoff erreichte den Farn, er hat also **keine Verbindung zum Xylem**. Seine Wurzeln holen Wasser und Mineralsalze aus Regenwasser und dem verrottenden Laub, das sich um sie sammelt. Aussage III ist falsch.
+- IV: <InlineMath math="7" /> Tage stimmten nur, wenn Mistelblätter so wenig Stickstoff enthielten wie Limettenblätter. Sie enthalten <InlineMath math="2{,}1\text{ g pro m}^2" />, also sind es <InlineMath math="10" /> Tage. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und IV nimmt den Transpirationsfaktor drei als ganze Antwort und **übersieht, dass ein Mistelblatt mehr Stickstoff enthält** als ein Limettenblatt.
+- Nur I, II und III hält jede Pflanze, die auf einem Baum wächst, für einen Parasiten und **übersieht, dass kein Farbstoff den Farn erreichte**.
+- Nur II nimmt an, dass jeder Parasit auf einem Baum auch dessen Zucker nimmt, und **übersieht, dass in Versuch <InlineMath math="1" /> kein markierter Zucker die Mistel erreichte**.

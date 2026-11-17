@@ -1,0 +1,46 @@
+# Rechne jede Zählung mit ihrer eigenen Verdünnung in lebende Zellen der Kultur um, bevor du sie vergleichst
+
+Die beiden Zählungen hatten **verschiedene Verdünnungen**, also lassen sich die Rohzahlen auf dem Objektträger nicht vergleichen. Rechne jede zuerst in lebende Zellen pro <InlineMath math="\text{cm}^3" /> der Kultur um. Nur die farblosen Zellen leben.
+
+## Das gezählte Volumen
+
+<BlockMath math="5\cdot(0{,}2\cdot0{,}2\cdot0{,}1) = 5\cdot0{,}004 = 0{,}02\text{ mm}^3" />
+
+## Lebende Zellen in jeder Zählung
+
+Die erste Mischung enthält <InlineMath math="1{,}0" /> in <InlineMath math="1{,}0+3{,}0=4{,}0\text{ cm}^3" />, ist also <InlineMath math="4" />-fach verdünnt. Die zweite enthält <InlineMath math="1{,}0" /> in <InlineMath math="1{,}0+7{,}0=8{,}0\text{ cm}^3" />, ist also <InlineMath math="8" />-fach verdünnt.
+
+<BlockMath math="\begin{aligned}
+\text{erste Zählung:}\quad \frac{100}{0{,}02}\cdot1000\cdot4 &= 2{,}0\cdot10^{7}\text{ pro cm}^3\\
+\text{zweite Zählung:}\quad \frac{200}{0{,}02}\cdot1000\cdot8 &= 8{,}0\cdot10^{7}\text{ pro cm}^3
+\end{aligned}" />
+
+Die blauen Zellen ergeben <InlineMath math="\tfrac{64}{0{,}02}\cdot1000\cdot4 = 1{,}28\cdot10^{7}" /> und <InlineMath math="\tfrac{32}{0{,}02}\cdot1000\cdot8 = 1{,}28\cdot10^{7}" /> pro <InlineMath math="\text{cm}^3" />, **beide Male gleich viel**, also ist in den <InlineMath math="6" /> Stunden keine Zelle gestorben.
+
+<Chart
+  title={<>Hefezellen in der Kultur</>}
+  bars="apart"
+  categories={["Erste Zählung", "Zweite Zählung"]}
+  series={[
+    { label: "Lebende Zellen", mark: "bar", values: [2, 8] },
+    { label: "Tote Zellen", mark: "bar", values: [1.28, 1.28] },
+  ]}
+  valueLabel="Zellen (× 10⁷ pro cm³)"
+  description={<>Die lebenden Zellen steigen in <InlineMath math="6" /> Stunden von <InlineMath math="2{,}0\cdot10^{7}" /> auf <InlineMath math="8{,}0\cdot10^{7}" /> pro Kubikzentimeter, auf das Vierfache. Die toten Zellen bleiben bei <InlineMath math="1{,}28\cdot10^{7}" /> pro Kubikzentimeter.</>}
+/>
+
+## Die Verdopplungszeit
+
+<BlockMath math="\frac{8{,}0\cdot10^{7}}{2{,}0\cdot10^{7}} = 4 = 2^2" />
+
+Eine Vervierfachung sind **zwei Verdopplungen**, und sie dauerten <InlineMath math="6" /> Stunden:
+
+<BlockMath math="\text{Verdopplungszeit} = \frac{6\text{ Stunden}}{2} = 3\text{ Stunden}" />
+
+Die Verdopplungszeit beträgt also **<InlineMath math="3" /> Stunden**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6" /> Stunden vergleicht die Zählungen auf dem Objektträger direkt, <InlineMath math="\tfrac{200}{100} = 2" />, **als hätten beide Proben dieselbe Verdünnung**, und sieht deshalb eine Verdopplung in <InlineMath math="6" /> Stunden. Die zweite Probe war doppelt so stark verdünnt.
+- <InlineMath math="1{,}5" /> Stunden **teilt die Zeit durch die Vervierfachung**, <InlineMath math="\tfrac{6}{4}" />, statt durch die Zahl der Verdopplungen, also <InlineMath math="2" />.
+- <InlineMath math="4" /> Stunden **zählt die blauen Zellen mit**. Alle Zellen steigen von <InlineMath math="3{,}28\cdot10^{7}" /> auf <InlineMath math="9{,}28\cdot10^{7}" />, etwa auf das <InlineMath math="2{,}83" />-Fache, also <InlineMath math="2^{1{,}5}" /> oder <InlineMath math="1{,}5" /> Verdopplungen in <InlineMath math="6" /> Stunden. Die toten Zellen teilen sich nicht und verdecken so einen Teil des Wachstums.

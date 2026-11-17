@@ -1,0 +1,50 @@
+# Zähl nur die Aktivität, die Z im Duodenum wirklich hat, und runde dann auf ganze Kapseln auf
+
+Die Regel zählt die Aktivität **beim pH des Duodenums**, nicht die <InlineMath math="25\,000" /> Einheiten, die für pH <InlineMath math="8" /> angegeben sind. Rechne also aus, was die Mahlzeit braucht und was eine Kapsel wirklich liefert, und teile erst dann.
+
+**Schritt 1: was die Mahlzeit braucht**.
+
+<BlockMath math="36\text{ g}\cdot2000\text{ Einheiten pro g} = 72\,000\text{ Einheiten}" />
+
+**Schritt 2: was eine Kapsel mit Überzug liefert**. Der Überzug bleibt bei pH <InlineMath math="2" /> zu, also erreicht die Säure Z nie, und alles kommt im Duodenum an. Dort, bei pH <InlineMath math="6" />, arbeitet Z nur mit <InlineMath math="40\,\%" /> seiner Aktivität bei pH <InlineMath math="8" />:
+
+<BlockMath math="25\,000\cdot0{,}40 = 10\,000\text{ Einheiten pro Kapsel mit Überzug}" />
+
+**Schritt 3: ganze Kapseln mit Überzug**.
+
+<BlockMath math="\frac{72\,000}{10\,000} = 7{,}2" />
+
+Sieben Kapseln liefern nur <InlineMath math="70\,000" /> Einheiten, weniger als <InlineMath math="72\,000" />, und niemand kann <InlineMath math="0{,}2" /> Kapseln schlucken. Nötig sind also <InlineMath math="8" /> Kapseln.
+
+<Chart
+  title={<>Kapseln mit Überzug gegen den Bedarf der Mahlzeit</>}
+  bars="apart"
+  categories={["7 Kapseln", "8 Kapseln", "Bedarf"]}
+  series={[{ label: "Aktivität im Duodenum", mark: "bar", values: [70000, 80000, 72000] }]}
+  valueLabel="Einheiten Aktivität"
+  description={<>Bei pH <InlineMath math="6" /> liefert jede Kapsel mit Überzug <InlineMath math="10\,000" /> Einheiten. <InlineMath math="7" /> Kapseln liefern also <InlineMath math="70\,000" /> Einheiten, weniger als die <InlineMath math="72\,000" /> Einheiten, die <InlineMath math="36\text{ g}" /> Fett brauchen, während <InlineMath math="8" /> Kapseln mit <InlineMath math="80\,000" /> Einheiten reichen.</>}
+/>
+
+**Schritt 4: Kapseln ohne Überzug**. Eine Kapsel ohne Überzug öffnet sich im Magen, und der Test zeigt, dass eine Stunde bei pH <InlineMath math="2" /> nur <InlineMath math="5\,\%" /> der Aktivität übrig lässt, **auch zurück bei pH <InlineMath math="8" />**. Der Rest ist dauerhaft denaturiert. Was überlebt, arbeitet im Duodenum dann mit <InlineMath math="40\,\%" />:
+
+<BlockMath math="\begin{aligned}
+25\,000\cdot0{,}05\cdot0{,}40 &= 500\text{ Einheiten pro Kapsel ohne Überzug}\\
+\frac{72\,000}{500} &= 144\text{ Kapseln ohne Überzug}
+\end{aligned}" />
+
+<Chart
+  title={<>Aktivität einer Kapsel im Duodenum</>}
+  bars="apart"
+  categories={["Angabe bei pH 8", "Mit Überzug", "Ohne Überzug"]}
+  series={[{ label: "Einheiten Aktivität", mark: "bar", values: [25000, 10000, 500] }]}
+  valueLabel="Einheiten Aktivität"
+  description={<>Eine Kapsel ist mit <InlineMath math="25\,000" /> Einheiten bei pH <InlineMath math="8" /> angegeben. Mit Überzug liefert sie im Duodenum bei pH <InlineMath math="6" /> <InlineMath math="10\,000" /> Einheiten. Ohne Überzug liefert sie nur <InlineMath math="500" /> Einheiten, weil die Säure <InlineMath math="95\,\%" /> ihres Z zerstört, bevor das Duodenum den Rest bremst.</>}
+/>
+
+Die Mahlzeit braucht also <InlineMath math="8" /> Kapseln mit Überzug oder <InlineMath math="144" /> ohne. Der Überzug schützt Z, aber das schwach saure Duodenum kostet trotzdem mehr als die Hälfte seiner Aktivität.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3" /> Kapseln mit oder <InlineMath math="58" /> ohne Überzug teilt durch die Aktivität bei pH <InlineMath math="8" />, <InlineMath math="\tfrac{72\,000}{25\,000} = 2{,}88" />. **Die Regel zählt die Aktivität beim pH <InlineMath math="6" /> des Duodenums**, und das sind nur <InlineMath math="40\,\%" /> davon.
+- <InlineMath math="8" /> Kapseln mit oder <InlineMath math="8" /> ohne Überzug behandelt die Säure, als würde sie Z nur anhalten. **Der Test zeigt, dass Z nach pH <InlineMath math="2" /> auch zurück bei pH <InlineMath math="8" /> nicht mehr arbeitet**: Nur <InlineMath math="5\,\%" /> überleben.
+- <InlineMath math="7" /> Kapseln mit Überzug rundet <InlineMath math="7{,}2" /> ab. **Sieben Kapseln liefern <InlineMath math="70\,000" /> Einheiten, weniger als die nötigen <InlineMath math="72\,000" />**, also musst du aufrunden.

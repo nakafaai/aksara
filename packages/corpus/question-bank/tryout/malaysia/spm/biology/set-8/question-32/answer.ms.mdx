@@ -1,0 +1,58 @@
+# Pokok hanya baka tulen jika homozigot bagi kedua-dua gen, dan pokok tinggi masih boleh menyembunyikan alel kerdil
+
+Dengan dominan tak lengkap, warna yang kamu lihat menunjukkan genotip warna: merah ialah <InlineMath math="RR" />, merah jambu ialah <InlineMath math="RW" />, putih ialah <InlineMath math="WW" />. Ketinggian berbeza. Pokok tinggi boleh jadi <InlineMath math="TT" /> atau <InlineMath math="Tt" />, jadi **fenotip tidak menunjukkan genotipnya**. Ingat perbezaan ini untuk setiap pernyataan.
+
+## Pernyataan I
+
+Kumpulkan bilangan mengikut ketinggian dan mengikut warna:
+
+<BlockMath math="\begin{aligned}
+\text{tinggi: } & 148:304:151\approx1:2:1, \qquad \text{kerdil: } 49:98:50\approx1:2:1\\
+\text{merah: } & 148:49\approx3:1,\qquad \text{merah jambu: } 304:98\approx3:1,\qquad \text{putih: } 151:50\approx3:1
+\end{aligned}" />
+
+Nisbah warna **tidak bergantung pada ketinggian**, dan nisbah ketinggian **tidak bergantung pada warna**. <InlineMath math="800" /> pokok itu mengikut <InlineMath math="3:6:3:1:2:1" />, iaitu <InlineMath math="(1:2:1)\times(3:1)" />. Pernyataan I betul.
+
+## Pernyataan II
+
+Pokok menghasilkan anak yang semuanya sama dengannya hanya jika pokok itu **homozigot bagi kedua-dua gen**. Pokok merah jambu sentiasa <InlineMath math="RW" />, jadi pokok itu tidak pernah baka tulen. Setiap pokok kerdil ialah <InlineMath math="tt" />, jadi pokok merah kerdil dan putih kerdil ialah baka tulen. Dalam kalangan pokok tinggi, <InlineMath math="TT:Tt=1:2" />, jadi hanya satu pertiga daripada pokok merah tinggi dan putih tinggi ialah baka tulen:
+
+<BlockMath math="\begin{aligned}
+\text{merah kerdil} + \text{putih kerdil} &= 49+50 = 99\\
+\tfrac{1}{3}\times(\text{merah tinggi} + \text{putih tinggi}) &= \tfrac{1}{3}\times(148+151) \approx 100\\
+\text{jumlah} &\approx 199 \approx 200
+\end{aligned}" />
+
+Ini sepadan dengan genotip <InlineMath math="RRTT" />, <InlineMath math="WWTT" />, <InlineMath math="RRtt" /> dan <InlineMath math="WWtt" />, masing-masing <InlineMath math="\tfrac{1}{16}" /> daripada pokok, jadi <InlineMath math="\tfrac{4}{16}\times800=200" />. Pernyataan II betul.
+
+<Chart
+  title={<>Pokok Generasi Kedua yang Baka Tulen</>}
+  bars="apart"
+  categories={["Merah, tinggi", "Merah jambu, tinggi", "Putih, tinggi", "Merah, kerdil", "Merah jambu, kerdil", "Putih, kerdil"]}
+  series={[
+    { label: "Semua pokok", mark: "bar", values: [148, 304, 151, 49, 98, 50] },
+    { label: "Baka tulen", mark: "bar", values: [49, 0, 50, 49, 0, 50] },
+  ]}
+  valueLabel="Bilangan pokok"
+  description={<>Semua pokok merah kerdil dan putih kerdil ialah baka tulen, <InlineMath math="49" /> dan <InlineMath math="50" />. Hanya kira-kira satu pertiga daripada pokok merah tinggi dan putih tinggi baka tulen, kira-kira <InlineMath math="49" /> dan <InlineMath math="50" />, dan tiada pokok merah jambu yang baka tulen. Kira-kira <InlineMath math="200" /> pokok baka tulen kesemuanya.</>}
+/>
+
+## Pernyataan III
+
+Pokok generasi pertama ialah <InlineMath math="RWTt" /> dan pokok putih kerdil ialah <InlineMath math="WWtt" />. Setiap anak menerima <InlineMath math="W" /> daripada induk putih, jadi anak itu <InlineMath math="RW" /> (merah jambu) atau <InlineMath math="WW" /> (putih), **tidak pernah merah**. Anaknya ialah merah jambu tinggi, merah jambu kerdil, putih tinggi dan putih kerdil dalam nisbah <InlineMath math="1:1:1:1" />. Pernyataan III salah.
+
+## Pernyataan IV
+
+Dalam kalangan pokok merah tinggi, satu pertiga ialah <InlineMath math="RRTT" /> dan dua pertiga ialah <InlineMath math="RRTt" />. Hanya pokok <InlineMath math="RRTt" /> menghasilkan anak kerdil, iaitu satu perempat daripada anaknya:
+
+<BlockMath math="P(\text{kerdil}) = \tfrac{1}{3}\times0+\tfrac{2}{3}\times\tfrac{1}{4} = \tfrac{1}{6}" />
+
+Nilai itu **satu perenam, bukan satu perempat**. Pernyataan IV salah.
+
+Jadi pernyataan I dan II betul.
+
+# Kenapa pilihan lain salah
+
+- I sahaja menganggap **setiap pokok merah, putih atau kerdil sebagai baka tulen**, kerana warna atau ketinggiannya kelihatan tulen: <InlineMath math="148+151+49+50\approx400" />. Ini terlupa bahawa dua pertiga daripada pokok merah tinggi dan putih tinggi ialah <InlineMath math="Tt" />.
+- I, II dan IV sahaja menganggap **setiap pokok merah tinggi sebagai <InlineMath math="RRTt" />**, jadi pilihan ini menjangka nisbah <InlineMath math="3:1" /> apabila didebunga sendiri. Satu pertiga daripadanya ialah <InlineMath math="RRTT" /> dan tidak menghasilkan anak kerdil.
+- I, II dan III sahaja membaca kacukan dengan pokok putih kerdil seperti kacukan uji dengan dominan lengkap, yang memberikan empat kelas sama banyak, **terlupa bahawa induk putih hanya boleh memberi <InlineMath math="W" />**, jadi tiada anak yang boleh berbunga merah.

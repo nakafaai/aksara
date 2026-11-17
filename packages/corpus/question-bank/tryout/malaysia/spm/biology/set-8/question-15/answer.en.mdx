@@ -1,0 +1,70 @@
+# A warm skin makes every litre of blood carry less heat, so the skin's share of the heart's limited output must grow
+
+To lose heat, the body first has to move it to the skin, and blood does that job. How much heat one litre carries depends on the **difference between the core and the skin temperature**. When the skin is warm, the difference shrinks, so the skin needs far more blood for the same heat. The heart's output is limited, so the skin then competes with the muscles.
+
+**Heat carried by each litre of blood**:
+
+<BlockMath math="\begin{aligned}
+\text{Room P}: \quad 3.6\times(38.0-33.0) &= 3.6\times5.0 = 18\text{ kJ per L}\\
+\text{Room Q}: \quad 3.6\times(38.5-37.0) &= 3.6\times1.5 = 5.4\text{ kJ per L}
+\end{aligned}" />
+
+**Skin blood flow needed for <InlineMath math="36\text{ kJ}" /> per minute**:
+
+<BlockMath math="\begin{aligned}
+\text{Room P}: \quad \frac{36}{18} &= 2.0\text{ L per minute}\\
+\text{Room Q}: \quad \frac{36}{5.4} &\approx 6.67\text{ L per minute}
+\end{aligned}" />
+
+**Blood left for the skin** after the muscles and the other organs: <InlineMath math="20-14-3 = 3\text{ L}" /> per minute.
+
+<Chart
+  title={<>Blood Flow Needed Against the Heart's Limit</>}
+  bars="apart"
+  categories={["Muscles", "Other organs", "Skin", "Total needed", "Heart's limit"]}
+  series={[
+    { label: "Room P", mark: "bar", values: [14, 3, 2, 19, 20] },
+    { label: "Room Q", mark: "bar", values: [14, 3, 6.67, 23.67, 20] },
+  ]}
+  valueLabel="Blood flow (L per minute)"
+  description={<>In room P, the muscles, the other organs and the skin need <InlineMath math="14" />, <InlineMath math="3" /> and <InlineMath math="2" /> litres per minute, <InlineMath math="19" /> in all, within the heart's <InlineMath math="20" />. In room Q, the skin needs about <InlineMath math="6.67" /> litres, so the total of about <InlineMath math="23.67" /> is far above the limit.</>}
+/>
+
+- I: room P needs <InlineMath math="14+3+2 = 19\text{ L}" /> per minute, within the <InlineMath math="20\text{ L}" /> limit. Statement I is correct.
+- II: the skin gets at most <InlineMath math="3\text{ L}" /> of the <InlineMath math="6.67\text{ L}" /> it needs, and <InlineMath math="\tfrac{3}{6.67}\approx45\%" /> is less than half. Statement II is correct.
+- III: the <InlineMath math="3\text{ L}" /> still carries some heat, so only the rest is stored:
+
+<BlockMath math="\begin{aligned}
+\text{heat carried} &= 3\times5.4 = 16.2\text{ kJ per minute}\\
+\text{heat stored} &= 36-16.2 = 19.8\text{ kJ per minute}\\
+\text{rise in core temperature} &= \frac{19.8}{245}\approx0.081^\circ\text{C per minute}
+\end{aligned}" />
+
+That is less than <InlineMath math="0.12^\circ\text{C}" /> per minute. Statement III is wrong.
+
+<Chart
+  title={<>Heat in Room Q, per Minute</>}
+  bars="apart"
+  categories={["Made", "Carried to skin", "Stored"]}
+  series={[{ label: "Heat", mark: "bar", values: [36, 16.2, 19.8] }]}
+  valueLabel="Heat (kJ per minute)"
+  description={<>In room Q the muscles make <InlineMath math="36\text{ kJ}" /> per minute. The <InlineMath math="3\text{ L}" /> of blood left for the skin carries <InlineMath math="16.2\text{ kJ}" />, so <InlineMath math="19.8\text{ kJ}" /> is stored each minute, which warms the body by about <InlineMath math="0.081^\circ\text{C}" /> per minute.</>}
+/>
+
+- IV: if the muscles needed <InlineMath math="16\text{ L}" />, the heat would rise in the same proportion, and the skin would need more blood too:
+
+<BlockMath math="\begin{aligned}
+\text{heat} &= 36\times\frac{16}{14}\approx41.1\text{ kJ per minute}\\
+\text{skin} &= \frac{41.1}{18}\approx2.29\text{ L per minute}\\
+\text{total} &= 16+3+2.29\approx21.3\text{ L per minute}
+\end{aligned}" />
+
+That is more than the heart's <InlineMath math="20\text{ L}" />. Statement IV is wrong.
+
+So statements I and II are correct. In humid heat, the cyclist must slow down or his core temperature keeps climbing, even though his heart is pumping as hard as it can.
+
+# Why the other options are wrong
+
+- I only gives every litre of blood the same <InlineMath math="18\text{ kJ}" /> in both rooms. Then room Q also needs only <InlineMath math="2\text{ L}" /> for the skin, the <InlineMath math="3\text{ L}" /> left over seems plenty, and no heat seems to be stored. **The warm skin cuts the temperature difference from <InlineMath math="5.0" /> to <InlineMath math="1.5^\circ\text{C}" />**, so each litre carries only <InlineMath math="5.4\text{ kJ}" />.
+- I, II and III only treats the skin as if it lost **no** heat once it gets less blood than it needs, so all <InlineMath math="36\text{ kJ}" /> seems to be stored, <InlineMath math="\tfrac{36}{245}\approx0.15^\circ\text{C}" /> per minute. **The <InlineMath math="3\text{ L}" /> still carries <InlineMath math="16.2\text{ kJ}" /> away**.
+- I and IV only forgets the <InlineMath math="3\text{ L}" /> for the brain, heart and other organs. Then <InlineMath math="16+2.29\approx18.3\text{ L}" /> seems to fit in IV, and room Q seems to leave <InlineMath math="6\text{ L}" /> for the skin, which is <InlineMath math="90\%" /> of its need. **Those organs keep their blood whatever the muscles do**.

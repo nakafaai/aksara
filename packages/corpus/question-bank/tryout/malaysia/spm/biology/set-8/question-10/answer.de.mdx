@@ -1,0 +1,49 @@
+# Vergleiche den Sauerstoff, den jedes Lebewesen einem Liter seines Mediums tatsächlich entnimmt, und rechne dann nach Volumen und nach Masse hoch
+
+Der Sauerstoffgehalt allein, <InlineMath math="7" /> gegen <InlineMath math="210" />, ist nicht das, was das Tier bekommt. Nur ein **Anteil** davon wird aufgenommen, während das Medium an den Kiemen oder den Alveolen vorbeiströmt, also fängst du dort an:
+
+<BlockMath math="\begin{aligned}
+\text{Fisch}: \quad 7\cdot0{,}80 &= 5{,}6\text{ cm}^3\text{ Sauerstoff pro dm}^3\text{ Wasser}\\
+\text{Mensch}: \quad 210\cdot0{,}25 &= 52{,}5\text{ cm}^3\text{ Sauerstoff pro dm}^3\text{ Luft}
+\end{aligned}" />
+
+<Chart
+  title={<>Sauerstoff in <InlineMath math="1\text{ dm}^3" /> Medium und davon aufgenommen</>}
+  bars="apart"
+  categories={["Fisch, Wasser", "Mensch, Luft"]}
+  series={[
+    { label: "Sauerstoff im Medium (cm³)", mark: "bar", values: [7, 210] },
+    { label: "Aufgenommener Sauerstoff (cm³)", mark: "bar", values: [5.6, 52.5] },
+  ]}
+  valueLabel="Sauerstoff (cm³ pro dm³)"
+  description={<>Ein <InlineMath math="\text{dm}^3" /> Wasser enthält <InlineMath math="7\text{ cm}^3" /> Sauerstoff, und der Fisch nimmt <InlineMath math="5{,}6" /> auf. Ein <InlineMath math="\text{dm}^3" /> Luft enthält <InlineMath math="210\text{ cm}^3" />, und der Mensch nimmt <InlineMath math="52{,}5" /> auf. Beim aufgenommenen Sauerstoff liegt der Unterschied beim etwa <InlineMath math="9{,}4" />-Fachen, nicht beim <InlineMath math="30" />-Fachen des Gehalts.</>}
+/>
+
+Rechne das jetzt in das Medium um, das jeder <InlineMath math="\text{cm}^3" /> Sauerstoff kostet, erst nach Volumen, dann nach Masse:
+
+<BlockMath math="\begin{aligned}
+\text{Volumenverhältnis} &= \frac{52{,}5}{5{,}6} \approx 9{,}4\\
+\text{Wasser pro cm}^3\text{ Sauerstoff} &= \frac{1}{5{,}6}\text{ dm}^3\cdot1000\text{ g} \approx 179\text{ g}\\
+\text{Luft pro cm}^3\text{ Sauerstoff} &= \frac{1}{52{,}5}\text{ dm}^3\cdot1{,}2\text{ g} \approx 0{,}023\text{ g}\\
+\text{Massenverhältnis} &= \frac{179}{0{,}023} \approx 7800
+\end{aligned}" />
+
+- I: etwa das <InlineMath math="9{,}4" />-Fache an Volumen. Aussage I stimmt.
+- II: Der Fisch bewegt etwa das <InlineMath math="7800" />-Fache an Masse, nicht das <InlineMath math="830" />-Fache. Aussage II ist falsch.
+- III: <InlineMath math="\tfrac{250}{52{,}5} \approx 4{,}8\text{ dm}^3" /> Luft pro Minute. Aussage III stimmt.
+- IV: Warmes Wasser liefert weniger Sauerstoff pro <InlineMath math="\text{dm}^3" />, also braucht der Fisch **mehr** Wasser, nicht weniger:
+
+<BlockMath math="\begin{aligned}
+\text{jetzt}: \quad \frac{1{,}4}{5{,}6} &= 0{,}25\text{ dm}^3\text{ pro Minute}\\
+\text{warmes Wasser}: \quad \frac{1{,}4}{5\cdot0{,}80} = \frac{1{,}4}{4{,}0} &= 0{,}35\text{ dm}^3\text{ pro Minute}
+\end{aligned}" />
+
+Das sind <InlineMath math="40\,\%" /> mehr Wasser, nicht <InlineMath math="30\,\%" /> weniger. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und III. Wasser ist ein teures Medium: Der Fisch muss einen dichten, schweren Strom für sehr wenig Sauerstoff über seine Kiemen schieben, und deshalb nehmen seine Kiemen einen so großen Anteil dessen auf, was vorbeiströmt.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III teilt nur die Dichten, <InlineMath math="\tfrac{1000}{1{,}2} \approx 830" />, und **vergisst, dass der Fisch pro <InlineMath math="\text{cm}^3" /> Sauerstoff auch etwa das <InlineMath math="9{,}4" />-Fache an Volumen braucht**.
+- Nur I, III und IV multipliziert das Wasser mit <InlineMath math="\tfrac{5}{7} \approx 0{,}7" />, **als ob weniger Sauerstoff im Wasser weniger Pumparbeit bedeutete**, obwohl der Fisch seinen Bedarf durch eine kleinere Zahl teilen muss.
+- Nur III vergleicht die Sauerstoffgehalte, <InlineMath math="\tfrac{210}{7} = 30" />, und verwirft I. **Aufgenommen werden nur <InlineMath math="80\,\%" /> und <InlineMath math="25\,\%" /> dieses Sauerstoffs**, was den Unterschied auf etwa das <InlineMath math="9{,}4" />-Fache schrumpfen lässt.

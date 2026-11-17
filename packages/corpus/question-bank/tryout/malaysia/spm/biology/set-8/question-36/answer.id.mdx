@@ -1,0 +1,46 @@
+# Ubah tiap hitungan menjadi sel hidup dalam biakan, dengan pengencerannya sendiri, sebelum membandingkannya
+
+Kedua hitungan memakai **pengenceran yang berbeda**, jadi angka mentah di kaca preparat tidak bisa langsung dibandingkan. Ubah dulu masing-masing menjadi sel hidup per <InlineMath math="\text{cm}^3" /> biakan. Hanya sel yang tidak berwarna yang hidup.
+
+## Volume yang dihitung
+
+<BlockMath math="5\times(0{,}2\times0{,}2\times0{,}1) = 5\times0{,}004 = 0{,}02\text{ mm}^3" />
+
+## Sel hidup di tiap hitungan
+
+Campuran pertama berisi <InlineMath math="1{,}0" /> dalam <InlineMath math="1{,}0+3{,}0=4{,}0\text{ cm}^3" />, jadi diencerkan <InlineMath math="4" /> kali. Campuran kedua berisi <InlineMath math="1{,}0" /> dalam <InlineMath math="1{,}0+7{,}0=8{,}0\text{ cm}^3" />, jadi diencerkan <InlineMath math="8" /> kali.
+
+<BlockMath math="\begin{aligned}
+\text{hitungan pertama:}\quad \frac{100}{0{,}02}\times1000\times4 &= 2{,}0\times10^{7}\text{ per cm}^3\\
+\text{hitungan kedua:}\quad \frac{200}{0{,}02}\times1000\times8 &= 8{,}0\times10^{7}\text{ per cm}^3
+\end{aligned}" />
+
+Sel biru memberi <InlineMath math="\tfrac{64}{0{,}02}\times1000\times4 = 1{,}28\times10^{7}" /> dan <InlineMath math="\tfrac{32}{0{,}02}\times1000\times8 = 1{,}28\times10^{7}" /> per <InlineMath math="\text{cm}^3" />, **sama di kedua hitungan**, jadi tidak ada sel yang mati selama <InlineMath math="6" /> jam itu.
+
+<Chart
+  title={<>Sel Khamir dalam Biakan</>}
+  bars="apart"
+  categories={["Hitungan pertama", "Hitungan kedua"]}
+  series={[
+    { label: "Sel hidup", mark: "bar", values: [2, 8] },
+    { label: "Sel mati", mark: "bar", values: [1.28, 1.28] },
+  ]}
+  valueLabel="Sel (× 10⁷ per cm³)"
+  description={<>Sel hidup naik dari <InlineMath math="2{,}0\times10^{7}" /> menjadi <InlineMath math="8{,}0\times10^{7}" /> per sentimeter kubik dalam <InlineMath math="6" /> jam, empat kali lipat. Sel mati tetap <InlineMath math="1{,}28\times10^{7}" /> per sentimeter kubik.</>}
+/>
+
+## Waktu penggandaan
+
+<BlockMath math="\frac{8{,}0\times10^{7}}{2{,}0\times10^{7}} = 4 = 2^2" />
+
+Kenaikan empat kali lipat berarti **dua kali penggandaan**, dan keduanya butuh <InlineMath math="6" /> jam:
+
+<BlockMath math="\text{waktu penggandaan} = \frac{6\text{ jam}}{2} = 3\text{ jam}" />
+
+Jadi waktu penggandaannya **<InlineMath math="3" /> jam**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="6" /> jam membandingkan hitungan di kaca preparat secara langsung, <InlineMath math="\tfrac{200}{100} = 2" />, **seolah kedua sampel diencerkan sama**, sehingga terlihat satu kali penggandaan dalam <InlineMath math="6" /> jam. Padahal sampel kedua diencerkan dua kali lebih banyak.
+- <InlineMath math="1{,}5" /> jam **membagi waktu dengan kenaikan empat kali lipat**, <InlineMath math="\tfrac{6}{4}" />, bukan dengan jumlah penggandaan, yaitu <InlineMath math="2" />.
+- <InlineMath math="4" /> jam **ikut menghitung sel biru**. Semua sel naik dari <InlineMath math="3{,}28\times10^{7}" /> menjadi <InlineMath math="9{,}28\times10^{7}" />, sekitar <InlineMath math="2{,}83" /> kali, yaitu <InlineMath math="2^{1{,}5}" />, atau <InlineMath math="1{,}5" /> kali penggandaan dalam <InlineMath math="6" /> jam. Sel mati tidak membelah, jadi sel itu menutupi sebagian pertumbuhan.

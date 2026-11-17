@@ -1,0 +1,53 @@
+# Kenali setiap obat dari apa yang gagal dilakukan pupil dan lensa, lalu bandingkan cahayanya dengan pupil normal yang tepat
+
+Tanpa tetes mata, kedua respons bekerja. Dalam cahaya terang pupil kecil, untuk benda dekat pupil **menyempit sedikit lagi**, dan lensa menebal dari <InlineMath math="3{,}6" /> menjadi <InlineMath math="4{,}0\text{ mm}" />. Setiap obat menghentikan sebagian perubahan ini, dan setiap perubahan yang hilang menunjuk satu otot yang tidak bisa berkontraksi lagi.
+
+## Pernyataan I
+
+Cahaya mengikuti luas pupil, dan luas bertambah sesuai **kuadrat** diameternya. Dengan obat X, pupil <InlineMath math="7{,}5\text{ mm}" /> pada kedua jarak, tetapi pupil normal yang jadi pembandingnya berbeda di tiap jarak:
+
+<BlockMath math="\begin{aligned}
+\text{melihat sejauh 6 m:}\quad \left(\frac{3{,}0}{7{,}5}\right)^2 &= 0{,}4^2 = 0{,}16 = 16\%\\
+\text{melihat sejauh 25 cm:}\quad \left(\frac{2{,}4}{7{,}5}\right)^2 &= 0{,}32^2 \approx 0{,}102 \approx 10\%
+\end{aligned}" />
+
+<Chart
+  title={<>Luas Pupil Tanpa Tetes Mata dan dengan Obat X</>}
+  bars="apart"
+  categories={["Melihat sejauh 6 m", "Melihat sejauh 25 cm"]}
+  series={[
+    { label: "Tanpa tetes mata", mark: "bar", values: [7.07, 4.52] },
+    { label: "Obat X", mark: "bar", values: [44.18, 44.18] },
+  ]}
+  valueLabel="Luas pupil (mm²)"
+  description={<>Tanpa tetes mata, luas pupil <InlineMath math="7{,}07\text{ mm}^2" /> untuk benda jauh dan <InlineMath math="4{,}52\text{ mm}^2" /> untuk benda dekat. Dengan obat X, luasnya tetap <InlineMath math="44{,}18\text{ mm}^2" /> untuk keduanya, jadi selisihnya lebih besar untuk benda dekat.</>}
+/>
+
+Refleks dekat biasanya menyempitkan pupil menjadi <InlineMath math="2{,}4\text{ mm}" />, dan obat X ikut menghentikannya, jadi benda dekat butuh kacamata yang lebih gelap. Kedua batas itu benar. Pernyataan I benar.
+
+## Pernyataan II dan III
+
+Bandingkan setiap obat dengan baris tanpa tetes mata.
+
+<Mermaid
+  title={<>Otot yang Dihambat Tiap Obat</>}
+  description={<>Dengan obat X, pupil tetap lebar dan lensa tetap tipis, jadi otot melingkar iris dan otot siliaris dihambat. Dengan obat Y, pupil menyempit seperti biasa tetapi lensa tetap tipis, jadi hanya otot siliaris yang dihambat. Dengan obat Z, pupil tetap lebar tetapi lensa masih menebal untuk benda dekat, jadi hanya otot melingkar iris yang dihambat.</>}
+  chart={"flowchart TD\n  X[Obat X] --> XP[Pupil tetap 7,5 mm]\n  X --> XL[Lensa tetap 3,6 mm]\n  XP --> XB[Otot melingkar dan siliaris dihambat]\n  XL --> XB\n  Y[Obat Y] --> YP[Pupil menyempit seperti biasa]\n  Y --> YL[Lensa tetap 3,6 mm]\n  YP --> YB[Hanya otot siliaris dihambat]\n  YL --> YB\n  Z[Obat Z] --> ZP[Pupil tetap 7,5 mm]\n  Z --> ZL[Lensa menebal menjadi 4,0 mm]\n  ZP --> ZB[Hanya otot melingkar dihambat]\n  ZL --> ZB"}
+/>
+
+- Pupil menyempit saat **otot melingkar iris** berkontraksi. Dengan obat X dan Z, pupil tetap <InlineMath math="7{,}5\text{ mm}" /> dalam cahaya terang, jadi kedua obat itu menghambat otot melingkar.
+- Lensa menebal untuk benda dekat saat **otot siliaris** berkontraksi dan ligamen suspensori mengendur. Dengan obat X dan Y, lensa tetap <InlineMath math="3{,}6\text{ mm}" />, jadi kedua obat itu menghambat otot siliaris. Dengan obat Z, lensa tetap mencapai <InlineMath math="4{,}0\text{ mm}" />.
+
+Pernyataan II cocok untuk ketiga obat, jadi pernyataan itu benar. Otot radial melebarkan pupil saat berkontraksi. Kalau obat Z atau obat X menghambatnya, pupil akan kecil, bukan <InlineMath math="7{,}5\text{ mm}" />. Pernyataan III salah.
+
+## Pernyataan IV
+
+Dengan obat Z, lensa masih menebal dari <InlineMath math="3{,}6" /> menjadi <InlineMath math="4{,}0\text{ mm}" /> untuk benda dekat, persis seperti tanpa tetes mata, jadi siswa itu bisa memfokuskan benda itu. Iris dan badan siliaris bekerja terpisah, dan **pupil yang lebar tidak menghalangi lensa berubah bentuk**. Pernyataan IV salah.
+
+Jadi pernyataan I dan II benar.
+
+# Mengapa pilihan lain salah
+
+- II saja membandingkan obat X dengan **pupil untuk benda jauh di kedua jarak**, sehingga mengira kacamata <InlineMath math="16\%" /> yang sama cukup untuk benda dekat, lalu menolak I. Tanpa tetes mata, pupil lebih kecil untuk benda dekat, jadi batasnya di sana sekitar <InlineMath math="10\%" />.
+- I dan III saja menukar tugas otot iris, **seolah otot radial menyempitkan pupil**, padahal otot itu melebarkannya.
+- I, II, dan IV saja mengaitkan **pupil yang lebar dengan lensa**, padahal baris obat Z sendiri menunjukkan lensa tetap menebal menjadi <InlineMath math="4{,}0\text{ mm}" />.

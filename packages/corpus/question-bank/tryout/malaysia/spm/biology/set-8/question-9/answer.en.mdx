@@ -1,0 +1,56 @@
+# A late start shifts the curve but not the total, so compare rates and sugar per gram
+
+The paraffin keeps air out, so the yeast respires anaerobically and the gas is carbon dioxide from fermentation. Tube T gives no gas, which shows that the gas comes from the enzymes of living yeast, not from the sugar on its own.
+
+Start with tubes P and Q. Take the rate **after the slow start**, from minute <InlineMath math="20" /> to minute <InlineMath math="40" />, then turn the shortfall at minute <InlineMath math="40" /> into time:
+
+<BlockMath math="\begin{aligned}
+\text{tube P}: \quad \tfrac{14.0-7.0}{20} &= 0.35\text{ cm}^3\text{ per minute}\\
+\text{tube Q}: \quad \tfrac{12.6-5.6}{20} &= 0.35\text{ cm}^3\text{ per minute}\\
+\text{shortfall}: \quad 14.0-12.6 = 1.4\text{ cm}^3, \qquad \tfrac{1.4}{0.35} &= 4\text{ minutes}
+\end{aligned}" />
+
+<Chart
+  title={<>Gas Released by Yeast in Tubes P to S</>}
+  categories={["10 min", "20 min", "30 min", "40 min"]}
+  series={[
+    { label: "P Glucose", mark: "line", values: [3.5, 7, 10.5, 14] },
+    { label: "Q Sucrose", mark: "line", values: [2.1, 5.6, 9.1, 12.6] },
+    { label: "R Sucrose and invertase", mark: "line", values: [3.4, 6.8, 10.2, 13.6] },
+    { label: "S Lactose", mark: "line", values: [0, 0, 0, 0] },
+  ]}
+  valueLabel="Gas collected (cm³)"
+  description={<>Tubes P and Q run parallel at <InlineMath math="0.35\text{ cm}^3" /> per minute after minute <InlineMath math="20" />, with tube Q always <InlineMath math="1.4\text{ cm}^3" /> behind, which is <InlineMath math="4" /> minutes of gas. Tube R, where invertase is added, starts almost level with tube P at <InlineMath math="3.4\text{ cm}^3" /> after <InlineMath math="10" /> minutes. Lactose gives no gas.</>}
+/>
+
+Tube R is the same sucrose with extra invertase. Its gas at minute <InlineMath math="10" /> is <InlineMath math="3.4\text{ cm}^3" />, almost the <InlineMath math="3.5\text{ cm}^3" /> of glucose, so once sucrose is **hydrolysed quickly**, the delay disappears. The delay in tube Q therefore comes from the yeast's own hydrolysis of sucrose, while fermentation of the glucose and fructose runs as fast as with glucose.
+
+Now the final totals. Both tubes hold <InlineMath math="0.5\text{ g}" /> of sugar, but one sucrose molecule gives two hexoses, and each hexose gives two carbon dioxide molecules:
+
+<BlockMath math="\begin{aligned}
+\mathrm{C_{12}H_{22}O_{11}} + \mathrm{H_2O} &\rightarrow \mathrm{C_6H_{12}O_6}\ (\text{glucose}) + \mathrm{C_6H_{12}O_6}\ (\text{fructose})\\
+\mathrm{C_6H_{12}O_6} &\rightarrow 2\mathrm{C_2H_5OH} + 2\mathrm{CO_2}\\
+\text{tube P}: \quad \tfrac{0.5}{180}\times2 &\approx 0.0056\text{ mol of carbon dioxide}\\
+\text{tube Q}: \quad \tfrac{0.5}{342}\times4 &\approx 0.0058\text{ mol of carbon dioxide}
+\end{aligned}" />
+
+The water added in hydrolysis means **the same mass of sucrose holds about** <InlineMath math="\tfrac{4\times180}{2\times342} = \tfrac{720}{684} \approx 1.05" /> times as much fermentable sugar as glucose.
+
+<Mermaid
+  title={<>Which Sugars the Yeast Can Ferment</>}
+  description={<>Invertase hydrolyses sucrose into glucose and fructose, and the yeast ferments both into ethanol and carbon dioxide. Yeast has no lactase, so lactose stays whole. Boiling lactose with dilute hydrochloric acid and then neutralising it hydrolyses it into glucose and galactose, and the yeast ferments the glucose.</>}
+  chart={"flowchart LR\n  S[Sucrose] -->|invertase| GF[Glucose and fructose]\n  GF --> E[Ethanol and carbon dioxide]\n  L[Lactose] -.->|no lactase in yeast| X[No gas]\n  L -->|boiled with acid, then neutralised| GG[Glucose and galactose]\n  GG -->|glucose fermented| E"}
+/>
+
+- I: both tubes release <InlineMath math="0.35\text{ cm}^3" /> per minute from minute <InlineMath math="20" /> to minute <InlineMath math="40" />, and the <InlineMath math="1.4\text{ cm}^3" /> shortfall is what tube P releases in <InlineMath math="4" /> minutes. Statement I is correct.
+- II: <InlineMath math="0.5\text{ g}" /> of sucrose is only <InlineMath math="\tfrac{0.5}{342} \approx 0.0015\text{ mol}" />, about half the <InlineMath math="\tfrac{0.5}{180} \approx 0.0028\text{ mol}" /> of glucose. But each sucrose is hydrolysed into **two** hexoses, so tube Q ferments about <InlineMath math="0.0029\text{ mol}" /> of hexose and finally gives about <InlineMath math="0.0058" /> against <InlineMath math="0.0056\text{ mol}" /> of carbon dioxide, slightly more gas than tube P, not half. Statement II is wrong.
+- III: with extra invertase, sucrose gives gas almost as fast as glucose from the start, so in tube Q the early limit is the hydrolysis of sucrose, not the fermentation of the hexoses. Statement III is correct.
+- IV: lactose is glucose joined to galactose. Boiling with dilute acid breaks that bond, as in the test for non-reducing sugars, and neutralising protects the yeast's enzymes. The yeast's problem is **lactose itself, not glucose**, so it ferments the glucose formed and releases gas. Statement IV is correct.
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- I and III only treats lactose as useless even after acid hydrolysis, **mixing up a missing lactase with missing fermentation enzymes**.
+- I, II, III and IV accepts II by comparing molecules of sucrose with molecules of glucose, about half as many, **forgetting that each sucrose molecule is hydrolysed into two hexoses**.
+- III and IV only compares the totals at minute <InlineMath math="40" />, <InlineMath math="12.6" /> against <InlineMath math="14.0\text{ cm}^3" />, as if sucrose were fermented <InlineMath math="10\%" /> more slowly, **instead of the rates after minute <InlineMath math="20" />**.

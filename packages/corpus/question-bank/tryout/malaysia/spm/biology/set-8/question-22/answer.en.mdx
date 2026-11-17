@@ -1,0 +1,51 @@
+# Each group hides a different part of the carbohydrate budget, so combine them
+
+A leaf's dry mass changes for three reasons at once: photosynthesis adds carbohydrate, respiration uses some up, and the phloem carries some away. The two halves of one leaf start with the same dry mass per area, so the change from 6:00 to 14:00 shows only what happened in those <InlineMath math="8" /> hours. Each group removes one of the three processes:
+
+<Chart
+  title={<>Change in Dry Mass of Each Group in Eight Hours</>}
+  bars="apart"
+  categories={["A, untreated", "B, phloem killed", "C, phloem killed, dark"]}
+  series={[{ label: "Change in dry mass", mark: "bar", values: [48, 96, -24] }]}
+  valueLabel="Change in dry mass (mg per dm²)"
+  description={<>Untreated leaves gain <InlineMath math="48\text{ mg}" /> per <InlineMath math="\text{dm}^2" />. Leaves whose phloem is killed gain <InlineMath math="96\text{ mg}" /> in light and lose <InlineMath math="24\text{ mg}" /> in the dark.</>}
+/>
+
+- Group C makes nothing and exports nothing, so its loss is **respiration alone**: <InlineMath math="\tfrac{24}{8}=3\text{ mg}" /> per <InlineMath math="\text{dm}^2" /> per hour.
+- Group B exports nothing, so its gain is photosynthesis minus respiration.
+- Group A also exports, so its gain is photosynthesis minus respiration minus export.
+
+## Gross photosynthesis
+
+Group B's gain hides the carbohydrate that respiration burned at the same time, so **add the respiration back**:
+
+<BlockMath math="\begin{aligned}
+\text{gross photosynthesis} &= \frac{96+24}{8} = 15\text{ mg carbohydrate per dm}^2\text{ per hour}\\
+\text{carbon dioxide fixed} &= 15\times\frac{264}{180} = 22\text{ mg per dm}^2\text{ per hour}
+\end{aligned}" />
+
+## Export from the untreated leaves
+
+Groups A and B photosynthesise and respire at the same rates, so the only difference between them is **the carbohydrate the phloem carries away**:
+
+<BlockMath math="\begin{aligned}
+\text{export} &= \frac{96-48}{8} = 6\text{ mg per dm}^2\text{ per hour}\\
+\text{share of gross photosynthesis} &= \frac{6}{15}\times100\% = 40\%
+\end{aligned}" />
+
+<Chart
+  title={<>Where the Carbohydrate Made Each Hour Goes</>}
+  bars="apart"
+  categories={["Made by photosynthesis", "Used in respiration", "Exported in phloem", "Kept in the leaf"]}
+  series={[{ label: "Carbohydrate", mark: "bar", values: [(96 + 24) / 8, 24 / 8, (96 - 48) / 8, 48 / 8] }]}
+  valueLabel="Carbohydrate (mg per dm² per hour)"
+  description={<>Each hour, a square decimetre of untreated leaf makes <InlineMath math="15\text{ mg}" /> of carbohydrate. It uses <InlineMath math="3\text{ mg}" /> in respiration, exports <InlineMath math="6\text{ mg}" /> and keeps <InlineMath math="6\text{ mg}" />, and <InlineMath math="3+6+6=15" />.</>}
+/>
+
+The three parts add back up to the <InlineMath math="15\text{ mg}" /> made, which checks the budget. The leaves fix carbon dioxide at <InlineMath math="22\text{ mg}" /> per <InlineMath math="\text{dm}^2" /> per hour, and the untreated leaves export <InlineMath math="40\%" /> of the carbohydrate they make.
+
+# Why the other options are wrong
+
+- <InlineMath math="17.6\text{ mg}" /> and <InlineMath math="50\%" /> takes group B's gain, <InlineMath math="\tfrac{96}{8}=12\text{ mg}" />, as the gross rate, **forgetting the respiration** that group C measures.
+- <InlineMath math="13.2\text{ mg}" /> and <InlineMath math="67\%" /> builds the rate from the untreated group A, <InlineMath math="\tfrac{48+24}{8}=9\text{ mg}" />, **forgetting that group A also exports** sugar.
+- <InlineMath math="22\text{ mg}" /> and <InlineMath math="50\%" /> gets the rate right but divides the export by the net gain of group B, <InlineMath math="12\text{ mg}" />, **instead of the gross rate**.
