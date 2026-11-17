@@ -188,7 +188,7 @@ layer(NodeServices.layer)("authored material metadata", (it) => {
     () =>
       Effect.gen(function* () {
         const checkoutRoot = yield* authoredCheckoutRoot;
-        const entries = yield* decodeMaterialRegistry();
+        const entries = yield* decodeMaterialRegistry({ checkoutRoot });
         const rejected = yield* Effect.forEach(
           entries,
           (entry) =>
