@@ -1,0 +1,257 @@
+export const metadata = {
+  title: "Electromagnetism Notes for Form Five",
+  description:
+    "Form 5 Physics Chapter 4: explain the force on a current-carrying conductor, electromagnetic induction and generators, and work out transformer voltages.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Electromagnetism",
+};
+
+## Electricity and Magnetism Are Linked
+
+**Electromagnetism** studies the link between electric current and magnetic fields. A current-carrying conductor in a magnetic field feels a **force**, <InlineMath math="F = BIL" />, and that's how a motor works. The other way round, a conductor cutting a magnetic field produces an **induced electromotive force**, and that's how a generator works. A transformer changes the voltage of alternating current according to <InlineMath math="\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p}" />. In these notes you change a current and a field, spin a generator at different speeds, change the turns on a transformer, and compare the energy lost in a cable.
+
+When current flows in a wire, a magnetic field forms around the wire. If the wire sits in another magnetic field, the two fields combine into a **catapult field**. The field on one side of the wire gets stronger and on the other side weaker, so the wire is pushed towards the weaker field.
+
+## The Force on a Conductor Carrying Current
+
+The direction of the force comes from **Fleming's left-hand rule**: the first finger points along the magnetic field, the second finger along the current, and the thumb along the force. The size of the force depends on the field strength <InlineMath math="B" />, the current <InlineMath math="I" /> and the length of wire in the field <InlineMath math="L" />:
+
+<BlockMath math="F = BIL" />
+
+Change the field strength and the current below for a wire <InlineMath math="0.050\text{ m}" /> long. The force is directly proportional to the current, so the graph is a straight line through the origin.
+
+<MathVisual
+  title={<>Force on a Current-Carrying Wire against Current</>}
+  description={
+    <>
+      <InlineMath math="F = BIL" /> with <InlineMath math="L = 0.050\text{ m}" />.
+      At <InlineMath math="B = 0.20\text{ T}" /> and{" "}
+      <InlineMath math="I = 3.0\text{ A}" />, the wire feels a force of{" "}
+      <InlineMath math="0.030\text{ N}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 0.15 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "b", min: 0.05, max: 0.5, value: 0.2, step: 0.01, label: "b" },
+      { name: "c", min: 0, max: 6, value: 3, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "force", kind: "function", appearance: "primary", formula: "b*x*0.05", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "c", y: "b*c*0.05", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "newton", formula: "b*c*0.05" },
+    ],
+  }}
+  labels={{
+    b: <>Field strength <InlineMath math="B" /> in <InlineMath math="\text{T}" /></>,
+    c: <>Current <InlineMath math="I" /> in <InlineMath math="\text{A}" /></>,
+    newton: <>Force <InlineMath math="F" /> in <InlineMath math="\text{N}" /></>,
+  }}
+/>
+
+Check the starting reading: <InlineMath math="F = 0.20 \times 3.0 \times 0.050 = 0.030\text{ N}" />.
+
+In a **direct current motor**, a current-carrying coil in a magnetic field feels two opposite forces on its two sides, so the coil turns. The **commutator** reverses the current every half turn so the coil keeps turning the same way. The motor turns faster if the current increases, the magnetic field is stronger, or the coil has more turns.
+
+## Electromagnetic Induction and Generators
+
+When a conductor cuts magnetic field lines, or the magnetic field through a coil changes, an **induced electromotive force** appears. **Faraday's law** says the size of the induced e.m.f. is directly proportional to the rate of change of magnetic flux. **Lenz's law** says the induced current always opposes the change that produces it. The direction of the current in a moving wire comes from **Fleming's right-hand rule**.
+
+Lenz's law is a form of energy conservation. If you push the north pole of a magnet into a coil, the near end of the coil becomes a north pole and pushes the magnet back. You have to do work to push the magnet in, and that work becomes electrical energy.
+
+An **alternating current generator** spins a coil in a magnetic field, so the induced e.m.f. follows a sine wave. Spin the coil faster below: the peak voltage and the frequency both go up, because the flux changes faster.
+
+<MathVisual
+  title={<>Output of an AC Generator at Different Spin Speeds</>}
+  description={
+    <>
+      The induced e.m.f. is <InlineMath math="e = 2s \sin(2\pi s t)" />, where{" "}
+      <InlineMath math="s" /> is the number of turns per second. Doubling the
+      spin speed doubles both the peak voltage and the frequency.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 1, max: 5, value: 2, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "output", kind: "function", appearance: "primary", formula: "2s*sin(2*pi*s*x)", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "2s" },
+      { key: "frequency", formula: "s" },
+    ],
+  }}
+  labels={{
+    s: <>Spin speed in turns per second</>,
+    peak: <>Peak e.m.f. in <InlineMath math="\text{V}" /></>,
+    frequency: <>Frequency in <InlineMath math="\text{Hz}" /></>,
+  }}
+/>
+
+A wind turbine is a big generator. The wind turns the blades, the blades turn the generator coil in a magnetic field, and induction turns kinetic energy into electrical energy. Pick a site for the turbine below and compare the electrical power it generates.
+
+<WindRotorLab
+  title={<>A Wind Turbine at Three Sites</>}
+  description={
+    <>
+      The same turbine with <InlineMath math="40\text{ m}" /> blades in a
+      valley, on a hilltop and on the coast. Faster wind spins the generator
+      faster and gives more power.
+    </>
+  }
+  labels={{
+    chooseSite: "Turbine site",
+    daily: <>Electrical energy per day</>,
+    electric: <>Electrical power</>,
+    sites: { coast: <>Coast</>, hill: <>Hilltop</>, valley: <>Valley</> },
+    speed: <>Rotor spin speed</>,
+    viewLabel: "A wind turbine in a valley, on a hilltop and on the coast",
+    wind: <>Wind power</>,
+  }}
+/>
+
+## A Transformer Changes the Voltage
+
+A **transformer** has two coils, the primary coil and the secondary coil, wound on a soft iron core. Alternating current in the primary coil makes a constantly changing magnetic flux in the core, and that flux induces an e.m.f. in the secondary coil. A transformer **works only with alternating current**, because direct current doesn't make a changing flux.
+
+<BlockMath math="\frac{V_s}{V_p} = \frac{N_s}{N_p}" />
+
+A **step-up** transformer has more secondary turns, so the output voltage is higher. A **step-down** transformer has fewer secondary turns. Change the number of secondary turns below for a <InlineMath math="1200" />-turn primary coil on <InlineMath math="240\text{ V}" />.
+
+<MathVisual
+  title={<>Secondary Voltage of a Transformer against Number of Turns</>}
+  description={
+    <>
+      <InlineMath math="V_s = 240 \times \dfrac{N_s}{1200}" />. A secondary coil
+      of <InlineMath math="60" /> turns gives <InlineMath math="12\text{ V}" />,
+      and <InlineMath math="2400" /> turns give <InlineMath math="480\text{ V}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 2400 }, y: { min: 0, max: 500 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 20, max: 2400, value: 60, step: 20, label: "n" },
+    ],
+    objects: [
+      { id: "secondary", kind: "function", appearance: "primary", formula: "240x/1200", domain: { min: 0, max: 2400 } },
+      { id: "now", kind: "marker", x: "n", y: "240n/1200", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "volt", formula: "240n/1200" },
+    ],
+  }}
+  labels={{
+    n: <>Number of secondary turns <InlineMath math="N_s" /></>,
+    volt: <>Secondary voltage <InlineMath math="V_s" /> in <InlineMath math="\text{V}" /></>,
+  }}
+/>
+
+Try an example. A phone charger uses a transformer with <InlineMath math="1200" /> primary turns and <InlineMath math="60" /> secondary turns on a <InlineMath math="240\text{ V}" /> supply. Calculate the secondary voltage, and the secondary current if the primary current is <InlineMath math="0.10\text{ A}" /> and the transformer is ideal.
+
+<MathContainer>
+<BlockMath math="V_s = 240 \times \frac{60}{1200} = 12\text{ V}" />
+<BlockMath math="V_pI_p = V_sI_s \Rightarrow I_s = \frac{240 \times 0.10}{12} = 2.0\text{ A}" />
+</MathContainer>
+
+Check with power: input <InlineMath math="240 \times 0.10 = 24\text{ W}" /> and output <InlineMath math="12 \times 2.0 = 24\text{ W}" />. An ideal transformer loses no energy, so the voltage falls twenty times and the current rises twenty times.
+
+A real transformer loses some energy through **coil resistance**, **eddy currents** in the core, **hysteresis** and **flux leakage**. A laminated core, thick copper wire and a soft iron core reduce those losses. **Efficiency** is <InlineMath math="\dfrac{P_{\text{output}}}{P_{\text{input}}} \times 100\%" />.
+
+## Transmitting Energy at High Voltage
+
+Energy from a power station travels through cables that have resistance. The power lost as heat in the cables is <InlineMath math="P_{\text{lost}} = I^2R" />. For the same power, a higher voltage means a smaller current, so far less is lost. That's why the **National Grid** uses step-up transformers at the power station and step-down transformers near the users.
+
+Change the transmission voltage below for <InlineMath math="100\text{ kW}" /> sent through a <InlineMath math="2\ \Omega" /> cable. The loss is inversely proportional to the **square of the voltage**.
+
+<MathVisual
+  title={<>Power Lost in a Cable against Transmission Voltage</>}
+  description={
+    <>
+      The current is <InlineMath math="I = \dfrac{100}{V}\text{ A}" /> with{" "}
+      <InlineMath math="V" /> in kilovolts, so the loss is{" "}
+      <InlineMath math="I^2R = \dfrac{20}{V^2}\text{ kW}" />. At{" "}
+      <InlineMath math="1\text{ kV}" />, <InlineMath math="20\text{ kW}" /> is lost.
+      At <InlineMath math="10\text{ kV}" />, only <InlineMath math="0.2\text{ kW}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 20 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 20, value: 1, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "loss", kind: "function", appearance: "primary", formula: "20/x^2", domain: { min: 1, max: 20 } },
+      { id: "now", kind: "marker", x: "k", y: "20/k^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "current", formula: "100/k" },
+      { key: "lost", formula: "20/k^2" },
+    ],
+  }}
+  labels={{
+    k: <>Transmission voltage in <InlineMath math="\text{kV}" /></>,
+    current: <>Current in the cable in <InlineMath math="\text{A}" /></>,
+    lost: <>Power lost in <InlineMath math="\text{kW}" /></>,
+  }}
+/>
+
+Check two readings: at <InlineMath math="1\text{ kV}" />, <InlineMath math="I = 100\text{ A}" /> and the loss is <InlineMath math="100^2 \times 2 = 20\,000\text{ W}" />. At <InlineMath math="10\text{ kV}" />, <InlineMath math="I = 10\text{ A}" /> and the loss is <InlineMath math="10^2 \times 2 = 200\text{ W}" />, a hundred times smaller.
+
+## Common Mistakes about Electromagnetism
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Fleming's right-hand rule is used for a motor. | A motor uses the left-hand rule. The right-hand rule is for generators and induction. | Ask whether the current is supplied or induced. |
+| A transformer can step up a direct current voltage. | Direct current makes no changing flux, so no e.m.f. is induced in the secondary coil. | A transformer works only with alternating current. |
+| A step-up transformer increases the power. | For an ideal transformer, <InlineMath math="V_pI_p = V_sI_s" />. The voltage goes up but the current comes down. | The output power can't exceed the input power. |
+| The induced current helps the magnet move into the coil. | Lenz's law: the induced current opposes the change, so the magnet is pushed back. | If the current helped, energy would appear without work. |
+| A high voltage in the cables increases the energy lost. | For the same power, a high voltage means a small current, and the loss is <InlineMath math="I^2R" />. | Compare <InlineMath math="I^2R" /> at two voltages. |
+
+The first mistake comes up most often. Here's an easy way to remember: **motors use the left hand, generators use the right hand**.
+
+## Practice on Electromagnetism
+
+These questions move from motors to induction and transformers. **Write the equation before you substitute numbers** so the turns ratio doesn't get flipped.
+
+1. State two ways to make a direct current motor turn faster.
+
+2. The north pole of a magnet is pushed into a coil connected to a galvanometer. State the pole at the end of the coil nearest the magnet and explain why.
+
+3. A step-down transformer changes <InlineMath math="240\text{ V}" /> to <InlineMath math="6\text{ V}" />. Its primary coil has <InlineMath math="2000" /> turns. Calculate the number of secondary turns.
+
+4. A transformer has <InlineMath math="V_p = 240\text{ V}" />, <InlineMath math="I_p = 0.50\text{ A}" />, <InlineMath math="V_s = 12\text{ V}" /> and <InlineMath math="I_s = 9.0\text{ A}" />. Calculate its efficiency.
+
+### Solutions
+
+**Solution 1**: The force on each side of the coil is <InlineMath math="F = BIL" />, so increase the **current** in the coil or use a **stronger magnet**. Adding **more turns** to the coil also increases the force, because more wire sits in the field.
+
+**Solution 2**: The near end of the coil becomes a **north pole**. By Lenz's law, the induced current opposes the change that produces it, which is the approaching magnet. The coil's north pole repels the magnet's north pole, so work has to be done to push the magnet in.
+
+**Solution 3**: Rearrange the transformer ratio:
+
+<BlockMath math="N_s = N_p \times \frac{V_s}{V_p} = 2000 \times \frac{6}{240} = 50\text{ turns}" />
+
+Check: the ratio <InlineMath math="\dfrac{50}{2000} = \dfrac{1}{40}" /> equals <InlineMath math="\dfrac{6}{240}" />.
+
+**Solution 4**: Work out the input and output power:
+
+<MathContainer>
+<BlockMath math="P_{\text{input}} = 240 \times 0.50 = 120\text{ W}, \quad P_{\text{output}} = 12 \times 9.0 = 108\text{ W}" />
+<BlockMath math="\text{Efficiency} = \frac{108}{120} \times 100\% = 90\%" />
+</MathContainer>
+
+Check: the missing <InlineMath math="12\text{ W}" /> becomes heat in the coils and core, so the efficiency must be below <InlineMath math="100\%" />.
