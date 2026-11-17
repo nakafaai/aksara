@@ -1,0 +1,29 @@
+# Count doublings with powers of two, then turn a lifespan into a rate
+
+Each round of mitosis doubles the cells, so <InlineMath math="n" /> rounds give <InlineMath math="2^n" />. Write the body's cells as <InlineMath math="35\times10^{12}" /> and use <InlineMath math="2^{10}\approx10^3" /> four times. A population that is fully replaced every <InlineMath math="120" /> days must be made at its **size divided by its lifespan**.
+
+<BlockMath math="3.5\times10^{13}=35\times10^{12}\approx2^5\times2^{40}=2^{45},\qquad \frac{2.5\times10^{13}}{120\times24\times3600}\approx\frac{2.5\times10^{13}}{1.04\times10^{7}}\approx2.4\times10^{6}" />
+
+<Chart
+  title={<>Cells After Each Number of Doublings</>}
+  bars="apart"
+  categories={["Zero", "Ten", "Twenty", "Thirty", "Forty", "Forty-five"]}
+  series={[
+    { label: "Cells", mark: "bar", values: [0, 3, 6, 9, 12, 13.5] },
+  ]}
+  valueLabel="Cells (power of ten)"
+  description={<>Ten doublings give about a thousand cells, twenty about a million, and forty-five about <InlineMath math="3.5\times10^{13}" />, the number in an adult body.</>}
+/>
+
+- I: <InlineMath math="10^{12}\approx2^{40}" /> and <InlineMath math="35\approx2^5" />, so <InlineMath math="3.5\times10^{13}\approx2^{45}" />, about <InlineMath math="45" /> rounds of doubling. Statement I is correct.
+- II: <InlineMath math="120" /> days is about <InlineMath math="1.04\times10^7" /> seconds, and <InlineMath math="2.5\times10^{13}" /> divided by that is about <InlineMath math="2.4\times10^6" /> cells a second. Statement II is correct.
+- III: mitosis gives every cell the same genes. A nerve cell and a muscle cell differ because each switches on its own set of genes as it differentiates. Statement III is correct.
+- IV: a red blood cell has no nucleus, so it cannot divide. New red blood cells come from stem cells in the bone marrow, which divide by mitosis. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and III only rejects II, **the replacement rate set by a <InlineMath math="120" />-day life**.
+- II, III and IV only rejects I and **lets cells without a nucleus divide**.
+- I, II, III and IV accepts IV, **although red blood cells have no nucleus and come from bone marrow stem cells**.

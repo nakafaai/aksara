@@ -1,0 +1,31 @@
+# Every blue bird is heterozygous, so work each cross from that
+
+With **no dominance**, the colour shows the genotype directly: blue always means <InlineMath math="C^BC^W" />. A blue parent passes on <InlineMath math="C^B" /> or <InlineMath math="C^W" /> with equal chance, so a cross of two blue birds splits into all three colours.
+
+<BlockMath math="C^BC^W\times C^BC^W\to\tfrac14\,C^BC^B:\tfrac12\,C^BC^W:\tfrac14\,C^WC^W,\qquad \tfrac12\times40=20" />
+
+<Chart
+  title={<>Chicks of Each Colour from Three Crosses</>}
+  bars="apart"
+  categories={["Black with white", "Blue with blue", "Blue with black"]}
+  series={[
+    { label: "Black", mark: "bar", values: [0, 25, 50] },
+    { label: "Blue", mark: "bar", values: [100, 50, 50] },
+    { label: "White", mark: "bar", values: [0, 25, 0] },
+  ]}
+  valueLabel="Share of chicks (%)"
+  description={<>Black with white gives <InlineMath math="100\%" /> blue. Blue with blue gives <InlineMath math="25\%" /> black, <InlineMath math="50\%" /> blue and <InlineMath math="25\%" /> white. Blue with black gives <InlineMath math="50\%" /> black and <InlineMath math="50\%" /> blue.</>}
+/>
+
+- I: black (<InlineMath math="C^BC^B" />) with white (<InlineMath math="C^WC^W" />) can only give <InlineMath math="C^BC^W" />, so <InlineMath math="100\%" /> blue, while blue with blue gives <InlineMath math="50\%" /> blue. That is twice the share. Statement I is correct.
+- II: half of blue with blue chicks are blue, so about <InlineMath math="20" /> of <InlineMath math="40" />, not <InlineMath math="10" />. The <InlineMath math="10" /> is the share of black or of white. Statement II is wrong.
+- III: blue chicks are <InlineMath math="C^BC^W" /> like their parents, so mating them repeats the same <InlineMath math="\tfrac14:\tfrac12:\tfrac14" /> split, half blue every generation. Blue can never breed true. Statement III is correct.
+- IV: blue with blue gives <InlineMath math="1" /> black to <InlineMath math="2" /> blue to <InlineMath math="1" /> white. A <InlineMath math="3:1" /> ratio would need a dominant allele, and here there is none. Statement IV is wrong.
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I, II and III only accepts II, **taking the share of one pure colour as the share of blue**.
+- III and IV only rejects I and **treats blue as dominant**.
+- I, III and IV only accepts IV, **a dominant ratio that contradicts the three colours in the table**.

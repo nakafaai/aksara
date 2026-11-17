@@ -1,0 +1,29 @@
+# Compare treatments that differ in one ion at a time
+
+Sodium chloride and sodium nitrate share sodium, so any difference between them is due to **chloride**. Dialysis removes free ions, so activity that does not return after dialysis must come from something **bound to the enzyme**.
+
+<Chart
+  title={<>Amylase Activity After Each Treatment</>}
+  bars="apart"
+  categories={["Dialysed", "Dialysed, sodium chloride added", "Dialysed, sodium nitrate added", "Mercury added, then dialysed and chloride added"]}
+  series={[
+    { label: "Activity", mark: "bar", values: [10, 100, 15, 5] },
+  ]}
+  valueLabel="Activity (% of fresh enzyme)"
+  description={<>Dialysis cuts activity to <InlineMath math="10\%" />. Sodium chloride restores <InlineMath math="100\%" />, sodium nitrate only <InlineMath math="15\%" />. After mercury, activity stays at <InlineMath math="5\%" /> even with chloride.</>}
+/>
+
+<BlockMath math="\text{chloride}: 10\%\to100\%,\qquad \text{nitrate}: 10\%\to15\%,\qquad \text{after mercury}: 5\%" />
+
+- I: without chloride the enzyme works at only <InlineMath math="10\%" />, and with chloride back it works at <InlineMath math="100\%" />. A non-protein ion the enzyme needs is a cofactor. Statement I is correct.
+- II: sodium nitrate brings the same sodium but no chloride and gives only <InlineMath math="15\%" />, so chloride is what matters. Statement II is correct.
+- III: dialysis would remove free mercury ions, yet activity stays at <InlineMath math="5\%" /> even with chloride added. The mercury must stay bound, changing the enzyme for good. Statement III is correct.
+- IV: chloride switches the enzyme on and can be removed and replaced. Mercury switches it off permanently. They act in opposite ways. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, **although dialysis cannot restore the mercury-treated enzyme**.
+- II and IV only rejects I and **treats a poison as a cofactor**.
+- I, III and IV only accepts IV and rejects II, **missing the nitrate control that isolates chloride**.

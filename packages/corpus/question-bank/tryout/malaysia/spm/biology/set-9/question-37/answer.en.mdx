@@ -1,0 +1,29 @@
+# Multiply the share kept, once for every generation
+
+The share kept applies to what is left each time, so after <InlineMath math="t" /> generations the variety kept is <InlineMath math="\left(1-\dfrac{1}{2N}\right)^t" />. Subtracting <InlineMath math="5\%" /> ten times would wrongly give <InlineMath math="50\%" />, because each loss is taken from a **smaller remainder**.
+
+<BlockMath math="N=10:\ 0.95^{10}\approx0.60,\qquad N=50:\ 0.99^{10}\approx0.90" />
+
+<Chart
+  title={<>Genetic Variety Kept over Twenty Generations</>}
+  categories={["0", "5", "10", "15", "20"]}
+  series={[
+    { label: "10 breeding animals", mark: "line", values: [100, 77, 60, 46, 36] },
+    { label: "50 breeding animals", mark: "line", values: [100, 95, 90, 86, 82] },
+  ]}
+  valueLabel="Genetic variety kept (%)"
+  description={<>With <InlineMath math="10" /> breeding animals the variety falls to <InlineMath math="60\%" /> after <InlineMath math="10" /> generations and <InlineMath math="36\%" /> after <InlineMath math="20" />. With <InlineMath math="50" /> it falls only to <InlineMath math="90\%" /> and <InlineMath math="82\%" />.</>}
+/>
+
+- I: <InlineMath math="1-\tfrac{1}{20}=0.95" /> each generation, and <InlineMath math="0.95^{10}\approx0.60" />, so about <InlineMath math="60\%" /> is kept. Statement I is correct.
+- II: <InlineMath math="1-\tfrac{1}{100}=0.99" /> each generation, and <InlineMath math="0.99^{10}\approx0.90" />, a loss of about <InlineMath math="10\%" />. Statement II is correct.
+- III: the rule holds only when no animals join from outside. A corridor lets deer from the large patch bring alleles the small one has lost. Statement III is correct.
+- IV: with little variety, the animals are more alike and more often inbred, so harmful recessive alleles show up more and a new disease can strike them all. Steady numbers do not prevent this. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, **the corridor that breaks the rule's condition of no newcomers**.
+- II and IV only rejects I and **treats lost variety as harmless**.
+- I, III and IV only accepts IV and rejects II, **although <InlineMath math="0.99^{10}" /> leaves about <InlineMath math="90\%" />**.

@@ -1,0 +1,26 @@
+# Der Fang darf nie größer sein als der jährliche Zuwachs
+
+Eine Population bleibt nur gleich groß, wenn jährlich nicht mehr Fische entnommen werden, als **Geburten minus Todesfälle** in diesem Jahr ergeben. Der sichere Fang bei jeder Größe ist also der Zuwachs bei dieser Größe, und der größte sichere Fang liegt beim Höchstwert des Zuwachses.
+
+<Chart
+  title={<>Jährlicher Zuwachs der Fischpopulation bei jeder Größe</>}
+  categories={["1000", "3000", "5000", "7000", "9000", "10000"]}
+  series={[
+    { label: "Jährlicher Zuwachs", mark: "line", values: [900, 2100, 2500, 2100, 900, 0] },
+  ]}
+  valueLabel="Zuwachs an Fischen pro Jahr"
+  description={<>Der jährliche Zuwachs steigt von <InlineMath math="900" /> bei <InlineMath math="1000" /> Fischen auf einen Höchstwert von <InlineMath math="2500" /> bei <InlineMath math="5000" /> Fischen und fällt dann auf <InlineMath math="900" /> bei <InlineMath math="9000" /> und auf <InlineMath math="0" /> bei <InlineMath math="10\,000" />.</>}
+/>
+
+- I: Der Zuwachs erreicht <InlineMath math="2500" /> bei <InlineMath math="5000" /> Fischen, der Hälfte der <InlineMath math="10\,000" />, die der See trägt. Aussage I stimmt.
+- II: Bei <InlineMath math="5000" /> Fischen kommen jährlich <InlineMath math="2500" /> hinzu, ein Fang von bis zu <InlineMath math="2500" /> hält die Zahl also stabil. Aussage II stimmt.
+- III: Bei <InlineMath math="9000" /> Fischen kommen nur <InlineMath math="900" /> pro Jahr hinzu. Ein Fang von <InlineMath math="2100" /> entnimmt <InlineMath math="1200" /> mehr als hinzukommen, der Bestand sinkt weiter. Aussage III ist falsch.
+- IV: Bei <InlineMath math="10\,000" /> ist der Zuwachs <InlineMath math="0" />. Konkurrenz um Nahrung und Raum hat die Todesfälle erhöht oder die Geburten gesenkt, bis sie sich ausgleichen. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und IV verwirft II, **den Fang, der genau dem höchsten Zuwachs entspricht**.
+- Nur II und III verwirft I und IV und **übersieht, wo der Zuwachs am größten ist und warum er bei <InlineMath math="10\,000" /> endet**.
+- I, II, III und IV akzeptiert III, **obwohl <InlineMath math="2100" /> mehr ist als die <InlineMath math="900" />, die bei dieser Größe hinzukommen**.

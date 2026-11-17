@@ -1,0 +1,28 @@
+# Jedes Wertepaar als Regelkreis lesen
+
+Thyroxin und TSH halten sich normalerweise gegenseitig stabil. Bewegen sich **beide** in dieselbe Richtung, liegt der Fehler weiter oben in der Hypophyse. Bewegen sie sich **gegenläufig**, funktioniert der Regelkreis, und der Fehler liegt in der Schilddrüse oder ihrer Versorgung.
+
+<Chart
+  title={<>Hormonspiegel dreier Patienten als Vielfaches des Normalwerts</>}
+  bars="apart"
+  categories={["Patient P", "Patient Q", "Patient R"]}
+  series={[
+    { label: "TSH", mark: "bar", values: [4, 0.1, 0.3] },
+    { label: "Thyroxin", mark: "bar", values: [0.5, 3, 0.4] },
+  ]}
+  valueLabel="Vielfaches des Normalwerts"
+  description={<>P hat das Vierfache des normalen TSH und die Hälfte des normalen Thyroxins. Q hat ein Zehntel des normalen TSH und das Dreifache an Thyroxin. R hat beide Werte niedrig.</>}
+/>
+
+- I: Ohne genug Iod kann die Schilddrüse nicht genug Thyroxin bilden, nichts bremst also das TSH. Es steigt auf das Vierfache und treibt die Schilddrüse zu einem Kropf. Aussage I stimmt.
+- II: Qs Thyroxin ist dreifach erhöht und das TSH auf ein Zehntel gefallen, wie die negative Rückkopplung vorhersagt. Qs Schilddrüse arbeitet von selbst zu stark. Aussage II stimmt.
+- III: R hat niedriges Thyroxin, aber auch niedriges TSH. Versagte nur die Schilddrüse, stiege das TSH wie bei P. Niedriges TSH bedeutet, dass die Hypophyse kein Signal sendet. Aussage III stimmt.
+- IV: Q bildet schon zu viel Thyroxin, zusätzliches Iod lieferte den Rohstoff für noch mehr. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft III, **obwohl niedriges TSH bei niedrigem Thyroxin auf die Hypophyse weist**.
+- Nur II und IV verwirft I und **behandelt eine überaktive Schilddrüse mit mehr Iod**.
+- Nur I, III und IV akzeptiert IV und verwirft II und **übersieht die Rückkopplung, die Qs TSH senkt**.

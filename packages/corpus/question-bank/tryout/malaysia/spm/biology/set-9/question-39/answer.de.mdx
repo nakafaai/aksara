@@ -1,0 +1,31 @@
+# Jeden Prozentsatz in Millimeter Regen umrechnen
+
+Jeder Anteil bezieht sich auf dieselben <InlineMath math="2000\text{ mm}" />, zum Vergleich der Mengen wird also multipliziert. Dann jeden Weg verfolgen: Von Blättern gehaltenes Wasser geht **zurück in die Luft**, Abfluss geht **direkt in die Flüsse**, und versickertes Wasser **läuft langsam ab**.
+
+<BlockMath math="0{,}05\times2000=100\text{ mm},\qquad 0{,}40\times2000=800\text{ mm},\qquad \frac{30}{0{,}2}=150" />
+
+<Chart
+  title={<>Wohin zweitausend Millimeter Regen gehen</>}
+  bars="apart"
+  categories={["Wald", "Gerodete Fläche"]}
+  series={[
+    { label: "Von Blättern gehalten und verdunstet", mark: "bar", values: [500, 0] },
+    { label: "Fließt oberflächlich ab", mark: "bar", values: [100, 800] },
+    { label: "Versickert im Boden", mark: "bar", values: [1400, 1200] },
+  ]}
+  valueLabel="Regen (mm pro Jahr)"
+  description={<>Im Wald halten die Blätter <InlineMath math="500" /> mm, <InlineMath math="100" /> mm fließen ab und <InlineMath math="1400" /> mm versickern. Auf gerodetem Land wird nichts gehalten, <InlineMath math="800" /> mm fließen ab und <InlineMath math="1200" /> mm versickern.</>}
+/>
+
+- I: Der Abfluss steigt von <InlineMath math="100\text{ mm}" /> auf <InlineMath math="800\text{ mm}" />, auf das Achtfache. Aussage I stimmt.
+- II: <InlineMath math="30" /> Tonnen gegenüber <InlineMath math="0{,}2" /> Tonnen pro Hektar sind <InlineMath math="150" />-mal so viel Bodenverlust. Aussage II stimmt.
+- III: Der versickernde Anteil fällt von <InlineMath math="70\%" /> auf <InlineMath math="60\%" />, es versickert also weniger, nicht mehr. Bei achtfachem Abfluss, der rasch die Flüsse erreicht, und eingeschwemmtem Boden, der ihr Bett auffüllt, kommen Hochwasser öfter. Aussage III ist falsch.
+- IV: Der Wald gibt jährlich <InlineMath math="500\text{ mm}" /> von seinen Blättern an die Luft zurück, dazu Wasser, das aus tieferem Boden transpiriert wird. Ohne ihn fehlt diese Feuchte, und der Regen vor Ort kann abnehmen. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft IV, **das Wasser, das die Bäume in die Luft zurückgeben**.
+- Nur II, III und IV verwirft I und **liest <InlineMath math="60\%" /> als mehr als <InlineMath math="70\%" />**.
+- Nur I, III und IV verwirft II und **behauptet seltenere Hochwasser trotz achtfachem Abfluss**.

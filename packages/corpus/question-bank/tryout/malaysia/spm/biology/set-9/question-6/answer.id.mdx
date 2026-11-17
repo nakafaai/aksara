@@ -1,0 +1,29 @@
+# Hitung penggandaannya, lalu ubah menjadi waktu
+
+Tiap penggandaan mengalikan sel dengan <InlineMath math="2" />, jadi sepuluh penggandaan mengalikannya sekitar <InlineMath math="1000" />. Tumor tumbuh **tanpa terlihat hampir sepanjang hidupnya**, karena penggandaan awal hanya menambah sedikit sel.
+
+<BlockMath math="2^{30}\approx10^9,\qquad 30\times60=1800\text{ hari}\approx4{,}9\text{ tahun},\qquad 2^{10}\approx1000" />
+
+<Chart
+  title={<>Sel Tumor setelah Tiap Jumlah Penggandaan</>}
+  bars="apart"
+  categories={["Sepuluh", "Dua puluh", "Tiga puluh", "Empat puluh"]}
+  series={[
+    { label: "Sel", mark: "bar", values: [3, 6, 9, 12] },
+  ]}
+  valueLabel="Sel (pangkat sepuluh)"
+  description={<>Sepuluh penggandaan memberi seribu sel, dua puluh sejuta, tiga puluh satu miliar, ukuran yang mulai terdeteksi dokter, dan empat puluh satu triliun.</>}
+/>
+
+- I: <InlineMath math="2^{30}\approx10^9" />, jumlah sel di tumor yang baru bisa terdeteksi. Pernyataan I benar.
+- II: <InlineMath math="30" /> penggandaan masing-masing <InlineMath math="60" /> hari butuh <InlineMath math="1800" /> hari, sekitar <InlineMath math="5" /> tahun. Pernyataan II benar.
+- III: sepuluh penggandaan mengalikan sel dengan <InlineMath math="2^{10}\approx1000" />, bukan sepuluh. Tumor yang terdeteksi pada <InlineMath math="1\text{ cm}^3" /> akan mencapai sekitar <InlineMath math="1" /> liter. Pernyataan III salah.
+- IV: sel normal hanya membelah saat diberi sinyal dan berhenti saat diperintah. Mutasi pada gen pengendali siklus sel membuang rem ini, jadi mitosis berlanjut tanpa kendali. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak IV, **hilangnya kendali siklus sel di balik setiap tumor**.
+- II, III, dan IV saja menolak I dan menerima III, **mengalikan dengan <InlineMath math="10" />, bukan <InlineMath math="2" /> pangkat <InlineMath math="10" />**.
+- I, III, dan IV saja menerima III dan menolak II, padahal <InlineMath math="30\times60" /> hari **sekitar <InlineMath math="5" /> tahun**.

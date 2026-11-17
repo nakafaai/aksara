@@ -1,0 +1,29 @@
+# Compare each difference with the size of the uncertainty
+
+An uncertainty is the same **absolute** amount whatever is measured, so it matters far more for small volumes. A difference between two results is meaningful only if it is larger than the uncertainties of both readings together.
+
+<BlockMath math="\frac{0.5}{5.0}=10\%,\qquad \frac{0.5}{50.0}=1\%,\qquad \frac{0.05}{5.0}=1\%,\qquad \pm0.5\pm0.5\Rightarrow\text{up to }1.0\text{ cm}^3" />
+
+<Chart
+  title={<>Percentage Uncertainty of Each Reading</>}
+  bars="apart"
+  categories={["Five cubic centimetres, cylinder", "Fifty cubic centimetres, cylinder", "Five cubic centimetres, burette"]}
+  series={[
+    { label: "Uncertainty", mark: "bar", values: [10, 1, 1] },
+  ]}
+  valueLabel="Uncertainty (%)"
+  description={<>The same <InlineMath math="0.5\text{ cm}^3" /> uncertainty is <InlineMath math="10\%" /> of a <InlineMath math="5\text{ cm}^3" /> reading but only <InlineMath math="1\%" /> of <InlineMath math="50\text{ cm}^3" />. A burette reading <InlineMath math="5\text{ cm}^3" /> to <InlineMath math="0.05\text{ cm}^3" /> also gives <InlineMath math="1\%" />.</>}
+/>
+
+- I: <InlineMath math="0.5" /> out of <InlineMath math="5.0" /> is <InlineMath math="10\%" />, and <InlineMath math="0.5" /> out of <InlineMath math="50.0" /> is <InlineMath math="1\%" />. Statement I is correct.
+- II: a burette read to <InlineMath math="0.05\text{ cm}^3" /> gives <InlineMath math="\tfrac{0.05}{5.0}=1\%" /> for the same <InlineMath math="5\text{ cm}^3" />. Statement II is correct.
+- III: averaging repeats cancels readings that scatter up and down, but a scale that is always <InlineMath math="0.3\text{ cm}^3" /> too high shifts every reading the same way. Statement III is correct.
+- IV: each reading may be off by <InlineMath math="0.5\text{ cm}^3" />, so two readings can differ by up to <InlineMath math="1.0\text{ cm}^3" /> by chance alone. A difference of <InlineMath math="0.5" /> is smaller than that, so it shows no clear effect. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, **although averaging cannot remove an error that is always the same way**.
+- II and IV only rejects I and **trusts a difference smaller than the combined uncertainty**.
+- I, III and IV only accepts IV and rejects II, **although a finer scale shrinks the uncertainty**.

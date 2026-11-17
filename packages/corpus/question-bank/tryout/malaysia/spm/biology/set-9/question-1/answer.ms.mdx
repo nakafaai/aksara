@@ -1,0 +1,29 @@
+# Bandingkan setiap beza dengan saiz ketakpastian
+
+Ketakpastian ialah jumlah **mutlak** yang sama walau apa pun yang diukur, jadi ia jauh lebih penting bagi isi padu kecil. Beza antara dua keputusan hanya bermakna jika ia lebih besar daripada ketakpastian kedua-dua bacaan bersama.
+
+<BlockMath math="\frac{0.5}{5.0}=10\%,\qquad \frac{0.5}{50.0}=1\%,\qquad \frac{0.05}{5.0}=1\%,\qquad \pm0.5\pm0.5\Rightarrow\text{hingga }1.0\text{ cm}^3" />
+
+<Chart
+  title={<>Peratusan Ketakpastian Setiap Bacaan</>}
+  bars="apart"
+  categories={["Lima sentimeter padu, silinder", "Lima puluh sentimeter padu, silinder", "Lima sentimeter padu, buret"]}
+  series={[
+    { label: "Ketakpastian", mark: "bar", values: [10, 1, 1] },
+  ]}
+  valueLabel="Ketakpastian (%)"
+  description={<>Ketakpastian <InlineMath math="0.5\text{ cm}^3" /> yang sama ialah <InlineMath math="10\%" /> daripada bacaan <InlineMath math="5\text{ cm}^3" /> tetapi hanya <InlineMath math="1\%" /> daripada <InlineMath math="50\text{ cm}^3" />. Buret yang membaca <InlineMath math="5\text{ cm}^3" /> hingga <InlineMath math="0.05\text{ cm}^3" /> juga memberi <InlineMath math="1\%" />.</>}
+/>
+
+- I: <InlineMath math="0.5" /> daripada <InlineMath math="5.0" /> ialah <InlineMath math="10\%" />, dan <InlineMath math="0.5" /> daripada <InlineMath math="50.0" /> ialah <InlineMath math="1\%" />. Pernyataan I betul.
+- II: buret yang dibaca hingga <InlineMath math="0.05\text{ cm}^3" /> memberi <InlineMath math="\tfrac{0.05}{5.0}=1\%" /> bagi <InlineMath math="5\text{ cm}^3" /> yang sama. Pernyataan II betul.
+- III: purata ulangan membatalkan bacaan yang berselerak ke atas dan ke bawah, tetapi skala yang sentiasa <InlineMath math="0.3\text{ cm}^3" /> terlalu tinggi menganjakkan setiap bacaan ke arah yang sama. Pernyataan III betul.
+- IV: setiap bacaan mungkin tersasar <InlineMath math="0.5\text{ cm}^3" />, jadi dua bacaan boleh berbeza sehingga <InlineMath math="1.0\text{ cm}^3" /> secara kebetulan. Beza <InlineMath math="0.5" /> lebih kecil daripada itu, jadi ia tidak menunjukkan kesan yang jelas. Pernyataan IV salah.
+
+Jadi pernyataan I, II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- I dan II sahaja menolak III, **walhal purata tidak dapat membuang ralat yang sentiasa ke arah yang sama**.
+- II dan IV sahaja menolak I dan **mempercayai beza yang lebih kecil daripada gabungan ketakpastian**.
+- I, III dan IV sahaja menerima IV dan menolak II, **walhal skala yang lebih halus mengecilkan ketakpastian**.

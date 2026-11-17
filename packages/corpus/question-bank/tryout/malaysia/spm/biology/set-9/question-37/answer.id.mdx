@@ -1,0 +1,29 @@
+# Kalikan bagian yang tersisa, sekali untuk tiap generasi
+
+Bagian yang tersisa berlaku pada sisa setiap kali, jadi setelah <InlineMath math="t" /> generasi keragaman yang tersisa adalah <InlineMath math="\left(1-\dfrac{1}{2N}\right)^t" />. Mengurangkan <InlineMath math="5\%" /> sepuluh kali akan keliru memberi <InlineMath math="50\%" />, karena tiap kehilangan diambil dari **sisa yang makin kecil**.
+
+<BlockMath math="N=10:\ 0{,}95^{10}\approx0{,}60,\qquad N=50:\ 0{,}99^{10}\approx0{,}90" />
+
+<Chart
+  title={<>Keragaman Genetik yang Tersisa selama Dua Puluh Generasi</>}
+  categories={["0", "5", "10", "15", "20"]}
+  series={[
+    { label: "10 hewan pembiak", mark: "line", values: [100, 77, 60, 46, 36] },
+    { label: "50 hewan pembiak", mark: "line", values: [100, 95, 90, 86, 82] },
+  ]}
+  valueLabel="Keragaman genetik tersisa (%)"
+  description={<>Dengan <InlineMath math="10" /> hewan pembiak keragamannya turun ke <InlineMath math="60\%" /> setelah <InlineMath math="10" /> generasi dan <InlineMath math="36\%" /> setelah <InlineMath math="20" />. Dengan <InlineMath math="50" /> hanya turun ke <InlineMath math="90\%" /> dan <InlineMath math="82\%" />.</>}
+/>
+
+- I: <InlineMath math="1-\tfrac{1}{20}=0{,}95" /> tiap generasi, dan <InlineMath math="0{,}95^{10}\approx0{,}60" />, jadi sekitar <InlineMath math="60\%" /> tersisa. Pernyataan I benar.
+- II: <InlineMath math="1-\tfrac{1}{100}=0{,}99" /> tiap generasi, dan <InlineMath math="0{,}99^{10}\approx0{,}90" />, kehilangan sekitar <InlineMath math="10\%" />. Pernyataan II benar.
+- III: aturan itu hanya berlaku bila tidak ada hewan yang masuk dari luar. Koridor membuat rusa dari petak besar membawa alel yang sudah hilang dari petak kecil. Pernyataan III benar.
+- IV: dengan keragaman yang sedikit, hewan makin mirip dan lebih sering kawin sedarah, jadi alel resesif berbahaya lebih sering muncul dan penyakit baru bisa menyerang semuanya. Jumlah yang tetap tidak mencegahnya. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menolak III, **koridor yang mematahkan syarat aturan bahwa tidak ada pendatang**.
+- II dan IV saja menolak I dan **menganggap hilangnya keragaman tidak berbahaya**.
+- I, III, dan IV saja menerima IV dan menolak II, **padahal <InlineMath math="0{,}99^{10}" /> menyisakan sekitar <InlineMath math="90\%" />**.
