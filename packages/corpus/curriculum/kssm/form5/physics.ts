@@ -82,7 +82,33 @@ export const kssmForm5PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-physics-nuclear-physics-nuclear-physics",
+        level: "lesson",
+        materialKeys: ["lesson.physics.nuclear-physics"],
+        order: 10,
+      }),
+    ],
     key: "form-5-physics-nuclear-physics",
+    materialCard: {
+      de: {
+        description: "Stell Zerfallsgleichungen auf und berechne Kernenergie.",
+        title: "Kernphysik",
+      },
+      en: {
+        description: "Write decay equations and calculate nuclear energy.",
+        title: "Nuclear Physics",
+      },
+      id: {
+        description: "Tulis persamaan peluruhan dan hitung energi nuklir.",
+        title: "Fisika Inti",
+      },
+      ms: {
+        description: "Tulis persamaan reputan dan kira tenaga nuklear.",
+        title: "Fizik Nuklear",
+      },
+    },
     order: 60,
     translations: {
       de: { routeSlug: "kernphysik", title: "Kernphysik" },
