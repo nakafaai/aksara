@@ -1,23 +1,25 @@
-# The sandbag starts with the balloon's upward velocity
+# Take the reaction distance off first, then brake over what is left
 
-At the moment it is let go, the sandbag is **moving upwards at <InlineMath math="5.0\text{ m s}^{-1}" />**, the same as the balloon. It rises a little, stops, then falls past its starting point to the ground. Take upwards as positive, so the ground is a displacement of <InlineMath math="-40\text{ m}" />, and solve the quadratic for the positive time.
+During the reaction time the car still moves at full speed, so only the distance **left after reacting** is available for braking. That fixes the deceleration through <InlineMath math="v^2=u^2-2as" />. At the higher speed the reaction distance is **longer**, which leaves even less room to brake, so the car cannot stop.
 
 <Chart
-  title={<>Height of the Sandbag after It Is Let Go</>}
-  categories={["0 s", "0.5 s", "1.0 s", "2.0 s", "3.0 s", "3.4 s"]}
+  title={<>Speed of the Faster Car Against Distance Travelled</>}
+  categories={["0 m", "18.75 m", "30 m", "40 m", "50 m"]}
   series={[
-    { label: "Height", mark: "line", values: [40, 41.25, 40, 30, 10, 0] },
+    { label: "Speed", mark: "line", values: [25, 25, 22.3, 19.5, 16.4] },
   ]}
-  valueLabel="Height (m)"
-  description={<>The sandbag first rises from <InlineMath math="40" /> m to <InlineMath math="41.25" /> m at <InlineMath math="0.5" /> s, falls back to <InlineMath math="40" /> m at <InlineMath math="1.0" /> s and reaches the ground at about <InlineMath math="3.4" /> s.</>}
+  valueLabel="Speed (m/s)"
+  description={<>At <InlineMath math="25\text{ m s}^{-1}" /> the car covers <InlineMath math="18.75\text{ m}" /> before braking starts, then slows at <InlineMath math="5.7\text{ m s}^{-2}" /> over the remaining <InlineMath math="31.25\text{ m}" /> and still hits the obstacle at about <InlineMath math="16\text{ m s}^{-1}" />.</>}
 />
 
-<BlockMath math="-40=5.0t-5t^2\ \Rightarrow\ t^2-t-8=0\ \Rightarrow\ t=\frac{1+\sqrt{33}}{2}\approx3.37\text{ s},\qquad v=5.0-10(3.37)\approx-28.7\text{ m s}^{-1}" />
+<BlockMath math="s_r=20(0.75)=15\text{ m},\qquad a=\frac{20^2}{2(50-15)}=\frac{400}{70}\approx5.7\text{ m s}^{-2}" />
 
-Check with energy: <InlineMath math="v^2=5.0^2+2(10)(40)=825" />, so <InlineMath math="v\approx28.7\text{ m s}^{-1}" />. The sandbag lands after about <InlineMath math="3.4\text{ s}" /> at about <InlineMath math="29\text{ m s}^{-1}" />.
+<BlockMath math="s_r'=25(0.75)=18.75\text{ m},\qquad v^2=25^2-2\left(\tfrac{400}{70}\right)(50-18.75)=625-357\approx268,\qquad v\approx16\text{ m s}^{-1}" />
+
+The car needs about <InlineMath math="5.7\text{ m s}^{-2}" /> to stop within the <InlineMath math="35\text{ m}" /> left after reacting. At <InlineMath math="25\text{ m s}^{-1}" /> only <InlineMath math="31.25\text{ m}" /> remains, and the car is still doing about <InlineMath math="16\text{ m s}^{-1}" /> when it reaches the tree.
 
 # Why the other options are wrong
 
-- <InlineMath math="2.8\text{ s}" /> and <InlineMath math="28\text{ m s}^{-1}" /> treat the sandbag as **starting from rest**, ignoring the balloon's upward motion.
-- <InlineMath math="2.4\text{ s}" /> takes the <InlineMath math="5.0\text{ m s}^{-1}" /> as **downwards**, which gives the right landing speed but too short a time.
-- <InlineMath math="34\text{ m s}^{-1}" /> uses **<InlineMath math="v=gt" />**, as if the sandbag had fallen from rest for the whole <InlineMath math="3.4\text{ s}" />.
+- <InlineMath math="4.0\text{ m s}^{-2}" /> **ignores the reaction distance** and brakes over the full <InlineMath math="50\text{ m}" />.
+- <InlineMath math="15\text{ m s}^{-1}" /> keeps the **old reaction distance of <InlineMath math="15\text{ m}" />** for the faster car, although it travels farther before braking.
+- <InlineMath math="21\text{ m s}^{-1}" /> drops the **factor of <InlineMath math="2" />** in <InlineMath math="v^2=u^2-2as" /> for the second part.

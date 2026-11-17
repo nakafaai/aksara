@@ -1,24 +1,26 @@
-# Gaya adalah momentum yang hilang dari air tiap detik
+# Gayanya adalah momentum yang diberikan sabuk kepada pasir tiap detik
 
-Menurut hukum Newton kedua, gaya pada pelat sama dengan **laju perubahan momentum** air, dan membalikkan air mengubah kecepatannya sebesar **jumlah** kedua kelajuan. Lewat nosel yang sama, pancaran yang lebih cepat juga membawa **lebih banyak massa tiap detik**, sebanding dengan kelajuannya.
+Tiap detik sabuk harus membawa <InlineMath math="20\text{ kg}" /> pasir dari **kecepatan mendatar nol** ke <InlineMath math="1{,}5\text{ m s}^{-1}" />. Gaya adalah laju perubahan momentum, jadi gaya tambahan motor adalah momentum yang diberikan tiap detik. Daya adalah gaya itu dikali kecepatan sabuk. Membandingkannya dengan energi kinetik yang diperoleh pasir tiap detik menunjukkan bahwa **hanya separuh** daya menjadi gerak: sisanya menjadi kalor saat butir pasir tergelincir sebelum mencapai kecepatan sabuk.
 
 <Chart
-  title={<>Gaya dari Pancaran dalam Tiap Keadaan</>}
+  title={<>Ke Mana Daya Motor Pergi Tiap Detik</>}
   bars="apart"
-  categories={["Dinding datar, 15 m/s", "Pelat lengkung, 15 m/s", "Dinding datar, 30 m/s"]}
+  categories={["Energi kinetik pasir", "Kalor akibat tergelincir"]}
   series={[
-    { label: "Gaya", mark: "bar", values: [30, 50, 120] },
+    { label: "Daya", mark: "bar", values: [22.5, 22.5] },
   ]}
-  valueLabel="Gaya (N)"
-  description={<>Dinding datar menerima <InlineMath math="30" /> N. Pelat lengkung yang membalikkan air menerima <InlineMath math="50" /> N, dan dinding datar menerima <InlineMath math="120" /> N saat kelajuan lewat nosel yang sama berlipat dua.</>}
+  valueLabel="Daya (W)"
+  description={<>Dari <InlineMath math="45" /> W yang diberikan motor, <InlineMath math="22{,}5" /> W menjadi energi kinetik pasir dan <InlineMath math="22{,}5" /> W sisanya adalah kalor yang timbul saat pasir tergelincir di sabuk.</>}
 />
 
-<BlockMath math="F_{\text{pelat}}=\frac{m}{t}\,\Delta v=2{,}0\times(15+10)=50\text{ N},\qquad F_{\text{dinding},30}=\frac{m}{t}\,v=4{,}0\times30=120\text{ N}" />
+<BlockMath math="\dot m=\frac{1200\text{ kg}}{60\text{ s}}=20\text{ kg s}^{-1},\qquad F=\dot m\,v=20\times1{,}5=30\text{ N},\qquad P=Fv=30\times1{,}5=45\text{ W}" />
 
-Pada <InlineMath math="15\text{ m s}^{-1}" />, dinding datar menghentikan <InlineMath math="2{,}0\text{ kg}" /> per detik dari <InlineMath math="15\text{ m s}^{-1}" />, yang butuh <InlineMath math="30\text{ N}" />. Pelat lengkung membalikkan arah air, perubahan <InlineMath math="25\text{ m s}^{-1}" />, jadi <InlineMath math="50\text{ N}" />. Pada <InlineMath math="30\text{ m s}^{-1}" /> nosel mengalirkan <InlineMath math="4{,}0\text{ kg}" /> per detik, masing-masing dihentikan dari <InlineMath math="30\text{ m s}^{-1}" />, jadi gayanya empat kali, <InlineMath math="120\text{ N}" />.
+<BlockMath math="\frac{\Delta E_k}{t}=\tfrac12\dot m\,v^2=\tfrac12(20)(1{,}5)^2=22{,}5\text{ W},\qquad \frac{22{,}5}{45}=50\%" />
+
+Motor mendorong dengan gaya tambahan <InlineMath math="30\text{ N}" /> dan memberi <InlineMath math="45\text{ W}" />. Pasir hanya memperoleh energi kinetik <InlineMath math="22{,}5\text{ W}" />, jadi <InlineMath math="50\%" /> menjadi gerak dan <InlineMath math="50\%" /> menjadi kalor. Separuh itu bukan kebetulan: <InlineMath math="\tfrac12\dot mv^2" /> selalu separuh dari <InlineMath math="\dot mv\cdot v" />.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="10\text{ N}" /> mengambil perubahan kecepatan sebagai **<InlineMath math="15-10" />**, mengabaikan bahwa air berbalik arah.
-- <InlineMath math="60\text{ N}" /> melipatduakan kelajuan tetapi **mempertahankan aliran massa <InlineMath math="2{,}0\text{ kg}" /> per detik**, padahal nosel yang sama kini mengalirkan dua kali lipat air.
-- <InlineMath math="30\text{ N}" /> adalah gaya pada **dinding datar**, bukan pada pelat yang membalikkan air.
+- <InlineMath math="100\%" /> menganggap **semua usaha menjadi energi kinetik**, padahal butir pasir tergelincir di sabuk sampai kecepatannya sama, dan gesekan itu menghasilkan kalor.
+- <InlineMath math="15\text{ N}" /> berangkat dari **energi kinetik per detik**, <InlineMath math="22{,}5\text{ W}" />, lalu dibagi kecepatan, jadi kalornya terlewat dan gayanya hanya separuh.
+- <InlineMath math="200\text{ N}" /> memakai **berat pasir yang jatuh tiap detik**, padahal sabuk hanya perlu memberi momentum mendatar, dan berat bekerja tegak.

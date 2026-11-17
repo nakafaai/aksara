@@ -1,23 +1,25 @@
-# Karung pasir mulai dengan kecepatan naik balon
+# Kurangi jarak reaksi dulu, lalu mengerem sepanjang sisanya
 
-Saat dilepas, karung pasir **bergerak naik pada <InlineMath math="5{,}0\text{ m s}^{-1}" />**, sama dengan balon. Karung naik sedikit, berhenti, lalu jatuh melewati titik awalnya sampai ke tanah. Ambil arah ke atas positif, jadi tanah adalah perpindahan <InlineMath math="-40\text{ m}" />, lalu selesaikan persamaan kuadrat untuk waktu yang positif.
+Selama waktu reaksi mobil masih melaju dengan kecepatan penuh, jadi hanya jarak **yang tersisa setelah bereaksi** yang bisa dipakai untuk mengerem. Itu menentukan perlambatan lewat <InlineMath math="v^2=u^2-2as" />. Pada kecepatan lebih tinggi, jarak reaksinya **lebih panjang**, menyisakan ruang mengerem yang lebih sedikit, jadi mobil tidak bisa berhenti.
 
 <Chart
-  title={<>Ketinggian Karung Pasir setelah Dilepas</>}
-  categories={["0 s", "0,5 s", "1,0 s", "2,0 s", "3,0 s", "3,4 s"]}
+  title={<>Kecepatan Mobil yang Lebih Cepat Terhadap Jarak Tempuh</>}
+  categories={["0 m", "18,75 m", "30 m", "40 m", "50 m"]}
   series={[
-    { label: "Ketinggian", mark: "line", values: [40, 41.25, 40, 30, 10, 0] },
+    { label: "Kecepatan", mark: "line", values: [25, 25, 22.3, 19.5, 16.4] },
   ]}
-  valueLabel="Ketinggian (m)"
-  description={<>Karung pasir mula-mula naik dari <InlineMath math="40" /> m ke <InlineMath math="41{,}25" /> m pada <InlineMath math="0{,}5" /> s, turun lagi ke <InlineMath math="40" /> m pada <InlineMath math="1{,}0" /> s, dan mencapai tanah sekitar <InlineMath math="3{,}4" /> s.</>}
+  valueLabel="Kecepatan (m/s)"
+  description={<>Pada <InlineMath math="25\text{ m s}^{-1}" /> mobil menempuh <InlineMath math="18{,}75\text{ m}" /> sebelum pengereman dimulai, lalu melambat <InlineMath math="5{,}7\text{ m s}^{-2}" /> sepanjang <InlineMath math="31{,}25\text{ m}" /> sisanya dan tetap menabrak rintangan pada sekitar <InlineMath math="16\text{ m s}^{-1}" />.</>}
 />
 
-<BlockMath math="-40=5{,}0t-5t^2\ \Rightarrow\ t^2-t-8=0\ \Rightarrow\ t=\frac{1+\sqrt{33}}{2}\approx3{,}37\text{ s},\qquad v=5{,}0-10(3{,}37)\approx-28{,}7\text{ m s}^{-1}" />
+<BlockMath math="s_r=20(0{,}75)=15\text{ m},\qquad a=\frac{20^2}{2(50-15)}=\frac{400}{70}\approx5{,}7\text{ m s}^{-2}" />
 
-Periksa dengan energi: <InlineMath math="v^2=5{,}0^2+2(10)(40)=825" />, jadi <InlineMath math="v\approx28{,}7\text{ m s}^{-1}" />. Karung mendarat setelah sekitar <InlineMath math="3{,}4\text{ s}" /> pada sekitar <InlineMath math="29\text{ m s}^{-1}" />.
+<BlockMath math="s_r'=25(0{,}75)=18{,}75\text{ m},\qquad v^2=25^2-2\left(\tfrac{400}{70}\right)(50-18{,}75)=625-357\approx268,\qquad v\approx16\text{ m s}^{-1}" />
+
+Mobil butuh sekitar <InlineMath math="5{,}7\text{ m s}^{-2}" /> untuk berhenti dalam <InlineMath math="35\text{ m}" /> yang tersisa setelah bereaksi. Pada <InlineMath math="25\text{ m s}^{-1}" /> hanya tersisa <InlineMath math="31{,}25\text{ m}" />, dan mobil masih melaju sekitar <InlineMath math="16\text{ m s}^{-1}" /> saat sampai di pohon.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="2{,}8\text{ s}" /> dan <InlineMath math="28\text{ m s}^{-1}" /> menganggap karung **mulai dari diam**, mengabaikan gerak naik balon.
-- <InlineMath math="2{,}4\text{ s}" /> mengambil <InlineMath math="5{,}0\text{ m s}^{-1}" /> sebagai **ke bawah**, yang memberi kelajuan mendarat yang benar tetapi waktu yang terlalu singkat.
-- <InlineMath math="34\text{ m s}^{-1}" /> memakai **<InlineMath math="v=gt" />**, seolah karung jatuh dari diam selama <InlineMath math="3{,}4\text{ s}" /> penuh.
+- <InlineMath math="4{,}0\text{ m s}^{-2}" /> **mengabaikan jarak reaksi** dan mengerem sepanjang <InlineMath math="50\text{ m}" /> penuh.
+- <InlineMath math="15\text{ m s}^{-1}" /> tetap memakai **jarak reaksi lama <InlineMath math="15\text{ m}" />** untuk mobil yang lebih cepat, padahal mobil itu menempuh jarak lebih jauh sebelum mengerem.
+- <InlineMath math="21\text{ m s}^{-1}" /> membuang **faktor <InlineMath math="2" />** pada <InlineMath math="v^2=u^2-2as" /> di bagian kedua.

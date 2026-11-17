@@ -1,23 +1,25 @@
-# Der Sandsack startet mit der Aufwärtsgeschwindigkeit des Ballons
+# Erst den Reaktionsweg abziehen, dann auf dem Rest bremsen
 
-Beim Loslassen **bewegt sich der Sandsack mit <InlineMath math="5{,}0\text{ m s}^{-1}" /> aufwärts**, wie der Ballon. Er steigt ein wenig, hält an und fällt dann an seinem Startpunkt vorbei zum Boden. Mit aufwärts positiv ist der Boden eine Verschiebung von <InlineMath math="-40\text{ m}" />, und man löst die quadratische Gleichung für die positive Zeit.
+Während der Reaktionszeit fährt das Auto mit voller Geschwindigkeit weiter, also bleibt nur der Weg **nach der Reaktion** zum Bremsen. Das legt die Verzögerung über <InlineMath math="v^2=u^2-2as" /> fest. Bei höherer Geschwindigkeit ist der Reaktionsweg **länger**, es bleibt noch weniger Bremsweg, und das Auto kommt nicht zum Stehen.
 
 <Chart
-  title={<>Höhe des Sandsacks nach dem Loslassen</>}
-  categories={["0 s", "0,5 s", "1,0 s", "2,0 s", "3,0 s", "3,4 s"]}
+  title={<>Geschwindigkeit des schnelleren Autos über der Strecke</>}
+  categories={["0 m", "18,75 m", "30 m", "40 m", "50 m"]}
   series={[
-    { label: "Höhe", mark: "line", values: [40, 41.25, 40, 30, 10, 0] },
+    { label: "Geschwindigkeit", mark: "line", values: [25, 25, 22.3, 19.5, 16.4] },
   ]}
-  valueLabel="Höhe (m)"
-  description={<>Der Sandsack steigt zuerst von <InlineMath math="40" /> m auf <InlineMath math="41{,}25" /> m bei <InlineMath math="0{,}5" /> s, fällt bei <InlineMath math="1{,}0" /> s wieder auf <InlineMath math="40" /> m und erreicht den Boden nach etwa <InlineMath math="3{,}4" /> s.</>}
+  valueLabel="Geschwindigkeit (m/s)"
+  description={<>Bei <InlineMath math="25\text{ m s}^{-1}" /> legt das Auto <InlineMath math="18{,}75\text{ m}" /> zurück, bevor das Bremsen beginnt, verzögert dann mit <InlineMath math="5{,}7\text{ m s}^{-2}" /> auf den restlichen <InlineMath math="31{,}25\text{ m}" /> und trifft das Hindernis noch mit etwa <InlineMath math="16\text{ m s}^{-1}" />.</>}
 />
 
-<BlockMath math="-40=5{,}0t-5t^2\ \Rightarrow\ t^2-t-8=0\ \Rightarrow\ t=\frac{1+\sqrt{33}}{2}\approx3{,}37\text{ s},\qquad v=5{,}0-10(3{,}37)\approx-28{,}7\text{ m s}^{-1}" />
+<BlockMath math="s_r=20(0{,}75)=15\text{ m},\qquad a=\frac{20^2}{2(50-15)}=\frac{400}{70}\approx5{,}7\text{ m s}^{-2}" />
 
-Probe über die Energie: <InlineMath math="v^2=5{,}0^2+2(10)(40)=825" />, also <InlineMath math="v\approx28{,}7\text{ m s}^{-1}" />. Der Sandsack landet nach etwa <InlineMath math="3{,}4\text{ s}" /> mit etwa <InlineMath math="29\text{ m s}^{-1}" />.
+<BlockMath math="s_r'=25(0{,}75)=18{,}75\text{ m},\qquad v^2=25^2-2\left(\tfrac{400}{70}\right)(50-18{,}75)=625-357\approx268,\qquad v\approx16\text{ m s}^{-1}" />
+
+Das Auto braucht etwa <InlineMath math="5{,}7\text{ m s}^{-2}" />, um auf den <InlineMath math="35\text{ m}" /> nach der Reaktion anzuhalten. Bei <InlineMath math="25\text{ m s}^{-1}" /> bleiben nur <InlineMath math="31{,}25\text{ m}" />, und das Auto hat am Baum noch etwa <InlineMath math="16\text{ m s}^{-1}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="2{,}8\text{ s}" /> und <InlineMath math="28\text{ m s}^{-1}" /> lassen den Sandsack **aus der Ruhe** starten und übersehen die Aufwärtsbewegung des Ballons.
-- <InlineMath math="2{,}4\text{ s}" /> nimmt die <InlineMath math="5{,}0\text{ m s}^{-1}" /> als **abwärts**, was die richtige Aufprallgeschwindigkeit, aber eine zu kurze Zeit ergibt.
-- <InlineMath math="34\text{ m s}^{-1}" /> nutzt **<InlineMath math="v=gt" />**, als wäre der Sandsack die ganzen <InlineMath math="3{,}4\text{ s}" /> aus der Ruhe gefallen.
+- <InlineMath math="4{,}0\text{ m s}^{-2}" /> **übersieht den Reaktionsweg** und bremst auf den ganzen <InlineMath math="50\text{ m}" />.
+- <InlineMath math="15\text{ m s}^{-1}" /> behält den **alten Reaktionsweg von <InlineMath math="15\text{ m}" />** für das schnellere Auto bei, obwohl es vor dem Bremsen weiter fährt.
+- <InlineMath math="21\text{ m s}^{-1}" /> lässt im zweiten Teil den **Faktor <InlineMath math="2" />** in <InlineMath math="v^2=u^2-2as" /> weg.

@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$10\\text{ N}$$ and $$60\\text{ N}$$" },
-        { correct: true, label: "$$50\\text{ N}$$ and $$120\\text{ N}$$" },
-        { correct: false, label: "$$50\\text{ N}$$ and $$60\\text{ N}$$" },
-        { correct: false, label: "$$30\\text{ N}$$ and $$120\\text{ N}$$" },
+        { correct: false, label: "$$30\\text{ N}$$ and $$100\\%$$" },
+        { correct: true, label: "$$30\\text{ N}$$ and $$50\\%$$" },
+        { correct: false, label: "$$15\\text{ N}$$ and $$100\\%$$" },
+        { correct: false, label: "$$200\\text{ N}$$ and $$50\\%$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$10\\text{ N}$$ dan $$60\\text{ N}$$" },
-        { correct: true, label: "$$50\\text{ N}$$ dan $$120\\text{ N}$$" },
-        { correct: false, label: "$$50\\text{ N}$$ dan $$60\\text{ N}$$" },
-        { correct: false, label: "$$30\\text{ N}$$ dan $$120\\text{ N}$$" },
+        { correct: false, label: "$$30\\text{ N}$$ dan $$100\\%$$" },
+        { correct: true, label: "$$30\\text{ N}$$ dan $$50\\%$$" },
+        { correct: false, label: "$$15\\text{ N}$$ dan $$100\\%$$" },
+        { correct: false, label: "$$200\\text{ N}$$ dan $$50\\%$$" },
       ],
     },
   },

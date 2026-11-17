@@ -1,23 +1,25 @@
-# Beg pasir bermula dengan halaju ke atas belon
+# Tolak jarak tindak balas dahulu, kemudian brek sepanjang jarak yang tinggal
 
-Pada saat dilepaskan, beg pasir **bergerak ke atas pada <InlineMath math="5.0\text{ m s}^{-1}" />**, sama seperti belon. Ia naik sedikit, berhenti, kemudian jatuh melepasi titik mulanya hingga ke tanah. Ambil arah ke atas sebagai positif, jadi tanah ialah sesaran <InlineMath math="-40\text{ m}" />, dan selesaikan persamaan kuadratik bagi masa yang positif.
+Semasa masa tindak balas kereta masih bergerak pada laju penuh, jadi hanya jarak **yang tinggal selepas bertindak balas** boleh digunakan untuk membrek. Itu menentukan nyahpecutan melalui <InlineMath math="v^2=u^2-2as" />. Pada laju yang lebih tinggi, jarak tindak balas **lebih panjang**, meninggalkan lebih sedikit ruang untuk membrek, jadi kereta tidak dapat berhenti.
 
 <Chart
-  title={<>Ketinggian Beg Pasir selepas Dilepaskan</>}
-  categories={["0 s", "0.5 s", "1.0 s", "2.0 s", "3.0 s", "3.4 s"]}
+  title={<>Laju Kereta yang Lebih Laju Melawan Jarak yang Dilalui</>}
+  categories={["0 m", "18.75 m", "30 m", "40 m", "50 m"]}
   series={[
-    { label: "Ketinggian", mark: "line", values: [40, 41.25, 40, 30, 10, 0] },
+    { label: "Laju", mark: "line", values: [25, 25, 22.3, 19.5, 16.4] },
   ]}
-  valueLabel="Ketinggian (m)"
-  description={<>Beg pasir mula-mula naik dari <InlineMath math="40" /> m ke <InlineMath math="41.25" /> m pada <InlineMath math="0.5" /> s, jatuh semula ke <InlineMath math="40" /> m pada <InlineMath math="1.0" /> s dan sampai ke tanah pada kira-kira <InlineMath math="3.4" /> s.</>}
+  valueLabel="Laju (m/s)"
+  description={<>Pada <InlineMath math="25\text{ m s}^{-1}" /> kereta melalui <InlineMath math="18.75\text{ m}" /> sebelum brek mula bertindak, kemudian menyahpecut pada <InlineMath math="5.7\text{ m s}^{-2}" /> sepanjang <InlineMath math="31.25\text{ m}" /> yang tinggal dan masih melanggar halangan pada kira-kira <InlineMath math="16\text{ m s}^{-1}" />.</>}
 />
 
-<BlockMath math="-40=5.0t-5t^2\ \Rightarrow\ t^2-t-8=0\ \Rightarrow\ t=\frac{1+\sqrt{33}}{2}\approx3.37\text{ s},\qquad v=5.0-10(3.37)\approx-28.7\text{ m s}^{-1}" />
+<BlockMath math="s_r=20(0.75)=15\text{ m},\qquad a=\frac{20^2}{2(50-15)}=\frac{400}{70}\approx5.7\text{ m s}^{-2}" />
 
-Semak dengan tenaga: <InlineMath math="v^2=5.0^2+2(10)(40)=825" />, jadi <InlineMath math="v\approx28.7\text{ m s}^{-1}" />. Beg pasir mendarat selepas kira-kira <InlineMath math="3.4\text{ s}" /> pada kira-kira <InlineMath math="29\text{ m s}^{-1}" />.
+<BlockMath math="s_r'=25(0.75)=18.75\text{ m},\qquad v^2=25^2-2\left(\tfrac{400}{70}\right)(50-18.75)=625-357\approx268,\qquad v\approx16\text{ m s}^{-1}" />
+
+Kereta memerlukan kira-kira <InlineMath math="5.7\text{ m s}^{-2}" /> untuk berhenti dalam <InlineMath math="35\text{ m}" /> yang tinggal selepas bertindak balas. Pada <InlineMath math="25\text{ m s}^{-1}" /> hanya <InlineMath math="31.25\text{ m}" /> yang tinggal, dan kereta masih bergerak pada kira-kira <InlineMath math="16\text{ m s}^{-1}" /> apabila tiba di pokok.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="2.8\text{ s}" /> dan <InlineMath math="28\text{ m s}^{-1}" /> menganggap beg pasir **bermula dari pegun**, mengabaikan gerakan belon ke atas.
-- <InlineMath math="2.4\text{ s}" /> mengambil <InlineMath math="5.0\text{ m s}^{-1}" /> sebagai **ke bawah**, yang memberi laju mendarat yang betul tetapi masa yang terlalu singkat.
-- <InlineMath math="34\text{ m s}^{-1}" /> menggunakan **<InlineMath math="v=gt" />**, seolah-olah beg pasir jatuh dari pegun selama <InlineMath math="3.4\text{ s}" /> penuh.
+- <InlineMath math="4.0\text{ m s}^{-2}" /> **mengabaikan jarak tindak balas** dan membrek sepanjang <InlineMath math="50\text{ m}" /> penuh.
+- <InlineMath math="15\text{ m s}^{-1}" /> mengekalkan **jarak tindak balas lama <InlineMath math="15\text{ m}" />** bagi kereta yang lebih laju, walaupun ia bergerak lebih jauh sebelum membrek.
+- <InlineMath math="21\text{ m s}^{-1}" /> menggugurkan **faktor <InlineMath math="2" />** dalam <InlineMath math="v^2=u^2-2as" /> bagi bahagian kedua.

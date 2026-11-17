@@ -1,24 +1,26 @@
-# Die Kraft ist der Impuls, den das Wasser pro Sekunde verliert
+# Die Kraft ist der Impuls, den das Band dem Sand pro Sekunde gibt
 
-Nach dem zweiten Newtonschen Gesetz ist die Kraft auf die Platte gleich der **Impulsänderung pro Zeit** des Wassers, und das Zurücklenken ändert seine Geschwindigkeit um die **Summe** beider Beträge. Durch dieselbe Düse führt ein schnellerer Strahl außerdem **mehr Masse pro Sekunde**, proportional zu seiner Geschwindigkeit.
+Jede Sekunde muss das Band <InlineMath math="20\text{ kg}" /> Sand von **null horizontaler Geschwindigkeit** auf <InlineMath math="1{,}5\text{ m s}^{-1}" /> bringen. Kraft ist Impulsänderung pro Zeit, also ist die Zusatzkraft des Motors der pro Sekunde übertragene Impuls. Die Leistung ist diese Kraft mal Bandgeschwindigkeit. Der Vergleich mit der kinetischen Energie, die der Sand pro Sekunde gewinnt, zeigt, dass **nur die Hälfte** zu Bewegung wird: Der Rest ist Wärme, während die Körner rutschen, bis sie die Bandgeschwindigkeit erreichen.
 
 <Chart
-  title={<>Kraft des Strahls in jedem Fall</>}
+  title={<>Wohin die Leistung des Motors jede Sekunde geht</>}
   bars="apart"
-  categories={["Flache Wand, 15 m/s", "Gekrümmte Platte, 15 m/s", "Flache Wand, 30 m/s"]}
+  categories={["Kinetische Energie des Sandes", "Wärme durch Rutschen"]}
   series={[
-    { label: "Kraft", mark: "bar", values: [30, 50, 120] },
+    { label: "Leistung", mark: "bar", values: [22.5, 22.5] },
   ]}
-  valueLabel="Kraft (N)"
-  description={<>Die flache Wand erfährt <InlineMath math="30" /> N. Die gekrümmte Platte, die das Wasser zurücklenkt, erfährt <InlineMath math="50" /> N, und die flache Wand <InlineMath math="120" /> N, wenn sich die Geschwindigkeit durch dieselbe Düse verdoppelt.</>}
+  valueLabel="Leistung (W)"
+  description={<>Von den <InlineMath math="45" /> W des Motors werden <InlineMath math="22{,}5" /> W zu kinetischer Energie des Sandes, die anderen <InlineMath math="22{,}5" /> W sind Wärme, die entsteht, während der Sand auf dem Band rutscht.</>}
 />
 
-<BlockMath math="F_{\text{Platte}}=\frac{m}{t}\,\Delta v=2{,}0\cdot(15+10)=50\text{ N},\qquad F_{\text{Wand},30}=\frac{m}{t}\,v=4{,}0\cdot30=120\text{ N}" />
+<BlockMath math="\dot m=\frac{1200\text{ kg}}{60\text{ s}}=20\text{ kg s}^{-1},\qquad F=\dot m\,v=20\cdot1{,}5=30\text{ N},\qquad P=Fv=30\cdot1{,}5=45\text{ W}" />
 
-Bei <InlineMath math="15\text{ m s}^{-1}" /> stoppt die flache Wand <InlineMath math="2{,}0\text{ kg}" /> pro Sekunde aus <InlineMath math="15\text{ m s}^{-1}" />, dafür braucht es <InlineMath math="30\text{ N}" />. Die gekrümmte Platte kehrt das Wasser um, eine Änderung um <InlineMath math="25\text{ m s}^{-1}" />, also <InlineMath math="50\text{ N}" />. Bei <InlineMath math="30\text{ m s}^{-1}" /> lässt die Düse <InlineMath math="4{,}0\text{ kg}" /> pro Sekunde durch, jedes aus <InlineMath math="30\text{ m s}^{-1}" /> gestoppt, die Kraft ist also viermal so groß, <InlineMath math="120\text{ N}" />.
+<BlockMath math="\frac{\Delta E_k}{t}=\tfrac12\dot m\,v^2=\tfrac12(20)(1{,}5)^2=22{,}5\text{ W},\qquad \frac{22{,}5}{45}=50\%" />
+
+Der Motor schiebt mit zusätzlich <InlineMath math="30\text{ N}" /> und liefert <InlineMath math="45\text{ W}" />. Der Sand gewinnt nur <InlineMath math="22{,}5\text{ W}" /> an kinetischer Energie, also werden <InlineMath math="50\%" /> zu Bewegung und <InlineMath math="50\%" /> zu Wärme. Die Hälfte ist kein Zufall: <InlineMath math="\tfrac12\dot mv^2" /> ist immer die Hälfte von <InlineMath math="\dot mv\cdot v" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="10\text{ N}" /> nimmt als Geschwindigkeitsänderung **<InlineMath math="15-10" />** und übersieht, dass das Wasser umkehrt.
-- <InlineMath math="60\text{ N}" /> verdoppelt die Geschwindigkeit, **behält aber <InlineMath math="2{,}0\text{ kg}" /> pro Sekunde**, obwohl dieselbe Düse nun doppelt so viel Wasser durchlässt.
-- <InlineMath math="30\text{ N}" /> ist die Kraft auf die **flache Wand**, nicht auf die Platte, die das Wasser zurückwirft.
+- <InlineMath math="100\%" /> nimmt an, dass **die ganze Arbeit zu kinetischer Energie** wird, doch die Körner rutschen auf dem Band, bis sie seine Geschwindigkeit haben, und diese Reibung erzeugt Wärme.
+- <InlineMath math="15\text{ N}" /> geht von der **kinetischen Energie pro Sekunde**, <InlineMath math="22{,}5\text{ W}" />, aus und teilt durch die Geschwindigkeit, übersieht so die Wärme und halbiert die Kraft.
+- <InlineMath math="200\text{ N}" /> nimmt das **Gewicht des pro Sekunde landenden Sandes**, doch das Band muss dem Sand nur horizontalen Impuls geben, und das Gewicht wirkt senkrecht.
