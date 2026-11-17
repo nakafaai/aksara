@@ -11,18 +11,18 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         { correct: false, label: "$$44\\%$$" },
-        { correct: false, label: "$$176\\%$$" },
-        { correct: true, label: "$$88\\%$$" },
         { correct: false, label: "$$8.8\\%$$" },
+        { correct: true, label: "$$88\\%$$" },
+        { correct: false, label: "$$176\\%$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
         { correct: false, label: "$$44\\%$$" },
-        { correct: false, label: "$$176\\%$$" },
-        { correct: true, label: "$$88\\%$$" },
         { correct: false, label: "$$8.8\\%$$" },
+        { correct: true, label: "$$88\\%$$" },
+        { correct: false, label: "$$176\\%$$" },
       ],
     },
   },

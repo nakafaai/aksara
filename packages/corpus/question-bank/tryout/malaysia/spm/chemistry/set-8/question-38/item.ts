@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$60\\text{ g}$$" },
-        { correct: false, label: "$$34\\text{ g}$$" },
-        { correct: false, label: "$$240\\text{ g}$$" },
-        { correct: true, label: "$$120\\text{ g}$$" },
+        { correct: false, label: "$$120\\text{ g}$$, $$154\\text{ g}$$" },
+        { correct: false, label: "$$125\\text{ g}$$, $$120\\text{ g}$$" },
+        { correct: false, label: "$$65\\text{ g}$$, $$77\\text{ g}$$" },
+        { correct: true, label: "$$125\\text{ g}$$, $$154\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$60\\text{ g}$$" },
-        { correct: false, label: "$$34\\text{ g}$$" },
-        { correct: false, label: "$$240\\text{ g}$$" },
-        { correct: true, label: "$$120\\text{ g}$$" },
+        { correct: false, label: "$$120\\text{ g}$$, $$154\\text{ g}$$" },
+        { correct: false, label: "$$125\\text{ g}$$, $$120\\text{ g}$$" },
+        { correct: false, label: "$$65\\text{ g}$$, $$77\\text{ g}$$" },
+        { correct: true, label: "$$125\\text{ g}$$, $$154\\text{ g}$$" },
       ],
     },
   },
