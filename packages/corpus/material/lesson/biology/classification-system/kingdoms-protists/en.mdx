@@ -1,0 +1,411 @@
+export const metadata = {
+  title: "Classification and Naming of Organisms Notes for Form Five",
+  description:
+    "Form 5 Biology Chapter 8: sort organisms into six kingdoms, write binomial names, build a dichotomous key, and tell protozoa from algae, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Classification and Naming of Organisms",
+};
+
+## How Biologists Sort and Name Every Organism
+
+Biologists sort every organism into **one of six kingdoms**: Archaebacteria, Eubacteria, Protista, Fungi, Plantae and Animalia. Each species then gets a two-word scientific name, such as *Panthera tigris* for the tiger, and you identify an unknown organism with a **dichotomous key**, a list of paired either-or statements. In the models here you sort kingdoms into domains, read a family of cats from its names, and build a key for six protists.
+
+Why go to this trouble? More than a million species already have scientific names, and common names change from place to place. The same cat is a harimau in Malaysia, a tiger in English and a Tiger in German. Its scientific name stays *Panthera tigris* in every language, so a researcher in Kuala Lumpur and one in Berlin know they mean the same animal.
+
+The six kingdoms sit inside three **domains**, the widest rank. Each rank below holds fewer organisms: domain, kingdom, phylum, class, order, family, genus and species. You've already seen how [artificial, natural and phylogenetic classification](/en/subjects/biology/biodiversity/classification) choose their criteria. Here the job is to use one system to sort, name and identify organisms.
+
+<MathVisual
+  title={<>Six Kingdoms inside Three Domains</>}
+  description={<>Each inner box is a kingdom and each outer box is a domain. The four kingdoms with a nucleus share the domain Eukarya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -7.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bacteria", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 3 }, { x: 4.9, y: 3 }, { x: 4.9, y: 6 }, { x: 0, y: 6 }] },
+      { id: "archaea", kind: "polygon", appearance: "reference", vertices: [{ x: 5.1, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 6 }, { x: 5.1, y: 6 }] },
+      { id: "eukarya", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: -7 }, { x: 10, y: -7 }, { x: 10, y: 1.5 }, { x: 0, y: 1.5 }] },
+      { id: "eubacteria", kind: "polygon", appearance: "secondary", vertices: [{ x: 0.4, y: 3.4 }, { x: 4.5, y: 3.4 }, { x: 4.5, y: 5.6 }, { x: 0.4, y: 5.6 }] },
+      { id: "archaebacteria", kind: "polygon", appearance: "construction", vertices: [{ x: 5.5, y: 3.4 }, { x: 9.6, y: 3.4 }, { x: 9.6, y: 5.6 }, { x: 5.5, y: 5.6 }] },
+      { id: "protista", kind: "polygon", appearance: "answer", vertices: [{ x: 0.4, y: -2.3 }, { x: 4.8, y: -2.3 }, { x: 4.8, y: 1.1 }, { x: 0.4, y: 1.1 }] },
+      { id: "fungi", kind: "polygon", appearance: "highlight", vertices: [{ x: 5.2, y: -2.3 }, { x: 9.6, y: -2.3 }, { x: 9.6, y: 1.1 }, { x: 5.2, y: 1.1 }] },
+      { id: "plantae", kind: "polygon", appearance: "primary", vertices: [{ x: 0.4, y: -6.6 }, { x: 4.8, y: -6.6 }, { x: 4.8, y: -3.2 }, { x: 0.4, y: -3.2 }] },
+      { id: "animalia", kind: "polygon", appearance: "warning", vertices: [{ x: 5.2, y: -6.6 }, { x: 9.6, y: -6.6 }, { x: 9.6, y: -3.2 }, { x: 5.2, y: -3.2 }] },
+    ],
+    labels: [
+      { key: "bacteria", objectId: "bacteria", at: { x: 0, y: 6 }, placement: "above-right" },
+      { key: "archaea", objectId: "archaea", at: { x: 5.1, y: 6 }, placement: "above-right" },
+      { key: "eukarya", objectId: "eukarya", at: { x: 0, y: 1.5 }, placement: "above-right" },
+      { key: "eubacteria", objectId: "eubacteria", at: { x: 2.45, y: 4.5 }, placement: "center" },
+      { key: "archaebacteria", objectId: "archaebacteria", at: { x: 7.55, y: 4.5 }, placement: "center" },
+      { key: "protista", objectId: "protista", at: { x: 2.6, y: -0.6 }, placement: "center" },
+      { key: "fungi", objectId: "fungi", at: { x: 7.4, y: -0.6 }, placement: "center" },
+      { key: "plantae", objectId: "plantae", at: { x: 2.6, y: -4.9 }, placement: "center" },
+      { key: "animalia", objectId: "animalia", at: { x: 7.4, y: -4.9 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    bacteria: <>Domain Bacteria</>,
+    archaea: <>Domain Archaea</>,
+    eukarya: <>Domain Eukarya</>,
+    eubacteria: <>Eubacteria</>,
+    archaebacteria: <>Archaebacteria</>,
+    protista: <>Protista</>,
+    fungi: <>Fungi</>,
+    plantae: <>Plantae</>,
+    animalia: <>Animalia</>,
+  }}
+/>
+
+Compare the boxes. Archaebacteria and Eubacteria both lack a nucleus, yet each has a domain of its own, because their cell walls and their ribosomal RNA differ too much for one domain to hold both.
+
+## Sorting Organisms into the Six Kingdoms
+
+Every kingdom is defined by **a set of traits together**, never by one trait alone. So you place an organism by checking its cells, its wall and its feeding in turn, then you test the answer against the kingdom next door.
+
+### Four Questions Place an Organism
+
+Four questions place almost any organism. Does its cell have a **nucleus**? Is it one cell or many? What is its cell wall made of? How does it get food? The table answers them for each kingdom.
+
+| Kingdom | Cells | Cell wall | How it gets food | Example |
+| --- | --- | --- | --- | --- |
+| Archaebacteria | Prokaryotic, unicellular | No peptidoglycan | Autotroph or heterotroph | *Halobacterium salinarum* in very salty water |
+| Eubacteria | Prokaryotic, unicellular | Peptidoglycan | Autotroph or heterotroph | *Streptococcus pneumoniae*, cyanobacteria |
+| Protista | Eukaryotic, unicellular or multicellular without tissues | In many algae, none in protozoa | Photosynthesis, ingestion or absorption | *Amoeba* sp., *Spirogyra* sp. |
+| Fungi | Eukaryotic, mostly hyphae, yeasts unicellular | Chitin | Absorbs food after digesting it outside the body | *Saccharomyces cerevisiae*, *Agaricus* sp. |
+| Plantae | Eukaryotic, multicellular with tissues | Cellulose | Photosynthesis | *Oryza sativa* (rice) |
+| Animalia | Eukaryotic, multicellular with tissues | None | Ingests food | *Panthera tigris* (tiger) |
+
+A prokaryote has **no membrane around its DNA**, so it belongs to Archaebacteria or Eubacteria. Archaebacteria often live where few other organisms survive, such as hot acidic springs and salt pans. The older five-kingdom system puts both groups into one kingdom, Monera. Six kingdoms split them because their walls and genes differ.
+
+Protista collects the eukaryotes that are **not fungi, plants or animals**. Its members may photosynthesise, ingest food or absorb it, and even the multicellular ones have no true tissues. That's why one cell with a chloroplast, or one long filament of identical green cells, lands in Protista and not in Plantae.
+
+### Placing Three Organisms
+
+You examine three organisms. Organism A is a single cell with no nucleus, its wall has no peptidoglycan, and it lives in a spring at <InlineMath math="80^\circ\text{C}" />. Organism B has many cells with nuclei, chitin walls and hyphae, and it feeds on dead wood. Organism C is a filament of identical cells, each with a nucleus and a chloroplast, and it has no tissues.
+
+Work through the four questions in order. A has no nucleus, so it's a prokaryote. Its wall has no peptidoglycan, so A belongs to **Archaebacteria**. B has nuclei and chitin walls and absorbs food from wood, so B belongs to **Fungi**. C has nuclei and photosynthesises, but its cells form no tissues, so C belongs to **Protista**.
+
+Check each answer against the criterion that rules out its neighbour. If A had peptidoglycan, it would be Eubacteria. If B had cellulose walls and chloroplasts, it would be a plant. If C had roots, stems and leaves built from tissues, it would be Plantae. None of those holds, so all three placements stand.
+
+## Writing a Binomial Name
+
+The **binomial naming system** gives every species two words. The first word is the **genus name** and the second is the **specific name**. Rice is *Oryza sativa*: *Oryza* is its genus and *sativa* picks out the species inside that genus. Together the two words name exactly one species.
+
+The rules decide how the name looks on paper:
+
+- The genus name starts with a capital letter, and the specific name is all lowercase.
+- A printed name is in italics, such as *Oryza sativa*.
+- A handwritten name is underlined, with **each word underlined separately**.
+- After the full name has appeared once, the genus may shrink to its first letter, as in *O. sativa*.
+- When the species isn't known, write the genus and "sp.", as in *Amoeba* sp.
+
+Species that share a genus name are close relatives. The scene below shows five cats in the family Felidae. Read down each genus box and compare the first word of every name inside it.
+
+<MathVisual
+  title={<>One Family, Three Genera of Cats</>}
+  description={<>The outer box is the family Felidae. Each inner box is a genus, and each point is one species with its binomial name.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11.5 }, y: { min: -9, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "felidae", kind: "polygon", appearance: "reference", vertices: [{ x: -0.5, y: -8 }, { x: 11, y: -8 }, { x: 11, y: 7.5 }, { x: -0.5, y: 7.5 }] },
+      { id: "panthera", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 1 }, { x: 10.5, y: 1 }, { x: 10.5, y: 6 }, { x: 0, y: 6 }] },
+      { id: "felis", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: -2.5 }, { x: 10.5, y: -2.5 }, { x: 10.5, y: -0.5 }, { x: 0, y: -0.5 }] },
+      { id: "prionailurus", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: -6.5 }, { x: 10.5, y: -6.5 }, { x: 10.5, y: -4.5 }, { x: 0, y: -4.5 }] },
+      { id: "tiger", kind: "point", appearance: "primary", at: { x: 1, y: 5 } },
+      { id: "leopard", kind: "point", appearance: "primary", at: { x: 1, y: 3.5 } },
+      { id: "lion", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "cat", kind: "point", appearance: "secondary", at: { x: 1, y: -1.5 } },
+      { id: "leopard-cat", kind: "point", appearance: "construction", at: { x: 1, y: -5.5 } },
+    ],
+    labels: [
+      { key: "felidae", objectId: "felidae", at: { x: 5.25, y: -8 }, placement: "below" },
+      { key: "panthera", objectId: "panthera", at: { x: 0, y: 6 }, placement: "above-right" },
+      { key: "felis", objectId: "felis", at: { x: 0, y: -0.5 }, placement: "above-right" },
+      { key: "prionailurus", objectId: "prionailurus", at: { x: 0, y: -4.5 }, placement: "above-right" },
+      { key: "tiger", objectId: "tiger", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "leopard", objectId: "leopard", at: { x: 1, y: 3.5 }, placement: "right" },
+      { key: "lion", objectId: "lion", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "cat", objectId: "cat", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "leopard-cat", objectId: "leopard-cat", at: { x: 1, y: -5.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    felidae: <>Family Felidae</>,
+    panthera: <>Genus <em>Panthera</em></>,
+    felis: <>Genus <em>Felis</em></>,
+    prionailurus: <>Genus <em>Prionailurus</em></>,
+    tiger: <><em>Panthera tigris</em>, tiger</>,
+    leopard: <><em>Panthera pardus</em>, leopard</>,
+    lion: <><em>Panthera leo</em>, lion</>,
+    cat: <><em>Felis catus</em>, house cat</>,
+    "leopard-cat": <><em>Prionailurus bengalensis</em>, leopard cat</>,
+  }}
+/>
+
+The leopard cat, a small wild cat of Malaysian forests, is *Prionailurus bengalensis*. Its common name mentions both a leopard and a cat, yet it belongs to neither *Panthera* nor *Felis*. The binomial name tells you that straight away, and it also shows that the tiger and the leopard are **closer to each other** than either is to the house cat.
+
+## Building and Using a Dichotomous Key
+
+A classification sorts organisms you already know. A key works the other way: it starts from an organism you don't know and **leads you to its name** one choice at a time, so the quality of each choice decides whether you arrive at the right name.
+
+### What Makes a Good Couplet
+
+A **dichotomous key** identifies an organism through numbered pairs of statements called couplets. Each couplet gives two opposite choices, 1a and 1b, and each choice ends either in a name or in "go to" the next couplet. You start at couplet <InlineMath math="1" /> and follow the choice that fits until a name appears.
+
+A good couplet tests **one trait that every specimen shows**. "Has chloroplasts" works, while "large" or "dark green" fails, because size and colour change with age and light. The two statements must also exclude each other, so every organism fits exactly one of them.
+
+### Building a Key for Six Protists
+
+Build a key for *Amoeba*, *Paramecium*, *Euglena*, *Chlamydomonas*, *Spirogyra* and *Plasmodium*. Start with the trait that splits the group most evenly: chloroplasts. Three organisms have them and three don't. Split each half again with a new trait until every organism stands alone.
+
+| Couplet | Statement | Result |
+| --- | --- | --- |
+| 1a | Has chloroplasts | Go to <InlineMath math="2" /> |
+| 1b | Has no chloroplasts | Go to <InlineMath math="4" /> |
+| 2a | Cells joined end to end in a filament | *Spirogyra* |
+| 2b | A single cell | Go to <InlineMath math="3" /> |
+| 3a | Body keeps a fixed shape inside a cell wall | *Chlamydomonas* |
+| 3b | Body bends and changes shape, no cell wall | *Euglena* |
+| 4a | Has no structure for moving and lives inside red blood cells | *Plasmodium* |
+| 4b | Moves by itself | Go to <InlineMath math="5" /> |
+| 5a | Moves with pseudopodia | *Amoeba* |
+| 5b | Moves with cilia | *Paramecium* |
+
+The same key can be drawn as a branching diagram. Each fork is one couplet, so follow the upper branch when statement a fits and the lower branch when statement b fits.
+
+<MathVisual
+  title={<>The Protist Key as a Branching Diagram</>}
+  description={<>Each numbered point is one couplet. At every fork the upper branch is statement a and the lower branch is statement b.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fork-1a", kind: "segment", appearance: "reference", from: { x: 0, y: 2.75 }, to: { x: 1.5, y: 4.25 } },
+      { id: "fork-1b", kind: "segment", appearance: "reference", from: { x: 0, y: 2.75 }, to: { x: 1.5, y: 1.25 } },
+      { id: "fork-2a", kind: "segment", appearance: "reference", from: { x: 1.5, y: 4.25 }, to: { x: 4.5, y: 5 } },
+      { id: "fork-2b", kind: "segment", appearance: "reference", from: { x: 1.5, y: 4.25 }, to: { x: 3, y: 3.5 } },
+      { id: "fork-3a", kind: "segment", appearance: "reference", from: { x: 3, y: 3.5 }, to: { x: 4.5, y: 4 } },
+      { id: "fork-3b", kind: "segment", appearance: "reference", from: { x: 3, y: 3.5 }, to: { x: 4.5, y: 3 } },
+      { id: "fork-4a", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25 }, to: { x: 4.5, y: 2 } },
+      { id: "fork-4b", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25 }, to: { x: 3, y: 0.5 } },
+      { id: "fork-5a", kind: "segment", appearance: "reference", from: { x: 3, y: 0.5 }, to: { x: 4.5, y: 1 } },
+      { id: "fork-5b", kind: "segment", appearance: "reference", from: { x: 3, y: 0.5 }, to: { x: 4.5, y: 0 } },
+      { id: "couplet-1", kind: "point", appearance: "secondary", at: { x: 0, y: 2.75 } },
+      { id: "couplet-2", kind: "point", appearance: "secondary", at: { x: 1.5, y: 4.25 } },
+      { id: "couplet-3", kind: "point", appearance: "secondary", at: { x: 3, y: 3.5 } },
+      { id: "couplet-4", kind: "point", appearance: "secondary", at: { x: 1.5, y: 1.25 } },
+      { id: "couplet-5", kind: "point", appearance: "secondary", at: { x: 3, y: 0.5 } },
+      { id: "spirogyra", kind: "point", appearance: "answer", at: { x: 4.5, y: 5 } },
+      { id: "chlamydomonas", kind: "point", appearance: "answer", at: { x: 4.5, y: 4 } },
+      { id: "euglena", kind: "point", appearance: "answer", at: { x: 4.5, y: 3 } },
+      { id: "plasmodium", kind: "point", appearance: "answer", at: { x: 4.5, y: 2 } },
+      { id: "amoeba", kind: "point", appearance: "answer", at: { x: 4.5, y: 1 } },
+      { id: "paramecium", kind: "point", appearance: "answer", at: { x: 4.5, y: 0 } },
+    ],
+    labels: [
+      { key: "couplet-1", objectId: "couplet-1", at: { x: 0, y: 2.75 }, placement: "above" },
+      { key: "couplet-2", objectId: "couplet-2", at: { x: 1.5, y: 4.25 }, placement: "above" },
+      { key: "couplet-3", objectId: "couplet-3", at: { x: 3, y: 3.5 }, placement: "above" },
+      { key: "couplet-4", objectId: "couplet-4", at: { x: 1.5, y: 1.25 }, placement: "below" },
+      { key: "couplet-5", objectId: "couplet-5", at: { x: 3, y: 0.5 }, placement: "below" },
+      { key: "spirogyra", objectId: "spirogyra", at: { x: 4.5, y: 5 }, placement: "right" },
+      { key: "chlamydomonas", objectId: "chlamydomonas", at: { x: 4.5, y: 4 }, placement: "right" },
+      { key: "euglena", objectId: "euglena", at: { x: 4.5, y: 3 }, placement: "right" },
+      { key: "plasmodium", objectId: "plasmodium", at: { x: 4.5, y: 2 }, placement: "right" },
+      { key: "amoeba", objectId: "amoeba", at: { x: 4.5, y: 1 }, placement: "right" },
+      { key: "paramecium", objectId: "paramecium", at: { x: 4.5, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "couplet-1": <InlineMath math="1" />,
+    "couplet-2": <InlineMath math="2" />,
+    "couplet-3": <InlineMath math="3" />,
+    "couplet-4": <InlineMath math="4" />,
+    "couplet-5": <InlineMath math="5" />,
+    spirogyra: <em>Spirogyra</em>,
+    chlamydomonas: <em>Chlamydomonas</em>,
+    euglena: <em>Euglena</em>,
+    plasmodium: <em>Plasmodium</em>,
+    amoeba: <em>Amoeba</em>,
+    paramecium: <em>Paramecium</em>,
+  }}
+/>
+
+Now check the key by running one organism through it. *Paramecium* has no chloroplasts, so 1b sends you to couplet <InlineMath math="4" />. It swims, so 4b sends you to couplet <InlineMath math="5" />. It's covered in cilia, so 5b ends at *Paramecium*. Every organism should end at **exactly one name**, and here each of the six does.
+
+A second check is to count couplets. Every couplet splits one group into two, so a key for <InlineMath math="n" /> organisms needs exactly <InlineMath math="n-1" /> couplets. Six protists need <InlineMath math="6-1=5" />, which matches the table. Slide the number of organisms and read both values.
+
+<MathVisual
+  title={<>Couplets in a Key for <InlineMath math="n" /> Organisms</>}
+  description={<>The line is <InlineMath math="c = n - 1" />. The readouts give the couplets you write and the fewest couplets a reader passes on the longest path.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 12, value: 6, step: 1, label: "organisms" },
+    ],
+    objects: [
+      { id: "couplets", kind: "function", appearance: "reference", formula: "x - 1", domain: { min: 2, max: 12 } },
+      { id: "key", kind: "marker", appearance: "answer", x: "n", y: "n - 1" },
+    ],
+    labels: [
+      { key: "key", objectId: "key", at: { x: "n", y: "n - 1" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "total", formula: "n - 1" },
+      { key: "depth", formula: "ceil(log_2(n))" },
+    ],
+  }}
+  labels={{
+    organisms: <>Organisms <InlineMath math="n" /></>,
+    key: <>your key</>,
+    total: <>Couplets in the key</>,
+    depth: <>Fewest couplets on the longest path</>,
+  }}
+/>
+
+The second readout is the shortest the longest path can be, because each couplet at most halves the group. For six organisms it's <InlineMath math="3" />, and the longest paths in the protist key, to *Euglena* or *Paramecium*, pass three couplets.
+
+## Protozoa Live like Tiny Animals
+
+**Protozoa** are protists that are unicellular, eukaryotic and heterotrophic: they eat other organisms or organic matter. Most live in water or in damp soil, and many are parasites. A light microscope shows them clearly, because most are tens to hundreds of micrometres long.
+
+### How Protozoa Move and Get Rid of Water
+
+Protozoa are grouped partly by how they move. *Amoeba* pushes out **pseudopodia**, extensions of cytoplasm that form anywhere on the cell. It wraps them around a food particle and encloses it in a food vacuole, a process called phagocytosis. *Paramecium* beats thousands of **cilia** in waves to swim and to sweep food into its oral groove. Other protozoa whip one or more flagella.
+
+Freshwater protozoa face a steady problem. Their cytoplasm is more concentrated than pond water, so water enters by osmosis. A **contractile vacuole** fills with this extra water and squeezes it out of the cell again and again, which stops the cell from bursting. Most protozoa reproduce by binary fission, and *Paramecium* can also swap genetic material with a partner by conjugation.
+
+### The Malaria Parasite Is Carried by a Vector
+
+A **pathogen** is an organism that causes disease, and a **vector** is an organism that carries a pathogen from one host to another. *Plasmodium* is the pathogen of malaria, and only female *Anopheles* mosquitoes carry it. When an infected mosquito bites, *Plasmodium* travels in the blood to the liver, multiplies there, then invades red blood cells.
+
+Inside a red blood cell, one parasite divides into many merozoites. The cell bursts, and each merozoite invades a new red blood cell. In *Plasmodium falciparum* each burst releases <InlineMath math="8" /> to <InlineMath math="24" /> merozoites, and the bursts happen together about every <InlineMath math="48" /> hours. That's why malaria fever comes back in waves and why the patient becomes anaemic.
+
+Slide the number of merozoites per burst. The model starts from one infected red blood cell and assumes every merozoite reaches a new cell, so it shows the fastest possible rise.
+
+<MathVisual
+  title={<>Malaria Parasites Multiply with Each Burst</>}
+  description={<>Infected red blood cells, starting from one, when each burst every two days releases <InlineMath math="m" /> merozoites. One grid step up means ten times as many infected cells.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 8, max: 24, value: 16, step: 1, label: "merozoites" },
+    ],
+    objects: [
+      { id: "rise", kind: "path", appearance: "reference", points: [{ x: "0", y: "0" }, { x: "2", y: "log(m)" }, { x: "4", y: "2 log(m)" }, { x: "6", y: "3 log(m)" }, { x: "8", y: "4 log(m)" }] },
+      { id: "day-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "day-2", kind: "marker", appearance: "secondary", x: "2", y: "log(m)" },
+      { id: "day-4", kind: "marker", appearance: "secondary", x: "4", y: "2 log(m)" },
+      { id: "day-6", kind: "marker", appearance: "secondary", x: "6", y: "3 log(m)" },
+      { id: "day-8", kind: "marker", appearance: "answer", x: "8", y: "4 log(m)" },
+    ],
+    labels: [
+      { key: "start", objectId: "day-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "end", objectId: "day-8", at: { x: "8", y: "4 log(m)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "fourth", formula: "m^2" },
+      { key: "eighth", formula: "m^4" },
+    ],
+  }}
+  labels={{
+    merozoites: <>Merozoites per burst <InlineMath math="m" /></>,
+    start: <>day <InlineMath math="0" />: <InlineMath math="1" /> cell</>,
+    end: <>day <InlineMath math="8" />: <InlineMath math="m^4" /></>,
+    fourth: <>Infected cells on day <InlineMath math="4" /></>,
+    eighth: <>Infected cells on day <InlineMath math="8" /></>,
+  }}
+/>
+
+With <InlineMath math="16" /> merozoites per burst, four bursts in eight days give <InlineMath math="16^4 = 65{,}536" /> infected cells from a single one. The body destroys many parasites, so real numbers rise more slowly, but the straight line on this scale shows the pattern: **the count multiplies by the same factor every cycle**.
+
+In Malaysia today, most human malaria comes from *Plasmodium knowlesi*. It lives in long-tailed and pig-tailed macaques, and *Anopheles* mosquitoes carry it from them to people. Its blood cycle lasts only about <InlineMath math="24" /> hours, so it bursts out of red blood cells twice as often as *P. falciparum* does. Breaking the vector's link, by avoiding mosquito bites in and near forests, protects people. Viruses use vectors in the same way, as [stopping dengue at the mosquito](/en/subjects/biology/virus-role/prevent-virus-spread) shows.
+
+## Algae Photosynthesise but Have No True Roots
+
+**Algae** are protists that contain chlorophyll and make their food by photosynthesis. Some are single cells, such as *Chlamydomonas* and the diatoms, which measure <InlineMath math="2" /> to <InlineMath math="200\ \mu\text{m}" />. *Spirogyra* forms long filaments with a spiral chloroplast in each cell. Seaweeds are multicellular, and the stalk of a giant kelp can reach <InlineMath math="60\text{ m}" />.
+
+However big they grow, algae have **no true roots, stems or leaves** and no xylem to carry water. A seaweed takes in water, minerals and carbon dioxide across its whole surface from the sea around it. That's the difference from Plantae. A seaweed holds onto a rock with a holdfast, which anchors it but doesn't absorb water like a root.
+
+Algae and other photosynthetic protists carry out about a quarter of all photosynthesis on Earth. They are the **producers** at the base of most aquatic food chains, and they release oxygen. *Euglena* shows why Protista is such a mixed kingdom: in light it photosynthesises with its chloroplasts, and in the dark it takes up organic nutrients from the water instead.
+
+Algae need light, and water absorbs light as it goes deeper. The light left at depth <InlineMath math="z" /> metres is <InlineMath math="I = 100e^{-kz}" /> per cent of the surface light, where <InlineMath math="k" /> measures how murky the water is. Photosynthesis usually stops near the depth where only <InlineMath math="1\%" /> remains.
+
+<MathVisual
+  title={<>How Deep Algae Can Photosynthesise</>}
+  description={<>Light remaining at each depth from <InlineMath math="I = 100e^{-kz}" />. One grid step across is <InlineMath math="10\text{ m}" /> of depth, and one grid step up is <InlineMath math="10\%" /> of surface light. The point marks the depth where <InlineMath math="1\%" /> is left.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 25 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.02, max: 0.5, value: 0.023, step: 0.001, label: "murkiness" },
+    ],
+    objects: [
+      { id: "light", kind: "function", appearance: "primary", formula: "10 exp(-10 k x)", domain: { min: 0, max: 25 } },
+      { id: "limit", kind: "segment", appearance: "warning", from: { x: 0, y: 0.1 }, to: { x: 25, y: 0.1 } },
+      { id: "bottom", kind: "marker", appearance: "answer", x: "ln(100)/(10 k)", y: "0.1" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 0, y: 0.1 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "depth", formula: "ln(100)/k" },
+    ],
+  }}
+  labels={{
+    murkiness: <>Murkiness <InlineMath math="k" /> per metre</>,
+    limit: <><InlineMath math="1\%" /> of surface light</>,
+    depth: <>Depth in metres where <InlineMath math="1\%" /> remains</>,
+  }}
+/>
+
+Set <InlineMath math="I = 1" /> and solve: <InlineMath math="z = \tfrac{\ln 100}{k}" />. In clear ocean water with <InlineMath math="k = 0.023" />, that's about <InlineMath math="200\text{ m}" />, the usual limit of the sunlit zone. In murky coastal water with <InlineMath math="k = 0.5" />, it's only <InlineMath math="9.2\text{ m}" />. That's why seaweeds on a muddy coast grow only in the **shallow water near the shore**.
+
+## Common Mistakes in Classifying and Naming
+
+| Mistake | Why it's wrong | How to check |
+| --- | --- | --- |
+| Writing *Oryza Sativa* or one line under both words | The specific name is lowercase, and each word gets its own underline | Capital for the genus only, one underline per word |
+| Putting *Euglena* or *Spirogyra* in Plantae because they have chloroplasts | Plantae needs multicellular bodies with tissues | Ask whether the organism has true roots, stems and leaves |
+| Using "big", "small" or "light green" in a key | Size and colour change with age and conditions | Use a trait every specimen shows the same way |
+| Calling the mosquito the cause of malaria | *Plasmodium* is the pathogen, the mosquito is the vector | Ask which organism causes the disease and which carries it |
+| Treating Archaebacteria and Eubacteria as one kingdom | The six-kingdom system splits them by wall chemistry and genes | Monera belongs to the older five-kingdom system |
+
+The second mistake is the commonest. A chloroplast tells you how an organism feeds, **not which kingdom it belongs to**.
+
+## Practice on Classification and Naming
+
+The questions move from naming rules to a full calculation. **Write every scientific name correctly** in your answers, too.
+
+1. A student writes the rice plant's name by hand as oryza Sativa, with one line under both words. Correct it and give the rules it breaks.
+
+2. An organism is a single cell with a nucleus and no cell wall. It has no chloroplasts and takes in bacteria with pseudopodia. Name its kingdom and explain why it isn't in Animalia.
+
+3. Use the protist key. An organism has chloroplasts, is a single cell, and its body bends and changes shape as it swims. Which couplet choices do you follow, and what is it?
+
+4. In *Plasmodium vivax* each burst releases <InlineMath math="12" /> merozoites, and bursts happen every <InlineMath math="48" /> hours. Starting from one infected red blood cell, how many infected cells are there after <InlineMath math="6" /> days, if every merozoite enters a new cell? Name the pathogen and the vector in this disease.
+
+### Solutions
+
+**Solution 1**: The genus starts with a capital and the specific name is lowercase, so the name is Oryza sativa. By hand, draw one line under Oryza and a separate line under sativa. In print, it appears in italics as *Oryza sativa*. The student broke two rules, the capital letters and the single underline.
+
+**Solution 2**: It has a nucleus, so it's a eukaryote. It's a single cell that ingests food with pseudopodia, so it's a **protozoan in Protista**. Animalia needs multicellular bodies with tissues, and one cell has none. Check against the table: this is the description of *Amoeba*.
+
+**Solution 3**: Chloroplasts send you from 1a to couplet <InlineMath math="2" />. A single cell sends you from 2b to couplet <InlineMath math="3" />. A body that bends without a cell wall fits 3b, so the organism is ***Euglena***. Check: it passed three couplets, the longest path in this key.
+
+**Solution 4**: Six days hold <InlineMath math="6 \times 24 \div 48 = 3" /> bursts. Each burst multiplies the count by <InlineMath math="12" />:
+
+<BlockMath math="N = 12^3 = 1{,}728 \text{ infected cells}" />
+
+Check: after one burst there are <InlineMath math="12" /> cells, after two <InlineMath math="144" />, and <InlineMath math="144 \times 12 = 1{,}728" />. *Plasmodium vivax* is the **pathogen**, and the female *Anopheles* mosquito is the **vector**.

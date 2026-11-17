@@ -1,0 +1,411 @@
+export const metadata = {
+  title: "Klasifikasi Enam Kingdom dan Tata Nama Binomial",
+  description:
+    "Kelompokkan makhluk hidup ke enam kingdom, tulis nama binomial, susun kunci dikotomi, dan bedakan protozoa dari alga lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Sistem Klasifikasi dan Tata Nama",
+};
+
+## Cara Ahli Biologi Mengelompokkan dan Menamai Makhluk Hidup
+
+Ahli biologi memasukkan setiap makhluk hidup ke **salah satu dari enam kingdom**: Archaebacteria, Eubacteria, Protista, Fungi, Plantae, dan Animalia. Setiap spesies lalu mendapat nama ilmiah dua kata, misalnya *Panthera tigris* untuk harimau. Makhluk hidup yang belum dikenal diidentifikasi dengan **kunci dikotomi**, yaitu daftar pasangan pernyataan yang saling berlawanan. Di model-model ini, kamu menyusun kingdom ke dalam domain, membaca nama sekelompok kucing, dan menyusun kunci untuk enam protista.
+
+Kenapa harus serepot itu? Lebih dari sejuta spesies sudah punya nama ilmiah, padahal nama sehari-hari berubah dari satu tempat ke tempat lain. Kucing besar yang sama disebut harimau dalam bahasa Indonesia dan Melayu, tiger dalam bahasa Inggris, dan Tiger dalam bahasa Jerman. Nama ilmiahnya tetap *Panthera tigris* dalam semua bahasa, jadi peneliti di Jakarta dan di Berlin tahu mereka membicarakan hewan yang sama.
+
+Keenam kingdom itu berada di dalam tiga **domain**, tingkatan yang paling luas. Setiap tingkatan di bawahnya berisi makhluk hidup yang makin sedikit: domain, kingdom, filum, kelas, ordo, famili, genus, dan spesies. Kamu sudah melihat cara [klasifikasi buatan, alami, dan filogenetik](/id/materi/biologi/keanekaragaman-makhluk-hidup/klasifikasi-makhluk-hidup) memilih kriterianya. Di sini kamu memakai satu sistem untuk mengelompokkan, menamai, dan mengidentifikasi makhluk hidup.
+
+<MathVisual
+  title={<>Enam Kingdom di dalam Tiga Domain</>}
+  description={<>Setiap kotak dalam adalah satu kingdom dan setiap kotak luar adalah satu domain. Empat kingdom yang selnya berinti berbagi domain Eukarya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -7.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bacteria", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 3 }, { x: 4.9, y: 3 }, { x: 4.9, y: 6 }, { x: 0, y: 6 }] },
+      { id: "archaea", kind: "polygon", appearance: "reference", vertices: [{ x: 5.1, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 6 }, { x: 5.1, y: 6 }] },
+      { id: "eukarya", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: -7 }, { x: 10, y: -7 }, { x: 10, y: 1.5 }, { x: 0, y: 1.5 }] },
+      { id: "eubacteria", kind: "polygon", appearance: "secondary", vertices: [{ x: 0.4, y: 3.4 }, { x: 4.5, y: 3.4 }, { x: 4.5, y: 5.6 }, { x: 0.4, y: 5.6 }] },
+      { id: "archaebacteria", kind: "polygon", appearance: "construction", vertices: [{ x: 5.5, y: 3.4 }, { x: 9.6, y: 3.4 }, { x: 9.6, y: 5.6 }, { x: 5.5, y: 5.6 }] },
+      { id: "protista", kind: "polygon", appearance: "answer", vertices: [{ x: 0.4, y: -2.3 }, { x: 4.8, y: -2.3 }, { x: 4.8, y: 1.1 }, { x: 0.4, y: 1.1 }] },
+      { id: "fungi", kind: "polygon", appearance: "highlight", vertices: [{ x: 5.2, y: -2.3 }, { x: 9.6, y: -2.3 }, { x: 9.6, y: 1.1 }, { x: 5.2, y: 1.1 }] },
+      { id: "plantae", kind: "polygon", appearance: "primary", vertices: [{ x: 0.4, y: -6.6 }, { x: 4.8, y: -6.6 }, { x: 4.8, y: -3.2 }, { x: 0.4, y: -3.2 }] },
+      { id: "animalia", kind: "polygon", appearance: "warning", vertices: [{ x: 5.2, y: -6.6 }, { x: 9.6, y: -6.6 }, { x: 9.6, y: -3.2 }, { x: 5.2, y: -3.2 }] },
+    ],
+    labels: [
+      { key: "bacteria", objectId: "bacteria", at: { x: 0, y: 6 }, placement: "above-right" },
+      { key: "archaea", objectId: "archaea", at: { x: 5.1, y: 6 }, placement: "above-right" },
+      { key: "eukarya", objectId: "eukarya", at: { x: 0, y: 1.5 }, placement: "above-right" },
+      { key: "eubacteria", objectId: "eubacteria", at: { x: 2.45, y: 4.5 }, placement: "center" },
+      { key: "archaebacteria", objectId: "archaebacteria", at: { x: 7.55, y: 4.5 }, placement: "center" },
+      { key: "protista", objectId: "protista", at: { x: 2.6, y: -0.6 }, placement: "center" },
+      { key: "fungi", objectId: "fungi", at: { x: 7.4, y: -0.6 }, placement: "center" },
+      { key: "plantae", objectId: "plantae", at: { x: 2.6, y: -4.9 }, placement: "center" },
+      { key: "animalia", objectId: "animalia", at: { x: 7.4, y: -4.9 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    bacteria: <>Domain Bacteria</>,
+    archaea: <>Domain Archaea</>,
+    eukarya: <>Domain Eukarya</>,
+    eubacteria: <>Eubacteria</>,
+    archaebacteria: <>Archaebacteria</>,
+    protista: <>Protista</>,
+    fungi: <>Fungi</>,
+    plantae: <>Plantae</>,
+    animalia: <>Animalia</>,
+  }}
+/>
+
+Bandingkan kotak-kotaknya. Archaebacteria dan Eubacteria sama-sama tidak punya inti sel, tetapi masing-masing punya domain sendiri, karena dinding sel dan RNA ribosomnya terlalu berbeda untuk ditampung dalam satu domain.
+
+## Mengelompokkan Makhluk Hidup ke Enam Kingdom
+
+Setiap kingdom ditentukan oleh **gabungan beberapa ciri sekaligus**, tidak pernah oleh satu ciri saja. Jadi, kelompokkan makhluk hidup dengan memeriksa selnya, dinding selnya, dan cara makannya satu per satu, lalu uji jawabanmu dengan kingdom yang paling mirip.
+
+### Empat Pertanyaan Menentukan Kingdom
+
+Empat pertanyaan bisa menempatkan hampir semua makhluk hidup. Apakah selnya punya **inti sel**? Apakah tubuhnya satu sel atau banyak sel? Dinding selnya terbuat dari apa? Bagaimana cara makhluk itu mendapat makanan? Tabel ini menjawabnya untuk setiap kingdom.
+
+| Kingdom | Sel | Dinding sel | Cara mendapat makanan | Contoh |
+| --- | --- | --- | --- | --- |
+| Archaebacteria | Prokariot, uniseluler | Tanpa peptidoglikan | Autotrof atau heterotrof | *Halobacterium salinarum* di air yang sangat asin |
+| Eubacteria | Prokariot, uniseluler | Peptidoglikan | Autotrof atau heterotrof | *Streptococcus pneumoniae*, sianobakteri |
+| Protista | Eukariot, uniseluler atau multiseluler tanpa jaringan | Ada pada banyak alga, tidak ada pada protozoa | Fotosintesis, menelan, atau menyerap makanan | *Amoeba* sp., *Spirogyra* sp. |
+| Fungi | Eukariot, kebanyakan berupa hifa, khamir uniseluler | Kitin | Menyerap makanan setelah mencernanya di luar tubuh | *Saccharomyces cerevisiae*, *Agaricus* sp. |
+| Plantae | Eukariot, multiseluler dengan jaringan | Selulosa | Fotosintesis | *Oryza sativa* (padi) |
+| Animalia | Eukariot, multiseluler dengan jaringan | Tidak ada | Menelan makanan | *Panthera tigris* (harimau) |
+
+Prokariot **tidak punya membran yang membungkus DNA**, jadi makhluk itu masuk Archaebacteria atau Eubacteria. Archaebacteria sering hidup di tempat yang hanya bisa ditinggali sedikit makhluk lain, misalnya mata air panas yang asam dan tambak garam. Sistem lima kingdom yang lebih lama memasukkan kedua kelompok ini ke satu kingdom, yaitu Monera. Sistem enam kingdom memisahkannya karena dinding sel dan gennya berbeda.
+
+Protista menampung makhluk eukariot yang **bukan jamur, tumbuhan, atau hewan**. Anggotanya bisa berfotosintesis, menelan makanan, atau menyerapnya, dan yang multiseluler pun tidak punya jaringan sejati. Itulah sebabnya satu sel berkloroplas, atau satu filamen panjang dari sel-sel hijau yang serupa, masuk Protista dan bukan Plantae.
+
+### Menempatkan Tiga Makhluk Hidup
+
+Kamu memeriksa tiga makhluk hidup. Makhluk A adalah satu sel tanpa inti sel, dinding selnya tanpa peptidoglikan, dan ia hidup di mata air bersuhu <InlineMath math="80^\circ\text{C}" />. Makhluk B punya banyak sel berinti, dinding kitin, dan hifa, dan ia mendapat makanan dari kayu mati. Makhluk C adalah filamen dari sel-sel serupa, masing-masing dengan inti dan kloroplas, tetapi tanpa jaringan.
+
+Jawab keempat pertanyaan secara berurutan. A tidak punya inti sel, jadi A prokariot. Dinding selnya tanpa peptidoglikan, jadi A masuk **Archaebacteria**. B punya inti sel dan dinding kitin, lalu menyerap makanan dari kayu, jadi B masuk **Fungi**. C punya inti sel dan berfotosintesis, tetapi selnya tidak membentuk jaringan, jadi C masuk **Protista**.
+
+Cek setiap jawaban dengan kriteria yang membedakannya dari kingdom tetangganya. Kalau A punya peptidoglikan, A termasuk Eubacteria. Kalau B punya dinding selulosa dan kloroplas, B termasuk tumbuhan. Kalau C punya akar, batang, dan daun yang tersusun dari jaringan, C termasuk Plantae. Tidak ada yang terpenuhi, jadi ketiga penempatan itu tetap benar.
+
+## Menulis Nama Binomial
+
+**Sistem tata nama binomial** memberi setiap spesies dua kata. Kata pertama adalah **nama genus** dan kata kedua adalah **penunjuk spesies**. Padi bernama *Oryza sativa*: *Oryza* adalah genusnya dan *sativa* menunjuk satu spesies di dalam genus itu. Kedua kata itu bersama-sama menamai tepat satu spesies.
+
+Aturan berikut menentukan cara nama itu ditulis:
+
+- Nama genus diawali huruf kapital, sedangkan penunjuk spesies seluruhnya huruf kecil.
+- Nama yang dicetak ditulis miring, misalnya *Oryza sativa*.
+- Nama yang ditulis tangan diberi garis bawah, dengan **setiap kata digarisbawahi terpisah**.
+- Setelah nama lengkap muncul sekali, nama genus boleh disingkat menjadi huruf pertamanya, misalnya *O. sativa*.
+- Kalau spesiesnya belum diketahui, tulis nama genus diikuti "sp.", misalnya *Amoeba* sp.
+
+Spesies yang berbagi nama genus adalah kerabat dekat. Model di bawah menunjukkan lima jenis kucing dalam famili Felidae. Baca setiap kotak genus dari atas ke bawah, lalu bandingkan kata pertama dari setiap nama di dalamnya.
+
+<MathVisual
+  title={<>Satu Famili, Tiga Genus Kucing</>}
+  description={<>Kotak luar adalah famili Felidae. Setiap kotak dalam adalah satu genus, dan setiap titik adalah satu spesies dengan nama binomialnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11.5 }, y: { min: -9, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "felidae", kind: "polygon", appearance: "reference", vertices: [{ x: -0.5, y: -8 }, { x: 11, y: -8 }, { x: 11, y: 7.5 }, { x: -0.5, y: 7.5 }] },
+      { id: "panthera", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 1 }, { x: 10.5, y: 1 }, { x: 10.5, y: 6 }, { x: 0, y: 6 }] },
+      { id: "felis", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: -2.5 }, { x: 10.5, y: -2.5 }, { x: 10.5, y: -0.5 }, { x: 0, y: -0.5 }] },
+      { id: "prionailurus", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: -6.5 }, { x: 10.5, y: -6.5 }, { x: 10.5, y: -4.5 }, { x: 0, y: -4.5 }] },
+      { id: "tiger", kind: "point", appearance: "primary", at: { x: 1, y: 5 } },
+      { id: "leopard", kind: "point", appearance: "primary", at: { x: 1, y: 3.5 } },
+      { id: "lion", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "cat", kind: "point", appearance: "secondary", at: { x: 1, y: -1.5 } },
+      { id: "leopard-cat", kind: "point", appearance: "construction", at: { x: 1, y: -5.5 } },
+    ],
+    labels: [
+      { key: "felidae", objectId: "felidae", at: { x: 5.25, y: -8 }, placement: "below" },
+      { key: "panthera", objectId: "panthera", at: { x: 0, y: 6 }, placement: "above-right" },
+      { key: "felis", objectId: "felis", at: { x: 0, y: -0.5 }, placement: "above-right" },
+      { key: "prionailurus", objectId: "prionailurus", at: { x: 0, y: -4.5 }, placement: "above-right" },
+      { key: "tiger", objectId: "tiger", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "leopard", objectId: "leopard", at: { x: 1, y: 3.5 }, placement: "right" },
+      { key: "lion", objectId: "lion", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "cat", objectId: "cat", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "leopard-cat", objectId: "leopard-cat", at: { x: 1, y: -5.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    felidae: <>Famili Felidae</>,
+    panthera: <>Genus <em>Panthera</em></>,
+    felis: <>Genus <em>Felis</em></>,
+    prionailurus: <>Genus <em>Prionailurus</em></>,
+    tiger: <><em>Panthera tigris</em>, harimau</>,
+    leopard: <><em>Panthera pardus</em>, macan tutul</>,
+    lion: <><em>Panthera leo</em>, singa</>,
+    cat: <><em>Felis catus</em>, kucing rumah</>,
+    "leopard-cat": <><em>Prionailurus bengalensis</em>, kucing hutan</>,
+  }}
+/>
+
+Kucing hutan, kucing liar kecil yang hidup di hutan Malaysia dan Indonesia, bernama *Prionailurus bengalensis*. Nama Inggrisnya, leopard cat, menyebut macan tutul dan kucing, padahal hewan ini bukan anggota *Panthera* atau *Felis*. Nama binomialnya langsung menunjukkan hal itu, dan juga menunjukkan bahwa harimau dan macan tutul **lebih dekat satu sama lain** daripada dengan kucing rumah.
+
+## Menyusun dan Memakai Kunci Dikotomi
+
+Klasifikasi mengelompokkan makhluk hidup yang sudah kamu kenal. Kunci bekerja ke arah sebaliknya: ia mulai dari makhluk yang belum kamu kenal dan **mengantarmu ke namanya** lewat satu pilihan demi satu pilihan. Jadi, mutu setiap pilihan menentukan apakah kamu sampai ke nama yang benar.
+
+### Ciri Pasangan Pernyataan yang Baik
+
+**Kunci dikotomi** mengidentifikasi makhluk hidup lewat pasangan pernyataan yang bernomor. Setiap pasangan memberi dua pilihan yang berlawanan, 1a dan 1b, dan setiap pilihan berakhir dengan sebuah nama atau dengan petunjuk "ke" pasangan berikutnya. Mulailah dari pasangan <InlineMath math="1" /> dan ikuti pilihan yang cocok sampai sebuah nama muncul.
+
+Pasangan yang baik menguji **satu ciri yang dimiliki setiap spesimen**. "Punya kloroplas" bisa dipakai, sedangkan "besar" atau "hijau tua" tidak, karena ukuran dan warna berubah menurut umur dan cahaya. Kedua pernyataan juga harus saling meniadakan, supaya setiap makhluk cocok dengan tepat satu pernyataan.
+
+### Menyusun Kunci untuk Enam Protista
+
+Susun kunci untuk *Amoeba*, *Paramecium*, *Euglena*, *Chlamydomonas*, *Spirogyra*, dan *Plasmodium*. Mulailah dengan ciri yang membagi kelompok itu paling rata, yaitu kloroplas. Tiga makhluk punya kloroplas dan tiga tidak. Bagi lagi setiap separuh dengan ciri baru sampai setiap makhluk berdiri sendiri.
+
+| Pasangan | Pernyataan | Hasil |
+| --- | --- | --- |
+| 1a | Punya kloroplas | Ke <InlineMath math="2" /> |
+| 1b | Tidak punya kloroplas | Ke <InlineMath math="4" /> |
+| 2a | Sel-sel bersambung ujung ke ujung membentuk filamen | *Spirogyra* |
+| 2b | Satu sel saja | Ke <InlineMath math="3" /> |
+| 3a | Tubuh berbentuk tetap di dalam dinding sel | *Chlamydomonas* |
+| 3b | Tubuh melentur dan berubah bentuk, tanpa dinding sel | *Euglena* |
+| 4a | Tidak punya alat gerak dan hidup di dalam sel darah merah | *Plasmodium* |
+| 4b | Bergerak sendiri | Ke <InlineMath math="5" /> |
+| 5a | Bergerak dengan pseudopodia | *Amoeba* |
+| 5b | Bergerak dengan silia | *Paramecium* |
+
+Kunci yang sama bisa digambar sebagai diagram bercabang. Setiap percabangan adalah satu pasangan, jadi ikuti cabang atas kalau pernyataan a cocok dan cabang bawah kalau pernyataan b cocok.
+
+<MathVisual
+  title={<>Kunci Protista sebagai Diagram Bercabang</>}
+  description={<>Setiap titik bernomor adalah satu pasangan pernyataan. Di setiap percabangan, cabang atas adalah pernyataan a dan cabang bawah adalah pernyataan b.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fork-1a", kind: "segment", appearance: "reference", from: { x: 0, y: 2.75 }, to: { x: 1.5, y: 4.25 } },
+      { id: "fork-1b", kind: "segment", appearance: "reference", from: { x: 0, y: 2.75 }, to: { x: 1.5, y: 1.25 } },
+      { id: "fork-2a", kind: "segment", appearance: "reference", from: { x: 1.5, y: 4.25 }, to: { x: 4.5, y: 5 } },
+      { id: "fork-2b", kind: "segment", appearance: "reference", from: { x: 1.5, y: 4.25 }, to: { x: 3, y: 3.5 } },
+      { id: "fork-3a", kind: "segment", appearance: "reference", from: { x: 3, y: 3.5 }, to: { x: 4.5, y: 4 } },
+      { id: "fork-3b", kind: "segment", appearance: "reference", from: { x: 3, y: 3.5 }, to: { x: 4.5, y: 3 } },
+      { id: "fork-4a", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25 }, to: { x: 4.5, y: 2 } },
+      { id: "fork-4b", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25 }, to: { x: 3, y: 0.5 } },
+      { id: "fork-5a", kind: "segment", appearance: "reference", from: { x: 3, y: 0.5 }, to: { x: 4.5, y: 1 } },
+      { id: "fork-5b", kind: "segment", appearance: "reference", from: { x: 3, y: 0.5 }, to: { x: 4.5, y: 0 } },
+      { id: "couplet-1", kind: "point", appearance: "secondary", at: { x: 0, y: 2.75 } },
+      { id: "couplet-2", kind: "point", appearance: "secondary", at: { x: 1.5, y: 4.25 } },
+      { id: "couplet-3", kind: "point", appearance: "secondary", at: { x: 3, y: 3.5 } },
+      { id: "couplet-4", kind: "point", appearance: "secondary", at: { x: 1.5, y: 1.25 } },
+      { id: "couplet-5", kind: "point", appearance: "secondary", at: { x: 3, y: 0.5 } },
+      { id: "spirogyra", kind: "point", appearance: "answer", at: { x: 4.5, y: 5 } },
+      { id: "chlamydomonas", kind: "point", appearance: "answer", at: { x: 4.5, y: 4 } },
+      { id: "euglena", kind: "point", appearance: "answer", at: { x: 4.5, y: 3 } },
+      { id: "plasmodium", kind: "point", appearance: "answer", at: { x: 4.5, y: 2 } },
+      { id: "amoeba", kind: "point", appearance: "answer", at: { x: 4.5, y: 1 } },
+      { id: "paramecium", kind: "point", appearance: "answer", at: { x: 4.5, y: 0 } },
+    ],
+    labels: [
+      { key: "couplet-1", objectId: "couplet-1", at: { x: 0, y: 2.75 }, placement: "above" },
+      { key: "couplet-2", objectId: "couplet-2", at: { x: 1.5, y: 4.25 }, placement: "above" },
+      { key: "couplet-3", objectId: "couplet-3", at: { x: 3, y: 3.5 }, placement: "above" },
+      { key: "couplet-4", objectId: "couplet-4", at: { x: 1.5, y: 1.25 }, placement: "below" },
+      { key: "couplet-5", objectId: "couplet-5", at: { x: 3, y: 0.5 }, placement: "below" },
+      { key: "spirogyra", objectId: "spirogyra", at: { x: 4.5, y: 5 }, placement: "right" },
+      { key: "chlamydomonas", objectId: "chlamydomonas", at: { x: 4.5, y: 4 }, placement: "right" },
+      { key: "euglena", objectId: "euglena", at: { x: 4.5, y: 3 }, placement: "right" },
+      { key: "plasmodium", objectId: "plasmodium", at: { x: 4.5, y: 2 }, placement: "right" },
+      { key: "amoeba", objectId: "amoeba", at: { x: 4.5, y: 1 }, placement: "right" },
+      { key: "paramecium", objectId: "paramecium", at: { x: 4.5, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "couplet-1": <InlineMath math="1" />,
+    "couplet-2": <InlineMath math="2" />,
+    "couplet-3": <InlineMath math="3" />,
+    "couplet-4": <InlineMath math="4" />,
+    "couplet-5": <InlineMath math="5" />,
+    spirogyra: <em>Spirogyra</em>,
+    chlamydomonas: <em>Chlamydomonas</em>,
+    euglena: <em>Euglena</em>,
+    plasmodium: <em>Plasmodium</em>,
+    amoeba: <em>Amoeba</em>,
+    paramecium: <em>Paramecium</em>,
+  }}
+/>
+
+Sekarang cek kuncinya dengan menjalankan satu makhluk melewatinya. *Paramecium* tidak punya kloroplas, jadi 1b mengirimmu ke pasangan <InlineMath math="4" />. *Paramecium* berenang, jadi 4b mengirimmu ke pasangan <InlineMath math="5" />. Tubuhnya tertutup silia, jadi 5b berakhir di *Paramecium*. Setiap makhluk seharusnya berakhir di **tepat satu nama**, dan di sini keenamnya memang begitu.
+
+Cek kedua adalah menghitung pasangan. Setiap pasangan membagi satu kelompok menjadi dua, jadi kunci untuk <InlineMath math="n" /> makhluk memerlukan tepat <InlineMath math="n-1" /> pasangan. Enam protista memerlukan <InlineMath math="6-1=5" /> pasangan, sama dengan tabel. Geser jumlah makhluk dan baca kedua nilainya.
+
+<MathVisual
+  title={<>Pasangan dalam Kunci untuk <InlineMath math="n" /> Makhluk</>}
+  description={<>Garisnya adalah <InlineMath math="c = n - 1" />. Nilai di bawahnya menunjukkan jumlah pasangan yang kamu tulis dan jumlah pasangan minimum di jalur terpanjang.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 12, value: 6, step: 1, label: "organisms" },
+    ],
+    objects: [
+      { id: "couplets", kind: "function", appearance: "reference", formula: "x - 1", domain: { min: 2, max: 12 } },
+      { id: "key", kind: "marker", appearance: "answer", x: "n", y: "n - 1" },
+    ],
+    labels: [
+      { key: "key", objectId: "key", at: { x: "n", y: "n - 1" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "total", formula: "n - 1" },
+      { key: "depth", formula: "ceil(log_2(n))" },
+    ],
+  }}
+  labels={{
+    organisms: <>Jumlah makhluk <InlineMath math="n" /></>,
+    key: <>kuncimu</>,
+    total: <>Pasangan di kunci</>,
+    depth: <>Pasangan minimum di jalur terpanjang</>,
+  }}
+/>
+
+Nilai kedua adalah panjang minimum jalur terpanjang, karena setiap pasangan paling banyak membagi dua kelompoknya. Untuk enam makhluk nilainya <InlineMath math="3" />, dan jalur terpanjang di kunci protista, yaitu ke *Euglena* atau *Paramecium*, melewati tiga pasangan.
+
+## Protozoa Hidup seperti Hewan Mini
+
+**Protozoa** adalah protista yang uniseluler, eukariot, dan heterotrof: ia memakan makhluk lain atau bahan organik. Kebanyakan hidup di air atau tanah lembap, dan banyak yang menjadi parasit. Mikroskop cahaya memperlihatkannya dengan jelas karena panjang kebanyakan protozoa puluhan sampai ratusan mikrometer.
+
+### Cara Protozoa Bergerak dan Membuang Air
+
+Protozoa dikelompokkan antara lain menurut cara bergeraknya. *Amoeba* menjulurkan **pseudopodia**, yaitu tonjolan sitoplasma yang bisa terbentuk di bagian sel mana saja. *Amoeba* membungkus partikel makanan dengan pseudopodia dan menutupnya dalam vakuola makanan. Proses ini disebut fagositosis. *Paramecium* menggerakkan ribuan **silia** secara bergelombang untuk berenang dan menyapu makanan ke celah mulutnya. Protozoa lain mengibaskan satu flagel atau lebih.
+
+Protozoa air tawar menghadapi masalah yang terus-menerus. Sitoplasmanya lebih pekat daripada air kolam, jadi air masuk secara osmosis. **Vakuola kontraktil** terisi air berlebih itu dan memompanya keluar dari sel berulang kali, sehingga sel tidak pecah. Kebanyakan protozoa berkembang biak dengan pembelahan biner, dan *Paramecium* juga bisa bertukar materi genetik dengan pasangannya lewat konjugasi.
+
+### Parasit Malaria Dibawa oleh Vektor
+
+**Patogen** adalah makhluk yang menyebabkan penyakit, sedangkan **vektor** adalah makhluk yang membawa patogen dari satu inang ke inang lain. *Plasmodium* adalah patogen malaria, dan hanya nyamuk *Anopheles* betina yang membawanya. Saat nyamuk yang terinfeksi menggigit, *Plasmodium* terbawa darah ke hati, berkembang biak di sana, lalu menyerang sel darah merah.
+
+Di dalam sel darah merah, satu parasit membelah menjadi banyak merozoit. Sel itu pecah, dan setiap merozoit menyerang sel darah merah yang baru. Pada *Plasmodium falciparum*, setiap kali sel pecah, sel itu melepaskan <InlineMath math="8" /> sampai <InlineMath math="24" /> merozoit, dan pecahnya terjadi serentak kira-kira setiap <InlineMath math="48" /> jam. Itulah sebabnya demam malaria datang berulang dan penderitanya menjadi anemia.
+
+Geser jumlah merozoit setiap kali sel pecah. Model ini mulai dari satu sel darah merah yang terinfeksi dan menganggap setiap merozoit mencapai sel baru, jadi model ini menunjukkan kenaikan tercepat yang mungkin.
+
+<MathVisual
+  title={<>Parasit Malaria Bertambah Setiap Kali Sel Pecah</>}
+  description={<>Sel darah merah terinfeksi, mulai dari satu, saat setiap sel yang pecah tiap dua hari melepaskan <InlineMath math="m" /> merozoit. Satu langkah grid ke atas berarti sel terinfeksi sepuluh kali lebih banyak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 8, max: 24, value: 16, step: 1, label: "merozoites" },
+    ],
+    objects: [
+      { id: "rise", kind: "path", appearance: "reference", points: [{ x: "0", y: "0" }, { x: "2", y: "log(m)" }, { x: "4", y: "2 log(m)" }, { x: "6", y: "3 log(m)" }, { x: "8", y: "4 log(m)" }] },
+      { id: "day-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "day-2", kind: "marker", appearance: "secondary", x: "2", y: "log(m)" },
+      { id: "day-4", kind: "marker", appearance: "secondary", x: "4", y: "2 log(m)" },
+      { id: "day-6", kind: "marker", appearance: "secondary", x: "6", y: "3 log(m)" },
+      { id: "day-8", kind: "marker", appearance: "answer", x: "8", y: "4 log(m)" },
+    ],
+    labels: [
+      { key: "start", objectId: "day-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "end", objectId: "day-8", at: { x: "8", y: "4 log(m)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "fourth", formula: "m^2" },
+      { key: "eighth", formula: "m^4" },
+    ],
+  }}
+  labels={{
+    merozoites: <>Merozoit tiap kali pecah <InlineMath math="m" /></>,
+    start: <>hari ke-<InlineMath math="0" />: <InlineMath math="1" /> sel</>,
+    end: <>hari ke-<InlineMath math="8" />: <InlineMath math="m^4" /></>,
+    fourth: <>Sel terinfeksi pada hari ke-<InlineMath math="4" /></>,
+    eighth: <>Sel terinfeksi pada hari ke-<InlineMath math="8" /></>,
+  }}
+/>
+
+Dengan <InlineMath math="16" /> merozoit setiap kali sel pecah, empat kali pecah dalam delapan hari menghasilkan <InlineMath math="16^4 = 65{.}536" /> sel terinfeksi dari satu sel saja. Tubuh menghancurkan banyak parasit, jadi jumlah sebenarnya naik lebih lambat. Meski begitu, garis lurus pada skala ini menunjukkan polanya: **jumlahnya dikalikan faktor yang sama di setiap siklus**.
+
+Di Malaysia sekarang, kebanyakan malaria pada manusia berasal dari *Plasmodium knowlesi*. Parasit ini hidup pada monyet ekor panjang dan beruk, dan nyamuk *Anopheles* membawanya dari monyet itu ke manusia. Siklus darahnya hanya sekitar <InlineMath math="24" /> jam, jadi parasit ini memecahkan sel darah merah dua kali lebih sering daripada *P. falciparum*. Memutus mata rantai yang dibawa vektor, yaitu menghindari gigitan nyamuk di dalam dan di dekat hutan, melindungi manusia. Virus juga memakai vektor dengan cara yang sama, seperti pada [cara mencegah demam berdarah lewat nyamuk](/id/materi/biologi/virus-dan-peranannya/cara-mencegah-penyebaran-virus).
+
+## Alga Berfotosintesis tetapi Tidak Punya Akar Sejati
+
+**Alga** adalah protista yang mengandung klorofil dan membuat makanannya lewat fotosintesis. Sebagian berupa satu sel, misalnya *Chlamydomonas* dan diatom yang berukuran <InlineMath math="2" /> sampai <InlineMath math="200\ \mu\text{m}" />. *Spirogyra* membentuk filamen panjang dengan kloroplas berbentuk spiral di setiap sel. Rumput laut bersifat multiseluler, dan tangkai kelp raksasa bisa mencapai <InlineMath math="60\text{ m}" />.
+
+Sebesar apa pun ukurannya, alga **tidak punya akar, batang, atau daun sejati** dan tidak punya xilem untuk mengangkut air. Rumput laut menyerap air, mineral, dan karbon dioksida lewat seluruh permukaannya dari air laut di sekitarnya. Itulah bedanya dengan Plantae. Rumput laut menempel pada batu dengan alat pelekat yang menambatnya, tetapi tidak menyerap air seperti akar.
+
+Alga dan protista fotosintetik lain melakukan sekitar seperempat dari seluruh fotosintesis di Bumi. Alga adalah **produsen** di dasar kebanyakan rantai makanan perairan, dan alga melepaskan oksigen. *Euglena* menunjukkan alasan Protista disebut kingdom yang campur aduk: di tempat terang *Euglena* berfotosintesis dengan kloroplasnya, sedangkan di tempat gelap *Euglena* menyerap zat organik dari air.
+
+Alga memerlukan cahaya, dan makin dalam air, makin banyak cahaya yang diserap. Cahaya yang tersisa di kedalaman <InlineMath math="z" /> meter adalah <InlineMath math="I = 100e^{-kz}" /> persen dari cahaya di permukaan, dengan <InlineMath math="k" /> sebagai ukuran kekeruhan air. Fotosintesis biasanya berhenti di dekat kedalaman tempat cahaya tinggal <InlineMath math="1\%" />.
+
+<MathVisual
+  title={<>Seberapa Dalam Alga Bisa Berfotosintesis</>}
+  description={<>Cahaya yang tersisa di setiap kedalaman menurut <InlineMath math="I = 100e^{-kz}" />. Satu langkah grid mendatar adalah kedalaman <InlineMath math="10\text{ m}" />, dan satu langkah grid ke atas adalah <InlineMath math="10\%" /> cahaya permukaan. Titiknya menandai kedalaman tempat cahaya tinggal <InlineMath math="1\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 25 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.02, max: 0.5, value: 0.023, step: 0.001, label: "murkiness" },
+    ],
+    objects: [
+      { id: "light", kind: "function", appearance: "primary", formula: "10 exp(-10 k x)", domain: { min: 0, max: 25 } },
+      { id: "limit", kind: "segment", appearance: "warning", from: { x: 0, y: 0.1 }, to: { x: 25, y: 0.1 } },
+      { id: "bottom", kind: "marker", appearance: "answer", x: "ln(100)/(10 k)", y: "0.1" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 0, y: 0.1 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "depth", formula: "ln(100)/k" },
+    ],
+  }}
+  labels={{
+    murkiness: <>Kekeruhan <InlineMath math="k" /> per meter</>,
+    limit: <><InlineMath math="1\%" /> cahaya permukaan</>,
+    depth: <>Kedalaman dalam meter saat cahaya tinggal <InlineMath math="1\%" /></>,
+  }}
+/>
+
+Masukkan <InlineMath math="I = 1" /> lalu selesaikan: <InlineMath math="z = \tfrac{\ln 100}{k}" />. Di laut jernih dengan <InlineMath math="k = 0{,}023" />, hasilnya sekitar <InlineMath math="200\text{ m}" />, batas biasa zona fotik. Di air pantai yang keruh dengan <InlineMath math="k = 0{,}5" />, hasilnya hanya <InlineMath math="9{,}2\text{ m}" />. Itulah sebabnya rumput laut di pantai berlumpur hanya tumbuh di **perairan dangkal dekat pantai**.
+
+## Kesalahan Umum dalam Klasifikasi dan Tata Nama
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| --- | --- | --- |
+| Menulis *Oryza Sativa* atau satu garis di bawah kedua kata | Penunjuk spesies ditulis huruf kecil, dan setiap kata diberi garis bawah sendiri | Huruf kapital hanya untuk genus, satu garis untuk setiap kata |
+| Memasukkan *Euglena* atau *Spirogyra* ke Plantae karena punya kloroplas | Plantae memerlukan tubuh multiseluler yang punya jaringan | Tanyakan apakah makhluk itu punya akar, batang, dan daun sejati |
+| Memakai "besar", "kecil", atau "hijau muda" di kunci | Ukuran dan warna berubah menurut umur dan kondisi | Pakai ciri yang sama pada setiap spesimen |
+| Menyebut nyamuk sebagai penyebab malaria | *Plasmodium* adalah patogen, nyamuk adalah vektor | Tanyakan makhluk mana yang menyebabkan penyakit dan mana yang membawanya |
+| Menganggap Archaebacteria dan Eubacteria satu kingdom | Sistem enam kingdom memisahkannya menurut kimia dinding sel dan gen | Monera adalah bagian dari sistem lima kingdom yang lebih lama |
+
+Kesalahan kedua paling sering terjadi. Kloroplas memberi tahu cara makhluk mendapat makanan, **bukan kingdom tempatnya berada**.
+
+## Latihan Klasifikasi dan Tata Nama
+
+Soal-soal ini bergerak dari aturan tata nama sampai perhitungan lengkap. **Tulis setiap nama ilmiah dengan benar** di jawabanmu juga.
+
+1. Seorang siswa menulis nama padi dengan tangan sebagai oryza Sativa, dengan satu garis di bawah kedua kata. Perbaiki nama itu dan sebutkan aturan yang dilanggar.
+
+2. Sebuah makhluk berupa satu sel yang punya inti sel tetapi tanpa dinding sel. Makhluk itu tidak punya kloroplas dan menelan bakteri dengan pseudopodia. Sebutkan kingdomnya dan jelaskan mengapa makhluk itu tidak termasuk Animalia.
+
+3. Pakai kunci protista. Sebuah makhluk punya kloroplas, berupa satu sel, dan tubuhnya melentur serta berubah bentuk saat berenang. Pilihan pasangan mana saja yang kamu ikuti, dan makhluk apakah itu?
+
+4. Pada *Plasmodium vivax*, setiap kali sel pecah, sel itu melepaskan <InlineMath math="12" /> merozoit, dan pecahnya terjadi setiap <InlineMath math="48" /> jam. Kalau dimulai dari satu sel darah merah yang terinfeksi, berapa sel terinfeksi setelah <InlineMath math="6" /> hari, jika setiap merozoit masuk ke sel baru? Sebutkan patogen dan vektor pada penyakit ini.
+
+### Pembahasan
+
+**Pembahasan 1**: Nama genus diawali huruf kapital dan penunjuk spesies ditulis huruf kecil, jadi namanya Oryza sativa. Dengan tulisan tangan, buat satu garis di bawah Oryza dan satu garis lain di bawah sativa. Dalam cetakan, nama itu ditulis miring sebagai *Oryza sativa*. Siswa itu melanggar dua aturan, yaitu huruf kapital dan garis bawah tunggal.
+
+**Pembahasan 2**: Makhluk itu punya inti sel, jadi ia eukariot. Ia berupa satu sel yang menelan makanan dengan pseudopodia, jadi ia **protozoa dalam kingdom Protista**. Animalia memerlukan tubuh multiseluler yang punya jaringan, sedangkan satu sel tidak punya jaringan. Cek dengan tabel: ini adalah ciri *Amoeba*.
+
+**Pembahasan 3**: Kloroplas mengirimmu dari 1a ke pasangan <InlineMath math="2" />. Satu sel mengirimmu dari 2b ke pasangan <InlineMath math="3" />. Tubuh yang melentur tanpa dinding sel cocok dengan 3b, jadi makhluk itu ***Euglena***. Cek: makhluk ini melewati tiga pasangan, jalur terpanjang di kunci ini.
+
+**Pembahasan 4**: Enam hari berisi <InlineMath math="6 \times 24 \div 48 = 3" /> kali pecah. Setiap kali sel pecah, jumlah sel dikalikan dengan <InlineMath math="12" />:
+
+<BlockMath math="N = 12^3 = 1{.}728 \text{ sel terinfeksi}" />
+
+Cek: setelah sekali pecah ada <InlineMath math="12" /> sel, setelah dua kali pecah ada <InlineMath math="144" /> sel, dan <InlineMath math="144 \times 12 = 1{.}728" />. *Plasmodium vivax* adalah **patogen**, dan nyamuk *Anopheles* betina adalah **vektor**.

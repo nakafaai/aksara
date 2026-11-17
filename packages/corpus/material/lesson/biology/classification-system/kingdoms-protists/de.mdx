@@ -1,0 +1,411 @@
+export const metadata = {
+  title: "Sechs Reiche und binäre Nomenklatur der Lebewesen",
+  description:
+    "Ordne Lebewesen in sechs Reiche ein, schreib wissenschaftliche Doppelnamen, bau einen Bestimmungsschlüssel und unterscheide Protozoen von Algen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Klassifikation und Benennung",
+};
+
+## So ordnen und benennen Biologen jedes Lebewesen
+
+Biologen ordnen jedes Lebewesen **einem von sechs Reichen** zu: Archaebacteria, Eubacteria, Protista, Fungi, Plantae und Animalia. Jede Art bekommt dazu einen wissenschaftlichen Namen aus zwei Wörtern, etwa *Panthera tigris* für den Tiger. Ein unbekanntes Lebewesen bestimmst du mit einem **dichotomen Bestimmungsschlüssel**, einer Liste von Paaren gegensätzlicher Aussagen. In den Modellen hier ordnest du Reiche in Domänen ein, liest eine Katzenfamilie an ihren Namen ab und baust einen Schlüssel für sechs Protisten.
+
+Wozu der Aufwand? Mehr als eine Million Arten haben schon einen wissenschaftlichen Namen, und Alltagsnamen ändern sich von Ort zu Ort. Dieselbe Großkatze heißt auf Deutsch Tiger, auf Malaiisch harimau und auf Englisch tiger. Ihr wissenschaftlicher Name bleibt in jeder Sprache *Panthera tigris*, also wissen eine Forscherin in Kuala Lumpur und ein Forscher in Berlin, dass sie dasselbe Tier meinen.
+
+Die sechs Reiche liegen in drei **Domänen**, der weitesten Rangstufe. Jede Stufe darunter umfasst weniger Lebewesen: Domäne, Reich, Stamm, Klasse, Ordnung, Familie, Gattung und Art. Wie [künstliche, natürliche und phylogenetische Klassifikation](/de/faecher/biologie/vielfalt-der-lebewesen/klassifikation) ihre Kriterien wählen, kennst du schon. Hier nutzt du ein einziges System, um Lebewesen einzuordnen, zu benennen und zu bestimmen.
+
+<MathVisual
+  title={<>Sechs Reiche in drei Domänen</>}
+  description={<>Jeder innere Kasten ist ein Reich, jeder äußere Kasten eine Domäne. Die vier Reiche mit Zellkern teilen sich die Domäne Eukarya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -7.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bacteria", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 3 }, { x: 4.9, y: 3 }, { x: 4.9, y: 6 }, { x: 0, y: 6 }] },
+      { id: "archaea", kind: "polygon", appearance: "reference", vertices: [{ x: 5.1, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 6 }, { x: 5.1, y: 6 }] },
+      { id: "eukarya", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: -7 }, { x: 10, y: -7 }, { x: 10, y: 1.5 }, { x: 0, y: 1.5 }] },
+      { id: "eubacteria", kind: "polygon", appearance: "secondary", vertices: [{ x: 0.4, y: 3.4 }, { x: 4.5, y: 3.4 }, { x: 4.5, y: 5.6 }, { x: 0.4, y: 5.6 }] },
+      { id: "archaebacteria", kind: "polygon", appearance: "construction", vertices: [{ x: 5.5, y: 3.4 }, { x: 9.6, y: 3.4 }, { x: 9.6, y: 5.6 }, { x: 5.5, y: 5.6 }] },
+      { id: "protista", kind: "polygon", appearance: "answer", vertices: [{ x: 0.4, y: -2.3 }, { x: 4.8, y: -2.3 }, { x: 4.8, y: 1.1 }, { x: 0.4, y: 1.1 }] },
+      { id: "fungi", kind: "polygon", appearance: "highlight", vertices: [{ x: 5.2, y: -2.3 }, { x: 9.6, y: -2.3 }, { x: 9.6, y: 1.1 }, { x: 5.2, y: 1.1 }] },
+      { id: "plantae", kind: "polygon", appearance: "primary", vertices: [{ x: 0.4, y: -6.6 }, { x: 4.8, y: -6.6 }, { x: 4.8, y: -3.2 }, { x: 0.4, y: -3.2 }] },
+      { id: "animalia", kind: "polygon", appearance: "warning", vertices: [{ x: 5.2, y: -6.6 }, { x: 9.6, y: -6.6 }, { x: 9.6, y: -3.2 }, { x: 5.2, y: -3.2 }] },
+    ],
+    labels: [
+      { key: "bacteria", objectId: "bacteria", at: { x: 0, y: 6 }, placement: "above-right" },
+      { key: "archaea", objectId: "archaea", at: { x: 5.1, y: 6 }, placement: "above-right" },
+      { key: "eukarya", objectId: "eukarya", at: { x: 0, y: 1.5 }, placement: "above-right" },
+      { key: "eubacteria", objectId: "eubacteria", at: { x: 2.45, y: 4.5 }, placement: "center" },
+      { key: "archaebacteria", objectId: "archaebacteria", at: { x: 7.55, y: 4.5 }, placement: "center" },
+      { key: "protista", objectId: "protista", at: { x: 2.6, y: -0.6 }, placement: "center" },
+      { key: "fungi", objectId: "fungi", at: { x: 7.4, y: -0.6 }, placement: "center" },
+      { key: "plantae", objectId: "plantae", at: { x: 2.6, y: -4.9 }, placement: "center" },
+      { key: "animalia", objectId: "animalia", at: { x: 7.4, y: -4.9 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    bacteria: <>Domäne Bacteria</>,
+    archaea: <>Domäne Archaea</>,
+    eukarya: <>Domäne Eukarya</>,
+    eubacteria: <>Eubacteria</>,
+    archaebacteria: <>Archaebacteria</>,
+    protista: <>Protista</>,
+    fungi: <>Fungi</>,
+    plantae: <>Plantae</>,
+    animalia: <>Animalia</>,
+  }}
+/>
+
+Vergleich die Kästen. Archaebacteria und Eubacteria haben beide keinen Zellkern, trotzdem hat jede Gruppe ihre eigene Domäne, denn ihre Zellwände und ihre ribosomale RNA unterscheiden sich zu stark für eine gemeinsame Domäne.
+
+## Lebewesen in die sechs Reiche einordnen
+
+Jedes Reich ist durch **mehrere Merkmale zusammen** festgelegt, nie durch ein einzelnes. Du ordnest ein Lebewesen also ein, indem du nacheinander seine Zellen, seine Zellwand und seine Ernährung prüfst, und testest das Ergebnis dann am Nachbarreich.
+
+### Vier Fragen ordnen ein Lebewesen ein
+
+Vier Fragen reichen für fast jedes Lebewesen. Hat seine Zelle einen **Zellkern**? Besteht es aus einer Zelle oder aus vielen? Woraus ist seine Zellwand? Wie kommt es an Nahrung? Die Tabelle beantwortet diese Fragen für jedes Reich.
+
+| Reich | Zellen | Zellwand | Ernährung | Beispiel |
+| --- | --- | --- | --- | --- |
+| Archaebacteria | Prokaryotisch, einzellig | Ohne Peptidoglykan | Autotroph oder heterotroph | *Halobacterium salinarum* in sehr salzigem Wasser |
+| Eubacteria | Prokaryotisch, einzellig | Peptidoglykan | Autotroph oder heterotroph | *Streptococcus pneumoniae*, Cyanobakterien |
+| Protista | Eukaryotisch, einzellig oder vielzellig ohne Gewebe | Bei vielen Algen, bei Protozoen keine | Fotosynthese, Aufnehmen oder Aufsaugen von Nahrung | *Amoeba* sp., *Spirogyra* sp. |
+| Fungi | Eukaryotisch, meist Hyphen, Hefen einzellig | Chitin | Nimmt Nahrung auf, nachdem sie außerhalb des Körpers verdaut wurde | *Saccharomyces cerevisiae*, *Agaricus* sp. |
+| Plantae | Eukaryotisch, vielzellig mit Geweben | Cellulose | Fotosynthese | *Oryza sativa* (Reis) |
+| Animalia | Eukaryotisch, vielzellig mit Geweben | Keine | Frisst Nahrung | *Panthera tigris* (Tiger) |
+
+Ein Prokaryot hat **keine Membran um seine DNA**, also gehört er zu den Archaebacteria oder den Eubacteria. Archaebacteria leben oft dort, wo kaum ein anderes Lebewesen überlebt, etwa in heißen sauren Quellen und Salzpfannen. Das ältere System mit fünf Reichen fasst beide Gruppen zu einem Reich zusammen, den Monera. Das System mit sechs Reichen trennt sie, weil sich ihre Zellwände und Gene unterscheiden.
+
+In den Protista landen die Eukaryoten, die **weder Pilze noch Pflanzen noch Tiere** sind. Sie können Fotosynthese betreiben, Nahrung fressen oder sie aufsaugen, und selbst die vielzelligen unter ihnen haben keine echten Gewebe. Deshalb gehört eine einzelne Zelle mit Chloroplast, oder ein langer Faden aus gleichen grünen Zellen, zu den Protista und nicht zu den Plantae.
+
+### Drei Lebewesen einordnen
+
+Du untersuchst drei Lebewesen. Lebewesen A ist eine einzelne Zelle ohne Zellkern, seine Zellwand enthält kein Peptidoglykan, und es lebt in einer Quelle mit <InlineMath math="80^\circ\text{C}" />. Lebewesen B hat viele Zellen mit Kern, Zellwände aus Chitin und Hyphen und ernährt sich von totem Holz. Lebewesen C ist ein Faden aus gleichen Zellen, jede mit Kern und Chloroplast, aber ohne Gewebe.
+
+Geh die vier Fragen der Reihe nach durch. A hat keinen Zellkern, ist also ein Prokaryot. Seine Zellwand enthält kein Peptidoglykan, also gehört A zu den **Archaebacteria**. B hat Zellkerne und Chitinwände und saugt Nahrung aus dem Holz auf, also gehört B zu den **Fungi**. C hat Zellkerne und betreibt Fotosynthese, aber seine Zellen bilden kein Gewebe, also gehört C zu den **Protista**.
+
+Prüf jede Antwort an dem Kriterium, das sie vom Nachbarreich trennt. Hätte A Peptidoglykan, wäre es ein Eubakterium. Hätte B Cellulosewände und Chloroplasten, wäre es eine Pflanze. Hätte C Wurzeln, Sprossachse und Blätter aus Geweben, gehörte es zu den Plantae. Nichts davon trifft zu, also stimmen alle drei Zuordnungen.
+
+## Einen wissenschaftlichen Doppelnamen schreiben
+
+Die **binäre Nomenklatur** gibt jeder Art zwei Wörter. Das erste Wort ist der **Gattungsname**, das zweite der **Artzusatz**. Reis heißt *Oryza sativa*: *Oryza* ist die Gattung, und *sativa* bezeichnet die Art innerhalb dieser Gattung. Erst beide Wörter zusammen benennen genau eine Art.
+
+Diese Regeln legen fest, wie der Name auf dem Papier aussieht:
+
+- Der Gattungsname beginnt mit einem Großbuchstaben, der Artzusatz wird ganz kleingeschrieben.
+- Gedruckt steht der Name kursiv, etwa *Oryza sativa*.
+- Von Hand wird der Name unterstrichen, und zwar **jedes Wort für sich**.
+- Steht der volle Name einmal da, darf die Gattung auf ihren Anfangsbuchstaben schrumpfen, etwa *O. sativa*.
+- Ist die Art unbekannt, schreibst du die Gattung und "sp.", etwa *Amoeba* sp.
+
+Arten mit demselben Gattungsnamen sind nahe Verwandte. Das Modell unten zeigt fünf Katzen aus der Familie Felidae. Lies jeden Gattungskasten von oben nach unten und vergleich das erste Wort jedes Namens darin.
+
+<MathVisual
+  title={<>Eine Familie, drei Gattungen von Katzen</>}
+  description={<>Der äußere Kasten ist die Familie Felidae. Jeder innere Kasten ist eine Gattung, und jeder Punkt ist eine Art mit ihrem Doppelnamen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11.5 }, y: { min: -9, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "felidae", kind: "polygon", appearance: "reference", vertices: [{ x: -0.5, y: -8 }, { x: 11, y: -8 }, { x: 11, y: 7.5 }, { x: -0.5, y: 7.5 }] },
+      { id: "panthera", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 1 }, { x: 10.5, y: 1 }, { x: 10.5, y: 6 }, { x: 0, y: 6 }] },
+      { id: "felis", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: -2.5 }, { x: 10.5, y: -2.5 }, { x: 10.5, y: -0.5 }, { x: 0, y: -0.5 }] },
+      { id: "prionailurus", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: -6.5 }, { x: 10.5, y: -6.5 }, { x: 10.5, y: -4.5 }, { x: 0, y: -4.5 }] },
+      { id: "tiger", kind: "point", appearance: "primary", at: { x: 1, y: 5 } },
+      { id: "leopard", kind: "point", appearance: "primary", at: { x: 1, y: 3.5 } },
+      { id: "lion", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "cat", kind: "point", appearance: "secondary", at: { x: 1, y: -1.5 } },
+      { id: "leopard-cat", kind: "point", appearance: "construction", at: { x: 1, y: -5.5 } },
+    ],
+    labels: [
+      { key: "felidae", objectId: "felidae", at: { x: 5.25, y: -8 }, placement: "below" },
+      { key: "panthera", objectId: "panthera", at: { x: 0, y: 6 }, placement: "above-right" },
+      { key: "felis", objectId: "felis", at: { x: 0, y: -0.5 }, placement: "above-right" },
+      { key: "prionailurus", objectId: "prionailurus", at: { x: 0, y: -4.5 }, placement: "above-right" },
+      { key: "tiger", objectId: "tiger", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "leopard", objectId: "leopard", at: { x: 1, y: 3.5 }, placement: "right" },
+      { key: "lion", objectId: "lion", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "cat", objectId: "cat", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "leopard-cat", objectId: "leopard-cat", at: { x: 1, y: -5.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    felidae: <>Familie Felidae</>,
+    panthera: <>Gattung <em>Panthera</em></>,
+    felis: <>Gattung <em>Felis</em></>,
+    prionailurus: <>Gattung <em>Prionailurus</em></>,
+    tiger: <><em>Panthera tigris</em>, Tiger</>,
+    leopard: <><em>Panthera pardus</em>, Leopard</>,
+    lion: <><em>Panthera leo</em>, Löwe</>,
+    cat: <><em>Felis catus</em>, Hauskatze</>,
+    "leopard-cat": <><em>Prionailurus bengalensis</em>, Bengalkatze</>,
+  }}
+/>
+
+Die Bengalkatze, eine kleine Wildkatze der Wälder Malaysias, heißt *Prionailurus bengalensis*. Ihr englischer Name leopard cat nennt einen Leoparden und eine Katze, dabei gehört sie weder zu *Panthera* noch zu *Felis*. Der Doppelname zeigt das sofort, und er zeigt auch, dass Tiger und Leopard **näher miteinander verwandt** sind als jeder von beiden mit der Hauskatze.
+
+## Einen Bestimmungsschlüssel bauen und benutzen
+
+Eine Klassifikation ordnet Lebewesen, die du schon kennst. Ein Schlüssel arbeitet andersherum: Er beginnt bei einem Lebewesen, das du nicht kennst, und **führt dich Wahl für Wahl zu seinem Namen**. Wie gut jede Wahl formuliert ist, entscheidet also, ob du beim richtigen Namen ankommst.
+
+### Woran du ein gutes Merkmalspaar erkennst
+
+Ein **dichotomer Bestimmungsschlüssel** bestimmt ein Lebewesen über nummerierte Merkmalspaare. Jedes Paar bietet zwei gegensätzliche Aussagen, 1a und 1b, und jede Aussage endet entweder mit einem Namen oder mit "weiter zu" einem nächsten Paar. Du beginnst bei Paar <InlineMath math="1" /> und folgst der passenden Aussage, bis ein Name erscheint.
+
+Ein gutes Merkmalspaar prüft **ein Merkmal, das jedes Exemplar zeigt**. "Hat Chloroplasten" funktioniert, "groß" oder "dunkelgrün" dagegen nicht, weil sich Größe und Farbe mit Alter und Licht ändern. Die beiden Aussagen müssen sich außerdem ausschließen, damit jedes Lebewesen auf genau eine passt.
+
+### Ein Schlüssel für sechs Protisten
+
+Bau einen Schlüssel für *Amoeba*, *Paramecium*, *Euglena*, *Chlamydomonas*, *Spirogyra* und *Plasmodium*. Fang mit dem Merkmal an, das die Gruppe am gleichmäßigsten teilt, den Chloroplasten. Drei Lebewesen haben welche, drei nicht. Teil jede Hälfte mit einem neuen Merkmal weiter, bis jedes Lebewesen allein steht.
+
+| Paar | Aussage | Ergebnis |
+| --- | --- | --- |
+| 1a | Hat Chloroplasten | Weiter zu <InlineMath math="2" /> |
+| 1b | Hat keine Chloroplasten | Weiter zu <InlineMath math="4" /> |
+| 2a | Zellen hängen zu einem Faden aneinander | *Spirogyra* |
+| 2b | Eine einzelne Zelle | Weiter zu <InlineMath math="3" /> |
+| 3a | Körper behält in einer Zellwand eine feste Form | *Chlamydomonas* |
+| 3b | Körper biegt sich und ändert die Form, keine Zellwand | *Euglena* |
+| 4a | Hat keine Fortbewegungsorgane und lebt in roten Blutzellen | *Plasmodium* |
+| 4b | Bewegt sich selbst | Weiter zu <InlineMath math="5" /> |
+| 5a | Bewegt sich mit Scheinfüßchen | *Amoeba* |
+| 5b | Bewegt sich mit Wimpern | *Paramecium* |
+
+Denselben Schlüssel kannst du als Verzweigungsdiagramm zeichnen. Jede Gabel ist ein Merkmalspaar, also folgst du dem oberen Ast, wenn Aussage a passt, und dem unteren, wenn Aussage b passt.
+
+<MathVisual
+  title={<>Der Protistenschlüssel als Verzweigungsdiagramm</>}
+  description={<>Jeder nummerierte Punkt ist ein Merkmalspaar. An jeder Gabel ist der obere Ast Aussage a und der untere Ast Aussage b.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fork-1a", kind: "segment", appearance: "reference", from: { x: 0, y: 2.75 }, to: { x: 1.5, y: 4.25 } },
+      { id: "fork-1b", kind: "segment", appearance: "reference", from: { x: 0, y: 2.75 }, to: { x: 1.5, y: 1.25 } },
+      { id: "fork-2a", kind: "segment", appearance: "reference", from: { x: 1.5, y: 4.25 }, to: { x: 4.5, y: 5 } },
+      { id: "fork-2b", kind: "segment", appearance: "reference", from: { x: 1.5, y: 4.25 }, to: { x: 3, y: 3.5 } },
+      { id: "fork-3a", kind: "segment", appearance: "reference", from: { x: 3, y: 3.5 }, to: { x: 4.5, y: 4 } },
+      { id: "fork-3b", kind: "segment", appearance: "reference", from: { x: 3, y: 3.5 }, to: { x: 4.5, y: 3 } },
+      { id: "fork-4a", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25 }, to: { x: 4.5, y: 2 } },
+      { id: "fork-4b", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25 }, to: { x: 3, y: 0.5 } },
+      { id: "fork-5a", kind: "segment", appearance: "reference", from: { x: 3, y: 0.5 }, to: { x: 4.5, y: 1 } },
+      { id: "fork-5b", kind: "segment", appearance: "reference", from: { x: 3, y: 0.5 }, to: { x: 4.5, y: 0 } },
+      { id: "couplet-1", kind: "point", appearance: "secondary", at: { x: 0, y: 2.75 } },
+      { id: "couplet-2", kind: "point", appearance: "secondary", at: { x: 1.5, y: 4.25 } },
+      { id: "couplet-3", kind: "point", appearance: "secondary", at: { x: 3, y: 3.5 } },
+      { id: "couplet-4", kind: "point", appearance: "secondary", at: { x: 1.5, y: 1.25 } },
+      { id: "couplet-5", kind: "point", appearance: "secondary", at: { x: 3, y: 0.5 } },
+      { id: "spirogyra", kind: "point", appearance: "answer", at: { x: 4.5, y: 5 } },
+      { id: "chlamydomonas", kind: "point", appearance: "answer", at: { x: 4.5, y: 4 } },
+      { id: "euglena", kind: "point", appearance: "answer", at: { x: 4.5, y: 3 } },
+      { id: "plasmodium", kind: "point", appearance: "answer", at: { x: 4.5, y: 2 } },
+      { id: "amoeba", kind: "point", appearance: "answer", at: { x: 4.5, y: 1 } },
+      { id: "paramecium", kind: "point", appearance: "answer", at: { x: 4.5, y: 0 } },
+    ],
+    labels: [
+      { key: "couplet-1", objectId: "couplet-1", at: { x: 0, y: 2.75 }, placement: "above" },
+      { key: "couplet-2", objectId: "couplet-2", at: { x: 1.5, y: 4.25 }, placement: "above" },
+      { key: "couplet-3", objectId: "couplet-3", at: { x: 3, y: 3.5 }, placement: "above" },
+      { key: "couplet-4", objectId: "couplet-4", at: { x: 1.5, y: 1.25 }, placement: "below" },
+      { key: "couplet-5", objectId: "couplet-5", at: { x: 3, y: 0.5 }, placement: "below" },
+      { key: "spirogyra", objectId: "spirogyra", at: { x: 4.5, y: 5 }, placement: "right" },
+      { key: "chlamydomonas", objectId: "chlamydomonas", at: { x: 4.5, y: 4 }, placement: "right" },
+      { key: "euglena", objectId: "euglena", at: { x: 4.5, y: 3 }, placement: "right" },
+      { key: "plasmodium", objectId: "plasmodium", at: { x: 4.5, y: 2 }, placement: "right" },
+      { key: "amoeba", objectId: "amoeba", at: { x: 4.5, y: 1 }, placement: "right" },
+      { key: "paramecium", objectId: "paramecium", at: { x: 4.5, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "couplet-1": <InlineMath math="1" />,
+    "couplet-2": <InlineMath math="2" />,
+    "couplet-3": <InlineMath math="3" />,
+    "couplet-4": <InlineMath math="4" />,
+    "couplet-5": <InlineMath math="5" />,
+    spirogyra: <em>Spirogyra</em>,
+    chlamydomonas: <em>Chlamydomonas</em>,
+    euglena: <em>Euglena</em>,
+    plasmodium: <em>Plasmodium</em>,
+    amoeba: <em>Amoeba</em>,
+    paramecium: <em>Paramecium</em>,
+  }}
+/>
+
+Prüf den Schlüssel jetzt, indem du ein Lebewesen hindurchschickst. *Paramecium* hat keine Chloroplasten, also schickt dich 1b zu Paar <InlineMath math="4" />. Es schwimmt, also schickt dich 4b zu Paar <InlineMath math="5" />. Es ist mit Wimpern bedeckt, also endet 5b bei *Paramecium*. Jedes Lebewesen sollte bei **genau einem Namen** ankommen, und hier tun das alle sechs.
+
+Eine zweite Probe ist das Zählen der Paare. Jedes Paar teilt eine Gruppe in zwei, also braucht ein Schlüssel für <InlineMath math="n" /> Lebewesen genau <InlineMath math="n-1" /> Paare. Sechs Protisten brauchen <InlineMath math="6-1=5" /> Paare, genau wie in der Tabelle. Verschieb die Zahl der Lebewesen und lies beide Werte ab.
+
+<MathVisual
+  title={<>Merkmalspaare in einem Schlüssel für <InlineMath math="n" /> Lebewesen</>}
+  description={<>Die Gerade ist <InlineMath math="c = n - 1" />. Die Anzeigen nennen die Paare, die du schreibst, und die wenigsten Paare auf dem längsten Weg.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 12, value: 6, step: 1, label: "organisms" },
+    ],
+    objects: [
+      { id: "couplets", kind: "function", appearance: "reference", formula: "x - 1", domain: { min: 2, max: 12 } },
+      { id: "key", kind: "marker", appearance: "answer", x: "n", y: "n - 1" },
+    ],
+    labels: [
+      { key: "key", objectId: "key", at: { x: "n", y: "n - 1" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "total", formula: "n - 1" },
+      { key: "depth", formula: "ceil(log_2(n))" },
+    ],
+  }}
+  labels={{
+    organisms: <>Lebewesen <InlineMath math="n" /></>,
+    key: <>dein Schlüssel</>,
+    total: <>Paare im Schlüssel</>,
+    depth: <>Wenigste Paare auf dem längsten Weg</>,
+  }}
+/>
+
+Der zweite Wert ist die kürzeste mögliche Länge des längsten Wegs, weil jedes Paar die Gruppe höchstens halbiert. Bei sechs Lebewesen ist er <InlineMath math="3" />, und die längsten Wege im Protistenschlüssel, zu *Euglena* oder *Paramecium*, führen über drei Paare.
+
+## Protozoen leben wie winzige Tiere
+
+**Protozoen** sind Protisten, die einzellig, eukaryotisch und heterotroph sind: Sie fressen andere Lebewesen oder organisches Material. Die meisten leben im Wasser oder in feuchtem Boden, und viele sind Parasiten. Unter dem Lichtmikroskop siehst du sie deutlich, denn die meisten sind zehn bis einige hundert Mikrometer lang.
+
+### Wie Protozoen sich bewegen und Wasser loswerden
+
+Protozoen werden auch danach eingeteilt, wie sie sich bewegen. *Amoeba* streckt **Scheinfüßchen** aus, Ausstülpungen des Cytoplasmas, die überall an der Zelle entstehen können. Damit umfließt sie ein Nahrungsteilchen und schließt es in eine Nahrungsvakuole ein. Diesen Vorgang nennt man Phagocytose. *Paramecium* schlägt Tausende **Wimpern** in Wellen, um zu schwimmen und Nahrung in seine Mundbucht zu strudeln. Andere Protozoen schlagen mit einer oder mehreren Geißeln.
+
+Protozoen im Süßwasser haben ein Dauerproblem. Ihr Cytoplasma ist konzentrierter als Teichwasser, also strömt Wasser durch Osmose ein. Eine **pulsierende Vakuole** füllt sich mit diesem überschüssigen Wasser und presst es immer wieder aus der Zelle, sodass die Zelle nicht platzt. Die meisten Protozoen vermehren sich durch Zweiteilung, und *Paramecium* kann außerdem bei der Konjugation Erbgut mit einem Partner tauschen.
+
+### Der Malariaerreger reist mit einem Überträger
+
+Ein **Krankheitserreger** ist ein Lebewesen, das eine Krankheit auslöst, und ein **Überträger** (Vektor) ist ein Lebewesen, das einen Erreger von einem Wirt zum nächsten trägt. *Plasmodium* ist der Erreger der Malaria, und nur weibliche *Anopheles*-Mücken übertragen ihn. Sticht eine infizierte Mücke, gelangt *Plasmodium* mit dem Blut in die Leber, vermehrt sich dort und befällt dann rote Blutzellen.
+
+In einer roten Blutzelle teilt sich ein Parasit in viele Merozoiten. Die Zelle platzt, und jeder Merozoit befällt eine neue rote Blutzelle. Bei *Plasmodium falciparum* setzt jedes Platzen <InlineMath math="8" /> bis <InlineMath math="24" /> Merozoiten frei, und die Zellen platzen gemeinsam etwa alle <InlineMath math="48" /> Stunden. Deshalb kommt das Malariafieber in Schüben, und die Erkrankten werden blutarm.
+
+Verschieb die Zahl der Merozoiten pro Platzen. Das Modell beginnt mit einer infizierten roten Blutzelle und nimmt an, dass jeder Merozoit eine neue Zelle erreicht, also zeigt es den schnellstmöglichen Anstieg.
+
+<MathVisual
+  title={<>Malariaerreger vervielfachen sich mit jedem Platzen</>}
+  description={<>Infizierte rote Blutzellen, ausgehend von einer, wenn jedes Platzen alle zwei Tage <InlineMath math="m" /> Merozoiten freisetzt. Ein Gitterschritt nach oben bedeutet zehnmal so viele infizierte Zellen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 8, max: 24, value: 16, step: 1, label: "merozoites" },
+    ],
+    objects: [
+      { id: "rise", kind: "path", appearance: "reference", points: [{ x: "0", y: "0" }, { x: "2", y: "log(m)" }, { x: "4", y: "2 log(m)" }, { x: "6", y: "3 log(m)" }, { x: "8", y: "4 log(m)" }] },
+      { id: "day-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "day-2", kind: "marker", appearance: "secondary", x: "2", y: "log(m)" },
+      { id: "day-4", kind: "marker", appearance: "secondary", x: "4", y: "2 log(m)" },
+      { id: "day-6", kind: "marker", appearance: "secondary", x: "6", y: "3 log(m)" },
+      { id: "day-8", kind: "marker", appearance: "answer", x: "8", y: "4 log(m)" },
+    ],
+    labels: [
+      { key: "start", objectId: "day-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "end", objectId: "day-8", at: { x: "8", y: "4 log(m)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "fourth", formula: "m^2" },
+      { key: "eighth", formula: "m^4" },
+    ],
+  }}
+  labels={{
+    merozoites: <>Merozoiten pro Platzen <InlineMath math="m" /></>,
+    start: <>Tag <InlineMath math="0" />: <InlineMath math="1" /> Zelle</>,
+    end: <>Tag <InlineMath math="8" />: <InlineMath math="m^4" /></>,
+    fourth: <>Infizierte Zellen an Tag <InlineMath math="4" /></>,
+    eighth: <>Infizierte Zellen an Tag <InlineMath math="8" /></>,
+  }}
+/>
+
+Mit <InlineMath math="16" /> Merozoiten pro Platzen ergeben vier Durchgänge in acht Tagen <InlineMath math="16^4 = 65{.}536" /> infizierte Zellen aus einer einzigen. Der Körper vernichtet viele Parasiten, deshalb steigen die echten Zahlen langsamer. Die Gerade auf dieser Skala zeigt aber das Muster: **Die Zahl vervielfacht sich in jedem Zyklus um denselben Faktor**.
+
+In Malaysia stammt die meiste Malaria beim Menschen heute von *Plasmodium knowlesi*. Dieser Erreger lebt in Langschwanzmakaken und Schweinsaffen, und *Anopheles*-Mücken tragen ihn von dort zum Menschen. Sein Blutzyklus dauert nur etwa <InlineMath math="24" /> Stunden, also platzen die roten Blutzellen doppelt so oft wie bei *P. falciparum*. Wer die Kette über den Überträger unterbricht, also Mückenstiche in und nahe am Wald vermeidet, schützt Menschen. Viren nutzen Überträger genauso, wie [Dengue über die Mücke zu stoppen](/de/faecher/biologie/viren-und-ihre-rolle/ausbreitung-von-viren-verhindern) zeigt.
+
+## Algen betreiben Fotosynthese ohne echte Wurzeln
+
+**Algen** sind Protisten, die Chlorophyll enthalten und ihre Nahrung durch Fotosynthese herstellen. Manche sind Einzeller, etwa *Chlamydomonas* und die Kieselalgen, die <InlineMath math="2" /> bis <InlineMath math="200\ \mu\text{m}" /> messen. *Spirogyra* bildet lange Fäden mit einem schraubenförmigen Chloroplasten in jeder Zelle. Tange sind vielzellig, und der Stiel eines Riesentangs kann <InlineMath math="60\text{ m}" /> erreichen.
+
+Egal wie groß sie werden, Algen haben **keine echten Wurzeln, Sprossachsen oder Blätter** und kein Xylem, das Wasser leitet. Ein Tang nimmt Wasser, Mineralstoffe und Kohlenstoffdioxid über seine ganze Oberfläche aus dem umgebenden Meer auf. Genau darin unterscheidet er sich von den Plantae. Am Fels hält sich ein Tang mit einer Haftkralle fest, die ihn verankert, aber anders als eine Wurzel kein Wasser aufnimmt.
+
+Algen und andere fotosynthetische Protisten leisten etwa ein Viertel der gesamten Fotosynthese auf der Erde. Sie sind die **Produzenten** am Anfang der meisten Nahrungsketten im Wasser und geben Sauerstoff ab. *Euglena* zeigt, warum die Protista ein so gemischtes Reich sind: Im Licht betreibt sie mit ihren Chloroplasten Fotosynthese, im Dunkeln nimmt sie stattdessen organische Nährstoffe aus dem Wasser auf.
+
+Algen brauchen Licht, und je tiefer das Wasser, desto mehr Licht schluckt es. In der Tiefe <InlineMath math="z" /> Meter bleiben <InlineMath math="I = 100e^{-kz}" /> Prozent des Oberflächenlichts übrig, wobei <InlineMath math="k" /> angibt, wie trüb das Wasser ist. Fotosynthese endet meist in der Nähe der Tiefe, in der nur noch <InlineMath math="1\%" /> übrig ist.
+
+<MathVisual
+  title={<>Wie tief Algen Fotosynthese betreiben</>}
+  description={<>Restlicht in jeder Tiefe nach <InlineMath math="I = 100e^{-kz}" />. Ein Gitterschritt nach rechts sind <InlineMath math="10\text{ m}" /> Tiefe, ein Gitterschritt nach oben sind <InlineMath math="10\%" /> des Oberflächenlichts. Der Punkt markiert die Tiefe, in der noch <InlineMath math="1\%" /> übrig ist.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 25 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.02, max: 0.5, value: 0.023, step: 0.001, label: "murkiness" },
+    ],
+    objects: [
+      { id: "light", kind: "function", appearance: "primary", formula: "10 exp(-10 k x)", domain: { min: 0, max: 25 } },
+      { id: "limit", kind: "segment", appearance: "warning", from: { x: 0, y: 0.1 }, to: { x: 25, y: 0.1 } },
+      { id: "bottom", kind: "marker", appearance: "answer", x: "ln(100)/(10 k)", y: "0.1" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 0, y: 0.1 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "depth", formula: "ln(100)/k" },
+    ],
+  }}
+  labels={{
+    murkiness: <>Trübung <InlineMath math="k" /> pro Meter</>,
+    limit: <><InlineMath math="1\%" /> des Oberflächenlichts</>,
+    depth: <>Tiefe in Metern mit <InlineMath math="1\%" /> Restlicht</>,
+  }}
+/>
+
+Setz <InlineMath math="I = 1" /> ein und lös nach <InlineMath math="z" /> auf: <InlineMath math="z = \tfrac{\ln 100}{k}" />. In klarem Meerwasser mit <InlineMath math="k = 0{,}023" /> sind das etwa <InlineMath math="200\text{ m}" />, die übliche Grenze der lichtdurchfluteten Zone. In trübem Küstenwasser mit <InlineMath math="k = 0{,}5" /> sind es nur <InlineMath math="9{,}2\text{ m}" />. Deshalb wachsen Tange an einer schlammigen Küste nur im **flachen Wasser nahe am Ufer**.
+
+## Typische Fehler beim Einordnen und Benennen
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| --- | --- | --- |
+| *Oryza Sativa* schreiben oder einen Strich unter beide Wörter ziehen | Der Artzusatz wird kleingeschrieben, und jedes Wort bekommt einen eigenen Strich | Großbuchstabe nur für die Gattung, ein Strich pro Wort |
+| *Euglena* oder *Spirogyra* wegen ihrer Chloroplasten zu den Plantae stellen | Plantae brauchen vielzellige Körper mit Geweben | Frag, ob das Lebewesen echte Wurzeln, Sprossachsen und Blätter hat |
+| "Groß", "klein" oder "hellgrün" in einem Schlüssel verwenden | Größe und Farbe ändern sich mit Alter und Bedingungen | Nimm ein Merkmal, das jedes Exemplar gleich zeigt |
+| Die Mücke für den Erreger der Malaria halten | *Plasmodium* ist der Erreger, die Mücke der Überträger | Frag, welches Lebewesen die Krankheit auslöst und welches sie trägt |
+| Archaebacteria und Eubacteria als ein Reich behandeln | Das System mit sechs Reichen trennt sie nach Wandchemie und Genen | Monera gehören zum älteren System mit fünf Reichen |
+
+Der zweite Fehler ist der häufigste. Ein Chloroplast verrät, wie sich ein Lebewesen ernährt, **nicht, zu welchem Reich es gehört**.
+
+## Übungen zum Einordnen und Benennen
+
+Die Aufgaben führen von den Namensregeln bis zu einer vollständigen Rechnung. **Schreib jeden wissenschaftlichen Namen richtig**, auch in deinen Antworten.
+
+1. Ein Schüler schreibt den Namen der Reispflanze von Hand als oryza Sativa, mit einem Strich unter beiden Wörtern. Verbessere den Namen und nenn die Regeln, gegen die er verstößt.
+
+2. Ein Lebewesen ist eine einzelne Zelle mit Zellkern und ohne Zellwand. Es hat keine Chloroplasten und nimmt Bakterien mit Scheinfüßchen auf. Nenn sein Reich und erklär, warum es nicht zu den Animalia gehört.
+
+3. Benutz den Protistenschlüssel. Ein Lebewesen hat Chloroplasten, ist eine einzelne Zelle, und sein Körper biegt sich und ändert beim Schwimmen die Form. Welchen Aussagen folgst du, und was ist es?
+
+4. Bei *Plasmodium vivax* setzt jedes Platzen <InlineMath math="12" /> Merozoiten frei, und die Zellen platzen alle <InlineMath math="48" /> Stunden. Wie viele infizierte Zellen gibt es nach <InlineMath math="6" /> Tagen, wenn du mit einer infizierten roten Blutzelle beginnst und jeder Merozoit eine neue Zelle erreicht? Nenn den Erreger und den Überträger dieser Krankheit.
+
+### Lösungen
+
+**Lösung 1**: Die Gattung beginnt mit einem Großbuchstaben, der Artzusatz wird kleingeschrieben, also lautet der Name Oryza sativa. Von Hand ziehst du einen Strich unter Oryza und einen eigenen Strich unter sativa. Gedruckt steht der Name kursiv als *Oryza sativa*. Der Schüler hat zwei Regeln verletzt, die Großschreibung und den einzelnen Strich.
+
+**Lösung 2**: Das Lebewesen hat einen Zellkern, ist also ein Eukaryot. Es ist eine einzelne Zelle, die Nahrung mit Scheinfüßchen aufnimmt, also ist es ein **Protozoon aus dem Reich Protista**. Animalia brauchen vielzellige Körper mit Geweben, und eine einzelne Zelle hat keine. Prüf es an der Tabelle: Das ist die Beschreibung von *Amoeba*.
+
+**Lösung 3**: Chloroplasten schicken dich von 1a zu Paar <InlineMath math="2" />. Eine einzelne Zelle schickt dich von 2b zu Paar <InlineMath math="3" />. Ein biegsamer Körper ohne Zellwand passt zu 3b, also ist das Lebewesen ***Euglena***. Probe: Es hat drei Paare durchlaufen, den längsten Weg in diesem Schlüssel.
+
+**Lösung 4**: Sechs Tage enthalten <InlineMath math="6 \times 24 \div 48 = 3" /> Durchgänge. Jedes Platzen vervielfacht die Zahl um den Faktor <InlineMath math="12" />:
+
+<BlockMath math="N = 12^3 = 1{.}728 \text{ infizierte Zellen}" />
+
+Probe: Nach einem Platzen sind es <InlineMath math="12" /> Zellen, nach zwei <InlineMath math="144" />, und <InlineMath math="144 \times 12 = 1{.}728" />. *Plasmodium vivax* ist der **Erreger**, und die weibliche *Anopheles*-Mücke ist der **Überträger**.
