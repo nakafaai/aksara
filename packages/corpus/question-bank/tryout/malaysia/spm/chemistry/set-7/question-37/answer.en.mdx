@@ -1,25 +1,25 @@
-# The chain length does not change the mass of monomer needed, but the yield does
+# Divide the chain by one unit, scale the feed up for the conversion, then crack one hexane for each propene
 
-Each repeating unit has propene's molar mass, <InlineMath math="42" />, so a chain of <InlineMath math="84\,000" /> holds <InlineMath math="2000" /> units. **Whatever the chain length, one kilogram of polymer contains <InlineMath math="23.8\text{ mol}" /> of propene units**, and since only <InlineMath math="92\%" /> of the gas polymerises, <InlineMath math="25.9\text{ mol}" /> must be fed in.
+Each propene unit has <InlineMath math="M_r=42" />, so a chain holds <InlineMath math="84\,000\div42=2000" /> units. The polymer is <InlineMath math="1000\div42=23.8\text{ mol}" /> of units. **Only <InlineMath math="92\%" /> of the feed polymerises**, so <InlineMath math="23.8\div0.92=25.9\text{ mol}" /> of propene must be fed, <InlineMath math="621\text{ dm}^3" />. **Each hexane gives one propene**, so <InlineMath math="25.9\text{ mol}" /> of hexane, <InlineMath math="25.9\times86=2.23\text{ kg}" />, is cracked.
 
 <Chart
-  title={<>Propene for one kilogram of polymer</>}
-  description={<>The plant must feed <InlineMath math="25.9\text{ mol}" /> of propene so that <InlineMath math="23.8\text{ mol}" /> polymerises.</>}
+  title={<>Propene in and propene used</>}
+  description={<>The polymer holds <InlineMath math="23.8\text{ mol}" /> of propene units, but <InlineMath math="25.9\text{ mol}" /> must be fed.</>}
   bars="apart"
-  categories={["Propene fed", "Propene polymerised"]}
+  categories={["Propene in the polymer", "Propene fed"]}
   series={[
-    { label: "Amount", mark: "bar", values: [25.9, 23.8] },
+    { label: "Amount", mark: "bar", values: [23.8, 25.9] },
   ]}
   valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n_{\text{units}}&=\tfrac{84\,000}{42}=2000\\
-V&=\tfrac{1000}{42\times0.92}\times24=621\text{ dm}^3
+n&=\tfrac{84\,000}{42}=2000,\quad n(\text{C}_3\text{H}_6)=\tfrac{1000\div42}{0.92}=25.9\text{ mol}\\
+V&=25.9\times24=621\text{ dm}^3,\quad m(\text{C}_6\text{H}_{14})=25.9\times86=2.23\times10^3\text{ g}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="571\text{ dm}^3" /> assumes all the propene polymerises. **Only <InlineMath math="92\%" /> does**.
-- <InlineMath math="1000" /> units divides by <InlineMath math="84" />, the mass of two propene units.
-- <InlineMath math="526\text{ dm}^3" /> multiplies by <InlineMath math="0.92" /> instead of dividing. **The feed must exceed what polymerises**.
+- <InlineMath math="571\text{ dm}^3" /> and <InlineMath math="2.05\text{ kg}" /> ignore the <InlineMath math="92\%" /> conversion. **More propene must be fed than ends up in the polymer**.
+- <InlineMath math="1000" /> units divides by <InlineMath math="84" />, twice the mass of one propene unit.
+- <InlineMath math="1.11\text{ kg}" /> makes two propene from each hexane, but the equation gives one propene and one propane.

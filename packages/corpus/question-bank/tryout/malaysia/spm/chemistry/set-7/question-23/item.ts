@@ -13,21 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$0.0653\\text{ g}$$, because all the oxygen has been used up",
+            "$$0.0653\\text{ g}$$, $$0.0280\\text{ g}$$, because all the oxygen has been used up",
         },
         {
           correct: false,
           label:
-            "$$0.0490\\text{ g}$$, because all the oxygen has been used up",
+            "$$0.0490\\text{ g}$$, $$0.0280\\text{ g}$$, because all the oxygen has been used up",
         },
         {
           correct: false,
           label:
-            "$$0.0980\\text{ g}$$, because all the oxygen has been used up",
+            "$$0.0653\\text{ g}$$, $$0.0933\\text{ g}$$, because all the oxygen has been used up",
         },
         {
           correct: false,
-          label: "$$0.0653\\text{ g}$$, because the steel wool has all rusted",
+          label:
+            "$$0.0653\\text{ g}$$, $$0.0280\\text{ g}$$, because the steel wool has all rusted",
         },
       ],
     },
@@ -36,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$0.0653\\text{ g}$$, kerana semua oksigen telah digunakan",
+          label:
+            "$$0.0653\\text{ g}$$, $$0.0280\\text{ g}$$, kerana semua oksigen telah habis digunakan",
         },
         {
           correct: false,
-          label: "$$0.0490\\text{ g}$$, kerana semua oksigen telah digunakan",
+          label:
+            "$$0.0490\\text{ g}$$, $$0.0280\\text{ g}$$, kerana semua oksigen telah habis digunakan",
         },
         {
           correct: false,
-          label: "$$0.0980\\text{ g}$$, kerana semua oksigen telah digunakan",
+          label:
+            "$$0.0653\\text{ g}$$, $$0.0933\\text{ g}$$, kerana semua oksigen telah habis digunakan",
         },
         {
           correct: false,
-          label: "$$0.0653\\text{ g}$$, kerana semua wul keluli telah berkarat",
+          label:
+            "$$0.0653\\text{ g}$$, $$0.0280\\text{ g}$$, kerana semua wul keluli telah berkarat",
         },
       ],
     },

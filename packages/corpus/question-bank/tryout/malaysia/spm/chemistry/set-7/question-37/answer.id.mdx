@@ -1,25 +1,25 @@
-# Panjang rantai tidak mengubah massa monomer yang diperlukan, tetapi rendemennya mengubah
+# Bagi rantai dengan satu unit, perbesar pasokan sesuai konversinya, lalu retakkan satu heksana untuk tiap propena
 
-Tiap satuan ulang bermassa molar propena, <InlineMath math="42" />, jadi rantai <InlineMath math="84{.}000" /> berisi <InlineMath math="2000" /> satuan. **Sepanjang apa pun rantainya, satu kilogram polimer berisi <InlineMath math="23{,}8\text{ mol}" /> satuan propena**, dan karena hanya <InlineMath math="92\%" /> gas yang berpolimer, <InlineMath math="25{,}9\text{ mol}" /> harus dimasukkan.
+Tiap unit propena punya <InlineMath math="M_r=42" />, jadi satu rantai memuat <InlineMath math="84{.}000\div42=2000" /> unit. Polimernya <InlineMath math="1000\div42=23{,}8\text{ mol}" /> unit. **Hanya <InlineMath math="92\%" /> pasokan yang berpolimerisasi**, jadi harus dipasok <InlineMath math="23{,}8\div0{,}92=25{,}9\text{ mol}" /> propena, <InlineMath math="621\text{ dm}^3" />. **Tiap heksana memberi satu propena**, jadi <InlineMath math="25{,}9\text{ mol}" /> heksana, <InlineMath math="25{,}9\times86=2{,}23\text{ kg}" />, diretakkan.
 
 <Chart
-  title={<>Propena untuk satu kilogram polimer</>}
-  description={<>Pabrik harus memasukkan <InlineMath math="25{,}9\text{ mol}" /> propena agar <InlineMath math="23{,}8\text{ mol}" /> berpolimer.</>}
+  title={<>Propena masuk dan propena terpakai</>}
+  description={<>Polimernya memuat <InlineMath math="23{,}8\text{ mol}" /> unit propena, tetapi harus dipasok <InlineMath math="25{,}9\text{ mol}" />.</>}
   bars="apart"
-  categories={["Propena dimasukkan", "Propena berpolimer"]}
+  categories={["Propena dalam polimer", "Propena dipasok"]}
   series={[
-    { label: "Jumlah zat", mark: "bar", values: [25.9, 23.8] },
+    { label: "Jumlah zat", mark: "bar", values: [23.8, 25.9] },
   ]}
   valueLabel="Jumlah zat (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n_{\text{units}}&=\tfrac{84{.}000}{42}=2000\\
-V&=\tfrac{1000}{42\times0{,}92}\times24=621\text{ dm}^3
+n&=\tfrac{84{.}000}{42}=2000,\quad n(\text{C}_3\text{H}_6)=\tfrac{1000\div42}{0{,}92}=25{,}9\text{ mol}\\
+V&=25{,}9\times24=621\text{ dm}^3,\quad m(\text{C}_6\text{H}_{14})=25{,}9\times86=2{,}23\times10^3\text{ g}
 \end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="571\text{ dm}^3" /> menganggap seluruh propena berpolimer. **Hanya <InlineMath math="92\%" /> yang berpolimer**.
-- <InlineMath math="1000" /> satuan membagi dengan <InlineMath math="84" />, massa dua satuan propena.
-- <InlineMath math="526\text{ dm}^3" /> mengalikan dengan <InlineMath math="0{,}92" />, bukan membagi. **Umpan harus melebihi yang berpolimer**.
+- <InlineMath math="571\text{ dm}^3" /> dan <InlineMath math="2{,}05\text{ kg}" /> mengabaikan konversi <InlineMath math="92\%" />. **Propena yang dipasok harus lebih banyak dari yang masuk ke polimer**.
+- <InlineMath math="1000" /> unit membagi dengan <InlineMath math="84" />, dua kali massa satu unit propena.
+- <InlineMath math="1{,}11\text{ kg}" /> membuat dua propena dari tiap heksana, padahal persamaannya memberi satu propena dan satu propana.

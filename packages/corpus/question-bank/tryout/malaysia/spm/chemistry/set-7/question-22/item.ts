@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "an increase of $$12.0\\text{ g}$$, with magnesium as the negative terminal",
+            "an increase of $$12.0\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$ of silver ions, with magnesium as the negative terminal",
         },
         {
           correct: false,
           label:
-            "an increase of $$9.60\\text{ g}$$, with silver as the negative terminal",
+            "an increase of $$9.60\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$ of silver ions, with silver as the negative terminal",
         },
         {
           correct: false,
           label:
-            "an increase of $$4.20\\text{ g}$$, with magnesium as the negative terminal",
+            "an increase of $$4.20\\text{ g}$$, $$0.750\\text{ mol dm}^{-3}$$ of silver ions, with magnesium as the negative terminal",
         },
         {
           correct: true,
           label:
-            "an increase of $$9.60\\text{ g}$$, with magnesium as the negative terminal",
+            "an increase of $$9.60\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$ of silver ions, with magnesium as the negative terminal",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "bertambah $$12.0\\text{ g}$$, dengan magnesium sebagai terminal negatif",
+            "pertambahan $$12.0\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$ ion argentum, dengan magnesium sebagai terminal negatif",
         },
         {
           correct: false,
           label:
-            "bertambah $$9.60\\text{ g}$$, dengan argentum sebagai terminal negatif",
+            "pertambahan $$9.60\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$ ion argentum, dengan perak sebagai terminal negatif",
         },
         {
           correct: false,
           label:
-            "bertambah $$4.20\\text{ g}$$, dengan magnesium sebagai terminal negatif",
+            "pertambahan $$4.20\\text{ g}$$, $$0.750\\text{ mol dm}^{-3}$$ ion argentum, dengan magnesium sebagai terminal negatif",
         },
         {
           correct: true,
           label:
-            "bertambah $$9.60\\text{ g}$$, dengan magnesium sebagai terminal negatif",
+            "pertambahan $$9.60\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$ ion argentum, dengan magnesium sebagai terminal negatif",
         },
       ],
     },
