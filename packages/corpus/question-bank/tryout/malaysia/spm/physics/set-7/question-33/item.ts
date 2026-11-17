@@ -18,7 +18,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.0\\text{ N}$$, $$100\\text{ m s}^{-2}$$ and $$0.20\\text{ mm}$$",
+            "$$4.0\\text{ N}$$, $$400\\text{ m s}^{-2}$$ and $$0.80\\text{ mm}$$",
         },
         {
           correct: false,
@@ -43,7 +43,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.0\\text{ N}$$, $$100\\text{ m s}^{-2}$$ dan $$0.20\\text{ mm}$$",
+            "$$4.0\\text{ N}$$, $$400\\text{ m s}^{-2}$$ dan $$0.80\\text{ mm}$$",
         },
         {
           correct: false,

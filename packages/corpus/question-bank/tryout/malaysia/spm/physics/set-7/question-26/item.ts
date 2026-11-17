@@ -20,7 +20,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$9.0\\times10^{4}\\text{ Pa}$$, floor $$6$$ and floor $$5$$",
+          label: "$$1.6\\times10^{5}\\text{ Pa}$$, floor $$6$$ and no floor",
         },
         {
           correct: true,
@@ -44,7 +44,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$9.0\\times10^{4}\\text{ Pa}$$, tingkat $$6$$ dan tingkat $$5$$",
+            "$$1.6\\times10^{5}\\text{ Pa}$$, tingkat $$6$$ dan tiada tingkat",
         },
         {
           correct: true,
