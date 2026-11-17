@@ -12,23 +12,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$354\\text{ m s}^{-1}$$, $$39\\text{ °C}$$ and $$0.68\\text{ s}$$",
+          label: "$$39\\text{ °C}$$, $$0.68\\text{ s}$$ and no change",
         },
         {
           correct: false,
-          label:
-            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ and $$0.34\\text{ s}$$",
+          label: "$$20\\text{ °C}$$, $$0.70\\text{ s}$$ and no change",
         },
         {
           correct: true,
-          label:
-            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ and $$0.68\\text{ s}$$",
+          label: "$$20\\text{ °C}$$, $$0.68\\text{ s}$$ and no change",
         },
         {
           correct: false,
           label:
-            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ and $$0.70\\text{ s}$$",
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$ and $$6\\text{ m s}^{-1}$$ higher",
         },
       ],
     },
@@ -37,23 +34,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$354\\text{ m s}^{-1}$$, $$39\\text{ °C}$$ dan $$0.68\\text{ s}$$",
+          label: "$$39\\text{ °C}$$, $$0.68\\text{ s}$$ dan tiada perubahan",
         },
         {
           correct: false,
-          label:
-            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ dan $$0.34\\text{ s}$$",
+          label: "$$20\\text{ °C}$$, $$0.70\\text{ s}$$ dan tiada perubahan",
         },
         {
           correct: true,
-          label:
-            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ dan $$0.68\\text{ s}$$",
+          label: "$$20\\text{ °C}$$, $$0.68\\text{ s}$$ dan tiada perubahan",
         },
         {
           correct: false,
           label:
-            "$$343\\text{ m s}^{-1}$$, $$20\\text{ °C}$$ dan $$0.70\\text{ s}$$",
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$ dan $$6\\text{ m s}^{-1}$$ lebih tinggi",
         },
       ],
     },

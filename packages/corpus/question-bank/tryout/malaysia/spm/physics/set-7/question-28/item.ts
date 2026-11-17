@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ and $$12.0\\text{ V}$$",
+          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ and $$100\\%$$",
         },
         {
           correct: false,
-          label: "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$ and $$10.3\\text{ V}$$",
+          label: "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$ and $$86\\%$$",
         },
         {
           correct: false,
-          label: "$$1.1\\text{ A}$$, $$20\\text{ W}$$ and $$10.9\\text{ V}$$",
+          label: "$$1.1\\text{ A}$$, $$20\\text{ W}$$ and $$91\\%$$",
         },
         {
           correct: true,
-          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ and $$10.9\\text{ V}$$",
+          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ and $$91\\%$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ dan $$12.0\\text{ V}$$",
+          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ dan $$100\\%$$",
         },
         {
           correct: false,
-          label: "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$ dan $$10.3\\text{ V}$$",
+          label: "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$ dan $$86\\%$$",
         },
         {
           correct: false,
-          label: "$$1.1\\text{ A}$$, $$20\\text{ W}$$ dan $$10.9\\text{ V}$$",
+          label: "$$1.1\\text{ A}$$, $$20\\text{ W}$$ dan $$91\\%$$",
         },
         {
           correct: true,
-          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ dan $$10.9\\text{ V}$$",
+          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ dan $$91\\%$$",
         },
       ],
     },

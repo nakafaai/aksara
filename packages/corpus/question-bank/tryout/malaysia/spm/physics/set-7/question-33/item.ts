@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.010\\text{ N}$$, $$1.0\\text{ m s}^{-2}$$ and $$0.0020\\text{ mm}$$",
+            "$$0.010\\text{ N}$$, $$1.0\\text{ m s}^{-2}$$ and $$63\\text{ ms}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ N}$$, $$400\\text{ m s}^{-2}$$ and $$0.80\\text{ mm}$$",
+            "$$4.0\\text{ N}$$, $$400\\text{ m s}^{-2}$$ and $$3.2\\text{ ms}$$",
         },
         {
           correct: false,
           label:
-            "$$0.50\\text{ N}$$, $$0.050\\text{ m s}^{-2}$$ and $$1.0\\times10^{-4}\\text{ mm}$$",
+            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ and $$0.080\\text{ ms}$$",
         },
         {
           correct: true,
           label:
-            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ and $$0.10\\text{ mm}$$",
+            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ and $$8.9\\text{ ms}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.010\\text{ N}$$, $$1.0\\text{ m s}^{-2}$$ dan $$0.0020\\text{ mm}$$",
+            "$$0.010\\text{ N}$$, $$1.0\\text{ m s}^{-2}$$ dan $$63\\text{ ms}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ N}$$, $$400\\text{ m s}^{-2}$$ dan $$0.80\\text{ mm}$$",
+            "$$4.0\\text{ N}$$, $$400\\text{ m s}^{-2}$$ dan $$3.2\\text{ ms}$$",
         },
         {
           correct: false,
           label:
-            "$$0.50\\text{ N}$$, $$0.050\\text{ m s}^{-2}$$ dan $$1.0\\times10^{-4}\\text{ mm}$$",
+            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ dan $$0.080\\text{ ms}$$",
         },
         {
           correct: true,
           label:
-            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ dan $$0.10\\text{ mm}$$",
+            "$$0.50\\text{ N}$$, $$50\\text{ m s}^{-2}$$ dan $$8.9\\text{ ms}$$",
         },
       ],
     },

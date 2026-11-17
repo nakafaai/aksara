@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.17\\text{ m}$$, $$0.67\\text{ J}$$ and $$12\\text{ N}$$",
+          label: "$$0.17\\text{ m}$$, $$40\\%$$ and $$12\\text{ N}$$",
         },
         {
           correct: false,
-          label: "$$0.17\\text{ m}$$, $$1.0\\text{ J}$$ and $$10\\text{ N}$$",
+          label: "$$0.17\\text{ m}$$, $$60\\%$$ and $$10\\text{ N}$$",
         },
         {
           correct: false,
-          label: "$$0.040\\text{ m}$$, $$0.16\\text{ J}$$ and $$12\\text{ N}$$",
+          label: "$$0.040\\text{ m}$$, $$40\\%$$ and $$12\\text{ N}$$",
         },
         {
           correct: true,
-          label: "$$0.17\\text{ m}$$, $$1.0\\text{ J}$$ and $$12\\text{ N}$$",
+          label: "$$0.17\\text{ m}$$, $$60\\%$$ and $$12\\text{ N}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.17\\text{ m}$$, $$0.67\\text{ J}$$ dan $$12\\text{ N}$$",
+          label: "$$0.17\\text{ m}$$, $$40\\%$$ dan $$12\\text{ N}$$",
         },
         {
           correct: false,
-          label: "$$0.17\\text{ m}$$, $$1.0\\text{ J}$$ dan $$10\\text{ N}$$",
+          label: "$$0.17\\text{ m}$$, $$60\\%$$ dan $$10\\text{ N}$$",
         },
         {
           correct: false,
-          label: "$$0.040\\text{ m}$$, $$0.16\\text{ J}$$ dan $$12\\text{ N}$$",
+          label: "$$0.040\\text{ m}$$, $$40\\%$$ dan $$12\\text{ N}$$",
         },
         {
           correct: true,
-          label: "$$0.17\\text{ m}$$, $$1.0\\text{ J}$$ dan $$12\\text{ N}$$",
+          label: "$$0.17\\text{ m}$$, $$60\\%$$ dan $$12\\text{ N}$$",
         },
       ],
     },
