@@ -1,0 +1,26 @@
+# Beide Ströme kosten in der Batterie Spannung, also die Klemmenspannung ausrechnen
+
+Die Scheinwerfer haben <InlineMath math="12^2 \div 110 = 1{,}31\,\Omega" />, bei der Klemmenspannung <InlineMath math="V" /> ziehen sie also <InlineMath math="V \div 1{,}31" />. Die Batterie liefert **beide Ströme** durch ihren Innenwiderstand: <InlineMath math="V = 12{,}6 - 0{,}020\,(150 + V \div 1{,}31)" />.
+
+<Mermaid
+  title={<>Die Scheinwerfer teilen den Spannungsverlust der Batterie</>}
+  description={<>Beide Ströme fließen durch den Innenwiderstand, und der Scheinwerferstrom hängt selbst von der Klemmenspannung ab, die Spannung muss also ausgerechnet werden.</>}
+  chart={`
+    flowchart LR
+      N0["Scheinwerfer: R = 12² ÷ 110 = 1,31 Ω"] --> N1["Batteriestrom: 150 + V ÷ 1,31"]
+      N1 --> N2["V = 12,6 − 0,020 × (150 + V ÷ 1,31)"]
+      N2 --> N3["1,0153 V = 9,6, also V = 9,46 V"]
+      N3 --> N4["P = 9,46² ÷ 1,31 = 68 W"]
+      N0 --> N4
+  `}
+/>
+
+Das gibt <InlineMath math="1{,}0153\,V = 9{,}6" />, also <InlineMath math="V = 9{,}46" /> V. Die Scheinwerfer geben <InlineMath math="9{,}46^2 \div 1{,}31 = 68" /> W ab, denn bei festem Widerstand geht die Leistung mit dem **Quadrat der Spannung**.
+
+**Verlust in der Batterie**: Die Batterie liefert <InlineMath math="150 + 9{,}46 \div 1{,}31 = 157" /> A. Sie erzeugt <InlineMath math="12{,}6 \times 157 = 1980" /> W, und ihr Innenwiderstand verheizt <InlineMath math="157^2 \times 0{,}020 = 494" /> W, etwa <InlineMath math="25\%" />, derselbe Anteil wie der **Spannungsabfall**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="110\text{ W}" /> übersieht die Spannung, die bei **großem Strom** in der Batterie abfällt.
+- <InlineMath math="70\text{ W}" /> und <InlineMath math="24\%" /> lassen den **eigenen Strom der Scheinwerfer** weg, der ebenfalls durch den Innenwiderstand fließt.
+- <InlineMath math="87\text{ W}" /> skaliert die Leistung proportional zur Spannung, doch bei festem Widerstand geht sie mit dem **Quadrat**.

@@ -1,0 +1,26 @@
+# In Reihe addieren sich die Spannungen, doch jede Zelle führt den ganzen Strom
+
+Die zwei Zellen in Reihe geben <InlineMath math="3{,}0" /> V, die Lampe zieht also <InlineMath math="0{,}90 \div 3{,}0 = 0{,}30" /> A.
+
+<Mermaid
+  title={<>Zellen in Reihe addieren Spannung, nicht Kapazität</>}
+  description={<>Derselbe Strom fließt durch beide Zellen in Reihe, jede Zelle muss also die ganze Ladung liefern. Die Spannungen addieren sich, die Laufzeit bestimmt aber eine Zelle.</>}
+  chart={`
+    flowchart LR
+      N0["Reihe: 1,5 + 1,5 = 3,0 V"] --> N1["I = 0,90 ÷ 3,0 = 0,30 A"]
+      N1 --> N2["Gleicher Strom durch jede Zelle"]
+      N2 --> N3["t = 2,0 A h ÷ 0,30 A = 6,7 h"]
+  `}
+/>
+
+Durch jede Zelle fließt **derselbe Strom**, jede gibt also Ladung mit <InlineMath math="0{,}30" /> A ab. Eine Zelle mit <InlineMath math="2{,}0" /> Amperestunden hält <InlineMath math="2{,}0 \div 0{,}30 = 6{,}7" /> Stunden, und beide Zellen sind gleichzeitig leer.
+
+**Der Preis der Energie**: Jede Zelle speichert <InlineMath math="2{,}0 \times 3600 \times 1{,}5 = 10\,800" /> J, das Paar also <InlineMath math="21\,600" /> J, das sind <InlineMath math="0{,}0060" /> Kilowattstunden. Bei RM <InlineMath math="5{,}00" /> sind das etwa RM <InlineMath math="830" /> pro Kilowattstunde, mehr als **das Tausendfache** des Netzstrompreises.
+
+**Der Akku**: Eine Ladung zieht <InlineMath math="0{,}0060 \div 0{,}80 = 0{,}0075" /> Kilowattstunden, weniger als ein Sen, jede Ladung spart also fast die vollen RM <InlineMath math="5{,}00" /> eines neuen Zellenpaars. Der Akku hat sich nach <InlineMath math="30 \div 5{,}00 = 6" /> Ladungen bezahlt, denn **Netzenergie ist im Vergleich fast kostenlos**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="12" /> Ladungen zählt nur den Preis einer Zelle als gespart, doch eine Ladung ersetzt **beide Zellen**.
+- RM <InlineMath math="420" /> pro kWh addiert die Kapazitäten, was nur für Zellen **parallel** gilt.
+- RM <InlineMath math="1700" /> pro kWh zählt die Energie einer Zelle, aber den **Preis beider**.

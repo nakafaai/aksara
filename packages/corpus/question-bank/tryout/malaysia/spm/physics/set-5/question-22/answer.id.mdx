@@ -1,0 +1,25 @@
+# Cari kekakuan dari bagian depan, lalu jumlahkan semua yang ditanggung pegas belakang
+
+Pegas depan menanggung <InlineMath math="0{,}60 \times 3140 = 1880" /> N, jadi **tiap pegas depan** menerima <InlineMath math="942" /> N untuk <InlineMath math="0{,}050" /> m: <InlineMath math="k = 1{,}9 \times 10^4" /> N/m.
+
+<Mermaid
+  title={<>Tiap Pegas Menanggung Bagiannya Sendiri</>}
+  description={<>Bacaan depan menentukan kekakuan, lalu pegas belakang menanggung sisa penumpang dan seluruh bagasi.</>}
+  chart={`
+    flowchart LR
+      N0["Bagian depan: 0,60 × 320 × 9,81 = 1880 N"] --> N1["Tiap pegas depan: 942 N"]
+      N1 --> N2["k = 942 ÷ 0,050 = 1,9 × 10⁴ N m⁻¹"]
+      N2 --> N3["Tiap pegas belakang, penumpang: 0,40 × 3140 ÷ 2 = 628 N, turun 3,3 cm"]
+      N2 --> N4["Tiap pegas belakang, bagasi: 491 N, turun 2,6 cm"]
+      N3 --> N5["Belakang seluruhnya: 3,3 + 2,6 = 5,9 cm"]
+      N4 --> N5
+  `}
+/>
+
+Tiap pegas belakang menerima <InlineMath math="628" /> N dari penumpang, turun <InlineMath math="3{,}3" /> cm, lalu <InlineMath math="491" /> N dari bagasi, turun <InlineMath math="2{,}6" /> cm lagi. Seluruhnya bagian belakang turun <InlineMath math="5{,}9" /> cm, **lebih dari bagian depan**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}6 \times 10^4\text{ N m}^{-1}" /> membagi penumpang **rata ke empat pegas**, padahal bagian depan menanggung lebih.
+- <InlineMath math="4{,}6\text{ cm}" /> membagi bagasi ke keempat pegas, padahal hanya **pegas belakang** yang berada di bawah bagasi.
+- <InlineMath math="2{,}6\text{ cm}" /> hanya menghitung bagasi dan lupa bagian belakang **sudah turun** karena penumpang.

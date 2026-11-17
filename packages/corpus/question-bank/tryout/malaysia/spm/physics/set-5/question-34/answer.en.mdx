@@ -1,0 +1,22 @@
+# Compare braking force with the mass it must stop, not the induced current alone
+
+Each plate cuts the field, so **eddy currents** are induced and, by Lenz’s law, oppose the swing. The force is proportional to thickness over resistivity, while the mass is proportional to thickness times density. The slowing is force over mass, so it goes as <InlineMath math="1 \div (\rho_{\text{e}} \times \text{density})" /> and the **thickness cancels**.
+
+<Chart
+  title={<>Braking Force Against Mass to Be Stopped</>}
+  bars="apart"
+  categories={["Thick aluminium", "Thin aluminium", "Copper"]}
+  series={[
+    { label: "Slowing per unit mass, thick aluminium as 1", mark: "bar", values: [1.0, 1.0, 0.48] },
+  ]}
+  valueLabel="Slowing per unit mass, thick aluminium as 1"
+  description={<>The slowing goes as one over resistivity times density. Thickness cancels, so both aluminium plates match, while copper, three times denser, slows at about half the rate.</>}
+/>
+
+For aluminium <InlineMath math="2.7 \times 10^{-8} \times 2700 = 7.3 \times 10^{-5}" />, for copper <InlineMath math="1.7 \times 10^{-8} \times 8900 = 1.5 \times 10^{-4}" />, so aluminium slows about twice as fast. The slots cut the current loops, so the slotted plate swings longest.
+
+# Why the other options are wrong
+
+- Copper first looks only at the larger current, but copper is over three times **as dense**, so it has more mass to stop.
+- The thin plate has half the current but also **half the mass**, so it slows exactly as fast.
+- Slots do not remove all braking, and the lightest plate is not first, because braking depends on **force per unit mass**.

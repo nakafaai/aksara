@@ -1,0 +1,24 @@
+# Current flows only while the supply beats the battery and the diode together
+
+The peak is <InlineMath math="12\sqrt{2} = 17.0" /> V. Current flows only while the supply exceeds <InlineMath math="12.0 + 0.7 = 12.7" /> V, which starts when <InlineMath math="17.0 \sin\theta = 12.7" />, at <InlineMath math="\theta = 48.5^\circ" />.
+
+<Chart
+  title={<>Current Flows Only Above the Line</>}
+  categories={["0°", "30°", "48°", "90°", "132°", "150°", "180°"]}
+  series={[
+    { label: "Supply voltage", mark: "line", values: [0, 8.5, 12.7, 17.0, 12.7, 8.5, 0] },
+    { label: "Battery plus diode", mark: "line", values: [12.7, 12.7, 12.7, 12.7, 12.7, 12.7, 12.7] },
+  ]}
+  valueLabel="Voltage (V)"
+  description={<>In the positive half-cycle the supply rises above the battery and diode together only between about forty-eight and one hundred thirty-two degrees, and in the negative half-cycle the diode blocks.</>}
+/>
+
+By symmetry it stops at <InlineMath math="131.5^\circ" />, so it flows for <InlineMath math="83^\circ" /> of the <InlineMath math="360^\circ" /> cycle, about <InlineMath math="23\%" />. The diode **blocks the whole negative half**.
+
+**The peak current**: the resistance does not change when current starts, because at that moment no current flows. At the peak the supply exceeds <InlineMath math="12.7" /> V by <InlineMath math="17.0 - 12.7 = 4.3" /> V, which drives <InlineMath math="4.3 \div 0.50 = 8.5" /> A through the **total resistance**.
+
+# Why the other options are wrong
+
+- <InlineMath math="46\%" /> compares the conducting angle with **half a cycle** instead of a whole cycle.
+- Never charging confuses the **r.m.s. value** with the peak, which is larger by a factor of the square root of two.
+- <InlineMath math="25\%" /> and <InlineMath math="9.9\text{ A}" /> ignore the **diode’s forward voltage**.

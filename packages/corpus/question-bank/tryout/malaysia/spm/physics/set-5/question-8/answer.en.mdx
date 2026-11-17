@@ -1,0 +1,25 @@
+# Find the radius for a quarter of g, subtract the Earth, then use that radius for the orbit
+
+A quarter of the field needs <InlineMath math="r^2" /> four times as large, so <InlineMath math="r = 2R" />. That is <InlineMath math="2R - R = 6400" /> km **above the surface**, and the astronaut there feels <InlineMath math="60 \times 9.8 \div 4 = 150" /> N.
+
+<Mermaid
+  title={<>A Quarter of the Field at Twice the Radius</>}
+  description={<>A quarter of the field needs twice the distance from the centre, which puts the point one Earth radius above the surface.</>}
+  chart={`
+    flowchart LR
+      N0["g ∝ 1/r²: quarter at r = 2R"] --> N1["Height = 2R − R = 6400 km"]
+      N0 --> N2["Force 60 × 9.8 ÷ 4 = 150 N"]
+      N0 --> N3["T = 2π√(8R³ ÷ gR²) = 2π√(8R ÷ g)"]
+      N3 --> N4["T = 1.4 × 10⁴ s ≈ 4.0 h"]
+  `}
+/>
+
+For an orbit of radius <InlineMath math="2R" />, <InlineMath math="T = 2\pi\sqrt{\dfrac{(2R)^3}{gR^2}} = 2\pi\sqrt{\dfrac{8R}{g}} = 2\pi\sqrt{\dfrac{8 \times 6.4 \times 10^6}{9.8}} = 1.4 \times 10^4" /> s, about <InlineMath math="4.0" /> h.
+
+**Passes over one point**: the satellite gains on the turning ground at <InlineMath math="\tfrac{1}{4.0} - \tfrac{1}{24} = \tfrac{5}{24}" /> of a turn per hour, so it laps the same point every <InlineMath math="4.8" /> hours, which is **five times a day**, not six.
+
+# Why the other options are wrong
+
+- <InlineMath math="6" /> times a day ignores that the point below **turns with the Earth** in the same direction.
+- <InlineMath math="1.4\text{ h}" /> uses the Earth’s radius for the orbit, but a quarter of the field needs **twice that radius**.
+- <InlineMath math="7" /> times a day adds the Earth’s turn, which would be right only for a satellite moving **westwards**.

@@ -1,0 +1,24 @@
+# Erst der Widerstand je Meter, dann der Gesamtwiderstand der Heizung, dann verdoppelt für jeden parallelen Strang
+
+Der Radius ist <InlineMath math="0{,}20" /> mm, der Querschnitt also <InlineMath math="1{,}26 \times 10^{-7}" /> Quadratmeter, und **jeder Meter** hat <InlineMath math="8{,}75\,\Omega" />. Der Widerstand braucht <InlineMath math="10 \div 8{,}75 = 1{,}1" /> m.
+
+<Mermaid
+  title={<>Von der Drahtstärke zur Länge</>}
+  description={<>Der Querschnitt legt den Widerstand je Meter fest. Die Heizleistung legt den Gesamtwiderstand fest, und jeder der zwei parallelen Stränge braucht das Doppelte.</>}
+  chart={`
+    flowchart LR
+      N0["A = π × (0,20 × 10⁻³)² = 1,26 × 10⁻⁷ m²"] --> N1["Je Meter: 1,10 × 10⁻⁶ ÷ 1,26 × 10⁻⁷ = 8,75 Ω"]
+      N1 --> N2["Widerstand: 10 ÷ 8,75 = 1,1 m"]
+      N3["Heizung: 240² ÷ 1000 = 57,6 Ω"] --> N4["Je Strang: 2 × 57,6 = 115 Ω"]
+      N1 --> N5["115 ÷ 8,75 = 13 m"]
+      N4 --> N5
+  `}
+/>
+
+Die Heizung nimmt <InlineMath math="1000" /> W bei <InlineMath math="240" /> V auf, ihr Element hat also <InlineMath math="240^2 \div 1000 = 57{,}6\,\Omega" />. Zwei gleiche Stränge parallel halbieren den Widerstand, **jeder Strang** braucht also <InlineMath math="115\,\Omega" />, das sind <InlineMath math="13" /> m Draht.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6{,}6\text{ m}" /> baut das ganze Element aus einem Strang und übersieht das **parallele Paar**.
+- <InlineMath math="4{,}6\text{ m}" /> nimmt den **Durchmesser als Radius**, was die Fläche viermal zu groß macht.
+- <InlineMath math="3{,}3\text{ m}" /> halbiert den Strangwiderstand, doch jeder von zwei parallelen Strängen braucht das **Doppelte** des Gesamtwerts.

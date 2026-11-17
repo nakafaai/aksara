@@ -1,0 +1,29 @@
+# Jede Verzögerung gibt eine Entfernung, die Änderung der Entfernung die Geschwindigkeit des Gewitters
+
+Das Licht kommt sofort an, die Verzögerung des Donners ist also seine Laufzeit, **nur in eine Richtung**: <InlineMath math="340 \times 6{,}0 = 2040" /> m, etwa <InlineMath math="2{,}0" /> km, dann <InlineMath math="340 \times 4{,}0 = 1360" /> m.
+
+<Mermaid
+  title={<>Donnerverzögerungen messen die Entfernung</>}
+  description={<>Der Donner läuft nur in eine Richtung, vom Blitz zum Schüler, jede Verzögerung mal Schallgeschwindigkeit gibt also eine Entfernung.</>}
+  chart={`
+    flowchart LR
+      N0["Erster: 340 × 6,0 = 2040 m"] --> N2["680 m näher"]
+      N1["Zweiter: 340 × 4,0 = 1360 m"] --> N2
+      N2 --> N4["680 ÷ 180 = 3,8 m s⁻¹ auf den Schüler zu"]
+      N3["Drei Minuten = 180 s"] --> N4
+  `}
+/>
+
+Das Gewitter kam in drei Minuten, also <InlineMath math="180" /> s, um <InlineMath math="680" /> m näher, es nähert sich also mit <InlineMath math="680 \div 180 = 3{,}8" /> m/s.
+
+**Wann es ankommt**: Beim zweiten Blitz ist die Front noch <InlineMath math="1360" /> m entfernt, mit <InlineMath math="3{,}8" /> m/s kommt sie also nach <InlineMath math="1360 \div 3{,}78 = 360" /> s an, etwa **sechs Minuten**.
+
+**Eine Sekunde Verzögerung**: Dann ist die Front <InlineMath math="340" /> m entfernt, sie muss also noch <InlineMath math="1360 - 340 = 1020" /> m näher kommen, was <InlineMath math="1020 \div 3{,}78 = 270" /> s dauert, etwa **viereinhalb Minuten**.
+
+**Weggehen**: Die Front ist <InlineMath math="340" /> m hinter ihm und holt mit <InlineMath math="3{,}78 - 1{,}5 = 2{,}3" /> m/s auf, sie erreicht den Schüler also nach <InlineMath math="340 \div 2{,}3 = 150" /> s, etwa **zweieinhalb Minuten**.
+
+# Warum die anderen Antworten falsch sind
+
+- Etwa <InlineMath math="1{,}5" /> Minuten teilt durch <InlineMath math="60" /> s, nimmt **drei Minuten** als eine und macht das Gewitter viel zu schnell.
+- Etwa <InlineMath math="1{,}0" /> Minute addiert die Gehgeschwindigkeit, doch Weggehen **verringert** die Annäherung.
+- Etwa <InlineMath math="1{,}5" /> Minuten später übersieht das **eigene Gehen** des Schülers.

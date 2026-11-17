@@ -1,0 +1,26 @@
+# The voltages add in series, but every cell carries the whole current
+
+The two cells in series give <InlineMath math="3.0" /> V, so the bulb draws <InlineMath math="0.90 \div 3.0 = 0.30" /> A.
+
+<Mermaid
+  title={<>Series Cells Add Voltage, Not Capacity</>}
+  description={<>The same current passes through both cells in series, so each cell must supply the whole charge. The voltages add, but the running time is set by one cell.</>}
+  chart={`
+    flowchart LR
+      N0["Series: 1.5 + 1.5 = 3.0 V"] --> N1["I = 0.90 ÷ 3.0 = 0.30 A"]
+      N1 --> N2["Same current through each cell"]
+      N2 --> N3["t = 2.0 A h ÷ 0.30 A = 6.7 h"]
+  `}
+/>
+
+The **same current** flows through each cell, so each one gives up charge at <InlineMath math="0.30" /> A. A <InlineMath math="2.0" /> ampere-hour cell lasts <InlineMath math="2.0 \div 0.30 = 6.7" /> hours, and both cells run flat together.
+
+**The price of the energy**: each cell stores <InlineMath math="2.0 \times 3600 \times 1.5 = 10\,800" /> J, so the pair holds <InlineMath math="21\,600" /> J, which is <InlineMath math="0.0060" /> kilowatt-hours. At RM <InlineMath math="5.00" /> that is about RM <InlineMath math="830" /> per kilowatt-hour, more than **a thousand times** the price of mains electricity.
+
+**The rechargeable pack**: one charge draws <InlineMath math="0.0060 \div 0.80 = 0.0075" /> kilowatt-hours, costing under one sen, so each charge saves almost the full RM <InlineMath math="5.00" /> of a new pair of cells. The pack pays for itself after <InlineMath math="30 \div 5.00 = 6" /> charges, because the **mains energy is almost free** by comparison.
+
+# Why the other options are wrong
+
+- <InlineMath math="12" /> charges counts only one cell’s price saved each time, but a charge replaces **both cells**.
+- RM <InlineMath math="420" /> per kWh adds the capacities, which holds only for cells in **parallel**.
+- RM <InlineMath math="1700" /> per kWh counts the energy of one cell but the **price of both**.

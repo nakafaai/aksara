@@ -1,0 +1,24 @@
+# Pasang kabel seri dengan lampu, lalu tentukan sekunder untuk arus sesuai rancangan
+
+Sekunder memberi <InlineMath math="240 \times 60 \div 1200 = 12" /> V. Lampu berhambatan <InlineMath math="6{,}0\,\Omega" />, jadi dengan kabel **secara seri** arusnya <InlineMath math="12 \div 6{,}5 = 1{,}85" /> A dan lampu memakai <InlineMath math="1{,}85^2 \times 6{,}0 = 20" /> W.
+
+<Mermaid
+  title={<>Kabel Mengambil Bagiannya dari Tegangan Sekunder</>}
+  description={<>Sekunder memberi tegangan rancangan, tetapi sebagian hilang di sepanjang kabel. Menaikkan tegangan sekunder sebesar kehilangan itu memulihkan lampu.</>}
+  chart={`
+    flowchart LR
+      N0["Lampu: R = 12² ÷ 24 = 6,0 Ω"] --> N1["Rangkaian: 6,0 + 0,50 = 6,5 Ω"]
+      N1 --> N2["I = 12 ÷ 6,5 = 1,85 A"]
+      N2 --> N3["Lampu: 1,85² × 6,0 = 20 W"]
+      N1 --> N4["Sesuai rancangan: 2,0 A × 6,5 Ω = 13 V diperlukan"]
+      N4 --> N5["Lilitan: 1200 × 13 ÷ 240 = 65"]
+  `}
+/>
+
+Agar sesuai rancangan lampu perlu <InlineMath math="2{,}0" /> A, yang memerlukan <InlineMath math="2{,}0 \times 6{,}5 = 13" /> V dari sekunder. Itu memerlukan <InlineMath math="1200 \times 13 \div 240 = 65" /> lilitan, beberapa lagi untuk **menutup kehilangan di kabel**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="24\text{ W}" /> melupakan **hambatan kabel** yang berbagi tegangan sekunder.
+- <InlineMath math="22\text{ W}" /> mengalikan arus dengan tegangan sekunder, yang mencakup **tegangan yang hilang di kabel**.
+- <InlineMath math="71" /> lilitan menskalakan lilitan sebanding daya, padahal daya sebanding **kuadrat tegangan**.

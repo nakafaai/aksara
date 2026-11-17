@@ -1,0 +1,24 @@
+# Hitung elektronnya, ambil seperempat sebagai foton, lalu kalikan dengan energi foton
+
+Arus membawa <InlineMath math="0{,}020 \div 1{,}6 \times 10^{-19} = 1{,}25 \times 10^{17}" /> elektron per detik, dan **satu dari empat** menghasilkan foton: <InlineMath math="3{,}1 \times 10^{16}" /> foton per detik.
+
+<Chart
+  title={<>Seperempat Elektron Menghasilkan Cahaya</>}
+  bars="apart"
+  categories={["Masukan listrik", "Keluaran cahaya"]}
+  series={[
+    { label: "Daya (mW)", mark: "bar", values: [38, 9.6] },
+  ]}
+  valueLabel="Daya (mW)"
+  description={<>Tiap foton membawa hampir tepat energi yang diperoleh satu elektron melintasi LED, jadi dengan satu foton untuk tiap empat elektron, cahayanya sekitar seperempat daya listrik.</>}
+/>
+
+Tiap foton membawa <InlineMath math="hc \div \lambda = 6{,}63 \times 10^{-34} \times 3{,}0 \times 10^8 \div 650 \times 10^{-9} = 3{,}06 \times 10^{-19}" /> J, jadi daya cahayanya <InlineMath math="3{,}1 \times 10^{16} \times 3{,}06 \times 10^{-19} = 9{,}6" /> mW, seperempat dari **masukan listrik** <InlineMath math="38" /> mW.
+
+**Arus fotodioda**: <InlineMath math="3{,}1 \times 10^{16}" /> foton tiap detik membebaskan <InlineMath math="1{,}56 \times 10^{16}" /> elektron, yang membawa <InlineMath math="1{,}56 \times 10^{16} \times 1{,}6 \times 10^{-19} = 2{,}5 \times 10^{-3}" /> A. Hanya **satu dari delapan elektron** arus LED yang kembali keluar.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="38\text{ mW}" /> dan <InlineMath math="10\text{ mA}" /> menganggap **tiap elektron** di LED menghasilkan foton.
+- <InlineMath math="5{,}0\text{ mA}" /> memberi satu elektron per foton, padahal fotodioda perlu **dua foton** untuk tiap elektron.
+- <InlineMath math="2{,}4\text{ mW}" /> memakai hasil satu dari empat LED **dua kali**.

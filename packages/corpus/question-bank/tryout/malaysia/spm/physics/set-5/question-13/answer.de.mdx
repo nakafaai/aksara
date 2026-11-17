@@ -1,0 +1,26 @@
+# Jedes Echo halbieren, dann die beiden Entfernungen vergleichen
+
+Das erste Echo ergibt <InlineMath math="3{,}0 \times 10^8 \times 120 \times 10^{-6} = 36" /> km für Hin- und Rückweg, das Flugzeug ist also <InlineMath math="18" /> km entfernt. Das zweite gibt <InlineMath math="15" /> km, **genauso halbiert**.
+
+<Mermaid
+  title={<>Zwei Echos, zwei Entfernungen</>}
+  description={<>Jede Echozeit enthält Hin- und Rückweg, beide Entfernungen müssen also vor dem Vergleich halbiert werden.</>}
+  chart={`
+    flowchart LR
+      N0["Erstes: 3,0 × 10⁸ × 120 × 10⁻⁶ ÷ 2 = 18 km"] --> N2["3,0 km näher"]
+      N1["Zweites: 3,0 × 10⁸ × 100 × 10⁻⁶ ÷ 2 = 15 km"] --> N2
+      N2 --> N3["In 10,0 s: 300 m s⁻¹ auf die Station zu"]
+  `}
+/>
+
+Nach <InlineMath math="10{,}0" /> s ist das Flugzeug <InlineMath math="3{,}0" /> km näher, es nähert sich also mit <InlineMath math="3000 \div 10{,}0 = 300" /> m/s entlang der Linie zur Station.
+
+**Das spätere Echo**: In <InlineMath math="40{,}0" /> s kommt das Flugzeug weitere <InlineMath math="300 \times 40{,}0 = 12" /> km näher, es bleiben <InlineMath math="3{,}0" /> km. Der Puls muss **hin und zurück**, das Echo braucht also <InlineMath math="2 \times 3000 \div 3{,}0 \times 10^8 = 20" /> µs.
+
+**Über der Station**: Beim zweiten Puls ist das Flugzeug <InlineMath math="15" /> km entfernt, mit <InlineMath math="300" /> m/s erreicht es die Station also nach <InlineMath math="15\,000 \div 300 = 50" /> s, **zehn Sekunden nach** dem späteren Puls.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="60\text{ s}" /> misst ab dem **ersten Puls**, als das Flugzeug <InlineMath math="18" /> km entfernt war.
+- <InlineMath math="10\,\mu\text{s}" /> rechnet für den späteren Puls **nur den Hinweg**.
+- <InlineMath math="40\,\mu\text{s}" /> zählt die <InlineMath math="40{,}0" /> s für das Echo ab dem **ersten Puls**.

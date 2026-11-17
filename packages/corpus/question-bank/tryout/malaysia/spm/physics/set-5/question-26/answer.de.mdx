@@ -1,0 +1,24 @@
+# Das Luftvolumen bestimmen, bei dem der Taucher gerade noch schwimmt, dann den Druck mit Boyle-Mariotte
+
+Der Taucher sinkt, sobald sein **Auftrieb unter sein Gewicht fällt**, also sobald er weniger als <InlineMath math="6{,}0" /> Kubikzentimeter Wasser verdrängt. Das Glas verdrängt selbst immer <InlineMath math="2{,}4" />, die Luft muss also auf <InlineMath math="6{,}0 - 2{,}4 = 3{,}6" /> Kubikzentimeter schrumpfen.
+
+<Chart
+  title={<>Drücken lässt die Blase schrumpfen, bis der Taucher sinkt</>}
+  categories={["100 kPa", "120 kPa", "150 kPa", "167 kPa", "200 kPa"]}
+  series={[
+    { label: "Vom Taucher verdrängtes Volumen", mark: "line", values: [8.4, 7.4, 6.4, 6.0, 5.4] },
+    { label: "Zum Schwimmen nötiges Volumen", mark: "line", values: [6.0, 6.0, 6.0, 6.0, 6.0] },
+  ]}
+  valueLabel="Volumen (cm³)"
+  description={<>Das Glas verdrängt immer dasselbe Volumen, die eingeschlossene Luft schrumpft mit steigendem Druck. Die Summe fällt bei etwa hundertsiebenundsechzig Kilopascal auf das Wasservolumen, das so viel wiegt wie der Taucher.</>}
+/>
+
+Bei konstanter Temperatur bleibt <InlineMath math="pV" /> gleich: <InlineMath math="100 \times 6{,}0 = p \times 3{,}6" /> gibt <InlineMath math="p = 167" /> kPa. Das Drücken muss <InlineMath math="167 - 100 = 67" /> kPa **über dem Luftdruck** hinzufügen.
+
+**Am Boden**: Das Wasser dort fügt <InlineMath math="1000 \times 9{,}81 \times 0{,}30 = 2940" /> Pa hinzu, die Luft erreicht ihre nötigen <InlineMath math="167" /> kPa also schon, wenn oben in der Flasche nur <InlineMath math="167 - 2{,}9 = 164" /> kPa herrschen. Das Drücken muss <InlineMath math="64" /> kPa bringen, **etwas weniger** als nahe der Oberfläche.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="70\text{ kPa}" /> addiert die Tiefe zum Drücken, doch die Wassersäule **hilft**, die Luft am Boden zu komprimieren.
+- <InlineMath math="40\text{ kPa}" /> wendet Boyle-Mariotte auf Glas und Luft zusammen an, doch das **Glas wird nicht zusammengedrückt**.
+- <InlineMath math="167\text{ kPa}" /> ist der volle Druck der Luft, nicht der **Anstieg über den Luftdruck**.

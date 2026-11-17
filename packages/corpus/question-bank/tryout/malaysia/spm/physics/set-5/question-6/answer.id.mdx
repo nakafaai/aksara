@@ -1,0 +1,29 @@
+# Pisahkan trailer untuk mencari tegangan, lalu biarkan batas tali menentukan percepatan
+
+Untuk trailer saja, <InlineMath math="T - 200 = 800 \times 1{,}5" />, jadi <InlineMath math="T = 1400" /> N. Tali juga harus **mengatasi hambatan trailer**.
+
+<Mermaid
+  title={<>Tali Hanya Menarik Trailer</>}
+  description={<>Tali harus mempercepat trailer dan mengatasi hambatannya. Mesin mobil harus melakukan itu dan lebih untuk kedua kendaraan.</>}
+  chart={`
+    flowchart LR
+      N0["Trailer: T − 200 = 800 × 1,5"] --> N1["T = 1400 N"]
+      N2["Batas: 2000 − 200 = 800a"] --> N3["a maks = 2,25 m s⁻²"]
+      N3 --> N4["Mesin: F − 500 = 2000 × 2,25"]
+      N4 --> N5["F = 5,0 kN"]
+  `}
+/>
+
+Pada batasnya, <InlineMath math="2000 - 200 = 800a" />, jadi <InlineMath math="a = 2{,}25\text{ m s}^{-2}" />. Untuk kedua kendaraan bersama, mesin harus memberi <InlineMath math="2000 \times 2{,}25 + 200 + 300 = 5{,}0 \times 10^3" /> N.
+
+**Mendaki lereng**: tali kini juga harus menahan komponen berat trailer, <InlineMath math="800 \times 10 \times 0{,}050 = 400" /> N. Maka <InlineMath math="2000 = 800a + 200 + 400" /> memberi <InlineMath math="a = 1{,}75\text{ m s}^{-2}" />. Untuk seluruh pasangan, mobil harus memberi <InlineMath math="2000 \times 1{,}75 + 500 + 2000 \times 10 \times 0{,}050 = 5000" /> N, **termasuk kedua komponen berat**.
+
+**Setelah tali putus**: hambatan dan komponen berat trailer keduanya bekerja menuruni lereng, <InlineMath math="200 + 400 = 600" /> N, jadi trailer melambat dengan <InlineMath math="600 \div 800 = 0{,}75\text{ m s}^{-2}" /> dan menempuh <InlineMath math="6{,}0^2 \div (2 \times 0{,}75) = 24" /> m, **lalu menggelinding mundur**.
+
+**Menggelinding mundur**: pendakian butuh <InlineMath math="6{,}0 \div 0{,}75 = 8{,}0" /> s. Saat turun, hambatan **berbalik arah** dan kini melawan gelindingan, jadi gaya total <InlineMath math="400 - 200 = 200" /> N dan <InlineMath math="a = 0{,}25\text{ m s}^{-2}" />. Menggelinding <InlineMath math="24" /> m mundur butuh <InlineMath math="\sqrt{2 \times 24 \div 0{,}25} = 13{,}9" /> s, jadi sekitar <InlineMath math="22" /> s seluruhnya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="2{,}25\text{ m s}^{-2}" /> dan <InlineMath math="24\text{ s}" /> mengabaikan **komponen berat trailer** untuk tali dan mengabaikan hambatan di lereng.
+- Sekitar <InlineMath math="16\text{ s}" /> menganggap perjalanan turun cermin perjalanan naik, padahal hambatan **melawan gerak** di kedua arah.
+- Sekitar <InlineMath math="18\text{ s}" /> menghilangkan hambatan saat turun, padahal hambatan tetap **melawan gelindingan**.

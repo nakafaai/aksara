@@ -1,0 +1,26 @@
+# Kedua-dua arus menghilangkan voltan di dalam bateri, jadi selesaikan voltan terminal
+
+Lampu hadapan mempunyai <InlineMath math="12^2 \div 110 = 1.31\,\Omega" />, jadi pada voltan terminal <InlineMath math="V" /> ia menarik <InlineMath math="V \div 1.31" />. Bateri menghantar **kedua-dua arus** melalui rintangan dalamnya: <InlineMath math="V = 12.6 - 0.020\,(150 + V \div 1.31)" />.
+
+<Mermaid
+  title={<>Lampu Hadapan Berkongsi Voltan yang Hilang dalam Bateri</>}
+  description={<>Kedua-dua arus melalui rintangan dalam, dan arus lampu hadapan sendiri bergantung pada voltan terminal, jadi voltan itu mesti diselesaikan.</>}
+  chart={`
+    flowchart LR
+      N0["Lampu hadapan: R = 12² ÷ 110 = 1.31 Ω"] --> N1["Arus bateri: 150 + V ÷ 1.31"]
+      N1 --> N2["V = 12.6 − 0.020 × (150 + V ÷ 1.31)"]
+      N2 --> N3["1.0153 V = 9.6, jadi V = 9.46 V"]
+      N3 --> N4["P = 9.46² ÷ 1.31 = 68 W"]
+      N0 --> N4
+  `}
+/>
+
+Itu memberi <InlineMath math="1.0153\,V = 9.6" />, jadi <InlineMath math="V = 9.46" /> V. Lampu hadapan mengeluarkan <InlineMath math="9.46^2 \div 1.31 = 68" /> W, kerana pada rintangan tetap kuasa berkadar dengan **kuasa dua voltan**.
+
+**Pembaziran di dalam bateri**: bateri membekalkan <InlineMath math="150 + 9.46 \div 1.31 = 157" /> A. Ia menghasilkan <InlineMath math="12.6 \times 157 = 1980" /> W, dan rintangan dalamnya membazirkan <InlineMath math="157^2 \times 0.020 = 494" /> W, kira-kira <InlineMath math="25\%" />, pecahan yang sama dengan **voltan yang hilang**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="110\text{ W}" /> mengabaikan voltan yang hilang di dalam bateri apabila **arus besar** mengalir.
+- <InlineMath math="70\text{ W}" /> dan <InlineMath math="24\%" /> meninggalkan **arus lampu hadapan sendiri**, yang juga melalui rintangan dalam.
+- <InlineMath math="87\text{ W}" /> mengubah kuasa berkadar dengan voltan, tetapi pada rintangan tetap ia berkadar dengan **kuasa dua**.

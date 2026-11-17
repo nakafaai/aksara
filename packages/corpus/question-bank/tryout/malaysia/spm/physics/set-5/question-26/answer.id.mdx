@@ -1,0 +1,24 @@
+# Cari volume udara saat penyelam tepat terapung, lalu pakai hukum Boyle untuk tekanannya
+
+Penyelam tenggelam begitu **gaya apung menjadi lebih kecil dari beratnya**, yaitu saat memindahkan kurang dari <InlineMath math="6{,}0" /> sentimeter kubik air. Kaca sendiri selalu memindahkan <InlineMath math="2{,}4" />, jadi udara harus menyusut menjadi <InlineMath math="6{,}0 - 2{,}4 = 3{,}6" /> sentimeter kubik.
+
+<Chart
+  title={<>Menekan Mengecilkan Gelembung Sampai Penyelam Tenggelam</>}
+  categories={["100 kPa", "120 kPa", "150 kPa", "167 kPa", "200 kPa"]}
+  series={[
+    { label: "Volume yang dipindahkan penyelam", mark: "line", values: [8.4, 7.4, 6.4, 6.0, 5.4] },
+    { label: "Volume yang diperlukan untuk terapung", mark: "line", values: [6.0, 6.0, 6.0, 6.0, 6.0] },
+  ]}
+  valueLabel="Volume (cm³)"
+  description={<>Kaca selalu memindahkan volume yang sama, sedangkan udara yang terperangkap menyusut saat tekanan naik. Totalnya turun ke volume air yang seberat penyelam pada sekitar seratus enam puluh tujuh kilopascal.</>}
+/>
+
+Pada suhu tetap <InlineMath math="pV" /> tetap sama: <InlineMath math="100 \times 6{,}0 = p \times 3{,}6" /> memberi <InlineMath math="p = 167" /> kPa. Tekanan harus ditambah <InlineMath math="167 - 100 = 67" /> kPa **di atas tekanan atmosfer**.
+
+**Di dasar**: air di sana menambah <InlineMath math="1000 \times 9{,}81 \times 0{,}30 = 2940" /> Pa, jadi udara mencapai <InlineMath math="167" /> kPa yang dibutuhkan sementara bagian atas botol hanya <InlineMath math="167 - 2{,}9 = 164" /> kPa. Tekanannya <InlineMath math="64" /> kPa, **sedikit lebih kecil** dari dekat bagian atas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="70\text{ kPa}" /> menambahkan kedalaman pada tekanan, padahal kolom air **membantu** memampatkan udara di dasar.
+- <InlineMath math="40\text{ kPa}" /> memakai hukum Boyle pada kaca dan udara bersama, padahal **kaca tidak termampatkan**.
+- <InlineMath math="167\text{ kPa}" /> adalah tekanan penuh udara, bukan **kenaikan di atas tekanan atmosfer**.

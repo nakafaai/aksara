@@ -1,0 +1,24 @@
+# Strom fließt nur, solange die Quelle Batterie und Diode zusammen übertrifft
+
+Der Scheitelwert ist <InlineMath math="12\sqrt{2} = 17{,}0" /> V. Strom fließt nur, solange die Quelle <InlineMath math="12{,}0 + 0{,}7 = 12{,}7" /> V übersteigt, was bei <InlineMath math="17{,}0 \sin\theta = 12{,}7" /> beginnt, also bei <InlineMath math="\theta = 48{,}5^\circ" />.
+
+<Chart
+  title={<>Strom fließt nur oberhalb der Linie</>}
+  categories={["0°", "30°", "48°", "90°", "132°", "150°", "180°"]}
+  series={[
+    { label: "Netzspannung", mark: "line", values: [0, 8.5, 12.7, 17.0, 12.7, 8.5, 0] },
+    { label: "Batterie plus Diode", mark: "line", values: [12.7, 12.7, 12.7, 12.7, 12.7, 12.7, 12.7] },
+  ]}
+  valueLabel="Spannung (V)"
+  description={<>In der positiven Halbwelle liegt die Netzspannung nur zwischen etwa achtundvierzig und hundertzweiunddreißig Grad über Batterie und Diode zusammen, in der negativen Halbwelle sperrt die Diode.</>}
+/>
+
+Aus Symmetrie endet er bei <InlineMath math="131{,}5^\circ" />, er fließt also <InlineMath math="83^\circ" /> der <InlineMath math="360^\circ" /> einer Periode, etwa <InlineMath math="23\%" />. Die Diode **sperrt die ganze negative Halbwelle**.
+
+**Der Spitzenstrom**: Der Widerstand ändert nicht, wann der Strom einsetzt, denn in diesem Moment fließt noch keiner. Am Scheitel übersteigt die Quelle <InlineMath math="12{,}7" /> V um <InlineMath math="17{,}0 - 12{,}7 = 4{,}3" /> V, die <InlineMath math="4{,}3 \div 0{,}50 = 8{,}5" /> A durch den **Gesamtwiderstand** treiben.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="46\%" /> vergleicht den Leitwinkel mit **einer halben Periode** statt mit einer ganzen.
+- Nie laden verwechselt den **Effektivwert** mit dem Scheitelwert, der um den Faktor Wurzel zwei größer ist.
+- <InlineMath math="25\%" /> und <InlineMath math="9{,}9\text{ A}" /> übersehen die **Durchlassspannung der Diode**.

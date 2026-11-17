@@ -1,0 +1,26 @@
+# Turn the flow into kilograms per second, then share the power among them
+
+<InlineMath math="4.0" /> litres a minute is <InlineMath math="4.0 \div 60 = 0.067" /> kg each second. The heater gives that water <InlineMath math="9000" /> J each second, a rise of <InlineMath math="9000 \div (0.067 \times 4200) = 32^\circ\text{C}" />, so it leaves at <InlineMath math="57^\circ\text{C}" />.
+
+<Mermaid
+  title={<>Power Shared Over the Flowing Water</>}
+  description={<>Each second the heater warms only the water passing through in that second, so the rise depends on the flow rate.</>}
+  chart={`
+    flowchart LR
+      N0["4.0 L min⁻¹ = 0.067 kg s⁻¹"] --> N1["Rise 9000 ÷ (0.067 × 4200) = 32 °C"]
+      N1 --> N2["Out at 25 + 32 = 57 °C"]
+      N3["For 40 °C the rise is 15 °C"] --> N4["Flow 9000 ÷ (4200 × 15) = 0.143 kg s⁻¹ = 8.6 L min⁻¹"]
+  `}
+/>
+
+For <InlineMath math="40^\circ\text{C}" /> the rise must be only <InlineMath math="15^\circ\text{C}" />, so **more water** must share the same power: <InlineMath math="9000 \div (4200 \times 15) = 0.143" /> kg each second, which is <InlineMath math="8.6" /> litres a minute.
+
+**Mixing down to the shower**: each minute the hot water gives up <InlineMath math="4.0 \times 4200 \times (57.1 - 40)" /> J, and the cold water takes it in by warming <InlineMath math="15" /> degrees, so the cold flow is <InlineMath math="4.0 \times 17.1 \div 15 = 4.6" /> L/min. The shower gives <InlineMath math="4.0 + 4.6 = 8.6" /> L/min, the same as **heating it all directly**.
+
+**In winter**: whatever the mixing, the heater’s <InlineMath math="9.0" /> kW must now raise every kilogram by <InlineMath math="22" /> degrees, so the flow is <InlineMath math="9000 \div (4200 \times 22) = 0.097" /> kg/s, about <InlineMath math="5.8" /> L/min. **Energy, not the mixing**, sets the total.
+
+# Why the other options are wrong
+
+- <InlineMath math="4.6\text{ L min}^{-1}" /> and <InlineMath math="1.8\text{ L min}^{-1}" /> give only the **cold water added**, not the total from the shower head.
+- Still <InlineMath math="8.6\text{ L min}^{-1}" /> ignores that colder water needs **more energy** for every litre.
+- <InlineMath math="4.0\text{ L min}^{-1}" /> keeps only the heater’s flow and forgets the **cold water mixed in**.

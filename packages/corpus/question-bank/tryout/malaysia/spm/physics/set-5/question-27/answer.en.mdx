@@ -1,0 +1,25 @@
+# Only the pressure difference pushes on the window, so invert the force limit to find the outside pressure
+
+The cabin air pushes out and the outside air pushes in, so the window feels the **pressure difference**, <InlineMath math="55" /> kPa, outwards. The net force is <InlineMath math="55\,000 \times 0.060 = 3300" /> N.
+
+<Chart
+  title={<>Thinner Air Outside Pushes the Window Harder Outwards</>}
+  categories={["50 kPa", "25 kPa", "13 kPa", "0 kPa"]}
+  series={[
+    { label: "Net outward force (kN)", mark: "line", values: [1.8, 3.3, 4.0, 4.8] },
+  ]}
+  valueLabel="Net outward force (kN)"
+  description={<>With the cabin held steady, the net outward force on the window grows as the outside pressure falls, and it reaches the design limit at about thirteen kilopascals.</>}
+/>
+
+The window can take <InlineMath math="4000 \div 0.060 = 66\,700" /> Pa of difference. With <InlineMath math="80" /> kPa inside, the outside must stay **at least** <InlineMath math="80 - 66.7 = 13" /> kPa.
+
+**How high that is**: the outside pressure may fall by a factor of <InlineMath math="100 \div 13.3 = 7.5" />, just under <InlineMath math="2^3 = 8" />, so just under **three halvings**: <InlineMath math="2.9 \times 5.5 = 16" /> km.
+
+**A lower cabin pressure**: the window still takes at most <InlineMath math="66.7" /> kPa of difference, so the outside may fall to <InlineMath math="75 - 66.7 = 8.3" /> kPa. That is a factor of <InlineMath math="12" />, about <InlineMath math="3.6" /> halvings, or <InlineMath math="3.6 \times 5.5 = 20" /> km, **higher than before**.
+
+# Why the other options are wrong
+
+- Still <InlineMath math="16\text{ km}" /> ignores that the window responds to the **difference** in pressure, not to the outside pressure alone.
+- <InlineMath math="13\text{ km}" /> adds the drop in cabin pressure to the outside limit, but a lower cabin pressure **lowers** the outside limit.
+- <InlineMath math="41\text{ km}" /> and <InlineMath math="66\text{ km}" /> count each factor as that many halvings, but each halving **divides by two**.

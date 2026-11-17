@@ -1,0 +1,25 @@
+# Conserve momentum at the throw, then again at the catch
+
+Taking the direction towards the wall as positive, the throw gives the ball <InlineMath math="+20" /> kg m/s, so the <InlineMath math="80" /> kg trolley moves at <InlineMath math="20 \div 80 = 0.25" /> m/s away from the wall.
+
+<Mermaid
+  title={<>Two Pushes in the Same Direction</>}
+  description={<>Throwing the ball pushes the trolley back, and catching the returning ball pushes it back again.</>}
+  chart={`
+    flowchart LR
+      N0["Throw: 80v = 2.0 × 10"] --> N1["v = 0.25 m s⁻¹ away from the wall"]
+      N1 --> N2["Ball returns at 10 m s⁻¹ the same way"]
+      N2 --> N3["Catch: −20 − 80 × 0.25 = 82v"]
+      N3 --> N4["v = −40 ÷ 82 = −0.49 m s⁻¹"]
+  `}
+/>
+
+The ball returns with <InlineMath math="-20" /> kg m/s, the **same direction** as the trolley's motion. At the catch, <InlineMath math="-20 + 80 \times (-0.25) = 82v" />, so <InlineMath math="v = -0.49" /> m/s. The wall has pushed the whole system away from it.
+
+**The second round**: the throw gives <InlineMath math="80v = -40 - 20" />, so the trolley moves at <InlineMath math="0.75" /> m/s. The ball bounces back with <InlineMath math="-20" /> kg m/s, and the catch gives <InlineMath math="82v = 80 \times (-0.75) - 20 = -80" />, so <InlineMath math="0.98" /> m/s. Each bounce off the wall adds <InlineMath math="40" /> kg m/s, so **the speed after each catch doubles**.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.73\text{ m s}^{-1}" /> leaves out the **returning ball’s momentum** at the second catch.
+- Still <InlineMath math="0.49\text{ m s}^{-1}" /> treats the second round as cancelling out, but every bounce off the wall **pushes the same way**.
+- <InlineMath math="0.25\text{ m s}^{-1}" /> counts only the throws and forgets that each **catch** also pushes the trolley.

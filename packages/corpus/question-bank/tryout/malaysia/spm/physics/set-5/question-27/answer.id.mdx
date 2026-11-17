@@ -1,0 +1,25 @@
+# Hanya selisih tekanan yang mendorong jendela, jadi balik batas gaya untuk mencari tekanan luar
+
+Udara kabin mendorong ke luar dan udara luar mendorong ke dalam, jadi jendela merasakan **selisih tekanan**, <InlineMath math="55" /> kPa, ke luar. Gaya totalnya <InlineMath math="55\,000 \times 0{,}060 = 3300" /> N.
+
+<Chart
+  title={<>Udara Luar yang Lebih Tipis Mendorong Jendela Lebih Kuat ke Luar</>}
+  categories={["50 kPa", "25 kPa", "13 kPa", "0 kPa"]}
+  series={[
+    { label: "Gaya total ke luar (kN)", mark: "line", values: [1.8, 3.3, 4.0, 4.8] },
+  ]}
+  valueLabel="Gaya total ke luar (kN)"
+  description={<>Dengan tekanan kabin tetap, gaya total ke luar pada jendela membesar saat tekanan luar turun, dan mencapai batas rancangan pada sekitar tiga belas kilopascal.</>}
+/>
+
+Jendela sanggup menahan selisih <InlineMath math="4000 \div 0{,}060 = 66\,700" /> Pa. Dengan <InlineMath math="80" /> kPa di dalam, tekanan luar harus tetap **paling sedikit** <InlineMath math="80 - 66{,}7 = 13" /> kPa.
+
+**Setinggi apa itu**: tekanan luar boleh turun dengan faktor <InlineMath math="100 \div 13{,}3 = 7{,}5" />, sedikit di bawah <InlineMath math="2^3 = 8" />, jadi sedikit kurang dari **tiga kali menjadi setengah**: <InlineMath math="2{,}9 \times 5{,}5 = 16" /> km.
+
+**Tekanan kabin yang lebih rendah**: jendela tetap menahan selisih paling besar <InlineMath math="66{,}7" /> kPa, jadi tekanan luar boleh turun ke <InlineMath math="75 - 66{,}7 = 8{,}3" /> kPa. Itu faktor <InlineMath math="12" />, sekitar <InlineMath math="3{,}6" /> kali menjadi setengah, atau <InlineMath math="3{,}6 \times 5{,}5 = 20" /> km, **lebih tinggi dari sebelumnya**.
+
+# Kenapa pilihan lain salah
+
+- Tetap <InlineMath math="16\text{ km}" /> mengabaikan bahwa jendela merespons **selisih tekanan**, bukan tekanan luar saja.
+- <InlineMath math="13\text{ km}" /> menambahkan penurunan tekanan kabin ke batas luar, padahal tekanan kabin lebih rendah **menurunkan** batas luar.
+- <InlineMath math="41\text{ km}" /> dan <InlineMath math="66\text{ km}" /> menghitung tiap faktor sebagai sebanyak itu kali menjadi setengah, padahal tiap kali **membagi dua**.

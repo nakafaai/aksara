@@ -1,0 +1,26 @@
+# Den Durchfluss in Kilogramm pro Sekunde umrechnen, dann die Leistung darauf verteilen
+
+<InlineMath math="4{,}0" /> Liter pro Minute sind <InlineMath math="4{,}0 \div 60 = 0{,}067" /> kg pro Sekunde. Der Heizer gibt diesem Wasser <InlineMath math="9000" /> J pro Sekunde, ein Anstieg um <InlineMath math="9000 \div (0{,}067 \times 4200) = 32^\circ\text{C}" />, es tritt also mit <InlineMath math="57^\circ\text{C}" /> aus.
+
+<Mermaid
+  title={<>Leistung verteilt auf fließendes Wasser</>}
+  description={<>Jede Sekunde erwärmt der Heizer nur das Wasser, das in dieser Sekunde durchfließt, der Anstieg hängt also vom Durchfluss ab.</>}
+  chart={`
+    flowchart LR
+      N0["4,0 L min⁻¹ = 0,067 kg s⁻¹"] --> N1["Anstieg 9000 ÷ (0,067 × 4200) = 32 °C"]
+      N1 --> N2["Austritt 25 + 32 = 57 °C"]
+      N3["Für 40 °C ist der Anstieg 15 °C"] --> N4["Durchfluss 9000 ÷ (4200 × 15) = 0,143 kg s⁻¹ = 8,6 L min⁻¹"]
+  `}
+/>
+
+Für <InlineMath math="40^\circ\text{C}" /> darf der Anstieg nur <InlineMath math="15^\circ\text{C}" /> betragen, **mehr Wasser** muss sich also dieselbe Leistung teilen: <InlineMath math="9000 \div (4200 \times 15) = 0{,}143" /> kg pro Sekunde, also <InlineMath math="8{,}6" /> Liter pro Minute.
+
+**Auf Duschtemperatur mischen**: Pro Minute gibt das heiße Wasser <InlineMath math="4{,}0 \times 4200 \times (57{,}1 - 40)" /> J ab, das kalte nimmt sie auf und erwärmt sich um <InlineMath math="15" /> Grad, der Kaltwasserstrom ist also <InlineMath math="4{,}0 \times 17{,}1 \div 15 = 4{,}6" /> L/min. Die Dusche liefert <InlineMath math="4{,}0 + 4{,}6 = 8{,}6" /> L/min, genauso viel wie beim **direkten Erhitzen von allem**.
+
+**Im Winter**: Wie auch gemischt wird, die <InlineMath math="9{,}0" /> kW der Heizung müssen jetzt jedes Kilogramm um <InlineMath math="22" /> Grad erwärmen, der Strom ist also <InlineMath math="9000 \div (4200 \times 22) = 0{,}097" /> kg/s, etwa <InlineMath math="5{,}8" /> L/min. **Die Energie, nicht das Mischen**, legt die Summe fest.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4{,}6\text{ L min}^{-1}" /> und <InlineMath math="1{,}8\text{ L min}^{-1}" /> geben nur das **zugemischte Kaltwasser**, nicht den Gesamtstrom.
+- Weiter <InlineMath math="8{,}6\text{ L min}^{-1}" /> übersieht, dass kälteres Wasser je Liter **mehr Energie** braucht.
+- <InlineMath math="4{,}0\text{ L min}^{-1}" /> behält nur den Heizungsstrom und vergisst das **zugemischte Kaltwasser**.
