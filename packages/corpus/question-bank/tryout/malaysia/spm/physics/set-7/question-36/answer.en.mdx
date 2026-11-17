@@ -18,12 +18,12 @@ A base current of <InlineMath math="20\,\mu\text{A}" /> controls a collector cur
 
 A collector current of <InlineMath math="4.0\text{ mA}" /> needs a base current of about <InlineMath math="26.7\,\mu\text{A}" />. A larger base resistor would give less, so the base resistor may be at most about <InlineMath math="200\text{ k}\Omega" />.
 
-<BlockMath math="V_{CE}=6.0-4.0\times10^{-3}\times1.2\times10^{3}=1.2\text{ V},\qquad P=I_CV_{CE}=4.0\times10^{-3}\times1.2=4.8\text{ mW}" />
+<BlockMath math="I_B=\frac{5.3}{100\times10^{3}}=53\,\mu\text{A},\qquad 150I_B\approx8.0\text{ mA},\qquad I_{C,\max}=\frac{6.0}{1.2\times10^{3}}=5.0\text{ mA}" />
 
-At <InlineMath math="4.0\text{ mA}" /> the collector resistor takes <InlineMath math="4.8\text{ V}" />, leaving <InlineMath math="1.2\text{ V}" /> across the transistor, which therefore dissipates about <InlineMath math="4.8\text{ mW}" />.
+With <InlineMath math="100\text{ k}\Omega" /> the gain would call for <InlineMath math="8.0\text{ mA}" />, but the collector resistor alone limits the current to <InlineMath math="5.0\text{ mA}" /> even with no voltage left across the transistor. The transistor is fully on, and the collector current is <InlineMath math="5.0\text{ mA}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="23\,\mu\text{A}" /> and <InlineMath math="225\text{ k}\Omega" /> put the **whole <InlineMath math="6.0\text{ V}" />** across the base resistor, ignoring the <InlineMath math="0.70\text{ V}" /> across the junction.
-- <InlineMath math="3.6\text{ V}" /> is the voltage across the **collector resistor**, not across the transistor.
-- <InlineMath math="6.0\text{ V}" /> and <InlineMath math="1.3\text{ k}\Omega" /> treat the collector current as **equal to the base current**, ignoring the gain of <InlineMath math="150" />.
+- <InlineMath math="23\,\mu\text{A}" />, <InlineMath math="225\text{ k}\Omega" /> and <InlineMath math="9.0\text{ mA}" /> put the **whole <InlineMath math="6.0\text{ V}" />** across the base resistor, ignoring the <InlineMath math="0.70\text{ V}" /> across the junction, and then ignore the collector limit too.
+- <InlineMath math="8.0\text{ mA}" /> applies the gain of <InlineMath math="150" /> **without checking the collector circuit**, which cannot pass more than <InlineMath math="5.0\text{ mA}" />.
+- <InlineMath math="6.0\text{ V}" />, <InlineMath math="1.3\text{ k}\Omega" /> and <InlineMath math="0.053\text{ mA}" /> treat the collector current as **equal to the base current**, ignoring the gain.

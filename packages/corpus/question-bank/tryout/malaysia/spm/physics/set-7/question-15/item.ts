@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3.0\\text{ m}$$, $$5$$ per second and $$33\\text{ s}$$",
+          label:
+            "$$3.0\\text{ m}$$, $$5$$ per second and $$12\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$1.5\\text{ m}$$, $$10$$ per second and $$17\\text{ s}$$",
+          label:
+            "$$1.5\\text{ m}$$, $$10$$ per second and $$6.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$1.5\\text{ m}$$, $$23$$ per second and $$17\\text{ s}$$",
+          label:
+            "$$1.5\\text{ m}$$, $$23$$ per second and $$2.7\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$0.75\\text{ m}$$, $$20$$ per second and $$8.3\\text{ s}$$",
+          label:
+            "$$0.75\\text{ m}$$, $$20$$ per second and $$3.0\\text{ m s}^{-1}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3.0\\text{ m}$$, $$5$$ kali sesaat dan $$33\\text{ s}$$",
+          label:
+            "$$3.0\\text{ m}$$, $$5$$ kali sesaat dan $$12\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$1.5\\text{ m}$$, $$10$$ kali sesaat dan $$17\\text{ s}$$",
+          label:
+            "$$1.5\\text{ m}$$, $$10$$ kali sesaat dan $$6.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$1.5\\text{ m}$$, $$23$$ kali sesaat dan $$17\\text{ s}$$",
+          label:
+            "$$1.5\\text{ m}$$, $$23$$ kali sesaat dan $$2.7\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$0.75\\text{ m}$$, $$20$$ kali sesaat dan $$8.3\\text{ s}$$",
+          label:
+            "$$0.75\\text{ m}$$, $$20$$ kali sesaat dan $$3.0\\text{ m s}^{-1}$$",
         },
       ],
     },

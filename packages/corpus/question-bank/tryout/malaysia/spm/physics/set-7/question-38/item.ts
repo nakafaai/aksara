@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "beta, $$6.0\\text{ h}$$, $$30\\text{ h}$$ and $$44$$ per minute",
+            "beta, $$6.0\\text{ h}$$, $$30\\text{ h}$$ and $$280$$ per minute",
         },
         {
           correct: true,
           label:
-            "gamma, $$6.0\\text{ h}$$, $$30\\text{ h}$$ and $$44$$ per minute",
+            "gamma, $$6.0\\text{ h}$$, $$30\\text{ h}$$ and $$280$$ per minute",
         },
         {
           correct: false,
           label:
-            "gamma, $$6.8\\text{ h}$$, $$26\\text{ h}$$ and $$7.5$$ per minute",
+            "gamma, $$6.8\\text{ h}$$, $$26\\text{ h}$$ and $$250$$ per minute",
         },
         {
           correct: false,
           label:
-            "gamma, $$6.0\\text{ h}$$, $$23\\text{ h}$$ and $$3.8$$ per minute",
+            "gamma, $$6.0\\text{ h}$$, $$23\\text{ h}$$ and $$240$$ per minute",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "beta, $$6.0\\text{ j}$$, $$30\\text{ j}$$ dan $$44$$ per minit",
+            "beta, $$6.0\\text{ j}$$, $$30\\text{ j}$$ dan $$280$$ per minit",
         },
         {
           correct: true,
           label:
-            "gama, $$6.0\\text{ j}$$, $$30\\text{ j}$$ dan $$44$$ per minit",
+            "gama, $$6.0\\text{ j}$$, $$30\\text{ j}$$ dan $$280$$ per minit",
         },
         {
           correct: false,
           label:
-            "gama, $$6.8\\text{ j}$$, $$26\\text{ j}$$ dan $$7.5$$ per minit",
+            "gama, $$6.8\\text{ j}$$, $$26\\text{ j}$$ dan $$250$$ per minit",
         },
         {
           correct: false,
           label:
-            "gama, $$6.0\\text{ j}$$, $$23\\text{ j}$$ dan $$3.8$$ per minit",
+            "gama, $$6.0\\text{ j}$$, $$23\\text{ j}$$ dan $$240$$ per minit",
         },
       ],
     },

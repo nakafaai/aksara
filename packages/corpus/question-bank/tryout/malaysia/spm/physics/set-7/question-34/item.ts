@@ -12,7 +12,7 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ and $$17:1$$",
+          label: "$$46\\text{ W}$$, $$50\\text{ W}$$ and $$19:1$$",
         },
         {
           correct: false,
@@ -20,11 +20,11 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$46\\text{ W}$$, $$76\\text{ W}$$ and $$17:1$$",
+          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ and $$17:1$$",
         },
         {
           correct: false,
-          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ and $$22:1$$",
+          label: "$$46\\text{ W}$$, $$50\\text{ W}$$ and $$24:1$$",
         },
       ],
     },
@@ -33,7 +33,7 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ dan $$17:1$$",
+          label: "$$46\\text{ W}$$, $$50\\text{ W}$$ dan $$19:1$$",
         },
         {
           correct: false,
@@ -41,11 +41,11 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$46\\text{ W}$$, $$76\\text{ W}$$ dan $$17:1$$",
+          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ dan $$17:1$$",
         },
         {
           correct: false,
-          label: "$$46\\text{ W}$$, $$61\\text{ W}$$ dan $$22:1$$",
+          label: "$$46\\text{ W}$$, $$50\\text{ W}$$ dan $$24:1$$",
         },
       ],
     },

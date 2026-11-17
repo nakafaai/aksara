@@ -28,7 +28,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$4.5\\times10^{-12}\\text{ J}$$, $$1.8\\times10^{-11}\\text{ J}$$ and $$2.7\\times10^{12}\\text{ J}$$",
+            "$$4.4\\times10^{-12}\\text{ J}$$, $$1.1\\times10^{-12}\\text{ J}$$ and $$6.6\\times10^{11}\\text{ J}$$",
         },
       ],
     },
@@ -53,7 +53,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$4.5\\times10^{-12}\\text{ J}$$, $$1.8\\times10^{-11}\\text{ J}$$ dan $$2.7\\times10^{12}\\text{ J}$$",
+            "$$4.4\\times10^{-12}\\text{ J}$$, $$1.1\\times10^{-12}\\text{ J}$$ dan $$6.6\\times10^{11}\\text{ J}$$",
         },
       ],
     },

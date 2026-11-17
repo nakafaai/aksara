@@ -10,25 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$170\\text{ W}$$, $$87\\%$$ and $$27\\%$$" },
-        { correct: true, label: "$$170\\text{ W}$$, $$69\\%$$ and $$9\\%$$" },
         {
           correct: false,
-          label: "$$960\\text{ W}$$, $$100\\%$$ and $$40\\%$$",
+          label: "$$170\\text{ W}$$, $$87\\%$$ and $$7.4\\text{ h}$$",
         },
-        { correct: false, label: "$$170\\text{ W}$$, $$69\\%$$ and $$64\\%$$" },
+        {
+          correct: true,
+          label: "$$170\\text{ W}$$, $$69\\%$$ and $$3.8\\text{ h}$$",
+        },
+        {
+          correct: false,
+          label: "$$960\\text{ W}$$, $$100\\%$$ and $$10\\text{ h}$$",
+        },
+        {
+          correct: false,
+          label: "$$170\\text{ W}$$, $$69\\%$$ and the whole $$12\\text{ h}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$170\\text{ W}$$, $$87\\%$$ dan $$27\\%$$" },
-        { correct: true, label: "$$170\\text{ W}$$, $$69\\%$$ dan $$9\\%$$" },
         {
           correct: false,
-          label: "$$960\\text{ W}$$, $$100\\%$$ dan $$40\\%$$",
+          label: "$$170\\text{ W}$$, $$87\\%$$ dan $$7.4\\text{ j}$$",
         },
-        { correct: false, label: "$$170\\text{ W}$$, $$69\\%$$ dan $$64\\%$$" },
+        {
+          correct: true,
+          label: "$$170\\text{ W}$$, $$69\\%$$ dan $$3.8\\text{ j}$$",
+        },
+        {
+          correct: false,
+          label: "$$960\\text{ W}$$, $$100\\%$$ dan $$10\\text{ j}$$",
+        },
+        {
+          correct: false,
+          label: "$$170\\text{ W}$$, $$69\\%$$ dan sepanjang $$12\\text{ j}$$",
+        },
       ],
     },
   },
