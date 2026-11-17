@@ -10,6 +10,7 @@ import { lessonBiologyMembraneTransportMaterial } from "#corpus/material/lesson/
 import { lessonBiologyVirusRoleMaterial } from "#corpus/material/lesson/biology/virus-role/source";
 import { lessonChemistryAcidBaseSaltMaterial } from "#corpus/material/lesson/chemistry/acid-base-salt/source";
 import { lessonChemistryBasicChemistryLawsMaterial } from "#corpus/material/lesson/chemistry/basic-chemistry-laws/source";
+import { lessonChemistryCarbonCompoundMaterial } from "#corpus/material/lesson/chemistry/carbon-compound/source";
 import { lessonChemistryChemicalBondMaterial } from "#corpus/material/lesson/chemistry/chemical-bond/source";
 import { lessonChemistryChemistryIntroductionMaterial } from "#corpus/material/lesson/chemistry/chemistry-introduction/source";
 import { lessonChemistryGreenChemistryMaterial } from "#corpus/material/lesson/chemistry/green-chemistry/source";
@@ -72,6 +73,7 @@ const materialSourcePrograms = [
   lessonBiologyVirusRoleMaterial,
   lessonChemistryAcidBaseSaltMaterial,
   lessonChemistryBasicChemistryLawsMaterial,
+  lessonChemistryCarbonCompoundMaterial,
   lessonChemistryChemicalBondMaterial,
   lessonChemistryChemistryIntroductionMaterial,
   lessonChemistryGreenChemistryMaterial,
