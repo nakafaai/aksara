@@ -230,7 +230,33 @@ export const kssmForm4AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-additional-mathematics-solution-of-triangles-triangle-solution",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.triangle-solution"],
+        order: 10,
+      }),
+    ],
     key: "form-4-additional-mathematics-solution-of-triangles",
+    materialCard: {
+      de: {
+        description: "Nutze Sinussatz, Kosinussatz und Flächenformeln.",
+        title: "Dreiecksberechnung",
+      },
+      en: {
+        description: "Use the sine rule, cosine rule and area formulas.",
+        title: "Solution of Triangles",
+      },
+      id: {
+        description: "Pakai aturan sinus, kosinus, dan rumus luas.",
+        title: "Penyelesaian Segitiga",
+      },
+      ms: {
+        description: "Guna petua sinus, petua kosinus dan rumus luas.",
+        title: "Penyelesaian Segi Tiga",
+      },
+    },
     order: 90,
     translations: {
       de: { routeSlug: "dreiecksberechnung", title: "Dreiecksberechnung" },

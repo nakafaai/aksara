@@ -1,0 +1,322 @@
+export const metadata = {
+  title: "Solution of Triangles Notes for Form Four",
+  description:
+    "KSSM Additional Mathematics Form 4 Chapter 9 notes: use the sine rule including the ambiguous case, the cosine rule, and the area formulas to solve triangles without a right angle.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Solution of Triangles",
+};
+
+## Choose the Rule from the Information Given
+
+Solving a triangle means finding every side and angle that is still unknown. For a triangle without a right angle, choose the rule from **the information given**:
+
+| Information given | Rule |
+| :--- | :--- |
+| Two angles and one side | Sine rule |
+| Two sides and an angle that is not between them | Sine rule, check the ambiguous case |
+| Two sides and the angle between them | Cosine rule |
+| Three sides | Cosine rule |
+
+With sides <InlineMath math="a" />, <InlineMath math="b" /> and <InlineMath math="c" /> opposite the angles <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" />, the three main formulas are:
+
+<MathContainer>
+<BlockMath math="\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}" />
+<BlockMath math="a^2 = b^2 + c^2 - 2bc\cos A" />
+<BlockMath math="\text{Area} = \frac{1}{2}bc\sin A" />
+</MathContainer>
+
+In these notes you change the angles of a triangle while watching the sine rule ratios, see when one set of information gives two triangles, and find the angle that gives the largest area.
+
+## The Sine Rule
+
+The **sine rule** says that the ratio of each side to the sine of its opposite angle is the same. The triangle below has side <InlineMath math="c = AB = 10\text{ cm}" />. Change the angles <InlineMath math="A" /> and <InlineMath math="B" />: the sides <InlineMath math="a" /> and <InlineMath math="b" /> change, but the three ratios stay equal.
+
+<MathVisual
+  title={<>A Triangle with Fixed Side <InlineMath math="AB" /></>}
+  description={
+    <>
+      Side <InlineMath math="AB = 10" />, with angles <InlineMath math="A" /> and{" "}
+      <InlineMath math="B" /> that you can change. For{" "}
+      <InlineMath math="A = 40^\circ" /> and <InlineMath math="B = 65^\circ" />,
+      the sides are <InlineMath math="a = 6.65" /> and{" "}
+      <InlineMath math="b = 9.38" />, and every ratio equals{" "}
+      <InlineMath math="10.35" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: 0, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 30, max: 70, value: 40, step: 1, label: "p" },
+      { name: "q", min: 30, max: 70, value: 65, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "0", y: "0" }, { x: "10", y: "0" }, { x: "10*sin(q*pi/180)/sin((p + q)*pi/180)*cos(p*pi/180)", y: "10*sin(q*pi/180)/sin((p + q)*pi/180)*sin(p*pi/180)" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 10, y: 0 }, appearance: "reference" },
+      { id: "vertex-c", kind: "marker", x: "10*sin(q*pi/180)/sin((p + q)*pi/180)*cos(p*pi/180)", y: "10*sin(q*pi/180)/sin((p + q)*pi/180)*sin(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "side-a", formula: "10*sin(p*pi/180)/sin((p + q)*pi/180)" },
+      { key: "side-b", formula: "10*sin(q*pi/180)/sin((p + q)*pi/180)" },
+      { key: "ratio", formula: "10/sin((p + q)*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Angle <InlineMath math="A" /> in degrees</>,
+    q: <>Angle <InlineMath math="B" /> in degrees</>,
+    "side-a": <>Side <InlineMath math="a = BC" /></>,
+    "side-b": <>Side <InlineMath math="b = AC" /></>,
+    ratio: <>Ratio <InlineMath math="\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C}" /></>,
+  }}
+/>
+
+Check the starting reading with algebra. The third angle is <InlineMath math="C = 180^\circ - 40^\circ - 65^\circ = 75^\circ" />:
+
+<MathContainer>
+<BlockMath math="a = \frac{c\sin A}{\sin C} = \frac{10\sin 40^\circ}{\sin 75^\circ} = 6.65\text{ cm}" />
+<BlockMath math="b = \frac{c\sin B}{\sin C} = \frac{10\sin 65^\circ}{\sin 75^\circ} = 9.38\text{ cm}" />
+</MathContainer>
+
+The longest side is always opposite the largest angle. Here <InlineMath math="c" /> is opposite <InlineMath math="75^\circ" />, so **<InlineMath math="c = 10" /> is the longest side**.
+
+## The Ambiguous Case
+
+When you are given two sides and an angle that is **not** between them, that information sometimes forms two different triangles. Take <InlineMath math="A = 30^\circ" />, <InlineMath math="c = AB = 8" /> and a side <InlineMath math="a = BC" /> that you can change. The point <InlineMath math="C" /> must lie on the ray from <InlineMath math="A" /> and also on the circle centred at <InlineMath math="B" /> with radius <InlineMath math="a" />.
+
+<MathVisual
+  title={<>One Set of Information, Two Triangles</>}
+  description={
+    <>
+      The ray from <InlineMath math="A" /> at <InlineMath math="30^\circ" /> and
+      the circle of radius <InlineMath math="a" /> centred at{" "}
+      <InlineMath math="B(8, 0)" />. For <InlineMath math="4 < a < 8" />, the
+      circle cuts the ray at two points, so there are two triangles. For{" "}
+      <InlineMath math="a = 5" />, the length <InlineMath math="AC" /> is{" "}
+      <InlineMath math="3.93" /> or <InlineMath math="9.93" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 4, max: 8, value: 5, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "ray", kind: "function", appearance: "secondary", formula: "0.57735*x", domain: { min: 0, max: 13.8 } },
+      { id: "swing", kind: "implicit", appearance: "construction", equation: "(x - 8)^2 + y^2 = r^2" },
+      { id: "sides", kind: "path", points: [{ x: "0.8660*(6.9282 - sqrt(r^2 - 16))", y: "0.5*(6.9282 - sqrt(r^2 - 16))" }, { x: "8", y: "0" }, { x: "0.8660*(6.9282 + sqrt(r^2 - 16))", y: "0.5*(6.9282 + sqrt(r^2 - 16))" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "near-c", kind: "marker", x: "0.8660*(6.9282 - sqrt(r^2 - 16))", y: "0.5*(6.9282 - sqrt(r^2 - 16))", appearance: "answer" },
+      { id: "far-c", kind: "marker", x: "0.8660*(6.9282 + sqrt(r^2 - 16))", y: "0.5*(6.9282 + sqrt(r^2 - 16))", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "near-side", formula: "6.9282 - sqrt(r^2 - 16)" },
+      { key: "far-side", formula: "6.9282 + sqrt(r^2 - 16)" },
+    ],
+  }}
+  labels={{
+    r: <>Side <InlineMath math="a = BC" /></>,
+    "near-side": <>Length <InlineMath math="AC" /> in the first triangle</>,
+    "far-side": <>Length <InlineMath math="AC" /> in the second triangle</>,
+  }}
+/>
+
+Solve it for <InlineMath math="a = 5" />. The sine rule gives <InlineMath math="\sin C" />, but **the sine is positive for both an acute and an obtuse angle**, so there are two possibilities:
+
+<MathContainer>
+<BlockMath math="\sin C = \frac{c\sin A}{a} = \frac{8\sin 30^\circ}{5} = 0.8" />
+<BlockMath math="C = 53.13^\circ \quad \text{or} \quad C = 180^\circ - 53.13^\circ = 126.87^\circ" />
+</MathContainer>
+
+Both values are valid because <InlineMath math="30^\circ + 126.87^\circ < 180^\circ" />. So <InlineMath math="B = 96.87^\circ" /> with <InlineMath math="b = 9.93" />, or <InlineMath math="B = 23.13^\circ" /> with <InlineMath math="b = 3.93" />, the same as the two readings in the diagram. If <InlineMath math="a < 4" />, the circle does not reach the ray and no triangle forms.
+
+## The Cosine Rule
+
+Use the **cosine rule** when you are given two sides and the angle between them, or three sides. For the angle <InlineMath math="A" /> between the sides <InlineMath math="b" /> and <InlineMath math="c" />:
+
+<BlockMath math="a^2 = b^2 + c^2 - 2bc\cos A" />
+
+When <InlineMath math="A = 90^\circ" />, <InlineMath math="\cos A = 0" /> and the rule becomes Pythagoras' theorem. Change the angle <InlineMath math="A" /> between the sides <InlineMath math="b = 5" /> and <InlineMath math="c = 7" />.
+
+<MathVisual
+  title={<>The Cosine Rule with the Angle between Two Sides</>}
+  description={
+    <>
+      Sides <InlineMath math="b = 5" /> and <InlineMath math="c = 7" /> with the
+      angle <InlineMath math="A" /> between them. The third side is{" "}
+      <InlineMath math="a = \sqrt{74 - 70\cos A}" />. For{" "}
+      <InlineMath math="A = 60^\circ" />, <InlineMath math="a = 6.24" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 8 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 10, max: 170, value: 60, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "0", y: "0" }, { x: "7", y: "0" }, { x: "5*cos(p*pi/180)", y: "5*sin(p*pi/180)" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+      { id: "vertex-c", kind: "marker", x: "5*cos(p*pi/180)", y: "5*sin(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "side-a", formula: "sqrt(74 - 70*cos(p*pi/180))" },
+      { key: "side-a-squared", formula: "74 - 70*cos(p*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Angle <InlineMath math="A" /> in degrees</>,
+    "side-a": <>Side <InlineMath math="a = BC" /></>,
+    "side-a-squared": <>Value of <InlineMath math="a^2" /></>,
+  }}
+/>
+
+Check the starting reading: <InlineMath math="a^2 = 25 + 49 - 2(5)(7)\cos 60^\circ = 74 - 35 = 39" />, so <InlineMath math="a = \sqrt{39} = 6.24\text{ cm}" />. At <InlineMath math="A = 90^\circ" />, the reading of <InlineMath math="a^2" /> becomes <InlineMath math="74 = 5^2 + 7^2" />.
+
+The cosine rule also finds an angle from three sides. For the triangle with sides <InlineMath math="a = 7" />, <InlineMath math="b = 8" /> and <InlineMath math="c = 9" />, the largest angle is opposite the longest side:
+
+<BlockMath math="\cos C = \frac{a^2 + b^2 - c^2}{2ab} = \frac{49 + 64 - 81}{2(7)(8)} = \frac{32}{112} \quad \Rightarrow \quad C = 73.40^\circ" />
+
+## The Area of a Triangle
+
+The area of a triangle is half the product of two sides and the sine of the angle between them, <InlineMath math="\text{Area} = \dfrac{1}{2}bc\sin A" />. For <InlineMath math="b = 5" /> and <InlineMath math="c = 7" />, the area is <InlineMath math="17.5\sin A" />. Move the angle <InlineMath math="A" /> and find the largest area.
+
+<MathVisual
+  title={<>Area against the Angle between Two Sides</>}
+  description={
+    <>
+      The area <InlineMath math="17.5\sin A" /> for sides <InlineMath math="5" />{" "}
+      and <InlineMath math="7" />. The largest area,{" "}
+      <InlineMath math="17.5\text{ cm}^2" />, happens at{" "}
+      <InlineMath math="A = 90^\circ" />. For <InlineMath math="A = 60^\circ" />,
+      the area is <InlineMath math="15.16\text{ cm}^2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 180 }, y: { min: 0, max: 20 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 180, value: 60, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "area-curve", kind: "function", appearance: "primary", formula: "17.5*sin(x*pi/180)", domain: { min: 0, max: 180 } },
+      { id: "now", kind: "marker", x: "p", y: "17.5*sin(p*pi/180)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "17.5*sin(p*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Angle <InlineMath math="A" /> in degrees</>,
+    area: <>Area in <InlineMath math="\text{cm}^2" /></>,
+  }}
+/>
+
+If only the three sides are known, use **Heron's formula**. With the semi-perimeter <InlineMath math="s = \dfrac{a + b + c}{2}" />:
+
+<BlockMath math="\text{Area} = \sqrt{s(s - a)(s - b)(s - c)}" />
+
+For the triangle with sides <InlineMath math="7" />, <InlineMath math="8" /> and <InlineMath math="9" />, <InlineMath math="s = 12" /> and the area is <InlineMath math="\sqrt{12(5)(4)(3)} = \sqrt{720} = 26.83" /> square units.
+
+## A Triangle with a Changing Third Side
+
+Picture two wooden rods, <InlineMath math="5\text{ m}" /> and <InlineMath math="6\text{ m}" /> long, joined at a hinge, with a rope as the third side. The length of the rope **sets the shape of the triangle**. Change the rope length and watch the area that Heron's formula gives.
+
+<MathVisual
+  title={<>Area by Heron's Formula for Sides <InlineMath math="5\text{ m}" /> and <InlineMath math="6\text{ m}" /></>}
+  description={
+    <>
+      The area of the triangle with sides <InlineMath math="5" />,{" "}
+      <InlineMath math="6" /> and <InlineMath math="c" />. The largest area is{" "}
+      <InlineMath math="15\text{ m}^2" /> when{" "}
+      <InlineMath math="c = \sqrt{61} \approx 7.81\text{ m}" />, which is when the
+      hinge angle is <InlineMath math="90^\circ" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 1.5, max: 10.5, value: 4, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "heron", kind: "function", appearance: "primary", formula: "sqrt((11 + x)/2*((11 + x)/2 - 5)*((11 + x)/2 - 6)*((11 + x)/2 - x))", domain: { min: 1.05, max: 10.95 } },
+      { id: "now", kind: "marker", x: "c", y: "sqrt((11 + c)/2*((11 + c)/2 - 5)*((11 + c)/2 - 6)*((11 + c)/2 - c))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "sqrt((11 + c)/2*((11 + c)/2 - 5)*((11 + c)/2 - 6)*((11 + c)/2 - c))" },
+      { key: "hinge", formula: "acos((61 - c^2)/60)*180/pi" },
+    ],
+  }}
+  labels={{
+    c: <>Rope length <InlineMath math="c" /> in <InlineMath math="\text{m}" /></>,
+    area: <>Area in <InlineMath math="\text{m}^2" /></>,
+    hinge: <>Hinge angle in degrees</>,
+  }}
+/>
+
+The largest area is <InlineMath math="\dfrac{1}{2}(5)(6)\sin 90^\circ = 15\text{ m}^2" />, the same as the peak of the graph. A rope that is too short or too long flattens the triangle, and its area approaches zero.
+
+## Common Mistakes in Solving Triangles
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| Giving only <InlineMath math="C = 53.13^\circ" /> in the ambiguous case. | The obtuse angle <InlineMath math="126.87^\circ" /> has the same sine. | Test whether <InlineMath math="180^\circ - C" /> also keeps the angle sum below <InlineMath math="180^\circ" />. |
+| Using the cosine rule with an angle that is not between the two sides. | The angle in the formula must be opposite the side you want. | Match the letters: <InlineMath math="a" /> with <InlineMath math="A" />. |
+| Dropping the sign of <InlineMath math="-2bc\cos A" /> when <InlineMath math="A" /> is obtuse. | <InlineMath math="\cos A" /> is negative, so the term makes <InlineMath math="a" /> longer. | The side opposite an obtuse angle must be the longest. |
+| The calculator is in radian mode. | These angles are given in degrees. | Check that <InlineMath math="\sin 30^\circ = 0.5" /> before you start. |
+| Using <InlineMath math="\dfrac{1}{2}ab\sin C" /> with the wrong angle. | The angle must be between the two sides you multiply. | Sketch the triangle and mark the angle between those two sides. |
+
+The first mistake is the most common. **Every time you find an angle with the sine rule**, also check the obtuse angle <InlineMath math="180^\circ - C" />.
+
+## Solution of Triangles Practice
+
+Sketch the triangle and mark the information given so that **the right rule is clear before you calculate**.
+
+1. In triangle <InlineMath math="PQR" />, <InlineMath math="\angle P = 50^\circ" />, <InlineMath math="\angle Q = 70^\circ" /> and <InlineMath math="PQ = 12\text{ cm}" />. Find the length of <InlineMath math="QR" />.
+
+2. Two sides of a triangle are <InlineMath math="6\text{ cm}" /> and <InlineMath math="9\text{ cm}" />, with an angle of <InlineMath math="120^\circ" /> between them. Find the third side and the area of the triangle.
+
+3. In triangle <InlineMath math="ABC" />, <InlineMath math="\angle A = 40^\circ" />, <InlineMath math="AB = 10\text{ cm}" /> and <InlineMath math="BC = 7\text{ cm}" />. Show that two triangles are possible, and find the two values of <InlineMath math="\angle C" />.
+
+4. Use Heron's formula to find the area of the triangle with sides <InlineMath math="5\text{ cm}" />, <InlineMath math="12\text{ cm}" /> and <InlineMath math="13\text{ cm}" />.
+
+### Solutions
+
+**Solution 1**: The side <InlineMath math="QR" /> is opposite <InlineMath math="\angle P" />, and the side <InlineMath math="PQ" /> is opposite <InlineMath math="\angle R = 180^\circ - 50^\circ - 70^\circ = 60^\circ" />:
+
+<BlockMath math="QR = \frac{12\sin 50^\circ}{\sin 60^\circ} = 10.61\text{ cm}" />
+
+**Solution 2**: Use the cosine rule, then the area formula:
+
+<MathContainer>
+<BlockMath math="c^2 = 6^2 + 9^2 - 2(6)(9)\cos 120^\circ = 117 + 54 = 171" />
+<BlockMath math="c = \sqrt{171} = 13.08\text{ cm}" />
+<BlockMath math="\text{Area} = \frac{1}{2}(6)(9)\sin 120^\circ = 23.38\text{ cm}^2" />
+</MathContainer>
+
+Check: the side of <InlineMath math="13.08\text{ cm}" /> is opposite the obtuse angle, so it is indeed the longest side.
+
+**Solution 3**: Use the sine rule for <InlineMath math="\sin C" />:
+
+<MathContainer>
+<BlockMath math="\sin C = \frac{10\sin 40^\circ}{7} = 0.9183" />
+<BlockMath math="C = 66.67^\circ \quad \text{or} \quad C = 113.33^\circ" />
+</MathContainer>
+
+Both are valid because <InlineMath math="40^\circ + 113.33^\circ = 153.33^\circ < 180^\circ" />. So two triangles are possible.
+
+**Solution 4**: The semi-perimeter is <InlineMath math="s = \dfrac{5 + 12 + 13}{2} = 15" />:
+
+<BlockMath math="\text{Area} = \sqrt{15(10)(3)(2)} = \sqrt{900} = 30\text{ cm}^2" />
+
+Check: <InlineMath math="5^2 + 12^2 = 13^2" />, so this triangle has **a right angle** and its area is <InlineMath math="\dfrac{1}{2}(5)(12) = 30\text{ cm}^2" />.
