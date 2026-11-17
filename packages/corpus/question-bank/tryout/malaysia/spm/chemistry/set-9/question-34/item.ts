@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$-210\\text{ kJ mol}^{-1}$$, $$20.0^\\circ\\text{C}$$",
+          label:
+            "$$-210\\text{ kJ mol}^{-1}$$, $$20.0^\\circ\\text{C}$$, $$0.35\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$+210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$",
+          label:
+            "$$+210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$0.35\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$-210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$",
+          label:
+            "$$-210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$0.35\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$-105\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$",
+          label:
+            "$$-105\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$0.675\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$-210\\text{ kJ mol}^{-1}$$, $$20.0^\\circ\\text{C}$$",
+          label:
+            "$$-210\\text{ kJ mol}^{-1}$$, $$20.0^\\circ\\text{C}$$, $$0.35\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$+210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$",
+          label:
+            "$$+210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$0.35\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$-210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$",
+          label:
+            "$$-210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$0.35\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$-105\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$",
+          label:
+            "$$-105\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$0.675\\text{ g}$$",
         },
       ],
     },

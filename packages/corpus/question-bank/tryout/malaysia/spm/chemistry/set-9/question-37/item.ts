@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$192\\text{ dm}^3$$, $$320\\text{ g}$$" },
-        { correct: false, label: "$$384\\text{ dm}^3$$, $$320\\text{ g}$$" },
-        { correct: true, label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$" },
-        { correct: false, label: "$$768\\text{ dm}^3$$, $$1280\\text{ g}$$" },
+        {
+          correct: false,
+          label: "$$192\\text{ dm}^3$$, $$320\\text{ g}$$, $$280\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$384\\text{ dm}^3$$, $$320\\text{ g}$$, $$560\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$, $$560\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$, $$358\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$192\\text{ dm}^3$$, $$320\\text{ g}$$" },
-        { correct: false, label: "$$384\\text{ dm}^3$$, $$320\\text{ g}$$" },
-        { correct: true, label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$" },
-        { correct: false, label: "$$768\\text{ dm}^3$$, $$1280\\text{ g}$$" },
+        {
+          correct: false,
+          label: "$$192\\text{ dm}^3$$, $$320\\text{ g}$$, $$280\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$384\\text{ dm}^3$$, $$320\\text{ g}$$, $$560\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$, $$560\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$, $$358\\text{ g}$$",
+        },
       ],
     },
   },
