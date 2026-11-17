@@ -7,6 +7,7 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
+import type { MaterialOrigin } from "@nakafa/aksara-corpus/material/source";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import { Array as Arr, Effect, HashSet, Order, Path } from "effect";
@@ -15,6 +16,7 @@ import {
   loadAcceptanceSources,
   loadAcceptanceTryout,
 } from "#publisher/acceptance/source";
+import { CHECKOUT_ROOT } from "#test/root";
 
 const checkoutRoot = Effect.map(Path.Path, (path) =>
   path.resolve(process.cwd(), "..", "..")
@@ -67,9 +69,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
     >();
   return {
     ...original,
-    decodeMaterialRegistry: () =>
+    decodeMaterialRegistry: (origin: MaterialOrigin) =>
       original
-        .decodeMaterialRegistry()
+        .decodeMaterialRegistry(origin)
         .pipe(
           Effect.map((entries) =>
             Arr.filter(
@@ -115,7 +117,9 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
     () =>
       Effect.gen(function* () {
         const selected = yield* loadAcceptanceSources(yield* checkoutRoot);
-        const materials = yield* decodeMaterialRegistry();
+        const materials = yield* decodeMaterialRegistry({
+          checkoutRoot: CHECKOUT_ROOT,
+        });
         const articles = yield* decodeArticleRegistry();
         const pages = yield* decodePageRegistry();
         const groups = HashSet.fromIterable(

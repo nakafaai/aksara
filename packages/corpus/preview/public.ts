@@ -145,16 +145,14 @@ const buildMaterialEntry = Effect.fn("AksaraCorpus.buildPreviewMaterialEntry")(
       route: entry.route,
       sourcePath: entry.sourcePath,
     } satisfies MaterialPreviewDocument;
-    const sourceModule = CorpusSourcePathSchema.make(
-      `packages/corpus/${entry.assetRoot}/source.ts`
+    // A lesson registers through its own lesson file, which the material source discovers.
+    const lessonFile = CorpusSourcePathSchema.make(
+      `packages/corpus/${entry.assetRoot}/lesson.json`
     );
     return {
       document,
       source: {
-        dependencies: [
-          MATERIAL_OWNER,
-          ...(yield* dependenciesFor(sourceModule)),
-        ],
+        dependencies: [lessonFile, ...(yield* dependenciesFor(MATERIAL_OWNER))],
         entry,
         family: "material",
       },
@@ -174,7 +172,9 @@ export const selectMaterialEntry = Effect.fn(
 export const selectMaterial = Effect.fn("AksaraCorpus.selectPreviewMaterial")(
   function* (corpusRoot: string, sourcePath: CorpusSourcePath) {
     const entry = yield* selectOne(
-      yield* decodeMaterialPreviewEntry(sourcePath),
+      yield* decodeMaterialPreviewEntry(sourcePath, {
+        checkoutRoot: corpusRoot,
+      }),
       sourcePath
     );
     return yield* selectMaterialEntry(corpusRoot, entry);

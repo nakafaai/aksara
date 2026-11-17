@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@effect/vitest";
-import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import { Array as Arr, Effect, HashSet, Option, Schema } from "effect";
 
 import { CurriculumProjectionError } from "#corpus/curriculum/material";
@@ -13,28 +13,13 @@ import {
   decodeMaterialDomains,
   MaterialDomainMissingError,
 } from "#corpus/material/domain";
-import type { LessonMaterialSource } from "#corpus/material/schema";
 import { decodeMaterialSources } from "#corpus/material/source";
-import { earthScienceMaterialSource } from "#corpus/test/material";
-
-/** Projects one present material display fixture through its source locale. */
-function materialDisplay(
-  material: LessonMaterialSource,
-  locale: AppLocaleCode
-) {
-  return Effect.gen(function* () {
-    const routeSlug = yield* Effect.fromNullishOr(material.routeSlugs[locale]);
-    const copy = yield* Effect.fromNullishOr(material.translations[locale]);
-    return { routeSlug, title: copy.title };
-  });
-}
-
-/** Finds one decoded material by its exact key, or fails when it is absent. */
-function findMaterial(materials: readonly LessonMaterialSource[], key: string) {
-  return Effect.fromOption(
-    Arr.findFirst(materials, (material) => material.key === key)
-  );
-}
+import {
+  earthScienceMaterialSource,
+  findMaterial,
+  materialDisplay,
+} from "#corpus/test/material";
+import { CHECKOUT_ROOT } from "#corpus/test/root";
 
 /** Decodes one real-identity curriculum leaf for failure-path verification. */
 function merdekaLeaf(
@@ -65,14 +50,17 @@ const invalidOwnershipCases = [
   ["material", { materialKeys: [matrixKey, missingKey] }],
 ] as const;
 
-describe("curriculum node projection", () => {
+/** The material catalog of this checkout, discovered from its lesson folders. */
+const realMaterials = decodeMaterialSources({ checkoutRoot: CHECKOUT_ROOT });
+
+layer(NodeServices.layer)("curriculum node projection", (it) => {
   it.effect(
     "flattens all five real trees and validates every material reference",
     () =>
       Effect.gen(function* () {
         const [curricula, materials] = yield* Effect.all([
           decodeCurriculumCatalog(),
-          decodeMaterialSources(),
+          realMaterials,
         ]);
         const nodes = yield* projectCurriculumNodes(curricula, materials);
         const materialNodes = Arr.filter(
@@ -113,7 +101,7 @@ describe("curriculum node projection", () => {
       Effect.gen(function* () {
         const [curriculum, materials] = yield* Effect.all([
           merdekaLeaf(input),
-          decodeMaterialSources(),
+          realMaterials,
         ]);
         const error = yield* projectCurriculumNodes(
           [curriculum],
@@ -128,7 +116,7 @@ describe("curriculum node projection", () => {
     "rejects a single-material override that duplicates source copy",
     () =>
       Effect.gen(function* () {
-        const materials = yield* decodeMaterialSources();
+        const materials = yield* realMaterials;
         const material = yield* findMaterial(materials, matrixKey);
         const [english, indonesian] = yield* Effect.all([
           materialDisplay(material, "en"),
@@ -150,7 +138,7 @@ describe("curriculum node projection", () => {
     "rejects a locale route without matching material display copy",
     () =>
       Effect.gen(function* () {
-        const materials = yield* decodeMaterialSources();
+        const materials = yield* realMaterials;
         const material = yield* findMaterial(materials, matrixKey);
         const translations = yield* Effect.all({
           en: Effect.fromNullishOr(material.translations.en),
@@ -170,7 +158,7 @@ describe("curriculum node projection", () => {
 
   it.effect("uses explicit source copy for a multi-material leaf", () =>
     Effect.gen(function* () {
-      const materials = yield* decodeMaterialSources();
+      const materials = yield* realMaterials;
       const [matrix, polynomial] = yield* Effect.all([
         findMaterial(materials, matrixKey),
         findMaterial(materials, polynomialKey),
@@ -237,7 +225,7 @@ describe("curriculum node projection", () => {
     () =>
       Effect.gen(function* () {
         const material = earthScienceMaterialSource();
-        const materials = yield* decodeMaterialSources();
+        const materials = yield* realMaterials;
         const mathematics = yield* findMaterial(materials, matrixKey);
         const mixedCurriculum = yield* merdekaLeaf({
           materialKeys: [material.key, mathematics.key],

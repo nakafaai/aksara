@@ -22,12 +22,15 @@ import {
   materialTestLayer,
 } from "#test/material/spec";
 import { authoredCheckoutRoot, metadataExport } from "#test/metadata";
+import { CHECKOUT_ROOT } from "#test/root";
 
 /** Requires the reviewed English material registry fixture. */
 const requireEnglishEntry = Effect.fn(
   "MaterialDocumentTest.requireEnglishEntry"
 )(function* () {
-  const entries = yield* decodeMaterialRegistry();
+  const entries = yield* decodeMaterialRegistry({
+    checkoutRoot: CHECKOUT_ROOT,
+  }).pipe(Effect.provide(NodeServices.layer));
   return yield* Effect.fromOption(
     Arr.findFirst(entries, ({ sourcePath }) => sourcePath === englishPath)
   );

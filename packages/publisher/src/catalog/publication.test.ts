@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import {
   ReleaseIdSchema,
@@ -27,6 +28,7 @@ import { testFileLayer } from "#test/files";
 import { MaterialTestFixtures, materialTestLayer } from "#test/material/spec";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
 import { testRendererDomains } from "#test/renderer";
+import { CHECKOUT_ROOT } from "#test/root";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 const baseComponents = [
@@ -57,16 +59,15 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
-    decodeMaterialRegistry: (input?: unknown) =>
-      original
-        .decodeMaterialRegistry(input)
-        .pipe(
-          Effect.map((entries) =>
-            Arr.filter(entries, ({ sourcePath }) =>
-              HashSet.has(sourcePaths, sourcePath)
-            )
+    decodeMaterialRegistry: () =>
+      original.decodeMaterialRegistry({ checkoutRoot: CHECKOUT_ROOT }).pipe(
+        Effect.provide(NodeServices.layer),
+        Effect.map((entries) =>
+          Arr.filter(entries, ({ sourcePath }) =>
+            HashSet.has(sourcePaths, sourcePath)
           )
-        ),
+        )
+      ),
   };
 });
 

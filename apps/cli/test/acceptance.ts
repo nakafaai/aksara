@@ -14,6 +14,7 @@ import {
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
 import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, Redacted, Schema, Stream } from "effect";
+import { REPOSITORY_ROOT } from "#test/real";
 import {
   completedBundle,
   gitBundle,
@@ -122,7 +123,9 @@ export function acceptancePublicationMock(calls: AcceptancePublicationCalls) {
             Redacted.value(signingKey.privateKeyPem)
           ));
         const frozen = yield* gitBundle(prepared.manifest.releaseId);
-        const snapshot = yield* prepareProgramSnapshot().pipe(Effect.orDie);
+        const snapshot = yield* prepareProgramSnapshot({
+          checkoutRoot: REPOSITORY_ROOT,
+        }).pipe(Effect.orDie);
         const rows = yield* snapshot.rows.pipe(
           Stream.take(1),
           Stream.runCollect,

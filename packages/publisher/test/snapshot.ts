@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { ItemFamilyIdSchema } from "@nakafa/aksara-contracts/assessment/identity";
 import {
   type AssessmentRow,
@@ -40,6 +41,7 @@ import {
 import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
 import { Effect, Stream } from "effect";
 import { materialGraph } from "#test/graph";
+import { CHECKOUT_ROOT } from "#test/root";
 
 export interface AssessmentFixture {
   readonly manifest: Extract<
@@ -202,7 +204,9 @@ export const makeProgramSnapshotFixture: (
 ) => Effect.Effect<ProgramFixture, ProgramFixtureError> = Effect.fn(
   "AksaraPublisherTest.makeProgramSnapshotFixture"
 )(function* (previous: ContentSnapshotSet = inheritContentSnapshots(null)) {
-  const prepared = yield* prepareProgramSnapshot();
+  const prepared = yield* prepareProgramSnapshot({
+    checkoutRoot: CHECKOUT_ROOT,
+  }).pipe(Effect.provide(NodeServices.layer));
   const snapshot: ProgramFixture["snapshot"] = {
     family: "program",
     manifest: prepared.manifest,

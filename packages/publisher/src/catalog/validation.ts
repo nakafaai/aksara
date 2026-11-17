@@ -127,9 +127,9 @@ export const validateContentCatalog: (input: {
   | ContentCatalogValidationError,
   FileSystem.FileSystem | Path.Path | Scope.Scope
 > = Effect.fn("AksaraPublisher.validateContentCatalog")(function* (input) {
-  const expectation = yield* readContentCatalogExpectation.pipe(
-    Effect.mapError((cause) => validationError("catalog", cause))
-  );
+  const expectation = yield* readContentCatalogExpectation(
+    input.checkoutRoot
+  ).pipe(Effect.mapError((cause) => validationError("catalog", cause)));
   const publication = yield* prepareContentCatalog({
     base: null,
     checkoutRoot: input.checkoutRoot,

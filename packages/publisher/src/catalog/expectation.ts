@@ -64,13 +64,21 @@ function expectedRoute(route: {
 }
 
 /** Reads every authoritative body source into one independent inventory. */
-export const readContentCatalogExpectation: Effect.Effect<
+export const readContentCatalogExpectation: (
+  checkoutRoot: string
+) => Effect.Effect<
   ContentCatalogExpectation,
   ContentCatalogExpectationError,
   FileSystem.FileSystem | Path.Path
-> = Effect.gen(function* () {
+> = Effect.fn("AksaraPublisher.readContentCatalogExpectation")(function* (
+  checkoutRoot: string
+) {
   const [articles, materials, pages] = yield* Effect.all(
-    [decodeArticleRegistry(), decodeMaterialRegistry(), decodePageRegistry()],
+    [
+      decodeArticleRegistry(),
+      decodeMaterialRegistry({ checkoutRoot }),
+      decodePageRegistry(),
+    ],
     { concurrency: 3 }
   ).pipe(
     Effect.mapError((cause) => new ContentCatalogExpectationError({ cause }))
@@ -115,4 +123,4 @@ export const readContentCatalogExpectation: Effect.Effect<
     routes,
     totalCount: heads.length,
   } satisfies ContentCatalogExpectation;
-}).pipe(Effect.withSpan("AksaraPublisher.readContentCatalogExpectation"));
+});

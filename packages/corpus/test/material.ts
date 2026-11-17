@@ -1,7 +1,10 @@
 import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
-import { Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
-import { LessonMaterialSourceSchema } from "#corpus/material/schema";
+import {
+  type LessonMaterialSource,
+  LessonMaterialSourceSchema,
+} from "#corpus/material/schema";
 
 /** Builds one exact lesson source so tests change one identity at a time. */
 export function lessonMaterialSource() {
@@ -126,4 +129,26 @@ export function lessonMaterialEntries() {
         "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",
     },
   ];
+}
+
+/** Projects one present material display fixture through its source locale. */
+export function materialDisplay(
+  material: LessonMaterialSource,
+  locale: AppLocaleCode
+) {
+  return Effect.gen(function* () {
+    const routeSlug = yield* Effect.fromNullishOr(material.routeSlugs[locale]);
+    const copy = yield* Effect.fromNullishOr(material.translations[locale]);
+    return { routeSlug, title: copy.title };
+  });
+}
+
+/** Finds one decoded material by its exact key, or fails when it is absent. */
+export function findMaterial(
+  materials: readonly LessonMaterialSource[],
+  key: string
+) {
+  return Effect.fromOption(
+    Arr.findFirst(materials, (material) => material.key === key)
+  );
 }

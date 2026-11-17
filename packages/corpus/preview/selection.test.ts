@@ -73,10 +73,13 @@ describe("preview selection", () => {
           },
           source: {
             dependencies: [
+              "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/lesson.json",
               "packages/corpus/material/source.ts",
-              "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
+              "packages/corpus/material/registry.ts",
               "packages/corpus/material/schema.ts",
               "packages/corpus/locale/source.ts",
+              "packages/corpus/material/domain.ts",
+              "packages/corpus/material/route.ts",
               "packages/corpus/material/description.ts",
               "packages/corpus/route/schema.ts",
             ],

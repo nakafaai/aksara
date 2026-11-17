@@ -36,58 +36,59 @@ vi.mock("#publisher/catalog/expectation", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Supplies independently source-derived expectation controls. */
-    readContentCatalogExpectation: TestEffect.suspend(() => {
-      if (control.registryFailure) {
-        return TestEffect.fail("registry");
-      }
-      const heads = Arr.map(catalogHeads(control.source), (head) => ({
-        ...head,
-      }));
-      if (control.identityMismatch !== "none") {
-        const [first] = heads;
-        if (first !== undefined) {
-          if (control.identityMismatch === "content") {
-            heads[0] = { ...first, contentKey: `${first.contentKey}-source` };
-          } else if (control.identityMismatch === "family") {
-            heads[0] = { ...first, family: "material" };
-          } else {
-            heads[0] = {
-              ...first,
-              artifactLocale: ArtifactLocaleSchema.make(
-                first.artifactLocale === "en" ? "id" : "en"
-              ),
+    readContentCatalogExpectation: () =>
+      TestEffect.suspend(() => {
+        if (control.registryFailure) {
+          return TestEffect.fail("registry");
+        }
+        const heads = Arr.map(catalogHeads(control.source), (head) => ({
+          ...head,
+        }));
+        if (control.identityMismatch !== "none") {
+          const [first] = heads;
+          if (first !== undefined) {
+            if (control.identityMismatch === "content") {
+              heads[0] = { ...first, contentKey: `${first.contentKey}-source` };
+            } else if (control.identityMismatch === "family") {
+              heads[0] = { ...first, family: "material" };
+            } else {
+              heads[0] = {
+                ...first,
+                artifactLocale: ArtifactLocaleSchema.make(
+                  first.artifactLocale === "en" ? "id" : "en"
+                ),
+              };
+            }
+          }
+        }
+        const routes = catalogRoutes(heads, false);
+        if (control.expectedRouteConflict) {
+          const [first, second] = routes;
+          if (first !== undefined && second !== undefined) {
+            routes[1] = {
+              ...second,
+              next: {
+                ...second.next,
+                appLocale: first.next.appLocale,
+                publicPath: first.next.publicPath,
+              },
             };
           }
         }
-      }
-      const routes = catalogRoutes(heads, false);
-      if (control.expectedRouteConflict) {
-        const [first, second] = routes;
-        if (first !== undefined && second !== undefined) {
-          routes[1] = {
-            ...second,
-            next: {
-              ...second.next,
-              appLocale: first.next.appLocale,
-              publicPath: first.next.publicPath,
-            },
-          };
-        }
-      }
-      return TestEffect.succeed({
-        articleCount:
-          control.source.article +
-          (control.countMismatch === "article" ? 1 : 0),
-        heads,
-        materialCount:
-          control.source.material +
-          (control.countMismatch === "material" ? 1 : 0),
-        pageCount:
-          control.source.page + (control.countMismatch === "page" ? 1 : 0),
-        routes,
-        totalCount: catalogTotal(control.source),
-      });
-    }),
+        return TestEffect.succeed({
+          articleCount:
+            control.source.article +
+            (control.countMismatch === "article" ? 1 : 0),
+          heads,
+          materialCount:
+            control.source.material +
+            (control.countMismatch === "material" ? 1 : 0),
+          pageCount:
+            control.source.page + (control.countMismatch === "page" ? 1 : 0),
+          routes,
+          totalCount: catalogTotal(control.source),
+        });
+      }),
   };
 });
 

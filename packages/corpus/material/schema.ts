@@ -5,7 +5,7 @@ import {
   isLowerKebab,
   isLowerKebabPath,
 } from "@nakafa/aksara-contracts/text/syntax";
-import { Effect, HashSet, Schema } from "effect";
+import { HashSet, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
@@ -85,30 +85,3 @@ export const LessonMaterialSourceSchema = Schema.Struct({
   translations: LocaleDescriptionMapSchema,
 });
 export type LessonMaterialSource = typeof LessonMaterialSourceSchema.Type;
-type LessonMaterialSourceInput = typeof LessonMaterialSourceSchema.Encoded;
-
-/** One authored lesson material failed strict source decoding. */
-export class LessonMaterialError extends Schema.TaggedError<
-  LessonMaterialError,
-  { readonly brand: unique symbol }
->()("LessonMaterialError", {
-  cause: Schema.Unknown,
-  materialKey: Schema.String,
-}) {}
-
-/** Lazily decodes one authored lesson material at its source-module seam. */
-export const defineLessonMaterial = Effect.fn(
-  "AksaraCorpus.defineLessonMaterial"
-)(function* (input: LessonMaterialSourceInput) {
-  return yield* Schema.decodeEffect(LessonMaterialSourceSchema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(
-      (cause) =>
-        new LessonMaterialError({
-          cause,
-          materialKey: input.key,
-        })
-    )
-  );
-});

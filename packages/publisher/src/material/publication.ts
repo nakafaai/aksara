@@ -150,9 +150,9 @@ export const prepareMaterialPublication: <E, R>(
   input: MaterialPublicationInput<E, R>
 ) {
   const rendererManifest = yield* validateRenderer(input.rendererManifest);
-  const entries = yield* decodeMaterialRegistry().pipe(
-    Effect.mapError(mapMaterialSourceError(input.checkoutRoot))
-  );
+  const entries = yield* decodeMaterialRegistry({
+    checkoutRoot: input.checkoutRoot,
+  }).pipe(Effect.mapError(mapMaterialSourceError(input.checkoutRoot)));
   const plans = planMaterialPublication({
     checkoutRoot: input.checkoutRoot,
     entries,

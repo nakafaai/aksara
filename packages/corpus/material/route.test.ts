@@ -1,4 +1,5 @@
-import { describe, expect, it } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import {
   ActiveAppLocaleSchema,
   AppLocaleSchema,
@@ -13,15 +14,16 @@ import { materialLessonPath, materialTopicPath } from "#corpus/material/route";
 import { decodeMaterialSources } from "#corpus/material/source";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 import { lessonMaterialSource } from "#corpus/test/material";
+import { CHECKOUT_ROOT } from "#corpus/test/root";
 
-describe("material public routes", () => {
+layer(NodeServices.layer)("material public routes", (it) => {
   it.effect(
     "derives exact localized topic and lesson paths from a real source",
     () =>
       Effect.gen(function* () {
         const [domains, materials] = yield* Effect.all([
           decodeMaterialDomains(),
-          decodeMaterialSources(),
+          decodeMaterialSources({ checkoutRoot: CHECKOUT_ROOT }),
         ]);
         const material = Option.getOrUndefined(
           Arr.findFirst(

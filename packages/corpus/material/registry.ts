@@ -38,7 +38,10 @@ import {
 import { materialLessonPath } from "#corpus/material/route";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 import { LessonMaterialSourceSchema } from "#corpus/material/schema";
-import { decodeMaterialSources } from "#corpus/material/source";
+import {
+  decodeMaterialSources,
+  type MaterialOrigin,
+} from "#corpus/material/source";
 
 export const MaterialEntrySchema = Schema.Struct({
   assetRoot: LessonMaterialSourceSchema.fields.assetRoot,
@@ -229,12 +232,12 @@ export const validateMaterialEntries = Effect.fn(
 export const decodeMaterialRegistry = Effect.fn(
   "AksaraCorpus.decodeMaterialRegistry"
 )(function* (
-  input?: unknown,
+  origin: MaterialOrigin,
   domainDescriptors?: readonly MaterialDomainDescriptor[],
   appLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
-  const sources = yield* decodeMaterialSources(input);
+  const sources = yield* decodeMaterialSources(origin);
   const bindings = yield* validateMaterialSources(sources, descriptors);
   const expanded = yield* Effect.forEach(bindings, (binding) =>
     expandMaterial(binding, appLocales)

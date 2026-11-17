@@ -1,129 +1,17 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
 
-import { lessonAiDsAiProgrammingMaterial } from "#corpus/material/lesson/ai-ds/ai-programming/source";
-import { lessonAiDsLinearMethodsMaterial } from "#corpus/material/lesson/ai-ds/linear-methods/source";
-import { lessonBiologyBiodiversityMaterial } from "#corpus/material/lesson/biology/biodiversity/source";
-import { lessonBiologyCellOrganisationMaterial } from "#corpus/material/lesson/biology/cell-organisation/source";
-import { lessonBiologyClimateChangeMaterial } from "#corpus/material/lesson/biology/climate-change/source";
-import { lessonBiologyMembraneTransportMaterial } from "#corpus/material/lesson/biology/membrane-transport/source";
-import { lessonBiologyVirusRoleMaterial } from "#corpus/material/lesson/biology/virus-role/source";
-import { lessonChemistryAcidBaseSaltMaterial } from "#corpus/material/lesson/chemistry/acid-base-salt/source";
-import { lessonChemistryBasicChemistryLawsMaterial } from "#corpus/material/lesson/chemistry/basic-chemistry-laws/source";
-import { lessonChemistryCarbonCompoundMaterial } from "#corpus/material/lesson/chemistry/carbon-compound/source";
-import { lessonChemistryChemicalBondMaterial } from "#corpus/material/lesson/chemistry/chemical-bond/source";
-import { lessonChemistryChemistryIntroductionMaterial } from "#corpus/material/lesson/chemistry/chemistry-introduction/source";
-import { lessonChemistryGreenChemistryMaterial } from "#corpus/material/lesson/chemistry/green-chemistry/source";
-import { lessonChemistryManufacturedSubstancesMaterial } from "#corpus/material/lesson/chemistry/manufactured-substances/source";
-import { lessonChemistryMoleConceptMaterial } from "#corpus/material/lesson/chemistry/mole-concept/source";
-import { lessonChemistryPeriodicGroupsMaterial } from "#corpus/material/lesson/chemistry/periodic-groups/source";
-import { lessonChemistryReactionRateMaterial } from "#corpus/material/lesson/chemistry/reaction-rate/source";
-import { lessonChemistryRedoxEquilibriumMaterial } from "#corpus/material/lesson/chemistry/redox-equilibrium/source";
-import { lessonChemistryStructureMatterMaterial } from "#corpus/material/lesson/chemistry/structure-matter/source";
-import { lessonChemistryThermochemistryMaterial } from "#corpus/material/lesson/chemistry/thermochemistry/source";
-import { lessonMathematicsAnalyticGeometryMaterial } from "#corpus/material/lesson/mathematics/analytic-geometry/source";
-import { lessonMathematicsCircleMaterial } from "#corpus/material/lesson/mathematics/circle/source";
-import { lessonMathematicsCircleArcSectorMaterial } from "#corpus/material/lesson/mathematics/circle-arc-sector/source";
-import { lessonMathematicsCombinatoricsMaterial } from "#corpus/material/lesson/mathematics/combinatorics/source";
-import { lessonMathematicsComplexNumberMaterial } from "#corpus/material/lesson/mathematics/complex-number/source";
-import { lessonMathematicsDataAnalysisProbabilityMaterial } from "#corpus/material/lesson/mathematics/data-analysis-probability/source";
-import { lessonMathematicsDerivativeFunctionMaterial } from "#corpus/material/lesson/mathematics/derivative-function/source";
-import { lessonMathematicsExponentialLogarithmMaterial } from "#corpus/material/lesson/mathematics/exponential-logarithm/source";
-import { lessonMathematicsFunctionCompositionInverseFunctionMaterial } from "#corpus/material/lesson/mathematics/function-composition-inverse-function/source";
-import { lessonMathematicsFunctionModelingMaterial } from "#corpus/material/lesson/mathematics/function-modeling/source";
-import { lessonMathematicsFunctionTransformationMaterial } from "#corpus/material/lesson/mathematics/function-transformation/source";
-import { lessonMathematicsGeometricTransformationMaterial } from "#corpus/material/lesson/mathematics/geometric-transformation/source";
-import { lessonMathematicsIntegralMaterial } from "#corpus/material/lesson/mathematics/integral/source";
-import { lessonMathematicsLimitMaterial } from "#corpus/material/lesson/mathematics/limit/source";
-import { lessonMathematicsLinearEquationInequalityMaterial } from "#corpus/material/lesson/mathematics/linear-equation-inequality/source";
-import { lessonMathematicsMatrixMaterial } from "#corpus/material/lesson/mathematics/matrix/source";
-import { lessonMathematicsPolynomialMaterial } from "#corpus/material/lesson/mathematics/polynomial/source";
-import { lessonMathematicsProbabilityMaterial } from "#corpus/material/lesson/mathematics/probability/source";
-import { lessonMathematicsQuadraticFunctionMaterial } from "#corpus/material/lesson/mathematics/quadratic-function/source";
-import { lessonMathematicsSequenceSeriesMaterial } from "#corpus/material/lesson/mathematics/sequence-series/source";
-import { lessonMathematicsStatisticsFoundationsMaterial } from "#corpus/material/lesson/mathematics/statistics-foundations/source";
-import { lessonMathematicsStatisticsRegressionMaterial } from "#corpus/material/lesson/mathematics/statistics-regression/source";
-import { lessonMathematicsTrigonometryMaterial } from "#corpus/material/lesson/mathematics/trigonometry/source";
-import { lessonMathematicsVectorOperationsMaterial } from "#corpus/material/lesson/mathematics/vector-operations/source";
-import { lessonPhysicsElectricityMaterial } from "#corpus/material/lesson/physics/electricity/source";
-import { lessonPhysicsElectromagnetismMaterial } from "#corpus/material/lesson/physics/electromagnetism/source";
-import { lessonPhysicsElectronicsMaterial } from "#corpus/material/lesson/physics/electronics/source";
-import { lessonPhysicsGravitationMaterial } from "#corpus/material/lesson/physics/gravitation/source";
-import { lessonPhysicsHeatMaterial } from "#corpus/material/lesson/physics/heat/source";
-import { lessonPhysicsKinematicsMaterial } from "#corpus/material/lesson/physics/kinematics/source";
-import { lessonPhysicsLightOpticsMaterial } from "#corpus/material/lesson/physics/light-optics/source";
-import { lessonPhysicsMeasurementMaterial } from "#corpus/material/lesson/physics/measurement/source";
-import { lessonPhysicsMomentumMaterial } from "#corpus/material/lesson/physics/momentum/source";
-import { lessonPhysicsNuclearPhysicsMaterial } from "#corpus/material/lesson/physics/nuclear-physics/source";
-import { lessonPhysicsPressureMaterial } from "#corpus/material/lesson/physics/pressure/source";
-import { lessonPhysicsQuantumPhysicsMaterial } from "#corpus/material/lesson/physics/quantum-physics/source";
-import { lessonPhysicsRenewableEnergyMaterial } from "#corpus/material/lesson/physics/renewable-energy/source";
-import { lessonPhysicsVectorMaterial } from "#corpus/material/lesson/physics/vector/source";
-import { lessonPhysicsWavesMaterial } from "#corpus/material/lesson/physics/waves/source";
 import type { MaterialEntry } from "#corpus/material/registry";
-import { LessonMaterialSourceSchema } from "#corpus/material/schema";
+import {
+  type LessonMaterialSource,
+  LessonMaterialSourceSchema,
+} from "#corpus/material/schema";
 
-const materialSourcePrograms = [
-  lessonAiDsAiProgrammingMaterial,
-  lessonAiDsLinearMethodsMaterial,
-  lessonBiologyBiodiversityMaterial,
-  lessonBiologyCellOrganisationMaterial,
-  lessonBiologyClimateChangeMaterial,
-  lessonBiologyMembraneTransportMaterial,
-  lessonBiologyVirusRoleMaterial,
-  lessonChemistryAcidBaseSaltMaterial,
-  lessonChemistryBasicChemistryLawsMaterial,
-  lessonChemistryCarbonCompoundMaterial,
-  lessonChemistryChemicalBondMaterial,
-  lessonChemistryChemistryIntroductionMaterial,
-  lessonChemistryGreenChemistryMaterial,
-  lessonChemistryManufacturedSubstancesMaterial,
-  lessonChemistryMoleConceptMaterial,
-  lessonChemistryPeriodicGroupsMaterial,
-  lessonChemistryReactionRateMaterial,
-  lessonChemistryRedoxEquilibriumMaterial,
-  lessonChemistryStructureMatterMaterial,
-  lessonChemistryThermochemistryMaterial,
-  lessonMathematicsAnalyticGeometryMaterial,
-  lessonMathematicsCircleArcSectorMaterial,
-  lessonMathematicsCircleMaterial,
-  lessonMathematicsCombinatoricsMaterial,
-  lessonMathematicsComplexNumberMaterial,
-  lessonMathematicsDataAnalysisProbabilityMaterial,
-  lessonMathematicsDerivativeFunctionMaterial,
-  lessonMathematicsExponentialLogarithmMaterial,
-  lessonMathematicsFunctionCompositionInverseFunctionMaterial,
-  lessonMathematicsFunctionModelingMaterial,
-  lessonMathematicsFunctionTransformationMaterial,
-  lessonMathematicsGeometricTransformationMaterial,
-  lessonMathematicsIntegralMaterial,
-  lessonMathematicsLimitMaterial,
-  lessonMathematicsLinearEquationInequalityMaterial,
-  lessonMathematicsMatrixMaterial,
-  lessonMathematicsPolynomialMaterial,
-  lessonMathematicsProbabilityMaterial,
-  lessonMathematicsQuadraticFunctionMaterial,
-  lessonMathematicsSequenceSeriesMaterial,
-  lessonMathematicsStatisticsFoundationsMaterial,
-  lessonMathematicsStatisticsRegressionMaterial,
-  lessonMathematicsTrigonometryMaterial,
-  lessonMathematicsVectorOperationsMaterial,
-  lessonPhysicsElectricityMaterial,
-  lessonPhysicsElectromagnetismMaterial,
-  lessonPhysicsElectronicsMaterial,
-  lessonPhysicsGravitationMaterial,
-  lessonPhysicsHeatMaterial,
-  lessonPhysicsKinematicsMaterial,
-  lessonPhysicsLightOpticsMaterial,
-  lessonPhysicsMeasurementMaterial,
-  lessonPhysicsMomentumMaterial,
-  lessonPhysicsNuclearPhysicsMaterial,
-  lessonPhysicsPressureMaterial,
-  lessonPhysicsQuantumPhysicsMaterial,
-  lessonPhysicsRenewableEnergyMaterial,
-  lessonPhysicsVectorMaterial,
-  lessonPhysicsWavesMaterial,
-];
+/** The folder, below the checkout root, whose domain folders hold one folder per lesson. */
+const LESSON_ROOT = "packages/corpus/material/lesson";
+
+/** The file in a lesson folder that registers the lesson: its key, routes, sections and translations. */
+const LESSON_FILE = "lesson.json";
 
 /** An injected material source catalog failed strict decoding. */
 export class MaterialCatalogError extends Schema.TaggedError<
@@ -131,24 +19,129 @@ export class MaterialCatalogError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("MaterialCatalogError", { cause: Schema.Unknown }) {}
 
-/** Composes every real source program into one canonical material catalog. */
-export const decodeMaterialSources = Effect.fn(
-  "AksaraCorpus.decodeMaterialSources"
-)(function* (input?: unknown) {
-  if (input !== undefined) {
-    return yield* Schema.decodeUnknownEffect(
-      Schema.Array(LessonMaterialSourceSchema)
-    )(input, { onExcessProperty: "error" }).pipe(
+/** Why a lesson folder cannot register its lesson. */
+const MaterialFolderReasonSchema = Schema.Literals([
+  "missing",
+  "unreadable",
+  "invalid",
+  "misplaced",
+]);
+
+/** A lesson folder lacks its lesson file, or the file names another folder than its own. */
+export class MaterialFolderError extends Schema.TaggedError<
+  MaterialFolderError,
+  { readonly brand: unique symbol }
+>()("MaterialFolderError", {
+  folder: CorpusSourcePathSchema,
+  reason: MaterialFolderReasonSchema,
+}) {}
+
+/** Lists the folder names directly below one folder of the checkout, in code-unit order. */
+const listFolders = Effect.fn("AksaraCorpus.listMaterialFolders")(function* (
+  checkoutRoot: string,
+  folder: string
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const names = yield* fileSystem
+    .readDirectory(path.join(checkoutRoot, folder))
+    .pipe(
       Effect.mapError(
-        (cause) =>
-          new MaterialCatalogError({
-            cause,
+        () =>
+          new MaterialFolderError({
+            folder: CorpusSourcePathSchema.make(folder),
+            reason: "unreadable",
           })
       )
     );
-  }
+  return Arr.sort(names, Order.String);
+});
 
-  return yield* Effect.all(materialSourcePrograms);
+/**
+ * Reads and strictly decodes one lesson's file, and requires that its key and
+ * asset root name the folder it sits in, so a lesson is registered exactly where
+ * it lives and two folders can never claim one key.
+ */
+const readLesson = Effect.fn("AksaraCorpus.readLesson")(function* (
+  checkoutRoot: string,
+  domain: string,
+  lesson: string
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const folder = CorpusSourcePathSchema.make(
+    `${LESSON_ROOT}/${domain}/${lesson}`
+  );
+  /** The typed refusal of this lesson folder for one reason. */
+  const failure = (reason: typeof MaterialFolderReasonSchema.Type) =>
+    new MaterialFolderError({ folder, reason });
+  const text = yield* fileSystem
+    .readFileString(path.join(checkoutRoot, folder, LESSON_FILE), "utf8")
+    .pipe(Effect.mapError(() => failure("missing")));
+  const source = yield* Schema.decodeEffect(
+    Schema.fromJsonString(LessonMaterialSourceSchema)
+  )(text, { onExcessProperty: "error" }).pipe(
+    Effect.mapError(() => failure("invalid"))
+  );
+  const placed =
+    source.key === `lesson.${domain}.${lesson}` &&
+    source.domain === domain &&
+    source.slug === lesson &&
+    source.assetRoot === `material/lesson/${domain}/${lesson}`;
+  return placed ? source : yield* failure("misplaced");
+});
+
+/**
+ * Discovers every lesson from its folder: each domain folder below the lesson
+ * root holds one folder per lesson, and each lesson folder holds one lesson
+ * file. Lessons come back in key order, so adding a lesson changes no shared file.
+ */
+const discoverMaterialSources = Effect.fn(
+  "AksaraCorpus.discoverMaterialSources"
+)(function* (checkoutRoot: string) {
+  const domains = yield* listFolders(checkoutRoot, LESSON_ROOT);
+  const sources = yield* Effect.forEach(domains, (domain) =>
+    Effect.flatMap(
+      listFolders(checkoutRoot, `${LESSON_ROOT}/${domain}`),
+      (lessons) =>
+        Effect.forEach(lessons, (lesson) =>
+          readLesson(checkoutRoot, domain, lesson)
+        )
+    )
+  );
+  return Arr.sort(
+    Arr.flatten(sources),
+    Order.mapInput(Order.String, (source: LessonMaterialSource) => source.key)
+  );
+});
+
+/**
+ * Where a material catalog comes from: the lesson folders of a checkout, or a
+ * catalog a test or preview injects whole.
+ */
+export const MaterialOriginSchema = Schema.Union([
+  Schema.Struct({ checkoutRoot: Schema.String }),
+  Schema.Struct({ sources: Schema.Unknown }),
+]);
+export type MaterialOrigin = typeof MaterialOriginSchema.Type;
+
+/** Composes every lesson of a checkout, or an injected catalog, into one canonical material catalog. */
+export const decodeMaterialSources = Effect.fn(
+  "AksaraCorpus.decodeMaterialSources"
+)(function* (origin: MaterialOrigin) {
+  if ("checkoutRoot" in origin) {
+    return yield* discoverMaterialSources(origin.checkoutRoot);
+  }
+  return yield* Schema.decodeUnknownEffect(
+    Schema.Array(LessonMaterialSourceSchema)
+  )(origin.sources, { onExcessProperty: "error" }).pipe(
+    Effect.mapError(
+      (cause) =>
+        new MaterialCatalogError({
+          cause,
+        })
+    )
+  );
 });
 
 /** Reading one reviewed corpus source failed through Effect Platform. */

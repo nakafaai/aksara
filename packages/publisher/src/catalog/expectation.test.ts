@@ -2,6 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";
+import { CHECKOUT_ROOT } from "#test/root";
 
 const control = vi.hoisted(() => ({
   articles: [
@@ -99,8 +100,8 @@ beforeEach(() => {
 });
 
 /** Runs source expectation discovery through its platform boundary. */
-const readExpectation = Effect.fn("CatalogExpectationTest.read")(
-  () => readContentCatalogExpectation
+const readExpectation = Effect.fn("CatalogExpectationTest.read")(() =>
+  readContentCatalogExpectation(CHECKOUT_ROOT)
 );
 
 layer(NodeServices.layer)("content catalog expectation", (it) => {

@@ -74,7 +74,7 @@ export const prepareReleaseSnapshots: (
   input: ReleaseSnapshotInput
 ) {
   const program = Arr.contains(input.families, "program")
-    ? yield* prepareProgramSnapshot()
+    ? yield* prepareProgramSnapshot({ checkoutRoot: input.checkoutRoot })
     : undefined;
   const quran = Arr.contains(input.families, "quran")
     ? yield* prepareQuranSnapshot({

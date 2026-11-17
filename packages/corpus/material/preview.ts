@@ -13,19 +13,22 @@ import {
   validateMaterialEntries,
   validateMaterialSources,
 } from "#corpus/material/registry";
-import { decodeMaterialSources } from "#corpus/material/source";
+import {
+  decodeMaterialSources,
+  type MaterialOrigin,
+} from "#corpus/material/source";
 
 /** Projects every selected body and validates base and locale-owned metadata together. */
 export const decodeMaterialPreviewEntries = Effect.fn(
   "AksaraCorpus.decodeMaterialPreviewEntries"
 )(function* (
   sourcePaths: readonly (typeof CorpusSourcePathSchema.Type)[],
-  input?: unknown,
+  origin: MaterialOrigin,
   domainDescriptors?: readonly MaterialDomainDescriptor[]
 ) {
   const selected = HashSet.fromIterable(sourcePaths);
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
-  const sources = yield* decodeMaterialSources(input);
+  const sources = yield* decodeMaterialSources(origin);
   const bindings = yield* validateMaterialSources(sources, descriptors);
   const projected = MutableList.make<unknown>();
   for (const binding of bindings) {
@@ -75,12 +78,12 @@ export const decodeMaterialPreviewEntry = Effect.fn(
   "AksaraCorpus.decodeMaterialPreviewEntry"
 )(function* (
   sourcePath: typeof CorpusSourcePathSchema.Type,
-  input?: unknown,
+  origin: MaterialOrigin,
   domainDescriptors?: readonly MaterialDomainDescriptor[]
 ) {
   const [entry] = yield* decodeMaterialPreviewEntries(
     [sourcePath],
-    input,
+    origin,
     domainDescriptors
   );
   return entry;

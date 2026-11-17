@@ -156,7 +156,7 @@ export const loadAcceptanceSources: (
     yield* decodeArticleRegistry(),
     articleKeys
   );
-  const materialRegistry = yield* decodeMaterialRegistry();
+  const materialRegistry = yield* decodeMaterialRegistry({ checkoutRoot });
   const required = yield* selectEntries(materialRegistry, materialKeys);
   const materialGroups = HashSet.fromIterable(
     Arr.map(required, ({ route }) => route.materialKey)
