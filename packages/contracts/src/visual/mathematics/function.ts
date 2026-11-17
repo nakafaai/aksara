@@ -76,13 +76,11 @@ function bacterialGrowth<E>(rich: RichSlot<E>) {
     Schema.Struct({
       formulaType: Schema.optionalKey(Schema.Literals(GROWTH_FORMULAS)),
       initialCount: Schema.optionalKey(Schema.Finite),
-      labels: Schema.optionalKey(
-        Schema.Struct({
-          bacterial: Schema.optionalKey(TextSchema),
-          description: Schema.optionalKey(rich),
-          title: Schema.optionalKey(rich),
-        })
-      ),
+      labels: Schema.Struct({
+        bacterial: Schema.optionalKey(TextSchema),
+        description: rich,
+        title: rich,
+      }),
       maxGenerations: Schema.optionalKey(
         Schema.Int.check(Schema.isGreaterThan(0))
       ),
