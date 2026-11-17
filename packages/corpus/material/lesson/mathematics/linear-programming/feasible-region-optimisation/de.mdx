@@ -1,0 +1,296 @@
+export const metadata = {
+  title: "Lineare Optimierung für Form Fünf",
+  description:
+    "Notizen zu KSSM Zusatzmathematik Form 5 Kapitel 7: Stelle Ungleichungen aus Nebenbedingungen auf, schraffiere den zulässigen Bereich und bestimme das Maximum oder Minimum der Zielfunktion an den Ecken des Bereichs.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Lineare Optimierung",
+};
+
+## Der beste Wert liegt an einer Ecke
+
+**Lineare Optimierung** bestimmt das Maximum oder Minimum einer **Zielfunktion** <InlineMath math="k = ax + by" />, wenn <InlineMath math="x" /> und <InlineMath math="y" /> durch mehrere lineare Ungleichungen, die **Nebenbedingungen**, eingeschränkt sind. Die Nebenbedingungen bilden den **zulässigen Bereich**, also alle Punkte, die jede Nebenbedingung erfüllen. Der beste Wert der Zielfunktion liegt immer an einer **Ecke** dieses Bereichs, deshalb musst du nur die Ecken prüfen.
+
+Die Schritte:
+
+1. Schreib jede Nebenbedingung als Ungleichung in <InlineMath math="x" /> und <InlineMath math="y" />.
+2. Zeichne die Randgeraden und schraffiere den zulässigen Bereich.
+3. Bestimme die Koordinaten jeder Ecke.
+4. Werte die Zielfunktion an jeder Ecke aus oder verschiebe die Zielgerade bis zum letzten Punkt, den sie berührt.
+
+In diesen Notizen prüfst du einen Punkt an einer Ungleichung, baust den zulässigen Bereich einer Konditorei, verschiebst eine Gewinngerade und siehst, wie Preise die beste Wahl verändern. Die Preise sind in malaysischen Ringgit (RM) angegeben.
+
+## Eine Ungleichung schraffiert eine Halbebene
+
+Die Ungleichung <InlineMath math="x + 3y \le 120" /> wird durch die Randgerade <InlineMath math="x + 3y = 120" /> und alle Punkte auf einer Seite davon dargestellt. Eine gestrichelte Gerade steht für <InlineMath math="<" /> oder <InlineMath math=">" />, eine durchgezogene für <InlineMath math="\le" /> oder <InlineMath math="\ge" />. Um die richtige Seite zu wählen, **prüfst du einen Punkt, der nicht auf der Geraden liegt**, meist den Ursprung. Verschiebe den Prüfpunkt unten und vergleiche den Wert von <InlineMath math="x + 3y" /> mit <InlineMath math="120" />.
+
+<MathVisual
+  title={<>Die Halbebene von <InlineMath math="x + 3y \le 120" /></>}
+  description={
+    <>
+      Der schraffierte Bereich erfüllt <InlineMath math="x + 3y \le 120" />. Der
+      Ursprung liefert <InlineMath math="0 \le 120" />, also wird die Seite mit
+      dem Ursprung schraffiert.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 130 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 130, value: 20, step: 1, label: "p" },
+      { name: "q", min: 0, max: 50, value: 10, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "half-plane", kind: "region", appearance: "primary", inequalities: ["x + 3y <= 120"] },
+      { id: "test", kind: "marker", x: "p", y: "q", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "left-side", formula: "p + 3*q" },
+    ],
+  }}
+  labels={{
+    p: <><InlineMath math="x" />-Koordinate des Prüfpunkts</>,
+    q: <><InlineMath math="y" />-Koordinate des Prüfpunkts</>,
+    "left-side": <>Wert von <InlineMath math="x + 3y" /> am Prüfpunkt</>,
+  }}
+/>
+
+Ein Punkt mit einem Wert von <InlineMath math="120" /> oder weniger liegt im schraffierten Bereich. Zum Beispiel ergibt <InlineMath math="(20, 10)" /> den Wert <InlineMath math="50 \le 120" />, der Punkt erfüllt also die Ungleichung.
+
+## Den zulässigen Bereich aus einer Situation bauen
+
+Eine Konditorei backt täglich <InlineMath math="x" /> Schokoladenkuchen und <InlineMath math="y" /> Käsekuchen. Ihre Nebenbedingungen:
+
+- Der Ofen schafft höchstens <InlineMath math="60" /> Kuchen am Tag.
+- Das Verzieren eines Schokoladenkuchens dauert <InlineMath math="1" /> Minute, das eines Käsekuchens <InlineMath math="3" /> Minuten, und für das Verzieren stehen höchstens <InlineMath math="120" /> Minuten zur Verfügung.
+- Die Anzahl der Kuchen kann nicht negativ sein.
+
+Schreib jede Nebenbedingung als Ungleichung:
+
+<MathContainer>
+<BlockMath math="x + y \le 60" />
+<BlockMath math="x + 3y \le 120" />
+<BlockMath math="x \ge 0, \quad y \ge 0" />
+</MathContainer>
+
+Der zulässige Bereich ist die Fläche, die **alle vier Ungleichungen zugleich erfüllt**. Seine Ecken sind <InlineMath math="(0, 0)" />, <InlineMath math="(60, 0)" />, <InlineMath math="(0, 40)" /> und der Schnittpunkt der beiden Randgeraden.
+
+<MathVisual
+  title={<>Der zulässige Bereich der Konditorei</>}
+  description={
+    <>
+      Der Bereich, der <InlineMath math="x + y \le 60" />,{" "}
+      <InlineMath math="x + 3y \le 120" />, <InlineMath math="x \ge 0" /> und{" "}
+      <InlineMath math="y \ge 0" /> erfüllt. Seine Ecken sind{" "}
+      <InlineMath math="(0, 0)" />, <InlineMath math="(60, 0)" />,{" "}
+      <InlineMath math="(30, 30)" /> und <InlineMath math="(0, 40)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 70 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["x + y <= 60", "x + 3y <= 120", "x >= 0", "y >= 0"] },
+      { id: "corner-origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "corner-right", kind: "point", at: { x: 60, y: 0 }, appearance: "reference" },
+      { id: "corner-meet", kind: "point", at: { x: 30, y: 30 }, appearance: "answer" },
+      { id: "corner-top", kind: "point", at: { x: 0, y: 40 }, appearance: "reference" },
+    ],
+  }}
+/>
+
+Die Schnittecke findest du, indem du die beiden Randgleichungen gemeinsam löst:
+
+<MathContainer>
+<BlockMath math="x + 3y = 120, \quad x + y = 60" />
+<BlockMath math="2y = 60 \quad \Rightarrow \quad y = 30, \quad x = 30" />
+</MathContainer>
+
+## Die Zielgerade verschieben
+
+Die Konditorei verdient RM5 an jedem Schokoladenkuchen und RM8 an jedem Käsekuchen, ihre Zielfunktion ist also <InlineMath math="k = 5x + 8y" />. Für jeden Wert von <InlineMath math="k" /> ist <InlineMath math="5x + 8y = k" /> eine Gerade. Alle diese Geraden sind parallel. Erhöhe <InlineMath math="k" />, bis die Gerade den zulässigen Bereich fast verlässt.
+
+<MathVisual
+  title={<>Die Gewinngerade <InlineMath math="5x + 8y = k" /></>}
+  description={
+    <>
+      Die Gewinngerade wandert nach außen, wenn <InlineMath math="k" /> wächst.
+      Der letzte Punkt des zulässigen Bereichs, den sie berührt, ist{" "}
+      <InlineMath math="(30, 30)" />, bei <InlineMath math="k = 390" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 70 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 40, max: 480, value: 200, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["x + y <= 60", "x + 3y <= 120", "x >= 0", "y >= 0"] },
+      { id: "profit-line", kind: "function", appearance: "warning", formula: "(k - 5*x)/8", domain: { min: 0, max: 70 } },
+      { id: "best", kind: "point", at: { x: 30, y: 30 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "profit", formula: "k" },
+    ],
+  }}
+  labels={{
+    k: <>Gewinn <InlineMath math="k" /> in RM</>,
+    profit: <>Gewinn auf der Geraden in RM</>,
+  }}
+/>
+
+Prüfe, indem du die Zielfunktion an jeder Ecke auswertest:
+
+| Ecke | <InlineMath math="k = 5x + 8y" /> |
+| :--- | :--- |
+| <InlineMath math="(0, 0)" /> | <InlineMath math="0" /> |
+| <InlineMath math="(60, 0)" /> | <InlineMath math="300" /> |
+| <InlineMath math="(30, 30)" /> | <InlineMath math="390" /> |
+| <InlineMath math="(0, 40)" /> | <InlineMath math="320" /> |
+
+Der größte Gewinn beträgt **RM390**, wenn die Konditorei <InlineMath math="30" /> Schokoladenkuchen und <InlineMath math="30" /> Käsekuchen backt.
+
+## Eine Aufgabe mit minimalen Kosten
+
+Lineare Optimierung findet auch ein Minimum. Ein Geflügelhalter mischt zwei Futtersorten. Ein Kilogramm Futter <InlineMath math="P" /> liefert <InlineMath math="2" /> Einheiten Eiweiß und <InlineMath math="1" /> Einheit Vitamine, ein Kilogramm Futter <InlineMath math="Q" /> liefert <InlineMath math="1" /> Einheit Eiweiß und <InlineMath math="2" /> Einheiten Vitamine. Die Mischung braucht mindestens <InlineMath math="8" /> Einheiten Eiweiß und <InlineMath math="7" /> Einheiten Vitamine. Futter <InlineMath math="P" /> kostet RM3 pro Kilogramm, <InlineMath math="Q" /> RM4 pro Kilogramm.
+
+<MathContainer>
+<BlockMath math="2x + y \ge 8, \quad x + 2y \ge 7, \quad x \ge 0, \quad y \ge 0" />
+<BlockMath math="C = 3x + 4y" />
+</MathContainer>
+
+Dieser Bereich ist nach oben **unbeschränkt**, ein Kostenmaximum gibt es also nicht. Das Kostenminimum liegt an der Ecke, die in Richtung der Kostengeraden dem Ursprung am nächsten ist. Senke <InlineMath math="C" />, bis die Kostengerade den Bereich fast verlässt.
+
+<MathVisual
+  title={<>Die Kostengerade <InlineMath math="3x + 4y = C" /></>}
+  description={
+    <>
+      Der Bereich <InlineMath math="2x + y \ge 8" /> und{" "}
+      <InlineMath math="x + 2y \ge 7" /> mit den Ecken{" "}
+      <InlineMath math="(0, 8)" />, <InlineMath math="(3, 2)" /> und{" "}
+      <InlineMath math="(7, 0)" />. Die letzte Kostengerade, die den Bereich
+      berührt, geht durch <InlineMath math="(3, 2)" />, bei{" "}
+      <InlineMath math="C = 17" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 8, max: 40, value: 26, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["2x + y >= 8", "x + 2y >= 7", "x >= 0", "y >= 0"] },
+      { id: "cost-line", kind: "function", appearance: "warning", formula: "(c - 3*x)/4", domain: { min: 0, max: 10 } },
+      { id: "corner-top", kind: "point", at: { x: 0, y: 8 }, appearance: "reference" },
+      { id: "corner-best", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "corner-right", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+    ],
+    readouts: [
+      { key: "cost", formula: "c" },
+    ],
+  }}
+  labels={{
+    c: <>Kosten <InlineMath math="C" /> in RM</>,
+    cost: <>Kosten auf der Geraden in RM</>,
+  }}
+/>
+
+Die Kosten an den Ecken sind <InlineMath math="C(0, 8) = 32" />, <InlineMath math="C(3, 2) = 9 + 8 = 17" /> und <InlineMath math="C(7, 0) = 21" />. Die minimalen Kosten betragen RM17, mit <InlineMath math="3\text{ kg}" /> Futter <InlineMath math="P" /> und <InlineMath math="2\text{ kg}" /> Futter <InlineMath math="Q" />.
+
+## Preise verändern die beste Ecke
+
+Die beste Ecke **hängt von den Koeffizienten der Zielfunktion ab**. Angenommen, der Gewinn an einem Schokoladenkuchen beträgt <InlineMath math="a" /> Ringgit, während der Gewinn am Käsekuchen bei RM8 bleibt. Die Werte von <InlineMath math="k = ax + 8y" /> an drei Ecken sind <InlineMath math="60a" />, <InlineMath math="30a + 240" /> und <InlineMath math="320" />. Ändere <InlineMath math="a" /> und sieh nach, welche Gerade am höchsten liegt.
+
+<MathVisual
+  title={<>Gewinn an jeder Ecke in Abhängigkeit vom Gewinn je Schokoladenkuchen</>}
+  description={
+    <>
+      Die höchste Gerade zeigt die beste Ecke. Die Ecke{" "}
+      <InlineMath math="(0, 40)" /> ist am besten bei{" "}
+      <InlineMath math="a < \tfrac{8}{3}" />, die Ecke{" "}
+      <InlineMath math="(30, 30)" /> bei <InlineMath math="\tfrac{8}{3} < a < 8" />{" "}
+      und die Ecke <InlineMath math="(60, 0)" /> bei <InlineMath math="a > 8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 850 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 14, value: 5, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "right-corner", kind: "function", appearance: "secondary", formula: "60*x", domain: { min: 0, max: 14 } },
+      { id: "meet-corner", kind: "function", appearance: "primary", formula: "30*x + 240", domain: { min: 0, max: 14 } },
+      { id: "top-corner", kind: "function", appearance: "construction", formula: "320", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "a", y: "max(60*a, 30*a + 240, 320)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "at-right", formula: "60*a" },
+      { key: "at-meet", formula: "30*a + 240" },
+      { key: "at-top", formula: "320" },
+    ],
+  }}
+  labels={{
+    a: <>Gewinn je Schokoladenkuchen <InlineMath math="a" /> in RM</>,
+    "at-right": <>Gewinn bei <InlineMath math="(60, 0)" /></>,
+    "at-meet": <>Gewinn bei <InlineMath math="(30, 30)" /></>,
+    "at-top": <>Gewinn bei <InlineMath math="(0, 40)" /></>,
+  }}
+/>
+
+Bei <InlineMath math="a = 8" /> liefern die Ecken <InlineMath math="(60, 0)" /> und <InlineMath math="(30, 30)" /> denselben Gewinn, <InlineMath math="480" />. In diesem Moment ist die Gewinngerade parallel zum Rand <InlineMath math="x + y = 60" />, und jeder Punkt auf dieser Seite liefert den größten Gewinn.
+
+## Häufige Fehler bei der linearen Optimierung
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| Für „höchstens“ <InlineMath math="\ge" /> schreiben. | „Höchstens“ heißt nicht mehr als, also <InlineMath math="\le" />. | Prüfe einen großen Wert: Er muss die Nebenbedingung verletzen. |
+| Die falsche Seite schraffieren. | Die schraffierte Seite muss die Ungleichung erfüllen. | Setze den Ursprung oder einen anderen Punkt in die Ungleichung ein. |
+| Einen Punkt mitten im Bereich als Antwort prüfen. | Der beste Wert einer linearen Funktion liegt an einer Ecke. | Liste alle Ecken auf und werte jede aus. |
+| In einem unbeschränkten Bereich ein Maximum suchen. | Der Wert kann unbegrenzt wachsen. | Prüfe, ob der Bereich in jeder Richtung geschlossen ist. |
+| Eine Stückzahl als Bruch angeben. | Die Anzahl der Kuchen muss ganzzahlig sein. | Prüfe die nächstgelegenen ganzzahligen Punkte, die noch im Bereich liegen. |
+
+Der erste Fehler kommt am häufigsten vor. **Übersetze jede Formulierung sorgfältig**: „höchstens“ ist <InlineMath math="\le" />, „mindestens“ ist <InlineMath math="\ge" />.
+
+## Übungen zur linearen Optimierung
+
+Skizziere für jede Aufgabe den zulässigen Bereich, damit **alle Ecken sichtbar sind**, bevor du die Zielfunktion auswertest.
+
+1. Eine Fabrik stellt <InlineMath math="x" /> Stühle und <InlineMath math="y" /> Tische her. Ein Stuhl braucht <InlineMath math="2" /> Stunden, ein Tisch <InlineMath math="4" /> Stunden, und es stehen höchstens <InlineMath math="80" /> Arbeitsstunden zur Verfügung. Schreib die Ungleichung für diese Nebenbedingung in einfachster Form.
+
+2. Ein zulässiger Bereich ist durch <InlineMath math="x + y \le 10" />, <InlineMath math="2x + y \le 14" />, <InlineMath math="x \ge 0" /> und <InlineMath math="y \ge 0" /> festgelegt. Bestimme den größten Wert von <InlineMath math="k = 3x + 2y" />.
+
+3. Bestimme den kleinsten Wert von <InlineMath math="C = 2x + 5y" /> unter den Nebenbedingungen <InlineMath math="x + y \ge 6" />, <InlineMath math="x + 3y \ge 12" />, <InlineMath math="x \ge 0" /> und <InlineMath math="y \ge 0" />.
+
+4. In der Konditorei-Aufgabe steigt der Gewinn je Schokoladenkuchen auf RM10. Bestimme die Kuchenzahlen mit dem größten Gewinn und diesen Gewinn.
+
+### Lösungen
+
+**Lösung 1**: Die gesamte Arbeitszeit beträgt <InlineMath math="2x + 4y" /> Stunden, und „höchstens“ ergibt <InlineMath math="\le" />:
+
+<BlockMath math="2x + 4y \le 80 \quad \Rightarrow \quad x + 2y \le 40" />
+
+**Lösung 2**: Die Schnittecke folgt aus <InlineMath math="x + y = 10" /> und <InlineMath math="2x + y = 14" />, also <InlineMath math="x = 4" /> und <InlineMath math="y = 6" />. Werte an jeder Ecke aus:
+
+<BlockMath math="k(0, 0) = 0, \quad k(7, 0) = 21, \quad k(4, 6) = 24, \quad k(0, 10) = 20" />
+
+Der größte Wert ist <InlineMath math="24" /> bei <InlineMath math="(4, 6)" />.
+
+**Lösung 3**: Die Schnittecke von <InlineMath math="x + y = 6" /> und <InlineMath math="x + 3y = 12" /> ist <InlineMath math="(3, 3)" />. Die übrigen Ecken sind <InlineMath math="(12, 0)" /> und <InlineMath math="(0, 6)" />:
+
+<BlockMath math="C(12, 0) = 24, \quad C(3, 3) = 21, \quad C(0, 6) = 30" />
+
+Der kleinste Wert ist <InlineMath math="21" /> bei <InlineMath math="(3, 3)" />.
+
+**Lösung 4**: Die Zielfunktion lautet jetzt <InlineMath math="k = 10x + 8y" />:
+
+<BlockMath math="k(60, 0) = 600, \quad k(30, 30) = 540, \quad k(0, 40) = 320" />
+
+Der größte Gewinn beträgt **RM600**, wenn die Konditorei nur <InlineMath math="60" /> Schokoladenkuchen backt. Das passt zur letzten Grafik, denn <InlineMath math="a = 10" /> ist größer als <InlineMath math="8" />.

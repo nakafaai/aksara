@@ -1,0 +1,295 @@
+export const metadata = {
+  title: "Linear Programming Notes for Form Five",
+  description:
+    "KSSM Additional Mathematics Form 5 Chapter 7 notes: build inequalities from constraints, shade the feasible region, and find the maximum or minimum of the objective function at the vertices of the region.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Linear Programming",
+};
+
+## The Best Value Sits at a Vertex
+
+**Linear programming** finds the maximum or minimum of an **objective function** <InlineMath math="k = ax + by" /> when <InlineMath math="x" /> and <InlineMath math="y" /> are bound by several linear inequalities called **constraints**. The constraints form the **feasible region**, the set of all points that satisfy every constraint. The best value of the objective function always happens at a **vertex** of that region, so you only need to test the vertices.
+
+The steps are:
+
+1. Write each constraint as an inequality in <InlineMath math="x" /> and <InlineMath math="y" />.
+2. Draw the boundary lines and shade the feasible region.
+3. Find the coordinates of every vertex.
+4. Evaluate the objective function at each vertex, or move the objective line until the last point it touches.
+
+In these notes you test a point against an inequality, build the feasible region of a cake shop, move a profit line, and see how prices change the best choice.
+
+## One Inequality Shades Half the Plane
+
+The inequality <InlineMath math="x + 3y \le 120" /> is shown by the boundary line <InlineMath math="x + 3y = 120" /> and every point on one side of it. A dashed line is used for <InlineMath math="<" /> or <InlineMath math=">" />, and a solid line for <InlineMath math="\le" /> or <InlineMath math="\ge" />. To choose the right side, **test one point that is not on the line**, usually the origin. Move the test point below and compare the value of <InlineMath math="x + 3y" /> with <InlineMath math="120" />.
+
+<MathVisual
+  title={<>The Half-Plane of <InlineMath math="x + 3y \le 120" /></>}
+  description={
+    <>
+      The shaded region satisfies <InlineMath math="x + 3y \le 120" />. The origin
+      gives <InlineMath math="0 \le 120" />, so the side that contains the origin
+      is shaded.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 130 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 130, value: 20, step: 1, label: "p" },
+      { name: "q", min: 0, max: 50, value: 10, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "half-plane", kind: "region", appearance: "primary", inequalities: ["x + 3y <= 120"] },
+      { id: "test", kind: "marker", x: "p", y: "q", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "left-side", formula: "p + 3*q" },
+    ],
+  }}
+  labels={{
+    p: <>The <InlineMath math="x" />-coordinate of the test point</>,
+    q: <>The <InlineMath math="y" />-coordinate of the test point</>,
+    "left-side": <>Value of <InlineMath math="x + 3y" /> at the test point</>,
+  }}
+/>
+
+A point with a reading of <InlineMath math="120" /> or less lies in the shaded region. For example, <InlineMath math="(20, 10)" /> gives <InlineMath math="50 \le 120" />, so the point satisfies the inequality.
+
+## Build the Feasible Region from a Situation
+
+A shop makes <InlineMath math="x" /> chocolate cakes and <InlineMath math="y" /> cheesecakes a day. Its constraints are:
+
+- The oven can bake at most <InlineMath math="60" /> cakes a day.
+- Decorating a chocolate cake takes <InlineMath math="1" /> minute and a cheesecake <InlineMath math="3" /> minutes, with at most <InlineMath math="120" /> minutes for decorating.
+- The number of cakes cannot be negative.
+
+Write each constraint as an inequality:
+
+<MathContainer>
+<BlockMath math="x + y \le 60" />
+<BlockMath math="x + 3y \le 120" />
+<BlockMath math="x \ge 0, \quad y \ge 0" />
+</MathContainer>
+
+The feasible region is the area that **satisfies all four inequalities at once**. Its vertices are <InlineMath math="(0, 0)" />, <InlineMath math="(60, 0)" />, <InlineMath math="(0, 40)" /> and the point where the two boundary lines cross.
+
+<MathVisual
+  title={<>The Feasible Region of the Cake Shop</>}
+  description={
+    <>
+      The region that satisfies <InlineMath math="x + y \le 60" />,{" "}
+      <InlineMath math="x + 3y \le 120" />, <InlineMath math="x \ge 0" /> and{" "}
+      <InlineMath math="y \ge 0" />. Its vertices are{" "}
+      <InlineMath math="(0, 0)" />, <InlineMath math="(60, 0)" />,{" "}
+      <InlineMath math="(30, 30)" /> and <InlineMath math="(0, 40)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 70 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["x + y <= 60", "x + 3y <= 120", "x >= 0", "y >= 0"] },
+      { id: "corner-origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "corner-right", kind: "point", at: { x: 60, y: 0 }, appearance: "reference" },
+      { id: "corner-meet", kind: "point", at: { x: 30, y: 30 }, appearance: "answer" },
+      { id: "corner-top", kind: "point", at: { x: 0, y: 40 }, appearance: "reference" },
+    ],
+  }}
+/>
+
+Find the crossing vertex by solving the two boundary equations simultaneously:
+
+<MathContainer>
+<BlockMath math="x + 3y = 120, \quad x + y = 60" />
+<BlockMath math="2y = 60 \quad \Rightarrow \quad y = 30, \quad x = 30" />
+</MathContainer>
+
+## Move the Objective Line
+
+The shop makes RM5 profit on each chocolate cake and RM8 on each cheesecake, so its objective function is <InlineMath math="k = 5x + 8y" />. For each value of <InlineMath math="k" />, the equation <InlineMath math="5x + 8y = k" /> is a line. All these lines are parallel. Raise <InlineMath math="k" /> until the line is about to leave the feasible region.
+
+<MathVisual
+  title={<>The Profit Line <InlineMath math="5x + 8y = k" /></>}
+  description={
+    <>
+      The profit line moves outwards as <InlineMath math="k" /> grows. The last
+      point of the feasible region it touches is <InlineMath math="(30, 30)" />,
+      at <InlineMath math="k = 390" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 70 }, y: { min: 0, max: 50 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 40, max: 480, value: 200, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["x + y <= 60", "x + 3y <= 120", "x >= 0", "y >= 0"] },
+      { id: "profit-line", kind: "function", appearance: "warning", formula: "(k - 5*x)/8", domain: { min: 0, max: 70 } },
+      { id: "best", kind: "point", at: { x: 30, y: 30 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "profit", formula: "k" },
+    ],
+  }}
+  labels={{
+    k: <>Profit <InlineMath math="k" /> in RM</>,
+    profit: <>Profit on the line in RM</>,
+  }}
+/>
+
+Check by evaluating the objective function at every vertex:
+
+| Vertex | <InlineMath math="k = 5x + 8y" /> |
+| :--- | :--- |
+| <InlineMath math="(0, 0)" /> | <InlineMath math="0" /> |
+| <InlineMath math="(60, 0)" /> | <InlineMath math="300" /> |
+| <InlineMath math="(30, 30)" /> | <InlineMath math="390" /> |
+| <InlineMath math="(0, 40)" /> | <InlineMath math="320" /> |
+
+The maximum profit is **RM390**, when the shop makes <InlineMath math="30" /> chocolate cakes and <InlineMath math="30" /> cheesecakes.
+
+## A Minimum Cost Problem
+
+Linear programming also finds a minimum. A farmer mixes two kinds of chicken feed. One kilogram of feed <InlineMath math="P" /> gives <InlineMath math="2" /> units of protein and <InlineMath math="1" /> unit of vitamins, while one kilogram of feed <InlineMath math="Q" /> gives <InlineMath math="1" /> unit of protein and <InlineMath math="2" /> units of vitamins. The mix needs at least <InlineMath math="8" /> units of protein and <InlineMath math="7" /> units of vitamins. Feed <InlineMath math="P" /> costs RM3 a kilogram and <InlineMath math="Q" /> costs RM4 a kilogram.
+
+<MathContainer>
+<BlockMath math="2x + y \ge 8, \quad x + 2y \ge 7, \quad x \ge 0, \quad y \ge 0" />
+<BlockMath math="C = 3x + 4y" />
+</MathContainer>
+
+This region is **unbounded** towards the top, so a maximum cost does not exist. The minimum cost is at the vertex nearest the origin in the direction of the cost line. Lower <InlineMath math="C" /> until the cost line is about to leave the region.
+
+<MathVisual
+  title={<>The Cost Line <InlineMath math="3x + 4y = C" /></>}
+  description={
+    <>
+      The region <InlineMath math="2x + y \ge 8" /> and{" "}
+      <InlineMath math="x + 2y \ge 7" /> with vertices{" "}
+      <InlineMath math="(0, 8)" />, <InlineMath math="(3, 2)" /> and{" "}
+      <InlineMath math="(7, 0)" />. The last cost line that touches the region
+      passes through <InlineMath math="(3, 2)" />, at <InlineMath math="C = 17" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 8, max: 40, value: 26, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "feasible", kind: "region", appearance: "primary", inequalities: ["2x + y >= 8", "x + 2y >= 7", "x >= 0", "y >= 0"] },
+      { id: "cost-line", kind: "function", appearance: "warning", formula: "(c - 3*x)/4", domain: { min: 0, max: 10 } },
+      { id: "corner-top", kind: "point", at: { x: 0, y: 8 }, appearance: "reference" },
+      { id: "corner-best", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "corner-right", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+    ],
+    readouts: [
+      { key: "cost", formula: "c" },
+    ],
+  }}
+  labels={{
+    c: <>Cost <InlineMath math="C" /> in RM</>,
+    cost: <>Cost on the line in RM</>,
+  }}
+/>
+
+The costs at the vertices are <InlineMath math="C(0, 8) = 32" />, <InlineMath math="C(3, 2) = 9 + 8 = 17" /> and <InlineMath math="C(7, 0) = 21" />. The minimum cost is RM17, with <InlineMath math="3\text{ kg}" /> of feed <InlineMath math="P" /> and <InlineMath math="2\text{ kg}" /> of feed <InlineMath math="Q" />.
+
+## Prices Change the Best Vertex
+
+The best vertex **depends on the coefficients of the objective function**. In the cake shop problem, say the profit on a chocolate cake is <InlineMath math="a" /> ringgit, while the profit on a cheesecake stays RM8. The values of <InlineMath math="k = ax + 8y" /> at three vertices are <InlineMath math="60a" />, <InlineMath math="30a + 240" /> and <InlineMath math="320" />. Change <InlineMath math="a" /> and see which line is highest.
+
+<MathVisual
+  title={<>Profit at Each Vertex against the Profit on a Chocolate Cake</>}
+  description={
+    <>
+      The highest line shows the best vertex. The vertex{" "}
+      <InlineMath math="(0, 40)" /> is best when{" "}
+      <InlineMath math="a < \tfrac{8}{3}" />, the vertex{" "}
+      <InlineMath math="(30, 30)" /> when <InlineMath math="\tfrac{8}{3} < a < 8" />,
+      and the vertex <InlineMath math="(60, 0)" /> when <InlineMath math="a > 8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 850 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 14, value: 5, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "right-corner", kind: "function", appearance: "secondary", formula: "60*x", domain: { min: 0, max: 14 } },
+      { id: "meet-corner", kind: "function", appearance: "primary", formula: "30*x + 240", domain: { min: 0, max: 14 } },
+      { id: "top-corner", kind: "function", appearance: "construction", formula: "320", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "a", y: "max(60*a, 30*a + 240, 320)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "at-right", formula: "60*a" },
+      { key: "at-meet", formula: "30*a + 240" },
+      { key: "at-top", formula: "320" },
+    ],
+  }}
+  labels={{
+    a: <>Profit on a chocolate cake <InlineMath math="a" /> in RM</>,
+    "at-right": <>Profit at <InlineMath math="(60, 0)" /></>,
+    "at-meet": <>Profit at <InlineMath math="(30, 30)" /></>,
+    "at-top": <>Profit at <InlineMath math="(0, 40)" /></>,
+  }}
+/>
+
+At <InlineMath math="a = 8" />, the vertices <InlineMath math="(60, 0)" /> and <InlineMath math="(30, 30)" /> give the same profit, <InlineMath math="480" />. At that moment the profit line is parallel to the boundary <InlineMath math="x + y = 60" />, and every point on that side gives the maximum profit.
+
+## Common Mistakes in Linear Programming
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| Writing <InlineMath math="\ge" /> for "at most". | "At most" means not more than, which is <InlineMath math="\le" />. | Test a large value: it must break the constraint. |
+| Shading the wrong side. | The shaded side must satisfy the inequality. | Substitute the origin or another point into the inequality. |
+| Testing a point in the middle of the region as the answer. | The best value of a linear function is at a vertex. | List every vertex and evaluate each one. |
+| Looking for a maximum in an unbounded region. | The value can grow without limit. | Check whether the region is closed in every direction. |
+| Giving a fraction for a number of items. | A number of cakes must be a whole number. | Test the nearest whole-number points that are still in the region. |
+
+The first mistake is the most common. **Translate every phrase carefully**: "at most" is <InlineMath math="\le" />, and "at least" is <InlineMath math="\ge" />.
+
+## Linear Programming Practice
+
+Sketch the feasible region for each question so that **every vertex is visible** before you evaluate the objective function.
+
+1. A factory makes <InlineMath math="x" /> chairs and <InlineMath math="y" /> tables. A chair needs <InlineMath math="2" /> hours and a table <InlineMath math="4" /> hours, with at most <InlineMath math="80" /> working hours. Write the inequality for this constraint in its simplest form.
+
+2. A feasible region is defined by <InlineMath math="x + y \le 10" />, <InlineMath math="2x + y \le 14" />, <InlineMath math="x \ge 0" /> and <InlineMath math="y \ge 0" />. Find the maximum value of <InlineMath math="k = 3x + 2y" />.
+
+3. Find the minimum value of <InlineMath math="C = 2x + 5y" /> subject to <InlineMath math="x + y \ge 6" />, <InlineMath math="x + 3y \ge 12" />, <InlineMath math="x \ge 0" /> and <InlineMath math="y \ge 0" />.
+
+4. In the cake shop problem, the profit on a chocolate cake rises to RM10. Find the numbers of cakes that give the maximum profit and the value of that profit.
+
+### Solutions
+
+**Solution 1**: The total working time is <InlineMath math="2x + 4y" /> hours, and "at most" gives <InlineMath math="\le" />:
+
+<BlockMath math="2x + 4y \le 80 \quad \Rightarrow \quad x + 2y \le 40" />
+
+**Solution 2**: The crossing vertex comes from <InlineMath math="x + y = 10" /> and <InlineMath math="2x + y = 14" />, which give <InlineMath math="x = 4" /> and <InlineMath math="y = 6" />. Evaluate at every vertex:
+
+<BlockMath math="k(0, 0) = 0, \quad k(7, 0) = 21, \quad k(4, 6) = 24, \quad k(0, 10) = 20" />
+
+The maximum value is <InlineMath math="24" /> at <InlineMath math="(4, 6)" />.
+
+**Solution 3**: The crossing vertex from <InlineMath math="x + y = 6" /> and <InlineMath math="x + 3y = 12" /> is <InlineMath math="(3, 3)" />. The other vertices are <InlineMath math="(12, 0)" /> and <InlineMath math="(0, 6)" />:
+
+<BlockMath math="C(12, 0) = 24, \quad C(3, 3) = 21, \quad C(0, 6) = 30" />
+
+The minimum value is <InlineMath math="21" /> at <InlineMath math="(3, 3)" />.
+
+**Solution 4**: The objective function is now <InlineMath math="k = 10x + 8y" />:
+
+<BlockMath math="k(60, 0) = 600, \quad k(30, 30) = 540, \quad k(0, 40) = 320" />
+
+The maximum profit is **RM600** when the shop makes <InlineMath math="60" /> chocolate cakes only. This matches the last diagram, because <InlineMath math="a = 10" /> is greater than <InlineMath math="8" />.
