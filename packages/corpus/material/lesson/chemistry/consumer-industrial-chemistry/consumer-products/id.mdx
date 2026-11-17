@@ -1,0 +1,261 @@
+export const metadata = {
+  title: "Kimia dalam Produk Harian dan Industri",
+  description:
+    "Jelaskan minyak dan lemak, saponifikasi dan cara kerja sabun, zat aditif makanan, obat, serta nanoteknologi lewat model molekul, contoh, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Kimia Konsumen dan Industri",
+};
+
+## Kimia di Balik Barang Harian
+
+**Kimia konsumen dan industri** menjelaskan bahan yang kita pakai setiap hari: minyak goreng, sabun, makanan, obat, dan bahan nano. Minyak dan lemak adalah **ester** dari gliserol dan asam lemak. Sabun dibuat saat minyak atau lemak dihidrolisis oleh basa, reaksi yang disebut **saponifikasi**. Bahan nano berukuran <InlineMath math="1" /> sampai <InlineMath math="100\ \text{nm}" />, dan sifatnya berubah karena luas permukaannya sangat besar dibandingkan volumenya. Di sini kamu membandingkan molekul jenuh dan tak jenuh, menghitung massa sabun, melihat pengaruh air sadah, dan mengubah ukuran partikel nano.
+
+## Minyak dan Lemak
+
+**Lemak** hewani sebagian besar mengandung asam lemak **jenuh** dan berwujud padat pada suhu kamar. **Minyak** nabati sebagian besar mengandung asam lemak **tak jenuh**, yaitu rantai dengan ikatan rangkap dua <InlineMath math="\mathrm{C{=}C}" />, dan berwujud cair. Ikatan rangkap dua membengkokkan rantai, jadi molekul tidak tersusun rapat dan titik lelehnya lebih rendah.
+
+Bandingkan rantai jenuh dan tak jenuh pada model di bawah. Heksana dan heksena mewakili bagian rantai asam lemak jenuh dan tak jenuh.
+
+<MoleculeShapeLab
+  title={<>Rantai Jenuh dan Tak Jenuh</>}
+  description={
+    <>
+      Etana dan heksana hanya memiliki ikatan tunggal. Etena dan heksena memiliki
+      satu ikatan rangkap dua, seperti rantai asam lemak dalam minyak nabati.
+    </>
+  }
+  molecules={[
+    { id: "ethane", name: "etana" },
+    { id: "ethene", name: "etena" },
+    { id: "hexane", name: "heksana" },
+    { id: "hexene", name: "heksena" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang terisi</>,
+    formula: <>Rumus</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Molekul jenuh dan tak jenuh",
+  }}
+/>
+
+Minyak nabati diubah menjadi **margarin** lewat **hidrogenasi**. Gas hidrogen dialirkan ke minyak panas dengan katalis nikel pada sekitar <InlineMath math="200\ ^\circ\text{C}" />, dan hidrogen diadisikan pada ikatan rangkap dua. Minyak menjadi lebih jenuh dan berubah menjadi padatan lunak. Lihat reaksi yang sama pada etena di bawah: satu molekul hidrogen diadisikan pada setiap ikatan rangkap dua.
+
+<ReactionBalanceLab
+  title={<>Hidrogenasi Ikatan Rangkap Dua</>}
+  description={
+    <>
+      Etena bereaksi dengan hidrogen menjadi etana. Hidrogenasi minyak nabati
+      berlangsung dengan cara yang sama pada setiap ikatan rangkap dua di rantai
+      asam lemak.
+    </>
+  }
+  reactions={[
+    { id: "ethene-hydrogenation", name: "Hidrogenasi etena", tab: <>Hidrogenasi</> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih reaksi",
+    equation: <>Persamaan</>,
+    mass: <>Massa</>,
+    molecules: <>Molekul</>,
+    products: <>Hasil reaksi</>,
+    progress: "Kemajuan reaksi",
+    reactants: <>Pereaksi</>,
+    view: "Model hidrogenasi etena",
+  }}
+/>
+
+## Sabun dan Deterjen dalam Air Sadah
+
+**Saponifikasi** adalah hidrolisis lemak atau minyak oleh larutan natrium hidroksida panas. Satu molekul gliseril tristearat menghasilkan tiga molekul sabun, natrium stearat, dan satu molekul gliserol:
+
+<BlockMath math="\mathrm{C_{57}H_{110}O_6} + 3\mathrm{NaOH} \rightarrow 3\mathrm{C_{17}H_{35}COONa} + \mathrm{C_3H_5(OH)_3}" />
+
+Coba satu contoh. Hitung massa sabun dan massa natrium hidroksida yang dibutuhkan untuk <InlineMath math="89\ \text{g}" /> gliseril tristearat. Massa molarnya <InlineMath math="890\ \text{g/mol}" />, natrium stearat <InlineMath math="306\ \text{g/mol}" />, dan natrium hidroksida <InlineMath math="40\ \text{g/mol}" />.
+
+<MathContainer>
+<BlockMath math="n(\text{lemak}) = \frac{89}{890} = 0{,}10\ \text{mol}" />
+<BlockMath math="m(\text{sabun}) = 3 \times 0{,}10 \times 306 = 91{,}8\ \text{g}" />
+<BlockMath math="m(\mathrm{NaOH}) = 3 \times 0{,}10 \times 40 = 12\ \text{g}" />
+</MathContainer>
+
+Cek dengan grafik di bawah: pada <InlineMath math="89\ \text{g}" /> lemak, angka massa sabunnya sekitar <InlineMath math="91{,}8\ \text{g}" />. Sabun sedikit lebih berat daripada lemak karena atom natrium dan oksigen dari basa ikut masuk ke dalam sabun.
+
+<MathVisual
+  title={<>Massa Sabun dan Natrium Hidroksida terhadap Massa Lemak</>}
+  description={
+    <>
+      Untuk gliseril tristearat, massa sabun adalah{" "}
+      <InlineMath math="\dfrac{918}{890}m" /> dan massa natrium hidroksida{" "}
+      <InlineMath math="\dfrac{120}{890}m" />, dengan <InlineMath math="m" /> massa
+      lemak dalam gram.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 900 }, y: { min: 0, max: 950 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 900, value: 89, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "soap", kind: "function", appearance: "primary", formula: "918x/890", domain: { min: 0, max: 900 } },
+      { id: "alkali", kind: "function", appearance: "secondary", formula: "120x/890", domain: { min: 0, max: 900 } },
+      { id: "now", kind: "marker", x: "m", y: "918m/890", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "soap-mass", formula: "918m/890" },
+      { key: "alkali-mass", formula: "120m/890" },
+    ],
+  }}
+  labels={{
+    m: <>Massa lemak dalam <InlineMath math="\text{g}" /></>,
+    "soap-mass": <>Massa sabun dalam <InlineMath math="\text{g}" /></>,
+    "alkali-mass": <>Massa natrium hidroksida dalam <InlineMath math="\text{g}" /></>,
+  }}
+/>
+
+Ion sabun memiliki **kepala hidrofilik** bermuatan negatif yang larut dalam air dan **ekor hidrofobik** hidrokarbon yang larut dalam minyak. Ekornya menembus kotoran berminyak, kepalanya tetap di air, dan saat digosok, kotoran terangkat menjadi tetesan kecil yang dikelilingi ion sabun, yaitu **misel**. Misel yang bermuatan negatif saling tolak, jadi kotoran tidak menempel lagi.
+
+Dalam **air sadah**, ion kalsium dan magnesium bereaksi dengan ion sabun membentuk **buih kotor**, endapan yang tidak larut. Sabun itu terbuang sebelum sempat membersihkan. **Deterjen** tidak membentuk endapan itu, karena garam kalsium deterjen larut dalam air. Ubah konsentrasi ion kalsium di bawah dan lihat massa sabun yang terbuang.
+
+<MathVisual
+  title={<>Sabun yang Terbuang terhadap Konsentrasi Ion Kalsium</>}
+  description={
+    <>
+      Setiap ion <InlineMath math="\mathrm{Ca^{2+}}" /> mengikat dua ion stearat,
+      jadi natrium stearat yang terbuang adalah{" "}
+      <InlineMath math="2 \times 306 \times c" /> miligram per liter, dengan{" "}
+      <InlineMath math="c" /> dalam <InlineMath math="\text{mmol/L}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 5, value: 2, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "wasted", kind: "function", appearance: "primary", formula: "0.612x", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "c", y: "0.612c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "soap-lost", formula: "0.612c" },
+    ],
+  }}
+  labels={{
+    c: <>Konsentrasi <InlineMath math="\mathrm{Ca^{2+}}" /> dalam <InlineMath math="\text{mmol/L}" /></>,
+    "soap-lost": <>Sabun yang terbuang dalam <InlineMath math="\text{g/L}" /></>,
+  }}
+/>
+
+Cek satu angka: air dengan <InlineMath math="2{,}0\ \text{mmol/L}" /> ion kalsium membuang <InlineMath math="2 \times 2{,}0 \times 306 = 1224\ \text{mg}" />, yaitu <InlineMath math="1{,}22\ \text{g}" /> sabun per liter.
+
+## Zat Aditif Makanan dan Obat
+
+**Zat aditif makanan** ditambahkan untuk mengawetkan makanan atau memperbaiki rasa, tampilan, atau teksturnya. Setiap jenis memiliki fungsi tertentu:
+
+| Jenis | Fungsi | Contoh |
+| :--- | :--- | :--- |
+| Pengawet | Memperlambat pertumbuhan mikroorganisme | Natrium benzoat |
+| Antioksidan | Mencegah lemak teroksidasi dan tengik | Asam askorbat |
+| Penyedap | Menambah atau menguatkan rasa | Mononatrium glutamat |
+| Penstabil dan pengental | Menjaga tekstur dan mengentalkan | Gelatin, pati |
+| Pewarna | Memberi atau memulihkan warna | Tartrazin |
+
+**Obat** modern dipakai sesuai fungsinya. **Analgesik**, seperti parasetamol, meredakan nyeri. **Antibiotik**, seperti penisilin, membunuh bakteri, dan **seluruh dosisnya** harus dihabiskan supaya bakteri yang lebih kebal tidak bertahan hidup. Antibiotik tidak bekerja melawan virus. **Kosmetik** mencakup produk perawatan, riasan, dan wewangian, dan setiap produk perlu dipakai sesuai petunjuk pada labelnya.
+
+## Nanoteknologi dan Teknologi Hijau
+
+**Nanoteknologi** adalah pemanfaatan bahan berskala <InlineMath math="1" /> sampai <InlineMath math="100\ \text{nm}" />. Saat partikel makin kecil, perbandingan luas permukaan terhadap volumenya makin besar. Untuk kubus bersisi <InlineMath math="L" />, perbandingan itu adalah:
+
+<BlockMath math="\frac{\text{luas permukaan}}{\text{volume}} = \frac{6L^2}{L^3} = \frac{6}{L}" />
+
+Ubah ukuran kubus di bawah. Saat sisinya mengecil dari <InlineMath math="100\ \text{nm}" /> menjadi <InlineMath math="10\ \text{nm}" />, perbandingannya menjadi sepuluh kali lebih besar. Lebih banyak atom berada di permukaan, jadi bahan nano bereaksi lebih cepat dan menjadi katalis yang lebih baik.
+
+<MathVisual
+  title={<>Perbandingan Luas Permukaan terhadap Volume dan Ukuran Partikel</>}
+  description={
+    <>
+      Untuk kubus bersisi <InlineMath math="L" /> nanometer, perbandingannya{" "}
+      <InlineMath math="\dfrac{6}{L}\ \text{nm}^{-1}" />. Pada{" "}
+      <InlineMath math="L = 10\ \text{nm}" />, perbandingannya{" "}
+      <InlineMath math="0{,}6\ \text{nm}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 100 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 1, max: 100, value: 10, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "ratio", kind: "function", appearance: "primary", formula: "6/x", domain: { min: 1, max: 100 } },
+      { id: "now", kind: "marker", x: "a", y: "6/a", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "surface", formula: "6/a" },
+    ],
+  }}
+  labels={{
+    a: <>Sisi kubus <InlineMath math="L" /> dalam <InlineMath math="\text{nm}" /></>,
+    surface: <>Perbandingan luas permukaan terhadap volume dalam <InlineMath math="\text{nm}^{-1}" /></>,
+  }}
+/>
+
+Salah satu bahan nano adalah **grafena**, lembaran karbon setebal satu atom yang sangat kuat dan menghantarkan listrik dengan baik. Nanoteknologi dipakai pada tabir surya, lapisan antiair, baterai, dan kedokteran. **Teknologi hijau** mengembangkan produk dan proses yang mengurangi pencemaran, menghemat energi, dan memakai sumber terbarukan, seperti pengolahan air limbah dan tenaga surya.
+
+## Kesalahan Umum tentang Kimia Konsumen
+
+| Kesalahan | Alasan keliru | Cara cek |
+| :--- | :--- | :--- |
+| Minyak nabati lebih jenuh daripada lemak hewani. | Minyak nabati memiliki lebih banyak ikatan rangkap dua, jadi lebih tak jenuh. | Minyak cair, lemak padat pada suhu kamar. |
+| Saponifikasi sama dengan esterifikasi. | Saponifikasi memecah ester dengan basa. Esterifikasi membentuk ester. | Lihat apakah ester berperan sebagai pereaksi atau hasil reaksi. |
+| Sabun dan deterjen sama efektifnya di air sadah. | Sabun membentuk endapan dengan ion kalsium dan magnesium, tetapi deterjen tidak. | Cari endapan putih di air sadah. |
+| Antibiotik boleh dihentikan saat badan terasa sehat. | Bakteri yang tersisa mungkin lebih kebal dan berkembang biak lagi. | Habiskan seluruh dosis antibiotik. |
+| Partikel yang lebih kecil memiliki perbandingan luas permukaan terhadap volume yang lebih kecil. | Perbandingan <InlineMath math="\tfrac{6}{L}" /> membesar saat <InlineMath math="L" /> mengecil. | Hitung perbandingannya pada <InlineMath math="100\ \text{nm}" /> dan <InlineMath math="10\ \text{nm}" />. |
+
+Kesalahan ketiga paling sering muncul. Ingat alasannya: **endapan terbentuk dari sabun dan ion kalsium, jadi deterjen lebih cocok untuk air sadah**.
+
+## Latihan Kimia Konsumen dan Industri
+
+Soal-soal ini bergerak dari minyak dan sabun ke nanoteknologi. **Tulis persamaannya dulu** setiap kali soal menanyakan massa zat.
+
+1. Jelaskan mengapa minyak nabati dihidrogenasi untuk membuat margarin.
+
+2. Jelaskan mengapa deterjen membersihkan lebih baik daripada sabun di air sadah.
+
+3. Hitung massa sabun yang dihasilkan dari <InlineMath math="445\ \text{g}" /> gliseril tristearat.
+
+4. Bandingkan perbandingan luas permukaan terhadap volume kubus bersisi <InlineMath math="20\ \text{nm}" /> dengan kubus bersisi <InlineMath math="2\ \mu\text{m}" />.
+
+### Pembahasan
+
+**Pembahasan 1**: Minyak nabati berwujud cair karena rantainya **tak jenuh**. Hidrogenasi dengan katalis nikel mengadisikan hidrogen pada ikatan rangkap dua, jadi rantainya **lebih jenuh** dan lebih lurus. Molekul tersusun lebih rapat, titik lelehnya naik, dan minyak menjadi padatan lunak yang bisa dioles, yaitu margarin.
+
+**Pembahasan 2**: Di air sadah, ion kalsium dan magnesium bereaksi dengan ion sabun membentuk **endapan** yang tidak larut, jadi sabun terbuang dan meninggalkan kerak. Garam kalsium dan magnesium deterjen **larut dalam air**, jadi tidak ada endapan dan ion deterjen tetap membersihkan kotoran.
+
+**Pembahasan 3**: Hitung mol lemak, lalu pakai perbandingan <InlineMath math="1 : 3" />:
+
+<MathContainer>
+<BlockMath math="n(\text{lemak}) = \frac{445}{890} = 0{,}50\ \text{mol}" />
+<BlockMath math="m(\text{sabun}) = 3 \times 0{,}50 \times 306 = 459\ \text{g}" />
+</MathContainer>
+
+Cek dengan grafik massa sabun: <InlineMath math="\tfrac{918}{890} \times 445 = 459\ \text{g}" />. Sama.
+
+**Pembahasan 4**: Ubah kedua sisi ke nanometer dulu, <InlineMath math="2\ \mu\text{m} = 2000\ \text{nm}" />:
+
+<MathContainer>
+<BlockMath math="\frac{6}{20} = 0{,}3\ \text{nm}^{-1}" />
+<BlockMath math="\frac{6}{2000} = 0{,}003\ \text{nm}^{-1}" />
+</MathContainer>
+
+Perbandingan kubus nano **seratus kali lebih besar**. Cek: sisinya seratus kali lebih kecil, dan perbandingan <InlineMath math="\tfrac{6}{L}" /> berbanding terbalik dengan <InlineMath math="L" />.

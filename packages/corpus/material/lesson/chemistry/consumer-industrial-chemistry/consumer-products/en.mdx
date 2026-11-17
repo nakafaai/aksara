@@ -1,0 +1,260 @@
+export const metadata = {
+  title: "Consumer and Industrial Chemistry Notes for Form Five",
+  description:
+    "Form 5 Chemistry Chapter 5: explain oils and fats, saponification and how soap cleans, food additives, medicines and nanotechnology, with examples.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Consumer and Industrial Chemistry",
+};
+
+## The Chemistry behind Everyday Products
+
+**Consumer and industrial chemistry** explains the materials you use every day: cooking oil, soap, food, medicine and nanomaterials. Oils and fats are **esters** of glycerol with fatty acids. Soap is made when an oil or fat is hydrolysed by an alkali, a reaction called **saponification**. Nanomaterials measure <InlineMath math="1" /> to <InlineMath math="100\text{ nm}" />, and their properties change because their surface area is huge compared with their volume. In these notes you compare saturated and unsaturated molecules, work out the mass of soap, see what hard water does, and change the size of a nanoparticle.
+
+## Oils and Fats
+
+Animal **fats** contain mostly **saturated** fatty acids and are solid at room temperature. Vegetable **oils** contain mostly **unsaturated** fatty acids, chains with <InlineMath math="\mathrm{C{=}C}" /> double bonds, and are liquid. A double bond bends the chain, so the molecules can't pack closely and the melting point is lower.
+
+Compare saturated and unsaturated chains in the model below. Hexane and hexene stand for parts of saturated and unsaturated fatty acid chains.
+
+<MoleculeShapeLab
+  title={<>Saturated and Unsaturated Chains</>}
+  description={
+    <>
+      Ethane and hexane have only single bonds. Ethene and hexene have one
+      double bond, like the fatty acid chains in vegetable oil.
+    </>
+  }
+  molecules={[
+    { id: "ethane", name: "ethane" },
+    { id: "ethene", name: "ethene" },
+    { id: "hexane", name: "hexane" },
+    { id: "hexene", name: "hexene" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Pick a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Saturated and unsaturated molecules",
+  }}
+/>
+
+Vegetable oil is turned into **margarine** by **hydrogenation**. Hydrogen gas is bubbled through hot oil with a nickel catalyst at about <InlineMath math="200^\circ\text{C}" />, and hydrogen adds across the double bonds. The oil becomes more saturated and turns into a soft solid. Watch the same reaction on ethene below: one hydrogen molecule adds across each double bond.
+
+<ReactionBalanceLab
+  title={<>Hydrogenation of a Double Bond</>}
+  description={
+    <>
+      Ethene reacts with hydrogen to become ethane. Hydrogenating vegetable oil
+      works the same way at every double bond in the fatty acid chains.
+    </>
+  }
+  reactions={[
+    { id: "ethene-hydrogenation", name: "Hydrogenation of ethene", tab: <>Hydrogenation</> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Pick a reaction",
+    equation: <>Equation</>,
+    mass: <>Mass</>,
+    molecules: <>Molecules</>,
+    products: <>Products</>,
+    progress: "Reaction progress",
+    reactants: <>Reactants</>,
+    view: "Model of the hydrogenation of ethene",
+  }}
+/>
+
+## Soap and Detergent in Hard Water
+
+**Saponification** is the hydrolysis of a fat or oil by hot sodium hydroxide solution. One molecule of glyceryl tristearate gives three molecules of soap, sodium stearate, and one molecule of glycerol:
+
+<BlockMath math="\mathrm{C_{57}H_{110}O_6} + 3\mathrm{NaOH} \rightarrow 3\mathrm{C_{17}H_{35}COONa} + \mathrm{C_3H_5(OH)_3}" />
+
+Try an example. Calculate the mass of soap and the mass of sodium hydroxide needed for <InlineMath math="89\text{ g}" /> of glyceryl tristearate. Its molar mass is <InlineMath math="890\text{ g mol}^{-1}" />, sodium stearate's <InlineMath math="306\text{ g mol}^{-1}" /> and sodium hydroxide's <InlineMath math="40\text{ g mol}^{-1}" />.
+
+<MathContainer>
+<BlockMath math="n(\text{fat}) = \frac{89}{890} = 0.10\text{ mol}" />
+<BlockMath math="m(\text{soap}) = 3 \times 0.10 \times 306 = 91.8\text{ g}" />
+<BlockMath math="m(\mathrm{NaOH}) = 3 \times 0.10 \times 40 = 12\text{ g}" />
+</MathContainer>
+
+Check with the graph below: at <InlineMath math="89\text{ g}" /> of fat, the soap reading is about <InlineMath math="91.8\text{ g}" />. The soap is a little heavier than the fat because sodium and oxygen atoms from the alkali end up in it.
+
+<MathVisual
+  title={<>Mass of Soap and Sodium Hydroxide against Mass of Fat</>}
+  description={
+    <>
+      For glyceryl tristearate, the mass of soap is{" "}
+      <InlineMath math="\dfrac{918}{890}m" /> and the mass of sodium hydroxide{" "}
+      <InlineMath math="\dfrac{120}{890}m" />, where <InlineMath math="m" /> is the
+      mass of fat in grams.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 900 }, y: { min: 0, max: 950 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 900, value: 89, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "soap", kind: "function", appearance: "primary", formula: "918x/890", domain: { min: 0, max: 900 } },
+      { id: "alkali", kind: "function", appearance: "secondary", formula: "120x/890", domain: { min: 0, max: 900 } },
+      { id: "now", kind: "marker", x: "m", y: "918m/890", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "soap-mass", formula: "918m/890" },
+      { key: "alkali-mass", formula: "120m/890" },
+    ],
+  }}
+  labels={{
+    m: <>Mass of fat in <InlineMath math="\text{g}" /></>,
+    "soap-mass": <>Mass of soap in <InlineMath math="\text{g}" /></>,
+    "alkali-mass": <>Mass of sodium hydroxide in <InlineMath math="\text{g}" /></>,
+  }}
+/>
+
+A soap ion has a negatively charged **hydrophilic head** that dissolves in water and a **hydrophobic tail** of hydrocarbon that dissolves in oil. The tails dig into the greasy dirt, the heads stay in the water, and when you scrub, the dirt lifts off as small droplets surrounded by soap ions, called **micelles**. The negatively charged micelles repel each other, so the dirt doesn't stick back.
+
+In **hard water**, calcium and magnesium ions react with soap ions to form **scum**, an insoluble precipitate. That soap is wasted before it can clean. **Detergent** doesn't form scum, because the calcium salts of detergents dissolve in water. Change the calcium ion concentration below and see how much soap is wasted.
+
+<MathVisual
+  title={<>Soap Wasted against Calcium Ion Concentration</>}
+  description={
+    <>
+      Each <InlineMath math="\mathrm{Ca^{2+}}" /> ion binds two stearate ions, so
+      the sodium stearate wasted is <InlineMath math="2 \times 306 \times c" />{" "}
+      milligrams per litre, with <InlineMath math="c" /> in{" "}
+      <InlineMath math="\text{mmol dm}^{-3}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 5, value: 2, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "wasted", kind: "function", appearance: "primary", formula: "0.612x", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "c", y: "0.612c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "soap-lost", formula: "0.612c" },
+    ],
+  }}
+  labels={{
+    c: <><InlineMath math="\mathrm{Ca^{2+}}" /> concentration in <InlineMath math="\text{mmol dm}^{-3}" /></>,
+    "soap-lost": <>Soap wasted in <InlineMath math="\text{g dm}^{-3}" /></>,
+  }}
+/>
+
+Check one reading: water with <InlineMath math="2.0\text{ mmol dm}^{-3}" /> of calcium ions wastes <InlineMath math="2 \times 2.0 \times 306 = 1224\text{ mg}" />, which is <InlineMath math="1.22\text{ g}" /> of soap per litre.
+
+## Food Additives and Medicines
+
+**Food additives** are added to preserve food or improve its taste, look or texture. Each type has a specific job:
+
+| Type | Job | Example |
+| :--- | :--- | :--- |
+| Preservative | Slows the growth of microorganisms | Sodium benzoate |
+| Antioxidant | Stops fats oxidising and going rancid | Ascorbic acid |
+| Flavouring | Adds or strengthens taste | Monosodium glutamate |
+| Stabiliser and thickener | Keeps texture and thickens | Gelatin, starch |
+| Colouring | Adds or restores colour | Tartrazine |
+
+Modern **medicines** are used according to their job. **Analgesics**, such as paracetamol, relieve pain. **Antibiotics**, such as penicillin, kill bacteria, and the **whole course** must be finished so that more resistant bacteria don't survive. Antibiotics don't work against viruses. **Cosmetics** include treatment, make-up and fragrance products, and each one should be used as its label says.
+
+## Nanotechnology and Green Technology
+
+**Nanotechnology** is the use of materials on a scale of <InlineMath math="1" /> to <InlineMath math="100\text{ nm}" />. As particles get smaller, their surface-area-to-volume ratio grows. For a cube of side <InlineMath math="L" />, that ratio is:
+
+<BlockMath math="\frac{\text{surface area}}{\text{volume}} = \frac{6L^2}{L^3} = \frac{6}{L}" />
+
+Change the size of the cube below. When the side shrinks from <InlineMath math="100\text{ nm}" /> to <InlineMath math="10\text{ nm}" />, the ratio becomes ten times bigger. More atoms sit at the surface, so nanomaterials react faster and make better catalysts.
+
+<MathVisual
+  title={<>Surface Area to Volume Ratio against Particle Size</>}
+  description={
+    <>
+      For a cube of side <InlineMath math="L" /> nanometres, the ratio is{" "}
+      <InlineMath math="\dfrac{6}{L}\text{ nm}^{-1}" />. At{" "}
+      <InlineMath math="L = 10\text{ nm}" />, the ratio is{" "}
+      <InlineMath math="0.6\text{ nm}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 100 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 1, max: 100, value: 10, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "ratio", kind: "function", appearance: "primary", formula: "6/x", domain: { min: 1, max: 100 } },
+      { id: "now", kind: "marker", x: "a", y: "6/a", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "surface", formula: "6/a" },
+    ],
+  }}
+  labels={{
+    a: <>Cube side <InlineMath math="L" /> in <InlineMath math="\text{nm}" /></>,
+    surface: <>Surface area to volume ratio in <InlineMath math="\text{nm}^{-1}" /></>,
+  }}
+/>
+
+One nanomaterial is **graphene**, a sheet of carbon one atom thick that is very strong and conducts electricity well. Nanotechnology is used in sunscreens, waterproof coatings, batteries and medicine. **Green technology** develops products and processes that cut pollution, save energy and use renewable resources, such as waste water treatment and solar power.
+
+## Common Mistakes about Consumer Chemistry
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Vegetable oil is more saturated than animal fat. | Vegetable oil has more double bonds, so it's more unsaturated. | Oil is liquid, fat is solid at room temperature. |
+| Saponification is esterification. | Saponification breaks an ester with an alkali. Esterification makes an ester. | Check whether the ester is a reactant or a product. |
+| Soap and detergent work equally well in hard water. | Soap forms scum with calcium and magnesium ions, but detergent doesn't. | Look for a white precipitate in hard water. |
+| You can stop antibiotics once you feel well. | The surviving bacteria may be more resistant and multiply again. | Finish the whole course of antibiotics. |
+| Smaller particles have a smaller surface-area-to-volume ratio. | The ratio <InlineMath math="\tfrac{6}{L}" /> grows as <InlineMath math="L" /> shrinks. | Work out the ratio at <InlineMath math="100\text{ nm}" /> and <InlineMath math="10\text{ nm}" />. |
+
+The third mistake comes up most often. Remember why: **scum forms from soap and calcium ions, so detergent suits hard water better**.
+
+## Practice on Consumer and Industrial Chemistry
+
+These questions move from oils and soap to nanotechnology. **Write the equation first** whenever a question asks for a mass.
+
+1. Explain why vegetable oil is hydrogenated to make margarine.
+
+2. Explain why detergent cleans better than soap in hard water.
+
+3. Calculate the mass of soap made from <InlineMath math="445\text{ g}" /> of glyceryl tristearate.
+
+4. Compare the surface-area-to-volume ratio of a cube of side <InlineMath math="20\text{ nm}" /> with a cube of side <InlineMath math="2\ \mu\text{m}" />.
+
+### Solutions
+
+**Solution 1**: Vegetable oil is liquid because its chains are **unsaturated**. Hydrogenation with a nickel catalyst adds hydrogen across the double bonds, so the chains become **more saturated** and straighter. The molecules pack more closely, the melting point rises, and the oil becomes a soft spreadable solid, which is margarine.
+
+**Solution 2**: In hard water, calcium and magnesium ions react with soap ions to form insoluble **scum**, so soap is wasted and leaves a precipitate. The calcium and magnesium salts of detergent **dissolve in water**, so no scum forms and the detergent ions keep cleaning.
+
+**Solution 3**: Work out the moles of fat, then use the <InlineMath math="1 : 3" /> ratio:
+
+<MathContainer>
+<BlockMath math="n(\text{fat}) = \frac{445}{890} = 0.50\text{ mol}" />
+<BlockMath math="m(\text{soap}) = 3 \times 0.50 \times 306 = 459\text{ g}" />
+</MathContainer>
+
+Check with the soap graph: <InlineMath math="\tfrac{918}{890} \times 445 = 459\text{ g}" />. The same.
+
+**Solution 4**: Convert both sides to nanometres first, <InlineMath math="2\ \mu\text{m} = 2000\text{ nm}" />:
+
+<MathContainer>
+<BlockMath math="\frac{6}{20} = 0.3\text{ nm}^{-1}" />
+<BlockMath math="\frac{6}{2000} = 0.003\text{ nm}^{-1}" />
+</MathContainer>
+
+The nanocube's ratio is **a hundred times bigger**. Check: its side is a hundred times smaller, and the ratio <InlineMath math="\tfrac{6}{L}" /> is inversely proportional to <InlineMath math="L" />.

@@ -150,7 +150,33 @@ export const kssmForm5ChemistryTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-chemistry-consumer-and-industrial-chemistry-consumer-industrial-chemistry",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.consumer-industrial-chemistry"],
+        order: 10,
+      }),
+    ],
     key: "form-5-chemistry-consumer-and-industrial-chemistry",
+    materialCard: {
+      de: {
+        description: "Erklär Seife, Zusatzstoffe, Arzneien und Nanotechnik.",
+        title: "Verbraucher- und Industriechemie",
+      },
+      en: {
+        description: "Explain soap, additives, medicines and nanotechnology.",
+        title: "Consumer and Industrial Chemistry",
+      },
+      id: {
+        description: "Jelaskan sabun, zat aditif, obat, dan nanoteknologi.",
+        title: "Kimia Konsumen dan Industri",
+      },
+      ms: {
+        description: "Terangkan sabun, bahan tambah, ubat dan nanoteknologi.",
+        title: "Kimia Konsumer dan Industri",
+      },
+    },
     order: 50,
     translations: {
       de: {

@@ -1,0 +1,262 @@
+export const metadata = {
+  title: "Nota Kimia Konsumer dan Industri Tingkatan Lima",
+  description:
+    "Nota Kimia Tingkatan 5 Bab 5: terangkan minyak dan lemak, saponifikasi dan tindakan pencucian sabun, bahan tambah makanan, ubat dan nanoteknologi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Kimia Konsumer dan Industri",
+};
+
+## Kimia di Sebalik Barang Harian
+
+**Kimia konsumer dan industri** menerangkan bahan yang kita guna setiap hari: minyak masak, sabun, makanan, ubat dan bahan nano. Minyak dan lemak ialah **ester** gliserol dengan asid lemak. Sabun dihasilkan apabila minyak atau lemak dihidrolisis oleh alkali, satu tindak balas yang dipanggil **saponifikasi**. Bahan nano pula berukuran <InlineMath math="1" /> hingga <InlineMath math="100\text{ nm}" />, dan sifatnya berubah kerana luas permukaannya sangat besar berbanding isi padunya. Dalam nota ini kamu bandingkan molekul tepu dan tak tepu, kira jisim sabun, lihat kesan air liat, dan ubah saiz zarah nano.
+
+## Minyak dan Lemak
+
+**Lemak** haiwan kebanyakannya mengandungi asid lemak **tepu** dan berbentuk pepejal pada suhu bilik. **Minyak** sayuran kebanyakannya mengandungi asid lemak **tak tepu**, iaitu rantai dengan ikatan ganda dua <InlineMath math="\mathrm{C{=}C}" />, dan berbentuk cecair. Ikatan ganda dua membengkokkan rantai, jadi molekul tidak tersusun rapat dan takat leburnya lebih rendah.
+
+Bandingkan rantai tepu dengan tak tepu dalam model di bawah. Heksana dan heksena mewakili bahagian rantai asid lemak tepu dan tak tepu.
+
+<MoleculeShapeLab
+  title={<>Rantai Tepu dan Tak Tepu</>}
+  description={
+    <>
+      Etana dan heksana hanya mempunyai ikatan tunggal. Etena dan heksena
+      mempunyai satu ikatan ganda dua, seperti rantai asid lemak dalam minyak
+      sayuran.
+    </>
+  }
+  molecules={[
+    { id: "ethane", name: "etana" },
+    { id: "ethene", name: "etena" },
+    { id: "hexane", name: "heksana" },
+    { id: "hexene", name: "heksena" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Molekul tepu dan tak tepu",
+  }}
+/>
+
+Minyak sayuran ditukar menjadi **marjerin** melalui **penghidrogenan**. Gas hidrogen dialirkan melalui minyak panas dengan mangkin nikel pada kira-kira <InlineMath math="200^\circ\text{C}" />, dan hidrogen ditambah pada ikatan ganda dua. Minyak menjadi lebih tepu dan berubah menjadi pepejal lembut. Lihat tindak balas yang sama pada etena di bawah: satu molekul hidrogen menambah pada setiap ikatan ganda dua.
+
+<ReactionBalanceLab
+  title={<>Penghidrogenan Ikatan Ganda Dua</>}
+  description={
+    <>
+      Etena bertindak balas dengan hidrogen menjadi etana. Penghidrogenan minyak
+      sayuran berlaku dengan cara yang sama pada setiap ikatan ganda dua dalam
+      rantai asid lemak.
+    </>
+  }
+  reactions={[
+    { id: "ethene-hydrogenation", name: "Penghidrogenan etena", tab: <>Penghidrogenan</> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih tindak balas",
+    equation: <>Persamaan</>,
+    mass: <>Jisim</>,
+    molecules: <>Molekul</>,
+    products: <>Hasil</>,
+    progress: "Kemajuan tindak balas",
+    reactants: <>Bahan tindak balas</>,
+    view: "Model penghidrogenan etena",
+  }}
+/>
+
+## Sabun dan Detergen dalam Air Liat
+
+**Saponifikasi** ialah hidrolisis lemak atau minyak oleh larutan natrium hidroksida panas. Satu molekul gliseril tristearat menghasilkan tiga molekul sabun, natrium stearat, dan satu molekul gliserol:
+
+<BlockMath math="\mathrm{C_{57}H_{110}O_6} + 3\mathrm{NaOH} \rightarrow 3\mathrm{C_{17}H_{35}COONa} + \mathrm{C_3H_5(OH)_3}" />
+
+Cuba satu contoh. Hitung jisim sabun dan jisim natrium hidroksida yang diperlukan bagi <InlineMath math="89\text{ g}" /> gliseril tristearat. Jisim molarnya <InlineMath math="890\text{ g mol}^{-1}" />, natrium stearat <InlineMath math="306\text{ g mol}^{-1}" /> dan natrium hidroksida <InlineMath math="40\text{ g mol}^{-1}" />.
+
+<MathContainer>
+<BlockMath math="n(\text{lemak}) = \frac{89}{890} = 0.10\text{ mol}" />
+<BlockMath math="m(\text{sabun}) = 3 \times 0.10 \times 306 = 91.8\text{ g}" />
+<BlockMath math="m(\mathrm{NaOH}) = 3 \times 0.10 \times 40 = 12\text{ g}" />
+</MathContainer>
+
+Semak dengan graf di bawah: pada <InlineMath math="89\text{ g}" /> lemak, bacaan jisim sabun ialah kira-kira <InlineMath math="91.8\text{ g}" />. Sabun lebih berat sedikit daripada lemak kerana atom natrium dan oksigen daripada alkali masuk ke dalam sabun.
+
+<MathVisual
+  title={<>Jisim Sabun dan Natrium Hidroksida melawan Jisim Lemak</>}
+  description={
+    <>
+      Bagi gliseril tristearat, jisim sabun ialah{" "}
+      <InlineMath math="\dfrac{918}{890}m" /> dan jisim natrium hidroksida{" "}
+      <InlineMath math="\dfrac{120}{890}m" />, dengan <InlineMath math="m" /> jisim
+      lemak dalam gram.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 900 }, y: { min: 0, max: 950 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 900, value: 89, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "soap", kind: "function", appearance: "primary", formula: "918x/890", domain: { min: 0, max: 900 } },
+      { id: "alkali", kind: "function", appearance: "secondary", formula: "120x/890", domain: { min: 0, max: 900 } },
+      { id: "now", kind: "marker", x: "m", y: "918m/890", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "soap-mass", formula: "918m/890" },
+      { key: "alkali-mass", formula: "120m/890" },
+    ],
+  }}
+  labels={{
+    m: <>Jisim lemak dalam <InlineMath math="\text{g}" /></>,
+    "soap-mass": <>Jisim sabun dalam <InlineMath math="\text{g}" /></>,
+    "alkali-mass": <>Jisim natrium hidroksida dalam <InlineMath math="\text{g}" /></>,
+  }}
+/>
+
+Ion sabun mempunyai **kepala hidrofilik** yang bercas negatif dan larut dalam air, serta **ekor hidrofobik** hidrokarbon yang larut dalam minyak. Ekor menembusi kotoran berminyak, kepala kekal dalam air, dan apabila digosok, kotoran terangkat menjadi titisan kecil yang dikelilingi ion sabun, iaitu **misel**. Misel yang bercas negatif saling menolak, jadi kotoran tidak melekat semula.
+
+Dalam **air liat**, ion kalsium dan magnesium bertindak balas dengan ion sabun membentuk **kekat**, mendakan yang tidak larut. Sabun itu terbazir sebelum sempat mencuci. **Detergen** tidak membentuk kekat, kerana garam kalsium detergen larut dalam air. Ubah kepekatan ion kalsium di bawah dan lihat jisim sabun yang terbazir.
+
+<MathVisual
+  title={<>Sabun yang Terbazir melawan Kepekatan Ion Kalsium</>}
+  description={
+    <>
+      Setiap ion <InlineMath math="\mathrm{Ca^{2+}}" /> mengikat dua ion stearat,
+      jadi jisim natrium stearat yang terbazir ialah{" "}
+      <InlineMath math="2 \times 306 \times c" /> miligram bagi setiap liter, dengan{" "}
+      <InlineMath math="c" /> dalam <InlineMath math="\text{mmol dm}^{-3}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 5, value: 2, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "wasted", kind: "function", appearance: "primary", formula: "0.612x", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "c", y: "0.612c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "soap-lost", formula: "0.612c" },
+    ],
+  }}
+  labels={{
+    c: <>Kepekatan <InlineMath math="\mathrm{Ca^{2+}}" /> dalam <InlineMath math="\text{mmol dm}^{-3}" /></>,
+    "soap-lost": <>Sabun terbazir dalam <InlineMath math="\text{g dm}^{-3}" /></>,
+  }}
+/>
+
+Semak satu bacaan: air dengan <InlineMath math="2.0\text{ mmol dm}^{-3}" /> ion kalsium membazirkan <InlineMath math="2 \times 2.0 \times 306 = 1224\text{ mg}" />, iaitu <InlineMath math="1.22\text{ g}" /> sabun bagi setiap liter.
+
+## Bahan Tambah Makanan dan Ubat
+
+**Bahan tambah makanan** ditambah untuk mengawet, memperbaiki rasa, rupa atau tekstur makanan. Setiap jenis mempunyai fungsi yang khusus:
+
+| Jenis | Fungsi | Contoh |
+| :--- | :--- | :--- |
+| Pengawet | Melambatkan pertumbuhan mikroorganisma | Natrium benzoat |
+| Antioksidan | Menghalang lemak teroksida dan tengik | Asid askorbik |
+| Perisa | Menambah atau menguatkan rasa | Mononatrium glutamat |
+| Penstabil dan pemekat | Mengekalkan tekstur dan memekatkan | Gelatin, kanji |
+| Pewarna | Memberi atau memulihkan warna | Tartrazina |
+
+**Ubat** moden digunakan mengikut fungsinya. **Analgesik**, seperti parasetamol, melegakan sakit. **Antibiotik**, seperti penisilin, membunuh bakteria, dan **keseluruhan kursus** mesti dihabiskan supaya bakteria yang lebih tahan tidak terus hidup. Antibiotik tidak berkesan terhadap virus. **Kosmetik** pula termasuk produk rawatan, solekan dan pewangi, dan setiap produk perlu digunakan mengikut arahan pada label.
+
+## Nanoteknologi dan Teknologi Hijau
+
+**Nanoteknologi** ialah penggunaan bahan berskala <InlineMath math="1" /> hingga <InlineMath math="100\text{ nm}" />. Apabila zarah menjadi lebih kecil, nisbah luas permukaan kepada isi padunya bertambah. Bagi kiub bersisi <InlineMath math="L" />, nisbah itu ialah:
+
+<BlockMath math="\frac{\text{luas permukaan}}{\text{isi padu}} = \frac{6L^2}{L^3} = \frac{6}{L}" />
+
+Ubah saiz kiub di bawah. Apabila sisi berkurang daripada <InlineMath math="100\text{ nm}" /> kepada <InlineMath math="10\text{ nm}" />, nisbah itu menjadi sepuluh kali ganda. Lebih banyak atom berada di permukaan, jadi bahan nano bertindak balas lebih cepat dan menjadi mangkin yang lebih baik.
+
+<MathVisual
+  title={<>Nisbah Luas Permukaan kepada Isi Padu melawan Saiz Zarah</>}
+  description={
+    <>
+      Bagi kiub bersisi <InlineMath math="L" /> nanometer, nisbahnya{" "}
+      <InlineMath math="\dfrac{6}{L}\text{ nm}^{-1}" />. Pada{" "}
+      <InlineMath math="L = 10\text{ nm}" />, nisbahnya{" "}
+      <InlineMath math="0.6\text{ nm}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 100 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 1, max: 100, value: 10, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "ratio", kind: "function", appearance: "primary", formula: "6/x", domain: { min: 1, max: 100 } },
+      { id: "now", kind: "marker", x: "a", y: "6/a", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "surface", formula: "6/a" },
+    ],
+  }}
+  labels={{
+    a: <>Sisi kiub <InlineMath math="L" /> dalam <InlineMath math="\text{nm}" /></>,
+    surface: <>Nisbah luas permukaan kepada isi padu dalam <InlineMath math="\text{nm}^{-1}" /></>,
+  }}
+/>
+
+Contoh bahan nano ialah **grafena**, kepingan karbon setebal satu atom yang sangat kuat dan mengalirkan elektrik dengan baik. Nanoteknologi digunakan dalam pelindung matahari, salutan kalis air, bateri dan perubatan. **Teknologi hijau** pula membangunkan produk dan proses yang mengurangkan pencemaran, menjimatkan tenaga dan menggunakan sumber yang boleh diperbaharui, seperti rawatan air sisa dan tenaga solar.
+
+## Kesilapan Lazim tentang Kimia Konsumer
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Minyak sayuran lebih tepu daripada lemak haiwan. | Minyak sayuran mempunyai lebih banyak ikatan ganda dua, jadi lebih tak tepu. | Minyak cecair, lemak pepejal pada suhu bilik. |
+| Saponifikasi ialah pengesteran. | Saponifikasi memecahkan ester dengan alkali. Pengesteran membentuk ester. | Lihat sama ada ester ialah bahan atau hasil. |
+| Sabun dan detergen sama berkesan dalam air liat. | Sabun membentuk kekat dengan ion kalsium dan magnesium, tetapi detergen tidak. | Cari mendakan putih dalam air liat. |
+| Antibiotik boleh dihentikan apabila badan rasa sihat. | Bakteria yang tinggal mungkin lebih tahan dan membiak semula. | Habiskan keseluruhan kursus antibiotik. |
+| Zarah yang lebih kecil mempunyai nisbah luas permukaan kepada isi padu yang lebih kecil. | Nisbah <InlineMath math="\tfrac{6}{L}" /> bertambah apabila <InlineMath math="L" /> berkurang. | Kira nisbah pada <InlineMath math="100\text{ nm}" /> dan <InlineMath math="10\text{ nm}" />. |
+
+Kesilapan ketiga paling kerap muncul. Ingat sebabnya: **kekat terbentuk daripada sabun dan ion kalsium, jadi detergen lebih sesuai untuk air liat**.
+
+## Latihan Kimia Konsumer dan Industri
+
+Soalan ini bergerak daripada minyak dan sabun kepada nanoteknologi. **Tulis persamaan dahulu** apabila soalan meminta jisim bahan.
+
+1. Terangkan sebab minyak sayuran dihidrogenkan untuk menghasilkan marjerin.
+
+2. Terangkan sebab detergen lebih berkesan daripada sabun dalam air liat.
+
+3. Hitung jisim sabun yang terhasil daripada <InlineMath math="445\text{ g}" /> gliseril tristearat.
+
+4. Bandingkan nisbah luas permukaan kepada isi padu bagi kiub bersisi <InlineMath math="20\text{ nm}" /> dengan kiub bersisi <InlineMath math="2\ \mu\text{m}" />.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Minyak sayuran ialah cecair kerana rantainya **tak tepu**. Penghidrogenan dengan mangkin nikel menambah hidrogen pada ikatan ganda dua, jadi rantai menjadi **lebih tepu** dan lebih lurus. Molekul tersusun lebih rapat, takat lebur naik, dan minyak menjadi pepejal lembut yang boleh disapu, iaitu marjerin.
+
+**Penyelesaian 2**: Dalam air liat, ion kalsium dan magnesium bertindak balas dengan ion sabun membentuk **kekat** yang tidak larut, jadi sabun terbazir dan meninggalkan mendakan. Garam kalsium dan magnesium detergen **larut dalam air**, jadi tiada kekat terbentuk dan ion detergen terus mencuci kotoran.
+
+**Penyelesaian 3**: Kira mol lemak, kemudian gunakan nisbah <InlineMath math="1 : 3" />:
+
+<MathContainer>
+<BlockMath math="n(\text{lemak}) = \frac{445}{890} = 0.50\text{ mol}" />
+<BlockMath math="m(\text{sabun}) = 3 \times 0.50 \times 306 = 459\text{ g}" />
+</MathContainer>
+
+Semak dengan graf jisim sabun: <InlineMath math="\tfrac{918}{890} \times 445 = 459\text{ g}" />. Sama.
+
+**Penyelesaian 4**: Tukar kedua-dua sisi kepada nanometer dulu, <InlineMath math="2\ \mu\text{m} = 2000\text{ nm}" />:
+
+<MathContainer>
+<BlockMath math="\frac{6}{20} = 0.3\text{ nm}^{-1}" />
+<BlockMath math="\frac{6}{2000} = 0.003\text{ nm}^{-1}" />
+</MathContainer>
+
+Kiub nano mempunyai nisbah **seratus kali ganda** lebih besar. Semak: sisinya seratus kali lebih kecil, dan nisbah <InlineMath math="\tfrac{6}{L}" /> berkadar songsang dengan <InlineMath math="L" />.
