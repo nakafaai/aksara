@@ -118,7 +118,33 @@ export const kssmForm5PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-physics-quantum-physics-quantum-physics",
+        level: "lesson",
+        materialKeys: ["lesson.physics.quantum-physics"],
+        order: 10,
+      }),
+    ],
     key: "form-5-physics-quantum-physics",
+    materialCard: {
+      de: {
+        description: "Berechne Photonenenergien und erklär den Photoeffekt.",
+        title: "Quantenphysik",
+      },
+      en: {
+        description: "Work out photon energies and the photoelectric effect.",
+        title: "Quantum Physics",
+      },
+      id: {
+        description: "Hitung energi foton dan jelaskan efek fotolistrik.",
+        title: "Fisika Kuantum",
+      },
+      ms: {
+        description: "Kira tenaga foton dan terangkan kesan fotoelektrik.",
+        title: "Fizik Kuantum",
+      },
+    },
     order: 70,
     translations: {
       de: { routeSlug: "quantenphysik", title: "Quantenphysik" },
