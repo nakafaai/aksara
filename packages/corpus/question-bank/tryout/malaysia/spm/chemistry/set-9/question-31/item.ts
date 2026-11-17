@@ -12,20 +12,21 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$240\\text{ cm}^3$$, $$8.80\\text{ g}$$, $$2.54\\text{ g}$$",
+          label:
+            "$$240\\text{ cm}^3$$, $$8.80\\text{ g}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$720\\text{ cm}^3$$, $$8.78\\text{ g}$$, $$7.62\\text{ g}$$",
+          label: "$$720\\text{ cm}^3$$, $$8.78\\text{ g}$$, $$1.95\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$1440\\text{ cm}^3$$, $$8.90\\text{ g}$$, $$15.2\\text{ g}$$",
+            "$$1440\\text{ cm}^3$$, $$8.90\\text{ g}$$, $$3.90\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$720\\text{ cm}^3$$, $$8.84\\text{ g}$$, $$7.62\\text{ g}$$",
+          label: "$$720\\text{ cm}^3$$, $$8.84\\text{ g}$$, $$1.95\\text{ g}$$",
         },
       ],
     },
@@ -34,20 +35,21 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$240\\text{ cm}^3$$, $$8.80\\text{ g}$$, $$2.54\\text{ g}$$",
+          label:
+            "$$240\\text{ cm}^3$$, $$8.80\\text{ g}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$720\\text{ cm}^3$$, $$8.78\\text{ g}$$, $$7.62\\text{ g}$$",
+          label: "$$720\\text{ cm}^3$$, $$8.78\\text{ g}$$, $$1.95\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$1440\\text{ cm}^3$$, $$8.90\\text{ g}$$, $$15.2\\text{ g}$$",
+            "$$1440\\text{ cm}^3$$, $$8.90\\text{ g}$$, $$3.90\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$720\\text{ cm}^3$$, $$8.84\\text{ g}$$, $$7.62\\text{ g}$$",
+          label: "$$720\\text{ cm}^3$$, $$8.84\\text{ g}$$, $$1.95\\text{ g}$$",
         },
       ],
     },

@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$0.762\\text{ g}$$, $$0.830\\text{ g}$$, $$+5$$ to $$0$$",
+          label: "$$0.762\\text{ g}$$, $$+5$$ to $$0$$, $$0.528\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$0.254\\text{ g}$$, $$0.166\\text{ g}$$, $$+5$$ to $$0$$",
+          label: "$$0.254\\text{ g}$$, $$+5$$ to $$0$$, $$0.176\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$0.762\\text{ g}$$, $$0.830\\text{ g}$$, $$+7$$ to $$0$$",
+          label: "$$0.762\\text{ g}$$, $$+7$$ to $$0$$, $$0.528\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$0.762\\text{ g}$$, $$0.166\\text{ g}$$, $$+5$$ to $$0$$",
+          label: "$$0.762\\text{ g}$$, $$+5$$ to $$0$$, $$0.176\\text{ g}$$",
         },
       ],
     },
@@ -34,22 +34,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$0.762\\text{ g}$$, $$0.830\\text{ g}$$, $$+5$$ kepada $$0$$",
+            "$$0.762\\text{ g}$$, $$+5$$ kepada $$0$$, $$0.528\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.254\\text{ g}$$, $$0.166\\text{ g}$$, $$+5$$ kepada $$0$$",
+            "$$0.254\\text{ g}$$, $$+5$$ kepada $$0$$, $$0.176\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.762\\text{ g}$$, $$0.830\\text{ g}$$, $$+7$$ kepada $$0$$",
+            "$$0.762\\text{ g}$$, $$+7$$ kepada $$0$$, $$0.528\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.762\\text{ g}$$, $$0.166\\text{ g}$$, $$+5$$ kepada $$0$$",
+            "$$0.762\\text{ g}$$, $$+5$$ kepada $$0$$, $$0.176\\text{ g}$$",
         },
       ],
     },

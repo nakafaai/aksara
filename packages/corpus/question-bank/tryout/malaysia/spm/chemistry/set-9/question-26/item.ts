@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$240\\text{ cm}^3$$ hydrogen at the cathode, $$240\\text{ cm}^3$$ chlorine at the anode, $$0.0500\\text{ mol dm}^{-3}$$",
+            "$$240\\text{ cm}^3$$, $$0.0250\\text{ mol dm}^{-3}$$, $$0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$120\\text{ cm}^3$$ hydrogen at the cathode, $$60\\text{ cm}^3$$ oxygen at the anode, $$0\\text{ mol dm}^{-3}$$",
+            "$$120\\text{ cm}^3$$, $$0.0500\\text{ mol dm}^{-3}$$, $$0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$120\\text{ cm}^3$$ hydrogen at the cathode, $$120\\text{ cm}^3$$ chlorine at the anode, $$0.0500\\text{ mol dm}^{-3}$$",
+            "$$120\\text{ cm}^3$$, $$0.0250\\text{ mol dm}^{-3}$$, $$0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$120\\text{ cm}^3$$ hydrogen at the cathode, $$120\\text{ cm}^3$$ chlorine at the anode, $$0.0250\\text{ mol dm}^{-3}$$",
+            "$$120\\text{ cm}^3$$, $$0.0250\\text{ mol dm}^{-3}$$, $$0.0250\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$240\\text{ cm}^3$$ hidrogen di katod, $$240\\text{ cm}^3$$ klorin di anod, $$0.0500\\text{ mol dm}^{-3}$$",
+            "$$240\\text{ cm}^3$$, $$0.0250\\text{ mol dm}^{-3}$$, $$0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$120\\text{ cm}^3$$ hidrogen di katod, $$60\\text{ cm}^3$$ oksigen di anod, $$0\\text{ mol dm}^{-3}$$",
+            "$$120\\text{ cm}^3$$, $$0.0500\\text{ mol dm}^{-3}$$, $$0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$120\\text{ cm}^3$$ hidrogen di katod, $$120\\text{ cm}^3$$ klorin di anod, $$0.0500\\text{ mol dm}^{-3}$$",
+            "$$120\\text{ cm}^3$$, $$0.0250\\text{ mol dm}^{-3}$$, $$0\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$120\\text{ cm}^3$$ hidrogen di katod, $$120\\text{ cm}^3$$ klorin di anod, $$0.0250\\text{ mol dm}^{-3}$$",
+            "$$120\\text{ cm}^3$$, $$0.0250\\text{ mol dm}^{-3}$$, $$0.0250\\text{ mol dm}^{-3}$$",
         },
       ],
     },
