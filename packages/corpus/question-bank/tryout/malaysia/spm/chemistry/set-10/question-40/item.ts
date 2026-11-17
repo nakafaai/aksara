@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Ammonium nitrate, $$1.75\\text{ kg}$$, $$2.25\\text{ kg}$$",
+          label: "Ammonium nitrate, $$1.75\\text{ kg}$$, $$2.30\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "Urea, $$0.875\\text{ kg}$$, $$4.13\\text{ kg}$$",
+          label: "Urea, $$0.875\\text{ kg}$$, $$4.21\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "Urea, $$1.75\\text{ kg}$$, $$4.50\\text{ kg}$$",
+          label: "Urea, $$1.75\\text{ kg}$$, $$2.20\\text{ kg}$$",
         },
         {
           correct: true,
-          label: "Urea, $$1.75\\text{ kg}$$, $$2.25\\text{ kg}$$",
+          label: "Urea, $$1.75\\text{ kg}$$, $$2.30\\text{ kg}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Ammonium nitrat, $$1.75\\text{ kg}$$, $$2.25\\text{ kg}$$",
+          label: "Ammonium nitrat, $$1.75\\text{ kg}$$, $$2.30\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "Urea, $$0.875\\text{ kg}$$, $$4.13\\text{ kg}$$",
+          label: "Urea, $$0.875\\text{ kg}$$, $$4.21\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "Urea, $$1.75\\text{ kg}$$, $$4.50\\text{ kg}$$",
+          label: "Urea, $$1.75\\text{ kg}$$, $$2.20\\text{ kg}$$",
         },
         {
           correct: true,
-          label: "Urea, $$1.75\\text{ kg}$$, $$2.25\\text{ kg}$$",
+          label: "Urea, $$1.75\\text{ kg}$$, $$2.30\\text{ kg}$$",
         },
       ],
     },

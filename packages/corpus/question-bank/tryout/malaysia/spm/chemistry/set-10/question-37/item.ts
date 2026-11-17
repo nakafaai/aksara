@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$100$$, $$1.80\\text{ kg}$$, $$16.2\\text{ kg}$$",
+          label:
+            "$$22.6\\text{ kg}$$, $$3.60\\text{ kg}$$, $$6.02\\times10^{23}$$",
         },
         {
           correct: true,
-          label: "$$100$$, $$3.60\\text{ kg}$$, $$16.2\\text{ kg}$$",
+          label:
+            "$$18.1\\text{ kg}$$, $$2.88\\text{ kg}$$, $$4.82\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$100$$, $$3.60\\text{ kg}$$, $$13.1\\text{ kg}$$",
+          label:
+            "$$18.1\\text{ kg}$$, $$1.44\\text{ kg}$$, $$4.82\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$155$$, $$3.60\\text{ kg}$$, $$16.2\\text{ kg}$$",
+          label:
+            "$$18.1\\text{ kg}$$, $$2.88\\text{ kg}$$, $$4.82\\times10^{25}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$100$$, $$1.80\\text{ kg}$$, $$16.2\\text{ kg}$$",
+          label:
+            "$$22.6\\text{ kg}$$, $$3.60\\text{ kg}$$, $$6.02\\times10^{23}$$",
         },
         {
           correct: true,
-          label: "$$100$$, $$3.60\\text{ kg}$$, $$16.2\\text{ kg}$$",
+          label:
+            "$$18.1\\text{ kg}$$, $$2.88\\text{ kg}$$, $$4.82\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$100$$, $$3.60\\text{ kg}$$, $$13.1\\text{ kg}$$",
+          label:
+            "$$18.1\\text{ kg}$$, $$1.44\\text{ kg}$$, $$4.82\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$155$$, $$3.60\\text{ kg}$$, $$16.2\\text{ kg}$$",
+          label:
+            "$$18.1\\text{ kg}$$, $$2.88\\text{ kg}$$, $$4.82\\times10^{25}$$",
         },
       ],
     },
