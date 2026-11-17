@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Aluminium, $$10.0\\text{ cm}^3$$" },
-        { correct: false, label: "Aluminium, $$60.0\\text{ cm}^3$$" },
-        { correct: false, label: "Iron, $$20.0\\text{ cm}^3$$" },
-        { correct: true, label: "Aluminium, $$20.0\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "Aluminium, $$20.0\\text{ cm}^3$$, $$60.0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "Iron, $$20.0\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "Aluminium, $$10.0\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
+        },
+        {
+          correct: true,
+          label: "Aluminium, $$20.0\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Aluminium, $$10.0\\text{ cm}^3$$" },
-        { correct: false, label: "Aluminium, $$60.0\\text{ cm}^3$$" },
-        { correct: false, label: "Ferum, $$20.0\\text{ cm}^3$$" },
-        { correct: true, label: "Aluminium, $$20.0\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "Aluminium, $$20.0\\text{ cm}^3$$, $$60.0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "Ferum, $$20.0\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "Aluminium, $$10.0\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
+        },
+        {
+          correct: true,
+          label: "Aluminium, $$20.0\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
+        },
       ],
     },
   },

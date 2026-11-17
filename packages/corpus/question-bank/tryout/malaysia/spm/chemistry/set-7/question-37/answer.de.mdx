@@ -1,25 +1,25 @@
-# Die Kettenlänge ändert die nötige Monomermasse nicht, die Ausbeute schon
+# Teile die Kette durch eine Einheit, rechne die Zufuhr für den Umsatz hoch und cracke dann ein Hexan je Propen
 
-Jede Wiederholungseinheit hat die molare Masse von Propen, <InlineMath math="42" />, also enthält eine Kette von <InlineMath math="84{.}000" /> <InlineMath math="2000" /> Einheiten. **Egal wie lang die Ketten sind, ein Kilogramm Polymer enthält <InlineMath math="23{,}8\text{ mol}" /> Propeneinheiten**, und da nur <InlineMath math="92\%" /> des Gases polymerisieren, müssen <InlineMath math="25{,}9\text{ mol}" /> eingespeist werden.
+Jede Propeneinheit hat <InlineMath math="M_r=42" />, also enthält eine Kette <InlineMath math="84{.}000\div42=2000" /> Einheiten. Das Polymer sind <InlineMath math="1000\div42=23{,}8\text{ mol}" /> Einheiten. **Nur <InlineMath math="92\%" /> der Zufuhr polymerisieren**, also müssen <InlineMath math="23{,}8\div0{,}92=25{,}9\text{ mol}" /> Propen zugeführt werden, <InlineMath math="621\text{ dm}^3" />. **Jedes Hexan gibt ein Propen**, also werden <InlineMath math="25{,}9\text{ mol}" /> Hexan gecrackt, <InlineMath math="25{,}9\times86=2{,}23\text{ kg}" />.
 
 <Chart
-  title={<>Propen für ein Kilogramm Polymer</>}
-  description={<>Die Anlage muss <InlineMath math="25{,}9\text{ mol}" /> Propen einspeisen, damit <InlineMath math="23{,}8\text{ mol}" /> polymerisieren.</>}
+  title={<>Zugeführtes und verbrauchtes Propen</>}
+  description={<>Das Polymer enthält <InlineMath math="23{,}8\text{ mol}" /> Propeneinheiten, doch <InlineMath math="25{,}9\text{ mol}" /> müssen zugeführt werden.</>}
   bars="apart"
-  categories={["Eingespeistes Propen", "Polymerisiertes Propen"]}
+  categories={["Propen im Polymer", "Zugeführtes Propen"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [25.9, 23.8] },
+    { label: "Stoffmenge", mark: "bar", values: [23.8, 25.9] },
   ]}
   valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n_{\text{units}}&=\tfrac{84{.}000}{42}=2000\\
-V&=\tfrac{1000}{42\times0{,}92}\times24=621\text{ dm}^3
+n&=\tfrac{84{.}000}{42}=2000,\quad n(\text{C}_3\text{H}_6)=\tfrac{1000\div42}{0{,}92}=25{,}9\text{ mol}\\
+V&=25{,}9\times24=621\text{ dm}^3,\quad m(\text{C}_6\text{H}_{14})=25{,}9\times86=2{,}23\times10^3\text{ g}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="571\text{ dm}^3" /> lässt alles Propen polymerisieren. **Nur <InlineMath math="92\%" /> tun es**.
-- <InlineMath math="1000" /> Einheiten teilt durch <InlineMath math="84" />, die Masse zweier Propeneinheiten.
-- <InlineMath math="526\text{ dm}^3" /> multipliziert mit <InlineMath math="0{,}92" />, statt zu teilen. **Der Zulauf muss größer sein als das Polymerisierte**.
+- <InlineMath math="571\text{ dm}^3" /> und <InlineMath math="2{,}05\text{ kg}" /> übersehen den Umsatz von <InlineMath math="92\%" />. **Es muss mehr Propen zugeführt werden, als im Polymer landet**.
+- <InlineMath math="1000" /> Einheiten teilt durch <InlineMath math="84" />, die doppelte Masse einer Propeneinheit.
+- <InlineMath math="1{,}11\text{ kg}" /> macht aus jedem Hexan zwei Propen, doch die Gleichung gibt ein Propen und ein Propan.

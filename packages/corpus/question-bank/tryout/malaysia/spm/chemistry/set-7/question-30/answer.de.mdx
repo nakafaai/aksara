@@ -1,25 +1,25 @@
-# Jedes Volumen mit seiner eigenen Dichte in eine Masse umrechnen und dann die Kohlenstoffatome jedes Brennstoffs zählen
+# Wiege jeden Kraftstoff aus Volumen und Dichte, verbrenne jeden nach seiner eigenen Gleichung und rechne den Sauerstoff auf Luft hoch
 
-Der Liter enthält <InlineMath math="100\text{ cm}^3" /> Ethanol, <InlineMath math="79\text{ g}" />, und <InlineMath math="900\text{ cm}^3" /> Octan, <InlineMath math="630\text{ g}" />. **Jeder Brennstoff bringt seinen eigenen Kohlenstoff**: Ethanol <InlineMath math="1{,}72\text{ mol}" /> mit je zwei Kohlenstoffatomen, Octan <InlineMath math="5{,}53\text{ mol}" /> mit acht. Jedes Kohlenstoffatom wird ein Kohlenstoffdioxidmolekül.
+Der Liter enthält <InlineMath math="100\times0{,}79=79\text{ g}" /> Ethanol, <InlineMath math="1{,}72\text{ mol}" />, und <InlineMath math="900\times0{,}70=630\text{ g}" /> Octan, <InlineMath math="5{,}53\text{ mol}" />. **Jeder verbrennt nach seiner eigenen Gleichung**: <InlineMath math="\text{C}_2\text{H}_5\text{OH}+3\text{O}_2\rightarrow2\text{CO}_2+3\text{H}_2\text{O}" /> und <InlineMath math="2\text{C}_8\text{H}_{18}+25\text{O}_2\rightarrow16\text{CO}_2+18\text{H}_2\text{O}" />. Das Kohlenstoffdioxid sind <InlineMath math="3{,}43+44{,}2=47{,}6\text{ mol}" />, <InlineMath math="2{,}10\text{ kg}" />. Der Sauerstoff sind <InlineMath math="5{,}15+69{,}1=74{,}2\text{ mol}" />, <InlineMath math="1781\text{ dm}^3" />, **und Luft ist nur zu <InlineMath math="21\%" /> Sauerstoff**, also braucht man <InlineMath math="1781\div0{,}21=8{,}48\text{ m}^3" /> Luft.
 
 <Chart
-  title={<>Kohlenstoffdioxid aus jedem Brennstoff</>}
-  description={<>Ethanol gibt <InlineMath math="0{,}151\text{ kg}" />, Octan <InlineMath math="1{,}95\text{ kg}" />.</>}
+  title={<>Kohlenstoffdioxid aus jedem Kraftstoff</>}
+  description={<>Ethanol gibt <InlineMath math="3{,}43\text{ mol}" /> und Octan <InlineMath math="44{,}2\text{ mol}" /> Kohlenstoffdioxid.</>}
   bars="apart"
   categories={["Aus Ethanol", "Aus Octan"]}
   series={[
-    { label: "Masse", mark: "bar", values: [0.151, 1.95] },
+    { label: "Stoffmenge", mark: "bar", values: [3.43, 44.2] },
   ]}
-  valueLabel="Masse (kg)"
+  valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{CO}_2)&=2\times\tfrac{100\times0{,}79}{46}+8\times\tfrac{900\times0{,}70}{114}=3{,}43+44{,}2=47{,}6\text{ mol}\\
-m&=47{,}6\times44=2{,}10\times10^3\text{ g}=2{,}10\text{ kg}
+n(\text{CO}_2)&=2\times\tfrac{79}{46}+8\times\tfrac{630}{114}=47{,}6\text{ mol},\quad m=47{,}6\times44=2{,}10\times10^3\text{ g}\\
+V_{\text{air}}&=\tfrac{(3\times1{,}72+12{,}5\times5{,}53)\times24}{0{,}21}=8{,}48\times10^3\text{ dm}^3
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="2{,}16\text{ kg}" /> verbrennt den ganzen Liter als Octan. **Ein Zehntel des Volumens ist Ethanol mit eigener Dichte und Kohlenstoffzahl**.
-- <InlineMath math="1{,}95\text{ kg}" /> zählt nur das Octan und lässt das Kohlenstoffdioxid aus dem Ethanol weg.
-- <InlineMath math="1{,}05\text{ kg}" /> gibt ein Kohlenstoffdioxid je zwei Kohlenstoffatome.
+- <InlineMath math="2{,}16\text{ kg}" /> und <InlineMath math="8{,}77\text{ m}^3" /> behandeln den ganzen Liter als Octan. **Ein Zehntel davon ist Ethanol**.
+- <InlineMath math="1{,}78\text{ m}^3" /> ist das Volumen des Sauerstoffs, doch die Verbrennung entnimmt ihn Luft, die nur zu <InlineMath math="21\%" /> Sauerstoff ist.
+- <InlineMath math="0{,}374\text{ m}^3" /> multipliziert den Sauerstoff mit <InlineMath math="0{,}21" />, statt durch ihn zu teilen.

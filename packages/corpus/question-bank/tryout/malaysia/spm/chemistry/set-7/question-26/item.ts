@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$14.3\\text{ kg}$$" },
-        { correct: false, label: "$$24.4\\text{ kg}$$" },
-        { correct: false, label: "$$16.8\\text{ kg}$$" },
-        { correct: true, label: "$$12.2\\text{ kg}$$" },
+        {
+          correct: false,
+          label: "$$14.3\\text{ kg}$$, $$0.755\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$24.4\\text{ kg}$$, $$0.724\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$12.2\\text{ kg}$$, $$0.800\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: true,
+          label: "$$12.2\\text{ kg}$$, $$0.762\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$14.3\\text{ kg}$$" },
-        { correct: false, label: "$$24.4\\text{ kg}$$" },
-        { correct: false, label: "$$16.8\\text{ kg}$$" },
-        { correct: true, label: "$$12.2\\text{ kg}$$" },
+        {
+          correct: false,
+          label: "$$14.3\\text{ kg}$$, $$0.755\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$24.4\\text{ kg}$$, $$0.724\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$12.2\\text{ kg}$$, $$0.800\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: true,
+          label: "$$12.2\\text{ kg}$$, $$0.762\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
   },

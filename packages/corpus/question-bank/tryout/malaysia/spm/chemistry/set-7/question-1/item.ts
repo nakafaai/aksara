@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$76.2\\%$$" },
-        { correct: false, label: "$$26.6\\%$$" },
-        { correct: true, label: "$$75.0\\%$$" },
-        { correct: false, label: "$$73.4\\%$$" },
+        { correct: false, label: "$$76.2\\%$$, $$2.40\\text{ g}$$" },
+        { correct: false, label: "$$26.6\\%$$, $$2.40\\text{ g}$$" },
+        { correct: true, label: "$$75.0\\%$$, $$2.40\\text{ g}$$" },
+        { correct: false, label: "$$75.0\\%$$, $$3.64\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$76.2\\%$$" },
-        { correct: false, label: "$$26.6\\%$$" },
-        { correct: true, label: "$$75.0\\%$$" },
-        { correct: false, label: "$$73.4\\%$$" },
+        { correct: false, label: "$$76.2\\%$$, $$2.40\\text{ g}$$" },
+        { correct: false, label: "$$26.6\\%$$, $$2.40\\text{ g}$$" },
+        { correct: true, label: "$$75.0\\%$$, $$2.40\\text{ g}$$" },
+        { correct: false, label: "$$75.0\\%$$, $$3.64\\text{ g}$$" },
       ],
     },
   },

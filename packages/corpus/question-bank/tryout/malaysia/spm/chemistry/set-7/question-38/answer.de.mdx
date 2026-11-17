@@ -1,25 +1,25 @@
-# Jede Einheit verliert beim Anknüpfen ein Wassermolekül, also geht mehr Säure hinein, als Polymer herauskommt
+# Zähle die Wiederholeinheiten, rechne das Wasser zurück, das jede verlor, und verbrenne dann jede Einheit nach ihrer ausgeglichenen Gleichung
 
-Ein Kilogramm PLA sind <InlineMath math="13{,}9\text{ mol}" /> <InlineMath math="\text{C}_3\text{H}_4\text{O}_2" />-Einheiten. **Jede Einheit stammt aus einem Milchsäuremolekül, <InlineMath math="90" /> pro Mol, das ein Wassermolekül verlor**, also braucht es <InlineMath math="1{,}25\text{ kg}" /> Säure. Jede Einheit enthält drei Kohlenstoffatome, also setzt das Kompostieren drei Kohlenstoffdioxidmoleküle je Einheit frei. Die Esterbindungen im PLA können Wasser und Mikroben spalten, deshalb ist es biologisch abbaubar.
+Die Wiederholeinheit hat <InlineMath math="M_r=72" />, also sind es <InlineMath math="1000\div72=13{,}9\text{ mol}" /> Einheiten. **Jede Einheit stammt aus einer Milchsäure, die ein Wassermolekül verlor**, also braucht man <InlineMath math="13{,}9\times90=1{,}25\text{ kg}" /> Säure. Das Kompostieren folgt <InlineMath math="\text{C}_3\text{H}_4\text{O}_2+3\text{O}_2\rightarrow3\text{CO}_2+2\text{H}_2\text{O}" />, **drei Kohlenstoffdioxid und drei Sauerstoff je Einheit**: <InlineMath math="41{,}7\text{ mol}" /> Kohlenstoffdioxid, <InlineMath math="1{,}83\text{ kg}" />, und <InlineMath math="41{,}7\text{ mol}" /> Sauerstoff, <InlineMath math="1000\text{ dm}^3=1{,}00\text{ m}^3" />.
 
 <Chart
-  title={<>Masse in jeder Stufe</>}
-  description={<>Das Verfahren braucht <InlineMath math="1{,}25\text{ kg}" /> Milchsäure für <InlineMath math="1{,}00\text{ kg}" /> PLA, das zu <InlineMath math="1{,}83\text{ kg}" /> Kohlenstoffdioxid kompostiert.</>}
+  title={<>Stoffmengen für die Charge</>}
+  description={<>Die <InlineMath math="13{,}9\text{ mol}" /> Einheiten geben <InlineMath math="41{,}7\text{ mol}" /> Kohlenstoffdioxid und verbrauchen <InlineMath math="41{,}7\text{ mol}" /> Sauerstoff.</>}
   bars="apart"
-  categories={["Benötigte Milchsäure", "Gebildetes PLA", "Kohlenstoffdioxid beim Kompostieren"]}
+  categories={["Wiederholeinheiten", "Kohlenstoffdioxid", "Verbrauchter Sauerstoff"]}
   series={[
-    { label: "Masse", mark: "bar", values: [1.25, 1.00, 1.83] },
+    { label: "Stoffmenge", mark: "bar", values: [13.9, 41.7, 41.7] },
   ]}
-  valueLabel="Masse (kg)"
+  valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n_{\text{units}}&=\tfrac{1000}{72}=13{,}9\text{ mol}\Rightarrow m(\text{C}_3\text{H}_6\text{O}_3)=13{,}9\times90=1{,}25\times10^3\text{ g}\\
-m(\text{CO}_2)&=3\times13{,}9\times44=1{,}83\times10^3\text{ g}
+n&=\tfrac{1000}{72}=13{,}9\text{ mol},\quad m(\text{C}_3\text{H}_6\text{O}_3)=13{,}9\times90=1{,}25\times10^3\text{ g}\\
+m(\text{CO}_2)&=3\times13{,}9\times44=1{,}83\times10^3\text{ g},\quad V(\text{O}_2)=3\times13{,}9\times24=1000\text{ dm}^3
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="1{,}00\text{ kg}" /> Säure übersieht das abgespaltene Wasser. **Jede Einheit ist leichter als ihre Säure**.
-- <InlineMath math="0{,}611\text{ kg}" /> gibt ein Kohlenstoffdioxid je Einheit. **Jede Einheit enthält drei Kohlenstoffatome**.
-- <InlineMath math="0{,}80\text{ kg}" /> rechnet in die falsche Richtung, als wäre das Polymer schwerer als die Säure.
+- <InlineMath math="1{,}00\text{ kg}" /> Milchsäure vergisst das abgegebene Wasser. **Jede Einheit ist leichter als die Säure, aus der sie entstand**.
+- <InlineMath math="0{,}611\text{ kg}" /> und <InlineMath math="0{,}333\text{ m}^3" /> geben ein Kohlenstoffdioxid je Einheit, doch jede Einheit hat drei Kohlenstoffatome.
+- <InlineMath math="0{,}80\text{ kg}" /> zieht das Wasser ab, statt es zurückzurechnen, doch die Säure ist schwerer als das Polymer, das sie bildet.

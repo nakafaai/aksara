@@ -13,17 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$84.4\\%$$, it dissolves in the alkali without giving off gas",
+            "$$84.4\\%$$, $$11.0\\text{ cm}^3$$, it dissolves in the alkali without giving off gas",
         },
-        { correct: false, label: "$$15.6\\%$$, it also gives off hydrogen" },
         {
           correct: false,
-          label: "$$15.6\\%$$, it does not react with the alkali",
+          label:
+            "$$15.6\\%$$, $$11.0\\text{ cm}^3$$, it also gives off hydrogen",
+        },
+        {
+          correct: false,
+          label:
+            "$$15.6\\%$$, $$10.0\\text{ cm}^3$$, it does not react with the alkali",
         },
         {
           correct: true,
           label:
-            "$$15.6\\%$$, it dissolves in the alkali without giving off gas",
+            "$$15.6\\%$$, $$11.0\\text{ cm}^3$$, it dissolves in the alkali without giving off gas",
         },
       ],
     },
@@ -32,16 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$84.4\\%$$, ia larut dalam alkali tanpa membebaskan gas",
+          label:
+            "$$84.4\\%$$, $$11.0\\text{ cm}^3$$, ia larut dalam alkali tanpa membebaskan gas",
         },
-        { correct: false, label: "$$15.6\\%$$, ia juga membebaskan hidrogen" },
         {
           correct: false,
-          label: "$$15.6\\%$$, ia tidak bertindak balas dengan alkali",
+          label:
+            "$$15.6\\%$$, $$11.0\\text{ cm}^3$$, ia juga membebaskan hidrogen",
+        },
+        {
+          correct: false,
+          label:
+            "$$15.6\\%$$, $$10.0\\text{ cm}^3$$, ia tidak bertindak balas dengan alkali",
         },
         {
           correct: true,
-          label: "$$15.6\\%$$, ia larut dalam alkali tanpa membebaskan gas",
+          label:
+            "$$15.6\\%$$, $$11.0\\text{ cm}^3$$, ia larut dalam alkali tanpa membebaskan gas",
         },
       ],
     },

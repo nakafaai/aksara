@@ -23,8 +23,8 @@ export const physicsRatings: readonly SetRating[] = [
  * two raters rated all 40 items of set 4 alone (3.19 and 3.11), and two
  * raters rated all 40 items of set 5 alone (3.54 and 3.59), and two raters
  * rated all 40 items of set 6 alone (3.81 and 3.99), and four raters rated all
- * 40 items of set 7 alone after its hardening pass, two with each of set 4's
- * step-counting prompts (3.95 and 4.00, 3.19 and 3.28), and four raters rated
+ * 40 items of set 7 alone after its fuller rewrite, two with each of set 4's
+ * step-counting prompts (3.89 and 4.08, 4.39 and 3.69), and four raters rated
  * all 40 items of set 8 alone the same way (4.08 and 3.99, 4.45 and 4.05). A
  * rewritten set replaces its entry with a rating of its new items.
  */
@@ -35,7 +35,7 @@ export const chemistryRatings: readonly SetRating[] = [
   { items: 40, level: 4.24, raters: 2 },
   { items: 40, level: 3.56, raters: 2 },
   { items: 40, level: 3.9, raters: 2 },
-  { items: 40, level: 3.6, raters: 4 },
+  { items: 40, level: 4.01, raters: 4 },
   { items: 40, level: 4.14, raters: 4 },
 ];
 

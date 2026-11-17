@@ -12,14 +12,24 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$8.3\\text{ dm}^3$$, $$0^\\circ\\text{C}$$",
+          label:
+            "$$8.3\\text{ dm}^3$$, $$3.06\\times10^4\\text{ kJ}$$, $$0^\\circ\\text{C}$$",
         },
-        { correct: true, label: "$$8.3\\text{ dm}^3$$, $$4^\\circ\\text{C}$$" },
+        {
+          correct: true,
+          label:
+            "$$8.3\\text{ dm}^3$$, $$3.06\\times10^4\\text{ kJ}$$, $$4^\\circ\\text{C}$$",
+        },
         {
           correct: false,
-          label: "$$9.1\\text{ dm}^3$$, $$4^\\circ\\text{C}$$",
+          label:
+            "$$8.3\\text{ dm}^3$$, $$3.33\\times10^4\\text{ kJ}$$, $$4^\\circ\\text{C}$$",
         },
-        { correct: false, label: "$$0\\text{ dm}^3$$, $$4^\\circ\\text{C}$$" },
+        {
+          correct: false,
+          label:
+            "$$8.3\\text{ dm}^3$$, $$30.6\\text{ kJ}$$, $$4^\\circ\\text{C}$$",
+        },
       ],
     },
     ms: {
@@ -27,14 +37,24 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$8.3\\text{ dm}^3$$, $$0^\\circ\\text{C}$$",
+          label:
+            "$$8.3\\text{ dm}^3$$, $$3.06\\times10^4\\text{ kJ}$$, $$0^\\circ\\text{C}$$",
         },
-        { correct: true, label: "$$8.3\\text{ dm}^3$$, $$4^\\circ\\text{C}$$" },
+        {
+          correct: true,
+          label:
+            "$$8.3\\text{ dm}^3$$, $$3.06\\times10^4\\text{ kJ}$$, $$4^\\circ\\text{C}$$",
+        },
         {
           correct: false,
-          label: "$$9.1\\text{ dm}^3$$, $$4^\\circ\\text{C}$$",
+          label:
+            "$$8.3\\text{ dm}^3$$, $$3.33\\times10^4\\text{ kJ}$$, $$4^\\circ\\text{C}$$",
         },
-        { correct: false, label: "$$0\\text{ dm}^3$$, $$4^\\circ\\text{C}$$" },
+        {
+          correct: false,
+          label:
+            "$$8.3\\text{ dm}^3$$, $$30.6\\text{ kJ}$$, $$4^\\circ\\text{C}$$",
+        },
       ],
     },
   },

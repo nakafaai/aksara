@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$720\\text{ cm}^3$$" },
-        { correct: false, label: "$$840\\text{ cm}^3$$" },
-        { correct: false, label: "$$1440\\text{ cm}^3$$" },
-        { correct: false, label: "$$1680\\text{ cm}^3$$" },
+        {
+          correct: true,
+          label: "$$720\\text{ cm}^3$$, $$178\\text{ mg m}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$840\\text{ cm}^3$$, $$207\\text{ mg m}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$1440\\text{ cm}^3$$, $$355\\text{ mg m}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$720\\text{ cm}^3$$, $$88.8\\text{ mg m}^{-3}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$720\\text{ cm}^3$$" },
-        { correct: false, label: "$$840\\text{ cm}^3$$" },
-        { correct: false, label: "$$1440\\text{ cm}^3$$" },
-        { correct: false, label: "$$1680\\text{ cm}^3$$" },
+        {
+          correct: true,
+          label: "$$720\\text{ cm}^3$$, $$178\\text{ mg m}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$840\\text{ cm}^3$$, $$207\\text{ mg m}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$1440\\text{ cm}^3$$, $$355\\text{ mg m}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$720\\text{ cm}^3$$, $$88.8\\text{ mg m}^{-3}$$",
+        },
       ],
     },
   },
