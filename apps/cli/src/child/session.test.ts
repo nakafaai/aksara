@@ -119,6 +119,7 @@ describe("Nakafa child process", () => {
           "HOME",
           "PATH",
           "SITE_URL",
+          "VITE_AD_SCRIPT_URL",
           "VITE_AKSARA_PREVIEW_CHILD",
           "VITE_CONVEX_SITE_URL",
           "VITE_CONVEX_URL",
@@ -149,6 +150,10 @@ describe("Nakafa child process", () => {
           HOME: "/home/aksara-test",
           PATH: "/usr/bin:/bin",
           SITE_URL: result.child.origin.toString(),
+          VITE_AD_SCRIPT_URL: new URL(
+            "/__aksara-preview/ads.js",
+            result.child.origin
+          ).toString(),
           VITE_AKSARA_PREVIEW_CHILD: "true",
           VITE_CONVEX_SITE_URL: new URL(
             "/__aksara-preview/convex-site",

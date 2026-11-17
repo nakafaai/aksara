@@ -34,6 +34,7 @@ const ChildEnvironmentSchema = Schema.Struct({
   HOME: Schema.Trimmed.check(Schema.isNonEmpty()),
   PATH: Schema.Trimmed.check(Schema.isNonEmpty()),
   SITE_URL: ChildUrlSchema,
+  VITE_AD_SCRIPT_URL: ChildUrlSchema,
   VITE_AKSARA_PREVIEW_CHILD: Schema.Literal("true"),
   VITE_CONVEX_SITE_URL: ChildUrlSchema,
   VITE_CONVEX_URL: ChildUrlSchema,
@@ -118,6 +119,12 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       HOME: home,
       PATH: path,
       SITE_URL: origin.toString(),
+      // Nakafa requires an ad script origin; the preview child points it at
+      // itself, so no third-party script reaches a preview.
+      VITE_AD_SCRIPT_URL: new URL(
+        "/__aksara-preview/ads.js",
+        origin
+      ).toString(),
       VITE_AKSARA_PREVIEW_CHILD: "true",
       VITE_CONVEX_SITE_URL: new URL(
         "/__aksara-preview/convex-site",
