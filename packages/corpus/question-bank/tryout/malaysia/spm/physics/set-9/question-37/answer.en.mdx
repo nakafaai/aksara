@@ -1,0 +1,23 @@
+# Count the half-lives, then count the atoms that decayed
+
+<InlineMath math="414" /> days is <InlineMath math="3" /> half-lives, so <InlineMath math="1.0 \div 2^3 = 0.125" /> mg is left.
+
+<Mermaid
+  title={<>The Decayed Atoms Each Gave One Alpha</>}
+  description={<>Three half-lives leave an eighth of the sample. The other seven eighths have decayed, and each of those atoms sent out one alpha particle.</>}
+  chart={`
+    flowchart LR
+      N0["414 ÷ 138 = 3 half-lives"] --> N1["Left: 1.0 ÷ 2³ = 0.125 mg"]
+      N0 --> N3["Decayed: 7/8 of them"]
+      N2["Atoms at first: 1.0 × 10⁻³ ÷ 210 × 6.02 × 10²³ = 2.87 × 10¹⁸"] --> N4["One alpha per decay: 2.5 × 10¹⁸"]
+      N3 --> N4
+  `}
+/>
+
+At first there were <InlineMath math="1.0 \times 10^{-3} \div 210 \times 6.02 \times 10^{23} = 2.87 \times 10^{18}" /> atoms. **Seven eighths** of them have decayed, each giving one alpha particle: <InlineMath math="2.5 \times 10^{18}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="3.6 \times 10^{17}" /> counts the atoms **left**, not the ones that decayed.
+- <InlineMath math="0.33\text{ mg}" /> divides by three, but three half-lives halve the sample **three times**.
+- <InlineMath math="2.9 \times 10^{18}" /> counts every atom, but an eighth has **not yet decayed**.
