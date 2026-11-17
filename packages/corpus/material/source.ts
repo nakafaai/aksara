@@ -44,6 +44,7 @@ import { lessonPhysicsHeatMaterial } from "#corpus/material/lesson/physics/heat/
 import { lessonPhysicsKinematicsMaterial } from "#corpus/material/lesson/physics/kinematics/source";
 import { lessonPhysicsMeasurementMaterial } from "#corpus/material/lesson/physics/measurement/source";
 import { lessonPhysicsMomentumMaterial } from "#corpus/material/lesson/physics/momentum/source";
+import { lessonPhysicsNuclearPhysicsMaterial } from "#corpus/material/lesson/physics/nuclear-physics/source";
 import { lessonPhysicsRenewableEnergyMaterial } from "#corpus/material/lesson/physics/renewable-energy/source";
 import { lessonPhysicsVectorMaterial } from "#corpus/material/lesson/physics/vector/source";
 import type { MaterialEntry } from "#corpus/material/registry";
@@ -93,6 +94,7 @@ const materialSourcePrograms = [
   lessonPhysicsKinematicsMaterial,
   lessonPhysicsMeasurementMaterial,
   lessonPhysicsMomentumMaterial,
+  lessonPhysicsNuclearPhysicsMaterial,
   lessonPhysicsRenewableEnergyMaterial,
   lessonPhysicsVectorMaterial,
 ];
