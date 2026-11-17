@@ -1,0 +1,26 @@
+# Find the wavelength, then the spacing, then take half of it
+
+The wavelength comes from <InlineMath math="v=f\lambda" />. The formula gives <InlineMath math="x" />, the spacing **between neighbouring quiet points**. The centre line is loud, so the first quiet point lies **halfway** to the next loud line, at <InlineMath math="\tfrac12x" />. A higher frequency means a shorter wavelength, so everything moves closer to the centre.
+
+<Chart
+  title={<>Distance from the Centre Line to the First Quiet Point</>}
+  bars="apart"
+  categories={["660 Hz", "990 Hz"]}
+  series={[
+    { label: "First quiet point", mark: "bar", values: [1.0, 0.67] },
+  ]}
+  valueLabel="Distance (m)"
+  description={<>The first quiet point is half a fringe spacing from the centre line: <InlineMath math="1.0\text{ m}" /> at <InlineMath math="660\text{ Hz}" /> and about <InlineMath math="0.67\text{ m}" /> at <InlineMath math="990\text{ Hz}" />, since the spacing shrinks as the wavelength shrinks.</>}
+/>
+
+<BlockMath math="\lambda=\frac{330}{660}=0.50\text{ m},\qquad x=\frac{\lambda D}{a}=\frac{0.50\times8.0}{2.0}=2.0\text{ m},\qquad \tfrac12x=1.0\text{ m}" />
+
+<BlockMath math="\lambda'=\frac{330}{990}=0.33\text{ m},\qquad x'=\frac{0.33\times8.0}{2.0}\approx1.3\text{ m},\qquad \tfrac12x'\approx0.67\text{ m}" />
+
+At <InlineMath math="660\text{ Hz}" /> the quiet points are <InlineMath math="2.0\text{ m}" /> apart, so the first is <InlineMath math="1.0\text{ m}" /> from the centre line. At <InlineMath math="990\text{ Hz}" /> the spacing falls to about <InlineMath math="1.3\text{ m}" /> and the first quiet point is about <InlineMath math="0.67\text{ m}" /> from the centre.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.0\text{ m}" /> is the **spacing between quiet points**, but the centre line is loud, so the first quiet point is only half that distance away.
+- <InlineMath math="1.5\text{ m}" /> makes the **spacing grow with frequency**, but a higher frequency gives a shorter wavelength and a smaller spacing.
+- <InlineMath math="0.50\text{ m}" /> takes the **wavelength itself** as the distance on the line, without scaling it by <InlineMath math="D/a" />.

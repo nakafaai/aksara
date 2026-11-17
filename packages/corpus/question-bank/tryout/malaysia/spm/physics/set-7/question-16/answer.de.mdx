@@ -1,0 +1,26 @@
+# Die Geschwindigkeit der Wellenberge relativ zum Boot verwenden
+
+Der Abstand zwischen den Wellenbergen am Boot ist **Kammabstand durch Relativgeschwindigkeit**. Fährt das Boot hinaus, nähern sich Boot und Wellenberge einander, die Geschwindigkeiten **addieren** sich. Fährt es zum Ufer, müssen die Wellenberge aufholen, die Geschwindigkeiten **subtrahieren** sich.
+
+<Chart
+  title={<>Zeit zwischen den Wellenbergen am Boot</>}
+  bars="apart"
+  categories={["Boot ruht", "Hinaus aufs Meer", "Richtung Ufer"]}
+  series={[
+    { label: "Abstand", mark: "bar", values: [2.0, 1.2, 6.0] },
+  ]}
+  valueLabel="Abstand (s)"
+  description={<>Ein Wellenberg passiert ein ruhendes Boot alle <InlineMath math="2{,}0\text{ s}" />. Fährt das Boot mit <InlineMath math="4{,}0\text{ m s}^{-1}" /> hinaus, trifft es alle <InlineMath math="1{,}2\text{ s}" /> einen, fährt es zum Ufer, überholt es nur alle <InlineMath math="6{,}0\text{ s}" /> einer.</>}
+/>
+
+<BlockMath math="6{,}0+u=\frac{12}{1{,}2}=10\text{ m s}^{-1}\Rightarrow u=4{,}0\text{ m s}^{-1}" />
+
+<BlockMath math="t=\frac{12}{6{,}0-4{,}0}=6{,}0\text{ s}" />
+
+Die Wellenberge nähern sich dem Boot mit <InlineMath math="10\text{ m s}^{-1}" />, davon sind <InlineMath math="6{,}0\text{ m s}^{-1}" /> ihre eigene Geschwindigkeit, das Boot fährt also <InlineMath math="4{,}0\text{ m s}^{-1}" />. Auf dem Rückweg holen sie nur mit <InlineMath math="2{,}0\text{ m s}^{-1}" /> auf, also passiert alle <InlineMath math="6{,}0\text{ s}" /> einer.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}2\text{ s}" /> nimmt an, dass der Abstand **nicht von der Fahrtrichtung** abhängt.
+- <InlineMath math="10\text{ m s}^{-1}" /> nimmt die **Annäherungsgeschwindigkeit als Bootsgeschwindigkeit** und vergisst, dass sich die Wellenberge auch bewegen.
+- <InlineMath math="2{,}0\text{ s}" /> ist die Periode der Welle selbst, die ein **ruhendes** Boot sehen würde.

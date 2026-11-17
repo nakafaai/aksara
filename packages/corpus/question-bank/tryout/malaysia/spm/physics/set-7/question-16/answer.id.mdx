@@ -1,0 +1,26 @@
+# Pakai kecepatan puncak gelombang relatif terhadap perahu
+
+Selang antara puncak yang mencapai perahu adalah **jarak antarpuncak dibagi kecepatan relatif**. Saat menuju laut, perahu dan puncak saling mendekat, jadi kecepatannya **dijumlahkan**. Saat menuju pantai, puncak harus menyusul, jadi kecepatannya **dikurangkan**.
+
+<Chart
+  title={<>Waktu antara Puncak Gelombang yang Mencapai Perahu</>}
+  bars="apart"
+  categories={["Perahu diam", "Menuju laut", "Menuju pantai"]}
+  series={[
+    { label: "Selang", mark: "bar", values: [2.0, 1.2, 6.0] },
+  ]}
+  valueLabel="Selang (s)"
+  description={<>Satu puncak melewati perahu yang diam tiap <InlineMath math="2{,}0\text{ s}" />. Saat menuju laut dengan <InlineMath math="4{,}0\text{ m s}^{-1}" /> perahu bertemu satu puncak tiap <InlineMath math="1{,}2\text{ s}" />, dan saat menuju pantai satu puncak menyusulnya hanya tiap <InlineMath math="6{,}0\text{ s}" />.</>}
+/>
+
+<BlockMath math="6{,}0+u=\frac{12}{1{,}2}=10\text{ m s}^{-1}\Rightarrow u=4{,}0\text{ m s}^{-1}" />
+
+<BlockMath math="t=\frac{12}{6{,}0-4{,}0}=6{,}0\text{ s}" />
+
+Puncak mendekati perahu dengan <InlineMath math="10\text{ m s}^{-1}" />, dan <InlineMath math="6{,}0\text{ m s}^{-1}" /> di antaranya adalah kecepatan puncak sendiri, jadi perahu melaju <InlineMath math="4{,}0\text{ m s}^{-1}" />. Saat kembali, puncak menyusulnya hanya dengan <InlineMath math="2{,}0\text{ m s}^{-1}" />, jadi satu puncak lewat tiap <InlineMath math="6{,}0\text{ s}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1{,}2\text{ s}" /> menganggap selangnya **tidak bergantung pada arah** perahu.
+- <InlineMath math="10\text{ m s}^{-1}" /> mengambil **kecepatan mendekat sebagai kecepatan perahu**, lupa bahwa puncak juga bergerak.
+- <InlineMath math="2{,}0\text{ s}" /> adalah periode gelombang itu sendiri, yang dilihat perahu yang **diam**.

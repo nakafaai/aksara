@@ -1,0 +1,26 @@
+# Use the speed of the crests relative to the boat
+
+The interval between crests reaching the boat is the **crest spacing divided by the relative speed**. Heading out, boat and crests approach each other, so their speeds **add**. Heading to shore, the crests must catch up, so the speeds **subtract**.
+
+<Chart
+  title={<>Time Between Crests Reaching the Boat</>}
+  bars="apart"
+  categories={["Boat still", "Heading out to sea", "Heading to shore"]}
+  series={[
+    { label: "Interval", mark: "bar", values: [2.0, 1.2, 6.0] },
+  ]}
+  valueLabel="Interval (s)"
+  description={<>A crest passes a still boat every <InlineMath math="2.0\text{ s}" />. Heading out at <InlineMath math="4.0\text{ m s}^{-1}" /> the boat meets one every <InlineMath math="1.2\text{ s}" />, and heading to shore one overtakes it only every <InlineMath math="6.0\text{ s}" />.</>}
+/>
+
+<BlockMath math="6.0+u=\frac{12}{1.2}=10\text{ m s}^{-1}\Rightarrow u=4.0\text{ m s}^{-1}" />
+
+<BlockMath math="t=\frac{12}{6.0-4.0}=6.0\text{ s}" />
+
+The crests close on the boat at <InlineMath math="10\text{ m s}^{-1}" />, of which <InlineMath math="6.0\text{ m s}^{-1}" /> is their own speed, so the boat moves at <InlineMath math="4.0\text{ m s}^{-1}" />. Going back, the crests gain on it at only <InlineMath math="2.0\text{ m s}^{-1}" />, so one passes every <InlineMath math="6.0\text{ s}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.2\text{ s}" /> assumes the interval **does not depend on the direction** of the boat.
+- <InlineMath math="10\text{ m s}^{-1}" /> takes the **closing speed as the boat's speed**, forgetting that the crests are moving too.
+- <InlineMath math="2.0\text{ s}" /> is the wave's own period, which a **stationary** boat would see.

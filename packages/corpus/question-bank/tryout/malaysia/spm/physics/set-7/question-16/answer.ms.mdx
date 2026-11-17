@@ -1,0 +1,26 @@
+# Gunakan laju puncak gelombang relatif kepada bot
+
+Sela antara puncak yang sampai ke bot ialah **jarak antara puncak dibahagi dengan laju relatif**. Apabila menuju ke laut, bot dan puncak saling mendekati, jadi lajunya **dicampur**. Apabila menuju ke pantai, puncak mesti mengejar bot, jadi lajunya **ditolak**.
+
+<Chart
+  title={<>Masa antara Puncak Gelombang yang Sampai ke Bot</>}
+  bars="apart"
+  categories={["Bot pegun", "Menuju ke laut", "Menuju ke pantai"]}
+  series={[
+    { label: "Sela", mark: "bar", values: [2.0, 1.2, 6.0] },
+  ]}
+  valueLabel="Sela (s)"
+  description={<>Satu puncak melepasi bot yang pegun setiap <InlineMath math="2.0\text{ s}" />. Apabila menuju ke laut pada <InlineMath math="4.0\text{ m s}^{-1}" /> bot bertemu satu puncak setiap <InlineMath math="1.2\text{ s}" />, dan apabila menuju ke pantai satu puncak memintasnya hanya setiap <InlineMath math="6.0\text{ s}" />.</>}
+/>
+
+<BlockMath math="6.0+u=\frac{12}{1.2}=10\text{ m s}^{-1}\Rightarrow u=4.0\text{ m s}^{-1}" />
+
+<BlockMath math="t=\frac{12}{6.0-4.0}=6.0\text{ s}" />
+
+Puncak mendekati bot pada <InlineMath math="10\text{ m s}^{-1}" />, dan <InlineMath math="6.0\text{ m s}^{-1}" /> daripadanya ialah laju puncak sendiri, jadi bot bergerak pada <InlineMath math="4.0\text{ m s}^{-1}" />. Semasa kembali, puncak mengejarnya pada <InlineMath math="2.0\text{ m s}^{-1}" /> sahaja, jadi satu puncak melepasinya setiap <InlineMath math="6.0\text{ s}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1.2\text{ s}" /> menganggap sela itu **tidak bergantung pada arah** bot.
+- <InlineMath math="10\text{ m s}^{-1}" /> mengambil **laju mendekat sebagai laju bot**, lupa bahawa puncak juga bergerak.
+- <InlineMath math="2.0\text{ s}" /> ialah tempoh gelombang itu sendiri, yang dilihat oleh bot yang **pegun**.
