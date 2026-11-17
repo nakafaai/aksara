@@ -20,11 +20,11 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "$$+7$$ to $$+2$$, $$22.2\\text{ g}$$, $$88.8\\%$$",
+          label: "$$+7$$ to $$+2$$, $$22.2\\text{ g}$$, $$89.0\\%$$",
         },
         {
           correct: false,
-          label: "$$+6$$ to $$+3$$, $$22.2\\text{ g}$$, $$88.8\\%$$",
+          label: "$$+6$$ to $$+3$$, $$22.2\\text{ g}$$, $$89.0\\%$$",
         },
       ],
     },
@@ -41,11 +41,11 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "$$+7$$ kepada $$+2$$, $$22.2\\text{ g}$$, $$88.8\\%$$",
+          label: "$$+7$$ kepada $$+2$$, $$22.2\\text{ g}$$, $$89.0\\%$$",
         },
         {
           correct: false,
-          label: "$$+6$$ kepada $$+3$$, $$22.2\\text{ g}$$, $$88.8\\%$$",
+          label: "$$+6$$ kepada $$+3$$, $$22.2\\text{ g}$$, $$89.0\\%$$",
         },
       ],
     },
