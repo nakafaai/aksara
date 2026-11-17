@@ -1,0 +1,359 @@
+export const metadata = {
+  title: "Wasser und Biomoleküle in der Zelle",
+  description:
+    "Wasser, Kohlenhydrate, Proteine, Lipide und Nukleinsäuren: wie sie entstehen und zerfallen und was sie in der Zelle leisten, mit Rechnungen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Chemische Zusammensetzung der Zelle",
+};
+
+## Woraus eine Zelle besteht
+
+Eine Zelle besteht größtenteils aus **Wasser**, etwa <InlineMath math="70\%" /> ihrer Masse. Fast der ganze Rest gehört zu vier Gruppen organischer Verbindungen: **Kohlenhydrate, Proteine, Lipide und Nukleinsäuren**. Die großen Moleküle darunter sind Polymere aus kleinen Bausteinen. Verbinden sich zwei Bausteine, wird ein Wassermolekül frei. Das heißt **Kondensation**. Wird die Bindung wieder gespalten, wird ein Wassermolekül verbraucht. Das heißt **Hydrolyse**. Hier wiegst du die Bestandteile einer echten Zelle, erhitzt Wasser und Ethanol, baust Zuckerketten und liest ein Stück eines echten Gens.
+
+Das Balkendiagramm zeigt eine Bakterienzelle, *Escherichia coli*, mit Werten aus dem Buch Cell Biology by the Numbers. Wasser macht <InlineMath math="70\%" /> der Masse aus, und die Trockenmasse von <InlineMath math="30\%" /> teilt sich in Protein, RNA, Lipide, DNA und den Rest. Jeder Balken ist dieser Trockenanteil mal sein Bruchteil an der Trockenmasse.
+
+<BarChart
+  title={<>Woraus eine Bakterienzelle besteht</>}
+  description={
+    <>
+      Anteil an der Gesamtmasse einer Zelle von Escherichia coli. Wasser hat{" "}
+      <InlineMath math="70\%" />, jeder andere Balken ist{" "}
+      <InlineMath math="30\%" /> mal sein Anteil an der Trockenmasse.
+    </>
+  }
+  yAxisLabel="Anteil an der Zellmasse (Prozent)"
+  data={[
+    { name: "Wasser", value: 70 },
+    { name: "Protein", value: 30 * 0.55 },
+    { name: "RNA", value: 30 * 0.2 },
+    { name: "Lipide", value: 30 * 0.1 },
+    { name: "DNA", value: 30 * 0.03 },
+    { name: "Rest", value: 30 * 0.12 },
+  ]}
+  chartConfig={{
+    value: {
+      label: <>Massenanteil</>,
+      colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] },
+    },
+  }}
+/>
+
+Protein ist der größte Teil der Trockenmasse, mit <InlineMath math="16{,}5\%" /> der ganzen Zelle. Im Rest stecken Polysaccharide, kleine Moleküle und Ionen. Dein eigener Körper besteht zu etwa <InlineMath math="60\%" /> bis <InlineMath math="70\%" /> aus Wasser, also macht Wasser auch den Großteil deiner Masse aus.
+
+## Wassermoleküle sind polar
+
+Ein Wassermolekül, <InlineMath math="\mathrm{H_2O}" />, besteht aus einem Sauerstoffatom, das über Atombindungen an zwei Wasserstoffatome gebunden ist. Sauerstoff zieht die gemeinsamen Elektronen stärker an als Wasserstoff. Deshalb ist das Sauerstoffende leicht negativ und jedes Wasserstoffende leicht positiv. Das Molekül ist gewinkelt, also heben sich diese Ladungen nicht auf. Wasser ist ein **polares Molekül**.
+
+<MoleculeShapeLab
+  title={<>Wasser im Vergleich mit Kohlenstoffdioxid</>}
+  description={
+    <>
+      Beide Moleküle haben polare Bindungen. Dreh jedes Molekül und vergleiche
+      den Winkel zwischen seinen Bindungen.
+    </>
+  }
+  molecules={[
+    { id: "water", name: "Wasser" },
+    { id: "carbon-dioxide", name: "Kohlenstoffdioxid" },
+  ]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Wähle ein Molekül",
+    fill: <>Kalottenmodell</>,
+    formula: <>Formel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel</>,
+    view: "Wasser- und Kohlenstoffdioxidmolekül",
+  }}
+/>
+
+Im Kohlenstoffdioxid liegen die beiden Bindungen auf einer Geraden, im Winkel von <InlineMath math="180^\circ" />. Ihre Zugkräfte heben sich auf, und das Molekül ist unpolar. Im Wasser treffen sich die Bindungen in einem Winkel von etwa <InlineMath math="104{,}5^\circ" />, deshalb bleibt die Sauerstoffseite negativ. Der leicht positive Wasserstoff eines Wassermoleküls wird vom Sauerstoff des nächsten angezogen. Diese Anziehung ist eine [Wasserstoffbrücke](/de/faecher/chemie/chemische-bindung/bindungsarten), und **Wasserstoffbrücken zwischen Wassermolekülen** erklären jede Eigenschaft in der Tabelle unten.
+
+## Was die Eigenschaften des Wassers in der Zelle leisten
+
+Jede Eigenschaft des Wassers folgt aus seiner Polarität oder seinen Wasserstoffbrücken, und jede hat eine Aufgabe in der Zelle.
+
+| Eigenschaft | Ursache | Aufgabe in der Zelle |
+| :--- | :--- | :--- |
+| Gutes Lösungsmittel | Geladene Enden ziehen Ionen und polare Moleküle an | Reaktionen laufen in Lösung ab, und Blut und Pflanzensaft transportieren gelöste Stoffe |
+| Hohe spezifische Wärmekapazität | Wasserstoffbrücken nehmen Wärme auf, bevor die Moleküle schneller werden | Zell- und Körpertemperatur ändern sich nur langsam |
+| Hohe Verdampfungswärme | Wasserstoffbrücken müssen brechen, bevor ein Molekül entweicht | Schwitzen und Transpiration tragen Wärme ab |
+| Kohäsion und Adhäsion | Wasser haftet an Wasser und an anderen polaren Oberflächen | Eine Wassersäule steigt im Xylem auf |
+
+Die **spezifische Wärmekapazität** ist die Wärme, die <InlineMath math="1\text{ g}" /> eines Stoffes um <InlineMath math="1^\circ\text{C}" /> erwärmt. Bei Wasser beträgt sie <InlineMath math="4{,}184\text{ J g}^{-1}\,^\circ\text{C}^{-1}" />, mehr als bei jeder anderen gängigen Flüssigkeit, bei Ethanol nur <InlineMath math="2{,}376\text{ J g}^{-1}\,^\circ\text{C}^{-1}" />. Gib <InlineMath math="100\text{ g}" /> jeder Flüssigkeit dieselbe Wärme und verschieb den Regler. Die Temperaturerhöhung ist <InlineMath math="\Delta T = Q / (mc)" />.
+
+<MathVisual
+  title={<>Wasser und Ethanol erwärmen</>}
+  description={
+    <>
+      Temperaturerhöhung von <InlineMath math="100\text{ g}" /> jeder
+      Flüssigkeit gegen die zugeführte Wärme in <InlineMath math="\text{kJ}" />.
+      Die steilere Gerade ist Ethanol, die flachere Wasser.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.4 }, y: { min: 0, max: 36 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.5, max: 8, value: 2.1, step: 0.1, label: "q" },
+    ],
+    objects: [
+      { id: "water", kind: "function", appearance: "primary", formula: "10x/4.184", domain: { min: 0, max: 8 } },
+      { id: "ethanol", kind: "function", appearance: "warning", formula: "10x/2.376", domain: { min: 0, max: 8 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "q", y: "0" }, { x: "q", y: "10q/2.376" }] },
+      { id: "water-now", kind: "marker", x: "q", y: "10q/4.184", appearance: "primary" },
+      { id: "ethanol-now", kind: "marker", x: "q", y: "10q/2.376", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "water-rise", formula: "10q/4.184" },
+      { key: "ethanol-rise", formula: "10q/2.376" },
+    ],
+  }}
+  labels={{
+    q: <>Zugeführte Wärme in <InlineMath math="\text{kJ}" /></>,
+    "water-rise": <>Erwärmung des Wassers in <InlineMath math="^\circ\text{C}" /></>,
+    "ethanol-rise": <>Erwärmung des Ethanols in <InlineMath math="^\circ\text{C}" /></>,
+  }}
+/>
+
+### Beispiel Wasser und Ethanol erwärmen
+
+Wie viel Wärme erwärmt <InlineMath math="100\text{ g}" /> Wasser um <InlineMath math="5{,}0^\circ\text{C}" />, und um wie viel würde dieselbe Wärme <InlineMath math="100\text{ g}" /> Ethanol erwärmen?
+
+<MathContainer>
+<BlockMath math="Q = mc\Delta T = (100)(4{,}184)(5{,}0) = 2{.}092\text{ J}" />
+<BlockMath math="\Delta T_{\text{Ethanol}} = \frac{Q}{mc} = \frac{2{.}092}{(100)(2{,}376)} = 8{,}80^\circ\text{C}" />
+</MathContainer>
+
+Prüf es am Modell: Bei <InlineMath math="2{,}1\text{ kJ}" /> steigt die Temperatur des Wassers um etwa <InlineMath math="5{,}0^\circ\text{C}" /> und die des Ethanols um etwa <InlineMath math="8{,}8^\circ\text{C}" />. Dieselbe Wärme erwärmt Ethanol **fast doppelt so stark**. Darum übersteht eine wasserreiche Zelle plötzliche Temperaturschwankungen gut.
+
+### Beispiel Kühlung durch Schweiß
+
+Um <InlineMath math="1\text{ g}" /> Wasser zu verdampfen, braucht es etwa <InlineMath math="586" /> Kalorien, also <InlineMath math="2{,}45\text{ kJ}" />. Wie viel Wärme verlässt deine Haut, wenn <InlineMath math="40\text{ g}" /> Schweiß verdunsten?
+
+<BlockMath math="Q = (40)(2{,}45) = 98\text{ kJ}" />
+
+Prüf die Größenordnung: Dieselbe Wärme würde <InlineMath math="1\text{ kg}" /> Wasser um <InlineMath math="98{.}000 / 4{.}184 = 23{,}4^\circ\text{C}" /> erwärmen. Ein wenig Schweiß trägt also **viel Wärme** aus dem Körper.
+
+## Kohlenhydrate verbinden sich unter Wasserabspaltung
+
+**Kohlenhydrate** enthalten Kohlenstoff, Wasserstoff und Sauerstoff, mit doppelt so vielen Wasserstoff- wie Sauerstoffatomen. Es gibt sie in drei Größen:
+
+- **Monosaccharide** sind einzelne Zuckerbausteine: Glucose, Fructose und Galactose, alle <InlineMath math="\mathrm{C_6H_{12}O_6}" />.
+- **Disaccharide** sind zwei Bausteine, verbunden durch eine **glykosidische Bindung**: Maltose, Saccharose und Lactose.
+- **Polysaccharide** sind lange Ketten aus Glucose: Stärke als Speicher der Pflanzen, Glykogen als Speicher in Leber und Muskeln und Cellulose in der Zellwand von Pflanzen.
+
+Jedes Disaccharid entsteht durch Kondensation und zerfällt durch Hydrolyse. Die Hydrolyse braucht ein Enzym oder Kochen mit verdünnter Säure.
+
+<MathContainer>
+<BlockMath math="\text{Glucose} + \text{Glucose} \rightleftharpoons \text{Maltose} + \text{Wasser}" />
+<BlockMath math="\text{Glucose} + \text{Fructose} \rightleftharpoons \text{Saccharose} + \text{Wasser}" />
+<BlockMath math="\text{Glucose} + \text{Galactose} \rightleftharpoons \text{Lactose} + \text{Wasser}" />
+</MathContainer>
+
+Lies jede Gleichung von links nach rechts für die Kondensation und von rechts nach links für die Hydrolyse. Eine Kette aus <InlineMath math="n" /> Glucosebausteinen hat <InlineMath math="n - 1" /> Bindungen und verliert deshalb <InlineMath math="n - 1" /> Wassermoleküle. Mit <InlineMath math="M_r" /> von Glucose <InlineMath math="180" /> und von Wasser <InlineMath math="18" /> gilt:
+
+<BlockMath math="M_r = 180n - 18(n - 1) = 162n + 18" />
+
+Verschieb den Regler, um Glucosebausteine anzuhängen. Die obere Gerade ist die Masse der getrennten Glucosemoleküle, die untere die Masse der Kette.
+
+<MathVisual
+  title={<>Eine Glucosekette bauen</>}
+  description={
+    <>
+      Relative Molekülmasse gegen die Zahl der Glucosebausteine{" "}
+      <InlineMath math="n" />. Die obere Gerade ist <InlineMath math="180n" />,
+      die untere die Kette, <InlineMath math="162n + 18" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 2300 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 12, value: 2, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "separate", kind: "function", appearance: "reference", formula: "180x", domain: { min: 1, max: 12 } },
+      { id: "chain", kind: "function", appearance: "primary", formula: "162x + 18", domain: { min: 1, max: 12 } },
+      { id: "now", kind: "marker", x: "n", y: "162n + 18", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "mass", formula: "162n + 18" },
+      { key: "water", formula: "n - 1" },
+    ],
+  }}
+  labels={{
+    n: <>Glucosebausteine <InlineMath math="n" /></>,
+    mass: <><InlineMath math="M_r" /> der Kette</>,
+    water: <>Abgespaltene Wassermoleküle</>,
+  }}
+/>
+
+### Beispiel Masse der Maltose
+
+Maltose besteht aus zwei Glucosebausteinen, also ist <InlineMath math="n = 2" />:
+
+<BlockMath math="M_r = 162(2) + 18 = 342" />
+
+Prüf es mit der Formel der Maltose, <InlineMath math="\mathrm{C_{12}H_{22}O_{11}}" />: <InlineMath math="12(12) + 22(1) + 11(16) = 342" />. Beide Wege stimmen überein, und **ein Wassermolekül** ist abgespalten worden.
+
+### Wozu die Zelle Kohlenhydrate braucht
+
+Glucose ist der wichtigste Brennstoff der Zellatmung. Stärke und Glykogen **speichern Glucose** kompakt und unlöslich, sodass der Speicher die Osmose nicht stört. Braucht die Zelle Energie, spalten Enzyme sie durch Hydrolyse wieder in Glucose. Cellulose bildet die Zellwand, die einer Pflanzenzelle ihre Form gibt.
+
+## Proteine sind Ketten aus Aminosäuren
+
+**Proteine** enthalten Kohlenstoff, Wasserstoff, Sauerstoff und Stickstoff, viele zusätzlich Schwefel. Ihre Bausteine sind **Aminosäuren**. Es gibt <InlineMath math="20" /> häufige Aminosäuren, und <InlineMath math="9" /> davon sind essenziell: Dein Körper kann sie nicht herstellen, also musst du sie mit der Nahrung aufnehmen.
+
+Zwei Aminosäuren verbinden sich durch Kondensation zu einem **Dipeptid**, verknüpft durch eine **Peptidbindung**. Viele Aminosäuren in einer Reihe bilden ein **Polypeptid**. Die Hydrolyse spaltet die Peptidbindungen wieder, zum Beispiel bei der Verdauung.
+
+<BlockMath math="\text{Aminosäure} + \text{Aminosäure} \rightleftharpoons \text{Dipeptid} + \text{Wasser}" />
+
+Die Reihenfolge der Aminosäuren ist die **Primärstruktur** eines Proteins. Die Kette windet sich zu einer Alpha-Helix oder faltet sich zu einem Beta-Faltblatt, zusammengehalten von Wasserstoffbrücken. Das ist die Sekundärstruktur. Danach faltet sich die ganze Kette zu einer räumlichen Form, der Tertiärstruktur. Manche Proteine, etwa das Hämoglobin mit seinen vier Ketten, fügen mehrere Polypeptide zu einer Quartärstruktur zusammen.
+
+### Beispiel Masse eines Dipeptids
+
+Glycin hat <InlineMath math="M_r = 75" /> und Alanin hat <InlineMath math="M_r = 89" />. Berechne die relative Molekülmasse des Dipeptids aus beiden. Eine Peptidbindung bedeutet **ein abgespaltenes Wassermolekül**.
+
+<BlockMath math="M_r = 75 + 89 - 18 = 146" />
+
+Prüf es mit den Formeln: Glycin <InlineMath math="\mathrm{C_2H_5NO_2}" /> plus Alanin <InlineMath math="\mathrm{C_3H_7NO_2}" /> minus <InlineMath math="\mathrm{H_2O}" /> ergibt <InlineMath math="\mathrm{C_5H_{10}N_2O_3}" />, und <InlineMath math="5(12) + 10(1) + 2(14) + 3(16) = 146" />.
+
+### Wozu die Zelle Proteine braucht
+
+Was ein Protein leistet, hängt von seiner **räumlichen Form** ab. Enzyme beschleunigen Reaktionen, Hämoglobin transportiert Sauerstoff, Antikörper wehren Erreger ab, Keratin und Kollagen bauen Haare und Haut auf, und manche Hormone wie Insulin sind Proteine. Hitze oder ein falscher pH-Wert können ein Protein entfalten, und ein entfaltetes Protein funktioniert nicht mehr. Diese Veränderung heißt Denaturierung.
+
+## Lipide speichern Energie und bauen Membranen
+
+**Lipide** enthalten ebenfalls Kohlenstoff, Wasserstoff und Sauerstoff, aber viel weniger Sauerstoff als Kohlenhydrate. Sie lösen sich nicht in Wasser. Die wichtigsten Gruppen sind Fette und Öle, Phospholipide, Steroide wie Cholesterin und die Geschlechtshormone sowie Wachse.
+
+Fette und Öle sind **Triglyceride**. Ein Glycerinmolekül verbindet sich durch Kondensation mit drei Fettsäuren. Dabei entstehen drei Esterbindungen, und drei Wassermoleküle werden frei:
+
+<BlockMath math="\text{Glycerin} + 3\text{ Fettsäuren} \rightleftharpoons \text{Triglycerid} + 3\text{ Wasser}" />
+
+Eine **gesättigte Fettsäure** hat zwischen ihren Kohlenstoffatomen nur Einfachbindungen. Ihre Ketten lagern sich dicht aneinander, und das Fett ist bei Raumtemperatur fest, wie Butter. Eine **ungesättigte Fettsäure** hat mindestens eine Doppelbindung, die die Kette knickt, deshalb bleibt das Fett flüssig, wie Olivenöl oder Maiskeimöl.
+
+### Beispiel Masse eines Triglycerids
+
+Glycerin hat <InlineMath math="M_r = 92" /> und Stearinsäure hat <InlineMath math="M_r = 284" />. Berechne <InlineMath math="M_r" /> des Triglycerids aus Glycerin und drei Stearinsäuren.
+
+<BlockMath math="M_r = 92 + 3(284) - 3(18) = 890" />
+
+Prüf es mit seiner Formel, <InlineMath math="\mathrm{C_{57}H_{110}O_6}" />: <InlineMath math="57(12) + 110(1) + 6(16) = 890" />. Drei Esterbindungen bedeuten **drei abgespaltene Wassermoleküle**, nicht eines.
+
+### Wozu die Zelle Lipide braucht
+
+Fett ist ein **Energiespeicher für lange Zeit**. Eine Fettschicht unter der Haut hält die Körperwärme zurück, und Fett um die Organe polstert sie. Phospholipide bilden die Doppelschicht jeder Plasmamembran. Steroide wirken als Hormone, und Wachse machen Blätter und Federn wasserabweisend.
+
+## Nukleinsäuren tragen den genetischen Code
+
+**Nukleinsäuren** enthalten Kohlenstoff, Wasserstoff, Sauerstoff, Stickstoff und Phosphor. Ihre Bausteine sind **Nukleotide**, und jedes Nukleotid hat drei Teile: einen Zucker mit fünf Kohlenstoffatomen, eine stickstoffhaltige Base und eine Phosphatgruppe.
+
+| Merkmal | DNA | RNA |
+| :--- | :--- | :--- |
+| Zucker | Desoxyribose | Ribose |
+| Basen | Adenin, Thymin, Guanin, Cytosin | Adenin, Uracil, Guanin, Cytosin |
+| Stränge | Zwei, zur Doppelhelix verdreht | Einer |
+
+In der DNA bilden Zucker und Phosphat benachbarter Nukleotide außen die beiden Rückgrate, und innen paaren sich die Basen. Die Paarung steht fest: **A paart mit T, und G paart mit C**. Jedes Basenpaar liegt <InlineMath math="0{,}34\text{ nm}" /> vom nächsten entfernt. RNA ist meist ein einzelner Strang und hat Uracil statt Thymin. Manche Viren nutzen [RNA als Erbmaterial](/de/faecher/biologie/viren-und-ihre-rolle/was-ist-ein-virus) statt DNA.
+
+Das Modell zeigt die ersten <InlineMath math="21" /> Basen des menschlichen Gens für die Betakette des Hämoglobins. Wechsle zur Version bei Sichelzellanämie und finde die eine Base, die sich unterscheidet.
+
+<DnaHelixLab
+  title={<>Der Anfang des Beta-Globin-Gens</>}
+  description={
+    <>
+      Die ersten <InlineMath math="21" /> Basen des menschlichen
+      Beta-Globin-Gens als Doppelhelix, normal und bei Sichelzellanämie. Dreh
+      die Helix und vergleiche beide.
+    </>
+  }
+  sequence="ATGGTGCATCTGACTCCTGAG"
+  variant="ATGGTGCATCTGACTCCTGTG"
+  labels={{
+    choose: "Wähle eine Version des Gens",
+    strands: { first: <>Normal</>, second: <>Sichelzelle</> },
+    differences: <>Abweichende Basen</>,
+    length: <>Gezeigte Basenpaare</>,
+    span: <>Länge</>,
+    turns: <>Windungen der Helix</>,
+    gc: <>Anteil von G und C</>,
+    viewLabel: "Ein Stück DNA aus dem Beta-Globin-Gen",
+  }}
+/>
+
+Jede Gruppe aus drei Basen codiert eine Aminosäure. Die letzte Gruppe, GAG, codiert Glutaminsäure. Bei der Sichelzellanämie wird ein A zu T, und aus der Gruppe wird GTG, das für Valin codiert. Diese eine Änderung verformt das Hämoglobin. So **speichert die DNA die Erbinformation** und steuert den Bau der Proteine: Die DNA wird in Boten-RNA umgeschrieben, und das Ribosom liest die RNA ab und verknüpft die Aminosäuren in dieser Reihenfolge.
+
+### Beispiel Basenanteile in der DNA
+
+Eine DNA-Probe enthält <InlineMath math="30\%" /> Adenin. Berechne die Anteile der drei anderen Basen.
+
+<MathContainer>
+<BlockMath math="\%T = \%A = 30\%" />
+<BlockMath math="\%G + \%C = 100\% - 60\% = 40\%" />
+<BlockMath math="\%G = \%C = 20\%" />
+</MathContainer>
+
+Prüf es: <InlineMath math="30 + 30 + 20 + 20 = 100" />, und A ist gleich T, G ist gleich C, wie es die **komplementäre Basenpaarung** verlangt.
+
+### Wie DNA zu Chromosomen verpackt wird
+
+Im Zellkern wickelt sich ein DNA-Molekül um Proteine, die **Histone**. Jede Perle aus DNA und Histonen ist ein Nukleosom, und die Kette der Nukleosomen windet sich zum Chromatin. Vor der Zellteilung verdichtet sich das Chromatin noch viel stärker zu den **Chromosomen**, die du unter dem Mikroskop siehst. Ein Chromosom ist also DNA zusammen mit Protein, nie DNA allein.
+
+## Typische Fehler in der Zellchemie
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Bei der Kondensation kommt Wasser hinzu. | Für jede neue Bindung wird ein Wassermolekül frei. Erst die Hydrolyse verbraucht Wasser. | Zähl die Bindungen und das Wasser auf der Produktseite. |
+| Ein Triglycerid spaltet ein Wassermolekül ab. | Glycerin bildet drei Esterbindungen, eine mit jeder Fettsäure. | Drei Fettsäuren bedeuten drei Wassermoleküle. |
+| DNA und RNA haben dieselben Basen. | RNA hat Uracil statt Thymin. | Such T in der DNA und U in der RNA. |
+| <InlineMath math="\%A = \%G" /> in der DNA. | A paart mit T, also <InlineMath math="\%A = \%T" />. | Paare A mit T und G mit C. |
+| Wasser ist polar, weil seine Bindungen polar sind. | Kohlenstoffdioxid hat polare Bindungen und ist trotzdem unpolar. Wasser ist polar, weil es gewinkelt ist. | Frag dich, ob sich die Zugkräfte aufheben. |
+
+Der erste Fehler kostet bei Massenaufgaben die meisten Punkte. **Jede neue Bindung spaltet ein Wassermolekül ab**, also zieh für jede Bindung <InlineMath math="18" /> ab.
+
+## Übungen zur Zellchemie
+
+Die Aufgaben beginnen mit einer Wortgleichung und enden mit einem Triglycerid. **Zähl zuerst die Bindungen**, dann das Wasser.
+
+1. Schreib die Wortgleichung für die Bildung von Lactose. Nenne die Bindung, die entsteht, und die Reaktion, die sie spaltet.
+
+2. Ein Polypeptid besteht aus <InlineMath math="150" /> Aminosäuren. Wie viele Peptidbindungen hat es, und wie viele Wassermoleküle braucht man, um es vollständig in Aminosäuren zu hydrolysieren?
+
+3. Eine DNA-Probe enthält <InlineMath math="18\%" /> Guanin. Berechne die Anteile von Adenin, Thymin und Cytosin.
+
+4. Ölsäure, <InlineMath math="\mathrm{C_{18}H_{34}O_2}" />, hat <InlineMath math="M_r = 282" />. Berechne <InlineMath math="M_r" /> des Triglycerids aus Glycerin, <InlineMath math="M_r = 92" />, und drei Ölsäuren. Ist dieses Fett bei Raumtemperatur fest oder flüssig?
+
+### Lösungen
+
+**Lösung 1**: Glucose und Galactose verbinden sich durch Kondensation:
+
+<BlockMath math="\text{Glucose} + \text{Galactose} \rightarrow \text{Lactose} + \text{Wasser}" />
+
+Die Bindung ist eine **glykosidische Bindung**. Die Hydrolyse spaltet sie und verbraucht dabei ein Wassermolekül, entweder mit dem Enzym Lactase oder durch Kochen mit verdünnter Säure.
+
+**Lösung 2**: Eine Kette aus <InlineMath math="n" /> Aminosäuren hat <InlineMath math="n - 1" /> Peptidbindungen:
+
+<BlockMath math="150 - 1 = 149" />
+
+Das Polypeptid hat <InlineMath math="149" /> Peptidbindungen, und jede gespaltene Bindung verbraucht ein Wassermolekül. Die vollständige Hydrolyse braucht also <InlineMath math="149" /> **Wassermoleküle**.
+
+**Lösung 3**: G paart mit C, und A paart mit T:
+
+<MathContainer>
+<BlockMath math="\%C = \%G = 18\%" />
+<BlockMath math="\%A + \%T = 100\% - 36\% = 64\%" />
+<BlockMath math="\%A = \%T = 32\%" />
+</MathContainer>
+
+Prüf es: <InlineMath math="32 + 32 + 18 + 18 = 100" />.
+
+**Lösung 4**: Drei Esterbindungen spalten drei Wassermoleküle ab:
+
+<BlockMath math="M_r = 92 + 3(282) - 3(18) = 884" />
+
+Prüf es mit der Formel <InlineMath math="\mathrm{C_{57}H_{104}O_6}" />: <InlineMath math="57(12) + 104(1) + 6(16) = 884" />. Ölsäure hat <InlineMath math="34" /> Wasserstoffatome, Stearinsäure <InlineMath math="36" />, also hat Ölsäure eine Doppelbindung. Das Fett ist **ungesättigt** und bei Raumtemperatur flüssig, wie Olivenöl.
