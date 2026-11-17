@@ -1,9 +1,35 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on how the body defends and regulates itself: immunity, coordination and homeostasis, chapters 11 to 13 of the DSKP. */
 export const kssmForm4PhysiologyControlNodes = [
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-immunity-in-humans-immunity",
+        level: "lesson",
+        materialKeys: ["lesson.biology.immunity"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-immunity-in-humans",
+    materialCard: {
+      de: {
+        description: "Erkläre Abwehrlinien, Antikörper und Impfung.",
+        title: "Das Immunsystem des Menschen",
+      },
+      en: {
+        description: "Explain the lines of defence, antibodies and vaccines.",
+        title: "Immunity in Humans",
+      },
+      id: {
+        description: "Jelaskan lapis pertahanan, antibodi, dan vaksin.",
+        title: "Sistem Kekebalan Tubuh Manusia",
+      },
+      ms: {
+        description: "Terangkan barisan pertahanan, antibodi dan vaksin.",
+        title: "Keimunan Manusia",
+      },
+    },
     order: 110,
     translations: {
       de: {
