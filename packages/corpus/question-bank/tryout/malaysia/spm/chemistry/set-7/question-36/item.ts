@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$8.19^\\circ\\text{C}$$" },
-        { correct: true, label: "$$5.46^\\circ\\text{C}$$" },
-        { correct: false, label: "$$13.6^\\circ\\text{C}$$" },
-        { correct: false, label: "$$9.10^\\circ\\text{C}$$" },
+        {
+          correct: false,
+          label: "$$8.19^\\circ\\text{C}$$, $$0.20\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: true,
+          label: "$$5.46^\\circ\\text{C}$$, $$0.20\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$5.46^\\circ\\text{C}$$, $$0.60\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$9.10^\\circ\\text{C}$$, $$0.20\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$8.19^\\circ\\text{C}$$" },
-        { correct: true, label: "$$5.46^\\circ\\text{C}$$" },
-        { correct: false, label: "$$13.6^\\circ\\text{C}$$" },
-        { correct: false, label: "$$9.10^\\circ\\text{C}$$" },
+        {
+          correct: false,
+          label: "$$8.19^\\circ\\text{C}$$, $$0.20\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: true,
+          label: "$$5.46^\\circ\\text{C}$$, $$0.20\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$5.46^\\circ\\text{C}$$, $$0.60\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label: "$$9.10^\\circ\\text{C}$$, $$0.20\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
   },

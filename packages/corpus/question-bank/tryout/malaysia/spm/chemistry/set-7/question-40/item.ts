@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$350\\text{ cm}^3$$, $$427\\text{ g}$$" },
-        { correct: true, label: "$$368\\text{ cm}^3$$, $$427\\text{ g}$$" },
-        { correct: false, label: "$$368\\text{ cm}^3$$, $$500\\text{ g}$$" },
-        { correct: false, label: "$$368\\text{ cm}^3$$, $$409\\text{ g}$$" },
+        {
+          correct: false,
+          label: "$$350\\text{ cm}^3$$, $$427\\text{ g}$$, $$64.8\\%$$",
+        },
+        {
+          correct: true,
+          label: "$$368\\text{ cm}^3$$, $$427\\text{ g}$$, $$64.8\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$368\\text{ cm}^3$$, $$500\\text{ g}$$, $$70.0\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$368\\text{ cm}^3$$, $$409\\text{ g}$$, $$67.7\\%$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$350\\text{ cm}^3$$, $$427\\text{ g}$$" },
-        { correct: true, label: "$$368\\text{ cm}^3$$, $$427\\text{ g}$$" },
-        { correct: false, label: "$$368\\text{ cm}^3$$, $$500\\text{ g}$$" },
-        { correct: false, label: "$$368\\text{ cm}^3$$, $$409\\text{ g}$$" },
+        {
+          correct: false,
+          label: "$$350\\text{ cm}^3$$, $$427\\text{ g}$$, $$64.8\\%$$",
+        },
+        {
+          correct: true,
+          label: "$$368\\text{ cm}^3$$, $$427\\text{ g}$$, $$64.8\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$368\\text{ cm}^3$$, $$500\\text{ g}$$, $$70.0\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$368\\text{ cm}^3$$, $$409\\text{ g}$$, $$67.7\\%$$",
+        },
       ],
     },
   },

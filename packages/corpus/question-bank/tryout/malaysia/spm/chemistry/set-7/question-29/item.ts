@@ -10,21 +10,45 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "all of it, $$17.6\\text{ g}$$" },
-        { correct: false, label: "half of it, $$4.40\\text{ g}$$" },
-        { correct: true, label: "half of it, $$8.80\\text{ g}$$" },
-        { correct: false, label: "one third of it, $$5.87\\text{ g}$$" },
+        {
+          correct: false,
+          label: "half of it, $$8.80\\text{ g}$$, $$0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "half of it, $$6.60\\text{ g}$$, $$200\\text{ cm}^3$$",
+        },
+        {
+          correct: true,
+          label: "half of it, $$6.60\\text{ g}$$, $$50.0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "one third of it, $$4.40\\text{ g}$$, $$33.3\\text{ cm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "semuanya, $$17.6\\text{ g}$$" },
-        { correct: false, label: "separuh daripadanya, $$4.40\\text{ g}$$" },
-        { correct: true, label: "separuh daripadanya, $$8.80\\text{ g}$$" },
         {
           correct: false,
-          label: "satu pertiga daripadanya, $$5.87\\text{ g}$$",
+          label: "separuh daripadanya, $$8.80\\text{ g}$$, $$0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "separuh daripadanya, $$6.60\\text{ g}$$, $$200\\text{ cm}^3$$",
+        },
+        {
+          correct: true,
+          label:
+            "separuh daripadanya, $$6.60\\text{ g}$$, $$50.0\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "satu pertiga daripadanya, $$4.40\\text{ g}$$, $$33.3\\text{ cm}^3$$",
         },
       ],
     },
