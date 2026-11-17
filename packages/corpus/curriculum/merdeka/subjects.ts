@@ -8,6 +8,7 @@ import { merdekaClass11ChemistryTopicNodes } from "#corpus/curriculum/merdeka/to
 import { merdekaClass11MathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-11/mathematics";
 import { merdekaClass11PhysicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-11/physics";
 import { merdekaClass12AdvancedMathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/advanced";
+import { merdekaClass12BiologyTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/biology";
 import { merdekaClass12ChemistryTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/chemistry";
 import { merdekaClass12MathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/mathematics";
 import { merdekaClass12PhysicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/physics";
@@ -194,6 +195,18 @@ export const merdekaClass11SubjectNodes = [
 ];
 
 export const merdekaClass12SubjectNodes = [
+  subjectNode({
+    children: merdekaClass12BiologyTopicNodes,
+    key: "class-12-biology",
+    materialDomain: "biology",
+    order: 10,
+    translations: {
+      de: { routeSlug: "biologie", title: "Biologie" },
+      en: { routeSlug: "biology", title: "Biology" },
+      id: { routeSlug: "biologi", title: "Biologi" },
+      ms: { routeSlug: "biologi", title: "Biologi" },
+    },
+  }),
   subjectNode({
     children: merdekaClass12ChemistryTopicNodes,
     key: "class-12-chemistry",
