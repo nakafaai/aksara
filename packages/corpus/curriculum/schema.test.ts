@@ -1,6 +1,14 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Exit, Predicate, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Exit,
+  HashSet,
+  Predicate,
+  Record,
+  Schema,
+} from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
@@ -186,21 +194,21 @@ describe("curriculum schema", () => {
         ]);
 
         const curricula = yield* decodeCurriculumCatalog();
-        const registered = new Set(
+        const registered = HashSet.fromIterable(
           Arr.flatMap(curricula, ({ tree }) => exportedNodeKeys(tree))
         );
         const nodeModules = Arr.filter(
           Arr.map(modules, ({ exports, file }) => ({
             file,
             keys: exportedNodeKeys(
-              Predicate.isObject(exports) ? Object.values(exports) : []
+              Predicate.isObject(exports) ? Record.values(exports) : []
             ),
           })),
           ({ keys }) => keys.length > 0
         );
         const unregistered = Arr.flatMap(nodeModules, ({ file, keys }) =>
           Arr.map(
-            Arr.filter(keys, (key) => !registered.has(key)),
+            Arr.filter(keys, (key) => !HashSet.has(registered, key)),
             (key) => `${file}: ${key}`
           )
         );
