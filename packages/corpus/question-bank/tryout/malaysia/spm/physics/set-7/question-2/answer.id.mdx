@@ -1,35 +1,28 @@
-# Baca pangkatnya dari rasio untuk satu penggandaan, lalu skalakan dengan pangkat itu
+# Dua galat mendorong ke arah yang sama, jadi keduanya harus dibuang sebelum neraca kalor
 
-Pada hukum pangkat, mengalikan <InlineMath math="d" /> dengan suatu faktor mengalikan <InlineMath math="t" /> dengan **faktor itu dipangkatkan <InlineMath math="n" />**. Melipatduakan diameter dari <InlineMath math="2{,}0" /> ke <InlineMath math="4{,}0\text{ mm}" /> membagi waktunya dengan <InlineMath math="320\div56{,}6=5{,}66" />, begitu pula penggandaan berikutnya. Karena <InlineMath math="2^{2{,}5}=5{,}66" />, pangkatnya <InlineMath math="n=-2{,}5" />. Lalu skalakan dari satu titik yang diketahui, jangan dengan tebakan garis lurus antartitik.
+Voltmeter yang membaca <InlineMath math="0{,}4\text{ V}" /> tanpa arus punya **galat nol positif**: setiap bacaan <InlineMath math="0{,}4\text{ V}" /> terlalu tinggi, jadi harus dikurangkan. Energi pemanas juga tidak seluruhnya tinggal di minyak: sebagian bocor ke ruangan selama pemanasan. Hanya energi yang **disimpan** minyak yang sama dengan <InlineMath math="mc\Delta\theta" />. Kedua kesalahan membuat energi tampak lebih besar, sehingga nilai mentah <InlineMath math="c" /> terlalu tinggi.
 
 <Chart
-  title={<>Waktu Pasir Habis Mengalir lewat Tiap Lubang</>}
-  categories={["2,0 mm", "4,0 mm", "8,0 mm"]}
+  title={<>Kalor Jenis Dihitung dengan Tiga Cara</>}
+  bars="apart"
+  categories={["Dikoreksi", "Abaikan kalor hilang", "Bacaan mentah"]}
   series={[
-    { label: "Waktu", mark: "line", values: [320, 56.6, 10.0] },
+    { label: "Nilai", mark: "bar", values: [2133, 2400, 2480] },
   ]}
-  valueLabel="Waktu (s)"
-  description={<>Waktunya turun dari <InlineMath math="320" /> s untuk lubang <InlineMath math="2{,}0" /> mm ke <InlineMath math="56{,}6" /> s untuk <InlineMath math="4{,}0" /> mm dan <InlineMath math="10{,}0" /> s untuk <InlineMath math="8{,}0" /> mm. Tiap kali diameter berlipat dua, waktunya dibagi sekitar <InlineMath math="5{,}66" />.</>}
+  valueLabel="c (J/(kg °C))"
+  description={<>Dengan kedua koreksi, kalor jenis minyak sekitar <InlineMath math="2{,}1\times10^{3}" />. Mengabaikan kalor yang hilang memberi <InlineMath math="2{,}4\times10^{3}" />, dan bacaan mentah <InlineMath math="2{,}5\times10^{3}" />, sekitar <InlineMath math="16\%" /> terlalu tinggi.</>}
 />
 
-<BlockMath math="2^{n}=\frac{56{,}6}{320}=0{,}177\ \Rightarrow\ n=-2{,}5,\qquad t_{5{,}0}=320\times\left(\frac{5{,}0}{2{,}0}\right)^{-2{,}5}=\frac{320}{2{,}5^{2{,}5}}=\frac{320}{9{,}88}\approx32\text{ s}" />
+<BlockMath math="V=12{,}4-0{,}4=12{,}0\text{ V},\qquad E=VIt=12{,}0\times3{,}0\times400=14\,400\text{ J},\qquad E_{\text{hilang}}=4{,}0\times400=1600\text{ J}" />
 
-Lubangnya <InlineMath math="2{,}5" /> kali lebih lebar dari lubang <InlineMath math="2{,}0\text{ mm}" />, jadi waktunya dibagi <InlineMath math="2{,}5^{2{,}5}\approx9{,}9" />, sekitar <InlineMath math="32\text{ s}" />.
+<BlockMath math="c=\frac{14\,400-1600}{0{,}40\times15{,}0}\approx2{,}1\times10^{3}\text{ J kg}^{-1}\text{ °C}^{-1},\qquad c_{\text{mentah}}=\frac{12{,}4\times3{,}0\times400}{0{,}40\times15{,}0}=2{,}48\times10^{3}\text{ J kg}^{-1}\text{ °C}^{-1}" />
 
-<BlockMath math="\frac{t_2}{t_1}=\left(\frac{d_2}{d_1}\right)^{-2{,}5}=\frac12\Rightarrow\frac{d_2}{d_1}=2^{1/2{,}5}=2^{0{,}4}\approx1{,}32" />
+<BlockMath math="\frac{2480-2133}{2133}\approx16\%" />
 
-Karena <InlineMath math="t\propto d^{-2{,}5}" />, membuat waktu setengahnya hanya butuh diameter bertambah <InlineMath math="2^{0{,}4}" />, sekitar <InlineMath math="32\%" />, untuk lubang awal mana pun.
-
-<BlockMath math="\text{laju}=\frac{400\text{ g}}{32\text{ s}}=12{,}5\text{ g s}^{-1}" />
-
-Pasir <InlineMath math="0{,}40\text{ kg}" /> itu mengalir lewat lubang <InlineMath math="5{,}0\text{ mm}" /> dalam <InlineMath math="32\text{ s}" />, rata-rata <InlineMath math="12{,}5\text{ g}" /> tiap detik.
-
-<BlockMath math="t_{10}=10{,}0\times\left(\frac{8{,}0}{10}\right)^{2{,}5}=10{,}0\times0{,}572\approx5{,}7\text{ s}" />
-
-Dengan menskalakan dari pembacaan <InlineMath math="8{,}0\text{ mm}" />, lubang <InlineMath math="10\text{ mm}" /> mengosongkan corong dalam sekitar <InlineMath math="5{,}7\text{ s}" />.
+Beda potensial sebenarnya <InlineMath math="12{,}0\text{ V}" />, dan kalor jenis minyak sekitar <InlineMath math="2{,}1\times10^{3}" /> J per kg per °C. Memakai bacaan voltmeter mentah dan mengabaikan kalor yang hilang akan memberi nilai sekitar <InlineMath math="16\%" /> terlalu tinggi.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="n=-2" /> membuat waktu turun **empat kali untuk tiap penggandaan**, padahal <InlineMath math="320/56{,}6=5{,}66=2^{2{,}5}" />, dan kesalahan itu terbawa ke laju dan faktornya.
-- <InlineMath math="\times2{,}0" /> menganggap waktu **berbanding terbalik dengan diameter**, padahal waktu turun menurut diameter pangkat <InlineMath math="2{,}5" />.
-- <InlineMath math="n=-3" /> membuat waktu turun **delapan kali untuk tiap penggandaan**, yang dibantah oleh pembacaan <InlineMath math="56{,}6\text{ s}" /> dan <InlineMath math="10{,}0\text{ s}" />.
+- <InlineMath math="12{,}8\text{ V}" /> **menambahkan galat nol** alih-alih mengurangkannya, seolah-olah meter membaca terlalu rendah.
+- <InlineMath math="2{,}4\times10^{3}" /> mengoreksi voltmeter tetapi **mengabaikan kalor yang hilang** ke ruangan, sehingga menghitung energi yang tidak pernah disimpan minyak.
+- <InlineMath math="13\%" /> membandingkan dengan nilai mentah yang **sudah mengoreksi voltmeter**, padahal bacaan mentah masih membawa galat nol.

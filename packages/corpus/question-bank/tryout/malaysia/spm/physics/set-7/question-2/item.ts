@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$, $$\\times1.32$$ and $$5.7\\text{ s}$$",
+            "$$12.0\\text{ V}$$, $$2.1\\times10^{3}\\text{ J kg}^{-1}\\text{ °C}^{-1}$$ and $$16\\%$$",
         },
         {
           correct: false,
           label:
-            "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$, $$\\times1.41$$ and $$6.4\\text{ s}$$",
+            "$$12.8\\text{ V}$$, $$2.3\\times10^{3}\\text{ J kg}^{-1}\\text{ °C}^{-1}$$ and $$8\\%$$",
         },
         {
           correct: false,
           label:
-            "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$, $$\\times2.0$$ and $$5.7\\text{ s}$$",
+            "$$12.0\\text{ V}$$, $$2.4\\times10^{3}\\text{ J kg}^{-1}\\text{ °C}^{-1}$$ and $$3\\%$$",
         },
         {
           correct: false,
           label:
-            "$$n=-3$$, $$20\\text{ g s}^{-1}$$, $$\\times1.26$$ and $$5.1\\text{ s}$$",
+            "$$12.0\\text{ V}$$, $$2.1\\times10^{3}\\text{ J kg}^{-1}\\text{ °C}^{-1}$$ and $$13\\%$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$, $$\\times1.32$$ dan $$5.7\\text{ s}$$",
+            "$$12.0\\text{ V}$$, $$2.1\\times10^{3}\\text{ J kg}^{-1}\\text{ °C}^{-1}$$ dan $$16\\%$$",
         },
         {
           correct: false,
           label:
-            "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$, $$\\times1.41$$ dan $$6.4\\text{ s}$$",
+            "$$12.8\\text{ V}$$, $$2.3\\times10^{3}\\text{ J kg}^{-1}\\text{ °C}^{-1}$$ dan $$8\\%$$",
         },
         {
           correct: false,
           label:
-            "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$, $$\\times2.0$$ dan $$5.7\\text{ s}$$",
+            "$$12.0\\text{ V}$$, $$2.4\\times10^{3}\\text{ J kg}^{-1}\\text{ °C}^{-1}$$ dan $$3\\%$$",
         },
         {
           correct: false,
           label:
-            "$$n=-3$$, $$20\\text{ g s}^{-1}$$, $$\\times1.26$$ dan $$5.1\\text{ s}$$",
+            "$$12.0\\text{ V}$$, $$2.1\\times10^{3}\\text{ J kg}^{-1}\\text{ °C}^{-1}$$ dan $$13\\%$$",
         },
       ],
     },

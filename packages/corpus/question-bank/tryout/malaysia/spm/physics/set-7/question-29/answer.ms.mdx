@@ -1,31 +1,28 @@
-# Cari kedudukan yang masih mempunyai laluan lengkap, kemudian biarkan fius mengehadkan gegelung pengganti
+# Mencapai takat lebur tidak cukup: dawai juga mesti diberi haba pendamnya
 
-Pada <InlineMath math="240\text{ V}" /> yang tetap, kuasa ialah <InlineMath math="P=\dfrac{V^2}{R}" />. Selepas kerosakan, arus hanya boleh mengalir melalui laluan yang **mengelakkan gegelung yang putus**: laluan sesiri melaluinya, MEDIUM ialah gegelung yang putus itu sendiri, dan hanya HIGH yang masih berfungsi, melalui gegelung <InlineMath math="60\,\Omega" />. Gegelung pengganti berada selari dengan gegelung <InlineMath math="60\,\Omega" /> pada HIGH, jadi kedua-dua arus dicampur, dan bersama-sama mesti kekal dalam <InlineMath math="13\text{ A}" />.
+Arus memanaskan dawai pada <InlineMath math="P=I^2R" />. Untuk putus, dawai mesti **dipanaskan ke takat leburnya** dahulu dan kemudian **dileburkan**, yang memerlukan haba pendam juga, pada suhu tetap <InlineMath math="327" /> °C. Arus mantap yang lebih kecil tidak pernah meleburkan dawai jika haba yang dihasilkan boleh keluar secepat ia dihasilkan, jadi had selamat diperoleh dengan menyamakan <InlineMath math="I^2R" /> dengan kehilangan haba terbesar.
 
 <Chart
-  title={<>Kuasa pada Setiap Kedudukan Suis Sebelum dan Selepas Kerosakan</>}
+  title={<>Tenaga untuk Meleburkan Dawai Fius</>}
   bars="apart"
-  categories={["LOW (sesiri)", "MEDIUM (40 Ω)", "HIGH (selari)"]}
+  categories={["Panaskan ke takat lebur", "Leburkan", "Jumlah"]}
   series={[
-    { label: "Sebelum", mark: "bar", values: [576, 1440, 2400] },
-    { label: "Selepas", mark: "bar", values: [0, 0, 960] },
+    { label: "Tenaga", mark: "bar", values: [1.95, 1.25, 3.2] },
   ]}
-  valueLabel="Kuasa (W)"
-  description={<>Sebelum kerosakan, kedudukan suis memberi <InlineMath math="576" />, <InlineMath math="1440" /> dan <InlineMath math="2400\text{ W}" />. Dengan gegelung <InlineMath math="40\,\Omega" /> terputus, LOW dan MEDIUM tidak memberi apa-apa dan HIGH hanya memberi <InlineMath math="960\text{ W}" /> daripada gegelung <InlineMath math="60\,\Omega" />.</>}
+  valueLabel="Tenaga (J)"
+  description={<>Memanaskan dawai ke <InlineMath math="327" /> °C memerlukan <InlineMath math="1.95\text{ J}" /> dan meleburkannya <InlineMath math="1.25\text{ J}" /> lagi, <InlineMath math="3.2\text{ J}" /> semuanya, yang dibekalkan oleh <InlineMath math="8.0\text{ W}" /> dalam <InlineMath math="0.40\text{ s}" />.</>}
 />
 
-<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad\text{selepas kerosakan: }P_{\text{HIGH}}=\frac{240^2}{60}=960\text{ W}" />
+<BlockMath math="P=I^2R=20^2\times0.020=8.0\text{ W}" />
 
-<BlockMath math="I_{60}=\frac{240}{60}=4.0\text{ A},\qquad I_R\le13-4.0=9.0\text{ A}\Rightarrow R\ge\frac{240}{9.0}\approx27\,\Omega" />
+<BlockMath math="Q=mc\Delta\theta+mL=5.0\times10^{-5}\times130\times300+5.0\times10^{-5}\times2.5\times10^{4}=1.95+1.25=3.2\text{ J},\qquad t=\frac{3.2}{8.0}=0.40\text{ s}" />
 
-Sebelum kerosakan LOW memberi <InlineMath math="576\text{ W}" />. Selepasnya hanya HIGH berfungsi, memberi <InlineMath math="960\text{ W}" />. Gegelung <InlineMath math="60\,\Omega" /> sudah mengambil <InlineMath math="4.0\text{ A}" /> pada HIGH, jadi gegelung pengganti hanya boleh mengambil paling banyak <InlineMath math="9.0\text{ A}" />, iaitu sekurang-kurangnya kira-kira <InlineMath math="27\,\Omega" />.
+<BlockMath math="I^2(0.020)=3.0\Rightarrow I=\sqrt{150}\approx12\text{ A}" />
 
-<BlockMath math="P_{\text{HIGH}}=VI=240\times13=3.1\text{ kW}" />
-
-Dengan gegelung pengganti terkecil yang dibenarkan, HIGH menarik tepat <InlineMath math="13\text{ A}" /> fius, jadi ia memberi kira-kira <InlineMath math="3.1\text{ kW}" />: <InlineMath math="960\text{ W}" /> daripada gegelung <InlineMath math="60\,\Omega" /> dan kira-kira <InlineMath math="2.2\text{ kW}" /> daripada gegelung baharu.
+Kerosakan itu memanaskan dawai pada <InlineMath math="8.0\text{ W}" /> dan meleburkannya putus dalam <InlineMath math="0.40\text{ s}" />. Arus mantap sehingga kira-kira <InlineMath math="12\text{ A}" /> tidak pernah meleburkannya, kerana dawai membuang haba secepat arus menghasilkannya.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="576\text{ W}" /> selepas kerosakan menganggap **laluan sesiri masih berfungsi**, tetapi ia melalui gegelung yang putus, jadi tiada arus mengalir.
-- <InlineMath math="18\,\Omega" /> memberi gegelung pengganti **seluruh <InlineMath math="13\text{ A}" />**, lupa <InlineMath math="4.0\text{ A}" /> yang ditarik gegelung <InlineMath math="60\,\Omega" /> di sebelahnya pada HIGH.
-- <InlineMath math="1.4\text{ kW}" /> menggunakan **kedudukan MEDIUM**, tetapi kedudukan itu ialah gegelung <InlineMath math="40\,\Omega" /> yang putus itu sendiri.
+- <InlineMath math="0.24\text{ s}" /> hanya **memanaskan dawai ke takat leburnya**, lupa haba pendam yang diperlukan untuk meleburkannya.
+- <InlineMath math="0.40\text{ W}" /> menggunakan **<InlineMath math="P=IR" />**, yang bukan kuasa, dan kesilapan itu terbawa ke masa dan arus.
+- <InlineMath math="0.16\text{ s}" /> hanya membekalkan **haba pendam**, seolah-olah dawai sudah berada pada <InlineMath math="327" /> °C.

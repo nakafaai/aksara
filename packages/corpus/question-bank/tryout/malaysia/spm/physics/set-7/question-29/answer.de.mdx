@@ -1,31 +1,28 @@
-# Prüfen, welche Stellungen noch einen geschlossenen Weg haben, und dann die Sicherung den Ersatz begrenzen lassen
+# Den Schmelzpunkt zu erreichen genügt nicht: Der Draht braucht auch seine Schmelzwärme
 
-Bei festen <InlineMath math="240\text{ V}" /> gilt <InlineMath math="P=\dfrac{V^2}{R}" />. Nach dem Defekt kann Strom nur auf Wegen fließen, die **die kaputte Spule umgehen**: Der Reihenweg führt durch sie, MEDIUM ist die kaputte Spule selbst, und nur HIGH funktioniert noch, über die <InlineMath math="60\,\Omega" />-Spule. Eine Ersatzspule liegt auf HIGH parallel zur <InlineMath math="60\,\Omega" />-Spule, die Ströme addieren sich also und müssen zusammen unter <InlineMath math="13\text{ A}" /> bleiben.
+Der Strom heizt den Draht mit <InlineMath math="P=I^2R" />. Um durchzubrennen, muss der Draht erst **auf den Schmelzpunkt erwärmt** und dann **geschmolzen** werden, was zusätzlich die Schmelzwärme bei konstanten <InlineMath math="327" /> °C kostet. Ein kleinerer Dauerstrom schmilzt den Draht nie, wenn die erzeugte Wärme so schnell abfließt, wie sie entsteht, die sichere Grenze folgt also aus <InlineMath math="I^2R" /> gleich dem größten Wärmeverlust.
 
 <Chart
-  title={<>Leistung jeder Schalterstellung vor und nach dem Defekt</>}
+  title={<>Energie zum Schmelzen des Sicherungsdrahts</>}
   bars="apart"
-  categories={["LOW (Reihe)", "MEDIUM (40 Ω)", "HIGH (parallel)"]}
+  categories={["Bis zum Schmelzpunkt", "Schmelzen", "Gesamt"]}
   series={[
-    { label: "Vorher", mark: "bar", values: [576, 1440, 2400] },
-    { label: "Nachher", mark: "bar", values: [0, 0, 960] },
+    { label: "Energie", mark: "bar", values: [1.95, 1.25, 3.2] },
   ]}
-  valueLabel="Leistung (W)"
-  description={<>Vor dem Defekt liefern die Stellungen <InlineMath math="576" />, <InlineMath math="1440" /> und <InlineMath math="2400\text{ W}" />. Mit unterbrochener <InlineMath math="40\,\Omega" />-Spule liefern LOW und MEDIUM nichts, HIGH nur die <InlineMath math="960\text{ W}" /> der <InlineMath math="60\,\Omega" />-Spule.</>}
+  valueLabel="Energie (J)"
+  description={<>Den Draht auf <InlineMath math="327" /> °C zu erwärmen kostet <InlineMath math="1{,}95\text{ J}" />, ihn zu schmelzen weitere <InlineMath math="1{,}25\text{ J}" />, zusammen <InlineMath math="3{,}2\text{ J}" />, die <InlineMath math="8{,}0\text{ W}" /> in <InlineMath math="0{,}40\text{ s}" /> liefern.</>}
 />
 
-<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad\text{nach dem Defekt: }P_{\text{HIGH}}=\frac{240^2}{60}=960\text{ W}" />
+<BlockMath math="P=I^2R=20^2\cdot0{,}020=8{,}0\text{ W}" />
 
-<BlockMath math="I_{60}=\frac{240}{60}=4{,}0\text{ A},\qquad I_R\le13-4{,}0=9{,}0\text{ A}\Rightarrow R\ge\frac{240}{9{,}0}\approx27\,\Omega" />
+<BlockMath math="Q=mc\Delta\theta+mL=5{,}0\cdot10^{-5}\cdot130\cdot300+5{,}0\cdot10^{-5}\cdot2{,}5\cdot10^{4}=1{,}95+1{,}25=3{,}2\text{ J},\qquad t=\frac{3{,}2}{8{,}0}=0{,}40\text{ s}" />
 
-Vor dem Defekt lieferte LOW <InlineMath math="576\text{ W}" />. Danach funktioniert nur HIGH und liefert <InlineMath math="960\text{ W}" />. Die <InlineMath math="60\,\Omega" />-Spule nimmt auf HIGH schon <InlineMath math="4{,}0\text{ A}" />, ein Ersatz darf also höchstens <InlineMath math="9{,}0\text{ A}" /> nehmen, das heißt mindestens etwa <InlineMath math="27\,\Omega" />.
+<BlockMath math="I^2(0{,}020)=3{,}0\Rightarrow I=\sqrt{150}\approx12\text{ A}" />
 
-<BlockMath math="P_{\text{HIGH}}=VI=240\cdot13=3{,}1\text{ kW}" />
-
-Mit dem kleinsten zulässigen Ersatz zieht HIGH genau die <InlineMath math="13\text{ A}" /> der Sicherung und liefert etwa <InlineMath math="3{,}1\text{ kW}" />: <InlineMath math="960\text{ W}" /> aus der <InlineMath math="60\,\Omega" />-Spule und etwa <InlineMath math="2{,}2\text{ kW}" /> aus der neuen.
+Der Fehlerstrom heizt den Draht mit <InlineMath math="8{,}0\text{ W}" /> und schmilzt ihn in <InlineMath math="0{,}40\text{ s}" /> durch. Ein Dauerstrom bis etwa <InlineMath math="12\text{ A}" /> schmilzt ihn nie, weil der Draht die Wärme so schnell abgibt, wie der Strom sie erzeugt.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="576\text{ W}" /> nach dem Defekt nimmt an, der **Reihenweg funktioniere noch**, doch er führt durch die kaputte Spule, also fließt kein Strom.
-- <InlineMath math="18\,\Omega" /> gibt dem Ersatz die **ganzen <InlineMath math="13\text{ A}" />** und vergisst die <InlineMath math="4{,}0\text{ A}" /> der <InlineMath math="60\,\Omega" />-Spule daneben auf HIGH.
-- <InlineMath math="1{,}4\text{ kW}" /> nimmt die **Stellung MEDIUM**, doch diese Stellung ist die kaputte <InlineMath math="40\,\Omega" />-Spule selbst.
+- <InlineMath math="0{,}24\text{ s}" /> **erwärmt den Draht nur bis zum Schmelzpunkt** und vergisst die Schmelzwärme.
+- <InlineMath math="0{,}40\text{ W}" /> nimmt **<InlineMath math="P=IR" />**, das keine Leistung ist, und der Fehler zieht sich in Zeit und Strom.
+- <InlineMath math="0{,}16\text{ s}" /> liefert **nur die Schmelzwärme**, als hätte der Draht schon <InlineMath math="327" /> °C.

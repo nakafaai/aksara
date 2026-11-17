@@ -1,35 +1,28 @@
-# Die Potenz aus dem Verhältnis bei einer Verdopplung ablesen und dann mit dieser Potenz skalieren
+# Zwei Fehler wirken in dieselbe Richtung, also müssen beide vor der Wärmebilanz heraus
 
-Bei einem Potenzgesetz multipliziert ein Faktor in <InlineMath math="d" /> die Zeit <InlineMath math="t" /> mit **diesem Faktor hoch <InlineMath math="n" />**. Die Verdopplung des Durchmessers von <InlineMath math="2{,}0" /> auf <InlineMath math="4{,}0\text{ mm}" /> teilt die Zeit durch <InlineMath math="320\div56{,}6=5{,}66" />, ebenso die nächste Verdopplung. Da <InlineMath math="2^{2{,}5}=5{,}66" />, ist <InlineMath math="n=-2{,}5" />. Dann skaliert man von einem bekannten Punkt aus, nie mit einer Geraden zwischen zwei Punkten.
+Ein Voltmeter, das ohne Strom <InlineMath math="0{,}4\text{ V}" /> anzeigt, hat einen **positiven Nullpunktfehler**: Jede Anzeige ist <InlineMath math="0{,}4\text{ V}" /> zu hoch und muss korrigiert werden. Auch bleibt nicht die ganze Heizenergie im Öl: Ein Teil entweicht beim Erwärmen in den Raum. Nur die Energie, die das Öl **behält**, ist gleich <InlineMath math="mc\Delta\theta" />. Beide Fehler lassen die Energie größer erscheinen, der Rohwert von <InlineMath math="c" /> wird also zu hoch.
 
 <Chart
-  title={<>Zeit, bis der Sand durch jedes Loch gelaufen ist</>}
-  categories={["2,0 mm", "4,0 mm", "8,0 mm"]}
+  title={<>Spezifische Wärmekapazität auf drei Arten</>}
+  bars="apart"
+  categories={["Korrigiert", "Ohne Wärmeverlust", "Rohwerte"]}
   series={[
-    { label: "Zeit", mark: "line", values: [320, 56.6, 10.0] },
+    { label: "Wert", mark: "bar", values: [2133, 2400, 2480] },
   ]}
-  valueLabel="Zeit (s)"
-  description={<>Die Zeit fällt von <InlineMath math="320" /> s bei einem Loch von <InlineMath math="2{,}0" /> mm auf <InlineMath math="56{,}6" /> s bei <InlineMath math="4{,}0" /> mm und <InlineMath math="10{,}0" /> s bei <InlineMath math="8{,}0" /> mm. Jede Verdopplung des Durchmessers teilt die Zeit durch etwa <InlineMath math="5{,}66" />.</>}
+  valueLabel="c (J/(kg °C))"
+  description={<>Mit beiden Korrekturen beträgt die spezifische Wärmekapazität des Öls etwa <InlineMath math="2{,}1\cdot10^{3}" />. Ohne Wärmeverlust ergeben sich <InlineMath math="2{,}4\cdot10^{3}" />, aus den Rohwerten <InlineMath math="2{,}5\cdot10^{3}" />, etwa <InlineMath math="16\%" /> zu hoch.</>}
 />
 
-<BlockMath math="2^{n}=\frac{56{,}6}{320}=0{,}177\ \Rightarrow\ n=-2{,}5,\qquad t_{5{,}0}=320\cdot\left(\frac{5{,}0}{2{,}0}\right)^{-2{,}5}=\frac{320}{2{,}5^{2{,}5}}=\frac{320}{9{,}88}\approx32\text{ s}" />
+<BlockMath math="V=12{,}4-0{,}4=12{,}0\text{ V},\qquad E=VIt=12{,}0\cdot3{,}0\cdot400=14\,400\text{ J},\qquad E_{\text{Verlust}}=4{,}0\cdot400=1600\text{ J}" />
 
-Das Loch ist <InlineMath math="2{,}5" />-mal so weit wie das <InlineMath math="2{,}0\text{ mm}" />-Loch, die Zeit wird also durch <InlineMath math="2{,}5^{2{,}5}\approx9{,}9" /> geteilt, etwa <InlineMath math="32\text{ s}" />.
+<BlockMath math="c=\frac{14\,400-1600}{0{,}40\cdot15{,}0}\approx2{,}1\cdot10^{3}\text{ J kg}^{-1}\text{ °C}^{-1},\qquad c_{\text{roh}}=\frac{12{,}4\cdot3{,}0\cdot400}{0{,}40\cdot15{,}0}=2{,}48\cdot10^{3}\text{ J kg}^{-1}\text{ °C}^{-1}" />
 
-<BlockMath math="\frac{t_2}{t_1}=\left(\frac{d_2}{d_1}\right)^{-2{,}5}=\frac12\Rightarrow\frac{d_2}{d_1}=2^{1/2{,}5}=2^{0{,}4}\approx1{,}32" />
+<BlockMath math="\frac{2480-2133}{2133}\approx16\%" />
 
-Weil <InlineMath math="t\propto d^{-2{,}5}" /> gilt, braucht die halbe Zeit für jedes Ausgangsloch nur einen um <InlineMath math="2^{0{,}4}" />, etwa <InlineMath math="32\%" />, größeren Durchmesser.
-
-<BlockMath math="\text{Rate}=\frac{400\text{ g}}{32\text{ s}}=12{,}5\text{ g s}^{-1}" />
-
-Die <InlineMath math="0{,}40\text{ kg}" /> Sand laufen in <InlineMath math="32\text{ s}" /> durch das <InlineMath math="5{,}0\text{ mm}" />-Loch, im Mittel <InlineMath math="12{,}5\text{ g}" /> pro Sekunde.
-
-<BlockMath math="t_{10}=10{,}0\cdot\left(\frac{8{,}0}{10}\right)^{2{,}5}=10{,}0\cdot0{,}572\approx5{,}7\text{ s}" />
-
-Vom Messwert bei <InlineMath math="8{,}0\text{ mm}" /> hochgerechnet, leert ein Loch von <InlineMath math="10\text{ mm}" /> den Trichter in etwa <InlineMath math="5{,}7\text{ s}" />.
+Die wahre Spannung beträgt <InlineMath math="12{,}0\text{ V}" />, die spezifische Wärmekapazität des Öls etwa <InlineMath math="2{,}1\cdot10^{3}" /> J pro kg und °C. Mit der rohen Voltmeteranzeige und ohne Wärmeverlust erhielte man einen etwa <InlineMath math="16\%" /> zu hohen Wert.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="n=-2" /> lässt die Zeit **je Verdopplung auf ein Viertel** fallen, doch <InlineMath math="320/56{,}6=5{,}66=2^{2{,}5}" />, und der Fehler zieht sich in Rate und Faktor.
-- <InlineMath math="\times2{,}0" /> setzt die Zeit **umgekehrt proportional zum Durchmesser**, doch sie fällt mit dem Durchmesser hoch <InlineMath math="2{,}5" />.
-- <InlineMath math="n=-3" /> lässt die Zeit **je Verdopplung auf ein Achtel** fallen, was die Werte <InlineMath math="56{,}6\text{ s}" /> und <InlineMath math="10{,}0\text{ s}" /> ausschließen.
+- <InlineMath math="12{,}8\text{ V}" /> **addiert den Nullpunktfehler**, statt ihn abzuziehen, als zeigte das Messgerät zu wenig an.
+- <InlineMath math="2{,}4\cdot10^{3}" /> korrigiert das Voltmeter, **übersieht aber den Wärmeverlust** und schreibt dem Öl Energie zu, die es nie behielt.
+- <InlineMath math="13\%" /> vergleicht mit einem Rohwert, der das **Voltmeter schon korrigiert**, doch die Rohanzeige enthält den Nullpunktfehler noch.

@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.8\\times10^{8}\\text{ m}$$, $$2.8\\times10^{-3}\\text{ m s}^{-2}$$ and $$0.020\\text{ m s}^{-2}$$",
+            "$$3.7\\text{ m s}^{-2}$$, $$160\\text{ kg}$$ and $$4.5\\text{ mm}$$",
         },
         {
           correct: false,
           label:
-            "$$3.5\\times10^{8}\\text{ m}$$, $$0.18\\text{ m s}^{-2}$$ and $$4.0\\text{ m s}^{-2}$$",
+            "$$3.7\\text{ m s}^{-2}$$, $$61\\text{ kg}$$ and $$4.5\\text{ mm}$$",
         },
         {
           correct: true,
           label:
-            "$$3.5\\times10^{8}\\text{ m}$$, $$3.4\\times10^{-3}\\text{ m s}^{-2}$$ and $$1.6\\text{ m s}^{-2}$$",
+            "$$3.7\\text{ m s}^{-2}$$, $$160\\text{ kg}$$ and $$12\\text{ mm}$$",
         },
         {
           correct: false,
           label:
-            "$$3.5\\times10^{8}\\text{ m}$$, $$3.4\\times10^{-3}\\text{ m s}^{-2}$$ and $$0.074\\text{ m s}^{-2}$$",
+            "$$2.0\\text{ m s}^{-2}$$, $$300\\text{ kg}$$ and $$22\\text{ mm}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.8\\times10^{8}\\text{ m}$$, $$2.8\\times10^{-3}\\text{ m s}^{-2}$$ dan $$0.020\\text{ m s}^{-2}$$",
+            "$$3.7\\text{ m s}^{-2}$$, $$160\\text{ kg}$$ dan $$4.5\\text{ mm}$$",
         },
         {
           correct: false,
           label:
-            "$$3.5\\times10^{8}\\text{ m}$$, $$0.18\\text{ m s}^{-2}$$ dan $$4.0\\text{ m s}^{-2}$$",
+            "$$3.7\\text{ m s}^{-2}$$, $$61\\text{ kg}$$ dan $$4.5\\text{ mm}$$",
         },
         {
           correct: true,
           label:
-            "$$3.5\\times10^{8}\\text{ m}$$, $$3.4\\times10^{-3}\\text{ m s}^{-2}$$ dan $$1.6\\text{ m s}^{-2}$$",
+            "$$3.7\\text{ m s}^{-2}$$, $$160\\text{ kg}$$ dan $$12\\text{ mm}$$",
         },
         {
           correct: false,
           label:
-            "$$3.5\\times10^{8}\\text{ m}$$, $$3.4\\times10^{-3}\\text{ m s}^{-2}$$ dan $$0.074\\text{ m s}^{-2}$$",
+            "$$2.0\\text{ m s}^{-2}$$, $$300\\text{ kg}$$ dan $$22\\text{ mm}$$",
         },
       ],
     },

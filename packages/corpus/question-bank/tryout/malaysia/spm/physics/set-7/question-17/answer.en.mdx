@@ -1,33 +1,25 @@
-# The reflected beam turns through twice the mirror's angle
+# The image runs the same way as the object, faster and faster, until it stops being real
 
-Turning a mirror by <InlineMath math="\theta" /> turns the normal by <InlineMath math="\theta" />, so the angle of incidence and the angle of reflection **each** grow by <InlineMath math="\theta" />: the reflected beam turns through <InlineMath math="2\theta" />. The spot's shift follows from the right-angled triangle with the wall. When the mirror spins, the beam spins **twice as fast**, so near its original position the spot moves like a point on a circle of radius <InlineMath math="3.0\text{ m}" /> turning at <InlineMath math="4.0" /> revolutions per second.
+For a convex lens, <InlineMath math="\dfrac1f=\dfrac1u+\dfrac1v" />. As the object comes closer, the real image moves **further away** on the other side, in the same direction as the object travels. The image is real only while the object is **beyond the focal point**: at <InlineMath math="u=f" /> the image goes off to infinity, and closer than that it becomes virtual, on the car's own side, where no screen can catch it.
 
 <Chart
-  title={<>Angle the Beam Turns for Each Mirror Angle</>}
-  categories={["Mirror 0°", "Mirror 2.5°", "Mirror 5.0°"]}
+  title={<>Image Distance as the Car Approaches</>}
+  categories={["0 s", "2 s", "4 s", "6 s", "8 s", "9 s"]}
   series={[
-    { label: "Beam turn", mark: "line", values: [0, 5, 10] },
+    { label: "Image distance", mark: "line", values: [30.0, 32.5, 36.7, 45.0, 70.0, 120.0] },
   ]}
-  valueLabel="Beam turn (°)"
-  description={<>Each degree the mirror turns swings the reflected beam through two degrees, so a <InlineMath math="5.0°" /> turn of the mirror moves the beam through <InlineMath math="10°" />.</>}
+  valueLabel="Distance from lens (cm)"
+  description={<>The image starts <InlineMath math="30\text{ cm}" /> from the lens and moves away slowly at first, then faster and faster, running off to infinity as the car reaches the focal point at <InlineMath math="10\text{ s}" />.</>}
 />
 
-<BlockMath math="d=3.0\tan(2\times5.0°)=3.0\tan10°=3.0\times0.176\approx0.53\text{ m}" />
+<BlockMath math="\frac1v=\frac1{20}-\frac1{60}\Rightarrow v=30\text{ cm},\qquad t=\frac{60-20}{4.0}=10\text{ s}" />
 
-<BlockMath math="v=\frac{2\pi r}{T}=2\pi(3.0)(2\times2.0)\approx75\text{ m s}^{-1}" />
+<BlockMath math="t=5.0\text{ s}:\ u=60-20=40\text{ cm},\quad \frac1v=\frac1{20}-\frac1{40}\Rightarrow v=40\text{ cm},\qquad \bar v=\frac{40-30}{5.0}=2.0\text{ cm s}^{-1}" />
 
-Turning the mirror <InlineMath math="5.0°" /> swings the beam <InlineMath math="10°" />, which moves the spot about <InlineMath math="0.53\text{ m}" /> along the wall. Spinning at <InlineMath math="2.0" /> revolutions per second, the beam turns at <InlineMath math="4.0" /> revolutions per second, and the spot crosses its starting point at about <InlineMath math="75\text{ m s}^{-1}" />.
-
-<BlockMath math="\tan2\theta=\frac{3.0}{3.0}=1\Rightarrow2\theta=45°\Rightarrow\theta=22.5°" />
-
-A spot <InlineMath math="3.0\text{ m}" /> along a wall <InlineMath math="3.0\text{ m}" /> away means the beam has turned <InlineMath math="45°" />, so the mirror has turned only half of that, <InlineMath math="22.5°" />.
-
-<BlockMath math="\frac{45°}{360°}=\frac18\text{ turn of the beam},\qquad t=\frac{1/8}{4.0\text{ turns s}^{-1}}\approx0.031\text{ s}" />
-
-Reaching <InlineMath math="3.0\text{ m}" /> means the beam turns <InlineMath math="45°" />, an eighth of a turn. The beam turns at <InlineMath math="4.0" /> revolutions per second, twice the mirror's rate, so it gets there in about <InlineMath math="0.031\text{ s}" />.
+The screen starts <InlineMath math="30\text{ cm}" /> from the lens. In the first <InlineMath math="5.0\text{ s}" /> it must move <InlineMath math="10\text{ cm}" /> away from the lens, an average of <InlineMath math="2.0\text{ cm s}^{-1}" />. After <InlineMath math="10\text{ s}" /> the car reaches the focal point, and from then on no real image forms.
 
 # Why the other options are wrong
 
-- <InlineMath math="0.26\text{ m}" /> and <InlineMath math="45°" /> turn the beam through **only the mirror's angle**, and the same slip halves the speed.
-- <InlineMath math="38\text{ m s}^{-1}" /> gets the shift right but lets the beam spin at **the mirror's rate** instead of twice it.
-- <InlineMath math="12\text{ m s}^{-1}" /> leaves out the **<InlineMath math="2\pi" />** that turns revolutions into distance around the circle.
+- **Towards the lens** gets the direction backwards: as a real object approaches, its real image moves away.
+- <InlineMath math="5.0\text{ s}" /> is when the car reaches **twice the focal length**, where the image is the same size as the car, but the image is still real there.
+- <InlineMath math="15\text{ cm}" /> **adds the reciprocals** instead of subtracting, and then assumes the image moves with the car at its own speed.

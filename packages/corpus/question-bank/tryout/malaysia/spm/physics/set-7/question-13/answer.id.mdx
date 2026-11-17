@@ -1,34 +1,26 @@
-# Hitung selangnya, kirim bunyi pergi dan kembali, lalu biarkan suhu menentukan cepat rambat baru
+# Sumber menetapkan frekuensi, jadi di air panjang gelombang mengecil dan pita merapat
 
-Dari tepukan <InlineMath math="1" /> sampai tepukan <InlineMath math="31" /> ada **<InlineMath math="30" /> selang**. Dalam tiap selang, bunyi satu tepukan merambat **ke dinding dan kembali**. Itu memberi cepat rambat bunyi, rumusnya mengubah cepat rambat menjadi suhu, dan suhu siang memberi cepat rambat baru untuk perjalanan pergi pulang yang lebih jauh.
+Jarak pita mengikuti <InlineMath math="x=\dfrac{\lambda D}{a}" />, jadi bacaan di udara memberi jarak celah. Di air, cahaya melambat dengan faktor <InlineMath math="n=1{,}33" />. **Frekuensinya ditetapkan lampu** dan tidak bisa berubah di batas medium, jadi perlambatan itu harus memperpendek panjang gelombang dengan faktor yang sama, dan pita ikut merapat.
 
 <Chart
-  title={<>Cepat Rambat Bunyi pada Tiap Suhu Udara</>}
+  title={<>Jarak Pita di Udara dan di Air</>}
   bars="apart"
-  categories={["20 °C (pagi)", "35 °C (siang)"]}
+  categories={["Di udara", "Di air"]}
   series={[
-    { label: "Cepat rambat", mark: "bar", values: [343, 352] },
+    { label: "Jarak pita", mark: "bar", values: [3.2, 2.4] },
   ]}
-  valueLabel="Cepat rambat (m/s)"
-  description={<>Pengukuran pagi memberi <InlineMath math="343\text{ m s}^{-1}" />, yang cocok dengan rumus pada <InlineMath math="20" /> °C. Pada <InlineMath math="35" /> °C bunyi merambat <InlineMath math="352\text{ m s}^{-1}" />.</>}
+  valueLabel="Jarak (mm)"
+  description={<>Memindahkan seluruh susunan ke dalam air memperkecil panjang gelombang cahaya <InlineMath math="1{,}33" /> kali, jadi pita merapat dari <InlineMath math="3{,}2\text{ mm}" /> menjadi sekitar <InlineMath math="2{,}4\text{ mm}" />.</>}
 />
 
-<BlockMath math="t=\frac{8{,}75}{30}=0{,}292\text{ s},\qquad v=\frac{2(50)}{0{,}292}\approx343\text{ m s}^{-1},\qquad \theta=\frac{343-331}{0{,}6}=20\text{ °C}" />
+<BlockMath math="a=\frac{\lambda D}{x}=\frac{640\times10^{-9}\times2{,}5}{3{,}2\times10^{-3}}=5{,}0\times10^{-4}\text{ m}=0{,}50\text{ mm}" />
 
-<BlockMath math="v'=331+0{,}6(35)=352\text{ m s}^{-1},\qquad t'=\frac{2(120)}{352}\approx0{,}68\text{ s}" />
+<BlockMath math="\lambda_w=\frac{640}{1{,}33}\approx481\text{ nm},\qquad x_w=\frac{3{,}2}{1{,}33}\approx2{,}4\text{ mm},\qquad f=\frac{3{,}0\times10^{8}}{640\times10^{-9}}\approx4{,}7\times10^{14}\text{ Hz}" />
 
-Udara pagi bersuhu <InlineMath math="20" /> °C, saat bunyi merambat <InlineMath math="343\text{ m s}^{-1}" />. Siang hari bunyi lebih cepat, <InlineMath math="352\text{ m s}^{-1}" />, jadi perjalanan pergi pulang <InlineMath math="240\text{ m}" /> butuh sekitar <InlineMath math="0{,}68\text{ s}" />.
-
-<BlockMath math="t_{\text{baca}}=(t_{31}+0{,}15)-(t_1+0{,}15)=t_{31}-t_1=8{,}75\text{ s}" />
-
-Keterlambatan di awal dan keterlambatan yang sama di akhir **saling meniadakan**: stopwatch tetap membaca <InlineMath math="8{,}75\text{ s}" />, jadi cepat rambat yang diukur sama sekali tidak berubah.
-
-<BlockMath math="d=\frac{v't}{2}=\frac{352\times0{,}292}{2}\approx51\text{ m}" />
-
-Bunyi lebih cepat pada siang hari, jadi gema dari <InlineMath math="50\text{ m}" /> akan kembali terlalu cepat. Untuk mempertahankan irama <InlineMath math="0{,}292\text{ s}" />, siswa harus mundur ke sekitar <InlineMath math="51\text{ m}" />.
+Celahnya berjarak <InlineMath math="0{,}50\text{ mm}" />. Di air pita terang berjarak sekitar <InlineMath math="2{,}4\text{ mm}" />, dan cahaya tetap berfrekuensi <InlineMath math="4{,}7\times10^{14}\text{ Hz}" />.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="39" /> °C membagi dengan **<InlineMath math="31" /> tepukan alih-alih <InlineMath math="30" /> selang**, yang memberi cepat rambat pagi yang mustahil, <InlineMath math="354\text{ m s}^{-1}" />.
-- <InlineMath math="0{,}70\text{ s}" /> tetap memakai **cepat rambat pagi** pada siang hari, lupa bahwa bunyi lebih cepat di udara yang lebih hangat.
-- <InlineMath math="6\text{ m s}^{-1}" /> lebih tinggi membiarkan **hanya satu ujung** pengukuran waktu terlambat, padahal keterlambatan yang sama di kedua ujung saling meniadakan.
+- <InlineMath math="3{,}2\text{ mm}" /> dan <InlineMath math="3{,}5\times10^{14}\text{ Hz}" /> membiarkan **frekuensi turun** sementara panjang gelombang tetap, padahal frekuensi ditetapkan sumber.
+- <InlineMath math="4{,}3\text{ mm}" /> **mengalikan dengan indeks bias**, seolah-olah cahaya punya panjang gelombang lebih panjang di medium yang lebih rapat.
+- <InlineMath math="3{,}5\times10^{14}\text{ Hz}" /> dengan <InlineMath math="2{,}4\text{ mm}" /> memperkecil panjang gelombang dan **juga menurunkan frekuensi**, padahal hanya kelajuan dan panjang gelombang yang berubah.

@@ -1,28 +1,28 @@
-# Jumlahkan atau kurangkan kelajuannya, jangan waktunya
+# Hitung mundur: gesekan memberi kelajuan sesudah, momentum memberi kelajuan sebelum
 
-Kelajuan terhadap tanah **dijumlahkan** saat ia berjalan searah eskalator dan **dikurangkan** saat ia berjalan melawannya. Tulis tiap kelajuan sebagai bagian panjang eskalator <InlineMath math="L" /> per detik, gabungkan kelajuannya, lalu ubah kembali hasilnya menjadi waktu.
+Gelinciran mudah dibaca mundur. Gesekan sebesar <InlineMath math="0{,}60" /> kali berat, jadi perlambatannya <InlineMath math="0{,}60g" /> **berapa pun massanya**, dan panjang gelinciran memberi kelajuan sesaat setelah tumbukan. Tumbukan itu sendiri adalah tumbukan yang membuat mobil menyatu: **momentum kekal tetapi energi kinetik tidak**, jadi momentum, bukan energi, yang membawa kelajuan mundur ke sebelum tabrakan.
 
 <Chart
-  title={<>Waktu Melintasi Eskalator dalam Tiap Keadaan</>}
+  title={<>Energi Kinetik Mobil</>}
   bars="apart"
-  categories={["Berdiri, eskalator bergerak", "Berjalan, eskalator berhenti", "Berjalan naik, eskalator bergerak", "Berjalan turun di eskalator naik"]}
+  categories={["Sebelum tumbukan", "Sesaat setelah tumbukan", "Setelah tergelincir"]}
   series={[
-    { label: "Waktu", mark: "bar", values: [60, 40, 24, 120] },
+    { label: "Energi kinetik", mark: "bar", values: [240, 144, 0] },
   ]}
-  valueLabel="Waktu (s)"
-  description={<>Berdiri di eskalator yang bergerak butuh <InlineMath math="60" /> s dan berjalan di eskalator yang berhenti <InlineMath math="40" /> s. Berjalan naik di eskalator yang bergerak butuh <InlineMath math="24" /> s, dan berjalan turun melawannya <InlineMath math="120" /> s.</>}
+  valueLabel="Energi (kJ)"
+  description={<>Mobil yang bergerak membawa <InlineMath math="240\text{ kJ}" />. Sesaat setelah tumbukan kedua mobil yang menyatu punya <InlineMath math="144\text{ kJ}" />, jadi <InlineMath math="96\text{ kJ}" /> terpakai untuk penyok, dan gelinciran menghabiskan sisanya.</>}
 />
 
-<BlockMath math="v_e=\frac{L}{60},\quad v_w=\frac{L}{40}\qquad \text{naik}: \frac{L}{L/60+L/40}=\frac{1}{5/120}=24\text{ s},\qquad \text{turun}: \frac{L}{L/40-L/60}=\frac{1}{1/120}=120\text{ s}" />
+<BlockMath math="a=0{,}60\times10=6{,}0\text{ m s}^{-2},\qquad v=\sqrt{2(6{,}0)(12)}=12\text{ m s}^{-1}" />
 
-Berjalan searah eskalator, ia menempuh <InlineMath math="\tfrac{1}{60}+\tfrac{1}{40}=\tfrac{5}{120}" /> bagian tiap detik, jadi <InlineMath math="24\text{ s}" />. Berjalan turun melawannya, ia hanya maju <InlineMath math="\tfrac{1}{40}-\tfrac{1}{60}=\tfrac{1}{120}" /> bagian tiap detik, jadi <InlineMath math="120\text{ s}" />.
+<BlockMath math="1200u=2000\times12\Rightarrow u=20\text{ m s}^{-1}=72\text{ km jam}^{-1}" />
 
-<BlockMath math="\text{laju}=\frac{60}{40}=1{,}5\text{ anak tangga s}^{-1},\qquad 1{,}5\times24=36,\qquad 1{,}5\times120=180" />
+<BlockMath math="\Delta E_k=\tfrac12(1200)(20)^2-\tfrac12(2000)(12)^2=240\,000-144\,000=96\text{ kJ}" />
 
-Ia menginjak <InlineMath math="1{,}5" /> anak tangga tiap detik apa pun yang dilakukan eskalator. Berjalan naik bersamanya, ia hanya menginjak <InlineMath math="36" /> anak tangga karena eskalator membawanya sebagian jalan, dan berjalan turun melawannya ia menginjak <InlineMath math="180" />.
+Mobil yang menyatu meninggalkan tumbukan pada <InlineMath math="12\text{ m s}^{-1}" />, jadi mobil penabrak melaju <InlineMath math="72\text{ km jam}^{-1}" />. Dalam tumbukan <InlineMath math="96\text{ kJ}" /> energi kinetik menjadi kalor, bunyi, dan logam yang penyok, lalu gelinciran menghabiskan sisa <InlineMath math="144\text{ kJ}" />.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="60" /> anak tangga untuk kedua arah menganggap **jumlah anak tangga tetap** menurut panjang eskalator, padahal ia menginjak anak tangga selama ia berjalan.
-- <InlineMath math="36" /> anak tangga saat turun **menjumlahkan kecepatan di kedua arah**, padahal saat turun melawan eskalator kecepatannya dikurangkan.
-- <InlineMath math="50\text{ s}" /> **merata-ratakan kedua waktu**, padahal yang dijumlahkan adalah kecepatan, bukan waktu.
+- <InlineMath math="56\text{ km jam}^{-1}" /> dan <InlineMath math="0\text{ kJ}" /> membawa kelajuan mundur dengan **menganggap energi kinetik kekal**, padahal mobil yang menyatu selalu kehilangan energi kinetik.
+- <InlineMath math="9{,}3\text{ m s}^{-1}" /> memakai gesekan dari **berat satu mobil** untuk kedua mobil, padahal gesekan bertambah dengan berat semua yang tergelincir.
+- <InlineMath math="144\text{ kJ}" /> adalah energi yang **dihabiskan gelinciran**, sesudah tumbukan, bukan energi yang diubah saat tumbukan.

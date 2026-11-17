@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "$$576\\text{ W}$$, $$960\\text{ W}$$, $$27\\,\\Omega$$ and $$3.1\\text{ kW}$$",
+          label: "$$8.0\\text{ W}$$, $$0.40\\text{ s}$$ and $$12\\text{ A}$$",
         },
         {
           correct: false,
-          label:
-            "$$576\\text{ W}$$, $$576\\text{ W}$$, $$27\\,\\Omega$$ and $$3.1\\text{ kW}$$",
+          label: "$$8.0\\text{ W}$$, $$0.24\\text{ s}$$ and $$12\\text{ A}$$",
         },
         {
           correct: false,
-          label:
-            "$$576\\text{ W}$$, $$960\\text{ W}$$, $$18\\,\\Omega$$ and $$4.1\\text{ kW}$$",
+          label: "$$0.40\\text{ W}$$, $$8.0\\text{ s}$$ and $$150\\text{ A}$$",
         },
         {
           correct: false,
-          label:
-            "$$576\\text{ W}$$, $$1.4\\text{ kW}$$, $$27\\,\\Omega$$ and $$3.1\\text{ kW}$$",
+          label: "$$8.0\\text{ W}$$, $$0.16\\text{ s}$$ and $$12\\text{ A}$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "$$576\\text{ W}$$, $$960\\text{ W}$$, $$27\\,\\Omega$$ dan $$3.1\\text{ kW}$$",
+          label: "$$8.0\\text{ W}$$, $$0.40\\text{ s}$$ dan $$12\\text{ A}$$",
         },
         {
           correct: false,
-          label:
-            "$$576\\text{ W}$$, $$576\\text{ W}$$, $$27\\,\\Omega$$ dan $$3.1\\text{ kW}$$",
+          label: "$$8.0\\text{ W}$$, $$0.24\\text{ s}$$ dan $$12\\text{ A}$$",
         },
         {
           correct: false,
-          label:
-            "$$576\\text{ W}$$, $$960\\text{ W}$$, $$18\\,\\Omega$$ dan $$4.1\\text{ kW}$$",
+          label: "$$0.40\\text{ W}$$, $$8.0\\text{ s}$$ dan $$150\\text{ A}$$",
         },
         {
           correct: false,
-          label:
-            "$$576\\text{ W}$$, $$1.4\\text{ kW}$$, $$27\\,\\Omega$$ dan $$3.1\\text{ kW}$$",
+          label: "$$8.0\\text{ W}$$, $$0.16\\text{ s}$$ dan $$12\\text{ A}$$",
         },
       ],
     },

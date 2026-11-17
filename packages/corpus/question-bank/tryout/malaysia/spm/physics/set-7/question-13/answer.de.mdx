@@ -1,34 +1,26 @@
-# Lücken zählen, den Schall hin und zurück schicken und dann die Temperatur die neue Geschwindigkeit bestimmen lassen
+# Die Quelle legt die Frequenz fest, also schrumpft im Wasser die Wellenlänge und die Streifen rücken zusammen
 
-Von Klatscher <InlineMath math="1" /> bis Klatscher <InlineMath math="31" /> liegen **<InlineMath math="30" /> Lücken**. In jeder läuft der Schall eines Klatschers **zur Wand und zurück**. Das ergibt die Schallgeschwindigkeit, die Formel macht daraus eine Temperatur, und die Mittagstemperatur liefert die neue Geschwindigkeit für einen längeren Hin- und Rückweg.
+Der Streifenabstand folgt <InlineMath math="x=\dfrac{\lambda D}{a}" />, die Messung in Luft liefert also den Spaltabstand. Im Wasser wird das Licht um den Faktor <InlineMath math="n=1{,}33" /> langsamer. Seine **Frequenz legt die Lampe fest**, sie kann sich an einer Grenzfläche nicht ändern, also muss die Verlangsamung die Wellenlänge um denselben Faktor verkürzen, und die Streifen rücken mit.
 
 <Chart
-  title={<>Schallgeschwindigkeit bei jeder Lufttemperatur</>}
+  title={<>Streifenabstand in Luft und in Wasser</>}
   bars="apart"
-  categories={["20 °C (morgens)", "35 °C (mittags)"]}
+  categories={["In Luft", "In Wasser"]}
   series={[
-    { label: "Geschwindigkeit", mark: "bar", values: [343, 352] },
+    { label: "Streifenabstand", mark: "bar", values: [3.2, 2.4] },
   ]}
-  valueLabel="Geschwindigkeit (m/s)"
-  description={<>Die Messung am Morgen ergibt <InlineMath math="343\text{ m s}^{-1}" />, was die Formel bei <InlineMath math="20" /> °C liefert. Bei <InlineMath math="35" /> °C läuft der Schall mit <InlineMath math="352\text{ m s}^{-1}" />.</>}
+  valueLabel="Abstand (mm)"
+  description={<>Kommt der ganze Aufbau ins Wasser, schrumpft die Wellenlänge des Lichts um den Faktor <InlineMath math="1{,}33" />, die Streifen rücken von <InlineMath math="3{,}2\text{ mm}" /> auf etwa <InlineMath math="2{,}4\text{ mm}" /> zusammen.</>}
 />
 
-<BlockMath math="t=\frac{8{,}75}{30}=0{,}292\text{ s},\qquad v=\frac{2(50)}{0{,}292}\approx343\text{ m s}^{-1},\qquad \theta=\frac{343-331}{0{,}6}=20\text{ °C}" />
+<BlockMath math="a=\frac{\lambda D}{x}=\frac{640\cdot10^{-9}\cdot2{,}5}{3{,}2\cdot10^{-3}}=5{,}0\cdot10^{-4}\text{ m}=0{,}50\text{ mm}" />
 
-<BlockMath math="v'=331+0{,}6(35)=352\text{ m s}^{-1},\qquad t'=\frac{2(120)}{352}\approx0{,}68\text{ s}" />
+<BlockMath math="\lambda_w=\frac{640}{1{,}33}\approx481\text{ nm},\qquad x_w=\frac{3{,}2}{1{,}33}\approx2{,}4\text{ mm},\qquad f=\frac{3{,}0\cdot10^{8}}{640\cdot10^{-9}}\approx4{,}7\cdot10^{14}\text{ Hz}" />
 
-Die Morgenluft hat <InlineMath math="20" /> °C, bei denen der Schall <InlineMath math="343\text{ m s}^{-1}" /> schnell ist. Mittags ist er mit <InlineMath math="352\text{ m s}^{-1}" /> schneller, die <InlineMath math="240\text{ m}" /> hin und zurück dauern also etwa <InlineMath math="0{,}68\text{ s}" />.
-
-<BlockMath math="t_{\text{Anzeige}}=(t_{31}+0{,}15)-(t_1+0{,}15)=t_{31}-t_1=8{,}75\text{ s}" />
-
-Eine Verzögerung beim Starten und dieselbe beim Stoppen **heben sich auf**: Die Stoppuhr zeigt weiter <InlineMath math="8{,}75\text{ s}" />, die gemessene Geschwindigkeit ändert sich also nicht.
-
-<BlockMath math="d=\frac{v't}{2}=\frac{352\cdot0{,}292}{2}\approx51\text{ m}" />
-
-Mittags ist der Schall schneller, ein Echo aus <InlineMath math="50\text{ m}" /> käme also zu früh zurück. Um den Rhythmus von <InlineMath math="0{,}292\text{ s}" /> zu halten, muss die klatschende Person auf etwa <InlineMath math="51\text{ m}" /> zurückgehen.
+Die Spalte liegen <InlineMath math="0{,}50\text{ mm}" /> auseinander. Im Wasser liegen die hellen Streifen etwa <InlineMath math="2{,}4\text{ mm}" /> auseinander, und das Licht behält seine Frequenz von <InlineMath math="4{,}7\cdot10^{14}\text{ Hz}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="39" /> °C teilt durch **<InlineMath math="31" /> Klatscher statt <InlineMath math="30" /> Lücken** und ergibt eine unmögliche Morgengeschwindigkeit von <InlineMath math="354\text{ m s}^{-1}" />.
-- <InlineMath math="0{,}70\text{ s}" /> behält mittags die **Geschwindigkeit vom Morgen** und vergisst, dass Schall in wärmerer Luft schneller ist.
-- <InlineMath math="6\text{ m s}^{-1}" /> höher lässt **nur ein Ende** der Zeitmessung verspätet sein, doch dieselbe Verzögerung an beiden Enden hebt sich auf.
+- <InlineMath math="3{,}2\text{ mm}" /> und <InlineMath math="3{,}5\cdot10^{14}\text{ Hz}" /> lassen die **Frequenz sinken** und die Wellenlänge gleich, doch die Frequenz bestimmt die Quelle.
+- <InlineMath math="4{,}3\text{ mm}" /> **multipliziert mit der Brechzahl**, als hätte Licht im dichteren Medium eine längere Wellenlänge.
+- <InlineMath math="3{,}5\cdot10^{14}\text{ Hz}" /> mit <InlineMath math="2{,}4\text{ mm}" /> verkürzt die Wellenlänge und **senkt zusätzlich die Frequenz**, doch nur Geschwindigkeit und Wellenlänge ändern sich.

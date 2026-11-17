@@ -1,31 +1,28 @@
-# Temukan posisi yang masih punya jalur lengkap, lalu biarkan sekring membatasi kumparan pengganti
+# Mencapai titik leleh belum cukup: kawat juga harus diberi kalor lebur
 
-Pada <InlineMath math="240\text{ V}" /> yang tetap, daya adalah <InlineMath math="P=\dfrac{V^2}{R}" />. Setelah rusak, arus hanya bisa mengalir lewat jalur yang **menghindari kumparan yang putus**: jalur seri melewatinya, MEDIUM adalah kumparan yang putus itu sendiri, dan hanya HIGH yang masih bekerja, lewat kumparan <InlineMath math="60\,\Omega" />. Kumparan pengganti terpasang paralel dengan kumparan <InlineMath math="60\,\Omega" /> pada HIGH, jadi kedua arus dijumlahkan, dan bersama-sama harus tetap dalam <InlineMath math="13\text{ A}" />.
+Arus memanaskan kawat sebesar <InlineMath math="P=I^2R" />. Agar putus, kawat harus **dipanaskan sampai titik lelehnya** lebih dulu, lalu **dilelehkan**, yang juga membutuhkan kalor lebur, pada suhu tetap <InlineMath math="327" /> °C. Arus tetap yang lebih kecil tidak pernah melelehkan kawat jika kalor yang dihasilkan bisa keluar secepat dihasilkan, jadi batas aman didapat dengan menyamakan <InlineMath math="I^2R" /> dengan kehilangan kalor terbesar.
 
 <Chart
-  title={<>Daya pada Tiap Posisi Sakelar Sebelum dan Sesudah Kerusakan</>}
+  title={<>Energi untuk Melelehkan Kawat Sekring</>}
   bars="apart"
-  categories={["LOW (seri)", "MEDIUM (40 Ω)", "HIGH (paralel)"]}
+  categories={["Panaskan ke titik leleh", "Lelehkan", "Total"]}
   series={[
-    { label: "Sebelum", mark: "bar", values: [576, 1440, 2400] },
-    { label: "Sesudah", mark: "bar", values: [0, 0, 960] },
+    { label: "Energi", mark: "bar", values: [1.95, 1.25, 3.2] },
   ]}
-  valueLabel="Daya (W)"
-  description={<>Sebelum rusak, posisi sakelar memberi <InlineMath math="576" />, <InlineMath math="1440" />, dan <InlineMath math="2400\text{ W}" />. Dengan kumparan <InlineMath math="40\,\Omega" /> terputus, LOW dan MEDIUM tidak memberi apa pun dan HIGH hanya memberi <InlineMath math="960\text{ W}" /> dari kumparan <InlineMath math="60\,\Omega" />.</>}
+  valueLabel="Energi (J)"
+  description={<>Memanaskan kawat ke <InlineMath math="327" /> °C butuh <InlineMath math="1{,}95\text{ J}" /> dan melelehkannya <InlineMath math="1{,}25\text{ J}" /> lagi, total <InlineMath math="3{,}2\text{ J}" />, yang diberikan <InlineMath math="8{,}0\text{ W}" /> dalam <InlineMath math="0{,}40\text{ s}" />.</>}
 />
 
-<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad\text{setelah rusak: }P_{\text{HIGH}}=\frac{240^2}{60}=960\text{ W}" />
+<BlockMath math="P=I^2R=20^2\times0{,}020=8{,}0\text{ W}" />
 
-<BlockMath math="I_{60}=\frac{240}{60}=4{,}0\text{ A},\qquad I_R\le13-4{,}0=9{,}0\text{ A}\Rightarrow R\ge\frac{240}{9{,}0}\approx27\,\Omega" />
+<BlockMath math="Q=mc\Delta\theta+mL=5{,}0\times10^{-5}\times130\times300+5{,}0\times10^{-5}\times2{,}5\times10^{4}=1{,}95+1{,}25=3{,}2\text{ J},\qquad t=\frac{3{,}2}{8{,}0}=0{,}40\text{ s}" />
 
-Sebelum rusak LOW memberi <InlineMath math="576\text{ W}" />. Setelahnya hanya HIGH yang bekerja, memberi <InlineMath math="960\text{ W}" />. Kumparan <InlineMath math="60\,\Omega" /> sudah mengambil <InlineMath math="4{,}0\text{ A}" /> pada HIGH, jadi kumparan pengganti paling banyak boleh mengambil <InlineMath math="9{,}0\text{ A}" />, yaitu paling sedikit sekitar <InlineMath math="27\,\Omega" />.
+<BlockMath math="I^2(0{,}020)=3{,}0\Rightarrow I=\sqrt{150}\approx12\text{ A}" />
 
-<BlockMath math="P_{\text{HIGH}}=VI=240\times13=3{,}1\text{ kW}" />
-
-Dengan kumparan pengganti terkecil yang diizinkan, HIGH menarik tepat <InlineMath math="13\text{ A}" /> sekring, jadi memberi sekitar <InlineMath math="3{,}1\text{ kW}" />: <InlineMath math="960\text{ W}" /> dari kumparan <InlineMath math="60\,\Omega" /> dan sekitar <InlineMath math="2{,}2\text{ kW}" /> dari kumparan baru.
+Gangguan itu memanaskan kawat sebesar <InlineMath math="8{,}0\text{ W}" /> dan melelehkannya sampai putus dalam <InlineMath math="0{,}40\text{ s}" />. Arus tetap sampai sekitar <InlineMath math="12\text{ A}" /> tidak pernah melelehkannya, karena kawat membuang kalor secepat arus menghasilkannya.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="576\text{ W}" /> setelah rusak menganggap **jalur seri masih bekerja**, padahal jalur itu melewati kumparan yang putus, jadi tidak ada arus.
-- <InlineMath math="18\,\Omega" /> memberi kumparan pengganti **seluruh <InlineMath math="13\text{ A}" />**, lupa <InlineMath math="4{,}0\text{ A}" /> yang ditarik kumparan <InlineMath math="60\,\Omega" /> di sebelahnya pada HIGH.
-- <InlineMath math="1{,}4\text{ kW}" /> memakai **posisi MEDIUM**, padahal posisi itu adalah kumparan <InlineMath math="40\,\Omega" /> yang putus itu sendiri.
+- <InlineMath math="0{,}24\text{ s}" /> hanya **memanaskan kawat sampai titik lelehnya**, lupa kalor lebur yang dibutuhkan untuk melelehkannya.
+- <InlineMath math="0{,}40\text{ W}" /> memakai **<InlineMath math="P=IR" />**, yang bukan daya, dan kesalahan itu terbawa ke waktu dan arus.
+- <InlineMath math="0{,}16\text{ s}" /> hanya memberi **kalor lebur**, seolah-olah kawat sudah bersuhu <InlineMath math="327" /> °C.

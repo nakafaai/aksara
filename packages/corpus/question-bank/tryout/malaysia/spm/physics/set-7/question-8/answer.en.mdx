@@ -1,25 +1,26 @@
-# Balance the inverse-square pulls, then scale g by the square of the distance
+# Surface gravity scales as mass over radius squared, and it sets both the air's weight and the barometer
 
-Each pull is proportional to **mass divided by distance squared**. For the pulls to be equal, the distances must be in the ratio of the **square roots** of the masses, <InlineMath math="\sqrt{81}:1=9:1" />. Then the Earth's own pull at that distance follows from its surface value, scaled by <InlineMath math="(R/r)^2" />.
+From <InlineMath math="g=\dfrac{GM}{R^2}" />, the surface gravity scales with the **mass divided by the square of the radius**. Atmospheric pressure is the weight of the air above each square metre, <InlineMath math="P=\dfrac{mg}{A}" />, so the mass of that air depends on Mars's own <InlineMath math="g" />. A barometer balances the air with a column of mercury, <InlineMath math="P=\rho gh" />, and the **same weaker gravity** pulls on the mercury too.
 
-<Mermaid
-  title={<>Where the Pulls Balance between the Earth and the Moon</>}
-  description={<>The pulls balance where the distances are in the ratio <InlineMath math="9:1" />, the square root of the mass ratio <InlineMath math="81:1" />, so <InlineMath math="0.9" /> of the way from the Earth.</>}
-  chart={"flowchart LR\n  E[\"Earth, mass 81 M\"] -->|\"0.9 d = 3.5 × 10⁸ m\"| P[\"Balance point\"]\n  P -->|\"0.1 d\"| M[\"Moon, mass M\"]"}
+<Chart
+  title={<>Mercury Barometer on Mars</>}
+  bars="apart"
+  categories={["Using Mars's gravity", "Using Earth's gravity"]}
+  series={[
+    { label: "Column height", mark: "bar", values: [11.9, 4.5] },
+  ]}
+  valueLabel="Height (mm)"
+  description={<>On Mars the <InlineMath math="600\text{ Pa}" /> atmosphere holds up about <InlineMath math="12\text{ mm}" /> of mercury. Using Earth's <InlineMath math="9.8\text{ m s}^{-2}" /> by mistake would give only <InlineMath math="4.5\text{ mm}" />.</>}
 />
 
-<BlockMath math="\frac{81M}{r_E^2}=\frac{M}{r_M^2}\Rightarrow\frac{r_E}{r_M}=9,\qquad r_E=0.9\times3.84\times10^{8}=3.46\times10^{8}\text{ m}" />
+<BlockMath math="g_M=9.8\times\frac{0.107}{0.532^2}\approx3.7\text{ m s}^{-2},\qquad m=\frac{PA}{g_M}=\frac{600\times1}{3.7}\approx160\text{ kg}" />
 
-<BlockMath math="g=9.8\left(\frac{6.4\times10^{6}}{3.46\times10^{8}}\right)^2=9.8\times3.42\times10^{-4}\approx3.4\times10^{-3}\text{ m s}^{-2}" />
+<BlockMath math="h=\frac{P}{\rho g_M}=\frac{600}{13\,600\times3.7}\approx0.012\text{ m}=12\text{ mm}" />
 
-The point is <InlineMath math="0.9" /> of the way to the Moon, <InlineMath math="3.5\times10^{8}\text{ m}" /> from the Earth's centre. That is <InlineMath math="54" /> Earth radii out, where the Earth's pull is only <InlineMath math="1/2900" /> of its surface value.
-
-<BlockMath math="g_M=3.4\times10^{-3}\times\left(\frac{3.84\times10^{7}}{1.74\times10^{6}}\right)^2=3.4\times10^{-3}\times487\approx1.6\text{ m s}^{-2}" />
-
-At the balance point the Moon pulls exactly as hard as the Earth, <InlineMath math="3.4\times10^{-3}\text{ m s}^{-2}" />, from <InlineMath math="3.84\times10^{7}\text{ m}" /> away. Moving in to the Moon's surface, <InlineMath math="22" /> times closer, multiplies that by <InlineMath math="22^2" />, giving about <InlineMath math="1.6\text{ m s}^{-2}" />.
+Gravity on Mars is about <InlineMath math="3.7\text{ m s}^{-2}" />. About <InlineMath math="160\text{ kg}" /> of air presses on each square metre, and a mercury barometer there would stand only about <InlineMath math="12\text{ mm}" /> tall.
 
 # Why the other options are wrong
 
-- <InlineMath math="3.8\times10^{8}\text{ m}" /> makes the distances proportional to the **masses**, <InlineMath math="81:1" />, instead of to their square roots, <InlineMath math="9:1" />.
-- <InlineMath math="0.18\text{ m s}^{-2}" /> scales <InlineMath math="g" /> by the **ratio of the distances**, forgetting the inverse square, and repeats the slip at the Moon.
-- <InlineMath math="0.074\text{ m s}^{-2}" /> gets the balance point right but scales to the Moon's surface by **<InlineMath math="22" /> instead of <InlineMath math="22^2" />**.
+- <InlineMath math="4.5\text{ mm}" /> uses **Earth's gravity for the mercury**, but on Mars the column is pulled down by Mars's weaker gravity.
+- <InlineMath math="61\text{ kg}" /> divides the pressure by **Earth's <InlineMath math="g" />**, but the air's weight comes from the gravity of the planet it sits on.
+- <InlineMath math="2.0\text{ m s}^{-2}" /> divides by the radius **without squaring it**, and the slip carries into the air mass and the column height.

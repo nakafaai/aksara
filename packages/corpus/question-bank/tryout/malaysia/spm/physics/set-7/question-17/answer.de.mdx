@@ -1,33 +1,25 @@
-# Der reflektierte Strahl dreht sich um den doppelten Spiegelwinkel
+# Das Bild läuft in dieselbe Richtung wie der Gegenstand, immer schneller, bis es nicht mehr reell ist
 
-Dreht man einen Spiegel um <InlineMath math="\theta" />, dreht sich das Lot um <InlineMath math="\theta" />, also wachsen Einfalls- und Reflexionswinkel **jeweils** um <InlineMath math="\theta" />: Der reflektierte Strahl dreht sich um <InlineMath math="2\theta" />. Die Verschiebung des Flecks folgt aus dem rechtwinkligen Dreieck mit der Wand. Dreht sich der Spiegel, dreht sich der Strahl **doppelt so schnell**, und nahe seiner Ausgangslage bewegt sich der Fleck wie ein Punkt auf einem Kreis mit <InlineMath math="3{,}0\text{ m}" /> Radius bei <InlineMath math="4{,}0" /> Umdrehungen pro Sekunde.
+Für eine Sammellinse gilt <InlineMath math="\dfrac1f=\dfrac1u+\dfrac1v" />. Kommt der Gegenstand näher, wandert das reelle Bild auf der anderen Seite **weiter weg**, in dieselbe Richtung, in die sich der Gegenstand bewegt. Reell ist das Bild nur, solange der Gegenstand **außerhalb des Brennpunkts** steht: Bei <InlineMath math="u=f" /> läuft das Bild ins Unendliche, noch näher wird es virtuell, auf der Seite des Autos, wo kein Schirm es auffangen kann.
 
 <Chart
-  title={<>Drehwinkel des Strahls bei jedem Spiegelwinkel</>}
-  categories={["Spiegel 0°", "Spiegel 2,5°", "Spiegel 5,0°"]}
+  title={<>Bildweite beim Annähern des Autos</>}
+  categories={["0 s", "2 s", "4 s", "6 s", "8 s", "9 s"]}
   series={[
-    { label: "Strahldrehung", mark: "line", values: [0, 5, 10] },
+    { label: "Bildweite", mark: "line", values: [30.0, 32.5, 36.7, 45.0, 70.0, 120.0] },
   ]}
-  valueLabel="Strahldrehung (°)"
-  description={<>Jedes Grad Spiegeldrehung schwenkt den reflektierten Strahl um zwei Grad, eine Drehung um <InlineMath math="5{,}0°" /> also um <InlineMath math="10°" />.</>}
+  valueLabel="Abstand von der Linse (cm)"
+  description={<>Das Bild beginnt <InlineMath math="30\text{ cm}" /> hinter der Linse und entfernt sich erst langsam, dann immer schneller, bis es ins Unendliche läuft, wenn das Auto nach <InlineMath math="10\text{ s}" /> den Brennpunkt erreicht.</>}
 />
 
-<BlockMath math="d=3{,}0\tan(2\cdot5{,}0°)=3{,}0\tan10°=3{,}0\cdot0{,}176\approx0{,}53\text{ m}" />
+<BlockMath math="\frac1v=\frac1{20}-\frac1{60}\Rightarrow v=30\text{ cm},\qquad t=\frac{60-20}{4{,}0}=10\text{ s}" />
 
-<BlockMath math="v=\frac{2\pi r}{T}=2\pi(3{,}0)(2\cdot2{,}0)\approx75\text{ m s}^{-1}" />
+<BlockMath math="t=5{,}0\text{ s}:\ u=60-20=40\text{ cm},\quad \frac1v=\frac1{20}-\frac1{40}\Rightarrow v=40\text{ cm},\qquad \bar v=\frac{40-30}{5{,}0}=2{,}0\text{ cm s}^{-1}" />
 
-Eine Spiegeldrehung um <InlineMath math="5{,}0°" /> schwenkt den Strahl um <InlineMath math="10°" />, der Fleck wandert etwa <InlineMath math="0{,}53\text{ m}" /> an der Wand. Bei <InlineMath math="2{,}0" /> Umdrehungen pro Sekunde dreht sich der Strahl <InlineMath math="4{,}0" />-mal pro Sekunde, und der Fleck überquert seine Ausgangslage mit etwa <InlineMath math="75\text{ m s}^{-1}" />.
-
-<BlockMath math="\tan2\theta=\frac{3{,}0}{3{,}0}=1\Rightarrow2\theta=45°\Rightarrow\theta=22{,}5°" />
-
-Ein Fleck <InlineMath math="3{,}0\text{ m}" /> entlang einer <InlineMath math="3{,}0\text{ m}" /> entfernten Wand bedeutet <InlineMath math="45°" /> Strahldrehung, der Spiegel dreht sich also nur um die Hälfte, <InlineMath math="22{,}5°" />.
-
-<BlockMath math="\frac{45°}{360°}=\frac18\text{ Strahlumdrehung},\qquad t=\frac{1/8}{4{,}0\text{ Umdrehungen s}^{-1}}\approx0{,}031\text{ s}" />
-
-<InlineMath math="3{,}0\text{ m}" /> zu erreichen heißt <InlineMath math="45°" /> Strahldrehung, eine Achteldrehung. Der Strahl dreht sich mit <InlineMath math="4{,}0" /> Umdrehungen pro Sekunde, doppelt so schnell wie der Spiegel, und ist nach etwa <InlineMath math="0{,}031\text{ s}" /> dort.
+Der Schirm steht anfangs <InlineMath math="30\text{ cm}" /> hinter der Linse. In den ersten <InlineMath math="5{,}0\text{ s}" /> muss er <InlineMath math="10\text{ cm}" /> von der Linse weg, im Mittel <InlineMath math="2{,}0\text{ cm s}^{-1}" />. Nach <InlineMath math="10\text{ s}" /> erreicht das Auto den Brennpunkt, danach entsteht kein reelles Bild mehr.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="0{,}26\text{ m}" /> und <InlineMath math="45°" /> drehen den Strahl **nur um den Spiegelwinkel**, und derselbe Fehler halbiert die Geschwindigkeit.
-- <InlineMath math="38\text{ m s}^{-1}" /> hat die Verschiebung richtig, lässt den Strahl aber mit **der Drehrate des Spiegels** statt der doppelten kreisen.
-- <InlineMath math="12\text{ m s}^{-1}" /> lässt die **<InlineMath math="2\pi" />** weg, die Umdrehungen in Weg auf dem Kreis umrechnen.
+- **Zur Linse hin** dreht die Richtung um: Nähert sich ein reeller Gegenstand, entfernt sich sein reelles Bild.
+- <InlineMath math="5{,}0\text{ s}" /> ist der Moment, in dem das Auto die **doppelte Brennweite** erreicht und das Bild gleich groß ist, doch dort ist es noch reell.
+- <InlineMath math="15\text{ cm}" /> **addiert die Kehrwerte**, statt sie abzuziehen, und lässt das Bild dann mit der Geschwindigkeit des Autos mitlaufen.

@@ -1,34 +1,26 @@
-# Count the gaps, send the sound there and back, then let temperature set the new speed
+# The source fixes the frequency, so in water the wavelength shrinks and the fringes close up
 
-From clap <InlineMath math="1" /> to clap <InlineMath math="31" /> there are **<InlineMath math="30" /> gaps**. In each gap one clap's sound travels **to the wall and back**. That gives the speed of sound, the formula turns the speed into a temperature, and the midday temperature gives the new speed for a longer round trip.
+The fringe spacing follows <InlineMath math="x=\dfrac{\lambda D}{a}" />, so the air readings give the slit separation. In water, light slows by the factor <InlineMath math="n=1.33" />. Its **frequency is fixed by the lamp** and cannot change at a boundary, so the slowing must shorten the wavelength by the same factor, and the fringes close up with it.
 
 <Chart
-  title={<>Speed of Sound at Each Air Temperature</>}
+  title={<>Fringe Spacing in Air and in Water</>}
   bars="apart"
-  categories={["20 °C (morning)", "35 °C (midday)"]}
+  categories={["In air", "In water"]}
   series={[
-    { label: "Speed", mark: "bar", values: [343, 352] },
+    { label: "Fringe spacing", mark: "bar", values: [3.2, 2.4] },
   ]}
-  valueLabel="Speed (m/s)"
-  description={<>The morning measurement gives <InlineMath math="343\text{ m s}^{-1}" />, which the formula matches at <InlineMath math="20" /> °C. At <InlineMath math="35" /> °C sound travels at <InlineMath math="352\text{ m s}^{-1}" />.</>}
+  valueLabel="Spacing (mm)"
+  description={<>Moving the whole set-up into water shrinks the light's wavelength by <InlineMath math="1.33" />, so the fringes close up from <InlineMath math="3.2\text{ mm}" /> to about <InlineMath math="2.4\text{ mm}" />.</>}
 />
 
-<BlockMath math="t=\frac{8.75}{30}=0.292\text{ s},\qquad v=\frac{2(50)}{0.292}\approx343\text{ m s}^{-1},\qquad \theta=\frac{343-331}{0.6}=20\text{ °C}" />
+<BlockMath math="a=\frac{\lambda D}{x}=\frac{640\times10^{-9}\times2.5}{3.2\times10^{-3}}=5.0\times10^{-4}\text{ m}=0.50\text{ mm}" />
 
-<BlockMath math="v'=331+0.6(35)=352\text{ m s}^{-1},\qquad t'=\frac{2(120)}{352}\approx0.68\text{ s}" />
+<BlockMath math="\lambda_w=\frac{640}{1.33}\approx481\text{ nm},\qquad x_w=\frac{3.2}{1.33}\approx2.4\text{ mm},\qquad f=\frac{3.0\times10^{8}}{640\times10^{-9}}\approx4.7\times10^{14}\text{ Hz}" />
 
-The morning air is at <InlineMath math="20" /> °C, where sound travels at <InlineMath math="343\text{ m s}^{-1}" />. At midday sound is faster, <InlineMath math="352\text{ m s}^{-1}" />, so the <InlineMath math="240\text{ m}" /> round trip takes about <InlineMath math="0.68\text{ s}" />.
-
-<BlockMath math="t_{\text{read}}=(t_{31}+0.15)-(t_1+0.15)=t_{31}-t_1=8.75\text{ s}" />
-
-A delay at the start and the same delay at the stop **cancel**: the stopwatch still reads <InlineMath math="8.75\text{ s}" />, so the measured speed does not change at all.
-
-<BlockMath math="d=\frac{v't}{2}=\frac{352\times0.292}{2}\approx51\text{ m}" />
-
-Sound is faster at midday, so an echo from <InlineMath math="50\text{ m}" /> would come back too soon. To keep the <InlineMath math="0.292\text{ s}" /> rhythm, the student must step back to about <InlineMath math="51\text{ m}" />.
+The slits are <InlineMath math="0.50\text{ mm}" /> apart. In water the bright fringes are about <InlineMath math="2.4\text{ mm}" /> apart, and the light keeps its frequency of <InlineMath math="4.7\times10^{14}\text{ Hz}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="39" /> °C divides by **<InlineMath math="31" /> claps instead of <InlineMath math="30" /> gaps**, which gives an impossible morning speed of <InlineMath math="354\text{ m s}^{-1}" />.
-- <InlineMath math="0.70\text{ s}" /> keeps the **morning speed** at midday, forgetting that sound is faster in warmer air.
-- <InlineMath math="6\text{ m s}^{-1}" /> higher lets **only one end** of the timing be late, but the same delay at both ends cancels.
+- <InlineMath math="3.2\text{ mm}" /> and <InlineMath math="3.5\times10^{14}\text{ Hz}" /> let the **frequency drop** while the wavelength stays, but the frequency is set by the source.
+- <InlineMath math="4.3\text{ mm}" /> **multiplies by the refractive index**, as if light had a longer wavelength in the denser medium.
+- <InlineMath math="3.5\times10^{14}\text{ Hz}" /> with <InlineMath math="2.4\text{ mm}" /> shrinks the wavelength and **also lowers the frequency**, but only the speed and the wavelength change.

@@ -1,25 +1,26 @@
-# Seimbangkan tarikan kebalikan kuadrat, lalu skalakan g dengan kuadrat jarak
+# Gravitasi permukaan sebanding dengan massa per kuadrat jari-jari, dan menentukan berat udara serta barometer
 
-Tiap tarikan sebanding dengan **massa dibagi kuadrat jarak**. Agar tarikannya sama, jaraknya harus berbanding sesuai **akar** massanya, <InlineMath math="\sqrt{81}:1=9:1" />. Lalu tarikan Bumi sendiri pada jarak itu didapat dari nilai di permukaannya, diskalakan dengan <InlineMath math="(R/r)^2" />.
+Dari <InlineMath math="g=\dfrac{GM}{R^2}" />, gravitasi permukaan sebanding dengan **massa dibagi kuadrat jari-jari**. Tekanan atmosfer adalah berat udara di atas tiap meter persegi, <InlineMath math="P=\dfrac{mg}{A}" />, jadi massa udara itu bergantung pada <InlineMath math="g" /> Mars sendiri. Barometer mengimbangi udara dengan kolom raksa, <InlineMath math="P=\rho gh" />, dan **gravitasi lemah yang sama** juga menarik raksa.
 
-<Mermaid
-  title={<>Tempat Tarikan Bumi dan Bulan Seimbang</>}
-  description={<>Tarikannya seimbang di tempat jaraknya berbanding <InlineMath math="9:1" />, akar dari rasio massa <InlineMath math="81:1" />, yaitu <InlineMath math="0{,}9" /> dari jarak dari Bumi.</>}
-  chart={"flowchart LR\n  E[\"Bumi, massa 81 M\"] -->|\"0,9 d = 3,5 × 10⁸ m\"| P[\"Titik seimbang\"]\n  P -->|\"0,1 d\"| M[\"Bulan, massa M\"]"}
+<Chart
+  title={<>Barometer Raksa di Mars</>}
+  bars="apart"
+  categories={["Pakai gravitasi Mars", "Pakai gravitasi Bumi"]}
+  series={[
+    { label: "Tinggi kolom", mark: "bar", values: [11.9, 4.5] },
+  ]}
+  valueLabel="Tinggi (mm)"
+  description={<>Di Mars atmosfer <InlineMath math="600\text{ Pa}" /> menahan sekitar <InlineMath math="12\text{ mm}" /> raksa. Keliru memakai <InlineMath math="9{,}8\text{ m s}^{-2}" /> Bumi hanya memberi <InlineMath math="4{,}5\text{ mm}" />.</>}
 />
 
-<BlockMath math="\frac{81M}{r_E^2}=\frac{M}{r_M^2}\Rightarrow\frac{r_E}{r_M}=9,\qquad r_E=0{,}9\times3{,}84\times10^{8}=3{,}46\times10^{8}\text{ m}" />
+<BlockMath math="g_M=9{,}8\times\frac{0{,}107}{0{,}532^2}\approx3{,}7\text{ m s}^{-2},\qquad m=\frac{PA}{g_M}=\frac{600\times1}{3{,}7}\approx160\text{ kg}" />
 
-<BlockMath math="g=9{,}8\left(\frac{6{,}4\times10^{6}}{3{,}46\times10^{8}}\right)^2=9{,}8\times3{,}42\times10^{-4}\approx3{,}4\times10^{-3}\text{ m s}^{-2}" />
+<BlockMath math="h=\frac{P}{\rho g_M}=\frac{600}{13\,600\times3{,}7}\approx0{,}012\text{ m}=12\text{ mm}" />
 
-Titik itu berada <InlineMath math="0{,}9" /> dari jarak ke Bulan, <InlineMath math="3{,}5\times10^{8}\text{ m}" /> dari pusat Bumi. Itu <InlineMath math="54" /> kali jari-jari Bumi, tempat tarikan Bumi hanya <InlineMath math="1/2900" /> dari nilainya di permukaan.
-
-<BlockMath math="g_M=3{,}4\times10^{-3}\times\left(\frac{3{,}84\times10^{7}}{1{,}74\times10^{6}}\right)^2=3{,}4\times10^{-3}\times487\approx1{,}6\text{ m s}^{-2}" />
-
-Di titik seimbang, Bulan menarik sama kuat dengan Bumi, <InlineMath math="3{,}4\times10^{-3}\text{ m s}^{-2}" />, dari jarak <InlineMath math="3{,}84\times10^{7}\text{ m}" />. Bergerak ke permukaan Bulan, <InlineMath math="22" /> kali lebih dekat, mengalikannya dengan <InlineMath math="22^2" />, memberi sekitar <InlineMath math="1{,}6\text{ m s}^{-2}" />.
+Gravitasi di Mars sekitar <InlineMath math="3{,}7\text{ m s}^{-2}" />. Sekitar <InlineMath math="160\text{ kg}" /> udara menekan tiap meter persegi, dan barometer raksa di sana hanya setinggi sekitar <InlineMath math="12\text{ mm}" />.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="3{,}8\times10^{8}\text{ m}" /> membuat jarak sebanding dengan **massa**, <InlineMath math="81:1" />, alih-alih dengan akarnya, <InlineMath math="9:1" />.
-- <InlineMath math="0{,}18\text{ m s}^{-2}" /> menskalakan <InlineMath math="g" /> dengan **perbandingan jarak**, lupa hukum kuadrat terbalik, dan mengulangi kesalahan itu di Bulan.
-- <InlineMath math="0{,}074\text{ m s}^{-2}" /> benar untuk titik seimbang tetapi menskalakan ke permukaan Bulan dengan **<InlineMath math="22" /> alih-alih <InlineMath math="22^2" />**.
+- <InlineMath math="4{,}5\text{ mm}" /> memakai **gravitasi Bumi untuk raksa**, padahal di Mars kolom ditarik gravitasi Mars yang lebih lemah.
+- <InlineMath math="61\text{ kg}" /> membagi tekanan dengan **<InlineMath math="g" /> Bumi**, padahal berat udara berasal dari gravitasi planet tempatnya berada.
+- <InlineMath math="2{,}0\text{ m s}^{-2}" /> membagi dengan jari-jari **tanpa dikuadratkan**, dan kesalahan itu terbawa ke massa udara dan tinggi kolom.

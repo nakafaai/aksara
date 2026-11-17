@@ -1,35 +1,26 @@
-# Series shares the extension, parallel shares the force
+# Friction is not one fixed push: it can act up or down the ramp, so the box rests over a range
 
-In **series** both springs carry the **whole <InlineMath math="20\text{ N}" />**, and their extensions add. In **parallel** the bar makes both springs stretch **the same amount**, and their forces add to <InlineMath math="20\text{ N}" />, so the stiffer spring carries more.
+Along the ramp, the weight pulls the box down with <InlineMath math="mg\sin30°" /> and the spring pulls it up. Friction makes up whatever difference there is, **in whichever direction is needed**, up to <InlineMath math="6.0\text{ N}" />. With a slack spring the box tends to slide down, so friction acts up the ramp. With a well-stretched spring the box tends to be dragged up, so friction acts down. That gives **two limits**, not one.
 
 <Chart
-  title={<>Force and Extension of Each Spring in Each Arrangement</>}
+  title={<>Spring Tension That Keeps the Box Still</>}
   bars="apart"
-  categories={["200 N/m, series", "300 N/m, series", "200 N/m, parallel", "300 N/m, parallel"]}
+  categories={["Least tension", "Weight along ramp", "Greatest tension"]}
   series={[
-    { label: "Force (N)", mark: "bar", values: [20, 20, 8, 12] },
-    { label: "Extension (cm)", mark: "bar", values: [10, 6.7, 4.0, 4.0] },
+    { label: "Tension", mark: "bar", values: [4.0, 10.0, 16.0] },
   ]}
-  valueLabel="Value"
-  description={<>In series both springs carry the full <InlineMath math="20\text{ N}" />, so the softer one stretches more, <InlineMath math="10" /> against <InlineMath math="6.7\text{ cm}" />. In parallel both stretch <InlineMath math="4.0\text{ cm}" />, so the stiffer one carries more, <InlineMath math="12" /> against <InlineMath math="8\text{ N}" />.</>}
+  valueLabel="Tension (N)"
+  description={<>The weight pulls <InlineMath math="10\text{ N}" /> down the ramp. Friction can supply up to <InlineMath math="6.0\text{ N}" /> either way, so the spring can pull anywhere from <InlineMath math="4.0\text{ N}" /> to <InlineMath math="16\text{ N}" />.</>}
 />
 
-<BlockMath math="x_{\text{series}}=\frac{20}{200}+\frac{20}{300}=0.10+0.067\approx0.17\text{ m},\qquad E_{200}=\tfrac12(20)(0.10)=1.0\text{ J}" />
+<BlockMath math="mg\sin30°=2.0\times10\times0.5=10\text{ N},\qquad T_{\min}=10-6.0=4.0\text{ N},\qquad T_{\max}=10+6.0=16\text{ N}" />
 
-<BlockMath math="x_{\text{parallel}}=\frac{20}{200+300}=0.040\text{ m},\qquad F_{300}=300\times0.040=12\text{ N}" />
+<BlockMath math="x_{\min}=\frac{4.0}{200}=2.0\text{ cm},\qquad x_{\max}=\frac{16}{200}=8.0\text{ cm},\qquad E=\tfrac12(200)(0.080)^2=0.64\text{ J}" />
 
-In series the pair stretches about <InlineMath math="0.17\text{ m}" />, and the softer <InlineMath math="200\text{ N m}^{-1}" /> spring stores <InlineMath math="1.0\text{ J}" />. In parallel both stretch <InlineMath math="0.040\text{ m}" />, so the <InlineMath math="300\text{ N m}^{-1}" /> spring carries <InlineMath math="12\text{ N}" /> and the other <InlineMath math="8\text{ N}" />.
-
-<BlockMath math="\frac{F_{200}}{W}=\frac{200}{500}=0.40,\qquad 0.40\,W\le25\Rightarrow W\le\frac{25}{0.40}\approx63\text{ N}" />
-
-In parallel the <InlineMath math="200\text{ N m}^{-1}" /> spring always carries <InlineMath math="40\%" /> of the load. It reaches <InlineMath math="25\text{ N}" /> when the load is about <InlineMath math="63\text{ N}" />, while the stiffer spring then carries <InlineMath math="38\text{ N}" />.
-
-<BlockMath math="x=\frac{62.5}{500}=0.125\text{ m},\qquad E=\tfrac12(62.5)(0.125)\approx3.9\text{ J}" />
-
-At the heaviest load the pair, as stiff as one <InlineMath math="500\text{ N m}^{-1}" /> spring, stretches <InlineMath math="12.5\text{ cm}" /> and stores about <InlineMath math="3.9\text{ J}" />.
+The box stays at rest anywhere the spring is stretched between <InlineMath math="2.0\text{ cm}" /> and <InlineMath math="8.0\text{ cm}" />. At the upper limit the spring stores <InlineMath math="0.64\text{ J}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="10\text{ N}" /> and <InlineMath math="50\text{ N}" /> share the load **equally** in parallel, but equal extensions make the stiffer spring carry more.
-- <InlineMath math="25\text{ N}" /> treats the parallel pair **as if it were in series**, where each spring would carry the whole load.
-- <InlineMath math="0.040\text{ m}" /> and <InlineMath math="42\text{ N}" /> treat the series pair as **if it were in parallel** and then give the <InlineMath math="200\text{ N m}^{-1}" /> spring the stiffer spring's <InlineMath math="60\%" /> share.
+- <InlineMath math="5.0\text{ cm}" /> for both limits **ignores friction**, so the box could rest at only one position.
+- <InlineMath math="2.0\text{ cm}" /> and <InlineMath math="5.0\text{ cm}" /> let friction **only help the spring**, never resist it, but friction opposes whichever way the box tends to slide.
+- <InlineMath math="7.0\text{ cm}" /> and <InlineMath math="13\text{ cm}" /> use the **whole weight** along the ramp instead of its component <InlineMath math="mg\sin30°" />.
