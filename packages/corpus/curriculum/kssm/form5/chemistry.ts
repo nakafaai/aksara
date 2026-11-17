@@ -114,7 +114,33 @@ export const kssmForm5ChemistryTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-chemistry-polymer-polymer",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.polymer"],
+        order: 10,
+      }),
+    ],
     key: "form-5-chemistry-polymer",
+    materialCard: {
+      de: {
+        description: "Unterscheide Polyreaktionen und vulkanisiere Kautschuk.",
+        title: "Polymere",
+      },
+      en: {
+        description: "Compare polymerisations and vulcanise rubber.",
+        title: "Polymer",
+      },
+      id: {
+        description: "Bandingkan jenis polimerisasi dan vulkanisasi karet.",
+        title: "Polimer",
+      },
+      ms: {
+        description: "Bandingkan jenis pempolimeran dan pemvulkanan getah.",
+        title: "Polimer",
+      },
+    },
     order: 40,
     translations: {
       de: { routeSlug: "polymere", title: "Polymere" },
