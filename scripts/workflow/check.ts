@@ -7,6 +7,7 @@ import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
 import { ensure, sameNames } from "#scripts/workflow/requirement";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
+import { verifyTurboEnvironment } from "#scripts/workflow/turbo";
 
 const FORBIDDEN_REGISTRY_PATTERN =
   /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|bun publish|changesets|package-proof/iu;
@@ -54,6 +55,7 @@ const WorkflowSourcesSchema = Schema.Struct({
   cli: Schema.String,
   contracts: Schema.String,
   release: Schema.String,
+  turbo: Schema.String,
 });
 
 /** Workflow sources that the workflow policy names. */
@@ -73,7 +75,7 @@ const contractStepStart = Effect.fn("AksaraWorkflow.contractStepStart")(
 
 /** Verifies one source-only contract archive and one content release path. */
 export const verifyWorkflows = Effect.fn("AksaraWorkflow.verifyWorkflows")(
-  function* ({ all, cli, contracts, release }: WorkflowSources) {
+  function* ({ all, cli, contracts, release, turbo }: WorkflowSources) {
     const releaseCombined = `${contracts}\n${release}`;
     const combined = `${releaseCombined}\n${cli}`;
     yield* ensure(
@@ -100,6 +102,7 @@ export const verifyWorkflows = Effect.fn("AksaraWorkflow.verifyWorkflows")(
       Arr.dedupe([cli, contracts, release, ...all])
     );
     yield* verifyCliWorkflow(cli);
+    yield* verifyTurboEnvironment(release, turbo);
     yield* ensure(
       CONTRACT_TRIGGER_PATTERN.test(contracts),
       "Contract release checks must run for every main source revision"
@@ -236,7 +239,8 @@ const readWorkflowSources = Effect.fn("WorkflowCheck.readSources")(
     const cli = yield* readSource(".github/workflows/cli.yml");
     const contracts = yield* readSource(".github/workflows/contracts.yml");
     const release = yield* readSource(".github/workflows/release.yml");
-    return { all, cli, contracts, release };
+    const turbo = yield* readSource("turbo.json");
+    return { all, cli, contracts, release, turbo };
   }
 );
 

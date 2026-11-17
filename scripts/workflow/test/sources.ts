@@ -14,11 +14,13 @@ const readWorkflowSources = Effect.gen(function* () {
   const cli = yield* readSource(".github/workflows/cli.yml");
   const contracts = yield* readSource(".github/workflows/contracts.yml");
   const release = yield* readSource(".github/workflows/release.yml");
+  const turbo = yield* readSource("turbo.json");
   return {
     all: [cli, contracts, release],
     cli,
     contracts,
     release,
+    turbo,
   };
 });
 
