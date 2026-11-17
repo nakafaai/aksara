@@ -51,7 +51,33 @@ export const kssmForm4PhysiologyExchangeNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-nutrition-and-the-human-digestive-system-digestive-system",
+        level: "lesson",
+        materialKeys: ["lesson.biology.digestive-system"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-nutrition-and-the-human-digestive-system",
+    materialCard: {
+      de: {
+        description: "Erkläre Verdauung, Aufnahme und Energiegehalt.",
+        title: "Ernährung und menschliches Verdauungssystem",
+      },
+      en: {
+        description: "Explain digestion, absorption and food energy.",
+        title: "Nutrition and the Human Digestive System",
+      },
+      id: {
+        description: "Jelaskan pencernaan, penyerapan, dan energi makanan.",
+        title: "Nutrisi dan Sistem Pencernaan Manusia",
+      },
+      ms: {
+        description: "Terangkan pencernaan, penyerapan dan tenaga makanan.",
+        title: "Nutrisi dan Sistem Pencernaan Manusia",
+      },
+    },
     order: 90,
     translations: {
       de: {

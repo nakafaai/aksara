@@ -1,0 +1,286 @@
+export const metadata = {
+  title: "Nutrition and the Human Digestive System Notes",
+  description:
+    "Form 4 Biology Chapter 9: calculate food energy values, explain digestion by enzymes, absorption in the ileum and diet-related health issues, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Nutrition and the Human Digestive System",
+};
+
+## Food Is Digested into Small Molecules That Can Be Absorbed
+
+A **balanced diet** contains seven classes of food in the right proportions: **carbohydrates, proteins, lipids, vitamins, mineral salts, fibre and water**. Carbohydrates, proteins and lipids are large molecules that can't cross the wall of the gut. **Digestion** breaks these large molecules down into small soluble ones, namely glucose, amino acids, fatty acids and glycerol, with the help of enzymes. The small molecules are then **absorbed in the ileum** and used by cells. In the models here, you compare the energy values of food, read enzyme activity at different pH values and follow starch being digested by amylase.
+
+## Energy Value of Food
+
+Each gram of a nutrient releases a different amount of energy when it's oxidised in cells. **Lipids supply more than twice the energy** of carbohydrates or proteins.
+
+<BarChart
+  title={<>Energy Value of Each Gram of Nutrient</>}
+  description={
+    <>
+      The energy released by one gram of carbohydrate, protein and lipid in
+      kilojoules.
+    </>
+  }
+  yAxisLabel="Energy value (kJ g⁻¹)"
+  data={[
+    { name: "Carbohydrate", value: 17 },
+    { name: "Protein", value: 17 },
+    { name: "Lipid", value: 37 },
+  ]}
+  chartConfig={{ value: { label: "Energy value", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Example Energy in One Meal
+
+A meal contains <InlineMath math="60\text{ g}" /> of carbohydrate, <InlineMath math="20\text{ g}" /> of protein and <InlineMath math="15\text{ g}" /> of lipid. Calculate **the total energy** of the meal.
+
+<BlockMath math="60 \times 17 + 20 \times 17 + 15 \times 37 = 1020 + 340 + 555 = 1915\text{ kJ}" />
+
+Check: there's only <InlineMath math="15\text{ g}" /> of lipid, yet it supplies <InlineMath math="555\text{ kJ}" />, more than the protein of almost the same mass. That matches the high energy value of lipids.
+
+### Example Measuring Energy Value with a Simple Calorimeter
+
+A <InlineMath math="1.0\text{ g}" /> peanut is burnt under a boiling tube holding <InlineMath math="20\text{ cm}^3" /> of water. The water warms from <InlineMath math="28^\circ\text{C}" /> to <InlineMath math="58^\circ\text{C}" />. The specific heat capacity of water is <InlineMath math="4.2\text{ J g}^{-1}\,{}^\circ\text{C}^{-1}" />. Calculate **the energy value of the peanut**.
+
+<MathContainer>
+<BlockMath math="Q = mc\Delta\theta = 20 \times 4.2 \times 30 = 2520\text{ J}" />
+<BlockMath math="\text{Energy value} = \frac{2520}{1.0} = 2520\text{ J g}^{-1} = 2.52\text{ kJ g}^{-1}" />
+</MathContainer>
+
+Check: the real value for peanuts is roughly ten times larger. A lot of heat escapes to the air and the boiling tube, so a simple calorimeter always gives a value that is too low.
+
+This graph shows the results when the mass of peanut burnt is changed. The gradient of the line is the temperature rise for each gram of food.
+
+<ScatterDiagram
+  title={<>Temperature Rise of Water against Mass of Peanut Burnt</>}
+  description={
+    <>
+      Each point is one burn under <InlineMath math="20\text{ cm}^3" /> of
+      water. The gradient is about <InlineMath math="30^\circ\text{C}" /> per
+      gram.
+    </>
+  }
+  xAxisLabel="Mass of peanut (g)"
+  yAxisLabel="Temperature rise (°C)"
+  calculateRegressionLine
+  datasets={[
+    {
+      name: "Peanut",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.2, y: 6.1 },
+        { x: 0.4, y: 11.8 },
+        { x: 0.6, y: 18.2 },
+        { x: 0.8, y: 23.9 },
+        { x: 1.0, y: 30.0 },
+      ],
+    },
+  ]}
+/>
+
+## Digestion in the Human Digestive System
+
+Digestion happens **mechanically**, through chewing and peristalsis, and **chemically**, through enzymes. Each enzyme acts on a particular substrate in a particular part of the gut.
+
+| Place | Secretion | Enzymes | Action |
+| :--- | :--- | :--- | :--- |
+| Mouth | Saliva | Salivary amylase | Starch to maltose |
+| Stomach | Gastric juice with hydrochloric acid | Pepsin, rennin | Protein to polypeptides, caseinogen to casein |
+| Duodenum | Pancreatic juice and bile | Amylase, trypsin, lipase | Starch to maltose, polypeptides to peptides, lipids to fatty acids and glycerol |
+| Ileum | Intestinal juice | Maltase, sucrase, lactase, erepsin, lipase | Disaccharides to monosaccharides, peptides to amino acids |
+
+**Bile** contains no enzymes. It emulsifies lipids into small droplets so the surface area for lipase to act on increases, and it neutralises the acidic chyme from the stomach.
+
+### Enzymes and Optimum pH
+
+Every enzyme has an **optimum pH**. Pepsin works in the acidic stomach, while amylase and trypsin work in neutral or slightly alkaline conditions. Move the pH slider and compare the activity of the three enzymes.
+
+<MathVisual
+  title={<>Activity of Digestive Enzymes at Different pH</>}
+  description={
+    <>
+      Relative activity of pepsin with optimum pH <InlineMath math="2" />,
+      amylase with optimum pH <InlineMath math="7" /> and trypsin with optimum
+      pH <InlineMath math="8" />, on a scale of <InlineMath math="0" /> to{" "}
+      <InlineMath math="10" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 14, value: 2, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "pepsin", kind: "function", appearance: "primary", formula: "10exp(-(x - 2)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "amylase", kind: "function", appearance: "secondary", formula: "10exp(-(x - 7)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "trypsin", kind: "function", appearance: "reference", formula: "10exp(-(x - 8)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "p", y: "10exp(-(p - 2)^2/2)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "pepsin", formula: "10exp(-(p - 2)^2/2)" },
+      { key: "amylase", formula: "10exp(-(p - 7)^2/2)" },
+      { key: "trypsin", formula: "10exp(-(p - 8)^2/2)" },
+    ],
+  }}
+  labels={{
+    p: <>pH of the medium <InlineMath math="p" /></>,
+    pepsin: <>Pepsin activity</>,
+    amylase: <>Amylase activity</>,
+    trypsin: <>Trypsin activity</>,
+  }}
+/>
+
+### Example Starch Digested by Amylase
+
+Starch solution is mixed with amylase at body temperature. A drop of the mixture is tested with **iodine solution** every minute. The starch left falls as <InlineMath math="10e^{-km}" />, with <InlineMath math="m" /> in minutes. Change the rate <InlineMath math="k" /> to imitate different temperatures, and move the time to see how much starch is left.
+
+<MathVisual
+  title={<>Starch Left While Amylase Digests It</>}
+  description={
+    <>
+      Relative starch <InlineMath math="10e^{-km}" /> against time{" "}
+      <InlineMath math="m" /> in minutes. Iodine stops turning blue-black once
+      the starch falls below <InlineMath math="1" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.1, max: 1, value: 0.5, step: 0.05, label: "k" },
+      { name: "m", min: 0, max: 14, value: 4, step: 0.5, label: "m" },
+    ],
+    objects: [
+      { id: "starch", kind: "function", appearance: "primary", formula: "10exp(-k x)", domain: { min: 0, max: 14 } },
+      { id: "limit", kind: "function", appearance: "construction", formula: "1 + 0x", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "m", y: "10exp(-k m)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "remaining", formula: "10exp(-k m)" },
+    ],
+  }}
+  labels={{
+    k: <>Rate of digestion <InlineMath math="k" /></>,
+    m: <>Time <InlineMath math="m" /> in minutes</>,
+    remaining: <>Starch left</>,
+  }}
+/>
+
+With <InlineMath math="k = 0.5" />, the starch drops to <InlineMath math="10e^{-0.5 \times 4} = 1.35" /> after <InlineMath math="4" /> minutes, and below <InlineMath math="1" /> after about <InlineMath math="4.6" /> minutes. Check: <InlineMath math="10e^{-0.5 \times 4.6} = 1.00" />. At a lower temperature, <InlineMath math="k" /> is smaller and the iodine test stays blue-black for longer.
+
+## Absorption and Assimilation
+
+The ileum is adapted for absorption. Its wall is folded and covered in **villi**, and every epithelial cell of a villus has **microvilli**, so the surface area is huge. The wall of a villus is one cell thick, and each villus contains **blood capillaries** and a **lacteal**.
+
+- Glucose and amino acids are absorbed into the blood capillaries, then carried by the **hepatic portal vein** to the liver.
+- Fatty acids and glycerol are absorbed into the lacteal and carried by the lymphatic system before they enter the blood.
+- The remaining water and mineral salts are absorbed in the **colon**, and undigested material such as fibre is removed as faeces.
+
+**Assimilation** is the use of absorbed nutrients by cells. The liver turns excess glucose into glycogen, amino acids are used to build proteins, and lipids build plasma membranes or are stored under the skin.
+
+## Health Issues Related to Diet
+
+An unbalanced diet causes **malnutrition**. Taking in too much energy leads to obesity, a lack of protein causes kwashiorkor, and a lack of fibre causes constipation. Gastritis happens when stomach acid erodes the stomach lining, often because of irregular meals.
+
+### Body Mass Index
+
+**Body mass index**, <InlineMath math="\text{BMI} = \dfrac{\text{mass}}{\text{height}^2}" />, estimates whether body mass suits height. This model draws the mass for each height at the chosen BMI. The reference curves mark the boundaries at <InlineMath math="18.5" /> and <InlineMath math="25" />.
+
+<MathVisual
+  title={<>Body Mass for Each Height at a Given BMI</>}
+  description={
+    <>
+      The horizontal axis is height above <InlineMath math="140\text{ cm}" /> in
+      decimetres, and the vertical axis is mass in units of{" "}
+      <InlineMath math="20\text{ kg}" />. The middle curve shows the mass at BMI{" "}
+      <InlineMath math="b" />, between BMI <InlineMath math="18.5" /> and{" "}
+      <InlineMath math="25" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.8 }, y: { min: 0, max: 7.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 15, max: 35, value: 22, step: 0.5, label: "b" },
+      { name: "h", min: 14, max: 20, value: 16, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "chosen", kind: "function", appearance: "primary", formula: "b (x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "under", kind: "function", appearance: "reference", formula: "18.5(x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "over", kind: "function", appearance: "reference", formula: "25(x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "h - 14", y: "b h^2/2000", appearance: "warning" },
+    ],
+    labels: [
+      { key: "tag-under", objectId: "under", at: { x: 6, y: 3.7 }, placement: "right" },
+      { key: "tag-over", objectId: "over", at: { x: 6, y: 5 }, placement: "right" },
+    ],
+    readouts: [
+      { key: "mass", formula: "b h^2/100" },
+    ],
+  }}
+  labels={{
+    "tag-under": <InlineMath math="18.5" />,
+    "tag-over": <InlineMath math="25" />,
+    b: <>Body mass index <InlineMath math="b" /></>,
+    h: <>Height <InlineMath math="h" /> in decimetres</>,
+    mass: <>Body mass in kilograms</>,
+  }}
+/>
+
+### Example Calculating Body Mass Index
+
+A student who is <InlineMath math="1.60\text{ m}" /> tall has a mass of <InlineMath math="72\text{ kg}" />. Calculate **the student's BMI** and state the category.
+
+<BlockMath math="\text{BMI} = \frac{72}{1.60^2} = \frac{72}{2.56} = 28.1" />
+
+A BMI of <InlineMath math="28.1" /> is above <InlineMath math="25" />, so the student is overweight. Check with the model: at <InlineMath math="h = 16" /> and <InlineMath math="b = 28" />, the mass reads <InlineMath math="71.7\text{ kg}" />.
+
+## Common Mistakes about Nutrition and Digestion
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Bile digests lipids. | Bile has no enzymes. It only emulsifies lipids, and lipase digests them. | Ask whether the substance is an enzyme. |
+| Digestion starts in the stomach. | Starch digestion starts in the mouth with salivary amylase. | Follow the food from the mouth. |
+| All products of digestion enter the blood capillaries. | Fatty acids and glycerol enter the lacteal. | Separate water-soluble products from lipid products. |
+| Pepsin works best at neutral pH. | Pepsin has an optimum pH of about <InlineMath math="2" /> in the acidic stomach. | Match the enzyme to where it's secreted. |
+
+The first mistake is the most common one in questions on lipid digestion. **Bile emulsifies, lipase digests**.
+
+## Practice on Nutrition and Digestion
+
+These questions move from energy calculations to digestion and absorption. **Name the enzyme and its product** in every answer about digestion.
+
+1. A slice of bread contains <InlineMath math="25\text{ g}" /> of carbohydrate, <InlineMath math="4\text{ g}" /> of protein and <InlineMath math="2\text{ g}" /> of lipid. Calculate its total energy.
+
+2. Explain why protein is digested in the stomach but starch isn't.
+
+3. A <InlineMath math="0.50\text{ g}" /> nut raises the temperature of <InlineMath math="25\text{ cm}^3" /> of water by <InlineMath math="12^\circ\text{C}" />. Calculate the energy value of the nut.
+
+4. Explain how villi are adapted for absorbing the products of digestion.
+
+### Solutions
+
+**Solution 1**: Multiply each mass by its energy value:
+
+<BlockMath math="25 \times 17 + 4 \times 17 + 2 \times 37 = 425 + 68 + 74 = 567\text{ kJ}" />
+
+Check: carbohydrate supplies the biggest share, which fits because bread is rich in starch.
+
+**Solution 2**: The stomach secretes **pepsin**, which digests protein to polypeptides in acidic conditions. Salivary amylase swallowed with the food is **denatured** at a pH of about <InlineMath math="2" />, and the stomach secretes no amylase, so starch isn't digested there.
+
+**Solution 3**: Calculate the heat absorbed by the water, then divide by the mass:
+
+<MathContainer>
+<BlockMath math="Q = 25 \times 4.2 \times 12 = 1260\text{ J}" />
+<BlockMath math="\frac{1260}{0.50} = 2520\text{ J g}^{-1} = 2.52\text{ kJ g}^{-1}" />
+</MathContainer>
+
+Check: the result matches the calorimeter example, so the two measurements agree.
+
+**Solution 4**: Villi and microvilli give **a very large surface area**. Their walls are one cell thick, so the diffusion distance is short, and the many blood capillaries and lacteals carry the absorbed products away so the concentration gradient stays steep.

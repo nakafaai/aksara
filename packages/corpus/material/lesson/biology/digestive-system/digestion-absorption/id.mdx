@@ -1,0 +1,286 @@
+export const metadata = {
+  title: "Nutrisi dan Sistem Pencernaan Manusia",
+  description:
+    "Hitung nilai energi makanan, jelaskan pencernaan oleh enzim, penyerapan di usus penyerapan, dan masalah kesehatan akibat pola makan lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Nutrisi dan Sistem Pencernaan Manusia",
+};
+
+## Makanan Dicerna Menjadi Molekul Kecil yang Bisa Diserap
+
+**Gizi seimbang** berisi tujuh kelompok zat makanan dalam takaran yang tepat: **karbohidrat, protein, lemak, vitamin, mineral, serat, dan air**. Karbohidrat, protein, dan lemak adalah molekul besar yang tidak dapat menembus dinding usus. **Pencernaan** memecah molekul besar itu menjadi molekul kecil yang larut, yaitu glukosa, asam amino, asam lemak, dan gliserol, dengan bantuan enzim. Molekul kecil itu kemudian **diserap di usus penyerapan** dan dipakai oleh sel. Dalam model di sini, kamu membandingkan nilai energi makanan, membaca aktivitas enzim pada pH berbeda, dan mengikuti amilum yang dicerna oleh amilase.
+
+## Nilai Energi Makanan
+
+Setiap gram zat makanan melepaskan energi yang berbeda saat dioksidasi di dalam sel. **Lemak memberi energi lebih dari dua kali lipat** karbohidrat atau protein.
+
+<BarChart
+  title={<>Nilai Energi Setiap Gram Zat Makanan</>}
+  description={
+    <>
+      Energi yang dilepaskan oleh satu gram karbohidrat, protein, dan lemak
+      dalam kilojoule.
+    </>
+  }
+  yAxisLabel="Nilai energi (kJ g⁻¹)"
+  data={[
+    { name: "Karbohidrat", value: 17 },
+    { name: "Protein", value: 17 },
+    { name: "Lemak", value: 37 },
+  ]}
+  chartConfig={{ value: { label: "Nilai energi", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Contoh Energi dalam Satu Porsi
+
+Satu porsi makanan berisi <InlineMath math="60\text{ g}" /> karbohidrat, <InlineMath math="20\text{ g}" /> protein, dan <InlineMath math="15\text{ g}" /> lemak. Hitung **total energinya**.
+
+<BlockMath math="60 \times 17 + 20 \times 17 + 15 \times 37 = 1020 + 340 + 555 = 1915\text{ kJ}" />
+
+Cek: lemaknya hanya <InlineMath math="15\text{ g}" /> tetapi memberi <InlineMath math="555\text{ kJ}" />, lebih banyak daripada protein yang massanya hampir sama. Hasil ini cocok dengan nilai energi lemak yang tinggi.
+
+### Contoh Mengukur Nilai Energi dengan Kalorimeter Sederhana
+
+Sebutir kacang tanah <InlineMath math="1{,}0\text{ g}" /> dibakar di bawah tabung reaksi berisi <InlineMath math="20\text{ cm}^3" /> air. Suhu air naik dari <InlineMath math="28^\circ\text{C}" /> menjadi <InlineMath math="58^\circ\text{C}" />. Kalor jenis air <InlineMath math="4{,}2\text{ J g}^{-1}\,{}^\circ\text{C}^{-1}" />. Hitung **nilai energi kacang tanah**.
+
+<MathContainer>
+<BlockMath math="Q = mc\Delta\theta = 20 \times 4{,}2 \times 30 = 2520\text{ J}" />
+<BlockMath math="\text{Nilai energi} = \frac{2520}{1{,}0} = 2520\text{ J g}^{-1} = 2{,}52\text{ kJ g}^{-1}" />
+</MathContainer>
+
+Cek: nilai sebenarnya kacang tanah kira-kira sepuluh kali lebih besar. Banyak kalor hilang ke udara dan tabung, jadi kalorimeter sederhana selalu memberi nilai yang terlalu rendah.
+
+Grafik ini menunjukkan hasil saat massa kacang yang dibakar diubah. Kemiringan garisnya adalah kenaikan suhu untuk setiap gram makanan.
+
+<ScatterDiagram
+  title={<>Kenaikan Suhu Air terhadap Massa Kacang yang Dibakar</>}
+  description={
+    <>
+      Setiap titik adalah satu pembakaran di bawah{" "}
+      <InlineMath math="20\text{ cm}^3" /> air. Kemiringannya sekitar{" "}
+      <InlineMath math="30^\circ\text{C}" /> per gram.
+    </>
+  }
+  xAxisLabel="Massa kacang (g)"
+  yAxisLabel="Kenaikan suhu (°C)"
+  calculateRegressionLine
+  datasets={[
+    {
+      name: "Kacang tanah",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.2, y: 6.1 },
+        { x: 0.4, y: 11.8 },
+        { x: 0.6, y: 18.2 },
+        { x: 0.8, y: 23.9 },
+        { x: 1.0, y: 30.0 },
+      ],
+    },
+  ]}
+/>
+
+## Pencernaan dalam Sistem Pencernaan Manusia
+
+Pencernaan terjadi secara **mekanis**, yaitu mengunyah dan gerak peristaltik, dan secara **kimiawi** oleh enzim. Setiap enzim bekerja pada substrat tertentu di bagian saluran tertentu.
+
+| Tempat | Sekresi | Enzim | Kerja |
+| :--- | :--- | :--- | :--- |
+| Mulut | Air liur | Amilase ludah | Amilum menjadi maltosa |
+| Lambung | Getah lambung dengan asam klorida | Pepsin, renin | Protein menjadi polipeptida, kaseinogen menjadi kasein |
+| Usus dua belas jari | Getah pankreas dan empedu | Amilase, tripsin, lipase | Amilum menjadi maltosa, polipeptida menjadi peptida, lemak menjadi asam lemak dan gliserol |
+| Usus penyerapan | Getah usus | Maltase, sukrase, laktase, erepsin, lipase | Disakarida menjadi monosakarida, peptida menjadi asam amino |
+
+**Empedu** tidak mengandung enzim. Empedu mengemulsikan lemak menjadi butiran kecil sehingga luas permukaan untuk kerja lipase bertambah, dan menetralkan bubur makanan yang asam dari lambung.
+
+### Enzim dan pH Optimum
+
+Setiap enzim punya **pH optimum**. Pepsin bekerja di lambung yang asam, sedangkan amilase dan tripsin bekerja pada suasana netral atau sedikit basa. Geser penggeser pH dan bandingkan aktivitas ketiga enzim.
+
+<MathVisual
+  title={<>Aktivitas Enzim Pencernaan pada pH Berbeda</>}
+  description={
+    <>
+      Aktivitas relatif pepsin dengan pH optimum <InlineMath math="2" />,
+      amilase dengan pH optimum <InlineMath math="7" />, dan tripsin dengan pH
+      optimum <InlineMath math="8" />, pada skala <InlineMath math="0" />{" "}
+      sampai <InlineMath math="10" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 14, value: 2, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "pepsin", kind: "function", appearance: "primary", formula: "10exp(-(x - 2)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "amylase", kind: "function", appearance: "secondary", formula: "10exp(-(x - 7)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "trypsin", kind: "function", appearance: "reference", formula: "10exp(-(x - 8)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "p", y: "10exp(-(p - 2)^2/2)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "pepsin", formula: "10exp(-(p - 2)^2/2)" },
+      { key: "amylase", formula: "10exp(-(p - 7)^2/2)" },
+      { key: "trypsin", formula: "10exp(-(p - 8)^2/2)" },
+    ],
+  }}
+  labels={{
+    p: <>pH medium <InlineMath math="p" /></>,
+    pepsin: <>Aktivitas pepsin</>,
+    amylase: <>Aktivitas amilase</>,
+    trypsin: <>Aktivitas tripsin</>,
+  }}
+/>
+
+### Contoh Amilum Dicerna oleh Amilase
+
+Larutan amilum dicampur dengan amilase pada suhu tubuh. Setetes campuran diuji dengan **larutan iodin** setiap menit. Amilum yang tersisa turun mengikuti <InlineMath math="10e^{-km}" />, dengan <InlineMath math="m" /> dalam menit. Ubah laju <InlineMath math="k" /> untuk meniru suhu yang berbeda, lalu geser waktunya untuk melihat amilum yang tersisa.
+
+<MathVisual
+  title={<>Amilum yang Tersisa Saat Dicerna Amilase</>}
+  description={
+    <>
+      Amilum relatif <InlineMath math="10e^{-km}" /> terhadap waktu{" "}
+      <InlineMath math="m" /> dalam menit. Iodin tidak lagi berubah biru
+      kehitaman saat amilum turun di bawah <InlineMath math="1" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.1, max: 1, value: 0.5, step: 0.05, label: "k" },
+      { name: "m", min: 0, max: 14, value: 4, step: 0.5, label: "m" },
+    ],
+    objects: [
+      { id: "starch", kind: "function", appearance: "primary", formula: "10exp(-k x)", domain: { min: 0, max: 14 } },
+      { id: "limit", kind: "function", appearance: "construction", formula: "1 + 0x", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "m", y: "10exp(-k m)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "remaining", formula: "10exp(-k m)" },
+    ],
+  }}
+  labels={{
+    k: <>Laju pencernaan <InlineMath math="k" /></>,
+    m: <>Waktu <InlineMath math="m" /> dalam menit</>,
+    remaining: <>Amilum yang tersisa</>,
+  }}
+/>
+
+Dengan <InlineMath math="k = 0{,}5" />, amilum turun menjadi <InlineMath math="10e^{-0{,}5 \times 4} = 1{,}35" /> setelah <InlineMath math="4" /> menit, dan di bawah <InlineMath math="1" /> setelah sekitar <InlineMath math="4{,}6" /> menit. Cek: <InlineMath math="10e^{-0{,}5 \times 4{,}6} = 1{,}00" />. Pada suhu yang lebih rendah, <InlineMath math="k" /> lebih kecil dan uji iodin tetap biru kehitaman lebih lama.
+
+## Penyerapan dan Asimilasi
+
+Usus penyerapan disesuaikan untuk menyerap sari makanan. Dindingnya berlipat dan dipenuhi **vili**, dan setiap sel epitel vili punya **mikrovili**, sehingga luas permukaannya sangat besar. Dinding vili setebal satu sel, dan setiap vili berisi **kapiler darah** dan **pembuluh kil**.
+
+- Glukosa dan asam amino diserap ke kapiler darah, lalu dibawa oleh **vena porta hati** ke hati.
+- Asam lemak dan gliserol diserap ke pembuluh kil dan dibawa oleh sistem limfa sebelum masuk ke darah.
+- Air dan mineral yang tersisa diserap di **usus besar**, dan bahan yang tidak tercerna seperti serat dibuang sebagai feses.
+
+**Asimilasi** adalah pemakaian zat makanan yang diserap oleh sel. Hati mengubah glukosa berlebih menjadi glikogen, asam amino dipakai untuk membangun protein, dan lemak membangun membran plasma atau disimpan di bawah kulit.
+
+## Masalah Kesehatan Akibat Pola Makan
+
+Pola makan yang tidak seimbang menyebabkan **malnutrisi**. Asupan energi berlebih menyebabkan obesitas, kekurangan protein menyebabkan kwashiorkor, dan kekurangan serat menyebabkan sembelit. Maag terjadi saat asam lambung mengikis dinding lambung, sering karena makan tidak teratur.
+
+### Indeks Massa Tubuh
+
+**Indeks massa tubuh**, <InlineMath math="\text{IMT} = \dfrac{\text{massa}}{\text{tinggi}^2}" />, memperkirakan apakah massa tubuh sesuai dengan tinggi badan. Model ini menggambar massa untuk setiap tinggi pada IMT yang dipilih. Kurva acuan menandai batas <InlineMath math="18{,}5" /> dan <InlineMath math="25" />.
+
+<MathVisual
+  title={<>Massa Tubuh untuk Setiap Tinggi pada IMT Tertentu</>}
+  description={
+    <>
+      Sumbu mendatar adalah tinggi di atas <InlineMath math="140\text{ cm}" /> dalam
+      desimeter, dan sumbu tegak adalah massa dalam satuan{" "}
+      <InlineMath math="20\text{ kg}" />. Kurva tengah menunjukkan massa pada IMT{" "}
+      <InlineMath math="b" />, di antara IMT <InlineMath math="18{,}5" /> dan{" "}
+      <InlineMath math="25" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.8 }, y: { min: 0, max: 7.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 15, max: 35, value: 22, step: 0.5, label: "b" },
+      { name: "h", min: 14, max: 20, value: 16, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "chosen", kind: "function", appearance: "primary", formula: "b (x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "under", kind: "function", appearance: "reference", formula: "18.5(x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "over", kind: "function", appearance: "reference", formula: "25(x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "h - 14", y: "b h^2/2000", appearance: "warning" },
+    ],
+    labels: [
+      { key: "tag-under", objectId: "under", at: { x: 6, y: 3.7 }, placement: "right" },
+      { key: "tag-over", objectId: "over", at: { x: 6, y: 5 }, placement: "right" },
+    ],
+    readouts: [
+      { key: "mass", formula: "b h^2/100" },
+    ],
+  }}
+  labels={{
+    "tag-under": <InlineMath math="18{,}5" />,
+    "tag-over": <InlineMath math="25" />,
+    b: <>Indeks massa tubuh <InlineMath math="b" /></>,
+    h: <>Tinggi <InlineMath math="h" /> dalam desimeter</>,
+    mass: <>Massa tubuh dalam kilogram</>,
+  }}
+/>
+
+### Contoh Menghitung Indeks Massa Tubuh
+
+Seorang siswa setinggi <InlineMath math="1{,}60\text{ m}" /> bermassa <InlineMath math="72\text{ kg}" />. Hitung **IMT siswa itu** dan sebutkan kategorinya.
+
+<BlockMath math="\text{IMT} = \frac{72}{1{,}60^2} = \frac{72}{2{,}56} = 28{,}1" />
+
+IMT <InlineMath math="28{,}1" /> melebihi <InlineMath math="25" />, jadi siswa itu kelebihan berat badan. Cek dengan model: pada <InlineMath math="h = 16" /> dan <InlineMath math="b = 28" />, massa terbaca <InlineMath math="71{,}7\text{ kg}" />.
+
+## Kesalahan Umum tentang Nutrisi dan Pencernaan
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Empedu mencerna lemak. | Empedu tidak punya enzim. Empedu hanya mengemulsikan lemak, dan lipase yang mencernanya. | Tanyakan apakah zat itu enzim. |
+| Pencernaan dimulai di lambung. | Pencernaan amilum dimulai di mulut oleh amilase ludah. | Ikuti makanan sejak dari mulut. |
+| Semua hasil pencernaan masuk ke kapiler darah. | Asam lemak dan gliserol masuk ke pembuluh kil. | Pisahkan hasil yang larut air dan hasil lemak. |
+| Pepsin bekerja paling baik pada pH netral. | Pepsin punya pH optimum sekitar <InlineMath math="2" /> di lambung yang asam. | Cocokkan enzim dengan tempat ia disekresikan. |
+
+Kesalahan pertama paling sering muncul dalam soal pencernaan lemak. **Empedu mengemulsikan, lipase mencerna**.
+
+## Latihan Nutrisi dan Pencernaan
+
+Soal-soal ini bergerak dari perhitungan energi sampai pencernaan dan penyerapan. **Sebutkan enzim dan hasilnya** di setiap jawaban tentang pencernaan.
+
+1. Selembar roti berisi <InlineMath math="25\text{ g}" /> karbohidrat, <InlineMath math="4\text{ g}" /> protein, dan <InlineMath math="2\text{ g}" /> lemak. Hitung total energinya.
+
+2. Jelaskan mengapa protein dicerna di lambung tetapi amilum tidak.
+
+3. Sebutir kacang <InlineMath math="0{,}50\text{ g}" /> menaikkan suhu <InlineMath math="25\text{ cm}^3" /> air sebesar <InlineMath math="12^\circ\text{C}" />. Hitung nilai energi kacang itu.
+
+4. Jelaskan bagaimana vili disesuaikan untuk menyerap hasil pencernaan.
+
+### Pembahasan
+
+**Pembahasan 1**: Kalikan setiap massa dengan nilai energinya:
+
+<BlockMath math="25 \times 17 + 4 \times 17 + 2 \times 37 = 425 + 68 + 74 = 567\text{ kJ}" />
+
+Cek: karbohidrat memberi bagian terbesar, cocok karena roti kaya amilum.
+
+**Pembahasan 2**: Lambung menyekresikan **pepsin** yang mencerna protein menjadi polipeptida dalam suasana asam. Amilase ludah yang tertelan bersama makanan **terdenaturasi** pada pH sekitar <InlineMath math="2" />, dan lambung tidak menyekresikan amilase, jadi amilum tidak dicerna di sana.
+
+**Pembahasan 3**: Hitung kalor yang diserap air, lalu bagi dengan massanya:
+
+<MathContainer>
+<BlockMath math="Q = 25 \times 4{,}2 \times 12 = 1260\text{ J}" />
+<BlockMath math="\frac{1260}{0{,}50} = 2520\text{ J g}^{-1} = 2{,}52\text{ kJ g}^{-1}" />
+</MathContainer>
+
+Cek: hasilnya sama dengan contoh kalorimeter, jadi kedua pengukuran konsisten.
+
+**Pembahasan 4**: Vili dan mikrovili memberi **luas permukaan yang sangat besar**. Dindingnya setebal satu sel sehingga jarak difusi pendek, dan banyaknya kapiler darah serta pembuluh kil membawa pergi hasil yang diserap sehingga gradien konsentrasi tetap terjaga.
