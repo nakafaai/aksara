@@ -23,17 +23,18 @@ Geser penggeser <InlineMath math="\Delta H" /> di bawah. Saat <InlineMath math="
       pada tingkat <InlineMath math="50 + \Delta H" />. Punuk di tengah adalah
       energi yang perlu diserap untuk memutus ikatan sebelum ikatan baru
       terbentuk.
+      Sumbu tegak digambar dengan skala <InlineMath math="1 : 10" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 120 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 12 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "d", min: -40, max: 40, value: -30, step: 1, label: "d" },
     ],
     objects: [
-      { id: "profile", kind: "function", appearance: "primary", formula: "50 + d/(1 + exp(-4*(x - 5))) + 30*exp(-((x - 5)^2)/0.8)", domain: { min: 0, max: 10 } },
+      { id: "profile", kind: "function", appearance: "primary", formula: "(50 + d/(1 + exp(-4*(x - 5))) + 30*exp(-((x - 5)^2)/0.8))/10", domain: { min: 0, max: 10 } },
     ],
     readouts: [
       { key: "reactants", formula: "50" },
@@ -108,18 +109,19 @@ Kenaikan suhu bergantung pada **konsentrasi**, bukan volume. Jika volume kedua l
       Volume sama asam kuat dan basa kuat dengan konsentrasi{" "}
       <InlineMath math="M" />. Kenaikan suhunya{" "}
       <InlineMath math="\Delta T = \dfrac{57.300M}{2000 \times 4{,}2} \approx 6{,}82M" />.
+      Sumbu tegak digambar dengan skala <InlineMath math="1 : 10" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 2 }, y: { min: 0, max: 15 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 2 }, y: { min: 0, max: 1.5 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "m", min: 0.1, max: 2, value: 1, step: 0.1, label: "m" },
     ],
     objects: [
-      { id: "rise", kind: "function", appearance: "primary", formula: "57300x/8400", domain: { min: 0, max: 2 } },
-      { id: "now", kind: "marker", x: "m", y: "57300m/8400", appearance: "warning" },
+      { id: "rise", kind: "function", appearance: "primary", formula: "(57300x/8400)/10", domain: { min: 0, max: 2 } },
+      { id: "now", kind: "marker", x: "m", y: "(57300m/8400)/10", appearance: "warning" },
     ],
     readouts: [
       { key: "temperature", formula: "57300m/8400" },
@@ -183,18 +185,19 @@ Kalor pembakaran alkohol bertambah seiring bertambahnya jumlah atom karbon. Nila
       Garis lurus <InlineMath math="650n + 76" /> mendekati nilai standar kalor
       pembakaran, dalam <InlineMath math="\text{kJ/mol}" />, untuk alkohol
       dengan <InlineMath math="n" /> atom karbon.
+      Sumbu tegak digambar dengan skala <InlineMath math="1 : 500" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3500 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 7 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "n", min: 1, max: 4, value: 2, step: 1, label: "n" },
     ],
     objects: [
-      { id: "fit", kind: "function", appearance: "primary", formula: "650x + 76", domain: { min: 1, max: 5 } },
-      { id: "now", kind: "marker", x: "n", y: "650n + 76", appearance: "warning" },
+      { id: "fit", kind: "function", appearance: "primary", formula: "(650x + 76)/500", domain: { min: 1, max: 5 } },
+      { id: "now", kind: "marker", x: "n", y: "(650n + 76)/500", appearance: "warning" },
     ],
     readouts: [
       { key: "heat", formula: "650n + 76" },

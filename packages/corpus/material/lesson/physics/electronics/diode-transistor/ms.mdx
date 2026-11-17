@@ -55,18 +55,19 @@ Semak dengan graf di bawah: pada <InlineMath math="2000\text{ V}" />, bacaan laj
       <InlineMath math="v" /> dalam unit <InlineMath math="10^7\text{ m s}^{-1}" />.
       Pada <InlineMath math="2000\text{ V}" />, laju ialah{" "}
       <InlineMath math="2.65 \times 10^7\text{ m s}^{-1}" />.
+      Paksi mendatar dilukis pada skala <InlineMath math="1 : 1{,}000" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 5000 }, y: { min: 0, max: 4.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 4.5 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "a", min: 0, max: 5000, value: 2000, step: 100, label: "a" },
     ],
     objects: [
-      { id: "speed", kind: "function", appearance: "primary", formula: "0.0593*sqrt(x)", domain: { min: 0, max: 5000 } },
-      { id: "now", kind: "marker", x: "a", y: "0.0593*sqrt(a)", appearance: "warning" },
+      { id: "speed", kind: "function", appearance: "primary", formula: "0.0593*sqrt((x*1000))", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "(a)/1000", y: "0.0593*sqrt(a)", appearance: "warning" },
     ],
     readouts: [
       { key: "velocity", formula: "0.0593*sqrt(a)" },
@@ -95,18 +96,20 @@ Gerakkan gelangsar voltan pincang depan di bawah. Arus hampir sifar di bawah <In
       <InlineMath math="0.3\text{ mA}" />, dan pada{" "}
       <InlineMath math="0.7\text{ V}" /> arus melebihi{" "}
       <InlineMath math="100\text{ mA}" />.
+      Paksi mendatar dilukis pada skala <InlineMath math="10 : 1" />.
+      Paksi menegak dilukis pada skala <InlineMath math="1 : 25" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.72 }, y: { min: 0, max: 200 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 7.2 }, y: { min: 0, max: 8 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "d", min: 0, max: 0.72, value: 0.6, step: 0.01, label: "d" },
     ],
     objects: [
-      { id: "diode", kind: "function", appearance: "primary", formula: "0.0001*exp(x/0.05)", domain: { min: 0, max: 0.72 } },
-      { id: "now", kind: "marker", x: "d", y: "0.0001*exp(d/0.05)", appearance: "warning" },
+      { id: "diode", kind: "function", appearance: "primary", formula: "(0.0001*exp((x/10)/0.05))/25", domain: { min: 0, max: 7.2 } },
+      { id: "now", kind: "marker", x: "(d)*10", y: "(0.0001*exp(d/0.05))/25", appearance: "warning" },
     ],
     readouts: [
       { key: "current", formula: "0.0001*exp(d/0.05)" },

@@ -23,17 +23,18 @@ Verschieb den Regler für <InlineMath math="\Delta H" /> unten. Ist <InlineMath 
       Produkte auf <InlineMath math="50 + \Delta H" />. Der Buckel in der Mitte
       ist die Energie, die zum Spalten der Bindungen nötig ist, bevor neue
       entstehen.
+      Die senkrechte Achse ist im Maßstab <InlineMath math="1 : 10" /> gezeichnet.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 120 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 12 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "d", min: -40, max: 40, value: -30, step: 1, label: "d" },
     ],
     objects: [
-      { id: "profile", kind: "function", appearance: "primary", formula: "50 + d/(1 + exp(-4*(x - 5))) + 30*exp(-((x - 5)^2)/0.8)", domain: { min: 0, max: 10 } },
+      { id: "profile", kind: "function", appearance: "primary", formula: "(50 + d/(1 + exp(-4*(x - 5))) + 30*exp(-((x - 5)^2)/0.8))/10", domain: { min: 0, max: 10 } },
     ],
     readouts: [
       { key: "reactants", formula: "50" },
@@ -108,18 +109,19 @@ Der Temperaturanstieg hängt von der **Konzentration** ab, nicht vom Volumen. Ve
       Gleiche Volumina einer starken Säure und einer starken Lauge mit der
       Konzentration <InlineMath math="c" />. Der Temperaturanstieg ist{" "}
       <InlineMath math="\Delta T = \dfrac{57\,300\,c}{2000 \cdot 4{,}2} \approx 6{,}82\,c" />.
+      Die senkrechte Achse ist im Maßstab <InlineMath math="1 : 10" /> gezeichnet.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 2 }, y: { min: 0, max: 15 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 2 }, y: { min: 0, max: 1.5 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "m", min: 0.1, max: 2, value: 1, step: 0.1, label: "m" },
     ],
     objects: [
-      { id: "rise", kind: "function", appearance: "primary", formula: "57300x/8400", domain: { min: 0, max: 2 } },
-      { id: "now", kind: "marker", x: "m", y: "57300m/8400", appearance: "warning" },
+      { id: "rise", kind: "function", appearance: "primary", formula: "(57300x/8400)/10", domain: { min: 0, max: 2 } },
+      { id: "now", kind: "marker", x: "m", y: "(57300m/8400)/10", appearance: "warning" },
     ],
     readouts: [
       { key: "temperature", formula: "57300m/8400" },
@@ -183,18 +185,19 @@ Die Verbrennungswärme von Alkoholen wächst mit der Zahl der Kohlenstoffatome. 
       Die Gerade <InlineMath math="650n + 76" /> nähert die Standardwerte der
       Verbrennungswärme in <InlineMath math="\text{kJ/mol}" /> für einen
       Alkohol mit <InlineMath math="n" /> Kohlenstoffatomen an.
+      Die senkrechte Achse ist im Maßstab <InlineMath math="1 : 500" /> gezeichnet.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3500 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 7 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "n", min: 1, max: 4, value: 2, step: 1, label: "n" },
     ],
     objects: [
-      { id: "fit", kind: "function", appearance: "primary", formula: "650x + 76", domain: { min: 1, max: 5 } },
-      { id: "now", kind: "marker", x: "n", y: "650n + 76", appearance: "warning" },
+      { id: "fit", kind: "function", appearance: "primary", formula: "(650x + 76)/500", domain: { min: 1, max: 5 } },
+      { id: "now", kind: "marker", x: "n", y: "(650n + 76)/500", appearance: "warning" },
     ],
     readouts: [
       { key: "heat", formula: "650n + 76" },

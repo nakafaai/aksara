@@ -46,19 +46,8 @@ Besi berubah daripada <InlineMath math="+3" /> kepada <InlineMath math="0" />, j
 
 **Keupayaan elektrod piawai**, <InlineMath math="E^\circ" />, mengukur kecenderungan sesuatu spesies menerima elektron, berbanding elektrod hidrogen piawai pada <InlineMath math="0.00\text{ V}" />. Nilai <InlineMath math="E^\circ" /> yang **lebih negatif** bermaksud logam itu lebih mudah melepaskan elektron, jadi logam itu agen penurunan yang lebih kuat. Senarai logam mengikut nilai ini dipanggil **siri elektrokimia**.
 
-<Chart
+<MathVisual
   title={<>Keupayaan Elektrod Piawai Lima Logam</>}
-  bars="apart"
-  categories={["Magnesium", "Zink", "Besi", "Kuprum", "Argentum"]}
-  series={[
-    {
-      label: "Keupayaan elektrod piawai",
-      mark: "bar",
-      values: [-2.38, -0.76, -0.44, 0.34, 0.8],
-    },
-  ]}
-  valueLabel="E° (V)"
-  valueRange={{ min: -2.5, max: 1 }}
   description={
     <>
       Nilai pada <InlineMath math="25^\circ\text{C}" /> untuk{" "}
@@ -69,6 +58,37 @@ Besi berubah daripada <InlineMath math="+3" /> kepada <InlineMath math="0" />, j
       <InlineMath math="+0.80\text{ V}" />.
     </>
   }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -2.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "bar-mg", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: -2.38 }, appearance: "primary" },
+      { id: "top-mg", kind: "point", at: { x: 1, y: -2.38 }, appearance: "primary" },
+      { id: "bar-zn", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: -0.76 }, appearance: "primary" },
+      { id: "top-zn", kind: "point", at: { x: 2, y: -0.76 }, appearance: "primary" },
+      { id: "bar-fe", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: -0.44 }, appearance: "primary" },
+      { id: "top-fe", kind: "point", at: { x: 3, y: -0.44 }, appearance: "primary" },
+      { id: "bar-cu", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4, y: 0.34 }, appearance: "secondary" },
+      { id: "top-cu", kind: "point", at: { x: 4, y: 0.34 }, appearance: "secondary" },
+      { id: "bar-ag", kind: "segment", from: { x: 5, y: 0 }, to: { x: 5, y: 0.8 }, appearance: "secondary" },
+      { id: "top-ag", kind: "point", at: { x: 5, y: 0.8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mg", objectId: "top-mg", at: { x: 1, y: -2.38 }, placement: "below" },
+      { key: "zn", objectId: "top-zn", at: { x: 2, y: -0.76 }, placement: "below" },
+      { key: "fe", objectId: "top-fe", at: { x: 3, y: -0.44 }, placement: "below" },
+      { key: "cu", objectId: "top-cu", at: { x: 4, y: 0.34 }, placement: "above" },
+      { key: "ag", objectId: "top-ag", at: { x: 5, y: 0.8 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mg: <InlineMath math="\mathrm{Mg}" />,
+    zn: <InlineMath math="\mathrm{Zn}" />,
+    fe: <InlineMath math="\mathrm{Fe}" />,
+    cu: <InlineMath math="\mathrm{Cu}" />,
+    ag: <InlineMath math="\mathrm{Ag}" />,
+  }}
 />
 
 Siri ini meramal **tindak balas penyesaran**. Logam yang lebih elektropositif menyesarkan logam yang kurang elektropositif daripada larutan garamnya. Zink menyesarkan kuprum, tetapi kuprum tidak menyesarkan zink, kerana ion zink tidak boleh menerima elektron daripada kuprum yang nilai <InlineMath math="E^\circ" />nya lebih positif.
@@ -219,24 +239,25 @@ Gerakkan gelangsar bilangan mol elektron dan bandingkan dua garis jisim. Garis a
       <InlineMath math="m = 108n" />, dengan <InlineMath math="n" /> bilangan mol
       elektron. Pada <InlineMath math="n = 0.10" />, kuprum{" "}
       <InlineMath math="3.2\text{ g}" /> dan argentum <InlineMath math="10.8\text{ g}" />.
+      Paksi mendatar dilukis pada skala <InlineMath math="100 : 1" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 60 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 60 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "n", min: 0, max: 0.5, value: 0.1, step: 0.01, label: "n" },
     ],
     objects: [
-      { id: "copper", kind: "function", appearance: "primary", formula: "32x", domain: { min: 0, max: 0.5 } },
-      { id: "silver", kind: "function", appearance: "secondary", formula: "108x", domain: { min: 0, max: 0.5 } },
-      { id: "copper-now", kind: "marker", x: "n", y: "32n", appearance: "warning" },
-      { id: "silver-now", kind: "marker", x: "n", y: "108n", appearance: "answer" },
+      { id: "copper", kind: "function", appearance: "primary", formula: "32(x/100)", domain: { min: 0, max: 50 } },
+      { id: "silver", kind: "function", appearance: "secondary", formula: "108(x/100)", domain: { min: 0, max: 50 } },
+      { id: "copper-now", kind: "marker", x: "(n)*100", y: "32n", appearance: "warning" },
+      { id: "silver-now", kind: "marker", x: "(n)*100", y: "108n", appearance: "answer" },
     ],
     labels: [
-      { key: "copper", objectId: "copper", at: { x: 0.5, y: 16 }, placement: "above-left" },
-      { key: "silver", objectId: "silver", at: { x: 0.45, y: 48.6 }, placement: "left" },
+      { key: "copper", objectId: "copper", at: { x: 50, y: 16 }, placement: "above-left" },
+      { key: "silver", objectId: "silver", at: { x: 45, y: 48.6 }, placement: "left" },
     ],
     readouts: [
       { key: "copper-mass", formula: "32n" },

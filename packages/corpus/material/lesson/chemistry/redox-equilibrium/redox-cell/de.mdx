@@ -46,19 +46,8 @@ Eisen geht von <InlineMath math="+3" /> auf <InlineMath math="0" />, also wird E
 
 Das **Standardelektrodenpotenzial** <InlineMath math="E^\circ" /> gibt an, wie leicht ein Teilchen Elektronen aufnimmt, verglichen mit der Standardwasserstoffelektrode bei <InlineMath math="0{,}00\ \text{V}" />. Ein **negativeres** <InlineMath math="E^\circ" /> bedeutet, dass das Metall leichter Elektronen abgibt, also ein stärkeres Reduktionsmittel ist. Die Metalle nach diesem Wert geordnet bilden die **elektrochemische Spannungsreihe**.
 
-<Chart
+<MathVisual
   title={<>Standardpotenziale von fünf Metallen</>}
-  bars="apart"
-  categories={["Magnesium", "Zink", "Eisen", "Kupfer", "Silber"]}
-  series={[
-    {
-      label: "Standardelektrodenpotenzial",
-      mark: "bar",
-      values: [-2.38, -0.76, -0.44, 0.34, 0.8],
-    },
-  ]}
-  valueLabel="E° (V)"
-  valueRange={{ min: -2.5, max: 1 }}
   description={
     <>
       Werte bei <InlineMath math="25\ ^\circ\text{C}" /> für{" "}
@@ -69,6 +58,37 @@ Das **Standardelektrodenpotenzial** <InlineMath math="E^\circ" /> gibt an, wie l
       <InlineMath math="+0{,}80\ \text{V}" />.
     </>
   }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -2.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "bar-mg", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: -2.38 }, appearance: "primary" },
+      { id: "top-mg", kind: "point", at: { x: 1, y: -2.38 }, appearance: "primary" },
+      { id: "bar-zn", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: -0.76 }, appearance: "primary" },
+      { id: "top-zn", kind: "point", at: { x: 2, y: -0.76 }, appearance: "primary" },
+      { id: "bar-fe", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: -0.44 }, appearance: "primary" },
+      { id: "top-fe", kind: "point", at: { x: 3, y: -0.44 }, appearance: "primary" },
+      { id: "bar-cu", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4, y: 0.34 }, appearance: "secondary" },
+      { id: "top-cu", kind: "point", at: { x: 4, y: 0.34 }, appearance: "secondary" },
+      { id: "bar-ag", kind: "segment", from: { x: 5, y: 0 }, to: { x: 5, y: 0.8 }, appearance: "secondary" },
+      { id: "top-ag", kind: "point", at: { x: 5, y: 0.8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mg", objectId: "top-mg", at: { x: 1, y: -2.38 }, placement: "below" },
+      { key: "zn", objectId: "top-zn", at: { x: 2, y: -0.76 }, placement: "below" },
+      { key: "fe", objectId: "top-fe", at: { x: 3, y: -0.44 }, placement: "below" },
+      { key: "cu", objectId: "top-cu", at: { x: 4, y: 0.34 }, placement: "above" },
+      { key: "ag", objectId: "top-ag", at: { x: 5, y: 0.8 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mg: <InlineMath math="\mathrm{Mg}" />,
+    zn: <InlineMath math="\mathrm{Zn}" />,
+    fe: <InlineMath math="\mathrm{Fe}" />,
+    cu: <InlineMath math="\mathrm{Cu}" />,
+    ag: <InlineMath math="\mathrm{Ag}" />,
+  }}
 />
 
 Die Reihe sagt **Verdrängungsreaktionen** voraus. Ein unedleres Metall verdrängt ein edleres Metall aus der Lösung seines Salzes. Zink verdrängt Kupfer, aber Kupfer verdrängt kein Zink, weil Zinkionen von Kupfer mit seinem positiveren <InlineMath math="E^\circ" /> keine Elektronen aufnehmen können.
@@ -221,24 +241,25 @@ Verschieb den Regler für die Stoffmenge der Elektronen und vergleich die beiden
       der Elektronen. Bei <InlineMath math="n = 0{,}10" /> sind es{" "}
       <InlineMath math="3{,}2\ \text{g}" /> Kupfer und{" "}
       <InlineMath math="10{,}8\ \text{g}" /> Silber.
+      Die waagerechte Achse ist im Maßstab <InlineMath math="100 : 1" /> gezeichnet.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 60 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 60 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "n", min: 0, max: 0.5, value: 0.1, step: 0.01, label: "n" },
     ],
     objects: [
-      { id: "copper", kind: "function", appearance: "primary", formula: "32x", domain: { min: 0, max: 0.5 } },
-      { id: "silver", kind: "function", appearance: "secondary", formula: "108x", domain: { min: 0, max: 0.5 } },
-      { id: "copper-now", kind: "marker", x: "n", y: "32n", appearance: "warning" },
-      { id: "silver-now", kind: "marker", x: "n", y: "108n", appearance: "answer" },
+      { id: "copper", kind: "function", appearance: "primary", formula: "32(x/100)", domain: { min: 0, max: 50 } },
+      { id: "silver", kind: "function", appearance: "secondary", formula: "108(x/100)", domain: { min: 0, max: 50 } },
+      { id: "copper-now", kind: "marker", x: "(n)*100", y: "32n", appearance: "warning" },
+      { id: "silver-now", kind: "marker", x: "(n)*100", y: "108n", appearance: "answer" },
     ],
     labels: [
-      { key: "copper", objectId: "copper", at: { x: 0.5, y: 16 }, placement: "above-left" },
-      { key: "silver", objectId: "silver", at: { x: 0.45, y: 48.6 }, placement: "left" },
+      { key: "copper", objectId: "copper", at: { x: 50, y: 16 }, placement: "above-left" },
+      { key: "silver", objectId: "silver", at: { x: 45, y: 48.6 }, placement: "left" },
     ],
     readouts: [
       { key: "copper-mass", formula: "32n" },

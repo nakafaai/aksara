@@ -157,28 +157,29 @@ Penggeser di bawah menunjukkan energi untuk defek massa yang berbeda. Grafiknya 
       <InlineMath math="\Delta m" /> dalam satuan massa atom. Defek massa fusi{" "}
       <InlineMath math="0{,}0189\ \text{u}" /> memberi sekitar{" "}
       <InlineMath math="17{,}6\ \text{MeV}" />.
+      Sumbu mendatar digambar dengan skala <InlineMath math="1{.}000 : 1" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.25 }, y: { min: 0, max: 240 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 250 }, y: { min: 0, max: 240 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "d", min: 0, max: 0.25, value: 0.019, step: 0.001, label: "d" },
     ],
     objects: [
-      { id: "energy", kind: "function", appearance: "primary", formula: "931.5x", domain: { min: 0, max: 0.25 } },
-      { id: "now", kind: "marker", x: "d", y: "931.5d", appearance: "warning" },
+      { id: "energy", kind: "function", appearance: "primary", formula: "931.5(x/1000)", domain: { min: 0, max: 250 } },
+      { id: "now", kind: "marker", x: "(d)*1000", y: "931.5d", appearance: "warning" },
     ],
     readouts: [
       { key: "mev", formula: "931.5d" },
-      { key: "joule", formula: "931.5d*1.6*10^(-13)" },
+      { key: "joule", formula: "931.5d*0.16" },
     ],
   }}
   labels={{
     d: <>Defek massa <InlineMath math="\Delta m" /> dalam <InlineMath math="\text{u}" /></>,
     mev: <>Energi dalam <InlineMath math="\text{MeV}" /></>,
-    joule: <>Energi dalam <InlineMath math="\text{J}" /></>,
+    joule: <>Energi dalam <InlineMath math="10^{-12}\text{ J}" /></>,
   }}
 />
 
@@ -200,19 +201,20 @@ Setiap fisi melepaskan beberapa neutron yang bisa membelah inti lain. Inilah **r
       <InlineMath math="k^g" />. Pada <InlineMath math="k = 1" /> jumlahnya tetap
       satu, dan pada <InlineMath math="k = 2" /> generasi ke-
       <InlineMath math="10" /> memiliki <InlineMath math="1024" /> fisi.
+      Sumbu tegak digambar dengan skala <InlineMath math="1 : 100" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "k", min: 1, max: 2, value: 1.5, step: 0.05, label: "k" },
       { name: "g", min: 0, max: 10, value: 10, step: 1, label: "g" },
     ],
     objects: [
-      { id: "chain", kind: "function", appearance: "primary", formula: "k^x", domain: { min: 0, max: 10 } },
-      { id: "now", kind: "marker", x: "g", y: "k^g", appearance: "warning" },
+      { id: "chain", kind: "function", appearance: "primary", formula: "(k^x)/100", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "g", y: "(k^g)/100", appearance: "warning" },
     ],
     readouts: [
       { key: "fissions", formula: "k^g" },

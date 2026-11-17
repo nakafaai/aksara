@@ -211,19 +211,20 @@ Der Graph unten zeigt die Leistung in einem Widerstand bei veränderter Stromst�
       <InlineMath math="10\ \Omega" /> ergibt <InlineMath math="1\ \text{A}" />{" "}
       eine Leistung von <InlineMath math="10\ \text{W}" /> und{" "}
       <InlineMath math="2\ \text{A}" /> eine von <InlineMath math="40\ \text{W}" />.
+      Die senkrechte Achse ist im Maßstab <InlineMath math="1 : 50" /> gezeichnet.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 200 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 4 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "r", min: 2, max: 20, value: 10, step: 1, label: "r" },
       { name: "c", min: 0, max: 3, value: 2, step: 0.1, label: "c" },
     ],
     objects: [
-      { id: "power", kind: "function", appearance: "primary", formula: "r*x^2", domain: { min: 0, max: 3 } },
-      { id: "now", kind: "marker", x: "c", y: "r*c^2", appearance: "warning" },
+      { id: "power", kind: "function", appearance: "primary", formula: "(r*x^2)/50", domain: { min: 0, max: 3 } },
+      { id: "now", kind: "marker", x: "c", y: "(r*c^2)/50", appearance: "warning" },
     ],
     readouts: [
       { key: "watt", formula: "r*c^2" },

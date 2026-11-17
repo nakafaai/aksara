@@ -57,19 +57,20 @@ Jisim molar setiap siri bertambah <InlineMath math="14\text{ g mol}^{-1}" /> bag
       alkuna <InlineMath math="14n - 2" />, dalam{" "}
       <InlineMath math="\text{g mol}^{-1}" />. Bagi <InlineMath math="n = 6" />,
       heksana berjisim molar <InlineMath math="86" />.
+      Paksi menegak dilukis pada skala <InlineMath math="1 : 20" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 1, max: 10 }, y: { min: 0, max: 150 } },
+    frame: { kind: "cartesian", x: { min: 1, max: 10 }, y: { min: 0, max: 7.5 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "n", min: 2, max: 10, value: 6, step: 1, label: "n" },
     ],
     objects: [
-      { id: "alkane", kind: "function", appearance: "primary", formula: "14x + 2", domain: { min: 1, max: 10 } },
-      { id: "alkene", kind: "function", appearance: "secondary", formula: "14x", domain: { min: 2, max: 10 } },
-      { id: "alkane-now", kind: "marker", x: "n", y: "14n + 2", appearance: "warning" },
+      { id: "alkane", kind: "function", appearance: "primary", formula: "(14x + 2)/20", domain: { min: 1, max: 10 } },
+      { id: "alkene", kind: "function", appearance: "secondary", formula: "(14x)/20", domain: { min: 2, max: 10 } },
+      { id: "alkane-now", kind: "marker", x: "n", y: "(14n + 2)/20", appearance: "warning" },
     ],
     readouts: [
       { key: "alkane-mass", formula: "14n + 2" },
@@ -87,25 +88,30 @@ Jisim molar setiap siri bertambah <InlineMath math="14\text{ g mol}^{-1}" /> bag
 
 Sifat fizik berubah secara beransur-ansur dalam satu siri. Apabila molekul semakin besar, daya tarikan antara molekul semakin kuat, jadi **takat didih meningkat**.
 
-<Chart
+<ScatterDiagram
   title={<>Takat Didih Enam Alkana Pertama</>}
-  bars="apart"
-  categories={["Metana", "Etana", "Propana", "Butana", "Pentana", "Heksana"]}
-  series={[
-    {
-      label: "Takat didih",
-      mark: "bar",
-      values: [-162, -89, -42, -1, 36, 69],
-    },
-  ]}
-  valueLabel="°C"
-  valueRange={{ min: -180, max: 80 }}
   description={
     <>
       Takat didih pada tekanan atmosfera. Metana hingga butana ialah gas pada
       suhu bilik, manakala pentana dan heksana ialah cecair.
     </>
   }
+  xAxisLabel="Bilangan atom karbon"
+  yAxisLabel="Takat didih (°C)"
+  datasets={[
+    {
+      name: "Takat didih",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: -162 },
+        { x: 2, y: -89 },
+        { x: 3, y: -42 },
+        { x: 4, y: -1 },
+        { x: 5, y: 36 },
+        { x: 6, y: 69 },
+      ],
+    },
+  ]}
 />
 
 ## Alkana dan Alkena Bertindak Balas dengan Cara Berbeza

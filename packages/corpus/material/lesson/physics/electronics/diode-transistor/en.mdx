@@ -56,18 +56,19 @@ Check with the graph below: at <InlineMath math="2000\text{ V}" /> the speed rea
       <InlineMath math="v" /> in units of <InlineMath math="10^7\text{ m s}^{-1}" />.
       At <InlineMath math="2000\text{ V}" />, the speed is{" "}
       <InlineMath math="2.65 \times 10^7\text{ m s}^{-1}" />.
+      The horizontal axis is drawn at a scale of <InlineMath math="1 : 1{,}000" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 5000 }, y: { min: 0, max: 4.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 4.5 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "a", min: 0, max: 5000, value: 2000, step: 100, label: "a" },
     ],
     objects: [
-      { id: "speed", kind: "function", appearance: "primary", formula: "0.0593*sqrt(x)", domain: { min: 0, max: 5000 } },
-      { id: "now", kind: "marker", x: "a", y: "0.0593*sqrt(a)", appearance: "warning" },
+      { id: "speed", kind: "function", appearance: "primary", formula: "0.0593*sqrt((x*1000))", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "(a)/1000", y: "0.0593*sqrt(a)", appearance: "warning" },
     ],
     readouts: [
       { key: "velocity", formula: "0.0593*sqrt(a)" },
@@ -95,18 +96,20 @@ Move the forward-bias voltage slider below. The current is nearly zero below <In
       <InlineMath math="0.4\text{ V}" /> the current is under{" "}
       <InlineMath math="0.3\text{ mA}" />, and at{" "}
       <InlineMath math="0.7\text{ V}" /> it is over <InlineMath math="100\text{ mA}" />.
+      The horizontal axis is drawn at a scale of <InlineMath math="10 : 1" />.
+      The vertical axis is drawn at a scale of <InlineMath math="1 : 25" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.72 }, y: { min: 0, max: 200 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 7.2 }, y: { min: 0, max: 8 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "d", min: 0, max: 0.72, value: 0.6, step: 0.01, label: "d" },
     ],
     objects: [
-      { id: "diode", kind: "function", appearance: "primary", formula: "0.0001*exp(x/0.05)", domain: { min: 0, max: 0.72 } },
-      { id: "now", kind: "marker", x: "d", y: "0.0001*exp(d/0.05)", appearance: "warning" },
+      { id: "diode", kind: "function", appearance: "primary", formula: "(0.0001*exp((x/10)/0.05))/25", domain: { min: 0, max: 7.2 } },
+      { id: "now", kind: "marker", x: "(d)*10", y: "(0.0001*exp(d/0.05))/25", appearance: "warning" },
     ],
     readouts: [
       { key: "current", formula: "0.0001*exp(d/0.05)" },

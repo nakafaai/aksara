@@ -29,19 +29,20 @@ Ubah kuat medan magnet dan arus di bawah untuk kawat sepanjang <InlineMath math=
       Pada <InlineMath math="B = 0{,}20\ \text{T}" /> dan{" "}
       <InlineMath math="I = 3{,}0\ \text{A}" />, kawat mengalami gaya{" "}
       <InlineMath math="0{,}030\ \text{N}" />.
+      Sumbu tegak digambar dengan skala <InlineMath math="40 : 1" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 0.15 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 6 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "b", min: 0.05, max: 0.5, value: 0.2, step: 0.01, label: "b" },
       { name: "c", min: 0, max: 6, value: 3, step: 0.1, label: "c" },
     ],
     objects: [
-      { id: "force", kind: "function", appearance: "primary", formula: "b*x*0.05", domain: { min: 0, max: 6 } },
-      { id: "now", kind: "marker", x: "c", y: "b*c*0.05", appearance: "warning" },
+      { id: "force", kind: "function", appearance: "primary", formula: "(b*x*0.05)*40", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "c", y: "(b*c*0.05)*40", appearance: "warning" },
     ],
     readouts: [
       { key: "newton", formula: "b*c*0.05" },
@@ -73,17 +74,18 @@ Hukum Lenz adalah bentuk kekekalan energi. Jika kamu mendorong kutub utara magne
       GGL induksinya <InlineMath math="\varepsilon = 2s \sin(2\pi s t)" />, dengan{" "}
       <InlineMath math="s" /> putaran per detik. Menggandakan kelajuan putar
       menggandakan tegangan puncak dan frekuensinya.
+      Sumbu mendatar digambar dengan skala <InlineMath math="20 : 1" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: -10, max: 10 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: -10, max: 10 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "s", min: 1, max: 5, value: 2, step: 1, label: "s" },
     ],
     objects: [
-      { id: "output", kind: "function", appearance: "primary", formula: "2s*sin(2*pi*s*x)", domain: { min: 0, max: 1 } },
+      { id: "output", kind: "function", appearance: "primary", formula: "2s*sin(2*pi*s*(x/20))", domain: { min: 0, max: 20 } },
     ],
     readouts: [
       { key: "peak", formula: "2s" },

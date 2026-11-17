@@ -46,19 +46,8 @@ Iron goes from <InlineMath math="+3" /> to <InlineMath math="0" />, so iron(III)
 
 The **standard electrode potential**, <InlineMath math="E^\circ" />, measures how readily a species gains electrons, compared with the standard hydrogen electrode at <InlineMath math="0.00\text{ V}" />. A **more negative** <InlineMath math="E^\circ" /> means the metal gives up electrons more easily, so it is a stronger reducing agent. The metals listed in order of this value form the **electrochemical series**.
 
-<Chart
+<MathVisual
   title={<>Standard Electrode Potentials of Five Metals</>}
-  bars="apart"
-  categories={["Magnesium", "Zinc", "Iron", "Copper", "Silver"]}
-  series={[
-    {
-      label: "Standard electrode potential",
-      mark: "bar",
-      values: [-2.38, -0.76, -0.44, 0.34, 0.8],
-    },
-  ]}
-  valueLabel="E° (V)"
-  valueRange={{ min: -2.5, max: 1 }}
   description={
     <>
       Values at <InlineMath math="25^\circ\text{C}" /> for{" "}
@@ -69,6 +58,37 @@ The **standard electrode potential**, <InlineMath math="E^\circ" />, measures ho
       <InlineMath math="+0.80\text{ V}" />.
     </>
   }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -2.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "bar-mg", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: -2.38 }, appearance: "primary" },
+      { id: "top-mg", kind: "point", at: { x: 1, y: -2.38 }, appearance: "primary" },
+      { id: "bar-zn", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: -0.76 }, appearance: "primary" },
+      { id: "top-zn", kind: "point", at: { x: 2, y: -0.76 }, appearance: "primary" },
+      { id: "bar-fe", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: -0.44 }, appearance: "primary" },
+      { id: "top-fe", kind: "point", at: { x: 3, y: -0.44 }, appearance: "primary" },
+      { id: "bar-cu", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4, y: 0.34 }, appearance: "secondary" },
+      { id: "top-cu", kind: "point", at: { x: 4, y: 0.34 }, appearance: "secondary" },
+      { id: "bar-ag", kind: "segment", from: { x: 5, y: 0 }, to: { x: 5, y: 0.8 }, appearance: "secondary" },
+      { id: "top-ag", kind: "point", at: { x: 5, y: 0.8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mg", objectId: "top-mg", at: { x: 1, y: -2.38 }, placement: "below" },
+      { key: "zn", objectId: "top-zn", at: { x: 2, y: -0.76 }, placement: "below" },
+      { key: "fe", objectId: "top-fe", at: { x: 3, y: -0.44 }, placement: "below" },
+      { key: "cu", objectId: "top-cu", at: { x: 4, y: 0.34 }, placement: "above" },
+      { key: "ag", objectId: "top-ag", at: { x: 5, y: 0.8 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mg: <InlineMath math="\mathrm{Mg}" />,
+    zn: <InlineMath math="\mathrm{Zn}" />,
+    fe: <InlineMath math="\mathrm{Fe}" />,
+    cu: <InlineMath math="\mathrm{Cu}" />,
+    ag: <InlineMath math="\mathrm{Ag}" />,
+  }}
 />
 
 The series predicts **displacement reactions**. A more electropositive metal displaces a less electropositive metal from a solution of its salt. Zinc displaces copper, but copper doesn't displace zinc, because zinc ions can't take electrons from copper, whose <InlineMath math="E^\circ" /> is more positive.
@@ -219,24 +239,25 @@ Move the slider for the moles of electrons and compare the two mass lines. The s
       is <InlineMath math="m = 108n" />, where <InlineMath math="n" /> is the
       number of moles of electrons. At <InlineMath math="n = 0.10" />, copper is{" "}
       <InlineMath math="3.2\text{ g}" /> and silver <InlineMath math="10.8\text{ g}" />.
+      The horizontal axis is drawn at a scale of <InlineMath math="100 : 1" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 60 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 60 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "n", min: 0, max: 0.5, value: 0.1, step: 0.01, label: "n" },
     ],
     objects: [
-      { id: "copper", kind: "function", appearance: "primary", formula: "32x", domain: { min: 0, max: 0.5 } },
-      { id: "silver", kind: "function", appearance: "secondary", formula: "108x", domain: { min: 0, max: 0.5 } },
-      { id: "copper-now", kind: "marker", x: "n", y: "32n", appearance: "warning" },
-      { id: "silver-now", kind: "marker", x: "n", y: "108n", appearance: "answer" },
+      { id: "copper", kind: "function", appearance: "primary", formula: "32(x/100)", domain: { min: 0, max: 50 } },
+      { id: "silver", kind: "function", appearance: "secondary", formula: "108(x/100)", domain: { min: 0, max: 50 } },
+      { id: "copper-now", kind: "marker", x: "(n)*100", y: "32n", appearance: "warning" },
+      { id: "silver-now", kind: "marker", x: "(n)*100", y: "108n", appearance: "answer" },
     ],
     labels: [
-      { key: "copper", objectId: "copper", at: { x: 0.5, y: 16 }, placement: "above-left" },
-      { key: "silver", objectId: "silver", at: { x: 0.45, y: 48.6 }, placement: "left" },
+      { key: "copper", objectId: "copper", at: { x: 50, y: 16 }, placement: "above-left" },
+      { key: "silver", objectId: "silver", at: { x: 45, y: 48.6 }, placement: "left" },
     ],
     readouts: [
       { key: "copper-mass", formula: "32n" },

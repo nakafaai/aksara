@@ -101,15 +101,8 @@ The <InlineMath math="2 : 1" /> ratio comes from the balanced equation. Check: t
 
 Fluorine, chlorine, bromine and iodine are **halogens**. They exist as **diatomic molecules**, such as <InlineMath math="\mathrm{Cl_2}" />, held together by van der Waals forces. Going down the group, the molecules get bigger, so the melting and boiling points rise. That's why fluorine and chlorine are gases, bromine is a liquid and iodine is a solid at room temperature.
 
-<Chart
+<ScatterDiagram
   title={<>Melting and Boiling Points of the Halogens</>}
-  bars="apart"
-  categories={["Fluorine", "Chlorine", "Bromine", "Iodine"]}
-  series={[
-    { label: "Melting point (°C)", mark: "bar", values: [-220, -101, -7, 114] },
-    { label: "Boiling point (°C)", mark: "bar", values: [-188, -34, 59, 184] },
-  ]}
-  valueLabel="Temperature (°C)"
   description={
     <>
       Melting and boiling points: fluorine <InlineMath math="-220" /> and{" "}
@@ -119,6 +112,30 @@ Fluorine, chlorine, bromine and iodine are **halogens**. They exist as **diatomi
       iodine <InlineMath math="114" /> and <InlineMath math="184^\circ\text{C}" />.
     </>
   }
+  xAxisLabel="Proton number"
+  yAxisLabel="Temperature (°C)"
+  datasets={[
+    {
+      name: "Melting point (°C)",
+      color: "var(--chart-1)",
+      points: [
+        { x: 9, y: -220 },
+        { x: 17, y: -101 },
+        { x: 35, y: -7 },
+        { x: 53, y: 114 },
+      ],
+    },
+    {
+      name: "Boiling point (°C)",
+      color: "var(--chart-2)",
+      points: [
+        { x: 9, y: -188 },
+        { x: 17, y: -34 },
+        { x: 35, y: 59 },
+        { x: 53, y: 184 },
+      ],
+    },
+  ]}
 />
 
 Halogens react with hydrogen to form hydrogen halides. Rotate the chlorine and hydrogen chloride molecules in this model and compare their single bonds.

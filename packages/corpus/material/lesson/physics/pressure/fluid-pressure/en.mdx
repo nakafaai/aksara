@@ -25,19 +25,20 @@ Move the depth and density sliders below. Pressure is directly proportional to d
       <InlineMath math="g = 9.81\text{ m s}^{-2}" />. Water,{" "}
       <InlineMath math="\rho = 1000\text{ kg m}^{-3}" />, at a depth of{" "}
       <InlineMath math="10\text{ m}" /> gives <InlineMath math="98.1\text{ kPa}" />.
+      The vertical axis is drawn at a scale of <InlineMath math="1 : 10" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 260 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 26 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "r", min: 700, max: 1300, value: 1000, step: 10, label: "r" },
       { name: "h", min: 0, max: 20, value: 10, step: 0.5, label: "h" },
     ],
     objects: [
-      { id: "pressure", kind: "function", appearance: "primary", formula: "x*r*9.81/1000", domain: { min: 0, max: 20 } },
-      { id: "now", kind: "marker", x: "h", y: "h*r*9.81/1000", appearance: "warning" },
+      { id: "pressure", kind: "function", appearance: "primary", formula: "(x*r*9.81/1000)/10", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "h", y: "(h*r*9.81/1000)/10", appearance: "warning" },
     ],
     readouts: [
       { key: "kilopascal", formula: "h*r*9.81/1000" },
@@ -90,18 +91,19 @@ The higher you go, the thinner the layer of air above you, so atmospheric pressu
       An isothermal atmosphere model <InlineMath math="P = 101e^{-h/8.4}" /> kPa,
       with <InlineMath math="h" /> in km. At <InlineMath math="2\text{ km}" />, the
       pressure is about <InlineMath math="80\text{ kPa}" />.
+      The vertical axis is drawn at a scale of <InlineMath math="1 : 10" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 110 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "a", min: 0, max: 10, value: 2, step: 0.1, label: "a" },
     ],
     objects: [
-      { id: "atmosphere", kind: "function", appearance: "primary", formula: "101*exp(-x/8.4)", domain: { min: 0, max: 10 } },
-      { id: "now", kind: "marker", x: "a", y: "101*exp(-a/8.4)", appearance: "warning" },
+      { id: "atmosphere", kind: "function", appearance: "primary", formula: "(101*exp(-x/8.4))/10", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "a", y: "(101*exp(-a/8.4))/10", appearance: "warning" },
     ],
     readouts: [
       { key: "air", formula: "101*exp(-a/8.4)" },
@@ -131,18 +133,19 @@ Change the area of the large piston below. The input force is <InlineMath math="
       <InlineMath math="A_2" /> in <InlineMath math="\text{cm}^2" />. A{" "}
       <InlineMath math="1000\text{ cm}^2" /> large piston gives{" "}
       <InlineMath math="2500\text{ N}" />.
+      The vertical axis is drawn at a scale of <InlineMath math="1 : 2" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 2700 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 1350 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "q", min: 20, max: 1000, value: 1000, step: 20, label: "q" },
     ],
     objects: [
-      { id: "output", kind: "function", appearance: "primary", formula: "50x/20", domain: { min: 0, max: 1000 } },
-      { id: "now", kind: "marker", x: "q", y: "50q/20", appearance: "warning" },
+      { id: "output", kind: "function", appearance: "primary", formula: "(50x/20)/2", domain: { min: 0, max: 1000 } },
+      { id: "now", kind: "marker", x: "q", y: "(50q/20)/2", appearance: "warning" },
     ],
     readouts: [
       { key: "force", formula: "50q/20" },
@@ -179,20 +182,21 @@ Here <InlineMath math="V" /> is the volume of fluid displaced. An object **float
       litres and <InlineMath math="\rho" /> in <InlineMath math="\text{g cm}^{-3}" />.
       The horizontal line is the object's weight, <InlineMath math="50\text{ N}" />.
       The object floats where the lines cross.
+      The vertical axis is drawn at a scale of <InlineMath math="1 : 10" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 90 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 9 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "d", min: 0.7, max: 1.3, value: 1, step: 0.05, label: "d" },
       { name: "b", min: 0, max: 8, value: 2, step: 0.1, label: "b" },
     ],
     objects: [
-      { id: "buoyancy", kind: "function", appearance: "primary", formula: "9.81*d*x", domain: { min: 0, max: 8 } },
-      { id: "weight", kind: "function", appearance: "secondary", formula: "50", domain: { min: 0, max: 8 } },
-      { id: "now", kind: "marker", x: "b", y: "9.81*d*b", appearance: "warning" },
+      { id: "buoyancy", kind: "function", appearance: "primary", formula: "(9.81*d*x)/10", domain: { min: 0, max: 8 } },
+      { id: "weight", kind: "function", appearance: "secondary", formula: "(50)/10", domain: { min: 0, max: 8 } },
+      { id: "now", kind: "marker", x: "b", y: "(9.81*d*b)/10", appearance: "warning" },
     ],
     readouts: [
       { key: "upthrust", formula: "9.81*d*b" },
@@ -230,18 +234,19 @@ The pressure difference between the bottom and the top of the wing is <InlineMat
       <InlineMath math="\rho = 1.2\text{ kg m}^{-3}" />. At{" "}
       <InlineMath math="v = 70\text{ m s}^{-1}" />, the pressure difference is{" "}
       <InlineMath math="780\text{ Pa}" />.
+      The vertical axis is drawn at a scale of <InlineMath math="1 : 30" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 60, max: 90 }, y: { min: 0, max: 2800 } },
+    frame: { kind: "cartesian", x: { min: 60, max: 90 }, y: { min: 0, max: 93.333333 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "s", min: 60, max: 90, value: 70, step: 1, label: "s" },
     ],
     objects: [
-      { id: "lift", kind: "function", appearance: "primary", formula: "0.6*(x^2 - 3600)", domain: { min: 60, max: 90 } },
-      { id: "now", kind: "marker", x: "s", y: "0.6*(s^2 - 3600)", appearance: "warning" },
+      { id: "lift", kind: "function", appearance: "primary", formula: "(0.6*(x^2 - 3600))/30", domain: { min: 60, max: 90 } },
+      { id: "now", kind: "marker", x: "s", y: "(0.6*(s^2 - 3600))/30", appearance: "warning" },
     ],
     readouts: [
       { key: "difference", formula: "0.6*(s^2 - 3600)" },

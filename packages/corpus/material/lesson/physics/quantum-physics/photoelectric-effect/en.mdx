@@ -26,18 +26,19 @@ Blue light carries more energy per photon than red light because its wavelength 
       with <InlineMath math="\lambda" /> in nanometres. Green light at{" "}
       <InlineMath math="500\text{ nm}" /> carries about{" "}
       <InlineMath math="2.49\text{ eV}" />.
+      The horizontal axis is drawn at a scale of <InlineMath math="1 : 100" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 300, max: 800 }, y: { min: 0, max: 5 } },
+    frame: { kind: "cartesian", x: { min: 3, max: 8 }, y: { min: 0, max: 5 } },
     view: { kind: "fit", padding: 0.08 },
     parameters: [
       { name: "w", min: 300, max: 800, value: 500, step: 10, label: "w" },
     ],
     objects: [
-      { id: "photon", kind: "function", appearance: "primary", formula: "6.63*3*100/(1.6*x)", domain: { min: 300, max: 800 } },
-      { id: "now", kind: "marker", x: "w", y: "6.63*3*100/(1.6*w)", appearance: "warning" },
+      { id: "photon", kind: "function", appearance: "primary", formula: "6.63*3*100/(1.6*(x*100))", domain: { min: 3, max: 8 } },
+      { id: "now", kind: "marker", x: "(w)/100", y: "6.63*3*100/(1.6*w)", appearance: "warning" },
     ],
     readouts: [
       { key: "energy", formula: "6.63*3*100/(1.6*w)" },
