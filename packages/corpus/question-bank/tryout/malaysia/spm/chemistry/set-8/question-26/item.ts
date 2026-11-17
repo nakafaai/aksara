@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1200\\text{ cm}^3$$, pale green to yellowish brown",
+          label:
+            "$$1.15\\text{ g}$$, $$1200\\text{ cm}^3$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$600\\text{ cm}^3$$, pale green to yellowish brown",
+          label:
+            "$$1.15\\text{ g}$$, $$600\\text{ cm}^3$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$600\\text{ cm}^3$$, yellowish brown to pale green",
+          label:
+            "$$2.30\\text{ g}$$, $$600\\text{ cm}^3$$, $$1200\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$300\\text{ cm}^3$$, pale green to yellowish brown",
+          label:
+            "$$1.15\\text{ g}$$, $$600\\text{ cm}^3$$, $$1200\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1200\\text{ cm}^3$$, hijau pucat kepada perang kekuningan",
+          label:
+            "$$1.15\\text{ g}$$, $$1200\\text{ cm}^3$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$600\\text{ cm}^3$$, hijau pucat kepada perang kekuningan",
+          label:
+            "$$1.15\\text{ g}$$, $$600\\text{ cm}^3$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$600\\text{ cm}^3$$, perang kekuningan kepada hijau pucat",
+          label:
+            "$$2.30\\text{ g}$$, $$600\\text{ cm}^3$$, $$1200\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$300\\text{ cm}^3$$, hijau pucat kepada perang kekuningan",
+          label:
+            "$$1.15\\text{ g}$$, $$600\\text{ cm}^3$$, $$1200\\text{ cm}^3$$",
         },
       ],
     },

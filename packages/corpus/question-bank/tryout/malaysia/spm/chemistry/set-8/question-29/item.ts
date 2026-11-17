@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$1.20\\text{ dm}^3$$, $$3.00\\text{ g}$$" },
-        { correct: false, label: "$$3.60\\text{ dm}^3$$, $$3.00\\text{ g}$$" },
-        { correct: false, label: "$$1.20\\text{ dm}^3$$, $$2.30\\text{ g}$$" },
-        { correct: false, label: "$$0.60\\text{ dm}^3$$, $$3.00\\text{ g}$$" },
+        {
+          correct: true,
+          label: "$$2.06\\text{ mol dm}^{-3}$$, $$118\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2.06\\text{ mol dm}^{-3}$$, $$24.7\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2.61\\text{ mol dm}^{-3}$$, $$149\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2.06\\text{ mol dm}^{-3}$$, $$353\\text{ dm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$1.20\\text{ dm}^3$$, $$3.00\\text{ g}$$" },
-        { correct: false, label: "$$3.60\\text{ dm}^3$$, $$3.00\\text{ g}$$" },
-        { correct: false, label: "$$1.20\\text{ dm}^3$$, $$2.30\\text{ g}$$" },
-        { correct: false, label: "$$0.60\\text{ dm}^3$$, $$3.00\\text{ g}$$" },
+        {
+          correct: true,
+          label: "$$2.06\\text{ mol dm}^{-3}$$, $$118\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2.06\\text{ mol dm}^{-3}$$, $$24.7\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2.61\\text{ mol dm}^{-3}$$, $$149\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2.06\\text{ mol dm}^{-3}$$, $$353\\text{ dm}^3$$",
+        },
       ],
     },
   },

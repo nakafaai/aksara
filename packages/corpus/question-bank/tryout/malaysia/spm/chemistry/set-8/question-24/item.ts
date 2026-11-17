@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2.45$$ years" },
-        { correct: false, label: "$$0.92$$ years" },
-        { correct: true, label: "$$1.84$$ years" },
-        { correct: false, label: "$$0.61$$ years" },
+        {
+          correct: false,
+          label: "$$1.00\\times10^{-5}\\text{ mol}$$, $$24$$ ppm",
+        },
+        {
+          correct: false,
+          label: "$$2.50\\times10^{-5}\\text{ mol}$$, $$600$$ ppm",
+        },
+        {
+          correct: true,
+          label: "$$2.50\\times10^{-5}\\text{ mol}$$, $$60$$ ppm",
+        },
+        {
+          correct: false,
+          label: "$$4.00\\times10^{-6}\\text{ mol}$$, $$9.6$$ ppm",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2.45$$ tahun" },
-        { correct: false, label: "$$0.92$$ tahun" },
-        { correct: true, label: "$$1.84$$ tahun" },
-        { correct: false, label: "$$0.61$$ tahun" },
+        {
+          correct: false,
+          label: "$$1.00\\times10^{-5}\\text{ mol}$$, $$24$$ ppm",
+        },
+        {
+          correct: false,
+          label: "$$2.50\\times10^{-5}\\text{ mol}$$, $$600$$ ppm",
+        },
+        {
+          correct: true,
+          label: "$$2.50\\times10^{-5}\\text{ mol}$$, $$60$$ ppm",
+        },
+        {
+          correct: false,
+          label: "$$4.00\\times10^{-6}\\text{ mol}$$, $$9.6$$ ppm",
+        },
       ],
     },
   },
