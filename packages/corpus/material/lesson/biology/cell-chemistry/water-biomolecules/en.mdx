@@ -1,0 +1,359 @@
+export const metadata = {
+  title: "Chemical Composition in a Cell Notes for Form Four Biology",
+  description:
+    "Form 4 Biology Chapter 4: water, carbohydrates, proteins, lipids and nucleic acids, how they form and break down, and why cells need them, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Chemical Composition in a Cell",
+};
+
+## What a Cell Is Made Of
+
+A cell is mostly **water**, about <InlineMath math="70\%" /> of its mass. Almost all the rest is four groups of organic compounds: **carbohydrates, proteins, lipids and nucleic acids**. The big molecules among them are polymers built from small units. Joining two units releases one water molecule, which is called **condensation**. Splitting them again uses up one water molecule, which is called **hydrolysis**. In these notes, you weigh the parts of a real cell, heat water against ethanol, build sugar chains and read a stretch of a real gene.
+
+The chart shows a bacterial cell, *Escherichia coli*, using values from the book Cell Biology by the Numbers. Water makes up <InlineMath math="70\%" /> of the mass, and the dry <InlineMath math="30\%" /> splits into protein, RNA, lipid, DNA and the rest. Each bar is that dry share multiplied by the fraction of the dry mass.
+
+<BarChart
+  title={<>What a Bacterial Cell Is Made Of</>}
+  description={
+    <>
+      Share of the total mass of an Escherichia coli cell. Water is{" "}
+      <InlineMath math="70\%" />, and each other bar is{" "}
+      <InlineMath math="30\%" /> times its share of the dry mass.
+    </>
+  }
+  yAxisLabel="Share of cell mass (per cent)"
+  data={[
+    { name: "Water", value: 70 },
+    { name: "Protein", value: 30 * 0.55 },
+    { name: "RNA", value: 30 * 0.2 },
+    { name: "Lipid", value: 30 * 0.1 },
+    { name: "DNA", value: 30 * 0.03 },
+    { name: "Other", value: 30 * 0.12 },
+  ]}
+  chartConfig={{
+    value: {
+      label: <>Share of mass</>,
+      colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] },
+    },
+  }}
+/>
+
+Protein is the biggest part of the dry mass, at <InlineMath math="16.5\%" /> of the whole cell. "Other" holds the polysaccharides, small molecules and ions. Your own body is about <InlineMath math="60\%" /> to <InlineMath math="70\%" /> water, so water makes up most of your mass too.
+
+## Water Molecules Are Polar
+
+A water molecule, <InlineMath math="\mathrm{H_2O}" />, has one oxygen atom joined to two hydrogen atoms by covalent bonds. Oxygen pulls the shared electrons more strongly than hydrogen does, so the oxygen end is slightly negative and each hydrogen end is slightly positive. The molecule is bent, so these charges don't cancel out. Water is a **polar molecule**.
+
+<MoleculeShapeLab
+  title={<>Water Against Carbon Dioxide</>}
+  description={
+    <>
+      Both molecules have polar bonds. Rotate each one and compare the angle
+      between its bonds.
+    </>
+  }
+  molecules={[
+    { id: "water", name: "water" },
+    { id: "carbon-dioxide", name: "carbon dioxide" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Water and carbon dioxide molecules",
+  }}
+/>
+
+In carbon dioxide the two bonds lie in a straight line at <InlineMath math="180^\circ" />, so their pulls cancel and the molecule is nonpolar. In water the bonds meet at about <InlineMath math="104.5^\circ" />, so the oxygen side stays negative. The slightly positive hydrogen of one water molecule is attracted to the oxygen of the next. This attraction is a [hydrogen bond](/en/subjects/chemistry/chemical-bond/types-of-chemical-bonds), and **hydrogen bonds between water molecules** explain every property in the next part of the lesson.
+
+## What the Properties of Water Do in the Cell
+
+Each property of water comes from its polarity or its hydrogen bonds, and each one does a job in the cell.
+
+| Property | Where it comes from | Job in the cell |
+| :--- | :--- | :--- |
+| Good solvent | Charged ends attract ions and polar molecules | Reactions happen in solution, and blood and sap carry dissolved substances |
+| High specific heat capacity | Hydrogen bonds absorb heat before molecules speed up | Cell and body temperature change slowly |
+| High latent heat of vaporisation | Hydrogen bonds must break before a molecule escapes | Sweating and transpiration carry heat away |
+| Cohesion and adhesion | Water sticks to water and to other polar surfaces | A water column rises through the xylem |
+
+**Specific heat capacity** is the heat needed to raise <InlineMath math="1\text{ g}" /> of a substance by <InlineMath math="1^\circ\text{C}" />. For water it's <InlineMath math="4.184\text{ J g}^{-1}\,^\circ\text{C}^{-1}" />, the highest of any common liquid, while ethanol's is <InlineMath math="2.376\text{ J g}^{-1}\,^\circ\text{C}^{-1}" />. Give the same heat to <InlineMath math="100\text{ g}" /> of each liquid and move the slider. The temperature rise is <InlineMath math="\Delta T = Q / (mc)" />.
+
+<MathVisual
+  title={<>Heating Water and Ethanol</>}
+  description={
+    <>
+      Temperature rise of <InlineMath math="100\text{ g}" /> of each liquid
+      against the heat supplied in <InlineMath math="\text{kJ}" />. The steeper
+      line is ethanol, the gentler line is water.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.4 }, y: { min: 0, max: 36 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.5, max: 8, value: 2.1, step: 0.1, label: "q" },
+    ],
+    objects: [
+      { id: "water", kind: "function", appearance: "primary", formula: "10x/4.184", domain: { min: 0, max: 8 } },
+      { id: "ethanol", kind: "function", appearance: "warning", formula: "10x/2.376", domain: { min: 0, max: 8 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "q", y: "0" }, { x: "q", y: "10q/2.376" }] },
+      { id: "water-now", kind: "marker", x: "q", y: "10q/4.184", appearance: "primary" },
+      { id: "ethanol-now", kind: "marker", x: "q", y: "10q/2.376", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "water-rise", formula: "10q/4.184" },
+      { key: "ethanol-rise", formula: "10q/2.376" },
+    ],
+  }}
+  labels={{
+    q: <>Heat supplied in <InlineMath math="\text{kJ}" /></>,
+    "water-rise": <>Rise of water in <InlineMath math="^\circ\text{C}" /></>,
+    "ethanol-rise": <>Rise of ethanol in <InlineMath math="^\circ\text{C}" /></>,
+  }}
+/>
+
+### Example Warming Water and Ethanol
+
+How much heat warms <InlineMath math="100\text{ g}" /> of water by <InlineMath math="5.0^\circ\text{C}" />, and how much would the same heat warm <InlineMath math="100\text{ g}" /> of ethanol?
+
+<MathContainer>
+<BlockMath math="Q = mc\Delta T = (100)(4.184)(5.0) = 2{,}092\text{ J}" />
+<BlockMath math="\Delta T_{\text{ethanol}} = \frac{Q}{mc} = \frac{2{,}092}{(100)(2.376)} = 8.80^\circ\text{C}" />
+</MathContainer>
+
+Check with the model: at <InlineMath math="2.1\text{ kJ}" />, water rises about <InlineMath math="5.0^\circ\text{C}" /> and ethanol about <InlineMath math="8.8^\circ\text{C}" />. The same heat warms ethanol **almost twice as much**, which is why a watery cell resists sudden temperature changes.
+
+### Example Cooling by Sweat
+
+Turning <InlineMath math="1\text{ g}" /> of water into vapour takes about <InlineMath math="586" /> calories, which is <InlineMath math="2.45\text{ kJ}" />. How much heat leaves your skin when <InlineMath math="40\text{ g}" /> of sweat evaporates?
+
+<BlockMath math="Q = (40)(2.45) = 98\text{ kJ}" />
+
+Check the size: the same heat would warm <InlineMath math="1\text{ kg}" /> of water by <InlineMath math="98{,}000 / 4{,}184 = 23.4^\circ\text{C}" />, so a little sweat carries **a lot of heat** away.
+
+## Carbohydrates Join by Losing Water
+
+**Carbohydrates** contain carbon, hydrogen and oxygen, with twice as many hydrogen atoms as oxygen atoms. They come in three sizes:
+
+- **Monosaccharides** are single sugar units: glucose, fructose and galactose, all <InlineMath math="\mathrm{C_6H_{12}O_6}" />.
+- **Disaccharides** are two units joined by a **glycosidic bond**: maltose, sucrose and lactose.
+- **Polysaccharides** are long chains of glucose: starch stored in plants, glycogen stored in liver and muscle, and cellulose in plant cell walls.
+
+Each disaccharide forms by condensation and breaks down by hydrolysis. Hydrolysis needs an enzyme or boiling with dilute acid.
+
+<MathContainer>
+<BlockMath math="\text{glucose} + \text{glucose} \rightleftharpoons \text{maltose} + \text{water}" />
+<BlockMath math="\text{glucose} + \text{fructose} \rightleftharpoons \text{sucrose} + \text{water}" />
+<BlockMath math="\text{glucose} + \text{galactose} \rightleftharpoons \text{lactose} + \text{water}" />
+</MathContainer>
+
+Read each equation left to right for condensation and right to left for hydrolysis. A chain of <InlineMath math="n" /> glucose units has <InlineMath math="n - 1" /> bonds, so it loses <InlineMath math="n - 1" /> water molecules. With <InlineMath math="M_r" /> of glucose <InlineMath math="180" /> and of water <InlineMath math="18" />:
+
+<BlockMath math="M_r = 180n - 18(n - 1) = 162n + 18" />
+
+Move the slider to add glucose units. The upper line is the mass of the separate glucose molecules, and the lower line is the mass of the chain.
+
+<MathVisual
+  title={<>Building a Glucose Chain</>}
+  description={
+    <>
+      Relative molecular mass against the number of glucose units{" "}
+      <InlineMath math="n" />. The upper line is <InlineMath math="180n" />,
+      the lower line is the chain, <InlineMath math="162n + 18" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 2300 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 12, value: 2, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "separate", kind: "function", appearance: "reference", formula: "180x", domain: { min: 1, max: 12 } },
+      { id: "chain", kind: "function", appearance: "primary", formula: "162x + 18", domain: { min: 1, max: 12 } },
+      { id: "now", kind: "marker", x: "n", y: "162n + 18", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "mass", formula: "162n + 18" },
+      { key: "water", formula: "n - 1" },
+    ],
+  }}
+  labels={{
+    n: <>Glucose units <InlineMath math="n" /></>,
+    mass: <><InlineMath math="M_r" /> of the chain</>,
+    water: <>Water molecules released</>,
+  }}
+/>
+
+### Example Mass of Maltose
+
+Maltose is two glucose units, so <InlineMath math="n = 2" />:
+
+<BlockMath math="M_r = 162(2) + 18 = 342" />
+
+Check with the formula of maltose, <InlineMath math="\mathrm{C_{12}H_{22}O_{11}}" />: <InlineMath math="12(12) + 22(1) + 11(16) = 342" />. Both routes agree, and **one water molecule** was lost.
+
+### Why Cells Need Carbohydrates
+
+Glucose is the main fuel of cellular respiration. Starch and glycogen **store glucose** in a compact, insoluble form that doesn't upset osmosis, and enzymes hydrolyse them back to glucose when the cell needs energy. Cellulose forms the cell wall that keeps a plant cell's shape.
+
+## Proteins Are Chains of Amino Acids
+
+**Proteins** contain carbon, hydrogen, oxygen and nitrogen, and many also contain sulfur. Their units are **amino acids**. There are <InlineMath math="20" /> common amino acids, and <InlineMath math="9" /> of them are essential amino acids that your body can't make, so they must come from food.
+
+Two amino acids join by condensation into a **dipeptide**, linked by a **peptide bond**. Many amino acids joined in a row form a **polypeptide**. Hydrolysis breaks the peptide bonds again, for example during digestion.
+
+<BlockMath math="\text{amino acid} + \text{amino acid} \rightleftharpoons \text{dipeptide} + \text{water}" />
+
+The order of amino acids is the **primary structure** of a protein. The chain coils into an alpha helix or folds into a beta pleated sheet, held by hydrogen bonds, which is the secondary structure. The whole chain then folds into a three-dimensional shape, the tertiary structure. Some proteins, such as haemoglobin with its four chains, join several polypeptides into a quaternary structure.
+
+### Example Mass of a Dipeptide
+
+Glycine has <InlineMath math="M_r = 75" /> and alanine has <InlineMath math="M_r = 89" />. Find the relative molecular mass of the dipeptide they form. One peptide bond means **one water molecule lost**.
+
+<BlockMath math="M_r = 75 + 89 - 18 = 146" />
+
+Check with the formulas: glycine <InlineMath math="\mathrm{C_2H_5NO_2}" /> plus alanine <InlineMath math="\mathrm{C_3H_7NO_2}" /> minus <InlineMath math="\mathrm{H_2O}" /> gives <InlineMath math="\mathrm{C_5H_{10}N_2O_3}" />, and <InlineMath math="5(12) + 10(1) + 2(14) + 3(16) = 146" />.
+
+### Why Cells Need Proteins
+
+A protein's job depends on its **shape**. Enzymes speed up reactions, haemoglobin carries oxygen, antibodies defend the body, keratin and collagen build hair and skin, and some hormones, such as insulin, are proteins. Heat or a wrong pH can unfold a protein, and an unfolded protein stops working. This change is called denaturation.
+
+## Lipids Store Energy and Build Membranes
+
+**Lipids** contain carbon, hydrogen and oxygen too, but far less oxygen than carbohydrates. They don't dissolve in water. The main types are fats and oils, phospholipids, steroids such as cholesterol and the sex hormones, and waxes.
+
+Fats and oils are **triglycerides**. One glycerol molecule joins three fatty acids by condensation, forming three ester bonds and releasing three water molecules:
+
+<BlockMath math="\text{glycerol} + 3\text{ fatty acids} \rightleftharpoons \text{triglyceride} + 3\text{ water}" />
+
+A **saturated fatty acid** has only single bonds between its carbon atoms, so its chains pack tightly and the fat is solid at room temperature, like butter. An **unsaturated fatty acid** has at least one double bond, which bends the chain, so the fat stays liquid, like olive oil or corn oil.
+
+### Example Mass of a Triglyceride
+
+Glycerol has <InlineMath math="M_r = 92" /> and stearic acid has <InlineMath math="M_r = 284" />. Find <InlineMath math="M_r" /> of the triglyceride made from glycerol and three stearic acids.
+
+<BlockMath math="M_r = 92 + 3(284) - 3(18) = 890" />
+
+Check with its formula, <InlineMath math="\mathrm{C_{57}H_{110}O_6}" />: <InlineMath math="57(12) + 110(1) + 6(16) = 890" />. Three ester bonds mean **three water molecules lost**, not one.
+
+### Why Cells Need Lipids
+
+Fat is a **long-term energy store**. A layer of fat under the skin keeps body heat in, and fat around the organs cushions them. Phospholipids form the double layer of every plasma membrane. Steroids act as hormones, and waxes waterproof leaves and feathers.
+
+## Nucleic Acids Carry the Genetic Code
+
+**Nucleic acids** contain carbon, hydrogen, oxygen, nitrogen and phosphorus. Their units are **nucleotides**, and each nucleotide has three parts: a pentose sugar, a nitrogenous base and a phosphate group.
+
+| Feature | DNA | RNA |
+| :--- | :--- | :--- |
+| Sugar | Deoxyribose | Ribose |
+| Bases | Adenine, thymine, guanine, cytosine | Adenine, uracil, guanine, cytosine |
+| Strands | Two, twisted into a double helix | One |
+
+In DNA, the sugar and phosphate of neighbouring nucleotides form the two backbones on the outside, and the bases pair up inside. The pairing is fixed: **A pairs with T, and G pairs with C**. Each base pair is <InlineMath math="0.34\text{ nm}" /> from the next. RNA is usually one strand, and it has uracil in place of thymine. Some viruses use [RNA as their genetic material](/en/subjects/biology/virus-role/what-is-virus) instead of DNA.
+
+The model shows the first <InlineMath math="21" /> bases of the human gene for the beta chain of haemoglobin. Switch to the sickle cell version and find the one base that differs.
+
+<DnaHelixLab
+  title={<>The Start of the Haemoglobin Beta Gene</>}
+  description={
+    <>
+      The first <InlineMath math="21" /> bases of the human beta globin gene
+      as a double helix, normal and in sickle cell anaemia. Rotate the helix
+      and compare the two.
+    </>
+  }
+  sequence="ATGGTGCATCTGACTCCTGAG"
+  variant="ATGGTGCATCTGACTCCTGTG"
+  labels={{
+    choose: "Choose a version of the gene",
+    strands: { first: <>Normal</>, second: <>Sickle cell</> },
+    differences: <>Bases that differ</>,
+    length: <>Base pairs shown</>,
+    span: <>Length</>,
+    turns: <>Turns of the helix</>,
+    gc: <>Share of G and C</>,
+    viewLabel: "A stretch of DNA from the haemoglobin beta gene",
+  }}
+/>
+
+Each group of three bases codes for one amino acid. The last group, GAG, codes for glutamic acid. In sickle cell anaemia, one A changes to T, so the group becomes GTG, which codes for valine. That single change alters the shape of haemoglobin. This is how DNA **carries hereditary information** and directs the making of proteins: DNA is copied into messenger RNA, and the ribosome reads the RNA to join amino acids in order.
+
+### Example Base Percentages in DNA
+
+A DNA sample contains <InlineMath math="30\%" /> adenine. Find the percentages of the other three bases.
+
+<MathContainer>
+<BlockMath math="\%T = \%A = 30\%" />
+<BlockMath math="\%G + \%C = 100\% - 60\% = 40\%" />
+<BlockMath math="\%G = \%C = 20\%" />
+</MathContainer>
+
+Check: <InlineMath math="30 + 30 + 20 + 20 = 100" />, and A equals T while G equals C, as **complementary base pairing** demands.
+
+### How DNA Is Packed into Chromosomes
+
+Inside the nucleus, a DNA molecule wraps around proteins called **histones**. Each bead of DNA and histones is a nucleosome, and the string of nucleosomes coils into chromatin. Before cell division, the chromatin coils even more tightly into the **chromosomes** you see under a microscope. A chromosome is therefore DNA and protein together, never DNA alone.
+
+## Common Mistakes about Cell Chemistry
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Condensation adds water. | Condensation releases one water molecule for every bond formed. Hydrolysis uses water up. | Count the bonds and count the water on the product side. |
+| A triglyceride releases one water molecule. | Glycerol forms three ester bonds, one with each fatty acid. | Three fatty acids mean three water molecules. |
+| DNA and RNA have the same bases. | RNA has uracil instead of thymine. | Look for T in DNA and U in RNA. |
+| <InlineMath math="\%A = \%G" /> in DNA. | A pairs with T, so <InlineMath math="\%A = \%T" />. | Pair A with T and G with C. |
+| Water is polar because it has polar bonds. | Carbon dioxide has polar bonds but is nonpolar. Water is polar because it's bent. | Ask whether the pulls cancel. |
+
+The first mistake costs the most marks in mass questions. **Every bond formed releases one water molecule**, so subtract <InlineMath math="18" /> for each bond.
+
+## Practice on Cell Chemistry
+
+These questions start with a word equation and finish with a triglyceride. **Count the bonds first**, then the water.
+
+1. Write the word equation for the formation of lactose. Name the bond that forms and the reaction that breaks it.
+
+2. A polypeptide has <InlineMath math="150" /> amino acids. How many peptide bonds does it have, and how many water molecules are needed to hydrolyse it completely into amino acids?
+
+3. A DNA sample contains <InlineMath math="18\%" /> guanine. Find the percentages of adenine, thymine and cytosine.
+
+4. Oleic acid, <InlineMath math="\mathrm{C_{18}H_{34}O_2}" />, has <InlineMath math="M_r = 282" />. Find <InlineMath math="M_r" /> of the triglyceride formed from glycerol, <InlineMath math="M_r = 92" />, and three oleic acids. Is this fat solid or liquid at room temperature?
+
+### Solutions
+
+**Solution 1**: Glucose and galactose join by condensation:
+
+<BlockMath math="\text{glucose} + \text{galactose} \rightarrow \text{lactose} + \text{water}" />
+
+The bond is a **glycosidic bond**. Hydrolysis breaks it, using up one water molecule, with the enzyme lactase or by boiling with dilute acid.
+
+**Solution 2**: A chain of <InlineMath math="n" /> amino acids has <InlineMath math="n - 1" /> peptide bonds:
+
+<BlockMath math="150 - 1 = 149" />
+
+The polypeptide has <InlineMath math="149" /> peptide bonds, and breaking each one uses one water molecule, so complete hydrolysis needs <InlineMath math="149" /> **water molecules**.
+
+**Solution 3**: G pairs with C, and A pairs with T:
+
+<MathContainer>
+<BlockMath math="\%C = \%G = 18\%" />
+<BlockMath math="\%A + \%T = 100\% - 36\% = 64\%" />
+<BlockMath math="\%A = \%T = 32\%" />
+</MathContainer>
+
+Check: <InlineMath math="32 + 32 + 18 + 18 = 100" />.
+
+**Solution 4**: Three ester bonds release three water molecules:
+
+<BlockMath math="M_r = 92 + 3(282) - 3(18) = 884" />
+
+Check with the formula <InlineMath math="\mathrm{C_{57}H_{104}O_6}" />: <InlineMath math="57(12) + 104(1) + 6(16) = 884" />. Oleic acid has <InlineMath math="34" /> hydrogen atoms where stearic acid has <InlineMath math="36" />, so it has one double bond. The fat is **unsaturated** and liquid at room temperature, like olive oil.
