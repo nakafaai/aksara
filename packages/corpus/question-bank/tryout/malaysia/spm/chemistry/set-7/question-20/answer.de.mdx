@@ -1,25 +1,25 @@
-# Mittle die Dichten nach dem Volumen, wobei die Luft Volumen, aber keine Masse beiträgt, dann vergleiche die Massen
+# Wiege hundert Kubikzentimeter Verbundstoff samt Luft und rechne dann auf den Rumpf hoch
 
-Nimm <InlineMath math="1\text{ cm}^3" /> Verbundstoff: <InlineMath math="0{,}40\text{ cm}^3" /> Glas wiegen <InlineMath math="1{,}02\text{ g}" /> und <InlineMath math="0{,}55\text{ cm}^3" /> Polyester <InlineMath math="0{,}66\text{ g}" />. **Die <InlineMath math="0{,}05\text{ cm}^3" /> Luft füllen Raum, tragen aber keine Masse bei**, also ist die Dichte <InlineMath math="1{,}68\text{ g cm}^{-3}" />. Das Glas macht <InlineMath math="1{,}02\div1{,}68=60{,}7\%" /> der Masse aus, mehr als seinen Volumenanteil, weil es der dichtere Stoff ist.
+Nimm <InlineMath math="100\text{ cm}^3" /> Verbundstoff: <InlineMath math="40\text{ cm}^3" /> Glas sind <InlineMath math="102\text{ g}" />, <InlineMath math="55\text{ cm}^3" /> Polyester sind <InlineMath math="66\text{ g}" />, und die <InlineMath math="5\text{ cm}^3" /> Luft tragen nichts bei. **Die Luft nimmt trotzdem Volumen ein**, also ist die Dichte <InlineMath math="168\div100=1{,}68\text{ g cm}^{-3}" />, und Glas macht <InlineMath math="102\div168=60{,}7\%" /> der Masse aus. Der Rumpf füllt <InlineMath math="84{.}000\div1{,}68=50{.}000\text{ cm}^3" />, und <InlineMath math="5\%" /> davon, <InlineMath math="2{,}50\text{ dm}^3" />, sind Luft.
 
 <Chart
-  title={<>Masse in einem Kubikzentimeter</>}
-  description={<>Ein Kubikzentimeter enthält <InlineMath math="1{,}02\text{ g}" /> Glas, <InlineMath math="0{,}66\text{ g}" /> Polyester und masselose Luft.</>}
+  title={<>Masse je hundert Kubikzentimeter</>}
+  description={<>Glasfaser liefert <InlineMath math="102\text{ g}" />, Polyester <InlineMath math="66\text{ g}" /> und die Luft nichts.</>}
   bars="apart"
   categories={["Glasfaser", "Polyester", "Luft"]}
   series={[
-    { label: "Masse", mark: "bar", values: [1.02, 0.66, 0] },
+    { label: "Masse", mark: "bar", values: [102, 66, 0] },
   ]}
   valueLabel="Masse (g)"
 />
 
 <BlockMath math="\begin{aligned}
-\rho&=0{,}40\times2{,}55+0{,}55\times1{,}20+0{,}05\times0=1{,}68\text{ g cm}^{-3}\\
-\%_{\text{glass}}&=\tfrac{1{,}02}{1{,}68}\times100=60{,}7\%
+\rho&=0{,}40\times2{,}55+0{,}55\times1{,}20=1{,}68\text{ g cm}^{-3},\quad \tfrac{1{,}02}{1{,}68}=60{,}7\%\\
+V_{\text{air}}&=0{,}05\times\tfrac{84{.}000}{1{,}68}=2500\text{ cm}^3=2{,}50\text{ dm}^3
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="1{,}74\text{ g cm}^{-3}" /> gibt dem Polyester <InlineMath math="60\%" /> des Volumens. **Fünf Prozent sind Luft**.
-- <InlineMath math="40{,}0\%" /> ist der Volumenanteil des Glases, doch das dichtere Glas hat einen größeren Massenanteil.
-- <InlineMath math="1{,}61\text{ g cm}^{-3}" /> zieht die Luft vom Glas statt vom Polyester ab.
+- <InlineMath math="1{,}77\text{ g cm}^{-3}" /> verteilt die Masse nur auf die festen <InlineMath math="95\text{ cm}^3" />. **Die Luftblasen nehmen <InlineMath math="5\%" /> des Volumens ein**.
+- <InlineMath math="40{,}0\%" /> ist der Volumenanteil, doch Glas ist dichter als Polyester, also ist sein Massenanteil größer.
+- <InlineMath math="4{,}20\text{ dm}^3" /> nimmt <InlineMath math="5\%" /> der Rumpfmasse, doch die Luft ist <InlineMath math="5\%" /> des Volumens und hat keine Masse.

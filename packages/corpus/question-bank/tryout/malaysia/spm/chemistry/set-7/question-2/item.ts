@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$216\\text{ cm}^3$$, $$216\\text{ cm}^3$$" },
-        { correct: false, label: "$$216\\text{ cm}^3$$, $$168\\text{ cm}^3$$" },
-        { correct: false, label: "$$240\\text{ cm}^3$$, $$216\\text{ cm}^3$$" },
-        { correct: false, label: "$$216\\text{ cm}^3$$, $$240\\text{ cm}^3$$" },
+        { correct: true, label: "$$216\\text{ cm}^3$$, $$0.508\\text{ g}$$" },
+        { correct: false, label: "$$168\\text{ cm}^3$$, $$0.508\\text{ g}$$" },
+        { correct: false, label: "$$216\\text{ cm}^3$$, $$0.762\\text{ g}$$" },
+        { correct: false, label: "$$216\\text{ cm}^3$$, $$0.254\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$216\\text{ cm}^3$$, $$216\\text{ cm}^3$$" },
-        { correct: false, label: "$$216\\text{ cm}^3$$, $$168\\text{ cm}^3$$" },
-        { correct: false, label: "$$240\\text{ cm}^3$$, $$216\\text{ cm}^3$$" },
-        { correct: false, label: "$$216\\text{ cm}^3$$, $$240\\text{ cm}^3$$" },
+        { correct: true, label: "$$216\\text{ cm}^3$$, $$0.508\\text{ g}$$" },
+        { correct: false, label: "$$168\\text{ cm}^3$$, $$0.508\\text{ g}$$" },
+        { correct: false, label: "$$216\\text{ cm}^3$$, $$0.762\\text{ g}$$" },
+        { correct: false, label: "$$216\\text{ cm}^3$$, $$0.254\\text{ g}$$" },
       ],
     },
   },

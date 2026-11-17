@@ -1,25 +1,25 @@
-# Average the densities by volume, with the air adding volume but no mass, then compare masses
+# Weigh a hundred cubic centimetres of composite with its air, then scale up to the hull
 
-Take <InlineMath math="1\text{ cm}^3" /> of composite: <InlineMath math="0.40\text{ cm}^3" /> of glass weighs <InlineMath math="1.02\text{ g}" /> and <InlineMath math="0.55\text{ cm}^3" /> of polyester <InlineMath math="0.66\text{ g}" />. **The <InlineMath math="0.05\text{ cm}^3" /> of air fills space but adds no mass**, so the density is <InlineMath math="1.68\text{ g cm}^{-3}" />. The glass is <InlineMath math="1.02\div1.68=60.7\%" /> of the mass, more than its share of the volume because it is the denser material.
+Take <InlineMath math="100\text{ cm}^3" /> of composite: <InlineMath math="40\text{ cm}^3" /> of glass is <InlineMath math="102\text{ g}" />, <InlineMath math="55\text{ cm}^3" /> of polyester is <InlineMath math="66\text{ g}" />, and the <InlineMath math="5\text{ cm}^3" /> of air adds nothing. **The air still takes up volume**, so the density is <InlineMath math="168\div100=1.68\text{ g cm}^{-3}" />, and glass is <InlineMath math="102\div168=60.7\%" /> of the mass. The hull fills <InlineMath math="84\,000\div1.68=50\,000\text{ cm}^3" />, and <InlineMath math="5\%" /> of that, <InlineMath math="2.50\text{ dm}^3" />, is air.
 
 <Chart
-  title={<>Mass in one cubic centimetre</>}
-  description={<>One cubic centimetre holds <InlineMath math="1.02\text{ g}" /> of glass, <InlineMath math="0.66\text{ g}" /> of polyester and no mass of air.</>}
+  title={<>Mass in each hundred cubic centimetres</>}
+  description={<>Glass fibre gives <InlineMath math="102\text{ g}" />, polyester <InlineMath math="66\text{ g}" /> and the air nothing.</>}
   bars="apart"
   categories={["Glass fibre", "Polyester", "Air"]}
   series={[
-    { label: "Mass", mark: "bar", values: [1.02, 0.66, 0] },
+    { label: "Mass", mark: "bar", values: [102, 66, 0] },
   ]}
   valueLabel="Mass (g)"
 />
 
 <BlockMath math="\begin{aligned}
-\rho&=0.40\times2.55+0.55\times1.20+0.05\times0=1.68\text{ g cm}^{-3}\\
-\%_{\text{glass}}&=\tfrac{1.02}{1.68}\times100=60.7\%
+\rho&=0.40\times2.55+0.55\times1.20=1.68\text{ g cm}^{-3},\quad \tfrac{1.02}{1.68}=60.7\%\\
+V_{\text{air}}&=0.05\times\tfrac{84\,000}{1.68}=2500\text{ cm}^3=2.50\text{ dm}^3
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="1.74\text{ g cm}^{-3}" /> gives the polyester <InlineMath math="60\%" /> of the volume. **Five per cent is air**.
-- <InlineMath math="40.0\%" /> is the glass's share of the volume, but the denser glass has a larger share of the mass.
-- <InlineMath math="1.61\text{ g cm}^{-3}" /> takes the air out of the glass instead of out of the polyester.
+- <InlineMath math="1.77\text{ g cm}^{-3}" /> spreads the mass over only the solid <InlineMath math="95\text{ cm}^3" />. **The air bubbles take up <InlineMath math="5\%" /> of the volume**.
+- <InlineMath math="40.0\%" /> is the share of the volume, but glass is denser than polyester, so its share of the mass is larger.
+- <InlineMath math="4.20\text{ dm}^3" /> takes <InlineMath math="5\%" /> of the hull's mass, but the air is <InlineMath math="5\%" /> of its volume and has no mass.
