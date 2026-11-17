@@ -1,0 +1,321 @@
+export const metadata = {
+  title: "Catatan Penyelesaian Segitiga Tingkatan Empat",
+  description:
+    "Catatan Matematika Tambahan KSSM Tingkatan 4 Bab 9: pakai aturan sinus termasuk kasus ambigu, aturan kosinus, dan rumus luas segitiga untuk menyelesaikan segitiga yang tidak siku-siku.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Penyelesaian Segitiga",
+};
+
+## Pilih Aturan Sesuai Informasi yang Diberikan
+
+Menyelesaikan segitiga artinya mencari semua sisi dan sudut yang belum diketahui. Untuk segitiga yang tidak siku-siku, pilih aturan sesuai **informasi yang diberikan**:
+
+| Informasi yang diberikan | Aturan |
+| :--- | :--- |
+| Dua sudut dan satu sisi | Aturan sinus |
+| Dua sisi dan sudut yang tidak diapit keduanya | Aturan sinus, cek kasus ambigu |
+| Dua sisi dan sudut yang diapit keduanya | Aturan kosinus |
+| Tiga sisi | Aturan kosinus |
+
+Dengan sisi <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> di depan sudut <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />, tiga rumus utamanya adalah:
+
+<MathContainer>
+<BlockMath math="\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}" />
+<BlockMath math="a^2 = b^2 + c^2 - 2bc\cos A" />
+<BlockMath math="\text{Luas} = \frac{1}{2}bc\sin A" />
+</MathContainer>
+
+Di catatan ini kamu mengubah sudut segitiga sambil mengamati perbandingan aturan sinus, melihat kapan satu informasi memberi dua segitiga, dan mencari sudut yang memberi luas paling besar.
+
+## Aturan Sinus
+
+**Aturan sinus** menyatakan bahwa perbandingan setiap sisi dengan sinus sudut di depannya selalu sama. Segitiga di bawah punya sisi <InlineMath math="c = AB = 10\text{ cm}" />. Ubah sudut <InlineMath math="A" /> dan <InlineMath math="B" />: sisi <InlineMath math="a" /> dan <InlineMath math="b" /> berubah, tetapi ketiga perbandingannya tetap sama.
+
+<MathVisual
+  title={<>Segitiga dengan Sisi <InlineMath math="AB" /> Tetap</>}
+  description={
+    <>
+      Sisi <InlineMath math="AB = 10" />, dengan sudut <InlineMath math="A" /> dan{" "}
+      <InlineMath math="B" /> yang bisa diubah. Untuk{" "}
+      <InlineMath math="A = 40^\circ" /> dan <InlineMath math="B = 65^\circ" />,
+      sisinya <InlineMath math="a = 6{,}65" /> dan <InlineMath math="b = 9{,}38" />,
+      dan setiap perbandingan bernilai <InlineMath math="10{,}35" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: 0, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 30, max: 70, value: 40, step: 1, label: "p" },
+      { name: "q", min: 30, max: 70, value: 65, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "0", y: "0" }, { x: "10", y: "0" }, { x: "10*sin(q*pi/180)/sin((p + q)*pi/180)*cos(p*pi/180)", y: "10*sin(q*pi/180)/sin((p + q)*pi/180)*sin(p*pi/180)" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 10, y: 0 }, appearance: "reference" },
+      { id: "vertex-c", kind: "marker", x: "10*sin(q*pi/180)/sin((p + q)*pi/180)*cos(p*pi/180)", y: "10*sin(q*pi/180)/sin((p + q)*pi/180)*sin(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "side-a", formula: "10*sin(p*pi/180)/sin((p + q)*pi/180)" },
+      { key: "side-b", formula: "10*sin(q*pi/180)/sin((p + q)*pi/180)" },
+      { key: "ratio", formula: "10/sin((p + q)*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Sudut <InlineMath math="A" /> dalam derajat</>,
+    q: <>Sudut <InlineMath math="B" /> dalam derajat</>,
+    "side-a": <>Sisi <InlineMath math="a = BC" /></>,
+    "side-b": <>Sisi <InlineMath math="b = AC" /></>,
+    ratio: <>Perbandingan <InlineMath math="\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C}" /></>,
+  }}
+/>
+
+Cek bacaan awal secara aljabar. Sudut ketiganya <InlineMath math="C = 180^\circ - 40^\circ - 65^\circ = 75^\circ" />:
+
+<MathContainer>
+<BlockMath math="a = \frac{c\sin A}{\sin C} = \frac{10\sin 40^\circ}{\sin 75^\circ} = 6{,}65\text{ cm}" />
+<BlockMath math="b = \frac{c\sin B}{\sin C} = \frac{10\sin 65^\circ}{\sin 75^\circ} = 9{,}38\text{ cm}" />
+</MathContainer>
+
+Sisi terpanjang selalu berada di depan sudut terbesar. Di sini <InlineMath math="c" /> berada di depan <InlineMath math="75^\circ" />, jadi **<InlineMath math="c = 10" /> adalah sisi terpanjang**.
+
+## Kasus Ambigu
+
+Saat diberi dua sisi dan sudut yang **tidak** diapit keduanya, informasi itu kadang membentuk dua segitiga yang berbeda. Ambil <InlineMath math="A = 30^\circ" />, <InlineMath math="c = AB = 8" />, dan sisi <InlineMath math="a = BC" /> yang bisa diubah. Titik <InlineMath math="C" /> harus berada pada sinar dari <InlineMath math="A" /> dan juga pada lingkaran berpusat <InlineMath math="B" /> dengan jari-jari <InlineMath math="a" />.
+
+<MathVisual
+  title={<>Satu Informasi, Dua Segitiga</>}
+  description={
+    <>
+      Sinar dari <InlineMath math="A" /> pada <InlineMath math="30^\circ" /> dan
+      lingkaran berjari-jari <InlineMath math="a" /> yang berpusat di{" "}
+      <InlineMath math="B(8, 0)" />. Untuk <InlineMath math="4 < a < 8" />,
+      lingkaran memotong sinar di dua titik, jadi ada dua segitiga. Untuk{" "}
+      <InlineMath math="a = 5" />, panjang <InlineMath math="AC" /> adalah{" "}
+      <InlineMath math="3{,}93" /> atau <InlineMath math="9{,}93" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 4, max: 8, value: 5, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "ray", kind: "function", appearance: "secondary", formula: "0.57735*x", domain: { min: 0, max: 13.8 } },
+      { id: "swing", kind: "implicit", appearance: "construction", equation: "(x - 8)^2 + y^2 = r^2" },
+      { id: "sides", kind: "path", points: [{ x: "0.8660*(6.9282 - sqrt(r^2 - 16))", y: "0.5*(6.9282 - sqrt(r^2 - 16))" }, { x: "8", y: "0" }, { x: "0.8660*(6.9282 + sqrt(r^2 - 16))", y: "0.5*(6.9282 + sqrt(r^2 - 16))" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "near-c", kind: "marker", x: "0.8660*(6.9282 - sqrt(r^2 - 16))", y: "0.5*(6.9282 - sqrt(r^2 - 16))", appearance: "answer" },
+      { id: "far-c", kind: "marker", x: "0.8660*(6.9282 + sqrt(r^2 - 16))", y: "0.5*(6.9282 + sqrt(r^2 - 16))", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "near-side", formula: "6.9282 - sqrt(r^2 - 16)" },
+      { key: "far-side", formula: "6.9282 + sqrt(r^2 - 16)" },
+    ],
+  }}
+  labels={{
+    r: <>Sisi <InlineMath math="a = BC" /></>,
+    "near-side": <>Panjang <InlineMath math="AC" /> pada segitiga pertama</>,
+    "far-side": <>Panjang <InlineMath math="AC" /> pada segitiga kedua</>,
+  }}
+/>
+
+Selesaikan untuk <InlineMath math="a = 5" />. Aturan sinus memberi <InlineMath math="\sin C" />, tetapi **sinus bernilai positif untuk sudut lancip dan sudut tumpul**, jadi ada dua kemungkinan:
+
+<MathContainer>
+<BlockMath math="\sin C = \frac{c\sin A}{a} = \frac{8\sin 30^\circ}{5} = 0{,}8" />
+<BlockMath math="C = 53{,}13^\circ \quad \text{atau} \quad C = 180^\circ - 53{,}13^\circ = 126{,}87^\circ" />
+</MathContainer>
+
+Kedua nilai sah karena <InlineMath math="30^\circ + 126{,}87^\circ < 180^\circ" />. Jadi <InlineMath math="B = 96{,}87^\circ" /> dengan <InlineMath math="b = 9{,}93" />, atau <InlineMath math="B = 23{,}13^\circ" /> dengan <InlineMath math="b = 3{,}93" />, sama dengan dua bacaan pada gambar. Kalau <InlineMath math="a < 4" />, lingkaran tidak sampai ke sinar dan tidak ada segitiga yang terbentuk.
+
+## Aturan Kosinus
+
+Pakai **aturan kosinus** saat diberi dua sisi dan sudut yang diapitnya, atau tiga sisi. Untuk sudut <InlineMath math="A" /> yang diapit sisi <InlineMath math="b" /> dan <InlineMath math="c" />:
+
+<BlockMath math="a^2 = b^2 + c^2 - 2bc\cos A" />
+
+Saat <InlineMath math="A = 90^\circ" />, <InlineMath math="\cos A = 0" /> dan aturan ini menjadi teorema Pythagoras. Ubah sudut <InlineMath math="A" /> yang diapit sisi <InlineMath math="b = 5" /> dan <InlineMath math="c = 7" />.
+
+<MathVisual
+  title={<>Aturan Kosinus dengan Sudut yang Diapit Dua Sisi</>}
+  description={
+    <>
+      Sisi <InlineMath math="b = 5" /> dan <InlineMath math="c = 7" /> mengapit
+      sudut <InlineMath math="A" />. Sisi ketiganya{" "}
+      <InlineMath math="a = \sqrt{74 - 70\cos A}" />. Untuk{" "}
+      <InlineMath math="A = 60^\circ" />, <InlineMath math="a = 6{,}24" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 8 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 10, max: 170, value: 60, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "0", y: "0" }, { x: "7", y: "0" }, { x: "5*cos(p*pi/180)", y: "5*sin(p*pi/180)" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+      { id: "vertex-c", kind: "marker", x: "5*cos(p*pi/180)", y: "5*sin(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "side-a", formula: "sqrt(74 - 70*cos(p*pi/180))" },
+      { key: "side-a-squared", formula: "74 - 70*cos(p*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Sudut <InlineMath math="A" /> dalam derajat</>,
+    "side-a": <>Sisi <InlineMath math="a = BC" /></>,
+    "side-a-squared": <>Nilai <InlineMath math="a^2" /></>,
+  }}
+/>
+
+Cek bacaan awal: <InlineMath math="a^2 = 25 + 49 - 2(5)(7)\cos 60^\circ = 74 - 35 = 39" />, jadi <InlineMath math="a = \sqrt{39} = 6{,}24\text{ cm}" />. Di <InlineMath math="A = 90^\circ" />, bacaan <InlineMath math="a^2" /> menjadi <InlineMath math="74 = 5^2 + 7^2" />.
+
+Aturan kosinus juga mencari sudut dari tiga sisi. Untuk segitiga bersisi <InlineMath math="a = 7" />, <InlineMath math="b = 8" />, dan <InlineMath math="c = 9" />, sudut terbesar berada di depan sisi terpanjang:
+
+<BlockMath math="\cos C = \frac{a^2 + b^2 - c^2}{2ab} = \frac{49 + 64 - 81}{2(7)(8)} = \frac{32}{112} \quad \Rightarrow \quad C = 73{,}40^\circ" />
+
+## Luas Segitiga
+
+Luas segitiga adalah setengah hasil kali dua sisi dengan sinus sudut yang diapitnya, <InlineMath math="\text{Luas} = \dfrac{1}{2}bc\sin A" />. Untuk <InlineMath math="b = 5" /> dan <InlineMath math="c = 7" />, luasnya <InlineMath math="17{,}5\sin A" />. Geser sudut <InlineMath math="A" /> dan cari luas paling besar.
+
+<MathVisual
+  title={<>Luas terhadap Sudut yang Diapit Dua Sisi</>}
+  description={
+    <>
+      Luas <InlineMath math="17{,}5\sin A" /> untuk sisi <InlineMath math="5" /> dan{" "}
+      <InlineMath math="7" />. Luas paling besar,{" "}
+      <InlineMath math="17{,}5\text{ cm}^2" />, terjadi di{" "}
+      <InlineMath math="A = 90^\circ" />. Untuk <InlineMath math="A = 60^\circ" />,
+      luasnya <InlineMath math="15{,}16\text{ cm}^2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 180 }, y: { min: 0, max: 20 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 180, value: 60, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "area-curve", kind: "function", appearance: "primary", formula: "17.5*sin(x*pi/180)", domain: { min: 0, max: 180 } },
+      { id: "now", kind: "marker", x: "p", y: "17.5*sin(p*pi/180)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "17.5*sin(p*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Sudut <InlineMath math="A" /> dalam derajat</>,
+    area: <>Luas dalam <InlineMath math="\text{cm}^2" /></>,
+  }}
+/>
+
+Kalau hanya ketiga sisi yang diketahui, pakai **rumus Heron**. Dengan setengah keliling <InlineMath math="s = \dfrac{a + b + c}{2}" />:
+
+<BlockMath math="\text{Luas} = \sqrt{s(s - a)(s - b)(s - c)}" />
+
+Untuk segitiga bersisi <InlineMath math="7" />, <InlineMath math="8" />, dan <InlineMath math="9" />, <InlineMath math="s = 12" /> dan luasnya <InlineMath math="\sqrt{12(5)(4)(3)} = \sqrt{720} = 26{,}83" /> satuan luas.
+
+## Segitiga dengan Sisi Ketiga yang Berubah
+
+Bayangkan dua batang kayu sepanjang <InlineMath math="5\text{ m}" /> dan <InlineMath math="6\text{ m}" /> yang disambung dengan engsel, dengan tali sebagai sisi ketiga. Panjang tali **menentukan bentuk segitiga**. Ubah panjang tali dan lihat luas yang diberikan rumus Heron.
+
+<MathVisual
+  title={<>Luas dengan Rumus Heron untuk Sisi <InlineMath math="5\text{ m}" /> dan <InlineMath math="6\text{ m}" /></>}
+  description={
+    <>
+      Luas segitiga bersisi <InlineMath math="5" />, <InlineMath math="6" />, dan{" "}
+      <InlineMath math="c" />. Luas paling besar adalah{" "}
+      <InlineMath math="15\text{ m}^2" /> saat{" "}
+      <InlineMath math="c = \sqrt{61} \approx 7{,}81\text{ m}" />, yaitu saat sudut
+      engselnya <InlineMath math="90^\circ" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 1.5, max: 10.5, value: 4, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "heron", kind: "function", appearance: "primary", formula: "sqrt((11 + x)/2*((11 + x)/2 - 5)*((11 + x)/2 - 6)*((11 + x)/2 - x))", domain: { min: 1.05, max: 10.95 } },
+      { id: "now", kind: "marker", x: "c", y: "sqrt((11 + c)/2*((11 + c)/2 - 5)*((11 + c)/2 - 6)*((11 + c)/2 - c))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "sqrt((11 + c)/2*((11 + c)/2 - 5)*((11 + c)/2 - 6)*((11 + c)/2 - c))" },
+      { key: "hinge", formula: "acos((61 - c^2)/60)*180/pi" },
+    ],
+  }}
+  labels={{
+    c: <>Panjang tali <InlineMath math="c" /> dalam <InlineMath math="\text{m}" /></>,
+    area: <>Luas dalam <InlineMath math="\text{m}^2" /></>,
+    hinge: <>Sudut engsel dalam derajat</>,
+  }}
+/>
+
+Luas paling besar adalah <InlineMath math="\dfrac{1}{2}(5)(6)\sin 90^\circ = 15\text{ m}^2" />, sama dengan puncak grafik. Tali yang terlalu pendek atau terlalu panjang membuat segitiga makin pipih, dan luasnya mendekati nol.
+
+## Kesalahan Umum dalam Penyelesaian Segitiga
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Hanya menulis <InlineMath math="C = 53{,}13^\circ" /> pada kasus ambigu. | Sudut tumpul <InlineMath math="126{,}87^\circ" /> punya sinus yang sama. | Uji apakah <InlineMath math="180^\circ - C" /> juga membuat jumlah sudut di bawah <InlineMath math="180^\circ" />. |
+| Memakai aturan kosinus dengan sudut yang tidak diapit dua sisi. | Sudut dalam rumus harus berada di depan sisi yang dicari. | Cocokkan huruf: <InlineMath math="a" /> dengan <InlineMath math="A" />. |
+| Melupakan tanda <InlineMath math="-2bc\cos A" /> saat <InlineMath math="A" /> tumpul. | <InlineMath math="\cos A" /> negatif, jadi suku itu menambah panjang <InlineMath math="a" />. | Sisi di depan sudut tumpul pasti paling panjang. |
+| Kalkulator dalam mode radian. | Sudut di bab ini diberikan dalam derajat. | Cek <InlineMath math="\sin 30^\circ = 0{,}5" /> sebelum mulai. |
+| Memakai <InlineMath math="\dfrac{1}{2}ab\sin C" /> dengan sudut yang salah. | Sudutnya harus diapit dua sisi yang dikalikan. | Sketsa segitiga dan tandai sudut yang diapit kedua sisi itu. |
+
+Kesalahan pertama paling sering terjadi. **Setiap kali kamu mencari sudut dengan aturan sinus**, cek juga sudut tumpul <InlineMath math="180^\circ - C" />.
+
+## Latihan Penyelesaian Segitiga
+
+Sketsa segitiga dan tandai informasi yang diberikan supaya **aturan yang tepat terlihat sebelum menghitung**.
+
+1. Pada segitiga <InlineMath math="PQR" />, <InlineMath math="\angle P = 50^\circ" />, <InlineMath math="\angle Q = 70^\circ" />, dan <InlineMath math="PQ = 12\text{ cm}" />. Cari panjang <InlineMath math="QR" />.
+
+2. Dua sisi segitiga adalah <InlineMath math="6\text{ cm}" /> dan <InlineMath math="9\text{ cm}" />, dengan sudut <InlineMath math="120^\circ" /> yang diapit keduanya. Cari sisi ketiga dan luas segitiga itu.
+
+3. Pada segitiga <InlineMath math="ABC" />, <InlineMath math="\angle A = 40^\circ" />, <InlineMath math="AB = 10\text{ cm}" />, dan <InlineMath math="BC = 7\text{ cm}" />. Tunjukkan bahwa ada dua segitiga yang mungkin, dan cari kedua nilai <InlineMath math="\angle C" />.
+
+4. Pakai rumus Heron untuk mencari luas segitiga bersisi <InlineMath math="5\text{ cm}" />, <InlineMath math="12\text{ cm}" />, dan <InlineMath math="13\text{ cm}" />.
+
+### Pembahasan
+
+**Pembahasan 1**: Sisi <InlineMath math="QR" /> berada di depan <InlineMath math="\angle P" />, dan sisi <InlineMath math="PQ" /> berada di depan <InlineMath math="\angle R = 180^\circ - 50^\circ - 70^\circ = 60^\circ" />:
+
+<BlockMath math="QR = \frac{12\sin 50^\circ}{\sin 60^\circ} = 10{,}61\text{ cm}" />
+
+**Pembahasan 2**: Pakai aturan kosinus, lalu rumus luas:
+
+<MathContainer>
+<BlockMath math="c^2 = 6^2 + 9^2 - 2(6)(9)\cos 120^\circ = 117 + 54 = 171" />
+<BlockMath math="c = \sqrt{171} = 13{,}08\text{ cm}" />
+<BlockMath math="\text{Luas} = \frac{1}{2}(6)(9)\sin 120^\circ = 23{,}38\text{ cm}^2" />
+</MathContainer>
+
+Cek: sisi <InlineMath math="13{,}08\text{ cm}" /> berada di depan sudut tumpul, jadi memang sisi terpanjang.
+
+**Pembahasan 3**: Pakai aturan sinus untuk <InlineMath math="\sin C" />:
+
+<MathContainer>
+<BlockMath math="\sin C = \frac{10\sin 40^\circ}{7} = 0{,}9183" />
+<BlockMath math="C = 66{,}67^\circ \quad \text{atau} \quad C = 113{,}33^\circ" />
+</MathContainer>
+
+Keduanya sah karena <InlineMath math="40^\circ + 113{,}33^\circ = 153{,}33^\circ < 180^\circ" />. Jadi ada dua segitiga yang mungkin.
+
+**Pembahasan 4**: Setengah kelilingnya <InlineMath math="s = \dfrac{5 + 12 + 13}{2} = 15" />:
+
+<BlockMath math="\text{Luas} = \sqrt{15(10)(3)(2)} = \sqrt{900} = 30\text{ cm}^2" />
+
+Cek: <InlineMath math="5^2 + 12^2 = 13^2" />, jadi segitiga ini **siku-siku** dan luasnya <InlineMath math="\dfrac{1}{2}(5)(12) = 30\text{ cm}^2" />.

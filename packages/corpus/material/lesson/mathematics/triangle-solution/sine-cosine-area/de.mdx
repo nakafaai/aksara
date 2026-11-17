@@ -1,0 +1,322 @@
+export const metadata = {
+  title: "Dreiecksberechnung für Form Vier",
+  description:
+    "Notizen zu KSSM Zusatzmathematik Form 4 Kapitel 9: Nutze den Sinussatz samt mehrdeutigem Fall, den Kosinussatz und die Flächenformeln, um Dreiecke ohne rechten Winkel zu berechnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Dreiecksberechnung",
+};
+
+## Wähle den Satz nach den gegebenen Größen
+
+Ein Dreieck berechnen heißt, alle noch unbekannten Seiten und Winkel zu bestimmen. Bei einem Dreieck ohne rechten Winkel wählst du den Satz nach den **gegebenen Größen**:
+
+| Gegeben | Satz |
+| :--- | :--- |
+| Zwei Winkel und eine Seite | Sinussatz |
+| Zwei Seiten und ein Winkel, der nicht zwischen ihnen liegt | Sinussatz, mehrdeutigen Fall prüfen |
+| Zwei Seiten und der eingeschlossene Winkel | Kosinussatz |
+| Drei Seiten | Kosinussatz |
+
+Mit den Seiten <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" /> gegenüber den Winkeln <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> lauten die drei wichtigsten Formeln:
+
+<MathContainer>
+<BlockMath math="\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}" />
+<BlockMath math="a^2 = b^2 + c^2 - 2bc\cos A" />
+<BlockMath math="\text{Fläche} = \frac{1}{2}bc\sin A" />
+</MathContainer>
+
+In diesen Notizen änderst du die Winkel eines Dreiecks und beobachtest dabei die Verhältnisse des Sinussatzes, siehst, wann dieselben Angaben zwei Dreiecke ergeben, und suchst den Winkel mit der größten Fläche.
+
+## Der Sinussatz
+
+Der **Sinussatz** besagt, dass das Verhältnis jeder Seite zum Sinus ihres Gegenwinkels gleich ist. Das Dreieck unten hat die Seite <InlineMath math="c = AB = 10\text{ cm}" />. Ändere die Winkel <InlineMath math="A" /> und <InlineMath math="B" />: Die Seiten <InlineMath math="a" /> und <InlineMath math="b" /> ändern sich, die drei Verhältnisse bleiben gleich.
+
+<MathVisual
+  title={<>Ein Dreieck mit fester Seite <InlineMath math="AB" /></>}
+  description={
+    <>
+      Seite <InlineMath math="AB = 10" />, die Winkel <InlineMath math="A" /> und{" "}
+      <InlineMath math="B" /> lassen sich ändern. Bei{" "}
+      <InlineMath math="A = 40^\circ" /> und <InlineMath math="B = 65^\circ" />{" "}
+      sind die Seiten <InlineMath math="a = 6{,}65" /> und{" "}
+      <InlineMath math="b = 9{,}38" />, und jedes Verhältnis beträgt{" "}
+      <InlineMath math="10{,}35" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: 0, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 30, max: 70, value: 40, step: 1, label: "p" },
+      { name: "q", min: 30, max: 70, value: 65, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "0", y: "0" }, { x: "10", y: "0" }, { x: "10*sin(q*pi/180)/sin((p + q)*pi/180)*cos(p*pi/180)", y: "10*sin(q*pi/180)/sin((p + q)*pi/180)*sin(p*pi/180)" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 10, y: 0 }, appearance: "reference" },
+      { id: "vertex-c", kind: "marker", x: "10*sin(q*pi/180)/sin((p + q)*pi/180)*cos(p*pi/180)", y: "10*sin(q*pi/180)/sin((p + q)*pi/180)*sin(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "side-a", formula: "10*sin(p*pi/180)/sin((p + q)*pi/180)" },
+      { key: "side-b", formula: "10*sin(q*pi/180)/sin((p + q)*pi/180)" },
+      { key: "ratio", formula: "10/sin((p + q)*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Winkel <InlineMath math="A" /> in Grad</>,
+    q: <>Winkel <InlineMath math="B" /> in Grad</>,
+    "side-a": <>Seite <InlineMath math="a = BC" /></>,
+    "side-b": <>Seite <InlineMath math="b = AC" /></>,
+    ratio: <>Verhältnis <InlineMath math="\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C}" /></>,
+  }}
+/>
+
+Prüfe den Startwert algebraisch. Der dritte Winkel ist <InlineMath math="C = 180^\circ - 40^\circ - 65^\circ = 75^\circ" />:
+
+<MathContainer>
+<BlockMath math="a = \frac{c\sin A}{\sin C} = \frac{10\sin 40^\circ}{\sin 75^\circ} = 6{,}65\text{ cm}" />
+<BlockMath math="b = \frac{c\sin B}{\sin C} = \frac{10\sin 65^\circ}{\sin 75^\circ} = 9{,}38\text{ cm}" />
+</MathContainer>
+
+Die längste Seite liegt immer dem größten Winkel gegenüber. Hier liegt <InlineMath math="c" /> gegenüber <InlineMath math="75^\circ" />, also ist **<InlineMath math="c = 10" /> die längste Seite**.
+
+## Der mehrdeutige Fall
+
+Sind zwei Seiten und ein Winkel gegeben, der **nicht** zwischen ihnen liegt, können diese Angaben manchmal zwei verschiedene Dreiecke ergeben. Nimm <InlineMath math="A = 30^\circ" />, <InlineMath math="c = AB = 8" /> und eine veränderbare Seite <InlineMath math="a = BC" />. Der Punkt <InlineMath math="C" /> muss auf dem Strahl von <InlineMath math="A" /> und zugleich auf dem Kreis um <InlineMath math="B" /> mit dem Radius <InlineMath math="a" /> liegen.
+
+<MathVisual
+  title={<>Gleiche Angaben, zwei Dreiecke</>}
+  description={
+    <>
+      Der Strahl von <InlineMath math="A" /> unter <InlineMath math="30^\circ" />{" "}
+      und der Kreis mit dem Radius <InlineMath math="a" /> um{" "}
+      <InlineMath math="B(8, 0)" />. Für <InlineMath math="4 < a < 8" /> schneidet
+      der Kreis den Strahl in zwei Punkten, es gibt also zwei Dreiecke. Bei{" "}
+      <InlineMath math="a = 5" /> ist <InlineMath math="AC" /> gleich{" "}
+      <InlineMath math="3{,}93" /> oder <InlineMath math="9{,}93" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 4, max: 8, value: 5, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "ray", kind: "function", appearance: "secondary", formula: "0.57735*x", domain: { min: 0, max: 13.8 } },
+      { id: "swing", kind: "implicit", appearance: "construction", equation: "(x - 8)^2 + y^2 = r^2" },
+      { id: "sides", kind: "path", points: [{ x: "0.8660*(6.9282 - sqrt(r^2 - 16))", y: "0.5*(6.9282 - sqrt(r^2 - 16))" }, { x: "8", y: "0" }, { x: "0.8660*(6.9282 + sqrt(r^2 - 16))", y: "0.5*(6.9282 + sqrt(r^2 - 16))" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "near-c", kind: "marker", x: "0.8660*(6.9282 - sqrt(r^2 - 16))", y: "0.5*(6.9282 - sqrt(r^2 - 16))", appearance: "answer" },
+      { id: "far-c", kind: "marker", x: "0.8660*(6.9282 + sqrt(r^2 - 16))", y: "0.5*(6.9282 + sqrt(r^2 - 16))", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "near-side", formula: "6.9282 - sqrt(r^2 - 16)" },
+      { key: "far-side", formula: "6.9282 + sqrt(r^2 - 16)" },
+    ],
+  }}
+  labels={{
+    r: <>Seite <InlineMath math="a = BC" /></>,
+    "near-side": <>Länge <InlineMath math="AC" /> im ersten Dreieck</>,
+    "far-side": <>Länge <InlineMath math="AC" /> im zweiten Dreieck</>,
+  }}
+/>
+
+Rechne es für <InlineMath math="a = 5" /> durch. Der Sinussatz liefert <InlineMath math="\sin C" />, aber **der Sinus ist für spitze und stumpfe Winkel positiv**, also gibt es zwei Möglichkeiten:
+
+<MathContainer>
+<BlockMath math="\sin C = \frac{c\sin A}{a} = \frac{8\sin 30^\circ}{5} = 0{,}8" />
+<BlockMath math="C = 53{,}13^\circ \quad \text{oder} \quad C = 180^\circ - 53{,}13^\circ = 126{,}87^\circ" />
+</MathContainer>
+
+Beide Werte sind gültig, denn <InlineMath math="30^\circ + 126{,}87^\circ < 180^\circ" />. Also ist <InlineMath math="B = 96{,}87^\circ" /> mit <InlineMath math="b = 9{,}93" /> oder <InlineMath math="B = 23{,}13^\circ" /> mit <InlineMath math="b = 3{,}93" />, genau die beiden Werte in der Grafik. Ist <InlineMath math="a < 4" />, erreicht der Kreis den Strahl nicht, und es entsteht kein Dreieck.
+
+## Der Kosinussatz
+
+Nutze den **Kosinussatz**, wenn zwei Seiten und der eingeschlossene Winkel oder drei Seiten gegeben sind. Für den Winkel <InlineMath math="A" /> zwischen den Seiten <InlineMath math="b" /> und <InlineMath math="c" />:
+
+<BlockMath math="a^2 = b^2 + c^2 - 2bc\cos A" />
+
+Bei <InlineMath math="A = 90^\circ" /> ist <InlineMath math="\cos A = 0" />, und der Satz wird zum Satz des Pythagoras. Ändere den Winkel <InlineMath math="A" /> zwischen den Seiten <InlineMath math="b = 5" /> und <InlineMath math="c = 7" />.
+
+<MathVisual
+  title={<>Der Kosinussatz mit eingeschlossenem Winkel</>}
+  description={
+    <>
+      Die Seiten <InlineMath math="b = 5" /> und <InlineMath math="c = 7" />{" "}
+      schließen den Winkel <InlineMath math="A" /> ein. Die dritte Seite ist{" "}
+      <InlineMath math="a = \sqrt{74 - 70\cos A}" />. Bei{" "}
+      <InlineMath math="A = 60^\circ" /> ist <InlineMath math="a = 6{,}24" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 8 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 10, max: 170, value: 60, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "triangle", kind: "loop", points: [{ x: "0", y: "0" }, { x: "7", y: "0" }, { x: "5*cos(p*pi/180)", y: "5*sin(p*pi/180)" }], appearance: "primary" },
+      { id: "vertex-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "vertex-b", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+      { id: "vertex-c", kind: "marker", x: "5*cos(p*pi/180)", y: "5*sin(p*pi/180)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "side-a", formula: "sqrt(74 - 70*cos(p*pi/180))" },
+      { key: "side-a-squared", formula: "74 - 70*cos(p*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Winkel <InlineMath math="A" /> in Grad</>,
+    "side-a": <>Seite <InlineMath math="a = BC" /></>,
+    "side-a-squared": <>Wert von <InlineMath math="a^2" /></>,
+  }}
+/>
+
+Prüfe den Startwert: <InlineMath math="a^2 = 25 + 49 - 2 \cdot 5 \cdot 7 \cdot \cos 60^\circ = 74 - 35 = 39" />, also <InlineMath math="a = \sqrt{39} = 6{,}24\text{ cm}" />. Bei <InlineMath math="A = 90^\circ" /> wird der Wert von <InlineMath math="a^2" /> zu <InlineMath math="74 = 5^2 + 7^2" />.
+
+Der Kosinussatz liefert auch einen Winkel aus drei Seiten. Im Dreieck mit <InlineMath math="a = 7" />, <InlineMath math="b = 8" /> und <InlineMath math="c = 9" /> liegt der größte Winkel der längsten Seite gegenüber:
+
+<BlockMath math="\cos C = \frac{a^2 + b^2 - c^2}{2ab} = \frac{49 + 64 - 81}{2 \cdot 7 \cdot 8} = \frac{32}{112} \quad \Rightarrow \quad C = 73{,}40^\circ" />
+
+## Die Fläche eines Dreiecks
+
+Die Fläche eines Dreiecks ist das halbe Produkt zweier Seiten mal dem Sinus des eingeschlossenen Winkels, <InlineMath math="\text{Fläche} = \dfrac{1}{2}bc\sin A" />. Für <InlineMath math="b = 5" /> und <InlineMath math="c = 7" /> beträgt die Fläche <InlineMath math="17{,}5\sin A" />. Verschiebe den Winkel <InlineMath math="A" /> und suche die größte Fläche.
+
+<MathVisual
+  title={<>Fläche in Abhängigkeit vom eingeschlossenen Winkel</>}
+  description={
+    <>
+      Die Fläche <InlineMath math="17{,}5\sin A" /> für die Seiten{" "}
+      <InlineMath math="5" /> und <InlineMath math="7" />. Die größte Fläche,{" "}
+      <InlineMath math="17{,}5\text{ cm}^2" />, entsteht bei{" "}
+      <InlineMath math="A = 90^\circ" />. Bei <InlineMath math="A = 60^\circ" />{" "}
+      beträgt sie <InlineMath math="15{,}16\text{ cm}^2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 180 }, y: { min: 0, max: 20 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 180, value: 60, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "area-curve", kind: "function", appearance: "primary", formula: "17.5*sin(x*pi/180)", domain: { min: 0, max: 180 } },
+      { id: "now", kind: "marker", x: "p", y: "17.5*sin(p*pi/180)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "17.5*sin(p*pi/180)" },
+    ],
+  }}
+  labels={{
+    p: <>Winkel <InlineMath math="A" /> in Grad</>,
+    area: <>Fläche in <InlineMath math="\text{cm}^2" /></>,
+  }}
+/>
+
+Kennst du nur die drei Seiten, nutzt du die **Heronsche Formel**. Mit dem halben Umfang <InlineMath math="s = \dfrac{a + b + c}{2}" />:
+
+<BlockMath math="\text{Fläche} = \sqrt{s(s - a)(s - b)(s - c)}" />
+
+Für das Dreieck mit den Seiten <InlineMath math="7" />, <InlineMath math="8" /> und <InlineMath math="9" /> ist <InlineMath math="s = 12" />, und die Fläche beträgt <InlineMath math="\sqrt{12 \cdot 5 \cdot 4 \cdot 3} = \sqrt{720} = 26{,}83" /> Flächeneinheiten.
+
+## Ein Dreieck mit veränderlicher dritter Seite
+
+Stell dir zwei Holzstäbe von <InlineMath math="5\text{ m}" /> und <InlineMath math="6\text{ m}" /> Länge vor, die an einem Scharnier verbunden sind, mit einem Seil als dritter Seite. Die Länge des Seils **legt die Form des Dreiecks fest**. Ändere die Seillänge und beobachte die Fläche, die die Heronsche Formel liefert.
+
+<MathVisual
+  title={<>Fläche nach Heron für die Seiten <InlineMath math="5\text{ m}" /> und <InlineMath math="6\text{ m}" /></>}
+  description={
+    <>
+      Die Fläche des Dreiecks mit den Seiten <InlineMath math="5" />,{" "}
+      <InlineMath math="6" /> und <InlineMath math="c" />. Die größte Fläche ist{" "}
+      <InlineMath math="15\text{ m}^2" /> bei{" "}
+      <InlineMath math="c = \sqrt{61} \approx 7{,}81\text{ m}" />, also wenn der
+      Scharnierwinkel <InlineMath math="90^\circ" /> beträgt.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 1.5, max: 10.5, value: 4, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "heron", kind: "function", appearance: "primary", formula: "sqrt((11 + x)/2*((11 + x)/2 - 5)*((11 + x)/2 - 6)*((11 + x)/2 - x))", domain: { min: 1.05, max: 10.95 } },
+      { id: "now", kind: "marker", x: "c", y: "sqrt((11 + c)/2*((11 + c)/2 - 5)*((11 + c)/2 - 6)*((11 + c)/2 - c))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "sqrt((11 + c)/2*((11 + c)/2 - 5)*((11 + c)/2 - 6)*((11 + c)/2 - c))" },
+      { key: "hinge", formula: "acos((61 - c^2)/60)*180/pi" },
+    ],
+  }}
+  labels={{
+    c: <>Seillänge <InlineMath math="c" /> in <InlineMath math="\text{m}" /></>,
+    area: <>Fläche in <InlineMath math="\text{m}^2" /></>,
+    hinge: <>Scharnierwinkel in Grad</>,
+  }}
+/>
+
+Die größte Fläche ist <InlineMath math="\dfrac{1}{2} \cdot 5 \cdot 6 \cdot \sin 90^\circ = 15\text{ m}^2" />, genau der Gipfel des Graphen. Ein zu kurzes oder zu langes Seil macht das Dreieck flach, und seine Fläche geht gegen null.
+
+## Häufige Fehler bei der Dreiecksberechnung
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| Im mehrdeutigen Fall nur <InlineMath math="C = 53{,}13^\circ" /> angeben. | Der stumpfe Winkel <InlineMath math="126{,}87^\circ" /> hat denselben Sinus. | Prüfe, ob auch <InlineMath math="180^\circ - C" /> die Winkelsumme unter <InlineMath math="180^\circ" /> hält. |
+| Den Kosinussatz mit einem Winkel nutzen, der nicht zwischen den beiden Seiten liegt. | Der Winkel in der Formel muss der gesuchten Seite gegenüberliegen. | Ordne die Buchstaben zu: <InlineMath math="a" /> zu <InlineMath math="A" />. |
+| Das Vorzeichen von <InlineMath math="-2bc\cos A" /> bei stumpfem <InlineMath math="A" /> übersehen. | <InlineMath math="\cos A" /> ist negativ, der Term verlängert also <InlineMath math="a" />. | Die Seite gegenüber einem stumpfen Winkel muss die längste sein. |
+| Der Taschenrechner steht im Bogenmaß. | Diese Winkel sind in Grad angegeben. | Prüfe vorher <InlineMath math="\sin 30^\circ = 0{,}5" />. |
+| <InlineMath math="\dfrac{1}{2}ab\sin C" /> mit dem falschen Winkel nutzen. | Der Winkel muss zwischen den beiden multiplizierten Seiten liegen. | Skizziere das Dreieck und markiere den Winkel zwischen diesen Seiten. |
+
+Der erste Fehler kommt am häufigsten vor. **Jedes Mal, wenn du einen Winkel mit dem Sinussatz bestimmst**, prüfst du auch den stumpfen Winkel <InlineMath math="180^\circ - C" />.
+
+## Übungen zur Dreiecksberechnung
+
+Skizziere das Dreieck und markiere die gegebenen Größen, damit **der passende Satz vor dem Rechnen klar ist**.
+
+1. Im Dreieck <InlineMath math="PQR" /> ist <InlineMath math="\angle P = 50^\circ" />, <InlineMath math="\angle Q = 70^\circ" /> und <InlineMath math="PQ = 12\text{ cm}" />. Bestimme die Länge von <InlineMath math="QR" />.
+
+2. Zwei Seiten eines Dreiecks sind <InlineMath math="6\text{ cm}" /> und <InlineMath math="9\text{ cm}" /> lang und schließen einen Winkel von <InlineMath math="120^\circ" /> ein. Bestimme die dritte Seite und die Fläche des Dreiecks.
+
+3. Im Dreieck <InlineMath math="ABC" /> ist <InlineMath math="\angle A = 40^\circ" />, <InlineMath math="AB = 10\text{ cm}" /> und <InlineMath math="BC = 7\text{ cm}" />. Zeige, dass zwei Dreiecke möglich sind, und bestimme die beiden Werte von <InlineMath math="\angle C" />.
+
+4. Bestimme mit der Heronschen Formel die Fläche des Dreiecks mit den Seiten <InlineMath math="5\text{ cm}" />, <InlineMath math="12\text{ cm}" /> und <InlineMath math="13\text{ cm}" />.
+
+### Lösungen
+
+**Lösung 1**: Die Seite <InlineMath math="QR" /> liegt <InlineMath math="\angle P" /> gegenüber, die Seite <InlineMath math="PQ" /> dem Winkel <InlineMath math="\angle R = 180^\circ - 50^\circ - 70^\circ = 60^\circ" />:
+
+<BlockMath math="QR = \frac{12\sin 50^\circ}{\sin 60^\circ} = 10{,}61\text{ cm}" />
+
+**Lösung 2**: Nutze den Kosinussatz und dann die Flächenformel:
+
+<MathContainer>
+<BlockMath math="c^2 = 6^2 + 9^2 - 2 \cdot 6 \cdot 9 \cdot \cos 120^\circ = 117 + 54 = 171" />
+<BlockMath math="c = \sqrt{171} = 13{,}08\text{ cm}" />
+<BlockMath math="\text{Fläche} = \frac{1}{2} \cdot 6 \cdot 9 \cdot \sin 120^\circ = 23{,}38\text{ cm}^2" />
+</MathContainer>
+
+Probe: Die Seite von <InlineMath math="13{,}08\text{ cm}" /> liegt dem stumpfen Winkel gegenüber und ist damit tatsächlich die längste.
+
+**Lösung 3**: Bestimme <InlineMath math="\sin C" /> mit dem Sinussatz:
+
+<MathContainer>
+<BlockMath math="\sin C = \frac{10\sin 40^\circ}{7} = 0{,}9183" />
+<BlockMath math="C = 66{,}67^\circ \quad \text{oder} \quad C = 113{,}33^\circ" />
+</MathContainer>
+
+Beide sind gültig, denn <InlineMath math="40^\circ + 113{,}33^\circ = 153{,}33^\circ < 180^\circ" />. Es sind also zwei Dreiecke möglich.
+
+**Lösung 4**: Der halbe Umfang ist <InlineMath math="s = \dfrac{5 + 12 + 13}{2} = 15" />:
+
+<BlockMath math="\text{Fläche} = \sqrt{15 \cdot 10 \cdot 3 \cdot 2} = \sqrt{900} = 30\text{ cm}^2" />
+
+Probe: <InlineMath math="5^2 + 12^2 = 13^2" />, das Dreieck ist also **rechtwinklig**, und seine Fläche beträgt <InlineMath math="\dfrac{1}{2} \cdot 5 \cdot 12 = 30\text{ cm}^2" />.
