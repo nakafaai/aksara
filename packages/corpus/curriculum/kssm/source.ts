@@ -2,7 +2,9 @@ import { kssmForm4BiologyTopicNodes } from "#corpus/curriculum/kssm/form4/biolog
 import { kssmForm4ChemistryTopicNodes } from "#corpus/curriculum/kssm/form4/chemistry";
 import { kssmForm4MathematicsTopicNodes } from "#corpus/curriculum/kssm/form4/mathematics";
 import { kssmForm4PhysicsTopicNodes } from "#corpus/curriculum/kssm/form4/physics";
-import { kssmForm4PhysiologyTopicNodes } from "#corpus/curriculum/kssm/form4/physiology";
+import { kssmForm4PhysiologyControlNodes } from "#corpus/curriculum/kssm/form4/physiology/control";
+import { kssmForm4PhysiologyExchangeNodes } from "#corpus/curriculum/kssm/form4/physiology/exchange";
+import { kssmForm4PhysiologyGrowthNodes } from "#corpus/curriculum/kssm/form4/physiology/growth";
 import { kssmForm5BiologyTopicNodes } from "#corpus/curriculum/kssm/form5/biology";
 import { kssmForm5ChemistryTopicNodes } from "#corpus/curriculum/kssm/form5/chemistry";
 import { kssmForm5MathematicsTopicNodes } from "#corpus/curriculum/kssm/form5/mathematics";
@@ -25,7 +27,12 @@ const UPPER_SECONDARY = {
 /** The four KSSM science and mathematics subjects of Form 4. */
 const form4SubjectNodes = [
   subjectNode({
-    children: [...kssmForm4BiologyTopicNodes, ...kssmForm4PhysiologyTopicNodes],
+    children: [
+      ...kssmForm4BiologyTopicNodes,
+      ...kssmForm4PhysiologyExchangeNodes,
+      ...kssmForm4PhysiologyControlNodes,
+      ...kssmForm4PhysiologyGrowthNodes,
+    ],
     key: "form-4-biology",
     materialDomain: "biology",
     order: 10,
