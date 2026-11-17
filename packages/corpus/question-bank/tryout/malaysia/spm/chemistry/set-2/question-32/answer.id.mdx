@@ -1,49 +1,25 @@
-# Setiap etena mengambil satu hidrogen dan menyisakan satu etana
+# Ester habis, jadi menentukan kedua hasil, dan basa yang disisakannya dititrasi sepersepuluh sekali
 
-Etana tidak bereaksi. Etena mengadisi hidrogen, jadi dua volume gas menjadi satu. **Setiap sentimeter kubik etena mengecilkan total sebanyak satu sentimeter kubik**, sehingga penurunan volume sama dengan volume etena.
-
-<BlockMath math="\begin{aligned}
-\text{C}_2\text{H}_4+\text{H}_2&\rightarrow\text{C}_2\text{H}_6\\
-\text{penurunan}&=(30+40)-50=20\text{ cm}^3\\
-V(\text{C}_2\text{H}_4)&=20\text{ cm}^3
-\end{aligned}" />
-
-Putar kedua molekul: etana adalah etena yang ikatan rangkapnya terbuka dan tiap karbonnya mendapat satu atom hidrogen.
-
-<MoleculeShapeLab
-  title={<>Etena menjadi etana</>}
-  description={<>Etena punya ikatan rangkap di antara dua atom karbonnya. Setelah mengadisi hidrogen, etana hanya punya ikatan tunggal.</>}
-  molecules={[
-    { id: "ethene", name: "etena" },
-    { id: "ethane", name: "etana" },
-  ]}
-  labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang terisi</>,
-    formula: <>Rumus</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut ikatan</>,
-    view: "Etena dan etana",
-  }}
-/>
+Esternya <InlineMath math="\tfrac{4{,}40}{88}=0{,}0500\text{ mol}" /> dan basanya <InlineMath math="0{,}0500\times2{,}00=0{,}100\text{ mol}" />, jadi **ester yang habis**, memberi <InlineMath math="0{,}0500\times82=4{,}10\text{ g}" /> natrium etanoat dan <InlineMath math="0{,}0500\times46=2{,}30\text{ g}" /> etanol. **Basa yang tersisa <InlineMath math="0{,}0500\text{ mol}" />**, satu porsi memuat sepersepuluhnya, <InlineMath math="0{,}00500\text{ mol}" />, dan <InlineMath math="0{,}00500\div0{,}100=0{,}0500\text{ dm}^3=50{,}0\text{ cm}^3" />.
 
 <Chart
-  title={<>Volume gas sebelum dan sesudah</>}
-  description={<>Sebelum: <InlineMath math="20\text{ cm}^3" /> etena, <InlineMath math="10\text{ cm}^3" /> etana, dan <InlineMath math="40\text{ cm}^3" /> hidrogen. Sesudah: tidak ada etena, <InlineMath math="30\text{ cm}^3" /> etana, dan <InlineMath math="20\text{ cm}^3" /> hidrogen, total <InlineMath math="50\text{ cm}^3" />.</>}
+  title={<>Natrium hidroksida</>}
+  description={<>Ester memakai <InlineMath math="0{,}0500\text{ mol}" /> basa dan menyisakan <InlineMath math="0{,}0500\text{ mol}" />.</>}
   bars="apart"
-  categories={["Etena", "Etana", "Hidrogen"]}
+  categories={["Basa terpakai", "Basa sisa"]}
   series={[
-    { label: "Sebelum", mark: "bar", values: [20, 10, 40] },
-    { label: "Sesudah", mark: "bar", values: [0, 30, 20] },
+    { label: "Jumlah zat", mark: "bar", values: [0.0500, 0.0500] },
   ]}
-  valueLabel="Volume (cm³)"
+  valueLabel="Jumlah zat (mol)"
 />
 
-Cek: tersisa <InlineMath math="30\text{ cm}^3" /> etana dan <InlineMath math="20\text{ cm}^3" /> hidrogen, total <InlineMath math="50\text{ cm}^3" />, sesuai pengukuran.
+<BlockMath math="\begin{aligned}
+n(\text{ester})&=\tfrac{4{,}40}{88}=0{,}0500\ \Rightarrow\ m(\text{CH}_3\text{COONa})=4{,}10\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=2{,}30\text{ g}\\
+V(\text{HCl})&=\tfrac{(0{,}100-0{,}0500)\div10}{0{,}100}=0{,}0500\text{ dm}^3=50{,}0\text{ cm}^3
+\end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="10\text{ cm}^3" /> membagi penurunan <InlineMath math="20\text{ cm}^3" /> antara etena dan hidrogen, padahal satu volume masing-masing menjadi satu volume etana, jadi penurunannya sama dengan etena saja.
-- <InlineMath math="30\text{ cm}^3" /> menganggap seluruh campuran adalah etena. Kalau begitu, <InlineMath math="30\text{ cm}^3" /> hidrogen bereaksi dan hanya <InlineMath math="40\text{ cm}^3" /> gas tersisa.
-- <InlineMath math="40\text{ cm}^3" /> menganggap semua hidrogen habis. **Hidrogen berlebih di sini**, dan <InlineMath math="20\text{ cm}^3" /> masih tersisa.
+- <InlineMath math="100\text{ cm}^3" /> menitrasi semua basa yang ditambahkan, padahal **ester sudah memakai separuhnya**.
+- <InlineMath math="8{,}20\text{ g}" /> dan <InlineMath math="4{,}60\text{ g}" /> membiarkan basa yang menentukan, padahal hanya ada <InlineMath math="0{,}0500\text{ mol}" /> ester.
+- <InlineMath math="500\text{ cm}^3" /> menitrasi semua basa sisa, padahal porsinya hanya sepersepuluh.

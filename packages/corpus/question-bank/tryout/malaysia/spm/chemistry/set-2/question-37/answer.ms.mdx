@@ -1,34 +1,25 @@
-# Kira rangkai dalam rantai, kemudian tolak air yang dibebaskan
+# Jisim polimer sama dengan jisim etena, setiap rantai ialah seribu unit, dan bilangan rantai seribu kali lebih kecil daripada bilangan unit
 
-Setiap rangkai amida terbentuk apabila kumpulan karboksil asid bertemu kumpulan amino diamina, dan rangkai itu membebaskan satu molekul air. **Rantai lurus <InlineMath math="1000" /> monomer mempunyai satu rangkai kurang daripada bilangan monomernya**, sama seperti barisan manik ada satu celah kurang daripada bilangan maniknya.
+Tiada jisim yang hilang, jadi etena ialah <InlineMath math="\tfrac{5.60}{28}=0.200\text{ mol}" />, <InlineMath math="4.80\text{ dm}^3" />. **Setiap unit berulang ialah satu etena, <InlineMath math="M_r=28" />**, jadi satu rantai mengandungi <InlineMath math="28\,000\div28=1000" /> unit. Rantai ialah <InlineMath math="\tfrac{5.60}{28\,000}=2.00\times10^{-4}\text{ mol}" />, <InlineMath math="2.00\times10^{-4}\times6.02\times10^{23}=1.20\times10^{20}" />.
 
-<Mermaid
-  title={<>Monomer yang disambung oleh rangkai amida</>}
-  description={<>Asid dan diamina berselang-seli di sepanjang rantai. Setiap anak panah ialah satu rangkai amida dan satu molekul air yang dibebaskan, dan rantai berakhir pada monomer ke-<InlineMath math="1000" />.</>}
-  chart={"flowchart LR\n  A1[\"asid heksanadioik\"] -->|rangkai amida, H2O keluar| B1[\"heksana-1,6-diamina\"]\n  B1 -->|rangkai amida, H2O keluar| A2[\"asid heksanadioik\"]\n  A2 -->|rangkai amida, H2O keluar| B2[\"heksana-1,6-diamina\"]\n  B2 -.-> Z[\"hingga monomer ke-1000\"]"}
+<Chart
+  title={<>Zarah dalam polimer</>}
+  description={<><InlineMath math="0.200\text{ mol}" /> unit etena berada dalam hanya <InlineMath math="2.00\times10^{-4}\text{ mol}" /> rantai.</>}
+  bars="apart"
+  categories={["Unit etena", "Rantai"]}
+  series={[
+    { label: "Bilangan mol", mark: "bar", values: [0.200, 0.000200] },
+  ]}
+  valueLabel="Bilangan mol (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\text{rangkai}&=1000-1=999\ \Rightarrow\ 999\ \text{H}_2\text{O}\\
-M_r&=500(146)+500(116)-999(18)\\
-&=73\,000+58\,000-17\,982=113\,018
+V(\text{C}_2\text{H}_4)&=\tfrac{5.60}{28}\times24=4.80\text{ dm}^3,\quad n=\tfrac{28\,000}{28}=1000\\
+N(\text{chains})&=\tfrac{5.60}{28\,000}\times6.02\times10^{23}=1.20\times10^{20}
 \end{aligned}" />
-
-<Chart
-  title={<>Jisim monomer, air dan rantai</>}
-  description={<>Jumlah monomer ialah <InlineMath math="131\,000" />. Air yang dibebaskan ialah <InlineMath math="17\,982" />, jadi tinggal <InlineMath math="113\,018" /> untuk rantai.</>}
-  bars="apart"
-  categories={["Monomer", "Air dibebaskan", "Rantai nilon"]}
-  series={[
-    { label: "Jisim relatif", mark: "bar", values: [131000, 17982, 113018] },
-  ]}
-  valueLabel="Jisim relatif"
-/>
-
-Jadi rantai itu membebaskan <InlineMath math="999" /> molekul air dan jisim molekul relatifnya <InlineMath math="113\,018" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="1000" /> molekul air memberi satu bagi setiap monomer. Kedua-dua hujung rantai mengekalkan kumpulannya, jadi rangkai kurang satu.
-- <InlineMath math="500" /> mengira satu molekul air bagi setiap pasangan monomer. **Setiap rangkai antara monomer bersebelahan membebaskan air, termasuk rangkai antara satu pasangan dengan pasangan seterusnya**.
-- <InlineMath math="131\,000" /> mengira air dengan betul tetapi tidak menolak jisimnya daripada jisim monomer.
+- <InlineMath math="1.20\times10^{23}" /> mengira unit etena, walhal **seribu unit bergabung menjadi setiap rantai**.
+- <InlineMath math="2000" /> mengira kumpulan <InlineMath math="\text{CH}_2" />, walhal unit berulang ialah satu etena penuh, <InlineMath math="M_r=28" />.
+- <InlineMath math="9.60\text{ dm}^3" /> menggunakan dua etena bagi setiap unit, walhal setiap unit datang daripada satu molekul etena.

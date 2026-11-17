@@ -1,23 +1,25 @@
-# Wende die Temperatur- und die Konzentrationsänderung nacheinander an
+# Das Gas zählt nur das Carbonat, der Rest der Probe ist Oxid, und beide verbrauchen Säure, bevor ein Zehntel des Rests titriert wird
 
-Das Kreuz verschwindet, wenn im gleichen Volumen dieselbe Menge Schwefel entstanden ist. **Halbe Konzentration heißt halbe Geschwindigkeit, also doppelte Zeit**, und den Temperatureffekt liest du aus dem Diagramm.
+Das Kohlenstoffdioxid sind <InlineMath math="0{,}0200\text{ mol}" />, also sind es <InlineMath math="2{,}00\text{ g}" /> Carbonat, <InlineMath math="\tfrac{2{,}00}{2{,}40}\times100=83{,}3\%" />, und die Geschwindigkeit ist <InlineMath math="480\div120=4{,}00\text{ cm}^3\text{ s}^{-1}" />. **Das Oxid gibt kein Gas, verbraucht aber Säure**: <InlineMath math="0{,}40\text{ g}" /> sind <InlineMath math="0{,}0100\text{ mol}" /> und nehmen <InlineMath math="0{,}0200\text{ mol}" />, das Carbonat nimmt <InlineMath math="0{,}0400\text{ mol}" />. Von den <InlineMath math="0{,}100\text{ mol}" /> bleiben <InlineMath math="0{,}0400\text{ mol}" />, eine Portion enthält <InlineMath math="0{,}00400\text{ mol}" />, <InlineMath math="40{,}0\text{ cm}^3" />.
 
 <Chart
-  title={<>Zeit bis das Kreuz verschwindet</>}
-  categories={["30 °C", "35 °C", "40 °C", "45 °C", "50 °C"]}
+  title={<>Salzsäure</>}
+  description={<>Das Carbonat verbraucht <InlineMath math="0{,}0400\text{ mol}" />, das Oxid <InlineMath math="0{,}0200\text{ mol}" />, und <InlineMath math="0{,}0400\text{ mol}" /> bleiben.</>}
+  bars="apart"
+  categories={["Vom Carbonat verbraucht", "Vom Oxid verbraucht", "Übrige Säure"]}
   series={[
-    { label: "Zeit (s)", mark: "line", values: [60, 45, 34, 26, 20] },
+    { label: "Stoffmenge", mark: "bar", values: [0.0400, 0.0200, 0.0400] },
   ]}
-  valueLabel="Zeit (s)"
-  description={<>Mit <InlineMath math="50\text{ cm}^3" /> Natriumthiosulfatlösung der Konzentration <InlineMath math="0{,}20\text{ mol dm}^{-3}" /> betragen die Zeiten bei <InlineMath math="30" />, <InlineMath math="35" />, <InlineMath math="40" />, <InlineMath math="45" /> und <InlineMath math="50^\circ\text{C}" /> <InlineMath math="60" />, <InlineMath math="45" />, <InlineMath math="34" />, <InlineMath math="26" /> und <InlineMath math="20\text{ s}" />.</>}
+  valueLabel="Stoffmenge (mol)"
 />
 
-- Temperatur: Bei <InlineMath math="45^\circ\text{C}" /> braucht die unverdünnte Lösung <InlineMath math="26\text{ s}" />.
-- Konzentration: <InlineMath math="15\text{ cm}^3" />, auf <InlineMath math="50\text{ cm}^3" /> aufgefüllt, sind <InlineMath math="\dfrac{15}{50} = 0{,}30" /> der ursprünglichen Konzentration, also läuft die Reaktion <InlineMath math="0{,}30" />-mal so schnell und dauert <InlineMath math="\dfrac{1}{0{,}30}" />-mal so lange.
-- Erwartete Zeit: <InlineMath math="26 \times \dfrac{50}{15} = 87\text{ s}" />.
+<BlockMath math="\begin{aligned}
+m(\text{CaCO}_3)&=\tfrac{480}{24{.}000}\times100=2{,}00\text{ g}\ \Rightarrow\ 83{,}3\%,\quad \bar r=\tfrac{480}{120}=4{,}00\text{ cm}^3\text{ s}^{-1}\\
+V(\text{NaOH})&=\tfrac{(0{,}100-2\times0{,}0200-2\times\tfrac{0{,}40}{40})\div10}{0{,}100}=0{,}0400\text{ dm}^3=40{,}0\text{ cm}^3
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="26\text{ s}" /> nutzt nur den Temperatureffekt und **vergisst, dass die Lösung verdünnt wurde**.
-- <InlineMath math="200\text{ s}" /> skaliert die Zeit bei <InlineMath math="30^\circ\text{C}" />, berücksichtigt also die Verdünnung, vergisst aber die höhere Temperatur.
-- <InlineMath math="8\text{ s}" /> multipliziert mit <InlineMath math="0{,}30" />, statt zu teilen, als würde Verdünnen die Reaktion beschleunigen.
+- <InlineMath math="60{,}0\text{ cm}^3" /> lässt nur das Carbonat Säure verbrauchen, doch **auch das Magnesiumoxid neutralisiert Säure**.
+- <InlineMath math="0{,}250" /> teilt die Zeit durch das Volumen, doch eine Geschwindigkeit ist das gesammelte Volumen je Sekunde.
+- <InlineMath math="16{,}7\%" /> ist der Anteil des Magnesiumoxids, doch gefragt ist das Carbonat.

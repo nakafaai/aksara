@@ -1,34 +1,25 @@
-# Eine Brücke, zwei Schwefelatome, zwei verknüpfte Einheiten
+# Zähle die Wiederholungseinheiten und verfolge dann jedes Atom: zwei Kohlenstoffe zu Kohlenstoffdioxid, ein Wasserstoff zu Chlorwasserstoff und zwei zu Wasser
 
-Mach aus dem Schwefel zuerst Brücken und zähl dann die Einheiten, die die Brücken berühren. **Jede Brücke braucht zwei Schwefelatome, verknüpft aber zwei Einheiten**, eine an jeder Kette, also ist die Zahl der verknüpften Einheiten gleich der Zahl der Schwefelatome.
-
-<Mermaid
-  title={<>Eine Schwefelbrücke zwischen zwei Ketten</>}
-  description={<>Zwei Schwefelatome verbinden eine Einheit der oberen Kette mit einer Einheit der unteren Kette. Eine Brücke verknüpft zwei Einheiten.</>}
-  chart={"flowchart LR\n  A1[\"Isopreneinheit\"] --- A2[\"verknüpfte Einheit\"] --- A3[\"Isopreneinheit\"]\n  B1[\"Isopreneinheit\"] --- B2[\"verknüpfte Einheit\"] --- B3[\"Isopreneinheit\"]\n  A2 --- S1((S)) --- S2((S)) --- B2"}
-/>
-
-<BlockMath math="\begin{aligned}
-n(\text{C}_5\text{H}_8)&=\frac{68}{68}=1{,}0\text{ mol},\quad n(\text{S})=\frac{3{,}2}{32}=0{,}10\text{ mol}\\
-n(\text{Vernetzungen})&=\frac{0{,}10}{2}=0{,}050\text{ mol}\\
-n(\text{vernetzte Einheiten})&=2\times0{,}050=0{,}10\text{ mol}\ \Rightarrow\ \frac{0{,}10}{1{,}0}\times100\%=10\%
-\end{aligned}" />
+Jede Einheit hat <InlineMath math="M_r=62{,}5" />, also sind es <InlineMath math="0{,}100\text{ mol}" /> Einheiten. **Jede Einheit enthält zwei Kohlenstoffatome**, <InlineMath math="0{,}200\text{ mol}" /> Kohlenstoffdioxid, <InlineMath math="4{,}80\text{ dm}^3" />. **Ihr Chlor nimmt einen Wasserstoff als Chlorwasserstoff mit**, <InlineMath math="0{,}100\text{ mol}" />, also enthält eine Portion <InlineMath math="0{,}0100\text{ mol}" />, <InlineMath math="100\text{ cm}^3" /> Lauge. Die anderen zwei Wasserstoffe bilden ein Wasser, <InlineMath math="0{,}100\times18=1{,}80\text{ g}" />.
 
 <Chart
-  title={<>Stoffmengen im vulkanisierten Kautschuk</>}
-  description={<>Der Kautschuk enthält <InlineMath math="1{,}0\text{ mol}" /> Isopreneinheiten. Die <InlineMath math="0{,}10\text{ mol}" /> Schwefelatome bilden <InlineMath math="0{,}050\text{ mol}" /> Brücken, die <InlineMath math="0{,}10\text{ mol}" /> Einheiten verknüpfen.</>}
+  title={<>Produkte aus dem Polymer</>}
+  description={<>Die <InlineMath math="0{,}100\text{ mol}" /> Einheiten geben <InlineMath math="0{,}200\text{ mol}" /> Kohlenstoffdioxid, <InlineMath math="0{,}100\text{ mol}" /> Wasser und <InlineMath math="0{,}100\text{ mol}" /> Chlorwasserstoff.</>}
   bars="apart"
-  categories={["Isopreneinheiten", "Schwefelatome", "Vernetzungen", "Verknüpfte Einheiten"]}
+  categories={["Kohlenstoffdioxid", "Wasser", "Chlorwasserstoff"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [1.0, 0.10, 0.050, 0.10] },
+    { label: "Stoffmenge", mark: "bar", values: [0.200, 0.100, 0.100] },
   ]}
   valueLabel="Stoffmenge (mol)"
 />
 
-Also tragen <InlineMath math="10\%" /> der Einheiten eine Vernetzung. Die Brücken halten die Ketten an ihrem Platz, deshalb zieht sich der gedehnte Gummi in seine Form zurück und ist härter und fester als Naturkautschuk.
+<BlockMath math="\begin{aligned}
+n(\text{unit})&=\tfrac{6{,}25}{62{,}5}=0{,}100\ \Rightarrow\ V(\text{CO}_2)=0{,}200\times24=4{,}80\text{ dm}^3\\
+V(\text{NaOH})&=\tfrac{0{,}100\div10}{0{,}100}=0{,}100\text{ dm}^3=100\text{ cm}^3,\quad m(\text{H}_2\text{O})=0{,}100\times18=1{,}80\text{ g}
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="5\%" /> zählt eine Einheit pro Brücke und vergisst, dass jede Brücke zwei Enden hat, eines an jeder Kette.
-- <InlineMath math="20\%" /> behandelt jedes Schwefelatom als Brücke mit zwei Enden. **Eine Brücke braucht ein Paar Schwefelatome**, also gibt es nur halb so viele.
-- Die Vernetzung macht den Gummi härter, nicht weicher, und die meisten Doppelbindungen sind noch da. Der Prozentwert stimmt, aber die Wirkung ist verdreht.
+- <InlineMath math="2{,}40\text{ dm}^3" /> gibt ein Kohlenstoffdioxid je Einheit, doch jede Einheit enthält zwei Kohlenstoffatome.
+- <InlineMath math="300\text{ cm}^3" /> macht alle drei Wasserstoffatome zu Chlorwasserstoff, doch **jede Einheit hat nur ein Chloratom, das einen Wasserstoff aufnimmt**.
+- <InlineMath math="2{,}70\text{ g}" /> macht alle drei Wasserstoffatome zu Wasser, doch einer davon geht als Chlorwasserstoff ab.

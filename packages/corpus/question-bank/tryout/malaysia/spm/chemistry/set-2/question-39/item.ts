@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$3.06\\text{ g}$$, and the detergent forms no scum because its calcium salt dissolves in water",
+          label: "$$15.8\\text{ g}$$, $$21.2\\%$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$6.12\\text{ g}$$, and the detergent loses the same mass as scum",
+          label: "$$13.2\\text{ g}$$, $$10.6\\%$$, $$40.0\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label:
-            "$$6.12\\text{ g}$$, and the detergent forms no scum because its calcium salt dissolves in water",
+          label: "$$13.2\\text{ g}$$, $$21.2\\%$$, $$40.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$6.06\\text{ g}$$, and the detergent forms no scum because its calcium salt dissolves in water",
+          label: "$$13.2\\text{ g}$$, $$21.2\\%$$, $$20.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$3.06\\text{ g}$$, dan detergen tidak membentuk kekat kerana garam kalsiumnya larut dalam air",
+          label: "$$15.8\\text{ g}$$, $$21.2\\%$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$6.12\\text{ g}$$, dan detergen kehilangan jisim yang sama sebagai kekat",
+          label: "$$13.2\\text{ g}$$, $$10.6\\%$$, $$40.0\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label:
-            "$$6.12\\text{ g}$$, dan detergen tidak membentuk kekat kerana garam kalsiumnya larut dalam air",
+          label: "$$13.2\\text{ g}$$, $$21.2\\%$$, $$40.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label:
-            "$$6.06\\text{ g}$$, dan detergen tidak membentuk kekat kerana garam kalsiumnya larut dalam air",
+          label: "$$13.2\\text{ g}$$, $$21.2\\%$$, $$20.0\\text{ cm}^3$$",
         },
       ],
     },

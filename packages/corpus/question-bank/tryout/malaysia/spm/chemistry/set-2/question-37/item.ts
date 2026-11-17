@@ -10,22 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$999$$ water molecules, $$M_r=113\\,018$$" },
+        {
+          correct: true,
+          label: "$$4.80\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{20}$$",
+        },
         {
           correct: false,
-          label: "$$1000$$ water molecules, $$M_r=113\\,000$$",
+          label: "$$4.80\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{23}$$",
         },
-        { correct: false, label: "$$500$$ water molecules, $$M_r=122\\,000$$" },
-        { correct: false, label: "$$999$$ water molecules, $$M_r=131\\,000$$" },
+        {
+          correct: false,
+          label: "$$4.80\\text{ dm}^3$$, $$2000$$, $$1.20\\times10^{20}$$",
+        },
+        {
+          correct: false,
+          label: "$$9.60\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{20}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$999$$ molekul air, $$M_r=113\\,018$$" },
-        { correct: false, label: "$$1000$$ molekul air, $$M_r=113\\,000$$" },
-        { correct: false, label: "$$500$$ molekul air, $$M_r=122\\,000$$" },
-        { correct: false, label: "$$999$$ molekul air, $$M_r=131\\,000$$" },
+        {
+          correct: true,
+          label: "$$4.80\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{20}$$",
+        },
+        {
+          correct: false,
+          label: "$$4.80\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{23}$$",
+        },
+        {
+          correct: false,
+          label: "$$4.80\\text{ dm}^3$$, $$2000$$, $$1.20\\times10^{20}$$",
+        },
+        {
+          correct: false,
+          label: "$$9.60\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{20}$$",
+        },
       ],
     },
   },

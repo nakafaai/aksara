@@ -1,50 +1,25 @@
-# Alle Metalle auf eine Skala gegen Kupfer
+# Die Kupfer(II)-Ionen gehen zuerst aus, also trifft nur das übrige Zink auf die Säure, und ein Zehntel der übrigen Säure wird titriert
 
-In drei Zellen ist Kupfer der Pluspol, also stehen P, Q und R in der Spannungsreihe unter Kupfer, um <InlineMath math="2{,}70" />, <InlineMath math="0{,}40" /> und <InlineMath math="1{,}10\text{ V}" />. In der letzten Zelle ist S der Pluspol, also **steht S über Kupfer**, um <InlineMath math="0{,}46\text{ V}" />. Die höchste Spannung liefern die beiden Metalle, die auf dieser Skala am weitesten auseinander liegen.
+Das Zink sind <InlineMath math="0{,}0200\text{ mol}" /> und die Kupfer(II)-Ionen <InlineMath math="0{,}0100\text{ mol}" />, also **gehen die Kupfer(II)-Ionen aus**. Der Feststoff sind <InlineMath math="0{,}640\text{ g}" /> Kupfer plus <InlineMath math="0{,}650\text{ g}" /> übriges Zink, <InlineMath math="1{,}29\text{ g}" />. **Nur diese <InlineMath math="0{,}0100\text{ mol}" /> Zink erreichen die Säure**, <InlineMath math="240\text{ cm}^3" /> Wasserstoff, und verbrauchen <InlineMath math="0{,}0200\text{ mol}" /> der <InlineMath math="0{,}0500\text{ mol}" /> Säure. Eine Portion enthält ein Zehntel der übrigen <InlineMath math="0{,}0300\text{ mol}" />, <InlineMath math="0{,}00300\div0{,}100=0{,}0300\text{ dm}^3=30{,}0\text{ cm}^3" />.
 
-Auf einer Skala mit Kupfer bei null steht P ganz unten, und S ist das einzige Metall über Kupfer.
-
-<MathVisual
-  title={<>Die vier Metalle auf einer Skala mit Kupfer bei null</>}
-  description={<>P liegt bei <InlineMath math="-2{,}70\text{ V}" />, R bei <InlineMath math="-1{,}10\text{ V}" />, Q bei <InlineMath math="-0{,}40\text{ V}" />, Kupfer bei null und S bei <InlineMath math="+0{,}46\text{ V}" />. Der Pfeil von P nach S überspannt <InlineMath math="3{,}16\text{ V}" />, den größten Abstand.</>}
-  labels={{
-    p: <InlineMath math="\mathrm{P}:\ -2{,}70\text{ V}" />,
-    r: <InlineMath math="\mathrm{R}:\ -1{,}10\text{ V}" />,
-    q: <InlineMath math="\mathrm{Q}:\ -0{,}40\text{ V}" />,
-    cu: <InlineMath math="\mathrm{Cu}:\ 0" />,
-    s: <InlineMath math="\mathrm{S}:\ +0{,}46\text{ V}" />,
-    gap: <InlineMath math="E_{\text{Zelle}}=3{,}16\text{ V}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3.2, max: 1.2 } },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 1 } },
-      { id: "point-p", kind: "point", appearance: "secondary", at: { x: 0, y: -2.7 } },
-      { id: "point-r", kind: "point", appearance: "construction", at: { x: 0, y: -1.1 } },
-      { id: "point-q", kind: "point", appearance: "construction", at: { x: 0, y: -0.4 } },
-      { id: "point-cu", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "point-s", kind: "point", appearance: "primary", at: { x: 0, y: 0.46 } },
-      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.8, y: -2.7 }, to: { x: 0.8, y: 0.46 } },
-    ],
-    labels: [
-      { key: "p", objectId: "point-p", at: { x: 0, y: -2.7 }, placement: "left" },
-      { key: "r", objectId: "point-r", at: { x: 0, y: -1.1 }, placement: "left" },
-      { key: "q", objectId: "point-q", at: { x: 0, y: -0.4 }, placement: "left" },
-      { key: "cu", objectId: "point-cu", at: { x: 0, y: 0 }, placement: "right" },
-      { key: "s", objectId: "point-s", at: { x: 0, y: 0.46 }, placement: "left" },
-      { key: "gap", objectId: "cell-voltage", at: { x: 0.8, y: -1.12 }, placement: "right" },
-    ],
-  }}
+<Chart
+  title={<>Zink im Pulver</>}
+  description={<>Die Kupfer(II)-Ionen verbrauchen <InlineMath math="0{,}0100\text{ mol}" /> Zink und die Säure die anderen <InlineMath math="0{,}0100\text{ mol}" />.</>}
+  bars="apart"
+  categories={["Von Kupfer(II)-Ionen verbraucht", "Von der Säure verbraucht"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [0.0100, 0.0100] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
 />
 
-<BlockMath math="E_{\text{Zelle}}=0{,}46-(-2{,}70)=3{,}16\text{ V}" />
-
-P steht tiefer in der Reihe, gibt also Elektronen ab und ist der Minuspol. P und S liefern also <InlineMath math="3{,}16\text{ V}" />, mit P als Minuspol.
+<BlockMath math="\begin{aligned}
+n(\text{Cu}^{2+})&=0{,}0100<n(\text{Zn})=0{,}0200\ \Rightarrow\ m=0{,}640+0{,}650=1{,}29\text{ g},\quad V(\text{H}_2)=240\text{ cm}^3\\
+V(\text{NaOH})&=\tfrac{(0{,}0500-2\times0{,}0100)\div10}{0{,}100}=0{,}0300\text{ dm}^3=30{,}0\text{ cm}^3
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="2{,}24\text{ V}" /> zieht <InlineMath math="0{,}46" /> von <InlineMath math="2{,}70" /> ab, als stünde auch S unter Kupfer. **Die Spalte der Pole setzt S auf die andere Seite von Kupfer**.
-- <InlineMath math="3{,}16\text{ V}" /> mit S als Minuspol vertauscht die Rollen: Das tiefer stehende Metall P gibt die Elektronen ab.
-- P und Q mit <InlineMath math="2{,}30\text{ V}" /> liest die S-Zelle, als wäre auch dort Kupfer der Pluspol, und so scheint Q weiter von P entfernt als S.
+- <InlineMath math="480\text{ cm}^3" /> und <InlineMath math="10{,}0\text{ cm}^3" /> lassen alles Zink zur Säure gelangen, doch **die Hälfte wurde von den Kupfer(II)-Ionen verbraucht**.
+- <InlineMath math="1{,}28\text{ g}" /> lässt das Zink entscheiden, doch nur <InlineMath math="0{,}0100\text{ mol}" /> Kupfer(II)-Ionen sind da, also bleibt Zink übrig.
+- <InlineMath math="0{,}640\text{ g}" /> wiegt nur das Kupfer, doch das übrige Zink wird mit abfiltriert.

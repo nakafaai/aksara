@@ -1,34 +1,25 @@
-# Count the links in the chain, then take their water away
+# The polymer's mass equals the ethene's, each chain is a thousand units, and the chains are a thousand times fewer than the units
 
-Each amide link forms when a carboxyl group of the acid meets an amino group of the diamine, and that link gives off one water molecule. **A straight chain of <InlineMath math="1000" /> monomers has one link fewer than it has monomers**, just as a row of beads has one gap fewer than it has beads.
+No mass is lost, so the ethene is <InlineMath math="\tfrac{5.60}{28}=0.200\text{ mol}" />, <InlineMath math="4.80\text{ dm}^3" />. **Each repeating unit is one ethene, <InlineMath math="M_r=28" />**, so a chain holds <InlineMath math="28\,000\div28=1000" /> units. The chains are <InlineMath math="\tfrac{5.60}{28\,000}=2.00\times10^{-4}\text{ mol}" />, <InlineMath math="2.00\times10^{-4}\times6.02\times10^{23}=1.20\times10^{20}" />.
 
-<Mermaid
-  title={<>Monomers joined by amide links</>}
-  description={<>The acid and the diamine alternate along the chain. Every arrow is one amide link and one water molecule given off, and the chain ends at the <InlineMath math="1000" />th monomer.</>}
-  chart={"flowchart LR\n  A1[\"hexanedioic acid\"] -->|amide link, H2O out| B1[\"hexane-1,6-diamine\"]\n  B1 -->|amide link, H2O out| A2[\"hexanedioic acid\"]\n  A2 -->|amide link, H2O out| B2[\"hexane-1,6-diamine\"]\n  B2 -.-> Z[\"up to the 1000th monomer\"]"}
+<Chart
+  title={<>Particles in the polymer</>}
+  description={<>The <InlineMath math="0.200\text{ mol}" /> of ethene units sit in only <InlineMath math="2.00\times10^{-4}\text{ mol}" /> of chains.</>}
+  bars="apart"
+  categories={["Ethene units", "Chains"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [0.200, 0.000200] },
+  ]}
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\text{links}&=1000-1=999\ \Rightarrow\ 999\ \text{H}_2\text{O}\\
-M_r&=500(146)+500(116)-999(18)\\
-&=73\,000+58\,000-17\,982=113\,018
+V(\text{C}_2\text{H}_4)&=\tfrac{5.60}{28}\times24=4.80\text{ dm}^3,\quad n=\tfrac{28\,000}{28}=1000\\
+N(\text{chains})&=\tfrac{5.60}{28\,000}\times6.02\times10^{23}=1.20\times10^{20}
 \end{aligned}" />
-
-<Chart
-  title={<>Mass of the monomers, the water and the chain</>}
-  description={<>The monomers add up to <InlineMath math="131\,000" />. The water given off is <InlineMath math="17\,982" />, which leaves <InlineMath math="113\,018" /> for the chain.</>}
-  bars="apart"
-  categories={["Monomers", "Water given off", "Nylon chain"]}
-  series={[
-    { label: "Relative mass", mark: "bar", values: [131000, 17982, 113018] },
-  ]}
-  valueLabel="Relative mass"
-/>
-
-So the chain releases <InlineMath math="999" /> water molecules and has a relative molecular mass of <InlineMath math="113\,018" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="1000" /> water molecules gives one per monomer. The two ends of the chain keep their groups, so there is one link fewer.
-- <InlineMath math="500" /> counts one water molecule per pair of monomers. **Every link between neighbours gives off water, also the link between one pair and the next**.
-- <InlineMath math="131\,000" /> counts the water correctly but never takes its mass away from the monomers.
+- <InlineMath math="1.20\times10^{23}" /> counts the ethene units, but **a thousand units join into each chain**.
+- <InlineMath math="2000" /> counts <InlineMath math="\text{CH}_2" /> groups, but the repeating unit is a whole ethene, <InlineMath math="M_r=28" />.
+- <InlineMath math="9.60\text{ dm}^3" /> uses two ethene per unit, but each unit comes from one ethene molecule.

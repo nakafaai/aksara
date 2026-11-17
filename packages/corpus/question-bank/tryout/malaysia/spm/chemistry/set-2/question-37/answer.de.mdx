@@ -1,34 +1,25 @@
-# Die Bindungen der Kette zählen, dann ihr Wasser abziehen
+# Die Masse des Polymers gleicht der des Ethens, jede Kette hat tausend Einheiten, und die Ketten sind tausendmal weniger als die Einheiten
 
-Jede Amidbindung entsteht, wenn eine Carboxygruppe der Säure auf eine Aminogruppe des Diamins trifft, und dabei wird ein Wassermolekül frei. **Eine gerade Kette aus <InlineMath math="1000" /> Monomeren hat eine Bindung weniger, als sie Monomere hat**, so wie eine Perlenkette eine Lücke weniger hat als Perlen.
+Es geht keine Masse verloren, also sind es <InlineMath math="\tfrac{5{,}60}{28}=0{,}200\text{ mol}" /> Ethen, <InlineMath math="4{,}80\text{ dm}^3" />. **Jede Wiederholungseinheit ist ein Ethen, <InlineMath math="M_r=28" />**, also enthält eine Kette <InlineMath math="28{.}000\div28=1000" /> Einheiten. Die Ketten sind <InlineMath math="\tfrac{5{,}60}{28{.}000}=2{,}00\times10^{-4}\text{ mol}" />, <InlineMath math="2{,}00\times10^{-4}\times6{,}02\times10^{23}=1{,}20\times10^{20}" />.
 
-<Mermaid
-  title={<>Monomere, verbunden durch Amidbindungen</>}
-  description={<>Säure und Diamin wechseln sich entlang der Kette ab. Jeder Pfeil ist eine Amidbindung und ein abgegebenes Wassermolekül, und die Kette endet beim <InlineMath math="1000" />. Monomer.</>}
-  chart={"flowchart LR\n  A1[\"Hexandisäure\"] -->|Amidbindung, H2O frei| B1[\"Hexan-1,6-diamin\"]\n  B1 -->|Amidbindung, H2O frei| A2[\"Hexandisäure\"]\n  A2 -->|Amidbindung, H2O frei| B2[\"Hexan-1,6-diamin\"]\n  B2 -.-> Z[\"bis zum 1000. Monomer\"]"}
+<Chart
+  title={<>Teilchen im Polymer</>}
+  description={<>Die <InlineMath math="0{,}200\text{ mol}" /> Etheneinheiten stecken in nur <InlineMath math="2{,}00\times10^{-4}\text{ mol}" /> Ketten.</>}
+  bars="apart"
+  categories={["Etheneinheiten", "Ketten"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [0.200, 0.000200] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\text{Bindungen}&=1000-1=999\ \Rightarrow\ 999\ \text{H}_2\text{O}\\
-M_r&=500(146)+500(116)-999(18)\\
-&=73{.}000+58{.}000-17{.}982=113{.}018
+V(\text{C}_2\text{H}_4)&=\tfrac{5{,}60}{28}\times24=4{,}80\text{ dm}^3,\quad n=\tfrac{28{.}000}{28}=1000\\
+N(\text{chains})&=\tfrac{5{,}60}{28{.}000}\times6{,}02\times10^{23}=1{,}20\times10^{20}
 \end{aligned}" />
-
-<Chart
-  title={<>Masse der Monomere, des Wassers und der Kette</>}
-  description={<>Die Monomere ergeben zusammen <InlineMath math="131{.}000" />. Das abgegebene Wasser macht <InlineMath math="17{.}982" /> aus, also bleiben <InlineMath math="113{.}018" /> für die Kette.</>}
-  bars="apart"
-  categories={["Monomere", "Abgegebenes Wasser", "Nylonkette"]}
-  series={[
-    { label: "Relative Masse", mark: "bar", values: [131000, 17982, 113018] },
-  ]}
-  valueLabel="Relative Masse"
-/>
-
-Die Kette setzt also <InlineMath math="999" /> Wassermoleküle frei und hat eine relative Molekülmasse von <InlineMath math="113{.}018" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="1000" /> Wassermoleküle gibt eines pro Monomer. Die beiden Kettenenden behalten ihre Gruppen, also gibt es eine Bindung weniger.
-- <InlineMath math="500" /> zählt ein Wassermolekül pro Monomerpaar. **Jede Bindung zwischen Nachbarn setzt Wasser frei, auch die zwischen einem Paar und dem nächsten**.
-- <InlineMath math="131{.}000" /> zählt das Wasser richtig, zieht seine Masse aber nie von den Monomeren ab.
+- <InlineMath math="1{,}20\times10^{23}" /> zählt die Etheneinheiten, doch **tausend Einheiten verbinden sich zu jeder Kette**.
+- <InlineMath math="2000" /> zählt <InlineMath math="\text{CH}_2" />-Gruppen, doch die Wiederholungseinheit ist ein ganzes Ethen, <InlineMath math="M_r=28" />.
+- <InlineMath math="9{,}60\text{ dm}^3" /> nimmt zwei Ethen je Einheit, doch jede Einheit stammt aus einem Ethenmolekül.

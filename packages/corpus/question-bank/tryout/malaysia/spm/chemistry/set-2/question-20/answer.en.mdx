@@ -1,19 +1,26 @@
-# Find the limiting reactant before the yield
+# The gas counts only the carbonate, the back-titration counts all the acid used, and the difference belongs to the hydroxide
 
-An insoluble salt is made by **precipitation from two soluble salts**, then filtered, rinsed and dried. The yield must be measured against the reactant that runs out first.
+The carbon dioxide is <InlineMath math="0.00500\text{ mol}" />, so the carbonate is <InlineMath math="0.00500\times84=0.420\text{ g}" /> and uses <InlineMath math="0.0100\text{ mol}" /> of acid. A portion has <InlineMath math="0.000500\text{ mol}" /> of acid, so **the whole solution has ten times that**, <InlineMath math="0.00500\text{ mol}" />, and <InlineMath math="0.0250-0.00500=0.0200\text{ mol}" /> was used. **The other <InlineMath math="0.0100\text{ mol}" /> went to the hydroxide**, two per unit, <InlineMath math="0.00500\times58=0.290\text{ g}" />. Every magnesium ends in one magnesium chloride, <InlineMath math="0.0100\times95=0.950\text{ g}" />.
 
-<Mermaid
-  title={<>Which Reactant Limits the Precipitate</>}
-  description={<>The sulfate ions run out first, so they set the mass of lead(II) sulfate, and the yield compares the dry mass with that limit.</>}
-  chart={"flowchart LR\n  A[Pb2+: 0.0100 mol] --> C[Mix]\n  B[SO4 2-: 0.00750 mol, runs out first] --> C\n  C --> D[At most 0.00750 mol PbSO4, 2.27 g]\n  D --> E[2.05 g obtained, yield 90.2%]"}
+<Chart
+  title={<>Acid in the flask</>}
+  description={<>The carbonate and the hydroxide each use <InlineMath math="0.0100\text{ mol}" /> of the acid, and <InlineMath math="0.00500\text{ mol}" /> is left.</>}
+  bars="apart"
+  categories={["Used by the carbonate", "Used by the hydroxide", "Acid left"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [0.0100, 0.0100, 0.00500] },
+  ]}
+  valueLabel="Amount (mol)"
 />
 
-- Moles of <InlineMath math="\text{Pb}^{2+}" />: <InlineMath math="0.500 \times \dfrac{20.0}{1000} = 0.0100\text{ mol}" />. Moles of <InlineMath math="\text{SO}_4^{2-}" />: <InlineMath math="0.500 \times \dfrac{15.0}{1000} = 0.00750\text{ mol}" />.
-- They react <InlineMath math="1 : 1" />, so sulfate runs out first: at most <InlineMath math="0.00750 \times 303 = 2.27\text{ g}" /> of lead(II) sulfate.
-- Percentage yield: <InlineMath math="\dfrac{2.05}{2.27} \times 100\% = 90.2\%" />.
+<BlockMath math="\begin{aligned}
+n(\text{MgCO}_3)&=\tfrac{120}{24\,000}=0.00500\ \Rightarrow\ m=0.420\text{ g}\\
+n(\text{HCl})_{\text{used}}&=0.0250-10\times0.000500=0.0200\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0.0200-0.0100}{2}\times58=0.290\text{ g}\\
+m(\text{MgCl}_2)&=(0.00500+0.00500)\times95=0.950\text{ g}
+\end{aligned}" />
 
 # Why the other options are wrong
 
-- Titration makes **soluble** salts of sodium, potassium and ammonium, not an insoluble one.
-- <InlineMath math="67.7\%" /> takes the lead(II) ions as limiting, <InlineMath math="\dfrac{2.05}{3.03}" />, although there are more of them than sulfate ions.
-- <InlineMath math="111\%" /> divides the expected mass by the actual mass. A yield above <InlineMath math="100\%" /> is impossible.
+- <InlineMath math="0.840\text{ g}" /> gives all the acid used to the carbonate, but **the gas shows only <InlineMath math="0.00500\text{ mol}" /> of carbonate**.
+- <InlineMath math="0.580\text{ g}" /> lets each hydroxide unit take one acid, but it takes two.
+- <InlineMath math="0.475\text{ g}" /> counts only the chloride from the carbonate, but the hydroxide gives magnesium chloride too.

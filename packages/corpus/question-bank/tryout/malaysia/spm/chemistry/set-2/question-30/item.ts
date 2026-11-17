@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Propyl ethanoate, $$6.12\\text{ g}$$" },
-        { correct: true, label: "Ethyl propanoate, $$6.12\\text{ g}$$" },
-        { correct: false, label: "Ethyl propanoate, $$8.16\\text{ g}$$" },
-        { correct: false, label: "Ethyl propanoate, $$7.65\\text{ g}$$" },
+        {
+          correct: false,
+          label:
+            "$$2.80\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$2.30\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$11.4\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$2.30\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$11.4\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$4.60\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$14.2\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$2.30\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Propil etanoat, $$6.12\\text{ g}$$" },
-        { correct: true, label: "Etil propanoat, $$6.12\\text{ g}$$" },
-        { correct: false, label: "Etil propanoat, $$8.16\\text{ g}$$" },
-        { correct: false, label: "Etil propanoat, $$7.65\\text{ g}$$" },
+        {
+          correct: false,
+          label:
+            "$$2.80\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$2.30\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$11.4\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$2.30\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$11.4\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$4.60\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$14.2\\text{ g}$$, $$2.40\\text{ dm}^3$$, $$2.30\\text{ g}$$",
+        },
       ],
     },
   },

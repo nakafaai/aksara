@@ -1,38 +1,25 @@
-# Jede Verbindung der Reihe nach benennen, dann das Brom zählen
+# Das Ethanol begrenzt, die Ausbeute kürzt den tatsächlichen Umsatz, und nur so viel Säure wird verbraucht
 
-X ist Propan-1-ol. Über heißem Porzellan verliert es ein Wassermolekül, und die Doppelbindung bildet sich zwischen dem Endkohlenstoff und seinem Nachbarn, also ist Y Propen. **Brom lagert sich an diese Doppelbindung an**, je ein Bromatom an jedes ihrer zwei Kohlenstoffatome.
+Die Säure sind <InlineMath math="\tfrac{6{,}00}{60}=0{,}100\text{ mol}" /> und das Ethanol <InlineMath math="\tfrac{2{,}30}{46}=0{,}0500\text{ mol}" />, also **begrenzt das Ethanol**. Bei <InlineMath math="70{,}0\%" /> reagieren <InlineMath math="0{,}0350\text{ mol}" /> und geben <InlineMath math="0{,}0350\times88=3{,}08\text{ g}" /> Ester und <InlineMath math="0{,}0350\times6{,}02\times10^{23}=2{,}11\times10^{22}" /> Wassermoleküle. **Nur <InlineMath math="0{,}0350\text{ mol}" /> Säure werden verbraucht**, also bleiben <InlineMath math="0{,}0650\times60=3{,}90\text{ g}" />.
 
-Dreh beide Moleküle im Labor: Die Doppelbindung von Propen liegt zwischen Kohlenstoff <InlineMath math="1" /> und Kohlenstoff <InlineMath math="2" />, genau dort, wo die Hydroxygruppe und ein Wasserstoffatom abgegangen sind.
-
-<MoleculeShapeLab
-  title={<>Von Propan-1-ol zu Propen</>}
-  description={<>Propan-1-ol trägt seine Hydroxygruppe an Kohlenstoff <InlineMath math="1" />. Propen hat seine Doppelbindung zwischen Kohlenstoff <InlineMath math="1" /> und Kohlenstoff <InlineMath math="2" />, wo sich die Bromatome anlagern.</>}
-  molecules={[
-    { id: "propanol", name: "Propan-1-ol" },
-    { id: "propene", name: "Propen" },
+<Chart
+  title={<>Ethansäure</>}
+  description={<>Die Reaktion verbraucht <InlineMath math="0{,}0350\text{ mol}" /> der Säure und lässt <InlineMath math="0{,}0650\text{ mol}" /> übrig.</>}
+  bars="apart"
+  categories={["Reagierende Säure", "Übrige Säure"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [0.0350, 0.0650] },
   ]}
-  labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Formel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel</>,
-    view: "Propan-1-ol und Propen",
-  }}
+  valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\text{CH}_3\text{CH}_2\text{CH}_2\text{OH}&\rightarrow\text{CH}_3\text{CH{=}CH}_2+\text{H}_2\text{O}\\
-\text{CH}_3\text{CH{=}CH}_2+\text{Br}_2&\rightarrow\text{CH}_3\text{CHBrCH}_2\text{Br}\\
-M_r(\text{C}_3\text{H}_6\text{Br}_2)&=3(12)+6(1)+2(80)=202\\
-\%\,\text{Br}&=\frac{160}{202}\times100\%=79{,}2\%
+n&=0{,}700\times\tfrac{2{,}30}{46}=0{,}0350\ \Rightarrow\ m(\text{ester})=0{,}0350\times88=3{,}08\text{ g}\\
+m(\text{CH}_3\text{COOH})&=(0{,}100-0{,}0350)\times60=3{,}90\text{ g},\quad N(\text{H}_2\text{O})=0{,}0350\times6{,}02\times10^{23}=2{,}11\times10^{22}
 \end{aligned}" />
-
-Z ist also 1,2-Dibrompropan, mit <InlineMath math="79{,}2\%" /> Brom nach Masse.
 
 # Warum die anderen Antworten falsch sind
 
-- 1-Brompropan mit <InlineMath math="65{,}0\%" /> behandelt Schritt 2 als Substitution, ein Wasserstoff gegen ein Brom. **Ein Alken nimmt das ganze Brommolekül durch Addition auf**.
-- 1,3-Dibrompropan setzt das Brom an beide Endkohlenstoffe, doch die zwei Atome lagern sich an die beiden Kohlenstoffatome der Doppelbindung an, Kohlenstoff <InlineMath math="1" /> und Kohlenstoff <InlineMath math="2" />.
-- <InlineMath math="39{,}6\%" /> zählt nur ein Bromatom, <InlineMath math="\tfrac{80}{202}" />, in einem Produkt, das zwei enthält.
+- <InlineMath math="4{,}40\text{ g}" /> lässt alles Ethanol reagieren, doch **die Ausbeute ist nur <InlineMath math="70{,}0\%" />**.
+- <InlineMath math="6{,}16\text{ g}" /> lässt die Säure begrenzen, doch <InlineMath math="0{,}0500\text{ mol}" /> Ethanol sind weniger als <InlineMath math="0{,}100\text{ mol}" /> Säure.
+- <InlineMath math="3{,}00\text{ g}" /> zieht Säure für alles Ethanol ab, doch nur die reagierenden <InlineMath math="0{,}0350\text{ mol}" /> verbrauchen Säure.

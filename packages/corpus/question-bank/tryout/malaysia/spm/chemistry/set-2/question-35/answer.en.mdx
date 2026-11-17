@@ -1,29 +1,25 @@
-# Compare the heat the fuel gives with the heat the water gets
+# Find what runs out in each experiment, then divide its heat by the mass of solution it warms
 
-The data book value tells you how much heat the burnt propan-1-ol released. The temperature rise tells you how much of it the water actually took in. **The percentage is the heat absorbed over the heat released**, so the smaller number goes on top.
-
-<BlockMath math="\begin{aligned}
-n(\text{C}_3\text{H}_7\text{OH})&=\frac{0.90}{60}=0.015\text{ mol}\\
-\text{heat released}&=0.015\times2016=30.24\text{ kJ}\\
-\text{heat absorbed}&=250\times4.2\times24.0=25\,200\text{ J}=25.2\text{ kJ}\\
-\text{percentage}&=\frac{25.2}{30.24}\times100\%=83.3\%
-\end{aligned}" />
+In Experiment I the zinc is in excess, so the <InlineMath math="0.0200\text{ mol}" /> of copper(II) ions all react, <InlineMath math="4.20\text{ kJ}" />, warming <InlineMath math="50\text{ g}" />, <InlineMath math="\tfrac{4200}{50\times4.2}=20.0^\circ\text{C}" />. In Experiment II the copper(II) ions are again <InlineMath math="0.0200\text{ mol}" />, but the zinc is only <InlineMath math="0.0100\text{ mol}" />, so **the zinc runs out**, <InlineMath math="2.10\text{ kJ}" />, and **that heat is spread through <InlineMath math="100\text{ g}" />**, <InlineMath math="5.00^\circ\text{C}" />. The copper is <InlineMath math="0.0100\times64=0.640\text{ g}" />.
 
 <Chart
-  title={<>Heat released and heat absorbed</>}
-  description={<>Burning <InlineMath math="0.015\text{ mol}" /> of propan-1-ol releases <InlineMath math="30.24\text{ kJ}" />, and the water absorbs <InlineMath math="25.2\text{ kJ}" />. The rest warms the can and the air.</>}
+  title={<>Temperature rise</>}
+  description={<>Experiment I warms by <InlineMath math="20.0^\circ\text{C}" /> and Experiment II by <InlineMath math="5.00^\circ\text{C}" />.</>}
   bars="apart"
-  categories={["Released by the fuel", "Absorbed by the water"]}
+  categories={["Experiment I", "Experiment II"]}
   series={[
-    { label: "Heat", mark: "bar", values: [30.24, 25.2] },
+    { label: "Rise", mark: "bar", values: [20.0, 5.00] },
   ]}
-  valueLabel="Heat (kJ)"
+  valueLabel="Rise (°C)"
 />
 
-So <InlineMath math="83.3\%" /> of the heat reaches the water, and the rest is lost to the can and the surrounding air.
+<BlockMath math="\begin{aligned}
+\Delta T_{\text{I}}&=\tfrac{0.0200\times210\,000}{50\times4.2}=20.0^\circ\text{C}\\
+n(\text{Zn})&=0.0100<0.0200\ \Rightarrow\ \Delta T_{\text{II}}=\tfrac{0.0100\times210\,000}{100\times4.2}=5.00^\circ\text{C},\quad m(\text{Cu})=0.640\text{ g}
+\end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="63.9\%" /> uses <InlineMath math="46" />, the molar mass of ethanol. Propan-1-ol is <InlineMath math="\text{C}_3\text{H}_7\text{OH}" />, so its molar mass is <InlineMath math="60" />.
-- <InlineMath math="120\%" /> divides the heat released by the heat absorbed. **No more than all of the heat can reach the water, so the percentage must be under <InlineMath math="100\%" />**.
-- <InlineMath math="1.25\%" /> compares the water's <InlineMath math="25.2\text{ kJ}" /> with the heat of a whole mole, <InlineMath math="2016\text{ kJ}" />, instead of the <InlineMath math="0.015\text{ mol}" /> that burnt.
+- <InlineMath math="10.0^\circ\text{C}" /> and <InlineMath math="1.28\text{ g}" /> let all the copper(II) ions in Experiment II react, but **only <InlineMath math="0.0100\text{ mol}" /> of zinc is there**.
+- <InlineMath math="20.0^\circ\text{C}" /> for Experiment II keeps the first rise, but less heat now warms twice the mass.
+- <InlineMath math="1.28\text{ g}" /> counts copper from the copper(II) ions, but the zinc runs out first.

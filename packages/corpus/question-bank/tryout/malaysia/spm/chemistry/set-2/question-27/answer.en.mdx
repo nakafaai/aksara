@@ -1,30 +1,25 @@
-# Extend the trend first, then use the heat
+# Take the yield first, then each glucose gives two ethanol and two carbon dioxide, and each ethanol gives one acid
 
-The chart stops at butane, so pentane's heat of combustion has to come from the trend. Each extra <InlineMath math="\text{CH}_2" /> unit adds about the same amount, <InlineMath math="2220-1560=660" /> and <InlineMath math="2880-2220=660\text{ kJ}" />, because every alkane burns one more <InlineMath math="\text{CH}_2" /> group. Then **the heat absorbed by the water decides the moles of pentane**.
-
-The chart extends the line by one more step, to pentane.
+The glucose is <InlineMath math="\tfrac{9.00}{180}=0.0500\text{ mol}" />, and **only <InlineMath math="80.0\%" /> reacts**, <InlineMath math="0.0400\text{ mol}" />. **Each glucose gives two of each product**, <InlineMath math="0.0800\text{ mol}" /> of carbon dioxide, <InlineMath math="1.92\text{ dm}^3" />, and <InlineMath math="0.0800\times46=3.68\text{ g}" /> of ethanol. That ethanol gives <InlineMath math="0.0800\text{ mol}" /> of ethanoic acid, a portion holds a tenth, <InlineMath math="0.00800\text{ mol}" />, and <InlineMath math="0.00800\div0.100=0.0800\text{ dm}^3=80.0\text{ cm}^3" />.
 
 <Chart
-  title={<>Heat of combustion extended to pentane</>}
-  description={<>The measured values rise from <InlineMath math="890" /> for methane to <InlineMath math="2880\text{ kJ mol}^{-1}" /> for butane. One more step of <InlineMath math="660" /> gives about <InlineMath math="3540\text{ kJ mol}^{-1}" /> for pentane.</>}
-  categories={["Methane", "Ethane", "Propane", "Butane", "Pentane"]}
+  title={<>Along the route</>}
+  description={<>The <InlineMath math="0.0400\text{ mol}" /> of glucose that reacts gives <InlineMath math="0.0800\text{ mol}" /> of ethanol and then <InlineMath math="0.0800\text{ mol}" /> of ethanoic acid.</>}
+  bars="apart"
+  categories={["Glucose that reacts", "Ethanol", "Ethanoic acid"]}
   series={[
-    { label: "Measured", mark: "line", values: [890, 1560, 2220, 2880, null] },
-    { label: "Predicted", mark: "line", values: [null, null, null, 2880, 2880 + (2880 - 2220)] },
+    { label: "Amount", mark: "bar", values: [0.0400, 0.0800, 0.0800] },
   ]}
-  valueLabel="Heat of combustion (kJ per mol)"
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\Delta H(\text{C}_5\text{H}_{12})&\approx-(2880+660)=-3540\text{ kJ mol}^{-1}\\
-Q&=250\times4.2\times40.0=42\,000\text{ J}=42.0\text{ kJ}\\
-n&=\frac{42.0}{3540}=0.0119\text{ mol}\Rightarrow m=0.0119\times72=0.85\text{ g}
+n&=0.800\times\tfrac{9.00}{180}=0.0400\ \Rightarrow\ V(\text{CO}_2)=0.0800\times24=1.92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0.0800\times46=3.68\text{ g}\\
+V(\text{NaOH})&=\tfrac{0.0800\div10}{0.100}=0.0800\text{ dm}^3=80.0\text{ cm}^3
 \end{aligned}" />
-
-So about <InlineMath math="0.85\text{ g}" /> of pentane is burnt.
 
 # Why the other options are wrong
 
-- <InlineMath math="1.05\text{ g}" /> uses butane's <InlineMath math="2880\text{ kJ mol}^{-1}" />, stopping at the last value in the chart instead of extending it to pentane.
-- <InlineMath math="0.72\text{ g}" /> adds two steps, <InlineMath math="2880+2\times660=4200" />, which is the prediction for hexane.
-- <InlineMath math="0.69\text{ g}" /> converts the moles with butane's molar mass, <InlineMath math="58" />. **Pentane is <InlineMath math="\text{C}_5\text{H}_{12}" />, so its molar mass is <InlineMath math="72" />**.
+- <InlineMath math="2.40\text{ dm}^3" /> and <InlineMath math="4.60\text{ g}" /> let all the glucose react, but **only <InlineMath math="80.0\%" /> of it does**.
+- <InlineMath math="0.960\text{ dm}^3" /> and <InlineMath math="1.84\text{ g}" /> give one of each product per glucose, but the equation gives two.
+- <InlineMath math="800\text{ cm}^3" /> titrates all the acid, but the portion is only a tenth of it.

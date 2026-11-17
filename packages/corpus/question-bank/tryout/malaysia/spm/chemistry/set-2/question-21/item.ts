@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "P and S, $$2.24\\text{ V}$$, with P as the negative terminal",
+          label:
+            "$$1.29\\text{ g}$$, $$480\\text{ cm}^3$$, $$10.0\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "P and S, $$3.16\\text{ V}$$, with P as the negative terminal",
+          label:
+            "$$1.29\\text{ g}$$, $$240\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "P and S, $$3.16\\text{ V}$$, with S as the negative terminal",
+          label:
+            "$$1.28\\text{ g}$$, $$0\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "P and Q, $$2.30\\text{ V}$$, with P as the negative terminal",
+          label:
+            "$$0.640\\text{ g}$$, $$240\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -34,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "P dan S, $$2.24\\text{ V}$$, dengan P sebagai terminal negatif",
+            "$$1.29\\text{ g}$$, $$480\\text{ cm}^3$$, $$10.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "P dan S, $$3.16\\text{ V}$$, dengan P sebagai terminal negatif",
+            "$$1.29\\text{ g}$$, $$240\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "P dan S, $$3.16\\text{ V}$$, dengan S sebagai terminal negatif",
+            "$$1.28\\text{ g}$$, $$0\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "P dan Q, $$2.30\\text{ V}$$, dengan P sebagai terminal negatif",
+            "$$0.640\\text{ g}$$, $$240\\text{ cm}^3$$, $$30.0\\text{ cm}^3$$",
         },
       ],
     },

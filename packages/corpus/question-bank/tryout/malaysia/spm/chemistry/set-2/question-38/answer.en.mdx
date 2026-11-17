@@ -1,34 +1,25 @@
-# One bridge, two sulfur atoms, two linked units
+# Count the repeating units, then follow each atom: two carbons to carbon dioxide, one hydrogen to hydrogen chloride, and two to water
 
-Turn the sulfur into bridges first, then count the units the bridges touch. **Every bridge uses two sulfur atoms but links two units**, one on each chain, so the number of linked units equals the number of sulfur atoms.
-
-<Mermaid
-  title={<>A sulfur bridge between two chains</>}
-  description={<>Two sulfur atoms join a unit on the upper chain to a unit on the lower chain. One bridge links two units.</>}
-  chart={"flowchart LR\n  A1[\"isoprene unit\"] --- A2[\"linked unit\"] --- A3[\"isoprene unit\"]\n  B1[\"isoprene unit\"] --- B2[\"linked unit\"] --- B3[\"isoprene unit\"]\n  A2 --- S1((S)) --- S2((S)) --- B2"}
-/>
-
-<BlockMath math="\begin{aligned}
-n(\text{C}_5\text{H}_8)&=\frac{68}{68}=1.0\text{ mol},\quad n(\text{S})=\frac{3.2}{32}=0.10\text{ mol}\\
-n(\text{cross-links})&=\frac{0.10}{2}=0.050\text{ mol}\\
-n(\text{linked units})&=2\times0.050=0.10\text{ mol}\ \Rightarrow\ \frac{0.10}{1.0}\times100\%=10\%
-\end{aligned}" />
+Each unit has <InlineMath math="M_r=62.5" />, so there are <InlineMath math="0.100\text{ mol}" /> of units. **Each unit holds two carbon atoms**, <InlineMath math="0.200\text{ mol}" /> of carbon dioxide, <InlineMath math="4.80\text{ dm}^3" />. **Its chlorine takes one hydrogen as hydrogen chloride**, <InlineMath math="0.100\text{ mol}" />, so a portion holds <InlineMath math="0.0100\text{ mol}" />, <InlineMath math="100\text{ cm}^3" /> of alkali. The other two hydrogens make one water, <InlineMath math="0.100\times18=1.80\text{ g}" />.
 
 <Chart
-  title={<>Amounts in the vulcanised rubber</>}
-  description={<>The rubber holds <InlineMath math="1.0\text{ mol}" /> of isoprene units. The <InlineMath math="0.10\text{ mol}" /> of sulfur atoms make <InlineMath math="0.050\text{ mol}" /> of bridges, which link <InlineMath math="0.10\text{ mol}" /> of units.</>}
+  title={<>Products from the polymer</>}
+  description={<>The <InlineMath math="0.100\text{ mol}" /> of units give <InlineMath math="0.200\text{ mol}" /> of carbon dioxide, <InlineMath math="0.100\text{ mol}" /> of water and <InlineMath math="0.100\text{ mol}" /> of hydrogen chloride.</>}
   bars="apart"
-  categories={["Isoprene units", "Sulfur atoms", "Cross-links", "Linked units"]}
+  categories={["Carbon dioxide", "Water", "Hydrogen chloride"]}
   series={[
-    { label: "Amount", mark: "bar", values: [1.0, 0.10, 0.050, 0.10] },
+    { label: "Amount", mark: "bar", values: [0.200, 0.100, 0.100] },
   ]}
   valueLabel="Amount (mol)"
 />
 
-So <InlineMath math="10\%" /> of the units carry a cross-link. The bridges hold the chains in place, so the stretched rubber pulls back to its shape and is harder and stronger than natural rubber.
+<BlockMath math="\begin{aligned}
+n(\text{unit})&=\tfrac{6.25}{62.5}=0.100\ \Rightarrow\ V(\text{CO}_2)=0.200\times24=4.80\text{ dm}^3\\
+V(\text{NaOH})&=\tfrac{0.100\div10}{0.100}=0.100\text{ dm}^3=100\text{ cm}^3,\quad m(\text{H}_2\text{O})=0.100\times18=1.80\text{ g}
+\end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="5\%" /> counts one unit per bridge and forgets that each bridge has two ends, one on each chain.
-- <InlineMath math="20\%" /> treats every sulfur atom as a bridge with two ends. **A bridge needs a pair of sulfur atoms**, so there are only half as many.
-- The cross-links make the rubber harder, not softer, and most of its double bonds are still there. The percentage is right, but the effect is reversed.
+- <InlineMath math="2.40\text{ dm}^3" /> gives one carbon dioxide per unit, but each unit holds two carbon atoms.
+- <InlineMath math="300\text{ cm}^3" /> turns all three hydrogen atoms into hydrogen chloride, but **each unit has only one chlorine atom to take a hydrogen**.
+- <InlineMath math="2.70\text{ g}" /> turns all three hydrogen atoms into water, but one of them leaves as hydrogen chloride.

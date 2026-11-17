@@ -1,29 +1,25 @@
-# Vergleich die Wärme des Brennstoffs mit der Wärme, die das Wasser bekommt
+# Bestimme, was in jedem Versuch ausgeht, und teile dann seine Wärme durch die Masse der Lösung, die sie erwärmt
 
-Der Tabellenwert sagt dir, wie viel Wärme das verbrannte Propan-1-ol abgegeben hat. Der Temperaturanstieg sagt dir, wie viel davon das Wasser wirklich aufgenommen hat. **Der Anteil ist aufgenommene Wärme durch abgegebene Wärme**, also steht die kleinere Zahl oben.
-
-<BlockMath math="\begin{aligned}
-n(\text{C}_3\text{H}_7\text{OH})&=\frac{0{,}90}{60}=0{,}015\text{ mol}\\
-\text{abgegebene Wärme}&=0{,}015\times2016=30{,}24\text{ kJ}\\
-\text{aufgenommene Wärme}&=250\times4{,}2\times24{,}0=25{.}200\text{ J}=25{,}2\text{ kJ}\\
-\text{Anteil}&=\frac{25{,}2}{30{,}24}\times100\%=83{,}3\%
-\end{aligned}" />
+In Versuch I ist das Zink im Überschuss, also reagieren alle <InlineMath math="0{,}0200\text{ mol}" /> Kupfer(II)-Ionen, <InlineMath math="4{,}20\text{ kJ}" />, die <InlineMath math="50\text{ g}" /> erwärmen, <InlineMath math="\tfrac{4200}{50\times4{,}2}=20{,}0^\circ\text{C}" />. In Versuch II sind es wieder <InlineMath math="0{,}0200\text{ mol}" /> Kupfer(II)-Ionen, aber nur <InlineMath math="0{,}0100\text{ mol}" /> Zink, also **geht das Zink aus**, <InlineMath math="2{,}10\text{ kJ}" />, und **diese Wärme verteilt sich auf <InlineMath math="100\text{ g}" />**, <InlineMath math="5{,}00^\circ\text{C}" />. Das Kupfer sind <InlineMath math="0{,}0100\times64=0{,}640\text{ g}" />.
 
 <Chart
-  title={<>Abgegebene und aufgenommene Wärme</>}
-  description={<>Das Verbrennen von <InlineMath math="0{,}015\text{ mol}" /> Propan-1-ol gibt <InlineMath math="30{,}24\text{ kJ}" /> ab, und das Wasser nimmt <InlineMath math="25{,}2\text{ kJ}" /> auf. Der Rest erwärmt die Dose und die Luft.</>}
+  title={<>Temperaturanstieg</>}
+  description={<>Versuch I erwärmt sich um <InlineMath math="20{,}0^\circ\text{C}" /> und Versuch II um <InlineMath math="5{,}00^\circ\text{C}" />.</>}
   bars="apart"
-  categories={["Vom Brennstoff abgegeben", "Vom Wasser aufgenommen"]}
+  categories={["Versuch I", "Versuch II"]}
   series={[
-    { label: "Wärme", mark: "bar", values: [30.24, 25.2] },
+    { label: "Anstieg", mark: "bar", values: [20.0, 5.00] },
   ]}
-  valueLabel="Wärme (kJ)"
+  valueLabel="Anstieg (°C)"
 />
 
-Es kommen also <InlineMath math="83{,}3\%" /> der Wärme im Wasser an, der Rest geht an die Dose und die umgebende Luft verloren.
+<BlockMath math="\begin{aligned}
+\Delta T_{\text{I}}&=\tfrac{0{,}0200\times210{.}000}{50\times4{,}2}=20{,}0^\circ\text{C}\\
+n(\text{Zn})&=0{,}0100<0{,}0200\ \Rightarrow\ \Delta T_{\text{II}}=\tfrac{0{,}0100\times210{.}000}{100\times4{,}2}=5{,}00^\circ\text{C},\quad m(\text{Cu})=0{,}640\text{ g}
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="63{,}9\%" /> nimmt <InlineMath math="46" />, die molare Masse von Ethanol. Propan-1-ol ist <InlineMath math="\text{C}_3\text{H}_7\text{OH}" />, seine molare Masse ist also <InlineMath math="60" />.
-- <InlineMath math="120\%" /> teilt die abgegebene durch die aufgenommene Wärme. **Mehr als die gesamte Wärme kann nicht im Wasser ankommen, also muss der Anteil unter <InlineMath math="100\%" /> liegen**.
-- <InlineMath math="1{,}25\%" /> vergleicht die <InlineMath math="25{,}2\text{ kJ}" /> des Wassers mit der Wärme eines ganzen Mols, <InlineMath math="2016\text{ kJ}" />, statt mit den <InlineMath math="0{,}015\text{ mol}" />, die verbrannt sind.
+- <InlineMath math="10{,}0^\circ\text{C}" /> und <InlineMath math="1{,}28\text{ g}" /> lassen in Versuch II alle Kupfer(II)-Ionen reagieren, doch **nur <InlineMath math="0{,}0100\text{ mol}" /> Zink sind da**.
+- <InlineMath math="20{,}0^\circ\text{C}" /> für Versuch II behält den ersten Anstieg, doch weniger Wärme erwärmt jetzt die doppelte Masse.
+- <InlineMath math="1{,}28\text{ g}" /> zählt das Kupfer aus den Kupfer(II)-Ionen, doch das Zink geht zuerst aus.
