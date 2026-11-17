@@ -1,0 +1,27 @@
+# Fragen, welche Kraft jede Feder trägt, dann Dehnungen oder Energien addieren
+
+In **Reihe** trägt jede Feder die **ganze Last**, jede dehnt sich um <InlineMath math="\dfrac Fk" />, und die Dehnungen addieren sich. **Parallel** trägt jede Feder die **halbe Last**, jede dehnt sich also nur ein Viertel so weit wie das Paar in Reihe. Die gespeicherte Energie ist <InlineMath math="\tfrac12Fx" /> je Feder, über beide Federn addiert.
+
+<Chart
+  title={<>Dehnung und gespeicherte Energie für jede Anordnung</>}
+  bars="apart"
+  categories={["Reihe", "Parallel"]}
+  series={[
+    { label: "Dehnung (cm)", mark: "bar", values: [20, 5.0] },
+    { label: "Energie (×0,1 J)", mark: "bar", values: [20, 5.0] },
+  ]}
+  valueLabel="Wert"
+  description={<>In Reihe dehnt sich das Paar um <InlineMath math="20\text{ cm}" /> und speichert <InlineMath math="2{,}0\text{ J}" />. Parallel dehnt es sich nur um <InlineMath math="5{,}0\text{ cm}" /> und speichert <InlineMath math="0{,}50\text{ J}" />.</>}
+/>
+
+<BlockMath math="F=2{,}0\cdot10=20\text{ N},\qquad x_{\text{Reihe}}=2\cdot\frac{20}{200}=0{,}20\text{ m}" />
+
+<BlockMath math="x_{\text{parallel}}=\frac{10}{200}=0{,}050\text{ m},\qquad E=2\cdot\tfrac12(10)(0{,}050)=0{,}50\text{ J}" />
+
+In Reihe dehnt sich jede Feder um <InlineMath math="0{,}10\text{ m}" />, das Paar also um <InlineMath math="0{,}20\text{ m}" />. Parallel trägt jede Feder <InlineMath math="10\text{ N}" />, dehnt sich um <InlineMath math="0{,}050\text{ m}" /> und speichert <InlineMath math="0{,}25\text{ J}" />, beide zusammen also <InlineMath math="0{,}50\text{ J}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}050\text{ m}" /> mit <InlineMath math="2{,}0\text{ J}" /> **vertauscht die beiden Anordnungen** und liefert die Paralleldehnung und die Reihenenergie.
+- <InlineMath math="0{,}10\text{ m}" /> behandelt das Paar in Reihe wie **eine Feder** und vergisst, dass sich beide dehnen.
+- <InlineMath math="0{,}25\text{ J}" /> zählt in der Parallelanordnung die Energie **nur einer Feder**.

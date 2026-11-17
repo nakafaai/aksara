@@ -1,0 +1,26 @@
+# Die Luft drückt auf beide Seiten, für die Kraft zählt nur der Zusatzdruck des Wassers
+
+Der Gesamtdruck auf der Wasserseite ist **Atmosphäre plus Wassersäule**, <InlineMath math="p_0+\rho gh" />. Die Luft im Rohr drückt mit <InlineMath math="p_0" /> zurück, die **resultierende Kraft** kommt also nur aus der Differenz <InlineMath math="\rho gh" /> mal Fläche.
+
+<Chart
+  title={<>Druck auf beiden Seiten der Klappe</>}
+  bars="apart"
+  categories={["Wasserseite", "Rohrseite"]}
+  series={[
+    { label: "Druck", mark: "bar", values: [300, 100] },
+  ]}
+  valueLabel="Druck (kPa)"
+  description={<>Auf der Wasserseite herrschen <InlineMath math="300\text{ kPa}" />, auf der Rohrseite <InlineMath math="100\text{ kPa}" />. Nur die Differenz von <InlineMath math="200\text{ kPa}" /> drückt auf die Klappe.</>}
+/>
+
+<BlockMath math="p=1{,}0\cdot10^{5}+1000(10)(20)=3{,}0\cdot10^{5}\text{ Pa}" />
+
+<BlockMath math="F=(p-p_0)A=(2{,}0\cdot10^{5})(0{,}50)=1{,}0\cdot10^{5}\text{ N}" />
+
+Auf der Wasserseite herrschen <InlineMath math="3{,}0\cdot10^{5}\text{ Pa}" />, das Dreifache des Luftdrucks. Die Luft hebt <InlineMath math="1{,}0\cdot10^{5}\text{ Pa}" /> davon auf, es bleiben <InlineMath math="2{,}0\cdot10^{5}\text{ Pa}" /> auf <InlineMath math="0{,}50\text{ m}^2" />, eine resultierende Kraft von <InlineMath math="1{,}0\cdot10^{5}\text{ N}" /> zum Rohr hin.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}0\cdot10^{5}\text{ Pa}" /> ist nur der **Druck des Wassers selbst**, doch der Gesamtdruck auf der Wasserseite enthält auch die Atmosphäre über dem Stausee.
+- <InlineMath math="1{,}5\cdot10^{5}\text{ N}" /> multipliziert den **Gesamtdruck** mit der Fläche und vergisst die Luft, die aus dem Rohr zurückdrückt.
+- <InlineMath math="6{,}0\cdot10^{5}\text{ N}" /> **teilt den Druck durch die Fläche**, statt zu multiplizieren.

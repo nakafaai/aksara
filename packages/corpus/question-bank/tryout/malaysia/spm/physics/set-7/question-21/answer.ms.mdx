@@ -1,0 +1,26 @@
+# Lerai di sepanjang arah gerakan, seimbangkan, kemudian biarkan lebihan baharu memecut
+
+Hanya **komponen di sepanjang arah gerakan** menarik kapal ke hadapan, manakala komponen sisi kedua-dua tali saling membatalkan. Pada halaju malar, tarikan ke hadapan **sama dengan rintangan air**. Apabila tali lebih rapat dengan paksi, tarikan ke hadapan bertambah, rintangan belum berubah, dan **lebihan** itu memberi pecutan, dengan jisim dalam kilogram.
+
+<Chart
+  title={<>Tarikan ke Hadapan Bot Tunda dan Rintangan Air</>}
+  bars="apart"
+  categories={["Bot tunda pada 40°", "Bot tunda pada 20°", "Rintangan air"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [9.2, 11.3, 9.2] },
+  ]}
+  valueLabel="Daya (kN)"
+  description={<>Pada <InlineMath math="40°" /> bot tunda menarik ke hadapan dengan <InlineMath math="9.2\text{ kN}" />, sama dengan rintangan air. Pada <InlineMath math="20°" /> tali yang sama menarik dengan <InlineMath math="11.3\text{ kN}" />, meninggalkan <InlineMath math="2.1\text{ kN}" /> untuk memecutkan kapal.</>}
+/>
+
+<BlockMath math="R=2(6.0)\cos40°=12(0.766)\approx9.2\text{ kN}" />
+
+<BlockMath math="F'=2(6.0)\cos20°=12(0.940)\approx11.3\text{ kN},\qquad a=\frac{(11.3-9.2)\times10^{3}}{5.0\times10^{5}}\approx4.2\times10^{-3}\text{ m s}^{-2}" />
+
+Rintangan ialah kira-kira <InlineMath math="9.2\text{ kN}" />. Pada <InlineMath math="20°" /> bot tunda menarik ke hadapan dengan kira-kira <InlineMath math="11.3\text{ kN}" />, jadi kira-kira <InlineMath math="2.1\text{ kN}" /> tidak seimbang, dan kapal <InlineMath math="5.0\times10^{5}\text{ kg}" /> mula memecut pada kira-kira <InlineMath math="4.2\times10^{-3}\text{ m s}^{-2}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="12\text{ kN}" /> **mencampur daya tali seolah-olah selari**, jadi ia terlepas sudut dan tidak melihat perubahan tarikan.
+- <InlineMath math="2.3\times10^{-2}\text{ m s}^{-2}" /> membahagi **seluruh tarikan baharu** dengan jisim, lupa bahawa rintangan air masih bertindak.
+- <InlineMath math="4.2\text{ m s}^{-2}" /> menggunakan jisim **<InlineMath math="500" /> dan bukan <InlineMath math="5.0\times10^{5}\text{ kg}" />**, lupa bahawa satu tan ialah <InlineMath math="1000\text{ kg}" />.

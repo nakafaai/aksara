@@ -1,0 +1,26 @@
+# Resolve along the motion, balance, then let the new surplus accelerate
+
+Only the **components along the motion** pull the ship forward, and the sideways components of the two ropes cancel. At constant velocity the forward pull **equals the water resistance**. With the ropes closer to the axis the forward pull grows, the resistance has not yet changed, and the **surplus** gives the acceleration, with the mass in kilograms.
+
+<Chart
+  title={<>Forward Pull of the Tugs and the Water Resistance</>}
+  bars="apart"
+  categories={["Tugs at 40°", "Tugs at 20°", "Water resistance"]}
+  series={[
+    { label: "Force", mark: "bar", values: [9.2, 11.3, 9.2] },
+  ]}
+  valueLabel="Force (kN)"
+  description={<>At <InlineMath math="40°" /> the tugs pull forward with <InlineMath math="9.2\text{ kN}" />, which matches the water resistance. At <InlineMath math="20°" /> the same ropes pull with <InlineMath math="11.3\text{ kN}" />, leaving <InlineMath math="2.1\text{ kN}" /> to accelerate the ship.</>}
+/>
+
+<BlockMath math="R=2(6.0)\cos40°=12(0.766)\approx9.2\text{ kN}" />
+
+<BlockMath math="F'=2(6.0)\cos20°=12(0.940)\approx11.3\text{ kN},\qquad a=\frac{(11.3-9.2)\times10^{3}}{5.0\times10^{5}}\approx4.2\times10^{-3}\text{ m s}^{-2}" />
+
+The resistance is about <InlineMath math="9.2\text{ kN}" />. At <InlineMath math="20°" /> the tugs pull forward with about <InlineMath math="11.3\text{ kN}" />, so about <InlineMath math="2.1\text{ kN}" /> is unbalanced, and the <InlineMath math="5.0\times10^{5}\text{ kg}" /> ship starts to accelerate at about <InlineMath math="4.2\times10^{-3}\text{ m s}^{-2}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="12\text{ kN}" /> **adds the rope forces as if they were parallel**, so it misses the angle and sees no change in the pull.
+- <InlineMath math="2.3\times10^{-2}\text{ m s}^{-2}" /> divides the **whole new pull** by the mass, forgetting the water resistance still acts.
+- <InlineMath math="4.2\text{ m s}^{-2}" /> uses the mass as **<InlineMath math="500" /> instead of <InlineMath math="5.0\times10^{5}\text{ kg}" />**, forgetting that a tonne is <InlineMath math="1000\text{ kg}" />.

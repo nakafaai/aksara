@@ -1,0 +1,26 @@
+# In Bewegungsrichtung zerlegen, ausgleichen und dann den neuen Überschuss beschleunigen lassen
+
+Nur die **Komponenten in Bewegungsrichtung** ziehen das Schiff nach vorn, die Querkomponenten der beiden Seile heben sich auf. Bei konstanter Geschwindigkeit ist der Vorwärtszug **gleich dem Wasserwiderstand**. Liegen die Seile näher an der Achse, wächst der Vorwärtszug, der Widerstand ist noch derselbe, und der **Überschuss** liefert die Beschleunigung, mit der Masse in Kilogramm.
+
+<Chart
+  title={<>Vorwärtszug der Schlepper und Wasserwiderstand</>}
+  bars="apart"
+  categories={["Schlepper bei 40°", "Schlepper bei 20°", "Wasserwiderstand"]}
+  series={[
+    { label: "Kraft", mark: "bar", values: [9.2, 11.3, 9.2] },
+  ]}
+  valueLabel="Kraft (kN)"
+  description={<>Bei <InlineMath math="40°" /> ziehen die Schlepper mit <InlineMath math="9{,}2\text{ kN}" /> nach vorn, genau gegen den Wasserwiderstand. Bei <InlineMath math="20°" /> ziehen dieselben Seile mit <InlineMath math="11{,}3\text{ kN}" />, und <InlineMath math="2{,}1\text{ kN}" /> bleiben zum Beschleunigen.</>}
+/>
+
+<BlockMath math="R=2(6{,}0)\cos40°=12(0{,}766)\approx9{,}2\text{ kN}" />
+
+<BlockMath math="F'=2(6{,}0)\cos20°=12(0{,}940)\approx11{,}3\text{ kN},\qquad a=\frac{(11{,}3-9{,}2)\cdot10^{3}}{5{,}0\cdot10^{5}}\approx4{,}2\cdot10^{-3}\text{ m s}^{-2}" />
+
+Der Widerstand beträgt etwa <InlineMath math="9{,}2\text{ kN}" />. Bei <InlineMath math="20°" /> ziehen die Schlepper mit etwa <InlineMath math="11{,}3\text{ kN}" /> nach vorn, etwa <InlineMath math="2{,}1\text{ kN}" /> sind also unausgeglichen, und das Schiff mit <InlineMath math="5{,}0\cdot10^{5}\text{ kg}" /> beschleunigt anfangs mit etwa <InlineMath math="4{,}2\cdot10^{-3}\text{ m s}^{-2}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="12\text{ kN}" /> **addiert die Seilkräfte, als wären sie parallel**, übersieht also den Winkel und sieht keine Änderung des Zugs.
+- <InlineMath math="2{,}3\cdot10^{-2}\text{ m s}^{-2}" /> teilt den **ganzen neuen Zug** durch die Masse und vergisst, dass der Wasserwiderstand weiter wirkt.
+- <InlineMath math="4{,}2\text{ m s}^{-2}" /> nimmt die Masse als **<InlineMath math="500" /> statt <InlineMath math="5{,}0\cdot10^{5}\text{ kg}" />** und vergisst, dass eine Tonne <InlineMath math="1000\text{ kg}" /> sind.

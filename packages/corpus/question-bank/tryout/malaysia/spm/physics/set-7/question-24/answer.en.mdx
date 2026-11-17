@@ -1,0 +1,26 @@
+# The air pushes on both sides, so only the water's extra pressure counts for the force
+
+The total pressure on the water side is the **atmosphere plus the water column**, <InlineMath math="p_0+\rho gh" />. The air in the pipe pushes back with <InlineMath math="p_0" />, so the **resultant force** comes from the difference only, <InlineMath math="\rho gh" />, times the area.
+
+<Chart
+  title={<>Pressure on Each Side of the Hatch</>}
+  bars="apart"
+  categories={["Water side", "Pipe side"]}
+  series={[
+    { label: "Pressure", mark: "bar", values: [300, 100] },
+  ]}
+  valueLabel="Pressure (kPa)"
+  description={<>The water side is at <InlineMath math="300\text{ kPa}" /> and the pipe side at <InlineMath math="100\text{ kPa}" />. Only the difference, <InlineMath math="200\text{ kPa}" />, pushes the hatch.</>}
+/>
+
+<BlockMath math="p=1.0\times10^{5}+1000(10)(20)=3.0\times10^{5}\text{ Pa}" />
+
+<BlockMath math="F=(p-p_0)A=(2.0\times10^{5})(0.50)=1.0\times10^{5}\text{ N}" />
+
+The water side is at <InlineMath math="3.0\times10^{5}\text{ Pa}" />, three times atmospheric pressure. The air cancels <InlineMath math="1.0\times10^{5}\text{ Pa}" /> of it, leaving <InlineMath math="2.0\times10^{5}\text{ Pa}" /> across <InlineMath math="0.50\text{ m}^2" />, a resultant force of <InlineMath math="1.0\times10^{5}\text{ N}" /> towards the pipe.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.0\times10^{5}\text{ Pa}" /> is only the **water's own pressure**, but the total pressure on the water side also includes the atmosphere above the reservoir.
+- <InlineMath math="1.5\times10^{5}\text{ N}" /> multiplies the **total pressure** by the area, forgetting the air pushing back from the pipe.
+- <InlineMath math="6.0\times10^{5}\text{ N}" /> **divides the pressure by the area** instead of multiplying.

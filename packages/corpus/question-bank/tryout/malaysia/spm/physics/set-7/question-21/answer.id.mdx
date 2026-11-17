@@ -1,0 +1,26 @@
+# Uraikan searah gerak, seimbangkan, lalu biarkan kelebihan baru mempercepat
+
+Hanya **komponen searah gerak** yang menarik kapal ke depan, sedangkan komponen samping kedua tali saling meniadakan. Pada kecepatan tetap, tarikan ke depan **sama dengan hambatan air**. Saat tali lebih dekat ke sumbu, tarikan ke depan bertambah, hambatannya belum berubah, dan **kelebihan** itu memberi percepatan, dengan massa dalam kilogram.
+
+<Chart
+  title={<>Tarikan ke Depan Kapal Tunda dan Hambatan Air</>}
+  bars="apart"
+  categories={["Kapal tunda pada 40°", "Kapal tunda pada 20°", "Hambatan air"]}
+  series={[
+    { label: "Gaya", mark: "bar", values: [9.2, 11.3, 9.2] },
+  ]}
+  valueLabel="Gaya (kN)"
+  description={<>Pada <InlineMath math="40°" /> kapal tunda menarik ke depan dengan <InlineMath math="9{,}2\text{ kN}" />, sama dengan hambatan air. Pada <InlineMath math="20°" /> tali yang sama menarik dengan <InlineMath math="11{,}3\text{ kN}" />, menyisakan <InlineMath math="2{,}1\text{ kN}" /> untuk mempercepat kapal.</>}
+/>
+
+<BlockMath math="R=2(6{,}0)\cos40°=12(0{,}766)\approx9{,}2\text{ kN}" />
+
+<BlockMath math="F'=2(6{,}0)\cos20°=12(0{,}940)\approx11{,}3\text{ kN},\qquad a=\frac{(11{,}3-9{,}2)\times10^{3}}{5{,}0\times10^{5}}\approx4{,}2\times10^{-3}\text{ m s}^{-2}" />
+
+Hambatannya sekitar <InlineMath math="9{,}2\text{ kN}" />. Pada <InlineMath math="20°" /> kapal tunda menarik ke depan dengan sekitar <InlineMath math="11{,}3\text{ kN}" />, jadi sekitar <InlineMath math="2{,}1\text{ kN}" /> tidak seimbang, dan kapal <InlineMath math="5{,}0\times10^{5}\text{ kg}" /> mulai dipercepat sekitar <InlineMath math="4{,}2\times10^{-3}\text{ m s}^{-2}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="12\text{ kN}" /> **menjumlahkan gaya tali seolah-olah sejajar**, jadi sudutnya terlewat dan tarikan tampak tidak berubah.
+- <InlineMath math="2{,}3\times10^{-2}\text{ m s}^{-2}" /> membagi **seluruh tarikan baru** dengan massa, lupa bahwa hambatan air masih bekerja.
+- <InlineMath math="4{,}2\text{ m s}^{-2}" /> memakai massa **<InlineMath math="500" /> alih-alih <InlineMath math="5{,}0\times10^{5}\text{ kg}" />**, lupa bahwa satu ton adalah <InlineMath math="1000\text{ kg}" />.
