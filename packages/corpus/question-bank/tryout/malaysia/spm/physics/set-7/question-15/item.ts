@@ -10,22 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$500\\text{ m}$$, the FM station" },
-        { correct: true, label: "$$500\\text{ m}$$, the AM station" },
-        {
-          correct: false,
-          label: "$$2.0\\times10^{-3}\\text{ m}$$, the AM station",
-        },
-        { correct: false, label: "$$3.0\\text{ m}$$, the AM station" },
+        { correct: false, label: "I and III only" },
+        { correct: true, label: "I, III and IV only" },
+        { correct: false, label: "I, II and III only" },
+        { correct: false, label: "II, III and IV only" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$500\\text{ m}$$, stesen FM" },
-        { correct: true, label: "$$500\\text{ m}$$, stesen AM" },
-        { correct: false, label: "$$2.0\\times10^{-3}\\text{ m}$$, stesen AM" },
-        { correct: false, label: "$$3.0\\text{ m}$$, stesen AM" },
+        { correct: false, label: "I dan III sahaja" },
+        { correct: true, label: "I, III dan IV sahaja" },
+        { correct: false, label: "I, II dan III sahaja" },
+        { correct: false, label: "II, III dan IV sahaja" },
       ],
     },
   },
