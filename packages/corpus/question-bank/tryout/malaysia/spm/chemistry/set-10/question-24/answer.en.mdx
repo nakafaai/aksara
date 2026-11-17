@@ -1,0 +1,26 @@
+# Split the ore into its oxide and its silica, then follow each into its own reaction and add up the gas
+
+The ore holds <InlineMath math="0.80\times1.60=1.28" /> tonnes of iron(III) oxide, <InlineMath math="1.28\times10^6\div160=8000\text{ mol}" />, and **each oxide gives two iron**, <InlineMath math="16\,000\text{ mol}" />, <InlineMath math="896\text{ kg}" />. The silica is <InlineMath math="0.15\times1.60=0.24" /> tonnes, <InlineMath math="0.24\times10^6\div60=4000\text{ mol}" />, and each silica takes one limestone, <InlineMath math="4000\text{ mol}" />, <InlineMath math="400\text{ kg}" />. **Carbon dioxide comes from both reactions**, three per oxide, <InlineMath math="24\,000\text{ mol}" />, and one per limestone, <InlineMath math="4000\text{ mol}" />, so <InlineMath math="28\,000\times24=6.72\times10^5\text{ dm}^3" />.
+
+<Chart
+  title={<>Carbon dioxide from each reaction</>}
+  description={<>Reducing the oxide gives <InlineMath math="24\,000\text{ mol}" /> of carbon dioxide and decomposing the limestone <InlineMath math="4000\text{ mol}" />.</>}
+  bars="apart"
+  categories={["From reduction", "From limestone"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [24000, 4000] },
+  ]}
+  valueLabel="Amount (mol)"
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{Fe})&=2\times\tfrac{0.80\times1.60\times10^6}{160}=16\,000\text{ mol},\quad m=896\text{ kg}\\
+m(\text{CaCO}_3)&=\tfrac{0.15\times1.60\times10^6}{60}\times100=4.00\times10^5\text{ g}\\
+V(\text{CO}_2)&=(3\times8000+4000)\times24=6.72\times10^5\text{ dm}^3
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="1120\text{ kg}" /> treats all the ore as iron(III) oxide, but only <InlineMath math="80\%" /> of it is.
+- <InlineMath math="448\text{ kg}" /> gives one iron per oxide, but **<InlineMath math="\text{Fe}_2\text{O}_3" /> holds two iron atoms**.
+- <InlineMath math="5.76\times10^5\text{ dm}^3" /> counts only the carbon dioxide from the reduction and misses the limestone's.
