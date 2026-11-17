@@ -17,6 +17,7 @@ import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose
 import { findDollarMathIssues } from "#nakafa-content/math/dollar";
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
 import { findPlainNumbers } from "#nakafa-content/math/number";
+import { findPlainMathText } from "#nakafa-content/math/plain";
 import { findMathStackIssues } from "#nakafa-content/math/stack";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { findDroppedSpaceIssues } from "#nakafa-content/space/check";
@@ -54,6 +55,7 @@ export function findDocumentIssues(
     ...findHighlightVariantIssues(source, tree),
     ...findDroppedSpaceIssues(source, tree),
     ...findPlainNumbers(source, tree),
+    ...findPlainMathText(source, tree),
     ...findStringVisualText(source, tree),
     ...findDollarMathIssues(source, tree),
     ...findClockMathIssues(locale, source, tree),
