@@ -5,7 +5,7 @@ export const metadata = {
     "Viruses can cause disease, influence microbial populations, or serve as biotechnology tools, depending on their relationship with the host.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Viruses and Their Effects",
 };
 
@@ -77,6 +77,30 @@ Viruses cause diseases in humans, animals, and plants. Human examples include fl
 
 To understand a viral disease, check its **transmission route and the tissue it affects**. Dengue viruses are transmitted mainly through bites from infected Aedes mosquitoes. Respiratory viruses can spread when someone inhales respiratory particles released by an infected person. Plant viruses can move through insect carriers, plant wounds, or infected planting material.
 
+The route decides which measure works. Switch the route, then try masks and handwashing.
+
+<EpidemicSpreadLab
+  title={<>The Route Decides Which Measure Works</>}
+  description={<>Choose whether the virus spreads through the air or by touch, then set masks and handwashing.</>}
+  measures={["masks", "washing"]}
+  routes={["air", "touch"]}
+  labels={{
+    chooseRoute: "Choose a route",
+    routes: { air: <>Through the air</>, touch: <>By touch</> },
+    masks: "People wearing masks",
+    washing: "People washing hands",
+    reproduction: <>Each case infects</>,
+    peak: <>Most ill at once</>,
+    susceptible: <>Still susceptible</>,
+    infected: <>Infected now</>,
+    recovered: <>Recovered</>,
+    immune: <>Immune from a vaccine</>,
+    viewLabel: "Town square with people walking and a graph of the outbreak",
+  }}
+/>
+
+Through the air, masks bring the number of people each case infects from <InlineMath math="3" /> down to <InlineMath math="0.75" /> when everyone wears one, while handwashing changes nothing. By touch, handwashing halves the number to <InlineMath math="1.5" />, while masks make no difference. So name the route first, then choose the measure.
+
 ### The Transmission Route Guides Prevention
 
 Respiratory particles, mosquito bites, and specific body fluids are different transmission routes. Choosing a preventive measure requires **the route, the target cells, and the conditions** that support transmission, because a measure that blocks one route leaves the other routes open.
@@ -138,6 +162,24 @@ Rotate this viral vector. Its protein shell, the part that already knows how to 
     removed: <>disease genes removed</>,
   }}
 />
+
+Vaccines are one controlled use of viruses. A vaccine made from a weakened or inactivated virus, or from a part of one such as the spike protein, trains the body without causing the disease.
+
+<AntibodyNeutralizeLab
+  title={<>Antibodies Build Up after Vaccination</>}
+  description={<>Slide the days after the first dose, then press play to see whether virions can still dock.</>}
+  mode="days"
+  labels={{
+    day: "Days after the dose",
+    level: <>Antibody level</>,
+    covered: <>Spikes covered</>,
+    blocked: <>Virions blocked</>,
+    chance: <>Chance a virion is blocked</>,
+    viewLabel: "SARS-CoV-2 virions approaching ACE2 receptors on a cell surface, with antibodies on their spikes",
+  }}
+/>
+
+In the first week there are hardly any antibodies, so virions can still dock. On day <InlineMath math="7" /> this model gives each virion about a <InlineMath math="41\%" /> chance of being blocked. Over the second week the level rises, and by about day <InlineMath math="14" /> nearly every virion is blocked. That is why protection starts some time after vaccination, not on the same day.
 
 ## How to Assess a Virus Effect
 

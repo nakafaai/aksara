@@ -5,7 +5,7 @@ export const metadata = {
     "Viren nutzen Wirtszellen zur Vermehrung. Bei Bakteriophagen erzeugt der lytische Zyklus Virionen. Bei der Lysogenie bleibt das Phagengenom im Bakterium erhalten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-04",
+  dateModified: "2026-11-13",
   subject: "Viren und ihre Rolle",
 };
 
@@ -66,6 +66,25 @@ Der lytische und der lysogene Zyklus gelten für Bakteriophagen. Tierische Viren
     ],
   }}
 />
+
+Jeder lytische Zyklus setzt viele neue Virionen frei. In einer Bevölkerung läuft dieselbe Vermehrung von Mensch zu Mensch ab.
+
+<EpidemicSpreadLab
+  title={<>Aus einem Fall wird ein Ausbruch</>}
+  description={<>Menschen spazieren über einen Marktplatz. Drück auf Abspielen und sieh, wie sich eine Infektion ausbreitet, wenn niemand etwas unternimmt.</>}
+  measures={[]}
+  labels={{
+    reproduction: <>Ein Fall steckt an</>,
+    peak: <>Höchstens gleichzeitig krank</>,
+    susceptible: <>Noch empfänglich</>,
+    infected: <>Gerade angesteckt</>,
+    recovered: <>Genesen</>,
+    immune: <>Durch Impfung immun</>,
+    viewLabel: "Marktplatz mit spazierenden Menschen und einer Kurve des Ausbruchs",
+  }}
+/>
+
+In diesem Modell steckt jeder Fall im Mittel <InlineMath math="3" /> weitere Menschen an und bleibt <InlineMath math="7" /> Tage ansteckend. Die Fälle steigen anfangs schnell, erreichen ihren Höhepunkt, wenn etwa <InlineMath math="30\%" /> der Stadt gleichzeitig krank sind, und der Ausbruch endet, nachdem sich etwa <InlineMath math="94\%" /> angesteckt haben. Ein Virus braucht Wirte, um sich zu vermehren, daher wird die Ausbreitung langsamer, wenn kaum noch nicht immune Menschen übrig sind.
 
 ## Der lytische Zyklus beginnt mit dem Andocken
 
@@ -155,6 +174,25 @@ Dreh diesen Bakteriophagen genau im Moment des Andockens. Seine Schwanzfasern ha
     genome: <>injiziertes Genom</>,
   }}
 />
+
+Das Kopieren des Genoms beruht auf Basenpaarung. Bei einem DNA-Phagen öffnen sich die beiden Stränge, und jede Base bekommt ihren Partner: A zu T, G zu C.
+
+<DnaHelixLab
+  title={<>Ein Virusgenom wird Base für Base kopiert</>}
+  description={<>Ein Beispielstück DNA, <InlineMath math="27" /> Basenpaare lang. Verschieb das Kopieren oder drück auf Abspielen und sieh, wie neue Nukleotide sich an beide alten Stränge lagern.</>}
+  copy
+  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  labels={{
+    copy: "Fortschritt des Kopierens",
+    length: <>Basenpaare</>,
+    span: <>Länge</>,
+    copied: <>Neu gepaarte Basen</>,
+    turns: <>Windungen der Helix</>,
+    viewLabel: "DNA-Helix, die sich öffnet und kopiert wird",
+  }}
+/>
+
+Jeder neue Strang paart sich mit einem alten, deshalb gleichen beide Kopien genau dem Original. Dieses Stück aus <InlineMath math="27" /> Basenpaaren ist nur <InlineMath math="27 \times 0{,}34\text{ nm} \approx 9{,}2\text{ nm}" /> lang. Das Genom des Phagen Lambda hat <InlineMath math="48{.}502" /> Basenpaare, und die Wirtszelle liefert die Nukleotide und die Energie, um alle zu kopieren.
 
 ## Ein Prophage kann im Wirtsgenom verbleiben
 

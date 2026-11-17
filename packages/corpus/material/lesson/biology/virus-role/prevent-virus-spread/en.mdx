@@ -4,7 +4,7 @@ export const metadata = {
     "Respiratory, contact, body-fluid, food-and-water, and mosquito-borne transmission routes require different controls. Vaccination and antiviral treatment act at other stages.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Viruses and Their Role",
 };
 
@@ -72,6 +72,28 @@ Here's why layering measures matters. Call <InlineMath math="R" /> the average n
 
 Dengue viruses spread mainly through [bites from Aedes mosquitoes](https://www.cdc.gov/dengue/prevention/index.html), so prevention focuses on avoiding bites and controlling mosquitoes around homes. Prevention for respiratory viruses instead addresses particles released into shared air and close-range exposure.
 
+Each measure cuts a different link in the chain. Combine them in the town square and watch the outbreak shrink.
+
+<EpidemicSpreadLab
+  title={<>Measures Shrink an Outbreak</>}
+  description={<>Set the share of people who wear masks, who are vaccinated, and who stay home.</>}
+  measures={["masks", "vaccinated", "distancing"]}
+  labels={{
+    masks: "People wearing masks",
+    vaccinated: "People vaccinated",
+    distancing: "People staying home",
+    reproduction: <>Each case infects</>,
+    peak: <>Most ill at once</>,
+    susceptible: <>Still susceptible</>,
+    infected: <>Infected now</>,
+    recovered: <>Recovered</>,
+    immune: <>Immune from a vaccine</>,
+    viewLabel: "Town square with people walking and a graph of the outbreak",
+  }}
+/>
+
+Without measures each case infects <InlineMath math="3" /> people. In this model a mask halves the risk for its wearer, so if everyone wears one the number drops to <InlineMath math="3 \times 0.5 \times 0.5 = 0.75" />. Once that number is below <InlineMath math="1" />, each case infects fewer than one other person and the outbreak dies out. Real values depend on the virus and the product, but the logic stays the same.
+
 ### How Soap Removes Dirt and Microbes
 
 Hand hygiene removes dirt, oils, and microbes that may be too small to see. A soap molecule has one part that mixes well with water and another that binds to oil. Rubbing loosens the material, and **rinsing carries it away from the skin**.
@@ -127,6 +149,25 @@ The diagram below places each measure at the step it affects. Masks, ventilation
     C --> F["Vaccination"]
     D --> G["Antiviral medicine"]`}
 />
+
+A vaccine trains the immune system to make antibodies before the real virus arrives.
+
+<AntibodyNeutralizeLab
+  title={<>Antibodies Stop Virions from Docking</>}
+  description={<>Compare a person without and with antibodies from a vaccine. Press play to send the virions toward the cell.</>}
+  mode="vaccine"
+  labels={{
+    choose: "Choose a person",
+    people: { unvaccinated: <>Not vaccinated</>, vaccinated: <>Vaccinated</> },
+    level: <>Antibody level</>,
+    covered: <>Spikes covered</>,
+    blocked: <>Virions blocked</>,
+    chance: <>Chance a virion is blocked</>,
+    viewLabel: "SARS-CoV-2 virions approaching ACE2 receptors on a cell surface, with antibodies on their spikes",
+  }}
+/>
+
+Without antibodies every virion reaches the receptors and docks. With an antibody level of <InlineMath math="12\text{ nM}" />, about <InlineMath math="\tfrac{12}{12+1} \approx 92\%" /> of the spikes are covered, so almost every virion is blocked. In this model a virion can dock only if at least a quarter of its <InlineMath math="24" /> spikes are still free.
 
 ## The Transmission Route Determines the Action
 

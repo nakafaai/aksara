@@ -4,7 +4,7 @@ export const metadata = {
     "Perubahan iklim membutuhkan kerja sama global melalui target suhu, pemantauan data, perjanjian internasional, dan tindakan bersama.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Perubahan Iklim",
 };
 
@@ -81,6 +81,25 @@ Target suhu menjadi ukuran bersama begitu kamu mengubahnya menjadi anggaran. IPC
   }}
 />
 
+Target suhu penting bagi setiap pantai. Desa di bawah menunjukkan arti setiap jalur emisi dalam penilaian terbaru IPCC bagi muka laut pada tahun 2100.
+
+<SeaLevelRiseLab
+  title={<>Muka Laut 2100 Bergantung pada Jalur Emisi</>}
+  description={<>Pilih jalur emisi. Laut naik ke nilai tengahnya pada 2100, dibandingkan dengan rata-rata 1995 sampai 2014.</>}
+  mode="scenario"
+  labels={{
+    choose: "Pilih jalur emisi",
+    scenarios: { ssp126: <InlineMath math="\text{SSP1-2.6}" />, ssp245: <InlineMath math="\text{SSP2-4.5}" />, ssp585: <InlineMath math="\text{SSP5-8.5}" /> },
+    level: <>Kenaikan muka laut pada 2100</>,
+    warming: <>Pemanasan 2081 sampai 2100</>,
+    range: <>Rentang kemungkinan</>,
+    retreat: <>Garis pantai mundur</>,
+    viewLabel: "Desa pesisir di pantai landai dengan papan pasang surut",
+  }}
+/>
+
+Pada <InlineMath math="\text{SSP1-2.6}" />, laut naik sekitar <InlineMath math="0{,}44\text{ m}" /> pada 2100 dan pemanasan tertahan di sekitar <InlineMath math="1{,}8^\circ\text{C}" />. Pada <InlineMath math="\text{SSP5-8.5}" />, kenaikannya sekitar <InlineMath math="0{,}77\text{ m}" /> dengan pemanasan sekitar <InlineMath math="4{,}4^\circ\text{C}" />. Di pantai ini, setiap kenaikan <InlineMath math="1\text{ m}" /> menggeser garis pantai <InlineMath math="20\text{ m}" /> ke darat. Jalur mana yang terjadi ditentukan oleh seberapa besar **semua negara** memangkas emisi bersama-sama.
+
 ## Peran Perjanjian Negara dan Badan Ilmiah
 
 Kerja sama global melibatkan banyak jenis lembaga. Ada yang **menilai bukti ilmiah**, ada yang menyusun kesepakatan, ada yang menjalankan program, dan ada yang mengukur kemajuan.
@@ -106,6 +125,25 @@ Setelah menyerahkan NDC, negara melaporkan tindakan, kemajuan, dan dukungan mela
 | Dukungan adaptasi | Menyediakan pendanaan, teknologi, atau kapasitas bagi wilayah rentan | Risiko iklim dan sumber daya untuk menguranginya tersebar tidak merata |
 
 > Target menyatakan hasil yang ingin dicapai, rencana nasional memuat tindakan setiap negara, laporan mencatat kemajuan, dan global stocktake menilai hasil gabungan dari tindakan semua negara.
+
+Potongan emisi satu negara saja tidak cukup, karena <InlineMath math="\mathrm{CO_2}" /> bercampur di seluruh atmosfer. Coba buktikan dengan model bak mandi berikut.
+
+<CarbonBudgetLab
+  title={<>Emisi Semua Wilayah Mengisi Bak yang Sama</>}
+  description={<>Emisi mengalir dari keran, laut dan daratan menyerap sebagian lewat saluran, dan tinggi air adalah <InlineMath math="\mathrm{CO_2}" /> di udara. Pilih wilayah yang memangkas <InlineMath math="\mathrm{CO_2}" /> fosilnya sampai nol pada 2050.</>}
+  mode="cooperate"
+  labels={{
+    chooseRegions: "Pilih wilayah",
+    regions: { china: <>Tiongkok</>, usa: <>AS</>, india: <>India</>, europe: <>Uni Eropa</>, rest: <>Negara lain</> },
+    level: <><InlineMath math="\mathrm{CO_2}" /> pada 2100</>,
+    warming: <>Pemanasan pada 2100</>,
+    emissions: <><InlineMath math="\mathrm{CO_2}" /> yang dilepas pada 2050 per tahun</>,
+    peak: <><InlineMath math="\mathrm{CO_2}" /> tertinggi</>,
+    viewLabel: "Bak mandi atmosfer dengan keran emisi, saluran penyerapan, dan grafik karbon dioksida",
+  }}
+/>
+
+Kalau tidak ada wilayah yang ikut, <InlineMath math="\mathrm{CO_2}" /> dalam model ini terus naik sampai sekitar <InlineMath math="521\text{ ppm}" /> pada 2100. Tiongkok sendiri melepas sekitar <InlineMath math="31\%" /> <InlineMath math="\mathrm{CO_2}" /> fosil dunia, tetapi kalau hanya Tiongkok yang memangkas, <InlineMath math="\mathrm{CO_2}" /> masih naik sampai sekitar <InlineMath math="467\text{ ppm}" />. Kalau Tiongkok, AS, India, dan Uni Eropa ikut bersama, <InlineMath math="\mathrm{CO_2}" /> memuncak di sekitar <InlineMath math="445\text{ ppm}" /> lalu turun. Kalau semua wilayah ikut, <InlineMath math="\mathrm{CO_2}" /> turun ke sekitar <InlineMath math="348\text{ ppm}" /> pada 2100. Garis tipis menunjukkan jalur tanpa potongan apa pun.
 
 ## Kesepakatan Global Memengaruhi Keputusan Lokal
 
