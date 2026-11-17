@@ -1,25 +1,26 @@
-# Prüfe zuerst, welcher Stoff aufgebraucht wird, dann die Geschwindigkeiten
+# Bestimme in jedem Versuch, was ausgeht, bevor du ein Volumen abliest, und teile dann durch die Zeit dieses Versuchs
 
-<InlineMath math="\text{CaCO}_3 + 2\text{HCl} \rightarrow \text{CaCl}_2 + \text{H}_2\text{O} + \text{CO}_2" />. **Das Endvolumen hängt vom begrenzenden Edukt ab**, die Anfangsgeschwindigkeit von Oberfläche und Konzentration.
+In Versuch I sind es <InlineMath math="0{,}240\div24=0{,}0100\text{ mol}" /> Magnesium und <InlineMath math="0{,}0100\text{ mol}" /> Säure, doch **jedes Magnesium nimmt zwei Säure**, also geht die Säure aus, es entstehen <InlineMath math="0{,}00500\text{ mol}" /> Wasserstoff, <InlineMath math="120\text{ cm}^3" />. In Versuch II sind es <InlineMath math="0{,}00500\text{ mol}" /> Magnesium und <InlineMath math="0{,}0200\text{ mol}" /> Säure, mehr als genug, also **geht jetzt das Magnesium aus**, wieder <InlineMath math="0{,}00500\text{ mol}" />, <InlineMath math="120\text{ cm}^3" />. Das entsteht in <InlineMath math="30\text{ s}" />, <InlineMath math="120\div30=4{,}0\text{ cm}^3\text{ s}^{-1}" />.
 
 <Chart
-  title={<>Aufgefangenes Kohlenstoffdioxid in drei Versuchen</>}
-  categories={["Sekunde 0", "Sekunde 30", "Sekunde 60", "Sekunde 90", "Sekunde 120", "Sekunde 150", "Sekunde 180", "Sekunde 240"]}
+  title={<>Endvolumen an Wasserstoff</>}
+  description={<>Beide Versuche enden bei <InlineMath math="120\text{ cm}^3" />, der erste, wenn die Säure ausgeht, der zweite, wenn das Magnesium ausgeht.</>}
+  bars="apart"
+  categories={["Versuch I", "Versuch II"]}
   series={[
-    { label: "Versuch I", mark: "line", values: [0, 70, 125, 165, 195, 215, 228, 240] },
-    { label: "Versuch II", mark: "line", values: [0, 150, 215, 235, 240, 240, 240, 240] },
-    { label: "Versuch III", mark: "line", values: [0, 25, 42, 52, 57, 59, 60, 60] },
+    { label: "Volumen", mark: "bar", values: [120, 120] },
   ]}
-  valueLabel="Volumen CO₂ (cm³)"
-  description={<>Volumen bei <InlineMath math="0" /> bis <InlineMath math="240\text{ s}" />. Versuch I: <InlineMath math="0" />, <InlineMath math="70" />, <InlineMath math="125" />, <InlineMath math="165" />, <InlineMath math="195" />, <InlineMath math="215" />, <InlineMath math="228" />, <InlineMath math="240" />. Versuch II: <InlineMath math="0" />, <InlineMath math="150" />, <InlineMath math="215" />, <InlineMath math="235" />, <InlineMath math="240" />, <InlineMath math="240" />, <InlineMath math="240" />, <InlineMath math="240" />. Versuch III: <InlineMath math="0" />, <InlineMath math="25" />, <InlineMath math="42" />, <InlineMath math="52" />, <InlineMath math="57" />, <InlineMath math="59" />, <InlineMath math="60" />, <InlineMath math="60\text{ cm}^3" />.</>}
+  valueLabel="Volumen (cm³)"
 />
 
-- Calciumcarbonat: <InlineMath math="\dfrac{1{,}00}{100} = 0{,}010\text{ mol}" />, das <InlineMath math="0{,}020\text{ mol}" /> HCl braucht.
-- Die Versuche I und II haben <InlineMath math="1{,}0 \times \dfrac{50}{1000} = 0{,}050\text{ mol}" /> HCl im Überschuss, also liefern beide <InlineMath math="0{,}010\text{ mol}" /> <InlineMath math="\text{CO}_2" />, <InlineMath math="240\text{ cm}^3" />.
-- Versuch III hat nur <InlineMath math="0{,}10 \times \dfrac{50}{1000} = 0{,}0050\text{ mol}" /> HCl. Die Säure ist zuerst verbraucht und liefert <InlineMath math="0{,}0025\text{ mol}" /> <InlineMath math="\text{CO}_2" />, <InlineMath math="60\text{ cm}^3" />.
+<BlockMath math="\begin{aligned}
+V_{\text{I}}&=\tfrac{1}{2}\times0{,}0100\times24{.}000=120\text{ cm}^3\\
+V_{\text{II}}&=0{,}00500\times24{.}000=120\text{ cm}^3\\
+\bar r&=\tfrac{120}{30}=4{,}0\text{ cm}^3\text{ s}^{-1}
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="240\text{ cm}^3" /> für alle drei nimmt an, **die Säure sei immer im Überschuss**, was in Versuch III nicht stimmt.
-- <InlineMath math="120\text{ cm}^3" /> in Versuch III nimmt ein Verhältnis von Säure zu Kohlenstoffdioxid von <InlineMath math="1 : 1" /> statt <InlineMath math="2 : 1" />.
-- <InlineMath math="480\text{ cm}^3" /> in Versuch II lässt Pulver mehr Gas liefern, aber die Oberfläche ändert nur die Geschwindigkeit.
+- <InlineMath math="240\text{ cm}^3" /> lässt in Versuch I alles Magnesium reagieren, doch <InlineMath math="0{,}0100\text{ mol}" /> Säure lösen nur die Hälfte davon.
+- <InlineMath math="240\text{ cm}^3" /> in Versuch II lässt die Säure entscheiden, doch **nur <InlineMath math="0{,}00500\text{ mol}" /> Magnesium sind da**.
+- <InlineMath math="2{,}0\text{ cm}^3\text{ s}^{-1}" /> teilt durch die <InlineMath math="60\text{ s}" /> des ersten Versuchs, doch Versuch II dauerte <InlineMath math="30\text{ s}" />.

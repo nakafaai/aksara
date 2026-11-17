@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "X, Y, Z. X is sodium." },
-        { correct: false, label: "Z, Y, X. X is aluminium." },
-        { correct: false, label: "Y, Z, X. X is phosphorus." },
-        { correct: true, label: "Z, Y, X. X is sulfur." },
+        {
+          correct: false,
+          label:
+            "$$240\\text{ cm}^3$$, $$240\\text{ cm}^3$$, $$1.80\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$480\\text{ cm}^3$$, $$360\\text{ cm}^3$$, $$1.97\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$240\\text{ cm}^3$$, $$360\\text{ cm}^3$$, $$2.14\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$240\\text{ cm}^3$$, $$360\\text{ cm}^3$$, $$1.97\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "X, Y, Z. X ialah natrium." },
-        { correct: false, label: "Z, Y, X. X ialah aluminium." },
-        { correct: false, label: "Y, Z, X. X ialah fosforus." },
-        { correct: true, label: "Z, Y, X. X ialah sulfur." },
+        {
+          correct: false,
+          label:
+            "$$240\\text{ cm}^3$$, $$240\\text{ cm}^3$$, $$1.80\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$480\\text{ cm}^3$$, $$360\\text{ cm}^3$$, $$1.97\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$240\\text{ cm}^3$$, $$360\\text{ cm}^3$$, $$2.14\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$240\\text{ cm}^3$$, $$360\\text{ cm}^3$$, $$1.97\\text{ g}$$",
+        },
       ],
     },
   },
