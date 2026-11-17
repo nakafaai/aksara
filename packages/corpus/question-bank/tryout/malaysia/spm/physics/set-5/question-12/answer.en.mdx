@@ -1,0 +1,24 @@
+# Add the heat for all three stages, then divide by the freezer’s rate
+
+Cooling the water to <InlineMath math="0^\circ\text{C}" /> removes <InlineMath math="0.50 \times 4200 \times 20 = 42\,000" /> J, freezing it removes <InlineMath math="0.50 \times 3.34 \times 10^5 = 167\,000" /> J, and cooling the ice removes <InlineMath math="0.50 \times 2100 \times 10 = 10\,500" /> J, using the **specific heat capacity of ice**.
+
+<Chart
+  title={<>Freezing Takes Most of the Heat</>}
+  bars="apart"
+  categories={["Cool the water", "Freeze", "Cool the ice"]}
+  series={[
+    { label: "Heat removed (kJ)", mark: "bar", values: [42, 167, 10.5] },
+  ]}
+  valueLabel="Heat removed (kJ)"
+  description={<>Cooling the water to zero and cooling the ice below zero together need about fifty kilojoules, while the change of state alone needs about one hundred sixty-seven.</>}
+/>
+
+The total is <InlineMath math="219\,500" /> J, so at <InlineMath math="150" /> W it takes <InlineMath math="1463" /> s, about <InlineMath math="24" /> minutes. Freezing alone takes <InlineMath math="167\,000 \div 219\,500 = 76\%" /> of that time, because the **change of state** needs by far the most heat.
+
+**With the leak**: the bottle loses only <InlineMath math="150 - 30 = 120" /> W net, so the job takes <InlineMath math="219\,500 \div 120 = 1830" /> s, about <InlineMath math="30" /> minutes. Every stage slows by the same factor, so freezing is **still** <InlineMath math="76\%" /> of the time.
+
+# Why the other options are wrong
+
+- About <InlineMath math="29" /> minutes stops at <InlineMath math="0^\circ\text{C}" /> ice and forgets to **cool the ice** to <InlineMath math="-10^\circ\text{C}" />.
+- About <InlineMath math="32" /> minutes cools the ice with the specific heat capacity of **water**, which is twice that of ice.
+- About <InlineMath math="7.3" /> minutes leaves out the **latent heat**, the largest part of the job.

@@ -1,0 +1,26 @@
+# Tukar aliran kepada kilogram sesaat, kemudian kongsikan kuasa antaranya
+
+<InlineMath math="4.0" /> liter seminit ialah <InlineMath math="4.0 \div 60 = 0.067" /> kg setiap saat. Pemanas memberi air itu <InlineMath math="9000" /> J setiap saat, kenaikan <InlineMath math="9000 \div (0.067 \times 4200) = 32^\circ\text{C}" />, jadi ia keluar pada <InlineMath math="57^\circ\text{C}" />.
+
+<Mermaid
+  title={<>Kuasa Dikongsi oleh Air yang Mengalir</>}
+  description={<>Setiap saat pemanas hanya memanaskan air yang melaluinya dalam saat itu, jadi kenaikan suhu bergantung pada kadar aliran.</>}
+  chart={`
+    flowchart LR
+      N0["4.0 L min⁻¹ = 0.067 kg s⁻¹"] --> N1["Kenaikan 9000 ÷ (0.067 × 4200) = 32 °C"]
+      N1 --> N2["Keluar pada 25 + 32 = 57 °C"]
+      N3["Bagi 40 °C kenaikannya 15 °C"] --> N4["Aliran 9000 ÷ (4200 × 15) = 0.143 kg s⁻¹ = 8.6 L min⁻¹"]
+  `}
+/>
+
+Bagi <InlineMath math="40^\circ\text{C}" /> kenaikannya hanya <InlineMath math="15^\circ\text{C}" />, jadi **lebih banyak air** mesti berkongsi kuasa yang sama: <InlineMath math="9000 \div (4200 \times 15) = 0.143" /> kg setiap saat, iaitu <InlineMath math="8.6" /> liter seminit.
+
+**Mencampur untuk pancuran**: setiap minit air panas membebaskan <InlineMath math="4.0 \times 4200 \times (57.1 - 40)" /> J, dan air sejuk menyerapnya dengan menjadi lebih panas <InlineMath math="15" /> darjah, jadi aliran sejuk ialah <InlineMath math="4.0 \times 17.1 \div 15 = 4.6" /> L/min. Pancuran memberi <InlineMath math="4.0 + 4.6 = 8.6" /> L/min, sama seperti **memanaskan semuanya secara terus**.
+
+**Pada musim sejuk**: walau apa pun campurannya, <InlineMath math="9.0" /> kW pemanas kini mesti menaikkan setiap kilogram sebanyak <InlineMath math="22" /> darjah, jadi alirannya <InlineMath math="9000 \div (4200 \times 22) = 0.097" /> kg/s, kira-kira <InlineMath math="5.8" /> L/min. **Tenaga, bukan campuran**, yang menentukan jumlahnya.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="4.6\text{ L min}^{-1}" /> dan <InlineMath math="1.8\text{ L min}^{-1}" /> hanya memberi **air sejuk yang ditambah**, bukan jumlah dari kepala pancuran.
+- Masih <InlineMath math="8.6\text{ L min}^{-1}" /> mengabaikan bahawa air yang lebih sejuk memerlukan **lebih banyak tenaga** bagi setiap liter.
+- <InlineMath math="4.0\text{ L min}^{-1}" /> hanya mengekalkan aliran pemanas dan terlupa **air sejuk yang dicampur**.

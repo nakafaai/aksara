@@ -1,0 +1,29 @@
+# Den Anhänger freischneiden für die Spannung, dann bestimmt die Seilgrenze die Beschleunigung
+
+Für den Anhänger allein gilt <InlineMath math="T - 200 = 800 \times 1{,}5" />, also <InlineMath math="T = 1400" /> N. Das Seil muss auch den **Widerstand des Anhängers** überwinden.
+
+<Mermaid
+  title={<>Das Seil zieht nur den Anhänger</>}
+  description={<>Das Seil muss den Anhänger beschleunigen und seinen Widerstand überwinden. Der Motor muss das und mehr für beide Fahrzeuge leisten.</>}
+  chart={`
+    flowchart LR
+      N0["Anhänger: T − 200 = 800 × 1,5"] --> N1["T = 1400 N"]
+      N2["Grenze: 2000 − 200 = 800a"] --> N3["a max = 2,25 m s⁻²"]
+      N3 --> N4["Motor: F − 500 = 2000 × 2,25"]
+      N4 --> N5["F = 5,0 kN"]
+  `}
+/>
+
+An der Grenze gilt <InlineMath math="2000 - 200 = 800a" />, also <InlineMath math="a = 2{,}25\text{ m s}^{-2}" />. Für beide Fahrzeuge zusammen braucht der Motor <InlineMath math="2000 \times 2{,}25 + 200 + 300 = 5{,}0 \times 10^3" /> N.
+
+**Den Hang hinauf**: Das Seil muss jetzt auch die Hangabtriebskraft des Anhängers halten, <InlineMath math="800 \times 10 \times 0{,}050 = 400" /> N. Also gibt <InlineMath math="2000 = 800a + 200 + 400" /> den Wert <InlineMath math="a = 1{,}75\text{ m s}^{-2}" />. Für das ganze Gespann muss das Auto <InlineMath math="2000 \times 1{,}75 + 500 + 2000 \times 10 \times 0{,}050 = 5000" /> N liefern, **beide Hangabtriebskräfte eingeschlossen**.
+
+**Nach dem Seilriss**: Widerstand und Hangabtriebskraft des Anhängers wirken beide hangabwärts, <InlineMath math="200 + 400 = 600" /> N, er verzögert also mit <InlineMath math="600 \div 800 = 0{,}75\text{ m s}^{-2}" /> und fährt <InlineMath math="6{,}0^2 \div (2 \times 0{,}75) = 24" /> m weit, **dann rollt er zurück**.
+
+**Zurückrollen**: Der Aufstieg dauert <InlineMath math="6{,}0 \div 0{,}75 = 8{,}0" /> s. Bergab **kehrt der Widerstand seine Richtung um** und bremst jetzt das Rollen, die Nettokraft ist also <InlineMath math="400 - 200 = 200" /> N und <InlineMath math="a = 0{,}25\text{ m s}^{-2}" />. Die <InlineMath math="24" /> m zurück dauern <InlineMath math="\sqrt{2 \times 24 \div 0{,}25} = 13{,}9" /> s, insgesamt also etwa <InlineMath math="22" /> s.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}25\text{ m s}^{-2}" /> und <InlineMath math="24\text{ s}" /> lassen die **Hangabtriebskraft des Anhängers** für das Seil weg und übersehen den Widerstand am Hang.
+- Etwa <InlineMath math="16\text{ s}" /> macht die Talfahrt zum Spiegelbild der Bergfahrt, doch der Widerstand **wirkt stets gegen die Bewegung**.
+- Etwa <InlineMath math="18\text{ s}" /> lässt den Widerstand bergab weg, doch er **bremst weiter das Rollen**.

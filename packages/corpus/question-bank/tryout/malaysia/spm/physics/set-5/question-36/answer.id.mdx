@@ -1,0 +1,23 @@
+# Cari baris yang bergantung pada tepat satu gerbang, lalu uji sesedikit mungkin
+
+<InlineMath math="Y = 1" /> bila **paling sedikit dua** masukan bernilai satu: tiga baris dengan tepat dua angka satu dan baris dengan ketiganya, jadi <InlineMath math="4" /> dari <InlineMath math="8" /> baris.
+
+<Chart
+  title={<>Baris Mana yang Bergantung pada Satu Gerbang</>}
+  bars="apart"
+  categories={["000", "001", "010", "011", "100", "101", "110", "111"]}
+  series={[
+    { label: "Y saat normal", mark: "bar", values: [0, 0, 0, 1, 0, 1, 1, 1] },
+    { label: "Gerbang AND yang memberi 1", mark: "bar", values: [0, 0, 0, 1, 0, 1, 1, 3] },
+  ]}
+  valueLabel="Nilai"
+  description={<>Masukan ditulis berurutan A, B, C. Tiga baris dengan tepat dua masukan hidup masing-masing bergantung pada satu gerbang AND saja, sedangkan baris dengan ketiganya hidup ditopang ketiga gerbang dan tidak bisa mengungkap kerusakan.</>}
+/>
+
+Baris dengan ketiganya hidup tetap memberi <InlineMath math="Y = 1" /> gerbang mana pun yang mati, jadi tidak memberi petunjuk. Tiap baris dengan tepat dua angka satu bergantung pada **satu gerbang saja**. Uji dua di antaranya: sebuah <InlineMath math="0" /> menunjuk gerbang yang mati, dan dua <InlineMath math="1" /> berarti gerbang ketiga yang mati. Satu uji tidak bisa membedakan dua gerbang lainnya, jadi perlu <InlineMath math="2" /> uji.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="3" /> uji memeriksa tiap baris dua masukan, padahal hasil yang terakhir **mengikuti dari dua yang pertama**.
+- <InlineMath math="3" /> kombinasi hanya menghitung tepat dua angka satu dan melewatkan baris dengan **ketiganya** bernilai satu.
+- Satu uji dengan semua masukan satu memberi <InlineMath math="Y = 1" /> **gerbang mana pun** yang rusak, jadi tidak menemukan apa-apa.

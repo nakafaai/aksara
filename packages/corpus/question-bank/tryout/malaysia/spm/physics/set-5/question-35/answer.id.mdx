@@ -1,0 +1,24 @@
+# Arus hanya mengalir selama sumber melampaui aki dan dioda bersama
+
+Puncaknya <InlineMath math="12\sqrt{2} = 17{,}0" /> V. Arus hanya mengalir selama sumber melebihi <InlineMath math="12{,}0 + 0{,}7 = 12{,}7" /> V, yang dimulai saat <InlineMath math="17{,}0 \sin\theta = 12{,}7" />, pada <InlineMath math="\theta = 48{,}5^\circ" />.
+
+<Chart
+  title={<>Arus Hanya Mengalir di Atas Garis</>}
+  categories={["0°", "30°", "48°", "90°", "132°", "150°", "180°"]}
+  series={[
+    { label: "Tegangan sumber", mark: "line", values: [0, 8.5, 12.7, 17.0, 12.7, 8.5, 0] },
+    { label: "Aki ditambah dioda", mark: "line", values: [12.7, 12.7, 12.7, 12.7, 12.7, 12.7, 12.7] },
+  ]}
+  valueLabel="Tegangan (V)"
+  description={<>Pada setengah siklus positif, sumber melampaui aki dan dioda bersama hanya antara sekitar empat puluh delapan dan seratus tiga puluh dua derajat, dan pada setengah siklus negatif dioda menahan.</>}
+/>
+
+Secara simetris arus berhenti pada <InlineMath math="131{,}5^\circ" />, jadi mengalir selama <InlineMath math="83^\circ" /> dari siklus <InlineMath math="360^\circ" />, sekitar <InlineMath math="23\%" />. Dioda **menahan seluruh setengah negatif**.
+
+**Arus puncak**: hambatan tidak mengubah kapan arus mulai, karena saat itu belum ada arus. Pada puncak, sumber melampaui <InlineMath math="12{,}7" /> V sebesar <InlineMath math="17{,}0 - 12{,}7 = 4{,}3" /> V, yang mendorong <InlineMath math="4{,}3 \div 0{,}50 = 8{,}5" /> A melalui **hambatan total**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="46\%" /> membandingkan sudut hantar dengan **setengah siklus**, bukan satu siklus penuh.
+- Tidak pernah mengisi menyamakan **nilai efektif** dengan puncak, yang lebih besar dengan faktor akar dua.
+- <InlineMath math="25\%" /> dan <InlineMath math="9{,}9\text{ A}" /> mengabaikan **tegangan maju dioda**.

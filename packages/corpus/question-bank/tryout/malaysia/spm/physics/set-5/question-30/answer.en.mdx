@@ -1,0 +1,26 @@
+# Both currents cost volts inside the battery, so solve for the terminal voltage
+
+The headlights have <InlineMath math="12^2 \div 110 = 1.31\,\Omega" />, so at terminal voltage <InlineMath math="V" /> they draw <InlineMath math="V \div 1.31" />. The battery delivers **both currents** through its internal resistance: <InlineMath math="V = 12.6 - 0.020\,(150 + V \div 1.31)" />.
+
+<Mermaid
+  title={<>The Headlights Share the Battery’s Lost Volts</>}
+  description={<>Both currents pass through the internal resistance, and the headlight current itself depends on the terminal voltage, so the voltage must be solved for.</>}
+  chart={`
+    flowchart LR
+      N0["Headlights: R = 12² ÷ 110 = 1.31 Ω"] --> N1["Battery current: 150 + V ÷ 1.31"]
+      N1 --> N2["V = 12.6 − 0.020 × (150 + V ÷ 1.31)"]
+      N2 --> N3["1.0153 V = 9.6, so V = 9.46 V"]
+      N3 --> N4["P = 9.46² ÷ 1.31 = 68 W"]
+      N0 --> N4
+  `}
+/>
+
+That gives <InlineMath math="1.0153\,V = 9.6" />, so <InlineMath math="V = 9.46" /> V. The headlights give out <InlineMath math="9.46^2 \div 1.31 = 68" /> W, because at a fixed resistance the power goes as the **square of the voltage**.
+
+**Waste inside the battery**: the battery delivers <InlineMath math="150 + 9.46 \div 1.31 = 157" /> A. It produces <InlineMath math="12.6 \times 157 = 1980" /> W, and its internal resistance wastes <InlineMath math="157^2 \times 0.020 = 494" /> W, about <InlineMath math="25\%" />, the same fraction as the **lost volts**.
+
+# Why the other options are wrong
+
+- <InlineMath math="110\text{ W}" /> ignores the volts lost inside the battery when a **large current** flows.
+- <InlineMath math="70\text{ W}" /> and <InlineMath math="24\%" /> leave out the **headlights’ own current**, which also passes through the internal resistance.
+- <InlineMath math="87\text{ W}" /> scales the power in proportion to the voltage, but at a fixed resistance it goes as the **square**.

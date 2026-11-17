@@ -1,0 +1,29 @@
+# Each delay gives a distance, and the change in distance gives the storm's speed
+
+The light arrives at once, so the thunder's delay is its travel time, **one way only**: <InlineMath math="340 \times 6.0 = 2040" /> m, about <InlineMath math="2.0" /> km, then <InlineMath math="340 \times 4.0 = 1360" /> m.
+
+<Mermaid
+  title={<>Thunder Delays Measure the Distance</>}
+  description={<>The thunder travels one way only, from the flash to the student, so each delay times the speed of sound gives a distance.</>}
+  chart={`
+    flowchart LR
+      N0["First: 340 × 6.0 = 2040 m"] --> N2["Closer by 680 m"]
+      N1["Second: 340 × 4.0 = 1360 m"] --> N2
+      N2 --> N4["680 ÷ 180 = 3.8 m s⁻¹ towards the student"]
+      N3["Three minutes = 180 s"] --> N4
+  `}
+/>
+
+The storm came <InlineMath math="680" /> m closer in three minutes, which is <InlineMath math="180" /> s, so it approaches at <InlineMath math="680 \div 180 = 3.8" /> m/s.
+
+**When it arrives**: from the second flash the front is still <InlineMath math="1360" /> m away, so at <InlineMath math="3.8" /> m/s it arrives after <InlineMath math="1360 \div 3.78 = 360" /> s, about **six minutes**.
+
+**A one-second delay**: that means the front is <InlineMath math="340" /> m away, so it must still close <InlineMath math="1360 - 340 = 1020" /> m, which takes <InlineMath math="1020 \div 3.78 = 270" /> s, about **four and a half minutes**.
+
+**Walking away**: the front is <InlineMath math="340" /> m behind and gains at <InlineMath math="3.78 - 1.5 = 2.3" /> m/s, so it catches the student after <InlineMath math="340 \div 2.3 = 150" /> s, about **two and a half minutes**.
+
+# Why the other options are wrong
+
+- About <InlineMath math="1.5" /> minutes divides by <InlineMath math="60" /> s, taking **three minutes** as one, which makes the storm far too fast.
+- About <InlineMath math="1.0" /> minute adds the walking speed, but walking away **reduces** the closing speed.
+- About <InlineMath math="1.5" /> minutes later ignores the student’s **own walking**.

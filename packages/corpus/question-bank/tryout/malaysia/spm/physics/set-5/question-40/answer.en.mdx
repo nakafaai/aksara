@@ -1,0 +1,24 @@
+# Count the electrons, keep a quarter of them as photons, then multiply by the photon energy
+
+The current carries <InlineMath math="0.020 \div 1.6 \times 10^{-19} = 1.25 \times 10^{17}" /> electrons per second, and **one in four** makes a photon: <InlineMath math="3.1 \times 10^{16}" /> photons per second.
+
+<Chart
+  title={<>A Quarter of the Electrons Make Light</>}
+  bars="apart"
+  categories={["Electrical input", "Light output"]}
+  series={[
+    { label: "Power (mW)", mark: "bar", values: [38, 9.6] },
+  ]}
+  valueLabel="Power (mW)"
+  description={<>Each photon carries almost exactly the energy one electron gains across the LED, so with one photon for every four electrons the light is about a quarter of the electrical power.</>}
+/>
+
+Each photon carries <InlineMath math="hc \div \lambda = 6.63 \times 10^{-34} \times 3.0 \times 10^8 \div 650 \times 10^{-9} = 3.06 \times 10^{-19}" /> J, so the light power is <InlineMath math="3.1 \times 10^{16} \times 3.06 \times 10^{-19} = 9.6" /> mW, a quarter of the **electrical input** of <InlineMath math="38" /> mW.
+
+**The photodiode current**: <InlineMath math="3.1 \times 10^{16}" /> photons each second free <InlineMath math="1.56 \times 10^{16}" /> electrons, which carry <InlineMath math="1.56 \times 10^{16} \times 1.6 \times 10^{-19} = 2.5 \times 10^{-3}" /> A. Only **one electron in eight** of the LED’s current comes back out.
+
+# Why the other options are wrong
+
+- <InlineMath math="38\text{ mW}" /> and <InlineMath math="10\text{ mA}" /> assume **every electron** in the LED makes a photon.
+- <InlineMath math="5.0\text{ mA}" /> gives one electron per photon, but the photodiode needs **two photons** for each electron.
+- <InlineMath math="2.4\text{ mW}" /> applies the LED’s one-in-four yield **twice**.

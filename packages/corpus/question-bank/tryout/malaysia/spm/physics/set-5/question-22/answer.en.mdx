@@ -1,0 +1,25 @@
+# Find the stiffness from the front, then add up everything the rear springs carry
+
+The front springs carry <InlineMath math="0.60 \times 3140 = 1880" /> N, so **each front spring** takes <InlineMath math="942" /> N for <InlineMath math="0.050" /> m: <InlineMath math="k = 1.9 \times 10^4" /> N/m.
+
+<Mermaid
+  title={<>Each Spring Carries Its Own Share</>}
+  description={<>The front reading fixes the stiffness, and then the rear springs carry the rest of the passengers and all of the luggage.</>}
+  chart={`
+    flowchart LR
+      N0["Front share: 0.60 × 320 × 9.81 = 1880 N"] --> N1["Each front spring: 942 N"]
+      N1 --> N2["k = 942 ÷ 0.050 = 1.9 × 10⁴ N m⁻¹"]
+      N2 --> N3["Each rear spring, passengers: 0.40 × 3140 ÷ 2 = 628 N, sinks 3.3 cm"]
+      N2 --> N4["Each rear spring, luggage: 491 N, sinks 2.6 cm"]
+      N3 --> N5["Rear in all: 3.3 + 2.6 = 5.9 cm"]
+      N4 --> N5
+  `}
+/>
+
+Each rear spring takes <InlineMath math="628" /> N of passengers, sinking <InlineMath math="3.3" /> cm, and then <InlineMath math="491" /> N of luggage, sinking <InlineMath math="2.6" /> cm more. In all the rear has sunk <InlineMath math="5.9" /> cm, **more than the front**.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.6 \times 10^4\text{ N m}^{-1}" /> shares the passengers **equally over four springs**, but the front carries more.
+- <InlineMath math="4.6\text{ cm}" /> spreads the luggage over all four springs, but only the **rear springs** are under the boot.
+- <InlineMath math="2.6\text{ cm}" /> counts only the luggage and forgets the rear had **already sunk** under the passengers.

@@ -1,0 +1,25 @@
+# Die Steifigkeit vorn bestimmen, dann alles addieren, was die Hinterfedern tragen
+
+Die Vorderfedern tragen <InlineMath math="0{,}60 \times 3140 = 1880" /> N, **jede Vorderfeder** also <InlineMath math="942" /> N bei <InlineMath math="0{,}050" /> m: <InlineMath math="k = 1{,}9 \times 10^4" /> N/m.
+
+<Mermaid
+  title={<>Jede Feder trägt ihren eigenen Anteil</>}
+  description={<>Der vordere Wert legt die Steifigkeit fest, dann tragen die Hinterfedern den Rest der Fahrgäste und das ganze Gepäck.</>}
+  chart={`
+    flowchart LR
+      N0["Vorderer Anteil: 0,60 × 320 × 9,81 = 1880 N"] --> N1["Je Vorderfeder: 942 N"]
+      N1 --> N2["k = 942 ÷ 0,050 = 1,9 × 10⁴ N m⁻¹"]
+      N2 --> N3["Je Hinterfeder, Fahrgäste: 0,40 × 3140 ÷ 2 = 628 N, 3,3 cm"]
+      N2 --> N4["Je Hinterfeder, Gepäck: 491 N, 2,6 cm"]
+      N3 --> N5["Heck insgesamt: 3,3 + 2,6 = 5,9 cm"]
+      N4 --> N5
+  `}
+/>
+
+Jede Hinterfeder nimmt <InlineMath math="628" /> N der Fahrgäste auf und sinkt <InlineMath math="3{,}3" /> cm, dann <InlineMath math="491" /> N Gepäck, weitere <InlineMath math="2{,}6" /> cm. Insgesamt ist das Heck <InlineMath math="5{,}9" /> cm gesunken, **mehr als die Front**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}6 \times 10^4\text{ N m}^{-1}" /> verteilt die Fahrgäste **gleich auf vier Federn**, doch vorn liegt mehr.
+- <InlineMath math="4{,}6\text{ cm}" /> verteilt das Gepäck auf alle vier Federn, doch nur die **Hinterfedern** liegen unter dem Kofferraum.
+- <InlineMath math="2{,}6\text{ cm}" /> zählt nur das Gepäck und vergisst, dass das Heck unter den Fahrgästen **schon gesunken** war.

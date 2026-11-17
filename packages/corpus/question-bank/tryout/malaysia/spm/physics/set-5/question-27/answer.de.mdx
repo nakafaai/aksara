@@ -1,0 +1,25 @@
+# Nur der Druckunterschied drückt auf das Fenster, also die Kraftgrenze umkehren, um den Außendruck zu finden
+
+Die Kabinenluft drückt nach außen, die Außenluft nach innen, das Fenster spürt also den **Druckunterschied**, <InlineMath math="55" /> kPa, nach außen. Die Nettokraft ist <InlineMath math="55\,000 \times 0{,}060 = 3300" /> N.
+
+<Chart
+  title={<>Dünnere Außenluft drückt das Fenster stärker nach außen</>}
+  categories={["50 kPa", "25 kPa", "13 kPa", "0 kPa"]}
+  series={[
+    { label: "Nettokraft nach außen (kN)", mark: "line", values: [1.8, 3.3, 4.0, 4.8] },
+  ]}
+  valueLabel="Nettokraft nach außen (kN)"
+  description={<>Bei gleichbleibendem Kabinendruck wächst die Nettokraft nach außen, wenn der Außendruck sinkt, und sie erreicht die Auslegungsgrenze bei etwa dreizehn Kilopascal.</>}
+/>
+
+Das Fenster verträgt <InlineMath math="4000 \div 0{,}060 = 66\,700" /> Pa Unterschied. Mit <InlineMath math="80" /> kPa innen muss der Außendruck **mindestens** <InlineMath math="80 - 66{,}7 = 13" /> kPa bleiben.
+
+**Wie hoch das ist**: Der Außendruck darf um den Faktor <InlineMath math="100 \div 13{,}3 = 7{,}5" /> fallen, knapp unter <InlineMath math="2^3 = 8" />, also knapp **drei Halbierungen**: <InlineMath math="2{,}9 \times 5{,}5 = 16" /> km.
+
+**Ein niedrigerer Kabinendruck**: Das Fenster verträgt weiter höchstens <InlineMath math="66{,}7" /> kPa Unterschied, der Außendruck darf also auf <InlineMath math="75 - 66{,}7 = 8{,}3" /> kPa fallen. Das ist ein Faktor <InlineMath math="12" />, etwa <InlineMath math="3{,}6" /> Halbierungen, also <InlineMath math="3{,}6 \times 5{,}5 = 20" /> km, **höher als vorher**.
+
+# Warum die anderen Antworten falsch sind
+
+- Weiter <InlineMath math="16\text{ km}" /> übersieht, dass das Fenster auf den **Druckunterschied** reagiert, nicht auf den Außendruck allein.
+- <InlineMath math="13\text{ km}" /> addiert die Senkung des Kabinendrucks zur Außengrenze, doch ein niedrigerer Kabinendruck **senkt** die Außengrenze.
+- <InlineMath math="41\text{ km}" /> und <InlineMath math="66\text{ km}" /> zählen jeden Faktor als ebenso viele Halbierungen, doch jede Halbierung **teilt durch zwei**.

@@ -1,0 +1,23 @@
+# Die Zeilen finden, die an genau einem Gatter hängen, und davon möglichst wenige prüfen
+
+<InlineMath math="Y = 1" />, sobald **mindestens zwei** Eingänge eins sind: die drei Zeilen mit genau zwei Einsen und die Zeile mit allen dreien, also <InlineMath math="4" /> von <InlineMath math="8" /> Zeilen.
+
+<Chart
+  title={<>Welche Zeilen an einem einzigen Gatter hängen</>}
+  bars="apart"
+  categories={["000", "001", "010", "011", "100", "101", "110", "111"]}
+  series={[
+    { label: "Y bei intakter Schaltung", mark: "bar", values: [0, 0, 0, 1, 0, 1, 1, 1] },
+    { label: "UND-Gatter mit Ausgang 1", mark: "bar", values: [0, 0, 0, 1, 0, 1, 1, 3] },
+  ]}
+  valueLabel="Wert"
+  description={<>Die Eingänge stehen in der Reihenfolge A, B, C. Die drei Zeilen mit genau zwei aktiven Eingängen hängen jeweils an einem einzigen UND-Gatter, die Zeile mit allen dreien wird von allen Gattern getragen und kann keinen Defekt zeigen.</>}
+/>
+
+Die Zeile mit allen dreien behält <InlineMath math="Y = 1" />, egal welches Gatter ausfällt, sie verrät also nichts. Jede Zeile mit genau zwei Einsen hängt an **einem einzigen Gatter**. Zwei davon prüfen: eine <InlineMath math="0" /> nennt das defekte Gatter, zwei <InlineMath math="1" /> heißen, das dritte ist defekt. Ein Test kann die beiden anderen nicht trennen, es braucht also <InlineMath math="2" /> Tests.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3" /> Tests prüft jede Zeile mit zwei Einsen, doch das Ergebnis der letzten **folgt aus den ersten beiden**.
+- <InlineMath math="3" /> Kombinationen zählt nur genau zwei Einsen und übersieht die Zeile, in der **alle drei** eins sind.
+- Ein Test mit allen Eingängen auf eins gibt <InlineMath math="Y = 1" />, **welches Gatter** auch ausfällt, er findet also nichts.

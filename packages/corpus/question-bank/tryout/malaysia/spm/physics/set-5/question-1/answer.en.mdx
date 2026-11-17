@@ -1,0 +1,25 @@
+# Correct the reading, share it among the sheets, then build one sheet's volume
+
+A negative zero error is subtracted, which **adds** to the reading: <InlineMath math="2.46 - (-0.02) = 2.48" /> cm. One sheet is <InlineMath math="2.48 \div 200 = 0.0124" /> cm, or <InlineMath math="0.124" /> mm.
+
+<Mermaid
+  title={<>From a Stack to One Sheet</>}
+  description={<>Correct the reading first, then share it among the sheets, and only then build the volume of one sheet.</>}
+  chart={`
+    flowchart LR
+      N0["Reading 2.46 − (−0.02) = 2.48 cm"] --> N1["One sheet 2.48 ÷ 200 = 0.0124 cm"]
+      N1 --> N2["Volume 21.0 × 29.7 × 0.0124 = 7.73 cm³"]
+      N2 --> N4["ρ = 5.0 ÷ 7.73 = 0.647 g cm⁻³"]
+      N3["Mass 2500 ÷ 500 = 5.0 g"] --> N4
+  `}
+/>
+
+One sheet fills <InlineMath math="21.0 \times 29.7 \times 0.0124 = 7.73\text{ cm}^3" /> and has a mass of <InlineMath math="2500 \div 500 = 5.0" /> g, so <InlineMath math="\rho = 5.0 \div 7.73 = 0.647\text{ g cm}^{-3}" />.
+
+**Sheets in the box**: each sheet is <InlineMath math="0.0124" /> cm thick, so a <InlineMath math="5.0" /> cm box holds <InlineMath math="5.0 \div 0.0124 = 403" /> sheets, counting with the **corrected** thickness.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.657" /> and <InlineMath math="410" /> subtract the zero error instead of adding it, making each sheet **too thin**.
+- <InlineMath math="0.0647" /> and <InlineMath math="40" /> slip a factor of ten between **millimetres and centimetres**.
+- <InlineMath math="0.652" /> and <InlineMath math="407" /> ignore the zero error and use the **raw reading**.

@@ -1,0 +1,26 @@
+# Ubah alirannya menjadi kilogram per detik, lalu bagi dayanya
+
+<InlineMath math="4{,}0" /> liter per menit adalah <InlineMath math="4{,}0 \div 60 = 0{,}067" /> kg tiap detik. Pemanas memberi air itu <InlineMath math="9000" /> J tiap detik, kenaikan <InlineMath math="9000 \div (0{,}067 \times 4200) = 32^\circ\text{C}" />, jadi air keluar pada <InlineMath math="57^\circ\text{C}" />.
+
+<Mermaid
+  title={<>Daya Dibagi pada Air yang Mengalir</>}
+  description={<>Tiap detik pemanas hanya menghangatkan air yang lewat dalam detik itu, jadi kenaikannya bergantung pada laju aliran.</>}
+  chart={`
+    flowchart LR
+      N0["4,0 L min⁻¹ = 0,067 kg s⁻¹"] --> N1["Kenaikan 9000 ÷ (0,067 × 4200) = 32 °C"]
+      N1 --> N2["Keluar pada 25 + 32 = 57 °C"]
+      N3["Untuk 40 °C kenaikannya 15 °C"] --> N4["Aliran 9000 ÷ (4200 × 15) = 0,143 kg s⁻¹ = 8,6 L min⁻¹"]
+  `}
+/>
+
+Untuk <InlineMath math="40^\circ\text{C}" /> kenaikannya cukup <InlineMath math="15^\circ\text{C}" />, jadi **lebih banyak air** harus berbagi daya yang sama: <InlineMath math="9000 \div (4200 \times 15) = 0{,}143" /> kg tiap detik, yaitu <InlineMath math="8{,}6" /> liter per menit.
+
+**Mencampur untuk pancuran**: tiap menit air panas melepas <InlineMath math="4{,}0 \times 4200 \times (57{,}1 - 40)" /> J, dan air dingin menyerapnya dengan menghangat <InlineMath math="15" /> derajat, jadi aliran dinginnya <InlineMath math="4{,}0 \times 17{,}1 \div 15 = 4{,}6" /> L/menit. Pancuran memberi <InlineMath math="4{,}0 + 4{,}6 = 8{,}6" /> L/menit, sama dengan **memanaskan semuanya langsung**.
+
+**Di musim dingin**: apa pun campurannya, <InlineMath math="9{,}0" /> kW pemanas kini harus menaikkan tiap kilogram sebesar <InlineMath math="22" /> derajat, jadi alirannya <InlineMath math="9000 \div (4200 \times 22) = 0{,}097" /> kg/s, sekitar <InlineMath math="5{,}8" /> L/menit. **Energi, bukan pencampuran**, yang menentukan totalnya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="4{,}6\text{ L min}^{-1}" /> dan <InlineMath math="1{,}8\text{ L min}^{-1}" /> hanya memberi **air dingin yang ditambahkan**, bukan total dari kepala pancuran.
+- Tetap <InlineMath math="8{,}6\text{ L min}^{-1}" /> mengabaikan bahwa air yang lebih dingin perlu **energi lebih** untuk tiap liter.
+- <InlineMath math="4{,}0\text{ L min}^{-1}" /> hanya memakai aliran pemanas dan lupa **air dingin yang dicampurkan**.

@@ -1,0 +1,28 @@
+# Beam power is current times voltage, and a minute of it heats the target
+
+Each coulomb gains <InlineMath math="4000" /> J, and <InlineMath math="0.50 \times 10^{-3}" /> coulombs arrive each second, so the **beam power** is <InlineMath math="2.0" /> W.
+
+<Mermaid
+  title={<>Beam Power Becomes Heat in the Target</>}
+  description={<>Each coulomb in the beam gains energy equal to the accelerating voltage, so the beam power is current times voltage. Over a minute that energy heats the small target.</>}
+  chart={`
+    flowchart LR
+      N0["P = IV = 0.50 × 10⁻³ × 4000 = 2.0 W"] --> N1["One minute: 2.0 × 60 = 120 J"]
+      N1 --> N3["Δθ = 120 ÷ (0.0050 × 400) = 60 °C"]
+      N2["Q = mcΔθ"] --> N3
+  `}
+/>
+
+In one minute the target gains <InlineMath math="2.0 \times 60 = 120" /> J. With the mass **in kilograms**, <InlineMath math="\Delta\theta = 120 \div (0.0050 \times 400) = 60" /> degrees Celsius.
+
+**Time to the melting point**: the target must rise by <InlineMath math="330 - 30 = 300" /> degrees, which takes <InlineMath math="0.0050 \times 400 \times 300 = 600" /> J. At <InlineMath math="2.0" /> W that is <InlineMath math="300" /> s, **five minutes**.
+
+**Melting it**: the change of state needs <InlineMath math="0.0050 \times 2.0 \times 10^5 = 1000" /> J more, another <InlineMath math="500" /> s at <InlineMath math="2.0" /> W. In all <InlineMath math="800" /> s, about <InlineMath math="13" /> minutes, **longer than the heating** itself.
+
+**Counting electrons**: <InlineMath math="0.50 \times 10^{-3} \div 1.6 \times 10^{-19} = 3.1 \times 10^{15}" /> electrons arrive each second, so in <InlineMath math="800" /> s about <InlineMath math="2.5 \times 10^{18}" /> electrons strike, carrying <InlineMath math="0.40" /> C in all, the **charge that melts it**.
+
+# Why the other options are wrong
+
+- About <InlineMath math="0.8\text{ s}" /> uses <InlineMath math="0.50" /> A, forgetting the current is in **milliamperes**, though the electron count comes out the same.
+- About <InlineMath math="14" /> minutes heats the target from <InlineMath math="0^\circ\text{C}" />, but only the **rise** from <InlineMath math="30^\circ\text{C}" /> counts.
+- About <InlineMath math="8.3" /> minutes is the melting alone, without the **heating first**.

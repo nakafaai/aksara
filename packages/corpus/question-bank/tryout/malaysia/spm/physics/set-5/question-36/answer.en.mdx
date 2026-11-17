@@ -1,0 +1,23 @@
+# Find the rows that depend on exactly one gate, then test as few of them as possible
+
+<InlineMath math="Y = 1" /> whenever **at least two** inputs are one: the three rows with exactly two ones and the row with all three, so <InlineMath math="4" /> of the <InlineMath math="8" /> rows.
+
+<Chart
+  title={<>Which Rows Depend on a Single Gate</>}
+  bars="apart"
+  categories={["000", "001", "010", "011", "100", "101", "110", "111"]}
+  series={[
+    { label: "Y when working", mark: "bar", values: [0, 0, 0, 1, 0, 1, 1, 1] },
+    { label: "AND gates giving 1", mark: "bar", values: [0, 0, 0, 1, 0, 1, 1, 3] },
+  ]}
+  valueLabel="Value"
+  description={<>Inputs are written in the order A, B, C. The three rows with exactly two inputs on each rely on one AND gate alone, while the row with all three on is held up by all three gates and cannot reveal a fault.</>}
+/>
+
+The row with all three on keeps <InlineMath math="Y = 1" /> whichever gate dies, so it tells nothing. Each row with exactly two ones depends on **one gate alone**. Test two of them: a <InlineMath math="0" /> names the dead gate, and two <InlineMath math="1" />s mean the third gate is dead. One test cannot separate the other two gates, so <InlineMath math="2" /> tests are needed.
+
+# Why the other options are wrong
+
+- <InlineMath math="3" /> tests checks every two-input row, but the result of the last one **follows from the first two**.
+- <InlineMath math="3" /> combinations counts only exactly two ones and misses the row where **all three** are one.
+- One test with all inputs at one gives <InlineMath math="Y = 1" /> **whichever gate** has failed, so it finds nothing.

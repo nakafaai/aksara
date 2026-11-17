@@ -1,0 +1,25 @@
+# Den Radius für ein Viertel von g finden, die Erde abziehen, dann diesen Radius für die Bahn nehmen
+
+Ein Viertel des Feldes braucht ein viermal so großes <InlineMath math="r^2" />, also <InlineMath math="r = 2R" />. Das sind <InlineMath math="2R - R = 6400" /> km **über der Oberfläche**, und der Astronaut spürt dort <InlineMath math="60 \times 9{,}8 \div 4 = 150" /> N.
+
+<Mermaid
+  title={<>Ein Viertel des Feldes beim doppelten Radius</>}
+  description={<>Ein Viertel des Feldes braucht den doppelten Abstand vom Mittelpunkt, der Punkt liegt also einen Erdradius über der Oberfläche.</>}
+  chart={`
+    flowchart LR
+      N0["g ∝ 1/r²: ein Viertel bei r = 2R"] --> N1["Höhe = 2R − R = 6400 km"]
+      N0 --> N2["Kraft 60 × 9,8 ÷ 4 = 150 N"]
+      N0 --> N3["T = 2π√(8R³ ÷ gR²) = 2π√(8R ÷ g)"]
+      N3 --> N4["T = 1,4 × 10⁴ s ≈ 4,0 h"]
+  `}
+/>
+
+Für eine Bahn mit Radius <InlineMath math="2R" /> gilt <InlineMath math="T = 2\pi\sqrt{\dfrac{(2R)^3}{gR^2}} = 2\pi\sqrt{\dfrac{8R}{g}} = 2\pi\sqrt{\dfrac{8 \times 6{,}4 \times 10^6}{9{,}8}} = 1{,}4 \times 10^4" /> s, etwa <InlineMath math="4{,}0" /> h.
+
+**Überflüge eines Punktes**: Der Satellit holt gegenüber dem sich drehenden Boden <InlineMath math="\tfrac{1}{4{,}0} - \tfrac{1}{24} = \tfrac{5}{24}" /> Umdrehung pro Stunde auf, er überfliegt denselben Punkt also alle <InlineMath math="4{,}8" /> Stunden, **fünfmal am Tag**, nicht sechsmal.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6" /> Mal am Tag übersieht, dass der Punkt darunter sich **mit der Erde dreht**, in derselben Richtung.
+- <InlineMath math="1{,}4\text{ h}" /> nimmt den Erdradius als Bahnradius, doch ein Viertel des Feldes verlangt den **doppelten Radius**.
+- <InlineMath math="7" /> Mal am Tag addiert die Erddrehung, was nur für einen Satelliten stimmt, der sich **nach Westen** bewegt.

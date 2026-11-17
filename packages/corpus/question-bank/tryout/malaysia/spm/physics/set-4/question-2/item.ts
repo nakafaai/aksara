@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$11.0\\text{ m s}^{-2}$$, and about $$1.1\\%$$",
+          label: "$$11.0\\text{ m s}^{-2}$$, dan kira-kira $$1.1\\%$$",
         },
         {
           correct: false,
-          label: "$$9.9\\text{ m s}^{-2}$$, and about $$0.56\\%$$",
+          label: "$$9.9\\text{ m s}^{-2}$$, dan kira-kira $$0.56\\%$$",
         },
         {
           correct: true,
-          label: "$$9.9\\text{ m s}^{-2}$$, and about $$1.1\\%$$",
+          label: "$$9.9\\text{ m s}^{-2}$$, dan kira-kira $$1.1\\%$$",
         },
         {
           correct: false,
-          label: "$$9.9\\text{ m s}^{-2}$$, and about $$0.28\\%$$",
+          label: "$$9.9\\text{ m s}^{-2}$$, dan kira-kira $$0.28\\%$$",
         },
       ],
     },

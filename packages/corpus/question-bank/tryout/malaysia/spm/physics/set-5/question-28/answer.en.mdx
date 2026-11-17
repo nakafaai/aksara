@@ -1,0 +1,24 @@
+# Resistance per metre first, then the heater's total, then double it for each parallel strand
+
+The radius is <InlineMath math="0.20" /> mm, so the cross-section is <InlineMath math="1.26 \times 10^{-7}" /> square metres and **each metre** has <InlineMath math="8.75\,\Omega" />. The resistor needs <InlineMath math="10 \div 8.75 = 1.1" /> m.
+
+<Mermaid
+  title={<>From Wire Size to Length</>}
+  description={<>The cross-section sets the resistance of each metre. The heater power sets the total resistance, and two parallel strands must each have twice that.</>}
+  chart={`
+    flowchart LR
+      N0["A = π × (0.20 × 10⁻³)² = 1.26 × 10⁻⁷ m²"] --> N1["Each metre: 1.10 × 10⁻⁶ ÷ 1.26 × 10⁻⁷ = 8.75 Ω"]
+      N1 --> N2["Resistor: 10 ÷ 8.75 = 1.1 m"]
+      N3["Heater: 240² ÷ 1000 = 57.6 Ω"] --> N4["Each strand: 2 × 57.6 = 115 Ω"]
+      N1 --> N5["115 ÷ 8.75 = 13 m"]
+      N4 --> N5
+  `}
+/>
+
+The heater draws <InlineMath math="1000" /> W at <InlineMath math="240" /> V, so its element is <InlineMath math="240^2 \div 1000 = 57.6\,\Omega" />. Two equal strands in parallel halve the resistance, so **each strand** must be <InlineMath math="115\,\Omega" />, which is <InlineMath math="13" /> m of wire.
+
+# Why the other options are wrong
+
+- <InlineMath math="6.6\text{ m}" /> makes the whole element from one strand and ignores the **parallel pair**.
+- <InlineMath math="4.6\text{ m}" /> uses the **diameter as the radius**, which makes the area four times too large.
+- <InlineMath math="3.3\text{ m}" /> halves the strand's resistance, but each of two parallel strands needs **twice** the total.

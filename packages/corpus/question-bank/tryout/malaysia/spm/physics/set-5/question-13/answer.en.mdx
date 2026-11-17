@@ -1,0 +1,26 @@
+# Halve each echo, then compare the two distances
+
+The first echo travels <InlineMath math="3.0 \times 10^8 \times 120 \times 10^{-6} = 36" /> km out and back, so the aircraft is <InlineMath math="18" /> km away. The second gives <InlineMath math="15" /> km, **halved the same way**.
+
+<Mermaid
+  title={<>Two Echoes, Two Distances</>}
+  description={<>Each echo time covers the trip out and back, so both distances must be halved before they are compared.</>}
+  chart={`
+    flowchart LR
+      N0["First: 3.0 × 10⁸ × 120 × 10⁻⁶ ÷ 2 = 18 km"] --> N2["Closer by 3.0 km"]
+      N1["Second: 3.0 × 10⁸ × 100 × 10⁻⁶ ÷ 2 = 15 km"] --> N2
+      N2 --> N3["In 10.0 s: 300 m s⁻¹ towards the station"]
+  `}
+/>
+
+The aircraft is <InlineMath math="3.0" /> km closer after <InlineMath math="10.0" /> s, so it approaches at <InlineMath math="3000 \div 10.0 = 300" /> m/s along the line to the station.
+
+**The later echo**: in <InlineMath math="40.0" /> s the aircraft closes another <InlineMath math="300 \times 40.0 = 12" /> km, leaving <InlineMath math="3.0" /> km. The pulse must go **out and back**, so the echo takes <InlineMath math="2 \times 3000 \div 3.0 \times 10^8 = 20" /> µs.
+
+**Overhead**: at the second pulse the aircraft is <InlineMath math="15" /> km away, so at <InlineMath math="300" /> m/s it reaches the station after <InlineMath math="15\,000 \div 300 = 50" /> s, **ten seconds after** the later pulse.
+
+# Why the other options are wrong
+
+- <InlineMath math="60\text{ s}" /> measures from the **first pulse**, when the aircraft was <InlineMath math="18" /> km away.
+- <InlineMath math="10\,\mu\text{s}" /> times the later pulse **one way only**.
+- <InlineMath math="40\,\mu\text{s}" /> counts the <InlineMath math="40.0" /> s from the **first pulse** for the echo.

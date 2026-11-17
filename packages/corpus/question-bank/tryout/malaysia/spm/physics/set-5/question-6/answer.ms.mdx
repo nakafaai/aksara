@@ -1,0 +1,29 @@
+# Asingkan treler untuk mencari tegangan, kemudian biar had tali menentukan pecutan
+
+Bagi treler sahaja, <InlineMath math="T - 200 = 800 \times 1.5" />, jadi <InlineMath math="T = 1400" /> N. Tali juga mesti **mengatasi rintangan treler**.
+
+<Mermaid
+  title={<>Tali Hanya Menarik Treler</>}
+  description={<>Tali mesti memecutkan treler dan mengatasi rintangannya. Enjin kereta mesti melakukan itu dan lebih lagi bagi kedua-dua kenderaan.</>}
+  chart={`
+    flowchart LR
+      N0["Treler: T − 200 = 800 × 1.5"] --> N1["T = 1400 N"]
+      N2["Had: 2000 − 200 = 800a"] --> N3["a maks = 2.25 m s⁻²"]
+      N3 --> N4["Enjin: F − 500 = 2000 × 2.25"]
+      N4 --> N5["F = 5.0 kN"]
+  `}
+/>
+
+Pada had, <InlineMath math="2000 - 200 = 800a" />, jadi <InlineMath math="a = 2.25\text{ m s}^{-2}" />. Bagi kedua-dua kenderaan bersama, enjin mesti memberi <InlineMath math="2000 \times 2.25 + 200 + 300 = 5.0 \times 10^3" /> N.
+
+**Menaiki cerun**: tali kini juga mesti menahan komponen berat treler, <InlineMath math="800 \times 10 \times 0.050 = 400" /> N. Maka <InlineMath math="2000 = 800a + 200 + 400" /> memberi <InlineMath math="a = 1.75\text{ m s}^{-2}" />. Bagi seluruh pasangan, kereta mesti membekalkan <InlineMath math="2000 \times 1.75 + 500 + 2000 \times 10 \times 0.050 = 5000" /> N, **termasuk kedua-dua komponen berat**.
+
+**Selepas tali putus**: rintangan dan komponen berat treler kedua-duanya bertindak ke bawah cerun, <InlineMath math="200 + 400 = 600" /> N, jadi ia nyahpecut pada <InlineMath math="600 \div 800 = 0.75\text{ m s}^{-2}" /> dan bergerak <InlineMath math="6.0^2 \div (2 \times 0.75) = 24" /> m, **kemudian bergolek ke belakang**.
+
+**Bergolek ke belakang**: pendakian mengambil <InlineMath math="6.0 \div 0.75 = 8.0" /> s. Semasa turun, rintangan **bertukar arah** dan kini menentang golekan, jadi daya bersih <InlineMath math="400 - 200 = 200" /> N dan <InlineMath math="a = 0.25\text{ m s}^{-2}" />. Bergolek <InlineMath math="24" /> m ke belakang mengambil <InlineMath math="\sqrt{2 \times 24 \div 0.25} = 13.9" /> s, jadi kira-kira <InlineMath math="22" /> s semuanya.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2.25\text{ m s}^{-2}" /> dan <InlineMath math="24\text{ s}" /> mengabaikan **komponen berat treler** bagi tali dan mengabaikan rintangan di cerun.
+- Kira-kira <InlineMath math="16\text{ s}" /> menjadikan perjalanan turun cermin perjalanan naik, tetapi rintangan **menentang gerakan** dalam kedua-dua arah.
+- Kira-kira <InlineMath math="18\text{ s}" /> mengabaikan rintangan semasa turun, tetapi ia masih **menentang golekan**.

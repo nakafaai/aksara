@@ -19,10 +19,10 @@ const item: ItemSource = {
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$10\\text{ N}$$, and $$0.75\\text{ m}$$" },
-        { correct: false, label: "$$9.0\\text{ N}$$, and $$0.50\\text{ m}$$" },
-        { correct: true, label: "$$9.0\\text{ N}$$, and $$0.75\\text{ m}$$" },
-        { correct: false, label: "$$9.0\\text{ N}$$, and $$0.83\\text{ m}$$" },
+        { correct: false, label: "$$10\\text{ N}$$, dan $$0.75\\text{ m}$$" },
+        { correct: false, label: "$$9.0\\text{ N}$$, dan $$0.50\\text{ m}$$" },
+        { correct: true, label: "$$9.0\\text{ N}$$, dan $$0.75\\text{ m}$$" },
+        { correct: false, label: "$$9.0\\text{ N}$$, dan $$0.83\\text{ m}$$" },
       ],
     },
   },

@@ -1,0 +1,29 @@
+# Free the trailer to find the tension, then let the rope's limit set the acceleration
+
+For the trailer alone, <InlineMath math="T - 200 = 800 \times 1.5" />, so <InlineMath math="T = 1400" /> N. The rope must also **beat the trailer's resistance**.
+
+<Mermaid
+  title={<>The Rope Pulls Only the Trailer</>}
+  description={<>The rope must accelerate the trailer and beat its resistance. The car’s engine must do that and more for both vehicles.</>}
+  chart={`
+    flowchart LR
+      N0["Trailer: T − 200 = 800 × 1.5"] --> N1["T = 1400 N"]
+      N2["Limit: 2000 − 200 = 800a"] --> N3["a max = 2.25 m s⁻²"]
+      N3 --> N4["Engine: F − 500 = 2000 × 2.25"]
+      N4 --> N5["F = 5.0 kN"]
+  `}
+/>
+
+At the limit, <InlineMath math="2000 - 200 = 800a" />, so <InlineMath math="a = 2.25\text{ m s}^{-2}" />. For both vehicles together, the engine must give <InlineMath math="2000 \times 2.25 + 200 + 300 = 5.0 \times 10^3" /> N.
+
+**Up the slope**: the rope must now also hold the trailer’s weight component, <InlineMath math="800 \times 10 \times 0.050 = 400" /> N. So <InlineMath math="2000 = 800a + 200 + 400" /> gives <InlineMath math="a = 1.75\text{ m s}^{-2}" />. For the whole pair, the car must supply <InlineMath math="2000 \times 1.75 + 500 + 2000 \times 10 \times 0.050 = 5000" /> N, **including both weight components**.
+
+**After the rope snaps**: the trailer’s resistance and weight component both act down the slope, <InlineMath math="200 + 400 = 600" /> N, so it slows at <InlineMath math="600 \div 800 = 0.75\text{ m s}^{-2}" /> and travels <InlineMath math="6.0^2 \div (2 \times 0.75) = 24" /> m, **then rolls back**.
+
+**Rolling back**: the climb takes <InlineMath math="6.0 \div 0.75 = 8.0" /> s. On the way down the resistance **changes direction** and now opposes the roll, so the net force is <InlineMath math="400 - 200 = 200" /> N and <InlineMath math="a = 0.25\text{ m s}^{-2}" />. Rolling <InlineMath math="24" /> m back takes <InlineMath math="\sqrt{2 \times 24 \div 0.25} = 13.9" /> s, so about <InlineMath math="22" /> s in all.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.25\text{ m s}^{-2}" /> and <InlineMath math="24\text{ s}" /> leave out the **trailer’s weight component** for the rope and ignore the resistance on the slope.
+- About <InlineMath math="16\text{ s}" /> makes the trip down a mirror of the trip up, but the resistance **opposes the motion** both ways.
+- About <InlineMath math="18\text{ s}" /> drops the resistance on the way down, but it still **acts against the roll**.

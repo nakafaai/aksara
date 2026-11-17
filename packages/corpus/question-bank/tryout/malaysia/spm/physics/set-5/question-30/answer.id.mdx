@@ -1,0 +1,26 @@
+# Kedua arus menghabiskan tegangan di dalam aki, jadi selesaikan tegangan terminalnya
+
+Lampu depan berhambatan <InlineMath math="12^2 \div 110 = 1{,}31\,\Omega" />, jadi pada tegangan terminal <InlineMath math="V" /> lampu menarik <InlineMath math="V \div 1{,}31" />. Aki mengalirkan **kedua arus** melalui hambatan dalamnya: <InlineMath math="V = 12{,}6 - 0{,}020\,(150 + V \div 1{,}31)" />.
+
+<Mermaid
+  title={<>Lampu Depan Ikut Menanggung Tegangan yang Hilang di Aki</>}
+  description={<>Kedua arus melewati hambatan dalam, dan arus lampu depan sendiri bergantung pada tegangan terminal, jadi tegangan itu harus diselesaikan.</>}
+  chart={`
+    flowchart LR
+      N0["Lampu depan: R = 12² ÷ 110 = 1,31 Ω"] --> N1["Arus aki: 150 + V ÷ 1,31"]
+      N1 --> N2["V = 12,6 − 0,020 × (150 + V ÷ 1,31)"]
+      N2 --> N3["1,0153 V = 9,6, jadi V = 9,46 V"]
+      N3 --> N4["P = 9,46² ÷ 1,31 = 68 W"]
+      N0 --> N4
+  `}
+/>
+
+Itu memberi <InlineMath math="1{,}0153\,V = 9{,}6" />, jadi <InlineMath math="V = 9{,}46" /> V. Lampu depan memberi <InlineMath math="9{,}46^2 \div 1{,}31 = 68" /> W, karena pada hambatan tetap daya sebanding **kuadrat tegangan**.
+
+**Pemborosan di dalam aki**: aki memberi <InlineMath math="150 + 9{,}46 \div 1{,}31 = 157" /> A. Aki menghasilkan <InlineMath math="12{,}6 \times 157 = 1980" /> W, dan hambatan dalamnya membuang <InlineMath math="157^2 \times 0{,}020 = 494" /> W, sekitar <InlineMath math="25\%" />, pecahan yang sama dengan **tegangan yang hilang**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="110\text{ W}" /> mengabaikan tegangan yang hilang di dalam aki saat **arus besar** mengalir.
+- <InlineMath math="70\text{ W}" /> dan <InlineMath math="24\%" /> melupakan **arus lampu depan sendiri**, yang juga melewati hambatan dalam.
+- <InlineMath math="87\text{ W}" /> menskalakan daya sebanding tegangan, padahal pada hambatan tetap daya sebanding **kuadratnya**.

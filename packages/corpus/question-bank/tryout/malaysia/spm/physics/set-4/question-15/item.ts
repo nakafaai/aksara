@@ -37,21 +37,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.17\\text{ mm}$$, $$1.1\\text{ MHz}$$, and about $$31\\%$$",
+            "$$0.17\\text{ mm}$$, $$1.1\\text{ MHz}$$, dan kira-kira $$31\\%$$",
         },
         {
           correct: true,
           label:
-            "$$0.77\\text{ mm}$$, $$5.1\\text{ MHz}$$, and about $$0.5\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$0.77\\text{ mm}$$, $$5.1\\text{ MHz}$$, and about $$7\\%$$",
+            "$$0.77\\text{ mm}$$, $$5.1\\text{ MHz}$$, dan kira-kira $$0.5\\%$$",
         },
         {
           correct: false,
           label:
-            "$$0.77\\text{ mm}$$, $$5.1\\text{ MHz}$$, and about $$12\\%$$",
+            "$$0.77\\text{ mm}$$, $$5.1\\text{ MHz}$$, dan kira-kira $$7\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.77\\text{ mm}$$, $$5.1\\text{ MHz}$$, dan kira-kira $$12\\%$$",
         },
       ],
     },

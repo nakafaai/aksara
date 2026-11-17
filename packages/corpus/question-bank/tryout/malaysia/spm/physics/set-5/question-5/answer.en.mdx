@@ -1,0 +1,29 @@
+# Mass per second, then the change of momentum per second, then the pressure
+
+Each second the nozzle sends out <InlineMath math="1.33 \times 10^{-4} \times 15 = 2.0 \times 10^{-3}\text{ m}^3" /> of water, which is <InlineMath math="2.0" /> kg.
+
+<Mermaid
+  title={<>From the Jet to the Pressure</>}
+  description={<>Each second a column <InlineMath math="15\text{ m}" /> long leaves the nozzle. Its momentum is reversed, not just stopped, so the change is larger than the incoming momentum.</>}
+  chart={`
+    flowchart LR
+      N0["Volume per second 1.33 × 10⁻⁴ × 15 = 2.0 × 10⁻³ m³"] --> N1["Mass per second 2.0 kg"]
+      N1 --> N2["Change of velocity 15 − (−5.0) = 20 m s⁻¹"]
+      N2 --> N3["Force 2.0 × 20 = 40 N"]
+      N3 --> N4["Pressure 40 ÷ 0.010 = 4.0 kPa"]
+  `}
+/>
+
+The water's velocity changes from <InlineMath math="+15" /> to <InlineMath math="-5.0" /> m/s, a change of **<InlineMath math="20\text{ m/s}" />, not <InlineMath math="15" />**. The force is the momentum change each second: <InlineMath math="2.0 \times 20 = 40" /> N, spread over <InlineMath math="0.010\text{ m}^2" />, a pressure of <InlineMath math="4.0" /> kPa.
+
+**The narrower nozzle**: the same volume each second through half the area means the water leaves at <InlineMath math="30" /> m/s, but still <InlineMath math="2.0" /> kg arrives each second. It splashes back at <InlineMath math="10" /> m/s, so the force is <InlineMath math="2.0 \times (30 + 10) = 80" /> N, **twice** the first force.
+
+**Kinetic energy each second**: <InlineMath math="2.0" /> kg leaves each second at <InlineMath math="30" /> m/s, carrying <InlineMath math="\tfrac{1}{2} \times 2.0 \times 30^2 = 900" /> W, **four times** the <InlineMath math="225" /> W of the wide nozzle for only twice the force.
+
+**The pump’s efficiency**: it puts <InlineMath math="900" /> W of kinetic energy into the jet for <InlineMath math="1200" /> W drawn, so it is <InlineMath math="900 \div 1200 = 75\%" /> efficient, the **useful output over the input**.
+
+# Why the other options are wrong
+
+- <InlineMath math="160\text{ N}" /> and <InlineMath math="150\%" /> double the mass each second as well as the speed, and an efficiency over one hundred per cent shows the **pump delivers the same volume**.
+- <InlineMath math="70\text{ N}" /> keeps the splash-back at <InlineMath math="5.0" /> m/s, but it stays a **third** of the arrival speed.
+- <InlineMath math="40\text{ N}" /> and <InlineMath math="19\%" /> describe the **original nozzle**, before it is narrowed.

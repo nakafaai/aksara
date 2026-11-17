@@ -1,0 +1,24 @@
+# Letakkan kabel bersiri dengan lampu, kemudian tentukan sekunder untuk arus kadaran
+
+Sekunder memberi <InlineMath math="240 \times 60 \div 1200 = 12" /> V. Lampu mempunyai <InlineMath math="6.0\,\Omega" />, jadi dengan kabel **bersiri** arusnya <InlineMath math="12 \div 6.5 = 1.85" /> A dan lampu mengambil <InlineMath math="1.85^2 \times 6.0 = 20" /> W.
+
+<Mermaid
+  title={<>Kabel Mengambil Bahagiannya daripada Voltan Sekunder</>}
+  description={<>Sekunder memberi voltan kadaran, tetapi sebahagiannya hilang sepanjang kabel. Menaikkan voltan sekunder sebanyak kehilangan itu memulihkan lampu.</>}
+  chart={`
+    flowchart LR
+      N0["Lampu: R = 12² ÷ 24 = 6.0 Ω"] --> N1["Litar: 6.0 + 0.50 = 6.5 Ω"]
+      N1 --> N2["I = 12 ÷ 6.5 = 1.85 A"]
+      N2 --> N3["Lampu: 1.85² × 6.0 = 20 W"]
+      N1 --> N4["Kadaran: 2.0 A × 6.5 Ω = 13 V diperlukan"]
+      N4 --> N5["Lilitan: 1200 × 13 ÷ 240 = 65"]
+  `}
+/>
+
+Pada kadarannya lampu memerlukan <InlineMath math="2.0" /> A, yang memerlukan <InlineMath math="2.0 \times 6.5 = 13" /> V daripada sekunder. Itu memerlukan <InlineMath math="1200 \times 13 \div 240 = 65" /> lilitan, beberapa lagi untuk **menampung kehilangan dalam kabel**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="24\text{ W}" /> terlupa **rintangan kabel** yang berkongsi voltan sekunder.
+- <InlineMath math="22\text{ W}" /> mendarab arus dengan voltan sekunder, yang termasuk **voltan yang hilang dalam kabel**.
+- <InlineMath math="71" /> lilitan mengubah lilitan berkadar dengan kuasa, tetapi kuasa berkadar dengan **kuasa dua voltan**.

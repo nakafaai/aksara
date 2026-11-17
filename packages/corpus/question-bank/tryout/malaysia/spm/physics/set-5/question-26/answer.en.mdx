@@ -1,0 +1,24 @@
+# Find the air volume at which the diver just floats, then use Boyle’s law for the pressure
+
+The diver sinks once its **upthrust falls below its weight**, that is once it displaces less than <InlineMath math="6.0" /> cubic centimetres of water. The glass itself always displaces <InlineMath math="2.4" />, so the air must shrink to <InlineMath math="6.0 - 2.4 = 3.6" /> cubic centimetres.
+
+<Chart
+  title={<>Squeezing Shrinks the Bubble Until the Diver Sinks</>}
+  categories={["100 kPa", "120 kPa", "150 kPa", "167 kPa", "200 kPa"]}
+  series={[
+    { label: "Volume displaced by the diver", mark: "line", values: [8.4, 7.4, 6.4, 6.0, 5.4] },
+    { label: "Volume needed to float", mark: "line", values: [6.0, 6.0, 6.0, 6.0, 6.0] },
+  ]}
+  valueLabel="Volume (cm³)"
+  description={<>The glass always displaces the same volume, while the trapped air shrinks as the pressure rises. The total falls to the volume of water that weighs as much as the diver at about one hundred sixty-seven kilopascals.</>}
+/>
+
+At constant temperature <InlineMath math="pV" /> stays the same: <InlineMath math="100 \times 6.0 = p \times 3.6" /> gives <InlineMath math="p = 167" /> kPa. The squeeze must add <InlineMath math="167 - 100 = 67" /> kPa **above atmospheric**.
+
+**At the bottom**: the water there adds <InlineMath math="1000 \times 9.81 \times 0.30 = 2940" /> Pa, so the air reaches the <InlineMath math="167" /> kPa it needs while the top of the bottle is at only <InlineMath math="167 - 2.9 = 164" /> kPa. The squeeze is <InlineMath math="64" /> kPa, **a little less** than near the top.
+
+# Why the other options are wrong
+
+- <InlineMath math="70\text{ kPa}" /> adds the depth to the squeeze, but the water column **helps** compress the air at the bottom.
+- <InlineMath math="40\text{ kPa}" /> applies Boyle’s law to the glass and air together, but the **glass does not compress**.
+- <InlineMath math="167\text{ kPa}" /> is the full pressure of the air, not the **rise above atmospheric**.

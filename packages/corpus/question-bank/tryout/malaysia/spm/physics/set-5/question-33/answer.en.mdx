@@ -1,0 +1,24 @@
+# Put the cables in series with the lamp, then size the secondary for the rated current
+
+The secondary gives <InlineMath math="240 \times 60 \div 1200 = 12" /> V. The lamp has <InlineMath math="6.0\,\Omega" />, so with the cables **in series** the current is <InlineMath math="12 \div 6.5 = 1.85" /> A and the lamp takes <InlineMath math="1.85^2 \times 6.0 = 20" /> W.
+
+<Mermaid
+  title={<>The Cables Take Their Share of the Secondary Voltage</>}
+  description={<>The secondary gives the rated voltage, but part of it is lost along the cables. Raising the secondary voltage by that loss restores the lamp.</>}
+  chart={`
+    flowchart LR
+      N0["Lamp: R = 12² ÷ 24 = 6.0 Ω"] --> N1["Circuit: 6.0 + 0.50 = 6.5 Ω"]
+      N1 --> N2["I = 12 ÷ 6.5 = 1.85 A"]
+      N2 --> N3["Lamp: 1.85² × 6.0 = 20 W"]
+      N1 --> N4["Rated: 2.0 A × 6.5 Ω = 13 V needed"]
+      N4 --> N5["Turns: 1200 × 13 ÷ 240 = 65"]
+  `}
+/>
+
+At its rating the lamp needs <InlineMath math="2.0" /> A, which needs <InlineMath math="2.0 \times 6.5 = 13" /> V from the secondary. That takes <InlineMath math="1200 \times 13 \div 240 = 65" /> turns, a few more to **make up the cable loss**.
+
+# Why the other options are wrong
+
+- <InlineMath math="24\text{ W}" /> forgets the **cable resistance** that shares the secondary voltage.
+- <InlineMath math="22\text{ W}" /> multiplies the current by the secondary voltage, which includes the **voltage lost in the cables**.
+- <InlineMath math="71" /> turns scales the turns with the power, but power goes as the **square of the voltage**.
