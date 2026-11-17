@@ -1,0 +1,394 @@
+export const metadata = {
+  title: "Struktur dan Fungsi Daun",
+  description:
+    "Kaitkan struktur daun dengan pertukaran gas, transpirasi, dan fotosintesis, lalu hitung faktor pembatas dan titik kompensasi lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Struktur dan Fungsi Daun",
+};
+
+## Daun Menjalankan Tiga Tugas Utama
+
+Daun adalah organ utama tumbuhan untuk **pertukaran gas**, **transpirasi**, dan **fotosintesis**. Ketiganya bergantung pada struktur yang sama: helaian daun yang lebar dan tipis, mesofil yang penuh kloroplas, rongga udara di antara sel, dan stomata yang bisa dibuka dan ditutup oleh sel penjaga. Fotosintesis memakai energi cahaya untuk mengubah karbon dioksida dan air menjadi glukosa dan oksigen:
+
+<BlockMath math="6\mathrm{CO_2} + 12\mathrm{H_2O} \xrightarrow[\text{klorofil}]{\text{cahaya}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2} + 6\mathrm{H_2O}" />
+
+Laju fotosintesis dibatasi oleh intensitas cahaya, konsentrasi karbon dioksida, dan suhu, dan pada **titik kompensasi** laju fotosintesis sama dengan laju respirasi. Di model-model berikut, kamu mengubah tebal daun, mengolesi daun di potometer, mengubah suhu dan kelembapan udara, menghitung gelembung oksigen dari Hydrilla, dan mencari titik kompensasi.
+
+## Struktur Luar dan Struktur Dalam Daun
+
+Dari luar, daun terdiri atas **helaian daun** yang lebar dan pipih, **tangkai daun** yang menghubungkan helaian dengan batang, dan tulang daun yang membawa air dan makanan. Penampang melintang daun menunjukkan lapisan jaringan di dalamnya. Tabel ini mengurutkan lapisan itu dari permukaan atas ke permukaan bawah.
+
+| Struktur | Ciri | Kaitan dengan fungsi |
+| :--- | :--- | :--- |
+| Kutikula | Lapisan lilin yang tembus cahaya | Mengurangi kehilangan air dan meneruskan cahaya |
+| Epidermis atas | Satu lapis sel tanpa kloroplas | Tembus cahaya sehingga cahaya sampai ke mesofil |
+| Jaringan palisade | Sel memanjang, tersusun rapat, penuh kloroplas | Tempat utama fotosintesis karena menerima cahaya paling banyak |
+| Jaringan bunga karang | Sel tidak beraturan dengan banyak rongga udara | Gas berdifusi ke seluruh daun lewat rongga udara |
+| Berkas pengangkut | Xilem dan floem di tulang daun | Xilem membawa air masuk, floem membawa sukrosa keluar |
+| Epidermis bawah | Banyak stomata, masing-masing diapit dua sel penjaga | Tempat utama pertukaran gas dan transpirasi |
+
+Helaian yang tipis membuat daun punya **rasio luas permukaan terhadap volume yang besar**, jadi gas hanya perlu berdifusi melewati beberapa lapis sel. Untuk lembaran daun seluas <InlineMath math="A" /> dan setebal <InlineMath math="d" />, kedua permukaannya ikut dihitung, jadi rasionya hanya bergantung pada tebal daun:
+
+<BlockMath math="\frac{\text{Luas permukaan}}{\text{Volume}} = \frac{2A}{Ad} = \frac{2}{d}" />
+
+Geser penggeser tebal daun dan perhatikan rasionya naik cepat saat daun makin tipis.
+
+<MathVisual
+  title={<>Rasio Luas Permukaan terhadap Volume Daun</>}
+  description={
+    <>
+      Kurva <InlineMath math="2/d" /> untuk lembaran daun setebal{" "}
+      <InlineMath math="d" /> milimeter. Tepi daun diabaikan karena sangat
+      kecil dibandingkan kedua permukaannya.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 21 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 1, value: 0.3, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "ratio", kind: "function", appearance: "primary", formula: "2/x", domain: { min: 0.1, max: 1 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "d", y: "2/d" },
+    ],
+    readouts: [
+      { key: "value", formula: "2/d" },
+    ],
+  }}
+  labels={{
+    d: <>Tebal daun <InlineMath math="d" /> dalam <InlineMath math="\text{mm}" /></>,
+    value: <>Rasio luas permukaan terhadap volume dalam <InlineMath math="\text{mm}^{-1}" /></>,
+  }}
+/>
+
+Daun setebal <InlineMath math="0{,}2\text{ mm}" /> punya rasio <InlineMath math="2 \div 0{,}2 = 10\text{ mm}^{-1}" />, lima kali lipat daun setebal <InlineMath math="1\text{ mm}" /> yang rasionya <InlineMath math="2\text{ mm}^{-1}" />.
+
+## Pertukaran Gas lewat Stomata
+
+Daun bertukar gas dengan udara lewat stomata. Pada siang hari, laju fotosintesis lebih tinggi daripada laju respirasi, jadi daun **menyerap karbon dioksida dan melepaskan oksigen**. Pada malam hari, hanya respirasi yang berlangsung, jadi daun menyerap oksigen dan melepaskan karbon dioksida. Gas berdifusi lewat stomata ke rongga udara, larut dalam lapisan air yang membasahi sel mesofil, lalu berdifusi masuk ke sel.
+
+Sel penjaga membuka stomata saat sel itu turgid. Dinding sel penjaga yang menghadap celah lebih tebal dan kurang elastis daripada dinding luarnya, jadi sel yang turgid melengkung ke luar dan celahnya terbuka. Urutannya seperti ini:
+
+1. Dalam cahaya, sel penjaga memompa **ion kalium** masuk secara transpor aktif, dan glukosa hasil kloroplas sel penjaga juga menambah zat terlarut.
+2. Konsentrasi zat terlarut di sel penjaga naik, jadi air masuk secara osmosis dari sel epidermis di sebelahnya.
+3. Sel penjaga menjadi turgid, melengkung, dan stomata terbuka.
+4. Dalam gelap, ion kalium berdifusi keluar, air keluar secara osmosis, sel penjaga menjadi lembek, dan stomata tertutup.
+
+Saat tumbuhan kekurangan air, daun menghasilkan **asam absisat**. Hormon ini membuat ion kalium keluar dari sel penjaga, jadi stomata menutup walaupun siang hari dan tumbuhan tidak banyak kehilangan air.
+
+## Transpirasi dan Faktor yang Memengaruhinya
+
+**Transpirasi** adalah hilangnya uap air dari bagian tumbuhan di atas tanah, sebagian besar lewat stomata. Air menguap dari dinding sel mesofil ke rongga udara, lalu uap air berdifusi keluar lewat stomata. Transpirasi menghasilkan **tarikan transpirasi** yang menarik air dan garam mineral naik dari akar lewat xilem, dan penguapannya mendinginkan daun.
+
+### Mengukur Transpirasi dengan Potometer
+
+Potometer mengukur laju penyerapan air oleh pucuk berdaun, yang hampir sama dengan laju transpirasinya. Saat pucuk menyerap air, gelembung udara di tabung kapiler bergerak, dan volume air sama dengan silinder yang dilewati gelembung, <InlineMath math="V = \pi r^2 l" />. Empat pucuk di model ini diolesi vaselin pada permukaan yang berbeda. Bandingkan pucuk yang diolesi di permukaan bawah dengan pucuk yang diolesi di permukaan atas.
+
+<PotometerLab
+  title={<>Potometer Gelembung dengan Empat Pucuk</>}
+  description={
+    <>
+      Tabung kapilernya berjari-jari <InlineMath math="0{,}5\text{ mm}" />.
+      Pucuk A tidak diolesi, B diolesi vaselin di permukaan atas, C di
+      permukaan bawah, dan D di kedua permukaan.
+    </>
+  }
+  minutes={10}
+  radius={0.5}
+  shoots={[
+    { name: "A", coat: "none", rate: 0.6 },
+    { name: "B", coat: "upper", rate: 0.48 },
+    { name: "C", coat: "lower", rate: 0.12 },
+    { name: "D", coat: "both", rate: 0.04 },
+  ]}
+  labels={{
+    distance: <>Jarak tempuh gelembung</>,
+    rate: <>Laju penyerapan air</>,
+    shoot: "Pilih pucuk",
+    time: "Waktu",
+    view: "Potometer gelembung dengan pucuk berdaun",
+    volume: <>Volume air yang diserap</>,
+  }}
+/>
+
+Pucuk A menyerap <InlineMath math="0{,}60\text{ cm}^3" /> air per jam. Hitung jarak tempuh gelembung dalam <InlineMath math="10" /> menit. **Ubah jari-jari ke sentimeter dulu**, yaitu <InlineMath math="0{,}5\text{ mm} = 0{,}05\text{ cm}" />:
+
+<MathContainer>
+<BlockMath math="V = 0{,}60 \times \frac{10}{60} = 0{,}10\text{ cm}^3" />
+<BlockMath math="l = \frac{V}{\pi r^2} = \frac{0{,}10}{\pi(0{,}05)^2} = 12{,}7\text{ cm}" />
+</MathContainer>
+
+Cek: <InlineMath math="\pi(0{,}05)^2 \times 12{,}7 = 0{,}0998\text{ cm}^3" />, hampir <InlineMath math="0{,}10\text{ cm}^3" />. Mengolesi permukaan bawah menurunkan laju sebesar <InlineMath math="\frac{0{,}60 - 0{,}12}{0{,}60} \times 100\% = 80\%" />, sedangkan permukaan atas hanya <InlineMath math="20\%" />. Jadi sebagian besar stomata ada di **epidermis bawah**.
+
+### Suhu dan Kelembapan Udara
+
+Udara di rongga udara daun hampir jenuh oleh uap air. Uap air berdifusi keluar mengikuti gradien konsentrasi antara rongga udara dan udara di luar daun. Gradien itu bisa dihitung sebagai **defisit tekanan uap**, yaitu tekanan uap jenuh pada suhu udara dikali bagian udara yang belum jenuh:
+
+<BlockMath math="\text{Defisit} = e_s(T) \times (1 - h)" />
+
+Di sini <InlineMath math="e_s" /> adalah tekanan uap jenuh pada suhu <InlineMath math="T" />, dan <InlineMath math="h" /> adalah kelembapan relatif dalam bentuk pecahan. Ubah suhu dan kelembapan di model ini dan lihat defisitnya berubah.
+
+<MathVisual
+  title={<>Defisit Tekanan Uap Udara</>}
+  description={
+    <>
+      Kurva atas adalah tekanan uap jenuh <InlineMath math="e_s" /> dari
+      persamaan Tetens. Kurva bawah adalah defisit tekanan uap pada kelembapan
+      relatif <InlineMath math="h" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 47 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 45, value: 30, step: 1, label: "a" },
+      { name: "h", min: 0.2, max: 0.95, value: 0.6, step: 0.05, label: "h" },
+    ],
+    objects: [
+      { id: "saturated", kind: "function", appearance: "reference", formula: "0.6108exp(17.27x/(x + 237.3))", domain: { min: 0, max: 45 } },
+      { id: "deficit", kind: "function", appearance: "primary", formula: "0.6108exp(17.27x/(x + 237.3))(1 - h)", domain: { min: 0, max: 45 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "a", y: "0.6108exp(17.27a/(a + 237.3))(1 - h)" },
+    ],
+    readouts: [
+      { key: "pressure", formula: "0.6108exp(17.27a/(a + 237.3))" },
+      { key: "gap", formula: "0.6108exp(17.27a/(a + 237.3))(1 - h)" },
+    ],
+  }}
+  labels={{
+    a: <>Suhu udara dalam <InlineMath math="^\circ\text{C}" /></>,
+    h: <>Kelembapan relatif dalam bentuk pecahan</>,
+    pressure: <>Tekanan uap jenuh dalam <InlineMath math="\text{kPa}" /></>,
+    gap: <>Defisit tekanan uap dalam <InlineMath math="\text{kPa}" /></>,
+  }}
+/>
+
+Pada <InlineMath math="30^\circ\text{C}" />, tekanan uap jenuhnya <InlineMath math="4{,}24\text{ kPa}" />. Bandingkan defisitnya pada kelembapan <InlineMath math="0{,}6" /> dan <InlineMath math="0{,}9" />:
+
+<MathContainer>
+<BlockMath math="4{,}24 \times (1 - 0{,}6) = 1{,}70\text{ kPa}" />
+<BlockMath math="4{,}24 \times (1 - 0{,}9) = 0{,}42\text{ kPa}" />
+</MathContainer>
+
+Cek: <InlineMath math="1{,}70 \div 0{,}42 = 4{,}0" />, jadi udara yang lembap membuat gradiennya empat kali lebih kecil dan transpirasi lebih lambat. Faktor lain mengikuti logika yang sama. Tabel ini merangkum pengaruhnya selama stomata terbuka.
+
+| Faktor | Saat faktor naik | Alasan |
+| :--- | :--- | :--- |
+| Intensitas cahaya | Laju transpirasi naik | Lebih banyak stomata terbuka |
+| Suhu | Laju transpirasi naik | Air menguap lebih cepat dan tekanan uap jenuh naik |
+| Kelembapan relatif | Laju transpirasi turun | Gradien konsentrasi uap air makin kecil |
+| Gerakan udara | Laju transpirasi naik | Angin membawa pergi udara lembap di sekitar daun |
+
+## Fotosintesis dalam Dua Tahap
+
+Fotosintesis berlangsung di kloroplas dalam dua tahap. **Reaksi terang**, yaitu reaksi yang bergantung pada cahaya, terjadi di tilakoid dalam grana. Klorofil menyerap energi cahaya, dan energi itu memecah molekul air, yang disebut **fotolisis air**:
+
+<BlockMath math="2\mathrm{H_2O} \rightarrow 4\mathrm{H^+} + 4e^- + \mathrm{O_2}" />
+
+Oksigen dilepaskan sebagai hasil samping, jadi oksigen fotosintesis berasal dari air. Elektron dan ion hidrogen dipakai untuk membentuk ATP dan NADPH. **Reaksi gelap**, yaitu reaksi yang tidak bergantung pada cahaya, terjadi di stroma. Karbon dioksida diikat dan direduksi menjadi glukosa dengan energi dari ATP dan hidrogen dari NADPH. Tahap ini tidak butuh cahaya secara langsung, tetapi berhenti saat pasokan ATP dan NADPH habis.
+
+| Ciri | Reaksi terang | Reaksi gelap |
+| :--- | :--- | :--- |
+| Tempat | Tilakoid dalam grana | Stroma |
+| Bahan | Air, cahaya, ADP, NADP | Karbon dioksida, ATP, NADPH |
+| Hasil | Oksigen, ATP, NADPH | Glukosa, ADP, NADP |
+
+Hydrilla di model ini melepaskan gelembung oksigen. Lampu yang lebih dekat memberi intensitas cahaya lebih tinggi, karena intensitas berbanding terbalik dengan kuadrat jarak, <InlineMath math="I \propto \frac{1}{d^2}" />. Pilih setiap pengamatan dan bandingkan jumlah gelembung per menitnya.
+
+<PhotosynthesisLab
+  title={<>Hydrilla di bawah Lampu Meja</>}
+  description={
+    <>
+      Lampu diletakkan dari <InlineMath math="50\text{ cm}" /> sampai{" "}
+      <InlineMath math="10\text{ cm}" /> dari tumbuhan. Dua pengamatan terakhir
+      memakai air yang diberi natrium hidrogen karbonat.
+    </>
+  }
+  readings={[
+    { distance: 50, bubbles: 10 },
+    { distance: 40, bubbles: 14 },
+    { distance: 30, bubbles: 19 },
+    { distance: 20, bubbles: 27 },
+    { distance: 10, bubbles: 36 },
+    { distance: 20, bubbles: 47, bicarbonate: true },
+    { distance: 10, bubbles: 62, bicarbonate: true },
+  ]}
+  labels={{
+    bubbles: <>Gelembung per menit</>,
+    carbon: <>Tambahan karbon dioksida</>,
+    carbonSources: { added: <>Natrium hidrogen karbonat ditambahkan</>, none: <>Air saja</> },
+    distance: <>Jarak lampu</>,
+    intensity: <>Intensitas cahaya relatif</>,
+    reading: "Pilih pengamatan",
+    view: "Hydrilla dalam tabung reaksi di bawah lampu",
+  }}
+/>
+
+Bandingkan lampu pada jarak <InlineMath math="20\text{ cm}" /> dan <InlineMath math="10\text{ cm}" />. **Hitung dulu perbandingan intensitas cahayanya**, lalu perbandingan gelembungnya:
+
+<MathContainer>
+<BlockMath math="\frac{I_{10}}{I_{20}} = \left(\frac{20}{10}\right)^2 = 4" />
+<BlockMath math="\frac{36}{27} = 1{,}33" />
+</MathContainer>
+
+Cahayanya menjadi empat kali lipat, tetapi gelembungnya hanya bertambah sepertiga. Cek dengan natrium hidrogen karbonat: pada jarak <InlineMath math="10\text{ cm}" />, gelembungnya naik dari <InlineMath math="36" /> menjadi <InlineMath math="62" />. Jadi saat lampu dekat, konsentrasi karbon dioksida yang membatasi laju fotosintesis.
+
+## Faktor Pembatas Laju Fotosintesis
+
+**Faktor pembatas** adalah faktor yang pasokannya paling sedikit, dan faktor itulah yang menentukan laju. Dalam cahaya redup, cahaya membatasi laju, jadi menambah karbon dioksida hampir tidak berpengaruh. Dalam cahaya terang, kurvanya mendatar karena karbon dioksida atau suhu yang kini membatasi laju. Kurva di model ini mengikuti <InlineMath math="P = c\left(1 - e^{-2I/c}\right)" />, dengan <InlineMath math="c" /> adalah laju tertinggi yang diizinkan pasokan karbon dioksida. Geser kedua penggeser dan cari daerah tempat cahaya menjadi faktor pembatas.
+
+<MathVisual
+  title={<>Laju Fotosintesis terhadap Intensitas Cahaya</>}
+  description={
+    <>
+      Dua kurva acuan adalah konsentrasi karbon dioksida rendah,{" "}
+      <InlineMath math="c = 4" />, dan tinggi, <InlineMath math="c = 12" />.
+      Kurva utama mengikuti penggeser <InlineMath math="c" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 4, max: 12, value: 6, step: 1, label: "c" },
+      { name: "i", min: 0, max: 20, value: 5, step: 0.5, label: "i" },
+    ],
+    objects: [
+      { id: "low", kind: "function", appearance: "reference", formula: "4(1 - exp(-2x/4))", domain: { min: 0, max: 20 } },
+      { id: "high", kind: "function", appearance: "reference", formula: "12(1 - exp(-2x/12))", domain: { min: 0, max: 20 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "c(1 - exp(-2x/c))", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "i", y: "c(1 - exp(-2i/c))" },
+    ],
+    readouts: [
+      { key: "speed", formula: "c(1 - exp(-2i/c))" },
+      { key: "share", formula: "100(1 - exp(-2i/c))" },
+    ],
+  }}
+  labels={{
+    c: <>Laju tertinggi <InlineMath math="c" /> dari karbon dioksida</>,
+    i: <>Intensitas cahaya relatif <InlineMath math="I" /></>,
+    speed: <>Laju fotosintesis relatif <InlineMath math="P" /></>,
+    share: <>Persentase laju tertinggi</>,
+  }}
+/>
+
+Hitung lajunya pada <InlineMath math="I = 1" /> dan <InlineMath math="I = 15" /> untuk <InlineMath math="c = 4" /> dan <InlineMath math="c = 12" />. **Substitusikan ke rumus yang sama**:
+
+<MathContainer>
+<BlockMath math="I = 1:\quad 4\left(1 - e^{-0{,}5}\right) = 1{,}57, \qquad 12\left(1 - e^{-1/6}\right) = 1{,}84" />
+<BlockMath math="I = 15:\quad 4\left(1 - e^{-7{,}5}\right) = 4{,}00, \qquad 12\left(1 - e^{-2{,}5}\right) = 11{,}02" />
+</MathContainer>
+
+Dalam cahaya redup, karbon dioksida tiga kali lipat hanya menaikkan laju dari <InlineMath math="1{,}57" /> menjadi <InlineMath math="1{,}84" />. Dalam cahaya terang, lajunya naik hampir tiga kali lipat. Cek di model: geser <InlineMath math="I" /> ke <InlineMath math="15" /> lalu ubah <InlineMath math="c" /> antara <InlineMath math="4" /> dan <InlineMath math="12" />.
+
+Suhu juga membatasi laju, karena reaksi gelap dikatalisis oleh enzim. Laju naik seiring suhu sampai suhu optimum, lalu turun cepat saat enzimnya terdenaturasi. Petani rumah kaca menambahkan karbon dioksida dan cahaya lampu untuk menaikkan faktor yang membatasi hasil panennya.
+
+## Titik Kompensasi
+
+Tumbuhan berespirasi sepanjang waktu, tetapi berfotosintesis hanya saat ada cahaya. **Titik kompensasi** adalah intensitas cahaya saat laju fotosintesis sama dengan laju respirasi. Pada titik ini, glukosa yang dibentuk sama dengan glukosa yang dipakai, dan tidak ada pertukaran gas bersih dengan udara. Tumbuhan hanya bisa tumbuh kalau menerima cahaya di atas titik kompensasinya hampir sepanjang hari. Titik ini biasanya tercapai pada pagi dan sore hari saat cahaya redup.
+
+<MathVisual
+  title={<>Titik Kompensasi Selembar Daun</>}
+  description={
+    <>
+      Laju fotosintesis kotor <InlineMath math="P = \frac{10I}{I + 4}" /> dan
+      laju respirasi tetap <InlineMath math="R = 2" />. Kurva bawah adalah
+      pertukaran gas bersih <InlineMath math="P - R" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -2.5, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 0, max: 10, value: 3, step: 0.5, label: "i" },
+    ],
+    objects: [
+      { id: "gross", kind: "function", appearance: "primary", formula: "10x/(x + 4)", domain: { min: 0, max: 10 } },
+      { id: "breath", kind: "function", appearance: "secondary", formula: "2", domain: { min: 0, max: 10 } },
+      { id: "net", kind: "function", appearance: "highlight", formula: "10x/(x + 4) - 2", domain: { min: 0, max: 10 } },
+      { id: "balance", kind: "point", appearance: "warning", at: { x: 1, y: 2 } },
+      { id: "now", kind: "marker", appearance: "construction", x: "i", y: "10i/(i + 4) - 2" },
+    ],
+    labels: [
+      { key: "point", objectId: "balance", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "made", formula: "10i/(i + 4)" },
+      { key: "used", formula: "2" },
+      { key: "gain", formula: "10i/(i + 4) - 2" },
+    ],
+  }}
+  labels={{
+    point: <>Titik kompensasi</>,
+    i: <>Intensitas cahaya relatif <InlineMath math="I" /></>,
+    made: <>Laju fotosintesis <InlineMath math="P" /></>,
+    used: <>Laju respirasi <InlineMath math="R" /></>,
+    gain: <>Pertukaran gas bersih <InlineMath math="P - R" /></>,
+  }}
+/>
+
+Cari intensitas cahaya pada titik kompensasi. **Samakan laju fotosintesis dengan laju respirasi**, lalu selesaikan:
+
+<MathContainer>
+<BlockMath math="\frac{10I}{I + 4} = 2" />
+<BlockMath math="10I = 2I + 8 \quad\Rightarrow\quad I = 1" />
+</MathContainer>
+
+Cek: <InlineMath math="\frac{10(1)}{1 + 4} = 2" />, sama dengan <InlineMath math="R" />. Pada <InlineMath math="I = 3" />, pertukaran bersihnya <InlineMath math="\frac{30}{7} - 2 = 2{,}29" />, jadi daun menyerap karbon dioksida. Pada <InlineMath math="I = 0" />, nilainya <InlineMath math="-2" />, jadi daun hanya melepaskan karbon dioksida.
+
+## Kesalahan Umum tentang Daun
+
+| Kesalahan | Alasan keliru | Cara mengecek |
+| :--- | :--- | :--- |
+| Tumbuhan hanya bernapas pada malam hari. | Respirasi berlangsung sepanjang waktu. Pada siang hari, fotosintesis yang lebih cepat menutupi pengaruhnya. | Lihat titik kompensasi: respirasi tetap ada walaupun dalam cahaya. |
+| Stomata terbuka saat sel penjaga lembek. | Stomata terbuka saat sel penjaga turgid dan melengkung. | Ikuti aliran air: air masuk, sel turgid, stomata terbuka. |
+| Oksigen fotosintesis berasal dari karbon dioksida. | Oksigen berasal dari fotolisis air dalam reaksi terang. | Tulis persamaan fotolisis dan cari oksigennya. |
+| Laju fotosintesis terus naik selama cahaya bertambah. | Dalam cahaya terang, karbon dioksida atau suhu membatasi laju. | Kurva yang mendatar menunjukkan faktor lain sedang membatasi. |
+
+Kesalahan ketiga sering muncul di soal uraian. **Oksigen berasal dari air**, bukan dari karbon dioksida.
+
+## Latihan Struktur dan Fungsi Daun
+
+Soal-soal ini bergerak dari cara kerja stomata ke perhitungan transpirasi, cahaya, dan titik kompensasi. **Tulis rumusnya sebelum memasukkan nilai**.
+
+1. Jelaskan bagaimana stomata terbuka pada siang hari.
+
+2. Pada potometer dengan tabung kapiler berjari-jari <InlineMath math="0{,}5\text{ mm}" />, gelembung bergerak <InlineMath math="9{,}0\text{ cm}" /> dalam <InlineMath math="5" /> menit. Hitung laju penyerapan air dalam <InlineMath math="\text{cm}^3" /> per jam.
+
+3. Lampu dipindahkan dari <InlineMath math="30\text{ cm}" /> ke <InlineMath math="15\text{ cm}" /> dari Hydrilla. Berapa kali lipat intensitas cahayanya bertambah?
+
+4. Pada suhu yang lebih tinggi, laju respirasi daun di model titik kompensasi naik menjadi <InlineMath math="R = 3" />. Cari titik kompensasi yang baru dan jelaskan perubahannya.
+
+### Pembahasan
+
+**Pembahasan 1**: Dalam cahaya, sel penjaga memompa **ion kalium** masuk secara aktif dan membentuk glukosa. Konsentrasi zat terlarut naik, jadi air masuk secara osmosis dari sel epidermis tetangga. Sel penjaga menjadi turgid, dan karena dinding dalamnya lebih tebal, sel itu melengkung ke luar dan membuka celah stomata.
+
+**Pembahasan 2**: Hitung volumenya dengan **jari-jari dalam sentimeter**, <InlineMath math="0{,}05\text{ cm}" />:
+
+<MathContainer>
+<BlockMath math="V = \pi(0{,}05)^2 \times 9{,}0 = 0{,}0707\text{ cm}^3" />
+<BlockMath math="\text{Laju} = 0{,}0707 \times \frac{60}{5} = 0{,}848\text{ cm}^3\text{ per jam}" />
+</MathContainer>
+
+Cek: <InlineMath math="0{,}848 \div 12 = 0{,}0707\text{ cm}^3" />, dan volume itu dibagi <InlineMath math="\pi(0{,}05)^2" /> kembali menjadi <InlineMath math="9{,}0\text{ cm}" />.
+
+**Pembahasan 3**: Intensitas **berbanding terbalik dengan kuadrat jarak**:
+
+<BlockMath math="\frac{I_{15}}{I_{30}} = \left(\frac{30}{15}\right)^2 = 4" />
+
+Cek: jaraknya menjadi setengah, jadi intensitasnya menjadi <InlineMath math="2^2 = 4" /> kali lipat.
+
+**Pembahasan 4**: Samakan fotosintesis dengan **laju respirasi yang baru**:
+
+<MathContainer>
+<BlockMath math="\frac{10I}{I + 4} = 3" />
+<BlockMath math="10I = 3I + 12 \quad\Rightarrow\quad I = \frac{12}{7} = 1{,}71" />
+</MathContainer>
+
+Cek: <InlineMath math="\frac{10(12/7)}{12/7 + 4} = \frac{120/7}{40/7} = 3" />. Respirasi yang lebih cepat memakai lebih banyak glukosa, jadi daun butuh cahaya yang lebih terang sebelum fotosintesisnya mengimbangi respirasinya.
