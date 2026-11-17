@@ -1,0 +1,275 @@
+export const metadata = {
+  title: "Photonen und der Photoeffekt in der Quantenphysik",
+  description:
+    "Berechne Photonenenergien mit E = h · f, erklär den Photoeffekt mit Einsteins Gleichung und bestimme die De-Broglie-Wellenlänge, mit Beispielen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Quantenphysik",
+};
+
+## Licht kommt in Energiepaketen
+
+Die **Quantentheorie** besagt, dass Lichtenergie nicht kontinuierlich fließt, sondern in kleinen Paketen kommt, den **Photonen**. Die Energie eines Photons hängt nur von seiner Frequenz ab:
+
+<BlockMath math="E = h \cdot f = \frac{h \cdot c}{\lambda}" />
+
+Dabei ist <InlineMath math="h = 6{,}63 \cdot 10^{-34}\ \text{J s}" /> das Plancksche Wirkungsquantum, <InlineMath math="f" /> die Frequenz und <InlineMath math="\lambda" /> die Wellenlänge des Lichts. Hier siehst du ein Wasserstoffatom Spektrallinien aussenden, änderst die Frequenz von Licht, um Elektronen aus einem Metall zu lösen, und berechnest die Wellenlänge eines bewegten Teilchens.
+
+Blaues Licht trägt pro Photon mehr Energie als rotes, weil seine Wellenlänge kürzer ist. Verschieb den Wellenlängenregler unten und lies die Photonenenergie in Elektronenvolt ab, mit <InlineMath math="1\ \text{eV} = 1{,}60 \cdot 10^{-19}\ \text{J}" />.
+
+<MathVisual
+  title={<>Photonenenergie gegen die Wellenlänge</>}
+  description={
+    <>
+      Die Photonenenergie in eV ist{" "}
+      <InlineMath math="E = \dfrac{h \cdot c}{\lambda \cdot e} \approx \dfrac{1243}{\lambda}" />,
+      mit <InlineMath math="\lambda" /> in Nanometern. Grünes Licht mit{" "}
+      <InlineMath math="500\ \text{nm}" /> trägt etwa{" "}
+      <InlineMath math="2{,}49\ \text{eV}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 300, max: 800 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "w", min: 300, max: 800, value: 500, step: 10, label: "w" },
+    ],
+    objects: [
+      { id: "photon", kind: "function", appearance: "primary", formula: "6.63*3*100/(1.6*x)", domain: { min: 300, max: 800 } },
+      { id: "now", kind: "marker", x: "w", y: "6.63*3*100/(1.6*w)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "energy", formula: "6.63*3*100/(1.6*w)" },
+    ],
+  }}
+  labels={{
+    w: <>Wellenlänge <InlineMath math="\lambda" /> in <InlineMath math="\text{nm}" /></>,
+    energy: <>Photonenenergie in <InlineMath math="\text{eV}" /></>,
+  }}
+/>
+
+Probier ein Beispiel. Berechne die Energie eines Photons von grünem Licht mit der Wellenlänge <InlineMath math="500\ \text{nm}" />.
+
+**Rechne zuerst Nanometer in Meter um** und verwende dann <InlineMath math="E = \dfrac{h \cdot c}{\lambda}" />:
+
+<MathContainer>
+<BlockMath math="\lambda = 500 \cdot 10^{-9} = 5{,}00 \cdot 10^{-7}\ \text{m}" />
+<BlockMath math="E = \frac{6{,}63 \cdot 10^{-34} \cdot 3{,}00 \cdot 10^8}{5{,}00 \cdot 10^{-7}} = 3{,}98 \cdot 10^{-19}\ \text{J}" />
+<BlockMath math="E = \frac{3{,}98 \cdot 10^{-19}}{1{,}60 \cdot 10^{-19}} = 2{,}49\ \text{eV}" />
+</MathContainer>
+
+Prüf es am Graphen oben: Bei <InlineMath math="500\ \text{nm}" /> zeigt er ebenfalls etwa <InlineMath math="2{,}49\ \text{eV}" />.
+
+## Atome senden Photonen fester Energie aus
+
+Elektronen in einem Atom können nur auf **bestimmten Energieniveaus** sitzen. Fällt ein Elektron von einem hohen auf ein niedriges Niveau, sendet das Atom ein Photon aus, dessen Energie **genau der Differenz** der beiden Niveaus entspricht. Weil die Niveaus fest sind, kommt das Licht nur bei bestimmten Wellenlängen heraus, und du siehst ein **Linienspektrum** statt eines durchgehenden Regenbogens.
+
+Wähl unten einen Elektronenübergang im Wasserstoffatom und lies Wellenlänge, Energie und Frequenz des Photons ab.
+
+<BohrEmissionLab
+  title={<>Spektrallinien des Wasserstoffatoms</>}
+  description={
+    <>
+      Ein Elektron fällt vom Niveau <InlineMath math="3" />,{" "}
+      <InlineMath math="4" /> oder <InlineMath math="5" /> auf das Niveau{" "}
+      <InlineMath math="n = 2" />. Jeder Übergang sendet ein Photon sichtbaren
+      Lichts in einer anderen Farbe aus.
+    </>
+  }
+  falls={[
+    { from: 3, to: 2 },
+    { from: 4, to: 2 },
+    { from: 5, to: 2 },
+  ]}
+  labels={{
+    choose: "Elektronenübergang",
+    energy: <>Photonenenergie</>,
+    frequency: <>Frequenz</>,
+    transition: <>Übergang</>,
+    view: "Bohrsches Modell eines Wasserstoffatoms, das ein Photon aussendet",
+    wavelength: <>Wellenlänge</>,
+  }}
+/>
+
+Der Übergang <InlineMath math="3 \rightarrow 2" /> liefert eine rote Linie bei etwa <InlineMath math="656\ \text{nm}" />, der Übergang <InlineMath math="5 \rightarrow 2" /> eine violette bei etwa <InlineMath math="434\ \text{nm}" />. Ein größerer Sprung setzt ein energiereicheres Photon frei, also ist seine Wellenlänge kürzer.
+
+## Der Photoeffekt und die Grenzfrequenz
+
+Der **Photoeffekt** ist das Herauslösen von Elektronen aus einer Metalloberfläche, wenn Licht darauf fällt. Die herausgelösten Elektronen heißen **Photoelektronen**. Versuche zeigen drei Dinge, die die Wellentheorie nicht erklären kann:
+
+| Beobachtung | Was sie bedeutet |
+| :--- | :--- |
+| Unterhalb der **Grenzfrequenz** <InlineMath math="f_0" /> lösen sich keine Elektronen, egal wie hell das Licht ist. | Ein einzelnes Photon muss genug Energie haben, um ein Elektron zu lösen. |
+| Oberhalb von <InlineMath math="f_0" /> lösen sich Elektronen sofort. | Die Energie kommt in einem Paket an und sammelt sich nicht langsam an. |
+| Die maximale kinetische Energie der Elektronen hängt von der Frequenz ab, nicht von der Intensität. | Die Intensität ändert nur die Zahl der Photonen. Die Energie jedes Photons bleibt gleich. |
+
+Die Mindestenergie, um ein Elektron zu lösen, heißt **Austrittsarbeit** <InlineMath math="W_A" />. Für Natrium ist <InlineMath math="W_A = 2{,}28\ \text{eV}" />, für Zink <InlineMath math="W_A = 4{,}3\ \text{eV}" />. Die Grenzfrequenz ist <InlineMath math="f_0 = \dfrac{W_A}{h}" />.
+
+## Einsteins Gleichung für den Photoeffekt
+
+Einstein erklärte den Photoeffekt mit der **Energieerhaltung** für ein Photon und ein Elektron. Die Energie des Photons bezahlt die Austrittsarbeit, und der Rest wird zur maximalen kinetischen Energie des Elektrons:
+
+<BlockMath math="h \cdot f = W_A + E_{\text{kin,max}}" />
+
+Ändere unten die Frequenz des Lichts und die Austrittsarbeit des Metalls. Die Gerade schneidet die waagrechte Achse bei der Grenzfrequenz, und ihre Steigung ist das Plancksche Wirkungsquantum.
+
+<MathVisual
+  title={<>Maximale kinetische Energie der Photoelektronen gegen die Frequenz</>}
+  description={
+    <>
+      <InlineMath math="E_{\text{kin,max}} = h \cdot f - W_A" /> in eV, mit{" "}
+      <InlineMath math="f" /> in Einheiten von <InlineMath math="10^{14}\ \text{Hz}" />.
+      Unterhalb der Grenzfrequenz ist <InlineMath math="h \cdot f - W_A" /> negativ,
+      und es lösen sich keine Elektronen.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "f", min: 0, max: 16, value: 7.5, step: 0.1, label: "f" },
+      { name: "w", min: 1.5, max: 5, value: 2.28, step: 0.01, label: "w" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "0.414x - w", domain: { min: 0, max: 16 } },
+      { id: "now", kind: "marker", x: "f", y: "0.414f - w", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "kinetic", formula: "0.414f - w" },
+      { key: "threshold", formula: "w/0.414" },
+    ],
+  }}
+  labels={{
+    f: <>Frequenz <InlineMath math="f" /> in <InlineMath math="10^{14}\ \text{Hz}" /></>,
+    w: <>Austrittsarbeit <InlineMath math="W_A" /> in <InlineMath math="\text{eV}" /></>,
+    kinetic: <><InlineMath math="h \cdot f - W_A" /> in <InlineMath math="\text{eV}" /></>,
+    threshold: <>Grenzfrequenz in <InlineMath math="10^{14}\ \text{Hz}" /></>,
+  }}
+/>
+
+Violettes Licht mit <InlineMath math="400\ \text{nm}" /> fällt auf Natrium. Berechne die maximale kinetische Energie der Photoelektronen und die Grenzfrequenz von Natrium.
+
+<MathContainer>
+<BlockMath math="h \cdot f = \frac{6{,}63 \cdot 10^{-34} \cdot 3{,}00 \cdot 10^8}{4{,}00 \cdot 10^{-7}} = 4{,}97 \cdot 10^{-19}\ \text{J} = 3{,}11\ \text{eV}" />
+<BlockMath math="E_{\text{kin,max}} = 3{,}11 - 2{,}28 = 0{,}83\ \text{eV}" />
+<BlockMath math="f_0 = \frac{2{,}28 \cdot 1{,}60 \cdot 10^{-19}}{6{,}63 \cdot 10^{-34}} = 5{,}50 \cdot 10^{14}\ \text{Hz}" />
+</MathContainer>
+
+Prüf es: Die Frequenz des violetten Lichts ist <InlineMath math="\dfrac{3{,}00 \cdot 10^8}{4{,}00 \cdot 10^{-7}} = 7{,}50 \cdot 10^{14}\ \text{Hz}" />, also größer als <InlineMath math="f_0" />, und es lösen sich tatsächlich Elektronen. Bei <InlineMath math="f = 7{,}5" /> und <InlineMath math="W_A = 2{,}28" /> zeigt der Graph oben ebenfalls etwa <InlineMath math="0{,}83\ \text{eV}" />.
+
+Der Photoeffekt steckt in **Solarzellen**, in Lichtschranken automatischer Türen und in Digitalkameras.
+
+## Auch Teilchen verhalten sich wie Wellen
+
+Wenn Licht, das wir als Welle beschreiben, sich wie ein Teilchen verhalten kann, dann können sich auch Teilchen wie Wellen verhalten. Das ist der **Welle-Teilchen-Dualismus**. De Broglie schlug vor, dass jedes Teilchen mit dem Impuls <InlineMath math="p = m \cdot v" /> eine Wellenlänge hat:
+
+<BlockMath math="\lambda = \frac{h}{p} = \frac{h}{m \cdot v}" />
+
+Elektronen in einer Braunschen Röhre werden von einem elektrischen Feld abgelenkt wie geladene Teilchen. Derselbe Elektronenstrahl erzeugt aber ein Beugungsmuster, wenn er durch einen Kristall geht, ein Beleg für seine Welleneigenschaft. Sieh dir unten an, wie die Elektronen in der Röhre abgelenkt werden.
+
+<CathodeRayLab
+  title={<>Ein Elektronenstrahl in einer Braunschen Röhre</>}
+  description={
+    <>
+      Elektronen werden zur Anode beschleunigt und fliegen zwischen zwei
+      geladenen Platten hindurch. Das elektrische Feld lenkt den Strahl ab, also
+      haben Elektronen Ladung und Masse wie Teilchen.
+    </>
+  }
+  labels={{
+    anode: <>Anodenspannung</>,
+    field: <>Elektrisches Feld zwischen den Platten</>,
+    plates: "Ablenkplatten",
+    spot: <>Lage des Leuchtflecks auf dem Schirm</>,
+    view: "Braunsche Röhre mit Elektronenstrahl und Ablenkplatten",
+  }}
+/>
+
+Verschieb unten den Regler für die Geschwindigkeit des Elektrons. Je schneller das Elektron, desto größer sein Impuls und desto kürzer seine Wellenlänge.
+
+<MathVisual
+  title={<>De-Broglie-Wellenlänge eines Elektrons gegen die Geschwindigkeit</>}
+  description={
+    <>
+      <InlineMath math="\lambda = \dfrac{h}{m_e \cdot v} \approx \dfrac{0{,}728}{v}\ \text{nm}" />,
+      mit <InlineMath math="v" /> in Einheiten von <InlineMath math="10^6\ \text{m/s}" />.
+      Bei <InlineMath math="v = 2{,}0 \cdot 10^6\ \text{m/s}" /> ist{" "}
+      <InlineMath math="\lambda \approx 0{,}364\ \text{nm}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5 }, y: { min: 0, max: 1.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 0.5, max: 5, value: 2, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "wavelength", kind: "function", appearance: "primary", formula: "0.728/x", domain: { min: 0.5, max: 5 } },
+      { id: "now", kind: "marker", x: "s", y: "0.728/s", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "length", formula: "0.728/s" },
+    ],
+  }}
+  labels={{
+    s: <>Geschwindigkeit des Elektrons <InlineMath math="v" /> in <InlineMath math="10^6\ \text{m/s}" /></>,
+    length: <>Wellenlänge in <InlineMath math="\text{nm}" /></>,
+  }}
+/>
+
+Rechne das Beispiel nach. Ein Elektron mit der Masse <InlineMath math="9{,}11 \cdot 10^{-31}\ \text{kg}" /> bewegt sich mit <InlineMath math="2{,}0 \cdot 10^6\ \text{m/s}" />:
+
+<BlockMath math="\lambda = \frac{6{,}63 \cdot 10^{-34}}{9{,}11 \cdot 10^{-31} \cdot 2{,}0 \cdot 10^6} = 3{,}64 \cdot 10^{-10}\ \text{m} = 0{,}364\ \text{nm}" />
+
+Prüf es: Diese Wellenlänge ist vergleichbar mit dem Abstand der Atome in einem Kristall, etwa <InlineMath math="0{,}1" /> bis <InlineMath math="0{,}5\ \text{nm}" />. Deshalb kann ein Kristall Elektronen beugen, und ein Elektronenmikroskop zeigt viel feinere Details als ein Lichtmikroskop.
+
+## Typische Fehler in der Quantenphysik
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Helleres Licht löst schnellere Elektronen heraus. | Die Intensität erhöht die Zahl der Photonen. Die Energie jedes Photons hängt von der Frequenz ab. | Ändere die Intensität, und <InlineMath math="E_{\text{kin,max}}" /> bleibt gleich. |
+| Sehr helles rotes Licht löst trotzdem Elektronen aus Zink. | Ist <InlineMath math="h \cdot f" /> kleiner als <InlineMath math="W_A" />, hat kein Photon genug Energie. | Vergleich die Photonenenergie mit der Austrittsarbeit. |
+| Eine größere Wellenlänge bedeutet eine größere Photonenenergie. | <InlineMath math="E = \dfrac{h \cdot c}{\lambda}" />, also ist die Energie umgekehrt proportional zur Wellenlänge. | Blaues Licht ist energiereicher als rotes. |
+| Die Wellenlänge in Nanometern wird direkt in <InlineMath math="E = \dfrac{h \cdot c}{\lambda}" /> eingesetzt. | Die Formel braucht Meter, um Joule zu liefern. | Multipliziere zuerst mit <InlineMath math="10^{-9}" />. |
+| Nur Licht verhält sich wie eine Welle. | Auch Elektronen werden gebeugt, also haben Teilchen ebenfalls eine Wellenlänge. | Berechne <InlineMath math="\lambda = \dfrac{h}{m \cdot v}" /> für das Teilchen. |
+
+Der erste Fehler kommt am häufigsten vor. Merk dir die Arbeitsteilung: **Die Frequenz bestimmt die Energie jedes Photons, die Intensität die Zahl der Photonen**.
+
+## Übungen zur Quantenphysik
+
+Die Aufgaben gehen von der Photonenenergie über den Photoeffekt zur De-Broglie-Wellenlänge. **Rechne alle Einheiten in SI-Einheiten um**, bevor du das Plancksche Wirkungsquantum verwendest.
+
+1. Ein Laser mit <InlineMath math="1{,}0\ \text{mW}" /> sendet rotes Licht mit <InlineMath math="650\ \text{nm}" /> aus. Berechne die Zahl der Photonen, die er pro Sekunde aussendet.
+
+2. Die Austrittsarbeit von Zink ist <InlineMath math="4{,}3\ \text{eV}" />. Löst grünes Licht mit <InlineMath math="500\ \text{nm}" /> Elektronen aus Zink? Begründe.
+
+3. Licht oberhalb der Grenzfrequenz fällt auf ein Metall. Seine Intensität wird verdoppelt, die Frequenz bleibt gleich. Gib an, wie sich die Zahl der Photoelektronen und ihre maximale kinetische Energie ändern.
+
+4. Ein Elektron und ein Proton bewegen sich gleich schnell. Berechne das Verhältnis der De-Broglie-Wellenlänge des Elektrons zu der des Protons, mit <InlineMath math="m_p = 1836\,m_e" />.
+
+### Lösungen
+
+**Lösung 1**: Berechne die Energie eines Photons und teil die Leistung dadurch:
+
+<MathContainer>
+<BlockMath math="E = \frac{6{,}63 \cdot 10^{-34} \cdot 3{,}00 \cdot 10^8}{6{,}50 \cdot 10^{-7}} = 3{,}06 \cdot 10^{-19}\ \text{J}" />
+<BlockMath math="N = \frac{1{,}0 \cdot 10^{-3}}{3{,}06 \cdot 10^{-19}} = 3{,}27 \cdot 10^{15}\ \text{Photonen pro Sekunde}" />
+</MathContainer>
+
+Prüf es: <InlineMath math="3{,}27 \cdot 10^{15} \cdot 3{,}06 \cdot 10^{-19} = 1{,}0 \cdot 10^{-3}\ \text{J}" /> pro Sekunde, genau die Leistung des Lasers.
+
+**Lösung 2**: Ein Photon mit <InlineMath math="500\ \text{nm}" /> trägt <InlineMath math="2{,}49\ \text{eV}" />, wie im Beispiel oben. Das ist **weniger als** die Austrittsarbeit von Zink, <InlineMath math="4{,}3\ \text{eV}" />, also **lösen sich keine Elektronen**, egal wie hell das Licht ist. Ein Photon hat nicht genug Energie, und ein Elektron kann keine Energie von mehreren Photonen sammeln.
+
+**Lösung 3**: Doppelte Intensität bedeutet **doppelt so viele Photonen**, also lösen sich **doppelt so viele Photoelektronen**, und der Photostrom steigt. Die Frequenz bleibt gleich, also hat jedes Photon dieselbe Energie, und die **maximale kinetische Energie bleibt gleich**:
+
+<BlockMath math="E_{\text{kin,max}} = h \cdot f - W_A" />
+
+**Lösung 4**: Bei gleicher Geschwindigkeit ist die Wellenlänge umgekehrt proportional zur Masse:
+
+<BlockMath math="\frac{\lambda_e}{\lambda_p} = \frac{h / (m_e \cdot v)}{h / (m_p \cdot v)} = \frac{m_p}{m_e} = 1836" />
+
+Die Wellenlänge des Elektrons ist <InlineMath math="1836" />-mal so lang. Prüf es: Ein leichteres Teilchen hat bei gleicher Geschwindigkeit einen kleineren Impuls, also eine größere Wellenlänge.
