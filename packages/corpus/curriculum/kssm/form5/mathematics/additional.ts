@@ -233,7 +233,33 @@ export const kssmForm5AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-additional-mathematics-kinematics-of-linear-motion-linear-kinematics",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.linear-kinematics"],
+        order: 10,
+      }),
+    ],
     key: "form-5-additional-mathematics-kinematics-of-linear-motion",
+    materialCard: {
+      de: {
+        description: "Leite Ort ab und integriere Beschleunigung.",
+        title: "Kinematik geradliniger Bewegung",
+      },
+      en: {
+        description: "Differentiate displacement, integrate acceleration.",
+        title: "Kinematics of Linear Motion",
+      },
+      id: {
+        description: "Turunkan perpindahan, integralkan percepatan.",
+        title: "Kinematika Gerak Lurus",
+      },
+      ms: {
+        description: "Bezakan sesaran dan kamirkan pecutan.",
+        title: "Kinematik Gerakan Linear",
+      },
+    },
     order: 80,
     translations: {
       de: {

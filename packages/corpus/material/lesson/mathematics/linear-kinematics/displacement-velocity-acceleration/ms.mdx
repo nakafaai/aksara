@@ -1,0 +1,296 @@
+export const metadata = {
+  title: "Nota Kinematik Gerakan Linear Tingkatan Lima",
+  description:
+    "Nota Matematik Tambahan Tingkatan 5 Bab 8: bezakan sesaran untuk halaju dan pecutan, kamirkan pecutan untuk halaju dan sesaran, dan bezakan sesaran dengan jarak yang dilalui.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Kinematik Gerakan Linear",
+};
+
+## Bezakan untuk Turun dan Kamirkan untuk Naik
+
+Bagi zarah yang bergerak di sepanjang garis lurus, **sesaran** <InlineMath math="s" />, **halaju** <InlineMath math="v" /> dan **pecutan** <InlineMath math="a" /> dihubungkan oleh kalkulus:
+
+<BlockMath math="v = \frac{ds}{dt}, \qquad a = \frac{dv}{dt} = \frac{d^2s}{dt^2}" />
+
+Pembezaan membawa kamu dari <InlineMath math="s" /> ke <InlineMath math="v" /> ke <InlineMath math="a" />, dan pengamiran membawa kamu ke arah sebaliknya, <InlineMath math="v = \int a\,dt" /> dan <InlineMath math="s = \int v\,dt" />. Zarah **berhenti seketika** apabila <InlineMath math="v = 0" />, dan biasanya **bertukar arah** pada saat itu. Jarak yang dilalui ialah jumlah semua perjalanan, manakala sesaran hanya kedudukan akhir berbanding asalan.
+
+Dalam nota ini kamu gerakkan masa dan perhatikan kecerunan graf sesaran, ikuti zarah yang berpatah balik, bandingkan sesaran dengan jarak, dan bina halaju daripada pecutan.
+
+## Sesaran dan Kecerunannya
+
+Satu zarah bergerak di sepanjang garis lurus dengan sesaran <InlineMath math="s = t^3 - 6t^2 + 9t" /> meter dari titik tetap <InlineMath math="O" />, dengan <InlineMath math="t" /> dalam saat. Bezakan sekali untuk halaju dan sekali lagi untuk pecutan:
+
+<MathContainer>
+<BlockMath math="v = \frac{ds}{dt} = 3t^2 - 12t + 9 = 3(t - 1)(t - 3)" />
+<BlockMath math="a = \frac{dv}{dt} = 6t - 12" />
+</MathContainer>
+
+Halaju ialah **kecerunan graf sesaran-masa**. Gerakkan masa di bawah. Garis tangen menjadi mendatar pada <InlineMath math="t = 1" /> dan <InlineMath math="t = 3" />, iaitu apabila zarah berhenti seketika.
+
+<MathVisual
+  title={<>Graf Sesaran-Masa dan Tangennya</>}
+  description={
+    <>
+      Sesaran <InlineMath math="s = t^3 - 6t^2 + 9t" />. Kecerunan tangen ialah
+      halaju. Tangen mendatar pada <InlineMath math="t = 1" /> dengan{" "}
+      <InlineMath math="s = 4" /> dan pada <InlineMath math="t = 3" /> dengan{" "}
+      <InlineMath math="s = 0" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4.5 }, y: { min: -2, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 4.5, value: 2, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "displacement", kind: "function", appearance: "primary", formula: "x^3 - 6*x^2 + 9*x", domain: { min: 0, max: 4.5 } },
+      { id: "tangent", kind: "path", points: [{ x: "p - 0.6", y: "p^3 - 6*p^2 + 9*p - 0.6*(3*p^2 - 12*p + 9)" }, { x: "p + 0.6", y: "p^3 - 6*p^2 + 9*p + 0.6*(3*p^2 - 12*p + 9)" }], appearance: "warning" },
+      { id: "now", kind: "marker", x: "p", y: "p^3 - 6*p^2 + 9*p", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "displacement-now", formula: "p^3 - 6*p^2 + 9*p" },
+      { key: "velocity-now", formula: "3*p^2 - 12*p + 9" },
+      { key: "acceleration-now", formula: "6*p - 12" },
+    ],
+  }}
+  labels={{
+    p: <>Masa <InlineMath math="t" /> dalam saat</>,
+    "displacement-now": <>Sesaran <InlineMath math="s" /> dalam <InlineMath math="\text{m}" /></>,
+    "velocity-now": <>Halaju <InlineMath math="v" /> dalam <InlineMath math="\text{m s}^{-1}" /></>,
+    "acceleration-now": <>Pecutan <InlineMath math="a" /> dalam <InlineMath math="\text{m s}^{-2}" /></>,
+  }}
+/>
+
+Zarah berhenti seketika apabila <InlineMath math="3(t - 1)(t - 3) = 0" />, iaitu pada <InlineMath math="t = 1" /> dan <InlineMath math="t = 3" />. Kedudukannya ketika itu ialah <InlineMath math="s(1) = 1 - 6 + 9 = 4\text{ m}" /> dan <InlineMath math="s(3) = 27 - 54 + 27 = 0\text{ m}" />, iaitu kembali ke <InlineMath math="O" />.
+
+## Halaju dan Pecutan
+
+Graf halaju-masa menunjukkan **arah gerakan**. Halaju positif bermaksud zarah bergerak ke kanan, dan halaju negatif bermaksud zarah bergerak ke kiri. Graf pecutan-masa menunjukkan sama ada halaju sedang bertambah atau berkurang.
+
+<MathVisual
+  title={<>Graf Halaju-Masa</>}
+  description={
+    <>
+      Halaju <InlineMath math="v = 3t^2 - 12t + 9" /> negatif antara{" "}
+      <InlineMath math="t = 1" /> dan <InlineMath math="t = 3" />, jadi zarah
+      bergerak ke kiri dalam tempoh itu. Halaju paling negatif ialah{" "}
+      <InlineMath math="-3\text{ m s}^{-1}" /> pada <InlineMath math="t = 2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4.5 }, y: { min: -4, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 4.5, value: 2, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "velocity", kind: "function", appearance: "secondary", formula: "3*x^2 - 12*x + 9", domain: { min: 0, max: 4.5 } },
+      { id: "first-rest", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "second-rest", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "now", kind: "marker", x: "p", y: "3*p^2 - 12*p + 9", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "velocity-now", formula: "3*p^2 - 12*p + 9" },
+    ],
+  }}
+  labels={{
+    p: <>Masa <InlineMath math="t" /> dalam saat</>,
+    "velocity-now": <>Halaju <InlineMath math="v" /> dalam <InlineMath math="\text{m s}^{-1}" /></>,
+  }}
+/>
+
+<MathVisual
+  title={<>Graf Pecutan-Masa</>}
+  description={
+    <>
+      Pecutan <InlineMath math="a = 6t - 12" /> sifar pada{" "}
+      <InlineMath math="t = 2" />, iaitu ketika halaju mencapai nilai minimumnya.
+      Selepas <InlineMath math="t = 2" />, pecutan positif dan halaju bertambah.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4.5 }, y: { min: -13, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 4.5, value: 1, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "acceleration", kind: "function", appearance: "construction", formula: "6*x - 12", domain: { min: 0, max: 4.5 } },
+      { id: "now", kind: "marker", x: "p", y: "6*p - 12", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "acceleration-now", formula: "6*p - 12" },
+    ],
+  }}
+  labels={{
+    p: <>Masa <InlineMath math="t" /> dalam saat</>,
+    "acceleration-now": <>Pecutan <InlineMath math="a" /> dalam <InlineMath math="\text{m s}^{-2}" /></>,
+  }}
+/>
+
+Halaju minimum didapati dengan menetapkan <InlineMath math="\dfrac{dv}{dt} = a = 0" />: <InlineMath math="6t - 12 = 0" /> memberi <InlineMath math="t = 2" />, dan <InlineMath math="v(2) = 12 - 24 + 9 = -3\text{ m s}^{-1}" />.
+
+## Sesaran Berbanding Jarak
+
+Ikuti zarah di sepanjang garis lurus. Ia bergerak ke kanan hingga <InlineMath math="s = 4" />, berpatah balik ke <InlineMath math="O" />, kemudian bergerak ke kanan semula. **Jarak yang dilalui** mengira setiap bahagian perjalanan sebagai positif, jadi jarak tidak sama dengan sesaran apabila zarah bertukar arah.
+
+<MathVisual
+  title={<>Zarah yang Berpatah Balik</>}
+  description={
+    <>
+      Kedudukan zarah pada garis lurus selepas <InlineMath math="t" /> saat.
+      Pada <InlineMath math="t = 4" />, sesarannya <InlineMath math="4\text{ m}" />{" "}
+      tetapi jarak yang dilalui ialah <InlineMath math="12\text{ m}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 4.5, value: 4, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "track", kind: "segment", from: { x: -1, y: 0 }, to: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "turning", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "particle", kind: "marker", x: "p^3 - 6*p^2 + 9*p", y: "0", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "displacement-now", formula: "p^3 - 6*p^2 + 9*p" },
+      { key: "distance-now", formula: "abs((min(p, 1))^3 - 6*(min(p, 1))^2 + 9*(min(p, 1))) + abs((min(max(p, 1), 3))^3 - 6*(min(max(p, 1), 3))^2 + 9*(min(max(p, 1), 3)) - 4) + abs((max(p, 3))^3 - 6*(max(p, 3))^2 + 9*(max(p, 3)))" },
+    ],
+  }}
+  labels={{
+    p: <>Masa <InlineMath math="t" /> dalam saat</>,
+    "displacement-now": <>Sesaran dari <InlineMath math="O" /> dalam <InlineMath math="\text{m}" /></>,
+    "distance-now": <>Jarak yang dilalui dalam <InlineMath math="\text{m}" /></>,
+  }}
+/>
+
+Untuk mengira jarak dalam <InlineMath math="4" /> saat pertama, **pecahkan perjalanan pada setiap saat zarah berhenti**:
+
+<MathContainer>
+<BlockMath math="0 \le t \le 1: \quad |s(1) - s(0)| = |4 - 0| = 4" />
+<BlockMath math="1 \le t \le 3: \quad |s(3) - s(1)| = |0 - 4| = 4" />
+<BlockMath math="3 \le t \le 4: \quad |s(4) - s(3)| = |4 - 0| = 4" />
+<BlockMath math="\text{Jarak} = 4 + 4 + 4 = 12\text{ m}" />
+</MathContainer>
+
+Sesaran pada <InlineMath math="t = 4" /> hanya <InlineMath math="s(4) = 64 - 96 + 36 = 4\text{ m}" />, kerana bahagian ke kiri membatalkan sebahagian perjalanan ke kanan.
+
+## Dari Pecutan ke Halaju dan Sesaran
+
+Jika pecutan diberi, kamirkan untuk mendapat halaju, kemudian kamirkan sekali lagi untuk sesaran. Setiap pengamiran memberi pemalar, dan pemalar itu ditentukan oleh **syarat awal**.
+
+Satu zarah mempunyai pecutan <InlineMath math="a = 4 - 2t" /> dan halaju awal <InlineMath math="3\text{ m s}^{-1}" />, bermula dari <InlineMath math="O" />:
+
+<MathContainer>
+<BlockMath math="v = \int (4 - 2t)\,dt = 4t - t^2 + c, \quad v(0) = 3 \Rightarrow c = 3" />
+<BlockMath math="v = 3 + 4t - t^2" />
+<BlockMath math="s = \int (3 + 4t - t^2)\,dt = 3t + 2t^2 - \frac{t^3}{3}, \quad s(0) = 0" />
+</MathContainer>
+
+Halaju maksimum berlaku apabila <InlineMath math="a = 0" />, iaitu <InlineMath math="t = 2" />, dengan <InlineMath math="v = 3 + 8 - 4 = 7\text{ m s}^{-1}" />. Ubah halaju awal <InlineMath math="u" /> di bawah dan lihat bila zarah berhenti.
+
+<MathVisual
+  title={<>Halaju daripada Pecutan dengan Halaju Awal Berubah</>}
+  description={
+    <>
+      Halaju <InlineMath math="v = u + 4t - t^2" /> bagi pecutan{" "}
+      <InlineMath math="a = 4 - 2t" />. Zarah berhenti apabila{" "}
+      <InlineMath math="t = 2 + \sqrt{4 + u}" />. Bagi{" "}
+      <InlineMath math="u = 3" />, zarah berhenti pada{" "}
+      <InlineMath math="t = 4.65" /> saat.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -10, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 6, value: 3, step: 0.5, label: "c" },
+    ],
+    objects: [
+      { id: "velocity", kind: "function", appearance: "primary", formula: "c + 4*x - x^2", domain: { min: 0, max: 7 } },
+      { id: "peak", kind: "marker", x: "2", y: "c + 4", appearance: "construction" },
+      { id: "rest", kind: "marker", x: "2 + sqrt(4 + c)", y: "0", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "rest-time", formula: "2 + sqrt(4 + c)" },
+      { key: "top-speed", formula: "c + 4" },
+    ],
+  }}
+  labels={{
+    c: <>Halaju awal <InlineMath math="u" /> dalam <InlineMath math="\text{m s}^{-1}" /></>,
+    "rest-time": <>Masa zarah berhenti dalam saat</>,
+    "top-speed": <>Halaju maksimum dalam <InlineMath math="\text{m s}^{-1}" /></>,
+  }}
+/>
+
+Semak bacaan permulaan: <InlineMath math="3 + 4t - t^2 = 0" /> memberi <InlineMath math="t^2 - 4t - 3 = 0" />, jadi <InlineMath math="t = 2 + \sqrt{7} = 4.65" /> saat. Sesaran pada <InlineMath math="t = 3" /> ialah <InlineMath math="9 + 18 - 9 = 18\text{ m}" />.
+
+## Kesilapan Lazim dalam Kinematik
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Menganggap jarak sama dengan sesaran. | Bahagian perjalanan ke arah bertentangan membatalkan satu sama lain dalam sesaran. | Cari masa zarah berhenti dan pecahkan perjalanan. |
+| Lupa pemalar pengamiran. | Halaju atau sesaran awal hilang daripada jawapan. | Gantikan <InlineMath math="t = 0" /> dan bandingkan dengan syarat awal. |
+| Menganggap zarah di <InlineMath math="O" /> apabila <InlineMath math="v = 0" />. | <InlineMath math="v = 0" /> bermaksud berhenti, bukan berada di asalan. | Kira <InlineMath math="s" /> pada masa itu. |
+| Menganggap pecutan negatif bermaksud zarah perlahan. | Zarah melaju jika <InlineMath math="v" /> dan <InlineMath math="a" /> sama tanda. | Bandingkan tanda <InlineMath math="v" /> dan <InlineMath math="a" />. |
+| Mengambil punca negatif bagi masa. | Masa dalam soalan ini tidak negatif. | Tolak nilai <InlineMath math="t < 0" />. |
+
+Kesilapan pertama paling kerap berlaku. **Setiap kali zarah berhenti**, mulakan bahagian baharu dalam pengiraan jarak.
+
+## Latihan Kinematik Gerakan Linear
+
+Tulis <InlineMath math="s" />, <InlineMath math="v" /> dan <InlineMath math="a" /> bersebelahan supaya **arah pembezaan atau pengamiran jelas**.
+
+1. Satu zarah bergerak dengan sesaran <InlineMath math="s = 2t^3 - 9t^2 + 12t" /> meter. Cari masa dan kedudukan apabila zarah berhenti seketika, dan masa apabila pecutannya sifar.
+
+2. Halaju satu zarah ialah <InlineMath math="v = 8 - 2t" /> meter sesaat, dan ia bermula dari <InlineMath math="O" />. Cari sesaran pada <InlineMath math="t = 6" /> dan jarak yang dilalui dalam <InlineMath math="6" /> saat pertama.
+
+3. Pecutan satu zarah ialah <InlineMath math="a = 6t - 4" />, dengan halaju awal <InlineMath math="-2\text{ m s}^{-1}" />. Cari halaju pada <InlineMath math="t = 2" />.
+
+4. Sesaran satu zarah ialah <InlineMath math="s = t^2 - 5t + 6" /> meter. Cari masa zarah melalui <InlineMath math="O" /> dan halajunya pada setiap masa itu.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Bezakan:
+
+<MathContainer>
+<BlockMath math="v = 6t^2 - 18t + 12 = 6(t - 1)(t - 2)" />
+<BlockMath math="a = 12t - 18" />
+</MathContainer>
+
+Zarah berhenti pada <InlineMath math="t = 1" />, dengan <InlineMath math="s = 2 - 9 + 12 = 5\text{ m}" />, dan pada <InlineMath math="t = 2" />, dengan <InlineMath math="s = 16 - 36 + 24 = 4\text{ m}" />. Pecutan sifar pada <InlineMath math="t = 1.5" /> saat.
+
+**Penyelesaian 2**: Kamirkan dengan <InlineMath math="s(0) = 0" />:
+
+<MathContainer>
+<BlockMath math="s = 8t - t^2" />
+<BlockMath math="s(6) = 48 - 36 = 12\text{ m}" />
+</MathContainer>
+
+Zarah berhenti pada <InlineMath math="t = 4" />, dengan <InlineMath math="s(4) = 16\text{ m}" />. Jarak ialah <InlineMath math="16 + |12 - 16| = 20\text{ m}" />.
+
+**Penyelesaian 3**: Kamirkan dan gunakan <InlineMath math="v(0) = -2" />:
+
+<MathContainer>
+<BlockMath math="v = 3t^2 - 4t - 2" />
+<BlockMath math="v(2) = 12 - 8 - 2 = 2\text{ m s}^{-1}" />
+</MathContainer>
+
+**Penyelesaian 4**: Zarah di <InlineMath math="O" /> apabila <InlineMath math="s = 0" />:
+
+<MathContainer>
+<BlockMath math="t^2 - 5t + 6 = (t - 2)(t - 3) = 0" />
+<BlockMath math="v = 2t - 5, \quad v(2) = -1\text{ m s}^{-1}, \quad v(3) = 1\text{ m s}^{-1}" />
+</MathContainer>
+
+Pada <InlineMath math="t = 2" /> zarah melalui <InlineMath math="O" /> ke kiri, dan pada <InlineMath math="t = 3" /> ia melalui <InlineMath math="O" /> semula ke kanan.
