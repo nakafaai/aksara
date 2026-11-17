@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "pH $$2$$, $$12.0\\text{ cm}^3$$, $$12.0\\text{ cm}^3$$",
+          label: "pH $$2$$, $$50.0\\text{ cm}^3$$, $$10.8\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "pH $$3$$, $$24.0\\text{ cm}^3$$, $$24.0\\text{ cm}^3$$",
+          label: "pH $$3$$, $$25.0\\text{ cm}^3$$, $$10.8\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "pH $$3$$, $$12.0\\text{ cm}^3$$, $$12.0\\text{ cm}^3$$",
+          label: "pH $$3$$, $$50.0\\text{ cm}^3$$, $$10.8\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "pH $$3$$, $$0.120\\text{ cm}^3$$, $$12.0\\text{ cm}^3$$",
+          label: "pH $$3$$, $$50.0\\text{ cm}^3$$, $$12.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "pH $$2$$, $$12.0\\text{ cm}^3$$, $$12.0\\text{ cm}^3$$",
+          label: "pH $$2$$, $$50.0\\text{ cm}^3$$, $$10.8\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "pH $$3$$, $$24.0\\text{ cm}^3$$, $$24.0\\text{ cm}^3$$",
+          label: "pH $$3$$, $$25.0\\text{ cm}^3$$, $$10.8\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "pH $$3$$, $$12.0\\text{ cm}^3$$, $$12.0\\text{ cm}^3$$",
+          label: "pH $$3$$, $$50.0\\text{ cm}^3$$, $$10.8\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "pH $$3$$, $$0.120\\text{ cm}^3$$, $$12.0\\text{ cm}^3$$",
+          label: "pH $$3$$, $$50.0\\text{ cm}^3$$, $$12.0\\text{ cm}^3$$",
         },
       ],
     },

@@ -10,43 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$x=2$$, $$2.33\\text{ g}$$, $$200\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$x=2$$, $$2.33\\text{ g}$$, $$100\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$x=2$$, $$2.73\\text{ g}$$, $$235\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$x=2$$, $$2.08\\text{ g}$$, $$200\\text{ cm}^3$$",
-        },
+        { correct: true, label: "$$x=2$$, $$50.0\\%$$, $$200\\text{ cm}^3$$" },
+        { correct: false, label: "$$x=1$$, $$100\\%$$, $$200\\text{ cm}^3$$" },
+        { correct: false, label: "$$x=2$$, $$50.0\\%$$, $$100\\text{ cm}^3$$" },
+        { correct: false, label: "$$x=2$$, $$50.0\\%$$, $$217\\text{ cm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$x=2$$, $$2.33\\text{ g}$$, $$200\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$x=2$$, $$2.33\\text{ g}$$, $$100\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$x=2$$, $$2.73\\text{ g}$$, $$235\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$x=2$$, $$2.08\\text{ g}$$, $$200\\text{ cm}^3$$",
-        },
+        { correct: true, label: "$$x=2$$, $$50.0\\%$$, $$200\\text{ cm}^3$$" },
+        { correct: false, label: "$$x=1$$, $$100\\%$$, $$200\\text{ cm}^3$$" },
+        { correct: false, label: "$$x=2$$, $$50.0\\%$$, $$100\\text{ cm}^3$$" },
+        { correct: false, label: "$$x=2$$, $$50.0\\%$$, $$217\\text{ cm}^3$$" },
       ],
     },
   },

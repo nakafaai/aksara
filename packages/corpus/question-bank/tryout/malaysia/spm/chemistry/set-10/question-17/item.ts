@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$720\\text{ cm}^3$$, $$1.99\\text{ g}$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$",
+            "$$50\\%$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$1.99\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$480\\text{ cm}^3$$, $$2.31\\text{ g}$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$",
+            "$$75\\%$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$1.99\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$720\\text{ cm}^3$$, $$1.49\\text{ g}$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$",
+            "$$50\\%$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$1.49\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$720\\text{ cm}^3$$, $$1.99\\text{ g}$$, $$12.0\\text{ cm}^3\\text{ s}^{-1}$$",
+            "$$50\\%$$, $$12.0\\text{ cm}^3\\text{ s}^{-1}$$, $$1.99\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$720\\text{ cm}^3$$, $$1.99\\text{ g}$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$",
+            "$$50\\%$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$1.99\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$480\\text{ cm}^3$$, $$2.31\\text{ g}$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$",
+            "$$75\\%$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$1.99\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$720\\text{ cm}^3$$, $$1.49\\text{ g}$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$",
+            "$$50\\%$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$1.49\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$720\\text{ cm}^3$$, $$1.99\\text{ g}$$, $$12.0\\text{ cm}^3\\text{ s}^{-1}$$",
+            "$$50\\%$$, $$12.0\\text{ cm}^3\\text{ s}^{-1}$$, $$1.99\\text{ g}$$",
         },
       ],
     },

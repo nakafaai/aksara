@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.612\\text{ g}$$, $$1.21\\text{ g}$$, $$0.212\\text{ g}$$",
+          label:
+            "$$1.21\\text{ g}$$, $$0\\text{ mol dm}^{-3}$$, $$0\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.22\\text{ g}$$, $$2.42\\text{ g}$$, $$0.212\\text{ g}$$",
+          label:
+            "$$0.909\\text{ g}$$, $$0.000500\\text{ mol dm}^{-3}$$, $$0.212\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$1.22\\text{ g}$$, $$1.21\\text{ g}$$, $$0.212\\text{ g}$$",
+          label:
+            "$$0.909\\text{ g}$$, $$0.000500\\text{ mol dm}^{-3}$$, $$0.0530\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.22\\text{ g}$$, $$1.21\\text{ g}$$, $$0.424\\text{ g}$$",
+          label:
+            "$$0.909\\text{ g}$$, $$0.000500\\text{ mol dm}^{-3}$$, $$0.106\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.612\\text{ g}$$, $$1.21\\text{ g}$$, $$0.212\\text{ g}$$",
+          label:
+            "$$1.21\\text{ g}$$, $$0\\text{ mol dm}^{-3}$$, $$0\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.22\\text{ g}$$, $$2.42\\text{ g}$$, $$0.212\\text{ g}$$",
+          label:
+            "$$0.909\\text{ g}$$, $$0.000500\\text{ mol dm}^{-3}$$, $$0.212\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$1.22\\text{ g}$$, $$1.21\\text{ g}$$, $$0.212\\text{ g}$$",
+          label:
+            "$$0.909\\text{ g}$$, $$0.000500\\text{ mol dm}^{-3}$$, $$0.0530\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.22\\text{ g}$$, $$1.21\\text{ g}$$, $$0.424\\text{ g}$$",
+          label:
+            "$$0.909\\text{ g}$$, $$0.000500\\text{ mol dm}^{-3}$$, $$0.106\\text{ g}$$",
         },
       ],
     },

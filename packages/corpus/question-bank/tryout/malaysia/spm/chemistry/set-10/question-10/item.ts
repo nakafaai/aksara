@@ -12,20 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Aluminium, Period $$3$$, Group $$13$$, $$1.44\\text{ dm}^3$$",
+          label: "Aluminium, Period $$3$$, Group $$13$$, $$3.84\\text{ g}$$",
         },
         {
           correct: false,
-          label: "Aluminium, Period $$3$$, Group $$3$$, $$1.44\\text{ dm}^3$$",
+          label: "Aluminium, Period $$3$$, Group $$3$$, $$3.84\\text{ g}$$",
         },
         {
           correct: false,
-          label:
-            "Aluminium, Period $$3$$, Group $$13$$, $$0.960\\text{ dm}^3$$",
+          label: "Aluminium, Period $$3$$, Group $$13$$, $$2.56\\text{ g}$$",
         },
         {
           correct: false,
-          label: "Aluminium, Period $$3$$, Group $$13$$, $$2.88\\text{ dm}^3$$",
+          label: "Aluminium, Period $$3$$, Group $$13$$, $$7.68\\text{ g}$$",
         },
       ],
     },
@@ -34,22 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "Aluminium, Kala $$3$$, Kumpulan $$13$$, $$1.44\\text{ dm}^3$$",
+          label: "Aluminium, Kala $$3$$, Kumpulan $$13$$, $$3.84\\text{ g}$$",
         },
         {
           correct: false,
-          label: "Aluminium, Kala $$3$$, Kumpulan $$3$$, $$1.44\\text{ dm}^3$$",
+          label: "Aluminium, Kala $$3$$, Kumpulan $$3$$, $$3.84\\text{ g}$$",
         },
         {
           correct: false,
-          label:
-            "Aluminium, Kala $$3$$, Kumpulan $$13$$, $$0.960\\text{ dm}^3$$",
+          label: "Aluminium, Kala $$3$$, Kumpulan $$13$$, $$2.56\\text{ g}$$",
         },
         {
           correct: false,
-          label:
-            "Aluminium, Kala $$3$$, Kumpulan $$13$$, $$2.88\\text{ dm}^3$$",
+          label: "Aluminium, Kala $$3$$, Kumpulan $$13$$, $$7.68\\text{ g}$$",
         },
       ],
     },

@@ -1,14 +1,14 @@
-# The repeat unit sets both the chain length and the moles, and each unit releases two water and uses one acid
+# The repeat unit sets the chain length and the moles, each unit releases two water, and the yield works backwards to the acid fed in
 
-An average chain holds <InlineMath math="22\,600\div226=100" /> repeat units. The batch is <InlineMath math="22\,600\div226=100\text{ mol}" /> of units, and **each unit forms two amide links, each releasing one water**, <InlineMath math="200\text{ mol}" />, <InlineMath math="200\times18=3.60\text{ kg}" />. Each unit contains one acid, <InlineMath math="M_r=146" />, so the acid used is <InlineMath math="100\times146=14.6\text{ kg}" />.
+An average chain holds <InlineMath math="22\,600\div226=100" /> repeat units. The batch is <InlineMath math="22\,600\div226=100\text{ mol}" /> of units, and **each unit forms two amide links, each releasing one water**, <InlineMath math="200\text{ mol}" />, <InlineMath math="200\times18=3.60\text{ kg}" />. Each unit holds one acid, <InlineMath math="M_r=146" />, so the nylon contains <InlineMath math="100\times146=14.6\text{ kg}" /> of it. **Only <InlineMath math="90\%" /> of the acid fed in ends up there**, so <InlineMath math="14.6\div0.90=16.2\text{ kg}" /> must be fed in.
 
 <Chart
   title={<>Amounts for the batch</>}
-  description={<>The <InlineMath math="100\text{ mol}" /> of repeat units use <InlineMath math="100\text{ mol}" /> of acid and release <InlineMath math="200\text{ mol}" /> of water.</>}
+  description={<>The process takes in <InlineMath math="111\text{ mol}" /> of acid, <InlineMath math="100\text{ mol}" /> ends up in the nylon, and <InlineMath math="200\text{ mol}" /> of water is released.</>}
   bars="apart"
-  categories={["Repeat units", "Acid used", "Water released"]}
+  categories={["Acid fed in", "Acid in the nylon", "Water released"]}
   series={[
-    { label: "Amount", mark: "bar", values: [100, 100, 200] },
+    { label: "Amount", mark: "bar", values: [111, 100, 200] },
   ]}
   valueLabel="Amount (mol)"
 />
@@ -16,11 +16,11 @@ An average chain holds <InlineMath math="22\,600\div226=100" /> repeat units. Th
 <BlockMath math="\begin{aligned}
 N&=\tfrac{22\,600}{226}=100,\quad n=\tfrac{22\,600}{226}=100\text{ mol}\\
 m(\text{H}_2\text{O})&=2\times100\times18=3600\text{ g}\\
-m(\text{C}_6\text{H}_{10}\text{O}_4)&=100\times146=14\,600\text{ g}
+m(\text{C}_6\text{H}_{10}\text{O}_4)&=\tfrac{100\times146}{0.90}=16\,200\text{ g}
 \end{aligned}" />
 
 # Why the other options are wrong
 
 - <InlineMath math="1.80\text{ kg}" /> releases one water per unit, but **each unit has two amide links**, and each link releases one water.
-- <InlineMath math="29.2\text{ kg}" /> uses two acid per unit, but each unit holds one acid and one diamine.
+- <InlineMath math="13.1\text{ kg}" /> multiplies by <InlineMath math="90\%" />, but losing acid means more must be fed in, so divide by <InlineMath math="0.90" />.
 - <InlineMath math="155" /> divides by the acid's <InlineMath math="M_r" />, but the repeat unit, <InlineMath math="M_r=226" />, is what repeats along the chain.

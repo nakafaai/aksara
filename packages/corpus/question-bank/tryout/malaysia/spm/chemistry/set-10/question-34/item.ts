@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
+            "$$-210\\text{ kJ mol}^{-1}$$, $$5.0^\\circ\\text{C}$$, $$0.640\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
             "$$-210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$1.28\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$-210\\text{ kJ mol}^{-1}$$, $$20.0^\\circ\\text{C}$$, $$1.28\\text{ g}$$",
+            "$$-210\\text{ kJ mol}^{-1}$$, $$5.0^\\circ\\text{C}$$, $$1.28\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$-210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$0.640\\text{ g}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$+210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$1.28\\text{ g}$$",
+            "$$+210\\text{ kJ mol}^{-1}$$, $$5.0^\\circ\\text{C}$$, $$0.640\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
+            "$$-210\\text{ kJ mol}^{-1}$$, $$5.0^\\circ\\text{C}$$, $$0.640\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
             "$$-210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$1.28\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$-210\\text{ kJ mol}^{-1}$$, $$20.0^\\circ\\text{C}$$, $$1.28\\text{ g}$$",
+            "$$-210\\text{ kJ mol}^{-1}$$, $$5.0^\\circ\\text{C}$$, $$1.28\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$-210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$0.640\\text{ g}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$+210\\text{ kJ mol}^{-1}$$, $$10.0^\\circ\\text{C}$$, $$1.28\\text{ g}$$",
+            "$$+210\\text{ kJ mol}^{-1}$$, $$5.0^\\circ\\text{C}$$, $$0.640\\text{ g}$$",
         },
       ],
     },

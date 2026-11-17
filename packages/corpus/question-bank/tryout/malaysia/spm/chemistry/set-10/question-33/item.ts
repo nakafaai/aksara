@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$-57.1\\text{ kJ mol}^{-1}$$, $$13.6^\\circ\\text{C}$$, $$13.6^\\circ\\text{C}$$",
+            "$$-57.1\\text{ kJ mol}^{-1}$$, $$13.6^\\circ\\text{C}$$, $$5.10^\\circ\\text{C}$$",
         },
         {
           correct: true,
           label:
-            "$$-57.1\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$13.6^\\circ\\text{C}$$",
+            "$$-57.1\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$5.10^\\circ\\text{C}$$",
         },
         {
           correct: false,
           label:
-            "$$-57.1\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$6.8^\\circ\\text{C}$$",
+            "$$-57.1\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$8.50^\\circ\\text{C}$$",
         },
         {
           correct: false,
           label:
-            "$$-28.6\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$13.6^\\circ\\text{C}$$",
+            "$$-28.6\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$5.10^\\circ\\text{C}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$-57.1\\text{ kJ mol}^{-1}$$, $$13.6^\\circ\\text{C}$$, $$13.6^\\circ\\text{C}$$",
+            "$$-57.1\\text{ kJ mol}^{-1}$$, $$13.6^\\circ\\text{C}$$, $$5.10^\\circ\\text{C}$$",
         },
         {
           correct: true,
           label:
-            "$$-57.1\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$13.6^\\circ\\text{C}$$",
+            "$$-57.1\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$5.10^\\circ\\text{C}$$",
         },
         {
           correct: false,
           label:
-            "$$-57.1\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$6.8^\\circ\\text{C}$$",
+            "$$-57.1\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$8.50^\\circ\\text{C}$$",
         },
         {
           correct: false,
           label:
-            "$$-28.6\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$13.6^\\circ\\text{C}$$",
+            "$$-28.6\\text{ kJ mol}^{-1}$$, $$6.8^\\circ\\text{C}$$, $$5.10^\\circ\\text{C}$$",
         },
       ],
     },
