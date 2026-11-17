@@ -1,0 +1,350 @@
+export const metadata = {
+  title: "Catatan Sistem Persamaan Tingkatan Empat",
+  description:
+    "Catatan Matematika Tambahan KSSM Tingkatan 4 Bab 3: selesaikan sistem persamaan linear tiga variabel dengan eliminasi dan substitusi, serta sistem persamaan linear dan nonlinear.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Sistem Persamaan",
+};
+
+## Cari Nilai yang Memenuhi Semua Persamaan
+
+**Sistem persamaan** adalah dua persamaan atau lebih yang harus benar pada saat yang sama. Penyelesaiannya adalah nilai variabel yang memenuhi **setiap** persamaan. Untuk tiga persamaan linear dalam <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />, kamu eliminasi satu variabel sampai tersisa dua persamaan dua variabel, lalu selesaikan. Untuk satu persamaan linear dan satu persamaan nonlinear, kamu nyatakan satu variabel dari persamaan linear, substitusikan ke persamaan nonlinear, lalu selesaikan persamaan kuadrat yang muncul.
+
+Di catatan ini kamu memutar tiga bidang untuk melihat titik potongnya, menggeser garis lurus melewati lingkaran dan parabola, dan mencari ukuran kebun dari keliling dan luasnya.
+
+## Persamaan Linear Tiga Variabel
+
+Persamaan seperti <InlineMath math="x + y + z = 6" /> adalah **persamaan linear tiga variabel**, karena setiap variabel berpangkat satu dan tidak ada suku yang mengalikan dua variabel. Di ruang tiga dimensi, grafik persamaan ini berupa **bidang datar**. Tiga bidang bisa berpotongan di satu titik, berpotongan di satu garis, atau tidak bertemu sama sekali.
+
+Perhatikan sistem ini:
+
+<MathContainer>
+<BlockMath math="x + y + z = 6" />
+<BlockMath math="2x - y + z = 3" />
+<BlockMath math="x + 2y - z = 2" />
+</MathContainer>
+
+Setiap persamaan bisa ditulis sebagai <InlineMath math="z" /> dalam <InlineMath math="x" /> dan <InlineMath math="y" />. Putar gambar di bawah. Ketiga bidang bertemu tepat di satu titik, dan titik itulah penyelesaian sistem.
+
+<MathVisual
+  title={<>Tiga Bidang Berpotongan di Satu Titik</>}
+  description={
+    <>
+      Bidang <InlineMath math="z = 6 - x - y" />,{" "}
+      <InlineMath math="z = 3 - 2x + y" />, dan{" "}
+      <InlineMath math="z = x + 2y - 2" /> bertemu di titik{" "}
+      <InlineMath math="(1, 2, 3)" />.
+    </>
+  }
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 3 }, z: { min: -3, max: 7 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 2 } },
+    objects: [
+      { id: "first", kind: "surface", x: "u", y: "v", z: "6 - u - v", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "primary" },
+      { id: "second", kind: "surface", x: "u", y: "v", z: "3 - 2*u + v", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "secondary" },
+      { id: "third", kind: "surface", x: "u", y: "v", z: "u + 2*v - 2", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "construction" },
+      { id: "meet", kind: "point", at: { x: 1, y: 2, z: 3 }, appearance: "answer" },
+    ],
+  }}
+/>
+
+Untuk mencari titik itu secara aljabar, pakai **metode eliminasi**. Pilih variabel yang paling mudah dihilangkan. Di sini <InlineMath math="z" /> punya koefisien <InlineMath math="1" /> atau <InlineMath math="-1" /> di setiap persamaan, jadi eliminasi <InlineMath math="z" />:
+
+<MathContainer>
+<BlockMath math="(1) + (3): \quad 2x + 3y = 8" />
+<BlockMath math="(2) + (3): \quad 3x + y = 5" />
+</MathContainer>
+
+Sekarang kamu punya dua persamaan dalam <InlineMath math="x" /> dan <InlineMath math="y" />. Masing-masing berupa garis lurus di bidang <InlineMath math="xy" />. Geser nilai <InlineMath math="x" /> di bawah sampai selisih tegak antara kedua garis menjadi nol.
+
+<MathVisual
+  title={<>Dua Garis Setelah <InlineMath math="z" /> Dieliminasi</>}
+  description={
+    <>
+      Garis <InlineMath math="2x + 3y = 8" /> dan <InlineMath math="3x + y = 5" />{" "}
+      bertemu di <InlineMath math="(1, 2)" />. Pada <InlineMath math="x = 1" />,
+      selisih nilai <InlineMath math="y" /> kedua garis adalah nol.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -7, max: 8 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "p", min: -1, max: 4, value: 3, step: 0.25, label: "p" },
+    ],
+    objects: [
+      { id: "first-line", kind: "function", appearance: "primary", formula: "(8 - 2*x)/3", domain: { min: -1, max: 4 } },
+      { id: "second-line", kind: "function", appearance: "secondary", formula: "5 - 3*x", domain: { min: -1, max: 4 } },
+      { id: "first-now", kind: "marker", x: "p", y: "(8 - 2*p)/3", appearance: "warning" },
+      { id: "second-now", kind: "marker", x: "p", y: "5 - 3*p", appearance: "warning" },
+      { id: "solution", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "gap", formula: "(7*p - 7)/3" },
+    ],
+  }}
+  labels={{
+    p: <>Nilai <InlineMath math="x" /></>,
+    gap: <>Selisih nilai <InlineMath math="y" /> kedua garis</>,
+  }}
+/>
+
+Selesaikan secara aljabar. Dari <InlineMath math="3x + y = 5" />, <InlineMath math="y = 5 - 3x" />. Substitusikan ke persamaan yang lain:
+
+<MathContainer>
+<BlockMath math="2x + 3(5 - 3x) = 8" />
+<BlockMath math="-7x = -7 \quad \Rightarrow \quad x = 1, \quad y = 5 - 3 = 2" />
+<BlockMath math="z = 6 - 1 - 2 = 3" />
+</MathContainer>
+
+**Cek di ketiga persamaan awal**: <InlineMath math="1 + 2 + 3 = 6" />, <InlineMath math="2 - 2 + 3 = 3" />, dan <InlineMath math="1 + 4 - 3 = 2" />. Penyelesaiannya <InlineMath math="x = 1" />, <InlineMath math="y = 2" />, <InlineMath math="z = 3" />, sama dengan titik pada gambar tiga bidang.
+
+## Harga Barang di Koperasi Sekolah
+
+Sebuah koperasi sekolah menjual pulpen, pensil, dan penghapus. Tiga pesanan memberi total harga berikut:
+
+| Pesanan | Pulpen | Pensil | Penghapus | Total |
+| :--- | :--- | :--- | :--- | :--- |
+| Pertama | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="\text{Rp}11{.}000" /> |
+| Kedua | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="\text{Rp}7{.}500" /> |
+| Ketiga | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="\text{Rp}7{.}500" /> |
+
+Misalkan harga satu pulpen <InlineMath math="x" />, satu pensil <InlineMath math="y" />, dan satu penghapus <InlineMath math="z" />, dalam ribu rupiah. Tulis tiga persamaan, lalu eliminasi <InlineMath math="z" /> dua kali:
+
+<MathContainer>
+<BlockMath math="3x + 2y + z = 11, \quad 2x + y + 2z = 7{,}5, \quad x + 3y + z = 7{,}5" />
+<BlockMath math="(1) - (3): \quad 2x - y = 3{,}5" />
+<BlockMath math="2 \times (3) - (2): \quad 5y = 7{,}5 \quad \Rightarrow \quad y = 1{,}5" />
+<BlockMath math="x = \frac{3{,}5 + 1{,}5}{2} = 2{,}5, \quad z = 7{,}5 - 2{,}5 - 4{,}5 = 0{,}5" />
+</MathContainer>
+
+Jadi satu pulpen seharga <InlineMath math="\text{Rp}2{.}500" />, satu pensil <InlineMath math="\text{Rp}1{.}500" />, dan satu penghapus <InlineMath math="\text{Rp}500" />. **Cek pesanan kedua**: <InlineMath math="2(2{,}5) + 1{,}5 + 2(0{,}5) = 7{,}5" />.
+
+## Sistem Persamaan Linear dan Nonlinear
+
+Persamaan nonlinear punya suku seperti <InlineMath math="x^2" />, <InlineMath math="y^2" />, atau <InlineMath math="xy" />. Saat satu persamaan linear dan satu persamaan nonlinear diselesaikan bersama, caranya selalu sama:
+
+1. Nyatakan <InlineMath math="x" /> atau <InlineMath math="y" /> dari **persamaan linear**.
+2. Substitusikan ke persamaan nonlinear sehingga muncul persamaan kuadrat satu variabel.
+3. Selesaikan persamaan kuadrat itu, lalu cari variabel lainnya dari persamaan linear.
+
+Secara grafik, penyelesaiannya adalah titik potong garis lurus dengan kurva. Persamaan kuadrat bisa punya dua akar, satu akar, atau tidak punya akar real, jadi garis bisa memotong kurva di dua titik, menyinggungnya di satu titik, atau tidak bertemu sama sekali.
+
+Geser garis <InlineMath math="y = x + c" /> melewati lingkaran <InlineMath math="x^2 + y^2 = 25" />. Substitusi memberi <InlineMath math="2x^2 + 2cx + c^2 - 25 = 0" />, dan diskriminannya <InlineMath math="b^2 - 4ac = 200 - 4c^2" /> menentukan banyaknya titik potong.
+
+<MathVisual
+  title={<>Garis Lurus Melewati Lingkaran</>}
+  description={
+    <>
+      Garis <InlineMath math="y = x + c" /> dan lingkaran{" "}
+      <InlineMath math="x^2 + y^2 = 25" />. Diskriminan{" "}
+      <InlineMath math="200 - 4c^2" /> positif memberi dua titik, nol memberi
+      satu titik, dan negatif memberi tidak ada titik. Untuk{" "}
+      <InlineMath math="c = 1" />, titiknya <InlineMath math="(3, 4)" /> dan{" "}
+      <InlineMath math="(-4, -3)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: -9, max: 9, value: 1, step: 0.5, label: "c" },
+    ],
+    objects: [
+      { id: "circle", kind: "implicit", appearance: "primary", equation: "x^2 + y^2 = 25" },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + c", domain: { min: -10, max: 10 } },
+      { id: "first-meet", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "second-meet", kind: "point", at: { x: -4, y: -3 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "200 - 4*c^2" },
+    ],
+  }}
+  labels={{
+    c: <>Titik potong garis dengan sumbu-<InlineMath math="y" />, <InlineMath math="c" /></>,
+    discriminant: <>Diskriminan <InlineMath math="200 - 4c^2" /></>,
+  }}
+/>
+
+Titik hijau adalah penyelesaian untuk <InlineMath math="c = 1" />. Garis menyinggung lingkaran saat <InlineMath math="200 - 4c^2 = 0" />, yaitu <InlineMath math="c = \pm\sqrt{50} \approx \pm 7{,}07" />. Lebih jauh dari itu, garis tidak bertemu lingkaran dan sistem tidak punya penyelesaian real.
+
+### Lingkaran dan Garis
+
+Selesaikan <InlineMath math="2x + y = 7" /> dan <InlineMath math="x^2 + y^2 = 10" />.
+
+**Nyatakan <InlineMath math="y" />** dari persamaan linear, lalu substitusikan:
+
+<MathContainer>
+<BlockMath math="y = 7 - 2x" />
+<BlockMath math="x^2 + (7 - 2x)^2 = 10" />
+<BlockMath math="5x^2 - 28x + 39 = 0" />
+<BlockMath math="(x - 3)(5x - 13) = 0 \quad \Rightarrow \quad x = 3 \text{ atau } x = 2{,}6" />
+</MathContainer>
+
+Cari <InlineMath math="y" /> untuk setiap <InlineMath math="x" /> dari persamaan linear: <InlineMath math="x = 3" /> memberi <InlineMath math="y = 1" />, dan <InlineMath math="x = 2{,}6" /> memberi <InlineMath math="y = 1{,}8" />. Penyelesaiannya adalah **pasangan** <InlineMath math="(3, 1)" /> dan <InlineMath math="(2{,}6;\ 1{,}8)" />. Cek: <InlineMath math="2{,}6^2 + 1{,}8^2 = 6{,}76 + 3{,}24 = 10" />.
+
+### Garis yang Selalu Memotong Parabola
+
+Parabola <InlineMath math="y = x^2 - 2x - 3" /> dan garis <InlineMath math="y = mx + 1" /> memberi <InlineMath math="x^2 - (2 + m)x - 4 = 0" />. Diskriminannya <InlineMath math="(2 + m)^2 + 16" />, selalu positif. Ubah gradien <InlineMath math="m" />: garis itu **selalu memotong parabola di dua titik**, karena titik <InlineMath math="(0, 1)" /> yang dilalui garis berada di dalam lengkung parabola.
+
+<MathVisual
+  title={<>Garis melalui <InlineMath math="(0, 1)" /> dan Parabola</>}
+  description={
+    <>
+      Substitusi memberi <InlineMath math="x^2 - (2 + m)x - 4 = 0" />. Untuk{" "}
+      <InlineMath math="m = 1" />, titik potongnya{" "}
+      <InlineMath math="(-1, 0)" /> dan <InlineMath math="(4, 5)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -12, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: -2, max: 2, value: 1, step: 0.25, label: "m" },
+    ],
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x - 3", domain: { min: -3, max: 6 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "m*x + 1", domain: { min: -3, max: 6 } },
+      { id: "left-meet", kind: "marker", x: "((2 + m) - sqrt((2 + m)^2 + 16))/2", y: "m*((2 + m) - sqrt((2 + m)^2 + 16))/2 + 1", appearance: "answer" },
+      { id: "right-meet", kind: "marker", x: "((2 + m) + sqrt((2 + m)^2 + 16))/2", y: "m*((2 + m) + sqrt((2 + m)^2 + 16))/2 + 1", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "(2 + m)^2 + 16" },
+      { key: "left-x", formula: "((2 + m) - sqrt((2 + m)^2 + 16))/2" },
+      { key: "right-x", formula: "((2 + m) + sqrt((2 + m)^2 + 16))/2" },
+    ],
+  }}
+  labels={{
+    m: <>Gradien garis, <InlineMath math="m" /></>,
+    discriminant: <>Diskriminan</>,
+    "left-x": <>Koordinat-<InlineMath math="x" /> titik kiri</>,
+    "right-x": <>Koordinat-<InlineMath math="x" /> titik kanan</>,
+  }}
+/>
+
+Cek bacaan awal: untuk <InlineMath math="m = 1" />, <InlineMath math="x^2 - 3x - 4 = (x + 1)(x - 4) = 0" />, jadi <InlineMath math="x = -1" /> atau <InlineMath math="x = 4" />, dengan <InlineMath math="y = 0" /> dan <InlineMath math="y = 5" />.
+
+## Soal Keliling dan Luas
+
+Sebuah kebun berbentuk persegi panjang punya keliling <InlineMath math="26\text{ m}" /> dan luas <InlineMath math="40\text{ m}^2" />. Cari panjang dan lebarnya.
+
+Misalkan panjangnya <InlineMath math="x" /> dan lebarnya <InlineMath math="y" />, dalam meter. Keliling memberi persamaan linear dan luas memberi persamaan nonlinear:
+
+<MathContainer>
+<BlockMath math="2x + 2y = 26 \quad \Rightarrow \quad y = 13 - x" />
+<BlockMath math="xy = 40 \quad \Rightarrow \quad x(13 - x) = 40" />
+<BlockMath math="x^2 - 13x + 40 = 0 \quad \Rightarrow \quad (x - 5)(x - 8) = 0" />
+</MathContainer>
+
+Jadi <InlineMath math="x = 5" /> atau <InlineMath math="x = 8" />. Kedua pasangan <InlineMath math="(5, 8)" /> dan <InlineMath math="(8, 5)" /> menggambarkan kebun yang sama, jadi ukurannya **panjang <InlineMath math="8\text{ m}" /> dan lebar <InlineMath math="5\text{ m}" />**.
+
+Pada grafik, garis <InlineMath math="y = 13 - x" /> mewakili semua persegi panjang berkeliling <InlineMath math="26\text{ m}" />, dan kurva <InlineMath math="y = \dfrac{A}{x}" /> mewakili semua persegi panjang berluas <InlineMath math="A" />. Naikkan luas <InlineMath math="A" /> dan lihat kedua titik potong saling mendekat.
+
+<MathVisual
+  title={<>Kebun dengan Keliling <InlineMath math="26\text{ m}" /></>}
+  description={
+    <>
+      Garis <InlineMath math="y = 13 - x" /> dan kurva{" "}
+      <InlineMath math="y = \dfrac{A}{x}" />. Substitusi memberi{" "}
+      <InlineMath math="x^2 - 13x + A = 0" />, dengan diskriminan{" "}
+      <InlineMath math="169 - 4A" />. Untuk <InlineMath math="A = 40" />, ukurannya{" "}
+      <InlineMath math="5\text{ m}" /> dan <InlineMath math="8\text{ m}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 20, max: 42, value: 40, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "perimeter", kind: "function", appearance: "secondary", formula: "13 - x", domain: { min: 0, max: 13 } },
+      { id: "area", kind: "function", appearance: "primary", formula: "a/x", domain: { min: 3, max: 13 } },
+      { id: "short-side", kind: "marker", x: "(13 - sqrt(169 - 4*a))/2", y: "(13 + sqrt(169 - 4*a))/2", appearance: "answer" },
+      { id: "long-side", kind: "marker", x: "(13 + sqrt(169 - 4*a))/2", y: "(13 - sqrt(169 - 4*a))/2", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "169 - 4*a" },
+      { key: "width", formula: "(13 - sqrt(169 - 4*a))/2" },
+      { key: "length", formula: "(13 + sqrt(169 - 4*a))/2" },
+    ],
+  }}
+  labels={{
+    a: <>Luas <InlineMath math="A" /> dalam <InlineMath math="\text{m}^2" /></>,
+    discriminant: <>Diskriminan <InlineMath math="169 - 4A" /></>,
+    width: <>Lebar dalam <InlineMath math="\text{m}" /></>,
+    length: <>Panjang dalam <InlineMath math="\text{m}" /></>,
+  }}
+/>
+
+Saat <InlineMath math="A" /> mendekati <InlineMath math="42{,}25\text{ m}^2" />, diskriminan mendekati nol dan kedua titik menyatu. Luas <InlineMath math="42{,}25\text{ m}^2" /> adalah luas terbesar untuk keliling <InlineMath math="26\text{ m}" />, yaitu persegi bersisi <InlineMath math="6{,}5\text{ m}" />.
+
+## Kesalahan Umum dalam Sistem Persamaan
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Menyubstitusikan ke persamaan nonlinear untuk mencari variabel kedua. | Persamaan nonlinear bisa memberi nilai tambahan yang bukan penyelesaian. | Cari variabel kedua dari persamaan linear. |
+| Menulis empat jawaban seperti <InlineMath math="x = 3;\ 2{,}6" /> dan <InlineMath math="y = 1;\ 1{,}8" /> tanpa dipasangkan. | Setiap nilai <InlineMath math="x" /> hanya cocok dengan satu nilai <InlineMath math="y" />. | Tulis penyelesaian sebagai pasangan berurutan. |
+| Membagi kedua ruas dengan <InlineMath math="x" />. | Akar <InlineMath math="x = 0" /> hilang. | Faktorkan, jangan membagi dengan variabel. |
+| Salah tanda saat mengurangkan dua persamaan. | Setiap suku persamaan kedua harus berganti tanda. | Tulis tanda kurung sebelum mengurangkan. |
+| Berhenti setelah mendapat dua variabel pada sistem tiga variabel. | Variabel ketiga belum dicari. | Substitusikan kembali ke salah satu persamaan awal. |
+
+Kesalahan pertama paling sering terjadi. **Persamaan linear adalah tempat yang aman** untuk mencari variabel kedua, karena setiap <InlineMath math="x" /> memberi tepat satu <InlineMath math="y" />.
+
+## Latihan Sistem Persamaan
+
+Selesaikan setiap soal, lalu **cek jawaban di setiap persamaan awal**.
+
+1. Selesaikan sistem <InlineMath math="x + 2y - z = 3" />, <InlineMath math="2x - y + z = 4" />, dan <InlineMath math="x + y + z = 4" />.
+
+2. Selesaikan sistem <InlineMath math="x - y = 1" /> dan <InlineMath math="x^2 + y^2 = 13" />.
+
+3. Selesaikan sistem <InlineMath math="2x + y = 5" /> dan <InlineMath math="xy = 3" />.
+
+4. Garis <InlineMath math="y = x + k" /> menyinggung lingkaran <InlineMath math="x^2 + y^2 = 8" /> tepat di satu titik. Cari nilai <InlineMath math="k" /> yang mungkin.
+
+### Pembahasan
+
+**Pembahasan 1**: Eliminasi <InlineMath math="z" />:
+
+<MathContainer>
+<BlockMath math="(1) + (2): \quad 3x + y = 7" />
+<BlockMath math="(1) + (3): \quad 2x + 3y = 7" />
+<BlockMath math="y = 7 - 3x \quad \Rightarrow \quad 2x + 21 - 9x = 7 \quad \Rightarrow \quad x = 2" />
+<BlockMath math="y = 7 - 6 = 1, \quad z = 4 - 2 - 1 = 1" />
+</MathContainer>
+
+Cek persamaan pertama: <InlineMath math="2 + 2 - 1 = 3" />. Penyelesaiannya <InlineMath math="x = 2" />, <InlineMath math="y = 1" />, <InlineMath math="z = 1" />.
+
+**Pembahasan 2**: Dari persamaan linear, <InlineMath math="x = y + 1" />:
+
+<MathContainer>
+<BlockMath math="(y + 1)^2 + y^2 = 13" />
+<BlockMath math="2y^2 + 2y - 12 = 0 \quad \Rightarrow \quad (y + 3)(y - 2) = 0" />
+</MathContainer>
+
+Jadi <InlineMath math="y = 2" /> memberi <InlineMath math="x = 3" />, dan <InlineMath math="y = -3" /> memberi <InlineMath math="x = -2" />. Penyelesaiannya <InlineMath math="(3, 2)" /> dan <InlineMath math="(-2, -3)" />. Cek: <InlineMath math="9 + 4 = 13" /> dan <InlineMath math="4 + 9 = 13" />.
+
+**Pembahasan 3**: Dari persamaan linear, <InlineMath math="y = 5 - 2x" />:
+
+<MathContainer>
+<BlockMath math="x(5 - 2x) = 3" />
+<BlockMath math="2x^2 - 5x + 3 = 0 \quad \Rightarrow \quad (x - 1)(2x - 3) = 0" />
+</MathContainer>
+
+Jadi <InlineMath math="x = 1" /> memberi <InlineMath math="y = 3" />, dan <InlineMath math="x = 1{,}5" /> memberi <InlineMath math="y = 2" />. Penyelesaiannya <InlineMath math="(1, 3)" /> dan <InlineMath math="(1{,}5;\ 2)" />. Cek: <InlineMath math="1 \times 3 = 3" /> dan <InlineMath math="1{,}5 \times 2 = 3" />.
+
+**Pembahasan 4**: Substitusikan <InlineMath math="y = x + k" /> ke persamaan lingkaran:
+
+<MathContainer>
+<BlockMath math="x^2 + (x + k)^2 = 8 \quad \Rightarrow \quad 2x^2 + 2kx + k^2 - 8 = 0" />
+<BlockMath math="b^2 - 4ac = 4k^2 - 8(k^2 - 8) = 64 - 4k^2" />
+</MathContainer>
+
+Garis menyinggung lingkaran saat **diskriminannya nol**, jadi <InlineMath math="64 - 4k^2 = 0" /> dan <InlineMath math="k = 4" /> atau <InlineMath math="k = -4" />. Cek <InlineMath math="k = 4" />: persamaannya menjadi <InlineMath math="2x^2 + 8x + 8 = 2(x + 2)^2 = 0" />, dengan satu akar <InlineMath math="x = -2" /> dan titik singgung <InlineMath math="(-2, 2)" />.

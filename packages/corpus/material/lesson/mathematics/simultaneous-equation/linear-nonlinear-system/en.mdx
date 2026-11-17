@@ -1,0 +1,349 @@
+export const metadata = {
+  title: "Systems of Equations Notes for Form Four",
+  description:
+    "KSSM Additional Mathematics Form 4 Chapter 3 notes: solve linear equations in three variables by elimination and substitution, and simultaneous linear and non-linear equations.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Systems of Equations",
+};
+
+## Find the Values That Satisfy Every Equation
+
+A **system of equations** is two or more equations that must be true at the same time. Its solution is the set of values that satisfies **every** equation. For three linear equations in <InlineMath math="x" />, <InlineMath math="y" /> and <InlineMath math="z" />, you eliminate one variable to get two equations in two variables, then solve those. For one linear and one non-linear equation, you make one variable the subject of the linear equation, substitute it into the non-linear one, and solve the quadratic equation that comes out.
+
+In these notes you turn three planes to see where they meet, slide a straight line across a circle and a parabola, and find the size of a garden from its perimeter and area.
+
+## Linear Equations in Three Variables
+
+An equation such as <InlineMath math="x + y + z = 6" /> is a **linear equation in three variables**, because each variable has power one and no term multiplies two variables. In three-dimensional space, its graph is a **plane**. Three planes can meet at one point, meet along a line, or never meet at all.
+
+Look at this system:
+
+<MathContainer>
+<BlockMath math="x + y + z = 6" />
+<BlockMath math="2x - y + z = 3" />
+<BlockMath math="x + 2y - z = 2" />
+</MathContainer>
+
+Each equation can be written as <InlineMath math="z" /> in terms of <InlineMath math="x" /> and <InlineMath math="y" />. Turn the diagram below. The three planes meet at exactly one point, and that point is the solution of the system.
+
+<MathVisual
+  title={<>Three Planes Meeting at One Point</>}
+  description={
+    <>
+      The planes <InlineMath math="z = 6 - x - y" />,{" "}
+      <InlineMath math="z = 3 - 2x + y" /> and{" "}
+      <InlineMath math="z = x + 2y - 2" /> meet at the point{" "}
+      <InlineMath math="(1, 2, 3)" />.
+    </>
+  }
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 3 }, z: { min: -3, max: 7 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 2 } },
+    objects: [
+      { id: "first", kind: "surface", x: "u", y: "v", z: "6 - u - v", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "primary" },
+      { id: "second", kind: "surface", x: "u", y: "v", z: "3 - 2*u + v", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "secondary" },
+      { id: "third", kind: "surface", x: "u", y: "v", z: "u + 2*v - 2", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "construction" },
+      { id: "meet", kind: "point", at: { x: 1, y: 2, z: 3 }, appearance: "answer" },
+    ],
+  }}
+/>
+
+To find that point with algebra, use the **elimination method**. Choose the variable that is easiest to remove. Here <InlineMath math="z" /> has coefficient <InlineMath math="1" /> or <InlineMath math="-1" /> in every equation, so eliminate <InlineMath math="z" />:
+
+<MathContainer>
+<BlockMath math="(1) + (3): \quad 2x + 3y = 8" />
+<BlockMath math="(2) + (3): \quad 3x + y = 5" />
+</MathContainer>
+
+Now you have two equations in <InlineMath math="x" /> and <InlineMath math="y" />. Each one is a straight line on the <InlineMath math="xy" /> plane. Move the value of <InlineMath math="x" /> below until the vertical gap between the two lines becomes zero.
+
+<MathVisual
+  title={<>Two Lines After <InlineMath math="z" /> Is Eliminated</>}
+  description={
+    <>
+      The lines <InlineMath math="2x + 3y = 8" /> and <InlineMath math="3x + y = 5" />{" "}
+      meet at <InlineMath math="(1, 2)" />. At <InlineMath math="x = 1" />, the
+      gap between their <InlineMath math="y" /> values is zero.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -7, max: 8 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "p", min: -1, max: 4, value: 3, step: 0.25, label: "p" },
+    ],
+    objects: [
+      { id: "first-line", kind: "function", appearance: "primary", formula: "(8 - 2*x)/3", domain: { min: -1, max: 4 } },
+      { id: "second-line", kind: "function", appearance: "secondary", formula: "5 - 3*x", domain: { min: -1, max: 4 } },
+      { id: "first-now", kind: "marker", x: "p", y: "(8 - 2*p)/3", appearance: "warning" },
+      { id: "second-now", kind: "marker", x: "p", y: "5 - 3*p", appearance: "warning" },
+      { id: "solution", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "gap", formula: "(7*p - 7)/3" },
+    ],
+  }}
+  labels={{
+    p: <>Value of <InlineMath math="x" /></>,
+    gap: <>Gap between the <InlineMath math="y" /> values of the lines</>,
+  }}
+/>
+
+Now solve with algebra. From <InlineMath math="3x + y = 5" />, <InlineMath math="y = 5 - 3x" />. Substitute it into the other equation:
+
+<MathContainer>
+<BlockMath math="2x + 3(5 - 3x) = 8" />
+<BlockMath math="-7x = -7 \quad \Rightarrow \quad x = 1, \quad y = 5 - 3 = 2" />
+<BlockMath math="z = 6 - 1 - 2 = 3" />
+</MathContainer>
+
+**Check in all three original equations**: <InlineMath math="1 + 2 + 3 = 6" />, <InlineMath math="2 - 2 + 3 = 3" /> and <InlineMath math="1 + 4 - 3 = 2" />. The solution is <InlineMath math="x = 1" />, <InlineMath math="y = 2" />, <InlineMath math="z = 3" />, the same point as in the three-plane diagram.
+
+## Prices at the School Cooperative
+
+A school cooperative sells pens, pencils and erasers. Three orders give these totals:
+
+| Order | Pens | Pencils | Erasers | Total |
+| :--- | :--- | :--- | :--- | :--- |
+| First | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | RM11.00 |
+| Second | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | RM7.50 |
+| Third | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | RM7.50 |
+
+Let the price of one pen be <InlineMath math="x" />, one pencil <InlineMath math="y" /> and one eraser <InlineMath math="z" />, in RM. Write three equations, then eliminate <InlineMath math="z" /> twice:
+
+<MathContainer>
+<BlockMath math="3x + 2y + z = 11, \quad 2x + y + 2z = 7.5, \quad x + 3y + z = 7.5" />
+<BlockMath math="(1) - (3): \quad 2x - y = 3.5" />
+<BlockMath math="2 \times (3) - (2): \quad 5y = 7.5 \quad \Rightarrow \quad y = 1.5" />
+<BlockMath math="x = \frac{3.5 + 1.5}{2} = 2.5, \quad z = 7.5 - 2.5 - 4.5 = 0.5" />
+</MathContainer>
+
+So a pen costs **RM2.50**, a pencil **RM1.50** and an eraser **RM0.50**. Check the second order: <InlineMath math="2(2.5) + 1.5 + 2(0.5) = 7.5" />.
+
+## Simultaneous Equations with a Curve
+
+A non-linear equation has terms such as <InlineMath math="x^2" />, <InlineMath math="y^2" /> or <InlineMath math="xy" />. When you solve one linear and one non-linear equation together, the method is always the same:
+
+1. Make <InlineMath math="x" /> or <InlineMath math="y" /> the subject of the **linear equation**.
+2. Substitute it into the non-linear equation to get a quadratic equation in one variable.
+3. Solve that quadratic equation, then find the other variable from the linear equation.
+
+On a graph, the solutions are the points where the straight line crosses the curve. A quadratic equation can have two roots, one root or no real roots, so the line can cut the curve at two points, touch it at one point, or miss it completely.
+
+Slide the line <InlineMath math="y = x + c" /> across the circle <InlineMath math="x^2 + y^2 = 25" />. Substitution gives <InlineMath math="2x^2 + 2cx + c^2 - 25 = 0" />, and its discriminant <InlineMath math="b^2 - 4ac = 200 - 4c^2" /> decides how many intersection points there are.
+
+<MathVisual
+  title={<>A Straight Line Crossing a Circle</>}
+  description={
+    <>
+      The line <InlineMath math="y = x + c" /> and the circle{" "}
+      <InlineMath math="x^2 + y^2 = 25" />. A positive discriminant{" "}
+      <InlineMath math="200 - 4c^2" /> gives two points, zero gives one point,
+      and a negative value gives none. For <InlineMath math="c = 1" />, the points
+      are <InlineMath math="(3, 4)" /> and <InlineMath math="(-4, -3)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: -9, max: 9, value: 1, step: 0.5, label: "c" },
+    ],
+    objects: [
+      { id: "circle", kind: "implicit", appearance: "primary", equation: "x^2 + y^2 = 25" },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + c", domain: { min: -10, max: 10 } },
+      { id: "first-meet", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "second-meet", kind: "point", at: { x: -4, y: -3 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "200 - 4*c^2" },
+    ],
+  }}
+  labels={{
+    c: <>The line's <InlineMath math="y" />-intercept, <InlineMath math="c" /></>,
+    discriminant: <>Discriminant <InlineMath math="200 - 4c^2" /></>,
+  }}
+/>
+
+The green points are the solutions for <InlineMath math="c = 1" />. The line touches the circle when <InlineMath math="200 - 4c^2 = 0" />, that is <InlineMath math="c = \pm\sqrt{50} \approx \pm 7.07" />. Beyond that, the line misses the circle and the system has no real solution.
+
+### A Circle and a Line
+
+Solve <InlineMath math="2x + y = 7" /> and <InlineMath math="x^2 + y^2 = 10" />.
+
+**Make <InlineMath math="y" /> the subject** of the linear equation, then substitute:
+
+<MathContainer>
+<BlockMath math="y = 7 - 2x" />
+<BlockMath math="x^2 + (7 - 2x)^2 = 10" />
+<BlockMath math="5x^2 - 28x + 39 = 0" />
+<BlockMath math="(x - 3)(5x - 13) = 0 \quad \Rightarrow \quad x = 3 \text{ or } x = 2.6" />
+</MathContainer>
+
+Find <InlineMath math="y" /> for each <InlineMath math="x" /> from the linear equation: <InlineMath math="x = 3" /> gives <InlineMath math="y = 1" />, and <InlineMath math="x = 2.6" /> gives <InlineMath math="y = 1.8" />. The solutions are the **pairs** <InlineMath math="(3, 1)" /> and <InlineMath math="(2.6, 1.8)" />. Check: <InlineMath math="2.6^2 + 1.8^2 = 6.76 + 3.24 = 10" />.
+
+### A Line That Always Cuts the Parabola
+
+The parabola <InlineMath math="y = x^2 - 2x - 3" /> and the line <InlineMath math="y = mx + 1" /> give <InlineMath math="x^2 - (2 + m)x - 4 = 0" />. Its discriminant is <InlineMath math="(2 + m)^2 + 16" />, which is always positive. Change the gradient <InlineMath math="m" />: the line **always cuts the parabola at two points**, because the point <InlineMath math="(0, 1)" /> on the line lies inside the curve of the parabola.
+
+<MathVisual
+  title={<>A Line through <InlineMath math="(0, 1)" /> and a Parabola</>}
+  description={
+    <>
+      Substitution gives <InlineMath math="x^2 - (2 + m)x - 4 = 0" />. For{" "}
+      <InlineMath math="m = 1" />, the intersection points are{" "}
+      <InlineMath math="(-1, 0)" /> and <InlineMath math="(4, 5)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -12, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: -2, max: 2, value: 1, step: 0.25, label: "m" },
+    ],
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x - 3", domain: { min: -3, max: 6 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "m*x + 1", domain: { min: -3, max: 6 } },
+      { id: "left-meet", kind: "marker", x: "((2 + m) - sqrt((2 + m)^2 + 16))/2", y: "m*((2 + m) - sqrt((2 + m)^2 + 16))/2 + 1", appearance: "answer" },
+      { id: "right-meet", kind: "marker", x: "((2 + m) + sqrt((2 + m)^2 + 16))/2", y: "m*((2 + m) + sqrt((2 + m)^2 + 16))/2 + 1", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "(2 + m)^2 + 16" },
+      { key: "left-x", formula: "((2 + m) - sqrt((2 + m)^2 + 16))/2" },
+      { key: "right-x", formula: "((2 + m) + sqrt((2 + m)^2 + 16))/2" },
+    ],
+  }}
+  labels={{
+    m: <>Gradient of the line, <InlineMath math="m" /></>,
+    discriminant: <>Discriminant</>,
+    "left-x": <>The <InlineMath math="x" />-coordinate of the left point</>,
+    "right-x": <>The <InlineMath math="x" />-coordinate of the right point</>,
+  }}
+/>
+
+Check the starting reading: for <InlineMath math="m = 1" />, <InlineMath math="x^2 - 3x - 4 = (x + 1)(x - 4) = 0" />, so <InlineMath math="x = -1" /> or <InlineMath math="x = 4" />, with <InlineMath math="y = 0" /> and <InlineMath math="y = 5" />.
+
+## Perimeter and Area Problems
+
+A rectangular garden has a perimeter of <InlineMath math="26\text{ m}" /> and an area of <InlineMath math="40\text{ m}^2" />. Find its length and width.
+
+Let the length be <InlineMath math="x" /> and the width <InlineMath math="y" />, in metres. The perimeter gives a linear equation and the area gives a non-linear one:
+
+<MathContainer>
+<BlockMath math="2x + 2y = 26 \quad \Rightarrow \quad y = 13 - x" />
+<BlockMath math="xy = 40 \quad \Rightarrow \quad x(13 - x) = 40" />
+<BlockMath math="x^2 - 13x + 40 = 0 \quad \Rightarrow \quad (x - 5)(x - 8) = 0" />
+</MathContainer>
+
+So <InlineMath math="x = 5" /> or <InlineMath math="x = 8" />. The two pairs <InlineMath math="(5, 8)" /> and <InlineMath math="(8, 5)" /> describe the same garden, so it is **<InlineMath math="8\text{ m}" /> long and <InlineMath math="5\text{ m}" /> wide**.
+
+On a graph, the line <InlineMath math="y = 13 - x" /> stands for every rectangle with perimeter <InlineMath math="26\text{ m}" />, and the curve <InlineMath math="y = \dfrac{A}{x}" /> stands for every rectangle with area <InlineMath math="A" />. Raise the area <InlineMath math="A" /> and watch the two intersection points move together.
+
+<MathVisual
+  title={<>A Garden with Perimeter <InlineMath math="26\text{ m}" /></>}
+  description={
+    <>
+      The line <InlineMath math="y = 13 - x" /> and the curve{" "}
+      <InlineMath math="y = \dfrac{A}{x}" />. Substitution gives{" "}
+      <InlineMath math="x^2 - 13x + A = 0" />, with discriminant{" "}
+      <InlineMath math="169 - 4A" />. For <InlineMath math="A = 40" />, the sides are{" "}
+      <InlineMath math="5\text{ m}" /> and <InlineMath math="8\text{ m}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 20, max: 42, value: 40, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "perimeter", kind: "function", appearance: "secondary", formula: "13 - x", domain: { min: 0, max: 13 } },
+      { id: "area", kind: "function", appearance: "primary", formula: "a/x", domain: { min: 3, max: 13 } },
+      { id: "short-side", kind: "marker", x: "(13 - sqrt(169 - 4*a))/2", y: "(13 + sqrt(169 - 4*a))/2", appearance: "answer" },
+      { id: "long-side", kind: "marker", x: "(13 + sqrt(169 - 4*a))/2", y: "(13 - sqrt(169 - 4*a))/2", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "169 - 4*a" },
+      { key: "width", formula: "(13 - sqrt(169 - 4*a))/2" },
+      { key: "length", formula: "(13 + sqrt(169 - 4*a))/2" },
+    ],
+  }}
+  labels={{
+    a: <>Area <InlineMath math="A" /> in <InlineMath math="\text{m}^2" /></>,
+    discriminant: <>Discriminant <InlineMath math="169 - 4A" /></>,
+    width: <>Width in <InlineMath math="\text{m}" /></>,
+    length: <>Length in <InlineMath math="\text{m}" /></>,
+  }}
+/>
+
+As <InlineMath math="A" /> approaches <InlineMath math="42.25\text{ m}^2" />, the discriminant approaches zero and the two points merge. An area of <InlineMath math="42.25\text{ m}^2" /> is the largest possible for a perimeter of <InlineMath math="26\text{ m}" />, a square with sides of <InlineMath math="6.5\text{ m}" />.
+
+## Common Mistakes with Systems of Equations
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| Substituting into the non-linear equation to find the second variable. | The non-linear equation can give extra values that are not solutions. | Find the second variable from the linear equation. |
+| Writing four answers such as <InlineMath math="x = 3, 2.6" /> and <InlineMath math="y = 1, 1.8" /> without pairing them. | Each value of <InlineMath math="x" /> matches only one value of <InlineMath math="y" />. | Write the solutions as ordered pairs. |
+| Dividing both sides by <InlineMath math="x" />. | The root <InlineMath math="x = 0" /> is lost. | Factorise instead of dividing by a variable. |
+| Getting a sign wrong when subtracting two equations. | Every term of the second equation must change sign. | Write brackets before subtracting. |
+| Stopping after finding two variables in a three-variable system. | The third variable is still unknown. | Substitute back into one of the original equations. |
+
+The first mistake is the most common. **The linear equation is the safe place** to find the second variable, because each <InlineMath math="x" /> gives exactly one <InlineMath math="y" />.
+
+## Systems of Equations Practice
+
+Solve each question, then **check the answer in every original equation**.
+
+1. Solve the system <InlineMath math="x + 2y - z = 3" />, <InlineMath math="2x - y + z = 4" /> and <InlineMath math="x + y + z = 4" />.
+
+2. Solve the simultaneous equations <InlineMath math="x - y = 1" /> and <InlineMath math="x^2 + y^2 = 13" />.
+
+3. Solve the simultaneous equations <InlineMath math="2x + y = 5" /> and <InlineMath math="xy = 3" />.
+
+4. The line <InlineMath math="y = x + k" /> touches the circle <InlineMath math="x^2 + y^2 = 8" /> at exactly one point. Find the possible values of <InlineMath math="k" />.
+
+### Solutions
+
+**Solution 1**: Eliminate <InlineMath math="z" />:
+
+<MathContainer>
+<BlockMath math="(1) + (2): \quad 3x + y = 7" />
+<BlockMath math="(1) + (3): \quad 2x + 3y = 7" />
+<BlockMath math="y = 7 - 3x \quad \Rightarrow \quad 2x + 21 - 9x = 7 \quad \Rightarrow \quad x = 2" />
+<BlockMath math="y = 7 - 6 = 1, \quad z = 4 - 2 - 1 = 1" />
+</MathContainer>
+
+Check the first equation: <InlineMath math="2 + 2 - 1 = 3" />. The solution is <InlineMath math="x = 2" />, <InlineMath math="y = 1" />, <InlineMath math="z = 1" />.
+
+**Solution 2**: From the linear equation, <InlineMath math="x = y + 1" />:
+
+<MathContainer>
+<BlockMath math="(y + 1)^2 + y^2 = 13" />
+<BlockMath math="2y^2 + 2y - 12 = 0 \quad \Rightarrow \quad (y + 3)(y - 2) = 0" />
+</MathContainer>
+
+So <InlineMath math="y = 2" /> gives <InlineMath math="x = 3" />, and <InlineMath math="y = -3" /> gives <InlineMath math="x = -2" />. The solutions are <InlineMath math="(3, 2)" /> and <InlineMath math="(-2, -3)" />. Check: <InlineMath math="9 + 4 = 13" /> and <InlineMath math="4 + 9 = 13" />.
+
+**Solution 3**: From the linear equation, <InlineMath math="y = 5 - 2x" />:
+
+<MathContainer>
+<BlockMath math="x(5 - 2x) = 3" />
+<BlockMath math="2x^2 - 5x + 3 = 0 \quad \Rightarrow \quad (x - 1)(2x - 3) = 0" />
+</MathContainer>
+
+So <InlineMath math="x = 1" /> gives <InlineMath math="y = 3" />, and <InlineMath math="x = 1.5" /> gives <InlineMath math="y = 2" />. The solutions are <InlineMath math="(1, 3)" /> and <InlineMath math="(1.5, 2)" />. Check: <InlineMath math="1 \times 3 = 3" /> and <InlineMath math="1.5 \times 2 = 3" />.
+
+**Solution 4**: Substitute <InlineMath math="y = x + k" /> into the equation of the circle:
+
+<MathContainer>
+<BlockMath math="x^2 + (x + k)^2 = 8 \quad \Rightarrow \quad 2x^2 + 2kx + k^2 - 8 = 0" />
+<BlockMath math="b^2 - 4ac = 4k^2 - 8(k^2 - 8) = 64 - 4k^2" />
+</MathContainer>
+
+The line touches the circle when **the discriminant is zero**, so <InlineMath math="64 - 4k^2 = 0" /> and <InlineMath math="k = 4" /> or <InlineMath math="k = -4" />. Check <InlineMath math="k = 4" />: the equation becomes <InlineMath math="2x^2 + 8x + 8 = 2(x + 2)^2 = 0" />, with one root <InlineMath math="x = -2" /> and the point of contact <InlineMath math="(-2, 2)" />.

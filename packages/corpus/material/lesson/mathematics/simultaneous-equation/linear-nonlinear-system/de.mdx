@@ -1,0 +1,350 @@
+export const metadata = {
+  title: "Gleichungssysteme für Form Vier",
+  description:
+    "Notizen zu KSSM Zusatzmathematik Form 4 Kapitel 3: Löse lineare Gleichungssysteme mit drei Variablen durch Elimination und Einsetzen sowie Systeme aus einer linearen und einer nichtlinearen Gleichung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Gleichungssysteme",
+};
+
+## Finde die Werte für jede Gleichung
+
+Ein **Gleichungssystem** besteht aus zwei oder mehr Gleichungen, die gleichzeitig gelten müssen. Seine Lösung sind die Werte, die **jede** Gleichung erfüllen. Bei drei linearen Gleichungen in <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="z" /> eliminierst du eine Variable, bis zwei Gleichungen mit zwei Variablen übrig bleiben, und löst diese. Bei einer linearen und einer nichtlinearen Gleichung stellst du die lineare Gleichung nach einer Variablen um, setzt sie in die nichtlineare ein und löst die quadratische Gleichung, die dabei entsteht.
+
+In diesen Notizen drehst du drei Ebenen, um ihren Schnittpunkt zu sehen, schiebst eine Gerade über einen Kreis und eine Parabel und bestimmst die Maße eines Gartens aus Umfang und Fläche.
+
+## Lineare Gleichungen mit drei Variablen
+
+Eine Gleichung wie <InlineMath math="x + y + z = 6" /> ist eine **lineare Gleichung mit drei Variablen**, denn jede Variable hat den Exponenten eins und kein Term multipliziert zwei Variablen. Im dreidimensionalen Raum ist ihr Graph eine **Ebene**. Drei Ebenen können sich in einem Punkt schneiden, sich in einer Geraden schneiden oder gar nicht treffen.
+
+Sieh dir dieses System an:
+
+<MathContainer>
+<BlockMath math="x + y + z = 6" />
+<BlockMath math="2x - y + z = 3" />
+<BlockMath math="x + 2y - z = 2" />
+</MathContainer>
+
+Jede Gleichung lässt sich als <InlineMath math="z" /> in Abhängigkeit von <InlineMath math="x" /> und <InlineMath math="y" /> schreiben. Dreh die Grafik unten. Die drei Ebenen treffen sich in genau einem Punkt, und dieser Punkt ist die Lösung des Systems.
+
+<MathVisual
+  title={<>Drei Ebenen schneiden sich in einem Punkt</>}
+  description={
+    <>
+      Die Ebenen <InlineMath math="z = 6 - x - y" />,{" "}
+      <InlineMath math="z = 3 - 2x + y" /> und{" "}
+      <InlineMath math="z = x + 2y - 2" /> treffen sich im Punkt{" "}
+      <InlineMath math="(1, 2, 3)" />.
+    </>
+  }
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 3 }, z: { min: -3, max: 7 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 2 } },
+    objects: [
+      { id: "first", kind: "surface", x: "u", y: "v", z: "6 - u - v", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "primary" },
+      { id: "second", kind: "surface", x: "u", y: "v", z: "3 - 2*u + v", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "secondary" },
+      { id: "third", kind: "surface", x: "u", y: "v", z: "u + 2*v - 2", u: { min: 0, max: 3 }, v: { min: 0, max: 3 }, appearance: "construction" },
+      { id: "meet", kind: "point", at: { x: 1, y: 2, z: 3 }, appearance: "answer" },
+    ],
+  }}
+/>
+
+Um diesen Punkt algebraisch zu finden, nutzt du das **Eliminationsverfahren**. Wähle die Variable, die sich am leichtesten entfernen lässt. Hier hat <InlineMath math="z" /> in jeder Gleichung den Koeffizienten <InlineMath math="1" /> oder <InlineMath math="-1" />, also eliminierst du <InlineMath math="z" />:
+
+<MathContainer>
+<BlockMath math="(1) + (3): \quad 2x + 3y = 8" />
+<BlockMath math="(2) + (3): \quad 3x + y = 5" />
+</MathContainer>
+
+Jetzt hast du zwei Gleichungen in <InlineMath math="x" /> und <InlineMath math="y" />. Jede davon ist eine Gerade in der <InlineMath math="xy" />-Ebene. Verschiebe den Wert von <InlineMath math="x" /> unten, bis der senkrechte Abstand zwischen beiden Geraden null wird.
+
+<MathVisual
+  title={<>Zwei Geraden nach der Elimination von <InlineMath math="z" /></>}
+  description={
+    <>
+      Die Geraden <InlineMath math="2x + 3y = 8" /> und <InlineMath math="3x + y = 5" />{" "}
+      schneiden sich in <InlineMath math="(1, 2)" />. Bei{" "}
+      <InlineMath math="x = 1" /> ist der Unterschied ihrer{" "}
+      <InlineMath math="y" />-Werte null.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -7, max: 8 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "p", min: -1, max: 4, value: 3, step: 0.25, label: "p" },
+    ],
+    objects: [
+      { id: "first-line", kind: "function", appearance: "primary", formula: "(8 - 2*x)/3", domain: { min: -1, max: 4 } },
+      { id: "second-line", kind: "function", appearance: "secondary", formula: "5 - 3*x", domain: { min: -1, max: 4 } },
+      { id: "first-now", kind: "marker", x: "p", y: "(8 - 2*p)/3", appearance: "warning" },
+      { id: "second-now", kind: "marker", x: "p", y: "5 - 3*p", appearance: "warning" },
+      { id: "solution", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "gap", formula: "(7*p - 7)/3" },
+    ],
+  }}
+  labels={{
+    p: <>Wert von <InlineMath math="x" /></>,
+    gap: <>Unterschied der <InlineMath math="y" />-Werte beider Geraden</>,
+  }}
+/>
+
+Löse nun algebraisch. Aus <InlineMath math="3x + y = 5" /> folgt <InlineMath math="y = 5 - 3x" />. Setze das in die andere Gleichung ein:
+
+<MathContainer>
+<BlockMath math="2x + 3(5 - 3x) = 8" />
+<BlockMath math="-7x = -7 \quad \Rightarrow \quad x = 1, \quad y = 5 - 3 = 2" />
+<BlockMath math="z = 6 - 1 - 2 = 3" />
+</MathContainer>
+
+**Prüfe in allen drei Ausgangsgleichungen**: <InlineMath math="1 + 2 + 3 = 6" />, <InlineMath math="2 - 2 + 3 = 3" /> und <InlineMath math="1 + 4 - 3 = 2" />. Die Lösung ist <InlineMath math="x = 1" />, <InlineMath math="y = 2" />, <InlineMath math="z = 3" />, derselbe Punkt wie in der Grafik der drei Ebenen.
+
+## Preise im Schulladen
+
+Ein Schulladen verkauft Kugelschreiber, Bleistifte und Radiergummis. Drei Bestellungen ergeben diese Summen:
+
+| Bestellung | Kugelschreiber | Bleistifte | Radiergummis | Summe in Euro |
+| :--- | :--- | :--- | :--- | :--- |
+| Erste | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="11{,}00" /> |
+| Zweite | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="7{,}50" /> |
+| Dritte | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7{,}50" /> |
+
+Sei der Preis eines Kugelschreibers <InlineMath math="x" />, eines Bleistifts <InlineMath math="y" /> und eines Radiergummis <InlineMath math="z" />, in Euro. Stelle drei Gleichungen auf und eliminiere <InlineMath math="z" /> zweimal:
+
+<MathContainer>
+<BlockMath math="3x + 2y + z = 11, \quad 2x + y + 2z = 7{,}5, \quad x + 3y + z = 7{,}5" />
+<BlockMath math="(1) - (3): \quad 2x - y = 3{,}5" />
+<BlockMath math="2 \cdot (3) - (2): \quad 5y = 7{,}5 \quad \Rightarrow \quad y = 1{,}5" />
+<BlockMath math="x = \frac{3{,}5 + 1{,}5}{2} = 2{,}5, \quad z = 7{,}5 - 2{,}5 - 4{,}5 = 0{,}5" />
+</MathContainer>
+
+Ein Kugelschreiber kostet also **<InlineMath math="2{,}50" /> Euro**, ein Bleistift **<InlineMath math="1{,}50" /> Euro** und ein Radiergummi **<InlineMath math="0{,}50" /> Euro**. Prüfe die zweite Bestellung: <InlineMath math="2 \cdot 2{,}5 + 1{,}5 + 2 \cdot 0{,}5 = 7{,}5" />.
+
+## Lineare und nichtlineare Gleichungen zusammen lösen
+
+Eine nichtlineare Gleichung enthält Terme wie <InlineMath math="x^2" />, <InlineMath math="y^2" /> oder <InlineMath math="xy" />. Wenn du eine lineare und eine nichtlineare Gleichung zusammen löst, gehst du immer gleich vor:
+
+1. Stelle die **lineare Gleichung** nach <InlineMath math="x" /> oder <InlineMath math="y" /> um.
+2. Setze das Ergebnis in die nichtlineare Gleichung ein, sodass eine quadratische Gleichung mit einer Variablen entsteht.
+3. Löse diese quadratische Gleichung und bestimme die andere Variable aus der linearen Gleichung.
+
+Im Graphen sind die Lösungen die Schnittpunkte der Geraden mit der Kurve. Eine quadratische Gleichung kann zwei Lösungen, eine Lösung oder keine reelle Lösung haben, also kann die Gerade die Kurve in zwei Punkten schneiden, sie in einem Punkt berühren oder an ihr vorbeigehen.
+
+Schieb die Gerade <InlineMath math="y = x + c" /> über den Kreis <InlineMath math="x^2 + y^2 = 25" />. Einsetzen ergibt <InlineMath math="2x^2 + 2cx + c^2 - 25 = 0" />, und die Diskriminante <InlineMath math="b^2 - 4ac = 200 - 4c^2" /> entscheidet, wie viele Schnittpunkte es gibt.
+
+<MathVisual
+  title={<>Eine Gerade schneidet einen Kreis</>}
+  description={
+    <>
+      Die Gerade <InlineMath math="y = x + c" /> und der Kreis{" "}
+      <InlineMath math="x^2 + y^2 = 25" />. Eine positive Diskriminante{" "}
+      <InlineMath math="200 - 4c^2" /> ergibt zwei Punkte, null ergibt einen
+      Punkt und ein negativer Wert keinen. Für <InlineMath math="c = 1" /> sind
+      die Punkte <InlineMath math="(3, 4)" /> und <InlineMath math="(-4, -3)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: -9, max: 9, value: 1, step: 0.5, label: "c" },
+    ],
+    objects: [
+      { id: "circle", kind: "implicit", appearance: "primary", equation: "x^2 + y^2 = 25" },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + c", domain: { min: -10, max: 10 } },
+      { id: "first-meet", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "second-meet", kind: "point", at: { x: -4, y: -3 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "200 - 4*c^2" },
+    ],
+  }}
+  labels={{
+    c: <><InlineMath math="y" />-Achsenabschnitt der Geraden, <InlineMath math="c" /></>,
+    discriminant: <>Diskriminante <InlineMath math="200 - 4c^2" /></>,
+  }}
+/>
+
+Die grünen Punkte sind die Lösungen für <InlineMath math="c = 1" />. Die Gerade berührt den Kreis, wenn <InlineMath math="200 - 4c^2 = 0" /> ist, also bei <InlineMath math="c = \pm\sqrt{50} \approx \pm 7{,}07" />. Darüber hinaus verfehlt die Gerade den Kreis, und das System hat keine reelle Lösung.
+
+### Kreis und Gerade
+
+Löse <InlineMath math="2x + y = 7" /> und <InlineMath math="x^2 + y^2 = 10" />.
+
+**Stelle die lineare Gleichung nach <InlineMath math="y" /> um** und setze ein:
+
+<MathContainer>
+<BlockMath math="y = 7 - 2x" />
+<BlockMath math="x^2 + (7 - 2x)^2 = 10" />
+<BlockMath math="5x^2 - 28x + 39 = 0" />
+<BlockMath math="(x - 3)(5x - 13) = 0 \quad \Rightarrow \quad x = 3 \text{ oder } x = 2{,}6" />
+</MathContainer>
+
+Bestimme <InlineMath math="y" /> zu jedem <InlineMath math="x" /> aus der linearen Gleichung: <InlineMath math="x = 3" /> ergibt <InlineMath math="y = 1" />, und <InlineMath math="x = 2{,}6" /> ergibt <InlineMath math="y = 1{,}8" />. Die Lösungen sind die **Paare** <InlineMath math="(3, 1)" /> und <InlineMath math="(2{,}6;\ 1{,}8)" />. Probe: <InlineMath math="2{,}6^2 + 1{,}8^2 = 6{,}76 + 3{,}24 = 10" />.
+
+### Eine Gerade schneidet die Parabel immer
+
+Die Parabel <InlineMath math="y = x^2 - 2x - 3" /> und die Gerade <InlineMath math="y = mx + 1" /> ergeben <InlineMath math="x^2 - (2 + m)x - 4 = 0" />. Die Diskriminante ist <InlineMath math="(2 + m)^2 + 16" /> und damit immer positiv. Ändere die Steigung <InlineMath math="m" />: Die Gerade **schneidet die Parabel immer in zwei Punkten**, denn der Punkt <InlineMath math="(0, 1)" /> auf der Geraden liegt innerhalb der Parabel.
+
+<MathVisual
+  title={<>Eine Gerade durch <InlineMath math="(0, 1)" /> und eine Parabel</>}
+  description={
+    <>
+      Einsetzen ergibt <InlineMath math="x^2 - (2 + m)x - 4 = 0" />. Für{" "}
+      <InlineMath math="m = 1" /> sind die Schnittpunkte{" "}
+      <InlineMath math="(-1, 0)" /> und <InlineMath math="(4, 5)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -12, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: -2, max: 2, value: 1, step: 0.25, label: "m" },
+    ],
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x - 3", domain: { min: -3, max: 6 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "m*x + 1", domain: { min: -3, max: 6 } },
+      { id: "left-meet", kind: "marker", x: "((2 + m) - sqrt((2 + m)^2 + 16))/2", y: "m*((2 + m) - sqrt((2 + m)^2 + 16))/2 + 1", appearance: "answer" },
+      { id: "right-meet", kind: "marker", x: "((2 + m) + sqrt((2 + m)^2 + 16))/2", y: "m*((2 + m) + sqrt((2 + m)^2 + 16))/2 + 1", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "(2 + m)^2 + 16" },
+      { key: "left-x", formula: "((2 + m) - sqrt((2 + m)^2 + 16))/2" },
+      { key: "right-x", formula: "((2 + m) + sqrt((2 + m)^2 + 16))/2" },
+    ],
+  }}
+  labels={{
+    m: <>Steigung der Geraden, <InlineMath math="m" /></>,
+    discriminant: <>Diskriminante</>,
+    "left-x": <><InlineMath math="x" />-Koordinate des linken Punkts</>,
+    "right-x": <><InlineMath math="x" />-Koordinate des rechten Punkts</>,
+  }}
+/>
+
+Prüfe die Startwerte: Für <InlineMath math="m = 1" /> gilt <InlineMath math="x^2 - 3x - 4 = (x + 1)(x - 4) = 0" />, also <InlineMath math="x = -1" /> oder <InlineMath math="x = 4" />, mit <InlineMath math="y = 0" /> und <InlineMath math="y = 5" />.
+
+## Aufgaben mit Umfang und Fläche
+
+Ein rechteckiger Garten hat den Umfang <InlineMath math="26\text{ m}" /> und die Fläche <InlineMath math="40\text{ m}^2" />. Bestimme Länge und Breite.
+
+Sei die Länge <InlineMath math="x" /> und die Breite <InlineMath math="y" />, in Metern. Der Umfang liefert eine lineare Gleichung, die Fläche eine nichtlineare:
+
+<MathContainer>
+<BlockMath math="2x + 2y = 26 \quad \Rightarrow \quad y = 13 - x" />
+<BlockMath math="xy = 40 \quad \Rightarrow \quad x(13 - x) = 40" />
+<BlockMath math="x^2 - 13x + 40 = 0 \quad \Rightarrow \quad (x - 5)(x - 8) = 0" />
+</MathContainer>
+
+Also ist <InlineMath math="x = 5" /> oder <InlineMath math="x = 8" />. Die beiden Paare <InlineMath math="(5, 8)" /> und <InlineMath math="(8, 5)" /> beschreiben denselben Garten, er ist also **<InlineMath math="8\text{ m}" /> lang und <InlineMath math="5\text{ m}" /> breit**.
+
+Im Graphen steht die Gerade <InlineMath math="y = 13 - x" /> für alle Rechtecke mit Umfang <InlineMath math="26\text{ m}" />, und die Kurve <InlineMath math="y = \dfrac{A}{x}" /> für alle Rechtecke mit Fläche <InlineMath math="A" />. Erhöhe die Fläche <InlineMath math="A" /> und beobachte, wie die beiden Schnittpunkte zusammenrücken.
+
+<MathVisual
+  title={<>Ein Garten mit Umfang <InlineMath math="26\text{ m}" /></>}
+  description={
+    <>
+      Die Gerade <InlineMath math="y = 13 - x" /> und die Kurve{" "}
+      <InlineMath math="y = \dfrac{A}{x}" />. Einsetzen ergibt{" "}
+      <InlineMath math="x^2 - 13x + A = 0" /> mit der Diskriminante{" "}
+      <InlineMath math="169 - 4A" />. Für <InlineMath math="A = 40" /> sind die
+      Seiten <InlineMath math="5\text{ m}" /> und <InlineMath math="8\text{ m}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 20, max: 42, value: 40, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "perimeter", kind: "function", appearance: "secondary", formula: "13 - x", domain: { min: 0, max: 13 } },
+      { id: "area", kind: "function", appearance: "primary", formula: "a/x", domain: { min: 3, max: 13 } },
+      { id: "short-side", kind: "marker", x: "(13 - sqrt(169 - 4*a))/2", y: "(13 + sqrt(169 - 4*a))/2", appearance: "answer" },
+      { id: "long-side", kind: "marker", x: "(13 + sqrt(169 - 4*a))/2", y: "(13 - sqrt(169 - 4*a))/2", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "169 - 4*a" },
+      { key: "width", formula: "(13 - sqrt(169 - 4*a))/2" },
+      { key: "length", formula: "(13 + sqrt(169 - 4*a))/2" },
+    ],
+  }}
+  labels={{
+    a: <>Fläche <InlineMath math="A" /> in <InlineMath math="\text{m}^2" /></>,
+    discriminant: <>Diskriminante <InlineMath math="169 - 4A" /></>,
+    width: <>Breite in <InlineMath math="\text{m}" /></>,
+    length: <>Länge in <InlineMath math="\text{m}" /></>,
+  }}
+/>
+
+Wenn <InlineMath math="A" /> sich <InlineMath math="42{,}25\text{ m}^2" /> nähert, geht die Diskriminante gegen null, und die beiden Punkte verschmelzen. Die Fläche <InlineMath math="42{,}25\text{ m}^2" /> ist die größte, die bei einem Umfang von <InlineMath math="26\text{ m}" /> möglich ist: ein Quadrat mit der Seite <InlineMath math="6{,}5\text{ m}" />.
+
+## Häufige Fehler bei Gleichungssystemen
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| In die nichtlineare Gleichung einsetzen, um die zweite Variable zu finden. | Die nichtlineare Gleichung kann zusätzliche Werte liefern, die keine Lösungen sind. | Bestimme die zweite Variable aus der linearen Gleichung. |
+| Vier Ergebnisse wie <InlineMath math="x = 3;\ 2{,}6" /> und <InlineMath math="y = 1;\ 1{,}8" /> ohne Zuordnung angeben. | Zu jedem <InlineMath math="x" /> gehört nur ein <InlineMath math="y" />. | Schreib die Lösungen als geordnete Paare. |
+| Beide Seiten durch <InlineMath math="x" /> teilen. | Die Lösung <InlineMath math="x = 0" /> geht verloren. | Faktorisiere, statt durch eine Variable zu teilen. |
+| Ein Vorzeichenfehler beim Subtrahieren zweier Gleichungen. | Jeder Term der zweiten Gleichung muss sein Vorzeichen wechseln. | Setze Klammern, bevor du subtrahierst. |
+| Nach zwei Variablen in einem System mit drei Variablen aufhören. | Die dritte Variable fehlt noch. | Setze in eine der Ausgangsgleichungen ein. |
+
+Der erste Fehler kommt am häufigsten vor. **Die lineare Gleichung ist der sichere Ort**, um die zweite Variable zu bestimmen, denn zu jedem <InlineMath math="x" /> gehört genau ein <InlineMath math="y" />.
+
+## Übungen zu Gleichungssystemen
+
+Löse jede Aufgabe und **prüfe das Ergebnis in jeder Ausgangsgleichung**.
+
+1. Löse das System <InlineMath math="x + 2y - z = 3" />, <InlineMath math="2x - y + z = 4" /> und <InlineMath math="x + y + z = 4" />.
+
+2. Löse das System <InlineMath math="x - y = 1" /> und <InlineMath math="x^2 + y^2 = 13" />.
+
+3. Löse das System <InlineMath math="2x + y = 5" /> und <InlineMath math="xy = 3" />.
+
+4. Die Gerade <InlineMath math="y = x + k" /> berührt den Kreis <InlineMath math="x^2 + y^2 = 8" /> in genau einem Punkt. Bestimme die möglichen Werte von <InlineMath math="k" />.
+
+### Lösungen
+
+**Lösung 1**: Eliminiere <InlineMath math="z" />:
+
+<MathContainer>
+<BlockMath math="(1) + (2): \quad 3x + y = 7" />
+<BlockMath math="(1) + (3): \quad 2x + 3y = 7" />
+<BlockMath math="y = 7 - 3x \quad \Rightarrow \quad 2x + 21 - 9x = 7 \quad \Rightarrow \quad x = 2" />
+<BlockMath math="y = 7 - 6 = 1, \quad z = 4 - 2 - 1 = 1" />
+</MathContainer>
+
+Probe in der ersten Gleichung: <InlineMath math="2 + 2 - 1 = 3" />. Die Lösung ist <InlineMath math="x = 2" />, <InlineMath math="y = 1" />, <InlineMath math="z = 1" />.
+
+**Lösung 2**: Aus der linearen Gleichung folgt <InlineMath math="x = y + 1" />:
+
+<MathContainer>
+<BlockMath math="(y + 1)^2 + y^2 = 13" />
+<BlockMath math="2y^2 + 2y - 12 = 0 \quad \Rightarrow \quad (y + 3)(y - 2) = 0" />
+</MathContainer>
+
+Also ergibt <InlineMath math="y = 2" /> den Wert <InlineMath math="x = 3" />, und <InlineMath math="y = -3" /> ergibt <InlineMath math="x = -2" />. Die Lösungen sind <InlineMath math="(3, 2)" /> und <InlineMath math="(-2, -3)" />. Probe: <InlineMath math="9 + 4 = 13" /> und <InlineMath math="4 + 9 = 13" />.
+
+**Lösung 3**: Aus der linearen Gleichung folgt <InlineMath math="y = 5 - 2x" />:
+
+<MathContainer>
+<BlockMath math="x(5 - 2x) = 3" />
+<BlockMath math="2x^2 - 5x + 3 = 0 \quad \Rightarrow \quad (x - 1)(2x - 3) = 0" />
+</MathContainer>
+
+Also ergibt <InlineMath math="x = 1" /> den Wert <InlineMath math="y = 3" />, und <InlineMath math="x = 1{,}5" /> ergibt <InlineMath math="y = 2" />. Die Lösungen sind <InlineMath math="(1, 3)" /> und <InlineMath math="(1{,}5;\ 2)" />. Probe: <InlineMath math="1 \cdot 3 = 3" /> und <InlineMath math="1{,}5 \cdot 2 = 3" />.
+
+**Lösung 4**: Setze <InlineMath math="y = x + k" /> in die Kreisgleichung ein:
+
+<MathContainer>
+<BlockMath math="x^2 + (x + k)^2 = 8 \quad \Rightarrow \quad 2x^2 + 2kx + k^2 - 8 = 0" />
+<BlockMath math="b^2 - 4ac = 4k^2 - 8(k^2 - 8) = 64 - 4k^2" />
+</MathContainer>
+
+Die Gerade berührt den Kreis, wenn **die Diskriminante null ist**, also <InlineMath math="64 - 4k^2 = 0" /> und <InlineMath math="k = 4" /> oder <InlineMath math="k = -4" />. Probe für <InlineMath math="k = 4" />: Die Gleichung wird zu <InlineMath math="2x^2 + 8x + 8 = 2(x + 2)^2 = 0" />, mit der einzigen Lösung <InlineMath math="x = -2" /> und dem Berührpunkt <InlineMath math="(-2, 2)" />.
