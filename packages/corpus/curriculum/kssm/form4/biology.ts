@@ -73,7 +73,33 @@ export const kssmForm4BiologyTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-movement-of-substances-across-a-plasma-membrane-membrane-transport",
+        level: "lesson",
+        materialKeys: ["lesson.biology.membrane-transport"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-movement-of-substances-across-a-plasma-membrane",
+    materialCard: {
+      de: {
+        description: "Unterscheide Diffusion, Osmose und aktiven Transport.",
+        title: "Stofftransport durch die Plasmamembran",
+      },
+      en: {
+        description: "Tell diffusion, osmosis and active transport apart.",
+        title: "Movement of Substances across a Plasma Membrane",
+      },
+      id: {
+        description: "Bedakan difusi, osmosis, dan transpor aktif.",
+        title: "Transpor Zat melalui Membran Plasma",
+      },
+      ms: {
+        description: "Bezakan resapan, osmosis dan pengangkutan aktif.",
+        title: "Pergerakan Bahan Merentas Membran Plasma",
+      },
+    },
     order: 30,
     translations: {
       de: {
