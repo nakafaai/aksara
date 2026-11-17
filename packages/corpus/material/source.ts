@@ -9,6 +9,8 @@ import { lessonBiologyClimateChangeMaterial } from "#corpus/material/lesson/biol
 import { lessonBiologyMembraneTransportMaterial } from "#corpus/material/lesson/biology/membrane-transport/source";
 import { lessonBiologyLeafStructureMaterial } from "#corpus/material/lesson/biology/leaf-structure/source";
 import { lessonBiologyPlantTissueMaterial } from "#corpus/material/lesson/biology/plant-tissue/source";
+import { lessonBiologyPlantNutritionMaterial } from "#corpus/material/lesson/biology/plant-nutrition/source";
+import { lessonBiologyPlantTransportMaterial } from "#corpus/material/lesson/biology/plant-transport/source";
 import { lessonBiologyVirusRoleMaterial } from "#corpus/material/lesson/biology/virus-role/source";
 import { lessonChemistryAcidBaseSaltMaterial } from "#corpus/material/lesson/chemistry/acid-base-salt/source";
 import { lessonChemistryBasicChemistryLawsMaterial } from "#corpus/material/lesson/chemistry/basic-chemistry-laws/source";
@@ -71,6 +73,8 @@ const materialSourcePrograms = [
   lessonBiologyMembraneTransportMaterial,
   lessonBiologyLeafStructureMaterial,
   lessonBiologyPlantTissueMaterial,
+  lessonBiologyPlantNutritionMaterial,
+  lessonBiologyPlantTransportMaterial,
   lessonBiologyVirusRoleMaterial,
   lessonChemistryAcidBaseSaltMaterial,
   lessonChemistryBasicChemistryLawsMaterial,
