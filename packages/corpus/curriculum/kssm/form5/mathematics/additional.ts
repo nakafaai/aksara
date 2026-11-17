@@ -1,9 +1,35 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Additional Mathematics chapters, in the order of their DSKP. */
 export const kssmForm5AdditionalMathematicsTopicNodes = [
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-additional-mathematics-circular-measure-circle-arc-sector",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.circle-arc-sector"],
+        order: 10,
+      }),
+    ],
     key: "form-5-additional-mathematics-circular-measure",
+    materialCard: {
+      de: {
+        description: "Nutze Bogenmaß für Bogenlänge und Sektorfläche.",
+        title: "Bogenmaß",
+      },
+      en: {
+        description: "Use radians for arc length and sector area.",
+        title: "Circular Measure",
+      },
+      id: {
+        description: "Pakai radian untuk panjang busur dan luas juring.",
+        title: "Ukuran Radian",
+      },
+      ms: {
+        description: "Guna radian untuk panjang lengkok dan luas sektor.",
+        title: "Sukatan Membulat",
+      },
+    },
     order: 10,
     translations: {
       de: { routeSlug: "bogenmass", title: "Bogenmaß" },
@@ -13,7 +39,33 @@ export const kssmForm5AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-additional-mathematics-differentiation-derivative-function",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.derivative-function"],
+        order: 10,
+      }),
+    ],
     key: "form-5-additional-mathematics-differentiation",
+    materialCard: {
+      de: {
+        description: "Leite Funktionen ab und finde Extrempunkte.",
+        title: "Differentialrechnung",
+      },
+      en: {
+        description: "Differentiate functions and find turning points.",
+        title: "Differentiation",
+      },
+      id: {
+        description: "Turunkan fungsi dan cari titik stasioner.",
+        title: "Turunan",
+      },
+      ms: {
+        description: "Bezakan fungsi dan cari titik pusingan.",
+        title: "Pembezaan",
+      },
+    },
     order: 20,
     translations: {
       de: { routeSlug: "differentialrechnung", title: "Differentialrechnung" },
@@ -23,7 +75,33 @@ export const kssmForm5AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-additional-mathematics-integration-integral",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.integral"],
+        order: 10,
+      }),
+    ],
     key: "form-5-additional-mathematics-integration",
+    materialCard: {
+      de: {
+        description: "Integriere Funktionen und berechne Flächen.",
+        title: "Integralrechnung",
+      },
+      en: {
+        description: "Integrate functions and find areas under curves.",
+        title: "Integration",
+      },
+      id: {
+        description: "Integralkan fungsi dan hitung luas di bawah kurva.",
+        title: "Integral",
+      },
+      ms: {
+        description: "Kamirkan fungsi dan cari luas di bawah lengkung.",
+        title: "Pengamiran",
+      },
+    },
     order: 30,
     translations: {
       de: { routeSlug: "integralrechnung", title: "Integralrechnung" },
@@ -33,7 +111,33 @@ export const kssmForm5AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-additional-mathematics-permutation-and-combination-combinatorics",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.combinatorics"],
+        order: 10,
+      }),
+    ],
     key: "form-5-additional-mathematics-permutation-and-combination",
+    materialCard: {
+      de: {
+        description: "Zähle Anordnungen und Auswahlen.",
+        title: "Permutationen und Kombinationen",
+      },
+      en: {
+        description: "Count arrangements and selections.",
+        title: "Permutation and Combination",
+      },
+      id: {
+        description: "Hitung banyak susunan dan pilihan.",
+        title: "Permutasi dan Kombinasi",
+      },
+      ms: {
+        description: "Kira bilangan susunan dan pilihan.",
+        title: "Pilih Atur dan Gabungan",
+      },
+    },
     order: 40,
     translations: {
       de: {
@@ -55,7 +159,33 @@ export const kssmForm5AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-additional-mathematics-probability-distribution-data-analysis-probability",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.data-analysis-probability"],
+        order: 10,
+      }),
+    ],
     key: "form-5-additional-mathematics-probability-distribution",
+    materialCard: {
+      de: {
+        description: "Nutze Binomial- und Normalverteilung.",
+        title: "Wahrscheinlichkeitsverteilungen",
+      },
+      en: {
+        description: "Use the binomial and normal distributions.",
+        title: "Probability Distribution",
+      },
+      id: {
+        description: "Pakai distribusi binomial dan distribusi normal.",
+        title: "Distribusi Peluang",
+      },
+      ms: {
+        description: "Guna taburan binomial dan taburan normal.",
+        title: "Taburan Kebarangkalian",
+      },
+    },
     order: 50,
     translations: {
       de: {
