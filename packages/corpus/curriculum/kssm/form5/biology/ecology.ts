@@ -42,7 +42,33 @@ export const kssmForm5BiologyEcologyNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-biology-ecosystem-ecosystem",
+        level: "lesson",
+        materialKeys: ["lesson.biology.ecosystem"],
+        order: 10,
+      }),
+    ],
     key: "form-5-biology-ecosystem",
+    materialCard: {
+      de: {
+        description: "Berechne Energieflüsse und schätze Populationen.",
+        title: "Ökosystem",
+      },
+      en: {
+        description: "Calculate energy flow and estimate populations.",
+        title: "Ecosystem",
+      },
+      id: {
+        description: "Hitung aliran energi dan taksir ukuran populasi.",
+        title: "Ekosistem",
+      },
+      ms: {
+        description: "Kira aliran tenaga dan anggar saiz populasi.",
+        title: "Ekosistem",
+      },
+    },
     order: 90,
     translations: {
       de: { routeSlug: "oekosystem", title: "Ökosystem" },
