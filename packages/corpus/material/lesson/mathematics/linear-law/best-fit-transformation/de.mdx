@@ -1,0 +1,351 @@
+export const metadata = {
+  title: "Linearisierung für Form Vier",
+  description:
+    "Notizen zu KSSM Zusatzmathematik Form 4 Kapitel 6: Zeichne die Ausgleichsgerade, bringe nichtlineare Zusammenhänge in die Form Y = mX + c und bestimme die Konstanten aus Steigung und Achsenabschnitt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Linearisierung",
+};
+
+## Mach aus einer Kurve eine Gerade
+
+**Linearisierung** heißt, einen nichtlinearen Zusammenhang zwischen zwei Variablen in die Geradenform <InlineMath math="Y = mX + c" /> zu bringen. Du wählst <InlineMath math="Y" /> und <InlineMath math="X" /> aus <InlineMath math="x" /> und <InlineMath math="y" /> so, dass die Messpunkte auf einer Geraden liegen. Steigung <InlineMath math="m" /> und <InlineMath math="Y" />-Achsenabschnitt <InlineMath math="c" /> liefern dann die Konstanten des ursprünglichen Zusammenhangs. Eine Gerade lässt sich leicht zeichnen, ablesen und verlängern, eine Kurve dagegen kaum nach Augenmaß beurteilen.
+
+In diesen Notizen passt du eine Ausgleichsgerade an, bis ihr Fehler am kleinsten ist, machst aus einer quadratischen und einer exponentiellen Kurve eine Gerade und bestimmst die Fallbeschleunigung aus Pendeldaten.
+
+## Die Ausgleichsgerade
+
+Messdaten liegen selten genau auf einer Geraden. Die **Ausgleichsgerade** ist die Gerade, die allen Punkten am nächsten kommt. Wenn du sie von Hand zeichnest, achte darauf:
+
+1. Etwa gleich viele Punkte liegen über wie unter der Geraden.
+2. Die Gerade geht durch möglichst viele Punkte oder sehr nah an ihnen vorbei.
+3. Die Gerade geht durch den **Schwerpunkt** <InlineMath math="(\bar{x}, \bar{y})" />, also den Mittelwert aller <InlineMath math="x" />-Werte und den Mittelwert aller <InlineMath math="y" />-Werte.
+
+Diese Tabelle enthält sechs Messwerte aus einem Versuch:
+
+| <InlineMath math="x" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="y" /> | <InlineMath math="3{,}2" /> | <InlineMath math="4{,}8" /> | <InlineMath math="7{,}1" /> | <InlineMath math="9{,}0" /> | <InlineMath math="10{,}8" /> | <InlineMath math="13{,}1" /> |
+
+Stell Steigung und Achsenabschnitt der Geraden unten ein. Der Wert **Summe der Fehlerquadrate** addiert das Quadrat des senkrechten Abstands jedes Punkts zur Geraden. Die Ausgleichsgerade macht diese Summe so klein wie möglich.
+
+<MathVisual
+  title={<>Stell die Ausgleichsgerade ein</>}
+  description={
+    <>
+      Sechs Messpunkte und die Gerade <InlineMath math="y = mx + c" />. Die Summe
+      der Fehlerquadrate ist am kleinsten, etwa <InlineMath math="0{,}13" />, bei{" "}
+      <InlineMath math="m \approx 1{,}98" /> und <InlineMath math="c \approx 1{,}06" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1.5, max: 2.5, value: 1.6, step: 0.02, label: "m" },
+      { name: "c", min: -1, max: 2, value: 2, step: 0.02, label: "c" },
+    ],
+    objects: [
+      { id: "fit", kind: "function", appearance: "primary", formula: "m*x + c", domain: { min: 0, max: 5.5 } },
+      { id: "reading-1", kind: "point", at: { x: 1, y: 3.2 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 2, y: 4.8 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 3, y: 7.1 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 4, y: 9 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 5, y: 10.8 }, appearance: "secondary" },
+      { id: "reading-6", kind: "point", at: { x: 6, y: 13.1 }, appearance: "secondary" },
+      { id: "mean-point", kind: "point", at: { x: 3.5, y: 8 }, appearance: "answer" },
+    ],
+    readouts: [
+      { key: "squared-error", formula: "(3.2 - m - c)^2 + (4.8 - 2*m - c)^2 + (7.1 - 3*m - c)^2 + (9 - 4*m - c)^2 + (10.8 - 5*m - c)^2 + (13.1 - 6*m - c)^2" },
+      { key: "estimate", formula: "4.5*m + c" },
+    ],
+  }}
+  labels={{
+    m: <>Steigung <InlineMath math="m" /></>,
+    c: <><InlineMath math="y" />-Achsenabschnitt <InlineMath math="c" /></>,
+    "squared-error": <>Summe der Fehlerquadrate</>,
+    estimate: <>Schätzwert für <InlineMath math="y" /> bei <InlineMath math="x = 4{,}5" /></>,
+  }}
+/>
+
+Der Schwerpunkt ist <InlineMath math="\bar{x} = 3{,}5" /> und <InlineMath math="\bar{y} = \dfrac{48}{6} = 8{,}0" />. Die beste Gerade geht durch <InlineMath math="(3{,}5;\ 8{,}0)" /> und hat eine Steigung von etwa <InlineMath math="1{,}98" />, ihre Gleichung ist also <InlineMath math="y = 1{,}98x + 1{,}06" />. Mit dieser Geraden schätzt du <InlineMath math="y" /> bei <InlineMath math="x = 4{,}5" /> auf <InlineMath math="1{,}98 \cdot 4{,}5 + 1{,}06 \approx 10{,}0" />.
+
+## Nichtlineare Zusammenhänge linearisieren
+
+Ist der Graph von <InlineMath math="y" /> gegen <InlineMath math="x" /> eine Kurve, formst du die Gleichung in die **Geradenform** <InlineMath math="Y = mX + c" /> um. Die Variablen <InlineMath math="X" /> und <InlineMath math="Y" /> dürfen nur <InlineMath math="x" /> und <InlineMath math="y" /> enthalten, <InlineMath math="m" /> und <InlineMath math="c" /> nur Konstanten.
+
+| Ursprünglicher Zusammenhang | Lineare Form | <InlineMath math="Y" /> | <InlineMath math="X" /> | <InlineMath math="m" /> | <InlineMath math="c" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="y = ax^2 + bx" /> | <InlineMath math="\dfrac{y}{x} = ax + b" /> | <InlineMath math="\dfrac{y}{x}" /> | <InlineMath math="x" /> | <InlineMath math="a" /> | <InlineMath math="b" /> |
+| <InlineMath math="y = \dfrac{a}{x} + b" /> | <InlineMath math="y = a\left(\dfrac{1}{x}\right) + b" /> | <InlineMath math="y" /> | <InlineMath math="\dfrac{1}{x}" /> | <InlineMath math="a" /> | <InlineMath math="b" /> |
+| <InlineMath math="y = ab^x" /> | <InlineMath math="\log_{10} y = (\log_{10} b)x + \log_{10} a" /> | <InlineMath math="\log_{10} y" /> | <InlineMath math="x" /> | <InlineMath math="\log_{10} b" /> | <InlineMath math="\log_{10} a" /> |
+| <InlineMath math="y = ax^n" /> | <InlineMath math="\log_{10} y = n\log_{10} x + \log_{10} a" /> | <InlineMath math="\log_{10} y" /> | <InlineMath math="\log_{10} x" /> | <InlineMath math="n" /> | <InlineMath math="\log_{10} a" /> |
+
+### Eine quadratische Kurve
+
+Diese Messwerte folgen dem Zusammenhang <InlineMath math="y = ax^2 + bx" />:
+
+| <InlineMath math="x" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="y" /> | <InlineMath math="3{,}0" /> | <InlineMath math="8{,}4" /> | <InlineMath math="16{,}2" /> | <InlineMath math="26{,}4" /> | <InlineMath math="39{,}0" /> |
+
+Versuch, die Kurve <InlineMath math="y = ax^2 + bx" /> an diese Punkte anzupassen. Zwei Konstanten gleichzeitig an einer Kurve zu erraten ist schwer, denn <InlineMath math="a" /> und <InlineMath math="b" /> verändern beide, wie stark sich die Kurve krümmt.
+
+<MathVisual
+  title={<>Eine quadratische Kurve durch die Messwerte</>}
+  description={
+    <>
+      Fünf Messpunkte und die Kurve <InlineMath math="y = ax^2 + bx" />. Die
+      Kurve geht durch alle Punkte bei <InlineMath math="a = 1{,}2" /> und{" "}
+      <InlineMath math="b = 1{,}8" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.8, max: 1.6, value: 1, step: 0.1, label: "a" },
+      { name: "b", min: 1, max: 2.6, value: 2.4, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "a*x^2 + b*x", domain: { min: 0, max: 5 } },
+      { id: "reading-1", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 2, y: 8.4 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 3, y: 16.2 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 4, y: 26.4 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 5, y: 39 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "at-five", formula: "25*a + 5*b" },
+    ],
+  }}
+  labels={{
+    a: <>Konstante <InlineMath math="a" /></>,
+    b: <>Konstante <InlineMath math="b" /></>,
+    "at-five": <>Wert der Kurve bei <InlineMath math="x = 5" /></>,
+  }}
+/>
+
+Teile jetzt jedes <InlineMath math="y" /> durch <InlineMath math="x" />. Die Werte von <InlineMath math="\dfrac{y}{x}" /> sind <InlineMath math="3{,}0" />, <InlineMath math="4{,}2" />, <InlineMath math="5{,}4" />, <InlineMath math="6{,}6" /> und <InlineMath math="7{,}8" />. Trägst du <InlineMath math="\dfrac{y}{x}" /> gegen <InlineMath math="x" /> auf, liegen die Punkte auf **einer Geraden**. Diese Gerade liefert <InlineMath math="a" /> als Steigung und <InlineMath math="b" /> als Achsenabschnitt, direkt aus dem Graphen.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="\dfrac{y}{x}" /> gegen <InlineMath math="x" /> ist eine Gerade</>}
+  description={
+    <>
+      Die Punkte <InlineMath math="\left(x, \dfrac{y}{x}\right)" /> und die
+      Gerade <InlineMath math="\dfrac{y}{x} = ax + b" />. Die Steigung{" "}
+      <InlineMath math="1{,}2" /> liefert <InlineMath math="a" />, der
+      Achsenabschnitt <InlineMath math="1{,}8" /> liefert <InlineMath math="b" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.8, max: 1.6, value: 1, step: 0.1, label: "a" },
+      { name: "b", min: 1, max: 2.6, value: 2.4, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "a*x + b", domain: { min: 0, max: 5.5 } },
+      { id: "reading-1", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 2, y: 4.2 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 3, y: 5.4 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 4, y: 6.6 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 5, y: 7.8 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "gradient", formula: "a" },
+      { key: "intercept", formula: "b" },
+    ],
+  }}
+  labels={{
+    a: <>Konstante <InlineMath math="a" /></>,
+    b: <>Konstante <InlineMath math="b" /></>,
+    gradient: <>Steigung der Geraden</>,
+    intercept: <><InlineMath math="Y" />-Achsenabschnitt</>,
+  }}
+/>
+
+Berechne die Steigung aus zwei Punkten der Geraden, <InlineMath math="(2;\ 4{,}2)" /> und <InlineMath math="(5;\ 7{,}8)" />:
+
+<MathContainer>
+<BlockMath math="m = \frac{7{,}8 - 4{,}2}{5 - 2} = 1{,}2 = a" />
+<BlockMath math="c = 4{,}2 - 1{,}2 \cdot 2 = 1{,}8 = b" />
+<BlockMath math="y = 1{,}2x^2 + 1{,}8x" />
+</MathContainer>
+
+Prüfe mit dem Messwert bei <InlineMath math="x = 5" />: <InlineMath math="1{,}2 \cdot 25 + 1{,}8 \cdot 5 = 39{,}0" />, wie in der Tabelle.
+
+### Eine exponentielle Kurve
+
+Die Anzahl der Bakterien <InlineMath math="y" /> in einer Kultur nach <InlineMath math="x" /> Stunden folgt <InlineMath math="y = ab^x" />:
+
+| <InlineMath math="x" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="y" /> | <InlineMath math="50{,}0" /> | <InlineMath math="75{,}0" /> | <InlineMath math="112{,}5" /> | <InlineMath math="168{,}8" /> | <InlineMath math="253{,}1" /> | <InlineMath math="379{,}7" /> |
+| <InlineMath math="\log_{10} y" /> | <InlineMath math="1{,}699" /> | <InlineMath math="1{,}875" /> | <InlineMath math="2{,}051" /> | <InlineMath math="2{,}227" /> | <InlineMath math="2{,}403" /> | <InlineMath math="2{,}579" /> |
+
+Logarithmiere beide Seiten: <InlineMath math="\log_{10} y = (\log_{10} b)x + \log_{10} a" />. Der Graph von <InlineMath math="\log_{10} y" /> gegen <InlineMath math="x" /> ist eine Gerade. Stell <InlineMath math="a" /> und <InlineMath math="b" /> ein, bis die Gerade durch alle Punkte geht.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="\log_{10} y" /> gegen <InlineMath math="x" /> beim Bakterienwachstum</>}
+  description={
+    <>
+      Die Gerade <InlineMath math="\log_{10} y = (\log_{10} b)x + \log_{10} a" />.
+      Sie geht durch alle Punkte bei <InlineMath math="a = 50" /> und{" "}
+      <InlineMath math="b = 1{,}5" />, mit der Steigung <InlineMath math="0{,}176" />{" "}
+      und dem Achsenabschnitt <InlineMath math="1{,}699" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 1, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 20, max: 80, value: 30, step: 1, label: "a" },
+      { name: "b", min: 1.1, max: 2, value: 1.8, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "log(a) + x*log(b)", domain: { min: 0, max: 5.5 } },
+      { id: "reading-0", kind: "point", at: { x: 0, y: 1.699 }, appearance: "secondary" },
+      { id: "reading-1", kind: "point", at: { x: 1, y: 1.875 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 2, y: 2.051 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 3, y: 2.227 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 4, y: 2.403 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 5, y: 2.579 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "gradient", formula: "log(b)" },
+      { key: "intercept", formula: "log(a)" },
+    ],
+  }}
+  labels={{
+    a: <>Anfangsanzahl <InlineMath math="a" /></>,
+    b: <>Wachstumsfaktor <InlineMath math="b" /></>,
+    gradient: <>Steigung <InlineMath math="\log_{10} b" /></>,
+    intercept: <>Achsenabschnitt <InlineMath math="\log_{10} a" /></>,
+  }}
+/>
+
+Aus den Punkten <InlineMath math="(0;\ 1{,}699)" /> und <InlineMath math="(5;\ 2{,}579)" /> ergibt sich die Steigung <InlineMath math="\dfrac{2{,}579 - 1{,}699}{5} = 0{,}176" />. **Achsenabschnitt und Steigung sind Logarithmen**, also brauchst du die Umkehrung:
+
+<MathContainer>
+<BlockMath math="\log_{10} b = 0{,}176 \quad \Rightarrow \quad b = 10^{0{,}176} = 1{,}50" />
+<BlockMath math="\log_{10} a = 1{,}699 \quad \Rightarrow \quad a = 10^{1{,}699} = 50{,}0" />
+</MathContainer>
+
+Also gilt <InlineMath math="y = 50 \cdot 1{,}5^x" />. Die Anzahl der Bakterien wächst jede Stunde um <InlineMath math="50\,\%" />.
+
+## Fallbeschleunigung aus einem Pendel
+
+Die Schwingungsdauer eines Fadenpendels ist <InlineMath math="T = 2\pi\sqrt{\dfrac{l}{g}}" />. Quadrieren ergibt <InlineMath math="T^2 = \dfrac{4\pi^2}{g}\,l" />, also die Form <InlineMath math="Y = mX" /> mit <InlineMath math="Y = T^2" />, <InlineMath math="X = l" /> und der Steigung <InlineMath math="\dfrac{4\pi^2}{g}" />. Eine Schülerin hat notiert:
+
+| <InlineMath math="l\ (\text{m})" /> | <InlineMath math="0{,}2" /> | <InlineMath math="0{,}4" /> | <InlineMath math="0{,}6" /> | <InlineMath math="0{,}8" /> | <InlineMath math="1{,}0" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="T^2\ (\text{s}^2)" /> | <InlineMath math="0{,}80" /> | <InlineMath math="1{,}61" /> | <InlineMath math="2{,}41" /> | <InlineMath math="3{,}22" /> | <InlineMath math="4{,}02" /> |
+
+Ändere den Wert von <InlineMath math="g" />, bis die Gerade durch die Messpunkte geht. Der Steigungswert zeigt <InlineMath math="\dfrac{4\pi^2}{g}" /> für diesen Wert.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="T^2" /> gegen <InlineMath math="l" /> beim Fadenpendel</>}
+  description={
+    <>
+      Die Gerade <InlineMath math="T^2 = \dfrac{4\pi^2}{g}\,l" /> und fünf
+      Messwerte. Die Gerade geht durch alle Punkte bei{" "}
+      <InlineMath math="g \approx 9{,}81\text{ m s}^{-2}" />, mit der Steigung{" "}
+      <InlineMath math="4{,}02\text{ s}^2\text{ m}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 8, max: 12, value: 8.5, step: 0.01, label: "g" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "4*pi^2/g*x", domain: { min: 0, max: 1.1 } },
+      { id: "reading-1", kind: "point", at: { x: 0.2, y: 0.8 }, appearance: "secondary" },
+      { id: "reading-2", kind: "point", at: { x: 0.4, y: 1.61 }, appearance: "secondary" },
+      { id: "reading-3", kind: "point", at: { x: 0.6, y: 2.41 }, appearance: "secondary" },
+      { id: "reading-4", kind: "point", at: { x: 0.8, y: 3.22 }, appearance: "secondary" },
+      { id: "reading-5", kind: "point", at: { x: 1, y: 4.02 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "gradient", formula: "4*pi^2/g" },
+    ],
+  }}
+  labels={{
+    g: <>Fallbeschleunigung <InlineMath math="g" /> in <InlineMath math="\text{m s}^{-2}" /></>,
+    gradient: <>Steigung <InlineMath math="\dfrac{4\pi^2}{g}" /></>,
+  }}
+/>
+
+Berechne die Steigung aus den Punkten <InlineMath math="(0{,}2;\ 0{,}80)" /> und <InlineMath math="(1{,}0;\ 4{,}02)" />:
+
+<MathContainer>
+<BlockMath math="m = \frac{4{,}02 - 0{,}80}{1{,}0 - 0{,}2} = 4{,}025\text{ s}^2\text{ m}^{-1}" />
+<BlockMath math="g = \frac{4\pi^2}{m} = \frac{39{,}48}{4{,}025} = 9{,}81\text{ m s}^{-2}" />
+</MathContainer>
+
+Dieser Graph **geht durch den Ursprung**, weil <InlineMath math="c = 0" /> ist. Verfehlt deine gezeichnete Gerade den Ursprung, liegt vielleicht ein systematischer Fehler vor, zum Beispiel eine Pendellänge ohne den Radius des Pendelkörpers.
+
+## Häufige Fehler bei der Linearisierung
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| Die Steigung aus den ursprünglichen Punkten <InlineMath math="(x, y)" /> berechnen. | Die Steigung gehört zu den umgeformten Achsen <InlineMath math="X" /> und <InlineMath math="Y" />. | Schreib die Koordinaten zuerst als <InlineMath math="(X, Y)" />. |
+| Den Achsenabschnitt <InlineMath math="1{,}699" /> als Wert von <InlineMath math="a" /> nehmen. | Der Achsenabschnitt ist <InlineMath math="\log_{10} a" />, nicht <InlineMath math="a" />. | Rechne zurück: <InlineMath math="a = 10^{1{,}699}" />. |
+| Die Gerade nur durch den ersten und den letzten Punkt zeichnen. | Die Ausgleichsgerade gleicht alle Punkte aus. | Achte darauf, dass die Gerade durch den Schwerpunkt geht. |
+| Bei <InlineMath math="y = ab^x" /> den Wert <InlineMath math="\log_{10} y" /> gegen <InlineMath math="\log_{10} x" /> auftragen. | Die Variable <InlineMath math="x" /> steht im Exponenten, die waagerechte Achse bleibt also <InlineMath math="x" />. | Logarithmiere beide Seiten und sieh nach, welche Terme entstehen. |
+| Den Achsenabschnitt an einer Achse ablesen, die nicht bei null beginnt. | Der <InlineMath math="Y" />-Achsenabschnitt ist der Wert von <InlineMath math="Y" /> bei <InlineMath math="X = 0" />. | Berechne <InlineMath math="c" /> mit <InlineMath math="c = Y - mX" />. |
+
+Der zweite Fehler kommt bei Logarithmusaufgaben am häufigsten vor. **Jede Konstante, die im Logarithmus steht**, musst du zurückrechnen, bevor sie in die Antwort kommt.
+
+## Übungen zur Linearisierung
+
+Schreib zuerst die Form <InlineMath math="Y = mX + c" /> auf und **ordne dann <InlineMath math="m" /> und <InlineMath math="c" /> den ursprünglichen Konstanten zu**.
+
+1. Der Graph von <InlineMath math="\dfrac{y}{x}" /> gegen <InlineMath math="x" /> ist eine Gerade durch <InlineMath math="(1, 5)" /> und <InlineMath math="(3, 9)" />. Drücke <InlineMath math="y" /> durch <InlineMath math="x" /> aus.
+
+2. Die Variablen <InlineMath math="x" /> und <InlineMath math="y" /> hängen über <InlineMath math="y = \dfrac{a}{x} + b" /> zusammen. Der Graph von <InlineMath math="y" /> gegen <InlineMath math="\dfrac{1}{x}" /> hat die Steigung <InlineMath math="4" /> und geht durch <InlineMath math="(0{,}5;\ 5)" />. Bestimme <InlineMath math="a" />, <InlineMath math="b" /> und den Wert von <InlineMath math="y" /> bei <InlineMath math="x = 2" />.
+
+3. Für <InlineMath math="y = ab^x" /> hat der Graph von <InlineMath math="\log_{10} y" /> gegen <InlineMath math="x" /> die Steigung <InlineMath math="0{,}301" /> und den Achsenabschnitt <InlineMath math="0{,}477" />. Bestimme <InlineMath math="a" /> und <InlineMath math="b" />.
+
+4. In einem anderen Pendelversuch hat der Graph von <InlineMath math="T^2" /> gegen <InlineMath math="l" /> die Steigung <InlineMath math="4{,}0\text{ s}^2\text{ m}^{-1}" />. Berechne <InlineMath math="g" />.
+
+### Lösungen
+
+**Lösung 1**: Hier ist <InlineMath math="Y = \dfrac{y}{x}" /> und <InlineMath math="X = x" />:
+
+<MathContainer>
+<BlockMath math="m = \frac{9 - 5}{3 - 1} = 2, \quad c = 5 - 2 \cdot 1 = 3" />
+<BlockMath math="\frac{y}{x} = 2x + 3 \quad \Rightarrow \quad y = 2x^2 + 3x" />
+</MathContainer>
+
+Probe mit dem zweiten Punkt: Bei <InlineMath math="x = 3" /> ist <InlineMath math="\dfrac{y}{x} = 2 \cdot 3 + 3 = 9" />.
+
+**Lösung 2**: Die Steigung ist <InlineMath math="a" />, also <InlineMath math="a = 4" />. Den Achsenabschnitt <InlineMath math="b" /> bestimmst du aus dem gegebenen Punkt:
+
+<MathContainer>
+<BlockMath math="5 = 4 \cdot 0{,}5 + b \quad \Rightarrow \quad b = 3" />
+<BlockMath math="y = \frac{4}{x} + 3, \quad x = 2: \quad y = 2 + 3 = 5" />
+</MathContainer>
+
+**Lösung 3**: Die Steigung ist <InlineMath math="\log_{10} b" />, der Achsenabschnitt <InlineMath math="\log_{10} a" />:
+
+<MathContainer>
+<BlockMath math="b = 10^{0{,}301} = 2{,}00, \quad a = 10^{0{,}477} = 3{,}00" />
+<BlockMath math="y = 3 \cdot 2^x" />
+</MathContainer>
+
+Probe: Bei <InlineMath math="x = 0" /> ist <InlineMath math="\log_{10} 3 = 0{,}477" />, genau der Achsenabschnitt.
+
+**Lösung 4**: Die Steigung ist <InlineMath math="\dfrac{4\pi^2}{g}" />, also:
+
+<BlockMath math="g = \frac{4\pi^2}{4{,}0} = \frac{39{,}48}{4{,}0} = 9{,}87\text{ m s}^{-2}" />
+
+Das liegt nah an <InlineMath math="9{,}81\text{ m s}^{-2}" />. Eine kleine Abweichung wie diese ist **bei einem Schulversuch normal**.
