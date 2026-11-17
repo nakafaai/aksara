@@ -1,0 +1,258 @@
+export const metadata = {
+  title: "Nota Keelektromagnetan Tingkatan Lima",
+  description:
+    "Nota Fizik Tingkatan 5 Bab 4: terangkan daya pada konduktor berarus, aruhan elektromagnet dan penjana, serta kira voltan dan kecekapan transformer.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Keelektromagnetan",
+};
+
+## Elektrik dan Kemagnetan Saling Berkait
+
+**Keelektromagnetan** mengkaji hubungan antara arus elektrik dengan medan magnet. Konduktor berarus dalam medan magnet mengalami **daya**, <InlineMath math="F = BIL" />, dan itulah prinsip motor. Sebaliknya, konduktor yang memotong medan magnet menghasilkan **d.g.e. aruhan**, dan itulah prinsip penjana. Transformer pula mengubah voltan arus ulang-alik mengikut <InlineMath math="\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p}" />. Dalam nota ini kamu ubah arus dan medan, putar penjana pada laju berbeza, ubah bilangan lilitan transformer, dan bandingkan kehilangan tenaga dalam kabel.
+
+Apabila arus mengalir dalam dawai, medan magnet terbentuk di sekeliling dawai itu. Jika dawai berada dalam medan magnet lain, kedua-dua medan bergabung menjadi **medan lastik**. Medan di satu sisi dawai menjadi lebih kuat dan di sisi lain lebih lemah, jadi dawai ditolak ke arah medan yang lebih lemah.
+
+## Daya pada Konduktor Berarus
+
+Arah daya ditentukan oleh **petua tangan kiri Fleming**: jari telunjuk menunjuk arah medan magnet, jari tengah menunjuk arah arus, dan ibu jari menunjuk arah daya. Magnitud daya bergantung pada kekuatan medan <InlineMath math="B" />, arus <InlineMath math="I" /> dan panjang dawai dalam medan <InlineMath math="L" />:
+
+<BlockMath math="F = BIL" />
+
+Ubah kekuatan medan magnet dan arus di bawah bagi dawai sepanjang <InlineMath math="0.050\text{ m}" />. Daya berkadar terus dengan arus, jadi grafiknya lurus melalui asalan.
+
+<MathVisual
+  title={<>Daya pada Dawai Berarus melawan Arus</>}
+  description={
+    <>
+      <InlineMath math="F = BIL" /> dengan <InlineMath math="L = 0.050\text{ m}" />.
+      Pada <InlineMath math="B = 0.20\text{ T}" /> dan{" "}
+      <InlineMath math="I = 3.0\text{ A}" />, dawai mengalami daya{" "}
+      <InlineMath math="0.030\text{ N}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 0.15 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "b", min: 0.05, max: 0.5, value: 0.2, step: 0.01, label: "b" },
+      { name: "c", min: 0, max: 6, value: 3, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "force", kind: "function", appearance: "primary", formula: "b*x*0.05", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "c", y: "b*c*0.05", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "newton", formula: "b*c*0.05" },
+    ],
+  }}
+  labels={{
+    b: <>Kekuatan medan <InlineMath math="B" /> dalam <InlineMath math="\text{T}" /></>,
+    c: <>Arus <InlineMath math="I" /> dalam <InlineMath math="\text{A}" /></>,
+    newton: <>Daya <InlineMath math="F" /> dalam <InlineMath math="\text{N}" /></>,
+  }}
+/>
+
+Semak bacaan permulaan: <InlineMath math="F = 0.20 \times 3.0 \times 0.050 = 0.030\text{ N}" />.
+
+Dalam **motor arus terus**, gegelung berarus dalam medan magnet mengalami dua daya bertentangan arah pada dua sisinya, jadi gegelung berputar. **Komutator** menukar arah arus setiap setengah putaran supaya gegelung terus berputar ke arah yang sama. Motor berputar lebih laju jika arus bertambah, medan magnet lebih kuat, atau bilangan lilitan gegelung bertambah.
+
+## Aruhan Elektromagnet dan Penjana
+
+Apabila konduktor memotong garis medan magnet, atau medan magnet yang melalui gegelung berubah, satu **d.g.e. aruhan** terhasil. **Hukum Faraday** menyatakan magnitud d.g.e. aruhan berkadar terus dengan kadar perubahan fluks magnet. **Hukum Lenz** menyatakan arah arus aruhan sentiasa menentang perubahan yang menghasilkannya. Arah arus dalam dawai yang bergerak ditentukan oleh **petua tangan kanan Fleming**.
+
+Hukum Lenz ialah bentuk keabadian tenaga. Jika kamu menolak kutub utara magnet ke dalam gegelung, hujung gegelung yang terdekat menjadi kutub utara dan menolak magnet itu. Kamu perlu melakukan kerja untuk menolak magnet, dan kerja itulah yang menjadi tenaga elektrik.
+
+**Penjana arus ulang-alik** memutar gegelung dalam medan magnet, jadi d.g.e. aruhan berubah mengikut gelombang sinus. Putar gegelung lebih laju di bawah: puncak voltan dan frekuensi sama-sama bertambah, kerana fluks berubah lebih cepat.
+
+<MathVisual
+  title={<>Output Penjana Arus Ulang-alik pada Laju Putaran Berbeza</>}
+  description={
+    <>
+      D.g.e. aruhan ialah <InlineMath math="e = 2s \sin(2\pi s t)" />, dengan{" "}
+      <InlineMath math="s" /> putaran sesaat. Menggandakan laju putaran
+      menggandakan puncak voltan dan frekuensi.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 1, max: 5, value: 2, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "output", kind: "function", appearance: "primary", formula: "2s*sin(2*pi*s*x)", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "2s" },
+      { key: "frequency", formula: "s" },
+    ],
+  }}
+  labels={{
+    s: <>Laju putaran dalam putaran sesaat</>,
+    peak: <>Puncak d.g.e. dalam <InlineMath math="\text{V}" /></>,
+    frequency: <>Frekuensi dalam <InlineMath math="\text{Hz}" /></>,
+  }}
+/>
+
+Turbin angin ialah penjana besar. Angin memutar bilah, bilah memutar gegelung penjana dalam medan magnet, dan aruhan menukar tenaga kinetik kepada tenaga elektrik. Pilih lokasi turbin di bawah dan bandingkan kuasa elektrik yang dijana.
+
+<WindRotorLab
+  title={<>Turbin Angin di Tiga Lokasi</>}
+  description={
+    <>
+      Turbin yang sama dengan bilah sepanjang <InlineMath math="40\text{ m}" />{" "}
+      di lembah, di puncak bukit dan di pantai. Angin yang lebih laju memutar
+      penjana lebih laju dan menghasilkan kuasa yang lebih besar.
+    </>
+  }
+  labels={{
+    chooseSite: "Lokasi turbin",
+    daily: <>Tenaga elektrik sehari</>,
+    electric: <>Kuasa elektrik</>,
+    sites: { coast: <>Pantai</>, hill: <>Puncak bukit</>, valley: <>Lembah</> },
+    speed: <>Laju putaran rotor</>,
+    viewLabel: "Turbin angin di lembah, puncak bukit dan pantai",
+    wind: <>Kuasa angin</>,
+  }}
+/>
+
+## Transformer Mengubah Voltan
+
+**Transformer** terdiri daripada dua gegelung, gegelung primer dan gegelung sekunder, yang dililit pada teras besi lembut. Arus ulang-alik dalam gegelung primer menghasilkan fluks magnet yang sentiasa berubah dalam teras, dan fluks itu mengaruhkan d.g.e. dalam gegelung sekunder. Transformer **hanya berfungsi dengan arus ulang-alik**, kerana arus terus tidak menghasilkan fluks yang berubah.
+
+<BlockMath math="\frac{V_s}{V_p} = \frac{N_s}{N_p}" />
+
+Transformer **injak naik** mempunyai lebih banyak lilitan sekunder, jadi voltan output lebih tinggi. Transformer **injak turun** mempunyai lebih sedikit lilitan sekunder. Ubah bilangan lilitan sekunder di bawah bagi gegelung primer <InlineMath math="1200" /> lilitan pada <InlineMath math="240\text{ V}" />.
+
+<MathVisual
+  title={<>Voltan Sekunder Transformer melawan Bilangan Lilitan</>}
+  description={
+    <>
+      <InlineMath math="V_s = 240 \times \dfrac{N_s}{1200}" />. Gegelung
+      sekunder <InlineMath math="60" /> lilitan memberi{" "}
+      <InlineMath math="12\text{ V}" />, dan <InlineMath math="2400" /> lilitan
+      memberi <InlineMath math="480\text{ V}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 2400 }, y: { min: 0, max: 500 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 20, max: 2400, value: 60, step: 20, label: "n" },
+    ],
+    objects: [
+      { id: "secondary", kind: "function", appearance: "primary", formula: "240x/1200", domain: { min: 0, max: 2400 } },
+      { id: "now", kind: "marker", x: "n", y: "240n/1200", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "volt", formula: "240n/1200" },
+    ],
+  }}
+  labels={{
+    n: <>Bilangan lilitan sekunder <InlineMath math="N_s" /></>,
+    volt: <>Voltan sekunder <InlineMath math="V_s" /> dalam <InlineMath math="\text{V}" /></>,
+  }}
+/>
+
+Cuba satu contoh. Pengecas telefon menggunakan transformer dengan <InlineMath math="1200" /> lilitan primer dan <InlineMath math="60" /> lilitan sekunder pada bekalan <InlineMath math="240\text{ V}" />. Hitung voltan sekunder, dan arus sekunder jika arus primer <InlineMath math="0.10\text{ A}" /> dan transformer itu unggul.
+
+<MathContainer>
+<BlockMath math="V_s = 240 \times \frac{60}{1200} = 12\text{ V}" />
+<BlockMath math="V_pI_p = V_sI_s \Rightarrow I_s = \frac{240 \times 0.10}{12} = 2.0\text{ A}" />
+</MathContainer>
+
+Semak dengan kuasa: input <InlineMath math="240 \times 0.10 = 24\text{ W}" /> dan output <InlineMath math="12 \times 2.0 = 24\text{ W}" />. Transformer unggul tidak kehilangan tenaga, jadi voltan turun dua puluh kali ganda dan arus naik dua puluh kali ganda.
+
+Transformer sebenar kehilangan sedikit tenaga melalui **rintangan gegelung**, **arus pusar** dalam teras, **histerisis** dan **kebocoran fluks**. Teras berlamina, dawai kuprum tebal dan teras besi lembut mengurangkan kehilangan itu. **Kecekapan** ialah <InlineMath math="\dfrac{P_{\text{output}}}{P_{\text{input}}} \times 100\%" />.
+
+## Penghantaran Tenaga pada Voltan Tinggi
+
+Tenaga dari stesen janakuasa dihantar melalui kabel yang mempunyai rintangan. Kuasa yang hilang sebagai haba dalam kabel ialah <InlineMath math="P_{\text{hilang}} = I^2R" />. Bagi kuasa yang sama, voltan yang lebih tinggi bermaksud arus yang lebih kecil, jadi kehilangan jauh berkurang. Itulah sebab **Grid Nasional** menggunakan transformer injak naik di stesen janakuasa dan transformer injak turun berhampiran pengguna.
+
+Ubah voltan penghantaran di bawah bagi kuasa <InlineMath math="100\text{ kW}" /> melalui kabel <InlineMath math="2\ \Omega" />. Kehilangan berkadar songsang dengan **kuasa dua voltan**.
+
+<MathVisual
+  title={<>Kehilangan Kuasa dalam Kabel melawan Voltan Penghantaran</>}
+  description={
+    <>
+      Arus ialah <InlineMath math="I = \dfrac{100}{V}\text{ A}" /> dengan{" "}
+      <InlineMath math="V" /> dalam kilovolt, jadi kehilangan ialah{" "}
+      <InlineMath math="I^2R = \dfrac{20}{V^2}\text{ kW}" />. Pada{" "}
+      <InlineMath math="1\text{ kV}" /> hilang <InlineMath math="20\text{ kW}" />,
+      pada <InlineMath math="10\text{ kV}" /> hanya <InlineMath math="0.2\text{ kW}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 20 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 20, value: 1, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "loss", kind: "function", appearance: "primary", formula: "20/x^2", domain: { min: 1, max: 20 } },
+      { id: "now", kind: "marker", x: "k", y: "20/k^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "current", formula: "100/k" },
+      { key: "lost", formula: "20/k^2" },
+    ],
+  }}
+  labels={{
+    k: <>Voltan penghantaran dalam <InlineMath math="\text{kV}" /></>,
+    current: <>Arus dalam kabel dalam <InlineMath math="\text{A}" /></>,
+    lost: <>Kuasa hilang dalam <InlineMath math="\text{kW}" /></>,
+  }}
+/>
+
+Semak dua bacaan: pada <InlineMath math="1\text{ kV}" />, <InlineMath math="I = 100\text{ A}" /> dan kehilangan <InlineMath math="100^2 \times 2 = 20\,000\text{ W}" />. Pada <InlineMath math="10\text{ kV}" />, <InlineMath math="I = 10\text{ A}" /> dan kehilangan <InlineMath math="10^2 \times 2 = 200\text{ W}" />, seratus kali lebih kecil.
+
+## Kesilapan Lazim tentang Keelektromagnetan
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Petua tangan kanan Fleming digunakan untuk motor. | Motor menggunakan petua tangan kiri. Petua tangan kanan untuk penjana dan aruhan. | Tanya sama ada arus dibekalkan atau diaruhkan. |
+| Transformer boleh menaikkan voltan arus terus. | Arus terus tidak menghasilkan fluks yang berubah, jadi tiada d.g.e. aruhan dalam gegelung sekunder. | Transformer hanya berfungsi dengan arus ulang-alik. |
+| Transformer injak naik menaikkan kuasa. | Bagi transformer unggul, <InlineMath math="V_pI_p = V_sI_s" />. Voltan naik tetapi arus turun. | Kuasa output tidak boleh melebihi kuasa input. |
+| Arus aruhan membantu magnet bergerak ke dalam gegelung. | Hukum Lenz: arus aruhan menentang perubahan, jadi magnet ditolak. | Jika arus membantu, tenaga terhasil tanpa kerja. |
+| Voltan tinggi dalam kabel menambah kehilangan tenaga. | Bagi kuasa yang sama, voltan tinggi bermaksud arus kecil, dan kehilangan ialah <InlineMath math="I^2R" />. | Bandingkan <InlineMath math="I^2R" /> pada dua voltan. |
+
+Kesilapan pertama paling kerap muncul. Ingat cara mudah: **motor guna tangan kiri, penjana guna tangan kanan**.
+
+## Latihan Keelektromagnetan
+
+Soalan ini bergerak daripada motor kepada aruhan dan transformer. **Tulis persamaan sebelum mengganti nombor** supaya nisbah lilitan tidak terbalik.
+
+1. Nyatakan dua cara untuk menambah laju putaran motor arus terus.
+
+2. Kutub utara magnet ditolak ke dalam gegelung yang disambung kepada galvanometer. Nyatakan kutub pada hujung gegelung yang terdekat dengan magnet dan terangkan sebabnya.
+
+3. Transformer injak turun menukar <InlineMath math="240\text{ V}" /> kepada <InlineMath math="6\text{ V}" />. Gegelung primernya mempunyai <InlineMath math="2000" /> lilitan. Hitung bilangan lilitan sekunder.
+
+4. Sebuah transformer mempunyai <InlineMath math="V_p = 240\text{ V}" />, <InlineMath math="I_p = 0.50\text{ A}" />, <InlineMath math="V_s = 12\text{ V}" /> dan <InlineMath math="I_s = 9.0\text{ A}" />. Hitung kecekapannya.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Daya pada gegelung ialah <InlineMath math="F = BIL" /> bagi setiap sisi, jadi tambah **arus** dalam gegelung atau gunakan **magnet yang lebih kuat**. Menambah **bilangan lilitan** gegelung juga menambah daya kerana lebih banyak dawai berada dalam medan.
+
+**Penyelesaian 2**: Hujung gegelung yang terdekat menjadi **kutub utara**. Mengikut hukum Lenz, arus aruhan menentang perubahan yang menghasilkannya, iaitu magnet yang mendekat. Kutub utara gegelung menolak kutub utara magnet, jadi kerja perlu dilakukan untuk menolak magnet ke dalam gegelung.
+
+**Penyelesaian 3**: Susun semula nisbah transformer:
+
+<BlockMath math="N_s = N_p \times \frac{V_s}{V_p} = 2000 \times \frac{6}{240} = 50\text{ lilitan}" />
+
+Semak: nisbah <InlineMath math="\dfrac{50}{2000} = \dfrac{1}{40}" />, sama dengan <InlineMath math="\dfrac{6}{240}" />.
+
+**Penyelesaian 4**: Kira kuasa input dan output:
+
+<MathContainer>
+<BlockMath math="P_{\text{input}} = 240 \times 0.50 = 120\text{ W}, \quad P_{\text{output}} = 12 \times 9.0 = 108\text{ W}" />
+<BlockMath math="\text{Kecekapan} = \frac{108}{120} \times 100\% = 90\%" />
+</MathContainer>
+
+Semak: <InlineMath math="12\text{ W}" /> yang hilang menjadi haba dalam gegelung dan teras, jadi kecekapan mesti kurang daripada <InlineMath math="100\%" />.

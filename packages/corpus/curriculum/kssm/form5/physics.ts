@@ -88,7 +88,33 @@ export const kssmForm5PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-physics-electromagnetism-electromagnetism",
+        level: "lesson",
+        materialKeys: ["lesson.physics.electromagnetism"],
+        order: 10,
+      }),
+    ],
     key: "form-5-physics-electromagnetism",
+    materialCard: {
+      de: {
+        description: "Erklär Motor, Generator und Transformator.",
+        title: "Elektromagnetismus",
+      },
+      en: {
+        description: "Explain motors, generators and transformers.",
+        title: "Electromagnetism",
+      },
+      id: {
+        description: "Jelaskan motor, generator, dan transformator.",
+        title: "Elektromagnetisme",
+      },
+      ms: {
+        description: "Terangkan motor, penjana dan transformer.",
+        title: "Keelektromagnetan",
+      },
+    },
     order: 40,
     translations: {
       de: { routeSlug: "elektromagnetismus", title: "Elektromagnetismus" },
