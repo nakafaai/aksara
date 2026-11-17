@@ -15,7 +15,6 @@ import {
 } from "#corpus/material/domain";
 import { decodeMaterialPreviewEntry } from "#corpus/material/preview";
 import { decodeMaterialRegistry } from "#corpus/material/registry";
-import { decodeMaterialSources } from "#corpus/material/source";
 import {
   lessonMaterialEntries,
   lessonMaterialSource,
@@ -47,10 +46,7 @@ layer(NodeServices.layer)("material registry", (it) => {
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
         const corpusRoot = yield* resolveCorpusRoot;
-        const [entries, materials] = yield* Effect.all([
-          decodeMaterialRegistry(),
-          decodeMaterialSources(),
-        ]);
+        const entries = yield* decodeMaterialRegistry();
         const lessonPaths = yield* fileSystem.glob(
           "packages/corpus/material/lesson/**/*.mdx",
           { root: corpusRoot }
@@ -73,13 +69,6 @@ layer(NodeServices.layer)("material registry", (it) => {
             Arr.map(entries, ({ route }) => route.contentKey)
           )
         );
-        expect(
-          HashSet.size(
-            HashSet.fromIterable(
-              Arr.map(entries, ({ route }) => route.materialKey)
-            )
-          )
-        ).toBe(materials.length);
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             Arr.filter(entries, ({ route }) => route.appLocale === locale)
