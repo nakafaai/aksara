@@ -10,18 +10,25 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "About $$64\\text{ g}$$ from each fuel" },
         {
-          correct: false,
-          label: "Ethanol $$88\\text{ g}$$, octane $$352\\text{ g}$$",
+          correct: true,
+          label:
+            "Ethanol $$1.68\\text{ kg}$$, octane $$1.04\\text{ kg}$$, $$3.2\\text{ kg}$$ carbon dioxide each",
         },
         {
           correct: false,
-          label: "Ethanol $$32\\text{ g}$$, octane $$64\\text{ g}$$",
+          label:
+            "Ethanol $$1.04\\text{ kg}$$, octane $$1.68\\text{ kg}$$, $$3.2\\text{ kg}$$ carbon dioxide each",
         },
         {
           correct: false,
-          label: "Ethanol $$64\\text{ g}$$, octane $$16\\text{ g}$$",
+          label:
+            "Ethanol $$1.68\\text{ kg}$$, octane $$1.04\\text{ kg}$$, carbon dioxide $$1.6$$ and $$3.2\\text{ kg}$$",
+        },
+        {
+          correct: false,
+          label:
+            "Ethanol $$0.84\\text{ kg}$$, octane $$1.04\\text{ kg}$$, carbon dioxide $$1.6$$ and $$3.2\\text{ kg}$$",
         },
       ],
     },
@@ -30,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Lebih kurang $$64\\text{ g}$$ daripada setiap bahan api",
+          label:
+            "Etanol $$1.68\\text{ kg}$$, oktana $$1.04\\text{ kg}$$, $$3.2\\text{ kg}$$ karbon dioksida setiap satu",
         },
         {
           correct: false,
-          label: "Etanol $$88\\text{ g}$$, oktana $$352\\text{ g}$$",
+          label:
+            "Etanol $$1.04\\text{ kg}$$, oktana $$1.68\\text{ kg}$$, $$3.2\\text{ kg}$$ karbon dioksida setiap satu",
         },
         {
           correct: false,
-          label: "Etanol $$32\\text{ g}$$, oktana $$64\\text{ g}$$",
+          label:
+            "Etanol $$1.68\\text{ kg}$$, oktana $$1.04\\text{ kg}$$, karbon dioksida $$1.6$$ dan $$3.2\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "Etanol $$64\\text{ g}$$, oktana $$16\\text{ g}$$",
+          label:
+            "Etanol $$0.84\\text{ kg}$$, oktana $$1.04\\text{ kg}$$, karbon dioksida $$1.6$$ dan $$3.2\\text{ kg}$$",
         },
       ],
     },

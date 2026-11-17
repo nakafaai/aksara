@@ -1,25 +1,25 @@
-# Vergleiche je Kilojoule, nicht je Mol, denn Octan liefert je Molekül viermal so viel Wärme
+# Zähle die Stoffmenge jedes Kraftstoffs für die Wärme, dann die Kohlenstoffatome je Mol
 
-Für <InlineMath math="1000\text{ kJ}" /> verbrennt das Auto <InlineMath math="0{,}730\text{ mol}" /> Ethanol oder <InlineMath math="0{,}183\text{ mol}" /> Octan. **Octan gibt je Molekül viermal so viel Kohlenstoffdioxid, aber auch etwa viermal so viel Wärme**, also heben sich die Verhältnisse fast auf. Ethanol liefert <InlineMath math="1{,}46\text{ mol}" /> Kohlenstoffdioxid und Octan <InlineMath math="1{,}46\text{ mol}" />, je etwa <InlineMath math="64\text{ g}" />.
+Die Fahrt braucht <InlineMath math="50{.}000\div1370=36{,}5\text{ mol}" /> Ethanol, <InlineMath math="1{,}68\text{ kg}" />, oder <InlineMath math="50{.}000\div5470=9{,}14\text{ mol}" /> Octan, <InlineMath math="1{,}04\text{ kg}" />. **Jedes Ethanolmolekül gibt zwei Kohlenstoffdioxidmoleküle, jedes Octanmolekül acht**, also gibt Ethanol <InlineMath math="73{,}0\text{ mol}" /> und Octan <InlineMath math="73{,}1\text{ mol}" />. Octan liefert je Molekül etwa viermal so viel Wärme und viermal so viel Kohlenstoff, also ist das Kohlenstoffdioxid fast gleich, je etwa <InlineMath math="3{,}2\text{ kg}" />.
 
 <Chart
-  title={<>Kohlenstoffdioxid je tausend Kilojoule</>}
-  description={<>Ethanol liefert <InlineMath math="64{,}2\text{ g}" /> und Octan <InlineMath math="64{,}4\text{ g}" />.</>}
+  title={<>Massen für die Fahrt</>}
+  description={<>Die Fahrt verbrennt <InlineMath math="1{,}68\text{ kg}" /> Ethanol oder <InlineMath math="1{,}04\text{ kg}" /> Octan, und jedes gibt etwa <InlineMath math="3{,}2\text{ kg}" /> Kohlenstoffdioxid.</>}
   bars="apart"
-  categories={["Ethanol", "Octan"]}
+  categories={["Verbranntes Ethanol", "Verbranntes Octan", "Kohlenstoffdioxid aus Ethanol", "Kohlenstoffdioxid aus Octan"]}
   series={[
-    { label: "Kohlenstoffdioxid", mark: "bar", values: [64.2, 64.4] },
+    { label: "Masse", mark: "bar", values: [1.68, 1.04, 3.21, 3.22] },
   ]}
-  valueLabel="Kohlenstoffdioxid (g)"
+  valueLabel="Masse (kg)"
 />
 
 <BlockMath math="\begin{aligned}
-m_{\text{ethanol}}&=\tfrac{1000}{1370}\times2\times44=64{,}2\text{ g}\\
-m_{\text{octane}}&=\tfrac{1000}{5470}\times8\times44=64{,}4\text{ g}
+m_{\text{ethanol}}&=\tfrac{50{.}000}{1370}\times46=1{,}68\text{ kg},\quad m_{\text{octane}}=\tfrac{50{.}000}{5470}\times114=1{,}04\text{ kg}\\
+m(\text{CO}_2)&=36{,}5\times2\times44=3{,}21\text{ kg},\quad9{,}14\times8\times44=3{,}22\text{ kg}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="88\text{ g}" /> und <InlineMath math="352\text{ g}" /> vergleichen ein Mol jedes Kraftstoffs. **Gefragt ist je Kilojoule**.
-- <InlineMath math="32\text{ g}" /> für Ethanol gibt ihm ein Kohlenstoffdioxidmolekül je Molekül, doch seine zwei Kohlenstoffatome bilden zwei.
-- <InlineMath math="16\text{ g}" /> für Octan teilt durch acht statt zu multiplizieren, doch jedes Octanmolekül bildet acht Kohlenstoffdioxidmoleküle.
+- Die Kraftstoffmassen stimmen, also liegt der Fehler woanders. **Jedes Ethanolmolekül hat zwei Kohlenstoffatome und gibt zwei Kohlenstoffdioxidmoleküle**, etwa <InlineMath math="3{,}2\text{ kg}" />, nicht <InlineMath math="1{,}6\text{ kg}" />.
+- Die Massen sind vertauscht: Ethanol setzt je Mol weniger Wärme frei, also braucht es mehr davon.
+- <InlineMath math="0{,}84\text{ kg}" /> Ethanol halbiert die nötige Stoffmenge und liefert so nur die halbe Wärme.

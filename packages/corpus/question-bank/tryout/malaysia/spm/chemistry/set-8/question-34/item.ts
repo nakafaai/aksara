@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$330\\text{ kJ}$$, $$4.80\\text{ g}$$" },
-        { correct: false, label: "$$82.5\\text{ kJ}$$, $$16.0\\text{ g}$$" },
-        { correct: false, label: "$$41.3\\text{ kJ}$$, $$4.80\\text{ g}$$" },
-        { correct: true, label: "$$82.5\\text{ kJ}$$, $$4.80\\text{ g}$$" },
+        { correct: false, label: "$$103\\text{ kJ}$$, $$21.4\\text{ dm}^3$$" },
+        { correct: false, label: "$$82.5\\text{ kJ}$$, $$3.60\\text{ dm}^3$$" },
+        { correct: false, label: "$$330\\text{ kJ}$$, $$17.1\\text{ dm}^3$$" },
+        { correct: true, label: "$$82.5\\text{ kJ}$$, $$17.1\\text{ dm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$330\\text{ kJ}$$, $$4.80\\text{ g}$$" },
-        { correct: false, label: "$$82.5\\text{ kJ}$$, $$16.0\\text{ g}$$" },
-        { correct: false, label: "$$41.3\\text{ kJ}$$, $$4.80\\text{ g}$$" },
-        { correct: true, label: "$$82.5\\text{ kJ}$$, $$4.80\\text{ g}$$" },
+        { correct: false, label: "$$103\\text{ kJ}$$, $$21.4\\text{ dm}^3$$" },
+        { correct: false, label: "$$82.5\\text{ kJ}$$, $$3.60\\text{ dm}^3$$" },
+        { correct: false, label: "$$330\\text{ kJ}$$, $$17.1\\text{ dm}^3$$" },
+        { correct: true, label: "$$82.5\\text{ kJ}$$, $$17.1\\text{ dm}^3$$" },
       ],
     },
   },

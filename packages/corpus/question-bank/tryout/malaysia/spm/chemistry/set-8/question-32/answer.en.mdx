@@ -1,25 +1,25 @@
-# Compare per kilojoule, not per mole, because octane gives four times the heat per molecule
+# Count the moles each fuel needs for the heat, then the carbon atoms each mole carries
 
-For <InlineMath math="1000\text{ kJ}" /> the car burns <InlineMath math="0.730\text{ mol}" /> of ethanol or <InlineMath math="0.183\text{ mol}" /> of octane. **Octane gives four times the carbon dioxide per molecule but also about four times the heat**, so the two ratios almost cancel. Ethanol makes <InlineMath math="1.46\text{ mol}" /> of carbon dioxide and octane <InlineMath math="1.46\text{ mol}" />, about <InlineMath math="64\text{ g}" /> each.
+The trip needs <InlineMath math="50\,000\div1370=36.5\text{ mol}" /> of ethanol, <InlineMath math="1.68\text{ kg}" />, or <InlineMath math="50\,000\div5470=9.14\text{ mol}" /> of octane, <InlineMath math="1.04\text{ kg}" />. **Each ethanol molecule gives two carbon dioxide molecules and each octane molecule eight**, so ethanol gives <InlineMath math="73.0\text{ mol}" /> and octane <InlineMath math="73.1\text{ mol}" />. Octane gives about four times the heat per molecule and four times the carbon, so the carbon dioxide is almost the same, about <InlineMath math="3.2\text{ kg}" /> each.
 
 <Chart
-  title={<>Carbon dioxide per thousand kilojoules</>}
-  description={<>Ethanol gives <InlineMath math="64.2\text{ g}" /> and octane <InlineMath math="64.4\text{ g}" />.</>}
+  title={<>Masses for the trip</>}
+  description={<>The trip burns <InlineMath math="1.68\text{ kg}" /> of ethanol or <InlineMath math="1.04\text{ kg}" /> of octane, and each gives about <InlineMath math="3.2\text{ kg}" /> of carbon dioxide.</>}
   bars="apart"
-  categories={["Ethanol", "Octane"]}
+  categories={["Ethanol burned", "Octane burned", "Carbon dioxide from ethanol", "Carbon dioxide from octane"]}
   series={[
-    { label: "Carbon dioxide", mark: "bar", values: [64.2, 64.4] },
+    { label: "Mass", mark: "bar", values: [1.68, 1.04, 3.21, 3.22] },
   ]}
-  valueLabel="Carbon dioxide (g)"
+  valueLabel="Mass (kg)"
 />
 
 <BlockMath math="\begin{aligned}
-m_{\text{ethanol}}&=\tfrac{1000}{1370}\times2\times44=64.2\text{ g}\\
-m_{\text{octane}}&=\tfrac{1000}{5470}\times8\times44=64.4\text{ g}
+m_{\text{ethanol}}&=\tfrac{50\,000}{1370}\times46=1.68\text{ kg},\quad m_{\text{octane}}=\tfrac{50\,000}{5470}\times114=1.04\text{ kg}\\
+m(\text{CO}_2)&=36.5\times2\times44=3.21\text{ kg},\quad9.14\times8\times44=3.22\text{ kg}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="88\text{ g}" /> and <InlineMath math="352\text{ g}" /> compare one mole of each fuel. **The question asks per kilojoule**.
-- <InlineMath math="32\text{ g}" /> for ethanol gives it one carbon dioxide molecule per molecule, but its two carbon atoms make two.
-- <InlineMath math="16\text{ g}" /> for octane divides by eight instead of multiplying, but each octane molecule makes eight carbon dioxide molecules.
+- Each fuel's mass is right, so the slip is elsewhere. **Each ethanol molecule has two carbon atoms and gives two carbon dioxide molecules**, about <InlineMath math="3.2\text{ kg}" />, not <InlineMath math="1.6\text{ kg}" />.
+- The masses are swapped: ethanol releases less heat per mole, so more of it is needed.
+- <InlineMath math="0.84\text{ kg}" /> of ethanol halves the moles needed, which would supply only half the heat.

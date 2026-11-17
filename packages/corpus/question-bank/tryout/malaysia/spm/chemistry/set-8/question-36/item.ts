@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$55.5\\text{ kJ}$$ released" },
-        { correct: false, label: "$$55.5\\text{ kJ}$$ absorbed" },
-        { correct: false, label: "$$2220\\text{ kJ}$$ released" },
-        { correct: false, label: "$$111\\text{ kJ}$$ released" },
+        { correct: true, label: "$$409\\text{ km}$$" },
+        { correct: false, label: "$$817\\text{ km}$$" },
+        { correct: false, label: "$$204\\text{ km}$$" },
+        { correct: false, label: "$$817\\,000\\text{ km}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$55.5\\text{ kJ}$$ dibebaskan" },
-        { correct: false, label: "$$55.5\\text{ kJ}$$ diserap" },
-        { correct: false, label: "$$2220\\text{ kJ}$$ dibebaskan" },
-        { correct: false, label: "$$111\\text{ kJ}$$ dibebaskan" },
+        { correct: true, label: "$$409\\text{ km}$$" },
+        { correct: false, label: "$$817\\text{ km}$$" },
+        { correct: false, label: "$$204\\text{ km}$$" },
+        { correct: false, label: "$$817\\,000\\text{ km}$$" },
       ],
     },
   },
