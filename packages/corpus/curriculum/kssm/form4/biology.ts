@@ -1,4 +1,4 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on cells, chapters 1 to 7 of the DSKP. */
 export const kssmForm4BiologyTopicNodes = [
@@ -25,7 +25,33 @@ export const kssmForm4BiologyTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-cell-biology-and-cell-organisation-cell-organisation",
+        level: "lesson",
+        materialKeys: ["lesson.biology.cell-organisation"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-cell-biology-and-cell-organisation",
+    materialCard: {
+      de: {
+        description: "Erkenne Organellen und spezialisierte Zellen.",
+        title: "Zellbiologie und Zellorganisation",
+      },
+      en: {
+        description: "Identify organelles and specialised cells.",
+        title: "Cell Biology and Cell Organisation",
+      },
+      id: {
+        description: "Kenali organel dan sel khusus.",
+        title: "Biologi Sel dan Organisasi Sel",
+      },
+      ms: {
+        description: "Kenal pasti organel dan sel khusus.",
+        title: "Biologi Sel dan Organisasi Sel",
+      },
+    },
     order: 20,
     translations: {
       de: {

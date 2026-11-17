@@ -4,6 +4,7 @@ import { Effect, FileSystem, Path, Schema } from "effect";
 import { lessonAiDsAiProgrammingMaterial } from "#corpus/material/lesson/ai-ds/ai-programming/source";
 import { lessonAiDsLinearMethodsMaterial } from "#corpus/material/lesson/ai-ds/linear-methods/source";
 import { lessonBiologyBiodiversityMaterial } from "#corpus/material/lesson/biology/biodiversity/source";
+import { lessonBiologyCellOrganisationMaterial } from "#corpus/material/lesson/biology/cell-organisation/source";
 import { lessonBiologyClimateChangeMaterial } from "#corpus/material/lesson/biology/climate-change/source";
 import { lessonBiologyVirusRoleMaterial } from "#corpus/material/lesson/biology/virus-role/source";
 import { lessonChemistryAcidBaseSaltMaterial } from "#corpus/material/lesson/chemistry/acid-base-salt/source";
@@ -62,6 +63,7 @@ const materialSourcePrograms = [
   lessonAiDsAiProgrammingMaterial,
   lessonAiDsLinearMethodsMaterial,
   lessonBiologyBiodiversityMaterial,
+  lessonBiologyCellOrganisationMaterial,
   lessonBiologyClimateChangeMaterial,
   lessonBiologyVirusRoleMaterial,
   lessonChemistryAcidBaseSaltMaterial,

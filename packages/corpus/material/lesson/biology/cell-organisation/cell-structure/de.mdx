@@ -1,0 +1,239 @@
+export const metadata = {
+  title: "Zellbiologie und Organisationsebenen",
+  description:
+    "Erkenne die Organellen tierischer und pflanzlicher Zellen, berechne echte Größen unter dem Mikroskop und erkläre Organisationsebenen und spezialisierte Zellen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Zellbiologie und Zellorganisation",
+};
+
+## Die Zelle als Grundbaustein des Lebens
+
+Die **Zelle** ist die kleinste Einheit von Bau und Funktion aller Lebewesen. Jede Zelle ist von einer **Zellmembran** umgeben, mit **Cytoplasma** gefüllt und enthält Erbmaterial. In tierischen und pflanzlichen Zellen liegt dieses Erbmaterial im **Zellkern**. Organellen im Cytoplasma teilen sich die Arbeit der Zelle, und gleichartige Zellen bilden zusammen **Gewebe, Organe und Organsysteme**. In den Modellen hier schneidest du eine Zelle auf, um ihre Organellen zu sehen, betrachtest Mundschleimhaut- und Zwiebelzellen unter dem Mikroskop und vergleichst eine Zelle mit einem Bakterium.
+
+Zellgrößen misst man in Mikrometern, <InlineMath math="1\ \mu\text{m} = 10^{-3}\ \text{mm}" />. Eine menschliche Mundschleimhautzelle ist etwa <InlineMath math="60\ \mu\text{m}" /> lang, du brauchst also ein Mikroskop, um sie zu sehen.
+
+## Organellen tierischer und pflanzlicher Zellen
+
+Tierische und pflanzliche Zellen haben beide eine Zellmembran, Cytoplasma, einen Zellkern, **Mitochondrien**, **Ribosomen**, **endoplasmatisches Retikulum**, einen **Golgi-Apparat** und Lysosomen. Pflanzenzellen haben zusätzlich eine **Zellwand**, **Chloroplasten** und eine große **Vakuole**. Wähle im Modell jede Zelle und vergleich Kern, Wand und Energieorganellen.
+
+<CellCutawayLab
+  title={<>Tier- und Pflanzenzelle aufgeschnitten</>}
+  description={
+    <>
+      Jede Zelle ist halbiert und in echter Größe gezeichnet. Wähle eine Zelle
+      und vergleich die Organellen darin.
+    </>
+  }
+  cells={["animal", "plant"]}
+  labels={{
+    choose: "Wähle eine Zelle",
+    cells: {
+      animal: <>Tierzelle</>,
+      plant: <>Pflanzenzelle</>,
+    },
+    facts: {
+      animal: { nucleus: <>in einer Kernhülle</>, wall: <>keine</>, power: <>Mitochondrien</> },
+      plant: { nucleus: <>in einer Kernhülle</>, wall: <>Cellulose</>, power: <>Chloroplasten und Mitochondrien</> },
+    },
+    size: <>Länge</>,
+    nucleus: <>Erbmaterial</>,
+    wall: <>Zellwand</>,
+    power: <>Energieorganellen</>,
+    viewLabel: "Eine halbierte Zelle mit ihren Organellen",
+  }}
+/>
+
+Die Tabelle verbindet jedes Organell mit seiner Funktion. Lern die Funktion zusammen mit dem Bau, denn Prüfungsfragen wollen oft wissen, welches Organell in einer bestimmten Zelle häufig ist.
+
+| Organell | Funktion | Vorkommen |
+| :--- | :--- | :--- |
+| Zellkern | Steuert alle Vorgänge der Zelle und speichert das Erbmaterial | Tier und Pflanze |
+| Mitochondrium | Ort der Zellatmung, die Energie freisetzt | Tier und Pflanze |
+| Ribosom | Ort der Proteinbiosynthese | Tier und Pflanze |
+| Golgi-Apparat | Verarbeitet, verpackt und transportiert Proteine | Tier und Pflanze |
+| Chloroplast | Ort der Fotosynthese | Nur Pflanze |
+| Zellwand | Gibt Halt und feste Form | Nur Pflanze |
+| Zentriol | Bildet bei der Zellteilung die Spindelfasern | Nur Tier |
+
+Eine aktive Zelle braucht viel Energie, deshalb haben Muskel- und Spermienzellen **viele Mitochondrien**. Zellen, die Enzyme abgeben, wie Zellen der Bauchspeicheldrüse, haben viele Ribosomen und einen großen Golgi-Apparat.
+
+## Zellen unter dem Mikroskop
+
+Ein Lichtmikroskop vergrößert Zellen mit zwei Linsen. Die **Gesamtvergrößerung** ist das Produkt aus Okular- und Objektivvergrößerung:
+
+<BlockMath math="\text{Vergrößerung} = \text{Okular} \cdot \text{Objektiv}" />
+
+Betrachte im Modell Mundschleimhaut- und Zwiebelhautzellen. Wechsle das Objektiv und achte darauf, wie das Sehfeld mit steigender Vergrößerung kleiner wird.
+
+<MicroscopeLab
+  title={<>Ein Lichtmikroskop mit drei Objektiven</>}
+  description={
+    <>
+      Ein Okular <InlineMath math="10\times" /> mit den Objektiven{" "}
+      <InlineMath math="4\times" />, <InlineMath math="10\times" /> und{" "}
+      <InlineMath math="40\times" />. Wähle ein Objektiv und betrachte das
+      Präparat.
+    </>
+  }
+  specimen="cheek"
+  eyepiece={10}
+  objectives={[4, 10, 40]}
+  labels={{
+    across: <>Quer durch das Sehfeld</>,
+    cell: <>Eine Zelle</>,
+    division: <>Ein Teilstrich</>,
+    field: <>Sehfeld</>,
+    magnification: <>Gesamtvergrößerung</>,
+    objective: "Objektiv",
+    span: <>Gemessene Länge</>,
+    view: "Ein Lichtmikroskop und der Blick durch das Okular",
+    views: { eyepiece: "Okular", stand: "Mikroskop" },
+  }}
+/>
+
+### Beispiel Vergrößerung und echte Größe
+
+Eine Zwiebelhautzelle wird bei <InlineMath math="300\times" /> Vergrößerung <InlineMath math="45\ \text{mm}" /> lang gezeichnet. Berechne **die echte Größe der Zelle** in Mikrometern.
+
+<MathContainer>
+<BlockMath math="\text{Echte Größe} = \frac{\text{Bildgröße}}{\text{Vergrößerung}} = \frac{45}{300} = 0{,}15\ \text{mm}" />
+<BlockMath math="0{,}15\ \text{mm} \cdot 1000 = 150\ \mu\text{m}" />
+</MathContainer>
+
+Prüf das umgekehrt: <InlineMath math="0{,}15 \cdot 300 = 45\ \text{mm}" />. Eine Größe von <InlineMath math="150\ \mu\text{m}" /> ist für eine längliche Pflanzenzelle plausibel.
+
+### Beispiel Zellgrößen vergleichen
+
+Tierzellen, Bakterien und Viren sind **sehr unterschiedlich groß**. Zoome im Modell von der Zelle über das Bakterium bis zum Virion und vergleich ihre Längen.
+
+<CellScaleLab
+  title={<>Zelle, Bakterium und Virus in echter Größe</>}
+  description={
+    <>
+      Eine Tierzelle, ein Escherichia-coli-Bakterium und ein SARS-CoV-2-Virion
+      nebeneinander im selben Maßstab.
+    </>
+  }
+  labels={{
+    bacterium: <>Bakterium</>,
+    cell: <>Tierzelle</>,
+    view: <>Anzeigemaßstab</>,
+    viewLabel: "Zelle, Bakterium und Virus im echten Maßstab",
+    virion: <>Virion</>,
+    zoom: "Zoom",
+  }}
+/>
+
+Ein Bakterium ist etwa <InlineMath math="2\ \mu\text{m}" /> lang, also passen etwa dreißig Bakterien nebeneinander über eine <InlineMath math="60\ \mu\text{m}" /> lange Mundschleimhautzelle. Probe: <InlineMath math="60 : 2 = 30" />.
+
+## Lebensvorgänge bei Einzellern
+
+Ein **Einzeller** besteht nur aus einer Zelle, und doch erledigt diese eine Zelle alle Lebensvorgänge: Bewegung, Ernährung, Atmung, Fortpflanzung und Reaktion auf Reize. Die *Amöbe* bewegt sich mit Scheinfüßchen, Bakterien vermehren sich durch **Zweiteilung**: Eine Zelle teilt sich in zwei gleiche Zellen. Starte das Modell und sieh zu, wie aus einer Bakterienzelle eine Kolonie wird.
+
+<BinaryFissionLab
+  title={<>Aus einer Bakterienzelle wird eine Kolonie</>}
+  description={
+    <>
+      Eine Escherichia-coli-Zelle auf Agar teilt sich durch Zweiteilung. Die
+      Zellzahl verdoppelt sich mit jeder Generation.
+    </>
+  }
+  labels={{
+    cells: <>Zellzahl</>,
+    generations: <>Generationen</>,
+    minutes: "Minuten",
+    viewLabel: "Bakterien vermehren sich durch Zweiteilung",
+  }}
+/>
+
+Nach <InlineMath math="n" /> Generationen sind aus einer Zelle <InlineMath math="2^n" /> Zellen geworden. Nach zehn Generationen sind es <InlineMath math="2^{10} = 1024" />, deshalb verderben verunreinigte Lebensmittel so schnell.
+
+## Organisationsebenen und spezialisierte Zellen
+
+In einem **Vielzeller** sind Zellen in Ebenen geordnet: **Zelle, Gewebe, Organ, Organsystem und Organismus**. Ein Gewebe ist eine Gruppe von Zellen mit gleichem Bau und gleicher Funktion, ein Organ besteht aus mehreren Gewebearten, und ein Organsystem aus mehreren zusammenarbeitenden Organen.
+
+Jede spezialisierte Zelle hat eine Form, die zu ihrer Aufgabe passt. Ein **rotes Blutkörperchen** ist eine bikonkave Scheibe ohne Kern und kann deshalb mehr Sauerstoff tragen. Eine **Wurzelhaarzelle** ist lang und dünn, um ihre Oberfläche zur Wasseraufnahme zu vergrößern. Eine kleinere oder dünnere Zelle hat ein größeres **Verhältnis von Oberfläche zu Volumen**. Für einen Würfel der Kantenlänge <InlineMath math="L" /> gilt:
+
+<BlockMath math="\frac{O}{V} = \frac{6L^2}{L^3} = \frac{6}{L}" />
+
+Beweg den Regler für die Zellgröße und sieh, wie das Verhältnis sinkt, wenn die Zelle größer wird.
+
+<MathVisual
+  title={<>Das Verhältnis von Oberfläche zu Volumen</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="6/L" /> für eine würfelförmige Zelle der
+      Kantenlänge <InlineMath math="L" /> in Mikrometern. Eine kleine Zelle hat
+      pro Volumeneinheit mehr Oberfläche.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "l", min: 1, max: 10, value: 2, step: 0.5, label: "l" },
+    ],
+    objects: [
+      { id: "ratio", kind: "function", appearance: "primary", formula: "6/x", domain: { min: 0.95, max: 10 } },
+      { id: "now", kind: "marker", x: "l", y: "6/l", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "6l^2" },
+      { key: "volume", formula: "l^3" },
+      { key: "value", formula: "6/l" },
+    ],
+  }}
+  labels={{
+    l: <>Kantenlänge <InlineMath math="L" /> in <InlineMath math="\mu\text{m}" /></>,
+    area: <>Oberfläche in <InlineMath math="\mu\text{m}^2" /></>,
+    volume: <>Volumen in <InlineMath math="\mu\text{m}^3" /></>,
+    value: <>Verhältnis von Oberfläche zu Volumen</>,
+  }}
+/>
+
+## Typische Fehler bei Zellen
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Pflanzenzellen haben keine Mitochondrien. | Auch Pflanzenzellen betreiben Zellatmung, sie haben also Mitochondrien. | Chloroplasten kommen hinzu, sie ersetzen nichts. |
+| Die echte Größe ist Bildgröße mal Vergrößerung. | Die echte Größe ist Bildgröße geteilt durch Vergrößerung. | Die echte Größe muss kleiner sein als das Bild. |
+| Zellwand und Zellmembran sind dasselbe. | Die Zellwand liegt außen und ist starr, die Zellmembran innen und selektiv durchlässig. | Tierzellen haben eine Membran, aber keine Wand. |
+| Ein Gewebe ist eine Gruppe von Organen. | Organe bestehen aus Geweben, nicht umgekehrt. | Folge der Reihe Zelle, Gewebe, Organ, Organsystem. |
+
+Der zweite Fehler kommt bei Mikroskopaufgaben am häufigsten vor. **Teilen, nicht malnehmen**, wenn du die echte Größe suchst.
+
+## Übungen zur Zellbiologie
+
+Die Aufgaben führen von Mikroskoprechnungen zur Erklärung spezialisierter Zellen. **Rechne am Ende Millimeter in Mikrometer um**.
+
+1. Ein Okular <InlineMath math="10\times" /> wird mit einem Objektiv <InlineMath math="40\times" /> benutzt. Berechne die Gesamtvergrößerung.
+
+2. Nenne drei Strukturen, die in Pflanzenzellen, aber nicht in Tierzellen vorkommen.
+
+3. Das Bild einer Mundschleimhautzelle ist bei <InlineMath math="400\times" /> Vergrößerung <InlineMath math="24\ \text{mm}" /> lang. Berechne die echte Länge der Zelle in Mikrometern.
+
+4. Erkläre, warum eine Wurzelhaarzelle lang und dünn ist.
+
+### Lösungen
+
+**Lösung 1**: Multipliziere beide Vergrößerungen:
+
+<BlockMath math="10 \cdot 40 = 400" />
+
+Die Gesamtvergrößerung beträgt <InlineMath math="400\times" />.
+
+**Lösung 2**: **Zellwand**, **Chloroplasten** und eine **große Vakuole** gibt es nur in Pflanzenzellen. Tierzellen können kleine Vakuolen haben, aber keine große Zentralvakuole.
+
+**Lösung 3**: Teile die Bildgröße durch die Vergrößerung:
+
+<MathContainer>
+<BlockMath math="\frac{24}{400} = 0{,}060\ \text{mm}" />
+<BlockMath math="0{,}060 \cdot 1000 = 60\ \mu\text{m}" />
+</MathContainer>
+
+Probe: <InlineMath math="60\ \mu\text{m}" /> entspricht der üblichen Größe einer Mundschleimhautzelle.
+
+**Lösung 4**: Die lange, dünne Form gibt der Wurzelhaarzelle **ein großes Verhältnis von Oberfläche zu Volumen**. Mehr Oberfläche berührt das Bodenwasser, also werden Wasser und Mineralionen schneller aufgenommen. Die Zelle hat außerdem keine Chloroplasten, weil sie im dunklen Boden liegt.
