@@ -8,6 +8,7 @@ import { lessonBiologyCellOrganisationMaterial } from "#corpus/material/lesson/b
 import { lessonBiologyClassificationSystemMaterial } from "#corpus/material/lesson/biology/classification-system/source";
 import { lessonBiologyCellChemistryMaterial } from "#corpus/material/lesson/biology/cell-chemistry/source";
 import { lessonBiologyCellularRespirationMaterial } from "#corpus/material/lesson/biology/cellular-respiration/source";
+import { lessonBiologyBiologyIntroductionMaterial } from "#corpus/material/lesson/biology/biology-introduction/source";
 import { lessonBiologyClimateChangeMaterial } from "#corpus/material/lesson/biology/climate-change/source";
 import { lessonBiologyMembraneTransportMaterial } from "#corpus/material/lesson/biology/membrane-transport/source";
 import { lessonBiologyLeafStructureMaterial } from "#corpus/material/lesson/biology/leaf-structure/source";
@@ -85,6 +86,7 @@ const materialSourcePrograms = [
   lessonBiologyClassificationSystemMaterial,
   lessonBiologyCellChemistryMaterial,
   lessonBiologyCellularRespirationMaterial,
+  lessonBiologyBiologyIntroductionMaterial,
   lessonBiologyClimateChangeMaterial,
   lessonBiologyMembraneTransportMaterial,
   lessonBiologyLeafStructureMaterial,
