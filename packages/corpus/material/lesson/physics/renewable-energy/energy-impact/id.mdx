@@ -120,6 +120,22 @@ Sumber energi dengan emisi operasi yang rendah tetap perlu dinilai <Highlight>se
 
 Jadi, dampak total mencakup lebih dari dampak saat alat sedang menyala saja.
 
+Efek radiasi itu bisa kamu lihat pada model atmosfer paling sederhana: satu lapisan yang meloloskan cahaya matahari, tetapi menyerap sebagian inframerah dari permukaan dan mengirim setengahnya kembali ke bawah. Tanpa penyerapan, suhu permukaan sekitar <InlineMath math="255\text{ K}" />. Saat lapisan menyerap <InlineMath math="78\%" />, radiasi balik <InlineMath math="152\text{ W/m}^2" /> menghangatkan permukaan sampai sekitar <InlineMath math="288\text{ K}" />, dekat suhu rata-rata Bumi. Naikkan bagian yang diserap dan lihat permukaan menghangat sampai ia melepas cahaya matahari ditambah radiasi baliknya.
+
+<GreenhouseLayerLab
+  title={<>Satu Lapisan Gas Rumah Kaca</>}
+  description={<>Cahaya matahari menghangatkan tanah, tanah memancarkan inframerah, dan satu lapisan atmosfer menyerap sebagian darinya. Ubah bagian itu, lalu bandingkan radiasi balik dengan suhu permukaan.</>}
+  labels={{
+    absorptanceControl: "Bagian inframerah yang diserap lapisan",
+    back: <>Radiasi balik</>,
+    celsius: <>Suhu permukaan dalam derajat Celsius</>,
+    emitted: <>Inframerah dari permukaan</>,
+    kelvin: <>Suhu permukaan dalam kelvin</>,
+    sunlight: <>Cahaya matahari yang diserap</>,
+    viewLabel: "Permukaan Bumi di bawah lapisan atmosfer dengan panah cahaya matahari dan inframerah",
+  }}
+/>
+
 ## Menilai Tambang Terbuka Batu Bara
 
 Pada tambang terbuka batu bara, lapisan tanah dan batuan di atas cadangan batu bara dapat dibuka agar batu bara bisa diambil. **Pembakaran batu bara dan perubahan lahan** selama penambangan sama-sama menimbulkan dampak.
@@ -172,6 +188,21 @@ Penilaian energi membandingkan energi berguna dengan dampak lingkungan dan sosia
 | Siapa yang menerima manfaat dan dampak? | Keputusan energi perlu mempertimbangkan pengguna energi dan warga yang tinggal dekat sumber atau pembangkit. |
 
 Sebagian dampak pembangkit tidak tercantum dalam harga listrik. Contohnya adalah pencemaran udara, gangguan sungai, hilangnya habitat, dan limbah yang perlu dikelola dalam jangka panjang.
+
+Dampak di hulu bisa ditimbang dengan manfaatnya dalam satuan energi itu sendiri. Membuat dan memasang sistem surya atap <InlineMath math="3\text{ kWp}" /> memakai energi yang kita misalkan <InlineMath math="3\,900\text{ kWh}" /> sebelum sistem itu mengembalikan satu kilowatt-jam pun. Pada atap yang menghasilkan <InlineMath math="1\,300\text{ kWh}" /> per kWp setiap tahun, sistem melunasi energi itu dalam satu tahun dan mengembalikannya <InlineMath math="25" /> kali lipat selama <InlineMath math="25" /> tahun umurnya. Geser hasil tahunannya dan lihat titik lunasnya bergeser.
+
+<SolarRoofPaybackLab
+  title={<>Kapan Atap Surya Melunasi Energinya</>}
+  description={<>Atap surya <InlineMath math="3\text{ kWp}" /> dimulai dengan utang energi: membuatnya butuh <InlineMath math="3\,900\text{ kWh}" />. Ubah hasil tahunannya dan lihat neraca energinya melewati nol.</>}
+  labels={{
+    invested: <>Energi untuk membuat sistem</>,
+    lifetime: <>Energi yang kembali selama <InlineMath math="25" /> tahun</>,
+    payback: <>Waktu lunas energi dalam tahun</>,
+    viewLabel: "Rumah beratap surya di atas neraca energinya selama lima tahun",
+    yearly: <>Energi setiap tahun</>,
+    yieldControl: "Hasil tahunan per kWp",
+  }}
+/>
 
 ## Penilaian Menyeluruh untuk Setiap Pilihan Energi
 

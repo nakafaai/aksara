@@ -120,6 +120,22 @@ Auch eine Energiequelle mit geringen Emissionen im Betrieb muss von der Erkundun
 
 Die Gesamtauswirkung umfasst also <Highlight>mehr als die Auswirkungen während des Betriebs</Highlight>.
 
+Diesen Strahlungseffekt siehst du im einfachsten Modell der Atmosphäre: eine Schicht, die Sonnenlicht durchlässt, aber einen Teil der Infrarotstrahlung vom Boden aufnimmt und die Hälfte davon zurück nach unten schickt. Ohne Absorption läge die Oberfläche bei etwa <InlineMath math="255\text{ K}" />. Nimmt die Schicht <InlineMath math="78\%" /> auf, erwärmt die Gegenstrahlung von <InlineMath math="152\text{ W/m}^2" /> die Oberfläche auf etwa <InlineMath math="288\text{ K}" />, nahe am Mittelwert der Erde. Erhöhe den Anteil und sieh, wie sich die Oberfläche erwärmt, bis sie das Sonnenlicht plus die Gegenstrahlung abgibt.
+
+<GreenhouseLayerLab
+  title={<>Eine Schicht Treibhausgas</>}
+  description={<>Sonnenlicht erwärmt den Boden, der Boden strahlt Infrarot ab, und eine Schicht der Atmosphäre nimmt einen Teil davon auf. Ändere diesen Anteil und vergleiche die Gegenstrahlung mit der Oberflächentemperatur.</>}
+  labels={{
+    absorptanceControl: "Von der Schicht aufgenommener Infrarotanteil",
+    back: <>Gegenstrahlung</>,
+    celsius: <>Oberflächentemperatur in Grad Celsius</>,
+    emitted: <>Infrarot von der Oberfläche</>,
+    kelvin: <>Oberflächentemperatur in Kelvin</>,
+    sunlight: <>Aufgenommenes Sonnenlicht</>,
+    viewLabel: "Erdoberfläche unter einer Atmosphärenschicht mit Pfeilen für Sonnenlicht und Infrarot",
+  }}
+/>
+
 ## Auswirkungen eines Kohletagebaus
 
 Beim Kohletagebau können Erd- und Gesteinsschichten oberhalb der Kohlelagerstätte abgetragen werden, um an die Kohle heranzukommen. Sowohl die **Verbrennung als auch die Veränderung des Geländes** während des Abbaus haben Folgen.
@@ -172,6 +188,21 @@ Eine fundierte Energiebeurteilung vergleicht die Nutzenergie mit den ökologisch
 | Wer nutzt die Energie und wer trägt die Folgen? | Energieentscheidungen müssen sowohl die Nutzer als auch die Menschen nahe der Quelle oder des Kraftwerks berücksichtigen. |
 
 Einige Kosten erscheinen nicht im Strompreis. Dazu können verschmutzte Luft, beeinträchtigte Flüsse, verlorene Lebensräume oder langfristig zu entsorgende Abfälle gehören.
+
+Vorgelagerte Auswirkungen lassen sich direkt in Energie gegen den Nutzen abwägen. Herstellung und Einbau einer Dach-Solaranlage mit <InlineMath math="3\text{ kWp}" /> verbrauchen beispielhaft <InlineMath math="3\,900\text{ kWh}" />, bevor sie eine einzige Kilowattstunde zurückgibt. Auf einem Dach mit <InlineMath math="1\,300\text{ kWh}" /> pro kWp und Jahr zahlt die Anlage diese Energie in einem Jahr zurück und gibt sie in ihren <InlineMath math="25" /> Jahren <InlineMath math="25" />-mal zurück. Verschiebe den Ertrag und sieh, wie sich der Amortisationspunkt verschiebt.
+
+<SolarRoofPaybackLab
+  title={<>Wann ein Solardach seine Energie zurückzahlt</>}
+  description={<>Ein Solardach mit <InlineMath math="3\text{ kWp}" /> startet mit Energieschulden: Seine Herstellung kostete <InlineMath math="3\,900\text{ kWh}" />. Ändere den Jahresertrag und sieh, wie das Energiekonto die Null überschreitet.</>}
+  labels={{
+    invested: <>Energie für die Herstellung</>,
+    lifetime: <>In <InlineMath math="25" /> Jahren zurückgegebene Energie</>,
+    payback: <>Energetische Amortisationszeit in Jahren</>,
+    viewLabel: "Haus mit Solardach über seinem Energiekonto für fünf Jahre",
+    yearly: <>Energie pro Jahr</>,
+    yieldControl: "Jahresertrag pro kWp",
+  }}
+/>
 
 ## Jede Energieentscheidung vollständig bewerten
 

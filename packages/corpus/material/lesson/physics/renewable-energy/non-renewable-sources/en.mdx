@@ -106,6 +106,28 @@ In steam power plants, combustion and fission produce **heat through different p
 
 Fossil fuels and uranium both reach the same final energy form, electricity. The early path is different, but each source still needs a conversion device before its initial energy becomes useful energy.
 
+Swap the heat source and watch everything after the boiler stay the same. This plant takes in <InlineMath math="1\,000\text{ MW}" /> of heat. With coal, the steam reaches about <InlineMath math="540^\circ\text{C}" /> and <InlineMath math="380\text{ MW}" /> leaves as electricity, while the condenser hands <InlineMath math="620\text{ MW}" /> to the cooling tower. A reactor runs cooler steam, about <InlineMath math="285^\circ\text{C}" />, so it sends out <InlineMath math="330\text{ MW}" />. Compare the fuel too: <InlineMath math="150\,000\text{ kg}" /> of coal an hour against under <InlineMath math="1\text{ kg}" /> of uranium fuel.
+
+<SteamPlantCycleLab
+  title={<>One Steam Cycle, Three Heat Sources</>}
+  description={<>A steam power plant takes in <InlineMath math="1\,000\text{ MW}" /> of heat from coal, gas or uranium. Choose the fuel and compare the electricity, the waste heat, the steam temperature, its ideal limit and the fuel used each hour.</>}
+  labels={{
+    chooseFuel: "Fuel",
+    electric: <>Electricity</>,
+    fuelUse: <>Fuel used each hour</>,
+    fuels: {
+      coal: <>Coal</>,
+      gas: <>Natural gas</>,
+      uranium: <>Uranium</>,
+    },
+    heat: <>Heat in</>,
+    ideal: <>Ideal limit</>,
+    steam: <>Steam temperature</>,
+    viewLabel: "Steam power plant with heat source, turbine, generator and cooling tower",
+    waste: <>Waste heat</>,
+  }}
+/>
+
 ## Different Roles on the Power Grid
 
 Power plants do not all supply electricity in the same way. Nuclear plants usually run continuously at a steady output. Natural-gas combined-cycle plants can **raise or lower their output** as demand changes. When demand reaches a peak, combustion turbines fueled by natural gas or petroleum can add electricity for a few hours.
@@ -155,3 +177,24 @@ Carbon dioxide is written as <InlineMath math="\text{CO}_2" />. Natural gas cons
 > Using a non-renewable source draws down a stock that returns very slowly. Whether that choice is appropriate depends on its purpose, effects, and available alternatives.
 
 Assess each source by its stock, conversion path, useful energy, waste, and effects on communities and ecosystems.
+
+Here's why burning a fuel adds so much carbon dioxide. Each carbon atom joins two oxygen atoms from the air, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, so <InlineMath math="12\text{ g}" /> of carbon becomes <InlineMath math="44\text{ g}" /> of gas. Burning <InlineMath math="1\text{ kg}" /> of coal, about <InlineMath math="70\%" /> carbon, makes <InlineMath math="2.57\text{ kg}" /> of <InlineMath math="\mathrm{CO_2}" />, more than the fuel itself, because <InlineMath math="1.87\text{ kg}" /> of it is oxygen from the air.
+
+<FuelCombustionCarbonLab
+  title={<>Burning <InlineMath math="1\text{ kg}" /> of Fuel</>}
+  description={<><InlineMath math="1\text{ kg}" /> of coal, diesel or methane burns, and a balloon collects the carbon dioxide. Choose the fuel and compare the carbon, the oxygen taken from the air, and the gas they make.</>}
+  labels={{
+    carbon: <>Carbon in the fuel</>,
+    chooseFuel: "Fuel",
+    dioxide: <>Carbon dioxide made</>,
+    fuels: {
+      coal: <>Coal</>,
+      diesel: <>Diesel</>,
+      methane: <>Methane</>,
+    },
+    oxygen: <>Oxygen from the air</>,
+    perEnergy: <>Carbon dioxide per megajoule of heat</>,
+    viewLabel: "Fuel burning under a hood while a balloon collects carbon dioxide",
+    volume: <>Gas volume at <InlineMath math="25^\circ\text{C}" /></>,
+  }}
+/>
