@@ -54,6 +54,7 @@ import { lessonPhysicsLightOpticsMaterial } from "#corpus/material/lesson/physic
 import { lessonPhysicsMeasurementMaterial } from "#corpus/material/lesson/physics/measurement/source";
 import { lessonPhysicsMomentumMaterial } from "#corpus/material/lesson/physics/momentum/source";
 import { lessonPhysicsNuclearPhysicsMaterial } from "#corpus/material/lesson/physics/nuclear-physics/source";
+import { lessonPhysicsPressureMaterial } from "#corpus/material/lesson/physics/pressure/source";
 import { lessonPhysicsQuantumPhysicsMaterial } from "#corpus/material/lesson/physics/quantum-physics/source";
 import { lessonPhysicsRenewableEnergyMaterial } from "#corpus/material/lesson/physics/renewable-energy/source";
 import { lessonPhysicsVectorMaterial } from "#corpus/material/lesson/physics/vector/source";
@@ -115,6 +116,7 @@ const materialSourcePrograms = [
   lessonPhysicsMeasurementMaterial,
   lessonPhysicsMomentumMaterial,
   lessonPhysicsNuclearPhysicsMaterial,
+  lessonPhysicsPressureMaterial,
   lessonPhysicsQuantumPhysicsMaterial,
   lessonPhysicsRenewableEnergyMaterial,
   lessonPhysicsVectorMaterial,

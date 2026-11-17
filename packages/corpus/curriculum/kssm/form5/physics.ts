@@ -42,7 +42,33 @@ export const kssmForm5PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-physics-pressure-pressure",
+        level: "lesson",
+        materialKeys: ["lesson.physics.pressure"],
+        order: 10,
+      }),
+    ],
     key: "form-5-physics-pressure",
+    materialCard: {
+      de: {
+        description: "Berechne Schweredruck, Hydraulik und Auftrieb.",
+        title: "Druck",
+      },
+      en: {
+        description: "Work out liquid pressure, hydraulics and buoyancy.",
+        title: "Pressure",
+      },
+      id: {
+        description: "Hitung tekanan hidrostatis, hidrolik, dan gaya apung.",
+        title: "Tekanan",
+      },
+      ms: {
+        description: "Kira tekanan cecair, hidraulik dan keapungan.",
+        title: "Tekanan",
+      },
+    },
     order: 20,
     translations: {
       de: { routeSlug: "druck", title: "Druck" },
