@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$n=-2.5$$, $$32\\text{ s}$$ and $$3.9\\text{ mm}$$",
+          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ and $$3.9\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$n=-2$$, $$51\\text{ s}$$ and $$4.6\\text{ mm}$$",
+          label: "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$ and $$4.6\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$n=-2.5$$, $$32\\text{ s}$$ and $$1.0\\text{ mm}$$",
+          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ and $$1.0\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$n=-3$$, $$20\\text{ s}$$ and $$3.5\\text{ mm}$$",
+          label: "$$n=-3$$, $$20\\text{ g s}^{-1}$$ and $$3.5\\text{ mm}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$n=-2.5$$, $$32\\text{ s}$$ dan $$3.9\\text{ mm}$$",
+          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ dan $$3.9\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$n=-2$$, $$51\\text{ s}$$ dan $$4.6\\text{ mm}$$",
+          label: "$$n=-2$$, $$7.8\\text{ g s}^{-1}$$ dan $$4.6\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$n=-2.5$$, $$32\\text{ s}$$ dan $$1.0\\text{ mm}$$",
+          label: "$$n=-2.5$$, $$12.5\\text{ g s}^{-1}$$ dan $$1.0\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$n=-3$$, $$20\\text{ s}$$ dan $$3.5\\text{ mm}$$",
+          label: "$$n=-3$$, $$20\\text{ g s}^{-1}$$ dan $$3.5\\text{ mm}$$",
         },
       ],
     },

@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$180\\text{ m}$$ and $$12\\text{ s}$$" },
-        { correct: false, label: "$$270\\text{ m}$$ and $$15\\text{ s}$$" },
-        { correct: true, label: "$$270\\text{ m}$$ and $$16\\text{ s}$$" },
-        { correct: false, label: "$$270\\text{ m}$$ and $$9.0\\text{ s}$$" },
+        {
+          correct: false,
+          label:
+            "$$180\\text{ m}$$, $$12\\text{ s}$$ and $$60\\text{ m s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$270\\text{ m}$$, $$15\\text{ s}$$ and $$73\\text{ m s}^{-1}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$270\\text{ m}$$, $$16\\text{ s}$$ and $$73\\text{ m s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$270\\text{ m}$$, $$9.0\\text{ s}$$ and $$73\\text{ m s}^{-1}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$180\\text{ m}$$ dan $$12\\text{ s}$$" },
-        { correct: false, label: "$$270\\text{ m}$$ dan $$15\\text{ s}$$" },
-        { correct: true, label: "$$270\\text{ m}$$ dan $$16\\text{ s}$$" },
-        { correct: false, label: "$$270\\text{ m}$$ dan $$9.0\\text{ s}$$" },
+        {
+          correct: false,
+          label:
+            "$$180\\text{ m}$$, $$12\\text{ s}$$ dan $$60\\text{ m s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$270\\text{ m}$$, $$15\\text{ s}$$ dan $$73\\text{ m s}^{-1}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$270\\text{ m}$$, $$16\\text{ s}$$ dan $$73\\text{ m s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$270\\text{ m}$$, $$9.0\\text{ s}$$ dan $$73\\text{ m s}^{-1}$$",
+        },
       ],
     },
   },
