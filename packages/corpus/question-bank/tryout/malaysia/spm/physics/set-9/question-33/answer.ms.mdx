@@ -1,0 +1,23 @@
+# Bahagikan kuasa masuk kepada haba dan kerja, kemudian hentikan putaran
+
+Semasa mengangkat, motor mengambil <InlineMath math="12 \times 1.5 = 18" /> W, dan gegelung menukar <InlineMath math="1.5^2 \times 2.0 = 4.5" /> W daripadanya kepada haba, jadi ia memberi <InlineMath math="13.5" /> W kuasa mekanik.
+
+<Mermaid
+  title={<>Motor yang Berputar Menghadkan Arusnya Sendiri</>}
+  description={<>Semasa gegelung berputar ia mengaruhkan daya gerak elektrik yang menentang bekalan, jadi arus kekal kecil. Motor yang tersekat kehilangan penentangan itu, dan hanya rintangan gegelung yang menghadkan arus.</>}
+  chart={`
+    flowchart LR
+      N0["Berjalan: kuasa masuk = 12 × 1.5 = 18 W"] --> N2["Mekanik = 18 − 4.5 = 13.5 W"]
+      N1["Pemanasan gegelung = 1.5² × 2.0 = 4.5 W"] --> N2
+      N3["Tersekat: tiada putaran, jadi tiada d.g.e. aruhan yang menentang"] --> N4["I = 12 ÷ 2.0 = 6.0 A"]
+      N4 --> N5["Pemanasan = 6.0² × 2.0 = 72 W"]
+  `}
+/>
+
+Apabila tersekat, gegelung tidak lagi berputar, jadi ia **tidak mengaruhkan** daya gerak elektrik yang menentang. Arus naik ke <InlineMath math="12 \div 2.0 = 6.0" /> A, dan gegelung memanas pada <InlineMath math="6.0^2 \times 2.0 = 72" /> W, enam belas kali ganda, sebab itu motor yang tersekat terbakar.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="18\text{ W}" /> mengira seluruh kuasa masuk sebagai kerja, terlupa **pemanasan** dalam gegelung.
+- <InlineMath math="4.5\text{ W}" /> mengekalkan arus semasa berjalan, tetapi motor yang tersekat menarik arus **jauh lebih besar**.
+- <InlineMath math="18\text{ W}" /> dan <InlineMath math="72\text{ W}" /> betul bagi keadaan tersekat tetapi masih mengira seluruh kuasa masuk sebagai **kerja** semasa berjalan.

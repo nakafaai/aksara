@@ -1,0 +1,22 @@
+# Den Strom finden, dann nur die Ladung über der Reserve nutzen
+
+Die beiden Scheinwerfer nehmen zusammen <InlineMath math="110" /> W, also <InlineMath math="I = 110 \div 12 = 9{,}2" /> A.
+
+<Mermaid
+  title={<>Nur ein Teil der Ladung ist nutzbar</>}
+  description={<>Die Lampen dürfen den Akku nur bis zur Reserve für den Start leeren, nutzbar ist also der Teil oberhalb dieser Reserve.</>}
+  chart={`
+    flowchart LR
+      N0["Zwei Lampen: 2 × 55 = 110 W"] --> N1["I = 110 ÷ 12 = 9,2 A"]
+      N1 --> N3["Zeit = 42 ÷ 9,17 = 4,6 h"]
+      N2["Nutzbare Ladung: 70% von 60 = 42 A h"] --> N3
+  `}
+/>
+
+Der Akku muss <InlineMath math="30\%" /> für den Start behalten, **nutzbar** sind also nur <InlineMath math="70\%" /> von <InlineMath math="60" /> A h, <InlineMath math="42" /> A h. Das reicht <InlineMath math="42 \div 9{,}17 = 4{,}6" /> h.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4{,}6\text{ A}" /> zählt nur **einen** Scheinwerfer.
+- <InlineMath math="6{,}5\text{ h}" /> leert die **ganze** Ladung und lässt nichts für den Start.
+- <InlineMath math="2{,}0\text{ h}" /> nimmt die **Reserve** von <InlineMath math="30\%" /> als entnehmbare Ladung.

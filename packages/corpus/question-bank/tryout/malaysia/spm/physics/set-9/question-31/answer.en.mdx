@@ -1,0 +1,22 @@
+# Find the current, then use only the charge above the reserve
+
+The two headlights take <InlineMath math="110" /> W together, so <InlineMath math="I = 110 \div 12 = 9.2" /> A.
+
+<Mermaid
+  title={<>Only Part of the Charge Can Be Used</>}
+  description={<>The lights may drain the battery only down to the reserve needed for starting, so the usable charge is the part above that reserve.</>}
+  chart={`
+    flowchart LR
+      N0["Two lamps: 2 × 55 = 110 W"] --> N1["I = 110 ÷ 12 = 9.2 A"]
+      N1 --> N3["Time = 42 ÷ 9.17 = 4.6 h"]
+      N2["Usable charge: 70% of 60 = 42 A h"] --> N3
+  `}
+/>
+
+The battery must keep <InlineMath math="30\%" /> for starting, so only <InlineMath math="70\%" /> of <InlineMath math="60" /> A h, <InlineMath math="42" /> A h, may be **used**. That lasts <InlineMath math="42 \div 9.17 = 4.6" /> h.
+
+# Why the other options are wrong
+
+- <InlineMath math="4.6\text{ A}" /> counts only **one** headlight.
+- <InlineMath math="6.5\text{ h}" /> drains the **whole** charge, leaving nothing to start the engine.
+- <InlineMath math="2.0\text{ h}" /> uses the <InlineMath math="30\%" /> **reserve** as the charge that may be drained.

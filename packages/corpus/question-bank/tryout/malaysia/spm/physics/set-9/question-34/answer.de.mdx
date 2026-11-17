@@ -1,0 +1,23 @@
+# Die EMK folgt der Geschwindigkeit, mit der sich der Fluss ändert
+
+Die EMK hängt davon ab, wie **schnell** sich der Fluss durch die Spule ändert. Liegt die Spulenebene längs des Feldes, schneiden die Seiten die Feldlinien am schnellsten, die EMK ist dann am größten, und Aussage I ist richtig. Aussage III verwechselt den größten Fluss mit der schnellsten Änderung: Senkrecht ist der Fluss am größten, ändert sich aber kurz **nicht**, die EMK ist also null.
+
+<Mermaid
+  title={<>Die Änderungsrate, nicht die Menge, erzeugt die EMK</>}
+  description={<>Die Spulenseiten schneiden Feldlinien am schnellsten, wenn die Spule längs des Feldes liegt, obwohl dann keine Linie sie durchsetzt. Ein Kommutator macht aus dem Wechselstrom einen Strom gleicher Richtung.</>}
+  chart={`
+    flowchart LR
+      N0["Die EMK hängt davon ab, wie schnell sich der Fluss ändert"] --> N1["Ebene parallel zum Feld: Seiten schneiden Linien am schnellsten (I richtig)"]
+      N0 --> N2["Ebene senkrecht: größter Fluss, aber langsamste Änderung (III falsch)"]
+      N0 --> N3["Doppelt so schnell: doppelt so viele Perioden und doppelte Schnittrate (II richtig)"]
+      N3 --> N4["Der Kommutator vertauscht die Anschlüsse jede halbe Drehung (IV richtig)"]
+  `}
+/>
+
+Doppelt so schnell drehen gibt doppelt so viele Perioden pro Sekunde und die doppelte Schnittrate, also stimmt II. Ein Kommutator vertauscht die Anschlüsse jede halbe Drehung, der Strom außen fließt also immer **gleich herum**, und IV stimmt.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II lässt IV weg, doch ein Kommutator hält den Strom außen wirklich in **einer Richtung**.
+- II, III und IV nimmt III an, doch der größte Fluss durch die Spule ist der Moment, in dem er sich **am langsamsten ändert**.
+- III und IV verwirft I und II, doch die EMK ist wirklich am größten, wenn die Spule **längs** des Feldes liegt, und wächst mit der Drehzahl.

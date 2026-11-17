@@ -1,0 +1,24 @@
+# Pada laju maksimum, kuasa berguna sama dengan daya didarab laju
+
+Kuasa berguna ialah <InlineMath math="0.85 \times 600 \times 200 = 102" /> kW. Pada laju maksimum semuanya digunakan untuk menolak rintangan, jadi di jalan rata <InlineMath math="v = 102\,000 \div 6000 = 17" /> m/s.
+
+<Mermaid
+  title={<>Kuasa Dibahagi Daya Memberi Laju</>}
+  description={<>Pada laju maksimum semua kuasa berguna digunakan untuk menolak daya yang menentang. Di bukit sebahagian berat menyertai daya itu, jadi kuasa yang sama memberi laju lebih rendah.</>}
+  chart={`
+    flowchart LR
+      N0["Kuasa elektrik = 600 × 200 = 120 kW"] --> N1["Kuasa berguna = 0.85 × 120 = 102 kW"]
+      N1 --> N2["Rata: v = 102 000 ÷ 6000 = 17 m/s"]
+      N3["Bukit: komponen berat = 12 000 × 9.8 ÷ 50 = 2352 N"] --> N4["Jumlah daya = 6000 + 2352 = 8352 N"]
+      N1 --> N5["Bukit: v = 102 000 ÷ 8352 = 12 m/s"]
+      N4 --> N5
+  `}
+/>
+
+Di bukit **sebahagian berat** juga bertindak ke bawah jalan: <InlineMath math="12\,000 \times 9.8 \div 50 = 2352" /> N. Jumlah daya yang menentang ialah <InlineMath math="8352" /> N, jadi <InlineMath math="v = 102\,000 \div 8352 = 12" /> m/s.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="20\text{ m s}^{-1}" /> menggunakan seluruh <InlineMath math="120" /> kW, mengabaikan **kecekapan** <InlineMath math="85\%" />.
+- <InlineMath math="16\text{ m s}^{-1}" /> mengambil komponen berat sebagai <InlineMath math="12\,000 \div 50" />, terlupa mendarab jisim dengan **g**.
+- <InlineMath math="0.83\text{ m s}^{-1}" /> menambah **seluruh** berat, tetapi di bukit landai hanya satu per lima puluh daripadanya bertindak di sepanjang jalan.

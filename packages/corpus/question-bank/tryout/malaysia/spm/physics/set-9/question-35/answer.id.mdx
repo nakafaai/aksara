@@ -1,0 +1,24 @@
+# Cari hambatan saat transistor menyala, lalu bagi arus di simpul
+
+Transistor menyala saat <InlineMath math="0{,}70" /> V berada pada resistor <InlineMath math="1{,}0\text{ k}\Omega" /> dan <InlineMath math="5{,}3" /> V pada termistor, jadi termistor <InlineMath math="1{,}0 \times 5{,}3 \div 0{,}70 = 7{,}6\text{ k}\Omega" />: sekitar <InlineMath math="40^\circ\text{C}" />.
+
+<Mermaid
+  title={<>Hanya Sisa Arus yang Masuk ke Basis</>}
+  description={<>Begitu transistor menyala, basis menahan simpul pada tegangan tetap. Termistor lalu membawa arus lebih besar dari yang diambil resistor tetap, dan hanya selisihnya yang masuk ke basis.</>}
+  chart={`
+    flowchart LR
+      N0["Menyala: 0,70 V pada 1,0 kΩ, 5,3 V pada termistor"] --> N1["Termistor = 1,0 × 5,3 ÷ 0,70 = 7,6 kΩ, sekitar 40 °C"]
+      N2["Pada 50 °C: basis tertahan di 0,70 V"] --> N3["Termistor membawa (6,0 − 0,70) ÷ 5,0 = 1,06 mA"]
+      N2 --> N4["Resistor tetap membawa 0,70 ÷ 1,0 = 0,70 mA"]
+      N3 --> N5["Basis: 1,06 − 0,70 = 0,36 mA, kolektor 100 × 0,36 = 36 mA"]
+      N4 --> N5
+  `}
+/>
+
+Pada <InlineMath math="50^\circ\text{C}" /> basis **menahan** simpul di <InlineMath math="0{,}70" /> V. Termistor lalu membawa <InlineMath math="5{,}3 \div 5{,}0 = 1{,}06" /> mA, resistor tetap mengambil <InlineMath math="0{,}70" /> mA, dan basis mendapat **selisihnya**, <InlineMath math="0{,}36" /> mA. Arus kolektor <InlineMath math="100 \times 0{,}36 = 36" /> mA.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="106\text{ mA}" /> mengirim seluruh arus termistor ke basis, lupa bagian yang diambil **resistor tetap**.
+- <InlineMath math="70\text{ mA}" /> mengambil arus resistor tetap sebagai arus basis, padahal basis mendapat **sisanya**.
+- <InlineMath math="0{,}36\text{ mA}" /> adalah arus basis, bukan arus kolektor, yang **<InlineMath math="100" /> kali** lebih besar.

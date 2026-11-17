@@ -1,0 +1,24 @@
+# Bina satu baris, kemudian sambung baris-baris secara selari
+
+Setiap baris menjumlahkan selnya secara bersiri: <InlineMath math="5000 \times 0.15 = 750" /> V dengan <InlineMath math="5000 \times 0.25 = 1250\,\Omega" /> di dalam. <InlineMath math="140" /> baris serupa secara selari mengekalkan <InlineMath math="750" /> V tetapi **berkongsi** arus, jadi rintangan dalamnya <InlineMath math="1250 \div 140 = 8.9\,\Omega" />.
+
+<Mermaid
+  title={<>Bersiri untuk Voltan, Selari untuk Arus</>}
+  description={<>Sel bersiri menjumlahkan voltan dan rintangan dalamnya. Baris yang serupa secara selari mengekalkan voltan tetapi membahagi rintangan dalam, jadi organ itu dapat mengalirkan hampir satu ampere melalui air.</>}
+  chart={`
+    flowchart LR
+      N0["Satu baris: d.g.e. 5000 × 0.15 = 750 V"] --> N2["140 baris sama secara selari: d.g.e. kekal 750 V"]
+      N1["Satu baris: r = 5000 × 0.25 = 1250 Ω"] --> N3["r = 1250 ÷ 140 = 8.9 Ω"]
+      N2 --> N4["I = 750 ÷ (800 + 8.9) = 0.93 A"]
+      N3 --> N4
+      N4 --> N5["V = 0.93 × 800 = 742 V"]
+  `}
+/>
+
+Arus melalui air ialah <InlineMath math="750 \div (800 + 8.9) = 0.93" /> A, dan beza keupayaan merentasinya <InlineMath math="0.93 \times 800 = 742" /> V.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0.94\text{ A}" /> dan <InlineMath math="750\text{ V}" /> meninggalkan **rintangan dalam**, walaupun kecil.
+- <InlineMath math="6.6\text{ mA}" /> ialah arus dalam **satu baris**, bukan jumlah melalui air.
+- <InlineMath math="4.3\text{ mA}" /> menjumlahkan rintangan baris seolah-olah **bersiri**, tetapi baris selari membahaginya.

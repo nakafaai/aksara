@@ -1,0 +1,24 @@
+# Cari rintangan semasa transistor hidup, kemudian kongsi arus di simpang
+
+Transistor hidup apabila <InlineMath math="0.70" /> V berada merentasi perintang <InlineMath math="1.0\text{ k}\Omega" /> dan <InlineMath math="5.3" /> V merentasi termistor, jadi termistor <InlineMath math="1.0 \times 5.3 \div 0.70 = 7.6\text{ k}\Omega" />: kira-kira <InlineMath math="40^\circ\text{C}" />.
+
+<Mermaid
+  title={<>Hanya Baki Arus Memasuki Tapak</>}
+  description={<>Sebaik sahaja transistor hidup, tapak menahan simpang pada voltan tetap. Termistor kemudian membawa arus lebih daripada yang diambil oleh perintang tetap, dan hanya bezanya mengalir ke dalam tapak.</>}
+  chart={`
+    flowchart LR
+      N0["Hidup: 0.70 V merentasi 1.0 kΩ, 5.3 V merentasi termistor"] --> N1["Termistor = 1.0 × 5.3 ÷ 0.70 = 7.6 kΩ, kira-kira 40 °C"]
+      N2["Pada 50 °C: tapak ditahan pada 0.70 V"] --> N3["Termistor membawa (6.0 − 0.70) ÷ 5.0 = 1.06 mA"]
+      N2 --> N4["Perintang tetap membawa 0.70 ÷ 1.0 = 0.70 mA"]
+      N3 --> N5["Tapak: 1.06 − 0.70 = 0.36 mA, pengumpul 100 × 0.36 = 36 mA"]
+      N4 --> N5
+  `}
+/>
+
+Pada <InlineMath math="50^\circ\text{C}" /> tapak **menahan** simpang pada <InlineMath math="0.70" /> V. Termistor kemudian membawa <InlineMath math="5.3 \div 5.0 = 1.06" /> mA, perintang tetap mengambil <InlineMath math="0.70" /> mA, dan tapak mendapat **bezanya**, <InlineMath math="0.36" /> mA. Arus pengumpul ialah <InlineMath math="100 \times 0.36 = 36" /> mA.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="106\text{ mA}" /> menghantar seluruh arus termistor ke tapak, terlupa bahagian yang diambil oleh **perintang tetap**.
+- <InlineMath math="70\text{ mA}" /> mengambil arus perintang tetap sebagai arus tapak, tetapi tapak mendapat **bakinya**.
+- <InlineMath math="0.36\text{ mA}" /> ialah arus tapak, bukan arus pengumpul, yang **<InlineMath math="100" /> kali** lebih besar.

@@ -1,0 +1,24 @@
+# Build one row, then put the rows in parallel
+
+Each row adds its cells in series: <InlineMath math="5000 \times 0.15 = 750" /> V with <InlineMath math="5000 \times 0.25 = 1250\,\Omega" /> inside. The <InlineMath math="140" /> identical rows in parallel keep the <InlineMath math="750" /> V but **share** the current, so their internal resistance is <InlineMath math="1250 \div 140 = 8.9\,\Omega" />.
+
+<Mermaid
+  title={<>Series for Voltage, Parallel for Current</>}
+  description={<>Cells in series add their voltages and their internal resistances. Identical rows in parallel keep the voltage but divide the internal resistance, so the organ can drive almost a whole ampere through the water.</>}
+  chart={`
+    flowchart LR
+      N0["One row: e.m.f. 5000 × 0.15 = 750 V"] --> N2["140 equal rows in parallel: e.m.f. still 750 V"]
+      N1["One row: r = 5000 × 0.25 = 1250 Ω"] --> N3["r = 1250 ÷ 140 = 8.9 Ω"]
+      N2 --> N4["I = 750 ÷ (800 + 8.9) = 0.93 A"]
+      N3 --> N4
+      N4 --> N5["V = 0.93 × 800 = 742 V"]
+  `}
+/>
+
+The current through the water is <InlineMath math="750 \div (800 + 8.9) = 0.93" /> A, and the potential difference across it is <InlineMath math="0.93 \times 800 = 742" /> V.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.94\text{ A}" /> and <InlineMath math="750\text{ V}" /> leave out the **internal resistance**, small as it is.
+- <InlineMath math="6.6\text{ mA}" /> is the current in **one row**, not the total through the water.
+- <InlineMath math="4.3\text{ mA}" /> adds the rows’ resistances as if in **series**, but parallel rows divide them.

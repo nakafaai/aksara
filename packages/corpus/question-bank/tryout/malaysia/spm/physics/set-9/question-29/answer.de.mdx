@@ -1,0 +1,24 @@
+# Bei Höchstgeschwindigkeit ist Nutzleistung gleich Kraft mal Geschwindigkeit
+
+Die Nutzleistung ist <InlineMath math="0{,}85 \times 600 \times 200 = 102" /> kW. Bei Höchstgeschwindigkeit geht sie ganz gegen den Widerstand, auf ebener Straße also <InlineMath math="v = 102\,000 \div 6000 = 17" /> m/s.
+
+<Mermaid
+  title={<>Leistung durch Kraft gibt Geschwindigkeit</>}
+  description={<>Bei Höchstgeschwindigkeit geht die ganze Nutzleistung in das Schieben gegen die Gegenkräfte. Am Hang kommt ein Teil des Gewichts dazu, dieselbe Leistung gibt also weniger Geschwindigkeit.</>}
+  chart={`
+    flowchart LR
+      N0["Elektrische Leistung = 600 × 200 = 120 kW"] --> N1["Nutzleistung = 0,85 × 120 = 102 kW"]
+      N1 --> N2["Eben: v = 102 000 ÷ 6000 = 17 m/s"]
+      N3["Steigung: Hangabtrieb = 12 000 × 9,8 ÷ 50 = 2352 N"] --> N4["Gesamtkraft = 6000 + 2352 = 8352 N"]
+      N1 --> N5["Steigung: v = 102 000 ÷ 8352 = 12 m/s"]
+      N4 --> N5
+  `}
+/>
+
+Am Hang wirkt zusätzlich ein **Teil des Gewichts** die Straße hinab: <InlineMath math="12\,000 \times 9{,}8 \div 50 = 2352" /> N. Die gesamte Gegenkraft ist <InlineMath math="8352" /> N, also <InlineMath math="v = 102\,000 \div 8352 = 12" /> m/s.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="20\text{ m s}^{-1}" /> nimmt die ganzen <InlineMath math="120" /> kW und übersieht den **Wirkungsgrad** von <InlineMath math="85\%" />.
+- <InlineMath math="16\text{ m s}^{-1}" /> nimmt als Hangabtrieb <InlineMath math="12\,000 \div 50" /> und vergisst, die Masse mit **g** zu multiplizieren.
+- <InlineMath math="0{,}83\text{ m s}^{-1}" /> addiert das **ganze** Gewicht, doch am flachen Hang wirkt nur ein Fünfzigstel davon längs der Straße.

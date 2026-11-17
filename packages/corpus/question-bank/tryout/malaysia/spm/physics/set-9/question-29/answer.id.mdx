@@ -1,0 +1,24 @@
+# Pada kelajuan maksimum, daya berguna sama dengan gaya dikali kelajuan
+
+Daya bergunanya <InlineMath math="0{,}85 \times 600 \times 200 = 102" /> kW. Pada kelajuan maksimum semuanya dipakai melawan hambatan, jadi di jalan datar <InlineMath math="v = 102\,000 \div 6000 = 17" /> m/s.
+
+<Mermaid
+  title={<>Daya Dibagi Gaya Memberi Kelajuan</>}
+  description={<>Pada kelajuan maksimum seluruh daya berguna dipakai untuk melawan gaya penghambat. Di bukit sebagian berat ikut menghambat, jadi daya yang sama memberi kelajuan lebih rendah.</>}
+  chart={`
+    flowchart LR
+      N0["Daya listrik = 600 × 200 = 120 kW"] --> N1["Daya berguna = 0,85 × 120 = 102 kW"]
+      N1 --> N2["Datar: v = 102 000 ÷ 6000 = 17 m/s"]
+      N3["Bukit: komponen berat = 12 000 × 9,8 ÷ 50 = 2352 N"] --> N4["Total gaya = 6000 + 2352 = 8352 N"]
+      N1 --> N5["Bukit: v = 102 000 ÷ 8352 = 12 m/s"]
+      N4 --> N5
+  `}
+/>
+
+Di bukit **sebagian berat** juga bekerja menuruni jalan: <InlineMath math="12\,000 \times 9{,}8 \div 50 = 2352" /> N. Total gaya penghambat <InlineMath math="8352" /> N, jadi <InlineMath math="v = 102\,000 \div 8352 = 12" /> m/s.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="20\text{ m s}^{-1}" /> memakai seluruh <InlineMath math="120" /> kW, mengabaikan **efisiensi** <InlineMath math="85\%" />.
+- <InlineMath math="16\text{ m s}^{-1}" /> mengambil komponen berat sebagai <InlineMath math="12\,000 \div 50" />, lupa mengalikan massa dengan **g**.
+- <InlineMath math="0{,}83\text{ m s}^{-1}" /> menambahkan **seluruh** berat, padahal di bukit landai hanya seperlima puluhnya bekerja sepanjang jalan.

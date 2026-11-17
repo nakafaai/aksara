@@ -1,0 +1,24 @@
+# Eine Reihe aufbauen, dann die Reihen parallel schalten
+
+Jede Reihe addiert ihre Zellen in Reihe: <InlineMath math="5000 \times 0{,}15 = 750" /> V mit <InlineMath math="5000 \times 0{,}25 = 1250\,\Omega" /> innen. Die <InlineMath math="140" /> gleichen Reihen parallel behalten die <InlineMath math="750" /> V, **teilen** sich aber den Strom, ihr Innenwiderstand ist also <InlineMath math="1250 \div 140 = 8{,}9\,\Omega" />.
+
+<Mermaid
+  title={<>Reihe für Spannung, parallel für Strom</>}
+  description={<>Zellen in Reihe addieren Spannungen und Innenwiderstände. Gleiche Reihen parallel behalten die Spannung, teilen aber den Innenwiderstand, so treibt das Organ fast ein Ampere durchs Wasser.</>}
+  chart={`
+    flowchart LR
+      N0["Eine Reihe: EMK 5000 × 0,15 = 750 V"] --> N2["140 gleiche Reihen parallel: EMK bleibt 750 V"]
+      N1["Eine Reihe: r = 5000 × 0,25 = 1250 Ω"] --> N3["r = 1250 ÷ 140 = 8,9 Ω"]
+      N2 --> N4["I = 750 ÷ (800 + 8,9) = 0,93 A"]
+      N3 --> N4
+      N4 --> N5["V = 0,93 × 800 = 742 V"]
+  `}
+/>
+
+Durch das Wasser fließen <InlineMath math="750 \div (800 + 8{,}9) = 0{,}93" /> A, und an ihm liegen <InlineMath math="0{,}93 \times 800 = 742" /> V.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}94\text{ A}" /> und <InlineMath math="750\text{ V}" /> lassen den **Innenwiderstand** weg, so klein er ist.
+- <InlineMath math="6{,}6\text{ mA}" /> ist der Strom in **einer Reihe**, nicht der gesamte durchs Wasser.
+- <InlineMath math="4{,}3\text{ mA}" /> addiert die Widerstände der Reihen wie in **Reihe**, doch parallele Reihen teilen sie.

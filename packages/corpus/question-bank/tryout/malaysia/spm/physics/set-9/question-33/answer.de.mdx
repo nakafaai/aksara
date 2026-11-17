@@ -1,0 +1,23 @@
+# Die aufgenommene Leistung in Wärme und Arbeit teilen, dann die Drehung wegnehmen
+
+Beim Heben nimmt der Motor <InlineMath math="12 \times 1{,}5 = 18" /> W auf, davon macht die Spule <InlineMath math="1{,}5^2 \times 2{,}0 = 4{,}5" /> W zu Wärme, er liefert also <InlineMath math="13{,}5" /> W mechanische Leistung.
+
+<Mermaid
+  title={<>Ein drehender Motor begrenzt seinen Strom selbst</>}
+  description={<>Solange die Spule dreht, induziert sie eine Gegenspannung, und der Strom bleibt klein. Ein blockierter Motor verliert diese Gegenspannung, und nur der Spulenwiderstand begrenzt den Strom.</>}
+  chart={`
+    flowchart LR
+      N0["Im Lauf: aufgenommen 12 × 1,5 = 18 W"] --> N2["Mechanisch = 18 − 4,5 = 13,5 W"]
+      N1["Spulenwärme = 1,5² × 2,0 = 4,5 W"] --> N2
+      N3["Blockiert: keine Drehung, keine induzierte Gegenspannung"] --> N4["I = 12 ÷ 2,0 = 6,0 A"]
+      N4 --> N5["Wärme = 6,0² × 2,0 = 72 W"]
+  `}
+/>
+
+Blockiert dreht die Spule nicht mehr und induziert **keine Gegenspannung**. Der Strom steigt auf <InlineMath math="12 \div 2{,}0 = 6{,}0" /> A, und die Spule heizt mit <InlineMath math="6{,}0^2 \times 2{,}0 = 72" /> W, sechzehnmal so viel, darum brennen blockierte Motoren durch.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="18\text{ W}" /> zählt die ganze Aufnahme als Arbeit und vergisst die **Wärme** in der Spule.
+- <InlineMath math="4{,}5\text{ W}" /> behält den Strom im Lauf, doch ein blockierter Motor zieht **viel mehr**.
+- <InlineMath math="18\text{ W}" /> und <InlineMath math="72\text{ W}" /> treffen die Blockade, zählen im Lauf aber die ganze Aufnahme als **Arbeit**.

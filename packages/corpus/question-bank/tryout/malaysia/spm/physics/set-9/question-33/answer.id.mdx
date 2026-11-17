@@ -1,0 +1,23 @@
+# Bagi daya masuk menjadi kalor dan usaha, lalu hentikan putaran
+
+Saat mengangkat, motor mengambil <InlineMath math="12 \times 1{,}5 = 18" /> W, dan kumparan mengubah <InlineMath math="1{,}5^2 \times 2{,}0 = 4{,}5" /> W darinya menjadi kalor, jadi motor memberi <InlineMath math="13{,}5" /> W daya mekanik.
+
+<Mermaid
+  title={<>Motor yang Berputar Membatasi Arusnya Sendiri</>}
+  description={<>Selama kumparan berputar ia menginduksi GGL yang melawan sumber, jadi arus tetap kecil. Motor yang macet kehilangan perlawanan itu, dan hanya hambatan kumparan yang membatasi arus.</>}
+  chart={`
+    flowchart LR
+      N0["Berjalan: daya masuk = 12 × 1,5 = 18 W"] --> N2["Mekanik = 18 − 4,5 = 13,5 W"]
+      N1["Pemanasan kumparan = 1,5² × 2,0 = 4,5 W"] --> N2
+      N3["Macet: tanpa putaran, jadi tanpa GGL induksi yang melawan"] --> N4["I = 12 ÷ 2,0 = 6,0 A"]
+      N4 --> N5["Pemanasan = 6,0² × 2,0 = 72 W"]
+  `}
+/>
+
+Saat macet, kumparan tidak lagi berputar, jadi **tidak menginduksi** GGL yang melawan. Arus naik menjadi <InlineMath math="12 \div 2{,}0 = 6{,}0" /> A, dan kumparan memanas <InlineMath math="6{,}0^2 \times 2{,}0 = 72" /> W, enam belas kali lipat, karena itu motor macet terbakar.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="18\text{ W}" /> menghitung seluruh daya masuk sebagai usaha, lupa **pemanasan** di kumparan.
+- <InlineMath math="4{,}5\text{ W}" /> mempertahankan arus saat berjalan, padahal motor macet menarik arus **jauh lebih besar**.
+- <InlineMath math="18\text{ W}" /> dan <InlineMath math="72\text{ W}" /> benar untuk keadaan macet tetapi tetap menghitung seluruh daya masuk sebagai **usaha** saat berjalan.

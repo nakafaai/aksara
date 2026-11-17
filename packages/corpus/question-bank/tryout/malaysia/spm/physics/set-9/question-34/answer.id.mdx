@@ -1,0 +1,23 @@
+# GGL mengikuti seberapa cepat fluks berubah
+
+GGL bergantung pada seberapa **cepat** fluks yang menembus kumparan berubah. Saat bidang kumparan sejajar medan, sisinya memotong garis medan dengan laju terbesar, jadi GGL terbesar saat itu dan pernyataan I benar. Pernyataan III mencampuradukkan fluks terbanyak dengan perubahan tercepat: saat tegak lurus fluks terbesar tetapi sesaat **tidak berubah**, jadi GGL nol.
+
+<Mermaid
+  title={<>Laju Perubahan, Bukan Jumlah, yang Menghasilkan GGL</>}
+  description={<>Sisi kumparan memotong garis medan paling cepat saat kumparan sejajar medan, walau tak ada garis yang menembusnya saat itu. Komutator mengubah keluaran bolak-balik menjadi arus yang selalu searah.</>}
+  chart={`
+    flowchart LR
+      N0["GGL bergantung pada laju perubahan fluks"] --> N1["Bidang sejajar medan: sisi memotong garis paling cepat (I benar)"]
+      N0 --> N2["Bidang tegak lurus: fluks terbanyak, tetapi berubah paling lambat (III salah)"]
+      N0 --> N3["Dua kali lebih cepat: dua kali siklus dan dua kali laju pemotongan (II benar)"]
+      N3 --> N4["Komutator membalik sambungan tiap setengah putaran (IV benar)"]
+  `}
+/>
+
+Berputar dua kali lebih cepat memberi dua kali jumlah siklus tiap detik dan dua kali laju pemotongan, jadi II benar. Komutator cincin belah menukar sambungan kumparan tiap setengah putaran, jadi arus luar selalu mengalir **searah**, dan IV benar.
+
+# Kenapa pilihan lain salah
+
+- I dan II saja melupakan IV, padahal komutator memang membuat arus luar mengalir **searah**.
+- II, III dan IV menerima III, padahal fluks terbanyak adalah saat kumparan **berubah paling lambat**.
+- III dan IV membuang I dan II, padahal GGL memang memuncak saat kumparan **sejajar** medan dan bertambah seiring kecepatan.

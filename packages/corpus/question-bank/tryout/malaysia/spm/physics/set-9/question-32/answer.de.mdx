@@ -1,0 +1,24 @@
+# Der Induktionsstrom erzeugt eine Kraft gegen die Bewegung
+
+Bei <InlineMath math="3{,}0" /> m/s erzeugt der Stab <InlineMath math="0{,}40 \times 0{,}50 \times 3{,}0 = 0{,}60" /> V und treibt <InlineMath math="0{,}30" /> A durch den Widerstand. Das Feld drückt auf diesen Strom mit <InlineMath math="0{,}40 \times 0{,}30 \times 0{,}50 = 0{,}060" /> N **gegen** die Bewegung, dieselbe Kraft hält ihn also in Gang.
+
+<Mermaid
+  title={<>Der Induktionsstrom bremst den Stab</>}
+  description={<>Die Bewegung induziert einen Strom, und das Feld drückt auf diesen Strom gegen die Bewegung. Je schneller der Stab, desto stärker der Druck, bis er den Zug den Hang hinab ausgleicht.</>}
+  chart={`
+    flowchart LR
+      N0["EMK = 0,40 × 0,50 × 3,0 = 0,60 V"] --> N1["I = 0,60 ÷ 2,0 = 0,30 A"]
+      N1 --> N2["Kraft = 0,40 × 0,30 × 0,50 = 0,060 N"]
+      N2 --> N4["Gegenkraft wächst mit v: B²L²v ÷ R = 0,020v"]
+      N3["Geneigt: Zug längs der Schienen = 0,020 × 9,8 × sin 30° = 0,098 N"] --> N5["Endgeschwindigkeit: 0,020v = 0,098, v = 4,9 m/s"]
+      N4 --> N5
+  `}
+/>
+
+Allgemein ist die Gegenkraft <InlineMath math="B^2L^2v \div R = 0{,}020v" /> Newton. Auf den geneigten Schienen zieht <InlineMath math="0{,}020 \times 9{,}8 \times \sin 30^\circ = 0{,}098" /> N den Stab hinab, er wird also nicht mehr schneller, wenn <InlineMath math="0{,}020v = 0{,}098" />, bei <InlineMath math="v = 4{,}9" /> m/s.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="9{,}8\text{ m s}^{-1}" /> gleicht das **ganze** Gewicht aus, doch nur der Anteil längs der Schienen zieht den Stab.
+- Immer schneller vergisst, dass der Induktionsstrom mit der Geschwindigkeit **wächst** und den Stab bremst.
+- <InlineMath math="0{,}12\text{ N}" /> und <InlineMath math="2{,}5\text{ m s}^{-1}" /> lassen die **Länge** aus der Kraft <InlineMath math="BIL" /> weg.

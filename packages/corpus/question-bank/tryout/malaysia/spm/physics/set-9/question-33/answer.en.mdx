@@ -1,0 +1,23 @@
+# Split the input power into heat and work, then remove the turning
+
+While lifting, the motor takes <InlineMath math="12 \times 1.5 = 18" /> W, of which the coil turns <InlineMath math="1.5^2 \times 2.0 = 4.5" /> W into heat, so it delivers <InlineMath math="13.5" /> W of mechanical power.
+
+<Mermaid
+  title={<>A Turning Motor Limits Its Own Current</>}
+  description={<>While the coil turns it induces an electromotive force that opposes the supply, so the current stays small. A jammed motor loses that opposition, and only the coil’s resistance limits the current.</>}
+  chart={`
+    flowchart LR
+      N0["Running: power in = 12 × 1.5 = 18 W"] --> N2["Mechanical = 18 − 4.5 = 13.5 W"]
+      N1["Coil heating = 1.5² × 2.0 = 4.5 W"] --> N2
+      N3["Jammed: no turning, so no opposing induced e.m.f."] --> N4["I = 12 ÷ 2.0 = 6.0 A"]
+      N4 --> N5["Heating = 6.0² × 2.0 = 72 W"]
+  `}
+/>
+
+When it jams, the coil no longer turns, so it induces **no opposing** electromotive force. The current rises to <InlineMath math="12 \div 2.0 = 6.0" /> A, and the coil heats at <InlineMath math="6.0^2 \times 2.0 = 72" /> W, sixteen times as much, which is why jammed motors burn out.
+
+# Why the other options are wrong
+
+- <InlineMath math="18\text{ W}" /> counts the whole input as work, forgetting the **heating** in the coil.
+- <InlineMath math="4.5\text{ W}" /> keeps the running current, but a jammed motor draws **much more**.
+- <InlineMath math="18\text{ W}" /> and <InlineMath math="72\text{ W}" /> get the jam right but still count the whole input as **work** while running.

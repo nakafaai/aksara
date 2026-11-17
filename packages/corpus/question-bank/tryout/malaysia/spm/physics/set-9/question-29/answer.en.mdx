@@ -1,0 +1,24 @@
+# At top speed, useful power equals force times speed
+
+The useful power is <InlineMath math="0.85 \times 600 \times 200 = 102" /> kW. At top speed it all goes into pushing against the resistance, so on the level <InlineMath math="v = 102\,000 \div 6000 = 17" /> m/s.
+
+<Mermaid
+  title={<>Power Divided by Force Gives Speed</>}
+  description={<>At top speed all the useful power goes into pushing against the opposing forces. On the hill a share of the weight joins those forces, so the same power gives a lower speed.</>}
+  chart={`
+    flowchart LR
+      N0["Electrical power = 600 × 200 = 120 kW"] --> N1["Useful power = 0.85 × 120 = 102 kW"]
+      N1 --> N2["Level: v = 102 000 ÷ 6000 = 17 m/s"]
+      N3["Hill: weight along it = 12 000 × 9.8 ÷ 50 = 2352 N"] --> N4["Total force = 6000 + 2352 = 8352 N"]
+      N1 --> N5["Hill: v = 102 000 ÷ 8352 = 12 m/s"]
+      N4 --> N5
+  `}
+/>
+
+On the hill a **share of the weight** also acts down the road: <InlineMath math="12\,000 \times 9.8 \div 50 = 2352" /> N. The total opposing force is <InlineMath math="8352" /> N, so <InlineMath math="v = 102\,000 \div 8352 = 12" /> m/s.
+
+# Why the other options are wrong
+
+- <InlineMath math="20\text{ m s}^{-1}" /> uses all <InlineMath math="120" /> kW, ignoring the <InlineMath math="85\%" /> **efficiency**.
+- <InlineMath math="16\text{ m s}^{-1}" /> takes the share of the weight as <InlineMath math="12\,000 \div 50" />, forgetting to multiply the mass by **g**.
+- <InlineMath math="0.83\text{ m s}^{-1}" /> adds the **whole** weight, but on a gentle hill only a fiftieth of it acts along the road.

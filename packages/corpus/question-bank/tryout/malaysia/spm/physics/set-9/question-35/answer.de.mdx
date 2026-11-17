@@ -1,0 +1,24 @@
+# Den Schaltwiderstand finden, dann den Strom am Knoten aufteilen
+
+Der Transistor schaltet ein, wenn <InlineMath math="0{,}70" /> V am Widerstand von <InlineMath math="1{,}0\text{ k}\Omega" /> und <InlineMath math="5{,}3" /> V am Thermistor liegen, der Thermistor hat also <InlineMath math="1{,}0 \times 5{,}3 \div 0{,}70 = 7{,}6\text{ k}\Omega" />: etwa <InlineMath math="40^\circ\text{C}" />.
+
+<Mermaid
+  title={<>Nur der Reststrom fließt in die Basis</>}
+  description={<>Ist der Transistor an, hält die Basis den Knoten auf fester Spannung. Der Thermistor führt dann mehr Strom, als der Festwiderstand abnimmt, und nur die Differenz fließt in die Basis.</>}
+  chart={`
+    flowchart LR
+      N0["Einschalten: 0,70 V an 1,0 kΩ, 5,3 V am Thermistor"] --> N1["Thermistor = 1,0 × 5,3 ÷ 0,70 = 7,6 kΩ, etwa 40 °C"]
+      N2["Bei 50 °C: Basis bei 0,70 V festgehalten"] --> N3["Thermistor führt (6,0 − 0,70) ÷ 5,0 = 1,06 mA"]
+      N2 --> N4["Festwiderstand führt 0,70 ÷ 1,0 = 0,70 mA"]
+      N3 --> N5["Basis: 1,06 − 0,70 = 0,36 mA, Kollektor 100 × 0,36 = 36 mA"]
+      N4 --> N5
+  `}
+/>
+
+Bei <InlineMath math="50^\circ\text{C}" /> **hält** die Basis den Knoten bei <InlineMath math="0{,}70" /> V. Der Thermistor führt dann <InlineMath math="5{,}3 \div 5{,}0 = 1{,}06" /> mA, der Festwiderstand nimmt <InlineMath math="0{,}70" /> mA, und die Basis bekommt die **Differenz**, <InlineMath math="0{,}36" /> mA. Der Kollektorstrom ist <InlineMath math="100 \times 0{,}36 = 36" /> mA.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="106\text{ mA}" /> schickt den ganzen Thermistorstrom in die Basis und vergisst den Anteil des **Festwiderstands**.
+- <InlineMath math="70\text{ mA}" /> nimmt den Strom des Festwiderstands als Basisstrom, doch die Basis bekommt den **Rest**.
+- <InlineMath math="0{,}36\text{ mA}" /> ist der Basisstrom, nicht der Kollektorstrom, der **100-mal** größer ist.

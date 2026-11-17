@@ -1,0 +1,24 @@
+# Find the switching resistance, then share the current at the junction
+
+The transistor switches on when <InlineMath math="0.70" /> V lies across the <InlineMath math="1.0\text{ k}\Omega" /> resistor and <InlineMath math="5.3" /> V across the thermistor, so the thermistor is <InlineMath math="1.0 \times 5.3 \div 0.70 = 7.6\text{ k}\Omega" />: about <InlineMath math="40^\circ\text{C}" />.
+
+<Mermaid
+  title={<>Only the Leftover Current Enters the Base</>}
+  description={<>Once the transistor is on, the base holds the junction at a fixed voltage. The thermistor then carries more current than the fixed resistor takes, and only the difference flows into the base.</>}
+  chart={`
+    flowchart LR
+      N0["Switch-on: 0.70 V across 1.0 kΩ, 5.3 V across the thermistor"] --> N1["Thermistor = 1.0 × 5.3 ÷ 0.70 = 7.6 kΩ, about 40 °C"]
+      N2["At 50 °C: base held at 0.70 V"] --> N3["Thermistor carries (6.0 − 0.70) ÷ 5.0 = 1.06 mA"]
+      N2 --> N4["Fixed resistor carries 0.70 ÷ 1.0 = 0.70 mA"]
+      N3 --> N5["Base: 1.06 − 0.70 = 0.36 mA, collector 100 × 0.36 = 36 mA"]
+      N4 --> N5
+  `}
+/>
+
+At <InlineMath math="50^\circ\text{C}" /> the base **holds** the junction at <InlineMath math="0.70" /> V. The thermistor then carries <InlineMath math="5.3 \div 5.0 = 1.06" /> mA, the fixed resistor takes <InlineMath math="0.70" /> mA, and the base gets the **difference**, <InlineMath math="0.36" /> mA. The collector current is <InlineMath math="100 \times 0.36 = 36" /> mA.
+
+# Why the other options are wrong
+
+- <InlineMath math="106\text{ mA}" /> sends the whole thermistor current into the base, forgetting the share taken by the **fixed resistor**.
+- <InlineMath math="70\text{ mA}" /> takes the fixed resistor’s current as the base current, but the base gets what is **left over**.
+- <InlineMath math="0.36\text{ mA}" /> is the base current, not the collector current, which is **<InlineMath math="100" /> times** larger.
