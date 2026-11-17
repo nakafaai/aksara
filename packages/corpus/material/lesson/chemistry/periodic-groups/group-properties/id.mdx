@@ -101,15 +101,8 @@ Perbandingan <InlineMath math="2 : 1" /> berasal dari persamaan setara. Cek: dua
 
 Fluorin, klorin, bromin, dan iodin adalah **halogen**. Halogen berupa **molekul diatomik**, misalnya <InlineMath math="\mathrm{Cl_2}" />, yang ditahan gaya van der Waals. Makin ke bawah, molekulnya makin besar, jadi titik leleh dan titik didihnya naik. Itulah alasan fluorin dan klorin berupa gas, bromin cair, dan iodin padat pada suhu kamar.
 
-<Chart
+<ScatterDiagram
   title={<>Titik Leleh dan Titik Didih Halogen</>}
-  bars="apart"
-  categories={["Fluorin", "Klorin", "Bromin", "Iodin"]}
-  series={[
-    { label: "Titik leleh (°C)", mark: "bar", values: [-220, -101, -7, 114] },
-    { label: "Titik didih (°C)", mark: "bar", values: [-188, -34, 59, 184] },
-  ]}
-  valueLabel="Suhu (°C)"
   description={
     <>
       Titik leleh dan titik didih: fluorin <InlineMath math="-220" /> dan{" "}
@@ -119,6 +112,30 @@ Fluorin, klorin, bromin, dan iodin adalah **halogen**. Halogen berupa **molekul 
       iodin <InlineMath math="114" /> dan <InlineMath math="184^\circ\text{C}" />.
     </>
   }
+  xAxisLabel="Nomor atom"
+  yAxisLabel="Suhu (°C)"
+  datasets={[
+    {
+      name: "Titik leleh (°C)",
+      color: "var(--chart-1)",
+      points: [
+        { x: 9, y: -220 },
+        { x: 17, y: -101 },
+        { x: 35, y: -7 },
+        { x: 53, y: 114 },
+      ],
+    },
+    {
+      name: "Titik didih (°C)",
+      color: "var(--chart-2)",
+      points: [
+        { x: 9, y: -188 },
+        { x: 17, y: -34 },
+        { x: 35, y: 59 },
+        { x: 53, y: 184 },
+      ],
+    },
+  ]}
 />
 
 Halogen bereaksi dengan hidrogen membentuk hidrogen halida. Putar molekul klorin dan hidrogen klorida di model ini dan bandingkan ikatan tunggalnya.

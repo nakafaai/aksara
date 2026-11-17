@@ -101,15 +101,8 @@ Das Verhältnis <InlineMath math="2 : 1" /> stammt aus der ausgeglichenen Gleich
 
 Fluor, Chlor, Brom und Iod sind **Halogene**. Sie liegen als **zweiatomige Moleküle** vor, etwa <InlineMath math="\mathrm{Cl_2}" />, die durch Van-der-Waals-Kräfte zusammenhalten. Nach unten werden die Moleküle größer, also steigen Schmelz- und Siedetemperatur. Deshalb sind Fluor und Chlor bei Raumtemperatur Gase, Brom ist flüssig und Iod fest.
 
-<Chart
+<ScatterDiagram
   title={<>Schmelz- und Siedetemperaturen der Halogene</>}
-  bars="apart"
-  categories={["Fluor", "Chlor", "Brom", "Iod"]}
-  series={[
-    { label: "Schmelztemperatur (°C)", mark: "bar", values: [-220, -101, -7, 114] },
-    { label: "Siedetemperatur (°C)", mark: "bar", values: [-188, -34, 59, 184] },
-  ]}
-  valueLabel="Temperatur (°C)"
   description={
     <>
       Schmelz- und Siedetemperatur: Fluor <InlineMath math="-220" /> und{" "}
@@ -120,6 +113,30 @@ Fluor, Chlor, Brom und Iod sind **Halogene**. Sie liegen als **zweiatomige Molek
       und <InlineMath math="184\ {}^\circ\text{C}" />.
     </>
   }
+  xAxisLabel="Ordnungszahl"
+  yAxisLabel="Temperatur (°C)"
+  datasets={[
+    {
+      name: "Schmelztemperatur (°C)",
+      color: "var(--chart-1)",
+      points: [
+        { x: 9, y: -220 },
+        { x: 17, y: -101 },
+        { x: 35, y: -7 },
+        { x: 53, y: 114 },
+      ],
+    },
+    {
+      name: "Siedetemperatur (°C)",
+      color: "var(--chart-2)",
+      points: [
+        { x: 9, y: -188 },
+        { x: 17, y: -34 },
+        { x: 35, y: 59 },
+        { x: 53, y: 184 },
+      ],
+    },
+  ]}
 />
 
 Halogene reagieren mit Wasserstoff zu Halogenwasserstoffen. Dreh im Modell das Chlormolekül und das Chlorwasserstoffmolekül und vergleich ihre Einfachbindungen.
