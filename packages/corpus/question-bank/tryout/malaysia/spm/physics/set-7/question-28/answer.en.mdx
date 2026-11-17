@@ -1,30 +1,27 @@
-# A failed branch raises the total resistance and shifts the voltage
+# Include the internal resistance in the total, then follow the current through
 
-With both branches working, the parallel pair is <InlineMath math="2.0\,\Omega" />. When the <InlineMath math="3.0\,\Omega" /> resistor fails, the pair becomes just the <InlineMath math="6.0\,\Omega" /> resistor, so the **total resistance rises** and the current falls. But the <InlineMath math="6.0\,\Omega" /> resistor now takes a **larger share of the <InlineMath math="12\text{ V}" />**, so its power goes up, not down.
+The current depends on the **whole circuit**, including the battery's own <InlineMath math="1.0\,\Omega" />. When the <InlineMath math="3.0\,\Omega" /> branch fails, the parallel pair becomes the <InlineMath math="6.0\,\Omega" /> resistor alone, so the total resistance rises and the current falls. A smaller current loses less voltage inside the battery, so the **terminal voltage rises**, and the <InlineMath math="6.0\,\Omega" /> resistor, now carrying the whole current, heats up more.
 
 <Chart
-  title={<>Power in the <InlineMath math="6.0\ \Omega" /> Resistor Before and After</>}
+  title={<>Before and After the <InlineMath math="3.0\ \Omega" /> Resistor Fails</>}
   bars="apart"
-  categories={["Before", "After the 3.0 Ω fails"]}
+  categories={["Current (A)", "Power in 6.0 Ω (W)", "Terminal voltage (V)"]}
   series={[
-    { label: "Power", mark: "bar", values: [2.67, 8.64] },
+    { label: "Before", mark: "bar", values: [1.71, 1.96, 10.29] },
+    { label: "After", mark: "bar", values: [1.09, 7.14, 10.91] },
   ]}
-  valueLabel="Power (W)"
-  description={<>The power in the <InlineMath math="6.0\,\Omega" /> resistor rises from about <InlineMath math="2.7\text{ W}" /> to about <InlineMath math="8.6\text{ W}" /> once the <InlineMath math="3.0\,\Omega" /> resistor fails, because the voltage across it rises from <InlineMath math="4.0" /> to <InlineMath math="7.2\text{ V}" />.</>}
+  valueLabel="Value"
+  description={<>After the failure the current falls from <InlineMath math="1.7" /> to <InlineMath math="1.1\text{ A}" />, the terminal voltage rises from <InlineMath math="10.3" /> to <InlineMath math="10.9\text{ V}" />, and the power in the <InlineMath math="6.0\,\Omega" /> resistor rises from <InlineMath math="2.0" /> to <InlineMath math="7.1\text{ W}" />.</>}
 />
 
-<BlockMath math="\text{Before: } R=4.0+\frac{6.0\times3.0}{6.0+3.0}=6.0\,\Omega,\quad I=2.0\text{ A},\quad V_6=2.0\times2.0=4.0\text{ V},\quad P_6=\frac{4.0^2}{6.0}\approx2.7\text{ W}" />
+<BlockMath math="R=4.0+6.0+1.0=11\,\Omega,\qquad I=\frac{12}{11}\approx1.09\text{ A},\qquad P_6=1.09^2\times6.0\approx7.1\text{ W}" />
 
-<BlockMath math="\text{After: } R'=4.0+6.0=10\,\Omega,\quad I'=\frac{12}{10}=1.2\text{ A},\quad P_6'=1.2^2\times6.0\approx8.6\text{ W}" />
+<BlockMath math="V=E-Ir=12-1.09\times1.0\approx10.9\text{ V}" />
 
-The supply current drops from <InlineMath math="2.0\text{ A}" /> to <InlineMath math="1.2\text{ A}" />. The voltage across the <InlineMath math="6.0\,\Omega" /> resistor rises from <InlineMath math="4.0\text{ V}" /> to <InlineMath math="7.2\text{ V}" />, so its power more than triples, to about <InlineMath math="8.6\text{ W}" />.
-
-<BlockMath math="P_4'=1.2^2\times4.0\approx5.8\text{ W}\quad(\text{before: }2.0^2\times4.0=16\text{ W})" />
-
-The <InlineMath math="4.0\,\Omega" /> resistor carries the whole supply current, so its power falls from <InlineMath math="16\text{ W}" /> to about <InlineMath math="5.8\text{ W}" />, even though the <InlineMath math="6.0\,\Omega" /> resistor beside the failed one heats up more.
+The battery now delivers about <InlineMath math="1.1\text{ A}" />. The <InlineMath math="6.0\,\Omega" /> resistor dissipates about <InlineMath math="7.1\text{ W}" />, more than three times the <InlineMath math="2.0\text{ W}" /> it took before, and the terminal voltage rises to about <InlineMath math="10.9\text{ V}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="2.0\text{ A}" />, <InlineMath math="2.7\text{ W}" /> and <InlineMath math="16\text{ W}" /> describe the circuit **before the failure**.
-- <InlineMath math="24\text{ W}" /> puts the **full <InlineMath math="12\text{ V}" />** across the <InlineMath math="6.0\,\Omega" /> resistor, forgetting the <InlineMath math="4.0\,\Omega" /> resistor in series.
-- <InlineMath math="2.7\text{ W}" /> with <InlineMath math="1.2\text{ A}" /> assumes the **<InlineMath math="6.0\,\Omega" /> resistor is unaffected** by the failure of the branch beside it.
+- <InlineMath math="1.2\text{ A}" /> and <InlineMath math="12.0\text{ V}" /> **ignore the internal resistance**, as if the battery's terminals always gave the full emf.
+- <InlineMath math="1.7\text{ A}" />, <InlineMath math="2.0\text{ W}" /> and <InlineMath math="10.3\text{ V}" /> describe the circuit **before the failure**.
+- <InlineMath math="20\text{ W}" /> puts the **whole terminal voltage** across the <InlineMath math="6.0\,\Omega" /> resistor, forgetting the <InlineMath math="4.0\,\Omega" /> resistor in series with it.

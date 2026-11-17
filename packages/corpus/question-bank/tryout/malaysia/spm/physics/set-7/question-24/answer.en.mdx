@@ -1,30 +1,26 @@
-# The air pushes on both sides, so only the water's extra pressure counts for the force
+# The air cancels on both sides, so only the water presses the hatch shut against the bolts
 
-The total pressure on the water side is the **atmosphere plus the water column**, <InlineMath math="p_0+\rho gh" />. The air in the pipe pushes back with <InlineMath math="p_0" />, so the **resultant force** comes from the difference only, <InlineMath math="\rho gh" />, times the area.
+The water side feels the **atmosphere plus the water**, and the pipe side feels the **atmosphere**. The resultant force therefore comes from the water's pressure <InlineMath math="\rho gh" /> alone, times the hatch's area, which needs the **radius**, half the diameter. The bolts share that force, and their combined limit sets the deepest the hatch can be.
 
 <Chart
-  title={<>Pressure on Each Side of the Hatch</>}
+  title={<>Pressure Difference Across the Hatch Against Depth</>}
   bars="apart"
-  categories={["Water side", "Pipe side"]}
+  categories={["20 m", "24 m (bolt limit)"]}
   series={[
-    { label: "Pressure", mark: "bar", values: [300, 100] },
+    { label: "Pressure difference", mark: "bar", values: [200, 239] },
   ]}
-  valueLabel="Pressure (kPa)"
-  description={<>The water side is at <InlineMath math="300\text{ kPa}" /> and the pipe side at <InlineMath math="100\text{ kPa}" />. Only the difference, <InlineMath math="200\text{ kPa}" />, pushes the hatch.</>}
+  valueLabel="Pressure difference (kPa)"
+  description={<>The air acts on both sides, so only the water's pressure counts: <InlineMath math="200\text{ kPa}" /> at <InlineMath math="20\text{ m}" />, rising to the bolts' limit of <InlineMath math="239\text{ kPa}" /> at about <InlineMath math="24\text{ m}" />.</>}
 />
 
-<BlockMath math="p=1.0\times10^{5}+1000(10)(20)=3.0\times10^{5}\text{ Pa}" />
+<BlockMath math="A=\pi(0.40)^2\approx0.502\text{ m}^2,\qquad F=1000(10)(20)\times0.502\approx1.0\times10^{5}\text{ N},\qquad \frac{F}{8}\approx13\text{ kN}" />
 
-<BlockMath math="F=(p-p_0)A=(2.0\times10^{5})(0.50)=1.0\times10^{5}\text{ N}" />
+<BlockMath math="\Delta p_{\max}=\frac{8\times15\,000}{0.502}\approx2.39\times10^{5}\text{ Pa},\qquad h_{\max}=\frac{2.39\times10^{5}}{1000\times10}\approx24\text{ m}" />
 
-The water side is at <InlineMath math="3.0\times10^{5}\text{ Pa}" />, three times atmospheric pressure. The air cancels <InlineMath math="1.0\times10^{5}\text{ Pa}" /> of it, leaving <InlineMath math="2.0\times10^{5}\text{ Pa}" /> across <InlineMath math="0.50\text{ m}^2" />, a resultant force of <InlineMath math="1.0\times10^{5}\text{ N}" /> towards the pipe.
-
-<BlockMath math="F_{\text{bolt}}=\frac{1.0\times10^{5}}{8}\approx13\text{ kN},\qquad \Delta p_{\max}=\frac{8\times15\,000}{0.50}=2.4\times10^{5}\text{ Pa},\qquad h_{\max}=\frac{2.4\times10^{5}}{1000\times10}=24\text{ m}" />
-
-Each bolt carries about <InlineMath math="12.5\text{ kN}" />, inside its limit. Together the bolts can resist a pressure difference of <InlineMath math="2.4\times10^{5}\text{ Pa}" />, which the water alone supplies at <InlineMath math="24\text{ m}" />, since the air acts on both sides.
+The water pushes the hatch with about <InlineMath math="1.0\times10^{5}\text{ N}" />, so each bolt holds about <InlineMath math="12.6\text{ kN}" />, inside its limit. The bolts together can hold <InlineMath math="1.2\times10^{5}\text{ N}" />, which the water reaches with the hatch's centre about <InlineMath math="24\text{ m}" /> deep.
 
 # Why the other options are wrong
 
-- <InlineMath math="1.5\times10^{5}\text{ N}" /> multiplies the **total pressure** by the area, forgetting the air pushing back from the pipe, and the same slip makes the safe depth too shallow.
+- <InlineMath math="1.5\times10^{5}\text{ N}" /> uses the **total pressure** on the water side, forgetting the air pushing back from the pipe, and so makes the safe depth too shallow.
+- <InlineMath math="4.0\times10^{5}\text{ N}" /> uses the **diameter as the radius**, making the area four times too large.
 - <InlineMath math="34\text{ m}" /> gets the force right but **adds the atmosphere back** when turning the bolts' limit into a depth.
-- <InlineMath math="2.0\times10^{5}\text{ N}" /> leaves out the **hatch's area**, as if it were <InlineMath math="1\text{ m}^2" />.

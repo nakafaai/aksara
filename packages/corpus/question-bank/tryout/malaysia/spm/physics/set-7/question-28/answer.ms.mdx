@@ -1,30 +1,27 @@
-# Cabang yang rosak menaikkan jumlah rintangan dan mengalihkan voltan
+# Masukkan rintangan dalam ke dalam jumlah, kemudian ikuti arus
 
-Apabila kedua-dua cabang berfungsi, pasangan selari ialah <InlineMath math="2.0\,\Omega" />. Apabila perintang <InlineMath math="3.0\,\Omega" /> rosak, pasangan itu menjadi perintang <InlineMath math="6.0\,\Omega" /> sahaja, jadi **jumlah rintangan naik** dan arus menurun. Tetapi perintang <InlineMath math="6.0\,\Omega" /> kini mengambil **bahagian yang lebih besar daripada <InlineMath math="12\text{ V}" />**, jadi kuasanya naik, bukan turun.
+Arus bergantung pada **seluruh litar**, termasuk <InlineMath math="1.0\,\Omega" /> milik bateri. Apabila cabang <InlineMath math="3.0\,\Omega" /> rosak, pasangan selari menjadi perintang <InlineMath math="6.0\,\Omega" /> sahaja, jadi jumlah rintangan naik dan arus menurun. Arus yang lebih kecil kehilangan voltan yang lebih sedikit di dalam bateri, jadi **voltan terminal naik**, dan perintang <InlineMath math="6.0\,\Omega" />, yang kini membawa seluruh arus, menjadi lebih panas.
 
 <Chart
-  title={<>Kuasa dalam Perintang <InlineMath math="6.0\ \Omega" /> Sebelum dan Selepas</>}
+  title={<>Sebelum dan Selepas Perintang <InlineMath math="3.0\ \Omega" /> Rosak</>}
   bars="apart"
-  categories={["Sebelum", "Selepas perintang 3.0 Ω rosak"]}
+  categories={["Arus (A)", "Kuasa dalam 6.0 Ω (W)", "Voltan terminal (V)"]}
   series={[
-    { label: "Kuasa", mark: "bar", values: [2.67, 8.64] },
+    { label: "Sebelum", mark: "bar", values: [1.71, 1.96, 10.29] },
+    { label: "Selepas", mark: "bar", values: [1.09, 7.14, 10.91] },
   ]}
-  valueLabel="Kuasa (W)"
-  description={<>Kuasa dalam perintang <InlineMath math="6.0\,\Omega" /> naik dari kira-kira <InlineMath math="2.7\text{ W}" /> kepada kira-kira <InlineMath math="8.6\text{ W}" /> selepas perintang <InlineMath math="3.0\,\Omega" /> rosak, kerana voltan merentasinya naik dari <InlineMath math="4.0" /> ke <InlineMath math="7.2\text{ V}" />.</>}
+  valueLabel="Nilai"
+  description={<>Selepas kerosakan arus menurun dari <InlineMath math="1.7" /> ke <InlineMath math="1.1\text{ A}" />, voltan terminal naik dari <InlineMath math="10.3" /> ke <InlineMath math="10.9\text{ V}" />, dan kuasa dalam perintang <InlineMath math="6.0\,\Omega" /> naik dari <InlineMath math="2.0" /> ke <InlineMath math="7.1\text{ W}" />.</>}
 />
 
-<BlockMath math="\text{Sebelum: } R=4.0+\frac{6.0\times3.0}{6.0+3.0}=6.0\,\Omega,\quad I=2.0\text{ A},\quad V_6=2.0\times2.0=4.0\text{ V},\quad P_6=\frac{4.0^2}{6.0}\approx2.7\text{ W}" />
+<BlockMath math="R=4.0+6.0+1.0=11\,\Omega,\qquad I=\frac{12}{11}\approx1.09\text{ A},\qquad P_6=1.09^2\times6.0\approx7.1\text{ W}" />
 
-<BlockMath math="\text{Selepas: } R'=4.0+6.0=10\,\Omega,\quad I'=\frac{12}{10}=1.2\text{ A},\quad P_6'=1.2^2\times6.0\approx8.6\text{ W}" />
+<BlockMath math="V=E-Ir=12-1.09\times1.0\approx10.9\text{ V}" />
 
-Arus bekalan menurun dari <InlineMath math="2.0\text{ A}" /> kepada <InlineMath math="1.2\text{ A}" />. Voltan merentasi perintang <InlineMath math="6.0\,\Omega" /> naik dari <InlineMath math="4.0\text{ V}" /> ke <InlineMath math="7.2\text{ V}" />, jadi kuasanya bertambah lebih tiga kali ganda, kepada kira-kira <InlineMath math="8.6\text{ W}" />.
-
-<BlockMath math="P_4'=1.2^2\times4.0\approx5.8\text{ W}\quad(\text{sebelum: }2.0^2\times4.0=16\text{ W})" />
-
-Perintang <InlineMath math="4.0\,\Omega" /> membawa seluruh arus bekalan, jadi kuasanya menurun dari <InlineMath math="16\text{ W}" /> kepada kira-kira <InlineMath math="5.8\text{ W}" />, walaupun perintang <InlineMath math="6.0\,\Omega" /> di sebelah perintang yang rosak menjadi lebih panas.
+Bateri kini membekalkan kira-kira <InlineMath math="1.1\text{ A}" />. Perintang <InlineMath math="6.0\,\Omega" /> melesapkan kira-kira <InlineMath math="7.1\text{ W}" />, lebih tiga kali <InlineMath math="2.0\text{ W}" /> sebelumnya, dan voltan terminal naik kepada kira-kira <InlineMath math="10.9\text{ V}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="2.0\text{ A}" />, <InlineMath math="2.7\text{ W}" /> dan <InlineMath math="16\text{ W}" /> menggambarkan litar **sebelum kerosakan**.
-- <InlineMath math="24\text{ W}" /> meletakkan **<InlineMath math="12\text{ V}" /> penuh** merentasi perintang <InlineMath math="6.0\,\Omega" />, lupa perintang <InlineMath math="4.0\,\Omega" /> yang sesiri.
-- <InlineMath math="2.7\text{ W}" /> bersama <InlineMath math="1.2\text{ A}" /> menganggap **perintang <InlineMath math="6.0\,\Omega" /> tidak terjejas** oleh kerosakan cabang di sebelahnya.
+- <InlineMath math="1.2\text{ A}" /> dan <InlineMath math="12.0\text{ V}" /> **mengabaikan rintangan dalam**, seolah-olah terminal bateri sentiasa memberi d.g.e. penuh.
+- <InlineMath math="1.7\text{ A}" />, <InlineMath math="2.0\text{ W}" /> dan <InlineMath math="10.3\text{ V}" /> menggambarkan litar **sebelum kerosakan**.
+- <InlineMath math="20\text{ W}" /> meletakkan **seluruh voltan terminal** merentasi perintang <InlineMath math="6.0\,\Omega" />, lupa perintang <InlineMath math="4.0\,\Omega" /> yang sesiri dengannya.

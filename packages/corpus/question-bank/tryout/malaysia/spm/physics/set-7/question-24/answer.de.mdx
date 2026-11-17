@@ -1,30 +1,26 @@
-# Die Luft drückt auf beide Seiten, für die Kraft zählt nur der Zusatzdruck des Wassers
+# Die Luft hebt sich auf beiden Seiten auf, nur das Wasser drückt die Klappe gegen die Bolzen
 
-Der Gesamtdruck auf der Wasserseite ist **Atmosphäre plus Wassersäule**, <InlineMath math="p_0+\rho gh" />. Die Luft im Rohr drückt mit <InlineMath math="p_0" /> zurück, die **resultierende Kraft** kommt also nur aus der Differenz <InlineMath math="\rho gh" /> mal Fläche.
+Die Wasserseite spürt **Atmosphäre plus Wasser**, die Rohrseite die **Atmosphäre**. Die resultierende Kraft kommt also allein vom Wasserdruck <InlineMath math="\rho gh" /> mal Fläche, und die Fläche braucht den **Radius**, den halben Durchmesser. Die Bolzen teilen sich diese Kraft, und ihre gemeinsame Grenze legt die größte Tiefe fest.
 
 <Chart
-  title={<>Druck auf beiden Seiten der Klappe</>}
+  title={<>Druckdifferenz an der Klappe über der Tiefe</>}
   bars="apart"
-  categories={["Wasserseite", "Rohrseite"]}
+  categories={["20 m", "24 m (Grenze der Bolzen)"]}
   series={[
-    { label: "Druck", mark: "bar", values: [300, 100] },
+    { label: "Druckdifferenz", mark: "bar", values: [200, 239] },
   ]}
-  valueLabel="Druck (kPa)"
-  description={<>Auf der Wasserseite herrschen <InlineMath math="300\text{ kPa}" />, auf der Rohrseite <InlineMath math="100\text{ kPa}" />. Nur die Differenz von <InlineMath math="200\text{ kPa}" /> drückt auf die Klappe.</>}
+  valueLabel="Druckdifferenz (kPa)"
+  description={<>Die Luft wirkt auf beiden Seiten, also zählt nur der Wasserdruck: <InlineMath math="200\text{ kPa}" /> in <InlineMath math="20\text{ m}" />, bis zur Grenze der Bolzen von <InlineMath math="239\text{ kPa}" /> in etwa <InlineMath math="24\text{ m}" />.</>}
 />
 
-<BlockMath math="p=1{,}0\cdot10^{5}+1000(10)(20)=3{,}0\cdot10^{5}\text{ Pa}" />
+<BlockMath math="A=\pi(0{,}40)^2\approx0{,}502\text{ m}^2,\qquad F=1000(10)(20)\cdot0{,}502\approx1{,}0\cdot10^{5}\text{ N},\qquad \frac{F}{8}\approx13\text{ kN}" />
 
-<BlockMath math="F=(p-p_0)A=(2{,}0\cdot10^{5})(0{,}50)=1{,}0\cdot10^{5}\text{ N}" />
+<BlockMath math="\Delta p_{\max}=\frac{8\cdot15\,000}{0{,}502}\approx2{,}39\cdot10^{5}\text{ Pa},\qquad h_{\max}=\frac{2{,}39\cdot10^{5}}{1000\cdot10}\approx24\text{ m}" />
 
-Auf der Wasserseite herrschen <InlineMath math="3{,}0\cdot10^{5}\text{ Pa}" />, das Dreifache des Luftdrucks. Die Luft hebt <InlineMath math="1{,}0\cdot10^{5}\text{ Pa}" /> davon auf, es bleiben <InlineMath math="2{,}0\cdot10^{5}\text{ Pa}" /> auf <InlineMath math="0{,}50\text{ m}^2" />, eine resultierende Kraft von <InlineMath math="1{,}0\cdot10^{5}\text{ N}" /> zum Rohr hin.
-
-<BlockMath math="F_{\text{Bolzen}}=\frac{1{,}0\cdot10^{5}}{8}\approx13\text{ kN},\qquad \Delta p_{\max}=\frac{8\cdot15\,000}{0{,}50}=2{,}4\cdot10^{5}\text{ Pa},\qquad h_{\max}=\frac{2{,}4\cdot10^{5}}{1000\cdot10}=24\text{ m}" />
-
-Jeder Bolzen trägt etwa <InlineMath math="12{,}5\text{ kN}" />, innerhalb seiner Grenze. Zusammen halten die Bolzen eine Druckdifferenz von <InlineMath math="2{,}4\cdot10^{5}\text{ Pa}" /> aus, die das Wasser allein in <InlineMath math="24\text{ m}" /> liefert, da die Luft auf beiden Seiten wirkt.
+Das Wasser drückt mit etwa <InlineMath math="1{,}0\cdot10^{5}\text{ N}" /> auf die Klappe, jeder Bolzen hält also etwa <InlineMath math="12{,}6\text{ kN}" />, innerhalb seiner Grenze. Zusammen halten die Bolzen <InlineMath math="1{,}2\cdot10^{5}\text{ N}" />, die das Wasser bei etwa <InlineMath math="24\text{ m}" /> Tiefe der Klappenmitte erreicht.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="1{,}5\cdot10^{5}\text{ N}" /> multipliziert den **Gesamtdruck** mit der Fläche, vergisst die zurückdrückende Luft im Rohr, und derselbe Fehler macht die sichere Tiefe zu flach.
+- <InlineMath math="1{,}5\cdot10^{5}\text{ N}" /> nimmt den **Gesamtdruck** der Wasserseite, vergisst die zurückdrückende Luft im Rohr und macht die sichere Tiefe zu flach.
+- <InlineMath math="4{,}0\cdot10^{5}\text{ N}" /> nimmt den **Durchmesser als Radius**, die Fläche wird viermal zu groß.
 - <InlineMath math="34\text{ m}" /> hat die Kraft richtig, **addiert aber die Atmosphäre wieder**, wenn die Bolzengrenze in eine Tiefe umgerechnet wird.
-- <InlineMath math="2{,}0\cdot10^{5}\text{ N}" /> lässt die **Fläche der Klappe** weg, als wäre sie <InlineMath math="1\text{ m}^2" />.

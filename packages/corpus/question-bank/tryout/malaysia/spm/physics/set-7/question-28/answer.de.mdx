@@ -1,30 +1,27 @@
-# Ein ausgefallener Zweig erhöht den Gesamtwiderstand und verschiebt die Spannung
+# Den Innenwiderstand mitrechnen und dann dem Strom folgen
 
-Arbeiten beide Zweige, hat das Parallelpaar <InlineMath math="2{,}0\,\Omega" />. Fällt der <InlineMath math="3{,}0\,\Omega" />-Widerstand aus, bleibt vom Paar nur der <InlineMath math="6{,}0\,\Omega" />-Widerstand, der **Gesamtwiderstand steigt**, und der Strom sinkt. Doch der <InlineMath math="6{,}0\,\Omega" />-Widerstand bekommt nun einen **größeren Teil der <InlineMath math="12\text{ V}" />**, seine Leistung steigt also, statt zu sinken.
+Der Strom hängt von der **ganzen Schaltung** ab, auch von den <InlineMath math="1{,}0\,\Omega" /> der Batterie. Fällt der Zweig mit <InlineMath math="3{,}0\,\Omega" /> aus, bleibt vom Parallelpaar nur der <InlineMath math="6{,}0\,\Omega" />-Widerstand, der Gesamtwiderstand steigt und der Strom sinkt. Weniger Strom verliert weniger Spannung in der Batterie, die **Klemmenspannung steigt**, und der <InlineMath math="6{,}0\,\Omega" />-Widerstand, der nun den ganzen Strom führt, wird heißer.
 
 <Chart
-  title={<>Leistung im Widerstand von <InlineMath math="6{,}0\ \Omega" /> vorher und nachher</>}
+  title={<>Vor und nach dem Ausfall des Widerstands von <InlineMath math="3{,}0\ \Omega" /></>}
   bars="apart"
-  categories={["Vorher", "Nach Ausfall des Widerstands von 3,0 Ω"]}
+  categories={["Strom (A)", "Leistung in 6,0 Ω (W)", "Klemmenspannung (V)"]}
   series={[
-    { label: "Leistung", mark: "bar", values: [2.67, 8.64] },
+    { label: "Vorher", mark: "bar", values: [1.71, 1.96, 10.29] },
+    { label: "Nachher", mark: "bar", values: [1.09, 7.14, 10.91] },
   ]}
-  valueLabel="Leistung (W)"
-  description={<>Die Leistung im <InlineMath math="6{,}0\,\Omega" />-Widerstand steigt von etwa <InlineMath math="2{,}7\text{ W}" /> auf etwa <InlineMath math="8{,}6\text{ W}" />, wenn der <InlineMath math="3{,}0\,\Omega" />-Widerstand ausfällt, weil seine Spannung von <InlineMath math="4{,}0" /> auf <InlineMath math="7{,}2\text{ V}" /> steigt.</>}
+  valueLabel="Wert"
+  description={<>Nach dem Ausfall fällt der Strom von <InlineMath math="1{,}7" /> auf <InlineMath math="1{,}1\text{ A}" />, die Klemmenspannung steigt von <InlineMath math="10{,}3" /> auf <InlineMath math="10{,}9\text{ V}" />, und die Leistung im <InlineMath math="6{,}0\,\Omega" />-Widerstand steigt von <InlineMath math="2{,}0" /> auf <InlineMath math="7{,}1\text{ W}" />.</>}
 />
 
-<BlockMath math="\text{Vorher: } R=4{,}0+\frac{6{,}0\cdot3{,}0}{6{,}0+3{,}0}=6{,}0\,\Omega,\quad I=2{,}0\text{ A},\quad V_6=2{,}0\cdot2{,}0=4{,}0\text{ V},\quad P_6=\frac{4{,}0^2}{6{,}0}\approx2{,}7\text{ W}" />
+<BlockMath math="R=4{,}0+6{,}0+1{,}0=11\,\Omega,\qquad I=\frac{12}{11}\approx1{,}09\text{ A},\qquad P_6=1{,}09^2\cdot6{,}0\approx7{,}1\text{ W}" />
 
-<BlockMath math="\text{Nachher: } R'=4{,}0+6{,}0=10\,\Omega,\quad I'=\frac{12}{10}=1{,}2\text{ A},\quad P_6'=1{,}2^2\cdot6{,}0\approx8{,}6\text{ W}" />
+<BlockMath math="V=E-Ir=12-1{,}09\cdot1{,}0\approx10{,}9\text{ V}" />
 
-Der Versorgungsstrom fällt von <InlineMath math="2{,}0\text{ A}" /> auf <InlineMath math="1{,}2\text{ A}" />. Die Spannung am <InlineMath math="6{,}0\,\Omega" />-Widerstand steigt von <InlineMath math="4{,}0\text{ V}" /> auf <InlineMath math="7{,}2\text{ V}" />, seine Leistung wächst also auf mehr als das Dreifache, etwa <InlineMath math="8{,}6\text{ W}" />.
-
-<BlockMath math="P_4'=1{,}2^2\cdot4{,}0\approx5{,}8\text{ W}\quad(\text{vorher: }2{,}0^2\cdot4{,}0=16\text{ W})" />
-
-Der <InlineMath math="4{,}0\,\Omega" />-Widerstand führt den ganzen Versorgungsstrom, seine Leistung fällt also von <InlineMath math="16\text{ W}" /> auf etwa <InlineMath math="5{,}8\text{ W}" />, obwohl der <InlineMath math="6{,}0\,\Omega" />-Widerstand neben dem ausgefallenen heißer wird.
+Die Batterie liefert nun etwa <InlineMath math="1{,}1\text{ A}" />. Der <InlineMath math="6{,}0\,\Omega" />-Widerstand setzt etwa <InlineMath math="7{,}1\text{ W}" /> um, mehr als das Dreifache der vorherigen <InlineMath math="2{,}0\text{ W}" />, und die Klemmenspannung steigt auf etwa <InlineMath math="10{,}9\text{ V}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="2{,}0\text{ A}" />, <InlineMath math="2{,}7\text{ W}" /> und <InlineMath math="16\text{ W}" /> beschreiben die Schaltung **vor dem Ausfall**.
-- <InlineMath math="24\text{ W}" /> legt die **vollen <InlineMath math="12\text{ V}" />** an den <InlineMath math="6{,}0\,\Omega" />-Widerstand und vergisst den <InlineMath math="4{,}0\,\Omega" />-Widerstand in Reihe.
-- <InlineMath math="2{,}7\text{ W}" /> mit <InlineMath math="1{,}2\text{ A}" /> nimmt an, der **<InlineMath math="6{,}0\,\Omega" />-Widerstand bleibe unberührt** vom Ausfall des Zweigs daneben.
+- <InlineMath math="1{,}2\text{ A}" /> und <InlineMath math="12{,}0\text{ V}" /> **übersehen den Innenwiderstand**, als lieferten die Klemmen immer die volle EMK.
+- <InlineMath math="1{,}7\text{ A}" />, <InlineMath math="2{,}0\text{ W}" /> und <InlineMath math="10{,}3\text{ V}" /> beschreiben die Schaltung **vor dem Ausfall**.
+- <InlineMath math="20\text{ W}" /> legt die **ganze Klemmenspannung** an den <InlineMath math="6{,}0\,\Omega" />-Widerstand und vergisst den <InlineMath math="4{,}0\,\Omega" />-Widerstand in Reihe.

@@ -1,30 +1,26 @@
-# Udara mendorong kedua sisi, jadi hanya tekanan tambahan air yang dihitung untuk gaya
+# Udara saling meniadakan di kedua sisi, jadi hanya air yang menekan pintu melawan baut
 
-Tekanan total pada sisi air adalah **atmosfer ditambah kolom air**, <InlineMath math="p_0+\rho gh" />. Udara di pipa mendorong balik dengan <InlineMath math="p_0" />, jadi **gaya resultan** hanya berasal dari selisihnya, <InlineMath math="\rho gh" />, dikali luas.
+Sisi air merasakan **atmosfer ditambah air**, dan sisi pipa merasakan **atmosfer**. Karena itu gaya resultan hanya berasal dari tekanan air <InlineMath math="\rho gh" />, dikali luas pintu, yang butuh **jari-jari**, setengah diameter. Baut berbagi gaya itu, dan batas gabungannya menentukan kedalaman terdalam pintu.
 
 <Chart
-  title={<>Tekanan pada Tiap Sisi Pintu</>}
+  title={<>Selisih Tekanan pada Pintu Terhadap Kedalaman</>}
   bars="apart"
-  categories={["Sisi air", "Sisi pipa"]}
+  categories={["20 m", "24 m (batas baut)"]}
   series={[
-    { label: "Tekanan", mark: "bar", values: [300, 100] },
+    { label: "Selisih tekanan", mark: "bar", values: [200, 239] },
   ]}
-  valueLabel="Tekanan (kPa)"
-  description={<>Sisi air bertekanan <InlineMath math="300\text{ kPa}" /> dan sisi pipa <InlineMath math="100\text{ kPa}" />. Hanya selisihnya, <InlineMath math="200\text{ kPa}" />, yang mendorong pintu itu.</>}
+  valueLabel="Selisih tekanan (kPa)"
+  description={<>Udara bekerja di kedua sisi, jadi hanya tekanan air yang dihitung: <InlineMath math="200\text{ kPa}" /> pada <InlineMath math="20\text{ m}" />, naik ke batas baut <InlineMath math="239\text{ kPa}" /> pada sekitar <InlineMath math="24\text{ m}" />.</>}
 />
 
-<BlockMath math="p=1{,}0\times10^{5}+1000(10)(20)=3{,}0\times10^{5}\text{ Pa}" />
+<BlockMath math="A=\pi(0{,}40)^2\approx0{,}502\text{ m}^2,\qquad F=1000(10)(20)\times0{,}502\approx1{,}0\times10^{5}\text{ N},\qquad \frac{F}{8}\approx13\text{ kN}" />
 
-<BlockMath math="F=(p-p_0)A=(2{,}0\times10^{5})(0{,}50)=1{,}0\times10^{5}\text{ N}" />
+<BlockMath math="\Delta p_{\max}=\frac{8\times15\,000}{0{,}502}\approx2{,}39\times10^{5}\text{ Pa},\qquad h_{\max}=\frac{2{,}39\times10^{5}}{1000\times10}\approx24\text{ m}" />
 
-Sisi air bertekanan <InlineMath math="3{,}0\times10^{5}\text{ Pa}" />, tiga kali tekanan atmosfer. Udara meniadakan <InlineMath math="1{,}0\times10^{5}\text{ Pa}" /> darinya, menyisakan <InlineMath math="2{,}0\times10^{5}\text{ Pa}" /> pada <InlineMath math="0{,}50\text{ m}^2" />, yaitu gaya resultan <InlineMath math="1{,}0\times10^{5}\text{ N}" /> ke arah pipa.
-
-<BlockMath math="F_{\text{baut}}=\frac{1{,}0\times10^{5}}{8}\approx13\text{ kN},\qquad \Delta p_{\max}=\frac{8\times15\,000}{0{,}50}=2{,}4\times10^{5}\text{ Pa},\qquad h_{\max}=\frac{2{,}4\times10^{5}}{1000\times10}=24\text{ m}" />
-
-Tiap baut menanggung sekitar <InlineMath math="12{,}5\text{ kN}" />, masih dalam batasnya. Bersama-sama, baut sanggup menahan selisih tekanan <InlineMath math="2{,}4\times10^{5}\text{ Pa}" />, yang diberikan air saja pada <InlineMath math="24\text{ m}" />, karena udara bekerja di kedua sisi.
+Air mendorong pintu dengan sekitar <InlineMath math="1{,}0\times10^{5}\text{ N}" />, jadi tiap baut menahan sekitar <InlineMath math="12{,}6\text{ kN}" />, masih dalam batasnya. Baut bersama-sama sanggup menahan <InlineMath math="1{,}2\times10^{5}\text{ N}" />, yang dicapai air saat pusat pintu sekitar <InlineMath math="24\text{ m}" /> dalamnya.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="1{,}5\times10^{5}\text{ N}" /> mengalikan **tekanan total** dengan luas, lupa udara yang mendorong balik dari pipa, dan kesalahan yang sama membuat kedalaman aman terlalu dangkal.
+- <InlineMath math="1{,}5\times10^{5}\text{ N}" /> memakai **tekanan total** di sisi air, lupa udara yang mendorong balik dari pipa, sehingga kedalaman aman terlalu dangkal.
+- <InlineMath math="4{,}0\times10^{5}\text{ N}" /> memakai **diameter sebagai jari-jari**, membuat luasnya empat kali terlalu besar.
 - <InlineMath math="34\text{ m}" /> benar untuk gaya tetapi **menambahkan atmosfer lagi** saat mengubah batas baut menjadi kedalaman.
-- <InlineMath math="2{,}0\times10^{5}\text{ N}" /> melewatkan **luas pintu**, seolah-olah <InlineMath math="1\text{ m}^2" />.

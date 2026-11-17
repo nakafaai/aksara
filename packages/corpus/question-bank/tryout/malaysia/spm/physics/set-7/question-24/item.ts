@@ -23,12 +23,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ and $$34\\text{ m}$$",
+            "$$4.0\\times10^{5}\\text{ N}$$, $$50\\text{ kN}$$ and $$6.0\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$2.0\\times10^{5}\\text{ N}$$, $$25\\text{ kN}$$ and $$12\\text{ m}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ and $$34\\text{ m}$$",
         },
       ],
     },
@@ -48,12 +48,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ dan $$34\\text{ m}$$",
+            "$$4.0\\times10^{5}\\text{ N}$$, $$50\\text{ kN}$$ dan $$6.0\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$2.0\\times10^{5}\\text{ N}$$, $$25\\text{ kN}$$ dan $$12\\text{ m}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ dan $$34\\text{ m}$$",
         },
       ],
     },

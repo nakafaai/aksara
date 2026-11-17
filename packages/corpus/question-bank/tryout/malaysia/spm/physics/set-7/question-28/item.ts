@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2.0\\text{ A}$$, $$2.7\\text{ W}$$ and $$16\\text{ W}$$",
+          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ and $$12.0\\text{ V}$$",
         },
         {
           correct: false,
-          label: "$$1.2\\text{ A}$$, $$24\\text{ W}$$ and $$5.8\\text{ W}$$",
+          label: "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$ and $$10.3\\text{ V}$$",
         },
         {
           correct: false,
-          label: "$$1.2\\text{ A}$$, $$2.7\\text{ W}$$ and $$5.8\\text{ W}$$",
+          label: "$$1.1\\text{ A}$$, $$20\\text{ W}$$ and $$10.9\\text{ V}$$",
         },
         {
           correct: true,
-          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ and $$5.8\\text{ W}$$",
+          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ and $$10.9\\text{ V}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2.0\\text{ A}$$, $$2.7\\text{ W}$$ dan $$16\\text{ W}$$",
+          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ dan $$12.0\\text{ V}$$",
         },
         {
           correct: false,
-          label: "$$1.2\\text{ A}$$, $$24\\text{ W}$$ dan $$5.8\\text{ W}$$",
+          label: "$$1.7\\text{ A}$$, $$2.0\\text{ W}$$ dan $$10.3\\text{ V}$$",
         },
         {
           correct: false,
-          label: "$$1.2\\text{ A}$$, $$2.7\\text{ W}$$ dan $$5.8\\text{ W}$$",
+          label: "$$1.1\\text{ A}$$, $$20\\text{ W}$$ dan $$10.9\\text{ V}$$",
         },
         {
           correct: true,
-          label: "$$1.2\\text{ A}$$, $$8.6\\text{ W}$$ dan $$5.8\\text{ W}$$",
+          label: "$$1.1\\text{ A}$$, $$7.1\\text{ W}$$ dan $$10.9\\text{ V}$$",
         },
       ],
     },

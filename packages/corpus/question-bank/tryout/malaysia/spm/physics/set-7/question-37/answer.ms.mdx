@@ -1,27 +1,23 @@
-# Ikuti input melalui setiap get secara bergilir
+# Bina ungkapan, kemudian kira baris yang menjadikannya <InlineMath math="1" />
 
-Get NOT memberi <InlineMath math="1" /> apabila tali pinggang **tidak dipakai**. Get OR memberi <InlineMath math="1" /> **jika tali pinggang tidak dipakai atau pintu terbuka**. Get AND meneruskannya **hanya apabila penghidup dihidupkan**. Jadi pembaz memerlukan <InlineMath math="I=1" /> bersama output OR <InlineMath math="1" />. Get OR langsung tidak menerima <InlineMath math="I" />, jadi outputnya boleh menjadi <InlineMath math="1" /> walaupun pembaz senyap.
+Pembaz hanya berbunyi apabila **ketiga-tiga** input get AND bernilai <InlineMath math="1" />: penghidup, penderia laju dan output OR. Output OR bernilai <InlineMath math="1" /> kecuali tali pinggang dipakai **dan** pintu tertutup. Penderia yang tersekat membuang <InlineMath math="S" /> daripada syarat, yang menggandakan bilangan, kerana setiap keadaan kini berlaku bagi kedua-dua nilai <InlineMath math="S" />.
 
 <Mermaid
   title={<>Litar Amaran Tali Pinggang Keledar</>}
-  description={<>Isyarat tali pinggang melalui get NOT dan bergabung dengan isyarat pintu di get OR. Output OR dan isyarat penghidup bertemu di get AND, yang mengendalikan pembaz.</>}
-  chart={"flowchart LR\n  F[\"Tali pinggang F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Pintu D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Penghidup I\"] --> A\n  A --> B[\"Pembaz\"]"}
+  description={<>Isyarat tali pinggang melalui get NOT dan bergabung dengan isyarat pintu di get OR. Output OR, penghidup dan penderia laju bertemu di get AND tiga input, yang mengendalikan pembaz.</>}
+  chart={"flowchart LR\n  F[\"Tali pinggang F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Pintu D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Penghidup I\"] --> A\n  S[\"Laju S\"] --> A\n  A --> B[\"Pembaz\"]"}
 />
 
-<BlockMath math="B=I\cdot\left(\overline F+D\right)" />
+<BlockMath math="B=I\cdot S\cdot\left(\overline F+D\right)" />
 
-<BlockMath math="I=1:\ (F,D)=(0,0),(0,1),(1,1)\Rightarrow B=1,\qquad (1,0)\Rightarrow B=0" />
+<BlockMath math="I=S=1:\ (F,D)=(0,0),(0,1),(1,1)\Rightarrow3\text{ daripada }16,\qquad S\text{ tersekat pada }1:\ 2\times3=6" />
 
-<BlockMath math="I=0,\ F=0,\ D=0:\ \overline F+D=1+0=1" />
+<BlockMath math="B'=I\cdot S\cdot\overline F\cdot D\Rightarrow(I,S,F,D)=(1,1,0,1)\text{ sahaja}\Rightarrow1" />
 
-Apabila penghidup dimatikan, pembaz tidak pernah berbunyi. Apabila dihidupkan, pembaz berbunyi dalam setiap keadaan kecuali tali pinggang dipakai dan pintu tertutup, iaitu <InlineMath math="3" /> daripada <InlineMath math="8" /> gabungan. Apabila semuanya <InlineMath math="0" />, get OR masih memberi output <InlineMath math="1" />, kerana tali pinggang tidak dipakai, tetapi get AND menghalangnya.
-
-<BlockMath math="B'=I\cdot\overline F\cdot D:\qquad (I,F,D)=(1,0,1)\text{ sahaja}" />
-
-Dengan get AND, pembaz memerlukan penghidup dihidupkan, tali pinggang tidak dipakai **dan** pintu terbuka serentak, yang berlaku dalam <InlineMath math="1" /> daripada <InlineMath math="8" /> gabungan sahaja.
+Dengan penderia berfungsi, pembaz berbunyi dalam <InlineMath math="3" /> daripada <InlineMath math="16" /> keadaan. Penderia yang tersekat membiarkannya berbunyi sama ada kereta bergerak atau tidak, <InlineMath math="6" /> keadaan. Dengan get AND ia memerlukan tali pinggang tidak dipakai **dan** pintu terbuka serentak, yang berlaku dalam <InlineMath math="1" /> keadaan.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="0" /> bagi get OR mengambil **output pembaz** sebagai output get OR, tetapi penghidup hanya masuk di get AND.
-- <InlineMath math="6" /> dan <InlineMath math="2" /> mengira gabungan apabila **get sebelum AND terakhir** memberi <InlineMath math="1" />, lupa bahawa get AND terakhir juga memerlukan penghidup dihidupkan.
-- <InlineMath math="2" /> **mengabaikan input pintu**, hanya mengira keadaan tali pinggang tidak dipakai dan penghidup dihidupkan.
+- <InlineMath math="3" /> dengan penderia tersekat menganggap **kerosakan tidak mengubah apa-apa**, tetapi ia membunyikan pembaz bagi kedua-dua nilai <InlineMath math="S" />.
+- <InlineMath math="6" />, <InlineMath math="6" /> dan <InlineMath math="2" /> **mengabaikan input laju** di get AND, mengira setiap keadaan seolah-olah <InlineMath math="S" /> sentiasa <InlineMath math="1" />.
+- <InlineMath math="2" /> bagi versi AND mengira keadaan <InlineMath math="I=1" />, <InlineMath math="F=0" />, <InlineMath math="D=1" /> **bagi kedua-dua nilai <InlineMath math="S" />**, tetapi penderia yang berfungsi juga mesti bernilai <InlineMath math="1" />.
