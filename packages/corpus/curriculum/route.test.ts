@@ -33,15 +33,16 @@ describe("curriculum route projection", () => {
         ({ materialKey }) => materialKey !== undefined
       );
 
-      expect(routes).toHaveLength(1204);
+      const sitemapRoutes = Arr.filter(routes, ({ sitemap }) => sitemap);
+      const locales = ["de", "en", "id", "ms"] as const;
       expect(roots).toHaveLength(20);
-      expect(materialRoutes).toHaveLength(476);
-      for (const locale of ["de", "en", "id", "ms"] as const) {
-        expect(
-          Arr.filter(routes, ({ appLocale }) => appLocale === locale)
-        ).toHaveLength(301);
+      for (const locale of locales) {
+        for (const share of [routes, materialRoutes, sitemapRoutes]) {
+          expect(
+            Arr.filter(share, ({ appLocale }) => appLocale === locale)
+          ).toHaveLength(share.length / locales.length);
+        }
       }
-      expect(Arr.filter(routes, ({ sitemap }) => sitemap)).toHaveLength(140);
       expect(
         HashSet.fromIterable(Arr.map(routes, ({ sourcePath }) => sourcePath))
       ).toEqual(

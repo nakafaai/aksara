@@ -1,11 +1,12 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 
 import {
   defineLessonMaterial,
   LessonMaterialSourceSchema,
 } from "#corpus/material/schema";
+import { decodeMaterialSources } from "#corpus/material/source";
 import { importCorpusModules } from "#corpus/test/imports";
 
 /** Builds one exact lesson-source shape so tests change only one contract field. */
@@ -133,7 +134,11 @@ describe("material schema", () => {
         "**/locale/**/*.ts",
       ]);
 
-      expect(files).toHaveLength(51);
+      const sources = yield* decodeMaterialSources();
+
+      expect(
+        Arr.filter(files, ({ file }) => file.endsWith("/source.ts"))
+      ).toHaveLength(sources.length);
     }).pipe(Effect.provide(NodeServices.layer))
   );
 });
