@@ -1,0 +1,24 @@
+# Add or subtract the speeds, never the times
+
+Speeds relative to the ground **add** when she walks with the escalator and **subtract** when she walks against it. Write each speed as a fraction of the escalator's length <InlineMath math="L" /> per second, combine the speeds, then turn the result back into a time.
+
+<Chart
+  title={<>Time to Cover the Escalator in Each Case</>}
+  bars="apart"
+  categories={["Standing, escalator moving", "Walking, escalator stopped", "Walking up, escalator moving", "Walking down the up escalator"]}
+  series={[
+    { label: "Time", mark: "bar", values: [60, 40, 24, 120] },
+  ]}
+  valueLabel="Time (s)"
+  description={<>Standing on the moving escalator takes <InlineMath math="60" /> s and walking on the stopped one <InlineMath math="40" /> s. Walking up the moving escalator takes <InlineMath math="24" /> s, and walking down against it <InlineMath math="120" /> s.</>}
+/>
+
+<BlockMath math="v_e=\frac{L}{60},\quad v_w=\frac{L}{40}\qquad \text{up}: \frac{L}{L/60+L/40}=\frac{1}{5/120}=24\text{ s},\qquad \text{down}: \frac{L}{L/40-L/60}=\frac{1}{1/120}=120\text{ s}" />
+
+Walking with the escalator she covers <InlineMath math="\tfrac{1}{60}+\tfrac{1}{40}=\tfrac{5}{120}" /> of it each second, so <InlineMath math="24\text{ s}" />. Walking down against it she gains only <InlineMath math="\tfrac{1}{40}-\tfrac{1}{60}=\tfrac{1}{120}" /> of it each second, so <InlineMath math="120\text{ s}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="20\text{ s}" /> for the trip down **subtracts the times**, <InlineMath math="60-40" />, which has no physical meaning.
+- <InlineMath math="50\text{ s}" /> **averages the two times**, as if she spent half the trip on each kind of motion.
+- <InlineMath math="20\text{ s}" /> and <InlineMath math="100\text{ s}" /> come from **subtracting and adding the times**, instead of combining the speeds.

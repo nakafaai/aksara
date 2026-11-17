@@ -1,0 +1,23 @@
+# Die Potenz aus dem Verhältnis bei einer Verdopplung ablesen und dann mit dieser Potenz skalieren
+
+Bei einem Potenzgesetz multipliziert ein Faktor in <InlineMath math="d" /> die Zeit <InlineMath math="t" /> mit **diesem Faktor hoch <InlineMath math="n" />**. Die Verdopplung des Durchmessers von <InlineMath math="2{,}0" /> auf <InlineMath math="4{,}0\text{ mm}" /> teilt die Zeit durch <InlineMath math="320\div56{,}6=5{,}66" />, ebenso die nächste Verdopplung. Da <InlineMath math="2^{2{,}5}=5{,}66" />, ist <InlineMath math="n=-2{,}5" />. Dann skaliert man von einem bekannten Punkt aus, nie mit einer Geraden zwischen zwei Punkten.
+
+<Chart
+  title={<>Zeit, bis der Sand durch jedes Loch gelaufen ist</>}
+  categories={["2,0 mm", "4,0 mm", "8,0 mm"]}
+  series={[
+    { label: "Zeit", mark: "line", values: [320, 56.6, 10.0] },
+  ]}
+  valueLabel="Zeit (s)"
+  description={<>Die Zeit fällt von <InlineMath math="320" /> s bei einem Loch von <InlineMath math="2{,}0" /> mm auf <InlineMath math="56{,}6" /> s bei <InlineMath math="4{,}0" /> mm und <InlineMath math="10{,}0" /> s bei <InlineMath math="8{,}0" /> mm. Jede Verdopplung des Durchmessers teilt die Zeit durch etwa <InlineMath math="5{,}66" />.</>}
+/>
+
+<BlockMath math="2^{n}=\frac{56{,}6}{320}=0{,}177\ \Rightarrow\ n=-2{,}5,\qquad t_{5{,}0}=320\cdot\left(\frac{5{,}0}{2{,}0}\right)^{-2{,}5}=\frac{320}{2{,}5^{2{,}5}}=\frac{320}{9{,}88}\approx32\text{ s}" />
+
+Das Loch ist <InlineMath math="2{,}5" />-mal so weit wie das <InlineMath math="2{,}0\text{ mm}" />-Loch, die Zeit wird also durch <InlineMath math="2{,}5^{2{,}5}\approx9{,}9" /> geteilt, etwa <InlineMath math="32\text{ s}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="n=-2" /> nimmt an, die Zeit hänge **nur von der Lochfläche** ab, was der Faktor <InlineMath math="5{,}66" /> pro Verdopplung ausschließt.
+- <InlineMath math="45\text{ s}" /> liest <InlineMath math="5{,}0\text{ mm}" /> von einer **Geraden zwischen den Punkten bei <InlineMath math="4{,}0" /> und <InlineMath math="8{,}0\text{ mm}" />** ab, die Kurve ist aber nicht gerade.
+- <InlineMath math="n=-3" /> würde die Zeit **pro Verdopplung durch <InlineMath math="8" />** teilen, nicht durch die gemessenen <InlineMath math="5{,}66" />.

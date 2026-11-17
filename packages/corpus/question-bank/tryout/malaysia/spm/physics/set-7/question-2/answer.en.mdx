@@ -1,0 +1,23 @@
+# Read the power from the ratio for a doubling, then scale by that power
+
+In a power law, multiplying <InlineMath math="d" /> by a factor multiplies <InlineMath math="t" /> by **that factor raised to the power <InlineMath math="n" />**. Doubling the diameter from <InlineMath math="2.0" /> to <InlineMath math="4.0\text{ mm}" /> divides the time by <InlineMath math="320\div56.6=5.66" />, and so does the next doubling. Since <InlineMath math="2^{2.5}=5.66" />, the power is <InlineMath math="n=-2.5" />. Then scale from a known point, never by a straight-line guess between points.
+
+<Chart
+  title={<>Time for the Sand to Run Out through Each Hole</>}
+  categories={["2.0 mm", "4.0 mm", "8.0 mm"]}
+  series={[
+    { label: "Time", mark: "line", values: [320, 56.6, 10.0] },
+  ]}
+  valueLabel="Time (s)"
+  description={<>The time falls from <InlineMath math="320" /> s for a <InlineMath math="2.0" /> mm hole to <InlineMath math="56.6" /> s for <InlineMath math="4.0" /> mm and <InlineMath math="10.0" /> s for <InlineMath math="8.0" /> mm. Each doubling of the diameter divides the time by about <InlineMath math="5.66" />.</>}
+/>
+
+<BlockMath math="2^{n}=\frac{56.6}{320}=0.177\ \Rightarrow\ n=-2.5,\qquad t_{5.0}=320\times\left(\frac{5.0}{2.0}\right)^{-2.5}=\frac{320}{2.5^{2.5}}=\frac{320}{9.88}\approx32\text{ s}" />
+
+The hole is <InlineMath math="2.5" /> times as wide as the <InlineMath math="2.0\text{ mm}" /> hole, so the time is divided by <InlineMath math="2.5^{2.5}\approx9.9" />, about <InlineMath math="32\text{ s}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="n=-2" /> treats the time as **set by the area of the hole alone**, which the factor of <InlineMath math="5.66" /> per doubling rules out.
+- <InlineMath math="45\text{ s}" /> reads <InlineMath math="5.0\text{ mm}" /> off a **straight line drawn between the <InlineMath math="4.0" /> and <InlineMath math="8.0\text{ mm}" /> points**, but the curve is not straight.
+- <InlineMath math="n=-3" /> would divide the time by **<InlineMath math="8" /> per doubling**, not by the measured <InlineMath math="5.66" />.

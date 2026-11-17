@@ -1,0 +1,24 @@
+# Geschwindigkeiten addieren oder abziehen, nie die Zeiten
+
+Geschwindigkeiten gegenüber dem Boden **addieren** sich, wenn sie mit der Rolltreppe geht, und **subtrahieren** sich, wenn sie dagegen geht. Man schreibt jede Geschwindigkeit als Bruchteil der Treppenlänge <InlineMath math="L" /> pro Sekunde, kombiniert die Geschwindigkeiten und rechnet das Ergebnis in eine Zeit zurück.
+
+<Chart
+  title={<>Zeit für die Rolltreppe in jedem Fall</>}
+  bars="apart"
+  categories={["Stehen, Rolltreppe fährt", "Gehen, Rolltreppe steht", "Hinaufgehen, Rolltreppe fährt", "Hinuntergehen auf der Aufwärtstreppe"]}
+  series={[
+    { label: "Zeit", mark: "bar", values: [60, 40, 24, 120] },
+  ]}
+  valueLabel="Zeit (s)"
+  description={<>Stehen auf der fahrenden Rolltreppe dauert <InlineMath math="60" /> s, Gehen auf der stehenden <InlineMath math="40" /> s. Hinaufgehen auf der fahrenden dauert <InlineMath math="24" /> s, Hinuntergehen gegen ihre Richtung <InlineMath math="120" /> s.</>}
+/>
+
+<BlockMath math="v_e=\frac{L}{60},\quad v_w=\frac{L}{40}\qquad \text{hinauf}: \frac{L}{L/60+L/40}=\frac{1}{5/120}=24\text{ s},\qquad \text{hinunter}: \frac{L}{L/40-L/60}=\frac{1}{1/120}=120\text{ s}" />
+
+Mit der Rolltreppe schafft sie pro Sekunde <InlineMath math="\tfrac{1}{60}+\tfrac{1}{40}=\tfrac{5}{120}" /> davon, also <InlineMath math="24\text{ s}" />. Dagegen gewinnt sie pro Sekunde nur <InlineMath math="\tfrac{1}{40}-\tfrac{1}{60}=\tfrac{1}{120}" />, also <InlineMath math="120\text{ s}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="20\text{ s}" /> für den Weg hinunter **zieht die Zeiten ab**, <InlineMath math="60-40" />, was physikalisch nichts bedeutet.
+- <InlineMath math="50\text{ s}" /> **mittelt die beiden Zeiten**, als verbrächte sie je die Hälfte des Weges in jeder Bewegungsart.
+- <InlineMath math="20\text{ s}" /> und <InlineMath math="100\text{ s}" /> kommen vom **Subtrahieren und Addieren der Zeiten** statt vom Kombinieren der Geschwindigkeiten.

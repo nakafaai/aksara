@@ -1,0 +1,24 @@
+# Tambah atau tolak laju, bukan masa
+
+Laju relatif kepada tanah **ditambah** apabila dia berjalan searah dengan eskalator dan **ditolak** apabila dia berjalan melawannya. Tulis setiap laju sebagai pecahan panjang eskalator <InlineMath math="L" /> sesaat, gabungkan laju, kemudian tukar semula hasilnya kepada masa.
+
+<Chart
+  title={<>Masa untuk Melalui Eskalator dalam Setiap Keadaan</>}
+  bars="apart"
+  categories={["Berdiri, eskalator bergerak", "Berjalan, eskalator berhenti", "Berjalan naik, eskalator bergerak", "Berjalan turun eskalator naik"]}
+  series={[
+    { label: "Masa", mark: "bar", values: [60, 40, 24, 120] },
+  ]}
+  valueLabel="Masa (s)"
+  description={<>Berdiri pada eskalator yang bergerak mengambil masa <InlineMath math="60" /> s dan berjalan pada eskalator yang berhenti <InlineMath math="40" /> s. Berjalan naik eskalator yang bergerak mengambil masa <InlineMath math="24" /> s, dan berjalan turun melawannya <InlineMath math="120" /> s.</>}
+/>
+
+<BlockMath math="v_e=\frac{L}{60},\quad v_w=\frac{L}{40}\qquad \text{naik}: \frac{L}{L/60+L/40}=\frac{1}{5/120}=24\text{ s},\qquad \text{turun}: \frac{L}{L/40-L/60}=\frac{1}{1/120}=120\text{ s}" />
+
+Berjalan searah eskalator, dia melalui <InlineMath math="\tfrac{1}{60}+\tfrac{1}{40}=\tfrac{5}{120}" /> daripadanya setiap saat, jadi <InlineMath math="24\text{ s}" />. Berjalan turun melawannya, dia hanya maju <InlineMath math="\tfrac{1}{40}-\tfrac{1}{60}=\tfrac{1}{120}" /> daripadanya setiap saat, jadi <InlineMath math="120\text{ s}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="20\text{ s}" /> bagi perjalanan turun **menolak masa**, <InlineMath math="60-40" />, yang tiada makna fizik.
+- <InlineMath math="50\text{ s}" /> **mempuratakan dua masa**, seolah-olah separuh perjalanan dilalui dengan setiap jenis gerakan.
+- <InlineMath math="20\text{ s}" /> dan <InlineMath math="100\text{ s}" /> datang daripada **menolak dan menambah masa**, bukan menggabungkan laju.

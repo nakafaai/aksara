@@ -1,0 +1,24 @@
+# Jumlahkan atau kurangkan kelajuannya, jangan waktunya
+
+Kelajuan terhadap tanah **dijumlahkan** saat ia berjalan searah eskalator dan **dikurangkan** saat ia berjalan melawannya. Tulis tiap kelajuan sebagai bagian panjang eskalator <InlineMath math="L" /> per detik, gabungkan kelajuannya, lalu ubah kembali hasilnya menjadi waktu.
+
+<Chart
+  title={<>Waktu Melintasi Eskalator dalam Tiap Keadaan</>}
+  bars="apart"
+  categories={["Berdiri, eskalator bergerak", "Berjalan, eskalator berhenti", "Berjalan naik, eskalator bergerak", "Berjalan turun di eskalator naik"]}
+  series={[
+    { label: "Waktu", mark: "bar", values: [60, 40, 24, 120] },
+  ]}
+  valueLabel="Waktu (s)"
+  description={<>Berdiri di eskalator yang bergerak butuh <InlineMath math="60" /> s dan berjalan di eskalator yang berhenti <InlineMath math="40" /> s. Berjalan naik di eskalator yang bergerak butuh <InlineMath math="24" /> s, dan berjalan turun melawannya <InlineMath math="120" /> s.</>}
+/>
+
+<BlockMath math="v_e=\frac{L}{60},\quad v_w=\frac{L}{40}\qquad \text{naik}: \frac{L}{L/60+L/40}=\frac{1}{5/120}=24\text{ s},\qquad \text{turun}: \frac{L}{L/40-L/60}=\frac{1}{1/120}=120\text{ s}" />
+
+Berjalan searah eskalator, ia menempuh <InlineMath math="\tfrac{1}{60}+\tfrac{1}{40}=\tfrac{5}{120}" /> bagian tiap detik, jadi <InlineMath math="24\text{ s}" />. Berjalan turun melawannya, ia hanya maju <InlineMath math="\tfrac{1}{40}-\tfrac{1}{60}=\tfrac{1}{120}" /> bagian tiap detik, jadi <InlineMath math="120\text{ s}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="20\text{ s}" /> untuk perjalanan turun **mengurangkan waktunya**, <InlineMath math="60-40" />, yang tidak bermakna secara fisika.
+- <InlineMath math="50\text{ s}" /> **merata-ratakan kedua waktu**, seolah separuh perjalanan dengan tiap jenis gerak.
+- <InlineMath math="20\text{ s}" /> dan <InlineMath math="100\text{ s}" /> berasal dari **mengurangkan dan menjumlahkan waktunya**, bukan menggabungkan kelajuan.

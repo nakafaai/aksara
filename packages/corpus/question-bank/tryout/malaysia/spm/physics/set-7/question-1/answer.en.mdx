@@ -1,0 +1,23 @@
+# Subtract the zero reading, drop the point past the elastic limit, then use the area
+
+Hooke's law links force to **extension**, not to the pointer reading, so first subtract the reading with no load. The points from <InlineMath math="1.0" /> to <InlineMath math="4.0\text{ N}" /> lie on one straight line, while the <InlineMath math="5.0\text{ N}" /> point jumps well above it: the spring has gone past its elastic limit there, so that point is left out. The energy stored is the **area under the force-extension line**, a triangle.
+
+<Chart
+  title={<>Extension of the Spring at Each Load</>}
+  categories={["1.0 N", "2.0 N", "3.0 N", "4.0 N", "5.0 N"]}
+  series={[
+    { label: "Extension", mark: "line", values: [2.0, 4.1, 5.9, 8.0, 11.5] },
+  ]}
+  valueLabel="Extension (cm)"
+  description={<>Extensions are <InlineMath math="2.0" />, <InlineMath math="4.1" />, <InlineMath math="5.9" /> and <InlineMath math="8.0" /> cm for <InlineMath math="1.0" /> to <InlineMath math="4.0" /> N, a straight line through the origin. At <InlineMath math="5.0" /> N the extension jumps to <InlineMath math="11.5" /> cm, off the line.</>}
+/>
+
+<BlockMath math="\frac{8.0\text{ cm}}{4.0\text{ N}}=2.0\text{ cm N}^{-1}\ \Rightarrow\ k=\frac{4.0\text{ N}}{0.080\text{ m}}=50\text{ N m}^{-1},\qquad E=\tfrac12 Fx=\tfrac12(4.0)(0.080)=0.16\text{ J}" />
+
+The extensions are <InlineMath math="2.0" />, <InlineMath math="4.1" />, <InlineMath math="5.9" /> and <InlineMath math="8.0\text{ cm}" />, close to <InlineMath math="2.0\text{ cm}" /> for every newton, so <InlineMath math="k=50\text{ N m}^{-1}" />. At <InlineMath math="4.0\text{ N}" /> the spring is stretched <InlineMath math="0.080\text{ m}" /> and stores <InlineMath math="0.16\text{ J}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.40\text{ J}" /> uses the **pointer reading of <InlineMath math="20.0\text{ cm}" />** as if it were the extension.
+- <InlineMath math="43\text{ N m}^{-1}" /> comes from a line through the **<InlineMath math="5.0\text{ N}" /> point**, which lies past the elastic limit.
+- <InlineMath math="0.32\text{ J}" /> multiplies force by extension **without the half**, as if the full force acted over the whole stretch.
