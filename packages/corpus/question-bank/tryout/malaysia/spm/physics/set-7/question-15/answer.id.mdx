@@ -1,30 +1,26 @@
-# Gelombang pantul dan gelombang langsung berinterferensi, jadi pola pudar ditentukan panjang gelombang
+# Titik pudar berada di tempat tetap, jadi hitung menurut jarak, bukan waktu
 
-Di mana gelombang pantul bertemu gelombang langsung secara **tidak sefase**, keduanya saling meniadakan dan sinyal memudar. Titik-titik ini berulang tiap **setengah panjang gelombang** sepanjang jalan. Kelajuan mobil mengubah jarak itu menjadi laju, dan stasiun dengan panjang gelombang yang jauh lebih panjang menjarakkan titik pudarnya jauh lebih jauh.
+Gelombang langsung dan gelombang pantul membentuk **pola diam** di sepanjang jalan: titik pudar tetap di tempatnya, berjarak setengah panjang gelombang, dan mobil melintasinya. Pada kelajuan <InlineMath math="v" /> mobil menjumpai <InlineMath math="\dfrac{v}{d}" /> titik pudar per detik, jadi selama mobil dipercepat lajunya terus naik. Pudar yang terdengar terpisah adalah yang dilewati mobil **sebelum mencapai kelajuan kabur**, jadi harus dihitung menurut jarak yang ditempuh, bukan dikalikan dengan waktu.
 
 <Chart
-  title={<>Waktu Antar-Pudar untuk Tiap Stasiun pada <InlineMath math="15\text{ m/s}" /></>}
+  title={<>Laju Pudar saat Mobil Melewati Tiap Titik Pudar</>}
   bars="apart"
-  categories={["FM 100 MHz", "AM 600 kHz"]}
+  categories={["Pudar 1", "Pudar 2", "Pudar 3", "Pudar 4", "Pudar 5", "Pudar 6", "Pudar 7", "Pudar 8"]}
   series={[
-    { label: "Waktu antar-pudar", mark: "bar", values: [0.1, 16.7] },
+    { label: "Pudar per detik", mark: "bar", values: [1.46, 2.07, 2.53, 2.92, 3.27, 3.58, 3.86, 4.13] },
   ]}
-  valueLabel="Waktu (s)"
-  description={<>Titik pudar FM berjarak <InlineMath math="1{,}5\text{ m}" />, jadi mobil menemui satu tiap <InlineMath math="0{,}10\text{ s}" />. Titik pudar AM berjarak <InlineMath math="250\text{ m}" />, sekitar <InlineMath math="17\text{ s}" /> berkendara.</>}
+  valueLabel="Laju (per detik)"
+  description={<>Lajunya naik saat mobil makin cepat. Nilainya tetap pada atau di bawah batas radio <InlineMath math="4" /> kali per detik sampai titik pudar ketujuh, <InlineMath math="3{,}9" /> per detik, dan melewatinya pada titik kedelapan, <InlineMath math="4{,}1" /> per detik.</>}
 />
 
-<BlockMath math="\lambda_{FM}=\frac{3{,}0\times10^{8}}{1{,}0\times10^{8}}=3{,}0\text{ m},\qquad d=\tfrac12\lambda=1{,}5\text{ m},\qquad \frac{15}{1{,}5}=10\text{ kali pudar per detik}" />
+<BlockMath math="\lambda=\frac{3{,}0\times10^{8}}{1{,}0\times10^{8}}=3{,}0\text{ m},\qquad d=\tfrac12\lambda=1{,}5\text{ m},\qquad \frac{v}{1{,}5}\le4\Rightarrow v\le6{,}0\text{ m s}^{-1}" />
 
-<BlockMath math="\lambda_{AM}=\frac{3{,}0\times10^{8}}{6{,}0\times10^{5}}=500\text{ m},\qquad d'=250\text{ m},\qquad t=\frac{250}{15}\approx17\text{ s}" />
+<BlockMath math="s=\frac{v^2}{2a}=\frac{6{,}0^2}{2(1{,}6)}\approx11{,}3\text{ m},\qquad \frac{11{,}3}{1{,}5}\approx7{,}5\Rightarrow 7\text{ kali pudar}" />
 
-Titik pudar FM berjarak <InlineMath math="1{,}5\text{ m}" />, jadi pada <InlineMath math="15\text{ m s}^{-1}" /> mobil melewati sepuluh tiap detik, getaran yang cepat. Pada AM titik pudar berjarak <InlineMath math="250\text{ m}" />, jadi pudar hanya terjadi sekitar tiap <InlineMath math="17\text{ s}" />.
-
-<BlockMath math="\frac{v}{1{,}5}\le4\Rightarrow v\le4\times1{,}5=6{,}0\text{ m s}^{-1}" />
-
-Pada <InlineMath math="15\text{ m s}^{-1}" /> sepuluh pudar per detik dihaluskan menjadi desis yang tetap. Hanya pada <InlineMath math="6{,}0\text{ m s}^{-1}" /> atau lebih lambat mobil melewati paling banyak empat pudar per detik, jadi pengemudi mendengarnya sebagai penurunan yang terpisah.
+Titik pudar berjarak <InlineMath math="1{,}5\text{ m}" /> dan menjadi kabur di atas <InlineMath math="6{,}0\text{ m s}^{-1}" />. Mobil mencapai kelajuan itu setelah sekitar <InlineMath math="11{,}3\text{ m}" />, saat ia sudah melewati titik pudar di <InlineMath math="1{,}5\text{ m}" />, <InlineMath math="3{,}0\text{ m}" />, sampai <InlineMath math="10{,}5\text{ m}" />: tujuh kali pudar yang terpisah. Titik kedelapan, di <InlineMath math="12{,}0\text{ m}" />, datang dengan laju <InlineMath math="4{,}1" /> per detik dan sudah dihaluskan.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="3{,}0\text{ m}" /> mengambil **satu panjang gelombang penuh** sebagai jarak, padahal pudar berulang tiap setengah panjang gelombang, dan kesalahan itu melipatduakan batas kecepatan.
-- <InlineMath math="23" /> kali per detik **mengalikan** kelajuan dengan jarak alih-alih membagi, dan pembalikan yang sama memberi <InlineMath math="2{,}7\text{ m s}^{-1}" />.
+- <InlineMath math="3{,}0\text{ m}" /> mengambil **satu panjang gelombang penuh** sebagai jarak, yang melipatduakan kelajuan kabur dan membuat jaraknya empat kali lebih panjang.
+- <InlineMath math="15" /> kali pudar dengan jarak yang benar menganggap mobil menjumpai **empat titik pudar tiap detik** selama <InlineMath math="3{,}75\text{ s}" /> penuh, padahal di awal mobil hampir tidak bergerak.
 - <InlineMath math="0{,}75\text{ m}" /> mengambil **seperempat panjang gelombang**, yaitu jarak dari titik pudar ke titik kuat terdekat, sebagai jarak antar-pudar.

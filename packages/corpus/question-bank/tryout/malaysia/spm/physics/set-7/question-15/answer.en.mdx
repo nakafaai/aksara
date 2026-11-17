@@ -1,30 +1,26 @@
-# Reflected and direct waves interfere, so the fading pattern is set by the wavelength
+# The fades sit at fixed places, so count them by distance, not by time
 
-Where the reflected wave meets the direct wave **out of step**, they cancel and the signal fades. These points repeat every **half wavelength** along the road. The car's speed turns that spacing into a rate, and a station with a much longer wavelength spreads its fades much farther apart.
+The direct and reflected waves form a **stationary pattern** along the road: the fades stay put, half a wavelength apart, and the car runs through them. At speed <InlineMath math="v" /> it meets <InlineMath math="\dfrac{v}{d}" /> fades a second, so while it accelerates the rate keeps rising. The fades heard separately are the ones the car passes **before reaching the blur speed**, so they must be counted along the distance it covers, not multiplied by a time.
 
 <Chart
-  title={<>Time Between Fades for Each Station at <InlineMath math="15\text{ m/s}" /></>}
+  title={<>Fade Rate as the Car Passes Each Fade</>}
   bars="apart"
-  categories={["FM 100 MHz", "AM 600 kHz"]}
+  categories={["Fade 1", "Fade 2", "Fade 3", "Fade 4", "Fade 5", "Fade 6", "Fade 7", "Fade 8"]}
   series={[
-    { label: "Time between fades", mark: "bar", values: [0.1, 16.7] },
+    { label: "Fades per second", mark: "bar", values: [1.46, 2.07, 2.53, 2.92, 3.27, 3.58, 3.86, 4.13] },
   ]}
-  valueLabel="Time (s)"
-  description={<>The FM fades are <InlineMath math="1.5\text{ m}" /> apart, so the car meets one every <InlineMath math="0.10\text{ s}" />. The AM fades are <InlineMath math="250\text{ m}" /> apart, about <InlineMath math="17\text{ s}" /> of driving.</>}
+  valueLabel="Rate (per second)"
+  description={<>The rate rises as the car speeds up. It stays at or below the radio's limit of <InlineMath math="4" /> per second up to the seventh fade, <InlineMath math="3.9" /> per second, and passes it at the eighth, <InlineMath math="4.1" /> per second.</>}
 />
 
-<BlockMath math="\lambda_{FM}=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m},\qquad d=\tfrac12\lambda=1.5\text{ m},\qquad \frac{15}{1.5}=10\text{ fades per second}" />
+<BlockMath math="\lambda=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m},\qquad d=\tfrac12\lambda=1.5\text{ m},\qquad \frac{v}{1.5}\le4\Rightarrow v\le6.0\text{ m s}^{-1}" />
 
-<BlockMath math="\lambda_{AM}=\frac{3.0\times10^{8}}{6.0\times10^{5}}=500\text{ m},\qquad d'=250\text{ m},\qquad t=\frac{250}{15}\approx17\text{ s}" />
+<BlockMath math="s=\frac{v^2}{2a}=\frac{6.0^2}{2(1.6)}\approx11.3\text{ m},\qquad \frac{11.3}{1.5}\approx7.5\Rightarrow 7\text{ fades}" />
 
-The FM fades are <InlineMath math="1.5\text{ m}" /> apart, so at <InlineMath math="15\text{ m s}^{-1}" /> the car passes ten every second, a rapid flutter. On AM the fades are <InlineMath math="250\text{ m}" /> apart, so a fade comes only about every <InlineMath math="17\text{ s}" />.
-
-<BlockMath math="\frac{v}{1.5}\le4\Rightarrow v\le4\times1.5=6.0\text{ m s}^{-1}" />
-
-At <InlineMath math="15\text{ m s}^{-1}" /> the ten fades a second are smoothed out into a steady hiss. Only at <InlineMath math="6.0\text{ m s}^{-1}" /> or slower does the car pass at most four fades a second, so the driver hears them as separate dips.
+The fades are <InlineMath math="1.5\text{ m}" /> apart and blur above <InlineMath math="6.0\text{ m s}^{-1}" />. The car reaches that speed after about <InlineMath math="11.3\text{ m}" />, by which time it has passed the fades at <InlineMath math="1.5\text{ m}" />, <InlineMath math="3.0\text{ m}" />, up to <InlineMath math="10.5\text{ m}" />: seven separate fades. The eighth, at <InlineMath math="12.0\text{ m}" />, comes at <InlineMath math="4.1" /> a second and is already smoothed out.
 
 # Why the other options are wrong
 
-- <InlineMath math="3.0\text{ m}" /> takes a **whole wavelength** as the spacing, but the fades repeat every half wavelength, and the slip doubles the speed limit.
-- <InlineMath math="23" /> per second **multiplies** the speed by the spacing instead of dividing, and the same inversion gives <InlineMath math="2.7\text{ m s}^{-1}" />.
+- <InlineMath math="3.0\text{ m}" /> takes a **whole wavelength** as the spacing, which doubles the blur speed and stretches the distance fourfold.
+- <InlineMath math="15" /> fades with the right spacing assumes the car meets **four fades every second** for the whole <InlineMath math="3.75\text{ s}" />, but at the start it is barely moving.
 - <InlineMath math="0.75\text{ m}" /> takes a **quarter wavelength**, the distance from a fade to the nearest strong point, as the spacing between fades.

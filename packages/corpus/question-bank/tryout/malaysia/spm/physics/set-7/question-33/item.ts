@@ -12,7 +12,7 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.50\\text{ N}$$, $$2.5\\text{ mm}$$ and $$1.5\\text{ V}$$",
+          label: "$$0.50\\text{ N}$$, $$2.5\\text{ mm}$$ and $$1.8\\text{ V}$$",
         },
         {
           correct: false,
@@ -34,7 +34,7 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0.50\\text{ N}$$, $$2.5\\text{ mm}$$ dan $$1.5\\text{ V}$$",
+          label: "$$0.50\\text{ N}$$, $$2.5\\text{ mm}$$ dan $$1.8\\text{ V}$$",
         },
         {
           correct: false,

@@ -1,30 +1,26 @@
-# Reflektierte und direkte Wellen überlagern sich, das Muster der Einbrüche folgt also der Wellenlänge
+# Die Einbrüche liegen fest, also zählt man sie über die Strecke, nicht über die Zeit
 
-Wo die reflektierte Welle **gegenphasig** auf die direkte trifft, löschen sie sich aus, und das Signal bricht ein. Diese Stellen wiederholen sich entlang der Straße alle **halbe Wellenlänge**. Die Geschwindigkeit des Autos macht aus diesem Abstand eine Rate, und ein Sender mit viel längerer Wellenlänge zieht seine Einbrüche viel weiter auseinander.
+Direkte und reflektierte Welle bilden entlang der Straße ein **stehendes Muster**: Die Einbrüche bleiben an ihrem Ort, eine halbe Wellenlänge auseinander, und das Auto fährt hindurch. Bei der Geschwindigkeit <InlineMath math="v" /> trifft es <InlineMath math="\dfrac{v}{d}" /> Einbrüche pro Sekunde, beim Beschleunigen steigt diese Rate also ständig. Getrennt hörbar sind die Einbrüche, die das Auto **vor Erreichen der Grenzgeschwindigkeit** passiert, man muss sie daher über die zurückgelegte Strecke zählen, nicht mit einer Zeit multiplizieren.
 
 <Chart
-  title={<>Zeit zwischen Signaleinbrüchen für jeden Sender bei <InlineMath math="15\text{ m/s}" /></>}
+  title={<>Einbruchsrate an jedem Einbruchspunkt</>}
   bars="apart"
-  categories={["UKW 100 MHz", "AM 600 kHz"]}
+  categories={["Einbruch 1", "Einbruch 2", "Einbruch 3", "Einbruch 4", "Einbruch 5", "Einbruch 6", "Einbruch 7", "Einbruch 8"]}
   series={[
-    { label: "Zeit zwischen Einbrüchen", mark: "bar", values: [0.1, 16.7] },
+    { label: "Einbrüche pro Sekunde", mark: "bar", values: [1.46, 2.07, 2.53, 2.92, 3.27, 3.58, 3.86, 4.13] },
   ]}
-  valueLabel="Zeit (s)"
-  description={<>Die UKW-Einbrüche liegen <InlineMath math="1{,}5\text{ m}" /> auseinander, das Auto trifft alle <InlineMath math="0{,}10\text{ s}" /> einen. Die AM-Einbrüche liegen <InlineMath math="250\text{ m}" /> auseinander, etwa <InlineMath math="17\text{ s}" /> Fahrt.</>}
+  valueLabel="Rate (pro Sekunde)"
+  description={<>Die Rate steigt, während das Auto schneller wird. Bis zum siebten Einbruch bleibt sie bei höchstens <InlineMath math="4" /> pro Sekunde, <InlineMath math="3{,}9" /> pro Sekunde, und überschreitet die Grenze beim achten, <InlineMath math="4{,}1" /> pro Sekunde.</>}
 />
 
-<BlockMath math="\lambda_{UKW}=\frac{3{,}0\cdot10^{8}}{1{,}0\cdot10^{8}}=3{,}0\text{ m},\qquad d=\tfrac12\lambda=1{,}5\text{ m},\qquad \frac{15}{1{,}5}=10\text{ Einbrüche pro Sekunde}" />
+<BlockMath math="\lambda=\frac{3{,}0\cdot10^{8}}{1{,}0\cdot10^{8}}=3{,}0\text{ m},\qquad d=\tfrac12\lambda=1{,}5\text{ m},\qquad \frac{v}{1{,}5}\le4\Rightarrow v\le6{,}0\text{ m s}^{-1}" />
 
-<BlockMath math="\lambda_{AM}=\frac{3{,}0\cdot10^{8}}{6{,}0\cdot10^{5}}=500\text{ m},\qquad d'=250\text{ m},\qquad t=\frac{250}{15}\approx17\text{ s}" />
+<BlockMath math="s=\frac{v^2}{2a}=\frac{6{,}0^2}{2(1{,}6)}\approx11{,}3\text{ m},\qquad \frac{11{,}3}{1{,}5}\approx7{,}5\Rightarrow 7\text{ Einbrüche}" />
 
-Die UKW-Einbrüche liegen <InlineMath math="1{,}5\text{ m}" /> auseinander, bei <InlineMath math="15\text{ m s}^{-1}" /> fährt das Auto also zehnmal pro Sekunde durch einen, ein schnelles Flattern. Bei AM liegen sie <InlineMath math="250\text{ m}" /> auseinander, ein Einbruch kommt nur etwa alle <InlineMath math="17\text{ s}" />.
-
-<BlockMath math="\frac{v}{1{,}5}\le4\Rightarrow v\le4\cdot1{,}5=6{,}0\text{ m s}^{-1}" />
-
-Bei <InlineMath math="15\text{ m s}^{-1}" /> werden die zehn Einbrüche pro Sekunde zu einem gleichmäßigen Rauschen geglättet. Erst bei <InlineMath math="6{,}0\text{ m s}^{-1}" /> oder langsamer fährt das Auto durch höchstens vier Einbrüche pro Sekunde, sodass man sie als einzelne Aussetzer hört.
+Die Einbrüche liegen <InlineMath math="1{,}5\text{ m}" /> auseinander und verschwimmen über <InlineMath math="6{,}0\text{ m s}^{-1}" />. Diese Geschwindigkeit erreicht das Auto nach etwa <InlineMath math="11{,}3\text{ m}" />, bis dahin hat es die Einbrüche bei <InlineMath math="1{,}5\text{ m}" />, <InlineMath math="3{,}0\text{ m}" /> bis <InlineMath math="10{,}5\text{ m}" /> passiert: sieben getrennte Einbrüche. Der achte bei <InlineMath math="12{,}0\text{ m}" /> kommt mit <InlineMath math="4{,}1" /> pro Sekunde und wird schon geglättet.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="3{,}0\text{ m}" /> nimmt eine **ganze Wellenlänge** als Abstand, doch die Einbrüche wiederholen sich alle halbe Wellenlänge, und der Fehler verdoppelt die Geschwindigkeitsgrenze.
-- <InlineMath math="23" /> pro Sekunde **multipliziert** Geschwindigkeit und Abstand, statt zu teilen, und dieselbe Umkehrung ergibt <InlineMath math="2{,}7\text{ m s}^{-1}" />.
+- <InlineMath math="3{,}0\text{ m}" /> nimmt eine **ganze Wellenlänge** als Abstand, das verdoppelt die Grenzgeschwindigkeit und vervierfacht die Strecke.
+- <InlineMath math="15" /> Einbrüche bei richtigem Abstand nehmen an, das Auto treffe **vier Einbrüche pro Sekunde** während der ganzen <InlineMath math="3{,}75\text{ s}" />, doch anfangs bewegt es sich kaum.
 - <InlineMath math="0{,}75\text{ m}" /> nimmt eine **Viertelwellenlänge**, den Abstand vom Einbruch zur nächsten starken Stelle, als Abstand zwischen Einbrüchen.

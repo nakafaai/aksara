@@ -1,30 +1,26 @@
-# Gelombang pantulan dan gelombang terus berinterferens, jadi corak pudar ditentukan oleh panjang gelombang
+# Titik pudar berada di tempat tetap, jadi kira mengikut jarak, bukan masa
 
-Di mana gelombang pantulan bertemu gelombang terus secara **tidak sefasa**, kedua-duanya saling membatalkan dan isyarat pudar. Titik-titik ini berulang setiap **separuh panjang gelombang** di sepanjang jalan. Laju kereta menukar jarak itu kepada kadar, dan stesen dengan panjang gelombang yang jauh lebih panjang menjarakkan titik pudarnya jauh lebih jauh.
+Gelombang terus dan gelombang pantulan membentuk **corak pegun** di sepanjang jalan: titik pudar kekal di tempatnya, terpisah separuh panjang gelombang, dan kereta melaluinya. Pada laju <InlineMath math="v" /> kereta bertemu <InlineMath math="\dfrac{v}{d}" /> titik pudar sesaat, jadi semasa memecut kadar itu terus meningkat. Pudar yang didengar berasingan ialah yang dilalui kereta **sebelum mencapai laju kabur**, jadi ia mesti dikira mengikut jarak yang dilalui, bukan didarab dengan masa.
 
 <Chart
-  title={<>Masa antara Pudar bagi Setiap Stesen pada <InlineMath math="15\text{ m/s}" /></>}
+  title={<>Kadar Pudar Semasa Kereta Melalui Setiap Titik Pudar</>}
   bars="apart"
-  categories={["FM 100 MHz", "AM 600 kHz"]}
+  categories={["Pudar 1", "Pudar 2", "Pudar 3", "Pudar 4", "Pudar 5", "Pudar 6", "Pudar 7", "Pudar 8"]}
   series={[
-    { label: "Masa antara pudar", mark: "bar", values: [0.1, 16.7] },
+    { label: "Pudar sesaat", mark: "bar", values: [1.46, 2.07, 2.53, 2.92, 3.27, 3.58, 3.86, 4.13] },
   ]}
-  valueLabel="Masa (s)"
-  description={<>Titik pudar FM terpisah <InlineMath math="1.5\text{ m}" />, jadi kereta bertemu satu setiap <InlineMath math="0.10\text{ s}" />. Titik pudar AM terpisah <InlineMath math="250\text{ m}" />, kira-kira <InlineMath math="17\text{ s}" /> pemanduan.</>}
+  valueLabel="Kadar (sesaat)"
+  description={<>Kadar meningkat apabila kereta makin laju. Ia kekal pada atau di bawah had radio <InlineMath math="4" /> kali sesaat sehingga titik pudar ketujuh, <InlineMath math="3.9" /> kali sesaat, dan melepasinya pada titik kelapan, <InlineMath math="4.1" /> kali sesaat.</>}
 />
 
-<BlockMath math="\lambda_{FM}=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m},\qquad d=\tfrac12\lambda=1.5\text{ m},\qquad \frac{15}{1.5}=10\text{ kali pudar sesaat}" />
+<BlockMath math="\lambda=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m},\qquad d=\tfrac12\lambda=1.5\text{ m},\qquad \frac{v}{1.5}\le4\Rightarrow v\le6.0\text{ m s}^{-1}" />
 
-<BlockMath math="\lambda_{AM}=\frac{3.0\times10^{8}}{6.0\times10^{5}}=500\text{ m},\qquad d'=250\text{ m},\qquad t=\frac{250}{15}\approx17\text{ s}" />
+<BlockMath math="s=\frac{v^2}{2a}=\frac{6.0^2}{2(1.6)}\approx11.3\text{ m},\qquad \frac{11.3}{1.5}\approx7.5\Rightarrow 7\text{ kali pudar}" />
 
-Titik pudar FM terpisah <InlineMath math="1.5\text{ m}" />, jadi pada <InlineMath math="15\text{ m s}^{-1}" /> kereta melalui sepuluh setiap saat, satu getaran yang pantas. Pada AM titik pudar terpisah <InlineMath math="250\text{ m}" />, jadi pudar hanya berlaku kira-kira setiap <InlineMath math="17\text{ s}" />.
-
-<BlockMath math="\frac{v}{1.5}\le4\Rightarrow v\le4\times1.5=6.0\text{ m s}^{-1}" />
-
-Pada <InlineMath math="15\text{ m s}^{-1}" /> sepuluh pudar sesaat dilicinkan menjadi desisan tetap. Hanya pada <InlineMath math="6.0\text{ m s}^{-1}" /> atau lebih perlahan kereta melalui paling banyak empat pudar sesaat, jadi pemandu mendengarnya sebagai penurunan yang berasingan.
+Titik pudar terpisah <InlineMath math="1.5\text{ m}" /> dan menjadi kabur melebihi <InlineMath math="6.0\text{ m s}^{-1}" />. Kereta mencapai laju itu selepas kira-kira <InlineMath math="11.3\text{ m}" />, ketika ia sudah melalui titik pudar pada <InlineMath math="1.5\text{ m}" />, <InlineMath math="3.0\text{ m}" />, hingga <InlineMath math="10.5\text{ m}" />: tujuh kali pudar yang berasingan. Titik kelapan, pada <InlineMath math="12.0\text{ m}" />, datang pada <InlineMath math="4.1" /> kali sesaat dan sudah dilicinkan.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="3.0\text{ m}" /> mengambil **satu panjang gelombang penuh** sebagai jarak, tetapi pudar berulang setiap separuh panjang gelombang, dan kesilapan itu menggandakan had laju.
-- <InlineMath math="23" /> kali sesaat **mendarab** laju dengan jarak dan bukan membahagi, dan penyongsangan yang sama memberi <InlineMath math="2.7\text{ m s}^{-1}" />.
+- <InlineMath math="3.0\text{ m}" /> mengambil **satu panjang gelombang penuh** sebagai jarak, yang menggandakan laju kabur dan memanjangkan jarak empat kali.
+- <InlineMath math="15" /> kali pudar dengan jarak yang betul menganggap kereta bertemu **empat titik pudar setiap saat** sepanjang <InlineMath math="3.75\text{ s}" />, tetapi pada awalnya kereta hampir tidak bergerak.
 - <InlineMath math="0.75\text{ m}" /> mengambil **satu perempat panjang gelombang**, iaitu jarak dari titik pudar ke titik kuat terdekat, sebagai jarak antara pudar.

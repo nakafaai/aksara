@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3.8\\text{ ns}$$, $$19\\text{ ns}$$ and $$9.4\\text{ ns}$$",
+          label:
+            "$$3.8\\text{ ns}$$, $$19\\text{ ns}$$, $$9.4\\text{ ns}$$ and $$45\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$ and $$5.6\\text{ ns}$$",
+          label:
+            "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$, $$5.6\\text{ ns}$$ and $$110\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$11\\text{ ns}$$, $$32\\text{ ns}$$ and $$16\\text{ ns}$$",
+          label:
+            "$$11\\text{ ns}$$, $$32\\text{ ns}$$, $$16\\text{ ns}$$ and $$50\\text{ cm}$$",
         },
         {
           correct: true,
-          label: "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$ and $$11\\text{ ns}$$",
+          label:
+            "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$, $$11\\text{ ns}$$ and $$50\\text{ cm}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3.8\\text{ ns}$$, $$19\\text{ ns}$$ dan $$9.4\\text{ ns}$$",
+          label:
+            "$$3.8\\text{ ns}$$, $$19\\text{ ns}$$, $$9.4\\text{ ns}$$ dan $$45\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$ dan $$5.6\\text{ ns}$$",
+          label:
+            "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$, $$5.6\\text{ ns}$$ dan $$110\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$11\\text{ ns}$$, $$32\\text{ ns}$$ dan $$16\\text{ ns}$$",
+          label:
+            "$$11\\text{ ns}$$, $$32\\text{ ns}$$, $$16\\text{ ns}$$ dan $$50\\text{ cm}$$",
         },
         {
           correct: true,
-          label: "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$ dan $$11\\text{ ns}$$",
+          label:
+            "$$7.5\\text{ ns}$$, $$23\\text{ ns}$$, $$11\\text{ ns}$$ dan $$50\\text{ cm}$$",
         },
       ],
     },

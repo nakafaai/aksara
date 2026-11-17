@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.5\\times10^{5}\\text{ N}$$, $$19\\text{ kN}$$ and $$14\\text{ m}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$, $$24\\text{ m}$$ and $$24\\text{ m}$$",
         },
         {
           correct: true,
           label:
-            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ and $$24\\text{ m}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$, $$24\\text{ m}$$ and $$14\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\times10^{5}\\text{ N}$$, $$50\\text{ kN}$$ and $$6.0\\text{ m}$$",
+            "$$1.5\\times10^{5}\\text{ N}$$, $$19\\text{ kN}$$, $$14\\text{ m}$$ and $$14\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ and $$34\\text{ m}$$",
+            "$$4.0\\times10^{5}\\text{ N}$$, $$50\\text{ kN}$$, $$6.0\\text{ m}$$ and no depth at all",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.5\\times10^{5}\\text{ N}$$, $$19\\text{ kN}$$ dan $$14\\text{ m}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$, $$24\\text{ m}$$ dan $$24\\text{ m}$$",
         },
         {
           correct: true,
           label:
-            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ dan $$24\\text{ m}$$",
+            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$, $$24\\text{ m}$$ dan $$14\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\times10^{5}\\text{ N}$$, $$50\\text{ kN}$$ dan $$6.0\\text{ m}$$",
+            "$$1.5\\times10^{5}\\text{ N}$$, $$19\\text{ kN}$$, $$14\\text{ m}$$ dan $$14\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$1.0\\times10^{5}\\text{ N}$$, $$13\\text{ kN}$$ dan $$34\\text{ m}$$",
+            "$$4.0\\times10^{5}\\text{ N}$$, $$50\\text{ kN}$$, $$6.0\\text{ m}$$ dan tiada kedalaman langsung",
         },
       ],
     },
