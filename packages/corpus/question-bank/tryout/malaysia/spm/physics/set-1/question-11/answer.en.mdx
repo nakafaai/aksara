@@ -2,6 +2,25 @@
 
 The volume and the temperature both change, so use the combined gas equation <InlineMath math="\dfrac{p_1V_1}{T_1}=\dfrac{p_2V_2}{T_2}" />. The temperatures must be in **kelvin**, because the gas laws work with absolute temperature: <InlineMath math="T_1=27+273=300\text{ K}" /> and <InlineMath math="T_2=127+273=400\text{ K}" />.
 
+Step through the lab from the start to compressed to heated. Halving the volume doubles the pressure, and heating then raises it by the ratio of the kelvin temperatures.
+
+<GasPistonLab
+  title={<>The gas is squeezed and heated</>}
+  description={<>The gas starts at <InlineMath math="150\text{ kPa}" /> and <InlineMath math="27^\circ\text{C}" />, then goes to half its volume and <InlineMath math="127^\circ\text{C}" />.</>}
+  labels={{
+    pressure: <>Pressure</>,
+    stage: "Step",
+    stages: { compressed: <>Compressed</>, heated: <>Heated</>, start: <>Start</> },
+    temperature: <>Temperature</>,
+    viewLabel: "Gas in a cylinder with a piston",
+    volume: <>Volume</>,
+  }}
+  finalTemperature={127}
+  pressure={150}
+  temperature={27}
+  volumeRatio={0.5}
+/>
+
 <BlockMath math="p_2=p_1\cdot\frac{V_1}{V_2}\cdot\frac{T_2}{T_1}=150\times2\times\frac{400}{300}=400\text{ kPa}" />
 
 Take the two changes one at a time and each factor shows up. Halving the volume at <InlineMath math="300\text{ K}" /> doubles the pressure to <InlineMath math="300\text{ kPa}" />, then heating from <InlineMath math="300" /> to <InlineMath math="400\text{ K}" /> at that volume multiplies it by <InlineMath math="\tfrac43" />.

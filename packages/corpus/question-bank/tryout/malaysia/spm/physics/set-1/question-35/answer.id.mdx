@@ -2,6 +2,26 @@
 
 Gerbang NAND mengeluarkan <InlineMath math="0" /> hanya jika kedua masukannya <InlineMath math="1" />. Baris terakhir punya <InlineMath math="C=0" />, jadi <InlineMath math="Q=1" /> apa pun nilai <InlineMath math="X" />, dan **baris itu tidak memberi informasi tentang P**. Pakai empat baris dengan <InlineMath math="C=1" />: di sana <InlineMath math="Q=\overline{X}" />, jadi <InlineMath math="X" /> adalah kebalikan <InlineMath math="Q" />.
 
+Coba tiap gerbang untuk P di lab dan hitung baris yang cocok. Hanya satu gerbang yang cocok dengan kelima baris.
+
+<LogicGateLab
+  title={<>Cari gerbang P</>}
+  description={<>Gerbang P masuk ke gerbang NAND bersama masukan <InlineMath math="C" />, dan kelima baris diambil dari tabel.</>}
+  labels={{
+    gate: "Gerbang P",
+    matches: <>Baris yang cocok</>,
+    viewLabel: "Alat latih rangkaian logika",
+  }}
+  gate="AND"
+  rows={[
+    { a: 0, b: 0, c: 1, q: 1 },
+    { a: 0, b: 1, c: 1, q: 0 },
+    { a: 1, b: 0, c: 1, q: 0 },
+    { a: 1, b: 1, c: 1, q: 0 },
+    { a: 1, b: 1, c: 0, q: 1 },
+  ]}
+/>
+
 <BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
 
 Baca rangkaian itu mundur dari <InlineMath math="Q" />. Dengan <InlineMath math="C=1" />, gerbang NAND hanya membalik, jadi tiap nilai <InlineMath math="X" /> adalah kebalikan <InlineMath math="Q" />, dan empat nilai <InlineMath math="X" /> itu menunjukkan gerbang P.

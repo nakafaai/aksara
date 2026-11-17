@@ -2,6 +2,25 @@
 
 Die scheinbare Tiefe wird von der obersten Oberfläche aus gemessen, doch diese Oberfläche steigt, wenn Öl hinzukommt. **Rechne die scheinbare Tiefe deshalb in die Höhe des Bildes über dem Boden um**, vorher und nachher.
 
+Wechsle im Labor die obere Schicht. Jede Schicht trägt ihre eigene scheinbare Tiefe bei, ihre Dicke geteilt durch ihre Brechzahl, und das Bild steigt um den Unterschied.
+
+<ApparentDepthLab
+  title={<>Die Münze durch Öl und Wasser gesehen</>}
+  description={<><InlineMath math="6{,}0\text{ cm}" /> Öl auf <InlineMath math="12\text{ cm}" /> Wasser über einer Münze.</>}
+  labels={{
+    apparent: <>Scheinbare Tiefe</>,
+    image: <>Bild über dem Boden</>,
+    liquids: { alcohol: <>Alkohol</>, glycerine: <>Glycerin</>, oil: <>Öl</>, water: <>Wasser</> },
+    real: <>Wirkliche Tiefe</>,
+    top: "Obere Schicht",
+    viewLabel: "Eine Münze durch Flüssigkeitsschichten gesehen",
+  }}
+  layers={[
+    { index: 1.5, liquid: "oil", thickness: 6 },
+    { index: 4 / 3, liquid: "water", thickness: 12 },
+  ]}
+/>
+
 Zeichne beide Zustände und miss jede Höhe vom Boden aus, wo die Münze liegen bleibt. Dann ist die Verschiebung des Bildes eine Differenz zweier Höhen, nicht zweier scheinbarer Tiefen.
 
 <MathVisual

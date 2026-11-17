@@ -2,6 +2,26 @@
 
 Get TAKDAN memberi <InlineMath math="0" /> hanya apabila kedua-dua inputnya <InlineMath math="1" />. Baris terakhir mempunyai <InlineMath math="C=0" />, jadi <InlineMath math="Q=1" /> walau apa pun nilai <InlineMath math="X" />, dan **baris itu tidak memberi maklumat tentang P**. Gunakan empat baris dengan <InlineMath math="C=1" />: di situ <InlineMath math="Q=\overline{X}" />, jadi <InlineMath math="X" /> ialah songsangan <InlineMath math="Q" />.
 
+Cuba setiap get untuk P dalam makmal dan kira baris yang dihasilkan semula. Hanya satu get yang sepadan dengan kelima-lima baris.
+
+<LogicGateLab
+  title={<>Cari get P</>}
+  description={<>Get P menyambung ke get NAND bersama input <InlineMath math="C" />, dan lima baris itu diambil daripada jadual.</>}
+  labels={{
+    gate: "Get P",
+    matches: <>Baris yang sepadan</>,
+    viewLabel: "Alat latihan litar logik",
+  }}
+  gate="AND"
+  rows={[
+    { a: 0, b: 0, c: 1, q: 1 },
+    { a: 0, b: 1, c: 1, q: 0 },
+    { a: 1, b: 0, c: 1, q: 0 },
+    { a: 1, b: 1, c: 1, q: 0 },
+    { a: 1, b: 1, c: 0, q: 1 },
+  ]}
+/>
+
 <BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
 
 Baca litar itu ke belakang dari <InlineMath math="Q" />. Dengan <InlineMath math="C=1" />, get NAND hanya menyongsangkan, jadi setiap nilai <InlineMath math="X" /> ialah lawan bagi <InlineMath math="Q" />, dan empat nilai <InlineMath math="X" /> itu menamakan get P.

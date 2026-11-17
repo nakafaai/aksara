@@ -2,6 +2,27 @@
 
 **Precision** means the readings are close to one another, while **accuracy** means their average is close to the actual value. Judge each student on both counts. P's readings are accurate but less precise, with a spread of <InlineMath math="0.06\text{ cm}" />. R's readings spread over <InlineMath math="0.29\text{ cm}" />, so they are not precise. S's readings are precise and accurate. Q's readings differ by only <InlineMath math="0.02\text{ cm}" /> from one another, but all of them sit well above <InlineMath math="2.50\text{ cm}" />.
 
+Pick each student in the lab and compare how tight the readings sit with how far their mean lies from the actual length.
+
+<ReadingSpreadLab
+  title={<>Four sets of readings on one scale</>}
+  description={<>Each student's four readings of the block, with the actual length <InlineMath math="2.50\text{ cm}" /> marked.</>}
+  labels={{
+    mean: <>Mean</>,
+    offset: <>Mean minus actual length</>,
+    range: <>Range</>,
+    student: "Student",
+    viewLabel: "Readings of four students",
+  }}
+  actual={2.5}
+  students={[
+    { name: "P", readings: [2.48, 2.53, 2.47, 2.52] },
+    { name: "Q", readings: [2.62, 2.62, 2.61, 2.63] },
+    { name: "R", readings: [2.41, 2.58, 2.66, 2.37] },
+    { name: "S", readings: [2.5, 2.51, 2.49, 2.5] },
+  ]}
+/>
+
 <BlockMath math="\bar{x}_Q=\frac{2.62+2.62+2.61+2.63}{4}=2.62\text{ cm}\ \Rightarrow\ 2.62-2.50=+0.12\text{ cm}" />
 
 Put all sixteen readings on one scale and the pattern shows up at once. Q's dots sit in a tight cluster, but the whole cluster is shifted to the right of the actual length.

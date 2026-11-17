@@ -2,6 +2,26 @@
 
 Transistor menyala saat tegangan basis mencapai nilai ambang tertentu. LDR berada di bagian bawah pembagi tegangan, jadi tegangan basis adalah
 
+Redupkan cahaya di lab, lalu ubah hambatan tetap. <InlineMath math="R" /> yang lebih kecil memberi LDR bagian tegangan yang lebih besar, jadi basis mencapai tegangan saklar saat suasana masih lebih terang.
+
+<TransistorSwitchLab
+  title={<>Lampu otomatis</>}
+  description={<>Hambatan tetap di atas LDR mengatur tegangan basis transistor <InlineMath math="npn" />.</>}
+  labels={{
+    base: <>Tegangan basis</>,
+    ldr: <>Hambatan LDR</>,
+    light: <>Intensitas cahaya</>,
+    lightName: "Intensitas cahaya",
+    resistor: <>Hambatan tetap <InlineMath math="R" /></>,
+    resistorName: "Hambatan tetap",
+    switching: <>Menyala di bawah</>,
+    viewLabel: "Rangkaian lampu otomatis",
+  }}
+  resistor={10}
+  supply={6}
+  threshold={0.7}
+/>
+
 <BlockMath math="V_B=\frac{R_{\text{LDR}}}{R+R_{\text{LDR}}}\,V" />
 
 Ikuti rantai dari resistor sampai lampu. Tiap mata rantai adalah satu langkah pembagi tegangan dan sakelar transistor.

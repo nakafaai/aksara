@@ -2,6 +2,25 @@
 
 Volumen und Temperatur ändern sich gleichzeitig, also nutzt du die allgemeine Gasgleichung <InlineMath math="\dfrac{p_1V_1}{T_1}=\dfrac{p_2V_2}{T_2}" />. Die Temperaturen müssen in **Kelvin** stehen, denn die Gasgesetze gelten für die absolute Temperatur: <InlineMath math="T_1=27+273=300\text{ K}" /> und <InlineMath math="T_2=127+273=400\text{ K}" />.
 
+Geh im Labor die Schritte vom Start über das Zusammendrücken bis zum Erwärmen durch. Das halbe Volumen verdoppelt den Druck, und das Erwärmen hebt ihn dann um das Verhältnis der Kelvintemperaturen.
+
+<GasPistonLab
+  title={<>Das Gas wird zusammengedrückt und erwärmt</>}
+  description={<>Das Gas beginnt bei <InlineMath math="150\text{ kPa}" /> und <InlineMath math="27^\circ\text{C}" /> und kommt dann auf das halbe Volumen und <InlineMath math="127^\circ\text{C}" />.</>}
+  labels={{
+    pressure: <>Druck</>,
+    stage: "Schritt",
+    stages: { compressed: <>Zusammengedrückt</>, heated: <>Erwärmt</>, start: <>Start</> },
+    temperature: <>Temperatur</>,
+    viewLabel: "Gas in einem Zylinder mit Kolben",
+    volume: <>Volumen</>,
+  }}
+  finalTemperature={127}
+  pressure={150}
+  temperature={27}
+  volumeRatio={0.5}
+/>
+
 <BlockMath math="p_2=p_1\cdot\frac{V_1}{V_2}\cdot\frac{T_2}{T_1}=150\times2\times\frac{400}{300}=400\text{ kPa}" />
 
 Nimm die beiden Änderungen nacheinander, dann siehst du jeden Faktor. Das Halbieren des Volumens bei <InlineMath math="300\text{ K}" /> verdoppelt den Druck auf <InlineMath math="300\text{ kPa}" />, danach multipliziert das Erwärmen von <InlineMath math="300" /> auf <InlineMath math="400\text{ K}" /> bei diesem Volumen ihn mit <InlineMath math="\tfrac43" />.

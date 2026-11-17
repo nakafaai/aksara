@@ -2,6 +2,27 @@
 
 Ada tiga langkah berantai. Pertama, tegangan pada resistor basis adalah tegangan sumber **dikurangi <InlineMath math="0{,}70\text{ V}" /> antara basis dan emitor**, jadi arus basis dihitung dari <InlineMath math="4{,}0\text{ V}" />. Kedua, arus kolektor <InlineMath math="100" /> kali arus basis. Ketiga, tegangan sumber <InlineMath math="9{,}0\text{ V}" /> terbagi antara resistor kolektor dan transistor.
 
+Ubah hambatan basis di lab. Arus basis menentukan arus kolektor, dan tegangan yang tersisa pada transistor adalah sisa yang tidak diambil hambatan kolektor.
+
+<TransistorBiasLab
+  title={<>Arus dalam rangkaian transistor</>}
+  description={<>Hambatan basis <InlineMath math="100\text{ k}\Omega" /> pada <InlineMath math="4{,}7\text{ V}" /> dan hambatan kolektor <InlineMath math="1{,}0\text{ k}\Omega" /> pada <InlineMath math="9{,}0\text{ V}" />.</>}
+  labels={{
+    base: <>Hambatan basis</>,
+    baseCurrent: <>Arus basis</>,
+    baseName: "Hambatan basis",
+    collectorCurrent: <>Arus kolektor</>,
+    collectorEmitter: <>Tegangan kolektor-emitor</>,
+    viewLabel: "Rangkaian transistor npn",
+  }}
+  base={100}
+  baseSupply={4.7}
+  collector={1}
+  collectorSupply={9}
+  gain={100}
+  threshold={0.7}
+/>
+
 Tulis tiap nilai pada rangkaian begitu kamu menemukannya. Loop basis memberi <InlineMath math="I_B" />, transistor melipatgandakannya menjadi <InlineMath math="I_C" />, dan loop kolektor membagi <InlineMath math="9{,}0\text{ V}" /> itu.
 
 <MathVisual
