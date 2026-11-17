@@ -1,0 +1,26 @@
+# Die Energie vom Sonnenlicht bis zum Speicher verfolgen, mit Verlusten auf jeder Stufe
+
+Das Licht auf dem Modul ist Intensität mal Fläche. Das Modul behält <InlineMath math="18\%" /> davon als elektrische Leistung. Die Kapazität des Akkus in **Amperestunden** wird über <InlineMath math="E=VIt" /> zur Energie. Nur <InlineMath math="80\%" /> der Modulleistung werden gespeichert, die gespeicherte Leistung ist also kleiner und die Zeit **länger**, als das einfache Verhältnis nahelegt.
+
+<Chart
+  title={<>Leistung auf jeder Stufe vom Sonnenlicht bis zum Akku</>}
+  bars="apart"
+  categories={["Licht auf dem Modul", "Elektrische Leistung", "Im Akku gespeichert"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [960, 173, 138] },
+  ]}
+  valueLabel="Leistung (W)"
+  description={<>Von <InlineMath math="960\text{ W}" /> Sonnenlicht wandelt das Modul <InlineMath math="173\text{ W}" /> in elektrische Leistung um, davon speichert der Akku <InlineMath math="138\text{ W}" />.</>}
+/>
+
+<BlockMath math="P=0{,}18\cdot800\cdot1{,}2\approx173\text{ W}\approx170\text{ W}" />
+
+<BlockMath math="E=12\cdot100\cdot3600=4{,}32\cdot10^{6}\text{ J},\qquad t=\frac{4{,}32\cdot10^{6}}{0{,}80\cdot173}\approx3{,}1\cdot10^{4}\text{ s}\approx8{,}7\text{ h}" />
+
+Das Modul liefert etwa <InlineMath math="170\text{ W}" /> elektrische Leistung, davon werden etwa <InlineMath math="138\text{ W}" /> gespeichert. <InlineMath math="4{,}32\text{ MJ}" /> zu speichern dauert damit etwa <InlineMath math="8{,}7" /> Stunden volle Sonne.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6{,}9\text{ h}" /> **übersieht den Ladeverlust**, als würde die ganze Modulleistung gespeichert.
+- <InlineMath math="960\text{ W}" /> ist das **auf das Modul fallende Sonnenlicht**, nicht die erzeugte elektrische Leistung.
+- <InlineMath math="5{,}6\text{ h}" /> **multipliziert mit <InlineMath math="0{,}80" />, statt zu teilen**, sodass der Verlust die Zeit verkürzt statt verlängert.

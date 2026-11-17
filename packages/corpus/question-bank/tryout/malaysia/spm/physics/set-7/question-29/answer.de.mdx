@@ -1,0 +1,26 @@
+# Bei fester Spannung bedeutet weniger Widerstand mehr Leistung
+
+Bei fester Spannung von <InlineMath math="240\text{ V}" /> gilt <InlineMath math="P=\dfrac{V^2}{R}" />, also liefert die Stufe mit dem **größten Widerstand die kleinste Leistung**. Reihe addiert die Widerstände, parallel ergibt einen Widerstand **kleiner als jede Spule**. Der Strom auf der höchsten Stufe ist dann <InlineMath math="I=\dfrac VR" />.
+
+<Chart
+  title={<>Leistung jeder Heizstufe bei <InlineMath math="240\text{ V}" /></>}
+  bars="apart"
+  categories={["Reihe", "Nur 60 Ω", "Nur 40 Ω", "Parallel"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [576, 960, 1440, 2400] },
+  ]}
+  valueLabel="Leistung (W)"
+  description={<>Die vier Schaltungen der Spulen ergeben <InlineMath math="576" />, <InlineMath math="960" />, <InlineMath math="1440" /> und <InlineMath math="2400\text{ W}" />. In Reihe ist es am wenigsten, weil der Widerstand am größten ist, parallel am meisten, weil er am kleinsten ist.</>}
+/>
+
+<BlockMath math="R_{\text{Reihe}}=60+40=100\,\Omega,\qquad P_{\min}=\frac{240^2}{100}=576\text{ W}" />
+
+<BlockMath math="R_{\text{parallel}}=\frac{60\cdot40}{60+40}=24\,\Omega,\qquad I_{\max}=\frac{240}{24}=10\text{ A}" />
+
+Die niedrigste Stufe sind die Spulen in Reihe, <InlineMath math="576\text{ W}" />. Die höchste sind die Spulen parallel, <InlineMath math="2400\text{ W}" />, mit <InlineMath math="10\text{ A}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="960\text{ W}" /> nimmt die **größere Spule allein** als niedrigste Stufe, doch das Paar in Reihe hat noch mehr Widerstand.
+- <InlineMath math="2{,}4\text{ A}" /> ist der Strom auf der **niedrigsten Stufe**, nicht auf der höchsten.
+- <InlineMath math="1440\text{ W}" /> mit <InlineMath math="6{,}0\text{ A}" /> nimmt die **kleinere Spule allein**, die weder die niedrigste noch die höchste Stufe ist.

@@ -1,0 +1,27 @@
+# Zwei Lasten geben zwei Gleichungen für dieselbe EMK
+
+Jede Messung liefert einen Strom, <InlineMath math="I=\dfrac VR" />. Die EMK ist die Klemmenspannung **plus der innere Spannungsverlust**, <InlineMath math="E=V+Ir" />, und sie ist in beiden Fällen gleich, also liefern die zwei Gleichungen <InlineMath math="r" /> und dann <InlineMath math="E" />. Mit einem Draht ohne nennenswerten Widerstand **treibt die ganze EMK den Strom allein durch <InlineMath math="r" />**.
+
+<Chart
+  title={<>Klemmenspannung der Zelle über dem Strom</>}
+  categories={["0 A", "0,70 A", "1,20 A", "4,2 A"]}
+  series={[
+    { label: "Klemmenspannung", mark: "line", values: [1.68, 1.4, 1.2, 0] },
+  ]}
+  valueLabel="Spannung (V)"
+  description={<>Die beiden Messwerte liegen auf einer Geraden, die je Ampere um <InlineMath math="0{,}40\text{ V}" /> fällt. Sie trifft die Spannungsachse bei der EMK, <InlineMath math="1{,}68\text{ V}" />, und erreicht null beim Kurzschlussstrom, <InlineMath math="4{,}2\text{ A}" />.</>}
+/>
+
+<BlockMath math="I_1=\frac{1{,}40}{2{,}0}=0{,}70\text{ A},\qquad I_2=\frac{1{,}20}{1{,}0}=1{,}20\text{ A}" />
+
+<BlockMath math="1{,}40+0{,}70r=1{,}20+1{,}20r\Rightarrow r=\frac{0{,}20}{0{,}50}=0{,}40\,\Omega,\qquad E=1{,}40+0{,}70(0{,}40)=1{,}68\text{ V}" />
+
+<BlockMath math="I_{\text{kurz}}=\frac{E}{r}=\frac{1{,}68}{0{,}40}=4{,}2\text{ A}" />
+
+Die Klemmenspannung fällt um <InlineMath math="0{,}20\text{ V}" />, wenn der Strom um <InlineMath math="0{,}50\text{ A}" /> steigt, also ist der Innenwiderstand <InlineMath math="0{,}40\,\Omega" /> und die EMK <InlineMath math="1{,}68\text{ V}" />. Ein Kurzschluss würde <InlineMath math="4{,}2\text{ A}" /> ziehen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3{,}5\text{ A}" /> teilt die **Klemmenspannung <InlineMath math="1{,}40\text{ V}" />** durch <InlineMath math="r" />, doch beim Kurzschluss liegt die ganze EMK an <InlineMath math="r" />.
+- <InlineMath math="0{,}20\,\Omega" /> teilt die Spannungsänderung durch die **Widerstandsänderung**, <InlineMath math="1{,}0\,\Omega" />, statt durch die Stromänderung.
+- <InlineMath math="3{,}0\text{ A}" /> teilt die **andere Klemmenspannung, <InlineMath math="1{,}20\text{ V}" />**, durch <InlineMath math="r" /> und verfehlt ebenfalls die EMK.

@@ -1,0 +1,26 @@
+# The same power at a higher voltage needs a smaller current
+
+The current in the cables is <InlineMath math="I=\dfrac PV" />. The heat wasted in the cables is <InlineMath math="I^2R" />, which depends on the **current squared**, not on the transmission voltage directly. Stepping the voltage up <InlineMath math="25" /> times makes the current <InlineMath math="25" /> times smaller, so the loss falls by **<InlineMath math="25^2=625" /> times**.
+
+<Chart
+  title={<>Power Lost in the Cables at Each Transmission Voltage</>}
+  bars="apart"
+  categories={["1.0 kV", "25 kV"]}
+  series={[
+    { label: "Power lost", mark: "bar", values: [5000, 8.0] },
+  ]}
+  valueLabel="Power lost (W)"
+  description={<>At <InlineMath math="1.0\text{ kV}" /> the cables waste <InlineMath math="5000\text{ W}" />, a tenth of the power sent. At <InlineMath math="25\text{ kV}" /> they waste only <InlineMath math="8.0\text{ W}" />, because the current is <InlineMath math="25" /> times smaller and the loss goes with the current squared.</>}
+/>
+
+<BlockMath math="I_1=\frac{50\,000}{1000}=50\text{ A},\qquad P_1=50^2\times2.0=5.0\times10^{3}\text{ W}" />
+
+<BlockMath math="I_2=\frac{50\,000}{25\,000}=2.0\text{ A},\qquad P_2=2.0^2\times2.0=8.0\text{ W}" />
+
+At <InlineMath math="1.0\text{ kV}" /> the cables waste <InlineMath math="5.0\text{ kW}" />, a tenth of the power. At <InlineMath math="25\text{ kV}" /> they waste only <InlineMath math="8.0\text{ W}" />, which is why power is transmitted at high voltage.
+
+# Why the other options are wrong
+
+- <InlineMath math="200\text{ W}" /> makes the loss fall in proportion to the voltage, **<InlineMath math="25" /> times instead of <InlineMath math="25^2" /> times**.
+- <InlineMath math="100\text{ W}" /> and <InlineMath math="4.0\text{ W}" /> use **<InlineMath math="IR" />**, which is the voltage drop along the cables in volts, not the power lost.
+- <InlineMath math="2.5\text{ kW}" /> and <InlineMath math="4.0\text{ W}" /> halve the loss as if it were **<InlineMath math="\tfrac12I^2R" />**.

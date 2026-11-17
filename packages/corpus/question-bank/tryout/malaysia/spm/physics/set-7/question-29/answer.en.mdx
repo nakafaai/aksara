@@ -1,0 +1,26 @@
+# At a fixed voltage, less resistance means more power
+
+With the voltage fixed at <InlineMath math="240\text{ V}" />, power is <InlineMath math="P=\dfrac{V^2}{R}" />, so the setting with the **most resistance gives the least power**. Series adds the resistances, and parallel gives a resistance **smaller than either coil**. The current on the highest setting is then <InlineMath math="I=\dfrac VR" />.
+
+<Chart
+  title={<>Power of Each Heater Setting at <InlineMath math="240\text{ V}" /></>}
+  bars="apart"
+  categories={["Series", "60 Ω alone", "40 Ω alone", "Parallel"]}
+  series={[
+    { label: "Power", mark: "bar", values: [576, 960, 1440, 2400] },
+  ]}
+  valueLabel="Power (W)"
+  description={<>The four ways to connect the coils give <InlineMath math="576" />, <InlineMath math="960" />, <InlineMath math="1440" /> and <InlineMath math="2400\text{ W}" />. Series is the lowest because it has the most resistance, parallel the highest because it has the least.</>}
+/>
+
+<BlockMath math="R_{\text{series}}=60+40=100\,\Omega,\qquad P_{\min}=\frac{240^2}{100}=576\text{ W}" />
+
+<BlockMath math="R_{\text{parallel}}=\frac{60\times40}{60+40}=24\,\Omega,\qquad I_{\max}=\frac{240}{24}=10\text{ A}" />
+
+The lowest setting is the coils in series, <InlineMath math="576\text{ W}" />. The highest is the coils in parallel, <InlineMath math="2400\text{ W}" />, which draws <InlineMath math="10\text{ A}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="960\text{ W}" /> takes the **larger coil alone** as the lowest setting, but the series pair has even more resistance.
+- <InlineMath math="2.4\text{ A}" /> is the current on the **lowest setting**, not the highest.
+- <InlineMath math="1440\text{ W}" /> with <InlineMath math="6.0\text{ A}" /> uses the **smaller coil alone**, which is neither the lowest nor the highest setting.

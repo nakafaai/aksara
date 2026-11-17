@@ -1,0 +1,26 @@
+# Daya yang sama pada tegangan lebih tinggi butuh arus lebih kecil
+
+Arus di kabel adalah <InlineMath math="I=\dfrac PV" />. Kalor yang terbuang di kabel adalah <InlineMath math="I^2R" />, yang bergantung pada **kuadrat arus**, bukan langsung pada tegangan transmisi. Menaikkan tegangan <InlineMath math="25" /> kali membuat arus <InlineMath math="25" /> kali lebih kecil, jadi kehilangannya turun **<InlineMath math="25^2=625" /> kali**.
+
+<Chart
+  title={<>Daya yang Hilang di Kabel pada Tiap Tegangan Transmisi</>}
+  bars="apart"
+  categories={["1,0 kV", "25 kV"]}
+  series={[
+    { label: "Daya hilang", mark: "bar", values: [5000, 8.0] },
+  ]}
+  valueLabel="Daya hilang (W)"
+  description={<>Pada <InlineMath math="1{,}0\text{ kV}" /> kabel membuang <InlineMath math="5000\text{ W}" />, sepersepuluh dari daya yang dikirim. Pada <InlineMath math="25\text{ kV}" /> hanya terbuang <InlineMath math="8{,}0\text{ W}" />, karena arusnya <InlineMath math="25" /> kali lebih kecil dan kehilangannya mengikuti kuadrat arus.</>}
+/>
+
+<BlockMath math="I_1=\frac{50\,000}{1000}=50\text{ A},\qquad P_1=50^2\times2{,}0=5{,}0\times10^{3}\text{ W}" />
+
+<BlockMath math="I_2=\frac{50\,000}{25\,000}=2{,}0\text{ A},\qquad P_2=2{,}0^2\times2{,}0=8{,}0\text{ W}" />
+
+Pada <InlineMath math="1{,}0\text{ kV}" /> kabel membuang <InlineMath math="5{,}0\text{ kW}" />, sepersepuluh dari daya. Pada <InlineMath math="25\text{ kV}" /> hanya terbuang <InlineMath math="8{,}0\text{ W}" />, itulah sebabnya daya dikirim pada tegangan tinggi.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="200\text{ W}" /> membuat kehilangan turun sebanding tegangan, **<InlineMath math="25" /> kali alih-alih <InlineMath math="25^2" /> kali**.
+- <InlineMath math="100\text{ W}" /> dan <InlineMath math="4{,}0\text{ W}" /> memakai **<InlineMath math="IR" />**, yaitu penurunan tegangan sepanjang kabel dalam volt, bukan daya yang hilang.
+- <InlineMath math="2{,}5\text{ kW}" /> dan <InlineMath math="4{,}0\text{ W}" /> membagi dua kehilangan seolah-olah **<InlineMath math="\tfrac12I^2R" />**.

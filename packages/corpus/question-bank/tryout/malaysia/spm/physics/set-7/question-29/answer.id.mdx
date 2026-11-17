@@ -1,0 +1,26 @@
+# Pada tegangan tetap, hambatan lebih kecil berarti daya lebih besar
+
+Dengan tegangan tetap <InlineMath math="240\text{ V}" />, daya adalah <InlineMath math="P=\dfrac{V^2}{R}" />, jadi setelan dengan **hambatan terbesar memberi daya terkecil**. Seri menjumlahkan hambatan, dan paralel memberi hambatan **lebih kecil dari tiap kumparan**. Arus pada setelan tertinggi lalu adalah <InlineMath math="I=\dfrac VR" />.
+
+<Chart
+  title={<>Daya Tiap Setelan Pemanas pada <InlineMath math="240\text{ V}" /></>}
+  bars="apart"
+  categories={["Seri", "60 Ω saja", "40 Ω saja", "Paralel"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [576, 960, 1440, 2400] },
+  ]}
+  valueLabel="Daya (W)"
+  description={<>Empat cara menyambung kumparan memberi <InlineMath math="576" />, <InlineMath math="960" />, <InlineMath math="1440" />, dan <InlineMath math="2400\text{ W}" />. Seri paling rendah karena hambatannya paling besar, paralel paling tinggi karena hambatannya paling kecil.</>}
+/>
+
+<BlockMath math="R_{\text{seri}}=60+40=100\,\Omega,\qquad P_{\min}=\frac{240^2}{100}=576\text{ W}" />
+
+<BlockMath math="R_{\text{paralel}}=\frac{60\times40}{60+40}=24\,\Omega,\qquad I_{\max}=\frac{240}{24}=10\text{ A}" />
+
+Setelan terendah adalah kumparan seri, <InlineMath math="576\text{ W}" />. Setelan tertinggi adalah kumparan paralel, <InlineMath math="2400\text{ W}" />, yang menarik <InlineMath math="10\text{ A}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="960\text{ W}" /> mengambil **kumparan yang lebih besar saja** sebagai setelan terendah, padahal pasangan seri hambatannya lebih besar lagi.
+- <InlineMath math="2{,}4\text{ A}" /> adalah arus pada **setelan terendah**, bukan tertinggi.
+- <InlineMath math="1440\text{ W}" /> dengan <InlineMath math="6{,}0\text{ A}" /> memakai **kumparan yang lebih kecil saja**, yang bukan setelan terendah maupun tertinggi.

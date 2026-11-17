@@ -1,0 +1,26 @@
+# Kuasa yang sama pada voltan yang lebih tinggi memerlukan arus yang lebih kecil
+
+Arus dalam kabel ialah <InlineMath math="I=\dfrac PV" />. Haba yang dibazirkan dalam kabel ialah <InlineMath math="I^2R" />, yang bergantung pada **kuasa dua arus**, bukan terus pada voltan penghantaran. Menaikkan voltan <InlineMath math="25" /> kali menjadikan arus <InlineMath math="25" /> kali lebih kecil, jadi kehilangan berkurang **<InlineMath math="25^2=625" /> kali**.
+
+<Chart
+  title={<>Kuasa yang Hilang dalam Kabel pada Setiap Voltan Penghantaran</>}
+  bars="apart"
+  categories={["1.0 kV", "25 kV"]}
+  series={[
+    { label: "Kuasa hilang", mark: "bar", values: [5000, 8.0] },
+  ]}
+  valueLabel="Kuasa hilang (W)"
+  description={<>Pada <InlineMath math="1.0\text{ kV}" /> kabel membazir <InlineMath math="5000\text{ W}" />, satu persepuluh daripada kuasa yang dihantar. Pada <InlineMath math="25\text{ kV}" /> ia hanya membazir <InlineMath math="8.0\text{ W}" />, kerana arus <InlineMath math="25" /> kali lebih kecil dan kehilangan bergantung pada kuasa dua arus.</>}
+/>
+
+<BlockMath math="I_1=\frac{50\,000}{1000}=50\text{ A},\qquad P_1=50^2\times2.0=5.0\times10^{3}\text{ W}" />
+
+<BlockMath math="I_2=\frac{50\,000}{25\,000}=2.0\text{ A},\qquad P_2=2.0^2\times2.0=8.0\text{ W}" />
+
+Pada <InlineMath math="1.0\text{ kV}" /> kabel membazir <InlineMath math="5.0\text{ kW}" />, satu persepuluh daripada kuasa. Pada <InlineMath math="25\text{ kV}" /> ia hanya membazir <InlineMath math="8.0\text{ W}" />, sebab itulah kuasa dihantar pada voltan tinggi.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="200\text{ W}" /> menjadikan kehilangan berkurang mengikut voltan, **<InlineMath math="25" /> kali dan bukan <InlineMath math="25^2" /> kali**.
+- <InlineMath math="100\text{ W}" /> dan <InlineMath math="4.0\text{ W}" /> menggunakan **<InlineMath math="IR" />**, iaitu susutan voltan di sepanjang kabel dalam volt, bukan kuasa yang hilang.
+- <InlineMath math="2.5\text{ kW}" /> dan <InlineMath math="4.0\text{ W}" /> mengurangkan kehilangan kepada separuh seolah-olah ia **<InlineMath math="\tfrac12I^2R" />**.

@@ -1,0 +1,27 @@
+# Two loads give two equations for the same emf
+
+Each reading gives a current, <InlineMath math="I=\dfrac VR" />. The emf is the terminal voltage **plus the voltage lost inside**, <InlineMath math="E=V+Ir" />, and it is the same in both cases, so the two equations give <InlineMath math="r" /> and then <InlineMath math="E" />. With a wire of negligible resistance, the **whole emf drives current through <InlineMath math="r" /> alone**.
+
+<Chart
+  title={<>Terminal Voltage of the Cell Against Current</>}
+  categories={["0 A", "0.70 A", "1.20 A", "4.2 A"]}
+  series={[
+    { label: "Terminal voltage", mark: "line", values: [1.68, 1.4, 1.2, 0] },
+  ]}
+  valueLabel="Voltage (V)"
+  description={<>The two readings lie on a straight line that falls <InlineMath math="0.40\text{ V}" /> for every ampere. It meets the voltage axis at the emf, <InlineMath math="1.68\text{ V}" />, and reaches zero at the short-circuit current, <InlineMath math="4.2\text{ A}" />.</>}
+/>
+
+<BlockMath math="I_1=\frac{1.40}{2.0}=0.70\text{ A},\qquad I_2=\frac{1.20}{1.0}=1.20\text{ A}" />
+
+<BlockMath math="1.40+0.70r=1.20+1.20r\Rightarrow r=\frac{0.20}{0.50}=0.40\,\Omega,\qquad E=1.40+0.70(0.40)=1.68\text{ V}" />
+
+<BlockMath math="I_{\text{short}}=\frac{E}{r}=\frac{1.68}{0.40}=4.2\text{ A}" />
+
+The terminal voltage falls <InlineMath math="0.20\text{ V}" /> when the current rises <InlineMath math="0.50\text{ A}" />, so the internal resistance is <InlineMath math="0.40\,\Omega" /> and the emf is <InlineMath math="1.68\text{ V}" />. A short circuit would draw <InlineMath math="4.2\text{ A}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="3.5\text{ A}" /> divides the **terminal voltage <InlineMath math="1.40\text{ V}" />** by <InlineMath math="r" />, but with a short circuit the whole emf acts across <InlineMath math="r" />.
+- <InlineMath math="0.20\,\Omega" /> divides the voltage change by the **change in resistance**, <InlineMath math="1.0\,\Omega" />, instead of the change in current.
+- <InlineMath math="3.0\text{ A}" /> divides the **other terminal voltage, <InlineMath math="1.20\text{ V}" />**, by <InlineMath math="r" />, again missing the emf.
