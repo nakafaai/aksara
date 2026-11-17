@@ -1,23 +1,19 @@
-# Susun ekspresinya, lalu hitung baris yang membuatnya <InlineMath math="1" />
+# Bandingkan perilaku rusak dengan tabel yang benar, lalu singkirkan tiap kemungkinan kerusakan
 
-Bel hanya berbunyi saat **ketiga** masukan gerbang AND bernilai <InlineMath math="1" />: kunci kontak, sensor kecepatan, dan keluaran OR. Keluaran OR bernilai <InlineMath math="1" /> kecuali sabuk terpasang **dan** pintu tertutup. Sensor yang macet menghapus <InlineMath math="S" /> dari syarat, yang melipatduakan jumlahnya, karena tiap keadaan kini terjadi untuk kedua nilai <InlineMath math="S" />.
+Rangkaian yang bekerja memberi <InlineMath math="B=I\cdot\left(\overline F+D\right)" />: dengan <InlineMath math="I=1" /> bel seharusnya diam hanya saat sabuk terpasang **dan** pintu tertutup. Bel yang berbunyi untuk tiap <InlineMath math="I=1" /> berarti gerbang AND menerima <InlineMath math="1" /> dari sisi OR setiap kali. Itu terjadi jika **keluaran NOT** atau **keluaran OR** macet di <InlineMath math="1" />. Pengukurannya memutuskan: gerbang NOT memang memberi <InlineMath math="0" /> saat <InlineMath math="F=1" />, jadi bekerja, dan keluaran yang macet pasti milik gerbang OR.
 
 <Mermaid
   title={<>Rangkaian Peringatan Sabuk Pengaman</>}
-  description={<>Sinyal sabuk melewati gerbang NOT dan bergabung dengan sinyal pintu di gerbang OR. Keluaran OR, kunci kontak, dan sensor kecepatan bertemu di gerbang AND tiga masukan, yang menggerakkan bel.</>}
-  chart={"flowchart LR\n  F[\"Sabuk F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Pintu D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Kunci kontak I\"] --> A\n  S[\"Kecepatan S\"] --> A\n  A --> B[\"Bel\"]"}
+  description={<>Sinyal sabuk melewati gerbang NOT dan bergabung dengan sinyal pintu di gerbang OR. Keluaran OR dan sinyal kunci kontak bertemu di gerbang AND, yang menggerakkan bel.</>}
+  chart={"flowchart LR\n  F[\"Sabuk F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Pintu D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Kunci kontak I\"] --> A\n  A --> B[\"Bel\"]"}
 />
 
-<BlockMath math="B=I\cdot S\cdot\left(\overline F+D\right)" />
+<BlockMath math="\text{benar: } B=I\left(\overline F+D\right)\Rightarrow(1,0,0),(1,0,1),(1,1,1)\text{ berbunyi},\qquad\text{rusak: } B=I\Rightarrow\text{juga }(1,1,0)" />
 
-<BlockMath math="I=S=1:\ (F,D)=(0,0),(0,1),(1,1)\Rightarrow3\text{ dari }16,\qquad S\text{ macet di }1:\ 2\times3=6" />
-
-<BlockMath math="B'=I\cdot S\cdot\overline F\cdot D\Rightarrow(I,S,F,D)=(1,1,0,1)\text{ saja}\Rightarrow1" />
-
-Dengan sensor bekerja, bel berbunyi di <InlineMath math="3" /> dari <InlineMath math="16" /> keadaan. Sensor yang macet membuatnya berbunyi baik mobil bergerak maupun tidak, <InlineMath math="6" /> keadaan. Dengan gerbang AND, bel butuh sabuk tidak dipasang **dan** pintu terbuka sekaligus, yang terjadi di <InlineMath math="1" /> keadaan.
+Kedua tabel hanya berbeda untuk <InlineMath math="I=1" />, <InlineMath math="F=1" />, <InlineMath math="D=0" />: kunci kontak menyala, sabuk terpasang, pintu tertutup, saat bel seharusnya diam tetapi berbunyi. Kombinasi itulah yang perlu diuji.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="3" /> dengan sensor macet menganggap **kerusakan tidak mengubah apa pun**, padahal bel jadi berbunyi untuk kedua nilai <InlineMath math="S" />.
-- <InlineMath math="6" />, <InlineMath math="6" />, dan <InlineMath math="2" /> **mengabaikan masukan kecepatan** di gerbang AND, menghitung tiap keadaan seolah-olah <InlineMath math="S" /> selalu <InlineMath math="1" />.
-- <InlineMath math="2" /> untuk versi AND menghitung keadaan <InlineMath math="I=1" />, <InlineMath math="F=0" />, <InlineMath math="D=1" /> **untuk kedua nilai <InlineMath math="S" />**, padahal sensor yang bekerja juga harus bernilai <InlineMath math="1" />.
+- **Keluaran NOT macet di <InlineMath math="1" />** akan memberi tabel bel yang sama, padahal teknisi mengukur keluaran NOT sebagai <InlineMath math="0" /> dengan <InlineMath math="F=1" />, jadi gerbang NOT bekerja.
+- **<InlineMath math="4" /> kombinasi** menghitung tiap keadaan <InlineMath math="I=1" /> sebagai salah, padahal di tiga di antaranya bel memang seharusnya berbunyi.
+- **Keluaran AND macet di <InlineMath math="1" />** akan membuat bel berbunyi meskipun kunci kontak mati, yang tidak pernah dilihat teknisi.

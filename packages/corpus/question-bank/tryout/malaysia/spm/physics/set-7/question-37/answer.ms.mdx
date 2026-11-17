@@ -1,23 +1,19 @@
-# Bina ungkapan, kemudian kira baris yang menjadikannya <InlineMath math="1" />
+# Bandingkan kelakuan rosak dengan jadual yang betul, kemudian tolak setiap kemungkinan kerosakan
 
-Pembaz hanya berbunyi apabila **ketiga-tiga** input get AND bernilai <InlineMath math="1" />: penghidup, penderia laju dan output OR. Output OR bernilai <InlineMath math="1" /> kecuali tali pinggang dipakai **dan** pintu tertutup. Penderia yang tersekat membuang <InlineMath math="S" /> daripada syarat, yang menggandakan bilangan, kerana setiap keadaan kini berlaku bagi kedua-dua nilai <InlineMath math="S" />.
+Litar yang berfungsi memberi <InlineMath math="B=I\cdot\left(\overline F+D\right)" />: dengan <InlineMath math="I=1" /> ia sepatutnya senyap hanya apabila tali pinggang dipakai **dan** pintu tertutup. Pembaz yang berbunyi bagi setiap <InlineMath math="I=1" /> bermakna get AND menerima <InlineMath math="1" /> dari sisi OR setiap kali. Itu berlaku jika **output NOT** atau **output OR** tersekat pada <InlineMath math="1" />. Pengukuran itu menentukannya: get NOT memang memberi <InlineMath math="0" /> apabila <InlineMath math="F=1" />, jadi ia berfungsi, dan output yang tersekat mestilah milik get OR.
 
 <Mermaid
   title={<>Litar Amaran Tali Pinggang Keledar</>}
-  description={<>Isyarat tali pinggang melalui get NOT dan bergabung dengan isyarat pintu di get OR. Output OR, penghidup dan penderia laju bertemu di get AND tiga input, yang mengendalikan pembaz.</>}
-  chart={"flowchart LR\n  F[\"Tali pinggang F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Pintu D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Penghidup I\"] --> A\n  S[\"Laju S\"] --> A\n  A --> B[\"Pembaz\"]"}
+  description={<>Isyarat tali pinggang melalui get NOT dan bergabung dengan isyarat pintu di get OR. Output OR dan isyarat penghidup bertemu di get AND, yang mengendalikan pembaz.</>}
+  chart={"flowchart LR\n  F[\"Tali pinggang F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Pintu D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Penghidup I\"] --> A\n  A --> B[\"Pembaz\"]"}
 />
 
-<BlockMath math="B=I\cdot S\cdot\left(\overline F+D\right)" />
+<BlockMath math="\text{betul: } B=I\left(\overline F+D\right)\Rightarrow(1,0,0),(1,0,1),(1,1,1)\text{ berbunyi},\qquad\text{rosak: } B=I\Rightarrow\text{juga }(1,1,0)" />
 
-<BlockMath math="I=S=1:\ (F,D)=(0,0),(0,1),(1,1)\Rightarrow3\text{ daripada }16,\qquad S\text{ tersekat pada }1:\ 2\times3=6" />
-
-<BlockMath math="B'=I\cdot S\cdot\overline F\cdot D\Rightarrow(I,S,F,D)=(1,1,0,1)\text{ sahaja}\Rightarrow1" />
-
-Dengan penderia berfungsi, pembaz berbunyi dalam <InlineMath math="3" /> daripada <InlineMath math="16" /> keadaan. Penderia yang tersekat membiarkannya berbunyi sama ada kereta bergerak atau tidak, <InlineMath math="6" /> keadaan. Dengan get AND ia memerlukan tali pinggang tidak dipakai **dan** pintu terbuka serentak, yang berlaku dalam <InlineMath math="1" /> keadaan.
+Kedua-dua jadual hanya berbeza bagi <InlineMath math="I=1" />, <InlineMath math="F=1" />, <InlineMath math="D=0" />: penghidup dihidupkan, tali pinggang dipakai, pintu tertutup, apabila pembaz sepatutnya senyap tetapi berbunyi. Gabungan itulah yang perlu diuji.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="3" /> dengan penderia tersekat menganggap **kerosakan tidak mengubah apa-apa**, tetapi ia membunyikan pembaz bagi kedua-dua nilai <InlineMath math="S" />.
-- <InlineMath math="6" />, <InlineMath math="6" /> dan <InlineMath math="2" /> **mengabaikan input laju** di get AND, mengira setiap keadaan seolah-olah <InlineMath math="S" /> sentiasa <InlineMath math="1" />.
-- <InlineMath math="2" /> bagi versi AND mengira keadaan <InlineMath math="I=1" />, <InlineMath math="F=0" />, <InlineMath math="D=1" /> **bagi kedua-dua nilai <InlineMath math="S" />**, tetapi penderia yang berfungsi juga mesti bernilai <InlineMath math="1" />.
+- **Output NOT tersekat pada <InlineMath math="1" />** akan memberi jadual pembaz yang sama, tetapi juruteknik mengukur output NOT sebagai <InlineMath math="0" /> dengan <InlineMath math="F=1" />, jadi get NOT berfungsi.
+- **<InlineMath math="4" /> gabungan** mengira setiap keadaan <InlineMath math="I=1" /> sebagai salah, tetapi dalam tiga daripadanya pembaz memang sepatutnya berbunyi.
+- **Output AND tersekat pada <InlineMath math="1" />** akan membunyikan pembaz walaupun penghidup dimatikan, yang tidak pernah dilihat oleh juruteknik.

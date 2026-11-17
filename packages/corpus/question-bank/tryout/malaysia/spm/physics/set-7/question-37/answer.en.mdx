@@ -1,23 +1,19 @@
-# Build the expression, then count the rows that make it <InlineMath math="1" />
+# Compare the faulty behaviour with the correct table, then rule out each candidate fault
 
-The buzzer sounds only when **all three** inputs of the AND gate are <InlineMath math="1" />: the ignition, the speed sensor, and the OR output. The OR output is <InlineMath math="1" /> unless the belt is fastened **and** the door is shut. A stuck sensor removes <InlineMath math="S" /> from the condition, which doubles the count, because each case now happens for both values of <InlineMath math="S" />.
+The working circuit gives <InlineMath math="B=I\cdot\left(\overline F+D\right)" />: with <InlineMath math="I=1" /> it should stay silent only when the belt is fastened **and** the door is shut. A buzzer that sounds for every <InlineMath math="I=1" /> means the AND gate is receiving a <InlineMath math="1" /> from the OR side every time. That happens if the **NOT output** or the **OR output** is stuck at <InlineMath math="1" />. The measurement settles it: the NOT gate does give <InlineMath math="0" /> when <InlineMath math="F=1" />, so it is working, and the stuck output must be the OR gate's.
 
 <Mermaid
   title={<>The Seatbelt Warning Circuit</>}
-  description={<>The belt signal passes through a NOT gate and joins the door signal at an OR gate. The OR output, the ignition and the speed sensor meet at a three-input AND gate, which drives the buzzer.</>}
-  chart={"flowchart LR\n  F[\"Belt F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Door D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Ignition I\"] --> A\n  S[\"Speed S\"] --> A\n  A --> B[\"Buzzer\"]"}
+  description={<>The belt signal passes through a NOT gate and joins the door signal at an OR gate. The OR output and the ignition signal meet at an AND gate, which drives the buzzer.</>}
+  chart={"flowchart LR\n  F[\"Belt F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Door D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Ignition I\"] --> A\n  A --> B[\"Buzzer\"]"}
 />
 
-<BlockMath math="B=I\cdot S\cdot\left(\overline F+D\right)" />
+<BlockMath math="\text{correct: } B=I\left(\overline F+D\right)\Rightarrow(1,0,0),(1,0,1),(1,1,1)\text{ sound},\qquad\text{faulty: } B=I\Rightarrow\text{also }(1,1,0)" />
 
-<BlockMath math="I=S=1:\ (F,D)=(0,0),(0,1),(1,1)\Rightarrow3\text{ of }16,\qquad S\text{ stuck at }1:\ 2\times3=6" />
-
-<BlockMath math="B'=I\cdot S\cdot\overline F\cdot D\Rightarrow(I,S,F,D)=(1,1,0,1)\text{ only}\Rightarrow1" />
-
-With the sensor working, the buzzer sounds in <InlineMath math="3" /> of the <InlineMath math="16" /> cases. A stuck sensor lets it sound whether the car is moving or not, <InlineMath math="6" /> cases. With an AND gate it needs the belt unfastened **and** the door open together, which happens in <InlineMath math="1" /> case.
+The two tables differ only for <InlineMath math="I=1" />, <InlineMath math="F=1" />, <InlineMath math="D=0" />: ignition on, belt fastened, door shut, when the buzzer should be silent but sounds. That one combination is the one to test.
 
 # Why the other options are wrong
 
-- <InlineMath math="3" /> with a stuck sensor assumes the **fault changes nothing**, but it makes the buzzer sound for both values of <InlineMath math="S" />.
-- <InlineMath math="6" />, <InlineMath math="6" /> and <InlineMath math="2" /> **ignore the speed input** at the AND gate, counting every case as if <InlineMath math="S" /> were always <InlineMath math="1" />.
-- <InlineMath math="2" /> for the AND version counts the case <InlineMath math="I=1" />, <InlineMath math="F=0" />, <InlineMath math="D=1" /> **for both values of <InlineMath math="S" />**, but the working sensor must also be <InlineMath math="1" />.
+- **NOT output stuck at <InlineMath math="1" />** would give the same buzzer table, but the technician measured the NOT output as <InlineMath math="0" /> with <InlineMath math="F=1" />, so the NOT gate works.
+- **<InlineMath math="4" /> combinations** counts every case with <InlineMath math="I=1" /> as wrong, but in three of them the buzzer is meant to sound anyway.
+- **AND output stuck at <InlineMath math="1" />** would make the buzzer sound even with the ignition off, which the technician never saw.

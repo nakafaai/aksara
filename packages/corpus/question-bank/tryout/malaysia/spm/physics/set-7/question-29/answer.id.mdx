@@ -1,30 +1,27 @@
-# Pada tegangan tetap, hambatan lebih kecil berarti daya lebih besar
+# Hitung tiap posisi, lalu tanyakan posisi mana yang masih punya jalur lengkap
 
-Dengan tegangan tetap <InlineMath math="240\text{ V}" />, daya adalah <InlineMath math="P=\dfrac{V^2}{R}" />, jadi setelan dengan **hambatan terbesar memberi daya terkecil**. Seri menjumlahkan hambatan, dan paralel memberi hambatan **lebih kecil dari tiap kumparan**. Arus pada setelan tertinggi lalu adalah <InlineMath math="I=\dfrac VR" />.
+Pada <InlineMath math="240\text{ V}" /> yang tetap, daya adalah <InlineMath math="P=\dfrac{V^2}{R}" />. Seri menjumlahkan hambatan, dan paralel memberi hambatan lebih kecil dari tiap kumparan. Setelah rusak, arus hanya bisa mengalir lewat jalur yang **menghindari kumparan yang putus**: jalur seri melewatinya, MEDIUM adalah kumparan yang putus itu sendiri, dan hanya posisi paralel yang masih punya jalur, lewat kumparan <InlineMath math="60\,\Omega" />.
 
 <Chart
-  title={<>Daya Tiap Setelan Pemanas pada <InlineMath math="240\text{ V}" /></>}
+  title={<>Daya pada Tiap Posisi Sakelar Sebelum dan Sesudah Kerusakan</>}
   bars="apart"
-  categories={["Seri", "60 Ω saja", "40 Ω saja", "Paralel"]}
+  categories={["LOW (seri)", "MEDIUM (40 Ω)", "HIGH (paralel)"]}
   series={[
-    { label: "Daya", mark: "bar", values: [576, 960, 1440, 2400] },
+    { label: "Sebelum", mark: "bar", values: [576, 1440, 2400] },
+    { label: "Sesudah", mark: "bar", values: [0, 0, 960] },
   ]}
   valueLabel="Daya (W)"
-  description={<>Empat cara menyambung kumparan memberi <InlineMath math="576" />, <InlineMath math="960" />, <InlineMath math="1440" />, dan <InlineMath math="2400\text{ W}" />. Seri paling rendah karena hambatannya paling besar, paralel paling tinggi karena hambatannya paling kecil.</>}
+  description={<>Sebelum rusak, posisi sakelar memberi <InlineMath math="576" />, <InlineMath math="1440" />, dan <InlineMath math="2400\text{ W}" />. Dengan kumparan <InlineMath math="40\,\Omega" /> terputus, LOW dan MEDIUM tidak memberi apa pun dan HIGH hanya memberi <InlineMath math="960\text{ W}" /> dari kumparan <InlineMath math="60\,\Omega" />.</>}
 />
 
-<BlockMath math="R_{\text{seri}}=60+40=100\,\Omega,\qquad P_{\min}=\frac{240^2}{100}=576\text{ W}" />
+<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\text{HIGH}}=\frac{240^2}{24}=2400\text{ W}\quad\left(R=\frac{60\times40}{60+40}=24\,\Omega\right)" />
 
-<BlockMath math="R_{\text{paralel}}=\frac{60\times40}{60+40}=24\,\Omega,\qquad I_{\max}=\frac{240}{24}=10\text{ A}" />
+<BlockMath math="\text{setelah rusak: LOW}=0,\quad\text{MEDIUM}=0,\quad\text{HIGH}=\frac{240^2}{60}=960\text{ W}" />
 
-Setelan terendah adalah kumparan seri, <InlineMath math="576\text{ W}" />. Setelan tertinggi adalah kumparan paralel, <InlineMath math="2400\text{ W}" />, yang menarik <InlineMath math="10\text{ A}" />.
-
-<BlockMath math="I_3\le13-10=3{,}0\text{ A},\qquad R_3\ge\frac{240}{3{,}0}=80\,\Omega,\qquad P'=2400+\frac{240^2}{80}=2400+720\approx3{,}1\text{ kW}" />
-
-Setelan tertinggi sudah menarik <InlineMath math="10\text{ A}" />, jadi kumparan ketiga hanya boleh menambah paling banyak <InlineMath math="3{,}0\text{ A}" />, yang butuh paling sedikit <InlineMath math="80\,\Omega" />. Kumparan itu menambah <InlineMath math="720\text{ W}" />, menaikkan setelan tertinggi menjadi sekitar <InlineMath math="3{,}1\text{ kW}" />, tepat batas <InlineMath math="13\text{ A}" /> pada <InlineMath math="240\text{ V}" />.
+Sebelum rusak pemanas memberi <InlineMath math="576\text{ W}" /> pada LOW dan <InlineMath math="2{,}4\text{ kW}" /> pada HIGH. Setelahnya, LOW dan MEDIUM mati, dan HIGH hanya memberi <InlineMath math="960\text{ W}" /> lewat kumparan <InlineMath math="60\,\Omega" />, daya terbesar yang kini bisa diberikan.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="960\text{ W}" /> mengambil **kumparan yang lebih besar saja** sebagai setelan terendah, padahal pasangan seri hambatannya lebih besar lagi.
-- <InlineMath math="23\,\Omega" /> dan <InlineMath math="4{,}9\text{ kW}" /> berangkat dari arus pada **setelan terendah**, <InlineMath math="2{,}4\text{ A}" />, bukan tertinggi.
-- <InlineMath math="18\,\Omega" /> dan <InlineMath math="5{,}5\text{ kW}" /> memberi kumparan ketiga **seluruh <InlineMath math="13\text{ A}" />**, lupa <InlineMath math="10\text{ A}" /> yang sudah ditarik dua kumparan lainnya.
+- <InlineMath math="576\text{ W}" /> setelah rusak menganggap **jalur seri masih bekerja**, padahal jalur itu melewati kumparan yang putus, jadi tidak ada arus.
+- <InlineMath math="1{,}4\text{ kW}" /> memakai **posisi MEDIUM**, padahal posisi itu adalah kumparan <InlineMath math="40\,\Omega" /> yang putus itu sendiri.
+- <InlineMath math="960\text{ W}" /> pada LOW mengambil **kumparan yang lebih besar saja** sebagai setelan terendah, padahal pasangan seri hambatannya lebih besar dan dayanya lebih kecil.

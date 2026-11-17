@@ -1,30 +1,27 @@
-# At a fixed voltage, less resistance means more power
+# Work out each position, then ask which ones still have a complete path
 
-With the voltage fixed at <InlineMath math="240\text{ V}" />, power is <InlineMath math="P=\dfrac{V^2}{R}" />, so the setting with the **most resistance gives the least power**. Series adds the resistances, and parallel gives a resistance **smaller than either coil**. The current on the highest setting is then <InlineMath math="I=\dfrac VR" />.
+At a fixed <InlineMath math="240\text{ V}" />, power is <InlineMath math="P=\dfrac{V^2}{R}" />. Series adds the resistances, and parallel gives less than either coil. After the fault, current can flow only through paths that **avoid the broken coil**: the series path runs through it, MEDIUM is the broken coil itself, and only the parallel position still has a path, through the <InlineMath math="60\,\Omega" /> coil.
 
 <Chart
-  title={<>Power of Each Heater Setting at <InlineMath math="240\text{ V}" /></>}
+  title={<>Power on Each Switch Position Before and After the Fault</>}
   bars="apart"
-  categories={["Series", "60 Ω alone", "40 Ω alone", "Parallel"]}
+  categories={["LOW (series)", "MEDIUM (40 Ω)", "HIGH (parallel)"]}
   series={[
-    { label: "Power", mark: "bar", values: [576, 960, 1440, 2400] },
+    { label: "Before", mark: "bar", values: [576, 1440, 2400] },
+    { label: "After", mark: "bar", values: [0, 0, 960] },
   ]}
   valueLabel="Power (W)"
-  description={<>The four ways to connect the coils give <InlineMath math="576" />, <InlineMath math="960" />, <InlineMath math="1440" /> and <InlineMath math="2400\text{ W}" />. Series is the lowest because it has the most resistance, parallel the highest because it has the least.</>}
+  description={<>Before the fault the positions give <InlineMath math="576" />, <InlineMath math="1440" /> and <InlineMath math="2400\text{ W}" />. With the <InlineMath math="40\,\Omega" /> coil open, LOW and MEDIUM give nothing and HIGH gives only the <InlineMath math="60\,\Omega" /> coil's <InlineMath math="960\text{ W}" />.</>}
 />
 
-<BlockMath math="R_{\text{series}}=60+40=100\,\Omega,\qquad P_{\min}=\frac{240^2}{100}=576\text{ W}" />
+<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\text{HIGH}}=\frac{240^2}{24}=2400\text{ W}\quad\left(R=\frac{60\times40}{60+40}=24\,\Omega\right)" />
 
-<BlockMath math="R_{\text{parallel}}=\frac{60\times40}{60+40}=24\,\Omega,\qquad I_{\max}=\frac{240}{24}=10\text{ A}" />
+<BlockMath math="\text{after the fault: LOW}=0,\quad\text{MEDIUM}=0,\quad\text{HIGH}=\frac{240^2}{60}=960\text{ W}" />
 
-The lowest setting is the coils in series, <InlineMath math="576\text{ W}" />. The highest is the coils in parallel, <InlineMath math="2400\text{ W}" />, which draws <InlineMath math="10\text{ A}" />.
-
-<BlockMath math="I_3\le13-10=3.0\text{ A},\qquad R_3\ge\frac{240}{3.0}=80\,\Omega,\qquad P'=2400+\frac{240^2}{80}=2400+720\approx3.1\text{ kW}" />
-
-The highest setting already draws <InlineMath math="10\text{ A}" />, so the third coil may add at most <InlineMath math="3.0\text{ A}" />, which needs at least <InlineMath math="80\,\Omega" />. That coil adds <InlineMath math="720\text{ W}" />, raising the highest setting to about <InlineMath math="3.1\text{ kW}" />, exactly the <InlineMath math="13\text{ A}" /> limit at <InlineMath math="240\text{ V}" />.
+Before the fault the heater gave <InlineMath math="576\text{ W}" /> on LOW and <InlineMath math="2.4\text{ kW}" /> on HIGH. After it, LOW and MEDIUM are dead, and HIGH gives only <InlineMath math="960\text{ W}" /> through the <InlineMath math="60\,\Omega" /> coil, the most the heater can now give.
 
 # Why the other options are wrong
 
-- <InlineMath math="960\text{ W}" /> takes the **larger coil alone** as the lowest setting, but the series pair has even more resistance.
-- <InlineMath math="23\,\Omega" /> and <InlineMath math="4.9\text{ kW}" /> start from the current on the **lowest setting**, <InlineMath math="2.4\text{ A}" />, not the highest.
-- <InlineMath math="18\,\Omega" /> and <InlineMath math="5.5\text{ kW}" /> give the third coil the **whole <InlineMath math="13\text{ A}" />**, forgetting the <InlineMath math="10\text{ A}" /> the other two coils already draw.
+- <InlineMath math="576\text{ W}" /> after the fault assumes the **series path still works**, but it runs through the broken coil, so no current flows.
+- <InlineMath math="1.4\text{ kW}" /> uses the **MEDIUM position**, but that position is the broken <InlineMath math="40\,\Omega" /> coil itself.
+- <InlineMath math="960\text{ W}" /> on LOW takes the **larger coil alone** as the lowest setting, but the series pair has more resistance and gives less power.

@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$576\\text{ W}$$, $$80\\,\\Omega$$ and $$3.1\\text{ kW}$$",
+          label: "$$576\\text{ W}$$, $$2.4\\text{ kW}$$ and $$960\\text{ W}$$",
         },
         {
           correct: false,
-          label: "$$960\\text{ W}$$, $$80\\,\\Omega$$ and $$3.1\\text{ kW}$$",
+          label: "$$576\\text{ W}$$, $$2.4\\text{ kW}$$ and $$576\\text{ W}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$23\\,\\Omega$$ and $$4.9\\text{ kW}$$",
+          label: "$$576\\text{ W}$$, $$2.4\\text{ kW}$$ and $$1.4\\text{ kW}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$18\\,\\Omega$$ and $$5.5\\text{ kW}$$",
+          label: "$$960\\text{ W}$$, $$2.4\\text{ kW}$$ and $$960\\text{ W}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$576\\text{ W}$$, $$80\\,\\Omega$$ dan $$3.1\\text{ kW}$$",
+          label: "$$576\\text{ W}$$, $$2.4\\text{ kW}$$ dan $$960\\text{ W}$$",
         },
         {
           correct: false,
-          label: "$$960\\text{ W}$$, $$80\\,\\Omega$$ dan $$3.1\\text{ kW}$$",
+          label: "$$576\\text{ W}$$, $$2.4\\text{ kW}$$ dan $$576\\text{ W}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$23\\,\\Omega$$ dan $$4.9\\text{ kW}$$",
+          label: "$$576\\text{ W}$$, $$2.4\\text{ kW}$$ dan $$1.4\\text{ kW}$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ W}$$, $$18\\,\\Omega$$ dan $$5.5\\text{ kW}$$",
+          label: "$$960\\text{ W}$$, $$2.4\\text{ kW}$$ dan $$960\\text{ W}$$",
         },
       ],
     },

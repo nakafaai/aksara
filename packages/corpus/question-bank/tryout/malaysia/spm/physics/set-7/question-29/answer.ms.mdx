@@ -1,30 +1,27 @@
-# Pada voltan tetap, rintangan yang lebih kecil bermakna kuasa yang lebih besar
+# Hitung setiap kedudukan, kemudian tanya kedudukan mana yang masih mempunyai laluan lengkap
 
-Dengan voltan tetap <InlineMath math="240\text{ V}" />, kuasa ialah <InlineMath math="P=\dfrac{V^2}{R}" />, jadi tetapan dengan **rintangan paling besar memberi kuasa paling kecil**. Sesiri mencampurkan rintangan, dan selari memberi rintangan **lebih kecil daripada setiap gegelung**. Arus pada tetapan tertinggi kemudian ialah <InlineMath math="I=\dfrac VR" />.
+Pada <InlineMath math="240\text{ V}" /> yang tetap, kuasa ialah <InlineMath math="P=\dfrac{V^2}{R}" />. Sesiri mencampurkan rintangan, dan selari memberi rintangan yang lebih kecil daripada setiap gegelung. Selepas kerosakan, arus hanya boleh mengalir melalui laluan yang **mengelakkan gegelung yang putus**: laluan sesiri melaluinya, MEDIUM ialah gegelung yang putus itu sendiri, dan hanya kedudukan selari yang masih mempunyai laluan, melalui gegelung <InlineMath math="60\,\Omega" />.
 
 <Chart
-  title={<>Kuasa Setiap Tetapan Pemanas pada <InlineMath math="240\text{ V}" /></>}
+  title={<>Kuasa pada Setiap Kedudukan Suis Sebelum dan Selepas Kerosakan</>}
   bars="apart"
-  categories={["Sesiri", "60 Ω sahaja", "40 Ω sahaja", "Selari"]}
+  categories={["LOW (sesiri)", "MEDIUM (40 Ω)", "HIGH (selari)"]}
   series={[
-    { label: "Kuasa", mark: "bar", values: [576, 960, 1440, 2400] },
+    { label: "Sebelum", mark: "bar", values: [576, 1440, 2400] },
+    { label: "Selepas", mark: "bar", values: [0, 0, 960] },
   ]}
   valueLabel="Kuasa (W)"
-  description={<>Empat cara menyambung gegelung memberi <InlineMath math="576" />, <InlineMath math="960" />, <InlineMath math="1440" /> dan <InlineMath math="2400\text{ W}" />. Sesiri paling rendah kerana rintangannya paling besar, selari paling tinggi kerana rintangannya paling kecil.</>}
+  description={<>Sebelum kerosakan, kedudukan suis memberi <InlineMath math="576" />, <InlineMath math="1440" /> dan <InlineMath math="2400\text{ W}" />. Dengan gegelung <InlineMath math="40\,\Omega" /> terputus, LOW dan MEDIUM tidak memberi apa-apa dan HIGH hanya memberi <InlineMath math="960\text{ W}" /> daripada gegelung <InlineMath math="60\,\Omega" />.</>}
 />
 
-<BlockMath math="R_{\text{sesiri}}=60+40=100\,\Omega,\qquad P_{\min}=\frac{240^2}{100}=576\text{ W}" />
+<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\text{HIGH}}=\frac{240^2}{24}=2400\text{ W}\quad\left(R=\frac{60\times40}{60+40}=24\,\Omega\right)" />
 
-<BlockMath math="R_{\text{selari}}=\frac{60\times40}{60+40}=24\,\Omega,\qquad I_{\max}=\frac{240}{24}=10\text{ A}" />
+<BlockMath math="\text{selepas kerosakan: LOW}=0,\quad\text{MEDIUM}=0,\quad\text{HIGH}=\frac{240^2}{60}=960\text{ W}" />
 
-Tetapan paling rendah ialah gegelung secara sesiri, <InlineMath math="576\text{ W}" />. Tetapan paling tinggi ialah gegelung secara selari, <InlineMath math="2400\text{ W}" />, yang menarik <InlineMath math="10\text{ A}" />.
-
-<BlockMath math="I_3\le13-10=3.0\text{ A},\qquad R_3\ge\frac{240}{3.0}=80\,\Omega,\qquad P'=2400+\frac{240^2}{80}=2400+720\approx3.1\text{ kW}" />
-
-Tetapan tertinggi sudah menarik <InlineMath math="10\text{ A}" />, jadi gegelung ketiga hanya boleh menambah paling banyak <InlineMath math="3.0\text{ A}" />, yang memerlukan sekurang-kurangnya <InlineMath math="80\,\Omega" />. Gegelung itu menambah <InlineMath math="720\text{ W}" />, menaikkan tetapan tertinggi kepada kira-kira <InlineMath math="3.1\text{ kW}" />, tepat had <InlineMath math="13\text{ A}" /> pada <InlineMath math="240\text{ V}" />.
+Sebelum kerosakan pemanas memberi <InlineMath math="576\text{ W}" /> pada LOW dan <InlineMath math="2.4\text{ kW}" /> pada HIGH. Selepasnya, LOW dan MEDIUM mati, dan HIGH hanya memberi <InlineMath math="960\text{ W}" /> melalui gegelung <InlineMath math="60\,\Omega" />, kuasa terbesar yang kini boleh diberikan.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="960\text{ W}" /> mengambil **gegelung yang lebih besar sahaja** sebagai tetapan paling rendah, tetapi pasangan sesiri mempunyai rintangan yang lebih besar.
-- <InlineMath math="23\,\Omega" /> dan <InlineMath math="4.9\text{ kW}" /> bermula daripada arus pada **tetapan paling rendah**, <InlineMath math="2.4\text{ A}" />, bukan paling tinggi.
-- <InlineMath math="18\,\Omega" /> dan <InlineMath math="5.5\text{ kW}" /> memberi gegelung ketiga **seluruh <InlineMath math="13\text{ A}" />**, lupa <InlineMath math="10\text{ A}" /> yang sudah ditarik oleh dua gegelung lain.
+- <InlineMath math="576\text{ W}" /> selepas kerosakan menganggap **laluan sesiri masih berfungsi**, tetapi ia melalui gegelung yang putus, jadi tiada arus mengalir.
+- <InlineMath math="1.4\text{ kW}" /> menggunakan **kedudukan MEDIUM**, tetapi kedudukan itu ialah gegelung <InlineMath math="40\,\Omega" /> yang putus itu sendiri.
+- <InlineMath math="960\text{ W}" /> pada LOW mengambil **gegelung yang lebih besar sahaja** sebagai tetapan paling rendah, tetapi pasangan sesiri mempunyai rintangan yang lebih besar dan memberi kuasa yang lebih kecil.

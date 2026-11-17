@@ -1,30 +1,27 @@
-# Bei fester Spannung bedeutet weniger Widerstand mehr Leistung
+# Jede Stellung berechnen und dann fragen, welche noch einen geschlossenen Weg hat
 
-Bei fester Spannung von <InlineMath math="240\text{ V}" /> gilt <InlineMath math="P=\dfrac{V^2}{R}" />, also liefert die Stufe mit dem **größten Widerstand die kleinste Leistung**. Reihe addiert die Widerstände, parallel ergibt einen Widerstand **kleiner als jede Spule**. Der Strom auf der höchsten Stufe ist dann <InlineMath math="I=\dfrac VR" />.
+Bei festen <InlineMath math="240\text{ V}" /> gilt <InlineMath math="P=\dfrac{V^2}{R}" />. Reihe addiert die Widerstände, parallel ergibt weniger als jede Spule. Nach dem Defekt kann Strom nur auf Wegen fließen, die **die kaputte Spule umgehen**: Der Reihenweg führt durch sie, MEDIUM ist die kaputte Spule selbst, und nur die Parallelstellung hat noch einen Weg, durch die <InlineMath math="60\,\Omega" />-Spule.
 
 <Chart
-  title={<>Leistung jeder Heizstufe bei <InlineMath math="240\text{ V}" /></>}
+  title={<>Leistung jeder Schalterstellung vor und nach dem Defekt</>}
   bars="apart"
-  categories={["Reihe", "Nur 60 Ω", "Nur 40 Ω", "Parallel"]}
+  categories={["LOW (Reihe)", "MEDIUM (40 Ω)", "HIGH (parallel)"]}
   series={[
-    { label: "Leistung", mark: "bar", values: [576, 960, 1440, 2400] },
+    { label: "Vorher", mark: "bar", values: [576, 1440, 2400] },
+    { label: "Nachher", mark: "bar", values: [0, 0, 960] },
   ]}
   valueLabel="Leistung (W)"
-  description={<>Die vier Schaltungen der Spulen ergeben <InlineMath math="576" />, <InlineMath math="960" />, <InlineMath math="1440" /> und <InlineMath math="2400\text{ W}" />. In Reihe ist es am wenigsten, weil der Widerstand am größten ist, parallel am meisten, weil er am kleinsten ist.</>}
+  description={<>Vor dem Defekt liefern die Stellungen <InlineMath math="576" />, <InlineMath math="1440" /> und <InlineMath math="2400\text{ W}" />. Mit unterbrochener <InlineMath math="40\,\Omega" />-Spule liefern LOW und MEDIUM nichts, HIGH nur die <InlineMath math="960\text{ W}" /> der <InlineMath math="60\,\Omega" />-Spule.</>}
 />
 
-<BlockMath math="R_{\text{Reihe}}=60+40=100\,\Omega,\qquad P_{\min}=\frac{240^2}{100}=576\text{ W}" />
+<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\text{HIGH}}=\frac{240^2}{24}=2400\text{ W}\quad\left(R=\frac{60\cdot40}{60+40}=24\,\Omega\right)" />
 
-<BlockMath math="R_{\text{parallel}}=\frac{60\cdot40}{60+40}=24\,\Omega,\qquad I_{\max}=\frac{240}{24}=10\text{ A}" />
+<BlockMath math="\text{nach dem Defekt: LOW}=0,\quad\text{MEDIUM}=0,\quad\text{HIGH}=\frac{240^2}{60}=960\text{ W}" />
 
-Die niedrigste Stufe sind die Spulen in Reihe, <InlineMath math="576\text{ W}" />. Die höchste sind die Spulen parallel, <InlineMath math="2400\text{ W}" />, mit <InlineMath math="10\text{ A}" />.
-
-<BlockMath math="I_3\le13-10=3{,}0\text{ A},\qquad R_3\ge\frac{240}{3{,}0}=80\,\Omega,\qquad P'=2400+\frac{240^2}{80}=2400+720\approx3{,}1\text{ kW}" />
-
-Die höchste Stufe zieht schon <InlineMath math="10\text{ A}" />, die dritte Spule darf also höchstens <InlineMath math="3{,}0\text{ A}" /> hinzufügen und braucht mindestens <InlineMath math="80\,\Omega" />. Sie bringt <InlineMath math="720\text{ W}" />, die höchste Stufe steigt auf etwa <InlineMath math="3{,}1\text{ kW}" />, genau die Grenze von <InlineMath math="13\text{ A}" /> bei <InlineMath math="240\text{ V}" />.
+Vor dem Defekt lieferte das Gerät <InlineMath math="576\text{ W}" /> auf LOW und <InlineMath math="2{,}4\text{ kW}" /> auf HIGH. Danach sind LOW und MEDIUM tot, und HIGH liefert über die <InlineMath math="60\,\Omega" />-Spule nur <InlineMath math="960\text{ W}" />, das Höchste, was jetzt geht.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="960\text{ W}" /> nimmt die **größere Spule allein** als niedrigste Stufe, doch das Paar in Reihe hat noch mehr Widerstand.
-- <InlineMath math="23\,\Omega" /> und <InlineMath math="4{,}9\text{ kW}" /> gehen vom Strom der **niedrigsten Stufe** aus, <InlineMath math="2{,}4\text{ A}" />, nicht der höchsten.
-- <InlineMath math="18\,\Omega" /> und <InlineMath math="5{,}5\text{ kW}" /> geben der dritten Spule die **ganzen <InlineMath math="13\text{ A}" />** und vergessen die <InlineMath math="10\text{ A}" /> der beiden anderen.
+- <InlineMath math="576\text{ W}" /> nach dem Defekt nimmt an, der **Reihenweg funktioniere noch**, doch er führt durch die kaputte Spule, also fließt kein Strom.
+- <InlineMath math="1{,}4\text{ kW}" /> nimmt die **Stellung MEDIUM**, doch diese Stellung ist die kaputte <InlineMath math="40\,\Omega" />-Spule selbst.
+- <InlineMath math="960\text{ W}" /> auf LOW nimmt die **größere Spule allein** als niedrigste Stufe, doch das Paar in Reihe hat mehr Widerstand und liefert weniger.
