@@ -1,9 +1,35 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Chemistry chapter of the theme Industrial Chemistry, Bab 8. */
 export const kssmForm4ChemistryIndustryNodes = [
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-chemistry-manufactured-substances-in-industry-manufactured-substances",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.manufactured-substances"],
+        order: 10,
+      }),
+    ],
     key: "form-4-chemistry-manufactured-substances-in-industry",
+    materialCard: {
+      de: {
+        description: "Sieh, warum Legierungen, Glas und Keramik so wirken.",
+        title: "Industriell hergestellte Stoffe",
+      },
+      en: {
+        description: "See why alloys, glass and ceramics behave as they do.",
+        title: "Manufactured Substances in Industry",
+      },
+      id: {
+        description: "Lihat alasan sifat paduan logam, kaca, dan keramik.",
+        title: "Bahan Buatan dalam Industri",
+      },
+      ms: {
+        description: "Lihat sebab sifat aloi, kaca dan seramik berbeza.",
+        title: "Bahan Buatan dalam Industri",
+      },
+    },
     order: 80,
     translations: {
       de: {

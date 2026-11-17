@@ -1,0 +1,294 @@
+export const metadata = {
+  title: "Nota Bahan Buatan dalam Industri Tingkatan Empat",
+  description:
+    "Nota Kimia Tingkatan 4 Bab 8: terangkan sebab aloi lebih keras, pilih jenis kaca dan seramik ikut sifatnya, dan kenal bahan komposit dengan contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Bahan Buatan dalam Industri",
+};
+
+## Bahan Buatan dan Sebab Sifatnya Berubah
+
+**Bahan buatan** ialah bahan yang dihasilkan oleh industri untuk mendapat sifat yang tidak ada pada bahan asalnya. Empat kumpulan utama ialah **aloi**, **kaca**, **seramik** dan **bahan komposit**. Kunci semua bahan ini sama: sifat bahan bergantung pada **susunan zarahnya**. Menambah atom lain ke dalam logam menjadikannya lebih keras, menambah boron oksida ke dalam kaca menjadikannya tahan kejutan haba, dan ikatan ion atau kovalen yang kuat menjadikan seramik tahan suhu tinggi. Dalam nota ini, kamu menggelongsorkan lapisan atom logam, memanaskan tiga jenis kaca, dan memutar kekisi seramik.
+
+Bahan ini ada di sekeliling kamu. Pinggan tembikar ialah seramik, tingkap ialah kaca soda kapur, sudu ialah keluli nirkarat, dan tiang bangunan ialah konkrit diperkukuh.
+
+## Aloi Lebih Keras daripada Logam Tulen
+
+**Aloi** ialah campuran dua atau lebih unsur dengan unsur utamanya logam. Dalam logam tulen, semua atom sama saiz dan tersusun dalam lapisan yang teratur. Apabila daya dikenakan, lapisan atom mudah **menggelongsor** di atas satu sama lain. Itulah sebab logam tulen lembut, mulur dan boleh ditempa.
+
+Dalam aloi, atom asing yang berlainan saiz **mengganggu susunan teratur** itu. Lapisan atom sukar menggelongsor, jadi aloi lebih keras dan lebih kuat. Gerakkan gelangsar <InlineMath math="s" /> untuk menggelongsorkan lapisan atas. Kemudian besarkan atom asing dengan gelangsar <InlineMath math="f" /> dan lihat lapisan atas terpaksa naik apabila melintasinya.
+
+<MathVisual
+  title={<>Lapisan Atom dalam Logam Tulen dan Aloi</>}
+  description={
+    <>
+      Bulatan ialah atom. Atom tengah di lapisan bawah ialah atom asing dengan
+      jejari <InlineMath math="f" />. Pada <InlineMath math="f = 0.5" />, semua
+      atom sama saiz seperti logam tulen.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 1, value: 0, step: 0.05, label: "s" },
+      { name: "f", min: 0.5, max: 0.8, value: 0.5, step: 0.05, label: "f" },
+    ],
+    objects: [
+      { id: "bottom-1", kind: "circle", appearance: "reference", center: { x: 0.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-2", kind: "circle", appearance: "reference", center: { x: 1.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-3", kind: "circle", appearance: "reference", center: { x: 2.5, y: 0.5 }, radius: 0.5 },
+      { id: "foreign", kind: "parametric", appearance: "warning", x: "3.5 + f cos(t)", y: "0.5 + f sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "bottom-5", kind: "circle", appearance: "reference", center: { x: 4.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-6", kind: "circle", appearance: "reference", center: { x: 5.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-7", kind: "circle", appearance: "reference", center: { x: 6.5, y: 0.5 }, radius: 0.5 },
+      { id: "bottom-8", kind: "circle", appearance: "reference", center: { x: 7.5, y: 0.5 }, radius: 0.5 },
+      { id: "top-1", kind: "parametric", appearance: "primary", x: "0.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 3)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-2", kind: "parametric", appearance: "primary", x: "1.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 2)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-3", kind: "parametric", appearance: "primary", x: "2.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s - 1)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-4", kind: "parametric", appearance: "primary", x: "3.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-s^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-5", kind: "parametric", appearance: "primary", x: "4.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 1)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-6", kind: "parametric", appearance: "primary", x: "5.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 2)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "top-7", kind: "parametric", appearance: "primary", x: "6.5 + s + 0.5cos(t)", y: "1.5 + 2max(0, f - 0.5)exp(-(s + 3)^2/0.3) + 0.5sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "lift", formula: "2max(0, f - 0.5)" },
+    ],
+  }}
+  labels={{
+    s: <>Anjakan lapisan atas <InlineMath math="s" /></>,
+    f: <>Jejari atom asing <InlineMath math="f" /></>,
+    lift: <>Ketinggian lapisan atas mesti naik</>,
+  }}
+/>
+
+Pada <InlineMath math="f = 0.5" />, lapisan atas menggelongsor rata tanpa halangan. Apabila <InlineMath math="f" /> lebih besar, atom di atas atom asing terangkat. Daya yang lebih besar diperlukan untuk menolak lapisan melepasi halangan itu, dan itulah maksud **aloi lebih keras**.
+
+### Komposisi Aloi Biasa
+
+Setiap aloi dibina untuk satu tujuan. Carta ini membandingkan peratusan logam utama dengan peratusan unsur lain dalam aloi yang selalu disoal.
+
+<Chart
+  title={<>Komposisi Enam Aloi</>}
+  bars="apart"
+  categories={["Gangsa", "Loyang", "Keluli", "Keluli nirkarat", "Duralumin", "Piuter"]}
+  series={[
+    { label: "Logam utama (%)", mark: "bar", values: [90, 70, 99, 74, 93, 96] },
+    { label: "Unsur lain (%)", mark: "bar", values: [10, 30, 1, 26, 7, 4] },
+  ]}
+  valueLabel="Peratus jisim (%)"
+  valueRange={{ min: 0, max: 100 }}
+  description={
+    <>
+      Gangsa: <InlineMath math="90\%" /> kuprum dan <InlineMath math="10\%" />{" "}
+      stanum. Loyang: <InlineMath math="70\%" /> kuprum dan{" "}
+      <InlineMath math="30\%" /> zink. Keluli: <InlineMath math="99\%" /> ferum
+      dan <InlineMath math="1\%" /> karbon. Keluli nirkarat:{" "}
+      <InlineMath math="74\%" /> ferum, <InlineMath math="18\%" /> kromium dan{" "}
+      <InlineMath math="8\%" /> nikel. Duralumin: <InlineMath math="93\%" />{" "}
+      aluminium dengan kuprum, magnesium dan mangan. Piuter:{" "}
+      <InlineMath math="96\%" /> stanum dengan kuprum dan antimoni.
+    </>
+  }
+/>
+
+| Aloi | Sifat yang diperbaiki | Kegunaan |
+| :--- | :--- | :--- |
+| Gangsa | Keras, tahan kakisan, berkilat | Pingat, tugu |
+| Loyang | Keras, tidak berkarat | Alat muzik, kunci |
+| Keluli nirkarat | Tidak berkarat, kuat | Sudu, peralatan pembedahan |
+| Duralumin | Ringan dan kuat | Badan kapal terbang |
+| Piuter | Berkilat, tahan kakisan | Cenderamata |
+
+Sekarang hitung **jisim unsur dalam aloi**. Sebuah pingat gangsa berjisim <InlineMath math="500\text{ g}" />. Hitung jisim kuprum dan stanum dalam pingat itu.
+
+<MathContainer>
+<BlockMath math="m(\mathrm{Cu}) = \frac{90}{100} \times 500 = 450\text{ g}" />
+<BlockMath math="m(\mathrm{Sn}) = \frac{10}{100} \times 500 = 50\text{ g}" />
+</MathContainer>
+
+Semak: <InlineMath math="450 + 50 = 500\text{ g}" />, sama dengan jisim pingat.
+
+### Karat dan Aloi Keluli Nirkarat
+
+Keluli biasa mudah berkarat kerana ferum bertindak balas dengan oksigen dan air. Dalam keluli nirkarat, kromium membentuk lapisan nipis kromium(III) oksida pada permukaan. Lapisan ini **melindungi ferum** di bawahnya daripada oksigen dan air, jadi keluli nirkarat tidak berkarat walaupun dibasuh setiap hari.
+
+Contoh ini menunjukkan bahawa unsur tambahan dalam aloi bukan sahaja menambah kekerasan. Unsur itu boleh juga menambah ketahanan terhadap kakisan, mengurangkan jisim, atau menukar warna logam.
+
+## Jenis Kaca dan Pengembangan Haba
+
+Komponen utama semua kaca ialah **silika**, <InlineMath math="\mathrm{SiO_2}" />. Bahan lain ditambah untuk mengubah sifatnya:
+
+| Jenis kaca | Komposisi | Sifat utama | Kegunaan |
+| :--- | :--- | :--- | :--- |
+| Kaca silika terlakur | Silika sahaja | Tahan suhu sangat tinggi, lutsinar | Kanta, gentian optik |
+| Kaca soda kapur | Silika, natrium karbonat, kalsium karbonat | Murah, mudah dibentuk, retak jika dipanaskan mendadak | Tingkap, botol |
+| Kaca borosilikat | Silika, boron oksida dan sedikit natrium oksida serta aluminium oksida | Tahan kejutan haba | Radas makmal, peralatan masak |
+| Kaca plumbum | Silika, plumbum(II) oksida dan natrium oksida | Berkilau, indeks biasan tinggi | Barangan hiasan |
+
+Kaca retak apabila dipanaskan mendadak kerana bahagian yang panas mengembang lebih cepat daripada bahagian yang sejuk. Kaca yang **mengembang sedikit** lebih tahan kejutan haba. Pemanjangan rod kaca diberi oleh <InlineMath math="\Delta L = \alpha L \Delta T" />, dengan <InlineMath math="\alpha" /> ialah pekali pengembangan linear. Gerakkan gelangsar perubahan suhu dan bandingkan pemanjangan rod <InlineMath math="10\text{ cm}" /> bagi tiga jenis kaca.
+
+<MathVisual
+  title={<>Pemanjangan Rod Kaca Sepanjang <InlineMath math="10\text{ cm}" /></>}
+  description={
+    <>
+      Garis menunjukkan pemanjangan dalam mikrometer melawan perubahan suhu
+      dalam kelvin, menggunakan <InlineMath math="\alpha" /> kaca soda kapur{" "}
+      <InlineMath math="9 \times 10^{-6}\text{ K}^{-1}" />, kaca borosilikat{" "}
+      <InlineMath math="3.25 \times 10^{-6}\text{ K}^{-1}" /> dan kaca silika
+      terlakur <InlineMath math="0.55 \times 10^{-6}\text{ K}^{-1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 100, value: 60, step: 5, label: "d" },
+    ],
+    objects: [
+      { id: "soda-lime", kind: "function", appearance: "warning", formula: "0.9x", domain: { min: 0, max: 100 } },
+      { id: "borosilicate", kind: "function", appearance: "primary", formula: "0.325x", domain: { min: 0, max: 100 } },
+      { id: "silica", kind: "function", appearance: "secondary", formula: "0.055x", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "d", y: "0" }, { x: "d", y: "0.9d" }] },
+    ],
+    labels: [
+      { key: "soda-lime", objectId: "soda-lime", at: { x: 100, y: 90 }, placement: "left" },
+      { key: "borosilicate", objectId: "borosilicate", at: { x: 100, y: 32.5 }, placement: "above-left" },
+      { key: "silica", objectId: "silica", at: { x: 100, y: 5.5 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "soda-reading", formula: "0.9d" },
+      { key: "boro-reading", formula: "0.325d" },
+      { key: "silica-reading", formula: "0.055d" },
+    ],
+  }}
+  labels={{
+    d: <>Perubahan suhu <InlineMath math="d" /> dalam K</>,
+    "soda-lime": <>Soda kapur</>,
+    borosilicate: <>Borosilikat</>,
+    silica: <>Silika terlakur</>,
+    "soda-reading": <>Soda kapur dalam <InlineMath math="\mu\text{m}" /></>,
+    "boro-reading": <>Borosilikat dalam <InlineMath math="\mu\text{m}" /></>,
+    "silica-reading": <>Silika terlakur dalam <InlineMath math="\mu\text{m}" /></>,
+  }}
+/>
+
+Sekarang bandingkan **dua jenis kaca**. Rod <InlineMath math="10\text{ cm}" /> dipanaskan sebanyak <InlineMath math="80\text{ K}" />. Bandingkan pemanjangan kaca soda kapur dengan kaca borosilikat.
+
+<MathContainer>
+<BlockMath math="\Delta L_{\text{soda}} = (9 \times 10^{-6})(100\text{ mm})(80) = 0.072\text{ mm} = 72\ \mu\text{m}" />
+<BlockMath math="\Delta L_{\text{boro}} = (3.25 \times 10^{-6})(100\text{ mm})(80) = 0.026\text{ mm} = 26\ \mu\text{m}" />
+</MathContainer>
+
+Kaca soda kapur mengembang kira-kira <InlineMath math="72 \div 26 \approx 2.8" /> kali lebih banyak. Tegasan antara bahagian panas dan sejuk lebih besar, jadi kaca soda kapur lebih mudah retak. Semak dengan model pada <InlineMath math="d = 80" />.
+
+## Seramik Tahan Suhu Tinggi
+
+**Seramik** ialah pepejal tak organik yang dihasilkan dengan memanaskan bahan bukan logam, seperti tanah liat, pada suhu yang sangat tinggi. Seramik tradisional seperti tembikar dan bata dibuat daripada tanah liat. Seramik termaju seperti aluminium oksida dan silikon karbida dibuat daripada sebatian tulen untuk kegunaan khas, seperti bahagian enjin dan penebat elektrik.
+
+Kebanyakan seramik terdiri daripada ion atau atom yang terikat kuat dalam struktur gergasi. Putar kekisi magnesium oksida, satu seramik termaju yang melapik relau. Setiap ion <InlineMath math="\mathrm{Mg^{2+}}" /> dikelilingi enam ion <InlineMath math="\mathrm{O^{2-}}" /> dan ditarik oleh ikatan ion bercas dua yang sangat kuat.
+
+<IonLatticeLab
+  title={<>Kekisi Magnesium Oksida dalam Seramik</>}
+  description={
+    <>
+      Putar hablur dan perhatikan setiap ion dikelilingi enam ion bercas
+      bertentangan. Ikatan sekuat ini mesti diputuskan sebelum seramik melebur.
+    </>
+  }
+  crystals={["magnesium-oxide"]}
+  labels={{
+    cells: "Sel unit setiap sisi",
+    choose: "Pilih hablur",
+    count: <>Bilangan ion</>,
+    formula: <>Formula</>,
+    ions: <>Ion dan jejarinya</>,
+    lattice: <>Sisi sel unit</>,
+    view: "Kekisi hablur magnesium oksida",
+  }}
+/>
+
+Ikatan yang kuat itu memberi seramik takat lebur yang sangat tinggi. Bandingkan dengan logam biasa:
+
+<Chart
+  title={<>Takat Lebur Seramik dan Logam</>}
+  bars="apart"
+  categories={["Aluminium", "Kuprum", "Ferum", "Aluminium oksida", "Magnesium oksida"]}
+  series={[
+    { label: "Takat lebur (°C)", mark: "bar", values: [660, 1085, 1538, 2072, 2852] },
+  ]}
+  valueLabel="Takat lebur (°C)"
+  description={
+    <>
+      Logam: aluminium <InlineMath math="660^\circ\text{C}" />, kuprum{" "}
+      <InlineMath math="1{,}085^\circ\text{C}" />, ferum{" "}
+      <InlineMath math="1{,}538^\circ\text{C}" />. Seramik: aluminium oksida{" "}
+      <InlineMath math="2{,}072^\circ\text{C}" /> dan magnesium oksida{" "}
+      <InlineMath math="2{,}852^\circ\text{C}" />.
+    </>
+  }
+/>
+
+Seramik juga keras, tahan kakisan dan merupakan penebat haba serta elektrik yang baik. Kelemahannya, seramik **rapuh**: seramik pecah apabila dihentak, kerana lapisan ion tidak boleh menggelongsor seperti lapisan atom logam.
+
+## Bahan Komposit Menggabungkan Kekuatan
+
+**Bahan komposit** ialah bahan yang terbina daripada dua atau lebih bahan dengan sifat berbeza. Bahan baharu itu mempunyai sifat yang lebih baik daripada setiap komponennya. Satu komponen biasanya ialah **matriks** yang memegang komponen kedua, iaitu bahan pengukuh.
+
+| Bahan komposit | Komponen | Sifat baharu |
+| :--- | :--- | :--- |
+| Konkrit diperkukuh | Konkrit dan rod keluli | Tahan mampatan dan regangan |
+| Gentian kaca | Gentian kaca dan plastik poliester | Ringan, kuat dan tidak berkarat |
+| Gentian optik | Teras kaca dan salutan kaca yang indeks biasannya lebih rendah | Membawa cahaya jauh tanpa banyak kehilangan |
+| Kaca fotokromik | Kaca dan argentum klorida | Menjadi gelap dalam cahaya terang |
+| Superkonduktor | Seramik oksida logam | Rintangan sifar di bawah suhu tertentu |
+
+Konkrit sahaja kuat apabila dimampatkan tetapi mudah retak apabila diregangkan. Keluli pula kuat apabila diregangkan. Apabila rod keluli dibenamkan dalam konkrit, bahan komposit itu menahan **kedua-dua** jenis daya, jadi konkrit diperkukuh digunakan untuk jambatan dan tiang bangunan.
+
+## Kesilapan Lazim tentang Bahan Buatan
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Aloi lebih keras kerana atom asing lebih kuat. | Kekerasan datang daripada susunan yang terganggu, bukan kekuatan atom asing. | Terangkan dengan lapisan atom yang sukar menggelongsor. |
+| Semua kaca tahan dipanaskan di atas penunu. | Kaca soda kapur mengembang banyak dan mudah retak. | Bandingkan pekali pengembangan linear. |
+| Seramik kuat, jadi seramik tidak pecah. | Seramik keras tetapi rapuh, dan pecah apabila dihentak. | Bezakan kekerasan dengan kerapuhan. |
+| Konkrit diperkukuh ialah aloi. | Konkrit diperkukuh ialah komposit kerana komponennya bukan semua logam. | Aloi mesti berunsur utama logam dan bercampur pada aras atom. |
+
+Kesilapan pertama paling kerap dalam soalan struktur. Jawapan yang lengkap menyebut **saiz atom berbeza**, **susunan terganggu** dan **lapisan sukar menggelongsor**.
+
+## Latihan Bahan Buatan dalam Industri
+
+Soalan ini bergerak daripada pengiraan ringkas kepada pemilihan bahan. **Kaitkan setiap sifat dengan susunan zarah** dalam jawapan kamu.
+
+1. Sebuah kerangka kapal terbang mengandungi <InlineMath math="2.0\text{ kg}" /> duralumin dengan <InlineMath math="93\%" /> aluminium. Hitung jisim aluminium dalam kerangka itu.
+
+2. Terangkan sebab gangsa lebih keras daripada kuprum tulen.
+
+3. Rod kaca silika terlakur sepanjang <InlineMath math="10\text{ cm}" /> dipanaskan sebanyak <InlineMath math="200\text{ K}" />. Hitung pemanjangannya dan bandingkan dengan kaca soda kapur.
+
+4. Pilih bahan yang paling sesuai untuk pelapik relau, badan kapal terbang dan bikar yang dipanaskan terus di atas penunu. Berikan sebab bagi setiap pilihan.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Jisim aluminium ialah <InlineMath math="93\%" /> daripada jisim duralumin:
+
+<BlockMath math="m(\mathrm{Al}) = \frac{93}{100} \times 2.0 = 1.86\text{ kg}" />
+
+Semak: baki <InlineMath math="2.0 - 1.86 = 0.14\text{ kg}" /> ialah <InlineMath math="7\%" />, iaitu kuprum, magnesium dan mangan.
+
+**Penyelesaian 2**: Dalam kuprum tulen, semua atom sama saiz dan tersusun dalam lapisan teratur yang mudah menggelongsor. Dalam gangsa, atom stanum yang **berlainan saiz** mengganggu susunan itu. Lapisan atom kuprum sukar menggelongsor, jadi gangsa lebih keras.
+
+**Penyelesaian 3**: Gunakan <InlineMath math="\Delta L = \alpha L \Delta T" /> dengan <InlineMath math="L = 100\text{ mm}" />:
+
+<MathContainer>
+<BlockMath math="\Delta L_{\text{silika}} = (0.55 \times 10^{-6})(100)(200) = 0.011\text{ mm} = 11\ \mu\text{m}" />
+<BlockMath math="\Delta L_{\text{soda}} = (9 \times 10^{-6})(100)(200) = 0.18\text{ mm} = 180\ \mu\text{m}" />
+</MathContainer>
+
+Kaca soda kapur mengembang kira-kira <InlineMath math="16" /> kali lebih banyak, jadi kaca silika terlakur jauh lebih tahan kejutan haba.
+
+**Penyelesaian 4**: Pelapik relau memerlukan **seramik** seperti magnesium oksida, kerana takat leburnya <InlineMath math="2{,}852^\circ\text{C}" /> dan seramik ialah penebat haba. Badan kapal terbang memerlukan **duralumin**, kerana aloi ini ringan tetapi kuat. Bikar yang dipanaskan terus memerlukan **kaca borosilikat**, kerana pekali pengembangannya kecil dan kaca ini tahan kejutan haba.
